@@ -851,10 +851,10 @@
       <p>音声の再生は、必ずファイルの先頭からリクエストするわけではなく、途中から聞く場合は途中からリクエストを行う。
       <p>また、全てのレスポンスが揃ってから開始するわけではなく、届いた順に再生する。
       <p>HTTP 上は Range Request と Partial Response が使われ、途中から再生するような場合以下のようになる。
-      <pre class=http><code translate="no">GET /mozaic-ep60.mp3 HTTP/1.1
+      <pre class=http><code translate=no>GET /mozaic-ep60.mp3 HTTP/1.1
 Host: files.mozaic.fm
 Range: bytes=54034432-</code></pre>
-      <pre class=http><code translate="no">HTTP/1.1 206 Partial Content
+      <pre class=http><code translate=no>HTTP/1.1 206 Partial Content
 content-type: audio/mpeg
 Content-Range: bytes 54034432-101797887/101797888
 Content-Length: 47763456</code></pre>
@@ -863,7 +863,7 @@ Content-Length: 47763456</code></pre>
     <section>
       <h2 id="service-worker-での-range-request"><a href="#service-worker-での-range-request">Service Worker での Range Request</a></h2>
       <p>ところが onfetch で Range になるはずのリクエストを見てみると、レスポンスが必ず 200 で返ってきていることに気付く。
-      <pre class=js><code translate="no">self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
+      <pre class=js><code translate=no>self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   e.respondWith((async () =&gt; {
     const req = e.request
     const res = await fetch(req)
@@ -891,7 +891,7 @@ Content-Length: 47763456</code></pre>
         <li>Range/Partial の仕様はあくまで HTTP の仕様
         <li>WHATWG において、それらがブラウザでどう扱われるかは、標準化されてない
         <li>
-          <code translate="no">&lt;audio&gt;</code> / <code translate="no">&lt;video&gt;</code> などで Range を使うのはブラウザがそう実装してるだけ
+          <code translate=no>&lt;audio&gt;</code> / <code translate=no>&lt;video&gt;</code> などで Range を使うのはブラウザがそう実装してるだけ
         </li>
         <li>Service Worker/Cache のような API でどうするかは決まってない
       </ul>
@@ -916,7 +916,7 @@ Content-Length: 47763456</code></pre>
         <p>取得したい URL とオプションを登録する。
         <p>ID はそのタスク自体を識別するために登録し、もし同じ ID のタスクがある状態で再登録しようとすると例外が出る。
         <p>また、ダウンロード対象を複数登録して同時にダウンロードさせることができる。
-        <pre class=js><code translate="no">const id   = &apos;ep01&apos;
+        <pre class=js><code translate=no>const id   = &apos;ep01&apos;
 const mp3  = &apos;https://files.example.com/ep01.mp3&apos;
 const html = &apos;https://files.example.com/ep01.html&apos;
 const option = {
@@ -930,12 +930,12 @@ const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)</
       <section>
         <h3 id="foreground-event"><a href="#foreground-event">foreground event</a></h3>
         <p>ダウンロードの進捗は window 側で progress イベントで上がる
-        <pre class=js><code translate="no">task.addEventListener(&apos;progress&apos;, (e) =&gt; console.log(e.downloaded))</code></pre>
+        <pre class=js><code translate=no>task.addEventListener(&apos;progress&apos;, (e) =&gt; console.log(e.downloaded))</code></pre>
       </section>
       <section>
         <h3 id="abort"><a href="#abort">abort()</a></h3>
-        <p>中断は API から可能であり、 <code translate="no">abort()</code> を呼べば task が終了する。
-        <pre class=js><code translate="no">task.abort()</code></pre>
+        <p>中断は API から可能であり、 <code translate=no>abort()</code> を呼べば task が終了する。
+        <pre class=js><code translate=no>task.abort()</code></pre>
         <p>ただし、 Pause/Resume は API がなく、<a href="https://github.com/WICG/background-fetch/issues/38">提案</a> はされてるが、その UI は OS 側が提供するというスタンスだ。
       </section>
     </section>
@@ -948,7 +948,7 @@ const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)</
         <li>backgroundfetchabort
         <li>backgroundfetchclick
       </ul>
-      <pre class=js><code translate="no">// ダウンロード完了
+      <pre class=js><code translate=no>// ダウンロード完了
 self.addEventListener(&apos;backgroundfetchsuccess&apos;, (e) =&gt; {
   e.waitUntil(async function() {
     try {
@@ -996,8 +996,8 @@ self.addEventListener(&apos;backgroundfetchabort&apos;, (e) =&gt; {
     <section>
       <h2 id="cache-hit"><a href="#cache-hit">Cache HIT</a></h2>
       <p>キャッシュは Range などを気にする必要もなく普通に返せば良い。
-      <p>実際に <code translate="no">&lt;audio&gt;</code> タグは途中からでも普通に再生できた。
-      <pre class=js><code translate="no">// ダウンロードしたものを返す
+      <p>実際に <code translate=no>&lt;audio&gt;</code> タグは途中からでも普通に再生できた。
+      <pre class=js><code translate=no>// ダウンロードしたものを返す
 self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   e.respondWith(async function() {
     const cachedResponse = await caches.match(e.request.url)

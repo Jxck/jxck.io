@@ -870,12 +870,12 @@
     </section>
     <section>
       <h2 id="spectre-と-web"><a href="#spectre-と-web">Spectre と Web</a></h2>
-      <p>典型例として、あるブラウザの設計が <code translate="no">&lt;iframe&gt;</code> に読み込まれた別 Origin のリソースを、 window と同じメモリ内に展開する作りになっていたとしよう。
+      <p>典型例として、あるブラウザの設計が <code translate=no>&lt;iframe&gt;</code> に読み込まれた別 Origin のリソースを、 window と同じメモリ内に展開する作りになっていたとしよう。
       <p>Cross Origin Iframe の中身は、 JS から直接触ることができない。しかし、ある CPU の投機的実行という特性を利用すると、キャッシュに載せることができる。
       <p>アクセスを試みて、早ければキャッシュにあり、遅ければキャッシュにない、この時間を正確に計測して繰り返せば、徐々にキャッシュに載っている情報を推測できる。
-      <p>これを利用して、ユーザを攻撃ページに誘導し、そのユーザの Cookie が無いと取得できないデータを <code translate="no">&lt;iframe&gt;</code> に読み、時間をかければ中身を推測できるという攻撃だ。
+      <p>これを利用して、ユーザを攻撃ページに誘導し、そのユーザの Cookie が無いと取得できないデータを <code translate=no>&lt;iframe&gt;</code> に読み、時間をかければ中身を推測できるという攻撃だ。
       <p>本来アクセスできない情報を外から推測することをサイドチャネル攻撃と呼び、その中でも特に時間という要素を利用する攻撃をタイミング攻撃と呼ぶ。今回の場合はそのどちらでもある。
-      <pre class=html><code translate="no">&lt;!-- 攻撃者が用意した罠サイト --&gt;
+      <pre class=html><code translate=no>&lt;!-- 攻撃者が用意した罠サイト --&gt;
 &lt;title&gt;attacker site&lt;/title&gt;
 
 &lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
@@ -890,7 +890,7 @@
       <p>これが Spectre による攻撃のざっくりした部分だ。
       <p>これを本質的に解決するには、ブラウザの作りを根本的に直すしか無いが、それは時間がかかる。
       <p>しかし、 Web は URL にアクセスするだけで、全てのユーザがこの攻撃に晒される危険性があるため、なんとかしないといけない。
-      <p>そこで、ブラウザベンダは対処療法として、攻撃者が推測に必要とする「高解像度で時間を測れる API」である <code translate="no">performance.now()</code> の精度を下げ、「工夫次第で同じく高解像度で時間が測れる」 <code translate="no">SharedArrayBuffer</code> を無効にすることにした。
+      <p>そこで、ブラウザベンダは対処療法として、攻撃者が推測に必要とする「高解像度で時間を測れる API」である <code translate=no>performance.now()</code> の精度を下げ、「工夫次第で同じく高解像度で時間が測れる」 <code translate=no>SharedArrayBuffer</code> を無効にすることにした。
       <p>これは、互換性を壊しているわけだが、ユーザの安全を守るためにはしかたない。とはいえそのままにしておくこともできない。
       <p>そこで、根本的な解決として理想的には「違う Origin のデータを同じメモリ内に読み込まない」状態にするための対応を始めた。
       <p>これが Site Isolation などと呼ばれているものだ。
@@ -901,8 +901,8 @@
       <p>ブラウザによってやり方が違うが、 Chrome の場合についてみておく。
       <p>Chrome はそもそもマルチプロセスなアーキテクチャになっており、具体的には 1 tab が 1 process (renderer process) で分離されていた。
       <p>プロセスが違えばメモリ空間が違うため、別のタブの内容を読み出すことは Spectre のようなサイドチャネルアタックはできない。
-      <p>しかし、 <code translate="no">&lt;iframe&gt;</code> を同じタブの中に展開する場合、読み込んでる Origin が違っても同じ Process 内で展開されるため、サイドチャネル攻撃が可能だった。
-      <p>そこで、 <code translate="no">&lt;iframe&gt;</code> などもきちんとプロセスを分離するというのが Chrome における Site Isolation となる。
+      <p>しかし、 <code translate=no>&lt;iframe&gt;</code> を同じタブの中に展開する場合、読み込んでる Origin が違っても同じ Process 内で展開されるため、サイドチャネル攻撃が可能だった。
+      <p>そこで、 <code translate=no>&lt;iframe&gt;</code> などもきちんとプロセスを分離するというのが Chrome における Site Isolation となる。
       <p>Chrome はこれをマージするまでに 6 年近くかかったらしい。
       <ul>
         <li><a href="https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html">Google Online Security Blog: Mitigating Spectre with Site Isolation in Chrome</a>
@@ -915,10 +915,10 @@
     </section>
     <section>
       <h2 id="corb"><a href="#corb">CORB</a></h2>
-      <p><code translate="no">&lt;iframe&gt;</code> 以外にも、 Cross Origin なリソースを同じプロセスに展開する方法が知られている。
+      <p><code translate=no>&lt;iframe&gt;</code> 以外にも、 Cross Origin なリソースを同じプロセスに展開する方法が知られている。
       <p>例えば、ユーザが Cookie を持っているときにのみ取得できる JSON や HTML があったとする。
-      <p>これらを <code translate="no">&lt;script&gt;</code> や <code translate="no">&lt;img&gt;</code> で読み込めば、メモリ上に展開できる。
-      <pre class=html><code translate="no">&lt;!-- 攻撃者が用意した罠サイト --&gt;
+      <p>これらを <code translate=no>&lt;script&gt;</code> や <code translate=no>&lt;img&gt;</code> で読み込めば、メモリ上に展開できる。
+      <pre class=html><code translate=no>&lt;!-- 攻撃者が用意した罠サイト --&gt;
 &lt;title&gt;attacker site&lt;/title&gt;
 
 &lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
@@ -942,10 +942,10 @@
       <p>具体的には以下のような request destination について
       <ul>
         <li>
-          &quot;image&quot; (<code translate="no">&lt;img&gt;</code>, <code translate="no">&lt;image&gt;</code>, <code translate="no">background-image</code>, favicon.ico etc)
+          &quot;image&quot; (<code translate=no>&lt;img&gt;</code>, <code translate=no>&lt;image&gt;</code>, <code translate=no>background-image</code>, favicon.ico etc)
         </li>
         <li>
-          &quot;script&quot; (<code translate="no">&lt;script&gt;</code>, <code translate="no">importScripts()</code>, <code translate="no">navigator.serviceWorker.register()</code>, <code translate="no">audioWorklet.addModule()</code>) etc.
+          &quot;script&quot; (<code translate=no>&lt;script&gt;</code>, <code translate=no>importScripts()</code>, <code translate=no>navigator.serviceWorker.register()</code>, <code translate=no>audioWorklet.addModule()</code>) etc.
         </li>
         <li>
           &quot;audio&quot;, &quot;video&quot;, &quot;track&quot;
@@ -968,7 +968,7 @@
       </ul>
       <p>だった場合に、そのレスポンスの header/body を空にするという仕様だ。
       <p>ブラウザが勝手に行う intervention であるため、特にヘッダなどを付けるわけではない。
-      <p>実際の条件はもう少し複雑で <code translate="no">X-C-T-O: no-sniff</code> がない場合は、 Sniffing を行わなければ壊れるサイトがある(html として img を配信してる etc)ため、色々と場合分けが必要なようだ。
+      <p>実際の条件はもう少し複雑で <code translate=no>X-C-T-O: no-sniff</code> がない場合は、 Sniffing を行わなければ壊れるサイトがある(html として img を配信してる etc)ため、色々と場合分けが必要なようだ。
       <ul>
         <li><a href="https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md">Cross-Origin Read Blocking (CORB)</a>
         <li><a href="https://www.chromium.org/Home/chromium-security/corb-for-developers">Cross-Origin Read Blocking for Web Developers - The Chromium Projects</a>
@@ -982,10 +982,10 @@
     <section>
       <h2 id="corp"><a href="#corp">CORP</a></h2>
       <p>CORB は既存のサイトを壊さない範囲で、 Intervention としてサイトが実施しているため、対象外が多く有る。
-      <p>例えば、 <code translate="no">&lt;script&gt;</code> から JS へのリクエストであれば成功してしまう。
+      <p>例えば、 <code translate=no>&lt;script&gt;</code> から JS へのリクエストであれば成功してしまう。
       <p>そこで、 CORB と同等のことを Opt-In で行うのが Cross-Origin-Resource-Policy(CORP) だ。
       <p>そのヘッダが付いたリソースが、どの Origin から読まれて良いかを決める。
-      <pre class=html><code translate="no">&lt;!-- 攻撃者が用意した罠サイト --&gt;
+      <pre class=html><code translate=no>&lt;!-- 攻撃者が用意した罠サイト --&gt;
 &lt;title&gt;attacker site&lt;/title&gt;
 
 &lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
@@ -997,7 +997,7 @@
 --&gt;
 &lt;script src=https://admin.example.com/secret.js&gt;&lt;/script&gt;</code></pre>
       <p>この secret.js に対して以下のいずれかのヘッダをつける。
-      <pre class=http><code translate="no">Cross-Origin-Resource-Policy: same-origin
+      <pre class=http><code translate=no>Cross-Origin-Resource-Policy: same-origin
 Cross-Origin-Resource-Policy: same-site
 Cross-Origin-Resource-Policy: cross-origin</code></pre>
       <p>same-origin や same-site を指定すれば、ブラウザは secret.js のレスポンスヘッダを見た時点で、メモリへ展開してよいかどうかをブラウザが判断できる。
@@ -1007,31 +1007,31 @@ Cross-Origin-Resource-Policy: cross-origin</code></pre>
     </section>
     <section>
       <h2 id="coep"><a href="#coep">COEP</a></h2>
-      <p>現状は <code translate="no">require-corp</code> という値だけが定義されている。
-      <pre class=http><code translate="no">Cross-Origin-Embedder-Policy: require-corp</code></pre>
-      <p>これをトップフレームの HTML レスポンスに指定すると、そのサブリソース全てが CORP を指定したものでないといけなくなる。つまり、 <code translate="no">&lt;script&gt;</code> に読む JS や、 <code translate="no">&lt;img&gt;</code> に読む画像、 <code translate="no">&lt;iframe&gt;</code> に埋め込む別のページも、全て CORP を明示している必要があるということだ。
+      <p>現状は <code translate=no>require-corp</code> という値だけが定義されている。
+      <pre class=http><code translate=no>Cross-Origin-Embedder-Policy: require-corp</code></pre>
+      <p>これをトップフレームの HTML レスポンスに指定すると、そのサブリソース全てが CORP を指定したものでないといけなくなる。つまり、 <code translate=no>&lt;script&gt;</code> に読む JS や、 <code translate=no>&lt;img&gt;</code> に読む画像、 <code translate=no>&lt;iframe&gt;</code> に埋め込む別のページも、全て CORP を明示している必要があるということだ。
       <p>全てのサブリソースの CORP の値が、読み込みページと正しく整合してないとブロックされるため、 CORP を強制するということは、全てのサブリソースがそのトップフレームで読み込まれることを許可している状態であることを意味する。
       <p>これにより、全てのリソースが意図した読み込みで構成されている状態になるため、同じプロセスで展開されても問題無いことが保証できる。
       <p>ただし、 CORS に明示的に対応している場合はこの限りではない。
-      <p>例えば <code translate="no">&lt;script&gt;</code> や <code translate="no">&lt;img&gt;</code> の場合は以下のように明示的に CORS mode でリクエストさせることができる。
-      <pre class=html><code translate="no">&lt;!-- cross origin script を CORS で取得する --&gt;
+      <p>例えば <code translate=no>&lt;script&gt;</code> や <code translate=no>&lt;img&gt;</code> の場合は以下のように明示的に CORS mode でリクエストさせることができる。
+      <pre class=html><code translate=no>&lt;!-- cross origin script を CORS で取得する --&gt;
 &lt;script crossorigin src=https://example.com/script.js&gt;</code></pre>
       <p>この場合、リクエストには Origin ヘッダが載り、サーバはそれを見て明示的に Access-Control-Allow-Origin を返すことになる。
       <p>つまり、すでに明示的に読み込める Origin を制限しているため、 CORP をつけていなくても COEP の要件を満たす。
-      <p>Public CDN のようなサーバは、これまで CORP が暗黙的に <code translate="no">cross-origin</code> だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
-      <p>しかし、 COEP のデプロイが広まると、今のままではコンテンツを読み込めな書くなるため、 Public であっても <code translate="no">CORP: cross-origin</code> か <code translate="no">ACAO: *</code> に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
-      <p>逆に言うと、 <code translate="no">CORP: cross-origin</code> を明示的に指定することが、そのリソースは public であることを表明するヘッダとして使われていくことになるだろう。
+      <p>Public CDN のようなサーバは、これまで CORP が暗黙的に <code translate=no>cross-origin</code> だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
+      <p>しかし、 COEP のデプロイが広まると、今のままではコンテンツを読み込めな書くなるため、 Public であっても <code translate=no>CORP: cross-origin</code> か <code translate=no>ACAO: *</code> に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
+      <p>逆に言うと、 <code translate=no>CORP: cross-origin</code> を明示的に指定することが、そのリソースは public であることを表明するヘッダとして使われていくことになるだろう。
     </section>
     <section>
       <h2 id="coop"><a href="#coop">COOP</a></h2>
       <p>CORP + COEP があれば、ほぼ完璧に「意図したリソースだけが読み込まれたプロセス」が構築できそうだが、これだけでは missing point がある、それが Opener の存在だ。
-      <p><code translate="no">window.open()</code> や <code translate="no">_blank</code> では、開いた側(opener)の Window に、 開かれたページ(openee)から <code translate="no">window.opener</code> を経由してアクセスできる。このため、 2 つのページは同じプロセスに展開されてしまう。
-      <p>noopener は、 Opener が <code translate="no">window.opener</code> の削除を指定するが、 Openee はそれを拒否できない(そういう提案があった気もするが)。
-      <p>COOP は Opener / Openee 両方に指定し、その両方の値が整合しなければ <code translate="no">window.opener</code> が削除されるという仕様だ。
+      <p><code translate=no>window.open()</code> や <code translate=no>_blank</code> では、開いた側(opener)の Window に、 開かれたページ(openee)から <code translate=no>window.opener</code> を経由してアクセスできる。このため、 2 つのページは同じプロセスに展開されてしまう。
+      <p>noopener は、 Opener が <code translate=no>window.opener</code> の削除を指定するが、 Openee はそれを拒否できない(そういう提案があった気もするが)。
+      <p>COOP は Opener / Openee 両方に指定し、その両方の値が整合しなければ <code translate=no>window.opener</code> が削除されるという仕様だ。
       <ul>
         <li><a href="https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit">Cross-Origin-Opener-Policy Explainer</a>
       </ul>
-      <pre class=http><code translate="no">Cross-Origin-Opener-Policy: same-origin
+      <pre class=http><code translate=no>Cross-Origin-Opener-Policy: same-origin
 Cross-Origin-Opener-Policy: same-origin-allow-popups
 Cross-Origin-Opener-Policy: unsafe-none</code></pre>
       <p>対応は以下のようになる。
@@ -1145,8 +1145,8 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
         <li><a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/_0MEXs6TJhg">Planning isolation requirements (COOP/COEP) for SharedArrayBuffer</a>
       </ul>
       <p>そして、こうした理想的に分離された(Site Isolated)環境が手に入ったことは、今後より強力な API をブラウザに展開していく上での礎となる。
-      <p>例えば <code translate="no">performance.measureMemory()</code> や JS Self-Profiling API などもそうした候補になり、 Isolated されている環境でのみ利用できるようにしていく計画も有る。
-      <p>逆に新しい環境であることを利用し、 <code translate="no">document.domain</code> の変更を禁止するといった互換性のためにできなかった変更を持ち込むことも検討されている。
+      <p>例えば <code translate=no>performance.measureMemory()</code> や JS Self-Profiling API などもそうした候補になり、 Isolated されている環境でのみ利用できるようにしていく計画も有る。
+      <p>逆に新しい環境であることを利用し、 <code translate=no>document.domain</code> の変更を禁止するといった互換性のためにできなかった変更を持ち込むことも検討されている。
       <p>これは、もはやこうしたヘッダを付与しコントロールしていくことは、 Spectre 対策だけの話ではなくなっていく可能性があることを意味する。
     </section>
     <section>
@@ -1154,8 +1154,8 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
       <section>
         <h3 id="crossoriginisolated"><a href="#crossoriginisolated">crossOriginIsolated</a></h3>
         <p>Isolated な環境でしか利用できない API が存在するということは、分岐のために Isolated であるかどうかを知りたい場面がでてくる。
-        <p>そこで、 CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが <code translate="no">self.corssOriginIsolated</code> だ。
-        <pre class=js><code translate="no">if (self.crossOriginIsolated) {
+        <p>そこで、 CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが <code translate=no>self.corssOriginIsolated</code> だ。
+        <pre class=js><code translate=no>if (self.crossOriginIsolated) {
   // Cross Origin Isolation が有効な場合 true を返す
 }</code></pre>
         <ul>
@@ -1190,7 +1190,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
             [SecureContext=Isolation]: CORP + COOP + COEP
             <ul>
               <li>
-                <code translate="no">performance.now</code>, <code translate="no">performance.measureMemory</code>, SharedArrayBuffer etc
+                <code translate=no>performance.now</code>, <code translate=no>performance.measureMemory</code>, SharedArrayBuffer etc
               </li>
             </ul>
           </li>

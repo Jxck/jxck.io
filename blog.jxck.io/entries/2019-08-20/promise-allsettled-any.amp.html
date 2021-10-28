@@ -820,7 +820,7 @@
     <h1><a href="">Promise.allSettled と Promise.any</a></h1>
     <section>
       <h2 id="intro"><a href="#intro">Intro</a></h2>
-      <p><code translate="no">Promise.allSettled()</code> と <code translate="no">Promise.any()</code> の仕様策定が進んでいる。
+      <p><code translate=no>Promise.allSettled()</code> と <code translate=no>Promise.any()</code> の仕様策定が進んでいる。
       <p>両者は近いレイヤの仕様では有るが、作業の進捗には差がある。
       <ul>
         <li>
@@ -830,13 +830,13 @@
           <a href="https://github.com/tc39/proposal-promise-any">Promise.any</a> は Stage 2 であり、実装はまだない
         </li>
       </ul>
-      <p>ここでは、これらがあると何が嬉しいのかを <code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> の特徴を踏まえて解説する。
+      <p>ここでは、これらがあると何が嬉しいのかを <code translate=no>Promise.all()</code>, <code translate=no>Promise.race()</code> の特徴を踏まえて解説する。
     </section>
     <section>
       <h2 id="promiseallrace"><a href="#promiseallrace">Promise.all()/race()</a></h2>
-      <p><code translate="no">Promise.all()</code>, <code translate="no">Promise.race()</code> は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
+      <p><code translate=no>Promise.all()</code>, <code translate=no>Promise.race()</code> は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
       <p>all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
-      <pre class=js><code translate="no">const fetches = [
+      <pre class=js><code translate=no>const fetches = [
   fetch(&apos;./page1.html&apos;),
   fetch(&apos;./page2.html&apos;),
   fetch(&apos;./page3.html&apos;),
@@ -854,7 +854,7 @@ await Promise.race(fetched)</code></pre>
       <section>
         <h3 id="all--reject"><a href="#all--reject">all + reject</a></h3>
         <p>all は、その中の一つでも Reject すると、全体が Reject してしまう。
-        <pre class=js><code translate="no">try {
+        <pre class=js><code translate=no>try {
   const fetches = [
     fetch(&apos;./page1.html&apos;),
     fetch(&apos;./page2.html&apos;),
@@ -880,7 +880,7 @@ await Promise.race(fetched)</code></pre>
       <h2 id="allsettled"><a href="#allsettled">allSettled</a></h2>
       <p>allSettled は、 all とは違い、個々が Resolve/Reject どちらになっても、最後までとにかく全て実行する。
       <p>実行した結果を配列として Resolve するため、基本的に allSettled 自体は Reject しない。
-      <pre class=js><code translate="no">const fetches = [
+      <pre class=js><code translate=no>const fetches = [
   fetch(&apos;./page1.html&apos;),
   fetch(&apos;./page2.html&apos;),
   fetch(&apos;./page3.html&apos;),
@@ -901,13 +901,13 @@ try {
   // 基本的に reject はしない
   console.error(err)
 }</code></pre>
-      <p>したがって、 <code translate="no">status: &apos;rejected&apos;</code> な結果だけをリトライすれば良い。
+      <p>したがって、 <code translate=no>status: &apos;rejected&apos;</code> な結果だけをリトライすれば良い。
       <p>完了したものを無駄にせず、効率よく簡単に実装することができるだろう。
     </section>
     <section>
       <h2 id="race--reject"><a href="#race--reject">race + reject</a></h2>
       <p>race の場合は、最初の一つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
-      <pre class=js><code translate="no">const fetches = [
+      <pre class=js><code translate=no>const fetches = [
   fetch(&apos;./page1.html&apos;),
   fetch(&apos;./page2.html&apos;),
   fetch(&apos;./page3.html&apos;),
@@ -928,7 +928,7 @@ try {
       <h2 id="any"><a href="#any">any</a></h2>
       <p>any は rece とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
       <p>そして、全ての Promise が Reject した場合にのみ全体を Reject する。
-      <pre class=js><code translate="no">const fetches = [
+      <pre class=js><code translate=no>const fetches = [
   fetch(&apos;./page1.html&apos;),
   fetch(&apos;./page2.html&apos;),
   fetch(&apos;./page3.html&apos;),
@@ -966,7 +966,7 @@ try {
         <li>Promise.anyFulfilled: Promise.any
         <li>Promise.anySettled:   Promise.race
       </ul>
-      <pre class=js><code translate="no">Promise.allFulfilled = Promise.all
+      <pre class=js><code translate=no>Promise.allFulfilled = Promise.all
 Promise.allSettled   = Promise.allSettled
 Promise.anyFulfilled = Promise.any
 Promise.anySettled   = Promise.race</code></pre>

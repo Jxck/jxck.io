@@ -222,7 +222,7 @@
                     Deprecations and Removals
                     <ul>
                       <li>
-                        Remove prefixed events for <code translate="no">&lt;link rel=prerender&gt;</code>
+                        Remove prefixed events for <code translate=no>&lt;link rel=prerender&gt;</code>
                       </li>
                       <li>Stop cloning sessionStorage for windows opened with noopener
                       <li>Labels
@@ -550,7 +550,7 @@
                 </ul>
               </li>
               <li>
-                Ship: Remove clamping of <code translate="no">setTimeout(..., 0)</code>
+                Ship: Remove clamping of <code translate=no>setTimeout(..., 0)</code>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/HKPTp7C1LwY">https://groups.google.com/a/chromium.org/g/blink-dev/c/HKPTp7C1LwY</a>
                 </ul>
@@ -582,7 +582,7 @@
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/YmWSODSTPS4/m/qx1uXvYxAgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/YmWSODSTPS4/m/qx1uXvYxAgAJ</a>
                   <li>
-                    <code translate="no">border-top-left-radius</code> など四隅ひとつの radius を指定する <code translate="no">border-radius</code> サブプロパティの論理プロパティ版
+                    <code translate=no>border-top-left-radius</code> など四隅ひとつの radius を指定する <code translate=no>border-radius</code> サブプロパティの論理プロパティ版
                   </li>
                 </ul>
               </li>
@@ -617,7 +617,7 @@
                 </ul>
               </li>
               <li>
-                Implement and Ship: Remove <code translate="no">FileSystemWritableFileStream::close()</code> implementation
+                Implement and Ship: Remove <code translate=no>FileSystemWritableFileStream::close()</code> implementation
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/98OnGPp1_M8">https://groups.google.com/a/chromium.org/g/blink-dev/c/98OnGPp1_M8</a>
                 </ul>
@@ -674,12 +674,12 @@
                 </ul>
               </li>
               <li>
-                <em>Prototype: HTMLPopupElement - <code translate="no">&lt;popup&gt;</code></em>
+                <em>Prototype: HTMLPopupElement - <code translate=no>&lt;popup&gt;</code></em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/9y-Thg9UCxY">https://groups.google.com/a/chromium.org/g/blink-dev/c/9y-Thg9UCxY</a>
                   <li>MS が提案する新要素
                   <li>
-                    <code translate="no">&lt;dialog&gt;</code> とは light-dismiss の点で違う(バックグラウンドを block しない?)
+                    <code translate=no>&lt;dialog&gt;</code> とは light-dismiss の点で違う(バックグラウンドを block しない?)
                   </li>
                 </ul>
               </li>
@@ -707,7 +707,7 @@
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/etQ-LVhY6S4">https://groups.google.com/a/chromium.org/g/blink-dev/c/etQ-LVhY6S4</a>
                   <li>Twitter のような Infinite Scroll な UI を Assistive Technology に認識させる
-                  <li><code translate="no">&lt;main id=&quot;main&quot; aria-virtualcontent=&quot;block-end&quot;&gt;</code>
+                  <li><code translate=no>&lt;main id=&quot;main&quot; aria-virtualcontent=&quot;block-end&quot;&gt;</code>
                 </ul>
               </li>
               <li>
@@ -723,7 +723,7 @@
                   <li>ESC や Back Button など Modal を閉じるような操作をすべてフックする Listener
                   <li>このイベントで Modal を閉じる用途に利用する
                   <li>
-                    <code translate="no">&lt;popup&gt;</code> の提案と被る部分があるが、並行して行う。
+                    <code translate=no>&lt;popup&gt;</code> の提案と被る部分があるが、並行して行う。
                   </li>
                 </ul>
               </li>
@@ -790,7 +790,7 @@
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/bmdcI_q2yWQ/m/HtdNtLTSAQAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/bmdcI_q2yWQ/m/HtdNtLTSAQAJ</a>
                   <li>
-                    localhost6 を IPv6 のループバック (<code translate="no">::1</code>) として扱うという非標準の機能を消す
+                    localhost6 を IPv6 のループバック (<code translate=no>::1</code>) として扱うという非標準の機能を消す
                   </li>
                 </ul>
               </li>
@@ -811,7 +811,7 @@
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/t-S9nnos9qU/m/pUFJb00jBAAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/t-S9nnos9qU/m/pUFJb00jBAAJ</a>
                   <li>
-                    <code translate="no">ua-*</code> を <code translate="no">sec-ch-ua-*</code> にする
+                    <code translate=no>ua-*</code> を <code translate=no>sec-ch-ua-*</code> にする
                   </li>
                 </ul>
               </li>
@@ -927,7 +927,7 @@
                 <em>Form Submit 時に Security Alert が出てしまうようになった件の報告が殺到</em>
                 <ul>
                   <li>
-                    HTTP -&gt; HTTPS redirect で HTTPS 対応しているが、 Form Submit 後の Redirect (PRG Pattern) のリダイレクト先(Location)が HTTP になってる場合、<code translate="no">not secure</code> なエラー画面が出てしまい、 Submit できない。
+                    HTTP -&gt; HTTPS redirect で HTTPS 対応しているが、 Form Submit 後の Redirect (PRG Pattern) のリダイレクト先(Location)が HTTP になってる場合、<code translate=no>not secure</code> なエラー画面が出てしまい、 Submit できない。
                   </li>
                   <li><a href="https://groups.google.com/a/chromium.org/g/security-dev/c/_yE-XITw5nc/m/3cJyqhdBBAAJ">https://groups.google.com/a/chromium.org/g/security-dev/c/_yE-XITw5nc/m/3cJyqhdBBAAJ</a>
                   <li><a href="https://groups.google.com/a/chromium.org/g/security-dev/c/PXuy9aKftG0/m/Nz06ohVBBAAJ">https://groups.google.com/a/chromium.org/g/security-dev/c/PXuy9aKftG0/m/Nz06ohVBBAAJ</a>
@@ -1020,7 +1020,7 @@
                     <ul>
                       <li>Top-level await
                       <li>
-                        What&apos;re you pointing <code translate="no">at()</code> ?
+                        What&apos;re you pointing <code translate=no>at()</code> ?
                       </li>
                     </ul>
                   </li>
@@ -1122,7 +1122,7 @@
                 <ul>
                   <li><a href="https://blog.mozilla.org/attack-and-defense/2021/01/11/leaking-silhouettes-of-cross-origin-images/">https://blog.mozilla.org/attack-and-defense/2021/01/11/leaking-silhouettes-of-cross-origin-images/</a>
                   <li>
-                    Canvas の <code translate="no">drawImage()</code> でピクセルの不透明度によって処理速度が変わるのを利用し、 cross origin info leaks が起きる脆弱性があった
+                    Canvas の <code translate=no>drawImage()</code> でピクセルの不透明度によって処理速度が変わるのを利用し、 cross origin info leaks が起きる脆弱性があった
                   </li>
                   <li>利用している Skia で透明度によって処理を分けており、ソフトウェアデコーダの場合に処理速度が特に変わっていた
                   <li>Skia が修正され、 Chromium 、 Firefox ともに対応
@@ -1184,7 +1184,7 @@
               <li>Experiment:
               <li>Change:
               <li>
-                <em>Unship: HTML <code translate="no">&lt;menuitem&gt;</code> element and the context menu feature</em>
+                <em>Unship: HTML <code translate=no>&lt;menuitem&gt;</code> element and the context menu feature</em>
                 <ul>
                   <li><a href="https://groups.google.com/g/mozilla.dev.platform/c/tc11BCenm2c">https://groups.google.com/g/mozilla.dev.platform/c/tc11BCenm2c</a>
                 </ul>
@@ -1687,7 +1687,7 @@
                   <li>Class Brand Checks
                   <li>Extend TimeZoneName Option
                   <li>
-                    eraDisplay option for <code translate="no">Intl.DateTimeFormat</code>
+                    eraDisplay option for <code translate=no>Intl.DateTimeFormat</code>
                   </li>
                   <li>Regex Set Notation
                   <li>Escaping Strings for RegExps
@@ -1727,7 +1727,7 @@
                 <ul>
                   <li><a href="https://github.com/bakkot/proposal-async-do-expressions">https://github.com/bakkot/proposal-async-do-expressions</a>
                   <li>do expression の async 対応
-                  <li><code translate="no">async do {}</code>
+                  <li><code translate=no>async do {}</code>
                 </ul>
               </li>
               <li>
@@ -1749,7 +1749,7 @@
                 <ul>
                   <li><a href="https://github.com/tc39-transfer/proposal-array-find-from-last">https://github.com/tc39-transfer/proposal-array-find-from-last</a>
                   <li>
-                    <code translate="no">.findLast()</code>, <code translate="no">.findLastIndex()</code>
+                    <code translate=no>.findLast()</code>, <code translate=no>.findLastIndex()</code>
                   </li>
                 </ul>
               </li>
@@ -2001,11 +2001,11 @@
                 </ul>
               </li>
               <li>
-                Deprecating the <code translate="no">__cfduid</code> cookie
+                Deprecating the <code translate=no>__cfduid</code> cookie
                 <ul>
                   <li><a href="https://blog.cloudflare.com/deprecating-cfduid-cookie/">https://blog.cloudflare.com/deprecating-cfduid-cookie/</a>
                   <li>
-                    ボット検出のために使っていた <code translate="no">__cfduid</code> という Cookie をやめるというアナウンス
+                    ボット検出のために使っていた <code translate=no>__cfduid</code> という Cookie をやめるというアナウンス
                   </li>
                   <li>機械学習のモデルを調整し、使わなくても検出できるという目処が立ったため
                 </ul>
@@ -2174,13 +2174,13 @@
               </ul>
             </li>
             <li>
-              <code translate="no">content-visiblity</code> Without Jittery Scrollbars - Infrequently Noted
+              <code translate=no>content-visiblity</code> Without Jittery Scrollbars - Infrequently Noted
               <ul>
                 <li><a href="https://infrequently.org/2020/12/content-visibility-scroll-fix/">https://infrequently.org/2020/12/content-visibility-scroll-fix/</a>
               </ul>
             </li>
             <li>
-              Resize-Resilient <code translate="no">content-visiblity</code> Fixes - Infrequently Noted
+              Resize-Resilient <code translate=no>content-visiblity</code> Fixes - Infrequently Noted
               <ul>
                 <li><a href="https://infrequently.org/2020/12/resize-resilient-deferred-rendering/">https://infrequently.org/2020/12/resize-resilient-deferred-rendering/</a>
               </ul>

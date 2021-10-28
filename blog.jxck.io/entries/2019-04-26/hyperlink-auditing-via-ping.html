@@ -168,19 +168,19 @@
       </section>
       <section>
         <h2 id="リンクの-ping-属性"><a href="#リンクの-ping-属性">リンクの ping 属性</a></h2>
-        <p><code translate="no">&lt;a&gt;</code> には ping という属性があり、以下のように URL を指定する。
+        <p><code translate=no>&lt;a&gt;</code> には ping という属性があり、以下のように URL を指定する。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=html><code translate="no">&lt;a href=https:example.com ping=/path/to/report&gt;example.com&lt;/a&gt;</code></pre>
+        <pre class=html><code translate=no>&lt;a href=https:example.com ping=/path/to/report&gt;example.com&lt;/a&gt;</code></pre>
         <p><a href="https://html.spec.whatwg.org/#ping">HTML Standard - ping Attribute</a>
-        <p>このリンクは、クリックすると https://example.com に遷移するが、ブラウザは遷移すると同時に <code translate="no">/path/to/report</code> に対して、おおよそ以下のようなリクエストを投げる。
-        <pre class=http><code translate="no">POST /path/to/report HTTP/1.1
+        <p>このリンクは、クリックすると https://example.com に遷移するが、ブラウザは遷移すると同時に <code translate=no>/path/to/report</code> に対して、おおよそ以下のようなリクエストを投げる。
+        <pre class=http><code translate=no>POST /path/to/report HTTP/1.1
 Content-Type: text/ping
 Ping-From: http://labs.jxck.io/ping/
 Ping-To: http://labs.jxck.io/ping/
 
 PING</code></pre>
         <p><a href="https://html.spec.whatwg.org/#hyperlink-auditing">HTML Standard - 4.6.5.1 Hyperlink auditing</a>
-        <p>このリクエストには <code translate="no">Ping-From</code> / <code translate="no">Ping-To</code> ヘッダが含まれ、それぞれの値は遷移元/遷移先の URL となる。
+        <p>このリクエストには <code translate=no>Ping-From</code> / <code translate=no>Ping-To</code> ヘッダが含まれ、それぞれの値は遷移元/遷移先の URL となる。
         <p>したがって ping リクエストを収集することにより、ユーザが「<em>どのページからどのページに遷移したか</em>」を取得することができるのだ。
         <p>従来も HTTP の Referer ヘッダを見れば「そのユーザがどこから遷移して来たか」を取ることができた。
         <p>ping 属性はこれに加え「どこに遷移して行ったか」を標準仕様だけで取ることを可能にし、より精度の高いユーザの行動解析を可能にするものだ。
@@ -230,15 +230,15 @@ PING</code></pre>
         <section>
           <h3 id="js"><a href="#js">JS</a></h3>
           <p>最も想像しやすい手法は、 JS を用いた実装だろう。
-          <p><code translate="no">onclick</code>, <code translate="no">onunload</code>, などをフックし、遷移の前に必要な情報を載せたリクエストをサーバに飛ばす方法だ。
+          <p><code translate=no>onclick</code>, <code translate=no>onunload</code>, などをフックし、遷移の前に必要な情報を載せたリクエストをサーバに飛ばす方法だ。
           <p>XHR で飛ばすこともできるが、非同期だと送り終わる前にページが遷移してしまうなどの理由により、あえて同期の XHR でリクエストを投げ、終わるまで処理を止めてるという場合もある。
-          <pre class=js><code translate="no">window.addEventListener(&apos;unload&apos;, (e) =&gt; {
+          <pre class=js><code translate=no>window.addEventListener(&apos;unload&apos;, (e) =&gt; {
   const xhr = new XMLHttpRequest()
   xhr.open(&apos;post&apos;, &apos;https://beacon.example/&apos;, false) // sync xhr
   xhr.send(data) // 必要な情報を収集する
 })</code></pre>
           <p>最近は Off The Main Thread の流れもあり、同期の XHR は徐々に無くしていく方向になっているため、標準化されている Beacon API や Keep Alive Fetch などを利用するのが理想的だ。
-          <pre class=js><code translate="no">window.addEventListener(&apos;unload&apos;, (e) =&gt; {
+          <pre class=js><code translate=no>window.addEventListener(&apos;unload&apos;, (e) =&gt; {
   fetch(&apos;https://beacon.example/&apos;, {
     keepalive: true,
     method: &apos;post&apos;,
@@ -251,9 +251,9 @@ PING</code></pre>
           <h3 id="リダイレクト"><a href="#リダイレクト">リダイレクト</a></h3>
           <p>もう一つ、広く採用されている方法にリダイレクトがある。
           <p>例えば SNS や Chat などで URL を共有すると、以下のように URL が表示されるが、 href は別の URL に差し替えられている、という場合がある。
-          <pre class=html><code translate="no">&lt;a href=https://redirect.example?to=https://hello.example.com/world.html&gt;https://hello.example.com/world.html&lt;/a&gt;</code></pre>
+          <pre class=html><code translate=no>&lt;a href=https://redirect.example?to=https://hello.example.com/world.html&gt;https://hello.example.com/world.html&lt;/a&gt;</code></pre>
           <p>この場合、実際の遷移先のパラメータを入れておくことで、リダイレクト先で流出先を収集し、その後すぐリダイレクトをかけるというものだ。
-          <p>Referer をとるか、 from をクエリに追加すれば、 <code translate="no">Ping-From</code>, <code translate="no">Ping-To</code> 同等の情報が得られる。
+          <p>Referer をとるか、 from をクエリに追加すれば、 <code translate=no>Ping-From</code>, <code translate=no>Ping-To</code> 同等の情報が得られる。
         </section>
       </section>
       <section>
@@ -286,7 +286,7 @@ PING</code></pre>
           <p>前述の 2 つにも増して最も強調したいのは、ブラウザの設定により「ユーザがコントロールできる余地が生まれる」ことだ。
           <p>まず、 ping の仕様には以下が記述されている。
           <blockquote>
-            <p>User agents should allow the user to adjust this behavior, for example in conjunction with a setting that disables the sending of HTTP <code translate="no">Referer</code> (sic) headers. Based on the user&apos;s preferences, UAs may either ignore the ping attribute altogether, or selectively ignore URLs in the list (e.g. ignoring any third-party URLs); this is explicitly accounted for in the steps above.
+            <p>User agents should allow the user to adjust this behavior, for example in conjunction with a setting that disables the sending of HTTP <code translate=no>Referer</code> (sic) headers. Based on the user&apos;s preferences, UAs may either ignore the ping attribute altogether, or selectively ignore URLs in the list (e.g. ignoring any third-party URLs); this is explicitly accounted for in the steps above.
             <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">HTML Standard</a></cite>
           </blockquote>
           <p>つまり、この機能はブラウザの設定による無効化や、送られる情報の制限といった、ユーザコントロールの余地を盛り込むことが可能なのだ。
@@ -354,7 +354,7 @@ PING</code></pre>
         <p>あまりに簡単に Opt-Out できると結局サービスが ping を使わなくなるため、デフォルトで 1st Party での収集を許可し ITP 同様 3rd Party の収集を厳しくする方針だ。
         <p>これは理想と現実のバランスを非常によくとった提案の一つだと筆者には思える。
         <p><a href="https://webkit.org/blog/8821/link-click-analytics-and-privacy/">Link Click Analytics and Privacy - WebKit</a>
-        <p>Firefox は有効にするには <code translate="no">browser.send_pings</code> が必要だ。
+        <p>Firefox は有効にするには <code translate=no>browser.send_pings</code> が必要だ。
         <p><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/LXzY4gwaZFU/fVJIr55OAwAJ">Intent to implement and ship: ping, rel, referrerPolicy, relList, hreflang, type and text properties on SVG elements</a>
         <p>各ブラウザの態度は、仕様の議論からも透けて見える。
         <ul>

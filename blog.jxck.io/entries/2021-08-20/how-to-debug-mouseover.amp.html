@@ -832,7 +832,7 @@
         <amp-img layout=responsive src=0.debug-mouseover.mp4#2880x1800 alt="マウスオーバーで出る UI が devtools でうまく inspect できない様のスクリーンレコード" title="debug mouseover" width=2880 height=1800>
       </p>
       <p>JS のどの処理で変更されているかわかっていれば、そこに break point を打って止めればよいのだが、近年の bundle/minify されたコードを source map なしにデバッグすると、面倒な上にムダに時間がかかる場合もある。
-      <p>そして、一見この用途に使えそうな Force State 機能は、<code translate="no">:hover</code> に適用された CSS を強制的に有効にするといった用途だが、 <code translate="no">onmouseover</code> で実行されている JS には使えない。
+      <p>そして、一見この用途に使えそうな Force State 機能は、<code translate=no>:hover</code> に適用された CSS を強制的に有効にするといった用途だが、 <code translate=no>onmouseover</code> で実行されている JS には使えない。
       <p>この UI を、どうやって表示したまま Devtools に移るか、といったやり方はいくつかあるので、筆者がよく使う方法を紹介する。
     </section>
     <section>
@@ -868,7 +868,7 @@
       <p>
         <amp-img layout=responsive src=3.break-F8.mp4#2880x1800 alt="UI が消える前に F8 でスクリプト実行を停止し inspect する様のスクリーンレコード" title="remove mouseleave" width=2880 height=1800>
       </p>
-      <p>同じことを、 console に <code translate="no">setTimeout(() =&gt; {debugger}, 1000)</code> を貼り付けて 1 秒以内に UI を出して、 debugger で JS を止めるというやり方で紹介していることもあるようだが、やっていることは同じだ。
+      <p>同じことを、 console に <code translate=no>setTimeout(() =&gt; {debugger}, 1000)</code> を貼り付けて 1 秒以内に UI を出して、 debugger で JS を止めるというやり方で紹介していることもあるようだが、やっていることは同じだ。
       <p>他にも、 F8 押すと止まるというのは、知っていると使える場面があるかもしれない。
     </section>
     <section>

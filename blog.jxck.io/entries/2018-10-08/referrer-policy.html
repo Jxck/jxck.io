@@ -160,9 +160,9 @@
                 <li><a href=#空文字列>### 空文字列</a>
                 <li><a href=#policy-のまとめ>### Policy のまとめ</a>
                 <li><a href=#referrer-policy-の適用方法>## Referrer-Policy の適用方法</a>
-                <li><a href=#a-area-の-relnoreferrer>### <code translate="no">&lt;a&gt;</code>, <code translate="no">&lt;area&gt;</code> の <code translate="no">rel=noreferrer</code></a>
+                <li><a href=#a-area-の-relnoreferrer>### <code translate=no>&lt;a&gt;</code>, <code translate=no>&lt;area&gt;</code> の <code translate=no>rel=noreferrer</code></a>
                 <li><a href=#referrerpolicy-属性>### referrerpolicy 属性</a>
-                <li><a href=#meta-の-referrer-属性>### <code translate="no">&lt;meta&gt;</code> の referrer 属性</a>
+                <li><a href=#meta-の-referrer-属性>### <code translate=no>&lt;meta&gt;</code> の referrer 属性</a>
                 <li><a href=#http-header>### HTTP Header</a>
                 <li><a href=#demo>## DEMO</a>
                 <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
@@ -189,13 +189,13 @@
       </section>
       <section>
         <h2 id="referer-ヘッダ"><a href="#referer-ヘッダ">Referer ヘッダ</a></h2>
-        <p>例えば <code translate="no">https://example.com/index.html</code> に貼られたリンクから <code translate="no">https://blog.jxck.io</code> に遷移する場合を考える。
+        <p>例えば <code translate=no>https://example.com/index.html</code> に貼られたリンクから <code translate=no>https://blog.jxck.io</code> に遷移する場合を考える。
         <p>そのリクエストには、条件次第で以下のように HTTP Referer ヘッダが含まれる。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=http><code translate="no">GET / HTTP/1.1
+        <pre class=http><code translate=no>GET / HTTP/1.1
 Host: blog.jxck.io
 Referer: https://example.com/index.html</code></pre>
-        <p><code translate="no">blog.jxck.io</code> の管理者は、このリファラを見ることで、 <code translate="no">example.com</code> に自分のサイトへのリンクが貼られていることを知ることができる。
+        <p><code translate=no>blog.jxck.io</code> の管理者は、このリファラを見ることで、 <code translate=no>example.com</code> に自分のサイトへのリンクが貼られていることを知ることができる。
         <p>その性質上、個人情報の観点からこれを好まないユーザもおり、ブラウザには古くから Referer の送信を行わない設定が実装されていることが多い。
         <p>また、別途提供される拡張や、今回紹介する Referer Policy によっても、無効に設定することができる。
         <p>したがって、 Application Logic の観点からは、 Referer はあくまで補助的な情報として使われること(無くても動く)が望ましい。
@@ -207,7 +207,7 @@ Referer: https://example.com/index.html</code></pre>
           <h3 id="簡易トラックバック"><a href="#簡易トラックバック">簡易トラックバック</a></h3>
           <p>簡易的なトラックバックとして機能するため、アクセスログにこの情報を含むことで、流入元を解析するための情報源として使うのがメジャーなユースケースだろう。
           <p>例えば、検索エンジンの検索結果が検索キーワードを URL に含んでいれば、サイトオーナーはどういう検索結果からユーザが遷移してきたかを知ることができる。
-          <pre class=http><code translate="no">Referer: https://search.example.com/q=http+referer+policy</code></pre>
+          <pre class=http><code translate=no>Referer: https://search.example.com/q=http+referer+policy</code></pre>
           <p>Referer が送信された時だけ、そこから付加的な情報を得ることになる。
         </section>
         <section>
@@ -248,12 +248,12 @@ Referer: https://example.com/index.html</code></pre>
           <p>Orange については、商標の関係もありプレスリリースまでは名前含め非公開だ。
           <p>Example 社は社内で Orange プロジェクトに関する情報共有のために、社内ブログやチケット管理などを運用している。
           <p>ここで、社内ブログやチケットに誰かのブログへのリンクが貼ってあった場合、そのリンクを踏んだブラウザからのリクエストに、このドメイン名が入った Referer が付与される。
-          <pre class=url><code translate="no">https://orange.trac.example.com/</code></pre>
+          <pre class=url><code translate=no>https://orange.trac.example.com/</code></pre>
           <p>ドメインだけで無く URL エンコードされている日本語が入っている場合もある。
-          <pre class=url><code translate="no">https://ticket.orange.example.com/%7B%E7%A4%BE%E5%93%A1%E5%90%8D%7D/issue/xxxxxx/[%E7%A4%BE%E5%A4%96%E7%A7%98]1%E6%9C%8811%E6%97%A5%E3%81%AE%E3%83%97%E3%83%AC%E3%82%B9%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E5%8E%9F%E7%A8%BF
+          <pre class=url><code translate=no>https://ticket.orange.example.com/%7B%E7%A4%BE%E5%93%A1%E5%90%8D%7D/issue/xxxxxx/[%E7%A4%BE%E5%A4%96%E7%A7%98]1%E6%9C%8811%E6%97%A5%E3%81%AE%E3%83%97%E3%83%AC%E3%82%B9%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E5%8E%9F%E7%A8%BF
 // https://ticket.orange.example.com/{社員名}/issue/xxxxxx/[社外秘]1月11日のプレスリリース原稿</code></pre>
           <p>他にも、キーワード検索の結果から外部のページに飛べる場合、検索したキーワードが残る場合もある。
-          <pre class=url><code translate="no">https://intra.orange.example.com/search?q=Apache+CVExxxxx</code></pre>
+          <pre class=url><code translate=no>https://intra.orange.example.com/search?q=Apache+CVExxxxx</code></pre>
           <p>リンクされたブログの持ち主は、たとえそのリンクを辿ってアクセスができないとしても、 Example 社が Orange というプロジェクトをやっていることや、付随する情報が推測できる可能性がある。
           <p>よく設計された URL は情報量が多く、多弁だ。
         </section>
@@ -290,21 +290,21 @@ Referer: https://example.com/index.html</code></pre>
         </ul>
         <p>執筆時点で、仕様には以下の Policy が定義されている。
         <ul>
-          <li><code translate="no">no-referrer</code>
-          <li><code translate="no">no-referrer-when-downgrade</code>
-          <li><code translate="no">same-origin</code>
-          <li><code translate="no">origin</code>
-          <li><code translate="no">strict-origin</code>
-          <li><code translate="no">origin-when-cross-origin</code>
-          <li><code translate="no">strict-origin-when-cross-origin</code>
-          <li><code translate="no">unsafe-url</code>
-          <li><code translate="no">&quot;&quot;</code>
+          <li><code translate=no>no-referrer</code>
+          <li><code translate=no>no-referrer-when-downgrade</code>
+          <li><code translate=no>same-origin</code>
+          <li><code translate=no>origin</code>
+          <li><code translate=no>strict-origin</code>
+          <li><code translate=no>origin-when-cross-origin</code>
+          <li><code translate=no>strict-origin-when-cross-origin</code>
+          <li><code translate=no>unsafe-url</code>
+          <li><code translate=no>&quot;&quot;</code>
         </ul>
         <p>ポリシーの違いを見極める観点としてはまず載せる値がある。
         <p>ヘッダに URL が載る場合、例えばこのページでは以下のようになる。
-        <pre class=http><code translate="no">Referer: https://blog.jxck.io/entries/2018-10-08/referrer-policy.html</code></pre>
+        <pre class=http><code translate=no>Referer: https://blog.jxck.io/entries/2018-10-08/referrer-policy.html</code></pre>
         <p>ポリシーによっては、 URL 全体ではなく Origin のみを送るものがある。
-        <pre class=http><code translate="no">Referer: https://blog.jxck.io/</code></pre>
+        <pre class=http><code translate=no>Referer: https://blog.jxck.io/</code></pre>
         <p>どのサイトから来たかはわかるが、それ以上の情報は載らないという状態になる。
         <p>これは Origin ヘッダが付与する情報と同等であり、 <em>Origin ヘッダが送信される状況では Referer を禁止しても同等の情報が送信されている</em> ことは認識しておきたい。
         <p>以上を踏まえて、それぞれ解説していく。
@@ -380,7 +380,7 @@ Referer: https://example.com/index.html</code></pre>
               <dd>Origin のみ
             </div>
           </dl>
-          <p><code translate="no">origin</code> と同じく Origin の情報のみを送るが、 Downgrade の場合だけ送らない。
+          <p><code translate=no>origin</code> と同じく Origin の情報のみを送るが、 Downgrade の場合だけ送らない。
         </section>
         <section>
           <h3 id="no-referrer-when-downgrade-default"><a href="#no-referrer-when-downgrade-default">no-referrer-when-downgrade (default)</a></h3>
@@ -448,7 +448,7 @@ Referer: https://example.com/index.html</code></pre>
               <dd>URL 全体
             </div>
           </dl>
-          <p><code translate="no">orign-when-cross-origin</code> に Downgrade での送信禁止を追加した挙動となる。
+          <p><code translate=no>orign-when-cross-origin</code> に Downgrade での送信禁止を追加した挙動となる。
           <p>改ざんを避けつつ、内部では URL を送り、外部には Origin だけに制限する。
           <p>多くの場合は、この設定が適用できるのが理想だろう。
           <p>なお、前述した Private Gist はこれを適用している。
@@ -535,49 +535,49 @@ Referer: https://example.com/index.html</code></pre>
         <p>Policy を適用する方法は 4 つある。
         <p>優先度順に並べると以下だ。
         <ol>
-          <li><code translate="no">rel=noreferrer</code>
+          <li><code translate=no>rel=noreferrer</code>
           <li>referrerpolicy 属性
           <li>
-            <code translate="no">&lt;meta&gt;</code> の referrer 属性
+            <code translate=no>&lt;meta&gt;</code> の referrer 属性
           </li>
           <li>HTTP の Referrer-Policy ヘッダ
         </ol>
         <p>仕様: <a href="https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute">https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute</a>
         <section>
-          <h3 id="a-area-の-relnoreferrer"><a href="#a-area-の-relnoreferrer"><code translate="no">&lt;a&gt;</code>, <code translate="no">&lt;area&gt;</code> の <code translate="no">rel=noreferrer</code></a></h3>
-          <p><code translate="no">&lt;a&gt;</code> と <code translate="no">&lt;area&gt;</code> には <code translate="no">rel=noreferrer</code> をつけることで、その遷移のリクエストを <code translate="no">no-referrer</code> の挙動とすることができる。
-          <pre class=html><code translate="no">&lt;a href=&quot;https://example.com&quot; rel=&quot;noreferrer&quot;&gt;</code></pre>
-          <p>値が違うのは Referrer-Policy が策定される前の仕様だからであり、ここに適用できる値は <code translate="no">noreferrer</code> のみだ。
-          <p>なお、この時 <code translate="no">target=&quot;_blank&quot;</code> を使用すると別タブが開き、これは Opener を生成しない。
+          <h3 id="a-area-の-relnoreferrer"><a href="#a-area-の-relnoreferrer"><code translate=no>&lt;a&gt;</code>, <code translate=no>&lt;area&gt;</code> の <code translate=no>rel=noreferrer</code></a></h3>
+          <p><code translate=no>&lt;a&gt;</code> と <code translate=no>&lt;area&gt;</code> には <code translate=no>rel=noreferrer</code> をつけることで、その遷移のリクエストを <code translate=no>no-referrer</code> の挙動とすることができる。
+          <pre class=html><code translate=no>&lt;a href=&quot;https://example.com&quot; rel=&quot;noreferrer&quot;&gt;</code></pre>
+          <p>値が違うのは Referrer-Policy が策定される前の仕様だからであり、ここに適用できる値は <code translate=no>noreferrer</code> のみだ。
+          <p>なお、この時 <code translate=no>target=&quot;_blank&quot;</code> を使用すると別タブが開き、これは Opener を生成しない。
           <p>つまり
-          <pre class=html><code translate="no">&lt;a href=&quot;https://example.com&quot; rel=&quot;noreferrer&quot; target=&quot;_blank&quot;&gt;</code></pre>
+          <pre class=html><code translate=no>&lt;a href=&quot;https://example.com&quot; rel=&quot;noreferrer&quot; target=&quot;_blank&quot;&gt;</code></pre>
           <p>は
-          <pre class=html><code translate="no">&lt;a href=&quot;https://example.com&quot; rel=&quot;noreferrer noopener&quot; target=&quot;_blank&quot;&gt;</code></pre>
+          <pre class=html><code translate=no>&lt;a href=&quot;https://example.com&quot; rel=&quot;noreferrer noopener&quot; target=&quot;_blank&quot;&gt;</code></pre>
           <p>と同じ挙動となる。
           <p>参考: <a href="https://blog.jxck.io/entries/2016-06-12/noopener.html">リンクのへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io</a>
         </section>
         <section>
           <h3 id="referrerpolicy-属性"><a href="#referrerpolicy-属性">referrerpolicy 属性</a></h3>
-          <p><code translate="no">&lt;a&gt;</code> などに対して referrerpolicy 属性を付与することができる。
-          <pre class=html><code translate="no">&lt;a href=&quot;http://example.com&quot; referrerpolicy=&quot;origin&quot;&gt;</code></pre>
+          <p><code translate=no>&lt;a&gt;</code> などに対して referrerpolicy 属性を付与することができる。
+          <pre class=html><code translate=no>&lt;a href=&quot;http://example.com&quot; referrerpolicy=&quot;origin&quot;&gt;</code></pre>
           <p>値は前述した policy から選んで適用できる。
           <p>後述するページ全体への設定より優先されるため、特定のリンクだけ挙動を変えると言った使い方ができる。
           <p>つまり、 markdown から html に変換する CMS などを使っている場合は、ビルド時に外部へのリンクだけ policy をつけると言った使い方ができる。
-          <p><code translate="no">&lt;a&gt;</code> には必ずこの属性をつけるが、 Policy 自体はページ全体のものに準拠したいといった場合は、属性を <code translate="no">&quot;&quot;</code> (空文字) にすれば良い。
+          <p><code translate=no>&lt;a&gt;</code> には必ずこの属性をつけるが、 Policy 自体はページ全体のものに準拠したいといった場合は、属性を <code translate=no>&quot;&quot;</code> (空文字) にすれば良い。
           <p>仕様: <a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute">https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute</a>
         </section>
         <section>
-          <h3 id="meta-の-referrer-属性"><a href="#meta-の-referrer-属性"><code translate="no">&lt;meta&gt;</code> の referrer 属性</a></h3>
-          <p><code translate="no">&lt;meta&gt;</code> タグを利用することでページ全体に Policy を適用できる。
-          <pre class=html><code translate="no">&lt;meta name=&quot;referrer&quot; content=&quot;origin-when-cross-origin&quot;&gt;</code></pre>
+          <h3 id="meta-の-referrer-属性"><a href="#meta-の-referrer-属性"><code translate=no>&lt;meta&gt;</code> の referrer 属性</a></h3>
+          <p><code translate=no>&lt;meta&gt;</code> タグを利用することでページ全体に Policy を適用できる。
+          <pre class=html><code translate=no>&lt;meta name=&quot;referrer&quot; content=&quot;origin-when-cross-origin&quot;&gt;</code></pre>
           <p>サーバ指定だと影響範囲が大きい場合に CMS のテンプレートに追加するといった適用が考えられる。
-          <p>なお、 <code translate="no">never</code> / <code translate="no">default</code> / <code translate="no">always</code> といった古い仕様が存在したため、対応表を元に新しい値を指定することが望ましい。
+          <p>なお、 <code translate=no>never</code> / <code translate=no>default</code> / <code translate=no>always</code> といった古い仕様が存在したため、対応表を元に新しい値を指定することが望ましい。
           <p>仕様: <a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer">https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer</a>
         </section>
         <section>
           <h3 id="http-header"><a href="#http-header">HTTP Header</a></h3>
           <p>レスポンスの HTTP ヘッダで指定することにより、ページ全体に Policy を適用できる。
-          <pre class=http><code translate="no">Referrer-Policy: no-referrer</code></pre>
+          <pre class=http><code translate=no>Referrer-Policy: no-referrer</code></pre>
           <p>コンテンツに手を入れられない場合や、漏れなく全てのレスポンスに適用したい場合などに利用できる。
           <p>仕様: <a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn">https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn</a>
         </section>
@@ -593,9 +593,9 @@ Referer: https://example.com/index.html</code></pre>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
         <p>本サイトには漏れて困る URL はない。
         <p>また、技術ブログという性質上、外部のリソースを参考としてリンクすることはよくあり、それらリンク先のサイトに対して、どのページからリンクされているのかを隠すつもりは無い。
-        <p>Cross Origin で URL 全体を送るのは <code translate="no">unsafe-url</code> か <code translate="no">no-referrer-when-downgrade</code> であり、その差は Downgrade の扱いになる。
-        <p>本サイトは HSTS 対応済みであるため、 <code translate="no">no-referrer-when-downgrade</code> では、 HTTP しか提供していないサイトに対しては Referrer が飛ばないことになる。
-        <p>しかし、近年の動向からも、リンクする先が HTTPS に対応している方が本サイトとしても望ましいため、 <code translate="no">no-referrer-when-downgrade</code> を採用することにした。
+        <p>Cross Origin で URL 全体を送るのは <code translate=no>unsafe-url</code> か <code translate=no>no-referrer-when-downgrade</code> であり、その差は Downgrade の扱いになる。
+        <p>本サイトは HSTS 対応済みであるため、 <code translate=no>no-referrer-when-downgrade</code> では、 HTTP しか提供していないサイトに対しては Referrer が飛ばないことになる。
+        <p>しかし、近年の動向からも、リンクする先が HTTPS に対応している方が本サイトとしても望ましいため、 <code translate=no>no-referrer-when-downgrade</code> を採用することにした。
         <p>この Policy はブラウザのデフォルトとされているため、明示的な Referrer-Policy Header の追加は行わないこととする。
       </section>
     </article>

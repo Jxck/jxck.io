@@ -197,16 +197,16 @@
         <p>ブラウザが対応している形式については、ブラウザが Accept-Encoding ヘッダにそれを記載し、サーバとネゴシエーションする方法が取られる。
         <p>これまで、多くのブラウザは以下のような値を返していた。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=http><code translate="no">Accept-Encoding: gzip, deflate</code></pre>
-        <p>ここに、 <code translate="no">br</code> があれば Brotli に対応しているため、 Brotli で圧縮したファイルをレスポンスできる。
-        <pre class=http><code translate="no">Accept-Encoding: gzip, deflate, br</code></pre>
+        <pre class=http><code translate=no>Accept-Encoding: gzip, deflate</code></pre>
+        <p>ここに、 <code translate=no>br</code> があれば Brotli に対応しているため、 Brotli で圧縮したファイルをレスポンスできる。
+        <pre class=http><code translate=no>Accept-Encoding: gzip, deflate, br</code></pre>
         <p>現状、 Chrome などは HTTPS でしか Brotli を許可せず、またコンテンツによっては Brotli を許可しないフォーマットなどもあるかもしれない。
         <p>しかし、それら例外を除けば、単純にテキストベースで <em>大半のリクエストのサイズが 4 byte 増える</em> ことを意味する。
         <p>この変更は、 Web 全体のトラフィックで考えるとかなり大きいと言えるだろう。
         <p>プロトコルレベルでは、 HPACK のように 1byte でもペイロードを減らそうとしている現状、この変化は無視できない。
         <p>ところが、追加したところで、対応しないトラフィックの方が多いうちは、オーバーヘッドの方が多くなる。
         <p>そのため、ちょっとしたフォーマットが提案されたからといって、ブラウザのリクエストのデフォルト値が簡単に変わるわけではない。
-        <p>Accept ヘッダへの <code translate="no">image/webp</code> の追加などもそうだが、相応の効果と普及を考えての変更と見ることができるだろう。
+        <p>Accept ヘッダへの <code translate=no>image/webp</code> の追加などもそうだが、相応の効果と普及を考えての変更と見ることができるだろう。
         <p>そして、前述の Safari の実装が済むと、主要ブラウザのサポートは完了する。
         <p>brotli の圧縮効果が 4byte 以上あるならば、このヘッダを見過ごす手はない。
       </section>
@@ -215,7 +215,7 @@
         <p>本サイトは h2o でサーブしており、 h2o はオンザフライの Brotli 圧縮に対応している。
         <p><a href="https://h2o.examp1e.net/configure/compress_directives.html#compress">Configure &gt; Compress Directives &gt; compress</a>
         <p>しかし、本サイトは zopfli も含めビルドプロセスで圧縮をしているので、ここで Brotli 圧縮をあらかじめ行う構成をとる。
-        <p>圧縮済みの <code translate="no">.br</code> を用意すれば、以下の設定で Accept-Encoding ベースのコンテントネゴシエーションを経て Brotli を配信できる。
+        <p>圧縮済みの <code translate=no>.br</code> を用意すれば、以下の設定で Accept-Encoding ベースのコンテントネゴシエーションを経て Brotli を配信できる。
         <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-compressed">Configure &gt; File Directives &gt; file.send-compressed</a>
       </section>
       <section>
@@ -223,9 +223,9 @@
         <p>Brotli の実装は Google が公開している。
         <p><a href="https://github.com/google/brotli">google/brotli</a>
         <p>これを README の通りビルドし、実際にいくつかのコンテンツで圧縮結果を比較した。
-        <p>予備実験とし、 <code translate="no">--quality</code> を変えて試したところ、基本的には高いほど効果があり、速度はほとんど変わらなかった。
-        <p>そこで、以下は全て最高値である <code translate="no">--quality 10</code> を採用している。
-        <p>zopfli は、以前の検証で出した <code translate="no">--i30</code> を採用している。
+        <p>予備実験とし、 <code translate=no>--quality</code> を変えて試したところ、基本的には高いほど効果があり、速度はほとんど変わらなかった。
+        <p>そこで、以下は全て最高値である <code translate=no>--quality 10</code> を採用している。
+        <p>zopfli は、以前の検証で出した <code translate=no>--i30</code> を採用している。
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
           <p>当サイトの平均的なサンプルとして、<a href="https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html">一つ前の記事</a> の HTML を採用した。
@@ -481,7 +481,7 @@
         <h2 id="速度比較"><a href="#速度比較">速度比較</a></h2>
         <p>同じパラメータで、本サイト全体の圧縮タスクの実行時間を比較した。
         <p>圧縮対象は、 html/js/css/png/txt/md など 890 ファイルである。
-        <pre><code translate="no">zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total
+        <pre><code translate=no>zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total
 brotli:  22.44s user 1.42s system 99% cpu   24.014 total</code></pre>
         <p>測定ミスではなく、圧倒的に brotli の方が速い。
         <p>単発で試しているうちから圧倒的に速いことは認識しており、サンプルを増やしたため歴然とした差となった。

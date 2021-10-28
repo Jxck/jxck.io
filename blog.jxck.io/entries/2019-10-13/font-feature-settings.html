@@ -182,11 +182,11 @@
         </ul>
         <p>通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの 2 つのエントリはそれが含まれてしまう。
         <p>フォントに含まれない文字は、スタイルが変わってしまい違和感があるため、これまでは見つけ次第含むように更新していた。
-        <p>しかし、そういった文字はほぼサンプルコードとしてコードブロック(<code translate="no">&lt;code&gt;</code>)に含まれており、かつそこには MONO font が当たっている。
-        <p>そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、 HTML から <code translate="no">&lt;code&gt;</code> を全て除いた文字群をサブセットの対象とした。
+        <p>しかし、そういった文字はほぼサンプルコードとしてコードブロック(<code translate=no>&lt;code&gt;</code>)に含まれており、かつそこには MONO font が当たっている。
+        <p>そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、 HTML から <code translate=no>&lt;code&gt;</code> を全て除いた文字群をサブセットの対象とした。
         <p>対象を subset.txt に保存し、変換は以下のようにした。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=sh-session><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features=&apos;*&apos; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+        <pre class=sh-session><code translate=no>$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features=&apos;*&apos; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
       </section>
       <section>
         <h2 id="layout-features"><a href="#layout-features">layout features</a></h2>
@@ -196,7 +196,7 @@
           <li>606.6K: 更新後
         </ul>
         <p>コマンドヘルプを見ながら適当につけた以下のオプションが問題である。
-        <pre class=sh-session><code translate="no">--layout-features=&apos;*&apos;</code></pre>
+        <pre class=sh-session><code translate=no>--layout-features=&apos;*&apos;</code></pre>
         <p>この layout features は、 Open Type のフォントが含む、ヒント情報を含めるという指定だ。
         <p>Open Type がいくつかの情報を持っていることは薄々知っていたが、以下の理由から特に考えずにきた。
         <ul>
@@ -239,11 +239,11 @@
           <li>vert: Vertical Writing
           <li>vrt2: Vertical Alternates and Rotation
         </ul>
-        <p>この中で、本サイトでの対応を検討すべきは <code translate="no">halt</code>, <code translate="no">palt</code> だろうと判断した。
+        <p>この中で、本サイトでの対応を検討すべきは <code translate=no>halt</code>, <code translate=no>palt</code> だろうと判断した。
       </section>
       <section>
         <h2 id="字詰palt"><a href="#字詰palt">字詰(palt)</a></h2>
-        <p><code translate="no">halt</code>, <code translate="no">palt</code> はいずれも字詰に関するプロパティだ。
+        <p><code translate=no>halt</code>, <code translate=no>palt</code> はいずれも字詰に関するプロパティだ。
         <p>以下のような違いがある。
         <ul>
           <li>halt: 約物類(句読点など)を半角幅にする
@@ -251,8 +251,8 @@
         </ul>
         <p>DEMO でみた halt は割と良さそうに見えたが、ブログ全体に適用したところあまり良くなかったため不採用とした。
         <p>palt とは別に、字体を置き換える pwid があるが、そちらは Chrome か Noto Sans CJK JP が対応してないようだ。
-        <p>そこで結果として <code translate="no">palt</code> のみを指定してフォントをビルドすることにした。
-        <pre class=sh-session><code translate="no">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=&apos;palt&apos; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+        <p>そこで結果として <code translate=no>palt</code> のみを指定してフォントをビルドすることにした。
+        <pre class=sh-session><code translate=no>$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=&apos;palt&apos; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
         <p>結果は以下である。
         <ul>
           <li>353.1K: 従来
@@ -265,7 +265,7 @@
         </ul>
         <p>サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前より小さくなっている。
         <p>またこのヒントを有効にするため、 CSS に以下を追加した。
-        <pre class=css><code translate="no">body {
+        <pre class=css><code translate=no>body {
   font-feature-settings: &quot;palt&quot;
 }</code></pre>
         <p>before/after は以下のようになる。

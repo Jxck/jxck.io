@@ -191,10 +191,10 @@
             Youtube
             <ul>
               <li>
-                手元に動画ファイルがあるので <code translate="no">&lt;video&gt;</code> で貼れば良い
+                手元に動画ファイルがあるので <code translate=no>&lt;video&gt;</code> で貼れば良い
               </li>
               <li>
-                3rd Party の <code translate="no">&lt;iframe&gt;</code> を埋め込む場合の挙動を見たいので入れいている
+                3rd Party の <code translate=no>&lt;iframe&gt;</code> を埋め込む場合の挙動を見たいので入れいている
               </li>
             </ul>
           </li>
@@ -305,7 +305,7 @@
         </section>
         <section>
           <h3 id="amp-対応"><a href="#amp-対応">AMP 対応</a></h3>
-          <p>AMP 対応は <code translate="no">&lt;amp-ad&gt;</code> を用いることになる。
+          <p>AMP 対応は <code translate=no>&lt;amp-ad&gt;</code> を用いることになる。
           <ul>
             <li><a href="https://amp.dev/ja/documentation/components/amp-ad/">https://amp.dev/ja/documentation/components/amp-ad/</a>
           </ul>
@@ -315,7 +315,7 @@
           <h3 id="adstxt-対応"><a href="#adstxt-対応">ads.txt 対応</a></h3>
           <p>本サイトは既に ads.txt を提供し Ad が無いことを記述していた。
           <p>AdSense から ads.txt への記載内容が提供されたため、それを素直に転記した。
-          <p>AdSense は <code translate="no">blog.jxck.io</code> にしか掲載しないが、 ads.txt は <code translate="no">jxck.io</code> レベルで提供する必要があり、そこは気に食わないがおとなしく従うことにした。
+          <p>AdSense は <code translate=no>blog.jxck.io</code> にしか掲載しないが、 ads.txt は <code translate=no>jxck.io</code> レベルで提供する必要があり、そこは気に食わないがおとなしく従うことにした。
         </section>
         <section>
           <h3 id="privacy-policy-対応"><a href="#privacy-policy-対応">Privacy Policy 対応</a></h3>
@@ -323,7 +323,7 @@
           <p>Analytics の規約については本サイト Footer に記載していたが、これを機にページを分け、本サイトの Policy をまとめる構成に変更した。
           <p>具体的には以下の構成になる。
           <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-          <pre><code translate="no">blog.jxck.io
+          <pre><code translate=no>blog.jxck.io
   `-- /policies
         |-- privacy.html # privacy policy
         `-- site.html    # site policy</code></pre>
@@ -337,8 +337,8 @@
           </ul>
           <p>適用が昔からの継ぎ足しなため、未だに v1 時代のセーフリスト形式を採用したままだ。
           <p>v3 の nonce + strict-dynamic ベースにへの以降は前々から計画していたため、これを機に v3 に移行しつつ対応しようと考えた。
-          <p>しかし、 nonce + strict-dynamic にしても、 AdSense のスクリプトが生成するどこかの <code translate="no">&lt;script&gt;</code> タグが CSP に違反してしまい、うまく適用ができなかった。
-          <p>strict-dynamic であれば動的生成の <code translate="no">&lt;script&gt;</code> も対応できるはずだったが、これが仕様や実装の問題なのか、適用方法の問題なのか検証しきれなかった。
+          <p>しかし、 nonce + strict-dynamic にしても、 AdSense のスクリプトが生成するどこかの <code translate=no>&lt;script&gt;</code> タグが CSP に違反してしまい、うまく適用ができなかった。
+          <p>strict-dynamic であれば動的生成の <code translate=no>&lt;script&gt;</code> も対応できるはずだったが、これが仕様や実装の問題なのか、適用方法の問題なのか検証しきれなかった。
           <p>そこで、既存の v1 ベースで、引っかかるドメインを追加することで暫定対応を実施した。
           <p>どこかで v3 ベースにうまく移行できるように再調査したい。
         </section>

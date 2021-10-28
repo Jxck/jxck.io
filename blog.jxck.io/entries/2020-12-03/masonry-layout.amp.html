@@ -841,9 +841,9 @@
           </li>
         </ul>
         <p>従来の CSS Grid は、縦横が揃った Grid を展開し、そこに対して要素を割り当てるのが基本だが、それでは縦が揃わないため Masonry は実現できない。
-        <p>そこで、 <code translate="no">grid-template-rows</code> / <code translate="no">grid-tempalet-columns</code> へ <code translate="no">masonry</code> を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると <code translate="no">grid: masonry / ${column}</code> になるため、 column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。
+        <p>そこで、 <code translate=no>grid-template-rows</code> / <code translate=no>grid-tempalet-columns</code> へ <code translate=no>masonry</code> を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると <code translate=no>grid: masonry / ${column}</code> になるため、 column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。
         <p>3 列の Masonly Layout は以下だ。
-        <pre class=html><code translate="no">&lt;style&gt;
+        <pre class=html><code translate=no>&lt;style&gt;
 .grid {
   display: inline-grid;
   grid: masonry / repeat(3, auto);
@@ -870,8 +870,8 @@ img {
           <li><a href="https://drafts.csswg.org/css-grid-3/#masonry-layout-algorithm">https://drafts.csswg.org/css-grid-3/#masonry-layout-algorithm</a>
         </ul>
         <p>デフォルトでは、敷き詰める際に一番余白が空いているところに画像が挿入される。
-        <p>これを制御するプロパティとして <code translate="no">masonry-auto-flow</code> が定義されており <code translate="no">next</code> にすると画像の HTML 上での出現順に積み上げるようにすることもできる。
-        <pre class=css><code translate="no">masonry-auto-flow: pack;
+        <p>これを制御するプロパティとして <code translate=no>masonry-auto-flow</code> が定義されており <code translate=no>next</code> にすると画像の HTML 上での出現順に積み上げるようにすることもできる。
+        <pre class=css><code translate=no>masonry-auto-flow: pack;
 masonry-auto-flow: next;</code></pre>
         <p>他の値もあるがまだ定義が明示されてないようだ。このあたりのアルゴリズムは要件によって多様だと思われるため、仕様の策定とともに変わる可能性は高いだろう。
         <ul>

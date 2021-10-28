@@ -296,7 +296,7 @@
           <p>本当は Periodic Background Sync で Background Fetch を実行する方向で考えていたが、今の Android Chrome では、それをしてもタスクが登録されるだけでダウンロードが実行されない。
           <p>ユーザが明示的にタスクを許可しないといけないため、ここは普通に Fetch して Cache に入れるようにした。
           <p>PBS + Bgfetch が鉄板の組み合わせだと思っていたので、ここは意外だった。詳細は詰めきれていないが理由などをもう少し調査しておきたい。
-          <p>なお、 Bgfetch は cors が必要だが、 <code translate="no">&lt;aduio&gt;</code> のリクエストが no-cors なこと、そして SW を経由したときに Cross-Origin-Resource-Policy の設定を求められたあたりがハマった。
+          <p>なお、 Bgfetch は cors が必要だが、 <code translate=no>&lt;aduio&gt;</code> のリクエストが no-cors なこと、そして SW を経由したときに Cross-Origin-Resource-Policy の設定を求められたあたりがハマった。
         </section>
         <section>
           <h3 id="badging-api"><a href="#badging-api">Badging API</a></h3>
@@ -327,8 +327,8 @@
         </ul>
         <section>
           <h3 id="pure-webcomponents"><a href="#pure-webcomponents">Pure WebComponents</a></h3>
-          <p>かつては生の <code translate="no">&lt;audio controls&gt;</code> を入れていたが、「早送り」「巻き戻し」「再生速度変更」など、自分が Podcast アプリに欲しいと思っていた UI が無いため独自実装した。
-          <p>実装自体は <code translate="no">&lt;mozaic-player&gt;</code> という Custom Elements で実装し、 template の内容を Shadow DOM に展開する完全に Pure な WebComponents にしている。
+          <p>かつては生の <code translate=no>&lt;audio controls&gt;</code> を入れていたが、「早送り」「巻き戻し」「再生速度変更」など、自分が Podcast アプリに欲しいと思っていた UI が無いため独自実装した。
+          <p>実装自体は <code translate=no>&lt;mozaic-player&gt;</code> という Custom Elements で実装し、 template の内容を Shadow DOM に展開する完全に Pure な WebComponents にしている。
           <p>Audio の API も生で操作し、フレームワークなどは一切利用してない。
           <p>HTML Modules は実装されてないため、 fetch で代用しているが、 module は mjs を import している。
           <p>Player ではないが、 Bgfetch を行うためのダウンロードアイコンも、アイコン自体に Download 機能をもたせた WebComponents にしている。
@@ -339,10 +339,10 @@
           <p>Player のアプリとしての UI が、一般の HTML で実装されている部分については、不足するセマンティクスを WAI-ARIA で補っている。
           <p>ARIA 以前に、そもそもの audio の seek bar の role が progressbar か slider かを一番悩んだ。
           <p>progressbar は進捗を表すが、本来値は readonly で D&amp;D で seek できる UI に利用するのは妥当ではないように思う。
-          <p>slider としては <code translate="no">&lt;input type=range&gt;</code> があり、 D&amp;D やネイティブのショートカットなども使える、しかしリアルタイムに value の変わる input はどうなのだろうかという疑問も残る。
-          <p>他の実装を参考にすると、 <code translate="no">&lt;progress&gt;</code> を使っているところや、 <code translate="no">&lt;div role=slider&gt;</code> で行っている実装が見つかったが、多くは <code translate="no">&lt;div&gt;</code> で実装しているようだ。 <code translate="no">&lt;input&gt;</code> な実装はなかった。
-          <p>折衷案として <code translate="no">&lt;progress role=slider&gt;</code> という実装に落ち着けて実装し終えたが、後から <code translate="no">&lt;progress&gt;</code> の role は仕様上変えられないことに気づいたため修正が必要な状態だ。
-          <p>せっかくなので検証として <code translate="no">&lt;input type=range&gt;</code> で実装を試してみてから、だめなら最後は <code translate="no">&lt;div role=slider&gt;</code> に落ち着かせようかと考えている。
+          <p>slider としては <code translate=no>&lt;input type=range&gt;</code> があり、 D&amp;D やネイティブのショートカットなども使える、しかしリアルタイムに value の変わる input はどうなのだろうかという疑問も残る。
+          <p>他の実装を参考にすると、 <code translate=no>&lt;progress&gt;</code> を使っているところや、 <code translate=no>&lt;div role=slider&gt;</code> で行っている実装が見つかったが、多くは <code translate=no>&lt;div&gt;</code> で実装しているようだ。 <code translate=no>&lt;input&gt;</code> な実装はなかった。
+          <p>折衷案として <code translate=no>&lt;progress role=slider&gt;</code> という実装に落ち着けて実装し終えたが、後から <code translate=no>&lt;progress&gt;</code> の role は仕様上変えられないことに気づいたため修正が必要な状態だ。
+          <p>せっかくなので検証として <code translate=no>&lt;input type=range&gt;</code> で実装を試してみてから、だめなら最後は <code translate=no>&lt;div role=slider&gt;</code> に落ち着かせようかと考えている。
           <p>他にも、まだ UI の設計や付随するアノテーションも TODO があるため、継続して改善していきたい。
         </section>
         <section>
@@ -418,10 +418,10 @@
         </section>
         <section>
           <h3 id="referer-policy"><a href="#referer-policy">Referer Policy</a></h3>
-          <p>Referrer Policy は <code translate="no">no-referrer-when-downgrade</code> が default とされており、 Cross Origin でも URL 全体が送られる。
+          <p>Referrer Policy は <code translate=no>no-referrer-when-downgrade</code> が default とされており、 Cross Origin でも URL 全体が送られる。
           <p>本来 Show Note から参照している外部のページには、 Referer を送っても良いため、この値でも問題はない。
-          <p>しかし、認証を行いパーソナライズされたページなどでは、サイトの外に URL が漏れることを防ぐために、 <code translate="no">strict-origin-when-cross-origin</code> がより理想とされている。
-          <p>そこで、本サイトもパーソナライズは一切してないが、 <code translate="no">strict-origin-when-cross-origin</code> に変更してみることにした。
+          <p>しかし、認証を行いパーソナライズされたページなどでは、サイトの外に URL が漏れることを防ぐために、 <code translate=no>strict-origin-when-cross-origin</code> がより理想とされている。
+          <p>そこで、本サイトもパーソナライズは一切してないが、 <code translate=no>strict-origin-when-cross-origin</code> に変更してみることにした。
           <ul>
             <li><a href="https://blog.jxck.io/entries/2018-10-08/referrer-policy.html">Referrer-Policy によるリファラ制御 | blog.jxck.io</a>
           </ul>
@@ -477,11 +477,11 @@
         <section>
           <h3 id="wasm-id3"><a href="#wasm-id3">WASM ID3</a></h3>
           <p>mp3 には ID3 というメタデータを付与でき、その情報を WASM で取得し表示するようにしようと計画していた。
-          <p>Rust で ID3 のパース自体は目処がたっていたのだが、そもそも <code translate="no">&lt;audio&gt;</code> から生のバイナリを取得する方法が無いことに気づいた。
-          <p>もしそれをやりたければ、先に自分で fetch してそれを <code translate="no">&lt;audio&gt;</code> に食わせる必要がある。
-          <p>しかし、お作法として fetch 自体は <code translate="no">&lt;audio&gt;</code> に任せるべきだろうと考える。
-          <p>なのでこれを実現するためには、 <code translate="no">&lt;audio&gt;</code> が取得したバイナリを取得する API を標準化するとこからやないといけない。
-          <p>ところが、 <code translate="no">&lt;audio&gt;</code> は Range なので取得と定義すのも難しい <code translate="no">onmetadataloaded</code> でも良さそうだが、それだけでは済まない。
+          <p>Rust で ID3 のパース自体は目処がたっていたのだが、そもそも <code translate=no>&lt;audio&gt;</code> から生のバイナリを取得する方法が無いことに気づいた。
+          <p>もしそれをやりたければ、先に自分で fetch してそれを <code translate=no>&lt;audio&gt;</code> に食わせる必要がある。
+          <p>しかし、お作法として fetch 自体は <code translate=no>&lt;audio&gt;</code> に任せるべきだろうと考える。
+          <p>なのでこれを実現するためには、 <code translate=no>&lt;audio&gt;</code> が取得したバイナリを取得する API を標準化するとこからやないといけない。
+          <p>ところが、 <code translate=no>&lt;audio&gt;</code> は Range なので取得と定義すのも難しい <code translate=no>onmetadataloaded</code> でも良さそうだが、それだけでは済まない。
           <p>ということで諦めた。
         </section>
         <section>

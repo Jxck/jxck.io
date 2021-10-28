@@ -165,7 +165,7 @@
         <p>例えば button の disabled を例にとるとこうなる。
         <p>button を disabled にする場合は、仕様上は以下の 3 つの書き方がある。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=html><code translate="no">&lt;!-- 属性のみを書く --&gt;
+        <pre class=html><code translate=no>&lt;!-- 属性のみを書く --&gt;
 &lt;button id=target disabled&gt;toggle target&lt;/button&gt;
 
 &lt;!-- 値をempty string にする --&gt;
@@ -173,12 +173,12 @@
 
 &lt;!-- 属性名と同じにする --&gt;
 &lt;button id=target disabled=disabled&gt;toggle target&lt;/button&gt;</code></pre>
-        <p>値に <code translate="no">true</code>, <code translate="no">false</code> などを設定することで有効無効が切り替わるわけではなく、仕様上は許可されていない点に注意したい。
+        <p>値に <code translate=no>true</code>, <code translate=no>false</code> などを設定することで有効無効が切り替わるわけではなく、仕様上は許可されていない点に注意したい。
         <p>disabled 属性自体は JS から真偽値で操作できる。
-        <pre class=js><code translate="no">target.disabled = true
+        <pre class=js><code translate=no>target.disabled = true
 target.disabled = false</code></pre>
         <p>しかし、他の boolean attribute も含め、属性自体を汎用的に操作する場合は以下のようになる。
-        <pre class=js><code translate="no">target.setAttribute(&quot;disabled&quot;, &quot;&quot;);
+        <pre class=js><code translate=no>target.setAttribute(&quot;disabled&quot;, &quot;&quot;);
 target.removeAttribute(&quot;disabled&quot;);
 
 target.setAttribute(&quot;disabled&quot;, false); // 無効になるわけではない</code></pre>
@@ -190,7 +190,7 @@ target.setAttribute(&quot;disabled&quot;, false); // 無効になるわけでは
         <p>結果的には以下のような API に落ち着いた。
         <p>属性名を指定して toggleAttribute を呼べば、 ture/false を切り替えられる。
         <p>(値は empty string が採用された)
-        <pre class=js><code translate="no">// target = &lt;button id=target&gt;toggle target&lt;/button&gt;
+        <pre class=js><code translate=no>// target = &lt;button id=target&gt;toggle target&lt;/button&gt;
 
 target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot; disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
 console.log(target.disabled) // true
@@ -201,7 +201,7 @@ console.log(target.disabled) // false
 target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot; disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
 console.log(target.disabled) // true</code></pre>
         <p>第二引数を指定すると、現在の値に関わらず、第二引数の値に変更する。
-        <pre class=js><code translate="no">// 今が true であれ false であれ true にする
+        <pre class=js><code translate=no>// 今が true であれ false であれ true にする
 target.toggleAttribute(&quot;disabled&quot;, true)
 console.log(target.disabled) // true
 
@@ -221,7 +221,7 @@ console.log(target.disabled) // false</code></pre>
         <p>この機能の提案は 2017/5/23 に以下の issue で行われた。
         <p><a href="https://github.com/whatwg/dom/issues/461">Consider boolean interface for properties - Issue #461 - whatwg/dom</a>
         <p>Boolean 専用の setAttribute が欲しいというところから始まり、議論の末に名前などが代わり 5 月のうちにはおよそ今の形におちついた。
-        <p>その後 Anne が <code translate="no">needs implementer interest</code> というラベルをつけて、そこから一年間は反応がなかった。
+        <p>その後 Anne が <code translate=no>needs implementer interest</code> というラベルをつけて、そこから一年間は反応がなかった。
         <p>先月(2018/6)に入って、 Firefox, Chrome, Edge あたりが positive な反応を示し、同時に DOM の仕様への PR が作られる。
         <p><a href="https://github.com/whatwg/dom/pull/656">Add toggleAttribute to Element. by jonathanKingston - Pull Request #656 - whatwg/dom</a>
         <p>そこから一気に実装が始まった。

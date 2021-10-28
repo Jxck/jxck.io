@@ -168,7 +168,7 @@
         </ul>
         <p>2 月に方針が変更され、 OS のバージョンは固定されなくなった。
         <p>このため、 iOS のバージョンアップにより発生するバグなどを回避する道は残されたことになる。
-        <p>一方 Webkit のバージョンは(予定では <code translate="no">605.1.15</code> に)固定されることになりそうだ。詳細は、以下を参照。
+        <p>一方 Webkit のバージョンは(予定では <code translate=no>605.1.15</code> に)固定されることになりそうだ。詳細は、以下を参照。
         <p><a href="https://myakura.hatenablog.com/entry/2018/04/16/083000">Safari の UA 文字列が固定されて固定されなくなったおはなし - fragmentary</a>
       </section>
       <section>
@@ -239,16 +239,16 @@
         <p>同一実装に対する不備の場合わけとは少し違い、有無そのものを調べる用途だ。
         <p>古くは、 CSS の実装が壊滅的だった IE だけ別の CSS を返すといった用途のため、 UA を解析するといったものだ。
         <p>もっと古くは、サービスそのものが <em>特定のブラウザしかサポートしない</em> といったことが、普通に行われていた。
-        <p>当時 Netscape Navigator が、コードネームの <code translate="no">Mozilla</code> を UA に含んでおり、それを見て(Sniffing)処理を分岐していたサービスがあったようだ。
+        <p>当時 Netscape Navigator が、コードネームの <code translate=no>Mozilla</code> を UA に含んでおり、それを見て(Sniffing)処理を分岐していたサービスがあったようだ。
         <p>サーバ側の疑似コードとしてはこのようなイメージだ。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=js><code translate="no">if (UserAgent.match(/Mozilla.*/)) {
+        <pre class=js><code translate=no>if (UserAgent.match(/Mozilla.*/)) {
   // Netscape 用の処理
 }</code></pre>
-        <p>すると、競合だった IE は素直に <code translate="no">MSIE...</code> で始まる UA を送ると、そのサービスが動作せず、ユーザに「使えないブラウザ」と認定されてしまう。
-        <p>そこで、やむをえず IE も UA を <code translate="no">Mozilla...</code> で始まる文字として実装をした。
-        <p>その後、いわゆる HTML5 期、 IE を外した Chrome や Safari のみに提供するサービス実装も登場したため、後発の Edge は UA に <code translate="no">Chrome</code> や <code translate="no">Safari</code> を含むこととなった。
-        <p>現在、多くのブラウザが <code translate="no">Mozilla...</code> で始まり、他の実装名を含む、ぱっと見なんなのかわからない文字列となっているのは、こうした歴史的な経緯がある。
+        <p>すると、競合だった IE は素直に <code translate=no>MSIE...</code> で始まる UA を送ると、そのサービスが動作せず、ユーザに「使えないブラウザ」と認定されてしまう。
+        <p>そこで、やむをえず IE も UA を <code translate=no>Mozilla...</code> で始まる文字として実装をした。
+        <p>その後、いわゆる HTML5 期、 IE を外した Chrome や Safari のみに提供するサービス実装も登場したため、後発の Edge は UA に <code translate=no>Chrome</code> や <code translate=no>Safari</code> を含むこととなった。
+        <p>現在、多くのブラウザが <code translate=no>Mozilla...</code> で始まり、他の実装名を含む、ぱっと見なんなのかわからない文字列となっているのは、こうした歴史的な経緯がある。
         <p>つまり、「ブラウザを識別し処理を分岐したいサービス開発者」と「そうしたサービスと互換性を保持したいブラウザベンダ」のいたちごっこが原因と言える。
         <p>こうしたことは、歴史が長いソフトウェアではよくある話だ、 Windows 9 が出なかった理由も同様の理由と言われている。
         <p>ブラウザが独自実装による差別化で戦争をしていた時代ならまだしも、今から処理の分岐条件に UA を用いるのは、あまり良い手ではない。
@@ -262,15 +262,15 @@
           <h3 id="js"><a href="#js">JS</a></h3>
           <p>対象がプログラムであるため、比較的簡単に行える。
           <p>多くの DOM API はクラスやプロパティの有無によって判断が可能だ。
-          <pre class=js><code translate="no">if (navigator.serviceWorker !== undefined) {
+          <pre class=js><code translate=no>if (navigator.serviceWorker !== undefined) {
   // service worker supported
 }</code></pre>
           <p>ECMAScript API (JS native の機能)の場合もメソッドの場合は同様に prototype などで判断する。
-          <pre class=js><code translate="no">if (String.prototype.padStart !== undefined) {
+          <pre class=js><code translate=no>if (String.prototype.padStart !== undefined) {
   // padStart supported
 }</code></pre>
           <p>構文の場合は物によるが、例えば ES Module サポートをどうしても調べたいといった場合は以下のような手段が一応ある。
-          <pre class=js><code translate="no">function supportsStaticImport() {
+          <pre class=js><code translate=no>function supportsStaticImport() {
   const script = document.createElement(&apos;script&apos;)
   return &apos;noModule&apos; in script
 }
@@ -288,11 +288,11 @@ function supportsDynamicImport() {
         <section>
           <h3 id="css"><a href="#css">CSS</a></h3>
           <p>CSS はいわゆるプログラミング言語ではないため、基本的には Detection をするよりも、 Progressive Enhancement で進めてきた。
-          <p>しかし、 CSS の API も複雑になってきたため最近では <code translate="no">@support</code> を用いた Detection がサポートされている。
-          <pre class=css><code translate="no">@supports (display: flex) {
+          <p>しかし、 CSS の API も複雑になってきたため最近では <code translate=no>@support</code> を用いた Detection がサポートされている。
+          <pre class=css><code translate=no>@supports (display: flex) {
   /* flexbox supported */
 }</code></pre>
-          <p><code translate="no">and</code>, <code translate="no">or</code>, <code translate="no">not</code> などもあり、是非は別として複雑な Detection も可能となってきた。
+          <p><code translate=no>and</code>, <code translate=no>or</code>, <code translate=no>not</code> などもあり、是非は別として複雑な Detection も可能となってきた。
         </section>
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
@@ -301,12 +301,12 @@ function supportsDynamicImport() {
           <p>サーバから選択肢を提示し、クライアントがそこから選択するという方向を取れば、一度で解決する場合も多い。
           <section>
             <h4 id="picture"><a href="#picture">Picture</a></h4>
-            <p>例えば、 <code translate="no">&lt;picture&gt;</code> は、サーバが対応可能なフォーマットやサイズに関する情報を全て列挙することで、クライアントがそこから選択できる。
-            <p>また、 <code translate="no">&lt;picture&gt;</code> そのものに対応していなければ、 <code translate="no">&lt;img&gt;</code> にフォールバックできるため、 <code translate="no">&lt;picture&gt;</code> 対応を detection する必要もない。
+            <p>例えば、 <code translate=no>&lt;picture&gt;</code> は、サーバが対応可能なフォーマットやサイズに関する情報を全て列挙することで、クライアントがそこから選択できる。
+            <p>また、 <code translate=no>&lt;picture&gt;</code> そのものに対応していなければ、 <code translate=no>&lt;img&gt;</code> にフォールバックできるため、 <code translate=no>&lt;picture&gt;</code> 対応を detection する必要もない。
           </section>
           <section>
             <h4 id="modulesnomodule"><a href="#modulesnomodule">modules/nomodule</a></h4>
-            <p>同じように、 ES Modules も、 <code translate="no">&lt;script type=modules&gt;</code> によって、サーバ側に用意があることを伝え、 <code translate="no">&lt;script nomodule&gt;</code> でフォールバックが可能だ。
+            <p>同じように、 ES Modules も、 <code translate=no>&lt;script type=modules&gt;</code> によって、サーバ側に用意があることを伝え、 <code translate=no>&lt;script nomodule&gt;</code> でフォールバックが可能だ。
             <p>そもそも、 ES Modules は MIME Type が従来の JS と同じになったため、クライアントが Accept Header に何かを追加して対応を伝えることができない。
           </section>
         </section>
@@ -314,17 +314,17 @@ function supportsDynamicImport() {
           <h3 id="content-negotiation"><a href="#content-negotiation">Content Negotiation</a></h3>
           <p>通信やフォーマットに関わるものは HTTP ヘッダによるネゴシエーションが基本である。
           <p>例えば、 Brotli や WebP のサポートなどは以下のように明示される場合がある。
-          <pre class=http><code translate="no">Accept-Encoding: gzip, deflate, br
+          <pre class=http><code translate=no>Accept-Encoding: gzip, deflate, br
 Accept: image/webp,image/apng,image/*,*/*;q=0.8</code></pre>
           <p>ヘッダのデフォルト情報は、それが使われるか使われないかに限らず、ブラウザからのリクエストの大半に付与されることになる。
-          <p>Brotli 対応が <code translate="no">, br</code> という 4byte であったとしても、メジャーブラウザが Web のスケールで使われると、無視できる数字ではない。
-          <p>既に普及しきった PNG や JPEG は <code translate="no">*</code> の中に丸め込まれているが、 WebP が普及しきったあと <code translate="no">image/webp</code> を消して <code translate="no">*</code> に丸め込まれたら、壊れるサイトも少なくないだろう。
+          <p>Brotli 対応が <code translate=no>, br</code> という 4byte であったとしても、メジャーブラウザが Web のスケールで使われると、無視できる数字ではない。
+          <p>既に普及しきった PNG や JPEG は <code translate=no>*</code> の中に丸め込まれているが、 WebP が普及しきったあと <code translate=no>image/webp</code> を消して <code translate=no>*</code> に丸め込まれたら、壊れるサイトも少なくないだろう。
           <p>従って、ブラウザベンダは、ヘッダの追加には非常に慎重である。
           <p>これは、新しいフォーマットが出るたびに、ヘッダの値が増えていくかというと、必ずしも期待できないことを意味する。
           <p>最近では、デフォルトではない追加の情報については、サーバから Client Hints で要求することもできる。
-          <pre class=http><code translate="no">Accept-CH: DPR, Viewport-Width</code></pre>
+          <pre class=http><code translate=no>Accept-CH: DPR, Viewport-Width</code></pre>
           <p>レスポンスに要求した値が載ってくる。
-          <pre class=http><code translate="no">Viewport-Width: 1366
+          <pre class=http><code translate=no>Viewport-Width: 1366
 DPR: 1</code></pre>
           <p>1RTT 必要になるため、メインリソースのレスポンスで返し、サブリソースで適用させるような用途が中心となる。
         </section>

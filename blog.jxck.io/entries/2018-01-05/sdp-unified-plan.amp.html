@@ -824,13 +824,13 @@
     </section>
     <section>
       <h2 id="update"><a href="#update">Update</a></h2>
-      <p>実装が進み <code translate="no">SdpFormat</code> は <code translate="no">sdpSemantics</code> に変わったため、記事を修正。
+      <p>実装が進み <code translate=no>SdpFormat</code> は <code translate=no>sdpSemantics</code> に変わったため、記事を修正。
       <ul>
         <li><a href="https://groups.google.com/forum/#!topic/discuss-webrtc/x8lcqHRlWmA">PSA: Unified Plan SDP testing flag is now available on Canary</a>
         <li><a href="https://groups.google.com/forum/#!msg/discuss-webrtc/zMB1aL6eZ1Q/gVVQ_4rSBAAJ">PSA: RTCRtpTransceiver shipping in M69 behind sdpSemantics:&apos;unified-plan&apos;</a>
       </ul>
       <p>なお、以下のフラグを付けて起動するとデフォルトで有効にできる。
-      <p><code translate="no">--enable-blink-features=RTCUnifiedPlanByDefault</code>
+      <p><code translate=no>--enable-blink-features=RTCUnifiedPlanByDefault</code>
     </section>
     <section>
       <h2 id="sdp-compatibility"><a href="#sdp-compatibility">SDP Compatibility</a></h2>
@@ -851,7 +851,7 @@
       <p>多重化する場合は、トランスポートは 1 つで良い。
       <p>そこで、トランスポートに対して &quot;m=&quot; line は 1 つにし、それを &quot;envelope&quot; とする。
       <p>その中に、マイクごとの定義を、 &quot;a=ssrc&quot; で記述する。
-      <pre class=sdp><code translate="no">m=audio 49170 RTP/AVP 101
+      <pre class=sdp><code translate=no>m=audio 49170 RTP/AVP 101
 a=ssrc:1 msid:left-mic
 a=ssrc:2 msid:center-mic
 a=ssrc:3 msid:right-mic</code></pre>
@@ -862,7 +862,7 @@ a=ssrc:3 msid:right-mic</code></pre>
       <p>Plan A は、 &quot;m=&quot; line をメディアごとに書くというシンプルな方法である。
       <p>もし多重化したい場合は、対象の &quot;m=&quot; line に対して BUNDLE を指定する。
       <p>この方式が WebRTC の標準として合意され、現在は Unified Plan として策定が進んでいる。
-      <pre class=sdp><code translate="no">...
+      <pre class=sdp><code translate=no>...
 a=group:BUNDLE m1 m2 m3
 ...
 m=audio 56600 RTP/SAVPF 0 109
@@ -881,10 +881,10 @@ a=mid:m3
     <section>
       <h2 id="sdpsemantics"><a href="#sdpsemantics">SdpSemantics</a></h2>
       <p>Chrome は、まず WebRTCUnifiedPlan というフラグを用意するとしている。
-      <p>このフラグを有効にすると、 RTCConfiguration に <code translate="no">&quot;sdpSemantics&quot;</code> という独自プロパティを定義される。
-      <p>デフォルトは <code translate="no">&quot;plan-b&quot;</code> であり、明示的に <code translate="no">&quot;unified-plan&quot;</code> を指定すれば切り替えられる。
-      <p>後にデフォルトを &quot;unified-plan&quot; に変更し、 <code translate="no">&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
-      <pre class=js><code translate="no">new RTCPeerConnection({sdpSemantics: &quot;unified-plan&quot;})</code></pre>
+      <p>このフラグを有効にすると、 RTCConfiguration に <code translate=no>&quot;sdpSemantics&quot;</code> という独自プロパティを定義される。
+      <p>デフォルトは <code translate=no>&quot;plan-b&quot;</code> であり、明示的に <code translate=no>&quot;unified-plan&quot;</code> を指定すれば切り替えられる。
+      <p>後にデフォルトを &quot;unified-plan&quot; に変更し、 <code translate=no>&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
+      <pre class=js><code translate=no>new RTCPeerConnection({sdpSemantics: &quot;unified-plan&quot;})</code></pre>
     </section>
     <section>
       <h2 id="影響"><a href="#影響">影響</a></h2>

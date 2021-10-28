@@ -165,7 +165,7 @@
       </section>
       <section>
         <h2 id="periodic-background-sync"><a href="#periodic-background-sync">Periodic Background Sync</a></h2>
-        <p>Web で定期的なタスクを実行する場合、タブが開いていれば <code translate="no">setInterval()</code> などで行うなどが可能だ。
+        <p>Web で定期的なタスクを実行する場合、タブが開いていれば <code translate=no>setInterval()</code> などで行うなどが可能だ。
         <p>しかし、メールクライアントの受信ボックス更新のように、バックグラウンドで定期的にタスクを実行したい場合がある。
         <p>従来からある Service Worker の Background Sync は、 Offline 中に失敗したタスクを Online 復帰時に再実行するというユースケースに寄せて設計しているため、この用途では使いにくかった。
         <p>そこで、定期的に実行することに特化した API として提案されているのが Periodic Background Sync(PBS) だ。
@@ -174,12 +174,12 @@
           <p>現在提案されている API は非常にシンプルだ。
           <p>まず ServiceWorkerRegistration 経由で task を登録する。
           <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-          <pre class=js><code translate="no">const registration = await navigator.serviceWorker.ready
+          <pre class=js><code translate=no>const registration = await navigator.serviceWorker.ready
 await registration.periodicSync.register(&apos;update-feed&apos;, {
   minInterval: 12 * 60 * 60 * 1000 // 12h
 })</code></pre>
           <p>すると、 Service Worker 上で定期的にイベントが発火する。
-          <pre class=js><code translate="no">self.addEventListener(&apos;periodicsync&apos;, (e) =&gt; {
+          <pre class=js><code translate=no>self.addEventListener(&apos;periodicsync&apos;, (e) =&gt; {
   console.log(&apos;periodicsync&apos;, e)
   e.waitUntil(async function() {
     const mails = await fetch(MailBox)

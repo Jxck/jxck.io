@@ -886,13 +886,13 @@
       <h2 id="reporting-api-の経緯"><a href="#reporting-api-の経緯">Reporting API の経緯</a></h2>
       <p>筆者の観測では発端は CSP からだ。
       <p>CSP で定義したポリシーに違反があった場合、その原因をブロックすると同時に、違反があったことを知りたいという要望があった。でなければその問題に対して認識/対応ができないからだ。
-      <p>そこで、 CSP ヘッダに指定するためのディレクティブとして、 Report を送信する先を指定する <code translate="no">report-uri</code> が定義された。
-      <pre class=http><code translate="no">Content-Security-Policy: default-src &apos;self&apos; report-uri https://report-uri.example.com</code></pre>
+      <p>そこで、 CSP ヘッダに指定するためのディレクティブとして、 Report を送信する先を指定する <code translate=no>report-uri</code> が定義された。
+      <pre class=http><code translate=no>Content-Security-Policy: default-src &apos;self&apos; report-uri https://report-uri.example.com</code></pre>
       <p>CSP は JS の実行をブロックする場合があるので、その Report は JS で収集するより、ブラウザが直接送信する方が理にかなっている。
       <p>その後、他にも Report 送信を伴う API が提案された。
       <p>すると、個々のヘッダに report-uri を書くより、 Reporting エンドポイントをまとめて記述できる Report-To ヘッダを定義し、各 Policy がそれを参照する形に整理するという方向になった。
       <p>(<a href="https://github.com/WICG/feature-policy/issues/142">Feature-Policy の report-to 対応は議論中</a>)
-      <pre class=http><code translate="no">Content-Security-Policy: default-src &apos;self&apos; report-to=default-endpoint
+      <pre class=http><code translate=no>Content-Security-Policy: default-src &apos;self&apos; report-to=default-endpoint
 Feature-Policy: syncxhr &apos;none&apos; report-to=default-endpoint
 NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
 Report-To: {
@@ -906,7 +906,7 @@ Report-To: {
       <p>一方、他にも取得したい情報は増え、 Policy Header + Report-To よりも、 JS でハンドリングするほうが望ましいケースも現れ、  JS API も Export することになった。
       <p>互換性の面でも、セマンティクスの面でも、 Report は Error ではないため、 Error を throw するようなモデルは使えない。代わりに Interface は昨今の流れに則り Observer で提供され、 opt-in で取得する設計が採用された。
       <p>Report は JSON シリアライズ可能な形式で提供されるため、 Beacon API や Keep-Alive Fetch で送ることになるだろう。
-      <pre class=js><code translate="no">const observer = new ReportingObserver((reports, observer) =&gt; {
+      <pre class=js><code translate=no>const observer = new ReportingObserver((reports, observer) =&gt; {
   const message = JSON.stringify(reports)
   navigator.sendBeacon(&quot;https://report-uri.example.com&quot;, message)
 });
@@ -920,7 +920,7 @@ observer.observe();</code></pre>
       <p>Report-To ヘッダは、 Reporting エンドポイントの情報を一括して定義する HTTP Header だ。
       <section>
         <h3 id="report-to-header"><a href="#report-to-header">Report-To header</a></h3>
-        <pre class=http><code translate="no">Report-To: {
+        <pre class=http><code translate=no>Report-To: {
              &quot;max_age&quot;: 36000,
              &quot;endpoints&quot;: [
                {
@@ -966,8 +966,8 @@ observer.observe();</code></pre>
             </ul>
           </li>
         </ul>
-        <p>また、グループを複数指定するとき、配列のように記述しつつも前後の <code translate="no">[</code> と <code translate="no">]</code> は <a href="https://w3c.github.io/reporting/#header">省略</a> する点に注意したい。
-        <p>上記の例は、 endpoint を 1 つ持つ <code translate="no">default</code> グループと、 CSP 用に 2 つのエンドポイントを持ち、負荷分散とフェイルオーバーを構成した <code translate="no">cap-endpoint</code> の 2 つがある。
+        <p>また、グループを複数指定するとき、配列のように記述しつつも前後の <code translate=no>[</code> と <code translate=no>]</code> は <a href="https://w3c.github.io/reporting/#header">省略</a> する点に注意したい。
+        <p>上記の例は、 endpoint を 1 つ持つ <code translate=no>default</code> グループと、 CSP 用に 2 つのエンドポイントを持ち、負荷分散とフェイルオーバーを構成した <code translate=no>cap-endpoint</code> の 2 つがある。
         <ul>
           <li><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/7dykNEdqvzA/DWcGTm4tDwAJ">Intent to implement: report-to header as part of Reporting API</a>
         </ul>
@@ -1004,7 +1004,7 @@ observer.observe();</code></pre>
         <p>一方、 Deprecation/Intervention/Crash などは、 API を持たずにブラウザが自動で生成するため、 Report-To に default group があれば自動で送信される。
         <p>(仕様上はそうだが、実装されているブラウザはまだない)
         <p>したがって、 Report-To だけを設定しておくということも考えられる。
-        <pre class=http><code translate="no">Content-Security-Policy: default-src &apos;self&apos; report-to=csp-endpoint
+        <pre class=http><code translate=no>Content-Security-Policy: default-src &apos;self&apos; report-to=csp-endpoint
 Feature-Policy: syncxhr &apos;none&apos; report-to=default
 NEL: {&quot;report-to&quot;: &quot;default&quot;, &quot;max-age&quot;: 2592000}
 Report-To: {
@@ -1023,7 +1023,7 @@ Report-To: {
         <ul>
           <li><a href="https://w3c.github.io/reporting/#try-delivery">4.5. Attempt to deliver reports to endpoint</a>
         </ul>
-        <pre class=http><code translate="no">POST /default-endpoint HTTP/1.1
+        <pre class=http><code translate=no>POST /default-endpoint HTTP/1.1
 Host: reports.example.com
 Content-Type: application/reports+json
 Content-Length: 999
@@ -1068,7 +1068,7 @@ Content-Length: 999
         <li><a href="https://w3c.github.io/reporting/#observers">https://w3c.github.io/reporting/#observers</a>
       </ul>
       <p>サンプルを再掲する。
-      <pre class=js><code translate="no">const observer = new ReportingObserver((reports, observer) =&gt; {
+      <pre class=js><code translate=no>const observer = new ReportingObserver((reports, observer) =&gt; {
   const message = JSON.stringify(reports)
   navigator.sendBeacon(&quot;https://report-uri.example.com&quot;, message)
 });
@@ -1089,8 +1089,8 @@ observer.observe();</code></pre>
         <p>ブラウザで deprecate された API を呼び出している場合に発生する 。
         <p>特に古い API の deprecate/remove は段階ごとにアナウンスされるが、それが自身のサービス内でどの程度の影響があるかなどを正確にするのは難しい。
         <p>この report を収集すれば、サービス内のどのソースファイルの何行目でそれが使われているかまでわかるため、非常に有益な情報となる。
-        <p>なお、本サイトでは Chrome の拡張である <a href="https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin/related">HTTP/2 and SPDY indicator</a> から <code translate="no">chrome.loadTimes()</code> を呼んでいるという Report が最も多く送られてきている。
-        <pre class=js><code translate="no">{
+        <p>なお、本サイトでは Chrome の拡張である <a href="https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin/related">HTTP/2 and SPDY indicator</a> から <code translate=no>chrome.loadTimes()</code> を呼んでいるという Report が最も多く送られてきている。
+        <pre class=js><code translate=no>{
   &quot;type&quot;: &quot;deprecation&quot;,
     &quot;url&quot;: &quot;https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html&quot;,
     &quot;body&quot;: {

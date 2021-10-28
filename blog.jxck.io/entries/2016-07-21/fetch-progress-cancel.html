@@ -184,13 +184,13 @@
       </section>
       <section>
         <h2 id="promise-api"><a href="#promise-api">Promise API</a></h2>
-        <p>まず、 <code translate="no">fetch()</code> は当初から Promise ベースの API となっている。
+        <p>まず、 <code translate=no>fetch()</code> は当初から Promise ベースの API となっている。
         <ul>
           <li><a href="https://tc39.github.io/ecma262/#sec-promise-constructor">Promise</a>
         </ul>
         <p>例えば、なんらかの Text を取得する場合、基本は以下のようになる。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=js><code translate="no">fetch(&apos;foo.txt&apos;).then((res) =&gt; {
+        <pre class=js><code translate=no>fetch(&apos;foo.txt&apos;).then((res) =&gt; {
   return res.text();
 }).then((text) =&gt; {
   console.log(text);
@@ -198,14 +198,14 @@
         <ul>
           <li><a href="https://labs.jxck.io/fetch/basic.html">Fetch Basic DEMO</a>
         </ul>
-        <p><code translate="no">res.text()</code> が body を resolve する Promsie を返していることが分かる。
+        <p><code translate=no>res.text()</code> が body を resolve する Promsie を返していることが分かる。
         <p>この API では、以下の二つができない。
         <ul>
           <li>
-            <code translate="no">foo.txt</code> が大きかった場合、 fetch を中断(キャンセル)する。
+            <code translate=no>foo.txt</code> が大きかった場合、 fetch を中断(キャンセル)する。
           </li>
           <li>
-            <code translate="no">foo.txt</code> が大きかった場合、ダウンロードの進捗(プログレス)を得る。
+            <code translate=no>foo.txt</code> が大きかった場合、ダウンロードの進捗(プログレス)を得る。
           </li>
         </ul>
         <p>現在の Promise の仕様では、非同期処理に対してあくまで <em>fullfilled(完了した)</em> か <em>rejected(失敗した)</em> の二つの状態を返すことしかできない。
@@ -213,13 +213,13 @@
       </section>
       <section>
         <h2 id="stream-api"><a href="#stream-api">Stream API</a></h2>
-        <p>現在は <code translate="no">fetch()</code> が返す Response が、 WHATWG の Stream を返すように変更されている。
+        <p>現在は <code translate=no>fetch()</code> が返す Response が、 WHATWG の Stream を返すように変更されている。
         <ul>
           <li><a href="https://streams.spec.whatwg.org/">Streams Spec</a>
         </ul>
         <p>Stream は、 I/O 処理を chunk ごとに返し、非同期処理の <em>途中</em> に処理を挟むための仕様である。
         <p>先の例を Stream で取得する場合、以下のように書くことができる。
-        <pre class=js><code translate="no">fetch(&apos;foo.txt&apos;).then((res) =&gt; {
+        <pre class=js><code translate=no>fetch(&apos;foo.txt&apos;).then((res) =&gt; {
   // foo.txt の全体サイズ
   const total = res.headers.get(&apos;content-length&apos;);
 
@@ -247,15 +247,15 @@
       <section>
         <h2 id="progress-の取得"><a href="#progress-の取得">Progress の取得</a></h2>
         <p>Stream の返す各 Chunk から、その Chunk のサイズを取得することができるため、取得するリソースの合計サイズがわかれば進捗率の取得などが可能になる。
-        <p>リソースの合計サイズは HTTP レスポンスヘッダの <code translate="no">Content-Length</code> から取得することができる。
+        <p>リソースの合計サイズは HTTP レスポンスヘッダの <code translate=no>Content-Length</code> から取得することができる。
         <p>fetch の返す Response オブジェクトからは以下のように取ることができる。
-        <pre class=js><code translate="no">fetch(&apos;foo.txt&apos;).then((res) =&gt; {
+        <pre class=js><code translate=no>fetch(&apos;foo.txt&apos;).then((res) =&gt; {
   const total = res.headers.get(&apos;content-length&apos;);
 });</code></pre>
-        <p>(クロスオリジンのリソースを CORS を使わずに取得する <code translate="no">mode: no-cors</code> の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、 body も取れないためプログレスを出す用途はないだろう)
+        <p>(クロスオリジンのリソースを CORS を使わずに取得する <code translate=no>mode: no-cors</code> の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、 body も取れないためプログレスを出す用途はないだろう)
         <p>これを用いれば、以下のように Progress を得ることができる。
         <p>(進捗率の数値を使えば、 CSS でプログレスバーを表示することも可能だろう)
-        <pre class=js><code translate="no">fetch(&apos;foo.txt&apos;).then((res) =&gt; {
+        <pre class=js><code translate=no>fetch(&apos;foo.txt&apos;).then((res) =&gt; {
   // foo.txt の全体サイズ
   const total = res.headers.get(&apos;content-length&apos;);
 
@@ -286,11 +286,11 @@
         <h2 id="fetch-の-cancel"><a href="#fetch-の-cancel">Fetch の cancel</a></h2>
         <p>Stream 、もしくはそこから取得した Reader はキャンセルすることができる。
         <ul>
-          <li><code translate="no">res.body.cancel()</code>
-          <li><code translate="no">reader.cancel()</code>
+          <li><code translate=no>res.body.cancel()</code>
+          <li><code translate=no>reader.cancel()</code>
         </ul>
         <p>これを用いることで、サイズの大きなファイルのダウンロードを途中で止めるといった実装が可能となる。
-        <pre class=js><code translate="no">fetch(url).then((res) =&gt; {
+        <pre class=js><code translate=no>fetch(url).then((res) =&gt; {
   const total = res.headers.get(&apos;content-length&apos;);
 
   let reader = res.body.getReader();

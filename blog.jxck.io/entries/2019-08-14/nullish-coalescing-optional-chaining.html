@@ -165,13 +165,13 @@
         <h2 id="nullish-coalescing"><a href="#nullish-coalescing">Nullish Coalescing</a></h2>
         <p>対象が null/undefined だった場合にデフォルト値を返したいといった場合を考える。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=js><code translate="no">function main(option) {
+        <pre class=js><code translate=no>function main(option) {
   option.param = option.param || &apos;default&apos;
 }
 
 main({param : &apos;hello&apos;})</code></pre>
-        <p>しかし、この場合は null/undefined 以外にも param が <code translate="no">0</code>, <code translate="no">false</code>, <code translate="no">&apos;&apos;</code> など falsy な値の場合も上書きされてしまう。
-        <pre class=js><code translate="no">var param;
+        <p>しかし、この場合は null/undefined 以外にも param が <code translate=no>0</code>, <code translate=no>false</code>, <code translate=no>&apos;&apos;</code> など falsy な値の場合も上書きされてしまう。
+        <pre class=js><code translate=no>var param;
 
 param = 100
 param = param || &apos;default&apos; // 100
@@ -191,9 +191,9 @@ param = param || &apos;default&apos; // &apos;default&apos;
 param = &apos;&apos;
 param = param || &apos;default&apos; // &apos;default&apos;</code></pre>
         <p>つまり、本来は null/undefined の厳密な判定を行わなくてはいけないわけだが、プロパティごとにそれを行うのは面倒だ。
-        <p>そこで提案されたのが <code translate="no">??</code> という Null Coalescing Operator だ。(日本語だと Null 結合演算子になるのだろうか?)
+        <p>そこで提案されたのが <code translate=no>??</code> という Null Coalescing Operator だ。(日本語だと Null 結合演算子になるのだろうか?)
         <p>これを使うと、 null/undefined であった場合のみ上書きができる。(名前に反して null だけではない点に注意)
-        <pre class=js><code translate="no">var param;
+        <pre class=js><code translate=no>var param;
 
 param = 100
 param = param ?? &apos;default&apos; // 100
@@ -213,7 +213,7 @@ param = param ?? &apos;default&apos; // false
 param = &apos;&apos;
 param = param ?? &apos;default&apos; // &apos;&apos;</code></pre>
         <p>パラメータの初期化などで、 null/undefined 以外の falsy な値を尊重しつつデフォルトを決めるといったケースに使うことができる。
-        <pre class=js><code translate="no">function main(option) {
+        <pre class=js><code translate=no>function main(option) {
   option.message  = option.message ?? &apos;default message&apos;
   option.timeout  = option.timeout ?? 100
   option.flag     = option.flag    ?? true
@@ -231,35 +231,35 @@ main({
       <section>
         <h2 id="optional-chaining"><a href="#optional-chaining">Optional Chaining</a></h2>
         <p>null に対するプロパティアクセスはエラーとなるため、それを防ぐためには一度チェックを行う必要がある。
-        <pre class=js><code translate="no">if (a !== null) {
+        <pre class=js><code translate=no>if (a !== null) {
   a.b()
 }</code></pre>
-        <p>アクセスできない場合 <code translate="no">undefined</code> を返すように三項演算子で書くとこうなる。
-        <pre class=js><code translate="no">const result = (a !== null) ? a.b() : undefined</code></pre>
-        <p>このショートハンドとしてアクセサの直前に <code translate="no">?</code> を書くことができるようなるのがこの提案だ。
-        <pre class=js><code translate="no">a?.b   // a == null ? undefined : a.b
+        <p>アクセスできない場合 <code translate=no>undefined</code> を返すように三項演算子で書くとこうなる。
+        <pre class=js><code translate=no>const result = (a !== null) ? a.b() : undefined</code></pre>
+        <p>このショートハンドとしてアクセサの直前に <code translate=no>?</code> を書くことができるようなるのがこの提案だ。
+        <pre class=js><code translate=no>a?.b   // a == null ? undefined : a.b
 a?.b() // a == null ? undefined : a.b()
 a?.[x] // a == null ? undefined : a[x]</code></pre>
         <p>プロパティ以外にも、単体の関数を呼ぶ場合も利用可能だ。
-        <pre class=js><code translate="no">a?.() // a == null ? undefined : a()</code></pre>
+        <pre class=js><code translate=no>a?.() // a == null ? undefined : a()</code></pre>
       </section>
       <section>
         <h2 id="short-circuiting"><a href="#short-circuiting">Short Circuiting</a></h2>
-        <p>以下のように Chain しても、途中で <code translate="no">undefined</code> に対する呼び出しになってエラーになったりはしない。
-        <pre class=js><code translate="no">a = null
+        <p>以下のように Chain しても、途中で <code translate=no>undefined</code> に対する呼び出しになってエラーになったりはしない。
+        <pre class=js><code translate=no>a = null
 a?.b?.c() // a? で undefined になるが、後続の .b? がエラーになるわけではない</code></pre>
-        <p>これは <code translate="no">?.</code> の左側(left-hand side)が null/undefined と評価された時点で全体の評価が決定し、 <code translate="no">?.</code> の右側(right-hand side) は評価されていないからだ。
+        <p>これは <code translate=no>?.</code> の左側(left-hand side)が null/undefined と評価された時点で全体の評価が決定し、 <code translate=no>?.</code> の右側(right-hand side) は評価されていないからだ。
         <p>したがって、以下のように副作用のある処理も実行されない。
-        <pre class=js><code translate="no">a = null
+        <pre class=js><code translate=no>a = null
 a?.b[x++] // ?. より右は実行されず x は増えない</code></pre>
         <p>この挙動を Short Circuting と言う。
         <p>もし Short Circuit を止めて、評価を実行したい場合は、対象を括弧でくくればその範囲のみに限定することもできる。
-        <pre class=js><code translate="no">(a?.b).c // a が null でも .c は実行される</code></pre>
+        <pre class=js><code translate=no>(a?.b).c // a が null でも .c は実行される</code></pre>
       </section>
       <section>
         <h2 id="nullable-と-optional"><a href="#nullable-と-optional">nullable と optional</a></h2>
         <p>こんなコードを考えてみる。
-        <pre class=html><code translate="no">&lt;body&gt;
+        <pre class=html><code translate=no>&lt;body&gt;
   &lt;code class=&apos;highlight language-js&apos;&gt;
     console.log(&apos;hello&apos;)
   &lt;/code&gt;
@@ -274,10 +274,10 @@ const lang = document.querySelector(&apos;code&apos;) // &lt;code&gt;
 console.log(lang) // JS
 &lt;/script&gt;</code></pre>
         <p>このコードをそのままブラウザで走らせれば、 JS が期待している DOM が確実にあるため問題なく動くだろう。
-        <p>しかし、型を厳密に考えると <code translate="no">querySelector()</code> や <code translate="no">item()</code> は nullable であり、配列の範囲外の添字アクセスは <code translate="no">undefined</code> を返す。
+        <p>しかし、型を厳密に考えると <code translate=no>querySelector()</code> や <code translate=no>item()</code> は nullable であり、配列の範囲外の添字アクセスは <code translate=no>undefined</code> を返す。
         <p>したがって、チェインのどこかが null/undefined になれば破綻するため、そこをケアするには各段階で確認する必要がある。
         <p>色々書き方はあるが、雑に書くとこういうことだ。
-        <pre class=html><code translate="no">&lt;body&gt;
+        <pre class=html><code translate=no>&lt;body&gt;
   &lt;code class=&apos;highlight language-js&apos;&gt;
     console.log(&apos;hello&apos;)
   &lt;/code&gt;
@@ -295,12 +295,12 @@ if ($code) {
   }
 }
 &lt;/script&gt;</code></pre>
-        <p>なお、本来は全ての <code translate="no">if</code> に対し、前提が崩れていた際の <code translate="no">else</code> が必要であるが、ここでは省略している。
-        <p>大抵の DOM 操作はこの <code translate="no">else</code> 部分はもとより、 <code translate="no">if</code> 部分すら書かず、暗黙の前提を置いている場合も多い。
-        <p>TypeScript を使うと、この <code translate="no">if</code> を通して <code translate="no">null</code> を剥がさないとエラーになるため、これを書く場合も増えてきた。
-        <p>しかし <code translate="no">else</code> は、書いたところでできることが少なく、共通のエラーを表示する程度な場合も多いだろう。
+        <p>なお、本来は全ての <code translate=no>if</code> に対し、前提が崩れていた際の <code translate=no>else</code> が必要であるが、ここでは省略している。
+        <p>大抵の DOM 操作はこの <code translate=no>else</code> 部分はもとより、 <code translate=no>if</code> 部分すら書かず、暗黙の前提を置いている場合も多い。
+        <p>TypeScript を使うと、この <code translate=no>if</code> を通して <code translate=no>null</code> を剥がさないとエラーになるため、これを書く場合も増えてきた。
+        <p>しかし <code translate=no>else</code> は、書いたところでできることが少なく、共通のエラーを表示する程度な場合も多いだろう。
         <p>Optional Chaining を使うと以下のようになる。
-        <pre class=html><code translate="no">&lt;body&gt;
+        <pre class=html><code translate=no>&lt;body&gt;
   &lt;code class=&apos;highlight language-js&apos;&gt;
     console.log(&apos;hello&apos;)
   &lt;/code&gt;
@@ -317,11 +317,11 @@ if (lang === undefined) {
   console.log(lang)
 }
 &lt;/script&gt;</code></pre>
-        <p>最後の <code translate="no">lang</code> は全ての前提が揃った場合に <code translate="no">&quot;JS&quot;</code> が入り、どこかが破綻すると <code translate="no">undefined</code> になる。
-        <p>ここでの <code translate="no">undefined</code> の処理は、前述の <code translate="no">if</code> 版で省略されている <code translate="no">else</code> の処理にあたる。
-        <p>つまり、 Optional Chaining は、こうした <code translate="no">null</code> を考慮すべき処理の連続を、全て if-else で分岐しつつケアする代わりに、一連の処理をつなげ結果を期待した値 or <code translate="no">undefined</code> に丸め込んで結果を検証するといった書き方を可能とする。
-        <p>もしこのケースで、存在しない場合の lang をデフォルトで <code translate="no">&quot;TEXT&quot;</code> にしたい場合は、前述の Nullish Coalescing と組み合わせると以下のように書ける。
-        <pre class=js><code translate="no">const lang = document.querySelector(&apos;code&apos;)? // node が無ければ null
+        <p>最後の <code translate=no>lang</code> は全ての前提が揃った場合に <code translate=no>&quot;JS&quot;</code> が入り、どこかが破綻すると <code translate=no>undefined</code> になる。
+        <p>ここでの <code translate=no>undefined</code> の処理は、前述の <code translate=no>if</code> 版で省略されている <code translate=no>else</code> の処理にあたる。
+        <p>つまり、 Optional Chaining は、こうした <code translate=no>null</code> を考慮すべき処理の連続を、全て if-else で分岐しつつケアする代わりに、一連の処理をつなげ結果を期待した値 or <code translate=no>undefined</code> に丸め込んで結果を検証するといった書き方を可能とする。
+        <p>もしこのケースで、存在しない場合の lang をデフォルトで <code translate=no>&quot;TEXT&quot;</code> にしたい場合は、前述の Nullish Coalescing と組み合わせると以下のように書ける。
+        <pre class=js><code translate=no>const lang = document.querySelector(&apos;code&apos;)? // node が無ければ null
                      .classList.item(1)?     // 2 つめの class が無ければ null
                      .split(&apos;-&apos;)[1]?         // 2 つめの 分割結果が無ければ undefined
                      .toUpperCase()          // どこかで失敗していれば undefined
@@ -342,7 +342,7 @@ console.log(lang) // &quot;JS&quot; or &quot;TEXT&quot;</code></pre>
             <li><a href="https://webkit.org/blog/9497/release-notes-for-safari-technology-preview-89/">Release Notes for Safari Technology Preview 89</a>
           </ul>
           <p>Mac の場合 JSC のフラグは以下のように付与する。
-          <pre class=sh-session><code translate="no">$ __XPC_JSC_useNullishCoalescing=true open -a &apos;Safari Technology Preview&apos;</code></pre>
+          <pre class=sh-session><code translate=no>$ __XPC_JSC_useNullishCoalescing=true open -a &apos;Safari Technology Preview&apos;</code></pre>
         </section>
         <section>
           <h3 id="optional-chaining-1"><a href="#optional-chaining-1">Optional Chaining</a></h3>

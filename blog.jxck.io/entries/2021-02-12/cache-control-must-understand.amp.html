@@ -821,7 +821,7 @@
     <section>
       <h2 id="intro"><a href="#intro">Intro</a></h2>
       <p>IETF が策定する HTTP の仕様が更新されようとしている。
-      <p>ここには、 <a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html">Cache</a> の仕様も含まれており、そのなかで <code translate="no">must-understand</code> という <code translate="no">Cache-Control</code> のディレクティブが追加されている。
+      <p>ここには、 <a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html">Cache</a> の仕様も含まれており、そのなかで <code translate=no>must-understand</code> という <code translate=no>Cache-Control</code> のディレクティブが追加されている。
       <p>このディレクティブが追加された経緯と仕様について解説する。
     </section>
     <section>
@@ -835,7 +835,7 @@
         <p>Likewise, the definition of a status code can place constraints upon cache behavior&hellip;
         <p><cite>&mdash; <a href="https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2">https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2</a></cite>
       </blockquote>
-      <p>つまり、その新しいステータスコードは、 <code translate="no">max-age</code> などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache 可能かどうかなどを定義できるのだ。
+      <p>つまり、その新しいステータスコードは、 <code translate=no>max-age</code> などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache 可能かどうかなどを定義できるのだ。
       <p>一方、キャッシュを保存する要件として以下があった。
       <blockquote>
         <p>A cache MUST NOT store a response to any request, unless:
@@ -845,32 +845,32 @@
       </blockquote>
       <p>問題は、 3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
       <p>新しいステータスコードが標準化された場合に、そのステータスコードが未実装な場合はキャッシュできないように読めてしまう。実装者は、サポートしているステータスコードをリストとして埋め込み、突き合わせてキャッシュの制御を行うことになるだろう。
-      <p>この点は、先程の要件と矛盾が有り、例えば <code translate="no">max-age</code> を伴う新しいステータスコードのレスポンスを受信した実装が、そのステータスコードを実装してない場合に、どうすべきかということになる。
+      <p>この点は、先程の要件と矛盾が有り、例えば <code translate=no>max-age</code> を伴う新しいステータスコードのレスポンスを受信した実装が、そのステータスコードを実装してない場合に、どうすべきかということになる。
       <p>実装に対する制限は後者なので、安全側に倒すと「キャッシュしない」方を選ぶことになり、すると実装が普及するまではキャッシュが効かないことになる。
       <p>すると、セマンティクスよりもキャッシュ効率を求める開発者により、意味的に適した新しいステータスコードを利用する代わりに、既存のステータスコードが使われてしまう可能性があるのだ。
     </section>
     <section>
       <h2 id="must-understand"><a href="#must-understand">must-understand</a></h2>
-      <p>例としてここでは <code translate="no">999 New Status</code> という架空のステータスコードが新しく仕様化され、そのステータスコードにはデフォルトでキャッシュに関する要件が定義されていたとする。
-      <pre class=http><code translate="no">HTTP/1.1 999 New Status
+      <p>例としてここでは <code translate=no>999 New Status</code> という架空のステータスコードが新しく仕様化され、そのステータスコードにはデフォルトでキャッシュに関する要件が定義されていたとする。
+      <pre class=http><code translate=no>HTTP/1.1 999 New Status
 Content-Type: text/html
 Content-Length: 256
 Cache-Control: max-age=3600</code></pre>
-      <p>このステータスコード <code translate="no">999</code> がまだ新しく、実装が広まってないうちは、受信した実装は「<code translate="no">999</code> を知らない」という理由だけで <code translate="no">Cache-Control</code> も無視してキャッシュを保存しない可能性がある。
-      <p>この問題を解決するために Cache の改定版 ID では、該当部分が更新され <code translate="no">must-understand</code> というディレクティブが追加されている。
-      <p>このディレクティブは、以下のように必ず <code translate="no">no-store</code> とともに付与される。
-      <pre class=http><code translate="no">HTTP/1.1 999 New Status
+      <p>このステータスコード <code translate=no>999</code> がまだ新しく、実装が広まってないうちは、受信した実装は「<code translate=no>999</code> を知らない」という理由だけで <code translate=no>Cache-Control</code> も無視してキャッシュを保存しない可能性がある。
+      <p>この問題を解決するために Cache の改定版 ID では、該当部分が更新され <code translate=no>must-understand</code> というディレクティブが追加されている。
+      <p>このディレクティブは、以下のように必ず <code translate=no>no-store</code> とともに付与される。
+      <pre class=http><code translate=no>HTTP/1.1 999 New Status
 Content-Type: text/html
 Content-Length: 256
 Cache-Control: max-age=3600, must-understand, no-store</code></pre>
-      <p><code translate="no">must-understand</code> は、その status code の要件として定義されたキャッシュに関する挙動をサポートしない限りは、そのレスポンスをキャッシュしてはならないという意味になる。
-      <p>上の例では、実装が <code translate="no">999</code> に定義された要件を実装してない、平たく言うと <code translate="no">999</code> をサポートしてない場合は、このレスポンスがキャッシュできないが、 <code translate="no">999</code> をサポートしているのであれば後ろの <code translate="no">no-store</code> を無視してキャッシュすることができる。
-      <p>もし <code translate="no">999</code> に特に何か特別な要件がなければ <code translate="no">max-age</code> に準じた挙動になるだろうし、何か <code translate="no">max-age</code> を上書きするような条件があればそれに従うことになるだろう。
-      <p>通常、キャッシュの実装はサポートしてないディレクティブを無視するため、 <code translate="no">must-understand</code> に対応してない場合は、後ろの <code translate="no">no-store</code> が適応され、これは <code translate="no">max-age</code> よりも優先されるためにこのレスポンスはキャッシュされない。
-      <p>結果、 <code translate="no">must-understand</code> が <code translate="no">no-store</code> とともに付与された場合のレスポンスは、ステータスコードを理解してない実装によって意図しない保存をされることがなくなることが期待される。
+      <p><code translate=no>must-understand</code> は、その status code の要件として定義されたキャッシュに関する挙動をサポートしない限りは、そのレスポンスをキャッシュしてはならないという意味になる。
+      <p>上の例では、実装が <code translate=no>999</code> に定義された要件を実装してない、平たく言うと <code translate=no>999</code> をサポートしてない場合は、このレスポンスがキャッシュできないが、 <code translate=no>999</code> をサポートしているのであれば後ろの <code translate=no>no-store</code> を無視してキャッシュすることができる。
+      <p>もし <code translate=no>999</code> に特に何か特別な要件がなければ <code translate=no>max-age</code> に準じた挙動になるだろうし、何か <code translate=no>max-age</code> を上書きするような条件があればそれに従うことになるだろう。
+      <p>通常、キャッシュの実装はサポートしてないディレクティブを無視するため、 <code translate=no>must-understand</code> に対応してない場合は、後ろの <code translate=no>no-store</code> が適応され、これは <code translate=no>max-age</code> よりも優先されるためにこのレスポンスはキャッシュされない。
+      <p>結果、 <code translate=no>must-understand</code> が <code translate=no>no-store</code> とともに付与された場合のレスポンスは、ステータスコードを理解してない実装によって意図しない保存をされることがなくなることが期待される。
       <section>
         <h3 id="改訂仕様"><a href="#改訂仕様">改訂仕様</a></h3>
-        <p><code translate="no">must-understand</code> の追加によって、改訂ドラフトで前述の仕様は以下のようになった。
+        <p><code translate=no>must-understand</code> の追加によって、改訂ドラフトで前述の仕様は以下のようになった。
         <blockquote>
           <p>3 Storing Responses in Caches
           <p>A cache MUST NOT store a response to a request unless:
@@ -880,17 +880,17 @@ Cache-Control: max-age=3600, must-understand, no-store</code></pre>
           <p>&hellip;
           <p>&mdash; <cite><a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3">https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3</a></cite>
         </blockquote>
-        <p>ステータスコードに <code translate="no">final</code> という概念が入ったのはまた別の話として解説したいが、問題は 3 つ目の条件だ。
-        <p><code translate="no">must-understand</code> に加えて <code translate="no">206</code> と <code translate="no">304</code> が明示的に例外扱いされているのは、この 2 つは <code translate="no">must-understand</code> 以前からキャッシュに関して要件を持つステータスコードであり、明示的な扱いが必要だからだ。
-        <p>もし最初から <code translate="no">must-understand</code> があれば、ここに <code translate="no">206</code> / <code translate="no">304</code> の例外は不要だっただろう。
+        <p>ステータスコードに <code translate=no>final</code> という概念が入ったのはまた別の話として解説したいが、問題は 3 つ目の条件だ。
+        <p><code translate=no>must-understand</code> に加えて <code translate=no>206</code> と <code translate=no>304</code> が明示的に例外扱いされているのは、この 2 つは <code translate=no>must-understand</code> 以前からキャッシュに関して要件を持つステータスコードであり、明示的な扱いが必要だからだ。
+        <p>もし最初から <code translate=no>must-understand</code> があれば、ここに <code translate=no>206</code> / <code translate=no>304</code> の例外は不要だっただろう。
       </section>
       <section>
         <h3 id="ユースケース"><a href="#ユースケース">ユースケース</a></h3>
         <p>こうした新しい機能が出ると、すぐにでもつけるべきかどうかという話になりがちだが、現状は不要だろう。
         <p>このディレクティブは、どちらかというと前述のような仕様の解釈のブレによって、将来、特にキャッシュ周りに特定の条件を伴うような新しいステータスコードを追加する場合に、その普及が順調に進むように投機的に仕様化されたという性質が強い。
-        <p>近年でも <code translate="no">103 Early Hints</code>, <code translate="no">425 Too Early</code>, <code translate="no">451 Unavailable For Legal Reasons</code> など、それほど多い頻度ではないが、ステータスコードが追加されることはあり、そこで互換性を壊さずに「実装がそうした新しい仕様を実装しているのか」を担保した上で使用できる仕組みなのだ。
-        <p>もちろん、十分に実装が普及したステータスコードに <code translate="no">must-understand</code> を併用する必要はなく、それはむしろ <code translate="no">must-understand</code> を理解しない実装によって <code translate="no">no-store</code> と扱われるだけなので、デメリットの方が強いだろう。
-        <p>かといって、特に今 <code translate="no">must-understand</code> が無いと普及が難しいステータスコードが議論されているという話も聞かないため、主に httbis によるキャッシュ仕様の更新に合わせて、 mnot が空いた穴を埋めたという認識でいる。
+        <p>近年でも <code translate=no>103 Early Hints</code>, <code translate=no>425 Too Early</code>, <code translate=no>451 Unavailable For Legal Reasons</code> など、それほど多い頻度ではないが、ステータスコードが追加されることはあり、そこで互換性を壊さずに「実装がそうした新しい仕様を実装しているのか」を担保した上で使用できる仕組みなのだ。
+        <p>もちろん、十分に実装が普及したステータスコードに <code translate=no>must-understand</code> を併用する必要はなく、それはむしろ <code translate=no>must-understand</code> を理解しない実装によって <code translate=no>no-store</code> と扱われるだけなので、デメリットの方が強いだろう。
+        <p>かといって、特に今 <code translate=no>must-understand</code> が無いと普及が難しいステータスコードが議論されているという話も聞かないため、主に httbis によるキャッシュ仕様の更新に合わせて、 mnot が空いた穴を埋めたという認識でいる。
       </section>
     </section>
     <section>

@@ -169,35 +169,35 @@
         <p>PSL を解説するには、まず関連する用語について整理する。
         <section>
           <h3 id="top-level-domain-tld"><a href="#top-level-domain-tld">Top Level Domain (TLD)</a></h3>
-          <p>例えば、このブログのドメインは <code translate="no">blog.jxck.io</code> であり、これは筆者が取得したドメイン <code translate="no">jxck.io</code> のサブドメインだ。
-          <p><code translate="no">jxck.io</code> は、 <code translate="no">.io</code> という TLD のサブドメインを販売しているレジストラから購入できる。もちろん <code translate="no">io</code> そのものをドメインを購入して、例えば <code translate="no">https://io</code> というサイトを建てることはできない。
-          <p><code translate="no">jxck.io</code> のように、我々がレジストラから割当を受けられる(購入できる)ドメインを Registerable Domain と言う。
+          <p>例えば、このブログのドメインは <code translate=no>blog.jxck.io</code> であり、これは筆者が取得したドメイン <code translate=no>jxck.io</code> のサブドメインだ。
+          <p><code translate=no>jxck.io</code> は、 <code translate=no>.io</code> という TLD のサブドメインを販売しているレジストラから購入できる。もちろん <code translate=no>io</code> そのものをドメインを購入して、例えば <code translate=no>https://io</code> というサイトを建てることはできない。
+          <p><code translate=no>jxck.io</code> のように、我々がレジストラから割当を受けられる(購入できる)ドメインを Registerable Domain と言う。
           <p>すると、 Registerable Domain とは TLD の一個下の階層、つまり <em>TLD + 1</em> と思うかもしれない。しかしここには例外がある。
         </section>
         <section>
           <h3 id="effective-top-level-domain-etld"><a href="#effective-top-level-domain-etld">Effective Top Level Domain (eTLD)</a></h3>
-          <p>例として <code translate="no">example.co.jp</code> というドメインを考えよう。
-          <p>このドメインの TLD は <code translate="no">.jp</code> だ。しかしこのドメインは <code translate="no">.co.jp</code> という組み合わせの下で取得している。
-          <p><code translate="no">example.jp</code> 自体も取得できるため、 <code translate="no">.jp</code> は必ず何かと 2 つ組み合わせないと取得できないわけではない。
+          <p>例として <code translate=no>example.co.jp</code> というドメインを考えよう。
+          <p>このドメインの TLD は <code translate=no>.jp</code> だ。しかしこのドメインは <code translate=no>.co.jp</code> という組み合わせの下で取得している。
+          <p><code translate=no>example.jp</code> 自体も取得できるため、 <code translate=no>.jp</code> は必ず何かと 2 つ組み合わせないと取得できないわけではない。
           <p>まとめると以下のようになる。
           <ul>
             <li>
-              <code translate="no">.jp</code> のサブドメインを取得することは可能 (ex. <code translate="no">example.jp</code>)
+              <code translate=no>.jp</code> のサブドメインを取得することは可能 (ex. <code translate=no>example.jp</code>)
             </li>
             <li>
-              <code translate="no">.co.jp</code> のサブドメインを取得することも可能 (ex. <code translate="no">example.co.jp</code>)
+              <code translate=no>.co.jp</code> のサブドメインを取得することも可能 (ex. <code translate=no>example.co.jp</code>)
             </li>
             <li>
-              <code translate="no">co.jp</code> というドメイン自体は取得できない (ex. <code translate="no">https://co.jp</code> というサイトは建てられない)
+              <code translate=no>co.jp</code> というドメイン自体は取得できない (ex. <code translate=no>https://co.jp</code> というサイトは建てられない)
             </li>
           </ul>
-          <p>つまり <code translate="no">.co.jp</code> とは、それ自体が TLD ではないにも関わらず、 TLD のように扱われるという、例外的な存在なのだ。
+          <p>つまり <code translate=no>.co.jp</code> とは、それ自体が TLD ではないにも関わらず、 TLD のように扱われるという、例外的な存在なのだ。
           <p>このようなドメインの組み合わせを、 Effective Top Level Domain (eTLD) と呼ぶ。
         </section>
         <section>
           <h3 id="public-suffix-list-psl"><a href="#public-suffix-list-psl">Public Suffix List (PSL)</a></h3>
-          <p><code translate="no">.jp</code> が TLD なのは機械的にわかる。ドメインを <code translate="no">.</code> で区切った一番右は常に TLD だ。
-          <p>しかし、 <code translate="no">co.jp</code> が eTLD で <code translate="no">example.jp</code> が Registerable Domain であるというのは、どう見分ければ良いのだろうか?
+          <p><code translate=no>.jp</code> が TLD なのは機械的にわかる。ドメインを <code translate=no>.</code> で区切った一番右は常に TLD だ。
+          <p>しかし、 <code translate=no>co.jp</code> が eTLD で <code translate=no>example.jp</code> が Registerable Domain であるというのは、どう見分ければ良いのだろうか?
           <p>実はここには機械的な処理方法がない。
           <p>そこで、「この組み合わせは eTLD だ」という判別のために存在するのが Public Suffix List だ。
           <ul>
@@ -212,32 +212,32 @@
         <section>
           <h3 id="psl-と-cookie-の-domain-属性"><a href="#psl-と-cookie-の-domain-属性">PSL と Cookie の Domain 属性</a></h3>
           <p>昔は同様のファイルを各ベンダが別々に管理していたが、それが問題を起こしたことがある。
-          <p><code translate="no">tokyo.jp</code> というドメインは、 <em>都道府県型 JP ドメイン</em> という種類の東京版だ。 <code translate="no">tokyo.jp</code> が eTLD であるため取得できず、 <code translate="no">${好きな単語}.tokyo.jp</code> は取得できる。これは <code translate="no">tokyo.jp</code> をレジストラがそう運用しているからという、仕様ではなく運用の都合なのだ。
+          <p><code translate=no>tokyo.jp</code> というドメインは、 <em>都道府県型 JP ドメイン</em> という種類の東京版だ。 <code translate=no>tokyo.jp</code> が eTLD であるため取得できず、 <code translate=no>${好きな単語}.tokyo.jp</code> は取得できる。これは <code translate=no>tokyo.jp</code> をレジストラがそう運用しているからという、仕様ではなく運用の都合なのだ。
           <p>ところが、「そう運用されている」という事実を知らないブラウザがあったらどうなるだろうか?
-          <p>例として <code translate="no">example.tokyo.jp</code> というドメインが取得され、なんらかのログインを伴うサービスがデプロイされていたとする。
+          <p>例として <code translate=no>example.tokyo.jp</code> というドメインが取得され、なんらかのログインを伴うサービスがデプロイされていたとする。
           <p>ここで以下のような Cookie について考えてみよう。
           <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-          <pre class=http><code translate="no">Set-Cookie: session_id=deadbeef;</code></pre>
-          <p>この Cookie は <code translate="no">example.tokyo.jp</code> にしか送られない。しかし以下はどうだろうか?
-          <pre class=http><code translate="no">Set-Cookie: session_id=deadbeef; Domain=tokyo.jp</code></pre>
-          <p>この Cookie はブラウザが <code translate="no">tokyo.jp</code> が eTLD だと知っているかどうかに応じて挙動が変わる。
-          <p>もし知っているのであれば、 <code translate="no">Domain=com</code> などと指定したのと同じで、不正な設定として扱われるだろう。
-          <p>しかし、知らなければ <code translate="no">tokyo.jp</code> のサブドメイン全てに送られる Cookie として扱われ、 <code translate="no">.tokyo.jp</code> 以下でデプロイされた他のサイトにも送られることになる。
+          <pre class=http><code translate=no>Set-Cookie: session_id=deadbeef;</code></pre>
+          <p>この Cookie は <code translate=no>example.tokyo.jp</code> にしか送られない。しかし以下はどうだろうか?
+          <pre class=http><code translate=no>Set-Cookie: session_id=deadbeef; Domain=tokyo.jp</code></pre>
+          <p>この Cookie はブラウザが <code translate=no>tokyo.jp</code> が eTLD だと知っているかどうかに応じて挙動が変わる。
+          <p>もし知っているのであれば、 <code translate=no>Domain=com</code> などと指定したのと同じで、不正な設定として扱われるだろう。
+          <p>しかし、知らなければ <code translate=no>tokyo.jp</code> のサブドメイン全てに送られる Cookie として扱われ、 <code translate=no>.tokyo.jp</code> 以下でデプロイされた他のサイトにも送られることになる。
           <p>これは実際に IE で発生した Cookie Monster バグとして知られ、 Session Fixation などに応用可能な脆弱性として問題になった。
-          <p>まるで IE が悪いかのように喧伝されがちなこの問題だが、そもそも <code translate="no">tokyo.jp</code> を eTLD として運用するというのはレジストリの都合だ。 IE からすれば、言われなければ知ったことではない話でもある。
+          <p>まるで IE が悪いかのように喧伝されがちなこの問題だが、そもそも <code translate=no>tokyo.jp</code> を eTLD として運用するというのはレジストリの都合だ。 IE からすれば、言われなければ知ったことではない話でもある。
           <p>同じことは、都道府県型 JP ドメインの話だけではない。
-          <p>例えば GitHub Pages が使う <code translate="no">github.io</code> は、 <code translate="no">jxck.github.io</code> のようにユーザごとにサブドメインが割り当てられる。ホスティングサービスの Glitch が使う <code translate="no">glitch.me</code> もアプリごとにサブドメインが振られる。
-          <p>こうしたサブドメインにデプロイされたサービスが Cookie を持つ場合同じ問題がおこるため、 <code translate="no">github.io</code> や <code translate="no">glitch.me</code> も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
-          <p>さらに、少し前に TLD 自体が爆発的に増え(<code translate="no">.web</code>, <code translate="no">.new</code> etc)、その上で運用される同様のサービスも増えたが、それらすべての eTLD 運用を把握できてないと、そのブラウザではバグとされてしまう。
+          <p>例えば GitHub Pages が使う <code translate=no>github.io</code> は、 <code translate=no>jxck.github.io</code> のようにユーザごとにサブドメインが割り当てられる。ホスティングサービスの Glitch が使う <code translate=no>glitch.me</code> もアプリごとにサブドメインが振られる。
+          <p>こうしたサブドメインにデプロイされたサービスが Cookie を持つ場合同じ問題がおこるため、 <code translate=no>github.io</code> や <code translate=no>glitch.me</code> も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
+          <p>さらに、少し前に TLD 自体が爆発的に増え(<code translate=no>.web</code>, <code translate=no>.new</code> etc)、その上で運用される同様のサービスも増えたが、それらすべての eTLD 運用を把握できてないと、そのブラウザではバグとされてしまう。
           <p>そこで、最も現実を追従できている Mozilla の PSL が他のブラウザでも徐々に採用されるようになり、 IE の都道府県型 JP ドメインの問題も PSL への移行をもって解決した。
         </section>
         <section>
           <h3 id="psl-のその他の用途"><a href="#psl-のその他の用途">PSL のその他の用途</a></h3>
           <p>PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をドメインごとに並べる」「URL バーで重要なドメインを表示する」など、 UI がドメインを扱う上で活用されている。
           <p>しかし、近年これが一番ハイライトされた例に Same Site Cookie がある。 &quot;Same Site&quot; という概念は、 <em>eTLD+1 が同じ</em> であると新しく定義されたのだ。
-          <p>これは、先の例で言えば <code translate="no">github.io</code> が eTLD で <code translate="no">jxck.github.io</code> が eTLD+1 にあたる。したがって <code translate="no">jxck.github.io</code> と <code translate="no">cdn.jxck.github.io</code> はドメインが違えど eTLD+1 が同じなので Same Site となる。
-          <p>対して <code translate="no">jxck.github.io</code> と <code translate="no">www.github.io</code> は同じ <code translate="no">github.io</code> のサブドメインであるように見えながら eTLD+1 が違うので Cross Site となる。
-          <p>すると「<code translate="no">github.io</code> 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 <code translate="no">Domain=com</code> な Cookie が付与できないのと同じく <code translate="no">Domain=github.io</code> な Cookie は付与できない。(したがって <a href="https://github.io/">https://github.io/</a> や <a href="https://glitch.me/">https://glitch.me/</a> には何もデプロイされてない)
+          <p>これは、先の例で言えば <code translate=no>github.io</code> が eTLD で <code translate=no>jxck.github.io</code> が eTLD+1 にあたる。したがって <code translate=no>jxck.github.io</code> と <code translate=no>cdn.jxck.github.io</code> はドメインが違えど eTLD+1 が同じなので Same Site となる。
+          <p>対して <code translate=no>jxck.github.io</code> と <code translate=no>www.github.io</code> は同じ <code translate=no>github.io</code> のサブドメインであるように見えながら eTLD+1 が違うので Cross Site となる。
+          <p>すると「<code translate=no>github.io</code> 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 <code translate=no>Domain=com</code> な Cookie が付与できないのと同じく <code translate=no>Domain=github.io</code> な Cookie は付与できない。(したがって <a href="https://github.io/">https://github.io/</a> や <a href="https://glitch.me/">https://glitch.me/</a> には何もデプロイされてない)
         </section>
         <section>
           <h3 id="psl-の運用"><a href="#psl-の運用">PSL の運用</a></h3>

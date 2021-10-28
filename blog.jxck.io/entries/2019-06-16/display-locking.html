@@ -169,16 +169,16 @@
         <h2 id="現状の-dom-操作の課題"><a href="#現状の-dom-操作の課題">現状の DOM 操作の課題</a></h2>
         <p>まず、以下のような処理を考える。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=js><code translate="no">body.appencCild($div)</code></pre>
-        <p>この処理が JS の途中で出現すれば、その瞬間 Window にある DOM Tree はロックを取得し、 <code translate="no">$div</code> の追加処理が行われ、 DOM Tree が atomic に更新される。
+        <pre class=js><code translate=no>body.appencCild($div)</code></pre>
+        <p>この処理が JS の途中で出現すれば、その瞬間 Window にある DOM Tree はロックを取得し、 <code translate=no>$div</code> の追加処理が行われ、 DOM Tree が atomic に更新される。
         <p>DOM Tree の更新が終わったら、レンダリング処理(style -&gt; layout -&gt; paint -&gt; composit)が発生し、すぐさま画面上に新たな要素が表示される。
         <p>このモデルは非常にわかりやすい一方で、大規模なアプリケーションを開発する際には、様々な課題を産むことになる。
         <p>まず、レンダリングはメインループで行われ、しかも同期処理だ。
-        <p>もしこの appendChild した <code translate="no">$div</code> がものすごく大きかった場合は、そこでメインループをブロックし、 JS の実行もユーザのインタラクションもブロックされる。
+        <p>もしこの appendChild した <code translate=no>$div</code> がものすごく大きかった場合は、そこでメインループをブロックし、 JS の実行もユーザのインタラクションもブロックされる。
         <p>結果、応答性能が悪くなり、 User Experience が阻害されてしまう。
         <p>メインループをブロックする処理はご法度であることが常識でありながら、 DOM API は基本的に同期しかない。
         <p>また、ブロックを発生するような同期処理は Worker に落とすのが常套手段だが、 DOM は Worker から触ることができない。
-        <p>現状は、この <code translate="no">$div</code> に隠れている更新処理を、なるべく細かいタスクに分割し、 requestIdleCallback などで他に配慮しながら行うなどの工夫が、開発者によってなされることになる。
+        <p>現状は、この <code translate=no>$div</code> に隠れている更新処理を、なるべく細かいタスクに分割し、 requestIdleCallback などで他に配慮しながら行うなどの工夫が、開発者によってなされることになる。
         <p>しかし、規模の大きい SPA では、 State の DOM への展開ごとにそれを自前でやるのは現実的ではない。
         <p>そこで、この更新のコストをコントロールすることが、近年のフロントエンド開発の関心の 1 つとなっている。
         <section>
@@ -275,19 +275,19 @@
           <p>ここには 4 つのメソッドがあり、それぞれ以下の役割がある。
           <dl>
             <div>
-              <dt><code translate="no">acquire()</code>
+              <dt><code translate=no>acquire()</code>
               <dd>ロックの取得
             </div>
             <div>
-              <dt><code translate="no">update()</code>
+              <dt><code translate=no>update()</code>
               <dd>getComputedStyle, offsetTop で必要な計算(forced update)などを計算する
             </div>
             <div>
-              <dt><code translate="no">commit()</code>
+              <dt><code translate=no>commit()</code>
               <dd>ロックの解除(レンダリング開始)
             </div>
             <div>
-              <dt><code translate="no">updateAndCommit()</code>
+              <dt><code translate=no>updateAndCommit()</code>
               <dd>update + commit
             </div>
           </dl>
@@ -295,23 +295,23 @@
         </section>
         <section>
           <h3 id="example"><a href="#example">Example</a></h3>
-          <p>簡単な例として、すでに DOM 上にある <code translate="no">&lt;ul&gt;</code> に、複数の <code translate="no">&lt;li&gt;</code> を追加する処理を考える。
-          <pre class=js><code translate="no">const $ul = document.querySelector(&quot;$ul&quot;)
+          <p>簡単な例として、すでに DOM 上にある <code translate=no>&lt;ul&gt;</code> に、複数の <code translate=no>&lt;li&gt;</code> を追加する処理を考える。
+          <pre class=js><code translate=no>const $ul = document.querySelector(&quot;$ul&quot;)
 for (const i = 0; i &lt; 100; i ++) {
   const $li = document.createElement(&quot;li&quot;)
   $li.textContent = &quot;deadbeef&quot;
   $ul.appendChild($li)
 }</code></pre>
-          <p>この <code translate="no">appendChild</code> が毎回レンダリングを発生している。
-          <p>わかりやすいように、 <code translate="no">appendChild</code> に <code translate="no">setTimeout</code> を仕込んだ例は以下のように挙動する。
+          <p>この <code translate=no>appendChild</code> が毎回レンダリングを発生している。
+          <p>わかりやすいように、 <code translate=no>appendChild</code> に <code translate=no>setTimeout</code> を仕込んだ例は以下のように挙動する。
           <p>
             <picture>
               <source type=image/webp srcset=display-no-locking.webp?200606_195616#825x968>
               <img loading=lazy decoding=async src=display-no-locking.gif?200606_195616#825x968 alt="lock を取らず普通に appendChild する例" title="display with no locking" width=825 height=968>
             </picture>
           </p>
-          <p>そこで、 <code translate="no">&lt;ul&gt;</code> のロックを取得し、全ての <code translate="no">&lt;li&gt;</code> が追加されてから一気にレンダリングする場合以下のように書ける。
-          <pre class=js><code translate="no">const $ul = document.querySelector(&quot;$ul&quot;)
+          <p>そこで、 <code translate=no>&lt;ul&gt;</code> のロックを取得し、全ての <code translate=no>&lt;li&gt;</code> が追加されてから一気にレンダリングする場合以下のように書ける。
+          <pre class=js><code translate=no>const $ul = document.querySelector(&quot;$ul&quot;)
 
 // Lock
 await $ul.displayLock.acquire({ timeout: Infinity })
@@ -324,18 +324,18 @@ for (let i = 0; i &lt; 100; i ++) {
 
 // Unlock
 await container.displayLock.updateAndCommit()</code></pre>
-          <p>こちらも、わかりやすいように <code translate="no">setTimeout</code> を仕込んだ例は以下のように挙動する。
+          <p>こちらも、わかりやすいように <code translate=no>setTimeout</code> を仕込んだ例は以下のように挙動する。
           <p>
             <picture>
               <source type=image/webp srcset=display-locking.webp?200606_195616#825x968>
               <img loading=lazy decoding=async src=display-locking.gif?200606_195616#825x968 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking" width=825 height=968>
             </picture>
           </p>
-          <p>Lock 中に行われる <code translate="no">appendChild</code> は、メモリ上で DOM の処理を行うだけになり、 <code translate="no">commit()</code> でレンダリングが一度に走っていることがわかるだろう。
+          <p>Lock 中に行われる <code translate=no>appendChild</code> は、メモリ上で DOM の処理を行うだけになり、 <code translate=no>commit()</code> でレンダリングが一度に走っていることがわかるだろう。
         </section>
         <section>
           <h3 id="acquire-option"><a href="#acquire-option">acquire option</a></h3>
-          <p><code translate="no">acquire()</code> はオプション値をとる。
+          <p><code translate=no>acquire()</code> はオプション値をとる。
           <dl>
             <div>
               <dt>timeout
@@ -353,14 +353,14 @@ await container.displayLock.updateAndCommit()</code></pre>
         </section>
         <section>
           <h3 id="css-containment"><a href="#css-containment">CSS Containment</a></h3>
-          <p>Commit された場合のレンダリング処理を最適化するために、 Display Lock を取得する対象は <code translate="no">contain: style layout</code> が指定されている必要がある。
+          <p>Commit された場合のレンダリング処理を最適化するために、 Display Lock を取得する対象は <code translate=no>contain: style layout</code> が指定されている必要がある。
           <p>CSS Containment は、例えば style と layout の計算が、対象要素内に閉じていることを明示し、ブラウザの最適化にヒントを与えるものだ。
           <p>Display Lock は、その性質を利用して、事前にブラウザに style と layout が contain された要素が commit 時にレンダリングされることを示すことにした。
           <p>これは逆に Containment が指定できる設計に事前になっている箇所にしか Display Lock が使えないことを意味するため、 Lock を取得する対象など、設計に影響してくるだろう。
         </section>
         <section>
           <h3 id="activatable"><a href="#activatable">activatable</a></h3>
-          <p>この API が標準で提供されるメリットの 1 つが <code translate="no">activatable</code> だろう。
+          <p>この API が標準で提供されるメリットの 1 つが <code translate=no>activatable</code> だろう。
           <p>activatable は、メモリ上にあるがレンダリングされてない DOM に対して、 UI からアクセスできるようにするオプションだ。
           <p>説明よりも見た方が早いので以下にデモを示す。
           <p>
@@ -369,7 +369,7 @@ await container.displayLock.updateAndCommit()</code></pre>
               <img loading=lazy decoding=async src=display-locking-activatable.gif?200606_195616#825x968 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element" width=825 height=968>
             </picture>
           </p>
-          <p>このデモでは、ランダムな文字列を <code translate="no">&lt;li&gt;</code> に入れ、ロックをとった <code translate="no">&lt;ul&gt;</code> に追加し commit してない状態で止めている。
+          <p>このデモでは、ランダムな文字列を <code translate=no>&lt;li&gt;</code> に入れ、ロックをとった <code translate=no>&lt;ul&gt;</code> に追加し commit してない状態で止めている。
           <p>ここで、 CTL+F で「ページ内検索」を行い、ランダムな文字列にヒットするように検索をすると、レンダリングが走り遷移していることがわかるだろう。
           <p>ブラウザは、まだメモリ上にありレンダリングされてない要素を、検索やフォーカス移動などの対象に含み、必要に応じて commit することができるのだ。
           <p>これを利用すると、 Infinit Scroll で、少しづつ裏で DOM に挿しつつレンダリングは遅延させていても、検索にはヒットするといった実装が可能になる。
@@ -386,7 +386,7 @@ await container.displayLock.updateAndCommit()</code></pre>
         <section>
           <h3 id="効果と-junk-の回避"><a href="#効果と-junk-の回避">効果と Junk の回避</a></h3>
           <p>より効果がわかりやすい DEMO として、 <a href="https://github.com/WICG/display-locking/blob/master/explainer.md">explainer</a> で紹介されている動画を引用する。
-          <p>(MIME が指定されていないため、 <code translate="no">&lt;video&gt;</code> で埋め込むことができず、リンクしている)
+          <p>(MIME が指定されていないため、 <code translate=no>&lt;video&gt;</code> で埋め込むことができず、リンクしている)
           <p>ソースが公開されていないが、この DEMO では、アニメーションで円形のタイマーを回しており、通常は緑で表示される。
           <p>その背景に、複雑なレイアウトの DOM が表示されており、その表示/非表示を toggle ボタンで切り替えている模様だ。
           <p>まず display locking を利用しない場合は、背景を表示する際にかかるレンダリングコストが大きく、 Junk が発生してタイマー部が赤くなっていることがわかる。

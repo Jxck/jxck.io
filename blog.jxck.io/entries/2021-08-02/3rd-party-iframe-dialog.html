@@ -162,9 +162,9 @@
       </section>
       <section>
         <h2 id="問題の事象"><a href="#問題の事象">問題の事象</a></h2>
-        <p>周知の通り <code translate="no">alert()</code>, <code translate="no">confirm()</code>, <code translate="no">prompt()</code> は、ブラウザのもつネイティブのダイアログ UI を呼び出す。
-        <p>この JS は、埋め込まれた <code translate="no">&lt;iframe&gt;</code> で実行しても、 Top Level Frame でダイアログ UI を表示できる。
-        <p>しかし、 Chrome M92 からは、 Cross Origin (3rd Party) の <code translate="no">&lt;iframe&gt;</code> がこれを呼び出しても、ダイアログが出ないというものだ。
+        <p>周知の通り <code translate=no>alert()</code>, <code translate=no>confirm()</code>, <code translate=no>prompt()</code> は、ブラウザのもつネイティブのダイアログ UI を呼び出す。
+        <p>この JS は、埋め込まれた <code translate=no>&lt;iframe&gt;</code> で実行しても、 Top Level Frame でダイアログ UI を表示できる。
+        <p>しかし、 Chrome M92 からは、 Cross Origin (3rd Party) の <code translate=no>&lt;iframe&gt;</code> がこれを呼び出しても、ダイアログが出ないというものだ。
         <p>これは、 Google のもの含むいくつかのサービスで問題となり、その事象が ML や Issue Tracker などに報告されている。
         <ul>
           <li>
@@ -211,9 +211,9 @@
             <img loading=lazy decoding=async src=3rd-prompt.png?210803_024823#1260x700 alt="Cross Origin iframe で prompt() を呼んだ場合 "An embedded page at lab2.jxck.io sayz" と表示される" title="" width=1260 height=700>
           </picture>
         </p>
-        <p>ユーザにとってこの表示の意味を理解するのは必ずしも容易ではない。 ただの <code translate="no">alert()</code> であれば得られる情報はないが、 <code translate="no">prompt()</code> の場合はユーザに入力を求め、それを JS で取得することができてしまう。
-        <p>これを利用し、悪意のあるものが 3rd Party iframe から <code translate="no">prompt()</code> を表示し、ユーザを騙して情報を入力させる攻撃が実際に存在するそうだ。ユーザがこれを、自分が訪れたサイトが出したものだと勘違いすれば、そこでは「<em>なりすまし</em>(spoofing)」が成立していることを意味する。「先に進むにはパスワードを入力してください」とでも言われれば、うっかり入れてしまうユーザも存在するだろう。
-        <p>この Intent to Remove は、ユーザに「この <code translate="no">prompt()</code> は誰が出しているのか」を UI で説明するのは難しく、それは UI を不必要に複雑にするだけであると説明している。
+        <p>ユーザにとってこの表示の意味を理解するのは必ずしも容易ではない。 ただの <code translate=no>alert()</code> であれば得られる情報はないが、 <code translate=no>prompt()</code> の場合はユーザに入力を求め、それを JS で取得することができてしまう。
+        <p>これを利用し、悪意のあるものが 3rd Party iframe から <code translate=no>prompt()</code> を表示し、ユーザを騙して情報を入力させる攻撃が実際に存在するそうだ。ユーザがこれを、自分が訪れたサイトが出したものだと勘違いすれば、そこでは「<em>なりすまし</em>(spoofing)」が成立していることを意味する。「先に進むにはパスワードを入力してください」とでも言われれば、うっかり入れてしまうユーザも存在するだろう。
+        <p>この Intent to Remove は、ユーザに「この <code translate=no>prompt()</code> は誰が出しているのか」を UI で説明するのは難しく、それは UI を不必要に複雑にするだけであると説明している。
         <p>そこで、以下の理由からこの機能自体を削除しようという提案だ。
         <ul>
           <li>Cross Origin iframe の JS ダイアログの使用率は低い
@@ -317,16 +317,16 @@
         <p>できることは、提供している方法によって違うだろう。
         <section>
           <h3 id="iframe-を埋め込む-js-を提供している場合"><a href="#iframe-を埋め込む-js-を提供している場合">iframe を埋め込む JS を提供している場合</a></h3>
-          <p>Ad のタグなどは、 JS が提供され、サイトは <code translate="no">&lt;script&gt;</code> タグを埋め込む。その JS が実行された際に <code translate="no">&lt;iframe&gt;</code> を埋め込むという形式の提供が多いように思う。
-          <p>この場合は、埋め込む <code translate="no">&lt;iframe&gt;</code> が Top Level で実行された JS に messaging ができるのであれば、トップレベルでダイアログを呼ぶというような方式が考えられそうだ。
+          <p>Ad のタグなどは、 JS が提供され、サイトは <code translate=no>&lt;script&gt;</code> タグを埋め込む。その JS が実行された際に <code translate=no>&lt;iframe&gt;</code> を埋め込むという形式の提供が多いように思う。
+          <p>この場合は、埋め込む <code translate=no>&lt;iframe&gt;</code> が Top Level で実行された JS に messaging ができるのであれば、トップレベルでダイアログを呼ぶというような方式が考えられそうだ。
           <p>ただ、そこまでできているのであれば、 Dialog API (alert/confirm/prompt) を使うよりは、きちんと UI を設計する方が良いように思うが、時間がなければとりあえずはダイアログで間に合わせることになるだろう。
           <p>エントリポイントが JS である時点で、選択肢は広くあると思われる。
         </section>
         <section>
           <h3 id="iframe-を直接提供している場合"><a href="#iframe-を直接提供している場合">iframe を直接提供している場合</a></h3>
-          <p><code translate="no">&lt;iframe&gt;</code> を提供し、コンテンツがその <code translate="no">&lt;iframe&gt;</code> を直接埋め込んでいる場合は、もうその <code translate="no">&lt;iframe&gt;</code> 内でなんとかするしかないだろう。
-          <p><code translate="no">&lt;iframe&gt;</code> が領域を広めに確保していれば、その中で出せる範囲のダイアログを出すしか無いし、 <code translate="no">&lt;iframe&gt;</code> が十分な領域を持ってない場合(ボタンだけなど)の場合はできることは少ないだろう。
-          <p>サイト側に <code translate="no">&lt;iframe&gt;</code> からのメッセージを送り、それを受け取って何かをするようにサイト側の JS を直してもらえるならなんとかなるが、そうでない場合は <code translate="no">&lt;iframe&gt;</code> での提供をやめて前述の JS 提供の形態に変えるか、もしくはダイアログ自体を諦めて仕様を変えるしか無いように思う。
+          <p><code translate=no>&lt;iframe&gt;</code> を提供し、コンテンツがその <code translate=no>&lt;iframe&gt;</code> を直接埋め込んでいる場合は、もうその <code translate=no>&lt;iframe&gt;</code> 内でなんとかするしかないだろう。
+          <p><code translate=no>&lt;iframe&gt;</code> が領域を広めに確保していれば、その中で出せる範囲のダイアログを出すしか無いし、 <code translate=no>&lt;iframe&gt;</code> が十分な領域を持ってない場合(ボタンだけなど)の場合はできることは少ないだろう。
+          <p>サイト側に <code translate=no>&lt;iframe&gt;</code> からのメッセージを送り、それを受け取って何かをするようにサイト側の JS を直してもらえるならなんとかなるが、そうでない場合は <code translate=no>&lt;iframe&gt;</code> での提供をやめて前述の JS 提供の形態に変えるか、もしくはダイアログ自体を諦めて仕様を変えるしか無いように思う。
           <p>もちろん筆者が見落としている実装方法があるかもしれないので、良い方法があれば共有すると良いだろう。
         </section>
       </section>

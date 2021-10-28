@@ -842,33 +842,33 @@
         <li><a href="https://github.com/bryanmcquade/scroll-to-css-selector">bryanmcquade/scroll-to-css-selector</a>
         <li>etc
       </ul>
-      <p>Chrome は最初 <code translate="no">#targetText</code> と CSS セレクタを用いた仕様で intents を出していた。
+      <p>Chrome は最初 <code translate=no>#targetText</code> と CSS セレクタを用いた仕様で intents を出していた。
       <p>しかし、セレクタの書き方によって CSRF Token 等の情報が推測可能である、といった脆弱性が指摘され、その結果今回の仕様に至った。
     </section>
     <section>
       <h2 id="デリミタ"><a href="#デリミタ">デリミタ</a></h2>
       <p>URL には、フラグメントくらいしか拡張できるポイントが無いため、ここにクエリ相当のものを入れることになる。
-      <p>最初は <code translate="no">##</code> と二重にする方式がシンプルでわかりやすいとされたが、仕様上有効ではないため既存のパーサを壊す可能性が有り、また実際に壊れるかどうかを測定するのが難しいとして却下された。
+      <p>最初は <code translate=no>##</code> と二重にする方式がシンプルでわかりやすいとされたが、仕様上有効ではないため既存のパーサを壊す可能性が有り、また実際に壊れるかどうかを測定するのが難しいとして却下された。
       <p>これを踏まえ、 URL の仕様の範囲で 1, 2 文字では無く 3 文字の組み合わせで候補が出され、 Google の過去 5 年の URL 履歴でヒットしないものがリストアップされた。
       <ul>
-        <li><code translate="no">~&amp;~</code>
-        <li><code translate="no">:~:</code>
-        <li><code translate="no">~@~</code>
+        <li><code translate=no>~&amp;~</code>
+        <li><code translate=no>:~:</code>
+        <li><code translate=no>~@~</code>
       </ul>
-      <p>Chrome 78 では 3 つとも実装されたようだが、今は <code translate="no">:~:</code> のみになったようだ。
+      <p>Chrome 78 では 3 つとも実装されたようだが、今は <code translate=no>:~:</code> のみになったようだ。
     </section>
     <section>
       <h2 id="text"><a href="#text">text=</a></h2>
-      <p><code translate="no">textTarget=</code> などの案も有ったが、現状は以下のような構文になっている。
-      <pre><code translate="no">:~:text=[prefix-,]textStart[,textEnd][,-suffix]</code></pre>
+      <p><code translate=no>textTarget=</code> などの案も有ったが、現状は以下のような構文になっている。
+      <pre><code translate=no>:~:text=[prefix-,]textStart[,textEnd][,-suffix]</code></pre>
       <p>これをフラグメントに付与することで、遷移時にスクロールする。
       <p>フォールバックとして既存のフラグメントと両方使うこともできる。
-      <pre class=url><code translate="no">https://example.com#sometext:~:text=sometext</code></pre>
+      <pre class=url><code translate=no>https://example.com#sometext:~:text=sometext</code></pre>
     </section>
     <section>
       <h2 id="target"><a href="#target">:target</a></h2>
-      <p>ID で遷移した場合は <code translate="no">:targe</code> 疑似要素からスタイルが設定できる。
-      <p><code translate="no">text=</code> で遷移した場合も同じことが検討されていたが、現実装では疑似要素は付かないようだ。
+      <p>ID で遷移した場合は <code translate=no>:targe</code> 疑似要素からスタイルが設定できる。
+      <p><code translate=no>text=</code> で遷移した場合も同じことが検討されていたが、現実装では疑似要素は付かないようだ。
     </section>
     <section>
       <h2 id="demo"><a href="#demo">DEMO</a></h2>

@@ -161,7 +161,7 @@
       <h1><a href="">img の srcset 指定時に選択される画像</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p><code translate="no">&lt;img&gt;</code> や <code translate="no">&lt;picture&gt;</code> で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。
+        <p><code translate=no>&lt;img&gt;</code> や <code translate=no>&lt;picture&gt;</code> で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。
         <p>この画像が、どういった条件で選択されるのかを頭では勝手に理解していたつもりだが、理解とは違う挙動があったため、仕様と実装を確認した。
         <p>その記録を記す。なお、先に言うがどのブラウザも <em>仕様に準拠して</em> 実装されている。
       </section>
@@ -169,7 +169,7 @@
         <h2 id="srcset-attribute"><a href="#srcset-attribute">srcset attribute</a></h2>
         <p>まず以下のようなコードを考える。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=html><code translate="no">&lt;style&gt;
+        <pre class=html><code translate=no>&lt;style&gt;
 body {
   margin: 0;
 }
@@ -246,7 +246,7 @@ body {
           <p>6. Return selected source and its associated pixel density.
         </blockquote>
         <p>答えは 5 にそのまま書かれている。
-        <pre><code translate="no">5. In a user agent-specific manner, choose one image source from source set. Let this be selected source.</code></pre>
+        <pre><code translate=no>5. In a user agent-specific manner, choose one image source from source set. Let this be selected source.</code></pre>
         <p>つまり、 srcset の中からどの画像を選ぶのかは「User Agent の実装に任せる」という仕様になっているのだ。
       </section>
       <section>
@@ -284,7 +284,7 @@ body {
             <li>Save Data が有効な場合は最も小さいものを選択して終わり
             <li>SelectionLogic に候補を渡して画像を選択
           </ul>
-          <pre class=cpp><code translate="no">// device_scale_factor = DPR
+          <pre class=cpp><code translate=no>// device_scale_factor = DPR
 // source_size = sizes attr value
 static ImageCandidate PickBestImageCandidate(float device_scale_factor, float source_size, Vector&lt;ImageCandidate&gt;&amp; image_candidates, Document* document = nullptr) {
   const float kDefaultDensityValue = 1.0;
@@ -361,7 +361,7 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
             <li>そうでなければ curr
           </ul>
           <p>(DPR に 1 以下はあるのだろうか?)
-          <pre class=cpp><code translate="no">// device_scale_factor = DPR
+          <pre class=cpp><code translate=no>// device_scale_factor = DPR
 static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidates, float device_scale_factor) {
   unsigned i = 0;
 

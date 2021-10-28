@@ -194,7 +194,7 @@
           <h3 id="http-ヘッダの構造"><a href="#http-ヘッダの構造">HTTP ヘッダの構造</a></h3>
           <p>HTTP のヘッダは以下のようになっている。
           <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-          <pre class=http><code translate="no">Host: example.com
+          <pre class=http><code translate=no>Host: example.com
 Set-Cookie: session_id=deadbeef; SameSite=Strict; Path=/; Secure; HttpOnly
 Content-Security-Policy:content-security-policy: default-src &apos;self&apos; https://jxck.io; child-src https://blog.jxck.io; connect-src wss://ws.jxck.io;
 Permission-Policy: syncxhr &apos;none&apos; report-to=default-endpoint</code></pre>
@@ -224,7 +224,7 @@ Permission-Policy: syncxhr &apos;none&apos; report-to=default-endpoint</code></p
             <li><a href="https://tools.ietf.org/html/draft-reschke-http-jfv-12">draft-reschke-http-jfv-12 - A JSON Encoding for HTTP Header Field Values</a>
           </ul>
           <p>これは、ドラフト段階からいくつかの新しい Field 定義によって使われている。例えば Network Error Logging や Reporting API だ。
-          <pre class=http><code translate="no">NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
+          <pre class=http><code translate=no>NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
 Report-To: {
              &quot;group&quot;: &quot;default-endpoint&quot;,
              &quot;max-age&quot;: &quot;36000&quot;,
@@ -307,7 +307,7 @@ Report-To: {
           <h3 id="parameter"><a href="#parameter">Parameter</a></h3>
           <p>Parameter は Item に付与できるメタデータだ。
           <p>例えば以下は String の &quot;abc&quot; に対してパラメータを 2 つ付与している。
-          <pre class=js><code translate="no">// &quot;abc&quot;;a=1;b=2
+          <pre class=js><code translate=no>// &quot;abc&quot;;a=1;b=2
 {
  &quot;value&quot;: &quot;abc&quot;,
  &quot;params&quot;: {
@@ -317,8 +317,8 @@ Report-To: {
 }</code></pre>
           <p>データ表現には基本的に Key/Value/Metadata の 3 つがあることが望ましい。
           <p>例えば XML/HTML のようなフォーマットは Attribute がメタデータを担うが、これを再現可能になる。
-          <pre class=html><code translate="no">&lt;p id=&quot;foo&quot; class=&quot;bar&quot;&gt;hello&lt;/p&gt;</code></pre>
-          <pre class=js><code translate="no">// p=&quot;hello world&quot;;id=&quot;foo&quot;;class=&quot;bar&quot;
+          <pre class=html><code translate=no>&lt;p id=&quot;foo&quot; class=&quot;bar&quot;&gt;hello&lt;/p&gt;</code></pre>
+          <pre class=js><code translate=no>// p=&quot;hello world&quot;;id=&quot;foo&quot;;class=&quot;bar&quot;
 {
  &quot;p&quot;: {
   &quot;value&quot;: &quot;hello world&quot;,
@@ -333,7 +333,7 @@ Report-To: {
         <section>
           <h3 id="list"><a href="#list">List</a></h3>
           <p>Item の配列。
-          <pre class=js><code translate="no">// 1,2,3,4
+          <pre class=js><code translate=no>// 1,2,3,4
 [
  { &quot;value&quot;: 1, &quot;params&quot;: {} },
  { &quot;value&quot;: 2, &quot;params&quot;: {} },
@@ -345,7 +345,7 @@ Report-To: {
           <h3 id="dict"><a href="#dict">Dict</a></h3>
           <p>Key に紐付けた Item の辞書。
           <p>Key は Item ほど柔軟ではなく、文字列で使える文字種も限られている。。
-          <pre class=js><code translate="no">// a=10,b=20,c=30
+          <pre class=js><code translate=no>// a=10,b=20,c=30
 {
  &quot;a&quot;: { &quot;value&quot;: 10, &quot;params&quot;: {} },
  &quot;b&quot;: { &quot;value&quot;: 20, &quot;params&quot;: {} },
@@ -355,7 +355,7 @@ Report-To: {
         <section>
           <h3 id="inner-list"><a href="#inner-list">Inner List</a></h3>
           <p>List や Dict の値として配列を使いたい場合は、 Inner List を使う。(List そのものは Top Level でしか使えない)
-          <pre class=js><code translate="no">// a=&quot;x&quot;, d=(1 2)
+          <pre class=js><code translate=no>// a=&quot;x&quot;, d=(1 2)
 {
  &quot;a&quot;: { &quot;value&quot;: &quot;x&quot;, &quot;params&quot;: {} },
  &quot;d&quot;: {
@@ -383,9 +383,9 @@ Report-To: {
         <section>
           <h3 id="注意"><a href="#注意">注意</a></h3>
           <p>その Field が Item/List/Dict どれでエンコードされているかは事前の知識が必要だ。
-          <p>例えば SFV を採用している Client Hints の <code translate="no">Accept-CH</code> は、 List でエンコードすると仕様側で決まっている。
-          <p>従って <code translate="no">Accept-CH</code> を受け取ったら <code translate="no">decodeList(value)</code> でパースするといった処理を書くことになるだろう。
-          <p>これは、 Field 値を入れればなんかしらデコードされて出てくる <code translate="no">decode()</code> を定義することはできないことを意味する。
+          <p>例えば SFV を採用している Client Hints の <code translate=no>Accept-CH</code> は、 List でエンコードすると仕様側で決まっている。
+          <p>従って <code translate=no>Accept-CH</code> を受け取ったら <code translate=no>decodeList(value)</code> でパースするといった処理を書くことになるだろう。
+          <p>これは、 Field 値を入れればなんかしらデコードされて出てくる <code translate=no>decode()</code> を定義することはできないことを意味する。
           <p>Dict としてパースしてエラーになったら List で、、などはできなくはないが、それは非効率だ。
           <p>通常、そうした場合は最初の一文字を見た時点で Item/List/Dict どれなのかを判定できるようにするが、この仕様はそうはなってない。
           <p>もし、自分が独自ヘッダで SFV を採用する際は、その点に注意する必要がある。
@@ -407,7 +407,7 @@ Report-To: {
         <p>特に httpbis の新しい仕様は基本的に SFV を使っていくことになるため、今後触れる機会も増えるだろう。
         <section>
           <h3 id="client-hints"><a href="#client-hints">Client Hints</a></h3>
-          <pre class=js><code translate="no">// Accept-CH: Sec-CH-Example, Sec-CH-Example-2
+          <pre class=js><code translate=no>// Accept-CH: Sec-CH-Example, Sec-CH-Example-2
 [
  {
   &quot;value&quot;: &quot;Symbol(Sec-CH-Example)&quot;,
@@ -421,7 +421,7 @@ Report-To: {
         </section>
         <section>
           <h3 id="cache-status"><a href="#cache-status">Cache-Status</a></h3>
-          <pre class=js><code translate="no">// Cache-Status: OriginCache; hit; ttl=1100; collapsed, &quot;CDN Company Here&quot;; hit; ttl=545
+          <pre class=js><code translate=no>// Cache-Status: OriginCache; hit; ttl=1100; collapsed, &quot;CDN Company Here&quot;; hit; ttl=545
 [
  {
   &quot;value&quot;: &quot;Symbol(OriginCache)&quot;,
@@ -442,7 +442,7 @@ Report-To: {
         </section>
         <section>
           <h3 id="digest-headers"><a href="#digest-headers">Digest Headers</a></h3>
-          <pre class=js><code translate="no">//  Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=, id-sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+          <pre class=js><code translate=no>//  Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=, id-sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 (TODO: パースできないので報告)
 
 // Want-Digest: sha-256;q=0.3, sha;q=1
@@ -463,7 +463,7 @@ Report-To: {
         </section>
         <section>
           <h3 id="proxy-status"><a href="#proxy-status">Proxy Status</a></h3>
-          <pre class=js><code translate="no">// Proxy-Status: ExampleProxy; error=&quot;http_protocol_error&quot;; details=&quot;Malformed response header - space before colon&quot;
+          <pre class=js><code translate=no>// Proxy-Status: ExampleProxy; error=&quot;http_protocol_error&quot;; details=&quot;Malformed response header - space before colon&quot;
 [
  {
   &quot;value&quot;: &quot;Symbol(ExampleProxy)&quot;,
@@ -476,12 +476,12 @@ Report-To: {
         </section>
         <section>
           <h3 id="http-variants"><a href="#http-variants">HTTP Variants</a></h3>
-          <pre class=js><code translate="no">// Variants: Accept-Encoding=(gzip br), Accept-Language=(en fr)
+          <pre class=js><code translate=no>// Variants: Accept-Encoding=(gzip br), Accept-Language=(en fr)
 // (TODO: パースできないので報告)</code></pre>
         </section>
         <section>
           <h3 id="http-signature"><a href="#http-signature">HTTP Signature</a></h3>
-          <pre class=js><code translate="no">// Signature-Input: reverse_proxy_sig=(*created, host, date, signature:sig1, x-forwarded-for); keyId=&quot;test-key-a&quot;; alg=hs2019; created=1402170695; expires=1402170695.25
+          <pre class=js><code translate=no>// Signature-Input: reverse_proxy_sig=(*created, host, date, signature:sig1, x-forwarded-for); keyId=&quot;test-key-a&quot;; alg=hs2019; created=1402170695; expires=1402170695.25
 // (TODO: パースできないので報告)
 
 // Signature: reverse_proxy_sig=:ON3HsnvuoTlX41xfcGWaOEVo1M3bJDRBOp0Pc/OjAOWKQn0VMY0SvMMWXS7xG+xYVa152rRVAo6nMV7FS3rv0rR5MzXL8FCQ2A35DCENLOhEgj/S1IstEAEFsKmE9Bs7McBsCtJwQ3hMqdtFenkDffSoHOZOInkTYGafkoy78l1VZvmb3Y4yf7McJwAvk2R3gwKRWiiRCw448Nt7JTWzhvEwbh7bN2swc/v3NJbg/wJYyYVbelZx4IywuZnYFxgPl/qvqbAjeEVvaLKLgSMr11y+uzxCHoMnDUnTYhMrmOT4O8lBLfRFOcoJPKBdoKg9U0a96U2mUug1bFOozEVYFg==:

@@ -155,7 +155,7 @@
       <h1><a href="">Form で submit されたデータの収集と FormData &amp; URLSearchParams</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p><code translate="no">&lt;form&gt;</code> の onsubmit をフックして、入力された値を <code translate="no">&lt;input&gt;</code> から集めて送るといった処理はよくある。
+        <p><code translate=no>&lt;form&gt;</code> の onsubmit をフックして、入力された値を <code translate=no>&lt;input&gt;</code> から集めて送るといった処理はよくある。
         <p>このとき、 submit されたデータの収拾方法はいくつかある。
         <p>submit に限らず、そのイベントに付随する情報は、基本的にイベントオブジェクトに内包されている。
         <p>Form を例に、イベントオブジェクトを意識したコーディングについて解説する。
@@ -165,7 +165,7 @@
         <p>Form が Submit されたことをフックして、処理を挟む場面はよくある。
         <p>HTML がこうであった場合。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=html><code translate="no">&lt;form id=login action=/login method=post&gt;
+        <pre class=html><code translate=no>&lt;form id=login action=/login method=post&gt;
   &lt;fieldset form=login&gt;
     &lt;legend&gt;Login&lt;/legend&gt;
     &lt;label for=username&gt;Username&lt;/label&gt;
@@ -176,21 +176,21 @@
   &lt;/fieldset&gt;
 &lt;/form&gt;</code></pre>
         <p>JS は以下のように書かれる場合がある。
-        <pre class=js><code translate="no">document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
+        <pre class=js><code translate=no>document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const username = document.querySelector(&apos;#username&apos;)
   const password = document.querySelector(&apos;#password&apos;)
   process_input({username, password})
 }</code></pre>
-        <p>ここでは、取得するデータは 2 つしかないが、大きなフォームでは多数の <code translate="no">&lt;input&gt;</code> を探索する必要がある。
+        <p>ここでは、取得するデータは 2 つしかないが、大きなフォームでは多数の <code translate=no>&lt;input&gt;</code> を探索する必要がある。
         <p>この例を改善しつつ解説していく。
       </section>
       <section>
         <h2 id="etarget"><a href="#etarget">e.target</a></h2>
         <p>最も簡単な改善は、 document からのクエリをやめることだ。
-        <p><code translate="no">e.target</code> には、対象の DOM 、ここでは <code translate="no">&lt;form&gt;</code> が入っている。
-        <p><code translate="no">&lt;input&gt;</code> はその子要素なので、わざわざ <code translate="no">document</code> を起点にする必要はない。
-        <pre class=js><code translate="no">document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
+        <p><code translate=no>e.target</code> には、対象の DOM 、ここでは <code translate=no>&lt;form&gt;</code> が入っている。
+        <p><code translate=no>&lt;input&gt;</code> はその子要素なので、わざわざ <code translate=no>document</code> を起点にする必要はない。
+        <pre class=js><code translate=no>document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const username = e.target.querySelector(&apos;#username&apos;)
   const password = e.target.querySelector(&apos;#password&apos;)
@@ -202,10 +202,10 @@
         <p>Form で Submit されたデータは、 FormData を経由して取得することができる。
         <p>つまり、 FormData に変換しさえすれば、 submit 対象のデータは全て手に入っている。
         <p><a href="https://xhr.spec.whatwg.org/#formdata">https://xhr.spec.whatwg.org/#formdata</a>
-        <p>このオブジェクトは、 <code translate="no">get()</code>、 <code translate="no">set()</code> など Map のようなインタフェースを持つ。
-        <p>(なお <code translate="no">new Map(form_data)</code> すれば、実際の Map にもなる)
+        <p>このオブジェクトは、 <code translate=no>get()</code>、 <code translate=no>set()</code> など Map のようなインタフェースを持つ。
+        <p>(なお <code translate=no>new Map(form_data)</code> すれば、実際の Map にもなる)
         <p>また、そのまま XHR や fetch を使ってそのまま POST することができる。
-        <pre class=js><code translate="no">document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
+        <pre class=js><code translate=no>document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const form_data = new FormData(e.target)
   validate_username(form_data.get(&apos;username&apos;))
@@ -215,9 +215,9 @@
     body: form_data
   })
 }</code></pre>
-        <p>ただし、注意点としてこのとき POST される Content-Type は <code translate="no">multipart/form-data</code> になる。
+        <p>ただし、注意点としてこのとき POST される Content-Type は <code translate=no>multipart/form-data</code> になる。
         <p>つまり Body は以下のようなフォーマットだ。
-        <pre class=http><code translate="no">// content-type:multipart/form-data; boundary=----WebKitFormBoundaryPfqUKvtarA1EFkbV
+        <pre class=http><code translate=no>// content-type:multipart/form-data; boundary=----WebKitFormBoundaryPfqUKvtarA1EFkbV
 
 
 ------WebKitFormBoundaryPfqUKvtarA1EFkbV
@@ -230,14 +230,14 @@ Content-Disposition: form-data; name=&quot;password&quot;
 examplepassword
 ------WebKitFormBoundaryPfqUKvtarA1EFkbV--</code></pre>
         <p>大抵のサーバは、これでも問題なく処理できるだろう。
-        <p>しかし、 File でもない限り HTML Form からは <code translate="no">application/form-url-encoded</code> で送られてくるという前提で実装されたものもあるだろう。
+        <p>しかし、 File でもない限り HTML Form からは <code translate=no>application/form-url-encoded</code> で送られてくるという前提で実装されたものもあるだろう。
       </section>
       <section>
         <h2 id="urlsearchparams"><a href="#urlsearchparams">URLSearchParams</a></h2>
         <p>URLSearchParams は、 URL の標準化の際に QueryString 部分をサポートするために導入された。
         <p>しかし、これは FormData を引数にインスタンスを生成することができる。
-        <p>また、そのまま POST の Body にすれば、 <code translate="no">application/form-url-encoded</code> として送ることができる。
-        <pre class=js><code translate="no">document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
+        <p>また、そのまま POST の Body にすれば、 <code translate=no>application/form-url-encoded</code> として送ることができる。
+        <pre class=js><code translate=no>document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const form_data = new FormData(e.target)
   const url_search_params = new URLSearchParams(form_data)
@@ -247,7 +247,7 @@ examplepassword
   })
 }</code></pre>
         <p>つまり Body は以下のようなフォーマットだ。
-        <pre class=http><code translate="no">// content-type:application/x-www-form-urlencoded;charset=UTF-8
+        <pre class=http><code translate=no>// content-type:application/x-www-form-urlencoded;charset=UTF-8
 
 username=jxck&amp;password=thisismypassword</code></pre>
       </section>
@@ -256,7 +256,7 @@ username=jxck&amp;password=thisismypassword</code></pre>
         <p>API バックエンドなどに対して JSON で送りたい場合もあるだろう。
         <p>せっかく FormData までは取得できているので、これを Object に変換してからシリアライズすれば良い。
         <p>ここでは FormData が iterable であるこを利用してオブジェクトを組み立ててみる。
-        <pre class=js><code translate="no">document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
+        <pre class=js><code translate=no>document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const form_data = new FormData(e.target)
   const object = Array.from(form_data).reduce((o, [k, v]) =&gt; { o[k] = v; return o }, {})
@@ -266,13 +266,13 @@ username=jxck&amp;password=thisismypassword</code></pre>
     body: json
   })
 }</code></pre>
-        <p>(ただし Form に <code translate="no">&lt;select&gt;</code> などが入る場合は修正が必要 <a href="https://labs.jxck.io/form/input-type/">https://labs.jxck.io/form/input-type/</a>)
+        <p>(ただし Form に <code translate=no>&lt;select&gt;</code> などが入る場合は修正が必要 <a href="https://labs.jxck.io/form/input-type/">https://labs.jxck.io/form/input-type/</a>)
       </section>
       <section>
         <h2 id="beforesubmitcallback"><a href="#beforesubmitcallback">beforeSubmitCallback</a></h2>
         <p>submit に callback を仕込む仕様の提案がかなり前に出ている。
         <p><a href="https://github.com/w3c/webcomponents/issues/187">Need callback for form submit data</a>
-        <pre class=js><code translate="no">document.registerElement(&apos;input&apos;, {
+        <pre class=js><code translate=no>document.registerElement(&apos;input&apos;, {
   prototype: {
     proto: HTMLElement.prototype,
       beforeSubmitCallback: function() {

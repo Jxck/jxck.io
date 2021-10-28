@@ -843,7 +843,7 @@
       <section>
         <h3 id="設定値保存"><a href="#設定値保存">設定値保存</a></h3>
         <p>例えば、テーマカラーを設定で変えられるようなサービスがあった際に、その情報を Cookie で持つこともできる。
-        <pre class=http><code translate="no">Set-Cookie: theme=dark
+        <pre class=http><code translate=no>Set-Cookie: theme=dark
 Cookie: theme=dark</code></pre>
         <p>これにより、同じユーザでも違うブラウザであれば設定値を変えることができ、 JS を使わなくてもサービス側が CSS を切り替えてページを返すと言った実装が可能だ。
         <p>毎回リクエストに乗るということを無視して JS API を用いれば、単なる KVS としても使えるため、 LocalStorage 以前は Cookie がその代替を担っていた。
@@ -852,7 +852,7 @@ Cookie: theme=dark</code></pre>
         <h3 id="セッションの維持"><a href="#セッションの維持">セッションの維持</a></h3>
         <p>Cookie Store の中身はユーザが簡単に変更できるため、サーバからランダムな値を付与し、その値が送られてくることでユーザの連続したリクエストを紐付けるようになった。これがセッションの維持だ。
         <p>多くのサイトで、初回のアクセス時にとりあえず付与されているだろう。
-        <pre class=http><code translate="no">Cookie: SID=q1w2e3r4t5y
+        <pre class=http><code translate=no>Cookie: SID=q1w2e3r4t5y
 Cookie: SID=q1w2e3r4t5y # 同じユーザであることがわかる</code></pre>
       </section>
       <section>
@@ -867,7 +867,7 @@ Cookie: SID=q1w2e3r4t5y # 同じユーザであることがわかる</code></pre
         <h3 id="sso"><a href="#sso">SSO</a></h3>
         <p>実装は色々あるが典型例としては、あるサイト a.example.com と b.example.jp で Single Sign On を実現したい場合、共通の認証基盤として auth.example を用意する。全て違うドメインだ。
         <p>a.example.com にアクセスした場合、一度 auth.example にリダイレクトすることで、ログインフォームでログインさせ Cookie を付与する。さらにワンタイムトークンなどをクエリストリングに付けてリダイレクトバックしてやれば、 a.example.com は auth.example に裏で確認することでログイン済みとみなすことができる。
-        <pre class=http><code translate="no"># auth.example からのレスポンス
+        <pre class=http><code translate=no># auth.example からのレスポンス
 HTTP/1.1 307 Temporary Redirect
 # auth.example でログイン済みであることを示す Cookie
 Set-Cookie: SID=q1w2e3r4t5
@@ -882,15 +882,15 @@ Location: http://a.example.com?token=q1w2e3r4t5y6u7i8o9p0</code></pre>
       <section>
         <h3 id="analytics"><a href="#analytics">Analytics</a></h3>
         <p>サイトに簡単なスクリプトを設置するだけで、単なるアクセスログだけでは取りにくい、ユーザの行動などの細かな情報を取得する仕組みが Analytics だ。
-        <p>これも実装が色々あるが、よくあるのは <code translate="no">&lt;img&gt;</code> を使う方法だろう。
-        <p>a.example.com のアクセスを analytics.example というアナリティクスサービスで収集したい場合、 a.example.com に以下のような <code translate="no">&lt;img&gt;</code> を埋め込む。
-        <pre class=html><code translate="no">&lt;body&gt;
+        <p>これも実装が色々あるが、よくあるのは <code translate=no>&lt;img&gt;</code> を使う方法だろう。
+        <p>a.example.com のアクセスを analytics.example というアナリティクスサービスで収集したい場合、 a.example.com に以下のような <code translate=no>&lt;img&gt;</code> を埋め込む。
+        <pre class=html><code translate=no>&lt;body&gt;
 メインコンテンツ
 &lt;img width=1 height=1 src=https://analytics.example?id=q1w2e3r4&gt;
 &lt;/body&gt;</code></pre>
-        <p><code translate="no">&lt;img&gt;</code> を使うのは、 CORS に違反せずに別 Origin へとリクエストを投げる簡単な方法だからだろう。
+        <p><code translate=no>&lt;img&gt;</code> を使うのは、 CORS に違反せずに別 Origin へとリクエストを投げる簡単な方法だからだろう。
         <p>リクエストが飛べば、それだけでかなりの情報がわかる。
-        <pre class=http><code translate="no"># そもそも IP からおおよその場所がわかる
+        <pre class=http><code translate=no># そもそも IP からおおよその場所がわかる
 # クエリに任意の情報をつければ送れる
 GET /?id=q1w2e3r4 HTTP/1.1
 # リファラで見ていたサイトもわかる
@@ -908,17 +908,17 @@ User-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Geck
         <p>あるユーザが、 a.example.com で見た商品に関するリコメンドを、 b.example.jp で表示したい場合も Cookie が応用できる。
         <p>これも実装が色々あるが、例えば ad.example という広告配信サービスを用意し、それを双方が iframe で埋め込んでいたとしよう。
         <p>a.example.com でユーザは商品ページを見ている。
-        <pre class=html><code translate="no">&lt;main&gt;
+        <pre class=html><code translate=no>&lt;main&gt;
 PC周辺機器
 &lt;/main&gt;
 &lt;aside&gt;
    &lt;iframe src=https://ad.example?page=pc-accessory&gt;&lt;/iframe&gt;
 &lt;/aside&gt;</code></pre>
         <p>このとき、 ad.example には、ページの持ち主が設定したページの情報がクエリによって付与され、レスポンスで ad.example の Cookie が付与される。
-        <pre class=http><code translate="no"># PC周辺機器のページを見ていたことが伝わる
+        <pre class=http><code translate=no># PC周辺機器のページを見ていたことが伝わる
 GET /?page=pc-accessory HTTP/1.1
 Host: ad.example</code></pre>
-        <pre class=http><code translate="no">HTTP/1.1 200 OK
+        <pre class=http><code translate=no>HTTP/1.1 200 OK
 Set-Cookie: SID=q1w2e3r4t5 # このCookieで追跡
 Content-Type: text/html
 Content-Length: 1024
@@ -927,17 +927,17 @@ Content-Length: 1024
 とりあえずの広告
 &lt;/html&gt;</code></pre>
         <p>次にユーザは全く関係ない b.example.jp にアクセスし、同じく ad.example の広告が埋め込まれていたとする。
-        <pre class=html><code translate="no">&lt;main&gt;
+        <pre class=html><code translate=no>&lt;main&gt;
 SNS 的な何か
 &lt;/main&gt;
 &lt;aside&gt;
    &lt;iframe src=https://ad.example&gt;&lt;/iframe&gt;
 &lt;/aside&gt;</code></pre>
         <p>このとき ad.example を取得するために送られるリクエストは以下のようになる。
-        <pre class=http><code translate="no">GET / HTTP/1.1
+        <pre class=http><code translate=no>GET / HTTP/1.1
 Host: ad.example
 Cookie: SID=q1w2e3r4t5 # さっきPC周辺機器を見ていた人だとわかる</code></pre>
-        <pre class=http><code translate="no">HTTP/1.1 200 OK
+        <pre class=http><code translate=no>HTTP/1.1 200 OK
 Content-Type: text/html
 Content-Length: 1024
 
@@ -1021,8 +1021,8 @@ PC周辺機器の広告
       <p>LocalStorage がある今、 Cookie を JS のための KVS として使う場面も減りつつあり、基本的には Credential としての Session ID を保持することに注力できる。
       <p>また、 Web には Origin をまたぐ際に明示的な許可を必要とするセキュリティモデル、 Same Origin Policy があるが、 Cookie はその以前から存在し、逸脱した存在だったことも問題の一つだ。
       <p>セッションの維持だけなら Same Origin で良く、それを Cookie 本来の仕様に合わせた概念が Same Site であり、既に Chrome はそれをデフォルトにし始めている。
-      <p>それらを総合すると、セッションの維持が目的であれば <code translate="no">HttpOnly</code> かつ <code translate="no">Secure</code> で <code translate="no">__Host</code> にロックされ <code translate="no">SameSite=Lax</code> に制限されたものが求められる。(そして HTTP State Token に繋がるかもしれない)。
-      <pre class=http><code translate="no">Set-Cookie: __Host-SID=q1w2e3r4t5; HttpOnly; Secure; Path=/; SameSite=Lax;</code></pre>
+      <p>それらを総合すると、セッションの維持が目的であれば <code translate=no>HttpOnly</code> かつ <code translate=no>Secure</code> で <code translate=no>__Host</code> にロックされ <code translate=no>SameSite=Lax</code> に制限されたものが求められる。(そして HTTP State Token に繋がるかもしれない)。
+      <pre class=http><code translate=no>Set-Cookie: __Host-SID=q1w2e3r4t5; HttpOnly; Secure; Path=/; SameSite=Lax;</code></pre>
       <p>結果として、「なんでもできた牧歌的な Cookie」は終わり、 Credential としてのユースケースを実現したこの姿に収束しつつ、他のユースケースは徐々に Cookie を離れて、各々の API を探していくことになりそうだ。
       <p>この始まりの先に保証はない、結果としてみんなが各ベンダプラットフォームにロックインされてでもアプリに移ることを選べば、「完成した安全な仕様」と「誰も使わない Web」が残る可能性も有るだろう。
       <p>今の Cookie の挙動にしがみつき、その変更を誰かのせいにして嘆いてる暇があったら、自身が今持つユースケースを見直し、それが正しく実現される Post 牧歌的 Cookie 時代の Web の姿を考える方が、建設的ではないだろうか。

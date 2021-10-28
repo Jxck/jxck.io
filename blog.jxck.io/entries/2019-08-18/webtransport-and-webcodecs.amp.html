@@ -1096,7 +1096,7 @@
             HTMLMediaElement
             <ul>
               <li>
-                <code translate="no">&lt;video&gt;</code>, <code translate="no">&lt;audio&gt;</code> による再生
+                <code translate=no>&lt;video&gt;</code>, <code translate=no>&lt;audio&gt;</code> による再生
               </li>
               <li>基本は src に URL を指定する前提
               <li>srcObject, createObjectURL などで拡張も
@@ -1106,7 +1106,7 @@
             MediaStream API
             <ul>
               <li>
-                <code translate="no">getUserMedia()</code>, <code translate="no">getDisplayMedia()</code> etc
+                <code translate=no>getUserMedia()</code>, <code translate=no>getDisplayMedia()</code> etc
               </li>
               <li>主にデバイスからの取得と MediaElement へのつなぎ
             </ul>
@@ -1170,7 +1170,7 @@
         <p>音声は AudioPackets 、映像は VideoFrames を最小単位とし、 Encoder/Decoder が TransferStream として提供される。
         <p>MediaStreamTrack との繋ぎは、 TrackReader/Writer が提供され、 Stream を流していけば他と繋がるという設計だ。
         <p>例えば、映像の送受信は Camera -&gt; Encode -&gt; Transport -&gt; Decode -&gt; VideoElement となるため、以下のようになる。
-        <pre class=js><code translate="no">/**
+        <pre class=js><code translate=no>/**
  * カメラから取得して送信する
  */
 
@@ -1189,7 +1189,7 @@ const videoEncoder = new VideoEncoder({
 videoTrackReader.readable
                 .pipeThrough(videoEncoder)
                 .pipeTo(transport.writable);</code></pre>
-        <pre class=js><code translate="no">/**
+        <pre class=js><code translate=no>/**
  * 受信して Video タグに出す
  */
 

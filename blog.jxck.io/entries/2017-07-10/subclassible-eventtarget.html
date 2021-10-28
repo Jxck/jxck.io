@@ -162,31 +162,31 @@
       </section>
       <section>
         <h2 id="eventtarget"><a href="#eventtarget">EventTarget</a></h2>
-        <p><a href="https://dom.spec.whatwg.org/#interface-eventtarget">EventTarget</a> には <code translate="no">addEventListener</code>, <code translate="no">removeEventListener</code>, <code translate="no">dispatchEvent</code> が定義されている。
+        <p><a href="https://dom.spec.whatwg.org/#interface-eventtarget">EventTarget</a> には <code translate=no>addEventListener</code>, <code translate=no>removeEventListener</code>, <code translate=no>dispatchEvent</code> が定義されている。
         <p>これは、ブラウザが内部で生成する Event や、任意に生成された CustomEvent を発火/補足するために利用される。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=js><code translate="no">callback = console.log.bind(console)
+        <pre class=js><code translate=no>callback = console.log.bind(console)
 $div = document.createElement(&apos;div&apos;)
 $div.addEventListener(&apos;foo&apos;, callback)
 $div.dispatchEvent(new CustomEvent(&apos;foo&apos;, {detail:&apos;bar&apos;}))
 // CustomEvent {type: &quot;foo&quot;, detail: &apos;bar&apos;...
 $div.removeEventListener(&apos;foo&apos;, callback)</code></pre>
-        <p>この場合、 <code translate="no">$div</code> は <code translate="no">Element &lt; Node &lt; EventTarget</code> と、祖先に EventTarget を持っている。
+        <p>この場合、 <code translate=no>$div</code> は <code translate=no>Element &lt; Node &lt; EventTarget</code> と、祖先に EventTarget を持っている。
         <p>同様に EventTarget を祖先に持つ要素では、このパターンのハンドリングが可能であるが、任意のクラスを EventTarget にすることができなかった。
       </section>
       <section>
         <h2 id="eventemitter"><a href="#eventemitter">EventEmitter</a></h2>
         <p>Node では EventEmitter が、メソッド名は違えど同等の役割を果たしていると言える。
-        <p>例えば <code translate="no">process</code> は EventEmitter を継承している。
-        <pre class=js><code translate="no">callback = console.log.bind(console)
+        <p>例えば <code translate=no>process</code> は EventEmitter を継承している。
+        <pre class=js><code translate=no>callback = console.log.bind(console)
 process.on(&apos;foo&apos;, callback)
 process.emit(&apos;foo&apos;, &apos;bar&apos;)
 // bar
 process.removeListener(&apos;foo&apos;, callback)</code></pre>
         <p>大きな違いは、 EventEmitter が任意のクラスで継承できる点だ。
         <p>したがって、非同期処理をクラスに閉じ込め、加工したイベントとして外に公開するといった設計が可能になる。
-        <p>以下は <code translate="no">setInterval</code> を抽象化したタイマの例だ。
-        <pre class=js><code translate="no">EventEmitter = require(&apos;events&apos;)
+        <p>以下は <code translate=no>setInterval</code> を抽象化したタイマの例だ。
+        <pre class=js><code translate=no>EventEmitter = require(&apos;events&apos;)
 class Timer extends EventEmitter {
   constructor(interval) {
     super()
@@ -215,7 +215,7 @@ timer.on(&apos;tick&apos;, console.log.bind(console))</code></pre>
       <section>
         <h2 id="constructiblesubclassable-eventtarget"><a href="#constructiblesubclassable-eventtarget">constructible/subclassable EventTarget</a></h2>
         <p>具体的には以下のようなコードが書けるようになる。
-        <pre class=js><code translate="no">class Timer extends EventTarget {
+        <pre class=js><code translate=no>class Timer extends EventTarget {
   constructor(interval) {
     super()
     setInterval(() =&gt; {
@@ -227,7 +227,7 @@ timer.on(&apos;tick&apos;, console.log.bind(console))</code></pre>
 timer = new Timer(100)
 timer.addEventListener(&apos;tick&apos;, console.log.bind(console))</code></pre>
         <p>EventTarget を元に EventEmitter とメソッド名をすり合わせた shim を書く場合は以下のような感じだろうか。
-        <pre class=js><code translate="no">class EventEmitter extends EventTarget {
+        <pre class=js><code translate=no>class EventEmitter extends EventTarget {
   constructor() {
     // snip
   }
@@ -244,17 +244,17 @@ timer.addEventListener(&apos;tick&apos;, console.log.bind(console))</code></pre>
   // ... and more
 }</code></pre>
         <p>もしくは、多くの要素が EventTarget を継承していることを利用して、以下のようなこともできる。
-        <pre class=js><code translate="no">EventTarget.prototype.on  = EventTarget.prototype.addEventListener
+        <pre class=js><code translate=no>EventTarget.prototype.on  = EventTarget.prototype.addEventListener
 EventTarget.prototype.off = EventTarget.prototype.removeEventListener
 
 EventTarget.prototype.emit = function(name, detail) {
   this.dispatchEvent(new CustomEvent(name, {detail}))
 }</code></pre>
-        <p>これで、例えば Button 要素にも <code translate="no">on</code> などが生える。
-        <pre class=js><code translate="no">document.querySelector(&apos;button&apos;).on(&apos;click&apos;, (e) =&gt; {
+        <p>これで、例えば Button 要素にも <code translate=no>on</code> などが生える。
+        <pre class=js><code translate=no>document.querySelector(&apos;button&apos;).on(&apos;click&apos;, (e) =&gt; {
   console.log(&apos;click&apos;)
 })</code></pre>
-        <p>ただし、 EventEmitter は EventTarget よりも機能が多く、例えば <code translate="no">listeners()</code> や <code translate="no">eventNames()</code> などは、 EventTarget への移譲だけでは実装できない。
+        <p>ただし、 EventEmitter は EventTarget よりも機能が多く、例えば <code translate=no>listeners()</code> や <code translate=no>eventNames()</code> などは、 EventTarget への移譲だけでは実装できない。
         <p>それらが必要な場合は、別途イベントとリスナの管理が必要になるだろう。こうした機能が必要な場合は、要するに EventEmitter そのものを必要としてるということなので、 porting は依然必要になる。
         <p>しかし、 EventTarget 相当を実現するためだけに EventEmitter を導入していた場合は、 EventTarget が継承できるだけで十分な場合も少なくはないだろう。
         <p>その場合はネイティブの実装だけで足りるようになるため、実装が進むことに期待したい。

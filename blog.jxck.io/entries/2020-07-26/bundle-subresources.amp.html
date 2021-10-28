@@ -845,18 +845,18 @@
         <h3 id="gen-bundle"><a href="#gen-bundle">gen-bundle</a></h3>
         <p>実際に <a href="https://github.com/WICG/webpackage/tree/master/go/bundle/cmd/gen-bundle">gen-bundle</a> を用いてサブリソースのみを Bundle する。
         <p>サブリソースを以下のように subresource ディレクトリにまとめたとする。
-        <pre class=sh-session><code translate="no">$ ls subresource
+        <pre class=sh-session><code translate=no>$ ls subresource
   a.js
   b.js
   c.css
   d.css
   e.png
   favicon.ico</code></pre>
-        <p>なお、 <code translate="no">a.js</code> は <code translate="no">b.js</code> を import し、 <code translate="no">c.css</code> は <code translate="no">d.css</code> を import している。
-        <p>gen-bundle は <code translate="no">-dir</code> を指定するとディレクトリ以下をまるっと bundle してくれる。
-        <p>CLI の仕様上 <code translate="no">-primaryURL</code> (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chorme の実装もこれを無視しているようなので、適当に指定している。
-        <p><code translate="no">-headerOverride</code> でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
-        <pre class=sh-session><code translate="no">$ gen-bundle \
+        <p>なお、 <code translate=no>a.js</code> は <code translate=no>b.js</code> を import し、 <code translate=no>c.css</code> は <code translate=no>d.css</code> を import している。
+        <p>gen-bundle は <code translate=no>-dir</code> を指定するとディレクトリ以下をまるっと bundle してくれる。
+        <p>CLI の仕様上 <code translate=no>-primaryURL</code> (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chorme の実装もこれを無視しているようなので、適当に指定している。
+        <p><code translate=no>-headerOverride</code> でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
+        <pre class=sh-session><code translate=no>$ gen-bundle \
     -version b1 \
     -baseURL    https://labs.jxck.io/webpackaging/subresource-webbundle/ \
     -primaryURL https://labs.jxck.io/webpackaging/subresource-webbundle/a.js \
@@ -864,7 +864,7 @@
     -headerOverride &quot;Cache-Control: max-age=60&quot; \
     -o bundle.wbn</code></pre>
         <p>dump-bundle すると以下のようになる。
-        <pre class=sh-session><code translate="no">$ dump-bundle -i bundle.wbn
+        <pre class=sh-session><code translate=no>$ dump-bundle -i bundle.wbn
 
 Version: b1
 Primary URL: https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
@@ -944,9 +944,9 @@ img {
       <section>
         <h3 id="link-rel-bundle"><a href="#link-rel-bundle">link rel bundle</a></h3>
         <p>この Bundle を読み込む HTML は以下のようになる。
-        <p>普通にサブリソースを読む HTML に加え、 <code translate="no">&lt;link&gt;</code> で web bundle の読み込みを指定する。
+        <p>普通にサブリソースを読む HTML に加え、 <code translate=no>&lt;link&gt;</code> で web bundle の読み込みを指定する。
         <p>この resources 属性に、 bundle 側で解決する URL を absolute URL で明示する必要がある。
-        <pre class=html><code translate="no">&lt;!DOCTYPE html&gt;
+        <pre class=html><code translate=no>&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;meta name=viewport content=&quot;width=device-width,initial-scale=1&quot;&gt;
 &lt;title&gt;Subresource Web Bundle DEMO&lt;/title&gt;
@@ -973,7 +973,7 @@ img {
       <section>
         <h3 id="挙動"><a href="#挙動">挙動</a></h3>
         <p>Chrome Canary を flag 付きで起動する。
-        <pre class=sh-session><code translate="no">$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles</code></pre>
+        <pre class=sh-session><code translate=no>$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles</code></pre>
         <p>HTML にアクセスすると、以下の様にサブリソースが bundle から解決されていることがわかる。
         <ul>
           <li>
@@ -984,10 +984,10 @@ img {
           <amp-img layout=responsive src=bundle-subresources.png#898x372 alt="Bundle Subresource のデモを Chrome Devtools で表示" title="bundle-subresources demo" width=898 height=372>
         </p>
         <p>実際に実行されている fetch が HTML と Bundle だけになっていることがわかる。
-        <p>もし、ブラウザが Subresource Bundling に対応していなければ、 <code translate="no">&lt;link rel=webbundle&gt;</code> が無視され個別にリクエストが走ることになる。
+        <p>もし、ブラウザが Subresource Bundling に対応していなければ、 <code translate=no>&lt;link rel=webbundle&gt;</code> が無視され個別にリクエストが走ることになる。
         <p>ここでは wbn は no-store としているが、展開されたサブリソースは wbn 内で設定された Cache-Control が効いているため、個別にキャッシュが行われている。
         <p>また、ここでは一切署名を用いてないため、リソースの URL を別のものにすることも可能だ。
-        <pre class=sh-session><code translate="no">$ gen-bundle \
+        <pre class=sh-session><code translate=no>$ gen-bundle \
     -version b1 \
     -baseURL    https://example.com/webpackaging/subresource-webbundle/ \
     -primaryURL https://example.com/webpackaging/subresource-webbundle/a.js \
@@ -995,7 +995,7 @@ img {
     -headerOverride &quot;Cache-Control: max-age=60&quot; \
     -o bundle-3p.wbn</code></pre>
         <p>html はこうなる。
-        <pre class=html><code translate="no">&lt;link rel=webbundle
+        <pre class=html><code translate=no>&lt;link rel=webbundle
       href=bundle-3p.wbn
       resources=&quot;
                  https://example.com/webpackaging/subresource-webbundle/a.js
@@ -1014,8 +1014,8 @@ img {
         <h3 id="web-component-bundle"><a href="#web-component-bundle">Web Component Bundle</a></h3>
         <p>JS だけではなくあらゆる Subresource を対象に bundle できるということは、 Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
         <p>HTML, CSS, JS, Img などをまとめて、いわゆる WebComponent の単位で bundle を生成するといったことも可能だ。
-        <p>以下の DEMO は、 <code translate="no">&lt;profile-card&gt;</code> を Custom Element として実装し、そこに必要なリソースを bundle している。
-        <pre class=sh-session><code translate="no">$ ls profile-card
+        <p>以下の DEMO は、 <code translate=no>&lt;profile-card&gt;</code> を Custom Element として実装し、そこに必要なリソースを bundle している。
+        <pre class=sh-session><code translate=no>$ ls profile-card
   jxck.png
   profile-card.js
   style.css
@@ -1025,7 +1025,7 @@ img {
             DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html">https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html</a>
           </li>
         </ul>
-        <p>今は、 JS 以外は <code translate="no">import</code> できないため、 CSS は <code translate="no">@import</code> で、 HTML は <code translate="no">fetch()</code> で解決しているが、 別途策定が進んでいる <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md">Synthetic Modules</a> (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て <code translate="no">import</code> で扱える可能性がある。
+        <p>今は、 JS 以外は <code translate=no>import</code> できないため、 CSS は <code translate=no>@import</code> で、 HTML は <code translate=no>fetch()</code> で解決しているが、 別途策定が進んでいる <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md">Synthetic Modules</a> (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て <code translate=no>import</code> で扱える可能性がある。
         <p>これら関連仕様が進むと、 Synthetic Module ベースで構成された WebComponent の使い勝手がよくなり、 Bundle で fetch の数も気にせずに積極的に使えるようになるかもしれない。
       </section>
       <section>
@@ -1033,7 +1033,7 @@ img {
         <p>前述の WebComponents を複数組み合わせたり、大きめなフレームワークを組み合わせて使うケースは既に多くある。
         <p>これらを一つの WebBundle にするよりも、おそらく WebBundle に Webbundle を含むことになっていくだろう。
         <p>イメージとしては以下のような構成だ。
-        <pre><code translate="no">- bundle.wbn
+        <pre><code translate=no>- bundle.wbn
   - react.wbn
   - react-dom.wbn
   - redux.wbn</code></pre>
@@ -1066,7 +1066,7 @@ img {
         <h3 id="動的な-bundling"><a href="#動的な-bundling">動的な bundling</a></h3>
         <p>そうした理想を完全に叶えるためには、まだ足りてない部分もある。
         <p>一番の問題は、モジュールごとにキャッシュを設計しても、ブラウザが何をキャッシュしているのかをサーバが知る術が無いことだ。
-        <p>先の例で、別で取得したキャッシュがおおよそあり、 <code translate="no">e.png</code> だけが無い場合は、 <code translate="no">e.png</code> だけを送りたいが、それがわからないと全てを含んだ bundle を送ることになってしまう。それはやはり無駄だ。
+        <p>先の例で、別で取得したキャッシュがおおよそあり、 <code translate=no>e.png</code> だけが無い場合は、 <code translate=no>e.png</code> だけを送りたいが、それがわからないと全てを含んだ bundle を送ることになってしまう。それはやはり無駄だ。
         <p>この問題は Server Push と同じで、そのときは Cache-Digest によってキャッシュ内容のヒントを送るという提案がなされた。
         <p>ところが、実装上の難易度などの問題から作業が止まり、結局実現しなかった。
         <ul>

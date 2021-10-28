@@ -819,10 +819,10 @@
     </section>
     <section>
       <h2 id="rtom"><a href="#rtom">?RtoM</a></h2>
-      <p><code translate="no">record_info()</code> を使ってキーを取るが、指定する record のタイプが動的には取れないので、マクロにして展開する。
-      <pre class=erlang><code translate="no">-define(RtoM(Name, Record), lists:foldl(fun({I, E}, Acc) -&gt; Acc#{E =&gt; element(I, Record)} end, #{}, lists:zip(lists:seq(2, (record_info(size, Name))), (record_info(fields, Name))))).</code></pre>
+      <p><code translate=no>record_info()</code> を使ってキーを取るが、指定する record のタイプが動的には取れないので、マクロにして展開する。
+      <pre class=erlang><code translate=no>-define(RtoM(Name, Record), lists:foldl(fun({I, E}, Acc) -&gt; Acc#{E =&gt; element(I, Record)} end, #{}, lists:zip(lists:seq(2, (record_info(size, Name))), (record_info(fields, Name))))).</code></pre>
       <p>使い方
-      <pre class=erlang><code translate="no">#!/usr/bin/env escript
+      <pre class=erlang><code translate=no>#!/usr/bin/env escript
 -module(main).
 
 -mode(compile).

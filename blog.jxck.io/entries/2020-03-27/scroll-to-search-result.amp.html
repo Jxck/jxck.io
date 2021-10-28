@@ -832,14 +832,14 @@
     </section>
     <section>
       <h2 id="検索結果への適用"><a href="#検索結果への適用">検索結果への適用</a></h2>
-      <p>このサイトを <code translate="no">CSP</code> というキーワードで検索した場合を考える。
+      <p>このサイトを <code translate=no>CSP</code> というキーワードで検索した場合を考える。
       <p>検索対象は、記事の本文とすると、例えば以下の一文がヒットする。
       <blockquote>
         <p>Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。
       </blockquote>
       <p>これをヒットしたキーワードの前後で分割し、 Prefix / Suffix として指定すれば以下のような fragment ができる。
-      <p>(<code translate="no">#:~:text=Prefix-,Keyword,-Suffix</code> の順)
-      <pre><code translate="no">#:~:text=Feature Policy のモチベーションおよび適用方法について、類似する-,CSP,-や</code></pre>
+      <p>(<code translate=no>#:~:text=Prefix-,Keyword,-Suffix</code> の順)
+      <pre><code translate=no>#:~:text=Feature Policy のモチベーションおよび適用方法について、類似する-,CSP,-や</code></pre>
       <p>これをキーワードのヒット箇所ごとに生成すれば、サイト内のヒット箇所ごとへの deep link を生成することができる。
     </section>
     <section>
@@ -855,14 +855,14 @@
     </section>
     <section>
       <h2 id="scroll-しないケース"><a href="#scroll-しないケース">Scroll しないケース</a></h2>
-      <p><code translate="no">text=</code> 以降の生成の仕方によって、遷移先でうまく Scroll しない箇所がいくつかある。
+      <p><code translate=no>text=</code> 以降の生成の仕方によって、遷移先でうまく Scroll しない箇所がいくつかある。
       <p>例えば以下のようなケースがあるようだ。
       <ul>
         <li>
-          <code translate="no">CSP</code> が <code translate="no">OCSP</code> という単語に部分的にヒットした場合
+          <code translate=no>CSP</code> が <code translate=no>OCSP</code> という単語に部分的にヒットした場合
         </li>
         <li>
-          <code translate="no">CSP-</code> や <code translate="no"># CSP</code> のように、フラグメントで意味を持つ記号が続いてる場合
+          <code translate=no>CSP-</code> や <code translate=no># CSP</code> のように、フラグメントで意味を持つ記号が続いてる場合
         </li>
         <li>etc
       </ul>
@@ -880,7 +880,7 @@
     </section>
     <section>
       <h2 id="セキュリティ的観点"><a href="#セキュリティ的観点">セキュリティ的観点</a></h2>
-      <p>余談だが、本サイトで初めて <code translate="no">&lt;form&gt;</code> を設置したため、それなりにセキュリティ的な対策を行う必要が出た。
+      <p>余談だが、本サイトで初めて <code translate=no>&lt;form&gt;</code> を設置したため、それなりにセキュリティ的な対策を行う必要が出た。
       <p>今回は、独立した検索ページを用意し、 Portal との連携をやめたため JS を無くすことができたことから、検索ページからは 3rd Party 含め一切の JS を無くすことにした。
       <p>結果、出力のエスケープを注意すれば典型的な攻撃はかなり防げると考える。
       <p>エスケープは、「正規表現」「HTML」「URL Fragment」とそれぞれのコンテキストに応じて実施する必要があるが、そこさえ間違えなければ問題はなさそうだ。

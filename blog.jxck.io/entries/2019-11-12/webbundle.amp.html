@@ -852,8 +852,8 @@
       </ul>
       <p>要するに AMP の URL を AMP Cache から取得しつつ、自分の URL で表示するというアレだ。
       <p>Signed HTTP Exchange は単一の Response に対する署名であるため、 WebBundle でサブリソースを 1 つにまとめてから署名をすれば、サブリソースも合わせて配信できるというモチベーションがある。
-      <p>例えばこのページ <code translate="no">https://blog.jxck.io/</code> のページを WebBundle でまとめ、署名する。
-      <p>それを USB, Bluetooth, AirDrop, WebShare など、任意の方法で取得し、 <code translate="no">file:///</code> でブラウザに表示すると、 URL バーには <code translate="no">https://blog.jxck.io</code> で表示されるというのがゴールだ。
+      <p>例えばこのページ <code translate=no>https://blog.jxck.io/</code> のページを WebBundle でまとめ、署名する。
+      <p>それを USB, Bluetooth, AirDrop, WebShare など、任意の方法で取得し、 <code translate=no>file:///</code> でブラウザに表示すると、 URL バーには <code translate=no>https://blog.jxck.io</code> で表示されるというのがゴールだ。
       <p>Signing には、拡張に対応した証明書が必要で、今は有料でしか手に入らない。
       <p>しかし WebBundle は無料で試すことができるため、今回は WebBundle のみを対象とする。
     </section>
@@ -884,7 +884,7 @@
         <h3 id="cddl"><a href="#cddl">CDDL</a></h3>
         <p>WebBundle のフォーマットは、 CBOR のスキーマ定義である CDDL で表現されている。
         <p>特に仕様を読まなくても、見れば雰囲気でわかるだろう。
-        <pre class=cddl><code translate="no">webbundle = [
+        <pre class=cddl><code translate=no>webbundle = [
   ; 🌐📦 in UTF-8.
   magic: h&apos;F0 9F 8C 90 F0 9F 93 A6&apos;,
   version: bytes .size 4,
@@ -921,14 +921,14 @@ whatwg-url = tstr</code></pre>
         <p>最初は地球(GLOBE WITH MERIDIANS)と箱(PACKAGE)の絵文字の UTF-8 をマジックナンバーとして使っている。
         <p>しかし、すでに CBOR の中にあるため、ファイルの最初のバイトが地球になるわけではない。
         <p>最初は、全体が CBOR の Array で、その要素数が 6 と決まっており、 magic は String のヘッダに続くので、最初の 10 byte が固定値になる。
-        <pre><code translate="no">[0x86, 0x48, 0xF0, 0x9F, 0x8C, 0x90, 0xF0, 0x9F, 0x93, 0xA6]</code></pre>
+        <pre><code translate=no>[0x86, 0x48, 0xF0, 0x9F, 0x8C, 0x90, 0xF0, 0x9F, 0x93, 0xA6]</code></pre>
         <p>つまり、最初の 10byte を見れば、そのファイルが WebBundle であることが判定できる。
         <p>ただし、見ているのが version の手前までで、将来に全体の配列要素が増える変更(例えば sections と length の間に extension が増えるなど)があると、ここが非互換になるのは少し<a href="https://github.com/WICG/webpackage/issues/528">気になっている</a>。
       </section>
       <section>
         <h3 id="version"><a href="#version">version</a></h3>
-        <p>4byte のバージョンであり、 仕様では <code translate="no">1</code> が入る。
-        <p>だが、執筆時の Chrome は <code translate="no">b1</code> が入るようだ。
+        <p>4byte のバージョンであり、 仕様では <code translate=no>1</code> が入る。
+        <p>だが、執筆時の Chrome は <code translate=no>b1</code> が入るようだ。
       </section>
       <section>
         <h3 id="primary-url"><a href="#primary-url">primary-url</a></h3>
@@ -963,25 +963,25 @@ whatwg-url = tstr</code></pre>
         <h3 id="section-length"><a href="#section-length">section-length</a></h3>
         <p>section-length には、それぞれの section 長さが書かれているため、特定の section にアクセスしたい場合、そこまでジャンプすることができるようになっている。
         <p>今回は、 &quot;index&quot; と &quot;response&quot; しか使わないため、以下のようになる。
-        <pre class=json><code translate="no">[&quot;index&quot;,188,&quot;responses&quot;,1268]</code></pre>
+        <pre class=json><code translate=no>[&quot;index&quot;,188,&quot;responses&quot;,1268]</code></pre>
         <p>ページ全体をまとめる場合、ファイル全体が大きくなることが容易に想像できるため、先頭からのシーケンシャルアクセスではなく、必要な部分へのインデックスアクセスを可能にしている。
       </section>
       <section>
         <h3 id="index"><a href="#index">index</a></h3>
         <p>responses section には、複数の Response が含まれる。その個々の Response の場所を示すのが index だ。
         <p>今回の場合、具体的には以下のようになる。
-        <pre class=json><code translate="no">{
+        <pre class=json><code translate=no>{
   &quot;http://localhost.jxck.io:3000/&quot;:            [[],   1, 396],
   &quot;http://localhost.jxck.io:3000/script.js&quot;:   [[], 397, 267],
   &quot;http://localhost.jxck.io:3000/style.css&quot;:   [[], 664, 275],
   &quot;http://localhost.jxck.io:3000/favicon.ico&quot;: [[], 939, 329]
 }</code></pre>
         <p>各 URL に対応する Response が、 responses セクションのどこ(offset)からどこ(length)までに入っているかを示している。
-        <p>また、最初の <code translate="no">[]</code> にはヘッダで示されるバリエーションが含まれる。
+        <p>また、最初の <code translate=no>[]</code> にはヘッダで示されるバリエーションが含まれる。
         <p>例えば、多言語対応しており Content-Language が &quot;en&quot; と &quot;ja&quot; で、中身が変わる HTML がある場合、それらを区別でき、クライアントは展開時に必要なものを選ぶことができる。
         <p>さらに Content-Encoding が &quot;gz&quot; &quot;br&quot; とあった場合には、そこで 4 通りの組み合わせがあるため、ここにその組み合わせが入ることになる。
         <p>(仕様には、それを見る側のクライアントの挙動は書かれているが、サーバでどう生成するかといった部分は特に書かれてないため、雰囲気で入れる。)
-        <pre class=json><code translate="no">{
+        <pre class=json><code translate=no>{
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;gz&quot;],   1, 100],
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;br&quot;], 101, 100],
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;en;gz&quot;], 201, 100],
@@ -994,7 +994,7 @@ whatwg-url = tstr</code></pre>
         <h3 id="responses"><a href="#responses">responses</a></h3>
         <p>index で示された位置個々の Response が入る。
         <p>Response は Header と Body の配列からなる。
-        <pre class=json><code translate="no">[ [header1, body1],
+        <pre class=json><code translate=no>[ [header1, body1],
   [header2, body2],
   [header3, body3]
   //..
@@ -1013,7 +1013,7 @@ whatwg-url = tstr</code></pre>
       <section>
         <h3 id="全体"><a href="#全体">全体</a></h3>
         <p>結果としては、だいたいこんな感じで組み立てた構造体を、 CBOR の実装でエンコードすれば WebBundle になる。
-        <pre class=js><code translate="no">[
+        <pre class=js><code translate=no>[
   &quot;🌐📦&quot;,
   [&quot;b&quot;,&quot;1&quot;,0,0],
   &quot;http://localhost.jxck.io:3000/&quot;,
@@ -1086,21 +1086,21 @@ whatwg-url = tstr</code></pre>
       <section>
         <h3 id="wbn"><a href="#wbn">.wbn</a></h3>
         <p>あとは、 CBOR でエンコードした結果をファイルに保存すればよい。
-        <p>拡張子としては <code translate="no">.wbn</code> が IANA に登録される予定になっている。
+        <p>拡張子としては <code translate=no>.wbn</code> が IANA に登録される予定になっている。
       </section>
     </section>
     <section>
       <h2 id="applicationwebbundle"><a href="#applicationwebbundle">application/webbundle</a></h2>
-      <p>MIME は <code translate="no">application/webbundle</code> が登録される予定になっている。
+      <p>MIME は <code translate=no>application/webbundle</code> が登録される予定になっている。
       <p>HTTP でサーブする場合は、 Content-Type にこれを付与する。
       <p>また、 sniff による脆弱性を防ぐために、最初から nosniff の設定が MUST となっている点も面白い。
-      <pre class=http><code translate="no">Content-Type: application/webbundle
+      <pre class=http><code translate=no>Content-Type: application/webbundle
 X-Content-Type-Options: nosniff</code></pre>
     </section>
     <section>
       <h2 id="demo"><a href="#demo">DEMO</a></h2>
       <p>動作するデモを以下に用意した。
-      <p>http でも wbn をサーブしているが、執筆時の Chrome は <code translate="no">file:///</code> からの展開にしか対応してないようなので、ローカルにダウンロードしてブラウザで開かないと動かない。
+      <p>http でも wbn をサーブしているが、執筆時の Chrome は <code translate=no>file:///</code> からの展開にしか対応してないようなので、ローカルにダウンロードしてブラウザで開かないと動かない。
       <ul>
         <li>
           orig: <a href="http://labs.jxck.io/webpackaging/webbundle/example/index.html">http://labs.jxck.io/webpackaging/webbundle/example/index.html</a>
@@ -1127,9 +1127,9 @@ X-Content-Type-Options: nosniff</code></pre>
         <p>実際に 2017 年に行われた Chrome チームの調査結果では、<a href="https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit">100 以上もしくは依存のネストが 5 以上の場合は WebPack の利用を推奨</a>と報告されていた。
         <p>これは WebPackaging ではなくツールの WebPack であり、すでに広く普及しているため、多くの開発者にとってはそのままでいいという話にはなる。
         <p>しかし、現在の Web における JS の依存は、この制限を超えることがしばしばあるため、せっかく仕様も実装も手に入った ES Modules へ移行する妨げになっていた。
-        <p>結果、 <code translate="no">import</code> は単に WebPack に向けたアノテーションとしてしか使われてないという非常に残念な現状があり、今も開発者は全体を bundle.js に固めて配布している。(かつ、問題が解決しているため、それで良いと思っている)
+        <p>結果、 <code translate=no>import</code> は単に WebPack に向けたアノテーションとしてしか使われてないという非常に残念な現状があり、今も開発者は全体を bundle.js に固めて配布している。(かつ、問題が解決しているため、それで良いと思っている)
         <p>ここでもし、例えば npm モジュール単位で依存を .wbn にまとめ、 1 回の fetch で依存をまるごと取得し、かつ展開した全てのファイルを個別に fetch したかのように保存できたらどうだろうか。
-        <p>普通に <code translate="no">import</code> を用いたコードを書けるし、別々にキャッシュされればページを跨いだ再利用や、更新による再デプロイも変わってくるだろう。
+        <p>普通に <code translate=no>import</code> を用いたコードを書けるし、別々にキャッシュされればページを跨いだ再利用や、更新による再デプロイも変わってくるだろう。
         <p>JS のように依存がなくても、単にまとめられることは、 CSS Sprite(画像のまとめ), WebFont(weight など), Icon(favivcon.ico と apple-touch-cion etc)などにも適用できるのでは無いかと筆者は考えている。
         <p>今は、そうした議論よりも先に、当初の目標である AMP のようなケースにフォーカスしていると思うが、ゆくゆくはそういうことに応用できるように、 <a href="https://github.com/WICG/webpackage/issues/526">feedback</a> を続けたい。
       </section>

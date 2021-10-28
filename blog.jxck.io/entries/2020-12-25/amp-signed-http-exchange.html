@@ -141,8 +141,8 @@
                 <li><a href=#amppkgtoml>### amppkg.toml</a>
                 <li><a href=#amppkg>### amppkg</a>
                 <li><a href=#routing>## routing</a>
-                <li><a href=#amppkg-1>### <code translate="no">/amppkg</code></a>
-                <li><a href=#privdoc>### <code translate="no">/priv/doc</code></a>
+                <li><a href=#amppkg-1>### <code translate=no>/amppkg</code></a>
+                <li><a href=#privdoc>### <code translate=no>/priv/doc</code></a>
                 <li><a href=#vary-header>### Vary Header</a>
                 <li><a href=#debug>## Debug</a>
                 <li><a href=#devtools>### Devtools</a>
@@ -194,7 +194,7 @@
         </ul>
         <p>openssl を使うと以下のように確認できる。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=sh-session><code translate="no"># key type が EC prim256v1
+        <pre class=sh-session><code translate=no># key type が EC prim256v1
 $ openssl x509 -in blog_jxck_io.crt -text | grep &apos;ASN1 OID: prime256v1&apos;
 # CanSignHttpExchanges 拡張がある
 $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code></pre>
@@ -204,8 +204,8 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code
       <section>
         <h2 id="amppackager"><a href="#amppackager">amppackager</a></h2>
         <p>AMP SXG は、前述の通り SXG にする前に変換が必要となる。これを行うのが amppackager だ。
-        <pre class=sh-session><code translate="no">$ go get -u github.com/ampproject/amppackager/cmd/amppkg</code></pre>
-        <p>デフォルトだと <code translate="no">$HOME/go/bin</code> に入るのでパスを通す。
+        <pre class=sh-session><code translate=no>$ go get -u github.com/ampproject/amppackager/cmd/amppkg</code></pre>
+        <p>デフォルトだと <code translate=no>$HOME/go/bin</code> に入るのでパスを通す。
         <section>
           <h3 id="amppkgtoml"><a href="#amppkgtoml">amppkg.toml</a></h3>
           <p>amppackager の設定ファイルは toml で用意する。詳細は example を参照。
@@ -218,7 +218,7 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code
         <section>
           <h3 id="amppkg"><a href="#amppkg">amppkg</a></h3>
           <p>起動してみたが、エラーが出たので残しておく。
-          <pre class=sh-session><code translate="no">$ amppkg
+          <pre class=sh-session><code translate=no>$ amppkg
 2020/12/23 20:04:15 Updating cert if necessary
 2020/12/23 20:04:15 Certfetcher is not set, skipping cert updates. Checking cert on disk if updated.
 2020/12/23 20:04:15 Updating OCSP; none cached yet.
@@ -256,10 +256,10 @@ runtime.main
 runtime.goexit
 	/home/jxck/dotfiles/pkg/go/current/src/runtime/asm_amd64.s:1373</code></pre>
           <p>OCSP の情報が無いようだ。 Digicert で発行した証明書は自分のドメインのものと DigiCertCA.crt の 2 つがあったので連結したらいけた。
-          <pre class=sh-session><code translate="no">$ cat blog_jxck_io.crt DigiCertCA.crt &gt; blog_jxck_io_full.crt</code></pre>
+          <pre class=sh-session><code translate=no>$ cat blog_jxck_io.crt DigiCertCA.crt &gt; blog_jxck_io_full.crt</code></pre>
           <p>toml を更新して起動し直すと成功。
           <p>これを systemd に登録して完了。
-          <pre class=service><code translate="no">[Unit]
+          <pre class=service><code translate=no>[Unit]
 Description=amppkg.jxck.io
 After=network.target nss-lookup.target
 
@@ -274,7 +274,7 @@ ExecStop=/bin/kill -s TERM $MAINPID
 
 [Install]
 WantedBy=multi-user.target</code></pre>
-          <p>(最初、検証時に作らた <code translate="no">/tmp/amppkg-ocsp</code> の権限が起動ユーザのみに絞られており、 Systemd を別ユーザで起動すると既存のファイルにアクセスできずに失敗した。単純に消せばいい。)
+          <p>(最初、検証時に作らた <code translate=no>/tmp/amppkg-ocsp</code> の権限が起動ユーザのみに絞られており、 Systemd を別ユーザで起動すると既存のファイルにアクセスできずに失敗した。単純に消せばいい。)
           <p>なお、 amppkg から ACME で証明書の更新ができるようで、 Digicert も ACME 対応しているので、後ほどそちらもやりたい。
         </section>
       </section>
@@ -285,31 +285,31 @@ WantedBy=multi-user.target</code></pre>
         <ul>
           <li>Port 10000 の incoming は閉じ、直接のアクセスはさせない
           <li>
-            リクエスト URL が <code translate="no">/amppkg/</code> の場合は、そのまま forward
+            リクエスト URL が <code translate=no>/amppkg/</code> の場合は、そのまま forward
           </li>
           <li>
-            AMP ページへのリクエストで <code translate="no">AMP-Cache-Transform</code> ヘッダがあれば Path に <code translate="no">/priv/doc</code> をつけて forward
+            AMP ページへのリクエストで <code translate=no>AMP-Cache-Transform</code> ヘッダがあれば Path に <code translate=no>/priv/doc</code> をつけて forward
           </li>
           <li>
-            それ以外は forward しない(直接の <code translate="no">/priv/doc</code> 含め)
+            それ以外は forward しない(直接の <code translate=no>/priv/doc</code> 含め)
           </li>
         </ul>
         <section>
-          <h3 id="amppkg-1"><a href="#amppkg-1"><code translate="no">/amppkg</code></a></h3>
+          <h3 id="amppkg-1"><a href="#amppkg-1"><code translate=no>/amppkg</code></a></h3>
           <p>amppackager は SXG に必要な Certificate URL を自動で提供してくれる。
-          <p>そのパスは <code translate="no">/amppkg/cert/#{base64}</code> となっているため、ここへのリクエストはそのまま転送すれば良い。
-          <pre><code translate="no">&quot;/amppkg&quot;:
+          <p>そのパスは <code translate=no>/amppkg/cert/#{base64}</code> となっているため、ここへのリクエストはそのまま転送すれば良い。
+          <pre><code translate=no>&quot;/amppkg&quot;:
   proxy.reverse.url: &quot;http://127.0.0.1:10000/amppkg&quot;</code></pre>
-          <p>(reverse.url の最後に <code translate="no">/amppkg</code> 付け忘れて 404 になり少しハマった)
+          <p>(reverse.url の最後に <code translate=no>/amppkg</code> 付け忘れて 404 になり少しハマった)
         </section>
         <section>
-          <h3 id="privdoc"><a href="#privdoc"><code translate="no">/priv/doc</code></a></h3>
+          <h3 id="privdoc"><a href="#privdoc"><code translate=no>/priv/doc</code></a></h3>
           <p>このパスが amppckager が SXG を返すパスとなる。
-          <p>Origin に来るリクエストは AMP の URL であるため、そこへのリクエストの中で <code translate="no">AMP-Cache-Transform</code> が付いたものだけ、 amppkger のこのパスに転送する。
-          <p>h2o は Path ベースでの Proxy は簡単だが、ヘッダをベースに分岐するには mruby handler 内で proxy する必要があり、その方法がよくわからず最初は <code translate="no">http_request</code> でリクエストを再構築して書いていた。
+          <p>Origin に来るリクエストは AMP の URL であるため、そこへのリクエストの中で <code translate=no>AMP-Cache-Transform</code> が付いたものだけ、 amppkger のこのパスに転送する。
+          <p>h2o は Path ベースでの Proxy は簡単だが、ヘッダをベースに分岐するには mruby handler 内で proxy する必要があり、その方法がよくわからず最初は <code translate=no>http_request</code> でリクエストを再構築して書いていた。
           <p>後から、 <a href="https://h2o.examp1e.net/configure/reproxy_directives.html#reproxy">reproxy</a> という機能がそのまま使えることを教えてもらい、一瞬で解決した。
           <p>(機能は知っていたが、 Example を見て同じドメインの別のパスに移譲すると勝手に思い込んでいたが、普通に別ポートにも移譲できた。)
-          <pre class=ruby><code translate="no">Proc.new do |env|
+          <pre class=ruby><code translate=no>Proc.new do |env|
   path = env[&quot;PATH_INFO&quot;]
   amp_cache_transform = env[&quot;HTTP_AMP_CACHE_TRANSFORM&quot;]
 
@@ -331,10 +331,10 @@ end</code></pre>
         <section>
           <h3 id="vary-header"><a href="#vary-header">Vary Header</a></h3>
           <p>同じ AMP の URL でも、リクエストによって HTML と SXG を出し分けることになる。
-          <p>SXG のサポートは <code translate="no">Accept: application/signed-exchange;v=b3</code> などが追加されるため、それで判別することができる。
-          <p>加えて AMP のクローラは <code translate="no">AMP-Cache-Transform</code> を追加するため、これも判断材料になる。
-          <p>このため、 Response は <code translate="no">Vary</code> にこのヘッダを指定し、これら Request ヘッダに応じてキャッシュが別になるようにする必要がある。
-          <pre class=http><code translate="no">Vary: AMP-Cache-Transform, Accept</code></pre>
+          <p>SXG のサポートは <code translate=no>Accept: application/signed-exchange;v=b3</code> などが追加されるため、それで判別することができる。
+          <p>加えて AMP のクローラは <code translate=no>AMP-Cache-Transform</code> を追加するため、これも判断材料になる。
+          <p>このため、 Response は <code translate=no>Vary</code> にこのヘッダを指定し、これら Request ヘッダに応じてキャッシュが別になるようにする必要がある。
+          <pre class=http><code translate=no>Vary: AMP-Cache-Transform, Accept</code></pre>
           <p>amppackager はこれを自動で付与しているようなので問題ないが、それは Response が SXG のときしかカバーしてない。
           <p>自分のサーバの AMP HTML を返す部分で、同じくこのヘッダを追加してやる必要がある。(前述の mruby handler で実施した)
         </section>
@@ -344,7 +344,7 @@ end</code></pre>
         <section>
           <h3 id="devtools"><a href="#devtools">Devtools</a></h3>
           <p>全てきちんと動いてるかを確認する最も確実な方法は、 Chrome で取得して Devtools で見ることだろう。
-          <p>この場合 <a href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj?hl=ja">mod header</a> などで <code translate="no">AMP-Cache-Transform: google</code> のリクエストヘッダを追加する必要がある。
+          <p>この場合 <a href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj?hl=ja">mod header</a> などで <code translate=no>AMP-Cache-Transform: google</code> のリクエストヘッダを追加する必要がある。
           <p>Devtools で見ると以下のように確認できる。
           <p>
             <picture>
@@ -355,12 +355,12 @@ end</code></pre>
         </section>
         <section>
           <h3 id="cli"><a href="#cli">CLI</a></h3>
-          <p>CLI の場合は <code translate="no">dump-signedexchage</code> で行うのが手軽だろう。
-          <pre class=sh-session><code translate="no">$ dump-signedexchange -uri $URL -requestHeader AMP-Cache-Transform:any -version=1b3 -headers=false -payload=false -verify
+          <p>CLI の場合は <code translate=no>dump-signedexchage</code> で行うのが手軽だろう。
+          <pre class=sh-session><code translate=no>$ dump-signedexchange -uri $URL -requestHeader AMP-Cache-Transform:any -version=1b3 -headers=false -payload=false -verify
 The exchage has a valid signature</code></pre>
           <p>これは cert-url から証明書チェインを取得してくれているらしいので、これが通れば一通り通ってると思われる。
           <p>個々のステップを細かく見たい場合は curl で取得してから順番に解くなどすると良いかもしれない。
-          <pre class=sh-session><code translate="no">$ curl -s --output - -H &apos;amp-cache-transform: google;v=&quot;3&quot;&apos; -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html &gt; dump.sxg
+          <pre class=sh-session><code translate=no>$ curl -s --output - -H &apos;amp-cache-transform: google;v=&quot;3&quot;&apos; -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html &gt; dump.sxg
 $ dump-signedexchange -i dump.sxg
 format version: 1b3
 ...
@@ -374,8 +374,8 @@ $ dump-certurl -i cert.cbor</code></pre>
         <p>どうやらブラウザからアクセスしたりしていると、 Google に把握され Bot が来るようだ。
         <p>本ブログでは、躊躇なく Production でこういう作業をゴリゴリ行うので、作業してる途中から Bot が来てちょっと邪魔だった。
         <p>デバッグなどが終わらないうちは Internet Access 可能なドメインではやらないほうが良いだろう。
-        <p>なお、ログから復元した Bot のヘッダは以下のようなものだった。 <code translate="no">AMP-Cache-Transform</code> と <code translate="no">Accept</code> 以外に変わったヘッダは無いようだ。
-        <pre class=http><code translate="no">GET /example.amp.html HTTP/1.1
+        <p>なお、ログから復元した Bot のヘッダは以下のようなものだった。 <code translate=no>AMP-Cache-Transform</code> と <code translate=no>Accept</code> 以外に変わったヘッダは無いようだ。
+        <pre class=http><code translate=no>GET /example.amp.html HTTP/1.1
 Host: blog.jxck.io
 From: googlebot(at)googlebot.com
 Accept: */*;q=0.8,application/signed-exchange;v=b3
@@ -414,7 +414,7 @@ AMP-Cache-Transform: google;v=&quot;1..5&quot;</code></pre>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>本サイトの AMP ページ全体に適用済みである。
         <p>Android Chrome で Google のモバイル検索から見れば挙動が確認できるだろう。
-        <p>なお、各エントリの URL 末尾を <code translate="no">.html</code> から <code translate="no">.amp.html</code> にすれば AMP 版がリクエストでき、右上の稲妻アイコンから遷移できる。
+        <p>なお、各エントリの URL 末尾を <code translate=no>.html</code> から <code translate=no>.amp.html</code> にすれば AMP 版がリクエストでき、右上の稲妻アイコンから遷移できる。
       </section>
       <section>
         <h2 id="resources"><a href="#resources">Resources</a></h2>

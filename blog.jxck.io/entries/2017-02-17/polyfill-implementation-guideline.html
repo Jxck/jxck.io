@@ -202,29 +202,29 @@
         <p>実際にこれが問題になった事例もいくつかある。
         <section>
           <h3 id="mootools-の-arrayprototypecontains"><a href="#mootools-の-arrayprototypecontains">Mootools の Array.prototype.contains</a></h3>
-          <p>現在 <code translate="no">Array.prototype.includes()</code> として定義/実装されているものは、最初 <code translate="no">contains()</code> という名前で提案されており、実際に実装まで行われたブラウザがあった。
+          <p>現在 <code translate=no>Array.prototype.includes()</code> として定義/実装されているものは、最初 <code translate=no>contains()</code> という名前で提案されており、実際に実装まで行われたブラウザがあった。
           <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-          <pre class=js><code translate="no">[1, 2, 3].contains(2) // true</code></pre>
+          <pre class=js><code translate=no>[1, 2, 3].contains(2) // true</code></pre>
           <p>しかし、この仕様を実装したブラウザで jsfiddle が壊れてことから、そこで使われていた MooTools が問題を起こしていたことが判明した。
-          <p>MooTools は早い段階から <code translate="no">contains()</code> を実装していたのだが、その実装は行儀の良いものではなかった。
-          <p>具体的には、その時点で Array が実装しているメソッドをセーフリストとして定義し、当時そのリストに無かった <code translate="no">contains()</code> の Polyfill を追加した独自の Array を提供していた。
-          <pre class=js><code translate="no">(&apos;Array&apos;, Array, [
+          <p>MooTools は早い段階から <code translate=no>contains()</code> を実装していたのだが、その実装は行儀の良いものではなかった。
+          <p>具体的には、その時点で Array が実装しているメソッドをセーフリストとして定義し、当時そのリストに無かった <code translate=no>contains()</code> の Polyfill を追加した独自の Array を提供していた。
+          <pre class=js><code translate=no>(&apos;Array&apos;, Array, [
   &apos;pop&apos;, &apos;push&apos;, &apos;reverse&apos;, &apos;shift&apos;, &apos;sort&apos;, &apos;splice&apos;, &apos;unshift&apos;, &apos;concat&apos;, &apos;join&apos;, &apos;slice&apos;,
   &apos;indexOf&apos;, &apos;lastIndexOf&apos;, &apos;filter&apos;, &apos;forEach&apos;, &apos;every&apos;, &apos;map&apos;, &apos;some&apos;, &apos;reduce&apos;, &apos;reduceRight&apos;
 ])</code></pre>
           <p><a href="https://github.com/mootools/mootools-core/blob/09b99e5886ca466480d4ae9acbb769e284f4acf1/Source/Core/Core.js#L269">Core.js#L269</a>
-          <p>しかし、 <code translate="no">contains()</code> の実装を追加する前に <code translate="no">Array.prototype.contains</code> の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の <code translate="no">contains()</code> も Polyfill の <code translate="no">contains()</code> もない Array が提供されたというバグである。
+          <p>しかし、 <code translate=no>contains()</code> の実装を追加する前に <code translate=no>Array.prototype.contains</code> の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の <code translate=no>contains()</code> も Polyfill の <code translate=no>contains()</code> もない Array が提供されたというバグである。
         </section>
         <section>
           <h3 id="shadow-dom"><a href="#shadow-dom">Shadow DOM</a></h3>
-          <p>TAG のドキュメントでは、 ShadowDOM の <code translate="no">createShadowRoot()</code> についても言及されている。
+          <p>TAG のドキュメントでは、 ShadowDOM の <code translate=no>createShadowRoot()</code> についても言及されている。
           <p>ShadowDOM の仕様は、これまでの DOM に新しい概念を持ち込むため仕様の策定が難しく、かなりの時間を要した。
           <p>API 自体も途中で更新され、更新後を v1 としてそれまでが v0 として扱われることとなった。
-          <p>その API の一つであり、非常に重要な <code translate="no">createShadowRoot()</code> は、 v1 に上がる際に open/close を値として持つ <code translate="no">mode</code> という概念を持つこととなった。
-          <p>この <code translate="no">mode</code> については、どちらをデフォルトとするのかという議論があったようだが、結果として <code translate="no">createShadowRoot({mode})</code> のように、引数を必須とすることで、省略時のデフォルトを定義しない方向で策定されることとなった。
-          <p>しかし、 <code translate="no">createShadowRoot()</code> は主に Google が先行して Chrome に実装しており、それがかなり広く普及してしまったため、途中から引数を必須にすることは実質不可能だった。ただし、 <code translate="no">mode</code> の概念を外すことはできないため、 <code translate="no">createShadowRoot()</code> は従来のままとし、代わりに「引数を必須とする別の名前のメソッド」を定義することでこの問題を回避することとなった。
-          <p>これが v1 で引数必須として定義されている <code translate="no">attachShadow({mode})</code> である。
-          <pre class=js><code translate="no">// v0
+          <p>その API の一つであり、非常に重要な <code translate=no>createShadowRoot()</code> は、 v1 に上がる際に open/close を値として持つ <code translate=no>mode</code> という概念を持つこととなった。
+          <p>この <code translate=no>mode</code> については、どちらをデフォルトとするのかという議論があったようだが、結果として <code translate=no>createShadowRoot({mode})</code> のように、引数を必須とすることで、省略時のデフォルトを定義しない方向で策定されることとなった。
+          <p>しかし、 <code translate=no>createShadowRoot()</code> は主に Google が先行して Chrome に実装しており、それがかなり広く普及してしまったため、途中から引数を必須にすることは実質不可能だった。ただし、 <code translate=no>mode</code> の概念を外すことはできないため、 <code translate=no>createShadowRoot()</code> は従来のままとし、代わりに「引数を必須とする別の名前のメソッド」を定義することでこの問題を回避することとなった。
+          <p>これが v1 で引数必須として定義されている <code translate=no>attachShadow({mode})</code> である。
+          <pre class=js><code translate=no>// v0
 document.createElement(&apos;div&apos;).createShadowRoot();
 
 // v1 (引数必須)
@@ -238,10 +238,10 @@ document.createElement(&apos;div&apos;).attachShadow({ mode: &apos;open&apos; })
         <p>Polyfill が、ネイティブの実装と別の名前で提供されているなら、これらの問題を避けることができる。
         <p>しかし、多くのコンテンツは、まだ仕様策定/実装が途中の機能を、将来使われるか、一部のブラウザだけが提供している仮の(&quot;fantasy&quot;)実装に寄せて使ってしまうため、依然問題となる。
         <p>例えば、以下のような記述はよく見られる。
-        <pre class=js><code translate="no">requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || polyfillRequestAnimationFrame;</code></pre>
-        <p>もしこのコードを書いた時、最初の二つがなかった時は <code translate="no">polyfillRequestAnimationFrame</code> が使われるため、その挙動に依存した実装がされるだろう。
-        <p>その後、 <code translate="no">window.webkitRequestAnimationFrame</code> がネイティブ実装されるとそちらが使われるが、それが <code translate="no">polyfillRequestAnimationFrame</code> の挙動と変わっていると、コンテンツが壊れてしまうことになる。また、ベンダプレフィックス付きの実装はあくまでも試験的な実装であるはずが、プレフィックスが取れた実装が提供された際に、そこで挙動が変わるとまたコンテンツが壊れる可能性が出る。
-        <p>つまり、このコードは最終的な <code translate="no">requestAnimationFrame</code> が取り得る選択肢を、非常に狭めてしまう結果となるのだ。
+        <pre class=js><code translate=no>requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || polyfillRequestAnimationFrame;</code></pre>
+        <p>もしこのコードを書いた時、最初の二つがなかった時は <code translate=no>polyfillRequestAnimationFrame</code> が使われるため、その挙動に依存した実装がされるだろう。
+        <p>その後、 <code translate=no>window.webkitRequestAnimationFrame</code> がネイティブ実装されるとそちらが使われるが、それが <code translate=no>polyfillRequestAnimationFrame</code> の挙動と変わっていると、コンテンツが壊れてしまうことになる。また、ベンダプレフィックス付きの実装はあくまでも試験的な実装であるはずが、プレフィックスが取れた実装が提供された際に、そこで挙動が変わるとまたコンテンツが壊れる可能性が出る。
+        <p>つまり、このコードは最終的な <code translate=no>requestAnimationFrame</code> が取り得る選択肢を、非常に狭めてしまう結果となるのだ。
         <p>本来ベンダプレフィックスは、先行実装であることを示すつもりで付けられていたが、こうした使われ方が広まった結果、本来の意図を果たすことができなかった。
         <p>特に WebKit が先行し、他のブラウザはプレフィックス付き実装すらしていなかった機能については、 webkit プレフィックスをつけて実装され、そのまま放置されているものも少なくない。
         <p>そういったコンテンツを動作させられるよう、 <a href="https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo">Firefox</a> や <a href="https://msdn.microsoft.com/ja-jp/library/mt270097(v=vs.85).aspx">Edge</a> が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
@@ -268,10 +268,10 @@ document.createElement(&apos;div&apos;).attachShadow({ mode: &apos;open&apos; })
       <section>
         <h2 id="実装者向けガイドライン"><a href="#実装者向けガイドライン">実装者向けガイドライン</a></h2>
         <p>一番重要なのは名前だ。特に global スコープやネイティブオブジェクトの prototype に、策定段階の名前を使った実装を行うことは非常にリスクが高い。
-        <p>ドキュメントでは、例えば仕様で <code translate="no">Foo</code> と定義されているものは、 <code translate="no">FooPolyfill</code> や <code translate="no">FutureFoo</code> などに変えて実装することが推奨されている。
-        <p>また <code translate="no">$</code>, <code translate="no">root</code>, <code translate="no">web</code> といった一般的で短い名前を利用することも、非推奨とされている。
+        <p>ドキュメントでは、例えば仕様で <code translate=no>Foo</code> と定義されているものは、 <code translate=no>FooPolyfill</code> や <code translate=no>FutureFoo</code> などに変えて実装することが推奨されている。
+        <p>また <code translate=no>$</code>, <code translate=no>root</code>, <code translate=no>web</code> といった一般的で短い名前を利用することも、非推奨とされている。
         <p>そして、もしブラウザが実装を持っていたら、その実装に移譲するようにコードを書くべきである。またブラウザの実装が全てを提供してないない場合は、不足分のみを補うようにする。
-        <p>例えば <code translate="no">URL</code> を提供するが、その内部で <code translate="no">URL#searchParams</code> が <code translate="no">URLSearchParams</code> を提供していなかった場合は、 <code translate="no">URL</code> 全体を Polyfill で置き換えるのでは無く、使える部分は <code translate="no">URL</code> を使い、 <code translate="no">URL#searchParams</code> だけ <code translate="no">URLSearchParams</code> を追加するように実装するのが望ましい。
+        <p>例えば <code translate=no>URL</code> を提供するが、その内部で <code translate=no>URL#searchParams</code> が <code translate=no>URLSearchParams</code> を提供していなかった場合は、 <code translate=no>URL</code> 全体を Polyfill で置き換えるのでは無く、使える部分は <code translate=no>URL</code> を使い、 <code translate=no>URL#searchParams</code> だけ <code translate=no>URLSearchParams</code> を追加するように実装するのが望ましい。
         <p>他細かい点では以下があげられる。
         <ul>
           <li>module 機構を使い、 global スコープやネイティブオブジェクトのプロトタイプを直接汚染しない

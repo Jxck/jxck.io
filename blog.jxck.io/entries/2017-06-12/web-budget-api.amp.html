@@ -856,16 +856,16 @@
       <p>Service Worker が登録されて、そこにユーザへの通知なく Push を自由に送ることができてしまうと、 Push が乱用される可能性がある。
       <p>Silent Push が乱用されると、ユーザの知らないところで著しくバッテリーが消費されるなどのリスクもあるため、何らかの方法で制限をかける必要がある。
       <p>そこで、バックグラウンド実行できる処理それぞれに対して <em>Cost</em> を割り当て、その Origin が実行できる <em>Budget</em> を定義することで、 Budget の範囲内でしか処理できないように制限する方式が提案されている。
-      <p>例えば Silent Push の Cost が <code translate="no">2</code> であったとし、 Origin に付与された Budget が <code translate="no">6</code> だとしたら、 3 回しか Silent Push を送れないといったイメージだ。
+      <p>例えば Silent Push の Cost が <code translate=no>2</code> であったとし、 Origin に付与された Budget が <code translate=no>6</code> だとしたら、 3 回しか Silent Push を送れないといったイメージだ。
     </section>
     <section>
       <h2 id="budget-api-1"><a href="#budget-api-1">Budget API</a></h2>
       <p>Budget API は、この Budget と Cost を扱うための API である。
-      <p>基本は <code translate="no">navigator.budget</code> に定義される。
+      <p>基本は <code translate=no>navigator.budget</code> に定義される。
       <section>
         <h3 id="budgetgetbudget"><a href="#budgetgetbudget">budget.getBudget()</a></h3>
         <p>現在から、将来に渡り利用できる budget のリストを取得する。
-        <pre class=js><code translate="no">navigator.budget.getBudget().then((budgets) =&gt; {
+        <pre class=js><code translate=no>navigator.budget.getBudget().then((budgets) =&gt; {
   budgets.forEach((budget) =&gt; {
     console.log(budget.time, budget.budgetAt);
   });
@@ -876,8 +876,8 @@
         <h3 id="budgetgetcost"><a href="#budgetgetcost">budget.getCost()</a></h3>
         <p>処理の Cost を取得する。
         <p>引数には、対象となる処理の名前を与えるが、この値は仕様に定義される。
-        <p>執筆時点では <code translate="no">&quot;silent-push&quot;</code> のみ定義されている。
-        <pre class=js><code translate="no">navigator.budget.getCost(&apos;silent-push&apos;).then((cost) =&gt; {
+        <p>執筆時点では <code translate=no>&quot;silent-push&quot;</code> のみ定義されている。
+        <pre class=js><code translate=no>navigator.budget.getCost(&apos;silent-push&apos;).then((cost) =&gt; {
   console.log(cost); // 2
 });</code></pre>
         <p>ここで返される Cost は、上限値であり、実際の UA やデバイスの状況によっては、より低い Cost しか実行時に消費されない可能性がある。
@@ -887,8 +887,8 @@
         <h3 id="budgetreserve"><a href="#budgetreserve">budget.reserve()</a></h3>
         <p>実際に処理を実行する際に、 Budget を Cost 分消費する。
         <p>戻る Promise は、コストが足りたかどうかを bool で解決する。
-        <p><code translate="no">silent-push</code> の場合は、コストが足りればそのまま処理を進められ、足りなかった場合は notification によってユーザに通知する必要が出る。
-        <pre class=js><code translate="no">self.addEventListener(&apos;push&apos;, (e) =&gt; {
+        <p><code translate=no>silent-push</code> の場合は、コストが足りればそのまま処理を進められ、足りなかった場合は notification によってユーザに通知する必要が出る。
+        <pre class=js><code translate=no>self.addEventListener(&apos;push&apos;, (e) =&gt; {
   return e.waitUntil(navigator.budget.reserve(&apos;silent-push&apos;).then((reserved) =&gt; {
     if (reserved) {
       // budget が足りている

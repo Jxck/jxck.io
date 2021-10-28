@@ -845,8 +845,8 @@
           <dd>文字間の余白を上書きし、行幅の調整やオーバーフローを防ぐ。
         </div>
       </dl>
-      <p>これらの値を <code translate="no">@font-face</code> で指定する。
-      <pre class=css><code translate="no">@font-face {
+      <p>これらの値を <code translate=no>@font-face</code> で指定する。
+      <pre class=css><code translate=no>@font-face {
   font-family: &quot;helvetica-override&quot;;
   src: local(&quot;Helvetica&quot;);
   ascent-override: 105%;
@@ -854,7 +854,7 @@
   line-gap-override: normal;
   advance-override: 0;
 }</code></pre>
-      <p>実際に行単位、文章単位で調整する際は、 <code translate="no">line-height</code>, <code translate="no">word-spacing</code>, <code translate="no">letter-spacing</code> なども合わせて設定することになるだろう。
+      <p>実際に行単位、文章単位で調整する際は、 <code translate=no>line-height</code>, <code translate=no>word-spacing</code>, <code translate=no>letter-spacing</code> なども合わせて設定することになるだろう。
     </section>
     <section>
       <h2 id="フォールバックフォントとのすり合わせ"><a href="#フォールバックフォントとのすり合わせ">フォールバックフォントとのすり合わせ</a></h2>
@@ -863,7 +863,7 @@
         <amp-img layout=responsive src=before.png#1610x1134 alt="Osaka と Noso Sans をデフォルトで表示した場合、高さに差がでてしまう" title="before" width=1610 height=1134>
       </p>
       <p>ここで、 Webfont 側に以下のようなスタイルを当てると、ある程度レイアウトの差分を減らすことができるとわかった。
-      <pre class=css><code translate="no">:root {
+      <pre class=css><code translate=no>:root {
   --line-height: 23px;
   --letter-spacing: 0.2px;
   --word-spacing: 0px;
@@ -891,9 +891,9 @@
       <p>しかし、プラットフォームごとにフォールバックフォントは違うため、この方法では環境ごとに Noto Sans 側のスタイルを出し分ける必要が出てしまう。
       <p>恐らく、実運用を考えるのであれば、プラットフォームごとのフォールバックフォント側のスタイルを上書きしておくことになると思われる。
       <p>例えば、以下のように WebFont である Noto Sans を優先しつつ、フォールバックとして 2 つのフォントを定義する場合を考える。
-      <pre class=css><code translate="no">font-family: &quot;Noto Sans Webfont&quot;, &quot;Osaka&quot;, &quot;Meiryo&quot;;</code></pre>
+      <pre class=css><code translate=no>font-family: &quot;Noto Sans Webfont&quot;, &quot;Osaka&quot;, &quot;Meiryo&quot;;</code></pre>
       <p>読み込む Noto Sans の設定は固定できるので、それに合わせてフォールバックフォントの 2 つを上書きする。
-      <pre class=css><code translate="no">:root {
+      <pre class=css><code translate=no>:root {
   --line-height: xxpx;
   --letter-spacing: xxpx;
   --word-spacing: x.xpx;
@@ -916,7 +916,7 @@
   line-gap-override: xx%;
   advance-override: xx;
 }</code></pre>
-      <p><code translate="no">line-height</code> などの値は共通に固定し、 font-metrics で微調整する感じになるだろうか。
+      <p><code translate=no>line-height</code> などの値は共通に固定し、 font-metrics で微調整する感じになるだろうか。
     </section>
     <section>
       <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>

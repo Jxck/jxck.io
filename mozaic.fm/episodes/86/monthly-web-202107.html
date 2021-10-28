@@ -287,28 +287,28 @@
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/YoefXLTQsw0/m/NVoV6NcIAgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/YoefXLTQsw0/m/NVoV6NcIAgAJ</a>
                   <li>
-                    <code translate="no">getDisplayMedia()</code> でユーザに Tab, Window, Display を選ばせる際に、 Tab を推奨するための属性を追加
+                    <code translate=no>getDisplayMedia()</code> でユーザに Tab, Window, Display を選ばせる際に、 Tab を推奨するための属性を追加
                   </li>
                   <li>
-                    別途 <code translate="no">getViewportMedia()</code> も提案されているがまだ策定初期段階なので属性を追加するもの
+                    別途 <code translate=no>getViewportMedia()</code> も提案されているがまだ策定初期段階なので属性を追加するもの
                   </li>
                   <li>
-                    <code translate="no">getDisplayMedia()</code> の仕様では「ソースの選択を制限するような実装をしてはいけない」という制約があるので、 Moziila は <code translate="no">harmful</code>
+                    <code translate=no>getDisplayMedia()</code> の仕様では「ソースの選択を制限するような実装をしてはいけない」という制約があるので、 Moziila は <code translate=no>harmful</code>
                   </li>
                 </ul>
               </li>
               <li>
-                <em>Ship: Feature Policy: <code translate="no">diplay-capture</code></em>
+                <em>Ship: Feature Policy: <code translate=no>diplay-capture</code></em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/pNPotQY92UY/m/thZ3h-zQAQAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/pNPotQY92UY/m/thZ3h-zQAQAJ</a>
                   <li>
-                    <code translate="no">getDisplayMedia()</code> のための Policy
+                    <code translate=no>getDisplayMedia()</code> のための Policy
                   </li>
                   <li>Safari/Firefox は実装済み
                 </ul>
               </li>
               <li>
-                <em>Ship: CSS Overflow <code translate="no">scrollbar-gutter</code></em>
+                <em>Ship: CSS Overflow <code translate=no>scrollbar-gutter</code></em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/71vtc_Xv7jk/m/EezoVS9dBQAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/71vtc_Xv7jk/m/EezoVS9dBQAJ</a>
                   <li>Scroll Bar が表示されることで表示領域が狭まり Layout Shift が発生することがある
@@ -333,7 +333,7 @@
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/4LWMf_tZwtw">https://groups.google.com/a/chromium.org/g/blink-dev/c/4LWMf_tZwtw</a>
                   <li>
-                    <code translate="no">preserve-3d</code> を指定したときの重なりが DOM ではなくコンテナブロックになっていた
+                    <code translate=no>preserve-3d</code> を指定したときの重なりが DOM ではなくコンテナブロックになっていた
                   </li>
                   <li>仕様が変わったので修正する
                 </ul>
@@ -361,10 +361,10 @@
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/lzcWR4Q97ik/m/GvFidwZtEwAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/lzcWR4Q97ik/m/GvFidwZtEwAJ</a>
                   <li>
-                    CSS の幅や高さには px や em 以外にも <code translate="no">min-content</code> や <code translate="no">max-content</code> といったキーワードの値を指定できる
+                    CSS の幅や高さには px や em 以外にも <code translate=no>min-content</code> や <code translate=no>max-content</code> といったキーワードの値を指定できる
                   </li>
                   <li>
-                    <code translate="no">flex-basis</code> でそのキーワードを解釈するようにする
+                    <code translate=no>flex-basis</code> でそのキーワードを解釈するようにする
                   </li>
                 </ul>
               </li>
@@ -388,7 +388,7 @@
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/jEV2VMVjMt8/m/rogFnr6xAgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/jEV2VMVjMt8/m/rogFnr6xAgAJ</a>
                   <li>
-                    <code translate="no">access-control-request-header: *</code> などで使われる <code translate="no">*</code> は <code translate="no">Authorization</code> を含まないという仕様がある
+                    <code translate=no>access-control-request-header: *</code> などで使われる <code translate=no>*</code> は <code translate=no>Authorization</code> を含まないという仕様がある
                   </li>
                   <li>これに準拠してなかったものを準拠するように変える
                 </ul>
@@ -435,7 +435,7 @@
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/Sdc0G1bvKr0/m/YHR8RuWyAAAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/Sdc0G1bvKr0/m/YHR8RuWyAAAJ</a>
                   <li>
-                    これまで <code translate="no">require-corp</code> で明示的に CORP で許可されたものだけにしてたが制限がきつかった
+                    これまで <code translate=no>require-corp</code> で明示的に CORP で許可されたものだけにしてたが制限がきつかった
                   </li>
                   <li>パーソナライズされてないページであれば盗めるものはないので許しても良いはず
                   <li>Credential を送らないことで読み込みの制限を緩和する提案
@@ -466,7 +466,7 @@
                   <li>SW をすべてのリクエストが通るとオーバーヘッドが大きい
                   <li>そのパスをコントロールする API が欲しいが、その前に有用かどうかテストしたい
                   <li>
-                    <code translate="no">Service-Worker-Subresource-Filter: foo</code> だと foo を含むパスだけがヒットするように
+                    <code translate=no>Service-Worker-Subresource-Filter: foo</code> だと foo を含むパスだけがヒットするように
                   </li>
                   <li>まずこれで試して、有用なら指定方法の詳細なスペックを考える
                 </ul>
@@ -478,7 +478,7 @@
                 </ul>
               </li>
               <li>
-                Extend Experiment: <code translate="no">getCurrentBrowsingContextMedia()</code>
+                Extend Experiment: <code translate=no>getCurrentBrowsingContextMedia()</code>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/GwqZhE7ufXU/m/wUu9NV5pAQAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/GwqZhE7ufXU/m/wUu9NV5pAQAJ</a>
                 </ul>
@@ -555,7 +555,7 @@
                   <li>Intent to Remove: Cross origin subframe JS Dialogs
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/m/2So3_HlzAgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/m/2So3_HlzAgAJ</a>
                   <li>
-                    Request for Deprecation Trial: Remove <code translate="no">alert()</code>, <code translate="no">confirm()</code>, and prompt for cross origin iframes
+                    Request for Deprecation Trial: Remove <code translate=no>alert()</code>, <code translate=no>confirm()</code>, and prompt for cross origin iframes
                   </li>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4">https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4</a>
                   <li>もともと I2R がでていたもの
@@ -563,7 +563,7 @@
                   <li>すでに Reverse OT があるので OT が終わる 12/15 までに移行する必要
                   <li><a href="https://portswigger.net/research/alert-is-dead-long-live-print">https://portswigger.net/research/alert-is-dead-long-live-print</a>
                   <li>
-                    XSS の PoC には <code translate="no">alert()</code> ではなく <code translate="no">print()</code> を使おうという話も
+                    XSS の PoC には <code translate=no>alert()</code> ではなく <code translate=no>print()</code> を使おうという話も
                   </li>
                   <li><a href="https://github.com/whatwg/html/issues/5407">https://github.com/whatwg/html/issues/5407</a>
                   <li><a href="https://github.com/whatwg/html/issues/6897">https://github.com/whatwg/html/issues/6897</a>
@@ -676,7 +676,7 @@
                     </ul>
                   </li>
                   <li>
-                    <em>Load cross-origin resources without CORP headers using <code translate="no">COEP: credentialless</code> - Chrome Developers</em>
+                    <em>Load cross-origin resources without CORP headers using <code translate=no>COEP: credentialless</code> - Chrome Developers</em>
                     <ul>
                       <li><a href="https://developer.chrome.com/en/blog/coep-credentialless-origin-trial/">https://developer.chrome.com/en/blog/coep-credentialless-origin-trial/</a>
                     </ul>
@@ -839,7 +839,7 @@
                 </ul>
               </li>
               <li>
-                <em>Ship: <code translate="no">size-adjust</code> descriptor, extended <code translate="no">font-size-adjust</code> syntax</em>
+                <em>Ship: <code translate=no>size-adjust</code> descriptor, extended <code translate=no>font-size-adjust</code> syntax</em>
                 <ul>
                   <li><a href="https://groups.google.com/a/mozilla.org/g/dev-platform/c/RLqcyCotcdo/m/KRrrCfQGDQAJ">https://groups.google.com/a/mozilla.org/g/dev-platform/c/RLqcyCotcdo/m/KRrrCfQGDQAJ</a>
                 </ul>
@@ -878,7 +878,7 @@
                   <li><a href="https://hacks.mozilla.org/2021/07/getting-lively-with-firefox-90/">https://hacks.mozilla.org/2021/07/getting-lively-with-firefox-90/</a>
                   <li>Classes go private
                   <li>
-                    JavaScript <code translate="no">at()</code> method
+                    JavaScript <code translate=no>at()</code> method
                   </li>
                   <li>Conic gradients for Canvas
                   <li>
@@ -966,14 +966,14 @@
                 <ul>
                   <li><a href="https://webkit.org/blog/11736/release-notes-for-safari-technology-preview-127/">https://webkit.org/blog/11736/release-notes-for-safari-technology-preview-127/</a>
                   <li>Added discrete animation support for grid-template-columns and grid-template-rows (r278173)
-                  <li><em>Added support for <code translate="no">calc()</code> on components inside relative color syntax colors (r278261, r278304)</em>
-                  <li><em>Added support for &quot;relative color syntax&quot; for <code translate="no">color()</code> (r278364)</em>
+                  <li><em>Added support for <code translate=no>calc()</code> on components inside relative color syntax colors (r278261, r278304)</em>
+                  <li><em>Added support for &quot;relative color syntax&quot; for <code translate=no>color()</code> (r278364)</em>
                   <li>Added additional target luminance keywords for color-contrast() (r278262)
                   <li><em>Added support for Ergonomic Brand Checks proposal (e.g. #x in object) behind the&ndash;usePrivateIn flag (r277926)</em>
                   <li>Added MediaSession.callActionHandler (r278222)
                   <li>Added support for creating, accessing, and setting non-sRGB ImageData via canvas (r277569)
                   <li>Added support for dispatching wheel events with ctrlKey on pinch gestures, which is commonly used for zooming embedded maps (r277772)
-                  <li><em>Enabled <code translate="no">&lt;summary&gt;</code> to be a flex container (r278280)</em>
+                  <li><em>Enabled <code translate=no>&lt;summary&gt;</code> to be a flex container (r278280)</em>
                 </ul>
               </li>
               <li>
@@ -984,7 +984,7 @@
                   <li>Added a mechanism to regenerate text in an image element when it changes dimensions (r278747)
                   <li>Implemented performance.timeOrigin (r278665)
                   <li><em>Adjusted fetch port blocking for ports 990, 989 (r279099)</em>
-                  <li><em>Implemented width and height attributes on source elements of <code translate="no">&lt;picture&gt;</code> (r279108)</em>
+                  <li><em>Implemented width and height attributes on source elements of <code translate=no>&lt;picture&gt;</code> (r279108)</em>
                 </ul>
               </li>
               <li>
@@ -1500,7 +1500,7 @@
             <li>約 1 万行のコードと、コードを表示した動画、 SVG 、 TBL のメッセージ README が同梱
             <li>サザビーズで 543 万ドルで落札(6 万円/行)され、収益はチャリティへ
             <li>
-              動画の中の <code translate="no">&lt;&gt;</code> が何故か <code translate="no">&amp;lt; &amp;gt;</code> にエンコードされて表示されていた
+              動画の中の <code translate=no>&lt;&gt;</code> が何故か <code translate=no>&amp;lt; &amp;gt;</code> にエンコードされて表示されていた
             </li>
             <li><a href="https://github.com/cynthia/WorldWideWeb">https://github.com/cynthia/WorldWideWeb</a>
             <li><em>Chrome 100 - Does it break user agent checking?</em>
@@ -1542,7 +1542,7 @@
                 <li>COEP: credentialless
                 <li>Subresource Web Bundle OT 終了
                 <li>Error Cause
-                <li><code translate="no">Object.hasOwn()</code>
+                <li><code translate=no>Object.hasOwn()</code>
                 <li>prefer: CurrentTab と mozilla の position
                 <li>UA-CH と windows の version を細かくする話
                 <li>Cookie Size Limits

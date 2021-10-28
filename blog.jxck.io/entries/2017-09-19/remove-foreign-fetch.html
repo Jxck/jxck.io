@@ -189,13 +189,13 @@
           <h3 id="3rd-party-cookie-tracking"><a href="#3rd-party-cookie-tracking">3rd party cookie tracking</a></h3>
           <p>まず、 3rd Party Cookie による行動追跡について簡単に解説する。
           <p>例えば、本サイト (jxck.io) が EC サイト(ec.example.com) の Ad などを埋め込んでいたとする。
-          <p>すると、 jxck.io の閲覧者には ec.example.com からの <code translate="no">Set-Cookie</code> が送られ、保存される。
+          <p>すると、 jxck.io の閲覧者には ec.example.com からの <code translate=no>Set-Cookie</code> が送られ、保存される。
           <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-          <pre class=http><code translate="no">// response-from: ec.example.com
+          <pre class=http><code translate=no>// response-from: ec.example.com
 Set-Cookie: history=jxck.io</code></pre>
           <p>同じく、筆者が保有する別のサイト (mozaic.fm) にも同じ Ad が含まれていたとした場合。
           <p>ユーザが mozaic.fm を閲覧すると、 Ad を取得する時に以下のように Cookie が送られる。
-          <pre class=http><code translate="no">// request-for: ec.example.com
+          <pre class=http><code translate=no>// request-for: ec.example.com
 Cookie: history=jxck.io</code></pre>
           <p>すると Ad プロバイダは、このユーザが過去に jxck.io を閲覧したということがわかる。
           <p>おおよそこのように行われるのが、 3rd Party Cookie によるユーザの行動追跡となる。
