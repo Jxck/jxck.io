@@ -21,7 +21,7 @@ TODO になっている動画は、そのうち撮って追加します。
 1. [#claim](#claim)
 2. [#controllerchange](#controllerchange)
 3. [#updatefound](#updatefound)
-4. [#update()](#update())
+4. [#update()](#update)
 5. [#backgroundsync](#backgroundsync)
 6. [#push](#push)
   1. [#1. Google Developer Console](#1.+Google+Developer+Console)
