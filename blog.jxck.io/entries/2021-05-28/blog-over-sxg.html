@@ -295,15 +295,15 @@ dump-certurl -i cert.cbor</code></pre>
           <p>まず、 Network の Timeline 上は SXG のレスポンスと CBOR リクエストが続き、 SXG から取り出された HTML が取得されている。
           <p>
             <picture>
-              <source type=image/webp srcset=sxg-timeline.webp?210528_012414#2390x300>
-              <img loading=lazy decoding=async src=sxg-timeline.png?210528_012414#2390x300 alt="SXG レスポンス、 CBOR レスポンス、 SXG から取り出された HTML の順に取得されている Devtools Timeline の図" title="" width=2390 height=300>
+              <source type=image/webp srcset=sxg-timeline.webp?210528_012414>
+              <img loading=lazy decoding=async src=sxg-timeline.png?210528_012414 alt="SXG レスポンス、 CBOR レスポンス、 SXG から取り出された HTML の順に取得されている Devtools Timeline の図" title="" width=2390 height=300>
             </picture>
           </p>
           <p>SXG の Preview タブを見ると、 Signature や Certificate も正しく解釈されていることが確認できる。
           <p>
             <picture>
-              <source type=image/webp srcset=sxg-response.webp?210528_012414#2128x1192>
-              <img loading=lazy decoding=async src=sxg-response.png?210528_012414#2128x1192 alt="SXG の Signature や Certificate が正しく解釈されている Devtools の Preview の図" title="" width=2128 height=1192>
+              <source type=image/webp srcset=sxg-response.webp?210528_012414>
+              <img loading=lazy decoding=async src=sxg-response.png?210528_012414 alt="SXG の Signature や Certificate が正しく解釈されている Devtools の Preview の図" title="" width=2128 height=1192>
             </picture>
           </p>
         </section>
@@ -326,8 +326,8 @@ dump-certurl -i cert.cbor</code></pre>
           <p>しかし、本サイトは既に <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> と <a href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html">AMP SXG</a> に対応しているため、モバイルの検索結果では AMP がヒットし、 AMP SXG がリンクされている。
           <p>
             <picture>
-              <source type=image/webp srcset=gsrp-amp.jpeg?211016_025159#2322x684>
-              <img loading=lazy decoding=async src=gsrp-amp.jpeg?211016_025159#2322x684 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" title="" width=2322 height=684>
+              <source type=image/webp srcset=gsrp-amp.jpeg?211016_025159>
+              <img loading=lazy decoding=async src=gsrp-amp.jpeg?211016_025159 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" title="" width=2322 height=684>
             </picture>
           </p>
           <p>どうやら Non AMP SXG がクロールされても、同時に AMP および AMP SXG に対応している場合は、現状 AMP 側が優先されるようだ。
@@ -358,22 +358,22 @@ dump-certurl -i cert.cbor</code></pre>
           <p>また、ページの DOM 中に <code translate=no>&lt;link rel=prefetch&gt;</code> が挿入されていることが確認できる。
           <p>
             <picture>
-              <source type=image/webp srcset=gsrp-sxg.jpeg?211016_025159#2406x774>
-              <img loading=lazy decoding=async src=gsrp-sxg.jpeg?211016_025159#2406x774 alt="Non AMP SXG が Prefetch されている" title="" width=2406 height=774>
+              <source type=image/webp srcset=gsrp-sxg.jpeg?211016_025159>
+              <img loading=lazy decoding=async src=gsrp-sxg.jpeg?211016_025159 alt="Non AMP SXG が Prefetch されている" title="" width=2406 height=774>
             </picture>
           </p>
           <p>これにより、検索結果を表示した時点で HTML は Google の SXG Cache から取得されている。
           <p>
             <picture>
-              <source type=image/webp srcset=sxg-prefetch.webp?210528_012414#3030x742>
-              <img loading=lazy decoding=async src=sxg-prefetch.png?210528_012414#3030x742 alt="検索結果を表示した時点で HTML は Google の SXG Cache から取得されている" title="" width=3030 height=742>
+              <source type=image/webp srcset=sxg-prefetch.webp?210528_012414>
+              <img loading=lazy decoding=async src=sxg-prefetch.png?210528_012414 alt="検索結果を表示した時点で HTML は Google の SXG Cache から取得されている" title="" width=3030 height=742>
             </picture>
           </p>
           <p>実際に検索結果に遷移すると、 HTTP Request は筆者のサーバには発生せず、 Prefetch された HTML から展開されていることがわかる。
           <p>
             <picture>
-              <source type=image/webp srcset=sxg-navigate.webp?210528_012414#3044x736>
-              <img loading=lazy decoding=async src=sxg-navigate.png?210528_012414#3044x736 alt="検索結果に遷移すると Prefetch した HMTL が展開されている" title="" width=3044 height=736>
+              <source type=image/webp srcset=sxg-navigate.webp?210528_012414>
+              <img loading=lazy decoding=async src=sxg-navigate.png?210528_012414 alt="検索結果に遷移すると Prefetch した HMTL が展開されている" title="" width=3044 height=736>
             </picture>
           </p>
           <p>このとき(スクショでは切れているが)、アドレスバーには SXG Cache の URL である <code translate=no>https://blog-jxck-io.webpkgcache.com/</code> ではなく、 SXG を検証した結果として <code translate=no>https://blog.jxck.io</code> が表示されている。
