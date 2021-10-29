@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep60 Monthly Web 201911
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep60.mp3
+published_at: 2019-12-08
+guest: [@arayaryoma](https://twitter.com/arayaryoma)
+---
 
-published_at
-: 2019-12-08
-
-guest
-: [@arayaryoma](https://twitter.com/arayaryoma)
-
+# [monthly-web][mozaic.fm] ep60 Monthly Web 201911
 
 ## Theme
 

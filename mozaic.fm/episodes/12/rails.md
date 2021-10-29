@@ -1,16 +1,12 @@
-# [rails][igrigorik][mozaic.fm] ep12 Rails
-
-
-## Info
-
+---
+type: podcast
+tags: ["rails"]
 audio: https://files.mozaic.fm/mozaic-ep12.mp3
+published_at: 2014-12-07
+guest: [@a_matsuda](https://twitter.com/a_matsuda)
+---
 
-published_at
-: 2014-12-07
-
-guest
-: [@a_matsuda](https://twitter.com/a_matsuda)
-
+# [rails][igrigorik][mozaic.fm] ep12 Rails
 
 ## Theme
 
@@ -20,16 +16,15 @@ guest
 
 プロジェクトオーナーである DHH が最初の Rails をリリースしてから 10 年たった今、この 10 年を見てきた [@a_matsuda](https://twitter.com/a_matsuda/) さんとともに、 10 年前と比べて様変わりしたフロントエンド開発との兼ね合いや、 Microservices に対する感触などについて議論しました。
 
-
 ## Show Note
 
 - [Ruby on Rails](http://rubyonrails.org/)
 - [Rails の歴史](http://ja.wikipedia.org/wiki/Ruby_on_Rails) (Wikipedia 引用)
   - 2004/7 最初のバージョン公開
   - 2005/12/13 ver 1.0 リリース
-  - 2007/12/7  ver 2.0 リリース
-  - 2010/8/29  ver 3.0 リリース
-  - 2013/6/27  ver 4.0 リリース
+  - 2007/12/7 ver 2.0 リリース
+  - 2010/8/29 ver 3.0 リリース
+  - 2013/6/27 ver 4.0 リリース
 - 今年中盤くらいにあった投稿
   - [Rails が時代に合わなくなってきた](http://qiita.com/kaiinui/items/2781219340d427543d08)
   - [「Rails が時代に合わなくなってきた」のフォロー](http://wazanova.jp/items/1361)

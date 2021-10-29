@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep55 Monthly Web 201907
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep55.mp3
+published_at: 2019-08-01
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2019-08-01
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep55 Monthly Web 201907
 
 ## Theme
 

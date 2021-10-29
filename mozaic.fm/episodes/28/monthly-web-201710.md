@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep28 Monthly Web 201710
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep28.mp3
+published_at: 2017-11-01
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2017-11-01
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep28 Monthly Web 201710
 
 ## Theme
 
@@ -20,9 +16,7 @@ Monthly Web のモチベーションについては以下。
 
 [ep25 Monthly Web 201707](https://mozaic.fm/episodes/25/monthly-web-201707.html)
 
-
 ## Show Note
-
 
 ### Chrome 動向
 
@@ -214,7 +208,6 @@ Monthly Web のモチベーションについては以下。
     - <https://twitter.com/owencm/status/913059860215762944>
     - PWA だと URL バーなかったりするのが問題だよねという声に答えようとしているよという話
 
-
 ### Firefox 動向
 
 - Firefox 56 Stable
@@ -291,7 +284,6 @@ Monthly Web のモチベーションについては以下。
     - Android 版 Firefox でも Stylo をビルドするように(58)
     - 59 でデフォルト有効を目指しているよう
 
-
 ### Safari 動向
 
 - Safari Technology Preview 41
@@ -325,7 +317,6 @@ Monthly Web のモチベーションについては以下。
     - <https://lists.webkit.org/pipermail/webkit-dev/2017-October/029693.html>
     - HTML の `<menu>` と `<menuitem>` を再利用する方向で検討中
 
-
 ### Edge 動向
 
 - EdgeHTML
@@ -349,7 +340,6 @@ Monthly Web のモチベーションについては以下。
     - HTML, HTTP, HTTPS などあらゆるものを lint できるツールの紹介
   - Microsoft Edge for iOS and Android: What developers need to know
     - <https://blogs.windows.com/msedgedev/2017/10/05/microsoft-edge-ios-android-developer/>
-
 
 ### WHATWG/W3C 標準動向
 
@@ -441,7 +431,6 @@ Monthly Web のモチベーションについては以下。
     - Mixed Content を更新していくロードマップ
     - Upgrade-Insecure-Request を消して、デフォルト動作にするなど
 
-
 ### TC39 標準動向
 
 - 取りこぼし ECMAScript, TC39, and the History of JavaScript
@@ -461,7 +450,6 @@ Monthly Web のモチベーションについては以下。
   - イテレーションの中で使えるようにイテレータで取り出す API
 - proposal-block-params
   - <https://github.com/samuelgoto/proposal-block-params>
-
 
 ### IETF 標準動向
 
@@ -532,7 +520,6 @@ Monthly Web のモチベーションについては以下。
       - HTTP/1.1 の更新を進めるという話
       - IETF でもスケジュールあり
 
-
 ### 周辺動向
 
 - MDN への Documentation リソース統合
@@ -565,7 +552,6 @@ Monthly Web のモチベーションについては以下。
 - Get ready for TLS 1.3 \| Akamai Community
   - <https://community.akamai.com/community/web-performance/blog/2017/10/25/get-ready-for-tls-13>
   - Akamai で TLS1.3 beta リリース
-
 
 ### イベント
 

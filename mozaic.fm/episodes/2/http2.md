@@ -1,19 +1,13 @@
-# [http2][tatsuhiro_t][jovi0608][mozaic.fm] ep2 HTTP2
-
-
-## Info
-
+---
+type: podcast
+tags: ["http2"]
 audio: https://files.mozaic.fm/mozaic-ep2.mp3
+published_at: 2014-04-22
+guest: [@tatsuhiro_t](https://twitter.com/tatsuhiro_t)
+guest: [@jovi0608](https://twitter.com/jovi0608)
+---
 
-published_at
-: 2014-04-22
-
-guest
-: [@tatsuhiro_t](https://twitter.com/tatsuhiro_t)
-
-guest
-: [@jovi0608](https://twitter.com/jovi0608)
-
+# [http2][tatsuhiro_t][jovi0608][mozaic.fm] ep2 HTTP2
 
 ## Theme
 
@@ -22,7 +16,6 @@ guest
 今回は [@tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんと [@jovi0608](https://twitter.com/jovi0608) さんをお迎えし HTTP の世界で、「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
 なお、今回は編集で収まりきらなかった 「Nghttp2 の今後」について、番外編として後日配信する予定です。ユーザの方は必聴です。
-
 
 ## Show Note
 

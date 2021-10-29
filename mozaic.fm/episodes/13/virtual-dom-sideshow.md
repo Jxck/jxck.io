@@ -1,23 +1,18 @@
-# [virtual dom][react][flex][mizchi][mozaic.fm] ep13 Virtual DOM sideshow
-
-
-## Info
-
+---
+type: podcast
+tags: ["virtual dom", "react", "flex", "sideshow"]
 audio: https://files.mozaic.fm/mozaic-ep13.sideshow.mp3
+published_at: 2014-12-31
+guest: [@mizchi](https://twitter.com/mizchi)
+---
 
-published_at
-: 2014-12-31
-
-guest
-: [@mizchi](https://twitter.com/mizchi)
-
+# [virtual dom][react][flex][mizchi][mozaic.fm] ep13 Virtual DOM sideshow
 
 ## Theme
 
 第 13 回 Virtual DOM の SideShow です。
 
 [@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。
-
 
 ## Show Note
 

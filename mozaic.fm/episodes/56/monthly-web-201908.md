@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep56 Monthly Web 201908
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep56.mp3
+published_at: 2019-09-01
+guest: [@shqld](https://twitter.com/shqld)
+---
 
-published_at
-: 2019-09-01
-
-guest
-: [@shqld](https://twitter.com/shqld)
-
+# [monthly-web][mozaic.fm] ep56 Monthly Web 201908
 
 ## Theme
 

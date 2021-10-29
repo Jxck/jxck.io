@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep74 Monthly Web 202009
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep74.mp3
+published_at: 2020-10-06
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2020-10-06
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep74 Monthly Web 202009
 
 ## Theme
 

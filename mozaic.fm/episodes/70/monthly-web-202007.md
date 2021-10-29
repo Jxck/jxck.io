@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep70 Monthly Web 202007
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep70.mp3
+published_at: 2020-08-11
+guest: [@shqld](https://twitter.com/shqld)
+---
 
-published_at
-: 2020-08-11
-
-guest
-: [@shqld](https://twitter.com/shqld)
-
+# [monthly-web][mozaic.fm] ep70 Monthly Web 202007
 
 ## Theme
 

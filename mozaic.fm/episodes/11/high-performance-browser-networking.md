@@ -1,16 +1,12 @@
-# [performance][network][igrigorik][mozaic.fm] ep11 High Performance Browser Networking
-
-
-## Info
-
+---
+type: podcast
+tags: ["performance", "network"]
 audio: https://files.mozaic.fm/mozaic-ep11.mp3
+published_at: 2014-11-10
+guest: [@igrigorik](https://twitter.com/igrigorik)
+---
 
-published_at
-: 2014-11-10
-
-guest
-: [@igrigorik](https://twitter.com/igrigorik)
-
+# [performance][network][igrigorik][mozaic.fm] ep11 High Performance Browser Networking
 
 ## Theme
 
@@ -23,7 +19,6 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 インタビューでは Ilya はいったいどういうエンジニアで、何故この本を執筆したのか。この本以降でのアップデートや、 Ilya 自身の見る「これからの Web」について、何がおこっているのか?、これからどうなっていくのか?をお聞きしました。
 
 別途 [Qiita で募集した質問](http://qiita.com/Jxck_/items/a0cea350cc982915d092) も一部採用させていただきました。応募頂いた皆様ありがとうございました。
-
 
 ## Show Note
 

@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep62 Monthly Web 202001
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep62.mp3
+published_at: 2020-02-03
+guest: [@myakura](https://twitter.com/yakura)
+---
 
-published_at
-: 2020-02-03
-
-guest
-: [@myakura](https://twitter.com/yakura)
-
+# [monthly-web][mozaic.fm] ep62 Monthly Web 202001
 
 ## Theme
 

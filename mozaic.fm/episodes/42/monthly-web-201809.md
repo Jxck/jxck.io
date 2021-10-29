@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep42 Monthly Web 201809
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep42.mp3
+published_at: 2018-09-29
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2018-09-29
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep42 Monthly Web 201809
 
 ## Theme
 

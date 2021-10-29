@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep57 Monthly Web 201909
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep57.mp3
+published_at: 2019-10-04
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2019-10-04
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep57 Monthly Web 201909
 
 ## Theme
 

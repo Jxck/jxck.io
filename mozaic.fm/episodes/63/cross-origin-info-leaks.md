@@ -1,16 +1,12 @@
-# [cookie][site isolation][security][mozaic.fm] ep63 Cross Origin Info Leaks
-
-
-## Info
-
+---
+type: podcast
+tags: ["cookie", "site isolation", "security"]
 audio: https://files.mozaic.fm/mozaic-ep63.mp3
+published_at: 2020-02-11
+guest: [@shhnjk](https://twitter.com/shhnjk)
+---
 
-published_at
-: 2020-02-11
-
-guest
-: [@shhnjk](https://twitter.com/shhnjk)
-
+# [cookie][site isolation][security][mozaic.fm] ep63 Cross Origin Info Leaks
 
 ## Theme
 

@@ -1,19 +1,13 @@
-# [webrtc][komasshu][tukimikage][mozaic.fm] ep6 WebRTC
-
-
-## Info
-
+---
+type: podcast
+tags: ["webrtc"]
 audio: https://files.mozaic.fm/mozaic-ep6.mp3
+published_at: 2014-08-04
+guest: [@komasshu](https://twitter.com/komasshu)
+guest: [@Tukimikage](https://twitter.com/Tukimikage)
+---
 
-published_at
-: 2014-08-04
-
-guest
-: [@komasshu](https://twitter.com/komasshu)
-
-guest
-: [@Tukimikage](https://twitter.com/Tukimikage)
-
+# [webrtc][komasshu][tukimikage][mozaic.fm] ep6 WebRTC
 
 ## Theme
 
@@ -22,7 +16,6 @@ guest
 今回は [@komasshu](https://twitter.com/komasshu) さんと、 [@Tukimikage](https://twitter.com/Tukimikage) さんをお迎えし WebRTC をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」をたっぷり議論しました。
 
 (NAT をアドレストランスポートと言い間違ってますが、そっとしておいてあげて下さい)
-
 
 ## Show Note
 

@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep85 Monthly Web 202106
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep85.mp3
+published_at: 2021-06-29
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2021-06-29
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep85 Monthly Web 202106
 
 ## Theme
 

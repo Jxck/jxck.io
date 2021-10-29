@@ -1,16 +1,12 @@
-# [es7][javascript][constellation][mozaic.fm] ep19 ES7 sideshow
-
-
-## Info
-
+---
+type: podcast
+tags: ["es7", "javascript", "sideshow"]
 audio: https://files.mozaic.fm/mozaic-ep19.sideshow.mp3
+published_at: 2015-08-05
+guest: [@Constellation](https://twitter.com/Constellation)
+---
 
-published_at
-: 2015-08-05
-
-guest
-: [@Constellation](https://twitter.com/Constellation)
-
+# [es7][javascript][constellation][mozaic.fm] ep19 ES7 sideshow
 
 ## Theme
 
@@ -21,7 +17,6 @@ guest
 なお、エピソード内で「何よりも ES6 module が欲しい」という要望を出していましたが、 [@Constellation](https://twitter.com/Constellation) さんが、 [実装に着手してくれました!!](https://plus.google.com/+YusukeSUZUKI/posts/CtKaHMhXrEH) 楽しみに待ちましょう!!
 
 [Bug 147340 - [ES6] Implement ES6 Modules](https://bugs.webkit.org/show_bug.cgi%3Fid%3D147340)
-
 
 ## Show Note
 

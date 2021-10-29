@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep64 Monthly Web 202002
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep64.mp3
+published_at: 2020-03-02
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2020-03-02
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep64 Monthly Web 202002
 
 ## Theme
 

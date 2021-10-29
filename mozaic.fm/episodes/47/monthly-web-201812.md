@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep47 Monthly Web 201812
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep47.mp3
+published_at: 2019-01-20
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2019-01-20
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep47 Monthly Web 201812
 
 ## Theme
 

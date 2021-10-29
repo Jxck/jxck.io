@@ -1,26 +1,19 @@
-# [node.js][koichik][yosuke_furukawa][mozaic.fm] ep10 Node.js sideshow
-
-
-## Info
-
+---
+type: podcast
+tags: ["node.js", "sideshow"]
 audio: https://files.mozaic.fm/mozaic-ep10.sideshow.mp3
+published_at: 2014-10-23
+guest: [@koichik](https://twitter.com/koichik)
+guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
+---
 
-published_at
-: 2014-10-23
-
-guest
-: [@koichik](https://twitter.com/koichik)
-
-guest
-: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
-
+# [node.js][koichik][yosuke_furukawa][mozaic.fm] ep10 Node.js sideshow
 
 ## Theme
 
 第 10 回 Node.js の SideShow です。
 
 [@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Java の Future や Haskell の Monad との関係などの解説です。
-
 
 ## Show Note
 
@@ -39,7 +32,7 @@ guest
   - [Haskell の I/O monad](http://www.haskell.org/haskellwiki/IO_inside%23Dark_side_of_IO_monad)
   - [Haskell の do 記法](http://en.wikibooks.org/wiki/Haskell/Syntactic_sugar%23Do_and_proc_notation)
 - 18:45 ~ : genrator ってどうなの?
-  - [function*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function%2A)
+  - [function\*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function%2A)
 - 20:50 ~ : generator と Go の groutine/channel
   - [Go の Channel](http://golang.org/ref/spec%23Channel_types)
   - [Generator のスクリーンキャスト](http://jxck.hatenablog.com/entry/2014-01-12/generator-screencaset)

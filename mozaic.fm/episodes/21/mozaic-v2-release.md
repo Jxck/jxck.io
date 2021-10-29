@@ -1,13 +1,11 @@
-# [release note][jxck][mozaic.fm] ep21 mozaic.fm v2 release note
-
-
-## Info
-
+---
+type: podcast
+tags: ["mozaic.fm", "release note"]
 audio: https://files.mozaic.fm/mozaic-ep21.mp3
+published_at: 2016-06-20
+---
 
-published_at
-: 2016-06-20
-
+# [release note][jxck][mozaic.fm] ep21 mozaic.fm v2 release note
 
 ## Theme
 
@@ -46,7 +44,6 @@ mozaic.fm の v2 をリリースしました。 breaking change があるので�
 不具合などがあった場合は、 [@jxck_](https://twitter.com/jxck_) までおしらせください。
 
 mozaic.fm を引き続きよろしくお願いいたします。
-
 
 ## Show Note
 

@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep76 Monthly Web 202011
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep76.mp3
+published_at: 2020-12-05
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2020-12-05
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep76 Monthly Web 202011
 
 ## Theme
 

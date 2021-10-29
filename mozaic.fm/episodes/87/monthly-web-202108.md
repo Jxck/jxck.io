@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep87 Monthly Web 202108
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep87.mp3
+published_at: 2021-08-23
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2021-08-23
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep87 Monthly Web 202108
 
 ## Theme
 

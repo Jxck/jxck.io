@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep33 Monthly Web 201801
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep33.mp3
+published_at: 2018-02-02
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2018-02-02
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep33 Monthly Web 201801
 
 ## Theme
 

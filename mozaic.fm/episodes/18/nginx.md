@@ -1,16 +1,12 @@
-# [nginx][cubicdaiya][mozaic.fm] ep18 Nginx
-
-
-## Info
-
+---
+type: podcast
+tags: ["nginx"]
 audio: https://files.mozaic.fm/mozaic-ep18.mp3
+published_at: 2015-06-01
+guest: [@cubicdaiya](https://twitter.com/cubicdaiya)
+---
 
-published_at
-: 2015-06-01
-
-guest
-: [@cubicdaiya](https://twitter.com/cubicdaiya)
-
+# [nginx][cubicdaiya][mozaic.fm] ep18 Nginx
 
 ## Theme
 
@@ -18,9 +14,7 @@ guest
 
 今回は [@cubicdaiya](https://twitter.com/cubicdaiya) さんをお迎えして、 すっかり HTTP サーバのデファクトの地位につきつつある Nginx について、なぜ Nginx を選ぶのか、 Nginx から見た現在の Web にはどういう変化があるのか。 そして Nginx はこれからどうなっていくのか、それが Web にどんな変化をもたらすのかを議論しました。
 
-
 ## Show Note
-
 
 ### Nginx を使い始めた理由(0:00~)
 
@@ -30,7 +24,6 @@ guest
 - [h2o](https://h2o.examp1e.net)
 - [Web+DB Press Vol.72](http://gihyo.jp/magazine/wdpress/archive/2013/vol72)
 - [WebP](https://developers.google.com/speed/webp/)
-
 
 ### Nginx のアーキテクチャ(7:26~)
 
@@ -46,12 +39,10 @@ guest
 - [Unicorn](http://unicorn.bogomips.org/)
 - [Starman](http://search.cpan.org/%7Emiyagawa/Starman-0.4013/lib/Starman.pm)
 
-
 ### なぜ Nginx をフロントに立てるのか(17:30~)
 
 - [tmpfs](https://www.kernel.org/doc/Documentation/filesystems/tmpfs.txt)
 - [.htaccess](https://httpd.apache.org/docs/2.4/en/howto/htaccess.html)
-
 
 ### Nginx のスクリプティングモジュール (25:40~)
 
@@ -62,7 +53,6 @@ guest
 - [OpenResty](http://openresty.org/)
 - [JavaScript を載せる](http://nginx.com/blog/nginx-open-source-reflecting-back-and-looking-ahead/) という話
 
-
 ### H2O と Nginx(46:10~)
 
 - [h2o](https://h2o.examp1e.net/)
@@ -70,7 +60,6 @@ guest
 - [nginx のパラメータチューニングと h2o](http://qiita.com/cubicdaiya/items/235777dc401ec419b14e)
 - [open_file_cache](http://nginx.org/en/docs/http/ngx_http_core_module.html%23open_file_cache)
 - [tcp_nopush](http://nginx.org/en/docs/http/ngx_http_core_module.html%23tcp_nopush)
-
 
 ### Nginx の HTTP2 対応(49:40~)
 
@@ -81,17 +70,14 @@ guest
 - [tcpdump](http://www.tcpdump.org/)
 - [grpc](https://github.com/grpc/grpc)
 
-
 ### TLS 前提になっていく感じどうなのか(56:10~)
 
 - [HTTPS 化する Web をどう考えるか(書いたのは収録後です)](http://jxck.hatenablog.com/entry/web-over-https)
-
 
 ### QUIC はどうか?(58:10~)
 
 - [QUIC](http://blog.chromium.org/2013/06/experimenting-with-quic.html)
 - *Google はインターネットを fork しようとしている*
-
 
 ### Nginx 1.9 の新機能(1:05:10~)
 
@@ -100,12 +86,10 @@ guest
 - [ngx_http_stub_status_module](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html)
 - (収録語 Upstream 一覧の動的更新を cubicdaiya さんがモジュールで公開されました [ngx_dynamic_upstream](https://github.com/cubicdaiya/ngx_dynamic_upstream))
 
-
 ### tengine (1:42:30~)
 
 - [tengine](http://tengine.taobao.org/)
 - (SO_REUSEPORT サポートは [もうすぐ](http://hg.nginx.org/nginx/rev/4f6efabcb09b) 入りそうです)
-
 
 ### Nginx 1.8 リリース (1:17:10~)
 
@@ -113,7 +97,6 @@ guest
 - [proxy_request_buffering](http://nginx.org/en/docs/http/ngx_http_proxy_module.html%23proxy_request_buffering)
 - [AIO](http://man7.org/linux/man-pages/man7/aio.7.html)
 - [HLS(http live streaming) module](http://nginx.org/en/docs/http/ngx_http_hls_module.html)
-
 
 ### これからの HTTP Server と Nginx(1:21:10~)
 

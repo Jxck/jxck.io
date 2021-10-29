@@ -1,16 +1,12 @@
-# [angular2][spa][javascript][mozaic.fm] ep24 Angular2
-
-
-## Info
-
+---
+type: podcast
+tags: ["angular2", "spa", "javascript"]
 audio: https://files.mozaic.fm/mozaic-ep24.mp3
+published_at: 2016-12-16
+guest: [@laco0416](https://twitter.com/laco0416)
+---
 
-published_at
-: 2016-12-16
-
-guest
-: [@laco0416](https://twitter.com/laco0416)
-
+# [angular2][spa][javascript][mozaic.fm] ep24 Angular2
 
 ## Theme
 
@@ -21,7 +17,6 @@ guest
 Angular 自身、そしてそれを取り巻くエコシステムや標準化の現場で「*今何がおこっているのか*」と「*これからどうなっていくのか*」について議論しました。
 
 (本編の最後に話していたイベントですが、このエピソード公開時点で終わってしまっていました。間に合わなくてすいません。。)
-
 
 ## Show Note
 

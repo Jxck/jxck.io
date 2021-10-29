@@ -1,19 +1,13 @@
-# [web][rest][yohei][t_wada][mozaic.fm] ep7 REST
-
-
-## Info
-
+---
+type: podcast
+tags: ["web", "rest"]
 audio: https://files.mozaic.fm/mozaic-ep7.mp3
+published_at: 2014-08-19
+guest: [@yohei](https://twitter.com/yohei)
+guest: [@t_wada](https://twitter.com/t_wada)
+---
 
-published_at
-: 2014-08-19
-
-guest
-: [@yohei](https://twitter.com/yohei)
-
-guest
-: [@t_wada](https://twitter.com/t_wada)
-
+# [web][rest][yohei][t_wada][mozaic.fm] ep7 REST
 
 ## Theme
 
@@ -24,7 +18,6 @@ guest
 エピソード中にも出てきましたが、 *「Web を支える技術」を改訂する際に「こういうことを載せて欲しい」* という [@yohei](https://twitter.com/yohei) さんへの要望があれば [#mozaicfm](https://twitter.com/search?q=mozaicfm&src=hash) をつけて、是非つぶやいてください。
 
 今回は、居酒屋トークの録音なので周囲の雑音が多いですがご了承ください。
-
 
 ## Show Note
 

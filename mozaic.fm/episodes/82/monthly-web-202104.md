@@ -1,22 +1,14 @@
-# [monthly-web][mozaic.fm] ep82 Monthly Web 202104
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep82.mp3
+published_at: 2021-05-09
+guest: [@myakura](https://twitter.com/myakura)
+guest: [@flano_yuki](https://twitter.com/flano_yuki)
+guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
+---
 
-published_at
-: 2021-05-09
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
-guest
-: [@flano_yuki](https://twitter.com/flano_yuki)
-
-guest
-: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
-
+# [monthly-web][mozaic.fm] ep82 Monthly Web 202104
 
 ## Theme
 

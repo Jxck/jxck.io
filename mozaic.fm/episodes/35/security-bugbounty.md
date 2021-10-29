@@ -1,22 +1,14 @@
-# [bugbounty][security][mozaic.fm] ep35 Security (Bug Bounty)
-
-
-## Info
-
+---
+type: podcast
+tags: ["bug bounty", "security"]
 audio: https://files.mozaic.fm/mozaic-ep35.mp3
+published_at: 2018-03-05
+guest: [@kinugawamasato](https://twitter.com/kinugawamasato)
+guest: [@k2wanko](https://twitter.com/k2wanko)
+guest: [@hnagatomo](https://github.com/hnagatomo)
+---
 
-published_at
-: 2018-03-05
-
-guest
-: [@kinugawamasato](https://twitter.com/kinugawamasato)
-
-guest
-: [@k2wanko](https://twitter.com/k2wanko)
-
-guest
-: [@hnagatomo](https://github.com/hnagatomo)
-
+# [bugbounty][security][mozaic.fm] ep35 Security (Bug Bounty)
 
 ## Theme
 

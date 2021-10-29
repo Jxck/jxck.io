@@ -1,16 +1,12 @@
-# [ie][browser][mozaic.fm] ep83 IE
-
-
-## Info
-
+---
+type: podcast
+tags: ["ie", "browser"]
 audio: https://files.mozaic.fm/mozaic-ep83.mp3
+published_at: 2021-05-29
+guest: [@ms_yuhara](https://twitter.com/ms_yuhara)
+---
 
-published_at
-: 2021-05-29
-
-guest
-: [@ms_yuhara](https://twitter.com/ms_yuhara)
-
+# [ie][browser][mozaic.fm] ep83 IE
 
 ## Theme
 

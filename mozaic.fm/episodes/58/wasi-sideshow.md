@@ -1,23 +1,18 @@
-# [wasi][wasm][mozaic.fm] ep58 WASI sideshow
-
-
-## Info
-
+---
+type: podcast
+tags: ["wasi", "wasm", "sideshow"]
 audio: https://files.mozaic.fm/mozaic-ep58.sideshow.mp3
+published_at: 2019-10-19
+guest: [@chikoski](https://twitter.com/chikoski)
+---
 
-published_at
-: 2019-10-19
-
-guest
-: [@chikoski](https://twitter.com/chikoski)
-
+# [wasi][wasm][mozaic.fm] ep58 WASI sideshow
 
 ## Theme
 
 第 58 回 WASI の Sideshow です。
 
 [@chikoski](https://twitter.com/chikoski) さんとのこぼれ話です。
-
 
 ## Show Note
 

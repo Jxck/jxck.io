@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep68 Monthly Web 202005
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep68.mp3
+published_at: 2020-06-01
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2020-06-01
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep68 Monthly Web 202005
 
 ## Theme
 

@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep54 Monthly Web 201906
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep54.mp3
+published_at: 2019-07-03
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2019-07-03
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep54 Monthly Web 201906
 
 ## Theme
 

@@ -1,16 +1,12 @@
-# [wasi][wasm][mozaic.fm] ep58 WASI
-
-
-## Info
-
+---
+type: podcast
+tags: ["wasi", "wasm"]
 audio: https://files.mozaic.fm/mozaic-ep58.mp3
+published_at: 2019-10-12
+guest: [@chikoski](https://twitter.com/chikoski)
+---
 
-published_at
-: 2019-10-12
-
-guest
-: [@chikoski](https://twitter.com/chikoski)
-
+# [wasi][wasm][mozaic.fm] ep58 WASI
 
 ## Theme
 

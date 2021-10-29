@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep44 Monthly Web 201810
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep44.mp3
+published_at: 2018-11-03
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2018-11-03
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep44 Monthly Web 201810
 
 ## Theme
 

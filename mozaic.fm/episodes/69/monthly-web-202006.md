@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep69 Monthly Web 202006
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep69.mp3
+published_at: 2020-07-06
+guest: [@araya](https://twitter.com/arayaryoma)
+---
 
-published_at
-: 2020-07-06
-
-guest
-: [@araya](https://twitter.com/arayaryoma)
-
+# [monthly-web][mozaic.fm] ep69 Monthly Web 202006
 
 ## Theme
 

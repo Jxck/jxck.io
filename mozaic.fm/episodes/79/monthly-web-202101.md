@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep79 Monthly Web 202101
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep79.mp3
+published_at: 2021-01-31
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2021-01-31
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep79 Monthly Web 202101
 
 ## Theme
 

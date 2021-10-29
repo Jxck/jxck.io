@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep50 Monthly Web 201903
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep50.mp3
+published_at: 2019-03-30
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2019-03-30
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep50 Monthly Web 201903
 
 ## Theme
 

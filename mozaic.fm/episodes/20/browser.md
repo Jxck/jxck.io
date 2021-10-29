@@ -1,23 +1,18 @@
-# [chrome][browser][takoratta][mozaic.fm] ep20 Browser
-
-
-## Info
-
+---
+type: podcast
+tags: ["chrome", "browser"]
 audio: https://files.mozaic.fm/mozaic-ep20.mp3
+published_at: 2015-11-26
+guest: [@takoratta](https://twitter.com/takoratta)
+---
 
-published_at
-: 2015-11-26
-
-guest
-: [@takoratta](https://twitter.com/takoratta)
-
+# [chrome][browser][takoratta][mozaic.fm] ep20 Browser
 
 ## Theme
 
 第 20 回のテーマは Browser です。
 
 今回は [@takoratta](https://twitter.com/takoratta) さんをお迎えして、ブラウザは今どうなっているのか、そして、その進化は Web の進化とどう関わっているのかにつて議論しました。
-
 
 ## Show Note
 

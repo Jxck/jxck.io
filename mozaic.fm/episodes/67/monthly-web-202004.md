@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep67 Monthly Web 202004
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep67.mp3
+published_at: 2020-05-07
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2020-05-07
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep67 Monthly Web 202004
 
 ## Theme
 

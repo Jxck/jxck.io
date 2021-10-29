@@ -1,16 +1,12 @@
-# [socket.io][websocket][rauchg][mozaic.fm] ep9 Socket.IO
-
-
-## Info
-
+---
+type: podcast
+tags: ["socket.io", "websocket"]
 audio: https://files.mozaic.fm/mozaic-ep9.mp3
+published_at: 2014-09-08
+guest: [@rauchg](https://twitter.com/rauchg)
+---
 
-published_at
-: 2014-09-08
-
-guest
-: [@rauchg](https://twitter.com/rauchg)
-
+# [socket.io][websocket][rauchg][mozaic.fm] ep9 Socket.IO
 
 ## Theme
 
@@ -21,7 +17,6 @@ guest
 ちょうどこの時期にポストされた、彼の同僚であり Express や Mocha の作者である [TJ Holowaychuk](https://twitter.com/tjholowaychuk) の、 [Farewell Node.js](https://medium.com/code-adventures/farewell-node-js-4ba9e7f3e52b) などをネタに、「他の言語で実装した場合」の話などもしました。
 
 今回も [Qiita で事前に質問を集め](http://qiita.com/Jxck_/items/c5bfa3d16053de3f21eb) その中のいつくかは紹介しています。質問くださったみなさんありがとうございました。
-
 
 ## Show Note
 

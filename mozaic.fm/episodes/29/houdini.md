@@ -1,16 +1,12 @@
-# [houdini][css][mozaic.fm] ep29 Houdini
-
-
-## Info
-
+---
+type: podcast
+tags: ["houdini", "css"]
 audio: https://files.mozaic.fm/mozaic-ep29.mp3
+published_at: 2017-11-02
+guest: [@kojiishi](https://twitter.com/kojiishi)
+---
 
-published_at
-: 2017-11-02
-
-guest
-: [@kojiishi](https://twitter.com/kojiishi)
-
+# [houdini][css][mozaic.fm] ep29 Houdini
 
 ## Theme
 

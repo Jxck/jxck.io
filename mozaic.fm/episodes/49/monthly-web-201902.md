@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep49 Monthly Web 201902
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep49.mp3
+published_at: 2019-03-05
+guest: [@sisidovski](https://twitter.com/sisidovski)
+---
 
-published_at
-: 2019-03-05
-
-guest
-: [@sisidovski](https://twitter.com/sisidovski)
-
+# [monthly-web][mozaic.fm] ep49 Monthly Web 201902
 
 ## Theme
 

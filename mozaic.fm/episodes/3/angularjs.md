@@ -1,26 +1,19 @@
-# [angular.js][can_i_do_web][konpyu][mozaic.fm] ep3 Angular.js
-
-
-## Info
-
+---
+type: podcast
+tags: ["angular.js"]
 audio: https://files.mozaic.fm/mozaic-ep3.mp3
+published_at: 2014-05-31
+guest: [@can_i_do_web](https://twitter.com/can_i_do_web)
+guest: [@konpyu](https://twitter.com/konpyu)
+---
 
-published_at
-: 2014-05-31
-
-guest
-: [@can_i_do_web](https://twitter.com/can_i_do_web)
-
-guest
-: [@konpyu](https://twitter.com/konpyu)
-
+# [angular.js][can_i_do_web][konpyu][mozaic.fm] ep3 Angular.js
 
 ## Theme
 
 第 3 回のテーマは Angular.js です。
 
 今回は [@can_i_do_web](https://twitter.com/can_i_do_web) さんと [@konpyu](https://twitter.com/konpyu) さんをお迎えし Angular.js をテーマに、日本のコミュニティの話や、 Angular.js 製 Web サービス [note](https://note.mu/) の開発経験などから 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
-
 
 ## Show Note
 

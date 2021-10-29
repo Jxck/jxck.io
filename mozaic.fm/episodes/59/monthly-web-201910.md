@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep59 Monthly Web 201910
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep59.mp3
+published_at: 2019-11-05
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2019-11-05
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep59 Monthly Web 201910
 
 ## Theme
 

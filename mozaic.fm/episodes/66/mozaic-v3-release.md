@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep66 mozaic.fm v3 release note
-
-
-## Info
-
+---
+type: podcast
+tags: ["mozaic.fm", "release note"]
 audio: https://files.mozaic.fm/mozaic-ep66.mp3
+published_at: 2020-05-05
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2020-05-05
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep66 mozaic.fm v3 release note
 
 ## Theme
 

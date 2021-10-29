@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep81 Monthly Web 202103
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep81.mp3
+published_at: 2021-04-04
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2021-04-04
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep81 Monthly Web 202103
 
 ## Theme
 

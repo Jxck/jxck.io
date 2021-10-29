@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep40 Monthly Web 201807
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep40.mp3
+published_at: 2018-08-04
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2018-08-04
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep40 Monthly Web 201807
 
 ## Theme
 

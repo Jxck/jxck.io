@@ -1,19 +1,13 @@
-# [whatwg][w3c][myakura][nunnun][mozaic.fm] ep14 WHATWG
-
-
-## Info
-
+---
+type: podcast
+tags: ["whatwg", "w3c"]
 audio: https://files.mozaic.fm/mozaic-ep14.mp3
+published_at: 2015-01-18
+guest: [@myakura](https://twitter.com/myakura)
+guest: [@nunnun](https://twitter.com/nunnun)
+---
 
-published_at
-: 2015-01-18
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
-guest
-: [@nunnun](https://twitter.com/nunnun)
-
+# [whatwg][w3c][myakura][nunnun][mozaic.fm] ep14 WHATWG
 
 ## Theme
 
@@ -23,12 +17,11 @@ guest
 
 後半は Extensible Web の話になったので、 [次のエピソード](http://mozaic.fm/post/108491263993/15-extensible-web) に分けています。
 
-
 ## Show Note
 
 - 0:00 ~ : intro
 - 3:00 ~ : W3C とは?
-  - [W3C](http://www.w3.org/)  - World Wide Web Consortium
+  - [W3C](http://www.w3.org/) - World Wide Web Consortium
   - [W3C とは](http://www.w3c.jp/2012/06/03-W3C_General/W3C_General.html)
 - 5:30 ~ : 他の標準化団体との棲み分け
   - WebRTC は IETF では [rtcweb](https://tools.ietf.org/wg/rtcweb/) という WG でプロトコルが策定されている

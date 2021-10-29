@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep34 Monthly Web 201802
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep34.mp3
+published_at: 2018-03-04
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2018-03-04
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep34 Monthly Web 201802
 
 ## Theme
 

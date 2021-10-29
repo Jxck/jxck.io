@@ -1,16 +1,12 @@
-# [monthly-web][mozaic.fm] ep86 Monthly Web 202107
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep86.mp3
+published_at: 2021-08-03
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2021-08-03
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][mozaic.fm] ep86 Monthly Web 202107
 
 ## Theme
 

@@ -1,19 +1,13 @@
-# [node.js][koichik][yosuke_furukawa][mozaic.fm] ep10 Node.js
-
-
-## Info
-
+---
+type: podcast
+tags: ["node.js"]
 audio: https://files.mozaic.fm/mozaic-ep10.mp3
+published_at: 2014-10-07
+guest: [@koichik](https://twitter.com/koichik)
+guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
+---
 
-published_at
-: 2014-10-07
-
-guest
-: [@koichik](https://twitter.com/koichik)
-
-guest
-: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
-
+# [node.js][koichik][yosuke_furukawa][mozaic.fm] ep10 Node.js
 
 ## Theme
 
@@ -22,7 +16,6 @@ guest
 今回は唯一の日本人 Node.js コミッタである [@koichik](https://twitter.com/koichik/) さんと、日本 Node.js ユーザグループの現代表である [@yosuke_furukawa](https://twitter.com/yosuke_furukawa) さんをお迎えし、 Node.js をテーマに 「Node.js ができた理由」から、「node@1.0」の展望「nodeconf.eu での最新事情」や「Node.js コミュニティの今後」などを二時間半たっぷり議論しました。
 
 また、危なげな運用で続けてきた mozaic.fm も、一つ目の目標だった 10 回を達成することができました。これも、購読/出演、してくださった皆様のおかげです。これからもしばらくは続けたいと思いますので、よろしくお願いします。
-
 
 ## Show Note
 

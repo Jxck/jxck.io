@@ -1,16 +1,12 @@
-# [security][hasegawayosuke][mozaic.fm] ep16 Security (application)
-
-
-## Info
-
+---
+type: podcast
+tags: ["security"]
 audio: https://files.mozaic.fm/mozaic-ep16.mp3
+published_at: 2015-03-27
+guest: [@hasegawayosuke](https://twitter.com/hasegawayosuke)
+---
 
-published_at
-: 2015-03-27
-
-guest
-: [@hasegawayosuke](https://twitter.com/hasegawayosuke)
-
+# [security][hasegawayosuke][mozaic.fm] ep16 Security (application)
 
 ## Theme
 
@@ -23,7 +19,6 @@ guest
 それらをふまえてセキュリティをとりまく環境で「今何が起こっているのか」、そして「これからどうなっていくのか」について議論しました。
 
 hasegawa さんが本を書いてる件は、許可を取っておりカットしてません。公表して自分を追い込むメソッドだそうです w
-
 
 ## Show Note
 

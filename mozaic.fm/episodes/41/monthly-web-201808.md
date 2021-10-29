@@ -1,15 +1,12 @@
-# [monthly-web][mozaic.fm] ep41 Monthly Web 201808
-
-
-## Info
-
+---
+type: podcast
+tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep41.mp3
+published_at: 2018-09-09
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2018-09-09
-
-guest
-: [@myakura](https://twitter.com/myakura)
+# [monthly-web][mozaic.fm] ep41 Monthly Web 201808
 
 
 ## Theme

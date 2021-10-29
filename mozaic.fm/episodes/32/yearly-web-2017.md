@@ -1,16 +1,12 @@
-# [monthly-web][yearly-web][mozaic.fm] ep32 Yearly Web 2017
-
-
-## Info
-
+---
+type: podcast
+tags: ["yearly web"]
 audio: https://files.mozaic.fm/mozaic-ep32.mp3
+published_at: 2017-12-19
+guest: [@myakura](https://twitter.com/myakura)
+---
 
-published_at
-: 2017-12-19
-
-guest
-: [@myakura](https://twitter.com/myakura)
-
+# [monthly-web][yearly-web][mozaic.fm] ep32 Yearly Web 2017
 
 ## Theme
 
@@ -22,9 +18,7 @@ Monthly Web のモチベーションについては以下。
 
 [ep25 Monthly Web 201707](https://mozaic.fm/episodes/25/monthly-web-201707.html)
 
-
 ## Show Note
-
 
 ### Chrome 動向
 
@@ -96,7 +90,6 @@ Monthly Web のモチベーションについては以下。
     - 2017 年 12 月 5 日付けで追記があった
     - EOL については改めて発表するとのこと
 
-
 ### Firefox 動向
 
 - These Weeks in Firefox: Issue 29 - Firefox Nightly News
@@ -131,14 +124,12 @@ Monthly Web のモチベーションについては以下。
 - Using Headless Mode in Firefox - Mozilla Hacks
   - <https://hacks.mozilla.org/2017/12/using-headless-mode-in-firefox/>
 
-
 ### Safari 動向
 
 - Release Notes for Safari Technology Preview 45
   - <https://webkit.org/blog/8039/release-notes-for-safari-technology-preview-45/>
 - WebKit が Web App Manifest の実装を開始
   - <https://trac.webkit.org/changeset/225507/webkit>
-
 
 ### Edge 動向
 
@@ -157,7 +148,6 @@ Monthly Web のモチベーションについては以下。
   - <https://blogs.windows.com/msedgedev/2017/12/07/better-precision-touchpad-experience-ptp-pointer-events/>
 - 12 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました
   - <https://blogs.technet.microsoft.com/jpieblog/2017/12/13/securityupdate201712/>
-
 
 ### WHATWG/W3C 動向
 
@@ -236,7 +226,6 @@ Monthly Web のモチベーションについては以下。
   - <https://www.w3.org/TR/2017/REC-html52-20171214/>
   - <https://www.w3.org/blog/2017/12/html-5-2-is-done-html-5-3-is-coming/>
 
-
 ### TC39 動向
 
 - ECMAScript proposal updates @ 2017-011
@@ -245,7 +234,6 @@ Monthly Web のモチベーションについては以下。
 - Proposal to explore Statements as Expressions
   - <https://github.com/rbuckton/proposal-statements-as-expressions>
   - throw, return, break, continue, debugger を statement に
-
 
 ### IETF 動向
 
@@ -257,7 +245,6 @@ Monthly Web のモチベーションについては以下。
   - <https://conferences.sigcomm.org/imc/2017/papers/imc17-final39.pdf>
 - On the use of HTTP as a Substrate
   - <https://tools.ietf.org/html/draft-ietf-httpbis-bcp56bis-00>
-
 
 ### 周辺動向
 
@@ -303,13 +290,11 @@ Monthly Web のモチベーションについては以下。
   - 記事を tweet した時に AMP 対応があればキャッシュを取りに行く
   - Twitter はかなり AMP を気に入っている模様
 
-
 ### イベント
 
 - 2018
   - WebPlatform Web Components F2F 2018
     - <https://github.com/w3c/webcomponents/issues/713>
-
 
 ### 2017 振り返り
 

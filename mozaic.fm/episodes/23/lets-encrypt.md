@@ -1,16 +1,12 @@
-# [let's encrypt][pki][ca][security][mozaic.fm] ep23 Let's Encrypt
-
-
-## Info
-
+---
+type: podcast
+tags: ["let's encrypt", "pki", "ca", "security"]
 audio: https://files.mozaic.fm/mozaic-ep23.mp3
+published_at: 2016-09-06
+guest: 先生(匿名)
+---
 
-published_at
-: 2016-09-06
-
-guest
-: 先生(匿名)
-
+# [let's encrypt][pki][ca][security][mozaic.fm] ep23 Let's Encrypt
 
 ## Theme
 
