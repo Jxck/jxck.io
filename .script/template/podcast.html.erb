@@ -13,8 +13,8 @@
   <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
   -->
 
-  <script defer type=module no-integrity=<%= integrity("./mozaic.fm/assets/js/mozaic.js") -%> src=<%= version("/assets/js/mozaic.js") %>></script>
-  <script defer type=module no-integrity=<%= integrity("./mozaic.fm/assets/js/sw.js") -%> src=<%= version("/assets/js/sw.js") %>></script>
+  <script defer type=module src=<%= version("/assets/js/mozaic.js") %>></script>
+  <script defer type=module src=<%= version("/assets/js/sw.js") %>></script>
 
   <%= indent(render("template/favicon.html.erb", episode)) %>
 
