@@ -65,7 +65,7 @@ module Format
       # No width-height for normal img
       return <<~EOS
            <picture>
-             <source type=image/webp srcset=#{uri.to_s.sub(/(.png|.gif|.jpg)/, '.webp')}>
+             <source type=image/webp srcset=#{uri.to_s.sub(/(.png|.gif|.jpg|.jpeg)/, '.webp')}>
              <img loading=lazy decoding=async src=#{uri} alt="#{alt}" title="#{title}" width=#{width} height=#{height}>
            </picture>
       EOS
