@@ -6,7 +6,7 @@ published_at: 2014-06-16
 guest: [@vvakame](https://twitter.com/vvakame)
 ---
 
-# [typescript][vvakame][mozaic.fm] ep5 TypeScript
+# ep5 TypeScript
 
 ## Theme
 

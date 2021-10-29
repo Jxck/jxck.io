@@ -6,7 +6,7 @@ published_at: 2019-04-14
 guest: [@strontium91](https://twitter.com/strontium91)
 ---
 
-# [whatwg][w3c][ietf][translation][mozaic.fm] ep51 Translation
+# ep51 Translation
 
 ## Theme
 

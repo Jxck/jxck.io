@@ -7,7 +7,7 @@ guest: [@koichik](https://twitter.com/koichik)
 guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 ---
 
-# [node.js][koichik][yosuke_furukawa][mozaic.fm] ep10 Node.js
+# ep10 Node.js
 
 ## Theme
 

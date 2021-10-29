@@ -6,7 +6,7 @@ published_at: 2020-08-11
 guest: [@shqld](https://twitter.com/shqld)
 ---
 
-# [monthly-web][mozaic.fm] ep70 Monthly Web 202007
+# ep70 Monthly Web 202007
 
 ## Theme
 

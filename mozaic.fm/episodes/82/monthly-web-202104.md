@@ -8,7 +8,7 @@ guest: [@flano_yuki](https://twitter.com/flano_yuki)
 guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 ---
 
-# [monthly-web][mozaic.fm] ep82 Monthly Web 202104
+# ep82 Monthly Web 202104
 
 ## Theme
 

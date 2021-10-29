@@ -6,7 +6,7 @@ published_at: 2017-09-03
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep26 Monthly Web 201708
+# ep26 Monthly Web 201708
 
 ## Theme
 

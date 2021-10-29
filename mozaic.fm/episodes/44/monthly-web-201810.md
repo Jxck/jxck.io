@@ -6,7 +6,7 @@ published_at: 2018-11-03
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep44 Monthly Web 201810
+# ep44 Monthly Web 201810
 
 ## Theme
 

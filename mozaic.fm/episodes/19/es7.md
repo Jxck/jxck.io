@@ -6,7 +6,7 @@ published_at: 2015-08-02
 guest: [@Constellation](https://twitter.com/Constellation)
 ---
 
-# [es7][javascript][constellation][mozaic.fm] ep19 ES7
+# ep19 ES7
 
 ## Theme
 

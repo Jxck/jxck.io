@@ -6,7 +6,7 @@ published_at: 2014-12-31
 guest: [@mizchi](https://twitter.com/mizchi)
 ---
 
-# [virtual dom][react][flex][mizchi][mozaic.fm] ep13 Virtual DOM sideshow
+# ep13 Virtual DOM sideshow
 
 ## Theme
 

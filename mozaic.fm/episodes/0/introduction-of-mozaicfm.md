@@ -5,7 +5,7 @@ audio: https://files.mozaic.fm/mozaic-ep0.mp3
 published_at: 2014-03-31
 ---
 
-# [intro][jxck][mozaic.fm] ep0 introduction of mozaic.fm
+# ep0 introduction of mozaic.fm
 
 ## Theme
 

@@ -6,7 +6,7 @@ published_at: 2018-09-30
 guest: [@toyoshim](https://twitter.com/toyoshim)
 ---
 
-# [permission][mozaic.fm] ep43 Permission
+# ep43 Permission
 
 ## Theme
 

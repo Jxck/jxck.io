@@ -6,7 +6,7 @@ published_at: 2020-06-01
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep68 Monthly Web 202005
+# ep68 Monthly Web 202005
 
 ## Theme
 

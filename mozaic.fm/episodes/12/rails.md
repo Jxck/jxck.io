@@ -6,7 +6,7 @@ published_at: 2014-12-07
 guest: [@a_matsuda](https://twitter.com/a_matsuda)
 ---
 
-# [rails][igrigorik][mozaic.fm] ep12 Rails
+# ep12 Rails
 
 ## Theme
 

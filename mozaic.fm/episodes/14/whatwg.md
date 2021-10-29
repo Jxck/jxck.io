@@ -7,7 +7,7 @@ guest: [@myakura](https://twitter.com/myakura)
 guest: [@nunnun](https://twitter.com/nunnun)
 ---
 
-# [whatwg][w3c][myakura][nunnun][mozaic.fm] ep14 WHATWG
+# ep14 WHATWG
 
 ## Theme
 

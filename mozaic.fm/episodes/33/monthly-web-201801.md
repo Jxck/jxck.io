@@ -6,7 +6,7 @@ published_at: 2018-02-02
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep33 Monthly Web 201801
+# ep33 Monthly Web 201801
 
 ## Theme
 

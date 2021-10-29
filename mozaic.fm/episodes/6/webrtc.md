@@ -7,7 +7,7 @@ guest: [@komasshu](https://twitter.com/komasshu)
 guest: [@Tukimikage](https://twitter.com/Tukimikage)
 ---
 
-# [webrtc][komasshu][tukimikage][mozaic.fm] ep6 WebRTC
+# ep6 WebRTC
 
 ## Theme
 

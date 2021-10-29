@@ -6,7 +6,7 @@ published_at: 2017-07-29
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep25 Monthly Web 201707
+# ep25 Monthly Web 201707
 
 ## Theme
 

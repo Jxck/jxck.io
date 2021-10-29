@@ -6,7 +6,7 @@ published_at: 2017-11-01
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep28 Monthly Web 201710
+# ep28 Monthly Web 201710
 
 ## Theme
 

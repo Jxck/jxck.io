@@ -6,7 +6,7 @@ published_at: 2020-02-11
 guest: [@shhnjk](https://twitter.com/shhnjk)
 ---
 
-# [cookie][site isolation][security][mozaic.fm] ep63 Cross Origin Info Leaks
+# ep63 Cross Origin Info Leaks
 
 ## Theme
 

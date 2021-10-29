@@ -6,7 +6,7 @@ published_at: 2018-07-04
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep39 Monthly Web 201806
+# ep39 Monthly Web 201806
 
 ## Theme
 

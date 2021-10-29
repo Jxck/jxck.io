@@ -6,7 +6,7 @@ published_at: 2019-10-12
 guest: [@chikoski](https://twitter.com/chikoski)
 ---
 
-# [wasi][wasm][mozaic.fm] ep58 WASI
+# ep58 WASI
 
 ## Theme
 

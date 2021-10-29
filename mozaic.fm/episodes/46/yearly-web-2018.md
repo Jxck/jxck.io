@@ -6,7 +6,7 @@ published_at: 2018-12-16
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep46 Yearly Web 2018
+# ep46 Yearly Web 2018
 
 ## Theme
 

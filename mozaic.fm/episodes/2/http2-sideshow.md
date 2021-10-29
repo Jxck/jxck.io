@@ -7,7 +7,7 @@ guest: [@tatsuhiro_t](https://twitter.com/tatsuhiro_t)
 guest: [@jovi0608](https://twitter.com/jovi0608)
 ---
 
-# [http2][tatsuhiro_t][jovi0608][mozaic.fm] ep2 HTTP2 sideshow
+# ep2 HTTP2 sideshow
 
 ## Theme
 

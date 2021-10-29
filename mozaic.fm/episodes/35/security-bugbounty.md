@@ -8,7 +8,7 @@ guest: [@k2wanko](https://twitter.com/k2wanko)
 guest: [@hnagatomo](https://github.com/hnagatomo)
 ---
 
-# [bugbounty][security][mozaic.fm] ep35 Security (Bug Bounty)
+# ep35 Security (Bug Bounty)
 
 ## Theme
 

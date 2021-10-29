@@ -6,7 +6,7 @@ published_at: 2018-12-05
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep45 Monthly Web 201811
+# ep45 Monthly Web 201811
 
 ## Theme
 

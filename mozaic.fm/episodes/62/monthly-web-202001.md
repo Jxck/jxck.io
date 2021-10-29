@@ -6,7 +6,7 @@ published_at: 2020-02-03
 guest: [@myakura](https://twitter.com/yakura)
 ---
 
-# [monthly-web][mozaic.fm] ep62 Monthly Web 202001
+# ep62 Monthly Web 202001
 
 ## Theme
 

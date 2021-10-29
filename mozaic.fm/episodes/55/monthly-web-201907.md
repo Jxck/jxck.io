@@ -6,7 +6,7 @@ published_at: 2019-08-01
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep55 Monthly Web 201907
+# ep55 Monthly Web 201907
 
 ## Theme
 

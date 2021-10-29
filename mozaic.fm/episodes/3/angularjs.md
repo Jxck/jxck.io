@@ -7,7 +7,7 @@ guest: [@can_i_do_web](https://twitter.com/can_i_do_web)
 guest: [@konpyu](https://twitter.com/konpyu)
 ---
 
-# [angular.js][can_i_do_web][konpyu][mozaic.fm] ep3 Angular.js
+# ep3 Angular.js
 
 ## Theme
 

@@ -6,7 +6,7 @@ published_at: 2018-09-09
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep41 Monthly Web 201808
+# ep41 Monthly Web 201808
 
 
 ## Theme

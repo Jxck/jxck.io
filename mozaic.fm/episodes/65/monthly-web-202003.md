@@ -6,7 +6,7 @@ published_at: 2020-04-02
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep65 Monthly Web 202003
+# ep65 Monthly Web 202003
 
 ## Theme
 

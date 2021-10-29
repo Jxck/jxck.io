@@ -6,7 +6,7 @@ published_at: 2020-09-01
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep71 Monthly Web 202008
+# ep71 Monthly Web 202008
 
 ## Theme
 

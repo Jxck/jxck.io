@@ -6,7 +6,7 @@ published_at: 2021-01-31
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep79 Monthly Web 202101
+# ep79 Monthly Web 202101
 
 ## Theme
 

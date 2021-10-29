@@ -6,7 +6,7 @@ published_at: 2018-03-04
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep34 Monthly Web 201802
+# ep34 Monthly Web 201802
 
 ## Theme
 

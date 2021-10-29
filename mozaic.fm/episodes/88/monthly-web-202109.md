@@ -6,7 +6,7 @@ published_at: 2021-10-02
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep88 Monthly Web 202109
+# ep88 Monthly Web 202109
 
 ## Theme
 

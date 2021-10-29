@@ -7,7 +7,7 @@ guest: [technohippy](https://twitter.com/technohippy)
 guest: [vvakame](https://twitter.com/vvakame)
 ---
 
-# [typescript][altjs][technohippy][vvakame][mozaic.fm] ep8 AltJS
+# ep8 AltJS
 
 ## Theme
 

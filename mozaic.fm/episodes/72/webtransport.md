@@ -6,7 +6,7 @@ published_at: 2020-09-20
 guest: [@hirano](https://twitter.com/hirano_y_aa)
 ---
 
-# [webtransport][mozaic.fm] ep72 WebTransport
+# ep72 WebTransport
 
 ## Theme
 

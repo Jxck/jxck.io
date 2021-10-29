@@ -6,7 +6,7 @@ published_at: 2014-09-08
 guest: [@rauchg](https://twitter.com/rauchg)
 ---
 
-# [socket.io][websocket][rauchg][mozaic.fm] ep9 Socket.IO
+# ep9 Socket.IO
 
 ## Theme
 

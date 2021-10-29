@@ -6,7 +6,7 @@ published_at: 2016-12-16
 guest: [@laco0416](https://twitter.com/laco0416)
 ---
 
-# [angular2][spa][javascript][mozaic.fm] ep24 Angular2
+# ep24 Angular2
 
 ## Theme
 

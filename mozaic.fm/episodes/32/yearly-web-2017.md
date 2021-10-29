@@ -6,7 +6,7 @@ published_at: 2017-12-19
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][yearly-web][mozaic.fm] ep32 Yearly Web 2017
+# ep32 Yearly Web 2017
 
 ## Theme
 

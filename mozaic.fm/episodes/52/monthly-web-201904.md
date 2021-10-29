@@ -6,7 +6,7 @@ published_at: 2019-05-06
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep52 Monthly Web 201904
+# ep52 Monthly Web 201904
 
 ## Theme
 

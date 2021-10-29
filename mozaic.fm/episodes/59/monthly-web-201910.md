@@ -6,7 +6,7 @@ published_at: 2019-11-05
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep59 Monthly Web 201910
+# ep59 Monthly Web 201910
 
 ## Theme
 

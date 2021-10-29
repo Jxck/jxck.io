@@ -6,7 +6,7 @@ published_at: 2019-03-05
 guest: [@sisidovski](https://twitter.com/sisidovski)
 ---
 
-# [monthly-web][mozaic.fm] ep49 Monthly Web 201902
+# ep49 Monthly Web 201902
 
 ## Theme
 

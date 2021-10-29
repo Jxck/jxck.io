@@ -6,7 +6,7 @@ published_at: 2020-12-05
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep76 Monthly Web 202011
+# ep76 Monthly Web 202011
 
 ## Theme
 

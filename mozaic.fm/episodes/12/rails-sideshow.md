@@ -6,7 +6,7 @@ published_at: 2014-12-12
 guest: [@a_matsuda](https://twitter.com/a_matsuda)
 ---
 
-# [rails][a_matsuda][mozaic.fm] ep12 Rails sideshow
+# ep12 Rails sideshow
 
 ## Theme
 

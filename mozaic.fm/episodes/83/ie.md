@@ -6,7 +6,7 @@ published_at: 2021-05-29
 guest: [@ms_yuhara](https://twitter.com/ms_yuhara)
 ---
 
-# [ie][browser][mozaic.fm] ep83 IE
+# ep83 IE
 
 ## Theme
 

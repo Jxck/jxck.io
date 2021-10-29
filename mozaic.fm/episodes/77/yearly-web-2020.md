@@ -6,7 +6,7 @@ published_at: 2020-12-28
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep77 Yearly Web 2020
+# ep77 Yearly Web 2020
 
 ## Theme
 

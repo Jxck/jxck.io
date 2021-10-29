@@ -6,7 +6,7 @@ published_at: 2015-06-01
 guest: [@cubicdaiya](https://twitter.com/cubicdaiya)
 ---
 
-# [nginx][cubicdaiya][mozaic.fm] ep18 Nginx
+# ep18 Nginx
 
 ## Theme
 

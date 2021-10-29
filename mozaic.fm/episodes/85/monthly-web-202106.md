@@ -6,7 +6,7 @@ published_at: 2021-06-29
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep85 Monthly Web 202106
+# ep85 Monthly Web 202106
 
 ## Theme
 

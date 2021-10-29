@@ -7,7 +7,7 @@ guest: [@lef](https://twitter.com/lef)
 guest: 菊池さん
 ---
 
-# [security][lef][mozaic.fm] ep4 Security (protocol)
+# ep4 Security (protocol)
 
 ## Theme
 

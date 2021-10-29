@@ -6,7 +6,7 @@ published_at: 2017-12-12
 guest: [@flano_yuki](https://twitter.com/flano_yuki)
 ---
 
-# [ietf][mozaic.fm] ep31 IETF
+# ep31 IETF
 
 ## Theme
 

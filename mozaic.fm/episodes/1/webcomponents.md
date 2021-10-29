@@ -7,7 +7,7 @@ guest: [@hokaccha](https://twitter.com/hokaccha)
 guest: [@ahomu](https://twitter.com/ahomu)
 ---
 
-# [web components][hokaccha][ahomu][mozaic.fm] ep1 WebComponents
+# ep1 WebComponents
 
 ## Theme
 

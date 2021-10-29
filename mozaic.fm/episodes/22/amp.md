@@ -6,7 +6,7 @@ published_at: 2016-07-05
 guest: [@ymotongpoo](https://twitter.com/ymotongpoo)
 ---
 
-# [amp][html][ymotongpoo][mozaic.fm] ep22 AMP
+# ep22 AMP
 
 ## Theme
 

@@ -6,7 +6,7 @@ published_at: 2020-09-28
 guest: [@_masaka](https://twitter.com/_masaka)
 ---
 
-# [semantics][mozaic.fm] ep73 Semantic Web
+# ep73 Semantic Web
 
 ## Theme
 

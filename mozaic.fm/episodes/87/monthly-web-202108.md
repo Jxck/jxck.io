@@ -6,7 +6,7 @@ published_at: 2021-08-23
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep87 Monthly Web 202108
+# ep87 Monthly Web 202108
 
 ## Theme
 

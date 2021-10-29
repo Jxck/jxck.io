@@ -6,7 +6,7 @@ published_at: 2019-09-01
 guest: [@shqld](https://twitter.com/shqld)
 ---
 
-# [monthly-web][mozaic.fm] ep56 Monthly Web 201908
+# ep56 Monthly Web 201908
 
 ## Theme
 

@@ -6,7 +6,7 @@ published_at: 2020-10-06
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep74 Monthly Web 202009
+# ep74 Monthly Web 202009
 
 ## Theme
 

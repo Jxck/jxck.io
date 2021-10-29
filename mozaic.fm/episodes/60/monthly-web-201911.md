@@ -6,7 +6,7 @@ published_at: 2019-12-08
 guest: [@arayaryoma](https://twitter.com/arayaryoma)
 ---
 
-# [monthly-web][mozaic.fm] ep60 Monthly Web 201911
+# ep60 Monthly Web 201911
 
 ## Theme
 

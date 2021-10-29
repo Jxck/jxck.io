@@ -6,7 +6,7 @@ published_at: 2019-03-30
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep50 Monthly Web 201903
+# ep50 Monthly Web 201903
 
 ## Theme
 

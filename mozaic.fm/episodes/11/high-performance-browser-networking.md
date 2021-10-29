@@ -6,7 +6,7 @@ published_at: 2014-11-10
 guest: [@igrigorik](https://twitter.com/igrigorik)
 ---
 
-# [performance][network][igrigorik][mozaic.fm] ep11 High Performance Browser Networking
+# ep11 High Performance Browser Networking
 
 ## Theme
 

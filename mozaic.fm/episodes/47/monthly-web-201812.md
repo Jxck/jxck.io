@@ -6,7 +6,7 @@ published_at: 2019-01-20
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep47 Monthly Web 201812
+# ep47 Monthly Web 201812
 
 ## Theme
 

@@ -6,7 +6,7 @@ published_at: 2017-11-02
 guest: [@kojiishi](https://twitter.com/kojiishi)
 ---
 
-# [houdini][css][mozaic.fm] ep29 Houdini
+# ep29 Houdini
 
 ## Theme
 

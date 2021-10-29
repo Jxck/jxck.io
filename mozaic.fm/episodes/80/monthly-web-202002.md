@@ -6,7 +6,7 @@ published_at: 2021-03-03
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep80 Monthly Web 202102
+# ep80 Monthly Web 202102
 
 ## Theme
 

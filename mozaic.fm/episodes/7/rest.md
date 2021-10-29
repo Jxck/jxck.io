@@ -7,7 +7,7 @@ guest: [@yohei](https://twitter.com/yohei)
 guest: [@t_wada](https://twitter.com/t_wada)
 ---
 
-# [web][rest][yohei][t_wada][mozaic.fm] ep7 REST
+# ep7 REST
 
 ## Theme
 

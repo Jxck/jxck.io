@@ -6,7 +6,7 @@ published_at: 2015-11-26
 guest: [@takoratta](https://twitter.com/takoratta)
 ---
 
-# [chrome][browser][takoratta][mozaic.fm] ep20 Browser
+# ep20 Browser
 
 ## Theme
 

@@ -7,7 +7,7 @@ guest: [@kinu](https://twitter.com/kinu)
 guest: [@nhiroki_](https://twitter.com/nhiroki_)
 ---
 
-# [service worker][kinu][nhiroki_][mozaic.fm] ep17 Service Worker
+# ep17 Service Worker
 
 ## Theme
 

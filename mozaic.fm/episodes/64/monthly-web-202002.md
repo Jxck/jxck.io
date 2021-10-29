@@ -6,7 +6,7 @@ published_at: 2020-03-02
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep64 Monthly Web 202002
+# ep64 Monthly Web 202002
 
 ## Theme
 

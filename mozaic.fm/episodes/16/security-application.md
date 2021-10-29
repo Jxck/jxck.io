@@ -6,7 +6,7 @@ published_at: 2015-03-27
 guest: [@hasegawayosuke](https://twitter.com/hasegawayosuke)
 ---
 
-# [security][hasegawayosuke][mozaic.fm] ep16 Security (application)
+# ep16 Security (application)
 
 ## Theme
 

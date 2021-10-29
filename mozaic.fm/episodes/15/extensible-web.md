@@ -7,7 +7,7 @@ guest: [@myakura](https://twitter.com/myakura)
 guest: [@nunnun](https://twitter.com/nunnun)
 ---
 
-# [extensible web][myakura][nunnun][mozaic.fm] ep15 Extensible Web
+# ep15 Extensible Web
 
 ## Theme
 

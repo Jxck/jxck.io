@@ -6,7 +6,7 @@ published_at: 2019-12-29
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep61 Yearly Web 2019
+# ep61 Yearly Web 2019
 
 ## Theme
 

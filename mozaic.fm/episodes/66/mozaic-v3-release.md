@@ -6,7 +6,7 @@ published_at: 2020-05-05
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep66 mozaic.fm v3 release note
+# ep66 mozaic.fm v3 release note
 
 ## Theme
 

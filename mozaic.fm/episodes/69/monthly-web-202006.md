@@ -6,7 +6,7 @@ published_at: 2020-07-06
 guest: [@araya](https://twitter.com/arayaryoma)
 ---
 
-# [monthly-web][mozaic.fm] ep69 Monthly Web 202006
+# ep69 Monthly Web 202006
 
 ## Theme
 
