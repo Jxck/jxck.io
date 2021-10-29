@@ -37,7 +37,7 @@ Fingerprinting は、クライアントから取得できるエントロピー�
 - Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research
   - <https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/>
 
-ここからさらに、 HTTP の `Accept` ヘッダや `If-Non-Match` を含めたり、 JS でさまざまな API を叩いて Canvas や Font などデバイス固有な挙動をするものを探し、精度を上げるために各社が凌ぎを削っている。 
+ここからさらに、 HTTP の `Accept` ヘッダや `If-Non-Match` を含めたり、 JS でさまざまな API を叩いて Canvas や Font などデバイス固有な挙動をするものを探し、精度を上げるために各社が凌ぎを削っている。
 
 そこで、ブラウザベンダ各社は、これらの情報量を減らすことで Fingerprint の精度を下げるために議論と検証を進めていた。具体的には以下のようなものだ。
 
