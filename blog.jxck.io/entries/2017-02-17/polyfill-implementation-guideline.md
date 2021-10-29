@@ -150,7 +150,7 @@ requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || 
 
 特に WebKit が先行し、他のブラウザはプレフィックス付き実装すらしていなかった機能については、 webkit プレフィックスをつけて実装され、そのまま放置されているものも少なくない。
 
-そういったコンテンツを動作させられるよう、 [Firefox](https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo) や [Edge](https://msdn.microsoft.com/ja-jp/library/mt270097(v=vs.85).aspx) が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
+そういったコンテンツを動作させられるよう、 [Firefox](https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo) や [Edge](https://msdn.microsoft.com/ja-jp/library/mt270097%28v=vs.85%29.aspx) が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
 
 なお、 Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用さている。これについては以下を参照のこと。
 
