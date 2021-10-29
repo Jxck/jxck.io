@@ -411,7 +411,7 @@ guest
   - Changeset 235589 - WebKit - Implement Object.fromEntries
     - <https://trac.webkit.org/changeset/235589/webkit>
     - Stage 3 になった Object.fromEntries() を実装
-  -  *Chrome の人が Intersection Observer を実装中*
+  - *Chrome の人が Intersection Observer を実装中*
     - <https://trac.webkit.org/changeset/235459/webkit> ほか
     - <https://lists.webkit.org/pipermail/webkit-dev/2018-July/030060.html> にて実装したい旨を表明していた
 

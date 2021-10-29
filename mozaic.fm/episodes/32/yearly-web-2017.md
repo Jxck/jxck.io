@@ -273,7 +273,7 @@ Monthly Web のモチベーションについては以下。
 - Chromium Browser Advent Calendar 2017
   - <https://qiita.com/advent-calendar/2017/chromium>
 - Performance Calendar 2017
-  -  <https://calendar.perfplanet.com/2017/>
+  - <https://calendar.perfplanet.com/2017/>
   - パフォーマンスアドベントカレンダー
 - 24 A11y
   - <https://www.24a11y.com/>
@@ -293,7 +293,7 @@ Monthly Web のモチベーションについては以下。
   - Coin Hive 埋め込み
     - <https://twitter.com/imnoah/status/936948776119537665>
 - The ROBOT Attack - Return of Bleichenbacher's Oracle Threat
-  -  <https://robotattack.org/>
+  - <https://robotattack.org/>
 - Pioneers for Net Neutrality
   - <https://pioneersfornetneutrality.tumblr.com/>
   - Final Vote が近いので、署名を集めている

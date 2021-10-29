@@ -142,9 +142,7 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tFFemLT2xgQ/V35iIDJHAwAJ>
   - Experiment: Idle Detection API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9OwINXHzbUE/0EhqVz2CAAAJ>
-- Change:
-- Unship:
-- Remove: Title argument of registerProtocolHandler()
+  - Remove: Title argument of registerProtocolHandler()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cZh5f1Ymj14/rLz2Xsy0BAAJ>
   - web-platform-tests quarterly update - Q1 2020
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3FfJQAvIRTs/oSeSIWEcAQAJ>

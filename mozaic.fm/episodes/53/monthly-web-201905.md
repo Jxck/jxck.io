@@ -104,21 +104,21 @@ guest
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pnUiTrLHHmw/CDN1s3F1BQAJ>
     - JS で `focus()` するのを防ぐ FP
   - Implement and Ship: IDBCursor request
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/o6mUiI09BUc/25khjTHYAAAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/o6mUiI09BUc/25khjTHYAAAJ>
   - Implement and Ship: Animation.pending
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Gstf0GA7cbg/711ymCKKAAAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Gstf0GA7cbg/711ymCKKAAAJ>
   - Implement and Ship: Escape key is not a user activation
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dFAIZHeNpSs/4WO6f-tcDQAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dFAIZHeNpSs/4WO6f-tcDQAJ>
   - Implement and Ship: Scroll Snap Stop
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bkUwigYHJDM/Bzvm8tkHAgAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bkUwigYHJDM/Bzvm8tkHAgAJ>
   - Implement and Ship: Redact address in PaymentRequest.onshippingaddresschange event
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/69dw-4Myc_A/cZRnDjvtBAAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/69dw-4Myc_A/cZRnDjvtBAAJ>
   - Implement and Ship: Animation.updatePlaybackRate
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lTYK1HT47Qk/hmwmGm1ZBAAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lTYK1HT47Qk/hmwmGm1ZBAAJ>
   - Implement and Ship: RTCRtpSender.setStreams()
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/g5Grj_VtF8Q/pEaGHWVnBAAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/g5Grj_VtF8Q/pEaGHWVnBAAJ>
   - Implement and ship: createOffer/createAnswer constraint to enable RTCPeerConnection simulcast
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/phMAiUN3nco/-6rsfDv8AgAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/phMAiUN3nco/-6rsfDv8AgAJ>
   - Implement and Ship: Enter Key Hint
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Hfe5xktjSV8/Re-SMF3wAwAJ>
   - *Implement and Ship: form.requestSubmit()*
@@ -127,33 +127,33 @@ guest
     - interactive validation, submit events etc
     - `<button type=submit>` を作って `click()` したかのように挙動させる API
   - Implement and Ship: Entering fullscreen consumes user activation
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Y58tbs-TSgE/MDg7F2uRBQAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Y58tbs-TSgE/MDg7F2uRBQAJ>
   - Implement and Ship: Synthetic Modules
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0UWEnR_rV9E/SOM8xOgfBQAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0UWEnR_rV9E/SOM8xOgfBQAJ>
   - Implement: IFrame execution/freezing feature policy
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VytOh5dHdDo/THj8cgZeDQAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VytOh5dHdDo/THj8cgZeDQAJ>
   - *Implement: Periodic Background Sync*
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/61yC4_xbZRA/mpB5rMBTDwAJ>
-      - Background Sync を定期実行するための API
-      - 時間設定が厳守されるわけではなく、ネットワーク状況などに応じて
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/61yC4_xbZRA/mpB5rMBTDwAJ>
+    - Background Sync を定期実行するための API
+    - 時間設定が厳守されるわけではなく、ネットワーク状況などに応じて
   - Implement: JS Self-Profiling API
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cl_WCx9OEcg/9b-6_7DPDAAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cl_WCx9OEcg/9b-6_7DPDAAJ>
   - *Implement: Picture-in-Picture for arbitrary content*
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uK0hyACy_fg/XXFsm_4kDAAJ>
-      - PinP で Video 以外に任意のコンテンツを再生できるように
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uK0hyACy_fg/XXFsm_4kDAAJ>
+    - PinP で Video 以外に任意のコンテンツを再生できるように
   - *Implement (meta): Bundled HTTP Exchanges*
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hVszlf4l2_E/1K_ZgQ4lBQAJ>
-      - Chrome Tokyo チームから
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hVszlf4l2_E/1K_ZgQ4lBQAJ>
+    - Chrome Tokyo チームから
   - Implement: High-risk insecure download blocking in secure contexts
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mALJa0JM13I/-jxMlOyrBAAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mALJa0JM13I/-jxMlOyrBAAJ>
   - Implement: "numberingSystem" option for Intl.NumberFormat / "calendar" and "numberingSystem" option for Intl.DateTimeFormat
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HFOWIjSBKWQ/GkoCkNCrAQAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HFOWIjSBKWQ/GkoCkNCrAQAJ>
   - Implement: Pause Worklets and Dedicated Workers Execution on document freeze
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KwDF6Eavfek/Qb48J5ceAwAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KwDF6Eavfek/Qb48J5ceAwAJ>
   - Implement: CSS Color Adjust: color-scheme property
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xXVJlqlDL_k/pxwluzwSAwAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xXVJlqlDL_k/pxwluzwSAwAJ>
   - Implement: Intl.DisplayNames API Proposal
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/muRQBwyzzPw/FgdwgcbnAgAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/muRQBwyzzPw/FgdwgcbnAgAJ>
   - Implement: Intl.NumberFormat Unified API Proposal
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/q3U7sPOG1uo/M7XZU7fxAwAJ>
   - Implement: Add dayPeriod option for Intl.DateTimeFormat
@@ -161,7 +161,7 @@ guest
   - Implement: Add quarter option for Intl.DateTimeFormat
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/t5vlp94AI5g/va9WtczoBQAJ>
   - Extend Origin Trial: HrefTranslate HTMLAnchor attribute
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LpE_bzcSv5Y/mLEg7wMLDAAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LpE_bzcSv5Y/mLEg7wMLDAAJ>
   - Extend Origin Trial: Badging API
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VqoLPVSXE4g/7N5veAaeBAAJ>
   - Experiment: Origin Trial: WebXR Device API

@@ -106,7 +106,7 @@ Web をより深く理解するために
 - Release date: 07/07/2017 build 16237
   - <https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/desktop/16237/>
   - Unprefixed CSS Grid is now enabled by default
-- Windows Insider Preview (Fast) build 16241 
+- Windows Insider Preview (Fast) build 16241
   - <https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/desktop/16241/>
   - Service Worker?
     - <https://twitter.com/tomayac/status/889863448368205824>

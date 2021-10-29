@@ -267,7 +267,7 @@ guest
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/iwkhLi-2mxw/2aJPi80TAgAJ>
   - Implement: CSS text-decoration-width
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/VWcV5QUzJF0/O9hET80TAgAJ>
-  -  *Implement: Cookie SameSite=lax by default and SameSite=none only if secure*
+  - *Implement: Cookie SameSite=lax by default and SameSite=none only if secure*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/nx2uP0CzA9k/BNVPWDHsAQAJ>
   - *Implement and ship: queueMicrotask*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/QFSmwlof1_I/lHLmiFw7AgAJ>

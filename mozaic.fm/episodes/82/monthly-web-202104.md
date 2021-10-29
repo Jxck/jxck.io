@@ -602,7 +602,7 @@ guest
   - 7-11: WWDC 2021
     - <https://developer.apple.com/wwdc21/>
   - 15-17: httpwg interim
-    -    * 24-30: IETF111
+  - 24-30: IETF111
     - <https://www.ietf.org/how/meetings/111/>
 - 7 月
   - 13-16: TC39 meeting Tokyo

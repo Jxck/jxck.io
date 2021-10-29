@@ -485,7 +485,7 @@ guest
   - wg-materials/agenda.md at gh-pages · httpwg/wg-materials
     - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf102/agenda.md>
 - RFC
-  -  ChaCha20 and Poly1305 for IETF Protocols
+  - ChaCha20 and Poly1305 for IETF Protocols
     - <https://tools.ietf.org/html/rfc8439>
 - IETF Last Call
 - WG Last Call

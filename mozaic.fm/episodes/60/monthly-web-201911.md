@@ -32,16 +32,16 @@ guest
   - *Keynote*
     - <https://www.youtube.com/watch?v=F1UP7wRCPH8>
     - LayoutNG
-      -  約 10 %のレイアウトバグの修正
-      -  最大 5 %の描画パフォーマンスの向上
-      -  複雑な言語におけるパフォーマンスの改善(RTL など)
-      -  emoji の描画が速くなった
+      - 約 10 %のレイアウトバグの修正
+      - 最大 5 %の描画パフォーマンスの向上
+      - 複雑な言語におけるパフォーマンスの改善(RTL など)
+      - emoji の描画が速くなった
     - http archive に記録されている z-index の最大値: 780 桁の 99999... !important
     - ブラウザ上でコードを変更しながら Lighthouse のスコアを改善するデモ
     - 3 つの重要なゴール
-      -  Better performance
-      -  More accessible
-      -  More safe and trustworthy
+      - Better performance
+      - More accessible
+      - More safe and trustworthy
     - 各種 API の紹介
   - WebP in its 10th year
     - <https://www.youtube.com/watch?v=-wrXKvnPfZg>

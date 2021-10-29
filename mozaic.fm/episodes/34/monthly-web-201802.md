@@ -119,10 +119,10 @@ guest
     - `<img>` と同じ srcset/imgsizes を `<link>` に追加
     - `sizes` ではなく `imgsizes` なのは、すでに `rel=icon` で使われているから。
   - Experiment: *Web Locks API*
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/apdn-NbyZJg/RqHUfq3aCQAJ>
-      - tab/worker 間での mutex
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/apdn-NbyZJg/RqHUfq3aCQAJ>
+    - tab/worker 間での mutex
   - Experiment: Animation Worklet
-      - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ>
+    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AZ-PYPMS7EA/DEqbe2u5BQAJ>
   - Change:
   - Unship: rowspan=0
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/d0DartbUFQY/L9sx2kqHAQAJ>

@@ -550,7 +550,7 @@ guest
   - 2->3
   - 3->4
   - 1 -> inactive
-    -  `Date.parse` fallback semantics
+    - `Date.parse` fallback semantics
 - New Proposals
 
 

@@ -144,7 +144,7 @@ guest
   - *Prototype: Media Queries: prefers-contrast feature*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/I0e2_nAwW7E>
     - windows や mac が持つ hi contrast mode に対応する
-    -  'more', 'less', 'forced', or 'no-preference' などの値が取れる
+    - 'more', 'less', 'forced', or 'no-preference' などの値が取れる
   - Prototype: CSS ::target-text pseudo-element
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/5zkY3e9cpoo>
   - Prototype: CSS Scrollbars: scrollbar-color, scrollbar-width

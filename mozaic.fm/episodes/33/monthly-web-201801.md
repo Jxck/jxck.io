@@ -613,7 +613,7 @@ guest
     - Async DOM working session summary & outcomes
       - <https://docs.google.com/document/d/17LQtUzxNj31ElYCk_Ozgn4kJqQktrK8m6I8e1i7948I/edit>
     - chrishtr/async-dom
-      -  <https://github.com/chrishtr/async-dom/>
+      - <https://github.com/chrishtr/async-dom/>
   - *Storage Access API*
     - <https://lists.w3.org/Archives/Public/public-webappsec/2018Jan/0002.html>
     - <https://github.com/whatwg/dom/issues/560>

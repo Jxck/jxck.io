@@ -51,7 +51,7 @@ guest
     - <https://amphtml.wordpress.com/2018/04/02/enabling-publishers-to-implement-user-controls-on-amp-pages/>
     - AMP でユーザ制御 (Cookie 仕様の許可ダイアログなど) を実装できるように
 - *Blink on 9*
-  -  LT List
+  - LT List
     - <https://docs.google.com/spreadsheets/d/1DovPnWWSXuG8PRyN-HT7R9gZ4PLihly5ZepqZJ3vmAc/edit#gid=0>
   - Tricium (code analyzer for chromium)
     - <https://docs.google.com/presentation/d/1_iJGKqdeV4lyUsTTCrU7xSmCs9xz3Xe9qjHRFVF1tc0/edit>

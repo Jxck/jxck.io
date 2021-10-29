@@ -29,7 +29,7 @@ guest
     - *Digital Goods API*
     - Origin Trials
       - New Origin Trials
-        -  WebXR: AR Lighting Estimation
+        - WebXR: AR Lighting Estimation
       - Completed Origin Trials
         - PointerLock unadjustedMovement
     - Other features in this release
@@ -253,9 +253,9 @@ guest
 - Change:
 - Unship:
 - *Remove: HTTP/2 and gQUIC server push*
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/K3rYLvmQUBY>
-  - PSA: TAG Reviews Are Required
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/naqmDmy1iM8/m/czBpBRFYAQAJ>
+  - <https://groups.google.com/a/chromium.org/g/blink-dev/c/K3rYLvmQUBY>
+- PSA: TAG Reviews Are Required
+  - <https://groups.google.com/a/chromium.org/g/blink-dev/c/naqmDmy1iM8/m/czBpBRFYAQAJ>
 - v8
 - Other
   - Feedback wanted: CORS for private networks (RFC1918)
@@ -545,13 +545,13 @@ guest
   - The Internet is Getting Safer: Fall 2020 RPKI Update
     - <https://blog.cloudflare.com/rpki-2020-fall-update/>
 - *Improving Performance and Search Rankings with Cloudflare for Fun and Profit*
-    - <https://blog.cloudflare.com/improving-performance-and-search-rankings-with-cloudflare-for-fun-and-profit/>
-    - Google が search rank に perf を入れるアナウンスをした ->
-    - cloudflare 入れると perf が上がる ->
-    - cloudflare 入れると rank が上がる
-    - Brotli compression using a reduced dictionary
+  - <https://blog.cloudflare.com/improving-performance-and-search-rankings-with-cloudflare-for-fun-and-profit/>
+  - Google が search rank に perf を入れるアナウンスをした ->
+  - cloudflare 入れると perf が上がる ->
+  - cloudflare 入れると rank が上がる
   - Brotli compression using a reduced dictionary
-    - <https://blog.cloudflare.com/brotli-compression-using-a-reduced-dictionary/>
+- Brotli compression using a reduced dictionary
+  - <https://blog.cloudflare.com/brotli-compression-using-a-reduced-dictionary/>
 - *The State of CSS 2020*
   - <https://2020.stateofcss.com/>
 - *Advent Calendar*

@@ -174,7 +174,7 @@ guest
     - これまで React/Angular/Next/Nuxt などに協力してきた
   - *Conformance for Frameworks*
     - <https://web.dev/conformance/>
-    -  strong defaults と actionable rules によってレビューじゃなくてもスケールするように
+    - strong defaults と actionable rules によってレビューじゃなくてもスケールするように
   - Blibli's PWA generates 10x more revenue per user than their previous mobile website
     - <https://web.dev/blibli/>
   - *High performance storage for your app: the Storage Foundation API*

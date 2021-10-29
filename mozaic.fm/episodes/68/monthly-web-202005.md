@@ -224,18 +224,18 @@ guest
 - Unship:
 - Remove:
 - *Blink launch process update*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/R8oZsw6RLGs/l0KOUyuWAQAJ>
-    - intents の公開や Chrome Status への反映などを行ってきた
-    - chromium を利用したプロジェクトや、関わる人も多くなった
-    - Chrome Status を Web Status (仮称)として刷新することに
-    - ドメインも変わる
-    - Chrome の UMA で取得するメトリクスは chromestatus.com で維持
-  - Planning isolation requirements (COOP/COEP) for SharedArrayBuffer
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_0MEXs6TJhg/F0UduPfpAQAJ>
-  - A few clarifications for the API owners process
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/2jon7dlhvLo/m/zOWmPnkKAgAJ>
-  - *Important: change to the "browser signals" section of the intent-to-ship process*
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/4sKJR-XPghU/m/UoUHsBExAAAJ>
+  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/R8oZsw6RLGs/l0KOUyuWAQAJ>
+  - intents の公開や Chrome Status への反映などを行ってきた
+  - chromium を利用したプロジェクトや、関わる人も多くなった
+  - Chrome Status を Web Status (仮称)として刷新することに
+  - ドメインも変わる
+  - Chrome の UMA で取得するメトリクスは chromestatus.com で維持
+- Planning isolation requirements (COOP/COEP) for SharedArrayBuffer
+  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_0MEXs6TJhg/F0UduPfpAQAJ>
+- A few clarifications for the API owners process
+  - <https://groups.google.com/a/chromium.org/g/blink-dev/c/2jon7dlhvLo/m/zOWmPnkKAgAJ>
+- *Important: change to the "browser signals" section of the intent-to-ship process*
+  - <https://groups.google.com/a/chromium.org/g/blink-dev/c/4sKJR-XPghU/m/UoUHsBExAAAJ>
 - v8
   - V8 release v8.3 · V8
     - <https://v8.dev/blog/v8-release-83>

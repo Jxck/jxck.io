@@ -119,7 +119,7 @@ guest
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/ZzngHwf2qyQ>
   - Ship: FontBoundingBoxAscent/Descent in New TextMetrics API in Canvas
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/GSmWjdqmgCA>
-  -  *Ship: text-decoration-thickness, text-underline-offset and from-font keyword for text-underline-position*
+  - *Ship: text-decoration-thickness, text-underline-offset and from-font keyword for text-underline-position*
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/9OzS90KISXI>
   - Ship: Cookie Store API
     - <https://groups.google.com/a/chromium.org/g/blink-dev/c/zOsGZGMGiM4>
@@ -495,7 +495,7 @@ guest
     - <https://github.com/FrankYFTang/proposal-intl-locale-info>
   - Error Cause
     - <https://github.com/tc39/proposal-error-cause>
-  -  Double-Ended Iterator and Destructuring
+  - Double-Ended Iterator and Destructuring
     - <https://github.com/tc39/proposal-deiter>
     - `let [first, ...rest, last] = iterable`
   - Standardized debug

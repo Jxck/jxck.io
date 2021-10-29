@@ -43,7 +43,7 @@ guest
     - <https://docs.google.com/presentation/d/1WxwbecNNXp_5v0yUDR3EolXR5m86siHj4_QWgPnJ7lU/>
   - Layout Architecture Progress
     - <https://docs.google.com/presentation/d/1MI6_HoblWpiaVIvd6LHpjtNunCh-KOZpfqOUdE2qbuA>
-  -  Fugu for Non-Fishies
+  - Fugu for Non-Fishies
     - <https://docs.google.com/presentation/d/1y7oEoygH7X7pO1get4ZFCifBcukpp9aNWCHRR4qGOTw>
   - History of the Web
     - <https://drive.google.com/file/d/1zOcIKvyU8KOZikioRPVoH7B_t7_xmaof/view>

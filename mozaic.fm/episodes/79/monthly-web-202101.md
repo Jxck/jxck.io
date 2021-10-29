@@ -750,7 +750,7 @@ guest
   - <https://web.archive.org/web/20060111090514/http://wp.netscape.com/newsref/pr/newsrelease67.html>
   - Mathias Bynens on Twitter: "JavaScript was first announced on December 4th, 1995 - exactly 25 years ago today 🤯
   - <https://web.archive.org/web/20060111090514/http://wp.netscape.com/newsref/pr/newsrelease67.html>
-  -  "The open, cross-platform object scripting language for enterprise networks and the Internet"" / Twitter
+  - "The open, cross-platform object scripting language for enterprise networks and the Internet"" / Twitter
   - 2020 年 12 月 4 日で JavaScript の発表から 25 年
 
 
