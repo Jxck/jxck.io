@@ -109,15 +109,11 @@
                   <em>Chrome 65 Beta: CSS Paint API and the ServerTiming API</em>
                   <ul>
                     <li><a href="https://blog.chromium.org/2018/02/chrome-65-beta-css-paint-api-and.html">https://blog.chromium.org/2018/02/chrome-65-beta-css-paint-api-and.html</a>
-                    <li>
-                      CSS Paint API <a href="https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html">blog</a>
-                    </li>
+                    <li>CSS Paint API <a href="https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html">blog</a>
                     <li>Server Timing API
                     <li>:any-link
                     <li>display: contents
-                    <li>
-                      <code translate=no>&lt;slot&gt;</code> assignedElement()
-                    </li>
+                    <li><code translate=no>&lt;slot&gt;</code> assignedElement()
                     <li>HTMLAnchorElement.relList
                     <li>sync-xhr feature policy
                   </ul>
@@ -127,9 +123,7 @@
                   <ul>
                     <li><a href="https://developers.google.com/web/updates/2018/02/chrome-65-deprecations">https://developers.google.com/web/updates/2018/02/chrome-65-deprecations</a>
                     <li><em>Chrome no longer trusting certain Symantec certificates</em>
-                    <li>
-                      Block cross-origin <code translate=no>&lt;a download&gt;</code>
-                    </li>
+                    <li>Block cross-origin <code translate=no>&lt;a download&gt;</code>
                     <li>Document.all is no longer replaceable
                   </ul>
                 </li>
@@ -171,9 +165,7 @@
                   <em>Ship: add InputMode attribute</em>
                   <ul>
                     <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MAHQkH4vvUQ/i0yCobrMCQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MAHQkH4vvUQ/i0yCobrMCQAJ</a>
-                    <li>
-                      <code translate=no>&lt;input inputmode=tel&gt;</code> など
-                    </li>
+                    <li><code translate=no>&lt;input inputmode=tel&gt;</code> など
                     <li>既に intent を一回出しているが、ロケール関係の問題があったのでそこを省いて出す
                     <li>contenteditable でもサポート
                   </ul>
@@ -182,9 +174,7 @@
                   <em>Ship: <code translate=no>String.prototype.trimStart</code> / <code translate=no>String.prototype.trimEnd</code></em>
                   <ul>
                     <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Mx3Goj6pai4/CoJbFCDcCAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Mx3Goj6pai4/CoJbFCDcCAAJ</a>
-                    <li>
-                      <code translate=no>String.prototype.{trimLeft,trimRight}</code> があったがこれは非標準に
-                    </li>
+                    <li><code translate=no>String.prototype.{trimLeft,trimRight}</code> があったがこれは非標準に
                     <li>相対方向にするため、 Start/End にし、 Left/Right は互換のための alias に
                   </ul>
                 </li>
@@ -213,9 +203,7 @@
                   <em>Ship: Slots in flat tree</em>
                   <ul>
                     <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6UNwnk97lrE/LmW0ni0NCwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6UNwnk97lrE/LmW0ni0NCwAJ</a>
-                    <li>
-                      <code translate=no>&lt;slot&gt;</code> を falt tree に <code translate=no>display: contents</code> で参加させる
-                    </li>
+                    <li><code translate=no>&lt;slot&gt;</code> を falt tree に <code translate=no>display: contents</code> で参加させる
                     <li>incremental shadow dom でも必要
                     <li><a href="https://docs.google.com/document/d/1R9J8CVaSub_nbaVQwwm3NjCoZye4feJ7ft7tVe5QerM/edit">https://docs.google.com/document/d/1R9J8CVaSub_nbaVQwwm3NjCoZye4feJ7ft7tVe5QerM/edit</a>
                   </ul>
@@ -279,9 +267,7 @@
                   Implement: constructable stylesheet objects
                   <ul>
                     <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/irhrlr6n5YQ/LOS8xSGsBwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/irhrlr6n5YQ/LOS8xSGsBwAJ</a>
-                    <li>
-                      style を <code translate=no>&lt;style&gt;</code> や <code translate=no>&lt;link&gt;</code> ではなく、 <code translate=no>new CSSStyleSheet()</code> で生成できるように
-                    </li>
+                    <li>style を <code translate=no>&lt;style&gt;</code> や <code translate=no>&lt;link&gt;</code> ではなく、 <code translate=no>new CSSStyleSheet()</code> で生成できるように
                     <li>パースコストを減らしつつ、再利用などの最適化余地を与える
                   </ul>
                 </li>
@@ -313,12 +299,8 @@
                   <em>Implement: srcset and imgsizes attributes on link rel=preload</em>
                   <ul>
                     <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8tVgAyS47y0/e9L-NbatBwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8tVgAyS47y0/e9L-NbatBwAJ</a>
-                    <li>
-                      <code translate=no>&lt;img&gt;</code> と同じ srcset/imgsizes を <code translate=no>&lt;link&gt;</code> に追加
-                    </li>
-                    <li>
-                      <code translate=no>sizes</code> ではなく <code translate=no>imgsizes</code> なのは、すでに <code translate=no>rel=icon</code> で使われているから。
-                    </li>
+                    <li><code translate=no>&lt;img&gt;</code> と同じ srcset/imgsizes を <code translate=no>&lt;link&gt;</code> に追加
+                    <li><code translate=no>sizes</code> ではなく <code translate=no>imgsizes</code> なのは、すでに <code translate=no>rel=icon</code> で使われているから。
                   </ul>
                 </li>
                 <li>
@@ -439,9 +421,7 @@
                   <em>AMP for Email</em>
                   <ul>
                     <li><a href="https://www.blog.google/products/g-suite/bringing-power-amp-gmail/">https://www.blog.google/products/g-suite/bringing-power-amp-gmail/</a>
-                    <li>
-                      <code translate=no>&lt;html ⚡ 4email&gt;</code> という要素なドキュメントをメールに埋め込む
-                    </li>
+                    <li><code translate=no>&lt;html ⚡ 4email&gt;</code> という要素なドキュメントをメールに埋め込む
                     <li>専用の MIME で attach する
                     <li>フィッシングやプライバシーの懸念があるから使える AMP タグがさらに制限される
                     <li>「プライバシーとか言っといて Google ドメインから読み込ませるのか」など反発も
@@ -535,25 +515,19 @@
                     <li>Budget-based background timeout throttling has been implemented
                     <li>HTMLMediaElement.srcObject
                     <li>worker-src CSP
-                    <li>
-                      &quot;Add to home screen&quot; is now supported in Firefox for Android
-                    </li>
+                    <li>&quot;Add to home screen&quot; is now supported in Firefox for Android
                   </ul>
                 </li>
                 <li>
                   <em>Firefox 59 for developers</em>
                   <ul>
                     <li><a href="https://developer.mozilla.org/en-US/Firefox/Releases/59">https://developer.mozilla.org/en-US/Firefox/Releases/59</a>
-                    <li>
-                      autocomplete in <code translate=no>&lt;textarea&gt;</code>
-                    </li>
+                    <li>autocomplete in <code translate=no>&lt;textarea&gt;</code>
                     <li>overscroll-behavior
                     <li>PointerEvents have been enabled in Firefox Desktop
                     <li>The EventTarget() constructor has been implemented
                     <li>Top-level navigation to data: URIs has been blocked
-                    <li>
-                      position sticky is now supported on appropriate HTML table parts (e.g. <code translate=no>&lt;th&gt;</code> elements)
-                    </li>
+                    <li>position sticky is now supported on appropriate HTML table parts (e.g. <code translate=no>&lt;th&gt;</code> elements)
                   </ul>
                 </li>
                 <li>
@@ -561,9 +535,7 @@
                   <ul>
                     <li><a href="https://developer.mozilla.org/en-US/Firefox/Releases/60">https://developer.mozilla.org/en-US/Firefox/Releases/60</a>
                     <li>Stylo enabled in Firefox for Android
-                    <li>
-                      <code translate=no>Array.prototype.values()</code> added (again)
-                    </li>
+                    <li><code translate=no>Array.prototype.values()</code> added (again)
                   </ul>
                 </li>
                 <li>
@@ -692,9 +664,7 @@
                   <em>Intent to enable <code translate=no>&lt;div&gt;</code> as default paragraph separator of contenteditable/designMode editor by default</em>
                   <ul>
                     <li><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/X2bhfUG49RE/p5057EnwCQAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/X2bhfUG49RE/p5057EnwCQAJ</a>
-                    <li>
-                      これまでは <code translate=no>&lt;br&gt;</code> だったのを揃えた
-                    </li>
+                    <li>これまでは <code translate=no>&lt;br&gt;</code> だったのを揃えた
                   </ul>
                 </li>
               </ul>
@@ -764,9 +734,7 @@
                         <li>Firefox DevTools のこれまでとこれから
                         <li>レイアウトやデザイン: Grid や Flexbox インスペクタなど
                         <li>JS フレームワーク: アイデアはあると書いただけで、とくに具体的な言及なし
-                        <li>
-                          よい UI: <a href="https://twitter.com/violasong/status/928361002462093312">https://twitter.com/violasong/status/928361002462093312</a>
-                        </li>
+                        <li>よい UI: <a href="https://twitter.com/violasong/status/928361002462093312">https://twitter.com/violasong/status/928361002462093312</a>
                       </ul>
                     </li>
                   </ul>
@@ -806,9 +774,7 @@
               <ul>
                 <li><a href="https://webkit.org/blog/8121/release-notes-for-safari-technology-preview-50/">https://webkit.org/blog/8121/release-notes-for-safari-technology-preview-50/</a>
                 <li>Added support for cache storage of blob responses
-                <li>
-                  Implemented <code translate=no>createImageBitmap(HTMLVideoElement)</code>
-                </li>
+                <li>Implemented <code translate=no>createImageBitmap(HTMLVideoElement)</code>
                 <li>細かめ
               </ul>
             </li>
@@ -865,9 +831,7 @@
                     <li>「ショートカットキーを抑止したい」という要望に対するアンサー
                     <li>onkeydown の e.keycode が readonly という標準に準拠している
                     <li>IE でショートカットキーを抑止できなくなる
-                    <li>
-                      &quot;昨今では各ベンダーより様々なブラウザーが開発され、<em>ユーザーが利用するブラウザーの大半が Internet Explorer だという時代は残念ながら過ぎ去ってしまっています</em>。このような背景から、最近では Web サイトにおいても「相互運用性」という点が非常に重要になってきました。「相互運用性」とは、どのブラウザーで閲覧しても、同じように表示する、同じように動作する、同じような体験ができる、というようなことを言います。&quot;
-                    </li>
+                    <li>&quot;昨今では各ベンダーより様々なブラウザーが開発され、<em>ユーザーが利用するブラウザーの大半が Internet Explorer だという時代は残念ながら過ぎ去ってしまっています</em>。このような背景から、最近では Web サイトにおいても「相互運用性」という点が非常に重要になってきました。「相互運用性」とは、どのブラウザーで閲覧しても、同じように表示する、同じように動作する、同じような体験ができる、というようなことを言います。&quot;
                   </ul>
                 </li>
               </ul>
@@ -1036,9 +1000,7 @@
                     <li>母数が少ないが集計結果がおもしろい
                     <li><a href="https://docs.google.com/forms/d/1YVKqVU_ziCYtp8RGGnwB8WcQWDhkXe-mOmaSkFTdJm8/viewanalytics">https://docs.google.com/forms/d/1YVKqVU_ziCYtp8RGGnwB8WcQWDhkXe-mOmaSkFTdJm8/viewanalytics</a>
                     <li>Q: API が変更できるとしたら、どうなって欲しいですか?
-                    <li>
-                      A: <em>複雑になってもいいから小さく細かい API が欲しい</em>
-                    </li>
+                    <li>A: <em>複雑になってもいいから小さく細かい API が欲しい</em>
                   </ul>
                 </li>
                 <li>
@@ -1162,12 +1124,8 @@
                     <li>Set.prototype.symmetricDifference(iterable)
                     <li>Set.prototype.isSubsetOf(otherSet)
                     <li>Set.prototype.isSupersetOf(iterable)
-                    <li>
-                      Static Set.union(&hellip;iterables)
-                    </li>
-                    <li>
-                      Set.intersect(&hellip;iterables)
-                    </li>
+                    <li>Static Set.union(...iterables)
+                    <li>Set.intersect(...iterables)
                   </ul>
                 </li>
                 <li>
@@ -1181,12 +1139,8 @@
                     <li>Set.prototype.join(separator)
                     <li>Set.prototype.some(predicate, thisArg)
                     <li>Set.prototype.every(predicate, thisArg)
-                    <li>
-                      Set.prototype.addAll(&hellip;elements)
-                    </li>
-                    <li>
-                      Set.prototype.deleteAll(&hellip;elements)
-                    </li>
+                    <li>Set.prototype.addAll(...elements)
+                    <li>Set.prototype.deleteAll(...elements)
                     <li>Map.prototype.filter(predicate, thisArg)
                     <li>Map.prototype.mapValues(fn, thisArg)
                     <li>Map.prototype.mapKeys(fn, thisArg)
@@ -1206,9 +1160,7 @@
                   Logical Operators and Assignment Expressions
                   <ul>
                     <li><a href="https://github.com/jridgewell/proposal-logical-assignment">https://github.com/jridgewell/proposal-logical-assignment</a>
-                    <li>
-                      <code translate=no>a ||= b</code>, <code translate=no>a &amp;&amp;= b</code> etc
-                    </li>
+                    <li><code translate=no>a ||= b</code>, <code translate=no>a &amp;&amp;= b</code> etc
                     <li>default 引数は undefined だけなので、他の falsy でも代入できるようにしたい
                   </ul>
                 </li>
@@ -1216,9 +1168,7 @@
                   support for sequence properties in Unicode property escapes
                   <ul>
                     <li><a href="https://github.com/mathiasbynens/proposal-regexp-unicode-sequence-properties">https://github.com/mathiasbynens/proposal-regexp-unicode-sequence-properties</a>
-                    <li>
-                      Unicode Property を <code translate=no>\p</code> で使えるようにする提案
-                    </li>
+                    <li>Unicode Property を <code translate=no>\p</code> で使えるようにする提案
                     <li><code translate=no>(/\p{Script=Greek}/u).regexGreekSymbol.test(&apos;π&apos;)</code>
                   </ul>
                 </li>
@@ -1257,9 +1207,7 @@
                     <li>RFC6265bis: Cookies
                     <li>Signed HTTP Exchanges
                     <li>HTTPter
-                    <li>
-                      The &quot;SNI&quot; Alt-Svc Parameter / HTTP Alternative Services via DNS
-                    </li>
+                    <li>The &quot;SNI&quot; Alt-Svc Parameter / HTTP Alternative Services via DNS
                     <li>Variants
                   </ul>
                 </li>

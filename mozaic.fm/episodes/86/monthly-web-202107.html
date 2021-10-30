@@ -143,9 +143,7 @@
                       <li>Report Quirks mode issues in the Issues tab
                       <li>Include Compute Intersections in the Performance panel
                       <li>Lighthouse 7.5 in the Lighthouse panel
-                      <li>
-                        Deprecated &quot;Restart frame&quot; context menu in the call stack
-                      </li>
+                      <li>Deprecated &quot;Restart frame&quot; context menu in the call stack
                       <li>[Experimental] Protocol monitor
                       <li><em>[Experimental] Puppeteer Recorder</em>
                     </ul>
@@ -260,24 +258,16 @@
                 <em>Ship: preferCurrentTab</em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/YoefXLTQsw0/m/NVoV6NcIAgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/YoefXLTQsw0/m/NVoV6NcIAgAJ</a>
-                  <li>
-                    <code translate=no>getDisplayMedia()</code> でユーザに Tab, Window, Display を選ばせる際に、 Tab を推奨するための属性を追加
-                  </li>
-                  <li>
-                    別途 <code translate=no>getViewportMedia()</code> も提案されているがまだ策定初期段階なので属性を追加するもの
-                  </li>
-                  <li>
-                    <code translate=no>getDisplayMedia()</code> の仕様では「ソースの選択を制限するような実装をしてはいけない」という制約があるので、 Moziila は <code translate=no>harmful</code>
-                  </li>
+                  <li><code translate=no>getDisplayMedia()</code> でユーザに Tab, Window, Display を選ばせる際に、 Tab を推奨するための属性を追加
+                  <li>別途 <code translate=no>getViewportMedia()</code> も提案されているがまだ策定初期段階なので属性を追加するもの
+                  <li><code translate=no>getDisplayMedia()</code> の仕様では「ソースの選択を制限するような実装をしてはいけない」という制約があるので、 Moziila は <code translate=no>harmful</code>
                 </ul>
               </li>
               <li>
                 <em>Ship: Feature Policy: <code translate=no>diplay-capture</code></em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/pNPotQY92UY/m/thZ3h-zQAQAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/pNPotQY92UY/m/thZ3h-zQAQAJ</a>
-                  <li>
-                    <code translate=no>getDisplayMedia()</code> のための Policy
-                  </li>
+                  <li><code translate=no>getDisplayMedia()</code> のための Policy
                   <li>Safari/Firefox は実装済み
                 </ul>
               </li>
@@ -306,9 +296,7 @@
                 <em>Ship: Align transform-style: preserve-3d and perspective property with the spec</em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/4LWMf_tZwtw">https://groups.google.com/a/chromium.org/g/blink-dev/c/4LWMf_tZwtw</a>
-                  <li>
-                    <code translate=no>preserve-3d</code> を指定したときの重なりが DOM ではなくコンテナブロックになっていた
-                  </li>
+                  <li><code translate=no>preserve-3d</code> を指定したときの重なりが DOM ではなくコンテナブロックになっていた
                   <li>仕様が変わったので修正する
                 </ul>
               </li>
@@ -334,12 +322,8 @@
                 <em>Prototype and Ship: flex-basis property honors keywords &apos;content&apos; and &apos;min/max/fit-content&apos;</em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/lzcWR4Q97ik/m/GvFidwZtEwAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/lzcWR4Q97ik/m/GvFidwZtEwAJ</a>
-                  <li>
-                    CSS の幅や高さには px や em 以外にも <code translate=no>min-content</code> や <code translate=no>max-content</code> といったキーワードの値を指定できる
-                  </li>
-                  <li>
-                    <code translate=no>flex-basis</code> でそのキーワードを解釈するようにする
-                  </li>
+                  <li>CSS の幅や高さには px や em 以外にも <code translate=no>min-content</code> や <code translate=no>max-content</code> といったキーワードの値を指定できる
+                  <li><code translate=no>flex-basis</code> でそのキーワードを解釈するようにする
                 </ul>
               </li>
               <li>
@@ -361,9 +345,7 @@
                 <em>Prototype: CORS non-wildcard request-header</em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/jEV2VMVjMt8/m/rogFnr6xAgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/jEV2VMVjMt8/m/rogFnr6xAgAJ</a>
-                  <li>
-                    <code translate=no>access-control-request-header: *</code> などで使われる <code translate=no>*</code> は <code translate=no>Authorization</code> を含まないという仕様がある
-                  </li>
+                  <li><code translate=no>access-control-request-header: *</code> などで使われる <code translate=no>*</code> は <code translate=no>Authorization</code> を含まないという仕様がある
                   <li>これに準拠してなかったものを準拠するように変える
                 </ul>
               </li>
@@ -408,9 +390,7 @@
                 <em>Experiment: Cross-Origin-Embedder-Policy: credentialless</em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/Sdc0G1bvKr0/m/YHR8RuWyAAAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/Sdc0G1bvKr0/m/YHR8RuWyAAAJ</a>
-                  <li>
-                    これまで <code translate=no>require-corp</code> で明示的に CORP で許可されたものだけにしてたが制限がきつかった
-                  </li>
+                  <li>これまで <code translate=no>require-corp</code> で明示的に CORP で許可されたものだけにしてたが制限がきつかった
                   <li>パーソナライズされてないページであれば盗めるものはないので許しても良いはず
                   <li>Credential を送らないことで読み込みの制限を緩和する提案
                 </ul>
@@ -439,9 +419,7 @@
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/GtR3POPyefM">https://groups.google.com/a/chromium.org/g/blink-dev/c/GtR3POPyefM</a>
                   <li>SW をすべてのリクエストが通るとオーバーヘッドが大きい
                   <li>そのパスをコントロールする API が欲しいが、その前に有用かどうかテストしたい
-                  <li>
-                    <code translate=no>Service-Worker-Subresource-Filter: foo</code> だと foo を含むパスだけがヒットするように
-                  </li>
+                  <li><code translate=no>Service-Worker-Subresource-Filter: foo</code> だと foo を含むパスだけがヒットするように
                   <li>まずこれで試して、有用なら指定方法の詳細なスペックを考える
                 </ul>
               </li>
@@ -528,17 +506,13 @@
                   <li>Salesforce では Chrome の flag による無効化をアナウンスしてる
                   <li>Intent to Remove: Cross origin subframe JS Dialogs
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/m/2So3_HlzAgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/m/2So3_HlzAgAJ</a>
-                  <li>
-                    Request for Deprecation Trial: Remove <code translate=no>alert()</code>, <code translate=no>confirm()</code>, and prompt for cross origin iframes
-                  </li>
+                  <li>Request for Deprecation Trial: Remove <code translate=no>alert()</code>, <code translate=no>confirm()</code>, and prompt for cross origin iframes
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4">https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4</a>
                   <li>もともと I2R がでていたもの
                   <li><a href="https://developer.chrome.com/origintrials/#/view_trial/2541156089743802369">https://developer.chrome.com/origintrials/#/view_trial/2541156089743802369</a>
                   <li>すでに Reverse OT があるので OT が終わる 12/15 までに移行する必要
                   <li><a href="https://portswigger.net/research/alert-is-dead-long-live-print">https://portswigger.net/research/alert-is-dead-long-live-print</a>
-                  <li>
-                    XSS の PoC には <code translate=no>alert()</code> ではなく <code translate=no>print()</code> を使おうという話も
-                  </li>
+                  <li>XSS の PoC には <code translate=no>alert()</code> ではなく <code translate=no>print()</code> を使おうという話も
                   <li><a href="https://github.com/whatwg/html/issues/5407">https://github.com/whatwg/html/issues/5407</a>
                   <li><a href="https://github.com/whatwg/html/issues/6897">https://github.com/whatwg/html/issues/6897</a>
                   <li>Chrome 91 、 Chrome 92 リリース前後で問題がでたという報告が HTML の issue にも
@@ -851,9 +825,7 @@
                 <ul>
                   <li><a href="https://hacks.mozilla.org/2021/07/getting-lively-with-firefox-90/">https://hacks.mozilla.org/2021/07/getting-lively-with-firefox-90/</a>
                   <li>Classes go private
-                  <li>
-                    JavaScript <code translate=no>at()</code> method
-                  </li>
+                  <li>JavaScript <code translate=no>at()</code> method
                   <li>Conic gradients for Canvas
                   <li>
                     New Request Headers
@@ -1446,12 +1418,8 @@
               <em>2021.06.08 Certificate Lifetime Incident (valid for an extra one second) - Incidents - Let&apos;s Encrypt Community Support</em>
               <ul>
                 <li><a href="https://community.letsencrypt.org/t/2021-06-08-certificate-lifetime-incident-valid-for-an-extra-one-second/153426">https://community.letsencrypt.org/t/2021-06-08-certificate-lifetime-incident-valid-for-an-extra-one-second/153426</a>
-                <li>
-                  Let&apos;s Encrypt の証明書が 90 日ではなく 90 日 + 1 秒になっていて修正
-                </li>
-                <li>
-                  有効期間は &quot;not before&quot; と &quot;not after&quot; で定義するが、 &quot;not after&quot; はその時間を含むため
-                </li>
+                <li>Let&apos;s Encrypt の証明書が 90 日ではなく 90 日 + 1 秒になっていて修正
+                <li>有効期間は &quot;not before&quot; と &quot;not after&quot; で定義するが、 &quot;not after&quot; はその時間を含むため
                 <li>1s 減らした修正を発覚から 8h でデプロイした
                 <li>1.8 億の証明書に影響するが仕様違反なわけではないため失効はしない
                 <li><em>Yeti 2022 not furnishing entries for STH 65569149</em>
@@ -1473,16 +1441,12 @@
             <li>1990/10/3 に書かれた Sir TBL の www のコードが NFT で出品される
             <li>約 1 万行のコードと、コードを表示した動画、 SVG 、 TBL のメッセージ README が同梱
             <li>サザビーズで 543 万ドルで落札(6 万円/行)され、収益はチャリティへ
-            <li>
-              動画の中の <code translate=no>&lt;&gt;</code> が何故か <code translate=no>&amp;lt; &amp;gt;</code> にエンコードされて表示されていた
-            </li>
+            <li>動画の中の <code translate=no>&lt;&gt;</code> が何故か <code translate=no>&amp;lt; &amp;gt;</code> にエンコードされて表示されていた
             <li><a href="https://github.com/cynthia/WorldWideWeb">https://github.com/cynthia/WorldWideWeb</a>
             <li><em>Chrome 100 - Does it break user agent checking?</em>
             <li><a href="https://paul.kinlan.me/chrome-100/">https://paul.kinlan.me/chrome-100/</a>
             <li>Chrome の version が 100 を超えたら UA は壊れるか?
-            <li>
-              M10 のときは &quot;Chrome 10&quot; で始まるかを確認してるサイトがあったらしい
-            </li>
+            <li>M10 のときは &quot;Chrome 10&quot; で始まるかを確認してるサイトがあったらしい
             <li>HTTP Archive で調べたがそこでは結果は少なかった
             <li><em>Encoding data for POST requests - JakeArchibald.com</em>
             <li><a href="https://jakearchibald.com/2021/encoding-data-for-post-requests/">https://jakearchibald.com/2021/encoding-data-for-post-requests/</a>
@@ -1590,9 +1554,7 @@
             <li>
               セキュリティ
               <ul>
-                <li>
-                  Let&apos;s Encrypt の 90 日 + 1 秒の話
-                </li>
+                <li>Let&apos;s Encrypt の 90 日 + 1 秒の話
                 <li>宇宙線の 1bit 反転で CT が壊れた話
               </ul>
             </li>

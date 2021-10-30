@@ -125,14 +125,10 @@
                     <em>New aspect-ratio CSS property supported in Chromium, Safari Technology Preview, and Firefox Nightly</em>
                     <ul>
                       <li><a href="https://web.dev/aspect-ratio/">https://web.dev/aspect-ratio/</a>
-                      <li>
-                        <code translate=no>aspect-ratio</code> プロパティによる img 領域の確保方法やユースケース
-                      </li>
+                      <li><code translate=no>aspect-ratio</code> プロパティによる img 領域の確保方法やユースケース
                       <li>padding-top を用いたハックが不要になり、 width だけで height が計算される
                       <li>CLS の改善にも役立つ
-                      <li>
-                        width / height を設定した場合は、そのサイズ正確でなくても <code translate=no>width: 100%</code> なら比率は反映される
-                      </li>
+                      <li>width / height を設定した場合は、そのサイズ正確でなくても <code translate=no>width: 100%</code> なら比率は反映される
                     </ul>
                   </li>
                   <li>
@@ -161,9 +157,7 @@
                     <em>Tabbed application mode for PWAs</em>
                     <ul>
                       <li><a href="https://web.dev/tabbed-application-mode/">https://web.dev/tabbed-application-mode/</a>
-                      <li>
-                        <code translate=no>{ &quot;display&quot;: &quot;tabbed&quot; }</code> でタブが使える PWA に
-                      </li>
+                      <li><code translate=no>{ &quot;display&quot;: &quot;tabbed&quot; }</code> でタブが使える PWA に
                     </ul>
                   </li>
                   <li>
@@ -286,12 +280,8 @@
                 <em>Ship: Use :focus-visible in the default UA style sheet</em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/gv69rSngHDY/m/B_p8K21kAgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/gv69rSngHDY/m/B_p8K21kAgAJ</a>
-                  <li>
-                    <code translate=no>:focus</code> の outline を消す CSS が多く <code translate=no>:focus-visible</code> ができた
-                  </li>
-                  <li>
-                    <code translate=no>:focus-visible</code> を UA のデフォルトにすることで <code translate=no>:focus</code> の outline を消す必要が無くなる
-                  </li>
+                  <li><code translate=no>:focus</code> の outline を消す CSS が多く <code translate=no>:focus-visible</code> ができた
+                  <li><code translate=no>:focus-visible</code> を UA のデフォルトにすることで <code translate=no>:focus</code> の outline を消す必要が無くなる
                 </ul>
               </li>
               <li>
@@ -316,9 +306,7 @@
                 <em>Ship: User Agent string: cap macOS version number to 10_15_7</em>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/hAI4QoX6rEo/m/qQNPThr0AAAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/hAI4QoX6rEo/m/qQNPThr0AAAJ</a>
-                  <li>
-                    UA を <code translate=no>Mac OS X 11_0_0</code> にするとバグるコンテンツがあるので <code translate=no>10_15_7</code> にする
-                  </li>
+                  <li>UA を <code translate=no>Mac OS X 11_0_0</code> にするとバグるコンテンツがあるので <code translate=no>10_15_7</code> にする
                 </ul>
               </li>
               <li>
@@ -331,9 +319,7 @@
                 *Ship: Support specifying width/height on <code translate=no>&lt;source&gt;</code> elements for <code translate=no>&lt;picture&gt;</code>
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/GEjjJE0LCnM/m/0p8CJ48hAgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/GEjjJE0LCnM/m/0p8CJ48hAgAJ</a>
-                  <li>
-                    <code translate=no>&lt;source&gt;</code> 側にも w/h が指定でき、ロード前に領域が確保されるように
-                  </li>
+                  <li><code translate=no>&lt;source&gt;</code> 側にも w/h が指定でき、ロード前に領域が確保されるように
                 </ul>
               </li>
               <li>
@@ -364,9 +350,7 @@
                 Ship: CSS custom counter style
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/kC8b-dZ8uBQ/m/Ngopo8S2AgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/kC8b-dZ8uBQ/m/Ngopo8S2AgAJ</a>
-                  <li>
-                    <code translate=no>@counter-style</code> で ol のスタイルを細かく定義
-                  </li>
+                  <li><code translate=no>@counter-style</code> で ol のスタイルを細かく定義
                 </ul>
               </li>
               <li>
@@ -433,21 +417,15 @@
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/q9zf-frdewo/m/zxw2HuzGAQAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/q9zf-frdewo/m/zxw2HuzGAQAJ</a>
                   <li>form control のデフォルトアクセントカラーを変更するプロパティ
-                  <li>
-                    <code translate=no>&lt;input type=checkbox&gt;</code> で <code translate=no>accent-color: red</code> するとチェックマークの周りが青から赤になる
-                  </li>
+                  <li><code translate=no>&lt;input type=checkbox&gt;</code> で <code translate=no>accent-color: red</code> するとチェックマークの周りが青から赤になる
                 </ul>
               </li>
               <li>
                 Prototype: &quot;credentialless&quot; embedder policy.
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/DOtU6R4TuAY/m/kPbID-LAAQAJ\">https://groups.google.com/a/chromium.org/g/blink-dev/c/DOtU6R4TuAY/m/kPbID-LAAQAJ\</a>
-                  <li>
-                    <code translate=no>Cross-Origin-Embedder-Policy: credentialless</code> にすると no-cors なリクエストが credential less になる
-                  </li>
-                  <li>
-                    <code translate=no>require-corp</code> 同様 Isolation も実施される
-                  </li>
+                  <li><code translate=no>Cross-Origin-Embedder-Policy: credentialless</code> にすると no-cors なリクエストが credential less になる
+                  <li><code translate=no>require-corp</code> 同様 Isolation も実施される
                 </ul>
               </li>
               <li>
@@ -672,9 +650,7 @@
                 <em>Prototype and ship: :user-valid and :user-invalid pseudo-classes.</em>
                 <ul>
                   <li><a href="https://groups.google.com/g/mozilla.dev.platform/c/rEYMl79krS8/m/UI_kwzatCAAJ">https://groups.google.com/g/mozilla.dev.platform/c/rEYMl79krS8/m/UI_kwzatCAAJ</a>
-                  <li>
-                    <code translate=no>&lt;form&gt;</code> の valid / invalid は <code translate=no>input</code> の state しかみてなかった
-                  </li>
+                  <li><code translate=no>&lt;form&gt;</code> の valid / invalid は <code translate=no>input</code> の state しかみてなかった
                   <li>ユーザのインタラクションに応じた結果で valid/invalid を判定することができる
                   <li>ページを開いた瞬間にエラー扱いになるなどがなくなる
                 </ul>
@@ -855,9 +831,7 @@
                   <li>
                     Media
                     <ul>
-                      <li>
-                        Added intermediate volume icon states between &quot;mute&quot; and &quot;max&quot; (r272375)
-                      </li>
+                      <li>Added intermediate volume icon states between &quot;mute&quot; and &quot;max&quot; (r272375)
                     </ul>
                   </li>
                   <li>
@@ -953,9 +927,7 @@
                 <ul>
                   <li><a href="https://lists.webkit.org/pipermail/webkit-dev/2021-February/031707.html">https://lists.webkit.org/pipermail/webkit-dev/2021-February/031707.html</a>
                   <li>Igalia からのリクエスト、スレッドには Mozilla も参加
-                  <li>
-                    WebKit 的にはこの仕様のままでは won&apos;t support らしい
-                  </li>
+                  <li>WebKit 的にはこの仕様のままでは won&apos;t support らしい
                 </ul>
               </li>
             </ul>
@@ -1559,9 +1531,7 @@
                 <li>macOS X UA string freezing
                 <li>Origin-Agent-Cluster
                 <li>IP-multicast
-                <li>
-                  width/height <code translate=no>&lt;picture&gt;</code> <code translate=no>&lt;source&gt;</code>
-                </li>
+                <li>width/height <code translate=no>&lt;picture&gt;</code> <code translate=no>&lt;source&gt;</code>
                 <li>Early Hints Prototype
                 <li>Speculation Rules
               </ul>
@@ -1607,9 +1577,7 @@
               セキュリティ
               <ul>
                 <li>Cookie / Privacy Sandbox / 独占禁止法 / 公正取引委員会
-                <li>
-                  Let&apos;s Encrypt インフラ改善
-                </li>
+                <li>Let&apos;s Encrypt インフラ改善
               </ul>
             </li>
             <li>
