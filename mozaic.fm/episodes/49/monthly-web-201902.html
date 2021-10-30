@@ -1162,11 +1162,9 @@
                   <em>new.initialize</em>
                   <ul>
                     <li><a href="https://github.com/littledan/proposal-new-initialize">https://github.com/littledan/proposal-new-initialize</a>
-                    <li>
-                      class A extends B{} を new する前に A.<strong>proto</strong> を変えることができる
-                    </li>
-                    <li>new A で必ず B の constructor を呼ぶには freeze しないといけない
-                    <li>でも freeze したくなければ A の constructor で Reflect.construct(C, [], new.target); する
+                    <li><code translate=no>class A extends B{}</code> を <code translate=no>new</code> する前に <code translate=no>A.__proto__</code> を変えることができる
+                    <li><code translate=no>new A</code> で必ず B の constructor を呼ぶには <code translate=no>freeze()</code> しないといけない
+                    <li>でも <code translate=no>freeze()</code> したくなければ A の constructor で <code translate=no>Reflect.construct(C, [], new.target);</code> する
                     <li>これの戻り値に独自のプロパティを定義することができ、 built in class はこうなってる
                     <li>でも親の private/public field を継承する余地が無い
                     <li><code translate=no>new.initialize()</code> で親の field も継承する
@@ -1292,7 +1290,7 @@
                   </ul>
                 </li>
                 <li>
-                  Local Naming Protocol &ndash; LNP (v.1.0)
+                  Local Naming Protocol -- LNP (v.1.0)
                   <ul>
                     <li><a href="https://tools.ietf.org/html/draft-schaller-dnsop-lnp-00">https://tools.ietf.org/html/draft-schaller-dnsop-lnp-00</a>
                   </ul>
