@@ -179,7 +179,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Firefox 80 for developers - Mozilla
     - <https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/80>
     - CSS の appearance プロパティの接頭辞が外れた
-    - export * as namespace
+    - export \* as namespace
   - Firefox 80 Site Compatibility
     - <https://www.fxsitecompat.dev/en-CA/releases/80/>
   - *Changing World, Changing Mozilla - The Mozilla Blog*

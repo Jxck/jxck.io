@@ -56,7 +56,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Add referrerpolicy support to `<script>` elements
     - Intervention Reports in Reporting Observer
     - 'name' attribute for dedicated workers
-    - ontouch* APIs default to disabled on desktop
+    - ontouch\* APIs default to disabled on desktop
     - Options dictionary for postMessage methods
     - Symbol.prototype.description
     - TLS 1.3

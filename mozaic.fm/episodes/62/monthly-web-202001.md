@@ -433,7 +433,7 @@ guest: [@myakura](https://twitter.com/yakura)
     - <https://blogs.windows.com/windowsexperience/2020/01/15/new-year-new-browser-the-new-microsoft-edge-is-out-of-preview-and-now-available-for-download/>
   - Get started building extensions for the new Microsoft Edge
     - <https://blogs.windows.com/msedgedev/2019/12/16/get-started-extensions-addons-microsoft-edge-chromium/>
-  - Retiring Internet Explorer \| text/plain*
+  - *Retiring Internet Explorer \| text/plain*
     - <https://textslashplain.com/2020/01/19/retiring-internet-explorer/>
   - Capture Network Logs from Edge and Chrome \| text/plain
     - <https://textslashplain.com/2020/01/17/capture-network-logs-from-edge-and-chrome/>

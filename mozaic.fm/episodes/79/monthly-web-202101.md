@@ -442,7 +442,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - *Ship: Network Partitioning*
   - <https://groups.google.com/g/mozilla.dev.platform/c/uDYrtq1Ne3A/m/QCckV5y-AwAJ>
-- *Ship: Setting the default referrer policy to `strict-origin-when-cross-origin'*
+- *Ship: Setting the default referrer policy to 'strict-origin-when-cross-origin'*
   - <https://groups.google.com/g/mozilla.dev.platform/c/K7Dq-0CyT_Q/m/l04RxJinAwAJ>
 - Ship: remote-protocol (CDP)
   - <https://groups.google.com/g/mozilla.dev.platform/c/0os0fMkH7QU>
@@ -993,7 +993,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - privacy sandbox 1 年経過の続報
 - privacy preserving preload と prerendering 2
 - private prefetch proxy proposal
-- <popup> と ModalCloseWacher
+- `<popup>` と ModalCloseWacher
 - SameParty Cookie
 - Firefox 85 で preload
 - ESNI to ECH

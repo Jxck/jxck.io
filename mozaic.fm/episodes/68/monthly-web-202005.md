@@ -519,9 +519,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - Heejin Chung (Samsung)
     - Klaus Peter Hoeckner (Hilfsgemeinschaft)
     - Tatsuya Igarashi (Sony)
-    - Florian Rivoal (W3C Invited Expert)*
-    - Tzviya Siegman (Wiley)*
-    - David Singer (Apple)*
+    - Florian Rivoal (W3C Invited Expert)
+    - Tzviya Siegman (Wiley)
+    - David Singer (Apple)
     - Alan Stearns (Adobe)
   - *W3C Website Redesign Discovery Phase: New Survey*
     - <https://lists.w3.org/Archives/Public/www-style/2020May/0001.html>

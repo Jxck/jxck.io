@@ -22,7 +22,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Updates
   - New in Chrome 74
     - <https://developers.google.com/web/updates/2019/04/nic74>
-    - Private class fields [[blog](https://blog.jxck.io/entries/2019-03-14/private-class-field.html)]
+    - Private class fields [blog](https://blog.jxck.io/entries/2019-03-14/private-class-field.html)]
     - prefers-reduced-motion
     - CSS transition events
     - Feature Policy API updates
@@ -410,7 +410,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - すでに公開されている Android/iOS 版 Edge もそうなっているらしい
   - Chromium 74 ベースっぽい
     - しかし全ての機能(API)があるわけではなさそう
-    - Sec-Fetch-* なども飛んでない
+    - `Sec-Fetch-*` なども飛んでない
     - DevTools はほぼそのまま
     - edge:// に設定がある(edge://flags, edge://edge-urls etc)
   - ソースコード
@@ -419,7 +419,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Redmond の住所に $5 払ったらコード送るよ的なことが edge://terms に書いてある
     - Source code for portions of Microsoft Edge is available free of charge from <https://thirdpartysource.microsoft.com> under the third party open source license terms provided at <http://aka.ms/thirdpartynotices> and in Microsoft Edge at edge://credits after installation. Or to obtain this source code you may send a check or money order for US $5.00, including the Edge version number, to: [住所]
     - でもダウンロードリンクが出回っていて普通に取得できる
-    - [3.7G] <https://thirdpartysource.microsoft.com/download/Microsoft%20Edge/75.0.121.1/Windows%20x64/chromium.zip>
+    - (3.7G) <https://thirdpartysource.microsoft.com/download/Microsoft%20Edge/75.0.121.1/Windows%20x64/chromium.zip>
 - Status Updates
   - <https://github.com/MicrosoftEdge/Status/compare/production@{2019-04-01}...production@{2019-05-01}>
   - <https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja>

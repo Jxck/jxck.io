@@ -72,7 +72,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - <https://events.google.com/io/session/165a213a-d593-4ad0-9bee-18615a4757e8?lng=ja>
   - *検索の最新情報*
     - <https://events.google.com/io/session/6da5bb28-ad54-4cf0-8dc5-4eacb73a660a?lng=ja>
-  - #### Intents
+
+#### Intents
+
 - Ship: size-adjust descriptor for @font-face
   - <https://groups.google.com/a/chromium.org/g/blink-dev/c/1PVr94hZHjU/m/J0xT8-rlAQAJ>
 - Ship: droppedEntriesCount in PerformanceObserver callback
@@ -306,7 +308,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - *ship: Fetch Metadata Request Headers*
   - <https://groups.google.com/g/mozilla.dev.platform/c/MO64cIV43ts/m/SPzPLa1TAQAJ>
-- ship: allow pages with *unload event listeners to enter bfcache on Android
+- ship: allow pages with \*unload event listeners to enter bfcache on Android
   - <https://groups.google.com/a/mozilla.org/g/dev-platform/c/3pQRLPZnQgQ>
 - *ship: `at()` relative indexing*
   - <https://groups.google.com/a/mozilla.org/g/dev-platform/c/YJv7laP5-8c>
@@ -564,7 +566,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - SSML なんてあるのね
   - First Public Working Drafts: WebGPU and WebGPU Shading Language
     - <https://www.w3.org/blog/news/archives/9059>
-  - * Chartering
+- Chartering
   - Proposed W3C Charter: Media Working Group
     - <https://lists.w3.org/Archives/Public/public-new-work/2021May/0006.html>
   - HTML Working Group Charter extended until 1 September 2021
@@ -707,7 +709,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - RFC 9002: QUIC Loss Detection and Congestion Control
     - <https://www.rfc-editor.org/rfc/rfc9002.html>
     - 損失検知と輻輳制御
-  - * webtrans
+- webtrans
   - <https://mailarchive.ietf.org/arch/browse/webtransport/>
   - <https://github.com/DavidSchinazi/webtrans-wg-materials>
 - tlswg

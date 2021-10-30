@@ -99,7 +99,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ulyuFI9aMig/zCegnl22CQAJ>
   - Implement: Per-method quota for PaymentRequest.canMakePayment()
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pmq3VLPiw5E/3BUpoVm0CQAJ>
-  - *Experiment: Signed HTTP Exchanges
+  - *Experiment: Signed HTTP Exchanges*
     - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKHe54W996c/1E51GLbvAQAJ>
     - M71 で実験
   - Experiment: lowLatency canvas contexts

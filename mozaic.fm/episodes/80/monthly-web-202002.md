@@ -112,7 +112,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - UA を `Mac OS X 11_0_0` にするとバグるコンテンツがあるので `10_15_7` にする
 - Ship: Generated CSSStyleDeclaration Attributes
   - <https://groups.google.com/a/chromium.org/g/blink-dev/c/MfR5PmnS77U/m/rFpewtnuAgAJ>
-- *Ship: Support specifying width/height on `<source>` elements for `<picture>`
+- *Ship: Support specifying width/height on `<source>` elements for `<picture>`*
   - <https://groups.google.com/a/chromium.org/g/blink-dev/c/GEjjJE0LCnM/m/0p8CJ48hAgAJ>
   - `<source>` 側にも w/h が指定でき、ロード前に領域が確保されるように
 - *Ship: Declarative Shadow DOM*
@@ -265,7 +265,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - *Prototype: CSS color-mix() function.*
   - <https://groups.google.com/g/mozilla.dev.platform/c/1MdyhPwaInw/m/2Fi4vWGXAQAJ>
   - `color-mix(red  40%, blue)` で 赤: 青 = 40: 60 の混色に
-  - * *Unship: Exposure of 11.x macOS versions in the User-Agent string*
+  - *Unship: Exposure of 11.x macOS versions in the User-Agent string*
   - <https://groups.google.com/g/mozilla.dev.platform/c/yaYW2xo5Kik/m/zZlPf1JwAgAJ>
   - UA 文字列の macOS のバージョンを 10_15_7 に
 - Unship: Application Cache API
@@ -338,7 +338,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - CSS
     - Added support for aspect-ratio on grid items (r272307)
     - Added support for logical variants of scroll-padding and scroll-margin (r272035)
-    - *Added support for `color(a98-rgb ...)`, `color(prophoto-rgb ...)`, `color(rec2020 ...)`, `color(xyz ...)`, `hwb()` as part of CSS Color 4 (r271992, r272125, r272123, r272311, r272344)
+    - *Added support for `color(a98-rgb ...)`, `color(prophoto-rgb ...)`, `color(rec2020 ...)`, `color(xyz ...)`, `hwb()` as part of CSS Color 4 (r271992, r272125, r272123, r272311, r272344)*
     - *Added support for percentages when parsing color(srgb ...) and color(display-p3 ...) per-spec (r271866)*
     - *Implemented scroll-snap-stop for scroll snapping (r272610)*
   - Media
@@ -511,12 +511,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
-
 #### New Proposals
 
-- #### Other
-- ### IETF 動向
+#### Other
 
+
+### IETF 動向
 
 #### IETF
 
@@ -528,7 +528,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2021JanMar/0249.html>
   - [bcp56bis] Using TLS in HTTP API specification
     - <https://lists.w3.org/Archives/Public/ietf-http-wg/2021JanMar/0247.html>
-  - *Interim 02/21
+  - *Interim 02/21*
     - <https://github.com/httpwg/wg-materials/blob/gh-pages/interim-21-02/minutes.md>
     - bcp56bis の WGLC をやり直す
     - CDN-Cache-Control は WG to call for adoption

@@ -42,13 +42,13 @@ guest: [@toyoshim](https://twitter.com/toyoshim)
 - [Web Budget API](https://wicg.github.io/budget-api/)
   - すでに作業は終わり、ブラウザからも消され始めている
   - <https://blog.jxck.io/entries/2017-06-12/web-budget-api.html>
-- [883038 \- Feedback: Eliding www/m subdomains \- chromium \- Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=883038)
+- [883038 - Feedback: Eliding www/m subdomains - chromium - Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=883038)
   - chrome69 で `www.`, `m.` のサブドメインを非表示にする変更が一度入った
   - フィードバックを元に 70 で改善予定とのこと
 - [Signed HTTP Exchanges](https://tools.ietf.org/id/draft-yasskin-http-origin-signed-responses-02.html)
 - [Mozilla Specification Positions](https://mozilla.github.io/standards-positions/)
   - 各 API に対する mozilla の態度を示すページ
   - 現時点で signed http exchange のみ harmful となっている
-- [draft\-nottingham\-how\-did\-that\-get\-into\-the\-repo\-00 \- The secret\-token URI Scheme](https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00)
+- [draft-nottingham-how-did-that-get-into-the-repo-00 - The secret-token URI Scheme](https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00)
   - Cookie を再設計したい話
 - [TCP and UDP Socket API](https://www.w3.org/TR/raw-sockets/)

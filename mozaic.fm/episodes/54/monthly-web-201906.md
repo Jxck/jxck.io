@@ -385,7 +385,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - *Enabled WebAuthN by default on macOS (r245589)*
     - Implemented line-break: anywhere (r245275)
     - Implemented a modern "clearfix" with display: flow-root (r245494)
-    - Implemented page-break-* and -webkit-column-break-* as legacy-shorthands. (r245276)
+    - Implemented `page-break-*` and `-webkit-column-break-*` as legacy-shorthands. (r245276)
     - *Limited the number of prefetches of a given page (r245171)*
   - Safari Technology Preview 84, with Safari 13 Features, is Now Available
     - <https://webkit.org/blog/9170/safari-technology-preview-84-with-safari-13-features-is-now-available/>
@@ -395,7 +395,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Fixed inserting a newline in contenteditable add one character, not two (r245912, r245980)
     - Added an option to mute audio capture automatically when page is not visible (r246002)
     - Fixed createAnswer() SDP Rejected by setLocalDescription() (r245829)
-    - *Implemented feature policy self, none, and * parsing (r245625)*
+    - *Implemented feature policy self, none, and \* parsing (r245625)*
     - *Implemented imagesrcset and imagesizes attributes on link rel=preload (r246045)*
     - *Implemented Promise.allSettled (r245869)*
     - *Implemented support for Numeric Separators (r245655)*

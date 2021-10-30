@@ -294,7 +294,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Release Notes for Safari Technology Preview 104
     - <https://webkit.org/blog/10264/release-notes-for-safari-technology-preview-104/>
     - Added HTTP3 as an experimental feature (r258678)
-    - Added label text to suggested values for a <datalist> element (r259330)
+    - Added label text to suggested values for a `<datalist>` element (r259330)
     - Removed synchronous termination of service workers (r259383)
     - Added support for :is() (r259261)
     - Added initial support for WebRTC HEVC (r259452)

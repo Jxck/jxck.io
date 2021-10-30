@@ -85,7 +85,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - *Google URL Shortener から Firebase Dynamic Links へ*
     - <https://developers-jp.googleblog.com/2018/05/transitioning-google-url-shortener.html>
     - goo.gl の URL はもう作れんない、既存のものは存続
-    - Firebase の API で *.app.goo.gl が作れる
+    - Firebase の API で \*.app.goo.gl が作れる
     - アプリの連携なども含め高機能
   - Welcome to the immersive web
     - <https://developers.google.com/web/updates/2018/05/welcome-to-immersive>

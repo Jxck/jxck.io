@@ -264,7 +264,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - <https://webkit.org/blog/8182/introducing-the-payment-request-api-for-apple-pay/>
   - Web Inspector Styles Sidebar Improvements
     - <https://webkit.org/blog/8239/web-inspector-styles-sidebar-improvements/>
-  - *Safari の UA 文字列が固定されて固定されなくなったおはなし \- fragmentary*
+  - *Safari の UA 文字列が固定されて固定されなくなったおはなし - fragmentary*
     - <https://myakura.hatenablog.com/entry/2018/04/16/083000>
   - itp_study
     - <https://web-study.connpass.com/event/84158/>
@@ -348,7 +348,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - <https://twitter.com/w3cdevs/status/981159615013498880>
     - <https://www.w3.org/2018/03/05-tag-nominations>
     - <https://www.w3.org/blog/news/archives/6939>
-  - *Proposal: <https://example.com/.well-known/modify-credentials*>
+  - *Proposal*: <https://example.com/.well-known/modify-credentials>
     - <https://lists.w3.org/Archives/Public/public-webappsec/2018Apr/0003.html>
   - Audio Description Community Group Proposed
     - <https://lists.w3.org/Archives/Public/public-new-work/2018Apr/0001.html>
@@ -396,7 +396,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Call for Adoption
 - I-D Action
 - Draft
-  - *HTTP Server *ush*
+  - *HTTP Server \*ush*
     - <https://tools.ietf.org/html/draft-pardue-server-ush-00>
     - April Fools' Draft
   - HTTP Representation Variants

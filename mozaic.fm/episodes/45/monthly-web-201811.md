@@ -280,7 +280,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Implemented getTiming() and updateTiming()
   - Implemented Animation.updatePlaybackRate()
   - Added support to allow cross-document intersection observing
-  - Added CSS Custom Properties API Support for syntax="*" and `<length>` with proper cycle handling
+  - Added CSS Custom Properties API Support for `syntax="*"` and `<length>` with proper cycle handling
   - Implemented text-underline-offset and text-decoration-thickness
   - Added support for sender and receiver getCapabilities
   - Added onremovetrack support for RTCPeerConnection removed tracks
@@ -500,29 +500,29 @@ guest: [@myakura](https://twitter.com/myakura)
 - *The State of JavaScript 2018: Introduction*
   - <https://2018.stateofjs.com/introduction>
   - Highest Satisfaction
-      1. Jest
-      2. Express
-      3. GraphQL
+    1. Jest
+    2. Express
+    3. GraphQL
   - Highest Interest
-      1. GraphQL
-      2. Storybook
-      3. Electron
+    1. GraphQL
+    2. Storybook
+    3. Electron
   - Most Mentioned
-      1. VueX
-      2. Cypress
-      3. Hapi
+    1. VueX
+    2. Cypress
+    3. Hapi
   - Most Used
-      1. React
-      2. Express
-      3. Angular
+    1. React
+    2. Express
+    3. Angular
   - Prediction Award
-      1. Reason
-      2. Svelte
-      3. Parcel
+    1. Reason
+    2. Svelte
+    3. Parcel
   - Special Award
-      1. VS Code
-      2. Storybook
-      3. Next.js
+    1. VS Code
+    2. Storybook
+    3. Next.js
 - *The 100 greatest innovations of 2018*
   - <https://www.popsci.com/best-of-whats-new-2018>
   - 2018 年のイノベーション 100 選

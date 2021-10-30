@@ -236,7 +236,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/7YXZLzvq6Qg/8Lc3E-c1BgAJ>
   - Remove: most XPCOM special directories
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/oDzcra6j3hg/oJjUAEEYBAAJ>
-  - Deprecate and Remove: offset-* logical properties.
+  - Deprecate and Remove: `offset-*` logical properties.
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/mG6Wpz5C2PM/axgFbFaUCAAJ>
     - inset- にリネーム
 - Site Compat

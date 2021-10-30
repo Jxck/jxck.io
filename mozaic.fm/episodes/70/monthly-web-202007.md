@@ -307,9 +307,9 @@ guest: [@shqld](https://twitter.com/shqld)
   - *Reducing TLS Certificate Lifespans to 398 Days - Mozilla Security Blog*
     - <https://blog.mozilla.org/security/2020/07/09/reducing-tls-certificate-lifespans-to-398-days/>
     - 証明書の期限を 825 日から 398 日に短くする 3 つの理由
-    1. 長いとインシデントがあっても対応が遅れる。証明書が  5 年だったころ見つかった MD5 の問題を無くすのに 5 年かかり、最大 3 年だった SHA1  を無くすのに 3 年かかった。
-    2. 期限が長いと、侵害されたときに、 MITM できる期間が長くなる。
-    3. ドメインを手放しても証明書を保持できる。ドメインオーナーが変わっても前のオーナーが持っていた証明書は切れるまで有効なので MITM できる。また SAN に自分が所有してないドメインがある証明書があった場合、それを失効すると全てのドメインに影響が出るため DoS に使える。
+      1. 長いとインシデントがあっても対応が遅れる。証明書が  5 年だったころ見つかった MD5 の問題を無くすのに 5 年かかり、最大 3 年だった SHA1  を無くすのに 3 年かかった。
+      2. 期限が長いと、侵害されたときに、 MITM できる期間が長くなる。
+      3. ドメインを手放しても証明書を保持できる。ドメインオーナーが変わっても前のオーナーが持っていた証明書は切れるまで有効なので MITM できる。また SAN に自分が所有してないドメインがある証明書があった場合、それを失効すると全てのドメインに影響が出るため DoS に使える。
     - mozilla のルートストアポリシーを更新してこれを適用し、 2020/9/1 には適用する計画らしい。
   - New Blog Post on 398-Day Certificate Lifetimes
     - <https://groups.google.com/g/mozilla.dev.security.policy/c/EPTMdyIKcYg>

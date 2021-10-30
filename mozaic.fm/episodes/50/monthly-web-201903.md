@@ -238,7 +238,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - これについては「セキュリティ動向」で
   - Intermediate CA Preloading is enabled for desktop Nightly users
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/ATbLAQpWLXE/naA1CZreAwAJ>
-  - Disabling document.createEvent("TouchEvent"), document.createTouch* and ontouch* event handlers on desktop
+  - Disabling document.createEvent("TouchEvent"), `document.createTouch*` and `ontouch*` event handlers on desktop
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/dwRNENReBuU/81z1N78zAwAJ>
   - *Implement and Experiment: Require user interaction for notification permission prompts*
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/15s-U_wXHeA/cekU32UyBwAJ>

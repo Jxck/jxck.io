@@ -630,7 +630,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *Investigation into Google's `Privacy Sandbox' browser changes - GOV.UK*
+- *Investigation into Google's 'Privacy Sandbox' browser changes - GOV.UK*
   - <https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes>
   - イギリスの公正取引委員会の調査
   - これに対する Google からの声明が blog.google のもの

@@ -180,7 +180,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/LrdjybDefP4/HxXU-5DtBwAJ>
   - Ship: block audible autoplay media intervention
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/39Q3fW3zl1E/MDjdhensBwAJ>
-  - Ship: Changes to how offset*, client*, scroll* behave on tables
+  - Ship: Changes to how offset\*, client\*, scroll\* behave on tables
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/d_tiOkSyH_M/LEVu3V_7CQAJ>
   - Ship: Web Animations core interfaces
     - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/fcFctnUjs7A/mWv9pLMbBgAJ>

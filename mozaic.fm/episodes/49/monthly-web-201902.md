@@ -466,9 +466,9 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - でもまだ API はどうするか考え中
   - *new.initialize*
     - <https://github.com/littledan/proposal-new-initialize>
-    - class A extends B{} を new する前に A.__proto__ を変えることができる
-    - new A で必ず B の constructor を呼ぶには freeze しないといけない
-    - でも freeze したくなければ A の constructor で Reflect.construct(C, [], new.target); する
+    - `class A extends B{}` を `new` する前に `A.__proto__` を変えることができる
+    - `new A` で必ず B の constructor を呼ぶには `freeze()` しないといけない
+    - でも `freeze()` したくなければ A の constructor で `Reflect.construct(C, [], new.target);` する
     - これの戻り値に独自のプロパティを定義することができ、 built in class はこうなってる
     - でも親の private/public field を継承する余地が無い
     - `new.initialize()` で親の field も継承する

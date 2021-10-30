@@ -337,7 +337,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - *Join us in celebrating the 31st birthday of the World Wide Web*
     - <https://www.w3.org/blog/news/archives/8378>
     - Web 31 歳
-  - *`CSS X' \| W3C Blog*
+  - *'CSS X' | W3C Blog*
     - <https://www.w3.org/blog/2020/03/css-x/>
     - CSS にレベルがない理由
   - *Why Are We Talking About CSS4? - Smashing Magazine*

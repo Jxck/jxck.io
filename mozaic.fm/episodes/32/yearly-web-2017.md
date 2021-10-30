@@ -74,7 +74,7 @@ Monthly Web のモチベーションについては以下。
       - <https://github.com/w3ctag/design-reviews/issues/206>
 - Audio/Video Updates in Chrome 63/64
   - <https://developers.google.com/web/updates/2017/12/chrome-63-64-media-updates>
-- Strict-Transport-Security for *.dev, *.app and more \| text/plain
+- Strict-Transport-Security for `*.dev`, `*.app` and more \| text/plain
   - <https://textslashplain.com/2017/12/05/strict-transport-security-for-dev/>
 - Polymer 2 and Googlebot
   - <https://medium.com/dev-channel/polymer-2-and-googlebot-2ad50c5727dd>
