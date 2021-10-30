@@ -346,7 +346,7 @@ Monthly Web のモチベーションについては以下。
   - ドメインに対する証明書発行でメールが送られてくるようになる
 - Public Workbox Meeting Notes
   - <https://docs.google.com/document/d/1SbLfFbIgO5v8f9paG1_jUbQeD9OCzIYJvw60mJUc680/edit>
-- Bidirectional JavaScript &lt;-&gt; ESI(Edge Side Includes)
+- Bidirectional JavaScript \<-\> ESI(Edge Side Includes)
   - <https://github.com/akamai/js2esi>
   - could run on Akamai Edge
 

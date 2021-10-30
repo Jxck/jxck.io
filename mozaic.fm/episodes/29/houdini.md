@@ -27,8 +27,8 @@ guest: [@kojiishi](https://twitter.com/kojiishi)
   - [CSS Writing Modes Level 3](https://drafts.csswg.org/css-writing-modes-3/)
   - [CSS Line Grid Module Level 1](https://drafts.csswg.org/css-line-grid/)
   - [CSS Rhythmic Sizing](https://drafts.csswg.org/css-rhythm/)
-  - [UAX \#50: Unicode Vertical Text Layout](http://www.unicode.org/reports/tr50/)
-- [CSS\-TAG Houdini Editor Drafts](https://drafts.css-houdini.org/) ([github](https://github.com/w3c/css-houdini-drafts))
+  - [UAX #50: Unicode Vertical Text Layout](http://www.unicode.org/reports/tr50/)
+- [CSS-TAG Houdini Editor Drafts](https://drafts.css-houdini.org/) ([github](https://github.com/w3c/css-houdini-drafts))
   - [Worklets Level 1](https://drafts.css-houdini.org/worklets/)
     - JS のメインスレッドとは別に実行される環境
     - ハイレベル API で使用される定義される
@@ -55,7 +55,7 @@ guest: [@kojiishi](https://twitter.com/kojiishi)
   - [Font Metrics API Level 1](https://drafts.css-houdini.org/font-metrics-api/)
     - baseline などレイアウトに必要なメトリクス情報を取得する
 - Paint API で StokeText できないと困る話
-  - [why no fillText/strokeText ? Issue \#478](https://github.com/w3c/css-houdini-drafts/issues/478)
+  - [why no fillText/strokeText ? Issue #478](https://github.com/w3c/css-houdini-drafts/issues/478)
 - Minutes Paris F2F 2017-08-01
   - [Part I: AnimationWorklet, TypedOM](https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0001.html)
   - [Part II: CSS Properties & Values, Custom Paint](https://lists.w3.org/Archives/Public/public-houdini/2017Aug/0002.html)
@@ -67,10 +67,10 @@ guest: [@kojiishi](https://twitter.com/kojiishi)
   - [TPAC 2017](https://wiki.csswg.org/planning/tpac-2017)
   - [TPAC F2F November 2017](https://github.com/w3c/css-houdini-drafts/wiki/TPAC-F2F-November-2017)
 - 各ベンダの最近の CSS エンジン改善
-  - FF: [Quantum \- MozillaWiki](https://wiki.mozilla.org/Quantum#Quantum_CSS)
-  - Edge: [Making the web smoother with independent rendering \- Microsoft Edge Dev Blog](https://blogs.windows.com/msedgedev/2017/08/17/making-web-smoother-independent-rendering/)
+  - FF: [Quantum - MozillaWiki](https://wiki.mozilla.org/Quantum#Quantum_CSS)
+  - Edge: [Making the web smoother with independent rendering - Microsoft Edge Dev Blog](https://blogs.windows.com/msedgedev/2017/08/17/making-web-smoother-independent-rendering/)
   - Chrome: [LayoutNG](https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/layout/ng/README.md), [Sliming Paint V2](https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/paint/README.md#slimmingpaintv2-a_k_a_spv2)
 - see also
-  - [GoogleChromeLabs/houdini\-samples](https://github.com/GoogleChromeLabs/houdini-samples)
+  - [GoogleChromeLabs/houdini-samples](https://github.com/GoogleChromeLabs/houdini-samples)
   - [Is Houdini Ready Yet?](https://ishoudinireadyyet.com/)
   - [BlinkOn 8: Line Layout Deep Dive](https://www.youtube.com/watch?v=kQ03a6topCM&feature=youtu.be)
