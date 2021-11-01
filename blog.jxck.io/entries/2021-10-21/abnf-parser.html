@@ -264,12 +264,8 @@ crlf(&quot;\r\n&quot;)
           <p>ABNF の繰り返しは以下のように使われる。
           <pre class=abnf><code translate=no>NUMBER = 1*DIGIT</code></pre>
           <ul>
-            <li>
-              <code translate=no>1*</code> は 1 回以上
-            </li>
-            <li>
-              <code translate=no>1*10</code> は 1 回以上 10 回未満
-            </li>
+            <li><code translate=no>1*</code> は 1 回以上
+            <li><code translate=no>1*10</code> は 1 回以上 10 回未満
           </ul>
           <p>といった具合だ。これを 0 回以上 1 回未満とみなせば、 Optional も手に入る。
           <p>実装は以下のようになる。

@@ -138,7 +138,7 @@
                 <li><a href=#selects>## selects</a>
                 <li><a href=#example>## Example</a>
                 <li><a href=#ディレクトリ以下をごっそり>### ディレクトリ以下をごっそり</a>
-                <li><a href=#html-だけ>### .html だけ</a>
+                <li><a href=#.html-だけ>### .html だけ</a>
                 <li><a href=#like-的な>### like 的な</a>
                 <li><a href=#属性で絞る>### 属性で絞る</a>
                 <li><a href=#dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で>### /dev 以下で pipe か socket か symlink だけを ctime, atime の順で</a>
@@ -197,7 +197,7 @@
 ....</code></pre>
         </section>
         <section>
-          <h3 id="html-だけ"><a href="#html-だけ">.html だけ</a></h3>
+          <h3 id=".html-だけ"><a href="#.html-だけ">.html だけ</a></h3>
           <pre class=sh-session><code translate=no>$ selects basename from &apos;./entries/**/*&apos; where extname == &apos;.html&apos;
 new-blog-start.amp.html
 new-blog-start.html
@@ -282,26 +282,14 @@ false   false   true    core</code></pre>
       <section>
         <h2 id="細かいところ"><a href="#細かいところ">細かいところ</a></h2>
         <ul>
-          <li>
-            <code translate=no>selects</code> にしたのは既に <code translate=no>select</code> が linux にあるから。
-          </li>
+          <li><code translate=no>selects</code> にしたのは既に <code translate=no>select</code> が linux にあるから。
           <li>結果の頭にヘッダ(列名)を出してないのは、パイプしやすくするため。
-          <li>
-            パイプ後の <code translate=no>cut</code> コマンドと相性が良いように、列はタブ区切りにしている。
-          </li>
-          <li>
-            <code translate=no>*</code>, <code translate=no>&lt;</code>, <code translate=no>&gt;</code> は Shell で意味を持つのでクオートが必要。
-          </li>
-          <li>
-            Ruby の <code translate=no>File</code> と <code translate=no>File::Stat</code> のメソッドを呼べるようにしている。
-          </li>
-          <li>
-            SQL よりも Ruby に寄ってるので曖昧検索は <code translate=no>like</code> ではなく <code translate=no>where</code> で <code translate=no>basename =~ &apos;.*foo.*&apos;</code> などする。
-          </li>
+          <li>パイプ後の <code translate=no>cut</code> コマンドと相性が良いように、列はタブ区切りにしている。
+          <li><code translate=no>*</code>, <code translate=no>&lt;</code>, <code translate=no>&gt;</code> は Shell で意味を持つのでクオートが必要。
+          <li>Ruby の <code translate=no>File</code> と <code translate=no>File::Stat</code> のメソッドを呼べるようにしている。
+          <li>SQL よりも Ruby に寄ってるので曖昧検索は <code translate=no>like</code> ではなく <code translate=no>where</code> で <code translate=no>basename =~ &apos;.*foo.*&apos;</code> などする。
           <li>SQL の仕様は尊重しつつも、準拠よりあくまで裏の Ruby が透けて見える範囲で実装したい。
-          <li>
-            まだ <code translate=no>group by</code> などは対応してないが、そのくらいはやっても良いかなと思っている。
-          </li>
+          <li>まだ <code translate=no>group by</code> などは対応してないが、そのくらいはやっても良いかなと思っている。
           <li>動的に組み立てて実行しているため、上手くやれば任意の Ruby が実行できるかもしれない。是非探して遊んでみて欲しい。
         </ul>
       </section>

@@ -177,15 +177,9 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p><a href="https://github.com/WICG/webpackage">WebPackaging</a> は以下の 3 つの仕様を組み合わせたユースケースである。
         <ul>
-          <li>
-            <a href="https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04">Signed HTTP Exchanges</a>: Signing (コンテンツに署名する)
-          </li>
-          <li>
-            <a href="https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00">Bundled HTTP Exchanges</a>: Bundling (コンテンツを 1 つにまとめる)
-          </li>
-          <li>
-            <a href="https://wicg.github.io/webpackage/loading.html">Loading Signed Exchanges</a>: Loading (そのコンテンツをロードする)
-          </li>
+          <li><a href="https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04">Signed HTTP Exchanges</a>: Signing (コンテンツに署名する)
+          <li><a href="https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00">Bundled HTTP Exchanges</a>: Bundling (コンテンツを 1 つにまとめる)
+          <li><a href="https://wicg.github.io/webpackage/loading.html">Loading Signed Exchanges</a>: Loading (そのコンテンツをロードする)
         </ul>
         <p>本エントリでは、各仕様を Signing/Bundling/Loading と記す。
         <p>現状、 Signing および Loading の仕様策定が進んでおり、 Chrome は Experimental な実装を行っている。
@@ -196,7 +190,7 @@
         <p>Signing は、簡単に言えば Web コンテンツに署名を行う仕様である。
         <p>今回は対象として mozaic.fm ドメインにある以下のコンテンツについて考える。
         <ul>
-          <li>https://mozaic.fm/index.html
+          <li><a href="https://mozaic.fm/index.html">https://mozaic.fm/index.html</a>
         </ul>
         <p>mozaic.fm の管理者は、保有する秘密鍵を用いて、このコンテンツの Request/Response に対して署名をする。
         <p>単にファイルを署名するのではなく、 Request/Response が対象であるため、 Method/URL/Status/Header なども含まれる点が重要だ。
@@ -216,7 +210,7 @@
         <h2 id="loading-loading-http-exchanges"><a href="#loading-loading-http-exchanges">Loading (Loading HTTP Exchanges)</a></h2>
         <p>次に jxck.io ドメインには CDN 機能があるとし、先の署名した sxg ファイルをここから配信したとする。
         <ul>
-          <li>https://cdn.jxck.io/mozaicfm-index.sxg
+          <li><a href="https://cdn.jxck.io/mozaicfm-index.sxg">https://cdn.jxck.io/mozaicfm-index.sxg</a>
         </ul>
         <p>通常、この URL を fetch したブラウザは、 Origin を <code translate=no>https://cdn.jxck.io</code> として扱う。
         <p>仮に、このファイルがそのまま表示できるとすれば、 URL バーにはこのアドレスが表示されるだろう。
@@ -224,7 +218,7 @@
         <p>署名を検証することで、内容が改ざんされていないことが保証できるため、ブラウザはこのコンテンツを mozaic.fm から取得したかのように扱うことができる。
         <p>具体的には URL バーに、オリジナルの URL である以下を表示できる。
         <ul>
-          <li>https://mozaic.fm/index.html
+          <li><a href="https://mozaic.fm/index.html">https://mozaic.fm/index.html</a>
         </ul>
         <p>Signing で署名された sxg を読み込んだブラウザが、署名を確認しこのように挙動する流れが Loading の仕様だ。
       </section>
@@ -234,8 +228,8 @@
         <p>(この名前は、最近では inner/outer URL と呼ばれてもいるようだが、その辺ははっきりしないので、本エントリでは Logical/Physical を採用する)
         <p>先の例で言えば、以下のようになる。
         <ul>
-          <li>Logical URL: https://mozaic.fm/index.html
-          <li>Physical URL: https://cdn.jxck.io/mozaicfm-index.sxg
+          <li>Logical URL: <a href="https://mozaic.fm/index.html">https://mozaic.fm/index.html</a>
+          <li>Physical URL: <a href="https://cdn.jxck.io/mozaicfm-index.sxg">https://cdn.jxck.io/mozaicfm-index.sxg</a>
         </ul>
         <p>実際に mozaic.fm のオリジンサーバから取得したわけではないが、署名によってそのように扱うことができる。
         <p>展開される Origin は mozaic.fm のものになり、ここから遷移する際に付与される Referer や Origin ヘッダも全て mozaic.fm になる。
@@ -252,8 +246,8 @@
           <p>構成はいわゆる CDN だが、あらゆるドメインを対象とするため、 Cache 自体は Google のドメインのままだ。したがってモバイルで Google 検索した結果 AMP コンテンツを取得した場合、 URL バーに表示されるのは Google の URL となる。
           <p>例えばこの記事の AMP 対応 URL は以下だが、 AMP キャッシュの URL は以下になる。
           <ul>
-            <li>https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.amp.html
-            <li>https://www.google.co.jp/amp/s/blog.jxck.io/entries/2018-12-01/signed-http-exchanges.amp.html
+            <li><a href="https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.amp.html">https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.amp.html</a>
+            <li><a href="https://www.google.co.jp/amp/s/blog.jxck.io/entries/2018-12-01/signed-http-exchanges.amp.html">https://www.google.co.jp/amp/s/blog.jxck.io/entries/2018-12-01/signed-http-exchanges.amp.html</a>
           </ul>
           <p>この挙動は、 AMP の仕組みを疑問視するユーザが指摘するポイントの 1 つだった。
           <ul>
@@ -338,7 +332,7 @@
           <p>現状これを試すための選択肢は 3 つある
           <ol>
             <li>現状 DigiCert のみが拡張に対応した証明書を発行するので、そこから購入する
-            <li>通常の証明書を利用し、 Chrome の &lt;chrome://flags/#allow-sxg-certs-without-extension&gt; を有効にする
+            <li>通常の証明書を利用し、 Chrome の <a href="chrome://flags/#allow-sxg-certs-without-extension">chrome://flags/#allow-sxg-certs-without-extension</a> を有効にする
             <li>拡張を含む自己証明書を作成する
           </ol>
           <p>今回は DEMO 用に 3 を採用する。
@@ -436,18 +430,18 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
           <p>まず遷移先のページは以下だ。
           <p>
             <picture>
-              <source type=image/webp srcset=1-index.webp?200901_002432>
+              <source type=image/webp srcset=1-index.webp?191122_155824>
               <img loading=lazy decoding=async src=1-index.png?200901_002432 alt="sxg へ遷移する前のページ" title="index page" width=748 height=457>
             </picture>
           </p>
           <p>ページ下部のリンクから sxg に遷移する。
           <ul>
-            <li>https://labs.jxck.io/webpackaging/signed-http-exchange-b2/mozaic.sxg
+            <li><a href="https://labs.jxck.io/webpackaging/signed-http-exchange-b2/mozaic.sxg">https://labs.jxck.io/webpackaging/signed-http-exchange-b2/mozaic.sxg</a>
           </ul>
           <p>このファイルに Origin-Trial Token を付与しており、 content-type は application/signed-exchange;v=b2 である。
           <p>
             <picture>
-              <source type=image/webp srcset=2-sxg-response.webp?191119_151451>
+              <source type=image/webp srcset=2-sxg-response.webp?191122_155824>
               <img loading=lazy decoding=async src=2-sxg-response.png?191119_151451 alt="sxg のレスポンスヘッダ" title="sxg response" width=748 height=457>
             </picture>
           </p>
@@ -455,7 +449,7 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
           <p>オリジナルの URL やコンテンツ、署名と証明書などが確認できる。
           <p>
             <picture>
-              <source type=image/webp srcset=3-sxg-signing-detail.webp?200901_002432>
+              <source type=image/webp srcset=3-sxg-signing-detail.webp?191122_155824>
               <img loading=lazy decoding=async src=3-sxg-signing-detail.png?200901_002432 alt="sxg の署名部分の詳細" title="sxg signing detail" width=748 height=457>
             </picture>
           </p>
@@ -463,14 +457,14 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
           <p>cbor は <code translate=no>application/cert-chain+cbor</code> で配布する。
           <p>
             <picture>
-              <source type=image/webp srcset=4-cert-chain-cbor.webp?191119_151451>
+              <source type=image/webp srcset=4-cert-chain-cbor.webp?191122_155824>
               <img loading=lazy decoding=async src=4-cert-chain-cbor.png?191119_151451 alt="証明書チェインの詳細" title="cert chain cbor" width=748 height=457>
             </picture>
           </p>
           <p>これを用いて署名の検証が完了したら、ブラウザは Original の URL でコンテンツを表示する。
           <p>
             <picture>
-              <source type=image/webp srcset=5-rendered-contents.webp?191119_151451>
+              <source type=image/webp srcset=5-rendered-contents.webp?191122_155824>
               <img loading=lazy decoding=async src=5-rendered-contents.png?191119_151451 alt="Logical URL で表示された HTML" title="" width=748 height=457>
             </picture>
           </p>

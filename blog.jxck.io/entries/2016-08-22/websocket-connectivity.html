@@ -187,12 +187,8 @@
           <h3 id="問題の詳細"><a href="#問題の詳細">問題の詳細</a></h3>
           <p>WebSocket は標準仕様であるが、ブラウザが実装しているものを指す場合、これは大きく二つの仕様からなる。
           <ul>
-            <li>
-              JS の API (WebSocket オブジェクトとそのメソッド) を定義した <a href="https://html.spec.whatwg.org/multipage/comms.html#network">W3C の仕様</a>
-            </li>
-            <li>
-              ネットワークプロトコルを定義した <a href="https://tools.ietf.org/html/rfc6455">IETF の仕様</a>
-            </li>
+            <li>JS の API (WebSocket オブジェクトとそのメソッド) を定義した <a href="https://html.spec.whatwg.org/multipage/comms.html#network">W3C の仕様</a>
+            <li>ネットワークプロトコルを定義した <a href="https://tools.ietf.org/html/rfc6455">IETF の仕様</a>
           </ul>
           <p>前者は、仕様としては比較的初期から固まっており、後のバイナリ対応など細かい変更はあれど、簡単なテキストチャットを作るレベルでは、早い段階から落ちついていた。
           <p>つまり、これはブラウザが実装するかしないかという、いつもの問題とほぼ等しい。
@@ -283,12 +279,8 @@
         <p>(Rails のことだから ActionCable 上にプラグインを当てて XHR Polling を入れる人もすぐ出るだろうが)
         <p>生の WebSocket を使う場合は、ここまでをまとめて以下を行うことを勧める。
         <ul>
-          <li>
-            暗号化した <code translate=no>wss://</code> を使う
-          </li>
-          <li>
-            <code translate=no>onclose</code> での再接続を検討する
-          </li>
+          <li>暗号化した <code translate=no>wss://</code> を使う
+          <li><code translate=no>onclose</code> での再接続を検討する
           <li>自分のサービスのクライアントで、どの程度「繋がらない」人がいるか計測する
           <li>繋がらない理由が分かるように、上記を参考に監視を設定する
         </ul>

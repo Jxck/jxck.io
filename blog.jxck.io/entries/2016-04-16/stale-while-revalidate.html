@@ -184,12 +184,8 @@
           <p>これまでは HTTP ヘッダを用いて、キャッシュを管理させる方法を用いてきた。
           <p>Web における、キャッシュの指定には大きく二つの方式がある。
           <ul>
-            <li>
-              ブラウザはリクエストを発行せず、保持するキャッシュを使用する(<code translate=no>Cache-Control</code>, <code translate=no>Expires</code>)
-            </li>
-            <li>
-              ブラウザはリクエストを発行し、サーバにキャッシュの有効性を確認してから、キャッシュを使用する(<code translate=no>ETag</code>, <code translate=no>Last-Modified</code>)
-            </li>
+            <li>ブラウザはリクエストを発行せず、保持するキャッシュを使用する(<code translate=no>Cache-Control</code>, <code translate=no>Expires</code>)
+            <li>ブラウザはリクエストを発行し、サーバにキャッシュの有効性を確認してから、キャッシュを使用する(<code translate=no>ETag</code>, <code translate=no>Last-Modified</code>)
           </ul>
           <p>また、キャッシュは、「再利用」を行う目的でありながら、ある一定の範囲で「更新」を行いたいという、相反するコントロールが求められる。
           <p>筆者の認識として、キャッシュ設計の最も難しい点は、ここである。
@@ -305,8 +301,8 @@
         <p>サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
         <p>
           <picture>
-            <source type=image/webp srcset=stale-while-revalidate-demo.webp?200606_195616>
-            <img loading=lazy decoding=async src=stale-while-revalidate-demo.gif?200606_195616 alt="statle-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている" title="stale-while-revalidate demo gif" width=1000 height=510>
+            <source type=image/webp srcset=stale-while-revalidate-demo.webp?191208_190746>
+            <img loading=lazy decoding=async src=stale-while-revalidate-demo.gif?200628_183855 alt="statle-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている" title="stale-while-revalidate demo gif" width=1000 height=510>
           </picture>
         </p>
       </section>

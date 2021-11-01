@@ -138,17 +138,17 @@
                 <li><a href=#webauthentication-api>## WebAuthentication API</a>
                 <li><a href=#公開鍵暗号方式>## 公開鍵暗号方式</a>
                 <li><a href=#registration>## Registration</a>
-                <li><a href=#1-サービスに対して-challenge-乱数の発行を要求する>### 1. サービスに対して challenge (乱数)の発行を要求する</a>
-                <li><a href=#2-この-challenge-を元に-navigatorcredentialscreate-を呼ぶ>### 2. この challenge を元に <code translate=no>navigator.credentials.create()</code> を呼ぶ</a>
-                <li><a href=#3-サービスは中身を確認しユーザに紐付けて保存する>### 3. サービスは中身を確認し、ユーザに紐付けて保存する。</a>
+                <li><a href=#1.-サービスに対して-challenge-乱数の発行を要求する>### 1. サービスに対して challenge (乱数)の発行を要求する</a>
+                <li><a href=#2.-この-challenge-を元に-navigator.credentials.create-を呼ぶ>### 2. この challenge を元に <code translate=no>navigator.credentials.create()</code> を呼ぶ</a>
+                <li><a href=#3.-サービスは中身を確認しユーザに紐付けて保存する>### 3. サービスは中身を確認し、ユーザに紐付けて保存する。</a>
                 <li><a href=#fmt>#### fmt</a>
                 <li><a href=#authdata>#### authData</a>
                 <li><a href=#attstmt>### attStmt</a>
                 <li><a href=#verification-procedure>### Verification Procedure</a>
                 <li><a href=#authentication>## Authentication</a>
-                <li><a href=#1-サービスに対して-challenge-乱数の発行を要求する-1>### 1. サービスに対して challenge (乱数)の発行を要求する</a>
-                <li><a href=#2-この-challenge-を元に-navigatorcredentialsget-を呼ぶ>### 2. この challenge を元に <code translate=no>navigator.credentials.get()</code> を呼ぶ</a>
-                <li><a href=#3-サービスは中身を確認しユーザを認証する>### 3. サービスは中身を確認し、ユーザを認証する</a>
+                <li><a href=#1.-サービスに対して-challenge-乱数の発行を要求する-1>### 1. サービスに対して challenge (乱数)の発行を要求する</a>
+                <li><a href=#2.-この-challenge-を元に-navigator.credentials.get-を呼ぶ>### 2. この challenge を元に <code translate=no>navigator.credentials.get()</code> を呼ぶ</a>
+                <li><a href=#3.-サービスは中身を確認しユーザを認証する>### 3. サービスは中身を確認し、ユーザを認証する</a>
                 <li><a href=#outro>## Outro</a>
               </ul>
             </nav>
@@ -209,7 +209,7 @@
       <section>
         <h2 id="registration"><a href="#registration">Registration</a></h2>
         <section>
-          <h3 id="1-サービスに対して-challenge-乱数の発行を要求する"><a href="#1-サービスに対して-challenge-乱数の発行を要求する">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
+          <h3 id="1.-サービスに対して-challenge-乱数の発行を要求する"><a href="#1.-サービスに対して-challenge-乱数の発行を要求する">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
           <p>クライアントはサーバに username を送り、登録に必要な以下のような情報を要求する。
           <p>(ここではそのまま <code translate=no>navigatore.credentials.create()</code> に渡せる形でサーバから返している)
           <pre class=js><code translate=no>// https://w3c.github.io/webauthn/#dictionary-makecredentialoptions
@@ -235,7 +235,7 @@ const clientCredentialOption = {
 req.session.username  = username // CAUTION!! this is only a sample</code></pre>
         </section>
         <section>
-          <h3 id="2-この-challenge-を元に-navigatorcredentialscreate-を呼ぶ"><a href="#2-この-challenge-を元に-navigatorcredentialscreate-を呼ぶ">2. この challenge を元に <code translate=no>navigator.credentials.create()</code> を呼ぶ</a></h3>
+          <h3 id="2.-この-challenge-を元に-navigator.credentials.create-を呼ぶ"><a href="#2.-この-challenge-を元に-navigator.credentials.create-を呼ぶ">2. この challenge を元に <code translate=no>navigator.credentials.create()</code> を呼ぶ</a></h3>
           <p>ブラウザは、取得した値を元に <code translate=no>create()</code> を呼びクレデンシャルを生成する。
           <p>YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
           <pre class=js><code translate=no>// create() PublicKeyCredential
@@ -249,13 +249,11 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <p>基本的にはこれをそのままシリアライズしサーバに送れば良い。
         </section>
         <section>
-          <h3 id="3-サービスは中身を確認しユーザに紐付けて保存する"><a href="#3-サービスは中身を確認しユーザに紐付けて保存する">3. サービスは中身を確認し、ユーザに紐付けて保存する。</a></h3>
+          <h3 id="3.-サービスは中身を確認しユーザに紐付けて保存する"><a href="#3.-サービスは中身を確認しユーザに紐付けて保存する">3. サービスは中身を確認し、ユーザに紐付けて保存する。</a></h3>
           <p>送られてきた clientDataJSON を JSON パースする。
           <p>以下を確認する
           <ul>
-            <li>
-              clientData.type が &quot;webauthn.create&quot; である
-            </li>
+            <li>clientData.type が &quot;webauthn.create&quot; である
             <li>clientData.challenge(base64) が最初に送った(session に保存した) challenge である
             <li>clientData.origin がサービスの ORIGIN と一致する
             <li>clientData.tokenBinding が正しいこと(今回は使ってない)
@@ -383,7 +381,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
       <section>
         <h2 id="authentication"><a href="#authentication">Authentication</a></h2>
         <section>
-          <h3 id="1-サービスに対して-challenge-乱数の発行を要求する-1"><a href="#1-サービスに対して-challenge-乱数の発行を要求する-1">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
+          <h3 id="1.-サービスに対して-challenge-乱数の発行を要求する-1"><a href="#1.-サービスに対して-challenge-乱数の発行を要求する-1">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
           <p>registration 同様、サーバに username を送り、認証に必要な以下の情報を要求する。
           <p>(ここではそのまま <code translate=no>navigatore.credentials.get()</code> に渡せる形でサーバから返している)
           <pre class=js><code translate=no>{
@@ -398,7 +396,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
 req.session.username  = username // CAUTION!! this is only a sample</code></pre>
         </section>
         <section>
-          <h3 id="2-この-challenge-を元に-navigatorcredentialsget-を呼ぶ"><a href="#2-この-challenge-を元に-navigatorcredentialsget-を呼ぶ">2. この challenge を元に <code translate=no>navigator.credentials.get()</code> を呼ぶ</a></h3>
+          <h3 id="2.-この-challenge-を元に-navigator.credentials.get-を呼ぶ"><a href="#2.-この-challenge-を元に-navigator.credentials.get-を呼ぶ">2. この challenge を元に <code translate=no>navigator.credentials.get()</code> を呼ぶ</a></h3>
           <p>ブラウザは、取得した値を元に <code translate=no>get()</code> を呼びクレデンシャルを生成する。
           <p>YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
           <pre class=js><code translate=no>// get() PublicKeyCredential
@@ -409,14 +407,12 @@ const { type, authenticatorData, signature, userHandle, clientDataJSON } // type
           <p>なお、 credential.rawId は credential.id の base64url なので、 id の方だけそのまま送れば良い。
         </section>
         <section>
-          <h3 id="3-サービスは中身を確認しユーザを認証する"><a href="#3-サービスは中身を確認しユーザを認証する">3. サービスは中身を確認し、ユーザを認証する</a></h3>
+          <h3 id="3.-サービスは中身を確認しユーザを認証する"><a href="#3.-サービスは中身を確認しユーザを認証する">3. サービスは中身を確認し、ユーザを認証する</a></h3>
           <p>まず credential.id で保存された credential がユーザに紐付いて存在するかを確認する。
           <p>userHandle は今回使わないので無視する。
           <p>次に clientDataJSON を JSON としてパースし、以下を確認する。
           <ul>
-            <li>
-              clientData.type が <code translate=no>webauthn.get</code> である
-            </li>
+            <li>clientData.type が <code translate=no>webauthn.get</code> である
             <li>clientData.challenge(base64) が最初に送った(session に保存した) challenge である
             <li>clientData.origin がサービスの ORIGIN と一致する
             <li>clientData.tokenBinding が正しい(今回は使ってない)

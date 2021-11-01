@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-02-12T08:00:00+08:00",
-    "dateModified": "2021-10-16T08:00:00+08:00",
+    "dateModified": "2021-11-02T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-02-12>2021-02-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-16>2021-10-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-11-02>2021-11-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -161,21 +161,21 @@
       <section>
         <h2 id="cache-と-status-code"><a href="#cache-と-status-code">Cache と Status Code</a></h2>
         <p>RFC7234 では、新しいステータスコードを策定する際に、キャッシュに関して以下のように書かれている。
-        <blockquote>
+        <blockquote cite="https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2">
           <p>The definition of a new status code ought to specify whether or not it is cacheable.
           <p>Note that all status codes can be cached if the response they occur in has explicit freshness information;
           <p>however, status codes that are defined as being cacheable are allowed to be cached
           <p>without explicit freshness information.
-          <p>Likewise, the definition of a status code can place constraints upon cache behavior&hellip;
-          <p><cite>&mdash; <a href="https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2">https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2</a></cite>
+          <p>Likewise, the definition of a status code can place constraints upon cache behavior...
+          <p>&mdash; <cite><a href="https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2">https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2</a></cite>
         </blockquote>
         <p>つまり、その新しいステータスコードは、 <code translate=no>max-age</code> などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache 可能かどうかなどを定義できるのだ。
         <p>一方、キャッシュを保存する要件として以下があった。
-        <blockquote>
+        <blockquote cite="https://httpwg.org/specs/rfc7234.html#response.cacheability">
           <p>A cache MUST NOT store a response to any request, unless:
           <p>The request method is understood by the cache and defined as being cacheable, and
-          <p>the response status code is understood by the cache, and&hellip;
-          <p><cite>&mdash; <a href="https://httpwg.org/specs/rfc7234.html#response.cacheability">https://httpwg.org/specs/rfc7234.html#response.cacheability</a></cite>
+          <p>the response status code is understood by the cache, and...
+          <p>&mdash; <cite><a href="https://httpwg.org/specs/rfc7234.html#response.cacheability">https://httpwg.org/specs/rfc7234.html#response.cacheability</a></cite>
         </blockquote>
         <p>問題は、 3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
         <p>新しいステータスコードが標準化された場合に、そのステータスコードが未実装な場合はキャッシュできないように読めてしまう。実装者は、サポートしているステータスコードをリストとして埋め込み、突き合わせてキャッシュの制御を行うことになるだろう。
@@ -205,13 +205,13 @@ Cache-Control: max-age=3600, must-understand, no-store</code></pre>
         <section>
           <h3 id="改訂仕様"><a href="#改訂仕様">改訂仕様</a></h3>
           <p><code translate=no>must-understand</code> の追加によって、改訂ドラフトで前述の仕様は以下のようになった。
-          <blockquote>
+          <blockquote cite="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3">
             <p>3 Storing Responses in Caches
             <p>A cache MUST NOT store a response to a request unless:
             <p>the request method is understood by the cache;
             <p>the response status code is final (see Section 15 of [Semantics]);
             <p>if the response status code is 206 or 304, or the &quot;must-understand&quot; cache directive (see Section 5.2.2.2) is present: the cache understands the response status code;
-            <p>&hellip;
+            <p>...
             <p>&mdash; <cite><a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3">https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3</a></cite>
           </blockquote>
           <p>ステータスコードに <code translate=no>final</code> という概念が入ったのはまた別の話として解説したいが、問題は 3 つ目の条件だ。

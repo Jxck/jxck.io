@@ -141,10 +141,10 @@
                 <li><a href=#update>## update()</a>
                 <li><a href=#backgroundsync>## backgroundsync</a>
                 <li><a href=#push>## push</a>
-                <li><a href=#1-google-developer-console>### 1. Google Developer Console</a>
-                <li><a href=#2masterjs>### 2.master.js</a>
-                <li><a href=#3workerjs>### 3.worker.js</a>
-                <li><a href=#4pushjs>### 4.push.js</a>
+                <li><a href=#1.-google-developer-console>### 1. Google Developer Console</a>
+                <li><a href=#2.master.js>### 2.master.js</a>
+                <li><a href=#3.worker.js>### 3.worker.js</a>
+                <li><a href=#4.push.js>### 4.push.js</a>
                 <li><a href=#図>## 図</a>
               </ul>
             </nav>
@@ -173,11 +173,15 @@
           <li><a href="#updatefound">#updatefound</a>
           <li><a href="#update">#update()</a>
           <li><a href="#backgroundsync">#backgroundsync</a>
-          <li><a href="#push">#push</a>
-          <li><a href="#1.+Google+Developer+Console">#1. Google Developer Console</a>
-          <li><a href="#2.master.js">#2.master.js</a>
-          <li><a href="#3.worker.js">#3.worker.js</a>
-          <li><a href="#4.push.js">#4.push.js</a>
+          <li>
+            <a href="#push">#push</a>
+            <ol>
+              <li><a href="#1.+Google+Developer+Console">#1. Google Developer Console</a>
+              <li><a href="#2.master.js">#2.master.js</a>
+              <li><a href="#3.worker.js">#3.worker.js</a>
+              <li><a href="#4.push.js">#4.push.js</a>
+            </ol>
+          </li>
         </ol>
       </section>
       <section>
@@ -220,9 +224,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   return;
 });</code></pre>
         <ul>
-          <li>
-            DEMO: <a href="https://labs.jxck.io/service-worker/claim/index.html">https://labs.jxck.io/service-worker/claim/index.html</a>
-          </li>
+          <li>DEMO: <a href="https://labs.jxck.io/service-worker/claim/index.html">https://labs.jxck.io/service-worker/claim/index.html</a>
         </ul>
       </section>
       <section>
@@ -264,9 +266,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   return;
 });</code></pre>
         <ul>
-          <li>
-            DEMO: <a href="https://labs.jxck.io/service-worker/controllerchange/">https://labs.jxck.io/service-worker/controllerchange/</a>
-          </li>
+          <li>DEMO: <a href="https://labs.jxck.io/service-worker/controllerchange/">https://labs.jxck.io/service-worker/controllerchange/</a>
         </ul>
       </section>
       <section>
@@ -305,9 +305,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   return;
 });</code></pre>
         <ul>
-          <li>
-            DEMO: <a href="https://labs.jxck.io/service-worker/registration/">https://labs.jxck.io/service-worker/registration/</a>
-          </li>
+          <li>DEMO: <a href="https://labs.jxck.io/service-worker/registration/">https://labs.jxck.io/service-worker/registration/</a>
         </ul>
       </section>
       <section>
@@ -355,9 +353,7 @@ self.addEventListener(&apos;push&apos;, () =&gt; {
   self.registration.update();
 });</code></pre>
         <ul>
-          <li>
-            DEMO: <a href="https://labs.jxck.io/service-worker/update/">https://labs.jxck.io/service-worker/update/</a>
-          </li>
+          <li>DEMO: <a href="https://labs.jxck.io/service-worker/update/">https://labs.jxck.io/service-worker/update/</a>
         </ul>
       </section>
       <section>
@@ -390,9 +386,7 @@ self.addEventListener(&apos;sync&apos;, (e) =&gt; {
   console.log(&apos;sync&apos;, e);
 });</code></pre>
         <ul>
-          <li>
-            DEMO: <a href="https://labs.jxck.io/service-worker/background-sync/">https://labs.jxck.io/service-worker/background-sync/</a>
-          </li>
+          <li>DEMO: <a href="https://labs.jxck.io/service-worker/background-sync/">https://labs.jxck.io/service-worker/background-sync/</a>
         </ul>
       </section>
       <section>
@@ -400,7 +394,7 @@ self.addEventListener(&apos;sync&apos;, (e) =&gt; {
         <p>push に必要な情報とその取り方、投げ方。
         <p><em>デモで作った API KEY は当たり前ですが無効にしてあります、全く同じ値を入れても動きません</em>
         <section>
-          <h3 id="1-google-developer-console"><a href="#1-google-developer-console">1. Google Developer Console</a></h3>
+          <h3 id="1.-google-developer-console"><a href="#1.-google-developer-console">1. Google Developer Console</a></h3>
           <p>Console の UI はコロコロ変わります。以下の情報を頑張って探してください。
           <ul>
             <li>プロジェクトを作る
@@ -434,7 +428,7 @@ self.addEventListener(&apos;sync&apos;, (e) =&gt; {
 &lt;h1&gt;Push DEMO&lt;/h1&gt;</code></pre>
         </section>
         <section>
-          <h3 id="2masterjs"><a href="#2masterjs">2.master.js</a></h3>
+          <h3 id="2.master.js"><a href="#2.master.js">2.master.js</a></h3>
           <p><code translate=no>endpoint</code>, <code translate=no>userAuth</code>, <code translate=no>userPublickKey</code> をなんらかの方法でサーバに送ります。
           <iframe src="https://www.youtube.com/embed/f-ney12qAEI" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
           <pre class=js><code translate=no>&apos;use strict&apos;;
@@ -462,7 +456,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
 }).catch(console.error.bind(console));</code></pre>
         </section>
         <section>
-          <h3 id="3workerjs"><a href="#3workerjs">3.worker.js</a></h3>
+          <h3 id="3.worker.js"><a href="#3.worker.js">3.worker.js</a></h3>
           <iframe src="https://www.youtube.com/embed/k939NlThH4E" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
           <pre class=js><code translate=no>self.addEventListener(&apos;install&apos;, (e) =&gt; {
   console.info(&apos;install&apos;, e);
@@ -506,7 +500,7 @@ self.addEventListener(&apos;notificationclick&apos;, (e) =&gt; {
 });</code></pre>
         </section>
         <section>
-          <h3 id="4pushjs"><a href="#4pushjs">4.push.js</a></h3>
+          <h3 id="4.push.js"><a href="#4.push.js">4.push.js</a></h3>
           <p>使用したモジュール: <a href="https://github.com/web-push-libs/web-push">https://github.com/web-push-libs/web-push</a>
           <iframe src="https://www.youtube.com/embed/hIliK4l4wqw" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
           <pre class=js><code translate=no>&apos;use strict&apos;;
@@ -534,9 +528,7 @@ push.sendNotification(data.endpoint, {
   console.error(&apos;fail&apos;, err);
 });</code></pre>
           <ul>
-            <li>
-              DEMO(push は飛ばしていません): <a href="https://labs.jxck.io/service-worker/push/">https://labs.jxck.io/service-worker/push/</a>
-            </li>
+            <li>DEMO(push は飛ばしていません): <a href="https://labs.jxck.io/service-worker/push/">https://labs.jxck.io/service-worker/push/</a>
           </ul>
         </section>
       </section>

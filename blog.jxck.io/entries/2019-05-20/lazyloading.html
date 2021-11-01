@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-05-20T08:00:00+08:00",
-    "dateModified": "2021-10-16T08:00:00+08:00",
+    "dateModified": "2021-11-02T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-05-20>2019-05-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-16>2021-10-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-11-02>2021-11-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -145,7 +145,7 @@
                 <li><a href=#range--full-request-rtt>### Range + Full request RTT</a>
                 <li><a href=#lazy-for-small-img>### Lazy for small img</a>
                 <li><a href=#above-the-fold>### Above the Fold</a>
-                <li><a href=#20kb-request>### 2.0KB Request</a>
+                <li><a href=#2.0kb-request>### 2.0KB Request</a>
                 <li><a href=#考察>### 考察</a>
                 <li><a href=#feature-policy>## Feature Policy</a>
                 <li><a href=#priority-hints>## Priority Hints</a>
@@ -264,7 +264,7 @@
           <p><code translate=no>loading=eager</code> の場合は、全ての画像が取得され、そこで onload が発火する。
           <p>
             <picture>
-              <source type=image/webp srcset=eagerload.webp?200901_002432>
+              <source type=image/webp srcset=eagerload.webp?191122_155824>
               <img loading=lazy decoding=async src=eagerload.png?200901_002432 alt="Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ" title="eager loading images" width=1366 height=768>
             </picture>
           </p>
@@ -278,14 +278,14 @@
           <p>この 6 つの画像が取得された段階で <code translate=no>window.onload</code> が発火しているため、発火までの時間も早くなっている。
           <p>
             <picture>
-              <source type=image/webp srcset=lazyload-above.webp?200901_002432>
+              <source type=image/webp srcset=lazyload-above.webp?191122_155824>
               <img loading=lazy decoding=async src=lazyload-above.png?200901_002432 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing above the fold" width=1366 height=768>
             </picture>
           </p>
           <p>あとは、スクロールに従って残りの <code translate=no>&lt;img&gt;</code> が Viewport に近づくと、その画像の全体を再度取得する。
           <p>
             <picture>
-              <source type=image/webp srcset=lazyload-below.webp?191119_151451>
+              <source type=image/webp srcset=lazyload-below.webp?191122_155824>
               <img loading=lazy decoding=async src=lazyload-below.png?191119_151451 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing below the fold" width=1366 height=768>
             </picture>
           </p>
@@ -322,7 +322,7 @@
           <p>この数(Above the Fold の判定ロジック)も、実装に依存し、各ブラウザが実験を重ねて決めていくことになるだろう。
         </section>
         <section>
-          <h3 id="20kb-request"><a href="#20kb-request">2.0KB Request</a></h3>
+          <h3 id="2.0kb-request"><a href="#2.0kb-request">2.0KB Request</a></h3>
           <p>最初のリクエストが 2.0KB である理由については以下に書かれている。
           <p><a href="https://docs.google.com/document/d/1691W7yFDI1FJv69N2MEtaSzpnqO2EqkgGD3T0O-pQ08/">Design Doc: Image Replacement in Blink (public)</a>
           <p>2.0KB 分、画像のヘッダを取得することにより、画像のサイズ情報が取得できるため、 <code translate=no>&lt;img&gt;</code> のサイズが決まるということだ。

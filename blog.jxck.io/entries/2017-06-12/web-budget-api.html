@@ -139,9 +139,9 @@
                 <li><a href=#budget-api>## Budget API</a>
                 <li><a href=#cost--budget>## Cost &amp; Budget</a>
                 <li><a href=#budget-api-1>## Budget API</a>
-                <li><a href=#budgetgetbudget>### budget.getBudget()</a>
-                <li><a href=#budgetgetcost>### budget.getCost()</a>
-                <li><a href=#budgetreserve>### budget.reserve()</a>
+                <li><a href=#budget.getbudget>### budget.getBudget()</a>
+                <li><a href=#budget.getcost>### budget.getCost()</a>
+                <li><a href=#budget.reserve>### budget.reserve()</a>
                 <li><a href=#demo>### DEMO</a>
                 <li><a href=#budget-の導入と-cost-管理>### Budget の導入と Cost 管理</a>
               </ul>
@@ -197,7 +197,7 @@
         <p>Budget API は、この Budget と Cost を扱うための API である。
         <p>基本は <code translate=no>navigator.budget</code> に定義される。
         <section>
-          <h3 id="budgetgetbudget"><a href="#budgetgetbudget">budget.getBudget()</a></h3>
+          <h3 id="budget.getbudget"><a href="#budget.getbudget">budget.getBudget()</a></h3>
           <p>現在から、将来に渡り利用できる budget のリストを取得する。
           <pre class=js><code translate=no>navigator.budget.getBudget().then((budgets) =&gt; {
   budgets.forEach((budget) =&gt; {
@@ -207,7 +207,7 @@
           <p>Budget の値は仕様では定義せず、 User Agent に委ねられている。これにより、 UA にヒューリスティックな値の算出や、ニーズに応じた増減などの余地を与えている。
         </section>
         <section>
-          <h3 id="budgetgetcost"><a href="#budgetgetcost">budget.getCost()</a></h3>
+          <h3 id="budget.getcost"><a href="#budget.getcost">budget.getCost()</a></h3>
           <p>処理の Cost を取得する。
           <p>引数には、対象となる処理の名前を与えるが、この値は仕様に定義される。
           <p>執筆時点では <code translate=no>&quot;silent-push&quot;</code> のみ定義されている。
@@ -218,7 +218,7 @@
           <p>例えば、デバイスが充電状態である場合、強い Wifi ネットワークに繋がっている場合などは、デバイスは Cost を下げることを許されている。
         </section>
         <section>
-          <h3 id="budgetreserve"><a href="#budgetreserve">budget.reserve()</a></h3>
+          <h3 id="budget.reserve"><a href="#budget.reserve">budget.reserve()</a></h3>
           <p>実際に処理を実行する際に、 Budget を Cost 分消費する。
           <p>戻る Promise は、コストが足りたかどうかを bool で解決する。
           <p><code translate=no>silent-push</code> の場合は、コストが足りればそのまま処理を進められ、足りなかった場合は notification によってユーザに通知する必要が出る。

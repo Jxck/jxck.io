@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-01-27T08:00:00+08:00",
-    "dateModified": "2021-10-16T08:00:00+08:00",
+    "dateModified": "2021-10-30T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-01-27>2016-01-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-16>2021-10-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-30>2021-10-30</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -188,9 +188,7 @@
           <p>それぞれは使うタグが違う
           <ul>
             <li>ここはリストスタイルである
-            <li>
-              unordered list は <code translate=no>&lt;ul&gt;</code> を用いて表現する
-            </li>
+            <li>unordered list は <code translate=no>&lt;ul&gt;</code> を用いて表現する
             <li>
               <code translate=no>&lt;li&gt;</code> の前には markdown と同じく <code translate=no>-</code> を表示する
               <ul>
@@ -232,7 +230,7 @@
       <section>
         <h2 id="引用"><a href="#引用">引用</a></h2>
         <p>引用は <code translate=no>&lt;blockquote&gt;</code> を用いて表現する。
-        <blockquote>
+        <blockquote cite="https://example.com">
           <p>他のサイトなどから引用する場合は <code translate=no>&lt;blockquote&gt;</code> を用いて表現する。
           <p>複数行あると <code translate=no>&lt;p&gt;</code> に展開される
           <p>引用元の URL は <code translate=no>&lt;cite&gt;</code> を用いてマークアップする
@@ -324,8 +322,8 @@
         <p>画像は <code translate=no>&lt;picture&gt;</code> タグを用いて表現する。
         <p>
           <picture>
-            <source type=image/webp srcset=jxck.webp?210331_115006>
-            <img loading=lazy decoding=async src=jxck.png?210331_115006 alt="jxck" title="jxck logo" width=256 height=256>
+            <source type=image/webp srcset=jxck.webp?211030_195344>
+            <img loading=lazy decoding=async src=jxck.png?211006_145713 alt="jxck" title="jxck logo" width=256 height=256>
           </picture>
         </p>
         <p>必ず <code translate=no>.webp</code> も提供する必要がある。
@@ -337,9 +335,8 @@
         <p>markdown 上は画像と同じ記法で、拡張子が <code translate=no>mp4</code> の場合は <code translate=no>&lt;video&gt;</code> で展開する。
         <p>
           <video title="dummy video" width=1000 height=2000 controls playsinline>
-            <source src=dummy_video.mp4?200606_195616 type=video/mp4>
-            <source src=dummy_video.webm?200606_195616 type=video/webm>
-            Video Tag required to play this video. Open <a href=dummy_video.mp4?200606_195616>dummy_video.mp4?200606_195616</a> directry in browser instead.
+            <source type=video/mp4 src=dummy_video.mp4?200628_183856>
+            <source type=video/webm src=dummy_video.webm?210927_043203>
           </video>
         </p>
         <p>必ず <code translate=no>.mp4</code>, <code translate=no>.webm</code> 両方を提供する必要がある。
@@ -1342,80 +1339,44 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   }
   return;
 });</code></pre>
-          <pre translate="no">
+          <pre translate=no>
           <code>
           <span class="token atrule     ">.token.atrule     </span>
-
           <span class="token attr-name  ">.token.attr-name  </span>
-
           <span class="token attr-value ">.token.attr-value </span>
-
           <span class="token bold       ">.token.bold       </span>
-
           <span class="token boolean    ">.token.boolean    </span>
-
           <span class="token builtin    ">.token.builtin    </span>
-
           <span class="token cdata      ">.token.cdata      </span>
-
           <span class="token char       ">.token.char       </span>
-
           <span class="token class-name ">.token.class-name </span>
-
           <span class="token comment    ">.token.comment    </span>
-
           <span class="token constant   ">.token.constant   </span>
-
           <span class="token deleted    ">.token.deleted    </span>
-
           <span class="token doctype    ">.token.doctype    </span>
-
           <span class="token entity     ">.token.entity     </span>
-
           <span class="token entity     ">.token.entity     </span>
-
           <span class="token function   ">.token.function   </span>
-
           <span class="token important  ">.token.important  </span>
-
           <span class="token important  ">.token.important  </span>
-
           <span class="token inserted   ">.token.inserted   </span>
-
           <span class="token italic     ">.token.italic     </span>
-
           <span class="token keyword    ">.token.keyword    </span>
-
           <span class="token namespace  ">.token.namespace  </span>
-
           <span class="token number     ">.token.number     </span>
-
           <span class="token operator   ">.token.operator   </span>
-
           <span class="token parameter  ">.token.parameter  </span>
-
           <span class="token prolog     ">.token.prolog     </span>
-
           <span class="token property   ">.token.property   </span>
-
           <span class="token punctuation">.token.punctuation</span>
-
           <span class="token regex      ">.token.regex      </span>
-
           <span class="token selector   ">.token.selector   </span>
-
           <span class="token string     ">.token.string     </span>
-
           <span class="token symbol     ">.token.symbol     </span>
-
           <span class="token tag        ">.token.tag        </span>
-
           <span class="token url        ">.token.url        </span>
-
           <span class="token variable   ">.token.variable   </span>
-
           </code>
-
           </pre>
         </section>
       </section>

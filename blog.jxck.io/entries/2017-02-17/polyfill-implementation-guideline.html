@@ -138,7 +138,7 @@
                 <li><a href=#polyfill>## Polyfill</a>
                 <li><a href=#仕様策定の速度>## 仕様策定の速度</a>
                 <li><a href=#speculative-polyfill>## Speculative Polyfill</a>
-                <li><a href=#mootools-の-arrayprototypecontains>### Mootools の Array.prototype.contains</a>
+                <li><a href=#mootools-の-array.prototype.contains>### Mootools の Array.prototype.contains</a>
                 <li><a href=#shadow-dom>### Shadow DOM</a>
                 <li><a href=#fantasy-override>## fantasy override</a>
                 <li><a href=#polyfill-を実装するタイミング>## Polyfill を実装するタイミング</a>
@@ -201,7 +201,7 @@
         <p>しかし、 &quot;先走った Polyfill&quot; の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
         <p>実際にこれが問題になった事例もいくつかある。
         <section>
-          <h3 id="mootools-の-arrayprototypecontains"><a href="#mootools-の-arrayprototypecontains">Mootools の Array.prototype.contains</a></h3>
+          <h3 id="mootools-の-array.prototype.contains"><a href="#mootools-の-array.prototype.contains">Mootools の Array.prototype.contains</a></h3>
           <p>現在 <code translate=no>Array.prototype.includes()</code> として定義/実装されているものは、最初 <code translate=no>contains()</code> という名前で提案されており、実際に実装まで行われたブラウザがあった。
           <pre class=js><code translate=no>[1, 2, 3].contains(2) // true</code></pre>
           <p>しかし、この仕様を実装したブラウザで jsfiddle が壊れてことから、そこで使われていた MooTools が問題を起こしていたことが判明した。
@@ -256,12 +256,8 @@ document.createElement(&apos;div&apos;).attachShadow({ mode: &apos;open&apos; })
         <ul>
           <li>既に実装しているブラウザが複数あるか?
           <li>インタフェース仕様の変更が起こりそうな問題を解決済みで、コンセンサスが取れた仕様があるか
-          <li>
-            <a href="https://github.com/w3c/web-platform-tests">Test Suite</a> が存在するか
-          </li>
-          <li>
-            メジャーなブラウザベンダから &quot;Intent To Implement&quot; がアナウンスされているか
-          </li>
+          <li><a href="https://github.com/w3c/web-platform-tests">Test Suite</a> が存在するか
+          <li>メジャーなブラウザベンダから &quot;Intent To Implement&quot; がアナウンスされているか
         </ul>
       </section>
       <section>
@@ -274,9 +270,7 @@ document.createElement(&apos;div&apos;).attachShadow({ mode: &apos;open&apos; })
         <p>他細かい点では以下があげられる。
         <ul>
           <li>module 機構を使い、 global スコープやネイティブオブジェクトのプロトタイプを直接汚染しない
-          <li>
-            ユーザが最新の実装に追従しやすいよう、 npm や CDN(<a href="https://cdnjs.com">cdnjs.com</a>, <a href="https://polyfill.io">polyfill.io</a>) などで提供する
-          </li>
+          <li>ユーザが最新の実装に追従しやすいよう、 npm や CDN(<a href="https://cdnjs.com">cdnjs.com</a>, <a href="https://polyfill.io">polyfill.io</a>) などで提供する
           <li>Web Platform Test があったらパスすること
           <li>Polyfill の実装経験は貴重なので、気づいた点を仕様策定にフィードバックする
           <li>ネイティブ実装に移譲した場合はコンソールなどに Polyfill が不要であったことを知らせる

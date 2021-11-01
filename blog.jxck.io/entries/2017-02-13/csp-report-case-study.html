@@ -209,7 +209,7 @@
         <p>以下が CSP をデプロイしてから、今月までのレポート発生のグラフである。
         <p>
           <picture>
-            <source type=image/webp srcset=graph-of-csp-report-12month.webp?200901_002432>
+            <source type=image/webp srcset=graph-of-csp-report-12month.webp?191122_155824>
             <img loading=lazy decoding=async src=graph-of-csp-report-12month.png?200901_002432 alt="report-uri.io で生成した過去 12 ヵ月の CSP レポートのグラフ" title="graph of csp report 12 month" width=2642 height=786>
           </picture>
         </p>
@@ -270,7 +270,7 @@
           <p>このとき、 HTML の中にある Inline Style がポリシー違反と判定されるため、レポートが上がる。
           <p>
             <picture>
-              <source type=image/webp srcset=chrome-inline-style-violation.webp?200901_002432>
+              <source type=image/webp srcset=chrome-inline-style-violation.webp?191122_155824>
               <img loading=lazy decoding=async src=chrome-inline-style-violation.png?200901_002432 alt="Chrome でテキストを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす" title="inline style violation for RSS feed in chrome" width=1667 height=656>
             </picture>
           </p>
@@ -296,7 +296,7 @@
           <p>Chrome でも同じくオリジンが変わるが、ここでレポートはあがらない実装になっているようだ。
           <p>
             <picture>
-              <source type=image/webp srcset=firefox-view-source-violation.webp?200901_002432>
+              <source type=image/webp srcset=firefox-view-source-violation.webp?191122_155824>
               <img loading=lazy decoding=async src=firefox-view-source-violation.png?200901_002432 alt="Firefox の view-source:// でソースを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす" title="view-source:// violates csp policy in firefox" width=1674 height=824>
             </picture>
           </p>
@@ -333,13 +333,9 @@
         <p>それなりのサービスであれば、ログなどを解析/可視化する基盤(graphite, kibana, ES, BigQ, mackerel etc) があると思うので、エンドポイントを自分で立ててそこに流し込むのが良いだろう。
         <p>また、もし自分でエンドポイントを実装する際には、以下の点に注意して実装するのが良いと思われる。
         <ul>
-          <li>
-            report-uri は非推奨なので、 <a href="http://wicg.github.io/reporting/">report-to</a> を前提として設計
-          </li>
+          <li>report-uri は非推奨なので、 <a href="http://wicg.github.io/reporting/">report-to</a> を前提として設計
           <li>レポートには UA やタイムスタンプはないので、必ず HTTP ヘッダ(全体)を一緒に保存する
-          <li>
-            意図しないリクエストを <code translate=no>content-type: csp-report</code> で間引きたくなるが、<a href="https://www.tollmanz.com/content-security-policy-report-samples/">準拠してないクライアント</a> もあるようなので注意が必要
-          </li>
+          <li>意図しないリクエストを <code translate=no>content-type: csp-report</code> で間引きたくなるが、<a href="https://www.tollmanz.com/content-security-policy-report-samples/">準拠してないクライアント</a> もあるようなので注意が必要
         </ul>
         <p>report-uri から report-to への変更で、 CSP 以外も含めたレポート送信が Reporting API に統合される。
         <p>ここではヘッダ指定のしかたから、 Cookie の扱いなど色々変わりそうなので、本サイトで実装を終えたら追って解説しようと思う。

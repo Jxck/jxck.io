@@ -200,12 +200,8 @@
         <p><code translate=no>res.text()</code> が body を resolve する Promsie を返していることが分かる。
         <p>この API では、以下の二つができない。
         <ul>
-          <li>
-            <code translate=no>foo.txt</code> が大きかった場合、 fetch を中断(キャンセル)する。
-          </li>
-          <li>
-            <code translate=no>foo.txt</code> が大きかった場合、ダウンロードの進捗(プログレス)を得る。
-          </li>
+          <li><code translate=no>foo.txt</code> が大きかった場合、 fetch を中断(キャンセル)する。
+          <li><code translate=no>foo.txt</code> が大きかった場合、ダウンロードの進捗(プログレス)を得る。
         </ul>
         <p>現在の Promise の仕様では、非同期処理に対してあくまで <em>fullfilled(完了した)</em> か <em>rejected(失敗した)</em> の二つの状態を返すことしかできない。
         <p>このため、その途中の状態に処理を挟む余地がないためである。
@@ -323,9 +319,7 @@
         <p>fetch を含めて Promise を返す API は増加しつつあるため、 Cancelable Promise の議論は現在も続いている。
         <ul>
           <li><a href="https://docs.google.com/presentation/d/1V4vmC54gJkwAss1nfEt9ywc-QOVOfleRxD5qtpMpc8U/preview?slide=id.gc6f9e470d_0_0">cancelable promises slide</a>
-          <li>
-            <a href="https://domenic.github.io/cancelable-promise/">cancelable promises draft</a> (現在は取り下げられている)
-          </li>
+          <li><a href="https://domenic.github.io/cancelable-promise/">cancelable promises draft</a> (現在は取り下げられている)
         </ul>
         <p>まだ、はっきりとした結論が出ているわけではないので、もう少し仕様が固まれば別途エントリを書きたい。
       </section>

@@ -143,7 +143,7 @@
                 <li><a href=#abortcontroller>## AbortController</a>
                 <li><a href=#汎例>### 汎例</a>
                 <li><a href=#fetch>## fetch</a>
-                <li><a href=#promiserace>## Promise.race()</a>
+                <li><a href=#promise.race>## Promise.race()</a>
                 <li><a href=#demo>## DEMO</a>
                 <li><a href=#懸念点>## 懸念点</a>
               </ul>
@@ -170,12 +170,8 @@
         <p>これを Request オブジェクトを渡し Response オブジェクトが返る (resolve) 関数とすることで、実際の挙動との整合したまま全体をシンプルに定義することができた。
         <p>しかし、このインタフェースによって、 XHR ではできて <code translate=no>fetch()</code> ではできないことが大きく 2 つあった。
         <ul>
-          <li>
-            <code translate=no>fetch()</code> を中断する
-          </li>
-          <li>
-            <code translate=no>fetch()</code> の Progress (経過) を取得する
-          </li>
+          <li><code translate=no>fetch()</code> を中断する
+          <li><code translate=no>fetch()</code> の Progress (経過) を取得する
         </ul>
         <p>したがって、初期の <code translate=no>fetch()</code> は、プログレスバーとキャンセルボタンを持つ UI といった、典型的な実装が不可能だった。
         <p>ところが、この問題の一部は後の stream 導入により解決している。
@@ -337,7 +333,7 @@ function main() {
 }</code></pre>
       </section>
       <section>
-        <h2 id="promiserace"><a href="#promiserace">Promise.race()</a></h2>
+        <h2 id="promise.race"><a href="#promise.race">Promise.race()</a></h2>
         <p>Promise.race() で、勝った 1 つ以外を止める処理もできるようになる。
         <pre class=js><code translate=no>const controlle = new AbortController()
 const signal = controller.signal

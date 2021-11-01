@@ -310,13 +310,11 @@ img {
           <pre class=sh-session><code translate=no>$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles</code></pre>
           <p>HTML にアクセスすると、以下の様にサブリソースが bundle から解決されていることがわかる。
           <ul>
-            <li>
-              DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html">https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html</a>
-            </li>
+            <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html">https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html</a>
           </ul>
           <p>
             <picture>
-              <source type=image/webp srcset=bundle-subresources.webp?201205_194234>
+              <source type=image/webp srcset=bundle-subresources.webp?200726_185359>
               <img loading=lazy decoding=async src=bundle-subresources.png?201205_194234 alt="Bundle Subresource のデモを Chrome Devtools で表示" title="bundle-subresources demo" width=898 height=372>
             </picture>
           </p>
@@ -358,9 +356,7 @@ img {
   style.css
   template.html</code></pre>
           <ul>
-            <li>
-              DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html">https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html</a>
-            </li>
+            <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html">https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html</a>
           </ul>
           <p>今は、 JS 以外は <code translate=no>import</code> できないため、 CSS は <code translate=no>@import</code> で、 HTML は <code translate=no>fetch()</code> で解決しているが、 別途策定が進んでいる <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md">Synthetic Modules</a> (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て <code translate=no>import</code> で扱える可能性がある。
           <p>これら関連仕様が進むと、 Synthetic Module ベースで構成された WebComponent の使い勝手がよくなり、 Bundle で fetch の数も気にせずに積極的に使えるようになるかもしれない。
@@ -376,9 +372,7 @@ img {
   - redux.wbn</code></pre>
           <p>実際このような Nested Bundle も生成可能で、 Chrome もそれを最後まで展開するところが確認できた。
           <ul>
-            <li>
-              DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/">https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/</a>
-            </li>
+            <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/">https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/</a>
           </ul>
         </section>
       </section>

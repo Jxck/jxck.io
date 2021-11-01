@@ -141,7 +141,7 @@
                 <li><a href=#hpkp-の設定>## HPKP の設定</a>
                 <li><a href=#public-key-pins-ヘッダ>### Public-Key-Pins ヘッダ</a>
                 <li><a href=#subject-public-key-information-spki>### Subject Public Key Information (SPKI)</a>
-                <li><a href=#report-uriio>## report-uri.io</a>
+                <li><a href=#report-uri.io>## report-uri.io</a>
                 <li><a href=#懸念点>## 懸念点</a>
                 <li><a href=#証明書更新と-max-age>### 証明書更新と Max-Age</a>
                 <li><a href=#中間証明書の-pin>### 中間証明書の Pin</a>
@@ -182,12 +182,8 @@
           <p>もし CA が攻撃され、偽の証明書が発行された場合、ユーザはその証明書が CA から発行された本物にしか見えないため、接続先が偽サイトだとしても信用してしまう。
           <p>仕組み上 CA の危殆化はあってはならない訳だが、証明書の価値が高まりつつあり、一方で多くの認証局が運用されている今、一部の CA では実際に攻撃による偽の証明書発行が発生している。
           <ul>
-            <li>
-              <a href="https://jp.globalsign.com/blog/2013/certificate_public_key_pinning.html">Pinning 年表</a> 参照
-            </li>
-            <li>
-              <a href="http://d.hatena.ne.jp/jovi0608/20140902/1409635279">1. 不正な SSL 証明書の脅威</a> 参照
-            </li>
+            <li><a href="https://jp.globalsign.com/blog/2013/certificate_public_key_pinning.html">Pinning 年表</a> 参照
+            <li><a href="http://d.hatena.ne.jp/jovi0608/20140902/1409635279">1. 不正な SSL 証明書の脅威</a> 参照
           </ul>
           <p>そこで、このリスクを低減するために考案されたのが HPKP である。
         </section>
@@ -239,7 +235,7 @@
         </section>
       </section>
       <section>
-        <h2 id="report-uriio"><a href="#report-uriio">report-uri.io</a></h2>
+        <h2 id="report-uri.io"><a href="#report-uri.io">report-uri.io</a></h2>
         <p>ブラウザは、  Pin に一致しない証明書を検出した場合、違反レポートを生成し <code translate=no>report-uri</code> に指定した URI に対して自動的に送信する。
         <p>HPKP の違反レポートは以下のような JSON データである。
         <pre class=json><code translate=no>{
@@ -280,7 +276,7 @@
           <h3 id="証明書更新と-max-age"><a href="#証明書更新と-max-age">証明書更新と Max-Age</a></h3>
           <p>HPKP の運用での一番の懸念は、証明書の更新だろう。
           <p>例えば今回は、現行の Pin(Pin1 とする)に加えてバックアップ Pin(Pin2 とする) を一つ登録したため、このバックアップ Pin2 にあたる証明書への更新までは問題ないだろう。
-          <p>しかし、問題はそのあとどうするかである。(その後更新する新しい証明書の Pin を Pin3, 4&hellip; とする)
+          <p>しかし、問題はそのあとどうするかである。(その後更新する新しい証明書の Pin を Pin3, 4... とする)
           <p>ブラウザが <code translate=no>[Pin1, Pin2]</code> を保存した状態なら、 Pin2 の証明書に更新されてもバックアップが効いているため問題はない。
           <p>次に証明書を Pin3 のものへ更新した時がポイントとなるだろう。
           <p>これは <code translate=no>[Pin1, Pin2]</code> を保存したまま、その後しばらく訪れず、 Pin3 の証明書に更新されてから訪れたら、持っている Pin と証明書がマッチせず接続できなくなるためである。

@@ -137,10 +137,10 @@
                 <li><a href=#ドメインを利用する上での注意>## ドメインを利用する上での注意</a>
                 <li><a href=#今は無いドメイン>## 「今は」無いドメイン</a>
                 <li><a href=#reserved-top-level-dns-names>## Reserved Top Level DNS Names</a>
-                <li><a href=#example>## <code translate=no>.example</code></a>
-                <li><a href=#localhost>## <code translate=no>.localhost</code></a>
-                <li><a href=#test>## <code translate=no>.test</code></a>
-                <li><a href=#invalid>## <code translate=no>.invalid</code></a>
+                <li><a href=#.example>## <code translate=no>.example</code></a>
+                <li><a href=#.localhost>## <code translate=no>.localhost</code></a>
+                <li><a href=#.test>## <code translate=no>.test</code></a>
+                <li><a href=#.invalid>## <code translate=no>.invalid</code></a>
                 <li><a href=#その他テスト用ドメイン>## その他テスト用ドメイン</a>
               </ul>
             </nav>
@@ -193,7 +193,7 @@
         <p>用途を守れば、そのドメインを所有していなくても、安心して使うことができるのだ。
       </section>
       <section>
-        <h2 id="example"><a href="#example"><code translate=no>.example</code></a></h2>
+        <h2 id=".example"><a href="#.example"><code translate=no>.example</code></a></h2>
         <p>主にドキュメントなどの例示に使われる。
         <p>TLD としての <code translate=no>*.example</code> 以外に、以下の 3 つの STD も予約されており、同様に使うことができる。
         <p>(本サイトでは、ブログの例示には主にこれを使っている)
@@ -220,7 +220,7 @@
         <p>管理しているのが ICANN なので、個人が取得したドメインと違い <em>無くなっている可能性などを気にしないで良い</em> ため、覚えておくと地味に便利だったりする。
       </section>
       <section>
-        <h2 id="localhost"><a href="#localhost"><code translate=no>.localhost</code></a></h2>
+        <h2 id=".localhost"><a href="#.localhost"><code translate=no>.localhost</code></a></h2>
         <p>主に開発で自ホストに解決される用途で使われる。
         <p>実際には、 OS が名前解決に使う hosts ファイルなどで、 <code translate=no>localhost</code> がループバックアドレスに指定されている。
         <pre><code translate=no>##
@@ -239,13 +239,13 @@
         <p>先ほどの <code translate=no>.dev</code> 同様に <code translate=no>.localhost</code> を別のアドレスで解決する環境を作っていたりする場合は、やはり問題が出るかもしれない。
       </section>
       <section>
-        <h2 id="test"><a href="#test"><code translate=no>.test</code></a></h2>
+        <h2 id=".test"><a href="#.test"><code translate=no>.test</code></a></h2>
         <p>主にテスト用途で使われる。
         <p>取得されないことと共に、他のネットワークでは別の名前に解決される可能性を前提とした上で、比較的自由に使える。
         <p>つまり前述のように、社内ネットワークのような環境で開発用ドメインを運用する際などに、利用できるだろう。
       </section>
       <section>
-        <h2 id="invalid"><a href="#invalid"><code translate=no>.invalid</code></a></h2>
+        <h2 id=".invalid"><a href="#.invalid"><code translate=no>.invalid</code></a></h2>
         <p>無効であることを明示する用途で使われる。
         <p>常に NXDOMAIN を返すと想定され、主に DNS の開発などに使うのだろうと思われる。
       </section>
@@ -260,9 +260,7 @@
           <li>example3.jp
           <li>example4.jp
           <li>example5.jp
-          <li>
-            &hellip;
-          </li>
+          <li>...
         </ul>
         <p>詳細は下記参照
         <ul>

@@ -231,9 +231,7 @@ c.equals(new Counter()) // false
 console.log(c.#count) // SyntaxError</code></pre>
         <p>挙動としては見ての通りだ。
         <ul>
-          <li>
-            Private フィールドには <code translate=no>#</code> が接頭辞として付く
-          </li>
+          <li>Private フィールドには <code translate=no>#</code> が接頭辞として付く
           <li>クラス外からはアクセスできない
           <li>同じクラス内からはアクセスできる
         </ul>
@@ -331,17 +329,29 @@ console.log(c.count) // undefined</code></pre>
         <p>結果としては、 WeakMap で実現したような挙動を、構文レベルでサポートすることにより、より手軽に Hard Private を実現することがこの仕様のゴールとなった。
         <p>具体的に求められる挙動は <a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#what-do-you-mean-by-encapsulation--hard-private">以下</a> のようになる。
         <ol>
-          <li>Private フィールドにアクセスする方法が一切ない
-          <li>Reflection など、迂回する方法も提供しない
-          <li>それがテストであっても例外は無し
-          <li>Private フィールドがあることが外からわからない
-          <li>getOwnPropertyNames などで取得する方法も提供しない
-          <li>Private フィールドと同じ Public フィールドが定義できる、これをエラーにすると存在がわかる
-          <li>継承した子クラスや親クラスからもアクセスできない
-          <li>ただし同じクラスの別のインスタンスではアクセスが可能
-          <li>以上を一定のパフォーマンスで実装できる
-          <li>Private へのアクセスが遅くない
-          <li>Public なアクセスや Obejct の生成など既存の挙動に影響が極力無い
+          <li>
+            Private フィールドにアクセスする方法が一切ない
+            <ol>
+              <li>Reflection など、迂回する方法も提供しない
+              <li>それがテストであっても例外は無し
+            </ol>
+          </li>
+          <li>
+            Private フィールドがあることが外からわからない
+            <ol>
+              <li>getOwnPropertyNames などで取得する方法も提供しない
+              <li>Private フィールドと同じ Public フィールドが定義できる、これをエラーにすると存在がわかる
+              <li>継承した子クラスや親クラスからもアクセスできない
+              <li>ただし同じクラスの別のインスタンスではアクセスが可能
+            </ol>
+          </li>
+          <li>
+            以上を一定のパフォーマンスで実装できる
+            <ol>
+              <li>Private へのアクセスが遅くない
+              <li>Public なアクセスや Obejct の生成など既存の挙動に影響が極力無い
+            </ol>
+          </li>
         </ol>
         <p>これを満たす構文を定義することになる。
       </section>
@@ -419,15 +429,9 @@ console.log(c.#count) // syntax error</code></pre>
         <p>すでに使われている演算子を除いた候補の議論も FAQ にまとまっている。
         <p><a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#why-was-the-sigil--chosen-among-all-the-unicode-code-points">Why was the sigil # chosen, among all the Unicode code points?</a>
         <ul>
-          <li>
-            <code translate=no>@</code>: 一番良さそうだが Decorator が既に利用している。 Decorator との入れ替えも検討したが、トランスパイラで先走って使っているユーザも多く諦めた。
-          </li>
-          <li>
-            <code translate=no>_</code>: 既に変数に付けられているコードが多い。
-          </li>
-          <li>
-            <code translate=no>%</code>: 使えそうで使えない。
-          </li>
+          <li><code translate=no>@</code>: 一番良さそうだが Decorator が既に利用している。 Decorator との入れ替えも検討したが、トランスパイラで先走って使っているユーザも多く諦めた。
+          <li><code translate=no>_</code>: 既に変数に付けられているコードが多い。
+          <li><code translate=no>%</code>: 使えそうで使えない。
         </ul>
         <p><code translate=no>%</code> は、中置演算子としては使われるが接頭辞には使われてないので、使えそうではあった。
         <p>しかし、以下のようなコードを考える。

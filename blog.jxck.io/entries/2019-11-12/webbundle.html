@@ -148,7 +148,7 @@
                 <li><a href=#responses>### responses</a>
                 <li><a href=#length>## length</a>
                 <li><a href=#全体>### 全体</a>
-                <li><a href=#wbn>### .wbn</a>
+                <li><a href=#.wbn>### .wbn</a>
                 <li><a href=#applicationwebbundle>## application/webbundle</a>
                 <li><a href=#demo>## DEMO</a>
                 <li><a href=#考察>## 考察</a>
@@ -197,7 +197,7 @@
         <p>例として、仕様をもとに以下のような構成のページを Bundle してみる。
         <ul>
           <li>
-            http://localhost.jxck.io:3000
+            <a href="http://localhost.jxck.io:3000">http://localhost.jxck.io:3000</a>
             <ul>
               <li>index.html
               <li>script.js
@@ -273,21 +273,11 @@ whatwg-url = tstr</code></pre>
           <h3 id="section"><a href="#section">section</a></h3>
           <p>CBOR のメインとなるデータが section であり、 section にはいくつかの種類がある。
           <ul>
-            <li>
-              &quot;index&quot;
-            </li>
-            <li>
-              &quot;manifest&quot;
-            </li>
-            <li>
-              &quot;signatures&quot;
-            </li>
-            <li>
-              &quot;critical&quot;
-            </li>
-            <li>
-              &quot;responses&quot;
-            </li>
+            <li>&quot;index&quot;
+            <li>&quot;manifest&quot;
+            <li>&quot;signatures&quot;
+            <li>&quot;critical&quot;
+            <li>&quot;responses&quot;
           </ul>
           <p>つまり、単にレスポンスをまとめるだけではなく、他の情報も入れられる。
           <p>普通こうした type には、 8bit の id を割り当てて領域を節約したりするが、単純な文字列を使っている。
@@ -418,7 +408,7 @@ whatwg-url = tstr</code></pre>
 ]</code></pre>
         </section>
         <section>
-          <h3 id="wbn"><a href="#wbn">.wbn</a></h3>
+          <h3 id=".wbn"><a href="#.wbn">.wbn</a></h3>
           <p>あとは、 CBOR でエンコードした結果をファイルに保存すればよい。
           <p>拡張子としては <code translate=no>.wbn</code> が IANA に登録される予定になっている。
         </section>
@@ -436,17 +426,13 @@ X-Content-Type-Options: nosniff</code></pre>
         <p>動作するデモを以下に用意した。
         <p>http でも wbn をサーブしているが、執筆時の Chrome は <code translate=no>file:///</code> からの展開にしか対応してないようなので、ローカルにダウンロードしてブラウザで開かないと動かない。
         <ul>
-          <li>
-            orig: <a href="http://labs.jxck.io/webpackaging/webbundle/example/index.html">http://labs.jxck.io/webpackaging/webbundle/example/index.html</a>
-          </li>
-          <li>
-            .wbn: <a href="http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn">http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn</a>
-          </li>
+          <li>orig: <a href="http://labs.jxck.io/webpackaging/webbundle/example/index.html">http://labs.jxck.io/webpackaging/webbundle/example/index.html</a>
+          <li>.wbn: <a href="http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn">http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn</a>
         </ul>
         <p>Chrome Canary 80.0.3963.0 の挙動は以下のようになる。
         <p>
           <picture>
-            <source type=image/webp srcset=webbundle.webp?200901_002432>
+            <source type=image/webp srcset=webbundle.webp?191122_155824>
             <img loading=lazy decoding=async src=webbundle.png?200901_002432 alt="Chrome Canary 80 で WebBundle を展開した devtools のスクリーンショット。ローカルから取得されていることがわかる" title="WebBundle DEMO" width=1366 height=556>
           </picture>
         </p>

@@ -142,7 +142,7 @@
                 <li><a href=#静か>## 静か</a>
                 <li><a href=#どこからでもアクセスできる>## どこからでもアクセスできる</a>
                 <li><a href=#構成>### 構成</a>
-                <li><a href=#sshconfig>### ~/.ssh/config</a>
+                <li><a href=#.sshconfig>### ~/.ssh/config</a>
                 <li><a href=#autossh>### autossh</a>
                 <li><a href=#systemd>### systemd</a>
                 <li><a href=#known_hosts>## known_hosts</a>
@@ -214,9 +214,7 @@
             SSD
             <ul>
               <li>M.2 NVMe は高電力で発熱しやすいらしい
-              <li>
-                そこまでの書き込み速度いらないので 2.5&quot; SSD で十分
-              </li>
+              <li>そこまでの書き込み速度いらないので 2.5&quot; SSD で十分
               <li>外部ストレージがすでにあるので、サイズも小さくて良い
             </ul>
           </li>
@@ -266,7 +264,7 @@ $ ssh user@localhost -p 22222</code></pre>
           <p>これを、いつでも接続できるようにしておく。
         </section>
         <section>
-          <h3 id="sshconfig"><a href="#sshconfig">~/.ssh/config</a></h3>
+          <h3 id=".sshconfig"><a href="#.sshconfig">~/.ssh/config</a></h3>
           <p>まず、 SSH 接続を維持しやすい設定にするため、 config を以下のようにする。
           <pre class=config><code translate=no>Host reverse-ssh
   HostName $vps

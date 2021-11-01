@@ -184,15 +184,9 @@
         <ul>
           <li>属性の指定によっていくつかのコントロールが可能である。
           <li>Content-Security-Policy を満たしているかを確認できる。
-          <li>
-            リソースに適した Accept ヘッダ(<code translate=no>image/webp</code> etc)を付与できる。
-          </li>
-          <li>
-            Prealod はそれ自体が <code translate=no>onload</code> を発火する。
-          </li>
-          <li>
-            <code translate=no>window.onload</code> をブロックしない
-          </li>
+          <li>リソースに適した Accept ヘッダ(<code translate=no>image/webp</code> etc)を付与できる。
+          <li>Prealod はそれ自体が <code translate=no>onload</code> を発火する。
+          <li><code translate=no>window.onload</code> をブロックしない
         </ul>
       </section>
       <section>
@@ -277,9 +271,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
         <p>レスポンスの HTML を取得した後、サブリソースを発見して Fetch するタイミングで、そのキャッシュがヒットするという仕組みである。
         <p>一方で、 Push はブラウザが発呼する Fetch とは方向が逆であるため、ある程度の制限が出る。
         <ul>
-          <li>
-            Preload は任意のタイミングで発行し、完了を <code translate=no>onload</code> で知ることができる。
-          </li>
+          <li>Preload は任意のタイミングで発行し、完了を <code translate=no>onload</code> で知ることができる。
           <li>Preload は fetch であるため、コンテントネゴシエーションが実施できる。
           <li>Client-Hints や Accept Header を使った最適化もできる。
           <li>Push と違い Preload は 3rb party にも使える。
@@ -319,14 +311,14 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
           <p>before
           <p>
             <picture>
-              <source type=image/webp srcset=before.webp?200901_002432>
+              <source type=image/webp srcset=before.webp?191122_155824>
               <img loading=lazy decoding=async src=before.png?200901_002432 alt="preload を有効にしていないため、パースが進んでから fetch が始まる" title="Preload 追加前のパフォーマンスタイムライン" width=1366 height=768>
             </picture>
           </p>
           <p>after
           <p>
             <picture>
-              <source type=image/webp srcset=before.webp?200901_002432>
+              <source type=image/webp srcset=before.webp?191122_155824>
               <img loading=lazy decoding=async src=before.png?200901_002432 alt="preload を有効にしたため、パース完了前に fetch が始まる" title="Preload 追加前のパフォーマンスタイムライン" width=1366 height=768>
             </picture>
           </p>

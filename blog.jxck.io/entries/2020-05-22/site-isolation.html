@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-05-22T08:00:00+08:00",
-    "dateModified": "2021-10-16T08:00:00+08:00",
+    "dateModified": "2021-11-02T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-05-22>2020-05-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-16>2021-10-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-11-02>2021-11-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -275,24 +275,12 @@
         <p>CORB はこうしたコードで意図しないリソースがメモリに展開されることを防ぐ仕組みだ。
         <p>具体的には以下のような request destination について
         <ul>
-          <li>
-            &quot;image&quot; (<code translate=no>&lt;img&gt;</code>, <code translate=no>&lt;image&gt;</code>, <code translate=no>background-image</code>, favicon.ico etc)
-          </li>
-          <li>
-            &quot;script&quot; (<code translate=no>&lt;script&gt;</code>, <code translate=no>importScripts()</code>, <code translate=no>navigator.serviceWorker.register()</code>, <code translate=no>audioWorklet.addModule()</code>) etc.
-          </li>
-          <li>
-            &quot;audio&quot;, &quot;video&quot;, &quot;track&quot;
-          </li>
-          <li>
-            &quot;font&quot;
-          </li>
-          <li>
-            &quot;style&quot;
-          </li>
-          <li>
-            &quot;report&quot;
-          </li>
+          <li>&quot;image&quot; (<code translate=no>&lt;img&gt;</code>, <code translate=no>&lt;image&gt;</code>, <code translate=no>background-image</code>, favicon.ico etc)
+          <li>&quot;script&quot; (<code translate=no>&lt;script&gt;</code>, <code translate=no>importScripts()</code>, <code translate=no>navigator.serviceWorker.register()</code>, <code translate=no>audioWorklet.addModule()</code>) etc.
+          <li>&quot;audio&quot;, &quot;video&quot;, &quot;track&quot;
+          <li>&quot;font&quot;
+          <li>&quot;style&quot;
+          <li>&quot;report&quot;
         </ul>
         <p>そこから発生したリクエストに対するレスポンスの Content-Type が
         <ul>
@@ -523,9 +511,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
             <li>
               [SecureContext=Isolation]: CORP + COOP + COEP
               <ul>
-                <li>
-                  <code translate=no>performance.now</code>, <code translate=no>performance.measureMemory</code>, SharedArrayBuffer etc
-                </li>
+                <li><code translate=no>performance.now</code>, <code translate=no>performance.measureMemory</code>, SharedArrayBuffer etc
               </ul>
             </li>
             <li>
@@ -1004,7 +990,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
         <h2 id="securer-context-1"><a href="#securer-context-1">Securer Context</a></h2>
         <ul>
           <li>
-            mikewest/securer-contexts: Secure Contexts, but with <em>more</em> secureness!
+            mikewest/securer-contexts: Secure Contexts, but with _more_ secureness!
             <ul>
               <li><a href="https://github.com/mikewest/securer-contexts/">https://github.com/mikewest/securer-contexts/</a>
             </ul>

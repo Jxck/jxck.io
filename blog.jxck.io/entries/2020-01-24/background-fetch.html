@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-01-24T08:00:00+08:00",
-    "dateModified": "2021-01-16T08:00:00+08:00",
+    "dateModified": "2021-10-30T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-01-24>2020-01-24</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-30>2021-10-30</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -217,16 +217,14 @@ Content-Length: 47763456</code></pre>
           <li><a href="https://jakearchibald.com/2018/i-discovered-a-browser-bug/">I discovered a browser bug - JakeArchibald.com</a>
         </ul>
         <p>結論から言うとこうだ。
-        <blockquote>
+        <blockquote cite="https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised">
           <p>They&apos;re standardised in HTTP, but not by HTML. We know what the headers look like, and when they should appear, but there&apos;s nothing to say what a browser should actually do with them.
           <p>&mdash; <cite><a href="https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised">https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised</a></cite>
         </blockquote>
         <ul>
           <li>Range/Partial の仕様はあくまで HTTP の仕様
           <li>WHATWG において、それらがブラウザでどう扱われるかは、標準化されてない
-          <li>
-            <code translate=no>&lt;audio&gt;</code> / <code translate=no>&lt;video&gt;</code> などで Range を使うのはブラウザがそう実装してるだけ
-          </li>
+          <li><code translate=no>&lt;audio&gt;</code> / <code translate=no>&lt;video&gt;</code> などで Range を使うのはブラウザがそう実装してるだけ
           <li>Service Worker/Cache のような API でどうするかは決まってない
         </ul>
         <p>つまり、 <em>Service Worker はそもそも Range/Partial には対応してない</em> というか標準化されてないと言って良いだろう。

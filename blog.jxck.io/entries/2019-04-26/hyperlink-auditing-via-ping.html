@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-04-26T08:00:00+08:00",
-    "dateModified": "2019-09-19T08:00:00+08:00",
+    "dateModified": "2021-10-30T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-04-26>2019-04-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2019-09-19>2019-09-19</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-30>2021-10-30</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -171,7 +171,7 @@
         <p><code translate=no>&lt;a&gt;</code> には ping という属性があり、以下のように URL を指定する。
         <pre class=html><code translate=no>&lt;a href=https:example.com ping=/path/to/report&gt;example.com&lt;/a&gt;</code></pre>
         <p><a href="https://html.spec.whatwg.org/#ping">HTML Standard - ping Attribute</a>
-        <p>このリンクは、クリックすると https://example.com に遷移するが、ブラウザは遷移すると同時に <code translate=no>/path/to/report</code> に対して、おおよそ以下のようなリクエストを投げる。
+        <p>このリンクは、クリックすると <a href="https://example.com">https://example.com</a> に遷移するが、ブラウザは遷移すると同時に <code translate=no>/path/to/report</code> に対して、おおよそ以下のようなリクエストを投げる。
         <pre class=http><code translate=no>POST /path/to/report HTTP/1.1
 Content-Type: text/ping
 Ping-From: http://labs.jxck.io/ping/
@@ -284,7 +284,7 @@ PING</code></pre>
           <h3 id="opt-outableuser-visible"><a href="#opt-outableuser-visible">Opt-Outable/User-Visible</a></h3>
           <p>前述の 2 つにも増して最も強調したいのは、ブラウザの設定により「ユーザがコントロールできる余地が生まれる」ことだ。
           <p>まず、 ping の仕様には以下が記述されている。
-          <blockquote>
+          <blockquote cite="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">
             <p>User agents should allow the user to adjust this behavior, for example in conjunction with a setting that disables the sending of HTTP <code translate=no>Referer</code> (sic) headers. Based on the user&apos;s preferences, UAs may either ignore the ping attribute altogether, or selectively ignore URLs in the list (e.g. ignoring any third-party URLs); this is explicitly accounted for in the steps above.
             <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">HTML Standard</a></cite>
           </blockquote>
@@ -293,7 +293,7 @@ PING</code></pre>
           <p>リダイレクトも同様、仮に無効にすると Web の通常利用もままならなくなるだろう。
           <p>各サービスが独自の実装の代わりに標準機能を利用すると、その機能をどう提供するか、どこまでをユーザがコントロール可能にするか、などといった裁量が、サービスからブラウザとユーザに移る。
           <p>また、こうも書かれている。
-          <blockquote>
+          <blockquote cite="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">
             <p>When the ping attribute is present, user agents should clearly indicate to the user that following the hyperlink will also cause secondary requests to be sent in the background, possibly including listing the actual target URLs.
             <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">HTML Standard</a></cite>
           </blockquote>

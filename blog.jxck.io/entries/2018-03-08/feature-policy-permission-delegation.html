@@ -186,9 +186,7 @@
           <p>例えば、 <a href="https://jxck.io">https://jxck.io</a> の中で <a href="https://payment.example.com">https://payment.example.com</a> を iframe で埋め込んでいたとする。
           <p>iframe では強力な API が実行されるため、ユーザに許可を求める必要がある。
           <ul>
-            <li>
-              <em>jxck.io の画面上</em> に <em>「example.com が xxx の許可を求めている」</em> とプロンプトが出ても、その意味がユーザに伝わるか。
-            </li>
+            <li><em>jxck.io の画面上</em> に <em>「example.com が xxx の許可を求めている」</em> とプロンプトが出ても、その意味がユーザに伝わるか。
             <li>仮に権限が付与されたとして、別のページが同じように example.com を埋め込んでいた場合、その権限はどうすべきか。
             <li>iframe が複数埋め込まれていた場合に、複数プロンプトを出すことの UX はどうか
             <li>ユーザが権限を削除したいと考えた時、 jxck.io を見ていたのに、削除するのは example.com への権限だと、どのように気づかせるか。
@@ -200,18 +198,10 @@
           </ul>
           <p>そして、結論としては以下のようなモデルが採用されることとなった。
           <ul>
-            <li>
-              iframe 内では、強力な機能の権限を <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/mG6vL09JMOQ">デフォルトでオフにする</a>
-            </li>
-            <li>
-              ユーザは基本的に URL バーに表示された <a href="https://jxck.io">https://jxck.io</a> を信頼の対象とする
-            </li>
-            <li>
-              permission ui は、 <code translate=no>「このサイトに権限を許可するか」</code> をユーザに問う
-            </li>
-            <li>
-              権限を付与された <a href="https://jxck.io">https://jxck.io</a> は <a href="https://example.com">https://example.com</a> へ、その <em>権限を移譲</em> できる
-            </li>
+            <li>iframe 内では、強力な機能の権限を <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/mG6vL09JMOQ">デフォルトでオフにする</a>
+            <li>ユーザは基本的に URL バーに表示された <a href="https://jxck.io">https://jxck.io</a> を信頼の対象とする
+            <li>permission ui は、 <code translate=no>「このサイトに権限を許可するか」</code> をユーザに問う
+            <li>権限を付与された <a href="https://jxck.io">https://jxck.io</a> は <a href="https://example.com">https://example.com</a> へ、その <em>権限を移譲</em> できる
           </ul>
           <p>例えば、 Payment のために 3rd Party iframe を埋め込んだサイトがある場合、ユーザが信頼するかどうかを決めるのはあくまでその <em>サイト自体</em> ということだ。
           <p>埋め込まれた Payment 用の iframe を選定したのはそのサイトであり、そこを含めてユーザはそのサイトを信頼するかどうかを決めるべきという方針である。
@@ -244,12 +234,9 @@
           <li>allow-top-navigation-by-user-activation
         </ul>
         <p>何も許可せず、全てブロックする場合は以下のようになる。
-        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
         <pre class=html><code translate=no>&lt;iframe sandbox=&quot;&quot; src=&quot;example.com&quot;&gt;&lt;/iframe&gt;</code></pre>
         <ul>
-          <li>
-            DEMO: <a href="http://labs.jxck.io/iframe">http://labs.jxck.io/iframe</a>
-          </li>
+          <li>DEMO: <a href="http://labs.jxck.io/iframe">http://labs.jxck.io/iframe</a>
         </ul>
       </section>
       <section>
@@ -267,9 +254,7 @@
         <p>つまり、 sandbox は <em>互換性のリスクなしに拡張することが実質できない</em>。
         <p>CSP のように、ブロックリスト方式を取っていれば、制限したい項目を増やしオプトインで適用していけるため、拡張に対して開いた設計となるのは、後から判明したのだろう。
         <ul>
-          <li>
-            DEMO: <a href="http://labs.jxck.io/content-security-policy/sandbox.html">http://labs.jxck.io/content-security-policy/sandbox.html</a>
-          </li>
+          <li>DEMO: <a href="http://labs.jxck.io/content-security-policy/sandbox.html">http://labs.jxck.io/content-security-policy/sandbox.html</a>
         </ul>
       </section>
       <section>
@@ -311,9 +296,7 @@
           <p>もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
           <pre class=http><code translate=no>Feature-Policy: geolocation *</code></pre>
           <ul>
-            <li>
-              DEMO: <a href="https://labs.jxck.io/feature-policy/geolocation/basic.html">https://labs.jxck.io/feature-policy/geolocation/basic.html</a>
-            </li>
+            <li>DEMO: <a href="https://labs.jxck.io/feature-policy/geolocation/basic.html">https://labs.jxck.io/feature-policy/geolocation/basic.html</a>
           </ul>
         </section>
         <section>
@@ -326,9 +309,7 @@
           <pre class=http><code translate=no>Content-Security-Policy: sandbox allow-scripts;
 Feature-Policy: sync-xhr &apos;none&apos;</code></pre>
           <ul>
-            <li>
-              DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html">https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
-            </li>
+            <li>DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html">https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
           </ul>
         </section>
       </section>

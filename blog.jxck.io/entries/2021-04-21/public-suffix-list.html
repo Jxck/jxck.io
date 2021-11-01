@@ -181,15 +181,9 @@
           <p><code translate=no>example.jp</code> 自体も取得できるため、 <code translate=no>.jp</code> は必ず何かと 2 つ組み合わせないと取得できないわけではない。
           <p>まとめると以下のようになる。
           <ul>
-            <li>
-              <code translate=no>.jp</code> のサブドメインを取得することは可能 (ex. <code translate=no>example.jp</code>)
-            </li>
-            <li>
-              <code translate=no>.co.jp</code> のサブドメインを取得することも可能 (ex. <code translate=no>example.co.jp</code>)
-            </li>
-            <li>
-              <code translate=no>co.jp</code> というドメイン自体は取得できない (ex. <code translate=no>https://co.jp</code> というサイトは建てられない)
-            </li>
+            <li><code translate=no>.jp</code> のサブドメインを取得することは可能 (ex. <code translate=no>example.jp</code>)
+            <li><code translate=no>.co.jp</code> のサブドメインを取得することも可能 (ex. <code translate=no>example.co.jp</code>)
+            <li><code translate=no>co.jp</code> というドメイン自体は取得できない (ex. <code translate=no>https://co.jp</code> というサイトは建てられない)
           </ul>
           <p>つまり <code translate=no>.co.jp</code> とは、それ自体が TLD ではないにも関わらず、 TLD のように扱われるという、例外的な存在なのだ。
           <p>このようなドメインの組み合わせを、 Effective Top Level Domain (eTLD) と呼ぶ。
@@ -252,6 +246,8 @@
         <p>近年、そんな厳しい運用によってメンテナンスされている、非常に重要なファイルに対して、追加リクエストが頻発し問題になっている。
         <ul>
           <li><a href="https://github.com/publicsuffix/list/issues/1245">New interaction between iOS 14 and Facebook Pixel causing increase in PSL inclusion requests - Issue #1245 - publicsuffix/list</a>
+        </ul>
+        <ul>
           <li><a href="https://github.com/privacycg/private-click-measurement/issues/78">High volume of requests to add domains to the PSL - Issue #78 - privacycg/private-click-measurement</a>
         </ul>
         <p>以降、ここでまとめられている問題を順に解説する。

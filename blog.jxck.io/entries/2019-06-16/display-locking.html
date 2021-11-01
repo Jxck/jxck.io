@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-06-16T08:00:00+08:00",
-    "dateModified": "2021-10-16T08:00:00+08:00",
+    "dateModified": "2021-11-02T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-06-16>2019-06-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-16>2021-10-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-11-02>2021-11-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -243,24 +243,12 @@
         <h2 id="display-locking"><a href="#display-locking">Display Locking</a></h2>
         <p>Async DOM の実装の中で、もっとも作業が進み、 Chrome で実装され始めたのがこの仕様だ。
         <ul>
-          <li>
-            Proposal: <a href="https://discourse.wicg.io/t/proposal-display-locking/2905">Proposal: Display Locking - APIs - WICG</a>
-          </li>
-          <li>
-            Draft: <a href="https://github.com/WICG/display-locking">WICG/display-locking: A repository for the Display Locking spec</a>
-          </li>
-          <li>
-            Intents: <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ">Intent to Implement: Display Locking - Google グループ</a>
-          </li>
-          <li>
-            Chromium Bug: <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=882663">882663 - Implement display locking (meta bug) - chromium - Monorail</a>
-          </li>
-          <li>
-            TAG Review: <a href="https://github.com/w3ctag/design-reviews/issues/306">Display Locking - Issue #306 - w3ctag/design-reviews</a>
-          </li>
-          <li>
-            Mozilla Standard Position: <a href="https://github.com/mozilla/standards-positions/issues/135">Display Locking API - Issue #135 - mozilla/standards-positions</a>
-          </li>
+          <li>Proposal: <a href="https://discourse.wicg.io/t/proposal-display-locking/2905">Proposal: Display Locking - APIs - WICG</a>
+          <li>Draft: <a href="https://github.com/WICG/display-locking">WICG/display-locking: A repository for the Display Locking spec</a>
+          <li>Intents: <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ">Intent to Implement: Display Locking - Google グループ</a>
+          <li>Chromium Bug: <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=882663">882663 - Implement display locking (meta bug) - chromium - Monorail</a>
+          <li>TAG Review: <a href="https://github.com/w3ctag/design-reviews/issues/306">Display Locking - Issue #306 - w3ctag/design-reviews</a>
+          <li>Mozilla Standard Position: <a href="https://github.com/mozilla/standards-positions/issues/135">Display Locking API - Issue #135 - mozilla/standards-positions</a>
         </ul>
         <p>この仕様の状況としては、まず Intetns で <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ">positive feedback from ReactJS and Polymer</a> と書かれているため、なんらかのやり取りはあったようだ。
         <p>しかし、 Mozilla は <a href="https://github.com/mozilla/standards-positions/issues/135">Standard Pisition</a> でこれを <em>harmful 寄り</em> としており、同じスレッドで Apple も <a href="https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851">we do not support this proposal</a> と言っている。
@@ -305,8 +293,8 @@ for (const i = 0; i &lt; 100; i ++) {
           <p>わかりやすいように、 <code translate=no>appendChild</code> に <code translate=no>setTimeout</code> を仕込んだ例は以下のように挙動する。
           <p>
             <picture>
-              <source type=image/webp srcset=display-no-locking.webp?200606_195616>
-              <img loading=lazy decoding=async src=display-no-locking.gif?200606_195616 alt="lock を取らず普通に appendChild する例" title="display with no locking" width=825 height=968>
+              <source type=image/webp srcset=display-no-locking.webp?191208_190746>
+              <img loading=lazy decoding=async src=display-no-locking.gif?200628_183856 alt="lock を取らず普通に appendChild する例" title="display with no locking" width=825 height=968>
             </picture>
           </p>
           <p>そこで、 <code translate=no>&lt;ul&gt;</code> のロックを取得し、全ての <code translate=no>&lt;li&gt;</code> が追加されてから一気にレンダリングする場合以下のように書ける。
@@ -326,8 +314,8 @@ await container.displayLock.updateAndCommit()</code></pre>
           <p>こちらも、わかりやすいように <code translate=no>setTimeout</code> を仕込んだ例は以下のように挙動する。
           <p>
             <picture>
-              <source type=image/webp srcset=display-locking.webp?200606_195616>
-              <img loading=lazy decoding=async src=display-locking.gif?200606_195616 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking" width=825 height=968>
+              <source type=image/webp srcset=display-locking.webp?191208_190746>
+              <img loading=lazy decoding=async src=display-locking.gif?200628_183856 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking" width=825 height=968>
             </picture>
           </p>
           <p>Lock 中に行われる <code translate=no>appendChild</code> は、メモリ上で DOM の処理を行うだけになり、 <code translate=no>commit()</code> でレンダリングが一度に走っていることがわかるだろう。
@@ -364,8 +352,8 @@ await container.displayLock.updateAndCommit()</code></pre>
           <p>説明よりも見た方が早いので以下にデモを示す。
           <p>
             <picture>
-              <source type=image/webp srcset=display-locking-activatable.webp?200606_195616>
-              <img loading=lazy decoding=async src=display-locking-activatable.gif?200606_195616 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element" width=825 height=968>
+              <source type=image/webp srcset=display-locking-activatable.webp?191208_190746>
+              <img loading=lazy decoding=async src=display-locking-activatable.gif?200628_183856 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element" width=825 height=968>
             </picture>
           </p>
           <p>このデモでは、ランダムな文字列を <code translate=no>&lt;li&gt;</code> に入れ、ロックをとった <code translate=no>&lt;ul&gt;</code> に追加し commit してない状態で止めている。

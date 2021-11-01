@@ -138,7 +138,7 @@
                 <li><a href=#csp-の設定>## CSP の設定</a>
                 <li><a href=#csp-の注意点>## CSP の注意点</a>
                 <li><a href=#report-only>## Report Only</a>
-                <li><a href=#report-uriio>## report-uri.io</a>
+                <li><a href=#report-uri.io>## report-uri.io</a>
                 <li><a href=#懸念点>## 懸念点</a>
                 <li><a href=#本サイトへの適用>## 本サイトへの適用</a>
               </ul>
@@ -205,7 +205,7 @@
         <p>修正が完了し、レポートが落ち着いたら Content-Security-Policy に移行するフローが導入しやすいだろう。
       </section>
       <section>
-        <h2 id="report-uriio"><a href="#report-uriio">report-uri.io</a></h2>
+        <h2 id="report-uri.io"><a href="#report-uri.io">report-uri.io</a></h2>
         <p>ブラウザは、 CSP に違反した実行を検出した場合、違反レポートを生成し <code translate=no>report-uri</code> に指定した URI に対して自動的に送信する。
         <p>CSP の違反レポートは以下のような JSON データである。
         <pre class=json><code translate=no>{
@@ -239,14 +239,10 @@
         <p>本サイトでも、まずは Report-Only をサイト全体に適用し、 report-uri.io にてレポートを収集することにした。
         <p>一通りエラーを見て回ったところ、以下の点で修正が必要だった。
         <ul>
-          <li>
-            <code translate=no>*.jxck.io</code> 間でコンテンツをリンクしている
-          </li>
+          <li><code translate=no>*.jxck.io</code> 間でコンテンツをリンクしている
           <li>AMP のカスタムタグを CDN より読み込んでいる
           <li>AMP のカスタムタグがインラインスタイルを使用していた
-          <li>
-            YouTube の動画を <code translate=no>&lt;iframe&gt;</code> で埋め込んでいる
-          </li>
+          <li>YouTube の動画を <code translate=no>&lt;iframe&gt;</code> で埋め込んでいる
           <li>Google Analytics を設定している
           <li>一部インラインスクリプト、インラインスタイルを使用していた
         </ul>

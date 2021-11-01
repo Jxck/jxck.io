@@ -149,7 +149,7 @@
                 <li><a href=#for-of>### for of</a>
                 <li><a href=#spread-operator>### Spread Operator</a>
                 <li><a href=#destructoring>### Destructoring</a>
-                <li><a href=#arrayfrom>### Array.from</a>
+                <li><a href=#array.from>### Array.from</a>
                 <li><a href=#outro>## Outro</a>
                 <li><a href=#おまけ>## おまけ</a>
                 <li><a href=#異体字セレクタ>### 異体字セレクタ</a>
@@ -253,7 +253,7 @@
 [0xC2, 0xA9]             // ©
 [0xE3, 0x81, 0x82]       // あ
 [0xF0, 0xA0, 0xAE, 0xB7] // 𠮷</code></pre>
-          <p>この 8bit を最小とし、それ以外を必要に応じて 2, 3, 4&hellip;byte と可変長で表す発想が UTF-8 と呼ばれる方式の中核だ。
+          <p>この 8bit を最小とし、それ以外を必要に応じて 2, 3, 4...byte と可変長で表す発想が UTF-8 と呼ばれる方式の中核だ。
         </section>
       </section>
       <section>
@@ -396,7 +396,7 @@ b // &quot;定&quot;
 c // &quot;食&quot;</code></pre>
         </section>
         <section>
-          <h3 id="arrayfrom"><a href="#arrayfrom">Array.from</a></h3>
+          <h3 id="array.from"><a href="#array.from">Array.from</a></h3>
           <p>Array.from は Iterator をもとに配列を作る。
           <pre class=js><code translate=no>Array.from(&apos;叱られた😭&apos;)
 [ &apos;叱&apos;, &apos;ら&apos;, &apos;れ&apos;, &apos;た&apos;, &apos;😭&apos; ]</code></pre>
@@ -408,9 +408,7 @@ c // &quot;食&quot;</code></pre>
         <p>これは、 JavaScript は文字列データを Code Point の配列ではなく UTF-16 の配列として持っているからだ。
         <p>JavaScript で Code Point を意識した処理をしたい場合は、以下が使えるだろう。
         <ul>
-          <li>
-            <code translate=no>codePointAt()</code> や <code translate=no>fromCodePoint()</code>
-          </li>
+          <li><code translate=no>codePointAt()</code> や <code translate=no>fromCodePoint()</code>
           <li>正規表現の Unicode フラグを用いた処理
           <li>String Iterator を利用した API
         </ul>

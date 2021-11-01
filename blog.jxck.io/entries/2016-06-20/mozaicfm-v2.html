@@ -136,7 +136,7 @@
               <ul>
                 <li><a href=#intro>## Intro</a>
                 <li><a href=#podcast-の仕組み>## Podcast の仕組み</a>
-                <li><a href=#旧-mozaicfm-の問題点>## 旧 mozaic.fm の問題点</a>
+                <li><a href=#旧-mozaic.fm-の問題点>## 旧 mozaic.fm の問題点</a>
                 <li><a href=#ブログ実装>## ブログ実装</a>
                 <li><a href=#rss-実装>## RSS 実装</a>
                 <li><a href=#podcast-connect>## podcast connect</a>
@@ -172,7 +172,7 @@
         <p>サイト上でも音声は再生できるが、 Podcast 自体はアプリで聴くことが多いため、 RSS さえ生成すればサイト自体は必須では無い。
       </section>
       <section>
-        <h2 id="旧-mozaicfm-の問題点"><a href="#旧-mozaicfm-の問題点">旧 mozaic.fm の問題点</a></h2>
+        <h2 id="旧-mozaic.fm-の問題点"><a href="#旧-mozaic.fm-の問題点">旧 mozaic.fm の問題点</a></h2>
         <p>mozaic.fm は、  Web の技術について「<em>今何がおこっているか</em>」と「<em>これからどうなっていくか</em>」を議論する Podcast である。
         <p>必然的に、最新の Web の技術や、セキュリティ/パフォーマンスなどの周辺技術についても触れることが多い。
         <p>最近では特に HTTPS 化についての議論も多くあるが、 Tumblr はダッシュボード(編集画面)以外を暗号化することができない。
@@ -207,24 +207,12 @@
         <ul>
           <li>アートワークは 1400x1400 ~ 3000x3000 の間で 72dpi, JPEG/PNG (gzip 可)
           <li>音声形式は M4A, MP3, MOV, MP4, M4V, PDF, EPUB
-          <li>
-            <code translate=no>&lt;enclosure&gt;</code> でエピソードを囲む
-          </li>
-          <li>
-            <code translate=no>&lt;channel&gt;</code> <code translate=no>&lt;item&gt;</code> レベルの title, author, description が itunes search で使われる
-          </li>
-          <li>
-            <code translate=no>&lt;itunes:summary&gt;</code> 無ければ <code translate=no>&lt;description&gt;</code> に詳細、メディアフォーマット、スケジュールなど詳細を記す
-          </li>
-          <li>
-            <code translate=no>&lt;itunes:category&gt;</code> にサブカテゴリーを定義できる
-          </li>
-          <li>
-            <code translate=no>&lt;itunes:summary&gt;&lt;![CDATA[&lt;a href=&quot;http://www.apple.com&quot;&gt;Apple&lt;/a&gt;]]&gt;&lt;/itunes:summary&gt;</code> とコメント化し display issue を防ぐ
-          </li>
-          <li>
-            <code translate=no>&lt;item&gt;</code> を追加して行く、順番は <code translate=no>&lt;pubDate&gt;</code> で判断される。 24h 以内なら <code translate=no>&lt;itunes:order&gt;</code> で上書きもできる
-          </li>
+          <li><code translate=no>&lt;enclosure&gt;</code> でエピソードを囲む
+          <li><code translate=no>&lt;channel&gt;</code> <code translate=no>&lt;item&gt;</code> レベルの title, author, description が itunes search で使われる
+          <li><code translate=no>&lt;itunes:summary&gt;</code> 無ければ <code translate=no>&lt;description&gt;</code> に詳細、メディアフォーマット、スケジュールなど詳細を記す
+          <li><code translate=no>&lt;itunes:category&gt;</code> にサブカテゴリーを定義できる
+          <li><code translate=no>&lt;itunes:summary&gt;&lt;![CDATA[&lt;a href=&quot;http://www.apple.com&quot;&gt;Apple&lt;/a&gt;]]&gt;&lt;/itunes:summary&gt;</code> とコメント化し display issue を防ぐ
+          <li><code translate=no>&lt;item&gt;</code> を追加して行く、順番は <code translate=no>&lt;pubDate&gt;</code> で判断される。 24h 以内なら <code translate=no>&lt;itunes:order&gt;</code> で上書きもできる
         </ul>
         <p>音声の配信は、通常の HTTP サーバから行うことができる。
         <p>ただし、 Podcast は長い音声を再生するため、途中からの再生が可能なように HTTP の byte-range ヘッダをサポートする必要がある。
@@ -246,12 +234,8 @@
           <li>tumblr 上で最後のエピソードを更新し、 feedburner のフィードに反映させる
           <li>DNS を変更し、 mozaic.fm を tumblr から新サイトへ向ける
           <li>feedburner が新サイトを見ないように、独自ドメインを剥がした tumblr に向ける
-          <li>
-            mozaic.fm が自サーバを向いたので、 let&apos;s encrypt の certbot を走らせ <a href="https://mozaic.fm">https://mozaic.fm</a> を有効にする
-          </li>
-          <li>
-            <a href="http://mozaic.fm">http://mozaic.fm</a> を全て <a href="https://mozaic.fm">https://mozaic.fm</a> にリダイレクト
-          </li>
+          <li>mozaic.fm が自サーバを向いたので、 let&apos;s encrypt の certbot を走らせ <a href="https://mozaic.fm">https://mozaic.fm</a> を有効にする
+          <li><a href="http://mozaic.fm">http://mozaic.fm</a> を全て <a href="https://mozaic.fm">https://mozaic.fm</a> にリダイレクト
           <li>旧エピソードの tumblr 自体の URL を、新 URL にリダイレクトする
           <li>itunes の podcast connect から itunes に登録された mozaic.fm の feed を新しいものにする
         </ol>

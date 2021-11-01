@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-08-15T08:00:00+08:00",
-    "dateModified": "2020-08-18T08:00:00+08:00",
+    "dateModified": "2021-11-02T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-08-15>2020-08-15</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-08-18>2020-08-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-11-02>2021-11-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -211,8 +211,8 @@ body {
         <ul>
           <li>
             <picture>
-              <source type=image/webp srcset=srcset-firefox.webp?200815_144345>
-              <img loading=lazy decoding=async src=srcset-firefox.gif?200815_144345 alt="Firefox では仮定したサイズで画像が切り替わっている" title="srcset image selection on firefox" width=482 height=547>
+              <source type=image/webp srcset=srcset-firefox.webp?200815_152728>
+              <img loading=lazy decoding=async src=srcset-firefox.gif?200818_165442 alt="Firefox では仮定したサイズで画像が切り替わっている" title="srcset image selection on firefox" width=482 height=547>
             </picture>
           </li>
         </ul>
@@ -220,8 +220,8 @@ body {
         <ul>
           <li>
             <picture>
-              <source type=image/webp srcset=srcset-chrome.webp?200815_144341>
-              <img loading=lazy decoding=async src=srcset-chrome.gif?200815_144341 alt="Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる" title="srcset image selection on chrome" width=482 height=547>
+              <source type=image/webp srcset=srcset-chrome.webp?200815_152728>
+              <img loading=lazy decoding=async src=srcset-chrome.gif?200818_165442 alt="Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる" title="srcset image selection on chrome" width=482 height=547>
             </picture>
           </li>
         </ul>
@@ -346,9 +346,7 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
           <ul>
             <li>候補を順に見ていき、現在の値を curr 次を next とする
             <li>next の dencity が DPR を超えるまで先に進む
-            <li>
-              curr &lt; DPR &lt; next になったらそこで curr/next どちらを見るか決める
-            </li>
+            <li>curr &amp;lt; DPR &amp;lt; next になったらそこで curr/next どちらを見るか決める
             <li>まず curr/next の dencity の幾何平均(相乗平均)をとる
             <li>
               以下は next を使う
@@ -408,12 +406,8 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
               <ul>
                 <li>dencity が DPR を上下にまたぐ 2 つの画像を選ぶ
                 <li>その 2 つの dencity の幾何平均を取る
-                <li>
-                  幾何平均 &lt; DPR なら next
-                </li>
-                <li>
-                  幾何平均 &gt; DPR なら curr
-                </li>
+                <li>幾何平均 &lt; DPR なら next
+                <li>幾何平均 &gt; DPR なら curr
               </ul>
             </li>
           </ul>
@@ -430,8 +424,8 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
         <ul>
           <li>
             <picture>
-              <source type=image/webp srcset=srcset-chrome-dpr2.webp?200815_144257>
-              <img loading=lazy decoding=async src=srcset-chrome-dpr2.gif?200815_144257 alt="Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された" title="srcset image selection on chrome as expected" width=622 height=862>
+              <source type=image/webp srcset=srcset-chrome-dpr2.webp?200815_152728>
+              <img loading=lazy decoding=async src=srcset-chrome-dpr2.gif?200818_165442 alt="Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された" title="srcset image selection on chrome as expected" width=622 height=862>
             </picture>
           </li>
         </ul>
@@ -441,7 +435,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
         <p>幾何平均を使っている理由は、おそらく画像 A と B の間が大きい時、 A では 1px 足りないがその 1px のために B を選ぶというのを割けるためだろう。
         <p>A と B の密度の幾何平均を、デバイスの密度と比較しそこを基準に選択することで、完全にピクセル密度が足りるわけではないが、妥協的なサイズの画像が選べているということだと考えられる。
         <p>などと考えながらログを探したら、該当部分の issue に理由がずばり書かれていた。
-        <blockquote>
+        <blockquote cite="https://bugs.chromium.org/p/chromium/issues/detail?id=425511">
           <p>Currently the srcset resource selection simply picks the first candidate with a density that&apos;s equal or larger than DPR.
           <p>That results in cases where slight zooming causes a DPR of 1.1 and the download of a 2x resource,
           <p>even though the 1x resource would have been enough.

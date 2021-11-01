@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-06-12T08:00:00+08:00",
-    "dateModified": "2020-09-06T08:00:00+08:00",
+    "dateModified": "2021-11-02T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-06-12>2016-06-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-09-06>2020-09-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-11-02>2021-11-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -135,7 +135,7 @@
               <ul>
                 <li><a href=#intro>## Intro</a>
                 <li><a href=#update>## Update</a>
-                <li><a href=#windowopener>## window.opener</a>
+                <li><a href=#window.opener>## window.opener</a>
                 <li><a href=#open-link-in-new-tab>## open link in new tab</a>
                 <li><a href=#tabnabbing>## tabnabbing</a>
                 <li><a href=#攻撃の概要>### 攻撃の概要</a>
@@ -168,21 +168,19 @@
           <li>
             Firefox で noopener をデフォルトにする Intents が出た
             <ul>
-              <li>
-                Intent to Ship: implicit ref=noopener for <code translate=no>target=_blank</code> on anchor and area elements
-              </li>
+              <li>Intent to Ship: implicit ref=noopener for <code translate=no>target=_blank</code> on anchor and area elements
               <li><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/DDQP5xIKYiY/3ppe9V-ZCgAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/DDQP5xIKYiY/3ppe9V-ZCgAJ</a>
             </ul>
           </li>
         </ul>
       </section>
       <section>
-        <h2 id="windowopener"><a href="#windowopener">window.opener</a></h2>
+        <h2 id="window.opener"><a href="#window.opener">window.opener</a></h2>
         <p>以下が今回注目する挙動である。
         <p>
           <picture>
-            <source type=image/webp srcset=window-opener.webp?200606_195616>
-            <img loading=lazy decoding=async src=window-opener.gif?200606_195616 alt="Opener によって別タブで開いた画面が元の画面を遷移させている" title="window opener demo" width=150 height=150>
+            <source type=image/webp srcset=window-opener.webp?191208_190746>
+            <img loading=lazy decoding=async src=window-opener.gif?200628_183855 alt="Opener によって別タブで開いた画面が元の画面を遷移させている" title="window opener demo" width=150 height=150>
           </picture>
         </p>
         <p>このデモでは、 <a href="https://labs.jxck.io/noopener/">https://labs.jxck.io/noopener/</a> から開いた <a href="https://labs.jxck.io/noopener/opener-change.html">https://labs.jxck.io/noopener/opener-change.html</a> のページが別タブで開いた後、最初に開いたタブが勝手に <a href="http://example.com">http://example.com</a> に遷移しているというものである。
@@ -262,12 +260,8 @@
           <h3 id="誘導用サイト右上"><a href="#誘導用サイト右上">誘導用サイト(右上)</a></h3>
           <p>ユーザを収集用サイトに誘導するサイトである。
           <ul>
-            <li>
-              見た目がごく普通のサイト <code translate=no>https://happy.example.jp</code> を用意する
-            </li>
-            <li>
-              このサイトに <code translate=no>window.opener.location = &quot;https://cgn.example.com/login&quot;</code> を仕込む
-            </li>
+            <li>見た目がごく普通のサイト <code translate=no>https://happy.example.jp</code> を用意する
+            <li>このサイトに <code translate=no>window.opener.location = &quot;https://cgn.example.com/login&quot;</code> を仕込む
             <li>(この JS が動くなら、 XSS でこのスクリプトを別サービスに仕込んでも代替できる)
           </ul>
         </section>
@@ -275,24 +269,16 @@
           <h3 id="収集用サイト左下"><a href="#収集用サイト左下">収集用サイト(左下)</a></h3>
           <p>ユーザ情報を収集する、ダミーサイトである。
           <ul>
-            <li>
-              対象サイトと酷似したドメイン取得する、今回の場合 <code translate=no>cgn.example.com</code> など
-            </li>
-            <li>
-              <code translate=no>https://cgn.example.com/login</code> に本家のログインページと全く同じ見た目を実装する
-            </li>
-            <li>
-              ログイン情報を収集したら、すぐさま本家 <code translate=no>https://cgm.example.com</code> (右下==左上) にリダイレクトするよう実装する
-            </li>
+            <li>対象サイトと酷似したドメイン取得する、今回の場合 <code translate=no>cgn.example.com</code> など
+            <li><code translate=no>https://cgn.example.com/login</code> に本家のログインページと全く同じ見た目を実装する
+            <li>ログイン情報を収集したら、すぐさま本家 <code translate=no>https://cgm.example.com</code> (右下==左上) にリダイレクトするよう実装する
           </ul>
         </section>
         <section>
           <h3 id="攻撃"><a href="#攻撃">攻撃</a></h3>
           <p>実際の攻撃は以下の手順で行う
           <ul>
-            <li>
-              本家のサービスに <code translate=no>https://happy.example.jp</code> (右上) のリンクを貼る
-            </li>
+            <li>本家のサービスに <code translate=no>https://happy.example.jp</code> (右上) のリンクを貼る
             <li>本家サービスを利用中の他のユーザに、このリンクを踏ませる
             <li>被害者は、別のタブで開き、本家のタブは裏に隠れる。
             <li>見終わって閉じると、さっきまでの本家サイトのタブがなぜかログイン画面(左下)になっている。

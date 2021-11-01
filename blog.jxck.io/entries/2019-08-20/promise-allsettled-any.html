@@ -135,7 +135,7 @@
             <nav>
               <ul>
                 <li><a href=#intro>## Intro</a>
-                <li><a href=#promiseallrace>## Promise.all()/race()</a>
+                <li><a href=#promise.allrace>## Promise.all()/race()</a>
                 <li><a href=#all--reject>### all + reject</a>
                 <li><a href=#allsettled>## allSettled</a>
                 <li><a href=#race--reject>## race + reject</a>
@@ -157,17 +157,13 @@
         <p><code translate=no>Promise.allSettled()</code> と <code translate=no>Promise.any()</code> の仕様策定が進んでいる。
         <p>両者は近いレイヤの仕様では有るが、作業の進捗には差がある。
         <ul>
-          <li>
-            <a href="https://github.com/tc39/proposal-promise-allSettled">Promise.allSettled</a> は Stage 4 であり、 Chrome や Safari TP には実装もされている
-          </li>
-          <li>
-            <a href="https://github.com/tc39/proposal-promise-any">Promise.any</a> は Stage 2 であり、実装はまだない
-          </li>
+          <li><a href="https://github.com/tc39/proposal-promise-allSettled">Promise.allSettled</a> は Stage 4 であり、 Chrome や Safari TP には実装もされている
+          <li><a href="https://github.com/tc39/proposal-promise-any">Promise.any</a> は Stage 2 であり、実装はまだない
         </ul>
         <p>ここでは、これらがあると何が嬉しいのかを <code translate=no>Promise.all()</code>, <code translate=no>Promise.race()</code> の特徴を踏まえて解説する。
       </section>
       <section>
-        <h2 id="promiseallrace"><a href="#promiseallrace">Promise.all()/race()</a></h2>
+        <h2 id="promise.allrace"><a href="#promise.allrace">Promise.all()/race()</a></h2>
         <p><code translate=no>Promise.all()</code>, <code translate=no>Promise.race()</code> は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
         <p>all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
         <pre class=js><code translate=no>const fetches = [

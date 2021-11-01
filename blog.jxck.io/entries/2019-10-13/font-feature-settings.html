@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-10-13T08:00:00+08:00",
-    "dateModified": "2021-01-16T08:00:00+08:00",
+    "dateModified": "2021-11-02T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-10-13>2019-10-13</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-11-02>2021-11-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -202,7 +202,7 @@
           <li>従来使用していたツールは、この情報を全て削除していた。
           <li>昔の Noto Sans はこの情報を含まなかった気がする
         </ul>
-        <blockquote>
+        <blockquote cite="https://opentype.jp/subsetfontmk.htm">
           <p>フォントが、ヒント(OpenType フォントの場合)、カーニング情報、ビットマップデータ、 OpenType 機能を持っている場合、それらは削除されます。
           <p>&mdash; <cite><a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a></cite>
         </blockquote>
@@ -255,12 +255,8 @@
         <p>結果は以下である。
         <ul>
           <li>353.1K: 従来
-          <li>
-            606.6K: layout-feature=&apos;*&apos;
-          </li>
-          <li>
-            293.9K: layout-feature=&apos;palt&apos;
-          </li>
+          <li>606.6K: <code translate=no>layout-feature=&apos;*&apos;</code>
+          <li>293.9K: <code translate=no>layout-feature=&apos;palt&apos;</code>
         </ul>
         <p>サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前より小さくなっている。
         <p>またこのヒントを有効にするため、 CSS に以下を追加した。
@@ -270,8 +266,8 @@
         <p>before/after は以下のようになる。
         <p>
           <picture>
-            <source type=image/webp srcset=font-feature-settings-palt.webp?200606_195616>
-            <img loading=lazy decoding=async src=font-feature-settings-palt.gif?200606_195616 alt="font-feature-settings で palt を切り替えた時の字詰めの変化" title="font-feature-settings:'palt'" width=1665 height=968>
+            <source type=image/webp srcset=font-feature-settings-palt.webp?191208_190746>
+            <img loading=lazy decoding=async src=font-feature-settings-palt.gif?200628_183856 alt="font-feature-settings で palt を切り替えた時の字詰めの変化" title="font-feature-settings:'palt'" width=1665 height=968>
           </picture>
         </p>
       </section>

@@ -140,7 +140,7 @@
                 <li><a href=#sxg-の配信>## SXG の配信</a>
                 <li><a href=#web-packager-server>## Web Packager Server</a>
                 <li><a href=#webpkgserver>### webpkgserver</a>
-                <li><a href=#webpkgservertoml>### webpkgserver.toml</a>
+                <li><a href=#webpkgserver.toml>### webpkgserver.toml</a>
                 <li><a href=#routing>## Routing</a>
                 <li><a href=#content-negotiation>## Content Negotiation</a>
                 <li><a href=#webpkg>### <code translate=no>/webpkg</code></a>
@@ -207,7 +207,7 @@ go build .</code></pre>
           <pre class=shell-session><code translate=no>$ webpkgserver --config webpkgserver.toml</code></pre>
         </section>
         <section>
-          <h3 id="webpkgservertoml"><a href="#webpkgservertoml">webpkgserver.toml</a></h3>
+          <h3 id="webpkgserver.toml"><a href="#webpkgserver.toml">webpkgserver.toml</a></h3>
           <p>設定ファイルは、同梱されている <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/webpkgserver.example.toml">webpkgserver.example.toml</a> を修正する。
           <p>ほとんどデフォルトが使えるため、 Port と SXG 用の証明書、 Domain あたりを気をつければ良いだろう。
           <pre class=yaml><code translate=no>[Listen]
@@ -238,12 +238,8 @@ dump-signedexchange -i dump.sxg</code></pre>
         <p>このサービスに対して行うべきルーティングは 3 つだ。
         <ul>
           <li>webpkgserver に直接アクセスできないようポートを閉じる
-          <li>
-            <code translate=no>/webpkg</code> を webpkserver に転送
-          </li>
-          <li>
-            Content Negotiation で SXG を返す場合は <code translate=no>/priv/doc</code> をつけて proxy
-          </li>
+          <li><code translate=no>/webpkg</code> を webpkserver に転送
+          <li>Content Negotiation で SXG を返す場合は <code translate=no>/priv/doc</code> をつけて proxy
           <li>それ以外は proxy しない
         </ul>
       </section>
@@ -311,12 +307,8 @@ dump-certurl -i cert.cbor</code></pre>
           <p>この状態で放置しておくと GoogleBot がクロールしに来た際に、 SXG の Content Negotiation に成功して SXG をクロールしていく。
           <p>SXG が Google の Cache に乗ったかは、以下のような規則で生成したキャッシュ URL に直接アクセスすれば確認できる。
           <ul>
-            <li>
-              (before): <a href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html</a>
-            </li>
-            <li>
-              ( after): <a href="https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html</a>
-            </li>
+            <li>(before): <a href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html</a>
+            <li>( after): <a href="https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html</a>
           </ul>
         </section>
         <section>
@@ -325,7 +317,7 @@ dump-certurl -i cert.cbor</code></pre>
           <p>しかし、本サイトは既に <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> と <a href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html">AMP SXG</a> に対応しているため、モバイルの検索結果では AMP がヒットし、 AMP SXG がリンクされている。
           <p>
             <picture>
-              <source type=image/webp srcset=gsrp-amp.webp?211016_025159>
+              <source type=image/webp srcset=gsrp-amp.webp?210528_012414>
               <img loading=lazy decoding=async src=gsrp-amp.jpeg?211016_025159 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" title="" width=2322 height=684>
             </picture>
           </p>
@@ -338,9 +330,7 @@ dump-certurl -i cert.cbor</code></pre>
           <h3 id="amp-の停止"><a href="#amp-の停止">AMP の停止</a></h3>
           <p>AMP をやめる方法は基本は以下だ。
           <ul>
-            <li>
-              canonical html から <code translate=no>&lt;link rel=amphtml&gt;</code> を削除
-            </li>
+            <li>canonical html から <code translate=no>&lt;link rel=amphtml&gt;</code> を削除
             <li>amp html へのリクエストは canonical html にリダイレクト
           </ul>
           <p>デプロイ上はこれだけで、後はクローラが来ればしばらくして消えるかと思ったが、なかなか検索結果からは消えなかった。
@@ -357,7 +347,7 @@ dump-certurl -i cert.cbor</code></pre>
           <p>また、ページの DOM 中に <code translate=no>&lt;link rel=prefetch&gt;</code> が挿入されていることが確認できる。
           <p>
             <picture>
-              <source type=image/webp srcset=gsrp-sxg.webp?211016_025159>
+              <source type=image/webp srcset=gsrp-sxg.webp?210528_012414>
               <img loading=lazy decoding=async src=gsrp-sxg.jpeg?211016_025159 alt="Non AMP SXG が Prefetch されている" title="" width=2406 height=774>
             </picture>
           </p>

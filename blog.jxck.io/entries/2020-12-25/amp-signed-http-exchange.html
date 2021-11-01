@@ -138,7 +138,7 @@
                 <li><a href=#amp-sxg>## AMP SXG</a>
                 <li><a href=#証明書>## 証明書</a>
                 <li><a href=#amppackager>## amppackager</a>
-                <li><a href=#amppkgtoml>### amppkg.toml</a>
+                <li><a href=#amppkg.toml>### amppkg.toml</a>
                 <li><a href=#amppkg>### amppkg</a>
                 <li><a href=#routing>## routing</a>
                 <li><a href=#amppkg-1>### <code translate=no>/amppkg</code></a>
@@ -174,7 +174,7 @@
         <p>したがって、 AMP ページを表示すると、その URL バーが Google の URL になり、その仕組自体が色々と物議を呼んだりした。
         <p>
           <picture>
-            <source type=image/webp srcset=amp-sxg-before.webp?210518_024051>
+            <source type=image/webp srcset=amp-sxg-before.webp?201225_152227>
             <img loading=lazy decoding=async src=amp-sxg-before.png?210518_024051 alt="SXG に対応してない AMP は URL バーが google のドメインになる" title="" width=2280 height=2228>
           </picture>
         </p>
@@ -206,7 +206,7 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code
         <pre class=sh-session><code translate=no>$ go get -u github.com/ampproject/amppackager/cmd/amppkg</code></pre>
         <p>デフォルトだと <code translate=no>$HOME/go/bin</code> に入るのでパスを通す。
         <section>
-          <h3 id="amppkgtoml"><a href="#amppkgtoml">amppkg.toml</a></h3>
+          <h3 id="amppkg.toml"><a href="#amppkg.toml">amppkg.toml</a></h3>
           <p>amppackager の設定ファイルは toml で用意する。詳細は example を参照。
           <ul>
             <li><a href="https://raw.githubusercontent.com/ampproject/amppackager/releases/amppkg.example.toml">https://raw.githubusercontent.com/ampproject/amppackager/releases/amppkg.example.toml</a>
@@ -283,15 +283,9 @@ WantedBy=multi-user.target</code></pre>
         <p>直接 internet 側に公開するのではなく内部に起動し、外向けに立てた HTTP Server から、特定の条件のときのみ Proxy するように設定する。
         <ul>
           <li>Port 10000 の incoming は閉じ、直接のアクセスはさせない
-          <li>
-            リクエスト URL が <code translate=no>/amppkg/</code> の場合は、そのまま forward
-          </li>
-          <li>
-            AMP ページへのリクエストで <code translate=no>AMP-Cache-Transform</code> ヘッダがあれば Path に <code translate=no>/priv/doc</code> をつけて forward
-          </li>
-          <li>
-            それ以外は forward しない(直接の <code translate=no>/priv/doc</code> 含め)
-          </li>
+          <li>リクエスト URL が <code translate=no>/amppkg/</code> の場合は、そのまま forward
+          <li>AMP ページへのリクエストで <code translate=no>AMP-Cache-Transform</code> ヘッダがあれば Path に <code translate=no>/priv/doc</code> をつけて forward
+          <li>それ以外は forward しない(直接の <code translate=no>/priv/doc</code> 含め)
         </ul>
         <section>
           <h3 id="amppkg-1"><a href="#amppkg-1"><code translate=no>/amppkg</code></a></h3>
@@ -347,7 +341,7 @@ end</code></pre>
           <p>Devtools で見ると以下のように確認できる。
           <p>
             <picture>
-              <source type=image/webp srcset=amp-sxg-devtools.webp?210518_024051>
+              <source type=image/webp srcset=amp-sxg-devtools.webp?201225_152227>
               <img loading=lazy decoding=async src=amp-sxg-devtools.png?210518_024051 alt="Devtools での SXG の Debug dump" title="" width=1928 height=1198>
             </picture>
           </p>
@@ -391,14 +385,14 @@ AMP-Cache-Transform: google;v=&quot;1..5&quot;</code></pre>
         <p>通常ページはヘッダーに稲妻アイコンがあり AMP ページへリンクしているが、そのアイコンが無いことからもこれが AMP ページであることが確認できる。
         <p>
           <picture>
-            <source type=image/webp srcset=amp-sxg-after.webp?210518_024051>
+            <source type=image/webp srcset=amp-sxg-after.webp?201225_152227>
             <img loading=lazy decoding=async src=amp-sxg-after.png?210518_024051 alt="検索結果からの遷移で AMP SXG が表示され URL バーが blog.jxck.io になっている" title="" width=1928 height=1198>
           </picture>
         </p>
         <p>また、 Search Result を表示した時点で可能性のある SXG が Preload されていることもわかる。
         <p>
           <picture>
-            <source type=image/webp srcset=sxg-search-preload.webp?210518_024051>
+            <source type=image/webp srcset=sxg-search-preload.webp?201225_152227>
             <img loading=lazy decoding=async src=sxg-search-preload.png?210518_024051 alt="Google 検索結果のページで AMP SXG が Preload されている" title="" width=1080 height=2340>
           </picture>
         </p>

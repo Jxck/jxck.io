@@ -179,9 +179,7 @@
       <section>
         <h2 id="update"><a href="#update">Update</a></h2>
         <ul>
-          <li>
-            2018/3/30: Let&apos;s Encrypt が SCT 埋め込みに対応したため、 <a href="#本サイトへの適用">本サイトへの適用</a> を更新した。
-          </li>
+          <li>2018/3/30: Let&apos;s Encrypt が SCT 埋め込みに対応したため、 <a href="#本サイトへの適用">本サイトへの適用</a> を更新した。
         </ul>
       </section>
       <section>
@@ -498,15 +496,9 @@
           <p>Expect-CT のディレクティブは、基本的に CSP と同じような設計になっている。
           <pre class=http><code translate=no>Expect-CT: max-age=86400, enforce, report-uri=&quot;https://foo.example/report&quot;</code></pre>
           <ul>
-            <li>
-              <code translate=no>enforce</code>:  SCT のチェックをブラウザに強制させる
-            </li>
-            <li>
-              <code translate=no>report-uri</code>: CSP レポートの送信先
-            </li>
-            <li>
-              <code translate=no>max-age</code>: 有効期限
-            </li>
+            <li><code translate=no>enforce</code>:  SCT のチェックをブラウザに強制させる
+            <li><code translate=no>report-uri</code>: CSP レポートの送信先
+            <li><code translate=no>max-age</code>: 有効期限
           </ul>
           <p>なお <em>Expect-CT 自体が SCT の値を含むわけではない</em> 点に注意したい。
           <p>これにより、証明書が変わってもヘッダの値は変わらないため、 HPKP と比べて運用負荷が大きく下がる。
@@ -768,7 +760,7 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
         <p>本サイトでは証明書を再発行し SCT が埋め込まれた証明書を取得した。
         <p>
           <picture>
-            <source type=image/webp srcset=sct-in-chrome-devtools.webp?200901_002432>
+            <source type=image/webp srcset=sct-in-chrome-devtools.webp?191122_155824>
             <img loading=lazy decoding=async src=sct-in-chrome-devtools.png?200901_002432 alt="Chrome DevTools の Security タブで本サイトの証明書に埋め込まれた SCT を確認する" title="certificate transparency sct check in chrome devtools security tab" width=938 height=498>
           </picture>
         </p>

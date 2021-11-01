@@ -136,9 +136,9 @@
               <ul>
                 <li><a href=#intro>## Intro</a>
                 <li><a href=#mouseover-tooltip>## mouseover tooltip</a>
-                <li><a href=#1-mouseleavemouseout-を消す>## 1. mouseleave/mouseout を消す</a>
-                <li><a href=#2-break-on>## 2. Break On</a>
-                <li><a href=#3-f8>## 3. F8</a>
+                <li><a href=#1.-mouseleavemouseout-を消す>## 1. mouseleave/mouseout を消す</a>
+                <li><a href=#2.-break-on>## 2. Break On</a>
+                <li><a href=#3.-f8>## 3. F8</a>
                 <li><a href=#outro>## Outro</a>
                 <li><a href=#demo>## DEMO</a>
                 <li><a href=#resources>## Resources</a>
@@ -164,9 +164,8 @@
         <p>この UI を表示した状態で Devtools で DOM を見たい場合、 Devtools 側にマウスを移動すると UI が消えてしまい、 inspect できない。
         <p>
           <video title="マウスオーバーで出る UI が devtools でうまく inspect できない様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source src=0.debug-mouseover.mp4?210820_181335 type=video/mp4>
-            <source src=0.debug-mouseover.webm?210820_181335 type=video/webm>
-            Video Tag required to play this video. Open <a href=0.debug-mouseover.mp4?210820_181335>0.debug-mouseover.mp4?210820_181335</a> directry in browser instead.
+            <source type=video/mp4 src=0.debug-mouseover.mp4?210927_043203>
+            <source type=video/webm src=0.debug-mouseover.webm?210927_043203>
           </video>
         </p>
         <p>JS のどの処理で変更されているかわかっていれば、そこに break point を打って止めればよいのだが、近年の bundle/minify されたコードを source map なしにデバッグすると、面倒な上にムダに時間がかかる場合もある。
@@ -174,21 +173,20 @@
         <p>この UI を、どうやって表示したまま Devtools に移るか、といったやり方はいくつかあるので、筆者がよく使う方法を紹介する。
       </section>
       <section>
-        <h2 id="1-mouseleavemouseout-を消す"><a href="#1-mouseleavemouseout-を消す">1. mouseleave/mouseout を消す</a></h2>
+        <h2 id="1.-mouseleavemouseout-を消す"><a href="#1.-mouseleavemouseout-を消す">1. mouseleave/mouseout を消す</a></h2>
         <p>mouseover で DOM を表示する実装は、大抵 mouseleave/mouseout などでその DOM を消している。
         <p>この対になるイベントハンドラが判明しているなら、それを消してしまえば DOM を消す側の処理がなくなり DOM が残る。
         <p>これが一番簡単なやり方で、大抵はこれで足りる。同じ発想は focus や mouseenter など他のハンドラでも応用できる。
         <p>GitHub の場合は、アイコンの mouseleave と、表示されたプロフィールの mouseleave を消すと、落ち着いて DOM を inspect できるようになる。
         <p>
           <video title="mouseleave を消すことで UI が消えないようにし inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source src=1.remove-mouseleave.mp4?210820_180414 type=video/mp4>
-            <source src=1.remove-mouseleave.webm?210820_180414 type=video/webm>
-            Video Tag required to play this video. Open <a href=1.remove-mouseleave.mp4?210820_180414>1.remove-mouseleave.mp4?210820_180414</a> directry in browser instead.
+            <source type=video/mp4 src=1.remove-mouseleave.mp4?210927_043203>
+            <source type=video/webm src=1.remove-mouseleave.webm?210927_043203>
           </video>
         </p>
       </section>
       <section>
-        <h2 id="2-break-on"><a href="#2-break-on">2. Break On</a></h2>
+        <h2 id="2.-break-on"><a href="#2.-break-on">2. Break On</a></h2>
         <p>Devtools の機能で、対象の DOM に以下の変更があった場合に、その部分の JS で break する機能がある。
         <ul>
           <li>subtree modification
@@ -200,22 +198,20 @@
         <p>GitHub の場合は、ページ下部に非表示の DOM が先にあり、この属性を変えているタイプの実装なので、そこが判明していれば、以下のように inspect できる。
         <p>
           <video title="attribute modification に break point を設定し UI が消えないようにし inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source src=2.break-on-state.mp4?210820_180419 type=video/mp4>
-            <source src=2.break-on-state.webm?210820_180419 type=video/webm>
-            Video Tag required to play this video. Open <a href=2.break-on-state.mp4?210820_180419>2.break-on-state.mp4?210820_180419</a> directry in browser instead.
+            <source type=video/mp4 src=2.break-on-state.mp4?210927_043203>
+            <source type=video/webm src=2.break-on-state.webm?210927_043203>
           </video>
         </p>
       </section>
       <section>
-        <h2 id="3-f8"><a href="#3-f8">3. F8</a></h2>
+        <h2 id="3.-f8"><a href="#3.-f8">3. F8</a></h2>
         <p>Devtools の source tab を開いた状態で F8 を押すと、そこで Script Exec を止めることができる。つまり強制的に debugger を差し込むようなイメージだ。
         <p>mouseover で対象の UI を表示させてから F8 を押して、そのあとの JS を止めてしまうことで、 Devtools に移ることができ、そこから step 実行を始めることもできる。
         <p>GitHub の場合は、プロフィールを表示してから F8 を押してからマウスを動かせば、 mouseleave の JS 発火時に break できる。
         <p>
           <video title="UI が消える前に F8 でスクリプト実行を停止し inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source src=3.break-F8.mp4?210820_180424 type=video/mp4>
-            <source src=3.break-F8.webm?210820_180424 type=video/webm>
-            Video Tag required to play this video. Open <a href=3.break-F8.mp4?210820_180424>3.break-F8.mp4?210820_180424</a> directry in browser instead.
+            <source type=video/mp4 src=3.break-F8.mp4?210927_043203>
+            <source type=video/webm src=3.break-F8.webm?210927_043203>
           </video>
         </p>
         <p>同じことを、 console に <code translate=no>setTimeout(() =&gt; {debugger}, 1000)</code> を貼り付けて 1 秒以内に UI を出して、 debugger で JS を止めるというやり方で紹介していることもあるようだが、やっていることは同じだ。

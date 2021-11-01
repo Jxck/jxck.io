@@ -139,8 +139,8 @@
                 <li><a href=#esm--cjs>## ESM / CJS</a>
                 <li><a href=#実行環境における-esm-の扱い>## 実行環境における ESM の扱い</a>
                 <li><a href=#modules-on-browser>### Modules on Browser</a>
-                <li><a href=#modules-on-nodejs>## Modules on Node.js</a>
-                <li><a href=#mjs-for-esm>## .mjs for ESM</a>
+                <li><a href=#modules-on-node.js>## Modules on Node.js</a>
+                <li><a href=#.mjs-for-esm>## .mjs for ESM</a>
                 <li><a href=#ツール>### ツール</a>
                 <li><a href=#ライブラリ>### ライブラリ</a>
                 <li><a href=#ミドルウェア>### ミドルウェア</a>
@@ -166,14 +166,10 @@
         <h2 id="es-modules"><a href="#es-modules">ES Modules</a></h2>
         <p>徐々に揃いつつある ES Modules(ESM) の仕様は TC39 で行われており、その仕様については主に以下のような部分になる。
         <ul>
-          <li>
-            <code translate=no>import</code> や <code translate=no>export</code> と行った構文
-          </li>
+          <li><code translate=no>import</code> や <code translate=no>export</code> と行った構文
           <li>module 内はデフォルト strict mode
           <li>module でスコープを閉じる
-          <li>
-            module 内の <code translate=no>this</code> は <code translate=no>undefined</code>
-          </li>
+          <li>module 内の <code translate=no>this</code> は <code translate=no>undefined</code>
           <li>etc
         </ul>
         <p>逆に以下は TC39 での策定範囲外となる
@@ -240,7 +236,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
         </section>
       </section>
       <section>
-        <h2 id="modules-on-nodejs"><a href="#modules-on-nodejs">Modules on Node.js</a></h2>
+        <h2 id="modules-on-node.js"><a href="#modules-on-node.js">Modules on Node.js</a></h2>
         <p>Node.js においては、パース時にそのファイルが ESM/CJS どちらなかのかを判別する方法を長く議論していた。
         <p>いくつかの案があったが、代別すると 2 種類ある。
         <ul>
@@ -248,20 +244,14 @@ export default { message: &quot;hello world&quot; }</code></pre>
             パースする前にわかる
             <ul>
               <li>package.json に module であることを書く
-              <li>
-                <code translate=no>.mjs</code> や <code translate=no>.m.js</code> などの拡張子にする
-              </li>
+              <li><code translate=no>.mjs</code> や <code translate=no>.m.js</code> などの拡張子にする
             </ul>
           </li>
           <li>
             パースしてわかる
             <ul>
-              <li>
-                ファイルの先頭に <code translate=no>&quot;use module;&quot;</code> と書く
-              </li>
-              <li>
-                必ず <code translate=no>import</code> や <code translate=no>export default</code> を書く
-              </li>
+              <li>ファイルの先頭に <code translate=no>&quot;use module;&quot;</code> と書く
+              <li>必ず <code translate=no>import</code> や <code translate=no>export default</code> を書く
               <li>まず ESM としてパースしてだめなら CJS としてやり直す
             </ul>
           </li>
@@ -270,7 +260,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
         <p>その議論は <a href="https://github.com/nodejs/node-eps/issues/13">WRT PR #3 - ES module detection #13</a> などを参照。
       </section>
       <section>
-        <h2 id="mjs-for-esm"><a href="#mjs-for-esm">.mjs for ESM</a></h2>
+        <h2 id=".mjs-for-esm"><a href="#.mjs-for-esm">.mjs for ESM</a></h2>
         <p>結論として Node では <code translate=no>.mjs</code> という拡張子を採用することとなった。
         <p><a href="https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#32-determining-if-source-is-an-es-module">3.2. Determining if source is an ES Module</a>
         <p>これにより、 <code translate=no>.js</code> を維持したまま先に進むことができ、二回パースといったオーバーヘッドもなく、 TC39 の仕様外の独自拡張を Node が勝手に持ち込むことも防ぐことができる。

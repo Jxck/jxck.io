@@ -192,12 +192,8 @@
         <p><code translate=no>text=</code> 以降の生成の仕方によって、遷移先でうまく Scroll しない箇所がいくつかある。
         <p>例えば以下のようなケースがあるようだ。
         <ul>
-          <li>
-            <code translate=no>CSP</code> が <code translate=no>OCSP</code> という単語に部分的にヒットした場合
-          </li>
-          <li>
-            <code translate=no>CSP-</code> や <code translate=no># CSP</code> のように、フラグメントで意味を持つ記号が続いてる場合
-          </li>
+          <li><code translate=no>CSP</code> が <code translate=no>OCSP</code> という単語に部分的にヒットした場合
+          <li><code translate=no>CSP-</code> や <code translate=no># CSP</code> のように、フラグメントで意味を持つ記号が続いてる場合
           <li>etc
         </ul>
         <p>こうしたケースは、ブラウザ、仕様、実装、どの部分でどう対応すべきなのかは把握し切れてないため、追って調査し改善したい。
