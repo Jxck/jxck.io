@@ -57,7 +57,7 @@
 ## HTTP2 Study
 
 - [QUIC meetup](https://http2study.connpass.com/event/48577/)
-- [http2 勉強会 \#11 \(IETF, TLS1\.3, QUIC\)](https://http2study.connpass.com/event/63998/)
+- [http2 勉強会 #11 (IETF, TLS1.3, QUIC)](https://http2study.connpass.com/event/63998/)
 
 特に QUIC meetup は、東京開催の Interim に上手く合わせられたので、かなり豪華な内容となった。
 
@@ -68,8 +68,8 @@
 
 Web の勉強会が欲しかったので作った。
 
-- [serviceworker\_study](https://web-study.connpass.com/event/65267/)
-- [html\_modules\_study](https://web-study.connpass.com/event/65267/)
+- [serviceworker_study](https://web-study.connpass.com/event/65267/)
+- [html_modules_study](https://web-study.connpass.com/event/65267/)
 
 議論したいと思う細かいトピックに対して、最短最小で開催できる場所として、来年も続けられたらと思う。
 
@@ -78,9 +78,9 @@ Web の勉強会が欲しかったので作った。
 
 振り返ると、 Web Study JP や、 Node 学園での AMA みたいに、スライドを作らないタイプの発表が多かった。
 
-- [Web over Service Worker](https://speakerdeck.com/jxck/web-over-serviceworker) @ [\#inside\_fe](http://inside-frontend.com/)
-- [CSP powerful security steroid](https://speakerdeck.com/jxck/csp-a-powerful-security-steroid) @ [\#chromejp](https://developers-jp.googleblog.com/2017/01/chrome-tech-talk-night-9.html)
-- [CSP real world reporting](https://speakerdeck.com/jxck/csp-and-real-world-reporting) @ [\#rtechnight](https://atnd.org/events/85028)
+- [Web over Service Worker](https://speakerdeck.com/jxck/web-over-serviceworker) @ [#inside_fe](http://inside-frontend.com/)
+- [CSP powerful security steroid](https://speakerdeck.com/jxck/csp-a-powerful-security-steroid) @ [#chromejp](https://developers-jp.googleblog.com/2017/01/chrome-tech-talk-night-9.html)
+- [CSP real world reporting](https://speakerdeck.com/jxck/csp-and-real-world-reporting) @ [#rtechnight](https://atnd.org/events/85028)
 
 
 ## Erlang

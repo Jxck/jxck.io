@@ -93,12 +93,12 @@ Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 
 短いので該当部分を引用する。
 
 > When asked to select an image source for a given img or link element el, user agents must do the following:
-> 1\. Update the source set for el.
-> 2\. If el's source set is empty, return null as the URL and undefined as the pixel density.
-> 3\. Otherwise, take el's source set and let it be source set.
-> 4\. If an entry b in source set has the same associated pixel density descriptor as an earlier entry a in source set, then remove entry b. Repeat this step until none of the entries in source set have the same associated pixel density descriptor as an earlier entry.
-> 5\. In a user agent-specific manner, choose one image source from source set. Let this be selected source.
-> 6\. Return selected source and its associated pixel density.
+> 1. Update the source set for el.
+> 2. If el's source set is empty, return null as the URL and undefined as the pixel density.
+> 3. Otherwise, take el's source set and let it be source set.
+> 4. If an entry b in source set has the same associated pixel density descriptor as an earlier entry a in source set, then remove entry b. Repeat this step until none of the entries in source set have the same associated pixel density descriptor as an earlier entry.
+> 5. In a user agent-specific manner, choose one image source from source set. Let this be selected source.
+> 6. Return selected source and its associated pixel density.
 
 答えは 5 にそのまま書かれている。
 
@@ -189,8 +189,8 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 - DPR が 1 以上の場合
   - dencity が DPR を上下にまたぐ 2 つの画像を選ぶ
   - その 2 つの dencity の幾何平均を取る
-  - 幾何平均 &lt; DPR なら next
-  - 幾何平均 &gt; DPR なら curr
+  - 幾何平均 < DPR なら next
+  - 幾何平均 > DPR なら curr
 
 
 ## 確認
@@ -199,9 +199,9 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 
 これまでは DPR が 2 なので、 512px を超えると 1024w では足らなくなり 1280w に切り替わると考えていたが、実際に計算してみると
 
-img.width = 572 の時、 sqrt((1024/572) * (640/572)) は 2.001 で DPR より大きいため、 1024w が採用される。
+img.width = 572 の時、 sqrt((1024/572) \* (640/572)) は 2.001 で DPR より大きいため、 1024w が採用される。
 
-img.width = 573 の時、 sqrt((1024/573) * (640/573)) は 1.998 で DPR より小さいため、 1280w が採用される。
+img.width = 573 の時、 sqrt((1024/573) \* (640/573)) は 1.998 で DPR より小さいため、 1280w が採用される。
 
 つまり、 512px を超えても画像は切り替わらず 572px までは 1024w が使われている結果となるはずだ。
 

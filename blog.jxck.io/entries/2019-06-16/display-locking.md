@@ -236,7 +236,7 @@ activatable は、メモリ上にあるがレンダリングされてない DOM 
 
 この Virtual Scroller のページ検索のために、もともと別ドラフトであった Searchabel Invisible DOM という提案があった。
 
-- [Intent to Implement: Searchable Invisible DOM \- Google グループ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ)
+- [Intent to Implement: Searchable Invisible DOM - Google グループ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ)
 
 これは現在 Display Locking の仕様に統合されたと記されている。
 

@@ -141,7 +141,7 @@ Twitter と Facebook だけ、以下を参考に対応した。
 <meta property=og:title       content="${this.title} | blog.jxck.io">
 <meta property=og:site_name   content=blog.jxck.io>
 <meta property=og:description content="${this.description}">
-<meta property=og:image       content=https://jxck.io/assets/img/jxck.png> 
+<meta property=og:image       content=https://jxck.io/assets/img/jxck.png>
 ```
 
 

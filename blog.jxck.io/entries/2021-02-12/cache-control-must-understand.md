@@ -19,7 +19,7 @@ RFC7234 では、新しいステータスコードを策定する際に、キャ
 > however, status codes that are defined as being cacheable are allowed to be cached
 > without explicit freshness information.
 > Likewise, the definition of a status code can place constraints upon cache behavior...
-> <cite>--- <https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2></cite>
+> --- <https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2>
 
 つまり、その新しいステータスコードは、 `max-age` などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache 可能かどうかなどを定義できるのだ。
 
@@ -28,7 +28,7 @@ RFC7234 では、新しいステータスコードを策定する際に、キャ
 > A cache MUST NOT store a response to any request, unless:
 > The request method is understood by the cache and defined as being cacheable, and
 > the response status code is understood by the cache, and...
-> <cite>--- <https://httpwg.org/specs/rfc7234.html#response.cacheability></cite>
+> --- <https://httpwg.org/specs/rfc7234.html#response.cacheability>
 
 問題は、 3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
 
@@ -88,7 +88,7 @@ Cache-Control: max-age=3600, must-understand, no-store
 > the response status code is final (see Section 15 of [Semantics]);
 > if the response status code is 206 or 304, or the "must-understand" cache directive (see Section 5.2.2.2) is present: the cache understands the response status code;
 > ...
-> --- <cite><https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3></cite>
+> --- <https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3>
 
 ステータスコードに `final` という概念が入ったのはまた別の話として解説したいが、問題は 3 つ目の条件だ。
 

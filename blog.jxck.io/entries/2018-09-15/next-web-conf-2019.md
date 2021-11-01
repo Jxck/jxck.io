@@ -238,7 +238,7 @@ togetter
 speaker
 : [@flano_yuki](https://twitter.com/flano_yuki)
 : [@kazuho](https://twitter.com/kazuho)
-: [@\_\_kaname\_\_](https://twitter.com/__kaname__)
+: [@__kaname__](https://twitter.com/__kaname__)
 : [@ysnysnysn](https://twitter.com/ysnysnysn)
 
 hashtag

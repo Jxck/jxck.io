@@ -35,7 +35,7 @@ Web Font は、特に日本語のように文字数が多い場合、ファイ�
 
 基本的に、ブラウザは 3 つのチェックポイントを持つ。
 
-[3.2. The Font Display Timeline \| CSS Fonts Module Level 4](https://drafts.csswg.org/css-fonts-4/#font-display-timeline)
+[3.2. The Font Display Timeline | CSS Fonts Module Level 4](https://drafts.csswg.org/css-fonts-4/#font-display-timeline)
 
 - block period
 - swap period
@@ -43,7 +43,7 @@ Web Font は、特に日本語のように文字数が多い場合、ファイ�
 
 まず、ブラウザはフォントの取得を開始したら *block period* の間はテキストを表示しない。
 
-(正確には、 _invisible-fallback font face_ という、見えない文字でレンダリングする)
+(正確には、 "invisible-fallback font face" という、見えない文字でレンダリングする)
 
 *swap period* に入ったら、代替フォントで表示を行う。
 

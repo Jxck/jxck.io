@@ -13,7 +13,7 @@
 
 一方 Webkit のバージョンは(予定では `605.1.15` に)固定されることになりそうだ。詳細は、以下を参照。
 
-[Safari の UA 文字列が固定されて固定されなくなったおはなし \- fragmentary](https://myakura.hatenablog.com/entry/2018/04/16/083000)
+[Safari の UA 文字列が固定されて固定されなくなったおはなし - fragmentary](https://myakura.hatenablog.com/entry/2018/04/16/083000)
 
 
 ## Intro

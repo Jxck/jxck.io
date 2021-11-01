@@ -292,7 +292,7 @@ Finding っていう資料が二つ出た。
 - 2/7: [WASM Performance](http://www.stefankrause.net/wp/?p=405)
   - 各ブラウザでの WASM の速度比較
 
-- 2/8: [&lt;h&gt; タグの追加提案](https://github.com/w3c/html/issues/774)
+- 2/8: [<h> タグの追加提案](https://github.com/w3c/html/issues/774)
   - [Jake](https://twitter.com/jaffathecake/status/829329173051211776)
   - 揉めてる
 

@@ -32,8 +32,8 @@ Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyf
 
 ところが、単純に全ての文字を取ると、一度しか使用しない文字が増えてしまう。理由は以下のようなエントリがあるからだ。
 
-- [Noto Sans の Web Font 対応とサブセットによる最適化 \| blog\.jxck\.io](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html)
-- [JavaScript における文字コードと「文字数」の数え方 \| blog\.jxck\.io](https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html)
+- [Noto Sans の Web Font 対応とサブセットによる最適化 | blog.jxck.io](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html)
+- [JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io](https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html)
 
 通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの 2 つのエントリはそれが含まれてしまう。
 
@@ -91,7 +91,7 @@ Open Type がいくつかの情報を持っていることは薄々知ってい�
 
 後者は、 [font-feature-settings の CSS の仕様](https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES)から、 MS にある Registered Features という一覧がリンクされていた。
 
-- [Registered features \- Typography \| Microsoft Docs](https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist)
+- [Registered features - Typography | Microsoft Docs](https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist)
 
 140 近い機能があるようだが、このうちのどれが使えるのかがわからなかったため、以下の DEMO ページを用意し Chrome で試した。
 
@@ -137,8 +137,8 @@ $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=
 結果は以下である。
 
 - 353.1K: 従来
-- 606.6K: layout-feature='*'
-- 293.9K: layout-feature='palt'
+- 606.6K: `layout-feature='*'`
+- 293.9K: `layout-feature='palt'`
 
 サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前より小さくなっている。
 

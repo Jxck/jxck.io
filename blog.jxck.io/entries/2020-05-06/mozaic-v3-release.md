@@ -285,7 +285,7 @@ Report については、 User Script や拡張などもあるかもしれない
 ヘッダから有効にしている。
 
 
-### Cross Origin * Policy
+### Cross Origin \* Policy
 
 Site Isolation を固めることで、サイトをより強固に Origin に閉じるための提案が最近色々となされている。
 

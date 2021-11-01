@@ -5,7 +5,7 @@
 
 以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。
 
-[Foreign Fetch による Micro Service Workers \| blog.jxck.io](https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html)
+[Foreign Fetch による Micro Service Workers | blog.jxck.io](https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html)
 
 これは、 Safari などが進めている Cookie の double keying が影響しているらしいので、現状についてまとめる。
 

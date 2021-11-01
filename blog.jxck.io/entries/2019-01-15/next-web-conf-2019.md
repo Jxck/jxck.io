@@ -5,11 +5,11 @@
 
 2019/1/13(日) に、以下で告知した「*次世代 Web カンファレンス*」を開催した。
 
-[次世代 Web カンファレンス 2019 開催告知 \| blog.jxck.io](https://blog.jxck.io/entries/2018-09-15/next-web-conf-2019.html)
+[次世代 Web カンファレンス 2019 開催告知 | blog.jxck.io](https://blog.jxck.io/entries/2018-09-15/next-web-conf-2019.html)
 
 前日に初雪が観測されて心配したが、天気にも恵まれ、開催趣旨の通り予定していたセッションを全て終えることができた。
 
-[次世代 Web カンファレンス \- connpass](https://nextwebconf.connpass.com/event/103056/)
+[次世代 Web カンファレンス - connpass](https://nextwebconf.connpass.com/event/103056/)
 
 各セッションはこれから録画を見るが、登壇者達に聞いた感触としては、概ね熱い議論ができていたようなので、場を設けた価値はあったと思う。
 

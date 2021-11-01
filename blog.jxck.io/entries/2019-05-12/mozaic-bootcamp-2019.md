@@ -7,7 +7,7 @@
 
 その内容やモチベーションについては、以下で話している。
 
-[ep48 Monthly Web 201901 \| mozaic.fm](https://mozaic.fm/episodes/48/monthly-web-201901.html)
+[ep48 Monthly Web 201901 | mozaic.fm](https://mozaic.fm/episodes/48/monthly-web-201901.html)
 
 このイベントの概要と目的について記録する。
 

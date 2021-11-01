@@ -38,7 +38,7 @@ CSS Paint API は用意した領域に対し、画像ではなく Canvas API の
 
 詳細は以下を参照。
 
-[ep29 Houdini \| mozaic\.fm](https://mozaic.fm/episodes/29/houdini.html)
+[ep29 Houdini | mozaic.fm](https://mozaic.fm/episodes/29/houdini.html)
 
 代わりにデモのネタを探していたところ [@yoshiko](https://twitter.com/yoshiko_pg) から、
 

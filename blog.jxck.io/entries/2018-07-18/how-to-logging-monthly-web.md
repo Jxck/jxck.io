@@ -475,7 +475,7 @@ Monthly Web のソースの中で、唯一の日本語ソースである。
 > 昨今では各ベンダーより様々なブラウザーが開発され、ユーザーが利用するブラウザーの大半が Internet Explorer だという時代は残念ながら過ぎ去ってしまっています。
 > このような背景から、最近では Web サイトにおいても「相互運用性」という点が非常に重要になってきました。
 > 「相互運用性」とは、どのブラウザーで閲覧しても、同じように表示する、同じように動作する、同じような体験ができる、というようなことを言います。
-> ---<cite><https://blogs.technet.microsoft.com/jpieblog/2018/02/09/ie11-shortcut-key></cite>
+> --- <https://blogs.technet.microsoft.com/jpieblog/2018/02/09/ie11-shortcut-key>
 
 
 ### Other

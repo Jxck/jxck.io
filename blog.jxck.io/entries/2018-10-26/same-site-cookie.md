@@ -110,7 +110,7 @@ Origin ヘッダは、そもそもが生成元の Origin を通知するため�
 
 そして、残念ながら近年も [そうした脆弱性](https://insert-script.blogspot.jp/2018/05/adobe-reader-pdf-client-side-request.html) が見つかっているため、追加で別の対策が求められているのが現状だ。
 
-[参考: Referrer\-Policy によるリファラ制御 \| blog\.jxck\.io](https://blog.jxck.io/entries/2018-10-08/referrer-policy.html)
+[参考: Referrer-Policy によるリファラ制御 | blog.jxck.io](https://blog.jxck.io/entries/2018-10-08/referrer-policy.html)
 
 結果として、暗号論的に安全な乱数を One Time Token として生成し、それを Form に hidden で隠して、*意図した Form からのリクエスト* かを検証する方法が主流となっている。
 
@@ -329,7 +329,7 @@ Redirect を挟むのは Write Cookie を分けた意味がないため、一旦
 
 また、ちょうど Read/Write の Cookie 分離を仕様レベルで行う提案が出たりもしている。
 
-[\[CSP3\] Suggestion for COOKIE directive](https://lists.w3.org/Archives/Public/public-webappsec/2018Oct/0029.html)
+[[CSP3] Suggestion for COOKIE directive](https://lists.w3.org/Archives/Public/public-webappsec/2018Oct/0029.html)
 
 他にも類似する問題(Cookie に限らず)は、 Cross Origin Info Leaks という文脈で議論されることが多いが、長くなるのでここではこれ以上言及しない。
 
