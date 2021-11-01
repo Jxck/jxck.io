@@ -1,0 +1,1178 @@
+aaa
+------------------------------
+<p>aaa
+
+==============================
+
+aaa 'quote' bbb "dquote" ccc
+------------------------------
+<p>aaa &apos;quote&apos; bbb &quot;dquote&quot; ccc
+
+==============================
+
+ 
+------------------------------
+space only line in " "
+
+==============================
+
+**strong**
+------------------------------
+<p><strong>strong</strong>
+
+==============================
+
+\*\*strong\*\*
+------------------------------
+<p>**strong**
+
+==============================
+
+**strong1** and **strong2**
+------------------------------
+<p><strong>strong1</strong> and <strong>strong2</strong>
+
+==============================
+
+a **strong1** and **strong2** too
+------------------------------
+<p>a <strong>strong1</strong> and <strong>strong2</strong> too
+
+==============================
+
+**aaa `code` bbb**
+------------------------------
+<p><strong>aaa <code translate=no>code</code> bbb</strong>
+
+==============================
+
+**aaa \`code\` bbb**
+------------------------------
+<p><strong>aaa `code` bbb</strong>
+
+==============================
+
+aaa ** bbb
+------------------------------
+unmatch </strong> on "aaa ** bbb"
+
+==============================
+
+*em*
+------------------------------
+<p><em>em</em>
+
+==============================
+
+\*em\*
+------------------------------
+<p>*em*
+
+==============================
+
+*em* and *em*
+------------------------------
+<p><em>em</em> and <em>em</em>
+
+==============================
+
+a *em* and *em* b
+------------------------------
+<p>a <em>em</em> and <em>em</em> b
+
+==============================
+
+*em `code` em*
+------------------------------
+<p><em>em <code translate=no>code</code> em</em>
+
+==============================
+
+*`code` and `code`*
+------------------------------
+<p><em><code translate=no>code</code> and <code translate=no>code</code></em>
+
+==============================
+
+*em text/\* em*
+------------------------------
+<p><em>em text/* em</em>
+
+==============================
+
+*em text/* em*
+------------------------------
+unmatch </em> on "*em text/* em*"
+
+==============================
+
+`code`
+------------------------------
+<p><code translate=no>code</code>
+
+==============================
+
+\`code\`
+------------------------------
+<p>`code`
+
+==============================
+
+`code \` code`
+------------------------------
+<p><code translate=no>code ` code</code>
+
+==============================
+
+`code ` code`
+------------------------------
+unmatch </code> on "`code ` code`"
+
+==============================
+
+`token(/\r\n/)`
+------------------------------
+<p><code translate=no>token(/\r\n/)</code>
+
+==============================
+
+`alert('foo' && "bar")` and `<h1>`
+------------------------------
+<p><code translate=no>alert(&apos;foo&apos; &amp;&amp; &quot;bar&quot;)</code> and <code translate=no>&lt;h1&gt;</code>
+
+==============================
+
+a `alert('foo' && "bar")` and `<h1>` too
+------------------------------
+<p>a <code translate=no>alert(&apos;foo&apos; &amp;&amp; &quot;bar&quot;)</code> and <code translate=no>&lt;h1&gt;</code> too
+
+==============================
+
+[text](https://example.com)
+------------------------------
+<p><a href="https://example.com">text</a>
+
+==============================
+
+[text](https://example\(1\).com)
+------------------------------
+<p><a href="https://example(1).com">text</a>
+
+==============================
+
+[text](https://example.com) and [more](/path/to/file)
+------------------------------
+<p><a href="https://example.com">text</a> and <a href="/path/to/file">more</a>
+
+==============================
+
+aaa [text](https://example.com) and [more](/path/to/file) bbb
+------------------------------
+<p>aaa <a href="https://example.com">text</a> and <a href="/path/to/file">more</a> bbb
+
+==============================
+
+aaa [text](https://example.com) bbb
+------------------------------
+<p>aaa <a href="https://example.com">text</a> bbb
+
+==============================
+
+- [Intent to Ship <portal>](https://example.com)
+------------------------------
+<ul>
+  <li><a href="https://example.com">Intent to Ship &lt;portal&gt;</a>
+</ul>
+
+==============================
+
+- [Intent to Ship `<portal>`](https://example.com)
+------------------------------
+<ul>
+  <li><a href="https://example.com">Intent to Ship <code translate=no>&lt;portal&gt;</code></a>
+</ul>
+
+==============================
+
+[func()](#func)
+------------------------------
+<p><a href="#func">func()</a>
+
+==============================
+
+[[tag] nesting](https://example.com)
+------------------------------
+<p><a href="https://example.com">[tag] nesting</a>
+
+==============================
+
+<https://example.com>
+------------------------------
+<p><a href="https://example.com">https://example.com</a>
+
+==============================
+
+<https://example.com> and </path/to/file>
+------------------------------
+<p><a href="https://example.com">https://example.com</a> and <a href="/path/to/file">/path/to/file</a>
+
+==============================
+
+aaa <https://example.com> and <http://example.com> bbb
+------------------------------
+<p>aaa <a href="https://example.com">https://example.com</a> and <a href="http://example.com">http://example.com</a> bbb
+
+==============================
+
+aaa <https://example.com> bbb
+------------------------------
+<p>aaa <a href="https://example.com">https://example.com</a> bbb
+
+==============================
+
+https://example.com
+------------------------------
+<p><a href="https://example.com">https://example.com</a>
+
+==============================
+
+aaa https://example.com bbb
+------------------------------
+<p>aaa <a href="https://example.com">https://example.com</a> bbb
+
+==============================
+
+aaa https://example.com bbb http://example.com ccc
+------------------------------
+<p>aaa <a href="https://example.com">https://example.com</a> bbb <a href="http://example.com">http://example.com</a> ccc
+
+==============================
+
+url (https://example.com)
+------------------------------
+<p>url (<a href="https://example.com">https://example.com</a>)
+
+==============================
+
+http/2 is a protocol not url
+------------------------------
+<p>http/2 is a protocol not url
+
+==============================
+
+[RFC1234] is not a link
+------------------------------
+<p>[RFC1234] is not a link
+
+==============================
+
+![alt](https://example.com/test.png#100x200 'title for png')
+------------------------------
+<p>
+  <picture>
+    <source type=image/webp srcset=https://example.com/test.webp>
+    <img loading=lazy decoding=async src=https://example.com/test.png alt="alt" title="title for png" width=100 height=200>
+  </picture>
+</p>
+
+==============================
+
+![alt](https://example.com/test.png#100x200 "title for png")
+------------------------------
+<p>
+  <picture>
+    <source type=image/webp srcset=https://example.com/test.webp>
+    <img loading=lazy decoding=async src=https://example.com/test.png alt="alt" title="title for png" width=100 height=200>
+  </picture>
+</p>
+
+==============================
+
+![alt](https://example.com/test.png#100x200)
+------------------------------
+<p>
+  <picture>
+    <source type=image/webp srcset=https://example.com/test.webp>
+    <img loading=lazy decoding=async src=https://example.com/test.png alt="alt" title="" width=100 height=200>
+  </picture>
+</p>
+
+==============================
+
+![alt](test.jpeg#100x200)
+------------------------------
+<p>
+  <picture>
+    <source type=image/webp srcset=test.webp?200220_202020>
+    <img loading=lazy decoding=async src=test.jpeg?200220_202020 alt="alt" title="" width=100 height=200>
+  </picture>
+</p>
+
+==============================
+
+![alt](test.gif#100x200)
+------------------------------
+<p>
+  <picture>
+    <source type=image/webp srcset=test.webp?200220_202020>
+    <img loading=lazy decoding=async src=test.gif?200220_202020 alt="alt" title="" width=100 height=200>
+  </picture>
+</p>
+
+==============================
+
+![alt](test.jpeg#100x200) and ![alt](test.jpeg#100x200)
+------------------------------
+<p>
+  <picture>
+    <source type=image/webp srcset=test.webp?200220_202020>
+    <img loading=lazy decoding=async src=test.jpeg?200220_202020 alt="alt" title="" width=100 height=200>
+  </picture>
+   and 
+  <picture>
+    <source type=image/webp srcset=test.webp?200220_202020>
+    <img loading=lazy decoding=async src=test.jpeg?200220_202020 alt="alt" title="" width=100 height=200>
+  </picture>
+</p>
+
+==============================
+
+aaa ![alt](test.jpeg#100x200) and ![alt](test.jpeg#100x200) bbb
+------------------------------
+<p>
+  aaa 
+  <picture>
+    <source type=image/webp srcset=test.webp?200220_202020>
+    <img loading=lazy decoding=async src=test.jpeg?200220_202020 alt="alt" title="" width=100 height=200>
+  </picture>
+   and 
+  <picture>
+    <source type=image/webp srcset=test.webp?200220_202020>
+    <img loading=lazy decoding=async src=test.jpeg?200220_202020 alt="alt" title="" width=100 height=200>
+  </picture>
+   bbb
+</p>
+
+==============================
+
+![svg](test.svg#100x200 'title for svg')
+------------------------------
+<p>
+  <img loading=lazy decoding=async src=test.svg?200220_202020 alt="svg" title="title for svg" width=100 height=200>
+</p>
+
+==============================
+
+![alt](test.bmp#100x200)
+------------------------------
+<img> should ".jpeg" or ".png" or ".svg" and <video> should ".mp4" in "test.bmp"
+
+==============================
+
+![alt](https://example.com/test.png)
+------------------------------
+missing <width>x<height> in "https://example.com/test.png"
+
+==============================
+
+![dummy video](test.mp4#1000x2000)
+------------------------------
+<p>
+  <video title="dummy video" width=1000 height=2000 controls playsinline>
+    <source type=video/mp4 src=test.mp4?200220_202020>
+    <source type=video/webm src=test.webm?200220_202020>
+  </video>
+</p>
+
+==============================
+
+this is [not] <https://example.com>
+------------------------------
+<p>this is [not] <a href="https://example.com">https://example.com</a>
+
+==============================
+
+# [tag] Dead Beef
+------------------------------
+<article>
+  <h1><a href="">Dead Beef</a></h1>
+</article>
+
+==============================
+
+# Dead Beef
+------------------------------
+<article>
+  <h1><a href="">Dead Beef</a></h1>
+</article>
+
+==============================
+
+# [tag] AAA
+
+## B B B
+
+## B B B
+
+## B-B-B
+
+------------------------------
+
+<article>
+  <h1><a href="">AAA</a></h1>
+  <section>
+    <h2 id="b-b-b"><a href="#b-b-b">B B B</a></h2>
+  </section>
+  <section>
+    <h2 id="b-b-b-1"><a href="#b-b-b-1">B B B</a></h2>
+  </section>
+  <section>
+    <h2 id="b-b-b-2"><a href="#b-b-b-2">B-B-B</a></h2>
+  </section>
+</article>
+
+==============================
+
+# [tag] AAA
+
+## BBB
+
+### CCC
+
+#### CCC
+
+## BBB
+
+### CCC
+
+### CCC
+
+------------------------------
+
+<article>
+  <h1><a href="">AAA</a></h1>
+  <section>
+    <h2 id="bbb"><a href="#bbb">BBB</a></h2>
+    <section>
+      <h3 id="ccc"><a href="#ccc">CCC</a></h3>
+      <section>
+        <h4 id="ccc-1"><a href="#ccc-1">CCC</a></h4>
+      </section>
+    </section>
+  </section>
+  <section>
+    <h2 id="bbb-1"><a href="#bbb-1">BBB</a></h2>
+    <section>
+      <h3 id="ccc-2"><a href="#ccc-2">CCC</a></h3>
+    </section>
+    <section>
+      <h3 id="ccc-3"><a href="#ccc-3">CCC</a></h3>
+    </section>
+  </section>
+</article>
+
+==============================
+
+# [tag] AAA:
+
+## BBB-+:2
+
+## BBB-+:2
+
+------------------------------
+<article>
+  <h1><a href="">AAA:</a></h1>
+  <section>
+    <h2 id="bbb-2"><a href="#bbb-2">BBB-+:2</a></h2>
+  </section>
+  <section>
+    <h2 id="bbb-2-1"><a href="#bbb-2-1">BBB-+:2</a></h2>
+  </section>
+</article>
+
+==============================
+
+# [tag] Intro
+
+## `<a>` and `<span>` and `console`
+------------------------------
+<article>
+  <h1><a href="">Intro</a></h1>
+  <section>
+    <h2 id="a-and-span-and-console"><a href="#a-and-span-and-console"><code translate=no>&lt;a&gt;</code> and <code translate=no>&lt;span&gt;</code> and <code translate=no>console</code></a></h2>
+  </section>
+</article>
+
+==============================
+
+# [tag] AAA
+
+### BBB
+
+------------------------------
+
+invalid sectioning "### BBB"
+
+==============================
+
+> blockquote
+> hello world
+------------------------------
+<blockquote>
+  <p>blockquote
+  <p>hello world
+</blockquote>
+
+==============================
+
+> blockquote
+> --- [example.com](http://example.com)
+------------------------------
+<blockquote cite="http://example.com">
+  <p>blockquote
+  <p>&mdash; <cite><a href="http://example.com">example.com</a></cite>
+</blockquote>
+
+==============================
+
+- inline blockquote
+- > blockquote
+------------------------------
+<ul>
+  <li>inline blockquote
+  <li>
+    <blockquote>
+      <p>blockquote
+    </blockquote>
+  </li>
+</ul>
+
+==============================
+
+only a square > brackets
+------------------------------
+<p>only a square &gt; brackets
+
+==============================
+
+only a square < brackets
+------------------------------
+<p>only a square &lt; brackets
+
+==============================
+
+http -> https
+------------------------------
+<p>http -&gt; https
+
+==============================
+
+\<http\> \* \! \` \[https\]
+------------------------------
+<p>&lt;http&gt; * ! ` [https]
+
+==============================
+
+```
+Foo
+Bar
+Buz
+```
+------------------------------
+<pre><code translate=no>Foo
+Bar
+Buz</code></pre>
+
+==============================
+
+```js
+function log(arg) {
+  console.log(arg)
+}
+```
+------------------------------
+<pre class=js><code translate=no>function log(arg) {
+  console.log(arg)
+}</code></pre>
+
+==============================
+
+```json:./test.json
+```
+------------------------------
+<pre class=json><code translate=no>{
+  &quot;hello&quot;: &quot;world&quot;
+}</code></pre>
+
+==============================
+
+| none    | center    | left    | right       |
+|---------|:---------:|:--------|------------:|
+| aaa     | bbb       | ccc     | ddd         |
+| a *a* a | b **b** b | c `c` c | d [d](#d) d |
+------------------------------
+<table>
+  <thead>
+    <tr>
+      <th class=align-center>none</th>
+      <th class=align-center>center</th>
+      <th class=align-left>left</th>
+      <th class=align-right>right</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class=align-center>aaa</td>
+      <td class=align-center>bbb</td>
+      <td class=align-left>ccc</td>
+      <td class=align-right>ddd</td>
+    </tr>
+    <tr>
+      <td class=align-center>a <em>a</em> a</td>
+      <td class=align-center>b <strong>b</strong> b</td>
+      <td class=align-left>c <code translate=no>c</code> c</td>
+      <td class=align-right>d <a href="#d">d</a> d</td>
+    </tr>
+  </tbody>
+</table>
+
+==============================
+
+dt1
+: dd1
+
+dt2
+: dd2
+------------------------------
+<dl>
+  <div>
+    <dt>dt1
+    <dd>dd1
+  </div>
+  <div>
+    <dt>dt2
+    <dd>dd2
+  </div>
+</dl>
+
+==============================
+
+aaa
+: bbb `<dl>` ccc *ddd*
+
+*aaa* bbb
+: `<dt>` ccc
+
+**aaa**
+: bbb `<dd>` ccc
+------------------------------
+<dl>
+  <div>
+    <dt>aaa
+    <dd>bbb <code translate=no>&lt;dl&gt;</code> ccc <em>ddd</em>
+  </div>
+  <div>
+    <dt><em>aaa</em> bbb
+    <dd><code translate=no>&lt;dt&gt;</code> ccc
+  </div>
+  <div>
+    <dt><strong>aaa</strong>
+    <dd>bbb <code translate=no>&lt;dd&gt;</code> ccc
+  </div>
+</dl>
+
+==============================
+
+: dd
+------------------------------
+invalid <dd> in ": dd"
+
+==============================
+
+- one
+  - two
+  - three
+- four
+------------------------------
+<ul>
+  <li>
+    one
+    <ul>
+      <li>two
+      <li>three
+    </ul>
+  </li>
+  <li>four
+</ul>
+
+==============================
+
+- aaa
+  - bbb
+    - ccc
+- ddd
+------------------------------
+<ul>
+  <li>
+    aaa
+    <ul>
+      <li>
+        bbb
+        <ul>
+          <li>ccc
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>ddd
+</ul>
+
+==============================
+
+- aaa `code` aaa
+  - bbb *em* bbb
+    - ccc **strong** ccc
+      - ddd [link](./src) ddd
+- > blockquote
+------------------------------
+<ul>
+  <li>
+    aaa <code translate=no>code</code> aaa
+    <ul>
+      <li>
+        bbb <em>em</em> bbb
+        <ul>
+          <li>
+            ccc <strong>strong</strong> ccc
+            <ul>
+              <li>ddd <a href="./src">link</a> ddd
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <blockquote>
+      <p>blockquote
+    </blockquote>
+  </li>
+</ul>
+
+==============================
+
+- aaa
+ - bbb
+------------------------------
+odd indent in list " - bbb"
+
+==============================
+
+1. one
+2. two
+3. three
+------------------------------
+<ol>
+  <li>one
+  <li>two
+  <li>three
+</ol>
+
+==============================
+
+1. aaa
+  2. bbb
+    3. ccc
+4. ddd
+------------------------------
+<ol>
+  <li>
+    aaa
+    <ol>
+      <li>
+        bbb
+        <ol>
+          <li>ccc
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>ddd
+</ol>
+
+==============================
+
+1. aaa `code` aaa
+  2. bbb *em* bbb
+    3. ccc **strong** ccc
+      4. ddd [link](./src) ddd
+5. > blockquote
+------------------------------
+<ol>
+  <li>
+    aaa <code translate=no>code</code> aaa
+    <ol>
+      <li>
+        bbb <em>em</em> bbb
+        <ol>
+          <li>
+            ccc <strong>strong</strong> ccc
+            <ol>
+              <li>ddd <a href="./src">link</a> ddd
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <blockquote>
+      <p>blockquote
+    </blockquote>
+  </li>
+</ol>
+
+==============================
+
+- one
+  1. aaa
+  2. bbb
+  3. ccc
+- two
+  1. aaa
+  2. bbb
+  3. ccc
+------------------------------
+<ul>
+  <li>
+    one
+    <ol>
+      <li>aaa
+      <li>bbb
+      <li>ccc
+    </ol>
+  </li>
+  <li>
+    two
+    <ol>
+      <li>aaa
+      <li>bbb
+      <li>ccc
+    </ol>
+  </li>
+</ul>
+
+==============================
+
+1. aaa
+ 1. bbb
+------------------------------
+odd indent in list " 1. bbb"
+
+==============================
+
+# [tag] html
+
+<div>
+  <p>foo</p>
+  <p>bar
+</div>
+
+- ul
+  - li
+  - li
+------------------------------
+<article>
+  <h1><a href="">html</a></h1>
+  <div>
+    <p>foo</p>
+    <p>bar
+  </div>
+  <ul>
+    <li>
+      ul
+      <ul>
+        <li>li
+        <li>li
+      </ul>
+    </li>
+  </ul>
+</article>
+
+==============================
+
+iframe below
+
+<iframe src="https://example.com">
+
+iframe above
+------------------------------
+<p>iframe below
+<iframe src="https://example.com">
+<p>iframe above
+
+==============================
+
+`"`, `'`, `\``, `=`, `<`, `>`, `&`, `?`
+------------------------------
+<p><code translate=no>&quot;</code>, <code translate=no>&apos;</code>, <code translate=no>`</code>, <code translate=no>=</code>, <code translate=no>&lt;</code>, <code translate=no>&gt;</code>, <code translate=no>&amp;</code>, <code translate=no>?</code>
+
+==============================
+// 
+// a  **strong** b
+// ------------------------------
+// too many spaces around "a  **strong** b"
+// 
+// ==============================
+// 
+// a **strong**  b
+// ------------------------------
+// too many spaces around "a **strong**  b"
+// 
+// ==============================
+// 
+// a ** strong** b
+// ------------------------------
+// too many spaces in "a ** strong** b"
+// 
+// ==============================
+// 
+// a **strong ** b
+// ------------------------------
+// too many spaces in "a **strong ** b"
+// 
+// ==============================
+// 
+// a  *em* b
+// ------------------------------
+// too many spaces around "a  *em* b"
+// 
+// ==============================
+// 
+// a *em*  b
+// ------------------------------
+// too many spaces around "a *em*  b"
+// 
+// ==============================
+// 
+// a * em* b
+// ------------------------------
+// too many spaces in "a * em* b"
+// 
+// ==============================
+// 
+// a *em * b
+// ------------------------------
+// too many spaces in "a *em * b"
+// 
+// ==============================
+// 
+// a  `code` b
+// ------------------------------
+// too many spaces around "a  `code` b"
+// 
+// ==============================
+// 
+// a `code`  b
+// ------------------------------
+// too many spaces around "a `code`  b"
+// 
+// ==============================
+// 
+// a ` code` b
+// ------------------------------
+// too many spaces in "a ` code` b"
+// 
+// ==============================
+// 
+// a `code ` b
+// ------------------------------
+// too many spaces in "a `code ` b"
+// 
+// ==============================
+// 
+// aaa  [text](https://example.com) bbb
+// ------------------------------
+// too many spaces around "aaa  [text](https://example.com) bbb"
+// 
+// ==============================
+// 
+// aaa [text](https://example.com)  bbb
+// ------------------------------
+// too many spaces around "aaa [text](https://example.com)  bbb"
+// 
+// ==============================
+// 
+// aaa [ text](https://example.com) bbb
+// ------------------------------
+// too many spaces in "aaa [ text](https://example.com) bbb"
+// 
+// ==============================
+// 
+// aaa [text ](https://example.com) bbb
+// ------------------------------
+// too many spaces in "aaa [text ](https://example.com) bbb"
+// 
+// ==============================
+// 
+// aaa [text]( https://example.com) bbb
+// ------------------------------
+// too many spaces in "aaa [text]( https://example.com) bbb"
+// 
+// ==============================
+// 
+// aaa [text](https://example.com ) bbb
+// ------------------------------
+// too many spaces in "aaa [text](https://example.com ) bbb"
+// 
+// ==============================
+// 
+// aaa  <https://example.com> bbb
+// ------------------------------
+// too many spaces around "aaa  <https://example.com> bbb"
+// 
+// ==============================
+// 
+// aaa <https://example.com>  bbb
+// ------------------------------
+// too many spaces around "aaa <https://example.com>  bbb"
+// ==============================
+// 
+// aaa  ![alt](https://example.com/test.png) bbb
+// ------------------------------
+// too many spaces around "aaa  ![alt](https://example.com/test.png) bbb"
+// 
+// ==============================
+// 
+// aaa ![alt](https://example.com/test.png)  bbb
+// ------------------------------
+// too many spaces around "aaa ![alt](https://example.com/test.png)  bbb"
+// 
+// ==============================
+// 
+// aaa ![ alt](https://example.com/test.png) bbb
+// ------------------------------
+// too many spaces in "aaa ![ alt](https://example.com/test.png) bbb"
+// 
+// ==============================
+// 
+// aaa ![alt ](https://example.com/test.png) bbb
+// ------------------------------
+// too many spaces in "aaa ![alt ](https://example.com/test.png) bbb"
+// 
+// ==============================
+// 
+// aaa ![alt]( https://example.com/test.png) bbb
+// ------------------------------
+// too many spaces in "aaa ![alt]( https://example.com/test.png) bbb"
+// 
+// ==============================
+// 
+// aaa ![alt](https://example.com/test.png ) bbb
+// ------------------------------
+// too many spaces in "aaa ![alt](https://example.com/test.png ) bbb"
+// 
+// ==============================
+// 
+// aaa ![alt](https://example.com/test.png ' title') bbb
+// ------------------------------
+// too many spaces in "aaa ![alt](https://example.com/test.png ' title') bbb"
+// 
+// ==============================
+// 
+// aaa ![alt](https://example.com/test.png 'title ') bbb
+// ------------------------------
+// too many spaces in "aaa ![alt](https://example.com/test.png 'title ') bbb"
+// 
+// ==============================
+// 
+// aaa ![alt](https://example.com/test.png  'title') bbb
+// ------------------------------
+// too many spaces in "aaa ![alt](https://example.com/test.png  'title') bbb"
+// 
+// ==============================
+// 
+// #  aaa
+// ------------------------------
+// too many spaces in "#  aaa"
+// 
+// ==============================
+// 
+// # aaa 
+// ------------------------------
+// too many spaces in "# aaa "
+// 
+// ==============================
+// 
+// >  blockquote
+// ------------------------------
+// too many spaces in ">  blockquote"
+// 
+// ==============================
+// 
+// > blockquote 
+// ------------------------------
+// too many spaces around "> blockquote "
+// ==============================
+// 
+// ``` js
+// console.log(arg)
+// ```
+// ------------------------------
+// too many spaces around "``` js"
+// 
+// ==============================
+// 
+// ```js 
+// console.log(arg)
+// ```
+// ------------------------------
+// too many spaces around "```js "
+// 
+// ==============================
+// 
+// ```js :path
+// console.log(arg)
+// ```
+// ------------------------------
+// too many spaces around "```js :path"
+// 
+// ==============================
+// 
+// ```js: path
+// console.log(arg)
+// ```
+// ------------------------------
+// too many spaces around "```js: path"
+// 
+// ==============================
+// 
+// ```js:path 
+// console.log(arg)
+// ```
+// ------------------------------
+// too many spaces around "```js:path "
+// 
+// ==============================
+// 
+// -  aaa
+// ------------------------------
+// too many spaces in "-  aaa"
+// 
+// ==============================
+// 
+// - aaa 
+// ------------------------------
+// too many spaces in "- aaa "
+// 
+// ==============================
+// 
+// 1.  aaa
+// ------------------------------
+// too many spaces in "1.  aaa"
+// 
+// ==============================
+// 
+// 1. aaa 
+// ------------------------------
+// too many spaces in "1. aaa "
