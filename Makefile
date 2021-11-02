@@ -7,6 +7,8 @@ build:
 	make podcastfeed
 	make comp
 
+x:
+	cd .src && node index.js
 
 ##########################
 # Compression
