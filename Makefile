@@ -9,6 +9,9 @@ build:
 
 x:
 	cd .src && node index.js
+	# cd .src && node index.js blog &
+	# cd .src && node index.js podcast
+
 
 ##########################
 # Compression

@@ -1,12 +1,21 @@
-import { readFile, writeFile, stat, readdir } from "fs/promises";
+import { readFile, writeFile, stat } from "fs/promises";
 import { encode, decode, cache_busting } from "markdown"
 import ejs from "ejs"
 import glob from "glob"
 import { readFileSync } from "fs";
 
-function description(ast) {
-  const intro_section = ast.children[0].children[1]
-  return sum(intro_section)
+
+// function description(ast) {
+//   const intro_section = ast.children[0].children[1]
+//   return sum(intro_section)
+// }
+
+function description(md) {
+  const _desc = md.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
+    .replace(/\[(.*?)\]\(.*?\)/g, (m, p1, p2) => p1)
+    .replace(/<(http.*?)>/g, (m, p1) => p1)
+  const desc = hsc(_desc)
+  return desc
 }
 
 function sum(node, acc = "") {
@@ -50,127 +59,6 @@ function short(str) {
   return str.slice(0, 137) + "..."
 }
 
-function jsonescape(str) {
-  return str
-}
-
-async function rendering(type, entry, entry_template) {
-  const template = await readFile(entry_template, { encoding: 'utf-8' })
-  const target = entry.replace(".md", ".html")
-  const md = await readFile(entry, { encoding: 'utf-8' })
-  const canonical = target.replace("../", "https://")
-
-  const context = {
-    indent,
-    short,
-    hsc,
-    jsonescape,
-    filename: entry_template
-  }
-
-  if (type === 'blog') {
-    const path = entry.split('/')
-    const base = path.slice(0, 4).map((p) => p + "/").join("")
-    const created_at = path[3]
-    const { mtime } = await stat(entry)
-    const ast = decode(md)
-    const encoded = encode(ast, { indent: 4, base })
-    const article = encoded.html
-    const [h1, ...toc] = encoded.toc
-    const tags = encoded.tags
-    const title = h1.text
-
-    const description = (() => {
-      const intro = md.match(/## (Intro)(([\n\r]|.)*?)##/m)
-      const _description = intro[2]
-      const __description = _description
-        .replace(/\[(.*?)\]\(.*?\)/g, (m, p1, p2) => {
-          return p1
-        })
-        .replace(/<(http.*?)>/g, (m, p1) => p1)
-      return hsc(__description)
-    })()
-
-    context.entry = {
-      canonical,
-      host: "blog.jxck.io",
-      title,
-      tags,
-      toc,
-      article,
-      icon: "https://blog.jxck.io/assets/img/jxck",
-      description, //description(ast),
-      created_at,
-      updated_at: updated_at(mtime),
-    }
-    context.version = (url) => {
-      const pathname = new URL(url, "https://www.jxck.io").pathname
-      const busting = cache_busting(`../www.jxck.io${pathname}`)
-      return `${url}?${busting}`
-    }
-  }
-
-  if (type === 'podcast') {
-
-    // console.log(md)
-    const groups = md.match(/^---\n(?<yaml>([\n\r]|.)*?)\n---\n(?<markdown>([\n\r]|.)*)$/m).groups
-    const { yaml, markdown } = groups
-    const obj = yaml
-      .split("\n")
-      .map((line) => line.match(/^(?<key>.*?): (?<value>.*)/).groups)
-      .reduce((acc, { key, value }) => {
-        if (key === "tags") {
-          value = value
-            .match(/^\[(?<values>.*?)\]/).groups.values
-            .split(", ")
-            .map((value) => value.match(/"(?<value>.*)"/).groups.value)
-        }
-        acc[key] = value
-        return acc
-      }, {})
-
-    const path = entry.split('/')
-    const base = path.slice(0, 4).map((p) => p + "/").join("")
-    const ast = decode(markdown)
-    const encoded = encode(ast, { indent: 4, base })
-    const article = encoded.html
-    const [h1, ...toc] = encoded.toc
-
-    const title = h1.text
-
-    const description = (() => {
-      const info = md.match(/## (Theme)(([\n\r]|.)*?)##/m)
-      const _description = info[2]
-      const __description = _description
-        .replace(/\[(.*?)\]\(.*?\)/g, (m, p1, p2) => {
-          return p1
-        })
-        .replace(/<(http.*?)>/g, (m, p1) => p1)
-      return hsc(__description)
-    })()
-
-    context.episode = {
-      canonical,
-      host: "mozaic.fm",
-      title,
-      tags: obj.tags,
-      toc,
-      article,
-      icon: "https://mozaic.fm/assets/img/mozaic",
-      description, // : description(ast),
-      published_at: obj.published_at,
-      audio: obj.audio
-    }
-    context.version = (url) => {
-      const pathname = new URL(url, "https://mozaic.fm").pathname
-      const busting = cache_busting(`../mozaic.fm${pathname}`)
-      return `${url}?${busting}`
-    }
-  }
-  const result = ejs.render(template, context)
-  await writeFile(target, result)
-}
-
 function parse_yaml(str) {
   return str.split("\n")
     .map((line) => line.match(/^(?<key>.*?): (?<value>.*)/).groups)
@@ -186,58 +74,96 @@ function parse_yaml(str) {
     }, {})
 }
 
+function version(src) {
+  const url = new URL(src, "https://www.jxck.io")
+  const pathname = url.pathname
+  const busting = cache_busting(`../www.jxck.io${pathname}`)
+  return `${src}?${busting}`
+}
 
-async function render_podcast(entry, entry_template) {
+
+async function render_blog(entry, entry_template) {
   const template = await readFile(entry_template, { encoding: 'utf-8' })
-  const target = entry.path.replace(".md", ".html")
-  const md = await readFile(entry.path, { encoding: 'utf-8' })
+  const md = await readFile(entry, { encoding: 'utf-8' })
+  const target = entry.replace(".md", ".html")
   const canonical = target.replace("../", "https://")
+  const { mtime } = await stat(entry)
+
+  const [up, blog, entries, created_at, filename] = entry.split('/')
+  const base = `${up}/${blog}/${entries}/${created_at}/`
+
+  const ast = decode(md)
+  const encoded = encode(ast, { indent: 4, base })
+
+  const article = encoded.html
+  const [h1, ...toc] = encoded.toc
+  const tags = encoded.tags
+  const title = h1.text
 
   const context = {
     indent,
     short,
     hsc,
-    jsonescape,
-    filename: entry_template
+    version,
+    filename: entry_template,
+    entry: {
+      canonical,
+      host: "blog.jxck.io",
+      title,
+      tags,
+      toc,
+      article,
+      icon: "https://blog.jxck.io/assets/img/jxck",
+      description: description(md),
+      created_at,
+      updated_at: updated_at(mtime),
+    }
   }
+
+  const result = ejs.render(template, context)
+  await writeFile(target, result)
+}
+
+
+async function render_podcast(entry, entry_template) {
+  const template = await readFile(entry_template, { encoding: 'utf-8' })
+  const md = await readFile(entry.path, { encoding: 'utf-8' })
+  const target = entry.path.replace(".md", ".html")
+  const canonical = target.replace("../", "https://")
 
   const groups = md.match(/^---\n(?<frontmatter>([\n\r]|.)*?)\n---\n(?<markdown>([\n\r]|.)*)$/m).groups
   const { frontmatter, markdown } = groups
   const yaml = parse_yaml(frontmatter)
+  const { tags, published_at, audio } = yaml
 
-  const path = entry.path.split('/')
-  const base = path.slice(0, 4).map((p) => p + "/").join("")
+  const [up, mozaic, episodes, ep, filename] = entry.path.split('/')
+  const base = `${up}/${mozaic}/${episodes}/${ep}/`
   const ast = decode(markdown)
   const encoded = encode(ast, { indent: 4, base })
   const article = encoded.html
   const [h1, ...toc] = encoded.toc
   const title = h1.text
 
-  const description = (() => {
-    const theme = md.match(/## (Theme)(([\n\r]|.)*?)##/m)[2]
-      .replace(/\[(.*?)\]\(.*?\)/g, (m, p1, p2) => p1)
-      .replace(/<(http.*?)>/g, (m, p1) => p1)
-    return hsc(theme)
-  })()
-
-  context.episode = {
-    canonical,
-    prev: entry.prev,
-    next: entry.next,
-    host: "mozaic.fm",
-    title,
-    tags: yaml.tags,
-    toc,
-    article,
-    icon: "https://mozaic.fm/assets/img/mozaic",
-    description, // : description(ast),
-    published_at: yaml.published_at,
-    audio: yaml.audio
-  }
-  context.version = (url) => {
-    const pathname = new URL(url, "https://mozaic.fm").pathname
-    const busting = cache_busting(`../mozaic.fm${pathname}`)
-    return `${url}?${busting}`
+  const context = {
+    indent,
+    short,
+    hsc,
+    version,
+    filename: entry_template,
+    episode: {
+      canonical,
+      prev: entry.prev,
+      next: entry.next,
+      host: "mozaic.fm",
+      title,
+      tags,
+      toc,
+      article,
+      icon: "https://mozaic.fm/assets/img/mozaic",
+      description: description(md),
+      published_at,
+      audio,
+    }
   }
 
   const result = ejs.render(template, context)
@@ -247,20 +173,19 @@ async function render_podcast(entry, entry_template) {
 
 async function blog() {
   const entry_template = "./template/blog.html.ejs"
-  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
   // const files = ["../blog.jxck.io/entries/2016-08-05/sql-for-file-search.md"]
+  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
 
   for (const entry of files) {
     console.log(entry)
-    await rendering('blog', entry, entry_template)
+    await render_blog(entry, entry_template)
   }
 }
-await blog()
 
 async function podcast() {
   const podcast_template = "./template/podcast.html.ejs"
+  //["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
   const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
-    //["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
     .map((path) => {
       const [dot, mozaic, episodes, ep, file] = path.split("/")
       const title = readFileSync(path, { encoding: "utf-8" }).match(/# (?<h1>.*)/).groups.h1
@@ -290,4 +215,16 @@ async function podcast() {
     await render_podcast(episode, podcast_template)
   }
 }
-await podcast()
+
+if (process.argv[2] === "blog") {
+  await blog()
+}
+
+if (process.argv[2] === "podcast") {
+  await podcast()
+}
+
+if (process.argv.length < 3) {
+  await blog()
+  await podcast()
+}
