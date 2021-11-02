@@ -2,7 +2,7 @@ import { readFile, writeFile, stat } from "fs/promises";
 import { encode, decode, cache_busting } from "markdown"
 import ejs from "ejs"
 import glob from "glob"
-import { readFileSync } from "fs";
+import { fstat, readFileSync } from "fs";
 
 
 // function description(ast) {
@@ -82,15 +82,15 @@ function version(src) {
 }
 
 
-async function render_blog(entry, entry_template) {
-  const template = await readFile(entry_template, { encoding: 'utf-8' })
+async function parse_entry(entry) {
   const md = await readFile(entry, { encoding: 'utf-8' })
   const target = entry.replace(".md", ".html")
   const canonical = target.replace("../", "https://")
   const { mtime } = await stat(entry)
 
-  const [up, blog, entries, created_at, filename] = entry.split('/')
+  const [up, blog, entries, created_at, filename] = target.split('/')
   const base = `${up}/${blog}/${entries}/${created_at}/`
+  const relative = `${entries}/${created_at}/${filename}`
 
   const ast = decode(md)
   const encoded = encode(ast, { indent: 4, base })
@@ -100,28 +100,20 @@ async function render_blog(entry, entry_template) {
   const tags = encoded.tags
   const title = h1.text
 
-  const context = {
-    indent,
-    short,
-    hsc,
-    version,
-    filename: entry_template,
-    entry: {
-      canonical,
-      host: "blog.jxck.io",
-      title,
-      tags,
-      toc,
-      article,
-      icon: "https://blog.jxck.io/assets/img/jxck",
-      description: description(md),
-      created_at,
-      updated_at: updated_at(mtime),
-    }
+  return {
+    target,
+    canonical,
+    relative,
+    host: "blog.jxck.io",
+    title,
+    tags,
+    toc,
+    article,
+    icon: "https://blog.jxck.io/assets/img/jxck",
+    description: description(md),
+    created_at,
+    updated_at: updated_at(mtime),
   }
-
-  const result = ejs.render(template, context)
-  await writeFile(target, result)
 }
 
 
@@ -172,14 +164,51 @@ async function render_podcast(entry, entry_template) {
 
 
 async function blog() {
-  const entry_template = "./template/blog.html.ejs"
+  const entry_template_file = "./template/blog.html.ejs"
+  const entry_template = await readFile(entry_template_file, { encoding: 'utf-8' })
+
   // const files = ["../blog.jxck.io/entries/2016-08-05/sql-for-file-search.md"]
   const files = glob.sync("../blog.jxck.io/entries/**/*.md")
+  const entries = await Promise.all(files.map((file) => parse_entry(file)))
 
-  for (const entry of files) {
-    console.log(entry)
-    await render_blog(entry, entry_template)
+  for (const entry of entries) {
+    console.log(entry.target)
+    const context = {
+      indent,
+      short,
+      hsc,
+      version,
+      filename: entry_template_file,
+      entry
+    }
+    const result = ejs.render(entry_template, context)
+    await writeFile(context.entry.target, result)
   }
+
+  const archive_template_file = "./template/blog.index.html.ejs"
+  const archive_template = await readFile(archive_template_file, { encoding: "utf-8" })
+
+  const entries_per_year = entries.reverse().reduce((acc, entry) => {
+    const year = entry.created_at.split("-")[0]
+    if (acc.has(year)) {
+      acc.get(year).push(entry)
+    } else {
+      acc.set(year, [entry])
+    }
+    return acc
+  }, new Map())
+
+  const result = ejs.render(archive_template, {
+    indent,
+    short,
+    hsc,
+    version,
+    entries_per_year,
+    first: entries[0],
+    filename: archive_template_file,
+  })
+
+  await writeFile("../blog.jxck.io/index.html", result)
 }
 
 async function podcast() {

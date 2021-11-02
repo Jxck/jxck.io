@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang=ja>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io>
+
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=<%= version("https://www.jxck.io/assets/js/main.js") %>>
+  <link rel=preload as=script href=<%= version("https://www.jxck.io/assets/js/ga.js") %>>
+
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=<%= version("https://www.jxck.io/assets/js/main.js") %>></script>
+  <script defer src=<%= version("https://www.jxck.io/assets/js/ga.js") %>></script>
+
+  <%- indent(include("favicon.html.ejs", {icon: first.icon})) _%>
+
+  <%- indent(include("meta.html.ejs", {
+    description: "Web Technology Blog by Jxck",
+    tags:        ["web", "technology", "programming", "browser", "jxck"],
+    canonical:   "https://blog.jxck.io",
+    title:       "Index",
+    host:        first.host,
+    icon:        first.icon,
+  })) _%>
+
+  <title>blog.jxck.io</title>
+  <link rel=prerender href=<%= first.relative %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/body.css") %>>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/header.css") %>>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/blog.svg") %>   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/searches                 ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/search.svg") %> title=search alt=search></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/rss.svg") %>    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/humans.svg") %> title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/jxck.svg") %>   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/markdown.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/main.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/archive.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/info.css") %>>
+  <main class=archive>
+    <h1><a href=/>Archive</a></h1>
+    <%_ Array.from(entries_per_year.entries()).forEach(([year, entries]) => { _%>
+    <section>
+      <h2 id=<%=year%>><a href=#<%=year%>><%=year%></a></h2>
+      <ul>
+        <%_ entries.forEach((e) => { _%>
+        <li>
+          <time datetime=<%= e.created_at %>><%= e.created_at %></time>
+          <a href=<%= e.relative %>><%- e.title %></a>
+        </li>
+        <%_ }) _%>
+      </ul>
+    </section>
+    <%_ }) _%>
+  </main>
+
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/footer.css") %>>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</html>
