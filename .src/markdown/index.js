@@ -232,7 +232,7 @@ export function encode(node, option) {
       return curr.id === id ? curr : last
     }, null)
     const count = prev ? prev.count + 1 : 0
-    const suffix = count === 0 ? `` : `-${count}` // TODO _ に直す
+    const suffix = count === 0 ? `` : `_${count}`
     const hashed = `${id}${suffix}`
 
     // TOC に積む
