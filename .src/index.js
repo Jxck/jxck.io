@@ -2,7 +2,9 @@ import { readFile, writeFile, stat } from "fs/promises";
 import { encode, decode, cache_busting } from "markdown"
 import ejs from "ejs"
 import glob from "glob"
-import { readFileSync } from "fs";
+import { readFileSync } from "fs"
+import { exec } from "child_process"
+import { promisify } from "util"
 
 /**
  * dump for debug
@@ -99,6 +101,25 @@ function parse_yaml(str) {
     }, { guests: [] }) // guests は必須で無い場合は空
 }
 
+async function duration(audio) {
+  let sec = 0
+  if (process.platform === 'darwin') {
+    const { stdout } = await promisify(exec)(`afinfo ./${audio} | grep duration | cut -d' ' -f 3`)
+    sec = parseInt(stdout.trim())
+  } else {
+    const { stdout } = await promisify(exec)(`mp3info -p "%S\n" ./${audio}`)
+    sec = parseInt(stdout.trim())
+  }
+  var formatter = new Intl.DateTimeFormat("ja-jp", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+    timeZone: "UTC"
+  });
+  return formatter.format(new Date(sec * 1000))
+}
+
 function version(src) {
   const url = new URL(src, "https://www.jxck.io")
   const pathname = url.pathname
@@ -141,7 +162,7 @@ async function parse_entry(entry) {
 }
 
 
-async function parse_episode(entry) {
+async function parse_episode(entry, order) {
   const md = await readFile(entry.path, { encoding: 'utf-8' })
   const target = entry.path.replace(".md", ".html")
   const canonical = target.replace("../", "https://")
@@ -169,6 +190,8 @@ async function parse_episode(entry) {
   const audio_size = audio_stat.size
   const audio_mtime = Math.floor(audio_stat.mtime.getTime() / 1000)
 
+  const audio_duration = await duration(audio.replace("https://", "../"))
+
   return {
     target,
     canonical,
@@ -188,6 +211,8 @@ async function parse_episode(entry) {
     audio,
     audio_size,
     audio_mtime,
+    duration: audio_duration,
+    order,
   }
 }
 
@@ -278,10 +303,11 @@ async function podcast() {
     })
     .reverse()
 
+  const episodes = await Promise.all(pathes.map((path, i) => parse_episode(path, i)))
+
   // build episodes
   const podcast_template_file = "./template/podcast.html.ejs"
   const podcast_template = await readFile(podcast_template_file, { encoding: 'utf-8' })
-  const episodes = await Promise.all(pathes.map((path) => parse_episode(path)))
   for (const episode of episodes) {
     console.log(episode.target)
     const context = {
@@ -309,6 +335,12 @@ async function podcast() {
     filename: index_template_file,
   })
   await writeFile("../mozaic.fm/index.html", result)
+
+  // build rss
+  const rss_template_file = "./template/podcast.rss2.xml.ejs"
+  const rss_template = await readFile(rss_template_file, { encoding: "utf-8" })
+  const rss_result = ejs.render(rss_template, { episodes })
+  await writeFile("../feed.mozaic.fm/index.xml", rss_result)
 }
 
 if (process.argv[2] === "blog") {
