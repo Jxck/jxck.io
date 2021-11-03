@@ -100,7 +100,7 @@ export function cache_busting(path) {
  * @param {NodeParam} param
  * @returns {Node}
  */
-function node({ name, type, parent = null, children = [], level = undefined, text = undefined, attr = undefined }) {
+export function node({ name, type, parent = null, children = [], level = undefined, text = undefined, attr = undefined }) {
   return new Node(
     name,
     type,
