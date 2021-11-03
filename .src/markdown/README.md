@@ -41,3 +41,4 @@
 - Intro の前に Update が入ったら直す
 - /Users/jxck/develop/jxck.io/blog.jxck.io/entries/2018-01-13/formdata-urlsearchparams.md
   - title に入った & が &amp;&amp になる
+- podcast の `<article>` のインデントが 1 個深い
