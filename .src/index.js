@@ -240,9 +240,14 @@ async function blog() {
   // build rss
   const rss_template_file = "./template/blog.atom.xml.ejs"
   const rss_template = await readFile(rss_template_file, { encoding: "utf-8" })
-
   const rss_result = ejs.render(rss_template, { entries })
   await writeFile("../blog.jxck.io/feeds/atom.xml", rss_result)
+
+  // build sitemap
+  const sitemap_template_file = "./template/blog.sitemap.xml.ejs"
+  const sitemap_template = await readFile(sitemap_template_file, { encoding: "utf-8" })
+  const sitemap_result = ejs.render(sitemap_template, { entries })
+  await writeFile("../blog.jxck.io/feeds/sitemap.xml", sitemap_result)
 }
 
 async function podcast() {
