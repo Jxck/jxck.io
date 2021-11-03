@@ -32,8 +32,8 @@ function description(md) {
 }
 
 function sum(node, acc = "") {
-  if (node.name === 'headding') return ''
-  if (node.name === 'text') return node.text
+  if (node.name === "headding") return ""
+  if (node.name === "text") return node.text
   return node.children.map((child) => {
     return sum(child, acc)
   }).join("")
@@ -41,8 +41,8 @@ function sum(node, acc = "") {
 
 function updated_at(mtime) {
   const year = mtime.getFullYear()
-  const month = (mtime.getMonth() + 1).toString().padStart(2, '0')
-  const date = mtime.getDate().toString().padStart(2, '0')
+  const month = (mtime.getMonth() + 1).toString().padStart(2, "0")
+  const date = mtime.getDate().toString().padStart(2, "0")
   return `${year}-${month}-${date}`
 }
 
@@ -101,16 +101,17 @@ function parse_yaml(str) {
     }, { guests: [] }) // guests は必須で無い場合は空
 }
 
-async function duration(audio) {
-  let sec = 0
-  if (process.platform === 'darwin') {
-    const { stdout } = await promisify(exec)(`afinfo ./${audio} | grep duration | cut -d' ' -f 3`)
-    sec = parseInt(stdout.trim())
-  } else {
-    const { stdout } = await promisify(exec)(`mp3info -p "%S\n" ./${audio}`)
-    sec = parseInt(stdout.trim())
-  }
-  var formatter = new Intl.DateTimeFormat("ja-jp", {
+async function audio_duration(audio) {
+  const stdout = await (async () => {
+    if (process.platform === "darwin") {
+      return (await promisify(exec)(`afinfo ./${audio} | grep duration | cut -d' ' -f 3`)).stdout
+    } else {
+      return (await promisify(exec)(`mp3info -p "%S\n" ./${audio}`)).stdout
+    }
+  })()
+
+  const sec = parseInt(stdout.trim())
+  const formatter = new Intl.DateTimeFormat("ja-jp", {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
@@ -127,13 +128,18 @@ function version(src) {
   return `${src}?${busting}`
 }
 
+async function render(template, context) {
+  context.filename = template
+  return ejs.render(await readFile(template, { encoding: "utf-8" }), context)
+}
+
 async function parse_entry(entry) {
-  const md = await readFile(entry, { encoding: 'utf-8' })
+  const md = await readFile(entry, { encoding: "utf-8" })
   const target = entry.replace(".md", ".html")
   const canonical = target.replace("../", "https://")
   const { mtime } = await stat(entry)
 
-  const [up, blog, entries, created_at, filename] = target.split('/')
+  const [up, blog, entries, created_at, filename] = target.split("/")
   const base = `${up}/${blog}/${entries}/${created_at}/`
   const relative = `${entries}/${created_at}/${filename}`
 
@@ -163,7 +169,7 @@ async function parse_entry(entry) {
 
 
 async function parse_episode(entry, order) {
-  const md = await readFile(entry.path, { encoding: 'utf-8' })
+  const md = await readFile(entry.path, { encoding: "utf-8" })
   const target = entry.path.replace(".md", ".html")
   const canonical = target.replace("../", "https://")
 
@@ -172,7 +178,7 @@ async function parse_episode(entry, order) {
   const yaml = parse_yaml(frontmatter)
   const { tags, published_at, audio, guests } = yaml
 
-  const [up, mozaic, episodes, ep, filename] = entry.path.split('/')
+  const [up, mozaic, episodes, ep, filename] = entry.path.split("/")
   const base = `${up}/${mozaic}/${episodes}/${ep}/`
   const ast = decode(markdown)
 
@@ -190,8 +196,7 @@ async function parse_episode(entry, order) {
   const audio_stat = await stat(audio_file)
   const audio_size = audio_stat.size
   const audio_mtime = Math.floor(audio_stat.mtime.getTime() / 1000)
-
-  const audio_duration = await duration(audio_file)
+  const duration = await audio_duration(audio_file)
 
   return {
     target,
@@ -213,7 +218,7 @@ async function parse_episode(entry, order) {
     audio_file,
     audio_size,
     audio_mtime,
-    duration: audio_duration,
+    duration,
     order,
   }
 }
@@ -225,7 +230,7 @@ async function blog() {
 
   // build entries
   const entry_template_file = "./template/blog.html.ejs"
-  const entry_template = await readFile(entry_template_file, { encoding: 'utf-8' })
+  const entry_template = await readFile(entry_template_file, { encoding: "utf-8" })
   for (const entry of entries) {
     console.log(entry.target)
     const context = {
@@ -241,8 +246,6 @@ async function blog() {
   }
 
   // build index
-  const archive_template_file = "./template/blog.index.html.ejs"
-  const archive_template = await readFile(archive_template_file, { encoding: "utf-8" })
   const entries_per_year = entries.reduce((acc, entry) => {
     const year = entry.created_at.split("-")[0]
     if (acc.has(year)) {
@@ -253,27 +256,22 @@ async function blog() {
     return acc
   }, new Map())
 
-  const index_result = ejs.render(archive_template, {
+  const index_result = await render("./template/blog.index.html.ejs", {
     indent,
     short,
     hsc,
     version,
     entries_per_year,
     first: entries[0],
-    filename: archive_template_file,
   })
   await writeFile("../blog.jxck.io/index.html", index_result)
 
   // build rss
-  const rss_template_file = "./template/blog.atom.xml.ejs"
-  const rss_template = await readFile(rss_template_file, { encoding: "utf-8" })
-  const rss_result = ejs.render(rss_template, { entries })
+  const rss_result = await render("./template/blog.atom.xml.ejs", { entries })
   await writeFile("../blog.jxck.io/feeds/atom.xml", rss_result)
 
   // build sitemap
-  const sitemap_template_file = "./template/blog.sitemap.xml.ejs"
-  const sitemap_template = await readFile(sitemap_template_file, { encoding: "utf-8" })
-  const sitemap_result = ejs.render(sitemap_template, { entries })
+  const sitemap_result = await render("./template/blog.sitemap.xml.ejs", { entries })
   await writeFile("../blog.jxck.io/feeds/sitemap.xml", sitemap_result)
 }
 
@@ -309,7 +307,7 @@ async function podcast() {
 
   // build episodes
   const podcast_template_file = "./template/podcast.html.ejs"
-  const podcast_template = await readFile(podcast_template_file, { encoding: 'utf-8' })
+  const podcast_template = await readFile(podcast_template_file, { encoding: "utf-8" })
   for (const episode of episodes) {
     console.log(episode.target)
     const context = {
@@ -325,32 +323,23 @@ async function podcast() {
   }
 
   // build index
-  const index_template_file = "./template/podcast.index.html.ejs"
-  const index_template = await readFile(index_template_file, { encoding: "utf-8" })
-  const result = ejs.render(index_template, {
+  const result = await render("./template/podcast.index.html.ejs", {
     indent,
     short,
     hsc,
     version,
     episodes,
     first: episodes[0],
-    filename: index_template_file,
   })
   await writeFile("../mozaic.fm/index.html", result)
 
   // build rss
-  const rss_template_file = "./template/podcast.rss2.xml.ejs"
-  const rss_template = await readFile(rss_template_file, { encoding: "utf-8" })
-  const rss_result = ejs.render(rss_template, { episodes })
+  const rss_result = await render("./template/podcast.rss2.xml.ejs", { episodes })
   await writeFile("../feed.mozaic.fm/index.xml", rss_result)
 
   // build id3all
-
-  const id3_template_file = "./template/podcast.id3all.ejs"
-  const id3_template = await readFile(id3_template_file, { encoding: "utf-8" })
-  const id3_result = ejs.render(id3_template, { episodes })
+  const id3_result = await render("./template/podcast.id3all.ejs", { episodes })
   await writeFile("../id3all.sh", id3_result)
-
 }
 
 if (process.argv[2] === "blog") {
