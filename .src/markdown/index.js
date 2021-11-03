@@ -1,5 +1,5 @@
 `use strict`;
-import { readFileSync, statSync } from "fs";
+import { link, readFileSync, statSync } from "fs";
 
 /**
  * @typedef {Object} Serialized
@@ -80,6 +80,9 @@ export function cache_busting(path) {
  * @prop {string} [srcset]
  * @prop {string} [url]
  * @prop {string} [alt]
+ * @prop {string} [rel]
+ * @prop {string} [property]
+ * @prop {string} [href]
  * @prop {Array.<"center" | "left" | "right">} [aligns]
  * @prop {"center" | "left" | "right"} [align]
  * @prop {Array.<string>} [tags]
@@ -380,6 +383,20 @@ export function encode(node, option) {
   }
 
   /**
+   * link
+   * @param {Node} node
+   * @param {number} indent
+   * @returns {string}
+   */
+  function link(node, indent) {
+    const name = node.name
+    const { rel, property, type, href } = node.attr
+    const path = href.replace(`https://`, `../`)
+    const query = cache_busting(path)
+    return `${spaces(indent)}<${name} rel=${rel} property=${property} type=${type} href=${href}?${query}>\n`
+  }
+
+  /**
    * @param {Node} node
    * @param {number} indent
    * @returns {string}
@@ -480,6 +497,7 @@ export function encode(node, option) {
     if (name === `dt` || name === `dd`) return dt(node, indent)
     if (name === `p`) /*             */ return mix_inline(node, indent)
     if (name === `li`) /*            */ return mix_inline(node, indent)
+    if (name === `link`) /*          */ return link(node, indent)
 
     // Print HTML as-is
     if (name === `html`) {
@@ -513,6 +531,17 @@ export function encode(node, option) {
  * @returns {Node}
  */
 export function decode(md) {
+
+  /**
+   * table, pre など必ず出てくるわけではない CSS は
+   * 登場したら一度だけ CSS を読み込むように
+   * <link rel=stylesheet> を挿入する。
+   * 挿入したかを保持するグローバルフラグ
+   */
+  const style_flag = {
+    table: false,
+    pre: false,
+  }
 
   /**
    * @param {RegExpExecArray} result
@@ -668,6 +697,19 @@ export function decode(md) {
     const row = result.groups.row
     const columns = row.split(`|`)
 
+    if (style_flag.table === false) {
+      // 一度だけ css の style を差し込む
+      const link = node({
+        name: `link`, type: `inline`, attr: {
+          rel: 'stylesheet',
+          property: 'stylesheet',
+          type: 'text/css',
+          href: 'https://www.jxck.io/assets/css/table.css',
+        }
+      })
+      ast.appendChild(link)
+      style_flag.table = true
+    }
     if (ast.name === `thead`) {
       const aligns = columns.map((colmun) => {
         const start = Number(colmun.startsWith(`:`))
@@ -759,6 +801,20 @@ export function decode(md) {
 
     if (lang.startsWith(` `) || lang.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
     if (path?.startsWith(` `) || path?.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
+
+    if (style_flag.pre === false) {
+      // 一度だけ css の style を差し込む
+      const link = node({
+        name: `link`, type: `inline`, attr: {
+          rel: 'stylesheet',
+          property: 'stylesheet',
+          type: 'text/css',
+          href: 'https://www.jxck.io/assets/css/pre.css',
+        }
+      })
+      ast.appendChild(link)
+      style_flag.pre = true
+    }
 
     // already in <pre>
     if (ast.name === `pre`) return parse(rest, ast.parent)
