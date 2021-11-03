@@ -2,8 +2,18 @@ import { readFile, writeFile, stat } from "fs/promises";
 import { encode, decode, cache_busting } from "markdown"
 import ejs from "ejs"
 import glob from "glob"
-import { fstat, readFileSync } from "fs";
+import { readFileSync } from "fs";
 
+/**
+ * dump for debug
+ * @param {Node} ast
+ */
+function dump(ast) {
+  console.log(JSON.stringify(ast, (key, value) => {
+    if (key === `parent`) return undefined
+    return value
+  }, `  `))
+}
 
 // function description(ast) {
 //   const intro_section = ast.children[0].children[1]
@@ -14,6 +24,7 @@ function description(md) {
   const _desc = md.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
     .replace(/\[(.*?)\]\(.*?\)/g, (m, p1, p2) => p1)
     .replace(/<(http.*?)>/g, (m, p1) => p1)
+    .trim()
   const desc = hsc(_desc)
   return desc
 }
@@ -69,9 +80,23 @@ function parse_yaml(str) {
           .split(", ")
           .map((value) => value.match(/"(?<value>.*)"/).groups.value)
       }
+      if (key === "guest") {
+        const matched = value.match(/^\[(?<name>.*?)\]\((?<url>.*)\)/)
+        if (matched) {
+          const { url, name } = matched.groups
+          value = `<a href="${url}">${name}</a>`
+        }
+        if (acc["guests"]) {
+          const values = acc["guests"]
+          acc["guests"] = [...values, value]
+        } else {
+          acc["guests"] = [value]
+        }
+        return acc
+      }
       acc[key] = value
       return acc
-    }, {})
+    }, { guests: [] }) // guests は必須で無い場合は空
 }
 
 function version(src) {
@@ -80,7 +105,6 @@ function version(src) {
   const busting = cache_busting(`../www.jxck.io${pathname}`)
   return `${src}?${busting}`
 }
-
 
 async function parse_entry(entry) {
   const md = await readFile(entry, { encoding: 'utf-8' })
@@ -117,8 +141,7 @@ async function parse_entry(entry) {
 }
 
 
-async function render_podcast(entry, entry_template) {
-  const template = await readFile(entry_template, { encoding: 'utf-8' })
+async function parse_episode(entry) {
   const md = await readFile(entry.path, { encoding: 'utf-8' })
   const target = entry.path.replace(".md", ".html")
   const canonical = target.replace("../", "https://")
@@ -126,42 +149,47 @@ async function render_podcast(entry, entry_template) {
   const groups = md.match(/^---\n(?<frontmatter>([\n\r]|.)*?)\n---\n(?<markdown>([\n\r]|.)*)$/m).groups
   const { frontmatter, markdown } = groups
   const yaml = parse_yaml(frontmatter)
-  const { tags, published_at, audio } = yaml
+  const { tags, published_at, audio, guests } = yaml
 
   const [up, mozaic, episodes, ep, filename] = entry.path.split('/')
   const base = `${up}/${mozaic}/${episodes}/${ep}/`
   const ast = decode(markdown)
+
   const encoded = encode(ast, { indent: 4, base })
+
+  const theme_section = ast.children[0].children[1]
+  theme_section.children.shift()
+  const theme = encode(theme_section, { indent: 4, base }).html.trim()
+
   const article = encoded.html
   const [h1, ...toc] = encoded.toc
   const title = h1.text
 
-  const context = {
-    indent,
-    short,
-    hsc,
-    version,
-    filename: entry_template,
-    episode: {
-      canonical,
-      prev: entry.prev,
-      next: entry.next,
-      host: "mozaic.fm",
-      title,
-      tags,
-      toc,
-      article,
-      icon: "https://mozaic.fm/assets/img/mozaic",
-      description: description(md),
-      published_at,
-      audio,
-    }
+  const audio_stat = await stat(audio.replace("https://", "../"))
+  const audio_size = audio_stat.size
+  const audio_mtime = Math.floor(audio_stat.mtime.getTime() / 1000)
+
+  return {
+    target,
+    canonical,
+    url: entry.url,
+    prev: entry.prev,
+    next: entry.next,
+    host: "mozaic.fm",
+    title,
+    theme,
+    tags,
+    guests,
+    toc,
+    article,
+    icon: "https://mozaic.fm/assets/img/mozaic",
+    description: description(md),
+    published_at,
+    audio,
+    audio_size,
+    audio_mtime,
   }
-
-  const result = ejs.render(template, context)
-  await writeFile(target, result)
 }
-
 
 async function blog() {
   const entry_template_file = "./template/blog.html.ejs"
@@ -178,8 +206,8 @@ async function blog() {
       short,
       hsc,
       version,
+      entry,
       filename: entry_template_file,
-      entry
     }
     const result = ejs.render(entry_template, context)
     await writeFile(context.entry.target, result)
@@ -188,6 +216,7 @@ async function blog() {
   const archive_template_file = "./template/blog.index.html.ejs"
   const archive_template = await readFile(archive_template_file, { encoding: "utf-8" })
 
+  // TODO: reverse() を Promise.all に持っていく
   const entries_per_year = entries.reverse().reduce((acc, entry) => {
     const year = entry.created_at.split("-")[0]
     if (acc.has(year)) {
@@ -212,8 +241,10 @@ async function blog() {
 }
 
 async function podcast() {
-  const podcast_template = "./template/podcast.html.ejs"
-  //["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
+  const podcast_template_file = "./template/podcast.html.ejs"
+  const podcast_template = await readFile(podcast_template_file, { encoding: 'utf-8' })
+
+  // ["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
   const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
     .map((path) => {
       const [dot, mozaic, episodes, ep, file] = path.split("/")
@@ -238,11 +269,37 @@ async function podcast() {
       curr.prev = arr[i - 1]
       return curr
     })
+    .reverse()
 
-  for (const episode of pathes) {
-    console.log(episode.path)
-    await render_podcast(episode, podcast_template)
+  const episodes = await Promise.all(pathes.map((path) => parse_episode(path)))
+  for (const episode of episodes) {
+    console.log(episode.target)
+    const context = {
+      indent,
+      short,
+      hsc,
+      version,
+      episode,
+      filename: podcast_template_file,
+    }
+    const result = ejs.render(podcast_template, context)
+    await writeFile(episode.target, result)
   }
+
+  const index_template_file = "./template/podcast.index.html.ejs"
+  const index_template = await readFile(index_template_file, { encoding: "utf-8" })
+
+  const result = ejs.render(index_template, {
+    indent,
+    short,
+    hsc,
+    version,
+    episodes,
+    first: episodes[0],
+    filename: index_template_file,
+  })
+
+  await writeFile("../mozaic.fm/index.html", result)
 }
 
 if (process.argv[2] === "blog") {
