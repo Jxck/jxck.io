@@ -84,15 +84,16 @@ function parse_yaml(str) {
       }
       if (key === "guest") {
         const matched = value.match(/^\[(?<name>.*?)\]\((?<url>.*)\)/)
+        let name = value
+        let url = null
         if (matched) {
-          const { url, name } = matched.groups
-          value = `<a href="${url}">${name}</a>`
+          ({ url, name } = matched.groups)
         }
         if (acc["guests"]) {
           const values = acc["guests"]
-          acc["guests"] = [...values, value]
+          acc["guests"] = [...values, { url, name }]
         } else {
-          acc["guests"] = [value]
+          acc["guests"] = [{ url, name }]
         }
         return acc
       }

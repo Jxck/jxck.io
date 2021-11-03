@@ -94,7 +94,11 @@
         <div>
           <dt>guest</dt>
           <%_ episode.guests.forEach((guest) => { _%>
-          <dd><%- guest %>
+          <%_ if (guest.url) { _%>
+          <dd><a href="<%- guest.url %>"><%= guest.name %></a>
+          <%_ } else { _%>
+          <dd><%= guest.name %>
+          <%_ } _%>              
           <%_ }) _%>
         </div>
       </dl>
