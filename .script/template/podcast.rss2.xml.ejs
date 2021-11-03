@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0">
+  <channel>
+    <title>mozaic.fm</title>
+    <link>http://mozaic.fm/</link>
+    <description>next generation web podcast</description>
+    <generator>Ruby</generator>
+    <language>ja</language>
+    <copyright>Copyright (c) 2014 mozaic.fm. All Rights Reserved. Redistribute, Transcript are not allowed.</copyright>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feed.mozaic.fm" />
+    <itunes:author>Jxck</itunes:author>
+    <itunes:category text="Technology" />
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="http://files.mozaic.fm/mozaic.jpeg" />
+    <itunes:keywords>web,technology,programming,it,software,jxck</itunes:keywords>
+    <itunes:subtitle>next generation web podcast</itunes:subtitle>
+    <itunes:summary>talking about next generation web technologies hosted by Jxck</itunes:summary>
+    <media:category scheme="http://www.itunes.com/dtds/podcast-1.0.dtd">Technology/Podcasting</media:category>
+    <media:copyright>Copyright (c) 2014 mozaic.fm. All Rights Reserved. Redistribute, Transcript are not allowed.</media:copyright>
+    <media:credit role="author">Jxck</media:credit>
+    <media:description type="plain">next generation web podcast</media:description>
+    <media:keywords>web,technology,programming,it,software,jxck</media:keywords>
+    <media:rating>nonadult</media:rating>
+    <media:thumbnail url="http://files.mozaic.fm/mozaic.jpeg" />
+    <itunes:owner>
+      <itunes:email>block.rxckin.beats@gmail.com</itunes:email>
+      <itunes:name>Jxck</itunes:name>
+    </itunes:owner>
+<% episodes.forEach((episode) => { %>
+    <item>
+      <category>mozaicfm</category>
+      <enclosure url="<%= episode.audio.replace('https://', 'http://') %>" length="<%= episode.audio_size %>" type="audio/mpeg" />
+      <guid isPermaLink="false"><%= episode.canonical %></guid>
+      <link><%= episode.canonical %></link>
+      <pubDate><%= new Date(episode.published_at).toUTCString().replace("GMT", "+0900") %></pubDate>
+      <title><%- episode.title %> | mozaic.fm</title>
+      <itunes:author>Jxck</itunes:author>
+      <itunes:duration><%= episode.duration %></itunes:duration>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>web,tech,it</itunes:keywords>
+      <itunes:order><%= episode.order %></itunes:order>
+      <itunes:subtitle><%- episode.description.split('\n')[0] %></itunes:subtitle>
+      <media:content url="<%= episode.audio %>" fileSize="<%= episode.audio_size %>" type="audio/mpeg" />
+      <description>
+<%- episode.description %>
+
+Show Note はこちら: <%= episode.canonical %>
+      </description>
+    </item>
+<% }) %>
+  </channel>
+</rss>
