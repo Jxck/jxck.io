@@ -192,13 +192,13 @@ async function parse_episode(entry) {
 }
 
 async function blog() {
-  const entry_template_file = "./template/blog.html.ejs"
-  const entry_template = await readFile(entry_template_file, { encoding: 'utf-8' })
-
   // const files = ["../blog.jxck.io/entries/2016-08-05/sql-for-file-search.md"]
   const files = glob.sync("../blog.jxck.io/entries/**/*.md")
-  const entries = await Promise.all(files.map((file) => parse_entry(file)))
+  const entries = await Promise.all(files.map((file) => parse_entry(file)).reverse())
 
+  // build entries
+  const entry_template_file = "./template/blog.html.ejs"
+  const entry_template = await readFile(entry_template_file, { encoding: 'utf-8' })
   for (const entry of entries) {
     console.log(entry.target)
     const context = {
@@ -213,11 +213,10 @@ async function blog() {
     await writeFile(context.entry.target, result)
   }
 
+  // build index
   const archive_template_file = "./template/blog.index.html.ejs"
   const archive_template = await readFile(archive_template_file, { encoding: "utf-8" })
-
-  // TODO: reverse() を Promise.all に持っていく
-  const entries_per_year = entries.reverse().reduce((acc, entry) => {
+  const entries_per_year = entries.reduce((acc, entry) => {
     const year = entry.created_at.split("-")[0]
     if (acc.has(year)) {
       acc.get(year).push(entry)
@@ -227,7 +226,7 @@ async function blog() {
     return acc
   }, new Map())
 
-  const result = ejs.render(archive_template, {
+  const index_result = ejs.render(archive_template, {
     indent,
     short,
     hsc,
@@ -236,14 +235,17 @@ async function blog() {
     first: entries[0],
     filename: archive_template_file,
   })
+  await writeFile("../blog.jxck.io/index.html", index_result)
 
-  await writeFile("../blog.jxck.io/index.html", result)
+  // build rss
+  const rss_template_file = "./template/blog.atom.xml.ejs"
+  const rss_template = await readFile(rss_template_file, { encoding: "utf-8" })
+
+  const rss_result = ejs.render(rss_template, { entries })
+  await writeFile("../blog.jxck.io/feeds/atom.xml", rss_result)
 }
 
 async function podcast() {
-  const podcast_template_file = "./template/podcast.html.ejs"
-  const podcast_template = await readFile(podcast_template_file, { encoding: 'utf-8' })
-
   // ["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
   const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
     .map((path) => {
@@ -271,6 +273,9 @@ async function podcast() {
     })
     .reverse()
 
+  // build episodes
+  const podcast_template_file = "./template/podcast.html.ejs"
+  const podcast_template = await readFile(podcast_template_file, { encoding: 'utf-8' })
   const episodes = await Promise.all(pathes.map((path) => parse_episode(path)))
   for (const episode of episodes) {
     console.log(episode.target)
@@ -286,9 +291,9 @@ async function podcast() {
     await writeFile(episode.target, result)
   }
 
+  // build index
   const index_template_file = "./template/podcast.index.html.ejs"
   const index_template = await readFile(index_template_file, { encoding: "utf-8" })
-
   const result = ejs.render(index_template, {
     indent,
     short,
@@ -298,7 +303,6 @@ async function podcast() {
     first: episodes[0],
     filename: index_template_file,
   })
-
   await writeFile("../mozaic.fm/index.html", result)
 }
 
