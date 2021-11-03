@@ -29,9 +29,7 @@
 ## TODO
 
 - id の suffix を `-` から `_` に変える
-- translate="no" のダブルクオートを消す
 - `\|` のエスケープを消す
-- ファイルのヘッダに YAML でメタデータを書く
 - twitter card から ogp と重複してるものを消す
   - twitter:card, twitter:site 以外
 - TOC で h2 内の `code` を外す
@@ -39,6 +37,4 @@
   - 今雑に正規表現で取り出し、 hsc は自分でやって `<%- %>` で埋め込んでる
   - Intro の前に Update があっても大丈夫なように
 - Intro の前に Update が入ったら直す
-- /Users/jxck/develop/jxck.io/blog.jxck.io/entries/2018-01-13/formdata-urlsearchparams.md
-  - title に入った & が &amp;&amp になる
 - podcast の `<article>` のインデントが 1 個深い
