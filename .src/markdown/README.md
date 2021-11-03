@@ -30,8 +30,6 @@
 
 - id の suffix を `-` から `_` に変える
 - `\|` のエスケープを消す
-- twitter card から ogp と重複してるものを消す
-  - twitter:card, twitter:site 以外
 - TOC で h2 内の `code` を外す
 - description
   - 今雑に正規表現で取り出し、 hsc は自分でやって `<%- %>` で埋め込んでる
