@@ -142,7 +142,7 @@
                 <li><a href=#etag-last-modified>### Etag, Last-Modified</a>
                 <li><a href=#stale-while-revalidate>## Stale-While-Revalidate</a>
                 <li><a href=#max-age>### max-age</a>
-                <li><a href=#stale-while-revalidate-1>### stale-while-revalidate</a>
+                <li><a href=#stale-while-revalidate_1>### stale-while-revalidate</a>
                 <li><a href=#stale-if-error>### stale-if-error</a>
                 <li><a href=#demo>## DEMO</a>
                 <li><a href=#swr-を用いたキャッシュ戦略の考察>## SwR を用いたキャッシュ戦略の考察</a>
@@ -258,7 +258,7 @@
           </p>
         </section>
         <section>
-          <h3 id="stale-while-revalidate-1"><a href="#stale-while-revalidate-1">stale-while-revalidate</a></h3>
+          <h3 id="stale-while-revalidate_1"><a href="#stale-while-revalidate_1">stale-while-revalidate</a></h3>
           <p><code translate=no>Cache-Control</code> に <code translate=no>stale-while-revalidate</code> を指定する。
           <pre class=http><code translate=no>Cache-Control: max-age=3600, stale-while-revalidate=360</code></pre>
           <p>すると、 fetch から 3600s 経過したキャッシュは <em>stale</em> となるが、そこから 360s は、その <em>stale</em> なキャッシュを引き続き使用する。

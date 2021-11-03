@@ -142,18 +142,18 @@
                 <li><a href=#api>### API</a>
                 <li><a href=#websocketstream>### WebSocketStream</a>
                 <li><a href=#webcodecs>## WebCodecs</a>
-                <li><a href=#motivation-1>### Motivation</a>
-                <li><a href=#requirements-1>### Requirements</a>
+                <li><a href=#motivation_1>### Motivation</a>
+                <li><a href=#requirements_1>### Requirements</a>
                 <li><a href=#goals>#### Goals</a>
                 <li><a href=#non-goals>#### Non-Goals</a>
-                <li><a href=#api-1>### API</a>
+                <li><a href=#api_1>### API</a>
                 <li><a href=#考察>## 考察</a>
                 <li><a href=#webrtc-の次のフェーズとしての-webtransport>### WebRTC の次のフェーズとしての WebTransport</a>
                 <li><a href=#web-はどこまでゲーム化するか>### Web はどこまでゲーム化するか</a>
                 <li><a href=#outro>## Outro</a>
                 <li><a href=#links>## links</a>
-                <li><a href=#webtransport-1>### WebTransport</a>
-                <li><a href=#webcodecs-1>### WebCodecs</a>
+                <li><a href=#webtransport_1>### WebTransport</a>
+                <li><a href=#webcodecs_1>### WebCodecs</a>
               </ul>
             </nav>
           </details>
@@ -422,7 +422,7 @@
       <section>
         <h2 id="webcodecs"><a href="#webcodecs">WebCodecs</a></h2>
         <section>
-          <h3 id="motivation-1"><a href="#motivation-1">Motivation</a></h3>
+          <h3 id="motivation_1"><a href="#motivation_1">Motivation</a></h3>
           <p>メディアを扱うためのコンテナ/コーデックは数多くあり、一部はブラウザに実装されている。
           <p>しかし、それらをコントロールできる API は、ある程度ユースケースに紐づいており、自由度が必ずしも高くはない。
           <ul>
@@ -468,7 +468,7 @@
           <p>仮に導入しても、ブラウザ自体がネイティブで行うパフォーマンス最適化の恩恵などが受けられないのは、非常に勿体無い。
         </section>
         <section>
-          <h3 id="requirements-1"><a href="#requirements-1">Requirements</a></h3>
+          <h3 id="requirements_1"><a href="#requirements_1">Requirements</a></h3>
           <p>基本的にはブラウザの持つコーデック/コンテナの実装に対する API が提供されることを目的とする。
           <p>これにより、ライブラリを不要とし、パフォーマンスやバッテリー効率の面で恩恵を得る。
           <section>
@@ -494,7 +494,7 @@
           </section>
         </section>
         <section>
-          <h3 id="api-1"><a href="#api-1">API</a></h3>
+          <h3 id="api_1"><a href="#api_1">API</a></h3>
           <p>基本はブラウザが内部で持っているコーデック/コンテナの実装に対する API を提供する。
           <p>要素ごとに WHATWG Stream ベースの API とし、終端が MediaStreamTrack となることで、他の API(WebTransport, WebRTC, Audio/Video Element etc) と接続する。
           <p>音声は AudioPackets 、映像は VideoFrames を最小単位とし、 Encoder/Decoder が TransferStream として提供される。
@@ -590,7 +590,7 @@ videoElem.srcObject = mediaStream;</code></pre>
       <section>
         <h2 id="links"><a href="#links">links</a></h2>
         <section>
-          <h3 id="webtransport-1"><a href="#webtransport-1">WebTransport</a></h3>
+          <h3 id="webtransport_1"><a href="#webtransport_1">WebTransport</a></h3>
           <ul>
             <li>
               Protocol
@@ -695,7 +695,7 @@ videoElem.srcObject = mediaStream;</code></pre>
           </ul>
         </section>
         <section>
-          <h3 id="webcodecs-1"><a href="#webcodecs-1">WebCodecs</a></h3>
+          <h3 id="webcodecs_1"><a href="#webcodecs_1">WebCodecs</a></h3>
           <ul>
             <li>
               Explainer
