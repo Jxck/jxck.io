@@ -1,5 +1,5 @@
 import { readFile, writeFile, stat } from "fs/promises";
-import { encode, decode, cache_busting } from "markdown"
+import { encode, decode, cache_busting, node } from "markdown"
 import ejs from "ejs"
 import glob from "glob"
 import { readFileSync } from "fs"
@@ -122,6 +122,51 @@ async function audio_duration(audio) {
   return formatter.format(new Date(sec * 1000))
 }
 
+function info_section({ published_at, guests }) {
+  // console.log({ published_at, guests })
+
+  const section = node({ name: `section` })
+
+  const h2 = node({ name: `headding`, type: `inline`, level: 2 })
+  h2.addText(`Info`)
+
+  const dl = node({ name: `dl`, type: `block` })
+
+  // published_at
+  const div = node({ name: `div`, type: `block` })
+  const dt = node({ name: `dt`, type: `inline` })
+  const dd = node({ name: `dd`, type: `inline` })
+  dt.addText(`published_at`)
+  dd.addText(published_at)
+  div.appendChild(dt)
+  div.appendChild(dd)
+
+  dl.appendChild(div)
+
+  // guests
+  guests.forEach(({ name, url }) => {
+    const div = node({ name: `div`, type: `block` })
+    const dt = node({ name: `dt`, type: `inline` })
+    const dd = node({ name: `dd`, type: `inline` })
+    dt.addText(`guest`)
+    if (url) {
+      const a = node({ name: `a`, type: `inline`, attr: { url } })
+      a.addText(name)
+      dd.appendChild(a)
+    } else {
+      dd.addText(name)
+    }
+    div.appendChild(dt)
+    div.appendChild(dd)
+    dl.appendChild(div)
+  })
+
+  section.appendChild(h2)
+  section.appendChild(dl)
+
+  return section
+}
+
 function version(src) {
   const url = new URL(src, "https://www.jxck.io")
   const pathname = url.pathname
@@ -183,9 +228,14 @@ async function parse_episode(entry, order) {
   const base = `${up}/${mozaic}/${episodes}/${ep}/`
   const ast = decode(markdown)
 
+  // yaml の情報を info section にして ast に差し込む
+  const info = info_section({ published_at, guests })
+  ast.children[0].children.splice(1, 0, info)
+
   const encoded = encode(ast, { indent: 4, base })
 
-  const theme_section = ast.children[0].children[1]
+  // Top ページのために Theme だけ別で encode する
+  const theme_section = ast.children[0].children[2]
   theme_section.children.shift()
   const theme = encode(theme_section, { indent: 4, base }).html.trim()
 
@@ -277,7 +327,7 @@ async function blog() {
 }
 
 async function podcast() {
-  // ["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
+  // const pathes = ["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
   const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
     .map((path) => {
       const [dot, mozaic, episodes, ep, file] = path.split("/")
