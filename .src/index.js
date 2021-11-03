@@ -186,11 +186,12 @@ async function parse_episode(entry, order) {
   const [h1, ...toc] = encoded.toc
   const title = h1.text
 
-  const audio_stat = await stat(audio.replace("https://", "../"))
+  const audio_file = audio.replace("https://", "../")
+  const audio_stat = await stat(audio_file)
   const audio_size = audio_stat.size
   const audio_mtime = Math.floor(audio_stat.mtime.getTime() / 1000)
 
-  const audio_duration = await duration(audio.replace("https://", "../"))
+  const audio_duration = await duration(audio_file)
 
   return {
     target,
@@ -209,6 +210,7 @@ async function parse_episode(entry, order) {
     description: description(md),
     published_at,
     audio,
+    audio_file,
     audio_size,
     audio_mtime,
     duration: audio_duration,
@@ -341,6 +343,14 @@ async function podcast() {
   const rss_template = await readFile(rss_template_file, { encoding: "utf-8" })
   const rss_result = ejs.render(rss_template, { episodes })
   await writeFile("../feed.mozaic.fm/index.xml", rss_result)
+
+  // build id3all
+
+  const id3_template_file = "./template/podcast.id3all.ejs"
+  const id3_template = await readFile(id3_template_file, { encoding: "utf-8" })
+  const id3_result = ejs.render(id3_template, { episodes })
+  await writeFile("../id3all.sh", id3_result)
+
 }
 
 if (process.argv[2] === "blog") {
