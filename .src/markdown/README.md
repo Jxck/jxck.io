@@ -36,3 +36,6 @@
   - Intro の前に Update があっても大丈夫なように
 - Intro の前に Update が入ったら直す
 - podcast の `<article>` のインデントが 1 個深い
+- `encode()` に全部の node が通る plugin を入れる
+  - width/height や cache-busting についてはそっち側でやる
+  - これで外部依存をなくしたら web 版のデモを作る
