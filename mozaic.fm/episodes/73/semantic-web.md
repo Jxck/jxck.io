@@ -18,34 +18,34 @@ guest: [@_masaka](https://twitter.com/_masaka)
 ## Show Note
 
 - FOAF(Friend of a Friend)
-  - <http://www.foaf-project.org/>
+  - http://www.foaf-project.org/
 - Dublic Core
-  - <https://www.dublincore.org/>
+  - https://www.dublincore.org/
 - レイヤケーキ
-  - <https://en.wikipedia.org/wiki/Semantic_Web_Stack>
+  - https://en.wikipedia.org/wiki/Semantic_Web_Stack
 - RDF
-  - <https://kanzaki.com/docs/sw/rdf-model.html>
+  - https://kanzaki.com/docs/sw/rdf-model.html
 - RDFa
-  - <https://www.w3.org/TR/rdfa-core/>
+  - https://www.w3.org/TR/rdfa-core/
 - RDF Turtle
-  - <https://www.w3.org/TR/turtle/>
+  - https://www.w3.org/TR/turtle/
 - SPARQL
-  - <https://www.w3.org/TR/sparql11-query/>
+  - https://www.w3.org/TR/sparql11-query/
 - JSON-LD
-  - <https://json-ld.org/spec/latest/json-ld/>
+  - https://json-ld.org/spec/latest/json-ld/
 - Microdata
-  - <https://www.w3.org/TR/microdata/>
+  - https://www.w3.org/TR/microdata/
 - Microformat
-  - <http://microformats.org/wiki/Main_Page>
+  - http://microformats.org/wiki/Main_Page
 - Wididata
-  - <https://www.wikidata.org/wiki/Wikidata:Main_Page>
+  - https://www.wikidata.org/wiki/Wikidata:Main_Page
 - DBPedia
-  - <https://wiki.dbpedia.org/>
+  - https://wiki.dbpedia.org/
 - ジャパンサーチ
-  - <https://jpsearch.go.jp/>
+  - https://jpsearch.go.jp/
 - セマンティック・ウェブのためのRDF/OWL入門
-  - <https://www.amazon.co.jp/dp/4627829310>
+  - https://www.amazon.co.jp/dp/4627829310
 - セマンティック HTML/XHTML
-  - <https://www.amazon.co.jp/dp/483993195X>
+  - https://www.amazon.co.jp/dp/483993195X
 - ユニバーサルHTML/XHTML
-  - <https://www.amazon.co.jp/dp/4839904545>
+  - https://www.amazon.co.jp/dp/4839904545

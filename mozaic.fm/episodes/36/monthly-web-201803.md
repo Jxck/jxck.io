@@ -20,10 +20,10 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 65
 - Updates
-  - <https://www.chromestatus.com/features#milestone%3D65>
-  - <https://www.chromestatus.com/features#milestone%3D66>
+  - https://www.chromestatus.com/features#milestone%3D65
+  - https://www.chromestatus.com/features#milestone%3D66
   - *New in Chrome 65*
-    - <https://developers.google.com/web/updates/2018/03/nic65>
+    - https://developers.google.com/web/updates/2018/03/nic65
     - CSS Paint API
     - Server Timing API
     - display: contents
@@ -32,12 +32,12 @@ guest: [@myakura](https://twitter.com/myakura)
       - スペース区切りになり、さらにアルファも指定可能に
       - `rgb(192 168 0 / 1)` は `rgba(192, 168, 0, 1)` と等価
       - カンマは並列もしくはフォールバックのためという原則に反していたので直すついでに機能強化もした
-      - <https://wiki.csswg.org/ideas/functional-notation>
-      - <https://github.com/w3c/csswg-drafts/issues/266>
+      - https://wiki.csswg.org/ideas/functional-notation
+      - https://github.com/w3c/csswg-drafts/issues/266
     - feature policy synchronous XHRs
       - [blog](https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html)
   - Chromium Blog: Chrome 66 Beta
-    - <https://blog.chromium.org/2018/03/chrome-66-beta-css-typed-object-model.html>
+    - https://blog.chromium.org/2018/03/chrome-66-beta-css-typed-object-model.html
     - CSS Typed Object Model
     - Async Clipboard API
     - AudioWorklet
@@ -48,119 +48,119 @@ guest: [@myakura](https://twitter.com/myakura)
     - AbortController/AbortSignal
     - etc
   - Unblocking Clipboard Access
-    - <https://developers.google.com/web/updates/2018/03/clipboardapi>
+    - https://developers.google.com/web/updates/2018/03/clipboardapi
     - 実装された Async Clipboard API(の一部)を紹介
   - Credential Management API Feature Detection Check-up
-    - <https://developers.google.com/web/updates/2018/03/webauthn-credential-management>
+    - https://developers.google.com/web/updates/2018/03/webauthn-credential-management
   - Working with the new CSS Typed Object Model
-    - <https://developers.google.com/web/updates/2018/03/cssom>
+    - https://developers.google.com/web/updates/2018/03/cssom
   - Deprecations and removals in Chrome 66
-    - <https://developers.google.com/web/updates/2018/03/chrome-66-deprecations>
+    - https://developers.google.com/web/updates/2018/03/chrome-66-deprecations
     - 割と細かい
 - Intents
   - *Ship: Accept-CH-Lifetime support for requesting client hints*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8RBFue7RMXQ/c_Nf_XJ4AAAJ>
-    - <https://github.com/w3ctag/design-reviews/issues/206>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8RBFue7RMXQ/c_Nf_XJ4AAAJ
+    - https://github.com/w3ctag/design-reviews/issues/206
     - Client Hints の保存期間の指定
     - Accept-CH についてはまだまだ議論中
     - Mozilla Position を聞いて見た [RFP: Accept-CH#79](https://github.com/mozilla/standards-positions/issues/79)
   - Ship: Customized Built-in Elements
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/S3naD9vIcM4/7tKyfvi0AgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/S3naD9vIcM4/7tKyfvi0AgAJ
     - HTML ビルトインの要素を継承してカスタム要素を作る is 属性を有効に
     - Apple が強く反対していたものの、 Mozilla が実装した & Edge も反対してないということで有効に
   - Ship: CSS conic-gradient()
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ySuNvyaB8jY/CtcfGxoCAgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ySuNvyaB8jY/CtcfGxoCAgAJ
   - *Ship: Numeric separators*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VN8n5iVETWY/YKM1dS2bAgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VN8n5iVETWY/YKM1dS2bAgAJ
     - brn227 さんの実装
   - Ship: TransformStream (part of the Streams Standard)
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/YEHinDOBaBw/JhMNfDiNAgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/YEHinDOBaBw/JhMNfDiNAgAJ
   - *Ship: WebAuthentication API*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/o9RU6Vv0xeM/EGnQOExbAAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/o9RU6Vv0xeM/EGnQOExbAAAJ
     - support for FIDO U2F authenticators over USB (yubikey) の flag が外れる
   - Ship: Unified Touch adjustment
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/l5PCVakcOCE/g0wnSg_jBAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/l5PCVakcOCE/g0wnSg_jBAAJ
   - Ship: History entry requires user gesture
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OCS7g72HtyI/x4o3KSD2BAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OCS7g72HtyI/x4o3KSD2BAAJ
   - Ship: Send mouse back/forward buttons to javascript
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MrKpBV26ik4/D_zmoAJrAQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MrKpBV26ik4/D_zmoAJrAQAJ
   - Implement and Ship: Changes to ResourceTiming's initiatorType for Navigation Preload
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/W3InszDnV2k/AuJg4aAMDQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/W3InszDnV2k/AuJg4aAMDQAJ
   - Implement and Ship: Allow `PaymentRequest.show()` to take optional detailsPromise
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Lc2qCQgqqqk/NKOqwNweBQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Lc2qCQgqqqk/NKOqwNweBQAJ
   - *Implement and Ship: CSP 'navigate-to' directive*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EJ4xF_DwZyk/i6qz7FSnBQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EJ4xF_DwZyk/i6qz7FSnBQAJ
     - 許可された以外に navigation しない
     - form-action が指定された場合は無視される
   - Implement and Ship: WebUSB Interface Class Filtering
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LZXocaeCwDw/GLfAffGLAAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LZXocaeCwDw/GLfAffGLAAAJ
   - Implement and Ship: RTCRtpSender/RTCRtpReceiver.getStats()
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2mGY257k4-M/7vMxsIPLBAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2mGY257k4-M/7vMxsIPLBAAJ
   - Implement :focus-visible pseudo class.
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-wN72ESFsyo/leH6DuuhAwAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-wN72ESFsyo/leH6DuuhAwAJ
   - *Implement: CSS shadow parts*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9BB64XIznsE/s_I4QTM0DgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9BB64XIznsE/s_I4QTM0DgAJ
     - `<div part="">` 的なスタイル可能な余地を残し `::part` でアクセスする
     - `/deep/` と `>>>` を置き換える(chrome 60 で remove 済)
   - *Implement: An event to enable arbitrary objects to provide form data*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IIV1MfaPHYc/l0lsJ-agBQAJ>
-    - <https://docs.google.com/document/d/1JO8puctCSpW-ZYGU8lF-h4FWRIDQNDVexzHoOQ2iQmY/edit>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IIV1MfaPHYc/l0lsJ-agBQAJ
+    - https://docs.google.com/document/d/1JO8puctCSpW-ZYGU8lF-h4FWRIDQNDVexzHoOQ2iQmY/edit
     - `<form>` に hidden を増やさないで済むよう、 `formdata` イベントを `submit` の前に上げて、データをいじれるようにする。
   - Implement: Reject PaymentRequest.show with SecurityError DOMException if it is not triggered by user activation
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2PhPgk_k9a0/alO4yt_HBQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2PhPgk_k9a0/alO4yt_HBQAJ
   - *Implement: Default Style for Custom Elements*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RQVKGUjDz9U/ltwrLQ1HAQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RQVKGUjDz9U/ltwrLQ1HAQAJ
     - 簡単なスタイルのためだけに Shadow DOM をいちいち生成&アタッチしなくていいように
     - `customElements.define` にディクショナリを取る引数を追加して、そのディクショナリに CSSStyleSheet を渡せるメンバを追加する予定
   - Implement: Experimental support for native AEC
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kEld5OudUOM/WzImbX2UAQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kEld5OudUOM/WzImbX2UAQAJ
     - Acoustic Echo Cancellation (音響エコキャン)
   - Experiment: Experimental support for native AEC
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3MYKIKqyaNA/WXP-PXggBQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3MYKIKqyaNA/WXP-PXggBQAJ
     - 上記の Origin Trial を開始する
   - *Experiment: AudioWorklet (continue)*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/C5ouVl8q3rU/WZLU1iM4DQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/C5ouVl8q3rU/WZLU1iM4DQAJ
     - 先月 ship が出ている
     - 現在 Origin Trial で実験中だが、 ship される前に失効してしまうので、 1 リリースぶん延長して使い続けられるように
   - Experiment : WebXR Device API
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7TWtMJffZno/vSxIWMOQBQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7TWtMJffZno/vSxIWMOQBQAJ
   - Change:
   - Unship:
   - Deprecate and Remove: -webkit-box-flex-group, -webkit-box-lines, % values of -webkit-line-clamp
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-e92az54B4I/SZdhGR19DgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-e92az54B4I/SZdhGR19DgAJ
   - Deprecate & Remove: Change how New Formatting Contexts sized and positioned off a shape area
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/layout-dev/BoIoDCLrUDw/KTMKsJC7DAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/layout-dev/BoIoDCLrUDw/KTMKsJC7DAAJ
   - Deprecate & Remove: Position and size New Formatting Contexts like floats when shapes are present.
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pfDg-VAeKWs/ImT7O9YNAgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pfDg-VAeKWs/ImT7O9YNAgAJ
   - Deprecate and Remove: Top-frame navigations to filesystem URLs
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rZeU93vjw/mQNBez7jBQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rZeU93vjw/mQNBez7jBQAJ
   - Deprecate and Remove: Channel ID
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/AjFQjBmaEQE/gIXoV3IFCQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/AjFQjBmaEQE/gIXoV3IFCQAJ
   - Removing "--enable-experimental-canvas-features" flag and merge canvas features into the rest of web platform features
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/14WpfTddUDI/HNlrrpZxBQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/14WpfTddUDI/HNlrrpZxBQAJ
   - PSA: sendBeacon() has attached "cache-control: max-age=0" but we will stop doing that
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/D-Clg7VLQYI/VhijSSJGBQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/D-Clg7VLQYI/VhijSSJGBQAJ
   - Site Isolation Status - M66 Beta Channel trial, input event fixes, and more
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fjnMC1LgkWM/zkvFBP2NBAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fjnMC1LgkWM/zkvFBP2NBAAJ
     - cross-origin read blocking (CORB)
-      - <https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md>
+      - https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md
     - Site Isolation - The Chromium Projects
-      - <https://www.chromium.org/Home/chromium-security/site-isolation>
+      - https://www.chromium.org/Home/chromium-security/site-isolation
 - Team Weekly Snippet
   - Loading
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Bce0Zl1RJGE/bkXgW0ahDgAJ>
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/S-mQhUr22n0/Pr06iWnRAgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Bce0Zl1RJGE/bkXgW0ahDgAJ
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/S-mQhUr22n0/Pr06iWnRAgAJ
   - Platform Architecture
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wMRKazJqJ_s/XFtcb7jnAgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wMRKazJqJ_s/XFtcb7jnAgAJ
 - v8
   - Tracing from JS to the DOM and back again
-    - <https://v8project.blogspot.jp/2018/03/tracing-js-dom.html>
-  - <https://twitter.com/bmeurer/status/976180632584933377>
+    - https://v8project.blogspot.jp/2018/03/tracing-js-dom.html
+  - https://twitter.com/bmeurer/status/976180632584933377
     - V8 の人から、最適化の観点で `Promise.all()` のシンタックスシュガーがあると良いという意見&それに続くスレッド
   - V8 JavaScript Engine: Background compilation
-    - <https://v8project.blogspot.jp/2018/03/background-compilation.html>
+    - https://v8project.blogspot.jp/2018/03/background-compilation.html
   - *V8 JavaScript Engine: V8 release v6.6*
-    - <https://v8project.blogspot.jp/2018/03/v8-release-66.html>
+    - https://v8project.blogspot.jp/2018/03/v8-release-66.html
     - `function /* a comment */ foo () {}` のコメントが `.toString()` で出る
     - optional catch binding
     - JSON superset
@@ -169,20 +169,20 @@ guest: [@myakura](https://twitter.com/myakura)
     - performance improvements
 - Other
   - Emscripting a C library to Wasm
-    - <https://developers.google.com/web/updates/2018/03/emscripting-a-c-library>
+    - https://developers.google.com/web/updates/2018/03/emscripting-a-c-library
   - Standardizing lessons learned from AMP
-    - <https://amphtml.wordpress.com/2018/03/08/standardizing-lessons-learned-from-amp/>
+    - https://amphtml.wordpress.com/2018/03/08/standardizing-lessons-learned-from-amp/
   - Site Isolation Status - Dev Channel trial, ChromeDriver, Cross-Origin Read Blocking
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/N0L4ksJMWqs/rX0FKGzJBQAJ>
-    - <https://www.chromium.org/Home/chromium-security/site-isolation>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/N0L4ksJMWqs/rX0FKGzJBQAJ
+    - https://www.chromium.org/Home/chromium-security/site-isolation
   - Blink Code Complexity Survey (complain about what makes working in Blink hard)
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XXfdw82ENVM/pR5ufQJ6AAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XXfdw82ENVM/pR5ufQJ6AAAJ
     - 何が blink の開発難易度をあげてるかのアンケート
   - Official Google Webmaster Central Blog: Rolling out mobile-first indexing
-    - <https://webmasters.googleblog.com/2018/03/rolling-out-mobile-first-indexing.html>
+    - https://webmasters.googleblog.com/2018/03/rolling-out-mobile-first-indexing.html
     - サーチインデックスのソースを Desktop 版から Mobile 版に切り替える
   - Implement Intelligent Tracking Prevention, or similar Web-friendly privacy protection - chromium - Monorail
-    - <https://bugs.chromium.org/p/chromium/issues/detail?id=826427>
+    - https://bugs.chromium.org/p/chromium/issues/detail?id=826427
     - Chrome も ITP をやるべきではないかという提案
     - 提案したのは Robin Berjon(W3C で SVG やデバイス API や HTML5 をやってた人)
 
@@ -191,89 +191,89 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 59
   - Firefox 59 for developers
-    - <https://developer.mozilla.org/en-US/Firefox/Releases/59>
+    - https://developer.mozilla.org/en-US/Firefox/Releases/59
 - Updates
   - ES modules: A cartoon deep-dive - Mozilla Hacks - the Web developer blog
-    - <https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/>
+    - https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/
       - Firefox 60 で `<script type=module>` が有効になるのを受けて ESM を改めて紹介
       - CommonJS との設計の違いなども解説
 - Intents
   - *Ship: Enterprise Policies*
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/eSbmcrTpckk/PbrR4FK0AAAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/eSbmcrTpckk/PbrR4FK0AAAJ
     - 管理者がいくつかの機能などを集中管理できる仕組みが入るらしい
     - ESR 60 から
   - Implement and Ship: spec compliance Promise microtask behavior
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/bGFs5G8E_NI/CJVEjHyzAQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/bGFs5G8E_NI/CJVEjHyzAQAJ
   - Stop dispatching "keypress" event for non-printable keys and key combinations in Nightly and early Beta
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/wW9el-i5mtA/fvU19KGgAQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/wW9el-i5mtA/fvU19KGgAQAJ
   - Ship: Start to dispatch "keydown" and "keyup" events even if composing (only in Nightly and early Beta)
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/oZEz5JH9ZK8/a3wvQLkqAAAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/oZEz5JH9ZK8/a3wvQLkqAAAJ
   - Ship: OpenType Variation Font support
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/MO2S2FepLPk/mhDzdc1WAAAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/MO2S2FepLPk/mhDzdc1WAAAJ
   - Ship: macOS Flash NPAPI Sandbox
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/RN2WQ-XVAXA/RMRohDmWAAAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/RN2WQ-XVAXA/RMRohDmWAAAJ
   - Unship: `"storage"` attribute in options for `indexedDB.open()`
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/3b700_oeAzo/4hzZDEJQCwAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/3b700_oeAzo/4hzZDEJQCwAJ
   - Unship: CSSStyleDeclaration.getPropertyCSSValue
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/qu5JekiuSfw/K0vBP9fIAwAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/qu5JekiuSfw/K0vBP9fIAwAJ
   - *Unprefix: `::-moz-selection`*
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/dQVpQYjn3-M/wNF572KfBAAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/dQVpQYjn3-M/wNF572KfBAAJ
     - 他のエンジンでは `::selection`として実装されているので、互換性をとるために接頭辞を取る
   - *Unprefix: grid-gap, grid-row-gap, and grid-column-gap and updating them to spec*
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/InRVDzXKbkM/8bRAzdKPAwAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/InRVDzXKbkM/8bRAzdKPAwAJ
     - グリッドのセル間に隙間を設けるプロパティ
     - Multicol などにも同様の機能があったのでマージされた
     - Chrome でも 66 でサポート
   - Removed: View Source in new window
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/_qX9P9tBz2I/IuGydO71CwAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/_qX9P9tBz2I/IuGydO71CwAJ
   - PSA: `--disable-stylo` is gone
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/4h8t-R8utP4/rVZH-NbIAwAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/4h8t-R8utP4/rVZH-NbIAwAJ
 - Site Compat
   - Symantec-issued certificates will soon be distrusted (Affecting)
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/symantec-issued-certificates-will-soon-be-distrusted/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/symantec-issued-certificates-will-soon-be-distrusted/
   - Symantec certificates issued before June 2016 are now distrusted (Affecting)
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/symantec-certificates-issued-before-june-2016-are-now-distrusted/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/symantec-certificates-issued-before-june-2016-are-now-distrusted/
   - storage option for `indexedDB.open()` has been deprecated
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/storage-option-for-indexeddb-open-has-been-deprecated/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/storage-option-for-indexeddb-open-has-been-deprecated/
   - Loading insecure content within plug-in embedded on secure site has been deprecated
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/loading-insecure-content-within-plug-in-embedded-on-secure-site-has-been-deprecated/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/loading-insecure-content-within-plug-in-embedded-on-secure-site-has-been-deprecated/
 - Other
   - These Weeks in Firefox
-    - <https://blog.nightly.mozilla.org/2018/03/05/these-weeks-in-firefox-issue-33/>
-    - <https://blog.nightly.mozilla.org/2018/03/14/these-weeks-in-firefox-issue-34/>
+    - https://blog.nightly.mozilla.org/2018/03/05/these-weeks-in-firefox-issue-33/
+    - https://blog.nightly.mozilla.org/2018/03/14/these-weeks-in-firefox-issue-34/
   - Making WebAssembly better for Rust & for all languages
-    - <https://hacks.mozilla.org/2018/03/making-webassembly-better-for-rust-for-all-languages/>
+    - https://hacks.mozilla.org/2018/03/making-webassembly-better-for-rust-for-all-languages/
   - *Mozilla Specification Positions*
-    - <https://mozilla.github.io/standards-positions/>
+    - https://mozilla.github.io/standards-positions/
     - 提案されている新しい仕様に対する Mozilla のポジション
-    - Budget API について聞いてみた <https://github.com/mozilla/standards-positions/issues/73>
+    - Budget API について聞いてみた https://github.com/mozilla/standards-positions/issues/73
   - Firefox Quantum Extensions Challenge
-    - <https://hacks.mozilla.org/2018/03/firefox-quantum-extensions-challenge/>
+    - https://hacks.mozilla.org/2018/03/firefox-quantum-extensions-challenge/
   - *FYI: Short Nightly Shield Study involving DNS over HTTPs (DoH)*
-    - <https://groups.google.com/forum/#!topic/mozilla.dev.platform/_8OAKUHso0c>
+    - https://groups.google.com/forum/#!topic/mozilla.dev.platform/_8OAKUHso0c
     - Nightly ユーザの 50% を対象に DNS over HTTP の実験を計画中
     - DoH サーバの実装が Cloudflare を使うので、オプトインにしないのというコメントが
     - DNS の仕組みや、 DoH が解決するものを知っている人からは、プライバシーに関して懸念はないだろうという声も
     - いろんなコメントがあったので、それを反映すべく検討中
-      - <https://bugzilla.mozilla.org/show_bug.cgi?id=1446404#c27>
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1446404#c27
   - *Bringing interactive examples to MDN*
-    - <https://hacks.mozilla.org/2018/03/bringing-interactive-examples-to-mdn/>
+    - https://hacks.mozilla.org/2018/03/bringing-interactive-examples-to-mdn/
     - MDN にデモの実行環境を埋め込むのベータテスト中
     - CodePen や JSFiddle を代替?
   - Request for Proposal: MDN Performance Audit
-    - <https://developer.mozilla.org/en-US/docs/MDN/RFPs/Performance_Audit>
+    - https://developer.mozilla.org/en-US/docs/MDN/RFPs/Performance_Audit
     - MDN のパフォーマンスを上げるための調査を依頼
   - Browser Architecture Newsletter 6 (S02E01)
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/j8IGSf1FkgY/hGX7NxQGBQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/j8IGSf1FkgY/hGX7NxQGBQAJ
   - *Mozilla marks 20th anniversary with commitment to better human experiences online*
-    - <https://blog.mozilla.org/blog/2018/03/29/mozilla-marks-20th-anniversary-commitment-better-human-experiences-online/>
-    - <https://blog.mozilla.org/blog/2018/03/31/mozilla-turns-twenty/>
+    - https://blog.mozilla.org/blog/2018/03/29/mozilla-marks-20th-anniversary-commitment-better-human-experiences-online/
+    - https://blog.mozilla.org/blog/2018/03/31/mozilla-turns-twenty/
     - Mozilla 20 歳
   - Hack on MDN: Building useful tools with browser compatibility data
-    - <https://hacks.mozilla.org/2018/03/hack-on-mdn-building-useful-tools-with-browser-compatibility-data/>
-  - <https://twitter.com/bz_moz/status/971588118615912448>
+    - https://hacks.mozilla.org/2018/03/hack-on-mdn-building-useful-tools-with-browser-compatibility-data/
+  - https://twitter.com/bz_moz/status/971588118615912448
     - 互換性をあげようとしたら Google Docs(Closure Compiler)が壊れた
-  - <https://twitter.com/ehsanakhgari/status/972224912634064896>
+  - https://twitter.com/ehsanakhgari/status/972224912634064896
     - ページ内ポップアップのブロックをできないか検討していて、サンプルになるようなサイトを募集中
 
 
@@ -281,7 +281,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 11.1
 - *Safari 11.1*
-  - <https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_11_1.html>
+  - https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_11_1.html
     - macOS と iOS 11.3 リリースに付随
 - Service Workers
 - Payment Request API
@@ -309,27 +309,27 @@ guest: [@myakura](https://twitter.com/myakura)
 - Extension Support for Safe Browsing
 - Safari Technology Preview
   - Release Notes for Safari Technology Preview 51
-    - <https://webkit.org/blog/8136/release-notes-for-safari-technology-preview-51/>
+    - https://webkit.org/blog/8136/release-notes-for-safari-technology-preview-51/
     - 少なめ、細かめ
   - *Release Notes for Safari Technology Preview 52*
-    - <https://webkit.org/blog/8165/release-notes-for-safari-technology-preview-52/>
+    - https://webkit.org/blog/8165/release-notes-for-safari-technology-preview-52/
     - Flash 以外の NPAPI サポート削除
     - `<link rel=preconnect>`
     - AOM の `accesibble*` event 対応
 - Other
   - *Intelligent Tracking Prevention 1.1*
-    - <https://webkit.org/blog/8142/intelligent-tracking-prevention-1-1/>
+    - https://webkit.org/blog/8142/intelligent-tracking-prevention-1-1/
     - double keying された Cookie が永続されなくなった
     - purge 待ちの Cookie がある場合は、新しい Cookie が付与できず、 Request  にも乗らなくなった
       - 付与した Cookie がすぐ消えるとサーバが混乱するから
   - *Protecting Against HSTS Abuse*
-    - <https://webkit.org/blog/8146/protecting-against-hsts-abuse/>
-    - <https://mailarchive.ietf.org/arch/msg/websec/t_R00ZDVHrBmroEX989GeaXdejE>
+    - https://webkit.org/blog/8146/protecting-against-hsts-abuse/
+    - https://mailarchive.ietf.org/arch/msg/websec/t_R00ZDVHrBmroEX989GeaXdejE
     - HTTP Super Cookie 対策に HSTS が覚えるサブドメインの深さを制限
     - ここでも ITP によってブロックされているかという情報を活用
     - ファーストパーティのみ/ eTLD+1 まで
   - Clipboard API Improvements
-    - <https://webkit.org/blog/8170/clipboard-api-improvements/>
+    - https://webkit.org/blog/8170/clipboard-api-improvements/
     - DataTransfer の互換性向上や、ディレクトリアップロードなども対応
     - Safari 11.1 で ship
 
@@ -338,41 +338,41 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable:
 - Status Updates
-  - <https://github.com/MicrosoftEdge/Status/compare/production@{2018-01-01}...production@{2018-02-01}>
+  - https://github.com/MicrosoftEdge/Status/compare/production@{2018-01-01}...production@{2018-02-01}
 - EdgeHTML
-  - <https://aka.ms/devguide_edgehtml_17>
+  - https://aka.ms/devguide_edgehtml_17
     - まだない
   - "-webkit-line-clamp is coming to Microsoft Edge with EdgeHTML 17 - you can preview it today in Windows Insider Preview builds 17107 and newer!"
-    - <https://twitter.com/MSEdgeDev/status/969618335762612225>
+    - https://twitter.com/MSEdgeDev/status/969618335762612225
     - `-webkit-line-clamp:` が来るらしい
     - 指定した行を超えたら 3 点リーダに置き換える機能
 - Build Changelog
   - Insider Preview Build 17623
-    - <https://blogs.windows.com/windowsexperience/2018/03/16/announcing-windows-10-insider-preview-build-17623-for-skip-ahead/#1kHqL1bZuO5A1B1q.97>
+    - https://blogs.windows.com/windowsexperience/2018/03/16/announcing-windows-10-insider-preview-build-17623-for-skip-ahead/#1kHqL1bZuO5A1B1q.97
 - Other
   - Update on Spectre and Meltdown security updates for Windows devices
-    - <https://blogs.windows.com/windowsexperience/2018/03/01/update-on-spectre-and-meltdown-security-updates-for-windows-devices/>
-  - <https://twitter.com/gregwhitworth/status/970695826459602944>
+    - https://blogs.windows.com/windowsexperience/2018/03/01/update-on-spectre-and-meltdown-security-updates-for-windows-devices/
+  - https://twitter.com/gregwhitworth/status/970695826459602944
     - compositor まわりの書き換えをやっているらしい
   - Announcing Windows 10 Insider Preview Build 17618 for Skip Ahead
-    - <https://blogs.windows.com/windowsexperience/2018/03/07/announcing-windows-10-insider-preview-build-17618-skip-ahead/>
+    - https://blogs.windows.com/windowsexperience/2018/03/07/announcing-windows-10-insider-preview-build-17618-skip-ahead/
   - 2018 年 3 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました
-    - <https://blogs.technet.microsoft.com/jpieblog/2018/03/14/securityupdate201803/>
+    - https://blogs.technet.microsoft.com/jpieblog/2018/03/14/securityupdate201803/
   - Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話) - Japan IE Support Team Blog
-    - <https://blogs.technet.microsoft.com/jpieblog/2018/03/15/ie-cache/>
+    - https://blogs.technet.microsoft.com/jpieblog/2018/03/15/ie-cache/
   - Internet Explorer および Microsoft Edge での Flash の今後の対応予定について - Japan IE Support Team Blog
-    - <https://blogs.technet.microsoft.com/jpieblog/2018/03/23/flash-roadmap/>
+    - https://blogs.technet.microsoft.com/jpieblog/2018/03/23/flash-roadmap/
     - お問い合わせ回答シリーズ
     - Web についてどういうことが問い合わせられているのかが透けて見えて面白い
   - *Windows 10 Build 17634 brings support for Google's QUIC fast internet protocol - MSPoweruser*
-    - <https://mspoweruser.com/windows-10-build-17634-brings-support-for-googles-quic-fast-internet-protocol/>
+    - https://mspoweruser.com/windows-10-build-17634-brings-support-for-googles-quic-fast-internet-protocol/
     - QUIC を実装中らしいというリーク情報
     - 17634 の ChangeLog はまだ上がってなかった
   - Announcing Windows 10 Insider Preview Build 17634 for Skip Ahead - Windows Experience BlogWindows Experience Blog
-    - <https://blogs.windows.com/windowsexperience/2018/03/29/announcing-windows-10-insider-preview-build-17634-for-skip-ahead/#4Fu251OSYfJ8oGxe.97>
+    - https://blogs.windows.com/windowsexperience/2018/03/29/announcing-windows-10-insider-preview-build-17634-for-skip-ahead/#4Fu251OSYfJ8oGxe.97
   - *Microsoft Edge DevTools Protocol*
-    - <https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/>
-    - <https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/0.1/>
+    - https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/
+    - https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/0.1/
     - Chrome DevTools Protocol のサポート開始
 
 
@@ -380,63 +380,63 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Recommendation
   - WOFF File Format 2.0 is now a W3C Recommendation
-    - <https://www.w3.org/blog/news/archives/6846>
+    - https://www.w3.org/blog/news/archives/6846
 - Proposed Recommendation
   - CSS Color Module Level 3
-    - <https://www.w3.org/blog/news/archives/6906>
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/nA2zdj5mIbg/eAzABPlxCAAJ>
+    - https://www.w3.org/blog/news/archives/6906
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/nA2zdj5mIbg/eAzABPlxCAAJ
     - 2011 年に勧告したものを一部修正
   - TTML Profiles for Internet Media Subtitles and Captions 1.0.1 (IMSC1)
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/lxzvlQOm_MI/4np7dSd3CAAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/lxzvlQOm_MI/4np7dSd3CAAJ
 - Candidate Recommendation(Invites Implementations)
   - High Resolution Time Level 2
-    - <https://www.w3.org/blog/news/archives/6852>
-    - <https://www.w3.org/TR/2018/CR-hr-time-2-20180301/#clock-resolution> などに Meltdown/Spectre 対策のため行われた解像度の増加に関する言及あり
+    - https://www.w3.org/blog/news/archives/6852
+    - https://www.w3.org/TR/2018/CR-hr-time-2-20180301/#clock-resolution などに Meltdown/Spectre 対策のため行われた解像度の増加に関する言及あり
   - Timed Text Markup Language 2 (TTML2)
-    - <https://www.w3.org/blog/news/archives/6900>
+    - https://www.w3.org/blog/news/archives/6900
   - CSS Fonts Module Level 3
-    - <https://www.w3.org/blog/news/archives/6904>
+    - https://www.w3.org/blog/news/archives/6904
   - Sensor APIs
-    - <https://www.w3.org/blog/news/archives/6912>
+    - https://www.w3.org/blog/news/archives/6912
   - Web Authentication: An API for accessing Public Key Credentials Level 1
-    - <https://www.w3.org/blog/news/archives/6921>
+    - https://www.w3.org/blog/news/archives/6921
   - Encoding
-    - <https://www.w3.org/blog/news/archives/6929>
+    - https://www.w3.org/blog/news/archives/6929
   - Graphics-ARIA and Graphics-AAM
-    - <https://www.w3.org/blog/news/archives/6933>
+    - https://www.w3.org/blog/news/archives/6933
 - Working Draft
   - ACT Rules Format 1.0 Working Draft Updated
-    - <https://www.w3.org/blog/news/archives/6889>
+    - https://www.w3.org/blog/news/archives/6889
 - First Public Working Draft
   - First Public Working Draft: CSS Text Decoration Module Level 4
-    - <https://www.w3.org/blog/news/archives/6898>
+    - https://www.w3.org/blog/news/archives/6898
 - Chartering
   - Proposed W3C Charter: Web Accessibility Initiative Interest Group (WAI IG) (until 2018-03-29)
-    - <https://lists.w3.org/Archives/Public/public-new-work/2018Mar/0000.html>
+    - https://lists.w3.org/Archives/Public/public-new-work/2018Mar/0000.html
   - Web Payments Working Group re-charter approved; Call for participation
-    - <https://lists.w3.org/Archives/Public/public-payments-wg/2018Mar/0014.html>
+    - https://lists.w3.org/Archives/Public/public-payments-wg/2018Mar/0014.html
   - JSON-LD Working Group (until 2018-04-29)
-    - <https://lists.w3.org/Archives/Public/public-new-work/2018Mar/0004.html>
+    - https://lists.w3.org/Archives/Public/public-new-work/2018Mar/0004.html
   - Automotive Working Group (until 2018-04-19)
-    - <https://lists.w3.org/Archives/Public/public-new-work/2018Mar/0013.html>
+    - https://lists.w3.org/Archives/Public/public-new-work/2018Mar/0013.html
 - Other
   - *Celebrating the anniversary of the Web*
-    - <https://www.w3.org/blog/2018/03/celebrating-the-anniversary-of-the-web/>
-    - <https://lists.w3.org/Archives/Public/public-w3c-digest/2018JanMar/0005.html>
+    - https://www.w3.org/blog/2018/03/celebrating-the-anniversary-of-the-web/
+    - https://lists.w3.org/Archives/Public/public-w3c-digest/2018JanMar/0005.html
     - Web が 29 歳の誕生日
   - W3C Opens Technical Architecture Group (TAG) Special Election
-    - <https://www.w3.org/blog/news/archives/6871>
-    - <https://www.w3.org/2018/03/05-tag-nominations>
+    - https://www.w3.org/blog/news/archives/6871
+    - https://www.w3.org/2018/03/05-tag-nominations
     - special election とあるので、だれかの任期が切れたわけではなさそう
   - Getting rid of SDP
-    - <https://lists.w3.org/Archives/Public/public-webrtc/2018Mar/0006.html>
+    - https://lists.w3.org/Archives/Public/public-webrtc/2018Mar/0006.html
     - SDP 捨てよう話が盛り上がってる
   - *Proposal: HTML passwordrules attribute*
-    - <https://github.com/whatwg/html/issues/3518>
+    - https://github.com/whatwg/html/issues/3518
     - パスワード生成を手助けするため、ルールを記述する属性を導入したい
     - Apple からの提案
   - *Add autocorrect content attribute to HTMLElement*
-    - <https://github.com/whatwg/html/issues/3595>
+    - https://github.com/whatwg/html/issues/3595
     - オートコレクト機能を制御するための属性
     - iOS の独自実装を標準化したい模様
 
@@ -445,8 +445,8 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Proposals Diff
   - Agenda for the 63rd meeting of Ecma TC39
-    - <https://github.com/tc39/agendas/blob/master/2018/03.md>
-  - <https://github.com/tc39/proposals/compare/master@{2018-03-01}...master@{2018-04-01}>
+    - https://github.com/tc39/agendas/blob/master/2018/03.md
+  - https://github.com/tc39/proposals/compare/master@{2018-03-01}...master@{2018-04-01}
   - 0->1
     - [logical-assignment](https://github.com/jridgewell/proposal-logical-assignment)
     - [slice-notation](https://github.com/gsathya/proposal-slice-notation/)
@@ -463,43 +463,43 @@ guest: [@myakura](https://twitter.com/myakura)
     - [is-types](https://github.com/jasnell/proposal-istypes)
 - New Proposals
   - gsathya/proposal-slice-notation
-    - <https://github.com/gsathya/proposal-slice-notation>
+    - https://github.com/gsathya/proposal-slice-notation
     - `arr[1:2] === arr.slice(1, 3)` 的な記法
   - *rename flatten to smoosh - tc39/proposal-flatMap*
-    - <https://github.com/tc39/proposal-flatMap/pull/56>
+    - https://github.com/tc39/proposal-flatMap/pull/56
     - 8+year old versions of MooTools
     - `[].contains` が `.includes` になったのも mootools [blog](https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html)
     - #SmooshGate FAQ
-      - <https://developers.google.com/web/updates/2018/03/smooshgate>
+      - https://developers.google.com/web/updates/2018/03/smooshgate
       - なぜだめなのか、なぜ Mootls を直すのではいけないのか、などの解説
       - TC39 では公式見解がこの時点では出てなかった
     - 名前についてはまだやってる
   - TC39 proposal for Object.fromEntries
-    - <https://github.com/bakkot/object-from-entries>
+    - https://github.com/bakkot/object-from-entries
     - `Object.fromEntries([['a', 0], ['b', 1]]); // { a: 0, b: 1 }`
     - Map を JSON にする時に便利そう
   - *zenparsing/js-classes-1.1*
-    - <https://github.com/zenparsing/js-classes-1.1>
-    - <https://gist.github.com/wycats/b1c96c67074396a239abd60f55087adc>
+    - https://github.com/zenparsing/js-classes-1.1
+    - https://gist.github.com/wycats/b1c96c67074396a239abd60f55087adc
     - 現状の class の定義とは別のアプローチでの class の表現仕様
     - 今ある提案仕様も盛り込む包括的なもの
     - カプセル化、インタフェースの公開、コンストラクタのカスタマイズ etc
   - *jasnell/proposal-deprecated: TC-39 Proposal for a deprecated keyword*
-    - <https://github.com/jasnell/proposal-deprecated>
+    - https://github.com/jasnell/proposal-deprecated
     - Deprecate されたことを示す 'deprecated' pragma (or decorator/function) の提案
   - *bmeck/proposal-hashbang:*
-    - <https://github.com/bmeck/proposal-hashbang>
+    - https://github.com/bmeck/proposal-hashbang
     - `#!/usr/bin/env node` 的な shebang のサポート
   - gibson042/ecma262-proposal-well-formed-stringify
-    - <https://github.com/gibson042/ecma262-proposal-well-formed-stringify>
+    - https://github.com/gibson042/ecma262-proposal-well-formed-stringify
     - Unicode 周りっぽい
   - Decorators: Towards Stage 3 - Google Slides
-    - <https://docs.google.com/presentation/d/1Sx5gwx9yd3gbRhbzgwQijGLRIbfR9PkwLlwfNK_USQs/edit>
+    - https://docs.google.com/presentation/d/1Sx5gwx9yd3gbRhbzgwQijGLRIbfR9PkwLlwfNK_USQs/edit
     - Decorators の現状と、 Stage 3 に向けた動きまとめ
-  - <https://twitter.com/awbjs/status/979025502634590208>
+  - https://twitter.com/awbjs/status/979025502634590208
     - awb 氏が現状のプロセスにビジョンがないのではと問いかけている
   - domenic/package-name-maps
-    - <https://github.com/domenic/package-name-maps>
+    - https://github.com/domenic/package-name-maps
     - `import foo from "bar"` と書いたときに参照するものを package name maps に定義し、それを読み込むための仕組みを定義
 
 
@@ -507,104 +507,104 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - IETF
   - *HTTP WG Minutes*
-    - <https://github.com/httpwg/wg-materials/blob/gh-pages/ietf101/minutes.md>
+    - https://github.com/httpwg/wg-materials/blob/gh-pages/ietf101/minutes.md
   - *QUIC WG Minutes*
-    - <https://github.com/quicwg/wg-materials/blob/master/ietf101/minutes.md>
+    - https://github.com/quicwg/wg-materials/blob/master/ietf101/minutes.md
 - RFC
   - RFC 8336: The ORIGIN HTTP/2 Frame, MARCH 2018
-    - <https://www.rfc-editor.org/info/rfc8336>
+    - https://www.rfc-editor.org/info/rfc8336
 - IETF Last Call
   - The Transport Layer Security (TLS) Protocol Version 1.3 to Proposed Standard
-    - <https://mailarchive.ietf.org/arch/msg/ietf-announce/3mV7lluq82D_9H1PODDSZW6o4x4>
+    - https://mailarchive.ietf.org/arch/msg/ietf-announce/3mV7lluq82D_9H1PODDSZW6o4x4
 - WG Last Call
   - Bootstrapping WebSockets with HTTP/2
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0237.html>
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0238.html>
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0237.html
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0238.html
 - Call for Adoption
   - Variants
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0224.html>
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0224.html
   - HTTPtre
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0225.html>
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0225.html
 - I-D Action
   - draft-ietf-httpbis-bcp56bis-02.txt
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0171.html>
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0171.html
   - draft-ietf-httpbis-cache-digest-03.txt
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0172.html>
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0172.html
 - Draft
   - TLS 1.3 Extension for Certificate-based Authentication with an External Pre-Shared Key
-    - <https://tools.ietf.org/html/draft-housley-tls-tls13-cert-with-extern-psk-00>
+    - https://tools.ietf.org/html/draft-housley-tls-tls13-cert-with-extern-psk-00
   - Coding for QUIC
-    - <https://tools.ietf.org/html/draft-swett-nwcrg-coding-for-quic-00>
+    - https://tools.ietf.org/html/draft-swett-nwcrg-coding-for-quic-00
     - Loss Recovery などの Error Correcting の方法
   - TCP option "request IPv6 connection"
-    - <https://tools.ietf.org/html/draft-rosenau-request-v6-option-00>
+    - https://tools.ietf.org/html/draft-rosenau-request-v6-option-00
   - Header Compression for HTTP over QUIC
-    - <https://tools.ietf.org/html/draft-ietf-quic-qcram-00>
+    - https://tools.ietf.org/html/draft-ietf-quic-qcram-00
   - A Comparison between SCTP and QUIC
-    - <https://tools.ietf.org/html/draft-joseph-quic-comparison-quic-sctp-00>
+    - https://tools.ietf.org/html/draft-joseph-quic-comparison-quic-sctp-00
   - OAuth 2.0 Assisted Token
-    - <https://tools.ietf.org/html/draft-ideskog-assisted-token-00>
+    - https://tools.ietf.org/html/draft-ideskog-assisted-token-00
   - The application/maybe media type
-    - <https://tools.ietf.org/html/draft-bormann-core-maybe-00>
+    - https://tools.ietf.org/html/draft-bormann-core-maybe-00
   - The Series Transfer Pattern (STP)
-    - <https://tools.ietf.org/html/draft-bormann-t2trg-stp-00>
+    - https://tools.ietf.org/html/draft-bormann-t2trg-stp-00
   - JSON Hypermedia Links Notation
-    - <https://tools.ietf.org/html/draft-wparad-json-links-00>
+    - https://tools.ietf.org/html/draft-wparad-json-links-00
   - JWT Response for OAuth Token Introspection
-    - <https://tools.ietf.org/html/draft-lodderstedt-oauth-jwt-introspection-response-00>
+    - https://tools.ietf.org/html/draft-lodderstedt-oauth-jwt-introspection-response-00
   - *Optional Security Is Not An Option*
-    - <https://tools.ietf.org/html/draft-trammell-optional-security-not-00>
+    - https://tools.ietf.org/html/draft-trammell-optional-security-not-00
   - The threat of Pairing based cryptographic protocols.
-    - <https://tools.ietf.org/html/draft-kato-threat-pairing-00>
+    - https://tools.ietf.org/html/draft-kato-threat-pairing-00
     - NTT からのドラフト
   - *A Minimal Internet-Draft In AsciiRFC*
-    - <https://tools.ietf.org/html/draft-asciirfc-minimal-00>
+    - https://tools.ietf.org/html/draft-asciirfc-minimal-00
     - RFC draft のテンプレート
   - A Survey of Transport Security Protocols
-    - <https://tools.ietf.org/html/draft-ietf-taps-transport-security-00>
+    - https://tools.ietf.org/html/draft-ietf-taps-transport-security-00
   - Seamless OAuth 2.0 Client Assertion Grant
-    - <https://tools.ietf.org/html/draft-hevroni-oauth-seamless-flow-00>
+    - https://tools.ietf.org/html/draft-hevroni-oauth-seamless-flow-00
   - Health Check Response Format for HTTP APIs
-    - <https://tools.ietf.org/html/draft-inadarei-api-health-check-00>
+    - https://tools.ietf.org/html/draft-inadarei-api-health-check-00
     - 取りこぼし
   - *COSE Algorithms for Web Authentication (WebAuthn)*
-    - <https://tools.ietf.org/html/draft-jones-webauthn-cose-algorithms-00>
+    - https://tools.ietf.org/html/draft-jones-webauthn-cose-algorithms-00
   - Hashing to Elliptic Curves
-    - <https://tools.ietf.org/html/draft-irtf-cfrg-hash-to-curve-00>
+    - https://tools.ietf.org/html/draft-irtf-cfrg-hash-to-curve-00
   - JSON Hypermedia Links Notation
-    - <https://tools.ietf.org/html/draft-wparad-json-links-01>
+    - https://tools.ietf.org/html/draft-wparad-json-links-01
   - Randomness Improvements for Security Protocols
-    - <https://tools.ietf.org/html/draft-irtf-cfrg-randomness-improvements-00>
+    - https://tools.ietf.org/html/draft-irtf-cfrg-randomness-improvements-00
 - Other
   - WebPackaging についての Side Meeting
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0212.html>
-    - <https://docs.google.com/presentation/d/15VxWQuh_7keJfeRYkwHhXawI11pv7rIT8CJ09jEmsPo/>
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt>
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0212.html
+    - https://docs.google.com/presentation/d/15VxWQuh_7keJfeRYkwHhXawI11pv7rIT8CJ09jEmsPo/
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt
     - 1) Bundles: IETF でデザインの議論をする ML を作る
     - 2) Same-origin signatures like for SRI: やる人がでるまでとりあえず作業予定はなし
     - 3) Cross-origin trust: IAB+W3C TAG(+WHATWG?) と publishers で議論する Workshop
     - Mozilla は Signed HTTP Exchanges については *harmful* となっている
     - *AMP チームがアナウンスしたことが WebPackaging ではできない可能性が出て来た*
   - Updates on TCP Fast Open deployment
-    - <https://datatracker.ietf.org/meeting/101/materials/slides-101-tcpm-updates-on-tcp-fast-open-deployments-01>
+    - https://datatracker.ietf.org/meeting/101/materials/slides-101-tcpm-updates-on-tcp-fast-open-deployments-01
 
 
 ### 周辺動向
 
 - Japan GPKI Root Renewal Request
-  - <https://groups.google.com/forum/#!msg/mozilla.dev.security.policy/Mezqdljjerc/TOBs_E8sAAAJ>
+  - https://groups.google.com/forum/#!msg/mozilla.dev.security.policy/Mezqdljjerc/TOBs_E8sAAAJ
   - 日本政府認証機関の CA を Mozilla に登録するようにリクエストしていた
   - 日本側の対応が雑だったようで、棄却された
   - e-tax とか使うのに独自証明書のインストールが必要になる
 - DigiCert Statement on Trustico Certificate Revocation
-  - <https://www.digicert.com/blog/digicert-statement-trustico-certificate-revocation/>
-  - <https://web.archive.org/web/20180301013921/https://www.trustico.com/news/2018/symantec-revocation/certificate-replacement.php>
-  - <https://arstechnica.com/information-technology/2018/03/23000-https-certificates-axed-after-ceo-e-mails-private-keys/>
+  - https://www.digicert.com/blog/digicert-statement-trustico-certificate-revocation/
+  - https://web.archive.org/web/20180301013921/https://www.trustico.com/news/2018/symantec-revocation/certificate-replacement.php
+  - https://arstechnica.com/information-technology/2018/03/23000-https-certificates-axed-after-ceo-e-mails-private-keys/
   - Trustico のインシデントについての DigiCert の声明と Trustico の声明
   - 23000 の秘密鍵をメールで送信する
   - CSR を受け取らず、鍵を一式作って顧客に提供するスタイルだったので秘密鍵があった
 - 安全なパスワード管理\|社員・職員全般の情報セキュリティ対策\|企業・組織の対策\|国民のための情報セキュリティサイト
-  - <http://www.soumu.go.jp/main_sosiki/joho_tsusin/security/business/staff/01.html>
+  - http://www.soumu.go.jp/main_sosiki/joho_tsusin/security/business/staff/01.html
   - *パスワードの定期変更は不要* と明示された
   - その場合、サービス側もそれを前提とする設計が求められそう
     - 流出の検知と迅速な公開
@@ -612,35 +612,35 @@ guest: [@myakura](https://twitter.com/myakura)
     - 二要素認証
     - etc
 - Google Chrome: Flash Usage Declines from 80% in 2014 to Under 8% Today
-  - <https://www.bleepingcomputer.com/news/security/google-chrome-flash-usage-declines-from-80-percent-in-2014-to-under-8-percent-today/>
+  - https://www.bleepingcomputer.com/news/security/google-chrome-flash-usage-declines-from-80-percent-in-2014-to-under-8-percent-today/
   - Adobe は 2020 に Flash サポート終了
   - Chrome も 2020 Chrome 87 で Flash サポート終了
 - 日本の HTTPS 対応が一年でだいぶ進んだ。(tweet by letsencrypt)
-  - <https://letsencrypt.org/stats/#percent-pageloads>
-  - <https://twitter.com/letsencrypt/status/971980147300732928>
+  - https://letsencrypt.org/stats/#percent-pageloads
+  - https://twitter.com/letsencrypt/status/971980147300732928
 - Upcoming Features - Let's Encrypt - Free SSL/TLS Certificates
-  - <https://letsencrypt.org/upcoming-features/>
+  - https://letsencrypt.org/upcoming-features/
 - Deprecating TLS 1.0 and 1.1 on api.cloudflare.com
-  - <https://blog.cloudflare.com/deprecating-old-tls-versions-on-cloudflare-dashboard-and-api/>
+  - https://blog.cloudflare.com/deprecating-old-tls-versions-on-cloudflare-dashboard-and-api/
 - *ACME v2 and Wildcard Certificate Support is Live*
-  - <https://community.letsencrypt.org/t/acme-v2-and-wildcard-certificate-support-is-live/55579>
+  - https://community.letsencrypt.org/t/acme-v2-and-wildcard-certificate-support-is-live/55579
   - ACME v2 に対応し Wildcard が出せるように
 - *Everyone can now run JavaScript on Cloudflare with Workers*
-  - <https://blog.cloudflare.com/cloudflare-workers-unleashed/>
+  - https://blog.cloudflare.com/cloudflare-workers-unleashed/
   - Cloudflare のエッジで Service Worker を動かせるように
   - ここの実装から fetch spec にもフィードバックが
-    - <https://twitter.com/annevk/status/974906527852236800>
+    - https://twitter.com/annevk/status/974906527852236800
 - ImperialViolet - TLS 1.3 and Proxies
-  - <https://www.imperialviolet.org/2018/03/10/tls13.html>
+  - https://www.imperialviolet.org/2018/03/10/tls13.html
 - ImperialViolet - Security Keys
-  - <https://www.imperialviolet.org/2018/03/27/webauthn.html>
+  - https://www.imperialviolet.org/2018/03/27/webauthn.html
 - The Future of JavaScript Frameworks Looks Very Fast
-  - <https://javascriptreport.com/the-future-of-javascript-frameworks-looks-very-fast/>
+  - https://javascriptreport.com/the-future-of-javascript-frameworks-looks-very-fast/
 - Paul Irish on Twitter: "Some of the brightest performance minds I know have tried to make loading unbundled ES modules fast. They have not yet succeeded. Perhaps in two years, it'll be competitive-but until then keep on bundling y'all.
-  - <https://twitter.com/paul_irish/status/979867890080915456>
+  - https://twitter.com/paul_irish/status/979867890080915456
   - ESM の最適化はこれからという話
 - *The Alliance for Open Media Kickstarts Video Innovation Era with "AV1" Release*
-  - <https://aomedia.org/the-alliance-for-open-media-kickstarts-video-innovation-era-with-av1-release/>
+  - https://aomedia.org/the-alliance-for-open-media-kickstarts-video-innovation-era-with-av1-release/
 
 
 ### イベント
@@ -649,9 +649,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - 18-19: BlinkOn 9
 - 5 月
   - 8-10: Goole I/O
-    - <https://events.google.com/io/>
+    - https://events.google.com/io/
   - 10-11: Web5G Workshop
-    - <https://www.w3.org/2017/11/web5g-workshop/sponsorship>
+    - https://www.w3.org/2017/11/web5g-workshop/sponsorship
 - 10 月
   - 22-26: TPAC 2018 Lyon
-    - <https://www.w3.org/2018/10/TPAC/Overview.html>
+    - https://www.w3.org/2018/10/TPAC/Overview.html

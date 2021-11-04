@@ -21,22 +21,22 @@ guest: [@hirano](https://twitter.com/hirano_y_aa)
 
 - WebTransport & WebCodecs (WebGames Workshop)
   - WebRTC から WebTransport へ移行するモチベーションのトーク
-  - <https://vimeo.com/350908362>
+  - https://vimeo.com/350908362
 - Zoom on Web: getting connected with advanced web technology (Web.dev Live)
   - Zoom における WebTransport/WebCodecs/SIMD の活用への展望のトーク
-  - <https://youtu.be/nhTxJBgTywc>
+  - https://youtu.be/nhTxJBgTywc
 - WICG: WebTransport (ブラウザ API 仕様)
-  - <https://wicg.github.io/web-transport/#quic-transport>
+  - https://wicg.github.io/web-transport/#quic-transport
 - IETF: QUIC: A UDP-Based Multiplexed and Secure Transport (プロトコル仕様)
-  - <https://quicwg.org/base-drafts/draft-ietf-quic-transport.html>
+  - https://quicwg.org/base-drafts/draft-ietf-quic-transport.html
 - Intent to Experiment: QuicTransport
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ>
+  - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ
 - Explainer
-  - <https://github.com/WICG/web-transport/blob/master/explainer.md>
+  - https://github.com/WICG/web-transport/blob/master/explainer.md
 - Mozilla Standard Position
-  - <https://mozilla.github.io/standards-positions/#webtransport>
+  - https://mozilla.github.io/standards-positions/#webtransport
   - worth prototyping
 - Raw Socket (収録時では Direct Socket)
-  - <https://github.com/WICG/raw-sockets/blob/master/docs/explainer.md>
+  - https://github.com/WICG/raw-sockets/blob/master/docs/explainer.md
 - Compression Extensions for WebSocket
-  - <https://tools.ietf.org/html/rfc7692>
+  - https://tools.ietf.org/html/rfc7692

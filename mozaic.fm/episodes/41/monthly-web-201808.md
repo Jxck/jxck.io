@@ -22,7 +22,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Stable: 68
 - Updates
   - What's New In DevTools (Chrome 70)
-    - <https://developers.google.com/web/updates/2018/08/devtools>
+    - https://developers.google.com/web/updates/2018/08/devtools
     - 主に I/O で発表された機能
     - Live Expressions in the Console.
     - Highlight DOM nodes during Eager Evaluation.
@@ -33,11 +33,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - Break on AudioContext events.
     - Debug Node.js apps with ndb. (node-inspector の後継)
   - Deprecations and removals in Chrome 69
-    - <https://developers.google.com/web/updates/2018/08/chrome-69-deps-rems>
+    - https://developers.google.com/web/updates/2018/08/chrome-69-deps-rems
     - Removal of document.createTouchList()
     - The window.confirm() method no longer activates its parent tab
   - Audio/Video Updates in Chrome 69
-    - <https://developers.google.com/web/updates/2018/08/chrome-69-media-updates>
+    - https://developers.google.com/web/updates/2018/08/chrome-69-media-updates
     - Chrome supports AV1 video decoding.
     - Querying which encryption schemes are supported through EME is now available.
     - Web developers can experiment with querying whether a certain HDCP policy can be enforced.
@@ -45,7 +45,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Android Go users can open downloaded audio, video and images in Chrome.
     - Stalled events for media elements using MSE are removed.
   - *Chromium Blog: Chrome 69 Beta: CSS tricks, and more*
-    - <https://blog.chromium.org/2018/08/chrome-69-beta-av1-video-decoder-css.html>
+    - https://blog.chromium.org/2018/08/chrome-69-beta-av1-video-decoder-css.html
     - Conic gradients: linear(線形)/radial(放射)に次ぐ円錐グラデーション
     - margin/padding/border に logical properties
     - CSS scroll snap
@@ -67,118 +67,118 @@ guest: [@myakura](https://twitter.com/myakura)
     - etc
 - Intents
   - Ship: MediaStreamTrack Content Hint
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6xTur1dsKQ8/3clMbIdADgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6xTur1dsKQ8/3clMbIdADgAJ
   - Ship: Support codec and container switching with MSE using SourceBuffer.changeType()
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/K_OFPxA_whE/DSLSKzyyDAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/K_OFPxA_whE/DSLSKzyyDAAJ
   - Ship: Unprefixed Fullscreen API with FullscreenOptions
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ODzbWn-xRrQ/dhkJzD8-CgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ODzbWn-xRrQ/dhkJzD8-CgAJ
     - どのエンジンでも接頭辞がついていた Fullscreen API がついに接頭辞無しで ship の予定
   - *Ship: Permission Delegation in M71*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PPuewynNpaE/4rP9YAMPCgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PPuewynNpaE/4rP9YAMPCgAJ
   - Ship: [Intervention] Freezing task queues in background on mobile
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NKtuFxLsKgo/brL3bfS5CAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NKtuFxLsKgo/brL3bfS5CAAJ
   - Ship: TextMetrics API in Canvas
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/suv1i1dKtFw/h_R43KFiEAAJ>
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KQW4thKogkk/6fFtjZWvAwAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/suv1i1dKtFw/h_R43KFiEAAJ
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KQW4thKogkk/6fFtjZWvAwAJ
   - *Ship: globalThis*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6fxzDrO-9Oc/Pm4cGt8qBAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6fxzDrO-9Oc/Pm4cGt8qBAAJ
     - 環境により window, self, this, frames, global だったりするので、共通して globalThis にするのを検討中
     - global だと互換性の問題があったらしい
   - *Implement and Ship: TLS 1.3*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HgDaX3qW0IY/AYg6t_oaDwAJ>
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/RHXZc63mPNY/-hWSzUO3AgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HgDaX3qW0IY/AYg6t_oaDwAJ
+    - https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/RHXZc63mPNY/-hWSzUO3AgAJ
     - RFC が出たので早速実装
   - Implement and Ship: PostMessageOptions and WindowPostMessageOptions dictionary for postMessage methods
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HSfL38bAexE/n9QuIIILDwAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HSfL38bAexE/n9QuIIILDwAJ
   - *Implement and Ship: 'name' attribute for dedicated workers*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aZ804HggENE/WwWgDrz4DgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aZ804HggENE/WwWgDrz4DgAJ
     - chrome tokyo チームのインターン [d0iasm](https://twitter.com/d0iasm) さんの成果
     - `const worker = new Worker('worker.js', { name: 'worker-name' });`
     - `console.log(self.name); // worker_name`
   - Implement and Ship: Support Opus in mp4 (ISO-BMFF) with Media Source Extensions (MSE)
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ce2j1tA_xdU/T9C6sxpTDQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ce2j1tA_xdU/T9C6sxpTDQAJ
   - Implement and Ship: Displaying a dialog will cause pages to lose fullscreen
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gkVmdI7oYLI/_yXsyw5WDQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gkVmdI7oYLI/_yXsyw5WDQAJ
   - *Implement and Ship: "persistent-storage" support for Permission API's query() method*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FRAmGlAoDTY/dzAMnCmuAwAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FRAmGlAoDTY/dzAMnCmuAwAJ
   - Implement and Ship: Additional safelisted schemes for "registerProtocolHandler"
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/29sFh4tTdcs/K4XroilVBAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/29sFh4tTdcs/K4XroilVBAAJ
   - Implement: Screen Capture
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kX3QvDBcwY0/1wKgYlbQCgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kX3QvDBcwY0/1wKgYlbQCgAJ
   - Implement: Increase the gamepad polling interval to 250 Hz
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kXlEPiGdIpM/Xo-02msSCwAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kXlEPiGdIpM/Xo-02msSCwAJ
   - Implement: Treat Document Level Wheel/Mousewheel Event Listeners as Passive
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/53q-wRk5QkA/qSp0SXxjDgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/53q-wRk5QkA/qSp0SXxjDgAJ
   - Implement: hreftranslate attribute
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hmASm1yhi5s/7vqmt7CwDgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hmASm1yhi5s/7vqmt7CwDgAJ
   - *Implement: Feature Policy Violation Reporting*
     - Feature Policy によるブロックを Reporting で送る
     - 以前 GitHub で提案したものが通った模様
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5-3woY4Y1Qg/xHDTmUFAEAAJ>
-    - <https://github.com/WICG/feature-policy/blob/master/reporting.md>
-    - <https://github.com/WICG/feature-policy/issues/142>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5-3woY4Y1Qg/xHDTmUFAEAAJ
+    - https://github.com/WICG/feature-policy/blob/master/reporting.md
+    - https://github.com/WICG/feature-policy/issues/142
   - Implement: Searchable Invisible DOM
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ>
-    - <https://docs.google.com/document/d/1GYTt6G8G0gNO0U90uHywTi2Fn1YqI9JERyn44f9lmU0/edit>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ
+    - https://docs.google.com/document/d/1GYTt6G8G0gNO0U90uHywTi2Fn1YqI9JERyn44f9lmU0/edit
     - データを DOM として layout/paint しないでメモリに持ちたい
     - しかし、検索できなくなるので、これを検索できるようにする
     - まだアイデア段階で仕様も途中
   - *Implement: Writable Files*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/U4rXcm5CE4Y/3XmVtoAPDwAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/U4rXcm5CE4Y/3XmVtoAPDwAJ
     - 画像処理やテキストエディタ作る上で、ファイル保存したい
     - まだ仕様がはっきりしてない API
     - Chrome の既存の Filesystem API をラップして実現する模様
     - まだ、どのようなセキュリティモデルで実装するかも決まってない
   - *Implement: Feature Policy 'lazyload'*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/yCGhf7EA1Zs/70_NL0AEDwAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/yCGhf7EA1Zs/70_NL0AEDwAJ
     - `<img>`,  `<iframe>` への lazyload 属性を有効にする Feature Policy
     - default が auto でクライアントの決定に依存するものとなる
     - つまり将来的にクライアントのデフォルトを lazyload にできる可能性があるということか
   - *Implement: Feature Policy: animations*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nRNPNwlRS6E/iLB-b5H6DAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nRNPNwlRS6E/iLB-b5H6DAAJ
     - うざいアニメーションがパフォーマンスを阻害しないように off にする目的
     - `<iframe>` のデフォルトは allow
   - Implement: pointerrawmove
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/84RGJvm_PMM/bYh0Ehv1DgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/84RGJvm_PMM/bYh0Ehv1DgAJ
     - 通常 pointermove イベントは rAF に沿って発火する
     - そのため最悪 1 フレームくらいずれる
     - うれしくないケースもあるので、すぐ発火するイベントが提案された
-    - <https://github.com/w3c/pointerevents/issues/214>
+    - https://github.com/w3c/pointerevents/issues/214
   - Implement: intrinsicsize attribute
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAwFEMP6JDQ/sTobLh4HDQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAwFEMP6JDQ/sTobLh4HDQAJ
     - 画像やビデオに intrinsicsize 属性を導入し、アスペクト比を固定させ、リフローを抑制する
-    - <https://github.com/ojanvafai/intrinsicsize-attribute/blob/master/README.md>
+    - https://github.com/ojanvafai/intrinsicsize-attribute/blob/master/README.md
   - Implement: getMemoryEstimateUASpecific
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-xagQ4UJawY/6NonQwt_CAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-xagQ4UJawY/6NonQwt_CAAJ
   - Implement: Unified V8 & Blink Garbage Collection (aka Unified Heap)
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tg2rXkjHw9g/FxXIBO9KCQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tg2rXkjHw9g/FxXIBO9KCQAJ
   - Experiment: Support codec and container switching with MSE using SourceBuffer.changeType()
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/A5Ux5CzpeWs/KjIcVDmpDAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/A5Ux5CzpeWs/KjIcVDmpDAAJ
   - Change:
   - Unship:
   - Deprecate and Remove: importScripts() of new scripts after service worker installation
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/a6P-niHWgF4/CtJEHCnKDwAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/a6P-niHWgF4/CtJEHCnKDwAJ
     - nhiroki さんによる解説 "Service Worker 上での未インストールスクリプトに対する importScripts()"
-    - <https://nhiroki.jp/2018/08/15/service-worker-import-scripts-after-installation>
+    - https://nhiroki.jp/2018/08/15/service-worker-import-scripts-after-installation
   - *Deprecate: AppCache*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FvM-qo7BfkI/0daqyD8kCQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FvM-qo7BfkI/0daqyD8kCQAJ
     - intent が出た段階では期間未定
     - AppCache を Service Worker にする polyfill などを整備して、その成功例が出るといいよねという話も
   - Remove: Token Binding
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/8QD01FloF1o/en8BzJwRBgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/8QD01FloF1o/en8BzJwRBgAJ
     - Ship できてない機能をメンテし続けるコストやセキュリティ上のうまみの少なさもあって削除の intent
     - 業界の人がベットしてるから消すなというコメントを書いている
   - *Remove: Budget API*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18r3whCBv0I/b8qrtFTsDAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18r3whCBv0I/b8qrtFTsDAAJ
     - [blog](https://blog.jxck.io/entries/2017-06-12/web-budget-api.html)
     - mozilla standard position で無くなっていたことに気づいた
-    - 対案も出ているが保留 <https://discourse.wicg.io/t/proposal-budget-api/1717/7>
+    - 対案も出ているが保留 https://discourse.wicg.io/t/proposal-budget-api/1717/7
   - *Experiment: WebAssembly Threads*
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/41XDSl0-QIU/SuiUjCs4CwAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/41XDSl0-QIU/SuiUjCs4CwAJ
     - pthreads-style shared memory: shared memory between threads, atomics and mutexes.
     - Start: M70 Beta / End: ~M73 Stable
   - Experiment: Expose legacy performance.memory JavaScript counters
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RUSjTZ-qdmg/zxtgnvLXAwAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RUSjTZ-qdmg/zxtgnvLXAwAJ
 - Team Weekly Snippet
   - Loading (blink-dev)
   - Storage (blink-dev)
@@ -186,51 +186,51 @@ guest: [@myakura](https://twitter.com/myakura)
   - Layout (layout-dev)
 - v8
   - V8 JavaScript Engine: V8 release v6.9
-    - <https://v8project.blogspot.com/2018/08/v8-release-69.html>
+    - https://v8project.blogspot.com/2018/08/v8-release-69.html
   - V8 JavaScript Engine: Embedded builtins
-    - <https://v8project.blogspot.com/2018/08/embedded-builtins.html>
+    - https://v8project.blogspot.com/2018/08/embedded-builtins.html
   - V8 JavaScript Engine: Liftoff: a new baseline compiler for WebAssembly in V8
-    - <https://v8project.blogspot.com/2018/08/liftoff.html>
+    - https://v8project.blogspot.com/2018/08/liftoff.html
 - Other
   - Well-Controlled Scrolling with CSS Scroll Snap
-    - <https://developers.google.com/web/updates/2018/07/css-scroll-snap>
+    - https://developers.google.com/web/updates/2018/07/css-scroll-snap
     - スクロールしたときに box の start/center/end で揃えて止める
   - Input-Dev Update for Aug 1, 2018
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h-yCnQsqgFA/MSoaDLH7CgAJ>
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ZYyGCGJeNmo/uCIFqib8CgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h-yCnQsqgFA/MSoaDLH7CgAJ
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ZYyGCGJeNmo/uCIFqib8CgAJ
   - Custom site performance reports with the CrUX Dashboard
-    - <https://developers.google.com/web/updates/2018/08/chrome-ux-report-dashboard>
+    - https://developers.google.com/web/updates/2018/08/chrome-ux-report-dashboard
   - *How Blink works*
-    - <https://docs.google.com/document/d/1aitSOucL0VHZa9Z2vbRJSyAIsAz24kX8LFByQ5xQnUg/edit>
+    - https://docs.google.com/document/d/1aitSOucL0VHZa9Z2vbRJSyAIsAz24kX8LFByQ5xQnUg/edit
   - Web Payments, Payment Request API and Google Pay
-    - <https://medium.com/dev-channel/web-payments-payment-request-api-and-google-pay-a1073e405235>
+    - https://medium.com/dev-channel/web-payments-payment-request-api-and-google-pay-a1073e405235
   - *Service Worker Caching Strategies Based on Request Types*
-    - <https://medium.com/dev-channel/service-worker-caching-strategies-based-on-request-types-57411dd7652c>
+    - https://medium.com/dev-channel/service-worker-caching-strategies-based-on-request-types-57411dd7652c
     - URL ベースのキャッシュではなく Request.destination ベースにすると良いという話
     - "image", "font", "script" etc
     - 値が空文字になる場合などに注意
   - Developer Advocate, Chrome Extensions - Google - 1600 Amphitheatre Pkwy, Mountain View, CA 94043 - Google Careers
-    - <https://careers.google.com/jobs#!t=jo&jid=/google/developer-advocate-chrome-extensions-1600-amphitheatre-pkwy-mountain-view-ca-4190870132>
+    - https://careers.google.com/jobs#!t=jo&jid=/google/developer-advocate-chrome-extensions-1600-amphitheatre-pkwy-mountain-view-ca-4190870132
     - Chrome 拡張の Developer Advocate 募集中らしい
   - Custom site performance reports with the CrUX Dashboard
-    - <https://developers.google.com/web/updates/2018/08/chrome-ux-report-dashboard>
+    - https://developers.google.com/web/updates/2018/08/chrome-ux-report-dashboard
   - *OffscreenCanvas - Speed up Your Canvas Operations with a Web Worker*
-    - <https://developers.google.com/web/updates/2018/08/offscreen-canvas>
+    - https://developers.google.com/web/updates/2018/08/offscreen-canvas
     - canvas の off the main thread
   - Web Performance Made Easy: Google I/O 2018 edition
-    - <https://developers.google.com/web/updates/2018/08/web-performance-made-easy>
+    - https://developers.google.com/web/updates/2018/08/web-performance-made-easy
   - Extending the browser with WebAssembly
-    - <https://developers.google.com/web/updates/2018/08/wasm-av1>
+    - https://developers.google.com/web/updates/2018/08/wasm-av1
   - Emscripten's embind
-    - <https://developers.google.com/web/updates/2018/08/embind>
+    - https://developers.google.com/web/updates/2018/08/embind
   - New top-level HTTP Archive Report on Progressive Web Apps
-    - <https://medium.com/dev-channel/new-top-level-http-archive-report-on-progressive-web-apps-ba67f3084137>
+    - https://medium.com/dev-channel/new-top-level-http-archive-report-on-progressive-web-apps-ba67f3084137
   - Chromium Blog: Charting Browser Interoperability
-    - <https://blog.chromium.org/2018/08/charting-browser-interoperability.html>
+    - https://blog.chromium.org/2018/08/charting-browser-interoperability.html
     - API の実装状況を機械的に調べチャートにするプロジェクト
   - *Google Online Security Blog: Google Public DNS turns 8.8.8.8 years old*
-    - <https://security.googleblog.com/2018/08/google-public-dns-turns-8888-years-old.html>
-    - <https://blog.apnic.net/2018/08/14/passive-observations-of-a-large-dns-service/>
+    - https://security.googleblog.com/2018/08/google-public-dns-turns-8888-years-old.html
+    - https://blog.apnic.net/2018/08/14/passive-observations-of-a-large-dns-service/
     - 2009 年以来運用している最大の Public DNS 8.8.8.8 に関する知見
 
 
@@ -239,150 +239,150 @@ guest: [@myakura](https://twitter.com/myakura)
 - Stable: 61
 - Updates
   - These Weeks in Firefox: Issue 42
-    - <https://blog.nightly.mozilla.org/2018/08/15/these-weeks-in-firefox-issue-42/>
+    - https://blog.nightly.mozilla.org/2018/08/15/these-weeks-in-firefox-issue-42/
   - These Weeks in Firefox: Issue 43
-    - <https://blog.nightly.mozilla.org/2018/08/23/these-weeks-in-firefox-issue-43/>
+    - https://blog.nightly.mozilla.org/2018/08/23/these-weeks-in-firefox-issue-43/
     - Tracking Protection が Content Blocking に改称
   - These Weeks in Firefox: Issue 44
-    - <https://blog.nightly.mozilla.org/2018/08/29/these-weeks-in-firefox-issue-44/>
+    - https://blog.nightly.mozilla.org/2018/08/29/these-weeks-in-firefox-issue-44/
   - Extensions in Firefox 63 \| Mozilla Add-ons Blog
-    - <https://blog.mozilla.org/addons/2018/08/31/extensions-in-firefox-63/>
+    - https://blog.mozilla.org/addons/2018/08/31/extensions-in-firefox-63/
     - 拡張視点の記事だが、 Async Clipboard API やタブの複数選択など、 Firefox 63 で導入される機能に触れている
 - Intents
   - Ship MediaSource SourceBuffer.changeType
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Wr19mMZnC80/WEGHDqx5CQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Wr19mMZnC80/WEGHDqx5CQAJ
   - Ship '-webkit-appearance' and changes to '-moz-appearance' values
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/Fq6OH5SWeRo/lxHDXFnwCQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Fq6OH5SWeRo/lxHDXFnwCQAJ
     - `-webkit-appearance` しか指定しないサイトが多いので、 -moz-appearance のエイリアスにする
   - *Ship: Enable `navigator.clipboard.*` APIs by default*
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/ef7O7PrmNh0/qy8k9HDjCQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/ef7O7PrmNh0/qy8k9HDjCQAJ
     - Async Clipboard API が有効に
     - readText() は残念ながら拡張でしか使えない
     - Permission API との連携がされてないのが一因か
   - *Ship: Shadow DOM and Custom Elements*
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/RcanREo7hU0/TCS3Un6aBwAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/RcanREo7hU0/TCS3Un6aBwAJ
     - 63 からベータで入る
   - Implement and Ship: flow-relative values for resize property
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/MQph7NaIYmM/cViEVLg0BwAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/MQph7NaIYmM/cViEVLg0BwAJ
   - Implement: Motion Path Module Level 1
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/hWuUoeDVPQo/TNIspBwICQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/hWuUoeDVPQo/TNIspBwICQAJ
   - Implement: CSS property scrollbar-width
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/JhdWiVwgQeo/tSKKqatvCQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/JhdWiVwgQeo/tSKKqatvCQAJ
   - Implement: accept arbitrary webkit-prefixed pseudo-element in selectors
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/YU4jPJc6p6Y/CS-f2qeOAQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/YU4jPJc6p6Y/CS-f2qeOAQAJ
   - Implement: Suppress exception/error reporting when loading an unknown external protocol
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/0KgeG3058NY/EGuve2RWAQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/0KgeG3058NY/EGuve2RWAQAJ
   - Unship: `::-moz-tree` pseudo-elements.
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/gbzTmE4uvJk/P-oLOCb6CAAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/gbzTmE4uvJk/P-oLOCb6CAAJ
   - Unship: `overflow: -moz-scrollbars-*` values
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/rujif05uOTo/r3NDWnLPCQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/rujif05uOTo/r3NDWnLPCQAJ
   - Remove: isRemote member in WebRTC getStats() results
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/kqlQzADXbng/wFTTRtGlCQAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/kqlQzADXbng/wFTTRtGlCQAJ
   - Remove DHE ciphers from WebRTC DTLS handshake
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/XyQo24IO0oA/h5bfCqShAwAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/XyQo24IO0oA/h5bfCqShAwAJ
 - Site Compat
   - sidebar link type is no longer supported
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/sidebar-link-type-is-no-longer-supported/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/sidebar-link-type-is-no-longer-supported/
   - image-orientation property no longer accepts angle values
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/image-orientation-property-no-longer-accepts-angle-values/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/image-orientation-property-no-longer-accepts-angle-values/
   - `::-moz-tree` pseudo-elements have been deprecated
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/moz-tree-pseudo-elements-have-been-deprecated/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/moz-tree-pseudo-elements-have-been-deprecated/
   - `display:-moz-box` and `display:-moz-inline-box` have been deprecated
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/display-moz-box-and-display-moz-inline-box-have-been-deprecated/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/display-moz-box-and-display-moz-inline-box-have-been-deprecated/
   - RTCRTPStreamStats.isRemote has been deprecated
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/rtcrtpstreamstats-isremote-has-been-deprecated/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/rtcrtpstreamstats-isremote-has-been-deprecated/
   - window.event has been added for compatibility, but some browser detections are broken (Affecting)
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/window-event-has-been-added-for-compatibility-but-some-browser-detections-are-broken/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/window-event-has-been-added-for-compatibility-but-some-browser-detections-are-broken/
   - Several non-standard overflow property values have been dropped
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/several-non-standard-overflow-property-values-have-been-dropped/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/several-non-standard-overflow-property-values-have-been-dropped/
   - `URL.createObjectURL()` is no longer available in service workers
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/url-createobjecturl-is-no-longer-available-in-service-workers/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/url-createobjecturl-is-no-longer-available-in-service-workers/
   - navigator.platform now returns "Win32" even on 64-bit Firefox
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/navigator-platform-now-returns-win32-even-on-64-bit-firefox/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/navigator-platform-now-returns-win32-even-on-64-bit-firefox/
   - `offset-*` logical properties have been renamed to `inset-*`
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/offset-logical-properties-have-been-renamed-to-inset/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/offset-logical-properties-have-been-renamed-to-inset/
   - `getComputedStyle()` no longer returns null when style can't be retrieved
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/getcomputedstyle-no-longer-returns-null-when-style-can-t-be-retrieved/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/getcomputedstyle-no-longer-returns-null-when-style-can-t-be-retrieved/
   - Firefox-specific HTML editing UI has been deprecated
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/firefox-specific-html-editing-ui-has-been-deprecated/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/firefox-specific-html-editing-ui-has-been-deprecated/
   - overflow shorthand syntax has been updated to swap 2 values
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/overflow-shorthand-syntax-has-been-updated-to-swap-2-values/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/overflow-shorthand-syntax-has-been-updated-to-swap-2-values/
   - IndexedDB serialization support has been removed from WebAssembly.Module
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/indexeddb-serialization-support-has-been-removed-from-webassembly-module/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/indexeddb-serialization-support-has-been-removed-from-webassembly-module/
   - noopener option for window.open() no longer affects other window features
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/noopener-option-for-window-open-no-longer-affects-other-window-features/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/noopener-option-for-window-open-no-longer-affects-other-window-features/
   - Firefox 62 is shipping in 3 weeks with 2 known compatibility issues
-    - <https://www.fxsitecompat.com/en-CA/blog/2018/firefox-62-is-shipping-in-3-weeks-with-2-known-compatibility-issues/>
+    - https://www.fxsitecompat.com/en-CA/blog/2018/firefox-62-is-shipping-in-3-weeks-with-2-known-compatibility-issues/
   - Support for window.event and Event.returnValue has been added (Affecting)
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/support-for-window-event-and-event-returnvalue-has-been-added/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/support-for-window-event-and-event-returnvalue-has-been-added/
   - RTCRtpTransceiver.mid now returns media ID without prefix (Affecting)
-    - <https://www.fxsitecompat.com/en-CA/docs/2018/rtcrtptransceiver-mid-now-returns-media-id-without-prefix/>
+    - https://www.fxsitecompat.com/en-CA/docs/2018/rtcrtptransceiver-mid-now-returns-media-id-without-prefix/
 - Other
   - Prioritizing media documentation
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/EHrl0_u71yo/2VIe70a1CAAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/EHrl0_u71yo/2VIe70a1CAAJ
   - JS builds now depend on Rust
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/niTvFmnQqsc/dz__g_dSCAAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/niTvFmnQqsc/dz__g_dSCAAJ
   - Things Gateway 0.5 packed full of new features, including experimental smart assistant - Mozilla Hacks
-    - <https://hacks.mozilla.org/2018/08/things-gateway-0-5-features-experimental-smart-assistant/>
+    - https://hacks.mozilla.org/2018/08/things-gateway-0-5-features-experimental-smart-assistant/
   - Firefox Offers Recommendations with Latest Test Pilot Experiment: Advance - The Mozilla Blog
-    - <https://blog.mozilla.org/blog/2018/08/07/firefox-offers-recommendations-with-latest-test-pilot-experiment-advance/>
-    - <https://medium.com/firefox-test-pilot/advancing-the-web-f9fe7ca810ec>
+    - https://blog.mozilla.org/blog/2018/08/07/firefox-offers-recommendations-with-latest-test-pilot-experiment-advance/
+    - https://medium.com/firefox-test-pilot/advancing-the-web-f9fe7ca810ec
   - The Video Wars of 2027
-    - <https://hacks.mozilla.org/2018/08/the-video-wars-of-2027/>
+    - https://hacks.mozilla.org/2018/08/the-video-wars-of-2027/
   - AV1 and the Video Wars of 2027 - The Mozilla Blog
-    - <https://blog.mozilla.org/blog/2018/08/20/av1-and-the-video-wars-of-2027/>
+    - https://blog.mozilla.org/blog/2018/08/20/av1-and-the-video-wars-of-2027/
   - Dweb: Social Feeds with Secure Scuttlebutt
-    - <https://hacks.mozilla.org/2018/08/dweb-social-feeds-with-secure-scuttlebutt/>
+    - https://hacks.mozilla.org/2018/08/dweb-social-feeds-with-secure-scuttlebutt/
   - *Symantec Distrust in Firefox Nightly 63 - Firefox Nightly News*
-    - <https://blog.nightly.mozilla.org/2018/08/14/symantec-distrust-in-firefox-nightly-63/>
+    - https://blog.nightly.mozilla.org/2018/08/14/symantec-distrust-in-firefox-nightly-63/
     - Firefox 63
   - MDN Changelog for July 2018: CDN tests, Goodbye Zones, and BCD - Mozilla Hacks - the Web developer blog
-    - <https://hacks.mozilla.org/2018/08/mdn-changelog-for-july-2018-cdn-tests-goodbye-zones-and-bcd/>
+    - https://hacks.mozilla.org/2018/08/mdn-changelog-for-july-2018-cdn-tests-goodbye-zones-and-bcd/
     - Experimented with the CDN
     - Decommissioned zones
     - Converted compatibility data
     - Shipped tweaks and fixes by merging 307 pull requests, including 58 pull requests from 43 new contributors.
   - The short history of the "about:" URL
-    - <http://www.montulli.org/lou/about_urls>
+    - http://www.montulli.org/lou/about_urls
     - `about:` という URL ができた経緯
     - NN 時代にジョークで入れたものが継承され使われている
     - `about:blank` あたりから重要な機能が入っていく
   - *ungleich Blog - Mozilla's new DNS resolution is dangerous*
-    - <https://blog.ungleich.ch/en-us/cms/blog/2018/08/04/mozillas-new-dns-resolution-is-dangerous/>
+    - https://blog.ungleich.ch/en-us/cms/blog/2018/08/04/mozillas-new-dns-resolution-is-dangerous/
     - Firefox が実験中の DoH で、 TRR (Trusted Recursive Resolver) に(広く使われている) Cloudflare を使うのは SPOF になるよねという批判
     - システムの DNS 設定も上書きするのでデフォルトにするのはよくないとも
   - *Firefox Nightly Secure DNS Experimental Results*
-    - <https://blog.nightly.mozilla.org/2018/08/28/firefox-nightly-secure-dns-experimental-results/>
+    - https://blog.nightly.mozilla.org/2018/08/28/firefox-nightly-secure-dns-experimental-results/
     - query は 6ms くらい遅くなる
     - もともと速い DNS はそのまま
     - 遅い 20% の DNS は速くなる
   - *1484006 - Sites getting MOZILLA_PKIX_ERROR_ADDITIONAL_POLICY_CONSTRAINT_FAILED errors in Firefox 63 due to Symantec distrust enforcement*
-    - <https://bugzilla.mozilla.org/show_bug.cgi?id=1484006>
+    - https://bugzilla.mozilla.org/show_bug.cgi?id=1484006
     - Symantec distrust で見られなくなっているサイトを報告する場所
   - *Changing Our Approach to Anti-tracking - Future Releases*
-    - <https://blog.mozilla.org/futurereleases/2018/08/30/changing-our-approach-to-anti-tracking/>
+    - https://blog.mozilla.org/futurereleases/2018/08/30/changing-our-approach-to-anti-tracking/
     - 遅いトラッキングスクリプト、サードパーティのトラッキングスクリプト、クリプトマイナーなどをデフォルトでブロックする方針に
     - 試験中。早ければ遅いトラッキングスクリプトのブロックが Firefox 63 、サードパーティのトラッキングスクリプトのブロックが Firefox 65 から
   - Let's be Transparent - The Mozilla Blog
-    - <https://blog.mozilla.org/blog/2018/08/28/lets-be-transparent/>
+    - https://blog.mozilla.org/blog/2018/08/28/lets-be-transparent/
     - Telemetry で得られたデータをグラフ化、 Firefox Hardware Report の後継となる Firefox Public Data Report を公開
-    - <https://data.firefox.com/>
+    - https://data.firefox.com/
   - Bug 1471947, bug 1471948 - Enable Shadow DOM and Custom Elements in release builds, r=ehsan, emilio
-    - <https://hg.mozilla.org/integration/mozilla-inbound/rev/16daef3a89a2>
+    - https://hg.mozilla.org/integration/mozilla-inbound/rev/16daef3a89a2
     - Shadow DOM と Custom Elements が Firefox 63 で ship
   - *Bug 1469019 - Object.fromEntries. r=evilpie, r=peterv*
-    - <https://hg.mozilla.org/integration/mozilla-inbound/rev/ed3c662bb21d>
+    - https://hg.mozilla.org/integration/mozilla-inbound/rev/ed3c662bb21d
   - Password managers: Please make sure AutoFill is secure!
-    - <https://palant.de/2018/08/29/password-managers-please-make-sure-autofill-is-secure>
+    - https://palant.de/2018/08/29/password-managers-please-make-sure-autofill-is-secure
   - Dweb:IPFS による Web への協力と信頼の構築
-    - <https://hacks.mozilla.org/2018/08/dweb-building-cooperation-and-trust-into-the-web-with-ipfs/>
+    - https://hacks.mozilla.org/2018/08/dweb-building-cooperation-and-trust-into-the-web-with-ipfs/
 
 
 ### Safari 動向
 
 - Stable: 11.1.2
 - Release Notes for Safari Technology Preview 64
-  - <https://webkit.org/blog/8406/release-notes-for-safari-technology-preview-64/>
+  - https://webkit.org/blog/8406/release-notes-for-safari-technology-preview-64/
   - Added support for a "name" option for dedicated workers (r235159)
   - Changed to use eTLD+1s, not full host names, when granting storage access (r235145)
   - A user gesture, such as a mouse click, is now required to request the user's permission to send Safari Push Notifications
@@ -391,61 +391,61 @@ guest: [@myakura](https://twitter.com/myakura)
   - *Allowed videos served from youtube-nocookie.com to display and play in Safari Reader*
     - 本家のやってる cookie なし埋め込み用のドメイン
 - Release Notes for Safari Technology Preview 63
-  - <https://webkit.org/blog/8403/release-notes-for-safari-technology-preview-63/>
+  - https://webkit.org/blog/8403/release-notes-for-safari-technology-preview-63/
   - customElements.upgrade()
   - xlink-less href on SVG elements
 - Release Notes for Safari Technology Preview 62
-  - <https://webkit.org/blog/8384/release-notes-for-safari-technology-preview-62/>
+  - https://webkit.org/blog/8384/release-notes-for-safari-technology-preview-62/
   - *Added an experimental ITP Debug Mode*
   - Added support for calc() in CSS Grid gutter properties
   - etc
 - Other
   - ITP Debug Mode in Safari Technology Preview 62
-    - <https://webkit.org/blog/8387/itp-debug-mode-in-safari-technology-preview-62/>
+    - https://webkit.org/blog/8387/itp-debug-mode-in-safari-technology-preview-62/
   - Changeset 235480 - WebKit - Add a runtime flag for WebRTC unified plan
-    - <https://trac.webkit.org/changeset/235480/webkit>
+    - https://trac.webkit.org/changeset/235480/webkit
     - WebKit でも Unified Plan 対応の流れ
   - Changeset 235589 - WebKit - Implement Object.fromEntries
-    - <https://trac.webkit.org/changeset/235589/webkit>
+    - https://trac.webkit.org/changeset/235589/webkit
     - Stage 3 になった Object.fromEntries() を実装
   - *Chrome の人が Intersection Observer を実装中*
-    - <https://trac.webkit.org/changeset/235459/webkit> ほか
-    - <https://lists.webkit.org/pipermail/webkit-dev/2018-July/030060.html> にて実装したい旨を表明していた
+    - https://trac.webkit.org/changeset/235459/webkit ほか
+    - https://lists.webkit.org/pipermail/webkit-dev/2018-July/030060.html にて実装したい旨を表明していた
 
 
 ### Edge 動向
 
 - Stable: Microsoft Edge 42 / Edge EdgeHTML17
 - Status Updates
-  - <https://github.com/MicrosoftEdge/Status/compare/production@{2018-08-01}...production@{2018-09-01}>
+  - https://github.com/MicrosoftEdge/Status/compare/production@{2018-08-01}...production@{2018-09-01}
   - generic sensor api 系が under consideration で追加された
 - EdgeHTML
-  - <https://aka.ms/devguide_edgehtml_17>
+  - https://aka.ms/devguide_edgehtml_17
 - Build Changelog
-  - <https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/>
+  - https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/
   - 全然なし
 - Chakra
   - Release ChakraCore v1.10.2 · Microsoft/ChakraCore
-    - <https://github.com/Microsoft/ChakraCore/releases/tag/v1.10.2>
+    - https://github.com/Microsoft/ChakraCore/releases/tag/v1.10.2
   - Release ChakraCore v1.11.0 · Microsoft/ChakraCore
-    - <https://github.com/Microsoft/ChakraCore/releases/tag/v1.11.0>
+    - https://github.com/Microsoft/ChakraCore/releases/tag/v1.11.0
 - Other
   - Announcing Windows 10 Insider Preview Build 17730 - Windows Experience Blog
-    - <https://blogs.windows.com/windowsexperience/2018/08/03/announcing-windows-10-insider-preview-build-17730/>
+    - https://blogs.windows.com/windowsexperience/2018/08/03/announcing-windows-10-insider-preview-build-17730/
   - Announcing Windows 10 Insider Preview Build 17738 - Windows Experience Blog
-    - <https://blogs.windows.com/windowsexperience/2018/08/14/announcing-windows-10-insider-preview-build-17738/#LtATStahTxSSx6iV.97>
+    - https://blogs.windows.com/windowsexperience/2018/08/14/announcing-windows-10-insider-preview-build-17738/#LtATStahTxSSx6iV.97
   - Announcing Windows 10 Insider Preview Build 18214 - Windows Experience Blog
-    - <https://blogs.windows.com/windowsexperience/2018/08/10/announcing-windows-10-insider-preview-build-18214/#Lsl45LRlYsQyE0Ug.97>
+    - https://blogs.windows.com/windowsexperience/2018/08/10/announcing-windows-10-insider-preview-build-18214/#Lsl45LRlYsQyE0Ug.97
     - Windows 10 Microsoft Edge clients will take advantage of connection coalescing for HTTP/2 as supported in Windows Server 2019
     - Improved security on Microsoft Edge browsers by guaranteeing HTTP/2 preferred cipher suites
     - Improved performance on Windows 10 thanks to Cubic, the new default TCP congestion provider
   - Announcing Windows Server 2019 Insider Preview Build 17733 - Windows Experience Blog
-    - <https://blogs.windows.com/windowsexperience/2018/08/14/announcing-windows-server-2019-insider-preview-build-17733/>
+    - https://blogs.windows.com/windowsexperience/2018/08/14/announcing-windows-server-2019-insider-preview-build-17733/
     - Microsoft Edge on Windows 10 clients taking advantage of connection coalescing for HTTP/2, as supported by Windows Server 2019.
     - Improved security in Microsoft Edge browsers due to guaranteeing HTTP/2 preferred cipher suites.
     - Improved performance on Windows 10 due to Cubic, the new default TCP congestion provider.
   - 2018 年 8 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました - Japan IE Support Team Blog
-    - <https://blogs.technet.microsoft.com/jpieblog/2018/08/15/securityupdate201808/>
+    - https://blogs.technet.microsoft.com/jpieblog/2018/08/15/securityupdate201808/
 
 
 ### WHATWG/W3C 動向
@@ -453,194 +453,194 @@ guest: [@myakura](https://twitter.com/myakura)
 - Recommendation
 - Proposed Recommendation
   - Call for Review: CSS Fonts Module Level 3
-    - <https://www.w3.org/blog/news/archives/7241>
+    - https://www.w3.org/blog/news/archives/7241
 - Candidate Recommendation
   - *Scalable Vector Graphics (SVG) 2*
-    - <https://www.w3.org/blog/news/archives/7225>
-    - <https://www.w3.org/TR/2018/CR-SVG2-20180807/>
+    - https://www.w3.org/blog/news/archives/7225
+    - https://www.w3.org/TR/2018/CR-SVG2-20180807/
   - *Web Authentication: An API for accessing Public Key Credentials Level 1*
-    - <https://www.w3.org/blog/news/archives/7223>
+    - https://www.w3.org/blog/news/archives/7223
   - *CSS Painting API Level 1*
-    - <https://www.w3.org/blog/news/archives/7234>
-    - <https://www.w3.org/TR/2018/CR-css-paint-api-1-20180809/>
+    - https://www.w3.org/blog/news/archives/7234
+    - https://www.w3.org/TR/2018/CR-css-paint-api-1-20180809/
   - Timed Text Markup Language 1 (TTML1) (Third Edition)
-    - <https://www.w3.org/blog/news/archives/7231>
+    - https://www.w3.org/blog/news/archives/7231
   - CSS Scroll Snap Module Level 1
-    - <https://lists.w3.org/Archives/Public/www-style/2018Aug/0016.html>
-    - <https://www.w3.org/TR/2018/CR-css-scroll-snap-1-20180814/>
+    - https://lists.w3.org/Archives/Public/www-style/2018Aug/0016.html
+    - https://www.w3.org/TR/2018/CR-css-scroll-snap-1-20180814/
   - CSS Values and Units Module Level 3
-    - <https://lists.w3.org/Archives/Public/www-style/2018Aug/0013.html>
-    - <https://www.w3.org/TR/2018/CR-css-values-3-20180814/>
+    - https://lists.w3.org/Archives/Public/www-style/2018Aug/0013.html
+    - https://www.w3.org/TR/2018/CR-css-values-3-20180814/
   - Timed Text Markup Language 2 (TTML2)
-    - <https://www.w3.org/blog/news/archives/7243>
+    - https://www.w3.org/blog/news/archives/7243
   - CSS Display Module Level 3
-    - <https://www.w3.org/blog/news/archives/7265>
-    - <https://www.w3.org/TR/2018/CR-css-display-3-20180828/>
+    - https://www.w3.org/blog/news/archives/7265
+    - https://www.w3.org/TR/2018/CR-css-display-3-20180828/
   - CSS Cascading and Inheritance Level 3; Level 4
-    - <https://www.w3.org/blog/news/archives/7262>
-    - <https://www.w3.org/TR/2018/CR-css-cascade-3-20180828/>
-    - <https://www.w3.org/TR/2018/CR-css-cascade-4-20180828/>
+    - https://www.w3.org/blog/news/archives/7262
+    - https://www.w3.org/TR/2018/CR-css-cascade-3-20180828/
+    - https://www.w3.org/TR/2018/CR-css-cascade-4-20180828/
 - Working Draft
   - CSS Logical Properties and Values Level 1
-    - <https://www.w3.org/blog/CSS/2018/08/27/css-logical-1-wd-updated/>
-    - <https://www.w3.org/TR/2018/WD-css-logical-1-20180827/>
+    - https://www.w3.org/blog/CSS/2018/08/27/css-logical-1-wd-updated/
+    - https://www.w3.org/TR/2018/WD-css-logical-1-20180827/
   - CSS Box Model Level 3
-    - <https://www.w3.org/blog/CSS/2018/08/09/css-box-3-rescoped/>
-    - <https://www.w3.org/TR/2018/WD-css-box-3-20180809/>
+    - https://www.w3.org/blog/CSS/2018/08/09/css-box-3-rescoped/
+    - https://www.w3.org/TR/2018/WD-css-box-3-20180809/
     - CSS2 の margin, padding の定義をもってきて、用語だけ Level 3 にあわせたドラフト
 - First Public Working Draft
   - CSS Values and Units Level 4 FPWD
-    - <https://lists.w3.org/Archives/Public/www-style/2018Aug/0014.html>
-    - <https://www.w3.org/TR/2018/WD-css-values-4-20180814/>
+    - https://lists.w3.org/Archives/Public/www-style/2018Aug/0014.html
+    - https://www.w3.org/TR/2018/WD-css-values-4-20180814/
   - Geolocation Sensor
-    - <https://www.w3.org/blog/news/archives/7259>
+    - https://www.w3.org/blog/news/archives/7259
 - Chartering (Working Group, Bussiness Group, etc)
   - Immersive Web Working Group
-    - <https://lists.w3.org/Archives/Public/public-new-work/2018Aug/0006.html>
+    - https://lists.w3.org/Archives/Public/public-new-work/2018Aug/0006.html
 - Chartering (Community Group)
   - Interlinear Text Layout Community Group created
-    - <https://lists.w3.org/Archives/Public/public-new-work/2018Aug/0007.html>
+    - https://lists.w3.org/Archives/Public/public-new-work/2018Aug/0007.html
   - Positive Workforce Environment Community Group created
-    - <https://lists.w3.org/Archives/Public/public-new-work/2018Aug/0010.html>
+    - https://lists.w3.org/Archives/Public/public-new-work/2018Aug/0010.html
 - Other
   - *New version of the Roadmap of Web Applications on Mobile*
-    - <https://www.w3.org/blog/news/archives/7227>
+    - https://www.w3.org/blog/news/archives/7227
   - *How to define APIs only for custom element authors · Issue #758 · w3c/webcomponents*
-    - <https://github.com/w3c/webcomponents/issues/758>
+    - https://github.com/w3c/webcomponents/issues/758
   - CSS Modules · Issue #759 · w3c/webcomponents
-    - <https://github.com/w3c/webcomponents/issues/759>
+    - https://github.com/w3c/webcomponents/issues/759
   - API for hinting translation to native UA component - dtapuska/html-translate
-    - <https://github.com/dtapuska/html-translate>
-    - <https://github.com/whatwg/html/pull/3870>
+    - https://github.com/dtapuska/html-translate
+    - https://github.com/whatwg/html/pull/3870
   - Setting up constants via proxies
-    - <http://2ality.com/2018/08/enums-via-proxies.html>
+    - http://2ality.com/2018/08/enums-via-proxies.html
     - Proxy API で const (enum) を実現する方法
   - *Cookie controls? from Yoav Weiss*
-    - <https://lists.w3.org/Archives/Public/public-webappsec/2018Aug/0015.html>
+    - https://lists.w3.org/Archives/Public/public-webappsec/2018Aug/0015.html
     - また Cookie の話
   - Anne van Kesteren on Twitter: "Apparently there's quite a bit of demand for a more ergonomic way to set a URL's query with fetch(). Appreciate feedback on naming, replacing or appending to the existing query, etc."
-    - <https://twitter.com/annevk/status/1031824798312218624>
+    - https://twitter.com/annevk/status/1031824798312218624
     - `fetch()` でクエリーを渡すのにもっと書きやすい方法が求められているらしい
 
 
 ### TC39 動向
 
 - Meeting
-  - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-07/july-24.md>
-  - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-07/july-25.md>
-  - <https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-07/july-26.md>
+  - https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-07/july-24.md
+  - https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-07/july-25.md
+  - https://github.com/rwaldron/tc39-notes/blob/master/es9/2018-07/july-26.md
 - Proposals Diff
-  - <https://github.com/tc39/proposals/compare/master@{2018-08-01}...master@{2018-09-01}>
+  - https://github.com/tc39/proposals/compare/master@{2018-08-01}...master@{2018-09-01}
   - 0->1
   - 1->2
   - 2->3
   - 3->4
 - New Proposals
   - Cancellation - July 2018
-    - <https://docs.google.com/presentation/d/19M7OkW8fr-HBYzgQRDSX77Pn4WmGh_5gPnBV38N3x08/edit>
+    - https://docs.google.com/presentation/d/19M7OkW8fr-HBYzgQRDSX77Pn4WmGh_5gPnBV38N3x08/edit
     - AbortSignal ベースのキャンセルを ECMAScript に持ってくるための現状
     - EventTarget に依存しているため簡単にはいかなそう
   - Optional Chaining for JavaScript
-    - <https://github.com/tc39/proposal-optional-chaining>
+    - https://github.com/tc39/proposal-optional-chaining
     - `var street = user.address?.street`
     - `var fooValue = myForm.querySelector('input[name=foo]')?.value`
 - Other
   - Eich and Crockford on the Future of JavaScript: Insight from the Creators of JavaScript and JSON
     - Eich 氏と Crockford 氏による将来の JavaScript: JavaScript と JSON の作成者による洞察
-    - <https://www.infoq.com/jp/news/2018/08/eich-crockford-js-future>
+    - https://www.infoq.com/jp/news/2018/08/eich-crockford-js-future
   - Harmony Day: Ten yours ago today @BrendanEich announced that TC39 was terminating work on ES4 and starting work on ECMAScript Harmony
-    - <https://twitter.com/awbjs/status/1029057495808000001>
+    - https://twitter.com/awbjs/status/1029057495808000001
     - ES4 をやめ、 ES 3.1(のちの ES5)をまずやり、大きな機能追加はその後やるという Harmony の方針が決まって 10 年たった
-      - <https://mail.mozilla.org/pipermail/es-discuss/2008-August/006837.html>
+      - https://mail.mozilla.org/pipermail/es-discuss/2008-August/006837.html
 
 
 ### IETF 動向
 
 - TLS1.3
   - RFC 8446 - The Transport Layer Security (TLS) Protocol Version 1.3
-    - <https://tools.ietf.org/html/rfc8446>
+    - https://tools.ietf.org/html/rfc8446
   - RFC 8447 - IANA Registry Updates for Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)
-    - <https://tools.ietf.org/html/rfc8447>
+    - https://tools.ietf.org/html/rfc8447
   - RFC 8449 - Record Size Limit Extension for TLS
-    - <https://tools.ietf.org/html/rfc8449>
+    - https://tools.ietf.org/html/rfc8449
   - *TLS 1.3 Published: in Firefox Today*
-    - <https://blog.mozilla.org/security/2018/08/13/tls-1-3-published-in-firefox-today/>
+    - https://blog.mozilla.org/security/2018/08/13/tls-1-3-published-in-firefox-today/
   - A Detailed Look at RFC 8446 (a.k.a. TLS 1.3)
-    - <https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/>
+    - https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/
   - *Deploying TLS 1.3 at scale with Fizz, a performant open source TLS library - Facebook Code*
-    - <https://code.fb.com/networking-traffic/deploying-tls-1-3-at-scale-with-fizz-a-performant-open-source-tls-library/>
+    - https://code.fb.com/networking-traffic/deploying-tls-1-3-at-scale-with-fizz-a-performant-open-source-tls-library/
     - Facebook 製 TLS ライブラリ Fizz がオープンソースに
     - モバイルアプリですでに使用中、 50% 以上のトラフィックが TLS 1.3
     - 1 秒に百万単位で TLS 1.3 ハンドシェイクが行われている
 - RFC
   - RFC 8410 - Algorithm Identifiers for Ed25519, Ed448, X25519, and X448 for Use in the Internet X.509 Public Key Infrastructure
-    - <https://tools.ietf.org/html/rfc8410>
+    - https://tools.ietf.org/html/rfc8410
   - RFC 8418 - Use of the Elliptic Curve Diffie-Hellman Key Agreement Algorithm with X25519 and X448 in the Cryptographic Message Syntax (CMS)
-    - <https://tools.ietf.org/html/rfc8418>
+    - https://tools.ietf.org/html/rfc8418
   - RFC 8419 - Use of Edwards-Curve Digital Signature Algorithm (EdDSA) Signatures in the Cryptographic Message Syntax (CMS)
-    - <https://tools.ietf.org/html/rfc8419>
+    - https://tools.ietf.org/html/rfc8419
   - RFC 8420 - Using the Edwards-Curve Digital Signature Algorithm (EdDSA) in the Internet Key Exchange Protocol Version 2 (IKEv2)
-    - <https://tools.ietf.org/html/rfc8420>
+    - https://tools.ietf.org/html/rfc8420
   - RFC 8422 - Elliptic Curve Cryptography (ECC) Cipher Suites for Transport Layer Security (TLS) Versions 1.2 and Earlier
-    - <https://tools.ietf.org/html/rfc8422>
+    - https://tools.ietf.org/html/rfc8422
 - IETF Last Call
 - WG Last Call
 - Call for Adoption
 - I-D Action
 - Draft
   - Resource Indicators for OAuth 2.0
-    - <https://tools.ietf.org/html/draft-ietf-oauth-resource-indicators-00>
+    - https://tools.ietf.org/html/draft-ietf-oauth-resource-indicators-00
   - Security for 5G
-    - <https://tools.ietf.org/html/draft-naresh-kitten-security-for-5g-00>
+    - https://tools.ietf.org/html/draft-naresh-kitten-security-for-5g-00
   - The Multihash Data Format
-    - <https://tools.ietf.org/html/draft-multiformats-multihash-00>
+    - https://tools.ietf.org/html/draft-multiformats-multihash-00
   - CDN Loop Prevention
-    - <https://tools.ietf.org/html/draft-ietf-httpbis-cdn-loop-00>
+    - https://tools.ietf.org/html/draft-ietf-httpbis-cdn-loop-00
     - httpbis の WG ドラフトに
   - *The secret-token URI Scheme*
-    - <https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00>
+    - https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00
     - Cookie を再設計したい
   - Client Application Layer Encryption
-    - <https://tools.ietf.org/html/draft-deutch-lamps-client-app-encrypt-00>
+    - https://tools.ietf.org/html/draft-deutch-lamps-client-app-encrypt-00
   - Associating a DoH Server with a Resolver
-    - <https://tools.ietf.org/html/draft-hoffman-resolver-associated-doh-00>
+    - https://tools.ietf.org/html/draft-hoffman-resolver-associated-doh-00
   - CBOR Object Signing and Encryption (COSE) - Structures and Process
-    - <https://tools.ietf.org/html/draft-schaad-cose-rfc8152bis-struct-00>
+    - https://tools.ietf.org/html/draft-schaad-cose-rfc8152bis-struct-00
 - Other
   - *Incrementally better HTTP state management.*
     - Cookie の代替の草案
     - Origin と別のスコープであることの改善など
-    - <https://github.com/mikewest/http-state-tokens>
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0184.html>
+    - https://github.com/mikewest/http-state-tokens
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0184.html
   - *In defense of PUSH*
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0294.html>
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0291.html>
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0294.html
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0291.html
     - HTTP2 Push みんな使ってないしいらないんじゃね?って話が出てる
     - そこに対して、ユースケースなどを持ち出し擁護するスレッドがちらほら
   - Dictionary Compression for HTTP (at Facebook)
-    - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0284.html>
+    - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0284.html
 
 
 ### セキュリティ動向
 
 - Introducing Web Security Analytics
-  - <https://blogs.akamai.com/2018/04/introducing-web-security-analytics.html>
+  - https://blogs.akamai.com/2018/04/introducing-web-security-analytics.html
 - Vulnerability Note VU#962459 - TCP implementations vulnerable to Denial of Service
   - Linux カーネル実装の脆弱性により、重い処理を意図して呼び出す DOS の可能性
-  - <https://www.kb.cert.org/vuls/id/962459>
-  - <https://www.fastly.com/blog/segmentsmack-response>
+  - https://www.kb.cert.org/vuls/id/962459
+  - https://www.fastly.com/blog/segmentsmack-response
   - Fastly の対応済みレポート、元 Google で QUIC やってる Jana Iyengar
 - Enable Private DNS with 1.1.1.1 on Android 9 Pie
-  - <https://blog.cloudflare.com/enable-private-dns-with-1-1-1-1-on-android-9-pie/>
+  - https://blog.cloudflare.com/enable-private-dns-with-1-1-1-1-on-android-9-pie/
   - Android Pie (9.0) でついに DNS の設定が可能になる
   - DNS over TLS をサポートしているので、 1.1.1.1 を設定する手順を紹介
 - Practical Web Cache Poisoning
-  - <https://portswigger.net/blog/practical-web-cache-poisoning>
+  - https://portswigger.net/blog/practical-web-cache-poisoning
   - cache poisoning の攻撃パターン
 - Cache Poisoning Leveraging Various X-Headers
-  - <https://www.fastly.com/security-advisories/cache-poisoning-leveraging-various-x-headers>
+  - https://www.fastly.com/security-advisories/cache-poisoning-leveraging-various-x-headers
 - Let's Encrypt Root Trusted By All Major Root Programs
-  - <https://letsencrypt.org/2018/08/06/trusted-by-all-major-root-programs.html>
+  - https://letsencrypt.org/2018/08/06/trusted-by-all-major-root-programs.html
   - Google, Apple, Mozilla, Oracle, Blackberry に加え Microsoft でも信頼された
   - 直接信頼がよりメジャーになるには少なくとも 5 年の更新サイクルは必要という見積もり
   - 引き続き IdenTrust のクロスルートを続ける
@@ -649,32 +649,32 @@ guest: [@myakura](https://twitter.com/myakura)
 ### 周辺動向
 
 - Top web browsers 2018: IE, Edge and Firefox return to the road of ruin \| Computerworld
-  - <https://www.computerworld.com/article/3199425/web-browsers/top-web-browsers-2018-ie-edge-and-firefox-return-to-the-road-of-ruin.html>
+  - https://www.computerworld.com/article/3199425/web-browsers/top-web-browsers-2018-ie-edge-and-firefox-return-to-the-road-of-ruin.html
 - PWA: Progressive Web All-the-things - Tales of a Developer Advocate by Paul Kinlan
-  - <https://paul.kinlan.me/pwa-progressive-web-all-the-things/>
+  - https://paul.kinlan.me/pwa-progressive-web-all-the-things/
   - PWA とは何かを今一度問い直す話
 - dev.to is now open source - DEV Community
-  - <https://dev.to/ben/devto-is-now-open-source-5n1>
+  - https://dev.to/ben/devto-is-now-open-source-5n1
 - The Future of JavaScript- 2018 and Beyond - Progress
-  - <https://www.telerik.com/campaigns/kendo-ui/wp-javascript-future-2018>
+  - https://www.telerik.com/campaigns/kendo-ui/wp-javascript-future-2018
 - Google AMP - A 70% drop in our conversion rate. - The Set List - Medium
-  - <https://medium.com/the-set-list/google-amp-a-70-drop-in-our-conversion-rate-35fe3cb69c59>
+  - https://medium.com/the-set-list/google-amp-a-70-drop-in-our-conversion-rate-35fe3cb69c59
 - WebAssembly: How and why - LogRocket
-  - <https://blog.logrocket.com/webassembly-how-and-why-559b7f96cd71>
+  - https://blog.logrocket.com/webassembly-how-and-why-559b7f96cd71
   - WASM のガイド
 - *WorkerDOM: Concurrency for JavaScript programming with the DOM - Accelerated Mobile Pages Project*
-  - <https://amphtml.wordpress.com/2018/08/21/workerdom/>
-  - <https://github.com/ampproject/worker-dom>
+  - https://amphtml.wordpress.com/2018/08/21/workerdom/
+  - https://github.com/ampproject/worker-dom
 - 24-core CPU and I can't type an email (part one) \| Random ASCII
-  - <https://randomascii.wordpress.com/2018/08/16/24-core-cpu-and-i-cant-type-an-email-part-one/>
-  - <https://gigazine.net/news/20180825-google-engineer-fix-chrome-hang/>
+  - https://randomascii.wordpress.com/2018/08/16/24-core-cpu-and-i-cant-type-an-email-part-one/
+  - https://gigazine.net/news/20180825-google-engineer-fix-chrome-hang/
   - Gmail で Chrome がフリーズした現象のデバッグ記録
   - SW が起動停止を繰り返す際に解放されないメモリが溜まった模様
 - *Useless CSP*
-  - <https://uselesscsp.com/>
+  - https://uselesscsp.com/
   - メジャーなサイトのダメな CSP を紹介
 - Are you leaving revenue on the table with AMP? - Accelerated Mobile Pages Project
-  - <https://amphtml.wordpress.com/2018/08/28/are-you-leaving-revenue-on-the-table-with-amp/>
+  - https://amphtml.wordpress.com/2018/08/28/are-you-leaving-revenue-on-the-table-with-amp/
   - AMP の ad において気をつけること
 
 
@@ -682,19 +682,19 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - 9 月
   - 18-19: W3C Digital Publication Layout and Presentation (from Manga to Magazines)
-    - <https://www.w3.org/blog/news/archives/7124>
+    - https://www.w3.org/blog/news/archives/7124
   - 24-28: Microsoft Ignite 2018
-    - <https://www.microsoft.com/en-us/ignite>
+    - https://www.microsoft.com/en-us/ignite
   - 25-26: AMP Contributor Summit
-    - <https://amphtml.wordpress.com/2018/06/28/announcing-the-amp-contributor-summit/>
+    - https://amphtml.wordpress.com/2018/06/28/announcing-the-amp-contributor-summit/
   - 26-27: W3C Workshop on Permissions and User Consent
-    - <https://www.w3.org/Privacy/permissions-ws-2018/cfp.html>
+    - https://www.w3.org/Privacy/permissions-ws-2018/cfp.html
 - 10 月
   - 12: WebKit Contributors Meeting
-    - <https://www.webkit.org/meeting/>
+    - https://www.webkit.org/meeting/
   - 22-26: TPAC 2018 Lyon
-    - <https://www.w3.org/2018/10/TPAC/Overview.html>
-    - <https://www.w3.org/2018/10/TPAC/schedule.html>
+    - https://www.w3.org/2018/10/TPAC/Overview.html
+    - https://www.w3.org/2018/10/TPAC/schedule.html
 - 11 月
   - 12-14: Chrome Dev Summit
-    - <https://developer.chrome.com/devsummit/>
+    - https://developer.chrome.com/devsummit/

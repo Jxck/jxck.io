@@ -164,24 +164,24 @@ guest: [@myakura](https://twitter.com/myakura)
   - 「標準化ってぶっちゃけどう思う?」 by littledan
 - TC39
   - A Homepage for the JavaScript Specification
-    - <https://tc39.github.io/>
+    - https://tc39.github.io/
 - IETF
   - RFC 8555 - Automatic Certificate Management Environment (ACME)
 - Security
   - Coinhive
-    - <https://twitter.com/moro_is/status/1110748839831470081>
+    - https://twitter.com/moro_is/status/1110748839831470081
     - 無罪判決
     - Coinhive 自体も 3 月で終了
   - #alertloop
-    - <https://www.hacker.or.jp/>
+    - https://www.hacker.or.jp/
     - 一般社団法人日本ハッカー協会で寄付を募り 6,934,471 円の寄付を集めた
     - 法的支援や転職支援を行う協会の会員有志が始めた
 - Other
   - OpenJS Foundation
-    - <https://openjsf.org/>
+    - https://openjsf.org/
   - NGINX to Join F5: Proud to Finish One Chapter and Excited to Start the Next - NGINX
-    - <https://www.nginx.com/blog/nginx-joins-f5/>
-    - <https://www.publickey1.jp/blog/19/nginxf5f5nginx.html>
+    - https://www.nginx.com/blog/nginx-joins-f5/
+    - https://www.publickey1.jp/blog/19/nginxf5f5nginx.html
 
 
 ### 4 月
@@ -192,32 +192,32 @@ guest: [@myakura](https://twitter.com/myakura)
   - BlinkOn10
     - New Speed Metrics (Layout Stability, LCP etc)
   - AMP Conf 2019
-    - <https://amp.dev/ja/events/amp-conf-2019/>
+    - https://amp.dev/ja/events/amp-conf-2019/
   - Ship: Lazyload
   - Implement and Ship : Support "noreferrer" for window.open()
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/K8_-u7mK688/rK7FrIOLBQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/K8_-u7mK688/rK7FrIOLBQAJ
   - 日付系 input の元号に令和追加
   - isInputPending: Facebook's first browser API contribution - Facebook Code
   - Announcing AMP Real URL
 - Firefox
   - Reducing Notification Permission Prompt Spam in Firefox
-    - <https://blog.nightly.mozilla.org/2019/04/01/reducing-notification-permission-prompt-spam-in-firefox/>
+    - https://blog.nightly.mozilla.org/2019/04/01/reducing-notification-permission-prompt-spam-in-firefox/
     - Web Push のプロンプトについて 2018 年 12 月 25 日からひと月調査した
     - 1800 万以上のプロンプトが表示され、許可されたのが 3% 未満、表示されたら即離脱したケースが 19% も
     - カメラの許可が 85% 以上なので、これは多すぎる
     - 4 月の 1 ヶ月間、 Nightly でユーザージェスチャーのないプロンプトを拒否する実験をする
     - リリース版においても、プロンプトに関する情報を限定的に集めるとも
   - Implement and Ship: Support "noreferrer" feature for window.open()
-    - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/eTt1nd1Ia_Y/x-8JIf2TCwAJ>
+    - https://groups.google.com/forum/#!msg/mozilla.dev.platform/eTt1nd1Ia_Y/x-8JIf2TCwAJ
   - Standardizing WASI: A system interface to run WebAssembly outside the web
-    - <https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/>
+    - https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/
 - Safari
   - New WebKit Features in Safari 12.1
     - TP59-76
   - TP80
     - Added support for "noreferrer" window feature to window.open() (r243705)
   - Intelligent Tracking Prevention 2.2
-    - <https://webkit.org/blog/8828/intelligent-tracking-prevention-2-2/>
+    - https://webkit.org/blog/8828/intelligent-tracking-prevention-2-2/
     - QueryParameter でトラッキングしているっぽい場合
     - JS で付与された Cookie は 1 日で消える
     - (2.1 では document.cookie は 7 日になった)
@@ -241,29 +241,29 @@ guest: [@myakura](https://twitter.com/myakura)
   - smooshgate の反省とアップデート (flattern)
 - IETF
   - (Joke) RFC 8565 - Hypertext Jeopardy Protocol
-    - <https://tools.ietf.org/html/rfc8565>
+    - https://tools.ietf.org/html/rfc8565
   - RFC 8586 - Loop Detection in Content Delivery Networks (CDNs)
-    - <https://tools.ietf.org/html/rfc8586>
+    - https://tools.ietf.org/html/rfc8586
   - HTTP State Tokens
-    - <https://tools.ietf.org/html/draft-west-http-state-tokens-00>
+    - https://tools.ietf.org/html/draft-west-http-state-tokens-00
   - The QUIC Loss Bits
-    - <https://tools.ietf.org/html/draft-ferrieux-hamchaoui-quic-lossbits-00>
+    - https://tools.ietf.org/html/draft-ferrieux-hamchaoui-quic-lossbits-00
   - HTTP Testing Resources - httpwg/wiki Wiki
-    - <https://github.com/httpwg/wiki/wiki/HTTP-Testing-Resources>
+    - https://github.com/httpwg/wiki/wiki/HTTP-Testing-Resources
   - コインハイブ事件のご報告とこれからのこと
-    - <https://note.mu/morois/n/n7210db925aa1>
+    - https://note.mu/morois/n/n7210db925aa1
   - 2019/7/8 からは CrossRoot ではなく ISRG Root X1 で証明書を配布するようになる
-    - <https://letsencrypt.org/2019/04/15/transitioning-to-isrg-root.html>
+    - https://letsencrypt.org/2019/04/15/transitioning-to-isrg-root.html
   - Google 7 割くらい CSP をデプロイし、 nonce only は 1 割程度までデプロイ済み
-    - <https://speakerdeck.com/mikispag/content-security-policy-a-successful-mess-between-hardening-and-mitigation>
+    - https://speakerdeck.com/mikispag/content-security-policy-a-successful-mess-between-hardening-and-mitigation
 - Other
   - Fastly Lucet
-    - <https://www.fastly.com/blog/announcing-lucet-fastly-native-webassembly-compiler-runtime>
+    - https://www.fastly.com/blog/announcing-lucet-fastly-native-webassembly-compiler-runtime
     - Mozilla Cranelift 上の WASM/WASI runtime で
   - Cloudflare WARP
     - 無料 VPN サービス、有料版 Warp+ は Argo (輻輳最適化)
   - WAPM
-    - <https://wapm.io/>
+    - https://wapm.io/
     - WASM のパッケージマネージャー/リポジトリ
 
 
@@ -271,14 +271,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Google
   - mozaic bootcamp 2019
-    - <https://blog.jxck.io/entries/2019-05-12/mozaic-bootcamp-2019.html>
+    - https://blog.jxck.io/entries/2019-05-12/mozaic-bootcamp-2019.html
   - Google I/O
-    - <https://blog.chromium.org/2019/05/google-io-2019-whats-new-with-chrome.html>
+    - https://blog.chromium.org/2019/05/google-io-2019-whats-new-with-chrome.html
   - Paint Holding
-    - <https://developers.google.com/web/updates/2019/05/paint-holding>
+    - https://developers.google.com/web/updates/2019/05/paint-holding
     - ページ遷移のときに一度白でペイントしていたのをやめて前の画面を残す
   - Chromium Blog: Improving privacy and security on the web
-    - <https://blog.chromium.org/2019/05/improving-privacy-and-security-on-web.html>
+    - https://blog.chromium.org/2019/05/improving-privacy-and-security-on-web.html
     - SameSiteCookie や Fingerprint 対策など、プライバシー保護を強化していく
   - Ship: Media Queries: prefers-color-scheme feature
   - Ship: Form-associated custom elements
@@ -293,7 +293,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - OOR-CORS is enabled by default on HEAD
     - このあと色々大変で 1 年くらい続いた
   - Flutter for Web
-    - <https://developers.googleblog.com/2019/05/Flutter-io19.html>
+    - https://developers.googleblog.com/2019/05/Flutter-io19.html
 - Firefox
   - Firefox 67 for developers
     - prefers-color-scheme
@@ -308,12 +308,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - prefers-color-scheme
   - Implement: Cookie SameSite=lax by default and SameSite=none only if secure
   - 拡張の中間証明書が失効したため拡張が一時使えない状況に
-    - <https://hacks.mozilla.org/2019/05/technical-details-on-the-recent-firefox-add-on-outage/>
+    - https://hacks.mozilla.org/2019/05/technical-details-on-the-recent-firefox-add-on-outage/
   - Browser Compat Data のガバナンス強化
-    - <https://hacks.mozilla.org/2019/05/browser-compatibility-data-and-open-source-governance/>
+    - https://hacks.mozilla.org/2019/05/browser-compatibility-data-and-open-source-governance/
     - 2019 年はデータを完全なものにしたいという野望も持っていると
   - UA 文字列から OS のアーキテクチャなど(WOW64 とか)を削ろうという提案
-    - <https://groups.google.com/d/topic/mozilla.dev.platform/vEMIqgnMxRw/discussion>
+    - https://groups.google.com/d/topic/mozilla.dev.platform/vEMIqgnMxRw/discussion
     - ソフトウェアのダウンロードページなどに影響が出ないかなどの疑問が出ている
 - Safari
   - TC81
@@ -345,19 +345,19 @@ guest: [@myakura](https://twitter.com/myakura)
   - RFC 8615 - Well-Known Uniform Resource Identifiers (URIs)
     - "/.well-known/" のこと
   - The WebTransport Protocol Framework
-    - <https://tools.ietf.org/html/draft-vvv-webtransport-overview-00>
+    - https://tools.ietf.org/html/draft-vvv-webtransport-overview-00
   - Incrementally Better Cookies
-    - <https://tools.ietf.org/html/draft-west-cookie-incrementalism-00>
+    - https://tools.ietf.org/html/draft-west-cookie-incrementalism-00
     - Cookie を徐々に改善していく話
     - まずは SameSite=Lax をデフォルトに
     - SameSite=None にするには Secure を強制
   - First-Party Sets and SameSite Cookies
-    - <https://tools.ietf.org/html/draft-west-cookie-samesite-firstparty-01>
+    - https://tools.ietf.org/html/draft-west-cookie-samesite-firstparty-01
 - Other
   - 日本ハッカー協会セミナー「不正指令電磁的記録罪の傾向と対策」
-    - <https://www.youtube.com/watch?v=umYIqISRIbg>
+    - https://www.youtube.com/watch?v=umYIqISRIbg
   - Google Online Security Blog: New research: How effective is basic account hygiene at preventing hijacking
-    - <https://security.googleblog.com/2019/05/new-research-how-effective-is-basic.html>
+    - https://security.googleblog.com/2019/05/new-research-how-effective-is-basic.html
   - A Conspiracy To Kill IE6
     - 元 YouTube エンジニアによる YouTube が IE6 サポートを打ち切るための策略についての回顧録
     - 買収前の古い YouTube 社員によって作られた "OldTuber" という、 Google のインフラチェックをバイパスする権限を悪用しバナーを表示
@@ -401,13 +401,13 @@ guest: [@myakura](https://twitter.com/myakura)
 ### Similar Yearly
 
 - How the internet changed in 2019 (and what to expect in 2020)
-  - <https://www.fastly.com/blog/how-the-internet-changed-in-2019>
+  - https://www.fastly.com/blog/how-the-internet-changed-in-2019
 - Web Design And Development Advent Roundup For 2019 - Smashing Magazine
-  - <https://www.smashingmagazine.com/2019/12/web-design-development-advent-roundup-2019/>
+  - https://www.smashingmagazine.com/2019/12/web-design-development-advent-roundup-2019/
 - The Web in 2020: wohin sich das Web bewegt - Speaker Deck
-  - <https://speakerdeck.com/christianliebel/the-web-in-2020-wohin-sich-das-web-bewegt>
+  - https://speakerdeck.com/christianliebel/the-web-in-2020-wohin-sich-das-web-bewegt
 - Six Web Performance Technologies to Watch in 2020 - Simon Hearne
-  - <https://simonhearne.com/2019/2020-predictions/>
+  - https://simonhearne.com/2019/2020-predictions/
 - Mozilla Hacks' 10 most-read posts of 2019 - Mozilla Hacks - the Web developer blog
-  - <https://hacks.mozilla.org/2019/12/mozilla-hacks-most-read-blog-posts-of-2019/>
+  - https://hacks.mozilla.org/2019/12/mozilla-hacks-most-read-blog-posts-of-2019/
   - 1.Pyodide, 2.WASI, 3.WebThings

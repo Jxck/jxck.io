@@ -22,7 +22,7 @@ guest: [@toyoshim](https://twitter.com/toyoshim)
 - [Web MIDI API](http://webaudio.github.io/web-midi-api/)
 - [Web Audio API](https://webaudio.github.io/web-audio-api/)
 - [Web USB API](https://wicg.github.io/webusb/)
-  - <https://github.com/mozilla/standards-positions/issues/100>
+  - https://github.com/mozilla/standards-positions/issues/100
 - [Web Bluetooth](https://webbluetoothcg.github.io/web-bluetooth/)
 - [W3C Workshop on Permissions and User Consent](https://www.w3.org/Privacy/permissions-ws-2018/cfp.html)
   - 2014 年いらい 2 回目の開催
@@ -34,14 +34,14 @@ guest: [@toyoshim](https://twitter.com/toyoshim)
   - chrome の site settings 一覧には notification の permission は無い
 - [Feature Policy](https://wicg.github.io/feature-policy/)
   - 許可の付与以外に、 iframe 内への権限委譲にも使われる
-  - <https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html>
+  - https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html
 - [gpuweb/gpuweb: Where the GPU on the Web work happens!](https://github.com/gpuweb/gpuweb)
   - apple が提案しているため Metal ベース
 - [Writable Files API](https://github.com/WICG/writable-files/blob/master/EXPLAINER.md)
   - セキュリティモデルについては TODO のまま
 - [Web Budget API](https://wicg.github.io/budget-api/)
   - すでに作業は終わり、ブラウザからも消され始めている
-  - <https://blog.jxck.io/entries/2017-06-12/web-budget-api.html>
+  - https://blog.jxck.io/entries/2017-06-12/web-budget-api.html
 - [883038 - Feedback: Eliding www/m subdomains - chromium - Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=883038)
   - chrome69 で `www.`, `m.` のサブドメインを非表示にする変更が一度入った
   - フィードバックを元に 70 で改善予定とのこと

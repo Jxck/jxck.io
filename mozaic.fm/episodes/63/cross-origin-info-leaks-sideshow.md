@@ -18,6 +18,6 @@ guest: [@shhnjk](https://twitter.com/shhnjk)
 ## Show Note
 
 - privacy sandbox
-  - <https://www.chromium.org/Home/chromium-privacy/privacy-sandbox>
+  - https://www.chromium.org/Home/chromium-privacy/privacy-sandbox
 - edge tracking prevention
-  - <https://support.microsoft.com/en-us/help/4533959/microsoft-edge-learn-about-tracking-prevention>
+  - https://support.microsoft.com/en-us/help/4533959/microsoft-edge-learn-about-tracking-prevention

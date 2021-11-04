@@ -48,5 +48,5 @@ guest: [@hnagatomo](https://github.com/hnagatomo)
 - [脆弱性関連情報の届出受付:IPA 独立行政法人 情報処理推進機構 ](https://www.ipa.go.jp/security/vuln/report/)
 - [CSP Report 収集と実レポートの考察 \| blog.jxck.io](https://blog.jxck.io/entries/2017-02-13/csp-report-case-study.html)
 - [GitHub's post-CSP journey](https://githubengineering.com/githubs-post-csp-journey/)
-- <https://tools.ietf.org/html/draft-foudil-securitytxt>
-- <https://securitytxt.org/>
+- https://tools.ietf.org/html/draft-foudil-securitytxt
+- https://securitytxt.org/

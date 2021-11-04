@@ -23,20 +23,20 @@ guest: [@myakura](https://twitter.com/myakura)
 ### Microsoft Edge が Chromium ベースに
 
 - Microsoft Edge: Making the web better through more open source collaboration
-  - <https://blogs.windows.com/windowsexperience/2018/12/06/microsoft-edge-making-the-web-better-through-more-open-source-collaboration/>
-  - <https://blogs.windows.com/msedgedev/2018/12/07/recapping-open-source-announcements/>
-  - <https://github.com/MicrosoftEdge/MSEdge>
-  - <https://github.com/MicrosoftEdge/MSEdge/blob/master/README.md>
-  - <https://github.com/Microsoft/ChakraCore/issues/5865>
+  - https://blogs.windows.com/windowsexperience/2018/12/06/microsoft-edge-making-the-web-better-through-more-open-source-collaboration/
+  - https://blogs.windows.com/msedgedev/2018/12/07/recapping-open-source-announcements/
+  - https://github.com/MicrosoftEdge/MSEdge
+  - https://github.com/MicrosoftEdge/MSEdge/blob/master/README.md
+  - https://github.com/Microsoft/ChakraCore/issues/5865
   - 事前に報道されていた噂から数日、公式からアナウンス
   - Edge を Chromium ベースにしていく
   - EdgeHTML は終了
   - ChakraCore は Edge には使われないものの、開発は続ける(メンテナンスモード)
 - Microsoft Edge: Explainers
-  - <https://github.com/MicrosoftEdge/MSEdgeExplainers>
+  - https://github.com/MicrosoftEdge/MSEdgeExplainers
   - Edge チームからの貢献内容についてのまとめ場所
 - Hummingbird: Building Flutter for the Web - Flutter
-  - <https://medium.com/flutter-io/hummingbird-building-flutter-for-the-web-e687c2a023a8>
+  - https://medium.com/flutter-io/hummingbird-building-flutter-for-the-web-e687c2a023a8
 
 
 ### 2018 年のキーワード
@@ -86,7 +86,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 昨年末 MDN がクロスベンダーなプロジェクトになり Advisory Board ができた
     - 2018 年は Compat Data の整備を行う
   - CSS 2018 Priorities
-    - <https://wiki.mozilla.org/CSS#2018_Priorities>
+    - https://wiki.mozilla.org/CSS#2018_Priorities
     - (High) Containment
     - (High) Media Queries 4
     - (Mid) Container Queries Prerequisites
@@ -290,7 +290,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - npm Joins ECMA International and TC39
   - The Future of JS (記号取り合い問題など)
 - IETF102 Montreal
-  - <https://everyrfc.org/>
+  - https://everyrfc.org/
   - mnot's blog: How to Read an RFC
 - セキュリティ動向
   - 西日本豪雨で 00000JAPAN 公開、暗号化されてないので内閣サイバーから注意喚起
