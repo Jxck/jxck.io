@@ -28,7 +28,6 @@
 
 ## TODO
 
-- id の suffix を `-` から `_` に変える
 - `\|` のエスケープを消す
 - TOC で h2 内の `code` を外す
 - description
