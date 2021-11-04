@@ -57,7 +57,7 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 なお IE は(security zone setting をいじらない限り)この問題が発生しないようだ。
 
-引用元: [blankshield demo \| Reverse tabnabber phishing](https://danielstjules.github.io/blankshield/)
+引用元: [blankshield demo | Reverse tabnabber phishing](https://danielstjules.github.io/blankshield/)
 
 
 ## tabnabbing
@@ -148,11 +148,11 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 parent 側のリンクタグに `rel=noopener` を追加することで、 child が parent を `window.opener` 経由で参照できなくなるため、 parent の location の変更などを抑止することが可能である。
 
-[4.6.6.11 Link type "noopener" \| WHATWG Spec](https://html.spec.whatwg.org/multipage/semantics.html#link-type-noopener)
+[4.6.6.11 Link type "noopener" | WHATWG Spec](https://html.spec.whatwg.org/multipage/semantics.html#link-type-noopener)
 
 ただし、 Chrome, Opera 以外は現時点で `noopener` に対応していない。
 
-[rel=noopener \| Can I use](http://caniuse.com/#feat=rel-noopener)
+[rel=noopener | Can I use](http://caniuse.com/#feat=rel-noopener)
 
 代替として `noreferrer` を指定することで同じ挙動が実現できる。
 

@@ -40,7 +40,7 @@
 
 WebCodecs の場合は、 Google が提案/実装を主導しているため、 blink-dev で進捗がわかる。
 
-- [blink-dev \| Google Group](https://groups.google.com/a/chromium.org/g/blink-dev)
+- [blink-dev | Google Group](https://groups.google.com/a/chromium.org/g/blink-dev)
 
 この ML は、主に Chrome のエンジンである blink の開発に関するアナウンスが行われている。
 

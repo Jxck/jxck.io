@@ -14,7 +14,7 @@ Scroll to Text Fragment(以下 S2TF) は Chrome 80 で Ship され、 Finch で�
 
 詳細は以前このブログでも書いている。
 
-- [Scroll To Text Fragment と :~:text \| blog.jxck.io](https://blog.jxck.io/entries/2019-10-16/scroll-to-text-fragment.html<F29>)
+- [Scroll To Text Fragment と :~:text | blog.jxck.io](https://blog.jxck.io/entries/2019-10-16/scroll-to-text-fragment.html<F29>)
 
 この機能の使い道の一つとして、検索結果の Deep Link への適用があると考え、 PoC として実装した。
 

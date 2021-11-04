@@ -122,7 +122,7 @@ localhost を https にして URL バーを緑にするといった目的で、�
 
 注意点として、イントラでは任意のドメインを社内 DNS に載せ、証明書を出すこともできてしまうだろう。しかし、この用途で所有もしてない適当なドメインを使うべきではない(MUST)。今は取られてないドメインも将来誰かが所有する可能性があり、今はない TLD も将来登録されるかもしれない(.dev で懲りた人も多いだろう)。使うなら `.test` などが自由に使える、詳細は以下を参照してほしい。
 
-[予約済みドメイン (.example, .localhost, .test) について \| blog.jxck.io](https://blog.jxck.io/entries/2017-09-27/example-local-test-domains.html)
+[予約済みドメイン (.example, .localhost, .test) について | blog.jxck.io](https://blog.jxck.io/entries/2017-09-27/example-local-test-domains.html)
 
 できれば、自社で取得しているドメインのサブドメインなどを使うのが良いだろう。
 

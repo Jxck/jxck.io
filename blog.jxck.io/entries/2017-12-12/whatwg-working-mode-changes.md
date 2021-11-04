@@ -23,7 +23,7 @@ WHATWG が IPR Policy と Governance Structure についての更新を発表し
 
 W3C も、公式ブログでこれに言及している。
 
-[WHATWG Working Mode Changes \| W3C Blog](https://www.w3.org/blog/2017/12/whatwg-working-mode-changes/)
+[WHATWG Working Mode Changes | W3C Blog](https://www.w3.org/blog/2017/12/whatwg-working-mode-changes/)
 
 
 ## WHATWG と W3C
@@ -32,7 +32,7 @@ W3C も、公式ブログでこれに言及している。
 
 詳細は以下で解説している。
 
-[ep14 WHATWG \| mozaic.fm](https://mozaic.fm/episodes/14/whatwg.html)
+[ep14 WHATWG | mozaic.fm](https://mozaic.fm/episodes/14/whatwg.html)
 
 簡単に言うと今から 20 年近く前、 HTML4.01 の作業がひと段落した W3C は、当時盛り上がっていた XML ベースの仕様に舵を切るため XHTML の策定に注力し始めた。
 

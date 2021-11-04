@@ -14,7 +14,7 @@ Safari 10.0 から WOFF2 がサポートされており、これをもって IE 
 
 本サイトでは、 Noto Sans CJK から必要なフォントのみを抽出したサブセットを、 WOFF 形式で読み込む構成を取っている。
 
-[Noto Sans の Web Font 対応とサブセットによる最適化 \| blog.jxck.io](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html)
+[Noto Sans の Web Font 対応とサブセットによる最適化 | blog.jxck.io](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html)
 
 その後、必要な文字が増えフォントファイルを更新することにしたが、当時対応していなかった Safari が WOFF2 対応を始めていることもあり、これを機に更新することとした。
 
@@ -32,7 +32,7 @@ WOFF2 は WOFF よりも圧縮率が高いとされている。
 
 本サイトは既に brotli を採用している。
 
-[Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について \| blog.jxck.io](https://blog.jxck.io/entries/2017-08-19/content-encoding-brotli.html)
+[Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について | blog.jxck.io](https://blog.jxck.io/entries/2017-08-19/content-encoding-brotli.html)
 
 
 ## 圧縮効果

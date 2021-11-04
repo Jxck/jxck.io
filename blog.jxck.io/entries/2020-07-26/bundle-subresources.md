@@ -16,7 +16,7 @@ WebBundle を用いてサブリソースのみを Bundle する、 Subresource B
 
 WebBundle の初期の仕様は、 HTML を頂点としたページ全体をまとめる方向で始まった。
 
-- [WebBundle によるコンテンツの結合と WebPackaging \| blog.jxck.io](https://blog.jxck.io/entries/2019-11-12/webbundle.html)
+- [WebBundle によるコンテンツの結合と WebPackaging | blog.jxck.io](https://blog.jxck.io/entries/2019-11-12/webbundle.html)
 
 これをサブリソース(JS, CSS, Img etc)に対して利用できるようにする仕様だ。
 
@@ -317,7 +317,7 @@ WebPackaging の構想が出たときから期待していた仕様であり、 
 
 ところが、実装上の難易度などの問題から作業が止まり、結局実現しなかった。
 
-- [Cache Digest と HTTP2 Server Push の現状 \| blog.jxck.io](https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html)
+- [Cache Digest と HTTP2 Server Push の現状 | blog.jxck.io](https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html)
 
 WebBundle の Explainer には、この問題に対する考慮が一応書いてあるため、ここの議論が進めばより理想に近づくと個人的には期待したい。
 

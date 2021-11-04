@@ -9,7 +9,7 @@
 
 また、そこから dev.to が「なぜ遅くないのか」を解説する。
 
-[Making dev\.to insanely fast](https://dev.to/ben/making-devto-insanely-fast)
+[Making dev.to insanely fast](https://dev.to/ben/making-devto-insanely-fast)
 
 
 ## SVG
@@ -30,7 +30,7 @@ dev.to では、アイコンは基本的に SVG を使っており、さらに g
 
 本サイトは、単純なアイコン SVG は全部手書きしているため、平均して 100~200KB 程度しかない。
 
-- [画像最適化戦略 SVG/Font 編 \| blog\.jxck\.io](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
+- [画像最適化戦略 SVG/Font 編 | blog.jxck.io](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
 
 
 ## WebP
@@ -52,8 +52,8 @@ dev.to では、 Chrome で見ると大半の画像が `content-type:image/webp`
 この方法なら、フォーマット以外に解像度なども端末の性能やバッテリー/Wifi 状態に合わせられることが期待できるし、 URL に拡張子を含むとしても実態と合わせられる。
 
 
-- [画像最適化戦略 Picture 編 \| blog\.jxck\.io](https://blog.jxck.io/entries/2016-03-25/picture.html)
-- [画像最適化戦略 WebP 編 \| blog\.jxck\.io](https://blog.jxck.io/entries/2016-03-26/webp.html)
+- [画像最適化戦略 Picture 編 | blog.jxck.io](https://blog.jxck.io/entries/2016-03-25/picture.html)
+- [画像最適化戦略 WebP 編 | blog.jxck.io](https://blog.jxck.io/entries/2016-03-26/webp.html)
 
 
 ## gzip
@@ -72,7 +72,7 @@ zopfli は gzip よりも、時間をかけることで圧縮率を高める方�
 
 こちらは、事前定義辞書を用いるため、圧縮時間はオンデマンドの適用にも耐えうるとされる。が dev.to では採用していないようだ。
 
-- [Brotli を用いた静的コンテンツ配信最適化と Accept\-Encoding: br について \| blog\.jxck\.io](https://blog.jxck.io/entries/2017-08-19/content-encoding-brotli.html) 
+- [Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について | blog.jxck.io](https://blog.jxck.io/entries/2017-08-19/content-encoding-brotli.html) 
 
 
 ## CDN

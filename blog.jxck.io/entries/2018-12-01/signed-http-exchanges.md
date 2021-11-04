@@ -598,7 +598,7 @@ sxg を代理配信する CDN がログを提供するなら良いが、現状�
   - <https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00>
 - Loading Signed Exchanges
   - <https://wicg.github.io/webpackage/loading.html>
-- Signed HTTP Exchanges \| Web \| Google Developers
+- Signed HTTP Exchanges | Web | Google Developers
   - <https://developers.google.com/web/updates/2018/11/signed-exchanges>
 - Signed Exchanges · Issue #235 · w3ctag/design-reviews
   - <https://github.com/w3ctag/design-reviews/issues/235>

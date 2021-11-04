@@ -54,7 +54,7 @@ resizeObserver.disconnect(element) // 解放
 
 `resize` イベントは、そもそも view-port に対して定義されており、さらに *変更したこと* だけを伝える仕様になっている。
 
-[12.1. Resizing viewports \| CSSOM View Module](https://drafts.csswg.org/cssom-view/#resizing-viewports)
+[12.1. Resizing viewports | CSSOM View Module](https://drafts.csswg.org/cssom-view/#resizing-viewports)
 
 つまり、 resize された結果を取得するためには、 `target` を辿りサイズを取得する必要が出る。
 
@@ -77,7 +77,7 @@ Observer を定義することにより、こうした処理を行わずに変�
 
 こうしたコンセプトは、 IntersectionObserver が定義されたモチベーションと同じだと考えて良いだろう。
 
-[Intersection Observer を用いた要素出現検出の最適化 \| blog.jxck.io](https://blog.jxck.io/entries/2016-06-25/intersection-observer.html)
+[Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io](https://blog.jxck.io/entries/2016-06-25/intersection-observer.html)
 
 
 ## resize event polyfill

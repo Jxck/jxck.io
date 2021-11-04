@@ -383,7 +383,7 @@ CORP / COOP / COEP あたりは、最初の提案から名前が何度か変わ�
 
 より詳細な流れについては、以下が参考になるだろう。
 
-- [ep63 Cross Origin Info Leaks \| mozaic.fm](https://mozaic.fm/episodes/63/cross-origin-info-leaks.html)
+- [ep63 Cross Origin Info Leaks | mozaic.fm](https://mozaic.fm/episodes/63/cross-origin-info-leaks.html)
 
 これらのヘッダは、後から対応する負荷がある程度ある一方、今後の Powerful Feature の有効化の条件になる可能性が有るため、仮にこのまま進めば避けては通れないヘッダになる可能性が有る。
 

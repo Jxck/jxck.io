@@ -16,7 +16,7 @@
 
 AMP が発表されたのは 2015 年で、リリースされたのが 2016 年だ。本サイトもその頃作り始め、今サイトを作るならと AMP の対応もほぼ同時に行った。
 
-- [AMP HTML 対応 \| blog.jxck.io](https://blog.jxck.io/entries/2016-02-01/amp-html.html)
+- [AMP HTML 対応 | blog.jxck.io](https://blog.jxck.io/entries/2016-02-01/amp-html.html)
 
 当時は徐々にモバイルユーザが増え、モバイルファースト Web が叫ばれ始めてしばらく経った頃だ。一方リアルワールドでは PC 版をメディアクエリでスマホ対応したサイトが多く、過度にリッチな表現をビューポートに詰め込みつつ広告が張り巡らされた、とにかく重たいサイトが多かったと思う(今でもあるが)。
 
@@ -104,7 +104,7 @@ Google としては Mozilla その他のフィードバックを含めて仕様�
 
 本サイトもこれに対応したことで、確かに AMP がヒットしても URL バーには blog.jxck.io が表示されることを確認した。
 
-- [AMP SXG 対応 \| blog.jxck.io](https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html)
+- [AMP SXG 対応 | blog.jxck.io](https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html)
 
 AMP によって余計なことができなくなり、 AMP CDN から配信されコンテンツが速くなり、 SXG によって URL も自分のものが表示される。そう聞くとたしかに色々解決してはいるが、なんとなく釈然としない開発者もいるだろうとは思う。
 
@@ -200,7 +200,7 @@ AMP は domain を直すために SXG を使ったが、 SXG は AMP のため�
 
 Google の検索結果はこの Non AMP な SXG にも対応を開始し、サイトが SXG を配信していればそれを収集し SXG の CDN から代理で配布するようになった。しかも、ただ検索結果のリンクを SXG に置き換えるだけでなく、 prefetch を行うことで、リンクをクリックする前に取得が完了するようになった。
 
-- [Google 検索で Signed Exchange の利用を開始する \| Google Developers](https://developers.google.com/search/docs/advanced/experience/signed-exchange)
+- [Google 検索で Signed Exchange の利用を開始する | Google Developers](https://developers.google.com/search/docs/advanced/experience/signed-exchange)
 
 ボトルネックの大半はネットワークアクセスである Web において、クリック時にリソースが Prefetch Cache でヒットし手元に揃っている状態は大きなアドバンテージだ。特にモバイルファーストでパフォーマンスを考える CWV 以降では、初期表示の改善が期待できる点で実施する価値がありそうだ。(また Origin からの配信ではなくなるのだが)
 
@@ -208,7 +208,7 @@ Google の検索結果はこの Non AMP な SXG にも対応を開始し、サ�
 
 このように、 SXG が使えるのも、もとはといえば AMP があったからだと考えると、きちんと資産は活用されている。そして、その Non AMP SXG に対応するにあたって、本サイトでは AMP を落とすことになった。
 
-- [Non AMP SXG による Prefetch 対応と AMP 提供の停止 \| blog.jxck.io](https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html)
+- [Non AMP SXG による Prefetch 対応と AMP 提供の停止 | blog.jxck.io](https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html)
 
 本サイトでは、 AMP の対応に始まり、そこから派生した様々な仕様を検証し、その検証の最終地点として AMP の対応を終わることになったと考えると、やはり最初に特に興味があるわけでも好きでもない AMP を検証のために対応しておいたことは、いろいろな Web 技術を検証するために作った本サイトの目的からすると、やっておいてよかったと振り返ると思う。
 

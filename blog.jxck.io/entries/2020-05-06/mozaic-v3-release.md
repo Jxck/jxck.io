@@ -98,7 +98,7 @@ Service Worker は background sync が従来からあるが、これは「オフ
 
 そこで、 Slient Push を待っていたのだが、先に Periodic Background Sync(PBS) が提案された。
 
-- [Periodic Background Sync 及び Web を Install するということ \| blog.jxck.io](https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html)
+- [Periodic Background Sync 及び Web を Install するということ | blog.jxck.io](https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html)
 
 PBS の発火タイミングで Feed を取得し、更新があればメディアをダウンロードしておくように実装した。
 
@@ -124,7 +124,7 @@ Service Worker の Cache は Cache API で行うのが基本だ。
 
 ユーザが明示的に Download を指定し、アプリをバックグラウンドに回してもキャッシュに入るようにした。
 
-- [Service Worker の Background Fetch によるメディアのキャッシュ \| blog.jxck.io](https://blog.jxck.io/entries/2020-01-24/background-fetch.html)
+- [Service Worker の Background Fetch によるメディアのキャッシュ | blog.jxck.io](https://blog.jxck.io/entries/2020-01-24/background-fetch.html)
 
 本当は Periodic Background Sync で Background Fetch を実行する方向で考えていたが、今の Android Chrome では、それをしてもタスクが登録されるだけでダウンロードが実行されない。
 
@@ -278,7 +278,7 @@ Report については、 User Script や拡張などもあるかもしれない
 
 これも CSP の機能であり、特定の DOM API の操作を型によって保護する仕組みである。
 
-- [安全な文字列であると型で検証する Trusted Types について \| blog.jxck.io](https://blog.jxck.io/entries/2019-01-27/trusted-types.html)
+- [安全な文字列であると型で検証する Trusted Types について | blog.jxck.io](https://blog.jxck.io/entries/2019-01-27/trusted-types.html)
 
 サイトの中では、保護に該当する DOM API を使ってないが、これを入れることで XSS による DOM の改変を防ぐことが可能になる。
 
@@ -312,7 +312,7 @@ Referrer Policy は `no-referrer-when-downgrade` が default とされており�
 
 そこで、本サイトもパーソナライズは一切してないが、 `strict-origin-when-cross-origin` に変更してみることにした。
 
-- [Referrer-Policy によるリファラ制御 \| blog.jxck.io](https://blog.jxck.io/entries/2018-10-08/referrer-policy.html)
+- [Referrer-Policy によるリファラ制御 | blog.jxck.io](https://blog.jxck.io/entries/2018-10-08/referrer-policy.html)
 
 
 ## その他
@@ -322,7 +322,7 @@ Referrer Policy は `no-referrer-when-downgrade` が default とされており�
 
 blog にも入れた機能だが、よりインタラクティブな Form で実装した。
 
-- [Scroll to Text Fragment を用いたサイト内検索の実装 \| blog.jxck.io](https://blog.jxck.io/entries/2020-03-27/scroll-to-search-result.html)
+- [Scroll to Text Fragment を用いたサイト内検索の実装 | blog.jxck.io](https://blog.jxck.io/entries/2020-03-27/scroll-to-search-result.html)
 
 
 ### transpile less
@@ -340,7 +340,7 @@ Dev Server も不要でリロードすれば反映され、 package.json, babelr
 
 Spotify も Podcast のサポートを始めたため、登録した。
 
-- [mozaic.fm \| Spotify でポッドキャスト](https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K)
+- [mozaic.fm | Spotify でポッドキャスト](https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K)
 
 
 ## WIP

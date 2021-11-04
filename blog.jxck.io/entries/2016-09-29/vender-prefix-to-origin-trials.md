@@ -32,7 +32,7 @@ Vender Prefix とは、各ベンダが以下のような接頭辞を、標準プ
 - o (Old versions of Opera)
 - ms (Internet Explorer)
 
-([Vendor Prefix - Glossary \| MDN](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix))
+([Vendor Prefix - Glossary | MDN](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix))
 
 Vender Prefix は、まさしくその機能が *実験中* であることを示すために用いられ、これを付したベンダは、実験の結果をより積極的に反映できると期待した。
 

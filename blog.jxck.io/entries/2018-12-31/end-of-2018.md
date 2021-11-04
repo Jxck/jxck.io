@@ -23,7 +23,7 @@
 
 Monthly Web を始めて 1 年経ったので、どういう形に収まったのかをまとめた。
 
-[Monthly Web の作り方 2018 年版 \| blog.jxck.io](https://blog.jxck.io/entries/2018-07-18/how-to-logging-monthly-web.html)
+[Monthly Web の作り方 2018 年版 | blog.jxck.io](https://blog.jxck.io/entries/2018-07-18/how-to-logging-monthly-web.html)
 
 また、 Monthly を 11 回やり、その振り返りとしての Yearly Web をやるというサイクルがやっと一周した。
 

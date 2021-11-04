@@ -416,7 +416,7 @@ Policy を適用する方法は 4 つある。
 
 と同じ挙動となる。
 
-参考: [リンクのへの rel=noopener 付与による Tabnabbing 対策 \| blog.jxck.io](https://blog.jxck.io/entries/2016-06-12/noopener.html)
+参考: [リンクのへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io](https://blog.jxck.io/entries/2016-06-12/noopener.html)
 
 
 ### referrerpolicy 属性

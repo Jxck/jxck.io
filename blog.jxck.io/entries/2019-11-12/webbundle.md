@@ -20,7 +20,7 @@ Signed HTTP Exchange に比べると格段に簡単な仕様なので、現状�
 
 WebPackaging の文脈では、以前解説した Signed HTTP Exchanges によって署名をすることで、そのコンテンツの物理的な URL と論理的な URL を差し替えて表示することができた
 
-- [WebPackaging の Signed HTTP Exchanges \| blog.jxck.io](https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html)
+- [WebPackaging の Signed HTTP Exchanges | blog.jxck.io](https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html)
 
 要するに AMP の URL を AMP Cache から取得しつつ、自分の URL で表示するというアレだ。
 

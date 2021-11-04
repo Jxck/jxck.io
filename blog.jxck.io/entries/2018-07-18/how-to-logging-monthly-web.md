@@ -26,7 +26,7 @@ mozaic.fm は、 Web について「*今何が起こっているのか*」「*�
 
 最初の公開で、当時のモチベーションをまとめている。
 
-[ep25 Monthly Web 201707 \| mozaic.fm](https://mozaic.fm/episodes/25/monthly-web-201707.html)
+[ep25 Monthly Web 201707 | mozaic.fm](https://mozaic.fm/episodes/25/monthly-web-201707.html)
 
 ゲストは [@myakura](https://twitter.com/myakura) にお願いし、毎月付き合ってもらっている。
 

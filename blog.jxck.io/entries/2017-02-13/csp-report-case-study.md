@@ -34,7 +34,7 @@ CSP の基本は、意図しないリソースの読み込みや、 Inline Scrip
 
 そこで、比較的に技術リテラシーの高いユーザが閲覧していると予想される本サイトに対して、去年の 3 月から CSP を適用しレポートの収集を実施することにした。
 
-[Content Security Policy(CSP) 対応と report-uri.io でのレポート収集 \| blog.jxck.io](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html)
+[Content Security Policy(CSP) 対応と report-uri.io でのレポート収集 | blog.jxck.io](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html)
 
 なにより重要なのは、 *このサイトはほとんど全てが静的に生成されており、かつ `<input>` フォームが無い* という点である。
 

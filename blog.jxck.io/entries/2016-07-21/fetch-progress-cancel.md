@@ -215,7 +215,7 @@ fetch を含めて Promise を返す API は増加しつつあるため、 Cance
 
 Stream での progress と cancel は可能になったが、まだ *ブラウザが実装しているか* という問題もある。
 
-- [Fetch \| canuise](https://caniuse.com/#feat=fetch)
+- [Fetch | canuise](https://caniuse.com/#feat=fetch)
 
 一方 XHR が無くなることはないため、今後も利用可能である。
 

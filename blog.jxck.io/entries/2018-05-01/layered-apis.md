@@ -160,7 +160,7 @@ Layered API での仕様策定の候補として、以下の 3 つがある。
 Polyfill のあり方については、過去に TAG によってプラクティスがまとめられており、本ブログでも解説している。
 
 - [Polyfills and the evolution of the Web](https://w3ctag.github.io/polyfills/)
-- [Polyfill のあり方と Web の進化と協調するためのガイドライン \| blog.jxck.io](https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html)
+- [Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io](https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html)
 
 例えば、以下の場合 polyfill とブラウザの実装で API が異なる場合は、ブラウザアップデートでアプリが壊れることになる。
 

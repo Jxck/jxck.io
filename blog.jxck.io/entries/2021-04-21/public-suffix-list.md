@@ -156,11 +156,11 @@ PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をド�
 
 周知の通り、この変更は多くのトラッキングサービスに影響を与え、その 1 つに Facebook Pixel がある。
 
-- [Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 \| Facebook Business ヘルプセンター](https://www.facebook.com/business/help/331612538028890?id=428636648170202)
+- [Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 | Facebook Business ヘルプセンター](https://www.facebook.com/business/help/331612538028890?id=428636648170202)
 
 そこで Facebook Pixel は Aggregated Event Measurement(AEM) への移行を促した。
 
-- [合算イベント測定について \| Facebook Business ヘルプセンター](https://www.facebook.com/business/help/721422165168355)
+- [合算イベント測定について | Facebook Business ヘルプセンター](https://www.facebook.com/business/help/721422165168355)
 
 AEM ではドメインごとに 8 つまでしかコンバージョンイベントが設定できないため、多くのイベントを設定してたユーザにとっては厳しい制限となる。
 

@@ -79,7 +79,7 @@ Cache Digest は、どちらかというと実装待ちのフェーズだった�
 
 ブラウザにおける Server Push では、同じく kazuho さんが提案し RFC になっている Early Hints がある。
 
-[HTTP の新しいステータスコード 103 Early Hints \| blog.jxck.io](https://blog.jxck.io/entries/2016-12-16/103-early-hints.html)
+[HTTP の新しいステータスコード 103 Early Hints | blog.jxck.io](https://blog.jxck.io/entries/2016-12-16/103-early-hints.html)
 
 簡単に言えば、 Main Resource の Status Code が決定する前に、確定している Sub Resource を Status Code 103 として送るための仕組みだ。
 

@@ -40,7 +40,7 @@
 <img src="example.jpg" lazyload="1">
 ```
 
-- [lazyload attribute \| lazyload property (Internet Explorer)](http://web.archive.org/web/20160313082908/https://msdn.microsoft.com/library/dn369270\(v=vs.85\).aspx)
+- [lazyload attribute | lazyload property (Internet Explorer)](http://web.archive.org/web/20160313082908/https://msdn.microsoft.com/library/dn369270\(v=vs.85\).aspx)
 
 これを標準仕様に起こす作業が行われ、 Resource Priorities という形でまとめられた。
 

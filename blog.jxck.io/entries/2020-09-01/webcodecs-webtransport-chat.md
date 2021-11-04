@@ -306,8 +306,8 @@ WebCodecs と WebTrasnport を用いて WebRTC のようなビデオ会議が、
   - <https://www.chromestatus.com/feature/5669293909868544>
 - DEMO
 - Blog
-  - [QuicTransport によるアプリケーションレイヤでの QUIC 活用 \| blog.jxck.io](https://blog.jxck.io/entries/2020-06-09/quic-transport.html)
-  - [WebTransport と WebCodecs そして Web はどこまで "ゲーム化" するか \| blog.jxck.io](https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html)
+  - [QuicTransport によるアプリケーションレイヤでの QUIC 活用 | blog.jxck.io](https://blog.jxck.io/entries/2020-06-09/quic-transport.html)
+  - [WebTransport と WebCodecs そして Web はどこまで "ゲーム化" するか | blog.jxck.io](https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html)
 - Presentation
 - Issues
   - <https://bugs.chromium.org/p/chromium/issues/detail?id=897297>
