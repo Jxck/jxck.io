@@ -1,5 +1,5 @@
 `use strict`;
-import { link, readFileSync, statSync } from "fs";
+import { readFileSync, statSync } from "fs";
 
 /**
  * @typedef {Object} Serialized
