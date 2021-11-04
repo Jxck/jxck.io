@@ -291,7 +291,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - iCloud Private Relay に向けたネットワークの準備 - サポート - Apple Developer
   - https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/
   - Egress IP のリストが公開されている
-- *iOS & iPadOS 15 Beta 6 Release Notes \| Apple Developer Documentation*
+- *iOS & iPadOS 15 Beta 6 Release Notes | Apple Developer Documentation*
   - https://developer.apple.com/documentation/ios-ipados-release-notes/ios-ipados-15-beta-release-notes
   - New Features in iOS & iPadOS 15 beta 6
   - > The bottom tab bar has been redesigned to appear below page content. An option to show the address bar at the top is also available. (81118141)
@@ -327,7 +327,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Super Duper Secure Mode \| Microsoft Browser Vulnerability Research*
+- *Super Duper Secure Mode | Microsoft Browser Vulnerability Research*
   - https://microsoftedge.github.io/edgevr/posts/Super-Duper-Secure-Mode/
 - *Compat2021: Improving CSS Grid compatibility with GridNG - Microsoft Edge Blog*
   - https://blogs.windows.com/msedgedev/2021/08/10/compat2021-css-grid-gridng/
@@ -596,7 +596,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Inspecting Certificates in Edge – text/plain
   - https://textslashplain.com/2021/08/02/inspecting-certificates-in-edge/
-- Privacy-Enhancing Technologies and Building for the Future \| Facebook for Business
+- Privacy-Enhancing Technologies and Building for the Future | Facebook for Business
   - https://www.facebook.com/business/news/building-for-the-future
 - *Dutch government to stop issuing TLS certs because of ever-complicated standards - The Record by Recorded Future*
   - https://therecord.media/dutch-government-to-stop-issuing-tls-certs-because-of-ever-complicated-standards/
@@ -604,7 +604,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *第 1 回支援技術利用状況調査報告書 \| 日本視覚障害者 ICT ネットワーク*
+- *第 1 回支援技術利用状況調査報告書 | 日本視覚障害者 ICT ネットワーク*
   - https://jbict.net/survey/at-survey-01
   - PC は PC-Talker - Netreader が圧倒的
   - Mobile は iOS voice over が圧倒的
@@ -620,9 +620,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.quirksmode.org/blog/archives/2021/08/breaking_the_we.html
   - HTTP 203: Is Safari the new IE?
     - https://http203.libsyn.com/is-safari-the-new-ie
-  - For developers, Apple's Safari is crap and outdated – Perry Sun \| Blog
+  - For developers, Apple's Safari is crap and outdated – Perry Sun | Blog
     - https://blog.perrysun.com/2021/07/15/for-developers-safari-is-crap-and-outdated/
-  - Safari isn't protecting the web, it's killing it \| HTTP Toolkit
+  - Safari isn't protecting the web, it's killing it | HTTP Toolkit
     - https://httptoolkit.tech/blog/safari-is-killing-the-web/
 
 

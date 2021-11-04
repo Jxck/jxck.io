@@ -205,7 +205,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.google/products/chrome/updated-timeline-privacy-sandbox-milestones/
   - サードパーティ Cookie 廃止のタイムラインを更新
   - API 実装が late 2022 、サードパーティ Cookie 廃止を late 2023
-- ユーザー アカウント、認証、パスワード管理に関する 13 のベスト プラクティス 2021 年版 \| Google Cloud Blog
+- ユーザー アカウント、認証、パスワード管理に関する 13 のベスト プラクティス 2021 年版 | Google Cloud Blog
   - https://cloud.google.com/blog/ja/products/identity-security/account-authentication-and-password-management-best-practices
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
@@ -327,7 +327,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Quick Notes
   - WebGL 2
   - Web technologies
-- *Safari 15 Beta Release Notes \| Apple Developer Documentation*
+- *Safari 15 Beta Release Notes | Apple Developer Documentation*
   - https://developer.apple.com/documentation/Safari-Release-Notes/safari-15-beta-release-notes
 
 

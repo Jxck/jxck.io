@@ -252,7 +252,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 昨今のウェブやプラットフォームの問題について自衛したりしましょうねという話
     - なかでも Facebook や YouTube の推奨アルゴリズムで政治的に過激なものや誤情報に触れ続けてしまう危険性について
     - 大統領選が近いので改めて言っているものと思われる
-  - *Join the anti-establishment \| The Firefox Frontier*
+  - *Join the anti-establishment | The Firefox Frontier*
     - https://blog.mozilla.org/firefox/join-the-anti-establishment/
     - プラットフォーマーではないサービスの紹介
   - Data Publishing @ Mozilla – Data@Mozilla
@@ -433,7 +433,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - プロセスドキュメントと特許ポリシーが改訂
     - 勧告の修正や部分的な機能追加の要件や手順が新プロセスの仕様では簡略化でき、 Living Standard モデルのような改訂ができるようになった
     - 特許ポリシーもあわせて、効力の発行が REC から CR に
-  - *New version of the Roadmap of Web Applications on Mobile \| W3C News*
+  - *New version of the Roadmap of Web Applications on Mobile | W3C News*
     - https://www.w3.org/blog/news/archives/8686
     - 変更点
       - https://www.w3.org/2020/09/web-roadmaps/mobile/about.html#september-2020-0
@@ -577,7 +577,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - JS の fazzing で脆弱性見つけるプログラム。 1 年間実施、脆弱性には最大 $5000
 - *JVNVU#91973538: OpenSSL における暗号通信を解読可能な脆弱性 (Raccoon Attack)*
   - https://jvn.jp/vu/JVNVU91973538/
-- note でソースコードから IP アドレスが確認できた事態に関する追加報告とお詫び \| note 株式会社
+- note でソースコードから IP アドレスが確認できた事態に関する追加報告とお詫び | note 株式会社
   - https://note.jp/n/n2115642a4e45
 - ランサムウェア攻撃に起因する初の死亡例が発生か--ドイツの大学病院で - ZDNet Japan
   - https://japan.zdnet.com/article/35159781/
@@ -598,7 +598,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/migrating-cdnjs-to-serverless-with-workers-kv/
 - Best practices for the most popular DevOps tool: WAFs
   - https://www.fastly.com/blog/best-practices-devops-and-wafs
-- HDMI - Scaling Netflix Certification \| by Netflix Technology Blog
+- HDMI - Scaling Netflix Certification | by Netflix Technology Blog
   - https://netflixtechblog.com/hdmi-scaling-netflix-certification-8e9cb3ec524f
   - netflix がどうやって接続機器のテストをしてるかみたいな話
 - AVIF has landed - JakeArchibald.com

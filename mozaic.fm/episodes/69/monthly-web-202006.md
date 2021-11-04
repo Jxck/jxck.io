@@ -162,7 +162,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LoyzK8xTRME/yLR-K-siBQAJ
   - Experiment: adaptivePtime property for RTCRtpEncodingParameters.
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Mt9GmmF-Vwc/G4EhuBsdBQAJ
-  - Experiment \| Extend Origin Trial: Deprecation Trial For Disallowing Sync XHR in Page Dismissal
+  - Experiment | Extend Origin Trial: Deprecation Trial For Disallowing Sync XHR in Page Dismissal
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ubh0hXsM2_o/0aOCdlCaAQAJ
   - Change:
   - Unship:
@@ -279,7 +279,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://blog.mozilla.org/blog/2020/06/26/more-details-on-comcast-as-a-trusted-recursive-resolver/
   - Firefox 79 Beta and Developer Edition shipped with a few changes
     - https://www.fxsitecompat.dev/en-CA/blog/2020/firefox-79-beta-and-developer-edition-shipped-with-a-few-changes/
-  - SpiderMonkey Newsletter 5 (Firefox 78-79) \| spidermonkey.dev
+  - SpiderMonkey Newsletter 5 (Firefox 78-79) | spidermonkey.dev
     - https://mozilla-spidermonkey.github.io/blog/2020/07/03/newsletter-5.html
   - SpiderMonkey Newsletter #5
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/eEAh6uE2M5E/dSsp0fa1AgAJ
@@ -672,7 +672,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://blog.cloudflare.com/how-to-test-http-3-and-quic-with-firefox-nightly/
 - *Platform Adjacency Theory - Infrequently Noted*
   - https://infrequently.org/2020/06/platform-adjacency-theory/
-- QUIC with wolfSSL \| daniel.haxx.se
+- QUIC with wolfSSL | daniel.haxx.se
   - https://daniel.haxx.se/blog/2020/06/18/quic-with-wolfssl/
 
 

@@ -538,7 +538,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 ### セキュリティ動向
 
-- *Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 \| Facebook Business ヘルプセンター*
+- *Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 | Facebook Business ヘルプセンター*
   - https://www.facebook.com/business/help/331612538028890?id=428636648170202
   - AppTrackingTransparency に基づく Facebook Pixel ユーザへの注意喚起とガイドラインが FB から公開された
     - https://developer.apple.com/jp/app-store/user-privacy-and-data-use/

@@ -380,7 +380,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Full-range color levels are now supported for video playback on many systems.
   - Mac users can now access the macOS share options from the Firefox File menu.
   - Support for images containing ICC v4 profiles is enabled on macOS.
-- *Firefox 92 for developers - Mozilla \| MDN*
+- *Firefox 92 for developers - Mozilla | MDN*
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/92
     - accent-color
     - font-family: system-ui
@@ -448,7 +448,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- Safari 15 Release Notes \| Apple Developer Documentation
+- Safari 15 Release Notes | Apple Developer Documentation
   - https://developer.apple.com/documentation/safari-release-notes/safari-15-release-notes
   - Authentication and Passwords
     - Added support for Verification Codes to the iCloud Keychain Password Manager. To use verification codes with Safari and Autofill:
@@ -564,7 +564,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://k-tai.watch.impress.co.jp/docs/news/1351917.html
   - iCloud Private Relay で影響がでるキャリアのサービス
   - フィルタリングやカウントフリー系に影響が出る
-- *Important Information about macOS Safari 15 \| PlayCanvas*
+- *Important Information about macOS Safari 15 | PlayCanvas*
   - https://blog.playcanvas.com/important-information-about-safari-15/
   - WebGL のライブラリやゲームエンジンが Safari 15 でクラッシュしているらしい
 
@@ -579,7 +579,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Make Microsoft Edge DevTools your own
   - https://blogs.windows.com/msedgedev/2021/09/14/edge-devtools-93-personalization/
-- *Microsoft announces passwordless future – available across Microsoft Edge and Microsoft 365 apps \| Windows Experience Blog*
+- *Microsoft announces passwordless future – available across Microsoft Edge and Microsoft 365 apps | Windows Experience Blog*
   - https://blogs.windows.com/windowsexperience/2021/09/15/microsoft-announces-passwordless-future-available-across-microsoft-edge-and-microsoft-365-apps/
 
 
@@ -656,7 +656,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Minutes
     - https://github.com/tc39/notes/blob/master/meetings/2021-08/aug-31.md
     - https://github.com/tc39/notes/blob/master/meetings/2021-08/sept-01.md
-  - TC39 meeting, July 13-16 2021 \| SpiderMonkey JavaScript/WebAssembly Engine
+  - TC39 meeting, July 13-16 2021 | SpiderMonkey JavaScript/WebAssembly Engine
     - https://spidermonkey.dev/blog/2021/08/09/tc39.html
   - Updates from the 85th meeting of TC39 - DEV Community
     - https://dev.to/hemanth/updates-from-the-85th-meeting-of-tc39-2kep
@@ -709,7 +709,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- SpiderMonkey Newsletter (Firefox 92-93) \| SpiderMonkey JavaScript/WebAssembly Engine
+- SpiderMonkey Newsletter (Firefox 92-93) | SpiderMonkey JavaScript/WebAssembly Engine
   - https://spidermonkey.dev/blog/2021/09/10/newsletter-firefox-92-93.html
 
 
@@ -819,7 +819,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://secweb.work/papers/lekies2021jsonps.pdf
   - Determining OS Platform Version – text/plain
     - https://textslashplain.com/2021/09/21/determining-os-platform-version/
-- HTTPS Is Actually Everywhere \| Electronic Frontier Foundation
+- HTTPS Is Actually Everywhere | Electronic Frontier Foundation
   - https://www.eff.org/deeplinks/2021/09/https-actually-everywhere
 
 

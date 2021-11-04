@@ -229,7 +229,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.googleblog.com/2021/05/tech-camp-introduces-georgia-high.html
   - Google Developers Blog: Behind the scenes: How the Google I/O photo booth was made
     - https://developers.googleblog.com/2021/05/behind-scenes-how-google-io-photo-booth-was-made.html
-  - *Search at Google I/O 2021  \|  Google Search Central Blog*
+  - *Search at Google I/O 2021  |  Google Search Central Blog*
     - https://developers.google.com/search/blog/2021/05/search-io-2021
   - Prevent portions of your site from being abused by spam
     - https://developers.google.com/search/blog/2021/05/prevent-portions-of-site-from-spam
@@ -342,7 +342,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2021/05/14/these-weeks-in-firefox-issue-93/
 - *These Weeks in Firefox: Issue 94 – Firefox Nightly News*
   - https://blog.nightly.mozilla.org/2021/05/21/these-weeks-in-firefox-issue-94/
-- *Manifest v3 update \| Mozilla Add-ons Blog*
+- *Manifest v3 update | Mozilla Add-ons Blog*
   - https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/
 
 
@@ -517,7 +517,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://techcommunity.microsoft.com/t5/articles/top-feedback-summary-for-may-12/m-p/2349483#M5538
 - New Update Experience for Mac available in Edge Dev - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/articles/new-update-experience-for-mac-available-in-edge-dev/m-p/2200983#M5069
-- net-export の使い方 \| Japan Developer Support Internet Team Blog
+- net-export の使い方 | Japan Developer Support Internet Team Blog
   - https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-to-use-net-export/
 - Preview Microsoft Math Solver in Microsoft Edge
   - https://blogs.windows.com/msedgedev/2021/05/21/preview-microsoft-math-solver-microsoft-edge/
@@ -764,7 +764,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *Publicly Trusted TLS Certificates: Changes - Blog \| GlobalSign*
+- *Publicly Trusted TLS Certificates: Changes - Blog | GlobalSign*
   - https://www.globalsign.com/en/blog/upcoming-changes-publicly-trusted-tls-certificates
   - ドメインと IP の検証結果の再利用を最長 398 日に
   - HTTP domain validation は Subdomain と Wildcard では禁止に

@@ -245,9 +245,9 @@ guest: [@myakura](https://twitter.com/yakura)
 
 - Stable:72.0.2
 - Updates
-  - Firefox 71 for Developers - Mozilla \| MDN
+  - Firefox 71 for Developers - Mozilla | MDN
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/71
-  - Firefox 72 for Developers - Mozilla \| MDN
+  - Firefox 72 for Developers - Mozilla | MDN
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/72
   - Firefox 71: A year-end arrival - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2019/12/firefox-71-a-year-end-arrival/
@@ -304,7 +304,7 @@ guest: [@myakura](https://twitter.com/yakura)
   - Unship: -moz-prefixed multi-column properties and -moz-column-gap
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/HsxXNTUmhrU/u_ZxPnPlAQAJ
 - Other
-  - Announcing Version 2.7 of the Mozilla Root Store Policy \| Mozilla Security Blog
+  - Announcing Version 2.7 of the Mozilla Root Store Policy | Mozilla Security Blog
     - https://blog.mozilla.org/security/2019/12/11/announcing-version-2-7-of-the-mozilla-root-store-policy/
   - More Questions About .org - The Mozilla Blog
     - https://blog.mozilla.org/blog/2019/12/19/more-questions-about-org/
@@ -320,15 +320,15 @@ guest: [@myakura](https://twitter.com/yakura)
     - 70 人近いレイオフがあった
   - *This year in web-platform-tests - 2019 edition*
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/5JL5VNWlass/ATkoDS1rBwAJ
-  - January 2020 CA Communication \| Mozilla Security Blog
+  - January 2020 CA Communication | Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/01/13/january-2020-ca-communication/
-  - The End-to-End Design of CRLite \| Mozilla Security Blog
+  - The End-to-End Design of CRLite | Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/01/09/crlite-part-2-end-to-end-design/
-  - Introducing CRLite: All of the Web PKI's revocations, compressed \| Mozilla Security Blog
+  - Introducing CRLite: All of the Web PKI's revocations, compressed | Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/01/09/crlite-part-1-all-web-pki-revocations-compressed/
-  - Firefox 72 blocks third-party fingerprinting resources \| Mozilla Security Blog
+  - Firefox 72 blocks third-party fingerprinting resources | Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/01/07/firefox-72-fingerprinting/
-  - CRLite: Speeding Up Secure Browsing \| Mozilla Security Blog
+  - CRLite: Speeding Up Secure Browsing | Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/01/21/crlite-part-3-speeding-up-secure-browsing/
   - ICANN Directors: Take a Close Look at the Dot Org Sale - The Mozilla Blog
     - https://blog.mozilla.org/blog/2020/01/23/icann-directors-take-a-close-look-at-the-dot-org-sale/
@@ -402,10 +402,10 @@ guest: [@myakura](https://twitter.com/yakura)
     - Safari WebDriver for iOS
     - Web Inspector Improvements
 - Other
-  - *Preventing Tracking Prevention Tracking \| WebKit*
+  - *Preventing Tracking Prevention Tracking | WebKit*
     - https://webkit.org/blog/9661/preventing-tracking-prevention-tracking/
     - ITP がトラッキングベクタになる可能性
-  - ResizeObserver in WebKit \| WebKit
+  - ResizeObserver in WebKit | WebKit
     - https://webkit.org/blog/9997/resizeobserver-in-webkit/
 
 
@@ -433,9 +433,9 @@ guest: [@myakura](https://twitter.com/yakura)
     - https://blogs.windows.com/windowsexperience/2020/01/15/new-year-new-browser-the-new-microsoft-edge-is-out-of-preview-and-now-available-for-download/
   - Get started building extensions for the new Microsoft Edge
     - https://blogs.windows.com/msedgedev/2019/12/16/get-started-extensions-addons-microsoft-edge-chromium/
-  - *Retiring Internet Explorer \| text/plain*
+  - *Retiring Internet Explorer | text/plain*
     - https://textslashplain.com/2020/01/19/retiring-internet-explorer/
-  - Capture Network Logs from Edge and Chrome \| text/plain
+  - Capture Network Logs from Edge and Chrome | text/plain
     - https://textslashplain.com/2020/01/17/capture-network-logs-from-edge-and-chrome/
 - Chakra
 - Other
@@ -452,7 +452,7 @@ guest: [@myakura](https://twitter.com/yakura)
     - https://www.keisan.nta.go.jp/r1yokuaru/cat1/cat11/cid532.html
     - new Edge では eTax が使えない(主にマイナンバーを読む NFC)
     - IE11 か Edge44 が推奨
-  - Microsoft Edge をご利用の方へ(令和 2 年 1 月 30 日) \| e-Tax
+  - Microsoft Edge をご利用の方へ(令和 2 年 1 月 30 日) | e-Tax
     - http://www.e-tax.nta.go.jp/topics/topics_new_edge.htm
   - *Today, the Trident Era Ends*
     - https://schepp.dev/posts/today-the-trident-era-ends/
@@ -476,7 +476,7 @@ guest: [@myakura](https://twitter.com/yakura)
     - .NET ランタイムを WASM にしてブラウザに読ませ、そこで .NET を実行
     - 2MB あるがリリースまでに brotli で 1.5MB にする
     - 2020 May にリリースのスケジュール
-  - *Retiring Internet Explorer \| text/plain*
+  - *Retiring Internet Explorer | text/plain*
     - https://textslashplain.com/2020/01/19/retiring-internet-explorer/
 
 
@@ -651,7 +651,7 @@ guest: [@myakura](https://twitter.com/yakura)
   - Safari はデバイス内部にクロスドメインのリクエストを行ったサイトのリストを持っている
   - クロスサイトのリクエストを送って ITP によるブロックを発生させて悪用する
   - 12 月に WebKit のブログで発表されていたものとは別らしい
-- Security Zones in Edge \| text/plain
+- Security Zones in Edge | text/plain
   - https://textslashplain.com/2020/01/30/security-zones-in-edge/
 - *CNAME Cloaking, the dangerous disguise of third-party trackers*
   - https://medium.com/nextdns/cname-cloaking-the-dangerous-disguise-of-third-party-trackers-195205dc522a
@@ -690,12 +690,12 @@ guest: [@myakura](https://twitter.com/yakura)
 - Fixing HTTP/2 and preparing for HTTP/3 over QUIC
   - https://quic.edm.uhasselt.be/files/fixingH2_preparingH3_RobinMarx_Velocity19.pdf
   - O'Reilly Velocity Berlin 2019
-- Daily web traffic \| daniel.haxx.se
+- Daily web traffic | daniel.haxx.se
   - https://daniel.haxx.se/blog/2019/12/04/daily-web-traffic/
 - Who Can Use
   - https://whocanuse.com/
   - コントラスト比の算出と、どういう人に影響があるかを見るツール
-- *User Agent Changes \| Vivaldi Browser*
+- *User Agent Changes | Vivaldi Browser*
   - https://vivaldi.com/ja/blog/user-agent-changes/
   - Vivaldi の UA が弾かれるサービスがある
   - UA を Chrome のものに変えることにした

@@ -452,7 +452,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2021/07/16/easier-debugging-developer-tools-in-visual-studio-code/
 - How to opt-in to the Extended Stable release cycle option beginning with Microsoft Edge 94
   - https://blogs.windows.com/msedgedev/2021/07/15/opt-in-extended-stable-release-cycle/
-- *WebView2 and Electron \| Electron Blog*
+- *WebView2 and Electron | Electron Blog*
   - https://www.electronjs.org/blog/webview2
   - Chromium を使う WebView2 と Electron はどう違うのかを紹介
   - Electron は Chromium をバンドルするが、 WebView2 ではランタイムも選択できる
@@ -556,7 +556,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- Node v16.5.0 (Current) \| Node.js
+- Node v16.5.0 (Current) | Node.js
   - https://nodejs.org/en/blog/release/v16.5.0/
   - Experimental Web Streams API
 
@@ -622,7 +622,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Fastly
 
-- *Compute@Edge: the JavaScript support you demanded without cold starts or increased security risks \| Fastly*
+- *Compute@Edge: the JavaScript support you demanded without cold starts or increased security risks | Fastly*
   - https://www.fastly.com/blog/compute-edge-now-supports-javascript
   - https://www.publickey1.jp/blog/21/fastlyjavascriptwebassemblycdncomputeedge.html
   - Fastly 上の WASM 実行環境で JS がサポートされた

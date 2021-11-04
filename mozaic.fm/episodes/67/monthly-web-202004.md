@@ -30,7 +30,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - App icon badging
     - Web NFC
     - A personal note from Pete
-  - Deprecations and removals in Chrome 83  \|  Web  \|  Google Developers
+  - Deprecations and removals in Chrome 83  |  Web  |  Google Developers
     - https://developers.google.com/web/updates/2020/04/chrome-83-deps-rems
     - Disallow downloads in Sandboxed iframes
   - Chromium Blog: Chrome 83 Beta: Cross-site Scripting Protection, Improved Form Controls, and Safe Cross-origin Resource Sharing
@@ -194,7 +194,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Updates
   - Firefox 75.0, See All New Features, Updates and Fixes
     - https://www.mozilla.org/en-US/firefox/75.0/releasenotes/
-  - Firefox 75 for developers - Mozilla \| MDN
+  - Firefox 75 for developers - Mozilla | MDN
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/75
   - Firefox 75: Ambitions for April - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/04/firefox-75-ambitions-for-april/
@@ -253,17 +253,17 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.nightly.mozilla.org/2020/04/06/these-weeks-in-firefox-issue-72/
   - These Weeks in Firefox: Issue 73 – Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/04/17/these-weeks-in-firefox-issue-73/
-  - Firefox's Bug Bounty in 2019 and into the Future \| Mozilla Security Blog
+  - Firefox's Bug Bounty in 2019 and into the Future | Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/04/23/bug-bounty-2019-and-future/
-  - Expanding Client Certificates in Firefox 75 \| Mozilla Security Blog
+  - Expanding Client Certificates in Firefox 75 | Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/04/14/expanding-client-certificates-in-firefox-75/
-  - Firefox 75 will respect `nosniff` for Page Loads \| Mozilla Security Blog
+  - Firefox 75 will respect `nosniff` for Page Loads | Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/04/07/firefox-75-will-respect-nosniff-for-page-loads/
   - Engineering code quality in the Firefox browser: A look at our tools and challenges - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/04/code-quality-tools-at-mozilla/
   - A Taste of WebGPU in Firefox - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/04/experimental-webgpu-in-firefox/
-  - Keeping Firefox working for you during challenging times \| The Firefox Frontier
+  - Keeping Firefox working for you during challenging times | The Firefox Frontier
     - https://blog.mozilla.org/firefox/keeping-firefox-working-for-you-during-challenging-times/
 
 
@@ -327,7 +327,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Release ChakraCore v1.11.18 - microsoft/ChakraCore
     - https://github.com/microsoft/ChakraCore/releases/tag/v1.11.18
 - Other
-  - Analyzing Network Traffic Logs (NetLog json) \| text/plain
+  - Analyzing Network Traffic Logs (NetLog json) | text/plain
     - https://textslashplain.com/2020/04/08/analyzing-network-traffic-logs-netlog-json/
 
 
@@ -342,7 +342,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web fights covid19 Community Group created
     - https://lists.w3.org/Archives/Public/public-new-work/2020Apr/0005.html
 - Other
-  - W3C Website redesign: User-stories; brand and identity \| W3C Blog
+  - W3C Website redesign: User-stories; brand and identity | W3C Blog
     - https://www.w3.org/blog/2020/04/w3c-website-redesign-user-stories-brand-and-identity/
   - Upcoming Distributed, Online Workshops: W3C/OGC Joint Workshop Series on Maps for the Web
     - https://www.w3.org/blog/news/archives/8455
@@ -445,7 +445,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - ミーティング・ウェビナーの暗号化について (翻訳版) - Zoom Blog
   - https://blog.zoom.us/wordpress/ja/2020/04/01/zoom%e3%81%8a%e3%82%88%e3%81%b3%e3%83%9f%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0-%e3%82%a6%e3%82%a7%e3%83%93%e3%83%8a%e3%83%bc%e3%81%ae%e6%9a%97%e5%8f%b7%e5%8c%96%e3%81%ab%e9%96%a2%e3%81%99/
   - End-to-End 暗号化
-- Beware of the GIF: Account Takeover Vulnerability in Microsoft Teams \| CyberArk
+- Beware of the GIF: Account Takeover Vulnerability in Microsoft Teams | CyberArk
   - https://www.cyberark.com/threat-research-blog/beware-of-the-gif-account-takeover-vulnerability-in-microsoft-teams/
   - グループチャットツールの Microsoft Teams に「GIF 画像を見るだけでアカウントを乗っ取られる脆弱性」が発見される - GIGAZINE
   - https://gigazine.net/news/20200428-microsoft-teams-vulnerability-gif-link/
@@ -472,7 +472,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://techcommunity.microsoft.com/t5/networking-blog/msquic-is-open-source/ba-p/1345441
   - microsoft/msquic: Cross platform C implementation of the IETF QUIC protocol.
     - https://github.com/Microsoft/msquic
-- オランダ当局が Cookie ウォールは GDPR の要件を満たさないと判断 \| TechCrunch Japan
+- オランダ当局が Cookie ウォールは GDPR の要件を満たさないと判断 | TechCrunch Japan
   - https://jp.techcrunch.com/2019/03/11/2019-03-08-cookie-walls-dont-comply-with-gdpr-says-dutch-dpa/
 
 

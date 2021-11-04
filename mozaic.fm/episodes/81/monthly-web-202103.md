@@ -258,7 +258,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developers.googleblog.com/
   - *Clarifications about the SharedArrayBuffer object message*
     - https://developers.google.com/search/blog/2021/03/sharedarraybuffer-notes
-  - *New resources for video SEO  \|  Google Search Central Blog*
+  - *New resources for video SEO  |  Google Search Central Blog*
     - https://developers.google.com/search/blog/2021/03/new-resources-for-video-seo
     - Make your videos available on the web
     - Provide structured data with VideoObject markup
@@ -296,7 +296,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - In March, we see Firefox 87 - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2021/03/in-march-we-see-firefox-87/
-- Firefox 87 for developers - Mozilla \| MDN
+- Firefox 87 for developers - Mozilla | MDN
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/87
 - Firefox 87.0, See All New Features, Updates and Fixes
   - https://www.mozilla.org/en-US/firefox/87.0/releasenotes/
@@ -679,7 +679,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- Where is HTTP/3 right now? \| daniel.haxx.se
+- Where is HTTP/3 right now? | daniel.haxx.se
   - https://daniel.haxx.se/blog/2021/04/02/where-is-http-3-right-now/
 
 
@@ -691,7 +691,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Fastly
 
-- 2020 Year-in-Review: COVID drives "bump" in traffic across various industries \| Fastly
+- 2020 Year-in-Review: COVID drives "bump" in traffic across various industries | Fastly
   - https://www.fastly.com/blog/2020-year-in-review-covid-drives-bump-in-traffic-across-various-industries
 
 

@@ -277,7 +277,7 @@ Monthly Web のモチベーションについては以下。
   - Make VP9 the default decoder/encoder by default
     - https://bugzilla.mozilla.org/show_bug.cgi?id=1392961
     - WebRTC デフォルトエンコーディングが VP9 に
-  - Statement on DigiCert's Proposed Purchase of Symantec's CA \| Mozilla Security Blog
+  - Statement on DigiCert's Proposed Purchase of Symantec's CA | Mozilla Security Blog
     - https://blog.mozilla.org/security/2017/10/31/statement-digicerts-proposed-purchase-symantec/
   - Browser Architecture Newsletter 5
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/UNUydxiVQnw/pXcUM1clBQAJ
@@ -586,13 +586,13 @@ Monthly Web のモチベーションについては以下。
     - https://www.w3.org/blog/news/archives/6642
     - 5G 以降の Web についての話が始まっている
     - Workshop も予定されている
-  - Proposed Group: Improving Web Advertising Business Group \| Community and Business Groups
+  - Proposed Group: Improving Web Advertising Business Group | Community and Business Groups
     - https://www.w3.org/community/blog/2017/11/06/proposed-group-improving-web-advertising-business-group/
-  - Proposed Group: Merging of Web and Mobile APP Community Group \| Community and Business Groups
+  - Proposed Group: Merging of Web and Mobile APP Community Group | Community and Business Groups
     - https://www.w3.org/community/blog/2017/11/08/proposed-group-merging-of-web-and-mobile-app-community-group/
-  - Proposed Group: Optimize Web Technology for Native App Community Group \| Community and Business Groups
+  - Proposed Group: Optimize Web Technology for Native App Community Group | Community and Business Groups
     - https://www.w3.org/community/blog/2017/11/08/proposed-group-optimize-web-technology-for-native-app-community-group/
-  - Second Patent Advisory Group for Web Payments Working Group Launched \| W3C News
+  - Second Patent Advisory Group for Web Payments Working Group Launched | W3C News
     - https://www.w3.org/blog/news/archives/6655
   - Add goal parameter checks to JavaScript by bmeck
     - https://github.com/whatwg/html/pull/3205

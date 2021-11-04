@@ -40,7 +40,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - *Service Workers Support Basic HTTP Authentication*
     - Stop Action for Media Sessions
     - Web Payments: Throw a TypeError on Invalid "basic-card" Data
-    - Support Step Timing Functions jump-start\|end\|both\|none
+    - Support Step Timing Functions jump-start|end|both|none
     - white-space: break-spaces
     - Card Issuer Networks as Payment Method Names
     - Deprecate Web MIDI Use on Insecure Origins

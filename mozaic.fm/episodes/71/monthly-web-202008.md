@@ -404,7 +404,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/cloudflare-and-human-rights-joining-the-global-network-initiative-gni/
 - How Argo Tunnel engineering uses Argo Tunnel
   - https://blog.cloudflare.com/how-argo-tunnel-engineering-uses-argo-tunnel/
-- Brave's Concerns with the Client-Hints Proposal \| Brave Browser
+- Brave's Concerns with the Client-Hints Proposal | Brave Browser
   - https://brave.com/brave-and-client-hints/
 - WebBundles Harmful to Content Blocking, Security Tools, and the Open Web (Standards Updates #2)
   - https://brave.com/webbundles-harmful-to-content-blocking-security-tools-and-the-open-web/

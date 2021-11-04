@@ -218,7 +218,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.nightly.mozilla.org/2020/10/13/these-weeks-in-firefox-issue-81/
   - These Weeks in Firefox: Issue 82 – Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/10/21/these-weeks-in-firefox-issue-82/
-  - *SpiderMonkey Newsletter 7 (Firefox 82-83) \| spidermonkey.dev*
+  - *SpiderMonkey Newsletter 7 (Firefox 82-83) | spidermonkey.dev*
     - https://mozilla-spidermonkey.github.io/blog/2020/10/27/newsletter-7.html
     - `item()` を実装するも互換性の問題が出てバックアウトされた
     - YUI の互換性
@@ -333,7 +333,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blogs.windows.com/msedgedev/2020/10/15/icymi-edge-ignite-2020/
   - Announcing Microsoft Edge WebView2 General Availability
     - https://blogs.windows.com/msedgedev/2020/10/19/edge-webview2-general-availability/
-  - *What's new in the Windows 10 October 2020 Update \| Windows Experience Blog*
+  - *What's new in the Windows 10 October 2020 Update | Windows Experience Blog*
     - https://blogs.windows.com/windowsexperience/2020/10/20/whats-new-in-the-windows-10-october-2020-update/
     - Edge Legacy が Chromium Edge に置き換えられた
   - *Safety and privacy in Microsoft Edge*
@@ -595,11 +595,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- Don't DIY a secure platform: lessons learned from side-channel attacks \| Fastly
+- Don't DIY a secure platform: lessons learned from side-channel attacks | Fastly
   - https://www.fastly.com/blog/learnings-from-side-channel-attacks
-- Meet AssemblyScript: your next computing language \| Fastly
+- Meet AssemblyScript: your next computing language | Fastly
   - https://www.fastly.com/blog/meet-assemblyscript-your-next-computing-language
-- *Beyond Server Push: experimenting with the 103 Early Hints Status Code \| Fastly*
+- *Beyond Server Push: experimenting with the 103 Early Hints Status Code | Fastly*
   - https://www.fastly.com/blog/beyond-server-push-experimenting-with-the-103-early-hints-status-code
   - Early Hints を送った場合の改善の可能性を測定する検証を開始
 - AVIF image format supported by Cloudflare Image Resizing
@@ -610,7 +610,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - *How Facebook is bringing QUIC to billions - Facebook Engineering*
   - https://engineering.fb.com/networking-traffic/how-facebook-is-bringing-quic-to-billions/
   - Facebook が HTTP/3 と QUIC をデプロイ、記事公開時点で 75% 以上のトラフィックが QUIC になっている
-- *Justice Department Sues Monopolist Google For Violating Antitrust Laws \| OPA \| Department of Justice*
+- *Justice Department Sues Monopolist Google For Violating Antitrust Laws | OPA | Department of Justice*
   - https://www.justice.gov/opa/pr/justice-department-sues-monopolist-google-violating-antitrust-laws
   - 検索と検索広告市場の独占で Google が米国司法省に訴えられる
 - *Opera comments on competition law case against Google in the United States*
@@ -626,14 +626,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - AddyOsmani.com - Emulate vision deficiencies in DevTools
   - https://addyosmani.com/blog/emulate-vision-deficiencies-devtools/
   - DevTools で視力障害をエミュレートする方法
-- History Archives \| CSS-Tricks
+- History Archives | CSS-Tricks
   - https://css-tricks.com/category/history/
   - Web の歴史
   - Chapter 1: Birth
   - Chapter 2: Browsers
   - Chapter 3: The Website
   - Chapter 4: Search
-- さくらインターネット 全サービスにおける Internet Explorer サポート終了のお知らせ \| さくらインターネット
+- さくらインターネット 全サービスにおける Internet Explorer サポート終了のお知らせ | さくらインターネット
   - https://www.sakura.ad.jp/information/announcements/2020/10/29/1968205310/
   - 2021 年 4 月 1 日から会員メニューと全サービスのコントロールパネルで IE の利用を「非推奨」に
 - *Era Web Architects*

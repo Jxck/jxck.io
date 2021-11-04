@@ -549,7 +549,7 @@ Monthly Web のモチベーションについては以下。
   - WebComponents についての要望アンケート
 - "If you disable autocomplete on your HTML forms, why?"
   - https://twitter.com/Paul_Kinlan/status/914799105507041280
-- Get ready for TLS 1.3 \| Akamai Community
+- Get ready for TLS 1.3 | Akamai Community
   - https://community.akamai.com/community/web-performance/blog/2017/10/25/get-ready-for-tls-13
   - Akamai で TLS1.3 beta リリース
 

@@ -562,13 +562,13 @@ guest: [@shqld](https://twitter.com/shqld)
   - *Use Cases and Requirements for Web Packages*
     - https://tools.ietf.org/html/draft-yasskin-wpack-use-cases-01
 - Other
-  - HTTP/3 logo \| daniel.haxx.se
+  - HTTP/3 logo | daniel.haxx.se
     - https://daniel.haxx.se/blog/2020/08/01/http-3-logo/
 
 
 ### セキュリティ動向
 
-- SSL サーバ証明書の有効期間を短縮するという決定に関する続報 \| グローバルサインブログ
+- SSL サーバ証明書の有効期間を短縮するという決定に関する続報 | グローバルサインブログ
   - https://jp.globalsign.com/blog/articles/cabrowserforum_200707.html
 - 2020 年第 1 四半期ネットワーク層 DDoS 攻撃の傾向
   - https://blog.cloudflare.com/network-layer-ddos-attack-trends-for-q1-2020-jp/

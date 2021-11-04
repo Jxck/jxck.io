@@ -327,7 +327,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Debugging WebAssembly with modern tools
   - https://developers.google.com/web/updates/2020/12/webassembly
-- Updates to Search Console's API  \|  Google Search Central Blog
+- Updates to Search Console's API  |  Google Search Central Blog
   - https://developers.google.com/search/blog/2020/12/search-console-api-updates
 - Introducing Google News performance report
   - https://developers.google.com/search/blog/2021/01/google-news-performance-report
@@ -879,26 +879,26 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- 日本の CDN シェアについて調査結果@2020 年 10 月 \| J-Stream CDN 情報サイト
+- 日本の CDN シェアについて調査結果@2020 年 10 月 | J-Stream CDN 情報サイト
   - https://tech.jstream.jp/blog/cdn/cdn-share-oct2020/
 
 
 ### セキュリティ動向
 
 - *Smooz*
-  - 国産ブラウザアプリ Smooz はあなたの閲覧情報をすべて外部送信している \| reliphone (for iPhone)
+  - 国産ブラウザアプリ Smooz はあなたの閲覧情報をすべて外部送信している | reliphone (for iPhone)
     - https://reliphone.jp/post-16195/
-  - 続・国産ブラウザアプリ Smooz はあなたの閲覧情報をすべて外部送信している \| reliphone (for iPhone)
+  - 続・国産ブラウザアプリ Smooz はあなたの閲覧情報をすべて外部送信している | reliphone (for iPhone)
     - https://reliphone.jp/post-16247/
-  - 続・続・国産ブラウザアプリ Smooz はあなたの閲覧情報をすべて外部送信している \| reliphone (for iPhone)
+  - 続・続・国産ブラウザアプリ Smooz はあなたの閲覧情報をすべて外部送信している | reliphone (for iPhone)
     - https://reliphone.jp/post-16289/
-  - Smooz のサービス終了のお知らせ \| Smooz Blog
+  - Smooz のサービス終了のお知らせ | Smooz Blog
     - https://smoozapp.com/blog/2020/12/23/end_of_service/
   - Smooz サービス終了に寄せて
     - https://gist.github.com/mala/f443d5d0ba1b46137684e555ade08098
 - Web Deprecation Metrics
   - https://deprecate.it/
-- 様々なサイバー攻撃に繋がる脆弱性 HTTP リクエストスマグリング \| yamory Blog
+- 様々なサイバー攻撃に繋がる脆弱性 HTTP リクエストスマグリング | yamory Blog
   - https://yamory.io/blog/about-http-request-smuggling/
 
 
@@ -918,12 +918,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://infrequently.org/2020/12/content-visibility-scroll-fix/
 - Resize-Resilient `content-visiblity` Fixes - Infrequently Noted
   - https://infrequently.org/2020/12/resize-resilient-deferred-rendering/
-- ソフトバンク・博報堂・トレジャーデータの合弁会社、 3rd パーティクッキー依存しないソリューションを提供開始 \| RTB SQUARE
+- ソフトバンク・博報堂・トレジャーデータの合弁会社、 3rd パーティクッキー依存しないソリューションを提供開始 | RTB SQUARE
   - https://rtbsquare.work/archives/34250
 - South Korea kills ActiveX-based government digital certificate service - The Register
   - https://www.theregister.com/2020/12/10/south_korea_activex_certs_dead/
   - 韓国政府が ActiveX 依存からの脱却へ
-- Vol.49 \| Internet Infrastructure Review(IIR) \| IIJ の技術 \| インターネットイニシアティブ(IIJ)
+- Vol.49 | Internet Infrastructure Review(IIR) | IIJ の技術 | インターネットイニシアティブ(IIJ)
   - https://www.iij.ad.jp/dev/report/iir/049.html
 - Releasing Joy-Con WebHID
   - https://blog.tomayac.com/2020/12/21/releasing-joy-con-webhid/
@@ -972,7 +972,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 1 月
 - 2 月
 - 3 月
-  - 8-12: IETF \| IETF 110 Online
+  - 8-12: IETF | IETF 110 Online
     - https://www.ietf.org/how/meetings/110/
   - TBD: TC39 Meeting
 

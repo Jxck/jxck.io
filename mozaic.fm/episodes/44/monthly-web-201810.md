@@ -644,7 +644,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2018OctDec/0066.html
     - httpbis の Chair である patrick と mnot が両方 Fastly に入ってしまった
     - そこで 3 人目をたてるということで Apple の Tommy を追加
-  - *IETF \| What's Happening with QUIC*
+  - *IETF | What's Happening with QUIC*
     - https://www.ietf.org/blog/whats-happening-quic/
     - 仕様はある程度揉まれ、実装し検証している段階
     - IETF103 Bangkok でもやる
@@ -671,7 +671,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://security.googleblog.com/2018/10/modernizing-transport-security.html
   - Removing Old Versions of TLS
     - https://blog.mozilla.org/security/2018/10/15/removing-old-versions-of-tls/
-- 祝 RFC!Transport Layer Security (TLS) 1.3 発行の軌跡 〜熟成された 4 年間の安全性解析〜\|株式会社レピダム
+- 祝 RFC!Transport Layer Security (TLS) 1.3 発行の軌跡 〜熟成された 4 年間の安全性解析〜|株式会社レピダム
   - https://lepidum.co.jp/blog/2018-10-01/tls1_3security/
 - *Permission をとれば opt-in で CORS 迂回してもよいのでは* (tweet by Michael Bleigh)
   - https://twitter.com/mbleigh/status/1047950318363803649?s=12
@@ -680,7 +680,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - *[速報] GitHub 、見られてはいけないコード中のアクセストークンを発見し通知してくれる「Token Scanning」発表。 GitHub Universe 2018 - Publickey*
   - https://www.publickey1.jp/blog/18/githubtoken_scanninggithub_universe_2018.html
   - security token scheme もこの関連か?
-  - Behind the scenes of GitHub Token Scanning \| The GitHub Blog
+  - Behind the scenes of GitHub Token Scanning | The GitHub Blog
   - https://blog.github.com/2018-10-17-behind-the-scenes-of-github-token-scanning/
   - *The secret-token URI Scheme* https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00
 - Metadata-Attacker - A Tool To Generate Media Files With Malicious Metadata - KitPloit - PenTest Tools for your Security Arsenal
@@ -705,7 +705,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://medium.com/@addyosmani/start-performance-budgeting-dabde04cf6a3
 - AMP Contributor Summit: Learnings & Takeaways - Accelerated Mobile Pages Project
   - https://amphtml.wordpress.com/2018/10/15/amp-contributor-summit-learnings-takeaways/
-- Rhythm in Web Typography \| Better Web Type
+- Rhythm in Web Typography | Better Web Type
   - https://betterwebtype.com/rhythm-in-web-typography
 - Did you see that? Monitoring vs observability
   - https://www.fastly.com/blog/monitoring-vs-observability

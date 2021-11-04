@@ -590,7 +590,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 大半の証明書はセキュリティリスクがあるとは言えないが、ルール上取り消す必要がある
   - 2.6%(300 万件)が失効対象、そのうち CAA で禁止されてた 445 件と 170 万件はすでに置き換わった
   - 3/5 までに残り 130 万も失効したかったが、影響が大きすぎ、放っておいても 90 日で消えるので取りやめに
-- An Opinion Piece on Internet Security \| APNIC Blog
+- An Opinion Piece on Internet Security | APNIC Blog
   - https://blog.apnic.net/2020/03/24/an-opinion-piece-on-internet-security/
 
 

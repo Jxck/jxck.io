@@ -94,7 +94,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Desiloing files on the web
     - https://docs.google.com/presentation/d/1o751xGhXzCdPk25faAiGPw4OQ5SErfQEVvFy2nhZOwc/edit
     - Web Share まわりの現状と、検討中の File Handling について紹介
-  - The Interop Update \| The Chrome Gap \| BlinkOn 10
+  - The Interop Update | The Chrome Gap | BlinkOn 10
     - https://docs.google.com/presentation/d/1_On7g2EAUrVumIZr0PC-_iZszKyGT2_u1HbieThXjKA/edit
     - web-platform-tests まわりの話や、ブラウザ間の機能の差がどれくらい広がっているかなどの調査
   - Feature Policies for a Better Web
@@ -269,9 +269,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - リリース版においても、プロンプトに関する情報を限定的に集めるとも
   - Stop videos from automatically playing with new autoplay controls from Firefox
     - https://blog.mozilla.org/firefox/block-autoplay/
-  - Firefox Front-End Performance Update #16 \| Mike Conley's Blog
+  - Firefox Front-End Performance Update #16 | Mike Conley's Blog
     - https://mikeconley.ca/blog/2019/04/08/firefox-front-end-performance-update-16/
-  - Firefox Front-End Performance Update #17 \| Mike Conley's Blog
+  - Firefox Front-End Performance Update #17 | Mike Conley's Blog
     - https://mikeconley.ca/blog/2019/04/24/firefox-front-end-performance-update-17/
 - Intents
   - *Implement and Ship: add `preventScroll` option to HTMLElement's, SVGElement's and XULElement's `focus` method*

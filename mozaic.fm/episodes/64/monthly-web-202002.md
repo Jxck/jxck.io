@@ -208,7 +208,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 主に 3rd Party Libs から注力していく
   - Firefox 73 is upon us - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/02/firefox-73-is-upon-us/
-  - Firefox 73 for developers - Mozilla \| MDN
+  - Firefox 73 for developers - Mozilla | MDN
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/73
   - *Firefox 73.0, See All New Features, Updates and Fixes*
     - https://www.mozilla.org/en-US/firefox/73.0/releasenotes/
@@ -258,10 +258,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2020/02/its-the-boot-for-tls-1-0-and-tls-1-1/
   - *(とりこぼし) backgroundsync と periodicbacgkroundsync が harmful に*
     - https://github.com/mozilla/standards-positions/pull/232/files
-  - *Images are now rotated by default according to Exif data \| Firefox Site Compatibility*
+  - *Images are now rotated by default according to Exif data | Firefox Site Compatibility*
     - https://www.fxsitecompat.dev/en-CA/docs/2020/images-are-now-rotated-by-default-according-to-exif-data/
     - 画像の表示に Exif の rotate 情報をみるように
-  - Resolve data breaches with Firefox Monitor \| The Firefox Frontier
+  - Resolve data breaches with Firefox Monitor | The Firefox Frontier
     - https://blog.mozilla.org/firefox/resolve-data-breaches/
   - *Intent to implement: Cookie SameSite=lax by default and SameSite=none only if secure*
     - https://groups.google.com/d/msg/mozilla.dev.platform/nx2uP0CzA9k/REUNAW2YGQAJ
@@ -309,7 +309,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 80
 - Updates
-  - Announcing Windows 10 Insider Preview Build 19559 \| Windows Experience Blog
+  - Announcing Windows 10 Insider Preview Build 19559 | Windows Experience Blog
     - https://blogs.windows.com/windowsexperience/2020/02/05/announcing-windows-10-insider-preview-build-19559/
   - Bringing the Microsoft Edge DevTools to more languages
     - https://blogs.windows.com/msedgedev/2020/02/04/localizing-edge-devtools/
@@ -321,13 +321,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - Release ChakraCore v1.11.16 · microsoft/ChakraCore
     - https://github.com/microsoft/ChakraCore/releases/tag/v1.11.16
 - Other
-  - Microsoft's Three Browsers \| text/plain
+  - Microsoft's Three Browsers | text/plain
     - https://textslashplain.com/2020/02/03/microsofts-three-browsers/
-  - App-to-Web Communication: Launching Web Apps \| text/plain
+  - App-to-Web Communication: Launching Web Apps | text/plain
     - https://textslashplain.com/2020/02/05/app-to-web-communication-launching-web-apps/
-  - Demystifying Browsers \| text/plain
+  - Demystifying Browsers | text/plain
     - https://textslashplain.com/2020/02/09/demystifying-browsers/
-  - Browser Password Managers: Threat Models \| text/plain
+  - Browser Password Managers: Threat Models | text/plain
     - https://textslashplain.com/2020/02/11/browser-password-managers-threat-models/
 
 
@@ -462,7 +462,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.jiji.com/jc/article?k=2020020700330&g=soc
 - Three ways TLS 1.3 protects origin names
   - https://www.fastly.com/blog/3-ways-tls-1-3-protects-origin-names
-- Bypassing AppProtocol Prompts \| text/plain
+- Bypassing AppProtocol Prompts | text/plain
   - https://textslashplain.com/2020/02/20/bypassing-appprotocol-prompts/
 - *DNS over HTTPS Providers Chromium*
   - https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/Fz3VfevdFmg/o1GhsWWnAwAJ
@@ -475,7 +475,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - What do you want from a Web Browser Developer Relations team? - Modern Web Development: Tales of a Developer Advocate by Paul Kinlan
   - https://paul.kinlan.me/what-do-you-want-from-a-web-browser-developer-relations-team/
-- HTTP/3 for everyone \| daniel.haxx.se
+- HTTP/3 for everyone | daniel.haxx.se
   - https://daniel.haxx.se/blog/2020/02/02/http-3-for-everyone/
 - How 1500 bytes became the MTU of the internet
   - https://blog.benjojo.co.uk/post/why-is-ethernet-mtu-1500

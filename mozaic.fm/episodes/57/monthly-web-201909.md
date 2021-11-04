@@ -124,7 +124,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Gojq_IyMk04/lAja8XPsBwAJ
   - Implement: Percent-based scrolling
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/U3kH6_98BuY/uiaeS3D2AwAJ
-  - Experiment \| Deprecation Trial For Disallowing Sync XHR in Page Dismissal
+  - Experiment | Deprecation Trial For Disallowing Sync XHR in Page Dismissal
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cCWNIXB4dzY/o9oJteKiBQAJ
   - Experiment: Native File System API
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/noan0cgEBGQ/t8DuK8_hDwAJ

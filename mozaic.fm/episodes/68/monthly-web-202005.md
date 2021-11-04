@@ -482,9 +482,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - Using multiple profiles at work and at home is now easier with Microsoft Edge - Microsoft Edge Blog
     - https://blogs.windows.com/msedgedev/2020/04/30/automatic-profile-switching/
-  - Browser Basics: User Gestures \| text/plain
+  - Browser Basics: User Gestures | text/plain
     - https://textslashplain.com/2020/05/18/browser-basics-user-gestures/
-  - A bit of GREASE keeps the web moving \| text/plain
+  - A bit of GREASE keeps the web moving | text/plain
     - https://textslashplain.com/2020/05/18/a-bit-of-grease-keeps-the-web-moving/
 
 

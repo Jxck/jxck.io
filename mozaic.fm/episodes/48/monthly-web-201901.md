@@ -272,7 +272,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Leaving Mozilla and (most of) the Rust project
     - https://www.ncameron.org/blog/leaving-mozilla-and-most-of-the-rust-project/
     - rust の人が抜ける
-  - *Defining the tracking practices that will be blocked in Firefox \| Mozilla Security Blog*
+  - *Defining the tracking practices that will be blocked in Firefox | Mozilla Security Blog*
     - https://blog.mozilla.org/security/2019/01/28/defining-the-tracking-practices-that-will-be-blocked-in-firefox/
     - Anti Tracking Policy をリリース
     - https://wiki.mozilla.org/Security/Anti_tracking_policy
@@ -511,7 +511,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - H3 ではもっとシンプルに "priority" と "concurrency" だけで定義できないかという提案
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2019JanMar/0073.html
     - 盛り上がってる
-  - HTTP/3 talk on video \| daniel.haxx.se
+  - HTTP/3 talk on video | daniel.haxx.se
     - https://daniel.haxx.se/blog/2019/01/23/http-3-talk-on-video/
   - HTTP/3: From root to tip
     - https://blog.cloudflare.com/http-3-from-root-to-tip/
@@ -522,7 +522,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *TLS 1.3 rollout on GitHub.com \| The GitHub Blog*
+- *TLS 1.3 rollout on GitHub.com | The GitHub Blog*
   - https://blog.github.com/changelog/2019-01-15-tls13-rollout/
   - エントリ公開の前週に github.com で TLS 1.3 をロールアウト
   - 1 週間ほどで 30% ほどのトラフィックが 1.3 上に
@@ -531,7 +531,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 証明書の提供前に Google Safe Browsing を見ていたがやめた
   - 通信の暗号化とコンテンツの内容保証は関係ないから
   - Let's Encrypt 的には Out Of Scope
-- *Detecting Phishing Sites Using Certificate Transparency Monitoring \| Hardenize Blog*
+- *Detecting Phishing Sites Using Certificate Transparency Monitoring | Hardenize Blog*
   - https://www.hardenize.com/blog/certificate-transparency-monitoring-phishing-detection
   - CT を監視して似た名前で取ってるフィッシングサイトを見つけ出す話
 - Introduction to WebAuthn API

@@ -95,7 +95,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LXJUzctTVfM/p4J-WrzbBgAJ
   - Implement and Ship: DOMMatrixReadOnly.scaleNonUniform()
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/BJJKDby5p7w/vxmb9bnGAgAJ
-  - Implement and Ship: Additional encodings.networkPriority field in RtpSender[Get\|Set]Parameters
+  - Implement and Ship: Additional encodings.networkPriority field in RtpSender[Get|Set]Parameters
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bVNynDp9PHo/4D96etzMAAAJ
   - Implement: FetchEvent Worker Timing
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WS17dXHV6xQ/rOnUbU4CCgAJ
@@ -107,7 +107,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ff6Ywg5vnh4/VbDH4X6wBQAJ
   - *Implement: Form-associated custom elements*
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HW8j_JLLiPo/V_SmVZkwBgAJ
-  - Implement: Additional encodings.networkPriority field in RtpSender[Get\|Set]Parameters
+  - Implement: Additional encodings.networkPriority field in RtpSender[Get|Set]Parameters
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7SRh6Pl4iMA/MXPbE3FpBgAJ
   - Implement: User Idle Detection
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OuwzBmH02M4/5ChXdXZQBwAJ
@@ -261,7 +261,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/blog/2018/11/14/firefox-monitor-launches-in-26-languages-and-adds-new-desktop-browser-feature/
   - These Weeks in Firefox: Issue 50
     - https://blog.nightly.mozilla.org/2018/11/27/these-weeks-in-firefox-issue-50/
-  - Multilingual Gecko Status Update 2018.2 \| Mozilla L10N
+  - Multilingual Gecko Status Update 2018.2 | Mozilla L10N
     - https://blog.mozilla.org/l10n/2018/11/27/multilingual-gecko-status-update-2018-2/
 
 
@@ -409,7 +409,7 @@ guest: [@myakura](https://twitter.com/myakura)
 ### IETF 動向
 
 - IETF
-  - IETF \| Highlights from IETF 103
+  - IETF | Highlights from IETF 103
     - https://www.ietf.org/blog/highlights-ietf-103/
   - HTTP Working Group Minutes
     - https://github.com/httpwg/wg-materials/blob/gh-pages/ietf103/minutes.md
@@ -418,7 +418,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - QUIC を HTTP over QUIC と思っている人がいる
     - 実際は QUIC は Transport で、 HTTP 外にも議論すべき話が多数
     - HTTP over QUIC を HTTP/3 と呼ぼう、という話に
-    - HTTP/3 \| daniel.haxx.se
+    - HTTP/3 | daniel.haxx.se
       - https://daniel.haxx.se/blog/2018/11/11/http-3/
     - Google's QUIC protocol: moving the web from TCP to UDP
       - https://ma.ttias.be/googles-quic-protocol-moving-web-tcp-udp/

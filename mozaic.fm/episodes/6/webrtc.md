@@ -20,11 +20,11 @@ guest: [@Tukimikage](https://twitter.com/Tukimikage)
 ## Show Note
 
 - [WebRTC](http://www.webrtc.org/)
-- [WebRTC in the real world: STUN, TURN and signaling \| HTML5Rocks](http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/)
+- [WebRTC in the real world: STUN, TURN and signaling | HTML5Rocks](http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/)
 - [STUN](http://tools.ietf.org/html/rfc3489)
 - [TURN](http://tools.ietf.org/html/rfc5766)
 - [DTLS](http://tools.ietf.org/html/rfc6347)
-- [Data Channel \| HTML5Rocks](http://www.html5rocks.com/ja/tutorials/webrtc/datachannels/)
+- [Data Channel | HTML5Rocks](http://www.html5rocks.com/ja/tutorials/webrtc/datachannels/)
 - [PeerJS](http://peerjs.com/)
 - [VP8](http://ja.wikipedia.org/wiki/VP8)
 - [H.264](http://ja.wikipedia.org/wiki/H264)

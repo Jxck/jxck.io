@@ -297,7 +297,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Tier 1(現在は fr, ja, zh-CN, zh-TW)以外の言語版は非表示にしたいとも
 - Browser fuzzing at Mozilla - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2021/02/browser-fuzzing-at-mozilla/
-- *Remain Calm: the fox is still in the Firefox logo \| The Firefox Frontier*
+- *Remain Calm: the fox is still in the Firefox logo | The Firefox Frontier*
   - https://blog.mozilla.org/firefox/the-fox-is-still-in-the-firefox-logo/
   - ブラウザ以外にも Firefox という名前を関すいくつかの製品(VPN やパスワード管理の Lockwise)があり、そのブランドのロゴが 2019 年にできた
   - そのブランドロゴが Firefox の新しいロゴと勘違いされミーム化
@@ -428,7 +428,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2021/02/23/six-time-saving-tips-edge-devtools-console/
 - Making Service Workers easier to debug for Progressive Web Applications and more
   - https://blogs.windows.com/msedgedev/2021/02/22/service-worker-tools-network-application-sources/
-- *What to know before you accept that cookie \| Windows Experience Blog*
+- *What to know before you accept that cookie | Windows Experience Blog*
   - https://blogs.windows.com/windowsexperience/2021/02/23/what-to-know-before-you-accept-that-cookie/
   - https://www.microsoft.com/en-us/windows/remote-resource-center/manage-web-cookies
   - ユーザリテラシー教育的な話
@@ -452,12 +452,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - *IE サポート終了の流れ*
   - 【重要】「ABEMA」 Internet Explorer 11 サポート終了のお知らせ – ABEMA ヘルプ
     - https://help.abema.tv/hc/ja/articles/360055647611
-  - Internet Explorer への対応終了のお知らせ \| SmartHR
+  - Internet Explorer への対応終了のお知らせ | SmartHR
     - https://smarthr.jp/other/22512
     - > 2021 年 1 月現在、 IE11 で SmartHR をご利用いただいているのは、管理者権限の方の 25%、お客さま全体では 6%です。
-  - Internet Explorer 11 を推奨利用環境の対象外といたします \| クラウドワークス
+  - Internet Explorer 11 を推奨利用環境の対象外といたします | クラウドワークス
     - https://blog.crowdworks.jp/?p=4293
-  - Internet Explorer サポート終了のお知らせ \| マネーフォワード
+  - Internet Explorer サポート終了のお知らせ | マネーフォワード
     - https://support.biz.moneyforward.com/valuepack/news/important/20210226.html
   - Google Workspace Updates: Reminder: Ending support for IE11 for all Google Workspace apps on March 15
     - https://workspaceupdates.googleblog.com/2021/02/reminder-ending-support-for-ie11-for.html
@@ -580,7 +580,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Fastly
 
-- The GOAT of all games: traffic patterns and user behaviors from Super Bowl LV \| Fastly
+- The GOAT of all games: traffic patterns and user behaviors from Super Bowl LV | Fastly
   - https://www.fastly.com/blog/the-goat-of-all-games-traffic-patterns-and-user-behaviors-from-super-bowl-lv
 
 
@@ -633,7 +633,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - mnot's blog: No news is... a sign of a stagnating Internet
   - https://www.mnot.net/blog/2021/02/18/no-news
-- サイバーエージェント、 freee 、サイボウズで Web アクセシビリティに関する調査を実施 \| CyberAgent, Inc.
+- サイバーエージェント、 freee 、サイボウズで Web アクセシビリティに関する調査を実施 | CyberAgent, Inc.
   - https://www.cyberagent.co.jp/news/detail/id=25796
 - Why your phone's portrait mode fakes the blur - surma.dev
   - https://surma.dev/things/portrait-mode/

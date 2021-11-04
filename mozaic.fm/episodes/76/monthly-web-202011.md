@@ -321,7 +321,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/g/mozilla.dev.platform/c/F-68NBe2K_8
   - *Preloading Intermediate CA Certificates into Firefox*
     - https://blog.mozilla.org/security/2020/11/13/preloading-intermediate-ca-certificates-into-firefox/
-  - *Igalia joins MDN Product Advisory Board \| Igalia*
+  - *Igalia joins MDN Product Advisory Board | Igalia*
     - https://www.igalia.com/2020/12/02/Igalia-joins-MDN-Product-Advisory-Board.html
     - Igalia (Daniel Ehrenberg) が MDN の PAB に参加
 

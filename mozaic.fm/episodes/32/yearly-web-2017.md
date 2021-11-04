@@ -74,7 +74,7 @@ Monthly Web のモチベーションについては以下。
       - https://github.com/w3ctag/design-reviews/issues/206
 - Audio/Video Updates in Chrome 63/64
   - https://developers.google.com/web/updates/2017/12/chrome-63-64-media-updates
-- Strict-Transport-Security for `*.dev`, `*.app` and more \| text/plain
+- Strict-Transport-Security for `*.dev`, `*.app` and more | text/plain
   - https://textslashplain.com/2017/12/05/strict-transport-security-for-dev/
 - Polymer 2 and Googlebot
   - https://medium.com/dev-channel/polymer-2-and-googlebot-2ad50c5727dd
@@ -271,7 +271,7 @@ Monthly Web のモチベーションについては以下。
     - https://nodejs.org/en/blog/vulnerability/december-2017-security-releases/
 - A Tale of JavaScript Performance (frontconf Dec '17)
   - https://docs.google.com/presentation/d/1NszKfRhMhtAyFifCdG4XQtqj_MED-pEKtyJcgWK0geQ
-- Internet protocols are changing \| APNIC Blog
+- Internet protocols are changing | APNIC Blog
   - https://blog.apnic.net/2017/12/12/internet-protocols-changing/
   - mnot による HTTP2/QUIC/TLS1.3/DOH の概説
 - 平文 HTTP にコードが挿入される話

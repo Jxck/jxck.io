@@ -121,7 +121,7 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
     - ブロックしてたりすると、固定ページで、レスポンスが小さいが、フォローしてると TL が取得できる
     - これを観測しブロック関係などを推測する
   - どちらも Same Site Cookie などが有効
-- Stephen Röttger \| OffensiveCon
+- Stephen Röttger | OffensiveCon
   - https://www.offensivecon.org/speakers/2020/stephen-roettger.html
 - Project Zero: Escaping the Chrome Sandbox with RIDL
   - OffensiveCon で発表されたもの
