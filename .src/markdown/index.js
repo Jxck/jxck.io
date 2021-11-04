@@ -30,7 +30,7 @@ function htmlescape(str) {
     .replace(/"/g, `&quot;`)
     .replace(/'/g, `&apos;`)
     .replace(/^--- $/g, `&mdash; `) // for <blockquote>
-    .replace(/\\\|/g, `|`) // TODO: あとで消す
+    // .replace(/\\\|/g, `|`) // TODO: あとで消す
 }
 
 /**
