@@ -324,6 +324,35 @@ async function blog() {
   // build sitemap
   const sitemap_result = await render("./template/blog.sitemap.xml.ejs", { entries })
   await writeFile("../blog.jxck.io/feeds/sitemap.xml", sitemap_result)
+
+  // build tags
+  const tagmap = entries.reduce((acc, entry) => {
+    entry.tags.forEach((tag) => {
+      if (acc.has(tag)) {
+        acc.get(tag).push(entry)
+      } else {
+        acc.set(tag, [entry])
+      }
+    })
+    return acc
+  }, new Map())
+
+  const tags = Array.from(tagmap.entries()).sort((a, b) => {
+    return a[0] > b[0] ? 1 : -1
+  }).map(([k, v]) => {
+    return [k, v.sort()]
+  })
+
+  const tags_result = await render("./template/blog.tags.html.ejs", {
+    tags,
+    tag: 'Tags',
+    icon: 'icon',
+    host: 'host',
+    first: entries[0],
+    version,
+    indent,
+  })
+  await writeFile("../blog.jxck.io/tags/index.html", tags_result)
 }
 
 async function podcast() {
