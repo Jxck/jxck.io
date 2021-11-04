@@ -57,14 +57,23 @@ function unescape(str) {
  * @returns {string}
  */
 export function cache_busting(path) {
-  const mtime = statSync(path).mtime
-  const y = (mtime.getFullYear() % 100).toString().padStart(2, `0`)
-  const m = (mtime.getMonth() + 1).toString().padStart(2, `0`)
-  const d = (mtime.getDate()).toString().padStart(2, `0`)
-  const H = (mtime.getHours()).toString().padStart(2, `0`)
-  const M = (mtime.getMinutes()).toString().padStart(2, `0`)
-  const S = (mtime.getSeconds()).toString().padStart(2, `0`)
-  return `${y}${m}${d}_${H}${M}${S}`
+  try {
+    const mtime = statSync(path).mtime
+    const y = (mtime.getFullYear() % 100).toString().padStart(2, `0`)
+    const m = (mtime.getMonth() + 1).toString().padStart(2, `0`)
+    const d = (mtime.getDate()).toString().padStart(2, `0`)
+    const H = (mtime.getHours()).toString().padStart(2, `0`)
+    const M = (mtime.getMinutes()).toString().padStart(2, `0`)
+    const S = (mtime.getSeconds()).toString().padStart(2, `0`)
+    return `${y}${m}${d}_${H}${M}${S}`
+  } catch (err) {
+    if (err.code === `ENOENT`) {
+      console.error(`not found`, err.path)
+    } else {
+      console.error(err)
+    }
+    return `00000000_000000`
+  }
 }
 
 /**
