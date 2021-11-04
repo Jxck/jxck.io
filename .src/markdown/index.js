@@ -30,7 +30,6 @@ function htmlescape(str) {
     .replace(/"/g, `&quot;`)
     .replace(/'/g, `&apos;`)
     .replace(/^--- $/g, `&mdash; `) // for <blockquote>
-    // .replace(/\\\|/g, `|`) // TODO: あとで消す
 }
 
 /**
@@ -290,14 +289,13 @@ export function encode(node, option) {
     const path = node.attr.path
 
     const code = path ?
-      readFileSync(option.base + path).toString()
+      readFileSync(option.base + path).toString().trimEnd()
       :
       node.children.map((child) => child.text).join(`\n`)
 
     return [
-      // TODO: remove trimEnd()
       `${spaces(indent)}<pre${lang}><code translate=no>`,
-      htmlescape(code).trimEnd(),
+      htmlescape(code),
       `</code></pre>\n`
     ].join(``)
   }
