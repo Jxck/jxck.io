@@ -33,29 +33,29 @@
       },
       "item": [
         <%_ episodes.forEach((episode, i) => { _%>
-          {
-            "category": "mozaicfm",
-            "enclosure": {
-              "url": "<%= episode.audio.replace("https:", "http:") %>",
-              "length": "<%= episode.audio_size %>",
-              "type": "audio/mpeg"
-            },
-            "guid": "<%= episode.canonical %>",
-            "link": "<%= episode.canonical %>",
-            "pubDate": "<%= new Date(episode.published_at).toUTCString().replace("GMT", "+0900") %>",
-            "title": "<%- episode.title %> | mozaic.fm",
-            "itunes:author": "Jxck",
-            "itunes:duration": "<%= episode.duration %>",
-            "itunes:explicit": "no",
-            "itunes:keywords": ["web","tech","it"],
-            "itunes:order": "<%= episode.order %>",
-            "itunes:subtitle": "<%- episode.description.split('\n')[0] %>",
-            "media:content": {
-              "url": "<%= episode.audio %>",
-              "fileSize": "<%= episode.audio_size %>",
-              "type": "audio/mpeg"
-            }
-          }<% if (i < episodes.length - 1) { %>,<%_ } %>
+        {
+          "category": "mozaicfm",
+          "enclosure": {
+            "url": "<%= episode.audio %>",
+            "length": "<%= episode.audio_size %>",
+            "type": "audio/mpeg"
+          },
+          "guid": "<%= episode.canonical %>",
+          "link": "<%= episode.canonical %>",
+          "pubDate": "<%= new Date(episode.published_at).toUTCString().replace("GMT", "+0900") %>",
+          "title": "<%- episode.title %> | mozaic.fm",
+          "itunes:author": "Jxck",
+          "itunes:duration": "<%= episode.duration %>",
+          "itunes:explicit": "no",
+          "itunes:keywords": ["web","tech","it"],
+          "itunes:order": "<%= episode.order %>",
+          "itunes:subtitle": "<%- episode.description.split('\n')[0] %>",
+          "media:content": {
+            "url": "<%= episode.audio %>",
+            "fileSize": "<%= episode.audio_size %>",
+            "type": "audio/mpeg"
+          }
+        }<% if (i < episodes.length - 1) { %>,<%_ } %>
         <%_ }) _%>
       ]
     }
