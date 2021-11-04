@@ -1,4 +1,4 @@
-# [private relay][proxy][ip blindness][privacy] Private Relay と IP Blindness による  Fingerprint 対策
+# [private relay][proxy][ip blindness][privacy] Private Relay と IP Blindness による Fingerprint 対策
 
 ## Intro
 
