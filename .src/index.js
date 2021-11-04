@@ -417,6 +417,10 @@ async function podcast() {
   const rss_result = await render("./template/podcast.rss2.xml.ejs", { episodes })
   await writeFile("../feed.mozaic.fm/index.xml", rss_result)
 
+  // build rss json
+  const json_result = await render("./template/podcast.rss2.json.ejs", { episodes })
+  await writeFile("../feed.mozaic.fm/index.json", json_result)
+
   // build id3all
   const id3_result = await render("./template/podcast.id3all.ejs", { episodes })
   await writeFile("../id3all.sh", id3_result)
