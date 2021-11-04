@@ -1,16 +1,15 @@
 .PHONY: blog podcast comp gz br remove clean webp
 .SUFFIXES: .html .md .amp .amp.html .webp .png .jpeg .gif
 
-build:
-	make full
-	make blogfeed
-	make podcastfeed
-	make comp
+# build:
+# 	make full
+# 	make blogfeed
+# 	make podcastfeed
+# 	make comp
 
-x:
+build:
 	cd .src && node index.js
-	# cd .src && node index.js blog &
-	# cd .src && node index.js podcast
+	make comp
 
 
 ##########################
