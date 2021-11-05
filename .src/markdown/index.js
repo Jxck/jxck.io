@@ -171,7 +171,7 @@ export class Node {
    * @param {Node} node
    */
   insertBefore(node) {
-    for (let i = 0; i < this.parent.children.length; i ++) {
+    for (let i = 0; i < this.parent.children.length; i++) {
       const child = this.parent.children[i]
       if (this === child) {
         this.parent.children.splice(i, 0, node)
@@ -185,7 +185,6 @@ export class Node {
  * @typedef {Object} EncodeOption
  * @prop {string} base
  * @prop {number} [indent]
- * @prop {function(Node): Node} [plugin]
  */
 
 /**
@@ -495,8 +494,6 @@ export function encode(node, option) {
    * @returns {string}
    */
   function serialize(node, indent = 0) {
-    node = option?.plugin?.(node) ?? node
-
     const name = node.name
     if (name === `text`) /*          */ return text(node, indent)
     if (name === `headding`) /*      */ return headding(node, indent)

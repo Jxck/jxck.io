@@ -193,10 +193,6 @@ async function parse_entry(entry) {
   const encoded = encode(ast, {
     indent: 4,
     base,
-    plugin: (node) => {
-      // console.log(node.name)
-      return node
-    }
   })
 
   const article = encoded.html
