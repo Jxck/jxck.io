@@ -119,7 +119,7 @@ export function cache_busting(path) {
  * @returns {Node}
  */
 export function node({ name, type, parent = null, children = [], level = undefined, text = undefined, attr = undefined }) {
-  return new Node(
+  return new Node({
     name,
     type,
     parent,
@@ -127,20 +127,14 @@ export function node({ name, type, parent = null, children = [], level = undefin
     level,
     text,
     attr,
-  )
+  })
 }
 
 export class Node {
   /**
-   * @param {string} name
-   * @param {string} type
-   * @param {Node} parent
-   * @param {Array.<Node>} children
-   * @param {number} level
-   * @param {string} text
-   * @param {Attr} attr
+   * @param {NodeParam} param
    */
-  constructor(name, type, parent = null, children = [], level = undefined, text = undefined, attr = undefined) {
+  constructor({ name, type, parent = null, children = [], level = undefined, text = undefined, attr = undefined }) {
     this.name = name
     this.type = type
     this.parent = parent
