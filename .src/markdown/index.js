@@ -172,6 +172,15 @@ export class Node {
     const child = node({ name: `text`, type: `inline`, text })
     this.appendChild(child)
   }
+
+  /**
+   * @param {Node} node
+   */
+  insertBefore(node) {
+    this.parent.children.forEach((child, i) => {
+      if (this === child) this.parent.children.splice(i, 0, node)
+    })
+  }
 }
 
 /**

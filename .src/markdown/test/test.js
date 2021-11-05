@@ -1,4 +1,4 @@
-import { encode, decode, dump } from "../index.js"
+import { encode, decode, node, dump } from "../index.js"
 import { deepStrictEqual } from "assert";
 import fs from "fs";
 
@@ -26,3 +26,24 @@ for (const [md, expected] of cases) {
     deepStrictEqual(message, expected, expected)
   }
 }
+
+
+
+function api() {
+  const root = node({name: `root`, type: `block`})
+  
+  const div = node({name: `div`, type: `block`})
+  div.addText(`test div`)
+  root.appendChild(div)
+
+  const p = node({name: `p`, type: `block`})
+  p.addText(`test p`)
+  root.appendChild(p)
+
+  const pre = node({name: `pre`, type: `block`})
+  pre.addText(`test pre`)
+  p.insertBefore(pre)
+
+  deepStrictEqual(root.children.map((child) => child.name), [`div`, `pre`, `p`])
+}
+api()
