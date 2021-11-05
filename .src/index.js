@@ -1,5 +1,5 @@
 import { readFile, writeFile, stat } from "fs/promises";
-import { encode, decode, cache_busting, node } from "markdown"
+import { encode, decode, cache_busting, node, Node } from "markdown"
 import ejs from "ejs"
 import glob from "glob"
 import { readFileSync } from "fs"

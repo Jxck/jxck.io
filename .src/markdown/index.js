@@ -123,7 +123,7 @@ export function node({ name, type, parent = null, children = [], level = undefin
   )
 }
 
-class Node {
+export class Node {
   /**
    * @param {string} name
    * @param {string} type
