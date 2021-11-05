@@ -45,5 +45,31 @@ function api() {
   p.insertBefore(pre)
 
   deepStrictEqual(root.children.map((child) => child.name), [`div`, `pre`, `p`])
+
+  const walk = []
+  traverse(root, {
+    enter: (node) => {
+      walk.push(`enter:${node.name}`)
+      return node
+    },
+    leave: (node) => {
+      walk.push(`leave:${node.name}`)
+      return node
+    }
+  })
+  deepStrictEqual(walk, [
+    `enter:div`,
+    `enter:text`,
+    `leave:text`,
+    `leave:div`,
+    `enter:pre`,
+    `enter:text`,
+    `leave:text`,
+    `leave:pre`,
+    `enter:p`,
+    `enter:text`,
+    `leave:text`,
+    `leave:p`
+  ])
 }
 api()

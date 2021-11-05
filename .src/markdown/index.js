@@ -1503,6 +1503,27 @@ export function decode(md) {
 }
 
 /**
+ * @typedef {Object} Plugin
+ * @property {function(Node): Node} enter
+ * @property {function(Node): Node} leave
+ */
+
+/**
+ * Traverse Node Tree
+ * @param {Node} ast
+ * @param {Plugin} plugin
+ */
+export function traverse(ast, plugin) {
+  ast.children = ast.children.map((child) => {
+    child = plugin.enter(child)
+    child = traverse(child, plugin)
+    child = plugin.leave(child)
+    return child
+  })
+  return ast
+}
+
+/**
  * TODO: fixme
  * 指定した親ノード、もしくは Root まで登る
  * @param {Node} ast
