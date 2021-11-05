@@ -171,9 +171,13 @@ export class Node {
    * @param {Node} node
    */
   insertBefore(node) {
-    this.parent.children.forEach((child, i) => {
-      if (this === child) this.parent.children.splice(i, 0, node)
-    })
+    for (let i = 0; i < this.parent.children.length; i ++) {
+      const child = this.parent.children[i]
+      if (this === child) {
+        this.parent.children.splice(i, 0, node)
+        return
+      }
+    }
   }
 }
 
