@@ -1,5 +1,5 @@
 import { readFile, writeFile, stat } from "fs/promises";
-import { encode, decode, cache_busting, node, Node } from "markdown"
+import { encode, decode, traverse, cache_busting, node, Node } from "markdown"
 import ejs from "ejs"
 import glob from "glob"
 import { readFileSync } from "fs"
@@ -190,7 +190,20 @@ async function parse_entry(entry) {
   const relative = `${entries}/${created_at}/${filename}`
 
   const ast = decode(md)
-  const encoded = encode(ast, {
+
+  const root = traverse(ast, {
+    enter: (node) => {
+      if (node.name === `table`) {
+        console.log('enter', node.name)
+      }
+      return node
+    },
+    leave: (node) => {
+        return node
+    }
+  })
+
+  const encoded = encode(root, {
     indent: 4,
     base,
   })
@@ -278,8 +291,8 @@ async function parse_episode(entry, order) {
 }
 
 async function blog() {
-  // const files = ["../blog.jxck.io/entries/2016-08-05/sql-for-file-search.md"]
-  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
+  const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
+  // const files = glob.sync("../blog.jxck.io/entries/**/*.md")
   const entries = await Promise.all(files.map((file) => parse_entry(file)).reverse())
 
   // build entries
@@ -298,6 +311,7 @@ async function blog() {
     const result = ejs.render(entry_template, context)
     await writeFile(context.entry.target, result)
   }
+  return
 
   // build index
   const entries_per_year = entries.reduce((acc, entry) => {
@@ -439,5 +453,5 @@ if (process.argv[2] === "podcast") {
 
 if (process.argv.length < 3) {
   await blog()
-  await podcast()
+  // await podcast()
 }
