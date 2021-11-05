@@ -171,6 +171,7 @@ class Node {
  * @typedef {Object} EncodeOption
  * @prop {string} base
  * @prop {number} [indent]
+ * @prop {function(Node): Node} plugin
  */
 
 /**
@@ -488,6 +489,8 @@ export function encode(node, option) {
    * @returns {string}
    */
   function serialize(node, indent = 0) {
+    node = option?.plugin?.(node) ?? node
+
     const name = node.name
     if (name === `text`) /*          */ return text(node, indent)
     if (name === `headding`) /*      */ return headding(node, indent)

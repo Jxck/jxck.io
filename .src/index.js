@@ -190,7 +190,14 @@ async function parse_entry(entry) {
   const relative = `${entries}/${created_at}/${filename}`
 
   const ast = decode(md)
-  const encoded = encode(ast, { indent: 4, base })
+  const encoded = encode(ast, {
+    indent: 4,
+    base,
+    plugin: (node) => {
+      // console.log(node.name)
+      return node
+    }
+  })
 
   const article = encoded.html
   const [h1, ...toc] = encoded.toc
