@@ -17,6 +17,13 @@ import { readFileSync, statSync } from "fs";
  * @property {string} text
  */
 
+/**
+ * @param {number} indent
+ * @returns {string}
+ */
+function spaces(indent) {
+  return ` `.repeat(indent)
+}
 
 /**
  * @param {string} str
@@ -187,14 +194,6 @@ export function encode(node, option) {
 
   /** @type {Array.<Toc>} */
   const toc = []
-
-  /**
-   * @param {number} indent
-   * @returns {string}
-   */
-  function spaces(indent) {
-    return ` `.repeat(indent)
-  }
 
   /**
    * @param {Node} node
