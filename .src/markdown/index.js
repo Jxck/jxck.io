@@ -178,7 +178,7 @@ export class Node {
  * @typedef {Object} EncodeOption
  * @prop {string} base
  * @prop {number} [indent]
- * @prop {function(Node): Node} plugin
+ * @prop {function(Node): Node} [plugin]
  */
 
 /**
