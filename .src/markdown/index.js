@@ -1516,7 +1516,7 @@ function rise(ast, name) {
  * dump for debug
  * @param {Node} ast
  */
-function dump(ast) {
+export function dump(ast) {
   console.log(JSON.stringify(ast, (key, value) => {
     if (key === `parent`) return undefined
     return value
