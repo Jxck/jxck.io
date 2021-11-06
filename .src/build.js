@@ -290,13 +290,21 @@ function customise(ast, base) {
               playsinline: ``,
             }
           })
-          const mp4 = new Node({ name: `source`, type: `inline`, attr: { ...attr, type: `video/mp4` } })
+          const mp4 = new Node({
+            name: `source`,
+            type: `inline`,
+            attr: {
+              type: `video/mp4`,
+              src: attr.src,
+            }
+          })
 
           const webm_src = src.replace(/.mp4/, `.webm`)
           const webm_query = cache_busting(`${base}/${webm_src}`)
           const webm = new Node({
-            name: `source`, type: `inline`, attr: {
-              ...attr,
+            name: `source`,
+            type: `inline`,
+            attr: {
               type: `video/webm`,
               src: `${webm_src}${webm_query}`
             }

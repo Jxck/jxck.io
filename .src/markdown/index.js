@@ -363,13 +363,8 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function source(node, indent) {
-    if (node.parent.name === `picture`) {
-      const attr = Object.entries(node.attr).map(([k, v]) => `${k}=${v}`).join(' ')
-      return `${spaces(indent)}<source ${attr}>\n`
-    } else {
-      const { type, src } = node.attr
-      return `${spaces(indent)}<source type=${type} src=${src}>\n`
-    }
+    const attr = Object.entries(node.attr).map(([k, v]) => `${k}=${v}`).join(' ')
+    return `${spaces(indent)}<source ${attr}>\n`
   }
 
   /**
@@ -414,6 +409,7 @@ export function encode(node, option = {}) {
    */
   function blockquote(node, indent) {
     const cite = (node?.attr?.cite) ? ` cite="${node.attr.cite}"` : ``
+
     return [
       `${spaces(indent)}<blockquote${cite}>\n`,
       node.children.map((child) => serialize(child, indent + 2)).join(``),
