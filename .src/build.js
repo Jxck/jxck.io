@@ -179,19 +179,7 @@ async function render(template, context) {
   return ejs.render(await readFile(template, { encoding: "utf-8" }), context)
 }
 
-async function parse_entry(entry) {
-  const md = await readFile(entry, { encoding: "utf-8" })
-  const target = entry.replace(".md", ".html")
-  const canonical = target.replace("../", "https://")
-  const { mtime } = await stat(entry)
-
-  const [up, blog, entries, created_at, filename] = target.split("/")
-  const base = `${up}/${blog}/${entries}/${created_at}/`
-  const relative = `${entries}/${created_at}/${filename}`
-
-  const ast = decode(md)
-
-
+function customise(ast, base) {
   /**
    * table, pre など必ず出てくるわけではない CSS は
    * 登場したら一度だけ CSS を読み込むように
@@ -301,7 +289,21 @@ async function parse_entry(entry) {
       return node
     }
   })
+  return root
+}
 
+async function parse_entry(entry) {
+  const md = await readFile(entry, { encoding: "utf-8" })
+  const target = entry.replace(".md", ".html")
+  const canonical = target.replace("../", "https://")
+  const { mtime } = await stat(entry)
+
+  const [up, blog, entries, created_at, filename] = target.split("/")
+  const base = `${up}/${blog}/${entries}/${created_at}/`
+  const relative = `${entries}/${created_at}/${filename}`
+
+  const ast = decode(md)
+  const root = customise(ast, base)
   const encoded = encode(root, {
     indent: 4,
     base,
@@ -347,7 +349,9 @@ async function parse_episode(entry, order) {
   const info = info_section({ published_at, guests })
   ast.children[0].children.splice(1, 0, info)
 
-  const encoded = encode(ast, { indent: 4, base })
+  const root = customise(ast, base)
+
+  const encoded = encode(root, { indent: 4, base })
 
   // Top ページのために Theme だけ別で encode する
   const theme_section = ast.children[0].children[2]
@@ -390,8 +394,8 @@ async function parse_episode(entry, order) {
 }
 
 async function blog() {
-  const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
-  // const files = glob.sync("../blog.jxck.io/entries/**/*.md")
+  // const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
+  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
   const entries = await Promise.all(files.map((file) => parse_entry(file)).reverse())
 
   // build entries
@@ -552,5 +556,5 @@ if (process.argv[2] === "podcast") {
 
 if (process.argv.length < 3) {
   await blog()
-  // await podcast()
+  await podcast()
 }
