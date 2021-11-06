@@ -459,19 +459,19 @@ export function encode(node, option = {}) {
       return node.children.map(({ text }) => `${spaces(indent)}${text}\n`).join(``)
     }
 
+    if (name === `empty`) {
+      // inline なら indent しない
+      const i = node.type === `inline` ? 0 : indent
+      return node.children.map((child) => serialize(child, i)).join(``)
+    }
+
     // Other Inlines
     if (node.type === `inline`) {
-      if (name === `empty`) {
-        return node.children.map((child) => serialize(child)).join(``)
-      }
       return `<${name}>${node.children.map((child) => serialize(child)).join(``)}</${name}>`
     }
 
     // Other Blocks
     if (node.type === `block`) {
-      if (name === `empty`) {
-        return node.children.map((child) => serialize(child, indent)).join(``)
-      }
       return [
         `${spaces(indent)}<${name}>\n`,
         node.children.map((child) => serialize(child, indent + 2)).join(``),
