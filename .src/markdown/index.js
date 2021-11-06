@@ -71,14 +71,14 @@ export function cache_busting(path) {
     const H = (mtime.getHours()).toString().padStart(2, `0`)
     const M = (mtime.getMinutes()).toString().padStart(2, `0`)
     const S = (mtime.getSeconds()).toString().padStart(2, `0`)
-    return `${y}${m}${d}_${H}${M}${S}`
+    return `?${y}${m}${d}_${H}${M}${S}`
   } catch (err) {
     if (err.code === `ENOENT`) {
       console.error(`not found`, err.path)
     } else {
       console.error(err)
     }
-    return `00000000_000000`
+    return ``
   }
 }
 
@@ -397,12 +397,10 @@ export function encode(node, option) {
   function source(node, indent) {
     if (node.parent.name === `picture`) {
       const { type, srcset } = node.attr
-      const query = srcset.startsWith(`http`) ? `` : `?${cache_busting(option.base + srcset)}`
-      return `${spaces(indent)}<source type=${type} srcset=${srcset}${query}>\n`
+      return `${spaces(indent)}<source type=${type} srcset=${srcset}>\n`
     } else {
       const { type, src } = node.attr
-      const query = src.startsWith(`http`) ? `` : `?${cache_busting(option.base + src)}`
-      return `${spaces(indent)}<source type=${type} src=${src}${query}>\n`
+      return `${spaces(indent)}<source type=${type} src=${src}>\n`
     }
   }
 
@@ -413,7 +411,9 @@ export function encode(node, option) {
    */
   function img(node, indent) {
     const { src, alt, title } = node.attr
-    return `${spaces(indent)}<img loading=lazy decoding=async src=${src} alt="${alt}" title="${title}">\n`
+    const width = node.attr.width ? ` width=${node.attr.width}` : ``
+    const height = node.attr.height ? ` height=${node.attr.height}` : ``
+    return `${spaces(indent)}<img loading=lazy decoding=async src=${src} alt="${alt}" title="${title}"${width}${height}>\n`
   }
 
   /**

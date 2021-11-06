@@ -171,7 +171,7 @@ function version(src) {
   const url = new URL(src, "https://www.jxck.io")
   const pathname = url.pathname
   const busting = cache_busting(`../www.jxck.io${pathname}`)
-  return `${src}?${busting}`
+  return `${src}${busting}`
 }
 
 async function render(template, context) {
@@ -243,6 +243,60 @@ async function parse_entry(entry) {
         div.appendChild(node)
         style_flag.pre = true
         return div
+      }
+      if (node.name === `img`) {
+        const attr = node.attr
+        /**
+         * TODO: parse 方法を見直す
+         */
+        const path = /(?<src>.*?)#(?<width>\d*?)x(?<height>\d*?)$/.exec(attr.src)
+        if (path === null) throw new Error(`missing <width>x<height> in "${url}"`)
+        const { src, width, height } = path.groups
+
+        const query = cache_busting(`${base}/${src}`)
+        attr.src = `${src}${query}`
+        attr.width = width
+        attr.height = height
+
+        // .svg はそのまま <img>
+        if (src.endsWith(`.svg`)) {
+          // <img loading=lazy decoding=async src=test.svg?180105_115707#546x608 alt="test alt" title="test title" width=546 height=608>
+          return new Node({ name: `img`, type: `block`, attr })
+        }
+
+        // .mp4 のときは Video にする
+        if (src.endsWith(`.mp4`)) {
+          const video = new Node({ name: `video`, type: `block`, attr: { ...attr, title: attr.alt } })
+          const mp4 = new Node({ name: `source`, type: `inline`, attr: { ...attr, type: `video/mp4` } })
+
+          const webm_src = src.replace(/.mp4/, `.webm`)
+          const webm_query = cache_busting(`${base}/${webm_src}`)
+          const webm = new Node({
+            name: `source`, type: `inline`, attr: {
+              ...attr,
+              type: `video/webm`,
+              src: `${webm_src}${webm_query}`
+            }
+          })
+          video.appendChild(mp4)
+          video.appendChild(webm)
+          return video
+        }
+
+        if (src.endsWith(`.png`) || src.endsWith(`.jpeg`) || src.endsWith(`.gif`)) {
+          const picture = new Node({ name: `picture`, type: `block` })
+          // TODO: replace 1 つでいける
+          const webp = src.replace(/\.png$|\.jpeg$|\.gif$/, `.webp`)
+          const query = cache_busting(`${base}/${webp}`)
+          const srcset = `${webp}${query}`
+          const img = new Node({ name: `img`, type: `block`, attr })
+          const source = new Node({ name: `source`, type: `block`, attr: { type: `image/webp`, srcset } })
+          picture.appendChild(source)
+          picture.appendChild(img)
+          return picture
+        }
+
+        throw new Error(`<img> should ".jpeg" or ".png" or ".svg" and <video> should ".mp4" in "${src}"`)
       }
       return node
     }
