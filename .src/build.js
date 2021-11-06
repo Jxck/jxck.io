@@ -23,7 +23,7 @@ function dump(ast) {
  * @param {string} path
  * @returns {string}
  */
- export function cache_busting(path) {
+export function cache_busting(path) {
   try {
     const mtime = statSync(path).mtime
     const y = (mtime.getFullYear() % 100).toString().padStart(2, `0`)
@@ -419,9 +419,7 @@ async function parse_episode(entry, order) {
   }
 }
 
-async function blog() {
-  // const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
-  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
+async function blog(files) {
   const entries = await Promise.all(files.map((file) => parse_entry(file)).reverse())
 
   // build entries
@@ -500,21 +498,19 @@ async function blog() {
   await writeFile("../blog.jxck.io/tags/index.html", tags_result)
 }
 
-async function podcast() {
-  // const pathes = ["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
-  const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
-    .map((path) => {
-      const [dot, mozaic, episodes, ep, file] = path.split("/")
-      const title = readFileSync(path, { encoding: "utf-8" }).match(/# (?<h1>.*)/).groups.h1
-      return {
-        ep: parseInt(ep),
-        canonical: `https://${mozaic}/${episodes}/${ep}/${file.replace(".md", ".html")}`,
-        url: `/${episodes}/${ep}/${file.replace(".md", ".html")}`,
-        path,
-        file,
-        title
-      }
-    })
+async function podcast(files) {
+  const pathes = files.map((path) => {
+    const [dot, mozaic, episodes, ep, file] = path.split("/")
+    const title = readFileSync(path, { encoding: "utf-8" }).match(/# (?<h1>.*)/).groups.h1
+    return {
+      ep: parseInt(ep),
+      canonical: `https://${mozaic}/${episodes}/${ep}/${file.replace(".md", ".html")}`,
+      url: `/${episodes}/${ep}/${file.replace(".md", ".html")}`,
+      path,
+      file,
+      title
+    }
+  })
     .sort((a, b) => {
       if (a.ep === b.ep) {
         return a.file.length - b.file.length
@@ -580,6 +576,11 @@ if (process.argv[2] === "podcast") {
 }
 
 if (process.argv.length < 3) {
-  await blog()
-  await podcast()
+  // const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
+  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
+  await blog(files)
+
+  // const pathes = ["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
+  const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
+  await podcast(pathes)
 }
