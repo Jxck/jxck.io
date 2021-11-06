@@ -44,16 +44,7 @@ function htmlescape(str) {
  * @returns string
  */
 function unescape(str) {
-  return str
-    .replace(/\\\*/g, `*`)
-    .replace(/\\\`/g, '`')
-    .replace(/\\\!/g, `!`)
-    .replace(/\\\[/g, `[`)
-    .replace(/\\\]/g, `]`)
-    .replace(/\\\</g, `<`)
-    .replace(/\\\>/g, `>`)
-    .replace(/\\\(/g, `(`)
-    .replace(/\\\)/g, `)`)
+  return str.replace(/\\([\*|\`|\!|\[|\]|\<|\>|\(|\)|])/g, '$1')
 }
 
 
