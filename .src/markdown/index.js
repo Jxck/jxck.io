@@ -524,7 +524,7 @@ export function decode(md) {
       level,
     })
 
-    const h = (() => {
+    const { attr, children } = (() => {
       if (level === 1) {
         const result = /(?<tag>\[.*\])?(?<title>.*)/.exec(text)?.groups
         const { tag, title } = result
@@ -532,24 +532,24 @@ export function decode(md) {
         const tags = Array.from(tag?.matchAll(/\[(?<tag>.*?)\]/g) ?? []).map((match) => {
           return match.groups.tag
         })
-        return node({
-          name: `headding`,
-          type: `inline`,
-          level,
+        return {
           attr: { tags },
-          children: inline(title.trim()),
-        })
-      } else {
-        return node({
-          name: `headding`,
-          type: `inline`,
-          level,
-          children: inline(text),
-        })
+          children: inline(title.trim())
+        }
+      }
+      return {
+        attr: {},
+        children: inline(text),
       }
     })()
 
-    section.appendChild(h)
+    section.appendChild(node({
+      name: `headding`,
+      type: `inline`,
+      level,
+      attr,
+      children
+    }))
 
     if (ast.level < level) {
       // increment only +1
