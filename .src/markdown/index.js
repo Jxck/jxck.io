@@ -552,17 +552,6 @@ export function encode(node, option) {
 export function decode(md) {
 
   /**
-   * table, pre など必ず出てくるわけではない CSS は
-   * 登場したら一度だけ CSS を読み込むように
-   * <link rel=stylesheet> を挿入する。
-   * 挿入したかを保持するグローバルフラグ
-   */
-  const style_flag = {
-    table: false,
-    pre: false,
-  }
-
-  /**
    * @param {RegExpExecArray} result
    * @param {Array.<string>} rest
    * @param {Node} ast
@@ -807,20 +796,6 @@ export function decode(md) {
 
     if (lang.startsWith(` `) || lang.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
     if (path?.startsWith(` `) || path?.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
-
-    if (style_flag.pre === false) {
-      // 一度だけ css の style を差し込む
-      const link = node({
-        name: `link`, type: `inline`, attr: {
-          rel: 'stylesheet',
-          property: 'stylesheet',
-          type: 'text/css',
-          href: 'https://www.jxck.io/assets/css/pre.css',
-        }
-      })
-      ast.appendChild(link)
-      style_flag.pre = true
-    }
 
     // already in <pre>
     if (ast.name === `pre`) return parse(rest, ast.parent)
