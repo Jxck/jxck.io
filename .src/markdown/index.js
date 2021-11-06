@@ -364,8 +364,8 @@ export function encode(node, option = {}) {
    */
   function source(node, indent) {
     if (node.parent.name === `picture`) {
-      const { type, srcset } = node.attr
-      return `${spaces(indent)}<source type=${type} srcset=${srcset}>\n`
+      const attr = Object.entries(node.attr).map(([k, v]) => `${k}=${v}`).join(' ')
+      return `${spaces(indent)}<source ${attr}>\n`
     } else {
       const { type, src } = node.attr
       return `${spaces(indent)}<source type=${type} src=${src}>\n`
