@@ -408,10 +408,9 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function blockquote(node, indent) {
-    const cite = (node?.attr?.cite) ? ` cite="${node.attr.cite}"` : ``
-
+    const attr = Object.entries(node.attr ?? []).map(([k, v]) => ` ${k}="${v}"`).join('')
     return [
-      `${spaces(indent)}<blockquote${cite}>\n`,
+      `${spaces(indent)}<blockquote${attr}>\n`,
       node.children.map((child) => serialize(child, indent + 2)).join(``),
       `${spaces(indent)}</blockquote>\n`,
     ].join(``)
