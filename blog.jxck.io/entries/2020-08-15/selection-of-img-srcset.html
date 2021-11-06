@@ -273,7 +273,7 @@ body {
             <li>Save Data が有効な場合は最も小さいものを選択して終わり
             <li>SelectionLogic に候補を渡して画像を選択
           </ul>
-          <pre class=cpp><code translate=no>// device_scale_factor = DPR
+          <pre class=cpp data-path="pick-best-image-candidate.cpp"><code translate=no>// device_scale_factor = DPR
 // source_size = sizes attr value
 static ImageCandidate PickBestImageCandidate(float device_scale_factor, float source_size, Vector&lt;ImageCandidate&gt;&amp; image_candidates, Document* document = nullptr) {
   const float kDefaultDensityValue = 1.0;
@@ -348,7 +348,7 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
             <li>そうでなければ curr
           </ul>
           <p>(DPR に 1 以下はあるのだろうか?)
-          <pre class=cpp><code translate=no>// device_scale_factor = DPR
+          <pre class=cpp data-path="selection-logic.cpp"><code translate=no>// device_scale_factor = DPR
 static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidates, float device_scale_factor) {
   unsigned i = 0;
 

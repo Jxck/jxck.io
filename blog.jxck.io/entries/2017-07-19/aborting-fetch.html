@@ -224,7 +224,7 @@
           <p>まず一般的な方法として、 Promise に包んだロングタスクを中断する方法を解説する。
           <p>ここでは EventTarget で実装されたタスクを、中断に対応した Promise にする例である。
           <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-          <pre class=js><code translate=no>class LongTask extends EventTarget {
+          <pre class=js data-path="long-task.js"><code translate=no>class LongTask extends EventTarget {
   start() {
     //...
   }
@@ -288,7 +288,7 @@ function main() {
       <section>
         <h2 id="fetch"><a href="#fetch">fetch</a></h2>
         <p><code translate=no>fetch()</code> の場合は、以下のようになる。
-        <pre class=js><code translate=no>function main() {
+        <pre class=js data-path="aborting-fetch.js"><code translate=no>function main() {
   // AbortController class が追加される
   const controller = new AbortController()
 
@@ -325,7 +325,7 @@ function main() {
       <section>
         <h2 id="promise.race"><a href="#promise.race">Promise.race()</a></h2>
         <p>Promise.race() で、勝った 1 つ以外を止める処理もできるようになる。
-        <pre class=js><code translate=no>const controlle = new AbortController()
+        <pre class=js data-path="race-fetch.js"><code translate=no>const controlle = new AbortController()
 const signal = controller.signal
 
 // 同じリソースを複数のミラーに問い合わせて
