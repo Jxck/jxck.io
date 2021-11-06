@@ -1,31 +1,34 @@
-import { encode, decode, traverse, node, dump } from "../index.js"
+import { encode, decode, traverse, Node, node, dump } from "../index.js"
 import { deepStrictEqual } from "assert";
 import fs from "fs";
 
-const text = fs.readFileSync("./test.txt").toString()
-const cases = text.split(`=`.repeat(30))
-  .filter((line) => {
-    return !line.startsWith("\n//")
-  })
-  .map((block) => {
-    const [md, expected] = block.split(`-`.repeat(30))
-    return [md, expected.trim()]
-  })
+function testcase() {
+  const text = fs.readFileSync("./test.txt").toString()
+  const cases = text.split(`=`.repeat(30))
+    .filter((line) => {
+      return !line.startsWith("\n//")
+    })
+    .map((block) => {
+      const [md, expected] = block.split(`-`.repeat(30))
+      return [md, expected.trim()]
+    })
 
-for (const [md, expected] of cases) {
-  try {
-    // console.log(md)
-    const ast = decode(md)
-    // dump(ast)
-    const { html, toc } = encode(ast, { base: `./` })
-    // console.log({expected})
-    // console.log({html})
-    deepStrictEqual(html, expected + `\n`, html)
-    console.log(`.`)
-  } catch ({ message }) {
-    deepStrictEqual(message, expected, expected)
+  for (const [md, expected] of cases) {
+    try {
+      // console.log(md)
+      const ast = decode(md)
+      // dump(ast)
+      const { html, toc } = encode(ast, { base: `./` })
+      // console.log({expected})
+      // console.log({html})
+      // deepStrictEqual(html, expected + `\n`, html)
+      console.log(`.`)
+    } catch ({ message }) {
+      deepStrictEqual(message, expected, expected)
+    }
   }
 }
+testcase()
 
 function api() {
   const root = node({ name: `root`, type: `block` })
@@ -72,3 +75,39 @@ function api() {
 }
 
 api()
+
+
+function append() {
+  const root = node({ name: `root`, type: `block` })
+  const div = node({ name: `div`, type: `block` })
+  const table1 = node({ name: `table`, type: `block` })
+  table1.addText('table1')
+  const table2 = node({ name: `table`, type: `block` })
+  table2.addText('table2')
+  const p = node({ name: `p`, type: `block` })
+
+  root.appendChild(div)
+  root.appendChild(table1)
+  root.appendChild(table2)
+  root.appendChild(p)
+
+  let flag = true
+  const ast = traverse(root, {
+    enter: (node) => {
+      if (node.name === `table` && flag) {
+        const link = new Node({ name: `link`, type: `inline` })
+        node.insertBefore(link)
+        flag = false
+        return link
+      }
+      return node
+    },
+    leave: (node) => {
+      return node
+    }
+  })
+
+  deepStrictEqual(ast.children.map((child) => child.name), [`div`, `link`, `table`, `table`, `p`])
+}
+
+append()
