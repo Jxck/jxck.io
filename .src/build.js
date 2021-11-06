@@ -176,7 +176,7 @@ function info_section({ published_at, guests }) {
     const dd = node({ name: `dd`, type: `inline` })
     dt.addText(`guest`)
     if (url) {
-      const a = node({ name: `a`, type: `inline`, attr: { url } })
+      const a = node({ name: `a`, type: `inline`, attr: { href: url } })
       a.addText(name)
       dd.appendChild(a)
     } else {

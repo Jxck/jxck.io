@@ -223,9 +223,9 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function a(node, indent) {
-    const name = node.name
-    const url = unescape(node.attr.url)
-    return `<${name} href="${url}">${node.children.map((child) => serialize(child)).join(``)}</${name}>`
+    // url 内の () を escape してるので戻す
+    const href = unescape(node.attr.href)
+    return `<a href="${href}">${node.children.map((child) => serialize(child)).join(``)}</a>`
   }
 
   /**
@@ -898,7 +898,7 @@ export function decode(md) {
       const link = inline(text.slice(4))
 
       // url to <blockquote cite=${url}>
-      const url = link[0].attr.url
+      const url = link[0].attr.href
       blockquote.attr = { cite: url }
 
       // also adding <cite>${url}</cite>
@@ -1164,8 +1164,8 @@ export function decode(md) {
       i++
     }
 
-    const url = input.slice(url_start, i - 1)
-    child.attr = { url }
+    const href = input.slice(url_start, i - 1)
+    child.attr = { href }
     child.addText(text)
     return { child, i }
   }
@@ -1177,23 +1177,23 @@ export function decode(md) {
    * @returns
    */
   function short_link(input, i) {
-    let url = ''
+    let href = ''
     while (true) {
       if (i > input.length - 1) {
         // 実際は Link じゃなかったので text として処理 (e.g.  10 < 20)
-        const child = node({ name: `text`, type: `inline`, text: `<${url}` })
+        const child = node({ name: `text`, type: `inline`, text: `<${href}` })
         return { child, i }
       }
       if (input[i] === `>`) {
         i = i + 1
         break
       }
-      url += input[i]
+      href += input[i]
       i++
     }
 
-    const child = node({ name: `a`, type: `inline`, attr: { url } })
-    child.addText(url)
+    const child = node({ name: `a`, type: `inline`, attr: { href } })
+    child.addText(href)
     return { child, i }
   }
 
@@ -1204,16 +1204,16 @@ export function decode(md) {
    * @returns
    */
   function smart_link(input, i) {
-    let url = ''
+    let href = ''
     while (i < input.length) {
       if ([` `, `)`].includes(input[i])) {
         break
       }
-      url += input[i]
+      href += input[i]
       i++
     }
-    const child = node({ name: `a`, type: `inline`, attr: { url } })
-    child.addText(url)
+    const child = node({ name: `a`, type: `inline`, attr: { href } })
+    child.addText(href)
     return { child, i }
   }
 
@@ -1309,7 +1309,7 @@ export function decode(md) {
    */
   function code(input, i) {
     let start = i
-    const child = node({ name: `code`, type: `inline`, attr: {translate: `no`} })
+    const child = node({ name: `code`, type: `inline`, attr: { translate: `no` } })
     while (true) {
       // "` a ` b `" みたいにマッチしてない場合
       if (i > input.length) throw new Error(`unmatch </code> on "${input}"`)
