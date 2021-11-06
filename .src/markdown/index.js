@@ -412,9 +412,8 @@ export function encode(node, option) {
    * @returns {string}
    */
   function img(node, indent) {
-    const { src, alt, width, height, title } = node.attr
-    const query = src.startsWith("http") ? `` : `?${cache_busting(option.base + src)}`
-    return `${spaces(indent)}<img loading=lazy decoding=async src=${src}${query} alt="${alt}" title="${title}" width=${width} height=${height}>\n`
+    const { src, alt, title } = node.attr
+    return `${spaces(indent)}<img loading=lazy decoding=async src=${src} alt="${alt}" title="${title}">\n`
   }
 
   /**
@@ -1076,9 +1075,10 @@ export function decode(md) {
    */
   function img(input, output, i) {
     let alt = ''
-    let url = ''
+    let src = ''
     let title = ''
 
+    // parse alt
     while (i < input.length) {
       if (input[i] === `]` && input[i + 1] === `(`) {
         i = i + 2
@@ -1087,6 +1087,7 @@ export function decode(md) {
       alt += input[i]
       i++
     }
+    // parse title
     while (i < input.length) {
       if (input[i] === `)`) {
         i = i + 1
@@ -1105,55 +1106,16 @@ export function decode(md) {
         }
         break
       }
-      url += input[i]
+      src += input[i]
       i++
     }
-
-    /**
-     * Note: src が Path だけだった場合 new URL ではパースできないので
-     * location.href などが必要。 Node.js 側が面倒なので正規表現にする。
-     */
-    const path = /(?<src>.*?)#(?<width>\d*?)x(?<height>\d*?)$/.exec(url)
-    if (path === null) throw new Error(`missing <width>x<height> in "${url}"`)
-    const { src, width, height } = path.groups
-    const picture = node({ name: `picture`, type: `block` })
     const attr = {
       src,
       alt,
-      title,
-      width,
-      height
+      title
     }
-
-    // .svg はそのまま <img>
-    if (src.endsWith(`.svg`)) {
-      // <img loading=lazy decoding=async src=test.svg?180105_115707#546x608 alt="test alt" title="test title" width=546 height=608>
-      const img = node({ name: `img`, type: `block`, attr })
-      return { child: img, i }
-    }
-
-    // .mp4 のときは Video にする
-    if (src.endsWith(`.mp4`)) {
-      const video = node({ name: `video`, type: `block`, attr: { title: alt, width, height } })
-      const mp4 = node({ name: `source`, type: `inline`, attr: { type: `video/mp4`, src } })
-      const webm = node({ name: `source`, type: `inline`, attr: { type: `video/webm`, src: src.replace(/.mp4$/, `.webm`) } })
-      video.appendChild(mp4)
-      video.appendChild(webm)
-      return { child: video, i }
-    }
-
-    if (src.endsWith(`.png`) || src.endsWith(`.jpeg`) || src.endsWith(`.gif`)) {
-      const srcset = src
-        .replace(/\.png$/, `.webp`)
-        .replace(/\.jpeg$/, `.webp`)
-        .replace(/\.gif$/, `.webp`)
-      const img = node({ name: `img`, type: `block`, attr })
-      const source = node({ name: `source`, type: `block`, attr: { type: `image/webp`, srcset } })
-      picture.appendChild(source)
-      picture.appendChild(img)
-      return { child: picture, i }
-    }
-    throw new Error(`<img> should ".jpeg" or ".png" or ".svg" and <video> should ".mp4" in "${src}"`)
+    const img = node({ name: `img`, type: `block`, attr })
+    return { child: img, i }
   }
 
   /**

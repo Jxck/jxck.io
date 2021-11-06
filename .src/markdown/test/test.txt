@@ -266,122 +266,48 @@ http/2 is a protocol not url
 
 ==============================
 
-![alt](https://example.com/test.png#100x200 'title for png')
+![alt](https://example.com/test.png 'title for png')
 ------------------------------
 <p>
-  <picture>
-    <source type=image/webp srcset=https://example.com/test.webp>
-    <img loading=lazy decoding=async src=https://example.com/test.png alt="alt" title="title for png" width=100 height=200>
-  </picture>
+  <img loading=lazy decoding=async src=https://example.com/test.png alt="alt" title="title for png">
 </p>
-
-==============================
-
-![alt](https://example.com/test.png#100x200 "title for png")
-------------------------------
-<p>
-  <picture>
-    <source type=image/webp srcset=https://example.com/test.webp>
-    <img loading=lazy decoding=async src=https://example.com/test.png alt="alt" title="title for png" width=100 height=200>
-  </picture>
-</p>
-
-==============================
-
-![alt](https://example.com/test.png#100x200)
-------------------------------
-<p>
-  <picture>
-    <source type=image/webp srcset=https://example.com/test.webp>
-    <img loading=lazy decoding=async src=https://example.com/test.png alt="alt" title="" width=100 height=200>
-  </picture>
-</p>
-
-==============================
-
-![alt](test.jpeg#100x200)
-------------------------------
-<p>
-  <picture>
-    <source type=image/webp srcset=test.webp?200220_202020>
-    <img loading=lazy decoding=async src=test.jpeg?200220_202020 alt="alt" title="" width=100 height=200>
-  </picture>
-</p>
-
-==============================
-
-![alt](test.gif#100x200)
-------------------------------
-<p>
-  <picture>
-    <source type=image/webp srcset=test.webp?200220_202020>
-    <img loading=lazy decoding=async src=test.gif?200220_202020 alt="alt" title="" width=100 height=200>
-  </picture>
-</p>
-
-==============================
-
-![alt](test.jpeg#100x200) and ![alt](test.jpeg#100x200)
-------------------------------
-<p>
-  <picture>
-    <source type=image/webp srcset=test.webp?200220_202020>
-    <img loading=lazy decoding=async src=test.jpeg?200220_202020 alt="alt" title="" width=100 height=200>
-  </picture>
-   and 
-  <picture>
-    <source type=image/webp srcset=test.webp?200220_202020>
-    <img loading=lazy decoding=async src=test.jpeg?200220_202020 alt="alt" title="" width=100 height=200>
-  </picture>
-</p>
-
-==============================
-
-aaa ![alt](test.jpeg#100x200) and ![alt](test.jpeg#100x200) bbb
-------------------------------
-<p>
-  aaa 
-  <picture>
-    <source type=image/webp srcset=test.webp?200220_202020>
-    <img loading=lazy decoding=async src=test.jpeg?200220_202020 alt="alt" title="" width=100 height=200>
-  </picture>
-   and 
-  <picture>
-    <source type=image/webp srcset=test.webp?200220_202020>
-    <img loading=lazy decoding=async src=test.jpeg?200220_202020 alt="alt" title="" width=100 height=200>
-  </picture>
-   bbb
-</p>
-
-==============================
-
-![svg](test.svg#100x200 'title for svg')
-------------------------------
-<p>
-  <img loading=lazy decoding=async src=test.svg?200220_202020 alt="svg" title="title for svg" width=100 height=200>
-</p>
-
-==============================
-
-![alt](test.bmp#100x200)
-------------------------------
-<img> should ".jpeg" or ".png" or ".svg" and <video> should ".mp4" in "test.bmp"
 
 ==============================
 
 ![alt](https://example.com/test.png)
 ------------------------------
-missing <width>x<height> in "https://example.com/test.png"
+<p>
+  <img loading=lazy decoding=async src=https://example.com/test.png alt="alt" title="">
+</p>
 
 ==============================
 
-![dummy video](test.mp4#1000x2000)
+![alt](test.jpeg)
 ------------------------------
 <p>
-  <video title="dummy video" width=1000 height=2000 controls playsinline>
-    <source type=video/mp4 src=test.mp4?200220_202020>
-    <source type=video/webm src=test.webm?200220_202020>
-  </video>
+  <img loading=lazy decoding=async src=test.jpeg alt="alt" title="">
+</p>
+
+==============================
+
+![alt](test.jpg) and ![alt](test.png)
+------------------------------
+<p>
+  <img loading=lazy decoding=async src=test.jpg alt="alt" title="">
+   and 
+  <img loading=lazy decoding=async src=test.png alt="alt" title="">
+</p>
+
+==============================
+
+aaa ![alt](test.jpg) and ![alt](test.png) bbb
+------------------------------
+<p>
+  aaa 
+  <img loading=lazy decoding=async src=test.jpg alt="alt" title="">
+   and 
+  <img loading=lazy decoding=async src=test.png alt="alt" title="">
+   bbb
 </p>
 
 ==============================
