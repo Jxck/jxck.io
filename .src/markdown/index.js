@@ -89,7 +89,7 @@ function unescape(str) {
  * @returns {string}
  */
 function attr_str(attr = {}) {
-  const quote = [`title`, `cite`]
+  const quote = [`title`, `cite`, `alt`]
   return Object.entries(attr).map(([k, v]) => {
     if (k === `aligns`) return `` // TODO: 元から消せる?
     if (quote.includes(k)) return ` ${k}="${v}"`
@@ -387,10 +387,8 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function img(node, indent) {
-    const { src, alt, title, loading, decoding } = node.attr
-    const width = node.attr.width ? ` width=${node.attr.width}` : ``
-    const height = node.attr.height ? ` height=${node.attr.height}` : ``
-    return `${spaces(indent)}<img loading=${loading} decoding=${decoding} src=${src} alt="${alt}" title="${title}"${width}${height}>\n`
+    const attr = attr_str(node.attr)
+    return `${spaces(indent)}<img${attr}>\n`
   }
 
   /**
@@ -1077,11 +1075,11 @@ export function decode(md) {
       i++
     }
     const attr = {
+      loading: `lazy`,
+      decoding: `async`,
       src,
       alt,
       title,
-      loading: `lazy`,
-      decoding: `async`,
     }
     const img = node({ name: `img`, type: `block`, attr })
     return { child: img, i }
