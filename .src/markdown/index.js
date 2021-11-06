@@ -89,8 +89,9 @@ function unescape(str) {
  * @returns {string}
  */
 function attr_str(attr = {}) {
+  const quote = [`title`, `cite`]
   return Object.entries(attr).map(([k, v]) => {
-    if (k === `title`) return ` ${k}="${v}"`
+    if (quote.includes(k)) return ` ${k}="${v}"`
     if (v === null) return ` ${k}`
     return ` ${k}=${v}`
   }).join('')
@@ -420,7 +421,7 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function blockquote(node, indent) {
-    const attr = Object.entries(node.attr ?? []).map(([k, v]) => ` ${k}="${v}"`).join('')
+    const attr = attr_str(node.attr)
     return [
       `${spaces(indent)}<blockquote${attr}>\n`,
       node.children.map((child) => serialize(child, indent + 2)).join(``),
