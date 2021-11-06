@@ -153,7 +153,7 @@ function info_section({ published_at, guests }) {
 
   const section = node({ name: `section` })
 
-  const h2 = node({ name: `headding`, type: `inline`, level: 2 })
+  const h2 = node({ name: `headding`, type: `inline`, level: 2, attr: { id: `info` } })
   h2.addText(`Info`)
 
   const dl = node({ name: `dl`, type: `block` })
@@ -319,6 +319,7 @@ function customise(ast, base) {
 }
 
 async function parse_entry(entry) {
+  console.log(entry)
   const md = await readFile(entry, { encoding: "utf-8" })
   const target = entry.replace(".md", ".html")
   const canonical = target.replace("../", "https://")
@@ -358,6 +359,7 @@ async function parse_entry(entry) {
 
 
 async function parse_episode(entry, order) {
+  console.log(entry.path)
   const md = await readFile(entry.path, { encoding: "utf-8" })
   const target = entry.path.replace(".md", ".html")
   const canonical = target.replace("../", "https://")
@@ -426,7 +428,6 @@ async function blog(files) {
   const entry_template_file = "./template/blog.html.ejs"
   const entry_template = await readFile(entry_template_file, { encoding: "utf-8" })
   for (const entry of entries) {
-    console.log(entry.target)
     const context = {
       indent,
       short,
@@ -531,7 +532,6 @@ async function podcast(files) {
   const podcast_template_file = "./template/podcast.html.ejs"
   const podcast_template = await readFile(podcast_template_file, { encoding: "utf-8" })
   for (const episode of episodes) {
-    console.log(episode.target)
     const context = {
       indent,
       short,

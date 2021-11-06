@@ -74,6 +74,7 @@ function unescape(str) {
  * @prop {string} [rel]
  * @prop {string} [property]
  * @prop {string} [href]
+ * @prop {string} [translate]
  * @prop {Array.<"center" | "left" | "right">} [aligns]
  * @prop {"center" | "left" | "right"} [align]
  * @prop {Array.<string>} [tags]
@@ -229,9 +230,10 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function code(node, indent) {
+    const attr = Object.entries(node.attr).map(([k, v]) => `${k}=${v}`).join(' ')
     const code = node.children.map((child) => child.text).join(``)
     const escaped = htmlescape(unescape(code))
-    return `<code translate=no>${escaped}</code>`
+    return `<code ${attr}>${escaped}</code>`
   }
 
   /**
@@ -1306,7 +1308,7 @@ export function decode(md) {
    */
   function code(input, i) {
     let start = i
-    const child = node({ name: `code`, type: `inline` })
+    const child = node({ name: `code`, type: `inline`, attr: {translate: `no`} })
     while (true) {
       // "` a ` b `" みたいにマッチしてない場合
       if (i > input.length) throw new Error(`unmatch </code> on "${input}"`)
