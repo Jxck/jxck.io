@@ -85,6 +85,18 @@ function unescape(str) {
  */
 
 /**
+ * @param {Attr} attr
+ * @returns {string}
+ */
+function attr_str(attr = {}) {
+  return Object.entries(attr).map(([k, v]) => {
+    if (k === `title`) return ` ${k}="${v}"`
+    if (v === null) return ` ${k}`
+    return ` ${k}=${v}`
+  }).join('')
+}
+
+/**
  * @typedef {Object} NodeParam
  * @prop {string} name
  * @prop {string} type
@@ -422,12 +434,7 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function video(node, indent) {
-    const attr = Object.entries(node.attr ?? []).map(([k, v]) => {
-      if (k === `title`) return ` ${k}="${v}"`
-      if (v === null) return ` ${k}`
-      return ` ${k}=${v}`
-    }).join('')
-
+    const attr = attr_str(node.attr)
     return [
       `${spaces(indent)}<video${attr}>\n`,
       node.children.map((child) => serialize(child, indent + 2)).join(``),
