@@ -292,9 +292,10 @@ export function encode(node, option) {
    */
   function pre(node, indent) {
     const lang = node.attr.lang ? ` class=${node.attr.lang}` : ``
+    const path = node.attr.path ? ` data-path="${node.attr.path}"` : ``
     const code = node.children.map((child) => child.text).join(`\n`)
     return [
-      `${spaces(indent)}<pre${lang}><code translate=no>`,
+      `${spaces(indent)}<pre${lang}${path}><code translate=no>`,
       htmlescape(code),
       `</code></pre>\n`
     ].join(``)
