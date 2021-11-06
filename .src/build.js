@@ -1,8 +1,8 @@
 import { readFile, writeFile, stat } from "fs/promises";
-import { encode, decode, traverse, cache_busting, node, Node } from "markdown"
+import { encode, decode, traverse, node, Node } from "markdown"
 import ejs from "ejs"
 import glob from "glob"
-import { readFileSync } from "fs"
+import { readFileSync, statSync } from "fs"
 import { exec } from "child_process"
 import { promisify } from "util"
 
@@ -15,6 +15,32 @@ function dump(ast) {
     if (key === `parent`) return undefined
     return value
   }, `  `))
+}
+
+
+/**
+ * Calculate hash from mtime
+ * @param {string} path
+ * @returns {string}
+ */
+ export function cache_busting(path) {
+  try {
+    const mtime = statSync(path).mtime
+    const y = (mtime.getFullYear() % 100).toString().padStart(2, `0`)
+    const m = (mtime.getMonth() + 1).toString().padStart(2, `0`)
+    const d = (mtime.getDate()).toString().padStart(2, `0`)
+    const H = (mtime.getHours()).toString().padStart(2, `0`)
+    const M = (mtime.getMinutes()).toString().padStart(2, `0`)
+    const S = (mtime.getSeconds()).toString().padStart(2, `0`)
+    return `?${y}${m}${d}_${H}${M}${S}`
+  } catch (err) {
+    if (err.code === `ENOENT`) {
+      console.error(`not found`, err.path)
+    } else {
+      console.error(err)
+    }
+    return ``
+  }
 }
 
 // function description(ast) {
@@ -414,7 +440,6 @@ async function blog() {
     const result = ejs.render(entry_template, context)
     await writeFile(context.entry.target, result)
   }
-  return
 
   // build index
   const entries_per_year = entries.reduce((acc, entry) => {
