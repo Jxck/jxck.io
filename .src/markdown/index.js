@@ -1499,7 +1499,7 @@ export function dump(ast) {
 
 function main() {
   [
-    `[[CSP3] Suggestion for COOKIE directive](https://lists.w3.org/Archives/Public/public-webappsec/2018Oct/0029.html)`
+    `# hoo`
   ].forEach((line) => {
     const ast = decode(line)
     // dump(ast)
