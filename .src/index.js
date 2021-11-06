@@ -191,15 +191,40 @@ async function parse_entry(entry) {
 
   const ast = decode(md)
 
+
+  /**
+   * table, pre など必ず出てくるわけではない CSS は
+   * 登場したら一度だけ CSS を読み込むように
+   * <link rel=stylesheet> を挿入する。
+   * 挿入したかを保持するグローバルフラグ
+   */
+  const style_flag = {
+    table: false,
+    pre: false,
+  }
+
   const root = traverse(ast, {
     enter: (node) => {
-      if (node.name === `table`) {
-        console.log('enter', node.name)
-      }
       return node
     },
     leave: (node) => {
-        return node
+      if (node.name === `table` && style_flag.table === false) {
+        // 一度だけ css の style を差し込む
+        const link = new Node({
+          name: `link`, type: `inline`, attr: {
+            rel: 'stylesheet',
+            property: 'stylesheet',
+            type: 'text/css',
+            href: 'https://www.jxck.io/assets/css/table.css',
+          }
+        })
+        const div = new Node({name:`empty`, type:`block`})
+        div.appendChild(link)
+        div.appendChild(node)
+        style_flag.table = true
+        return div
+      }
+      return node
     }
   })
 
@@ -455,3 +480,4 @@ if (process.argv.length < 3) {
   await blog()
   // await podcast()
 }
+await blog()

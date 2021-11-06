@@ -716,19 +716,6 @@ export function decode(md) {
     const row = result.groups.row
     const columns = row.split(`|`)
 
-    if (style_flag.table === false) {
-      // 一度だけ css の style を差し込む
-      const link = node({
-        name: `link`, type: `inline`, attr: {
-          rel: 'stylesheet',
-          property: 'stylesheet',
-          type: 'text/css',
-          href: 'https://www.jxck.io/assets/css/table.css',
-        }
-      })
-      ast.appendChild(link)
-      style_flag.table = true
-    }
     if (ast.name === `thead`) {
       const aligns = columns.map((colmun) => {
         const start = Number(colmun.startsWith(`:`))
