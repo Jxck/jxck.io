@@ -422,9 +422,14 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function video(node, indent) {
-    const { title, width, height, controls, playsinline } = node.attr
+    const attr = Object.entries(node.attr ?? []).map(([k, v]) => {
+      if (k === `title`) return ` ${k}="${v}"`
+      if (v === null) return ` ${k}`
+      return ` ${k}=${v}`
+    }).join('')
+
     return [
-      `${spaces(indent)}<video title="${title}" width=${width} height=${height} controls playsinline>\n`,
+      `${spaces(indent)}<video${attr}>\n`,
       node.children.map((child) => serialize(child, indent + 2)).join(``),
       `${spaces(indent)}</video>\n`,
     ].join(``)

@@ -284,10 +284,11 @@ function customise(ast, base) {
             name: `video`,
             type: `block`,
             attr: {
-              ...attr,
               title: attr.alt,
-              controls: ``,
-              playsinline: ``,
+              width: attr.width,
+              height: attr.height,
+              controls: null,
+              playsinline: null,
             }
           })
           const mp4 = new Node({
