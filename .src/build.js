@@ -438,6 +438,7 @@ async function blog(files) {
     const result = ejs.render(entry_template, context)
     await writeFile(context.entry.target, result)
   }
+  return
 
   // build index
   const entries_per_year = entries.reduce((acc, entry) => {
@@ -576,11 +577,11 @@ if (process.argv[2] === "podcast") {
 }
 
 if (process.argv.length < 3) {
-  // const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
-  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
+  const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
+  // const files = glob.sync("../blog.jxck.io/entries/**/*.md")
   await blog(files)
 
   // const pathes = ["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
-  const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
-  await podcast(pathes)
+  // const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
+  // await podcast(pathes)
 }
