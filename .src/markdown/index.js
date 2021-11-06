@@ -59,6 +59,7 @@ function unescape(str) {
 
 /**
  * @typedef {Object} Attr
+ * @prop {string} [id]
  * @prop {string} [title]
  * @prop {string} [width]
  * @prop {string} [height]
@@ -188,20 +189,7 @@ export function encode(node, option = {}) {
       })
     }
 
-    /**
-     * @param {Node} node
-     * @returns {string}
-     */
-    function serialize_text(node) {
-      if (node.name === `text`) return node.text
-      return node.children.map((child) => serialize_text(child)).join(``)
-    }
-
-    const id = serialize_text(node)
-      .replace(/[!"#$%&'()*+,/:;<=>?\[\\\]^{|}~]/g, ``) // 記号は .-_ のみ
-      .replace(/[、。「」]/g, ``) // 全角記号も消す
-      .replace(/ /g, `-`)
-      .toLocaleLowerCase()
+    const id = node.attr.id
 
     // ID が既出な場合は、一意にするために _連番 を後ろにつける
     const prev = toc.reduce((last, curr) => {
@@ -543,13 +531,32 @@ export function decode(md) {
       }
     })()
 
-    section.appendChild(node({
+    const h = node({
       name: `headding`,
       type: `inline`,
       level,
       attr,
       children
-    }))
+    })
+
+    /**
+     * @param {Node} node
+     * @returns {string}
+     */
+    function serialize_text(node) {
+      if (node.name === `text`) return node.text
+      return node.children.map((child) => serialize_text(child)).join(``)
+    }
+
+    const id = serialize_text(h)
+      .replace(/[!"#$%&'()*+,/:;<=>?\[\\\]^{|}~]/g, ``) // 記号は .-_ のみ
+      .replace(/[、。「」]/g, ``) // 全角記号も消す
+      .replace(/ /g, `-`)
+      .toLocaleLowerCase()
+
+    h.attr.id = id
+
+    section.appendChild(h)
 
     if (ast.level < level) {
       // increment only +1
