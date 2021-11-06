@@ -519,11 +519,17 @@ export function encode(node, option) {
 
     // Other Inlines
     if (node.type === `inline`) {
+      if (name === `empty`) {
+        return node.children.map((child) => serialize(child)).join(``)
+      }
       return `<${name}>${node.children.map((child) => serialize(child)).join(``)}</${name}>`
     }
 
     // Other Blocks
     if (node.type === `block`) {
+      if (name === `empty`) {
+        return node.children.map((child) => serialize(child, indent)).join(``)
+      }
       return [
         `${spaces(indent)}<${name}>\n`,
         node.children.map((child) => serialize(child, indent + 2)).join(``),
