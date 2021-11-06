@@ -367,8 +367,8 @@ export function encode(node, option = {}) {
    */
   function link(node, indent) {
     const name = node.name
-    const attr = Object.entries(node.attr).map(([k, v]) => `${k}=${v}`).join(' ')
-    return `${spaces(indent)}<${name} ${attr}>\n`
+    const attr = attr_str(node.attr)
+    return `${spaces(indent)}<${name}${attr}>\n`
   }
 
   /**
