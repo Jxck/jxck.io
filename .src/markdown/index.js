@@ -398,9 +398,7 @@ export function encode(node, option) {
   function link(node, indent) {
     const name = node.name
     const { rel, property, type, href } = node.attr
-    const path = href.replace(`https://`, `../`)
-    const query = cache_busting(path)
-    return `${spaces(indent)}<${name} rel=${rel} property=${property} type=${type} href=${href}?${query}>\n`
+    return `${spaces(indent)}<${name} rel=${rel} property=${property} type=${type} href=${href}>\n`
   }
 
   /**

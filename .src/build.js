@@ -215,7 +215,7 @@ async function parse_entry(entry) {
             rel: 'stylesheet',
             property: 'stylesheet',
             type: 'text/css',
-            href: 'https://www.jxck.io/assets/css/table.css',
+            href: version('https://www.jxck.io/assets/css/table.css')
           }
         })
         const div = new Node({ name: `empty`, type: `block` })
@@ -225,7 +225,7 @@ async function parse_entry(entry) {
         return div
       }
       if (node.name === `pre` && node.attr.path) {
-        const code = readFileSync(`${base}${node.attr.path}`, {encoding: 'utf-8'}).trimEnd()
+        const code = readFileSync(`${base}${node.attr.path}`, { encoding: 'utf-8' }).trimEnd()
         node.addText(code)
       }
       if (node.name === `pre` && style_flag.pre === false) {
@@ -235,7 +235,7 @@ async function parse_entry(entry) {
             rel: 'stylesheet',
             property: 'stylesheet',
             type: 'text/css',
-            href: 'https://www.jxck.io/assets/css/pre.css',
+            href: version('https://www.jxck.io/assets/css/pre.css'),
           }
         })
         const div = new Node({ name: `empty`, type: `block` })
