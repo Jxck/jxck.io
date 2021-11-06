@@ -360,38 +360,6 @@ export function encode(node, option = {}) {
   }
 
   /**
-   * link
-   * @param {Node} node
-   * @param {number} indent
-   * @returns {string}
-   */
-  function link(node, indent) {
-    const name = node.name
-    const attr = attr_str(node.attr)
-    return `${spaces(indent)}<${name}${attr}>\n`
-  }
-
-  /**
-   * @param {Node} node
-   * @param {number} indent
-   * @returns {string}
-   */
-  function source(node, indent) {
-    const attr = attr_str(node.attr)
-    return `${spaces(indent)}<source${attr}>\n`
-  }
-
-  /**
-   * @param {Node} node
-   * @param {number} indent
-   * @returns {string}
-   */
-  function img(node, indent) {
-    const attr = attr_str(node.attr)
-    return `${spaces(indent)}<img${attr}>\n`
-  }
-
-  /**
    * @param {Node} node
    * @param {number} indent
    * @returns {string}
@@ -427,14 +395,11 @@ export function encode(node, option = {}) {
     if (name === `a`) /*             */ return a(node, indent)
     if (name === `code`) /*          */ return code(node, indent)
     if (name === `pre`) /*           */ return pre(node, indent)
-    if (name === `img`) /*           */ return img(node, indent)
-    if (name === `source`) /*        */ return source(node, indent)
     if (name === `root`) /*          */ return root(node, indent)
     if (name === `th` || name === `td`) return td(node, indent)
     if (name === `dt` || name === `dd`) return dt(node, indent)
     if (name === `p`) /*             */ return mix_inline(node, indent)
     if (name === `li`) /*            */ return mix_inline(node, indent)
-    if (name === `link`) /*          */ return link(node, indent)
 
     // Print HTML as-is
     if (name === `html`) {
@@ -445,6 +410,12 @@ export function encode(node, option = {}) {
       // inline なら indent しない
       const i = node.type === `inline` ? 0 : indent
       return node.children.map((child) => serialize(child, i)).join(``)
+    }
+
+    if ([`link`, `source`, `img`].includes(name)) {
+      const name = node.name
+      const attr = attr_str(node.attr)
+      return `${spaces(indent)}<${name}${attr}>\n`
     }
 
     // Other Inlines
