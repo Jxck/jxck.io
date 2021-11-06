@@ -166,19 +166,6 @@ export class Node {
     const child = node({ name: `text`, type: `inline`, text })
     this.appendChild(child)
   }
-
-  /**
-   * @param {Node} node
-   */
-  insertBefore(node) {
-    for (let i = 0; i < this.parent.children.length; i++) {
-      const child = this.parent.children[i]
-      if (this === child) {
-        this.parent.children.splice(i, 0, node)
-        return
-      }
-    }
-  }
 }
 
 /**

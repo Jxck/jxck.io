@@ -43,9 +43,9 @@ function api() {
 
   const pre = node({ name: `pre`, type: `block` })
   pre.addText(`test pre`)
-  p.insertBefore(pre)
+  root.appendChild(pre)
 
-  deepStrictEqual(root.children.map((child) => child.name), [`div`, `pre`, `p`])
+  deepStrictEqual(root.children.map((child) => child.name), [`div`, `p`, `pre`])
 
   const walk = []
   traverse(root, {
@@ -63,14 +63,14 @@ function api() {
     `enter:text`,
     `leave:text`,
     `leave:div`,
+    `enter:p`,
+    `enter:text`,
+    `leave:text`,
+    `leave:p`,
     `enter:pre`,
     `enter:text`,
     `leave:text`,
     `leave:pre`,
-    `enter:p`,
-    `enter:text`,
-    `leave:text`,
-    `leave:p`
   ])
 }
 
