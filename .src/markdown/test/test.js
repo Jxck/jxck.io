@@ -21,7 +21,7 @@ function testcase() {
       const { html, toc } = encode(ast, { base: `./` })
       // console.log({expected})
       // console.log({html})
-      // deepStrictEqual(html, expected + `\n`, html)
+      deepStrictEqual(html, expected + `\n`, html)
       console.log(`.`)
     } catch ({ message }) {
       deepStrictEqual(message, expected, expected)
@@ -75,39 +75,3 @@ function api() {
 }
 
 api()
-
-
-function append() {
-  const root = node({ name: `root`, type: `block` })
-  const div = node({ name: `div`, type: `block` })
-  const table1 = node({ name: `table`, type: `block` })
-  table1.addText('table1')
-  const table2 = node({ name: `table`, type: `block` })
-  table2.addText('table2')
-  const p = node({ name: `p`, type: `block` })
-
-  root.appendChild(div)
-  root.appendChild(table1)
-  root.appendChild(table2)
-  root.appendChild(p)
-
-  let flag = true
-  const ast = traverse(root, {
-    enter: (node) => {
-      if (node.name === `table` && flag) {
-        const link = new Node({ name: `link`, type: `inline` })
-        node.insertBefore(link)
-        flag = false
-        return link
-      }
-      return node
-    },
-    leave: (node) => {
-      return node
-    }
-  })
-
-  deepStrictEqual(ast.children.map((child) => child.name), [`div`, `link`, `table`, `table`, `p`])
-}
-
-append()
