@@ -91,6 +91,7 @@ function unescape(str) {
 function attr_str(attr = {}) {
   const quote = [`title`, `cite`]
   return Object.entries(attr).map(([k, v]) => {
+    if (k === `aligns`) return `` // TODO: 元から消せる?
     if (quote.includes(k)) return ` ${k}="${v}"`
     if (v === null) return ` ${k}`
     return ` ${k}=${v}`
@@ -420,46 +421,16 @@ export function encode(node, option = {}) {
    * @param {number} indent
    * @returns {string}
    */
-  function blockquote(node, indent) {
-    const attr = attr_str(node.attr)
-    return [
-      `${spaces(indent)}<blockquote${attr}>\n`,
-      node.children.map((child) => serialize(child, indent + 2)).join(``),
-      `${spaces(indent)}</blockquote>\n`,
-    ].join(``)
-  }
-
-  /**
-   * @param {Node} node
-   * @param {number} indent
-   * @returns {string}
-   */
-  function video(node, indent) {
-    const attr = attr_str(node.attr)
-    return [
-      `${spaces(indent)}<video${attr}>\n`,
-      node.children.map((child) => serialize(child, indent + 2)).join(``),
-      `${spaces(indent)}</video>\n`,
-    ].join(``)
-  }
-
-  /**
-   * @param {Node} node
-   * @param {number} indent
-   * @returns {string}
-   */
   function serialize(node, indent = 0) {
     const name = node.name
     if (name === `text`) /*          */ return text(node, indent)
     if (name === `headding`) /*      */ return headding(node, indent)
     if (name === `section`) /*       */ return section(node, indent)
-    if (name === `blockquote`) /*    */ return blockquote(node, indent)
     if (name === `a`) /*             */ return a(node, indent)
     if (name === `code`) /*          */ return code(node, indent)
     if (name === `pre`) /*           */ return pre(node, indent)
     if (name === `img`) /*           */ return img(node, indent)
     if (name === `source`) /*        */ return source(node, indent)
-    if (name === `video`) /*         */ return video(node, indent)
     if (name === `root`) /*          */ return root(node, indent)
     if (name === `th` || name === `td`) return td(node, indent)
     if (name === `dt` || name === `dd`) return dt(node, indent)
@@ -485,8 +456,9 @@ export function encode(node, option = {}) {
 
     // Other Blocks
     if (node.type === `block`) {
+      const attr = attr_str(node.attr)
       return [
-        `${spaces(indent)}<${name}>\n`,
+        `${spaces(indent)}<${name}${attr}>\n`,
         node.children.map((child) => serialize(child, indent + 2)).join(``),
         `${spaces(indent)}</${name}>\n`,
       ].join(``)
