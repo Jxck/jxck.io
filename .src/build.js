@@ -280,7 +280,16 @@ function customise(ast, base) {
 
         // .mp4 のときは Video にする
         if (src.endsWith(`.mp4`)) {
-          const video = new Node({ name: `video`, type: `block`, attr: { ...attr, title: attr.alt } })
+          const video = new Node({
+            name: `video`,
+            type: `block`,
+            attr: {
+              ...attr,
+              title: attr.alt,
+              controls: ``,
+              playsinline: ``,
+            }
+          })
           const mp4 = new Node({ name: `source`, type: `inline`, attr: { ...attr, type: `video/mp4` } })
 
           const webm_src = src.replace(/.mp4/, `.webm`)
@@ -439,7 +448,6 @@ async function blog(files) {
     const result = ejs.render(entry_template, context)
     await writeFile(context.entry.target, result)
   }
-  return
 
   // build index
   const entries_per_year = entries.reduce((acc, entry) => {
@@ -577,11 +585,11 @@ if (process.argv[2] === "podcast") {
 }
 
 if (process.argv.length < 3) {
-  const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
-  // const files = glob.sync("../blog.jxck.io/entries/**/*.md")
+  // const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
+  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
   await blog(files)
 
   // const pathes = ["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
-  // const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
-  // await podcast(pathes)
+  const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
+  await podcast(pathes)
 }

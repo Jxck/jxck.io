@@ -75,6 +75,10 @@ function unescape(str) {
  * @prop {string} [property]
  * @prop {string} [href]
  * @prop {string} [translate]
+ * @prop {string} [loading]
+ * @prop {string} [decoding]
+ * @prop {string} [controls]
+ * @prop {string} [playsinline]
  * @prop {Array.<"center" | "left" | "right">} [aligns]
  * @prop {"center" | "left" | "right"} [align]
  * @prop {Array.<string>} [tags]
@@ -374,10 +378,10 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function img(node, indent) {
-    const { src, alt, title } = node.attr
+    const { src, alt, title, loading, decoding } = node.attr
     const width = node.attr.width ? ` width=${node.attr.width}` : ``
     const height = node.attr.height ? ` height=${node.attr.height}` : ``
-    return `${spaces(indent)}<img loading=lazy decoding=async src=${src} alt="${alt}" title="${title}"${width}${height}>\n`
+    return `${spaces(indent)}<img loading=${loading} decoding=${decoding} src=${src} alt="${alt}" title="${title}"${width}${height}>\n`
   }
 
   /**
@@ -423,7 +427,7 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function video(node, indent) {
-    const { title, width, height } = node.attr
+    const { title, width, height, controls, playsinline } = node.attr
     return [
       `${spaces(indent)}<video title="${title}" width=${width} height=${height} controls playsinline>\n`,
       node.children.map((child) => serialize(child, indent + 2)).join(``),
@@ -1095,7 +1099,9 @@ export function decode(md) {
     const attr = {
       src,
       alt,
-      title
+      title,
+      loading: `lazy`,
+      decoding: `async`,
     }
     const img = node({ name: `img`, type: `block`, attr })
     return { child: img, i }
