@@ -224,6 +224,10 @@ async function parse_entry(entry) {
         style_flag.table = true
         return div
       }
+      if (node.name === `pre` && node.attr.path) {
+        const code = readFileSync(`${base}${node.attr.path}`, {encoding: 'utf-8'}).trimEnd()
+        node.addText(code)
+      }
       if (node.name === `pre` && style_flag.pre === false) {
         // 一度だけ css の style を差し込む
         const link = new Node({
@@ -496,4 +500,3 @@ if (process.argv.length < 3) {
   await blog()
   // await podcast()
 }
-await blog()

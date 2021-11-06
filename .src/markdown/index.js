@@ -1,5 +1,5 @@
 `use strict`;
-import { readFileSync, statSync } from "fs";
+import { statSync } from "fs";
 
 /**
  * @typedef {Object} Serialized
@@ -292,13 +292,7 @@ export function encode(node, option) {
    */
   function pre(node, indent) {
     const lang = node.attr.lang ? ` class=${node.attr.lang}` : ``
-    const path = node.attr.path
-
-    const code = path ?
-      readFileSync(option.base + path).toString().trimEnd()
-      :
-      node.children.map((child) => child.text).join(`\n`)
-
+    const code = node.children.map((child) => child.text).join(`\n`)
     return [
       `${spaces(indent)}<pre${lang}><code translate=no>`,
       htmlescape(code),
