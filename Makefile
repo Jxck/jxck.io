@@ -8,11 +8,11 @@
 # 	make comp
 
 build:
-	cd .src && node index.js
+	cd .src && node build.js
 	make comp
 
 x:
-	cd .src && node index.js
+	cd .src && node build.js
 
 
 ##########################
