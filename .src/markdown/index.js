@@ -377,8 +377,8 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function source(node, indent) {
-    const attr = Object.entries(node.attr).map(([k, v]) => `${k}=${v}`).join(' ')
-    return `${spaces(indent)}<source ${attr}>\n`
+    const attr = attr_str(node.attr)
+    return `${spaces(indent)}<source${attr}>\n`
   }
 
   /**
