@@ -18,13 +18,13 @@ function testcase() {
       // console.log(md)
       const ast = decode(md)
       // dump(ast)
-      const { html, toc } = encode(ast, { base: `./` })
+      const { html, toc } = encode(ast)
       // console.log({expected})
       // console.log({html})
       deepStrictEqual(html, expected + `\n`, html)
       console.log(`.`)
-    } catch ({ message }) {
-      deepStrictEqual(message, expected, expected)
+    } catch (err) {
+      deepStrictEqual(err.message, expected, expected)
     }
   }
 }

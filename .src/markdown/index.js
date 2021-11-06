@@ -145,7 +145,6 @@ export class Node {
 
 /**
  * @typedef {Object} EncodeOption
- * @prop {string} base
  * @prop {number} [indent]
  */
 
@@ -155,7 +154,7 @@ export class Node {
  * @param {EncodeOption} [option]
  * @returns {Serialized}
  */
-export function encode(node, option) {
+export function encode(node, option = {}) {
 
   /** @type {Array.<string>} */
   const tags = []
@@ -1440,7 +1439,7 @@ function main() {
   ].forEach((line) => {
     const ast = decode(line)
     // dump(ast)
-    const { html, toc } = encode(ast, { base: './', indent: 2 })
+    const { html, toc } = encode(ast, { indent: 2 })
     // console.log(line)
     console.log(html)
   })
@@ -1448,4 +1447,4 @@ function main() {
 // main()
 
 // const tmp = readFileSync("tmp.txt", "utf-8")
-// console.log(encode(decode(tmp), {base: './', indent:2 }))
+// console.log(encode(decode(tmp), { indent:2 }))
