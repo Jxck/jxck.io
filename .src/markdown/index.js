@@ -181,7 +181,7 @@ export function encode(node, option = {}) {
    */
   function headding(node, indent) {
     const name = `h${node.level}`
-    let text = node.children.map((child) => serialize(child)).join(``)
+    const text = node.children.map((child) => serialize(child)).join(``)
     if (node.level === 1) {
       // global tags に保存
       node.attr.tags.forEach((tag) => {
