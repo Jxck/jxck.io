@@ -1378,18 +1378,17 @@ export function dump(ast) {
 }
 
 
-function main() {
-  [
-    `# hoo`
-  ].forEach((line) => {
-    const ast = decode(line)
-    // dump(ast)
-    const { html, toc } = encode(ast, { indent: 2 })
-    // console.log(line)
-    console.log(html)
-  })
-}
+// function main() {
+//   [
+//     `# hoo`
+//   ].forEach((line) => {
+//     const ast = decode(line)
+//     // dump(ast)
+//     const { html, toc } = encode(ast, { indent: 2 })
+//     // console.log(line)
+//     console.log(html)
+//   })
+// }
 // main()
-
 // const tmp = readFileSync("tmp.txt", "utf-8")
 // console.log(encode(decode(tmp), { indent:2 }))
