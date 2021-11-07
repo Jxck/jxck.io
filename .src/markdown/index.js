@@ -397,13 +397,15 @@ export function encode(node, option = {}) {
       return node.children.map(({ text }) => `${spaces(indent)}${text}\n`).join(``)
     }
 
+    // 要素をまとめるためだけの疑似要素
     if (name === `empty`) {
       // inline なら indent しない
       const i = node.type === `inline` ? 0 : indent
       return node.children.map((child) => serialize(child, i)).join(``)
     }
 
-    if ([`link`, `source`, `img`].includes(name)) {
+    if (node.children.length === 0) {
+      // 子要素が無いやつ (link, srouce, img)
       const name = node.name
       const attr = attr_str(node.attr)
       return `${spaces(indent)}<${name}${attr}>\n`
