@@ -238,18 +238,6 @@ export function encode(node, option = {}) {
    * @param {number} indent
    * @returns {string}
    */
-  function code(node, indent) {
-    const attr = Object.entries(node.attr).map(([k, v]) => `${k}=${v}`).join(' ')
-    const code = node.children.map((child) => child.text).join(``)
-    const escaped = htmlescape(unescape(code))
-    return `<code ${attr}>${escaped}</code>`
-  }
-
-  /**
-   * @param {Node} node
-   * @param {number} indent
-   * @returns {string}
-   */
   function pre(node, indent) {
     const lang = node.attr.lang ? ` class=${node.attr.lang}` : ``
     const path = node.attr.path ? ` data-path="${node.attr.path}"` : ``
@@ -384,7 +372,6 @@ export function encode(node, option = {}) {
     if (name === `headding`) /*      */ return headding(node, indent)
     if (name === `section`) /*       */ return section(node, indent)
     if (name === `a`) /*             */ return a(node, indent)
-    if (name === `code`) /*          */ return code(node, indent)
     if (name === `pre`) /*           */ return pre(node, indent)
     if (name === `root`) /*          */ return root(node, indent)
     if (name === `th` || name === `td`) return td(node, indent)
@@ -413,7 +400,8 @@ export function encode(node, option = {}) {
 
     // Other Inlines
     if (node.type === `inline`) {
-      return `<${name}>${node.children.map((child) => serialize(child)).join(``)}</${name}>`
+      const attr = attr_str(node.attr)
+      return `<${name}${attr}>${node.children.map((child) => serialize(child)).join(``)}</${name}>`
     }
 
     // Other Blocks
