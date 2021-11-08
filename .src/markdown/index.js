@@ -933,6 +933,7 @@ export function decode(md) {
           // 文の途中にある > はタダのカッコ
           i++
         } else {
+          if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`);
           ({ child, i } = inline_blockquote(input, i + 2))
           start = i
           parent.appendChild(child)
