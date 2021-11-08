@@ -250,25 +250,28 @@ function customise(ast, base) {
         style_flag.table = true
         return div
       }
-      if (node.name === `pre` && node.attr.path) {
-        const code = readFileSync(`${base}${node.attr.path}`, { encoding: 'utf-8' }).trimEnd()
-        node.addText(code)
-      }
-      if (node.name === `pre` && style_flag.pre === false) {
-        // 一度だけ css の style を差し込む
-        const link = new Node({
-          name: `link`, type: `inline`, attr: {
-            rel: 'stylesheet',
-            property: 'stylesheet',
-            type: 'text/css',
-            href: version('https://www.jxck.io/assets/css/pre.css'),
-          }
-        })
-        const div = new Node({ name: `empty`, type: `block` })
-        div.appendChild(link)
-        div.appendChild(node)
-        style_flag.pre = true
-        return div
+      if (node.name === `pre`) {
+        if (node.name === `pre` && node.attr.path) {
+          const code = readFileSync(`${base}${node.attr.path}`, { encoding: 'utf-8' }).trimEnd()
+          node.addText(code)
+        }
+        if (style_flag.pre === false) {
+          // 一度だけ css の style を差し込む
+          const link = new Node({
+            name: `link`, type: `inline`, attr: {
+              rel: 'stylesheet',
+              property: 'stylesheet',
+              type: 'text/css',
+              href: version('https://www.jxck.io/assets/css/pre.css'),
+            }
+          })
+          const div = new Node({ name: `empty`, type: `block` })
+          div.appendChild(link)
+          div.appendChild(node)
+          style_flag.pre = true
+          return div
+        }
+        return node
       }
       if (node.name === `img`) {
         const attr = node.attr
