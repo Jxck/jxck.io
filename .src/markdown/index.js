@@ -1203,9 +1203,7 @@ export function decode(md) {
       i++
     }
     if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
-    if (text_start < i) {
-      child.addText(input.slice(text_start, i))
-    }
+    if (text_start < i) child.addText(input.slice(text_start, i))
     return { child, i: i + 1 }
   }
 
@@ -1246,9 +1244,7 @@ export function decode(md) {
       i++
     }
     if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
-    if (text_start < i) {
-      child.addText(input.slice(text_start, i))
-    }
+    if (text_start < i) child.addText(input.slice(text_start, i))
     return { child, i: i + 2 }
   }
 
@@ -1279,9 +1275,7 @@ export function decode(md) {
       i++
     }
     if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
-    if (text_start < i) {
-      child.addText(input.slice(text_start, i))
-    }
+    if (text_start < i) child.addText(input.slice(text_start, i))
     return { child, i: i + 1 }
   }
 
