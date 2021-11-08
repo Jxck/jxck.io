@@ -915,13 +915,14 @@ export function decode(md) {
         parent.appendChild(child)
       }
       else if (input[i] === `[`) {
-        if (input[i + 1] === ` `) throw new Error(`too many spaces in "${input}"`)
+        // link じゃないかもしれないので、ここでは空白判定はしない
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = link(input, i + 1))
         start = i
         parent.appendChild(child)
       }
       else if (input[i] === `<`) {
+        // これがただの < かもしれないので、ここでは空白判定はしない
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = short_link(input, i + 1))
         start = i
@@ -1058,6 +1059,7 @@ export function decode(md) {
    * @returns
    */
   function link(input, i) {
+    let start = i
     let text_start = i
     const child = node({ name: `a`, type: `inline` })
     while (i < input.length) {
@@ -1096,6 +1098,9 @@ export function decode(md) {
       }
       i++
     }
+
+    // link だったことがわかったのでここで空白判定
+    if (input[start] === ` `) throw new Error(`too many spaces in "${input}"`)
     if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
 
     const text = input.slice(text_start, i)
@@ -1140,14 +1145,20 @@ export function decode(md) {
         return { child, i }
       }
       if (input[i] === `>`) {
-        i++
         break
       }
       i++
     }
-    const href = input.slice(url_start, i - 1)
+
+    if (input[url_start] === ` `) throw new Error(`too many spaces in "${input}"`)
+    if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
+
+    const href = input.slice(url_start, i)
     const child = node({ name: `a`, type: `inline`, attr: { href } })
     child.addText(href)
+
+    i++ // skip `>`
+
     return { child, i }
   }
 
