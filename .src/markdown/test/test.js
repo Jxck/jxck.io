@@ -75,3 +75,5 @@ function api() {
 }
 
 api()
+
+console.log("[done] test.js")

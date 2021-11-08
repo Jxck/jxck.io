@@ -892,7 +892,7 @@ export function decode(md) {
       if (input[i] === `\\`) {
         text += input[i]
         text += input[i + 1]
-        i = i + 2
+        i += 2
         continue
       }
       if (input[i] === `*` && input[i + 1] === `*`) {
@@ -938,7 +938,7 @@ export function decode(md) {
       else if (input[i] === `!` && input[i + 1] === `[`) {
         if (text) parent.addText(text)
         text = ``;
-        ({ child, i } = img(input, text, i + 2))
+        ({ child, i } = img(input, i + 2))
         parent.appendChild(child)
       }
       else if (
@@ -986,13 +986,12 @@ export function decode(md) {
   /**
    *
    * @param {string} input
-   * @param {string} output
    * @param {number} i
    * @returns
    */
-  function img(input, output, i) {
+  function img(input, i) {
     // parse alt
-    let alt_start = i
+    const alt_start = i
     // parse alt
     while (i < input.length) {
       if (input[i] === `]` && input[i + 1] === `(`) {
@@ -1005,7 +1004,7 @@ export function decode(md) {
     i += 2 // skip `](`
 
     // parse url
-    let url_start = i
+    const url_start = i
     let title_exists = false
     while (i < input.length) {
       if (input[i] === `)`) {
@@ -1030,11 +1029,11 @@ export function decode(md) {
     }
 
     if (title_exists) {
-      let title_open = input[i]
+      const title_open = input[i]
       if (![`'`, `"`].includes(title_open)) throw new Error(`invalid ![img]() title open in "${input}"`)
       i++
 
-      let title_start = i
+      const title_start = i
       while (true) {
         if (i > input.length - 1) throw new Error(`invalid ![img]() title close in "${input}"`)
         if (input[i] === title_open && input[i + 1] === `)`) {
@@ -1062,7 +1061,7 @@ export function decode(md) {
     const child = node({ name: `a`, type: `inline` })
     while (i < input.length) {
       if (input[i] === `\\`) {
-        i = i + 2
+        i += 2
         continue
       }
       // code はネストして良い
@@ -1087,7 +1086,6 @@ export function decode(md) {
 
       if (input[i] === `]`) {
         if (input[i + 1] === `(`) {
-          i = i + 2
           break
         } else {
           // 実はリンクじゃなかった (e.g. "this is [not] link")
@@ -1098,22 +1096,23 @@ export function decode(md) {
       i++
     }
 
-    const text = input.slice(text_start, i - 2)
+    const text = input.slice(text_start, i)
+    i += 2 // skip `](`
     const url_start = i
 
     while (i < input.length) {
       if (input[i] === `\\`) {
-        i = i + 2
+        i += 2
         continue
       }
       if (input[i] === `)`) {
-        i = i + 1
         break
       }
       i++
     }
 
-    const href = input.slice(url_start, i - 1)
+    const href = input.slice(url_start, i)
+    i++ // skip `)`
     child.attr = { href }
     child.addText(text)
     return { child, i }
@@ -1126,21 +1125,21 @@ export function decode(md) {
    * @returns
    */
   function short_link(input, i) {
-    let text_start = i
+    const url_start = i
     while (true) {
       if (i > input.length - 1) {
         // 実際は Link じゃなかったので text として処理 (e.g.  10 < 20)
-        const text = `<${input.slice(text_start, i)}`
+        const text = `<${input.slice(url_start, i)}`
         const child = node({ name: `text`, type: `inline`, text })
         return { child, i }
       }
       if (input[i] === `>`) {
-        i = i + 1
+        i++
         break
       }
       i++
     }
-    const href = input.slice(text_start, i - 1)
+    const href = input.slice(url_start, i - 1)
     const child = node({ name: `a`, type: `inline`, attr: { href } })
     child.addText(href)
     return { child, i }
@@ -1154,14 +1153,14 @@ export function decode(md) {
    * @returns
    */
   function smart_link(input, i) {
-    let text_start = i
+    const url_start = i
     while (i < input.length) {
       if ([` `, `)`].includes(input[i])) {
         break
       }
       i++
     }
-    const href = input.slice(text_start, i)
+    const href = input.slice(url_start, i)
     const child = node({ name: `a`, type: `inline`, attr: { href } })
     child.addText(href)
     return { child, i }
@@ -1174,7 +1173,7 @@ export function decode(md) {
    * @returns
    */
   function em(input, i) {
-    let start = i
+    let text_start = i
     const child = node({ name: `em`, type: `inline` })
     while (true) {
       // "* a * b *" みたいにマッチしてない場合
@@ -1182,7 +1181,7 @@ export function decode(md) {
 
       // escape を無視
       if (input[i] === `\\`) {
-        i = i + 2
+        i += 2
         continue
       }
 
@@ -1193,18 +1192,18 @@ export function decode(md) {
       if (input[i] === "`") {
         // もしそこまでに text があったら
         // (e.g. "aaa `code`")
-        if (start < i) {
-          child.addText(input.slice(start, i))
+        if (text_start < i) {
+          child.addText(input.slice(text_start, i))
         }
         const inline_code = code(input, i + 1)
-        start = i = inline_code.i
+        text_start = i = inline_code.i
         child.appendChild(inline_code.child)
         continue
       }
       i++
     }
-    if (start < i) {
-      child.addText(input.slice(start, i))
+    if (text_start < i) {
+      child.addText(input.slice(text_start, i))
     }
     return { child, i: i + 1 }
   }
@@ -1216,7 +1215,7 @@ export function decode(md) {
    * @returns
    */
   function strong(input, i) {
-    let start = i
+    let text_start = i
     const child = node({ name: `strong`, type: `inline` })
     while (true) {
       // "** a" みたいにマッチしてない場合
@@ -1224,7 +1223,7 @@ export function decode(md) {
 
       // escape を無視
       if (input[i] === `\\`) {
-        i = i + 2
+        i += 2
         continue
       }
 
@@ -1235,18 +1234,18 @@ export function decode(md) {
       if (input[i] === "`") {
         // もしそこまでに text があったら
         // (e.g. "aaa `code`")
-        if (start < i) {
-          child.addText(input.slice(start, i))
+        if (text_start < i) {
+          child.addText(input.slice(text_start, i))
         }
         const inline_code = code(input, i + 1)
-        start = i = inline_code.i
+        text_start = i = inline_code.i
         child.appendChild(inline_code.child)
         continue
       }
       i++
     }
-    if (start < i) {
-      child.addText(input.slice(start, i))
+    if (text_start < i) {
+      child.addText(input.slice(text_start, i))
     }
     return { child, i: i + 2 }
   }
@@ -1258,7 +1257,7 @@ export function decode(md) {
    * @returns
    */
   function code(input, i) {
-    let start = i
+    const text_start = i
     const child = node({ name: `code`, type: `inline`, attr: { translate: `no` } })
     while (true) {
       // "` a ` b `" みたいにマッチしてない場合
@@ -1266,7 +1265,7 @@ export function decode(md) {
 
       // escape を無視
       if (input[i] === `\\`) {
-        i = i + 2
+        i += 2
         continue
       }
 
@@ -1277,8 +1276,8 @@ export function decode(md) {
 
       i++
     }
-    if (start < i) {
-      child.addText(input.slice(start, i))
+    if (text_start < i) {
+      child.addText(input.slice(text_start, i))
     }
     return { child, i: i + 1 }
   }
