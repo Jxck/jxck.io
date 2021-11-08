@@ -149,7 +149,7 @@ export class Node {
    * @param {string} text
    */
   addText(text) {
-    const child = node({ name: `text`, type: `inline`, text })
+    const child = node({ name: `text`, type: `inline`, text: unescape(text) })
     this.appendChild(child)
   }
 }
@@ -179,8 +179,7 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function text(node, indent) {
-    // unescape back slash (/)
-    const text = htmlescape(unescape(node.text))
+    const text = htmlescape(node.text)
     return `${spaces(indent)}${text}`
   }
 
