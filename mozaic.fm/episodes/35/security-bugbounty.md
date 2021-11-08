@@ -45,7 +45,7 @@ guest: [@hnagatomo](https://github.com/hnagatomo)
 - [セキュリティ未経験だったけど入社 1 年目から Bug Bounty Program 運営に参加してみた](https://www.slideshare.net/linecorp/1-bug-bounty-program-88148396)
 - [共通脆弱性評価システム CVSS 概説:IPA 独立行政法人 情報処理推進機構](https://www.ipa.go.jp/security/vuln/CVSS.html)
 - [Masato Kinugawa Security Blog: たぶん XSS が理由でインターネットがとまった](http://masatokinugawa.l0.cm/2013/09/xss.benesse.html)
-- [脆弱性関連情報の届出受付:IPA 独立行政法人 情報処理推進機構 ](https://www.ipa.go.jp/security/vuln/report/)
+- [脆弱性関連情報の届出受付:IPA 独立行政法人 情報処理推進機構](https://www.ipa.go.jp/security/vuln/report/)
 - [CSP Report 収集と実レポートの考察 | blog.jxck.io](https://blog.jxck.io/entries/2017-02-13/csp-report-case-study.html)
 - [GitHub's post-CSP journey](https://githubengineering.com/githubs-post-csp-journey/)
 - https://tools.ietf.org/html/draft-foudil-securitytxt
