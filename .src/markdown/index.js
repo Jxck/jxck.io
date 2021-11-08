@@ -713,22 +713,16 @@ export function decode(md) {
    * @returns {Node}
    */
   function html(result, rest, ast) {
-    const child = node({
-      name: `text`,
-      type: `inline`,
-      text: result.input
-    })
-
     if (ast.name !== `html`) {
       const html = node({
         name: `html`,
         type: `block`,
-        children: [child]
       })
+      html.addText(result.input)
       ast.appendChild(html)
       return parse(rest, html)
     } else {
-      ast.appendChild(child)
+      ast.addText(result.input)
       return parse(rest, ast)
     }
   }
@@ -842,7 +836,7 @@ export function decode(md) {
         type: `inline`,
         children: link
       })
-      p.appendChild(node({ name: `text`, type: `inline`, text: `--- ` }))
+      p.addText(`--- `)
       p.appendChild(cite)
     } else {
       p.children = inline(text)
