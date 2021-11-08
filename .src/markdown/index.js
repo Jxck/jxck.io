@@ -179,8 +179,7 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function text(node, indent) {
-    const text = htmlescape(node.text)
-    return `${spaces(indent)}${text}`
+    return `${spaces(indent)}${htmlescape(node.text)}`
   }
 
   /**
