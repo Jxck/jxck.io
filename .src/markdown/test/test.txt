@@ -118,12 +118,6 @@ unmatch </em> on "*em text/* em*"
 
 ==============================
 
-`code ` code`
-------------------------------
-unmatch </code> on "`code ` code`"
-
-==============================
-
 `token(/\r\n/)`
 ------------------------------
 <p><code translate=no>token(/\r\n/)</code>
@@ -922,16 +916,22 @@ too many spaces in "a *em * b"
 // too many spaces around "a `code`  b"
 // 
 // ==============================
+
+a ` code` b
+------------------------------
+too many spaces in "a ` code` b"
+
+==============================
+
+a `code ` b
+------------------------------
+too many spaces in "a `code ` b"
+
+==============================
 // 
-// a ` code` b
+// `code ` code`
 // ------------------------------
-// too many spaces in "a ` code` b"
-// 
-// ==============================
-// 
-// a `code ` b
-// ------------------------------
-// too many spaces in "a `code ` b"
+// unmatch </code> on "`code ` code`"
 // 
 // ==============================
 // 
