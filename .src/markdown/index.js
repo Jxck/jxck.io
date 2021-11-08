@@ -885,60 +885,58 @@ export function decode(md) {
    * @returns
    */
   function inline_parse(input, i = 0) {
-    let text = ``
+    let start = i
     let child
     const parent = node({ name: `parent`, type: `inline` })
     while (i < input.length) {
       if (input[i] === `\\`) {
-        text += input[i]
-        text += input[i + 1]
         i += 2
         continue
       }
       if (input[i] === `*` && input[i + 1] === `*`) {
-        if (text) parent.addText(text)
-        text = ``;
+        if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = strong(input, i + 2))
+        start = i
         parent.appendChild(child)
       }
       else if (input[i] === `*`) {
-        if (text) parent.addText(text)
-        text = ``;
+        if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = em(input, i + 1))
+        start = i
         parent.appendChild(child)
       }
       else if (input[i] === "`") {
-        if (text) parent.addText(text)
-        text = ``;
+        if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = code(input, i + 1))
+        start = i
         parent.appendChild(child)
       }
       else if (input[i] === `[`) {
-        if (text) parent.addText(text)
-        text = ``;
+        if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = link(input, i + 1))
+        start = i
         parent.appendChild(child)
       }
       else if (input[i] === `<`) {
-        if (text) parent.addText(text)
-        text = ``;
+        if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = short_link(input, i + 1))
+        start = i
         parent.appendChild(child)
       }
       else if (input[i] === `>` && input[i + 1] === ` ` && (i === 0 || input[i - 1] === ` `)) {
-        if (text) {
+        if (start < i) {
           // 文の途中にある > はタダのカッコ
-          text += `>`
           i++
         } else {
           ({ child, i } = inline_blockquote(input, i + 2))
+          start = i
           parent.appendChild(child)
         }
       }
       else if (input[i] === `!` && input[i + 1] === `[`) {
-        if (text) parent.addText(text)
-        text = ``;
+        if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = img(input, i + 2))
+        start = i
         parent.appendChild(child)
       }
       else if (
@@ -952,9 +950,9 @@ export function decode(md) {
         input[i + 7] !== ` ` &&
         input[i + 7] !== undefined
       ) {
-        if (text) parent.addText(text)
-        text = ``;
+        if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = smart_link(input, i))
+        start = i
         parent.appendChild(child)
       }
       else if (
@@ -969,17 +967,16 @@ export function decode(md) {
         input[i + 8] !== ` ` &&
         input[i + 8] !== undefined
       ) {
-        if (text) parent.addText(text)
-        text = ``;
+        if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = smart_link(input, i))
+        start = i
         parent.appendChild(child)
       }
       else {
-        text += input[i]
         i++
       }
     }
-    if (text) parent.addText(text)
+    if (start < i) parent.addText(input.slice(start, i))
     return { child: parent.children, i }
   }
 
