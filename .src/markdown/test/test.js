@@ -24,6 +24,7 @@ function testcase() {
       deepStrictEqual(html, expected + `\n`, html)
       console.log(`.`)
     } catch (err) {
+      // console.error(err)
       deepStrictEqual(err.message, expected, expected)
     }
   }
