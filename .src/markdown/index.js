@@ -939,6 +939,7 @@ export function decode(md) {
         }
       }
       else if (input[i] === `!` && input[i + 1] === `[`) {
+        if (input[i + 2] === ` `) throw new Error(`too many spaces in "${input}"`)
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = img(input, i + 2))
         start = i
@@ -1001,9 +1002,13 @@ export function decode(md) {
       }
       i++
     }
+    if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
+
     const alt = input.slice(alt_start, i)
 
     i += 2 // skip `](`
+
+    if (input[i + 1] === ` `) throw new Error(`too many spaces in "${input}"`)
 
     // parse url
     const url_start = i
@@ -1013,6 +1018,7 @@ export function decode(md) {
         break
       }
       if (input[i] === ` `) {
+        if (url_start === i) throw new Error(`too many spaces in "${input}"`)
         title_exists = true
         break
       }
@@ -1035,6 +1041,8 @@ export function decode(md) {
       if (![`'`, `"`].includes(title_open)) throw new Error(`invalid ![img]() title open in "${input}"`)
       i++
 
+      if (input[i] === ` `) throw new Error(`too many spaces in "${input}"`)
+
       const title_start = i
       while (true) {
         if (i > input.length - 1) throw new Error(`invalid ![img]() title close in "${input}"`)
@@ -1043,6 +1051,9 @@ export function decode(md) {
         }
         i++
       }
+
+      if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
+
       const title = input.slice(title_start, i)
       attr.title = title
       i += 2
