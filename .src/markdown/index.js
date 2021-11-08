@@ -901,6 +901,7 @@ export function decode(md) {
         parent.appendChild(child)
       }
       else if (input[i] === `*`) {
+        if (input[i + 1] === ` `) throw new Error(`too many spaces in "${input}"`)
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = em(input, i + 1))
         start = i
@@ -1200,6 +1201,7 @@ export function decode(md) {
       }
       i++
     }
+    if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
     if (text_start < i) {
       child.addText(input.slice(text_start, i))
     }
