@@ -447,6 +447,8 @@ export function decode(md) {
       level,
     })
 
+    // タグの [] のせいで複数の text node に別れている場合がある
+    // あとで使いにくいのでマージする
     const children = inline(text).reduce((acc, curr) => {
       if (curr.name === `text` && acc[acc.length - 1]?.name === `text`) {
         acc[acc.length - 1].text += curr.text
