@@ -915,6 +915,7 @@ export function decode(md) {
         parent.appendChild(child)
       }
       else if (input[i] === `[`) {
+        if (input[i + 1] === ` `) throw new Error(`too many spaces in "${input}"`)
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = link(input, i + 1))
         start = i
@@ -1095,10 +1096,13 @@ export function decode(md) {
       }
       i++
     }
+    if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
 
     const text = input.slice(text_start, i)
     i += 2 // skip `](`
     const url_start = i
+
+    if (input[i] === ` `) throw new Error(`too many spaces in "${input}"`)
 
     while (i < input.length) {
       if (input[i] === `\\`) {
@@ -1110,6 +1114,8 @@ export function decode(md) {
       }
       i++
     }
+
+    if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
 
     const href = input.slice(url_start, i)
     i++ // skip `)`
