@@ -131,7 +131,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - まだ、どのようなセキュリティモデルで実装するかも決まってない
   - *Implement: Feature Policy 'lazyload'*
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/yCGhf7EA1Zs/70_NL0AEDwAJ
-    - `<img>`,  `<iframe>` への lazyload 属性を有効にする Feature Policy
+    - `<img>`, `<iframe>` への lazyload 属性を有効にする Feature Policy
     - default が auto でクライアントの決定に依存するものとなる
     - つまり将来的にクライアントのデフォルトを lazyload にできる可能性があるということか
   - *Implement: Feature Policy: animations*

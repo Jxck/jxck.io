@@ -500,10 +500,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - Proposal for additional static methods on Math
     - https://github.com/phoddie/integer-and-modulus-math-proposal
     - `Math.mod(x, y)` – IEEE 754 modulus
-    - `Math.idiv(x, y)` – Int32 division
+    - `Math.idiv(x, y)` –Int32 division
     - `Math.imod(x, y)` – Int32 modulus
     - `Math.idivmod(x, y)` – Int32 division with modulus, returns `[division result, modulus result]`
-    - `Math.imuldiv(x, y, z)` – Int32 multiply and divide with 64-bit intermediate result -  `(x * y) / z`
+    - `Math.imuldiv(x, y, z)` – Int32 multiply and divide with 64-bit intermediate result - `(x * y) / z`
     - `Math.irem(x, y)` – Int32 remainder
   - proposal-decorators
     - https://github.com/tc39/proposal-decorators/blob/simplified/README.md
