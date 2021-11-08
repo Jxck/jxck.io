@@ -47,6 +47,14 @@ function unescape(str) {
   return str.replace(/\\([\*|\`|\!|\[|\]|\<|\>|\(|\)|])/g, '$1')
 }
 
+/**
+ * @param {Node} node
+ * @returns {string}
+ */
+export function serialize_child_text(node) {
+  if (node.name === `text`) return node.text
+  return node.children.map((child) => serialize_child_text(child)).join(``)
+}
 
 /**
  * @typedef {Object} Attr
@@ -190,13 +198,6 @@ export function encode(node, option = {}) {
   function headding(node, indent) {
     const name = `h${node.level}`
     const text = node.children.map((child) => serialize(child)).join(``)
-    if (node.level === 1) {
-      // global tags に保存
-      node.attr.tags.forEach((tag) => {
-        tags.push(tag)
-      })
-    }
-
     const id = node.attr.id
 
     // ID が既出な場合は、一意にするために _連番 を後ろにつける
@@ -446,49 +447,29 @@ export function decode(md) {
       level,
     })
 
-    const { attr, children } = (() => {
-      if (level === 1) {
-        const result = /(?<tag>\[.*\])?(?<title>.*)/.exec(text)?.groups
-        const { tag, title } = result
-        // tag は optional
-        const tags = Array.from(tag?.matchAll(/\[(?<tag>.*?)\]/g) ?? []).map((match) => {
-          return match.groups.tag
-        })
-        return {
-          attr: { tags },
-          children: inline(title.trim())
-        }
+    const children = inline(text).reduce((acc, curr) => {
+      if (curr.name === `text` && acc[acc.length - 1]?.name === `text`) {
+        acc[acc.length - 1].text += curr.text
+      } else {
+        acc.push(curr)
       }
-      return {
-        attr: {},
-        children: inline(text),
-      }
-    })()
+      return acc
+    }, [])
 
     const h = node({
       name: `headding`,
       type: `inline`,
       level,
-      attr,
-      children
+      children,
     })
 
-    /**
-     * @param {Node} node
-     * @returns {string}
-     */
-    function serialize_text(node) {
-      if (node.name === `text`) return node.text
-      return node.children.map((child) => serialize_text(child)).join(``)
-    }
-
-    const id = serialize_text(h)
+    const id = serialize_child_text(h)
       .replace(/[!"#$%&'()*+,/:;<=>?\[\\\]^{|}~]/g, ``) // 記号は .-_ のみ
       .replace(/[、。「」]/g, ``) // 全角記号も消す
       .replace(/ /g, `-`)
       .toLocaleLowerCase()
 
-    h.attr.id = id
+    h.attr = { id }
 
     section.appendChild(h)
 

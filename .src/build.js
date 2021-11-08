@@ -217,11 +217,23 @@ function customise(ast, base) {
     pre: false,
   }
 
+  const tags = []
   const root = traverse(ast, {
     enter: (node) => {
       return node
     },
     leave: (node) => {
+      if (node.name === `headding` && node.level === 1) {
+        const text = node.children[0].text
+        const result = /(?<tag>\[.*\])?(?<title>.*)/.exec(text)?.groups
+        const { tag, title } = result
+        // tag は optional
+        Array.from(tag?.matchAll(/\[(?<tag>.*?)\]/g) ?? []).forEach((match) => {
+          tags.push(match.groups.tag)
+        })
+        node.children[0].text = title.trim()
+        return node
+      }
       if (node.name === `table` && style_flag.table === false) {
         // 一度だけ css の style を差し込む
         const link = new Node({
@@ -333,7 +345,7 @@ function customise(ast, base) {
       return node
     }
   })
-  return root
+  return { tags, root }
 }
 
 async function parse_entry(entry) {
@@ -348,7 +360,7 @@ async function parse_entry(entry) {
   const relative = `${entries}/${created_at}/${filename}`
 
   const ast = decode(md)
-  const root = customise(ast, base)
+  const { root, tags } = customise(ast, base)
   const encoded = encode(root, {
     indent: 4,
     base,
@@ -356,7 +368,6 @@ async function parse_entry(entry) {
 
   const article = encoded.html
   const [h1, ...toc] = encoded.toc
-  const tags = encoded.tags
   const title = h1.text
 
   return {
@@ -395,7 +406,7 @@ async function parse_episode(entry, order) {
   const info = info_section({ published_at, guests })
   ast.children[0].children.splice(1, 0, info)
 
-  const root = customise(ast, base)
+  const { root } = customise(ast, base)
 
   const encoded = encode(root, { indent: 4, base })
 
