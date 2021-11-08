@@ -898,7 +898,7 @@ export function decode(md) {
         if (input[i + 2] === ` `) throw new Error(`too many spaces in "${input}"`)
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = strong(input, i + 2))
-        if (input[i] === ` ` && input[i+1] === ` `) throw new Error(`too many spaces after "${input}"`)
+        if (input[i] === ` ` && input[i + 1] === ` `) throw new Error(`too many spaces after "${input}"`)
         start = i
         parent.appendChild(child)
       }
@@ -907,7 +907,7 @@ export function decode(md) {
         if (input[i + 1] === ` `) throw new Error(`too many spaces in "${input}"`)
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = em(input, i + 1))
-        if (input[i] === ` ` && input[i+1] === ` `) throw new Error(`too many spaces after "${input}"`)
+        if (input[i] === ` ` && input[i + 1] === ` `) throw new Error(`too many spaces after "${input}"`)
         start = i
         parent.appendChild(child)
       }
@@ -916,7 +916,7 @@ export function decode(md) {
         if (input[i + 1] === ` `) throw new Error(`too many spaces in "${input}"`)
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = code(input, i + 1))
-        if (input[i] === ` ` && input[i+1] === ` `) throw new Error(`too many spaces after "${input}"`)
+        if (input[i] === ` ` && input[i + 1] === ` `) throw new Error(`too many spaces after "${input}"`)
         start = i
         parent.appendChild(child)
       }
@@ -925,7 +925,7 @@ export function decode(md) {
         // link じゃないかもしれないので、ここでは空白判定はしない
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = link(input, i + 1))
-        if (input[i] === ` ` && input[i+1] === ` `) throw new Error(`too many spaces after "${input}"`)
+        if (input[i] === ` ` && input[i + 1] === ` `) throw new Error(`too many spaces after "${input}"`)
         start = i
         parent.appendChild(child)
       }
@@ -934,7 +934,7 @@ export function decode(md) {
         // これがただの < かもしれないので、ここでは空白判定はしない
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = short_link(input, i + 1))
-        if (input[i] === ` ` && input[i+1] === ` `) throw new Error(`too many spaces after "${input}"`)
+        if (input[i] === ` ` && input[i + 1] === ` `) throw new Error(`too many spaces after "${input}"`)
         start = i
         parent.appendChild(child)
       }
@@ -954,7 +954,7 @@ export function decode(md) {
         if (input[i + 2] === ` `) throw new Error(`too many spaces in "${input}"`)
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = img(input, i + 2))
-        if (input[i] === ` ` && input[i+1] === ` `) throw new Error(`too many spaces after "${input}"`)
+        if (input[i] === ` ` && input[i + 1] === ` `) throw new Error(`too many spaces after "${input}"`)
         start = i
         parent.appendChild(child)
       }
