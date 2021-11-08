@@ -991,48 +991,62 @@ export function decode(md) {
    * @returns
    */
   function img(input, output, i) {
-    let alt = ''
-    let src = ''
-    let title = ''
-
+    // parse alt
+    let alt_start = i
     // parse alt
     while (i < input.length) {
       if (input[i] === `]` && input[i + 1] === `(`) {
-        i = i + 2
         break
       }
-      alt += input[i]
       i++
     }
-    // parse title
+    const alt = input.slice(alt_start, i)
+
+    i += 2 // skip `](`
+
+    // parse url
+    let url_start = i
+    let title_exists = false
     while (i < input.length) {
       if (input[i] === `)`) {
-        i = i + 1
         break
       }
-      if (input[i] === ` ` && [`"`, `'`].includes(input[i + 1])) {
-        i = i + 2
-
-        while (i < input.length) {
-          if ([`"`, `'`].includes(input[i]) && input[i + 1] === `)`) {
-            i = i + 2
-            break
-          }
-          title += input[i]
-          i++
-        }
+      if (input[i] === ` `) {
+        title_exists = true
         break
       }
-      src += input[i]
       i++
     }
+
+    const src = input.slice(url_start, i)
+    i++
+
+    /** @type {Attr} */
     const attr = {
       loading: `lazy`,
       decoding: `async`,
       src,
       alt,
-      title,
     }
+
+    if (title_exists) {
+      let title_open = input[i]
+      if (![`'`, `"`].includes(title_open)) throw new Error(`invalid ![img]() title open in "${input}"`)
+      i++
+
+      let title_start = i
+      while (true) {
+        if (i > input.length - 1) throw new Error(`invalid ![img]() title close in "${input}"`)
+        if (input[i] === title_open && input[i + 1] === `)`) {
+          break
+        }
+        i++
+      }
+      const title = input.slice(title_start, i)
+      attr.title = title
+      i += 2
+    }
+
     const img = node({ name: `img`, type: `block`, attr })
     return { child: img, i }
   }

@@ -274,10 +274,30 @@ http/2 is a protocol not url
 
 ==============================
 
+![alt](https://example.com/test.png "title for png")
+------------------------------
+<p>
+  <img loading=lazy decoding=async src=https://example.com/test.png alt="alt" title="title for png">
+</p>
+
+==============================
+
+![alt](https://example.com/test.png `title for png')
+------------------------------
+invalid ![img]() title open in "![alt](https://example.com/test.png `title for png')"
+
+==============================
+
+![alt](https://example.com/test.png "title for png')
+------------------------------
+invalid ![img]() title close in "![alt](https://example.com/test.png "title for png')"
+
+==============================
+
 ![alt](https://example.com/test.png)
 ------------------------------
 <p>
-  <img loading=lazy decoding=async src=https://example.com/test.png alt="alt" title="">
+  <img loading=lazy decoding=async src=https://example.com/test.png alt="alt">
 </p>
 
 ==============================
@@ -285,7 +305,7 @@ http/2 is a protocol not url
 ![alt](test.jpeg)
 ------------------------------
 <p>
-  <img loading=lazy decoding=async src=test.jpeg alt="alt" title="">
+  <img loading=lazy decoding=async src=test.jpeg alt="alt">
 </p>
 
 ==============================
@@ -293,9 +313,9 @@ http/2 is a protocol not url
 ![alt](test.jpg) and ![alt](test.png)
 ------------------------------
 <p>
-  <img loading=lazy decoding=async src=test.jpg alt="alt" title="">
+  <img loading=lazy decoding=async src=test.jpg alt="alt">
    and 
-  <img loading=lazy decoding=async src=test.png alt="alt" title="">
+  <img loading=lazy decoding=async src=test.png alt="alt">
 </p>
 
 ==============================
@@ -304,9 +324,9 @@ aaa ![alt](test.jpg) and ![alt](test.png) bbb
 ------------------------------
 <p>
   aaa 
-  <img loading=lazy decoding=async src=test.jpg alt="alt" title="">
+  <img loading=lazy decoding=async src=test.jpg alt="alt">
    and 
-  <img loading=lazy decoding=async src=test.png alt="alt" title="">
+  <img loading=lazy decoding=async src=test.png alt="alt">
    bbb
 </p>
 
