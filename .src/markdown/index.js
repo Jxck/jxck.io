@@ -921,9 +921,11 @@ export function decode(md) {
         parent.appendChild(child)
       }
       else if (input[i] === `[`) {
+        if (input[i - 1] === ` ` && input[i - 2] === ` `) throw new Error(`too many spaces before "${input}"`)
         // link じゃないかもしれないので、ここでは空白判定はしない
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = link(input, i + 1))
+        if (input[i] === ` ` && input[i+1] === ` `) throw new Error(`too many spaces after "${input}"`)
         start = i
         parent.appendChild(child)
       }
