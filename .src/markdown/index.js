@@ -1038,7 +1038,7 @@ export function decode(md) {
   }
 
   /**
-   *
+   * e.g. [link](https://example.com)
    * @param {string} input
    * @param {number} i
    * @returns
@@ -1106,47 +1106,48 @@ export function decode(md) {
   }
 
   /**
-   *
+   * e.g. <https://example.com>
    * @param {string} input
    * @param {number} i
    * @returns
    */
   function short_link(input, i) {
-    let href = ''
+    let text_start = i
     while (true) {
       if (i > input.length - 1) {
         // 実際は Link じゃなかったので text として処理 (e.g.  10 < 20)
-        const child = node({ name: `text`, type: `inline`, text: `<${href}` })
+        const text = `<${input.slice(text_start, i)}`
+        const child = node({ name: `text`, type: `inline`, text })
         return { child, i }
       }
       if (input[i] === `>`) {
         i = i + 1
         break
       }
-      href += input[i]
       i++
     }
-
+    const href = input.slice(text_start, i - 1)
     const child = node({ name: `a`, type: `inline`, attr: { href } })
     child.addText(href)
     return { child, i }
   }
 
   /**
-   *
+   * e.g. go to https://example.com page
+   * e.g. example page (https://example.com)
    * @param {string} input
    * @param {number} i
    * @returns
    */
   function smart_link(input, i) {
-    let href = ''
+    let text_start = i
     while (i < input.length) {
       if ([` `, `)`].includes(input[i])) {
         break
       }
-      href += input[i]
       i++
     }
+    const href = input.slice(text_start, i)
     const child = node({ name: `a`, type: `inline`, attr: { href } })
     child.addText(href)
     return { child, i }
