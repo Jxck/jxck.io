@@ -916,12 +916,12 @@ a `code ` b
 too many spaces in "a `code ` b"
 
 ==============================
-// 
-// `code ` code`
-// ------------------------------
-// unmatch </code> on "`code ` code`"
-// 
-// ==============================
+
+code `code
+------------------------------
+unmatch </code> on "code `code"
+
+==============================
 // 
 // aaa  [text](https://example.com) bbb
 // ------------------------------
@@ -932,8 +932,8 @@ too many spaces in "a `code ` b"
 // aaa [text](https://example.com)  bbb
 // ------------------------------
 // too many spaces around "aaa [text](https://example.com)  bbb"
-// 
-// ==============================
+
+==============================
 
 aaa [ text](https://example.com) bbb
 ------------------------------
@@ -980,6 +980,7 @@ too many spaces in "aaa <https://example.com > bbb"
 // aaa <https://example.com>  bbb
 // ------------------------------
 // too many spaces around "aaa <https://example.com>  bbb"
+// 
 // ==============================
 // 
 // aaa  ![alt](https://example.com/test.png) bbb
@@ -1047,88 +1048,88 @@ aaa ![alt](https://example.com/test.png  'title') bbb
 invalid ![img]() title open in "aaa ![alt](https://example.com/test.png  'title') bbb"
 
 ==============================
-// 
-// #  aaa
-// ------------------------------
-// too many spaces in "#  aaa"
-// 
-// ==============================
-// 
-// # aaa 
-// ------------------------------
-// too many spaces in "# aaa "
-// 
-// ==============================
+
+#  aaa
+------------------------------
+too many spaces in "#  aaa"
+
+==============================
+
+# aaa 
+------------------------------
+too many spaces in "# aaa "
+
+==============================
 
 >  blockquote
 ------------------------------
 too many spaces in ">  blockquote"
 
 ==============================
-// 
-// > blockquote 
-// ------------------------------
-// too many spaces around "> blockquote "
-// ==============================
-// 
-// ``` js
-// console.log(arg)
-// ```
-// ------------------------------
-// too many spaces around "``` js"
-// 
-// ==============================
-// 
-// ```js 
-// console.log(arg)
-// ```
-// ------------------------------
-// too many spaces around "```js "
-// 
-// ==============================
-// 
-// ```js :path
-// console.log(arg)
-// ```
-// ------------------------------
-// too many spaces around "```js :path"
-// 
-// ==============================
-// 
-// ```js: path
-// console.log(arg)
-// ```
-// ------------------------------
-// too many spaces around "```js: path"
-// 
-// ==============================
-// 
-// ```js:path 
-// console.log(arg)
-// ```
-// ------------------------------
-// too many spaces around "```js:path "
-// 
-// ==============================
-// 
-// -  aaa
-// ------------------------------
-// too many spaces in "-  aaa"
-// 
-// ==============================
-// 
-// - aaa 
-// ------------------------------
-// too many spaces in "- aaa "
-// 
-// ==============================
-// 
-// 1.  aaa
-// ------------------------------
-// too many spaces in "1.  aaa"
-// 
-// ==============================
-// 
-// 1. aaa 
-// ------------------------------
-// too many spaces in "1. aaa "
+
+> blockquote 
+------------------------------
+too many spaces around "> blockquote "
+==============================
+
+``` js
+console.log(arg)
+```
+------------------------------
+too many spaces around "``` js"
+
+==============================
+
+```js 
+console.log(arg)
+```
+------------------------------
+too many spaces around "```js "
+
+==============================
+
+```js :path
+console.log(arg)
+```
+------------------------------
+too many spaces around "```js :path"
+
+==============================
+
+```js: path
+console.log(arg)
+```
+------------------------------
+too many spaces around "```js: path"
+
+==============================
+
+```js:path 
+console.log(arg)
+```
+------------------------------
+too many spaces around "```js:path "
+
+==============================
+
+-  aaa
+------------------------------
+too many spaces in "-  aaa"
+
+==============================
+
+- aaa 
+------------------------------
+too many spaces in "- aaa "
+
+==============================
+
+1.  aaa
+------------------------------
+too many spaces in "1.  aaa"
+
+==============================
+
+1. aaa 
+------------------------------
+too many spaces in "1. aaa "
