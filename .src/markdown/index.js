@@ -983,7 +983,10 @@ export function decode(md) {
         i++
       }
     }
-    if (start < i) parent.addText(input.slice(start, i))
+    if (start < i) {
+      if (input[i - 1] === ` `) throw new Error(`too many spaces around "${input}"`)
+      parent.addText(input.slice(start, i))
+    }
     return { child: parent.children, i }
   }
 
