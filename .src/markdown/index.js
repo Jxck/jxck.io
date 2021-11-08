@@ -950,9 +950,11 @@ export function decode(md) {
         }
       }
       else if (input[i] === `!` && input[i + 1] === `[`) {
+        if (input[i - 1] === ` ` && input[i - 2] === ` `) throw new Error(`too many spaces before "${input}"`)
         if (input[i + 2] === ` `) throw new Error(`too many spaces in "${input}"`)
         if (start < i) parent.addText(input.slice(start, i));
         ({ child, i } = img(input, i + 2))
+        if (input[i] === ` ` && input[i+1] === ` `) throw new Error(`too many spaces after "${input}"`)
         start = i
         parent.appendChild(child)
       }
