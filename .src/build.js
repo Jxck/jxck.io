@@ -600,7 +600,7 @@ async function podcast(files) {
 }
 
 async function workbox() {
-  const js = await readFile("../www.jxck.io/assets/js/workbox.js", {encoding: "utf-8"})
+  const js = await readFile("../www.jxck.io/assets/js/workbox.js", { encoding: "utf-8" })
   const matched = js.match(/\/\*precache-build.js\*\/(?<list>[\s\S]*)\/\*precache-build.js\*\//m)
   const scripts = eval(matched.groups.list)
 
@@ -634,6 +634,17 @@ if (process.argv[2] === "workbox") {
   await workbox()
 }
 
+if (process.argv[2] === "build") {
+  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
+  const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
+
+  await Promise.all([
+    blog(files),
+    podcast(pathes),
+    workbox(),
+  ])
+}
+
 if (process.argv.length < 3) {
   // const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
   const files = glob.sync("../blog.jxck.io/entries/**/*.md")
@@ -642,4 +653,6 @@ if (process.argv.length < 3) {
   // const pathes = ["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
   const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
   await podcast(pathes)
+
+  await workbox()
 }
