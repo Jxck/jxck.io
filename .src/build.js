@@ -415,7 +415,6 @@ async function parse_episode(entry, order) {
   ast.children[0].children.splice(1, 0, info)
 
   const { root, description } = customise(ast, base)
-  console.log({description})
 
   const encoded = encode(root, { indent: 4, base })
 
