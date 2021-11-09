@@ -8,7 +8,7 @@
 # 	make comp
 
 build:
-	cd .src && node build.js
+	cd .src && node build.js build
 	make comp
 
 x:
