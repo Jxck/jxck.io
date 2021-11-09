@@ -57,18 +57,18 @@ function description(md) {
   return desc
 }
 
-function sum(node, acc = "") {
-  if (node.name === "headding") return ""
-  if (node.name === "text") return node.text
+function sum(node, acc = ``) {
+  if (node.name === `headding`) return ``
+  if (node.name === `text`) return node.text
   return node.children.map((child) => {
     return sum(child, acc)
-  }).join("")
+  }).join(``)
 }
 
 function updated_at(mtime) {
   const year = mtime.getFullYear()
-  const month = (mtime.getMonth() + 1).toString().padStart(2, "0")
-  const date = mtime.getDate().toString().padStart(2, "0")
+  const month = (mtime.getMonth() + 1).toString().padStart(2, `0`)
+  const date = mtime.getDate().toString().padStart(2, `0`)
   return `${year}-${month}-${date}`
 }
 
@@ -83,43 +83,43 @@ function hsc(str) {
 
 function indent(str, i = 2) {
   return str
-    .split("\n")
+    .split(`\n`)
     .map((line) => {
-      if (line === "") return line + "\n"
-      return " ".repeat(i) + line + "\n"
+      if (line === ``) return line + `\n`
+      return ` `.repeat(i) + line + `\n`
     })
-    .join("")
+    .join(``)
     .trimStart()
 }
 
 function short(str) {
-  str = str.replaceAll("\n", "")
+  str = str.replaceAll(`\n`, ``)
   if (str.length <= 140) return str
-  return str.slice(0, 137) + "..."
+  return str.slice(0, 137) + `...`
 }
 
 function parse_yaml(str) {
-  return str.split("\n")
+  return str.split(`\n`)
     .map((line) => line.match(/^(?<key>.*?): (?<value>.*)/).groups)
     .reduce((acc, { key, value }) => {
-      if (key === "tags") {
+      if (key === `tags`) {
         value = value
           .match(/^\[(?<values>.*?)\]/).groups.values
-          .split(", ")
+          .split(`, `)
           .map((value) => value.match(/"(?<value>.*)"/).groups.value)
       }
-      if (key === "guest") {
+      if (key === `guest`) {
         const matched = value.match(/^\[(?<name>.*?)\]\((?<url>.*)\)/)
         let name = value
         let url = null
         if (matched) {
           ({ url, name } = matched.groups)
         }
-        if (acc["guests"]) {
-          const values = acc["guests"]
-          acc["guests"] = [...values, { url, name }]
+        if (acc[`guests`]) {
+          const values = acc[`guests`]
+          acc[`guests`] = [...values, { url, name }]
         } else {
-          acc["guests"] = [{ url, name }]
+          acc[`guests`] = [{ url, name }]
         }
         return acc
       }
@@ -130,7 +130,7 @@ function parse_yaml(str) {
 
 async function audio_duration(audio) {
   const stdout = await (async () => {
-    if (process.platform === "darwin") {
+    if (process.platform === `darwin`) {
       return (await promisify(exec)(`afinfo ./${audio} | grep duration | cut -d' ' -f 3`)).stdout
     } else {
       return (await promisify(exec)(`mp3info -p "%S\n" ./${audio}`)).stdout
@@ -138,12 +138,12 @@ async function audio_duration(audio) {
   })()
 
   const sec = parseInt(stdout.trim())
-  const formatter = new Intl.DateTimeFormat("ja-jp", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
+  const formatter = new Intl.DateTimeFormat(`ja-jp`, {
+    hour: `2-digit`,
+    minute: `2-digit`,
+    second: `2-digit`,
     hour12: false,
-    timeZone: "UTC"
+    timeZone: `UTC`
   });
   return formatter.format(new Date(sec * 1000))
 }
@@ -194,7 +194,7 @@ function info_section({ published_at, guests }) {
 }
 
 function version(src) {
-  const url = new URL(src, "https://www.jxck.io")
+  const url = new URL(src, `https://www.jxck.io`)
   const pathname = url.pathname
   const busting = cache_busting(`../www.jxck.io${pathname}`)
   return `${src}${busting}`
@@ -202,7 +202,7 @@ function version(src) {
 
 async function render(template, context) {
   context.filename = template
-  return ejs.render(await readFile(template, { encoding: "utf-8" }), context)
+  return ejs.render(await readFile(template, { encoding: `utf-8` }), context)
 }
 
 function customise(ast, base) {
@@ -353,12 +353,12 @@ function customise(ast, base) {
 
 async function parse_entry(entry) {
   console.log(entry)
-  const md = await readFile(entry, { encoding: "utf-8" })
-  const target = entry.replace(".md", ".html")
-  const canonical = target.replace("../", "https://")
+  const md = await readFile(entry, { encoding: `utf-8` })
+  const target = entry.replace(`.md`, `.html`)
+  const canonical = target.replace(`../`, `https://`)
   const { mtime } = await stat(entry)
 
-  const [up, blog, entries, created_at, filename] = target.split("/")
+  const [up, blog, entries, created_at, filename] = target.split(`/`)
   const base = `${up}/${blog}/${entries}/${created_at}/`
   const relative = `${entries}/${created_at}/${filename}`
 
@@ -377,12 +377,12 @@ async function parse_entry(entry) {
     target,
     canonical,
     relative,
-    host: "blog.jxck.io",
+    host: `blog.jxck.io`,
     title,
     tags,
     toc,
     article,
-    icon: "https://blog.jxck.io/assets/img/jxck",
+    icon: `https://blog.jxck.io/assets/img/jxck`,
     description: description(md),
     created_at,
     updated_at: updated_at(mtime),
@@ -392,16 +392,16 @@ async function parse_entry(entry) {
 
 async function parse_episode(entry, order) {
   console.log(entry.path)
-  const md = await readFile(entry.path, { encoding: "utf-8" })
-  const target = entry.path.replace(".md", ".html")
-  const canonical = target.replace("../", "https://")
+  const md = await readFile(entry.path, { encoding: `utf-8` })
+  const target = entry.path.replace(`.md`, `.html`)
+  const canonical = target.replace(`../`, `https://`)
 
   const groups = md.match(/^---\n(?<frontmatter>([\n\r]|.)*?)\n---\n(?<markdown>([\n\r]|.)*)$/m).groups
   const { frontmatter, markdown } = groups
   const yaml = parse_yaml(frontmatter)
   const { tags, published_at, audio, guests } = yaml
 
-  const [up, mozaic, episodes, ep, filename] = entry.path.split("/")
+  const [up, mozaic, episodes, ep, filename] = entry.path.split(`/`)
   const base = `${up}/${mozaic}/${episodes}/${ep}/`
   const ast = decode(markdown)
 
@@ -422,7 +422,7 @@ async function parse_episode(entry, order) {
   const [h1, ...toc] = encoded.toc
   const title = h1.text
 
-  const audio_file = audio.replace("https://", "../")
+  const audio_file = audio.replace(`https://`, `../`)
   const audio_stat = await stat(audio_file)
   const audio_size = audio_stat.size
   const audio_mtime = Math.floor(audio_stat.mtime.getTime() / 1000)
@@ -434,14 +434,14 @@ async function parse_episode(entry, order) {
     url: entry.url,
     prev: entry.prev,
     next: entry.next,
-    host: "mozaic.fm",
+    host: `mozaic.fm`,
     title,
     theme,
     tags,
     guests,
     toc,
     article,
-    icon: "https://mozaic.fm/assets/img/mozaic",
+    icon: `https://mozaic.fm/assets/img/mozaic`,
     description: description(md),
     published_at,
     audio,
@@ -457,8 +457,8 @@ async function blog(files) {
   const entries = await Promise.all(files.map((file) => parse_entry(file)).reverse())
 
   // build entries
-  const entry_template_file = "./template/blog.html.ejs"
-  const entry_template = await readFile(entry_template_file, { encoding: "utf-8" })
+  const entry_template_file = `./template/blog.html.ejs`
+  const entry_template = await readFile(entry_template_file, { encoding: `utf-8` })
   for (const entry of entries) {
     const context = {
       indent,
@@ -474,7 +474,7 @@ async function blog(files) {
 
   // build index
   const entries_per_year = entries.reduce((acc, entry) => {
-    const year = entry.created_at.split("-")[0]
+    const year = entry.created_at.split(`-`)[0]
     if (acc.has(year)) {
       acc.get(year).push(entry)
     } else {
@@ -483,7 +483,7 @@ async function blog(files) {
     return acc
   }, new Map())
 
-  const index_result = await render("./template/blog.index.html.ejs", {
+  const index_result = await render(`./template/blog.index.html.ejs`, {
     indent,
     short,
     hsc,
@@ -491,15 +491,15 @@ async function blog(files) {
     entries_per_year,
     first: entries[0],
   })
-  await writeFile("../blog.jxck.io/index.html", index_result)
+  await writeFile(`../blog.jxck.io/index.html`, index_result)
 
   // build rss
-  const rss_result = await render("./template/blog.atom.xml.ejs", { entries })
-  await writeFile("../blog.jxck.io/feeds/atom.xml", rss_result)
+  const rss_result = await render(`./template/blog.atom.xml.ejs`, { entries })
+  await writeFile(`../blog.jxck.io/feeds/atom.xml`, rss_result)
 
   // build sitemap
-  const sitemap_result = await render("./template/blog.sitemap.xml.ejs", { entries })
-  await writeFile("../blog.jxck.io/feeds/sitemap.xml", sitemap_result)
+  const sitemap_result = await render(`./template/blog.sitemap.xml.ejs`, { entries })
+  await writeFile(`../blog.jxck.io/feeds/sitemap.xml`, sitemap_result)
 
   // build tags
   const tagmap = entries.reduce((acc, entry) => {
@@ -519,7 +519,7 @@ async function blog(files) {
     return [k, v.sort()]
   })
 
-  const tags_result = await render("./template/blog.tags.html.ejs", {
+  const tags_result = await render(`./template/blog.tags.html.ejs`, {
     tags,
     tag: 'Tags',
     icon: 'icon',
@@ -528,17 +528,17 @@ async function blog(files) {
     version,
     indent,
   })
-  await writeFile("../blog.jxck.io/tags/index.html", tags_result)
+  await writeFile(`../blog.jxck.io/tags/index.html`, tags_result)
 }
 
 async function podcast(files) {
   const pathes = files.map((path) => {
-    const [dot, mozaic, episodes, ep, file] = path.split("/")
-    const title = readFileSync(path, { encoding: "utf-8" }).match(/# (?<h1>.*)/).groups.h1
+    const [dot, mozaic, episodes, ep, file] = path.split(`/`)
+    const title = readFileSync(path, { encoding: `utf-8` }).match(/# (?<h1>.*)/).groups.h1
     return {
       ep: parseInt(ep),
-      canonical: `https://${mozaic}/${episodes}/${ep}/${file.replace(".md", ".html")}`,
-      url: `/${episodes}/${ep}/${file.replace(".md", ".html")}`,
+      canonical: `https://${mozaic}/${episodes}/${ep}/${file.replace(`.md`, `.html`)}`,
+      url: `/${episodes}/${ep}/${file.replace(`.md`, `.html`)}`,
       path,
       file,
       title
@@ -560,8 +560,8 @@ async function podcast(files) {
   const episodes = await Promise.all(pathes.map((path, i) => parse_episode(path, i)))
 
   // build episodes
-  const podcast_template_file = "./template/podcast.html.ejs"
-  const podcast_template = await readFile(podcast_template_file, { encoding: "utf-8" })
+  const podcast_template_file = `./template/podcast.html.ejs`
+  const podcast_template = await readFile(podcast_template_file, { encoding: `utf-8` })
   for (const episode of episodes) {
     const context = {
       indent,
@@ -576,7 +576,7 @@ async function podcast(files) {
   }
 
   // build index
-  const result = await render("./template/podcast.index.html.ejs", {
+  const result = await render(`./template/podcast.index.html.ejs`, {
     indent,
     short,
     hsc,
@@ -584,24 +584,24 @@ async function podcast(files) {
     episodes,
     first: episodes[0],
   })
-  await writeFile("../mozaic.fm/index.html", result)
+  await writeFile(`../mozaic.fm/index.html`, result)
 
   // build rss
-  const rss_result = await render("./template/podcast.rss2.xml.ejs", { episodes })
-  await writeFile("../feed.mozaic.fm/index.xml", rss_result)
+  const rss_result = await render(`./template/podcast.rss2.xml.ejs`, { episodes })
+  await writeFile(`../feed.mozaic.fm/index.xml`, rss_result)
 
   // build rss json
-  const json_result = await render("./template/podcast.rss2.json.ejs", { episodes })
-  await writeFile("../feed.mozaic.fm/index.json", json_result)
+  const json_result = await render(`./template/podcast.rss2.json.ejs`, { episodes })
+  await writeFile(`../feed.mozaic.fm/index.json`, json_result)
 
   // build id3all
-  const id3_result = await render("./template/podcast.id3all.ejs", { episodes })
-  await writeFile("../id3all.sh", id3_result)
+  const id3_result = await render(`./template/podcast.id3all.ejs`, { episodes })
+  await writeFile(`../id3all.sh`, id3_result)
 }
 
 async function workbox() {
-  const js = await readFile("../www.jxck.io/assets/js/workbox.js", { encoding: "utf-8" })
-  const matched = js.match(/\/\*precache-build.js\*\/(?<list>[\s\S]*)\/\*precache-build.js\*\//m)
+  const js = await readFile(`../www.jxck.io/assets/js/workbox.js`, { encoding: `utf-8` })
+  const matched = js.match(/\/\*---build.js---\*\/(?<list>[\s\S]*)\/\*---build.js---\*\//m)
   const scripts = eval(matched.groups.list)
 
   const array = scripts.map((script) => {
@@ -612,31 +612,31 @@ async function workbox() {
     return `  "${url.toString()}",`
   }).join('\n')
 
-  const fragment = `/*precache-build.js*/
+  const fragment = `/*---build.js---*/
 [
 ${array}
 ]
-/*precache-build.js*/`
+/*---build.js---*/`
 
-  const replaced = js.replace(/\/\*precache-build.rb\*\/(?<list>[\s\S]*)\/\*precache-build.rb\*\//m, () => fragment)
-  await writeFile("../www.jxck.io/assets/js/workbox.js", replaced)
+  const replaced = js.replace(/\/\*---build.js---\*\/(?<list>[\s\S]*)\/\*---build.js---\*\//m, () => fragment)
+  await writeFile(`../www.jxck.io/assets/js/workbox.js`, replaced)
 }
 
-if (process.argv[2] === "blog") {
+if (process.argv[2] === `blog`) {
   await blog()
 }
 
-if (process.argv[2] === "podcast") {
+if (process.argv[2] === `podcast`) {
   await podcast()
 }
 
-if (process.argv[2] === "workbox") {
+if (process.argv[2] === `workbox`) {
   await workbox()
 }
 
-if (process.argv[2] === "build") {
-  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
-  const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
+if (process.argv[2] === `build`) {
+  const files = glob.sync(`../blog.jxck.io/entries/**/*.md`)
+  const pathes = glob.sync(`../mozaic.fm/episodes/**/*.md`)
 
   await Promise.all([
     blog(files),
@@ -646,12 +646,12 @@ if (process.argv[2] === "build") {
 }
 
 if (process.argv.length < 3) {
-  // const files = ["../blog.jxck.io/entries/2016-01-27/new-blog-start.md"]
-  const files = glob.sync("../blog.jxck.io/entries/**/*.md")
+  // const files = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
+  const files = glob.sync(`../blog.jxck.io/entries/**/*.md`)
   await blog(files)
 
-  // const pathes = ["../mozaic.fm/episodes/0/introduction-of-mozaicfm.md"]
-  const pathes = glob.sync("../mozaic.fm/episodes/**/*.md")
+  // const pathes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
+  const pathes = glob.sync(`../mozaic.fm/episodes/**/*.md`)
   await podcast(pathes)
 
   await workbox()

@@ -8,7 +8,7 @@ importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-precaching.p
  * フォーマットを崩さない
  */
 const precache =
-/*precache-build.rb*/
+/*---build.js---*/
 [
   "https://www.jxck.io/assets/js/main.js?210502_161127",
   "https://www.jxck.io/assets/js/prism.js?210115_215132",
@@ -34,7 +34,7 @@ const precache =
   "https://www.jxck.io/assets/img/up.svg?160831_002319",
   "https://www.jxck.io/assets/img/jxck.png?210331_115006",
 ]
-/*precache-build.rb*/
+/*---build.js---*/
 
 
 // precache
