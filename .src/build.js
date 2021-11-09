@@ -599,12 +599,39 @@ async function podcast(files) {
   await writeFile("../id3all.sh", id3_result)
 }
 
+async function workbox() {
+  const js = await readFile("../www.jxck.io/assets/js/workbox.js", {encoding: "utf-8"})
+  const matched = js.match(/\/\*precache-build.js\*\/(?<list>[\s\S]*)\/\*precache-build.js\*\//m)
+  const scripts = eval(matched.groups.list)
+
+  const array = scripts.map((script) => {
+    const url = new URL(script)
+    const pathname = url.pathname
+    const busting = cache_busting(`../www.jxck.io${pathname}`)
+    url.query = busting
+    return `  "${url.toString()}",`
+  }).join('\n')
+
+  const fragment = `/*precache-build.js*/
+[
+${array}
+]
+/*precache-build.js*/`
+
+  const replaced = js.replace(/\/\*precache-build.rb\*\/(?<list>[\s\S]*)\/\*precache-build.rb\*\//m, () => fragment)
+  await writeFile("../www.jxck.io/assets/js/workbox.js", replaced)
+}
+
 if (process.argv[2] === "blog") {
   await blog()
 }
 
 if (process.argv[2] === "podcast") {
   await podcast()
+}
+
+if (process.argv[2] === "workbox") {
+  await workbox()
 }
 
 if (process.argv.length < 3) {
