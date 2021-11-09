@@ -6,6 +6,9 @@ import { readFileSync, statSync } from "fs"
 import { exec } from "child_process"
 import { promisify } from "util"
 
+const { sync } = glob
+const { render } = ejs
+
 /**
  * dump for debug
  * @param {Node} ast
@@ -52,6 +55,12 @@ export function cache_busting(path) {
 //   return desc
 // }
 
+/**
+ * serialize Node to string
+ * @param {Node} node
+ * @param {string} acc
+ * @returns {string}
+ */
 function to_text(node, acc = ``) {
   if (node.name === `headding`) return ``
   if (node.name === `text`) return node.text
@@ -60,6 +69,11 @@ function to_text(node, acc = ``) {
   }).join(``)
 }
 
+/**
+ * Date into mtime as yy-mm-dd fmt
+ * @param {Date} mtime
+ * @returns
+ */
 function updated_at(mtime) {
   const year = mtime.getFullYear()
   const month = (mtime.getMonth() + 1).toString().padStart(2, `0`)
@@ -67,6 +81,11 @@ function updated_at(mtime) {
   return `${year}-${month}-${date}`
 }
 
+/**
+ * HTML special characters escape
+ * @param {string} str
+ * @returns {string}
+ */
 function hsc(str) {
   return str
     .replace(/&/g, `&amp;`)
@@ -76,6 +95,12 @@ function hsc(str) {
     .replace(/'/g, `&apos;`)
 }
 
+/**
+ * indent helper
+ * @param {string} str
+ * @param {number} i
+ * @returns
+ */
 function indent(str, i = 2) {
   return str
     .split(`\n`)
@@ -87,21 +112,34 @@ function indent(str, i = 2) {
     .trimStart()
 }
 
+/**
+ * shorten description less than 140
+ * @param {string} str
+ * @returns {string}
+ */
 function short(str) {
   str = str.replaceAll(`\n`, ``)
   if (str.length <= 140) return str
   return str.slice(0, 137) + `...`
 }
 
+/**
+ * parse yaml int object
+ * @param {string} str
+ * @returns {Info}
+ */
 function parse_yaml(str) {
+  /**@type {any} */
+  const init = {guests: []}
   return str.split(`\n`)
     .map((line) => line.match(/^(?<key>.*?): (?<value>.*)/).groups)
     .reduce((acc, { key, value }) => {
       if (key === `tags`) {
-        value = value
+        acc.tags = value
           .match(/^\[(?<values>.*?)\]/).groups.values
           .split(`, `)
           .map((value) => value.match(/"(?<value>.*)"/).groups.value)
+        return acc
       }
       if (key === `guest`) {
         const matched = value.match(/^\[(?<name>.*?)\]\((?<url>.*)\)/)
@@ -110,19 +148,24 @@ function parse_yaml(str) {
         if (matched) {
           ({ url, name } = matched.groups)
         }
-        if (acc[`guests`]) {
-          const values = acc[`guests`]
-          acc[`guests`] = [...values, { url, name }]
+        if (acc.guests) {
+          const values = acc.guests
+          acc.guests = [...values, { url, name }]
         } else {
-          acc[`guests`] = [{ url, name }]
+          acc.guests = [{ url, name }]
         }
         return acc
       }
       acc[key] = value
       return acc
-    }, { guests: [] }) // guests は必須で無い場合は空
+    }, init) // guests は必須で無い場合は空
 }
 
+/**
+ * read mp3 duration and serialize as 00:00:00 fmt
+ * @param {string} audio
+ * @returns {Promise<string>}
+ */
 async function audio_duration(audio) {
   const stdout = await (async () => {
     if (process.platform === `darwin`) {
@@ -143,10 +186,29 @@ async function audio_duration(audio) {
   return formatter.format(new Date(sec * 1000))
 }
 
+/**
+ * @typedef {Object} Guest
+ * @property {string} name
+ * @property {string} url
+ */
+
+/**
+ * @typedef {Object} Info
+ * @property {string} published_at
+ * @property {string} audio
+ * @property {Array.<Guest>} guests
+ * @property {Array.<string>} tags
+ */
+
+/**
+ * create info section from yaml
+ * @param {{published_at: string, guests: Array.<Guest>}} param
+ * @returns {Node}
+ */
 function info_section({ published_at, guests }) {
   // console.log({ published_at, guests })
 
-  const section = new Node({ name: `section` })
+  const section = new Node({ name: `section`, type: `block` })
 
   const h2 = new Node({ name: `headding`, type: `inline`, level: 2, attr: { id: `info` } })
   h2.addText(`Info`)
@@ -188,6 +250,11 @@ function info_section({ published_at, guests }) {
   return section
 }
 
+/**
+ * cache busting helper
+ * @param {string} src
+ * @returns {string}
+ */
 function version(src) {
   const url = new URL(src, `https://www.jxck.io`)
   const pathname = url.pathname
@@ -195,11 +262,23 @@ function version(src) {
   return `${src}${busting}`
 }
 
-async function render(template, context) {
+/**
+ * render template with context
+ * @param {string} template
+ * @param {any} context
+ * @returns {Promise.<string>}
+ */
+async function renderFile(template, context) {
   context.filename = template
-  return ejs.render(await readFile(template, { encoding: `utf-8` }), context)
+  return render(await readFile(template, { encoding: `utf-8` }), context)
 }
 
+/**
+ * Customise AST with traverse()
+ * @param {Node} ast
+ * @param {string} base
+ * @returns
+ */
 function customise(ast, base) {
   /**
    * table, pre など必ず出てくるわけではない CSS は
@@ -213,6 +292,8 @@ function customise(ast, base) {
   }
 
   let description = ''
+
+  /**@type {Array.<string>} */
   const tags = []
   const root = traverse(ast, {
     enter: (node) => {
@@ -356,6 +437,29 @@ function customise(ast, base) {
   return { root, description, tags }
 }
 
+
+/**
+ * @typedef {Object} Blog
+ * @property {string} target
+ * @property {string} canonical
+ * @property {string} relative
+ * @property {string} host
+ * @property {string} title
+ * @property {Array.<string>} tags
+ * @property {Array.<import("./markdown").Toc>} toc
+ * @property {string} article
+ * @property {string} icon
+ * @property {string} description
+ * @property {string} created_at
+ * @property {string} updated_at
+ */
+
+
+/**
+ * parse entry file into context
+ * @param {string} entry
+ * @returns {Promise.<Blog>}
+ */
 async function parse_entry(entry) {
   console.log(entry)
   const md = await readFile(entry, { encoding: `utf-8` })
@@ -369,10 +473,7 @@ async function parse_entry(entry) {
 
   const ast = decode(md)
   const { root, description, tags } = customise(ast, base)
-  const encoded = encode(root, {
-    indent: 4,
-    base,
-  })
+  const encoded = encode(root, { indent: 4 })
 
   const article = encoded.html
   const [h1, ...toc] = encoded.toc
@@ -394,7 +495,12 @@ async function parse_entry(entry) {
   }
 }
 
-
+/**
+ * parse episodes file into context
+ * @param {Podcast} entry
+ * @param {number} order
+ * @returns {Promise.<any>}
+ */
 async function parse_episode(entry, order) {
   console.log(entry.path)
   const md = await readFile(entry.path, { encoding: `utf-8` })
@@ -416,12 +522,12 @@ async function parse_episode(entry, order) {
 
   const { root, description } = customise(ast, base)
 
-  const encoded = encode(root, { indent: 4, base })
+  const encoded = encode(root, { indent: 4 })
 
   // Top ページのために Theme だけ別で encode する
   const theme_section = ast.children[0].children[2]
   theme_section.children.shift()
-  const theme = encode(theme_section, { indent: 4, base }).html.trim()
+  const theme = encode(theme_section, { indent: 4 }).html.trim()
 
   const article = encoded.html
   const [h1, ...toc] = encoded.toc
@@ -458,6 +564,12 @@ async function parse_episode(entry, order) {
   }
 }
 
+
+
+/**
+ * build podcast episodes
+ * @param {Array.<string>} files
+ */
 async function blog(files) {
   const entries = await Promise.all(files.map((file) => parse_entry(file)).reverse())
 
@@ -473,7 +585,7 @@ async function blog(files) {
       entry,
       filename: entry_template_file,
     }
-    const result = ejs.render(entry_template, context)
+    const result = render(entry_template, context)
     await writeFile(context.entry.target, result)
   }
 
@@ -488,7 +600,7 @@ async function blog(files) {
     return acc
   }, new Map())
 
-  const index_result = await render(`./template/blog.index.html.ejs`, {
+  const index_result = await renderFile(`./template/blog.index.html.ejs`, {
     indent,
     short,
     hsc,
@@ -499,11 +611,11 @@ async function blog(files) {
   await writeFile(`../blog.jxck.io/index.html`, index_result)
 
   // build rss
-  const rss_result = await render(`./template/blog.atom.xml.ejs`, { entries })
+  const rss_result = await renderFile(`./template/blog.atom.xml.ejs`, { entries })
   await writeFile(`../blog.jxck.io/feeds/atom.xml`, rss_result)
 
   // build sitemap
-  const sitemap_result = await render(`./template/blog.sitemap.xml.ejs`, { entries })
+  const sitemap_result = await renderFile(`./template/blog.sitemap.xml.ejs`, { entries })
   await writeFile(`../blog.jxck.io/feeds/sitemap.xml`, sitemap_result)
 
   // build tags
@@ -524,7 +636,7 @@ async function blog(files) {
     return [k, v.sort()]
   })
 
-  const tags_result = await render(`./template/blog.tags.html.ejs`, {
+  const tags_result = await renderFile(`./template/blog.tags.html.ejs`, {
     tags,
     tag: `Tags`,
     icon: `icon`,
@@ -536,7 +648,27 @@ async function blog(files) {
   await writeFile(`../blog.jxck.io/tags/index.html`, tags_result)
 }
 
+
+
+/**
+ * @typedef {Object} Podcast
+ * @property {number} ep
+ * @property {string} canonical
+ * @property {string} url
+ * @property {string} path
+ * @property {string} file
+ * @property {string} title
+ * @property {Podcast} [next]
+ * @property {Podcast} [prev]
+ */
+
+
+/**
+ * build podcast episodes
+ * @param {Array.<string>} files
+ */
 async function podcast(files) {
+  /**@type {Array.<Podcast>} */
   const pathes = files.map((path) => {
     const [dot, mozaic, episodes, ep, file] = path.split(`/`)
     const title = readFileSync(path, { encoding: `utf-8` }).match(/# (?<h1>.*)/).groups.h1
@@ -546,7 +678,9 @@ async function podcast(files) {
       url: `/${episodes}/${ep}/${file.replace(`.md`, `.html`)}`,
       path,
       file,
-      title
+      title,
+      next: null,
+      prev: null
     }
   })
     .sort((a, b) => {
@@ -576,12 +710,12 @@ async function podcast(files) {
       episode,
       filename: podcast_template_file,
     }
-    const result = ejs.render(podcast_template, context)
+    const result = render(podcast_template, context)
     await writeFile(episode.target, result)
   }
 
   // build index
-  const result = await render(`./template/podcast.index.html.ejs`, {
+  const result = await renderFile(`./template/podcast.index.html.ejs`, {
     indent,
     short,
     hsc,
@@ -592,21 +726,22 @@ async function podcast(files) {
   await writeFile(`../mozaic.fm/index.html`, result)
 
   // build rss
-  const rss_result = await render(`./template/podcast.rss2.xml.ejs`, { episodes })
+  const rss_result = await renderFile(`./template/podcast.rss2.xml.ejs`, { episodes })
   await writeFile(`../feed.mozaic.fm/index.xml`, rss_result)
 
   // build rss json
-  const json_result = await render(`./template/podcast.rss2.json.ejs`, { episodes })
+  const json_result = await renderFile(`./template/podcast.rss2.json.ejs`, { episodes })
   await writeFile(`../feed.mozaic.fm/index.json`, json_result)
 
   // build id3all
-  const id3_result = await render(`./template/podcast.id3all.ejs`, { episodes })
+  const id3_result = await renderFile(`./template/podcast.id3all.ejs`, { episodes })
   await writeFile(`../id3all.sh`, id3_result)
 }
 
 async function workbox() {
   const js = await readFile(`../www.jxck.io/assets/js/workbox.js`, { encoding: `utf-8` })
   const matched = js.match(/\/\*---build.js---\*\/(?<list>[\s\S]*)\/\*---build.js---\*\//m)
+  /**@type {Array.<string>} */
   const scripts = eval(matched.groups.list)
 
   const array = scripts.map((script) => {
@@ -627,21 +762,13 @@ ${array}
   await writeFile(`../www.jxck.io/assets/js/workbox.js`, replaced)
 }
 
-if (process.argv[2] === `blog`) {
-  await blog()
-}
-
-if (process.argv[2] === `podcast`) {
-  await podcast()
-}
-
 if (process.argv[2] === `workbox`) {
   await workbox()
 }
 
 if (process.argv[2] === `build`) {
-  const files = glob.sync(`../blog.jxck.io/entries/**/*.md`)
-  const pathes = glob.sync(`../mozaic.fm/episodes/**/*.md`)
+  const files = sync(`../blog.jxck.io/entries/**/*.md`)
+  const pathes = sync(`../mozaic.fm/episodes/**/*.md`)
 
   await Promise.all([
     blog(files),
@@ -652,11 +779,11 @@ if (process.argv[2] === `build`) {
 
 if (process.argv.length < 3) {
   // const files = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
-  const files = glob.sync(`../blog.jxck.io/entries/**/*.md`)
+  const files = sync(`../blog.jxck.io/entries/**/*.md`)
   await blog(files)
 
   // const pathes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
-  const pathes = glob.sync(`../mozaic.fm/episodes/**/*.md`)
+  const pathes = sync(`../mozaic.fm/episodes/**/*.md`)
   await podcast(pathes)
 
   await workbox()
