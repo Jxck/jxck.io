@@ -237,11 +237,13 @@ function customise(ast, base) {
       if (node.name === `table` && style_flag.table === false) {
         // 一度だけ css の style を差し込む
         const link = new Node({
-          name: `link`, type: `inline`, attr: {
-            rel: 'stylesheet',
-            property: 'stylesheet',
-            type: 'text/css',
-            href: version('https://www.jxck.io/assets/css/table.css')
+          name: `link`,
+          type: `inline`,
+          attr: {
+            rel: `stylesheet`,
+            property: `stylesheet`,
+            type: `text/css`,
+            href: version(`https://www.jxck.io/assets/css/table.css`)
           }
         })
         const div = new Node({ name: `empty`, type: `block` })
@@ -252,17 +254,19 @@ function customise(ast, base) {
       }
       if (node.name === `pre`) {
         if (node.name === `pre` && node.attr.path) {
-          const code = readFileSync(`${base}${node.attr.path}`, { encoding: 'utf-8' }).trimEnd()
+          const code = readFileSync(`${base}${node.attr.path}`, { encoding: `utf-8` }).trimEnd()
           node.addText(code)
         }
         if (style_flag.pre === false) {
           // 一度だけ css の style を差し込む
           const link = new Node({
-            name: `link`, type: `inline`, attr: {
-              rel: 'stylesheet',
-              property: 'stylesheet',
-              type: 'text/css',
-              href: version('https://www.jxck.io/assets/css/pre.css'),
+            name: `link`,
+            type: `inline`,
+            attr: {
+              rel: `stylesheet`,
+              property: `stylesheet`,
+              type: `text/css`,
+              href: version(`https://www.jxck.io/assets/css/pre.css`),
             }
           })
           const div = new Node({ name: `empty`, type: `block` })
@@ -521,9 +525,9 @@ async function blog(files) {
 
   const tags_result = await render(`./template/blog.tags.html.ejs`, {
     tags,
-    tag: 'Tags',
-    icon: 'icon',
-    host: 'host',
+    tag: `Tags`,
+    icon: `icon`,
+    host: `host`,
     first: entries[0],
     version,
     indent,
@@ -610,7 +614,7 @@ async function workbox() {
     const busting = cache_busting(`../www.jxck.io${pathname}`)
     url.query = busting
     return `  "${url.toString()}",`
-  }).join('\n')
+  }).join(`\n`)
 
   const fragment = `/*---build.js---*/
 [
