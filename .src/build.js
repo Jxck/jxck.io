@@ -43,25 +43,20 @@ export function cache_busting(path) {
   }
 }
 
-// function description(ast) {
-//   const intro_section = ast.children[0].children[1]
-//   return sum(intro_section)
+// function description(md) {
+//   const _desc = md.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
+//     .replace(/\[(.*?)\]\(.*?\)/g, (m, p1, p2) => p1)
+//     .replace(/<(http.*?)>/g, (m, p1) => p1)
+//     .trim()
+//   const desc = hsc(_desc)
+//   return desc
 // }
 
-function description(md) {
-  const _desc = md.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
-    .replace(/\[(.*?)\]\(.*?\)/g, (m, p1, p2) => p1)
-    .replace(/<(http.*?)>/g, (m, p1) => p1)
-    .trim()
-  const desc = hsc(_desc)
-  return desc
-}
-
-function sum(node, acc = ``) {
+function to_text(node, acc = ``) {
   if (node.name === `headding`) return ``
   if (node.name === `text`) return node.text
   return node.children.map((child) => {
-    return sum(child, acc)
+    return to_text(child, acc)
   }).join(``)
 }
 
@@ -217,6 +212,7 @@ function customise(ast, base) {
     pre: false,
   }
 
+  let description = ''
   const tags = []
   const root = traverse(ast, {
     enter: (node) => {
@@ -233,6 +229,11 @@ function customise(ast, base) {
         })
         node.children[0].text = title.trim()
         return node
+      }
+      if (node.name === `headding` && node.level === 2) {
+        if (node.attr.id === `intro` || node.attr.id === `theme`) {
+          description = hsc(to_text(node.parent))
+        }
       }
       if (node.name === `table` && style_flag.table === false) {
         // 一度だけ css の style を差し込む
@@ -352,7 +353,7 @@ function customise(ast, base) {
       return node
     }
   })
-  return { tags, root }
+  return { root, description, tags }
 }
 
 async function parse_entry(entry) {
@@ -367,7 +368,7 @@ async function parse_entry(entry) {
   const relative = `${entries}/${created_at}/${filename}`
 
   const ast = decode(md)
-  const { root, tags } = customise(ast, base)
+  const { root, description, tags } = customise(ast, base)
   const encoded = encode(root, {
     indent: 4,
     base,
@@ -387,7 +388,7 @@ async function parse_entry(entry) {
     toc,
     article,
     icon: `https://blog.jxck.io/assets/img/jxck`,
-    description: description(md),
+    description,
     created_at,
     updated_at: updated_at(mtime),
   }
@@ -413,7 +414,8 @@ async function parse_episode(entry, order) {
   const info = info_section({ published_at, guests })
   ast.children[0].children.splice(1, 0, info)
 
-  const { root } = customise(ast, base)
+  const { root, description } = customise(ast, base)
+  console.log({description})
 
   const encoded = encode(root, { indent: 4, base })
 
@@ -446,7 +448,7 @@ async function parse_episode(entry, order) {
     toc,
     article,
     icon: `https://mozaic.fm/assets/img/mozaic`,
-    description: description(md),
+    description,
     published_at,
     audio,
     audio_file,
