@@ -1,5 +1,5 @@
 import { readFile, writeFile, stat } from "fs/promises";
-import { encode, decode, traverse, node, Node } from "markdown"
+import { encode, decode, traverse, Node } from "markdown"
 import ejs from "ejs"
 import glob from "glob"
 import { readFileSync, statSync } from "fs"
@@ -146,17 +146,17 @@ async function audio_duration(audio) {
 function info_section({ published_at, guests }) {
   // console.log({ published_at, guests })
 
-  const section = node({ name: `section` })
+  const section = new Node({ name: `section` })
 
-  const h2 = node({ name: `headding`, type: `inline`, level: 2, attr: { id: `info` } })
+  const h2 = new Node({ name: `headding`, type: `inline`, level: 2, attr: { id: `info` } })
   h2.addText(`Info`)
 
-  const dl = node({ name: `dl`, type: `block` })
+  const dl = new Node({ name: `dl`, type: `block` })
 
   // published_at
-  const div = node({ name: `div`, type: `block` })
-  const dt = node({ name: `dt`, type: `inline` })
-  const dd = node({ name: `dd`, type: `inline` })
+  const div = new Node({ name: `div`, type: `block` })
+  const dt = new Node({ name: `dt`, type: `inline` })
+  const dd = new Node({ name: `dd`, type: `inline` })
   dt.addText(`published_at`)
   dd.addText(published_at)
   div.appendChild(dt)
@@ -166,12 +166,12 @@ function info_section({ published_at, guests }) {
 
   // guests
   guests.forEach(({ name, url }) => {
-    const div = node({ name: `div`, type: `block` })
-    const dt = node({ name: `dt`, type: `inline` })
-    const dd = node({ name: `dd`, type: `inline` })
+    const div = new Node({ name: `div`, type: `block` })
+    const dt = new Node({ name: `dt`, type: `inline` })
+    const dd = new Node({ name: `dd`, type: `inline` })
     dt.addText(`guest`)
     if (url) {
-      const a = node({ name: `a`, type: `inline`, attr: { href: url } })
+      const a = new Node({ name: `a`, type: `inline`, attr: { href: url } })
       a.addText(name)
       dd.appendChild(a)
     } else {
@@ -284,7 +284,7 @@ function customise(ast, base) {
          * TODO: parse 方法を見直す
          */
         const path = /(?<src>.*?)#(?<width>\d*?)x(?<height>\d*?)$/.exec(attr.src)
-        if (path === null) throw new Error(`missing <width>x<height> in "${url}"`)
+        if (path === null) throw new Error(`missing <width>x<height> in "${attr.src}"`)
         const { src, width, height } = path.groups
 
         const query = cache_busting(`${base}/${src}`)
@@ -613,7 +613,7 @@ async function workbox() {
     const url = new URL(script)
     const pathname = url.pathname
     const busting = cache_busting(`../www.jxck.io${pathname}`)
-    url.query = busting
+    url.search = busting
     return `  "${url.toString()}",`
   }).join(`\n`)
 
