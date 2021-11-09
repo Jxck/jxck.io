@@ -3,7 +3,7 @@
 /**
  * @typedef {Object} Serialized
  * @property {string} html
- * @property {Array.<Object>} toc
+ * @property {Array.<Toc>} toc
  * @property {Array.<string>} tags
 */
 

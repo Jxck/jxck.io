@@ -78,7 +78,7 @@ export class Node {
 }
 export type Serialized = {
     html: string;
-    toc: Array<Object>;
+    toc: Array<Toc>;
     tags: Array<string>;
 };
 export type Toc = {
