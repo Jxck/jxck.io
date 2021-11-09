@@ -12,11 +12,7 @@
    <link href="https://blog.jxck.io/entries/2021-10-21/abnf-parser.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-10-21</id>
    <updated>2021-10-21T00:00:00Z</updated>
-   <summary>IETF の RFC では ABNF 形式の表現がよく使われ、たまに実装することがある。
-
-しかし、実装するたびに前のコードを引っ張り出して思い出す、を繰り返しているので、自分用にメモとしてやり方をまとめる。
-
-完全に我流であり、目的は「その ABNF が正しいかを確認すること」なので、高速化や効率的を求める実用実装とは目的が違う点は先に言っておく。</summary>
+   <summary>IETF の RFC では ABNF 形式の表現がよく使われ、たまに実装することがある。しかし、実装するたびに前のコードを引っ張り出して思い出す、を繰り返しているので、自分用にメモとしてやり方をまとめる。完全に我流であり、目的は「その ABNF が正しいかを確認すること」なので、高速化や効率的を求める実用実装とは目的が違う点は先に言っておく。</summary>
   </entry>
 
   <entry>
@@ -24,9 +20,7 @@
    <link href="https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-09-22</id>
    <updated>2021-09-22T00:00:00Z</updated>
-   <summary>iOS15 がリリースされたため、 Private Relay のベータを試すことができた。
-
-このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。</summary>
+   <summary>iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。</summary>
   </entry>
 
   <entry>
@@ -34,9 +28,7 @@
    <link href="https://blog.jxck.io/entries/2021-08-20/how-to-debug-mouseover.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-08-20</id>
    <updated>2021-08-20T00:00:00Z</updated>
-   <summary>先日、後輩が「*mouseover 中にしか表示されない DOM のデバッグ*」に手こずっていたのを見て、たまには小ネタもということで、いくつかのテクニックを紹介する。
-
-実際には、発生しているイベントを制御するというテクニックなので、応用すると色々使えるだろう。</summary>
+   <summary>先日、後輩が「mouseover 中にしか表示されない DOM のデバッグ」に手こずっていたのを見て、たまには小ネタもということで、いくつかのテクニックを紹介する。実際には、発生しているイベントを制御するというテクニックなので、応用すると色々使えるだろう。</summary>
   </entry>
 
   <entry>
@@ -44,11 +36,7 @@
    <link href="https://blog.jxck.io/entries/2021-08-02/3rd-party-iframe-dialog.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-08-02</id>
    <updated>2021-08-02T00:00:00Z</updated>
-   <summary>直近で話題になっている Chrome の挙動変更についてまとめた。
-
-Reverse OT による延命はあるが、もともとが「セキュリティ的な理由でできなくする」のが目的のため、 OT 期間中に修正が必要そうであることを先に述べておく。
-
-なお、これはあくまで筆者が調べた結果に基づいた見解であるため、該当する開発者は常に公式のアナウンスなどに注意し、最新の情報を踏まえて自身で判断すべきである。</summary>
+   <summary>直近で話題になっている Chrome の挙動変更についてまとめた。Reverse OT による延命はあるが、もともとが「セキュリティ的な理由でできなくする」のが目的のため、 OT 期間中に修正が必要そうであることを先に述べておく。なお、これはあくまで筆者が調べた結果に基づいた見解であるため、該当する開発者は常に公式のアナウンスなどに注意し、最新の情報を踏まえて自身で判断すべきである。</summary>
   </entry>
 
   <entry>
@@ -56,13 +44,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2021-06-26/amp-tone-down.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-06-26</id>
    <updated>2021-06-26T00:00:00Z</updated>
-   <summary>前回の記事で、奇遇にも本サイトの AMP 対応を落とすことになった。しかし、そうでなくても AMP をどこかでやめることは考えていたため、きっかけの一つが SXG 対応になったのは、順当な流れだと筆者は感じている。
-
-これは AMP がなぜ始まり、なぜトーンダウンしつつあるのか、そしてこれからどうなっていくのか、という流れをまとめるいい機会でもある。
-
-その過程で生み出され、本サイトでも検証を続けてきた Performance Timing API, Core Web Vitals, Signed HTTP Exchange 、そして今構想されている Bento AMP などを踏まえ、一連の流れを覚えている範囲で記録としてまとめておく。
-
-ソースは筆者の主観であり、眺めてきた体感を mozaic.fm の Monthly Web などで話してきたものがベースなので、信頼性や正確性は期待しないで欲しい。</summary>
+   <summary>前回の記事で、奇遇にも本サイトの AMP 対応を落とすことになった。しかし、そうでなくても AMP をどこかでやめることは考えていたため、きっかけの一つが SXG 対応になったのは、順当な流れだと筆者は感じている。これは AMP がなぜ始まり、なぜトーンダウンしつつあるのか、そしてこれからどうなっていくのか、という流れをまとめるいい機会でもある。その過程で生み出され、本サイトでも検証を続けてきた Performance Timing API, Core Web Vitals, Signed HTTP Exchange 、そして今構想されている Bento AMP などを踏まえ、一連の流れを覚えている範囲で記録としてまとめておく。ソースは筆者の主観であり、眺めてきた体感を mozaic.fm の Monthly Web などで話してきたものがベースなので、信頼性や正確性は期待しないで欲しい。</summary>
   </entry>
 
   <entry>
@@ -70,13 +52,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-05-28</id>
    <updated>2021-05-28T00:00:00Z</updated>
-   <summary>本サイトを (Non AMP) SXG に対応した。
-
-これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。
-
-この、 Non AMP SXG 対応にあたって、本サイトの AMP の提供も停止することになった。
-
-移行の作業ログと、関連する流れについて記す。</summary>
+   <summary>本サイトを (Non AMP) SXG に対応した。これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。この、 Non AMP SXG 対応にあたって、本サイトの AMP の提供も停止することになった。移行の作業ログと、関連する流れについて記す。</summary>
   </entry>
 
   <entry>
@@ -84,17 +60,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2021-05-11/end-of-ie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-05-11</id>
    <updated>2021-05-11T00:00:00Z</updated>
-   <summary>IE11 が役目を終えていく流れを記録として残す。特に MS からのアナウンスや、それに準じた各サービスの反応、特に IE サポート終了アナウンスをまとめることで、 IE11 というブラウザがどのように終了していったのかのを記録することを目的とする。
-
-もともとは Google Docs にまとめていたものである。
-
-- 日付はアナウンスの公開日
-  - サポート終了日ではない
-  - サポート終了日も書いておけばよかったけど今からやり直す気力はない、、
-- **赤字** は MS 関連もしくはサポート終了の影響が大きそうなアナウンス
-- Windows における IE11 自体のサポート終了については以下を参照
-  - https://www.atmarkit.co.jp/ait/articles/1503/11/news134.html
-- できればある程度の結論が出るまでこのエントリを更新していきたい</summary>
+   <summary>IE11 が役目を終えていく流れを記録として残す。特に MS からのアナウンスや、それに準じた各サービスの反応、特に IE サポート終了アナウンスをまとめることで、 IE11 というブラウザがどのように終了していったのかのを記録することを目的とする。もともとは Google Docs にまとめていたものである。日付はアナウンスの公開日サポート終了日ではないサポート終了日も書いておけばよかったけど今からやり直す気力はない、、赤字 は MS 関連もしくはサポート終了の影響が大きそうなアナウンスWindows における IE11 自体のサポート終了については以下を参照https://www.atmarkit.co.jp/ait/articles/1503/11/news134.htmlできればある程度の結論が出るまでこのエントリを更新していきたい</summary>
   </entry>
 
   <entry>
@@ -102,13 +68,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2021-04-21/public-suffix-list.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-04-21</id>
    <updated>2021-04-21T00:00:00Z</updated>
-   <summary>Public Suffix List (PSL) は、現在の Web プラットフォームの一旦を支えている非常に重要な要素だ。
-
-実はこれが、少数のボランティアにより GitHub でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。
-
-最近、このリストへの追加リクエストがあとを絶たず、問題になっている。
-
-そもそも PSL とは何であり、今どのような問題が起こっているのかについて解説する。</summary>
+   <summary>Public Suffix List (PSL) は、現在の Web プラットフォームの一旦を支えている非常に重要な要素だ。実はこれが、少数のボランティアにより GitHub でメンテナンスされた、単なるテキストリストであることは、あまり知られてないかもしれない。最近、このリストへの追加リクエストがあとを絶たず、問題になっている。そもそも PSL とは何であり、今どのような問題が起こっているのかについて解説する。</summary>
   </entry>
 
   <entry>
@@ -116,13 +76,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2021-02-25/font-metrics-override.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-02-25</id>
    <updated>2021-02-25T00:00:00Z</updated>
-   <summary>WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。
-
-このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、 Layout Shift が発生してしまう。
-
-これを防ぐ方法として、 CSS からフォントメトリクスの上書きを行う仕様の提案が行われているため、本サイトへの適用を目指し検証を行った。
-
-なお、この仕様は Layout Shift ではなく、単純にテキストレイアウトスタイル用途での利用も考えられるが、そこはスコープ外としている。</summary>
+   <summary>WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、 Layout Shift が発生してしまう。これを防ぐ方法として、 CSS からフォントメトリクスの上書きを行う仕様の提案が行われているため、本サイトへの適用を目指し検証を行った。なお、この仕様は Layout Shift ではなく、単純にテキストレイアウトスタイル用途での利用も考えられるが、そこはスコープ外としている。</summary>
   </entry>
 
   <entry>
@@ -130,11 +84,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-02-12</id>
    <updated>2021-02-12T00:00:00Z</updated>
-   <summary>IETF が策定する HTTP の仕様が更新されようとしている。
-
-ここには、 Cache の仕様も含まれており、そのなかで `must-understand` という `Cache-Control` のディレクティブが追加されている。
-
-このディレクティブが追加された経緯と仕様について解説する。</summary>
+   <summary>IETF が策定する HTTP の仕様が更新されようとしている。ここには、 Cache の仕様も含まれており、そのなかで must-understand という Cache-Control のディレクティブが追加されている。このディレクティブが追加された経緯と仕様について解説する。</summary>
   </entry>
 
   <entry>
@@ -142,11 +92,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2021-01-31/structured-field-values.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-01-31</id>
    <updated>2021-01-31T00:00:00Z</updated>
-   <summary>HTTP Header の値を構造化する Structued Field Values の仕様が RFC になった。
-
-- RFC 8941: Structured Field Values for HTTP
-
-この仕様の詳細について、筆者の実装を交えて解説する。</summary>
+   <summary>HTTP Header の値を構造化する Structued Field Values の仕様が RFC になった。RFC 8941: Structured Field Values for HTTPこの仕様の詳細について、筆者の実装を交えて解説する。</summary>
   </entry>
 
   <entry>
@@ -170,7 +116,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2020-12-03/masonry-layout.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-12-03</id>
    <updated>2020-12-03T00:00:00Z</updated>
-   <summary>Pinterest でおなじみの Masonry Layout を CSS の標準にする作業と実装が進んでいる。</summary>
+   <summary>Pinterest でおなじみの Masonry Layout を CSS の標準にする作業と実装が進んでいる。以下のように画像を敷き詰めるタイルレイアウトのことを Masonry (石工やレンガ造りの意味らしい) Layout という。上の例の場合は、 Height が不揃いの画像を並べる上で、左から敷き詰め、折り返したら既にある画像の高さに合わせて二列目が始まるというロジックになる。これを実現するには、割と複雑な CSS を書く必要があり、様々なサイトで CSS ライブラリや、 Grid などを用いて再現する方法が紹介されている。これをそのまま CSS の標準にする作業が Layout API の文脈で行われており、既に一部が(主に Firefox で)実装されている。仕様は以下だ。CSS Grid Layout Module Level 3https://drafts.csswg.org/css-grid-3/従来の CSS Grid は、縦横が揃った Grid を展開し、そこに対して要素を割り当てるのが基本だが、それでは縦が揃わないため Masonry は実現できない。そこで、 grid-template-rows / grid-tempalet-columns へ masonry を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると grid: masonry / ${column} になるため、 column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。3 列の Masonly Layout は以下だ。&lt;style&gt;.grid {  display: inline-grid;  grid: masonry / repeat(3, auto);  border: 1px solid;  gap: 1vw;  masonry-auto-flow: pack;  width: 32vw;}img {  width: 10vw;}&lt;/style&gt;&lt;div class=masonry&gt;  &lt;img&gt;  &lt;img&gt;  &lt;img&gt;  ...&lt;/div&gt;敷き詰めるためのアルゴリズムは仕様で決まっている。https://drafts.csswg.org/css-grid-3/#masonry-layout-algorithmデフォルトでは、敷き詰める際に一番余白が空いているところに画像が挿入される。これを制御するプロパティとして masonry-auto-flow が定義されており next にすると画像の HTML 上での出現順に積み上げるようにすることもできる。masonry-auto-flow: pack;masonry-auto-flow: next;他の値もあるがまだ定義が明示されてないようだ。このあたりのアルゴリズムは要件によって多様だと思われるため、仕様の策定とともに変わる可能性は高いだろう。https://drafts.csswg.org/css-grid-3/#masonry-auto-flow</summary>
   </entry>
 
   <entry>
@@ -178,13 +124,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2020-11-19/how-to-track-web-standards.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-11-19</id>
    <updated>2020-11-19T00:00:00Z</updated>
-   <summary>「新しい API などを、どうやって調べているのか」「仕様などを調べる際に、どこから手をつければ良いのか」などといった質問をもらうことがある。
-
-確かにどこかに明文化されていると言うよりは、普段からやっててある程度慣れてきているだけなものであり、自分としても明文化していなかったため、これを機に解説してみる。
-
-やり方は一つではない上に日々変わっていくだろうが、頻繁にこの記事を更新するつもりはない。また、筆者は実務で必要になるというよりは、ほとんどを趣味でやっているため、このやり方が合わない場面は多々有るだろう。
-
-スコープとしては、ライブラリ、ツール、フレームワークなどではなく、 Web プラットフォーム関連の標準やブラウザの実装状況などに限定している。</summary>
+   <summary>「新しい API などを、どうやって調べているのか」「仕様などを調べる際に、どこから手をつければ良いのか」などといった質問をもらうことがある。確かにどこかに明文化されていると言うよりは、普段からやっててある程度慣れてきているだけなものであり、自分としても明文化していなかったため、これを機に解説してみる。やり方は一つではない上に日々変わっていくだろうが、頻繁にこの記事を更新するつもりはない。また、筆者は実務で必要になるというよりは、ほとんどを趣味でやっているため、このやり方が合わない場面は多々有るだろう。スコープとしては、ライブラリ、ツール、フレームワークなどではなく、 Web プラットフォーム関連の標準やブラウザの実装状況などに限定している。</summary>
   </entry>
 
   <entry>
@@ -200,11 +140,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2020-09-01/webcodecs-webtransport-chat.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-09-01</id>
    <updated>2020-09-01T00:00:00Z</updated>
-   <summary>ブラウザの持つ Video/Audio コーデック実装へアクセスする API として WebCodecs の仕様策定と実装が進んでいる。
-
-これにより、映像や音声の変換などといったユースケースへの応用も可能だ。
-
-本来なら WebCodecs 単体の API について解説するところだが、筆者がこの API を待っていた理由であるところの「WebRTC の代替」としての WebCodecs/WebTransport の応用に注目し、背景も踏まえて解説する。</summary>
+   <summary>ブラウザの持つ Video/Audio コーデック実装へアクセスする API として WebCodecs の仕様策定と実装が進んでいる。これにより、映像や音声の変換などといったユースケースへの応用も可能だ。本来なら WebCodecs 単体の API について解説するところだが、筆者がこの API を待っていた理由であるところの「WebRTC の代替」としての WebCodecs/WebTransport の応用に注目し、背景も踏まえて解説する。</summary>
   </entry>
 
   <entry>
@@ -212,11 +148,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2020-08-15/selection-of-img-srcset.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-08-15</id>
    <updated>2020-08-15T00:00:00Z</updated>
-   <summary>`&lt;img&gt;` や `&lt;picture&gt;` で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。
-
-この画像が、どういった条件で選択されるのかを頭では勝手に理解していたつもりだが、理解とは違う挙動があったため、仕様と実装を確認した。
-
-その記録を記す。なお、先に言うがどのブラウザも *仕様に準拠して* 実装されている。</summary>
+   <summary>&lt;img&gt; や &lt;picture&gt; で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。この画像が、どういった条件で選択されるのかを頭では勝手に理解していたつもりだが、理解とは違う挙動があったため、仕様と実装を確認した。その記録を記す。なお、先に言うがどのブラウザも 仕様に準拠して 実装されている。</summary>
   </entry>
 
   <entry>
@@ -224,13 +156,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2020-07-26/bundle-subresources.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-07-26</id>
    <updated>2020-07-26T00:00:00Z</updated>
-   <summary>WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。
-
-これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
-
-現時点での仕様と実装を解説する。
-
-- Intent to Prototype: Subresource loading with Web Bundles</summary>
+   <summary>WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。現時点での仕様と実装を解説する。Intent to Prototype: Subresource loading with Web Bundles</summary>
   </entry>
 
   <entry>
@@ -238,15 +164,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
    <link href="https://blog.jxck.io/entries/2020-06-29/https-for-localhost.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-06-29</id>
    <updated>2020-06-29T00:00:00Z</updated>
-   <summary>Web の https 化が進み、それに伴って https を前提とする API も増えてきた。
-
-そうした API を用いた開発をローカルで行う場合、 localhost という特別なホストを用いることもできるが、それだけでは間に合わないケースも少なからずある。
-
-localhost を https にするという方法もあるが、そのように紹介されている方法には、いくつか注意すべき点もある。
-
-この辺りの話を、直近 1 ヶ月で 3 回くらいしたので、筆者が普段使っている方法や注意点についてまとめる。
-
-特に推奨するつもりはない。</summary>
+   <summary>Web の https 化が進み、それに伴って https を前提とする API も増えてきた。そうした API を用いた開発をローカルで行う場合、 localhost という特別なホストを用いることもできるが、それだけでは間に合わないケースも少なからずある。localhost を https にするという方法もあるが、そのように紹介されている方法には、いくつか注意すべき点もある。この辺りの話を、直近 1 ヶ月で 3 回くらいしたので、筆者が普段使っている方法や注意点についてまとめる。特に推奨するつもりはない。</summary>
   </entry>
 
   <entry>
@@ -254,9 +172,7 @@ localhost を https にするという方法もあるが、そのように紹介
    <link href="https://blog.jxck.io/entries/2020-06-09/quic-transport.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-06-09</id>
    <updated>2020-06-09T00:00:00Z</updated>
-   <summary>WebTransport の Quic 実装である QuicTransport の開発が Chrome で行われている。
-
-Chrome で Origin Trials が開始されたので仕様と実装を解説する。</summary>
+   <summary>WebTransport の Quic 実装である QuicTransport の開発が Chrome で行われている。Chrome で Origin Trials が開始されたので仕様と実装を解説する。</summary>
   </entry>
 
   <entry>
@@ -264,13 +180,7 @@ Chrome で Origin Trials が開始されたので仕様と実装を解説する�
    <link href="https://blog.jxck.io/entries/2020-05-22/site-isolation.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-05-22</id>
    <updated>2020-05-22T00:00:00Z</updated>
-   <summary>Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。
-
-しかし、 Spectre の発覚以降、  Communication に関する制限だけではなく Isolation によるメモリレベルでのアクセス制御が必要となった。
-
-そこで現在作業されているのが、 CORB, CORP, COEP, COOP といった仕様群であり、これは Web におけるセキュリティモデルの更新作業と見ることができる。
-
-概要と現状について解説する。</summary>
+   <summary>Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。しかし、 Spectre の発覚以降、  Communication に関する制限だけではなく Isolation によるメモリレベルでのアクセス制御が必要となった。そこで現在作業されているのが、 CORB, CORP, COEP, COOP といった仕様群であり、これは Web におけるセキュリティモデルの更新作業と見ることができる。概要と現状について解説する。</summary>
   </entry>
 
   <entry>
@@ -278,47 +188,7 @@ Chrome で Origin Trials が開始されたので仕様と実装を解説する�
    <link href="https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-05-06</id>
    <updated>2020-05-06T00:00:00Z</updated>
-   <summary>mozaic.fm をリニューアルし v3 としてリリースした。
-
-今回の更新は以下のような変更/修正を実施している。
-
-- PWA 化
-  - before install prompt
-  - Background Fetch
-  - Periodic Background Sync
-  - Content Index API
-  - Badging API
-- Player UI の刷新
-  - Pure Webcomponents
-  - Media Session API
-  - WAI-ARIA
-  - Portal Preview
-  - Screen Wake Lock
-- Security
-  - CSP v3 (not Report-Only)
-  - Cross Origin Resource Policy
-  - Cross Origin Opener Policy
-  - Cross Origin Embedder Policy
-  - Expect-CT
-  - NEL
-  - Referer Policy
-- その他
-  - Transpile Less
-  - Scroll To Text Fragment Search
-  - Spotify
-- WIP
-  - Template Instantiation
-  - HTML Modules
-  - Document Policy
-  - Silent Push
-  - WASM ID3
-  - SXG
-
-実施したモチベーションおよび、実施内容について記す。
-
-先に言っておくが、実装も仕様も全く安定してないものを、エミュレータだけでエスパー実装しているので、実機で動く保証もなく、しょっちゅう壊れる。
-
-サイトが壊れて聴けなかったらご愛用の Podcast アプリで聞いてほしい。</summary>
+   <summary>mozaic.fm をリニューアルし v3 としてリリースした。今回の更新は以下のような変更/修正を実施している。PWA 化before install promptBackground FetchPeriodic Background SyncContent Index APIBadging APIPlayer UI の刷新Pure WebcomponentsMedia Session APIWAI-ARIAPortal PreviewScreen Wake LockSecurityCSP v3 (not Report-Only)Cross Origin Resource PolicyCross Origin Opener PolicyCross Origin Embedder PolicyExpect-CTNELReferer Policyその他Transpile LessScroll To Text Fragment SearchSpotifyWIPTemplate InstantiationHTML ModulesDocument PolicySilent PushWASM ID3SXG実施したモチベーションおよび、実施内容について記す。先に言っておくが、実装も仕様も全く安定してないものを、エミュレータだけでエスパー実装しているので、実機で動く保証もなく、しょっちゅう壊れる。サイトが壊れて聴けなかったらご愛用の Podcast アプリで聞いてほしい。</summary>
   </entry>
 
   <entry>
@@ -326,15 +196,7 @@ Chrome で Origin Trials が開始されたので仕様と実装を解説する�
    <link href="https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-04-23</id>
    <updated>2020-04-23T00:00:00Z</updated>
-   <summary>メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクを実行したいケースがある。
-
-このユースケースに特化した API として提案されているのが、 Periodic Background Sync(PBS) だ。
-
-しかし、この API を取り巻く議論は「Web にアプリのような API を持ち込む上での難しさ」を物語っている。
-
-この API が Web において正当化できるかどうかは、 Project Fugu に代表される Application Capabilities を Web に持ち込む場合の試金石になりそうだ。
-
-現時点での、仕様、実装、議論について解説する。</summary>
+   <summary>メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクを実行したいケースがある。このユースケースに特化した API として提案されているのが、 Periodic Background Sync(PBS) だ。しかし、この API を取り巻く議論は「Web にアプリのような API を持ち込む上での難しさ」を物語っている。この API が Web において正当化できるかどうかは、 Project Fugu に代表される Application Capabilities を Web に持ち込む場合の試金石になりそうだ。現時点での、仕様、実装、議論について解説する。</summary>
   </entry>
 
   <entry>
@@ -350,13 +212,7 @@ Chrome で Origin Trials が開始されたので仕様と実装を解説する�
    <link href="https://blog.jxck.io/entries/2020-02-25/end-of-idyllic-cookie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-02-25</id>
    <updated>2020-02-25T00:00:00Z</updated>
-   <summary>Cookie は、ブラウザに一度保存すれば、次からその値を自動的に送ってくるという、非常に都合の良い仕様から始まった。
-
-State Less が基本だった Web にセッションの概念をもたらし、今ではこれが無ければ実現できないユースケースの方が多い。
-
-冷静に考えればふざけてるとして思えないヘッダ名からもわかるように、当初はこのヘッダがこんなに重宝され、 Web のあり方を変えるかもしれないくらい重要な議論を巻き起こすことになるとは、最初の実装者も思ってなかっただろう。
-
-そんな Cookie が今どう使われ、 3rd Party Cookie (3rdPC) の何が問題になっているのかを踏まえ、これからどうなっていくのかについて考える。</summary>
+   <summary>Cookie は、ブラウザに一度保存すれば、次からその値を自動的に送ってくるという、非常に都合の良い仕様から始まった。State Less が基本だった Web にセッションの概念をもたらし、今ではこれが無ければ実現できないユースケースの方が多い。冷静に考えればふざけてるとして思えないヘッダ名からもわかるように、当初はこのヘッダがこんなに重宝され、 Web のあり方を変えるかもしれないくらい重要な議論を巻き起こすことになるとは、最初の実装者も思ってなかっただろう。そんな Cookie が今どう使われ、 3rd Party Cookie (3rdPC) の何が問題になっているのかを踏まえ、これからどうなっていくのかについて考える。</summary>
   </entry>
 
   <entry>
@@ -364,11 +220,7 @@ State Less が基本だった Web にセッションの概念をもたらし、�
    <link href="https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-01-31</id>
    <updated>2020-01-31T00:00:00Z</updated>
-   <summary>昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。
-
-Safari による ITP や、 Chrome による Privacy Sandbox への移行など、技術的な変化も著しい。
-
-こうした技術の変遷を観測し、調査検証を行うために、これまで避けていた Web 広告を本サイトに導入することにした。</summary>
+   <summary>昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。Safari による ITP や、 Chrome による Privacy Sandbox への移行など、技術的な変化も著しい。こうした技術の変遷を観測し、調査検証を行うために、これまで避けていた Web 広告を本サイトに導入することにした。</summary>
   </entry>
 
   <entry>
@@ -376,11 +228,7 @@ Safari による ITP や、 Chrome による Privacy Sandbox への移行など�
    <link href="https://blog.jxck.io/entries/2020-01-24/background-fetch.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-01-24</id>
    <updated>2020-01-24T00:00:00Z</updated>
-   <summary>Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。
-
-これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。
-
-この API と、 Service Worker およびブラウザにおける Range Request/Partial Response の扱いについて記す。</summary>
+   <summary>Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、 Service Worker およびブラウザにおける Range Request/Partial Response の扱いについて記す。</summary>
   </entry>
 
   <entry>
@@ -388,11 +236,7 @@ Safari による ITP や、 Chrome による Privacy Sandbox への移行など�
    <link href="https://blog.jxck.io/entries/2020-01-18/reporting.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-01-18</id>
    <updated>2020-01-18T00:00:00Z</updated>
-   <summary>Web サービスにおいては通常、 Web サーバから取得できるアクセスログやエラーログを取得し解析する基盤を保有するだろう。
-
-しかし、 Web サーバから取得できる情報だけでは、ブラウザで何が起こったのかを知るのは限界がある。
-
-今回は、ブラウザ内で起こったことを知るための Reporting API と、その Report の収集について解説する。</summary>
+   <summary>Web サービスにおいては通常、 Web サーバから取得できるアクセスログやエラーログを取得し解析する基盤を保有するだろう。しかし、 Web サーバから取得できる情報だけでは、ブラウザで何が起こったのかを知るのは限界がある。今回は、ブラウザ内で起こったことを知るための Reporting API と、その Report の収集について解説する。</summary>
   </entry>
 
   <entry>
@@ -408,13 +252,7 @@ Safari による ITP や、 Chrome による Privacy Sandbox への移行など�
    <link href="https://blog.jxck.io/entries/2019-11-12/webbundle.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-11-12</id>
    <updated>2019-11-12T00:00:00Z</updated>
-   <summary>依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。
-
-これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテンツの配信を通信と分けて考えることができる。
-
-Signed HTTP Exchange に比べると格段に簡単な仕様なので、現状のフォーマットと挙動について解説する。
-
-- draft-yasskin-wpack-bundled-exchanges-latest</summary>
+   <summary>依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテンツの配信を通信と分けて考えることができる。Signed HTTP Exchange に比べると格段に簡単な仕様なので、現状のフォーマットと挙動について解説する。draft-yasskin-wpack-bundled-exchanges-latest</summary>
   </entry>
 
   <entry>
@@ -422,13 +260,7 @@ Signed HTTP Exchange に比べると格段に簡単な仕様なので、現状�
    <link href="https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-11-03</id>
    <updated>2019-11-03T00:00:00Z</updated>
-   <summary>家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。
-
-前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。
-
-また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外からアクセスできるようにした。
-
-備忘録を兼ねて記す。</summary>
+   <summary>家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外からアクセスできるようにした。備忘録を兼ねて記す。</summary>
   </entry>
 
   <entry>
@@ -436,11 +268,7 @@ Signed HTTP Exchange に比べると格段に簡単な仕様なので、現状�
    <link href="https://blog.jxck.io/entries/2019-10-16/scroll-to-text-fragment.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-10-16</id>
    <updated>2019-10-16T00:00:00Z</updated>
-   <summary>ページ内の特定の位置へのスクロールは、 URL フラグメントと HTML の ID 属性を用いて行われていた。
-
-しかし、 ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。
-
-Chrome がフラグ付きで実装しているため、この仕様の特徴について解説する。</summary>
+   <summary>ページ内の特定の位置へのスクロールは、 URL フラグメントと HTML の ID 属性を用いて行われていた。しかし、 ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。Chrome がフラグ付きで実装しているため、この仕様の特徴について解説する。</summary>
   </entry>
 
   <entry>
@@ -448,9 +276,7 @@ Chrome がフラグ付きで実装しているため、この仕様の特徴に�
    <link href="https://blog.jxck.io/entries/2019-10-13/font-feature-settings.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-10-13</id>
    <updated>2019-10-13T00:00:00Z</updated>
-   <summary>Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。
-
-作業と検証の記録を兼ねて、実施結果を記す。</summary>
+   <summary>Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。</summary>
   </entry>
 
   <entry>
@@ -458,14 +284,7 @@ Chrome がフラグ付きで実装しているため、この仕様の特徴に�
    <link href="https://blog.jxck.io/entries/2019-08-20/promise-allsettled-any.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-08-20</id>
    <updated>2019-08-20T00:00:00Z</updated>
-   <summary>`Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。
-
-両者は近いレイヤの仕様では有るが、作業の進捗には差がある。
-
-- Promise.allSettled は Stage 4 であり、 Chrome や Safari TP には実装もされている
-- Promise.any は Stage 2 であり、実装はまだない
-
-ここでは、これらがあると何が嬉しいのかを `Promise.all()`, `Promise.race()` の特徴を踏まえて解説する。</summary>
+   <summary>Promise.allSettled() と Promise.any() の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。Promise.allSettled は Stage 4 であり、 Chrome や Safari TP には実装もされているPromise.any は Stage 2 であり、実装はまだないここでは、これらがあると何が嬉しいのかを Promise.all(), Promise.race() の特徴を踏まえて解説する。</summary>
   </entry>
 
   <entry>
@@ -473,19 +292,7 @@ Chrome がフラグ付きで実装しているため、この仕様の特徴に�
    <link href="https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-08-18</id>
    <updated>2019-08-18T00:00:00Z</updated>
-   <summary>Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。
-
-その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。
-
-WebScoket/MSE/WebRTC/WASM など、 Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。
-
-しかし、できることが増えればこそ、それぞれのパーツの不足する部分が浮き彫りになる。
-
-WebTransport と WebCodecs は、主にそんな Web Game の需要から「本当に必要としているもの」を再考した結果をまとめた提案と言えるだろう。
-
-これが、単に Web Game 開発の需要を満たすだけで終わるものか、ゲーム以外の Web の開発にどこまで影響を及ぼすか。
-
-現状の仕様の提案とそのモチベーションを元に、考察していく。</summary>
+   <summary>Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。WebScoket/MSE/WebRTC/WASM など、 Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。しかし、できることが増えればこそ、それぞれのパーツの不足する部分が浮き彫りになる。WebTransport と WebCodecs は、主にそんな Web Game の需要から「本当に必要としているもの」を再考した結果をまとめた提案と言えるだろう。これが、単に Web Game 開発の需要を満たすだけで終わるものか、ゲーム以外の Web の開発にどこまで影響を及ぼすか。現状の仕様の提案とそのモチベーションを元に、考察していく。</summary>
   </entry>
 
   <entry>
@@ -493,12 +300,7 @@ WebTransport と WebCodecs は、主にそんな Web Game の需要から「本�
    <link href="https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-08-14</id>
    <updated>2019-08-14T00:00:00Z</updated>
-   <summary>JS における null/undefined の扱い改善するための 2 つの機能が提案されている。
-
-- Nullish Coalescing Operator (stage 3)
-- Optional Chaining Operator (stage 3)
-
-いずれも Stage 3 に進み、実装も始まっているので、現時点での解説を行う。</summary>
+   <summary>JS における null/undefined の扱い改善するための 2 つの機能が提案されている。Nullish Coalescing Operator (stage 3)Optional Chaining Operator (stage 3)いずれも Stage 3 に進み、実装も始まっているので、現時点での解説を行う。</summary>
   </entry>
 
   <entry>
@@ -506,15 +308,7 @@ WebTransport と WebCodecs は、主にそんな Web Game の需要から「本�
    <link href="https://blog.jxck.io/entries/2019-06-16/display-locking.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-06-16</id>
    <updated>2019-06-16T00:00:00Z</updated>
-   <summary>React や lit-html などにより、 DOM 操作の抽象化に加えて最適化が提供されることが一般的となった。
-
-見方を変えれば、本来ブラウザがやるような最適化を、ライブラリが肩代わりしていると捉えることもできる。
-
-これは、現在の標準 API には、規模が大きく処理が複雑なアプリケーションを開発する際に、足りてないものがあると考えることが可能だ。
-
-課題の 1 つとして「DOM 操作が同期処理である」という点に着目し、 Async DOM という文脈でいくつかの提案が行われた。
-
-今回は、その提案の 1 つであり Chrome で実装が進んでいる Display Locking について現状を解説する。</summary>
+   <summary>React や lit-html などにより、 DOM 操作の抽象化に加えて最適化が提供されることが一般的となった。見方を変えれば、本来ブラウザがやるような最適化を、ライブラリが肩代わりしていると捉えることもできる。これは、現在の標準 API には、規模が大きく処理が複雑なアプリケーションを開発する際に、足りてないものがあると考えることが可能だ。課題の 1 つとして「DOM 操作が同期処理である」という点に着目し、 Async DOM という文脈でいくつかの提案が行われた。今回は、その提案の 1 つであり Chrome で実装が進んでいる Display Locking について現状を解説する。</summary>
   </entry>
 
   <entry>
@@ -522,17 +316,7 @@ WebTransport と WebCodecs は、主にそんな Web Game の需要から「本�
    <link href="https://blog.jxck.io/entries/2019-05-20/lazyloading.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-05-20</id>
    <updated>2019-05-20T00:00:00Z</updated>
-   <summary>長らく議論されてきた `&lt;img&gt;` や `&lt;iframe&gt;` における Lazyload について、仕様と実装が動きを見せている。
-
-ここでは、特に画像 `&lt;img&gt;` に注目し、 Lazyloading の議論の変遷を踏まえた上で現状を解説する。
-
-画像最適化シリーズ第 5 回目のエントリである。
-
-1. 画像最適化戦略 PNG/JPEG 編
-1. 画像最適化戦略 Picture 編
-1. 画像最適化戦略 WebP 編
-1. 画像最適化戦略 SVG/Font 編
-1. &gt; 画像最適化戦略 Lazy Loading 編</summary>
+   <summary>長らく議論されてきた &lt;img&gt; や &lt;iframe&gt; における Lazyload について、仕様と実装が動きを見せている。ここでは、特に画像 &lt;img&gt; に注目し、 Lazyloading の議論の変遷を踏まえた上で現状を解説する。画像最適化シリーズ第 5 回目のエントリである。画像最適化戦略 PNG/JPEG 編画像最適化戦略 Picture 編画像最適化戦略 WebP 編画像最適化戦略 SVG/Font 編&gt; 画像最適化戦略 Lazy Loading 編</summary>
   </entry>
 
   <entry>
@@ -540,13 +324,7 @@ WebTransport と WebCodecs は、主にそんな Web Game の需要から「本�
    <link href="https://blog.jxck.io/entries/2019-05-12/mozaic-bootcamp-2019.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-05-12</id>
    <updated>2019-05-12T00:00:00Z</updated>
-   <summary>2019/4/28 - 5/1 の 4 日間で、 mozaic bootcamp 2019 というひたすら Web 技術を叩き込むイベントを開催した。
-
-その内容やモチベーションについては、以下で話している。
-
-ep48 Monthly Web 201901 | mozaic.fm
-
-このイベントの概要と目的について記録する。</summary>
+   <summary>2019/4/28 - 5/1 の 4 日間で、 mozaic bootcamp 2019 というひたすら Web 技術を叩き込むイベントを開催した。その内容やモチベーションについては、以下で話している。ep48 Monthly Web 201901 | mozaic.fmこのイベントの概要と目的について記録する。</summary>
   </entry>
 
   <entry>
@@ -554,13 +332,7 @@ ep48 Monthly Web 201901 | mozaic.fm
    <link href="https://blog.jxck.io/entries/2019-04-26/hyperlink-auditing-via-ping.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-04-26</id>
    <updated>2019-04-26T00:00:00Z</updated>
-   <summary>「ユーザが意図する挙動」とは何か。技術的に可能であるが「やらない方が良いこと」は、誰がどう決めるのか。
-
-Web には仕様、実装、デプロイ、そしてユーザの利用とフィードバックによって、そうした合意がゆるやかに形成されていく仕組みがあると筆者は考えている。
-
-しかし、これは明文化されているわけでもなく、その全体像を把握するのは一般には難しいだろう。
-
-今回は、ちょうど何度目かの議論が再発している ping 属性を例に、この合意形成の概観について解説を試みる。</summary>
+   <summary>「ユーザが意図する挙動」とは何か。技術的に可能であるが「やらない方が良いこと」は、誰がどう決めるのか。Web には仕様、実装、デプロイ、そしてユーザの利用とフィードバックによって、そうした合意がゆるやかに形成されていく仕組みがあると筆者は考えている。しかし、これは明文化されているわけでもなく、その全体像を把握するのは一般には難しいだろう。今回は、ちょうど何度目かの議論が再発している ping 属性を例に、この合意形成の概観について解説を試みる。</summary>
   </entry>
 
   <entry>
@@ -568,11 +340,7 @@ Web には仕様、実装、デプロイ、そしてユーザの利用とフィ�
    <link href="https://blog.jxck.io/entries/2019-03-14/private-class-field.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-03-14</id>
    <updated>2019-03-14T00:00:00Z</updated>
-   <summary>ECMAScript の Private Class Field の仕様策定と各ブラウザの実装が進んでいる。
-
-これにより、従来の JS にはなかった Class の Private フィールドが使えるようになる。
-
-提案されている構文や、挙動について解説する。</summary>
+   <summary>ECMAScript の Private Class Field の仕様策定と各ブラウザの実装が進んでいる。これにより、従来の JS にはなかった Class の Private フィールドが使えるようになる。提案されている構文や、挙動について解説する。</summary>
   </entry>
 
   <entry>
@@ -580,16 +348,7 @@ Web には仕様、実装、デプロイ、そしてユーザの利用とフィ�
    <link href="https://blog.jxck.io/entries/2019-01-27/trusted-types.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-01-27</id>
    <updated>2019-01-27T00:00:00Z</updated>
-   <summary>脆弱性の原因となる DOM 操作の代表例として `elem.innerHTML` や `location.href` などが既に知られている。
-
-こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろう。
-
-そこで処理前の文字列に対し、処理後の文字列を安全であるとして明示的に型付ける TrustedTypes という提案がされている。
-
-まだ未解決の部分が多い提案だが、現時点での仕様と実装を元に、このアイデアについて解説する。
-
-- WICG/trusted-types
-- Intent to Experiment: Trusted Types</summary>
+   <summary>脆弱性の原因となる DOM 操作の代表例として elem.innerHTML や location.href などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろう。そこで処理前の文字列に対し、処理後の文字列を安全であるとして明示的に型付ける TrustedTypes という提案がされている。まだ未解決の部分が多い提案だが、現時点での仕様と実装を元に、このアイデアについて解説する。WICG/trusted-typesIntent to Experiment: Trusted Types</summary>
   </entry>
 
   <entry>
@@ -597,9 +356,7 @@ Web には仕様、実装、デプロイ、そしてユーザの利用とフィ�
    <link href="https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-01-19</id>
    <updated>2019-01-19T00:00:00Z</updated>
-   <summary>httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。
-
-もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。</summary>
+   <summary>httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。</summary>
   </entry>
 
   <entry>
@@ -607,17 +364,7 @@ Web には仕様、実装、デプロイ、そしてユーザの利用とフィ�
    <link href="https://blog.jxck.io/entries/2019-01-15/next-web-conf-2019.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-01-15</id>
    <updated>2019-01-15T00:00:00Z</updated>
-   <summary>2019/1/13(日) に、以下で告知した「*次世代 Web カンファレンス*」を開催した。
-
-次世代 Web カンファレンス 2019 開催告知 | blog.jxck.io
-
-前日に初雪が観測されて心配したが、天気にも恵まれ、開催趣旨の通り予定していたセッションを全て終えることができた。
-
-次世代 Web カンファレンス - connpass
-
-各セッションはこれから録画を見るが、登壇者達に聞いた感触としては、概ね熱い議論ができていたようなので、場を設けた価値はあったと思う。
-
-録画や togetter はすでに上がっている。</summary>
+   <summary>2019/1/13(日) に、以下で告知した「次世代 Web カンファレンス」を開催した。次世代 Web カンファレンス 2019 開催告知 | blog.jxck.io前日に初雪が観測されて心配したが、天気にも恵まれ、開催趣旨の通り予定していたセッションを全て終えることができた。次世代 Web カンファレンス - connpass各セッションはこれから録画を見るが、登壇者達に聞いた感触としては、概ね熱い議論ができていたようなので、場を設けた価値はあったと思う。録画や togetter はすでに上がっている。</summary>
   </entry>
 
   <entry>
@@ -633,17 +380,7 @@ Web には仕様、実装、デプロイ、そしてユーザの利用とフィ�
    <link href="https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-12-01</id>
    <updated>2018-12-01T00:00:00Z</updated>
-   <summary>WebPackaging は以下の 3 つの仕様を組み合わせたユースケースである。
-
-- Signed HTTP Exchanges: Signing (コンテンツに署名する)
-- Bundled HTTP Exchanges: Bundling (コンテンツを 1 つにまとめる)
-- Loading Signed Exchanges: Loading (そのコンテンツをロードする)
-
-本エントリでは、各仕様を Signing/Bundling/Loading と記す。
-
-現状、 Signing および Loading の仕様策定が進んでおり、 Chrome は Experimental な実装を行っている。
-
-全体的に仕様が大きく、今後も変更される可能性が高いため、今回は実装が進んでいる Signing に絞り、ユースケース、仕様、および本ブログへの適用を中心に解説する。</summary>
+   <summary>WebPackaging は以下の 3 つの仕様を組み合わせたユースケースである。Signed HTTP Exchanges: Signing (コンテンツに署名する)Bundled HTTP Exchanges: Bundling (コンテンツを 1 つにまとめる)Loading Signed Exchanges: Loading (そのコンテンツをロードする)本エントリでは、各仕様を Signing/Bundling/Loading と記す。現状、 Signing および Loading の仕様策定が進んでおり、 Chrome は Experimental な実装を行っている。全体的に仕様が大きく、今後も変更される可能性が高いため、今回は実装が進んでいる Signing に絞り、ユースケース、仕様、および本ブログへの適用を中心に解説する。</summary>
   </entry>
 
   <entry>
@@ -651,13 +388,7 @@ Web には仕様、実装、デプロイ、そしてユーザの利用とフィ�
    <link href="https://blog.jxck.io/entries/2018-11-10/dark-mode-via-prefers-color-scheme.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-11-10</id>
    <updated>2018-11-10T00:00:00Z</updated>
-   <summary>macOS Mojava は OS レベルで Dark Mode に対応した。
-
-しかし、 Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。
-
-Safari TP69 では、これにメディアクエリで対応するための `prefers-color-scheme` が実装された。
-
-これを用いた DarkMode 対応と、本ブログの DarkMode 対応、および策定中の User Preference Media Features について解説する。</summary>
+   <summary>macOS Mojava は OS レベルで Dark Mode に対応した。しかし、 Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。Safari TP69 では、これにメディアクエリで対応するための prefers-color-scheme が実装された。これを用いた DarkMode 対応と、本ブログの DarkMode 対応、および策定中の User Preference Media Features について解説する。</summary>
   </entry>
 
   <entry>
@@ -665,13 +396,7 @@ Safari TP69 では、これにメディアクエリで対応するための `pre
    <link href="https://blog.jxck.io/entries/2018-10-26/same-site-cookie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-10-26</id>
    <updated>2018-10-26T00:00:00Z</updated>
-   <summary>Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。
-
-この挙動によって Web におけるセッション管理が実現されている一方、これを悪用した攻撃方法として、 CSRF や Timing Attack などが数多く知られており、個別に対策がなされてきた。
-
-現在、提案実装されている SameSite Cookie は、そもそもの Cookie の挙動を変更し、こうした問題を根本的に解決すると期待されている。
-
-Cookie の挙動とそれを用いた攻撃、そして Same Site Cookie について解説する。</summary>
+   <summary>Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。この挙動によって Web におけるセッション管理が実現されている一方、これを悪用した攻撃方法として、 CSRF や Timing Attack などが数多く知られており、個別に対策がなされてきた。現在、提案実装されている SameSite Cookie は、そもそもの Cookie の挙動を変更し、こうした問題を根本的に解決すると期待されている。Cookie の挙動とそれを用いた攻撃、そして Same Site Cookie について解説する。</summary>
   </entry>
 
   <entry>
@@ -679,11 +404,7 @@ Cookie の挙動とそれを用いた攻撃、そして Same Site Cookie につ�
    <link href="https://blog.jxck.io/entries/2018-10-08/referrer-policy.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-10-08</id>
    <updated>2018-10-08T00:00:00Z</updated>
-   <summary>リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。
-
-この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。
-
-この挙動を制御することができる、 Referrer-Policy ヘッダについて解説する。</summary>
+   <summary>リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、 Referrer-Policy ヘッダについて解説する。</summary>
   </entry>
 
   <entry>
@@ -691,39 +412,7 @@ Cookie の挙動とそれを用いた攻撃、そして Same Site Cookie につ�
    <link href="https://blog.jxck.io/entries/2018-09-15/next-web-conf-2019.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-09-15</id>
    <updated>2018-09-15T00:00:00Z</updated>
-   <summary>2019/1/13(日) に、「*次世代 Web カンファレンス*」を開催します。
-
-名称
-: 次世代 Web カンファレンス
-
-日時
-: 2019/1/13(日) 9:00-17:30
-
-場所
-: 法政大学富士見ゲート 4F 401, 402, 403
-
-後援
-: 法政大学情報科学部
-
-配信
-: Youtube
-
-募集
-: Connpass
-
-参加費
-: 無料
-
-(参考) 2015 年実施のログは以下です。
-
-blog
-: http://jxck.hatenablog.com/entry/next-web-conf-2915
-
-connpass
-: https://nextwebconf.connpass.com/event/19699/
-
-録画
-: 405, 406, 407</summary>
+   <summary>2019/1/13(日) に、「次世代 Web カンファレンス」を開催します。名称次世代 Web カンファレンス日時2019/1/13(日) 9:00-17:30場所法政大学富士見ゲート 4F 401, 402, 403後援法政大学情報科学部配信Youtube募集Connpass参加費無料(参考) 2015 年実施のログは以下です。bloghttp://jxck.hatenablog.com/entry/next-web-conf-2915connpasshttps://nextwebconf.connpass.com/event/19699/録画405, 406, 407</summary>
   </entry>
 
   <entry>
@@ -731,9 +420,7 @@ connpass
    <link href="https://blog.jxck.io/entries/2018-07-24/clear-site-data.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-07-24</id>
    <updated>2018-07-24T00:00:00Z</updated>
-   <summary>Clear-Site-Data Header の実装が進んでいる。
-
-このヘッダについて解説する。</summary>
+   <summary>Clear-Site-Data Header の実装が進んでいる。このヘッダについて解説する。</summary>
   </entry>
 
   <entry>
@@ -741,11 +428,7 @@ connpass
    <link href="https://blog.jxck.io/entries/2018-07-20/toggle-attribute.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-07-20</id>
    <updated>2018-07-20T00:00:00Z</updated>
-   <summary>非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。
-
-最近になって各ブラウザが一斉に実装を進め、リリースに向けたアナウンスが出始めている。
-
-この仕様について解説する。</summary>
+   <summary>非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。最近になって各ブラウザが一斉に実装を進め、リリースに向けたアナウンスが出始めている。この仕様について解説する。</summary>
   </entry>
 
   <entry>
@@ -753,9 +436,7 @@ connpass
    <link href="https://blog.jxck.io/entries/2018-07-18/how-to-logging-monthly-web.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-07-18</id>
    <updated>2018-07-18T00:00:00Z</updated>
-   <summary>筆者がやっている Podcast である mozaic.fm の中で、 Monthly Web という月ごとの Web の動向をまとめる回をやっている。
-
-未だに落ち着いたとはいえないが、 2017 年 7 月に初めてから 1 年続けたので、結果として現状どうなっているかをログに残す。</summary>
+   <summary>筆者がやっている Podcast である mozaic.fm の中で、 Monthly Web という月ごとの Web の動向をまとめる回をやっている。未だに落ち着いたとはいえないが、 2017 年 7 月に初めてから 1 年続けたので、結果として現状どうなっているかをログに残す。</summary>
   </entry>
 
   <entry>
@@ -763,13 +444,7 @@ connpass
    <link href="https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-05-15</id>
    <updated>2018-05-15T00:00:00Z</updated>
-   <summary>Web Authentication(WebAuthN) API の策定と実装が進んでいる。
-
-これを用いると、 FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。
-
-今回は YubiKey 認証の実装を通じて、ブラウザ API の呼び出しと、サーバ側で必要な処理について解説する。
-
-https://w3c.github.io/webauthn/</summary>
+   <summary>Web Authentication(WebAuthN) API の策定と実装が進んでいる。これを用いると、 FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。今回は YubiKey 認証の実装を通じて、ブラウザ API の呼び出しと、サーバ側で必要な処理について解説する。https://w3c.github.io/webauthn/</summary>
   </entry>
 
   <entry>
@@ -777,19 +452,7 @@ https://w3c.github.io/webauthn/</summary>
    <link href="https://blog.jxck.io/entries/2018-05-01/layered-apis.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-05-01</id>
    <updated>2018-05-01T00:00:00Z</updated>
-   <summary>Extensible Web Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。
-
-そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。
-
-基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。
-
-合わせて ES Modules の Import を用いて、 pollyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
-
-本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。
-
-また、同等の話を 東京 Node 学園 #tng30 で行った資料は以下である。
-
-Web over Layered APIs</summary>
+   <summary>Extensible Web Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。合わせて ES Modules の Import を用いて、 pollyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。また、同等の話を 東京 Node 学園 #tng30 で行った資料は以下である。Web over Layered APIs</summary>
   </entry>
 
   <entry>
@@ -797,11 +460,7 @@ Web over Layered APIs</summary>
    <link href="https://blog.jxck.io/entries/2018-04-30/redirect-to-pts.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-04-30</id>
    <updated>2018-04-30T00:00:00Z</updated>
-   <summary>tmux, screen, terminal のタブなど、 shell を複数起動する方法はいくつかある。
-
-Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。
-
-これを応用すると、簡易ダッシュボードを作り色々便利に使うことができる。</summary>
+   <summary>tmux, screen, terminal のタブなど、 shell を複数起動する方法はいくつかある。Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に使うことができる。</summary>
   </entry>
 
   <entry>
@@ -809,13 +468,7 @@ Linux では、 pts を経由すれば、ある shell の出力を簡単に別�
    <link href="https://blog.jxck.io/entries/2018-03-27/certificate-transparency.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-03-27</id>
    <updated>2018-03-27T00:00:00Z</updated>
-   <summary>本サイトは HPKP (public-key-pins-report-only) に対応していた。
-
-しかし、 HPKP はその運用性の問題などもあり、 Chrome はすでに deprecate するアナウンスを出している。
-
-代替の仕様として、 Certificate Transparency (CT) のエコシステムと、それを利用する Expect-CT の策定/実装が進んでいる。
-
-CT エコシステムの概要、 Log の登録/検証、 HPKP から Expect-CT への移行などについて解説する。</summary>
+   <summary>本サイトは HPKP (public-key-pins-report-only) に対応していた。しかし、 HPKP はその運用性の問題などもあり、 Chrome はすでに deprecate するアナウンスを出している。代替の仕様として、 Certificate Transparency (CT) のエコシステムと、それを利用する Expect-CT の策定/実装が進んでいる。CT エコシステムの概要、 Log の登録/検証、 HPKP から Expect-CT への移行などについて解説する。</summary>
   </entry>
 
   <entry>
@@ -823,15 +476,7 @@ CT エコシステムの概要、 Log の登録/検証、 HPKP から Expect-CT 
    <link href="https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-03-08</id>
    <updated>2018-03-08T00:00:00Z</updated>
-   <summary>ブラウザの機能を制限する Feature Policy の実装が進みつつある。
-
-Feature Policy は、ブラウザが持つ機能について選択的に許可/制限を行う API だ。
-
-AMP のように特定の機能を制限する目的にも使えるが、クロスオリジン iframe に対する権限移譲のための API としても使用される。
-
-Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。
-
-なお、今回解説する内容は、まだブラウザの実装に反映されていない部分があるため、注意されたい。</summary>
+   <summary>ブラウザの機能を制限する Feature Policy の実装が進みつつある。Feature Policy は、ブラウザが持つ機能について選択的に許可/制限を行う API だ。AMP のように特定の機能を制限する目的にも使えるが、クロスオリジン iframe に対する権限移譲のための API としても使用される。Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。なお、今回解説する内容は、まだブラウザの実装に反映されていない部分があるため、注意されたい。</summary>
   </entry>
 
   <entry>
@@ -839,11 +484,7 @@ Feature Policy のモチベーションおよび適用方法について、類�
    <link href="https://blog.jxck.io/entries/2018-02-13/web-font-woff2.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-02-13</id>
    <updated>2018-02-13T00:00:00Z</updated>
-   <summary>Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。
-
-本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、本サイトでも WOFF2 に移行することとした。
-
-フォーマット変更による効果について解説する。</summary>
+   <summary>Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、本サイトでも WOFF2 に移行することとした。フォーマット変更による効果について解説する。</summary>
   </entry>
 
   <entry>
@@ -851,18 +492,7 @@ Feature Policy のモチベーションおよび適用方法について、類�
    <link href="https://blog.jxck.io/entries/2018-01-17/freezing-user-agent-string.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-17</id>
    <updated>2018-01-17T00:00:00Z</updated>
-   <summary>少し前に Safari Technology Preview 46 がリリースされた。
-
-Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。
-
-&gt; Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting
-&gt; --- Release Notes for Safari Technology Preview 46
-
-すぐには無理だろうと思ったが、 TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。
-
-TP はあくまで Preview であり、これが *このままリリースされるとは限らない* 点に注意したい。
-
-今回は、これがそのままリリースされた場合の影響について考察するため、現在の User-Agent の使われ方を解説する。</summary>
+   <summary>少し前に Safari Technology Preview 46 がリリースされた。Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting--- Release Notes for Safari Technology Preview 46すぐには無理だろうと思ったが、 TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。TP はあくまで Preview であり、これが このままリリースされるとは限らない 点に注意したい。今回は、これがそのままリリースされた場合の影響について考察するため、現在の User-Agent の使われ方を解説する。</summary>
   </entry>
 
   <entry>
@@ -870,13 +500,7 @@ TP はあくまで Preview であり、これが *このままリリースされ
    <link href="https://blog.jxck.io/entries/2018-01-15/aom-and-av1.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-15</id>
    <updated>2018-01-15T00:00:00Z</updated>
-   <summary>Apple が Alliance for Open Media に加盟したという報道があった。
-
-もし、このまま Safari が AV1 をサポートするまで至れば、 WebRTC のコーデック戦争に一旦の落ち着きが出ると思われる。
-
-Apple joins alliance to shrink your online videos - CNET
-
-この動向について解説する。</summary>
+   <summary>Apple が Alliance for Open Media に加盟したという報道があった。もし、このまま Safari が AV1 をサポートするまで至れば、 WebRTC のコーデック戦争に一旦の落ち着きが出ると思われる。Apple joins alliance to shrink your online videos - CNETこの動向について解説する。</summary>
   </entry>
 
   <entry>
@@ -892,13 +516,7 @@ Apple joins alliance to shrink your online videos - CNET
    <link href="https://blog.jxck.io/entries/2018-01-13/formdata-urlsearchparams.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-13</id>
    <updated>2018-01-13T00:00:00Z</updated>
-   <summary>`&lt;form&gt;` の onsubmit をフックして、入力された値を `&lt;input&gt;` から集めて送るといった処理はよくある。
-
-このとき、 submit されたデータの収拾方法はいくつかある。
-
-submit に限らず、そのイベントに付随する情報は、基本的にイベントオブジェクトに内包されている。
-
-Form を例に、イベントオブジェクトを意識したコーディングについて解説する。</summary>
+   <summary>&lt;form&gt; の onsubmit をフックして、入力された値を &lt;input&gt; から集めて送るといった処理はよくある。このとき、 submit されたデータの収拾方法はいくつかある。submit に限らず、そのイベントに付随する情報は、基本的にイベントオブジェクトに内包されている。Form を例に、イベントオブジェクトを意識したコーディングについて解説する。</summary>
   </entry>
 
   <entry>
@@ -906,9 +524,7 @@ Form を例に、イベントオブジェクトを意識したコーディング
    <link href="https://blog.jxck.io/entries/2018-01-12/let-it-bookmarklet.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-12</id>
    <updated>2018-01-12T00:00:00Z</updated>
-   <summary>「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。
-
-そんな時代にこそ、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。</summary>
+   <summary>「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。そんな時代にこそ、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。</summary>
   </entry>
 
   <entry>
@@ -916,11 +532,7 @@ Form を例に、イベントオブジェクトを意識したコーディング
    <link href="https://blog.jxck.io/entries/2018-01-05/sdp-unified-plan.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-05</id>
    <updated>2018-01-05T00:00:00Z</updated>
-   <summary>新年早々、 Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。
-
-Intent to Implement: WebRTC Unified Plan SDP
-
-SDP の互換性についてインパクトの大きいこの変更について簡単に解説する。</summary>
+   <summary>新年早々、 Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。Intent to Implement: WebRTC Unified Plan SDPSDP の互換性についてインパクトの大きいこの変更について簡単に解説する。</summary>
   </entry>
 
   <entry>
@@ -936,11 +548,7 @@ SDP の互換性についてインパクトの大きいこの変更について�
    <link href="https://blog.jxck.io/entries/2017-12-30/resize-observer-and-element-query.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-12-30</id>
    <updated>2017-12-30T00:00:00Z</updated>
-   <summary>ResizeObserver の ship が進みつつある。
-
-この仕様の解説および、 ElementQuery / ContainerQuery について解説する。
-
-Resize Observer 1</summary>
+   <summary>ResizeObserver の ship が進みつつある。この仕様の解説および、 ElementQuery / ContainerQuery について解説する。Resize Observer 1</summary>
   </entry>
 
   <entry>
@@ -948,9 +556,7 @@ Resize Observer 1</summary>
    <link href="https://blog.jxck.io/entries/2017-12-12/whatwg-working-mode-changes.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-12-12</id>
    <updated>2017-12-12T00:00:00Z</updated>
-   <summary>WHATWG が IPR Policy と Governance Structure についての更新を発表した。
-
-おおまかな流れと、これによって引き起されそうな変化について解説する。</summary>
+   <summary>WHATWG が IPR Policy と Governance Structure についての更新を発表した。おおまかな流れと、これによって引き起されそうな変化について解説する。</summary>
   </entry>
 
   <entry>
@@ -958,13 +564,7 @@ Resize Observer 1</summary>
    <link href="https://blog.jxck.io/entries/2017-12-06/font-display.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-12-06</id>
    <updated>2017-12-06T00:00:00Z</updated>
-   <summary>Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。
-
-フォントファイルサイズが大きい場合は、 FOIT/FOUT の問題が顕著になり、 JS を用いた回避策が利用されることも多かった。
-
-これを解決するため、 CSS に `font-display` プロパティが作成され、実装が進んでいる。
-
-各プロパティの違いと挙動、そして本サイトへの適用について解説する。</summary>
+   <summary>Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。フォントファイルサイズが大きい場合は、 FOIT/FOUT の問題が顕著になり、 JS を用いた回避策が利用されることも多かった。これを解決するため、 CSS に font-display プロパティが作成され、実装が進んでいる。各プロパティの違いと挙動、そして本サイトへの適用について解説する。</summary>
   </entry>
 
   <entry>
@@ -972,14 +572,7 @@ Resize Observer 1</summary>
    <link href="https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-10-31</id>
    <updated>2017-10-31T00:00:00Z</updated>
-   <summary>Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。
-
-デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。
-
-- CSS Painting API Level 1
-- CSS Properties and Values API Level 1
-- CSS Typed OM Level 1
-- Worklets Level 1</summary>
+   <summary>Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。CSS Painting API Level 1CSS Properties and Values API Level 1CSS Typed OM Level 1Worklets Level 1</summary>
   </entry>
 
   <entry>
@@ -987,13 +580,7 @@ Resize Observer 1</summary>
    <link href="https://blog.jxck.io/entries/2017-10-09/css-rhythmic-sizing.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-10-09</id>
    <updated>2017-10-09T00:00:00Z</updated>
-   <summary>タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。
-
-そして、現在 CSS でそれを簡単に実現するための CSS Rhythmic Sizing という仕様が提案されている。
-
-Chrome にフラグ付きで実装されたこの仕様を用いて、本サイトへの適用を行ったので、解説する。
-
-CSS Rhythmic Sizing</summary>
+   <summary>タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。そして、現在 CSS でそれを簡単に実現するための CSS Rhythmic Sizing という仕様が提案されている。Chrome にフラグ付きで実装されたこの仕様を用いて、本サイトへの適用を行ったので、解説する。CSS Rhythmic Sizing</summary>
   </entry>
 
   <entry>
@@ -1001,9 +588,7 @@ CSS Rhythmic Sizing</summary>
    <link href="https://blog.jxck.io/entries/2017-09-27/example-local-test-domains.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-09-27</id>
    <updated>2017-09-27T00:00:00Z</updated>
-   <summary>特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 `.example` `.localhost` `.test` などがある。
-
-`localhost` の Draft や、  gTLD である `.dev` が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。</summary>
+   <summary>特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 .example .localhost .test などがある。localhost の Draft や、  gTLD である .dev が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。</summary>
   </entry>
 
   <entry>
@@ -1019,11 +604,7 @@ CSS Rhythmic Sizing</summary>
    <link href="https://blog.jxck.io/entries/2017-09-19/remove-foreign-fetch.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-09-19</id>
    <updated>2017-09-19T00:00:00Z</updated>
-   <summary>以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。
-
-Foreign Fetch による Micro Service Workers | blog.jxck.io
-
-これは、 Safari などが進めている Cookie の double keying が影響しているらしいので、現状についてまとめる。</summary>
+   <summary>以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。Foreign Fetch による Micro Service Workers | blog.jxck.ioこれは、 Safari などが進めている Cookie の double keying が影響しているらしいので、現状についてまとめる。</summary>
   </entry>
 
   <entry>
@@ -1031,9 +612,7 @@ Foreign Fetch による Micro Service Workers | blog.jxck.io
    <link href="https://blog.jxck.io/entries/2017-08-19/content-encoding-brotli.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-08-19</id>
    <updated>2017-08-19T00:00:00Z</updated>
-   <summary>High Sierra に乗る Safari 11 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が概ね揃うことになる。
-
-そこで、本サイトも Brotli による静的コンテンツ配信に対応した。</summary>
+   <summary>High Sierra に乗る Safari 11 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が概ね揃うことになる。そこで、本サイトも Brotli による静的コンテンツ配信に対応した。</summary>
   </entry>
 
   <entry>
@@ -1041,11 +620,7 @@ Foreign Fetch による Micro Service Workers | blog.jxck.io
    <link href="https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-08-15</id>
    <updated>2017-08-15T00:00:00Z</updated>
-   <summary>長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、 `.mjs` という拡張子が採択された。
-
-この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。
-
-合わせてエコシステムが対応していくことで、長年の夢だった JS のモジュール化を進めていくことができるだろう。</summary>
+   <summary>長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、 .mjs という拡張子が採択された。この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。合わせてエコシステムが対応していくことで、長年の夢だった JS のモジュール化を進めていくことができるだろう。</summary>
   </entry>
 
   <entry>
@@ -1053,9 +628,7 @@ Foreign Fetch による Micro Service Workers | blog.jxck.io
    <link href="https://blog.jxck.io/entries/2017-08-10/promise-finally-proposal.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-08-10</id>
    <updated>2017-08-10T00:00:00Z</updated>
-   <summary>Promise.prototype.finally の仕様が TC39 stage 3 となり、 Safari TP37 で先行実装が入った。
-
-tc39/proposal-promise-finally</summary>
+   <summary>Promise.prototype.finally の仕様が TC39 stage 3 となり、 Safari TP37 で先行実装が入った。tc39/proposal-promise-finally</summary>
   </entry>
 
   <entry>
@@ -1063,11 +636,7 @@ tc39/proposal-promise-finally</summary>
    <link href="https://blog.jxck.io/entries/2017-08-05/navigation-preload.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-08-05</id>
    <updated>2017-08-05T00:00:00Z</updated>
-   <summary>Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。
-
-そして、この SW の起動には無視できない時間がかかる場合があった。
-
-これを改善する Navigation Preload について解説する。</summary>
+   <summary>Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload について解説する。</summary>
   </entry>
 
   <entry>
@@ -1075,11 +644,7 @@ tc39/proposal-promise-finally</summary>
    <link href="https://blog.jxck.io/entries/2017-07-19/aborting-fetch.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-07-19</id>
    <updated>2017-07-19T00:00:00Z</updated>
-   <summary>XHR から `fetch()` に積極的に移行しづらかった最大のミッシングピースとして、中断できないという問題があった。
-
-これは、 `fetch()` が選んだ Promise ベースのインタフェースにおいて、キャンセルをどうするかという議論と絡み、長く決着が付かずにいた問題である。
-
-最近、やっと話が前進したので、ここまでの経過を解説する。</summary>
+   <summary>XHR から fetch() に積極的に移行しづらかった最大のミッシングピースとして、中断できないという問題があった。これは、 fetch() が選んだ Promise ベースのインタフェースにおいて、キャンセルをどうするかという議論と絡み、長く決着が付かずにいた問題である。最近、やっと話が前進したので、ここまでの経過を解説する。</summary>
   </entry>
 
   <entry>
@@ -1087,11 +652,7 @@ tc39/proposal-promise-finally</summary>
    <link href="https://blog.jxck.io/entries/2017-07-14/net-neutrality.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-07-14</id>
    <updated>2017-07-14T00:00:00Z</updated>
-   <summary>US では #NetNeutrality について話題になっている一方、日本ではさほど話題になってないように思う。
-
-インターネットを基盤としている Web 開発者にとっても、いつまで他人事でいられるか怪しい。
-
-事態そのものがあまり知られてないかもと思い、決して精通しているわけではないが紹介する。</summary>
+   <summary>US では #NetNeutrality について話題になっている一方、日本ではさほど話題になってないように思う。インターネットを基盤としている Web 開発者にとっても、いつまで他人事でいられるか怪しい。事態そのものがあまり知られてないかもと思い、決して精通しているわけではないが紹介する。</summary>
   </entry>
 
   <entry>
@@ -1099,11 +660,7 @@ tc39/proposal-promise-finally</summary>
    <link href="https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-07-10</id>
    <updated>2017-07-10T00:00:00Z</updated>
-   <summary>念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。
-
-これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。
-
-Allow constructing and subclassing EventTarget</summary>
+   <summary>念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。Allow constructing and subclassing EventTarget</summary>
   </entry>
 
   <entry>
@@ -1111,11 +668,7 @@ Allow constructing and subclassing EventTarget</summary>
    <link href="https://blog.jxck.io/entries/2017-06-21/nomodule-attribute.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-06-21</id>
    <updated>2017-06-21T00:00:00Z</updated>
-   <summary>ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。
-
-ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。
-
-今回は、 Modules の対応/非対応を切り分けるための仕様である `nomodule` 属性を解説する。</summary>
+   <summary>ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。今回は、 Modules の対応/非対応を切り分けるための仕様である nomodule 属性を解説する。</summary>
   </entry>
 
   <entry>
@@ -1123,11 +676,7 @@ ES Modules の利用においても、いかに非対応ブラウザでフォー
    <link href="https://blog.jxck.io/entries/2017-06-12/web-budget-api.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-06-12</id>
    <updated>2017-06-12T00:00:00Z</updated>
-   <summary>PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。
-
-その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。
-
-基本概念と現時点での API 外観について解説する。</summary>
+   <summary>PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。基本概念と現時点での API 外観について解説する。</summary>
   </entry>
 
   <entry>
@@ -1143,13 +692,7 @@ ES Modules の利用においても、いかに非対応ブラウザでフォー
    <link href="https://blog.jxck.io/entries/2017-05-22/webrtc-loadmap.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-05-22</id>
    <updated>2017-05-22T00:00:00Z</updated>
-   <summary>Google の Product Manager である Huib Kleinhout が、 disscuss-webrtc の ML に以下のような投稿をした。
-
-Completing WebRTC 1.0
-
-WebRTC 1.0 を年内に終わらせるためのロードマップ(Chrome の改善を含む)を提示している。
-
-このロードマップに期待を寄せ、簡単に現状を振り返りつつ紹介する。</summary>
+   <summary>Google の Product Manager である Huib Kleinhout が、 disscuss-webrtc の ML に以下のような投稿をした。Completing WebRTC 1.0WebRTC 1.0 を年内に終わらせるためのロードマップ(Chrome の改善を含む)を提示している。このロードマップに期待を寄せ、簡単に現状を振り返りつつ紹介する。</summary>
   </entry>
 
   <entry>
@@ -1157,11 +700,7 @@ WebRTC 1.0 を年内に終わらせるためのロードマップ(Chrome の改�
    <link href="https://blog.jxck.io/entries/2017-05-18/gen_statem.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-05-18</id>
    <updated>2017-05-18T00:00:00Z</updated>
-   <summary>Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。
-
-OTP の内部でも ssl などはすでに gen_statem に移行している。
-
-このビヘイビアの概要について記す。</summary>
+   <summary>Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。gen_statem APIgen_statem Behaviorすでにかなり安定はしているが、軽微といえども非互換な変更が OTP 20 以降に発生する可能性があることがドキュメントに言及されている。本記事は 19 時点での API ドキュメントをベースにしている。</summary>
   </entry>
 
   <entry>
@@ -1169,9 +708,7 @@ OTP の内部でも ssl などはすでに gen_statem に移行している。
    <link href="https://blog.jxck.io/entries/2017-05-10/web-share.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-05-10</id>
    <updated>2017-05-10T00:00:00Z</updated>
-   <summary>Web Share API が Origin Trials を卒業したという知らせが届いた。
-
-コンテンツを他のサービスなどと連携するこの API について紹介する。</summary>
+   <summary>Web Share API が Origin Trials を卒業したという知らせが届いた。コンテンツを他のサービスなどと連携するこの API について紹介する。</summary>
   </entry>
 
   <entry>
@@ -1179,15 +716,7 @@ OTP の内部でも ssl などはすでに gen_statem に移行している。
    <link href="https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-03-02</id>
    <updated>2017-03-02T00:00:00Z</updated>
-   <summary>textarea などに入力された文字数を、 JS で数えたい場合がある。
-
-ここで `.length` を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。
-
-多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。
-
-それ自体は枯れた話題ではあるが、近年 ECMAScript に追加された機能などを交えて解説する。
-
-なお、文字コードの仕組みを詳解すること自体が目的では無いため、 BOM, UCS-2, Endian, 歴史的経緯など、この手の話題につき物な話の一部は省くこととする。</summary>
+   <summary>textarea などに入力された文字数を、 JS で数えたい場合がある。ここで .length を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。それ自体は枯れた話題ではあるが、近年 ECMAScript に追加された機能などを交えて解説する。なお、文字コードの仕組みを詳解すること自体が目的では無いため、 BOM, UCS-2, Endian, 歴史的経緯など、この手の話題につき物な話の一部は省くこととする。異体字セレクタ、正規化、セグメンテーションなどについて追記String Iterator について追記</summary>
   </entry>
 
   <entry>
@@ -1203,13 +732,7 @@ OTP の内部でも ssl などはすでに gen_statem に移行している。
    <link href="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-02-17</id>
    <updated>2017-02-17T00:00:00Z</updated>
-   <summary>W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。
-
-Polyfills and the evolution of the Web
-
-Polyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避けるために、 Polyfill 実装者、利用者、仕様策定者などが、どう振る舞うべきかという趣旨である。
-
-今回はこの内容を元に、 Web の進化と協調する Polyfill のあり方について、主に「実装者」がどうすべきかに着目し記す。</summary>
+   <summary>W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。Polyfills and the evolution of the WebPolyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避けるために、 Polyfill 実装者、利用者、仕様策定者などが、どう振る舞うべきかという趣旨である。今回はこの内容を元に、 Web の進化と協調する Polyfill のあり方について、主に「実装者」がどうすべきかに着目し記す。</summary>
   </entry>
 
   <entry>
@@ -1217,11 +740,7 @@ Polyfill は便利な一方で、時として標準化の妨げになってし�
    <link href="https://blog.jxck.io/entries/2017-02-13/csp-report-case-study.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-02-13</id>
    <updated>2017-02-13T00:00:00Z</updated>
-   <summary>このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。
-
-現状、対象ドメイン内で `&lt;input&gt;` は一切提供しておらず、大半が静的に生成されたページであるが、この条件でも、かなり多くのレポートが集まった。
-
-今回は、収集した実際のレポートを例に、攻撃ではないと思われるレポートとしてどういったものが送られて来たかを中心に、その内容やレポーティングサーバ、 CSP の運用に関する現時点の考察についてまとめる。</summary>
+   <summary>このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。現状、対象ドメイン内で &lt;input&gt; は一切提供しておらず、大半が静的に生成されたページであるが、この条件でも、かなり多くのレポートが集まった。今回は、収集した実際のレポートを例に、攻撃ではないと思われるレポートとしてどういったものが送られて来たかを中心に、その内容やレポーティングサーバ、 CSP の運用に関する現時点の考察についてまとめる。</summary>
   </entry>
 
   <entry>
@@ -1237,11 +756,7 @@ Polyfill は便利な一方で、時として標準化の妨げになってし�
    <link href="https://blog.jxck.io/entries/2017-01-10/mixed-contents.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-01-10</id>
    <updated>2017-01-10T00:00:00Z</updated>
-   <summary>HTTPS 移行の問題点の一つに、 mixed contents への対応がある。
-
-逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。
-
-本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能性のある、 CSP の `Upgrade-Insecure-Request` および、 `Block-All-Mixed-Contents` を解説する。</summary>
+   <summary>HTTPS 移行の問題点の一つに、 mixed contents への対応がある。逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能性のある、 CSP の Upgrade-Insecure-Request および、 Block-All-Mixed-Contents を解説する。</summary>
   </entry>
 
   <entry>
@@ -1257,13 +772,7 @@ Polyfill は便利な一方で、時として標準化の妨げになってし�
    <link href="https://blog.jxck.io/entries/2016-12-16/103-early-hints.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-12-16</id>
    <updated>2016-12-16T00:00:00Z</updated>
-   <summary>これは、 http2 Advent Calendar 2016 の 16 日目の記事である。
-
-HTTP に新しいステータスコード `103 Early Hints` が追加されようとしている。
-
-HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用することができる。
-
-いったい何のために必要なのか、どういうメリットが考えられるかを解説する。</summary>
+   <summary>これは、 http2 Advent Calendar 2016 の 16 日目の記事である。HTTP に新しいステータスコード 103 Early Hints が追加されようとしている。HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用することができる。いったい何のために必要なのか、どういうメリットが考えられるかを解説する。</summary>
   </entry>
 
   <entry>
@@ -1271,11 +780,7 @@ HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に�
    <link href="https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-12-12</id>
    <updated>2016-12-12T00:00:00Z</updated>
-   <summary>Service Worker に Foreign Fetch という機能が提案されている。
-
-この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。
-
-一体どういう仕組みなのか、これによって何が可能になるのかについて、デモを交えて記す。</summary>
+   <summary>Service Worker に Foreign Fetch という機能が提案されている。この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。一体どういう仕組みなのか、これによって何が可能になるのかについて、デモを交えて記す。</summary>
   </entry>
 
   <entry>
@@ -1283,13 +788,7 @@ HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に�
    <link href="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-12-11</id>
    <updated>2016-12-11T00:00:00Z</updated>
-   <summary>Service Worker を登録する方法は現状 3 つある。
-
-HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。
-
-HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Worker を追加した対応が可能である。
-
-次の記事で foreign fetch について解説する予定であるため、その前提知識として本機能を分離し紹介する。</summary>
+   <summary>Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Worker を追加した対応が可能である。次の記事で foreign fetch について解説する予定であるため、その前提知識として本機能を分離し紹介する。</summary>
   </entry>
 
   <entry>
@@ -1297,9 +796,7 @@ HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service W
    <link href="https://blog.jxck.io/entries/2016-10-27/whatwg-url.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-10-27</id>
    <updated>2016-10-27T00:00:00Z</updated>
-   <summary>Node v7.0.0 が公開され、今回のリリースで WHATWG URL の実装が Experimental として入った。
-
-既に標準で含まれていた url module との違いや、 URL API などについて解説する。</summary>
+   <summary>Node v7.0.0 が公開され、今回のリリースで WHATWG URL の実装が Experimental として入った。既に標準で含まれていた url module との違いや、 URL API などについて解説する。</summary>
   </entry>
 
   <entry>
@@ -1307,9 +804,7 @@ HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service W
    <link href="https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-09-29</id>
    <updated>2016-09-29T00:00:00Z</updated>
-   <summary>ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。
-
-今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。</summary>
+   <summary>ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。</summary>
   </entry>
 
   <entry>
@@ -1325,17 +820,7 @@ HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service W
    <link href="https://blog.jxck.io/entries/2016-08-22/websocket-connectivity.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-08-22</id>
    <updated>2016-08-22T00:00:00Z</updated>
-   <summary>「Socket.IO 使ったほうがいいですか?」 という主旨の質問をもらった。
-
-これは、 WebSocket が繋がらない環境に向けて、フォールバック機能を有する Socket.IO にしておいた方が良いのかという意味である。
-
-WebSocket が出てきた当初と比べて、 Web を取り巻く状況は変わったが、変わってないところもある。
-
-念のためと Socket.IO を使うのもよいが、「本当に必要なのか」を問うのは重要である。
-
-Rails も ActionCable で WebSocket に対応し、ユーザも増えるかもしれないことも踏まえ、
-
-ここで、もう一度現状について、把握している範囲で解説しておく。</summary>
+   <summary>「Socket.IO 使ったほうがいいですか?」 という主旨の質問をもらった。これは、 WebSocket が繋がらない環境に向けて、フォールバック機能を有する Socket.IO にしておいた方が良いのかという意味である。WebSocket が出てきた当初と比べて、 Web を取り巻く状況は変わったが、変わってないところもある。念のためと Socket.IO を使うのもよいが、「本当に必要なのか」を問うのは重要である。Rails も ActionCable で WebSocket に対応し、ユーザも増えるかもしれないことも踏まえ、ここで、もう一度現状について、把握している範囲で解説しておく。</summary>
   </entry>
 
   <entry>
@@ -1343,13 +828,7 @@ Rails も ActionCable で WebSocket に対応し、ユーザも増えるかも�
    <link href="https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-08-05</id>
    <updated>2016-08-05T00:00:00Z</updated>
-   <summary>UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。
-
-自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。
-
-このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、 Ruby の動的言語として表現力を使って実装したものといえる。
-
-その実装方法と実行例などについて記す。</summary>
+   <summary>UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、 Ruby の動的言語として表現力を使って実装したものといえる。その実装方法と実行例などについて記す。</summary>
   </entry>
 
   <entry>
@@ -1357,11 +836,7 @@ Rails も ActionCable で WebSocket に対応し、ユーザも増えるかも�
    <link href="https://blog.jxck.io/entries/2016-07-21/fetch-progress-cancel.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-07-21</id>
    <updated>2016-07-21T00:00:00Z</updated>
-   <summary>WHATWG が定義する Fetch API は、出たばかりの仕様では、途中でのキャンセルや、プログレスイベントの取得が含まれていなかった。
-
-しかし、後の更新で fetch 結果の Response Body が WHATWG Stream API を実装することになったため、現在の仕様ではプログレスを取ることもキャンセルをすることも可能となっている。
-
-今回は、こうした API のアップデートについて記す。</summary>
+   <summary>WHATWG が定義する Fetch API は、出たばかりの仕様では、途中でのキャンセルや、プログレスイベントの取得が含まれていなかった。しかし、後の更新で fetch 結果の Response Body が WHATWG Stream API を実装することになったため、現在の仕様ではプログレスを取ることもキャンセルをすることも可能となっている。今回は、こうした API のアップデートについて記す。</summary>
   </entry>
 
   <entry>
@@ -1369,11 +844,7 @@ Rails も ActionCable で WebSocket に対応し、ユーザも増えるかも�
    <link href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-07-12</id>
    <updated>2016-07-12T00:00:00Z</updated>
-   <summary>ブラウザはリロード時に、 max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。
-
-Cache-Control Extension として提案されている Immutable 拡張は、キャッシュが max-age 内であればリロード時もキャッシュヒットさせる拡張である。
-
-このヘッダの効果と、本サイトへの適用について記す。</summary>
+   <summary>ブラウザはリロード時に、 max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。Cache-Control Extension として提案されている Immutable 拡張は、キャッシュが max-age 内であればリロード時もキャッシュヒットさせる拡張である。このヘッダの効果と、本サイトへの適用について記す。</summary>
   </entry>
 
   <entry>
@@ -1381,9 +852,7 @@ Cache-Control Extension として提案されている Immutable 拡張は、キ
    <link href="https://blog.jxck.io/entries/2016-06-25/intersection-observer.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-06-25</id>
    <updated>2016-06-25T00:00:00Z</updated>
-   <summary>スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。
-
-この API の使い方と、本サイトへの適用について記す。</summary>
+   <summary>スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。この API の使い方と、本サイトへの適用について記す。</summary>
   </entry>
 
   <entry>
@@ -1391,14 +860,7 @@ Cache-Control Extension として提案されている Immutable 拡張は、キ
    <link href="https://blog.jxck.io/entries/2016-06-20/mozaicfm-v2.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-06-20</id>
    <updated>2016-06-20T00:00:00Z</updated>
-   <summary>mozaic.fm をリニューアルし、 v2 としてリリースした。
-
-今回の更新のモチベーションは大きく分けて 2 つある。
-
-- tumblr を捨てたかった
-- feedburner を捨てたかった
-
-これによる breaking change 含む変更の内容と、実装のメモを記す。</summary>
+   <summary>mozaic.fm をリニューアルし、 v2 としてリリースした。今回の更新のモチベーションは大きく分けて 2 つある。tumblr を捨てたかったfeedburner を捨てたかったこれによる breaking change 含む変更の内容と、実装のメモを記す。</summary>
   </entry>
 
   <entry>
@@ -1406,9 +868,7 @@ Cache-Control Extension として提案されている Immutable 拡張は、キ
    <link href="https://blog.jxck.io/entries/2016-06-12/noopener.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-06-12</id>
    <updated>2016-06-12T00:00:00Z</updated>
-   <summary>本サイト以下全ての `target=_blank` 付きのリンクに `rel=&quot;noopener noreferrer&quot;` の付与を実施した。
-
-このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。</summary>
+   <summary>本サイト以下全ての target=_blank 付きのリンクに rel=&quot;noopener noreferrer&quot; の付与を実施した。このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。</summary>
   </entry>
 
   <entry>
@@ -1416,13 +876,7 @@ Cache-Control Extension として提案されている Immutable 拡張は、キ
    <link href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-06-09</id>
    <updated>2016-06-09T00:00:00Z</updated>
-   <summary>DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。
-
-このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。
-
-今回は、この仕様が解決する問題と、本サイトへの適用を解説する。
-
-Passive Event Listeners Spec</summary>
+   <summary>DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイトへの適用を解説する。Passive Event Listeners Spec</summary>
   </entry>
 
   <entry>
@@ -1430,17 +884,7 @@ Passive Event Listeners Spec</summary>
    <link href="https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-04-24</id>
    <updated>2016-04-24T00:00:00Z</updated>
-   <summary>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
-
-しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
-
-そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。
-
-なお、 Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。
-
-思いつきで撮ったので色々ミスも有ります、また Chrome Dev Tools の UI はどうせ変わるのでそのつもりで見てください。
-
-TODO になっている動画は、そのうち撮って追加します。</summary>
+   <summary>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。なお、 Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。思いつきで撮ったので色々ミスも有ります、また Chrome Dev Tools の UI はどうせ変わるのでそのつもりで見てください。TODO になっている動画は、そのうち撮って追加します。</summary>
   </entry>
 
   <entry>
@@ -1448,13 +892,7 @@ TODO になっている動画は、そのうち撮って追加します。</summ
    <link href="https://blog.jxck.io/entries/2016-04-16/stale-while-revalidate.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-04-16</id>
    <updated>2016-04-16T00:00:00Z</updated>
-   <summary>システムにおいてキャッシュの設計は永遠の課題であり、 Web のパフォーマンスにおいても非常に重要である。
-
-Web では、 HTTP ヘッダを用いてブラウザやプロキシにキャッシュの制御を指定する。
-
-Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を追加する新しい仕様である。
-
-このヘッダの概要と、本サイトへの適用を解説する。</summary>
+   <summary>システムにおいてキャッシュの設計は永遠の課題であり、 Web のパフォーマンスにおいても非常に重要である。Web では、 HTTP ヘッダを用いてブラウザやプロキシにキャッシュの制御を指定する。Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を追加する新しい仕様である。このヘッダの概要と、本サイトへの適用を解説する。</summary>
   </entry>
 
   <entry>
@@ -1462,11 +900,7 @@ Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を
    <link href="https://blog.jxck.io/entries/2016-04-11/strict-transport-security.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-04-11</id>
    <updated>2016-04-11T00:00:00Z</updated>
-   <summary>本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。
-
-`includeSubdomains` を用いた `*.jxck.io` 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。
-
-導入に必要な設定や、注意点についてまとめる。</summary>
+   <summary>本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。includeSubdomains を用いた *.jxck.io 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。導入に必要な設定や、注意点についてまとめる。</summary>
   </entry>
 
   <entry>
@@ -1474,19 +908,7 @@ Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を
    <link href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-04-09</id>
    <updated>2016-04-09T00:00:00Z</updated>
-   <summary>本サイトにて Public Key Pinning for HTTP を有効化した。
-
-CSP 同様、まずは Report-Only を設定し、
-
-HPKP Report についても、 report-uri.io を用いて収集することにした。
-
-導入に必要な設定や、注意点についてまとめる。
-
-なお、本サイトへの導入はあくまで *実験* である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
-
-また、本来は HSTS と併用することが推奨されている。(必須ではない)
-
-そちらも追って対応する予定である。</summary>
+   <summary>本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、 report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる。なお、本サイトへの導入はあくまで 実験 である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。また、本来は HSTS と併用することが推奨されている。(必須ではない)そちらも追って対応する予定である。</summary>
   </entry>
 
   <entry>
@@ -1494,13 +916,7 @@ HPKP Report についても、 report-uri.io を用いて収集することに�
    <link href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-30</id>
    <updated>2016-03-30T00:00:00Z</updated>
-   <summary>本サイトにて Content Security Policy を有効化した。
-
-まずは Report Only にて導入し、段階的にポリシーとコンテンツを修正していく方針をとる。
-
-CSP Report については、 report-uri.io を用いて収集することにした。
-
-導入に必要な設定や、注意点についてまとめる。</summary>
+   <summary>本サイトにて Content Security Policy を有効化した。まずは Report Only にて導入し、段階的にポリシーとコンテンツを修正していく方針をとる。CSP Report については、 report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる。</summary>
   </entry>
 
   <entry>
@@ -1508,17 +924,7 @@ CSP Report については、 report-uri.io を用いて収集することにし
    <link href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-27</id>
    <updated>2016-03-27T00:00:00Z</updated>
-   <summary>本サイトで使用している UI アイコン系の画像を、ギリギリまで最適化した手書き SVG に置き換えた(ただしソースは *観賞用* なので、インデントは残す)。
-
-また、装飾に画像ではなく CSS の contents を利用することで、ローカルフォントデータを利用し、画像転送を減らす工夫にも言及する。
-
-画像最適化シリーズ第 4 回目のエントリである。
-
-1. 画像最適化戦略 PNG/JPEG 編
-1. 画像最適化戦略 Picture 編
-1. 画像最適化戦略 WebP 編
-1. &gt; 画像最適化戦略 SVG/Font 編
-1. 画像最適化戦略 Lazy Loading 編</summary>
+   <summary>本サイトで使用している UI アイコン系の画像を、ギリギリまで最適化した手書き SVG に置き換えた(ただしソースは 観賞用 なので、インデントは残す)。また、装飾に画像ではなく CSS の contents を利用することで、ローカルフォントデータを利用し、画像転送を減らす工夫にも言及する。画像最適化シリーズ第 4 回目のエントリである。画像最適化戦略 PNG/JPEG 編画像最適化戦略 Picture 編画像最適化戦略 WebP 編&gt; 画像最適化戦略 SVG/Font 編画像最適化戦略 Lazy Loading 編</summary>
   </entry>
 
   <entry>
@@ -1526,17 +932,7 @@ CSP Report については、 report-uri.io を用いて収集することにし
    <link href="https://blog.jxck.io/entries/2016-03-26/webp.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-26</id>
    <updated>2016-03-26T00:00:00Z</updated>
-   <summary>本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。
-
-フォーマットを出し分けるため、画像の指定は `&lt;picture&gt;` 要素を用いて対応した。
-
-画像最適化シリーズ第 3 回目のエントリである。
-
-1. 画像最適化戦略 PNG/JPEG 編
-1. 画像最適化戦略 Picture 編
-1. &gt; 画像最適化戦略 WebP 編
-1. 画像最適化戦略 SVG/Font 編
-1. 画像最適化戦略 Lazy Loading 編</summary>
+   <summary>本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 3 回目のエントリである。画像最適化戦略 PNG/JPEG 編画像最適化戦略 Picture 編&gt; 画像最適化戦略 WebP 編画像最適化戦略 SVG/Font 編画像最適化戦略 Lazy Loading 編</summary>
   </entry>
 
   <entry>
@@ -1544,15 +940,7 @@ CSP Report については、 report-uri.io を用いて収集することにし
    <link href="https://blog.jxck.io/entries/2016-03-25/picture.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-25</id>
    <updated>2016-03-25T00:00:00Z</updated>
-   <summary>本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 `&lt;picture&gt;` 要素を適用した。
-
-画像最適化シリーズ第 2 回目のエントリである。
-
-1. 画像最適化戦略 PNG/JPEG 編
-1. &gt; 画像最適化戦略 Picture 編
-1. 画像最適化戦略 WebP 編
-1. 画像最適化戦略 SVG/Font 編
-1. 画像最適化戦略 Lazy Loading 編</summary>
+   <summary>本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 &lt;picture&gt; 要素を適用した。画像最適化シリーズ第 2 回目のエントリである。画像最適化戦略 PNG/JPEG 編&gt; 画像最適化戦略 Picture 編画像最適化戦略 WebP 編画像最適化戦略 SVG/Font 編画像最適化戦略 Lazy Loading 編</summary>
   </entry>
 
   <entry>
@@ -1560,15 +948,7 @@ CSP Report については、 report-uri.io を用いて収集することにし
    <link href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-24</id>
    <updated>2016-03-24T00:00:00Z</updated>
-   <summary>本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。
-
-画像最適化シリーズ第 1 回目のエントリである。
-
-1. &gt; 画像最適化戦略 PNG/JPEG 編
-1. 画像最適化戦略 Picture 編
-1. 画像最適化戦略 WebP 編
-1. 画像最適化戦略 SVG/Font 編
-1. 画像最適化戦略 Lazy Loading 編</summary>
+   <summary>本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。&gt; 画像最適化戦略 PNG/JPEG 編画像最適化戦略 Picture 編画像最適化戦略 WebP 編画像最適化戦略 SVG/Font 編画像最適化戦略 Lazy Loading 編</summary>
   </entry>
 
   <entry>
@@ -1576,11 +956,7 @@ CSP Report については、 report-uri.io を用いて収集することにし
    <link href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-14</id>
    <updated>2016-03-14T00:00:00Z</updated>
-   <summary>このサイトのフォントに Web Font を適用することにした。
-
-フォントには Google と Adobe が協同で開発した Noto Sans CJK JP を採用した。
-
-また、このサイトでは使用しないだろう文字を削除したサブセットを作ることで、フォントサイズを最適化した。</summary>
+   <summary>このサイトのフォントに Web Font を適用することにした。フォントには Google と Adobe が協同で開発した Noto Sans CJK JP を採用した。また、このサイトでは使用しないだろう文字を削除したサブセットを作ることで、フォントサイズを最適化した。</summary>
   </entry>
 
   <entry>
@@ -1588,15 +964,7 @@ CSP Report については、 report-uri.io を用いて収集することにし
    <link href="https://blog.jxck.io/entries/2016-03-04/preload.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-04</id>
    <updated>2016-03-04T00:00:00Z</updated>
-   <summary>Preload を指定する `&lt;link rel=preload&gt;` の仕様が公開されており、現在 Chrome Canary に実装されている。
-
-この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。
-
-今回は、この仕様の特徴と用途を解説し、本サイトへの適用について検討する。
-
-- W3C Preload Spec
-- Intent to Ship: `&lt;link rel=preload&gt;`
-- Preload: What Is It Good For?</summary>
+   <summary>Preload を指定する &lt;link rel=preload&gt; の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕様の特徴と用途を解説し、本サイトへの適用について検討する。W3C Preload SpecIntent to Ship: &lt;link rel=preload&gt;Preload: What Is It Good For?</summary>
   </entry>
 
   <entry>
@@ -1604,9 +972,7 @@ CSP Report については、 report-uri.io を用いて収集することにし
    <link href="https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-26</id>
    <updated>2016-02-26T00:00:00Z</updated>
-   <summary>本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
-
-これにより、既に AMP 対応していた本サイトが、 Google のモバイル検索でキャッシュの対象となる(クロール待ち)。</summary>
+   <summary>本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。これにより、既に AMP 対応していた本サイトが、 Google のモバイル検索でキャッシュの対象となる(クロール待ち)。</summary>
   </entry>
 
   <entry>
@@ -1614,7 +980,7 @@ CSP Report については、 report-uri.io を用いて収集することにし
    <link href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-17</id>
    <updated>2016-02-17T00:00:00Z</updated>
-   <summary>HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。</summary>
+   <summary>HTTP では Accept-Encoding と Content-Encoding でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。</summary>
   </entry>
 
   <entry>
@@ -1622,13 +988,7 @@ CSP Report については、 report-uri.io を用いて収集することにし
    <link href="https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-15</id>
    <updated>2016-02-15T00:00:00Z</updated>
-   <summary>Chrome が予定している `&lt;link rel=stylesheet&gt;` の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。
-
-The future of loading CSS
-
-この内容は、単に Chrome に対する変更だけではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
-
-今回は、この内容を意訳+補足解説し、本サイトに適用していく。</summary>
+   <summary>Chrome が予定している &lt;link rel=stylesheet&gt; の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に対する変更だけではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。今回は、この内容を意訳+補足解説し、本サイトに適用していく。</summary>
   </entry>
 
   <entry>
@@ -1636,18 +996,7 @@ The future of loading CSS
    <link href="https://blog.jxck.io/entries/2016-02-11/resource-hints.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-11</id>
    <updated>2016-02-11T00:00:00Z</updated>
-   <summary>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。
-
-https://w3c.github.io/resource-hints/
-
-主に以下がある。
-
-- dns-prefetch
-- preconnect
-- prefetch
-- prerender
-
-今回は本サイトでこれを適用した話。</summary>
+   <summary>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。https://w3c.github.io/resource-hints/主に以下がある。dns-prefetchpreconnectprefetchprerender今回は本サイトでこれを適用した話。</summary>
   </entry>
 
   <entry>
@@ -1655,9 +1004,7 @@ https://w3c.github.io/resource-hints/
    <link href="https://blog.jxck.io/entries/2016-02-09/atom-feed.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-09</id>
    <updated>2016-02-09T00:00:00Z</updated>
-   <summary>このブログの Atom feed を吐くようにした。
-
-右上の feed アイコン から登録できる。</summary>
+   <summary>このブログの Atom feed を吐くようにした。右上の feed アイコン から登録できる。</summary>
   </entry>
 
   <entry>
@@ -1673,9 +1020,7 @@ https://w3c.github.io/resource-hints/
    <link href="https://blog.jxck.io/entries/2016-02-01/amp-html.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-01</id>
    <updated>2016-02-01T00:00:00Z</updated>
-   <summary>Google が推奨する仕様である AMP HTML に、このブログを対応した。
-
-言いたいことは色々あるが、とりあえず非常に難しかったため、その対応方法や感想などを残す。</summary>
+   <summary>Google が推奨する仕様である AMP HTML に、このブログを対応した。言いたいことは色々あるが、とりあえず非常に難しかったため、その対応方法や感想などを残す。</summary>
   </entry>
 
   <entry>
@@ -1683,15 +1028,7 @@ https://w3c.github.io/resource-hints/
    <link href="https://blog.jxck.io/entries/2016-01-28/html-compression.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-01-28</id>
    <updated>2016-01-28T00:00:00Z</updated>
-   <summary>本サイト blog.jxck.io 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。
-
-この変換時に以前から思っていた *HTML の最適化* を実施することにした。
-
-しかし、 md-&gt;html 変換時にそれをできるツールが見当たらないため、 Markdown の AST から HTML を構築する過程で、省略を施すスクリプトを自作した。
-
-ただし、ソースはあくまで観賞用なので、インデントやコメントは残している。
-
-チューニングではなく単なる実験としてサイト全体にこれを適用し、その結果を記す。</summary>
+   <summary>本サイト blog.jxck.io 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた HTML の最適化 を実施することにした。しかし、 md-&gt;html 変換時にそれをできるツールが見当たらないため、 Markdown の AST から HTML を構築する過程で、省略を施すスクリプトを自作した。ただし、ソースはあくまで観賞用なので、インデントやコメントは残している。チューニングではなく単なる実験としてサイト全体にこれを適用し、その結果を記す。</summary>
   </entry>
 
   <entry>
