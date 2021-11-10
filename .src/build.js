@@ -1,5 +1,5 @@
 import { readFile, writeFile, stat } from "fs/promises";
-import { encode, decode, traverse, Node } from "markdown"
+import { encode, decode, traverse, hsc, Node } from "markdown"
 import ejs from "ejs"
 import glob from "glob"
 import { readFileSync, statSync } from "fs"
@@ -82,20 +82,6 @@ function updated_at(mtime) {
 }
 
 /**
- * HTML special characters escape
- * @param {string} str
- * @returns {string}
- */
-function hsc(str) {
-  return str
-    .replace(/&/g, `&amp;`)
-    .replace(/</g, `&lt;`)
-    .replace(/>/g, `&gt;`)
-    .replace(/"/g, `&quot;`)
-    .replace(/'/g, `&apos;`)
-}
-
-/**
  * indent helper
  * @param {string} str
  * @param {number} i
@@ -130,7 +116,7 @@ function short(str) {
  */
 function parse_yaml(str) {
   /**@type {any} */
-  const init = {guests: []}
+  const init = { guests: [] }
   return str.split(`\n`)
     .map((line) => line.match(/^(?<key>.*?): (?<value>.*)/).groups)
     .reduce((acc, { key, value }) => {
