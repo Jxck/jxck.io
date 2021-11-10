@@ -20,7 +20,6 @@ function dump(ast) {
   }, `  `))
 }
 
-
 /**
  * Calculate hash from mtime
  * @param {string} path
@@ -277,25 +276,19 @@ function customise(ast, base) {
     pre: false,
   }
 
+  /**@type {Array.<string>} */
+  let tags = []
   let description = ''
 
-  /**@type {Array.<string>} */
-  const tags = []
   const root = traverse(ast, {
     enter: (node) => {
       return node
     },
     leave: (node) => {
       if (node.name === `headding` && node.level === 1) {
-        const text = node.children[0].text
-        const result = /(?<tag>\[.*\])?(?<title>.*)/.exec(text)?.groups
-        const { tag, title } = result
-        // tag は optional
-        Array.from(tag?.matchAll(/\[(?<tag>.*?)\]/g) ?? []).forEach((match) => {
-          tags.push(match.groups.tag)
-        })
-        node.children[0].text = title.trim()
-        return node
+        const result = customise_headding(node)
+        tags = result.tags
+        return result.node
       }
       if (node.name === `headding` && node.level === 2) {
         if (node.attr.id === `intro` || node.attr.id === `theme`) {
@@ -303,22 +296,11 @@ function customise(ast, base) {
         }
       }
       if (node.name === `table` && style_flag.table === false) {
-        // 一度だけ css の style を差し込む
-        const link = new Node({
-          name: `link`,
-          type: `inline`,
-          attr: {
-            rel: `stylesheet`,
-            property: `stylesheet`,
-            type: `text/css`,
-            href: version(`https://www.jxck.io/assets/css/table.css`)
-          }
-        })
-        const div = new Node({ name: `empty`, type: `block` })
-        div.appendChild(link)
-        div.appendChild(node)
-        style_flag.table = true
-        return div
+        if (style_flag.table === false) {
+          // 一度だけ table css を差し込む
+          style_flag.table = true
+          return append_css(node, `https://www.jxck.io/assets/css/table.css`)
+        }
       }
       if (node.name === `pre`) {
         if (node.name === `pre` && node.attr.path) {
@@ -326,101 +308,137 @@ function customise(ast, base) {
           node.addText(code)
         }
         if (style_flag.pre === false) {
-          // 一度だけ css の style を差し込む
-          const link = new Node({
-            name: `link`,
-            type: `inline`,
-            attr: {
-              rel: `stylesheet`,
-              property: `stylesheet`,
-              type: `text/css`,
-              href: version(`https://www.jxck.io/assets/css/pre.css`),
-            }
-          })
-          const div = new Node({ name: `empty`, type: `block` })
-          div.appendChild(link)
-          div.appendChild(node)
+          // 一度だけ pre css を差し込む
           style_flag.pre = true
-          return div
+          return append_css(node, `https://www.jxck.io/assets/css/pre.css`)
         }
-        return node
       }
       if (node.name === `img`) {
-        const attr = node.attr
-        /**
-         * TODO: parse 方法を見直す
-         */
-        const path = /(?<src>.*?)#(?<width>\d*?)x(?<height>\d*?)$/.exec(attr.src)
-        if (path === null) throw new Error(`missing <width>x<height> in "${attr.src}"`)
-        const { src, width, height } = path.groups
-
-        const query = cache_busting(`${base}/${src}`)
-        attr.src = `${src}${query}`
-        attr.width = width
-        attr.height = height
-
-        // .svg はそのまま <img>
-        if (src.endsWith(`.svg`)) {
-          // <img loading=lazy decoding=async src=test.svg?180105_115707#546x608 alt="test alt" title="test title" width=546 height=608>
-          return new Node({ name: `img`, type: `block`, attr })
-        }
-
-        // .mp4 のときは Video にする
-        if (src.endsWith(`.mp4`)) {
-          const video = new Node({
-            name: `video`,
-            type: `block`,
-            attr: {
-              title: attr.alt,
-              width: attr.width,
-              height: attr.height,
-              controls: null,
-              playsinline: null,
-            }
-          })
-          const mp4 = new Node({
-            name: `source`,
-            type: `inline`,
-            attr: {
-              type: `video/mp4`,
-              src: attr.src,
-            }
-          })
-
-          const webm_src = src.replace(/.mp4/, `.webm`)
-          const webm_query = cache_busting(`${base}/${webm_src}`)
-          const webm = new Node({
-            name: `source`,
-            type: `inline`,
-            attr: {
-              type: `video/webm`,
-              src: `${webm_src}${webm_query}`
-            }
-          })
-          video.appendChild(mp4)
-          video.appendChild(webm)
-          return video
-        }
-
-        if (src.endsWith(`.png`) || src.endsWith(`.jpeg`) || src.endsWith(`.gif`)) {
-          const picture = new Node({ name: `picture`, type: `block` })
-          // TODO: replace 1 つでいける
-          const webp = src.replace(/\.png$|\.jpeg$|\.gif$/, `.webp`)
-          const query = cache_busting(`${base}/${webp}`)
-          const srcset = `${webp}${query}`
-          const img = new Node({ name: `img`, type: `block`, attr })
-          const source = new Node({ name: `source`, type: `block`, attr: { type: `image/webp`, srcset } })
-          picture.appendChild(source)
-          picture.appendChild(img)
-          return picture
-        }
-
-        throw new Error(`<img> should ".jpeg" or ".png" or ".svg" and <video> should ".mp4" in "${src}"`)
+        return customise_image(node, base)
       }
       return node
     }
   })
   return { root, description, tags }
+}
+
+/**
+ * @param {Node} node
+ * @param {string} css
+ * @returns {Node}
+ */
+function append_css(node, css) {
+  const link = new Node({
+    name: `link`,
+    type: `inline`,
+    attr: {
+      rel: `stylesheet`,
+      property: `stylesheet`,
+      type: `text/css`,
+      href: version(css)
+    }
+  })
+  const empty = new Node({ name: `empty`, type: `block` })
+  empty.appendChild(link)
+  empty.appendChild(node)
+  return empty
+}
+
+/**
+ * # [tag] title => {title: "title", tags: [tag]}
+ * @param {Node} node
+ * @returns {{node: Node, tags: Array.<string>}}
+ */
+function customise_headding(node) {
+  const text = node.children[0].text
+  const result = /(?<tag>\[.*\])?(?<title>.*)/.exec(text)?.groups
+  const { tag, title } = result
+  // tag は optional
+  const tags = Array.from(tag?.matchAll(/\[(?<tag>.*?)\]/g) ?? []).map((match) => {
+    return match.groups.tag
+  })
+  node.children[0].text = title.trim()
+  return { node, tags }
+}
+
+/**
+ * .png/.jpeg/.gif -> picture
+ * .svg -> img
+ * .mp4 -> video
+ * @param {Node} node
+ * @param {string} base
+ * @returns 
+ */
+function customise_image(node, base) {
+  const attr = node.attr
+  /**
+   * TODO: parse 方法を見直す
+   */
+  const path = /(?<src>.*?)#(?<width>\d*?)x(?<height>\d*?)$/.exec(attr.src)
+  if (path === null) throw new Error(`missing <width>x<height> in "${attr.src}"`)
+  const { src, width, height } = path.groups
+
+  const query = cache_busting(`${base}/${src}`)
+  attr.src = `${src}${query}`
+  attr.width = width
+  attr.height = height
+
+  // .svg はそのまま <img>
+  if (src.endsWith(`.svg`)) {
+    return new Node({ name: `img`, type: `block`, attr })
+  }
+
+  // .mp4 のときは Video にする
+  if (src.endsWith(`.mp4`)) {
+    const video = new Node({
+      name: `video`,
+      type: `block`,
+      attr: {
+        title: attr.alt,
+        width: attr.width,
+        height: attr.height,
+        controls: null,
+        playsinline: null,
+      }
+    })
+    const mp4 = new Node({
+      name: `source`,
+      type: `inline`,
+      attr: {
+        type: `video/mp4`,
+        src: attr.src,
+      }
+    })
+
+    const webm_src = src.replace(/.mp4/, `.webm`)
+    const webm_query = cache_busting(`${base}/${webm_src}`)
+    const webm = new Node({
+      name: `source`,
+      type: `inline`,
+      attr: {
+        type: `video/webm`,
+        src: `${webm_src}${webm_query}`
+      }
+    })
+    video.appendChild(mp4)
+    video.appendChild(webm)
+    return video
+  }
+
+  if (src.endsWith(`.png`) || src.endsWith(`.jpeg`) || src.endsWith(`.gif`)) {
+    const picture = new Node({ name: `picture`, type: `block` })
+    // TODO: replace 1 つでいける
+    const webp = src.replace(/\.png$|\.jpeg$|\.gif$/, `.webp`)
+    const query = cache_busting(`${base}/${webp}`)
+    const srcset = `${webp}${query}`
+    const img = new Node({ name: `img`, type: `block`, attr })
+    const source = new Node({ name: `source`, type: `block`, attr: { type: `image/webp`, srcset } })
+    picture.appendChild(source)
+    picture.appendChild(img)
+    return picture
+  }
+
+  throw new Error(`<img> should ".jpeg" or ".png" or ".svg" and <video> should ".mp4" in "${src}"`)
 }
 
 
@@ -550,8 +568,6 @@ async function parse_episode(entry, order) {
   }
 }
 
-
-
 /**
  * build podcast episodes
  * @param {Array.<string>} files
@@ -635,7 +651,6 @@ async function blog(files) {
 }
 
 
-
 /**
  * @typedef {Object} Podcast
  * @property {number} ep
@@ -647,7 +662,6 @@ async function blog(files) {
  * @property {Podcast} [next]
  * @property {Podcast} [prev]
  */
-
 
 /**
  * build podcast episodes
@@ -726,7 +740,10 @@ async function podcast(files) {
 
 async function workbox() {
   const js = await readFile(`../www.jxck.io/assets/js/workbox.js`, { encoding: `utf-8` })
-  const matched = js.match(/\/\*---build.js---\*\/(?<list>[\s\S]*)\/\*---build.js---\*\//m)
+
+  const boudary = `---build.js---`
+  const reg = new RegExp(`\\/\\*${boudary}\\*\\/(?<list>[\\s\\S]*)\\/\\*${boudary}\\*\\/`, `m`)
+  const matched = js.match(reg)
   /**@type {Array.<string>} */
   const scripts = eval(matched.groups.list)
 
@@ -738,13 +755,15 @@ async function workbox() {
     return `  "${url.toString()}",`
   }).join(`\n`)
 
-  const fragment = `/*---build.js---*/
-[
-${array}
-]
-/*---build.js---*/`
+  const fragment = [
+    `/*${boudary}*/`,
+    `[`,
+    array,
+    `]`,
+    `/*${boudary}*/`,
+  ].join(`\n`)
 
-  const replaced = js.replace(/\/\*---build.js---\*\/(?<list>[\s\S]*)\/\*---build.js---\*\//m, () => fragment)
+  const replaced = js.replace(reg, () => fragment)
   await writeFile(`../www.jxck.io/assets/js/workbox.js`, replaced)
 }
 
