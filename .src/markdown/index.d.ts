@@ -1,4 +1,9 @@
 /**
+ * @param {string} str
+ * @returns {string}
+ */
+export function hsc(str: string): string;
+/**
  * @param {Node} node
  * @returns {string}
  */

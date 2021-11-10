@@ -28,7 +28,7 @@ function spaces(indent) {
  * @param {string} str
  * @returns {string}
  */
-function htmlescape(str) {
+export function hsc(str) {
   return str
     .replace(/&/g, `&amp;`)
     .replace(/</g, `&lt;`)
@@ -187,7 +187,7 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function text(node, indent) {
-    return `${spaces(indent)}${htmlescape(node.text)}`
+    return `${spaces(indent)}${hsc(node.text)}`
   }
 
   /**
@@ -243,7 +243,7 @@ export function encode(node, option = {}) {
     const code = node.children.map((child) => child.text).join(`\n`)
     return [
       `${spaces(indent)}<pre${lang}${path}><code translate=no>`,
-      htmlescape(code),
+      hsc(code),
       `</code></pre>\n`
     ].join(``)
   }
