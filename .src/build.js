@@ -526,7 +526,7 @@ async function parse_episode(entry, order) {
 
   const { root, description } = customise(ast, base)
 
-  const encoded = encode(root, { indent: 4 })
+  const encoded = encode(root, { indent: 2 })
 
   // Top ページのために Theme だけ別で encode する
   const theme_section = ast.children[0].children[2]
