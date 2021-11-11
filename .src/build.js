@@ -100,12 +100,13 @@ function indent(str, i = 2) {
 /**
  * shorten description less than 140
  * @param {string} str
+ * @param {number} [n]
  * @returns {string}
  */
-function short(str) {
+function short(str, n = 140) {
   str = str.replaceAll(`\n`, ``)
-  if (str.length <= 140) return str
-  return str.slice(0, 137) + `...`
+  if (str.length <= n) return str
+  return str.slice(0, n - 3) + `...`
 }
 
 /**

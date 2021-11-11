@@ -39,7 +39,7 @@
       <itunes:explicit>no</itunes:explicit>
       <itunes:keywords>web,tech,it</itunes:keywords>
       <itunes:order><%= episode.order %></itunes:order>
-      <itunes:subtitle><%- episode.description.split('\n')[0] %></itunes:subtitle>
+      <itunes:subtitle><%- episode.description.split("。")[0] + "。" %></itunes:subtitle>
       <media:content url="<%= episode.audio %>" fileSize="<%= episode.audio_size %>" type="audio/mpeg" />
       <description>
 <%- episode.description %>
