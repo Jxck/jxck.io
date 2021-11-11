@@ -49,7 +49,7 @@
           "itunes:explicit": "no",
           "itunes:keywords": ["web","tech","it"],
           "itunes:order": "<%= episode.order %>",
-          "itunes:subtitle": "<%- episode.description.split('\n')[0] %>",
+          "itunes:subtitle": "<%- episode.description.split("。")[0] + "。" %>",
           "media:content": {
             "url": "<%= episode.audio %>",
             "fileSize": "<%= episode.audio_size %>",
