@@ -248,7 +248,7 @@ runtime.goexit
           <pre class=sh-session><code translate=no>$ cat blog_jxck_io.crt DigiCertCA.crt &gt; blog_jxck_io_full.crt</code></pre>
           <p>toml を更新して起動し直すと成功。
           <p>これを systemd に登録して完了。
-          <pre class=service data-path="../../../.systemd/amppkg.service"><code translate=no>[Unit]
+          <pre class=service data-path=../../../.systemd/amppkg.service><code translate=no>[Unit]
 Description=amppkg.jxck.io
 After=network.target nss-lookup.target
 
@@ -292,7 +292,7 @@ WantedBy=multi-user.target</code></pre>
           <p>h2o は Path ベースでの Proxy は簡単だが、ヘッダをベースに分岐するには mruby handler 内で proxy する必要があり、その方法がよくわからず最初は <code translate=no>http_request</code> でリクエストを再構築して書いていた。
           <p>後から、 <a href="https://h2o.examp1e.net/configure/reproxy_directives.html#reproxy">reproxy</a> という機能がそのまま使えることを教えてもらい、一瞬で解決した。
           <p>(機能は知っていたが、 Example を見て同じドメインの別のパスに移譲すると勝手に思い込んでいたが、普通に別ポートにも移譲できた。)
-          <pre class=ruby data-path="amppkg.rb"><code translate=no>Proc.new do |env|
+          <pre class=ruby data-path=amppkg.rb><code translate=no>Proc.new do |env|
   path = env[&quot;PATH_INFO&quot;]
   amp_cache_transform = env[&quot;HTTP_AMP_CACHE_TRANSFORM&quot;]
 

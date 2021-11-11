@@ -202,7 +202,7 @@
         <h2 id="url-オブジェクト"><a href="#url-オブジェクト">URL オブジェクト</a></h2>
         <p>Node v7.0.0 で実装された API は以下のように使うことができる。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=js data-path="url.js"><code translate=no>const URL = require(&apos;url&apos;).URL;
+        <pre class=js data-path=url.js><code translate=no>const URL = require(&apos;url&apos;).URL;
 
 const u = new URL(&apos;https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main&apos;);
 console.log(u);
@@ -218,7 +218,7 @@ console.log(u);
 // }</code></pre>
         <p>この API を経由すれば、日本語ドメインの Punycode 化、 IPv6 アドレスの対応、 escape などもやってくれる。
         <p>(ここら辺が、正規表現での処理時に問題になりやすいあたりだ。)
-        <pre class=js data-path="url-ext.js"><code translate=no>const URL = require(&apos;url&apos;).URL;
+        <pre class=js data-path=url-ext.js><code translate=no>const URL = require(&apos;url&apos;).URL;
 
 // 日本語ドメイン
 const jp = new URL(&apos;https://じゃっく.jp&apos;);
@@ -257,7 +257,7 @@ console.log(ja);
         <h2 id="urlsearchparams-オブジェクト"><a href="#urlsearchparams-オブジェクト">URLSearchParams オブジェクト</a></h2>
         <p>また、 query parameter を表現する URLSearchParams は別オブジェクトであるため、 query parameter の取得や生成もこのオブジェクトを利用できる。
         <p>一応 Node v7.0.0 にもコードはあるようだが、正しく動いてないようなので、完成予定の Chrome の結果を代わりに貼っておく。
-        <pre class=js data-path="searchparams.js"><code translate=no>const URL = require(&apos;url&apos;).URL;
+        <pre class=js data-path=searchparams.js><code translate=no>const URL = require(&apos;url&apos;).URL;
 
 const u = new URL(&apos;https://jxck.io?log=warn&amp;lang=ja&apos;);
 const searchParams = u.searchParams;
