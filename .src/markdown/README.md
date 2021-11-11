@@ -4,8 +4,6 @@
 
 本サイトは自作の HTML ビルダを使っていたが、色々と気に食わない部分があったのでフルスクラッチで作り直し、それにともなってサイトの刷新を実施した。
 
-
-
 ## Markdown
 
 本サイトは、一般に使われている Markdown -> HTML の変換結果では要件を満たせないため、パーサから AST だけを取得し、それを Traverser でカスタマイズしてから自前でシリアライズしていた。
@@ -60,21 +58,20 @@
 
 ```html
 <article>
-  <h1 id=h1><a href=#h1>h1</a></h1>
+  <h1 id="h1"><a href="#h1">h1</a></h1>
   <section>
-    <h2 id=h2><a href=#h2>h2</a></h2>
+    <h2 id="h2"><a href="#h2">h2</a></h2>
     <section>
-      <h3 id=h3><a href=#h3>h3</a></h3>
+      <h3 id="h3"><a href="#h3">h3</a></h3>
     </section>
     <section>
-      <h3 id=h3_1><a href=#h3_1>h3</a></h3>
+      <h3 id="h3_1"><a href="#h3_1">h3</a></h3>
     </section>
-</section>
+  </section>
 </article>
 ```
 
 もともと kramdown をカスタマイズしはじめたのも、これを行いたかったからだった。
-
 
 ### TOC の生成
 
@@ -88,16 +85,13 @@ h1 には以下のようにタグが書けるようにカスタマイズして�
 # [tag] hello world
 ```
 
-
-
 ### 閉じタグとクオートの省略
 
 - 条件を満たした閉じタグと属性のクオートは基本省略
   - https://html.spec.whatwg.org/#a-quick-introduction-to-html
-  - 
+  -
 - きれいなインデント
-- 
-
+-
 
 ## blockquote の cite
 
@@ -134,13 +128,21 @@ URL の最後に fragment を `#256x256` のように指定すると width, heig
 さらに、画像を読み込んで `mtime` から最終更新時を算出し、それをクエリに付与して Cache Busting する。
 
 ```md
-![alt text](image.png#256x256 'title test')
+![alt text](image.png#256x256 "title test")
 ```
 
 ```html
 <picture>
   <source type=image/webp srcset=image.webp?211010_101010>
-  <img loading=lazy decoding=async src=image.png?211010_101010 alt="jxck" title="jxck logo" width=256 height=256>
+  <img
+    loading="lazy"
+    decoding="async"
+    src="image.png?211010_101010"
+    alt="jxck"
+    title="jxck logo"
+    width="256"
+    height="256"
+  />
 </picture>
 ```
 
@@ -151,12 +153,11 @@ URL の最後に fragment を `#256x256` のように指定すると width, heig
 ```
 
 ```html
-<video title="dummy video" width=1000 height=2000 controls playsinline>
-  <source type=video/mp4 src=dummy_video.mp4?211010_101010>
-  <source type=video/webm src=dummy_video.webm?211010_101010>
+<video title="dummy video" width="1000" height="2000" controls playsinline>
+  <source type=video/mp4 src=dummy_video.mp4?211010_101010> <source
+  type=video/webm src=dummy_video.webm?211010_101010>
 </video>
 ```
-
 
 ### adoptive CSS
 
@@ -184,7 +185,6 @@ mozaic.fm の Monthly Web では、 Show Note に大量のリンクを張り、�
 
 また、 `<table>` の align は `align` 属性で指定も可能だが、もう deprecate されているため、 CSS で align するために `class` をつけるようにしている。
 
-
 ### <dl>
 
 定義リスト記法もサポートしている。
@@ -204,13 +204,14 @@ key2
 ```html
 <dl>
   <div>
-    <dt>key1
-    <dd>val1
+    <dt>key1</dt>
+    <dd>val1</dd>
   </div>
+
   <div>
-    <dt>key2
-    <dd>val2
-    <dd>val3
+    <dt>key2</dt>
+    <dd>val2</dd>
+    <dd>val3</dd>
   </div>
 </dl>
 ```
@@ -249,7 +250,6 @@ a **b ** c
 
 これを formatter にしてもよいが、意図しないところが変更されると面倒なのでやってない。
 
-
 ### URL link
 
 URL は以下の 3 つ全てサポートしてる。
@@ -261,7 +261,6 @@ https://example.com
 ```
 
 最後の何も記法がないものは、とりあえず `http://` と `https://` で始まるものだけに絞ることで誤発動を防いでいるが、 `about:`, `chrome:`, `file:` をサポートするかは考え中。
-
 
 ### Front Matter
 
@@ -287,15 +286,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 YAML は YAML パーサを入れるほど複雑なものを書いてないので、 YAML パーサを自作するのをぐっとこらえて雑に処理している。
 
-
 ### 使わない記法は実装しない
 
 - `<del>` や `<i>` は使わないので実装してない
 - Math も使わないので実装しない
 - `<ul>` は `-` しか使わないので `*` は実装しない
 - `<ol>` は `n.` しか使わないので `+` は実装しない
-
-
 
 ## traverser plugin
 
