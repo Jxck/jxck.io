@@ -19,7 +19,7 @@
 
 XSS などの原因となる DOM 操作として、 DOM に直接文字列を展開する処理がある。
 
-- `element.innderHTML`
+- `element.innerHTML`
 - `location.href`
 - `script.src`
 - `script.textContent`
@@ -44,7 +44,7 @@ Content-Security-Policy: trusted-types
 
 これにより、現時点では以下のような処理がエラーとなる。
 
-- `element.innderHTML`
+- `element.innerHTML`
 - `location.href`
 - `script.src`
 - `script.textContent`
