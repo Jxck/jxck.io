@@ -95,6 +95,7 @@ export type Toc = {
 };
 export type Attr = {
     id?: string;
+    class?: string;
     title?: string;
     width?: string;
     height?: string;
