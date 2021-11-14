@@ -59,6 +59,7 @@ export function serialize_child_text(node) {
 /**
  * @typedef {Object} Attr
  * @prop {string} [id]
+ * @prop {string} [class]
  * @prop {string} [title]
  * @prop {string} [width]
  * @prop {string} [height]
