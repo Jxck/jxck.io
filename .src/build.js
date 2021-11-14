@@ -194,11 +194,6 @@ async function audio_duration(audio) {
 function info_section({ published_at, guests }) {
   // console.log({ published_at, guests })
 
-  const section = new Node({ name: `section`, type: `block` })
-
-  const h2 = new Node({ name: `headding`, type: `inline`, level: 2, attr: { id: `info` } })
-  h2.addText(`Info`)
-
   const dl = new Node({ name: `dl`, type: `block` })
 
   // published_at
@@ -230,10 +225,7 @@ function info_section({ published_at, guests }) {
     dl.appendChild(div)
   })
 
-  section.appendChild(h2)
-  section.appendChild(dl)
-
-  return section
+  return dl
 }
 
 /**
