@@ -194,7 +194,7 @@ async function audio_duration(audio) {
 function info_section({ published_at, guests }) {
   // console.log({ published_at, guests })
 
-  const dl = new Node({ name: `dl`, type: `block` })
+  const dl = new Node({ name: `dl`, type: `block`, attr: { "class": "info" } })
 
   // published_at
   const div = new Node({ name: `div`, type: `block` })
