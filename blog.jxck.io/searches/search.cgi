@@ -46,7 +46,7 @@ def search(pwd, host, query)
       }
     }.flatten
     next acc if details.empty?
-    title = body.lines.first.match(/^# \[.*\] (.*)/)[1]
+    title = body.match(/^# (\[.*\] )*(?<title>.*)/).named_captures["title"]
     url   = path.relative_path_from(base).sub_ext(".html")
     date  = path.dirname.basename().to_s
     acc.append({url: url, title: title, date: date, keyword: keywords.join(" "), details: details})
@@ -65,12 +65,12 @@ def fragment(prefix, keyword, suffix)
 end
 
 def build(pwd, host, query, results)
-
+  log("pwd = #{pwd}\n")
   template_path = case host
                 when "blog.jxck.io"
-                  "#{pwd}/.script/template/blog.search.html.erb"
+                  "#{pwd}/.src/template/blog.search.html.erb"
                 when "mozaic.fm"
-                  "#{pwd}/.script/template/podcast.search.html.erb"
+                  "#{pwd}/.src/template/podcast.search.html.erb"
                 end
   template      = File.read(template_path)
   ERB.new(template, nil, '-').result(binding)
