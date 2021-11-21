@@ -65,7 +65,6 @@ def fragment(prefix, keyword, suffix)
 end
 
 def build(pwd, host, query, results)
-  log("pwd = #{pwd}\n")
   template_path = case host
                 when "blog.jxck.io"
                   "#{pwd}/.src/template/blog.search.html.erb"
