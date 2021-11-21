@@ -1,10 +1,12 @@
 'use strict';
 
-let p = console.log.bind(console);
-let logger = console.log.bind(console);
+import http from 'http';
+import websocket from 'websocket'
+import echo from './echo.js';
+import broadcast from './broadcast.js';
 
-let http = require('http');
-let WebSocketServer = require('websocket').server;
+const p = console.log.bind(console);
+const logger = console.log.bind(console);
 
 const PORT = process.env.PORT;
 
@@ -12,14 +14,14 @@ const PORT = process.env.PORT;
  * Registering Handlers
  * { protocol: function(request) {} }
  */
-let handlers = {
-  echo:          require('./echo'),
-  broadcast:     require('./broadcast'),
+const handlers = {
+  echo,
+  broadcast,
   // push_register: require('./push_register'),
 }
 
 // http server
-let server = http.createServer((request, response) => {
+const server = http.createServer((request, response) => {
   logger('http', request.url);
   response.writeHead(404);
   response.end();
@@ -31,7 +33,7 @@ server.listen(PORT, () => {
 });
 
 // websocket handler
-let ws = new WebSocketServer({
+const ws = new websocket.server({
   httpServer: server,
   autoAcceptConnections: false
 });
@@ -41,7 +43,7 @@ ws.on('request', (request) => {
   const protocol = request.requestedProtocols[0];
   logger('request', request.origin, protocol);
 
-  let handler = handlers[protocol];
+  const handler = handlers[protocol];
   if (handler === undefined) {
     request.reject();
     return logger('reject', request.requestedProtocols);

@@ -1,12 +1,12 @@
 'use strict';
 
-let logger = console.log.bind(console);
+const logger = console.log.bind(console);
 
 // export handler
-module.exports = function(request) {
+export default function echo(request) {
   const protocol = request.requestedProtocols[0];
 
-  let connection = request.accept(protocol);
+  const connection = request.accept(protocol);
   logger('accept', protocol);
 
   connection.on('message', (message) => {

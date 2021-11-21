@@ -1,8 +1,8 @@
 'use strict';
 
-let logger = console.log.bind(console);
+const logger = console.log.bind(console);
 
-let connectionmap = new Map();
+const connectionmap = new Map();
 logger('initial connection Map()');
 
 setInterval(() => {
@@ -11,14 +11,14 @@ setInterval(() => {
 }, 1000*60*60);
 
 // export handler
-module.exports = function(request) {
+export default function broadcast(request) {
   logger(request.requestedProtocols);
 
   const [main, sub] = request.requestedProtocols
   const connection = request.accept(main)
   logger('accept', main, sub);
 
-  let connections = connectionmap.get(sub);
+  const connections = connectionmap.get(sub);
   if (connections === undefined) {
     connections = new Set();
   }
@@ -42,11 +42,11 @@ module.exports = function(request) {
 
   connection.on('close', (reasonCode, description) => {
     logger('close', connection.remoteAddress, reasonCode, description);
-    connections.delete(connection);
+    connections.deconste(connection);
   });
 
   connection.on('error', (err) => {
     logger('error', err);
-    connections.delete(connection);
+    connections.deconste(connection);
   });
 }
