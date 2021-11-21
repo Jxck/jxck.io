@@ -1,12 +1,6 @@
 .PHONY: blog podcast comp gz br remove clean webp
 .SUFFIXES: .html .md .amp .amp.html .webp .png .jpeg .gif
 
-# build:
-# 	make full
-# 	make blogfeed
-# 	make podcastfeed
-# 	make comp
-
 build:
 	cd .src && node build.js build
 	make comp
@@ -72,68 +66,6 @@ PHTML = $(PMD:.md=.html)
 # .md -> .html
 .md.html:
 	$(MARK) $(if $(findstring blog.jxck.io, $*), --blog, --podcast) ./$*.md
-
-
-# build
-blog: $(BHTML)
-	$(MARK) --blogindex
-
-podcast: $(PHTML)
-	$(MARK) --podcastindex
-
-blogfull:
-	$(MARK) --blogindex
-	$(MARK) --blogfull
-
-blogsw:
-	$(MARK) --blogsw
-
-podcastfull:
-	$(MARK) --podcastindex
-	$(MARK) --podcastfull
-
-full:
-	$(MARK) --blogindex
-	$(MARK) --podcastindex
-	$(MARK) --full
-	$(MARK) --blogsw
-
-
-
-# feed
-blogfeed:
-	$(MARK) --blogfeed
-
-podcastfeed:
-	$(MARK) --podcastfeed
-
-
-# test
-blogtest:
-	$(MARK) --blogtest
-
-podcasttest:
-	$(MARK) --podcasttest
-
-podcastid3all:
-	$(MARK) --podcastid3all
-
-podcastkeyword:
-	#bundle exec ruby ./.script/shownote.rb
-	ruby ./.script/shownote.rb
-
-
-marktest:
-	$(MARK) --marktest
-
-test:
-	$(MARK) --test
-
-t:
-	$(MARK) -t
-
-draft:
-	$(MARK) --draft $(lastword $(MAKECMDGOALS))
 
 
 ##########################
@@ -255,7 +187,6 @@ install:
 	#sudo apt install pngquant optipng
 
 update:
-	bundle update
 	ncu -u
 
 systemd-list:
