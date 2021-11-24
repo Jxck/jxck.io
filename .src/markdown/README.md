@@ -1,8 +1,10 @@
 # Blog の刷新 v2
 
+
 ## Intro
 
 本サイトは自作の HTML ビルダを使っていたが、色々と気に食わない部分があったのでフルスクラッチで作り直し、それにともなってサイトの刷新を実施した。
+
 
 ## Markdown
 
@@ -14,11 +16,14 @@
 
 メモとして要件を記しておく。
 
+
 ## 要件
+
 
 ### Headding / Sectioning
 
 大抵の Markdown 実装は `#`, `##` は `<h1>`, `<h2>` にそのままシリアライズされる。
+
 
 ```md
 # h1
@@ -30,6 +35,7 @@
 ### h3
 ```
 
+
 ```html
 <h1>h1</h1>
 <h2>h2</h2>
@@ -38,6 +44,7 @@
 ```
 
 これを `<section>` で階層化し、 `<h1>` だけは `<article>` にする。
+
 
 ```html
 <article>
@@ -56,6 +63,7 @@
 
 さらに、見出しジャンプを入れる。その際、 ID を振るが、もし被った場合は後ろに連番を振る。
 
+
 ```html
 <article>
   <h1 id="h1"><a href="#h1">h1</a></h1>
@@ -73,34 +81,45 @@
 
 もともと kramdown をカスタマイズしはじめたのも、これを行いたかったからだった。
 
+
 ### TOC の生成
 
 前述で生成した headding とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
+
 
 ### h1
 
 h1 には以下のようにタグが書けるようにカスタマイズしている。
 
+
 ```md
 # [tag] hello world
 ```
 
+
 ### 閉じタグとクオートの省略
 
-- 条件を満たした閉じタグと属性のクオートは基本省略
-  - https://html.spec.whatwg.org/#a-quick-introduction-to-html
-  -
-- きれいなインデント
--
+- 条件を満たした閉じタグは省略
+  - https://html.spec.whatwg.org/multipage/syntax.html#optional-tags
+- 条件を満たしたクオートは省略
+  - https://html.spec.whatwg.org/#unquoted
+
+
+### インデント
+
+- インデントはキレイに
+
 
 ## blockquote の cite
 
 blockqote の最後に書いた URL を `cite` として埋め込む。
 
+
 ```md
 > example page
 --- https://example.com
 ```
+
 
 ```html
 <blockquote cite="https://example.com">
@@ -111,11 +130,13 @@ blockqote の最後に書いた URL を `cite` として埋め込む。
 
 本来は `cite` 属性の方だけで良いが、以前は `<cite>` だったため今は両方にしている。
 
+
 ### 外部 script の読み込み
 
 ブログを書く上で、ソースコードを別ファイルにし、それをサンプルコードとして埋め込めると非常に便利だ。
 
 そこで、 `js:script.js` のような言語指定をすると `./script.js` を読み込んで埋め込む機能をつけている。
+
 
 ### img のカスタマイズ
 
@@ -127,9 +148,11 @@ URL の最後に fragment を `#256x256` のように指定すると width, heig
 
 さらに、画像を読み込んで `mtime` から最終更新時を算出し、それをクエリに付与して Cache Busting する。
 
+
 ```md
 ![alt text](image.png#256x256 "title test")
 ```
+
 
 ```html
 <picture>
@@ -148,9 +171,11 @@ URL の最後に fragment を `#256x256` のように指定すると width, heig
 
 そして、動画を埋め込む記法が Markdown にはないが、これまで gif アニメにしていたものは mp4 に移行しつつあるので、拡張子が mp4 だった場合は `<video>` になるようにしている。こちらは、 webm のフォールバックを入れている。
 
+
 ```md
 ![dummy video](dummy_video.mp4#1000x2000)
 ```
+
 
 ```html
 <video title="dummy video" width="1000" height="2000" controls playsinline>
@@ -158,6 +183,7 @@ URL の最後に fragment を `#256x256` のように指定すると width, heig
   type=video/webm src=dummy_video.webm?211010_101010>
 </video>
 ```
+
 
 ### adoptive CSS
 
@@ -169,11 +195,13 @@ URL の最後に fragment を `#256x256` のように指定すると width, heig
 
 [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
 
+
 ### `<table>`
 
 kramdown は、文の途中で `|` が来ると `<table>` が始まったと解釈する。
 
 しかし、以下のようなリンクのタイトルは `|` を含むことが多く、エスケープが必要だった。
+
 
 ```md
 - [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について \| blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
@@ -185,6 +213,7 @@ mozaic.fm の Monthly Web では、 Show Note に大量のリンクを張り、�
 
 また、 `<table>` の align は `align` 属性で指定も可能だが、もう deprecate されているため、 CSS で align するために `class` をつけるようにしている。
 
+
 ### `<dl>`
 
 定義リスト記法もサポートしている。
@@ -193,6 +222,7 @@ mozaic.fm の Monthly Web では、 Show Note に大量のリンクを張り、�
 
 また、 1 dt: n dd もサポートしている。
 
+
 ```md
 key1
 : val1
@@ -200,6 +230,7 @@ key2
 : val2
 : val3
 ```
+
 
 ```html
 <dl>
@@ -222,6 +253,7 @@ key2
 
 いっそ以下のような独自記法を入れてしまってもよいかと考えている。
 
+
 ```md
 :key1
   :val1
@@ -230,11 +262,13 @@ key2
   :val3
 ```
 
+
 ### 余計な空白はエラー
 
 以前はビルドとは別に linter のようなものを雑に作ってフォーマットを確認していた。
 
 しかし、せっかくパーサを書いたので、パースの際に気に食わないところは、すべてエラーにすることにした。
+
 
 ```md
 以下全部エラー
@@ -250,9 +284,11 @@ a **b ** c
 
 これを formatter にしてもよいが、意図しないところが変更されると面倒なのでやってない。
 
+
 ### URL link
 
 URL は以下の 3 つ全てサポートしてる。
+
 
 ```md
 [title](https://example.com)
@@ -262,11 +298,13 @@ https://example.com
 
 最後の何も記法がないものは、とりあえず `http://` と `https://` で始まるものだけに絞ることで誤発動を防いでいるが、 `about:`, `chrome:`, `file:` をサポートするかは考え中。
 
+
 ### Front Matter
 
 特に moziac.fm のエピソードページでは、 mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
 
 しかし、 Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
+
 
 ```md
 ---
@@ -286,12 +324,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 YAML は YAML パーサを入れるほど複雑なものを書いてないので、 YAML パーサを自作するのをぐっとこらえて雑に処理している。
 
+
 ### 使わない記法は実装しない
 
 - `<del>` や `<i>` は使わないので実装してない
 - Math も使わないので実装しない
 - `<ul>` は `-` しか使わないので `*` は実装しない
 - `<ol>` は `n.` しか使わないので `+` は実装しない
+
 
 ## traverser plugin
 
@@ -304,6 +344,7 @@ YAML は YAML パーサを入れるほど複雑なものを書いてないので
 そこで、 AST を生成した後に、そこを Traverse する機能を用意し、 Node をたどりながら好きな変更を入れられるようにし、そこを Plugin のフックポイントとすることにした。
 
 特に Node の `fs` を使わないと実現できないものは Plugin 側に寄せ、責務を分離できるようにしている。
+
 
 ## 効果
 
