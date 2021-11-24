@@ -97,12 +97,12 @@ h1 には以下のようにタグが書けるようにカスタマイズして�
 
 blockqote の最後に書いた URL を `cite` として埋め込む。
 
-```
+```md
 > example page
 --- https://example.com
 ```
 
-```
+```html
 <blockquote cite="https://example.com">
   <p>example page
   <p>&mdash; <cite><a href="https://example.com">example.com</a></cite>
@@ -148,7 +148,7 @@ URL の最後に fragment を `#256x256` のように指定すると width, heig
 
 そして、動画を埋め込む記法が Markdown にはないが、これまで gif アニメにしていたものは mp4 に移行しつつあるので、拡張子が mp4 だった場合は `<video>` になるようにしている。こちらは、 webm のフォールバックを入れている。
 
-```
+```md
 ![dummy video](dummy_video.mp4#1000x2000)
 ```
 
@@ -169,13 +169,13 @@ URL の最後に fragment を `#256x256` のように指定すると width, heig
 
 [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
 
-### <table>
+### `<table>`
 
 kramdown は、文の途中で `|` が来ると `<table>` が始まったと解釈する。
 
 しかし、以下のようなリンクのタイトルは `|` を含むことが多く、エスケープが必要だった。
 
-```
+```md
 - [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について \| blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
 ```
 
@@ -185,7 +185,7 @@ mozaic.fm の Monthly Web では、 Show Note に大量のリンクを張り、�
 
 また、 `<table>` の align は `align` 属性で指定も可能だが、もう deprecate されているため、 CSS で align するために `class` をつけるようにしている。
 
-### <dl>
+### `<dl>`
 
 定義リスト記法もサポートしている。
 
@@ -193,7 +193,7 @@ mozaic.fm の Monthly Web では、 Show Note に大量のリンクを張り、�
 
 また、 1 dt: n dd もサポートしている。
 
-```
+```md
 key1
 : val1
 key2
@@ -222,7 +222,7 @@ key2
 
 いっそ以下のような独自記法を入れてしまってもよいかと考えている。
 
-```
+```md
 :key1
   :val1
 :key2
@@ -236,7 +236,7 @@ key2
 
 しかし、せっかくパーサを書いたので、パースの際に気に食わないところは、すべてエラーにすることにした。
 
-```
+```md
 以下全部エラー
 
 a  **b** c
@@ -254,7 +254,7 @@ a **b ** c
 
 URL は以下の 3 つ全てサポートしてる。
 
-```
+```md
 [title](https://example.com)
 <https://example.com>
 https://example.com
