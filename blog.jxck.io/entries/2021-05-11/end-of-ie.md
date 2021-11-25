@@ -244,3 +244,5 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://support.yahoo-net.jp/PccYjcommon/s/article/H000011350>
 - 2021/10/02: Google の検索結果
   - <https://twitter.com/cramforce/status/1443962459723755533>
+- 2021/11/09: Internet Explorerのサポートを終了いたします - Qiita Blog
+  - <https://blog.qiita.com/end-ie11-support/>
