@@ -389,6 +389,9 @@ SEO 自体はどうでもいいが、 Google の検索結果がなんか色々�
 - TODO: Favicon
 - other
 
+![search result before](search-result-before.png)
+
+
 ## 効果
 
 実装を置き換えてからの効果は以下。
