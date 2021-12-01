@@ -16,6 +16,8 @@
 
 プレビュー表示などでブラウザでも使えるよう、一応 Pure JS (+ JSDoc Typed) で 1 ファイルにゴリっと書いている。また、汎用性は求めてないのでライブラリとして別リポジトリで公開はせず、ブログのソースに組み込んで密結合させている。
 
+- [jxck.io/.src/markdown at master · Jxck/jxck.io](https://github.com/Jxck/jxck.io/tree/master/.src/markdown)
+
 メモとして要件を記しておく。
 
 ## 要件
