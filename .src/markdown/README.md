@@ -1,12 +1,10 @@
-# [markdown][blog] blog.jxck.io v2 リリースと自作 Markdown プロセッサ
-
+# [markdown][blog] 自作 Markdown プロセッサベースの blog.jxck.io v2 リリース
 
 ## Intro
 
 本サイトは自作の Markdown ビルダを使っていたが、色々と気に食わない部分があったのでフルスクラッチで作り直し、それにともなってサイトの刷新を実施した。
 
 必要だった要件や、意思決定を作業ログとして記す。
-
 
 ## Markdown
 
@@ -20,14 +18,11 @@
 
 メモとして要件を記しておく。
 
-
 ## 要件
-
 
 ### Headding / Sectioning
 
 大抵の Markdown 実装は `#`, `##` は `<h1>`, `<h2>` にそのままシリアライズされる。
-
 
 ```md
 # h1
@@ -39,7 +34,6 @@
 ### h3
 ```
 
-
 ```html
 <h1>h1</h1>
 <h2>h2</h2>
@@ -48,7 +42,6 @@
 ```
 
 これを `<section>` で階層化し、 `<h1>` だけは `<article>` にする。
-
 
 ```html
 <article>
@@ -67,7 +60,6 @@
 
 さらに、見出しジャンプを入れる。その際、 ID を振るが、もし被った場合は後ろに連番を振る。
 
-
 ```html
 <article>
   <h1 id="h1"><a href="#h1">h1</a></h1>
@@ -85,7 +77,6 @@
 
 もともと kramdown をカスタマイズしはじめたのも、これを行いたかったからだった。
 
-
 ### 閉じタグとクオートの省略
 
 HTML の仕様には、閉じタグやクオートの省略条件が書かれている。
@@ -97,11 +88,9 @@ HTML の仕様には、閉じタグやクオートの省略条件が書かれて
 - 条件を満たしたクオートは省略
   - https://html.spec.whatwg.org/#unquoted
 
-
 ### インデント
 
 インデントはキレイに
-
 
 ## blockquote の cite
 
@@ -109,39 +98,36 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 
 例えばこれは
 
-
 ```md
 > example page
---- https://example.com
+> --- https://example.com
 ```
 
 以下のようになる。
 
-
 ```html
 <blockquote cite="https://example.com">
-  <p>example page
-  <p>&mdash; <cite><a href="https://example.com">example.com</a></cite>
+  <p>example page</p>
+  <p>
+    &mdash; <cite><a href="https://example.com">example.com</a></cite>
+  </p>
 </blockquote>
 ```
 
-本来は `cite` 属性の方だけで良いが、以前は `<cite>` だったため今は互換を保つよう両方にしている。
-
+本来は `cite` 属性の方だけで良いが、以前は `<cite>` だったため今は互換を保つよう両方に入れている。
 
 ### 外部 script の読み込み
 
-ブログを書く上で、コードブロックにサンプルコードを書くことは多く、その中身が多いと外部ファイルに出し、読み込みたくなる。
+ブログを書く上で、コードブロックにサンプルコードを書くことは多く、その中身が多いと外部ファイルに出し、ビルド時に読み込めると便利だ。
 
 そこで、本サイトは初期から以下の記法をサポートしていた。
-
 
 ```
 \`\`\`js:script.js
 \`\`\`
 ```
 
-このようにすると、 HTML ビルド時に script.js を読み込んで HTML の `<code>` 内に展開してくれる。
-
+このようにすると、 HTML ビルド時にカレントディレクトリの script.js を読み込んで HTML の `<code>` 内に展開してくれる。
 
 ### img のカスタマイズ
 
@@ -153,13 +139,11 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 
 さらに、画像を読み込んで `mtime` から最終更新時を算出し、それをクエリに付与して Cache Busting する。
 
-
 ```md
 ![alt text](image.png#256x256 "title test")
 ```
 
 これは以下のように展開される。
-
 
 ```html
 <picture>
@@ -178,21 +162,18 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 
 そして、動画を埋め込む記法が Markdown にはないが、これまで gif アニメにしていたものは mp4 に移行しつつあるので、拡張子が mp4 だった場合は `<video>` になるようにしている。こちらは、 webm のフォールバックを入れている。
 
-
 ```md
 ![dummy video](dummy_video.mp4#1000x2000)
 ```
 
-
 ```html
 <video title="dummy video" width="1000" height="2000" controls playsinline>
-  <source type=video/mp4 src=dummy_video.mp4?211010_101010>
-  <source type=video/webm src=dummy_video.webm?211010_101010>
+  <source type=video/mp4 src=dummy_video.mp4?211010_101010> <source
+  type=video/webm src=dummy_video.webm?211010_101010>
 </video>
 ```
 
 そろそろ画像の avif 対応も入れたい。
-
 
 ### adoptive CSS
 
@@ -204,13 +185,11 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 
 [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
 
-
 ### `<table>`
 
 Kramdown は、文の途中で `|` が来ると `<table>` が始まったと解釈する。
 
 しかし、以下のようなリンクのタイトルは `|` を含むことが多く、エスケープが必要だった。
-
 
 ```md
 - [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について \| blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
@@ -222,7 +201,6 @@ mozaic.fm の Monthly Web では、 Show Note に大量のリンクを張り、�
 
 また、 `<table>` の align は `align` 属性で指定も可能だが、もう deprecate されているため、 CSS で align するために `class` をつけるようにしている。
 
-
 ### TOC の生成
 
 前述で生成した headding とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
@@ -231,11 +209,9 @@ TOC の生成は、後述する Traverser で欲しい人が自分でやるス�
 
 この TOC は、 blog のタイトル上に埋め込んでいる。
 
-
 ### h1
 
 h1 には以下のようにタグが書けるようにしている。
-
 
 ```md
 # [tag] hello world
@@ -243,13 +219,11 @@ h1 には以下のようにタグが書けるようにしている。
 
 これも、 blog のタイトル上に埋め込んでいる。
 
-
 ### `<dl>`
 
 定義リスト記法もサポートしている。
 
 さらに `<dl>` の下の `<dt>` `<dd>` は `<div>` で囲むことが許されており、これがあるとスタイルがちょっと楽になる。
-
 
 ```md
 key1
@@ -258,7 +232,6 @@ key2
 : val2
 : val3
 ```
-
 
 ```html
 <dl>
@@ -281,15 +254,13 @@ key2
 
 いっそ以下のような独自記法を入れてしまってもよいかと考えている。
 
-
 ```md
 :key1
-  :val1
+:val1
 :key2
-  :val2
-  :val3
+:val2
+:val3
 ```
-
 
 ### 余計な空白はエラー
 
@@ -297,26 +268,23 @@ key2
 
 しかし、せっかくパーサを書いたので、パースの際に気に食わないところは、すべてエラーにすることにした。
 
-
 ```md
 以下全部エラー
 
-a  **b** c
-a **b**  c
+a **b** c
+a **b** c
 a ** b** c
 a **b ** c
 
--  aaa
- - bbb
+- aaa
+- bbb
 ```
 
 これを formatter にしてもよいかもしれないが、ビルド時エラーで間に合っているのでしてない。
 
-
 ### URL link
 
-リンク記法は以下の 3 つ全てサポートしてる。
-
+Kramdown ではサポートされてなかった URL Like String を含めて、リンク記法は以下の 3 つ全てサポートしてる。
 
 ```md
 [title](https://example.com)
@@ -328,13 +296,11 @@ https://example.com
 
 `about:`, `chrome:`, `file:` をサポートするかは考え中。
 
-
 ### Front Matter
 
 特に moziac.fm のエピソードページでは、 mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
 
 しかし、 Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
-
 
 ```md
 ---
@@ -354,14 +320,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 YAML は YAML パーサを入れるほど複雑なものを書いてないので、 YAML パーサを自作するのをぐっとこらえて雑に処理している。
 
-
 ### 使わない記法は実装しない
 
 - `<del>` や `<i>` は使わないので実装してない
 - `<ul>` は `-` しか使わないので `*` は実装しない
 - `<ol>` は `n.` しか使わないので `+` は実装しない
 - Math も使わないので実装しない
-
 
 ## traverser plugin
 
@@ -375,22 +339,52 @@ YAML は YAML パーサを入れるほど複雑なものを書いてないので
 
 特に Node の `fs` を使わないと実現できないものは Plugin 側に寄せ、責務を分離できるようにしている。
 
-
 ## 脱 WebFont
 
 鉄下駄として WebFont を入れていたが、もう試すことはだいたい試した上に、もう日本語フォントにこれ以上期待するのは難しと考えてやめた。
 
-## Google Search Result
+- [Tag: Web Font](https://blog.jxck.io/tags/#web%20font)
 
-SEO 自体はどうでもいいが、 Google の検索結果がなんか色々雑に表示されていることに気づいたので、ついでに直すことにした。
+## HTML Header
+
+テンプレートを直すついでに、継ぎ足し継ぎ足しだったヘッダ部分を色々と整理した。
+
+### Favicon
+
+Favicon / Touch Icon のサポートと解像度を整理して、多くのケースをカバーできるようにした。
+
+### TWitter Card
+
+Twitter Card のためのタグを入れていたが、ももうどうでもいいのでタグを削除。 OGP 自体はあるので部分的にそちらでカバーされるはず。
+
+### Hatena
+
+「内容が長いとブコメしか見ない」というはてな民が一定いるという話を聞き、であれば読まれない方がマシということで Opt-Out のタグを追加。
+
+### Google Search
+
+SEO 自体はどうでもよいが、 Google の検索結果がなんか色々雑に表示されていることに気づいたので修正。
+
+うまく反映されてない部分もあるので WIP
 
 - Sitelink Search
 - TODO: サイト内リンク
 - TODO: Favicon
 - other
 
+ついでに robotx.txt も整理。
+
 ![search result before](search-result-before.png)
 
+## AMP 削除
+
+以前 AMP のサポートは落としていたが、コードベースは残していた。
+
+しかし、新しいビルダではもう AMP の生成はサポートしなくなったので、完全に削除した。
+
+## webpkg/amppkg
+
+どちらも証明書が切れたので停止。いずれ証明書が安く手に入るようになったら再開するためコードは残す。
 
 ## 効果
 
@@ -402,3 +396,9 @@ SEO 自体はどうでもいいが、 Google の検索結果がなんか色々�
 - これまでの HTML の細かな問題、気に入らなかったところも全て精算できた
 - kramdown という依存が無くなったので、 dependbot から警告が来ることが無くなった。
 - ビルドプロセスから Ruby をなくせた
+- 溜まっていた負債を払った
+
+## まとめ
+
+今回 CSS の修正/整理まではいけなかったので、それは来年以降なおしていきたい。
+また、起点になる Markdown コードベースを作り直せたので、これを元に mozaic.fm の方も改良を入れたい。
