@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2021-11-30/blog-v2-release.html>
+
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?210502_161127>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
+
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?210502_161127></script>
+  <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/webp sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/webp sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="本サイトは自作の Markdown ビルダを使っていたが、色々と気に食わない部分があったのでフルスクラッチで作り直し、それにともなってサイトの刷新を実施した。必要だった要件や、意思決定を作業ログとして記す。">
+  <meta name=keywords            content="markdown,blog">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2021-11-30/blog-v2-release.html>
+  <meta property=og:title        content="自作 Markdown プロセッサベースの blog.jxck.io v2 リリース | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="本サイトは自作の Markdown ビルダを使っていたが、色々と気に食わない部分があったのでフルスクラッチで作り直し、それにともなってサイトの刷新を実施した。必要だった要件や、意思決定を作業ログとして記す。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "自作 Markdown プロセッサベースの blog.jxck.io v2 リリース | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2021-11-30T08:00:00+08:00",
+    "dateModified": "2021-12-01T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "本サイトは自作の Markdown ビルダを使っていたが、色々と気に食わない部分があったのでフルスクラッチで作り直し、それにともなってサイトの刷新を実施した。必要だった要件や、意思決定を作業ログとして記す。"
+  }
+  </script>
+
+  <title>自作 Markdown プロセッサベースの blog.jxck.io v2 リリース | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?210923_180158>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?201218_145648>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2021-11-30>2021-11-30</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-12-01>2021-12-01</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#markdown">markdown</a>
+              <li><a href="/tags#blog">blog</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ul>
+                <li><a href=#intro>## Intro</a>
+                <li><a href=#markdown>## Markdown</a>
+                <li><a href=#要件>## 要件</a>
+                <li><a href=#headding--sectioning>### Headding / Sectioning</a>
+                <li><a href=#閉じタグとクオートの省略>### 閉じタグとクオートの省略</a>
+                <li><a href=#インデント>### インデント</a>
+                <li><a href=#blockquote-の-cite>## blockquote の cite</a>
+                <li><a href=#外部-script-の読み込み>### 外部 script の読み込み</a>
+                <li><a href=#img-のカスタマイズ>### img のカスタマイズ</a>
+                <li><a href=#adoptive-css>### adoptive CSS</a>
+                <li><a href=#table>### <code translate=no>&lt;table&gt;</code></a>
+                <li><a href=#toc-の生成>### TOC の生成</a>
+                <li><a href=#h1>### h1</a>
+                <li><a href=#dl>### <code translate=no>&lt;dl&gt;</code></a>
+                <li><a href=#余計な空白はエラー>### 余計な空白はエラー</a>
+                <li><a href=#url-link>### URL link</a>
+                <li><a href=#front-matter>### Front Matter</a>
+                <li><a href=#使わない記法は実装しない>### 使わない記法は実装しない</a>
+                <li><a href=#traverser-plugin>## traverser plugin</a>
+                <li><a href=#脱-webfont>## 脱 WebFont</a>
+                <li><a href=#html-header>## HTML Header</a>
+                <li><a href=#favicon>### Favicon</a>
+                <li><a href=#twitter-card>### TWitter Card</a>
+                <li><a href=#hatena>### Hatena</a>
+                <li><a href=#google-search>### Google Search</a>
+                <li><a href=#amp-削除>## AMP 削除</a>
+                <li><a href=#webpkgamppkg>## webpkg/amppkg</a>
+                <li><a href=#効果>## 効果</a>
+                <li><a href=#まとめ>## まとめ</a>
+              </ul>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210427_184241>
+    <article>
+      <h1><a href="">自作 Markdown プロセッサベースの blog.jxck.io v2 リリース</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>本サイトは自作の Markdown ビルダを使っていたが、色々と気に食わない部分があったのでフルスクラッチで作り直し、それにともなってサイトの刷新を実施した。
+        <p>必要だった要件や、意思決定を作業ログとして記す。
+      </section>
+      <section>
+        <h2 id="markdown"><a href="#markdown">Markdown</a></h2>
+        <p>本サイトは、一般に使われている Markdown -&gt; HTML の変換結果では要件を満たせないため、最も都合の良い AST を吐く <a href="https://kramdown.gettalong.org/">kramdown</a> のパーサから AST だけを取得し、それを Traverser でカスタマイズしてから自前でシリアライズしていた。
+        <p>その実装を、微修正を繰り返しながら、継ぎ足し継ぎ足しで 5 年くらいイジってきたので、そろそろ自分がブログを書く上での要件も固まっており、記事中の Markdown のスタイルも固定してきた。
+        <p>一方、 Kramdown の実装が原因でどうしてもワークアラウンドが必要だった部分に、フラストレーションも技術的負債も溜まっていたため、自作の Markdown パーサ/ビルダをフルスクラッチで作ることにした。
+        <p>プレビュー表示などでブラウザでも使えるよう、一応 Pure JS (+ JSDoc Typed) で 1 ファイルにゴリっと書いている。また、汎用性は求めてないのでライブラリとして別リポジトリで公開はせず、ブログのソースに組み込んで密結合させている。
+        <ul>
+          <li><a href="https://github.com/Jxck/jxck.io/tree/master/.src/markdown">jxck.io/.src/markdown at master · Jxck/jxck.io</a>
+        </ul>
+        <p>メモとして要件を記しておく。
+      </section>
+      <section>
+        <h2 id="要件"><a href="#要件">要件</a></h2>
+        <section>
+          <h3 id="headding--sectioning"><a href="#headding--sectioning">Headding / Sectioning</a></h3>
+          <p>大抵の Markdown 実装は <code translate=no>#</code>, <code translate=no>##</code> は <code translate=no>&lt;h1&gt;</code>, <code translate=no>&lt;h2&gt;</code> にそのままシリアライズされる。
+          <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
+          <pre class=md><code translate=no># h1
+
+## h2
+
+### h3
+
+### h3</code></pre>
+          <pre class=html><code translate=no>&lt;h1&gt;h1&lt;/h1&gt;
+&lt;h2&gt;h2&lt;/h2&gt;
+&lt;h3&gt;h3&lt;/h3&gt;
+&lt;h3&gt;h3&lt;/h3&gt;</code></pre>
+          <p>これを <code translate=no>&lt;section&gt;</code> で階層化し、 <code translate=no>&lt;h1&gt;</code> だけは <code translate=no>&lt;article&gt;</code> にする。
+          <pre class=html><code translate=no>&lt;article&gt;
+  &lt;h1&gt;h1&lt;/h1&gt;
+  &lt;section&gt;
+    &lt;h2&gt;h2&lt;/h2&gt;
+    &lt;section&gt;
+      &lt;h3&gt;h3&lt;/h3&gt;
+    &lt;/section&gt;
+    &lt;section&gt;
+      &lt;h3&gt;h3&lt;/h3&gt;
+    &lt;/section&gt;
+  &lt;/section&gt;
+&lt;/article&gt;</code></pre>
+          <p>さらに、見出しジャンプを入れる。その際、 ID を振るが、もし被った場合は後ろに連番を振る。
+          <pre class=html><code translate=no>&lt;article&gt;
+  &lt;h1 id=&quot;h1&quot;&gt;&lt;a href=&quot;#h1&quot;&gt;h1&lt;/a&gt;&lt;/h1&gt;
+  &lt;section&gt;
+    &lt;h2 id=&quot;h2&quot;&gt;&lt;a href=&quot;#h2&quot;&gt;h2&lt;/a&gt;&lt;/h2&gt;
+    &lt;section&gt;
+      &lt;h3 id=&quot;h3&quot;&gt;&lt;a href=&quot;#h3&quot;&gt;h3&lt;/a&gt;&lt;/h3&gt;
+    &lt;/section&gt;
+    &lt;section&gt;
+      &lt;h3 id=&quot;h3_1&quot;&gt;&lt;a href=&quot;#h3_1&quot;&gt;h3&lt;/a&gt;&lt;/h3&gt;
+    &lt;/section&gt;
+  &lt;/section&gt;
+&lt;/article&gt;</code></pre>
+          <p>もともと kramdown をカスタマイズしはじめたのも、これを行いたかったからだった。
+        </section>
+        <section>
+          <h3 id="閉じタグとクオートの省略"><a href="#閉じタグとクオートの省略">閉じタグとクオートの省略</a></h3>
+          <p>HTML の仕様には、閉じタグやクオートの省略条件が書かれている。
+          <p>条件を満たすものについては、仕様に準拠しながら省略している。
+          <ul>
+            <li>
+              条件を満たした閉じタグは省略
+              <ul>
+                <li><a href="https://html.spec.whatwg.org/multipage/syntax.html#optional-tags">https://html.spec.whatwg.org/multipage/syntax.html#optional-tags</a>
+              </ul>
+            </li>
+            <li>
+              条件を満たしたクオートは省略
+              <ul>
+                <li><a href="https://html.spec.whatwg.org/#unquoted">https://html.spec.whatwg.org/#unquoted</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="インデント"><a href="#インデント">インデント</a></h3>
+          <p>インデントはキレイに
+        </section>
+      </section>
+      <section>
+        <h2 id="blockquote-の-cite"><a href="#blockquote-の-cite">blockquote の cite</a></h2>
+        <p>blockqote 記法の最後に書いた URL を <code translate=no>cite</code> として埋め込む。
+        <p>例えばこれは
+        <pre class=md><code translate=no>&gt; example page
+&gt; --- https://example.com</code></pre>
+        <p>以下のようになる。
+        <pre class=html><code translate=no>&lt;blockquote cite=&quot;https://example.com&quot;&gt;
+  &lt;p&gt;example page&lt;/p&gt;
+  &lt;p&gt;
+    &amp;mdash; &lt;cite&gt;&lt;a href=&quot;https://example.com&quot;&gt;example.com&lt;/a&gt;&lt;/cite&gt;
+  &lt;/p&gt;
+&lt;/blockquote&gt;</code></pre>
+        <p>本来は <code translate=no>cite</code> 属性の方だけで良いが、以前は <code translate=no>&lt;cite&gt;</code> だったため今は互換を保つよう両方に入れている。
+        <section>
+          <h3 id="外部-script-の読み込み"><a href="#外部-script-の読み込み">外部 script の読み込み</a></h3>
+          <p>ブログを書く上で、コードブロックにサンプルコードを書くことは多く、その中身が多いと外部ファイルに出し、ビルド時に読み込めると便利だ。
+          <p>そこで、本サイトは初期から以下の記法をサポートしていた。
+          <pre><code translate=no>```js:script.js
+```</code></pre>
+          <p>このようにすると、 HTML ビルド時にカレントディレクトリの script.js を読み込んで HTML の <code translate=no>&lt;code&gt;</code> 内に展開してくれる。
+        </section>
+        <section>
+          <h3 id="img-のカスタマイズ"><a href="#img-のカスタマイズ">img のカスタマイズ</a></h3>
+          <p>画像の埋め込みは .png / .jpeg / .gif を一次ソースとしているが、必ず webp を提供している。
+          <p>これを出し分けるために、画像記法は <code translate=no>&lt;picture&gt;</code> になるようにカスタマイズしている。 (SVG は単に <code translate=no>&lt;img&gt;</code> になる)
+          <p>また width/height を明示できるよう、 URL の最後に fragment を <code translate=no>#256x256</code> のように指定すると width, height として解釈する。
+          <p>さらに、画像を読み込んで <code translate=no>mtime</code> から最終更新時を算出し、それをクエリに付与して Cache Busting する。
+          <pre class=md><code translate=no>![alt text](image.png#256x256 &quot;title test&quot;)</code></pre>
+          <p>これは以下のように展開される。
+          <pre class=html><code translate=no>&lt;picture&gt;
+  &lt;source type=image/webp srcset=image.webp?211010_101010&gt;
+  &lt;img
+    loading=&quot;lazy&quot;
+    decoding=&quot;async&quot;
+    src=&quot;image.png?211010_101010&quot;
+    alt=&quot;jxck&quot;
+    title=&quot;jxck logo&quot;
+    width=&quot;256&quot;
+    height=&quot;256&quot;
+  /&gt;
+&lt;/picture&gt;</code></pre>
+          <p>そして、動画を埋め込む記法が Markdown にはないが、これまで gif アニメにしていたものは mp4 に移行しつつあるので、拡張子が mp4 だった場合は <code translate=no>&lt;video&gt;</code> になるようにしている。こちらは、 webm のフォールバックを入れている。
+          <pre class=md><code translate=no>![dummy video](dummy_video.mp4#1000x2000)</code></pre>
+          <pre class=html><code translate=no>&lt;video title=&quot;dummy video&quot; width=&quot;1000&quot; height=&quot;2000&quot; controls playsinline&gt;
+  &lt;source type=video/mp4 src=dummy_video.mp4?211010_101010&gt; &lt;source
+  type=video/webm src=dummy_video.webm?211010_101010&gt;
+&lt;/video&gt;</code></pre>
+          <p>そろそろ画像の avif 対応も入れたい。
+        </section>
+        <section>
+          <h3 id="adoptive-css"><a href="#adoptive-css">adoptive CSS</a></h3>
+          <p><code translate=no>&lt;table&gt;</code> 用の CSS と <code translate=no>&lt;pre&gt;</code> のシンタックスハイライトは、他の要素に比べて CSS の量が多いのにかかわらず、出現頻度が低い。
+          <p>そこで、 <code translate=no>&lt;table&gt;</code> と <code translate=no>&lt;pre&gt;</code> の CSS はファイルを分け、 HTML に出現する直前に CSS を一度だけ差し込むようにしている。
+          <p>そのメリットは以下で解説している。
+          <p><a href="https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io</a>
+        </section>
+        <section>
+          <h3 id="table"><a href="#table"><code translate=no>&lt;table&gt;</code></a></h3>
+          <p>Kramdown は、文の途中で <code translate=no>|</code> が来ると <code translate=no>&lt;table&gt;</code> が始まったと解釈する。
+          <p>しかし、以下のようなリンクのタイトルは <code translate=no>|</code> を含むことが多く、エスケープが必要だった。
+          <pre class=md><code translate=no>- [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)</code></pre>
+          <p>mozaic.fm の Monthly Web では、 Show Note に大量のリンクを張り、そこに出てくる <code translate=no>|</code> を全てエスケープするのは面倒だった。
+          <p>一方、文の途中で <code translate=no>&lt;table&gt;</code> を始めることなどないため、 <code translate=no>|</code> は行頭にきた場合のみ <code translate=no>&lt;table&gt;</code> と解釈することに限定し、エスケープしないで良いようにした。
+          <p>また、 <code translate=no>&lt;table&gt;</code> の align は <code translate=no>align</code> 属性で指定も可能だが、もう deprecate されているため、 CSS で align するために <code translate=no>class</code> をつけるようにしている。
+        </section>
+        <section>
+          <h3 id="toc-の生成"><a href="#toc-の生成">TOC の生成</a></h3>
+          <p>前述で生成した headding とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
+          <p>TOC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Headding のリストを保持することになるので、それをそのまま ToC として AST と一緒に返すようにした。
+          <p>この TOC は、 blog のタイトル上に埋め込んでいる。
+        </section>
+        <section>
+          <h3 id="h1"><a href="#h1">h1</a></h3>
+          <p>h1 には以下のようにタグが書けるようにしている。
+          <pre class=md><code translate=no># [tag] hello world</code></pre>
+          <p>これも、 blog のタイトル上に埋め込んでいる。
+        </section>
+        <section>
+          <h3 id="dl"><a href="#dl"><code translate=no>&lt;dl&gt;</code></a></h3>
+          <p>定義リスト記法もサポートしている。
+          <p>さらに <code translate=no>&lt;dl&gt;</code> の下の <code translate=no>&lt;dt&gt;</code> <code translate=no>&lt;dd&gt;</code> は <code translate=no>&lt;div&gt;</code> で囲むことが許されており、これがあるとスタイルがちょっと楽になる。
+          <pre class=md><code translate=no>key1
+: val1
+key2
+: val2
+: val3</code></pre>
+          <pre class=html><code translate=no>&lt;dl&gt;
+  &lt;div&gt;
+    &lt;dt&gt;key1&lt;/dt&gt;
+    &lt;dd&gt;val1&lt;/dd&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;dt&gt;key2&lt;/dt&gt;
+    &lt;dd&gt;val2&lt;/dd&gt;
+    &lt;dd&gt;val3&lt;/dd&gt;
+  &lt;/div&gt;
+&lt;/dl&gt;</code></pre>
+          <p>個人的には Markdown のこの定義リスト記法はあまり気に入ってない。
+          <p>特に、 dd が来ないとその手前が dt だったことがわからないというパースのしにくさもある。
+          <p>いっそ以下のような独自記法を入れてしまってもよいかと考えている。
+          <pre class=md><code translate=no>:key1
+:val1
+:key2
+:val2
+:val3</code></pre>
+        </section>
+        <section>
+          <h3 id="余計な空白はエラー"><a href="#余計な空白はエラー">余計な空白はエラー</a></h3>
+          <p>以前はビルドとは別に linter のようなものを雑に作ってフォーマットを確認していた。
+          <p>しかし、せっかくパーサを書いたので、パースの際に気に食わないところは、すべてエラーにすることにした。
+          <pre class=md><code translate=no>以下全部エラー
+
+a **b** c
+a **b** c
+a ** b** c
+a **b ** c
+
+- aaa
+- bbb</code></pre>
+          <p>これを formatter にしてもよいかもしれないが、ビルド時エラーで間に合っているのでしてない。
+        </section>
+        <section>
+          <h3 id="url-link"><a href="#url-link">URL link</a></h3>
+          <p>Kramdown ではサポートされてなかった URL Like String を含めて、リンク記法は以下の 3 つ全てサポートしてる。
+          <pre class=md><code translate=no>[title](https://example.com)
+&lt;https://example.com&gt;
+https://example.com</code></pre>
+          <p>最後の何も記法がないものは、とりあえず <code translate=no>http://</code> と <code translate=no>https://</code> で始まるものだけに絞ることで誤発動を防いでいる。
+          <p><code translate=no>about:</code>, <code translate=no>chrome:</code>, <code translate=no>file:</code> をサポートするかは考え中。
+        </section>
+        <section>
+          <h3 id="front-matter"><a href="#front-matter">Front Matter</a></h3>
+          <p>特に moziac.fm のエピソードページでは、 mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
+          <p>しかし、 Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
+          <pre class=md><code translate=no>---
+type: podcast
+tags: [&quot;monthly web&quot;]
+audio: https://files.mozaic.fm/mozaic-ep89.mp3
+published_at: 2021-10-26
+guest: [@myakura](https://twitter.com/myakura)
+---
+
+# ep89 Monthly Web 202110
+
+## Theme
+
+第 89 回のテーマは 2021 年 10 月の Monthly Web です。</code></pre>
+          <p>YAML は YAML パーサを入れるほど複雑なものを書いてないので、 YAML パーサを自作するのをぐっとこらえて雑に処理している。
+        </section>
+        <section>
+          <h3 id="使わない記法は実装しない"><a href="#使わない記法は実装しない">使わない記法は実装しない</a></h3>
+          <ul>
+            <li><code translate=no>&lt;del&gt;</code> や <code translate=no>&lt;i&gt;</code> は使わないので実装してない
+            <li><code translate=no>&lt;ul&gt;</code> は <code translate=no>-</code> しか使わないので <code translate=no>*</code> は実装しない
+            <li><code translate=no>&lt;ol&gt;</code> は <code translate=no>n.</code> しか使わないので <code translate=no>+</code> は実装しない
+            <li>Math も使わないので実装しない
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 id="traverser-plugin"><a href="#traverser-plugin">traverser plugin</a></h2>
+        <p>ここまでに上げたような本サイトに必要な機能は、 1 つに盛り込んでも良かったが、最終的にはブラウザでの挙動も想定して作っておきたかった。
+        <p>ブラウザで挙動させると問題になるのは、 Cache Busting のためのファイル更新時間確認や、 <code translate=no>&lt;pre&gt;</code> への外部ファイル埋め込みなどが動かない。
+        <p>やはり、 Markdown ファイルだけを見て生成できる HTML と、そこに対するカスタマイズを分離することで、ブラウザ上でもプレビューなどが動くように保つ方が後々良いだろう。
+        <p>そこで、 AST を生成した後に、そこを Traverse する機能を用意し、 Node をたどりながら好きな変更を入れられるようにし、そこを Plugin のフックポイントとすることにした。
+        <p>特に Node の <code translate=no>fs</code> を使わないと実現できないものは Plugin 側に寄せ、責務を分離できるようにしている。
+      </section>
+      <section>
+        <h2 id="脱-webfont"><a href="#脱-webfont">脱 WebFont</a></h2>
+        <p>鉄下駄として WebFont を入れていたが、もう試すことはだいたい試した上に、もう日本語フォントにこれ以上期待するのは難しと考えてやめた。
+        <ul>
+          <li><a href="https://blog.jxck.io/tags/#web%20font">Tag: Web Font</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="html-header"><a href="#html-header">HTML Header</a></h2>
+        <p>テンプレートを直すついでに、継ぎ足し継ぎ足しだったヘッダ部分を色々と整理した。
+        <section>
+          <h3 id="favicon"><a href="#favicon">Favicon</a></h3>
+          <p>Favicon / Touch Icon のサポートと解像度を整理して、多くのケースをカバーできるようにした。
+        </section>
+        <section>
+          <h3 id="twitter-card"><a href="#twitter-card">TWitter Card</a></h3>
+          <p>Twitter Card のためのタグを入れていたが、ももうどうでもいいのでタグを削除。 OGP 自体はあるので部分的にそちらでカバーされるはず。
+        </section>
+        <section>
+          <h3 id="hatena"><a href="#hatena">Hatena</a></h3>
+          <p>「内容が長いとブコメしか見ない」というはてな民が一定いるという話を聞き、であれば読まれない方がマシということで Opt-Out のタグを追加。
+        </section>
+        <section>
+          <h3 id="google-search"><a href="#google-search">Google Search</a></h3>
+          <p>SEO 自体はどうでもよいが、 Google の検索結果がなんか色々雑に表示されていることに気づいたので修正。
+          <p>うまく反映されてない部分もあるので WIP
+          <ul>
+            <li>DONE: Sitelink Search
+            <li>TODO: サイト内リンク
+            <li>TODO: Favicon
+            <li>other
+          </ul>
+          <p>ついでに robotx.txt も整理。
+        </section>
+      </section>
+      <section>
+        <h2 id="amp-削除"><a href="#amp-削除">AMP 削除</a></h2>
+        <p>以前 AMP のサポートは落としていたが、コードベースは残していた。
+        <p>しかし、新しいビルダではもう AMP の生成はサポートしなくなったので、完全に削除した。
+      </section>
+      <section>
+        <h2 id="webpkgamppkg"><a href="#webpkgamppkg">webpkg/amppkg</a></h2>
+        <p>どちらも証明書が切れたので停止。いずれ証明書が安く手に入るようになったら再開するためコードは残す。
+      </section>
+      <section>
+        <h2 id="効果"><a href="#効果">効果</a></h2>
+        <p>実装を置き換えてからの効果は以下。
+        <ul>
+          <li>Markdown - HTML 変換速度が上がった。(ちゃんと測ってないが体感 1.5 倍)
+          <li>コード量を大幅に減らし、見通しをよくできた。
+          <li>記法エラーを実装したことで、これまでの原稿を整形できた
+          <li>これまでの HTML の細かな問題、気に入らなかったところも全て精算できた
+          <li>kramdown という依存が無くなったので、 dependbot から警告が来ることが無くなった。
+          <li>ビルドプロセスから Ruby をなくせた
+          <li>溜まっていた負債を払った
+        </ul>
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>今回 CSS の修正/整理まではいけなかったので、それは来年以降なおしていきたい。
+        <p>また、起点になる Markdown コードベースを作り直せたので、これを元に mozaic.fm の方も改良を入れたい。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=/>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>
