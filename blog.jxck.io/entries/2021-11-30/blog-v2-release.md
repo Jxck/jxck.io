@@ -18,9 +18,9 @@
 
 - [jxck.io/.src/markdown at master · Jxck/jxck.io](https://github.com/Jxck/jxck.io/tree/master/.src/markdown)
 
-メモとして要件を記しておく。
-
 ## 要件
+
+メモとして実装上の要件を記しておく。
 
 ### Headding / Sectioning
 
@@ -94,7 +94,7 @@ HTML の仕様には、閉じタグやクオートの省略条件が書かれて
 
 インデントはキレイに
 
-## blockquote の cite
+### blockquote の cite
 
 blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 
@@ -124,7 +124,7 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 
 そこで、本サイトは初期から以下の記法をサポートしていた。
 
-```
+```md
 \`\`\`js:script.js
 \`\`\`
 ```
@@ -175,7 +175,7 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 </video>
 ```
 
-そろそろ画像の avif 対応も入れたい。
+そろそろ avif 対応も入れたい。
 
 ### adoptive CSS
 
@@ -197,7 +197,7 @@ Kramdown は、文の途中で `|` が来ると `<table>` が始まったと解�
 - [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について \| blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
 ```
 
-mozaic.fm の Monthly Web では、 Show Note に大量のリンクを張り、そこに出てくる `|` を全てエスケープするのは面倒だった。
+mozaic.fm の Monthly Web では、 Show Note に大量のリンクを貼るため、そこに出てくる `|` を全てエスケープするのは面倒だった。
 
 一方、文の途中で `<table>` を始めることなどないため、 `|` は行頭にきた場合のみ `<table>` と解釈することに限定し、エスケープしないで良いようにした。
 
@@ -220,6 +220,30 @@ h1 には以下のようにタグが書けるようにしている。
 ```
 
 これも、 blog のタイトル上に埋め込んでいる。
+
+### Front Matter
+
+特に moziac.fm のエピソードページでは、 mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
+
+しかし、 Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
+
+```md
+---
+type: podcast
+tags: ["monthly web"]
+audio: https://files.mozaic.fm/mozaic-ep89.mp3
+published_at: 2021-10-26
+guest: [@myakura](https://twitter.com/myakura)
+---
+
+# ep89 Monthly Web 202110
+
+## Theme
+
+第 89 回のテーマは 2021 年 10 月の Monthly Web です。
+```
+
+YAML は YAML パーサを入れるほど複雑なものを書いてないので、 YAML パーサを自作するのをぐっとこらえて雑に処理している。
 
 ### `<dl>`
 
@@ -256,12 +280,12 @@ key2
 
 いっそ以下のような独自記法を入れてしまってもよいかと考えている。
 
-```md
+```
 :key1
-:val1
+  :val1
 :key2
-:val2
-:val3
+  :val2
+  :val3
 ```
 
 ### 余計な空白はエラー
@@ -298,30 +322,6 @@ https://example.com
 
 `about:`, `chrome:`, `file:` をサポートするかは考え中。
 
-### Front Matter
-
-特に moziac.fm のエピソードページでは、 mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
-
-しかし、 Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
-
-```md
----
-type: podcast
-tags: ["monthly web"]
-audio: https://files.mozaic.fm/mozaic-ep89.mp3
-published_at: 2021-10-26
-guest: [@myakura](https://twitter.com/myakura)
----
-
-# ep89 Monthly Web 202110
-
-## Theme
-
-第 89 回のテーマは 2021 年 10 月の Monthly Web です。
-```
-
-YAML は YAML パーサを入れるほど複雑なものを書いてないので、 YAML パーサを自作するのをぐっとこらえて雑に処理している。
-
 ### 使わない記法は実装しない
 
 - `<del>` や `<i>` は使わないので実装してない
@@ -329,31 +329,35 @@ YAML は YAML パーサを入れるほど複雑なものを書いてないので
 - `<ol>` は `n.` しか使わないので `+` は実装しない
 - Math も使わないので実装しない
 
-## traverser plugin
+### traverser plugin
 
 ここまでに上げたような本サイトに必要な機能は、 1 つに盛り込んでも良かったが、最終的にはブラウザでの挙動も想定して作っておきたかった。
 
-ブラウザで挙動させると問題になるのは、 Cache Busting のためのファイル更新時間確認や、 `<pre>` への外部ファイル埋め込みなどが動かない。
+ブラウザで挙動させると問題になるのは、 Cache Busting のためのファイル更新時間確認や、 `<pre>` への外部ファイル埋め込みなどが動かないことだ。
 
 やはり、 Markdown ファイルだけを見て生成できる HTML と、そこに対するカスタマイズを分離することで、ブラウザ上でもプレビューなどが動くように保つ方が後々良いだろう。
 
-そこで、 AST を生成した後に、そこを Traverse する機能を用意し、 Node をたどりながら好きな変更を入れられるようにし、そこを Plugin のフックポイントとすることにした。
+そこで、 AST を生成した後に、そこを Traverse する機能を用意し、 Node をたどりながら好きな変更を入れられるようにすることで、そこを Plugin のフックポイントとすることにした。
 
 特に Node の `fs` を使わないと実現できないものは Plugin 側に寄せ、責務を分離できるようにしている。
 
-## 脱 WebFont
+## 技術負債の解消
+
+Markdown プロセッサを直すと同時に、それまで溜まっていた負債や、後回しにしていた改善も一気に入れることにした。
+
+### 脱 WebFont
 
 鉄下駄として WebFont を入れていたが、もう試すことはだいたい試した上に、もう日本語フォントにこれ以上期待するのは難しと考えてやめた。
 
 - [Tag: Web Font](https://blog.jxck.io/tags/#web%20font)
 
-## HTML Header
+### HTML Header
 
 テンプレートを直すついでに、継ぎ足し継ぎ足しだったヘッダ部分を色々と整理した。
 
 ### Favicon
 
-Favicon / Touch Icon のサポートと解像度を整理して、多くのケースをカバーできるようにした。
+Favicon / Touch Icon のサポートと解像度を整理し、多くのケースをカバーできるようにした。
 
 ### Twitter Card
 
@@ -376,13 +380,13 @@ SEO 自体はどうでもよいが、 Google の検索結果がなんか色々�
 
 ついでに robots.txt も整理。
 
-## AMP 削除
+### AMP 削除
 
-以前 AMP のサポートは落としていたが、コードベースは残していた。
+以前 [AMP のサポートは落とした](https://blog.jxck.io/entries/2021-06-26/amp-tone-down.html) が、コードベースは残していた。
 
-しかし、新しいビルダではもう AMP の生成はサポートしなくなったので、完全に削除した。
+しかし、新しいビルダに移行したことで、残していた実装も完全に削除した。
 
-## webpkg/amppkg
+### webpkg/amppkg
 
 どちらも証明書が切れたので停止。いずれ証明書が安く手に入るようになったら再開するためコードは残す。
 
@@ -390,15 +394,15 @@ SEO 自体はどうでもよいが、 Google の検索結果がなんか色々�
 
 実装を置き換えてからの効果は以下。
 
-- Markdown - HTML 変換速度が上がった。(ちゃんと測ってないが体感 1.5 倍)
-- コード量を大幅に減らし、見通しをよくできた。
+- Markdown -> HTML 変換速度が上がった(きちんと測ってないが体感 1.5 倍)
+- コード量を大幅に減らし、見通しをよくできた
 - 記法エラーを実装したことで、これまでの原稿を整形できた
 - これまでの HTML の細かな問題、気に入らなかったところも全て精算できた
-- kramdown という依存が無くなったので、 dependabot から警告が来ることが無くなった。
-- ビルドプロセスから Ruby をなくせた
+- Kramdown の依存が無くなったので、 dependabot から警告が来ることが無くなった
+- ビルドプロセスに JS と Ruby が混ざっていたが、 Ruby をなくし JS に一本化できた
 - 溜まっていた負債を払った
 
 ## まとめ
 
-今回 CSS の修正/整理まではいけなかったので、それは来年以降なおしていきたい。
+今回 CSS の修正/整理まではいけなかったので、それは来年以降取り組みたい。
 また、起点になる Markdown コードベースを作り直せたので、これを元に mozaic.fm の方も改良を入れたい。
