@@ -63,7 +63,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-11-30T08:00:00+08:00",
-    "dateModified": "2021-12-02T08:00:00+08:00",
+    "dateModified": "2021-12-03T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -107,7 +107,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-11-30>2021-11-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-12-02>2021-12-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-12-03>2021-12-03</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -132,27 +132,28 @@
                 <li><a href=#headding--sectioning>### Headding / Sectioning</a>
                 <li><a href=#閉じタグとクオートの省略>### 閉じタグとクオートの省略</a>
                 <li><a href=#インデント>### インデント</a>
-                <li><a href=#blockquote-の-cite>## blockquote の cite</a>
+                <li><a href=#blockquote-の-cite>### blockquote の cite</a>
                 <li><a href=#外部-script-の読み込み>### 外部 script の読み込み</a>
                 <li><a href=#img-のカスタマイズ>### img のカスタマイズ</a>
                 <li><a href=#adoptive-css>### adoptive CSS</a>
                 <li><a href=#table>### <code translate=no>&lt;table&gt;</code></a>
                 <li><a href=#toc-の生成>### TOC の生成</a>
                 <li><a href=#h1>### h1</a>
+                <li><a href=#front-matter>### Front Matter</a>
                 <li><a href=#dl>### <code translate=no>&lt;dl&gt;</code></a>
                 <li><a href=#余計な空白はエラー>### 余計な空白はエラー</a>
                 <li><a href=#url-link>### URL link</a>
-                <li><a href=#front-matter>### Front Matter</a>
                 <li><a href=#使わない記法は実装しない>### 使わない記法は実装しない</a>
-                <li><a href=#traverser-plugin>## traverser plugin</a>
-                <li><a href=#脱-webfont>## 脱 WebFont</a>
-                <li><a href=#html-header>## HTML Header</a>
+                <li><a href=#traverser-plugin>### traverser plugin</a>
+                <li><a href=#技術負債の解消>## 技術負債の解消</a>
+                <li><a href=#脱-webfont>### 脱 WebFont</a>
+                <li><a href=#html-header>### HTML Header</a>
                 <li><a href=#favicon>### Favicon</a>
                 <li><a href=#twitter-card>### Twitter Card</a>
                 <li><a href=#hatena>### Hatena</a>
                 <li><a href=#google-search>### Google Search</a>
-                <li><a href=#amp-削除>## AMP 削除</a>
-                <li><a href=#webpkgamppkg>## webpkg/amppkg</a>
+                <li><a href=#amp-削除>### AMP 削除</a>
+                <li><a href=#webpkgamppkg>### webpkg/amppkg</a>
                 <li><a href=#効果>## 効果</a>
                 <li><a href=#まとめ>## まとめ</a>
               </ul>
@@ -179,10 +180,10 @@
         <ul>
           <li><a href="https://github.com/Jxck/jxck.io/tree/master/.src/markdown">jxck.io/.src/markdown at master · Jxck/jxck.io</a>
         </ul>
-        <p>メモとして要件を記しておく。
       </section>
       <section>
         <h2 id="要件"><a href="#要件">要件</a></h2>
+        <p>メモとして実装上の要件を記しておく。
         <section>
           <h3 id="headding--sectioning"><a href="#headding--sectioning">Headding / Sectioning</a></h3>
           <p>大抵の Markdown 実装は <code translate=no>#</code>, <code translate=no>##</code> は <code translate=no>&lt;h1&gt;</code>, <code translate=no>&lt;h2&gt;</code> にそのままシリアライズされる。
@@ -249,26 +250,26 @@
           <h3 id="インデント"><a href="#インデント">インデント</a></h3>
           <p>インデントはキレイに
         </section>
-      </section>
-      <section>
-        <h2 id="blockquote-の-cite"><a href="#blockquote-の-cite">blockquote の cite</a></h2>
-        <p>blockqote 記法の最後に書いた URL を <code translate=no>cite</code> として埋め込む。
-        <p>例えばこれは
-        <pre class=md><code translate=no>&gt; example page
+        <section>
+          <h3 id="blockquote-の-cite"><a href="#blockquote-の-cite">blockquote の cite</a></h3>
+          <p>blockqote 記法の最後に書いた URL を <code translate=no>cite</code> として埋め込む。
+          <p>例えばこれは
+          <pre class=md><code translate=no>&gt; example page
 &gt; --- https://example.com</code></pre>
-        <p>以下のようになる。
-        <pre class=html><code translate=no>&lt;blockquote cite=&quot;https://example.com&quot;&gt;
+          <p>以下のようになる。
+          <pre class=html><code translate=no>&lt;blockquote cite=&quot;https://example.com&quot;&gt;
   &lt;p&gt;example page&lt;/p&gt;
   &lt;p&gt;
     &amp;mdash; &lt;cite&gt;&lt;a href=&quot;https://example.com&quot;&gt;example.com&lt;/a&gt;&lt;/cite&gt;
   &lt;/p&gt;
 &lt;/blockquote&gt;</code></pre>
-        <p>本来は <code translate=no>cite</code> 属性の方だけで良いが、以前は <code translate=no>&lt;cite&gt;</code> だったため今は互換を保つよう両方に入れている。
+          <p>本来は <code translate=no>cite</code> 属性の方だけで良いが、以前は <code translate=no>&lt;cite&gt;</code> だったため今は互換を保つよう両方に入れている。
+        </section>
         <section>
           <h3 id="外部-script-の読み込み"><a href="#外部-script-の読み込み">外部 script の読み込み</a></h3>
           <p>ブログを書く上で、コードブロックにサンプルコードを書くことは多く、その中身が多いと外部ファイルに出し、ビルド時に読み込めると便利だ。
           <p>そこで、本サイトは初期から以下の記法をサポートしていた。
-          <pre><code translate=no>```js:script.js
+          <pre class=md><code translate=no>```js:script.js
 ```</code></pre>
           <p>このようにすると、 HTML ビルド時にカレントディレクトリの script.js を読み込んで HTML の <code translate=no>&lt;code&gt;</code> 内に展開してくれる。
         </section>
@@ -298,7 +299,7 @@
   &lt;source type=video/mp4 src=dummy_video.mp4?211010_101010&gt; &lt;source
   type=video/webm src=dummy_video.webm?211010_101010&gt;
 &lt;/video&gt;</code></pre>
-          <p>そろそろ画像の avif 対応も入れたい。
+          <p>そろそろ avif 対応も入れたい。
         </section>
         <section>
           <h3 id="adoptive-css"><a href="#adoptive-css">adoptive CSS</a></h3>
@@ -312,7 +313,7 @@
           <p>Kramdown は、文の途中で <code translate=no>|</code> が来ると <code translate=no>&lt;table&gt;</code> が始まったと解釈する。
           <p>しかし、以下のようなリンクのタイトルは <code translate=no>|</code> を含むことが多く、エスケープが必要だった。
           <pre class=md><code translate=no>- [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)</code></pre>
-          <p>mozaic.fm の Monthly Web では、 Show Note に大量のリンクを張り、そこに出てくる <code translate=no>|</code> を全てエスケープするのは面倒だった。
+          <p>mozaic.fm の Monthly Web では、 Show Note に大量のリンクを貼るため、そこに出てくる <code translate=no>|</code> を全てエスケープするのは面倒だった。
           <p>一方、文の途中で <code translate=no>&lt;table&gt;</code> を始めることなどないため、 <code translate=no>|</code> は行頭にきた場合のみ <code translate=no>&lt;table&gt;</code> と解釈することに限定し、エスケープしないで良いようにした。
           <p>また、 <code translate=no>&lt;table&gt;</code> の align は <code translate=no>align</code> 属性で指定も可能だが、もう deprecate されているため、 CSS で align するために <code translate=no>class</code> をつけるようにしている。
         </section>
@@ -327,6 +328,25 @@
           <p>h1 には以下のようにタグが書けるようにしている。
           <pre class=md><code translate=no># [tag] hello world</code></pre>
           <p>これも、 blog のタイトル上に埋め込んでいる。
+        </section>
+        <section>
+          <h3 id="front-matter"><a href="#front-matter">Front Matter</a></h3>
+          <p>特に moziac.fm のエピソードページでは、 mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
+          <p>しかし、 Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
+          <pre class=md><code translate=no>---
+type: podcast
+tags: [&quot;monthly web&quot;]
+audio: https://files.mozaic.fm/mozaic-ep89.mp3
+published_at: 2021-10-26
+guest: [@myakura](https://twitter.com/myakura)
+---
+
+# ep89 Monthly Web 202110
+
+## Theme
+
+第 89 回のテーマは 2021 年 10 月の Monthly Web です。</code></pre>
+          <p>YAML は YAML パーサを入れるほど複雑なものを書いてないので、 YAML パーサを自作するのをぐっとこらえて雑に処理している。
         </section>
         <section>
           <h3 id="dl"><a href="#dl"><code translate=no>&lt;dl&gt;</code></a></h3>
@@ -352,11 +372,11 @@ key2
           <p>個人的には Markdown のこの定義リスト記法はあまり気に入ってない。
           <p>特に、 dd が来ないとその手前が dt だったことがわからないというパースのしにくさもある。
           <p>いっそ以下のような独自記法を入れてしまってもよいかと考えている。
-          <pre class=md><code translate=no>:key1
-:val1
+          <pre><code translate=no>:key1
+  :val1
 :key2
-:val2
-:val3</code></pre>
+  :val2
+  :val3</code></pre>
         </section>
         <section>
           <h3 id="余計な空白はエラー"><a href="#余計な空白はエラー">余計な空白はエラー</a></h3>
@@ -383,25 +403,6 @@ https://example.com</code></pre>
           <p><code translate=no>about:</code>, <code translate=no>chrome:</code>, <code translate=no>file:</code> をサポートするかは考え中。
         </section>
         <section>
-          <h3 id="front-matter"><a href="#front-matter">Front Matter</a></h3>
-          <p>特に moziac.fm のエピソードページでは、 mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
-          <p>しかし、 Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
-          <pre class=md><code translate=no>---
-type: podcast
-tags: [&quot;monthly web&quot;]
-audio: https://files.mozaic.fm/mozaic-ep89.mp3
-published_at: 2021-10-26
-guest: [@myakura](https://twitter.com/myakura)
----
-
-# ep89 Monthly Web 202110
-
-## Theme
-
-第 89 回のテーマは 2021 年 10 月の Monthly Web です。</code></pre>
-          <p>YAML は YAML パーサを入れるほど複雑なものを書いてないので、 YAML パーサを自作するのをぐっとこらえて雑に処理している。
-        </section>
-        <section>
           <h3 id="使わない記法は実装しない"><a href="#使わない記法は実装しない">使わない記法は実装しない</a></h3>
           <ul>
             <li><code translate=no>&lt;del&gt;</code> や <code translate=no>&lt;i&gt;</code> は使わないので実装してない
@@ -410,28 +411,32 @@ guest: [@myakura](https://twitter.com/myakura)
             <li>Math も使わないので実装しない
           </ul>
         </section>
+        <section>
+          <h3 id="traverser-plugin"><a href="#traverser-plugin">traverser plugin</a></h3>
+          <p>ここまでに上げたような本サイトに必要な機能は、 1 つに盛り込んでも良かったが、最終的にはブラウザでの挙動も想定して作っておきたかった。
+          <p>ブラウザで挙動させると問題になるのは、 Cache Busting のためのファイル更新時間確認や、 <code translate=no>&lt;pre&gt;</code> への外部ファイル埋め込みなどが動かないことだ。
+          <p>やはり、 Markdown ファイルだけを見て生成できる HTML と、そこに対するカスタマイズを分離することで、ブラウザ上でもプレビューなどが動くように保つ方が後々良いだろう。
+          <p>そこで、 AST を生成した後に、そこを Traverse する機能を用意し、 Node をたどりながら好きな変更を入れられるようにすることで、そこを Plugin のフックポイントとすることにした。
+          <p>特に Node の <code translate=no>fs</code> を使わないと実現できないものは Plugin 側に寄せ、責務を分離できるようにしている。
+        </section>
       </section>
       <section>
-        <h2 id="traverser-plugin"><a href="#traverser-plugin">traverser plugin</a></h2>
-        <p>ここまでに上げたような本サイトに必要な機能は、 1 つに盛り込んでも良かったが、最終的にはブラウザでの挙動も想定して作っておきたかった。
-        <p>ブラウザで挙動させると問題になるのは、 Cache Busting のためのファイル更新時間確認や、 <code translate=no>&lt;pre&gt;</code> への外部ファイル埋め込みなどが動かない。
-        <p>やはり、 Markdown ファイルだけを見て生成できる HTML と、そこに対するカスタマイズを分離することで、ブラウザ上でもプレビューなどが動くように保つ方が後々良いだろう。
-        <p>そこで、 AST を生成した後に、そこを Traverse する機能を用意し、 Node をたどりながら好きな変更を入れられるようにし、そこを Plugin のフックポイントとすることにした。
-        <p>特に Node の <code translate=no>fs</code> を使わないと実現できないものは Plugin 側に寄せ、責務を分離できるようにしている。
-      </section>
-      <section>
-        <h2 id="脱-webfont"><a href="#脱-webfont">脱 WebFont</a></h2>
-        <p>鉄下駄として WebFont を入れていたが、もう試すことはだいたい試した上に、もう日本語フォントにこれ以上期待するのは難しと考えてやめた。
-        <ul>
-          <li><a href="https://blog.jxck.io/tags/#web%20font">Tag: Web Font</a>
-        </ul>
-      </section>
-      <section>
-        <h2 id="html-header"><a href="#html-header">HTML Header</a></h2>
-        <p>テンプレートを直すついでに、継ぎ足し継ぎ足しだったヘッダ部分を色々と整理した。
+        <h2 id="技術負債の解消"><a href="#技術負債の解消">技術負債の解消</a></h2>
+        <p>Markdown プロセッサを直すと同時に、それまで溜まっていた負債や、後回しにしていた改善も一気に入れることにした。
+        <section>
+          <h3 id="脱-webfont"><a href="#脱-webfont">脱 WebFont</a></h3>
+          <p>鉄下駄として WebFont を入れていたが、もう試すことはだいたい試した上に、もう日本語フォントにこれ以上期待するのは難しと考えてやめた。
+          <ul>
+            <li><a href="https://blog.jxck.io/tags/#web%20font">Tag: Web Font</a>
+          </ul>
+        </section>
+        <section>
+          <h3 id="html-header"><a href="#html-header">HTML Header</a></h3>
+          <p>テンプレートを直すついでに、継ぎ足し継ぎ足しだったヘッダ部分を色々と整理した。
+        </section>
         <section>
           <h3 id="favicon"><a href="#favicon">Favicon</a></h3>
-          <p>Favicon / Touch Icon のサポートと解像度を整理して、多くのケースをカバーできるようにした。
+          <p>Favicon / Touch Icon のサポートと解像度を整理し、多くのケースをカバーできるようにした。
         </section>
         <section>
           <h3 id="twitter-card"><a href="#twitter-card">Twitter Card</a></h3>
@@ -453,32 +458,32 @@ guest: [@myakura](https://twitter.com/myakura)
           </ul>
           <p>ついでに robots.txt も整理。
         </section>
-      </section>
-      <section>
-        <h2 id="amp-削除"><a href="#amp-削除">AMP 削除</a></h2>
-        <p>以前 AMP のサポートは落としていたが、コードベースは残していた。
-        <p>しかし、新しいビルダではもう AMP の生成はサポートしなくなったので、完全に削除した。
-      </section>
-      <section>
-        <h2 id="webpkgamppkg"><a href="#webpkgamppkg">webpkg/amppkg</a></h2>
-        <p>どちらも証明書が切れたので停止。いずれ証明書が安く手に入るようになったら再開するためコードは残す。
+        <section>
+          <h3 id="amp-削除"><a href="#amp-削除">AMP 削除</a></h3>
+          <p>以前 <a href="https://blog.jxck.io/entries/2021-06-26/amp-tone-down.html">AMP のサポートは落とした</a> が、コードベースは残していた。
+          <p>しかし、新しいビルダに移行したことで、残していた実装も完全に削除した。
+        </section>
+        <section>
+          <h3 id="webpkgamppkg"><a href="#webpkgamppkg">webpkg/amppkg</a></h3>
+          <p>どちらも証明書が切れたので停止。いずれ証明書が安く手に入るようになったら再開するためコードは残す。
+        </section>
       </section>
       <section>
         <h2 id="効果"><a href="#効果">効果</a></h2>
         <p>実装を置き換えてからの効果は以下。
         <ul>
-          <li>Markdown - HTML 変換速度が上がった。(ちゃんと測ってないが体感 1.5 倍)
-          <li>コード量を大幅に減らし、見通しをよくできた。
+          <li>Markdown -&gt; HTML 変換速度が上がった(きちんと測ってないが体感 1.5 倍)
+          <li>コード量を大幅に減らし、見通しをよくできた
           <li>記法エラーを実装したことで、これまでの原稿を整形できた
           <li>これまでの HTML の細かな問題、気に入らなかったところも全て精算できた
-          <li>kramdown という依存が無くなったので、 dependabot から警告が来ることが無くなった。
-          <li>ビルドプロセスから Ruby をなくせた
+          <li>Kramdown の依存が無くなったので、 dependabot から警告が来ることが無くなった
+          <li>ビルドプロセスに JS と Ruby が混ざっていたが、 Ruby をなくし JS に一本化できた
           <li>溜まっていた負債を払った
         </ul>
       </section>
       <section>
         <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
-        <p>今回 CSS の修正/整理まではいけなかったので、それは来年以降なおしていきたい。
+        <p>今回 CSS の修正/整理まではいけなかったので、それは来年以降取り組みたい。
         <p>また、起点になる Markdown コードベースを作り直せたので、これを元に mozaic.fm の方も改良を入れたい。
       </section>
     </article>
