@@ -8,6 +8,8 @@ build:
 x:
 	cd .src && node build.js preview
 
+draft:
+	cd .src && node build.js draft
 
 ##########################
 # Compression

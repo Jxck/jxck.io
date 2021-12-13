@@ -790,7 +790,12 @@ async function main() {
 
     // const pathes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
     const pathes = sync(`../mozaic.fm/episodes/**/*.md`)
-    await podcast([pathes.pop()], { preview: true })
+    return await podcast([pathes.pop()], { preview: true })
+  }
+
+  if (process.argv[2] === `draft`) {
+    const files = [`../blog.jxck.io/drafts/index.md`]
+    return await blog(files, { preview: true })
   }
 }
 
