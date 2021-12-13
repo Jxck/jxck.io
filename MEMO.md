@@ -5,12 +5,9 @@
 
 - <https://github.com/Jxck/jxck.io/tree/master/blog.jxck.io>
   - ビルド済み静的サイト
-  - AMP 対応
-  - DarkMode 対応
   - CSP/FeaturePolicy
   - Reporting
   - 鉄下駄として
-    - webfont
     - adsense
     - analytics
     - youtbe embed
@@ -20,13 +17,15 @@
 ### HTML
 
 - markdown を自作のジェネレータでビルド
-- このとき AMP 版も生成
+- このとき AMP 版も生成していたが対応を終了
+  - [Non AMP SXG による Prefetch 対応と AMP 提供の停止 | blog.jxck.io](https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html)
+  - [本サイトの AMP 提供の停止とここまでの振り返り | blog.jxck.io](https://blog.jxck.io/entries/2021-06-26/amp-tone-down.html)
 
 
 ### CSS
 
 - 基本は single colmun layout
-- dark mode 対応
+- dark mode 対応していたが、あまり気に入らなかったので一旦取り下げ
 
 
 ### JS
@@ -44,17 +43,19 @@
 - ラスタは WebP に
   - フォールバックとして jpeg/png/gif(anime)
 - picture タグで出しわけ
+- avif 対応検討中
 
 
 ### WebFont
 
 - 鉄下駄として日本語 WebFont を導入
-- Noto Sans CJK JP と Noto Sans Mono CJK JP
-- emoji は入れてない
-- diet
-  - entries 以下のファイルを全部みて、使われている文字を列挙
-  - それを元に subset 化した woff2 を生成
-- font-display: swap で表示
+  - Noto Sans CJK JP と Noto Sans Mono CJK JP
+  - emoji は入れてない
+  - diet
+    - entries 以下のファイルを全部みて、使われている文字を列挙
+    - それを元に subset 化した woff2 を生成
+  - font-display: swap で表示
+- していたが、もはややることは大体やって「日本語 Web フォントフルセット」は諦めたほうが良いと判断。対応もやめた。
 
 
 ### iframe
@@ -74,14 +75,10 @@
 
 - 原稿を md で記述
 - entries 以下に日付フォルダを作りそこに置く
-- `make blog` で html, amp.html が生成される
-  - ここで結果を確認しながら直していく
-  - 古い圧縮を消さなければブラウザには新しい変換結果は送られない
-- `make blogfeed` で RSS が更新される
-  - これをしなければ RSS は勝手には更新されない
 - `make build` で全体の変換や圧縮のなどを一式行う
   - これで build 結果をコミットしたら終わり
-
+- `make x`
+  - markdown 変換だけを行う。テスト用。
 
 ### md
 
