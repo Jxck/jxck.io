@@ -6,7 +6,7 @@ build:
 	make comp
 
 x:
-	cd .src && node build.js
+	cd .src && node build.js preview
 
 
 ##########################

@@ -562,10 +562,16 @@ async function parse_episode(entry, order) {
 }
 
 /**
+ * @typedef {Object} BuildOption
+ * @property {boolean} preview
+ */
+
+/**
  * build podcast episodes
  * @param {Array.<string>} files
+ * @param {BuildOption} params
  */
-async function blog(files) {
+async function blog(files, params = { preview: false }) {
   const entries = await Promise.all(files.map((file) => parse_entry(file)).reverse())
 
   // build entries
@@ -583,6 +589,8 @@ async function blog(files) {
     const result = render(entry_template, context)
     await writeFile(context.entry.target, result)
   }
+
+  if (params.preview) return
 
   // build index
   const entries_per_year = entries.reduce((acc, entry) => {
@@ -659,8 +667,9 @@ async function blog(files) {
 /**
  * build podcast episodes
  * @param {Array.<string>} files
+ * @param {BuildOption} params
  */
-async function podcast(files) {
+async function podcast(files, params = { preview: false }) {
   /**@type {Array.<Podcast>} */
   const pathes = files.map((path) => {
     const [dot, mozaic, episodes, ep, file] = path.split(`/`)
@@ -706,6 +715,8 @@ async function podcast(files) {
     const result = render(podcast_template, context)
     await writeFile(episode.target, result)
   }
+
+  if (params.preview) return
 
   // build index
   const result = await renderFile(`./template/podcast.index.html.ejs`, {
@@ -760,29 +771,27 @@ async function workbox() {
   await writeFile(`../www.jxck.io/assets/js/workbox.js`, replaced)
 }
 
-if (process.argv[2] === `workbox`) {
-  await workbox()
+async function main() {
+  if (process.argv[2] === `build`) {
+    const files = sync(`../blog.jxck.io/entries/**/*.md`)
+    const pathes = sync(`../mozaic.fm/episodes/**/*.md`)
+
+    return await Promise.all([
+      blog(files),
+      podcast(pathes),
+      workbox(),
+    ])
+  }
+
+  if (process.argv[2] === `previews`) {
+    // const files = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
+    const files = sync(`../blog.jxck.io/entries/**/*.md`)
+    await blog([files.pop()], { preview: true })
+
+    // const pathes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
+    const pathes = sync(`../mozaic.fm/episodes/**/*.md`)
+    await podcast([pathes.pop()], { preview: true })
+  }
 }
 
-if (process.argv[2] === `build`) {
-  const files = sync(`../blog.jxck.io/entries/**/*.md`)
-  const pathes = sync(`../mozaic.fm/episodes/**/*.md`)
-
-  await Promise.all([
-    blog(files),
-    podcast(pathes),
-    workbox(),
-  ])
-}
-
-if (process.argv.length < 3) {
-  // const files = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
-  const files = sync(`../blog.jxck.io/entries/**/*.md`)
-  await blog(files)
-
-  // const pathes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
-  const pathes = sync(`../mozaic.fm/episodes/**/*.md`)
-  await podcast(pathes)
-
-  await workbox()
-}
+await main()
