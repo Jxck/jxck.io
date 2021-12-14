@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>cross origin iframe DEMO | labs.jxck.io</title>
+
+<style>
+  h1 {
+    font-size: 1em;
+  }
+
+  iframe {
+    display: block;
+  }
+</style>
+
+<h1>cross origin iframe DEMO</h1>
+<p><strong>iframe title</strong>: <span id=iframe_title></span></p>
+<button id=ping>ping</button>
+<iframe height=200 width=400 name="xxx" src="//lab2.jxck.io/iframe/crossorigin/child.html#yyy"></iframe>
+
+<p id=msg></p>
+
+<script>
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+  EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+  const $ = document.querySelector.bind(document)
+
+  $('#ping').on('click', (e) => {
+    $('iframe')
+      .contentWindow
+      .postMessage("ping", "https://lab2.jxck.io")
+  })
+
+  window.on('message', (e) => {
+    const { origin, source, data } = e
+    console.log({ origin, source, data })
+    $('#msg').textContent += data
+  })
+
+  window.on('load', (e) => {
+    // access iframe dom
+    const title = $('iframe').contentDocument.title
+    $('#iframe_title').textContent = `iframe title is ${title}`
+  })
+</script>
