@@ -246,3 +246,12 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - <https://twitter.com/cramforce/status/1443962459723755533>
 - 2021/11/09: Internet Explorerのサポートを終了いたします - Qiita Blog
   - <https://blog.qiita.com/end-ie11-support/>
+- 2021/11: クラウドサイン ヘルプセンター
+  - <https://help.cloudsign.jp/ja/articles/2570393-クラウドサインの推奨環境を教えてください>
+
+
+## IE廃止セット
+
+- *Edge Customer Adoption Kit - Microsoft*
+  - IE11 廃止セットや、メールテンプレなどを配布している
+  - <https://www.microsoft.com/ja-JP/download/details.aspx?id=102119>
