@@ -30,6 +30,8 @@
 - ep85 Monthly Web 202106
 - ep87 Monthly Web 202108
 - ep89 Monthly Web 202110
+- ep90 Monthly Web 202111
+- ep91 Yearly Web
 
 blog の方で Markdown パーサを改善できたので、 mozaic.fm の方も改善し、できれば PWA 周りもアップデートして来年には v3 を出したい。
 
