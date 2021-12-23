@@ -6,7 +6,7 @@ const connectionmap = new Map();
 logger('initial connection Map()');
 
 setInterval(() => {
-  connectionmap = new Map();
+  connectionmap.clear();
   logger('reset connection Map()');
 }, 1000*60*60);
 
@@ -18,11 +18,7 @@ export default function broadcast(request) {
   const connection = request.accept(main)
   logger('accept', main, sub);
 
-  const connections = connectionmap.get(sub);
-  if (connections === undefined) {
-    connections = new Set();
-  }
-
+  const connections = connectionmap.has(sub) ? connectionmap.get(sub) : new Set();
   logger('connected', connections.size);
 
   connections.add(connection);
