@@ -63,7 +63,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-02-25T08:00:00+08:00",
-    "dateModified": "2021-01-16T08:00:00+08:00",
+    "dateModified": "2021-12-23T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -107,7 +107,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-02-25>2020-02-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-01-16>2021-01-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-12-23>2021-12-23</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -292,7 +292,7 @@ PC周辺機器の広告
         <p>世の開発者がブラウザ互換性に悩まされる原因は、まだ標準化が終わってない仕様にモダンだと勘違いして飛びついた時か、逆に仕様に準拠できてない古いブラウザの挙動に依存したコンテンツを作り、ブラウザ側が改善された時が大半だろう。一度作業を終え、正しく実装されたあとの仕様は、互換を壊して変わることは基本ない。しかし、「基本はない」だけで例外はいくつかある。最もわかりやすいのは「ユーザの安全」だ。
         <p><em>Web はユーザの安全を守るために、互換性を壊すことがある。</em>
         <p>この安全の実態には「セキュリティ」がまず上がる、 Spectre 対策で行われた Shared Array Buffer の無効化などが良い例だろう。その機能があることでユーザが危険に晒されるなら、機能を無効にしたり、挙動を変えたりといったことは、互換を壊してでも行われる。 AppCache のように Deprecate される機能の中にも、そういったものが少なくない。
-        <p>そして、この安全というカテゴリに「<em>セキュリティ</em>」だけでなく「<em>プライバシー</em>」も入ってきてるという流れが、昨今の議論の前提背景としてあると筆者は考える。
+        <p>そして、この安全というカテゴリに「<em>セキュリティ</em>」だけでなく「<em>プライバシー</em>」も入ってきているという流れが、昨今の議論の前提背景としてあると筆者は考える。
         <p>例えば、 3rdPC でのトラッキングは、一般的に「攻撃」とは見なされていなかった(でなければ世の中の大抵のサイトは有害サイトになる)。しかし、過去数年の特に個人情報漏洩や売買などに関わるインシデントがあとを経たず、一方でターゲティング広告がうざいという消費者の意見などから、徐々に「プライバシー」に対する考えが変わりはじめ、とうとうトラッキングにもメスが入るようになり、責任の所在はその時たまたまトラッキングの実装に使われていた 3rd Party Cookie に向かうことになった。
         <section>
           <h3 id="tracking-prevention"><a href="#tracking-prevention">Tracking Prevention</a></h3>
@@ -327,7 +327,7 @@ PC周辺機器の広告
         <p>仕様定義の中では、プライバシーに配慮したエントロピーのコントロールや、ユーザの許諾を取るような権限モデルを考慮することになる。
         <p>またブラウザの API として実装することで、ブラウザ設定から Opt-In/Out を選択できたり、より自分に合った設定を拡張で導入したりといった選択をユーザが可能になる。
         <p>結果、ブロックするかしないかという All or Nothing な現状から、ユーザとサービス側に API を通じた確かな合意形成と、標準仕様とブラウザ実装によって担保されたプライバシーの保護機構が確立し、新たなエコシステムが生まれる。
-        <p>実際そうなるかは別として、単に「ブロックする」ことしかしてない各 Tracking Prevention に対して、「じゃあどうすれば良いのか」を模索する動きが Privacy Snadbox だと言えるだろう。
+        <p>実際そうなるかは別として、単に「ブロックする」ことしかしてない各 Tracking Prevention に対して、「じゃあどうすれば良いのか」を模索する動きが Privacy Sandbox だと言えるだろう。
         <p>これは Chrome が中心となって行っていることではあるが、その中心である <a href="https://github.com/csharrison/conversion-measurement-api">Conversion Management API</a> は、先行して Safari が提案した <a href="https://webkit.org/blog/8943/privacy-preserving-ad-click-attribution-for-the-web/">Ad Click Attribution</a> とかなり類似している。 <a href="https://webkit.org/blog/8124/introducing-storage-access-api/">Storage Access API</a> 含め、 Safari は ITP を始めたことと並行して、 Privacy Sandbox の礎となるような作業を既に始めていたと言ってもいいだろう。
         <p>いずれにせよ、まだ議論が始まったばかりで、中身はほとんど揃ってないが、この動きがどうなるか、各 API がどこまで実現するかは、今後の Web の生態系に大きな影響を及ぼすと筆者は考える。
       </section>
@@ -353,7 +353,7 @@ PC周辺機器の広告
         <pre class=http><code translate=no>Set-Cookie: __Host-SID=q1w2e3r4t5; HttpOnly; Secure; Path=/; SameSite=Lax;</code></pre>
         <p>結果として、「なんでもできた牧歌的な Cookie」は終わり、 Credential としてのユースケースを実現したこの姿に収束しつつ、他のユースケースは徐々に Cookie を離れて、各々の API を探していくことになりそうだ。
         <p>この始まりの先に保証はない、結果としてみんなが各ベンダプラットフォームにロックインされてでもアプリに移ることを選べば、「完成した安全な仕様」と「誰も使わない Web」が残る可能性も有るだろう。
-        <p>今の Cookie の挙動にしがみつき、その変更を誰かのせいにして嘆いてる暇があったら、自身が今持つユースケースを見直し、それが正しく実現される Post 牧歌的 Cookie 時代の Web の姿を考える方が、建設的ではないだろうか。
+        <p>今の Cookie の挙動にしがみつき、その変更を誰かのせいにして嘆いている暇があったら、自身が今持つユースケースを見直し、それが正しく実現される Post 牧歌的 Cookie 時代の Web の姿を考える方が、建設的ではないだろうか。
         <p>Jxck
       </section>
     </article>

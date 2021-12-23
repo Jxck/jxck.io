@@ -63,7 +63,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-11-30T08:00:00+08:00",
-    "dateModified": "2021-12-03T08:00:00+08:00",
+    "dateModified": "2021-12-23T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -107,7 +107,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-11-30>2021-11-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-12-03>2021-12-03</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-12-23>2021-12-23</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -173,7 +173,7 @@
       </section>
       <section>
         <h2 id="markdown"><a href="#markdown">Markdown</a></h2>
-        <p>本サイトは、一般に使われている Markdown -&gt; HTML の変換結果では要件を満たせないため、最も都合の良い AST を吐く <a href="https://kramdown.gettalong.org/">kramdown</a> のパーサから AST だけを取得し、それを Traverser でカスタマイズしてから自前でシリアライズしていた。
+        <p>本サイトは、一般に使われている Markdown -&gt; HTML の変換結果では要件を満たせないため、最も都合の良い AST を吐く <a href="https://kramdown.gettalong.org/">Kramdown</a> のパーサから AST だけを取得し、それを Traverser でカスタマイズしてから自前でシリアライズしていた。
         <p>その実装を、微修正を繰り返しながら、継ぎ足し継ぎ足しで 5 年くらいイジってきたので、そろそろ自分がブログを書く上での要件も固まっており、記事中の Markdown のスタイルも固定してきた。
         <p>一方、 Kramdown の実装が原因でどうしてもワークアラウンドが必要だった部分に、フラストレーションも技術的負債も溜まっていたため、自作の Markdown パーサ/ビルダをフルスクラッチで作ることにした。
         <p>プレビュー表示などでブラウザでも使えるよう、一応 Pure JS (+ JSDoc Typed) で 1 ファイルにゴリっと書いている。また、汎用性は求めてないのでライブラリとして別リポジトリで公開はせず、ブログのソースに組み込んで密結合させている。
@@ -225,7 +225,7 @@
     &lt;/section&gt;
   &lt;/section&gt;
 &lt;/article&gt;</code></pre>
-          <p>もともと kramdown をカスタマイズしはじめたのも、これを行いたかったからだった。
+          <p>もともと Kramdown をカスタマイズしはじめたのも、これを行いたかったからだった。
         </section>
         <section>
           <h3 id="閉じタグとクオートの省略"><a href="#閉じタグとクオートの省略">閉じタグとクオートの省略</a></h3>
@@ -395,7 +395,7 @@ a **b ** c
         </section>
         <section>
           <h3 id="url-link"><a href="#url-link">URL link</a></h3>
-          <p>Kramdown ではサポートされてなかった URL Like String を含めて、リンク記法は以下の 3 つ全てサポートしてる。
+          <p>Kramdown ではサポートされてなかった URL Like String を含めて、リンク記法は以下の 3 つを全てサポートしている。
           <pre class=md><code translate=no>[title](https://example.com)
 &lt;https://example.com&gt;
 https://example.com</code></pre>
@@ -425,7 +425,7 @@ https://example.com</code></pre>
         <p>Markdown プロセッサを直すと同時に、それまで溜まっていた負債や、後回しにしていた改善も一気に入れることにした。
         <section>
           <h3 id="脱-webfont"><a href="#脱-webfont">脱 WebFont</a></h3>
-          <p>鉄下駄として WebFont を入れていたが、もう試すことはだいたい試した上に、もう日本語フォントにこれ以上期待するのは難しと考えてやめた。
+          <p>鉄下駄として WebFont を入れていたが、もう試すことはだいたい試した上に、もう日本語フォントにこれ以上期待するのは難しいと考えてやめた。
           <ul>
             <li><a href="https://blog.jxck.io/tags/#web%20font">Tag: Web Font</a>
           </ul>
