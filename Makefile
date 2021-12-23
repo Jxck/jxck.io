@@ -151,6 +151,9 @@ start:
 stop:
 	sudo systemctl stop h2o
 
+status:
+	sudo systemctl status h2o
+
 kill:
 	sudo systemctl kill h2o
 
