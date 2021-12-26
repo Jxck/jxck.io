@@ -63,7 +63,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-12-08T08:00:00+08:00",
-    "dateModified": "2021-12-23T08:00:00+08:00",
+    "dateModified": "2021-12-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -107,7 +107,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-12-08>2021-12-08</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-12-23>2021-12-23</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-12-26>2021-12-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -162,7 +162,7 @@
         <p>身近な例として HTML の <a href="https://html.spec.whatwg.org/multipage/semantics.html#the-title-element"><code translate=no>&lt;title&gt;</code></a> を考えてみよう。
         <p><code translate=no>&lt;title&gt;</code> にはその文書のタイトルが入る。これは仕様にも明らかだ。例えばこのエントリだとタイトルタグは以下のような実装が考えられる。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
-        <pre class=html><code translate=no>&lt;title&gt;セマンティクスにおける Push と Pull&lt;/title&gt;</code></pre>
+        <pre class=html><code translate=no>&lt;title&gt;Web のセマンティクスにおける Push と Pull&lt;/title&gt;</code></pre>
         <p>同じく HTML を理解する各実装は、これを以下のように扱う。
         <ul>
           <li>ブラウザがタイトルバーやブックマークに表示する
@@ -178,7 +178,7 @@
           <img loading=lazy decoding=async src=pull.svg?211208_015316 alt="あらゆるクライアントに対してコンテンツを提供する" title="pull semantics" width=744 height=537>
         </p>
         <p>しかし、見ればわかるが筆者が実際に本サイトで行っている実装はこうだ。
-        <pre class=html><code translate=no>&lt;title&gt;セマンティクスにおける Push と Pull | blog.jxck.io&lt;/title&gt;</code></pre>
+        <pre class=html><code translate=no>&lt;title&gt;Web のセマンティクスにおける Push と Pull | blog.jxck.io&lt;/title&gt;</code></pre>
         <p>後ろにサイト名を補足している。本来の「独立した文書の表題」という観点でいえば、そこにサイト名は入らないだろう。しかし周知の通り、このように後ろにサイト名を入れる実装は、非常に一般的に行われている。
         <p>それはなぜだろうか?
         <p>理由の 1 つには、「純粋にタイトルだけが流通した場合に、どのサイトのものなのかがわかりにくい」という問題への対策があるだろう。特に SNS などでの流通を意識すると、それがどのサイトであるかを示した方がわかりやすい場合がある。他にも、サーチャビリティ/エゴサビリティの観点で、一意なサフィックスが共通して付与されていると便利な場面も想像できる。
@@ -189,7 +189,7 @@
           <img loading=lazy decoding=async src=push.svg?211208_015316 alt="特定のクライアントに対して最適化したコンテンツを提供する" title="push semantics" width=744 height=537>
         </p>
         <p>本来 <code translate=no>&lt;title&gt;</code> だけの流通で不便があり、サイト名などを補完する方が良いというユースケースがあるのならば、それを仕様にすることで解決するのが標準化だ。この例では、サイト名を含めるための <code translate=no>&lt;site&gt;</code> タグを標準化し、提供側は以下のようにそれを導入するといった方法が考えられる。
-        <pre class=html><code translate=no>&lt;title&gt;セマンティクスにおける Push と Pull&lt;/title&gt;
+        <pre class=html><code translate=no>&lt;title&gt;Web のセマンティクスにおける Push と Pull&lt;/title&gt;
 &lt;site&gt;blog.jxck.io&lt;/site&gt;</code></pre>
         <p>消費側は、 &quot;タイトル&quot; と &quot;サイト名&quot; をそれぞれ取得できるため、 <code translate=no>${title} | ${site}</code> などのように組み合わせて消費/流通してもよい。もちろん一行の文字列にせずとも、カード型の UI を作って表示しても良い。選択肢に対して何を選択するかは自由だ。
         <p>この <code translate=no>&lt;site&gt;</code> の標準化は、特定の実装に寄せる <em>Push 型の実装</em> が必要だったユースケースを、標準化によって <em>Pull 型の実装</em> に引き戻すことを意味する。
@@ -254,7 +254,7 @@ Width: 300</code></pre>
         <p>では、なぜ Push / Pull 両方が標準でサポートされているのだろうか? 標準 API を正しく用いたら Pull になるというわけではないのか?
         <p>ここでのすれ違いは、解釈の帰結先がずれていることによって起こっている。例えば、&quot;DPR: 2&quot; はまぎれもなくデバイスの DPR を伝えている。その情報を取得すること自体は Pull だ。問題は「DPR が 2」であることを「だから x2 の画像を送る」と帰結させてしまっている部分にある。クライアントは最初からそんなこと言ってないのだ。
         <p>最初に述べたように、 Push / Pull とは実装の態度だ。仕様は基本的に Pull で考えられており、「特定のユースケースや特定の実装に向けて Push で使われる」だけだ。
-        <p>とはいえ、 DPR の場合は、最初から画像を出し分けるというユースケースのために Iliya が提案したという経緯があり、当時「それって <code translate=no>srcset</code> の方が良いんじゃないの?」のという話をしたところ、「こちらの方が上手く問題を解決できるケースがある」という話をされたのを覚えている。おそらく、前述のようにサイトに手を入れずに解決できなければ、スケール(普及)しないという実態に合わせた現実解だったんだろう。そして現在その方法は成果を出しており、世のページ表示が早くなるために貢献しているため、それは否定されることではない。
+        <p>とはいえ、 DPR の場合は、最初から画像を出し分けるというユースケースのために Iliya が提案したという経緯があり、当時「それって <code translate=no>srcset</code> の方が良いんじゃないの?」という話をしたところ、「こちらの方が上手く問題を解決できるケースがある」という話をされたのを覚えている。おそらく、前述のようにサイトに手を入れずに解決できなければ、スケール(普及)しないという実態に合わせた現実解だったんだろう。そして現在その方法は成果を出しており、世のページ表示が早くなるために貢献しているため、それは否定されることではない。
         <p>このように Push と Pull は良い悪いで一刀両断できる話ではないのだ。
         <p>ただし、そのまま野放しにすると、コンテンツ提供者がそうした Push による実装をより正確にしたいがために、さまざまな情報を追加でクライアントに送らせたがり、それがエントロピーを上げ、 Fingerprint ベクタになり、また新たな問題を生む可能性もある。 Push の精度を上げるのは限界があり、 Pull の場合はその情報をクライアント内に閉じることができるという点は、常に意識しておきたい。
       </section>
