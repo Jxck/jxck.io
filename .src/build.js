@@ -783,7 +783,7 @@ async function main() {
     ])
   }
 
-  if (process.argv[2] === `previews`) {
+  if (process.argv[2] === `preview`) {
     // const files = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
     const files = sync(`../blog.jxck.io/entries/**/*.md`)
     await blog([files.pop()], { preview: true })

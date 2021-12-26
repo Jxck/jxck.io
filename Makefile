@@ -5,7 +5,7 @@ build:
 	cd .src && node build.js build
 	make comp
 
-x:
+preview:
 	cd .src && node build.js preview
 
 draft:
