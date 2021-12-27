@@ -2,7 +2,7 @@
 type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep90.mp3
-published_at: 20211213
+published_at: 2021-12-13
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
