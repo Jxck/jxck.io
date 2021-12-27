@@ -28,7 +28,8 @@ begin
     exit(0)
   else
     date = Time.now.iso8601
-    json = {body: JSON.parse(body), header: header, date: date}
+    addr = ENV["REMOTE_ADDR"]
+    json = {body: JSON.parse(body), header: header, date: date, addr: addr}
     append(FILE, JSON.fast_generate(json))
     STDOUT.print "Status: 201 Created\n\n"
   end
