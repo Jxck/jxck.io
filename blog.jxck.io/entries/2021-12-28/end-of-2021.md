@@ -30,20 +30,20 @@
 
 ## mozaic.fm
 
-- [ep78 TC39](/episodes/78/tc39.html)
-- [ep79 Monthly Web 202101](/episodes/79/monthly-web-202101.html)
-- [ep80 Monthly Web 202102](/episodes/80/monthly-web-202002.html)
-- [ep81 Monthly Web 202103](/episodes/81/monthly-web-202103.html)
-- [ep82 Monthly Web 202104](/episodes/82/monthly-web-202104.html)
-- [ep83 IE](/episodes/83/ie.html)
-- [ep84 Monthly Web 202105](/episodes/84/monthly-web-202105.html)
-- [ep85 Monthly Web 202106](/episodes/85/monthly-web-202106.html)
-- [ep86 Monthly Web 202107](/episodes/86/monthly-web-202107.html)
-- [ep87 Monthly Web 202108](/episodes/87/monthly-web-202108.html)
-- [ep88 Monthly Web 202109](/episodes/88/monthly-web-202109.html)
-- [ep89 Monthly Web 202110](/episodes/89/monthly-web-202110.html)
-- [ep90 Monthly Web 202111](/episodes/90/monthly-web-202111.html)
-- [ep91 Yearly Web 2021](/episodes/91/yearly-web-2021.html)
+- [ep78 TC39](https://mozaic.fm/episodes/78/tc39.html)
+- [ep79 Monthly Web 202101](https://mozaic.fm/episodes/79/monthly-web-202101.html)
+- [ep80 Monthly Web 202102](https://mozaic.fm/episodes/80/monthly-web-202002.html)
+- [ep81 Monthly Web 202103](https://mozaic.fm/episodes/81/monthly-web-202103.html)
+- [ep82 Monthly Web 202104](https://mozaic.fm/episodes/82/monthly-web-202104.html)
+- [ep83 IE](https://mozaic.fm/episodes/83/ie.html)
+- [ep84 Monthly Web 202105](https://mozaic.fm/episodes/84/monthly-web-202105.html)
+- [ep85 Monthly Web 202106](https://mozaic.fm/episodes/85/monthly-web-202106.html)
+- [ep86 Monthly Web 202107](https://mozaic.fm/episodes/86/monthly-web-202107.html)
+- [ep87 Monthly Web 202108](https://mozaic.fm/episodes/87/monthly-web-202108.html)
+- [ep88 Monthly Web 202109](https://mozaic.fm/episodes/88/monthly-web-202109.html)
+- [ep89 Monthly Web 202110](https://mozaic.fm/episodes/89/monthly-web-202110.html)
+- [ep90 Monthly Web 202111](https://mozaic.fm/episodes/90/monthly-web-202111.html)
+- [ep91 Yearly Web 2021](https://mozaic.fm/episodes/91/yearly-web-2021.html)
 
 blog の方で Markdown パーサを改善できたので、 mozaic.fm の方も改善し、できれば PWA 周りもアップデートして来年には v3 を出したい。
 
