@@ -106,38 +106,16 @@
 
 ただし markdown は以下に注意
 
-- URL 直書きは `<>` で囲まないとリンクにならない(kramdown の仕様)
 - 画像の URL は最後に `#120x120` のように width/height を入れる(AMP 用)
 - サンプルコードは外部ファイルを読み込める(独自)
 
 その他細かい挙動は最初のエントリをテストエントリにしているのでそこで確認。
 
-`make blogtest` でこれだけをビルドもできる。
-
 <https://blog.jxck.io/entries/2016-01-27/new-blog-start.html#test-section>
 
-変換の実装は ./script にある。
+パーサは独自実装
 
-kramdown を元に実装している。
-
-<https://github.com/Jxck/jxck.io/blob/master/mark.rb>
-
-- kramdown で GFM としてパースだけしている
-- 取得した AST を前処理し、気に入らない部分を書き換える
-  - `<section>` を入れるなど
-  - いらない `<p>` を消す
-  - `<table>` の中をイジる
-  - etc
-- 出来上がった AST を HTML に変換する
-  - HTML と AMP 両方出し分けている
-  - ここで属性の追加や綴じタグの削除も入れる
-  - インデントには気を使ってキレイな出力を心がけている
-- その他
-  - 日付はディレクトリから取得
-  - 最終更新はファイルから取得
-  - tag ページも生成
-  - podcast も同じようにやっている
-  - RSS もここからできる
+- https://blog.jxck.io/entries/2021-11-30/blog-v2-release.html
 
 
 ### 画像
@@ -206,16 +184,16 @@ https://github.com/Jxck/jxck.io/tree/master/mozaic.fm
 
 
 ```md
-# [tag][tag2] epXX タイトル
+---
+type: podcast
+tags: ["tag"]
+audio: https://files.mozaic.fm/mozaic-epXX.mp3
+published_at: 2022-02-22
+guest: [@gest](url)
+guest: [@gest2](url)
+---
 
-## Info
-
-audio: https://files.mozaic.fm/mozaic-ep0.mp3
-
-- published_at: 2222-22-22
-- guest: [@jxck_](https://twitter.com/jxck_)
-- guest: [@jxck_](https://twitter.com/jxck_)
-
+# epXX XXXX
 
 ## Theme
 
@@ -226,11 +204,7 @@ audio: https://files.mozaic.fm/mozaic-ep0.mp3
 ```
 
 - tag: タグのページ、ただし今はタグページを作ってない
-- Info: 必ず最初に来る、この形で書くと mp3 がプレイヤーに埋め込まれ RSS にも乗る
-- guest: 複数書ける
 - Theme: これが index ページの見出し、 description 要素、 RSS の概要などに使われる
-
-ビルドは blog と同じく mark.rb で行う。
 
 AMP は吐かない。
 
@@ -279,21 +253,3 @@ eyeD3 --title "ep0 introduction of mozaic.fm" \
 ```
 
 一度全部消して、最小限のメタデータを付与。 track は sideshow の分ずれるので、エピソード番号と同じではなく、 1 オリジンで最初からのファイル数。
-
-
-## install/update
-
-ruby と node の依存は以下で install/update できる
-
-
-```sh
-$ make isntall
-$ make update
-```
-
-gem は .bundle/vender に入れている。
-
-
-```sh
-$ bundle config set path './.bundle/vendor' --local
-```
