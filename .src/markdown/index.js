@@ -3,7 +3,7 @@
 /**
  * @typedef {Object} Serialized
  * @property {string} html
- * @property {Array.<Toc>} toc
+ * @property {Array.<Toc>} toc - TOC も HTML encode した結果にするため encode の結果として返す
  * @property {Array.<string>} tags
 */
 
