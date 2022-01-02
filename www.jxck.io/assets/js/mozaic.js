@@ -1,12 +1,12 @@
 // Enable debug log adding #debug into url
-const log = location.hash === '#debug' ? console.log.bind(console) : () => {}
-const $  = document.querySelector.bind(document)
+const log = location.hash === '#debug' ? console.log.bind(console) : () => { }
+const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 DocumentFragment.prototype.$ = DocumentFragment.prototype.querySelector
-Element.prototype.$          = Element.prototype.querySelector
-EventTarget.prototype.on     = EventTarget.prototype.addEventListener
-EventTarget.prototype.off    = EventTarget.prototype.removeEventListener
-EventTarget.prototype.emit   = EventTarget.prototype.dispatchEvent
+Element.prototype.$ = Element.prototype.querySelector
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
+EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+EventTarget.prototype.emit = EventTarget.prototype.dispatchEvent
 
 function reportingObserver() {
   log('ReportingObserver')
@@ -26,7 +26,7 @@ async function playerKeybind(e) {
   log(e.key, e.target, document.activeElement)
   const $mozaic_player = $('mozaic-player')
 
-  switch(e.key) {
+  switch (e.key) {
     case 'Enter':
       // document body 以外の Enter は、コントロールが必要かもしれないので無視
       if (document.activeElement !== document.body) return
@@ -103,11 +103,11 @@ async function enableWebShare() {
   if ($share !== null) {
     $share.classList.remove('disabled')
     $share.on('click', (e) => {
-      const url   = location.href
+      const url = location.href
       const title = document.title
       const $meta = /**@type{HTMLMetaElement}*/($('meta[name=description]'))
-      const text  = $meta.content
-      navigator.share({url, title, text})
+      const text = $meta.content
+      navigator.share({ url, title, text })
     })
   }
 }
@@ -127,7 +127,7 @@ async function enableBackgroundFetch(registration) {
 
 async function enablePeriodicSync(registration) {
   /**@type{PermissionStatus}*/
-  const status = await navigator.permissions.query({name:'periodic-background-sync'})
+  const status = await navigator.permissions.query({ name: 'periodic-background-sync' })
   if (status.state === 'granted') {
     /**@type{DOMString[]}*/
     const tags = await registration.periodicSync.getTags()
@@ -176,6 +176,19 @@ document.on('DOMContentLoaded', async (e) => {
       $audio.controls = true
     }
   }
+
+  // Insert TOC
+  const $toc = document.importNode($('#toc').content, true)
+  const $ul = $toc.querySelector('ul')
+  document.querySelectorAll('h2, h3, h4, h5').forEach((h) => {
+    const child = h.firstChild.cloneNode(true)
+    const level = parseInt(h.nodeName.charAt(1))
+    child.textContent = `${'#'.repeat(level)} ${child.textContent}`
+    const $li = document.createElement('li')
+    $li.appendChild(child)
+    $ul.appendChild($li)
+  })
+  $('dl.info').appendChild($toc)
 
   // Enable Web Share
   if (navigator.share) {
