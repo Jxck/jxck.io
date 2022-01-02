@@ -6,7 +6,6 @@ import { readFileSync, statSync } from "fs"
 import { exec } from "child_process"
 import { promisify } from "util"
 
-const { sync } = glob
 const { render } = ejs
 
 /**
@@ -773,29 +772,30 @@ async function workbox() {
 
 async function main() {
   if (process.argv[2] === `build`) {
-    const files = sync(`../blog.jxck.io/entries/**/*.md`)
-    const pathes = sync(`../mozaic.fm/episodes/**/*.md`)
-
+    const [entries, episodes] = await Promise.all([
+      promisify(glob)(`../blog.jxck.io/entries/**/*.md`),
+      promisify(glob)(`../mozaic.fm/episodes/**/*.md`),
+    ])
     return await Promise.all([
-      blog(files),
-      podcast(pathes),
+      blog(entries),
+      podcast(episodes),
       workbox(),
     ])
   }
 
   if (process.argv[2] === `preview`) {
-    // const files = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
-    const files = sync(`../blog.jxck.io/entries/**/*.md`)
-    await blog([files.pop()], { preview: true })
+    // const entries = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
+    const entries = await promisify(glob)(`../blog.jxck.io/entries/**/*.md`)
+    await blog([entries.pop()], { preview: true })
 
-    // const pathes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
-    const pathes = sync(`../mozaic.fm/episodes/**/*.md`)
-    return await podcast([pathes.pop()], { preview: true })
+    // const episodes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
+    const episodes = await promisify(glob)(`../mozaic.fm/episodes/**/*.md`)
+    return await podcast([episodes.pop()], { preview: true })
   }
 
   if (process.argv[2] === `draft`) {
-    const files = [`../blog.jxck.io/drafts/index.md`]
-    return await blog(files, { preview: true })
+    const entries = [`../blog.jxck.io/drafts/index.md`]
+    return await blog(entries, { preview: true })
   }
 }
 
