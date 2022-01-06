@@ -1,5 +1,5 @@
-.PHONY: blog podcast comp gz br remove clean webp
-.SUFFIXES: .html .md .amp .amp.html .webp .png .jpeg .gif
+.PHONY: blog podcast comp gz br remove clean webp avif
+.SUFFIXES: .html .md .amp .amp.html .webp .avif .png .jpeg .gif
 
 build:
 	cd .src && node build.js build
@@ -16,9 +16,9 @@ draft:
 ##########################
 # 探索は www/blog/mozaic のみ
 # 対象外ファイルを除き brotli で圧縮する (zopfli/gz は h2o 側でやることにした)
-WWW = $(shell selects path from "./www.jxck.io/**/*"  where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
-BLO = $(shell selects path from "./blog.jxck.io/**/*" where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.rb|.md|.txt|.woff2|.sh|.cgi" and      path "!~" "drafts" and path "!~" "tags" order by path desc)
-MOZ = $(shell selects path from "./mozaic.fm/**/*"    where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
+WWW = $(shell selects path from "./www.jxck.io/**/*"  where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.avif|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
+BLO = $(shell selects path from "./blog.jxck.io/**/*" where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.avif|.rb|.md|.txt|.woff2|.sh|.cgi" and      path "!~" "drafts" and path "!~" "tags" order by path desc)
+MOZ = $(shell selects path from "./mozaic.fm/**/*"    where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.avif|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
 TARGET = $(WWW) $(BLO) $(MOZ)
 
 BR = $(addsuffix .br, $(TARGET))
@@ -95,13 +95,16 @@ gif:
 	find ./blog.jxck.io/entries/**/*.gif \
 		| xargs -L1 -P$(shell core) -I{} sh -c '$(GIFSICLE) {} -o {}'
 
-## webp
-CWEBP = cwebp -q 40 -quiet
-GWEBP = gif2webp -q 40 -quiet
+
 
 PNG = $(wildcard ./blog.jxck.io/entries/**/*.png)
 JPG = $(wildcard ./blog.jxck.io/entries/**/*.jpeg)
 GIF = $(wildcard ./blog.jxck.io/entries/**/*.gif)
+
+
+## webp
+CWEBP = cwebp -q 40 -quiet
+GWEBP = gif2webp -q 40 -quiet
 
 WEBP = $(PNG:.png=.webp)
 WEBP += $(JPG:.jpeg=.webp)
@@ -119,12 +122,32 @@ WEBP += $(GIF:.gif=.webp)
 webp: $(WEBP)
 
 
+## avif
+NAVIF = npx avif --speed 0 --quality 40 --verbose
+
+AVIF = $(PNG:.png=.avif)
+AVIF += $(JPG:.jpeg=.avif)
+AVIF += $(GIF:.gif=.avif)
+
+.png.avif:
+	$(NAVIF) --input $*.png
+
+.jpeg.avif:
+	$(NAVIF) --input $*.jpeg
+
+.gif.avif:
+	ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $*.avif
+
+avif: $(AVIF)
+
+
 ## optimize all image
 image:
 	$(MAKE) png
 	$(MAKE) jpeg
 	$(MAKE) gif
 	$(MAKE) webp
+	$(MAKE) avif
 
 ##########################
 # formatter
