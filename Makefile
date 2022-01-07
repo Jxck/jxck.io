@@ -103,8 +103,8 @@ GIF = $(wildcard ./blog.jxck.io/entries/**/*.gif)
 
 
 ## webp
-CWEBP = cwebp -q 40 -quiet
-GWEBP = gif2webp -q 40 -quiet
+CWEBP = cwebp -q 40 -quiet -m 6
+GWEBP = gif2webp -q 40 -quiet -m 6
 
 WEBP = $(PNG:.png=.webp)
 WEBP += $(JPG:.jpeg=.webp)
@@ -123,17 +123,17 @@ webp: $(WEBP)
 
 
 ## avif
-NAVIF = npx avif --speed 0 --quality 40 --verbose
+CAVIF = npx avif --speed 0 --quality 40 --verbose
 
 AVIF = $(PNG:.png=.avif)
 AVIF += $(JPG:.jpeg=.avif)
 AVIF += $(GIF:.gif=.avif)
 
 .png.avif:
-	$(NAVIF) --input $*.png
+	$(CAVIF) --input $*.png
 
 .jpeg.avif:
-	$(NAVIF) --input $*.jpeg
+	$(CAVIF) --input $*.jpeg
 
 .gif.avif:
 	ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $*.avif
