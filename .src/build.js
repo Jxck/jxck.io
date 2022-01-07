@@ -419,13 +419,15 @@ function customise_image(node, base) {
 
   if (src.endsWith(`.png`) || src.endsWith(`.jpeg`) || src.endsWith(`.gif`)) {
     const picture = new Node({ name: `picture`, type: `block` })
-    // TODO: replace 1 つでいける
-    const webp = src.replace(/\.png$|\.jpeg$|\.gif$/, `.webp`)
-    const query = cache_busting(`${base}/${webp}`)
-    const srcset = `${webp}${query}`
+    // support webp/avif in picture
+    Array.of("avif", "webp").forEach((type) => {
+      const file = src.replace(/\.png$|\.jpeg$|\.gif$/, `.${type}`)
+      const query = cache_busting(`${base}/${file}`)
+      const srcset = `${file}${query}`
+      const source = new Node({ name: `source`, type: `block`, attr: { type: `image/${type}`, srcset } })
+      picture.appendChild(source)
+    })
     const img = new Node({ name: `img`, type: `block`, attr })
-    const source = new Node({ name: `source`, type: `block`, attr: { type: `image/webp`, srcset } })
-    picture.appendChild(source)
     picture.appendChild(img)
     return picture
   }
