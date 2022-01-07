@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2022-01-07/avif.html>
+
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?210502_161127>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
+
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?210502_161127></script>
+  <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/webp sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/webp sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 6 回...">
+  <meta name=keywords            content="avif,image,performance">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2022-01-07/avif.html>
+  <meta property=og:title        content="画像最適化戦略 AVIF 編 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 6 回...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "画像最適化戦略 AVIF 編 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2022-01-07T08:00:00+08:00",
+    "dateModified": "2022-01-07T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 6 回..."
+  }
+  </script>
+
+  <title>画像最適化戦略 AVIF 編 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?201218_145648>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2022-01-07>2022-01-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-07>2022-01-07</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#avif">avif</a>
+              <li><a href="/tags#image">image</a>
+              <li><a href="/tags#performance">performance</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ul>
+                <li><a href=#intro>## Intro</a>
+                <li><a href=#avif>## AVIF</a>
+                <li><a href=#avif-への変換>## AVIF への変換</a>
+                <li><a href=#gif>### GIF</a>
+                <li><a href=#picture>### Picture</a>
+                <li><a href=#demo>### DEMO</a>
+                <li><a href=#size>### Size</a>
+                <li><a href=#outro>## Outro</a>
+                <li><a href=#demo_1>## DEMO</a>
+                <li><a href=#resources>## Resources</a>
+              </ul>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210427_184241>
+    <article>
+      <h1><a href="">画像最適化戦略 AVIF 編</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配布するようにした。
+        <p>フォーマットを出し分けるため、画像の指定は <code translate=no>&lt;picture&gt;</code> 要素を用いて対応した。
+        <p>画像最適化シリーズ第 6 回目のエントリである。
+        <ol>
+          <li><a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JPEG 編</a>
+          <li><a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
+          <li><a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
+          <li><a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
+          <li><a href="https://blog.jxck.io/entries/2019-05-20/lazyloading.html">画像最適化戦略 Lazy Loading 編</a>
+          <li><a href="TODO">&gt; 画像最適化戦略 AVIF 編</a>
+        </ol>
+      </section>
+      <section>
+        <h2 id="avif"><a href="#avif">AVIF</a></h2>
+        <p>AVIF は、ロイヤリティフリーなコーデックを目指して AOMedia が開発した AV1 を、画像に転用したものだ。 AV1 Image File Format の略とされ、 AV1 の I フレームを静止画として表示するイメージだ。
+        <p>Chrome 85, Firefox 93 あたりかた対応が始まり、いまはデフォルトで有効になっている。
+        <p>Edge はなぜか AVIF を取得しないようだが、理由はわかってない。
+        <p>Safari は、 AOM には参加しているようだが WebP の対応も割と最近なので、気長に待ちたい。
+      </section>
+      <section>
+        <h2 id="avif-への変換"><a href="#avif-への変換">AVIF への変換</a></h2>
+        <p>本サイトでは、基本的に PNG/JPEG/GIF がソースとして存在し、それを WebP に変換している。これと同様に AVIF への事前変換を行う。
+        <p>変換ツールはいくつかあるが、 Go が Node あたりが使いやすそうだった。
+        <ul>
+          <li>
+            Kagami/go-avif
+            <ul>
+              <li><a href="https://github.com/Kagami/go-avif">https://github.com/Kagami/go-avif</a>
+            </ul>
+          </li>
+          <li>
+            lovell/avif-cli
+            <ul>
+              <li><a href="https://github.com/lovell/avif-cli">https://github.com/lovell/avif-cli</a>
+            </ul>
+          </li>
+        </ul>
+        <p>node の方が GIF にも対応してそうだったので、こちらを採用した。
+        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
+        <pre class=shell-session><code translate=no>$ npx avif -h
+
+Convert images to AVIF
+
+Options:
+    --input              Input file name(s), supports globs/wildcards
+           [string] [default: &quot;*.{jpg,jpeg,tif,tiff,webp,png,gif,svg}&quot;]
+    --output             Output directory, default is same directory as
+                         input                   [string] [default: &quot;&quot;]
+    --quality            Quality vs file size, 1 (lowest/smallest) to
+                         100 (highest/largest)   [number] [default: 50]
+    --speed              CPU effort vs file size, 0 (slowest/smallest)
+                         to 8 (fastest/largest)   [number] [default: 5]
+    --lossless           Use lossless compression
+                                             [boolean] [default: false]
+    --chromaSubsampling  Set to &apos;4:2:0&apos; to use chroma subsampling
+                                            [string] [default: &quot;4:4:4&quot;]
+    --overwrite          Allow existing output files to be overwritten
+                                             [boolean] [default: false]
+    --verbose            Write progress to stdout
+                                             [boolean] [default: false]
+-h, --help               Show help                            [boolean]
+    --version            Show version number                  [boolean]</code></pre>
+        <section>
+          <h3 id="gif"><a href="#gif">GIF</a></h3>
+          <p>しかし、実際にアニメーション GIF を変換してみるとアニメーションが動かなかった。
+          <p>いくつか調べると <code translate=no>libavif</code> の Wiki に書かれていたので、これを用いて ffmpeg と avifenc を組み合わせて生成することができた。
+          <pre class=shell-session><code translate=no>$ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $*.avif</code></pre>
+          <ul>
+            <li>
+              AVIF Sequences
+              <ul>
+                <li><a href="https://github.com/AOMediaCodec/libavif/wiki/Sequences">https://github.com/AOMediaCodec/libavif/wiki/Sequences</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="picture"><a href="#picture">Picture</a></h3>
+          <p>すでに WebP の対応を <code translate=no>&lt;picture&gt;</code> で行なっているため、そこに AVIF の srcset を追加した。
+          <pre class=html><code translate=no>&lt;picture&gt;
+  &lt;source type=image/avif srcset=jxck.avif?220107_021153&gt;
+  &lt;source type=image/webp srcset=jxck.webp?211030_222336&gt;
+  &lt;img loading=lazy decoding=async src=jxck.png?211006_145713 alt=&quot;jxck&quot; title=&quot;jxck logo&quot; width=256 height=256&gt;
+&lt;/picture&gt;</code></pre>
+        </section>
+        <section>
+          <h3 id="demo"><a href="#demo">DEMO</a></h3>
+          <p>動作する DMEO を作成した。
+          <ul>
+            <li>
+              WebP DEMO | labs.jxck.io
+              <ul>
+                <li><a href="https://labs.jxck.io/avif/">https://labs.jxck.io/avif/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>この中で、いくつかパラメータを変えながら PNG/WebP とも比較を行なった。
+          <ul>
+            <li>lossy
+            <li>lossless
+            <li>animation
+            <li>color animation
+          </ul>
+          <p>実際、ブログ本体で使われている画像では、そこまでクオリティが高いものを求めているわけではない。
+          <p>そして、ブログ全体の WebP は、 cwebp コマンドで言う <code translate=no>-q 40</code> を使っており、これが avif コマンドの quality と同じ尺度で考えてよいのかを比較したが、大差はなかったため同じく <code translate=no>40</code> を採用することにした。
+          <p>かわりに、本サイトの画像は全て事前エンコードであり、変換に時間がかかっても問題はないため、 <code translate=no>--speed 0</code> で限界まで圧縮率を高めることにした。
+        </section>
+        <section>
+          <h3 id="size"><a href="#size">Size</a></h3>
+          <p>パラメータを決定したのでこれを用いて雑に全画像を AVIF 化し、ついでに WebP も最新のエンコーダでエンコードし直した。
+          <p>そして、サイト内全ての WebP と AVIF のサイズを合計すると以下のようになった。
+          <ul>
+            <li>WebP: 13936088byte = 13.3MB
+            <li>AVIF: 5467910byte = 5.21MB
+          </ul>
+          <p>正直ここまでの差が出ると、おそらく webp と avif の Quality 指定のスケールは同じではない可能性が考えられるが、サイトを見た感じで特に画像に問題を感じてないためこの設定でデプロイすることにした。
+        </section>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>雑に変換しただけでも画質を損ねることなく、かなりファイルを圧縮できそうなことがわかった。
+        <p>特に時間をかけてエンコードすればかなりの圧縮率になるため、事前に圧縮可能な場合はより効力を発揮しそうだ。
+        <p>あとは、 APNG をどうするかはおいおい考えていきたい。
+      </section>
+      <section>
+        <h2 id="demo_1"><a href="#demo_1">DEMO</a></h2>
+        <p>動作するデモを以下に用意した。
+        <ul>
+          <li><a href="https://labs.jxck.io/avif/">https://labs.jxck.io/avif/</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>Spec
+          <li>Explainer
+          <li>Requirements Doc
+          <li>Mozilla Standard Position
+          <li>Webkit Position
+          <li>TAG Design Review
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Ship: AV1 Still Image File Format (AVIF)
+                <ul>
+                  <li><a href="https://groups.google.com/g/mozilla.dev.platform/c/eWIa9XXxHsc/m/Wzs20e0kAAAJ">https://groups.google.com/g/mozilla.dev.platform/c/eWIa9XXxHsc/m/Wzs20e0kAAAJ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Chrome Platform Status
+          <li>WPT (Web Platform Test)
+          <li>DEMO
+          <li>
+            Blog
+            <ul>
+              <li>
+                Using AVIF to compress images on your site
+                <ul>
+                  <li><a href="https://web.dev/compress-images-avif/">https://web.dev/compress-images-avif/</a>
+                </ul>
+              </li>
+              <li>
+                Lots to see in Firefox 93! - Mozilla Hacks - the Web developer blog
+                <ul>
+                  <li><a href="https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/">https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Presentation
+          <li>
+            Issues
+            <ul>
+              <li>
+                207750 – AVIF decoding support
+                <ul>
+                  <li><a href="https://bugs.webkit.org/show_bug.cgi?id=207750">https://bugs.webkit.org/show_bug.cgi?id=207750</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Other
+            <ul>
+              <li><a href="https://caniuse.com/avif">https://caniuse.com/avif</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>

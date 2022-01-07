@@ -37,12 +37,12 @@ Safari は、 AOM には参加しているようだが WebP の対応も割と�
 - Kagami/go-avif
   - https://github.com/Kagami/go-avif
 - lovell/avif-cli
- - https://github.com/lovell/avif-cli
+  - https://github.com/lovell/avif-cli
 
 node の方が GIF にも対応してそうだったので、こちらを採用した。
 
 
-```sh
+```shell-session
 $ npx avif -h
 
 Convert images to AVIF
@@ -76,7 +76,7 @@ Options:
 いくつか調べると `libavif` の Wiki に書かれていたので、これを用いて ffmpeg と avifenc を組み合わせて生成することができた。
 
 
-```sh
+```shell-session
 $ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $*.avif
 ```
 
@@ -103,7 +103,7 @@ $ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15
 動作する DMEO を作成した。
 
 - WebP DEMO | labs.jxck.io
- - https://labs.jxck.io/avif/
+  - https://labs.jxck.io/avif/
 
 この中で、いくつかパラメータを変えながら PNG/WebP とも比較を行なった。
 
@@ -171,4 +171,4 @@ $ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15
   - 207750 – AVIF decoding support
     - https://bugs.webkit.org/show_bug.cgi?id=207750
 - Other
- - https://caniuse.com/avif
+  - https://caniuse.com/avif
