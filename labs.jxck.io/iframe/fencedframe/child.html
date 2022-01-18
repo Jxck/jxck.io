@@ -28,7 +28,7 @@ body {
       window.innerHeight, // 123
       window.innerWidth, // 456
       window.name, // useful-information
-      new URL(location.href).hash // #some-more-information-for-iframe
+      location.hash // #some-more-information-for-iframe
     )
 
     window.addEventListener("message", ({origin, source, data}) => {
