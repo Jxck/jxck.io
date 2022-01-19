@@ -8,7 +8,7 @@
 
 <h1>FencedFrame DEMO</h1>
 
-<fencedframe src=child.html?a#b name="useful-information"></fencedframe>
+<fencedframe id="fooo" src=child.html?a#b name="useful-information"></fencedframe>
 
 <script>
   'use strict';
@@ -21,6 +21,8 @@
     console.log(e)
 
     $('fencedframe').postMessage("user information", "*")
+
+    console.log(window.parent)
+    console.log(window.top)
   })
 </script>
-
