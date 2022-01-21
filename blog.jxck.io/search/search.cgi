@@ -72,7 +72,7 @@ def build(pwd, host, query, results)
                   "#{pwd}/.src/template/podcast.search.html.erb"
                 end
   template      = File.read(template_path)
-  ERB.new(template, nil, '-').result(binding)
+  ERB.new(template, trim_mode: '-').result(binding)
 end
 
 def validate_query(query_string)
