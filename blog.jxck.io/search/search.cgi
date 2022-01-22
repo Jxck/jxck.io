@@ -91,8 +91,20 @@ begin
     STDOUT.print "Status: 500 Internal Server Error\n\n"
     exit(0)
   end
-  pwd     = ENV["PWD"]
-  query   = validate_query(ENV["QUERY_STRING"])
+  pwd   = ENV["PWD"]
+  query = validate_query(ENV["QUERY_STRING"])
+
+  log query
+
+  if query[:valid]
+    require "digest"
+    sha256 = Digest::SHA256.new
+    sha256.update(query[:q])
+    sha256.update(`git rev-parse HEAD`)
+    etag = sha256.hexdigest[0..10]
+    log etag
+  end
+
   results = search(pwd, host, query)
   html    = build(pwd, host, query, results)
 
