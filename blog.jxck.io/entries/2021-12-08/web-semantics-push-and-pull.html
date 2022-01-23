@@ -174,7 +174,7 @@
         <p>HTML を伝達し、パースして文字列を取り出す方法が <em>プロトコル</em> と <em>シンタックス</em> であるとするならば、パースした結果 <code translate=no>&lt;title&gt;</code> と <code translate=no>&lt;/title&gt;</code> の間に込められた開発者の意図と、それを汲み取る側の間にある合意こそを <em>セマンティクス</em> と捉えることができる。
         <p>ここで、情報提供の方向を考えてみよう。筆者は単にこうしたセマンティクスに基づいて文章を作成し、公開している。パブリックであるため、だれがアクセスしどう利用するかは利用規約以上に規定/制限していない。つまり「セマンティクスに基づいて作成し公開しているので、同じくセマンティクスに基づいて自由に消費して欲しい」という姿勢で実装していることになる。これを消費側の需要に委ねた <em>Pull 型の実装</em> と呼ぶことにしよう。
         <p>
-          <img loading=lazy decoding=async src=pull.svg?211208_015316 alt="あらゆるクライアントに対してコンテンツを提供する" title="pull semantics" width=744 height=537>
+          <img loading=lazy decoding=async src=pull.svg?211208_021838 alt="あらゆるクライアントに対してコンテンツを提供する" title="pull semantics" width=744 height=537>
         </p>
         <p>しかし、見ればわかるが筆者が実際に本サイトで行っている実装はこうだ。
         <pre class=html><code translate=no>&lt;title&gt;Web のセマンティクスにおける Push と Pull | blog.jxck.io&lt;/title&gt;</code></pre>
@@ -185,7 +185,7 @@
         <p>しかしこれは、本来の「タイトルを記述する」という <code translate=no>&lt;title&gt;</code> の役割を超え、それを <em>消費するクライアントの挙動に対して、コンテンツ提供側が最適化をした結果</em> と見ることができるだろう。
         <p>これを <em>Push 型の実装</em> と呼ぶことにしよう。
         <p>
-          <img loading=lazy decoding=async src=push.svg?211208_015316 alt="特定のクライアントに対して最適化したコンテンツを提供する" title="push semantics" width=744 height=537>
+          <img loading=lazy decoding=async src=push.svg?211208_021838 alt="特定のクライアントに対して最適化したコンテンツを提供する" title="push semantics" width=744 height=537>
         </p>
         <p>本来 <code translate=no>&lt;title&gt;</code> だけの流通で不便があり、サイト名などを補完する方が良いというユースケースがあるのならば、それを仕様にすることで解決するのが標準化だ。この例では、サイト名を含めるための <code translate=no>&lt;site&gt;</code> タグを標準化し、提供側は以下のようにそれを導入するといった方法が考えられる。
         <pre class=html><code translate=no>&lt;title&gt;Web のセマンティクスにおける Push と Pull&lt;/title&gt;

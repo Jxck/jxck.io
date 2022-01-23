@@ -1288,3 +1288,16 @@ eyeD3 --title "ep91 Yearly Web 2021" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep92.mp3
+
+eyeD3 --title "ep92 Monthly Web 202201" \
+      --track 100 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep92.mp3
+
+
+
