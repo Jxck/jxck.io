@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/93/web3.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220103_030632></script>
+  <script type=module src=/assets/js/sw.js?210220_154457></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/webp sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/webp sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 93 回のテーマは Web3 です。2021 年頃から、エンジニアの間でも話題になり、 Brave / Opera / Cloudflare などのベンダも Web3 に関するアウトプットを出す一方、懐疑的な意見もあるのが現状です。今回は、 Dev Protocol の...">
+  <meta name=keywords            content="web3">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/93/web3.html>
+  <meta property=og:title        content="ep93 Web3 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 93 回のテーマは Web3 です。2021 年頃から、エンジニアの間でも話題になり、 Brave / Opera / Cloudflare などのベンダも Web3 に関するアウトプットを出す一方、懐疑的な意見もあるのが現状です。今回は、 Dev Protocol の...">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+
+  <title>ep93 Web3 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/92/monthly-web-202201.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210426_190329>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?210427_184241>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220103_031426>
+
+  <template id=toc>
+    <div>
+      <dt>toc</dt>
+      <dd>
+        <details class="info">
+          <summary>headings</summary>
+          <nav>
+            <ul></ul>
+          </nav>
+        </details>
+      </dd>
+    </div>
+  </template>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                      ><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495              ><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D"><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                   ><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                  ><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/92/monthly-web-202201.html>ep92 Monthly Web 202201</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep93 Web3</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2022-01-24
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/aggre_">@aggre_</a>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 93 回のテーマは Web3 です。
+      <p>2021 年頃から、エンジニアの間でも話題になり、 Brave / Opera / Cloudflare などのベンダも Web3 に関するアウトプットを出す一方、懐疑的な意見もあるのが現状です。
+      <p>今回は、 <a href="https://devprotocol.xyz/">Dev Protocol</a> の CTO であり、 Web フロントエンドの経験もある <a href="https://twitter.com/aggre_">@aggre</a> さんをお迎えし、 Web3 についての「<strong>技術の話</strong>」にフォーカスし、今何が起こっていて、これからどうなっていくのかについて議論しました。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>00:00~ Dev Protocol とは何か
+        <li>32:20~ Smart Contract と Solidity
+        <li>38:40~ Web3 とは
+        <li>57:15~ Web エンジニアにとっての Web3
+        <li>1:10:30~ Web3 のために Web に足りてないもの
+        <li>1:32:00~ Web3 にできるユースケース
+        <li>1:56:45~ DAO
+        <li>2:31:20~ まとめ
+        <li>2:37:30~ これから Web はどうなっていくのか?
+      </ul>
+    </section>
+    <section>
+      <h2 id="reference"><a href="#reference">Reference</a></h2>
+      <ul>
+        <li>
+          Dev Protocol
+          <ul>
+            <li><a href="https://devprotocol.xyz/">https://devprotocol.xyz/</a>
+          </ul>
+        </li>
+        <li>
+          Decentralized applications (dapps)
+          <ul>
+            <li><a href="https://ethereum.org/en/dapps/">https://ethereum.org/en/dapps/</a>
+          </ul>
+        </li>
+        <li>
+          Introducing Opera&apos;s new Web3 initiative
+          <ul>
+            <li><a href="https://blogs.opera.com/crypto/2022/01/opera-crypto-browser-project-web3/">https://blogs.opera.com/crypto/2022/01/opera-crypto-browser-project-web3/</a>
+          </ul>
+        </li>
+        <li>
+          Cloudflare で Web3 アプリの構築を始める
+          <ul>
+            <li><a href="https://blog.cloudflare.com/ja-jp/get-started-web3-ja-jp/">https://blog.cloudflare.com/ja-jp/get-started-web3-ja-jp/</a>
+          </ul>
+        </li>
+        <li>
+          Solidity Programming Language
+          <ul>
+            <li><a href="https://soliditylang.org/">https://soliditylang.org/</a>
+          </ul>
+        </li>
+        <li>
+          A crypto wallet &amp; gateway to blockchain apps | MetaMask
+          <ul>
+            <li><a href="https://metamask.io/">https://metamask.io/</a>
+          </ul>
+        </li>
+        <li>
+          MakerDAO
+          <ul>
+            <li><a href="https://makerdao.com/en/">https://makerdao.com/en/</a>
+          </ul>
+        </li>
+        <li>
+          OpenSea
+          <ul>
+            <li><a href="https://opensea.io/">https://opensea.io/</a>
+          </ul>
+        </li>
+        <li>
+          About NFT Profile Pictures on Twitter
+          <ul>
+            <li><a href="https://help.twitter.com/en/using-twitter/twitter-blue-fragments-folder/nft">https://help.twitter.com/en/using-twitter/twitter-blue-fragments-folder/nft</a>
+          </ul>
+        </li>
+        <li>
+          Coinbase Card
+          <ul>
+            <li><a href="https://www.coinbase.com/ja/card">https://www.coinbase.com/ja/card</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/92/monthly-web-202201.html>ep92 Monthly Web 202201</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep93.mp3
+    data-title="ep93 Web3"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>

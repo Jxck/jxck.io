@@ -1301,3 +1301,16 @@ eyeD3 --title "ep92 Monthly Web 202201" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep93.mp3
+
+eyeD3 --title "ep93 Web3" \
+      --track 101 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep93.mp3
+
+
+
