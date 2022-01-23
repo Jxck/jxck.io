@@ -758,7 +758,6 @@ export function decode(md) {
       }
       if (ast.level > level) {
         // in <ul>/<ol> but upper level <li>
-        // TODO: rise 使えそう
         while (true) {
           if (ast.name === name && ast.level === level) break
           ast = ast.parent
@@ -1386,8 +1385,8 @@ export function traverse(ast, plugin) {
 }
 
 /**
- * TODO: fixme
- * 指定した親ノード、もしくは Root まで登る
+ * 指定した親ノードまで登る
+ * Root に到達したら止まる
  * @param {Node} ast
  * @param {string} name
  * @returns {Node}

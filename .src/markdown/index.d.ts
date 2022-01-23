@@ -83,6 +83,9 @@ export class Node {
 }
 export type Serialized = {
     html: string;
+    /**
+     * - TOC も HTML encode した結果にするため encode の結果として返す
+     */
     toc: Array<Toc>;
     tags: Array<string>;
 };
