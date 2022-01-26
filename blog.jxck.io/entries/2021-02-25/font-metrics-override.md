@@ -1,6 +1,5 @@
 # [font metrics][web font] Web Font のメトリクス上書きによる CLS の改善
 
-
 ## Intro
 
 WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。
@@ -16,18 +15,14 @@ WebFont を読み込む際に、取得完了までのラグを、システムが
 
 ascent-override
 : baseline より上の ascent metric 情報を上書きする
-
 descent-override
 : baseline より下の descent metric 情報を上書きする
-
 line-gap-override
 : line gap (行間)を上書きする
-
 advance-override
 : 文字間の余白を上書きし、行幅の調整やオーバーフローを防ぐ。
 
 これらの値を `@font-face` で指定する。
-
 
 ```css
 @font-face {
@@ -47,10 +42,9 @@ advance-override
 
 本サイトは Noto Sans を Webfont として提供している。この Webfont ファイルが読み込まれる前にフォールバックとして表示されるローカルフォントを Osaka だとした場合、重ね合わせると以下のように差異が出る。
 
-![Osaka と Noso Sans をデフォルトで表示した場合、高さに差がでてしまう](before.png#1610x1134 'before')
+![Osaka と Noso Sans をデフォルトで表示した場合、高さに差がでてしまう](before.png#1610x1134 "before")
 
 ここで、 Webfont 側に以下のようなスタイルを当てると、ある程度レイアウトの差分を減らすことができるとわかった。
-
 
 ```css
 :root {
@@ -69,7 +63,7 @@ advance-override
 }
 ```
 
-![font-metrics や line-height などの調整によって、表示のズレを多少解消できる](after.png#1586x1094 'after')
+![font-metrics や line-height などの調整によって、表示のズレを多少解消できる](after.png#1586x1094 "after")
 
 英数字についてはあるていどすり合わせができたが、日本語についてはなかなかぴったり合わせることはできなかった。
 
@@ -90,13 +84,11 @@ font-feature-settings での字詰めなどの併用も試したが、そちら�
 
 例えば、以下のように WebFont である Noto Sans を優先しつつ、フォールバックとして 2 つのフォントを定義する場合を考える。
 
-
 ```css
 font-family: "Noto Sans Webfont", "Osaka", "Meiryo";
 ```
 
 読み込む Noto Sans の設定は固定できるので、それに合わせてフォールバックフォントの 2 つを上書きする。
-
 
 ```css
 :root {
@@ -175,37 +167,37 @@ font-family: "Noto Sans Webfont", "Osaka", "Meiryo";
 
 (Osaka が入っている環境でないと別のフォントになるため、想定した動作にならない)
 
-- <https://labs.jxck.io/webfont/font-metrics-override.html>
+- https://labs.jxck.io/webfont/font-metrics-override.html
 
 
 ## Resources
 
 - Spec
   - CSS Fonts Module Level 4
-    - <https://drafts.csswg.org/css-fonts-4/#font-metrics-override-desc>
+    - https://drafts.csswg.org/css-fonts-4/#font-metrics-override-desc
 - Explainer
   - New @font-face descriptors for overriding font metrics
-    - <https://docs.google.com/document/d/1PW-5ML5hOZw7GczOargelPo6_8Zkuk2DXtgfOtJ59Eo>
+    - https://docs.google.com/document/d/1PW-5ML5hOZw7GczOargelPo6_8Zkuk2DXtgfOtJ59Eo
   - Explainer: Font Metrics Override Descriptors
-    - <https://gist.github.com/xiaochengh/da1fa52648d6184fd8022d7134c168c1>
+    - https://gist.github.com/xiaochengh/da1fa52648d6184fd8022d7134c168c1
 - Mozilla Standard Position
 - Webkit Position
 - TAG Design Review
 - Intents
   - Intent to Ship: @font-face descriptors to override font metrics
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/ApR03h3CGfo/m/K_Fw3bAPBwAJ>
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/ApR03h3CGfo/m/K_Fw3bAPBwAJ
 - Chrome Platform Status
   - @font-face descriptors to override font metrics
-    - <https://www.chromestatus.com/feature/5651198621253632>
+    - https://www.chromestatus.com/feature/5651198621253632
 - WPT (Web Platform Test)
 - DEMO
 - Blog
   - How to avoid layout shifts caused by web fonts - Simon Hearne
-    - <https://simonhearne.com/2021/layout-shifts-webfonts#reduce-layout-shift-with-f-mods>
+    - https://simonhearne.com/2021/layout-shifts-webfonts#reduce-layout-shift-with-f-mods
   - Overriding Font Metrics with CSS - The Publishing Project
-    - <https://publishing-project.rivendellweb.net/overriding-font-metrics-with-css/>
+    - https://publishing-project.rivendellweb.net/overriding-font-metrics-with-css/
   - Web Performance Calendar > A font-display setting for slow connections
-    - <https://calendar.perfplanet.com/2020/a-font-display-setting-for-slow-connections/#font_matching>
+    - https://calendar.perfplanet.com/2020/a-font-display-setting-for-slow-connections/#font_matching
 - Presentation
 - Issues
 - Other

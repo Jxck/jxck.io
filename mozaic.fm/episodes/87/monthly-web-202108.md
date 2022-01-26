@@ -15,9 +15,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### Chrome 動向
-
 
 #### Stable: 92
 
@@ -195,7 +193,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Firefox 動向
 
-
 #### Stable: 91.0.1
 
 
@@ -266,7 +263,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Safari 動向
 
-
 #### Stable: 14.1.2
 
 
@@ -315,7 +311,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Edge 動向
 
-
 #### Stable: 92
 
 
@@ -338,7 +333,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### WHATWG/W3C 動向
-
 
 #### Draft
 
@@ -371,7 +365,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### TC39 動向
 
-
 #### Meeting
 
 - 2021-07
@@ -399,7 +392,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### IETF 動向
-
 
 #### WG
 
@@ -581,7 +573,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### CDN 動向
-
 
 #### Cloudflare
 

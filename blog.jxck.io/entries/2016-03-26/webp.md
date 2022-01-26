@@ -1,6 +1,5 @@
 # [webp][image][performance] 画像最適化戦略 WebP 編
 
-
 ## Intro
 
 本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。
@@ -10,10 +9,10 @@
 画像最適化シリーズ第 3 回目のエントリである。
 
 1. [画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
-1. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
-1. [> 画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
-1. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
-1. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
+2. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
+3. [> 画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
+4. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
+5. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
 
 
 ## WebP
@@ -24,10 +23,8 @@
 
 PNG
 : 主に UI アイコンなど色変化の少ない画像
-
 JPEG
 : 主に写真など色変化が多い画像
-
 GIF
 : 主に GIF アニメメーション
 
@@ -44,7 +41,7 @@ GIF アニメよりも、色数が多く綺麗なアニメーションを小さ�
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/webp/>
+- https://labs.jxck.io/webp/
 
 
 ## WebP 変換
@@ -57,7 +54,6 @@ WebP への変換ツールは、 Google が公式に提供しているバイナ�
 
 [Downloading and Installing WebP](https://developers.google.com/speed/webp/download)
 
-
 ```sh-session
 $ brew install webp    # mac
 $ apt-get install webp # linux
@@ -69,7 +65,6 @@ $ apt-get install webp # linux
 ## cwebp
 
 PNG からの変換は cwebp コマンドで行う。
-
 
 ```sh-session
 $ cwebp
@@ -89,7 +84,6 @@ Usage:
 
 [jxck.png](https://jxck.io/assets/img/jxck.png)
 : 4061 byte
-
 [jxck.webp](https://jxck.io/assets/img/jxck.webp)
 : 1810 byte
 
@@ -105,7 +99,6 @@ Usage:
 現時点では、 HTML の `<picture>` を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
 
 画像を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、 WebP や `<picture>` に対応していない場合は `<img>` に指定した画像にフォールバックする。
-
 
 ```html
 <picture>

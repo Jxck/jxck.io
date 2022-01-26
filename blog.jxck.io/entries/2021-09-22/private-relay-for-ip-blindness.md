@@ -35,7 +35,7 @@ Fingerprinting は、クライアントから取得できるエントロピー�
 2012 年に Microsoft が公開した研究では IP アドレス+ `User-Agent` だけで 80% 程度の精度がでるとされている。
 
 - Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research
-  - <https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/>
+  - https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/
 
 ここからさらに、 HTTP の `Accept` ヘッダや `If-Non-Match` を含めたり、 JS でさまざまな API を叩いて Canvas や Font などデバイス固有な挙動をするものを探し、精度を上げるために各社が凌ぎを削っている。
 
@@ -61,10 +61,10 @@ IP Blindness についても、 Google が [Willful IP Blidness](https://github.
 そのあと IETF の PEARG というワーキンググループでも、 Apple の人による詳細な解説があった。
 
 - Apple's privacy pillars in focus - WWDC21 (24:30~)
-  - <https://developer.apple.com/videos/play/wwdc2021/10085>
+  - https://developer.apple.com/videos/play/wwdc2021/10085
 - IETF-111-PEARG-Private-Relay
-  - <https://youtu.be/J8sBCPYDHJo?t=4229>
-  - <https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00>
+  - https://youtu.be/J8sBCPYDHJo?t=4229
+  - https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00
 
 簡単に言えば、接続先サービスに IP アドレスが露出し Fingerprint ベクターとなることを防ぐために、 IP アドレスを隠すという技術だ。
 
@@ -90,7 +90,6 @@ Client は Server に送りたいパケットを、(それが Server との TLS 
 
 ## Private Relay の挙動
 
-
 ### 設定
 
 iOS15 にアップデートできたため、 iCloud に課金し実際に Private Relay を有効にしてみた。
@@ -111,13 +110,11 @@ UI は非常にシンプルで、以下から有効にできる。
 
 まず、無効状態で `https://jxck.io` に接続したところが以下だ。ちなみに SIM はラインモバイルを使用している。(IP アドレスは微妙に変えてある)
 
-
 ```
 2021/09/21 04:28:11.010 180.10.203.175 HTTP/2 200 GET jxck.io / "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1"
 ```
 
 次に Private Relay 有効状態だと以下のようになる。
-
 
 ```
 2021/09/21 04:40:07.430 2606:54c0:3b00:10::16:e1 HTTP/2 200 GET jxck.io / "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1"
@@ -126,7 +123,6 @@ UI は非常にシンプルで、以下から有効にできる。
 サーバは IPv6 対応しているため、 IPv6 でのアクセスになっていることがわかる。
 
 この IP アドレスは Apple の Egress Proxy の IP アドレスリストで見ると以下のエントリに該当する。
-
 
 ```
 2606:54c0:3b00:10::/64,JP,,Tokyo,
@@ -147,7 +143,7 @@ IP アドレスがあると、そこからおおよその位置情報がわか�
 IP アドレスが Proxy によって変わるとこの情報が落ちる懸念があるが、 Private Relay の場合は Egress Proxy の IP アドレスリストが以下で公開されている。
 
 - IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
-  - <https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6>
+  - https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6
 
 そして、各 IP には地域情報が記載されているため、例えば Tokyo 付近にいるユーザには Tokyo の Egress Proxy が割り当てられ、この CSV を引けば Tokyo からのアクセスであることがわかる。
 
@@ -156,7 +152,7 @@ IP アドレスが Proxy によって変わるとこの情報が落ちる懸念�
 それでもカバーできない用途については、 Geohash (緯度経度のハッシュ)を Client Hints ヘッダに付与する提案がちょうど Apple から提案されたため、そちらでカバーするという流れだろう。
 
 - The Geohash HTTP Client Hint
-  - <https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html>
+  - https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html
 
 しかし、 Geohash もエントロピーが高く、 Client Hints でも無尽蔵に取得させることはできないため、 Permission の取得や必要に応じた短縮などを行うべきという記載もある。別途提案されている Privacy Budget などによる制限もあるかもしれないので、あくまで補助的な情報として扱うことになるだろう。
 
@@ -168,11 +164,11 @@ Private Relay が公開されて以降、モバイルキャリアなどから、
 例としていくつか目についたものだけ抜粋する。
 
 - ソフトバンクモバイル
-  - <https://www.softbank.jp/mobile/info/personal/news/support/20210916a/>
+  - https://www.softbank.jp/mobile/info/personal/news/support/20210916a/
 - LINEMO
-  - <https://www.linemo.jp/info/press/2021/21091601.html>
+  - https://www.linemo.jp/info/press/2021/21091601.html
 - 楽天モバイル
-  - <https://network.mobile.rakuten.co.jp/information/news/service/803/>
+  - https://network.mobile.rakuten.co.jp/information/news/service/803/
 
 こうしたサービスは、 IP アドレスが想定したものであることを前提に作られていることを想像すると、やむをえないだろう。こうしたサービスを利用するユーザは Private Relay を利用することはできない。
 
@@ -227,12 +223,12 @@ IP Blindness の流れ自体はこれからも続くと思われ、標準化も�
 
 - Spec
   - Oblivious HTTP
-    - <https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html>
+    - https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html
   - The Geohash HTTP Client Hint
-    - <https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html>
+    - https://tfpauly.github.io/privacy-proxy/draft-geohash-hint.html
 - Explainer
   - Willful IP Blindness
-    - <https://github.com/bslassey/ip-blindness>
+    - https://github.com/bslassey/ip-blindness
 - Requirements Doc
 - Mozilla Standard Position
 - Webkit Position
@@ -244,13 +240,13 @@ IP Blindness の流れ自体はこれからも続くと思われ、標準化も�
 - Blog
 - Presentation
   - Apple's privacy pillars in focus - WWDC21 (24:30~)
-    - <https://developer.apple.com/videos/play/wwdc2021/10085>
+    - https://developer.apple.com/videos/play/wwdc2021/10085
   - IETF-111-PEARG-Private-Relay
-    - <https://youtu.be/J8sBCPYDHJo?t=4229>
-    - <https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00>
+    - https://youtu.be/J8sBCPYDHJo?t=4229
+    - https://datatracker.ietf.org/meeting/111/materials/slides-111-pearg-private-relay-00
 - Issues
 - Other
   - IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
-    - <https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6>
+    - https://developer.apple.com/jp/support/prepare-your-network-for-icloud-private-relay/#h5o-6
   - Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research
-    - <https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/>
+    - https://www.microsoft.com/en-us/research/publication/host-fingerprinting-and-tracking-on-the-webprivacy-and-security-implications/

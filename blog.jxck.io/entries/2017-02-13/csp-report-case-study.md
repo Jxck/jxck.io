@@ -1,6 +1,5 @@
 # [csp][security] CSP Report 収集と実レポートの考察
 
-
 ## Intro
 
 このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。
@@ -57,7 +56,6 @@ CSP は全て Report-Only で HTTP ヘッダから適応しており、 CSP レ�
 
 現状は以下である。(まだ改善点はある)
 
-
 ```http
 content-security-policy-report-only:
   default-src 'self'
@@ -99,7 +97,6 @@ Bookmarklet などから DOM を変更することで、ページそのものを
 
 一例として、以下のレポートは、 CSP の指定範囲外オリジンから jQuery を埋め込んだことによるレポートと思われる。
 
-
 ```json
 {
   "csp-report": {
@@ -125,7 +122,6 @@ Bookmarklet などから DOM を変更することで、ページそのものを
 以下のレポートは、ブラウザ拡張がブロックされたであろうと想像される。
 
 画像について何か改変をしているようだが、詳細はわからない。
-
 
 ```js
 {
@@ -160,7 +156,6 @@ Safari の Reder View と、 Firefox の Screen Reader 拡張である JAWS に�
 このとき、 HTML の中にある Inline Style がポリシー違反と判定されるため、レポートが上がる。
 
 ![Chrome でテキストを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす](chrome-inline-style-violation.png#1667x656 "inline style violation for RSS feed in chrome")
-
 
 ```js
 {
@@ -197,7 +192,6 @@ Chrome でも同じくオリジンが変わるが、ここでレポートはあ�
 ### about:blank_
 
 なんらかの操作によって、コンテキストが `about://blank` になりオリジンの違反としてレポートがちょくちょく来る。
-
 
 ```js
 {

@@ -1,6 +1,5 @@
 # [html][performance] HTML の省略によるサイズ最適化
 
-
 ## Intro
 
 本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。
@@ -33,7 +32,6 @@
 
 ## HTML の省略記法
 
-
 ### タグそのもの
 
 `<html>`、 `<head>`、 `<body>` は、タグ自体を書かなくても良い場合があり、仕様に定義がある。
@@ -42,7 +40,6 @@
 > --- https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission
 
 すぐ次がコメントでないなら、 `<html>` は省略しても良い。 `<head>` や `<body>` も同様だ。
-
 
 ```html
 <!-- before -->
@@ -79,7 +76,6 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 
 つまりこう書くことができる。
 
-
 ```html
 <!-- before -->
 <ul>
@@ -103,11 +99,10 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 
 もう一つ、要素を囲む引用符(`'`, `"`) も省略可能な場合があり、仕様では以下に定義がある。
 
-> The attribute value can remain unquoted if it doesn't contain space characters or any of " ' \` = \< or \>. Otherwise, it has to be quoted using either single or double quotes.
+> The attribute value can remain unquoted if it doesn't contain space characters or any of " ' \` = \< or >. Otherwise, it has to be quoted using either single or double quotes.
 > --- https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html
 
 つまり、スペースや `"`, `'`, `\``, `=`, `<`, `>` が無ければ引用符はいらない。
-
 
 ```html
 <!-- before -->
@@ -121,7 +116,6 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 
 
 ## その最適化は現実的か?
-
 
 ### 好き嫌い
 
@@ -155,7 +149,6 @@ HTML として問題が無いのであれば、 HTML に対応したツールで
 
 まず、省略時のサイズであるが、この記事自体を `<html>`, `<head>`, `<body>` 、閉じたタグ、引用符を全て付けた場合と比べると 259 byte の削減になっていた。
 
-
 ```sh-session
 $ wc html-compression.html
  131     408    9158 html-compression.html
@@ -169,7 +162,6 @@ $ wc html-no-compression.html
 
 省略有
 : 約 80ms
-
 省略無
 : 約 90ms
 

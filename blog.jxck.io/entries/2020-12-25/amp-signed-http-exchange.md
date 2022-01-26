@@ -1,6 +1,5 @@
 # [signed-http-exchange][amp][webpackaging] AMP SXG 対応
 
-
 ## Intro
 
 本サイトを AMP SXG に対応した。その作業ログを記す。
@@ -40,7 +39,6 @@ SXG はまだ過渡期の技術であるため、鍵や証明書が色々なプ�
 
 openssl を使うと以下のように確認できる。
 
-
 ```sh-session
 # key type が EC prim256v1
 $ openssl x509 -in blog_jxck_io.crt -text | grep 'ASN1 OID: prime256v1'
@@ -57,7 +55,6 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:
 
 AMP SXG は、前述の通り SXG にする前に変換が必要となる。これを行うのが amppackager だ。
 
-
 ```sh-session
 $ go get -u github.com/ampproject/amppackager/cmd/amppkg
 ```
@@ -69,7 +66,7 @@ $ go get -u github.com/ampproject/amppackager/cmd/amppkg
 
 amppackager の設定ファイルは toml で用意する。詳細は example を参照。
 
-- <https://raw.githubusercontent.com/ampproject/amppackager/releases/amppkg.example.toml>
+- https://raw.githubusercontent.com/ampproject/amppackager/releases/amppkg.example.toml
 
 Port/Key/Cert など必要なものを埋める。
 
@@ -79,7 +76,6 @@ Port のデフォルトは 8080 だが管理上 10000 にしている。
 ### amppkg
 
 起動してみたが、エラーが出たので残しておく。
-
 
 ```sh-session
 $ amppkg
@@ -123,7 +119,6 @@ runtime.goexit
 
 OCSP の情報が無いようだ。 Digicert で発行した証明書は自分のドメインのものと DigiCertCA.crt の 2 つがあったので連結したらいけた。
 
-
 ```sh-session
 $ cat blog_jxck_io.crt DigiCertCA.crt > blog_jxck_io_full.crt
 ```
@@ -131,7 +126,6 @@ $ cat blog_jxck_io.crt DigiCertCA.crt > blog_jxck_io_full.crt
 toml を更新して起動し直すと成功。
 
 これを systemd に登録して完了。
-
 
 ```service:../../../.systemd/amppkg.service
 ```
@@ -159,7 +153,6 @@ amppackager は SXG に必要な Certificate URL を自動で提供してくれ�
 
 そのパスは `/amppkg/cert/#{base64}` となっているため、ここへのリクエストはそのまま転送すれば良い。
 
-
 ```
 "/amppkg":
   proxy.reverse.url: "http://127.0.0.1:10000/amppkg"
@@ -180,7 +173,6 @@ h2o は Path ベースでの Proxy は簡単だが、ヘッダをベースに分
 
 (機能は知っていたが、 Example を見て同じドメインの別のパスに移譲すると勝手に思い込んでいたが、普通に別ポートにも移譲できた。)
 
-
 ```ruby:amppkg.rb
 ```
 
@@ -195,7 +187,6 @@ SXG のサポートは `Accept: application/signed-exchange;v=b3` などが追�
 
 このため、 Response は `Vary` にこのヘッダを指定し、これら Request ヘッダに応じてキャッシュが別になるようにする必要がある。
 
-
 ```http
 Vary: AMP-Cache-Transform, Accept
 ```
@@ -206,7 +197,6 @@ amppackager はこれを自動で付与しているようなので問題ない�
 
 
 ## Debug
-
 
 ### Devtools
 
@@ -223,7 +213,6 @@ Devtools で見ると以下のように確認できる。
 
 CLI の場合は `dump-signedexchage` で行うのが手軽だろう。
 
-
 ```sh-session
 $ dump-signedexchange -uri $URL -requestHeader AMP-Cache-Transform:any -version=1b3 -headers=false -payload=false -verify
 The exchage has a valid signature
@@ -232,7 +221,6 @@ The exchage has a valid signature
 これは cert-url から証明書チェインを取得してくれているらしいので、これが通れば一通り通ってると思われる。
 
 個々のステップを細かく見たい場合は curl で取得してから順番に解くなどすると良いかもしれない。
-
 
 ```sh-session
 $ curl -s --output - -H 'amp-cache-transform: google;v="3"' -H 'accept: application/signed-exchange;v=b3,*/*;q=0.1' https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html > dump.sxg
@@ -254,7 +242,6 @@ $ dump-certurl -i cert.cbor
 デバッグなどが終わらないうちは Internet Access 可能なドメインではやらないほうが良いだろう。
 
 なお、ログから復元した Bot のヘッダは以下のようなものだった。 `AMP-Cache-Transform` と `Accept` 以外に変わったヘッダは無いようだ。
-
 
 ```http
 GET /example.amp.html HTTP/1.1
@@ -318,10 +305,10 @@ Android Chrome で Google のモバイル検索から見れば挙動が確認で
 - Issues
 - Other
   - ampproject/amppackager
-    - <https://github.com/ampproject/amppackager>
+    - https://github.com/ampproject/amppackager
   - webpackage/go/signedexchange
-    - <https://github.com/WICG/webpackage/tree/master/go/signedexchange>
+    - https://github.com/WICG/webpackage/tree/master/go/signedexchange
   - Serve AMP using signed exchanges
-    - <https://amp.dev/documentation/guides-and-tutorials/optimize-and-measure/signed-exchange/?format=websites>
+    - https://amp.dev/documentation/guides-and-tutorials/optimize-and-measure/signed-exchange/?format=websites
   - amphtml/amp-cache-transform.md
-    - <https://github.com/ampproject/amphtml/blob/master/spec/amp-cache-transform.md>
+    - https://github.com/ampproject/amphtml/blob/master/spec/amp-cache-transform.md

@@ -1,6 +1,5 @@
 # [paint api][worklets][typed om][property and values][houdini][css] Houdini Paint API
 
-
 ## Intro
 
 Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。
@@ -24,7 +23,6 @@ CSS Paint API は、特定の領域に対して任意の描画を行うことが
 CSS Paint API は用意した領域に対し、画像ではなく Canvas API のサブセットを用いてペイントを行うことができる。
 
 今回はデモとして「突然の死」を Paint で書こうと考えた。
-
 
 ```
 ＿人人人人人人＿
@@ -55,7 +53,6 @@ Paint API で実装したペイントは、最終的には `border-image-source`
 
 そこで、今回は描画領域として `border-width` と `border-image-slice` を指定する。
 
-
 ```css
 div {
   /* area size for border */
@@ -74,7 +71,6 @@ div {
 
 `paint()` の第二引数以降は、処理に渡される引数となるため、今回は以下のように定義した。
 
-
 ```css
 paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, margin)
 ```
@@ -91,7 +87,6 @@ paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, 
 として設定する場合は以下のような指定になる。
 
 (フォールバックとして、ネイティブの実装を指定する)
-
 
 ```css
 div {
@@ -126,7 +121,6 @@ Paint API は Worklet の上位に定義された PaintWorklet の中に実際�
 
 Worklet への登録は、モジュール単位となっているため、今回実装するファイルを `border-double-custom.js` とした場合、メインからの呼び出しは以下になる。
 
-
 ```js
 CSS.paintWorklet.addModule('border-double-custom.js');
 ```
@@ -146,7 +140,6 @@ Worklet はメインスレッドと Global を共有せず、必要な情報は�
 
 今回実装するのは以下の 2 つだ。
 
-
 ```js
 registerPaint('border-double-custom', class {
   static get inputProperties() { }
@@ -161,7 +154,6 @@ registerPaint('border-double-custom', class {
 まず、 CSS で指定した線の色と幅、間隔の値を取得する必要がある。
 
 CSS で渡した値の型がなんであるかを指定するために、 `inputArguments()` に引数の順に型の配列を指定する。
-
 
 ```js
 // paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
@@ -193,7 +185,6 @@ CSS で指定した debug フラグは、 `pain()` の引数ではなく、別�
 
 `--debug` は `true/false` を引数に取りたいが、 Property Values の定義する Syntax List には `<boolean>` は無いため、 `<custom-indent>` を利用し、文字列で代替することとした。
 
-
 ```js
 CSS.registerProperty({
   name: '--debug',
@@ -207,7 +198,6 @@ CSS.registerProperty({
 ### inputProperties()
 
 `registerProperty()` で登録された値は、 Worklet 側で `inputProperties()` に、セーフリストとして指定しておくことで、クラス内に取り込むことができる。
-
 
 ```js
 static get inputProperties() {
@@ -223,7 +213,6 @@ static get inputProperties() {
 ## paint()
 
 `paint()` には Canvas Context と領域のサイズ、当たっているスタイル、先に解析した引数が渡る。
-
 
 ```js
 paint(ctx, size styleMap, arguments) {
@@ -254,7 +243,6 @@ paint(ctx, size styleMap, arguments) {
 
 今回指定した `--debug` は、以下のように取得できる。
 
-
 ```js
 const DEBUG = styleMap.get('--debug').value
 ```
@@ -269,7 +257,6 @@ const DEBUG = styleMap.get('--debug').value
 各値は、指定した型でパースされた Typed OM の形でアクセス可能だ。
 
 [CSS Typed OM Level 1](https://drafts.css-houdini.org/css-typed-om-1/)
-
 
 ```js
 // paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
@@ -290,7 +277,6 @@ paint(ctx, size styleMap, arguments) {
 
 例えば、その領域全体を、第一引数で渡ってきた色で塗りつぶす場合は、以下のように Canvas API で描画できる。
 
-
 ```js
 paint(ctx, {width: w, height: h}, styleMap, [color]) {
     ctx.strokeStyle = color
@@ -302,7 +288,6 @@ paint(ctx, {width: w, height: h}, styleMap, [color]) {
 ### 完成形
 
 あとは、 `paint()` の中で要求を満たす二つの矩形を描画する処理を記述すれば良い。
-
 
 ```html
 <style>
@@ -341,7 +326,6 @@ CSS.registerProperty({
 CSS.paintWorklet.addModule('border-double-custom.js');
 </script>
 ```
-
 
 ```js
 registerPaint('border-double-custom', class {
@@ -409,6 +393,6 @@ registerPaint('border-double-custom', class {
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/houdini/paint/border-double-custom/>
+- https://labs.jxck.io/houdini/paint/border-double-custom/
 
 Chrome 64 Canary で [flag](chrome://flags/#enable-experimental-web-platform-features) を有効にすると動作する。

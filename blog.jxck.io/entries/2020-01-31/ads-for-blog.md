@@ -1,6 +1,5 @@
 # [ads][3rd party cookie][cookie] 3rd Party Cookie 調査のための Web 広告導入
 
-
 ## Intro
 
 昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。
@@ -121,7 +120,7 @@ Safari による ITP や、 Chrome による Privacy Sandbox への移行など�
 
 AMP 対応は `<amp-ad>` を用いることになる。
 
-- <https://amp.dev/ja/documentation/components/amp-ad/>
+- https://amp.dev/ja/documentation/components/amp-ad/
 
 これも貼るだけなので特に問題はなかった。
 
@@ -142,7 +141,6 @@ AdSense の利用には Privacy Policy の記載が必要となる。
 Analytics の規約については本サイト Footer に記載していたが、これを機にページを分け、本サイトの Policy をまとめる構成に変更した。
 
 具体的には以下の構成になる。
-
 
 ```
 blog.jxck.io

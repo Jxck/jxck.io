@@ -1,6 +1,5 @@
 # [localhost][https][security] ローカル開発環境の https 化
 
-
 ## Intro
 
 Web の https 化が進み、それに伴って https を前提とする API も増えてきた。
@@ -44,7 +43,6 @@ localhost で開発し確認していても、実際にデプロイすると per
 ちなみに、 localhost の実態はただの hosts ファイルのエントリなので、そこを別の IP に書き換えれば、リモートのサーバを localhost で参照するといったこともできる。
 
 (これは Windows IE 上で localhost でサーバを見たいが、サーバは Mac で動いてるなど、ブラウザを起動するマシンとコードを書くマシンを分けたい時などにやむを得ず使ったりする)
-
 
 ```
 127.0.0.1  localhost # default
@@ -97,7 +95,7 @@ localhost を https にして URL バーを緑にするといった目的で、�
 
 この証明書と鍵を、[ローカルで立てるサーバ](https://github.com/Jxck/dotfiles/blob/master/bin/http)が読むようにし、ブラウザに https://localhost.jxck.io:3000 と入れれば、ブラウザには本物の https 環境がローカルで手に入る。
 
-![https://localhost.jxck.io:3000](localhost.jxck.io.png#1600x1407 'certificate detail view on https://localhost.jxck.io:3000 demo')
+![https://localhost.jxck.io:3000](localhost.jxck.io.png#1600x1407 "certificate detail view on https://localhost.jxck.io:3000 demo")
 
 パブリックな DNS に登録しているため、マシンが変わっても hosts を書き換える必要はない。鍵と証明書をコピーすればどのマシンでも同じ環境が再現でき、ローカルの証明書ストアをいじる必要もない。
 
@@ -163,17 +161,15 @@ localhost を https にして URL バーを緑にするといった目的で、�
 
 別件で Chrome のソースを漁っていたら `host-rules` というフラグを見つけた。(コメントにあるように `host-resolver-rules` でもいけるらしい)
 
-- <https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66>
+- https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66
 
 ためしに以下のように開いてみると、確かにマッピングが指定できる。
-
 
 ```sh-session
 $ google-chrome --host-rules="MAP example.com 127.0.0.1"
 ```
 
 他にも色々な指定ができるようだ。
-
 
 ```
 // For example:

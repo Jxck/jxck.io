@@ -1,6 +1,5 @@
 # [selects][sql][linux] SQL でファイル検索するコマンド selects を書いた話
 
-
 ## Intro
 
 [UNIX コマンドを SQL で抽出できるツール qq を作った。](http://mattn.kaoriya.net/software/lang/go/20160805190022.htm) というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。
@@ -15,7 +14,6 @@
 ## selects
 
 結論からいうとこういうコマンドだ。
-
 
 ```sh-session
 $ selects mtime, size, basename from './entries/**/*' where extname '==' '.md' and size '>' 1000 order by mtime
@@ -37,7 +35,7 @@ $ selects mtime, size, basename from './entries/**/*' where extname '==' '.md' a
 
 依存ライブラリは無く、 1 ファイルで完結しているので、パスの通った所に置いてもらえればすぐ使える。
 
-<https://github.com/Jxck/dotfiles/blob/master/bin/selects>
+- https://github.com/Jxck/dotfiles/blob/master/bin/selects
 
 
 ## Example
@@ -46,7 +44,6 @@ $ selects mtime, size, basename from './entries/**/*' where extname '==' '.md' a
 
 
 ### ディレクトリ以下をごっそり
-
 
 ```sh-session
 $ selects '*' from './entries/**/*'
@@ -63,7 +60,6 @@ $ selects '*' from './entries/**/*'
 
 ### .html だけ
 
-
 ```sh-session
 $ selects basename from './entries/**/*' where extname == '.html'
 new-blog-start.amp.html
@@ -79,7 +75,6 @@ h2o-http2-deploy.amp.html
 
 ### like 的な
 
-
 ```sh-session
 $ selects basename from './entries/**/*' where basename '=~' 'mozaic'
 mozaicfm-v2.amp.html
@@ -93,7 +88,6 @@ mozaicfm-v2.md.gz
 
 ### 属性で絞る
 
-
 ```sh-session
 $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and directory? == true
 2016-08-05 22:42:14 +0900       2016-01-27
@@ -106,7 +100,6 @@ $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and d
 
 
 ### /dev 以下で pipe か socket か symlink だけを ctime, atime の順で
-
 
 ```sh-session
 $ selects socket?, pipe?, symlink? basename from '/dev/*' where pipe? == true or socket? == true or symlink? == true order by atime, ctime
@@ -129,7 +122,6 @@ false   false   true    core
 
 つまりこんな感じだ。
 
-
 ```ruby
 Dir.glob('from 句にあたる */** 的なの')
    .select('where 句にあたる filter の proc')
@@ -141,13 +133,11 @@ Dir.glob('from 句にあたる */** 的なの')
 
 例えば
 
-
 ```sql
 where size > 1000
 ```
 
 は
-
 
 ```ruby
 File.size(file) > 100
@@ -156,7 +146,6 @@ File.size(file) > 100
 になれば良い。
 
 これを文字として得ている `'size'`, `'>'`, `'100'` を使って動的に組み立てると以下になる。
-
 
 ```ruby
 File
@@ -170,14 +159,13 @@ File
 
 もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
 
-
 ```sh-session
 $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and directory? == true
 ```
 
 `select`, `where`, `order by` に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
 
-<https://docs.ruby-lang.org/ja/2.3.0/class/File.html>
+- https://docs.ruby-lang.org/ja/2.3.0/class/File.html
 
 裏に Ruby が透けて見えるため、 Ruby を知ってると「こうすれば動きそう」がそのまま動く。
 

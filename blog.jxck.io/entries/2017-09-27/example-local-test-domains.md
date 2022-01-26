@@ -1,6 +1,5 @@
 # [dns][domain] 予約済みドメイン (.example, .localhost, .test) について
 
-
 ## Intro
 
 特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 `.example` `.localhost` `.test` などがある。
@@ -78,9 +77,9 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 
 また、この 3 つは実際にインターネット上で HTTP をサーブしている。
 
-- <http://example.com>
-- <http://example.net>
-- <http://example.org>
+- http://example.com
+- http://example.net
+- http://example.org
 
 ちなみに、これらのアドレスは実は結構便利な作りをしている。
 
@@ -100,7 +99,6 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 主に開発で自ホストに解決される用途で使われる。
 
 実際には、 OS が名前解決に使う hosts ファイルなどで、 `localhost` がループバックアドレスに指定されている。
-
 
 ```
 ##
@@ -159,6 +157,6 @@ RFC6761 の他にもこうした用途のドメインはいくつかある。
 
 詳細は下記参照
 
-- <https://www.iana.org/domains/reserved>
-- <https://jprs.jp/doc/rule/wideusejp-reserved.html>
-- <https://jprs.jp/faq/use/>
+- https://www.iana.org/domains/reserved
+- https://jprs.jp/doc/rule/wideusejp-reserved.html
+- https://jprs.jp/faq/use/

@@ -19,6 +19,7 @@ guest: [@nunnun](https://twitter.com/nunnun)
 
 それによって「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか?」を議論しました。
 
+
 ## Show Note
 
 - 0:00 ~ : Extensible Web とはなにか?

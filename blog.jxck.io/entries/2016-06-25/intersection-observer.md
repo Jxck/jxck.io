@@ -1,6 +1,5 @@
 # [intersection observer][scroll][performance] Intersection Observer を用いた要素出現検出の最適化
 
-
 ## Intro
 
 スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。
@@ -63,7 +62,6 @@ body を親要素とすれば、そこからの offset 位置はドキュメン�
 
 これは、要素自体が持っている。
 
-
 ```js
 let target = document.querySelector('.target');
 // target.offsetTop;
@@ -81,7 +79,6 @@ let target = document.querySelector('.target');
 
 これは、対象 DOM の `getBoundingClientRect()` で取れる。
 
-
 ```js
 let rect = target.getBoundingClientRect();
 // rect.top;
@@ -96,7 +93,6 @@ let rect = target.getBoundingClientRect();
 ### 表示判定
 
 ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
-
 
 ```js
    (0 < rect.top && rect.top < clientHeight)       // 対象の上端は表示領域に入っている
@@ -136,9 +132,9 @@ let rect = target.getBoundingClientRect();
 さて、ここまで見て来た方法には多くの問題があった。
 
 1. scroll event のハンドラが Scroll Jank を引き起こす可能性がある
-1. 全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
-1. サイズや位置を取得する API は Forced Synchronous Layout を発生させる
-1. API が分かりづらく、互換性も微妙で、単純に実装が面倒くさい
+2. 全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
+3. サイズや位置を取得する API は Forced Synchronous Layout を発生させる
+4. API が分かりづらく、互換性も微妙で、単純に実装が面倒くさい
 
 ここでは 3 に注目したい。
 
@@ -171,7 +167,6 @@ Intersection Observer は交点(Intersection) を監視し、指定した要素�
 
 複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、 observe を複数回呼ぶことができる。
 
-
 ```js
 let observer = new IntersectionObserver((changes) => {
   for (let change of changes) {
@@ -188,22 +183,20 @@ observer.observe(target);
 
 一つの変更は以下のプロパティを持つ
 
-| プロパティ                  | 内容                                  |
-|:----------------------------|:--------------------------------------|
-| `change.time`               | タイムスタンプ                        |
-| `change.rootBounds`         | root の `getBoundingClientRect()`     |
-| `change.boundingClientRect` | target の `getBoundingClientRect()`   |
-| `change.intersectionRect`   | 交差領域の `getBoundingClientRect()`  |
-| `change.intersectionRatio`  | 交差している領域の割合                |
-| `change.target`             | target                                |
-
+| プロパティ                  | 内容                                 |
+|:----------------------------|:-------------------------------------|
+| `change.time`               | タイムスタンプ                       |
+| `change.rootBounds`         | root の `getBoundingClientRect()`    |
+| `change.boundingClientRect` | target の `getBoundingClientRect()`  |
+| `change.intersectionRect`   | 交差領域の `getBoundingClientRect()` |
+| `change.intersectionRatio`  | 交差している領域の割合               |
+| `change.target`             | target                               |
 
 ![IntersectionObserver の各プロパティが表す部分](intersection-observer.svg#500x357 "Intersection Observer API")
 
 特に `change.intersectionRect` および `change.intersectionRatio` は、自分で計算するとボトルネックになりがちである。
 
 第二引数には、オプションとして三つのプロパティを設定したオブジェクトを指定できる。
-
 
 ```js
 let observer = new IntersectionObserver((changes) => {
@@ -223,7 +216,6 @@ observer.observe(target);
 
 root オプションを用いることで、任意の親要素内を指定できるため、例えば `overflow: scroll` になった div の中の交差を判定することができる。
 
-
 ```js
 { root: document.querySelector('.target') }
 ```
@@ -238,7 +230,6 @@ root オプションを用いることで、任意の親要素内を指定でき
 イベント発生頻度を増やすには、 threshold オプションを使うことができる。
 
 例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
-
 
 ```js
 { threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] }
@@ -258,7 +249,6 @@ viewport 上に `<img>` が出現したことを検出することで、そこ�
 こうした場合は rootMargin オプションを指定することができる。
 
 値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
-
 
 ```js
 { rootMargin: '10px' }

@@ -1,6 +1,5 @@
 # [hpkp][security] Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集
 
-
 ## Intro
 
 本サイトにて Public Key Pinning for HTTP を有効化した。
@@ -19,7 +18,6 @@ HPKP Report についても、 [report-uri.io](https://report-uri.io) を用い�
 
 
 ## Public Key Pinning
-
 
 ### 概要
 
@@ -84,11 +82,9 @@ Chrome と Firefox への Preload Pins のリストは以下である。
 
 ## HPKP の設定
 
-
 ### Public-Key-Pins ヘッダ
 
 HPKP を有効化するには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
-
 
 ```http
 Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains][; report-uri="reportURI"]
@@ -115,7 +111,6 @@ Pin の値は openssl コマンドを用いれば、公開鍵から SPKI の Bas
 
 管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうと考える。
 
-
 ```sh-session
 $ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
 ```
@@ -126,7 +121,6 @@ $ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -ou
 ブラウザは、  Pin に一致しない証明書を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
 
 HPKP の違反レポートは以下のような JSON データである。
-
 
 ```json
 {
@@ -165,7 +159,6 @@ HPKP の違反レポートは以下のような JSON データである。
 
 ## 懸念点
 
-
 ### 証明書更新と Max-Age
 
 HPKP の運用での一番の懸念は、証明書の更新だろう。
@@ -199,7 +192,6 @@ OpenSSL の `-showcerts` コマンドを用いて、 GitHub の証明書を取�
 
 (証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
 
-
 ```shell
 # github.com pins Intermediate Certificate
 # so add `-showcerts` option for first openssl
@@ -214,7 +206,6 @@ openssl s_client -servername github.com -connect github.com:443 -showcerts 2>/de
 ```
 
 実際に `Public-Key-Pins` ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
-
 
 ```shell
 # get the actual Public-Key-Pins header
@@ -231,7 +222,6 @@ Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の�
 
 
 ## 本サイトへの適用
-
 
 ### Pin
 
@@ -253,7 +243,7 @@ Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の�
 
 [Public Key Pinning DEMO | labs.jxck.io](https://labs.jxck.io/public-key-pinning/)
 
-HPKP が有効になっていることは、 [chrome://net-internals/#hsts](chrome://net-internals/#hsts) で確認できる。しかし Report-Only ではここに上がらないようである。
+HPKP が有効になっていることは、 <chrome://net-internals/#hsts> で確認できる。しかし Report-Only ではここに上がらないようである。
 
 
 ### 結果
@@ -261,7 +251,6 @@ HPKP が有効になっていることは、 [chrome://net-internals/#hsts](chro
 生成したヘッダは以下である。
 
 max-age は、とりあえず 3600s と短い値から始めることにした。
-
 
 ```http
 Public-Key-Pins:
@@ -272,7 +261,6 @@ Public-Key-Pins:
 ```
 
 Report-Only は、 `max-age` が不要になる。また report-uri.io では、 Report-Only 用に URI が変わるので、それを設定している。
-
 
 ```http
 Public-Key-Pins-Report-Only:

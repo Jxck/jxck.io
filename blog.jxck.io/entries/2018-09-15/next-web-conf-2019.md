@@ -1,39 +1,30 @@
 # [next-web-conf][web] 次世代 Web カンファレンス 2019 開催告知
 
-
 ## Intro
 
 2019/1/13(日) に、「*次世代 Web カンファレンス*」を開催します。
 
 名称
 : 次世代 Web カンファレンス
-
 日時
 : 2019/1/13(日) 9:00-17:30
-
 場所
 : [法政大学富士見ゲート 4F](http://www.hoseikyoiku.jp/facilities/fujimigate.html#fa_li) 401, 402, 403
-
 後援
 : [法政大学情報科学部](http://cis.k.hosei.ac.jp/)
-
 配信
 : [Youtube](https://www.youtube.com/channel/UCFq8UHBXg8YNHCeaGmtSFEw)
-
 募集
 : [Connpass](https://nextwebconf.connpass.com/event/103056/)
-
 参加費
 : 無料
 
 (参考) 2015 年実施のログは以下です。
 
 blog
-: <http://jxck.hatenablog.com/entry/next-web-conf-2915>
-
+: http://jxck.hatenablog.com/entry/next-web-conf-2915
 connpass
-: <https://nextwebconf.connpass.com/event/19699/>
-
+: https://nextwebconf.connpass.com/event/19699/
 録画
 : [405](https://youtu.be/mkpuJnjNK90), [406](https://youtu.be/KgytEe1u4wM), [407](https://youtu.be/dxFa055NtTo)
 
@@ -117,7 +108,6 @@ connpass
 
 ## Speaker
 
-
 ### A11y
 
 speaker
@@ -125,10 +115,8 @@ speaker
 : [@ma10](https://twitter.com/ma10)
 : [@magi1125](https://twitter.com/magi1125)
 : [@sukoyakarizumu](https://twitter.com/sukoyakarizumu)
-
 hashtag
 : [#nwc_a11y](https://twitter.com/search?q=%23nwc_a11y)
-
 togetter
 : [#nwc_a11y](https://togetter.com/li/1267057)
 
@@ -139,10 +127,8 @@ speaker
 : [@1000ch](https://twitter.com/1000ch)
 : likr
 : [@sisidovski](https://twitter.com/sisidovski)
-
 hashtag
 : [#nwc_perf](https://twitter.com/search?q=%23nwc_perf)
-
 togetter
 : [#nwc_perf](https://togetter.com/li/1267058)
 
@@ -153,10 +139,8 @@ speaker
 : [@edo_m18](https://twitter.com/edo_m18)
 : [@h_doxas](https://twitter.com/h_doxas)
 : [@yomotsu](https://twitter.com/yomotsu)
-
 hashtag
 : [#nwc_webxr](https://twitter.com/search?q=%23nwc_webxr)
-
 togetter
 : [#nwc_webxr](https://togetter.com/li/1267059)
 
@@ -168,10 +152,8 @@ speaker
 : [@bulkneets](https://twitter.com/bulkneets)
 : [@ockeghem](https://twitter.com/ockeghem)
 : [@yagihashoo](https://twitter.com/yagihashoo)
-
 hashtag
 : [#nwc_sec](https://twitter.com/search?q=%23nwc_sec)
-
 togetter
 : [#nwc_sec](https://togetter.com/li/1267061)
 
@@ -182,10 +164,8 @@ speaker
 : [@suzu_v](https://twitter.com/suzu_v)
 : [@yamaz](https://twitter.com/yamaz)
 : xxj
-
 hashtag
 : [#nwc_ad](https://twitter.com/search?q=%23nwc_ad)
-
 togetter
 : [#nwc_ad](https://togetter.com/li/1267063)
 
@@ -197,10 +177,8 @@ speaker
 : [@komatak](https://twitter.com/komatak)
 : [@phr_eidentity](https://twitter.com/phr_eidentity)
 : [@agektmr](https://twitter.com/agektmr)
-
 hashtag
 : [#nwc_auth](https://twitter.com/search?q=%23nwc_auth)
-
 togetter
 : [#nwc_auth](https://togetter.com/li/1267064)
 
@@ -211,10 +189,8 @@ speaker
 : [@tagomoris](https://twitter.com/tagomoris)
 : [@fujiwara](https://twitter.com/fujiwara)
 : [@tokuhirom](https://twitter.com/tokuhirom)
-
 hashtag
 : [#nwc_micro](https://twitter.com/search?q=%23nwc_micro)
-
 togetter
 : [#nwc_micro](https://togetter.com/li/1267066)
 
@@ -225,10 +201,8 @@ speaker
 : [@kani_b](https://twitter.com/kani_b)
 : [@deeeet](https://twitter.com/deeeet)
 : [@y_uuk1](https://twitter.com/y_uuk1)
-
 hashtag
 : [#nwc_sre](https://twitter.com/search?q=%23nwc_sre)
-
 togetter
 : [#nwc_sre](https://togetter.com/li/1267067)
 
@@ -240,10 +214,8 @@ speaker
 : [@kazuho](https://twitter.com/kazuho)
 : [@__kaname__](https://twitter.com/__kaname__)
 : [@ysnysnysn](https://twitter.com/ysnysnysn)
-
 hashtag
 : [#nwc_quic](https://twitter.com/search?q=%23nwc_quic)
-
 togetter
 : [#nwc_quic](https://togetter.com/li/1268790)
 
@@ -255,10 +227,8 @@ speaker
 : [@laco2net](https://twitter.com/laco2net)
 : [@kazu_pon](https://twitter.com/kazu_pon)
 : [@takanoripe](https://twitter.com/takanoripe)
-
 hashtag
 : [#nwc_front](https://twitter.com/search?q=%23nwc_front)
-
 togetter
 : [#nwc_front](https://togetter.com/li/1268792)
 
@@ -270,10 +240,8 @@ speaker
 : [@jovi0608](https://twitter.com/jovi0608)
 : [@kjur](https://twitter.com/kjur)
 : [@4ma_](https://twitter.com/4ma_)
-
 hashtag
 : [#nwc_https](https://twitter.com/search?q=%23nwc_https)
-
 togetter
 : [#nwc_https](https://togetter.com/li/1268794)
 
@@ -284,10 +252,8 @@ speaker
 : [@yoshiko_pg](https://twitter.com/yoshiko_pg)
 : [@morishitter_](https://twitter.com/morishitter_)
 : [@geckotang](https://twitter.com/geckotang)
-
 hashtag
 : [#nwc_css](https://twitter.com/search?q=%23nwc_css)
-
 togetter
 : [#nwc_css](https://togetter.com/li/1270529)
 
@@ -298,10 +264,8 @@ speaker
 : [@okunokentaro](https://twitter.com/okunokentaro)
 : [@ryoyakawai](https://twitter.com/ryoyakawai)
 : [@toyoshim](https://twitter.com/toyoshim)
-
 hashtag
 : [#nwc_music](https://twitter.com/search?q=%23nwc_music)
-
 togetter
 : [#nwc_music](https://togetter.com/li/1277061)
 
@@ -312,10 +276,8 @@ speaker
 : [@nobsato](https://twitter.com/nobsato)
 : [@ktrszk](https://twitter.com/ktrszk)
 : [@yhassy](https://twitter.com/yhassy)
-
 hashtag
 : [#nwc_design](https://twitter.com/search?q=%23nwc_design)
-
 togetter
 : [#nwc_design](https://togetter.com/li/1278305)
 
@@ -331,13 +293,10 @@ speaker
 
 2018/09/15
 : ブログ公開
-
 2018/10/1
 : Connpass 募集開始
-
 2018/10/15
 : 抽選結果発表
-
 2019/01/13
 : 次世代 Web カンファレンス(9:00 開場 10:00 開演 17:30 終演)
 

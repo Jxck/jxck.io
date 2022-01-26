@@ -1,6 +1,5 @@
 # [puppeteer][web font] Puppeteer で静的サイトの Font Subsetting
 
-
 ## Intro
 
 Web Font のサブセット化を Font Weight に応じて作り分けるとともに、それを Puppeteer を用いて生成するように変更した。
@@ -43,7 +42,6 @@ Regular は、 Bold にあって Regular には無い文字が減らせた一方
 | before |  343.0K |  354.0K |
 | after  |  343.6K |  164.0K |
 | diff   |   +0.4K | -179.5K |
-
 
 
 ## 確認

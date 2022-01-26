@@ -1,6 +1,5 @@
 # [private][javascript] Private Class Field の導入に伴う JS の構文拡張
 
-
 ## Intro
 
 ECMAScript の Private Class Field の仕様策定と各ブラウザの実装が進んでいる。
@@ -15,7 +14,6 @@ ECMAScript の Private Class Field の仕様策定と各ブラウザの実装が
 まず前提として、現状の Class の フィールドはコンストラクタで定義する必要がある。
 
 例えば count フィールドを持つ Counter クラスを定義した場合、以下のようになる。
-
 
 ```js
 class Counter {
@@ -44,7 +42,6 @@ console.log(c.count) // 3
 
 これが実装されると、以下のように書くことができる。
 
-
 ```js
 class Counter {
   count = 0
@@ -71,7 +68,6 @@ JavaScript に Class 構文が導入されたのはかなり最近のことだ�
 現在は、先の class-fields の仕様にマージされ、先に結論を言うと、現状の仕様は以下のようになり、ブラウザの実装が進みつつある。
 
 [tc39/proposal-class-fields: Orthogonally-informed combination of public and private fields proposals](https://github.com/tc39/proposal-class-fields)
-
 
 ```js
 class Counter {
@@ -119,7 +115,6 @@ Private なフィールドを持つ理由は、意図しないものを外部に
 
 例えば、これまで Class には Private がなかったため、公開を意図しないフィールドには `_` をつけるなどの運用でカバーされてきた。
 
-
 ```js
 class Counter {
   constructor() {
@@ -137,7 +132,6 @@ const c = new Counter()
 
 あくまで意図を示しているだけで、実際にはアクセスできてしまう。
 
-
 ```js
 console.log(c._count)
 ```
@@ -150,7 +144,6 @@ console.log(c._count)
 ## Symbol を用いた Soft Private
 
 Symbol を用いると以下のように書くこともできる。
-
 
 ```js
 const Counter = (function() {
@@ -174,7 +167,6 @@ const c = new Counter()
 
 しかし、このシンボル自体は `Object.getOwnPropertySymbols()` で取ることができる。
 
-
 ```js
 console.log(c[Object.getOwnPropertySymbols(c).pop()])
 ```
@@ -189,7 +181,6 @@ console.log(c[Object.getOwnPropertySymbols(c).pop()])
 ## WeakMap を用いた Hard Private
 
 WeakMap を用いれば、アクセス方法を断つことも可能だ。
-
 
 ```js
 const Counter = (function() {
@@ -261,7 +252,6 @@ ECMAScript が Private フィールドを定義する上で、目指すのは So
 
 まず思いつくのが、 JS がこの時のために予約しており、多くの言語が採用している `private` キーワードである。
 
-
 ```js
 class Counter {
   private count = 0
@@ -273,7 +263,6 @@ class Counter {
 まず、以下のようなコードを考える。
 
 もし other も Counter であれば、その Private フィールドを返す必要があるが、もし other が別のクラスだったら、単に public なフィールドを返す必要がある。
-
 
 ```js
 class Counter {
@@ -294,7 +283,6 @@ class Counter {
 すると、 Private を使ってない既存のコードを含めて、全体的にオーバーヘッドが増えそうなことが、想像に難くないだろう。
 
 また、以下のように Private と同じ名前の public なフィールドが定義できてしまうことは、コード自体の誤認をおこしやすい。
-
 
 ```js
 class Counter {
@@ -323,7 +311,6 @@ Java などの言語では、コンパイルの段階で型が何であるかと
 Private フィールドを導入しつつ、既存のコードに影響を与えないパフォーマンスやセマンティクスを実現する方法として、構文の拡張が考えられる。
 
 そこで、結果として `#` を prefix としたこの構文になった。
-
 
 ```js
 class Counter {
@@ -378,7 +365,6 @@ console.log(c.#count) // syntax error
 
 しかし、以下のようなコードを考える。
 
-
 ```js
 class Counter {
   %x;
@@ -402,7 +388,6 @@ JS エンジンはセミコロンが省略された場合、それを補って�
 
 現在、以下のコードで `this.#count` の `this.` を省略することはできない。
 
-
 ```js
 class Counter {
   #count = 0
@@ -415,7 +400,6 @@ class Counter {
 将来的にはこれは省略するショートハンドを定義する余地は残っている。
 
 実現すればこう書けるだろう。
-
 
 ```js
 class Counter {
@@ -432,7 +416,6 @@ class Counter {
 
 これがあれば `this#count` や `c#count` と書ける。
 
-
 ```js
 class X {
   #y
@@ -444,7 +427,6 @@ class X {
 ```
 
 しかし、これを許すと、ショートハンドが入った際に問題が出る。
-
 
 ```js
 class X {
@@ -465,7 +447,6 @@ class X {
 
 まず、動的なアクセスの場合は `["#x"]` は今の JS でも valid だ。
 
-
 ```js
 o = {}
 o["#x"] = 10
@@ -475,7 +456,6 @@ o // {"#x": 10}
 これは既存のコードでもあり得るが、アクセス方法も `o["#x"]` しかなく、 `.#x` でアクセスするコードは既存にはないので両方を許さなければ競合はしない。
 
 また、動的に Private にアクセスできるとうことは、以下のようなことができてしまうことを意味する。
-
 
 ```js
 class Dict {
@@ -500,7 +480,6 @@ dict.get('#secret'); // secret values
 Hard Private なので親クラス、子クラスからもアクセスできない。
 
 例えば `super.#x` といったアクセスはできないため、以下の Point3D の `equals()` は前半を親に移譲することになる。
-
 
 ```js
 class Point2D {
@@ -550,7 +529,6 @@ Pipeline Operator のように複数の記号を組み合わせていくか、 U
 
 具体的には、以下のように今は書けない `[decorator]` とカッコを用いた構文を今のうちに予約しておくというものだ。
 
-
 ```js
 @[typed]
 class Point {
@@ -568,4 +546,4 @@ class Point {
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/private-class-field/>
+- https://labs.jxck.io/private-class-field/

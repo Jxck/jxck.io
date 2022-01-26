@@ -1,6 +1,5 @@
 # [webcodecs][webtransport][webrtc] WebCodecs と WebTransport でビデオチャット
 
-
 ## Intro
 
 ブラウザの持つ Video/Audio コーデック実装へアクセスする API として WebCodecs の仕様策定と実装が進んでいる。
@@ -48,7 +47,6 @@ QUIC/HTTP3 の実装が進んでから、このトランスポートを WebSocke
 
 WebRTC の場合は、取得した MediaStream を RTCPeerConnection に addStream/addTrack すると、そのメディアに合わせてシグナリングを行い、自動でエンコード/デコードし、そのバイナリを自動的に送受信してくれるという、抽象度の高い設計になっていた。
 
-
 ```js
 // 接続されたカメラを抽象化した MediaStream を取得
 const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true})
@@ -81,7 +79,6 @@ stream.getTracks().forEach((track) => {
 
 ビデオの場合は VideoStreamTrack を取得するところから始まる。
 
-
 ```js
 const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true})
 const [videoTrack] = mediaStream.getVideoTracks()
@@ -96,7 +93,6 @@ VideoTrack をエンコードするには VideoEncoder を用いる。
 後から動的にエンコードパラメータを変えられるようにするために、このような API になっていると思われる。
 
 (将来 Simulcast などに対応する場合はここが拡張されるだろう)
-
 
 ```js
 // Encoder
@@ -120,7 +116,6 @@ VideoTrackReader を用いて  MediaStream からビデオのデータを取り�
 
 ここでの単位はフレームで、この VideoFrame を VideoEncoder の `encode()` に渡すとエンコードされる。
 
-
 ```js
 const videoReader = new VideoTrackReader(videoTrack)
 videoReader.start((videoFrame) => {
@@ -135,7 +130,6 @@ videoReader.start((videoFrame) => {
 `encode()` に vp8 の chunk を渡せばデコードしたフレームが取り出せる。
 
 `createImageBitmap()` でビットマップに変換すれば Canvas に描画できる。
-
 
 ```js
 const ctx = $canvas.getContext('2d')
@@ -182,7 +176,6 @@ videoDecoder.decode(chunk)
 
 エンコードした Chunk は以下のような形をしている。
 
-
 ```js
 interface EncodedVideoChunk {
   constructor(EncodedVideoChunkInit init);
@@ -207,7 +200,7 @@ QUIC はパケットサイズに上限があるため、 QuicTransport でも大
 
 なので v4 だと PMTUD でサイズを確認しない限り 1252 以上は送れない
 
-- <https://tools.ietf.org/html/draft-ietf-quic-transport-29#section-14>
+- https://tools.ietf.org/html/draft-ietf-quic-transport-29#section-14
 
 すると、キーフレームは確実にフラグメントするため、全て揃うまでバッファしないと CBOR でデコードできない。
 
@@ -278,37 +271,37 @@ WebCodecs と WebTrasnport を用いて WebRTC のようなビデオ会議が、
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/webcodecs/>
+- https://labs.jxck.io/webcodecs/
 
 
 ## Resources
 
 - Spec
-  - <https://wicg.github.io/web-codecs/>
+  - https://wicg.github.io/web-codecs/
 - Explainer
-  - <https://github.com/WICG/web-codecs/blob/master/explainer.md>
+  - https://github.com/WICG/web-codecs/blob/master/explainer.md
 - Requirements Doc
-  - <https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw>
+  - https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw
 - Mozilla Standard Position
-  - <https://mozilla.github.io/standards-positions/#web-codecs>
+  - https://mozilla.github.io/standards-positions/#web-codecs
 - Webkit Position
-  - <https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html>
+  - https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html
 - TAG Design Review
-  - <https://github.com/w3ctag/design-reviews/issues/433>
+  - https://github.com/w3ctag/design-reviews/issues/433
 - Intents
   - Intent to Experiment: WebCodecs
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/7OdxQf5HnlQ>
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/7OdxQf5HnlQ
   - Intent to Implement WebCodecs
-    - <https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/3oVuczJ5Ty4/discussion>
+    - https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/3oVuczJ5Ty4/discussion
   - Intent to Prototype: ImageDecoder API extension for WebCodecs
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/w1F8UGwTjZo/m/CoU8WTOxAAAJ>
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/w1F8UGwTjZo/m/CoU8WTOxAAAJ
 - Chrome Platform Status
-  - <https://www.chromestatus.com/feature/5669293909868544>
+  - https://www.chromestatus.com/feature/5669293909868544
 - DEMO
 - Blog
   - [QuicTransport によるアプリケーションレイヤでの QUIC 活用 | blog.jxck.io](https://blog.jxck.io/entries/2020-06-09/quic-transport.html)
   - [WebTransport と WebCodecs そして Web はどこまで "ゲーム化" するか | blog.jxck.io](https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html)
 - Presentation
 - Issues
-  - <https://bugs.chromium.org/p/chromium/issues/detail?id=897297>
+  - https://bugs.chromium.org/p/chromium/issues/detail?id=897297
 - Other

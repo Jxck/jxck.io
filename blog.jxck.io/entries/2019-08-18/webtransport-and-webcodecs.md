@@ -1,6 +1,5 @@
 # [webtransport][webcodecs] WebTransport と WebCodecs そして Web はどこまで "ゲーム化" するか
 
-
 ## Intro
 
 Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。
@@ -19,7 +18,6 @@ WebTransport と WebCodecs は、主にそんな Web Game の需要から「本�
 
 
 ## WebTransport
-
 
 ### Motivation
 
@@ -109,11 +107,11 @@ Web の基本的な通信が、画面の遷移とサブリソースの取得だ�
 
 - Protocol
   - The WebTransport Protocol Framework
-    - <https://tools.ietf.org/html/draft-vvv-webtransport-overview-00>
+    - https://tools.ietf.org/html/draft-vvv-webtransport-overview-00
   - WebTransport over HTTP/3
-    - <https://tools.ietf.org/html/draft-vvv-webtransport-http3-00>
+    - https://tools.ietf.org/html/draft-vvv-webtransport-http3-00
   - WebTransport over QUIC
-    - <https://tools.ietf.org/html/draft-vvv-webtransport-quic-00>
+    - https://tools.ietf.org/html/draft-vvv-webtransport-quic-00
 
 Overview では以下のような共通機能について定義されている。
 
@@ -124,12 +122,11 @@ Overview では以下のような共通機能について定義されている�
 加えて以下の 4 つがオプションとして用意されており、 2 つのプロトコルのサポートは以下のようになる。
 
 |                     | QUIC | HTTP3 |
-|---------------------|:----:|:-----:|
-| Stream independence |   o  |   o   |
-| Partial reliability |   o  |   o   |
-| Pooling support     |   x  |   o   |
-| Connection mobility |   o  |   o   |
-
+|:-------------------:|:----:|:-----:|
+| Stream independence | o    | o     |
+| Partial reliability | o    | o     |
+| Pooling support     | x    | o     |
+| Connection mobility | o    | o     |
 
 
 ### Alternatives
@@ -168,8 +165,8 @@ Overview では以下のような共通機能について定義されている�
 最近 WebTransport の横で WebSocketStream という WebSocket の API 改善作業が始まった。
 
 - Intent to Implement: WebSocketStream
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ>
-  - <https://github.com/ricea/websocketstream-explainer/blob/master/README.md>
+  - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ
+  - https://github.com/ricea/websocketstream-explainer/blob/master/README.md
 
 WebSocket の API は、 Promise や Stream が定義される前に策定されたため、それらに対応していない。
 
@@ -183,7 +180,6 @@ WebSocket の API は、 Promise や Stream が定義される前に策定され
 
 
 ## WebCodecs
-
 
 ### Motivation
 
@@ -253,7 +249,6 @@ MediaStreamTrack との繋ぎは、 TrackReader/Writer が提供され、 Stream
 
 例えば、映像の送受信は Camera -> Encode -> Transport -> Decode -> VideoElement となるため、以下のようになる。
 
-
 ```js
 /**
  * カメラから取得して送信する
@@ -275,7 +270,6 @@ videoTrackReader.readable
                 .pipeThrough(videoEncoder)
                 .pipeTo(transport.writable);
 ```
-
 
 ```js
 /**
@@ -302,7 +296,6 @@ videoElem.srcObject = mediaStream;
 
 
 ## 考察
-
 
 ### WebRTC の次のフェーズとしての WebTransport
 
@@ -383,46 +376,45 @@ WebTransport や WebCodecs が、 Stadia を展開するために必要な穴を
 
 ## links
 
-
 ### WebTransport
 
 - Protocol
   - The WebTransport Protocol Framework
-    - <https://tools.ietf.org/html/draft-vvv-webtransport-overview-00>
+    - https://tools.ietf.org/html/draft-vvv-webtransport-overview-00
   - WebTransport over HTTP/3
-    - <https://tools.ietf.org/html/draft-vvv-webtransport-http3-00>
+    - https://tools.ietf.org/html/draft-vvv-webtransport-http3-00
   - WebTransport over QUIC
-    - <https://tools.ietf.org/html/draft-vvv-webtransport-quic-00>
+    - https://tools.ietf.org/html/draft-vvv-webtransport-quic-00
 - API
   - WebTransport
-    - <https://wicg.github.io/web-transport/>
+    - https://wicg.github.io/web-transport/
 - WICG
   - Thread
-    - <https://discourse.wicg.io/t/webtransport-proposal/3508>
+    - https://discourse.wicg.io/t/webtransport-proposal/3508
   - Repo
-    - <https://github.com/WICG/web-transport>
+    - https://github.com/WICG/web-transport
   - Explainer
-    - <https://github.com/wicg/web-transport/blob/master/explainer.md>
+    - https://github.com/wicg/web-transport/blob/master/explainer.md
 - Meeting Material
   - QUIC Interim
-    - <https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf>
+    - https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf
   - IETF 105
-    - <https://datatracker.ietf.org/meeting/105/materials/slides-105-dispatch-webtransport-00>
+    - https://datatracker.ietf.org/meeting/105/materials/slides-105-dispatch-webtransport-00
   - W3C Web Games Workshop
-    - <https://www.w3.org/2018/12/games-workshop/report.html#webtransport>
-    - <https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit>
+    - https://www.w3.org/2018/12/games-workshop/report.html#webtransport
+    - https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit
     - Minutes から Sony/BBC などが強い賛同を示している
 - Mailing List
   - webtransport
-    - <https://mailarchive.ietf.org/arch/browse/webtransport/>
+    - https://mailarchive.ietf.org/arch/browse/webtransport/
 - Intent to Implement: WebSocketStream
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ>
-  - <https://github.com/ricea/websocketstream-explainer/blob/master/README.md>
+  - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ
+  - https://github.com/ricea/websocketstream-explainer/blob/master/README.md
 
 
 ### WebCodecs
 
 - Explainer
-  - <https://github.com/pthatcherg/web-codecs/blob/master/explainer.md>
+  - https://github.com/pthatcherg/web-codecs/blob/master/explainer.md
 - WICG Tread
-  - <https://discourse.wicg.io/t/webcodecs-proposal/3662>
+  - https://discourse.wicg.io/t/webcodecs-proposal/3662

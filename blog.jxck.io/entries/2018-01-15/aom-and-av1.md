@@ -1,6 +1,5 @@
 # [webrtc][av1][aom] Apple の AOM 加盟と AV1 への期待
 
-
 ## Intro
 
 Apple が Alliance for Open Media に加盟したという報道があった。

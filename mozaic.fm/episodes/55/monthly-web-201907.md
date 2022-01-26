@@ -15,7 +15,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### Chrome 動向
 
 - Stable: 76

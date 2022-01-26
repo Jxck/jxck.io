@@ -1,6 +1,5 @@
 # [nomodule][es modules] ES Modules への橋渡しとしての nomodule 属性
 
-
 ## Intro
 
 ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。
@@ -16,7 +15,6 @@ classic script (module ではない JS) は、 `<script>` で指定すると、�
 
 type は省略されることが多いが、その場合 `text/javascript` と解釈されている。
 
-
 ```html
 <script type=text/javascript src=bundle.js></script>
 ```
@@ -24,7 +22,6 @@ type は省略されることが多いが、その場合 `text/javascript` と�
 一方、 module script (module として実装された JS) は、 `import/export` の処理や依存の解決など、これまでと異なる扱いが必要となる。
 
 そこで、ブラウザにおいては同じ `<script>` で指定するが、新規に導入された `type=module` を指定し、 module script であることを明示することとなった。
-
 
 ```html
 <script type=module src=module.js></script>
@@ -35,7 +32,6 @@ type は省略されることが多いが、その場合 `text/javascript` と�
 結果、これだけでは何も実行されない。
 
 かといって、両方書くと両方実行されてしまうためなんらかの切り分けの方法が必要だった。
-
 
 ```html
 <!-- module 対応ブラウザでは両方動く -->
@@ -60,7 +56,6 @@ type は省略されることが多いが、その場合 `text/javascript` と�
 
 この場合、以下のように指定できる。
 
-
 ```html
 <script type=module src=module.js></script>
 <script nomodule type=text/javascript src=bundle.js></script>
@@ -73,7 +68,6 @@ type は省略されることが多いが、その場合 `text/javascript` と�
 ## ES Modules を実装していない場合
 
 `type=module` と `nomodule` は知らないため無視され、以下と同等に解釈される。
-
 
 ```html
 <script type=text/javascript src=bundle.js></script>
@@ -90,7 +84,6 @@ ES Modules を実装する場合は `nomodule` の解釈が必須とされてい
 この場合、 `type=module` と `nomodule` を解釈し、 module script を実行する代わりに `nomodule` が指定された classic script を無視する。
 
 結果、以下と同等に解釈される。
-
 
 ```html
 <script type=module src=module.js></script>

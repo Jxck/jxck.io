@@ -1,6 +1,5 @@
 # [swr][http][cache][performance] Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新
 
-
 ## Intro
 
 システムにおいてキャッシュの設計は永遠の課題であり、 Web のパフォーマンスにおいても非常に重要である。
@@ -13,7 +12,6 @@ Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を
 
 
 ## Web におけるキャッシュ
-
 
 ### キャッシュの種類
 
@@ -58,7 +56,6 @@ Web における、キャッシュの指定には大きく二つの方式があ�
 
 この JS を `index.html` に指定する際は、以下のようにバージョンを含める。
 
-
 ```html
 <script src="production.min.js?ver=1"></script>
 ```
@@ -66,7 +63,6 @@ Web における、キャッシュの指定には大きく二つの方式があ�
 これで `ver=1` を参照している間はキャッシュが使われる。
 
 もし JS が更新されたらバージョンを変えることで、 URL を以下のように変更する。
-
 
 ```html
 <script src="production.min.js?ver=2"></script>
@@ -91,13 +87,10 @@ HTTP には、 *Conditional GET* (条件付き GET) という仕組みがある�
 
 ETag
 : そのリソースを一意に特定する値、要するにリソースのハッシュ値
-
 Last-Modified
 : そのリソースが最後に更新されたタイムスタンプ。この値を保存したブラウザは、同じ URL へのリクエストに、キャッシュしたリソースに付与されていた値を設定してサーバに問い合わせる。 サーバは、リクエストされたリソースについて各値を検証する。
-
 If-Non-Match
 : ETag で受け取った値を付与、サーバはその値と現在のリソースの値を比較
-
 If-Modified-Since
 : Last-Modified で受け取った値を付与、サーバはリソースの最終更新日を比較 これによって、ブラウザがキャッシュしたリソースが、まだ新鮮であるかどうかをサーバが判断できる。 新鮮ならば `304 Not Modified` を返すことで、ブラウザにキャッシュが再利用できることを伝える。 新鮮でなければ新しいリソースをレスポンスし、キャッシュは更新される。 この仕組みは、キャッシュが有効と分かればレスポンスボディが空になるため、ペイロードサイズが大幅に減る。 キャッシュが古い場合は、常に新しいリソースを提供できるため、更新が多いリソースで、最新のコンテンツを提供する場合に使用できる。 ただし、あくまでサーバへの問い合わせ自体は発生するため、ラウンドトリップ自体の削減にはならない。
 
@@ -116,13 +109,12 @@ If-Modified-Since
 
 なお、現時点では Chrome のみに実装されており、 flag を有効にすることで使用できる。
 
-[chrome://flags/#enable-stale-while-revalidate](chrome://flags/#enable-stale-while-revalidate)
+<chrome://flags/#enable-stale-while-revalidate>
 
 
 ### max-age
 
 まず、従来の方法で以下のヘッダがあった場合を考える。
-
 
 ```http
 Cache-Control: max-age=3600;
@@ -138,7 +130,6 @@ Cache-Control: max-age=3600;
 ### stale-while-revalidate
 
 `Cache-Control` に `stale-while-revalidate` を指定する。
-
 
 ```http
 Cache-Control: max-age=3600, stale-while-revalidate=360
@@ -165,7 +156,6 @@ Cache-Control: max-age=3600, stale-while-revalidate=360
 
 同じく `Cache-Control` に指定する。
 
-
 ```http
 Cache-Control: max-age=3600, stale-if-error=360
 ```
@@ -185,18 +175,17 @@ Cache-Control: max-age=3600, stale-if-error=360
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/stale-while-revalidate/>
+- https://labs.jxck.io/stale-while-revalidate/
 
 執筆時点では、実装ブラウザは Chrome のみであり、フラグを有効にすることで使用できる。
 
-[chrome://flags/#enable-stale-while-revalidate](chrome://flags/#enable-stale-while-revalidate)
+<chrome://flags/#enable-stale-while-revalidate>
 
 サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
 
 そして、レスポンスに以下のヘッダを追加しているため、アクセスを繰り返せば挙動が確認できるだろう。
 
 (Chrome はリロードではキャッシュを無視する場合があるため、画面に用意したリンクを踏むこと)
-
 
 ```http
 Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
@@ -218,7 +207,6 @@ Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 
 ### 1 year fresh cache
 
-
 ```http
 Cache-Control: max-age=31536000
 ```
@@ -233,7 +221,6 @@ Cache-Control: max-age=31536000
 
 
 ### 1 year stale cache
-
 
 ```http
 Cache-Control: max-age=1, stale-while-revalidate=3153600
@@ -254,7 +241,6 @@ Cache-Control: max-age=1, stale-while-revalidate=3153600
 
 ### 1 year fresh/stale cache
 
-
 ```http
 Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 ```
@@ -269,7 +255,6 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 
 
 ## 本サイトへの適用
-
 
 ### 現状
 
@@ -311,7 +296,6 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 - max-age=1sec : SwR 非対応ブラウザではキャッシュしない
 - SwR=10min : そのとき滞在しているセッションの中ではキャッシュを使用
 - SiE=1day : その日のうちは、エラーの代替表示として stale cache を利用
-
 
 ```http
 Cache-Control: max-age=1, stale-while-revalidate=600, stale-if-error=864000

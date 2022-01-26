@@ -6,6 +6,7 @@
 
 必要だった要件や、意思決定を作業ログとして記す。
 
+
 ## Markdown
 
 本サイトは、一般に使われている Markdown -> HTML の変換結果では要件を満たせないため、最も都合の良い AST を吐く [Kramdown](https://kramdown.gettalong.org/) のパーサから AST だけを取得し、それを Traverser でカスタマイズしてから自前でシリアライズしていた。
@@ -18,9 +19,11 @@
 
 - [jxck.io/.src/markdown at master · Jxck/jxck.io](https://github.com/Jxck/jxck.io/tree/master/.src/markdown)
 
+
 ## 要件
 
 メモとして実装上の要件を記しておく。
+
 
 ### Headding / Sectioning
 
@@ -79,6 +82,7 @@
 
 もともと Kramdown をカスタマイズしはじめたのも、これを行いたかったからだった。
 
+
 ### 閉じタグとクオートの省略
 
 HTML の仕様には、閉じタグやクオートの省略条件が書かれている。
@@ -90,9 +94,11 @@ HTML の仕様には、閉じタグやクオートの省略条件が書かれて
 - 条件を満たしたクオートは省略
   - https://html.spec.whatwg.org/#unquoted
 
+
 ### インデント
 
 インデントはキレイに
+
 
 ### blockquote の cite
 
@@ -118,6 +124,7 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 
 本来は `cite` 属性の方だけで良いが、以前は `<cite>` だったため今は互換を保つよう両方に入れている。
 
+
 ### 外部 script の読み込み
 
 ブログを書く上で、コードブロックにサンプルコードを書くことは多く、その中身が多いと外部ファイルに出し、ビルド時に読み込めると便利だ。
@@ -130,6 +137,7 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 ```
 
 このようにすると、 HTML ビルド時にカレントディレクトリの script.js を読み込んで HTML の `<code>` 内に展開してくれる。
+
 
 ### img のカスタマイズ
 
@@ -177,6 +185,7 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 
 そろそろ avif 対応も入れたい。
 
+
 ### adoptive CSS
 
 `<table>` 用の CSS と `<pre>` のシンタックスハイライトは、他の要素に比べて CSS の量が多いのにかかわらず、出現頻度が低い。
@@ -187,6 +196,7 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 
 [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
 
+
 ### `<table>`
 
 Kramdown は、文の途中で `|` が来ると `<table>` が始まったと解釈する。
@@ -194,7 +204,7 @@ Kramdown は、文の途中で `|` が来ると `<table>` が始まったと解�
 しかし、以下のようなリンクのタイトルは `|` を含むことが多く、エスケープが必要だった。
 
 ```md
-- [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について \| blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
+- [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)
 ```
 
 mozaic.fm の Monthly Web では、 Show Note に大量のリンクを貼るため、そこに出てくる `|` を全てエスケープするのは面倒だった。
@@ -203,6 +213,7 @@ mozaic.fm の Monthly Web では、 Show Note に大量のリンクを貼るた�
 
 また、 `<table>` の align は `align` 属性で指定も可能だが、もう deprecate されているため、 CSS で align するために `class` をつけるようにしている。
 
+
 ### TOC の生成
 
 前述で生成した headding とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
@@ -210,6 +221,7 @@ mozaic.fm の Monthly Web では、 Show Note に大量のリンクを貼るた�
 TOC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Headding のリストを保持することになるので、それをそのまま ToC として AST と一緒に返すようにした。
 
 この TOC は、 blog のタイトル上に埋め込んでいる。
+
 
 ### h1
 
@@ -220,6 +232,7 @@ h1 には以下のようにタグが書けるようにしている。
 ```
 
 これも、 blog のタイトル上に埋め込んでいる。
+
 
 ### Front Matter
 
@@ -244,6 +257,7 @@ guest: [@myakura](https://twitter.com/myakura)
 ```
 
 YAML は YAML パーサを入れるほど複雑なものを書いてないので、 YAML パーサを自作するのをぐっとこらえて雑に処理している。
+
 
 ### `<dl>`
 
@@ -288,6 +302,7 @@ key2
   :val3
 ```
 
+
 ### 余計な空白はエラー
 
 以前はビルドとは別に linter のようなものを雑に作ってフォーマットを確認していた。
@@ -308,6 +323,7 @@ a **b ** c
 
 これを formatter にしてもよいかもしれないが、ビルド時エラーで間に合っているのでしてない。
 
+
 ### URL link
 
 Kramdown ではサポートされてなかった URL Like String を含めて、リンク記法は以下の 3 つを全てサポートしている。
@@ -322,12 +338,14 @@ https://example.com
 
 `about:`, `chrome:`, `file:` をサポートするかは考え中。
 
+
 ### 使わない記法は実装しない
 
 - `<del>` や `<i>` は使わないので実装してない
 - `<ul>` は `-` しか使わないので `*` は実装しない
 - `<ol>` は `n.` しか使わないので `+` は実装しない
 - Math も使わないので実装しない
+
 
 ### traverser plugin
 
@@ -341,9 +359,11 @@ https://example.com
 
 特に Node の `fs` を使わないと実現できないものは Plugin 側に寄せ、責務を分離できるようにしている。
 
+
 ## 技術負債の解消
 
 Markdown プロセッサを直すと同時に、それまで溜まっていた負債や、後回しにしていた改善も一気に入れることにした。
+
 
 ### 脱 WebFont
 
@@ -351,21 +371,26 @@ Markdown プロセッサを直すと同時に、それまで溜まっていた�
 
 - [Tag: Web Font](https://blog.jxck.io/tags/#web%20font)
 
+
 ### HTML Header
 
 テンプレートを直すついでに、継ぎ足し継ぎ足しだったヘッダ部分を色々と整理した。
+
 
 ### Favicon
 
 Favicon / Touch Icon のサポートと解像度を整理し、多くのケースをカバーできるようにした。
 
+
 ### Twitter Card
 
 Twitter Card のためのタグを入れていたが、もうどうでもいいのでタグを削除。 OGP 自体はあるので部分的にそちらでカバーされるはず。
 
+
 ### Hatena
 
 「内容が長いとブコメしか見ない」というはてな民が一定いるという話を聞き、であれば読まれない方がマシということで Opt-Out のタグを追加。
+
 
 ### Google Search
 
@@ -380,15 +405,18 @@ SEO 自体はどうでもよいが、 Google の検索結果がなんか色々�
 
 ついでに robots.txt も整理。
 
+
 ### AMP 削除
 
 以前 [AMP のサポートは落とした](https://blog.jxck.io/entries/2021-06-26/amp-tone-down.html) が、コードベースは残していた。
 
 しかし、新しいビルダに移行したことで、残していた実装も完全に削除した。
 
+
 ### webpkg/amppkg
 
 どちらも証明書が切れたので停止。いずれ証明書が安く手に入るようになったら再開するためコードは残す。
+
 
 ## 効果
 
@@ -402,7 +430,9 @@ SEO 自体はどうでもよいが、 Google の検索結果がなんか色々�
 - ビルドプロセスに JS と Ruby が混ざっていたが、 Ruby をなくし JS に一本化できた
 - 溜まっていた負債を払った
 
+
 ## まとめ
 
 今回 CSS の修正/整理まではいけなかったので、それは来年以降取り組みたい。
+
 また、起点になる Markdown コードベースを作り直せたので、これを元に mozaic.fm の方も改良を入れたい。

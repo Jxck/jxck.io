@@ -1,6 +1,5 @@
 # [xss][trusted types][security] 安全な文字列であると型で検証する Trusted Types について
 
-
 ## Intro
 
 脆弱性の原因となる DOM 操作の代表例として `elem.innerHTML` や `location.href` などが既に知られている。
@@ -37,7 +36,6 @@ Trusted Types は、文字列を「処理済み」と型付けし、ブラウザ
 
 TrustedTypes は CSP により Opt-In で利用する。
 
-
 ```http
 Content-Security-Policy: trusted-types
 ```
@@ -48,7 +46,6 @@ Content-Security-Policy: trusted-types
 - `location.href`
 - `script.src`
 - `script.textContent`
-
 
 ```js
 const $ = document.querySelector.bind(document);
@@ -85,7 +82,6 @@ DOMString を TrustedTypes に変換するには、まず TrustedTypePolicy を�
 
 これは、以下のように `createPolicy()` を用いて生成する。
 
-
 ```js
 const escapePolicy = TrustedTypes.createPolicy('application-policy', {
   createHTML:      (unsafe) => {/*..*/},
@@ -97,14 +93,12 @@ const escapePolicy = TrustedTypes.createPolicy('application-policy', {
 
 例えば `innerHTML` できる TrustedHTML は、この Policy に定義した `createHTML()` を通して取得することができる。
 
-
 ```js
 const trustedHTML = escapePolicy.createHTML('<img src=/ onerror="alert(10)">')
 $('div').innerHTML = trustedHTML
 ```
 
 つまり、 `innerHTML` の前には HTML Special Chars のエスケープを必須としたいという場合は、 `createPolicy()` の引数に渡す関数にその処理を入れれば良い。
-
 
 ```js
 const escapePolicy = TrustedTypes.createPolicy('application-policy', {
@@ -133,13 +127,11 @@ $('div').innerHTML = trustedHTML // html special chars escaped
 
 これをしなければポリシーを利用した時点で CSP エラーとなる。
 
-
 ```http
 Content-Security-Policy: trusted-types application-policy
 ```
 
 これは Policy から `createHTML` すれば型としては TrustedType であるため、なんらかの方法で Policy も仕込まれてしまうことを防ぐ目的もある。
-
 
 ```js
 const dummyPolicy = TrustedTypes.createPolicy('dummy', {
@@ -158,7 +150,6 @@ document.querySelector('div').innerHTML = trustedHTML
 
 Policy オブジェクトは戻り値でしか取得できないため、広く参照される場合は expose によって明示的に公開することができる。
 
-
 ```js
 TrustedTypes.createPolicy('escape', {
   createHTML: (unsafe) => {/*...*/}
@@ -166,7 +157,6 @@ TrustedTypes.createPolicy('escape', {
 ```
 
 expose された Policy は `getExposedPolicy(name)` で取得が可能だ。
-
 
 ```js
 const escapePolicy = TrustedTypes.getExposedPolicy('escape')
@@ -186,7 +176,6 @@ Global に Policy が定義されるため、名前が衝突する再定義は�
 - createURL:       同じオリジンでない場合はエラーとする
 - createScriptURL: セーフリストに無いオリジンはエラーとする
 - createScript:    定義しないことで利用そのものをエラーとする
-
 
 ```js
 TrustedTypes.createPolicy('https://labs.jxck.io', {
@@ -233,7 +222,6 @@ TrustedTypes.createPolicy('https://labs.jxck.io', {
 
 ## 考察
 
-
 ### 何もしない、はできない。
 
 たとえば location.href への代入が型エラーになったら、代入を無視するということはできない。
@@ -259,7 +247,6 @@ Policy に定義する関数は同期処理しかできない。
 ### expose が boolean
 
 `createPolicy()` の第三引数の expose が、現時点では boolean で定義されている。
-
 
 ```js
 TrustedTypePolicy createPolicy(DOMString policyName, TrustedTypeInnerPolicy policy, optional boolean expose = false);
@@ -338,7 +325,7 @@ CSP によって有効になるのは、型が違う場合にエラーをあげ�
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/trusted-types/>
+- https://labs.jxck.io/trusted-types/
 
 動作は Chrome Canary 74.0.3684.0 で確認している。
 

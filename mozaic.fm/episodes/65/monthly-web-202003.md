@@ -15,7 +15,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### Covid-19
 
 - 4/1 現在

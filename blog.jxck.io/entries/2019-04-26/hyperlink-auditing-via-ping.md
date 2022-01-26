@@ -1,6 +1,5 @@
 # [ping][ecosystem][web] Web における技術の解釈とエコシステムによる合意形成プロセスについて
 
-
 ## Intro
 
 「ユーザが意図する挙動」とは何か。技術的に可能であるが「やらない方が良いこと」は、誰がどう決めるのか。
@@ -16,7 +15,6 @@ Web には仕様、実装、デプロイ、そしてユーザの利用とフィ�
 
 `<a>` には ping という属性があり、以下のように URL を指定する。
 
-
 ```html
 <a href=https:example.com ping=/path/to/report>example.com</a>
 ```
@@ -24,7 +22,6 @@ Web には仕様、実装、デプロイ、そしてユーザの利用とフィ�
 [HTML Standard - ping Attribute](https://html.spec.whatwg.org/#ping)
 
 このリンクは、クリックすると https://example.com に遷移するが、ブラウザは遷移すると同時に `/path/to/report` に対して、おおよそ以下のようなリクエストを投げる。
-
 
 ```http
 POST /path/to/report HTTP/1.1
@@ -89,7 +86,6 @@ Web はハイパーリンクで繋がるモデルを採用し、それによっ�
 
 ## 流出先の収集
 
-
 ### JS
 
 最も想像しやすい手法は、 JS を用いた実装だろう。
@@ -97,7 +93,6 @@ Web はハイパーリンクで繋がるモデルを採用し、それによっ�
 `onclick`, `onunload`, などをフックし、遷移の前に必要な情報を載せたリクエストをサーバに飛ばす方法だ。
 
 XHR で飛ばすこともできるが、非同期だと送り終わる前にページが遷移してしまうなどの理由により、あえて同期の XHR でリクエストを投げ、終わるまで処理を止めてるという場合もある。
-
 
 ```js
 window.addEventListener('unload', (e) => {
@@ -108,7 +103,6 @@ window.addEventListener('unload', (e) => {
 ```
 
 最近は Off The Main Thread の流れもあり、同期の XHR は徐々に無くしていく方向になっているため、標準化されている Beacon API や Keep Alive Fetch などを利用するのが理想的だ。
-
 
 ```js
 window.addEventListener('unload', (e) => {
@@ -128,7 +122,6 @@ JS で行えば、収集する情報もタイミングも、柔軟に設定で�
 もう一つ、広く採用されている方法にリダイレクトがある。
 
 例えば SNS や Chat などで URL を共有すると、以下のように URL が表示されるが、 href は別の URL に差し替えられている、という場合がある。
-
 
 ```html
 <a href=https://redirect.example?to=https://hello.example.com/world.html>https://hello.example.com/world.html</a>

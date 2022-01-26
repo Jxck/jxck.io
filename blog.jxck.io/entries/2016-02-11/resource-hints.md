@@ -1,11 +1,10 @@
 # [resource hints][performance] Resource Hints API でリソースの投機的取得
 
-
 ## Intro
 
 Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。
 
-<https://w3c.github.io/resource-hints/>
+- https://w3c.github.io/resource-hints/
 
 主に以下がある。
 
@@ -46,7 +45,6 @@ Resource Hints はそうしたリソース取得のヒントをブラウザに�
 
 現在は四種類ある
 
-
 ```html
 <link rel="dns-prefetch" href="//example.com">
 <link rel="preconnect" href="//example.com">
@@ -60,7 +58,6 @@ Resource Hints はそうしたリソース取得のヒントをブラウザに�
 ### dns-prefetch
 
 DNS の問い合わせを事前に行い、キャッシュしておくことで、名前解決コストを下げる方法である。
-
 
 ```html
 <link rel="dns-prefetch" href="//example.com">
@@ -80,7 +77,6 @@ DNS の解決に加えて TCP の接続まで確立しておくことで、リ�
 
 仕様では、クロスオリジンも張ることができる。
 
-
 ```html
 <link rel="preconnect" href="//example.com">
 <link rel="preconnect" href="//cdn.example.com" crossorigin>
@@ -98,7 +94,6 @@ DNS の解決に加えて TCP の接続まで確立しておくことで、リ�
 
 もはや取得するリソースが分かっており、それが投機的に取得しても内容が変わらないもの、要するに静的リソースである場合に、事前に取得してブラウザにキャッシュする方法である。
 
-
 ```html
 <link rel="prefetch" href="/library.js" as="script">
 <link rel="prefetch" href="//example.com/next-page.html" as="html" crossorigin="use-credentials">
@@ -115,7 +110,6 @@ DNS の解決に加えて TCP の接続まで確立しておくことで、リ�
 prefetch 可能なリソースのみからなるページならば、ページ全体を事前に取得することが可能な筈である。
 
 そこで、そのページ全体を取得し、バックグラウンドに起こしたタブの中で、描画まで行ってしまうという方法である。
-
 
 ```html
 <link rel="prerender" href="//example.com/next-page.html">
@@ -150,6 +144,6 @@ prefetch 可能なリソースのみからなるページならば、ページ�
 
 名前解決の方は確認が難しいので、後者のみ確認結果を載せる。
 
-Chrome の場合は Prerender の状況について [chrome://net-internals](chrome://net-internals) から確認できる。
+Chrome の場合は Prerender の状況について <chrome://net-internals> から確認できる。
 
 ![chrome://net-internals#prerender による Prerender の状況確認](net-internals-prerender.png#1058x299 "chrome://net-internals#prerender")

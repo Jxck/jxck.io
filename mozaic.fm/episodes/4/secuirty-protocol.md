@@ -17,6 +17,7 @@ guest: 菊池さん
 
 今回は [Qiita でラフノートを公開](http://qiita.com/Jxck_/items/324f5b68f2da4add6a45) し、質問を募集しました。全部は紹介できませんでしたが、質問頂いた方々有難うございました。
 
+
 ## Show Note
 
 - [CCS Injection Vulnerability](http://ccsinjection.lepidum.co.jp/ja.html)

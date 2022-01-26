@@ -1,6 +1,5 @@
 # [lazyload][image][performance] 画像最適化戦略 Lazy Loading 編
 
-
 ## Intro
 
 長らく議論されてきた `<img>` や `<iframe>` における Lazyload について、仕様と実装が動きを見せている。
@@ -10,10 +9,10 @@
 画像最適化シリーズ第 5 回目のエントリである。
 
 1. [画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
-1. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
-1. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
-1. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
-1. [> 画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
+2. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
+3. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
+4. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
+5. [> 画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
 
 
 ## Lazyloading
@@ -35,7 +34,6 @@
 
 もともと、 IE は `lazyload` 属性を早い段階で実装しており、値は Integer `0`/`1` を指定し `1` の場合は *他よりも優先度を下げる* という仕様だった。
 
-
 ```html
 <img src="example.jpg" lazyload="1">
 ```
@@ -50,14 +48,12 @@
 
 lazyload
 : ネットワーク専有の優先度を下げる(ネットワークが空けばロードはされる)
-
 postpone
 : 表示が必要になるまでダウンロードしない
 
 なお、この時点では Boolean Attribute になっていたため、値を書くだけで有効になる。
 
 (この使い分けで言うと、今の loading=lazy の挙動は postpone に近く、 lazyload は別途提案されている importance 属性による priority hints の方が近そうだ)
-
 
 ```html
 <img src="example.jpg" lazyload>
@@ -84,10 +80,8 @@ Chrome がこの仕様の着手として Intent to Implement をアナウンス�
 
 lazy
 : 遅延ロード可能であることを示す
-
 eager
 : 遅延ロード可能ではないことを示す
-
 auto
 : デフォルト、ブラウザに判断を委ねる
 
@@ -116,7 +110,7 @@ auto
 
 動作するデモを以下に用意した。
 
-- <http://labs.jxck.io/lazyload/>
+- http://labs.jxck.io/lazyload/
 
 今回は、画像の Lazyload の挙動を、 Chrome 75 + Flag の実装を用いて確認してみる。
 
@@ -127,7 +121,7 @@ auto
 
 `loading=eager` の場合は、全ての画像が取得され、そこで onload が発火する。
 
-![Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ](eagerload.png#1366x768 'eager loading images')
+![Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ](eagerload.png#1366x768 "eager loading images")
 
 
 ### lazyload
@@ -142,17 +136,15 @@ auto
 
 この 6 つの画像が取得された段階で `window.onload` が発火しているため、発火までの時間も早くなっている。
 
-![Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ](lazyload-above.png#1366x768 'lazyloading images focusing above the fold')
+![Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ](lazyload-above.png#1366x768 "lazyloading images focusing above the fold")
 
 あとは、スクロールに従って残りの `<img>` が Viewport に近づくと、その画像の全体を再度取得する。
 
-![Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ](lazyload-below.png#1366x768 'lazyloading images focusing below the fold')
+![Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ](lazyload-below.png#1366x768 "lazyloading images focusing below the fold")
 
 同じ検証の動画を以下に付記しておく。
 
-
 <iframe src="https://www.youtube.com/embed/4rN1dzeXR4A" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
 
 
 ### 現時点での挙動

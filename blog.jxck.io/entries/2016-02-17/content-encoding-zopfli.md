@@ -1,6 +1,5 @@
 # [zopfli][brotli][http][performance] zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について
 
-
 ## Intro
 
 HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。
@@ -49,7 +48,6 @@ HTTP には、似た仕組みとして `TE: gzip` と `Transfer-Encoding: gzip` 
 
 以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
 
-
 ```http
 gzip: ON
 ```
@@ -64,7 +62,6 @@ gzip: ON
 ### send-gzip ディレクティブ
 
 あらかじめコンテンツを gzip 圧縮した状態で `ファイル名.gz` で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
-
 
 ```http
 file.send-gzip: ON
@@ -81,7 +78,7 @@ file.send-gzip: ON
 
 zopfli は Google が開発した圧縮アルゴリズム、およびその実装である。
 
-<https://github.com/google/zopfli>
+- https://github.com/google/zopfli
 
 *圧縮結果が gzip 互換* であるため、方式そのものは実質 gzip である。
 
@@ -103,7 +100,6 @@ zopfli は、探索を繰り返す回数を調節できるため、この回数�
 ### ベンチマーク
 
 以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
-
 
 ```sh-session
 $ time zopfli --i10 -c loading-css-over-http2.html
@@ -130,20 +126,18 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 |   90 | 0.55  |  5156 |
 |  100 | 0.58  |  5156 |
 
-
 この結果だと `-i20` 以上は誤差のようである。
 
 ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 `i=30` くらいに落ち着いた。
 
 また、 [WebP](https://jxck.io/assets/img/jxck.webp) と [PNG](https://jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
 
-|         file | size  |
-|:-------------|------:|
-| jxck.png     | 3860  |
-| jxck.png.gz  | 3399  |
-| jxck.webp    | 1810  |
-| jxck.webp.gz | 1873  |
-
+| file         | size |
+|:-------------|-----:|
+| jxck.png     | 3860 |
+| jxck.png.gz  | 3399 |
+| jxck.webp    | 1810 |
+| jxck.webp.gz | 1873 |
 
 WebP はそもそも圧縮率が高いためか、オーバーヘッドが出ている。
 
@@ -179,7 +173,7 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 
 新しいフォーマットとして、 [IETF へのドラフトの提出](https://tools.ietf.org/html/draft-alakuijala-brotli-08) もなされている。
 
-現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) していおり、 Canary で [chrome://flags#brotli](chrome://flags#brotli) を有効にすると、 `Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
+現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) していおり、 Canary で <chrome://flags#brotli> を有効にすると、 `Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
 
 ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため `Accept-Encoding` での判断を自分でハンドラに書く必要がある。
 

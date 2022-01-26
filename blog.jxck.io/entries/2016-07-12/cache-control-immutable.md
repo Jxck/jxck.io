@@ -1,6 +1,5 @@
 # [cache][http][performance] Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化
 
-
 ## Intro
 
 ブラウザはリロード時に、 max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。
@@ -27,10 +26,8 @@ Cache-Control に max-age を指定することで、ブラウザにリソース
 
 ナビゲート(link, redirect)
 : fresh なキャッシュはヒットする
-
 リロード(F5, cmd+r etc)
 : fresh であっても無視し、 Conditional GET を行う
-
 スーパーリロード(shift + reload etc)
 : fresh あっても無視し、 GET を行う。
 
@@ -60,7 +57,6 @@ Cache-Control Immutable Extension は、 Cache-Control の拡張の一つであ�
 
 以下のように指定することで、キャッシュを Immutable と指定することができ、ブラウザはキャッシュが fresh であればリロード時でもヒットさせるようになる。
 
-
 ```http
 Cache-Control: max-age=10000, immutable
 ```
@@ -79,7 +75,7 @@ Cache-Control: max-age=10000, immutable
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/cache-control-immutable>
+- https://labs.jxck.io/cache-control-immutable
 
 画像に対して `cache-control: immutable` を設定した画像と、していない画像を並べている。
 
@@ -119,7 +115,6 @@ Cache-Control: max-age=10000, immutable
 本サイトでは、サイトへのアクセスログから 304 レスポンスの頻度が多いリソースを抽出し解析を試みた。
 
 その結果が以下である。
-
 
 ```sh-session
 $ cat access_log.* | grep 304 | cut -f7 | sort | uniq -c | sort -nr | head -n 30

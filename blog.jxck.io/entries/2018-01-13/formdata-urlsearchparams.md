@@ -1,6 +1,5 @@
 # [urlsearchparams][formdata][form] Form で submit されたデータの収集と FormData & URLSearchParams
 
-
 ## Intro
 
 `<form>` の onsubmit をフックして、入力された値を `<input>` から集めて送るといった処理はよくある。
@@ -18,7 +17,6 @@ Form が Submit されたことをフックして、処理を挟む場面はよ�
 
 HTML がこうであった場合。
 
-
 ```html
 <form id=login action=/login method=post>
   <fieldset form=login>
@@ -33,7 +31,6 @@ HTML がこうであった場合。
 ```
 
 JS は以下のように書かれる場合がある。
-
 
 ```js
 document.querySelector('#login').onsubmit = (e) => {
@@ -57,7 +54,6 @@ document.querySelector('#login').onsubmit = (e) => {
 
 `<input>` はその子要素なので、わざわざ `document` を起点にする必要はない。
 
-
 ```js
 document.querySelector('#login').onsubmit = (e) => {
   e.preventDefault()
@@ -74,14 +70,13 @@ Form で Submit されたデータは、 FormData を経由して取得するこ
 
 つまり、 FormData に変換しさえすれば、 submit 対象のデータは全て手に入っている。
 
-<https://xhr.spec.whatwg.org/#formdata>
+- https://xhr.spec.whatwg.org/#formdata
 
 このオブジェクトは、 `get()`、 `set()` など Map のようなインタフェースを持つ。
 
 (なお `new Map(form_data)` すれば、実際の Map にもなる)
 
 また、そのまま XHR や fetch を使ってそのまま POST することができる。
-
 
 ```js
 document.querySelector('#login').onsubmit = (e) => {
@@ -99,7 +94,6 @@ document.querySelector('#login').onsubmit = (e) => {
 ただし、注意点としてこのとき POST される Content-Type は `multipart/form-data` になる。
 
 つまり Body は以下のようなフォーマットだ。
-
 
 ```http
 // content-type:multipart/form-data; boundary=----WebKitFormBoundaryPfqUKvtarA1EFkbV
@@ -129,7 +123,6 @@ URLSearchParams は、 URL の標準化の際に QueryString 部分をサポー�
 
 また、そのまま POST の Body にすれば、 `application/form-url-encoded` として送ることができる。
 
-
 ```js
 document.querySelector('#login').onsubmit = (e) => {
   e.preventDefault()
@@ -143,7 +136,6 @@ document.querySelector('#login').onsubmit = (e) => {
 ```
 
 つまり Body は以下のようなフォーマットだ。
-
 
 ```http
 // content-type:application/x-www-form-urlencoded;charset=UTF-8
@@ -160,7 +152,6 @@ API バックエンドなどに対して JSON で送りたい場合もあるだ�
 
 ここでは FormData が iterable であるこを利用してオブジェクトを組み立ててみる。
 
-
 ```js
 document.querySelector('#login').onsubmit = (e) => {
   e.preventDefault()
@@ -174,7 +165,7 @@ document.querySelector('#login').onsubmit = (e) => {
 }
 ```
 
-(ただし Form に `<select>` などが入る場合は修正が必要 <https://labs.jxck.io/form/input-type/>)
+(ただし Form に `<select>` などが入る場合は修正が必要 https://labs.jxck.io/form/input-type/)
 
 
 ## beforeSubmitCallback
@@ -182,7 +173,6 @@ document.querySelector('#login').onsubmit = (e) => {
 submit に callback を仕込む仕様の提案がかなり前に出ている。
 
 [Need callback for form submit data](https://github.com/w3c/webcomponents/issues/187)
-
 
 ```js
 document.registerElement('input', {
@@ -208,10 +198,10 @@ document.registerElement('input', {
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/form/form-data/>
+- https://labs.jxck.io/form/form-data/
 
 
 ## Links
 
-- <https://xhr.spec.whatwg.org/#interface-formdata>
-- <https://url.spec.whatwg.org/#interface-urlsearchparams>
+- https://xhr.spec.whatwg.org/#interface-formdata
+- https://url.spec.whatwg.org/#interface-urlsearchparams

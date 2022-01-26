@@ -1,6 +1,5 @@
 # [avif][image][performance] 画像最適化戦略 AVIF 編
 
-
 ## Intro
 
 本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配布するようにした。
@@ -10,11 +9,11 @@
 画像最適化シリーズ第 6 回目のエントリである。
 
 1. [画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
-1. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
-1. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
-1. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
-1. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
-1. [> 画像最適化戦略 AVIF 編](TODO)
+2. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
+3. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
+4. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
+5. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
+6. [> 画像最適化戦略 AVIF 編](TODO)
 
 
 ## AVIF
@@ -40,7 +39,6 @@ Safari は、 AOM には参加しているようだが WebP の対応も割と�
   - https://github.com/lovell/avif-cli
 
 node の方が GIF にも対応してそうだったので、こちらを採用した。
-
 
 ```shell-session
 $ npx avif -h
@@ -75,7 +73,6 @@ Options:
 
 いくつか調べると `libavif` の Wiki に書かれていたので、これを用いて ffmpeg と avifenc を組み合わせて生成することができた。
 
-
 ```shell-session
 $ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $*.avif
 ```
@@ -87,7 +84,6 @@ $ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15
 ### Picture
 
 すでに WebP の対応を `<picture>` で行なっているため、そこに AVIF の srcset を追加した。
-
 
 ```html
 <picture>
@@ -144,7 +140,7 @@ $ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/avif/>
+- https://labs.jxck.io/avif/
 
 
 ## Resources

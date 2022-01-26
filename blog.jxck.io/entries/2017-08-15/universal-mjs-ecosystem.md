@@ -1,6 +1,5 @@
 # [es modules][tc39][javascript] .mjs とは何か、またはモジュールベース JS とエコシステムの今後
 
-
 ## Intro
 
 長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、 `.mjs` という拡張子が採択された。
@@ -35,7 +34,6 @@
 
 そもそも ES modules(ESM) が CommonJS(CJS) とは違う構文を策定したのには理由がある。
 
-
 ```js
 // commonjs
 const foo = require("./foo")
@@ -49,7 +47,6 @@ export default { message: "hello world" }
 CJS は ESM 以前の JS の範囲で実装されていたため、 `require` 関数や `modules` オブジェクトへの操作を特別扱いすることで実現していた。
 
 しかし、この方式では例えば以下のように書くことも、 JS の範囲である以上正しくなってしまう。
-
 
 ```js
 // commonjs
@@ -68,7 +65,6 @@ const foo = require(`./foo.v${version}`);
 したがって browserify などは、こうした書き方はしないという前提でビルドを行なっていた。
 
 ESM は、関数やオブジェクトではなく、新しく「構文(syntax)」を用意することによって、この問題を解決している。
-
 
 ```js
 // ex modules
@@ -99,7 +95,6 @@ TC39 の責任範囲は、 JS ファイル内に書かれる構文が中心で�
 ブラウザにおける Module の扱いは、 HTML の範囲での仕様策定を伴う。
 
 具体的には、 `<script>` タグの `type` 属性を用いて Script であるか Module であるかを判別することが可能だ。
-
 
 ```html
 <script type=module src=module.js></script>

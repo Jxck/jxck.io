@@ -1,6 +1,5 @@
 # [prefetch][amp][signed-http-exchange][webpackaging] Non AMP SXG による Prefetch 対応と AMP 提供の停止
 
-
 ## Intro
 
 本サイトを (Non AMP) SXG に対応した。
@@ -51,7 +50,6 @@ Web Packager Server は Web Packager に含まれる webpkgserver コマンド�
 
 webpkgserver は `go get` ではうまく動かなかったため、 README にある通りソースからビルドした。
 
-
 ```shell
 git clone --depth 1 https://github.com/google/webpackager
 cd webpackager/cmd/webpkgserver
@@ -61,7 +59,6 @@ go build .
 これで `webpkgserver` コマンドが生成される。
 
 実行には設定ファイルの toml を引数に渡す。
-
 
 ```shell-session
 $ webpkgserver --config webpkgserver.toml
@@ -73,7 +70,6 @@ $ webpkgserver --config webpkgserver.toml
 設定ファイルは、同梱されている [webpkgserver.example.toml](https://github.com/google/webpackager/blob/master/cmd/webpkgserver/webpkgserver.example.toml) を修正する。
 
 ほとんどデフォルトが使えるため、 Port と SXG 用の証明書、 Domain あたりを気をつければ良いだろう。
-
 
 ```yaml
 [Listen]
@@ -97,7 +93,6 @@ $ webpkgserver --config webpkgserver.toml
 これを引数にするだけでサーバは起動する。
 
 ローカルで起動した時点で、動作の確認は以下のように行うことができる。
-
 
 ```shell
 export URL="https://blog.jxck.io/"
@@ -126,7 +121,6 @@ dump-signedexchange -i dump.sxg
 
 具体的には Chrome と Google Bot の付与する Accept は以下のように異なる。
 
-
 ```http
 # Google Bot
 Accept: text/html,application/xhtml+xml,application/signed-exchange;v=b3,application/xml;q=0.9,*/*;q=0.8
@@ -141,7 +135,6 @@ SXG に注目すると Chrome は Q value を HTML などよりも下げてい�
 
 しかしドキュメントの正規表現が気に入らず、また本サイトでは h2o の mruby handler で対応するため、以下のように否定先読みで実現することとした。
 
-
 ```ruby
 if /application\/signed-exchange;v=b3(?!;q=)/.match(env["HTTP_ACCEPT"])
   # reproxy to backend wepkgserver
@@ -153,7 +146,6 @@ end
 ```
 
 ここまでが成功しているかは、以下のようにテストをすることができる。
-
 
 ```shell
 export URL="https://blog.jxck.io/"
@@ -168,7 +160,6 @@ webpkgserver は SXG に必要な Certificate URL を自動で提供してくれ
 
 そのパスは `/webpkg/cert/#{base64}` となっているため、ここへのリクエストはそのまま転送すれば良い。
 
-
 ```h2o
 "/webpkg":
   proxy.reverse.url: "http://127.0.0.1:11000/webpkg"
@@ -176,12 +167,12 @@ webpkgserver は SXG に必要な Certificate URL を自動で提供してくれ
 
 dump した sxg の中に cert url があるためそこから URL を取得すると以下のようにテストできる。
 
-
 ```shell
 # dump certurl
 curl -s --output - https://blog.jxck.io/webpkg/cert/g8zY1NBH4DQt9qIWOWBqLWvs6jAnJmURAtNRc2WChDE > cert.cbor
 dump-certurl -i cert.cbor
 ```
+
 
 ## 動作検証
 
@@ -208,8 +199,8 @@ SXG の Preview タブを見ると、 Signature や Certificate も正しく解�
 
 SXG が Google の Cache に乗ったかは、以下のような規則で生成したキャッシュ URL に直接アクセスすれば確認できる。
 
-- (before): <https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html>
-- ( after): <https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html>
+- (before): https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
+- ( after): https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html
 
 
 ### AMP SXG と Non AMP SXG
@@ -287,12 +278,12 @@ AMP をやめる方法は基本は以下だ。
 - Mozilla Standard Position
 - Webkit Position
 - TAG Design Review
-  - <https://github.com/w3ctag/design-reviews/issues/235>
+  - https://github.com/w3ctag/design-reviews/issues/235
 - Intents
   - Intent to Ship: Signed HTTP Exchanges (SXG)
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc>
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc
 - Chrome Platform Status
-  - <https://www.chromestatus.com/feature/5745285984681984>
+  - https://www.chromestatus.com/feature/5745285984681984
 - WPT (Web Platform Test)
 - DEMO
 - Blog
@@ -300,8 +291,8 @@ AMP をやめる方法は基本は以下だ。
 - Issues
 - Other
   - Privacy-preserving instant loading for all web content – The AMP Blog
-    - <https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/>
+    - https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/
   - Get started with signed exchanges on Google Search - 検索セントラル
-    - <https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache>
+    - https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache
   - ページ エクスペリエンスの更新に対応するための期間、ツール、詳細情報 - Google 検索セントラル ブログ
-    - <https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja>
+    - https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja

@@ -15,6 +15,7 @@ guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 
 [@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き?」から始まった、 Promise / Generator / Rxjs などの話題と、 Java の Future や Haskell の Monad との関係などの解説です。
 
+
 ## Show Note
 
 - 0:00 ~ : そもそもみんな Promise 好き?

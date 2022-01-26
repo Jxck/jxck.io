@@ -1,6 +1,5 @@
 # [cbor][webbundle][webpackaging] WebBundle によるコンテンツの結合と WebPackaging
 
-
 ## Intro
 
 依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。
@@ -67,7 +66,6 @@ WebBundle のフォーマットは、 CBOR のスキーマ定義である CDDL �
 
 特に仕様を読まなくても、見れば雰囲気でわかるだろう。
 
-
 ```cddl
 webbundle = [
   ; 🌐📦 in UTF-8.
@@ -110,7 +108,6 @@ whatwg-url = tstr
 しかし、すでに CBOR の中にあるため、ファイルの最初のバイトが地球になるわけではない。
 
 最初は、全体が CBOR の Array で、その要素数が 6 と決まっており、 magic は String のヘッダに続くので、最初の 10 byte が固定値になる。
-
 
 ```
 [0x86, 0x48, 0xF0, 0x9F, 0x8C, 0x90, 0xF0, 0x9F, 0x93, 0xA6]
@@ -158,7 +155,6 @@ section-length には、それぞれの section 長さが書かれているた�
 
 今回は、 "index" と "response" しか使わないため、以下のようになる。
 
-
 ```json
 ["index",188,"responses",1268]
 ```
@@ -171,7 +167,6 @@ section-length には、それぞれの section 長さが書かれているた�
 responses section には、複数の Response が含まれる。その個々の Response の場所を示すのが index だ。
 
 今回の場合、具体的には以下のようになる。
-
 
 ```json
 {
@@ -192,7 +187,6 @@ responses section には、複数の Response が含まれる。その個々の 
 
 (仕様には、それを見る側のクライアントの挙動は書かれているが、サーバでどう生成するかといった部分は特に書かれてないため、雰囲気で入れる。)
 
-
 ```json
 {
   "http://localhost.jxck.io:3000/": [["ja;gz"],   1, 100],
@@ -212,7 +206,6 @@ responses section には、複数の Response が含まれる。その個々の 
 index で示された位置個々の Response が入る。
 
 Response は Header と Body の配列からなる。
-
 
 ```json
 [ [header1, body1],
@@ -243,7 +236,6 @@ zip や Electron の ASAR のように末尾にする[要望](https://github.com
 ### 全体
 
 結果としては、だいたいこんな感じで組み立てた構造体を、 CBOR の実装でエンコードすれば WebBundle になる。
-
 
 ```js
 [
@@ -333,7 +325,6 @@ HTTP でサーブする場合は、 Content-Type にこれを付与する。
 
 また、 sniff による脆弱性を防ぐために、最初から nosniff の設定が MUST となっている点も面白い。
 
-
 ```http
 Content-Type: application/webbundle
 X-Content-Type-Options: nosniff
@@ -346,16 +337,15 @@ X-Content-Type-Options: nosniff
 
 http でも wbn をサーブしているが、執筆時の Chrome は `file:///` からの展開にしか対応してないようなので、ローカルにダウンロードしてブラウザで開かないと動かない。
 
-- orig: <http://labs.jxck.io/webpackaging/webbundle/example/index.html>
-- .wbn: <http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn>
+- orig: http://labs.jxck.io/webpackaging/webbundle/example/index.html
+- .wbn: http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn
 
 Chrome Canary 80.0.3963.0 の挙動は以下のようになる。
 
-![Chrome Canary 80 で WebBundle を展開した devtools のスクリーンショット。ローカルから取得されていることがわかる](webbundle.png#1366x556 'WebBundle DEMO')
+![Chrome Canary 80 で WebBundle を展開した devtools のスクリーンショット。ローカルから取得されていることがわかる](webbundle.png#1366x556 "WebBundle DEMO")
 
 
 ## 考察
-
 
 ### bundling の単位
 

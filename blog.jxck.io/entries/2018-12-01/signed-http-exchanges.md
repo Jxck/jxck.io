@@ -1,6 +1,5 @@
 # [webpackaging][signed-http-exchange] WebPackaging の Signed HTTP Exchanges
 
-
 ## Intro
 
 [WebPackaging](https://github.com/WICG/webpackage) は以下の 3 つの仕様を組み合わせたユースケースである。
@@ -128,7 +127,6 @@ AMP キャッシュと同じことが、一般の CDN でも可能になる。
 
 例えば、 bundle が一般化した今はわからないが、かつて jquery は自分のドメインからではなく CDN から取得する構成が推奨された。
 
-
 ```html
 <script src=https://code.jquery.com/jquery-3.3.1.js></script>
 ```
@@ -141,14 +139,12 @@ AMP キャッシュと同じことが、一般の CDN でも可能になる。
 
 ただし sxg への URL を src に書くと、取得する際にキャッシュが有ってもヒットされることができない。
 
-
 ```html
 <script src=https://cdn.example.com/jquery-3.3.1.js.sxg></script>
 <!-- これだと https://code.jquery.com/jquery-3.3.1.js のキャッシュがあってもヒットしない -->
 ```
 
 そこで logicalsrc/physicalsrc を両方書く方法が提案されている。
-
 
 ```html
 <script logicalsrc=https://code.jquery.com/jquery-3.3.1.js
@@ -173,7 +169,6 @@ AMP キャッシュと同じことが、一般の CDN でも可能になる。
 Subresource Integrity (SRI) とは、 Subresouce が想定したものであることを確認し、改ざん等によって意図しないものに差し替えられることを防ぐ仕組みである。
 
 以下は、 integrity 属性に jquery 全体の sha-256 ハッシュを含むことで、異なる jquery が実行されることを防ぐ。
-
 
 ```html
 <script src=https://code.jquery.com/jquery-3.3.1.js
@@ -223,7 +218,7 @@ Origin Trial 、拡張付き証明書、フラグつき起動の Chrome Canary �
 
 署名には、リファレンス実装として提供されている Go 製の以下のツールを利用する。
 
-<https://github.com/WICG/webpackage/tree/master/go/signedexchange>
+- https://github.com/WICG/webpackage/tree/master/go/signedexchange
 
 
 ### 証明書
@@ -239,7 +234,6 @@ Signing には CanSignHttpExchanges 拡張を含む X.509 証明書が必要だ�
 今回は DEMO 用に 3 を採用する。
 
 まず、署名を行う mozaic.fm ドメイン用に、 CanSignHttpExchanges 拡張の入った自己証明書を以下のように作成する。
-
 
 ```shell
 #! /bin/sh
@@ -267,8 +261,7 @@ Signing の検証に必要な証明書チェーンを生成する。
 
 生成には、リファレンス実装の gen-certurl を使用する。
 
-<https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl>
-
+- https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl
 
 ```shell
 #! /bin/sh
@@ -286,7 +279,7 @@ echo "ocsp" > tmp
 
 ここでは、以下の URL から配布することとする。
 
-<https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor>
+- https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor
 
 
 ## 検証データ
@@ -306,8 +299,7 @@ echo "ocsp" > tmp
 
 署名には、リファレンス実装の gen-signedexchange を使用する。
 
-<https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange>
-
+- https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange
 
 ```shell
 #! /bin/sh
@@ -342,7 +334,6 @@ go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-signedexchange
 
 cert.pem を以下のように base64 形式に変換し、それを `--ignore-certificate-errors-spki-list` に指定する。
 
-
 ```shell
 # 証明書の base64 の生成
 export BASE64 = openssl x509 -noout -pubkey -in cert.pem | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | base64
@@ -356,7 +347,7 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/webpackaging/signed-http-exchange-b2/>
+- https://labs.jxck.io/webpackaging/signed-http-exchange-b2/
 
 ただし
 
@@ -412,7 +403,6 @@ Signing の対象は、単にファイルに署名するのではなく、その
 
 今回の場合は、 HTML の Body を含め以下の Request/Response が対象となる。
 
-
 ```http
 GET /index.html HTTP/1.1
 Host: mozaic.fm
@@ -453,7 +443,6 @@ Signature Header は、実際の署名および関連するパラメータが含
 - date: 生成時間の Unixtime
 - expires: 期限時間の Unixtime
 
-
 ```http
 Signature: label;
   sig=*MEUCICiUdi2JhgJwmzPfWu8PVIC/eBOeHMkAcUN5aetK9PxZAiEAgOF6IajUh6TIHYLZk7cin1bLXLKc6jkKA6RIR6cJOEE=*;
@@ -478,7 +467,6 @@ update は、新たなるコンテンツがある場合に、そのサイズを�
 もし signature が無く、 update しかない場合は、コンテンツを更新する必要がある。
 
 両方存在する場合は、 update の size などを考慮して、コンテンツを継続利用するか更新するかを選べる。
-
 
 ```
 {
@@ -516,7 +504,7 @@ SignedHTTPExchange はまだいくつかの課題がある。筆者が把握し�
 
 Mozilla は少し前に Standard Position の中で、 Signed HTTP Exchange を considered harmful と表明した。
 
-- <https://mozilla.github.io/standards-positions/>
+- https://mozilla.github.io/standards-positions/
 
 簡単に言えば、証明書が漏洩した場合、それを取得した攻撃者は自由に Origin を語れるということに対する懸念によるものだが、ユースケース自体は認めており、仕様のセキュリティモデルが改善すれば、この表明は見直されるだろうと考えられる。
 
@@ -593,26 +581,26 @@ sxg を代理配信する CDN がログを提供するなら良いが、現状�
 ## Link
 
 - draft-yasskin-http-origin-signed-responses-04 - Signed HTTP Exchanges
-  - <https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04>
+  - https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04
 - draft-yasskin-wpack-bundled-exchanges-00 - Bundled HTTP Exchanges
-  - <https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00>
+  - https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-00
 - Loading Signed Exchanges
-  - <https://wicg.github.io/webpackage/loading.html>
+  - https://wicg.github.io/webpackage/loading.html
 - Signed HTTP Exchanges | Web | Google Developers
-  - <https://developers.google.com/web/updates/2018/11/signed-exchanges>
+  - https://developers.google.com/web/updates/2018/11/signed-exchanges
 - Signed Exchanges · Issue #235 · w3ctag/design-reviews
-  - <https://github.com/w3ctag/design-reviews/issues/235>
+  - https://github.com/w3ctag/design-reviews/issues/235
 - draft-yasskin-httpbis-origin-signed-exchanges-impl-02 - Signed HTTP Exchanges Implementation Checkpoints
-  - <https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-02>
-  - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt>
-  - <https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt>
+  - https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-02
+  - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt
+  - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt
 - Intent to Implement: Origin-Signed HTTP Exchanges (Part of Web Packaging)
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/n7cZXSTwBTY/l7rXucIwBAAJ>
+  - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/n7cZXSTwBTY/l7rXucIwBAAJ
 - Intent to Experiment: Signed HTTP Exchanges
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKHe54W996c/1E51GLbvAQAJ>
+  - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKHe54W996c/1E51GLbvAQAJ
 - WICG/webpackage: Web packaging format
-  - <https://github.com/WICG/webpackage>
+  - https://github.com/WICG/webpackage
 - sxg/ - Code Search
-  - <https://cs.chromium.org/chromium/src/content/test/data/sxg/>
+  - https://cs.chromium.org/chromium/src/content/test/data/sxg/
 - Web OverPackaging
-  - <https://speakerdeck.com/jxck/web-over-packaging>
+  - https://speakerdeck.com/jxck/web-over-packaging

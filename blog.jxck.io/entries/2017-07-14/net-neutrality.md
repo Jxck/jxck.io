@@ -1,6 +1,5 @@
 # [net neutrality][internet] ネットワーク中立性について #NetNeutrality
 
-
 ## Intro
 
 US では #NetNeutrality について話題になっている一方、日本ではさほど話題になってないように思う。
@@ -52,9 +51,7 @@ FCC (Federal Communications Commission): アメリカ連邦通信委員会は、
 
 Sir Tim Berners-Lee も、 Youtube にメッセージを出している。
 
-
 <iframe src="https://www.youtube.com/embed/5Gh0NIQ3yd0" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
 
 ネットの中立性を守ることは、ネットの自由を守ることに等しい、そしてネットは自由であるべきだというのが、反対側の主張となる。
 

@@ -1,6 +1,5 @@
 # [amp][html][performance] AMP HTML 対応
 
-
 ## Intro
 
 Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログを対応した。
@@ -73,7 +72,6 @@ AMP は以下の三つの要素からなる。
 
 ## HTML 対応
 
-
 ### AMP-HTML
 
 本サイトの HTML は、 [HTML の省略によるサイズ最適化](https://blog.jxck.io/entries/2016-01-28/html-compression.html) に書いた通り、極力タグを省略した作りにしている。
@@ -89,13 +87,11 @@ AMP は以下の三つの要素からなる。
 
 このサイトでは `.html` に AMP 対応があることを伝える以下を追記した。
 
-
 ```html
 <link rel=amphtml href=${path}.amp.html>
 ```
 
 一方 `.amp.html` では、オリジナルコンテンツの存在と、ブックマークなどが統一できるように `canonical` を追加している。
-
 
 ```html
 <link rel=canonical href=${path}.html>
@@ -174,7 +170,6 @@ AMP での Google Analytics の設定は `<amp-analytics>` カスタムタグで
 
 AMP Analytics のコードの読み込みは、 AMP JS Library よりも前に行う必要があるとドキュメントに書かれているので、このようになった。
 
-
 ```html
 <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 <script async src="https://cdn.ampproject.org/v0.js"></script>
@@ -205,7 +200,7 @@ AMP として正しい HTML かどうかは、 Chrome Developer Tools で調べ�
 
 このページのデバッグフラグ付き AMP 対応ページの URL は以下になる。
 
-<https://blog.jxck.io/entries/2016-02-01/amp-html.amp.html#development=1>
+- https://blog.jxck.io/entries/2016-02-01/amp-html.amp.html#development=1
 
 分かりやすいように通常の HTML の右上に AMP のイメージもとである ⚡️ を模したアイコンを追加し、そこに AMP 版へのリンクを追加した。
 

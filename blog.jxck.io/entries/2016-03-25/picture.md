@@ -1,6 +1,5 @@
 # [picture][image][performance] 画像最適化戦略 Picture 編
 
-
 ## Intro
 
 本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 `<picture>` 要素を適用した。
@@ -8,10 +7,10 @@
 画像最適化シリーズ第 2 回目のエントリである。
 
 1. [画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
-1. [> 画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
-1. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
-1. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
-1. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
+2. [> 画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
+3. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
+4. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
+5. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
 
 
 ## 画像の出し分け
@@ -90,7 +89,6 @@ Retina ディスプレイは、通常のスクリーンよりも、スクリー�
 
 Media Query を用いて DPR 値で分岐した場合以下のように指定できる。
 
-
 ```html
 <picture>
   <source type=image/png srcset=300x300.png media="min-device-pixel-ratio: 2.5">
@@ -105,7 +103,6 @@ Media Query を用いて DPR 値で分岐した場合以下のように指定で
 ### sizes の指定
 
 sizes を用いて、画像のサイズを明示した場合以下のように指定できる。
-
 
 ```html
 <picture>
@@ -123,7 +120,7 @@ sizes を用いて、画像のサイズを明示した場合以下のように�
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/picture/>
+- https://labs.jxck.io/picture/
 
 
 ### pros/cons

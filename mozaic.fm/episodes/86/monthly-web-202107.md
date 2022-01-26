@@ -15,9 +15,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### Chrome 動向
-
 
 #### Stable: 92
 
@@ -310,7 +308,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Firefox 動向
 
-
 #### Stable: 90
 
 
@@ -388,7 +385,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Safari 動向
 
-
 #### Stable: 14.1.2
 
 
@@ -428,7 +424,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Edge 動向
 
-
 #### Stable: 92
 
 - Dev channel update to 93.0.961.2 is live - Microsoft Tech Community
@@ -460,7 +455,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### WHATWG/W3C 動向
-
 
 #### Draft
 
@@ -521,7 +515,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### TC39 動向
 
-
 #### Meeting
 
 - 2021-07
@@ -548,7 +541,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - *Proposal to add argument for .trim(), .trimStart() and .trimEnd() to allow strip the specified characters from strings.*
   - https://github.com/Kingwl/proposal-string-trim-characters
-- *TC39 proposal for ArrayBuffer<->base64 string functions*
+- *TC39 proposal for ArrayBuffer\<->base64 string functions*
   - https://github.com/tc39/proposal-arraybuffer-base64
 - *A proposal to make grouping of array items easier*
   - https://github.com/tc39/proposal-array-grouping
@@ -562,7 +555,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### IETF 動向
-
 
 #### WG
 
@@ -615,7 +607,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### CDN 動向
-
 
 #### Cloudflare
 

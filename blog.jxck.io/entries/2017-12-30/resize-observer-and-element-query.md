@@ -1,6 +1,5 @@
 # [element query][resize observer][performance] ResizeObserver による変更検知と Element Query
 
-
 ## Intro
 
 ResizeObserver の ship が進みつつある。
@@ -15,7 +14,6 @@ ResizeObserver の ship が進みつつある。
 ResizeObserver は、最近増えつつある ObserverFamily の 1 つであり、要素のリサイズを検知するインタフェースである。
 
 リサイズを検知したい要素をターゲットに `observe()` すると、ターゲットと矩形情報が取得できる。
-
 
 ```js
 const resizeObserver = new ResizeObserver((entries) => {
@@ -39,14 +37,14 @@ resizeObserver.disconnect(element) // 解放
 
 基本的な Observer のインタフェースのため、使い方もそこまで難しくない。
 
-- DEMO: <https://labs.jxck.io/resize-observer/basic.html>
+- DEMO: https://labs.jxck.io/resize-observer/basic.html
 
 
 ## onresize
 
 レスポンシブ要件を満たす上で、 window のサイズが変更されたことを取得するため、 `resize` イベントが使われた。
 
-- DEMO: <https://labs.jxck.io/resize-observer/onresize.html>
+- DEMO: https://labs.jxck.io/resize-observer/onresize.html
 
 これは window のみに発火するため、 window は不変のまま子要素の変更だけを取ることができなかった。
 
@@ -58,7 +56,6 @@ resizeObserver.disconnect(element) // 解放
 
 つまり、 resize された結果を取得するためには、 `target` を辿りサイズを取得する必要が出る。
 
-
 ```js
 window.addEventListener('resize', (e) => {
   const width  = e.target.outerWidth
@@ -67,7 +64,7 @@ window.addEventListener('resize', (e) => {
 })
 ```
 
-- DEMO: <https://labs.jxck.io/resize-observer/onresize.html>
+- DEMO: https://labs.jxck.io/resize-observer/onresize.html
 
 また、これを子要素で適用した場合は、 `scrollTop`, `offset`, `getBoundingClientRect()` などを用いることになるだろう。
 
@@ -86,7 +83,6 @@ Observer を定義することにより、こうした処理を行わずに変�
 
 必要に応じて [Passive Event Listener](https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html) を検討する必要がある。
 
-
 ```js
 const $target = document.querySelector('textarea')
 const resizeObserver = new ResizeObserver((entries) => {
@@ -102,7 +98,7 @@ $target.addEventListener('resize', ({detail: entries}) => {
 }, {passive: true})
 ```
 
-- DEMO: <https://labs.jxck.io/resize-observer/onresize-polyfill.html>
+- DEMO: https://labs.jxck.io/resize-observer/onresize-polyfill.html
 
 
 ## Element Query
@@ -110,7 +106,6 @@ $target.addEventListener('resize', ({detail: entries}) => {
 [ElementQuery](http://elementqueries.com/) は MediaQuery の要素版といったコンセプトで作られたライブラリである。
 
 例えば以下のように、 `min-widht` を境に色を変えるといったことが可能になる。
-
 
 ```css
 @element .minwidthpixels and (min-width: 500px) {
@@ -120,7 +115,7 @@ $target.addEventListener('resize', ({detail: entries}) => {
 }
 ```
 
-- DEMO: <http://elementqueries.com/#min-width-in-pixels>
+- DEMO: http://elementqueries.com/#min-width-in-pixels
 
 この程度単純な用途であれば ResizeObserver のハンドラ内で CSS の class を toggle するくらいでも実現できる。
 
@@ -143,7 +138,6 @@ CSS に持ってくるには、 Houdini で策定中の [CSS Parser API](https:/
 
 例えば、親要素のサイズに応じて子要素のレイアウトを変えたい場合は、 Element Query のスコープで以下のように定義ができる。
 
-
 ```css
 @element '#sidebar' and (max-width: 300px) {
   #sidebar .widget {
@@ -153,7 +147,6 @@ CSS に持ってくるには、 Houdini で策定中の [CSS Parser API](https:/
 ```
 
 一方これを Pseudo Element で定義する提案もある。
-
 
 ```css
 .element:container(width >= 100px) {

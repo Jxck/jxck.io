@@ -15,7 +15,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### mozaic bootcamp 2019
 
 - mozaic bootcamp 2019

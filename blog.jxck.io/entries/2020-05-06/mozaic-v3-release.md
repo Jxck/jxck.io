@@ -1,6 +1,5 @@
 # [mozaic.fm][podcast][pwa] mozaic.fm v3 リリースと Podcast の PWA 化
 
-
 ## Intro
 
 [mozaic.fm](https://mozaic.fm) をリニューアルし v3 としてリリースした。
@@ -316,7 +315,6 @@ Referrer Policy は `no-referrer-when-downgrade` が default とされており�
 
 
 ## その他
-
 
 ### Scroll To Text Fragment Search
 

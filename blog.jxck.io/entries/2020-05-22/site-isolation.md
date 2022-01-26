@@ -1,6 +1,5 @@
 # [coop][coep][corp][corb][isolation][spectre][security] Site Isolation 及び Web のセキュリティモデルの更新
 
-
 ## Intro
 
 Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。
@@ -52,7 +51,6 @@ Cross Origin Iframe の中身は、 JS から直接触ることができない�
 これを利用して、ユーザを攻撃ページに誘導し、そのユーザの Cookie が無いと取得できないデータを `<iframe>` に読み、時間をかければ中身を推測できるという攻撃だ。
 
 本来アクセスできない情報を外から推測することをサイドチャネル攻撃と呼び、その中でも特に時間という要素を利用する攻撃をタイミング攻撃と呼ぶ。今回の場合はそのどちらでもある。
-
 
 ```html
 <!-- 攻撃者が用意した罠サイト -->
@@ -120,7 +118,6 @@ Chrome はこれをマージするまでに 6 年近くかかったらしい。
 例えば、ユーザが Cookie を持っているときにのみ取得できる JSON や HTML があったとする。
 
 これらを `<script>` や `<img>` で読み込めば、メモリ上に展開できる。
-
 
 ```html
 <!-- 攻撃者が用意した罠サイト -->
@@ -190,7 +187,6 @@ CORB は既存のサイトを壊さない範囲で、 Intervention としてサ�
 
 そのヘッダが付いたリソースが、どの Origin から読まれて良いかを決める。
 
-
 ```html
 <!-- 攻撃者が用意した罠サイト -->
 <title>attacker site</title>
@@ -206,7 +202,6 @@ CORB は既存のサイトを壊さない範囲で、 Intervention としてサ�
 ```
 
 この secret.js に対して以下のいずれかのヘッダをつける。
-
 
 ```http
 Cross-Origin-Resource-Policy: same-origin
@@ -227,7 +222,6 @@ same-origin や same-site を指定すれば、ブラウザは secret.js のレ�
 
 現状は `require-corp` という値だけが定義されている。
 
-
 ```http
 Cross-Origin-Embedder-Policy: require-corp
 ```
@@ -241,7 +235,6 @@ Cross-Origin-Embedder-Policy: require-corp
 ただし、 CORS に明示的に対応している場合はこの限りではない。
 
 例えば `<script>` や `<img>` の場合は以下のように明示的に CORS mode でリクエストさせることができる。
-
 
 ```html
 <!-- cross origin script を CORS で取得する -->
@@ -271,7 +264,6 @@ COOP は Opener / Openee 両方に指定し、その両方の値が整合しな�
 
 - [Cross-Origin-Opener-Policy Explainer](https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit)
 
-
 ```http
 Cross-Origin-Opener-Policy: same-origin
 Cross-Origin-Opener-Policy: same-origin-allow-popups
@@ -280,18 +272,17 @@ Cross-Origin-Opener-Policy: unsafe-none
 
 対応は以下のようになる。
 
-| Opener / Openee | Same origin - unsafe-none | Same origin - allow-popups | Same origin - Same origin | Cross origin - unsafe-none | Cross origin - allow-popups | Cross origin - same-origin |
-|:----------------------------------:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Top level           - unsafe-none  | Y | N | N | Y | N | N |
-| Top level           - allow-popups | Y | Y | N | Y | N | N |
-| Top level           - same-origin  | N | N | Y | N | N | N |
-| Same origin iframe  - unsafe-none  | Y | N | N | Y | N | N |
-| Same origin iframe  - allow-popups | Y | Y | N | Y | N | N |
-| Same origin iframe  - same-origin  | N | N | Y | N | N | N |
-| Cross origin iframe - unsafe-none  | Y | N | N | Y | N | N |
-| Cross origin iframe - allow-popups | Y | N | N | Y | N | N |
-| Cross origin iframe - same-origin  | N | N | N | N | N | N |
-
+| Opener / Openee                    | Same origin - unsafe-none | Same origin - allow-popups | Same origin - Same origin | Cross origin - unsafe-none | Cross origin - allow-popups | Cross origin - same-origin |
+|:----------------------------------:|:-------------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:---------------------------:|:--------------------------:|
+| Top level           - unsafe-none  | Y                         | N                          | N                         | Y                          | N                           | N                          |
+| Top level           - allow-popups | Y                         | Y                          | N                         | Y                          | N                           | N                          |
+| Top level           - same-origin  | N                         | N                          | Y                         | N                          | N                           | N                          |
+| Same origin iframe  - unsafe-none  | Y                         | N                          | N                         | Y                          | N                           | N                          |
+| Same origin iframe  - allow-popups | Y                         | Y                          | N                         | Y                          | N                           | N                          |
+| Same origin iframe  - same-origin  | N                         | N                          | Y                         | N                          | N                           | N                          |
+| Cross origin iframe - unsafe-none  | Y                         | N                          | N                         | Y                          | N                           | N                          |
+| Cross origin iframe - allow-popups | Y                         | N                          | N                         | Y                          | N                           | N                          |
+| Cross origin iframe - same-origin  | N                         | N                          | N                         | N                          | N                           | N                          |
 
 [Impact of the popup CrossOriginOpenerPolicy](https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#heading=h.fqpz10jiwbh9)
 
@@ -323,13 +314,11 @@ Chrome では COEP/COOP が有効になったサイトにのみ、 SharedArrayBu
 
 ## 関連仕様
 
-
 ### crossOriginIsolated
 
 Isolated な環境でしか利用できない API が存在するということは、分岐のために Isolated であるかどうかを知りたい場面がでてくる。
 
 そこで、 CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが `self.corssOriginIsolated` だ。
-
 
 ```js
 if (self.crossOriginIsolated) {
@@ -354,7 +343,7 @@ Origin Isolation は、基本的には Site Isolation が Same Site なのに対
 
 内部の実装へのケアが強いイメージがある提案で、完全には理解できてないが、策定が進んだら単体で解説したい。
 
-- <https://github.com/WICG/origin-isolation/blob/master/README.md>
+- https://github.com/WICG/origin-isolation/blob/master/README.md
 
 
 ### Securer Context
@@ -365,16 +354,16 @@ Origin Isolation は、基本的には Site Isolation が Same Site なのに対
 
 そこで、暗号化に追加してより安全な環境が提供できる状況をパラメタライズする仕様だ。具体的には 3 つ有り、それぞれ有効にできるものが変わる。
 
-- \[SecureContext=Transport\]: https
+- `[SecureContext=Transport]`: https
   - SW や getUserMedia など今定義されているもの
-- \[SecureContext=Isolation\]: CORP + COOP + COEP
+- `[SecureContext=Isolation]`: CORP + COOP + COEP
   - `performance.now`, `performance.measureMemory`, SharedArrayBuffer etc
-- \[SecureContext=Injection\]: CSP Strict + Trusted Types
+- `[SecureContext=Injection]`: CSP Strict + Trusted Types
   - WebUSB, clipboard etc
 
 こうしたコンセプトを用意し、今後新しい Powerful Feature API が提供される際の指針にするという内容のようだ。
 
-- <https://github.com/mikewest/securer-contexts/>
+- https://github.com/mikewest/securer-contexts/
 
 
 ## Outro
@@ -398,60 +387,59 @@ Origin-Isolation などの関連仕様の動向も気になるため、引き続
 
 ## Resources
 
-
 ### CORB
 
 - Spec
   - Fetch Standard
-    - <https://fetch.spec.whatwg.org/#corb>
+    - https://fetch.spec.whatwg.org/#corb
 - Explainer
   - Cross-Origin Read Blocking for Web Developers - The Chromium Projects
-    - <https://www.chromium.org/Home/chromium-security/corb-for-developers>
+    - https://www.chromium.org/Home/chromium-security/corb-for-developers
 - Requirements Doc
   - Cross-Origin Read Blocking (CORB)
-    - <https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md>
+    - https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md
 - Mozilla Standard Position
   - Fetch: CORB - Issue #81 - mozilla/standards-positions
-    - <https://github.com/mozilla/standards-positions/issues/81>
+    - https://github.com/mozilla/standards-positions/issues/81
 - TAG Design Review
 - Intents
   - Intent to Implement and Ship: Cross-Origin Read Blocking (CORB)
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hnAWBzq1qys/DhyRSDKKBQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hnAWBzq1qys/DhyRSDKKBQAJ
 - Chrome Platform Status
   - Cross-Origin Read Blocking (CORB) - Chrome Platform Status
-    - <https://www.chromestatus.com/feature/5629709824032768>
+    - https://www.chromestatus.com/feature/5629709824032768
 - Blog
 - Presentation
 - Issues
   - Cross-Origin Read Blocking (CORB) - Issue #681 - whatwg/fetch
-    - <https://github.com/whatwg/fetch/issues/681>
+    - https://github.com/whatwg/fetch/issues/681
 - Other
   - CORB demo
-    - <https://anforowicz.github.io/xsdb-demo/index.html>
+    - https://anforowicz.github.io/xsdb-demo/index.html
 
 
 ## CORP
 
 - Spec
   - Fetch Standard
-    - <https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header>
+    - https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
 - TAG Design Review
 - Intents
   - Intent to Implement and Ship: Cross-Origin Resource Policy
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TBNHorRPhZk/4_gfRjfzDgAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TBNHorRPhZk/4_gfRjfzDgAJ
 - Chrome Platform Status
   - Cross-Origin Resource Policy - Chrome Platform Status
-    - <https://www.chromestatus.com/feature/4647328103268352>
+    - https://www.chromestatus.com/feature/4647328103268352
 - Blog
   - Consider deploying cross-origin resource policy!
-    - <https://resourcepolicy.fyi/>
+    - https://resourcepolicy.fyi/
 - Presentation
 - Issues
   - Cross-Origin-Resource-Policy (was: From-Origin) - Issue #687 - whatwg/fetch
-    - <https://github.com/whatwg/fetch/issues/687>
+    - https://github.com/whatwg/fetch/issues/687
 - Other
 
 
@@ -459,26 +447,26 @@ Origin-Isolation などの関連仕様の動向も気になるため、引き続
 
 - Spec
   - Cross-Origin Embedder Policy
-    - <https://wicg.github.io/cross-origin-embedder-policy/>
+    - https://wicg.github.io/cross-origin-embedder-policy/
 - Explainer
   - COOP and COEP explained
-    - <https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit>
+    - https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit
 - Requirements Doc
 - Mozilla Standard Position
 - TAG Design Review
 - Intents
   - Intent to Ship: Cross-Origin-Embedder-Policy (COEP)
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XBKAGb2_7uA/TDg_AkQbAAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XBKAGb2_7uA/TDg_AkQbAAAJ
 - Chrome Platform Status
   - Cross-Origin-Embedder-Policy - Chrome Platform Status
-    - <https://www.chromestatus.com/feature/5642721685405696>
+    - https://www.chromestatus.com/feature/5642721685405696
 - Blog
   - Making your website "cross-origin isolated" using COOP and COEP
-    - <https://web.dev/coop-coep/>
+    - https://web.dev/coop-coep/
 - Presentation
 - Issues
   - Making postMessage() work for SharedArrayBuffer (Cross-Origin-Embedder-Policy) - Issue #4175 - whatwg/html
-    - <https://github.com/whatwg/html/issues/4175>
+    - https://github.com/whatwg/html/issues/4175
 - Other
 
 
@@ -486,23 +474,23 @@ Origin-Isolation などの関連仕様の動向も気になるため、引き続
 
 - Spec
   - coop.md
-    - <https://gist.github.com/annevk/6f2dd8c79c77123f39797f6bdac43f3e>
+    - https://gist.github.com/annevk/6f2dd8c79c77123f39797f6bdac43f3e
 - Explainer
   - Cross-Origin-Opener-Policy Explainer
-    - <https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit>
+    - https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit
   - Cross-Origin-Opener-Policy explainer
-    - <https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#>
+    - https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#
   - COOP and COEP explained
-    - <https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit>
+    - https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit
 - Requirements Doc
 - Mozilla Standard Position
 - TAG Design Review
 - Intents
   - Intent to Ship Cross-Origin-Opener-Policy
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cJ5dXIcQCsc/eGgi0gkcAAAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cJ5dXIcQCsc/eGgi0gkcAAAJ
 - Chrome Platform Status
   - Cross-Origin-Opener-Policy - Chrome Platform Status
-    - <https://www.chromestatus.com/feature/5432089535053824>
+    - https://www.chromestatus.com/feature/5432089535053824
 - Blog
 - Presentation
 - Issues
@@ -513,60 +501,60 @@ Origin-Isolation などの関連仕様の動向も気になるため、引き続
 
 - Chrome Platform Status
   - crossOriginIsolated - Chrome Platform Status
-    - <https://www.chromestatus.com/feature/5953286387531776>
+    - https://www.chromestatus.com/feature/5953286387531776
 - Blog
   - self.crossOriginIsolated
-    - <https://annevankesteren.nl/2020/01/shared-memory-feature-detection>
+    - https://annevankesteren.nl/2020/01/shared-memory-feature-detection
 
 
 ## Site Isolation
 
 - Explainer
   - Site Isolation - The Chromium Projects
-    - <https://www.chromium.org/Home/chromium-security/site-isolation>
+    - https://www.chromium.org/Home/chromium-security/site-isolation
   - Mitigating Side-Channel Attacks - The Chromium Projects
-    - <https://www.chromium.org/Home/chromium-security/ssca>
+    - https://www.chromium.org/Home/chromium-security/ssca
 - Requirements Doc
   - Site Isolation Design Document - The Chromium Projects
-    - <https://www.chromium.org/developers/design-documents/site-isolation>
+    - https://www.chromium.org/developers/design-documents/site-isolation
 - Blog
   - Google Online Security Blog: Mitigating Spectre with Site Isolation in Chrome
-    - <https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html>
+    - https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html
   - Site Isolation for web developers
-    - <https://developers.google.com/web/updates/2018/07/site-isolation>
+    - https://developers.google.com/web/updates/2018/07/site-isolation
 
 
 ## Origin Isolation
 
 - Explainer
   - origin-isolation/README.md at master · WICG/origin-isolation
-    - <https://github.com/WICG/origin-isolation/blob/master/README.md>
+    - https://github.com/WICG/origin-isolation/blob/master/README.md
 - Chrome Platform Status
   - Origin isolation - Chrome Platform Status
-    - <https://www.chromestatus.com/feature/5683766104162304>
+    - https://www.chromestatus.com/feature/5683766104162304
 - Tag Review
   - Origin isolation · Issue #464 · w3ctag/design-reviews
-    - <https://github.com/w3ctag/design-reviews/issues/464>
+    - https://github.com/w3ctag/design-reviews/issues/464
 - Intents
   - Intent to Experiment: Origin isolation
-    - <https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/G0h3PFPeclA>
+    - https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/G0h3PFPeclA
 - Issue
   - Origin isolation - Issue #464 - w3ctag/design-reviews
-    - <https://github.com/w3ctag/design-reviews/issues/464>
+    - https://github.com/w3ctag/design-reviews/issues/464
 
 
 ## Securer Context
 
 - mikewest/securer-contexts: Secure Contexts, but with _more_ secureness!
-  - <https://github.com/mikewest/securer-contexts/>
+  - https://github.com/mikewest/securer-contexts/
 - Securer Contexts - Issue #471 - w3ctag/design-reviews
-  - <https://github.com/w3ctag/design-reviews/issues/471>
+  - https://github.com/w3ctag/design-reviews/issues/471
 
 
 ## Blog
 
 - Hack Patch!: 投機的な Web の修復
-  - <https://shhnjk.blogspot.com/2020/03/repairing-speculative-web.html>
+  - https://shhnjk.blogspot.com/2020/03/repairing-speculative-web.html
 
 
 ## DEMO

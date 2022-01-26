@@ -1,6 +1,5 @@
 # [rhythmic sizing][vertical rhythm][css] CSS Rhythmic Sizing で Vertical Rhythm
 
-
 ## Intro
 
 タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。
@@ -42,9 +41,9 @@ Vertical Rhythm の効果については、以下のように教えて頂いた�
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/rhythmic-sizing/basic.html>
+- https://labs.jxck.io/rhythmic-sizing/basic.html
 
-CSS の機能は Origin Trials ではないため、 [chrome://flags/#enable-experimental-web-platform-features](chrome://flags/#enable-experimental-web-platform-features) を有効にする必要がある。
+CSS の機能は Origin Trials ではないため、 <chrome://flags/#enable-experimental-web-platform-features> を有効にする必要がある。
 
 作成時は Chrome Canary 63 で挙動を確認している。
 
@@ -60,7 +59,6 @@ CSS の機能は Origin Trials ではないため、 [chrome://flags/#enable-exp
 ![Vertical Rhythm を適用しないシングルカラムでは、各行の高さ/余白のリズムが安定しない](single-no-rhythm.png#500x600 "single column with no vertical rhythm")
 
 ここでは、わかりやすくするため、 `font-size` を `16px` とし、 `<p>` のマージンは前後とも `24px` としている。
-
 
 ```css
 body {
@@ -79,7 +77,6 @@ p {
 そこに引いたグリッドの線を見ればわかるように、 `<h1>` ~ `<h4>` の余白はバラバラになっている。
 
 ここで、個々の `line-height` を計算し適切に設定する代わりに、 CSS Rhythmic Sizing では以下のようなプロパティが設定できる。
-
 
 ```css
 .rhythm {
@@ -103,7 +100,6 @@ p {
 確かにリズムが揃っていることはわかるが、それによる効果は本サイトのような Single Column よりも Multi Column なコンテンツの方が実感しやすい。
 
 そこで、 CSS の Multi Column Layout で 2 column にするオプションを追加した。
-
 
 ```css
 .colmun {
@@ -144,7 +140,6 @@ p {
 
 まず `line-height: 15` とし、これを基準に `<article>` 全体に Rhythm を当てる。
 
-
 ```css
 article {
   line-height: 1.5;
@@ -156,7 +151,6 @@ article {
 `<h1>` ~ `<h5>` 中はモバイルでの折り返しを考慮して 1.2 とし、中身は Rhythm から外すが、ブロック全体は Rhythm に載せる。
 
 しかし、余白が空きすぎるので `margin-bottom` のみ消す。
-
 
 ```css
 article h1,
@@ -175,7 +169,6 @@ article h6 {
 
 `<p>` はリズムに載せるため、 margin/padding を `line-height-step` に揃える。
 
-
 ```css
 article p {
   margin-top: var(--grid);
@@ -184,7 +177,6 @@ article p {
 ```
 
 `<pre>` と `<table>` は中身/全体ともに Rhythm に載せないよう、 `line-height-step: 0` にする。
-
 
 ```css
 article pre,

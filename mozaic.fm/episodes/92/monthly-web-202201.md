@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 92 回のテーマは 2021 年 12 月と 2022 年 1 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 97
+
 
 #### Updates
 
@@ -105,7 +107,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Save the date for BlinkOn 16!
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tvOHmMflQy4/m/c5NXpLFoAgAJ
 
+
 #### V8
+
 
 #### Other
 
@@ -156,9 +160,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
 
+
 ### Firefox 動向
 
 #### Stable: 96.0.2
+
 
 #### Updates
 
@@ -185,6 +191,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - These Weeks in Firefox: Issue 107 – Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/01/18/these-weeks-in-firefox-issue-107/
 
+
 #### Intents
 
 - *Ship: Form-associated custom elements*
@@ -196,6 +203,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - *Unship: WebVR*
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/S9ltYIfjCpg
   - Firefox は WebXR をやってないが WebVR は落とす
+
 
 #### Other
 
@@ -220,9 +228,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Contributing to MDN: Meet the Contributors - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2022/01/contributing-to-mdn-meet-the-contributors/
 
+
 ### Safari 動向
 
 #### Stable: 15.2
+
 
 #### Updates
 
@@ -293,10 +303,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web Extensions
     - Added support for changed web_accessible_resources declaration with manifest_version 3
 
+
 #### Position
 
 - https://lists.webkit.org/pipermail/webkit-dev/
 - 特に返信なし
+
 
 #### Other
 
@@ -316,9 +328,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://trac.webkit.org/changeset/288078/webkit
     - 1/16 に修正が trunk に入った
 
+
 ### Edge 動向
 
 #### Stable: 97
+
 
 #### Updates
 
@@ -329,12 +343,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - New ways to manage your passwords in Microsoft Edge - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/articles/new-ways-to-manage-your-passwords-in-microsoft-edge/m-p/3054579#M6312
 
+
 #### Chakra
+
 
 #### Other
 
 - Debugging Compatibility in Edge – text/plain
   - https://textslashplain.com/2022/01/20/debugging-compatibility-in-edge/
+
 
 ### WHATWG/W3C 動向
 
@@ -381,6 +398,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://www.w3.org/blog/CSS/2022/01/01/css-snapshot-2021-published/
 - Chartering
 
+
 #### Other
 
 - W3C Advisory Committee Elects Technical Architecture Group
@@ -391,6 +409,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - author に Meta  (Facebook) の人と Martin Thomson
   - Interoperable Private Attribution (IPA): A Non-technical introduction - Google Slides
     - https://docs.google.com/presentation/d/1NpQz0Wm73eEKw24V7B0yCjq4Tw2qPgeezhMfS0-P-TY/edit
+
 
 ### TC39 動向
 
@@ -404,6 +423,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tc39/notes/blob/master/meetings/2021-12/dec-15.md
   - Record & Tuple References Object
     - https://drive.google.com/file/d/1lVYn8_sHecqxW08vN5Tu7rXZn7GemBqO/view
+
 
 #### Proposals Diff
 
@@ -421,9 +441,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Intl.DisplayNames v2
   - Extend TimeZoneName Options
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -453,6 +476,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
 
 - *AUTH48 status page for C430 > RFC Editor*
@@ -465,6 +489,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - RFC9163: Expect-CT
 - *HTTP Working Group Interim Meeting Agenda - February 2022*
   - https://httpwg.org/wg-materials/interim-22-02/agenda.html
+
 
 ### CDN 動向
 
@@ -484,9 +509,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - DDoS Attack Trends for Q4 2021
   - https://blog.cloudflare.com/ddos-attack-trends-for-2021-q4/
 
+
 #### Fastly
 
+
 #### Other
+
 
 ### セキュリティ動向
 
@@ -497,6 +525,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.courts.go.jp/app/files/hanrei_jp/869/090869_hanrei.pdf
 - *colors などの npm パッケージに悪意あるコードが含まれている問題について*
   - https://zenn.dev/azu/articles/d56615b2e11ad1
+
 
 ### 周辺動向
 
@@ -529,6 +558,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 25 年に渡る JavaScript の歴史 | JetBrains: プロデベロッパーとチーム向けの開発ツール | JetBrains: Developer Tools for Professionals and Teams
   - https://www.jetbrains.com/ja-jp/lp/javascript-25/
 
+
 ### イベント
 
 - 1 月
@@ -544,6 +574,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 5 月
   - 17-18 BlinkOn 16
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/tvOHmMflQy4/m/c5NXpLFoAgAJ
+
 
 ### Wrap Up
 

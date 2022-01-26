@@ -1,6 +1,5 @@
 # [csp][security] Content Security Policy(CSP) 対応と report-uri.io でのレポート収集
 
-
 ## Intro
 
 本サイトにて Content Security Policy を有効化した。
@@ -30,7 +29,6 @@ CSP を有効にするには、 Content-Security-Policy ヘッダを付与し、
 
 ポリシーは、コンテンツが読み込み可能なコンテンツについての制限であり、以下のような指定が可能である。
 
-
 ```http
 Content-Security-Policy: default-src 'self'
 ```
@@ -49,7 +47,6 @@ Content-Security-Policy: default-src 'self'
 ## CSP の注意点
 
 もし、先ほど例示した設定をサイト全体に適用した場合、何がおこるかを考えてみる。
-
 
 ```http
 Content-Security-Policy: default-src 'self'
@@ -84,7 +81,6 @@ Content-Security-Policy: default-src 'self'
 
 以下のように、ポリシーに `report-uri` ディレクティブでレポート先 uri を指定する。
 
-
 ```http
 Content-Security-Policy-Report-Only: default-src 'self'; report-uri https://example.com/csp-report
 ```
@@ -101,7 +97,6 @@ Content-Security-Policy-Report-Only: default-src 'self'; report-uri https://exam
 ブラウザは、 CSP に違反した実行を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
 
 CSP の違反レポートは以下のような JSON データである。
-
 
 ```json
 {
@@ -164,7 +159,6 @@ CSP の違反レポートは以下のような JSON データである。
 かといって、全体としてスタイルに `'unsafe-inline'` を許容するのもはばかられたため、 AMP ページのみスタイルの `'unsafe-inline'` を許可した。
 
 よって、通常のページ(上)と AMP 対応ページ(下)では以下の出し分けをしている。
-
 
 ```http
 content-security-policy-report-only: default-src 'self' https://*.jxck.io https://www.google-analytics.com ; child-src https://www.youtube.com ; report-uri https://xxx.report-uri.io/r/default/csp/reportOnly

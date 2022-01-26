@@ -1,6 +1,5 @@
 # [jsonld][open graph][schema.org][semantics] JSON-LD と Open Graph で構造化メタデータ対応
 
-
 ## Intro
 
 本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
@@ -12,10 +11,9 @@
 
 まず HTML の仕様に従い、基本的なメタ情報を `<meta>` により定義した。
 
-<https://dev.w3.org/html5/spec-preview/the-meta-element.html>
+- https://dev.w3.org/html5/spec-preview/the-meta-element.html
 
 各要素は、テンプレート生成時に利用した値を埋め込んでいるため、 [本サイトの Atom RSS-feed](https://blog.jxck.io/entries/2016-02-09/atom-feed.html) などと同じ値である。
-
 
 ```html
 <meta name=author content=Jxck>
@@ -46,7 +44,6 @@
 ### JSON-LD
 
 結果、以下のような `<script>` を埋め込んでいる。
-
 
 ```html
 <script type="application/ld+json">
@@ -118,7 +115,6 @@ Twitter と Facebook だけ、以下を参考に対応した。
 - [twitter cards](https://dev.twitter.com/ja/cards/types/summary)
 - [Card validator](https://cards-dev.twitter.com/validator)
 
-
 ```html
 <meta name=twitter:card        content=summary>
 <meta name=twitter:site        content=@jxck_>
@@ -133,7 +129,6 @@ Twitter と Facebook だけ、以下を参考に対応した。
 
 - [facebook open graph](https://developers.facebook.com/docs/sharing/webmasters)
 - [fecebook URL Debugger](https://developers.facebook.com/tools/debug/)
-
 
 ```html
 <meta property=og:type        content="article">

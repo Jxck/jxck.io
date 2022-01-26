@@ -1,6 +1,5 @@
 # [csp][mixed contents][upgrade-insecure-request][block-all-mixed-contents] mixed contents 対応を促進する CSP ディレクティブ
 
-
 ## Intro
 
 HTTPS 移行の問題点の一つに、 mixed contents への対応がある。
@@ -44,7 +43,7 @@ mixed contents は URL バーが変化し、ユーザに注意を促す。
 
 動作するデモを以下に用意した。
 
-- DEMO: <https://labs.jxck.io/mixed/mixed.html>
+- DEMO: https://labs.jxck.io/mixed/mixed.html
 
 
 ### URL バーの変化
@@ -64,7 +63,6 @@ mixed contents が無ければ本来は以下のようになる。
 
 以下のタグ、及びスクリプト等は、 *Mixed Active Contents* と呼ばれる。
 
-
 ```html
 <script src>
 <link href>
@@ -82,13 +80,12 @@ CSS 内の URL (@font-face, background-image etc)
 
 アドプロバイダの HTTPS 対応は進んでいるとはいえ、広告が表示されないことは実益に影響する場合が多いため、これが原因で HTTPS 化ができないサービスも少なからずある。
 
-- DEMO: <https://labs.jxck.io/mixed/mixed.html#active>
+- DEMO: https://labs.jxck.io/mixed/mixed.html#active
 
 
 ### Mixed Passive(Display) Contents
 
 以下のタグは、基本的にコンテンツを表示する目的で使われる。
-
 
 ```html
 <img>
@@ -105,7 +102,7 @@ CSS 内の URL (@font-face, background-image etc)
 
 特に EV 証明書で、 URL バーに組織名を表示しているような場合は、たとえコンテンツが表示されていたとしても、無視できない問題となってくる。
 
-- DEMO: <https://labs.jxck.io/mixed/mixed.html#passive>
+- DEMO: https://labs.jxck.io/mixed/mixed.html#passive
 
 
 ## CSP による Mixed Contents 対策
@@ -131,7 +128,7 @@ CSP の `Upgrade-Insecure-Request` を付与した場合、ブラウザは HTTPS
 
 [3.2. Feature Detecting Clients Capable of Upgrading](https://w3c.github.io/webappsec-upgrade-insecure-requests/#feature-detect])
 
-- DEMO: <https://labs.jxck.io/mixed/mixed.html?upgrade-insecure-request>
+- DEMO: https://labs.jxck.io/mixed/mixed.html?upgrade-insecure-request
 
 理想はコンテンツ内の全てのリンクを修正したいところだ。
 
@@ -148,7 +145,7 @@ CSP の `Upgrade-Insecure-Request` を付与した場合、ブラウザは HTTPS
 
 また、 CSP の reporting に対応しているため、 block が発生した場合にそのことを指定した URI にレポートすることができる。
 
-- DEMO: <https://labs.jxck.io/mixed/mixed.html?block-all-mixed-content>
+- DEMO: https://labs.jxck.io/mixed/mixed.html?block-all-mixed-content
 
 
 ### mixed contents の発生状況を収集する
@@ -184,11 +181,11 @@ mixed contents は、発生したこと自体を把握しにくかったとい�
 
 iframe 自体を https で読み込んでいても、ネストした iframe 内に http で読み込まれるサブリソースがあると、大元のドキュメントは mixed contents 扱いになる。
 
-- DEMO: <https://labs.jxck.io/mixed/iframe.html>
+- DEMO: https://labs.jxck.io/mixed/iframe.html
 
 もし大元のコンテンツに `Upgrade-Insecure-Request` をつければ、 iframe 内のサブリソースも全て https に読み替えられるため、サーバが対応していればそれで済む。
 
-- DEMO: <https://labs.jxck.io/mixed/iframe.html?upgrade-insecure-request>
+- DEMO: https://labs.jxck.io/mixed/iframe.html?upgrade-insecure-request
 
 また、 `Block-All-Mixed-Contents` をつければ、 iframe 内のサブリソースはブロックされるため、 mixed contents を回避することはできる。
 
@@ -196,7 +193,7 @@ iframe 自体を https で読み込んでいても、ネストした iframe 内�
 
 もし iframe の内側の mixed contents まで report ができてしまうと、その内容を把握できる可能性などセキュリティ上問題があるからだ。
 
-- DEMO: <https://labs.jxck.io/mixed/iframe.html?block-all-mixed-content>
+- DEMO: https://labs.jxck.io/mixed/iframe.html?block-all-mixed-content
 
 つまり広告配信プラットフォームが提供する広告用の iframe 自体が https に対応していても、そこの入稿される広告コンテンツ本体のどこかに一つでも https 非対応なものがあれば、 mixed contents は避けられない。
 

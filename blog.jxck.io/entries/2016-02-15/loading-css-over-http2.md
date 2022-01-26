@@ -1,6 +1,5 @@
 # [css][http2][performance] HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について
 
-
 ## Intro
 
 Chrome が予定している `<link rel=stylesheet>` の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。
@@ -18,7 +17,6 @@ HTML 自体がコンポーネントを意識した作りになっている場合
 
 しかし、 HTTP/1.1 では、リクエストの数を減らすために全ての CSS を 1 つ(もしくは少数個)に結合する最適化が主流だった。
 
-
 ```html
 <head>
   <link rel="stylesheet" href="bundle.css">
@@ -31,7 +29,6 @@ HTML 自体がコンポーネントを意識した作りになっている場合
 ところが、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなった。
 
 このため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
-
 
 ```html
 <head>
@@ -63,15 +60,15 @@ footer.css が必要なのは、 HTML 中の `<footer>` をレンダリングす
 
 この問題に対応するため、以下のような JS を用いて CSS を非同期ロードする方法がある。
 
-<https://github.com/filamentgroup/loadCSS>
+- https://github.com/filamentgroup/loadCSS
 
 スタイルが当たってない状態で表示されてほしくないコンポーネントには、 `display: none` などをつけておき、ロードされたスタイルの中で表示されるようにする。
 
 この方法は、クリティカルレンダリングパスの改善方法の 1 つとして、多くのパフォーマンスエキスパートから推奨されている。
 
-- <https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery>
-- <https://www.filamentgroup.com/lab/performance-rwd.html>
-- <https://www.lukew.com/ff/entry.asp?1756>
+- https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
+- https://www.filamentgroup.com/lab/performance-rwd.html
+- https://www.lukew.com/ff/entry.asp?1756
 
 ただし、この方法には JS のライブラリが必須となる。
 
@@ -92,9 +89,7 @@ Chrome は、現在の Stable では Webkit と同じだが、 Canary では Fir
 
 こうした Content-Shifting の問題は、広告が後から次々に表示されるページなどで多く発生し、[フラストレーションがたまった経験](https://www.youtube.com/watch?v=uPnEZd6wCtk) は誰にでもあるだろう。
 
-
 <iframe src="https://www.youtube.com/embed/uPnEZd6wCtk" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
 
 本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。
 
@@ -104,7 +99,6 @@ Chrome は、現在の Stable では Webkit と同じだが、 Canary では Fir
 ## HTTP2 時代の最適化
 
 HTTP2 では以下のように書くことが可能になる。
-
 
 ```html
 <head>
@@ -163,10 +157,8 @@ HTML の仕様には、ページのレンダリングが CSS によりどうブ�
 
 Chrome, Safari
 : `<link rel=stylesheet>` があるとロードされるまで、直ちにレンダリングを止める。このため、 `<link>` より *上* の要素も、レンダリング途中で止まる場合がよくある。
-
 Firefox
 : `<head>` に `<link rel=stylesheet>` があるとブロックするが、 `<body>` では `<head>` の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
-
 IE/Edge
 : CSS が読み込み終わるまでパーサをブロックする、しかし、 `<link>` 前のコンテンツはレンダリングする。
 
@@ -182,7 +174,6 @@ Chrome は IE/Edge の方式に移ることを検討している。これによ�
 Firefox では、以下のように `<script>` をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。
 
 `<script>` には中身が必要だが、スペース 1 つで十分である。
-
 
 ```html
 <link rel="stylesheet" href="/article.css"><script> </script>

@@ -19,7 +19,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### Microsoft Edge が Chromium ベースに
 
 - Microsoft Edge: Making the web better through more open source collaboration
@@ -40,7 +39,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### 2018 年のキーワード
-
 
 #### Jxck
 

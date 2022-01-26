@@ -1,6 +1,5 @@
 # [bootcamp][mozaic.fm][web] mozaic bootcamp 2019
 
-
 ## Intro
 
 2019/4/28 - 5/1 の 4 日間で、 mozaic bootcamp 2019 というひたすら Web 技術を叩き込むイベントを開催した。
@@ -170,4 +169,4 @@ bootcamp のモチベーションも理解しており、質疑なども活発�
 
 参加して頂いたみなさん、会場を提供してくれた株式会社一休さん、そして同席して的確な補足を入れてくれた [@myakura](https://twitter.com/myakura) さん、本当にありがとうございました。
 
-![mozaic bootcamp 2019 最終日実施中の光景](mozaic-bootcamp-2019.jpeg#4000x3000 'mozaic-bootcamp-2019')
+![mozaic bootcamp 2019 最終日実施中の光景](mozaic-bootcamp-2019.jpeg#4000x3000 "mozaic-bootcamp-2019")

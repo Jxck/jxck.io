@@ -45,6 +45,7 @@ http://feed.mozaic.fm
 
 mozaic.fm を引き続きよろしくお願いいたします。
 
+
 ## Show Note
 
 - [new site](https://mozaic.fm)

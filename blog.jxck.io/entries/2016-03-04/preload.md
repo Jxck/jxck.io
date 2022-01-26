@@ -1,6 +1,5 @@
 # [preload][performance] Preload を用いたリソースプリローディングの最適化
 
-
 ## Intro
 
 Preload を指定する `<link rel=preload>` の仕様が公開されており、現在 Chrome Canary に実装されている。
@@ -58,13 +57,11 @@ Prefetch は、画面を遷移する前に、次の遷移先で必要となる�
 
 `<link rel=preload>` を記述すれば、こうした「*後から取得されるが、レイアウト上重要なリソース*」を Preload 段階で取得するようにブラウザに指示することができる。
 
-
 ```html
 <link rel=preload as=image href=hero-image.png>
 ```
 
 Web Font の場合はこうなる。
-
 
 ```html
 <link rel=preload  as=font type=font/woff2 href=font.woff2 crossorigin>
@@ -87,11 +84,9 @@ Preload を使うことで、「*取得しておきたいけど実行はした�
 
 まず「取得」を Preload で行う、これは HTML に書いておいても良いし、それ自体も遅延したければ好きなタイミングで以下のようにノードを作れば良い。
 
-
 ```html
 <link rel=preload as=script href=script.js>
 ```
-
 
 ```js
 var preload = document.createElement('link');
@@ -102,7 +97,6 @@ document.head.appendChild(link);
 ```
 
 そして、「実行」は任意のタイミングで `<script>` を生成し行う。
-
 
 ```js
 var script = document.createElement('script');
@@ -119,7 +113,6 @@ document.body.appendChild(script);
 
 例えば CSS の場合はこうなる。
 
-
 ```html
 <link rel=preload as=style href=style.css onload="this.rel='stylesheet'">
 ```
@@ -129,7 +122,6 @@ document.body.appendChild(script);
 `<script async>` があるが、これは `window.onload` をブロックするので、そこで使い分ける。
 
 analytics のような場合。とにかく早く取得して、ユーザを取りこぼさず、かつ UX は一切損ないたく無い、特に onload を遅らせたくはない場合などに使える。
-
 
 ```html
 <link rel=preload as=script href=analytics.js
@@ -147,7 +139,6 @@ Preload はリンクであるため、仕様上 media 属性を持つ。(chrome 
 
 例えば `<picture>` で Image を読み分けている場合、その条件と同じものを `<link rel=preload>` に指定することで、一致した条件のみの画像を Prelaod できる。
 
-
 ```html
 <link rel=preload as=image href=large.png media="(max-width: 600px)">
 <link rel=preload as=image href=middle.png media="(max-width: 400px)">
@@ -160,7 +151,6 @@ Preload はリンクであるため、仕様上 media 属性を持つ。(chrome 
 Preload は、同じセマンティクスを HTTP Header にも適用できる。
 
 つまりここまでマークアップで示してきた例は、(onload hack など除き)基本的に全て HTTP Response Header で行うことができる。
-
 
 ```http
 Link: <script.js>;rel="preload";as="script"
@@ -180,7 +170,6 @@ Preload をヒントとして使っていれば、サポートされてい無い
 しかし、 `onload` ハックなどを用いたより積極的な活用を行う上では、ブラウザのサポートの有無を知りたい場合もある。
 
 そこで、サポートされる `rel` の値を DOM から取れるような提案がなされている。
-
 
 ```js
 document.createElement("link").relList.supports("preload"));
@@ -218,14 +207,12 @@ Push が既にブラウザにキャッシュされているリソースを考慮
 
 なお、 HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、 `nopush` を付けることで Opt-Out することができる。
 
-
 ```http
 Link: </app/style.css>; rel=preload; as=style; nopush
 ```
 
 
 ## 本サイトへの適用
-
 
 ### 対象リソース
 
@@ -246,7 +233,6 @@ Link: </app/style.css>; rel=preload; as=style; nopush
 まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 [Cache Digest](https://tools.ietf.org/html/draft-kazuho-h2-cache-digest) を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
 
 そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの `<link>` タグで指定することにした。
-
 
 ```html
 <link rel=preload as=script src=/assets/js/highlight.min.js>

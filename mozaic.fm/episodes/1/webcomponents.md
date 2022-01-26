@@ -17,6 +17,7 @@ guest: [@ahomu](https://twitter.com/ahomu)
 
 「なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
 
+
 ## Show Note
 
 - [Introduction to Web Components](http://w3c.github.io/webcomponents/explainer/)
@@ -29,6 +30,7 @@ guest: [@ahomu](https://twitter.com/ahomu)
 - [Brick](http://mozilla.github.io/brick/index.html)
 - [x-tag](http://x-tags.org)
 - [vulcanize](https://github.com/Polymer/vulcanize)
+
 
 ## Additional
 

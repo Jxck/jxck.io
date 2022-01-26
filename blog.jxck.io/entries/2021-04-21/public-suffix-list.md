@@ -1,6 +1,5 @@
 # [public suffix list][cookie][privacy] Public Suffix List の用途と今起こっている問題について
 
-
 ## Intro
 
 Public Suffix List (PSL) は、現在の Web プラットフォームの一旦を支えている非常に重要な要素だ。
@@ -57,11 +56,11 @@ PSL を解説するには、まず関連する用語について整理する。
 
 そこで、「この組み合わせは eTLD だ」という判別のために存在するのが Public Suffix List だ。
 
-- <https://publicsuffix.org/>
+- https://publicsuffix.org/
 
 今は GitHub で管理されており、全体は以下のリポジトリに 1.3 万行のテキストファイルとして存在する。
 
-- <https://github.com/publicsuffix/list>
+- https://github.com/publicsuffix/list
 
 これはもともと Mozilla が管理を始めたものだ、しかし今ではこのファイルが多くのブラウザで使われている。
 
@@ -78,13 +77,11 @@ PSL を解説するには、まず関連する用語について整理する。
 
 ここで以下のような Cookie について考えてみよう。
 
-
 ```http
 Set-Cookie: session_id=deadbeef;
 ```
 
 この Cookie は `example.tokyo.jp` にしか送られない。しかし以下はどうだろうか?
-
 
 ```http
 Set-Cookie: session_id=deadbeef; Domain=tokyo.jp
@@ -121,7 +118,7 @@ PSL の説明によれば、 Cookie 以外にもブラウザが「履歴をド�
 
 対して `jxck.github.io` と `www.github.io` は同じ `github.io` のサブドメインであるように見えながら eTLD+1 が違うので Cross Site となる。
 
-すると「`github.io` 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 `Domain=com` な Cookie が付与できないのと同じく `Domain=github.io` な Cookie は付与できない。(したがって <https://github.io/> や <https://glitch.me/> には何もデプロイされてない)
+すると「`github.io` 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 `Domain=com` な Cookie が付与できないのと同じく `Domain=github.io` な Cookie は付与できない。(したがって https://github.io/ や https://glitch.me/ には何もデプロイされてない)
 
 
 ### PSL の運用
@@ -181,13 +178,13 @@ FB のアナウンスは「ワークアラウンドとして PSL の追加があ
 
 ところが、トラッキング制約の迂回に躍起になっている人間からは、かなり攻撃的な反応が GitHub 以外の場所(電話など)から、中の人に対して来ているようだ。
 
-- <https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711>
+- https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711
 
 完全に健全な状態とは言えず、無視できない状況である一方、こうした運用を想定しなかった中の人は、ひたすらに消耗している。
 
 近年 Privacy Sandbox 系の議論が行われている Privacy CG でも、この問題が取り上げられた。
 
-- <https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md>
+- https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md
 
 Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「[望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.) 」という趣旨の発言をしている。
 

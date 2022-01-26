@@ -17,9 +17,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 ## Show Note
 
-
 ### Chrome 動向
-
 
 #### Stable: 90
 
@@ -169,7 +167,6 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 ### Firefox 動向
 
-
 #### Stable: 88
 
 - Firefox 88.0, See All New Features, Updates and Fixes
@@ -243,7 +240,6 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 ### Safari 動向
 
-
 #### Stable: 14.0.3
 
 
@@ -277,7 +273,6 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 
 ### Edge 動向
-
 
 #### Stable: 90
 
@@ -313,7 +308,6 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 
 ### WHATWG/W3C 動向
-
 
 #### Draft
 
@@ -359,7 +353,6 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 
 ### TC39 動向
-
 
 #### Meeting
 
@@ -414,7 +407,6 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 
 ### IETF 動向
-
 
 #### WG
 
@@ -500,7 +492,6 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 
 ### CDN 動向
-
 
 #### Akamai
 

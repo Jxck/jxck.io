@@ -15,7 +15,6 @@ guest: [@shqld](https://twitter.com/shqld)
 
 ## Show Note
 
-
 ### Chrome 動向
 
 - Stable: 76

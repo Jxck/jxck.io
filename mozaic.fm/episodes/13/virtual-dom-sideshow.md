@@ -14,6 +14,7 @@ guest: [@mizchi](https://twitter.com/mizchi)
 
 [@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。
 
+
 ## Show Note
 
 - [mercury](https://github.com/Raynos/mercury)

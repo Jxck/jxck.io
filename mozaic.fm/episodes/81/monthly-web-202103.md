@@ -15,9 +15,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### Chrome 動向
-
 
 #### Stable: 89
 
@@ -288,7 +286,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Firefox 動向
 
-
 #### Stable: 87.0
 
 
@@ -381,7 +378,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Safari 動向
 
-
 #### Stable: 14.0.3
 
 
@@ -461,7 +457,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Edge 動向
 
-
 #### Stable: 89
 
 
@@ -499,7 +494,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### WHATWG/W3C 動向
-
 
 #### Draft
 
@@ -600,7 +594,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### IETF 動向
 
-
 #### WG
 
 - IETF110
@@ -684,7 +677,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### CDN 動向
-
 
 #### Cloudflare
 

@@ -1,6 +1,5 @@
 # [webbundle][webpackaging][performance] Webbundle によるサブリソース取得の最適化
 
-
 ## Intro
 
 WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。
@@ -29,7 +28,6 @@ HTML 自体は普通に配信し、複数サブリソースの取得を 1 fetch 
 
 サブリソースを以下のように subresource ディレクトリにまとめたとする。
 
-
 ```sh-session
 $ ls subresource
   a.js
@@ -48,7 +46,6 @@ CLI の仕様上 `-primaryURL` (HTML を頂点とする Bundle での HTML の U
 
 `-headerOverride` でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
 
-
 ```sh-session
 $ gen-bundle \
     -version b1 \
@@ -60,7 +57,6 @@ $ gen-bundle \
 ```
 
 dump-bundle すると以下のようになる。
-
 
 ```sh-session
 $ dump-bundle -i bundle.wbn
@@ -150,7 +146,6 @@ img {
 
 この resources 属性に、 bundle 側で解決する URL を absolute URL で明示する必要がある。
 
-
 ```html
 <!DOCTYPE html>
 <meta charset=utf-8>
@@ -182,16 +177,15 @@ img {
 
 Chrome Canary を flag 付きで起動する。
 
-
 ```sh-session
 $ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles
 ```
 
 HTML にアクセスすると、以下の様にサブリソースが bundle から解決されていることがわかる。
 
-- DEMO: <https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html>
+- DEMO: https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html
 
-![Bundle Subresource のデモを Chrome Devtools で表示](bundle-subresources.png#898x372 'bundle-subresources demo')
+![Bundle Subresource のデモを Chrome Devtools で表示](bundle-subresources.png#898x372 "bundle-subresources demo")
 
 実際に実行されている fetch が HTML と Bundle だけになっていることがわかる。
 
@@ -200,7 +194,6 @@ HTML にアクセスすると、以下の様にサブリソースが bundle か�
 ここでは wbn は no-store としているが、展開されたサブリソースは wbn 内で設定された Cache-Control が効いているため、個別にキャッシュが行われている。
 
 また、ここでは一切署名を用いてないため、リソースの URL を別のものにすることも可能だ。
-
 
 ```sh-session
 $ gen-bundle \
@@ -213,7 +206,6 @@ $ gen-bundle \
 ```
 
 html はこうなる。
-
 
 ```html
 <link rel=webbundle
@@ -242,7 +234,6 @@ HTML, CSS, JS, Img などをまとめて、いわゆる WebComponent の単位�
 
 以下の DEMO は、 `<profile-card>` を Custom Element として実装し、そこに必要なリソースを bundle している。
 
-
 ```sh-session
 $ ls profile-card
   jxck.png
@@ -251,7 +242,7 @@ $ ls profile-card
   template.html
 ```
 
-- DEMO: <https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html>
+- DEMO: https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html
 
 今は、 JS 以外は `import` できないため、 CSS は `@import` で、 HTML は `fetch()` で解決しているが、 別途策定が進んでいる [Synthetic Modules](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md) (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て `import` で扱える可能性がある。
 
@@ -266,7 +257,6 @@ $ ls profile-card
 
 イメージとしては以下のような構成だ。
 
-
 ```
 - bundle.wbn
   - react.wbn
@@ -276,11 +266,10 @@ $ ls profile-card
 
 実際このような Nested Bundle も生成可能で、 Chrome もそれを最後まで展開するところが確認できた。
 
-- DEMO: <https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/>
+- DEMO: https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/
 
 
 ## 考察
-
 
 ### bundle のネイティブ化への期待の背景
 
@@ -321,7 +310,7 @@ WebPackaging の構想が出たときから期待していた仕様であり、 
 
 WebBundle の Explainer には、この問題に対する考慮が一応書いてあるため、ここの議論が進めばより理想に近づくと個人的には期待したい。
 
-- <https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md#approximate-membership-query-datastructure>
+- https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md#approximate-membership-query-datastructure
 
 現状の実装ではそこまではスコープに無いと思われるので、今後この議論が進むかどうかに注目しつつ、フィードバックしていきたい。
 
@@ -339,7 +328,7 @@ bundle で fetch の数が解決して、 ES Module を積極利用するとな�
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/webpackaging/subresource-webbundle/>
+- https://labs.jxck.io/webpackaging/subresource-webbundle/
 
 
 ## Outro
@@ -355,20 +344,20 @@ bundle で fetch の数が解決して、 ES Module を積極利用するとな�
 
 - Spec
 - Explainer
-  - <https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md>
-  - <https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit#>
+  - https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md
+  - https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit#
 - Requirements Doc
-  - <https://docs.google.com/document/d/1imEt4TZkuzRVidmkaOaTym9JzPRMK8KSXiPp83797cw/edit#>
+  - https://docs.google.com/document/d/1imEt4TZkuzRVidmkaOaTym9JzPRMK8KSXiPp83797cw/edit#
 - Mozilla Standard Position
 - Webkit Position
 - TAG Design Review
 - Intents
   - Intent to Prototype: Subresource loading with Web Bundles
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ>
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ
 - Chrome Platform Status
-  - <https://www.chromestatus.com/feature/5710618575241216>
+  - https://www.chromestatus.com/feature/5710618575241216
 - DEMO
-  - <https://docs.google.com/document/d/18fFrURT6xD1GnqJwCx2K3Z81Te9Iv-r2ZsCkOvDH_04/>
+  - https://docs.google.com/document/d/18fFrURT6xD1GnqJwCx2K3Z81Te9Iv-r2ZsCkOvDH_04/
 - Blog
 - Presentation
 - Issues

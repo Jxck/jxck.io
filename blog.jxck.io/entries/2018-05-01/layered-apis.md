@@ -1,6 +1,5 @@
 # [async local storage][layered api][extensible web][whatwg] Layered APIs と High Level API の標準化指針
 
-
 ## Intro
 
 [Extensible Web Manifest](https://extensiblewebmanifesto.org/) 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。
@@ -88,7 +87,6 @@ Layered API(LAPIs) は、簡単に言えば High Level API を定義する上で
 
 例えば以下のような例を考える。
 
-
 ```js
 if (window.AsyncLocalStorage=== undefined) {
   // polyfill for async local storage
@@ -105,7 +103,6 @@ window.AsyncLocalStorage // native or polyfill
 
 そこで、 ES Module の API を用いて、以下のように読み込む構文拡張が提案されている。
 
-
 ```js
 import { storage } from "std:async-local-storage";
 ```
@@ -116,7 +113,6 @@ import { storage } from "std:async-local-storage";
 
 また以下のように書くと、もしブラウザが実装していなかった場合に、後半に書いた polyfill へフォールバックすることができる。
 
-
 ```js
 import { storage } from "std:async-local-storage|https://cdn.example.com/async-local-storage.js";
 ```
@@ -126,7 +122,6 @@ import { storage } from "std:async-local-storage|https://cdn.example.com/async-l
 また、最初からこの形で書いておけば、ブラウザの実装の差を低いコストで埋め、そのまま放置されてもネイティブのコードで置き換わるため、移行コストを低く抑えることができる。
 
 同じことは、 HTML Element の実装においても利用が想定されている。
-
 
 ```html
 <script type=module src="std:infinite-list|https://some.cdn.com/infinite-list.js"></script>
@@ -163,7 +158,6 @@ Polyfill のあり方については、過去に TAG によってプラクティ
 - [Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io](https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html)
 
 例えば、以下の場合 polyfill とブラウザの実装で API が異なる場合は、ブラウザアップデートでアプリが壊れることになる。
-
 
 ```js
 import { storage } from "std:async-local-storage|https://cdn.example.com/async-local-storage.js";

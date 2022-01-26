@@ -1,6 +1,5 @@
 # [polyfill][w3c] Polyfill のあり方と Web の進化と協調するためのガイドライン
 
-
 ## Intro
 
 W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。
@@ -73,7 +72,6 @@ TAG のドキュメントでは、大まかな流れが以下のように紹介�
 
 現在 `Array.prototype.includes()` として定義/実装されているものは、最初 `contains()` という名前で提案されており、実際に実装まで行われたブラウザがあった。
 
-
 ```js
 [1, 2, 3].contains(2) // true
 ```
@@ -83,7 +81,6 @@ TAG のドキュメントでは、大まかな流れが以下のように紹介�
 MooTools は早い段階から `contains()` を実装していたのだが、その実装は行儀の良いものではなかった。
 
 具体的には、その時点で Array が実装しているメソッドをセーフリストとして定義し、当時そのリストに無かった `contains()` の Polyfill を追加した独自の Array を提供していた。
-
 
 ```js
 ('Array', Array, [
@@ -113,7 +110,6 @@ API 自体も途中で更新され、更新後を v1 としてそれまでが v0
 
 これが v1 で引数必須として定義されている `attachShadow({mode})` である。
 
-
 ```js
 // v0
 document.createElement('div').createShadowRoot();
@@ -134,7 +130,6 @@ Polyfill が、ネイティブの実装と別の名前で提供されている�
 しかし、多くのコンテンツは、まだ仕様策定/実装が途中の機能を、将来使われるか、一部のブラウザだけが提供している仮の("fantasy")実装に寄せて使ってしまうため、依然問題となる。
 
 例えば、以下のような記述はよく見られる。
-
 
 ```js
 requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || polyfillRequestAnimationFrame;

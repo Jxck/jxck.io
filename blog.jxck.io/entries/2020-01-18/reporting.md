@@ -1,6 +1,5 @@
 # [reporting observer][report-to][reporting] ブラウザで何が起こっているのかを知る Reporting API と ReportingObserver
 
-
 ## Intro
 
 Web サービスにおいては通常、 Web サーバから取得できるアクセスログやエラーログを取得し解析する基盤を保有するだろう。
@@ -65,7 +64,6 @@ CSP で定義したポリシーに違反があった場合、その原因をブ�
 
 そこで、 CSP ヘッダに指定するためのディレクティブとして、 Report を送信する先を指定する `report-uri` が定義された。
 
-
 ```http:./1.http
 ```
 
@@ -77,7 +75,6 @@ CSP は JS の実行をブロックする場合があるので、その Report �
 
 ([Feature-Policy の report-to 対応は議論中](https://github.com/WICG/feature-policy/issues/142))
 
-
 ```http:./2.http
 ```
 
@@ -86,7 +83,6 @@ CSP は JS の実行をブロックする場合があるので、その Report �
 互換性の面でも、セマンティクスの面でも、 Report は Error ではないため、 Error を throw するようなモデルは使えない。代わりに Interface は昨今の流れに則り Observer で提供され、 opt-in で取得する設計が採用された。
 
 Report は JSON シリアライズ可能な形式で提供されるため、 Beacon API や Keep-Alive Fetch で送ることになるだろう。
-
 
 ```js:./3.js
 ```
@@ -102,7 +98,6 @@ Report-To ヘッダは、 Reporting エンドポイントの情報を一括し�
 
 
 ### Report-To header
-
 
 ```http:./4.http
 ```
@@ -167,7 +162,6 @@ CSP や Feature-Policy は、明示的に Report-To を指定する。
 
 したがって、 Report-To だけを設定しておくということも考えられる。
 
-
 ```http:./5.http
 ```
 
@@ -177,7 +171,6 @@ CSP や Feature-Policy は、明示的に Report-To を指定する。
 ブラウザ自身が送信する Report リクエストの概観は以下のようなものになる。
 
 - [4.5. Attempt to deliver reports to endpoint](https://w3c.github.io/reporting/#try-delivery)
-
 
 ```http:./6.http
 ```
@@ -203,10 +196,9 @@ CSP や Feature-Policy は、明示的に Report-To を指定する。
 
 ReportingObserver は JS で report を取得する API だ。
 
-- <https://w3c.github.io/reporting/#observers>
+- https://w3c.github.io/reporting/#observers
 
 サンプルを再掲する。
-
 
 ```js:./3.js
 ```
@@ -239,7 +231,6 @@ JS で取得するため、 JS が動いていることが前提だ。
 
 なお、本サイトでは Chrome の拡張である [HTTP/2 and SPDY indicator](https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin/related) から `chrome.loadTimes()` を呼んでいるという Report が最も多く送られてきている。
 
-
 ```js:./7.js
 ```
 
@@ -248,7 +239,7 @@ JS で取得するため、 JS が動いていることが前提だ。
 
 Intervention とは、ブラウザが特定の挙動を変更するような介入を行うことである。
 
-- <https://github.com/WICG/interventions>
+- https://github.com/WICG/interventions
 
 例えば、 ontouch イベントにハンドラが割り当てられている場合、スクロールするたびにハンドラが実行されてしまい、画面のレスポンスが悪くなる。
 

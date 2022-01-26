@@ -1,6 +1,5 @@
 # [navigation preload][service worker][performance] Service Worker の Navigation Preload による表示遅延回避
 
-
 ## Intro
 
 Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。
@@ -42,11 +41,9 @@ Navigation Preload を有効にすると、 SW が起動してない状態で発
 
 ## API
 
-
 ### navigationPreload.enable()
 
 `onfetch` に先立って有効化されている必要があるため、 `onactivate` で有効にする。
-
 
 ```js
 self.addEventListener('activate', (e) => {
@@ -66,7 +63,6 @@ self.addEventListener('activate', (e) => {
 サーバが返したレスポンスは、 SW 起動後に `onfetch` ハンドラ内で取得できる。
 
 Preload がある場合はそれを返し、なければ実際に fetch を走らせるコードは以下のようになる。
-
 
 ```js
 self.addEventListener('fetch', (e) => {
@@ -89,7 +85,6 @@ self.addEventListener('fetch', (e) => {
 
 Preload Response が発生した場合は、リクエストヘッダに以下が追加される。
 
-
 ```http
 Service-Worker-Navigation-Preload: true
 ```
@@ -97,7 +92,6 @@ Service-Worker-Navigation-Preload: true
 これにより、サーバ側は Preload リクエストであることを判別できる。
 
 値の `true` はデフォルト値であり、以下のように任意の値に変更できる。
-
 
 ```js
 navigator.serviceWorker.register('worker.js')
@@ -116,7 +110,6 @@ Navigation Preload が有効になっているかは、以下のように取得�
 
 また、同時に前述のヘッダに付与される値も取得が可能だ。
 
-
 ```js
 navigator.serviceWorker.register('worker.js')
   .then((registration) => {
@@ -133,4 +126,4 @@ navigator.serviceWorker.register('worker.js')
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/service-worker/navigation-preload/>
+- https://labs.jxck.io/service-worker/navigation-preload/

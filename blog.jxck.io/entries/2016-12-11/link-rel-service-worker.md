@@ -1,6 +1,5 @@
 # [origin trials][service worker][offline] Link rel=serviceworker ヘッダによる API やアセットの Offline 対応
 
-
 ## Intro
 
 Service Worker を登録する方法は現状 3 つある。
@@ -15,7 +14,6 @@ HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service W
 ## JS での登録
 
 ページ上で実行されている JS (`main.js` とする) の中で Service Worker のコード(`sw.js` とする)を登録する場合は、以下のようになる。
-
 
 ```js
 // main.js
@@ -34,7 +32,6 @@ Service Worker は、その処理(ここでいう `sw.js` の中身)をインラ
 `sw.js` を登録するだけであれば、 HTML のメタタグを用いて行うことができる。
 
 (`registrer()` の引数相当は、 HTML attributes で表現する)
-
 
 ```js
 <link rel="serviceworker" href="sw.js" scope="/">
@@ -55,7 +52,6 @@ Service Worker は、その処理(ここでいう `sw.js` の中身)をインラ
 
 (`registrer()` の引数相当は、 HTTP Header の attribute で表現する)
 
-
 ```http
 Link: <sw.js>; rel="serviceworker"; scope="/"
 ```
@@ -73,7 +69,7 @@ Link: <sw.js>; rel="serviceworker"; scope="/"
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/service-worker/link-rel-service-worker/>
+- https://labs.jxck.io/service-worker/link-rel-service-worker/
 
 基本は次回の記事で解説する foreign-fetch と合わせた利用が主なユースケースになるため、 「Link ヘッダで Service Worker を登録する」という一点に絞ったデモを用意した。
 

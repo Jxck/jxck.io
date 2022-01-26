@@ -1,6 +1,5 @@
 # [html][security] リンクのへの rel=noopener 付与による Tabnabbing 対策
 
-
 ## Intro
 
 本サイト以下全ての `target=_blank` 付きのリンクに `rel="noopener noreferrer"` の付与を実施した。
@@ -12,7 +11,7 @@
 
 - Firefox で noopener をデフォルトにする Intents が出た
   - Intent to Ship: implicit ref=noopener for `target=_blank` on anchor and area elements
-  - <https://groups.google.com/forum/#!msg/mozilla.dev.platform/DDQP5xIKYiY/3ppe9V-ZCgAJ>
+  - https://groups.google.com/forum/#!msg/mozilla.dev.platform/DDQP5xIKYiY/3ppe9V-ZCgAJ
 
 
 ## window.opener
@@ -21,12 +20,11 @@
 
 ![Opener によって別タブで開いた画面が元の画面を遷移させている](window-opener.gif#150x150 "window opener demo")
 
-このデモでは、 <https://labs.jxck.io/noopener/> から開いた <https://labs.jxck.io/noopener/opener-change.html> のページが別タブで開いた後、最初に開いたタブが勝手に <http://example.com> に遷移しているというものである。
+このデモでは、 https://labs.jxck.io/noopener/ から開いた https://labs.jxck.io/noopener/opener-change.html のページが別タブで開いた後、最初に開いたタブが勝手に http://example.com に遷移しているというものである。
 
 最初のページを Parent 、開いたタブを Child とする。
 
 child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
-
 
 ```js
 window.opener.location = http://example.com
@@ -38,7 +36,7 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 これは、オリジンが違っても可能であるため、リンクをたどってきたユーザを任意のサイトに誘導することが可能というわけである。
 
-- <https://labs.jxck.io/noopener/>
+- https://labs.jxck.io/noopener/
 
 
 ## open link in new tab
@@ -53,7 +51,6 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 | Firefox34 |       |             |                 |
 | Opera26   | x     | x           | x               |
 | Safari7,8 | x     |             |                 |
-
 
 なお IE は(security zone setting をいじらない限り)この問題が発生しないようだ。
 
@@ -158,7 +155,6 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 
 したがって、以下のようにすることで目的が達成できる。
 
-
 ```html
 <a href="http://example.com" target=_blank rel="noopener noreferrer">
 ```
@@ -167,7 +163,7 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 
 `rel` の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
 
-- <https://labs.jxck.io/noopener/>
+- https://labs.jxck.io/noopener/
 
 
 ## 本サイトへの適用

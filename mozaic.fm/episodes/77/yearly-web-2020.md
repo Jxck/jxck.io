@@ -17,9 +17,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### 2020 年キーワード
-
 
 #### Jxck
 

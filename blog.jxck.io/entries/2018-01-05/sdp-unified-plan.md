@@ -1,6 +1,5 @@
 # [webrtc][sdp] SDP の Unified Plan と Plan B
 
-
 ## Intro
 
 新年早々、 Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。
@@ -55,7 +54,6 @@ Chrome がそこに対して Intent to Implement を出したことは、業界�
 
 その中に、マイクごとの定義を、 "a=ssrc" で記述する。
 
-
 ```sdp
 m=audio 49170 RTP/AVP 101
 a=ssrc:1 msid:left-mic
@@ -73,7 +71,6 @@ Plan A は、 "m=" line をメディアごとに書くというシンプルな�
 もし多重化したい場合は、対象の "m=" line に対して BUNDLE を指定する。
 
 この方式が WebRTC の標準として合意され、現在は Unified Plan として策定が進んでいる。
-
 
 ```sdp
 ...
@@ -103,7 +100,6 @@ Chrome は、まず WebRTCUnifiedPlan というフラグを用意するとして
 デフォルトは `"plan-b"` であり、明示的に `"unified-plan"` を指定すれば切り替えられる。
 
 後にデフォルトを "unified-plan" に変更し、 `"plan-b"` が十分に減れば値自体が削除される。
-
 
 ```js
 new RTCPeerConnection({sdpSemantics: "unified-plan"})

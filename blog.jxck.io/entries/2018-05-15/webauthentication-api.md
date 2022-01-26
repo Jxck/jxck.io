@@ -1,6 +1,5 @@
 # [fido-u2f][web authentication api] Web Authentication API で FIDO U2F(YubiKey) 認証
 
-
 ## Intro
 
 Web Authentication(WebAuthN) API の策定と実装が進んでいる。
@@ -9,14 +8,14 @@ Web Authentication(WebAuthN) API の策定と実装が進んでいる。
 
 今回は YubiKey 認証の実装を通じて、ブラウザ API の呼び出しと、サーバ側で必要な処理について解説する。
 
-<https://w3c.github.io/webauthn/>
+- https://w3c.github.io/webauthn/
 
 
 ## DEMO
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/webauthentication/fido-u2f/>
+- https://labs.jxck.io/webauthentication/fido-u2f/
 
 YubiKey での動作のみ確認している。
 
@@ -24,13 +23,11 @@ YubiKey での動作のみ確認している。
 
 (あくまで API の流れを解説するためのものであるため、飛ばした処理もあり、本番利用に耐えうるものではない。)
 
-- <https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f>
+- https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f
 
 YubiKey Login の動作イメージは以下。
 
-
 <iframe src="https://www.youtube.com/embed/XL94v1t2aWk" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
 
 
 ## WebAuthentication API
@@ -72,13 +69,11 @@ JS API としては、 Credential Management API をそのまま使う。
 
 ## Registration
 
-
 ### 1. サービスに対して challenge (乱数)の発行を要求する
 
 クライアントはサーバに username を送り、登録に必要な以下のような情報を要求する。
 
 (ここではそのまま `navigatore.credentials.create()` に渡せる形でサーバから返している)
-
 
 ```js
 // https://w3c.github.io/webauthn/#dictionary-makecredentialoptions
@@ -104,7 +99,6 @@ const clientCredentialOption = {
 
 従って、これはセッションなどに保存しておく必要がある。
 
-
 ```js
 req.session.challenge = challenge
 req.session.username  = username // CAUTION!! this is only a sample
@@ -116,7 +110,6 @@ req.session.username  = username // CAUTION!! this is only a sample
 ブラウザは、取得した値を元に `create()` を呼びクレデンシャルを生成する。
 
 YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
-
 
 ```js
 // create() PublicKeyCredential
@@ -150,7 +143,6 @@ response の中がそうした値になっており、 attestationObject は CBO
 
 ここには以下のようなデータが入っている。
 
-
 ```js
 {
   fmt,      // attestation statement format
@@ -160,7 +152,6 @@ response の中がそうした値になっており、 attestationObject は CBO
 ```
 
 ここまで確認したら、 clientDataJSON (バイナリ) を元に SHA-256 を取得しておく。
-
 
 ```js
 const clientDataHash = crypto.createHash("sha256").update(clientDataJSON).digest()
@@ -215,7 +206,6 @@ credentialPublicKey は、さらに COSE という形式でエンコードされ
 
 CBOR でパースすると以下のように数字がキーのオブジェクトが得られる。
 
-
 ```js
 {
   1: kty=2,  // EC2 key type
@@ -237,7 +227,6 @@ ExtensionDataIncluded は今回 0 なので拡張は無し。
 
 [8.6. FIDO U2F Attestation Statement Format](https://w3c.github.io/webauthn/#fido-u2f-attestation)
 
-
 ```js
 u2fStmtFormat = {
                   x5c: [ attestnCert: bytes ],
@@ -246,7 +235,6 @@ u2fStmtFormat = {
 ```
 
 x5c には Attestation Certificate が仕様上、丁度 1 つだけ入っている。
-
 
 ```js
 attCert = x5c[0]
@@ -261,15 +249,13 @@ sig は Attestation Signature の値だ。
 
 先程 COSE から取得した x と y を連結し、先頭に 0x04 を加えると PublicKey になる。
 
-<https://w3c.github.io/webauthn/#fido-u2f-attestation>
-
+- https://w3c.github.io/webauthn/#fido-u2f-attestation
 
 ```js
 PublicKeyU2F = 0x04 || x || y
 ```
 
 これと、 rpidHash, clientDataHash, credentialId を連結し、先頭に 0x00 を加えると、署名対象のデータが得られる。
-
 
 ```js
 verificationData = 0x00 || rpIdHash || clientDataHash || credentialId || publicKeyU2F
@@ -281,7 +267,6 @@ x5c は ANSI X9.62 Public Key Format というバイナリ形式で、 Node で�
 
 これは base64 でシリアライズし 64 文字で改行し、ヘッダとフッタをつければ一応 PEM になる。
 
-
 ```js
 const certificatePublicKeyPEM = [
   "-----BEGIN CERTIFICATE-----",
@@ -291,7 +276,6 @@ const certificatePublicKeyPEM = [
 ```
 
 これを用いて検証する。
-
 
 ```js
 const verified = crypto.createVerify("sha256").update(verificationData).verify(certificatePublicKeyPEM, sig)
@@ -314,7 +298,6 @@ const verified = crypto.createVerify("sha256").update(verificationData).verify(c
 
 同じユーザが複数の認証デバイスを登録することも想定するなら、以下のようになる。
 
-
 ```js
 storage["username"] = {
   id,
@@ -329,13 +312,11 @@ storage["username"] = {
 
 ## Authentication
 
-
 ### 1. サービスに対して challenge (乱数)の発行を要求する
 
 registration 同様、サーバに username を送り、認証に必要な以下の情報を要求する。
 
 (ここではそのまま `navigatore.credentials.get()` に渡せる形でサーバから返している)
-
 
 ```js
 {
@@ -350,7 +331,6 @@ allowCredentials は、サーバに保存した、ログイン対象のユーザ
 
 challenge は登録時と同じくランダムな値。これもセッションなどに保存しておき、実際の認証で使う。
 
-
 ```js
 req.session.challenge = challenge
 req.session.username  = username // CAUTION!! this is only a sample
@@ -362,7 +342,6 @@ req.session.username  = username // CAUTION!! this is only a sample
 ブラウザは、取得した値を元に `get()` を呼びクレデンシャルを生成する。
 
 YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
-
 
 ```js
 // get() PublicKeyCredential
@@ -410,7 +389,6 @@ flag も同じだが、今回は AttestedCredentialData も無いため、 UserP
 
 次に ClientDataJSON の SHA-256 ハッシュを取得する。
 
-
 ```js
 const hash = crypto.createHash("sha256").update(clientDataJSON).digest()
 ```
@@ -422,7 +400,6 @@ const hash = crypto.createHash("sha256").update(clientDataJSON).digest()
 結論から言うと、以下のようなメタデータを付与する必要があり、それ以外は先の方法と同じく base64 を 64bit ごとに折り返せば良い。
 
 (ここが一番ハマった)
-
 
 ```js
 // https://github.com/fido-alliance/webauthn-demo/blob/master/utils.js
@@ -444,7 +421,6 @@ const publickKeyPEM = Buffer.concat([
 ```
 
 この鍵で署名を確認する。
-
 
 ```js
 const verified = crypto

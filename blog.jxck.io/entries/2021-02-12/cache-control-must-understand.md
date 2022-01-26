@@ -1,6 +1,5 @@
 # [cache][http][ietf] Cache-Control: must-understand ディレクティブとは何か
 
-
 ## Intro
 
 IETF が策定する HTTP の仕様が更新されようとしている。
@@ -19,7 +18,7 @@ RFC7234 では、新しいステータスコードを策定する際に、キャ
 > however, status codes that are defined as being cacheable are allowed to be cached
 > without explicit freshness information.
 > Likewise, the definition of a status code can place constraints upon cache behavior...
-> --- <https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2>
+> --- https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2
 
 つまり、その新しいステータスコードは、 `max-age` などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache 可能かどうかなどを定義できるのだ。
 
@@ -28,7 +27,7 @@ RFC7234 では、新しいステータスコードを策定する際に、キャ
 > A cache MUST NOT store a response to any request, unless:
 > The request method is understood by the cache and defined as being cacheable, and
 > the response status code is understood by the cache, and...
-> --- <https://httpwg.org/specs/rfc7234.html#response.cacheability>
+> --- https://httpwg.org/specs/rfc7234.html#response.cacheability
 
 問題は、 3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
 
@@ -45,7 +44,6 @@ RFC7234 では、新しいステータスコードを策定する際に、キャ
 
 例としてここでは `999 New Status` という架空のステータスコードが新しく仕様化され、そのステータスコードにはデフォルトでキャッシュに関する要件が定義されていたとする。
 
-
 ```http
 HTTP/1.1 999 New Status
 Content-Type: text/html
@@ -58,7 +56,6 @@ Cache-Control: max-age=3600
 この問題を解決するために Cache の改定版 ID では、該当部分が更新され `must-understand` というディレクティブが追加されている。
 
 このディレクティブは、以下のように必ず `no-store` とともに付与される。
-
 
 ```http
 HTTP/1.1 999 New Status
@@ -88,7 +85,7 @@ Cache-Control: max-age=3600, must-understand, no-store
 > the response status code is final (see Section 15 of [Semantics]);
 > if the response status code is 206 or 304, or the "must-understand" cache directive (see Section 5.2.2.2) is present: the cache understands the response status code;
 > ...
-> --- <https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3>
+> --- https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3
 
 ステータスコードに `final` という概念が入ったのはまた別の話として解説したいが、問題は 3 つ目の条件だ。
 
@@ -121,7 +118,7 @@ Cache-Control: max-age=3600, must-understand, no-store
 
 動作するデモを以下に用意した。
 
-- <http://labs.jxck.io/cache-control/must-understand.html>
+- http://labs.jxck.io/cache-control/must-understand.html
 
 (特に使うステータスコードが無いため 200 にしてある)
 
@@ -129,7 +126,7 @@ Cache-Control: max-age=3600, must-understand, no-store
 ## Resources
 
 - Spec
-  - <https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#name-must-understand>
+  - https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#name-must-understand
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
@@ -142,5 +139,5 @@ Cache-Control: max-age=3600, must-understand, no-store
 - Blog
 - Presentation
 - Issues
-  - <https://github.com/httpwg/http-core/issues/120>
+  - https://github.com/httpwg/http-core/issues/120
 - Other

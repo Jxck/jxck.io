@@ -1,6 +1,5 @@
 # [scroll][fragment][url] Scroll To Text Fragment と :~:text
 
-
 ## Intro
 
 ページ内の特定の位置へのスクロールは、 URL フラグメントと HTML の ID 属性を用いて行われていた。
@@ -14,8 +13,8 @@ Chrome がフラグ付きで実装しているため、この仕様の特徴に�
 
 従来の仕様では、 HTML 内にある ID 属性を URL フラグメントに付与することで、その要素まで自動でスクロールするという仕様になっていた。
 
-- <https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment>
-- <https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document>
+- https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment
+- https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document
 
 しかし、実際には ID が振られていないサイトや、スクロールしたい場所に ID が無い場面は多い。
 
@@ -54,7 +53,6 @@ Chrome 78 では 3 つとも実装されたようだが、今は `:~:` のみに
 
 `textTarget=` などの案も有ったが、現状は以下のような構文になっている。
 
-
 ```
 :~:text=[prefix-,]textStart[,textEnd][,-suffix]
 ```
@@ -62,7 +60,6 @@ Chrome 78 では 3 つとも実装されたようだが、今は `:~:` のみに
 これをフラグメントに付与することで、遷移時にスクロールする。
 
 フォールバックとして既存のフラグメントと両方使うこともできる。
-
 
 ```url
 https://example.com#sometext:~:text=sometext
@@ -84,25 +81,25 @@ ID で遷移した場合は `:targe` 疑似要素からスタイルが設定で�
 
 各指定は、基本は単語単位で行う。
 
-<https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum>
+https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum
 
-![textStart を英語指定](1.textStart.en.png#3359x2051 'textStart with en')
+![textStart を英語指定](1.textStart.en.png#3359x2051 "textStart with en")
 
-<https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum,aliqua>
+https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ipsum,aliqua
 
-![textStart, textEnd を英語指定](2.textStart-textEnd.en.png#3357x2053 'textStart & textEnd with en')
+![textStart, textEnd を英語指定](2.textStart-textEnd.en.png#3357x2053 "textStart & textEnd with en")
 
-<https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しかし,ない>
+https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しかし,ない
 
-![textStart, textEnd を日本語指定](3.textStart-textEnd.ja.png#3359x2051 'textStart & textEnd with ja')
+![textStart, textEnd を日本語指定](3.textStart-textEnd.ja.png#3359x2051 "textStart & textEnd with ja")
 
-<https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しない。-,しかし,ない>
+https://labs.jxck.io/scroll-to-text-fragment/#:~:text=しない。-,しかし,ない
 
-![prefix, textStart, textEnd を日本語指定](4.prefix-textStart-textEnd.ja.png#3359x2054 'prefix & textStart & textEnd with ja')
+![prefix, textStart, textEnd を日本語指定](4.prefix-textStart-textEnd.ja.png#3359x2054 "prefix & textStart & textEnd with ja")
 
-<https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ない。-,しかし,ない,-のに>
+https://labs.jxck.io/scroll-to-text-fragment/#:~:text=ない。-,しかし,ない,-のに
 
-![prefix, textStart, textEnd, suffix を日本語指定](5.prefix-textStart-textEnd-suffix.jp.png#3359x2054 'prefix & textStart & textEnd & suffix with ja')
+![prefix, textStart, textEnd, suffix を日本語指定](5.prefix-textStart-textEnd-suffix.jp.png#3359x2054 "prefix & textStart & textEnd & suffix with ja")
 
 
 ## 考察

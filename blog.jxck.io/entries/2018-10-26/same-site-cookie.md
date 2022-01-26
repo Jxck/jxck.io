@@ -1,6 +1,5 @@
 # [same-site-cookie][cookie][csrf][security] Cookie の性質を利用した攻撃と Same Site Cookie の効果
 
-
 ## Intro
 
 Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。
@@ -42,7 +41,6 @@ CSRF は、この SNS の場合、別の罠サイトを用意し SNS への正�
 
 例えば、正規の投稿はログイン状態で `https://sns.example.com/posts/new` にある以下の form から行うものであったとする。
 
-
 ```html
 <form action=/posts method=post>
   <textarea name=msg>hello</textarea>
@@ -51,7 +49,6 @@ CSRF は、この SNS の場合、別の罠サイトを用意し SNS への正�
 ```
 
 この form を submit した時に送信される HTTP Request の概観は以下のようになるだろう
-
 
 ```http
 POST /posts HTTP/1.1
@@ -67,7 +64,6 @@ msg=hello
 
 ここで、攻撃者は `https://darkside.jxck.io/csrf` に以下のような HTML を仕込んだ罠ページを用意する。
 
-
 ```html
 <form action=https://sns.example.com/posts/new method=post>
   <textarea name=msg>こんにちはこんにちは</textarea>
@@ -80,7 +76,6 @@ Form の action に URL 全体を入れている点に注目したい。
 そして、 `https://sns.example.com` にログイン済みのユーザをこのページに誘導し、なんらかの方法で submit させる。もしくは Form を隠して JS で強制的に submit してもよい。
 
 ここで生成される HTTP Request は以下のようになるだろう。
-
 
 ```http
 POST /posts HTTP/1.1
@@ -114,7 +109,6 @@ Origin ヘッダは、そもそもが生成元の Origin を通知するため�
 
 結果として、暗号論的に安全な乱数を One Time Token として生成し、それを Form に hidden で隠して、*意図した Form からのリクエスト* かを検証する方法が主流となっている。
 
-
 ```html
 <form action=https://sns.example.com/posts/new method=post>
   <textarea name=msg>こんにちはこんにちは</textarea>
@@ -122,7 +116,6 @@ Origin ヘッダは、そもそもが生成元の Origin を通知するため�
   <button type=submit>post</button>
 </form>
 ```
-
 
 ```http
 POST /posts HTTP/1.1
@@ -150,7 +143,6 @@ Web のコンテキストで共通するのは、罠サイトから対象のサ�
 この時、実際にレスポンスを取得することができなくてもよく、リクエストにかかる時間を計測し、リクエストを変化させた時のレスポンスタイムの変化から機密情報を推測するというシナリオだ。
 
 例えば先の SNS でユーザのページへリクエストする場合、 block していなければプロフィールページが表示されるが、 block していれば定型文が返るためレスポンスが速いとする。
-
 
 ```js
 function timing_attack() {
@@ -190,7 +182,6 @@ CRIME/BEAST/BREACH は、 TLS の暗号化や圧縮に関わるロジックを�
 
 例えば CRIME の場合は、 Cookie の値が一致すれば圧縮が効きパケットが小さくなることを観測するだけでよい、イメージとしては以下のような感じだ。
 
-
 ```js
 for(...) {
   word = `ここを変えて行く`
@@ -218,13 +209,12 @@ XSSI は JSONP のエンドポイントから取得できる情報を、罠サ�
 
 SameSite Cookie は、 Set-Cookie ヘッダに付与する新しい属性であり、現状 2 つの値を取る。
 
-
 ```http
 Set-Cookie: key=value; SameSite=Strict
 Set-Cookie: key=value; SameSite=Lax
 ```
 
-<https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7>
+- https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7
 
 
 ### Strict
@@ -254,18 +244,17 @@ POST では Cookie が送られないため、後述する CSRF のような攻�
 
 Lax で送られるかどうかをまとめると以下のようになる。
 
-| Type         | Code                                | Lax |
-|:-------------|:------------------------------------|-----|
-| Link         | `<a href="..."></a>`                |  o  |
-| Perender     | `<link rel="prerender" href=".."/>` |  o  |
-| Form GET     | `<form method="GET" action="...">`  |  o  |
-| Form POST    | `<form method="POST" action="...">` |  x  |
-| iframe       | `<iframe src="..."></iframe>`       |  x  |
-| AJAX         | `$.get("...")`                      |  x  |
-| Image        | `<img src="...">`                   |  x  |
+| Type      | Code                                | Lax |
+|:----------|:------------------------------------|:---:|
+| Link      | `<a href="..."></a>`                | o   |
+| Perender  | `<link rel="prerender" href=".."/>` | o   |
+| Form GET  | `<form method="GET" action="...">`  | o   |
+| Form POST | `<form method="POST" action="...">` | x   |
+| iframe    | `<iframe src="..."></iframe>`       | x   |
+| AJAX      | `$.get("...")`                      | x   |
+| Image     | `<img src="...">`                   | x   |
 
-
-<https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/>
+https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/
 
 
 ## SameSite Cookie の導入
@@ -292,18 +281,16 @@ Lax で送られるかどうかをまとめると以下のようになる。
 
 そこで、 RFC では Cookie を Read Cookie と Write Cookie の 2 つにわける構成が言及されている。
 
-<https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2>
+- https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2
 
 Read Cookie
 : ユーザのセッション維持するための Cookie 。これが送られればユーザがログイン状態と見なされる。しかし、それ以上の操作についてはこの Cookie では許可されない。
-
 Write Cookie
 : 書き込みを許可する Cookie 。例えばパスワードの変更や、投稿、購入、キャンセル、送金など、副作用を伴う操作の許可に使われる。
 
 この 2 つに Cookie を分離し、 Write Cookie に Strict を適用すれば、より堅牢な設計となる。
 
 Read Cookie は、副作用を起こす能力がなくなっているのであれば、 Lax でも SameSite 無しでも良い。
-
 
 ```http
 Set-Cookie: read=zxcv; Path=/; Secure; HttpOnly;
@@ -343,4 +330,4 @@ Redirect を挟むのは Write Cookie を分けた意味がないため、一旦
 
 動作するデモを以下に用意した。
 
-- <https://labs.mozaic.fm/same-site-cookie/>
+- https://labs.mozaic.fm/same-site-cookie/

@@ -8,14 +8,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 # ep41 Monthly Web 201808
 
-
 ## Theme
 
 第 41 回のテーマは 2018 年 8 月の Monthly Web です。
 
 
 ## Show Note
-
 
 ### Chrome 動向
 

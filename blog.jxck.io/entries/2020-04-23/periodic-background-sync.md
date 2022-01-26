@@ -1,6 +1,5 @@
 # [periodic background sync][service worker] Periodic Background Sync 及び Web を Install するということ
 
-
 ## Intro
 
 メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクを実行したいケースがある。
@@ -31,7 +30,6 @@ Web で定期的なタスクを実行する場合、タブが開いていれば 
 
 まず ServiceWorkerRegistration 経由で task を登録する。
 
-
 ```js
 const registration = await navigator.serviceWorker.ready
 await registration.periodicSync.register('update-feed', {
@@ -40,7 +38,6 @@ await registration.periodicSync.register('update-feed', {
 ```
 
 すると、 Service Worker 上で定期的にイベントが発火する。
-
 
 ```js
 self.addEventListener('periodicsync', (e) => {
@@ -189,9 +186,7 @@ Web は、こうした Native App だけが持つ機能を取り込むために�
 
 筆者が 2018 年の builderscon や 2019 年の JSConf で話した内容は、この Security Model がどう更新されていくかにフォーカスした内容といっても良いが、その一端が垣間見えてきたと感じている。
 
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_LzSBr99kkw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 
 TODO: JSConf の動画(会長の公開待ち)
 
@@ -206,7 +201,7 @@ TODO: JSConf の動画(会長の公開待ち)
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/service-worker/periodic-background-sync/>
+- https://labs.jxck.io/service-worker/periodic-background-sync/
 
 前述のように動作させるのは少し難しい。
 
@@ -214,26 +209,26 @@ TODO: JSConf の動画(会長の公開待ち)
 ## Resources
 
 - Spec
-  - <https://wicg.github.io/BackgroundSync/spec/PeriodicBackgroundSync-index.html>
+  - https://wicg.github.io/BackgroundSync/spec/PeriodicBackgroundSync-index.html
 - Explainer
-  - <https://github.com/WICG/BackgroundSync/blob/master/explainers/periodicsync-explainer.md>
+  - https://github.com/WICG/BackgroundSync/blob/master/explainers/periodicsync-explainer.md
 - Requirements Doc
-  - <https://docs.google.com/document/d/1FI4x3G6vzEWDplghSx-pH13aAwuGHiUGtXliEkZf0Vc/edit#heading=h.puhs715welcu>
+  - https://docs.google.com/document/d/1FI4x3G6vzEWDplghSx-pH13aAwuGHiUGtXliEkZf0Vc/edit#heading=h.puhs715welcu
 - Mozilla Standard Position
-  - <https://github.com/mozilla/standards-positions/issues/214>
+  - https://github.com/mozilla/standards-positions/issues/214
 - TAG Design Review
-  - <https://github.com/w3ctag/design-reviews/issues/367>
+  - https://github.com/w3ctag/design-reviews/issues/367
 - Intents
-  - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KSJViFp3hMc/e-Yzd3_-AwAJ>
+  - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KSJViFp3hMc/e-Yzd3_-AwAJ
 - Chrome Platform Status
-  - <https://www.chromestatus.com/feature/5689383275462656>
+  - https://www.chromestatus.com/feature/5689383275462656
 - Blog
-  - <https://web.dev/periodic-background-sync>
+  - https://web.dev/periodic-background-sync
 - Presentation
-  - <https://speakerdeck.com/jxck/periodic-background-sync>
+  - https://speakerdeck.com/jxck/periodic-background-sync
 - Issues
   - Periodic Background Sync has serious security risks, which are not described or adequately mitigated - Issue #169 - WICG/BackgroundSync
-    - <https://github.com/WICG/BackgroundSync/issues/169>
+    - https://github.com/WICG/BackgroundSync/issues/169
 - Other
   - Site Engagement - The Chromium Projects
-    - <https://www.chromium.org/developers/design-documents/site-engagement>
+    - https://www.chromium.org/developers/design-documents/site-engagement

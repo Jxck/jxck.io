@@ -1,6 +1,5 @@
 # [background-fetch][service worker] Service Worker の Background Fetch によるメディアのキャッシュ
 
-
 ## Intro
 
 Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。
@@ -37,13 +36,11 @@ PWA のキャッシュ戦略典型例としては
 
 HTTP 上は Range Request と Partial Response が使われ、途中から再生するような場合以下のようになる。
 
-
 ```http
 GET /mozaic-ep60.mp3 HTTP/1.1
 Host: files.mozaic.fm
 Range: bytes=54034432-
 ```
-
 
 ```http
 HTTP/1.1 206 Partial Content
@@ -58,7 +55,6 @@ Content-Length: 47763456
 ## Service Worker での Range Request
 
 ところが onfetch で Range になるはずのリクエストを見てみると、レスポンスが必ず 200 で返ってきていることに気付く。
-
 
 ```js
 self.addEventListener('fetch', (e) => {
@@ -122,7 +118,6 @@ Service Worker に fetch を Task として追加し、バックグラウンド�
 
 ## API
 
-
 ### backgroundFetch registration
 
 取得したい URL とオプションを登録する。
@@ -130,7 +125,6 @@ Service Worker に fetch を Task として追加し、バックグラウンド�
 ID はそのタスク自体を識別するために登録し、もし同じ ID のタスクがある状態で再登録しようとすると例外が出る。
 
 また、ダウンロード対象を複数登録して同時にダウンロードさせることができる。
-
 
 ```js
 const id   = 'ep01'
@@ -150,7 +144,6 @@ const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)
 
 ダウンロードの進捗は window 側で progress イベントで上がる
 
-
 ```js
 task.addEventListener('progress', (e) => console.log(e.downloaded))
 ```
@@ -159,7 +152,6 @@ task.addEventListener('progress', (e) => console.log(e.downloaded))
 ### abort()
 
 中断は API から可能であり、 `abort()` を呼べば task が終了する。
-
 
 ```js
 task.abort()
@@ -176,7 +168,6 @@ Service Worker 側では以下のイベントが上がる。
 - backgroundfetchfail
 - backgroundfetchabort
 - backgroundfetchclick
-
 
 ```js
 // ダウンロード完了
@@ -233,7 +224,6 @@ fail/abort は、タスクが消えるため特にリソースの開放などは
 
 実際に `<audio>` タグは途中からでも普通に再生できた。
 
-
 ```js
 // ダウンロードしたものを返す
 self.addEventListener('fetch', (e) => {
@@ -255,7 +245,7 @@ self.addEventListener('fetch', (e) => {
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/service-worker/background-fetch/>
+- https://labs.jxck.io/service-worker/background-fetch/
 
 
 ## 本サイトへの適用

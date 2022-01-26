@@ -1,6 +1,5 @@
 # [quictransport][webtransport][quic] QuicTransport によるアプリケーションレイヤでの QUIC 活用
 
-
 ## Intro
 
 WebTransport の Quic 実装である QuicTransport の開発が Chrome で行われている。
@@ -21,9 +20,9 @@ WebTransport については [以前解説した](https://blog.jxck.io/entries/2
 IETF で WebTransport over QUIC としてバインディングの仕様が策定され、 WICG でブラウザ API が策定されている。
 
 - draft-vvv-webtransport-quic-00 - WebTransport over QUIC
-  - <https://tools.ietf.org/html/draft-vvv-webtransport-quic-01>
+  - https://tools.ietf.org/html/draft-vvv-webtransport-quic-01
 - WebTransport
-  - <https://wicg.github.io/web-transport/>
+  - https://wicg.github.io/web-transport/
 
 
 ## Server
@@ -56,13 +55,11 @@ wpt の実装は、これを Python の aioquic で行っているため参考�
 
 ここに指定された Origin + Path が前述の Client Indication で通知されることになる。
 
-
 ```
 quic-transport://example.com:3000/echo
 ```
 
 これが JS API で以下のように使われる。
-
 
 ```js
 const transport = new QuicTransport(`quic-transport://example.com:3000/echo`)
@@ -91,7 +88,6 @@ QUIC をそのまま使うという非常にすっきりとした仕様になっ
 この場合送受信は un-reliable であり、送達は保証されない。
 
 WebSocket に似た使用感ではあるが、細かいところが違う。
-
 
 ```js
 const url = `quic-transport://example.com:3000/echo`
@@ -141,7 +137,6 @@ await transport.close()
 
 内部の状態は以下なので、これが増えたらどうするかという懸念もあるが、 WebSocket も同じ状態遷移で特に増えたことはないため、問題ないということだろう。
 
-
 ```
 connecting -> connected
 connecting -> failed
@@ -152,7 +147,6 @@ connected -> failed
 この議論の結果によっては、 EventTarget にならなくなり、 developer experience としては今までと少し違う雰囲気の使用感になりそうだ。
 
 もし、最近やっと Safari に入り Node でも入りそうな EventTarget を使ったほうが慣れているのであれば、以下のような感じで自分で Wrap することもできるだろう。
-
 
 ```js
 class Transport extends EventTarget {
@@ -193,7 +187,6 @@ WebTransport の API は最初から Stream が考慮された実装になって
 
 API interface 的に言うと、現状の定義は以下のようになっている。
 
-
 ```js
 interface QuicTransport {}
 QuicTransport includes UnidirectionalStreamsTransport;
@@ -208,7 +201,6 @@ Http3Transport も同じように 4 つ includes している。
 
 UnidirectionalStreamTransport は以下のような定義だ。
 
-
 ```js
 interface mixin UnidirectionalStreamsTransport {
   Promise<SendStream> createSendStream(optional SendStreamParameters parameters = {});
@@ -219,7 +211,6 @@ interface mixin UnidirectionalStreamsTransport {
 クライアントからサーバに対する 1 方向の場合は `createSendStream` を、逆は `receiveStreams()` によって、必要な Stream が得られる。
 
 一方 BidirectionalStreamTransport の定義はこうだ。
-
 
 ```js
 interface mixin BidirectionalStreamsTransport {
@@ -235,7 +226,6 @@ Bidirectional Stream をクライアントから確立する場合は `createBid
 例として Bi-dir で `<textarea>` の入力を送り echo back で表示するサンプルを以下に作成した。
 
 肝になる部分は以下のようになる。
-
 
 ```js
 const transport = new QuicTransport(url)
@@ -303,30 +293,30 @@ WebCodecs の Experiment が始まったら、追加で検証したい。
 
 動作するデモを以下に用意した。
 
-- <http://labs.jxck.io/webtransport/>
+- http://labs.jxck.io/webtransport/
 
 
 ## Resources
 
 - Spec
   - WICG: WebTransport
-    - <https://wicg.github.io/web-transport/#quic-transport>
+    - https://wicg.github.io/web-transport/#quic-transport
   - IETF: QUIC: A UDP-Based Multiplexed and Secure Transport
-    - <https://quicwg.org/base-drafts/draft-ietf-quic-transport.html>
+    - https://quicwg.org/base-drafts/draft-ietf-quic-transport.html
 - Explainer
   - web-transport/explainer.md at master - WICG/web-transport
-    - <https://github.com/WICG/web-transport/blob/master/explainer.md>
+    - https://github.com/WICG/web-transport/blob/master/explainer.md
 - Requirements Doc
   - QuicTransport Design Doc
-    - <https://docs.google.com/document/d/1UgviRBnZkMUq4OKcsAJvIQFX6UCXeCbOtX_wMgwD_es/edit>
+    - https://docs.google.com/document/d/1UgviRBnZkMUq4OKcsAJvIQFX6UCXeCbOtX_wMgwD_es/edit
 - Mozilla Standard Position
   - not yet
 - TAG Design Review
   - WebTransport - Issue #389 - w3ctag/design-reviews
-    - <https://github.com/w3ctag/design-reviews/issues/389>
+    - https://github.com/w3ctag/design-reviews/issues/389
 - Intents
   - Intent to Experiment: QuicTransport
-    - <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ>
+    - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ
 - Chrome Platform Status
 - Blog
 - Presentation

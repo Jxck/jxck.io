@@ -1,6 +1,5 @@
 # [btoa][random][string][tips] ブラウザで適当なランダム文字列
 
-
 ## Intro
 
 テストや仮実装で、適当なランダム文字列が欲しい場合に便利なスニペット。
@@ -9,7 +8,6 @@
 ## random string
 
 [DEMO](https://labs.jxck.io/snippets/random.html)
-
 
 ```js
 // with random

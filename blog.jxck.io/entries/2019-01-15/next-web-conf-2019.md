@@ -1,6 +1,5 @@
 # [next-web-conf][web] 次世代 Web カンファレンス 2019 開催後記
 
-
 ## Intro
 
 2019/1/13(日) に、以下で告知した「*次世代 Web カンファレンス*」を開催した。
@@ -19,6 +18,7 @@
 ## Log
 
 | session     | youtube                              | togetter                                  |
+|:------------|:-------------------------------------|:------------------------------------------|
 | #nwc_all    | -                                    | [まとめ](https://togetter.com/li/1267054) |
 | #nwc_sre    | [録画](https://youtu.be/HR1pcyQ_i3I) | [まとめ](https://togetter.com/li/1267067) |
 | #nwc_perf   | [録画](https://youtu.be/nXvHsb3uCIw) | [まとめ](https://togetter.com/li/1267058) |
@@ -34,7 +34,6 @@
 | #nwc_ad     | [録画](https://youtu.be/CBBh_qRYRcE) | [まとめ](https://togetter.com/li/1267063) |
 | #nwc_http3  | [録画](https://youtu.be/BfwsIZ7VvyQ) | [まとめ](https://togetter.com/li/1268790) |
 | #nwc_front  | [録画](https://youtu.be/ftqAyw8gYNQ) | [まとめ](https://togetter.com/li/1268792) |
-
 
 
 ## Outro

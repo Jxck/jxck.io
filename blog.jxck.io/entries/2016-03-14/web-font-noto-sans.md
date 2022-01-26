@@ -1,6 +1,5 @@
 # [noto sans][web font][performance] Noto Sans の Web Font 対応とサブセットによる最適化
 
-
 ## Intro
 
 このサイトのフォントに Web Font を適用することにした。
@@ -74,7 +73,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 収録されている、 JIS X 0208 は以下のようになっている。
 
 > JIS (日本工業規格)で定められた漢字の規格で、 JISX0208 に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。 JIS 第 1 水準は 2965 字で、常用漢字 1945 字とその他の人名用漢字が含まれており、通常の文書であれば JIS 第 1 水準の文字だけで記述できるとされている。 JIS 第 2 水準は 3390 字で、 DTP で使用するフォントの多くは、 JIS 第 1 水準と JIS 第 2 水準を網羅している。 JIS 第 3 水準および JIS 第 4 水準は、業種によって必要になる特殊な記号などを集めたもので、 JISX0208 を拡張する別の規格である。
-> --- <http://yougo.ascii.jp/caltar/JIS漢字水準>
+> --- http://yougo.ascii.jp/caltar/JIS漢字水準
 
 しかし、このブログは *技術ブログ* であり、使われる漢字は非常に限定的だ。
 
@@ -91,11 +90,8 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 制御文字などを除いて、以下の範囲を全て収録。
 
-
 ```text:BasicLatin.txt
 ```
-
-[BasicLatin.txt](BasicLatin.txt)
 
 
 ## CJK 記号と句読点(3000-303F)
@@ -106,17 +102,13 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 以下が候補
 
-
 ```text:SymbolsAndPunctuationFull.txt
 ```
 
 この中から、使わないものを除き、以下のみを収録。
 
-
 ```text:SymbolsAndPunctuation.txt
 ```
-
-[SymbolsAndPunctuation.txt](SymbolsAndPunctuation.txt)
 
 
 ## ひらがな(3040-3090)
@@ -125,17 +117,13 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 以下が候補
 
-
 ```text:HiraganaFull.txt
 ```
 
 以下を収録
 
-
 ```text:Hiragana.txt
 ```
-
-[Hiragana.txt](Hiragana.txt)
 
 
 ## カタカナ(30A0-30F0)
@@ -144,17 +132,13 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 以下が候補
 
-
 ```text:KatakanaFull.txt
 ```
 
 以下を収録
 
-
 ```text:Katakana.txt
 ```
-
-[Katakana.txt](Katakana.txt)
 
 
 ## 半角形と全角形(FF00-FFE0)
@@ -164,7 +148,6 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 [Unicode 半角形と全角形 - Halfwidth and Fullwidth Forms -](http://homepage2.nifty.com/k_maeda/code/uni/uni120.html)
 
 以下が候補
-
 
 ```text:Halfwidth-and-Fullwidth-Forms.txt
 ```
@@ -222,12 +205,10 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 以下の 30 文字である。
 
-
 ```text:diff-jyouyou-jis.txt
 ```
 
 ざっと見て、以下 6 文字はいらないだろうと判断した。
-
 
 ```text:jouyou-ignore.txt
 ```
@@ -245,13 +226,10 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 先の 6 文字に 17 文字加えて、以下 23 文字が削除対象である。
 
-
 ```text:Kanji-ignore.txt
 ```
 
 これらを反映した結果が以下である。
-
-[Kanji.txt](Kanji.txt)
 
 
 ### 更新(2016/08/28)
@@ -259,7 +237,6 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 しばらく運用して、省かれていた以下の文字が記事中に必要になったため、文字セットに追加した。
 
 (後述する結果にも反映していある)
-
 
 ```text:Kanji-update.txt
 ```
@@ -271,21 +248,18 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 | 範囲             | 文字数 |
 |:-----------------|-------:|
-| 基本ラテン文字   | 94     |
-| CJK 記号と句読点 | 11     |
-| ひらがな         | 81     |
-| カタカナ         | 83     |
-| 半角形と全角形   | 0      |
-| 常用漢字         | 2136   |
-| 記号             | 1      |
-| 不要文字         | - 23   |
-| 追加更新         | 13     |
-| 合計             | 2396   |
-
+| 基本ラテン文字   |     94 |
+| CJK 記号と句読点 |     11 |
+| ひらがな         |     81 |
+| カタカナ         |     83 |
+| 半角形と全角形   |      0 |
+| 常用漢字         |   2136 |
+| 記号             |      1 |
+| 不要文字         |   - 23 |
+| 追加更新         |     13 |
+| 合計             |   2396 |
 
 全て合わせたのが以下である。
-
-[All.txt](All.txt)
 
 
 ## フォント生成
@@ -335,7 +309,6 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 | 削除後   | 351.6K |
 
 
-
 ### 結果
 
 もしここまでに見てきた各項目にあげた候補を、一切削除せず、漢字を JISX0208 とした場合はこうなる。
@@ -346,9 +319,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 | after  | 378.4K |
 
 
-
 ## フォントの設定
-
 
 ### font-face の指定
 
@@ -363,7 +334,6 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 現在 NotoSans は "NotoSansCJKjp-Bold.otf" という名前で配布されている。
 
 Android は ["NotoSansJP-Regular.otf" という名前で入っているらしい](https://toach.click/how-to-noto-sans-japanese/#Android_MarshmallowNoto_Sans_Japanese) ため、それも含めて以下のように設定する。
-
 
 ```css
 @font-face {
@@ -398,7 +368,6 @@ Google はガイドラインを公開している。
 
 基本的には、サイト全体に適用するため `body` へ指定し、 `pre > code` 内は別にしたいため、そこだけ上書きしている。
 
-
 ```css
 body {
   font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-Jxck", sans-serif;
@@ -412,13 +381,11 @@ body {
 
 ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新が皆無ではないため、 URL にバージョンを忘れずに入れる。(font-face の指定参照)
 
-
 ```css
 url("/paht-to-font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014") format("woff");
 ```
 
 ここでは max-age を一年とし、フォントを作り直した場合はバージョンを変える
-
 
 ```http
 Cache-Control: max-age=31536000
@@ -430,7 +397,6 @@ Cache-Control: max-age=31536000
 [Preload を用いたリソースプリローディングの最適化](https://blog.jxck.io/entries/2016-03-04/preload.html) で解説した `<link rel=preload>` でフォントを適用した。
 
 ただし、影響が大きい Regular のみにした。
-
 
 ```html
 <link rel=preload as=font type=font/woff href="https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014" crossorigin>

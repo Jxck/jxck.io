@@ -1,6 +1,5 @@
 # [brotli][zopfli][http][performance] Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について
 
-
 ## Intro
 
 High Sierra に乗る Safari 11 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が概ね揃うことになる。
@@ -57,13 +56,11 @@ Zopfli が gzip 互換であり既存のブラウザでもそのまま利用で�
 
 これまで、多くのブラウザは以下のような値を返していた。
 
-
 ```http
 Accept-Encoding: gzip, deflate
 ```
 
 ここに、 `br` があれば Brotli に対応しているため、 Brotli で圧縮したファイルをレスポンスできる。
-
 
 ```http
 Accept-Encoding: gzip, deflate, br
@@ -126,7 +123,6 @@ zopfli は、以前の検証で出した `--i30` を採用している。
 | .html.gz  |  6347 |   29% |
 | .html.br  |  5658 |   25% |
 
-
 zopfli と比べて、 4 point 圧縮率が向上している。
 
 
@@ -140,7 +136,6 @@ zopfli と比べて、 4 point 圧縮率が向上している。
 | .js.gz    | 16289 |   38% |
 | .js.br    | 15775 |   37% |
 
-
 zopfli と比べて、 1 point 圧縮率が向上している。
 
 サイズとしては 1K 程度減っているので、かなり圧縮が効いている。
@@ -150,12 +145,11 @@ zopfli と比べて、 1 point 圧縮率が向上している。
 
 [mozaic.css](https://jxck.io/assets/css/mozaic.css)
 
-| file type | size  | ratio |
-|:----------|------:|------:|
-| .css      | 1454  |  100% |
-| .css.gz   |  503  |   35% |
-| .css.br   |  402  |   28% |
-
+| file type | size | ratio |
+|:----------|-----:|------:|
+| .css      | 1454 |  100% |
+| .css.gz   |  503 |   35% |
+| .css.br   |  402 |   28% |
 
 あまり大きなサイズの CSS を使っていなかったので微妙ではある。
 
@@ -174,7 +168,6 @@ zopfli と比べて、 7 point 圧縮率が向上している。
 | .otf.gz   | 382322 |   79% |
 | .otf.br   | 344003 |   71% |
 
-
 [NotoSansCJKjp-Jxck-Regular.otf](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf)
 
 | file type | size   | ratio |
@@ -182,7 +175,6 @@ zopfli と比べて、 7 point 圧縮率が向上している。
 | .woff     | 387528 |  100% |
 | .woff.gz  | 387527 |   99% |
 | .woff.br  | 387533 |  101% |
-
 
 OTF は圧縮効果が高いが、 WoFF は逆効果となっている。
 
@@ -199,7 +191,6 @@ OTF は圧縮効果が高いが、 WoFF は逆効果となっている。
 | .png.gz   |  3108 |    8% |
 | .png.br   |  3103 |    8% |
 
-
 圧縮効果は高いが、 zopfli と brotli では有意な差はなかった。
 
 
@@ -207,12 +198,11 @@ OTF は圧縮効果が高いが、 WoFF は逆効果となっている。
 
 [mozaic.webp](https://jxck.io/assets/img/mozaic.webp)
 
-| file type | size  | ratio |
-|:----------|------:|------:|
-| .webp     |  9474 |  100% |
-| .webp.gz  |  2609 |   28% |
-| .webp.br  |  2544 |   27% |
-
+| file type | size | ratio |
+|:----------|-----:|------:|
+| .webp     | 9474 |  100% |
+| .webp.gz  | 2609 |   28% |
+| .webp.br  | 2544 |   27% |
 
 WebP も圧縮済みのフォーマットであるため、圧縮が逆効果となる場合が多いが、このファイルでは効果が出ている。
 
@@ -223,12 +213,11 @@ WebP も圧縮済みのフォーマットであるため、圧縮が逆効果と
 
 [mozaic.svg](https://jxck.io/assets/img/mozaic.svg)
 
-| file type | size  | ratio |
-|:----------|------:|------:|
-| .svg      |  2871 |  100% |
-| .svg.gz   |   300 |   10% |
-| .svg.br   |   269 |    9% |
-
+| file type | size | ratio |
+|:----------|-----:|------:|
+| .svg      | 2871 |  100% |
+| .svg.gz   |  300 |   10% |
+| .svg.br   |  269 |    9% |
 
 テキストであるためかなり圧縮率は高いが、 zopfli との差は小さい。
 
@@ -238,7 +227,6 @@ WebP も圧縮済みのフォーマットであるため、圧縮が逆効果と
 同じパラメータで、本サイト全体の圧縮タスクの実行時間を比較した。
 
 圧縮対象は、 html/js/css/png/txt/md など 890 ファイルである。
-
 
 ```
 zopfli: 190.33s user 2.77s system 98% cpu 3:15.28  total

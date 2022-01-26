@@ -15,7 +15,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### Chrome 動向
 
 - Stable: 70
@@ -685,6 +684,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - *The secret-token URI Scheme* https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00
 - Metadata-Attacker - A Tool To Generate Media Files With Malicious Metadata - KitPloit - PenTest Tools for your Security Arsenal
   - https://www.kitploit.com/2018/10/metadata-attacker-tool-to-generate.html
+
 
 ### 周辺動向
 

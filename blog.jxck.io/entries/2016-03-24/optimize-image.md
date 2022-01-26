@@ -1,6 +1,5 @@
 # [image][performance] 画像最適化戦略 PNG/JPEG 編
 
-
 ## Intro
 
 本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。
@@ -8,10 +7,10 @@
 画像最適化シリーズ第 1 回目のエントリである。
 
 1. [> 画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
-1. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
-1. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
-1. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
-1. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
+2. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
+3. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
+4. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
+5. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
 
 
 ## サイズ最適化
@@ -63,7 +62,6 @@ JPEG は、大きい画像を送信する際に、ベースとなるデータを
 
 ベースライン
 : 画像を上から順番に表示していく
-
 プログレッシブ
 : 解像度の低い画像から表示され、徐々に鮮明になっていく
 
@@ -108,7 +106,6 @@ JPEG は、大きい画像を送信する際に、ベースとなるデータを
 
 リサイズは別途行い、その結果に対して以下のような gulp タスクを作成した。
 
-
 ```js
 'use strict';
 
@@ -140,7 +137,6 @@ gulp.task('default', ['image']);
 ## 結果
 
 gulp-image の実行結果は以下である。
-
 
 ```
 ✔ 2016-02-17/before.png -> before=57.88 KB after=22.07 KB reduced=35.82 KB(61.9%)

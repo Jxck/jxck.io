@@ -1,6 +1,5 @@
 # [monthly-web][mozaic.fm][podcast] Monthly Web の作り方 2018 年版
 
-
 ## Intro
 
 筆者がやっている Podcast である [mozaic.fm](https://mozaic.fm) の中で、 Monthly Web という月ごとの Web の動向をまとめる回をやっている。
@@ -61,7 +60,6 @@ mozaic.fm は、 Web について「*今何が起こっているのか*」「*�
 
 ## Chrome 動向
 
-
 ### Overview
 
 Chrome は Intents や Blog など、アウトプットが充実しているので追いやすい。
@@ -77,7 +75,7 @@ Chrome の Stable は 6~8 週間程度でリリースされるため、 Monthly 
 
 実装の進み具合については、 blink-dev ML の Intents を追うのが一番手軽だ。
 
-- <https://groups.google.com/a/chromium.org/forum/#!forum/blink-dev>
+- https://groups.google.com/a/chromium.org/forum/#!forum/blink-dev
 
 例えばある機能 A の実装に着手する場合は "Intent to Implement A" という投稿があるといった具合だ。
 
@@ -93,7 +91,7 @@ Intents は以下のようなバリエーションがある。
 
 Intents のまとめは以下にある。
 
-- <https://bit.ly/blinkintents>
+- https://bit.ly/blinkintents
 
 Intents を追うことで、「この機能は実装できるところまで仕様が仕上がったんだな」「Origin Trials 始まったな」「そろそろリリースか」などといった部分がわかる。
 
@@ -134,19 +132,19 @@ Blink の開発は、スコープごとにいくつかのチームに分かれ�
 
 リリーススケジュールは以下で確認できる。
 
-- <https://www.chromestatus.com/features/schedule>
-- <https://chromereleases.googleblog.com>
-- <https://www.chromium.org/developers/calendar>
+- https://www.chromestatus.com/features/schedule
+- https://chromereleases.googleblog.com
+- https://www.chromium.org/developers/calendar
 
 Beta あたりまで来ると、アップデートエントリが Chromium のブログに来る。
 
-- <https://blog.chromium.org>
+- https://blog.chromium.org
 
 ここで、 Intents の結果、次の Stable に入るおおよその変更が把握できる。
 
 Stable リリースのタイミングでは、 "New in Chrome" と "Deprecation & Removables" エントリが Google Developers Blog にあがる。
 
-- <https://developers.google.com>
+- https://developers.google.com
 
 (Intents から追っていると、数カ月間その議論を追うことになり、知らぬ間に「もう普通に使えるもの」と錯覚してしまうことがあるため、 Stable リリースで認識を補正する必要がある)
 
@@ -172,7 +170,7 @@ Web 自体は製品ではないため、 I/O で知る内容は Chrome の新機
 
 V8 も、アップデートのタイミングでブログがあがるため、これも含めている。
 
-- <https://v8project.blogspot.jp>
+- https://v8project.blogspot.jp
 
 ES API の実装状況だけでなく、内部のパフォーマンス改善などの解説も面白い。
 
@@ -183,14 +181,13 @@ ES API の実装状況だけでなく、内部のパフォーマンス改善な�
 
 AMP や Firebase でも、気になるアップデートがある場合は混ぜることもある。
 
-- <https://chromestatusdeck.com>
-- <https://security.googleblog.com>
-- <https://www.chromestatus.com/features>
-- <https://amphtml.wordpress.com>
+- https://chromestatusdeck.com
+- https://security.googleblog.com
+- https://www.chromestatus.com/features
+- https://amphtml.wordpress.com
 
 
 ## Firefox 動向
-
 
 ### Overview
 
@@ -202,7 +199,7 @@ Intents は Chrome と似た運用だが、カバー率が低く Intents なし�
 
 リリースは 2 ヶ月ごとくらいに行われ、 ESR が運用されている。
 
-- <https://wiki.mozilla.org/RapidRelease/Calendar>
+- https://wiki.mozilla.org/RapidRelease/Calendar
 
 ブログでは Web だけでなく Internet の話題、例えば NetNeutrarity なども積極的に出してくるが、政治や法律などレイヤの高い話題は Monthly Web では省いている。
 
@@ -213,29 +210,29 @@ Chrome と同じような Intents が運用されている。
 
 Intents のカバー率は低いように感じるが、やはりそこが一番手軽だ。
 
-- <https://groups.google.com/forum/#!msg/mozilla.dev.platform>
+- https://groups.google.com/forum/#!msg/mozilla.dev.platform
 
 Experimental な機能は以下にまとまっている。
 
-- <https://developer.mozilla.org/en-US/Firefox/Experimental_features>
-- <https://platform-status.mozilla.org>
+- https://developer.mozilla.org/en-US/Firefox/Experimental_features
+- https://platform-status.mozilla.org
 
 
 ### Release Blog
 
 リリースのスケジュールなどは以下にある。
 
-- <https://www.mozilla.org/en-US/firefox/releases>
-- <https://wiki.mozilla.org/RapidRelease/Calendar>
+- https://www.mozilla.org/en-US/firefox/releases
+- https://wiki.mozilla.org/RapidRelease/Calendar
 
 リリースノートは以下にある
 
-- <https://developer.mozilla.org/en-US/Firefox/Releases>
+- https://developer.mozilla.org/en-US/Firefox/Releases
 
 メジャーアップデートなどは、以下のブログにエントリが出る
 
-- <https://blog.mozilla.org>
-- <https://hacks.mozilla.org>
+- https://blog.mozilla.org
+- https://hacks.mozilla.org
 
 Nightly News には、 "These Weeks in Firefox: Issue NN" というシリーズのエントリが上がり、 Nightly で進行している実装の進捗などがまとまっている。
 
@@ -243,14 +240,14 @@ Nightly News には、 "These Weeks in Firefox: Issue NN" というシリーズ�
 
 Intents や Snippet のまとめ的な意味合いで、情報濃度が高い。
 
-- <https://blog.nightly.mozilla.org>
+- https://blog.nightly.mozilla.org
 
 
 ### Site Compat
 
 互換性に関わる変更がある場合 sitecompat というサイトが更新される。
 
-- <https://www.fxsitecompat.com>
+- https://www.fxsitecompat.com
 
 ボランティアベースではあるが、 Intent to Remove 系との関わりや影響が確認できる。
 
@@ -261,7 +258,7 @@ Intents や Snippet のまとめ的な意味合いで、情報濃度が高い。
 
 Mozilla の場合は一番目立つのは Mozilla Festival だろう。
 
-- <https://mozillafestival.org>
+- https://mozillafestival.org
 
 Web に限らず Decentrarization や Net Neutrality といった、レイヤの高い話も多い。
 
@@ -269,14 +266,14 @@ Web についても、 Web Literacy や HTTPS Everywhere のような啓蒙が�
 
 Update は medium で行われている。
 
-- <https://medium.com/mozilla-festival>
+- https://medium.com/mozilla-festival
 
 
 ### Other
 
 最近、新しい仕様などに対して Mozilla がどういうスタンスを取るのかという、表明がまとまったページができた。
 
-- <https://mozilla.github.io/standards-positions>
+- https://mozilla.github.io/standards-positions
 
 ここを見ると、まだ Intent も出ていない仕様がどうなりそうかが、なんとなくわかる。
 
@@ -286,7 +283,6 @@ GitHub に issue を上げると、それについて表明を追加してくれ
 
 
 ## Safari 動向
-
 
 ### Overview
 
@@ -301,9 +297,9 @@ Technology Preview よりも、もう一段粒度の細かい Intents 的なア�
 
 Technology Preview は、不定期(月 0~3 回程度?)にリリースされ、そのブログが主な情報源となる。
 
-- <https://webkit.org/blog>
-- <https://developer.apple.com/safari/technology-preview/release-notes>
-- <https://developer.apple.com/library/archive/releasenotes/General/WhatsNewInSafari/Introduction/Introduction.html>
+- https://webkit.org/blog
+- https://developer.apple.com/safari/technology-preview/release-notes
+- https://developer.apple.com/library/archive/releasenotes/General/WhatsNewInSafari/Introduction/Introduction.html
 
 TP では、仕様の早い段階の実装が突然入ったり、ドラフトすらない実装がいきなり入ったりと、若干ハイコンテキストなときもある。
 
@@ -320,14 +316,14 @@ Intents などが細かく出ないため、チェンジセットを追う必要
 
 気になる機能の動向は、担当している人を把握し、その人のアクティビティを追う感じになるだろう。
 
-- <https://trac.webkit.org/timeline>
+- https://trac.webkit.org/timeline
 
 
 ### Blog
 
 Safari 特有の実装や、割と細かい機能解説、中の人がみなぎった結果出てきた論文のような文書など、色々とブログがあがるので参考になる。
 
-- <https://webkit.org/blog>
+- https://webkit.org/blog
 
 逆を言えば ITP などは、このブログくらいしか表立ったアウトプットが無く、その次はソースコードレベルとなる場合もある。
 
@@ -364,7 +360,6 @@ Web にかかわるアウトプットは少ないが、 Safari のアップデ�
 
 ## Edge 動向
 
-
 ### Overview
 
 近年アウトプットの場も量も増えているが、全体的には追いにくい印象がある。
@@ -382,20 +377,20 @@ IE のアップデートはあまりないが、あればここに含んでい�
 
 全体的なアップデートのブログは以下に投稿される。
 
-- <https://blogs.windows.com/msedgedev>
+- https://blogs.windows.com/msedgedev
 
 EdgeHTML のアップデートは、 Dev Guide というページの What's New のトップに一番新しいバージョンが載る。
 
-- <https://docs.microsoft.com/en-us/microsoft-edge/dev-guide>
+- https://docs.microsoft.com/en-us/microsoft-edge/dev-guide
 
 古いバージョンは What's New の中にバージョン付きのリンクができる。
 
-- <https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-16>
+- https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-16
 
 これでは、最新のものに Deep Link が貼れないが、以下の短縮 URL は目的のものにリダイレクトされるため、これを使っている。
 
-- <https://aka.ms/devguide_edgehtml_17>
-- <https://aka.ms/devguide_edgehtml_16>
+- https://aka.ms/devguide_edgehtml_17
+- https://aka.ms/devguide_edgehtml_16
 
 ここでは、アップデートに関する解説と、 Preview Build ごとの API 単位の変更を Code Pen で埋め込んで表示している。
 
@@ -406,7 +401,7 @@ EdgeHTML のアップデートは、 Dev Guide というページの What's New 
 
 Intents が無い代わりに、現時点での Status がまとまったページがある。
 
-- <https://status.microsoftedge.com>
+- https://status.microsoftedge.com
 
 ステータスは以下がブラウザごとに書かれている。
 
@@ -423,7 +418,7 @@ Intents が無い代わりに、現時点での Status がまとまったペー�
 
 幸いにも、ここのソースが github で管理されているため、 Monthly Web では更新を 1 ヶ月分出してまとめている。
 
-- <https://github.com/MicrosoftEdge/Status/compare/production@{2018-07-01}...production@{2018-08-01}>
+- https://github.com/MicrosoftEdge/Status/compare/production@{2018-07-01}...production@{2018-08-01}
 
 ちなみに、実装されていない機能については、ここから Vote することで要望できる。
 
@@ -432,7 +427,7 @@ Intents が無い代わりに、現時点での Status がまとまったペー�
 
 Edge は Windows の build に紐づいており、 Windows の build は以下から build 番号で追う。
 
-- <https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog>
+- https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog
 
 build 番号を選ぶと、その先のページで、 Edge に関する更新がまとまっている場合がある。
 
@@ -444,7 +439,7 @@ build 番号を選ぶと、その先のページで、 Edge に関する更新�
 
 そのブログのトップは Windows Experience Blog になっている。
 
-- <https://blogs.windows.com/windowsexperience>
+- https://blogs.windows.com/windowsexperience
 
 このあたりが結構迷子になるが、とりあえず主要な Feed の URL を押さえておけば良い。
 
@@ -453,7 +448,7 @@ build 番号を選ぶと、その先のページで、 Edge に関する更新�
 
 Chakra Core 自体のアップデートはリポジトリを見るのが一番良いだろう。
 
-- <https://github.com/Microsoft/ChakraCore>
+- https://github.com/Microsoft/ChakraCore
 
 Chakra Core だけのブログは無く、 Edge のアップデートブログに含まれている。
 
@@ -468,14 +463,14 @@ Monthly Web のソースの中で、唯一の日本語ソースである。
 
 そこでは、いまだに IE を中心としたエコシステムのリアルが垣間みえる。
 
-- <https://blogs.technet.microsoft.com/jpieblog/2018/02/09/ie11-shortcut-key>
+- https://blogs.technet.microsoft.com/jpieblog/2018/02/09/ie11-shortcut-key
 
 最近味わい深かったエントリの一文を抜粋しよう。
 
 > 昨今では各ベンダーより様々なブラウザーが開発され、ユーザーが利用するブラウザーの大半が Internet Explorer だという時代は残念ながら過ぎ去ってしまっています。
 > このような背景から、最近では Web サイトにおいても「相互運用性」という点が非常に重要になってきました。
 > 「相互運用性」とは、どのブラウザーで閲覧しても、同じように表示する、同じように動作する、同じような体験ができる、というようなことを言います。
-> --- <https://blogs.technet.microsoft.com/jpieblog/2018/02/09/ie11-shortcut-key>
+> --- https://blogs.technet.microsoft.com/jpieblog/2018/02/09/ie11-shortcut-key
 
 
 ### Other
@@ -494,7 +489,6 @@ Edge の追い方については未だに慣れない。
 
 
 ## WHATWG/W3C 動向
-
 
 ### Overview
 
@@ -521,7 +515,7 @@ W3C のドラフトには以下のようなステージがある。
 
 ステージが変わるとアナウンスが出る。
 
-- <https://www.w3.org/blog/news>
+- https://www.w3.org/blog/news
 
 このステージ変更が 1 つのチェックポイントとなる。
 
@@ -533,7 +527,7 @@ W3C のドラフトには以下のようなステージがある。
 
 WHATWG 側で作業されているスペックは以下にまとまっている。
 
-- <https://spec.whatwg.org>
+- https://spec.whatwg.org
 
 多くは github で管理されているため、スペックにリンクされているリポジトリを追えば良い。
 
@@ -584,7 +578,7 @@ public-webauthn や public-ortc のように、 github のアクティビティ�
 
 W3C 全体での出来事については、以下のブログが更新される。
 
-- <https://www.w3.org/blog/news>
+- https://www.w3.org/blog/news
 
 ここでは、最初に述べた Draft の Status Update や新しい Working Group の設立、 Chartering (方針や目的の変更) などといった情報が得られる。
 
@@ -599,7 +593,7 @@ TAG は、各 WG が議論した仕様について、 Web 全体の互換性や�
 
 そのタスクが実行されいるのが design-review というリポジトリで、ここに issue で Review がリクエストされ TAG のメンバーがコメントする。
 
-- <https://github.com/w3ctag/design-reviews/issues>
+- https://github.com/w3ctag/design-reviews/issues
 
 新しく提案されている仕様に対する、セカンドオピニオンが見られるため、仕様をより深く理解できる。
 
@@ -638,7 +632,6 @@ W3C は歴史も長く、組織やプロセスが枯れているため、かな�
 
 ## TC39 動向
 
-
 ### Overview
 
 基本的には提出された Proposal を議論し、奇数月に実施される Meeting で Stage が上がる Stage 制を取っている。
@@ -652,7 +645,7 @@ github が中心の文化であるため、一番入りやすいかもしれな�
 
 Stage は 0~4 があり、大まかに以下のよう意味を持つ。
 
-(詳細: <https://tc39.github.io/process-document>)
+(詳細: https://tc39.github.io/process-document)
 
 - 0: Strawman (最初の提案、アイデアレベルでも良く割とカジュアルに提出できる)
 - 1: Proposal (ユースケースやモチベーションなどを詰め、 Polyfill などが作られる)
@@ -664,7 +657,7 @@ Stage 0 は以下にあり、毎月このリストの差分を見ることで、
 
 細部が無いかわりに、趣旨が把握しやすく、内容も多岐に渡るので単純に面白い。
 
-- <https://github.com/tc39/proposals/blob/master/stage-0-proposals.md>
+- https://github.com/tc39/proposals/blob/master/stage-0-proposals.md
 
 stage 0 で終わるものもある。
 
@@ -675,7 +668,7 @@ Meeting は奇数月の月末に実施され、そこで Proposal に対して�
 
 Minutes が出るのは翌月になることが多いので、 Monthly Web では偶数月に前月の Meeting を扱っている。
 
-- <https://github.com/tc39/agendas>
+- https://github.com/tc39/agendas
 
 Minutes は長いが、 Proposal に対する Slide などがまとめられるため、ざっと見ておくだけでもだいぶ動きがわかる。
 
@@ -686,11 +679,11 @@ Minutes は長いが、 Proposal に対する Slide などがまとめられる�
 
 Stage のリストは以下にまとまっている。
 
-- <https://github.com/tc39/proposals>
+- https://github.com/tc39/proposals
 
 なので、一ヶ月分の履歴を見ると、その推移がわかる。
 
-- <https://github.com/tc39/proposals/compare/master@{2018-01-01}...master@{2018-02-01}>
+- https://github.com/tc39/proposals/compare/master@{2018-01-01}...master@{2018-02-01}
 
 Meeting が無い月は、変更はあまりない。
 
@@ -712,7 +705,6 @@ Proposal はかなりカジュアルに提出され、 Proposal ごとのリポ�
 
 ## IETF 動向
 
-
 ### Overview
 
 かなり枯れたプロセスをもっているが、慣れは必要。
@@ -728,7 +720,7 @@ WG ごとの F2F や Interop もよくあるため、それらも含めると毎
 
 IETF では、ドラフトの提出が通知される RSS がある。
 
-- <https://tools.ietf.org/html/new-ids.rss>
+- https://tools.ietf.org/html/new-ids.rss
 
 バージョンの `-00` (たまに `-01`) が新しいドラフトであるため、ここで新しいドラフトの出現が把握できる。
 
@@ -746,13 +738,13 @@ IETF では、ドラフトの提出が通知される RSS がある。
 
 WG は多岐にわたるが、 Web に関連するようなものは、以下のような WG から採用することが多い。
 
-- <https://tools.ietf.org/wg/httpbis>
-- <https://tools.ietf.org/wg/quic>
-- <https://tools.ietf.org/wg/tls>
-- <https://tools.ietf.org/wg/rtcweb>
-- <https://tools.ietf.org/wg/acme>
-- <https://tools.ietf.org/wg/oauth>
-- <https://tools.ietf.org/wg/doh>
+- https://tools.ietf.org/wg/httpbis
+- https://tools.ietf.org/wg/quic
+- https://tools.ietf.org/wg/tls
+- https://tools.ietf.org/wg/rtcweb
+- https://tools.ietf.org/wg/acme
+- https://tools.ietf.org/wg/oauth
+- https://tools.ietf.org/wg/doh
 
 最近は draft のリポジトリの方でも議論がある。
 

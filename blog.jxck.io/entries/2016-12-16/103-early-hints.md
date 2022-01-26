@@ -1,6 +1,5 @@
 # [early hints][preload][push][http2][http] HTTP の新しいステータスコード 103 Early Hints
 
-
 ## Intro
 
 これは、 [http2 Advent Calendar 2016](https://qiita.com/advent-calendar/2016/http2) の 16 日目の記事である。
@@ -53,7 +52,6 @@ Push されたリソースはブラウザのキャッシュに入り、 `/users`
 
 テキストベースプロトコルである HTTP/1.1 のレスポンスはこうなっている。
 
-
 ```http
 HTTP/1.1 200 OK
 Content-Length: 100
@@ -80,7 +78,6 @@ Link: </script.js>; rel=preload
 103 は、ヘッダだけを送る目的で使われ、実際のレスポンスは後から来るというセマンティクスになっている。
 
 先の例の場合、 DB を引いてる最中に Link だけを 103 で送り、残りは後から送る。
-
 
 ```http
 HTTP/1.1 103 Early Hints

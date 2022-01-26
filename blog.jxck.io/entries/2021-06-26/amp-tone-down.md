@@ -1,6 +1,5 @@
 # [signed-http-exchange][webpackaging][amp] 本サイトの AMP 提供の停止とここまでの振り返り
 
-
 ## Intro
 
 [前回の記事](https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html)で、奇遇にも本サイトの AMP 対応を落とすことになった。しかし、そうでなくても AMP をどこかでやめることは考えていたため、きっかけの一つが SXG 対応になったのは、順当な流れだと筆者は感じている。

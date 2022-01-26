@@ -1,6 +1,5 @@
 # [origin trials][vender prefix][web] Web 標準化のフィードバックサイクルを円滑にする Origin Trials について
 
-
 ## Intro
 
 ブラウザに追加される新しい機能に対して、 Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。
@@ -40,14 +39,12 @@ Vender Prefix は、まさしくその機能が *実験中* であることを�
 
 ところが、実際には多くのコンテンツが以下のようなコードを含む結果となった。
 
-
 ```css
 .radius {
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
 }
 ```
-
 
 ```js
 var peerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
@@ -61,7 +58,6 @@ var peerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnecti
 
 本来は以下のように書かれるべきだった。
 
-
 ```css
 .radius {
   -webkit-border-radius: 1em;
@@ -71,7 +67,6 @@ var peerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnecti
   border-radius: 1em;
 }
 ```
-
 
 ```js
 var peerConnection = window.RTCPeerConnection
@@ -138,7 +133,7 @@ Origin Trials は、その名の通り「*特定のオリジンにだけ、実�
 
 ## 利用の流れ
 
-今回は、以下のガイドに沿って、ブラウザの持つ新しい機能を、筆者の持つ新機能実験用オリジンである <https://labs.jxck.io> でのみ使えるように、実際に申請をしながら解説する。
+今回は、以下のガイドに沿って、ブラウザの持つ新しい機能を、筆者の持つ新機能実験用オリジンである https://labs.jxck.io でのみ使えるように、実際に申請をしながら解説する。
 
 [Origin Trials Guide for Web Developers](https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md)
 
@@ -169,7 +164,9 @@ Origin Trials の対象となる機能は、執筆時点で以下のとおりで
 
 申請は以下のフォームから行う。
 
-<http://bit.ly/OriginTrialSignup>
+- http://bit.ly/OriginTrialSignup
+
+入力は以下
 
 - 使用者のメールアドレス
 - 使用する機能 (Foreign Fetch)
@@ -188,7 +185,6 @@ Origin Trials の対象となる機能は、執筆時点で以下のとおりで
 
 HTML ページがある場合は、 `<meta>` タグに埋め込むことで、ブラウザがそれを認識し、ページ上で機能が有効になる。
 
-
 ```html
 <meta
   http-equiv="origin-trial"
@@ -201,7 +197,6 @@ HTML ページがある場合は、 `<meta>` タグに埋め込むことで、�
 ### HTTP Header の場合
 
 HTTP ヘッダの `Origin-Trial` ヘッダに埋め込むこともできる。ページの無い API などの場合はこちらを使う。
-
 
 ```http
 Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9

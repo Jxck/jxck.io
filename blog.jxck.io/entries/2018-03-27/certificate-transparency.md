@@ -1,6 +1,5 @@
 # [expect-ct][hpkp][ct][security] Certificate Transparency の仕組みと HPKP から Expect-CT への移行
 
-
 ## Update
 
 - 2018/3/30: Let's Encrypt が SCT 埋め込みに対応したため、 [本サイトへの適用](#本サイトへの適用) を更新した。
@@ -40,7 +39,6 @@ Eve は MITM を成立させたら、 `https://google.com` のレスポンスを
 
 Eve の持つ秘密鍵は Google のそれとは違うが、証明書には「本物」と同等の効力があることが原因だ。
 
-
 ```
 +------------+                       +-----------+
 |            |  valid        valid   |           |
@@ -68,7 +66,6 @@ Google が CA から発行を受けた証明書と、 Eve が CA に誤発行さ
 MITM によってすり替えられたレスポンスに使用された証明書は、 Google が付与した Hash と合わない。
 
 これにより、ブラウザは証明書が意図したものと違うことに気づくことができる。
-
 
 ```
                       HPKP:xxx
@@ -116,7 +113,6 @@ Chrome は既に、 HPKP を Deprecate し Expect-CT への移行を促してい
 - Auditor: Log を検証する
 
 ここではわかりやすく Monitor が Google で Auditor はブラウザだとしておく。
-
 
 ```
     +--------------+                     +--------------+
@@ -212,7 +208,6 @@ Google は、 `google.com` の EV 証明書が、自分たちの知らないと�
 
 したがって、 Eve が誤発行に成功しても、 Log サーバに Log が登録されれば、誤発行を発見し対策が行える。
 
-
 ```
     +--------------+                     +--------------+
     |              |     Submit Log      |              |
@@ -246,7 +241,6 @@ CT Log は Merkle Tree Hashes を用いているため、 Log を改ざんする
 
 Monitor/Auditor は Log の整合性を監視/検証しているので、計算が合わないことで改ざんに気づくことができる。
 
-
 ```
     +--------------+                     +--------------+   改ざん
     |              |                     |              | <------- Eve
@@ -279,7 +273,6 @@ Monitor/Auditor は Log の整合性を監視/検証しているので、計算�
 CT Log は、証明書そのものの値を Hash のシードとして含んでいる。
 
 従って、ブラウザ(Auditor) が証明書に含まれた SCT の正当性を Log Server に問い合わせる際に、おかしいことに気づくことができる。
-
 
 ```
     +--------------+                     +--------------+
@@ -326,7 +319,6 @@ SCT が証明書になければ、ブラウザはその証明書が誤発行さ�
 単に SCT に対応してない証明書である、と扱うことになってしまう。
 
 そこで *Chrome は EV については SCT を必須* とし、 SCT がなければその時点で Invalid とみなすという方向にした。
-
 
 ```
     +--------------+                     +--------------+
@@ -415,7 +407,6 @@ CT Log はパブリックなため、認証などはなく、任意のドメイ�
 
 誤発行に成功した証明書に置き換えられた場合、 Chrome での EV のように SCT のチェックが必須でない場合は、正しい証明書として通っていまう。
 
-
 ```
 +------------+                       +-----------+
 |            |  DV+SCT        DV     |           | ブラウザが SCT のチェックを
@@ -430,7 +421,6 @@ CT Log はパブリックなため、認証などはなく、任意のドメイ�
 そこで、「*このコンテンツは CT に対応した証明書で提供される*」ということを明示する方法が提案された。
 
 これが `Expect-CT` ヘッダだ。
-
 
 ```
                  Expect-CT: enforce
@@ -448,7 +438,6 @@ CT Log はパブリックなため、認証などはなく、任意のドメイ�
 
 Expect-CT のディレクティブは、基本的に CSP と同じような設計になっている。
 
-
 ```http
 Expect-CT: max-age=86400, enforce, report-uri="https://foo.example/report"
 ```
@@ -462,7 +451,6 @@ Expect-CT: max-age=86400, enforce, report-uri="https://foo.example/report"
 これにより、証明書が変わってもヘッダの値は変わらないため、 HPKP と比べて運用負荷が大きく下がる。
 
 また、他の CSP のように `Expect-CT-Report-Only` は定義されておらず、 `enforce` を付けずに `report-uri` のみとすれば、レポートだけが飛ぶ。
-
 
 ```http
 Expect-CT: max-age=86400, report-uri="https://foo.example/report"
@@ -483,7 +471,6 @@ CT Log は、 Merkle Tree という構造で保存されている。
 仕組みはシンプルで、証明書の Hash を Leaf とし、 Leaf/Node ペアの Hash を親とする二分技を構築する。
 
 CT では Hash に SHA256 を使用する。
-
 
 ```
               Sign
@@ -517,7 +504,6 @@ CT Log Server には多くのの登録依頼が届き、定期的に既存の Tr
 
 この場合、追加分の証明書(d4, d5)だけで Tree を作り、その Root(k) と既存の Root(m) の Hash を取り、署名して新たな STH とすれば良い。
 
-
 ```
                        Sign
            New Root  -------->  STH
@@ -543,7 +529,6 @@ d0  d1  d2  d3
 Log が少ないうちに STH まで検証しておけば、あとはその STH と、追加された分の証明書だけを計算して、新しい STH と比較することで、 Log が改ざんされていないことを検証できる。
 
 先の図に d6, d7 を追加した結果が以下のようになっていたとする。
-
 
 ```
                       Sign
@@ -584,7 +569,6 @@ d0  d1  d2  d3  d4  d5  d6  d7
 
 以下の場合、 d3 の存在を調べるのに必要なのは c, i, n のみである。
 
-
 ```
                       Sign
               Root  --------->  STH
@@ -620,10 +604,9 @@ d0  d1  d2 [d3] d4  d5  d6  d7
 
 証明書チェインを登録し、 SCT の値を取得する。
 
-今回は、 CT Log Server として <https://ct.googleapis.com/pilot> を対象とする。
+今回は、 CT Log Server として https://ct.googleapis.com/pilot を対象とする。
 
 本サイトの証明書は Let's Encrypt で発行しており、 fullchain.pem の証明書チェインは 2 つから成り立っている。
-
 
 ```bash
 $ cat /etc/letsencrypt/live/jxck.io/fullchain.pem
@@ -691,7 +674,6 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
 
 これを登録するリクエストは以下のようになる。
 
-
 ```bash
 $ curl -H 'Content-Type:application/json' \
        -d '{
@@ -703,7 +685,6 @@ $ curl -H 'Content-Type:application/json' \
 ```
 
 すると SCT(timestamp) を含む JSON が返る。
-
 
 ```json
 {
@@ -724,7 +705,6 @@ $ curl -H 'Content-Type:application/json' \
 
 まず、現時点での tree_size を取得する。
 
-
 ```bash
 $ curl 'https://ct.googleapis.com/pilot/ct/v1/get-sth' | jq .
 {
@@ -740,7 +720,6 @@ SCT から計算した Hash と、 tree_size をパラメータにし、リク�
 Hash はバイナリ演算が必要なため、書き捨てのスクリプトで行ったものを参考までに貼っておく。
 
 [ct.rb](./ct.rb)
-
 
 ```bash
 $ curl 'https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&tree_size=237363285' | jq .
@@ -814,7 +793,6 @@ Let's Encrypt の SCT 埋め込みがサポートされた。
 ![Chrome DevTools の Security タブで本サイトの証明書に埋め込まれた SCT を確認する](sct-in-chrome-devtools.png#938x498 "certificate transparency sct check in chrome devtools security tab")
 
 また、 `jxck.io` および `blog.jxck.io` に Expect-CT ヘッダを Enforce 無し(Report-Only 相当) で適用した。
-
 
 ```http
 Expect-Ct: max-age=31536000, report-uri https://report-uri.example.com

@@ -1,6 +1,5 @@
 # [fetch][promise] Fetch の中断と Promise のキャンセル方法の標準化
 
-
 ## Intro
 
 XHR から `fetch()` に積極的に移行しづらかった最大のミッシングピースとして、中断できないという問題があった。
@@ -111,13 +110,11 @@ XHR であたりまえにできていたことが、できないままでは困�
 
 ## AbortController
 
-
 ### 汎例
 
 まず一般的な方法として、 Promise に包んだロングタスクを中断する方法を解説する。
 
 ここでは EventTarget で実装されたタスクを、中断に対応した Promise にする例である。
-
 
 ```js:long-task.js
 ```
@@ -127,7 +124,6 @@ XHR であたりまえにできていたことが、できないままでは困�
 
 `fetch()` の場合は、以下のようになる。
 
-
 ```js:aborting-fetch.js
 ```
 
@@ -135,7 +131,6 @@ XHR であたりまえにできていたことが、できないままでは困�
 ## Promise.race()
 
 Promise.race() で、勝った 1 つ以外を止める処理もできるようになる。
-
 
 ```js:race-fetch.js
 ```
@@ -145,7 +140,7 @@ Promise.race() で、勝った 1 つ以外を止める処理もできるよう�
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/fetch/abort.html>
+- https://labs.jxck.io/fetch/abort.html
 
 
 ## 懸念点

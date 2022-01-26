@@ -15,7 +15,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### Spectore/Meltdown
 
 - Side Channel Attack 対策のため、高精度クロックに使用できる `performance.now()` の精度低下と SharedArrayBuffers (+Atomics)の無効化が実施。将来的には戻す予定。
@@ -784,7 +783,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0419.html
     - https://tools.ietf.org/html/draft-ietf-httpbis-h2-websockets-00
 - I-D Action
-  - *'The ORIGIN <HTTP/2 Frame' to Proposed Standard (draft-ietf-httpbis-origin-frame-06.txt)*>
+  - *'The ORIGIN HTTP/2 Frame' to Proposed Standard (draft-ietf-httpbis-origin-frame-06.txt)*
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0040.html
     - HTTP2 のコネクションを使いまわせる Origin のリストを入れる仕様
     - 使い回せない場合は 421 Misdirected Request を返す

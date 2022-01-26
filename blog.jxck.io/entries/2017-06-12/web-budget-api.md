@@ -1,6 +1,5 @@
 # [web budget api][service worker][pwa] Web Budget API と Web に導入されつつある Budget と Cost の概念
 
-
 ## Intro
 
 PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。
@@ -14,14 +13,14 @@ PWA の普及により、バックグラウンド処理をいかに制限する�
 
 提案されて以降長いことアップデートがなかったが、 Mozilla Standard Position をリクエストしたところ、仕様が消えていたことがわかった。
 
-- <https://github.com/mozilla/standards-positions/issues/73#issuecomment-373681407>
+- https://github.com/mozilla/standards-positions/issues/73#issuecomment-373681407
 
 元のリポジトリに Issue で現状を問い合わせたところ、結局開発者からの支持が得られず、 Obsolute されたとのこと。
 
 blink-dev では Intent to Remove も出て、削除のパッチも上がっている。
 
-- <https://github.com/WICG/budget-api/issues/23>
-- <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18r3whCBv0I/b8qrtFTsDAAJ>
+- https://github.com/WICG/budget-api/issues/23
+- https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18r3whCBv0I/b8qrtFTsDAAJ
 
 Silent Push 含め今後どうしていくかは、別途議論となる。
 
@@ -67,7 +66,6 @@ Budget API は、この Budget と Cost を扱うための API である。
 
 現在から、将来に渡り利用できる budget のリストを取得する。
 
-
 ```js
 navigator.budget.getBudget().then((budgets) => {
   budgets.forEach((budget) => {
@@ -87,7 +85,6 @@ Budget の値は仕様では定義せず、 User Agent に委ねられている�
 
 執筆時点では `"silent-push"` のみ定義されている。
 
-
 ```js
 navigator.budget.getCost('silent-push').then((cost) => {
   console.log(cost); // 2
@@ -106,7 +103,6 @@ navigator.budget.getCost('silent-push').then((cost) => {
 戻る Promise は、コストが足りたかどうかを bool で解決する。
 
 `silent-push` の場合は、コストが足りればそのまま処理を進められ、足りなかった場合は notification によってユーザに通知する必要が出る。
-
 
 ```js
 self.addEventListener('push', (e) => {
@@ -128,7 +124,7 @@ self.addEventListener('push', (e) => {
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/budget/basic.html>
+- https://labs.jxck.io/budget/basic.html
 
 
 ### Budget の導入と Cost 管理

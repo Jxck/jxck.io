@@ -16,6 +16,7 @@ Monthly Web のモチベーションについては以下。
 
 [ep25 Monthly Web 201707](https://mozaic.fm/episodes/25/monthly-web-201707.html)
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -139,6 +140,7 @@ Monthly Web のモチベーションについては以下。
     - https://groups.google.com/a/chromium.org/d/topic/blink-api-owners-discuss/Gmxej1Ryj8c/discussion
     - 新しい API は Secure Context 前提にした方がいいの? という議論
 
+
 ### Firefox 動向
 
 - Firefox 55
@@ -200,6 +202,7 @@ Monthly Web のモチベーションについては以下。
   - CSS Grid PlayGround
     - https://mozilladevelopers.github.io/playground/
 
+
 ### Safari 動向
 
 - Safari Technology Preview 39
@@ -245,6 +248,7 @@ Monthly Web のモチベーションについては以下。
   - `<link rel="preconnect">` が実装
     - https://trac.webkit.org/changeset/222613/webkit
 
+
 ### Edge 動向
 
 - Windows Insider Preview (Fast) build 17004
@@ -275,6 +279,7 @@ Monthly Web のモチベーションについては以下。
     - Web Driver
 - ChakraCore
   - https://github.com/Microsoft/ChakraCore/wiki/Roadmap
+
 
 ### WHATWG/W3C 標準動向
 
@@ -350,6 +355,7 @@ Monthly Web のモチベーションについては以下。
 - Future of Text Symposium
   - https://www.w3.org/Consortium/Offices/blog/2017/09/06/future-of-text-symposium/
 
+
 ### TC39 標準動向
 
 - ECMA-262 が 20 歳
@@ -386,6 +392,7 @@ Monthly Web のモチベーションについては以下。
     - https://github.com/meteor/proposal-referential-destructuring
     - Stage 0
     - destructuring する際に、コピーではなく、参照を取得
+
 
 ### IETF 標準動向
 
@@ -424,6 +431,7 @@ Monthly Web のモチベーションについては以下。
 - Origin-signed responses
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2017JulSep/0385.html
   - WebPackaging の登場により再度議論に
+
 
 ### 周辺動向
 
@@ -489,6 +497,7 @@ Monthly Web のモチベーションについては以下。
   - Paul Kinlan が WebIntents にご執心
   - Tasklets 使って Service を登録し、連携すれば Web Intents になるみたいな話
   - Comlink でデモ
+
 
 ### イベント
 

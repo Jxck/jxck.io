@@ -1,6 +1,5 @@
 # [hsts][security] HTTP Strict Transport Security(HSTS) 対応
 
-
 ## Intro
 
 本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。
@@ -26,7 +25,6 @@
 ## Strict-Transport-Security ヘッダ
 
 以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
-
 
 ```http
 Strict-Transport-Security: max-age=7776000
@@ -69,7 +67,6 @@ Chrome の場合は、以下からドメインを申請すると、審査が実�
 したがって同様の理由から、止むを得ず *preload 登録は見送る* こととした。
 
 結果、現時点では [jxck.io](https://jxck.io) 及び [blog.jxck.io](https://blog.jxck.io) に対して、以下のヘッダを付与した。
-
 
 ```http
 Strict-Transport-Security: max-age=31536000

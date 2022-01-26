@@ -1,6 +1,5 @@
 # [webrtc][safari] Safari 11.0 will support WebRTC
 
-
 ## Intro
 
 Safari 11 のアップデートに、待望だった WebRTC がリストされた。

@@ -1,6 +1,5 @@
 # [grid][layout][css] CSS Layout API で Masonry Layout
 
-
 ## Intro
 
 Pinterest でおなじみの Masonry Layout を CSS の標準にする作業と実装が進んでいる。
@@ -24,14 +23,13 @@ Pinterest でおなじみの Masonry Layout を CSS の標準にする作業と�
 仕様は以下だ。
 
 - CSS Grid Layout Module Level 3
-  - <https://drafts.csswg.org/css-grid-3/>
+  - https://drafts.csswg.org/css-grid-3/
 
 従来の CSS Grid は、縦横が揃った Grid を展開し、そこに対して要素を割り当てるのが基本だが、それでは縦が揃わないため Masonry は実現できない。
 
 そこで、 `grid-template-rows` / `grid-tempalet-columns` へ `masonry` を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると `grid: masonry / ${column}` になるため、 column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。
 
 3 列の Masonly Layout は以下だ。
-
 
 ```html
 <style>
@@ -60,12 +58,11 @@ img {
 
 敷き詰めるためのアルゴリズムは仕様で決まっている。
 
-- <https://drafts.csswg.org/css-grid-3/#masonry-layout-algorithm>
+- https://drafts.csswg.org/css-grid-3/#masonry-layout-algorithm
 
 デフォルトでは、敷き詰める際に一番余白が空いているところに画像が挿入される。
 
 これを制御するプロパティとして `masonry-auto-flow` が定義されており `next` にすると画像の HTML 上での出現順に積み上げるようにすることもできる。
-
 
 ```css
 masonry-auto-flow: pack;
@@ -74,7 +71,7 @@ masonry-auto-flow: next;
 
 他の値もあるがまだ定義が明示されてないようだ。このあたりのアルゴリズムは要件によって多様だと思われるため、仕様の策定とともに変わる可能性は高いだろう。
 
-- <https://drafts.csswg.org/css-grid-3/#masonry-auto-flow>
+- https://drafts.csswg.org/css-grid-3/#masonry-auto-flow
 
 
 ## DEMO
@@ -83,36 +80,37 @@ masonry-auto-flow: next;
 
 (サポート状況は WPT 参照)
 
-- <https://labs.jxck.io/grid/masonry.html>
+- https://labs.jxck.io/grid/masonry.html
+
 
 ## Resources
 
 - Spec
   - CSS Grid Layout Module Level 3
-    - <https://drafts.csswg.org/css-grid-3/>
+    - https://drafts.csswg.org/css-grid-3/
 - Explainer
   - css-houdini-drafts/EXPLAINER.md at master - w3c/css-houdini-drafts
-    - <https://github.com/w3c/css-houdini-drafts/blob/master/css-layout-api/EXPLAINER.md>
+    - https://github.com/w3c/css-houdini-drafts/blob/master/css-layout-api/EXPLAINER.md
 - Requirements Doc
 - Mozilla Standard Position
 - Webkit Position
 - TAG Design Review
   - CSS Layout API - Issue #224 - w3ctag/design-reviews
-    - <https://github.com/w3ctag/design-reviews/issues/224>
+    - https://github.com/w3ctag/design-reviews/issues/224
 - Intents
   - Intent to Prototype: CSS Masonry layout
-    - <https://groups.google.com/g/mozilla.dev.platform/c/iBKhDXB89OA/m/3NZ_7UGjAAAJ>
+    - https://groups.google.com/g/mozilla.dev.platform/c/iBKhDXB89OA/m/3NZ_7UGjAAAJ
   - Intent to Implement: CSS Layout API
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/gVvtbIjE2J4/m/0KWy4Ew2CQAJ>
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/gVvtbIjE2J4/m/0KWy4Ew2CQAJ
 - Chrome Platform Status
 - WPT(Web Platform Test)
   - web-platform-tests dashboard
-    - <https://wpt.fyi/results/css/css-grid/masonry?label=master&label=experimental&aligned&q=masonry>
+    - https://wpt.fyi/results/css/css-grid/masonry?label=master&label=experimental&aligned&q=masonry
 - DEMO
-  - <https://labs.jxck.io/grid/masonry.html>
+  - https://labs.jxck.io/grid/masonry.html
 - Blog
 - Presentation
 - Issues
   - [css-grid] Masonry layout - Issue #4650 - w3c/csswg-drafts
-    - <https://github.com/w3c/csswg-drafts/issues/4650>
+    - https://github.com/w3c/csswg-drafts/issues/4650
 - Other

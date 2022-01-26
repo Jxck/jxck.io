@@ -15,7 +15,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
 
 ## Show Note
 
-
 ### Chrome 動向
 
 - Stable: 83

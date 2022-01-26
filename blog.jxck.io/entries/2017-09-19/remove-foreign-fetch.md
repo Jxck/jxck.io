@@ -1,6 +1,5 @@
 # [foreign fetch][service worker][cookie] Foreign Fetch が削除されそうな理由と Cookie の double keying
 
-
 ## Intro
 
 以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。
@@ -41,7 +40,6 @@ Foreign Fetch は、簡単に言えば 3rd Party Origin の Service Worker が�
 
 ## double keying cookie
 
-
 ### 3rd party cookie tracking
 
 まず、 3rd Party Cookie による行動追跡について簡単に解説する。
@@ -49,7 +47,6 @@ Foreign Fetch は、簡単に言えば 3rd Party Origin の Service Worker が�
 例えば、本サイト (jxck.io) が EC サイト(ec.example.com) の Ad などを埋め込んでいたとする。
 
 すると、 jxck.io の閲覧者には ec.example.com からの `Set-Cookie` が送られ、保存される。
-
 
 ```http
 // response-from: ec.example.com
@@ -59,7 +56,6 @@ Set-Cookie: history=jxck.io
 同じく、筆者が保有する別のサイト (mozaic.fm) にも同じ Ad が含まれていたとした場合。
 
 ユーザが mozaic.fm を閲覧すると、 Ad を取得する時に以下のように Cookie が送られる。
-
 
 ```http
 // request-for: ec.example.com
@@ -95,7 +91,7 @@ Cookie は、ブラウザ内で「*どこから付与されたか*」をキー�
 
 Mac OS は HiSierra から ITP というトラッキング防止の機能を追加する。
 
-<https://webkit.org/blog/7675/intelligent-tracking-prevention/>
+- https://webkit.org/blog/7675/intelligent-tracking-prevention/
 
 これにより、 Safari が保存する Cookie の保存に関するポリシーが変更される。
 

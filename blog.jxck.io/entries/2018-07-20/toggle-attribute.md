@@ -1,6 +1,5 @@
 # [dom][html] Element.toggleAttribute
 
-
 ## Intro
 
 非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。
@@ -14,12 +13,11 @@
 
 Boolean Attribute とは、属性の存在によって真偽となる属性である。
 
-- <https://html.spec.whatwg.org/#boolean-attribute>
+- https://html.spec.whatwg.org/#boolean-attribute
 
 例えば button の disabled を例にとるとこうなる。
 
 button を disabled にする場合は、仕様上は以下の 3 つの書き方がある。
-
 
 ```html
 <!-- 属性のみを書く -->
@@ -36,14 +34,12 @@ button を disabled にする場合は、仕様上は以下の 3 つの書き方
 
 disabled 属性自体は JS から真偽値で操作できる。
 
-
 ```js
 target.disabled = true
 target.disabled = false
 ```
 
 しかし、他の boolean attribute も含め、属性自体を汎用的に操作する場合は以下のようになる。
-
 
 ```js
 target.setAttribute("disabled", "");
@@ -65,7 +61,6 @@ target.setAttribute("disabled", false); // 無効になるわけではない
 
 (値は empty string が採用された)
 
-
 ```js
 // target = <button id=target>toggle target</button>
 
@@ -80,7 +75,6 @@ console.log(target.disabled) // true
 ```
 
 第二引数を指定すると、現在の値に関わらず、第二引数の値に変更する。
-
 
 ```js
 // 今が true であれ false であれ true にする
@@ -97,7 +91,7 @@ console.log(target.disabled) // false
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/toggleAttribute/index.html>
+- https://labs.jxck.io/toggleAttribute/index.html
 
 
 ## Proposal
@@ -121,18 +115,18 @@ Boolean 専用の setAttribute が欲しいというところから始まり、�
 
 Firefox は 61 をターゲットに intents を出している
 
-- <https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ>
-- <https://bugzilla.mozilla.org/show_bug.cgi?id=1469592>
+- https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ
+- https://bugzilla.mozilla.org/show_bug.cgi?id=1469592
 
 Chrome は intent to implement が出ており canary には入っている。
 
-- <https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ>
-- <https://bugs.chromium.org/p/chromium/issues/detail?id=854960>
+- https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ
+- https://bugs.chromium.org/p/chromium/issues/detail?id=854960
 
 safari は TP61 に入った
 
-- <https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/>
-- <https://trac.webkit.org/changeset/233475/webkit/>
+- https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/
+- https://trac.webkit.org/changeset/233475/webkit/
 
 Edge もやっていると思われるが、トラックできるソースは見つからなかった。
 

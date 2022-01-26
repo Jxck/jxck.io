@@ -1,6 +1,5 @@
 # [abnf][ietf] ABNF Parser の実装
 
-
 ## Intro
 
 IETF の RFC では ABNF 形式の表現がよく使われ、たまに実装することがある。
@@ -16,13 +15,11 @@ IETF の RFC では ABNF 形式の表現がよく使われ、たまに実装す�
 
 例えば、ヘッダが複数の値をリスト形式で取る場合
 
-
 ```http
 Example-List: sugar, tea, rum
 ```
 
 これを ABNF で表現するとこうなる。
-
 
 ```abnf
 sf-list       = list-member *( OWS "," OWS list-member )
@@ -55,7 +52,6 @@ BNF から機械的にパーサを生成する手法などは知られている�
 
 最も基本的な、パターン(正規表現)を受け取ったら、そのパターンを文字列の先頭から取り出し、結果を返す形が以下のようになる。
 
-
 ```js
 const ok = true
 
@@ -75,14 +71,12 @@ export function token(reg) {
 
 使い方はこうなる。
 
-
 ```js
 token(/^a/)("abcde")
 // { ok: true, value: 'a', rest: 'bcde' }
 ```
 
 このパターンを変えることで、一番基本の部分 (ALPHA / DIGIT) などはこれを用いて実装できる。
-
 
 ```js
 // ALPHA = A-Z / a-z
@@ -97,13 +91,11 @@ const digit = token(/^[0-9]/)
 
 ABNF における Alternatives (OR) は以下のように使われる。
 
-
 ```abnf
 BIT  =  "0" / "1"
 ```
 
 実装は以下のようになる。
-
 
 ```js
 // (a / b) => alt([a(), b()])
@@ -122,7 +114,6 @@ export function alt(fns) {
 
 これは、先の `token()` のような高階関数のリストを受け取り、最初に成功したところで終了している。
 
-
 ```js
 // ALPHA / DIGIT
 const alpha_digit = alt([alpha, digit])
@@ -139,13 +130,11 @@ alpha_digit("?")
 
 複数の token が順番に並ぶように合成する際に利用する。
 
-
 ```abnf
 CRLF  =  CR LF
 ```
 
 実装は以下。
-
 
 ```js
 // (a b c) => list([a(), b(), c()])
@@ -168,7 +157,6 @@ export function list(fns) {
 
 使い方は以下。
 
-
 ```js
 // CRLF  =  CR LF
 const crlf = list([token(/\r/), token(/\n/)])
@@ -181,7 +169,6 @@ crlf("\r\n")
 
 ABNF の繰り返しは以下のように使われる。
 
-
 ```abnf
 NUMBER = 1*DIGIT
 ```
@@ -192,7 +179,6 @@ NUMBER = 1*DIGIT
 といった具合だ。これを 0 回以上 1 回未満とみなせば、 Optional も手に入る。
 
 実装は以下のようになる。
-
 
 ```js
 // *(a b) => repeat(0, Infinity, list([a(), b()]))
@@ -225,7 +211,6 @@ export function repeat(min, max, fn) {
 
 (仕様上上限がなくても、実装上適当な上限を指定する)。
 
-
 ```js
 // NUMBER = 1*DIGIT
 const number = repeat(1, 1024, digit)
@@ -241,14 +226,12 @@ number("0123")
 
 例えば最初の Structured Filed Values の一例の場合
 
-
 ```abnf
 sf-list       = list-member *( OWS "," OWS list-member )
 list-member   = sf-item / inner-list
 ```
 
 こんな感じになる。
-
 
 ```js
 const sf_list = list([
@@ -274,7 +257,7 @@ const list_member = alt([
 組み上げた結果は、以下のようになる。
 
 - Jxck/structured-field-values
-  - <https://github.com/Jxck/structured-field-values/blob/master/bnf/bnf.js>
+  - https://github.com/Jxck/structured-field-values/blob/master/bnf/bnf.js
 
 こうした処理を高度に抽象化したものがツールとして提供されていたりもするが、この考え方だけ覚えておけば、どんな言語でも RFC の ABNF 程度であれば実装が可能になるだろう。
 

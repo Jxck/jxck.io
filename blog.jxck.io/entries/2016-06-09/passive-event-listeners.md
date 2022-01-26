@@ -1,6 +1,5 @@
 # [rendering][performance] Passive Event Listeners によるスクロールの改善
 
-
 ## Intro
 
 DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。
@@ -44,7 +43,6 @@ DOM のイベントリスナの仕様に Passive Event Listeners というオプ
 
 Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
 
-
 ```
 explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.
 ```
@@ -66,7 +64,6 @@ explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scroll
 
 この値は、同じく今回追加された `addEventListener()` の第三引数に渡す *Event Listener Options* で指定する。
 
-
 ```js
 document.addEventListener('touchstart', handler, {passive: true});
 ```
@@ -77,11 +74,10 @@ document.addEventListener('touchstart', handler, {passive: true});
 
 Listener 内で `preventDefault()` を呼べるかどうかは、 `cancelable=true` となっているかどうかで分かる。
 
-| listener | cancelable  | preventDefault | defaultPrevented |
-|:---------|:------------|:---------------|:-----------------|
-| normal   | true        | cancel default | false - true     |
-| passive  | false       | ignored        | false - false    |
-
+| listener | cancelable | preventDefault | defaultPrevented |
+|:---------|:-----------|:---------------|:-----------------|
+| normal   | true       | cancel default | false - true     |
+| passive  | false      | ignored        | false - false    |
 
 
 ## Event Listener Options
@@ -91,7 +87,6 @@ Listener 内で `preventDefault()` を呼べるかどうかは、 `cancelable=tr
 これが `true` の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
 
 Event Listener Options 対応以降は、ここにオブジェクトを渡すことになるため、 `useCapture` フラグ相当は、 `{capture: true}` としてプロパティによる定義を行う。
-
 
 ```js
 // before
@@ -114,7 +109,6 @@ document.addEventListener('touchstart', handler, {capture: true});
 
 例えばキャプチャリングフェーズでの補足を `false` にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して `useCapture` を `true` にしたと解釈されてしまうのである。
 
-
 ```js
 document.addEventListener('touchstart', handler, {capture: false});
 ```
@@ -122,7 +116,6 @@ document.addEventListener('touchstart', handler, {capture: false});
 これを避けるためには Feature Detection が必要となる。
 
 スペックにサンプルが掲載されているので、引用しコメントで解説を追記する。
-
 
 ```js
 var supportsPassive = false;
@@ -151,14 +144,14 @@ function addEventListenerWithOptions(target, type, handler, options) {
 }
 ```
 
-<https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection>
+- https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection
 
 
 ## DEMO
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/passive-event-listeners/>
+- https://labs.jxck.io/passive-event-listeners/
 
 長いドキュメントで、 touchstart イベントにあえて遅延を入れたデモを用意した。
 

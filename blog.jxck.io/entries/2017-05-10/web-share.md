@@ -1,6 +1,5 @@
 # [whatwg][web-share] Web Share API
 
-
 ## Intro
 
 [Web Share API](https://github.com/WICG/web-share) が Origin Trials を卒業したという知らせが届いた。
@@ -23,7 +22,7 @@ Web Share API は、 Web コンテンツと SNS やメールなどとの連携�
 
 (まだ Origin Trials のトークンはそのままになっている)
 
-- <http://labs.jxck.io/web-share/>
+- http://labs.jxck.io/web-share/
 
 
 ## API
@@ -31,7 +30,6 @@ Web Share API は、 Web コンテンツと SNS やメールなどとの連携�
 API は非常に簡素だ。
 
 現状設定可能なパラメータは、 `title`, `text`, `url` のみである。
-
 
 ```js
 if (navigator.share !== undefined) {
@@ -58,7 +56,6 @@ navigator
 現状その API は議論中だが、同様に navigator を基本に拡張されていくと思われる。
 
 簡素な Share の送信だけであれば、以下のような URI Scheme の策定も可能かもしれない。
-
 
 ```html
 <a href="share:?title=Example%20Page&amp;url=https://example.com/page">Share this</a>

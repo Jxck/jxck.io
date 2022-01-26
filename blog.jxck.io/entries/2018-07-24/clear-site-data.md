@@ -1,6 +1,5 @@
 # [cache][cookie][security][http] Clear-Site-Data Header
 
-
 ## Intro
 
 Clear-Site-Data Header の実装が進んでいる。
@@ -28,7 +27,7 @@ SPA のように実装されている場合は、その状態を含めて初期�
 
 こうした問題に対して策定されたのが、 Clear-Site-Data Header である。
 
-- <https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data>
+- https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data
 
 ブラウザにあるデータ削除機能が、 API として出たというイメージだ。
 
@@ -38,7 +37,6 @@ SPA のように実装されている場合は、その状態を含めて初期�
 ## Claer-Site-Data Header
 
 ヘッダの値に Type を列挙するだけである。
-
 
 ```http
 Clear-Site-Data: "cache"
@@ -134,7 +132,6 @@ executionContext は他の Tab を含めて対応するために
 
 現状削除されているが、もともとは JS の API も合わせて定義されていた。
 
-
 ```js
 navigator.storage.clear("cache")
 ```
@@ -150,11 +147,11 @@ navigator.storage.clear("cache")
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/clear-site-data/>
+- https://labs.jxck.io/clear-site-data/
 
 
 ## Link
 
-- <https://github.com/mozilla/standards-positions/issues/90>
-- <https://bugzilla.mozilla.org/show_bug.cgi?id=1268889>
-- <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data>
+- https://github.com/mozilla/standards-positions/issues/90
+- https://bugzilla.mozilla.org/show_bug.cgi?id=1268889
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data

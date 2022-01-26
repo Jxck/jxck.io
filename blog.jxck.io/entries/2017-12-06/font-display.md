@@ -1,6 +1,5 @@
 # [font-display][web font][performance][css] Font Display プロパティを用いた FOIT/FOUT 最適化
 
-
 ## Update
 
 - この検証から 2 年程のちに、 First Paint/First Contentful Paint を重視するため、全ての display プロパティは swap に統一した。
@@ -64,14 +63,13 @@ Web Font は、特に日本語のように文字数が多い場合、ファイ�
 
 FOIT (Flash of Invisible Text)
 : ナビゲーション直後はテキストが表示されず、(block period 経過後)突然表示される現象
-
 FOUT (Flash of Unstyled Text)
 : 表示されているテキストのフォントが、(swap period 中)突然入れ替わる現象
 
 こうした現象を防ぐためには、 JavaScript でフォントの読み込み/表示を制御するのライブラリが使われることが多い。
 
-- <https://github.com/typekit/webfontloader>
-- <https://github.com/bramstein/fontfaceobserver>
+- https://github.com/typekit/webfontloader
+- https://github.com/bramstein/fontfaceobserver
 
 
 ## font-display
@@ -163,13 +161,13 @@ FOIT を極力避けつつも、 swap period が無いため block period を過
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/webfont/font-display.html>
+- https://labs.jxck.io/webfont/font-display.html
 
 本サイトとは別に、大きいフォントファイルを、 4 つのプロパティで表示するデモを以下に用意した。
 
 
 ## Link
 
-- <https://drafts.csswg.org/css-fonts-4/#font-display-desc>
-- <https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay>
-- <https://font-display.glitch.me/>
+- https://drafts.csswg.org/css-fonts-4/#font-display-desc
+- https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay
+- https://font-display.glitch.me/

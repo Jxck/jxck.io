@@ -1,6 +1,5 @@
 # [sfv][http][ietf] Structured Field Values による Header Field の構造化
 
-
 ## Intro
 
 HTTP Header の値を構造化する Structued Field Values の仕様が RFC になった。
@@ -17,11 +16,9 @@ HTTP Header の値を構造化する Structued Field Values の仕様が RFC に
 
 ## 経緯
 
-
 ### HTTP ヘッダの構造
 
 HTTP のヘッダは以下のようになっている。
-
 
 ```http
 Host: example.com
@@ -68,7 +65,6 @@ Field はさらに Field Name / Field Value から構成されるため、従来
 
 これは、ドラフト段階からいくつかの新しい Field 定義によって使われている。例えば Network Error Logging や Reporting API だ。
 
-
 ```http
 NEL: {"report-to": "default-endpoint", "max-age": 2592000}
 Report-To: {
@@ -113,15 +109,14 @@ Item には Value と Parameter がある。
 
 サポートされているのは以下。
 
-| Type       | Value         | SFV     |
-|:-----------|:--------------|:--------|
-| Integer    | 10            | 10      |
-| Decimal    | 3.14          | 3.14    |
-| String     | "hello"       | "hello" |
-| Token      | x             | x       |
-| Byte Seq   | [0x1,0x2,0x3] | :AQID:  |
-| Boolean    | true          | ?1      |
-
+| Type     | Value       | SFV     |
+|:---------|:------------|:--------|
+| Integer  | 10          | 10      |
+| Decimal  | 3.14        | 3.14    |
+| String   | "hello"     | "hello" |
+| Token    | x           | x       |
+| Byte Seq | 0x1,0x2,0x3 | :AQID:  |
+| Boolean  | true        | ?1      |
 
 Token が文字列とは別に定義されているため、実装する言語によっては設計に悩む(JS 実装では Symbol を使っている)。
 
@@ -131,7 +126,6 @@ Token が文字列とは別に定義されているため、実装する言語�
 Parameter は Item に付与できるメタデータだ。
 
 例えば以下は String の "abc" に対してパラメータを 2 つ付与している。
-
 
 ```js
 // "abc";a=1;b=2
@@ -148,11 +142,9 @@ Parameter は Item に付与できるメタデータだ。
 
 例えば XML/HTML のようなフォーマットは Attribute がメタデータを担うが、これを再現可能になる。
 
-
 ```html
 <p id="foo" class="bar">hello</p>
 ```
-
 
 ```js
 // p="hello world";id="foo";class="bar"
@@ -174,7 +166,6 @@ Parameter は Item に付与できるメタデータだ。
 
 Item の配列。
 
-
 ```js
 // 1,2,3,4
 [
@@ -192,7 +183,6 @@ Key に紐付けた Item の辞書。
 
 Key は Item ほど柔軟ではなく、文字列で使える文字種も限られている。。
 
-
 ```js
 // a=10,b=20,c=30
 {
@@ -206,7 +196,6 @@ Key は Item ほど柔軟ではなく、文字列で使える文字種も限ら�
 ### Inner List
 
 List や Dict の値として配列を使いたい場合は、 Inner List を使う。(List そのものは Top Level でしか使えない)
-
 
 ```js
 // a="x", d=(1 2)
@@ -273,7 +262,6 @@ Dict としてパースしてエラーになったら List で、、などはで
 
 ### Client Hints
 
-
 ```js
 // Accept-CH: Sec-CH-Example, Sec-CH-Example-2
 [
@@ -290,7 +278,6 @@ Dict としてパースしてエラーになったら List で、、などはで
 
 
 ### Cache-Status
-
 
 ```js
 // Cache-Status: OriginCache; hit; ttl=1100; collapsed, "CDN Company Here"; hit; ttl=545
@@ -316,7 +303,6 @@ Dict としてパースしてエラーになったら List で、、などはで
 
 ### Digest Headers
 
-
 ```js
 //  Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=, id-sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 (TODO: パースできないので報告)
@@ -341,7 +327,6 @@ Dict としてパースしてエラーになったら List で、、などはで
 
 ### Proxy Status
 
-
 ```js
 // Proxy-Status: ExampleProxy; error="http_protocol_error"; details="Malformed response header - space before colon"
 [
@@ -358,7 +343,6 @@ Dict としてパースしてエラーになったら List で、、などはで
 
 ### HTTP Variants
 
-
 ```js
 // Variants: Accept-Encoding=(gzip br), Accept-Language=(en fr)
 // (TODO: パースできないので報告)
@@ -366,7 +350,6 @@ Dict としてパースしてエラーになったら List で、、などはで
 
 
 ### HTTP Signature
-
 
 ```js
 // Signature-Input: reverse_proxy_sig=(*created, host, date, signature:sig1, x-forwarded-for); keyId="test-key-a"; alg=hs2019; created=1402170695; expires=1402170695.25
@@ -386,11 +369,11 @@ Dict としてパースしてエラーになったら List で、、などはで
 
 実装は以下に公開している。
 
-- <https://github.com/jxck/structured-field-values>
+- https://github.com/jxck/structured-field-values
 
 npm にも上げており、 ES Module で書いてあるため Browser でもそのまま使える。
 
-- <https://www.npmjs.com/package/structured-field-values>
+- https://www.npmjs.com/package/structured-field-values
 
 
 ### 実装による検証
@@ -441,14 +424,14 @@ Structured Field Values の実装を行い仕様の検証を行った。
 
 動作するデモを以下に用意した。
 
-- <https://jxck.github.io/structured-field-values/demo.html>
+- https://jxck.github.io/structured-field-values/demo.html
 
 
 ## Resources
 
 - Spec
   - RFC 8941: Structured Field Values for HTTP
-    - <https://www.rfc-editor.org/rfc/rfc8941.html>
+    - https://www.rfc-editor.org/rfc/rfc8941.html
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
@@ -458,9 +441,9 @@ Structured Field Values の実装を行い仕様の検証を行った。
 - Chrome Platform Status
 - WPT (Web Platform Test)
 - DEMO
-  - <https://jxck.github.io/structured-field-values/demo.html>
+  - https://jxck.github.io/structured-field-values/demo.html
 - Blog
 - Presentation
-  - <https://speakerdeck.com/jxck/abnf-for-protocol-parser-at-ietf>
+  - https://speakerdeck.com/jxck/abnf-for-protocol-parser-at-ietf
 - Issues
 - Other

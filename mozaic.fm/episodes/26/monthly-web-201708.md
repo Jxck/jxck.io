@@ -16,6 +16,7 @@ Monthly Web のモチベーションについては以下。
 
 [ep25 Monthly Web 201707](https://mozaic.fm/episodes/25/monthly-web-201707.html)
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -80,6 +81,7 @@ Monthly Web のモチベーションについては以下。
   - headless chrome の docker
   - https://github.com/GoogleChrome/rendertron
 
+
 ### Firefox 動向
 
 - Firefox 55 Stable
@@ -128,6 +130,7 @@ Monthly Web のモチベーションについては以下。
 - for-await-of が有効に
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1352312
 
+
 ### Safari 動向
 
 - 8/3 WebKit で Service Worker が実装開始
@@ -161,6 +164,7 @@ Monthly Web のモチベーションについては以下。
 - 8/30 Igalia のひとが AMP チームの要請をうけて WebKit を修正中という話
   - http://frederic-wang.fr/amp-and-igalia-working-together-to-improve-the-web-platform.html
 
+
 ### Edge 動向
 
 - Windows Insider Preview (Fast) build 16275
@@ -178,6 +182,7 @@ Monthly Web のモチベーションについては以下。
   - EdgeHTML 16 で content prosession と rendering を並行化し描画を高速化
   - select, canvas, svg などでも効果がある
   - MotionMark で 43% 向上
+
 
 ### WHATWG/W3C 標準動向
 
@@ -239,6 +244,7 @@ Monthly Web のモチベーションについては以下。
 - Web に足りない機能の公募
   - https://twitter.com/domenic/status/898699783979753472
 
+
 ### TC39 標準動向
 
 - 7/25-27 59th meeting of Ecma TC39 (@Microsoft WA)
@@ -273,6 +279,7 @@ Monthly Web のモチベーションについては以下。
   - http://ecmascript.in/
   - ES の仕様更新を通知してくれるらしい
 
+
 ### IETF 標準動向
 
 - 418 I'm a Teapot 問題
@@ -291,6 +298,7 @@ Monthly Web のモチベーションについては以下。
 - .mjs as javascript
   - https://tools.ietf.org/html/draft-bfarias-javascript-mjs-01
   - https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html
+
 
 ### 周辺動向
 
@@ -346,9 +354,10 @@ Monthly Web のモチベーションについては以下。
   - ドメインに対する証明書発行でメールが送られてくるようになる
 - Public Workbox Meeting Notes
   - https://docs.google.com/document/d/1SbLfFbIgO5v8f9paG1_jUbQeD9OCzIYJvw60mJUc680/edit
-- Bidirectional JavaScript \<-\> ESI(Edge Side Includes)
+- Bidirectional JavaScript \<-> ESI(Edge Side Includes)
   - https://github.com/akamai/js2esi
   - could run on Akamai Edge
+
 
 ### イベント
 

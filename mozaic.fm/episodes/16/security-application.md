@@ -20,6 +20,7 @@ guest: [@hasegawayosuke](https://twitter.com/hasegawayosuke)
 
 hasegawa さんが本を書いてる件は、許可を取っておりカットしてません。公表して自分を追い込むメソッドだそうです w
 
+
 ## Show Note
 
 - [iframe で 2sh を表示す](http://d.hatena.ne.jp/hasegawayosuke/20141212/p1)

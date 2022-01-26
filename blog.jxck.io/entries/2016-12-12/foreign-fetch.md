@@ -1,6 +1,5 @@
 # [fetch][service worker][origin trials] Foreign Fetch による Micro Service Workers
 
-
 ## Update
 
 Foreign Fetch は削除される方向で進んでいる。
@@ -70,10 +69,9 @@ Service Worker に Foreign Fetch という機能が提案されている。
 
 これは 3rd Party にあたり、 CORS に対応している。
 
-<https://labs.jxck.io/service-worker/foreign-fetch/index.html>
+- https://labs.jxck.io/service-worker/foreign-fetch/index.html
 
 ページに読み込まれる `index.html` と `worker.js` は 1st Party Service Worker でキャッシュされており、オフライン対応されている。
-
 
 ```js:worker.js
 ```
@@ -91,14 +89,12 @@ Service Worker に Foreign Fetch という機能が提案されている。
 
 実はこの API のレスポンスには、以下のようなヘッダが登録されている。
 
-
 ```http
 Link: </random/worker.js>; rel="serviceworker"
 Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...
 ```
 
 この Link タグは、 [前回の記事](https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html) で紹介した HTTP Header ベースの Service Worker 登録であり、以下のような Service Worker が登録されている。
-
 
 ```js:random.js
 ```

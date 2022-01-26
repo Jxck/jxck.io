@@ -1,6 +1,5 @@
 # [boolmarklet] Bookmarklet という一番身近な自動化技術
 
-
 ## Intro
 
 「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言ってた。
@@ -27,7 +26,7 @@
 2. そのコードの最初に `javascript:` を付与する (`javascript:alert("hello")`)
 3. ブックマークを登録する処理を行い、 URL の欄にコードを追加する
 
-![screencast of adding bookmarklet to browser](bookmarklet.gif#832x539 'bookmarklet on firefox')
+![screencast of adding bookmarklet to browser](bookmarklet.gif#832x539 "bookmarklet on firefox")
 
 
 ## 使用例
@@ -42,7 +41,6 @@
 その後輩は、 github の markdown を PDF にして協力会社に送る(!!?)のに、ページごとに開発者ツールから周りの DOM をポチポチ消して整形していた。
 
 例えば、以下の README.md だった場合は、雑にやるとこんな感じでできそうだ。
-
 
 ```js
 javascript: (() => {
@@ -62,7 +60,6 @@ javascript: (() => {
 ヘッダ要素が ID を持ってるので、ヘッダに対してリンクを貼りたいが、リンクになってないのでソースを見ないといけない場合。
 
 それをリンクに直して、遷移できるようにする。
-
 
 ```js
 javascript: (() => {
@@ -88,7 +85,6 @@ Twitter のリンクが色も Underline も付かなくなって以降、 URL �
 
 そこで、対象の `<a>` に色をつける。
 
-
 ```js
 javascript:Array.from(document.querySelectorAll('.js-display-url')).forEach((a) => a.style.color="red")
 ```
@@ -106,13 +102,11 @@ Google の検索結果は、「期間指定」ができるが「1 ヶ月」の�
 
 例えば 1 ヶ月を選ぶと以下が付与される。
 
-
 ```
 &tbs=qdr:m
 ```
 
 この `m` を `m3` にすると 3 ヶ月になる。
-
 
 ```js
 javascript:location.href += '&tbs=qdr:m3'
@@ -123,13 +117,11 @@ javascript:location.href += '&tbs=qdr:m3'
 
 綺麗な URL を取得したいのに、遷移元などの影響で不要なゴミクエリが付いているといった場合にそれを除去する。
 
-
 ```js
 javascript:location.href = document.querySelector('link[rel="canonical"]').href
 ```
 
 ところで、 Amazon の URL の canonical は以下のようになっている。
-
 
 ```url
 https://www.amazon.co.jp/商品名/dp/XXXXXXXX
@@ -138,7 +130,6 @@ https://www.amazon.co.jp/商品名/dp/XXXXXXXX
 ただ、商品名が長いとブログなどに貼る時に URL が見づらくなる。
 
 実際は dp 以降だけで良いので、商品名を削除してしまった方が使いやすかったりする。
-
 
 ```js
 javascript:location.href = document.querySelector('link[rel="canonical"]').href.replace(/amazon.co.jp\/.*\/dp/, 'amazon.co.jp/dp');
@@ -152,7 +143,6 @@ javascript:location.href = document.querySelector('link[rel="canonical"]').href.
 一旦、最後のページまで自動で遷移させ、全ページ読み込みが終わったあたりで頭から読んでいる。
 
 最後のページまで読むと次のスライドに映るという悪仕様があるため、手前で止めている。
-
 
 ```js
 javascript: function loop(n) {
@@ -170,7 +160,6 @@ javascript: function loop(n) {
 今の Safari は PinP に対応している。
 
 `<video>` タグで再生されていれば基本的に表示が可能だが、 UI がない場合は以下で再生中のビデオを PinP できる。
-
 
 ```js
 javascript: document.querySelector('video').webkitSetPresentationMode('picture-in-picture')

@@ -1,6 +1,5 @@
 # [display locking][async][dom] Display Locking によるレンダリングの最適化と Async DOM
 
-
 ## Intro
 
 React や lit-html などにより、 DOM 操作の抽象化に加えて最適化が提供されることが一般的となった。
@@ -17,7 +16,6 @@ React や lit-html などにより、 DOM 操作の抽象化に加えて最適�
 ## 現状の DOM 操作の課題
 
 まず、以下のような処理を考える。
-
 
 ```js
 body.appencCild($div)
@@ -128,13 +126,10 @@ Display Locking が実装されると、 Element に displayLock というプロ
 
 `acquire()`
 : ロックの取得
-
 `update()`
 : getComputedStyle, offsetTop で必要な計算(forced update)などを計算する
-
 `commit()`
 : ロックの解除(レンダリング開始)
-
 `updateAndCommit()`
 : update + commit
 
@@ -144,7 +139,6 @@ Display Locking が実装されると、 Element に displayLock というプロ
 ### Example
 
 簡単な例として、すでに DOM 上にある `<ul>` に、複数の `<li>` を追加する処理を考える。
-
 
 ```js
 const $ul = document.querySelector("$ul")
@@ -159,10 +153,9 @@ for (const i = 0; i < 100; i ++) {
 
 わかりやすいように、 `appendChild` に `setTimeout` を仕込んだ例は以下のように挙動する。
 
-![lock を取らず普通に appendChild する例](display-no-locking.gif#825x968 'display with no locking')
+![lock を取らず普通に appendChild する例](display-no-locking.gif#825x968 "display with no locking")
 
 そこで、 `<ul>` のロックを取得し、全ての `<li>` が追加されてから一気にレンダリングする場合以下のように書ける。
-
 
 ```js
 const $ul = document.querySelector("$ul")
@@ -182,7 +175,7 @@ await container.displayLock.updateAndCommit()
 
 こちらも、わかりやすいように `setTimeout` を仕込んだ例は以下のように挙動する。
 
-![ul の lock を取り追加が終わってから commit する例](display-locking.gif#825x968 'display with locking')
+![ul の lock を取り追加が終わってから commit する例](display-locking.gif#825x968 "display with locking")
 
 Lock 中に行われる `appendChild` は、メモリ上で DOM の処理を行うだけになり、 `commit()` でレンダリングが一度に走っていることがわかるだろう。
 
@@ -193,10 +186,8 @@ Lock 中に行われる `appendChild` は、メモリ上で DOM の処理を行�
 
 timeout
 : タイムアウトすると commit されるため、 commit 漏れを防ぐことができる。
-
 sizes
 : commit 後のサイズを指定することで、その領域を確保しておくことができる。
-
 activatable
 : 後述
 
@@ -220,7 +211,7 @@ activatable は、メモリ上にあるがレンダリングされてない DOM 
 
 説明よりも見た方が早いので以下にデモを示す。
 
-![commit してない要素が画面内検索で一致した際にレンダリングされる例](display-locking-activatable.gif#825x968 'find in page commits activatable element')
+![commit してない要素が画面内検索で一致した際にレンダリングされる例](display-locking-activatable.gif#825x968 "find in page commits activatable element")
 
 このデモでは、ランダムな文字列を `<li>` に入れ、ロックをとった `<ul>` に追加し commit してない状態で止めている。
 
@@ -297,4 +288,4 @@ React や lit-html が提供しているのは DOM の更新だけではない�
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/display-locking/>
+- https://labs.jxck.io/display-locking/

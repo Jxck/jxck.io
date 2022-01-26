@@ -15,9 +15,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Show Note
 
-
 ### Chrome 動向
-
 
 #### Stable: 91
 
@@ -72,6 +70,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://events.google.com/io/session/165a213a-d593-4ad0-9bee-18615a4757e8?lng=ja
   - *検索の最新情報*
     - https://events.google.com/io/session/6da5bb28-ad54-4cf0-8dc5-4eacb73a660a?lng=ja
+
 
 #### Intents
 
@@ -288,7 +287,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Firefox 動向
 
-
 #### Stable: 88
 
 
@@ -347,7 +345,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### Safari 動向
-
 
 #### Stable: 14.1.1
 
@@ -462,7 +459,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Edge 動向
 
-
 #### Stable: 91
 
 
@@ -541,7 +537,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### WHATWG/W3C 動向
 
-
 #### Draft
 
 - Recommendation
@@ -591,7 +586,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### TC39 動向
 
-
 #### Meeting
 
 - 2021-04
@@ -633,7 +627,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### IETF 動向
-
 
 #### WG
 
@@ -728,7 +721,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### CDN 動向
-
 
 #### Cloudflare
 

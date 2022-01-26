@@ -1,6 +1,5 @@
 # [svg][image][performance] 画像最適化戦略 SVG/Font 編
 
-
 ## Intro
 
 本サイトで使用している UI アイコン系の画像を、ギリギリまで最適化した手書き SVG に置き換えた(ただしソースは *観賞用* なので、インデントは残す)。
@@ -10,10 +9,10 @@
 画像最適化シリーズ第 4 回目のエントリである。
 
 1. [画像最適化戦略 PNG/JPEG 編](https://blog.jxck.io/entries/2016-03-24/optimize-image.html)
-1. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
-1. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
-1. [> 画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
-1. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
+2. [画像最適化戦略 Picture 編](https://blog.jxck.io/entries/2016-03-25/picture.html)
+3. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
+4. [> 画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
+5. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
 
 
 ## ベクタ画像とラスタ画像
@@ -52,7 +51,6 @@ SVG を生成するツールは、イラストレーターなどがよく使わ�
 cacoo は、作成した図を SVG 書き出すことが可能であるため、まずはこれを用いて自分のロゴを SVG で出した。
 
 ソースは以下である。
-
 
 ```svg
 <?xml version="1.0" encoding="utf-8"?>
@@ -103,7 +101,6 @@ SVG は拡大しても問題はない。
 
 PNG
 : 3860byte
-
 SVG
 : 1430byte
 
@@ -117,7 +114,6 @@ cacoo で吐いたままの SVG には、不要なメタ情報などが含まれ
 表示上不要なメタ情報は、 PNG/JPEG etc 同様に削除することでサイズ上のメリットが得られる。
 
 これを行うツールに SVGGo があるため、これをかけてみた結果が以下である。
-
 
 ```svg
 <svg contentScriptType="text/ecmascript"
@@ -145,7 +141,6 @@ cacoo で吐いたままの SVG には、不要なメタ情報などが含まれ
 
 before
 : 3860byte
-
 after
 : 638byte
 
@@ -159,7 +154,6 @@ SVG には、基本的に図形の描画に必要なパス情報が書かれる�
 cacoo の吐く SVG を読んでみると、この部分が気に食わなかったため、しかたなくエディタで手書きすることにした。
 
 簡単な画像であれば、自分でゼロから手書きすることで、不要なメタ情報や無駄パスがない SVG を作ることができる。
-
 
 ```svg
 <?xml version="1.0" encoding="utf-8"?>
@@ -179,7 +173,6 @@ SVG が Valid であることは以下で確認している。
 
 svggo
 : 638byte
-
 vim
 : 291byte
 
@@ -192,7 +185,7 @@ cacoo が吐いた SVG と比べれば 20% なので、以降基本的に UI ア
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/svg/>
+- https://labs.jxck.io/svg/
 
 手書きした SVG をソースとともに掲載している。
 
@@ -224,7 +217,6 @@ SVG の弱点として、 HTML に埋め込んだ SVG でないと CSS で色を
 装飾に使用している `#` や `-` などの文字は、 `before`/`after` 擬似要素への `content:` に文字を指定することで、フォントデータを使って装飾している。
 
 例えば見出し `<h1>~<h4>` と `pre` は以下のように指定している。
-
 
 ```css
 h1::before,

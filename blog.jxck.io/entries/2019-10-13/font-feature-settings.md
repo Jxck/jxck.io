@@ -1,6 +1,5 @@
 # [font-feature-settings][noto sans][web font] Noto Sans Hinted と font-feature-settings: 'palt'
 
-
 ## Intro
 
 Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。
@@ -45,7 +44,6 @@ Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyf
 
 対象を subset.txt に保存し、変換は以下のようにした。
 
-
 ```sh-session
 $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features='*' --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2
 ```
@@ -59,7 +57,6 @@ $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-featur
 - 606.6K: 更新後
 
 コマンドヘルプを見ながら適当につけた以下のオプションが問題である。
-
 
 ```sh-session
 --layout-features='*'
@@ -129,7 +126,6 @@ palt とは別に、字体を置き換える pwid があるが、そちらは Ch
 
 そこで結果として `palt` のみを指定してフォントをビルドすることにした。
 
-
 ```sh-session
 $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features='palt' --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2
 ```
@@ -143,7 +139,6 @@ $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=
 サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前より小さくなっている。
 
 またこのヒントを有効にするため、 CSS に以下を追加した。
-
 
 ```css
 body {

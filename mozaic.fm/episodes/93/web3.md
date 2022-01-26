@@ -8,7 +8,6 @@ guest: [@aggre_](https://twitter.com/aggre_)
 
 # ep93 Web3
 
-
 ## Theme
 
 第 93 回のテーマは Web3 です。

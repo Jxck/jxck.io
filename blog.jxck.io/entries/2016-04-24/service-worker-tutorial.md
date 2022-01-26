@@ -1,6 +1,5 @@
 # [service worker][tutorial] 中級者向け Service Worker Tutorial
 
-
 ## Intro
 
 Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
@@ -18,58 +17,49 @@ TODO になっている動画は、そのうち撮って追加します。
 
 ## List
 
-1. [#claim](#claim)
-2. [#controllerchange](#controllerchange)
-3. [#updatefound](#updatefound)
-4. [#update()](#update)
-5. [#backgroundsync](#backgroundsync)
-6. [#push](#push)
-  1. [#1. Google Developer Console](#1.+Google+Developer+Console)
-  2. [#2.master.js](#2.master.js)
-  3. [#3.worker.js](#3.worker.js)
-  4. [#4.push.js](#4.push.js)
+1. [claim](#claim)
+2. [controllerchange](#controllerchange)
+3. [updatefound](#updatefound)
+4. [update()](#update)
+5. [backgroundsync](#backgroundsync)
+6. [push](#push)
+  1. [1. Google Developer Console](#1.+Google+Developer+Console)
+  2. [2.master.js](#2.master.js)
+  3. [3.worker.js](#3.worker.js)
+  4. [4.push.js](#4.push.js)
 
 
 ## claim
 
 controller とは何か、いつ controller になるか、 `claim()` で何が起こるのかなどについて。
 
-
 <iframe src="https://www.youtube.com/embed/m6qBg4M3RTA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
-
 
 ```html:claim.html
 ```
 
-
 ```js:claim-master.js
 ```
-
 
 ```js:claim-worker.js
 ```
 
-- DEMO: <https://labs.jxck.io/service-worker/claim/index.html>
+- DEMO: https://labs.jxck.io/service-worker/claim/index.html
 
 
 ## controllerchange
 
 register が終わった後、「新しく登録された controller が使えるようになったら」または「既に登録されている controller が使えるようになったら」という状態をとる方法と `controllerchange` イベント。
 
-
 <iframe src="https://www.youtube.com/embed/XoI0FPDV8Xo" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
-
 
 ```js:controllerchange-master.js
 ```
 
-
 ```js:controllerchange-worker.js
 ```
 
-- DEMO: <https://labs.jxck.io/service-worker/controllerchange/>
+- DEMO: https://labs.jxck.io/service-worker/controllerchange/
 
 
 ## updatefound
@@ -78,57 +68,45 @@ Service Worker が更新される際の動きと、 `skipWaiting()` が何をス
 
 `install`, `activate` イベントの用途。
 
-
 <iframe src="https://www.youtube.com/embed/AMbQ7d9rjao" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
-
 
 ```js:updatefound-master.js
 ```
 
-
 ```js:updatefound-worker.js
 ```
 
-- DEMO: <https://labs.jxck.io/service-worker/registration/>
+- DEMO: https://labs.jxck.io/service-worker/registration/
 
 
 ## update()
 
 `registration.update()` による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
 
-
 <iframe src="https://www.youtube.com/embed/7uRVh9PzV5o" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
-
 
 ```js:update-master.js
 ```
 
-
 ```js:update-worker.js
 ```
 
-- DEMO: <https://labs.jxck.io/service-worker/update/>
+- DEMO: https://labs.jxck.io/service-worker/update/
 
 
 ## backgroundsync
 
 sync の発火タイミングと fetch を sync で送る場合の考え方。
 
-
 <iframe src="https://www.youtube.com/embed/b7ZM7uzkykA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
-
 
 ```js:backgroundsync-master.js
 ```
 
-
 ```js:backgroundsync-worker.js
 ```
 
-- DEMO: <https://labs.jxck.io/service-worker/background-sync/>
+- DEMO: https://labs.jxck.io/service-worker/background-sync/
 
 
 ## push
@@ -147,10 +125,7 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 - Google Cloud Messaging の API Key を探す
 - manifest.json を作って HTML にリンクスする
 
-
 <iframe src="https://www.youtube.com/embed/MlCZWVvUiXM" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
-
 
 ```json
 {
@@ -170,7 +145,6 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 
 (`gcm_user_visible_only` は今はもういりません)
 
-
 ```html:push.html
 ```
 
@@ -179,10 +153,7 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 
 `endpoint`, `userAuth`, `userPublickKey` をなんらかの方法でサーバに送ります。
 
-
 <iframe src="https://www.youtube.com/embed/f-ney12qAEI" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
-
 
 ```js:push-master.js
 ```
@@ -190,10 +161,7 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 
 ### 3.worker.js
 
-
 <iframe src="https://www.youtube.com/embed/k939NlThH4E" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
-
 
 ```js:push-worker.js
 ```
@@ -201,17 +169,14 @@ Console の UI はコロコロ変わります。以下の情報を頑張って�
 
 ### 4.push.js
 
-使用したモジュール: <https://github.com/web-push-libs/web-push>
-
+使用したモジュール: https://github.com/web-push-libs/web-push
 
 <iframe src="https://www.youtube.com/embed/hIliK4l4wqw" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-
-
 
 ```js:push.js
 ```
 
-- DEMO(push は飛ばしていません): <https://labs.jxck.io/service-worker/push/>
+- DEMO(push は飛ばしていません): https://labs.jxck.io/service-worker/push/
 
 
 ## 図

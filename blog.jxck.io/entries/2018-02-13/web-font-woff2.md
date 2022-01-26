@@ -1,6 +1,5 @@
 # [woff2][web font][performance] WebFont の WOFF2 対応によるサイズ最適化
 
-
 ## Intro
 
 Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。
@@ -22,7 +21,7 @@ Safari 10.0 から WOFF2 がサポートされており、これをもって IE 
 
 WOFF2 の仕様は以下に有る。
 
-<https://w3c.github.io/woff/woff2>
+- https://w3c.github.io/woff/woff2
 
 WOFF2 は WOFF よりも圧縮率が高いとされている。
 
@@ -41,7 +40,6 @@ WOFF2 は WOFF よりも圧縮率が高いとされている。
 
 ([Unicode を解説する記事](https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html) や [突然の死](https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html) を書いたことによる影響が大きい)
 
-
 ```
 © 乖 忖 揉 汲 牢 矩 舵 蒙 謳 辿 鯖 黎 ＜ ＞ ＿ ￣ 𠮟 𠮷 𩸽
 ```
@@ -50,7 +48,7 @@ WOFF2 は WOFF よりも圧縮率が高いとされている。
 
 結果、今回作成するフォントセットは以下の 全エントリの利用文字 - (Emojio x 5 + ZWJ) = 2416 文字である
 
-[All.txt](All.txt)
+- [All.txt](https://blog.jxck.io/entries/2018-02-13/All.txt)
 
 ここから、 [以前解説した方法](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) でサブセット化し、 WOFF と WOFF2 を生成してサイズを比較する。
 
@@ -64,7 +62,6 @@ WOFF2 は WOFF よりも圧縮率が高いとされている。
 | 498.8K | otf    | NotoSansCJKjp-Jxck-Regular-201802.otf   |
 | 391.6K | woff   | NotoSansCJKjp-Jxck-Regular-201802.woff  |
 | 345.7K | woff2  | NotoSansCJKjp-Jxck-Regular-201802.woff2 |
-
 
 woff と woff2 を比べると 12% ほど圧縮されている。
 
@@ -82,7 +79,6 @@ WOFF2 は既に brotli を用いた圧縮をしているため、もし経路上
 | 345.7K | -      | NotoSansCJKjp-Jxck-Regular-201802.woff2    |
 | 345.7K | brotli | NotoSansCJKjp-Jxck-Regular-201802.woff2.br |
 | 345.8K | zopfli | NotoSansCJKjp-Jxck-Regular-201802.woff2.gz |
-
 
 予想通り、追加の圧縮は無意味、もしくは逆効果であるため、 WOFF2 は圧縮プロセスから外すこととする。
 

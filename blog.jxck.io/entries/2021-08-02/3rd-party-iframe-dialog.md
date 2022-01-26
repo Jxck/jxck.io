@@ -1,6 +1,5 @@
 # [iframe][security] Cross Origin iframe からの alert/confirm/prompt 呼び出しの無効化
 
-
 ## Intro
 
 直近で話題になっている Chrome の挙動変更についてまとめた。
@@ -21,12 +20,12 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
 これは、 Google のもの含むいくつかのサービスで問題となり、その事象が ML や Issue Tracker などに報告されている。
 
 - 1065085 - Implement window.{alert, prompt, confirm} removal from cross-origin iframes - chromium
-  - <https://bugs.chromium.org/p/chromium/issues/detail?id=1065085>
+  - https://bugs.chromium.org/p/chromium/issues/detail?id=1065085
 
 大きなサービスとしては Salesforce も影響を受けたようで、ユーザに対して Chrome のフラグにより(無効にする)機能を無効にするように案内しているようだ。
 
 - Salesforce functionality impacted in Chrome 92 after recent change to cross-origin iframe JavaScript dialogs
-  - <https://trailblazer.salesforce.com/issues_view?id=a1p4V000002BRMXQA4>
+  - https://trailblazer.salesforce.com/issues_view?id=a1p4V000002BRMXQA4
 
 
 ## Remove: Cross origin subframe JS Dialogs
@@ -34,7 +33,7 @@ Reverse OT による延命はあるが、もともとが「セキュリティ的
 ことの発端は *2020/03/25* に投稿された以下の Intents だ。
 
 - Intent to Remove: Cross origin subframe JS Dialogs
-  - <https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/>
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/
 
 ダイアログ(alert, confirm, prompt)を呼び出す JS は、 Top Level で呼ばれたのか 3rd Party iframe で呼ばれたのかがわかりにくいという問題があった。
 
@@ -67,12 +66,11 @@ Cross Origin iframe が埋め込まれたページにおいては、他にも [P
 Intents には Use Counter も載っているので引用する。
 
 | Feature        | % of Page Loads with usage (from cross-origin iframes) |
-|----------------|--------------------------------------------------------|
+|:--------------:|:------------------------------------------------------:|
 | window.Alert   | 0.006                                                  |
 | window.Confirm | 0.003                                                  |
 | window.Prompt  | 0.00006                                                |
 | Total          | 0.00906                                                |
-
 
 しかし、実際に M92 がリリースされてからは、この機能が壊れたことによる影響が多数報告されていたため、実装者が想定していた以上に影響はあったといえるだろう。
 
@@ -81,18 +79,18 @@ Intents には Use Counter も載っているので引用する。
 
 実際にロールアウトしたのが Chrome/Edge であったため、いつものように「また Google が勝手にやっている」と思う人もいるようだが、実際には他のブラウザも Positive を表明している。
 
-- Firefox: <https://github.com/whatwg/html/issues/5407#issuecomment-606417807>
-- Safari: <https://github.com/whatwg/html/issues/5407#issuecomment-760574422>
+- Firefox: https://github.com/whatwg/html/issues/5407#issuecomment-606417807
+- Safari: https://github.com/whatwg/html/issues/5407#issuecomment-760574422
 
 また、この合意が取れているため、既に仕様にもマージされている。
 
 - Add early return to JS dialogs triggered from different origin-domain iframes by carlosjoan91 - Pull Request #6297 - whatwg/html
-  - <https://github.com/whatwg/html/pull/6297>
+  - https://github.com/whatwg/html/pull/6297
 
 それでも、「まだそこにはユースケースがある」と食いつてる Issue は以下にある。
 
 - Cross-origin prompts still have significant use cases - Issue #6897 - whatwg/html
-  - <https://github.com/whatwg/html/issues/6897>
+  - https://github.com/whatwg/html/issues/6897
 
 ここでの仕様策定者の反応を見れば、これはもう「*Web において決まった変更だ*」と理解した方が良いだろうことがわかる。
 
@@ -104,7 +102,7 @@ ML のスレッドにも、回避方法が知りたいという声が多数あ�
 しかし、このように互換を壊す場合は、デプロイされたコンテンツが修正するための猶予期間として、 Reverse Origin Trials を提供するのが最近の Chrome の運用だ。
 
 - Request for Deprecation Trial: Remove alert(), confirm(), and prompt for cross origin iframes
-  - <https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4>
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4
 
 Origin Trials は、新しい機能を先取りして試すために、 Token を取得してそれをコンテンツに追加することで Opt-In する方法だ。トライアルが終われば Token は無効になるため、実験中の実装が残るリスクを減らすことができる。またトライアルを実施しているユーザと連絡手段ができるため、実装の変更などのアナウンスが可能になる。
 
@@ -113,7 +111,7 @@ Origin Trials は、新しい機能を先取りして試すために、 Token �
 今回の Token は以下から取得できる。使い方は [過去に書いた記事](https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html) が参考になるだろう。
 
 - Trial for Disable Different Origin Subframe Dialog Suppression
-  - <https://developer.chrome.com/origintrials/#/view_trial/2541156089743802369>
+  - https://developer.chrome.com/origintrials/#/view_trial/2541156089743802369
 
 ちなみに、試したところ Token を追加するのは *埋め込まれた iframe 側* で、埋め込む側には必要無さそうなので、提供する側が対応すれば良さそうだ。
 
@@ -178,39 +176,39 @@ Web がそうなっている以上、その変更に合わせてユーザが安�
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/iframe/dialog.html>
+- https://labs.jxck.io/iframe/dialog.html
 
 
 ## Resources
 
 - Spec
   - Add early return to JS dialogs triggered from different origin-domain iframes by carlosjoan91 - Pull Request #6297 - whatwg/html
-    - <https://github.com/whatwg/html/pull/6297>
+    - https://github.com/whatwg/html/pull/6297
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
-  - <https://github.com/whatwg/html/issues/5407#issuecomment-606417807>
+  - https://github.com/whatwg/html/issues/5407#issuecomment-606417807
 - Webkit Position
-  - <https://github.com/whatwg/html/issues/5407#issuecomment-760574422>
+  - https://github.com/whatwg/html/issues/5407#issuecomment-760574422
 - TAG Design Review
 - Intents
   - Intent to Remove: Cross origin subframe JS Dialogs
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/>
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/hTOXiBj3D6A/
   - Request for Deprecation Trial: Remove alert(), confirm(), and prompt for cross origin iframes
-    - <https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4>
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/VOePv--Qa-4
 - Chrome Platform Status
   - Remove alert(), confirm(), and prompt for cross origin iframes - Chrome Platform Status
-    - <https://www.chromestatus.com/feature/5148698084376576>
+    - https://www.chromestatus.com/feature/5148698084376576
 - WPT (Web Platform Test)
 - DEMO
-  - <https://labs.jxck.io/iframe/dialog.html>
+  - https://labs.jxck.io/iframe/dialog.html
 - Blog
 - Presentation
 - Issues
   - 1065085 - Implement window.{alert, prompt, confirm} removal from cross-origin iframes - chromium
-    - <https://bugs.chromium.org/p/chromium/issues/detail?id=1065085>
+    - https://bugs.chromium.org/p/chromium/issues/detail?id=1065085
   - Cross-origin prompts still have significant use cases - Issue #6897 - whatwg/html
-    - <https://github.com/whatwg/html/issues/6897>
+    - https://github.com/whatwg/html/issues/6897
 - Other
   - Salesforce functionality impacted in Chrome 92 after recent change to cross-origin iframe JavaScript dialogs
-    - <https://trailblazer.salesforce.com/issues_view?id=a1p4V000002BRMXQA4>
+    - https://trailblazer.salesforce.com/issues_view?id=a1p4V000002BRMXQA4

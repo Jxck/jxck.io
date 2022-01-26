@@ -1,6 +1,5 @@
 # [referrer-policy][referer][http] Referrer-Policy によるリファラ制御
 
-
 ## Intro
 
 リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。
@@ -23,7 +22,6 @@
 
 そのリクエストには、条件次第で以下のように HTTP Referer ヘッダが含まれる。
 
-
 ```http
 GET / HTTP/1.1
 Host: blog.jxck.io
@@ -43,13 +41,11 @@ Referer: https://example.com/index.html
 
 ## Referer の用途
 
-
 ### 簡易トラックバック
 
 簡易的なトラックバックとして機能するため、アクセスログにこの情報を含むことで、流入元を解析するための情報源として使うのがメジャーなユースケースだろう。
 
 例えば、検索エンジンの検索結果が検索キーワードを URL に含んでいれば、サイトオーナーはどういう検索結果からユーザが遷移してきたかを知ることができる。
-
 
 ```http
 Referer: https://search.example.com/q=http+referer+policy
@@ -115,13 +111,11 @@ Example 社は社内で Orange プロジェクトに関する情報共有のた�
 
 ここで、社内ブログやチケットに誰かのブログへのリンクが貼ってあった場合、そのリンクを踏んだブラウザからのリクエストに、このドメイン名が入った Referer が付与される。
 
-
 ```url
 https://orange.trac.example.com/
 ```
 
 ドメインだけで無く URL エンコードされている日本語が入っている場合もある。
-
 
 ```url
 https://ticket.orange.example.com/%7B%E7%A4%BE%E5%93%A1%E5%90%8D%7D/issue/xxxxxx/[%E7%A4%BE%E5%A4%96%E7%A7%98]1%E6%9C%8811%E6%97%A5%E3%81%AE%E3%83%97%E3%83%AC%E3%82%B9%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E5%8E%9F%E7%A8%BF
@@ -129,7 +123,6 @@ https://ticket.orange.example.com/%7B%E7%A4%BE%E5%93%A1%E5%90%8D%7D/issue/xxxxxx
 ```
 
 他にも、キーワード検索の結果から外部のページに飛べる場合、検索したキーワードが残る場合もある。
-
 
 ```url
 https://intra.orange.example.com/search?q=Apache+CVExxxxx
@@ -180,7 +173,7 @@ Firefox の about:config や、 Chrome のコマンドラインオプション�
 
 Referrer-Policy は、ヘッダもしくは HTML の特定の要素に指定し、そのページからの遷移に伴う Referer ヘッダを制御するための Policy である。
 
-- <https://w3c.github.io/webappsec-referrer-policy/>
+- https://w3c.github.io/webappsec-referrer-policy/
 
 執筆時点で、仕様には以下の Policy が定義されている。
 
@@ -198,13 +191,11 @@ Referrer-Policy は、ヘッダもしくは HTML の特定の要素に指定し�
 
 ヘッダに URL が載る場合、例えばこのページでは以下のようになる。
 
-
 ```http
 Referer: https://blog.jxck.io/entries/2018-10-08/referrer-policy.html
 ```
 
 ポリシーによっては、 URL 全体ではなく Origin のみを送るものがある。
-
 
 ```http
 Referer: https://blog.jxck.io/
@@ -235,7 +226,6 @@ Referer ヘッダそのものが省かれるため、情報の漏洩の観点か
 
 送る条件
 : 必ず送る
-
 送る値
 : URL 全体
 
@@ -250,7 +240,6 @@ Referer ヘッダに URL 全体を載せ、必ず送る。
 
 送る条件
 : 必ず送る
-
 送る値
 : Origin のみ
 
@@ -263,7 +252,6 @@ Path 以下の情報が送られない点で、漏洩の観点からは情報が
 
 送る条件
 : Same Origin のみ
-
 送る値
 : URL 全体
 
@@ -278,7 +266,6 @@ Origin が一致した場合だけ URL 全体を送る。
 
 送る条件
 : Downgrade 以外
-
 送る値
 : Origin のみ
 
@@ -289,7 +276,6 @@ Origin が一致した場合だけ URL 全体を送る。
 
 送る条件
 : Downgrade 以外
-
 送る値
 : URL 全体
 
@@ -302,13 +288,10 @@ Origin が一致した場合だけ URL 全体を送る。
 
 送る条件
 : Cross Origin の場合
-
 送る値
 : Origin のみ
-
 送る条件
 : Same Origin の場合
-
 送る値
 : URL 全体
 
@@ -321,19 +304,14 @@ Down/Upgrade も Cross Origin 扱いになるため、 Origin のみ送られる
 
 送る条件
 : Downgrade の場合
-
 送る値
 : 無し
-
 送る条件
 : Cross Origin の場合
-
 送る値
 : Origin のみ
-
 送る条件
 : Same Origin の場合
-
 送る値
 : URL 全体
 
@@ -357,20 +335,19 @@ Policy を指定しないことを意味する。
 
 表にまとめるとこうなる
 
-| Policy                           | Condition       | Value   |
-|:---------------------------------|----------------:|--------:|
-| noreferrer                       | 必ず            | 無し    |
-| unsafe-url                       | 必ず            | URL     |
-| origin                           | 必ず            | Origin  |
-| same-origin                      | Same Origin     | URL     |
-| strict-origin                    | Downgrade 以外  | Origin  |
-| no-referrer-when-downgrade       | Downgrade 以外  | URL     |
-| origin-when-cross-origin         | Cross Origin    | Origin  |
-| origin-when-cross-origin         | Same Origin     | URL     |
-| strict-origin-when-cross-origin  | Downgrade       | 無し    |
-| strict-origin-when-cross-origin  | Cross Origin    | Origin  |
-| strict-origin-when-cross-origin  | SameO rigin     | URL     |
-
+| Policy                          | Condition      | Value  |
+|:--------------------------------|---------------:|-------:|
+| noreferrer                      |           必ず |   無し |
+| unsafe-url                      |           必ず |    URL |
+| origin                          |           必ず | Origin |
+| same-origin                     |    Same Origin |    URL |
+| strict-origin                   | Downgrade 以外 | Origin |
+| no-referrer-when-downgrade      | Downgrade 以外 |    URL |
+| origin-when-cross-origin        |   Cross Origin | Origin |
+| origin-when-cross-origin        |    Same Origin |    URL |
+| strict-origin-when-cross-origin |      Downgrade |   無し |
+| strict-origin-when-cross-origin |   Cross Origin | Origin |
+| strict-origin-when-cross-origin |    SameO rigin |    URL |
 
 
 ## Referrer-Policy の適用方法
@@ -380,17 +357,16 @@ Policy を適用する方法は 4 つある。
 優先度順に並べると以下だ。
 
 1. `rel=noreferrer`
-1. referrerpolicy 属性
-1. `<meta>` の referrer 属性
-1. HTTP の Referrer-Policy ヘッダ
+2. referrerpolicy 属性
+3. `<meta>` の referrer 属性
+4. HTTP の Referrer-Policy ヘッダ
 
-仕様: <https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute>
+仕様: https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute
 
 
 ### `<a>`, `<area>` の `rel=noreferrer`
 
 `<a>` と `<area>` には `rel=noreferrer` をつけることで、その遷移のリクエストを `no-referrer` の挙動とすることができる。
-
 
 ```html
 <a href="https://example.com" rel="noreferrer">
@@ -402,13 +378,11 @@ Policy を適用する方法は 4 つある。
 
 つまり
 
-
 ```html
 <a href="https://example.com" rel="noreferrer" target="_blank">
 ```
 
 は
-
 
 ```html
 <a href="https://example.com" rel="noreferrer noopener" target="_blank">
@@ -423,7 +397,6 @@ Policy を適用する方法は 4 つある。
 
 `<a>` などに対して referrerpolicy 属性を付与することができる。
 
-
 ```html
 <a href="http://example.com" referrerpolicy="origin">
 ```
@@ -436,13 +409,12 @@ Policy を適用する方法は 4 つある。
 
 `<a>` には必ずこの属性をつけるが、 Policy 自体はページ全体のものに準拠したいといった場合は、属性を `""` (空文字) にすれば良い。
 
-仕様: <https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute>
+仕様: https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute
 
 
 ### `<meta>` の referrer 属性
 
 `<meta>` タグを利用することでページ全体に Policy を適用できる。
-
 
 ```html
 <meta name="referrer" content="origin-when-cross-origin">
@@ -452,13 +424,12 @@ Policy を適用する方法は 4 つある。
 
 なお、 `never` / `default` / `always` といった古い仕様が存在したため、対応表を元に新しい値を指定することが望ましい。
 
-仕様: <https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer>
+仕様: https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer
 
 
 ### HTTP Header
 
 レスポンスの HTTP ヘッダで指定することにより、ページ全体に Policy を適用できる。
-
 
 ```http
 Referrer-Policy: no-referrer
@@ -466,14 +437,14 @@ Referrer-Policy: no-referrer
 
 コンテンツに手を入れられない場合や、漏れなく全てのレスポンスに適用したい場合などに利用できる。
 
-仕様: <https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn>
+仕様: https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn
 
 
 ## DEMO
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/referrer-policy/>
+- https://labs.jxck.io/referrer-policy/
 
 
 ## 本サイトへの適用

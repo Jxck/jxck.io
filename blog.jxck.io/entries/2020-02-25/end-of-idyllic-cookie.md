@@ -1,6 +1,5 @@
 # [cookie][privacy] 牧歌的 Cookie の終焉
 
-
 ## Intro
 
 Cookie は、ブラウザに一度保存すれば、次からその値を自動的に送ってくるという、非常に都合の良い仕様から始まった。
@@ -27,7 +26,6 @@ Web にある API の中でも Cookie はいくつかの点で特異な挙動を
 
 例えば、テーマカラーを設定で変えられるようなサービスがあった際に、その情報を Cookie で持つこともできる。
 
-
 ```http
 Set-Cookie: theme=dark
 Cookie: theme=dark
@@ -43,7 +41,6 @@ Cookie: theme=dark
 Cookie Store の中身はユーザが簡単に変更できるため、サーバからランダムな値を付与し、その値が送られてくることでユーザの連続したリクエストを紐付けるようになった。これがセッションの維持だ。
 
 多くのサイトで、初回のアクセス時にとりあえず付与されているだろう。
-
 
 ```http
 Cookie: SID=q1w2e3r4t5y
@@ -69,7 +66,6 @@ HTTPS Everywhere が必要なことも、 HttpOnly や Secure 属性が必要な
 実装は色々あるが典型例としては、あるサイト a.example.com と b.example.jp で Single Sign On を実現したい場合、共通の認証基盤として auth.example を用意する。全て違うドメインだ。
 
 a.example.com にアクセスした場合、一度 auth.example にリダイレクトすることで、ログインフォームでログインさせ Cookie を付与する。さらにワンタイムトークンなどをクエリストリングに付けてリダイレクトバックしてやれば、 a.example.com は auth.example に裏で確認することでログイン済みとみなすことができる。
-
 
 ```http
 # auth.example からのレスポンス
@@ -99,7 +95,6 @@ auth.example には Cookie が飛ぶため認証済みであることがわか�
 
 a.example.com のアクセスを analytics.example というアナリティクスサービスで収集したい場合、 a.example.com に以下のような `<img>` を埋め込む。
 
-
 ```html
 <body>
 メインコンテンツ
@@ -110,7 +105,6 @@ a.example.com のアクセスを analytics.example というアナリティク�
 `<img>` を使うのは、 CORS に違反せずに別 Origin へとリクエストを投げる簡単な方法だからだろう。
 
 リクエストが飛べば、それだけでかなりの情報がわかる。
-
 
 ```http
 # そもそも IP からおおよその場所がわかる
@@ -137,7 +131,6 @@ User-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Geck
 
 a.example.com でユーザは商品ページを見ている。
 
-
 ```html
 <main>
 PC周辺機器
@@ -149,13 +142,11 @@ PC周辺機器
 
 このとき、 ad.example には、ページの持ち主が設定したページの情報がクエリによって付与され、レスポンスで ad.example の Cookie が付与される。
 
-
 ```http
 # PC周辺機器のページを見ていたことが伝わる
 GET /?page=pc-accessory HTTP/1.1
 Host: ad.example
 ```
-
 
 ```http
 HTTP/1.1 200 OK
@@ -170,7 +161,6 @@ Content-Length: 1024
 
 次にユーザは全く関係ない b.example.jp にアクセスし、同じく ad.example の広告が埋め込まれていたとする。
 
-
 ```html
 <main>
 SNS 的な何か
@@ -181,7 +171,6 @@ SNS 的な何か
 ```
 
 このとき ad.example を取得するために送られるリクエストは以下のようになる。
-
 
 ```http
 GET / HTTP/1.1
@@ -331,7 +320,6 @@ LocalStorage がある今、 Cookie を JS のための KVS として使う場�
 セッションの維持だけなら Same Origin で良く、それを Cookie 本来の仕様に合わせた概念が Same Site であり、既に Chrome はそれをデフォルトにし始めている。
 
 それらを総合すると、セッションの維持が目的であれば `HttpOnly` かつ `Secure` で `__Host` にロックされ `SameSite=Lax` に制限されたものが求められる。(そして HTTP State Token に繋がるかもしれない)。
-
 
 ```http
 Set-Cookie: __Host-SID=q1w2e3r4t5; HttpOnly; Secure; Path=/; SameSite=Lax;

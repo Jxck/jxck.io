@@ -1,6 +1,5 @@
 # [srcset][picture][image] img の srcset 指定時に選択される画像
 
-
 ## Intro
 
 `<img>` や `<picture>` で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。
@@ -13,7 +12,6 @@
 ## srcset attribute
 
 まず以下のようなコードを考える。
-
 
 ```html
 <style>
@@ -73,11 +71,11 @@ srcset の中ではちょうど 1024px があるので、それが適切と考�
 
 Firefox, Safari では以下の様に、想定した挙動になった。(代表して Firefox の挙動を載せる)
 
-- ![Firefox では仮定したサイズで画像が切り替わっている](srcset-firefox.gif#482x547 "srcset image selection on firefox")
+![Firefox では仮定したサイズで画像が切り替わっている](srcset-firefox.gif#482x547 "srcset image selection on firefox")
 
 Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 2, 3 に変えたときだけ想定とは違う動きをした。
 
-- ![Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる](srcset-chrome.gif#482x547 "srcset image selection on chrome")
+![Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる](srcset-chrome.gif#482x547 "srcset image selection on chrome")
 
 この理由をつきとめるのが今回の本題となる。
 
@@ -86,7 +84,7 @@ Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 
 
 この挙動だけを見ると、「Chromium の実装にバグが有るのでは」や、「Devtools の Emulation がおかしいのでは」といった点が浮かびがちだが、まずは仕様がどうなっているのかを見てみる。
 
-対象の仕様は HTML であるため、 <https://html.spec.whatwg.org> のどこかにあり、探すとまさしく "4.8.4.3.6 Selecting an image source" に該当の記述がある。
+対象の仕様は HTML であるため、 https://html.spec.whatwg.org のどこかにあり、探すとまさしく "4.8.4.3.6 Selecting an image source" に該当の記述がある。
 
 - [HTML Standard - 4.8.4.3.6 Selecting an image source](https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source)
 
@@ -101,7 +99,6 @@ Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 
 > 6. Return selected source and its associated pixel density.
 
 答えは 5 にそのまま書かれている。
-
 
 ```
 5. In a user agent-specific manner, choose one image source from source set. Let this be selected source.
@@ -147,7 +144,7 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 
 ### PickBestImageCandidate
 
-- <https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F>
+- https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F
 
 色々手を加えたコードを引用する。基本の流れは
 
@@ -156,14 +153,13 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 - Save Data が有効な場合は最も小さいものを選択して終わり
 - SelectionLogic に候補を渡して画像を選択
 
-
 ```cpp:pick-best-image-candidate.cpp
 ```
 
 
 ### SelectionLogic
 
-- <https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F>
+- https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F
 
 ここで実際に画像を選択している。
 
@@ -178,7 +174,6 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 
 (DPR に 1 以下はあるのだろうか?)
 
-
 ```cpp:selection-logic.cpp
 ```
 
@@ -189,7 +184,7 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 - DPR が 1 以上の場合
   - dencity が DPR を上下にまたぐ 2 つの画像を選ぶ
   - その 2 つの dencity の幾何平均を取る
-  - 幾何平均 < DPR なら next
+  - 幾何平均 \< DPR なら next
   - 幾何平均 > DPR なら curr
 
 
@@ -208,7 +203,6 @@ img.width = 573 の時、 sqrt((1024/573) \* (640/573)) は 1.998 で DPR より
 Dencity とその幾何平均を見ながら画像の切り替わりポイントを確かめたところ、計算通りの結果になった。
 
 - ![Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された](srcset-chrome-dpr2.gif#622x862 "srcset image selection on chrome as expected")
-
 
 ## なぜ幾何平均なのか
 
@@ -257,13 +251,13 @@ srcset についても、十分なバリエーションを提供しつつ、後�
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/image/srcset/>
+- https://labs.jxck.io/image/srcset/
 
 
 ## Resources
 
 - Spec
-  - <https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source>
+  - https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
@@ -275,7 +269,7 @@ srcset についても、十分なバリエーションを提供しつつ、後�
 - Blog
 - Presentation
 - Issues
-  - <https://bugs.chromium.org/p/chromium/issues/detail?id=425511>
+  - https://bugs.chromium.org/p/chromium/issues/detail?id=425511
 - Other
-  - <https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=395;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=0?originalUrl=https:%2F%2Fcs.chromium.org%2F>
-  - <https://source.chromium.org/chromium/chromium/src/+/bb57934c360a33560365cc47af176a7c71d51f9d?originalUrl=https%2F:%2F%2F%2Fcs.chromium.org%2F>
+  - https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=395;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=0?originalUrl=https:%2F%2Fcs.chromium.org%2F
+  - https://source.chromium.org/chromium/chromium/src/+/bb57934c360a33560365cc47af176a7c71d51f9d?originalUrl=https%2F:%2F%2F%2Fcs.chromium.org%2F

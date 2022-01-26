@@ -1,6 +1,5 @@
 # [mozaic.fm][rss][podcast] mozaic.fm の v2 のリリースと Podcast の実装と移行
 
-
 ## Intro
 
 [mozaic.fm](https://mozaic.fm) をリニューアルし、 v2 としてリリースした。
@@ -55,11 +54,11 @@ Feed さえ適切に配布できていれば、基本的にバグがあっても
 
 いきなりサイトを更新するのも難しいため、まず基礎となるブログを作ることにした。
 
-それが、本サイト <https://blog.jxck.io> である。
+それが、本サイト https://blog.jxck.io である。
 
 基本的には http2 ベースで設計しており、その他多くの技術を試しているが、その記録は全てこのサイト自体のエントリとして書き、ドックフーディングしてきたので、そちらをご覧いただきたい。
 
-新しい <https://mozaic.fm> は、本サイトのコピペをベースとしている。
+新しい https://mozaic.fm は、本サイトのコピペをベースとしている。
 
 
 ## RSS 実装
@@ -70,13 +69,13 @@ RSS の仕様には、主に RSS1.0, RSS2.0, Atom の三つがある。
 
 RSS2.0 の仕様は以下にある。
 
-<http://cyber.law.harvard.edu/rss/rss.html>
+- http://cyber.law.harvard.edu/rss/rss.html
 
 また、 Apple は Podcast 向けの拡張ボキャブラリを追加しているため、それらも対応している。
 
-- <https://help.apple.com/itc/podcasts_connect/#/itc1723472cb>
-- <https://help.apple.com/itc/podcasts_connect/#/itca5b22233a>
-- <https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76>
+- https://help.apple.com/itc/podcasts_connect/#/itc1723472cb
+- https://help.apple.com/itc/podcasts_connect/#/itca5b22233a
+- https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76
 
 基本的には RSS2.0 に加え `<itunes:xxx>` な名前空間のタグが拡張されている。
 
@@ -104,7 +103,7 @@ RSS2.0 の仕様は以下にある。
 
 itunes は podcast connect という場所がわかりにくい画面から、 feed url を変えられる。
 
-<https://podcastsconnect.apple.com/>
+- https://podcastsconnect.apple.com/
 
 
 ## 移行作業
@@ -112,14 +111,14 @@ itunes は podcast connect という場所がわかりにくい画面から、 f
 tumblr に mozaic.fm ドメインを貼り、 feedburner と連携してフィードを配信しているため、移行には以下の作業を行った。
 
 1. 先に新しいサイトと feed を作る
-1. feed をサブドメインとして先に運用する
-1. tumblr 上で最後のエピソードを更新し、 feedburner のフィードに反映させる
-1. DNS を変更し、 mozaic.fm を tumblr から新サイトへ向ける
-1. feedburner が新サイトを見ないように、独自ドメインを剥がした tumblr に向ける
-1. mozaic.fm が自サーバを向いたので、 let's encrypt の certbot を走らせ <https://mozaic.fm> を有効にする
-1. <http://mozaic.fm> を全て <https://mozaic.fm> にリダイレクト
-1. 旧エピソードの tumblr 自体の URL を、新 URL にリダイレクトする
-1. itunes の podcast connect から itunes に登録された mozaic.fm の feed を新しいものにする
+2. feed をサブドメインとして先に運用する
+3. tumblr 上で最後のエピソードを更新し、 feedburner のフィードに反映させる
+4. DNS を変更し、 mozaic.fm を tumblr から新サイトへ向ける
+5. feedburner が新サイトを見ないように、独自ドメインを剥がした tumblr に向ける
+6. mozaic.fm が自サーバを向いたので、 let's encrypt の certbot を走らせ https://mozaic.fm を有効にする
+7. http://mozaic.fm を全て https://mozaic.fm にリダイレクト
+8. 旧エピソードの tumblr 自体の URL を、新 URL にリダイレクトする
+9. itunes の podcast connect から itunes に登録された mozaic.fm の feed を新しいものにする
 
 feedburner の URL を直接 Podcast アプリに登録している場合は、どうしても新しい feed の URL に変更する必要がある。
 

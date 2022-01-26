@@ -15,7 +15,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
 
 ## Show Note
 
-
 ### Chrome 動向
 
 - Stable: 73.0

@@ -1,6 +1,5 @@
 # [promise][tc39][javascript] Promise.allSettled と Promise.any
 
-
 ## Intro
 
 `Promise.allSettled()` と `Promise.any()` の仕様策定が進んでいる。
@@ -18,7 +17,6 @@
 `Promise.all()`, `Promise.race()` は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
 
 all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
-
 
 ```js
 const fetches = [
@@ -44,7 +42,6 @@ all/race ともに、そのうちの一部が Reject した場合を考えると
 ### all + reject
 
 all は、その中の一つでも Reject すると、全体が Reject してしまう。
-
 
 ```js
 try {
@@ -79,7 +76,6 @@ allSettled は、 all とは違い、個々が Resolve/Reject どちらになっ
 
 実行した結果を配列として Resolve するため、基本的に allSettled 自体は Reject しない。
 
-
 ```js
 const fetches = [
   fetch('./page1.html'),
@@ -113,7 +109,6 @@ try {
 
 race の場合は、最初の一つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
 
-
 ```js
 const fetches = [
   fetch('./page1.html'),
@@ -140,7 +135,6 @@ try {
 any は rece とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
 
 そして、全ての Promise が Reject した場合にのみ全体を Reject する。
-
 
 ```js
 const fetches = [
@@ -189,7 +183,6 @@ Fulfilled か Rejected どちらかになった状態、つまり成功失敗に
 - Promise.anyFulfilled: Promise.any
 - Promise.anySettled:   Promise.race
 
-
 ```js
 Promise.allFulfilled = Promise.all
 Promise.allSettled   = Promise.allSettled
@@ -202,4 +195,4 @@ Promise.anySettled   = Promise.race
 
 動作するデモを以下に用意した。
 
-- <https://labs.jxck.io/promise/>
+- https://labs.jxck.io/promise/

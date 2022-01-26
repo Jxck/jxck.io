@@ -1,6 +1,5 @@
 # [feature-policy][permission][performance][security] Feature Policy による Permission Delegation
 
-
 ## Intro
 
 ブラウザの機能を制限する Feature Policy の実装が進みつつある。
@@ -38,7 +37,7 @@ geolocation, getusermedia など、強力な API については、ユーザに�
 
 一方で、こうした許可を iframe に読み込んだクロスオリジンのコンテンツに対していかに付与するかという方法についも、長いこと議論されてきた。
 
-例えば、 <https://jxck.io> の中で <https://payment.example.com> を iframe で埋め込んでいたとする。
+例えば、 https://jxck.io の中で https://payment.example.com を iframe で埋め込んでいたとする。
 
 iframe では強力な API が実行されるため、ユーザに許可を求める必要がある。
 
@@ -55,9 +54,9 @@ iframe では強力な API が実行されるため、ユーザに許可を求�
 そして、結論としては以下のようなモデルが採用されることとなった。
 
 - iframe 内では、強力な機能の権限を [デフォルトでオフにする](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/mG6vL09JMOQ)
-- ユーザは基本的に URL バーに表示された <https://jxck.io> を信頼の対象とする
+- ユーザは基本的に URL バーに表示された https://jxck.io を信頼の対象とする
 - permission ui は、 `「このサイトに権限を許可するか」` をユーザに問う
-- 権限を付与された <https://jxck.io> は <https://example.com> へ、その *権限を移譲* できる
+- 権限を付与された https://jxck.io は https://example.com へ、その *権限を移譲* できる
 
 例えば、 Payment のために 3rd Party iframe を埋め込んだサイトがある場合、ユーザが信頼するかどうかを決めるのはあくまでその *サイト自体* ということだ。
 
@@ -80,7 +79,7 @@ iframe sandbox は、 iframe 内に展開したコンテンツにおいて、機
 
 これは、信頼の無いコンテンツを安全に読み込む場合などに利用できる。
 
-<https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox>
+- https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox
 
 iframe sandbox の特徴は、何をブロックするのかが先に決まっているという点だ。
 
@@ -102,12 +101,11 @@ iframe sandbox の特徴は、何をブロックするのかが先に決まっ�
 
 何も許可せず、全てブロックする場合は以下のようになる。
 
-
 ```html
 <iframe sandbox="" src="example.com"></iframe>
 ```
 
-- DEMO: <http://labs.jxck.io/iframe>
+- DEMO: http://labs.jxck.io/iframe
 
 
 ## CSP
@@ -116,12 +114,11 @@ HTML に埋め込む sanbox 属性は、埋め込んだ iframe にしか適用�
 
 これを HTTP ヘッダで適用できるように、 CSP2 では sandbox ディレクティブが追加された。
 
-
 ```http
 Content-Security-Policy: sandbox
 ```
 
-<https://w3c.github.io/webappsec-csp/#directive-sandbox>
+- https://w3c.github.io/webappsec-csp/#directive-sandbox
 
 機能は基本的に HTML に書く場合と同じだ。
 
@@ -139,7 +136,7 @@ Content-Security-Policy: sandbox
 
 CSP のように、ブロックリスト方式を取っていれば、制限したい項目を増やしオプトインで適用していけるため、拡張に対して開いた設計となるのは、後から判明したのだろう。
 
-- DEMO: <http://labs.jxck.io/content-security-policy/sandbox.html>
+- DEMO: http://labs.jxck.io/content-security-policy/sandbox.html
 
 
 ## Feature Policy
@@ -150,7 +147,7 @@ sandbox iframe のように埋め込むコンテンツ以外にも、広くコ�
 
 このように、リソースに対して機能の制限/許可を行う汎用的な方法として定義されたのが Feature Policy である。
 
-<https://wicg.github.io/feature-policy/>
+- https://wicg.github.io/feature-policy/
 
 Feature Policy はレスポンスヘッダに付与し、対象機能の制限/許可をオリジン単位で設定することができる。
 
@@ -160,7 +157,6 @@ Feature Policy はレスポンスヘッダに付与し、対象機能の制限/�
 ### 'none'
 
 `none` は、全てのオリジンに対して制限を適用する。つまりこれでページ上全ての同期 XHR が制限される。
-
 
 ```http
 Feature-Policy: sync-xhr 'none'
@@ -173,7 +169,6 @@ Feature-Policy: sync-xhr 'none'
 
 iframe があった場合も、同一オリジンなら許可されるが、クロスオリジンでは制限される。
 
-
 ```http
 Feature-Policy: sync-xhr 'self'
 ```
@@ -184,7 +179,6 @@ Feature-Policy: sync-xhr 'self'
 機能を許可するオリジンをセーフリストで指定できる。
 
 例えば以下のようにすれば、同一オリジンに加え、 iframe 内の example.com では許可される。
-
 
 ```http
 Feature-Policy: sync-xhr 'self' https://example.com
@@ -201,7 +195,6 @@ sync-xhr の場合は、もともとブラウザで有効になっている機�
 
 これを、特定のドメインにのみ許可したい場合は、以下のように指定する。
 
-
 ```http
 Feature-Policy: geolocation 'self' https://example.com
 ```
@@ -216,12 +209,11 @@ Feature-Policy: geolocation 'self' https://example.com
 
 もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
 
-
 ```http
 Feature-Policy: geolocation *
 ```
 
-- DEMO: <https://labs.jxck.io/feature-policy/geolocation/basic.html>
+- DEMO: https://labs.jxck.io/feature-policy/geolocation/basic.html
 
 
 ### with iframe sandbox
@@ -236,13 +228,12 @@ Feature Policy は *sandbox が制限する機能は重複して持たず* sandb
 
 例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
 
-
 ```http
 Content-Security-Policy: sandbox allow-scripts;
 Feature-Policy: sync-xhr 'none'
 ```
 
-- DEMO: <https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html>
+- DEMO: https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html
 
 
 ## Feature 一覧
@@ -251,9 +242,9 @@ Feature-Policy: sync-xhr 'none'
 
 この辺の扱いについてはよくわかっていないが、現時点では実装ベースで判断する必用がありそうだ。
 
-- <https://github.com/WICG/feature-policy/blob/gh-pages/features.md>
-- <https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit>
-- <https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/feature_policy/FeaturePolicy.cpp?sq=package:chromium&dr=C&l=225>
+- https://github.com/WICG/feature-policy/blob/gh-pages/features.md
+- https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit
+- https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/feature_policy/FeaturePolicy.cpp?sq=package:chromium&dr=C&l=225
 
 
 ## Reporting
@@ -262,7 +253,7 @@ Feature Policy には執筆時点で Reporting の仕様が無い。
 
 しかし、これは Reporing 側で CORS の Preflight をどうするかの問題がブロッカーとなっているだけで、盛り込む予定ではあるようだ。
 
-<https://github.com/WICG/feature-policy/issues/142>
+- https://github.com/WICG/feature-policy/issues/142
 
 
 ## Outro

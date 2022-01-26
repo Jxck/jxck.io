@@ -1,6 +1,5 @@
 # [search] Scroll to Text Fragment を用いたサイト内検索の実装
 
-
 ## Intro
 
 Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装した。
@@ -31,7 +30,6 @@ Scroll to Text Fragment(以下 S2TF) は Chrome 80 で Ship され、 Finch で�
 
 (`#:~:text=Prefix-,Keyword,-Suffix` の順)
 
-
 ```
 #:~:text=Feature Policy のモチベーションおよび適用方法について、類似する-,CSP,-や
 ```
@@ -47,13 +45,11 @@ Scroll to Text Fragment(以下 S2TF) は Chrome 80 で Ship され、 Finch で�
 
 挙動は以下のようになる。検索結果から遷移すると、該当箇所まで自動でスクロールするのがわかるだろう。
 
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4YHJEmrUnl8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 
 サイト右上のアイコンから遷移するページから利用でき、キーワードとして CSP を検索した場合は以下のような URL になる。
 
-- <https://blog.jxck.io/searches?q=csp>
+- https://blog.jxck.io/searches?q=csp
 
 
 ## Scroll しないケース
@@ -75,9 +71,7 @@ Scroll to Text Fragment(以下 S2TF) は Chrome 80 で Ship され、 Finch で�
 
 イメージとしては以下だ。
 
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oCH9wcrb0sU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 
 しかし、現状 Chrome の Portal や iframe 内は、 ID に対する Scroll はされるが、 Text Fragment に対する Scroll はしないようだ。
 
