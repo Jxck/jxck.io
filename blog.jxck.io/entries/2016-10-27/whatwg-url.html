@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-10-27T08:00:00+08:00",
-    "dateModified": "2021-10-30T08:00:00+08:00",
+    "dateModified": "2022-01-27T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-10-27>2016-10-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-10-30>2021-10-30</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -182,7 +182,9 @@
         <h2 id="url-api"><a href="#url-api">URL API</a></h2>
         <p>DOM や JS の API として Export されていなかっただけで、ブラウザ自体はもちろん URL を正しくパースすることがこれまでもできた。
         <p>しかし、片手間な正規表現や、パーサを実装したライブラリを使わず、ブラウザに URL の解析を依頼するためには、従来以下のような方法しかなかった。
-        <p><a href="https://gist.github.com/jlong/2428561">https://gist.github.com/jlong/2428561</a>
+        <ul>
+          <li><a href="https://gist.github.com/jlong/2428561">https://gist.github.com/jlong/2428561</a>
+        </ul>
         <p>ところが、 WHATWG のドラフトでは、前述した仕様が定義されたと同時に、それを提供する API が定義された。
         <p>それが URL オブジェクトであり、メジャーなブラウザは既に実装が進んでいる。
       </section>
@@ -254,7 +256,9 @@ console.log(ja);
 //   search: ?%E3%81%8D%E3%83%BC=%E3%81%B0%E3%82%8A%E3%82%85%E3%83%BC
 // }</code></pre>
         <p>なお、ブラウザの実装状況は caniuse に項目がまだ無い (<a href="https://github.com/Fyrd/caniuse/issues/1312">issue</a>) ので MDN を貼っておく。
-        <p><a href="https://developer.mozilla.org/en/docs/Web/API/URL/URL">https://developer.mozilla.org/en/docs/Web/API/URL/URL</a>
+        <ul>
+          <li><a href="https://developer.mozilla.org/en/docs/Web/API/URL/URL">https://developer.mozilla.org/en/docs/Web/API/URL/URL</a>
+        </ul>
       </section>
       <section>
         <h2 id="urlsearchparams-オブジェクト"><a href="#urlsearchparams-オブジェクト">URLSearchParams オブジェクト</a></h2>
@@ -278,7 +282,9 @@ for ([k, v] of searchParams) {
 }</code></pre>
         <p>ブラウザ上でも、おそらくこれまで <code translate=no>?</code> と <code translate=no>&amp;</code> と <code translate=no>=</code> で <code translate=no>split()</code> したり、 <code translate=no>join()</code> してきたであろう query だが、 URLSearchParams 経由で解析/組み立てを行えば、おろそかにされがちだったエスケープなども正しく行われるため、積極的に使っていきたい。
         <p>こちらは caniuse があるので、貼っておく。
-        <p><a href="https://caniuse.com/#feat=urlsearchparams">https://caniuse.com/#feat=urlsearchparams</a>
+        <ul>
+          <li><a href="https://caniuse.com/#feat=urlsearchparams">https://caniuse.com/#feat=urlsearchparams</a>
+        </ul>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>

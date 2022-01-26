@@ -227,7 +227,7 @@ h4::before {
 }
 
 pre::before {
-  content: "```" attr(class) "\A";
+  content: "\`\`\`" attr(class) "\A";
 
 }
 
@@ -238,7 +238,7 @@ pre::after {
   top: -1em;
 
 
-  content:"\A```";
+  content:"\A\`\`\`";
 }
 ```
 

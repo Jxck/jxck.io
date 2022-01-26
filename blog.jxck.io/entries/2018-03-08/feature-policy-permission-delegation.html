@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-03-08T08:00:00+08:00",
-    "dateModified": "2020-08-18T08:00:00+08:00",
+    "dateModified": "2022-01-27T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-03-08>2018-03-08</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2020-08-18>2020-08-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -208,7 +208,9 @@
         <h2 id="iframe-sandbox"><a href="#iframe-sandbox">iframe sandbox</a></h2>
         <p>iframe sandbox は、 iframe 内に展開したコンテンツにおいて、機能を制限できる。
         <p>これは、信頼の無いコンテンツを安全に読み込む場合などに利用できる。
-        <p><a href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox">https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox</a>
+        <ul>
+          <li><a href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox">https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox</a>
+        </ul>
         <p>iframe sandbox の特徴は、何をブロックするのかが先に決まっているという点だ。
         <p>もし制限を緩める場合は、許可する機能を明示的に指定するセーフリスト方式を採用している。
         <p>執筆時点では、以下のような <code translate=no>allow-*</code> ディレクティブが定義されている。
@@ -237,7 +239,9 @@
         <p>HTML に埋め込む sanbox 属性は、埋め込んだ iframe にしか適用されない。
         <p>これを HTTP ヘッダで適用できるように、 CSP2 では sandbox ディレクティブが追加された。
         <pre class=http><code translate=no>Content-Security-Policy: sandbox</code></pre>
-        <p><a href="https://w3c.github.io/webappsec-csp/#directive-sandbox">https://w3c.github.io/webappsec-csp/#directive-sandbox</a>
+        <ul>
+          <li><a href="https://w3c.github.io/webappsec-csp/#directive-sandbox">https://w3c.github.io/webappsec-csp/#directive-sandbox</a>
+        </ul>
         <p>機能は基本的に HTML に書く場合と同じだ。
         <p>しかし、元々がセーフリスト方式であることにより、いくつか微妙なところがある。
         <p>まず、他の CSP ディレクティブと違い、「何をブロックしたい」というブロックリストではないため Reporting の対象では無い。
@@ -255,7 +259,9 @@
         <p>sandbox iframe のように埋め込むコンテンツ以外にも、広くコンテンツ一般に対して機能を制限したい場合がある。
         <p>また、逆にデフォルトでは無効になっている API へのアクセスを、明示的に許可したい場合もある。
         <p>このように、リソースに対して機能の制限/許可を行う汎用的な方法として定義されたのが Feature Policy である。
-        <p><a href="https://wicg.github.io/feature-policy/">https://wicg.github.io/feature-policy/</a>
+        <ul>
+          <li><a href="https://wicg.github.io/feature-policy/">https://wicg.github.io/feature-policy/</a>
+        </ul>
         <p>Feature Policy はレスポンスヘッダに付与し、対象機能の制限/許可をオリジン単位で設定することができる。
         <p>ここでは、 Chrome に実装されている <code translate=no>sync-xhr</code> で、同期 XHR の制限/許可を例に解説する。
         <section>
@@ -320,7 +326,9 @@ Feature-Policy: sync-xhr &apos;none&apos;</code></pre>
         <h2 id="reporting"><a href="#reporting">Reporting</a></h2>
         <p>Feature Policy には執筆時点で Reporting の仕様が無い。
         <p>しかし、これは Reporing 側で CORS の Preflight をどうするかの問題がブロッカーとなっているだけで、盛り込む予定ではあるようだ。
-        <p><a href="https://github.com/WICG/feature-policy/issues/142">https://github.com/WICG/feature-policy/issues/142</a>
+        <ul>
+          <li><a href="https://github.com/WICG/feature-policy/issues/142">https://github.com/WICG/feature-policy/issues/142</a>
+        </ul>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>

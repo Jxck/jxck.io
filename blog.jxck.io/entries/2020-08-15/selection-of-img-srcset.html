@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-08-15T08:00:00+08:00",
-    "dateModified": "2021-11-02T08:00:00+08:00",
+    "dateModified": "2022-01-27T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-08-15>2020-08-15</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-11-02>2021-11-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -201,25 +201,21 @@ body {
         <p>仮説としては、画像は Image Width (今回は Viewport Width に等しい)と DPR の値をかけ、それよりも大きい中で最小の画像が選ばれると考えた。
         <p>そこで、 Mobile View mode で Width を変えながら選択される画像を調べていく。
         <p>Firefox, Safari では以下の様に、想定した挙動になった。(代表して Firefox の挙動を載せる)
-        <ul>
-          <li>
-            <picture>
-              <source type=image/avif srcset=srcset-firefox.avif?220108_003453>
-              <source type=image/webp srcset=srcset-firefox.webp?220107_193959>
-              <img loading=lazy decoding=async src=srcset-firefox.gif?200815_144345 alt="Firefox では仮定したサイズで画像が切り替わっている" title="srcset image selection on firefox" width=482 height=547>
-            </picture>
-          </li>
-        </ul>
+        <p>
+          <picture>
+            <source type=image/avif srcset=srcset-firefox.avif?220108_003453>
+            <source type=image/webp srcset=srcset-firefox.webp?220107_193959>
+            <img loading=lazy decoding=async src=srcset-firefox.gif?200815_144345 alt="Firefox では仮定したサイズで画像が切り替わっている" title="srcset image selection on firefox" width=482 height=547>
+          </picture>
+        </p>
         <p>Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 2, 3 に変えたときだけ想定とは違う動きをした。
-        <ul>
-          <li>
-            <picture>
-              <source type=image/avif srcset=srcset-chrome.avif?220108_003453>
-              <source type=image/webp srcset=srcset-chrome.webp?220107_193959>
-              <img loading=lazy decoding=async src=srcset-chrome.gif?200815_144341 alt="Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる" title="srcset image selection on chrome" width=482 height=547>
-            </picture>
-          </li>
-        </ul>
+        <p>
+          <picture>
+            <source type=image/avif srcset=srcset-chrome.avif?220108_003453>
+            <source type=image/webp srcset=srcset-chrome.webp?220107_193959>
+            <img loading=lazy decoding=async src=srcset-chrome.gif?200815_144341 alt="Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる" title="srcset image selection on chrome" width=482 height=547>
+          </picture>
+        </p>
         <p>この理由をつきとめるのが今回の本題となる。
       </section>
       <section>

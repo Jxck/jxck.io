@@ -46,7 +46,8 @@ guest: [@nhiroki_](https://twitter.com/nhiroki_)
 - [W3C Fixing AppCache コミュニティ](https://www.w3.org/community/fixing-appcache/)
 - [参考になった仕様 Chrome Event Pages](https://developer.chrome.com/extensions/event_pages)
 - [幻の仕様 DataCache](http://www.w3.org/TR/DataCache/)
-- [\[issue\] The new API should be able to explain AppCache](https://github.com/slightlyoff/ServiceWorker/issues/2)
+- [[issue] The new API should be able to explain AppCache](https://github.com/slightlyoff/ServiceWorker/issues/2)
+
 
 ### Service Worker はそれをどう解決したか (12:20~)
 
@@ -58,7 +59,7 @@ guest: [@nhiroki_](https://twitter.com/nhiroki_)
 
 - [WebWorker/SharedWorker との違い](http://www.w3.org/TR/workers/)
 - [Fetch](https://fetch.spec.whatwg.org) と XHR の違い
-- [\[issue\] Why Fetch but not XHR, from SW point of view](https://github.com/slightlyoff/ServiceWorker/issues/5)
+- [[issue] Why Fetch but not XHR, from SW point of view](https://github.com/slightlyoff/ServiceWorker/issues/5)
 - [Push API](http://w3c.github.io/push-api/) と他の Push との違い
 - [Service Worker ハッカソン](http://googledevjp.blogspot.jp/2015/03/service-worker.html)
 

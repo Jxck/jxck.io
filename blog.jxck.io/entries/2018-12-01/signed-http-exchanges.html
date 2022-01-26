@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-12-01T08:00:00+08:00",
-    "dateModified": "2021-11-05T08:00:00+08:00",
+    "dateModified": "2022-01-27T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-12-01>2018-12-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2021-11-05>2021-11-05</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -318,7 +318,9 @@
         <p>実際にコンテンツを署名し、別オリジンから配布して表示するまでの流れをまとめる。
         <p>Origin Trial 、拡張付き証明書、フラグつき起動の Chrome Canary など必要なため多少敷居が高いが、ここからもまだ仕様/実装ともに作業途中の技術であることがわかるだろう。
         <p>署名には、リファレンス実装として提供されている Go 製の以下のツールを利用する。
-        <p><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange">https://github.com/WICG/webpackage/tree/master/go/signedexchange</a>
+        <ul>
+          <li><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange">https://github.com/WICG/webpackage/tree/master/go/signedexchange</a>
+        </ul>
         <section>
           <h3 id="証明書"><a href="#証明書">証明書</a></h3>
           <p>Signing には CanSignHttpExchanges 拡張を含む X.509 証明書が必要だ。
@@ -350,7 +352,9 @@ openssl x509 -req -days 360 -in cert.csr -signkey priv.key -out cert.pem</code><
           <p>Signing の検証に必要な証明書チェーンを生成する。
           <p>ファイルは CBOR 形式で、証明書チェーン、 OCSP 、 SCT を含む必要がある。
           <p>生成には、リファレンス実装の gen-certurl を使用する。
-          <p><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl</a>
+          <ul>
+            <li><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl</a>
+          </ul>
           <pre class=shell><code translate=no>#! /bin/sh
 
 # gen-certurl の取得
@@ -362,7 +366,9 @@ echo &quot;ocsp&quot; &gt; tmp
 ./bin/gen-certurl -pem cert.pem -ocsp tmp &gt; cert.cbor</code></pre>
           <p>生成した cert.cbor は、 <code translate=no>Content-Type: application/cert-chain+cbor</code> で、 CDN から配布する必要がある。
           <p>ここでは、以下の URL から配布することとする。
-          <p><a href="https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor">https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor</a>
+          <ul>
+            <li><a href="https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor">https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor</a>
+          </ul>
         </section>
       </section>
       <section>
@@ -375,7 +381,9 @@ echo &quot;ocsp&quot; &gt; tmp
           <h3 id="署名"><a href="#署名">署名</a></h3>
           <p>ここまでに用意した材料を用いて、コンテンツに署名する。
           <p>署名には、リファレンス実装の gen-signedexchange を使用する。
-          <p><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange</a>
+          <ul>
+            <li><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange</a>
+          </ul>
           <pre class=shell><code translate=no>#! /bin/sh
 
 # gen-signedexchange の取得
