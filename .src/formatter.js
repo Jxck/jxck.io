@@ -1,6 +1,9 @@
+#!/usr/bin/env node
 import { decode, spaces, Node, dump } from "./markdown/index.js"
-import { readFileSync } from "fs"
-import { dirname } from "path"
+import { readFile, writeFile } from "fs/promises";
+import { dirname, join } from "path"
+import { fileURLToPath } from "url"
+import process from "process"
 
 /**
  * 全角と半角の間にスペースを入れる
@@ -13,7 +16,7 @@ function spacer(text) {
 
 /**
  * 全角 2 文字、半角 1 文字としてカウント
- * @param {string} text 
+ * @param {string} text
  * @returns {number}
  */
 function count(text) {
@@ -26,7 +29,7 @@ function count(text) {
 }
 
 /**
- * @param {Node} node 
+ * @param {Node} node
  * @returns {string}
  */
 function table(node) {
@@ -40,7 +43,7 @@ function table(node) {
   const format = []
 
   const thead = node.children.shift().children.shift().children.map((td, i) => {
-    const text = td.children.map((child) => serialize(child)).join('')
+    const text = td.children.map((child) => serialize(child)).join(``)
     const align = td.attr.align
     const len = count(text)
     format.push({ align, len })
@@ -49,7 +52,7 @@ function table(node) {
 
   const tbody = node.children.shift().children.map((tr) => {
     return tr.children.map((td, i) => {
-      const text = td.children.map((child) => serialize(child)).join('')
+      const text = td.children.map((child) => serialize(child)).join(``)
       const len = count(text)
       if (format.at(i).len < len) format.at(i).len = len
       return text
@@ -91,7 +94,7 @@ function table(node) {
 }
 
 /**
- * @param {Node} node 
+ * @param {Node} node
  * @returns string
  */
 function li(node) {
@@ -216,7 +219,7 @@ function serialize(node, option) {
     //
     // eee
     // (<< ここも改行x2)
-    // 
+    //
     // ### fff
     //
     // ggg
@@ -280,9 +283,9 @@ export function format(md, option) {
 }
 
 
-function test() {
+async function test() {
   const dir = dirname(new URL(import.meta.url).pathname)
-  let md = readFileSync(`${dir}/formatter.md`, { encoding: 'utf-8' })
+  let md = await readFile(`${dir}/formatter.md`, { encoding: `utf-8` })
   // console.log(md)
 
   // md = `- [function\*](https://developer.com)`
@@ -291,3 +294,19 @@ function test() {
   // console.log({ formatted })
 }
 // test()
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const pwd = process.env.PWD
+  /**@type{Array.<string>}*/
+  const files = process.argv.slice(2)
+
+  files.forEach(async (file) => {
+    console.log(file)
+    const filepath = join(pwd, file)
+    const original = await readFile(filepath, { encoding: `utf-8` })
+    const formatted = format(original)
+    if (original !== formatted) {
+      await writeFile(filepath, formatted)
+    }
+  })
+}
