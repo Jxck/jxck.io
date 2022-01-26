@@ -5,11 +5,17 @@ build:
 	cd .src && node build.js build
 	make comp
 
+compile:
+	cd .src && node build.js build
+
 preview:
 	cd .src && node build.js preview
 
 draft:
 	cd .src && node build.js draft
+
+fmt:
+	cd .src && node build.js format
 
 ##########################
 # Compression

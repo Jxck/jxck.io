@@ -1,4 +1,23 @@
 /**
+ * @typedef {Object} Serialized
+ * @property {string} html
+ * @property {Array.<Toc>} toc - TOC も HTML encode した結果にするため encode の結果として返す
+ * @property {Array.<string>} tags
+*/
+/**
+ * @typedef {Object} Toc
+ * @property {number} level
+ * @property {string} id
+ * @property {string} hashed
+ * @property {number} count
+ * @property {string} text
+ */
+/**
+ * @param {number} indent
+ * @returns {string}
+ */
+export function spaces(indent: number): string;
+/**
  * @param {string} str
  * @returns {string}
  */
@@ -67,11 +86,16 @@ export class Node {
     level: number;
     text: string;
     attr: Attr;
-    children: Node[];
+    /**@type{Array.<Node>}*/
+    children: Array<Node>;
     /**
      * @param {Node} child
      */
     appendChild(child: Node): void;
+    /**
+     * @param {Array.<Node>} children
+     */
+    appendChildren(children: Array<Node>): void;
     /**
      * @returns {Node}
      */

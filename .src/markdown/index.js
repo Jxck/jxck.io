@@ -20,7 +20,7 @@
  * @param {number} indent
  * @returns {string}
  */
-function spaces(indent) {
+export function spaces(indent) {
   return ` `.repeat(indent)
 }
 
@@ -41,7 +41,7 @@ export function hsc(str) {
 /**
  * unescape markdown syntax
  * @param {string} str
- * @returns string
+ * @returns {string}
  */
 function unescape(str) {
   return str.replace(/\\([\*|\`|\!|\[|\]|\<|\>|\(|\)|])/g, '$1')
@@ -138,7 +138,10 @@ export class Node {
     this.level = level
     this.text = text
     this.attr = attr
-    this.children = children
+
+    /**@type{Array.<Node>}*/
+    this.children = []
+    this.appendChildren(children)
   }
 
   /**
@@ -147,6 +150,13 @@ export class Node {
   appendChild(child) {
     child.parent = this
     this.children.push(child)
+  }
+
+  /**
+   * @param {Array.<Node>} children
+   */
+  appendChildren(children) {
+    children.forEach((child) => this.appendChild(child))
   }
 
   /**
@@ -822,7 +832,7 @@ export function decode(md) {
       p.addText(`--- `)
       p.appendChild(cite)
     } else {
-      p.children = inline(text)
+      p.appendChildren(inline(text))
     }
     return parse(rest, blockquote)
   }
@@ -843,23 +853,20 @@ export function decode(md) {
   }
 
   /**
-   * 
    * @param {string} input
-   * @param {number} i
-   * @returns
+   * @param {number} _i
+   * @returns {Array.<Node>}
    */
-  function inline(input, i = 0) {
-    let child
-    ({ child, i } = inline_parse(input, i))
+  function inline(input, _i = 0) {
+    const { children, i } = inline_parse(input, _i)
     if (input.length !== i) console.assert(`input.length = ${input.length} but i = ${i}`)
-    return child
+    return children
   }
 
   /**
-   *
    * @param {string} input
    * @param {number} i
-   * @returns
+   * @returns {{children: Array.<Node>, i: number}}
    */
   function inline_parse(input, i = 0) {
     let start = i
@@ -976,14 +983,13 @@ export function decode(md) {
       if (input[i - 1] === ` `) throw new Error(`too many spaces around "${input}"`)
       parent.addText(input.slice(start, i))
     }
-    return { child: parent.children, i }
+    return { children: parent.children, i }
   }
 
   /**
-   *
    * @param {string} input
    * @param {number} i
-   * @returns
+   * @returns {{child: Node, i: number}}
    */
   function img(input, i) {
     // parse alt
@@ -1060,7 +1066,7 @@ export function decode(md) {
    * e.g. [link](https://example.com)
    * @param {string} input
    * @param {number} i
-   * @returns
+   * @returns {{child: Node, i: number}}
    */
   function link(input, i) {
     let start = i
@@ -1137,7 +1143,7 @@ export function decode(md) {
    * e.g. <https://example.com>
    * @param {string} input
    * @param {number} i
-   * @returns
+
    */
   function short_link(input, i) {
     const url_start = i
@@ -1171,7 +1177,7 @@ export function decode(md) {
    * e.g. example page (https://example.com)
    * @param {string} input
    * @param {number} i
-   * @returns
+   * @returns {{child: Node, i: number}}
    */
   function smart_link(input, i) {
     const url_start = i
@@ -1188,10 +1194,9 @@ export function decode(md) {
   }
 
   /**
-   *
    * @param {string} input
    * @param {number} i
-   * @returns
+   * @returns {{child: Node, i: number}}
    */
   function em(input, i) {
     let text_start = i
@@ -1229,10 +1234,9 @@ export function decode(md) {
   }
 
   /**
-   *
    * @param {string} input
    * @param {number} i
-   * @returns
+   * @returns {{child: Node, i: number}}
    */
   function strong(input, i) {
     let text_start = i
@@ -1270,10 +1274,9 @@ export function decode(md) {
   }
 
   /**
-   *
    * @param {string} input
    * @param {number} i
-   * @returns
+   * @returns {{child: Node, i: number}}
    */
   function code(input, i) {
     const text_start = i
@@ -1301,17 +1304,16 @@ export function decode(md) {
   }
 
   /**
-   *
    * @param {string} input
-   * @param {number} i
-   * @returns
+   * @param {number} _i
+   * @returns {{child: Node, i: number}}
    */
-  function inline_blockquote(input, i) {
-    const parsed = inline_parse(input, i)
-    const p = node({ name: `p`, type: `inline`, children: parsed.child })
+  function inline_blockquote(input, _i) {
+    const { children, i } = inline_parse(input, _i)
+    const p = node({ name: `p`, type: `inline`, children })
     const child = node({ name: `blockquote`, type: `block` })
     child.appendChild(p)
-    return { child: child, i: parsed.i }
+    return { child, i }
   }
 
   /**

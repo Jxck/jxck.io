@@ -29,7 +29,6 @@ function testcase() {
     }
   }
 }
-testcase()
 
 function api() {
   const root = node({ name: `root`, type: `block` })
@@ -75,6 +74,7 @@ function api() {
   ])
 }
 
+testcase()
 api()
 
 console.log("[done] test.js")

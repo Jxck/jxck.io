@@ -1,8 +1,9 @@
 import { readFile, writeFile, stat } from "fs/promises";
 import { encode, decode, traverse, hsc, Node } from "markdown"
+import { format } from "./formatter.js"
 import ejs from "ejs"
 import glob from "glob"
-import { readFileSync, statSync } from "fs"
+import { fstat, readFileSync, statSync } from "fs"
 import { exec } from "child_process"
 import { promisify } from "util"
 
@@ -798,6 +799,30 @@ async function main() {
   if (process.argv[2] === `draft`) {
     const entries = [`../blog.jxck.io/drafts/index.md`]
     return await blog(entries, { preview: true })
+  }
+
+  if (process.argv[2] === `format`) {
+    /** @type {Array.<string>} */
+    const entries = await promisify(glob)(`../blog.jxck.io/entries/**/*.md`)
+    entries.forEach(async (entry) => {
+      const original = await readFile(entry, { encoding: 'utf-8' })
+      const formatted = format(original)
+      if (original !== formatted) {
+        console.log(entry)
+        await writeFile(entry, formatted)
+      }
+    })
+
+    /** @type {Array.<string>} */
+    const episodes = await promisify(glob)(`../mozaic.fm/episodes/**/*.md`)
+    episodes.forEach(async (episode) => {
+      const original = await readFile(episode, { encoding: 'utf-8' })
+      const formatted = format(original)
+      if (original !== formatted) {
+        console.log(episode)
+        await writeFile(episode, formatted)
+      }
+    })
   }
 }
 
