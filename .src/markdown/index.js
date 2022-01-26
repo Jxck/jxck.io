@@ -293,6 +293,21 @@ export function encode(node, option = {}) {
   }
 
   /**
+   * summary
+   * @param {Node} node
+   * @param {number} indent
+   * @returns {string}
+   */
+  function summary(node, indent) {
+    const name = node.name
+    return [
+      `${spaces(indent)}<${name}>`,
+      node.children.map((child) => serialize(child)).join(``),
+      `</${name}>\n`
+    ].join(``)
+  }
+
+  /**
    * @param {Node} node
    * @param {number} indent
    * @returns {string}
@@ -390,6 +405,7 @@ export function encode(node, option = {}) {
     if (name === `dt` || name === `dd`) return dt(node, indent)
     if (name === `p`) /*             */ return mix_inline(node, indent)
     if (name === `li`) /*            */ return mix_inline(node, indent)
+    if (name === `summary`) /*       */ return summary(node, indent)
 
     // Print HTML as-is
     if (name === `html`) {
@@ -835,6 +851,59 @@ export function decode(md) {
       p.appendChildren(inline(text))
     }
     return parse(rest, blockquote)
+  }
+
+  /**
+   * @param {RegExpExecArray} result
+   * @param {Array.<string>} rest
+   * @param {Node} ast
+   * @returns {Node}
+   */
+  function details(result, rest, ast) {
+    const { symbol, spaces, text } = result.groups
+
+    // end <details>
+    if (symbol === undefined && spaces === undefined && text === undefined) {
+      const details = rise(ast, `details`)
+      return parse(rest, details)
+    }
+
+    if (symbol !== `details`) throw new Error(`start of ::: should have "details" in "${result.input}"`)
+    if (spaces.length > 1) throw new Error(`too many spaces in "${result.input}"`)
+    if (text.length < 1) throw new Error(`text required in details "${result.input}"`)
+    if (text.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
+
+    /**
+     * <details>
+     *  <summary>text</summary>
+     *  <div>
+     *  </div>
+     * </details>
+     */
+    const details = (() => {
+      if (ast.name === `details`) return ast
+      const details = node({
+        name: `details`,
+        type: `block`,
+      })
+      ast.appendChild(details)
+      return details
+    })()
+
+    const summary = node({
+      name: `summary`,
+      type: `inline`,
+    })
+    summary.addText(text)
+    details.appendChild(summary)
+
+    const div = node({
+      name: `div`,
+      type: `block`,
+    })
+    details.appendChild(div)
+
+    return parse(rest, div)
   }
 
   /**
@@ -1339,6 +1408,9 @@ export function decode(md) {
       return parse(rest, ast)
     }
 
+    // details open
+    if (result = /^:::((?<symbol>.+?)((?<spaces> +)(?<text>.*))*){0,1}$/.exec(head)) return details(result, rest, ast)
+
     // html
     if (result = /^( *)\<(\/{0,1})(iframe|div|span|p|pre|code).*/.exec(head)) {
       return html(result, rest, ast)
@@ -1414,12 +1486,13 @@ export function dump(ast) {
 
 // function main() {
 //   [
-//     `# hoo`
+//     `:::details コラム
+// これはコラムです
+// :::`
 //   ].forEach((line) => {
 //     const ast = decode(line)
-//     // dump(ast)
+//     dump(ast)
 //     const { html, toc } = encode(ast, { indent: 2 })
-//     // console.log(line)
 //     console.log(html)
 //   })
 // }
