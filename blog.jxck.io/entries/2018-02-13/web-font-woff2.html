@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、...">
+  <meta name=description         content="Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、本...">
   <meta name=keywords            content="woff2,web font,performance">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2018-02-13/web-font-woff2.html>
   <meta property=og:title        content="WebFont の WOFF2 対応によるサイズ最適化 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、...">
+  <meta property=og:description  content="Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、本...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-02-13T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,7 +78,7 @@
         "width": 60
       }
     },
-    "description": "Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、..."
+    "description": "Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、本..."
   }
   </script>
 
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-02-13>2018-02-13</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -146,12 +146,12 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。
-        <p>本サイトは WOFF 形式での Web Font を提供しているが、 WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、本サイトでも WOFF2 に移行することとした。
+        <p>本サイトは WOFF 形式での Web Font を提供しているが、WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、本サイトでも WOFF2 に移行することとした。
         <p>フォーマット変更による効果について解説する。
       </section>
       <section>
         <h2 id="woff-file-format-2.0"><a href="#woff-file-format-2.0">WOFF File Format 2.0</a></h2>
-        <p>本サイトでは、 Noto Sans CJK から必要なフォントのみを抽出したサブセットを、 WOFF 形式で読み込む構成を取っている。
+        <p>本サイトでは、Noto Sans CJK から必要なフォントのみを抽出したサブセットを、WOFF 形式で読み込む構成を取っている。
         <p><a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">Noto Sans の Web Font 対応とサブセットによる最適化 | blog.jxck.io</a>
         <p>その後、必要な文字が増えフォントファイルを更新することにしたが、当時対応していなかった Safari が WOFF2 対応を始めていることもあり、これを機に更新することとした。
         <p><a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html">What&apos;s New in Safari 10.0</a>
@@ -160,8 +160,8 @@
           <li><a href="https://w3c.github.io/woff/woff2">https://w3c.github.io/woff/woff2</a>
         </ul>
         <p>WOFF2 は WOFF よりも圧縮率が高いとされている。
-        <p>これは、 WOFF2 が圧縮アルゴリズムとして Brotli を採用していることが大きい。
-        <p>そもそも、 Brotli はもともと WOFF2 の圧縮率を上げるために仕様に含まれていたアルゴリズムを、汎用圧縮形式として取り出したものである。
+        <p>これは、WOFF2 が圧縮アルゴリズムとして Brotli を採用していることが大きい。
+        <p>そもそも、Brotli はもともと WOFF2 の圧縮率を上げるために仕様に含まれていたアルゴリズムを、汎用圧縮形式として取り出したものである。
         <p>本サイトは既に brotli を採用している。
         <p><a href="https://blog.jxck.io/entries/2017-08-19/content-encoding-brotli.html">Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について | blog.jxck.io</a>
       </section>
@@ -176,11 +176,11 @@
         <ul>
           <li><a href="https://blog.jxck.io/entries/2018-02-13/All.txt">All.txt</a>
         </ul>
-        <p>ここから、 <a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">以前解説した方法</a> でサブセット化し、 WOFF と WOFF2 を生成してサイズを比較する。
+        <p>ここから、 <a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">以前解説した方法</a> でサブセット化し、WOFF と WOFF2 を生成してサイズを比較する。
       </section>
       <section>
         <h2 id="サイズ比較"><a href="#サイズ比較">サイズ比較</a></h2>
-        <p>同じサブセットから、 WOFF/WOFF2 を生成し、それぞれサイズを確認する。
+        <p>同じサブセットから、WOFF/WOFF2 を生成し、それぞれサイズを確認する。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?201223_011131>
         <table>
           <thead>
@@ -241,12 +241,12 @@
             </tr>
           </tbody>
         </table>
-        <p>予想通り、追加の圧縮は無意味、もしくは逆効果であるため、 WOFF2 は圧縮プロセスから外すこととする。
+        <p>予想通り、追加の圧縮は無意味、もしくは逆効果であるため、WOFF2 は圧縮プロセスから外すこととする。
       </section>
       <section>
         <h2 id="対応"><a href="#対応">対応</a></h2>
-        <p>WOFF2 は、 IE や一部ブラウザではサポートされていないが、システムフォントにフォールバックするだけなので、表示フォントに対してセンシティブではない本サイトでは問題とは捉えない。
-        <p>そこで本サイトでは、ストレージを節約するためにも WOFF のサポートを止め、 WOFF2 のみを提供することとした。
+        <p>WOFF2 は、IE や一部ブラウザではサポートされていないが、システムフォントにフォールバックするだけなので、表示フォントに対してセンシティブではない本サイトでは問題とは捉えない。
+        <p>そこで本サイトでは、ストレージを節約するためにも WOFF のサポートを止め、WOFF2 のみを提供することとした。
       </section>
       <section>
         <h2 id="related"><a href="#related">Related</a></h2>

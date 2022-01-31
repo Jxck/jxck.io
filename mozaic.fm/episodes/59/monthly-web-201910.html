@@ -153,7 +153,7 @@
                   <li><a href="https://blog.chromium.org/2019/10/chrome-ui-for-deprecating-legacy-tls.html">https://blog.chromium.org/2019/10/chrome-ui-for-deprecating-legacy-tls.html</a>
                   <li>TLS 1.0/1.1 はまだ 0.5% ある
                   <li>Chrome 79 から &quot;Not Secure&quot; にする
-                  <li>Chrome 81 (2020/3) からはブロックされる
+                  <li>Chrome 81 (2020/3)からはブロックされる
                 </ul>
               </li>
               <li>
@@ -197,7 +197,7 @@
                 <em>Chromium Blog: Automatically lazy-loading offscreen images &amp; iframes for Lite mode users</em>
                 <ul>
                   <li><a href="https://blog.chromium.org/2019/10/automatically-lazy-loading-offscreen.html">https://blog.chromium.org/2019/10/automatically-lazy-loading-offscreen.html</a>
-                  <li>Lite Mode (Data Saver) が有効だと img/iframe が lazyloading される
+                  <li>Lite Mode (Data Saver)が有効だと img/iframe が lazyloading される
                   <li>Chrome 77 から
                 </ul>
               </li>
@@ -549,7 +549,7 @@
                   <li>Mixed Contents の Auto Upgrade とブロックを徐々に開始
                   <li>Legacy TLS に対する新しい UI を 2020 提供に向けてアナウンス
                   <li>PDFium やフォント周りのメモリ安全性向上
-                  <li>GPU 、ネットワーク etc の改善
+                  <li>GPU、ネットワーク etc の改善
                   <li>XSS Auditor の削除
                   <li>Fuzzing の改善
                   <li>Trusted Types の検証
@@ -618,7 +618,7 @@
                 <ul>
                   <li><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/IKzfuoD77yE/-DiLKfkNDwAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/IKzfuoD77yE/-DiLKfkNDwAJ</a>
                   <li>Firefox が先行中の Subgrid について I2S がでた
-                  <li>現在 Firefox だけの新機能なので、 Secure Context のみにしないのという質問が出て、今後追加される新しい CSS の機能は Secure Context に限定すべきかという議論が生まれた
+                  <li>現在 Firefox だけの新機能なので、Secure Context のみにしないのという質問が出て、今後追加される新しい CSS の機能は Secure Context に限定すべきかという議論が生まれた
                 </ul>
               </li>
               <li>
@@ -774,7 +774,7 @@
                 <em>WebHint in Firefox DevTools: Improve Compatibility, Accessibility and more</em>
                 <ul>
                   <li><a href="https://hacks.mozilla.org/2019/09/webhint-in-firefox-devtools-improve-compatibility-accessibility-and-more/">https://hacks.mozilla.org/2019/09/webhint-in-firefox-devtools-improve-compatibility-accessibility-and-more/</a>
-                  <li>Microsoft が作って OpenJS Foundation に寄贈した webhint (sonar) が Firefox の DevTools でも使えるようになった
+                  <li>Microsoft が作って OpenJS Foundation に寄贈した webhint (sonar)が Firefox の DevTools でも使えるようになった
                 </ul>
               </li>
               <li>
@@ -920,7 +920,7 @@
                 <ul>
                   <li><a href="https://blogs.windows.com/msedgedev/2019/10/15/form-controls-microsoft-edge-chromium/">https://blogs.windows.com/msedgedev/2019/10/15/form-controls-microsoft-edge-chromium/</a>
                   <li>フォームコントローラ UI のデザインを刷新
-                  <li>Edge / Chrome チームが連携して実現し、 Chromium に入る
+                  <li>Edge / Chrome チームが連携して実現し、Chromium に入る
                   <li>つまり Chromium ベースの他のブラウザにも入る
                   <li><code translate=no>&lt;input type=password&gt;</code> にパスワードを確認するアイコンが入るっぽい
                   <li>ハイコントラストモードにも対応
@@ -948,7 +948,7 @@
                   <li><a href="https://jakearchibald.com/2019/service-workers-tpac/">https://jakearchibald.com/2019/service-workers-tpac/</a>
                   <li>unregister して register しても復活しないように
                   <li>active/waiting/installing どの state だろうと self.serviceWorker で取れるように
-                  <li>page lifecycle api (特に bfcache) との関係
+                  <li>page lifecycle api (特に bfcache)との関係
                   <li>ページから SW に状態などを伝えるためにデータを渡せるように
                   <li>immediate unregister できるように
                   <li>
@@ -966,7 +966,7 @@
                     </ul>
                   </li>
                   <li>
-                    <em>onfetch で respondWith に response を渡した後、 waitUntil でタスクを実行したい</em>
+                    <em>onfetch で respondWith に response を渡した後、waitUntil でタスクを実行したい</em>
                     <ul>
                       <li>でも waitUntil が respondWith を遅延させるケースがあった
                       <li>setTimeout とかで迂回してた
@@ -976,7 +976,7 @@
                   <li>
                     Background fetch のプライバシー
                     <ul>
-                      <li>ページを離れたずっと後で  fetch が飛ぶと変更後の IP など情報が多すぎる
+                      <li>ページを離れたずっと後で fetch が飛ぶと変更後の IP など情報が多すぎる
                       <li>しかもユーザに見えないところで行われる
                       <li>Moziila / Apple は background fetch の方に満足している
                       <li>Apple は background fetch を実装しているように見える
@@ -1114,7 +1114,7 @@
                   <li>でもその追加を許すと収集がつかなそう(slippery slope)
                   <li>拡張性、パフォーマンスを考えて Object.map を Iterator 側に移す
                   <li><code translate=no>Iterator.from(obj).map(([k,v]) =&gt; do([k,v])).toObject(([k]) =&gt; k, ([,v]) =&gt; v)</code>
-                  <li>@@iterator (Symbol.iterator) を持つ必要
+                  <li>@@iterator (Symbol.iterator)を持つ必要
                 </ul>
               </li>
               <li>
@@ -1319,7 +1319,7 @@
               <li><a href="https://headlines.yahoo.co.jp/hl?a=20191029-00000004-asahi-bus_all">https://headlines.yahoo.co.jp/hl?a=20191029-00000004-asahi-bus_all</a>
               <li><a href="https://www.itmedia.co.jp/news/articles/1910/29/news119.html">https://www.itmedia.co.jp/news/articles/1910/29/news119.html</a>
               <li>
-                (令和元年 8 月 29 日)「デジタル・プラットフォーマーと個人情報等を提供する消費者との取引における優越的地位の濫用に関する独占禁止法上の考え方(案)」に対する意見募集について:公正取引委員会
+                (令和元年 8 月 29 日)「デジタル・プラットフォーマーと個人情報等を提供する消費者との取引における優越的地位の濫用に関する独占禁止法上の考え方(案)」に対する意見募集について: 公正取引委員会
                 <ul>
                   <li><a href="https://www.jftc.go.jp/houdou/pressrelease/2019/aug/190829_dpfpc.html">https://www.jftc.go.jp/houdou/pressrelease/2019/aug/190829_dpfpc.html</a>
                   <li>おそらくここに Cookie に対する規制を盛り込むという話っぽい
@@ -1388,7 +1388,7 @@
           <li>
             <em>WebHint Browser Ext</em>
             <ul>
-              <li>Webhint (Lighthouse の MS 版、旧 sonarwhal) の拡張リリース
+              <li>Webhint (Lighthouse の MS 版、旧 sonarwhal)の拡張リリース
               <li>
                 The webhint browser extension v1 release - webhint - Medium
                 <ul>
@@ -1457,7 +1457,7 @@
             <em>Tim Berners-Lee published a document called HTML Tags - 1991 | Web Design Museum</em>
             <ul>
               <li><a href="https://www.webdesignmuseum.org/web-design-history/tim-berners-lee-published-a-document-called-html-tags-1991">https://www.webdesignmuseum.org/web-design-history/tim-berners-lee-published-a-document-called-html-tags-1991</a>
-              <li>Sir TBL が HTML Tag を Publish してから 28 年 (1991/10/29)
+              <li>Sir TBL が HTML Tag を Publish してから 28 年(1991/10/29)
               <li><code translate=no>&lt;title&gt;, &lt;nextid&gt;, &lt;a&gt;, &lt;isindex&gt;, &lt;plaintext&gt;, &lt;listing&gt;, &lt;p&gt;, &lt;h1&gt;...&lt;h6&gt;, &lt;address&gt;, &lt;hp1&gt;, &lt;hp2&gt;..., &lt;dl&gt;, &lt;dt&gt;, &lt;dd&gt;, &lt;ul&gt;, &lt;li&gt;,&lt;menu&gt; and &lt;dir&gt;</code>
             </ul>
           </li>

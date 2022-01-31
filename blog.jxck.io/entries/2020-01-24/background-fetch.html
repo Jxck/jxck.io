@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、 Service...">
+  <meta name=description         content="Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、Service ...">
   <meta name=keywords            content="background-fetch,service worker">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2020-01-24/background-fetch.html>
   <meta property=og:title        content="Service Worker の Background Fetch によるメディアのキャッシュ | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、 Service...">
+  <meta property=og:description  content="Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、Service ...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-01-24T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-02-01T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,7 +78,7 @@
         "width": 60
       }
     },
-    "description": "Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、 Service..."
+    "description": "Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、Service ..."
   }
   </script>
 
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-01-24>2020-01-24</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-01>2022-02-01</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -154,7 +154,7 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。
         <p>これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。
-        <p>この API と、 Service Worker およびブラウザにおける Range Request/Partial Response の扱いについて記す。
+        <p>この API と、Service Worker およびブラウザにおける Range Request/Partial Response の扱いについて記す。
       </section>
       <section>
         <h2 id="background-fetch"><a href="#background-fetch">background fetch</a></h2>
@@ -185,7 +185,7 @@ Range: bytes=54034432-</code></pre>
 content-type: audio/mpeg
 Content-Range: bytes 54034432-101797887/101797888
 Content-Length: 47763456</code></pre>
-        <p>つまり、 1 つの音声ファイルを取得するリクエスト/レスポンスが、 1 つとは限らないというわけだ。
+        <p>つまり、1 つの音声ファイルを取得するリクエスト/レスポンスが、1 つとは限らないというわけだ。
       </section>
       <section>
         <h2 id="service-worker-での-range-request"><a href="#service-worker-での-range-request">Service Worker での Range Request</a></h2>
@@ -198,10 +198,10 @@ Content-Length: 47763456</code></pre>
     return res
   })())
 })</code></pre>
-        <p>最初は Service Worker が 206 を 200 に変えてしまうバグかと思ったが、 Content-Range もついてない。
+        <p>最初は Service Worker が 206 を 200 に変えてしまうバグかと思ったが、Content-Range もついてない。
         <p>もしやと思い、サーバ側のログを見ると、そもそも Range ヘッダが送られていない。
-        <p>そもそも、 fetch を通すと Range Request が普通のリクエストとして送られているのだ。
-        <p>最初に試したのが 4 年ほど前で、 Service Worker の初期の頃だったため、単に実装されてないだけろうと思い、実装されるのを待って漬けていた。
+        <p>そもそも、fetch を通すと Range Request が普通のリクエストとして送られているのだ。
+        <p>最初に試したのが 4 年ほど前で、Service Worker の初期の頃だったため、単に実装されてないだけろうと思い、実装されるのを待って漬けていた。
       </section>
       <section>
         <h2 id="ブラウザにおける-rangepartial"><a href="#ブラウザにおける-rangepartial">ブラウザにおける Range/Partial</a></h2>
@@ -221,7 +221,7 @@ Content-Length: 47763456</code></pre>
           <li>Service Worker/Cache のような API でどうするかは決まってない
         </ul>
         <p>つまり、 <em>Service Worker はそもそも Range/Partial には対応してない</em> というか標準化されてないと言って良いだろう。
-        <p>それでも、 200 では取得できるため、全体が得られればキャッシュは可能で、 Safari などには 206 に置き換えて返すこともできる。
+        <p>それでも、200 では取得できるため、全体が得られればキャッシュは可能で、Safari などには 206 に置き換えて返すこともできる。
         <p>しかし、途中までしかキャッシュできてない状態でオフラインになると、途中で再生が止まるフラストレーションが溜まるだけだ。
         <p>なら Podcast アプリで聞いたほうが体験が良いということになる。
         <p>PWA で理想的な Podcast アプリを実現するのは難しそうだ。と諦めてから 4 年近く経った。
@@ -261,7 +261,7 @@ const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)</
           <h3 id="abort"><a href="#abort">abort()</a></h3>
           <p>中断は API から可能であり、 <code translate=no>abort()</code> を呼べば task が終了する。
           <pre class=js><code translate=no>task.abort()</code></pre>
-          <p>ただし、 Pause/Resume は API がなく、<a href="https://github.com/WICG/background-fetch/issues/38">提案</a> はされてるが、その UI は OS 側が提供するというスタンスだ。
+          <p>ただし、Pause/Resume は API がなく、 <a href="https://github.com/WICG/background-fetch/issues/38">提案</a> はされてるが、その UI は OS 側が提供するというスタンスだ。
         </section>
       </section>
       <section>
@@ -350,7 +350,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
       </section>
       <section>
         <h2 id="next"><a href="#next">Next</a></h2>
-        <p>ところが、 Podcast アプリなら、ユーザが操作してないときに自動でダウンロードしておきたい。
+        <p>ところが、Podcast アプリなら、ユーザが操作してないときに自動でダウンロードしておきたい。
         <p>ネットワークに繋がっている場合、定期的にサーバに RSS を問い合わせ、更新があれば fetch する。
         <p>ここでもう 1 つ待望だった API の <a href="https://github.com/WICG/periodic-background-sync">Periodic Background Sync</a> が利用できるだろう。
         <p>また、今回の保存先はあくまでもキャッシュなので、キャッシュが増えればいずれ消える。

@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。">
+  <meta name=description         content="httpbis のチェアである mnot から、Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。">
   <meta name=keywords            content="cache digest,server push,http2">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html>
   <meta property=og:title        content="Cache Digest と HTTP2 Server Push の現状 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。">
+  <meta property=og:description  content="httpbis のチェアである mnot から、Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-01-19T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,7 +78,7 @@
         "width": 60
       }
     },
-    "description": "httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。"
+    "description": "httpbis のチェアである mnot から、Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。"
   }
   </script>
 
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-01-19>2019-01-19</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -148,8 +148,8 @@
       <h1><a href="">Cache Digest と HTTP2 Server Push の現状</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。
-        <p>もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。
+        <p>httpbis のチェアである mnot から、Cache Digest についての現状確認が ML に投稿された。
+        <p>もしこのまま反応がなければ、Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。
       </section>
       <section>
         <h2 id="update"><a href="#update">Update</a></h2>
@@ -164,23 +164,23 @@
       </section>
       <section>
         <h2 id="http2-push"><a href="#http2-push">HTTP2 Push</a></h2>
-        <p>HTTP2 の仕様策定時に盛り込まれた新機能として、 Server Push があった。
+        <p>HTTP2 の仕様策定時に盛り込まれた新機能として、Server Push があった。
         <p>これは、例えば RPC 的な用途で双方向性のある通信を可能にした。
-        <p>Web においては、リクエストが来る前にレスポンスを返しキャッシュに入れ込むことで、 RTT を減らすという効果が期待されていた。
+        <p>Web においては、リクエストが来る前にレスポンスを返しキャッシュに入れ込むことで、RTT を減らすという効果が期待されていた。
         <p>ところが、コンテントネゴシエーションをせずに、一方的にキャッシュを送り込むこの仕組みは、ブラウザが既にキャッシュをしている場合にはむしろ無駄な通信になる。
-        <p>そこで、なんとかして「ブラウザがなるべくキャッシュしてなさそうなものを Push する」ために <a href="https://twitter.com/kazuho">@kazuho</a> さんが考案したのが、 Cache Digest である。
+        <p>そこで、なんとかして「ブラウザがなるべくキャッシュしてなさそうなものを Push する」ために <a href="https://twitter.com/kazuho">@kazuho</a> さんが考案したのが、Cache Digest である。
       </section>
       <section>
         <h2 id="cache-digest"><a href="#cache-digest">Cache Digest</a></h2>
         <p>Cache Digest は以下のドラフトであり、現状 -05 である。
         <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-cache-digest-05">draft-ietf-httpbis-cache-digest-05 - Cache Digests for HTTP/2</a>
         <p>究極には、ブラウザが保存しているコンテンツのリストを送ってくれば、正確に Push が可能だが、その方法は問題しかない。
-        <p>現代の Web でそれをやるとサイズが大きすぎるし、 Fingerprint などの問題も懸念される。
-        <p>そこで、 Filtercuckoo Filter という Bloom Filter に似た確率的データ構造を用いるのがこの提案だ。
+        <p>現代の Web でそれをやるとサイズが大きすぎるし、Fingerprint などの問題も懸念される。
+        <p>そこで、Filtercuckoo Filter という Bloom Filter に似た確率的データ構造を用いるのがこの提案だ。
         <p>「このコンテンツは絶対にキャッシュされてない」ことはわかるので、その場合は Push を行う。
         <p>「このコンテンツはキャッシュされているかもしれないが、されてないかもしれない」こともわかるので、その場合は Push しない。
         <p>これにより、もし後者で実際にはキャッシュがなかった場合は、ブラウザが普段通り Fetch すればよいため、「無駄な Push は無くせる」という効果が期待された。
-        <p>つまりこれは Push という Server to Client なプロトコルを、 Client 起点のリクエストのセマンティクスに馴染ませるための橋渡しだったと言えるだろう。
+        <p>つまりこれは Push という Server to Client なプロトコルを、Client 起点のリクエストのセマンティクスに馴染ませるための橋渡しだったと言えるだろう。
         <p>現実的には、「<em>これが無かったら対ブラウザの HTTP2 Push は正直使い物にならない</em>」というくらい重要なミッシングピースだったと筆者は考えており、使える日を心待ちにしていた。
       </section>
       <section>
@@ -204,14 +204,14 @@
         <h2 id="alternative"><a href="#alternative">Alternative</a></h2>
         <p>ブラウザにおける Server Push では、同じく kazuho さんが提案し RFC になっている Early Hints がある。
         <p><a href="https://blog.jxck.io/entries/2016-12-16/103-early-hints.html">HTTP の新しいステータスコード 103 Early Hints | blog.jxck.io</a>
-        <p>簡単に言えば、 Main Resource の Status Code が決定する前に、確定している Sub Resource を Status Code 103 として送るための仕組みだ。
-        <p>これは、 Push を CDN に移譲したりといった一部のユースケースを満たすが、依然として Client が何を Cache しているかはわからない。
+        <p>簡単に言えば、Main Resource の Status Code が決定する前に、確定している Sub Resource を Status Code 103 として送るための仕組みだ。
+        <p>これは、Push を CDN に移譲したりといった一部のユースケースを満たすが、依然として Client が何を Cache しているかはわからない。
         <p>もう一つ、ちょうど先月提案されたのが Prefer-Push という仕組みだ。
         <ul>
           <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018OctDec/0144.html">Prefer-Push, a HTTP extension</a>
           <li><a href="https://github.com/evert/push-please/">evert/push-please: A proposal for a HTTP-client suggested push by link-relation</a>
         </ul>
-        <p>これは、 Client 自身が Push してほしいリソースをヘッダで送るというものだ。
+        <p>これは、Client 自身が Push してほしいリソースをヘッダで送るというものだ。
         <p>もし、サブリソースのリストがわかってればそれも可能だが、例えば前のページで次のページのそれがわかっている状況は prefetch などで代用できそうにも思う。
         <p>当然そういった指摘が ML でなされているようで、あまり追ってないが盛り上がっている感じではなさそうに見える。
         <p>もともとの Push は最初の Request に対する Response の前に送る仕様になっているが、これを Request が来る前に送ってしまうという仕様も flano_yuki によって提案されている。
@@ -223,13 +223,13 @@
         <p>現状 Chrome では HTTP2 セッションのうち 0.04% が Push を行っているらしい。
         <p><a href="https://datatracker.ietf.org/meeting/102/materials/slides-102-httpbis-chromes-view-on-push-01">Chrome&apos;s view on Push IETF 102, httpbis Brad Lassey</a>
         <p>現実的な用途が見出されず、利用も広まらないのであれば、このままブラウザがメンテを続ける必要も無くなるかもしれない。
-        <p>ただ、 Service Worker における Server Push や WebSocket など、内部での別の通信が Push を含めた HTTP2 Stack を使うことは十分にありえると思うので、すぐに Push ごとなくすということはなさそうに思う。
+        <p>ただ、Service Worker における Server Push や WebSocket など、内部での別の通信が Push を含めた HTTP2 Stack を使うことは十分にありえると思うので、すぐに Push ごとなくすということはなさそうに思う。
       </section>
       <section>
         <h2 id="back-to-client-initiate"><a href="#back-to-client-initiate">Back to Client Initiate</a></h2>
         <p>クライアントが取得する必要の有るものを、サーバが送るというのが本来の Request/Response の世界だ。
         <p>これをキャッシュのレイヤに落として、クライアントが持っているキャッシュを伝えることでサーバが不足を補うというユースケースが Cache Digest にはあった。
-        <p>つまりこれは Push という Server to Client なプロトコルを、 Client 起点のリクエストのセマンティクスに馴染ませるための橋渡しだったと言えるだろう。
+        <p>つまりこれは Push という Server to Client なプロトコルを、Client 起点のリクエストのセマンティクスに馴染ませるための橋渡しだったと言えるだろう。
         <p>Cache Digest が無ければ、やはりサーバは選択肢を出して、クライアントが自分の保持するキャッシュと照らしあわせて取得することになる。
         <p>そこを最適化するのは「選択肢をなるべく早めに提示する」ための Prefetch, Preload, Prerender であり、そこを超えたければ自分で Service Worker を使ってやるということになりそうだ。
       </section>
@@ -237,7 +237,7 @@
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>Cache Digest が実装されず、仕様が文字通り瀕死の状態だ。
         <p>このまま実装が進まなければ、対ブラウザの Push は、かなり狭い範囲でしか使えない。実質使い物にならないだろうと筆者は考える。
-        <p>他のプロトコルなどのためのスタックとしての用途は残るかもしれないが、 h2 が最初にユースケースで上げていた話では使いにくくなる。
+        <p>他のプロトコルなどのためのスタックとしての用途は残るかもしれないが、h2 が最初にユースケースで上げていた話では使いにくくなる。
         <p>Client Initiate な negotiation を経ずに Server が何かするということ自体がやはり限界で、対ブラウザの Push は夢のまま終わりそうだ。
       </section>
       <section>

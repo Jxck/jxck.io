@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-09-07T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-09-07>2020-09-07</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,19 +156,19 @@
       </section>
       <section>
         <h2 id="regular-と-bold-の最適化"><a href="#regular-と-bold-の最適化">Regular と Bold の最適化</a></h2>
-        <p>本サイトでは Font Weight として Regular(400) と Bold(700) を提供しているが、これまでは抽出した文字種を Bold/Regular 両方でビルドしていた。
-        <p>しかし、 Regular でしか使われてない文字が Bold にも入っており、 Bold 側のサイズをより削減できるという既知の問題があった。
-        <p>本サイトの HTML は markdown をパースし、独自のビルダで変換しているため、こうした処理は markdown の AST を元に生成する方針を取っていたが、 HTML への変換結果をみないと bold か regular かを判別できないため、実装が単純に面倒で後回しにしていた。
+        <p>本サイトでは Font Weight として Regular(400)と Bold(700)を提供しているが、これまでは抽出した文字種を Bold/Regular 両方でビルドしていた。
+        <p>しかし、Regular でしか使われてない文字が Bold にも入っており、Bold 側のサイズをより削減できるという既知の問題があった。
+        <p>本サイトの HTML は markdown をパースし、独自のビルダで変換しているため、こうした処理は markdown の AST を元に生成する方針を取っていたが、HTML への変換結果をみないと bold か regular かを判別できないため、実装が単純に面倒で後回しにしていた。
       </section>
       <section>
         <h2 id="puppeteer-による実装"><a href="#puppeteer-による実装">Puppeteer による実装</a></h2>
-        <p>本サイトが全て静的に HTML 生成していることを利用し、 Puppeteer でローカルスクレイピングを行うことで、そこから必要な文字種類を取得することにした。
-        <p>単純に document 全体を対象要素のみに絞って、 textContent を取得しているだけだ。
+        <p>本サイトが全て静的に HTML 生成していることを利用し、Puppeteer でローカルスクレイピングを行うことで、そこから必要な文字種類を取得することにした。
+        <p>単純に document 全体を対象要素のみに絞って、textContent を取得しているだけだ。
         <ul>
           <li><a href="https://github.com/Jxck/jxck.io/blob/master/www.jxck.io/assets/font/subset.mjs">subset.mjs</a>
         </ul>
         <p>これにより、これまで同じサイズだった Bold は必要最低限に減らすことができた。
-        <p>Regular は、 Bold にあって Regular には無い文字が減らせた一方、これまで取りこぼしていた文字を収録しきったためトータルでは多くなっている。
+        <p>Regular は、Bold にあって Regular には無い文字が減らせた一方、これまで取りこぼしていた文字を収録しきったためトータルでは多くなっている。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?201223_011131>
         <table>
           <thead>

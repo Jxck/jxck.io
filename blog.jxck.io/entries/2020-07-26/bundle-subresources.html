@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制...">
+  <meta name=description         content="WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御で...">
   <meta name=keywords            content="webbundle,webpackaging,performance">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2020-07-26/bundle-subresources.html>
   <meta property=og:title        content="Webbundle によるサブリソース取得の最適化 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制...">
+  <meta property=og:description  content="WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御で...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-07-26T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,7 +78,7 @@
         "width": 60
       }
     },
-    "description": "WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制..."
+    "description": "WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御で..."
   }
   </script>
 
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-07-26>2020-07-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -152,8 +152,8 @@
       <h1><a href="">Webbundle によるサブリソース取得の最適化</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。
-        <p>これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
+        <p>WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。
+        <p>これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
         <p>現時点での仕様と実装を解説する。
         <ul>
           <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ">Intent to Prototype: Subresource loading with Web Bundles</a>
@@ -161,7 +161,7 @@
       </section>
       <section>
         <h2 id="subresource-bundling"><a href="#subresource-bundling">Subresource Bundling</a></h2>
-        <p>WebBundle の初期の仕様は、 HTML を頂点としたページ全体をまとめる方向で始まった。
+        <p>WebBundle の初期の仕様は、HTML を頂点としたページ全体をまとめる方向で始まった。
         <ul>
           <li><a href="https://blog.jxck.io/entries/2019-11-12/webbundle.html">WebBundle によるコンテンツの結合と WebPackaging | blog.jxck.io</a>
         </ul>
@@ -181,7 +181,7 @@
   favicon.ico</code></pre>
           <p>なお、 <code translate=no>a.js</code> は <code translate=no>b.js</code> を import し、 <code translate=no>c.css</code> は <code translate=no>d.css</code> を import している。
           <p>gen-bundle は <code translate=no>-dir</code> を指定するとディレクトリ以下をまるっと bundle してくれる。
-          <p>CLI の仕様上 <code translate=no>-primaryURL</code> (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chorme の実装もこれを無視しているようなので、適当に指定している。
+          <p>CLI の仕様上 <code translate=no>-primaryURL</code> (HTML を頂点とする Bundle での HTML の URL)が必須だが、Subresource の場合は特定の Primary が存在しない。Chorme の実装もこれを無視しているようなので、適当に指定している。
           <p><code translate=no>-headerOverride</code> でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
           <pre class=sh-session><code translate=no>$ gen-bundle \
     -version b1 \
@@ -272,7 +272,7 @@ img {
           <h3 id="link-rel-bundle"><a href="#link-rel-bundle">link rel bundle</a></h3>
           <p>この Bundle を読み込む HTML は以下のようになる。
           <p>普通にサブリソースを読む HTML に加え、 <code translate=no>&lt;link&gt;</code> で web bundle の読み込みを指定する。
-          <p>この resources 属性に、 bundle 側で解決する URL を absolute URL で明示する必要がある。
+          <p>この resources 属性に、bundle 側で解決する URL を absolute URL で明示する必要がある。
           <pre class=html><code translate=no>&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;meta name=viewport content=&quot;width=device-width,initial-scale=1&quot;&gt;
@@ -337,11 +337,11 @@ img {
 &lt;script  src=https://example.com/webpackaging/subresource-webbundle/a.js  type=module&gt;&lt;/script&gt;
 &lt;link   href=https://example.com/webpackaging/subresource-webbundle/c.css rel=stylesheet&gt;
 &lt;img     src=https://example.com/webpackaging/subresource-webbundle/e.png width=100&gt;</code></pre>
-          <p>つまり、 3rd Party のサブリソースを読み込む際に、その配信元が webbundle に対応していなくとも、 1st Party 側が Bundle を生成して配信することが可能ということになる。それで良いのかは仕様がきちんと出てから議論されるのではないだろうか。
+          <p>つまり、3rd Party のサブリソースを読み込む際に、その配信元が webbundle に対応していなくとも、1st Party 側が Bundle を生成して配信することが可能ということになる。それで良いのかは仕様がきちんと出てから議論されるのではないだろうか。
         </section>
         <section>
           <h3 id="web-component-bundle"><a href="#web-component-bundle">Web Component Bundle</a></h3>
-          <p>JS だけではなくあらゆる Subresource を対象に bundle できるということは、 Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
+          <p>JS だけではなくあらゆる Subresource を対象に bundle できるということは、Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
           <p>HTML, CSS, JS, Img などをまとめて、いわゆる WebComponent の単位で bundle を生成するといったことも可能だ。
           <p>以下の DEMO は、 <code translate=no>&lt;profile-card&gt;</code> を Custom Element として実装し、そこに必要なリソースを bundle している。
           <pre class=sh-session><code translate=no>$ ls profile-card
@@ -352,8 +352,8 @@ img {
           <ul>
             <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html">https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html</a>
           </ul>
-          <p>今は、 JS 以外は <code translate=no>import</code> できないため、 CSS は <code translate=no>@import</code> で、 HTML は <code translate=no>fetch()</code> で解決しているが、 別途策定が進んでいる <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md">Synthetic Modules</a> (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て <code translate=no>import</code> で扱える可能性がある。
-          <p>これら関連仕様が進むと、 Synthetic Module ベースで構成された WebComponent の使い勝手がよくなり、 Bundle で fetch の数も気にせずに積極的に使えるようになるかもしれない。
+          <p>今は、JS 以外は <code translate=no>import</code> できないため、CSS は <code translate=no>@import</code> で、HTML は <code translate=no>fetch()</code> で解決しているが、別途策定が進んでいる <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md">Synthetic Modules</a> (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て <code translate=no>import</code> で扱える可能性がある。
+          <p>これら関連仕様が進むと、Synthetic Module ベースで構成された WebComponent の使い勝手がよくなり、Bundle で fetch の数も気にせずに積極的に使えるようになるかもしれない。
         </section>
         <section>
           <h3 id="nested-bundling"><a href="#nested-bundling">Nested Bundling</a></h3>
@@ -364,7 +364,7 @@ img {
   - react.wbn
   - react-dom.wbn
   - redux.wbn</code></pre>
-          <p>実際このような Nested Bundle も生成可能で、 Chrome もそれを最後まで展開するところが確認できた。
+          <p>実際このような Nested Bundle も生成可能で、Chrome もそれを最後まで展開するところが確認できた。
           <ul>
             <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/">https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/</a>
           </ul>
@@ -382,10 +382,10 @@ img {
             <li><a href="https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit">Loading Performance with (Many) Modules: Summary as of Oct 7, 2017</a>
           </ul>
           <p>この課題は すでに広く普及した webpack などのビルドツールにより解決されていたので、開発の現場ではあまり体感することはなかったかもしれない。
-          <p>結果、 ES Module の import はブラウザがランタイムで依存解決するためではなく、ビルドツールが変換に使うための placeholder として使われて、多くの依存を bundle.js にまとめ、その中の 1byte でも変わったらバンドルし直して再取得させる運用が通常となっている。
+          <p>結果、ES Module の import はブラウザがランタイムで依存解決するためではなく、ビルドツールが変換に使うための placeholder として使われて、多くの依存を bundle.js にまとめ、その中の 1byte でも変わったらバンドルし直して再取得させる運用が通常となっている。
           <p>筆者としては「せっかく ES Module が手に入ったのにブラウザから見れば恩恵はほとんど得られていない」と言う点に煮えきらなさを感じていた。
           <p>Bundle Subresource は、「ブラウザ上でも Module を分割して扱いながらも fetch は減らしたい」という 2 つの要求を繋ぐ仕様として期待することができる。
-          <p>WebPackaging の構想が出たときから期待していた仕様であり、 SXG よりもより多くの現場に影響を与える仕様になりえるのではないだろうか。
+          <p>WebPackaging の構想が出たときから期待していた仕様であり、SXG よりもより多くの現場に影響を与える仕様になりえるのではないだろうか。
         </section>
         <section>
           <h3 id="動的な-bundling"><a href="#動的な-bundling">動的な bundling</a></h3>
@@ -405,9 +405,9 @@ img {
         </section>
         <section>
           <h3 id="resouces"><a href="#resouces">resouces</a></h3>
-          <p>bundle で fetch の数が解決して、 ES Module を積極利用するとなると、自動生成するとしても link タグの resouces が少し肥大しすぎるあたりも気になる。
+          <p>bundle で fetch の数が解決して、ES Module を積極利用するとなると、自動生成するとしても link タグの resouces が少し肥大しすぎるあたりも気になる。
           <p>ぱっと思い浮かぶのは import map だが、そちらも最近どうなってるかよくわからない。
-          <p>今はナイーブに全部書く実装になっているとは言え、あくまで Explainer ベースであり、仕様もかっちり固まっているわけではなく、さらに Explainer でも別の案について書かれているため、 Experiment を進める中でもう少し良い代替案がでることを期待したい。
+          <p>今はナイーブに全部書く実装になっているとは言え、あくまで Explainer ベースであり、仕様もかっちり固まっているわけではなく、さらに Explainer でも別の案について書かれているため、Experiment を進める中でもう少し良い代替案がでることを期待したい。
         </section>
       </section>
       <section>
@@ -419,7 +419,7 @@ img {
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>まだまだ実装が始まったばかりで、 Explainer と Design Doc から仮実装されたような状態であるため、仕様が固まっているとはいえないだろう。
+        <p>まだまだ実装が始まったばかりで、Explainer と Design Doc から仮実装されたような状態であるため、仕様が固まっているとはいえないだろう。
         <p>その中でも、コアの部分についてはある程度動いており、いくつかのユースケースは実現できることが確認できた。
         <p>なにより Cache-Digest の問題が気になるところなので、今後仕様策定が進んで改善されていくことを期待しつつ、検証を続けていきたい。
       </section>

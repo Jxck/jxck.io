@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-08-15T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-08-15>2017-08-15</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,7 +156,7 @@
       </section>
       <section>
         <h2 id="es-modules"><a href="#es-modules">ES Modules</a></h2>
-        <p>徐々に揃いつつある ES Modules(ESM) の仕様は TC39 で行われており、その仕様については主に以下のような部分になる。
+        <p>徐々に揃いつつある ES Modules(ESM)の仕様は TC39 で行われており、その仕様については主に以下のような部分になる。
         <ul>
           <li><code translate=no>import</code> や <code translate=no>export</code> と行った構文
           <li>module 内はデフォルト strict mode
@@ -175,7 +175,7 @@
       </section>
       <section>
         <h2 id="esm--cjs"><a href="#esm--cjs">ESM / CJS</a></h2>
-        <p>そもそも ES modules(ESM) が CommonJS(CJS) とは違う構文を策定したのには理由がある。
+        <p>そもそも ES modules(ESM)が CommonJS(CJS)とは違う構文を策定したのには理由がある。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
         <pre class=js><code translate=no>// commonjs
 const foo = require(&quot;./foo&quot;)
@@ -185,7 +185,7 @@ module.exports = { message: &quot;hello world&quot; }
 import foo from &quot;./foo&quot;
 export default { message: &quot;hello world&quot; }</code></pre>
         <p>CJS は ESM 以前の JS の範囲で実装されていたため、 <code translate=no>require</code> 関数や <code translate=no>modules</code> オブジェクトへの操作を特別扱いすることで実現していた。
-        <p>しかし、この方式では例えば以下のように書くことも、 JS の範囲である以上正しくなってしまう。
+        <p>しかし、この方式では例えば以下のように書くことも、JS の範囲である以上正しくなってしまう。
         <pre class=js><code translate=no>// commonjs
 
 let version
@@ -203,17 +203,17 @@ import foo from &quot;./foo&quot;
 export default { message: &quot;hello world&quot; }</code></pre>
         <p>構文を定義することで、パースを行なった時点で曖昧な書かれ方をしている部分を Syntax Error として弾くことができる。
         <p>また、パースが通るということは、正しく依存関係を把握できているということになり、実行する前に依存解決が可能であることも意味する。
-        <p>この実行しないでも良いという構文の利点は、静的解析ツールなどとも相性が良く、 CJS を置き換える非常に良い仕様となった。
+        <p>この実行しないでも良いという構文の利点は、静的解析ツールなどとも相性が良く、CJS を置き換える非常に良い仕様となった。
       </section>
       <section>
         <h2 id="実行環境における-esm-の扱い"><a href="#実行環境における-esm-の扱い">実行環境における ESM の扱い</a></h2>
-        <p>TC39 の責任範囲は、 JS ファイル内に書かれる構文が中心であり、そのファイルが実際にどう扱われるかは、実行環境の責務となる。
+        <p>TC39 の責任範囲は、JS ファイル内に書かれる構文が中心であり、そのファイルが実際にどう扱われるかは、実行環境の責務となる。
         <p>特に実行環境がどう扱うかについて、もっとも重要なのが、 <em>そもそもそのファイルが CJS か ESM か</em> の判別である。
         <p>判別が正しく行えなければ、先述のデフォルト strict mode や、トップレベルの <code translate=no>this</code> を <code translate=no>undefined</code> と扱うと行った処理ができなくなるからである。
         <p>(ここでの CJS は、 <code translate=no>require()</code> や <code translate=no>module</code> を使っているかというよりも、単に ESM ではないという意味が強い)
         <section>
           <h3 id="modules-on-browser"><a href="#modules-on-browser">Modules on Browser</a></h3>
-          <p>ブラウザにおける Module の扱いは、 HTML の範囲での仕様策定を伴う。
+          <p>ブラウザにおける Module の扱いは、HTML の範囲での仕様策定を伴う。
           <p>具体的には、 <code translate=no>&lt;script&gt;</code> タグの <code translate=no>type</code> 属性を用いて Script であるか Module であるかを判別することが可能だ。
           <pre class=html><code translate=no>&lt;script type=module src=module.js&gt;&lt;/script&gt;
 &lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
@@ -256,7 +256,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
         <h2 id=".mjs-for-esm"><a href="#.mjs-for-esm">.mjs for ESM</a></h2>
         <p>結論として Node では <code translate=no>.mjs</code> という拡張子を採用することとなった。
         <p><a href="https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#32-determining-if-source-is-an-es-module">3.2. Determining if source is an ES Module</a>
-        <p>これにより、 <code translate=no>.js</code> を維持したまま先に進むことができ、二回パースといったオーバーヘッドもなく、 TC39 の仕様外の独自拡張を Node が勝手に持ち込むことも防ぐことができる。
+        <p>これにより、 <code translate=no>.js</code> を維持したまま先に進むことができ、二回パースといったオーバーヘッドもなく、TC39 の仕様外の独自拡張を Node が勝手に持ち込むことも防ぐことができる。
         <p>また、先述の通りブラウザは拡張子に頼った判別をしていないため、正しくマークアップをしていれば <code translate=no>.mjs</code> をブラウザ用に提供することも可能だ。
         <p>議論の中でもあったデメリットとして、これまでの多くのツール、ライブラリ、ミドルウェアなどの対応は懸念される。
         <section>
@@ -271,7 +271,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
           <h3 id="ライブラリ"><a href="#ライブラリ">ライブラリ</a></h3>
           <p>CJS で書かれた多くのライブラリは、 <code translate=no>.js</code> として作られているだろう。
           <p>しかし、これらを単に <code translate=no>.mjs</code> にリネームしたとしても <code translate=no>export</code> , <code translate=no>import</code> といった構文で修正しなければ使えない。
-          <p>したがって、従来の CJS ライブラリの多くは、 ESM への移行が必要となる。
+          <p>したがって、従来の CJS ライブラリの多くは、ESM への移行が必要となる。
           <p>とはいえ、すぐに移行できないものや、メンテされてないものも多い。
           <p>使う側も、移行が落ち着くまではこれまでの Browserify や WebPack などを用いたビルドによる Bundle 作業が必要となるだろう。
         </section>
@@ -288,7 +288,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
             <li>text/javascript
             <li>application/javascript
           </ul>
-          <p>したがって、 Web サーバにおいては <code translate=no>.mjs</code> を従来の JS と同じように扱えるように対応すれば良いことになる。
+          <p>したがって、Web サーバにおいては <code translate=no>.mjs</code> を従来の JS と同じように扱えるように対応すれば良いことになる。
         </section>
       </section>
       <section>
@@ -306,7 +306,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>これからの JS は、 ESM を <code translate=no>.mjs</code> に書くことになり、それを前提としたエコシステムが構築されていくことが望ましいだろう。
+        <p>これからの JS は、ESM を <code translate=no>.mjs</code> に書くことになり、それを前提としたエコシステムが構築されていくことが望ましいだろう。
       </section>
     </article>
   </main>

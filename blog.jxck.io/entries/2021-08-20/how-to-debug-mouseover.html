@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-08-20T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-08-20>2021-08-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -151,9 +151,9 @@
       </section>
       <section>
         <h2 id="mouseover-tooltip"><a href="#mouseover-tooltip">mouseover tooltip</a></h2>
-        <p>対象として、 GitHub のユーザアイコンのクリックを見てみよう。
+        <p>対象として、GitHub のユーザアイコンのクリックを見てみよう。
         <p>以下のようにアイコンに mouseover しているときだけ、ユーザのプロフィールが出現する UI だ。
-        <p>この UI を表示した状態で Devtools で DOM を見たい場合、 Devtools 側にマウスを移動すると UI が消えてしまい、 inspect できない。
+        <p>この UI を表示した状態で Devtools で DOM を見たい場合、Devtools 側にマウスを移動すると UI が消えてしまい、inspect できない。
         <p>
           <video title="マウスオーバーで出る UI が devtools でうまく inspect できない様のスクリーンレコード" width=2880 height=1800 controls playsinline>
             <source type=video/mp4 src=0.debug-mouseover.mp4?210820_181335>
@@ -161,7 +161,7 @@
           </video>
         </p>
         <p>JS のどの処理で変更されているかわかっていれば、そこに break point を打って止めればよいのだが、近年の bundle/minify されたコードを source map なしにデバッグすると、面倒な上にムダに時間がかかる場合もある。
-        <p>そして、一見この用途に使えそうな Force State 機能は、<code translate=no>:hover</code> に適用された CSS を強制的に有効にするといった用途だが、 <code translate=no>onmouseover</code> で実行されている JS には使えない。
+        <p>そして、一見この用途に使えそうな Force State 機能は、 <code translate=no>:hover</code> に適用された CSS を強制的に有効にするといった用途だが、 <code translate=no>onmouseover</code> で実行されている JS には使えない。
         <p>この UI を、どうやって表示したまま Devtools に移るか、といったやり方はいくつかあるので、筆者がよく使う方法を紹介する。
       </section>
       <section>
@@ -185,8 +185,8 @@
           <li>attribute modification
           <li>node removal
         </ul>
-        <p>よって、 UI を表示した結果、属性やノードに起こる変化がわかっていれば、これを使うこともできる。
-        <p>ただし、属性が変わったあとに UI が表示されるような実装だと、そこまでステップ実行する必要があったり、 UI が表示されるのが直接の子要素ではない場合などは 1 の方が楽だ。
+        <p>よって、UI を表示した結果、属性やノードに起こる変化がわかっていれば、これを使うこともできる。
+        <p>ただし、属性が変わったあとに UI が表示されるような実装だと、そこまでステップ実行する必要があったり、UI が表示されるのが直接の子要素ではない場合などは 1 の方が楽だ。
         <p>GitHub の場合は、ページ下部に非表示の DOM が先にあり、この属性を変えているタイプの実装なので、そこが判明していれば、以下のように inspect できる。
         <p>
           <video title="attribute modification に break point を設定し UI が消えないようにし inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
@@ -198,16 +198,16 @@
       <section>
         <h2 id="3.-f8"><a href="#3.-f8">3. F8</a></h2>
         <p>Devtools の source tab を開いた状態で F8 を押すと、そこで Script Exec を止めることができる。つまり強制的に debugger を差し込むようなイメージだ。
-        <p>mouseover で対象の UI を表示させてから F8 を押して、そのあとの JS を止めてしまうことで、 Devtools に移ることができ、そこから step 実行を始めることもできる。
-        <p>GitHub の場合は、プロフィールを表示してから F8 を押してからマウスを動かせば、 mouseleave の JS 発火時に break できる。
+        <p>mouseover で対象の UI を表示させてから F8 を押して、そのあとの JS を止めてしまうことで、Devtools に移ることができ、そこから step 実行を始めることもできる。
+        <p>GitHub の場合は、プロフィールを表示してから F8 を押してからマウスを動かせば、mouseleave の JS 発火時に break できる。
         <p>
           <video title="UI が消える前に F8 でスクリプト実行を停止し inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
             <source type=video/mp4 src=3.break-F8.mp4?210820_180424>
             <source type=video/webm src=3.break-F8.webm?210820_180445>
           </video>
         </p>
-        <p>同じことを、 console に <code translate=no>setTimeout(() =&gt; {debugger}, 1000)</code> を貼り付けて 1 秒以内に UI を出して、 debugger で JS を止めるというやり方で紹介していることもあるようだが、やっていることは同じだ。
-        <p>他にも、 F8 押すと止まるというのは、知っていると使える場面があるかもしれない。
+        <p>同じことを、console に <code translate=no>setTimeout(() =&gt; {debugger}, 1000)</code> を貼り付けて 1 秒以内に UI を出して、debugger で JS を止めるというやり方で紹介していることもあるようだが、やっていることは同じだ。
+        <p>他にも、F8 押すと止まるというのは、知っていると使える場面があるかもしれない。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>

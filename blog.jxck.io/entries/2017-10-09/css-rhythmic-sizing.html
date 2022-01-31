@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-10-09T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-10-09>2017-10-09</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -154,8 +154,8 @@
       </section>
       <section>
         <h2 id="css-rhythmic-sizing"><a href="#css-rhythmic-sizing">CSS Rhythmic Sizing</a></h2>
-        <p>筆者はタイポグラフィやデザインには疎く、 Vertical Rhythm についてもよく知らなかった。
-        <p>しかし、 Chrome でこの仕様を実装している <a href="https://plus.google.com/u/0/111919080701466394452">Koji Ishii</a> さんに API を紹介してもらい、色々学ぶ機会があった。
+        <p>筆者はタイポグラフィやデザインには疎く、Vertical Rhythm についてもよく知らなかった。
+        <p>しかし、Chrome でこの仕様を実装している <a href="https://plus.google.com/u/0/111919080701466394452">Koji Ishii</a> さんに API を紹介してもらい、色々学ぶ機会があった。
         <p>本仕様はまだブラウザ間でも合意が取りきれていない部分があるらしく、ユースケースやフィードバックを集めている段階とのことだったので、
         <p>トライアルとして、本サイトへの適用を行うことにした。
         <p>実装にあたっては、全面的に Koji さんに協力して頂いた。
@@ -164,7 +164,7 @@
         <h2 id="readability-of-rhythm"><a href="#readability-of-rhythm">Readability of Rhythm</a></h2>
         <p>Vertical Rhythm の効果については、以下のように教えて頂いた。
         <blockquote>
-          <p>Readability の研究からすると、 Vertical Rhythm があたっていると、読むスピードが上がり、読後に質問すると内容を覚えていたり理解していたりする率が上がる、とされています。
+          <p>Readability の研究からすると、Vertical Rhythm があたっていると、読むスピードが上がり、読後に質問すると内容を覚えていたり理解していたりする率が上がる、とされています。
         </blockquote>
         <p>つまり、本サイトのような、専門的な内容を扱うテキストを中心としたコンテンツでは、効果を期待できそうだ。
         <p>また、本サイトの特徴上、アクセスするユーザは Chrome が多く、 <code translate=no>#enable-experimental-web-platform-features</code> を有効にしている可能性も期待しやすい。
@@ -205,12 +205,12 @@ p {
   margin-bottom: var(--grid);
 }</code></pre>
         <p>そこに引いたグリッドの線を見ればわかるように、 <code translate=no>&lt;h1&gt;</code> ~ <code translate=no>&lt;h4&gt;</code> の余白はバラバラになっている。
-        <p>ここで、個々の <code translate=no>line-height</code> を計算し適切に設定する代わりに、 CSS Rhythmic Sizing では以下のようなプロパティが設定できる。
+        <p>ここで、個々の <code translate=no>line-height</code> を計算し適切に設定する代わりに、CSS Rhythmic Sizing では以下のようなプロパティが設定できる。
         <pre class=css><code translate=no>.rhythm {
   line-height-step: var(--grid);
 }</code></pre>
         <p>この設定を親要素に指定すると、子要素のインライン要素は、 <code translate=no>line-height</code> を自動で <code translate=no>24px</code> の倍数に揃えることができる。
-        <p>すると、 <code translate=no>&lt;h1&gt;</code> ~ <code translate=no>&lt;h4&gt;</code> の高さは、フォントが <code translate=no>line-height-step</code> の値(つまり <code translate=no>24px</code>) に収まる場合は <code translate=no>24px</code> に、収まらなければ 40, 80... px に自動でアラインされる。
+        <p>すると、 <code translate=no>&lt;h1&gt;</code> ~ <code translate=no>&lt;h4&gt;</code> の高さは、フォントが <code translate=no>line-height-step</code> の値(つまり <code translate=no>24px</code>)に収まる場合は <code translate=no>24px</code> に、収まらなければ 40, 80... px に自動でアラインされる。
         <p><code translate=no>&lt;p&gt;</code> のマージンは同じく(相殺含め) <code translate=no>24px</code> に揃っているので、表示は以下のようにグリッドに揃う。
         <p>
           <picture>
@@ -224,7 +224,7 @@ p {
       <section>
         <h2 id="multi-column-layout"><a href="#multi-column-layout">Multi Column Layout</a></h2>
         <p>確かにリズムが揃っていることはわかるが、それによる効果は本サイトのような Single Column よりも Multi Column なコンテンツの方が実感しやすい。
-        <p>そこで、 CSS の Multi Column Layout で 2 column にするオプションを追加した。
+        <p>そこで、CSS の Multi Column Layout で 2 column にするオプションを追加した。
         <pre class=css><code translate=no>.colmun {
   column-count: 2;
   column-gap: calc(var(--grid) * 2);
@@ -253,10 +253,10 @@ p {
       </section>
       <section>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
-        <p>本サイトは、デモと違い 1 column かつ日本語のコンテンツであり、 Grid の基準になる値もデモほど揃っていない。
+        <p>本サイトは、デモと違い 1 column かつ日本語のコンテンツであり、Grid の基準になる値もデモほど揃っていない。
         <p>こうしたコンテンツでの考慮点も教えて頂いた。
         <blockquote>
-          <p>特に 1 カラムにおいては、厳密にすべてをリズムに載せる必要はなく、また特に日本語では良くないとされています。リズムは、次の行がリズムに乗っていることで次の行の行頭を探しやすくする、という目的ですので、大きなブロックや表はリズムに乗る必要がありません。原則、行幅が広い時には、行がラップするときに視線が右端から左端まで移動する距離が長くなるので、行間は広めに取ります。でもあまり広げると、かっこわるいし、スペースも無駄なので、 Vertical Rhythm で視線移動を補完してあげる、ということなんです。
+          <p>特に 1 カラムにおいては、厳密にすべてをリズムに載せる必要はなく、また特に日本語では良くないとされています。リズムは、次の行がリズムに乗っていることで次の行の行頭を探しやすくする、という目的ですので、大きなブロックや表はリズムに乗る必要がありません。原則、行幅が広い時には、行がラップするときに視線が右端から左端まで移動する距離が長くなるので、行間は広めに取ります。でもあまり広げると、かっこわるいし、スペースも無駄なので、Vertical Rhythm で視線移動を補完してあげる、ということなんです。
         </blockquote>
         <p>そこで、以下のような方針で適用する。
         <p>まず <code translate=no>line-height: 15</code> とし、これを基準に <code translate=no>&lt;article&gt;</code> 全体に Rhythm を当てる。
@@ -279,7 +279,7 @@ article h6 {
   line-height: 1.2;
   margin-bottom: 0;
 }</code></pre>
-        <p><code translate=no>&lt;p&gt;</code> はリズムに載せるため、 margin/padding を <code translate=no>line-height-step</code> に揃える。
+        <p><code translate=no>&lt;p&gt;</code> はリズムに載せるため、margin/padding を <code translate=no>line-height-step</code> に揃える。
         <pre class=css><code translate=no>article p {
   margin-top: var(--grid);
   margin-bottom: var(--grid);
@@ -296,7 +296,7 @@ article table {
         <h2 id="雑感"><a href="#雑感">雑感</a></h2>
         <p>Vertical Rhythm については、既に CSS で実現する方法が色々あるようだ。
         <p>しかし、このプロパティが有効であれば、面倒な計算などを行わずに、手軽に実現できることはわかった。
-        <p>Readability という話になると効果の測定が難しいところだが、 CSS を過度に複雑にせず目的を達成できる点では Rhythmic Sizing の導入は検討しやすい。
+        <p>Readability という話になると効果の測定が難しいところだが、CSS を過度に複雑にせず目的を達成できる点では Rhythmic Sizing の導入は検討しやすい。
         <p>また、低コストでリズムという指標を設計に取り入れられることは、設計にも良い影響があるのでは無いかと考える。
         <p>仕様のステータスとしてはまだまだだが、今後の展開にも期待したい。
       </section>

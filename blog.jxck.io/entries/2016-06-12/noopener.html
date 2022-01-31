@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-06-12T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-06-12>2016-06-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -177,11 +177,11 @@
           </picture>
         </p>
         <p>このデモでは、 <a href="https://labs.jxck.io/noopener/">https://labs.jxck.io/noopener/</a> から開いた <a href="https://labs.jxck.io/noopener/opener-change.html">https://labs.jxck.io/noopener/opener-change.html</a> のページが別タブで開いた後、最初に開いたタブが勝手に <a href="http://example.com">http://example.com</a> に遷移しているというものである。
-        <p>最初のページを Parent 、開いたタブを Child とする。
-        <p>child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
+        <p>最初のページを Parent、開いたタブを Child とする。
+        <p>child 側では以下のような JS が書かれており、parent 側の location を変えて、任意の URL に遷移されることが可能である。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
         <pre class=js><code translate=no>window.opener.location = http://example.com</code></pre>
-        <p>多くのブラウザでは、 child が <code translate=no>target=blank_</code> により別タブで開いた場合に、そちらが手前に表示され、 parent は裏に回る。
+        <p>多くのブラウザでは、child が <code translate=no>target=blank_</code> により別タブで開いた場合に、そちらが手前に表示され、parent は裏に回る。
         <p>child で上記の JS が動くと、裏で勝手に parent が画面遷移している状態となる。
         <p>これは、オリジンが違っても可能であるため、リンクをたどってきたユーザを任意のサイトに誘導することが可能というわけである。
         <ul>
@@ -246,7 +246,7 @@
           <p>
             <img loading=lazy decoding=async src=tab-nabbing.svg?180105_115707 alt="Opener を利用することで、元サイトとそっくりなログイン画面を用意し、そこに認証情報を入力させることで Tab Naving が成立する" title="tab-nabbing の解説図" width=500 height=500>
           </p>
-          <p><code translate=no>https://cgm.example.com</code> (左上) というサービスがあるとし、これは SNS やチームコラボレーション系サービスを想定する。
+          <p><code translate=no>https://cgm.example.com</code> (左上)というサービスがあるとし、これは SNS やチームコラボレーション系サービスを想定する。
           <p>攻撃者は、このサービスの不特定ユーザのユーザ名およびパスワードを盗みたいとする。
           <p>この攻撃の成立のために、サービスに必要な仕様は <em>任意のリンクを貼ることができて、そのリンクが <code translate=no>target=_blank</code> にマークアップされる</em> ことである。
           <p>攻撃者が必要な準備は以下である。
@@ -257,7 +257,7 @@
           <ul>
             <li>見た目がごく普通のサイト <code translate=no>https://happy.example.jp</code> を用意する
             <li>このサイトに <code translate=no>window.opener.location = &quot;https://cgn.example.com/login&quot;</code> を仕込む
-            <li>(この JS が動くなら、 XSS でこのスクリプトを別サービスに仕込んでも代替できる)
+            <li>(この JS が動くなら、XSS でこのスクリプトを別サービスに仕込んでも代替できる)
           </ul>
         </section>
         <section>
@@ -266,14 +266,14 @@
           <ul>
             <li>対象サイトと酷似したドメイン取得する、今回の場合 <code translate=no>cgn.example.com</code> など
             <li><code translate=no>https://cgn.example.com/login</code> に本家のログインページと全く同じ見た目を実装する
-            <li>ログイン情報を収集したら、すぐさま本家 <code translate=no>https://cgm.example.com</code> (右下==左上) にリダイレクトするよう実装する
+            <li>ログイン情報を収集したら、すぐさま本家 <code translate=no>https://cgm.example.com</code> (右下 == 左上)にリダイレクトするよう実装する
           </ul>
         </section>
         <section>
           <h3 id="攻撃"><a href="#攻撃">攻撃</a></h3>
           <p>実際の攻撃は以下の手順で行う
           <ul>
-            <li>本家のサービスに <code translate=no>https://happy.example.jp</code> (右上) のリンクを貼る
+            <li>本家のサービスに <code translate=no>https://happy.example.jp</code> (右上)のリンクを貼る
             <li>本家サービスを利用中の他のユーザに、このリンクを踏ませる
             <li>被害者は、別のタブで開き、本家のタブは裏に隠れる。
             <li>見終わって閉じると、さっきまでの本家サイトのタブがなぜかログイン画面(左下)になっている。
@@ -305,15 +305,15 @@
       </section>
       <section>
         <h2 id="noopener"><a href="#noopener">noopener</a></h2>
-        <p>parent 側のリンクタグに <code translate=no>rel=noopener</code> を追加することで、 child が parent を <code translate=no>window.opener</code> 経由で参照できなくなるため、 parent の location の変更などを抑止することが可能である。
+        <p>parent 側のリンクタグに <code translate=no>rel=noopener</code> を追加することで、child が parent を <code translate=no>window.opener</code> 経由で参照できなくなるため、parent の location の変更などを抑止することが可能である。
         <p><a href="https://html.spec.whatwg.org/multipage/semantics.html#link-type-noopener">4.6.6.11 Link type &quot;noopener&quot; | WHATWG Spec</a>
-        <p>ただし、 Chrome, Opera 以外は現時点で <code translate=no>noopener</code> に対応していない。
+        <p>ただし、Chrome, Opera 以外は現時点で <code translate=no>noopener</code> に対応していない。
         <p><a href="http://caniuse.com/#feat=rel-noopener">rel=noopener | Can I use</a>
         <p>代替として <code translate=no>noreferrer</code> を指定することで同じ挙動が実現できる。
         <p>したがって、以下のようにすることで目的が達成できる。
         <pre class=html><code translate=no>&lt;a href=&quot;http://example.com&quot; target=_blank rel=&quot;noopener noreferrer&quot;&gt;</code></pre>
         <p>ただし <code translate=no>noreferrer</code> はその名の通り Referrer を抑止する属性であるため、副作用には注意が必要である。
-        <p><code translate=no>rel</code> の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
+        <p><code translate=no>rel</code> の有無により、child から parent ページの遷移の動作を試すデモも以下に用意した。
         <ul>
           <li><a href="https://labs.jxck.io/noopener/">https://labs.jxck.io/noopener/</a>
         </ul>

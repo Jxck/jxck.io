@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Chrome が予定している &lt;link rel=stylesheet&gt; の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に...">
+  <meta name=description         content="Chrome が予定している &lt;link rel=stylesheet&gt; の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に対...">
   <meta name=keywords            content="css,http2,performance">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html>
   <meta property=og:title        content="HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Chrome が予定している &lt;link rel=stylesheet&gt; の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に...">
+  <meta property=og:description  content="Chrome が予定している &lt;link rel=stylesheet&gt; の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に対...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-02-15T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,7 +78,7 @@
         "width": 60
       }
     },
-    "description": "Chrome が予定している &lt;link rel=stylesheet&gt; の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に..."
+    "description": "Chrome が予定している &lt;link rel=stylesheet&gt; の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に対..."
   }
   </script>
 
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-02-15>2016-02-15</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -147,15 +147,15 @@
       <h1><a href="">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>Chrome が予定している <code translate=no>&lt;link rel=stylesheet&gt;</code> の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。
+        <p>Chrome が予定している <code translate=no>&lt;link rel=stylesheet&gt;</code> の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。
         <p><a href="https://jakearchibald.com/2016/link-in-body/">The future of loading CSS</a>
-        <p>この内容は、単に Chrome に対する変更だけではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
-        <p>今回は、この内容を意訳+補足解説し、本サイトに適用していく。
+        <p>この内容は、単に Chrome に対する変更だけではなく、HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
+        <p>今回は、この内容を意訳 + 補足解説し、本サイトに適用していく。
       </section>
       <section>
         <h2 id="http1.1-時代の-css"><a href="#http1.1-時代の-css">HTTP/1.1 時代の CSS</a></h2>
         <p>HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も <code translate=no>class</code> などを使いコンポーネント単位に作ることができるだろう。
-        <p>しかし、 HTTP/1.1 では、リクエストの数を減らすために全ての CSS を 1 つ(もしくは少数個)に結合する最適化が主流だった。
+        <p>しかし、HTTP/1.1 では、リクエストの数を減らすために全ての CSS を 1 つ(もしくは少数個)に結合する最適化が主流だった。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
         <pre class=html><code translate=no>&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;bundle.css&quot;&gt;
@@ -179,7 +179,7 @@
         <p>まず、「head を出力する時点で、ページ内に存在する全てのコンポーネントを把握していないといけない」
         <p>HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるにも関わらず、それができなくなる。
         <p>また、「footer.css のローディングが遅い場合、サイト全体をブロックする」
-        <p>footer.css が必要なのは、 HTML 中の <code translate=no>&lt;footer&gt;</code> をレンダリングする時であり、そこまでに出てくる <code translate=no>&lt;header&gt;</code> などは、先にレンダリングすることも可能だ。
+        <p>footer.css が必要なのは、HTML 中の <code translate=no>&lt;footer&gt;</code> をレンダリングする時であり、そこまでに出てくる <code translate=no>&lt;header&gt;</code> などは、先にレンダリングすることも可能だ。
         <p>しかし、実際はそのたった 1 つの CSS のせいで、そこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
       </section>
       <section>
@@ -196,18 +196,18 @@
           <li><a href="https://www.lukew.com/ff/entry.asp?1756">https://www.lukew.com/ff/entry.asp?1756</a>
         </ul>
         <p>ただし、この方法には JS のライブラリが必須となる。
-        <p>なぜなら、 Webkit は <code translate=no>&lt;link rel=stylesheet&gt;</code> が追加されると、それが JS によって追加されたものであれ、レンダリングをブロックしてしまうからである。
-        <p>Firefox や IE/Edge は、 JS で追加されたものについては非同期に読み込むため、この問題は無い。
-        <p>Chrome は、現在の Stable では Webkit と同じだが、 Canary では Firefox, IE/Edge の方法に移行している。
+        <p>なぜなら、Webkit は <code translate=no>&lt;link rel=stylesheet&gt;</code> が追加されると、それが JS によって追加されたものであれ、レンダリングをブロックしてしまうからである。
+        <p>Firefox や IE/Edge は、JS で追加されたものについては非同期に読み込むため、この問題は無い。
+        <p>Chrome は、現在の Stable では Webkit と同じだが、Canary では Firefox, IE/Edge の方法に移行している。
       </section>
       <section>
         <h2 id="二段階のロードという制限"><a href="#二段階のロードという制限">二段階のロードという制限</a></h2>
         <p>前述のパターンでは inline css でスタイルの当たっていない要素を隠し、非同期ロードした CSS でそれを出現させている。
         <p>これは、コンポーネントと対する CSS が複数になり、その複数の CSS が非同期に順不同で取得された場合に、要素がランダムに出現することを意味する。
         <p>最初の要素が表示され、読んでいる間に新しい要素の出現によりレイアウトが変わり、全部表示されるまで落ち着いて読めない。
-        <p>こうした Content-Shifting の問題は、広告が後から次々に表示されるページなどで多く発生し、<a href="https://www.youtube.com/watch?v=uPnEZd6wCtk">フラストレーションがたまった経験</a> は誰にでもあるだろう。
+        <p>こうした Content-Shifting の問題は、広告が後から次々に表示されるページなどで多く発生し、 <a href="https://www.youtube.com/watch?v=uPnEZd6wCtk">フラストレーションがたまった経験</a> は誰にでもあるだろう。
         <iframe src="https://www.youtube.com/embed/uPnEZd6wCtk" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-        <p>本来なら、最初に見える部分=&quot;Above the fold&quot; を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。
+        <p>本来なら、最初に見える部分 = &quot;Above the fold&quot; を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。
         <p>サイズが分かっていれば、コンテンツを埋める枠のサイズを全て最初に指定することもできるが、以下の方法を使えば、どのような viewport でも適切に表示できることができる。
       </section>
       <section>
@@ -234,13 +234,13 @@
 &lt;/body&gt;</code></pre>
         <p>まず、各 <code translate=no>&lt;link rel=stylesheet&gt;</code> はそれ以降のレンダリングをブロックするが、それ以前のコンテントのレンダリングをブロックしない。
         <p>CSS は並列で読み込まれ、直列に適用される。
-        <p>もし、 Header, Article, Footer の CSS が読み込まれていた場合を考えると、以下のような状態になる。
+        <p>もし、Header, Article, Footer の CSS が読み込まれていた場合を考えると、以下のような状態になる。
         <ul>
           <li>Header: レンダリングされる
           <li>Article: レンダリングされる
           <li>Comment: comment.css がブロックしてるのでレンダリングされない
           <li>About me: comment.css がブロックしてるのでレンダリングされない
-          <li>Footer: CSS は既にあるが、 comment.css がブロックしているのでレンダリングされない
+          <li>Footer: CSS は既にあるが、comment.css がブロックしているのでレンダリングされない
         </ul>
         <p>以下のメリットがある
         <ul>
@@ -248,7 +248,7 @@
           <li>コンポーネント単位で設計し、そのコンポーネントの直前に <code translate=no>&lt;link&gt;</code> を書けば良い。
           <li>ストリームで考えられる(<code translate=no>&lt;link&gt;</code> の有無を先に考えなくて良いのでサーバは完成した順に HTML を送信できる)。
         </ul>
-        <p>ただし、レイアウトシステムを使う場合は、 Content-Shifting が発生しないように意識する必要がある。
+        <p>ただし、レイアウトシステムを使う場合は、Content-Shifting が発生しないように意識する必要がある。
         <p>特に Table や Flexbox を利用したレイアウトでは、それが発生しやすい。これまでも同じ問題は認識されていたが、前述のような progressive な読み込みではこの問題がより発生しやすい。
         <p>Flexbox は小さいコンポーネント単位で使用し、全体のレイアウトには CSS grid を使うのが良いだろう。
       </section>
@@ -264,7 +264,7 @@
           </div>
           <div>
             <dt>Firefox
-            <dd><code translate=no>&lt;head&gt;</code> に <code translate=no>&lt;link rel=stylesheet&gt;</code> があるとブロックするが、 <code translate=no>&lt;body&gt;</code> では <code translate=no>&lt;head&gt;</code> の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content) を引き起こす。
+            <dd><code translate=no>&lt;head&gt;</code> に <code translate=no>&lt;link rel=stylesheet&gt;</code> があるとブロックするが、 <code translate=no>&lt;body&gt;</code> では <code translate=no>&lt;head&gt;</code> の CSS がブロックしていない限りはブロックしない。これは FOUC(flash of unstyled content)を引き起こす。
           </div>
           <div>
             <dt>IE/Edge
@@ -287,14 +287,14 @@
         <p>全てをまとめると、現状の Firefox, IE/Edge では Progressive Rendering が可能になる。
         <p>現状の Chrome &amp; Safari では CSS がロードされるまで White Screen になるが、従来のように全てを <code translate=no>&lt;head&gt;</code> に置いていたのと比べれば問題ではない。
         <p>そして、数ヶ月以内に Chrome は IE/Edge の方式に移るので、問題は解決する。
-        <p>これにより、 Just in time CSS が可能になり、レンダリングプロセスが最適化可能になる。
+        <p>これにより、Just in time CSS が可能になり、レンダリングプロセスが最適化可能になる。
       </section>
       <section>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
         <p>以下を実施した
         <ul>
           <li>本サイトの CSS は、基本的には 1 つにまとめていたが、これをコンポーネント単位に分割した
-          <li>記事をビルドする際に、 HTML のコンポーネントの前に <code translate=no>&lt;link rel=stylesheet&gt;</code> を追加した
+          <li>記事をビルドする際に、HTML のコンポーネントの前に <code translate=no>&lt;link rel=stylesheet&gt;</code> を追加した
           <li>Firefox 用の <code translate=no>&lt;script&gt; &lt;/script&gt;</code> はとりあえず無し
           <li>まだ <code translate=no>&lt;body&gt;</code> 内の <code translate=no>&lt;link&gt;</code> は仕様上許容されてなので、 <a href="https://validator.w3.org/nu/">w3c validator</a> ではそこがひっかかる
         </ul>

@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、 Refer...">
+  <meta name=description         content="リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、Referr...">
   <meta name=keywords            content="referrer-policy,referer,http">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2018-10-08/referrer-policy.html>
   <meta property=og:title        content="Referrer-Policy によるリファラ制御 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、 Refer...">
+  <meta property=og:description  content="リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、Referr...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-10-08T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,7 +78,7 @@
         "width": 60
       }
     },
-    "description": "リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、 Refer..."
+    "description": "リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、Referr..."
   }
   </script>
 
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-10-08>2018-10-08</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -152,7 +152,7 @@
                 <li><a href=#空文字列>### 空文字列</a>
                 <li><a href=#policy-のまとめ>### Policy のまとめ</a>
                 <li><a href=#referrer-policy-の適用方法>## Referrer-Policy の適用方法</a>
-                <li><a href=#a-area-の-relnoreferrer>### <code translate=no>&lt;a&gt;</code>, <code translate=no>&lt;area&gt;</code> の <code translate=no>rel=noreferrer</code></a>
+                <li><a href=#a--area-の-relnoreferrer>### <code translate=no>&lt;a&gt;</code> , <code translate=no>&lt;area&gt;</code> の <code translate=no>rel=noreferrer</code></a>
                 <li><a href=#referrerpolicy-属性>### referrerpolicy 属性</a>
                 <li><a href=#meta-の-referrer-属性>### <code translate=no>&lt;meta&gt;</code> の referrer 属性</a>
                 <li><a href=#http-header>### HTTP Header</a>
@@ -172,11 +172,11 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。
         <p>この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。
-        <p>この挙動を制御することができる、 Referrer-Policy ヘッダについて解説する。
+        <p>この挙動を制御することができる、Referrer-Policy ヘッダについて解説する。
       </section>
       <section>
         <h2 id="referer-or-referrer"><a href="#referer-or-referrer">Referer or Referrer</a></h2>
-        <p>本来の英語としては <em>RefeRRer</em> が正しいが、 HTTP Header ではスペルミスした <em>RefeRer</em> が互換性を保つためそのまま使われている。
+        <p>本来の英語としては <em>RefeRRer</em> が正しいが、HTTP Header ではスペルミスした <em>RefeRer</em> が互換性を保つためそのまま使われている。
         <p>しかし、新しく定義された Referre-Policy は、正しいスペルが採用されている。
       </section>
       <section>
@@ -190,7 +190,7 @@ Referer: https://example.com/index.html</code></pre>
         <p><code translate=no>blog.jxck.io</code> の管理者は、このリファラを見ることで、 <code translate=no>example.com</code> に自分のサイトへのリンクが貼られていることを知ることができる。
         <p>その性質上、個人情報の観点からこれを好まないユーザもおり、ブラウザには古くから Referer の送信を行わない設定が実装されていることが多い。
         <p>また、別途提供される拡張や、今回紹介する Referer Policy によっても、無効に設定することができる。
-        <p>したがって、 Application Logic の観点からは、 Referer はあくまで補助的な情報として使われること(無くても動く)が望ましい。
+        <p>したがって、Application Logic の観点からは、Referer はあくまで補助的な情報として使われること(無くても動く)が望ましい。
         <p>用途によっては、別途定義されている Origin ヘッダを見る方が良い場合もある。
       </section>
       <section>
@@ -206,17 +206,17 @@ Referer: https://example.com/index.html</code></pre>
           <h3 id="csrf-対策"><a href="#csrf-対策">CSRF 対策</a></h3>
           <p>CSRF 対策の 1 つとして Referer を確認するという方法がある。
           <p>しかし、この場合も前述の通り、あくまでも補助的な効果しか得られない場合もある。
-          <p>また、 Form からの POST を対象とする場合は Origin ヘッダの方が用途として適しているだろう。
-          <p>ただし、 Origin ヘッダにしても Referer ヘッダにしても、値が予測可能なため、任意のヘッダを含むことが可能な脆弱性が Extension や Plugin で見つかるとバイパスが可能となる。
+          <p>また、Form からの POST を対象とする場合は Origin ヘッダの方が用途として適しているだろう。
+          <p>ただし、Origin ヘッダにしても Referer ヘッダにしても、値が予測可能なため、任意のヘッダを含むことが可能な脆弱性が Extension や Plugin で見つかるとバイパスが可能となる。
           <p>そうした脆弱性は、残念ながら <a href="https://insert-script.blogspot.com/2018/05/adobe-reader-pdf-client-side-request.html">最近でも見つかっている</a> ため、いまだに Token ベースの制御が行われている。
           <p>(SameSite Cookie などが普及すればこの部分はもっと変わって行くだろうと思われるが、今回は触れない)
           <p>一方で、どんなに Token が正しくても Referer が明らかにおかしければ攻撃の可能性もあるため、やはり補助的な情報として採用は可能だ。
         </section>
         <section>
           <h3 id="盗用防止"><a href="#盗用防止">盗用防止</a></h3>
-          <p>画像などのサブリソースが直リンクによって無断転載されることを防ぐために、 Referer が他のサイトからのものであればブロックするといった使われ方が存在する。
+          <p>画像などのサブリソースが直リンクによって無断転載されることを防ぐために、Referer が他のサイトからのものであればブロックするといった使われ方が存在する。
           <p>確実に盗用を防ぐことはできず、あくまで補助的な効果となる。
-          <p>逆に、 Referer を必須にしてしまうと、 Referer を送らないユーザには、意図したページ上でも画像が表示されないことになるため注意が必要だ。
+          <p>逆に、Referer を必須にしてしまうと、Referer を送らないユーザには、意図したページ上でも画像が表示されないことになるため注意が必要だ。
           <p>Origin ヘッダはサブリソースへの GET には <a href="https://wiki.mozilla.org/Security/Origin#When_Origin_is_served_.28and_when_it_is_.22null.22.29">付与されない</a> ため、代替はできない。
         </section>
       </section>
@@ -230,9 +230,9 @@ Referer: https://example.com/index.html</code></pre>
         </ul>
         <section>
           <h3 id="限定共有-url-の漏洩"><a href="#限定共有-url-の漏洩">限定共有 URL の漏洩</a></h3>
-          <p>身近な例として Private Gist のように、 URL さえ共有すればアクセスできるタイプのサービスがよくある。
+          <p>身近な例として Private Gist のように、URL さえ共有すればアクセスできるタイプのサービスがよくある。
           <p>こうしたサービは、検索エンジンのクローラなどに対しては robots.txt などで index を拒否している場合が多い。
-          <p>しかし、 Referer を制御しないと、リンク先に URL が送られ、意図しない人からアクセスされる可能性がある。
+          <p>しかし、Referer を制御しないと、リンク先に URL が送られ、意図しない人からアクセスされる可能性がある。
         </section>
         <section>
           <h3 id="イントラ情報の漏洩"><a href="#イントラ情報の漏洩">イントラ情報の漏洩</a></h3>
@@ -246,7 +246,7 @@ Referer: https://example.com/index.html</code></pre>
 // https://ticket.orange.example.com/{社員名}/issue/xxxxxx/[社外秘]1月11日のプレスリリース原稿</code></pre>
           <p>他にも、キーワード検索の結果から外部のページに飛べる場合、検索したキーワードが残る場合もある。
           <pre class=url><code translate=no>https://intra.orange.example.com/search?q=Apache+CVExxxxx</code></pre>
-          <p>リンクされたブログの持ち主は、たとえそのリンクを辿ってアクセスができないとしても、 Example 社が Orange というプロジェクトをやっていることや、付随する情報が推測できる可能性がある。
+          <p>リンクされたブログの持ち主は、たとえそのリンクを辿ってアクセスができないとしても、Example 社が Orange というプロジェクトをやっていることや、付随する情報が推測できる可能性がある。
           <p>よく設計された URL は情報量が多く、多弁だ。
         </section>
       </section>
@@ -255,15 +255,15 @@ Referer: https://example.com/index.html</code></pre>
         <p>こうした理由から、コンテンツに応じて、何らかの形でリファラを制御するといったことは、古くから行われている。
         <section>
           <h3 id="ブラウザ設定"><a href="#ブラウザ設定">ブラウザ設定</a></h3>
-          <p>Firefox の about:config や、 Chrome のコマンドラインオプションなど、リファラの送信を制限するオプションを提供するブラウザもある。
+          <p>Firefox の about:config や、Chrome のコマンドラインオプションなど、リファラの送信を制限するオプションを提供するブラウザもある。
           <p>また、それらを実現する拡張も存在する。
           <p>これは、組織からの情報漏洩以前に、個人情報の観点から、ユーザの選択肢として古くから実装されていると筆者は認識している。
         </section>
         <section>
           <h3 id="社内-proxy"><a href="#社内-proxy">社内 Proxy</a></h3>
           <p>社内ネットワークに Proxy を立てている場合は、その Proxy で Referer ヘッダを落とす/書き換えるといった運用方法もある。
-          <p>この場合、 Referer に社内のドメインがある場合だけ落とすといった実装が可能なため、社外にあるサービスに対しての不具合は少ないだろう。
-          <p>しかし、 HTTPS 化が進んでいる昨今、実質的に MITM を行なっているこの方法は限界と言える。
+          <p>この場合、Referer に社内のドメインがある場合だけ落とすといった実装が可能なため、社外にあるサービスに対しての不具合は少ないだろう。
+          <p>しかし、HTTPS 化が進んでいる昨今、実質的に MITM を行なっているこの方法は限界と言える。
           <p>証明書の運用次第では暗号化を解くこともできなくないかもしれないが、運用は難しだろう。
         </section>
         <section>
@@ -271,7 +271,7 @@ Referer: https://example.com/index.html</code></pre>
           <p>そもそもブラウザが自動的に Referer を送るという挙動が、コンテンツに合わせて制御できれば、こうした問題は解決する。
           <p>そこで、提案されたのが Referrer Policy である。
           <p>社内で HTTP サーバを立てる際に、このヘッダを適切に設定することで、意図しない漏洩のリスクを軽減できるだろう。
-          <p>また、 Origin を軸としたいくつかの設定が可能なため、単純に Referrer を一切無効にすることによる不具合などを防ぐこともできる。
+          <p>また、Origin を軸としたいくつかの設定が可能なため、単純に Referrer を一切無効にすることによる不具合などを防ぐこともできる。
         </section>
       </section>
       <section>
@@ -295,7 +295,7 @@ Referer: https://example.com/index.html</code></pre>
         <p>ポリシーの違いを見極める観点としてはまず載せる値がある。
         <p>ヘッダに URL が載る場合、例えばこのページでは以下のようになる。
         <pre class=http><code translate=no>Referer: https://blog.jxck.io/entries/2018-10-08/referrer-policy.html</code></pre>
-        <p>ポリシーによっては、 URL 全体ではなく Origin のみを送るものがある。
+        <p>ポリシーによっては、URL 全体ではなく Origin のみを送るものがある。
         <pre class=http><code translate=no>Referer: https://blog.jxck.io/</code></pre>
         <p>どのサイトから来たかはわかるが、それ以上の情報は載らないという状態になる。
         <p>これは Origin ヘッダが付与する情報と同等であり、 <em>Origin ヘッダが送信される状況では Referer を禁止しても同等の情報が送信されている</em> ことは認識しておきたい。
@@ -309,9 +309,9 @@ Referer: https://example.com/index.html</code></pre>
             </div>
           </dl>
           <p>Referer ヘッダそのものが省かれるため、情報の漏洩の観点から言うと一番安全ではある。
-          <p>しかし、同じサイト内でも送られなくなるため、 Referer をベースとした検証がどこかに入っている場合は問題になる。
+          <p>しかし、同じサイト内でも送られなくなるため、Referer をベースとした検証がどこかに入っている場合は問題になる。
           <p>社内ドメイン内の遷移でも送られなくなるので、内部での遷移についてもメトリクスを取りたい場合を考えると制限が強い。
-          <p>また、 Referer ヘッダは消えるが Origin ヘッダは残る点は意識しておきたい。
+          <p>また、Referer ヘッダは消えるが Origin ヘッダは残る点は意識しておきたい。
         </section>
         <section>
           <h3 id="unsafe-url"><a href="#unsafe-url">unsafe-url</a></h3>
@@ -326,7 +326,7 @@ Referer: https://example.com/index.html</code></pre>
             </div>
           </dl>
           <p>Referer ヘッダに URL 全体を載せ、必ず送る。
-          <p>これを unsafe と言う理由は、 http -&gt; http や https -&gt; http(Downgrade) でも送られるところにある。
+          <p>これを unsafe と言う理由は、http -&gt; http や https -&gt; http(Downgrade)でも送られるところにある。
           <p>平文通信の場合は、先ほどの Proxy のように MITM で削除したり、改ざんすることが可能であるためだ。
         </section>
         <section>
@@ -357,8 +357,8 @@ Referer: https://example.com/index.html</code></pre>
             </div>
           </dl>
           <p>Origin が一致した場合だけ URL 全体を送る。
-          <p>つまり Downgrade では送られないが、 Upgrade でも送られない。
-          <p>さらに、 http -&gt; http では送られるということになる。
+          <p>つまり Downgrade では送られないが、Upgrade でも送られない。
+          <p>さらに、http -&gt; http では送られるということになる。
         </section>
         <section>
           <h3 id="strict-origin"><a href="#strict-origin">strict-origin</a></h3>
@@ -372,7 +372,7 @@ Referer: https://example.com/index.html</code></pre>
               <dd>Origin のみ
             </div>
           </dl>
-          <p><code translate=no>origin</code> と同じく Origin の情報のみを送るが、 Downgrade の場合だけ送らない。
+          <p><code translate=no>origin</code> と同じく Origin の情報のみを送るが、Downgrade の場合だけ送らない。
         </section>
         <section>
           <h3 id="no-referrer-when-downgrade-default"><a href="#no-referrer-when-downgrade-default">no-referrer-when-downgrade (default)</a></h3>
@@ -386,7 +386,7 @@ Referer: https://example.com/index.html</code></pre>
               <dd>URL 全体
             </div>
           </dl>
-          <p>条件は strict-origin と同じだが、 URL 全体を送る。
+          <p>条件は strict-origin と同じだが、URL 全体を送る。
           <p>これがブラウザのデフォルトの挙動とされている。
         </section>
         <section>
@@ -410,7 +410,7 @@ Referer: https://example.com/index.html</code></pre>
             </div>
           </dl>
           <p>内部遷移では URL 全体を送るが、外に出る場合は Origin のみを送る挙動になる。
-          <p>Down/Upgrade も Cross Origin 扱いになるため、 Origin のみ送られる。
+          <p>Down/Upgrade も Cross Origin 扱いになるため、Origin のみ送られる。
         </section>
         <section>
           <h3 id="strict-origin-when-cross-origin"><a href="#strict-origin-when-cross-origin">strict-origin-when-cross-origin</a></h3>
@@ -448,7 +448,7 @@ Referer: https://example.com/index.html</code></pre>
         <section>
           <h3 id="空文字列"><a href="#空文字列">空文字列</a></h3>
           <p>Policy を指定しないことを意味する。
-          <p>より上位の指定内容か、 User Agent のデフォルトが反映される。
+          <p>より上位の指定内容か、User Agent のデフォルトが反映される。
         </section>
         <section>
           <h3 id="policy-のまとめ"><a href="#policy-のまとめ">Policy のまとめ</a></h3>
@@ -534,7 +534,7 @@ Referer: https://example.com/index.html</code></pre>
         </ol>
         <p>仕様: <a href="https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute">https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute</a>
         <section>
-          <h3 id="a-area-の-relnoreferrer"><a href="#a-area-の-relnoreferrer"><code translate=no>&lt;a&gt;</code>, <code translate=no>&lt;area&gt;</code> の <code translate=no>rel=noreferrer</code></a></h3>
+          <h3 id="a--area-の-relnoreferrer"><a href="#a--area-の-relnoreferrer"><code translate=no>&lt;a&gt;</code> , <code translate=no>&lt;area&gt;</code> の <code translate=no>rel=noreferrer</code></a></h3>
           <p><code translate=no>&lt;a&gt;</code> と <code translate=no>&lt;area&gt;</code> には <code translate=no>rel=noreferrer</code> をつけることで、その遷移のリクエストを <code translate=no>no-referrer</code> の挙動とすることができる。
           <pre class=html><code translate=no>&lt;a href=&quot;https://example.com&quot; rel=&quot;noreferrer&quot;&gt;</code></pre>
           <p>値が違うのは Referrer-Policy が策定される前の仕様だからであり、ここに適用できる値は <code translate=no>noreferrer</code> のみだ。
@@ -552,8 +552,8 @@ Referer: https://example.com/index.html</code></pre>
           <pre class=html><code translate=no>&lt;a href=&quot;http://example.com&quot; referrerpolicy=&quot;origin&quot;&gt;</code></pre>
           <p>値は前述した policy から選んで適用できる。
           <p>後述するページ全体への設定より優先されるため、特定のリンクだけ挙動を変えると言った使い方ができる。
-          <p>つまり、 markdown から html に変換する CMS などを使っている場合は、ビルド時に外部へのリンクだけ policy をつけると言った使い方ができる。
-          <p><code translate=no>&lt;a&gt;</code> には必ずこの属性をつけるが、 Policy 自体はページ全体のものに準拠したいといった場合は、属性を <code translate=no>&quot;&quot;</code> (空文字) にすれば良い。
+          <p>つまり、markdown から html に変換する CMS などを使っている場合は、ビルド時に外部へのリンクだけ policy をつけると言った使い方ができる。
+          <p><code translate=no>&lt;a&gt;</code> には必ずこの属性をつけるが、Policy 自体はページ全体のものに準拠したいといった場合は、属性を <code translate=no>&quot;&quot;</code> (空文字)にすれば良い。
           <p>仕様: <a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute">https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute</a>
         </section>
         <section>
@@ -584,7 +584,7 @@ Referer: https://example.com/index.html</code></pre>
         <p>本サイトには漏れて困る URL はない。
         <p>また、技術ブログという性質上、外部のリソースを参考としてリンクすることはよくあり、それらリンク先のサイトに対して、どのページからリンクされているのかを隠すつもりは無い。
         <p>Cross Origin で URL 全体を送るのは <code translate=no>unsafe-url</code> か <code translate=no>no-referrer-when-downgrade</code> であり、その差は Downgrade の扱いになる。
-        <p>本サイトは HSTS 対応済みであるため、 <code translate=no>no-referrer-when-downgrade</code> では、 HTTP しか提供していないサイトに対しては Referrer が飛ばないことになる。
+        <p>本サイトは HSTS 対応済みであるため、 <code translate=no>no-referrer-when-downgrade</code> では、HTTP しか提供していないサイトに対しては Referrer が飛ばないことになる。
         <p>しかし、近年の動向からも、リンクする先が HTTPS に対応している方が本サイトとしても望ましいため、 <code translate=no>no-referrer-when-downgrade</code> を採用することにした。
         <p>この Policy はブラウザのデフォルトとされているため、明示的な Referrer-Policy Header の追加は行わないこととする。
       </section>

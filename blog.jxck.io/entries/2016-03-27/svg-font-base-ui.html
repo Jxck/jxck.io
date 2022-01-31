@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-03-27T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-27>2016-03-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -158,12 +158,12 @@
       </section>
       <section>
         <h2 id="ベクタ画像とラスタ画像"><a href="#ベクタ画像とラスタ画像">ベクタ画像とラスタ画像</a></h2>
-        <p>ここまでの画像最適化では、 PNG/JPEG/WebP など <em>ラスタ形式</em> の画像について記述した。
-        <p>しかし、 UI アイコンなどについては、 SVG や Font といった <em>ベクタ形式</em> を用いる方が、良い場合がある。
+        <p>ここまでの画像最適化では、PNG/JPEG/WebP など <em>ラスタ形式</em> の画像について記述した。
+        <p>しかし、UI アイコンなどについては、SVG や Font といった <em>ベクタ形式</em> を用いる方が、良い場合がある。
         <p>ラスタ画像はピクセルの色情報を持ち、それを並べて表示するのに対し、ベクタ形式はパスの情報を持ち、それを描画する。
         <p>写真などはラスタ形式を利用するが、自作の画像やアイコンなどについてはベクタ形式にすることで、サイズを小さくできる場合が多い。
         <p>またパス情報を元に描画するため、どんなに拡大してもラスタ形式のように画像が荒れることはない。
-        <p>以下は元サイズの 2 倍に拡大した PNG 画像(<em>左</em>)と、同じ大きさで表示した SVG 画像(<em>右</em>)を比較したスクリーンショットである。 PNG は文字の周囲が荒れているのが分かるだろう。
+        <p>以下は元サイズの 2 倍に拡大した PNG 画像(<em>左</em>)と、同じ大きさで表示した SVG 画像(<em>右</em>)を比較したスクリーンショットである。PNG は文字の周囲が荒れているのが分かるだろう。
         <p>
           <picture>
             <source type=image/avif srcset=png-svg.avif?220108_003453>
@@ -172,7 +172,7 @@
           </picture>
         </p>
         <p>このため、 <a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a> で実施したようなデバイス解像度による複数画像の出し分けなども不要になる。
-        <p>本サイトでは、このメリットを活かし、 UI コンポーネントは基本的にベクタフォーマットである SVG および Font を用いて構築することとした。
+        <p>本サイトでは、このメリットを活かし、UI コンポーネントは基本的にベクタフォーマットである SVG および Font を用いて構築することとした。
         <p>なお、現時点でほとんどのブラウザが <a href="https://caniuse.com/#search=svg">SVG に対応</a> している。
       </section>
       <section>
@@ -223,7 +223,7 @@
         <p>同じものを 256x256 の PNG と比べてみる。
         <p>PNG の方は拡大すると、特にフォント部分がぼやけているのが分かるだろう。
         <p>SVG は拡大しても問題はない。
-        <p>なお、 PNG と cacoo で書き出した時点での SVG のサイズの比較は以下の通りである。
+        <p>なお、PNG と cacoo で書き出した時点での SVG のサイズの比較は以下の通りである。
         <dl>
           <div>
             <dt>PNG
@@ -239,7 +239,7 @@
         <h2 id="svggo-による最適化"><a href="#svggo-による最適化">SVGGo による最適化</a></h2>
         <p>SVG は XML であるため、メタ情報を付与することができる。
         <p>cacoo で吐いたままの SVG には、不要なメタ情報などが含まれている。
-        <p>表示上不要なメタ情報は、 PNG/JPEG etc 同様に削除することでサイズ上のメリットが得られる。
+        <p>表示上不要なメタ情報は、PNG/JPEG etc 同様に削除することでサイズ上のメリットが得られる。
         <p>これを行うツールに SVGGo があるため、これをかけてみた結果が以下である。
         <pre class=svg><code translate=no>&lt;svg contentScriptType=&quot;text/ecmascript&quot;
      viewBox=&quot;-15.0 -15.0 286.0 286.0&quot;
@@ -300,7 +300,7 @@
           </div>
         </dl>
         <p>cacoo が吐いた SVG と比べれば 20% なので、以降基本的に UI アイコンの SVG は最初から手で書くことにした。
-        <p>また、 PNG と比べると実に 93% サイズを削減している。
+        <p>また、PNG と比べると実に 93% サイズを削減している。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
@@ -311,19 +311,19 @@
         <p>手書きした SVG をソースとともに掲載している。
         <p>ソースは観賞用であるため、インデントや改行などは削ってない。
         <p>それ以外で、削れそうな部分があれば今後も削っていく予定である。
-        <p>SVG の弱点として、 HTML に埋め込んだ SVG でないと CSS で色を指定できないという問題がある。
+        <p>SVG の弱点として、HTML に埋め込んだ SVG でないと CSS で色を指定できないという問題がある。
         <p>本サイトの SVG は、外部リソースとして <code translate=no>&lt;img&gt;</code> で読んでいるため、色は SVG 自体に書いて作成している。
-        <p>なお、 404 ページや 500 ページを作る際にデザインを考えていたところ、この SVG にリンク貼って返せばそれで良いのでは?と思い、今は単にステータスコードを書いた SVG を返すようにしている。
+        <p>なお、404 ページや 500 ページを作る際にデザインを考えていたところ、この SVG にリンク貼って返せばそれで良いのでは? と思い、今は単にステータスコードを書いた SVG を返すようにしている。
         <p>正しくステータスコードと Contnet-Type が設定してあれば問題ない筈なので、こだわりたい人はここで Animation SVG とかやればいいんじゃないだろうか。
         <p>サーバの出したステータスコードに応じて SVG を動的に生成し、返すようにする予定である。
       </section>
       <section>
         <h2 id="font"><a href="#font">Font</a></h2>
-        <p>フォントもベクタデータである。単色しか塗れないという制限もあるが、 UI アイコンをフォントデータとして生成し、それを指定するなどの方法がある。
+        <p>フォントもベクタデータである。単色しか塗れないという制限もあるが、UI アイコンをフォントデータとして生成し、それを指定するなどの方法がある。
         <p>代表例が <a href="https://fortawesome.github.io/Font-Awesome/">Font-Awesome</a> だが、本サイトでは導入していない。
-        <p>一方、単に CSS の <code translate=no>content:</code> 要素に文字を指定するだけでも、 Font を使用することができる。
+        <p>一方、単に CSS の <code translate=no>content:</code> 要素に文字を指定するだけでも、Font を使用することができる。
         <p>このサイトは見た目が Markdown ライクになるように CSS を作っている。
-        <p>装飾に使用している <code translate=no>#</code> や <code translate=no>-</code> などの文字は、 <code translate=no>before</code>/<code translate=no>after</code> 擬似要素への <code translate=no>content:</code> に文字を指定することで、フォントデータを使って装飾している。
+        <p>装飾に使用している <code translate=no>#</code> や <code translate=no>-</code> などの文字は、 <code translate=no>before</code> / <code translate=no>after</code> 擬似要素への <code translate=no>content:</code> に文字を指定することで、フォントデータを使って装飾している。
         <p>例えば見出し <code translate=no>&lt;h1&gt;~&lt;h4&gt;</code> と <code translate=no>pre</code> は以下のように指定している。
         <pre class=css><code translate=no>h1::before,
 h2::before,
@@ -347,7 +347,7 @@ pre::after {
   content:&quot;\A```&quot;;
 }</code></pre>
         <p>Font は、外部 SVG と違い、単色ではあるが CSS での色指定も可能である。
-        <p>また、 WebFont を利用しない場合は、マシンローカルのベクタデータを流用していることになるため、画像転送のオーバーヘッドも無くなる。
+        <p>また、WebFont を利用しない場合は、マシンローカルのベクタデータを流用していることになるため、画像転送のオーバーヘッドも無くなる。
         <p>最近は絵文字を装飾に使用することも視野に入るかもしれないが、絵文字は端末ごとに表示がかなり異なり、かつ特に使いたいものも無かったため、本サイトでは未使用である。
       </section>
     </article>

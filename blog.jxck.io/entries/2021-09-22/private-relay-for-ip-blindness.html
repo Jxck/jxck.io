@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。">
+  <meta name=description         content="iOS15 がリリースされたため、Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。">
   <meta name=keywords            content="private relay,proxy,ip blindness,privacy">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html>
   <meta property=og:title        content="Private Relay と IP Blindness による Fingerprint 対策 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。">
+  <meta property=og:description  content="iOS15 がリリースされたため、Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-09-22T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,7 +78,7 @@
         "width": 60
       }
     },
-    "description": "iOS15 がリリースされたため、 Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。"
+    "description": "iOS15 がリリースされたため、Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。"
   }
   </script>
 
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-09-22>2021-09-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -154,13 +154,13 @@
       <h1><a href="">Private Relay と IP Blindness による Fingerprint 対策</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>iOS15 がリリースされたため、 Private Relay のベータを試すことができた。
+        <p>iOS15 がリリースされたため、Private Relay のベータを試すことができた。
         <p>このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。
       </section>
       <section>
         <h2 id="背景"><a href="#背景">背景</a></h2>
         <p>そもそも、なぜこのようなサービスが出てきたのかを理解するには、現在のインターネットが抱える問題の背景を理解する必要がある。
-        <p>特に Web において問題になっている「トラッキング」を防ぐために、法的な規制や業界団体の自主規制による対策は長いこと行われてきたが、それでも看過できないインシデントなどが目立ったために、 Apple の ITP を皮切りに 3rd Party Cookie の制限が始まった。
+        <p>特に Web において問題になっている「トラッキング」を防ぐために、法的な規制や業界団体の自主規制による対策は長いこと行われてきたが、それでも看過できないインシデントなどが目立ったために、Apple の ITP を皮切りに 3rd Party Cookie の制限が始まった。
         <p>ここで重要なのは、「<em>本来防ぎたいのは 3rd party Cookie という技術ではなく Tracking というユースケースだ</em>」という点だ。
         <p>この前提が伝わっていない場合、トラッキングのユースケースを持つパーティにとっては「3rd Party Cookie が使えないから別の方法で Tracking をしよう」という発想になる。
         <p>そこで代替技術として上がるのが Fingerprinting だ。
@@ -172,7 +172,7 @@
         <h2 id="fingerprinting"><a href="#fingerprinting">Fingerprinting</a></h2>
         <p>Fingerprinting は、クライアントから取得できるエントロピーの高い情報を組み合わせて、クライアントを区別する仕組みと言える。
         <p>そして、エントロピーが高い情報の代表が IP アドレスと <code translate=no>User-Agent</code> 文字列だ。
-        <p>2012 年に Microsoft が公開した研究では IP アドレス+ <code translate=no>User-Agent</code> だけで 80% 程度の精度がでるとされている。
+        <p>2012 年に Microsoft が公開した研究では IP アドレス + <code translate=no>User-Agent</code> だけで 80% 程度の精度がでるとされている。
         <ul>
           <li>
             Host Fingerprinting and Tracking on the Web:Privacy and Security Implications - Microsoft Research
@@ -181,22 +181,22 @@
             </ul>
           </li>
         </ul>
-        <p>ここからさらに、 HTTP の <code translate=no>Accept</code> ヘッダや <code translate=no>If-Non-Match</code> を含めたり、 JS でさまざまな API を叩いて Canvas や Font などデバイス固有な挙動をするものを探し、精度を上げるために各社が凌ぎを削っている。
+        <p>ここからさらに、HTTP の <code translate=no>Accept</code> ヘッダや <code translate=no>If-Non-Match</code> を含めたり、JS でさまざまな API を叩いて Canvas や Font などデバイス固有な挙動をするものを探し、精度を上げるために各社が凌ぎを削っている。
         <p>そこで、ブラウザベンダ各社は、これらの情報量を減らすことで Fingerprint の精度を下げるために議論と検証を進めていた。具体的には以下のようなものだ。
         <ul>
           <li>IP アドレスを隠蔽する
           <li>User-Agent を固定する
           <li>既存/新規の API が Fingerprint ベクタにならないように仕様/実装ともに注意を払う
         </ul>
-        <p>特にこうした取り組みを先導しているのが Apple で、 ITP や Freezing User-Agent の作業を先んじて進め、他のブラウザもそれに追従しているのは周知の通りだ。
-        <p>IP Blindness についても、 Google が <a href="https://github.com/bslassey/ip-blindness">Willful IP Blidness</a> を提案したり、 IETF では <a href="https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html">Oblivious HTTP</a> として標準化に向けた議論が始まったばかりだった。そんな中、いつも通り Apple が先行して実施した、それが Private Relay だ。
-        <p>独自の規格/仕様かつオープンな実装ではなく iCloud サービスの一環としてリリースするるという、よくも悪くも Apple らしいやり方なので、 Apple が突然また過激なことを言い出したと思う人もいるかもしれないが、この流れがわかっていれば、順当以外の何者でもないとも言える。
+        <p>特にこうした取り組みを先導しているのが Apple で、ITP や Freezing User-Agent の作業を先んじて進め、他のブラウザもそれに追従しているのは周知の通りだ。
+        <p>IP Blindness についても、Google が <a href="https://github.com/bslassey/ip-blindness">Willful IP Blidness</a> を提案したり、IETF では <a href="https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html">Oblivious HTTP</a> として標準化に向けた議論が始まったばかりだった。そんな中、いつも通り Apple が先行して実施した、それが Private Relay だ。
+        <p>独自の規格/仕様かつオープンな実装ではなく iCloud サービスの一環としてリリースするるという、よくも悪くも Apple らしいやり方なので、Apple が突然また過激なことを言い出したと思う人もいるかもしれないが、この流れがわかっていれば、順当以外の何者でもないとも言える。
         <p>という背景を踏まえて中身を見ていこう。
       </section>
       <section>
         <h2 id="private-relay"><a href="#private-relay">Private Relay</a></h2>
-        <p>標準技術では無いため、公開された情報もそこまで多くないが、最初に Private Relay って話が出たのは今年の WWDC だった。 Hide My Email などと合わせて Privacy Pillars の枠で解説されている。
-        <p>そのあと IETF の PEARG というワーキンググループでも、 Apple の人による詳細な解説があった。
+        <p>標準技術では無いため、公開された情報もそこまで多くないが、最初に Private Relay って話が出たのは今年の WWDC だった。Hide My Email などと合わせて Privacy Pillars の枠で解説されている。
+        <p>そのあと IETF の PEARG というワーキンググループでも、Apple の人による詳細な解説があった。
         <ul>
           <li>
             Apple&apos;s privacy pillars in focus - WWDC21 (24:30~)
@@ -212,9 +212,9 @@
             </ul>
           </li>
         </ul>
-        <p>簡単に言えば、接続先サービスに IP アドレスが露出し Fingerprint ベクターとなることを防ぐために、 IP アドレスを隠すという技術だ。
-        <p>クライアントがサーバに通信すれば、 IP アドレスが伝わることは防ぎようがない(伝えなければレスポンスを受け取れない)。そこで、間に Apple が用意した Proxy を挟むことによって、サービスには Proxy の IP アドレスしか伝わらないというのが基本の発想だ。
-        <p>Proxy を 1 つ挟むというのは、 OHTTP など他の提案でも共通しているところだが、 Private Relay の特徴は Proxy が 2 つある点だろう。
+        <p>簡単に言えば、接続先サービスに IP アドレスが露出し Fingerprint ベクターとなることを防ぐために、IP アドレスを隠すという技術だ。
+        <p>クライアントがサーバに通信すれば、IP アドレスが伝わることは防ぎようがない(伝えなければレスポンスを受け取れない)。そこで、間に Apple が用意した Proxy を挟むことによって、サービスには Proxy の IP アドレスしか伝わらないというのが基本の発想だ。
+        <p>Proxy を 1 つ挟むというのは、OHTTP など他の提案でも共通しているところだが、Private Relay の特徴は Proxy が 2 つある点だろう。
         <p>
           <picture>
             <source type=image/avif srcset=private-relay.avif?220108_003453>
@@ -222,21 +222,21 @@
             <img loading=lazy decoding=async src=private-relay.png?210923_002554 alt="Private Relay のシーケンス図 - IETF の資料より" width=2164 height=1624>
           </picture>
         </p>
-        <p>Apple の資料によれば、 Private Relay が有効になると、 Ingress Proxy(前段) と Egress Proxy(後段) という 2 つ Proxy が割り当てられる。
+        <p>Apple の資料によれば、Private Relay が有効になると、Ingress Proxy(前段)と Egress Proxy(後段)という 2 つ Proxy が割り当てられる。
         <p>これらをどう使うかというと、まず Client は Egress Proxy (後段)と TLS を確立する。つまり全てのパケットは Client と Egress 間で暗号化されるのだ。
-        <p>Client は Server に送りたいパケットを、(それが Server との TLS で暗号化されていても) Egress との TLS で暗号化して Ingress に送る。 Ingress はそれをそのまま Egress に送る。 Egress は Client との TLS を解いて Server に転送する。
+        <p>Client は Server に送りたいパケットを、(それが Server との TLS で暗号化されていても) Egress との TLS で暗号化して Ingress に送る。Ingress はそれをそのまま Egress に送る。Egress は Client との TLS を解いて Server に転送する。
         <p>これによって Ingress と Egress が知り得る情報は以下になる。
         <ul>
           <li>Ingress: Client の IP アドレスを知っているが、パケットが暗号化されているので Server の IP アドレスはわからない
           <li>Egress: Ingress から転送されたので Client の IP アドレスはわからないが、パケットが解けるので Server の IP アドレスはわかる
         </ul>
-        <p>なぜこのようなことをするかというと、もし Proxy が 1 台だった場合は、 Proxy は Client と Server の IP のマッピングを知ることができるが、 Private Relay はそのマッピングができないため、 Apple ですらだれがどこにアクセスしたのかが、わからないようになっているのだ。
+        <p>なぜこのようなことをするかというと、もし Proxy が 1 台だった場合は、Proxy は Client と Server の IP のマッピングを知ることができるが、Private Relay はそのマッピングができないため、Apple ですらだれがどこにアクセスしたのかが、わからないようになっているのだ。
       </section>
       <section>
         <h2 id="private-relay-の挙動"><a href="#private-relay-の挙動">Private Relay の挙動</a></h2>
         <section>
           <h3 id="設定"><a href="#設定">設定</a></h3>
-          <p>iOS15 にアップデートできたため、 iCloud に課金し実際に Private Relay を有効にしてみた。
+          <p>iOS15 にアップデートできたため、iCloud に課金し実際に Private Relay を有効にしてみた。
           <p>UI は非常にシンプルで、以下から有効にできる。
           <p>
             <picture>
@@ -245,7 +245,7 @@
               <img loading=lazy decoding=async src=ios15.png?210923_002554 alt="iOS15 - iCloud から Private Relay の設定" width=531 height=944>
             </picture>
           </p>
-          <p>位置情報については以下の選択肢がある。 IP ジオロケーションについては後述するが、おそらく以下のような差だろう。
+          <p>位置情報については以下の選択肢がある。IP ジオロケーションについては後述するが、おそらく以下のような差だろう。
           <p>
             <picture>
               <source type=image/avif srcset=ios15-ipgeo.avif?220108_003453>
@@ -265,7 +265,7 @@
           <pre><code translate=no>2021/09/21 04:28:11.010 180.10.203.175 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>
           <p>次に Private Relay 有効状態だと以下のようになる。
           <pre><code translate=no>2021/09/21 04:40:07.430 2606:54c0:3b00:10::16:e1 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>
-          <p>サーバは IPv6 対応しているため、 IPv6 でのアクセスになっていることがわかる。
+          <p>サーバは IPv6 対応しているため、IPv6 でのアクセスになっていることがわかる。
           <p>この IP アドレスは Apple の Egress Proxy の IP アドレスリストで見ると以下のエントリに該当する。
           <pre><code translate=no>2606:54c0:3b00:10::/64,JP,,Tokyo,</code></pre>
           <p>日本の東京にある Proxy からリレーされてることもわかる。
@@ -277,7 +277,7 @@
         <section>
           <h3 id="ip-ジオロケーション"><a href="#ip-ジオロケーション">IP ジオロケーション</a></h3>
           <p>IP アドレスがあると、そこからおおよその位置情報がわかるため、「どの地域からのアクセスが多いのか」という情報を得ることができる。これは、アナリティクスツールではおおよそサポートされ、マーケティングなどで重宝されている。
-          <p>IP アドレスが Proxy によって変わるとこの情報が落ちる懸念があるが、 Private Relay の場合は Egress Proxy の IP アドレスリストが以下で公開されている。
+          <p>IP アドレスが Proxy によって変わるとこの情報が落ちる懸念があるが、Private Relay の場合は Egress Proxy の IP アドレスリストが以下で公開されている。
           <ul>
             <li>
               IP ジオロケーションフィードへのアクセス - iCloud Private Relay に向けたネットワークの準備
@@ -287,8 +287,8 @@
             </li>
           </ul>
           <p>そして、各 IP には地域情報が記載されているため、例えば Tokyo 付近にいるユーザには Tokyo の Egress Proxy が割り当てられ、この CSV を引けば Tokyo からのアクセスであることがわかる。
-          <p>日本でみれば Tokyo, Osaka, Nagoya, Hiroshima ... などの主要都市があるようなので、マーケティング用途レベルであればまかなえそうな粒度には見える。
-          <p>それでもカバーできない用途については、 Geohash (緯度経度のハッシュ)を Client Hints ヘッダに付与する提案がちょうど Apple から提案されたため、そちらでカバーするという流れだろう。
+          <p>日本でみれば Tokyo, Osaka, Nagoya, Hiroshima ...などの主要都市があるようなので、マーケティング用途レベルであればまかなえそうな粒度には見える。
+          <p>それでもカバーできない用途については、Geohash (緯度経度のハッシュ)を Client Hints ヘッダに付与する提案がちょうど Apple から提案されたため、そちらでカバーするという流れだろう。
           <ul>
             <li>
               The Geohash HTTP Client Hint
@@ -297,7 +297,7 @@
               </ul>
             </li>
           </ul>
-          <p>しかし、 Geohash もエントロピーが高く、 Client Hints でも無尽蔵に取得させることはできないため、 Permission の取得や必要に応じた短縮などを行うべきという記載もある。別途提案されている Privacy Budget などによる制限もあるかもしれないので、あくまで補助的な情報として扱うことになるだろう。
+          <p>しかし、Geohash もエントロピーが高く、Client Hints でも無尽蔵に取得させることはできないため、Permission の取得や必要に応じた短縮などを行うべきという記載もある。別途提案されている Privacy Budget などによる制限もあるかもしれないので、あくまで補助的な情報として扱うことになるだろう。
         </section>
         <section>
           <h3 id="カウントフリーやフィルタリングサービスへの影響"><a href="#カウントフリーやフィルタリングサービスへの影響">カウントフリーやフィルタリングサービスへの影響</a></h3>
@@ -323,14 +323,14 @@
               </ul>
             </li>
           </ul>
-          <p>こうしたサービスは、 IP アドレスが想定したものであることを前提に作られていることを想像すると、やむをえないだろう。こうしたサービスを利用するユーザは Private Relay を利用することはできない。
+          <p>こうしたサービスは、IP アドレスが想定したものであることを前提に作られていることを想像すると、やむをえないだろう。こうしたサービスを利用するユーザは Private Relay を利用することはできない。
         </section>
         <section>
           <h3 id="オーバーヘッド"><a href="#オーバーヘッド">オーバーヘッド</a></h3>
-          <p>Proxy を経由することによるオーバーヘッドがどの程度あるのかも気になるところだろう。もちろん、 TLS が 1 回多く実施されているという点においても、オーバーヘッドが無いとはいえないはずだ。
+          <p>Proxy を経由することによるオーバーヘッドがどの程度あるのかも気になるところだろう。もちろん、TLS が 1 回多く実施されているという点においても、オーバーヘッドが無いとはいえないはずだ。
           <p>しかし、ここの有意な比較を行うのは考えるほどなかなか難しい。
-          <p>ネットワークアクセスのオーバーヘッドの多くは、 TLS に費やされる処理だけでなく、選択される経路とその経路の転送能力などの影響も無視できない。
-          <p>したがって、 Private Relay の On/Off によってどういった経路の差が見られるかなども比較するのが妥当に思える。
+          <p>ネットワークアクセスのオーバーヘッドの多くは、TLS に費やされる処理だけでなく、選択される経路とその経路の転送能力などの影響も無視できない。
+          <p>したがって、Private Relay の On/Off によってどういった経路の差が見られるかなども比較するのが妥当に思える。
           <p>さらにいうと、日本は狭い地域に Proxy が密集しているが、国によっては Proxy までの距離のオーバーヘッドも無視できないだろう。
           <p>また、なにより今はリリースされたばかりでトラフィックも少ないため、はずれ Proxy を引くことも少なそうだ。
           <p>こうした状況で安易に特定のポイント間の速度計測し、雑な比較してもあまり意味がないと思われるため控える。
@@ -340,9 +340,9 @@
           <h3 id="犯罪捜査"><a href="#犯罪捜査">犯罪捜査</a></h3>
           <p>IP アドレスを隠す/偽装するために Proxy を挟むという発想は、別に新しいものではない。
           <p>特に平成では「串を刺す」といった隠語に代表される Proxy の利用は行われており、海外 IP アドレスでしか遊べないゲームを遊んだり、匿名サイトに書き込む際に使われたりしていた。
-          <p>ダークウェブで知られる Tor も、 Onion Proxy を用いた IP Blindness を行なっていると見れば、やっていることは実質変わらない。
-          <p>つまり IP アドレスには、やましいことをする上で隠すメリットがあるという側面があるのも事実だ。特にサイバー犯罪の検挙が IP アドレスを手がかりに行われている例があるように、サービスに IP アドレスの開示を依頼し、 ISP にマッピングを問い合わせ、自宅を突き止めるという捜査も一般的だ。
-          <p>単一 Proxy によって、 Apple がマッピングテーブルを持つのであれば、法的な開示依頼に応じるかどうかという企業対応の話にできるが、本当にマッピングテーブルが無いのであれば、何かが起こった場合にどうなるのだろうか? そのあたりの話もまだ見つけられてはいない。(とはいえどっちも Apple の Proxy だからなんとでもなりそうにも思えるが)
+          <p>ダークウェブで知られる Tor も、Onion Proxy を用いた IP Blindness を行なっていると見れば、やっていることは実質変わらない。
+          <p>つまり IP アドレスには、やましいことをする上で隠すメリットがあるという側面があるのも事実だ。特にサイバー犯罪の検挙が IP アドレスを手がかりに行われている例があるように、サービスに IP アドレスの開示を依頼し、ISP にマッピングを問い合わせ、自宅を突き止めるという捜査も一般的だ。
+          <p>単一 Proxy によって、Apple がマッピングテーブルを持つのであれば、法的な開示依頼に応じるかどうかという企業対応の話にできるが、本当にマッピングテーブルが無いのであれば、何かが起こった場合にどうなるのだろうか? そのあたりの話もまだ見つけられてはいない。(とはいえどっちも Apple の Proxy だからなんとでもなりそうにも思えるが)
         </section>
       </section>
       <section>

@@ -35,15 +35,15 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="ページ内の特定の位置へのスクロールは、 URL フラグメントと HTML の ID 属性を用いて行われていた。しかし、 ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。Chrome がフラグ付きで実装しているた...">
+  <meta name=description         content="ページ内の特定の位置へのスクロールは、URL フラグメントと HTML の ID 属性を用いて行われていた。しかし、ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。Chrome がフラグ付きで実装しているため、...">
   <meta name=keywords            content="scroll,fragment,url">
   <meta name=theme-color         content=#000000>
 
   <meta property=og:type         content=article>
   <meta property=og:url          content=https://blog.jxck.io/entries/2019-10-16/scroll-to-text-fragment.html>
-  <meta property=og:title        content="Scroll To Text Fragment と :~:text | blog.jxck.io">
+  <meta property=og:title        content="Scroll To Text Fragment と<code translate=no>:~:text</code> | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="ページ内の特定の位置へのスクロールは、 URL フラグメントと HTML の ID 属性を用いて行われていた。しかし、 ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。Chrome がフラグ付きで実装しているた...">
+  <meta property=og:description  content="ページ内の特定の位置へのスクロールは、URL フラグメントと HTML の ID 属性を用いて行われていた。しかし、ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。Chrome がフラグ付きで実装しているため、...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -56,13 +56,13 @@
       "@type":"WebPage",
       "@id":"https://blog.jxck.io"
     },
-    "headline": "Scroll To Text Fragment と :~:text | blog.jxck.io",
+    "headline": "Scroll To Text Fragment と<code translate=no>:~:text</code> | blog.jxck.io",
     "image": [
       "https://www.jxck.io/assets/img/jxck.png",
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-10-16T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,11 +78,11 @@
         "width": 60
       }
     },
-    "description": "ページ内の特定の位置へのスクロールは、 URL フラグメントと HTML の ID 属性を用いて行われていた。しかし、 ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。Chrome がフラグ付きで実装しているた..."
+    "description": "ページ内の特定の位置へのスクロールは、URL フラグメントと HTML の ID 属性を用いて行われていた。しかし、ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。Chrome がフラグ付きで実装しているため、..."
   }
   </script>
 
-  <title>Scroll To Text Fragment と :~:text | blog.jxck.io</title>
+  <title>Scroll To Text Fragment と<code translate=no>:~:text</code> | blog.jxck.io</title>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
 </head>
 <body>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-10-16>2019-10-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -143,16 +143,16 @@
 
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210427_184241>
     <article>
-      <h1><a href="">Scroll To Text Fragment と :~:text</a></h1>
+      <h1><a href="">Scroll To Text Fragment と<code translate=no>:~:text</code></a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>ページ内の特定の位置へのスクロールは、 URL フラグメントと HTML の ID 属性を用いて行われていた。
-        <p>しかし、 ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。
+        <p>ページ内の特定の位置へのスクロールは、URL フラグメントと HTML の ID 属性を用いて行われていた。
+        <p>しかし、ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。
         <p>Chrome がフラグ付きで実装しているため、この仕様の特徴について解説する。
       </section>
       <section>
         <h2 id="id-属性とフラグメント"><a href="#id-属性とフラグメント">id 属性とフラグメント</a></h2>
-        <p>従来の仕様では、 HTML 内にある ID 属性を URL フラグメントに付与することで、その要素まで自動でスクロールするという仕様になっていた。
+        <p>従来の仕様では、HTML 内にある ID 属性を URL フラグメントに付与することで、その要素まで自動でスクロールするという仕様になっていた。
         <ul>
           <li><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment">https://html.spec.whatwg.org/multipage/browsing-the-web.html#try-to-scroll-to-the-fragment</a>
           <li><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document">https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-indicated-part-of-the-document</a>
@@ -175,7 +175,7 @@
         <h2 id="デリミタ"><a href="#デリミタ">デリミタ</a></h2>
         <p>URL には、フラグメントくらいしか拡張できるポイントが無いため、ここにクエリ相当のものを入れることになる。
         <p>最初は <code translate=no>##</code> と二重にする方式がシンプルでわかりやすいとされたが、仕様上有効ではないため既存のパーサを壊す可能性が有り、また実際に壊れるかどうかを測定するのが難しいとして却下された。
-        <p>これを踏まえ、 URL の仕様の範囲で 1, 2 文字では無く 3 文字の組み合わせで候補が出され、 Google の過去 5 年の URL 履歴でヒットしないものがリストアップされた。
+        <p>これを踏まえ、URL の仕様の範囲で 1, 2 文字では無く 3 文字の組み合わせで候補が出され、Google の過去 5 年の URL 履歴でヒットしないものがリストアップされた。
         <ul>
           <li><code translate=no>~&amp;~</code>
           <li><code translate=no>:~:</code>

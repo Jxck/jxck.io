@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="tmux, screen, terminal のタブなど、 shell を複数起動する方法はいくつかある。Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に...">
+  <meta name=description         content="tmux, screen, terminal のタブなど、shell を複数起動する方法はいくつかある。Linux では、pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に使う...">
   <meta name=keywords            content="pty,tmux,tips">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2018-04-30/redirect-to-pts.html>
   <meta property=og:title        content="Linux で出力を別の shell に pts 経由で表示する | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="tmux, screen, terminal のタブなど、 shell を複数起動する方法はいくつかある。Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に...">
+  <meta property=og:description  content="tmux, screen, terminal のタブなど、shell を複数起動する方法はいくつかある。Linux では、pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に使う...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-04-30T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,7 +78,7 @@
         "width": 60
       }
     },
-    "description": "tmux, screen, terminal のタブなど、 shell を複数起動する方法はいくつかある。Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に..."
+    "description": "tmux, screen, terminal のタブなど、shell を複数起動する方法はいくつかある。Linux では、pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に使う..."
   }
   </script>
 
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-04-30>2018-04-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -142,13 +142,13 @@
       <h1><a href="">Linux で出力を別の shell に pts 経由で表示する</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>tmux, screen, terminal のタブなど、 shell を複数起動する方法はいくつかある。
-        <p>Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。
+        <p>tmux, screen, terminal のタブなど、shell を複数起動する方法はいくつかある。
+        <p>Linux では、pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。
         <p>これを応用すると、簡易ダッシュボードを作り色々便利に使うことができる。
       </section>
       <section>
         <h2 id="stdoutstderr"><a href="#stdoutstderr">stdout/stderr</a></h2>
-        <p>代表例として、 tmux で pane を分割し、コマンドの出力を stdout/stderr で分けて pane ごとに表示するケースで解説する。
+        <p>代表例として、tmux で pane を分割し、コマンドの出力を stdout/stderr で分けて pane ごとに表示するケースで解説する。
         <p>まず、以下のようにランダムにエラー出力を吐くプログラムを実行する。
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
         <pre class=js data-path=hello_world><code translate=no>#!/usr/bin/env ruby
@@ -198,10 +198,10 @@ $ hello # 表示される</code></pre>
 $ cat /dev/pts/2
 # 入力が表示される</code></pre>
         <pre class=sh-session><code translate=no>$ # ここでの入力は奪われる</code></pre>
-        <p>つまり、 pts への書き込みは pane に表示され、 pane への入力は pts から読み出せる。
-        <p>pts は疑似端末であり、 tmux と shell に間に挟まった中継役のようなものだと思えば良い。
-        <p>例えば、実行結果の stdout を pane1 に、 stderr を pane2 に分岐して出力したい場合。
-        <p>もし pane1 が <code translate=no>/dev/pts2/</code> に、 pane2 が <code translate=no>/dev/pts5/</code> に紐づくとすると。
+        <p>つまり、pts への書き込みは pane に表示され、pane への入力は pts から読み出せる。
+        <p>pts は疑似端末であり、tmux と shell に間に挟まった中継役のようなものだと思えば良い。
+        <p>例えば、実行結果の stdout を pane1 に、stderr を pane2 に分岐して出力したい場合。
+        <p>もし pane1 が <code translate=no>/dev/pts2/</code> に、pane2 が <code translate=no>/dev/pts5/</code> に紐づくとすると。
         <pre class=sh-session><code translate=no>$ ./hello_world 1&gt; /dev/pts2 2&gt; /dev/pts5</code></pre>
         <p>これで、結果を 2 つの pane に分けて出力することができる。
       </section>
@@ -211,7 +211,7 @@ $ cat /dev/pts/2
         <p>その分岐先を、複数の pane に分けて指定すれば、簡易ダッシュボードを作ることができる。
         <p>例えば access_log をステータスコードごとに出す場合は以下のようになる。
         <pre class=sh-session><code translate=no>$ tail -f access.log | tee &gt;(grep 404 &gt; /dev/pts/5) &gt;(grep 500 &gt; /dev/pts/6) &gt;(grep 451 &gt; /dev/pts/7)</code></pre>
-        <p>Logger のタグ (Info, Debug, Trace etc) を使った分岐なんかも地味に便利だったりする。
+        <p>Logger のタグ(Info, Debug, Trace etc)を使った分岐なんかも地味に便利だったりする。
         <pre class=sh-session><code translate=no>$ tail -f debug.log | tee &gt;(grep Info &gt; /dev/pts/5) &gt;(grep Debug &gt; /dev/pts/6) &gt;(grep Trace &gt; /dev/pts/7)</code></pre>
       </section>
     </article>

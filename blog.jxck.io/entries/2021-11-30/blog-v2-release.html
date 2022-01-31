@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-11-30T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2022-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-11-30>2021-11-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -174,8 +174,8 @@
         <h2 id="markdown"><a href="#markdown">Markdown</a></h2>
         <p>本サイトは、一般に使われている Markdown -&gt; HTML の変換結果では要件を満たせないため、最も都合の良い AST を吐く <a href="https://kramdown.gettalong.org/">Kramdown</a> のパーサから AST だけを取得し、それを Traverser でカスタマイズしてから自前でシリアライズしていた。
         <p>その実装を、微修正を繰り返しながら、継ぎ足し継ぎ足しで 5 年くらいイジってきたので、そろそろ自分がブログを書く上での要件も固まっており、記事中の Markdown のスタイルも固定してきた。
-        <p>一方、 Kramdown の実装が原因でどうしてもワークアラウンドが必要だった部分に、フラストレーションも技術的負債も溜まっていたため、自作の Markdown パーサ/ビルダをフルスクラッチで作ることにした。
-        <p>プレビュー表示などでブラウザでも使えるよう、一応 Pure JS (+ JSDoc Typed) で 1 ファイルにゴリっと書いている。また、汎用性は求めてないのでライブラリとして別リポジトリで公開はせず、ブログのソースに組み込んで密結合させている。
+        <p>一方、Kramdown の実装が原因でどうしてもワークアラウンドが必要だった部分に、フラストレーションも技術的負債も溜まっていたため、自作の Markdown パーサ/ビルダをフルスクラッチで作ることにした。
+        <p>プレビュー表示などでブラウザでも使えるよう、一応 Pure JS (+ JSDoc Typed)で 1 ファイルにゴリっと書いている。また、汎用性は求めてないのでライブラリとして別リポジトリで公開はせず、ブログのソースに組み込んで密結合させている。
         <ul>
           <li><a href="https://github.com/Jxck/jxck.io/tree/master/.src/markdown">jxck.io/.src/markdown at master · Jxck/jxck.io</a>
         </ul>
@@ -211,7 +211,7 @@
     &lt;/section&gt;
   &lt;/section&gt;
 &lt;/article&gt;</code></pre>
-          <p>さらに、見出しジャンプを入れる。その際、 ID を振るが、もし被った場合は後ろに連番を振る。
+          <p>さらに、見出しジャンプを入れる。その際、ID を振るが、もし被った場合は後ろに連番を振る。
           <pre class=html><code translate=no>&lt;article&gt;
   &lt;h1 id=&quot;h1&quot;&gt;&lt;a href=&quot;#h1&quot;&gt;h1&lt;/a&gt;&lt;/h1&gt;
   &lt;section&gt;
@@ -270,13 +270,13 @@
           <p>そこで、本サイトは初期から以下の記法をサポートしていた。
           <pre class=md><code translate=no>```js:script.js
 ```</code></pre>
-          <p>このようにすると、 HTML ビルド時にカレントディレクトリの script.js を読み込んで HTML の <code translate=no>&lt;code&gt;</code> 内に展開してくれる。
+          <p>このようにすると、HTML ビルド時にカレントディレクトリの script.js を読み込んで HTML の <code translate=no>&lt;code&gt;</code> 内に展開してくれる。
         </section>
         <section>
           <h3 id="img-のカスタマイズ"><a href="#img-のカスタマイズ">img のカスタマイズ</a></h3>
-          <p>画像の埋め込みは .png / .jpeg / .gif を一次ソースとしているが、必ず webp を提供している。
-          <p>これを出し分けるために、画像記法は <code translate=no>&lt;picture&gt;</code> になるようにカスタマイズしている。 (SVG は単に <code translate=no>&lt;img&gt;</code> になる)
-          <p>また width/height を明示できるよう、 URL の最後に fragment を <code translate=no>#256x256</code> のように指定すると width, height として解釈する。
+          <p>画像の埋め込みは <code translate=no>.png</code> / <code translate=no>.jpeg</code> / <code translate=no>.gif</code> を一次ソースとしているが、必ず webp を提供している。
+          <p>これを出し分けるために、画像記法は <code translate=no>&lt;picture&gt;</code> になるようにカスタマイズしている。(SVG は単に <code translate=no>&lt;img&gt;</code> になる)
+          <p>また width/height を明示できるよう、URL の最後に fragment を <code translate=no>#256x256</code> のように指定すると width, height として解釈する。
           <p>さらに、画像を読み込んで <code translate=no>mtime</code> から最終更新時を算出し、それをクエリに付与して Cache Busting する。
           <pre class=md><code translate=no>![alt text](image.png#256x256 &quot;title test&quot;)</code></pre>
           <p>これは以下のように展開される。
@@ -292,7 +292,7 @@
     height=&quot;256&quot;
   /&gt;
 &lt;/picture&gt;</code></pre>
-          <p>そして、動画を埋め込む記法が Markdown にはないが、これまで gif アニメにしていたものは mp4 に移行しつつあるので、拡張子が mp4 だった場合は <code translate=no>&lt;video&gt;</code> になるようにしている。こちらは、 webm のフォールバックを入れている。
+          <p>そして、動画を埋め込む記法が Markdown にはないが、これまで gif アニメにしていたものは mp4 に移行しつつあるので、拡張子が mp4 だった場合は <code translate=no>&lt;video&gt;</code> になるようにしている。こちらは、webm のフォールバックを入れている。
           <pre class=md><code translate=no>![dummy video](dummy_video.mp4#1000x2000)</code></pre>
           <pre class=html><code translate=no>&lt;video title=&quot;dummy video&quot; width=&quot;1000&quot; height=&quot;2000&quot; controls playsinline&gt;
   &lt;source type=video/mp4 src=dummy_video.mp4?211010_101010&gt; &lt;source
@@ -303,7 +303,7 @@
         <section>
           <h3 id="adoptive-css"><a href="#adoptive-css">adoptive CSS</a></h3>
           <p><code translate=no>&lt;table&gt;</code> 用の CSS と <code translate=no>&lt;pre&gt;</code> のシンタックスハイライトは、他の要素に比べて CSS の量が多いのにかかわらず、出現頻度が低い。
-          <p>そこで、 <code translate=no>&lt;table&gt;</code> と <code translate=no>&lt;pre&gt;</code> の CSS はファイルを分け、 HTML に出現する直前に CSS を一度だけ差し込むようにしている。
+          <p>そこで、 <code translate=no>&lt;table&gt;</code> と <code translate=no>&lt;pre&gt;</code> の CSS はファイルを分け、HTML に出現する直前に CSS を一度だけ差し込むようにしている。
           <p>そのメリットは以下で解説している。
           <p><a href="https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io</a>
         </section>
@@ -312,26 +312,26 @@
           <p>Kramdown は、文の途中で <code translate=no>|</code> が来ると <code translate=no>&lt;table&gt;</code> が始まったと解釈する。
           <p>しかし、以下のようなリンクのタイトルは <code translate=no>|</code> を含むことが多く、エスケープが必要だった。
           <pre class=md><code translate=no>- [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)</code></pre>
-          <p>mozaic.fm の Monthly Web では、 Show Note に大量のリンクを貼るため、そこに出てくる <code translate=no>|</code> を全てエスケープするのは面倒だった。
+          <p>mozaic.fm の Monthly Web では、Show Note に大量のリンクを貼るため、そこに出てくる <code translate=no>|</code> を全てエスケープするのは面倒だった。
           <p>一方、文の途中で <code translate=no>&lt;table&gt;</code> を始めることなどないため、 <code translate=no>|</code> は行頭にきた場合のみ <code translate=no>&lt;table&gt;</code> と解釈することに限定し、エスケープしないで良いようにした。
-          <p>また、 <code translate=no>&lt;table&gt;</code> の align は <code translate=no>align</code> 属性で指定も可能だが、もう deprecate されているため、 CSS で align するために <code translate=no>class</code> をつけるようにしている。
+          <p>また、 <code translate=no>&lt;table&gt;</code> の align は <code translate=no>align</code> 属性で指定も可能だが、もう deprecate されているため、CSS で align するために <code translate=no>class</code> をつけるようにしている。
         </section>
         <section>
           <h3 id="toc-の生成"><a href="#toc-の生成">TOC の生成</a></h3>
           <p>前述で生成した headding とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
           <p>TOC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Headding のリストを保持することになるので、それをそのまま ToC として AST と一緒に返すようにした。
-          <p>この TOC は、 blog のタイトル上に埋め込んでいる。
+          <p>この TOC は、blog のタイトル上に埋め込んでいる。
         </section>
         <section>
           <h3 id="h1"><a href="#h1">h1</a></h3>
           <p>h1 には以下のようにタグが書けるようにしている。
           <pre class=md><code translate=no># [tag] hello world</code></pre>
-          <p>これも、 blog のタイトル上に埋め込んでいる。
+          <p>これも、blog のタイトル上に埋め込んでいる。
         </section>
         <section>
           <h3 id="front-matter"><a href="#front-matter">Front Matter</a></h3>
-          <p>特に moziac.fm のエピソードページでは、 mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
-          <p>しかし、 Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
+          <p>特に moziac.fm のエピソードページでは、mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
+          <p>しかし、Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
           <pre class=md><code translate=no>---
 type: podcast
 tags: [&quot;monthly web&quot;]
@@ -345,12 +345,12 @@ guest: [@myakura](https://twitter.com/myakura)
 ## Theme
 
 第 89 回のテーマは 2021 年 10 月の Monthly Web です。</code></pre>
-          <p>YAML は YAML パーサを入れるほど複雑なものを書いてないので、 YAML パーサを自作するのをぐっとこらえて雑に処理している。
+          <p>YAML は YAML パーサを入れるほど複雑なものを書いてないので、YAML パーサを自作するのをぐっとこらえて雑に処理している。
         </section>
         <section>
           <h3 id="dl"><a href="#dl"><code translate=no>&lt;dl&gt;</code></a></h3>
           <p>定義リスト記法もサポートしている。
-          <p>さらに <code translate=no>&lt;dl&gt;</code> の下の <code translate=no>&lt;dt&gt;</code> <code translate=no>&lt;dd&gt;</code> は <code translate=no>&lt;div&gt;</code> で囲むことが許されており、これがあるとスタイルがちょっと楽になる。
+          <p>さらに <code translate=no>&lt;dl&gt;</code> の下の <code translate=no>&lt;dt&gt;</code>, <code translate=no>&lt;dd&gt;</code> は <code translate=no>&lt;div&gt;</code> で囲むことが許されており、これがあるとスタイルがちょっと楽になる。
           <pre class=md><code translate=no>key1
 : val1
 key2
@@ -369,7 +369,7 @@ key2
   &lt;/div&gt;
 &lt;/dl&gt;</code></pre>
           <p>個人的には Markdown のこの定義リスト記法はあまり気に入ってない。
-          <p>特に、 dd が来ないとその手前が dt だったことがわからないというパースのしにくさもある。
+          <p>特に、dd が来ないとその手前が dt だったことがわからないというパースのしにくさもある。
           <p>いっそ以下のような独自記法を入れてしまってもよいかと考えている。
           <pre><code translate=no>:key1
   :val1
@@ -412,10 +412,10 @@ https://example.com</code></pre>
         </section>
         <section>
           <h3 id="traverser-plugin"><a href="#traverser-plugin">traverser plugin</a></h3>
-          <p>ここまでに上げたような本サイトに必要な機能は、 1 つに盛り込んでも良かったが、最終的にはブラウザでの挙動も想定して作っておきたかった。
-          <p>ブラウザで挙動させると問題になるのは、 Cache Busting のためのファイル更新時間確認や、 <code translate=no>&lt;pre&gt;</code> への外部ファイル埋め込みなどが動かないことだ。
-          <p>やはり、 Markdown ファイルだけを見て生成できる HTML と、そこに対するカスタマイズを分離することで、ブラウザ上でもプレビューなどが動くように保つ方が後々良いだろう。
-          <p>そこで、 AST を生成した後に、そこを Traverse する機能を用意し、 Node をたどりながら好きな変更を入れられるようにすることで、そこを Plugin のフックポイントとすることにした。
+          <p>ここまでに上げたような本サイトに必要な機能は、1 つに盛り込んでも良かったが、最終的にはブラウザでの挙動も想定して作っておきたかった。
+          <p>ブラウザで挙動させると問題になるのは、Cache Busting のためのファイル更新時間確認や、 <code translate=no>&lt;pre&gt;</code> への外部ファイル埋め込みなどが動かないことだ。
+          <p>やはり、Markdown ファイルだけを見て生成できる HTML と、そこに対するカスタマイズを分離することで、ブラウザ上でもプレビューなどが動くように保つ方が後々良いだろう。
+          <p>そこで、AST を生成した後に、そこを Traverse する機能を用意し、Node をたどりながら好きな変更を入れられるようにすることで、そこを Plugin のフックポイントとすることにした。
           <p>特に Node の <code translate=no>fs</code> を使わないと実現できないものは Plugin 側に寄せ、責務を分離できるようにしている。
         </section>
       </section>
@@ -439,7 +439,7 @@ https://example.com</code></pre>
         </section>
         <section>
           <h3 id="twitter-card"><a href="#twitter-card">Twitter Card</a></h3>
-          <p>Twitter Card のためのタグを入れていたが、もうどうでもいいのでタグを削除。 OGP 自体はあるので部分的にそちらでカバーされるはず。
+          <p>Twitter Card のためのタグを入れていたが、もうどうでもいいのでタグを削除。OGP 自体はあるので部分的にそちらでカバーされるはず。
         </section>
         <section>
           <h3 id="hatena"><a href="#hatena">Hatena</a></h3>
@@ -447,7 +447,7 @@ https://example.com</code></pre>
         </section>
         <section>
           <h3 id="google-search"><a href="#google-search">Google Search</a></h3>
-          <p>SEO 自体はどうでもよいが、 Google の検索結果がなんか色々雑に表示されていることに気づいたので修正。
+          <p>SEO 自体はどうでもよいが、Google の検索結果がなんか色々雑に表示されていることに気づいたので修正。
           <p>うまく反映されてない部分もあるので WIP
           <ul>
             <li>DONE: Sitelink Search
@@ -475,8 +475,8 @@ https://example.com</code></pre>
           <li>コード量を大幅に減らし、見通しをよくできた
           <li>記法エラーを実装したことで、これまでの原稿を整形できた
           <li>これまでの HTML の細かな問題、気に入らなかったところも全て精算できた
-          <li>Kramdown の依存が無くなったので、 dependabot から警告が来ることが無くなった
-          <li>ビルドプロセスに JS と Ruby が混ざっていたが、 Ruby をなくし JS に一本化できた
+          <li>Kramdown の依存が無くなったので、dependabot から警告が来ることが無くなった
+          <li>ビルドプロセスに JS と Ruby が混ざっていたが、Ruby をなくし JS に一本化できた
           <li>溜まっていた負債を払った
         </ul>
       </section>
