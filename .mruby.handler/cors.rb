@@ -6,12 +6,18 @@ Proc.new do |env|
   # logger.p()
 
   if origin.nil?
-    next [403, {}, []]
+    headers = {
+      "Cache-Control" => "max-age=31536000"
+    }
+    next [403, headers, []]
   end
 
   unless origin.end_with?("jxck.io") || origin.end_with?("mozaic.fm")
     # should from my Domain
-    next [403, {}, []]
+    headers = {
+      "Cache-Control" => "max-age=31536000"
+    }
+    next [403, headers, []]
   end
 
   headers = {
