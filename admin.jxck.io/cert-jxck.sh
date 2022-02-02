@@ -38,7 +38,8 @@ sudo certbot certonly \
   -d ssp.labs.jxck.io \
   -d dsp.labs.jxck.io \
   -d shopping.labs.jxck.io \
-  -d travel.labs.jxck.io
+  -d travel.labs.jxck.io \
+  -d http3.jxck.io
 
 cd /keys
 sudo ./pkcs8.sh
