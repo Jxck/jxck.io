@@ -280,7 +280,7 @@ http3.jxck.io IN HTTPS 1 . (alpn="h3" ipv4hint="160.16.91.134" ipv6hint="2001:e4
 
 筆者の場合は Sakura の DNS を利用していたが、ここではそもそも HTTPS Record が選択できなかったため、DNS を引っ越すところから始める必要があった。
 
-![Sakura DNS のレコードタイプ](sakura-dns-supported-record.png#858x756 "Sakura DNS Supported Record")
+![Sakura DNS のレコードタイプ](sakura-dns-supported-record.png#347x404 "Sakura DNS Supported Record")
 
 そこで HTTPS Record Type に対応している Google Cloud DNS に引っ越すことにした。
 
