@@ -316,6 +316,8 @@ http3.jxck.io IN HTTPS 1 . (alpn="h3" ipv4hint="160.16.91.134" ipv6hint="2001:e4
 
 以上を設定してやっとサイトを HTTP3 に対応することができた。
 
+![Chrome Devtools の Network Tab で HTTP3 化を確認](http3-devtools.png#1446x1672)
+
 まとめると、やることは以下だ。
 
 - HTTPS RR に対応した DNS を選択、レコードを設定
@@ -330,8 +332,8 @@ http3.jxck.io IN HTTPS 1 . (alpn="h3" ipv4hint="160.16.91.134" ipv6hint="2001:e4
 
 念願の HTTP3 対応を実現することができた。
 
-ドキュメントが更新されないため、そろそろ h2o をやめて Nginx に引っ越して、そちらで検証するなどの代替案を考えていたところなので、Issue で教えてくれた [inductor](https://github.com/h2o/h2o/issues/2906#issuecomment-1026107729) には感謝しか無い。
+HTTP3 はずっと検証したかったがドキュメントが更新されなかったため使い方がわからず、たまにドキュメントやリポジトリを "http3" で検索していたが、 "http/3" で検索すればもっと早く気付けていたと思うと残念だ。
 
-(たまに GitHub のリポジトリ内を "http3" で検索し、それらしい情報にたどり着けず諦めていたが、 "http/3" で検索するという発想が無かったのが未熟だった。もっと早く気付けていたと思うと残念だ)
+そろそろ h2o をやめて Nginx に引っ越して、そちらで検証するかと考えていたところなので、Issue で教えてくれた [inductor](https://github.com/h2o/h2o/issues/2906#issuecomment-1026107729) には感謝しか無い。
 
-デプロイが完了できたので、これからより細かく挙動などを検証していきたい。
+今後は HTTP RR Record 含め、より細かく挙動などを検証していきたい。
