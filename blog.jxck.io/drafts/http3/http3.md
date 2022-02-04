@@ -280,11 +280,11 @@ http3.jxck.io IN HTTPS 1 . (alpn="h3" ipv4hint="160.16.91.134" ipv6hint="2001:e4
 
 筆者の場合は Sakura の DNS を利用していたが、ここではそもそも HTTPS Record が選択できなかったため、DNS を引っ越すところから始める必要があった。
 
-![Sakura DNS のレコードタイプ](./sakura-dns-supported-record.png)
+![Sakura DNS のレコードタイプ](sakura-dns-supported-record.png#858x756 "Sakura DNS Supported Record")
 
 そこで HTTPS Record Type に対応している Google Cloud DNS に引っ越すことにした。
 
-![Google Cloud DNS のレコードタイプ](./google-cloud-dns-supported-record.png)
+![Google Cloud DNS のレコードタイプ](google-cloud-dns-supported-record.png#502x616 "Google Cloud DNS Supported Record")
 
 
 ### Chrome での HTTP RR
@@ -305,11 +305,11 @@ http3.jxck.io IN HTTPS 1 . (alpn="h3" ipv4hint="160.16.91.134" ipv6hint="2001:e4
 
 これは、 *HTTP RR は DoH に対応している必要がある* というルールがあり、これが仕様なのか実装なのかは未確認だが、DoH に対応した DNS にクエリする場合のみ取得される。また、その設定も OS の DNS 設定を 1.1.1.1 などにするだけではなく、Firefox の設定画面から DoH を有効にする必要がある。DoH 有効時にプロバイダを選ばされ、ここでは Cloudflare を選択した。この時点で OS の DNS 設定は無視されているかもしれない。
 
-![Firefox の DoH 有効化](./enable-firefox-doh.png)
+![Firefox の DoH 有効化](enable-firefox-doh.png#1338x370 "Enable Firefox DoH")
 
 設定が成功していれば、Firefox の about:networking#dnslookuptool からクエリを試すと、HTTPS RR が引けることが確認できる。
 
-![Firefox での DNS Lookup テスト](./firefox-dns-lookup.png)
+![Firefox での DNS Lookup テスト](firefox-dns-lookup.png#1410x648 "Firefox DNS Lookup")
 
 
 ## 結果
