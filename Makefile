@@ -193,6 +193,9 @@ reload:
 	sudo $(DOTFILES)/local/h2o/bin/h2o -t -c h2o.conf | cat
 	sudo systemctl reload h2o
 
+test:
+	sudo $(DOTFILES)/local/h2o/bin/h2o -t -c h2o.conf | cat
+
 ## h2o local
 _start:
 	sudo $(DOTFILES)/local/h2o/bin/h2o -m daemon -c h2o.conf
