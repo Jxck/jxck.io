@@ -337,3 +337,41 @@ HTTP3 はずっと検証したかったがドキュメントが更新されな�
 そろそろ h2o をやめて Nginx に引っ越して、そちらで検証するかと考えていたところなので、Issue で教えてくれた [inductor](https://github.com/h2o/h2o/issues/2906#issuecomment-1026107729) には感謝しか無い。
 
 今後は HTTP RR Record 含め、より細かく挙動などを検証していきたい。
+
+
+## Resources
+
+- Spec
+  - RFC 8446 - The Transport Layer Security (TLS) Protocol Version 1.3
+    - https://datatracker.ietf.org/doc/html/rfc8446#section-9.1
+  - RFC 7838 - HTTP Alternative Services
+    - https://datatracker.ietf.org/doc/html/rfc7838
+  - draft-bellis-dnsop-http-record-00
+    - https://datatracker.ietf.org/doc/html/draft-bellis-dnsop-http-record-00
+- Explainer
+- Requirements Doc
+  - DNS HTTPS Records
+    - https://docs.google.com/document/d/1k461sRbddjDGj7Q8f-ZKHZvmB-ENUWSdX_3Fpp2dmXQ/edit
+- Mozilla Standard Position
+- Webkit Position
+- TAG Design Review
+- Intents
+  - Intent to Ship: HTTP->HTTPS redirect for HTTPS DNS records
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/_wp024Ixvfk/m/dJi0uyG0BAAJ
+- Chrome Platform Status
+  - QUIC (HTTP/3) - Chrome Platform Status
+    - https://chromestatus.com/feature/5338403830759424
+  - HTTP->HTTPS redirect for HTTPS DNS records - Chrome Platform Status
+    - https://chromestatus.com/feature/5485544526053376
+- WPT (Web Platform Test)
+- DEMO
+- Blog
+- Presentation
+- Issues
+  - How can we use HTTP/3? - Issue #2906 - h2o/h2o
+    - https://github.com/h2o/h2o/issues/2906
+- Other
+  - Security/Server Side TLS - MozillaWiki
+    - https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_.28recommended.29
+  - HTTP/3 Check
+    - https://http3check.net/
