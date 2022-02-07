@@ -180,7 +180,7 @@ HTTP3 は TLS/1.3 を前提としており、使用できる Cipher Suite が限
 - TLS_AES_256_GCM_SHA384 (SHOULD)
 - TLS_CHACHA20_POLY1305_SHA256 (SHOULD)
 
-しかし、この 3 つだけでは TLS/1.2 でつながらない場面が予想されるため、互換用の Suite も対応が必要だ。こうした場合は、Moziila の Wiki にある推奨設定が参考になる。
+しかし、この 3 つだけでは TLS/1.2 でつながらない場面が予想されるため、互換用の Suite も対応が必要だ。こうした場合は、Mozilla の Wiki にある推奨設定が参考になる。
 
 - Security/Server Side TLS - MozillaWiki
   - https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_.28recommended.29
