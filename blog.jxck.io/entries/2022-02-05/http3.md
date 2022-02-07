@@ -256,8 +256,8 @@ hosts:
 
 もし最初のリクエストから HTTP3 で接続させたければ、リクエストよりも先に HTTP3 がサポートされている旨を知る必要がある。そこで使用できるのが DNS の HTTPS RR(Resource Record)だ。
 
-- draft-bellis-dnsop-http-record-00
-  - https://datatracker.ietf.org/doc/html/draft-bellis-dnsop-http-record-00
+- draft-ietf-dnsop-http-record-00
+  - https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-svcb-https-08
 
 HTTPS の RR は全部解説すると長くなるので、HTTP3 に対応する部分にフォーカスすると以下のように `Alt-Svc` 相当の情報を提供すれば良い。
 
@@ -346,8 +346,8 @@ HTTP3 はずっと検証したかったがドキュメントが更新されな�
     - https://datatracker.ietf.org/doc/html/rfc8446#section-9.1
   - RFC 7838 - HTTP Alternative Services
     - https://datatracker.ietf.org/doc/html/rfc7838
-  - draft-bellis-dnsop-http-record-00
-    - https://datatracker.ietf.org/doc/html/draft-bellis-dnsop-http-record-00
+  - draft-ietf-dnsop-http-record-00
+    - https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-svcb-https-08
 - Explainer
 - Requirements Doc
   - DNS HTTPS Records
