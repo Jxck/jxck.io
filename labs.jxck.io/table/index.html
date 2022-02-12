@@ -6,60 +6,82 @@
 <meta http-equiv="origin-trial" content="">
 
 <style>
+* {
+  box-sizing: border-box;
+}
 
 :root {
-  --border-width: 2px;
-  --border: var(--border-width) solid #333;
-  --border-space: 0.5em;
-  --cell-padding: 0.5em;
-  --separator-row-height: calc(1em + 2 * var(--cell-padding));
+  --table-padding: 0.5em;
+  --line-char-width: 0.5em;
 }
 
 table {
-  border-spacing: var(--border-space);
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-table, tr, th, td {
-  box-sizing: border-box;
+/*
+ * 左右の罫線
+ */
+th::before,
+td::before {
+  content: "|";
+  font-weight: normal;
+}
+
+tr::after {
+  content: "|";
+  font-weight: normal;
+}
+
+
+/*
+ * tbodyの最初の行だけ左右の罫線を2本にする
+ */
+tbody tr:first-child td::before,
+tbody tr:first-child::after {
+  content: "|\A|";
+  white-space: pre;
+}
+
+/*
+ * theadとtbodyの間の仕切り
+ */
+th {
+  position: relative;
+}
+
+th::after {
+  content: "-----------------------------------------------------------------";
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  position: absolute;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+  top: 100%;
+}
+
+
+
+.align-center {
+  text-align: center;
+}
+
+th::after {
+  left: calc(var(--line-char-width) + var(--table-padding));
+  right: var(--line-char-width);
+}
+
+th::before,
+td::before {
+  margin-right: var(--table-padding);
 }
 
 th,
 td {
-  position: relative;
-  padding: var(--cell-padding);
-  vertical-align: middle;
-  border-inline-start: var(--border);
-}
-
-tr td:last-child,
-th:last-child {
-  border-inline-end: var(--border);
-}
-
-thead tr:last-child th:after {
-  position: absolute;
-  padding: var(--cell-padding) 0;
-  content: "";
-  top: calc(100% + var(--border-space));
-  left: calc(-1 * var(--border-width));
-  width: 100%;
-  height: var(--separator-row-height);
-  border-inline-start: var(--border);
-  font-family: monospace;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='1em' width='1em'><text x='0' y='10' font-size='1.4em' font-family='monospace'>-</text></svg>");
-  background-repeat: repeat no-repeat;
-  background-position-x: 0.5em;
-  background-position-y: center;
-}
-
-thead tr:last-child th:last-child:after {
-  border-inline-end: var(--border);
-}
-
-tbody:before {
-  display: block;
-  content: "";
-  height: calc(var(--separator-row-height) + var(--border-space));
+  text-align: left;
+  padding-right: var(--table-padding);
 }
 
 </style>
@@ -70,26 +92,52 @@ tbody:before {
 <table>
   <thead>
     <tr>
-      <th align=center>center</th>
-      <th align=left  >left</th>
-      <th align=right >right</th>
+      <th>column A</th>
+      <th>column B</th>
+      <th>colmun C</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td align=center>日本語</td>
-      <td align=left  >hello world</td>
-      <td align=right >こんにちは</td>
+      <td >日本語</td>
+      <td >こんにちは</td>
+      <td >BBBBBBBBBBBBBB</td>
     </tr>
     <tr>
-      <td align=center>日本語</td>
-      <td align=left  >hello world</td>
-      <td align=right >こんにちは</td>
+      <td >English</td>
+      <td >Hello</td>
+      <td >BBBBBBBBBBB</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br>
+
+
+<table>
+  <thead>
+    <tr>
+      <th class=center>center</th>
+      <th class=left  >left</th>
+      <th class=right >right</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class=center>日本語</td>
+      <td class=left  >hello world</td>
+      <td class=right >こんにちは</td>
     </tr>
     <tr>
-      <td align=center>日本語</td>
-      <td align=left  >hello world</td>
-      <td align=right >こんにちは</td>
+      <td class=center>日本語</td>
+      <td class=left  >hello world</td>
+      <td class=right >こんにちは</td>
+    </tr>
+    <tr>
+      <td class=center>日本語</td>
+      <td class=left  >hello world</td>
+      <td class=right >こんにちは</td>
     </tr>
   </tbody>
 </table>
