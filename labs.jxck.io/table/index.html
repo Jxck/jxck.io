@@ -6,16 +6,64 @@
 <meta http-equiv="origin-trial" content="">
 
 <style>
-table,
-td,
-th {
-  border: solid 1px #ccc;
+
+:root {
+  --border-width: 2px;
+  --border: var(--border-width) solid #333;
+  --border-space: 0.5em;
+  --cell-padding: 0.5em;
+  --separator-row-height: calc(1em + 2 * var(--cell-padding));
 }
 
 table {
-  width: 30vw;
+  border-spacing: var(--border-space);
 }
+
+table, tr, th, td {
+  box-sizing: border-box;
+}
+
+th,
+td {
+  position: relative;
+  padding: var(--cell-padding);
+  vertical-align: middle;
+  border-inline-start: var(--border);
+}
+
+tr td:last-child,
+th:last-child {
+  border-inline-end: var(--border);
+}
+
+thead tr:last-child th:after {
+  position: absolute;
+  padding: var(--cell-padding) 0;
+  content: "";
+  top: calc(100% + var(--border-space));
+  left: calc(-1 * var(--border-width));
+  width: 100%;
+  height: var(--separator-row-height);
+  border-inline-start: var(--border);
+  font-family: monospace;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='1em' width='1em'><text x='0' y='10' font-size='1.4em' font-family='monospace'>-</text></svg>");
+  background-repeat: repeat no-repeat;
+  background-position-x: 0.5em;
+  background-position-y: center;
+}
+
+thead tr:last-child th:last-child:after {
+  border-inline-end: var(--border);
+}
+
+tbody:before {
+  display: block;
+  content: "";
+  height: calc(var(--separator-row-height) + var(--border-space));
+}
+
 </style>
+
 
 <h1>Test DEMO</h1>
 
@@ -29,19 +77,19 @@ table {
   </thead>
   <tbody>
     <tr>
-      <td >aaa</td>
-      <td >bbb</td>
-      <td >ccc</td>
+      <td align=center>日本語</td>
+      <td align=left  >hello world</td>
+      <td align=right >こんにちは</td>
     </tr>
     <tr>
-      <td >aaa</td>
-      <td >bbb</td>
-      <td >ccc</td>
+      <td align=center>日本語</td>
+      <td align=left  >hello world</td>
+      <td align=right >こんにちは</td>
     </tr>
     <tr>
-      <td >aaa</td>
-      <td >bbb</td>
-      <td >ccc</td>
+      <td align=center>日本語</td>
+      <td align=left  >hello world</td>
+      <td align=right >こんにちは</td>
     </tr>
   </tbody>
 </table>
