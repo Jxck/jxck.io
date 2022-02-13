@@ -28,10 +28,28 @@
   text-align: center;
 }
 
+figure {
+  margin: 0;
+  padding: 0;
+  overflow-x: scroll;
+}
+
+figcaption {
+  text-align: center;
+  font-style: italic;
+}
+figcaption::before {
+  content: "[ "
+}
+figcaption::after {
+  content: " ]"
+}
+
 table {
   text-align: left;
   border-collapse: collapse;
   border-spacing: 0;
+  white-space: nowrap;
 }
 
 /** 左右の罫線 */
@@ -96,32 +114,35 @@ th.align-right::after {
 
 <h1>Test DEMO</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th class=align-center>center</th>
-      <th class=align-left  >left</th>
-      <th class=align-right >right</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class=align-center>日本語 english 日本語</td>
-      <td class=align-left  >hello world</td>
-      <td class=align-right >こんにちは</td>
-    </tr>
-    <tr>
-      <td class=align-center>日本語</td>
-      <td class=align-left  >1</td>
-      <td class=align-right>日本語 english 日本語</td>
-    </tr>
-    <tr>
-      <td class=align-center>日本語</td>
-      <td class=align-left>日本語 english 日本語</td>
-      <td class=align-right >1</td>
-    </tr>
-  </tbody>
-</table>
+<figure>
+  <figcaption>An elephant at sunset</figcaption>
+  <table>
+    <thead>
+      <tr>
+        <th class=align-center>center</th>
+        <th class=align-left  >left</th>
+        <th class=align-right >right</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=align-center>日本語 english 日本語 日本語 english 日本語日本語</td>
+        <td class=align-left  >hello world</td>
+        <td class=align-right >こんにちは</td>
+      </tr>
+      <tr>
+        <td class=align-center>日本語</td>
+        <td class=align-left  >1</td>
+        <td class=align-right>日本語 english 日本語</td>
+      </tr>
+      <tr>
+        <td class=align-center>日本語</td>
+        <td class=align-left>日本語 english 日本語</td>
+        <td class=align-right >1</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 
 <script>
   'use strict';
