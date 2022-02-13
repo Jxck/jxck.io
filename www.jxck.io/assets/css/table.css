@@ -1,68 +1,77 @@
-:root {
-  --border-width: 2px;
-  --border: var(--border-width) solid var(--table-border);
-  --border-space: 0.5em;
-  --cell-padding: 0.5em;
-  --separator-row-height: calc(1em + 2 * var(--cell-padding));
+/** table の align */
+.align-left {
+  text-align: left;
 }
 
-table {
-  border-spacing: var(--border-space);
-}
-
-table, tr, th, td {
-  box-sizing: border-box;
-}
-
-th,
-td {
-  position: relative;
-  padding: var(--cell-padding);
-  vertical-align: middle;
-  border-inline-start: var(--border);
-}
-
-tr td:last-child,
-th:last-child {
-  border-inline-end: var(--border);
-}
-
-thead tr:last-child th:after {
-  width: 100%;
-  position: absolute;
-  font-family: monospace;
-  content: "";
-  padding: var(--cell-padding) 0;
-  top: calc(100% + var(--border-space));
-  left: calc(-1 * var(--border-width));
-  height: var(--separator-row-height);
-  border-inline-start: var(--border);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='1em' width='1em'><text x='0' y='10' font-size='1.4em' font-family='monospace'>-</text></svg>");
-  background-repeat: repeat no-repeat;
-  background-position-x: 0.5em;
-  background-position-y: center;
-}
-
-thead tr:last-child th:last-child:after {
-  border-inline-end: var(--border);
-}
-
-tbody:before {
-  display: block;
-  content: "";
-  height: calc(var(--separator-row-height) + var(--border-space));
+.align-right {
+  text-align: right;
 }
 
 .align-center {
   text-align: center;
 }
 
-/** TODO: fixup html class */
-.align-left {
-  text-align: start;
+table {
+  font-family: var(--mono-font);
+  text-align: left;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-/** TODO: fixup html class */
-.align-right {
-  text-align: end;
+/** 左右の罫線 */
+th::before,
+td::before {
+  content: "|";
+  font-weight: normal;
+  margin-right: var(--table-padding);
+  float: left;
+}
+
+th,
+td {
+  padding-right: var(--table-padding);
+  clear: left;
+}
+
+tr::after {
+  content: "|";
+  font-weight: normal;
+}
+
+/** tbody の最初の行だけ左右の罫線を 2 本にする */
+th::before,
+thead tr:last-child::after {
+  content: "|\A|";
+  white-space: pre;
+}
+
+/** thead と tbody の間の仕切り */
+th {
+  position: relative;
+}
+
+/** 中央は : をつけない */
+th::after {
+  content: "------------------------------------------------------------------";
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  position: absolute;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+  top: 100%;
+  transform: translateY(-100%);
+  left: calc(var(--table-separator-width) + var(--table-padding));
+  right: var(--table-separator-width);
+}
+
+/** 左は : を頭に */
+th.align-left::after {
+  content: ":-----------------------------------------------------------------";
+}
+
+/** 右は RTL で */
+th.align-right::after {
+  content: ":-----------------------------------------------------------------";
+  direction: rtl;
 }
