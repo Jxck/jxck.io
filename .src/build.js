@@ -288,7 +288,7 @@ function customise(ast, base) {
           description = hsc(to_text(node.parent))
         }
       }
-      if (node.name === `table` && style_flag.table === false) {
+      if (node.name === `figure` && node.children.at(0).name === `table` && style_flag.table === false) {
         if (style_flag.table === false) {
           // 一度だけ table css を差し込む
           style_flag.table = true

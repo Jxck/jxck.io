@@ -687,7 +687,17 @@ export function decode(md) {
 
     thead.appendChild(tr)
     table.appendChild(thead)
-    ast.appendChild(table)
+
+
+    // wrap table with figure
+    // TODO: figcaption
+    const figure = node({
+      name: `figure`,
+      type: `block`,
+      level: 0
+    })
+    figure.appendChild(table)
+    ast.appendChild(figure)
     return parse(rest, thead)
   }
 
