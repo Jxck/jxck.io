@@ -23,14 +23,27 @@ th::before,
 td::before {
   content: "|";
   font-weight: normal;
-  margin-right: var(--table-padding);
+  margin-inline-end: var(--table-padding);
   float: left;
 }
 
 th,
 td {
-  padding-right: var(--table-padding);
+  padding-inline-end: var(--table-padding);
   clear: left;
+}
+
+
+/* Mobile では wrap させて余白調整 */
+@media screen and (max-device-width: 960px) {
+  table {
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+
+  th, td {
+    padding-inline-end: calc(var(--table-padding) * 2);
+  }
 }
 
 tr::after {
