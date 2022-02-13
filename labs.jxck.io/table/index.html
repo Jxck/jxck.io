@@ -11,22 +11,42 @@
 }
 
 :root {
-  --table-padding: 0.5em;
-  --line-char-width: 0.5em;
+  --table-padding: 0.7em;
+  --line-char-width: 0.5ch;
+}
+
+/** table の align */
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
 }
 
 table {
+  text-align: left;
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/*
- * 左右の罫線
- */
+/** 左右の罫線 */
 th::before,
 td::before {
   content: "|";
   font-weight: normal;
+  margin-right: var(--table-padding);
+  float: left;
+}
+
+th,
+td {
+  padding-right: var(--table-padding);
+  clear: left;
 }
 
 tr::after {
@@ -34,25 +54,21 @@ tr::after {
   font-weight: normal;
 }
 
-
-/*
- * tbodyの最初の行だけ左右の罫線を2本にする
- */
-tbody tr:first-child td::before,
-tbody tr:first-child::after {
+/** tbody の最初の行だけ左右の罫線を 2 本にする */
+th::before,
+thead tr:last-child::after {
   content: "|\A|";
   white-space: pre;
 }
 
-/*
- * theadとtbodyの間の仕切り
- */
+/** thead と tbody の間の仕切り */
 th {
   position: relative;
 }
 
+/** 中央は : をつけない */
 th::after {
-  content: "-----------------------------------------------------------------";
+  content: "------------------------------------------------------------------";
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
@@ -60,30 +76,21 @@ th::after {
   letter-spacing: 0.1em;
   font-weight: normal;
   top: 100%;
-}
-
-
-
-.align-center {
-  text-align: center;
-}
-
-th::after {
+  transform: translateY(-100%);
   left: calc(var(--line-char-width) + var(--table-padding));
   right: var(--line-char-width);
 }
 
-th::before,
-td::before {
-  margin-right: var(--table-padding);
+/** 左は : を頭に */
+th.align-left::after {
+  content: ":-----------------------------------------------------------------";
 }
 
-th,
-td {
-  text-align: left;
-  padding-right: var(--table-padding);
+/** 右は RTL で */
+th.align-right::after {
+  content: ":-----------------------------------------------------------------";
+  direction: rtl;
 }
-
 </style>
 
 
@@ -92,52 +99,26 @@ td {
 <table>
   <thead>
     <tr>
-      <th>column A</th>
-      <th>column B</th>
-      <th>colmun C</th>
+      <th class=align-center>center</th>
+      <th class=align-left  >left</th>
+      <th class=align-right >right</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td >日本語</td>
-      <td >こんにちは</td>
-      <td >BBBBBBBBBBBBBB</td>
+      <td class=align-center>日本語 english 日本語</td>
+      <td class=align-left  >hello world</td>
+      <td class=align-right >こんにちは</td>
     </tr>
     <tr>
-      <td >English</td>
-      <td >Hello</td>
-      <td >BBBBBBBBBBB</td>
-    </tr>
-  </tbody>
-</table>
-
-
-<br>
-
-
-<table>
-  <thead>
-    <tr>
-      <th class=center>center</th>
-      <th class=left  >left</th>
-      <th class=right >right</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class=center>日本語</td>
-      <td class=left  >hello world</td>
-      <td class=right >こんにちは</td>
+      <td class=align-center>日本語</td>
+      <td class=align-left  >1</td>
+      <td class=align-right>日本語 english 日本語</td>
     </tr>
     <tr>
-      <td class=center>日本語</td>
-      <td class=left  >hello world</td>
-      <td class=right >こんにちは</td>
-    </tr>
-    <tr>
-      <td class=center>日本語</td>
-      <td class=left  >hello world</td>
-      <td class=right >こんにちは</td>
+      <td class=align-center>日本語</td>
+      <td class=align-left>日本語 english 日本語</td>
+      <td class=align-right >1</td>
     </tr>
   </tbody>
 </table>
