@@ -35,15 +35,15 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Web Authentication(WebAuthN) API の策定と実装が進んでいる。これを用いると、FIDO(Fast IDentity Online) U2F(Universal Second Factor)認証が可能になる。今回は YubiKey 認証の実装を通...">
+  <meta name=description         content="Web Authentication(WebAuthN) API の策定と実装が進んでいる。これを用いると、 FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。今回は YubiKey 認証の実装...">
   <meta name=keywords            content="fido-u2f,web authentication api">
   <meta name=theme-color         content=#000000>
 
   <meta property=og:type         content=article>
   <meta property=og:url          content=https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html>
-  <meta property=og:title        content="Web Authentication API で FIDO U2F(YubiKey)認証 | blog.jxck.io">
+  <meta property=og:title        content="Web Authentication API で FIDO U2F(YubiKey) 認証 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Web Authentication(WebAuthN) API の策定と実装が進んでいる。これを用いると、FIDO(Fast IDentity Online) U2F(Universal Second Factor)認証が可能になる。今回は YubiKey 認証の実装を通...">
+  <meta property=og:description  content="Web Authentication(WebAuthN) API の策定と実装が進んでいる。これを用いると、 FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。今回は YubiKey 認証の実装...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -56,13 +56,13 @@
       "@type":"WebPage",
       "@id":"https://blog.jxck.io"
     },
-    "headline": "Web Authentication API で FIDO U2F(YubiKey)認証 | blog.jxck.io",
+    "headline": "Web Authentication API で FIDO U2F(YubiKey) 認証 | blog.jxck.io",
     "image": [
       "https://www.jxck.io/assets/img/jxck.png",
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-05-15T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,12 +78,12 @@
         "width": 60
       }
     },
-    "description": "Web Authentication(WebAuthN) API の策定と実装が進んでいる。これを用いると、FIDO(Fast IDentity Online) U2F(Universal Second Factor)認証が可能になる。今回は YubiKey 認証の実装を通..."
+    "description": "Web Authentication(WebAuthN) API の策定と実装が進んでいる。これを用いると、 FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。今回は YubiKey 認証の実装..."
   }
   </script>
 
-  <title>Web Authentication API で FIDO U2F(YubiKey)認証 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <title>Web Authentication API で FIDO U2F(YubiKey) 認証 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-05-15>2018-05-15</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -130,17 +130,17 @@
                 <li><a href=#webauthentication-api>## WebAuthentication API</a>
                 <li><a href=#公開鍵暗号方式>## 公開鍵暗号方式</a>
                 <li><a href=#registration>## Registration</a>
-                <li><a href=#1.サービスに対して-challenge-乱数の発行を要求する>### 1.サービスに対して challenge (乱数)の発行を要求する</a>
-                <li><a href=#2.この-challenge-を元に-navigator.credentials.create-を呼ぶ>### 2.この challenge を元に <code translate=no>navigator.credentials.create()</code> を呼ぶ</a>
-                <li><a href=#3.サービスは中身を確認しユーザに紐付けて保存する>### 3.サービスは中身を確認し、ユーザに紐付けて保存する。</a>
+                <li><a href=#1.-サービスに対して-challenge-乱数の発行を要求する>### 1. サービスに対して challenge (乱数)の発行を要求する</a>
+                <li><a href=#2.-この-challenge-を元に-navigator.credentials.create-を呼ぶ>### 2. この challenge を元に <code translate=no>navigator.credentials.create()</code> を呼ぶ</a>
+                <li><a href=#3.-サービスは中身を確認しユーザに紐付けて保存する>### 3. サービスは中身を確認し、ユーザに紐付けて保存する。</a>
                 <li><a href=#fmt>#### fmt</a>
                 <li><a href=#authdata>#### authData</a>
                 <li><a href=#attstmt>### attStmt</a>
                 <li><a href=#verification-procedure>### Verification Procedure</a>
                 <li><a href=#authentication>## Authentication</a>
-                <li><a href=#1.サービスに対して-challenge-乱数の発行を要求する_1>### 1.サービスに対して challenge (乱数)の発行を要求する</a>
-                <li><a href=#2.この-challenge-を元に-navigator.credentials.get-を呼ぶ>### 2.この challenge を元に <code translate=no>navigator.credentials.get()</code> を呼ぶ</a>
-                <li><a href=#3.サービスは中身を確認しユーザを認証する>### 3.サービスは中身を確認し、ユーザを認証する</a>
+                <li><a href=#1.-サービスに対して-challenge-乱数の発行を要求する_1>### 1. サービスに対して challenge (乱数)の発行を要求する</a>
+                <li><a href=#2.-この-challenge-を元に-navigator.credentials.get-を呼ぶ>### 2. この challenge を元に <code translate=no>navigator.credentials.get()</code> を呼ぶ</a>
+                <li><a href=#3.-サービスは中身を確認しユーザを認証する>### 3. サービスは中身を確認し、ユーザを認証する</a>
                 <li><a href=#outro>## Outro</a>
               </ul>
             </nav>
@@ -151,11 +151,11 @@
 
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?210427_184241>
     <article>
-      <h1><a href="">Web Authentication API で FIDO U2F(YubiKey)認証</a></h1>
+      <h1><a href="">Web Authentication API で FIDO U2F(YubiKey) 認証</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Web Authentication(WebAuthN) API の策定と実装が進んでいる。
-        <p>これを用いると、FIDO(Fast IDentity Online) U2F(Universal Second Factor)認証が可能になる。
+        <p>これを用いると、 FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。
         <p>今回は YubiKey 認証の実装を通じて、ブラウザ API の呼び出しと、サーバ側で必要な処理について解説する。
         <ul>
           <li><a href="https://w3c.github.io/webauthn/">https://w3c.github.io/webauthn/</a>
@@ -178,24 +178,24 @@
       </section>
       <section>
         <h2 id="webauthentication-api"><a href="#webauthentication-api">WebAuthentication API</a></h2>
-        <p>WebAuthentication API は、Credential Management API の拡張になっている。
+        <p>WebAuthentication API は、 Credential Management API の拡張になっている。
         <ul>
           <li><a href="https://w3c.github.io/webappsec-credential-management/">Credential Management Level 1</a>
           <li><a href="https://w3c.github.io/webauthn/">Web Authentication: An API for accessing Public Key Credentials - Level 1</a>
         </ul>
-        <p>JS API としては、Credential Management API をそのまま使う。
-        <p>しかし、ユーザが入力する PasswordCredential ではなく、FIDO U2F で生成する PublicKeyCredential を使う。
-        <p>従って、基本的には YubiKey に限らず、FIDO U2F 対応の Authenticator であれば同じコードで動かすことができる。
+        <p>JS API としては、 Credential Management API をそのまま使う。
+        <p>しかし、ユーザが入力する PasswordCredential ではなく、 FIDO U2F で生成する PublicKeyCredential を使う。
+        <p>従って、基本的には YubiKey に限らず、 FIDO U2F 対応の Authenticator であれば同じコードで動かすことができる。
         <p>この時ブラウザから Authenticator を起動する API と、その結果をサーバで処理する方法がこの仕様に定義されている。
         <p>サーバ/ブラウザ間でやり取りするバイナリは、なんらかの方法でシリアライズして送る。
-        <p>今回は、Base64URL と JSON を用いるが、この範囲であれば別のフォーマットでも良さそうに思う。
-        <p>また、Authenticator が生成する情報は一部 <a href="https://tools.ietf.org/html/rfc7049">CBOR</a> が利用されているが、その解説は省略する。
+        <p>今回は、 Base64URL と JSON を用いるが、この範囲であれば別のフォーマットでも良さそうに思う。
+        <p>また、 Authenticator が生成する情報は一部 <a href="https://tools.ietf.org/html/rfc7049">CBOR</a> が利用されているが、その解説は省略する。
         <p>実際に仕様に基づき、コードの流れを解説する。サーバも JS に揃えるため Node で実装している。
       </section>
       <section>
         <h2 id="公開鍵暗号方式"><a href="#公開鍵暗号方式">公開鍵暗号方式</a></h2>
         <p>先に、ざっくりとした流れを解説する。
-        <p>ユーザはまず Registration フェーズとして、YubiKey を用いて公開/秘密鍵のペアを生成しサービスに登録する。
+        <p>ユーザはまず Registration フェーズとして、 YubiKey を用いて公開/秘密鍵のペアを生成しサービスに登録する。
         <p>ログインは Authentication フェーズとして、サービスが生成した乱数(challenge)を秘密鍵で署名してサービスに送り返す。
         <p>この署名をサービス側に保存した公開鍵で検証できれば、サービスはユーザを認証することができる。
         <p>以降 Registration/Authentication フェーズ 2 つに分けて解説する。
@@ -203,7 +203,7 @@
       <section>
         <h2 id="registration"><a href="#registration">Registration</a></h2>
         <section>
-          <h3 id="1.サービスに対して-challenge-乱数の発行を要求する"><a href="#1.サービスに対して-challenge-乱数の発行を要求する">1.サービスに対して challenge (乱数)の発行を要求する</a></h3>
+          <h3 id="1.-サービスに対して-challenge-乱数の発行を要求する"><a href="#1.-サービスに対して-challenge-乱数の発行を要求する">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
           <p>クライアントはサーバに username を送り、登録に必要な以下のような情報を要求する。
           <p>(ここではそのまま <code translate=no>navigatore.credentials.create()</code> に渡せる形でサーバから返している)
           <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
@@ -230,7 +230,7 @@ const clientCredentialOption = {
 req.session.username  = username // CAUTION!! this is only a sample</code></pre>
         </section>
         <section>
-          <h3 id="2.この-challenge-を元に-navigator.credentials.create-を呼ぶ"><a href="#2.この-challenge-を元に-navigator.credentials.create-を呼ぶ">2.この challenge を元に <code translate=no>navigator.credentials.create()</code> を呼ぶ</a></h3>
+          <h3 id="2.-この-challenge-を元に-navigator.credentials.create-を呼ぶ"><a href="#2.-この-challenge-を元に-navigator.credentials.create-を呼ぶ">2. この challenge を元に <code translate=no>navigator.credentials.create()</code> を呼ぶ</a></h3>
           <p>ブラウザは、取得した値を元に <code translate=no>create()</code> を呼びクレデンシャルを生成する。
           <p>YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
           <pre class=js><code translate=no>// create() PublicKeyCredential
@@ -239,17 +239,17 @@ const credential = await navigator.credentials.create({publicKey: option})
 const {id, rawID, response, type} = credential // type = &quot;public-key&quot;
 const {attestationObject, clientDataJSON} = response</code></pre>
           <p>type は <code translate=no>&quot;public-key&quot;</code> になっており、生成した鍵ペアの公開鍵が入っていることがわかる。
-          <p>response の中がそうした値になっており、attestationObject は CBOR でエンコードされている。
+          <p>response の中がそうした値になっており、 attestationObject は CBOR でエンコードされている。
           <p>中身はサーバで解読するため、そちらで解説する。
           <p>基本的にはこれをそのままシリアライズしサーバに送れば良い。
         </section>
         <section>
-          <h3 id="3.サービスは中身を確認しユーザに紐付けて保存する"><a href="#3.サービスは中身を確認しユーザに紐付けて保存する">3.サービスは中身を確認し、ユーザに紐付けて保存する。</a></h3>
+          <h3 id="3.-サービスは中身を確認しユーザに紐付けて保存する"><a href="#3.-サービスは中身を確認しユーザに紐付けて保存する">3. サービスは中身を確認し、ユーザに紐付けて保存する。</a></h3>
           <p>送られてきた clientDataJSON を JSON パースする。
           <p>以下を確認する
           <ul>
             <li>clientData.type が &quot;webauthn.create&quot; である
-            <li>clientData.challenge(base64)が最初に送った(session に保存した) challenge である
+            <li>clientData.challenge(base64) が最初に送った(session に保存した) challenge である
             <li>clientData.origin がサービスの ORIGIN と一致する
             <li>clientData.tokenBinding が正しいこと(今回は使ってない)
           </ul>
@@ -260,7 +260,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
   authData, // authenticator data
   attStmt,  // attestation statement
 } = attestationObject</code></pre>
-          <p>ここまで確認したら、clientDataJSON (バイナリ)を元に SHA-256 を取得しておく。
+          <p>ここまで確認したら、 clientDataJSON (バイナリ) を元に SHA-256 を取得しておく。
           <pre class=js><code translate=no>const clientDataHash = crypto.createHash(&quot;sha256&quot;).update(clientDataJSON).digest()</code></pre>
           <p>これはあとで署名の検証に使用する。
           <section>
@@ -296,7 +296,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           </section>
           <section>
             <h4 id="authdata"><a href="#authdata">authData</a></h4>
-            <p>flag の AttestedCredentialData が 1 なので、sigCount より後ろを AttestedCredentialData としてパースする。
+            <p>flag の AttestedCredentialData が 1 なので、 sigCount より後ろを AttestedCredentialData としてパースする。
             <ul>
               <li>aaguid (16byte)
               <li>credentialIdLength (2byte)
@@ -313,7 +313,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
  -2: x,      // x-coordinate as byte string 32 bytes in length
  -3: y,      // y-coordinate as byte string 32 bytes in length
 }</code></pre>
-            <p>これにより、YubiKey から受け取った PublicKey が、EC2 で P-256 を使い認証は ES256 (ECDSA with SHA-256)であることがわかる。
+            <p>これにより、 YubiKey から受け取った PublicKey が、 EC2 で P-256 を使い認証は ES256 (ECDSA with SHA-256) であることがわかる。
             <p>ExtensionDataIncluded は今回 0 なので拡張は無し。
           </section>
         </section>
@@ -337,10 +337,10 @@ const {attestationObject, clientDataJSON} = response</code></pre>
             <li><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation">https://w3c.github.io/webauthn/#fido-u2f-attestation</a>
           </ul>
           <pre class=js><code translate=no>PublicKeyU2F = 0x04 || x || y</code></pre>
-          <p>これと、rpidHash, clientDataHash, credentialId を連結し、先頭に 0x00 を加えると、署名対象のデータが得られる。
+          <p>これと、 rpidHash, clientDataHash, credentialId を連結し、先頭に 0x00 を加えると、署名対象のデータが得られる。
           <pre class=js><code translate=no>verificationData = 0x00 || rpIdHash || clientDataHash || credentialId || publicKeyU2F</code></pre>
           <p>これを x5c から取り出した attCert で署名した結果が sig と同じになるかを確認すれば良い。
-          <p>x5c は ANSI X9.62 Public Key Format というバイナリ形式で、Node では PEM でないと扱いにくい。
+          <p>x5c は ANSI X9.62 Public Key Format というバイナリ形式で、 Node では PEM でないと扱いにくい。
           <p>これは base64 でシリアライズし 64 文字で改行し、ヘッダとフッタをつければ一応 PEM になる。
           <pre class=js><code translate=no>const certificatePublicKeyPEM = [
   &quot;-----BEGIN CERTIFICATE-----&quot;,
@@ -378,7 +378,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
       <section>
         <h2 id="authentication"><a href="#authentication">Authentication</a></h2>
         <section>
-          <h3 id="1.サービスに対して-challenge-乱数の発行を要求する_1"><a href="#1.サービスに対して-challenge-乱数の発行を要求する_1">1.サービスに対して challenge (乱数)の発行を要求する</a></h3>
+          <h3 id="1.-サービスに対して-challenge-乱数の発行を要求する_1"><a href="#1.-サービスに対して-challenge-乱数の発行を要求する_1">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
           <p>registration 同様、サーバに username を送り、認証に必要な以下の情報を要求する。
           <p>(ここではそのまま <code translate=no>navigatore.credentials.get()</code> に渡せる形でサーバから返している)
           <pre class=js><code translate=no>{
@@ -393,7 +393,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
 req.session.username  = username // CAUTION!! this is only a sample</code></pre>
         </section>
         <section>
-          <h3 id="2.この-challenge-を元に-navigator.credentials.get-を呼ぶ"><a href="#2.この-challenge-を元に-navigator.credentials.get-を呼ぶ">2.この challenge を元に <code translate=no>navigator.credentials.get()</code> を呼ぶ</a></h3>
+          <h3 id="2.-この-challenge-を元に-navigator.credentials.get-を呼ぶ"><a href="#2.-この-challenge-を元に-navigator.credentials.get-を呼ぶ">2. この challenge を元に <code translate=no>navigator.credentials.get()</code> を呼ぶ</a></h3>
           <p>ブラウザは、取得した値を元に <code translate=no>get()</code> を呼びクレデンシャルを生成する。
           <p>YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
           <pre class=js><code translate=no>// get() PublicKeyCredential
@@ -401,16 +401,16 @@ const credential = await navigator.credentials.get({publicKey: option})
 
 const { id, rawId, response } = credential // id は rawId の base64url
 const { type, authenticatorData, signature, userHandle, clientDataJSON } // type = &quot;public-key&quot;</code></pre>
-          <p>なお、credential.rawId は credential.id の base64url なので、id の方だけそのまま送れば良い。
+          <p>なお、 credential.rawId は credential.id の base64url なので、 id の方だけそのまま送れば良い。
         </section>
         <section>
-          <h3 id="3.サービスは中身を確認しユーザを認証する"><a href="#3.サービスは中身を確認しユーザを認証する">3.サービスは中身を確認し、ユーザを認証する</a></h3>
+          <h3 id="3.-サービスは中身を確認しユーザを認証する"><a href="#3.-サービスは中身を確認しユーザを認証する">3. サービスは中身を確認し、ユーザを認証する</a></h3>
           <p>まず credential.id で保存された credential がユーザに紐付いて存在するかを確認する。
           <p>userHandle は今回使わないので無視する。
           <p>次に clientDataJSON を JSON としてパースし、以下を確認する。
           <ul>
             <li>clientData.type が <code translate=no>webauthn.get</code> である
-            <li>clientData.challenge(base64)が最初に送った(session に保存した) challenge である
+            <li>clientData.challenge(base64) が最初に送った(session に保存した) challenge である
             <li>clientData.origin がサービスの ORIGIN と一致する
             <li>clientData.tokenBinding が正しい(今回は使ってない)
           </ul>
@@ -434,12 +434,12 @@ const { type, authenticatorData, signature, userHandle, clientDataJSON } // type
             <li>attestedCredentialData (var)
             <li>extensions (var)
           </ul>
-          <p>rpidHash が、Registration 時にサーバの提示した RPID の SHA-256 と同じことを確認する。
-          <p>flag も同じだが、今回は AttestedCredentialData も無いため、UserPresent 以外 0 となる。
+          <p>rpidHash が、 Registration 時にサーバの提示した RPID の SHA-256 と同じことを確認する。
+          <p>flag も同じだが、今回は AttestedCredentialData も無いため、 UserPresent 以外 0 となる。
           <p>次に ClientDataJSON の SHA-256 ハッシュを取得する。
           <pre class=js><code translate=no>const hash = crypto.createHash(&quot;sha256&quot;).update(clientDataJSON).digest()</code></pre>
-          <p>これを、authenticatorData と連結したものを署名したものが signature と一致するかを確認すれば良い。
-          <p>ここで使う PublicKey は、Registration でユーザに紐付けて保存した PublicKey だが、これを PEM にする場合は少しいじる必要が有る。
+          <p>これを、 authenticatorData と連結したものを署名したものが signature と一致するかを確認すれば良い。
+          <p>ここで使う PublicKey は、 Registration でユーザに紐付けて保存した PublicKey だが、これを PEM にする場合は少しいじる必要が有る。
           <p>結論から言うと、以下のようなメタデータを付与する必要があり、それ以外は先の方法と同じく base64 を 64bit ごとに折り返せば良い。
           <p>(ここが一番ハマった)
           <pre class=js><code translate=no>// https://github.com/fido-alliance/webauthn-demo/blob/master/utils.js
@@ -469,7 +469,7 @@ const publickKeyPEM = Buffer.concat([
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>WebAuthentication API により、FIDO U2F を用いた認証が Web 標準でも可能になった。
+        <p>WebAuthentication API により、 FIDO U2F を用いた認証が Web 標準でも可能になった。
         <p>色々と細かい処理はあれど、基本の流れは鍵ペアの生成と交換、その検証からなる流れということがわかる。
         <p>実際にサービスに導入する際には、ライブラリやサービスに頼るべきだと思うが、今回のようにラフな実装で仕様を眺めると、理解の助けになるだろう。
       </section>

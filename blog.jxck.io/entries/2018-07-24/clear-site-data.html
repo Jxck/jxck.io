@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-07-24T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -83,7 +83,7 @@
   </script>
 
   <title>Clear-Site-Data Header | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-07-24>2018-07-24</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -166,13 +166,13 @@
           <li>cache api
         </ul>
         <p>これらを、ログアウト処理の中で各 API を適切に呼び出し、全て確実に削除するのは簡単ではない。
-        <p>また、httponly の Cookie や browser cache などは、JS からの削除もできない。
+        <p>また、 httponly の Cookie や browser cache などは、 JS からの削除もできない。
         <p>SPA のように実装されている場合は、その状態を含めて初期化しないと不整合が発生する場合もある。
-        <p>こうした問題に対して策定されたのが、Clear-Site-Data Header である。
+        <p>こうした問題に対して策定されたのが、 Clear-Site-Data Header である。
         <ul>
           <li><a href="https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data">https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data</a>
         </ul>
-        <p>ブラウザにあるデータ削除機能が、API として出たというイメージだ。
+        <p>ブラウザにあるデータ削除機能が、 API として出たというイメージだ。
         <p>ページを遷移しなくても、 <code translate=no>fetch()</code> などで受信したレスポンスヘッダに含まれれば、そのコンテキストで削除が実施される。
       </section>
       <section>
@@ -194,12 +194,12 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
         <section>
           <h3 id="cookies"><a href="#cookies">cookies</a></h3>
           <p>httponly, secure の有無に関わらず、全ての Cookie が消える。
-          <p>(<code translate=no>document.cookie</code> や <a href="https://wicg.github.io/cookie-store/explainer.html">Cookie Store API</a> も全て同じ Cookie を見ているため、storage ではなく cookie である)
-          <p>また Basic Auth の Authorization Header や TLS の Channel ID、Token Binding なども対象になっている。
+          <p>(<code translate=no>document.cookie</code> や <a href="https://wicg.github.io/cookie-store/explainer.html">Cookie Store API</a> も全て同じ Cookie を見ているため、 storage ではなく cookie である)
+          <p>また Basic Auth の Authorization Header や TLS の Channel ID 、 Token Binding なども対象になっている。
         </section>
         <section>
           <h3 id="cache"><a href="#cache">cache</a></h3>
-          <p>ブラウザキャッシュのみであり、Cache API は storage 扱いとなる。
+          <p>ブラウザキャッシュのみであり、 Cache API は storage 扱いとなる。
         </section>
         <section>
           <h3 id="storage"><a href="#storage">storage</a></h3>

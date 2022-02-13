@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-07-21T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -83,7 +83,7 @@
   </script>
 
   <title>Fetch での Stream を用いたプログレス取得とキャンセル | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-07-21>2016-07-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -171,7 +171,7 @@
         </ul>
         <p>仕様が出たばかりの頃の解説は以前のブログに書いた、本エントリはここからの差分を記す。
         <ul>
-          <li><a href="https://jxck.hatenablog.com/entry/whatwg-fetch">Fetch API 解説、または Web において &quot;Fetch する &quot; とは何か?</a>
+          <li><a href="https://jxck.hatenablog.com/entry/whatwg-fetch">Fetch API 解説、または Web において &quot;Fetch する&quot; とは何か?</a>
         </ul>
       </section>
       <section>
@@ -193,7 +193,7 @@
         <p><code translate=no>res.text()</code> が body を resolve する Promsie を返していることが分かる。
         <p>この API では、以下の二つができない。
         <ul>
-          <li><code translate=no>foo.txt</code> が大きかった場合、fetch を中断(キャンセル)する。
+          <li><code translate=no>foo.txt</code> が大きかった場合、 fetch を中断(キャンセル)する。
           <li><code translate=no>foo.txt</code> が大きかった場合、ダウンロードの進捗(プログレス)を得る。
         </ul>
         <p>現在の Promise の仕様では、非同期処理に対してあくまで <em>fullfilled(完了した)</em> か <em>rejected(失敗した)</em> の二つの状態を返すことしかできない。
@@ -201,11 +201,11 @@
       </section>
       <section>
         <h2 id="stream-api"><a href="#stream-api">Stream API</a></h2>
-        <p>現在は <code translate=no>fetch()</code> が返す Response が、WHATWG の Stream を返すように変更されている。
+        <p>現在は <code translate=no>fetch()</code> が返す Response が、 WHATWG の Stream を返すように変更されている。
         <ul>
           <li><a href="https://streams.spec.whatwg.org/">Streams Spec</a>
         </ul>
-        <p>Stream は、I/O 処理を chunk ごとに返し、非同期処理の <em>途中</em> に処理を挟むための仕様である。
+        <p>Stream は、 I/O 処理を chunk ごとに返し、非同期処理の <em>途中</em> に処理を挟むための仕様である。
         <p>先の例を Stream で取得する場合、以下のように書くことができる。
         <pre class=js><code translate=no>fetch(&apos;foo.txt&apos;).then((res) =&gt; {
   // foo.txt の全体サイズ
@@ -229,7 +229,7 @@
     return reader.read().then(processResult);
   });
 });</code></pre>
-        <p>コードを見れば分かるように、WHATWG の Stream は Chunk を resolve する Promise を返す。
+        <p>コードを見れば分かるように、 WHATWG の Stream は Chunk を resolve する Promise を返す。
         <p>従って EventEmitter ベースである Node.js の Stream とは少々使い勝手が異なる。
       </section>
       <section>
@@ -240,9 +240,9 @@
         <pre class=js><code translate=no>fetch(&apos;foo.txt&apos;).then((res) =&gt; {
   const total = res.headers.get(&apos;content-length&apos;);
 });</code></pre>
-        <p>(クロスオリジンのリソースを CORS を使わずに取得する <code translate=no>mode: no-cors</code> の場合は、Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、body も取れないためプログレスを出す用途はないだろう)
+        <p>(クロスオリジンのリソースを CORS を使わずに取得する <code translate=no>mode: no-cors</code> の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、 body も取れないためプログレスを出す用途はないだろう)
         <p>これを用いれば、以下のように Progress を得ることができる。
-        <p>(進捗率の数値を使えば、CSS でプログレスバーを表示することも可能だろう)
+        <p>(進捗率の数値を使えば、 CSS でプログレスバーを表示することも可能だろう)
         <pre class=js><code translate=no>fetch(&apos;foo.txt&apos;).then((res) =&gt; {
   // foo.txt の全体サイズ
   const total = res.headers.get(&apos;content-length&apos;);
@@ -272,7 +272,7 @@
       </section>
       <section>
         <h2 id="fetch-の-cancel"><a href="#fetch-の-cancel">Fetch の cancel</a></h2>
-        <p>Stream、もしくはそこから取得した Reader はキャンセルすることができる。
+        <p>Stream 、もしくはそこから取得した Reader はキャンセルすることができる。
         <ul>
           <li><code translate=no>res.body.cancel()</code>
           <li><code translate=no>reader.cancel()</code>
@@ -306,10 +306,10 @@
       </section>
       <section>
         <h2 id="promise-の-cancel"><a href="#promise-の-cancel">Promise の cancel</a></h2>
-        <p>現在の仕様では、Stream を経由せず Promise のレベルで fetch をキャンセルすることはできない。
+        <p>現在の仕様では、 Stream を経由せず Promise のレベルで fetch をキャンセルすることはできない。
         <p>これは Promsie そのものにキャンセルという概念が含まれていないためである。
-        <p>もし Promise 自体にキャンセルの概念が入れば、Stream の取得は不要となる。
-        <p>fetch を含めて Promise を返す API は増加しつつあるため、Cancelable Promise の議論は現在も続いている。
+        <p>もし Promise 自体にキャンセルの概念が入れば、 Stream の取得は不要となる。
+        <p>fetch を含めて Promise を返す API は増加しつつあるため、 Cancelable Promise の議論は現在も続いている。
         <ul>
           <li><a href="https://docs.google.com/presentation/d/1V4vmC54gJkwAss1nfEt9ywc-QOVOfleRxD5qtpMpc8U/preview?slide=id.gc6f9e470d_0_0">cancelable promises slide</a>
           <li><a href="https://domenic.github.io/cancelable-promise/">cancelable promises draft</a> (現在は取り下げられている)

@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Preload を指定する &lt;link rel=preload&gt; の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕様...">
+  <meta name=description         content="Preload を指定する &lt;link rel=preload&gt; の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕...">
   <meta name=keywords            content="preload,performance">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-03-04/preload.html>
   <meta property=og:title        content="Preload を用いたリソースプリローディングの最適化 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Preload を指定する &lt;link rel=preload&gt; の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕様...">
+  <meta property=og:description  content="Preload を指定する &lt;link rel=preload&gt; の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-03-04T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,12 +78,12 @@
         "width": 60
       }
     },
-    "description": "Preload を指定する &lt;link rel=preload&gt; の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕様..."
+    "description": "Preload を指定する &lt;link rel=preload&gt; の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕..."
   }
   </script>
 
   <title>Preload を用いたリソースプリローディングの最適化 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-04>2016-03-04</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -152,7 +152,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Preload を指定する <code translate=no>&lt;link rel=preload&gt;</code> の仕様が公開されており、現在 Chrome Canary に実装されている。
-        <p>この仕様のモチベーションについて、Chrome 開発者の Yoav Weiss 氏のブログも公開された。
+        <p>この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。
         <p>今回は、この仕様の特徴と用途を解説し、本サイトへの適用について検討する。
         <ul>
           <li><a href="https://w3c.github.io/preload/">W3C Preload Spec</a>
@@ -165,14 +165,14 @@
         <p>Preload はリソースのローディングを最適化することを目的に策定された仕様である。
         <p>link 属性ファミリーで、最適化に用いられる値としては、以前書いた <a href="https://blog.jxck.io/entries/2016-02-11/resource-hints.html">Resouce Hints 系</a> と近いが、仕様としては別になっている。
         <p>また、既に HTTP2 においてこの仕様の一部が使われており、最適化の意味合いとしてはかかわり合う部分もある。
-        <p>現在 Chrome Canary にのみ実装されており、4 月には Chrome Stable にも入る予定である。他のブラウザの実装も進みつつある模様。
+        <p>現在 Chrome Canary にのみ実装されており、 4 月には Chrome Stable にも入る予定である。他のブラウザの実装も進みつつある模様。
       </section>
       <section>
         <h2 id="preload-の特徴"><a href="#preload-の特徴">Preload の特徴</a></h2>
-        <p>Resource Hints の例えば Prefetch との違いは、Prefetch がナビゲーションの前に動作するのに対して、Prelaod はナビゲーションが行われた後に動作することが上げられる。
+        <p>Resource Hints の例えば Prefetch との違いは、 Prefetch がナビゲーションの前に動作するのに対して、 Prelaod はナビゲーションが行われた後に動作することが上げられる。
         <p>Prefetch は、画面を遷移する前に、次の遷移先で必要となるリソースについて、投機的な取得を指示していた。
         <p>一方 Preload は現在表示しようとしているページに遷移した後、そのページ内でのリソース取得を最適化する。(Chrome が独自に実装している Subresouce というのもあった、それに近い)
-        <p>また、Preload は以下のような特徴を持ち、今までできなかったことができるようになる。
+        <p>また、 Preload は以下のような特徴を持ち、今までできなかったことができるようになる。
         <ul>
           <li>属性の指定によっていくつかのコントロールが可能である。
           <li>Content-Security-Policy を満たしているかを確認できる。
@@ -183,10 +183,10 @@
       </section>
       <section>
         <h2 id="クリティカルリソースの先行取得"><a href="#クリティカルリソースの先行取得">クリティカルリソースの先行取得</a></h2>
-        <p>ナビゲーション終了後、レスポンスを取得したブラウザは、HTML のパースを開始し、必要なサブリソースの取得(<em>Preload</em>)を開始する。
+        <p>ナビゲーション終了後、レスポンスを取得したブラウザは、 HTML のパースを開始し、必要なサブリソースの取得(<em>Preload</em>)を開始する。
         <p>しかし、必要なリソースが全て HTML に <code translate=no>&lt;img&gt;</code> や <code translate=no>&lt;script&gt;</code>, <code translate=no>&lt;link&gt;</code> などで書かれているとは限らず、取得した CSS や JS に記述されている場合がある。
-        <p>さらに CSS で指定されていて、Preloader がそれを見つけていたとしても、実際にそのセレクタが使われるまでは、本当にそのイメージが必要かを判定することはできない。
-        <p>例えば、Above the Fold に表示される Hero Image が CSS の <code translate=no>div.hero { background-image: url(&quot;hero-image.png&quot;) }</code> で指定されていた場合は、実際の取得は HTML で <code translate=no>&lt;div class=hero&gt;&lt;/div&gt;</code> が出現してからになる。
+        <p>さらに CSS で指定されていて、 Preloader がそれを見つけていたとしても、実際にそのセレクタが使われるまでは、本当にそのイメージが必要かを判定することはできない。
+        <p>例えば、 Above the Fold に表示される Hero Image が CSS の <code translate=no>div.hero { background-image: url(&quot;hero-image.png&quot;) }</code> で指定されていた場合は、実際の取得は HTML で <code translate=no>&lt;div class=hero&gt;&lt;/div&gt;</code> が出現してからになる。
         <p>もっと酷い例として、後から取得された Web Font でテキストが全て置き換わった場合、これをなるべく早く(かつ高い優先度で)取得したいと思うのが自然だろう。
         <p>重要なリソースがサブリソースに隠されている場合、どうしても取得までにラグが発生してしまい、画像を反映するには再レイアウトが発生し UX を損ねる場合がある。
         <p><code translate=no>&lt;link rel=preload&gt;</code> を記述すれば、こうした「<em>後から取得されるが、レイアウト上重要なリソース</em>」を Preload 段階で取得するようにブラウザに指示することができる。
@@ -194,15 +194,15 @@
         <pre class=html><code translate=no>&lt;link rel=preload as=image href=hero-image.png&gt;</code></pre>
         <p>Web Font の場合はこうなる。
         <pre class=html><code translate=no>&lt;link rel=preload  as=font type=font/woff2 href=font.woff2 crossorigin&gt;</code></pre>
-        <p>(Chrome は現状フォントの取得は暗黙的に CORS になるらしいため、Same Origin からの取得でも <code translate=no>crossorigin</code> が必要らしい)
-        <p><code translate=no>as</code> に指定可能な値は <a href="https://fetch.spec.whatwg.org/#concept-request-destination">fetch spec に一覧がある</a> 、省略すると XHR や fetch と同じ挙動になる。
+        <p>(Chrome は現状フォントの取得は暗黙的に CORS になるらしいため、 Same Origin からの取得でも <code translate=no>crossorigin</code> が必要らしい)
+        <p><code translate=no>as</code> に指定可能な値は <a href="https://fetch.spec.whatwg.org/#concept-request-destination">fetch spec に一覧がある</a>、省略すると XHR や fetch と同じ挙動になる。
         <p><code translate=no>type</code> を指定すると、ブラウザがそのファイルタイプをサポートしている場合だけ取得するようにできる。
       </section>
       <section>
         <h2 id="遅延実行"><a href="#遅延実行">遅延実行</a></h2>
         <p>Preload を使うことで、「<em>取得しておきたいけど実行はしたくない</em>」というスクリプトの取得ができる。
-        <p>後から <code translate=no>&lt;script&gt;</code> を差し込むことで、JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。
-        <p>また、取得を XHR で行い保存しておいたものをあとで <code translate=no>eval</code> することもできるが、Preload を使うことで実行を <code translate=no>&lt;script&gt;</code> で行え、ブラウザの Preloader に取得させるため、再利用が効く。
+        <p>後から <code translate=no>&lt;script&gt;</code> を差し込むことで、 JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。
+        <p>また、取得を XHR で行い保存しておいたものをあとで <code translate=no>eval</code> することもできるが、 Preload を使うことで実行を <code translate=no>&lt;script&gt;</code> で行え、ブラウザの Preloader に取得させるため、再利用が効く。
         <p>まず「取得」を Preload で行う、これは HTML に書いておいても良いし、それ自体も遅延したければ好きなタイミングで以下のようにノードを作れば良い。
         <pre class=html><code translate=no>&lt;link rel=preload as=script href=script.js&gt;</code></pre>
         <pre class=js><code translate=no>var preload = document.createElement(&apos;link&apos;);
@@ -218,7 +218,7 @@ document.body.appendChild(script);</code></pre>
       <section>
         <h2 id="非同期ローダ"><a href="#非同期ローダ">非同期ローダ</a></h2>
         <p><code translate=no>&lt;link rel=preload&gt;</code> は自身で <code translate=no>onload</code> を発火する。
-        <p>これを利用すると、HTML と少しの JS で <em>非同期ローダ</em> を実現することができる。
+        <p>これを利用すると、 HTML と少しの JS で <em>非同期ローダ</em> を実現することができる。
         <p>例えば CSS の場合はこうなる。
         <pre class=html><code translate=no>&lt;link rel=preload as=style href=style.css onload=&quot;this.rel=&apos;stylesheet&apos;&quot;&gt;</code></pre>
         <p>同じことは JS でも応用できる。
@@ -254,15 +254,15 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
         <p>しかし、 <code translate=no>onload</code> ハックなどを用いたより積極的な活用を行う上では、ブラウザのサポートの有無を知りたい場合もある。
         <p>そこで、サポートされる <code translate=no>rel</code> の値を DOM から取れるような提案がなされている。
         <pre class=js><code translate=no>document.createElement(&quot;link&quot;).relList.supports(&quot;preload&quot;));</code></pre>
-        <p>これを使えば、Preload が無効な場合に問題があるサイトでは、フォールバックすることも可能になる。
+        <p>これを使えば、 Preload が無効な場合に問題があるサイトでは、フォールバックすることも可能になる。
       </section>
       <section>
         <h2 id="http2"><a href="#http2">HTTP2</a></h2>
-        <p>HTTP2 において、HTTP Link preload ヘッダは Push するリソースを指定する目的で使用している。
+        <p>HTTP2 において、 HTTP Link preload ヘッダは Push するリソースを指定する目的で使用している。
         <p>しかし、実際の動作として、サーバが行う HTTP2 の Push と、ブラウザが行う Preload は補完関係にある。
         <p>HTTP2 の Push ではリクエストより先にリソースを送ることができ、ブラウザはそれをキャッシュとして保存する。
         <p>レスポンスの HTML を取得した後、サブリソースを発見して Fetch するタイミングで、そのキャッシュがヒットするという仕組みである。
-        <p>一方で、Push はブラウザが発呼する Fetch とは方向が逆であるため、ある程度の制限が出る。
+        <p>一方で、 Push はブラウザが発呼する Fetch とは方向が逆であるため、ある程度の制限が出る。
         <ul>
           <li>Preload は任意のタイミングで発行し、完了を <code translate=no>onload</code> で知ることができる。
           <li>Preload は fetch であるため、コンテントネゴシエーションが実施できる。
@@ -270,11 +270,11 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
           <li>Push と違い Preload は 3rb party にも使える。
         </ul>
         <p>Push が既にブラウザにキャッシュされているリソースを考慮できないという問題は、別途 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">提案</a> があるが、基本的に Push はクライアントの状況を踏まえることが難しい。
-        <p>もともと HTTP を基本とする Web がプルベースを前提としているため、Fetch でリクエストを投げる際にクライアントの情報を載せ、サーバがそれをレスポンスに反映するモデルの方が、細かい調整がしやすいのは自明である。
+        <p>もともと HTTP を基本とする Web がプルベースを前提としているため、 Fetch でリクエストを投げる際にクライアントの情報を載せ、サーバがそれをレスポンスに反映するモデルの方が、細かい調整がしやすいのは自明である。
         <p>したがって、クライアントが置かれた状況を限定的に捉え、より積極的にリソースをキャッシュさせる用途で Push を。
         <p>クライアントの状態を踏まえて、コンテントネゴシエーションを重視する場合に Preload を。
         <p>という感じに、組み合わせて使うのが最も理想だと言えるだろう。
-        <p>なお、HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、 <code translate=no>nopush</code> を付けることで Opt-Out することができる。
+        <p>なお、 HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、 <code translate=no>nopush</code> を付けることで Opt-Out することができる。
         <pre class=http><code translate=no>Link: &lt;/app/style.css&gt;; rel=preload; as=style; nopush</code></pre>
       </section>
       <section>
@@ -293,7 +293,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
           <p>本サイトは H2O でサーブしているが、まだ nopush には対応していない。
           <p>そのため HTTP Header で Link rel=preload を指定すれば、必ず HTTP2 Push が発生する。
           <p>まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">Cache Digest</a> を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
-          <p>そこで、ページで共通するサブリソースについて、HTML のトップレベルへの <code translate=no>&lt;link&gt;</code> タグで指定することにした。
+          <p>そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの <code translate=no>&lt;link&gt;</code> タグで指定することにした。
           <pre class=html><code translate=no>&lt;link rel=preload as=script src=/assets/js/highlight.min.js&gt;
 &lt;link rel=preload as=script src=//jxck.io/assets/js/ga.js&gt;</code></pre>
         </section>

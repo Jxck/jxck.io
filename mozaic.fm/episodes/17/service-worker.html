@@ -26,7 +26,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.webp>
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
   <meta name=author              content=Jxck>
-  <meta name=description         content="第 17 回のテーマは Service Worker です。今回は @kinu さんと @nhiroki_ さんをお迎えして、今実装や仕様策定が進んでいる Service Worker について、なぜこうした仕様が出てきたのか、これを用いて何ができるのか、これがどう Web...">
+  <meta name=description         content="第 17 回のテーマは Service Worker です。今回は @kinu さんと @nhiroki_ さんをお迎えして、 今実装や仕様策定が進んでいる Service Worker について、なぜこうした仕様が出てきたのか、これを用いて何ができるのか、これがどう We...">
   <meta name=keywords            content="service worker">
   <meta name=theme-color         content=#000000>
 
@@ -34,7 +34,7 @@
   <meta property=og:url          content=https://mozaic.fm/episodes/17/service-worker.html>
   <meta property=og:title        content="ep17 Service Worker | mozaic.fm">
   <meta property=og:site_name    content=mozaic.fm>
-  <meta property=og:description  content="第 17 回のテーマは Service Worker です。今回は @kinu さんと @nhiroki_ さんをお迎えして、今実装や仕様策定が進んでいる Service Worker について、なぜこうした仕様が出てきたのか、これを用いて何ができるのか、これがどう Web...">
+  <meta property=og:description  content="第 17 回のテーマは Service Worker です。今回は @kinu さんと @nhiroki_ さんをお迎えして、 今実装や仕様策定が進んでいる Service Worker について、なぜこうした仕様が出てきたのか、これを用いて何ができるのか、これがどう We...">
   <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -42,7 +42,7 @@
   <title>ep17 Service Worker | mozaic.fm</title>
   <link rel=prev href=https://mozaic.fm/episodes/16/security-application.html>
   <link rel=next href=https://mozaic.fm/episodes/18/nginx.html>
-  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?220213_175148>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210426_190329>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?201223_011131>
@@ -121,9 +121,9 @@
     <section>
       <h2 id="theme"><a href="#theme">Theme</a></h2>
       <p>第 17 回のテーマは Service Worker です。
-      <p>今回は <a href="https://twitter.com/kinu">@kinu</a> さんと <a href="https://twitter.com/nhiroki_">@nhiroki_</a> さんをお迎えして、今実装や仕様策定が進んでいる Service Worker について、なぜこうした仕様が出てきたのか、これを用いて何ができるのか、これがどう Web を変えるのか。
+      <p>今回は <a href="https://twitter.com/kinu">@kinu</a> さんと <a href="https://twitter.com/nhiroki_">@nhiroki_</a> さんをお迎えして、 今実装や仕様策定が進んでいる Service Worker について、なぜこうした仕様が出てきたのか、これを用いて何ができるのか、これがどう Web を変えるのか。
       <p>実装や仕様の裏話や、これが普及してからの懸念点なども含めて、じっくり議論しました。
-      <p>また、Service Worker へのフィードバックは <a href="https://crbug.com/new">bug tracker</a> (基本は英語ですが、日本語でも良いそうです)、もしくは <a href="https://twitter.com/search?q=%23serviceworker&src=hash">#serviceworker</a> です。
+      <p>また、 Service Worker へのフィードバックは <a href="https://crbug.com/new">bug tracker</a> (基本は英語ですが、日本語でも良いそうです)、もしくは <a href="https://twitter.com/search?q=%23serviceworker&src=hash">#serviceworker</a> です。
     </section>
     <section>
       <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
@@ -145,7 +145,7 @@
         </ul>
       </section>
       <section>
-        <h3 id="application-cache-はなぜダメだったのか430"><a href="#application-cache-はなぜダメだったのか430">Application Cache はなぜダメだったのか(4:30~)</a></h3>
+        <h3 id="application-cache-はなぜダメだったのか-430"><a href="#application-cache-はなぜダメだったのか-430">Application Cache はなぜダメだったのか (4:30~)</a></h3>
         <ul>
           <li><a href="https://developers.whatwg.org/offline.html%23offline">AppCache</a>
           <li><a href="http://alistapart.com/article/application-cache-is-a-douchebag">AppCache のダメなところ</a>
@@ -158,14 +158,14 @@
         </ul>
       </section>
       <section>
-        <h3 id="service-worker-はそれをどう解決したか1220"><a href="#service-worker-はそれをどう解決したか1220">Service Worker はそれをどう解決したか(12:20~)</a></h3>
+        <h3 id="service-worker-はそれをどう解決したか-1220"><a href="#service-worker-はそれをどう解決したか-1220">Service Worker はそれをどう解決したか (12:20~)</a></h3>
         <ul>
           <li><a href="https://github.com/slightlyoff/ServiceWorker/issues/2">The new API should be able to explain AppCache</a>
           <li><a href="https://github.com/slightlyoff/ServiceWorker/issues/5">Why Fetch but not XHR, from SW point of view</a>
         </ul>
       </section>
       <section>
-        <h3 id="新しく出た-api-の詳解1830"><a href="#新しく出た-api-の詳解1830">新しく出た API の詳解(18:30~)</a></h3>
+        <h3 id="新しく出た-api-の詳解-1830"><a href="#新しく出た-api-の詳解-1830">新しく出た API の詳解 (18:30~)</a></h3>
         <ul>
           <li><a href="http://www.w3.org/TR/workers/">WebWorker/SharedWorker との違い</a>
           <li><a href="https://fetch.spec.whatwg.org">Fetch</a> と XHR の違い
@@ -184,7 +184,7 @@
         </ul>
       </section>
       <section>
-        <h3 id="background-sync-とは何か4930"><a href="#background-sync-とは何か4930">BackGround Sync とは何か(49:30~)</a></h3>
+        <h3 id="background-sync-とは何か-4930"><a href="#background-sync-とは何か-4930">BackGround Sync とは何か (49:30~)</a></h3>
         <ul>
           <li><a href="https://github.com/slightlyoff/BackgroundSync/blob/master/explainer.md">BackGround Sync</a>
         </ul>
@@ -197,7 +197,7 @@
         </ul>
       </section>
       <section>
-        <h3 id="cacheapi-と-browser-cache-の違い5730"><a href="#cacheapi-と-browser-cache-の違い5730">CacheAPI と Browser Cache の違い(57:30~)</a></h3>
+        <h3 id="cacheapi-と-browser-cache-の違い-5730"><a href="#cacheapi-と-browser-cache-の違い-5730">CacheAPI と Browser Cache の違い (57:30~)</a></h3>
         <ul>
           <li><a href="http://www.w3.org/TR/service-workers/%23cache-storage">Cache</a> と ブラウザキャッシュの違い
         </ul>
@@ -216,7 +216,7 @@
         <ul>
           <li><a href="http://www.slideshare.net/kinukox/service-worker-mobile-web">Service worker が拓く mobile web の新しいかたち</a>
           <li><a href="http://qiita.com/nhiroki/items/eb16b802101153352bba">ServiceWorker のスコープとページコントロールについて</a>
-          <li><a href="http://blog.nhiroki.jp/2015/04/18/service-worker-claim/">Service Worker の claim()について</a>
+          <li><a href="http://blog.nhiroki.jp/2015/04/18/service-worker-claim/">Service Worker の claim() について</a>
         </ul>
       </section>
     </section>

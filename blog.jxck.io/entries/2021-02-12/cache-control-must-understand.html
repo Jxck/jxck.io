@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-02-12T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -83,7 +83,7 @@
   </script>
 
   <title>Cache-Control: must-understand ディレクティブとは何か | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-02-12>2021-02-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -169,7 +169,7 @@
           <p>the response status code is understood by the cache, and...
           <p>&mdash; <cite><a href="https://httpwg.org/specs/rfc7234.html#response.cacheability">https://httpwg.org/specs/rfc7234.html#response.cacheability</a></cite>
         </blockquote>
-        <p>問題は、3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
+        <p>問題は、 3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
         <p>新しいステータスコードが標準化された場合に、そのステータスコードが未実装な場合はキャッシュできないように読めてしまう。実装者は、サポートしているステータスコードをリストとして埋め込み、突き合わせてキャッシュの制御を行うことになるだろう。
         <p>この点は、先程の要件と矛盾が有り、例えば <code translate=no>max-age</code> を伴う新しいステータスコードのレスポンスを受信した実装が、そのステータスコードを実装してない場合に、どうすべきかということになる。
         <p>実装に対する制限は後者なので、安全側に倒すと「キャッシュしない」方を選ぶことになり、すると実装が普及するまではキャッシュが効かないことになる。
@@ -217,7 +217,7 @@ Cache-Control: max-age=3600, must-understand, no-store</code></pre>
           <p>このディレクティブは、どちらかというと前述のような仕様の解釈のブレによって、将来、特にキャッシュ周りに特定の条件を伴うような新しいステータスコードを追加する場合に、その普及が順調に進むように投機的に仕様化されたという性質が強い。
           <p>近年でも <code translate=no>103 Early Hints</code>, <code translate=no>425 Too Early</code>, <code translate=no>451 Unavailable For Legal Reasons</code> など、それほど多い頻度ではないが、ステータスコードが追加されることはあり、そこで互換性を壊さずに「実装がそうした新しい仕様を実装しているのか」を担保した上で使用できる仕組みなのだ。
           <p>もちろん、十分に実装が普及したステータスコードに <code translate=no>must-understand</code> を併用する必要はなく、それはむしろ <code translate=no>must-understand</code> を理解しない実装によって <code translate=no>no-store</code> と扱われるだけなので、デメリットの方が強いだろう。
-          <p>かといって、特に今 <code translate=no>must-understand</code> が無いと普及が難しいステータスコードが議論されているという話も聞かないため、主に httbis によるキャッシュ仕様の更新に合わせて、mnot が空いた穴を埋めたという認識でいる。
+          <p>かといって、特に今 <code translate=no>must-understand</code> が無いと普及が難しいステータスコードが議論されているという話も聞かないため、主に httbis によるキャッシュ仕様の更新に合わせて、 mnot が空いた穴を埋めたという認識でいる。
         </section>
       </section>
       <section>

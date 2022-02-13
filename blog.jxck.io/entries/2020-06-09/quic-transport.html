@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-06-09T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -83,7 +83,7 @@
   </script>
 
   <title>QuicTransport によるアプリケーションレイヤでの QUIC 活用 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-06-09>2020-06-09</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -169,8 +169,8 @@
             </ul>
           </li>
         </ul>
-        <p>今回入ったのは、WebTransport の通信レイヤとして QUIC を用いた QuicTransport という位置づけになる。
-        <p>IETF で WebTransport over QUIC としてバインディングの仕様が策定され、WICG でブラウザ API が策定されている。
+        <p>今回入ったのは、 WebTransport の通信レイヤとして QUIC を用いた QuicTransport という位置づけになる。
+        <p>IETF で WebTransport over QUIC としてバインディングの仕様が策定され、 WICG でブラウザ API が策定されている。
         <ul>
           <li>
             draft-vvv-webtransport-quic-00 - WebTransport over QUIC
@@ -188,7 +188,7 @@
       </section>
       <section>
         <h2 id="server"><a href="#server">Server</a></h2>
-        <p>サーバの実装はまだ少ないが Chrome のリポジトリと、WPT(WebPlatformTest)にサンプルの実装が入っている。
+        <p>サーバの実装はまだ少ないが Chrome のリポジトリと、 WPT(WebPlatformTest) にサンプルの実装が入っている。
         <ul>
           <li><a href="https://chromium.googlesource.com/chromium/src/+/master/net/tools/quic/quic_transport_simple_server_bin.cc">net/tools/quic/quic_transport_simple_server_bin.cc - chromium/src</a>
           <li><a href="https://github.com/web-platform-tests/wpt/blob/master/tools/quic/quic_transport_server.py">wpt/quic_transport_server.py</a>
@@ -258,25 +258,25 @@ await transport.close()</code></pre>
           <p>まだ interface API には明示されてないようだが、仕様のアルゴリズムをみると、基本は Uint8Array を Chunk とする Read/Write Stream を内部で生成するようだ。
           <p>つまり、転送単位が Uint8Array であり、実装もそうなっている。
           <p>これは WebSocket のように文字列を渡しても送れないことを意味し、その場合は TextEncoder/Decoder を使うことになるだろう。
-          <p><code translate=no>JSON.stringify()</code> で送っていたようなオブジェクトも、CBOR などを用いたバイナリシリアライズが検討されるかもしれない。
+          <p><code translate=no>JSON.stringify()</code> で送っていたようなオブジェクトも、 CBOR などを用いたバイナリシリアライズが検討されるかもしれない。
           <p>(<code translate=no>new TextEncoder().encode(JSON.stringify())</code> とかでもいいのかもしれない。)
         </section>
         <section>
           <h3 id="eventtarget"><a href="#eventtarget">EventTarget</a></h3>
           <p>サーバとの接続/切断を <code translate=no>ready</code>, <code translate=no>closed</code> という Promise を返すプロパティで表現している。
-          <p>これは、Service Worker の <code translate=no>navigator.serviceWorker.ready</code> でも採用されている手法だ。
+          <p>これは、 Service Worker の <code translate=no>navigator.serviceWorker.ready</code> でも採用されている手法だ。
           <p>従来であれば、内部の State は <code translate=no>state</code> に持ち、その変更を <code translate=no>onstatechange</code> で表すために EventTarget を継承するのが基本だった。
-          <p>しかし、 <code translate=no>state</code> へのプロパティアクセスは同期処理であるため、Promise で表現するほうが実装上のメリットがあるという議論がされている。
+          <p>しかし、 <code translate=no>state</code> へのプロパティアクセスは同期処理であるため、 Promise で表現するほうが実装上のメリットがあるという議論がされている。
           <ul>
             <li><a href="https://github.com/WICG/web-transport/issues/92">WebTransport.ready - Issue #92 - WICG/web-transport</a>
           </ul>
           <p>メッセージについては、明示的な <code translate=no>read()</code> もしくはそれを行う Stream の Pipe でを行うため、 <code translate=no>onmessage</code> イベントもいらない。
-          <p>内部の状態は以下なので、これが増えたらどうするかという懸念もあるが、WebSocket も同じ状態遷移で特に増えたことはないため、問題ないということだろう。
+          <p>内部の状態は以下なので、これが増えたらどうするかという懸念もあるが、 WebSocket も同じ状態遷移で特に増えたことはないため、問題ないということだろう。
           <pre><code translate=no>connecting -&gt; connected
 connecting -&gt; failed
 connected -&gt; closed
 connected -&gt; failed</code></pre>
-          <p>この議論の結果によっては、EventTarget にならなくなり、developer experience としては今までと少し違う雰囲気の使用感になりそうだ。
+          <p>この議論の結果によっては、 EventTarget にならなくなり、 developer experience としては今までと少し違う雰囲気の使用感になりそうだ。
           <p>もし、最近やっと Safari に入り Node でも入りそうな EventTarget を使ったほうが慣れているのであれば、以下のような感じで自分で Wrap することもできるだろう。
           <pre class=js><code translate=no>class Transport extends EventTarget {
   constructor(url) {
@@ -331,7 +331,7 @@ QuicTransport includes WebTransport;</code></pre>
   ReadableStream receiveBidirectionalStreams();
 };</code></pre>
           <p>Bidirectional Stream をクライアントから確立する場合は <code translate=no>createBidirectionalStream()</code> を、サーバから確立する場合は <code translate=no>receiveBidirectionaStreams()</code> を用いる。
-          <p>(Uni/Bi)Directional x (Client/Server)Initiated が全てサポートされて Stream が得られるので、エコシステム的に言えば、Sink/Source を定義して Stream を用意しておけば、QUIC のメリットを活かしつつアプリケーションを組むことができる。
+          <p>(Uni/Bi)Directional x (Client/Server)Initiated が全てサポートされて Stream が得られるので、エコシステム的に言えば、 Sink/Source を定義して Stream を用意しておけば、 QUIC のメリットを活かしつつアプリケーションを組むことができる。
           <p>例として Bi-dir で <code translate=no>&lt;textarea&gt;</code> の入力を送り echo back で表示するサンプルを以下に作成した。
           <p>肝になる部分は以下のようになる。
           <pre class=js><code translate=no>const transport = new QuicTransport(url)
@@ -356,32 +356,32 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
         <p>さて、これを何に使うかという点に付いて考える。
         <section>
           <h3 id="media-stream"><a href="#media-stream">Media Stream</a></h3>
-          <p>まず、このブログでも以前紹介したように、WebRTC を比較対象に上がるのであれば、メディアの転送がどうなのかという問題になる。
-          <p>現状 QuicTransport の転送単位は Uint8Array を基本としているため、getUserMedia の結果からバイナリを取得するなどができれば、ビデオ会議なども可能になるポテンシャルはあるだろう。
-          <p>しかし、現状 getUserMedia した MediaStream API は、前述した WHATWG Stream を指すのではなく、たんなるメディアの抽象化という意味で、Pipe しても流れるわけではない。
-          <p>Canvas 経由で ImageBitmap を取る、WASM でエンコードする、別の Peer とつないだ PeerConnection から InsertableStream で抜くなどの方法は無くはないが、正攻法でいうと WebCodecs を待つことになる。
-          <p>WebCodecs は現在 Intent to Implement なので、Experiment が始まったら改めて検証する。
+          <p>まず、このブログでも以前紹介したように、 WebRTC を比較対象に上がるのであれば、メディアの転送がどうなのかという問題になる。
+          <p>現状 QuicTransport の転送単位は Uint8Array を基本としているため、 getUserMedia の結果からバイナリを取得するなどができれば、ビデオ会議なども可能になるポテンシャルはあるだろう。
+          <p>しかし、現状 getUserMedia した MediaStream API は、前述した WHATWG Stream を指すのではなく、たんなるメディアの抽象化という意味で、 Pipe しても流れるわけではない。
+          <p>Canvas 経由で ImageBitmap を取る、 WASM でエンコードする、別の Peer とつないだ PeerConnection から InsertableStream で抜くなどの方法は無くはないが、正攻法でいうと WebCodecs を待つことになる。
+          <p>WebCodecs は現在 Intent to Implement なので、 Experiment が始まったら改めて検証する。
           <ul>
             <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/3oVuczJ5Ty4/m/b8VLNNvyEAAJ">Intent to Implement WebCodecs</a>
           </ul>
         </section>
         <section>
           <h3 id="unreliable-stream"><a href="#unreliable-stream">Unreliable Stream</a></h3>
-          <p>QUIC が作られた背景まで遡れば、TCP での Head of Line Blocking への対策や、Unreliable な通信を選択肢として持つという点が UDP によるメリットとしてあった。
+          <p>QUIC が作られた背景まで遡れば、 TCP での Head of Line Blocking への対策や、 Unreliable な通信を選択肢として持つという点が UDP によるメリットとしてあった。
           <p>DatagramTransport を使えば out of order / unreliable な read/write が可能なので、現時点では個々が QuicTransport を使用するモチベーションの一つとして考えられるだろう。
-          <p>(逆にそうでない場合は、「WebSocket でいいのでは?」となってしまう可能性がある)
+          <p>(逆にそうでない場合は、「WebSocket でいいのでは?」 となってしまう可能性がある)
           <p>例えば、ゲームのリアルタイムなコントロールは、ゲームの性質にもよるが、全ての入力が TCP レベルでの回復を伴いながら、順序を保って確実に送られる必要は必ずしもないかもしれない。
-          <p>また、getUserMedia 以外の何らかのデバイスから、大量に入力し binary serialize したオブジェクトを送るケースも考えられるだろう。
+          <p>また、 getUserMedia 以外の何らかのデバイスから、大量に入力し binary serialize したオブジェクトを送るケースも考えられるだろう。
         </section>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <ul>
-          <li>WebTransport の実装の 1 つとして、QuicTransport の Origin Trials が始まった。
+          <li>WebTransport の実装の 1 つとして、 QuicTransport の Origin Trials が始まった。
           <li>Promise や Stream を用いた API で、モダンな API Interface となっている。
-          <li>QUIC の持つ、unreliable, uni/bi-directional などの性質を上手く API に反映させている
+          <li>QUIC の持つ、 unreliable, uni/bi-directional などの性質を上手く API に反映させている
           <li>QUIC の特徴をアプリレイヤで活かしたいユースケースでの活用が考えられる
-          <li>WebCodecs と組み合わせたとき、WebRTC のようなユースケースへの応用も期待できる
+          <li>WebCodecs と組み合わせたとき、 WebRTC のようなユースケースへの応用も期待できる
         </ul>
         <p>WebCodecs の Experiment が始まったら、追加で検証したい。
       </section>

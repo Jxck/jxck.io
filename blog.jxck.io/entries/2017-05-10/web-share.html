@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-05-10T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -83,7 +83,7 @@
   </script>
 
   <title>Web Share API | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-05-10>2017-05-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -149,7 +149,7 @@
         <h2 id="web-share"><a href="#web-share">Web Share</a></h2>
         <p>ブラウザで開いている Web コンテンツを、他のサービスやアプリと連携するための方法は、以前から検討されていた。
         <p>主だったものとしては、すでに策定は止まっているが Android の Intent を参考にした <a href="https://www.w3.org/TR/web-intents/">Web Intents</a> が挙げられる。
-        <p>Web Share API は、Web コンテンツと SNS やメールなどとの連携を主目的とした、より簡素で軽量な API となっている。
+        <p>Web Share API は、 Web コンテンツと SNS やメールなどとの連携を主目的とした、より簡素で軽量な API となっている。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
@@ -178,8 +178,8 @@ navigator
   .then(console.log.bind(console))
   .catch(console.log.bind(console));</code></pre>
         <p>こうした API であるため、 <code translate=no>navigator.share</code> を見ることで、サポートの有無を判別できる。
-        <p>結果は Promise を返し、Share の成功可否によって変わる。
-        <p>また、Web Share は Share の発信だけで無く、受信についても視野に入れいている。
+        <p>結果は Promise を返し、 Share の成功可否によって変わる。
+        <p>また、 Web Share は Share の発信だけで無く、受信についても視野に入れいている。
         <p>現状その API は議論中だが、同様に navigator を基本に拡張されていくと思われる。
         <p>簡素な Share の送信だけであれば、以下のような URI Scheme の策定も可能かもしれない。
         <pre class=html><code translate=no>&lt;a href=&quot;share:?title=Example%20Page&amp;amp;url=https://example.com/page&quot;&gt;Share this&lt;/a&gt;</code></pre>

@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-01-17T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -83,7 +83,7 @@
   </script>
 
   <title>Safari による User-Agent 固定化と Web における Feature Detection | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-01-17>2018-01-17</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -158,8 +158,8 @@
           <li>2018/4/16: Safari 11.1 の UA を追記
           <li>2018/5/1 : OS のバージョンは固定されなくなった件を追記
         </ul>
-        <p>2 月に方針が変更され、OS のバージョンは固定されなくなった。
-        <p>このため、iOS のバージョンアップにより発生するバグなどを回避する道は残されたことになる。
+        <p>2 月に方針が変更され、 OS のバージョンは固定されなくなった。
+        <p>このため、 iOS のバージョンアップにより発生するバグなどを回避する道は残されたことになる。
         <p>一方 Webkit のバージョンは(予定では <code translate=no>605.1.15</code> に)固定されることになりそうだ。詳細は、以下を参照。
         <p><a href="https://myakura.hatenablog.com/entry/2018/04/16/083000">Safari の UA 文字列が固定されて固定されなくなったおはなし - fragmentary</a>
       </section>
@@ -171,7 +171,7 @@
           <p>Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting
           <p>&mdash; <cite><a href="https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/">Release Notes for Safari Technology Preview 46</a></cite>
         </blockquote>
-        <p>すぐには無理だろうと思ったが、TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。
+        <p>すぐには無理だろうと思ったが、 TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。
         <p>TP はあくまで Preview であり、これが <em>このままリリースされるとは限らない</em> 点に注意したい。
         <p>今回は、これがそのままリリースされた場合の影響について考察するため、現在の User-Agent の使われ方を解説する。
       </section>
@@ -205,18 +205,18 @@
           <li>etc
         </ul>
         <p>「それが誰であるか」は特定できなくとも、それが「さっきと同じ人である」がわかれば、それだけで Tracking が可能だ。
-        <p>もし 3rd Party Cookie を付与できれば確実だが、Cookie 付与前、Cookie 削除後、Private Browse などでもユーザを特定したいというニーズはある。
+        <p>もし 3rd Party Cookie を付与できれば確実だが、 Cookie 付与前、 Cookie 削除後、 Private Browse などでもユーザを特定したいというニーズはある。
         <section>
           <h3 id="tracking-by-fingerpirnt-"><a href="#tracking-by-fingerpirnt-">Tracking by Fingerpirnt ?</a></h3>
-          <p>Apple が実施する <em>ITP</em> (Intelligent Tracking Prevention)によって、3rd Party Cookie が絶たれるため、広告プロバイダは Finger Printing などの代替技術に救いを求めるのは想像に難くない。
+          <p>Apple が実施する <em>ITP</em>(Intelligent Tracking Prevention) によって、 3rd Party Cookie が絶たれるため、広告プロバイダは Finger Printing などの代替技術に救いを求めるのは想像に難くない。
           <p>特に広告関係では、ターゲットに対してパーソナライズするため、サービスをまたいでの識別、つまり追跡(Tracking)には、こうした固定情報が扱いやすい。
           <p>Safari の今回の変更は、この Finger Printing の手段を断つのが目的と見ることができそうだ。
-          <p>(ちなみに、現在の Finger Printing はかなりの精度であるという話と、実際使って見るとそうでもないという話を両方聞く。パーソナライズの場合は、精度が低いと「自分へのおすすめが全く興味ないもので埋まる」といった結果になり得るため、Finger Printing だけでの Tracking は厳しいらしい。)
+          <p>(ちなみに、現在の Finger Printing はかなりの精度であるという話と、実際使って見るとそうでもないという話を両方聞く。パーソナライズの場合は、精度が低いと「自分へのおすすめが全く興味ないもので埋まる」といった結果になり得るため、 Finger Printing だけでの Tracking は厳しいらしい。)
         </section>
       </section>
       <section>
         <h2 id="user-metrics"><a href="#user-metrics">User Metrics</a></h2>
-        <p>サービスの Access Log や、Analytics 系のツールでは、必ずと言って良いほど User Agent を収集しているだろう。
+        <p>サービスの Access Log や、 Analytics 系のツールでは、必ずと言って良いほど User Agent を収集しているだろう。
         <p>これは、ユーザの傾向や、サポートブラウザの決定などに使われる重要なメトリクスとなっている。
         <p>今回のように User Agent が Freeze すると、 <em>PC</em> の <em>MacOS</em> の <em>Safari</em> であることまではわかるが、それ以降の細かいバージョンまではわからなくなる。
         <p>一方で Web の仕様が Living Standard になり、ブラウザの自動アップデートが普及しつつある現在では、細かいバージョンまでを見る用途も限定されてきている。
@@ -229,7 +229,7 @@
         <h2 id="useragent-detection"><a href="#useragent-detection">UserAgent Detection</a></h2>
         <p>UA のもう 1 つの用途として、利用したい機能をそのブラウザがサポートしているかで分岐する Feature Detection がある。
         <p>同一実装に対する不備の場合わけとは少し違い、有無そのものを調べる用途だ。
-        <p>古くは、CSS の実装が壊滅的だった IE だけ別の CSS を返すといった用途のため、UA を解析するといったものだ。
+        <p>古くは、 CSS の実装が壊滅的だった IE だけ別の CSS を返すといった用途のため、 UA を解析するといったものだ。
         <p>もっと古くは、サービスそのものが <em>特定のブラウザしかサポートしない</em> といったことが、普通に行われていた。
         <p>当時 Netscape Navigator が、コードネームの <code translate=no>Mozilla</code> を UA に含んでおり、それを見て(Sniffing)処理を分岐していたサービスがあったようだ。
         <p>サーバ側の疑似コードとしてはこのようなイメージだ。
@@ -239,10 +239,10 @@
 }</code></pre>
         <p>すると、競合だった IE は素直に <code translate=no>MSIE...</code> で始まる UA を送ると、そのサービスが動作せず、ユーザに「使えないブラウザ」と認定されてしまう。
         <p>そこで、やむをえず IE も UA を <code translate=no>Mozilla...</code> で始まる文字として実装をした。
-        <p>その後、いわゆる HTML5 期、IE を外した Chrome や Safari のみに提供するサービス実装も登場したため、後発の Edge は UA に <code translate=no>Chrome</code> や <code translate=no>Safari</code> を含むこととなった。
+        <p>その後、いわゆる HTML5 期、 IE を外した Chrome や Safari のみに提供するサービス実装も登場したため、後発の Edge は UA に <code translate=no>Chrome</code> や <code translate=no>Safari</code> を含むこととなった。
         <p>現在、多くのブラウザが <code translate=no>Mozilla...</code> で始まり、他の実装名を含む、ぱっと見なんなのかわからない文字列となっているのは、こうした歴史的な経緯がある。
         <p>つまり、「ブラウザを識別し処理を分岐したいサービス開発者」と「そうしたサービスと互換性を保持したいブラウザベンダ」のいたちごっこが原因と言える。
-        <p>こうしたことは、歴史が長いソフトウェアではよくある話だ、Windows 9 が出なかった理由も同様の理由と言われている。
+        <p>こうしたことは、歴史が長いソフトウェアではよくある話だ、 Windows 9 が出なかった理由も同様の理由と言われている。
         <p>ブラウザが独自実装による差別化で戦争をしていた時代ならまだしも、今から処理の分岐条件に UA を用いるのは、あまり良い手ではない。
         <p>その時点でのブラウザが望む機能を持っていなかったとしても、リリースが進めば改善される可能性がある。
         <p>基本的に、開発者は <em>UA ではなく、依存したい機能そのものの有無を確認し、処理を分岐すべきである</em> 。
@@ -279,8 +279,8 @@ function supportsDynamicImport() {
         </section>
         <section>
           <h3 id="css"><a href="#css">CSS</a></h3>
-          <p>CSS はいわゆるプログラミング言語ではないため、基本的には Detection をするよりも、Progressive Enhancement で進めてきた。
-          <p>しかし、CSS の API も複雑になってきたため最近では <code translate=no>@support</code> を用いた Detection がサポートされている。
+          <p>CSS はいわゆるプログラミング言語ではないため、基本的には Detection をするよりも、 Progressive Enhancement で進めてきた。
+          <p>しかし、 CSS の API も複雑になってきたため最近では <code translate=no>@support</code> を用いた Detection がサポートされている。
           <pre class=css><code translate=no>@supports (display: flex) {
   /* flexbox supported */
 }</code></pre>
@@ -298,19 +298,19 @@ function supportsDynamicImport() {
           </section>
           <section>
             <h4 id="modulesnomodule"><a href="#modulesnomodule">modules/nomodule</a></h4>
-            <p>同じように、ES Modules も、 <code translate=no>&lt;script type=modules&gt;</code> によって、サーバ側に用意があることを伝え、 <code translate=no>&lt;script nomodule&gt;</code> でフォールバックが可能だ。
-            <p>そもそも、ES Modules は MIME Type が従来の JS と同じになったため、クライアントが Accept Header に何かを追加して対応を伝えることができない。
+            <p>同じように、 ES Modules も、 <code translate=no>&lt;script type=modules&gt;</code> によって、サーバ側に用意があることを伝え、 <code translate=no>&lt;script nomodule&gt;</code> でフォールバックが可能だ。
+            <p>そもそも、 ES Modules は MIME Type が従来の JS と同じになったため、クライアントが Accept Header に何かを追加して対応を伝えることができない。
           </section>
         </section>
         <section>
           <h3 id="content-negotiation"><a href="#content-negotiation">Content Negotiation</a></h3>
           <p>通信やフォーマットに関わるものは HTTP ヘッダによるネゴシエーションが基本である。
-          <p>例えば、Brotli や WebP のサポートなどは以下のように明示される場合がある。
+          <p>例えば、 Brotli や WebP のサポートなどは以下のように明示される場合がある。
           <pre class=http><code translate=no>Accept-Encoding: gzip, deflate, br
 Accept: image/webp,image/apng,image/*,*/*;q=0.8</code></pre>
           <p>ヘッダのデフォルト情報は、それが使われるか使われないかに限らず、ブラウザからのリクエストの大半に付与されることになる。
           <p>Brotli 対応が <code translate=no>, br</code> という 4byte であったとしても、メジャーブラウザが Web のスケールで使われると、無視できる数字ではない。
-          <p>既に普及しきった PNG や JPEG は <code translate=no>*</code> の中に丸め込まれているが、WebP が普及しきったあと <code translate=no>image/webp</code> を消して <code translate=no>*</code> に丸め込まれたら、壊れるサイトも少なくないだろう。
+          <p>既に普及しきった PNG や JPEG は <code translate=no>*</code> の中に丸め込まれているが、 WebP が普及しきったあと <code translate=no>image/webp</code> を消して <code translate=no>*</code> に丸め込まれたら、壊れるサイトも少なくないだろう。
           <p>従って、ブラウザベンダは、ヘッダの追加には非常に慎重である。
           <p>これは、新しいフォーマットが出るたびに、ヘッダの値が増えていくかというと、必ずしも期待できないことを意味する。
           <p>最近では、デフォルトではない追加の情報については、サーバから Client Hints で要求することもできる。
@@ -331,7 +331,7 @@ DPR: 1</code></pre>
         <section>
           <h3 id="outro"><a href="#outro">Outro</a></h3>
           <p>現時点では、この変更に乗っかる別のブラウザは確認していないため、将来的に全てのブラウザのマイナーアップデートで UA が固定される世界が来るかは未知だ。
-          <p>しかし、Feature Detection の方法は UA に頼らずともかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
+          <p>しかし、 Feature Detection の方法は UA に頼らずともかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
           <p>Uaser-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、歴史的にも負債を残してきた。
           <p>UA で分岐するような実装がある場合は本当にそれが妥当か見直すべきだろう。
           <p>それを踏まえた上で、アップデートが自動化し、仕様も Living Standard になった現状、メジャーブラウザについて細かくバージョンを把握するニーズがどのくらいあるのかは、今一度考え直すタイミングかもしれない。

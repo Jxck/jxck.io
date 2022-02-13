@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-08-05T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -83,7 +83,7 @@
   </script>
 
   <title>SQL でファイル検索するコマンド selects を書いた話 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-08-05>2016-08-05</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -151,7 +151,7 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p><a href="http://mattn.kaoriya.net/software/lang/go/20160805190022.htm">UNIX コマンドを SQL で抽出できるツール qq を作った。</a> というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。
         <p>自分の <a href="https://github.com/jxck/dotfiles">dotfiles</a> の中にある、便利コマンド集の中にある <a href="https://github.com/Jxck/dotfiles/blob/master/bin/selects">selects</a> についてである。
-        <p>このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、Ruby の動的言語として表現力を使って実装したものといえる。
+        <p>このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、 Ruby の動的言語として表現力を使って実装したものといえる。
         <p>その実装方法と実行例などについて記す。
       </section>
       <section>
@@ -171,7 +171,7 @@
 2016-08-02 13:46:38 +0900	12564	intersection-observer.md</code></pre>
         <p>同じことをいわゆるシェル芸で行うことはできるが、こう書いた方が後で読んだ時、他人が読んだ時に、意図を含めてわかりやすく無いだろうか?
         <p>そう思って確か三ヶ月くらい前から暇を見て書いてるが、まあ遊びのようなものなので、まだ dotfiles の便利コマンドディレクトリに入っている。
-        <p>依存ライブラリは無く、1 ファイルで完結しているので、パスの通った所に置いてもらえればすぐ使える。
+        <p>依存ライブラリは無く、 1 ファイルで完結しているので、パスの通った所に置いてもらえればすぐ使える。
         <ul>
           <li><a href="https://github.com/Jxck/dotfiles/blob/master/bin/selects">https://github.com/Jxck/dotfiles/blob/master/bin/selects</a>
         </ul>
@@ -261,11 +261,11 @@ false   false   true    core</code></pre>
         <p>この仕組みを踏まえた上でもう一度クエリを見てみて欲しい。
         <p>もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
         <pre class=sh-session><code translate=no>$ selects atime, basename from &apos;./entries/**/*&apos; where atime &apos;&gt;&apos; 2016-08-01 and directory? == true</code></pre>
-        <p><code translate=no>select</code>, <code translate=no>where</code>, <code translate=no>order by</code> に使える属性なども、ruby の File クラスのドキュメントを見てくれれば良い。
+        <p><code translate=no>select</code>, <code translate=no>where</code>, <code translate=no>order by</code> に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
         <ul>
           <li><a href="https://docs.ruby-lang.org/ja/2.3.0/class/File.html">https://docs.ruby-lang.org/ja/2.3.0/class/File.html</a>
         </ul>
-        <p>裏に Ruby が透けて見えるため、Ruby を知ってると「こうすれば動きそう」がそのまま動く。
+        <p>裏に Ruby が透けて見えるため、 Ruby を知ってると「こうすれば動きそう」がそのまま動く。
         <p>これが Ruby にした理由だ。
       </section>
       <section>
@@ -273,7 +273,7 @@ false   false   true    core</code></pre>
         <p>遊びで作り始めた割には結構手応えを感じたりもしている。
         <p>実際に複雑なファイルの検索を <code translate=no>find</code> や <code translate=no>grep</code> を駆使したワンライナーで書くと非常に読みにくい。まして、ファイルの属性やファイルパス中の文字で複雑な検索やソートするのは、書けても二度と読めない可能性がある。
         <p>特に、自分はシェル芸力が低いので、そういった場合は最初からスクリプトを書くだろう。ところがそのスクリプトも、結局は <code translate=no>glob</code> して <code translate=no>map</code> して <code translate=no>reduce</code> するよくあるものなので、それを DSL っぽくしたのがこのコマンドの正体だ。
-        <p>このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、Ruby という表現力が高い動的言語のメリットを活かして実装した DSL と言える。
+        <p>このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、 Ruby という表現力が高い動的言語のメリットを活かして実装した DSL と言える。
         <p>だから Ruby を知ってて SQL が書ける人には、 <em>Ruby で書いた SQL っぽいメソッドチェインに見える</em> というメリットがある(と思う)。
       </section>
       <section>

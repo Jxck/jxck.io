@@ -26,7 +26,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=256x256 href=https://mozaic.fm/assets/img/mozaic.webp>
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
   <meta name=author              content=Jxck>
-  <meta name=description         content="第 35 回のテーマは Security の Bug Bounty 編です。今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、Bug Hunter として報告をする側である @kinugawamasato さんと、報告を受け付ける側である @k2wanko ...">
+  <meta name=description         content="第 35 回のテーマは Security の Bug Bounty 編です。今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、 Bug Hunter として報告をする側である @kinugawamasato さんと、報告を受け付ける側である @k2wanko...">
   <meta name=keywords            content="bug bounty,security">
   <meta name=theme-color         content=#000000>
 
@@ -34,7 +34,7 @@
   <meta property=og:url          content=https://mozaic.fm/episodes/35/security-bugbounty.html>
   <meta property=og:title        content="ep35 Security (Bug Bounty) | mozaic.fm">
   <meta property=og:site_name    content=mozaic.fm>
-  <meta property=og:description  content="第 35 回のテーマは Security の Bug Bounty 編です。今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、Bug Hunter として報告をする側である @kinugawamasato さんと、報告を受け付ける側である @k2wanko ...">
+  <meta property=og:description  content="第 35 回のテーマは Security の Bug Bounty 編です。今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、 Bug Hunter として報告をする側である @kinugawamasato さんと、報告を受け付ける側である @k2wanko...">
   <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -42,7 +42,7 @@
   <title>ep35 Security (Bug Bounty) | mozaic.fm</title>
   <link rel=prev href=https://mozaic.fm/episodes/34/monthly-web-201802.html>
   <link rel=next href=https://mozaic.fm/episodes/36/monthly-web-201803.html>
-  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?220213_175148>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210426_190329>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?201223_011131>
@@ -125,7 +125,7 @@
     <section>
       <h2 id="theme"><a href="#theme">Theme</a></h2>
       <p>第 35 回のテーマは Security の Bug Bounty 編です。
-      <p>今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、Bug Hunter として報告をする側である <a href="https://twitter.com/kinugawamasato">@kinugawamasato</a> さんと、報告を受け付ける側である <a href="https://twitter.com/k2wanko">@k2wanko</a> さんと、 <a href="https://github.com/hnagatomo">@hnagatomo</a> さんをお呼びして議論しました。
+      <p>今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、 Bug Hunter として報告をする側である <a href="https://twitter.com/kinugawamasato">@kinugawamasato</a> さんと、報告を受け付ける側である <a href="https://twitter.com/k2wanko">@k2wanko</a> さんと、 <a href="https://github.com/hnagatomo">@hnagatomo</a> さんをお呼びして議論しました。
       <ul>
         <li>
           報告する側
@@ -148,7 +148,7 @@
           </ul>
         </li>
       </ul>
-      <p>これらを踏まえ、Web セキュリティで <em>今何が起きているのか</em> 、 <em>これからどうなっていくのか</em> について議論しました。
+      <p>これらを踏まえ、 Web セキュリティで <em>今何が起きているのか</em>、 <em>これからどうなっていくのか</em> について議論しました。
     </section>
     <section>
       <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
@@ -159,8 +159,8 @@
         <li><a href="https://bugbounty.jp/">bugbounty.jp</a>
         <li><a href="https://www.hackerone.com/">hackerone</a>
         <li><a href="http://www.security-camp.org/">セキュリティ・キャンプ実施協議会</a>
-        <li><a href="https://engineering.linecorp.com/ja/blog/detail/255">2017 年 LINE Security Bug Bounty Program の結果について: LINE Engineering Blog</a>
-        <li><a href="http://blog.cybozu.io/entry/2017/11/15/120000">「サイボウズ バグハン合宿 2017」開催報告 - Cybozu Inside Out | サイボウズエンジニアのブログ</a>
+        <li><a href="https://engineering.linecorp.com/ja/blog/detail/255">2017 年 LINE Security Bug Bounty Program の結果について : LINE Engineering Blog</a>
+        <li><a href="http://blog.cybozu.io/entry/2017/11/15/120000">「サイボウズ バグハン合宿 2017」 開催報告 - Cybozu Inside Out | サイボウズエンジニアのブログ</a>
         <li><a href="https://www.slideshare.net/linecorp/1-bug-bounty-program-88148396">セキュリティ未経験だったけど入社 1 年目から Bug Bounty Program 運営に参加してみた</a>
         <li><a href="https://www.ipa.go.jp/security/vuln/CVSS.html">共通脆弱性評価システム CVSS 概説:IPA 独立行政法人 情報処理推進機構</a>
         <li><a href="http://masatokinugawa.l0.cm/2013/09/xss.benesse.html">Masato Kinugawa Security Blog: たぶん XSS が理由でインターネットがとまった</a>

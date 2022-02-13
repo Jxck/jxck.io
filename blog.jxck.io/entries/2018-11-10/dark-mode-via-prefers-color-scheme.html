@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="macOS Mojava は OS レベルで Dark Mode に対応した。しかし、Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。Safari TP69 では、これにメディアクエリで対応するための prefe...">
+  <meta name=description         content="macOS Mojava は OS レベルで Dark Mode に対応した。しかし、 Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。Safari TP69 では、これにメディアクエリで対応するための pref...">
   <meta name=keywords            content="media query,dark mode,css">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2018-11-10/dark-mode-via-prefers-color-scheme.html>
   <meta property=og:title        content="prefers-color-scheme を用いた Dark Mode 対応と User Preference Media Features | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="macOS Mojava は OS レベルで Dark Mode に対応した。しかし、Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。Safari TP69 では、これにメディアクエリで対応するための prefe...">
+  <meta property=og:description  content="macOS Mojava は OS レベルで Dark Mode に対応した。しかし、 Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。Safari TP69 では、これにメディアクエリで対応するための pref...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-11-10T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,12 +78,12 @@
         "width": 60
       }
     },
-    "description": "macOS Mojava は OS レベルで Dark Mode に対応した。しかし、Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。Safari TP69 では、これにメディアクエリで対応するための prefe..."
+    "description": "macOS Mojava は OS レベルで Dark Mode に対応した。しかし、 Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。Safari TP69 では、これにメディアクエリで対応するための pref..."
   }
   </script>
 
   <title>prefers-color-scheme を用いた Dark Mode 対応と User Preference Media Features | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-11-10>2018-11-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -150,7 +150,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>macOS Mojava は OS レベルで Dark Mode に対応した。
-        <p>しかし、Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。
+        <p>しかし、 Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。
         <p><a href="https://webkit.org/blog/8475/release-notes-for-safari-technology-preview-68/">Safari TP69</a> では、これにメディアクエリで対応するための <code translate=no>prefers-color-scheme</code> が実装された。
         <p>これを用いた DarkMode 対応と、本ブログの DarkMode 対応、および策定中の User Preference Media Features について解説する。
       </section>
@@ -172,9 +172,9 @@
         <h2 id="dark-mode"><a href="#dark-mode">Dark Mode</a></h2>
         <p>多くのディスプレイコンテンツは、背景を白、文字を黒にしたデザイン(Light Mode)が多い。
         <p>しかし、暗い場所での閲覧時に目への負荷を下げる目的で、背景を黒、文字を白に反転したデザインが用意され、ユーザが好みで切り替えられるようにしたアプリケーションも増えた。
-        <p>macOS Mojava からは、OS レベルで Dark Mode を有効にできるようオプションが追加され、これによって多くのアプリケーションのデザインが切り替わるようになった。
-        <p>筆者は黒背景のターミナル上に居る時間が長いため、ブラウザと切り替えた時の光の強さの変化がずっと気になっていたが、OS 全体を Dark Mode にした結果より一層ブラウザが眩しく感じるようになった。
-        <p>Safari は、Mojava の Mode が Light/Dark どちらに設定されているかを取得する仕組みを検証しており、これを用いると OS の設定に合わせたデザインを提供できる。
+        <p>macOS Mojava からは、 OS レベルで Dark Mode を有効にできるようオプションが追加され、これによって多くのアプリケーションのデザインが切り替わるようになった。
+        <p>筆者は黒背景のターミナル上に居る時間が長いため、ブラウザと切り替えた時の光の強さの変化がずっと気になっていたが、 OS 全体を Dark Mode にした結果より一層ブラウザが眩しく感じるようになった。
+        <p>Safari は、 Mojava の Mode が Light/Dark どちらに設定されているかを取得する仕組みを検証しており、これを用いると OS の設定に合わせたデザインを提供できる。
       </section>
       <section>
         <h2 id="prefers-color-scheme"><a href="#prefers-color-scheme">prefers-color-scheme</a></h2>
@@ -237,10 +237,10 @@ strong {
           <p>Dark Mode 時の画像がどうあるべきかを考えると難しい。
           <p>背景と文字については反転しているわけだが、画像の反転での <code translate=no>invert()</code> はネガのようになりより見にくくなってしまう。
           <p>そもそも Mode があるのは、なんらかの理由で「見やすさ」を切り替える目的があると考える。
-          <p>Light Mode に対し Dark Mode があるのは、Light Mode が「明るすぎる」「眩しい」という理由が挙げられるだろう。
-          <p>すると、Dark Mode 時の画像は、Light Mode に対して暗くなっているべきだと考えられる。
+          <p>Light Mode に対し Dark Mode があるのは、 Light Mode が「明るすぎる」「眩しい」という理由が挙げられるだろう。
+          <p>すると、 Dark Mode 時の画像は、 Light Mode に対して暗くなっているべきだと考えられる。
           <p>そこで <code translate=no>grayscale()</code> を適用し、暗くする方法を取ることにした。
-          <p>この <code translate=no>grayscale()</code> は引数を取り、100% が完全な白黒になる。
+          <p>この <code translate=no>grayscale()</code> は引数を取り、 100% が完全な白黒になる。
           <p>注釈や赤線を引いたスクショもあるため、それらの色が認識でき、かつ明るさを抑えて先の dark mode の CSS デザインと混じる値を探す。
           <p>結果、以下に落ち着いた。
           <pre class=css><code translate=no>article img {
@@ -286,12 +286,12 @@ pre &gt; code {
         <h2 id="user-preference-media-features"><a href="#user-preference-media-features">User Preference Media Features</a></h2>
         <p>この <code translate=no>prefers-color-scheme</code> は MediaQueries Lv5 の User Preference Media Features という仕様に含まれ、まだ策定途中である。(current work は Lv4)
         <p>主に、ユーザ自身が望ましい閲覧設定を、コンテンツ側が取得して、デザインのヒントに利用するためのものである。
-        <p>執筆時点では、User Preference Media Features は以下の 4 が定義されている。
+        <p>執筆時点では、 User Preference Media Features は以下の 4 が定義されている。
         <ul>
-          <li>prefers-reduced-motion(reduce): アニメーションなどの動きを減らす
+          <li>prefers-reduced-motion(reduce):       アニメーションなどの動きを減らす
           <li>prefers-reduced-transparency(reduce): 透過表現を減らす
-          <li>prefers-contrast(high, low): コントラストの高低を要求する
-          <li>prefers-color-scheme(light, dark): カラーテーマを指定する
+          <li>prefers-contrast(high, low):          コントラストの高低を要求する
+          <li>prefers-color-scheme(light, dark):    カラーテーマを指定する
         </ul>
         <p><a href="https://drafts.csswg.org/mediaqueries-5/#mf-user-preferences">Media Queries Level 5</a>
         <p>今回はこの color-scheme にのみフォーカスしたが、この仕様を見ればユーザが様々な閲覧環境を設定できるようになる可能性が想定でき、対応のバリエーションも増えるだろう。
@@ -299,7 +299,7 @@ pre &gt; code {
       </section>
       <section>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
-        <p>本サイトも色関連を variables でまとめ、dark mode のみ切り替えるように CSS を適用した。
+        <p>本サイトも色関連を variables でまとめ、 dark mode のみ切り替えるように CSS を適用した。
         <p>動作は Safari TP69 で確認している。
         <p>
           <picture>

@@ -35,7 +35,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="本サイトのメタ情報を整理するため、HTML のメタタグの整理、JSON-LD による schema.org 対応、Facebook, Twitter を主とした Open Graph 対応を実施した。これにより、既に AMP 対応していた本サイトが、Google のモバイル...">
+  <meta name=description         content="本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。これにより、既に AMP 対応していた本サイトが、 Google の...">
   <meta name=keywords            content="jsonld,open graph,schema.org,semantics">
   <meta name=theme-color         content=#000000>
 
@@ -43,7 +43,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html>
   <meta property=og:title        content="JSON-LD と Open Graph で構造化メタデータ対応 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="本サイトのメタ情報を整理するため、HTML のメタタグの整理、JSON-LD による schema.org 対応、Facebook, Twitter を主とした Open Graph 対応を実施した。これにより、既に AMP 対応していた本サイトが、Google のモバイル...">
+  <meta property=og:description  content="本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。これにより、既に AMP 対応していた本サイトが、 Google の...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-02-26T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -78,12 +78,12 @@
         "width": 60
       }
     },
-    "description": "本サイトのメタ情報を整理するため、HTML のメタタグの整理、JSON-LD による schema.org 対応、Facebook, Twitter を主とした Open Graph 対応を実施した。これにより、既に AMP 対応していた本サイトが、Google のモバイル..."
+    "description": "本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。これにより、既に AMP 対応していた本サイトが、 Google の..."
   }
   </script>
 
   <title>JSON-LD と Open Graph で構造化メタデータ対応 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-02-26>2016-02-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -148,8 +148,8 @@
       <h1><a href="">JSON-LD と Open Graph で構造化メタデータ対応</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>本サイトのメタ情報を整理するため、HTML のメタタグの整理、JSON-LD による schema.org 対応、Facebook, Twitter を主とした Open Graph 対応を実施した。
-        <p>これにより、既に AMP 対応していた本サイトが、Google のモバイル検索でキャッシュの対象となる(クロール待ち)。
+        <p>本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
+        <p>これにより、既に AMP 対応していた本サイトが、 Google のモバイル検索でキャッシュの対象となる(クロール待ち)。
       </section>
       <section>
         <h2 id="meta-tag"><a href="#meta-tag">Meta Tag</a></h2>
@@ -170,7 +170,7 @@
         <h2 id="schema.org"><a href="#schema.org">schema.org</a></h2>
         <p><a href="http://schema.org">schema.org</a> には、メタ情報を表現するボキャブラリが定義されている。
         <p>そのボキャブラリを、サイト内に表現する方法として RDFa, Microdata, JSON-LD の三種類がある。
-        <p>それぞれのフォーマットの詳細は割愛するが、基本的には Microdata で HTML の該当タグにボキャブラリを埋め込むか、JSON-LD を用いて JSON 形式で一箇所に埋め込むかのいずれかが候補に挙がった。
+        <p>それぞれのフォーマットの詳細は割愛するが、基本的には Microdata で HTML の該当タグにボキャブラリを埋め込むか、 JSON-LD を用いて JSON 形式で一箇所に埋め込むかのいずれかが候補に挙がった。
         <p>結果として、本サイトでは以下を考慮し JSON-LD を採用した。
         <ul>
           <li>本サイトが対応している AMP HTML では JSON-LD が許可(推奨)されている。
@@ -217,20 +217,20 @@
 &lt;/script&gt;</code></pre>
           <p>フォーマットは Google の検証ツールを用いてチェックしながら作成した。
           <p><a href="https://developers.google.com/structured-data/testing-tool/">Structured Data Testing Tool</a>
-          <p>悩んだ点として、Google の Validator では <code translate=no>publisher</code> が必須なのだが、 <code translate=no>publisher</code> の <code translate=no>@type</code> は <code translate=no>Person</code> だと怒られる。
+          <p>悩んだ点として、 Google の Validator では <code translate=no>publisher</code> が必須なのだが、 <code translate=no>publisher</code> の <code translate=no>@type</code> は <code translate=no>Person</code> だと怒られる。
           <p>実際には、本サイトは個人運営なのだが、しかたなく <code translate=no>Organization</code> を選択した。問題があったり、回避方法が見つかったら修正する。
         </section>
         <section>
           <h3 id="json-ld-と-ld-json"><a href="#json-ld-と-ld-json">JSON-LD と LD-JSON</a></h3>
           <p>JSON-LD と紛らわしいものに <a href="https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON">LD-JSON (Line Delimitered JSON)</a> がある。
           <p>それだけなら、実際全く関係ない仕様なのでまあ問題ない。
-          <p>しかし、JSON-LD の HTML 内の記述は script type が <em>application/ld+json</em> なのが微妙に引っかかる。
+          <p>しかし、 JSON-LD の HTML 内の記述は script type が <em>application/ld+json</em> なのが微妙に引っかかる。
         </section>
       </section>
       <section>
         <h2 id="open-graph"><a href="#open-graph">Open Graph</a></h2>
         <p>Twitter と Facebook だけ、以下を参考に対応した。
-        <p>内容はほとんど重複なので、JSON-LD に対応してくれれば、これらは消したいところだ。
+        <p>内容はほとんど重複なので、 JSON-LD に対応してくれれば、これらは消したいところだ。
         <p>いずれも、仕様と同時にバリデータが提供されているため、それで確認をしている。
         <section>
           <h3 id="twitter"><a href="#twitter">Twitter</a></h3>
@@ -261,10 +261,10 @@
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>そもそも schema.org と Open Graph で内容が重複している部分が多いため、Twitter, Facebook が schema.org に対応してくれるとそれだけでもペイロードサイズがだいぶ削減されそうである。
-        <p>また、schema.org も JSON-LD で記述することで、重複が発生し、サイズが増えてしまう。
-        <p>これは Microdata などで行えば、HTML 内に記述されている内容は、そのタグにプロパティを付けることで表現できるため、重複を避けることができる。
-        <p>しかし、一方で本サイトが対応している <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP HTML</a> は、JSON-LD は許容しており、通常の HTML と AMP 用 HTML 両方を対応する上でも JSON-LD を使った方が楽だろうと判断し、JSON-LD での記述とした。
+        <p>そもそも schema.org と Open Graph で内容が重複している部分が多いため、 Twitter, Facebook が schema.org に対応してくれるとそれだけでもペイロードサイズがだいぶ削減されそうである。
+        <p>また、 schema.org も JSON-LD で記述することで、重複が発生し、サイズが増えてしまう。
+        <p>これは Microdata などで行えば、 HTML 内に記述されている内容は、そのタグにプロパティを付けることで表現できるため、重複を避けることができる。
+        <p>しかし、一方で本サイトが対応している <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP HTML</a> は、 JSON-LD は許容しており、通常の HTML と AMP 用 HTML 両方を対応する上でも JSON-LD を使った方が楽だろうと判断し、 JSON-LD での記述とした。
       </section>
     </article>
   </main>

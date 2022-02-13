@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-12-25T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -83,7 +83,7 @@
   </script>
 
   <title>AMP SXG 対応 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-12-25>2020-12-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -161,9 +161,9 @@
       <section>
         <h2 id="amp-sxg"><a href="#amp-sxg">AMP SXG</a></h2>
         <p>AMP は、大きく AMP HTML と AMP Cache からなる。
-        <p>AMP HTML 自体は、ルールに則って作った HTML でしかない。しかし、Google のクローラが取得すると、Google が管理する AMP Cache の CDN に保存される。
-        <p>そして、モバイルの Google 検索で、稲妻マークが出た検索結果をクリックすると、自分のサーバにリクエストが来るのではなく、Google の AMP Cache にリクエストが行き、そこに保存された AMP HTML が返されている。
-        <p>したがって、AMP ページを表示すると、その URL バーが Google の URL になり、その仕組自体が色々と物議を呼んだりした。
+        <p>AMP HTML 自体は、ルールに則って作った HTML でしかない。しかし、 Google のクローラが取得すると、 Google が管理する AMP Cache の CDN に保存される。
+        <p>そして、モバイルの Google 検索で、稲妻マークが出た検索結果をクリックすると、自分のサーバにリクエストが来るのではなく、 Google の AMP Cache にリクエストが行き、そこに保存された AMP HTML が返されている。
+        <p>したがって、 AMP ページを表示すると、その URL バーが Google の URL になり、その仕組自体が色々と物議を呼んだりした。
         <p>
           <picture>
             <source type=image/avif srcset=amp-sxg-before.avif?220108_003453>
@@ -171,10 +171,10 @@
             <img loading=lazy decoding=async src=amp-sxg-before.png?210518_024051 alt="SXG に対応してない AMP は URL バーが google のドメインになる" width=2280 height=2228>
           </picture>
         </p>
-        <p>Google は AMP に SXG を組み合わせることで、Google の AMP Cache から提供するが URL バーを Origin のものにできる <em>AMP SXG</em> に対応している。
+        <p>Google は AMP に SXG を組み合わせることで、 Google の AMP Cache から提供するが URL バーを Origin のものにできる <em>AMP SXG</em> に対応している。
         <p>しかし、これは単に AMP HTML を SXG にすればよいかというとそうではない。
-        <p>AMP Cache は取得した AMP HTML を、色々加工(Optimize)してから CDN に保存しているが、SXG は署名がついてるため CDN で加工することができない。
-        <p>そこで、AMP SXG に対応するためには、クローラに渡す前に AMP Cache が行う加工を先にやってから SXG で署名して返す必要があるのだ。
+        <p>AMP Cache は取得した AMP HTML を、色々加工(Optimize)してから CDN に保存しているが、 SXG は署名がついてるため CDN で加工することができない。
+        <p>そこで、 AMP SXG に対応するためには、クローラに渡す前に AMP Cache が行う加工を先にやってから SXG で署名して返す必要があるのだ。
         <p>この「AMP Cache が行う加工」を自分で行うためのツールが amppackager なので、これを入れる必要がある。
       </section>
       <section>
@@ -192,7 +192,7 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep &apos;ASN1 OID: prime256v1&apos
 # CanSignHttpExchanges 拡張がある
 $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code></pre>
         <p>(おそらく将来的にはこの拡張がついた証明書で HTTPS がサーブされている場合、ブラウザはそれを拒否するようになったりするのかもしれない。)
-        <p>鍵は openssl などで普通に作れるが、CanSignedHTTPExchage 拡張のついた証明書は現状 Digicert しか発行していない。また、発行した証明書は、今回は AMP SXG に使用するが、通常の SXG にも利用できるため、それはまた別途解説する。
+        <p>鍵は openssl などで普通に作れるが、 CanSignedHTTPExchage 拡張のついた証明書は現状 Digicert しか発行していない。また、発行した証明書は、今回は AMP SXG に使用するが、通常の SXG にも利用できるため、それはまた別途解説する。
       </section>
       <section>
         <h2 id="amppackager"><a href="#amppackager">amppackager</a></h2>
@@ -248,7 +248,7 @@ runtime.main
 	/home/jxck/dotfiles/pkg/go/current/src/runtime/proc.go:203
 runtime.goexit
 	/home/jxck/dotfiles/pkg/go/current/src/runtime/asm_amd64.s:1373</code></pre>
-          <p>OCSP の情報が無いようだ。Digicert で発行した証明書は自分のドメインのものと DigiCertCA.crt の 2 つがあったので連結したらいけた。
+          <p>OCSP の情報が無いようだ。 Digicert で発行した証明書は自分のドメインのものと DigiCertCA.crt の 2 つがあったので連結したらいけた。
           <pre class=sh-session><code translate=no>$ cat blog_jxck_io.crt DigiCertCA.crt &gt; blog_jxck_io_full.crt</code></pre>
           <p>toml を更新して起動し直すと成功。
           <p>これを systemd に登録して完了。
@@ -267,8 +267,8 @@ ExecStop=/bin/kill -s TERM $MAINPID
 
 [Install]
 WantedBy=multi-user.target</code></pre>
-          <p>(最初、検証時に作らた <code translate=no>/tmp/amppkg-ocsp</code> の権限が起動ユーザのみに絞られており、Systemd を別ユーザで起動すると既存のファイルにアクセスできずに失敗した。単純に消せばいい。)
-          <p>なお、amppkg から ACME で証明書の更新ができるようで、Digicert も ACME 対応しているので、後ほどそちらもやりたい。
+          <p>(最初、検証時に作らた <code translate=no>/tmp/amppkg-ocsp</code> の権限が起動ユーザのみに絞られており、 Systemd を別ユーザで起動すると既存のファイルにアクセスできずに失敗した。単純に消せばいい。)
+          <p>なお、 amppkg から ACME で証明書の更新ができるようで、 Digicert も ACME 対応しているので、後ほどそちらもやりたい。
         </section>
       </section>
       <section>
@@ -292,10 +292,10 @@ WantedBy=multi-user.target</code></pre>
         <section>
           <h3 id="privdoc"><a href="#privdoc"><code translate=no>/priv/doc</code></a></h3>
           <p>このパスが amppckager が SXG を返すパスとなる。
-          <p>Origin に来るリクエストは AMP の URL であるため、そこへのリクエストの中で <code translate=no>AMP-Cache-Transform</code> が付いたものだけ、amppkger のこのパスに転送する。
+          <p>Origin に来るリクエストは AMP の URL であるため、そこへのリクエストの中で <code translate=no>AMP-Cache-Transform</code> が付いたものだけ、 amppkger のこのパスに転送する。
           <p>h2o は Path ベースでの Proxy は簡単だが、ヘッダをベースに分岐するには mruby handler 内で proxy する必要があり、その方法がよくわからず最初は <code translate=no>http_request</code> でリクエストを再構築して書いていた。
           <p>後から、 <a href="https://h2o.examp1e.net/configure/reproxy_directives.html#reproxy">reproxy</a> という機能がそのまま使えることを教えてもらい、一瞬で解決した。
-          <p>(機能は知っていたが、Example を見て同じドメインの別のパスに移譲すると勝手に思い込んでいたが、普通に別ポートにも移譲できた。)
+          <p>(機能は知っていたが、 Example を見て同じドメインの別のパスに移譲すると勝手に思い込んでいたが、普通に別ポートにも移譲できた。)
           <pre class=ruby data-path=amppkg.rb><code translate=no>Proc.new do |env|
   path = env[&quot;PATH_INFO&quot;]
   amp_cache_transform = env[&quot;HTTP_AMP_CACHE_TRANSFORM&quot;]
@@ -320,7 +320,7 @@ end</code></pre>
           <p>同じ AMP の URL でも、リクエストによって HTML と SXG を出し分けることになる。
           <p>SXG のサポートは <code translate=no>Accept: application/signed-exchange;v=b3</code> などが追加されるため、それで判別することができる。
           <p>加えて AMP のクローラは <code translate=no>AMP-Cache-Transform</code> を追加するため、これも判断材料になる。
-          <p>このため、Response は <code translate=no>Vary</code> にこのヘッダを指定し、これら Request ヘッダに応じてキャッシュが別になるようにする必要がある。
+          <p>このため、 Response は <code translate=no>Vary</code> にこのヘッダを指定し、これら Request ヘッダに応じてキャッシュが別になるようにする必要がある。
           <pre class=http><code translate=no>Vary: AMP-Cache-Transform, Accept</code></pre>
           <p>amppackager はこれを自動で付与しているようなので問題ないが、それは Response が SXG のときしかカバーしてない。
           <p>自分のサーバの AMP HTML を返す部分で、同じくこのヘッダを追加してやる必要がある。(前述の mruby handler で実施した)
@@ -330,7 +330,7 @@ end</code></pre>
         <h2 id="debug"><a href="#debug">Debug</a></h2>
         <section>
           <h3 id="devtools"><a href="#devtools">Devtools</a></h3>
-          <p>全てきちんと動いてるかを確認する最も確実な方法は、Chrome で取得して Devtools で見ることだろう。
+          <p>全てきちんと動いてるかを確認する最も確実な方法は、 Chrome で取得して Devtools で見ることだろう。
           <p>この場合 <a href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj?hl=ja">mod header</a> などで <code translate=no>AMP-Cache-Transform: google</code> のリクエストヘッダを追加する必要がある。
           <p>Devtools で見ると以下のように確認できる。
           <p>
@@ -359,7 +359,7 @@ $ dump-certurl -i cert.cbor</code></pre>
       </section>
       <section>
         <h2 id="bot-request"><a href="#bot-request">Bot Request</a></h2>
-        <p>どうやらブラウザからアクセスしたりしていると、Google に把握され Bot が来るようだ。
+        <p>どうやらブラウザからアクセスしたりしていると、 Google に把握され Bot が来るようだ。
         <p>本ブログでは、躊躇なく Production でこういう作業をゴリゴリ行うので、作業してる途中から Bot が来てちょっと邪魔だった。
         <p>デバッグなどが終わらないうちは Internet Access 可能なドメインではやらないほうが良いだろう。
         <p>なお、ログから復元した Bot のヘッダは以下のようなものだった。 <code translate=no>AMP-Cache-Transform</code> と <code translate=no>Accept</code> 以外に変わったヘッダは無いようだ。
@@ -376,7 +376,7 @@ AMP-Cache-Transform: google;v=&quot;1..5&quot;</code></pre>
       </section>
       <section>
         <h2 id="search-result"><a href="#search-result">Search Result</a></h2>
-        <p>Google Bot が来るようになってからしばらくすると、Search Result から SXG に飛べる AMP リンクが見つかり始めた。
+        <p>Google Bot が来るようになってからしばらくすると、 Search Result から SXG に飛べる AMP リンクが見つかり始めた。
         <p>通常ページはヘッダーに稲妻アイコンがあり AMP ページへリンクしているが、そのアイコンが無いことからもこれが AMP ページであることが確認できる。
         <p>
           <picture>
@@ -385,7 +385,7 @@ AMP-Cache-Transform: google;v=&quot;1..5&quot;</code></pre>
             <img loading=lazy decoding=async src=amp-sxg-after.png?210518_024051 alt="検索結果からの遷移で AMP SXG が表示され URL バーが blog.jxck.io になっている" width=1928 height=1198>
           </picture>
         </p>
-        <p>また、Search Result を表示した時点で可能性のある SXG が Preload されていることもわかる。
+        <p>また、 Search Result を表示した時点で可能性のある SXG が Preload されていることもわかる。
         <p>
           <picture>
             <source type=image/avif srcset=sxg-search-preload.avif?220108_003453>
@@ -396,7 +396,7 @@ AMP-Cache-Transform: google;v=&quot;1..5&quot;</code></pre>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>技術調査だけのために AMP に対応してきたが、Google Search においても Mobile Experience を採用するアナウンスが出ているため、本サイトのように Origin が十分速い場合は AMP が必須というわけでもなくなる。
+        <p>技術調査だけのために AMP に対応してきたが、 Google Search においても Mobile Experience を採用するアナウンスが出ているため、本サイトのように Origin が十分速い場合は AMP が必須というわけでもなくなる。
         <p>AMP SXG も、本当に AMP の URL を変えるというだけのためなので、ある程度試して満足したら AMP と一緒に捨てたいと思っている。
         <p>代わりに、通常の HTML と Subresource の WebBundle に SXG を組み合わせた、当初 WebPackaging が目指していたところを試してみたい。
       </section>

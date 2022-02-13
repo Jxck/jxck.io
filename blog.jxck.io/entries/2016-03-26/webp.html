@@ -62,7 +62,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-03-26T08:00:00+08:00",
-    "dateModified": "2022-01-31T08:00:00+08:00",
+    "dateModified": "2022-02-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -83,7 +83,7 @@
   </script>
 
   <title>画像最適化戦略 WebP 編 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?211207_174838>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220213_175148>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
@@ -106,7 +106,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-26>2016-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-31>2022-01-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -174,7 +174,7 @@
           </div>
         </dl>
         <p>WebP は Google が開発した画像フォーマットであり、これら三つの用途全てに適した上で、さらに小さいサイズに圧縮できる場合が多い。
-        <p>また、WebP は動画フォーマットである WebM の 1 フレームに相当するため、WebP アニメーションは簡易 WebM と言っても良い。
+        <p>また、 WebP は動画フォーマットである WebM の 1 フレームに相当するため、 WebP アニメーションは簡易 WebM と言っても良い。
         <p>GIF アニメよりも、色数が多く綺麗なアニメーションを小さいサイズで作ることができるため、技術ブログで言えばスクリーンデモのキャプチャなどに適しているだろう。
         <p>現状まだ対応するブラウザは限られているが、対応しているのであれば WebP で配布するのが望ましい場合が多い。
       </section>
@@ -187,14 +187,14 @@
       </section>
       <section>
         <h2 id="webp-変換"><a href="#webp-変換">WebP 変換</a></h2>
-        <p>本サイトの画像は、Mac で取得したスクリーンショットか cacoo で作成した図、その他フリー素材が中心である。
+        <p>本サイトの画像は、 Mac で取得したスクリーンショットか cacoo で作成した図、その他フリー素材が中心である。
         <p>cacoo で作成した画像は SVG で書き出すため、主にスクリーンショットかフリー素材 が WebP 変換の対象となる。
-        <p>WebP への変換ツールは、Google が公式に提供しているバイナリか、Linux/Mac ならパッケージで提供されているものを使うことができる。
+        <p>WebP への変換ツールは、 Google が公式に提供しているバイナリか、 Linux/Mac ならパッケージで提供されているものを使うことができる。
         <p><a href="https://developers.google.com/speed/webp/download">Downloading and Installing WebP</a>
         <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
         <pre class=sh-session><code translate=no>$ brew install webp    # mac
 $ apt-get install webp # linux</code></pre>
-        <p>他にも、gulp などのプラグインや、GUI ツールなどもある。
+        <p>他にも、 gulp などのプラグインや、 GUI ツールなどもある。
       </section>
       <section>
         <h2 id="cwebp"><a href="#cwebp">cwebp</a></h2>
@@ -224,18 +224,18 @@ Usage:
       <section>
         <h2 id="picture-での-webp-の指定"><a href="#picture-での-webp-の指定"><code translate=no>&lt;picture&gt;</code> での WebP の指定</a></h2>
         <p>ブラウザにおける <a href="https://caniuse.com/#feat=webp">WebP の対応はまだまだ限定的</a> であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
-        <p>この方法として、JS による補完や、User-Agent を用いたサーバサイドでの分岐などが紹介される場合がある。
-        <p>しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、User-Agent での分岐は保守性の問題から避けるべきパターンの一つといえる。
-        <p>現時点では、HTML の <code translate=no>&lt;picture&gt;</code> を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
-        <p>画像を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、WebP や <code translate=no>&lt;picture&gt;</code> に対応していない場合は <code translate=no>&lt;img&gt;</code> に指定した画像にフォールバックする。
+        <p>この方法として、 JS による補完や、 User-Agent を用いたサーバサイドでの分岐などが紹介される場合がある。
+        <p>しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、 User-Agent での分岐は保守性の問題から避けるべきパターンの一つといえる。
+        <p>現時点では、 HTML の <code translate=no>&lt;picture&gt;</code> を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
+        <p>画像を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、 WebP や <code translate=no>&lt;picture&gt;</code> に対応していない場合は <code translate=no>&lt;img&gt;</code> に指定した画像にフォールバックする。
         <pre class=html><code translate=no>&lt;picture&gt;
   &lt;source type=image/webp srcset=hero-image.webp&gt;
   &lt;img src=hero-image.png alt=&quot;hero image&quot;&gt;
 &lt;/picture&gt;</code></pre>
-        <p>この場合、WebP に対応しているが <code translate=no>&lt;picture&gt;</code> に対応していないブラウザがあるのかが気になるところだが、現状 <a href="https://caniuse.com/#search=picture">picture</a> に対応し <a href="https://caniuse.com/#search=webp">webp</a> に対応していないブラウザは無い。
+        <p>この場合、 WebP に対応しているが <code translate=no>&lt;picture&gt;</code> に対応していないブラウザがあるのかが気になるところだが、現状 <a href="https://caniuse.com/#search=picture">picture</a> に対応し <a href="https://caniuse.com/#search=webp">webp</a> に対応していないブラウザは無い。
         <p>したがって <code translate=no>&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 <code translate=no>&lt;img&gt;</code> には PNG を指定する。
         <p>この指定は、現在 WebP に対応していないブラウザが将来対応した場合に、サイトに何も手を加える必要がない。
-        <p>将来、新しい画像フォーマットが出た場合は <code translate=no>&lt;source&gt;</code> を加えることで、ブラウザに選択肢を増やせば良いため、UA のメンテナンスと比べても、好ましい方法と言える。
+        <p>将来、新しい画像フォーマットが出た場合は <code translate=no>&lt;source&gt;</code> を加えることで、ブラウザに選択肢を増やせば良いため、 UA のメンテナンスと比べても、好ましい方法と言える。
       </section>
     </article>
   </main>
