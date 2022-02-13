@@ -217,33 +217,35 @@
         <p>さらに、 Cross Origin のダイアログがそもそもなくなれば、ホスト名の表示を削除してダイアログをさらに簡素化したり、ダイアログをコンテンツエリアの中央に表示してページの一部であることをより明らかにするよう改善できるといったメリットも説明されている。
         <p>Cross Origin iframe が埋め込まれたページにおいては、他にも <a href="https://docs.google.com/document/d/1x5QejvpyQ71LPWhMLsaM1lWCfSsBsSQ8Dap9kJ6uLv0/edit#heading=h.u4dloygy0zkd">Permission を求める際に「誰が求めているのか」をユーザに伝えるのが難しい</a> という問題も知られているため、これと同等の議論があったと予想される。
         <p>Intents には Use Counter も載っているので引用する。
-        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220213_183106>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-center>Feature</th>
-              <th class=align-center>% of Page Loads with usage (from cross-origin iframes)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-center>window.Alert</td>
-              <td class=align-center>0.006</td>
-            </tr>
-            <tr>
-              <td class=align-center>window.Confirm</td>
-              <td class=align-center>0.003</td>
-            </tr>
-            <tr>
-              <td class=align-center>window.Prompt</td>
-              <td class=align-center>0.00006</td>
-            </tr>
-            <tr>
-              <td class=align-center>Total</td>
-              <td class=align-center>0.00906</td>
-            </tr>
-          </tbody>
-        </table>
+        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220214_040207>
+        <figure>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-center>Feature</th>
+                <th class=align-center>% of Page Loads with usage (from cross-origin iframes)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-center>window.Alert</td>
+                <td class=align-center>0.006</td>
+              </tr>
+              <tr>
+                <td class=align-center>window.Confirm</td>
+                <td class=align-center>0.003</td>
+              </tr>
+              <tr>
+                <td class=align-center>window.Prompt</td>
+                <td class=align-center>0.00006</td>
+              </tr>
+              <tr>
+                <td class=align-center>Total</td>
+                <td class=align-center>0.00906</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
         <p>しかし、実際に M92 がリリースされてからは、この機能が壊れたことによる影響が多数報告されていたため、実装者が想定していた以上に影響はあったといえるだろう。
       </section>
       <section>

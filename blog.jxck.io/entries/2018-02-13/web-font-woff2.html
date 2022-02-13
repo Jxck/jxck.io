@@ -181,33 +181,35 @@
       <section>
         <h2 id="サイズ比較"><a href="#サイズ比較">サイズ比較</a></h2>
         <p>同じサブセットから、 WOFF/WOFF2 を生成し、それぞれサイズを確認する。
-        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220213_183106>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-right>size</th>
-              <th class=align-center>format</th>
-              <th class=align-left>file</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-right>498.8K</td>
-              <td class=align-center>otf</td>
-              <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.otf</td>
-            </tr>
-            <tr>
-              <td class=align-right>391.6K</td>
-              <td class=align-center>woff</td>
-              <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff</td>
-            </tr>
-            <tr>
-              <td class=align-right>345.7K</td>
-              <td class=align-center>woff2</td>
-              <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2</td>
-            </tr>
-          </tbody>
-        </table>
+        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220214_040207>
+        <figure>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-right>size</th>
+                <th class=align-center>format</th>
+                <th class=align-left>file</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-right>498.8K</td>
+                <td class=align-center>otf</td>
+                <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.otf</td>
+              </tr>
+              <tr>
+                <td class=align-right>391.6K</td>
+                <td class=align-center>woff</td>
+                <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff</td>
+              </tr>
+              <tr>
+                <td class=align-right>345.7K</td>
+                <td class=align-center>woff2</td>
+                <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
         <p>woff と woff2 を比べると 12% ほど圧縮されている。
         <p>bold についても同様の結果が得られた。
       </section>
@@ -215,32 +217,34 @@
         <h2 id="圧縮"><a href="#圧縮">圧縮</a></h2>
         <p>本サイトでは、基本的に静的コンテンツを <a href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html">zopfli</a> と <a href="https://blog.jxck.io/entries/2017-08-19/content-encoding-brotli.html">brotli</a> で圧縮してレスポンスしている。
         <p>WOFF2 は既に brotli を用いた圧縮をしているため、もし経路上の圧縮が必要でないのであれば、圧縮プロセスから外す必要が出るため、確認する。
-        <table>
-          <thead>
-            <tr>
-              <th class=align-right>size</th>
-              <th class=align-center>format</th>
-              <th class=align-left>file</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-right>345.7K</td>
-              <td class=align-center>-</td>
-              <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2</td>
-            </tr>
-            <tr>
-              <td class=align-right>345.7K</td>
-              <td class=align-center>brotli</td>
-              <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2.br</td>
-            </tr>
-            <tr>
-              <td class=align-right>345.8K</td>
-              <td class=align-center>zopfli</td>
-              <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2.gz</td>
-            </tr>
-          </tbody>
-        </table>
+        <figure>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-right>size</th>
+                <th class=align-center>format</th>
+                <th class=align-left>file</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-right>345.7K</td>
+                <td class=align-center>-</td>
+                <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2</td>
+              </tr>
+              <tr>
+                <td class=align-right>345.7K</td>
+                <td class=align-center>brotli</td>
+                <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2.br</td>
+              </tr>
+              <tr>
+                <td class=align-right>345.8K</td>
+                <td class=align-center>zopfli</td>
+                <td class=align-left>NotoSansCJKjp-Jxck-Regular-201802.woff2.gz</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
         <p>予想通り、追加の圧縮は無意味、もしくは逆効果であるため、 WOFF2 は圧縮プロセスから外すこととする。
       </section>
       <section>

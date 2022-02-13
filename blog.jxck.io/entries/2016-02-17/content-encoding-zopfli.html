@@ -221,107 +221,111 @@
           <p><code translate=no>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
           <p>デフォルトは <code translate=no>i = 15</code> であるため、 <code translate=no>10..100</code> まで増やしながら実行した。
           <p>最初の段は、元のファイルサイズ、二段目は <code translate=no>gzip</code> コマンドの結果である。
-          <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220213_183106>
-          <table>
-            <thead>
-              <tr>
-                <th class=align-right></th>
-                <th class=align-left>time</th>
-                <th class=align-right>size</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class=align-right>orig</td>
-                <td class=align-left>-</td>
-                <td class=align-right>17497</td>
-              </tr>
-              <tr>
-                <td class=align-right>gzip</td>
-                <td class=align-left>0.002</td>
-                <td class=align-right>5348</td>
-              </tr>
-              <tr>
-                <td class=align-right>10</td>
-                <td class=align-left>0.18</td>
-                <td class=align-right>5164</td>
-              </tr>
-              <tr>
-                <td class=align-right>20</td>
-                <td class=align-left>0.22</td>
-                <td class=align-right>5159</td>
-              </tr>
-              <tr>
-                <td class=align-right>30</td>
-                <td class=align-left>0.24</td>
-                <td class=align-right>5159</td>
-              </tr>
-              <tr>
-                <td class=align-right>40</td>
-                <td class=align-left>0.29</td>
-                <td class=align-right>5159</td>
-              </tr>
-              <tr>
-                <td class=align-right>50</td>
-                <td class=align-left>0.39</td>
-                <td class=align-right>5159</td>
-              </tr>
-              <tr>
-                <td class=align-right>60</td>
-                <td class=align-left>0.42</td>
-                <td class=align-right>5159</td>
-              </tr>
-              <tr>
-                <td class=align-right>70</td>
-                <td class=align-left>0.46</td>
-                <td class=align-right>5156</td>
-              </tr>
-              <tr>
-                <td class=align-right>80</td>
-                <td class=align-left>0.50</td>
-                <td class=align-right>5156</td>
-              </tr>
-              <tr>
-                <td class=align-right>90</td>
-                <td class=align-left>0.55</td>
-                <td class=align-right>5156</td>
-              </tr>
-              <tr>
-                <td class=align-right>100</td>
-                <td class=align-left>0.58</td>
-                <td class=align-right>5156</td>
-              </tr>
-            </tbody>
-          </table>
+          <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220214_040207>
+          <figure>
+            <table>
+              <thead>
+                <tr>
+                  <th class=align-right></th>
+                  <th class=align-left>time</th>
+                  <th class=align-right>size</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class=align-right>orig</td>
+                  <td class=align-left>-</td>
+                  <td class=align-right>17497</td>
+                </tr>
+                <tr>
+                  <td class=align-right>gzip</td>
+                  <td class=align-left>0.002</td>
+                  <td class=align-right>5348</td>
+                </tr>
+                <tr>
+                  <td class=align-right>10</td>
+                  <td class=align-left>0.18</td>
+                  <td class=align-right>5164</td>
+                </tr>
+                <tr>
+                  <td class=align-right>20</td>
+                  <td class=align-left>0.22</td>
+                  <td class=align-right>5159</td>
+                </tr>
+                <tr>
+                  <td class=align-right>30</td>
+                  <td class=align-left>0.24</td>
+                  <td class=align-right>5159</td>
+                </tr>
+                <tr>
+                  <td class=align-right>40</td>
+                  <td class=align-left>0.29</td>
+                  <td class=align-right>5159</td>
+                </tr>
+                <tr>
+                  <td class=align-right>50</td>
+                  <td class=align-left>0.39</td>
+                  <td class=align-right>5159</td>
+                </tr>
+                <tr>
+                  <td class=align-right>60</td>
+                  <td class=align-left>0.42</td>
+                  <td class=align-right>5159</td>
+                </tr>
+                <tr>
+                  <td class=align-right>70</td>
+                  <td class=align-left>0.46</td>
+                  <td class=align-right>5156</td>
+                </tr>
+                <tr>
+                  <td class=align-right>80</td>
+                  <td class=align-left>0.50</td>
+                  <td class=align-right>5156</td>
+                </tr>
+                <tr>
+                  <td class=align-right>90</td>
+                  <td class=align-left>0.55</td>
+                  <td class=align-right>5156</td>
+                </tr>
+                <tr>
+                  <td class=align-right>100</td>
+                  <td class=align-left>0.58</td>
+                  <td class=align-right>5156</td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
           <p>この結果だと <code translate=no>-i20</code> 以上は誤差のようである。
           <p>ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code translate=no>i=30</code> くらいに落ち着いた。
           <p>また、 <a href="https://jxck.io/assets/img/jxck.webp">WebP</a> と <a href="https://jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
-          <table>
-            <thead>
-              <tr>
-                <th class=align-left>file</th>
-                <th class=align-right>size</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class=align-left>jxck.png</td>
-                <td class=align-right>3860</td>
-              </tr>
-              <tr>
-                <td class=align-left>jxck.png.gz</td>
-                <td class=align-right>3399</td>
-              </tr>
-              <tr>
-                <td class=align-left>jxck.webp</td>
-                <td class=align-right>1810</td>
-              </tr>
-              <tr>
-                <td class=align-left>jxck.webp.gz</td>
-                <td class=align-right>1873</td>
-              </tr>
-            </tbody>
-          </table>
+          <figure>
+            <table>
+              <thead>
+                <tr>
+                  <th class=align-left>file</th>
+                  <th class=align-right>size</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class=align-left>jxck.png</td>
+                  <td class=align-right>3860</td>
+                </tr>
+                <tr>
+                  <td class=align-left>jxck.png.gz</td>
+                  <td class=align-right>3399</td>
+                </tr>
+                <tr>
+                  <td class=align-left>jxck.webp</td>
+                  <td class=align-right>1810</td>
+                </tr>
+                <tr>
+                  <td class=align-left>jxck.webp.gz</td>
+                  <td class=align-right>1873</td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
           <p>WebP はそもそも圧縮率が高いためか、オーバーヘッドが出ている。
           <p>画像は、画像サイズ自体の最適化などの問題があるが、とりあえずは WebP 形式のみ除外することにした。除外対象は、定期的にサイズを確認し修正して行く。
         </section>

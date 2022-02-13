@@ -288,41 +288,43 @@ observer.observe(target);</code></pre>
           <h3 id="callback"><a href="#callback">callback</a></h3>
           <p>複数の DOM を監視した場合は、一つのイベントで複数の変更が取得されるため、コールバックの引数は監視した DOM の数だけ入ってくる。
           <p>一つの変更は以下のプロパティを持つ
-          <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220213_183106>
-          <table>
-            <thead>
-              <tr>
-                <th class=align-left>プロパティ</th>
-                <th class=align-left>内容</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class=align-left><code translate=no>change.time</code></td>
-                <td class=align-left>タイムスタンプ</td>
-              </tr>
-              <tr>
-                <td class=align-left><code translate=no>change.rootBounds</code></td>
-                <td class=align-left>root の <code translate=no>getBoundingClientRect()</code></td>
-              </tr>
-              <tr>
-                <td class=align-left><code translate=no>change.boundingClientRect</code></td>
-                <td class=align-left>target の <code translate=no>getBoundingClientRect()</code></td>
-              </tr>
-              <tr>
-                <td class=align-left><code translate=no>change.intersectionRect</code></td>
-                <td class=align-left>交差領域の <code translate=no>getBoundingClientRect()</code></td>
-              </tr>
-              <tr>
-                <td class=align-left><code translate=no>change.intersectionRatio</code></td>
-                <td class=align-left>交差している領域の割合</td>
-              </tr>
-              <tr>
-                <td class=align-left><code translate=no>change.target</code></td>
-                <td class=align-left>target</td>
-              </tr>
-            </tbody>
-          </table>
+          <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220214_040207>
+          <figure>
+            <table>
+              <thead>
+                <tr>
+                  <th class=align-left>プロパティ</th>
+                  <th class=align-left>内容</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class=align-left><code translate=no>change.time</code></td>
+                  <td class=align-left>タイムスタンプ</td>
+                </tr>
+                <tr>
+                  <td class=align-left><code translate=no>change.rootBounds</code></td>
+                  <td class=align-left>root の <code translate=no>getBoundingClientRect()</code></td>
+                </tr>
+                <tr>
+                  <td class=align-left><code translate=no>change.boundingClientRect</code></td>
+                  <td class=align-left>target の <code translate=no>getBoundingClientRect()</code></td>
+                </tr>
+                <tr>
+                  <td class=align-left><code translate=no>change.intersectionRect</code></td>
+                  <td class=align-left>交差領域の <code translate=no>getBoundingClientRect()</code></td>
+                </tr>
+                <tr>
+                  <td class=align-left><code translate=no>change.intersectionRatio</code></td>
+                  <td class=align-left>交差している領域の割合</td>
+                </tr>
+                <tr>
+                  <td class=align-left><code translate=no>change.target</code></td>
+                  <td class=align-left>target</td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
           <p>
             <img loading=lazy decoding=async src=intersection-observer.svg?180105_115707 alt="IntersectionObserver の各プロパティが表す部分" title="Intersection Observer API" width=500 height=357>
           </p>

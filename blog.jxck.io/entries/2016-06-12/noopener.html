@@ -192,43 +192,45 @@
         <h2 id="open-link-in-new-tab"><a href="#open-link-in-new-tab">open link in new tab</a></h2>
         <p><code translate=no>target=_blank</code> が無いリンクを、別タブとして開いても、この攻撃は再現しないようである。
         <p>しかし、 <code translate=no>target=_blank</code> がついたリンクを、さらに「別タブとして開く」機能を用いて開いた場合の挙動は、ブラウザによって異なる。
-        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220213_183106>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>Browser</th>
-              <th class=align-center>Click</th>
-              <th class=align-center>Shift+click</th>
-              <th class=align-center>Meta/Ctrl+click</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>Chrome40</td>
-              <td class=align-center>x</td>
-              <td class=align-center>x</td>
-              <td class=align-center>x</td>
-            </tr>
-            <tr>
-              <td class=align-left>Firefox34</td>
-              <td class=align-center></td>
-              <td class=align-center></td>
-              <td class=align-center></td>
-            </tr>
-            <tr>
-              <td class=align-left>Opera26</td>
-              <td class=align-center>x</td>
-              <td class=align-center>x</td>
-              <td class=align-center>x</td>
-            </tr>
-            <tr>
-              <td class=align-left>Safari7,8</td>
-              <td class=align-center>x</td>
-              <td class=align-center></td>
-              <td class=align-center></td>
-            </tr>
-          </tbody>
-        </table>
+        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220214_040207>
+        <figure>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>Browser</th>
+                <th class=align-center>Click</th>
+                <th class=align-center>Shift+click</th>
+                <th class=align-center>Meta/Ctrl+click</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>Chrome40</td>
+                <td class=align-center>x</td>
+                <td class=align-center>x</td>
+                <td class=align-center>x</td>
+              </tr>
+              <tr>
+                <td class=align-left>Firefox34</td>
+                <td class=align-center></td>
+                <td class=align-center></td>
+                <td class=align-center></td>
+              </tr>
+              <tr>
+                <td class=align-left>Opera26</td>
+                <td class=align-center>x</td>
+                <td class=align-center>x</td>
+                <td class=align-center>x</td>
+              </tr>
+              <tr>
+                <td class=align-left>Safari7,8</td>
+                <td class=align-center>x</td>
+                <td class=align-center></td>
+                <td class=align-center></td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
         <p>なお IE は(security zone setting をいじらない限り)この問題が発生しないようだ。
         <p>引用元: <a href="https://danielstjules.github.io/blankshield/">blankshield demo | Reverse tabnabber phishing</a>
       </section>
