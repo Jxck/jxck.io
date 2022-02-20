@@ -247,6 +247,10 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - https://blog.qiita.com/end-ie11-support/
 - 2021/11: クラウドサイン ヘルプセンター
   - https://help.cloudsign.jp/ja/articles/2570393-クラウドサインの推奨環境を教えてください
+- 2022/01/31: 【重要なお知らせ：IE11 サポート終了について】 日経電子版ウェブサイト
+  - https://twitter.com/webkanpr/status/1488070799286312962
+- 2022/02/16: ヤフーのIE11 サポート終了の進め方 - Yahoo! JAPAN Tech Blog
+  - https://techblog.yahoo.co.jp/entry/2022021630265506/
 
 
 ## IE廃止セット
