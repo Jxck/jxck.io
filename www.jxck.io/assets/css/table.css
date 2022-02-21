@@ -11,14 +11,32 @@
   text-align: center;
 }
 
+article {
+  counter-reset: table;
+}
+
 figure {
   margin: 0;
   padding: 0;
-  overflow-x: scroll;
+  overflow-x: auto;
+  font-family: var(--mono-font);
+}
+
+figcaption {
+  margin-inline-start: 0.5em;
+  margin-block-end: 0.5em;
+  font-style: italic;
+}
+figcaption::before {
+  counter-increment: table;
+  content: "[表:" counter(table) " "
+}
+figcaption::after {
+  content: "]"
 }
 
 table {
-  font-family: var(--mono-font);
+  margin: 0 auto;
   text-align: left;
   white-space: nowrap;
   border-collapse: collapse;
