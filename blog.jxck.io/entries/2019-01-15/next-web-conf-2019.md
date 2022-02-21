@@ -17,6 +17,7 @@
 
 ## Log
 
+Caption: Session List
 | session     | youtube                              | togetter                                  |
 |:------------|:-------------------------------------|:------------------------------------------|
 | #nwc_all    | -                                    | [まとめ](https://togetter.com/li/1267054) |

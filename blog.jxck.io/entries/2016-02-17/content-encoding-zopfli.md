@@ -111,6 +111,7 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 
 最初の段は、元のファイルサイズ、二段目は `gzip` コマンドの結果である。
 
+Caption: ファイルサイズごとの gzip の実行結果
 |      | time  | size  |
 |-----:|:------|------:|
 | orig | -     | 17497 |
@@ -132,6 +133,7 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 
 また、 [WebP](https://jxck.io/assets/img/jxck.webp) と [PNG](https://jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
 
+Caption: 画像圧縮フォーマットとサイズの関係
 | file         | size |
 |:-------------|-----:|
 | jxck.png     | 3860 |

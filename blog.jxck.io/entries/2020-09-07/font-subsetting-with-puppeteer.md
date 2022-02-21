@@ -37,6 +37,7 @@ Web Font のサブセット化を Font Weight に応じて作り分けるとと�
 
 Regular は、 Bold にあって Regular には無い文字が減らせた一方、これまで取りこぼしていた文字を収録しきったためトータルでは多くなっている。
 
+Caption: フォント削除の効果
 | Type   | Regular | Bold    |
 |:-------|--------:|--------:|
 | before |  343.0K |  354.0K |

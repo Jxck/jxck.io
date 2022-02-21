@@ -246,6 +246,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 ここまでの結果を合わせる。
 
+Caption: 文字範囲と文字数
 | 範囲             | 文字数 |
 |:-----------------|-------:|
 | 基本ラテン文字   |     94 |
@@ -302,6 +303,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 まず対象とする漢字による、サイズの変化はこうなる。
 
+Caption: 漢字範囲ごとのサイズ
 | 範囲     | サイズ |
 |:---------|-------:|
 | JISX0208 | 505.0K |
@@ -313,6 +315,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 もしここまでに見てきた各項目にあげた候補を、一切削除せず、漢字を JISX0208 とした場合はこうなる。
 
+Caption: JISX0208 と削除後のサイズの比較
 |        | サイズ |
 |:-------|-------:|
 | before | 547.5K |

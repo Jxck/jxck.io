@@ -65,6 +65,7 @@ Cross Origin iframe が埋め込まれたページにおいては、他にも [P
 
 Intents には Use Counter も載っているので引用する。
 
+Caption: API ごとの Use Counter
 | Feature        | % of Page Loads with usage (from cross-origin iframes) |
 |:--------------:|:------------------------------------------------------:|
 | window.Alert   | 0.006                                                  |

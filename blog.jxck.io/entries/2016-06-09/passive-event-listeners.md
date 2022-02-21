@@ -74,6 +74,7 @@ document.addEventListener('touchstart', handler, {passive: true});
 
 Listener 内で `preventDefault()` を呼べるかどうかは、 `cancelable=true` となっているかどうかで分かる。
 
+Caption: cancelable と preventDefault の関係
 | listener | cancelable | preventDefault | defaultPrevented |
 |:---------|:-----------|:---------------|:-----------------|
 | normal   | true       | cancel default | false - true     |

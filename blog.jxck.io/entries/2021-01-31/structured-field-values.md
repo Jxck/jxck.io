@@ -109,6 +109,7 @@ Item には Value と Parameter がある。
 
 サポートされているのは以下。
 
+Caption: SFV でサポートされる Value
 | Type     | Value       | SFV     |
 |:---------|:------------|:--------|
 | Integer  | 10          | 10      |

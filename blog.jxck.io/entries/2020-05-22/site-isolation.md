@@ -272,6 +272,7 @@ Cross-Origin-Opener-Policy: unsafe-none
 
 対応は以下のようになる。
 
+Caption: Opener と Openee の対応
 | Opener / Openee                    | Same origin - unsafe-none | Same origin - allow-popups | Same origin - Same origin | Cross origin - unsafe-none | Cross origin - allow-popups | Cross origin - same-origin |
 |:----------------------------------:|:-------------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:---------------------------:|:--------------------------:|
 | Top level           - unsafe-none  | Y                         | N                          | N                         | Y                          | N                           | N                          |

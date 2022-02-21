@@ -117,6 +117,7 @@ zopfli は、以前の検証で出した `--i30` を採用している。
 
 当サイトの平均的なサンプルとして、[一つ前の記事](https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html) の HTML を採用した。
 
+Caption: 圧縮形式ごとのサンプル HTML の圧縮率
 | file type | size  | ratio |
 |:----------|------:|------:|
 | .html     | 22260 |  100% |
@@ -130,6 +131,7 @@ zopfli と比べて、 4 point 圧縮率が向上している。
 
 [highlight.min.js](https://jxck.io/assets/js/highlight.min.js)
 
+Caption: 圧縮形式ごとのサンプル JS の圧縮率
 | file type | size  | ratio |
 |:----------|------:|------:|
 | .js       | 42536 |  100% |
@@ -145,6 +147,7 @@ zopfli と比べて、 1 point 圧縮率が向上している。
 
 [mozaic.css](https://jxck.io/assets/css/mozaic.css)
 
+Caption: 圧縮形式ごとのサンプル CSS の圧縮率
 | file type | size | ratio |
 |:----------|-----:|------:|
 | .css      | 1454 |  100% |
@@ -162,6 +165,7 @@ zopfli と比べて、 7 point 圧縮率が向上している。
 
 [NotoSansCJKjp-Jxck-Regular.woff](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff)
 
+Caption: 圧縮形式ごとのサンプル OTF の圧縮率
 | file type | size   | ratio |
 |:----------|-------:|------:|
 | .otf      | 486132 |  100% |
@@ -170,6 +174,7 @@ zopfli と比べて、 7 point 圧縮率が向上している。
 
 [NotoSansCJKjp-Jxck-Regular.otf](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf)
 
+Caption: 圧縮形式ごとのサンプル WOFF の圧縮率
 | file type | size   | ratio |
 |:----------|-------:|------:|
 | .woff     | 387528 |  100% |
@@ -185,6 +190,7 @@ OTF は圧縮効果が高いが、 WoFF は逆効果となっている。
 
 [mozaic.png](https://jxck.io/assets/img/mozaic.png)
 
+Caption: 圧縮形式ごとのサンプル PNG の圧縮率
 | file type | size  | ratio |
 |:----------|------:|------:|
 | .png      | 37509 |  100% |
@@ -198,6 +204,7 @@ OTF は圧縮効果が高いが、 WoFF は逆効果となっている。
 
 [mozaic.webp](https://jxck.io/assets/img/mozaic.webp)
 
+Caption: 圧縮形式ごとのサンプル WebP の圧縮率
 | file type | size | ratio |
 |:----------|-----:|------:|
 | .webp     | 9474 |  100% |
@@ -213,6 +220,7 @@ WebP も圧縮済みのフォーマットであるため、圧縮が逆効果と
 
 [mozaic.svg](https://jxck.io/assets/img/mozaic.svg)
 
+Caption: 圧縮形式ごとのサンプル SVG の圧縮率
 | file type | size | ratio |
 |:----------|-----:|------:|
 | .svg      | 2871 |  100% |
