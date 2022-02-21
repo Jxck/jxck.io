@@ -526,35 +526,47 @@ function log(arg) {
 
 ==============================
 
+Caption: sample table
 | none    | center    | left    | right       |
 |---------|:---------:|:--------|------------:|
 | aaa     | bbb       | ccc     | ddd         |
 | a *a* a | b **b** b | c `c` c | d [d](#d) d |
 ------------------------------
-<table>
-  <thead>
-    <tr>
-      <th class=align-center>none</th>
-      <th class=align-center>center</th>
-      <th class=align-left>left</th>
-      <th class=align-right>right</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class=align-center>aaa</td>
-      <td class=align-center>bbb</td>
-      <td class=align-left>ccc</td>
-      <td class=align-right>ddd</td>
-    </tr>
-    <tr>
-      <td class=align-center>a <em>a</em> a</td>
-      <td class=align-center>b <strong>b</strong> b</td>
-      <td class=align-left>c <code translate=no>c</code> c</td>
-      <td class=align-right>d <a href="#d">d</a> d</td>
-    </tr>
-  </tbody>
-</table>
+<figure>
+  <figcaption>sample table</figcaption>
+  <table>
+    <thead>
+      <tr>
+        <th class=align-center>none</th>
+        <th class=align-center>center</th>
+        <th class=align-left>left</th>
+        <th class=align-right>right</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=align-center>aaa</td>
+        <td class=align-center>bbb</td>
+        <td class=align-left>ccc</td>
+        <td class=align-right>ddd</td>
+      </tr>
+      <tr>
+        <td class=align-center>a <em>a</em> a</td>
+        <td class=align-center>b <strong>b</strong> b</td>
+        <td class=align-left>c <code translate=no>c</code> c</td>
+        <td class=align-right>d <a href="#d">d</a> d</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+==============================
+
+| none    | center    | left    | right       |
+|---------|:---------:|:--------|------------:|
+| aaa     | bbb       | ccc     | ddd         |
+------------------------------
+Table caption required before "| none    | center    | left    | right       |"
 
 ==============================
 

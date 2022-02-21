@@ -278,6 +278,20 @@ export function encode(node, option = {}) {
   }
 
   /**
+   * figcaption
+   * @param {Node} node
+   * @param {number} indent
+   * @returns {string}
+   */
+  function figcaption(node, indent) {
+    return [
+      `${spaces(indent)}<${node.name}>`,
+      node.text,
+      `</${node.name}>\n`,
+    ].join(``)
+  }
+
+  /**
    * dt & dd
    * @param {Node} node
    * @param {number} indent
@@ -401,6 +415,7 @@ export function encode(node, option = {}) {
     if (name === `a`) /*             */ return a(node, indent)
     if (name === `pre`) /*           */ return pre(node, indent)
     if (name === `root`) /*          */ return root(node, indent)
+    if (name === `figcaption`) /*    */ return figcaption(node, indent)
     if (name === `th` || name === `td`) return td(node, indent)
     if (name === `dt` || name === `dd`) return dt(node, indent)
     if (name === `p`) /*             */ return mix_inline(node, indent)
@@ -607,11 +622,55 @@ export function decode(md) {
    * @param {Node} ast
    * @returns {Node}
    */
+  function table_caption(result, rest, ast) {
+    const caption = result.groups.caption
+
+    // table
+    const thead = node({
+      name: `thead`,
+      type: `block`,
+      level: 0,
+    })
+
+    const table = node({
+      name: `table`,
+      type: `block`,
+      level: 0,
+      children: [thead]
+    })
+
+    // figure
+    const figcaption = node({
+      name: `figcaption`,
+      type: `inline`,
+      text: caption,
+      level: 0
+    })
+
+    const figure = node({
+      name: `figure`,
+      type: `block`,
+      level: 0,
+      children: [figcaption, table]
+    })
+
+    ast.appendChild(figure)
+    return parse(rest, thead)
+  }
+
+  /**
+   * @param {RegExpExecArray} result
+   * @param {Array.<string>} rest
+   * @param {Node} ast
+   * @returns {Node}
+   */
   function table(result, rest, ast) {
+    if (ast.parent?.name !== `table`) throw new Error(`Table caption required before "${result.input}"`)
+
     const row = result.groups.row
     const columns = row.split(`|`)
 
-    if (ast.name === `thead`) {
+    if (row.startsWith(`:`) || row.startsWith(`-`)) {
       const aligns = columns.map((colmun) => {
         const start = Number(colmun.startsWith(`:`))
         const end = Number(colmun.endsWith(`:`))
@@ -620,23 +679,50 @@ export function decode(md) {
         if (end) return `right`
       })
 
-      const tr = ast.children[0]
-      tr.children.map((child, i) => {
-        child.attr = { align: aligns[i] }
-        return child
+      const thead = ast
+      const table = ast.parent
+
+      // 既にある thead > tr > th に align を付与
+      const tr = thead.children.at(0)
+      tr.children.forEach((th, i) => {
+        th.attr.align = aligns.at(i)
       })
 
-      const table = ast.parent
       const tbody = node({
         name: `tbody`,
         type: `block`,
-        attr: { aligns },
+        attr: { aligns }
       })
       table.appendChild(tbody)
       return parse(rest, tbody)
     }
 
+    if (ast.name === `thead`) {
+      const thead = ast
+      const th = columns.map((colmun) => {
+        return node({
+          name: `th`,
+          type: `inline`,
+          attr: {},
+          children: inline(colmun.trim()),
+        })
+      })
+
+      const tr = node({
+        name: `tr`,
+        type: `block`,
+        level: 0,
+        children: th,
+      })
+
+      thead.appendChild(tr)
+      return parse(rest, thead)
+    }
+
     if (ast.name === `tbody`) {
+      const tbody = ast
+      const aligns = tbody.attr.aligns
+
       const tr = node({
         name: `tr`,
         type: `block`,
@@ -647,58 +733,15 @@ export function decode(md) {
         const td = node({
           name: `td`,
           type: `inline`,
-          attr: { align: ast.attr.aligns[i] },
+          attr: { align: aligns.at(i) },
           children: inline(colmun.trim()),
         })
         tr.appendChild(td)
       })
 
-      ast.appendChild(tr)
-      return parse(rest, ast)
+      tbody.appendChild(tr)
+      return parse(rest, tbody)
     }
-
-    // start table
-    const table = node({
-      name: `table`,
-      type: `block`,
-      level: 0,
-    })
-
-    const thead = node({
-      name: `thead`,
-      type: `block`,
-      level: 0,
-    })
-
-    const th = columns.map((colmun) => {
-      return node({
-        name: `th`,
-        type: `inline`,
-        children: inline(colmun.trim()),
-      })
-    })
-
-    const tr = node({
-      name: `tr`,
-      type: `block`,
-      level: 0,
-      children: th,
-    })
-
-    thead.appendChild(tr)
-    table.appendChild(thead)
-
-
-    // wrap table with figure
-    // TODO: figcaption
-    const figure = node({
-      name: `figure`,
-      type: `block`,
-      level: 0
-    })
-    figure.appendChild(table)
-    ast.appendChild(figure)
-    return parse(rest, thead)
   }
 
   /**
@@ -1434,6 +1477,7 @@ export function decode(md) {
     if (result = /^(?<indent> *)\-(?<spaces> +)(?<text>.+)$/.exec(head)) /*         */ return list(`ul`, result, rest, ast)
     if (result = /^(\:)(?<spaces> +)(?<text>.+)$/.exec(head)) /*                    */ return dl(result, rest, ast)
     if (result = /^(\>)(?<spaces> +)(?<text>.+)$/.exec(head)) /*                    */ return blockquote(result, rest, ast)
+    if (result = /^Caption: (?<caption>.+)$/.exec(head)) /*                         */ return table_caption(result, rest, ast)
     if (result = /^\|(?<row>.*)\|$/.exec(head)) /*                                  */ return table(result, rest, ast)
 
     // space only line
