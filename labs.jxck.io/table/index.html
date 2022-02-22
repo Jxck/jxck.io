@@ -31,18 +31,17 @@
 figure {
   margin: 0;
   padding: 0;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 figcaption {
-  text-align: center;
   font-style: italic;
 }
 figcaption::before {
-  content: "[ "
+  content: "[ " / ""
 }
 figcaption::after {
-  content: " ]"
+  content: " ]" / ""
 }
 
 table {
@@ -55,7 +54,7 @@ table {
 /** 左右の罫線 */
 th::before,
 td::before {
-  content: "|";
+  content: "|" / "";
   font-weight: normal;
   margin-right: var(--table-padding);
   float: left;
@@ -68,14 +67,14 @@ td {
 }
 
 tr::after {
-  content: "|";
+  content: "|" / "";
   font-weight: normal;
 }
 
 /** tbody の最初の行だけ左右の罫線を 2 本にする */
 th::before,
 thead tr:last-child::after {
-  content: "|\A|";
+  content: "|\A|" / "\A";
   white-space: pre;
 }
 
@@ -86,7 +85,7 @@ th {
 
 /** 中央は : をつけない */
 th::after {
-  content: "------------------------------------------------------------------";
+  content: "------------------------------------------------------------------" / "";
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
@@ -101,12 +100,12 @@ th::after {
 
 /** 左は : を頭に */
 th.align-left::after {
-  content: ":-----------------------------------------------------------------";
+  content: ":-----------------------------------------------------------------" / "";
 }
 
 /** 右は RTL で */
 th.align-right::after {
-  content: ":-----------------------------------------------------------------";
+  content: ":-----------------------------------------------------------------" / "";
   direction: rtl;
 }
 </style>
