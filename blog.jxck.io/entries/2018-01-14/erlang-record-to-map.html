@@ -102,10 +102,10 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?201218_145648>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220222_195609>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?201223_011131>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220222_195715>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-01-14>2018-01-14</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
@@ -148,7 +148,7 @@
       <section>
         <h2 id="rtom"><a href="#rtom">?RtoM</a></h2>
         <p><code translate=no>record_info()</code> を使ってキーを取るが、指定する record のタイプが動的には取れないので、マクロにして展開する。
-        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?210116_195125>
+        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?220222_195851>
         <pre class=erlang><code translate=no>-define(RtoM(Name, Record), lists:foldl(fun({I, E}, Acc) -&gt; Acc#{E =&gt; element(I, Record)} end, #{}, lists:zip(lists:seq(2, (record_info(size, Name))), (record_info(fields, Name))))).</code></pre>
         <p>使い方
         <pre class=erlang data-path=erlang-record-to-map.erl><code translate=no>#!/usr/bin/env escript
