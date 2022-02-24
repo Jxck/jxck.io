@@ -211,6 +211,8 @@ function serialize(node, option) {
   if (name === `li`) /*      */ return li(node)
   if (name === `p`) /*       */ return `${children.join(``)}\n`
 
+  if (name === `figcaption`) return `Caption: ${node.text.trim()}\n`
+
   if (name === `img`) {
     const { alt, src, title } = node.attr
     if (title) {
