@@ -36,9 +36,17 @@ bee
 > --- http://example.com
 
 ### table
+Caption: キャプション
 | |*em* th|**strong** th|right|
 |-|:-:|:-|-:|
 |`code` aaa|[bbb](/)|c **ccc** c|d *ddd* d|
+
+### details
+まえ
+:::details summary
+ここでも
+:::
+あと
 
 ### pre
 

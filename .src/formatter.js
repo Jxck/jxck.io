@@ -300,6 +300,15 @@ function serialize(node, option) {
     return `> ${children.join(`> `)}`
   }
 
+  if (name === `details`) {
+    const [summary, details] = node.children
+    return [
+      `:::details ${serialize(summary)}`,
+      serialize(details).trim(),
+      `:::\n`
+    ].join(`\n`)
+  }
+
   // other: ul, ol
   return children.join(``)
 }
