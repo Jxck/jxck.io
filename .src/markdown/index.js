@@ -918,7 +918,7 @@ export function decode(md) {
     // end <details>
     if (symbol === undefined && spaces === undefined && text === undefined) {
       const details = rise(ast, `details`)
-      return parse(rest, details)
+      return parse(rest, details.parent)
     }
 
     if (symbol !== `details`) throw new Error(`start of ::: should have "details" in "${result.input}"`)
