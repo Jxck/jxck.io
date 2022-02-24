@@ -23,7 +23,7 @@ button を disabled にする場合は、仕様上は以下の 3 つの書き方
 <!-- 属性のみを書く -->
 <button id=target disabled>toggle target</button>
 
-<!-- 値をempty string にする -->
+<!-- 値を empty string にする -->
 <button id=target disabled="">toggle target</button>
 
 <!-- 属性名と同じにする -->

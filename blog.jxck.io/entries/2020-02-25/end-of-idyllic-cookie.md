@@ -133,7 +133,7 @@ a.example.com でユーザは商品ページを見ている。
 
 ```html
 <main>
-PC周辺機器
+PC 周辺機器
 </main>
 <aside>
    <iframe src=https://ad.example?page=pc-accessory></iframe>
@@ -143,14 +143,14 @@ PC周辺機器
 このとき、 ad.example には、ページの持ち主が設定したページの情報がクエリによって付与され、レスポンスで ad.example の Cookie が付与される。
 
 ```http
-# PC周辺機器のページを見ていたことが伝わる
+# PC 周辺機器のページを見ていたことが伝わる
 GET /?page=pc-accessory HTTP/1.1
 Host: ad.example
 ```
 
 ```http
 HTTP/1.1 200 OK
-Set-Cookie: SID=q1w2e3r4t5 # このCookieで追跡
+Set-Cookie: SID=q1w2e3r4t5 # この Cookie で追跡
 Content-Type: text/html
 Content-Length: 1024
 
@@ -175,7 +175,7 @@ SNS 的な何か
 ```http
 GET / HTTP/1.1
 Host: ad.example
-Cookie: SID=q1w2e3r4t5 # さっきPC周辺機器を見ていた人だとわかる
+Cookie: SID=q1w2e3r4t5 # さっき PC 周辺機器を見ていた人だとわかる
 ```
 
 ```http
@@ -184,7 +184,7 @@ Content-Type: text/html
 Content-Length: 1024
 
 <html>
-PC周辺機器の広告
+PC 周辺機器の広告
 </html>
 ```
 

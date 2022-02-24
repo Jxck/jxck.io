@@ -253,7 +253,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - https://techblog.yahoo.co.jp/entry/2022021630265506/
 
 
-## IE廃止セット
+## IE 廃止セット
 
 - *Edge Customer Adoption Kit - Microsoft*
   - IE11 廃止セットや、メールテンプレなどを配布している
