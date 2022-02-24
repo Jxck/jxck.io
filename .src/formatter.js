@@ -19,13 +19,11 @@ function spacer(text) {
  * @param {string} text
  * @returns {number}
  */
-function count(text) {
-  // TODO: reduce
-  let len = 0
-  for (let i = 0; i < text.length; i++) {
-    len += (text[i].match(/[ -~]/)) ? 1 : 2
-  }
-  return len
+ function count(text) {
+  return [...text].reduce((count, char) => {
+    // スペースから ~ までなら半角
+    return count + (char.match(/[ -~]/) ? 1 : 2)
+  }, 0)
 }
 
 /**
