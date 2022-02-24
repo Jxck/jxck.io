@@ -5,6 +5,9 @@ import { dirname, join } from "path"
 import { fileURLToPath } from "url"
 import process from "process"
 
+const FULL_HALF = /(?<full>[\p{sc=Hira}\p{sc=Kana}\p{sc=Han}]+)(?<half>[a-zA-Z0-9]+)/gu
+const HALF_FULL = /(?<half>[a-zA-Z0-9]+)(?<full>[\p{sc=Hira}\p{sc=Kana}\p{sc=Han}]+)/gu
+
 /**
  * 全角と半角の間にスペースを入れる
  * @param {string} text
@@ -12,6 +15,12 @@ import process from "process"
  */
 function spacer(text) {
   return text
+    .replaceAll(FULL_HALF, (all, left, right) => {
+      return `${left} ${right}`
+    })
+    .replaceAll(HALF_FULL, (all, left, right) => {
+      return `${left} ${right}`
+    })
 }
 
 /**
@@ -19,7 +28,7 @@ function spacer(text) {
  * @param {string} text
  * @returns {number}
  */
- function count(text) {
+function count(text) {
   return [...text].reduce((count, char) => {
     // スペースから ~ までなら半角
     return count + (char.match(/[ -~]/) ? 1 : 2)
