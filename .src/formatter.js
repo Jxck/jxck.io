@@ -39,9 +39,16 @@ function table(node) {
    * @property {number} len
    */
 
-  /** @type {Array.<Format>} */
+  /**
+   * { align, len } のタプルを積んでいく
+   * @type {Array.<Format>}
+   */
   const format = []
 
+  /**
+   * 列のヘッダ
+   * @type {Array.<string>}
+   */
   const thead = node.children.shift().children.shift().children.map((td, i) => {
     const text = td.children.map((child) => serialize(child)).join(``)
     const align = td.attr.align
@@ -50,6 +57,10 @@ function table(node) {
     return text
   })
 
+  /**
+   * 行の各値
+   * @type {Array.<Array.<string>>}
+   */
   const tbody = node.children.shift().children.map((tr) => {
     return tr.children.map((td, i) => {
       const text = td.children.map((child) => serialize(child)).join(``)
@@ -59,13 +70,22 @@ function table(node) {
     })
   })
 
+  /**
+   * 行ヘッダのシリアライズ
+   * @type {string} th
+   */
   const th = thead.map((th, i) => {
     const { align, len } = format.at(i)
     const diff = len - count(th)
     return ` ${th}${" ".repeat(diff)} `
   }).join(`|`)
 
-  const divider = format.map(({ align, len }) => {
+  /**
+   * ここまでに計算した長さで separator を生成
+   * |:----|----:|
+   * @type {string} separator
+   */
+  const separator = format.map(({ align, len }) => {
     if (align === `left`) {
       return `:`.padEnd(len + 2, `-`)
     }
@@ -77,6 +97,10 @@ function table(node) {
     }
   }).join(`|`)
 
+  /**
+   * 行ヘッダのシリアライズ
+   * @type {Array.<string>} td
+   */
   const td = tbody.map((line) => {
     return line.map((td, i) => {
       const { align, len } = format.at(i)
@@ -88,7 +112,7 @@ function table(node) {
     }).join(`|`)
   })
 
-  td.unshift(divider)
+  td.unshift(separator)
   td.unshift(th)
   return `|${td.join("|\n|")}|\n`
 }
