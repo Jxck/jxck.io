@@ -950,13 +950,13 @@ export function decode(md) {
     summary.addText(text)
     details.appendChild(summary)
 
-    const div = node({
-      name: `div`,
+    const section = node({
+      name: `section`,
       type: `block`,
     })
-    details.appendChild(div)
+    details.appendChild(section)
 
-    return parse(rest, div)
+    return parse(rest, section)
   }
 
   /**

@@ -845,15 +845,54 @@ iframe above
 
 ==============================
 
-:::details コラム
+:::details サマリ
 これはコラムです
 :::
 ------------------------------
 <details>
-  <summary>コラム</summary>
-  <div>
+  <summary>サマリ</summary>
+  <section>
     <p>これはコラムです
-  </div>
+  </section>
+</details>
+
+==============================
+
+:::details サマリ
+これは *details* です
+
+改行しても **大丈夫**
+
+- リスト
+  - リスト
+
+```js
+console.log(0)
+```
+
+> blockquote
+> --- http://example.com
+:::
+------------------------------
+<details>
+  <summary>サマリ</summary>
+  <section>
+    <p>これは <em>details</em> です
+    <p>改行しても <strong>大丈夫</strong>
+    <ul>
+      <li>
+        リスト
+        <ul>
+          <li>リスト
+        </ul>
+      </li>
+    </ul>
+    <pre class=js><code translate=no>console.log(0)</code></pre>
+    <blockquote cite="http://example.com">
+      <p>blockquote
+      <p>&mdash; <cite><a href="http://example.com">http://example.com</a></cite>
+    </blockquote>
+  </section>
 </details>
 
 ==============================
