@@ -863,12 +863,18 @@ iframe above
 
 改行しても **大丈夫**
 
-- リスト
-  - リスト
-
 ```js
 console.log(0)
 ```
+
+Caption: table
+| none | center |
+|------|:------:|
+| aaa  | bbb    |
+| aaa  | bbb    |
+
+- リスト
+  - リスト
 
 > blockquote
 > --- http://example.com
@@ -879,6 +885,28 @@ console.log(0)
   <section>
     <p>これは <em>details</em> です
     <p>改行しても <strong>大丈夫</strong>
+    <pre class=js><code translate=no>console.log(0)</code></pre>
+    <figure>
+      <figcaption>table</figcaption>
+      <table>
+        <thead>
+          <tr>
+            <th class=align-center>none</th>
+            <th class=align-center>center</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class=align-center>aaa</td>
+            <td class=align-center>bbb</td>
+          </tr>
+          <tr>
+            <td class=align-center>aaa</td>
+            <td class=align-center>bbb</td>
+          </tr>
+        </tbody>
+      </table>
+    </figure>
     <ul>
       <li>
         リスト
@@ -887,7 +915,6 @@ console.log(0)
         </ul>
       </li>
     </ul>
-    <pre class=js><code translate=no>console.log(0)</code></pre>
     <blockquote cite="http://example.com">
       <p>blockquote
       <p>&mdash; <cite><a href="http://example.com">http://example.com</a></cite>
