@@ -56,7 +56,7 @@ function table(node) {
    * 列のヘッダ
    * @type {Array.<string>}
    */
-  const thead = node.children.shift().children.shift().children.map((td, i) => {
+  const thead = node.children.at(0).children.at(0).children.map((td, i) => {
     const text = td.children.map((child) => serialize(child)).join(``)
     const align = td.attr.align
     const len = count(text)
@@ -68,7 +68,7 @@ function table(node) {
    * 行の各値
    * @type {Array.<Array.<string>>}
    */
-  const tbody = node.children.shift().children.map((tr) => {
+  const tbody = node.children.at(1).children.map((tr) => {
     return tr.children.map((td, i) => {
       const text = td.children.map((child) => serialize(child)).join(``)
       const len = count(text)
