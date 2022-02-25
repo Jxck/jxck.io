@@ -42,14 +42,24 @@ Caption: キャプション
 |`code` aaa|[bbb](/)|c **ccc** c|d *ddd* d|
 
 ### details
-まえ
-:::details summary
-ここでも
+:::details サマリ
+これは *details* です
+改行しても **大丈夫**
+```js
+console.log(0)
+```
+Caption: table
+| left | right |
+|:-----|------:|
+| aaa  | bbb    |
+| aaa  | bbb    |
+- リスト
+  - リスト
+> blockquote
+> --- http://example.com
 :::
-あと
 
 ### pre
-
 ```
 hello
 ```
