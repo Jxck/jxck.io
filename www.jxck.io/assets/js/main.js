@@ -8,7 +8,9 @@ if (window.ReportingObserver) {
   console.log('ReportingObserver');
   const observer = new ReportingObserver((reports, observer) => {
     console.log(reports)
-    const URL = "https://reporting.jxck.io/beacon" for (const report of reports) { navigator.sendBeacon(URL, JSON.stringify(report))
+    const URL = "https://reporting.jxck.io/beacon"
+    for (const report of reports) {
+      navigator.sendBeacon(URL, JSON.stringify(report))
     }
   }, {buffered: true})
   observer.observe()
