@@ -17,18 +17,22 @@ h6 > a:visited {
 }
 
 h1 > a::before {
+  content: "# ";
   content: "# " / "";
 }
 
 h2 > a::before {
+  content: "## ";
   content: "## " / "";
 }
 
 h3 > a::before {
+  content: "### ";
   content: "### " / "";
 }
 
 h4 > a::before {
+  content: "#### ";
   content: "#### " / "";
 }
 
@@ -48,6 +52,7 @@ em {
 
 em::before,
 em::after {
+  content: "*";
   content: "*" / "";
 }
 
@@ -57,10 +62,12 @@ strong {
 
 strong::before,
 strong::after {
+  content: "**";
   content: "**" / "";
 }
 
 ul li::before {
+  content: "- ";
   content: "- " / "";
 }
 
@@ -74,6 +81,7 @@ ol li::before {
 }
 
 dl dt::after {
+  content: ":";
   content: ":" / "";
 }
 
@@ -86,6 +94,7 @@ blockquote {
 }
 
 blockquote p::before {
+  content: "> ";
   content: "> " / "";
 }
 
@@ -98,5 +107,6 @@ code {
 
 code::before,
 code::after {
+  content: "`";
   content: "`" / "";
 }

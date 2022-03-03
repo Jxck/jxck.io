@@ -13,6 +13,7 @@ pre code {
 
 pre::before {
   font-family: var(--code-font);
+  content: "```" attr(data-code) "\A";
   content: "```" attr(data-code) "\A" / "";
   font-size: 0.8em;
 }
@@ -22,8 +23,9 @@ pre::after {
   z-index: -1;
   position: relative;
   top: -1em;
-  content: "\A```" / "";
   font-size: 0.8em;
+  content: "\A```";
+  content: "\A```" / "";
 }
 
 pre > code {
