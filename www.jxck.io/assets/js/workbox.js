@@ -10,7 +10,7 @@ importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-precaching.p
 const precache =
 /*---build.js---*/
 [
-  "https://www.jxck.io/assets/js/main.js?210502_161127",
+  "https://www.jxck.io/assets/js/main.js?220304_061956",
   "https://www.jxck.io/assets/js/prism.js?210115_215132",
   "https://www.jxck.io/assets/js/ga.js?210325_165821",
   "https://www.jxck.io/assets/css/archive.css?220304_061221",
