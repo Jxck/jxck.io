@@ -64,7 +64,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-02-25T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-02-25T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -102,13 +102,13 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220222_195609>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_054853>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220222_195715>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220304_061221>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-02-25>2020-02-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-25>2022-02-25</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -171,7 +171,7 @@
         <section>
           <h3 id="設定値保存"><a href="#設定値保存">設定値保存</a></h3>
           <p>例えば、テーマカラーを設定で変えられるようなサービスがあった際に、その情報を Cookie で持つこともできる。
-          <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?220222_195851>
+          <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?220304_061221>
           <pre class=http><code translate=no>Set-Cookie: theme=dark
 Cookie: theme=dark</code></pre>
           <p>これにより、同じユーザでも違うブラウザであれば設定値を変えることができ、 JS を使わなくてもサービス側が CSS を切り替えてページを返すと言った実装が可能だ。
@@ -238,17 +238,17 @@ User-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Geck
           <p>これも実装が色々あるが、例えば ad.example という広告配信サービスを用意し、それを双方が iframe で埋め込んでいたとしよう。
           <p>a.example.com でユーザは商品ページを見ている。
           <pre class=html><code translate=no>&lt;main&gt;
-PC周辺機器
+PC 周辺機器
 &lt;/main&gt;
 &lt;aside&gt;
    &lt;iframe src=https://ad.example?page=pc-accessory&gt;&lt;/iframe&gt;
 &lt;/aside&gt;</code></pre>
           <p>このとき、 ad.example には、ページの持ち主が設定したページの情報がクエリによって付与され、レスポンスで ad.example の Cookie が付与される。
-          <pre class=http><code translate=no># PC周辺機器のページを見ていたことが伝わる
+          <pre class=http><code translate=no># PC 周辺機器のページを見ていたことが伝わる
 GET /?page=pc-accessory HTTP/1.1
 Host: ad.example</code></pre>
           <pre class=http><code translate=no>HTTP/1.1 200 OK
-Set-Cookie: SID=q1w2e3r4t5 # このCookieで追跡
+Set-Cookie: SID=q1w2e3r4t5 # この Cookie で追跡
 Content-Type: text/html
 Content-Length: 1024
 
@@ -265,13 +265,13 @@ SNS 的な何か
           <p>このとき ad.example を取得するために送られるリクエストは以下のようになる。
           <pre class=http><code translate=no>GET / HTTP/1.1
 Host: ad.example
-Cookie: SID=q1w2e3r4t5 # さっきPC周辺機器を見ていた人だとわかる</code></pre>
+Cookie: SID=q1w2e3r4t5 # さっき PC 周辺機器を見ていた人だとわかる</code></pre>
           <pre class=http><code translate=no>HTTP/1.1 200 OK
 Content-Type: text/html
 Content-Length: 1024
 
 &lt;html&gt;
-PC周辺機器の広告
+PC 周辺機器の広告
 &lt;/html&gt;</code></pre>
           <p>これも、 iframe であれ Cookie が送受信されることを利用している。
           <p>もちろん、 ad.example への Cookie は 3rdPC だ。
