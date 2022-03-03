@@ -8,9 +8,7 @@ if (window.ReportingObserver) {
   console.log('ReportingObserver');
   const observer = new ReportingObserver((reports, observer) => {
     console.log(reports)
-    const URL = "https://reporting.jxck.io/beacon"
-    for (const report of reports) {
-      navigator.sendBeacon(URL, JSON.stringify(report))
+    const URL = "https://reporting.jxck.io/beacon" for (const report of reports) { navigator.sendBeacon(URL, JSON.stringify(report))
     }
   }, {buffered: true})
   observer.observe()
@@ -91,10 +89,6 @@ if (navigator.serviceWorker) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // AdSense
-  (adsbygoogle = window.adsbygoogle || []).push({})
-  console.log(adsbygoogle)
-
   // Prism.js
   document.querySelectorAll('pre code').forEach(($code) => {
     const $pre = $code.parentElement
@@ -105,4 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
     $pre.dataset.code = lang
     Prism.highlightAll()
   })
+
+  // AdSense
+  (adsbygoogle = window.adsbygoogle || []).push({})
+  console.log(adsbygoogle)
 })
