@@ -46,7 +46,6 @@ table {
 /** 左右の罫線 */
 th::before,
 td::before {
-  content: "|";
   content: "|" / "";
   font-weight: normal;
   margin-inline-end: var(--table-padding);
@@ -73,7 +72,6 @@ td {
 }
 
 tr::after {
-  content: "|";
   content: "|" / "";
   font-weight: normal;
 }
@@ -81,7 +79,6 @@ tr::after {
 /** tbody の最初の行だけ左右の罫線を 2 本にする */
 th::before,
 thead tr:last-child::after {
-  content: "|\A|";
   content: "|\A|" / "";
   white-space: pre;
 }
@@ -94,7 +91,6 @@ th {
 /** 中央は : をつけない */
 /** TODO: 線が途切れるのと :--: は text-verflow が string に対応したらできそう(firefox のみ) */
 th::after {
-  content: "------------------------------------------------------------------";
   content: "------------------------------------------------------------------" / "";
   white-space: nowrap;
   overflow: hidden;
@@ -110,13 +106,11 @@ th::after {
 
 /** 左は : を頭に */
 th.align-left::after {
-  content: ":-----------------------------------------------------------------";
   content: ":-----------------------------------------------------------------" / "";
 }
 
 /** 右は RTL で */
 th.align-right::after {
-  content: ":-----------------------------------------------------------------";
   content: ":-----------------------------------------------------------------" / "";
   direction: rtl;
 }
