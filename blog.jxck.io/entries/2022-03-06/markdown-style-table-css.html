@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2022-03-06/markdown-style-table-css.html>
+
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
+
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/webp sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/webp sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、 CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &apos;##&apo...">
+  <meta name=keywords            content="markdown,css">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2022-03-06/markdown-style-table-css.html>
+  <meta property=og:title        content="Markdown の Table 記法を CSS で実現する | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、 CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &apos;##&apo...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Markdown の Table 記法を CSS で実現する | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2022-03-06T08:00:00+08:00",
+    "dateModified": "2022-03-06T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、 CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &apos;##&apo..."
+  }
+  </script>
+
+  <title>Markdown の Table 記法を CSS で実現する | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220306_111358>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_054853>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220304_061221>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2022-03-06>2022-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-03-06>2022-03-06</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#markdown">markdown</a>
+              <li><a href="/tags#css">css</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ul>
+                <li><a href=#intro>## Intro</a>
+                <li><a href=#before>## Before</a>
+                <li><a href=#call-for-implementation>## Call for Implementation</a>
+                <li><a href=#実装方針>## 実装方針</a>
+                <li><a href=#html>### HTML</a>
+                <li><a href=#css>### CSS</a>
+                <li><a href=#generated-content-model>## Generated Content Model</a>
+                <li><a href=#alternative-text>### Alternative Text</a>
+                <li><a href=#fallback>### Fallback</a>
+                <li><a href=#support-query>### Support query</a>
+                <li><a href=#figure--figcaption>## figure / figcaption</a>
+                <li><a href=#caption-記法>### Caption 記法</a>
+                <li><a href=#after>## After</a>
+                <li><a href=#todo>## TODO</a>
+                <li><a href=#demo>## DEMO</a>
+                <li><a href=#謝辞>## 謝辞</a>
+                <li><a href=#reference>## Reference</a>
+              </ul>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230657>
+    <article>
+      <h1><a href="">Markdown の Table 記法を CSS で実現する</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、 CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように <code translate=no>h2::before</code> に <code translate=no>content: &apos;##&apos;</code> を指定するといった具合だ。
+        <p>しかし、これまで <code translate=no>&lt;table&gt;</code> だけはうまく Markdown 記法を再現する CSS が書けないでいた。
+        <p>そこで、周りの CSS 強者に実現できないか聞いてみたところ、<a href="https://twitter.com/shqld">@shqld</a>, <a href="https://twitter.com/arayaryoma">@araya</a>, <a href="https://twitter.com/yoshiko_pg">@yoshiko</a> 達の協力を得て、かなりの完成度にすることができた。実現方法を記録する。
+      </section>
+      <section>
+        <h2 id="before"><a href="#before">Before</a></h2>
+        <p>実現したいのは以下のような記法だ。
+        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?220304_061221>
+        <pre class=md><code translate=no>| file type | size | ratio |
+|:----------|-----:|------:|
+| .webp     | 9474 |  100% |
+| .webp.gz  | 2609 |   28% |
+| .webp.br  | 2544 |   27% |</code></pre>
+        <p>特に <code translate=no>&lt;thead&gt;</code>, <code translate=no>&lt;tbody&gt;</code> の間に入るセパレータ (<code translate=no>|:---|---:|---:|</code>) の部分の長さを内容に合わせるためには <code translate=no>&lt;td&gt;</code> 内の文字数を CSS 内で取得する必要がある。これは JS 無しでは難しそうだった。 JS は使いたくないし、もし使うしかないなら Houdini の Pain API などで実装したい。しかし、 Paint PAI も当時は Text Rendering がサポートされてなかったため、それも諦めていた。
+        <p>などと考えてる間に飽きて、適当に border を dash にしただけのお粗末な実装で誤魔化していた。
+        <p>
+          <picture>
+            <source type=image/avif srcset=table-before.avif>
+            <source type=image/webp srcset=table-before.webp?220306_115653>
+            <img loading=lazy decoding=async src=table-before.png?220306_115653 alt="border を dash にしただけの実装" width=622 height=330>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="call-for-implementation"><a href="#call-for-implementation">Call for Implementation</a></h2>
+        <p><a href="https://blog.jxck.io/entries/2021-11-30/blog-v2-release.html">Markdown のパーサを書きなおした</a> 際にこの作業を思い出し、誰か実現できる人がいたりしないか CSS に強そうなエンジニア何人かに聞いてみたところ、いくつかアドバイスをもらえたり、 PoC を返してもらえた。 URL のあるものだけ貼っておく。
+        <ul>
+          <li>araya: <a href="https://codepen.io/arayaryoma/pen/XWzgVwx">https://codepen.io/arayaryoma/pen/XWzgVwx</a>
+          <li>yoshiko: <a href="http://jsfiddle.net/j4fm9scg/">http://jsfiddle.net/j4fm9scg/</a>
+        </ul>
+        <p>これらを参考にさせてもらうことで、かなりの完成度まで実現することができた。
+      </section>
+      <section>
+        <h2 id="実装方針"><a href="#実装方針">実装方針</a></h2>
+        <section>
+          <h3 id="html"><a href="#html">HTML</a></h3>
+          <p>まず、自作のパーサでは以下のような HTML が生成される。 Align は HTML の <code translate=no>align</code> 要素が <a href="https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align">Deprecate</a> だったため、 <code translate=no>class</code> で実装している。
+          <pre class=html><code translate=no>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th class=align-left&gt;file type&lt;/th&gt;
+      &lt;th class=align-right&gt;size&lt;/th&gt;
+      &lt;th class=align-right&gt;ratio&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td class=align-left&gt;.webp&lt;/td&gt;
+      &lt;td class=align-right&gt;9474&lt;/td&gt;
+      &lt;td class=align-right&gt;100%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=align-left&gt;.webp.gz&lt;/td&gt;
+      &lt;td class=align-right&gt;2609&lt;/td&gt;
+      &lt;td class=align-right&gt;28%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=align-left&gt;.webp.br&lt;/td&gt;
+      &lt;td class=align-right&gt;2544&lt;/td&gt;
+      &lt;td class=align-right&gt;27%&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </section>
+        <section>
+          <h3 id="css"><a href="#css">CSS</a></h3>
+          <p><code translate=no>|</code> は <code translate=no>&lt;th&gt;</code>, <code translate=no>&lt;td&gt;</code> の <code translate=no>::before</code> / <code translate=no>::after</code> の <code translate=no>content</code> でだいたい想像通りの実装を行う。
+          <p>問題は <code translate=no>&lt;thead&gt;</code> / <code translate=no>&lt;tbody&gt;</code> の間の線だ。ここの実装は以下のように行っている。
+          <ul>
+            <li>th の <code translate=no>::after</code> に <code translate=no>-----------</code> を長めに用意し、 overflow hidden で切る
+            <li>align が left なら <code translate=no>:--------</code> にする
+            <li>align が right なら direction を RTL にし <code translate=no>----------:</code> にする
+            <li>top と translateY で縦位置調整
+          </ul>
+          <p>これで見た目が以下のようになる。
+          <p>
+            <picture>
+              <source type=image/avif srcset=table-after.avif>
+              <source type=image/webp srcset=table-after.webp?220306_115653>
+              <img loading=lazy decoding=async src=table-after.png?220306_115653 alt="Markdown Like の実装" width=578 height=238>
+            </picture>
+          </p>
+          <p>スタイル自体はこれで完成だ。
+        </section>
+      </section>
+      <section>
+        <h2 id="generated-content-model"><a href="#generated-content-model">Generated Content Model</a></h2>
+        <p>デザインとしてのスタイル指定で、 <code translate=no>content</code> に装飾用の文字を大量に指定した。本来はスタイルとして認識され、特に Crawler や Assistive Technology には無視されることが望ましい。
+        <p>しかし、 <a href="https://www.w3.org/TR/css-content-3/#accessibility">CSS Generated Content Module Level 3</a> の仕様では、以下のように定義されている。
+        <blockquote>
+          <p>Generated content should be searchable, selectable, and available to assistive technologies.
+          <p>The &apos;content&apos; property applies to speech and generated content must be rendered for speech output. [CSS3-SPEECH]
+        </blockquote>
+        <p>直後に ISSUE があるため、ここにはまだ議論と作業があるが、現状 CSS の Pseudo-elements に指定された <code translate=no>content</code> も Generated Content であるため、大量の <code translate=no>-</code> などがコンテンツとして認識される状況は望ましいものではない。
+        <p>実際に Mac の Voice Over で検証したところ、確かに <code translate=no>:----</code> の部分が「ハイフン N 個」のように、スタイル部分をコンテンツとして認識している。
+        <section>
+          <h3 id="alternative-text"><a href="#alternative-text">Alternative Text</a></h3>
+          <p>そこで、<a href="https://drafts.csswg.org/css-content-3/#alt">1.2. Alternative Text for Accessibility</a> に定義されているように Alternative Text を以下の用に指定した。
+          <pre class=css><code translate=no>th::before,
+td::before {
+  content: &quot;|&quot; / &quot;&quot;; /* 読み上げ等に対しては空文字として認識させる */
+  float: left;
+}</code></pre>
+          <p>これで Chrome などのブラウザでは、 Voice Over での読み上げにスタイル部分が無視されるようになった。
+        </section>
+        <section>
+          <h3 id="fallback"><a href="#fallback">Fallback</a></h3>
+          <p>しかし、 Safari や Firefox は <code translate=no>content</code> の Alternative Text に対応してないため、このままでは <code translate=no>content</code> そのものが無視される。
+          <p>通常、フォールバックとして Alternative Text 無しのものを先に指定することで見た目上は回避できる。
+          <pre class=css><code translate=no>th::before,
+td::before {
+  content: &quot;|&quot;; /* Safari 用のフォールバック */
+  content: &quot;|&quot; / &quot;&quot;; /* 読み上げ等に対しては空文字として認識させる */
+  float: left;
+}</code></pre>
+          <p>しかし、これでは Safari/Firefox を Voice Over で読み上げるような場合に、 <code translate=no>content</code> 部分が認識される。もし先頭に 1 文字つく程度ならまだ許容できるかもしれないが、今回は文字が多いため、煩わしさは他の記法とも異なるだろう。
+          <p>せっかく表としてマークアップしているのに、スタイルのために読みにくい状況になるのは不本意なため、 Fallback の指定は辞め Alternative Text 未対応のブラウザには Table の Markdown Style を適用するのをやめることにした。
+        </section>
+        <section>
+          <h3 id="support-query"><a href="#support-query">Support query</a></h3>
+          <p>Markdown Style を Table に提供しない場合は、 <code translate=no>|</code> や <code translate=no>-</code> がなくなって罫線の無い Table になることを避けるため、以前自分が実装した border での実装をベースに提供することにした。
+          <p>そして、 <code translate=no>@supports</code> を用いて、以下のように Alternative Text に対応している場合のみ、 Markdown Style CSS を適用している。
+          <pre class=css><code translate=no>/** default implementation */
+
+@supports (content: &quot;a&quot; / &quot;b&quot;) {
+  /** Markdown Style **/
+}</code></pre>
+        </section>
+      </section>
+      <section>
+        <h2 id="figure--figcaption"><a href="#figure--figcaption">figure / figcaption</a></h2>
+        <p><code translate=no>&lt;table&gt;</code> 自体が横に長い場合があるため、 <code translate=no>overflow</code> を指定する必要がある。しかし、 <code translate=no>overflow</code> を指定するためだけの親要素として <code translate=no>&lt;div&gt;</code> を追加するのがなんとなく気に食わなかったため、以前から TODO だった表のキャプションを導入することにした。
+        <p><code translate=no>&lt;table&gt;</code> の場合は <code translate=no>&lt;caption&gt;</code> を使うのが一般的ではあるが、より汎用的な仕様である <code translate=no>&lt;figure&gt;</code> と <code translate=no>&lt;figcaption&gt;</code> を用いることも仕様上可能だ(ただし両方の併用は不可)。そこで、 <code translate=no>&lt;table&gt;</code> 全体を <code translate=no>&lt;figure&gt;</code> で囲み、そこに <code translate=no>overflow</code> を指定しつつ、 <code translate=no>&lt;figcaption&gt;</code> を入れれば、全てが一度に解決するためこの方法を取ることにした。
+        <section>
+          <h3 id="caption-記法"><a href="#caption-記法">Caption 記法</a></h3>
+          <p>パーサとジェネレータは自作しているため、 <code translate=no>&lt;figure&gt;</code> で囲むのは簡単だが、問題は <code translate=no>&lt;figcaption&gt;</code> の内容を Markdown 上どう表現するかだ。
+          <p>Markdown は Caption の記法を標準で持たないため、様々な実装が独自の拡張として実装している。 <code translate=no>[caption]</code> のように括弧で囲うタイプのものが多いが、 <code translate=no>[]</code> に独自の意味を持つ実装は割と多いため、未対応の場合は単なる <code translate=no>&lt;p&gt;</code> として扱われるよう、 <code translate=no>Caption: caption</code> という記法で Table の直前に置くことにした。
+          <pre class=md><code translate=no>Caption: Webp を gz/br 圧縮した結果
+| file type | size | ratio |
+|:----------|-----:|------:|
+| .webp     | 9474 |  100% |
+| .webp.gz  | 2609 |   28% |
+| .webp.br  | 2544 |   27% |</code></pre>
+          <p>せっかくなので、論文のようにキャプションの前に &quot;表 1:&quot; のようなプレフィックスを CSS Counter を用いて付与し、以下のように表示するようにした。
+          <p>
+            <picture>
+              <source type=image/avif srcset=figcaption.avif>
+              <source type=image/webp srcset=figcaption.webp?220306_115653>
+              <img loading=lazy decoding=async src=figcaption.png?220306_115653 alt="figcaption を付与した table" width=598 height=310>
+            </picture>
+          </p>
+        </section>
+      </section>
+      <section>
+        <h2 id="after"><a href="#after">After</a></h2>
+        <p>以上を踏まえて実装した表が以下だ。
+        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/table.css?220306_111358>
+        <figure>
+          <figcaption>Webp を gz/br 圧縮した結果</figcaption>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>file type</th>
+                <th class=align-right>size</th>
+                <th class=align-right>ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>.webp</td>
+                <td class=align-right>9474</td>
+                <td class=align-right>100%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.webp.gz</td>
+                <td class=align-right>2609</td>
+                <td class=align-right>28%</td>
+              </tr>
+              <tr>
+                <td class=align-left>.webp.br</td>
+                <td class=align-right>2544</td>
+                <td class=align-right>27%</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+      </section>
+      <section>
+        <h2 id="todo"><a href="#todo">TODO</a></h2>
+        <p>今回は <code translate=no>text-overflow</code> を <code translate=no>clip</code> にしているため、長さによっては横線の <code translate=no>-</code> が途中で切れる場合がある。
+        <p>対策として <code translate=no>text-overflow</code> に <code translate=no>&quot;-&quot;</code> や <code translate=no>&quot;:&quot;</code> などを指定できると終端を綺麗に処理できそうだが、 Firefox しかサポートしておらず、 Firefox は上述の Alternative Text に対応してないため実現できなかった。
+        <p><code translate=no>text-overflow</code> と Alternative Text の compat が上がったら再検証したい。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>単体で動作するデモを以下に用意した。
+        <ul>
+          <li><a href="https://labs.jxck.io/table">https://labs.jxck.io/table</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="謝辞"><a href="#謝辞">謝辞</a></h2>
+        <p>実装の助言をくれた 、<a href="https://twitter.com/shqld">@shqld</a>, <a href="https://twitter.com/arayaryoma">@araya</a>, <a href="https://twitter.com/yoshiko_pg">@yoshiko</a> に感謝する。
+      </section>
+      <section>
+        <h2 id="reference"><a href="#reference">Reference</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                CSS Generated Content Module Level 3
+                <ul>
+                  <li><a href="https://drafts.csswg.org/css-content/#content-property">https://drafts.csswg.org/css-content/#content-property</a>
+                </ul>
+              </li>
+              <li>
+                CSS Conditional Rules Module Level 3
+                <ul>
+                  <li><a href="https://drafts.csswg.org/css-conditional-3/#at-supports">https://drafts.csswg.org/css-conditional-3/#at-supports</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Explainer
+          <li>Requirements Doc
+          <li>Mozilla Standard Position
+          <li>Webkit Position
+          <li>TAG Design Review
+          <li>Intents
+          <li>Chrome Platform Status
+          <li>WPT (Web Platform Test)
+          <li>DEMO
+          <li>Blog
+          <li>Presentation
+          <li>Issues
+          <li>
+            Other
+            <ul>
+              <li>
+                content - CSS | MDN
+                <ul>
+                  <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/content">https://developer.mozilla.org/ja/docs/Web/CSS/content</a>
+                </ul>
+              </li>
+              <li>
+                @supports - CSS | MDN
+                <ul>
+                  <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/@supports">https://developer.mozilla.org/ja/docs/Web/CSS/@supports</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>
