@@ -209,14 +209,14 @@ function serialize(node, option) {
     // console.log({ after: text })
     return spacer(text)
   }
-  if (name === `em`) /*      */ return `*${children.join(``)}*`
-  if (name === `strong`) /*  */ return `**${children.join(``)}**`
-  if (name === `code`) /*    */ return `\`${children.join(``).replaceAll("`", "\\`")}\``
-  if (name === `dt`) /*      */ return `${children.join(``)}\n`
-  if (name === `dd`) /*      */ return `: ${children.join(``)}\n`
-  if (name === `table`) /*   */ return table(node)
-  if (name === `li`) /*      */ return li(node)
-  if (name === `p`) /*       */ return `${children.join(``)}\n`
+  if (name === `em`) /*     */ return `*${children.join(``)}*`
+  if (name === `strong`) /* */ return `**${children.join(``)}**`
+  if (name === `code`) /*   */ return `\`${children.join(``).replaceAll("`", "\\`")}\``
+  if (name === `dt`) /*     */ return `${children.join(``)}\n`
+  if (name === `dd`) /*     */ return `: ${children.join(``)}\n`
+  if (name === `table`) /*  */ return table(node)
+  if (name === `li`) /*     */ return li(node)
+  if (name === `p`) /*      */ return `${children.join(``)}\n`
 
   if (name === `figcaption`) return `Caption: ${node.text.trim()}\n`
 
