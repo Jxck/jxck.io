@@ -75,6 +75,7 @@ export function traverse(ast: Node, plugin: Plugin): Node;
  * @param {Node} ast
  */
 export function dump(ast: Node): void;
+export { format } from "./formatter.js";
 export class Node {
     /**
      * @param {NodeParam} param
