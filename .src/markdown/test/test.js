@@ -1,4 +1,5 @@
 import { encode, decode, traverse, Node, node, dump } from "../index.js"
+import { format } from "../formatter.js";
 import { deepStrictEqual } from "assert";
 import fs from "fs";
 
@@ -74,7 +75,16 @@ function api() {
   ])
 }
 
+function formatter() {
+  const before_path = `formatter.before.md`
+  const after_path = `formatter.after.md`
+  const before = fs.readFileSync(before_path, { encoding: `utf-8` })
+  const after = fs.readFileSync(after_path, { encoding: `utf-8` })
+  deepStrictEqual(format(before), after)
+}
+
 testcase()
 api()
+formatter()
 
 console.log("[done] test.js")
