@@ -981,7 +981,7 @@ export function decode(md) {
    */
   function inline(input, _i = 0) {
     const { children, i } = inline_parse(input, _i)
-    if (input.length !== i) console.assert(`input.length = ${input.length} but i = ${i}`)
+    if (input.length !== i) console.assert(input.length == i, `input.length = ${input.length} but i = ${i}`)
     return children
   }
 
