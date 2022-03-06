@@ -337,7 +337,7 @@ async function test() {
 }
 // test()
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (process.argv.length > 2) {
   const pwd = process.env.PWD
   /**@type{Array.<string>}*/
   const files = process.argv.slice(2)
