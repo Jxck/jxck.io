@@ -1,5 +1,7 @@
 `use strict`;
 
+export { format } from "./formatter.js";
+
 /**
  * @typedef {Object} Serialized
  * @property {string} html
