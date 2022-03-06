@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { decode, spaces, Node, dump } from "./markdown/index.js"
+import { decode, spaces, Node, dump } from "./index.js"
 import { readFile, writeFile } from "fs/promises";
 import { dirname, join } from "path"
 import { fileURLToPath } from "url"
