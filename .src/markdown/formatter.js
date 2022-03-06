@@ -3,7 +3,7 @@ import { decode, spaces, Node, dump } from "./index.js"
 import { readFile, writeFile } from "fs/promises";
 import { dirname, join } from "path"
 import { fileURLToPath } from "url"
-import process from "process"
+import * as process from "process"
 
 const FULL_HALF = /(?<full>[\p{sc=Hira}\p{sc=Kana}\p{sc=Han}]+)(?<half>[a-zA-Z0-9]+)/gu
 const HALF_FULL = /(?<half>[a-zA-Z0-9]+)(?<full>[\p{sc=Hira}\p{sc=Kana}\p{sc=Han}]+)/gu
