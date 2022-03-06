@@ -23,23 +23,14 @@ function dump(ast) {
  * @returns {string}
  */
 export function cache_busting(path) {
-  try {
-    const mtime = statSync(path).mtime
-    const y = (mtime.getFullYear() % 100).toString().padStart(2, `0`)
-    const m = (mtime.getMonth() + 1).toString().padStart(2, `0`)
-    const d = (mtime.getDate()).toString().padStart(2, `0`)
-    const H = (mtime.getHours()).toString().padStart(2, `0`)
-    const M = (mtime.getMinutes()).toString().padStart(2, `0`)
-    const S = (mtime.getSeconds()).toString().padStart(2, `0`)
-    return `?${y}${m}${d}_${H}${M}${S}`
-  } catch (err) {
-    if (err.code === `ENOENT`) {
-      console.error(`not found`, err.path)
-    } else {
-      console.error(err)
-    }
-    return ``
-  }
+  const mtime = statSync(path).mtime
+  const y = (mtime.getFullYear() % 100).toString().padStart(2, `0`)
+  const m = (mtime.getMonth() + 1).toString().padStart(2, `0`)
+  const d = (mtime.getDate()).toString().padStart(2, `0`)
+  const H = (mtime.getHours()).toString().padStart(2, `0`)
+  const M = (mtime.getMinutes()).toString().padStart(2, `0`)
+  const S = (mtime.getSeconds()).toString().padStart(2, `0`)
+  return `?${y}${m}${d}_${H}${M}${S}`
 }
 
 // function description(md) {
@@ -368,7 +359,10 @@ function customise_image(node, base) {
   if (path === null) throw new Error(`missing <width>x<height> in "${attr.src}"`)
   const { src, width, height } = path.groups
 
-  const query = cache_busting(`${base}/${src}`)
+  const query = (() => {
+    if (src.startsWith("https:")) return ``
+    return cache_busting(`${base}/${src}`)
+  })()
   attr.src = `${src}${query}`
   attr.width = width
   attr.height = height
