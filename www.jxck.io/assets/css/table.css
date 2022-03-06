@@ -43,22 +43,6 @@ table {
   border-spacing: 0;
 }
 
-/** 左右の罫線 */
-th::before,
-td::before {
-  content: "|" / "";
-  font-weight: normal;
-  margin-inline-end: var(--table-padding);
-  float: left;
-}
-
-th,
-td {
-  padding-inline-end: var(--table-padding);
-  clear: left;
-}
-
-
 /* Mobile では wrap させて余白調整 */
 @media screen and (max-device-width: 960px) {
   table {
@@ -71,46 +55,97 @@ td {
   }
 }
 
-tr::after {
-  content: "|" / "";
-  font-weight: normal;
+
+
+/* Alternative Text not Supported */
+table {
+  font-family: var(--mono-font);
+  margin: var(--grid) 0;
+  border-spacing: 0 0.4rem;
 }
 
-/** tbody の最初の行だけ左右の罫線を 2 本にする */
-th::before,
-thead tr:last-child::after {
-  content: "|\A|" / "";
-  white-space: pre;
-}
-
-/** thead と tbody の間の仕切り */
 th {
-  position: relative;
+  padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
+  border-left: 2px solid var(--table-border);
+  border-bottom: 2px dashed var(--table-border);
 }
 
-/** 中央は : をつけない */
-/** TODO: 線が途切れるのと :--: は text-verflow が string に対応したらできそう(firefox のみ) */
-th::after {
-  content: "------------------------------------------------------------------" / "";
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
-  position: absolute;
-  letter-spacing: 0.1em;
-  font-weight: normal;
-  top: 100%;
-  transform: translateY(-100%);
-  left: calc(var(--table-separator-width) + var(--table-padding));
-  right: var(--table-separator-width);
+td {
+  padding: calc(var(--grid)/2) var(--grid);
+  border-left: 2px solid var(--table-border);
 }
 
-/** 左は : を頭に */
-th.align-left::after {
-  content: ":-----------------------------------------------------------------" / "";
+th:last-child,
+td:last-child {
+  border-right: 2px solid var(--table-border);
 }
 
-/** 右は RTL で */
-th.align-right::after {
-  content: ":-----------------------------------------------------------------" / "";
-  direction: rtl;
+@supports (content: "a" / "b") {
+  th,
+  td,
+  th:last-child,
+  td:last-child {
+    padding: unset;
+    border: none;
+    border: none;
+  }
+
+  /** 左右の罫線 */
+  th::before,
+  td::before {
+    content: "|" / "";
+    font-weight: normal;
+    margin-inline-end: var(--table-padding);
+    float: left;
+  }
+
+  th,
+  td {
+    padding-inline-end: var(--table-padding);
+    clear: left;
+  }
+
+  tr::after {
+    content: "|" / "";
+    font-weight: normal;
+  }
+
+  /** tbody の最初の行だけ左右の罫線を 2 本にする */
+  th::before,
+  thead tr:last-child::after {
+    content: "|\A|" / "";
+    white-space: pre;
+  }
+
+  /** thead と tbody の間の仕切り */
+  th {
+    position: relative;
+  }
+
+  /** 中央は : をつけない */
+  /** TODO: 線が途切れるのと :--: は text-verflow が string に対応したらできそう(firefox のみ) */
+  th::after {
+    content: "------------------------------------------------------------------" / "";
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    position: absolute;
+    letter-spacing: 0.1em;
+    font-weight: normal;
+    top: 100%;
+    transform: translateY(-100%);
+    left: calc(var(--table-separator-width) + var(--table-padding));
+    right: var(--table-separator-width);
+  }
+
+  /** 左は : を頭に */
+  th.align-left::after {
+    content: ":-----------------------------------------------------------------" / "";
+  }
+
+  /** 右は RTL で */
+  th.align-right::after {
+    content: ":-----------------------------------------------------------------" / "";
+    direction: rtl;
+  }
 }
