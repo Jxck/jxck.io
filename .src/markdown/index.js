@@ -324,6 +324,21 @@ export function encode(node, option = {}) {
   }
 
   /**
+   * details
+   * @param {Node} node
+   * @param {number} indent
+   * @returns {string}
+   */
+  function details(node, indent) {
+    const name = node.name
+    return [
+      `${spaces(indent)}<${name}>\n`,
+      node.children.map((child) => serialize(child, indent + 2)).join(``),
+      `${spaces(indent)}</${name}>\n`,
+    ].join(``)
+  }
+
+  /**
    * @param {Node} node
    * @param {number} indent
    * @returns {string}
@@ -423,6 +438,7 @@ export function encode(node, option = {}) {
     if (name === `p`) /*             */ return mix_inline(node, indent)
     if (name === `li`) /*            */ return mix_inline(node, indent)
     if (name === `summary`) /*       */ return summary(node, indent)
+    if (name === `details`) /*       */ return details(node, indent)
 
     // Print HTML as-is
     if (name === `html`) {
@@ -909,24 +925,46 @@ export function decode(md) {
   }
 
   /**
+   * `:::details`, `:::message`, `:::message alert` に対応
+   * ただし rise() する先がわからなくなるので node は全て `details`
+   *
    * @param {RegExpExecArray} result
    * @param {Array.<string>} rest
    * @param {Node} ast
    * @returns {Node}
    */
   function details(result, rest, ast) {
-    const { symbol, spaces, text } = result.groups
+    const groups = result.groups
 
     // end <details>
-    if (symbol === undefined && spaces === undefined && text === undefined) {
-      const details = rise(ast, `details`)
+    if (groups.symbol === undefined && groups.spaces === undefined && groups.text === undefined) {
+      const details = rise(ast, `details`) // 登る先を固定するため details に統一
       return parse(rest, details.parent)
     }
 
-    if (symbol !== `details`) throw new Error(`start of ::: should have "details" in "${result.input}"`)
-    if (spaces.length > 1) throw new Error(`too many spaces in "${result.input}"`)
-    if (text.length < 1) throw new Error(`text required in details "${result.input}"`)
-    if (text.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
+    const { symbol, text } = (({ symbol, spaces, text }) => {
+      if (symbol === `details`) {
+        if (spaces.length > 1) throw new Error(`too many spaces in "${result.input}"`)
+        if (text.length < 1) throw new Error(`text required in details "${result.input}"`)
+        if (text.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
+        return { symbol, text }
+      }
+
+      if (symbol === `message` && text === `alert`) {
+        if (spaces.length > 1) throw new Error(`too many spaces in "${result.input}"`)
+        if (text.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
+        symbol = text
+        return { symbol, text }
+      }
+
+      if (symbol === `message`) {
+        if (spaces && spaces.length > 1) throw new Error(`too many spaces in "${result.input}"`)
+        text = symbol
+        return { symbol, text }
+      }
+
+      throw new Error(`start of ::: should have "details" or "message" in "${result.input}"`)
+    })(groups);
 
     /**
      * <details>
@@ -940,6 +978,7 @@ export function decode(md) {
       const details = node({
         name: `details`,
         type: `block`,
+        attr: { class: symbol }, // message, alert はこの class で判別
       })
       ast.appendChild(details)
       return details
@@ -1267,7 +1306,6 @@ export function decode(md) {
    * e.g. <https://example.com>
    * @param {string} input
    * @param {number} i
-
    */
   function short_link(input, i) {
     const url_start = i
@@ -1540,18 +1578,23 @@ export function dump(ast) {
 }
 
 
-// function main() {
-//   [
-//     `:::details コラム
-// これはコラムです
-// :::`
-//   ].forEach((line) => {
-//     const ast = decode(line)
-//     dump(ast)
-//     const { html, toc } = encode(ast, { indent: 2 })
-//     console.log(html)
-//   })
-// }
+function main() {
+  [
+    `
+:::message
+メッセージをここに
+:::
+`,
+    // `:::message alert
+    // 警告メッセージをここに
+    // :::`,
+  ].forEach((line) => {
+    const ast = decode(line)
+    dump(ast)
+    const { html, toc } = encode(ast, { indent: 2 })
+    console.log(html)
+  })
+}
 // main()
 // const tmp = readFileSync("tmp.txt", "utf-8")
 // console.log(encode(decode(tmp), { indent:2 }))

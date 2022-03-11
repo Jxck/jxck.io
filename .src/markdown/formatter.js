@@ -320,12 +320,30 @@ function serialize(node, option) {
   }
 
   if (name === `details`) {
+    const type = node.attr.class
     const [summary, details] = node.children
-    return [
-      `:::details ${serialize(summary)}`,
-      serialize(details).trim(),
-      `:::\n`
-    ].join(`\n`)
+
+    if (type === `details`) {
+      return [
+        `:::details ${serialize(summary)}`,
+        serialize(details).trim(),
+        `:::\n`
+      ].join(`\n`)
+    }
+    if (type === `message`) {
+      return [
+        `:::message`,
+        serialize(details).trim(),
+        `:::\n`
+      ].join(`\n`)
+    }
+    if (type === `alert`) {
+      return [
+        `:::message alert`,
+        serialize(details).trim(),
+        `:::\n`
+      ].join(`\n`)
+    }
   }
 
   // other: ul, ol
