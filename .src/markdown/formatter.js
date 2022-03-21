@@ -374,7 +374,7 @@ async function test() {
 }
 // test()
 
-if (process.argv.length > 2) {
+if (process.argv[1].endsWith('formatter.js') && process.argv.length > 2) {
   const pwd = process.env.PWD
   /**@type{Array.<string>}*/
   const files = process.argv.slice(2)

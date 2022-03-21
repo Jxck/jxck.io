@@ -764,8 +764,8 @@ async function workbox() {
   await writeFile(`../www.jxck.io/assets/js/workbox.js`, replaced)
 }
 
-async function main() {
-  if (process.argv[2] === `build`) {
+async function main(arg) {
+  if (arg === `build`) {
     const [entries, episodes] = await Promise.all([
       promisify(glob)(`../blog.jxck.io/entries/**/*.md`),
       promisify(glob)(`../mozaic.fm/episodes/**/*.md`),
@@ -777,7 +777,7 @@ async function main() {
     ])
   }
 
-  if (process.argv[2] === `preview`) {
+  if (arg === `preview`) {
     // const entries = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
     const entries = await promisify(glob)(`../blog.jxck.io/entries/**/*.md`)
     await blog([entries.pop()], { preview: true })
@@ -787,13 +787,13 @@ async function main() {
     return await podcast([episodes.pop()], { preview: true })
   }
 
-  if (process.argv[2] === `draft`) {
+  if (arg === `draft`) {
     const entries = [`../blog.jxck.io/drafts/index.md`]
     return await blog(entries, { preview: true })
   }
 
   // import { format } from "./formatter.js"
-  // if (process.argv[2] === `format`) {
+  // if (arg === `format`) {
   //   /** @type {Array.<string>} */
   //   const entries = await promisify(glob)(`../blog.jxck.io/entries/**/*.md`)
   //   entries.forEach(async (entry) => {
@@ -818,4 +818,4 @@ async function main() {
   // }
 }
 
-await main()
+await main(process.argv[2])
