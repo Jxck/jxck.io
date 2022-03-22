@@ -1,8 +1,20 @@
 console.info('worker')
 
-self.addEventListener('install', (e) => {
+const CACHE_KEY = 'network-first'
+
+// self.addEventListener('install', (e) => {
+//   console.info(e.type, e)
+//   e.waitUntil(skipWaiting())
+// })
+self.addEventListener('install', function (e) {
   console.info(e.type, e)
-  e.waitUntil(skipWaiting())
+  e.waitUntil((async () => {
+    const cache = await caches.open(CACHE_KEY)
+    return cache.addAll([
+      'main.js',
+      // etc.
+    ])
+  })())
 })
 
 self.addEventListener('activate', (e) => {
@@ -11,7 +23,14 @@ self.addEventListener('activate', (e) => {
 })
 
 self.addEventListener('fetch', (e) => {
-  console.log(e)
-  // e.respondWith(fetch(e.request));
-  return
+  e.respondWith((async () => {
+    // grab cache
+    const cache = await caches.open(CACHE_KEY)
+    const stored = await cache.match(e.request)
+    if (stored) return stored
+    // fallback to network
+    const response = await fetch(e.request)
+    await cache.put(e.request, response.clone())
+    return response
+  })())
 })
