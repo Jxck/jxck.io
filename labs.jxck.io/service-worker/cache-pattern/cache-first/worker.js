@@ -1,6 +1,6 @@
 console.info('worker')
 
-const CACHE_KEY = 'network-first'
+const CACHE_KEY = 'cache-first'
 
 self.addEventListener('install', function (e) {
   console.info(e.type, e)
@@ -22,10 +22,13 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   e.respondWith((async () => {
-    try {
-      return await fetch(e.request);
-    } catch (err) {
-      return caches.match(e.request);
-    }
+    // grab cache
+    const cache = await caches.open(CACHE_KEY)
+    const stored = await cache.match(e.request)
+    if (stored) return stored
+    // fallback to network
+    const response = await fetch(e.request)
+    await cache.put(e.request, response.clone())
+    return response
   })())
 })
