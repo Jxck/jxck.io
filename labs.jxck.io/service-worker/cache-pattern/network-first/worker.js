@@ -2,10 +2,6 @@ console.info('worker')
 
 const CACHE_KEY = 'network-first'
 
-// self.addEventListener('install', (e) => {
-//   console.info(e.type, e)
-//   e.waitUntil(skipWaiting())
-// })
 self.addEventListener('install', function (e) {
   console.info(e.type, e)
   e.waitUntil((async () => {
