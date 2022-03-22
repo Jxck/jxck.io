@@ -1,17 +1,17 @@
-console.info('worker')
+console.info("worker")
 
-self.addEventListener('install', (e) => {
+self.addEventListener("install", (e) => {
   console.info(e.type, e)
   e.waitUntil(skipWaiting())
 })
 
-self.addEventListener('activate', (e) => {
+self.addEventListener("activate", (e) => {
   console.info(e.type, e)
   e.waitUntil(self.clients.claim())
 })
 
-self.addEventListener('fetch', (e) => {
+self.addEventListener("fetch", (e) => {
   console.log(e)
-  // e.respondWith(fetch(e.request));
+  // e.respondWith(fetch(e.request))
   return
 })
