@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 95 回のテーマは 2022 年 3 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 99
+
 
 #### Updates
 
@@ -58,7 +60,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Debug Chrome extension with sourcemap files
     - Improved source folder tree in the Sources panel
     - Display worker source files in the Sources panel
-  - Chrome’s Auto Dark Theme updates
+  - Chrome's Auto Dark Theme updates
   - Touch-friendly color-picker and split pane
   - Miscellaneous highlights
   - Download the preview channels
@@ -69,7 +71,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - View and edit @supports at rules in the Styles pane
   - Recorder panel improvements
     - Support common selectors by default
-    - Customize the recording’s selector
+    - Customize the recording's selector
     - Rename a recording
   - Preview class/function properties on hover
   - Partially presented frames in the Performance panel
@@ -79,6 +81,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Deprecations and removals in Chrome 100
   - https://developer.chrome.com/en/blog/deps-rems-100/
   - Last Version for Unreduced User-Agent String
+
 
 #### Intents
 
@@ -173,7 +176,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - SFV の実装を draft-15 でやっていたが RFC 準拠に直した
   - list と dict の間のセパレータに tab を許容するという小さいもの
 
+
 #### V8
+
 
 #### Other
 
@@ -214,9 +219,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.chromium.org/2022/03/how-chrome-became-highest-scoring.html
 - canary
 
+
 ### Firefox 動向
 
 #### Stable: 98.0.2
+
 
 #### Updates
 
@@ -227,9 +234,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - `<dialog>`
     - `hyphenate-character`
 
+
 #### Intents
 
-- *Ship: WritableStreams and ReadableStream’s pipeTo method*
+- *Ship: WritableStreams and ReadableStream's pipeTo method*
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ewGRRA4n3As
 - Ship: WebAssembly exception-handling
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/8YQ-YKantdk
@@ -254,6 +262,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Firefox Security & Privacy Newsletter 2021 Q4
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/p6Mad1gtw7g
 
+
 #### Other
 
 - *A new year, a new MDN - Mozilla Hacks - the Web developer blog*
@@ -264,15 +273,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://hacks.mozilla.org/2022/03/interop-2022/
 - Firefox Extension Helps Bring Movie Magic To Theaters Near You
   - https://blog.mozilla.org/en/products/firefox/extensions-addons/firefox-extension-helps-bring-movie-magic-to-theaters-near-you/
-- The pandemic changed everything — even the way we use browser extensions
+- The pandemic changed everything - even the way we use browser extensions
   - https://blog.mozilla.org/en/uncategorized/the-pandemic-changed-everything-even-the-way-we-use-browser-extensions/
 - Latest Firefox Relay includes bigger attachment size and filters for promotional emails
   - https://blog.mozilla.org/en/mozilla/latest-firefox-relay-includes-bigger-attachment-size-and-filters-for-promotional-emails/
-- Disney and Pixar’s “Turning Red” movie Browser Wallpapers only available on Firefox for Android and iOS
+- Disney and Pixar's "Turning Red" movie Browser Wallpapers only available on Firefox for Android and iOS
   - https://blog.mozilla.org/en/products/disney-and-pixars-turning-red-movie-browser-mobile-wallpapers/
 - Mozilla and the EFF publish letter about the danger of Article 45.2
   - https://blog.mozilla.org/en/security/mozilla-eff-cybersecurity-experts-publish-letter-on-dangers-of-article-452-eidas-regulation/
-- How to make sure you aren’t spreading misinformation online
+- How to make sure you aren't spreading misinformation online
   - https://blog.mozilla.org/en/internet-culture/spotting-misinformation-online/
 - Documenting outages to seek transparency and accountability – Data@Mozilla
   - https://blog.mozilla.org/data/2022/03/09/mozilla-opens-access-to-dataset-on-network-outages/
@@ -299,9 +308,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - 無料, $5/月, $10/月の 3 プラン
   - 日本での展開はまだっぽい
 
+
 ### Safari 動向
 
 #### Stable: 15.4
+
 
 #### Updates
 
@@ -432,20 +443,24 @@ guest: [@myakura](https://twitter.com/myakura)
   - Viewport Units
   - Web Compat
 
+
 #### Position
 
 - *[webkit-dev] Request for position on FedCM (was WebID)*
   - https://lists.webkit.org/pipermail/webkit-dev/2022-March/032153.html
   - > We are generally supportive and interested in working together to make this coexist well with passkeys.
 
+
 #### Other
 
 - Taming CSS Variables with Web Inspector
   - https://webkit.org/blog/12303/css-variables-web-inspector/
 
+
 ### Edge 動向
 
 #### Stable: 99
+
 
 #### Updates
 
@@ -472,12 +487,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/japan/2022/02/21/internet-explorer-11-desktop-app-retirement-faq/
   - 2022 年 6 月 15 日に提供終了した後には、IE11 はサポートの提供が終了となります。日本を除くすべての国のユーザーは、2022 年 6 月 15 日以降から Microsoft Edge への移行が開始されます。
 
+
 #### Chakra
+
 
 #### Other
 
 - Edge/Chrome Policy Registry Entries – text/plain
   - https://textslashplain.com/2022/03/22/edge-chrome-policy-registry-entries/
+
 
 ### WHATWG/W3C 動向
 
@@ -494,12 +512,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - HTML Working Group Charter extended until 30 April 2022
     - https://lists.w3.org/Archives/Public/public-html/2022Mar/0000.html
 
+
 #### Other
 
 - *Add the `<search>` element by domenic · Pull Request #7320 · whatwg/html*
   - https://github.com/whatwg/html/pull/7320
   - `role=search` に対応する要素がないため `<search>` を追加する
-- *The WHATWG Blog — Retro-specifying fetch/performance*
+- *The WHATWG Blog - Retro-specifying fetch/performance*
   - https://blog.whatwg.org/retro-specifying-fetch-performance
   - Fetch / Performance API / HTML など仕様が別れている実装の非互換を解消するために取り組む
     - preload の挙動
@@ -507,6 +526,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Making WebViews work for the Web | W3C Blog
   - https://www.w3.org/blog/2022/03/making-webviews-work-for-the-web/
   - WebViews Community Group
+
 
 ### TC39 動向
 
@@ -522,7 +542,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Destructuring Private Fields for Stage 3
   - RegExp set notation + Unicode properties of strings for Stage 3
   - Change Array by Copy for Stage 3
-  - Bikeshedding pipe operator’s topic token
+  - Bikeshedding pipe operator's topic token
   - *Decorators for Stage 3*
   - Bikeshedding call-this syntax
   - *Pattern matching for Stage 2*
@@ -532,6 +552,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - *Function.prototype.once for Stage 1*
   - *Types as Comments for Stage 1*
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2022-01-03}...main@{2022-02-04}
@@ -540,6 +561,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 1->2
 - 2->3
 - 3->4
+
 
 #### New Proposals
 
@@ -552,7 +574,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/js-choi/proposal-function-once
   - 一回だけ実行できて、それ以降評価されない関数
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -616,13 +640,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
+
 
 ### CDN 動向
 
 #### Cloudflare
 
-- Unlocking QUIC’s proxying potential with MASQUE
+- Unlocking QUIC's proxying potential with MASQUE
   - https://blog.cloudflare.com/unlocking-quic-proxying-potential/
 - *DNSSEC issues take Fiji domains offline*
   - https://blog.cloudflare.com/dnssec-issues-fiji/
@@ -640,15 +666,18 @@ guest: [@myakura](https://twitter.com/myakura)
 - HPKE: Standardizing public-key encryption (finally!)
   - https://blog.cloudflare.com/hybrid-public-key-encryption/
 
+
 #### Fastly
 
 - Business continuity amid the invasion of Ukraine | Fastly
   - https://www.fastly.com/blog/business-continuity-amid-the-invasion-of-ukraine
 
+
 #### Other
 
 - *Akamai Blog | Powering and Protecting Online Privacy: iCloud Private Relay and Information for Akamai Customers*
   - https://www.akamai.com/blog/cloud/powering-and-protecting-online-privacy-icloud-private-relay
+
 
 ### セキュリティ動向
 
@@ -660,13 +689,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - SoK: SCT Auditing in Certificate Transparency
   - https://arxiv.org/abs/2203.01661
 
+
 ### 周辺動向
 
 - *Open Web Advocacy*
   - https://open-web-advocacy.org/
   - Apple が iOS 上でのブラウザエンジンを webkit に限定していることを批判
   - CMA に対して事態を説明する機会があるため、コメントを集めている
-- Coinhive 事件最高裁解説 後編 ＠IT
+- Coinhive 事件最高裁解説 後編 @IT
   - https://atmarkit.itmedia.co.jp/ait/articles/2203/01/news005.html
 - Microsoft Internet Explorer 11.0 および Firefox のサポート終了について - PayPay 銀行
   - https://www.paypay-bank.co.jp/news/2022/0307.html
@@ -704,6 +734,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://zenn.dev/jxck/scraps/80c3e1c272c02b
   - まとめてみたらキリがなかった
 
+
 ### イベント
 
 - 3 月
@@ -719,6 +750,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/tvOHmMflQy4/m/c5NXpLFoAgAJ
   - 26: SecWeb Workshop 2022
     - https://secweb.work/2022.html
+
 
 ### Wrap Up
 
