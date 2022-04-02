@@ -6,7 +6,7 @@ published_at: 2022-03-29
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep95 Monthly Web 202203
+# ep95 Monthly Web 202203
 
 ## Theme
 

@@ -6,7 +6,7 @@ published_at: 2022-02-20
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
-# [monthly-web][mozaic.fm] ep94 Monthly Web 202202
+# ep94 Monthly Web 202202
 
 ## Theme
 
