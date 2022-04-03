@@ -64,7 +64,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-03-02T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-04-04T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -108,7 +108,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220304_061221>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-03-02>2017-03-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-04-04>2022-04-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -411,7 +411,7 @@ c // &quot;食&quot;</code></pre>
           <p>ところがこの二つは <code translate=no>𠮟</code> と <code translate=no>𠮟</code> のように別の文字コードを振るわけではなく、どちらも同じ文字であり、書き方のバリエーションが違うという扱いになっている。
           <p>そこで、基本となる文字コードを定義し、そこに対してバリエーションがあるものはその番号を組み合わせるという考え方が <em>異体字セレクタ</em> だ。
           <p><code translate=no>葛</code> の文字コードは 0x845B であり、異体字の 1 番目である <code translate=no>葛󠄀</code> には、後ろに 0xE0101 をつける。
-          <pre><code translate=no>str = &quot;葛飾区&quot;
+          <pre class=js><code translate=no>str = &quot;葛飾区&quot;
 [
   0x845B // 葛
   0x98FE // 飾
