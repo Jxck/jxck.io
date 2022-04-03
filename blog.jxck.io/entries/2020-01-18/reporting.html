@@ -215,7 +215,7 @@
         <p>筆者の観測では発端は CSP からだ。
         <p>CSP で定義したポリシーに違反があった場合、その原因をブロックすると同時に、違反があったことを知りたいという要望があった。でなければその問題に対して認識/対応ができないからだ。
         <p>そこで、 CSP ヘッダに指定するためのディレクティブとして、 Report を送信する先を指定する <code translate=no>report-uri</code> が定義された。
-        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?220304_061221>
+        <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/pre.css?220404_021226>
         <pre class=http data-path=./1.http><code translate=no>Content-Security-Policy: default-src &apos;self&apos; report-uri https://report-uri.example.com</code></pre>
         <p>CSP は JS の実行をブロックする場合があるので、その Report は JS で収集するより、ブラウザが直接送信する方が理にかなっている。
         <p>その後、他にも Report 送信を伴う API が提案された。

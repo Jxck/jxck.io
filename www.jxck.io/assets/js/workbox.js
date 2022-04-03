@@ -22,7 +22,7 @@ const precache =
   "https://www.jxck.io/assets/css/info.css?220304_061221",
   "https://www.jxck.io/assets/css/main.css?201223_011131",
   "https://www.jxck.io/assets/css/markdown.css?220304_054853",
-  "https://www.jxck.io/assets/css/pre.css?220304_061221",
+  "https://www.jxck.io/assets/css/pre.css?220404_021226",
   "https://www.jxck.io/assets/css/search.css?220304_061221",
   "https://www.jxck.io/assets/css/table.css?220306_111358",
   "https://www.jxck.io/assets/img/blog.svg?160301_215351",
