@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>Before Unload DEMO</title>
+
+<h1>Before Unload DEMO</h1>
+
+<button id=edit>edit</button>
+<button id=save>save</button>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  class DB extends EventTarget {
+    constructor() {
+      super()
+    }
+    edit() {
+      this.dispatchEvent(new CustomEvent('edit'))
+    }
+    save() {
+      this.dispatchEvent(new CustomEvent('save'))
+    }
+  }
+
+  const db = new DB()
+
+  $('#edit').on('click', () => {
+    db.edit()
+  })
+  $('#save').on('click', () => {
+    db.save()
+  })
+
+
+  function beforeunload(e) {
+    console.log(e)
+    event.preventDefault();
+    return event.returnValue = '';
+  }
+
+  db.addEventListener('edit', (e) => {
+    console.log(e)
+    window.addEventListener('beforeunload', beforeunload)
+  })
+  db.addEventListener('save', (e) => {
+    console.log(e)
+    window.removeEventListener('beforeunload', beforeunload)
+  })
+</script>
