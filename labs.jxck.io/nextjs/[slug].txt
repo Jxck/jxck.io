@@ -1,0 +1,47 @@
+import Head from "next/head";
+import { GetStaticProps, GetStaticPaths } from "next";
+import Layout from "../../components/layout";
+import { getAllPostIds, getPostData } from "../../lib/posts";
+
+type PostData = {
+  title: string;
+  date: string;
+  contentHtml: string;
+};
+
+type Props = {
+  postData: PostData;
+};
+
+const Post = ({ postData }: Props) => {
+  return (
+    <Layout>
+      <Head>
+        <title>{postData.title}</title>
+      </Head>
+      <article>
+        <h1>{postData.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      </article>
+    </Layout>
+  );
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = getAllPostIds();
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const postData = await getPostData(params?.slug as string);
+  return {
+    props: {
+      postData,
+    },
+  };
+};
+
+export default Post;
