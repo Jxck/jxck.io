@@ -43,6 +43,34 @@ function spacer(text) {
 }
 
 /**
+ * 全角と半角の間にスペースを入れる
+ * @param {string} text
+ * @returns {string}
+ */
+function singler(text) {
+  return text
+    .replaceAll(`”`, `"`)
+    .replaceAll(`“`, `"`)
+    .replaceAll(`’`, `'`)
+    .replaceAll(`‘`, `'`)
+    .replaceAll(`—`, `-`)
+    .replaceAll(`–`, `-`)
+    .replaceAll(`｜`, `|`)
+    .replaceAll(`？`, `?`)
+    .replaceAll(`！`, `!`)
+    .replaceAll(`（`, `(`)
+    .replaceAll(`）`, `)`)
+    .replaceAll(`［`, `[`)
+    .replaceAll(`］`, `]`)
+    .replaceAll(`：`, `:`)
+    .replaceAll(`＋`, `+`)
+    .replaceAll(`％`, `%`)
+    .replaceAll(`？`, `?`)
+    .replaceAll(`＆`, `&`)
+    .replaceAll(`　`, ` `)
+}
+
+/**
  * 全角 2 文字、半角 1 文字としてカウント
  * @param {string} text
  * @returns {number}
@@ -226,7 +254,7 @@ function serialize(node, option) {
     }
 
     // console.log({ after: text })
-    return spacer(text)
+    return spacer(singler(text))
   }
   if (name === `em`) /*     */ return `*${children.join(``)}*`
   if (name === `strong`) /* */ return `**${children.join(``)}**`
