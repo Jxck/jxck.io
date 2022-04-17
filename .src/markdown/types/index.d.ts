@@ -87,9 +87,7 @@ export class Node {
     parent: Node;
     level: number;
     text: string;
-    attr: {
-        [x: string]: string;
-    };
+    attr: Attr;
     aligns: ("center" | "left" | "right")[];
     /**@type{Array.<Node>}*/
     children: Array<Node>;
@@ -125,9 +123,7 @@ export type Toc = {
     count: number;
     text: string;
 };
-export type Attr = {
-    [x: string]: string;
-};
+export type Attr = Map<string, string>;
 export type NodeParam = {
     name: string;
     type: string;

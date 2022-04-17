@@ -59,16 +59,16 @@ export function serialize_child_text(node) {
 }
 
 /**
- * @typedef {Object.<string, string>} Attr
+ * @typedef {Map.<string, string>} Attr
  */
 
 /**
  * @param {Attr} attr
  * @returns {string}
  */
-function attr_str(attr = {}) {
+function attr_str(attr = new Map()) {
   const quote = [`title`, `alt`, `cite`, `href`]
-  return Object.entries(attr).map(([k, v]) => {
+  return Array.from(attr).map(([k, v]) => {
     if (v === null) return ` ${k}`
 
     // align 属性は非推奨
@@ -118,7 +118,7 @@ export class Node {
   /**
    * @param {NodeParam} param
    */
-  constructor({ name, type, parent = null, children = [], level = undefined, text = undefined, attr = undefined, aligns = [] }) {
+  constructor({ name, type, parent = null, children = [], level = undefined, text = undefined, attr = new Map(), aligns = [] }) {
     this.name = name
     this.type = type
     this.parent = parent
@@ -199,7 +199,7 @@ export function encode(node, option = {}) {
   function headding(node, indent) {
     const name = `h${node.level}`
     const text = node.children.map((child) => serialize(child)).join(``)
-    const id = node.attr.id
+    const id = node.attr.get(`id`)
 
     // ID が既出な場合は、一意にするために _連番 を後ろにつける
     const prev = toc.reduce((last, curr) => {
@@ -229,7 +229,7 @@ export function encode(node, option = {}) {
    */
   function a(node, indent) {
     // url 内の () を escape してるので戻す
-    const href = unescape(node.attr.href)
+    const href = unescape(node.attr.get(`href`))
     return `<a href="${href}">${node.children.map((child) => serialize(child)).join(``)}</a>`
   }
 
@@ -239,8 +239,9 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function pre(node, indent) {
-    const lang = node.attr.lang ? ` class=${node.attr.lang}` : ``
-    const path = node.attr.path ? ` data-path=${node.attr.path}` : ``
+    const attr = node.attr
+    const lang = attr.has(`lang`) ? ` class=${attr.get(`lang`)}` : ``
+    const path = attr.has(`path`) ? ` data-path=${attr.get(`path`)}` : ``
     const code = node.children.map((child) => child.text).join(`\n`)
     return [
       `${spaces(indent)}<pre${lang}${path}><code translate=no>`,
@@ -317,7 +318,8 @@ export function encode(node, option = {}) {
    */
   function details(node, indent) {
     const name = node.name
-    const open = node.attr?.open ? ' open': ''
+    const attr = node.attr
+    const open = attr.has(`open`) ? ' open': ''
     return [
       `${spaces(indent)}<${name}${open}>\n`,
       node.children.map((child) => serialize(child, indent + 2)).join(``),
@@ -520,7 +522,7 @@ export function decode(md) {
       .replace(/ /g, `-`)
       .toLocaleLowerCase()
 
-    h.attr = { id }
+    h.attr.set(`id`, id)
 
     section.appendChild(h)
 
@@ -690,7 +692,7 @@ export function decode(md) {
       // 既にある thead > tr > th に align を付与
       const tr = thead.children.at(0)
       tr.children.forEach((th, i) => {
-        th.attr.align = aligns.at(i)
+        th.attr.set(`align`, aligns.at(i))
       })
 
       const tbody = node({
@@ -709,7 +711,6 @@ export function decode(md) {
         return node({
           name: `th`,
           type: `inline`,
-          attr: {},
           children: inline(colmun.trim()),
         })
       })
@@ -740,7 +741,7 @@ export function decode(md) {
         const td = node({
           name: `td`,
           type: `inline`,
-          attr: { align },
+          attr: new Map([[`align`, align]]),
           children: inline(colmun.trim()),
         })
         tr.appendChild(td)
@@ -759,9 +760,17 @@ export function decode(md) {
    */
   function pre(result, rest, ast) {
     const { lang, path } = result.groups
+    const attr = new Map()
 
-    if (lang.startsWith(` `) || lang.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
-    if (path?.startsWith(` `) || path?.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
+    if (lang) {
+      if (lang.startsWith(` `) || lang.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
+      attr.set(`lang`, lang)
+    }
+
+    if (path) {
+      if (path.startsWith(` `) || path.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
+      attr.set(`path`, path)
+    }
 
     // already in <pre>
     if (ast.name === `pre`) return parse(rest, ast.parent)
@@ -769,7 +778,7 @@ export function decode(md) {
     const pre = node({
       name: `pre`,
       type: `block`,
-      attr: { lang, path }
+      attr
     })
 
     ast.appendChild(pre)
@@ -896,8 +905,8 @@ export function decode(md) {
       const link = inline(text.slice(4))
 
       // url to <blockquote cite=${url}>
-      const url = link[0].attr.href
-      blockquote.attr = { cite: url }
+      const url = link[0].attr.get(`href`)
+      blockquote.attr = new Map([[`cite`, url]])
 
       // also adding <cite>${url}</cite>
       const cite = node({
@@ -967,7 +976,7 @@ export function decode(md) {
       const details = node({
         name: `details`,
         type: `block`,
-        attr: { class: symbol }, // message, alert はこの class で判別
+        attr: new Map([[`class`, symbol ]]), // message, alert はこの class で判別
       })
       ast.appendChild(details)
       return details
@@ -1180,12 +1189,12 @@ export function decode(md) {
     i++
 
     /** @type {Attr} */
-    const attr = {
-      loading: `lazy`,
-      decoding: `async`,
-      src,
-      alt,
-    }
+    const attr = new Map([
+      [`loading`, `lazy`],
+      [`decoding`, `async`],
+      [`src`, src],
+      [`alt`, alt]
+    ])
 
     if (title_exists) {
       const title_open = input[i]
@@ -1206,7 +1215,7 @@ export function decode(md) {
       if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
 
       const title = input.slice(title_start, i)
-      attr.title = title
+      attr.set(`title`, title)
       i += 2
     }
 
@@ -1286,7 +1295,7 @@ export function decode(md) {
 
     const href = input.slice(url_start, i)
     i++ // skip `)`
-    child.attr = { href }
+    child.attr = new Map([[`href`, href]])
     child.addText(text)
     return { child, i }
   }
@@ -1315,7 +1324,8 @@ export function decode(md) {
     if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
 
     const href = input.slice(url_start, i)
-    const child = node({ name: `a`, type: `inline`, attr: { href } })
+    const attr = new Map([[`href`, href]])
+    const child = node({ name: `a`, type: `inline`, attr })
     child.addText(href)
 
     i++ // skip `>`
@@ -1339,7 +1349,8 @@ export function decode(md) {
       i++
     }
     const href = input.slice(url_start, i)
-    const child = node({ name: `a`, type: `inline`, attr: { href } })
+    const attr = new Map([[`href`, href]])
+    const child = node({ name: `a`, type: `inline`, attr })
     child.addText(href)
     return { child, i }
   }
@@ -1431,7 +1442,8 @@ export function decode(md) {
    */
   function code(input, i) {
     const text_start = i
-    const child = node({ name: `code`, type: `inline`, attr: { translate: `no` } })
+    const attr = new Map([[`translate`, `no`]])
+    const child = node({ name: `code`, type: `inline`, attr })
     while (true) {
       // "` a ` b `" みたいにマッチしてない場合
       if (i > input.length) throw new Error(`unmatch </code> on "${input}"`)
@@ -1569,11 +1581,7 @@ export function dump(ast) {
 
 function main() {
   [
-    `
-:::message
-メッセージをここに
-:::
-`,
+    `# [tag] Dead Beef`,
     // `:::message alert
     // 警告メッセージをここに
     // :::`,
