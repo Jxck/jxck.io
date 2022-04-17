@@ -87,7 +87,9 @@ export class Node {
     parent: Node;
     level: number;
     text: string;
-    attr: Attr;
+    attr: {
+        [x: string]: string;
+    };
     aligns: ("center" | "left" | "right")[];
     /**@type{Array.<Node>}*/
     children: Array<Node>;
@@ -124,30 +126,7 @@ export type Toc = {
     text: string;
 };
 export type Attr = {
-    id?: string;
-    class?: string;
-    title?: string;
-    width?: string;
-    height?: string;
-    cite?: string;
-    lang?: string;
-    path?: string;
-    type?: string;
-    src?: string;
-    srcset?: string;
-    url?: string;
-    alt?: string;
-    rel?: string;
-    property?: string;
-    href?: string;
-    translate?: string;
-    loading?: string;
-    decoding?: string;
-    controls?: string;
-    playsinline?: string;
-    open?: boolean;
-    align?: "center" | "left" | "right";
-    tags?: Array<string>;
+    [x: string]: string;
 };
 export type NodeParam = {
     name: string;

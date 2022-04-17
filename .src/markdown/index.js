@@ -59,31 +59,7 @@ export function serialize_child_text(node) {
 }
 
 /**
- * @typedef {Object} Attr
- * @prop {string} [id]
- * @prop {string} [class]
- * @prop {string} [title]
- * @prop {string} [width]
- * @prop {string} [height]
- * @prop {string} [cite]
- * @prop {string} [lang]
- * @prop {string} [path]
- * @prop {string} [type]
- * @prop {string} [src]
- * @prop {string} [srcset]
- * @prop {string} [url]
- * @prop {string} [alt]
- * @prop {string} [rel]
- * @prop {string} [property]
- * @prop {string} [href]
- * @prop {string} [translate]
- * @prop {string} [loading]
- * @prop {string} [decoding]
- * @prop {string} [controls]
- * @prop {string} [playsinline]
- * @prop {boolean} [open]
- * @prop {"center" | "left" | "right"} [align]
- * @prop {Array.<string>} [tags]
+ * @typedef {Object.<string, string>} Attr
  */
 
 /**
@@ -91,14 +67,21 @@ export function serialize_child_text(node) {
  * @returns {string}
  */
 function attr_str(attr = {}) {
-  // TODO: スペース " ' ` = <  > が無ければ quote は不要
-  // https://html.spec.whatwg.org/#a-quick-introduction-to-html
-  const quote = [`title`, `cite`, `alt`]
+  const quote = [`title`, `alt`, `cite`, `href`]
   return Object.entries(attr).map(([k, v]) => {
-    if (k === `aligns`) return `` // TODO: 元から消せる?
-    if (quote.includes(k)) return ` ${k}="${v}"`
     if (v === null) return ` ${k}`
-    return ` ${k}=${v}`
+
+    // align 属性は非推奨
+    if (k === `align`) return ` class=align-${v}`
+    
+    // これらは中身がなんであれ Quote
+    if (quote.includes(k)) return ` ${k}="${v}"`
+
+    // スペース " ' ` = <  > が無ければ quote は不要
+    // https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html
+    if (v.match(/[ "'`=<>]/) === null) return ` ${k}=${v}`
+
+    return ` ${k}="${v}"`
   }).join('')
 }
 
@@ -274,9 +257,9 @@ export function encode(node, option = {}) {
    */
   function td(node, indent) {
     const name = node.name
-    const { align } = node.attr
+    const attr = attr_str(node.attr)
     return [
-      `${spaces(indent)}<${name} class=align-${align}>`,
+      `${spaces(indent)}<${name}${attr}>`,
       node.children.map((child) => serialize(child)).join(``),
       `</${name}>\n`,
     ].join(``)
