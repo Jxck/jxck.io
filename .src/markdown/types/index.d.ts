@@ -36,12 +36,13 @@ export function serialize_child_text(node: Node): string;
  * @prop {number} [level]
  * @prop {string} [text]
  * @prop {Attr} [attr]
+ * @prop {Array.<"center" | "left" | "right">} [aligns]
  */
 /**
  * @param {NodeParam} param
  * @returns {Node}
  */
-export function node({ name, type, parent, children, level, text, attr }: NodeParam): Node;
+export function node({ name, type, parent, children, level, text, attr, aligns }: NodeParam): Node;
 /**
  * @typedef {Object} EncodeOption
  * @prop {number} [indent]
@@ -80,13 +81,14 @@ export class Node {
     /**
      * @param {NodeParam} param
      */
-    constructor({ name, type, parent, children, level, text, attr }: NodeParam);
+    constructor({ name, type, parent, children, level, text, attr, aligns }: NodeParam);
     name: string;
     type: string;
     parent: Node;
     level: number;
     text: string;
     attr: Attr;
+    aligns: ("center" | "left" | "right")[];
     /**@type{Array.<Node>}*/
     children: Array<Node>;
     /**
@@ -144,7 +146,6 @@ export type Attr = {
     controls?: string;
     playsinline?: string;
     open?: boolean;
-    aligns?: Array<"center" | "left" | "right">;
     align?: "center" | "left" | "right";
     tags?: Array<string>;
 };
@@ -156,6 +157,7 @@ export type NodeParam = {
     level?: number;
     text?: string;
     attr?: Attr;
+    aligns?: Array<"center" | "left" | "right">;
 };
 export type EncodeOption = {
     indent?: number;

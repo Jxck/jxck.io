@@ -82,7 +82,6 @@ export function serialize_child_text(node) {
  * @prop {string} [controls]
  * @prop {string} [playsinline]
  * @prop {boolean} [open]
- * @prop {Array.<"center" | "left" | "right">} [aligns]
  * @prop {"center" | "left" | "right"} [align]
  * @prop {Array.<string>} [tags]
  */
@@ -112,13 +111,14 @@ function attr_str(attr = {}) {
  * @prop {number} [level]
  * @prop {string} [text]
  * @prop {Attr} [attr]
+ * @prop {Array.<"center" | "left" | "right">} [aligns]
  */
 
 /**
  * @param {NodeParam} param
  * @returns {Node}
  */
-export function node({ name, type, parent = null, children = [], level = undefined, text = undefined, attr = undefined }) {
+export function node({ name, type, parent, children, level, text, attr, aligns }) {
   return new Node({
     name,
     type,
@@ -127,6 +127,7 @@ export function node({ name, type, parent = null, children = [], level = undefin
     level,
     text,
     attr,
+    aligns,
   })
 }
 
@@ -134,13 +135,14 @@ export class Node {
   /**
    * @param {NodeParam} param
    */
-  constructor({ name, type, parent = null, children = [], level = undefined, text = undefined, attr = undefined }) {
+  constructor({ name, type, parent = null, children = [], level = undefined, text = undefined, attr = undefined, aligns = [] }) {
     this.name = name
     this.type = type
     this.parent = parent
     this.level = level
     this.text = text
     this.attr = attr
+    this.aligns = aligns
 
     /**@type{Array.<Node>}*/
     this.children = []
@@ -711,8 +713,9 @@ export function decode(md) {
       const tbody = node({
         name: `tbody`,
         type: `block`,
-        attr: { aligns }
+        aligns: aligns
       })
+
       table.appendChild(tbody)
       return parse(rest, tbody)
     }
@@ -741,7 +744,7 @@ export function decode(md) {
 
     if (ast.name === `tbody`) {
       const tbody = ast
-      const aligns = tbody.attr.aligns
+      const aligns = tbody.aligns
 
       const tr = node({
         name: `tr`,
@@ -750,10 +753,11 @@ export function decode(md) {
       })
 
       columns.forEach((colmun, i) => {
+        const align = aligns.at(i)
         const td = node({
           name: `td`,
           type: `inline`,
-          attr: { align: aligns.at(i) },
+          attr: { align },
           children: inline(colmun.trim()),
         })
         tr.appendChild(td)
