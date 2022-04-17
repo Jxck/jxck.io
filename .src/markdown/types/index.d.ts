@@ -123,7 +123,7 @@ export type Toc = {
     count: number;
     text: string;
 };
-export type Attr = Map<string, string>;
+export type Attr = Map<string, string | null>;
 export type NodeParam = {
     name: string;
     type: string;

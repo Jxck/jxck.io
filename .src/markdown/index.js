@@ -59,7 +59,7 @@ export function serialize_child_text(node) {
 }
 
 /**
- * @typedef {Map.<string, string>} Attr
+ * @typedef {Map.<string, string | null>} Attr
  */
 
 /**
