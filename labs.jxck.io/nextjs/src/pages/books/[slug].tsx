@@ -32,6 +32,16 @@ const Post = ({ book }: Props) => {
   );
 };
 
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const slug = params?.slug as string;
+  const book = await getBook(slug);
+  return {
+    props: {
+      book,
+    },
+  };
+};
+
 // export const getStaticPaths: GetStaticPaths = async () => {
 //   const books = await getBooks();
 //   const paths = books.map(({ slug }) => {
@@ -44,15 +54,5 @@ const Post = ({ book }: Props) => {
 //     fallback: true,
 //   };
 // };
-
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const slug = params?.slug as string;
-  const book = await getBook(slug);
-  return {
-    props: {
-      book,
-    },
-  };
-};
 
 export default Post;

@@ -28,14 +28,6 @@ const Post = ({ slug, page, body }: Props) => {
   );
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const paths = await getAllPaths();
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// };
-
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string;
   const file = params?.file as string;
@@ -49,5 +41,13 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
   };
 };
+
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const paths = await getAllPaths();
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
 export default Post;
