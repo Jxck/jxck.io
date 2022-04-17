@@ -105,7 +105,7 @@ function table(node) {
    */
   const thead = node.children.at(0).children.at(0).children.map((td, i) => {
     const text = td.children.map((child) => serialize(child)).join(``)
-    const align = td.attr.align
+    const align = td.attr.get(`align`)
     const len = count(text)
     format.push({ align, len })
     return text
@@ -268,7 +268,9 @@ function serialize(node, option) {
   if (name === `figcaption`) return `Caption: ${node.text.trim()}\n`
 
   if (name === `img`) {
-    const { alt, src, title } = node.attr
+    const alt = node.attr.get(`alt`)
+    const src = node.attr.get(`src`)
+    const title = node.attr.get(`title`)
     if (title) {
       return `![${alt}](${src} "${title}")`
     }
@@ -276,7 +278,7 @@ function serialize(node, option) {
   }
 
   if (name === `a`) {
-    const href = node.attr.href
+    const href = node.attr.get(`href`)
     const text = children.join(``)
     if (href.startsWith(`chrome://`)) {
       if (href === text) return `<${href}>`
@@ -325,8 +327,8 @@ function serialize(node, option) {
 
   if (name === `pre`) {
     const pre = "```"
-    const lang = node.attr.lang || ``
-    const path = node.attr.path ? `:${node.attr.path}` : ``
+    const lang = node.attr.get(`lang`) || ``
+    const path = node.attr.get(`path`) ? `:${node.attr.get(`path`)}` : ``
     const code = children.join(`\n`).replaceAll("```", "\\`\\`\\`")
     if (code.length === 0) return `${pre}${lang}${path}\n${pre}\n`
     return `${pre}${lang}${path}\n${code}\n${pre}\n`
@@ -348,7 +350,7 @@ function serialize(node, option) {
   }
 
   if (name === `details`) {
-    const type = node.attr.class
+    const type = node.attr.get(`class`)
     const [summary, details] = node.children
 
     if (type === `details`) {
