@@ -1,6 +1,6 @@
 import path from "path";
 import { readdir, readFile } from "fs/promises";
-import { encode, decode } from "@jxck/markdown";
+import { encode, decode, traverse } from "@jxck/markdown";
 
 export const booksDir = path.join(process.cwd(), "books");
 
@@ -89,6 +89,17 @@ export async function getHTML(slug: string, file: string) {
     encoding: "utf-8",
   });
   const ast = decode(text);
-  const { html } = encode(ast);
+
+  const root = traverse(ast, {
+    enter: (node) => node,
+    leave: (node) => {
+      if (node.name === "details") {
+        node.attr.open = true;
+      }
+      return node;
+    },
+  });
+
+  const { html } = encode(root);
   return html;
 }

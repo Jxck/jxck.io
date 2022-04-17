@@ -24,7 +24,7 @@ const Layout = ({ children, home }: Props) => {
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>{children}</main>
+      {children}
       <Back home={home} />
     </div>
   );
