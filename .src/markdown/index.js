@@ -81,6 +81,7 @@ export function serialize_child_text(node) {
  * @prop {string} [decoding]
  * @prop {string} [controls]
  * @prop {string} [playsinline]
+ * @prop {boolean} [open]
  * @prop {Array.<"center" | "left" | "right">} [aligns]
  * @prop {"center" | "left" | "right"} [align]
  * @prop {Array.<string>} [tags]
@@ -331,8 +332,9 @@ export function encode(node, option = {}) {
    */
   function details(node, indent) {
     const name = node.name
+    const open = node.attr?.open ? ' open': ''
     return [
-      `${spaces(indent)}<${name}>\n`,
+      `${spaces(indent)}<${name}${open}>\n`,
       node.children.map((child) => serialize(child, indent + 2)).join(``),
       `${spaces(indent)}</${name}>\n`,
     ].join(``)

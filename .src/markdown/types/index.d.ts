@@ -143,6 +143,7 @@ export type Attr = {
     decoding?: string;
     controls?: string;
     playsinline?: string;
+    open?: boolean;
     aligns?: Array<"center" | "left" | "right">;
     align?: "center" | "left" | "right";
     tags?: Array<string>;
