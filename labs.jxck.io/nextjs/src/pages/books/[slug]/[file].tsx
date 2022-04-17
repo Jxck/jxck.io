@@ -5,18 +5,21 @@ import { getHTML, getPage, Page } from "../../../lib/books";
 import Link from "next/link";
 
 type Props = {
+  slug: string;
   page: Page;
   body: string;
 };
 
-const Post = ({ page, body }: Props) => {
+const Post = ({ slug, page, body }: Props) => {
   return (
     <Layout>
       <Head>
         <title>{page.title}</title>
       </Head>
+      <header>
+        <Link href={`/books/${slug}`}>{slug}</Link>
+      </header>
       <main>
-        <h1>{page.title}</h1>
         <article>
           <pre>{body}</pre>
         </article>
@@ -40,6 +43,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const body = await getHTML(slug, file);
   return {
     props: {
+      slug,
       page,
       body,
     },

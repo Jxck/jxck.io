@@ -14,15 +14,16 @@ const Post = ({ book }: Props) => {
       <Head>
         <title>{book.title}</title>
       </Head>
-      <main>
+      <header>
         <h1>{book.title}</h1>
+      </header>
+      <main>
+        <h2>Pages</h2>
         <ul>
           {book.pages.map((page) => (
             <li key={page.file}>
-              <Link href={`/books/${book.slug}/${page.file}`}>
-                {page.title}
-              </Link>
-              : {page.file}
+              <Link href={`/books/${book.slug}/${page.file}`}>{page.file}</Link>
+              : {page.title}
             </li>
           ))}
         </ul>

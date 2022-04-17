@@ -12,8 +12,11 @@ const Index = ({ books }: Props) => {
   return (
     <Layout home>
       <Head>
-        <title>{TITLE}</title>
+        <title>zenn.jxck.io</title>
       </Head>
+      <header>
+        <h1>{TITLE}</h1>
+      </header>
       <main>
         <h2>Books</h2>
         <ul>
