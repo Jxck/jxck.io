@@ -46,7 +46,7 @@ export function hsc(str) {
  * @returns {string}
  */
 function unescape(str) {
-  return str.replace(/\\([\*|\`|\!|\[|\]|\<|\>|\(|\)|])/g, '$1')
+  return str.replace(/\\([\*|\`|\!|\[|\]|\<|\>|\(|\)|])/g, `$1`)
 }
 
 /**
@@ -67,13 +67,13 @@ export function serialize_child_text(node) {
  * @returns {string}
  */
 function attr_str(attr = new Map()) {
-  const quote = [`title`, `alt`, `cite`, `href`]
+  const quote = [`title`, `alt`, `cite`, `href`, `id`]
   return Array.from(attr).map(([k, v]) => {
     if (v === null) return ` ${k}`
 
     // align 属性は非推奨
     if (k === `align`) return ` class=align-${v}`
-    
+
     // これらは中身がなんであれ Quote
     if (quote.includes(k)) return ` ${k}="${v}"`
 
@@ -82,7 +82,7 @@ function attr_str(attr = new Map()) {
     if (v.match(/[ "'`=<>]/) === null) return ` ${k}=${v}`
 
     return ` ${k}="${v}"`
-  }).join('')
+  }).join(``)
 }
 
 /**
@@ -199,7 +199,8 @@ export function encode(node, option = {}) {
   function headding(node, indent) {
     const name = `h${node.level}`
     const text = node.children.map((child) => serialize(child)).join(``)
-    const id = node.attr.get(`id`)
+    const attr = node.attr
+    const id = attr.get(`id`)
 
     // ID が既出な場合は、一意にするために _連番 を後ろにつける
     const prev = toc.reduce((last, curr) => {
@@ -216,9 +217,11 @@ export function encode(node, option = {}) {
 
     if (node.level === 1) {
       // href は "" にすることで自身の URL を示す
-      return `${spaces(indent)}<h1><a href="">${text}</a></h1>\n`
+      attr.delete(`id`)
+      return `${spaces(indent)}<h1${attr_str(attr)}><a href="">${text}</a></h1>\n`
     } else {
-      return `${spaces(indent)}<${name} id="${hashed}"><a href="#${hashed}">${text}</a></${name}>\n`
+      attr.set(`id`, hashed)
+      return `${spaces(indent)}<${name}${attr_str(attr)}><a href="#${hashed}">${text}</a></${name}>\n`
     }
   }
 
@@ -228,9 +231,11 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function a(node, indent) {
+    const attr = node.attr
     // url 内の () を escape してるので戻す
-    const href = unescape(node.attr.get(`href`))
-    return `<a href="${href}">${node.children.map((child) => serialize(child)).join(``)}</a>`
+    const href = unescape(attr.get(`href`))
+    attr.set(`href`, href)
+    return `<a${attr_str(attr)}>${node.children.map((child) => serialize(child)).join(``)}</a>`
   }
 
   /**
@@ -240,11 +245,18 @@ export function encode(node, option = {}) {
    */
   function pre(node, indent) {
     const attr = node.attr
-    const lang = attr.has(`lang`) ? ` class=${attr.get(`lang`)}` : ``
-    const path = attr.has(`path`) ? ` data-path=${attr.get(`path`)}` : ``
+
+    if (attr.has(`lang`)) {
+      attr.set(`class`, attr.get(`lang`))
+      attr.delete(`lang`)
+    }
+    if (attr.has(`path`)) {
+      attr.set(`data-path`, attr.get(`path`))
+      attr.delete(`path`)
+    }
     const code = node.children.map((child) => child.text).join(`\n`)
     return [
-      `${spaces(indent)}<pre${lang}${path}><code translate=no>`,
+      `${spaces(indent)}<pre${attr_str(attr)}><code translate=no>`,
       hsc(code),
       `</code></pre>\n`
     ].join(``)
@@ -273,10 +285,11 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function figcaption(node, indent) {
+    const attr = attr_str(node.attr)
     return [
-      `${spaces(indent)}<${node.name}>`,
+      `${spaces(indent)}<figcaption${attr}>`,
       node.text,
-      `</${node.name}>\n`,
+      `</figcaption>\n`,
     ].join(``)
   }
 
@@ -288,8 +301,9 @@ export function encode(node, option = {}) {
    */
   function dt(node, indent) {
     const name = node.name
+    const attr = attr_str(node.attr)
     return [
-      `${spaces(indent)}<${name}>`,
+      `${spaces(indent)}<${name}${attr}>`,
       node.children.map((child) => serialize(child)).join(``),
       `\n`
     ].join(``)
@@ -302,11 +316,11 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function summary(node, indent) {
-    const name = node.name
+    const attr = attr_str(node.attr)
     return [
-      `${spaces(indent)}<${name}>`,
+      `${spaces(indent)}<summary${attr}>`,
       node.children.map((child) => serialize(child)).join(``),
-      `</${name}>\n`
+      `</summary>\n`
     ].join(``)
   }
 
@@ -317,13 +331,12 @@ export function encode(node, option = {}) {
    * @returns {string}
    */
   function details(node, indent) {
-    const name = node.name
-    const attr = node.attr
-    const open = attr.has(`open`) ? ' open': ''
+    node.attr.delete(`class`) // TODO: details 以外は大丈夫?
+    const attr = attr_str(node.attr)
     return [
-      `${spaces(indent)}<${name}${open}>\n`,
+      `${spaces(indent)}<details${attr}>\n`,
       node.children.map((child) => serialize(child, indent + 2)).join(``),
-      `${spaces(indent)}</${name}>\n`,
+      `${spaces(indent)}</details>\n`,
     ].join(``)
   }
 
@@ -363,7 +376,9 @@ export function encode(node, option = {}) {
 
     if (lines.length === 1 && Array.isArray(lines[0])) {
       // children に inline のみしかないので一列で閉じなし
-      return `${spaces(indent)}<${node.name}>${lines[0].map((child) => serialize(child)).join(``)}\n`
+      const name = node.name
+      const attr = attr_str(node.attr)
+      return `${spaces(indent)}<${name}${attr}>${lines[0].map((child) => serialize(child)).join(``)}\n`
     }
 
     // block と inline が同居している場合
@@ -379,7 +394,7 @@ export function encode(node, option = {}) {
 
     // その結果を改行した <open></close> で閉じる
     return [
-      `${spaces(indent)}<${node.name}>\n`,
+      `${spaces(indent)}<${node.name}${attr_str(node.attr)}>\n`,
       `${child}`,
       `${spaces(indent)}</${node.name}>\n`
     ].join(``)
@@ -401,8 +416,9 @@ export function encode(node, option = {}) {
    */
   function section(node, indent) {
     const name = node.level === 1 ? `article` : `section`
+    const attr = attr_str(node.attr)
     return [
-      `${spaces(indent)}<${name}>\n`,
+      `${spaces(indent)}<${name}${attr}>\n`,
       node.children.map((child) => serialize(child, indent + 2)).join(``),
       `${spaces(indent)}</${name}>\n`,
     ].join(``)
@@ -976,7 +992,7 @@ export function decode(md) {
       const details = node({
         name: `details`,
         type: `block`,
-        attr: new Map([[`class`, symbol ]]), // message, alert はこの class で判別
+        attr: new Map([[`class`, symbol]]), // message, alert はこの class で判別
       })
       ast.appendChild(details)
       return details
