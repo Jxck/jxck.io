@@ -19,7 +19,7 @@ const Post = ({ slug, page, body }: Props) => {
       <header>
         <Link href={`/books/${slug}`}>{slug}</Link>
       </header>
-      <main dangerouslySetInnerHTML={{ __html: body }} />
+      <main className="znc" dangerouslySetInnerHTML={{ __html: body }} />
     </Layout>
   );
 };
