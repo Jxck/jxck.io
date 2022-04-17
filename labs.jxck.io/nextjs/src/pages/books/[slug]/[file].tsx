@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetServerSideProps } from "next";
 import Layout from "../../../components/layout";
-import { getAllPaths, getHTML, getPage, Page } from "../../../lib/books";
+import { getHTML, getPage, Page } from "../../../lib/books";
 import Link from "next/link";
 
 type Props = {
@@ -17,21 +17,23 @@ const Post = ({ page, body }: Props) => {
       </Head>
       <main>
         <h1>{page.title}</h1>
-        <article>{body}</article>
+        <article>
+          <pre>{body}</pre>
+        </article>
       </main>
     </Layout>
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllPaths();
-  return {
-    paths,
-    fallback: true,
-  };
-};
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const paths = await getAllPaths();
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string;
   const file = params?.file as string;
   const page = await getPage(slug, file);

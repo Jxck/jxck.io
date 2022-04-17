@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetServerSideProps } from "next";
 import Layout from "../../components/layout";
-import { getBooks, Book, getBook } from "../../lib/books";
+import { Book, getBook } from "../../lib/books";
 import Link from "next/link";
 
 type Props = {
@@ -31,20 +31,20 @@ const Post = ({ book }: Props) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const books = await getBooks();
-  const paths = books.map(({ slug }) => {
-    return {
-      params: { slug },
-    };
-  });
-  return {
-    paths,
-    fallback: true,
-  };
-};
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const books = await getBooks();
+//   const paths = books.map(({ slug }) => {
+//     return {
+//       params: { slug },
+//     };
+//   });
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string;
   const book = await getBook(slug);
   return {
