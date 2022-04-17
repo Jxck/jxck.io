@@ -405,17 +405,20 @@ async function test() {
 // test()
 
 if (process.argv.length > 2) {
-  const pwd = process.env.PWD
-  /**@type{Array.<string>}*/
-  const files = process.argv.slice(2)
+  const command = process.argv[1]
+  if (command.endsWith(`.bin/markdown`) || command.endsWith(`formatter.js`)) {
+    const pwd = process.env.PWD
+    /**@type{Array.<string>}*/
+    const files = process.argv.slice(2)
 
-  files.forEach(async (file) => {
-    console.log(file)
-    const filepath = join(pwd, file)
-    const original = await readFile(filepath, { encoding: `utf-8` })
-    const formatted = format(original)
-    if (original !== formatted) {
-      await writeFile(filepath, formatted)
-    }
-  })
+    files.forEach(async (file) => {
+      console.log(file)
+      const filepath = join(pwd, file)
+      const original = await readFile(filepath, { encoding: `utf-8` })
+      const formatted = format(original)
+      if (original !== formatted) {
+        await writeFile(filepath, formatted)
+      }
+    })
+  }
 }
