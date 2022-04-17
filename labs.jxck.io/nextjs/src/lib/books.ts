@@ -1,9 +1,6 @@
-import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
 import { readdir, readFile } from "fs/promises";
+import { encode, decode } from "@jxck/markdown";
 
 export const booksDir = path.join(process.cwd(), "books");
 
@@ -88,8 +85,10 @@ export async function getAllPaths() {
 }
 
 export async function getHTML(slug: string, file: string) {
-  const body = await readFile(`${booksDir}/${slug}/${file}`, {
+  const text = await readFile(`${booksDir}/${slug}/${file}`, {
     encoding: "utf-8",
   });
-  return body;
+  const ast = decode(text);
+  const { html } = encode(ast);
+  return html;
 }

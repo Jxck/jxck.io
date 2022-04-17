@@ -21,7 +21,7 @@ const Post = ({ slug, page, body }: Props) => {
       </header>
       <main>
         <article>
-          <pre>{body}</pre>
+          <div dangerouslySetInnerHTML={{ __html: body }} />
         </article>
       </main>
     </Layout>
