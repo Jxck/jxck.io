@@ -7,10 +7,11 @@ import Link from "next/link";
 type Props = {
   slug: string;
   page: Page;
-  body: string;
+  frontmatter: string,
+  html: string;
 };
 
-const Post = ({ slug, page, body }: Props) => {
+const Post = ({ slug, page, frontmatter, html }: Props) => {
   return (
     <Layout>
       <Head>
@@ -18,8 +19,9 @@ const Post = ({ slug, page, body }: Props) => {
       </Head>
       <header>
         <Link href={`/books/${slug}`}>{slug}</Link>
+        <pre>{frontmatter}</pre>
       </header>
-      <main className="znc" dangerouslySetInnerHTML={{ __html: body }} />
+      <main className="znc" dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   );
 };
@@ -28,12 +30,13 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string;
   const file = params?.file as string;
   const page = await getPage(slug, file);
-  const body = await getHTML(slug, file);
+  const {frontmatter, html} = await getHTML(slug, file);
   return {
     props: {
       slug,
       page,
-      body,
+      frontmatter,
+      html,
     },
   };
 };

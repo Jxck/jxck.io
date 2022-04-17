@@ -1,6 +1,6 @@
 import path from "path";
 import { readdir, readFile } from "fs/promises";
-import { encode, decode, traverse } from "@jxck/markdown";
+import { encode, decode, traverse, Node } from "@jxck/markdown";
 
 export const booksDir = path.join(process.cwd(), "books");
 
@@ -88,18 +88,23 @@ export async function getHTML(slug: string, file: string) {
   const text = await readFile(`${booksDir}/${slug}/${file}`, {
     encoding: "utf-8",
   });
-  const ast = decode(text);
+  const groups = text.match(/^---\n(?<frontmatter>([\n\r]|.)*?)\n---\n(?<markdown>([\n\r]|.)*)$/m)?.groups
+  const { frontmatter, markdown } = groups || {}
+
+  const ast = decode(markdown);
 
   const root = traverse(ast, {
     enter: (node) => node,
     leave: (node) => {
       if (node.name === "details") {
-        node.attr.open = true;
+        node.attr.set(`open`, null)
+        const section = node.children.at(1) as Node
+        section.attr.set(`class`, `details-content`)
       }
       return node;
     },
   });
 
   const { html } = encode(root);
-  return html;
+  return {frontmatter, html};
 }
