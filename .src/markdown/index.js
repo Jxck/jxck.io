@@ -216,7 +216,7 @@ export function encode(node, option = {}) {
 
     if (node.level === 1) {
       // href は "" にすることで自身の URL を示す
-      return `${spaces(indent)}<h1><a href="">${text}</a></${name}>\n`
+      return `${spaces(indent)}<h1><a href="">${text}</a></h1>\n`
     } else {
       return `${spaces(indent)}<${name} id="${hashed}"><a href="#${hashed}">${text}</a></${name}>\n`
     }
