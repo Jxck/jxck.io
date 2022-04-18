@@ -18,6 +18,15 @@ function dump(ast) {
 }
 
 /**
+ * to map
+ * @param {Object} obj
+ * @returns {Map<string, string>}
+ */
+function map(obj) {
+  return new Map(Object.entries(obj))
+}
+
+/**
  * Calculate hash from mtime
  * @param {string} path
  * @returns {string}
@@ -182,7 +191,11 @@ async function audio_duration(audio) {
 function info_section({ published_at, guests }) {
   // console.log({ published_at, guests })
 
-  const dl = new Node({ name: `dl`, type: `block`, attr: { "class": "info" } })
+  const dl = new Node({
+    name: `dl`,
+    type: `block`,
+    attr: map({ class: `info` })
+  })
 
   // published_at
   const div = new Node({ name: `div`, type: `block` })
@@ -202,7 +215,11 @@ function info_section({ published_at, guests }) {
     const dd = new Node({ name: `dd`, type: `inline` })
     dt.addText(`guest`)
     if (url) {
-      const a = new Node({ name: `a`, type: `inline`, attr: { href: url } })
+      const a = new Node({
+        name: `a`,
+        type: `inline`,
+        attr: map({ href: url })
+      })
       a.addText(name)
       dd.appendChild(a)
     } else {
@@ -272,7 +289,8 @@ function customise(ast, base) {
         return result.node
       }
       if (node.name === `headding` && node.level === 2) {
-        if (node.attr.id === `intro` || node.attr.id === `theme`) {
+        const id = node.attr.get(`id`)
+        if (id === `intro` || id === `theme`) {
           description = hsc(to_text(node.parent))
         }
       }
@@ -284,8 +302,9 @@ function customise(ast, base) {
         }
       }
       if (node.name === `pre`) {
-        if (node.name === `pre` && node.attr.path) {
-          const code = readFileSync(`${base}${node.attr.path}`, { encoding: `utf-8` }).trimEnd()
+        if (node.name === `pre` && node.attr.has(`path`)) {
+          const path = node.attr.get(`path`)
+          const code = readFileSync(`${base}${path}`, { encoding: `utf-8` }).trimEnd()
           node.addText(code)
         }
         if (style_flag.pre === false) {
@@ -312,12 +331,12 @@ function append_css(node, css) {
   const link = new Node({
     name: `link`,
     type: `inline`,
-    attr: {
+    attr: map({
       rel: `stylesheet`,
       property: `stylesheet`,
       type: `text/css`,
       href: version(css)
-    }
+    })
   })
   const empty = new Node({ name: `empty`, type: `block` })
   empty.appendChild(link)
@@ -355,17 +374,17 @@ function customise_image(node, base) {
   /**
    * TODO: parse 方法を見直す
    */
-  const path = /(?<src>.*?)#(?<width>\d*?)x(?<height>\d*?)$/.exec(attr.src)
-  if (path === null) throw new Error(`missing <width>x<height> in "${attr.src}"`)
+  const path = /(?<src>.*?)#(?<width>\d*?)x(?<height>\d*?)$/.exec(attr.get(`src`))
+  if (path === null) throw new Error(`missing <width>x<height> in "${attr.get(`src`)}"`)
   const { src, width, height } = path.groups
 
   const query = (() => {
     if (src.startsWith("https:")) return ``
     return cache_busting(`${base}/${src}`)
   })()
-  attr.src = `${src}${query}`
-  attr.width = width
-  attr.height = height
+  attr.set(`src`, `${src}${query}`)
+  attr.set(`width`, width)
+  attr.set(`height`, height)
 
   // .svg はそのまま <img>
   if (src.endsWith(`.svg`)) {
@@ -377,21 +396,21 @@ function customise_image(node, base) {
     const video = new Node({
       name: `video`,
       type: `block`,
-      attr: {
-        title: attr.alt,
-        width: attr.width,
-        height: attr.height,
+      attr: map({
+        title: attr.get(`alt`),
+        width: attr.get(`width`),
+        height: attr.get(`height`),
         controls: null,
         playsinline: null,
-      }
+      })
     })
     const mp4 = new Node({
       name: `source`,
       type: `inline`,
-      attr: {
+      attr: map({
         type: `video/mp4`,
-        src: attr.src,
-      }
+        src: attr.get(`src`),
+      })
     })
 
     const webm_src = src.replace(/.mp4/, `.webm`)
@@ -399,10 +418,10 @@ function customise_image(node, base) {
     const webm = new Node({
       name: `source`,
       type: `inline`,
-      attr: {
+      attr: map({
         type: `video/webm`,
         src: `${webm_src}${webm_query}`
-      }
+      })
     })
     video.appendChild(mp4)
     video.appendChild(webm)
@@ -416,7 +435,14 @@ function customise_image(node, base) {
       const file = src.replace(/\.png$|\.jpeg$|\.gif$/, `.${type}`)
       const query = cache_busting(`${base}/${file}`)
       const srcset = `${file}${query}`
-      const source = new Node({ name: `source`, type: `block`, attr: { type: `image/${type}`, srcset } })
+      const source = new Node({
+        name: `source`,
+        type: `block`,
+        attr: map({
+          type: `image/${type}`,
+          srcset
+        })
+      })
       picture.appendChild(source)
     })
     const img = new Node({ name: `img`, type: `block`, attr })
@@ -764,6 +790,10 @@ async function workbox() {
   await writeFile(`../www.jxck.io/assets/js/workbox.js`, replaced)
 }
 
+/**
+ * main
+ * @param {string} arg
+ */
 async function main(arg) {
   if (arg === `build`) {
     const [entries, episodes] = await Promise.all([
@@ -791,31 +821,6 @@ async function main(arg) {
     const entries = [`../blog.jxck.io/drafts/index.md`]
     return await blog(entries, { preview: true })
   }
-
-  // import { format } from "./formatter.js"
-  // if (arg === `format`) {
-  //   /** @type {Array.<string>} */
-  //   const entries = await promisify(glob)(`../blog.jxck.io/entries/**/*.md`)
-  //   entries.forEach(async (entry) => {
-  //     const original = await readFile(entry, { encoding: 'utf-8' })
-  //     const formatted = format(original)
-  //     if (original !== formatted) {
-  //       console.log(entry)
-  //       await writeFile(entry, formatted)
-  //     }
-  //   })
-
-  //   /** @type {Array.<string>} */
-  //   const episodes = await promisify(glob)(`../mozaic.fm/episodes/**/*.md`)
-  //   episodes.forEach(async (episode) => {
-  //     const original = await readFile(episode, { encoding: 'utf-8' })
-  //     const formatted = format(original)
-  //     if (original !== formatted) {
-  //       console.log(episode)
-  //       await writeFile(episode, formatted)
-  //     }
-  //   })
-  // }
 }
 
 await main(process.argv[2])
