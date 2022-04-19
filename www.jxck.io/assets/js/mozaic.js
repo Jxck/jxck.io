@@ -213,6 +213,7 @@ document.on('DOMContentLoaded', async (e) => {
   }
 
   if (window.trustedTypes === undefined) {
+    // polyfill
     class TrustedTypePolicy {
       createHTML(arg) {
         // log(arg)
@@ -237,7 +238,7 @@ document.on('DOMContentLoaded', async (e) => {
 
   /** @type {TrustedTypePolicy} */
   const scriptPolicy = trustedTypes.createPolicy('script-policy', {
-    createScriptURL: (url) => '/assets/js/sw.js'
+    createScriptURL: (url) => '/assets/js/sw.js',
   })
   /** @type {TrustedScriptURL} */
   const script = scriptPolicy.createScriptURL('/assets/js/sw.js')
@@ -259,10 +260,18 @@ document.on('DOMContentLoaded', async (e) => {
 
   navigation.on("navigate", async (e) => {
     async function getPage(url, option) {
-      const res    = await fetch(url, option)
-      const html   = await res.text()
-      const parser = new DOMParser()
-      const root = parser.parseFromString(html, "text/html")
+
+      /** @type {TrustedTypePolicy} */
+      const htmlPolicy = trustedTypes.createPolicy('html-policy', {
+        // use for navigation api transition
+        // TODO: sanitize
+        createHTML: (html) => html
+      })
+      const res       = await fetch(url, option)
+      const html      = await res.text()
+      const sanitized = htmlPolicy.createHTML(html)
+      const parser    = new DOMParser()
+      const root      = parser.parseFromString(sanitized, "text/html")
       return root
     }
 
