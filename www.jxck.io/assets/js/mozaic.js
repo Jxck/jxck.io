@@ -155,12 +155,33 @@ async function enableBeforeInstallPrompt(install_prompt) {
   })
 }
 
+/**
+ * Create & Insret ToC
+ */
+function insertToC() {
+  const $toc = document.importNode($('#toc').content, true)
+  const $ul = $toc.querySelector('ul')
+  document.querySelectorAll('h2, h3, h4, h5').forEach((h) => {
+    const child = h.firstChild.cloneNode(true)
+    const level = parseInt(h.nodeName.charAt(1))
+    child.textContent = `${'#'.repeat(level)} ${child.textContent}`
+    const $li = document.createElement('li')
+    $li.appendChild(child)
+    $ul.appendChild($li)
+  })
+  $('dl.info').appendChild($toc)
+}
+
 // main
 if (window.ReportingObserver) {
   reportingObserver()
 }
 
 document.on('DOMContentLoaded', async (e) => {
+  console.log(e.type, e)
+
+  insertToC()
+
   if (navigator.clearAppBadge) {
     navigator.clearAppBadge()
   }
@@ -176,19 +197,6 @@ document.on('DOMContentLoaded', async (e) => {
       $audio.controls = true
     }
   }
-
-  // Insert TOC
-  const $toc = document.importNode($('#toc').content, true)
-  const $ul = $toc.querySelector('ul')
-  document.querySelectorAll('h2, h3, h4, h5').forEach((h) => {
-    const child = h.firstChild.cloneNode(true)
-    const level = parseInt(h.nodeName.charAt(1))
-    child.textContent = `${'#'.repeat(level)} ${child.textContent}`
-    const $li = document.createElement('li')
-    $li.appendChild(child)
-    $ul.appendChild($li)
-  })
-  $('dl.info').appendChild($toc)
 
   // Enable Web Share
   if (navigator.share) {
@@ -248,4 +256,47 @@ document.on('DOMContentLoaded', async (e) => {
   window.on('beforeinstallprompt', async (/**@type{BeforeInstallPromptEvent}*/e) => {
     await enableBeforeInstallPrompt(e)
   })
+
+  navigation.on("navigate", async (e) => {
+    async function getPage(url, option) {
+      const res    = await fetch(url, option)
+      const html   = await res.text()
+      const parser = new DOMParser()
+      const root = parser.parseFromString(html, "text/html")
+      return root
+    }
+
+    if (e.canTransition === false) return
+    if (e.hashChange === true) return
+
+    e.transitionWhile((async () => {
+      const url    = e.destination.url
+      const signal = e.signal
+
+      signal.on("abort", () => {
+        console.log("navigation aborted")
+        location.reload()
+      })
+
+      const cache   = "no-cache"
+      const root = await getPage(url, { cache, signal })
+
+      document.title = root.title
+      document.querySelector("main").replaceWith(root.querySelector("main"))
+      console.log("transition end")
+    })())
+  })
+})
+
+window.on("pageshow", async (e) => {
+  console.log(e.type, e)
+})
+
+navigation.on("navigatesuccess", (e) => {
+  console.log(e.type, e)
+  insertToC()
+})
+
+navigation.on("navigateerror", (e) => {
+  console.log(e.type, e)
 })
