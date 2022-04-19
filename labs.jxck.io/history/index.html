@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>Test DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+</style>
+
+<h1>Test DEMO</h1>
+
+<form>
+  <input type=text name=name>
+  <button name=pushState>pushState</button>
+  <button name=replaceState>replaceState</button>
+</form>
+
+<span class=log></span>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  window.on('popstate', (e) => {
+    const { state } = e
+    if (state === null) return location.href = ''
+    console.log(state)
+    $('.log').textContent = state.name
+  })
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    $('form').on('submit', (e) => {
+      e.preventDefault()
+      const fd = new FormData(e.target)
+      const name = fd.get('name')
+      const button = e.submitter.name
+      console.log({button})
+      if (button === 'pushState') {
+        window.history.pushState({name}, null, `${name}`)
+      }
+      if (button === 'replaceState') {
+        window.history.replaceState({name}, null, `${name}`)
+      }
+    })
+  })
+</script>
