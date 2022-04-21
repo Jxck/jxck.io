@@ -486,7 +486,7 @@ navigation?.on("navigate", async (e) => {
 
 - https://github.com/Jxck/jxck.io/blob/main/www.jxck.io/assets/js/mozaic.js#L261-L296
 
-![mozaic.fm で音声再生しながらエピソード間を遷移する](mozaic-spa-by-navigation.mp#43584x2240 "mozaic spa by navigation api")
+![mozaic.fm で音声再生しながらエピソード間を遷移する](mozaic-spa-by-navigation.mp4#43584x2240 "mozaic spa by navigation api")
 
 
 ## Outro
