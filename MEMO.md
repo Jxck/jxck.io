@@ -46,6 +46,19 @@
 - avif 対応検討中
 
 
+### Video
+
+QuickTime でとった screen record なら mov を吐くので、 mp4/webm に変換
+
+```sh
+# メタデータを消し、 frame rate を 24 にし、Audio を消す
+$ ffmpeg -i video.mov -map_metadata -1 -r 24 -an video.webm
+$ ffmpeg -i video.mov -map_metadata -1 -r 24 -an video.mp4
+```
+
+image の記法で video に展開される。
+
+
 ### WebFont
 
 - 鉄下駄として日本語 WebFont を導入
