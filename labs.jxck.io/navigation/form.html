@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>Navigation API Form DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+  label {
+    display: block;
+  }
+</style>
+
+<h1>Navigation API Form DEMO</h1>
+
+<form id=login action=/navigation/login method=post>
+  <fieldset form=login>
+    <legend>Login</legend>
+
+    <label>Username<abbr title=required>*</abbr>:
+      <input type=email
+             id=username
+             name=username
+             autocomplete=username
+             required
+             autofocus
+             value=mail@example.com
+             >
+    </label>
+
+    <label>Password<abbr title=required>*</abbr>:
+      <input type=password
+             id=password
+             name=password
+             autocomplete=current-password
+             required
+             value=asdf
+             >
+    </label>
+    <button type=submit>login</button>
+  </fieldset>
+</form>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  window?.navigation?.on("navigate", async (e) => {
+    console.log(e.type, e)
+    const pathname = new URL(e.destination.url).pathname
+    console.log({pathname})
+
+    if (pathname === "/navigation/login" && e.formData) {
+      e.transitionWhile((async () => {
+        const res = await fetch(pathname, {
+          method: "POST",
+          body: e.formData
+        })
+        const html  = await res.text()
+        const url   = new URL(res.url)
+        const state = { html }
+        await navigation.navigate(url.pathname, { history: "push", state }).finished
+      })())
+    }
+
+    if (pathname === "/navigation/main.html") {
+      e.transitionWhile((async () => {
+        const { html }      = e.destination.getState()
+        const parser        = new DOMParser()
+        const {title, body} = parser.parseFromString(html, "text/html")
+        document.title      = title
+        document.body       = body
+      })())
+    }
+  })
+
+  window.on("pageshow", async (e) => {
+    console.log(e.type, e)
+  })
+
+  document.on("DOMContentLoaded", async (e) => {
+    console.log(e.type, e)
+  })
+
+  navigation.on("navigatesuccess", (e) => {
+    console.log(e.type, e)
+  })
+
+  navigation.on("navigateerror", (e) => {
+    console.log(e.type, e)
+  })
+</script>

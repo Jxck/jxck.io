@@ -18,6 +18,7 @@ async function getPage(url, option) {
 }
 
 navigation.on("navigate", async (e) => {
+  console.log(e.type, e)
   console.log("----------------------------------")
   console.log("navigationType ", e.navigationType )
   console.log("destination    ", e.destination    )
@@ -66,9 +67,9 @@ document.on("DOMContentLoaded", async (e) => {
 })
 
 navigation.on("navigatesuccess", (e) => {
-  console.log(e)
+  console.log(e.type, e)
 })
 
 navigation.on("navigateerror", (e) => {
-  console.log(e)
+  console.log(e.type, e)
 })
