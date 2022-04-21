@@ -35,7 +35,7 @@ URL の fragment 部分 (`https://example.com#foo` の `#foo`)は、サーバに
 
 今見ると(当時見ても)なかなか強引なワークアラウンドだが、 2009 年といえばまだフロントエンドという言葉自体が黎明期で、 SPA ではなく Ajax という名で呼ばれていたような時代だ。
 
-このサポートが deprecate になったのが 2015 年であるため、 2008 ~ 2015 くらいが **第一期 SPA(fragment) 期** の時代と言えるだろう。
+このサポートが deprecate になったのが 2015 年であるため、 2008 ~ 2015 くらいが *第一期 SPA(fragment) 期* の時代と言えるだろう。
 
 - Deprecating our AJAX crawling scheme  |  Google Search Central Blog  |  Google Developers
   - https://developers.google.com/search/blog/2015/10/deprecating-our-ajax-crawling-scheme
@@ -95,7 +95,7 @@ after
 
 `<a>` の click をキャンセルして HTML 取得し、 `<body>` と `<title>` を取り出して現在の DOM に差し込むといった実装は、 pjax などと呼ばれていた。
 
-この 2011~2015 年前後が **第二期: SPA(pjax) 期** だったといえるだろう。
+この 2011~2015 年前後が *第二期: SPA(pjax) 期* だったといえるだろう。
 
 
 ### SPA 第三期: Router Library と SSR
@@ -119,7 +119,7 @@ after
 
 後に Backborn などを踏み台に React/Vue/Angular などが台頭したのちに、 JS による画面構築をそのままサーバ側で再現する現代の SSR につながり、俗に言う SEO 問題の解決手段自体は用意された。
 
-この 2014~現在までを **第三期: SPA(SSR) 期** としよう。
+この 2014~現在までを *第三期: SPA(SSR) 期* としよう。
 
 ここまででフロントエンドの文脈は
 
@@ -497,7 +497,7 @@ navigation?.on("navigate", async (e) => {
 
 Navigation API は Chrome にて Intent to Ship が出ているものの、 Mozilla / Safari からのリアクションがまだない状態だ。
 
-筆者としては、この API が広く SPA 関連のライブラリに使用され、多くの人にとって MPA のように使いやすい SPA が実装可能な時代が、 **第四期: SPA(Navigation)** として到来することに期待したい。
+筆者としては、この API が広く SPA 関連のライブラリに使用され、多くの人にとって MPA のように使いやすい SPA が実装可能な時代が、 *第四期: SPA(Navigation)* として到来することに期待したい。
 
 
 ## DEMO
