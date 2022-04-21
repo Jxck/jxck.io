@@ -5,8 +5,8 @@ import { dirname, join } from "path"
 import { fileURLToPath } from "url"
 import * as process from "process"
 
-const FULL_HALF = /(?<full>[\p{sc=Hira}\p{sc=Kana}\p{sc=Han}]+)(?<half>[a-zA-Z0-9]+)/gu
-const HALF_FULL = /(?<half>[a-zA-Z0-9]+)(?<full>[\p{sc=Hira}\p{sc=Kana}\p{sc=Han}]+)/gu
+const FULL_HALF = /(?<full>[\p{sc=Hira}\p{sc=Kana}\p{sc=Han}]+)(?<half>[\p{ASCII}]+)/gu
+const HALF_FULL = /(?<half>[\p{ASCII}]+)(?<full>[\p{sc=Hira}\p{sc=Kana}\p{sc=Han}]+)/gu
 
 // https://github.com/tc39/proposal-relative-indexing-method#polyfill
 if (Array.prototype.at === undefined) {
