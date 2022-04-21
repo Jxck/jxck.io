@@ -48,7 +48,7 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  window?.navigation?.on("navigate", async (e) => {
+  navigation?.on("navigate", async (e) => {
     console.log(e.type, e)
     const pathname = new URL(e.destination.url).pathname
     console.log({pathname})
@@ -85,11 +85,11 @@
     console.log(e.type, e)
   })
 
-  navigation.on("navigatesuccess", (e) => {
+  navigation?.on("navigatesuccess", (e) => {
     console.log(e.type, e)
   })
 
-  navigation.on("navigateerror", (e) => {
+  navigation?.on("navigateerror", (e) => {
     console.log(e.type, e)
   })
 </script>
