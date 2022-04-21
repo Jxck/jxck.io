@@ -62,7 +62,7 @@
         const html  = await res.text()
         const url   = new URL(res.url)
         const state = { html }
-        await navigation.navigate(url.pathname, { history: "push", state }).finished
+        await navigation.navigate(url.pathname, { history: "replace", state }).finished
       })())
     }
 
