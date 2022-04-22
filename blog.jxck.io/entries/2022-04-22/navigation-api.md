@@ -4,7 +4,7 @@
 
 従来の History API を改善する Navigation API の仕様策定と実装が進んでいる。
 
-これは、 History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、 SPA が抱える多くの問題だけでなく、 MPA すら改善する可能性のある API だ。
+これは、 History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、 SPA が抱える多くの問題だけでなく MPA すら改善する可能性がある。
 
 この API の目的と仕様を解説しつつ、実装のメモを残す。
 
@@ -15,18 +15,27 @@ Web は HTML の取得と描画を繰り返す、画面遷移(Navigation)を前�
 
 一方「アプリケーション」の設計手法をそのまま Web に持ち込んだ SPA は、この Navigation によってもたらされる UX の低下を防ぐ部分がある一方、既存の Web のアーキテクチャからすると必ずしも相性が良いとは言えなかった。
 
-特に表示されている状況を完全に把握し、対応できる健常者には使いやすくとも、支援技術を用いてアクセスしているユーザには、 JS で起こってはいるが伝わらない状態の変化が多々あり、しばしば問題となる。
+特に、表示されている状況を完全に把握し対応できる健常者には使いやすくとも、 JS に閉じて UA に伝わらない状態の変化が多々あるため、支援技術を用いてアクセスしているユーザにはしばしば問題となる。
 
-また、究極的には単一の URL 上で擬似的な画面遷移を全て完結することができる SPA には、特定の状態に URL が振られないため Linkerbility を損ねていた。こちらは、 SEO の問題として捉えられることも多い。
+また、究極的には単一の URL 上で擬似的な画面遷移を全て完結することができる SPA には、特定の状態に URL が振られないため Linkability を損ねていた。こちらは SEO の問題として捉えられることも多い。
 
 まずは、これまで開発者が歩んできた SPA 開発手法の軌跡を簡単に振り返る。
 
 
+### SPA 第原始期: 単一 Path での実装
+
+2005 年に Ajax が発見されてからは、表示されている画面をそのまま JS で更新し、疑似的に画面の遷移を演出することができるようになった。
+
+それが Web2.0 と相まって世界をガラッと変えたのは事実だが、実際にはルートパス上で見た目が変わっているだけで、 SPA というよりも Single Path App だった。
+
+これでは、状態を変化させたことをアプリで管理することも難しく、リロードへの耐性すらも怪しい。この原始的な SPA から、どのように状態とパスを紐づけるかというのが SPA の辿る歴史となる。
+
+
 ### SPA 第一期: fragment による実装
 
-URL の fragment 部分 (`https://example.com#foo` の `#foo`)は、サーバには送られない、クライアントでのみ使われる URL Component だ。
+URL の fragment 部 (`https://example.com#foo` の `#foo`)は、サーバには送られない、クライアントでのみ使われる URL Component だ。
 
-基本は `<pre id="sample_code">` のようにした場合 `https://example.com#sample_code` でサンプルコードまでスクロールするといったユースケースで用いられる。しかし、サーバにリクエストをせずにクライアントの状態を変えるという部分だけに着目し、 SPA のルーティングを fragment にエンコードするという実装が考えられた。
+基本は `<pre id="sample_code">` のようにした場合 `https://example.com#sample_code` でサンプルコードまでスクロールするといったユースケースで用いられる。そこで、サーバにリクエストをせずにクライアントの状態を変えるという部分だけに着目し、 SPA のルーティングを fragment にエンコードするという実装が考えられた。
 
 クライアントの状態であるため、直接アクセスしてもその状態を復元できるのはブラウザのみだ。したがって、当時はそのような構成のサイトが正しく検索できないという問題があった。そこで、 Google Bot は `#!` で始まるフラグメントの利用を推奨し、 `https://example.com#!foo` を発見した場合はサーバに対して `htts://example.com/_escaped_fragment_=foo` を代わりにリクエストすることで、サーバは `#!foo` で表示されるべき画面を SSR して返すように求めるというサポートを行っていた。
 
@@ -35,7 +44,7 @@ URL の fragment 部分 (`https://example.com#foo` の `#foo`)は、サーバに
 
 今見ると(当時見ても)なかなか強引なワークアラウンドだが、 2009 年といえばまだフロントエンドという言葉自体が黎明期で、 SPA ではなく Ajax という名で呼ばれていたような時代だ。
 
-このサポートが deprecate になったのが 2015 年であるため、 2008 ~ 2015 くらいが *第一期 SPA(fragment) 期* の時代と言えるだろう。
+このサポートが deprecate になったのが 2015 年であるため、 2008 ~ 2015 くらいが *第一期: SPA(fragment)* の時代と言えるだろう。
 
 - Deprecating our AJAX crawling scheme  |  Google Search Central Blog  |  Google Developers
   - https://developers.google.com/search/blog/2015/10/deprecating-our-ajax-crawling-scheme
@@ -93,14 +102,14 @@ after
 
 ちなみに、この頃は今で言う「React をサーバでレンダリングする SSR」とは違い、元々 MPA で作られたものを、クライアントルーティングもできるというような作りでクローラをサポートしていた。
 
-`<a>` の click をキャンセルして HTML 取得し、 `<body>` と `<title>` を取り出して現在の DOM に差し込むといった実装は、 pjax などと呼ばれていた。
+`<a>` の click をキャンセルして HTML 取得し、 `<body>` と `<title>` を取り出して現在の DOM に差し込むといった実装は、特に Rails 界隈では Pjax などと呼ばれていた。
 
-この 2011~2015 年前後が *第二期: SPA(pjax) 期* だったといえるだろう。
+この 2011~2015 年前後が *第二期: SPA(Pjax)* だったといえるだろう。
 
 
 ### SPA 第三期: Router Library と SSR
 
-しかし、 History API には多くの問題があったことは、この API と向き合ったことがある開発者なら一度は感じたことがあるだろう。
+しかし、 History API には多くの問題があったことは、この API と向き合った開発者なら一度は感じたことがあるだろう。
 
 この API の問題点は以下にまとまっている。
 
@@ -117,18 +126,18 @@ after
 
 したがって、とても生で使えるものではなかった。多くのワークアラウンドが知見として集まり、それが現在に続く Router 系ライブラリとして進化していくことになる。
 
-後に Backborn などを踏み台に React/Vue/Angular などが台頭したのちに、 JS による画面構築をそのままサーバ側で再現する現代の SSR につながり、俗に言う SEO 問題の解決手段自体は用意された。
+後に Backbone などを踏み台に React/Vue/Angular が台頭したのち、 JS による画面構築をそのままサーバ側で再現する現代の SSR につながり、俗に言う SEO 問題の解決手段自体は用意された。
 
-この 2014~現在までを *第三期: SPA(SSR) 期* としよう。
+この 2014~現在までを *第三期: SPA(SSR)* としよう。
 
-ここまででフロントエンドの文脈は
+ここまででフロントエンドの文脈で得られたのは以下だ。
 
 - History API を隠蔽した Router ライブラリ
 - SEO 対策としての SSR
 
-あたりを得ることができたが、それで SPA の構造上の問題が解決するわけではない。
+しかし、それで SPA の構造上の問題が解決したわけではない。
 
-例えば、ブラウザは `pushState` によって「擬似的な遷移が行われたらしい」ことはわかっても、その画面構築を行うのは全てフロントエンドの JS だ。そこから戻った時に、どこに focus を戻し、どこに scroll するのが正しいのか、画面の構築に関わってないブラウザには「開発者が何をしたいのか」が伝わらない部分が多い。
+例えば、ブラウザは `pushState` によって「擬似的な遷移が行われたらしい」ことはわかっても、その画面構築を行うのは全てフロントエンドの JS だ。そこから「戻る」時に、どこに focus を戻し、どこに scroll を戻すのが正しいのか、画面の構築に関わってないブラウザには「開発者が何をしたいのか」が伝わらない部分が多い。
 
 SPA として質の高い UX を実装したと思っている開発者を尻目に、支援技術を通じてアクセスしているユーザには、使いにくい実装が多々ある。これは、ある一定の「課題の解決」はしたが、「問題の解決」には至ってない典型例といえる。
 
@@ -139,7 +148,7 @@ SPA として質の高い UX を実装したと思っている開発者を尻目
 
 ### NavigationHistoryEntry
 
-まず、これまで history API の中に隠されていた履歴に関する情報が、 NavigationHistoryEntry として Interface 化されたことが、この API の有意な点の 1 つだろう。
+まず、これまで History API の中に隠されていた履歴に関する情報が、 NavigationHistoryEntry として Interface 化されたことが、この API の有意な点の 1 つだろう。
 
 これは、履歴内での Index や URL の他に、ブラウザが生成する Key と ID という 2 つの UUID を持つ。
 
@@ -155,14 +164,14 @@ console.log(navigation.currentEntry)
 
 `id` はエントリの内容が更新されると変更するが、 `key` は変更しない。
 
-History API ではこうした値がなく、複雑な状態の同期は URL か Index で行うしかなかった。しかし、 URL が同じでも状態が同じとは限らず、 Index はキーにするほど安定してない。 `id` か `key` を用途に応じて選択すれば、複雑な状態をシリアライズし Storage に保存するような場面でキーとして使うことができる。
+History API にはこうした値がなく、複雑な状態の同期は URL か Index で行うしかなかった。しかし、 URL が同じでも状態が同じとは限らず、 Index はキーにするほど安定してない。 `id` か `key` を用途に応じて選択すれば、複雑な状態をシリアライズし Storage に保存するような場面でキーとして使うことができる。
 
 この Entry が、以降の API を用いる上での基準となる。
 
 
 ### navigation.entries()
 
-History API では、履歴は `iframe` の中での遷移も含めた Join Session になっており、かつプライバシーの理由から履歴そのものにはアクセスできない。見られるのは `history.length` 程度で、その情報だけから `history.go()` などをしないといけなかった。
+History API では、履歴は `iframe` の中での遷移も含めた Joint Session になっており、かつプライバシーの理由から履歴そのものにはアクセスできない。見られるのは `history.length` 程度で、その情報だけから `history.go()` などをしないといけなかった。
 
 Navigation API では、 Entry List を取得することができる。内容は Current Origin に制限されるためプライバシーの問題はなく、 `iframe` 内での遷移に影響されないため、アプリケーションで管理しやすい。
 
@@ -181,9 +190,7 @@ History API でいう `history.pushState()` に相当するのが `navigation.na
 await navigation.navigate("/foo", { state: {count: 1}, info: "shortcut", history: "push" }).finish
 ```
 
-`state` は any だが、シリアライズ可能なものに限る。 `history` は `"push"` なら追記、 `"replace"` なら現在の Entry を置き換える。
-
-その遷移だけで用いるエフェメラルな値は `info` で送ることができる。
+`state` は any だが、シリアライズ可能なものに限る。 `history` は `"push"` なら追記、 `"replace"` なら現在の Entry を置き換える。その遷移だけで用いるエフェメラルな値は `info` で送ることができる。
 
 戻り値は `{ commited, finish }` という 2 つの Promise だ。 `commited` は `navigate()` 開始と共に即座に Resolve し、 `finished` は `navigate()` が完了したら Resolve する。
 
@@ -288,14 +295,14 @@ navigation.on("navigate", async (e) => {
 })
 ```
 
-この Navigation は誰のどういう操作によって発生したかといった情報が全て込められていることがわかる。特に Form Submit によって生成された FormData や、途中で UI からキャンセルされた場合に発火する AbortSignal などが含まれているあたりは、新しい API ならではだ。
+このイベントオブジェクトには、誰のどういう操作によって発生したかといった情報が、全て込められていることがわかる。特に Form Submit によって生成された FormData や、途中で UI からキャンセルされた場合に発火する AbortSignal などが含まれているあたりは、新しい API ならではだ。
 
 
 ### transitionWhile()
 
 navigate イベントにある `transitionWhile()` は、画面の遷移処理を記述するのに用いることができる。
 
-具体例として、かつて Pjax と呼ばれていたような、「`fetch()` した HTML をパースし、現在の DOM に適用することで、擬似的な遷移とする」という処理は、以下のように書くことができる。
+具体例として、かつて Pjax と呼ばれていたような、「`fetch()` した HTML をパースし、現在の DOM に適用することで、擬似的な遷移とする」という処理を書くと以下のようになる。
 
 ```js
 "use strict"
@@ -342,16 +349,16 @@ navigation?.on("navigateerror", (e) => {
 })
 ```
 
-(フックしているのが `fetch` ではなく `navigate` だが、実装の雰囲気は Service Worker に近いように見えるかもしれない)
+(実装の雰囲気は Service Worker の `fetch` イベントのハンドラに近い)
 
-途中の処理が全て成功(Resolve)すれば `navigatesuccess` イベントを発火し、失敗(Reject)すれば `navigationerror` にすることで、結果を取得することもできる。
+途中の処理が全て成功(Resolve)すれば `navigatesuccess` イベントを発火し、失敗(Reject)すれば `navigationerror` が発火することで、結果を取得することもできる。
 
-見た目上同様のことを実現すること自体は従来でもできた。それを踏まえて、この API の何が凄いのかを細かく見ていこう。
+見た目上、同様のことを実現すること自体は従来でもできた。それを踏まえて、この API の何が凄いのかを細かく見ていこう。
 
 
 ### 遷移の「開始」と「完了」
 
-まず、 `transitionWhile()` は、呼び出した瞬間が「遷移の開始」で、全て終わったら「遷移の完了」であることがわかる。ここが `await` なので、 `transitionWhile()` は渡された Promise が Resolve されるまでを「遷移」と定義していることになる。
+まず、 `transitionWhile()` は、呼び出した瞬間が「*遷移の開始*」で、全て終わったら「*遷移の完了*」であることがわかる。ここが `await` なので、 `transitionWhile()` は渡された Promise が Resolve されるまでを「遷移」と定義していることになる。
 
 この遷移(navigation event)が `navigation.navigate()` によって発火していた場合は、「開始」と「完了」が先ほどの `{ commited, finished }` Promise に対応することになる。
 
@@ -362,7 +369,7 @@ await navigation.navigate(url, state).finished
 
 この「開始」と「完了」というセマンティクスは、 JS 上だけではなくブラウザ、支援技術、計測ツール、開発者ツールなど、あらゆる実装に対して有益な情報だ。
 
-例えば、支援技術は MPA の画面が遷移したことを利用者に伝えることができるが、 SPA の場合はそこがヒューリスティクスに頼らざるをえない部分があった。しかし、 Navigation API によって明示的に知ることができるため、これを監視すれば SPA でも「今遷移が起こったこと」を伝えるといった応用が可能だ。
+例えば、支援技術は MPA の画面が遷移したことを利用者に伝えることができるが、 SPA の場合はそこをヒューリスティクスに頼らざるをえない部分があった。しかし、 Navigation API によって明示的に知ることができるため、これを監視すれば SPA でも「今遷移が起こったこと」を伝えるといった応用が可能だ。
 
 そして、「開始」と「完了」の間は「遷移中」なので、それを知ったブラウザはローディングインジケータ(DOM に開発者が表示するものではなく、タブに表示されるネイティブのもの)の表示に使えるし、「遷移中」にバツボタンに変わったそれをユーザがクリックしたら、渡されてきた AbortSignal を abort することで、 `transitionWhile()` 内に中断処理を実現できる。
 
@@ -406,7 +413,7 @@ navigation.addEventListener("navigatesuccess", () => {
 
 MPA では、「戻る」「進む」の場合に元いたスクロール位置が復元される。これはブラウザが自動で行っているが、 SPA ではうまくいくとは限らない。
 
-SPA でもブラウザはスクロール位置を復元しようとするが、そもそもいつ戻った画面が表示し終わったのかがわからないため、画面構築中にスクロールしてしまったりということが起こり得る。また、スクロールしようとしても、戻った時に該当の DOM がある保証もない。制御する方法も、 History API では `history.scrollRestoration` に `"auto"` を指定してブラウザに任せるか、 `"manual"` を指定して Opt-Out するしかなかった。
+SPA でもブラウザはスクロール位置を復元しようとするが、そもそもいつ戻った画面が表示し終わったのかがわからないため、画面構築中にスクロールしてしまったりということが起こる。また、スクロールしようとしても、戻った時に該当の DOM がある保証もない。制御する方法も、 History API では `history.scrollRestoration` に `"auto"` を指定してブラウザに任せるか、 `"manual"` を指定して Opt-Out するしかなかった。
 
 こちらも、 `transitionWhile()` によって「完了」がわかるため、ブラウザはそのタイミングでスクロールの復元を試みる。もし、全ての Promise を待つ必要がない場合は、 `scrollRestoration` を `"manual"` で Opt-Out しつつ、任意のタイミングで `e.restoreScroll()` を呼べば、そのタイミングで復元が行われる。
 
@@ -423,7 +430,7 @@ navigation.addEventListener("navigate", e => {
 })
 ```
 
-もちろん、 `e.restoreScroll()` を呼ばずに、自分で `window.scrollTo()` しても良い。
+もちろん、 `e.restoreScroll()` を呼ばずに、自分で State に保存した要素に `window.scrollTo()` しても良い。
 
 
 ## MPA の改善
@@ -440,7 +447,7 @@ POST の response をリロードした場合の「フォームを再送信し�
 - How to handle reloading pages created with POST · Issue #6600 · whatwg/html
   - https://github.com/whatwg/html/issues/6600
 
-以下のように、 POST の Entry を GET で `"replace"` してしまえば、 POST の Entry は消えるため、「戻る」による問題がなくなる。この実装も、 Navigation API がないブラウザでは通常の MPA が挙動するだけなので、 Progressive な導入が可能だ。
+以下のように、 POST の Entry を GET で `"replace"` してしまえば、 POST の Entry は消えるため、「戻る」による問題がなくなる。この実装も、 Navigation API がないブラウザでは通常の MPA として遷移するだけなので、 Progressive な導入が可能だ。
 
 ```js
 navigation?.on("navigate", async (e) => {
