@@ -318,7 +318,7 @@ async function getPage(url, option) {
   return { title, body }
 }
 
-navigation?.on("navigate", async (e) => {
+window?.navigation?.on("navigate", async (e) => {
   if (e.canTransition === false) return
   if (e.hashChange === true) return
   if (e.downloadRequest !== null) return
@@ -340,11 +340,11 @@ navigation?.on("navigate", async (e) => {
   })())
 })
 
-navigation?.on("navigatesuccess", (e) => {
+window?.navigation?.on("navigatesuccess", (e) => {
   console.log(e)
 })
 
-navigation?.on("navigateerror", (e) => {
+window?.navigation?.on("navigateerror", (e) => {
   console.log(e)
 })
 ```
@@ -450,7 +450,7 @@ POST の response をリロードした場合の「フォームを再送信し�
 以下のように、 POST の Entry を GET で `"replace"` してしまえば、 POST の Entry は消えるため、「戻る」による問題がなくなる。この実装も、 Navigation API がないブラウザでは通常の MPA として遷移するだけなので、 Progressive な導入が可能だ。
 
 ```js
-navigation?.on("navigate", async (e) => {
+window?.navigation?.on("navigate", async (e) => {
   console.log(e.type, e)
   const pathname = new URL(e.destination.url).pathname
   console.log({pathname})
