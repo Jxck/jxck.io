@@ -64,7 +64,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-04-22T08:00:00+08:00",
-    "dateModified": "2022-04-23T08:00:00+08:00",
+    "dateModified": "2022-04-24T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -108,7 +108,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220304_061221>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-04-22>2022-04-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-04-23>2022-04-23</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-04-24>2022-04-24</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -411,7 +411,7 @@ async function getPage(url, option) {
   return { title, body }
 }
 
-navigation?.on(&quot;navigate&quot;, async (e) =&gt; {
+window?.navigation?.on(&quot;navigate&quot;, async (e) =&gt; {
   if (e.canTransition === false) return
   if (e.hashChange === true) return
   if (e.downloadRequest !== null) return
@@ -433,11 +433,11 @@ navigation?.on(&quot;navigate&quot;, async (e) =&gt; {
   })())
 })
 
-navigation?.on(&quot;navigatesuccess&quot;, (e) =&gt; {
+window?.navigation?.on(&quot;navigatesuccess&quot;, (e) =&gt; {
   console.log(e)
 })
 
-navigation?.on(&quot;navigateerror&quot;, (e) =&gt; {
+window?.navigation?.on(&quot;navigateerror&quot;, (e) =&gt; {
   console.log(e)
 })</code></pre>
           <p>(実装の雰囲気は Service Worker の <code translate=no>fetch</code> イベントのハンドラに近い)
@@ -516,7 +516,7 @@ navigation.addEventListener(&quot;navigatesuccess&quot;, () =&gt; {
             </li>
           </ul>
           <p>以下のように、 POST の Entry を GET で <code translate=no>&quot;replace&quot;</code> してしまえば、 POST の Entry は消えるため、「戻る」による問題がなくなる。この実装も、 Navigation API がないブラウザでは通常の MPA として遷移するだけなので、 Progressive な導入が可能だ。
-          <pre class=js><code translate=no>navigation?.on(&quot;navigate&quot;, async (e) =&gt; {
+          <pre class=js><code translate=no>window?.navigation?.on(&quot;navigate&quot;, async (e) =&gt; {
   console.log(e.type, e)
   const pathname = new URL(e.destination.url).pathname
   console.log({pathname})
