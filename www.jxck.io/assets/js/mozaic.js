@@ -258,7 +258,7 @@ document.on('DOMContentLoaded', async (e) => {
     await enableBeforeInstallPrompt(e)
   })
 
-  navigation.on("navigate", async (e) => {
+  window?.navigation?.on("navigate", async (e) => {
     async function getPage(url, option) {
 
       /** @type {TrustedTypePolicy} */
@@ -301,11 +301,11 @@ window.on("pageshow", async (e) => {
   console.log(e.type, e)
 })
 
-navigation.on("navigatesuccess", (e) => {
+window?.navigation?.on("navigatesuccess", (e) => {
   console.log(e.type, e)
   insertToC()
 })
 
-navigation.on("navigateerror", (e) => {
+window?.navigation?.on("navigateerror", (e) => {
   console.log(e.type, e)
 })
