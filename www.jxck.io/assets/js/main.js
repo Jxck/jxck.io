@@ -91,17 +91,6 @@ if (navigator.serviceWorker) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Prism.js
-  document.querySelectorAll('pre code').forEach(($code) => {
-    const $pre = $code.parentElement
-    const lang = $pre.classList.item(0)
-    if (lang == null) return
-    const language = `language-${lang}`
-    $code.classList.add(language)
-    $pre.dataset.code = lang
-    Prism.highlightAll()
-  })
-
   // AdSense
   (adsbygoogle = window.adsbygoogle || []).push({})
   console.log(adsbygoogle)
