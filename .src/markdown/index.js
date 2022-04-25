@@ -196,6 +196,24 @@ export function encode(node, option = {}) {
    * @param {number} indent
    * @returns {string}
    */
+  function raw(node, indent) {
+    return `${spaces(indent)}${node.text}`
+  }
+
+  /**
+   * @param {Node} node
+   * @param {number} indent
+   * @returns {string}
+   */
+  function raw(node, indent) {
+    return `${spaces(indent)}${node.text}`
+  }
+
+  /**
+   * @param {Node} node
+   * @param {number} indent
+   * @returns {string}
+   */
   function headding(node, indent) {
     const name = `h${node.level}`
     const text = node.children.map((child) => serialize(child)).join(``)
@@ -255,11 +273,12 @@ export function encode(node, option = {}) {
       attr.set(`data-path`, attr.get(`path`))
       attr.delete(`path`)
     }
-    const code = node.children.map((child) => child.text).join(`\n`)
+    const code = node.children.map((child) => serialize(child)).join(`\n`)
+    console.log({code})
     const lang_class = lang ? ` class=language-${lang}`: ``
     return [
       `${spaces(indent)}<pre${attr_str(attr)}><code translate=no${lang_class}>`,
-      hsc(code),
+      code,
       `</code></pre>\n`
     ].join(``)
   }
@@ -434,6 +453,7 @@ export function encode(node, option = {}) {
   function serialize(node, indent = 0) {
     const name = node.name
     if (name === `text`) /*          */ return text(node, indent)
+    if (name === `raw`) /*           */ return raw(node, indent)
     if (name === `headding`) /*      */ return headding(node, indent)
     if (name === `section`) /*       */ return section(node, indent)
     if (name === `a`) /*             */ return a(node, indent)
