@@ -52,7 +52,7 @@ URL の fragment 部 (`https://example.com#foo` の `#foo`)は、サーバには
 
 ### SPA 第二期: History API による Pjax
 
-実際にリンクのクリックや Form の Submit を全て `preventDefaul` して fragment に状態をエンコードする実装は、 Navigation が発生せずブラウザに History が積まれない。そこで JS から実際に Navigation をせずに URL を History に積むために作られたのが History API だ。
+実際にリンクのクリックや Form の Submit を全て `preventDefault` して fragment に状態をエンコードする実装は、 Navigation が発生せずブラウザに History が積まれない。そこで JS から実際に Navigation をせずに URL を History に積むために作られたのが History API だ。
 
 実際には、擬似遷移に URL を付与し、その遷移を復元するための状態を紐づけて `history.pushState` で保存するというものだ。画面が遷移した場合は、 `popstate` イベントでその状態が取得できるため、それを画面に反映することで遷移が再現される。
 
