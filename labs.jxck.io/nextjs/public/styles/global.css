@@ -2,6 +2,20 @@ body {
   padding: 0 10%;
 }
 
+@media print {
+  body {
+    padding: 0;
+  }
+  details,
+  pre {
+    break-inside: avoid;
+  }
+  img {
+    max-height: 20% !important;
+    max-width: 50% !important;
+  }
+}
+
 body a {
   color: #0f83fd;
 }
