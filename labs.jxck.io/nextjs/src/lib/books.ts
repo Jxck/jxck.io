@@ -1,6 +1,8 @@
 import path from "path";
 import { readdir, readFile } from "fs/promises";
 import { encode, decode, traverse, node, Node } from "@jxck/markdown";
+import Prism from "prismjs";
+import loadLanguages from "prismjs/components/";
 
 export const booksDir = path.join(process.cwd(), "books");
 
@@ -116,6 +118,20 @@ export async function getHTML(slug: string, file: string) {
           children: [elem, figcaption]
         })
         return figure
+      }
+      if (elem.name === `pre`) {
+        const lang = elem.attr.get(`lang`) as string
+        loadLanguages([lang]);
+        const code = elem.children.map(({text}) => text).join(`\n`)
+        const html = Prism.highlight(code, Prism.languages[lang], lang)
+        const child = node({
+          name: `raw`,
+          type: `inline`,
+          text: html,
+          parent: elem
+        })
+        elem.children = [child]
+        return elem
       }
       return elem;
     },
