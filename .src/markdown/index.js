@@ -267,6 +267,7 @@ export function encode(node, option = {}) {
     const lang = attr.get(`lang`)
     if (lang) {
       attr.set(`class`, lang)
+      attr.set(`data-code`, lang)
       attr.delete(`lang`)
     }
     if (attr.has(`path`)) {
@@ -274,7 +275,6 @@ export function encode(node, option = {}) {
       attr.delete(`path`)
     }
     const code = node.children.map((child) => serialize(child)).join(`\n`)
-    console.log({code})
     const lang_class = lang ? ` class=language-${lang}`: ``
     return [
       `${spaces(indent)}<pre${attr_str(attr)}><code translate=no${lang_class}>`,
