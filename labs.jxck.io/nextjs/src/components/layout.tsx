@@ -28,7 +28,9 @@ const Layout = ({ children, home }: Props) => {
       <footer>
         <Link href="/">Back</Link>
       </footer>
-    </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js" integrity="sha512-9khQRAUBYEJDCDVP2yw3LRUQvjJ0Pjx0EShmaQjcHa6AXiOv6qHQu9lCAIR8O+/D8FtaCoJ2c0Tf9Xo7hYH01Q==" crossOrigin="anonymous" referrerPolicy="no-referrer"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-fTl/qcO1VgvKtOMApX2PdZzkziyr2stM65GYPLGuYMnuMm1z2JLJG6XVU7C/mR+E7xBUqCivykuhlzfqxXBXbg==" crossOrigin="anonymous" referrerPolicy="no-referrer"></script>
+     </div>
   );
 };
 

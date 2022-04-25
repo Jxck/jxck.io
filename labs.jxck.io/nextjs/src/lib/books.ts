@@ -102,7 +102,6 @@ export async function getHTML(slug: string, file: string) {
         section.attr.set(`class`, `details-content`)
       }
       if (elem.name === "img") {
-        console.log(elem)
         const figcaption = node({
           name: `figcaption`,
           type: `inline`,
