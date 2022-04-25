@@ -1,4 +1,6 @@
 import path from "path";
+import { exec } from "child_process";
+import { promisify } from "util";
 import { readdir, readFile } from "fs/promises";
 import { encode, decode, traverse, node, Node } from "@jxck/markdown";
 import Prism from "prismjs";
@@ -32,6 +34,12 @@ async function getPageTitle(slug: string, file: string) {
   const groups = body.match(/title: "(?<title>.*)"/)?.groups;
   const title = groups?.title as string;
   return title;
+}
+
+export async function getCommitInfo() {
+  const command = `git -C ~/develop/web-anatomia show -s --format="%ci %h" HEAD`
+  const { stdout } = await promisify(exec)(command)
+  return stdout
 }
 
 export async function getBooks(): Promise<Book[]> {
@@ -110,7 +118,7 @@ export async function getHTML(slug: string, file: string) {
           text: elem.attr.get(`alt`) as string,
           level: 0
         })
-    
+
         const figure = node({
           name: `figure`,
           type: `block`,
@@ -122,7 +130,7 @@ export async function getHTML(slug: string, file: string) {
       if (elem.name === `pre`) {
         const lang = elem.attr.get(`lang`) as string
         loadLanguages([lang]);
-        const code = elem.children.map(({text}) => text).join(`\n`)
+        const code = elem.children.map(({ text }) => text).join(`\n`)
         const html = Prism.highlight(code, Prism.languages[lang], lang)
         const child = node({
           name: `raw`,
@@ -138,5 +146,5 @@ export async function getHTML(slug: string, file: string) {
   });
 
   const { html } = encode(root);
-  return {frontmatter, html};
+  return { frontmatter, html };
 }

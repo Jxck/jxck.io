@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Layout from "../../../components/layout";
-import { getHTML, getPage, Page } from "../../../lib/books";
+import { getHTML, getPage, Page, getCommitInfo } from "../../../lib/books";
 import Link from "next/link";
 
 type Props = {
@@ -9,9 +9,10 @@ type Props = {
   page: Page;
   frontmatter: string,
   html: string;
+  info: string;
 };
 
-const Post = ({ slug, page, frontmatter, html }: Props) => {
+const Post = ({ slug, page, frontmatter, html, info }: Props) => {
   return (
     <Layout>
       <Head>
@@ -20,6 +21,7 @@ const Post = ({ slug, page, frontmatter, html }: Props) => {
       <header>
         <Link href={`/books/${slug}`}>{slug}</Link>
         <pre>{frontmatter}</pre>
+        <pre>{info}</pre>
       </header>
       <main className="znc" dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
@@ -31,12 +33,14 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const file = params?.file as string;
   const page = await getPage(slug, file);
   const {frontmatter, html} = await getHTML(slug, file);
+  const info = await getCommitInfo();
   return {
     props: {
       slug,
       page,
       frontmatter,
       html,
+      info
     },
   };
 };
