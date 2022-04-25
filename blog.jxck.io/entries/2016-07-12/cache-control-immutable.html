@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -198,7 +198,7 @@
         <p>Cache-Control Immutable Extension は、 Cache-Control の拡張の一つである。
         <p>以下のように指定することで、キャッシュを Immutable と指定することができ、ブラウザはキャッシュが fresh であればリロード時でもヒットさせるようになる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=http><code translate=no>Cache-Control: max-age=10000, immutable</code></pre>
+        <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=10000, immutable</code></pre>
         <p>これによって、なんらかの原因でユーザがリロードを行う場面においても、無駄なリクエストを防ぐことができる。
         <p>特に、画像、動画、フォントといったサイズが大きくも表示において重要なリソースについては、キャッシュの再利用がサーバの負荷という面でも、 UX の面でも有利に働く。
         <p>執筆時点では、 Firefox Nightly(version 50.0a1) が https 通信限定で、この拡張をサポートしている。
@@ -245,7 +245,7 @@
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
         <p>本サイトでは、サイトへのアクセスログから 304 レスポンスの頻度が多いリソースを抽出し解析を試みた。
         <p>その結果が以下である。
-        <pre class=sh-session><code translate=no>$ cat access_log.* | grep 304 | cut -f7 | sort | uniq -c | sort -nr | head -n 30
+        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ cat access_log.* | grep 304 | cut -f7 | sort | uniq -c | sort -nr | head -n 30
 43468 /feeds/atom.xml
 31113 /
 11341 /assets/js/ga.js

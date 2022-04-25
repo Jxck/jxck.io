@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -195,7 +195,7 @@
         </p>
         <p>ここでは、わかりやすくするため、 <code translate=no>font-size</code> を <code translate=no>16px</code> とし、 <code translate=no>&lt;p&gt;</code> のマージンは前後とも <code translate=no>24px</code> としている。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=css><code translate=no>body {
+        <pre class=css data-code=css><code translate=no class=language-css>body {
   --base: 16px; /* base font size */
   --grid: 24px; /* base grid size */
   font-size: var(--base);
@@ -208,7 +208,7 @@ p {
 }</code></pre>
         <p>そこに引いたグリッドの線を見ればわかるように、 <code translate=no>&lt;h1&gt;</code> ~ <code translate=no>&lt;h4&gt;</code> の余白はバラバラになっている。
         <p>ここで、個々の <code translate=no>line-height</code> を計算し適切に設定する代わりに、 CSS Rhythmic Sizing では以下のようなプロパティが設定できる。
-        <pre class=css><code translate=no>.rhythm {
+        <pre class=css data-code=css><code translate=no class=language-css>.rhythm {
   line-height-step: var(--grid);
 }</code></pre>
         <p>この設定を親要素に指定すると、子要素のインライン要素は、 <code translate=no>line-height</code> を自動で <code translate=no>24px</code> の倍数に揃えることができる。
@@ -227,7 +227,7 @@ p {
         <h2 id="multi-column-layout"><a href="#multi-column-layout">Multi Column Layout</a></h2>
         <p>確かにリズムが揃っていることはわかるが、それによる効果は本サイトのような Single Column よりも Multi Column なコンテンツの方が実感しやすい。
         <p>そこで、 CSS の Multi Column Layout で 2 column にするオプションを追加した。
-        <pre class=css><code translate=no>.colmun {
+        <pre class=css data-code=css><code translate=no class=language-css>.colmun {
   column-count: 2;
   column-gap: calc(var(--grid) * 2);
   padding: var(--grid);
@@ -262,14 +262,14 @@ p {
         </blockquote>
         <p>そこで、以下のような方針で適用する。
         <p>まず <code translate=no>line-height: 15</code> とし、これを基準に <code translate=no>&lt;article&gt;</code> 全体に Rhythm を当てる。
-        <pre class=css><code translate=no>article {
+        <pre class=css data-code=css><code translate=no class=language-css>article {
   line-height: 1.5;
   --grid: 1.5em;
   line-height-step: var(--grid);
 }</code></pre>
         <p><code translate=no>&lt;h1&gt;</code> ~ <code translate=no>&lt;h5&gt;</code> 中はモバイルでの折り返しを考慮して 1.2 とし、中身は Rhythm から外すが、ブロック全体は Rhythm に載せる。
         <p>しかし、余白が空きすぎるので <code translate=no>margin-bottom</code> のみ消す。
-        <pre class=css><code translate=no>article h1,
+        <pre class=css data-code=css><code translate=no class=language-css>article h1,
 article h2,
 article h3,
 article h4,
@@ -282,12 +282,12 @@ article h6 {
   margin-bottom: 0;
 }</code></pre>
         <p><code translate=no>&lt;p&gt;</code> はリズムに載せるため、 margin/padding を <code translate=no>line-height-step</code> に揃える。
-        <pre class=css><code translate=no>article p {
+        <pre class=css data-code=css><code translate=no class=language-css>article p {
   margin-top: var(--grid);
   margin-bottom: var(--grid);
 }</code></pre>
         <p><code translate=no>&lt;pre&gt;</code> と <code translate=no>&lt;table&gt;</code> は中身/全体ともに Rhythm に載せないよう、 <code translate=no>line-height-step: 0</code> にする。
-        <pre class=css><code translate=no>article pre,
+        <pre class=css data-code=css><code translate=no class=language-css>article pre,
 article table {
   line-height-step: 0;
   line-height: normal;

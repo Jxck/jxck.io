@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -157,9 +157,9 @@
         <p>筆者が直近で書いた <a href="https://www.rfc-editor.org/rfc/rfc8941.html">RFC 8941: Structured Field Values for HTTP</a> を例にする。
         <p>例えば、ヘッダが複数の値をリスト形式で取る場合
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=http><code translate=no>Example-List: sugar, tea, rum</code></pre>
+        <pre class=http data-code=http><code translate=no class=language-http>Example-List: sugar, tea, rum</code></pre>
         <p>これを ABNF で表現するとこうなる。
-        <pre class=abnf><code translate=no>sf-list       = list-member *( OWS &quot;,&quot; OWS list-member )
+        <pre class=abnf data-code=abnf><code translate=no class=language-abnf>sf-list       = list-member *( OWS &quot;,&quot; OWS list-member )
 list-member   = sf-item / inner-list</code></pre>
         <p><code translate=no>inner-list</code> を無視すると、これは <code translate=no>sf-item</code> がスペース(OWS)と <code translate=no>,</code> で区切られて複数あることになるといった具合だ。 <code translate=no>sf-item</code> はさらに別で定義されている。
         <p><code translate=no>ALPHA</code> や <code translate=no>DIGIT</code> のように仕様をまたいで共通する定義は <a href="https://www.rfc-editor.org/rfc/rfc5234.html">ABNF</a> の RFC としてまとめられ、各仕様が参照している。
@@ -176,7 +176,7 @@ list-member   = sf-item / inner-list</code></pre>
         <section>
           <h3 id="token"><a href="#token">token</a></h3>
           <p>最も基本的な、パターン(正規表現)を受け取ったら、そのパターンを文字列の先頭から取り出し、結果を返す形が以下のようになる。
-          <pre class=js><code translate=no>const ok = true
+          <pre class=js data-code=js><code translate=no class=language-js>const ok = true
 
 // a =&gt; token(/^a/)
 export function token(reg) {
@@ -191,10 +191,10 @@ export function token(reg) {
   }
 }</code></pre>
           <p>使い方はこうなる。
-          <pre class=js><code translate=no>token(/^a/)(&quot;abcde&quot;)
+          <pre class=js data-code=js><code translate=no class=language-js>token(/^a/)(&quot;abcde&quot;)
 // { ok: true, value: &apos;a&apos;, rest: &apos;bcde&apos; }</code></pre>
           <p>このパターンを変えることで、一番基本の部分 (ALPHA / DIGIT) などはこれを用いて実装できる。
-          <pre class=js><code translate=no>// ALPHA = A-Z / a-z
+          <pre class=js data-code=js><code translate=no class=language-js>// ALPHA = A-Z / a-z
 const alpha = token(/^[a-zA-Z]/)
 
 // DIGIT = &quot;0&quot;/&quot;1&quot;/&quot;2&quot;/&quot;3&quot;/&quot;4&quot;/&quot;5&quot;/&quot;6&quot;/&quot;7&quot;/&quot;8&quot;/&quot;9&quot;
@@ -203,9 +203,9 @@ const digit = token(/^[0-9]/)</code></pre>
         <section>
           <h3 id="alt"><a href="#alt">alt</a></h3>
           <p>ABNF における Alternatives (OR) は以下のように使われる。
-          <pre class=abnf><code translate=no>BIT  =  &quot;0&quot; / &quot;1&quot;</code></pre>
+          <pre class=abnf data-code=abnf><code translate=no class=language-abnf>BIT  =  &quot;0&quot; / &quot;1&quot;</code></pre>
           <p>実装は以下のようになる。
-          <pre class=js><code translate=no>// (a / b) =&gt; alt([a(), b()])
+          <pre class=js data-code=js><code translate=no class=language-js>// (a / b) =&gt; alt([a(), b()])
 export function alt(fns) {
   return (rest) =&gt; {
     for (let i = 0; i &lt; fns.length; i ++) {
@@ -218,7 +218,7 @@ export function alt(fns) {
   }
 }</code></pre>
           <p>これは、先の <code translate=no>token()</code> のような高階関数のリストを受け取り、最初に成功したところで終了している。
-          <pre class=js><code translate=no>// ALPHA / DIGIT
+          <pre class=js data-code=js><code translate=no class=language-js>// ALPHA / DIGIT
 const alpha_digit = alt([alpha, digit])
 alpha_digit(&quot;aaa&quot;)
 // { ok: true, value: &apos;aaa&apos;, rest: &apos;&apos; }
@@ -230,9 +230,9 @@ alpha_digit(&quot;?&quot;)
         <section>
           <h3 id="list"><a href="#list">list</a></h3>
           <p>複数の token が順番に並ぶように合成する際に利用する。
-          <pre class=abnf><code translate=no>CRLF  =  CR LF</code></pre>
+          <pre class=abnf data-code=abnf><code translate=no class=language-abnf>CRLF  =  CR LF</code></pre>
           <p>実装は以下。
-          <pre class=js><code translate=no>// (a b c) =&gt; list([a(), b(), c()])
+          <pre class=js data-code=js><code translate=no class=language-js>// (a b c) =&gt; list([a(), b(), c()])
 export function list(fns) {
   return (rest) =&gt; {
     const value = []
@@ -249,7 +249,7 @@ export function list(fns) {
   }
 }</code></pre>
           <p>使い方は以下。
-          <pre class=js><code translate=no>// CRLF  =  CR LF
+          <pre class=js data-code=js><code translate=no class=language-js>// CRLF  =  CR LF
 const crlf = list([token(/\r/), token(/\n/)])
 crlf(&quot;\r\n&quot;)
 // { ok: true, value: [ &apos;\n&apos;, &apos;\r&apos; ], rest: &apos;&apos; }</code></pre>
@@ -257,14 +257,14 @@ crlf(&quot;\r\n&quot;)
         <section>
           <h3 id="repeat"><a href="#repeat">repeat</a></h3>
           <p>ABNF の繰り返しは以下のように使われる。
-          <pre class=abnf><code translate=no>NUMBER = 1*DIGIT</code></pre>
+          <pre class=abnf data-code=abnf><code translate=no class=language-abnf>NUMBER = 1*DIGIT</code></pre>
           <ul>
             <li><code translate=no>1*</code> は 1 回以上
             <li><code translate=no>1*10</code> は 1 回以上 10 回未満
           </ul>
           <p>といった具合だ。これを 0 回以上 1 回未満とみなせば、 Optional も手に入る。
           <p>実装は以下のようになる。
-          <pre class=js><code translate=no>// *(a b) =&gt; repeat(0, Infinity, list([a(), b()]))
+          <pre class=js data-code=js><code translate=no class=language-js>// *(a b) =&gt; repeat(0, Infinity, list([a(), b()]))
 export function repeat(min, max, fn) {
   return (rest) =&gt; {
     const value = []
@@ -290,7 +290,7 @@ export function repeat(min, max, fn) {
 }</code></pre>
           <p>使い方はこうだ。
           <p>(仕様上上限がなくても、実装上適当な上限を指定する)。
-          <pre class=js><code translate=no>// NUMBER = 1*DIGIT
+          <pre class=js data-code=js><code translate=no class=language-js>// NUMBER = 1*DIGIT
 const number = repeat(1, 1024, digit)
 
 number(&quot;0123&quot;)
@@ -300,10 +300,10 @@ number(&quot;0123&quot;)
           <h3 id="abnf-実装"><a href="#abnf-実装">ABNF 実装</a></h3>
           <p><code translate=no>token()</code>, <code translate=no>list()</code>, <code translate=no>alt()</code>, <code translate=no>repeat()</code> があると、あとはこれを組み合わせていくだけだ。
           <p>例えば最初の Structured Filed Values の一例の場合
-          <pre class=abnf><code translate=no>sf-list       = list-member *( OWS &quot;,&quot; OWS list-member )
+          <pre class=abnf data-code=abnf><code translate=no class=language-abnf>sf-list       = list-member *( OWS &quot;,&quot; OWS list-member )
 list-member   = sf-item / inner-list</code></pre>
           <p>こんな感じになる。
-          <pre class=js><code translate=no>const sf_list = list([
+          <pre class=js data-code=js><code translate=no class=language-js>const sf_list = list([
   list_member(),
   repeat(0, 1024, list([
     ows(),

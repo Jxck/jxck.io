@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -204,7 +204,7 @@
           <p>body を親要素とすれば、そこからの offset 位置はドキュメント上の絶対位置と考えることができる。
           <p>これは、要素自体が持っている。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=js><code translate=no>let target = document.querySelector(&apos;.target&apos;);
+          <pre class=js data-code=js><code translate=no class=language-js>let target = document.querySelector(&apos;.target&apos;);
 // target.offsetTop;
 // target.offsetHeight;
 // target.offsetWidth;
@@ -215,7 +215,7 @@
           <p>対象の DOM が、現在画面表示(viewport)上どの位置にあるか。
           <p>スクロールするたびに変わる値で、常に表示領域の中の位置になる。
           <p>これは、対象 DOM の <code translate=no>getBoundingClientRect()</code> で取れる。
-          <pre class=js><code translate=no>let rect = target.getBoundingClientRect();
+          <pre class=js data-code=js><code translate=no class=language-js>let rect = target.getBoundingClientRect();
 // rect.top;
 // rect.bottom;
 // rect.height;
@@ -226,7 +226,7 @@
         <section>
           <h3 id="表示判定"><a href="#表示判定">表示判定</a></h3>
           <p>ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
-          <pre class=js><code translate=no>   (0 &lt; rect.top &amp;&amp; rect.top &lt; clientHeight)       // 対象の上端は表示領域に入っている
+          <pre class=js data-code=js><code translate=no class=language-js>   (0 &lt; rect.top &amp;&amp; rect.top &lt; clientHeight)       // 対象の上端は表示領域に入っている
 || (0 &lt; rect.bottom &amp;&amp; rect.bottom &lt; clientHeight) // 対象の下端は表示領域に入っている
 || (rect.top &lt; 0 &amp;&amp; clientHeight &lt; rect.bottom)    // 上端下端も表示されてないがその間が表示されている</code></pre>
           <p>この三つの論理和が満たされれば、どこかが表示されている。
@@ -280,7 +280,7 @@
         <p>コールバックとオプションを指定し、 Intersection Observer Class のインスタンスを生成する。
         <p>生成した Observer に対して、任意の DOM 要素を <code translate=no>observe()</code> メソッドで指定することにより、対象を監視する。
         <p>複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、 observe を複数回呼ぶことができる。
-        <pre class=js><code translate=no>let observer = new IntersectionObserver((changes) =&gt; {
+        <pre class=js data-code=js><code translate=no class=language-js>let observer = new IntersectionObserver((changes) =&gt; {
   for (let change of changes) {
     console.log(change);
   }
@@ -333,7 +333,7 @@ observer.observe(target);</code></pre>
           </p>
           <p>特に <code translate=no>change.intersectionRect</code> および <code translate=no>change.intersectionRatio</code> は、自分で計算するとボトルネックになりがちである。
           <p>第二引数には、オプションとして三つのプロパティを設定したオブジェクトを指定できる。
-          <pre class=js><code translate=no>let observer = new IntersectionObserver((changes) =&gt; {
+          <pre class=js data-code=js><code translate=no class=language-js>let observer = new IntersectionObserver((changes) =&gt; {
   // callback
 }, {
   root: document.querySelector(&apos;.target&apos;),
@@ -346,7 +346,7 @@ observer.observe(target);</code></pre>
           <h3 id="root"><a href="#root">root</a></h3>
           <p>デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
           <p>root オプションを用いることで、任意の親要素内を指定できるため、例えば <code translate=no>overflow: scroll</code> になった div の中の交差を判定することができる。
-          <pre class=js><code translate=no>{ root: document.querySelector(&apos;.target&apos;) }</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>{ root: document.querySelector(&apos;.target&apos;) }</code></pre>
         </section>
         <section>
           <h3 id="threshold"><a href="#threshold">threshold</a></h3>
@@ -354,7 +354,7 @@ observer.observe(target);</code></pre>
           <p>これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
           <p>イベント発生頻度を増やすには、 threshold オプションを使うことができる。
           <p>例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
-          <pre class=js><code translate=no>{ threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] }</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>{ threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] }</code></pre>
           <p>これにより、表示領域の変化に合わせたインタラクションも実装が可能になる。
         </section>
         <section>
@@ -364,7 +364,7 @@ observer.observe(target);</code></pre>
           <p>しかし、 viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の <code translate=no>&lt;img&gt;</code> すら出さずに済む可能性がある。
           <p>こうした場合は rootMargin オプションを指定することができる。
           <p>値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
-          <pre class=js><code translate=no>{ rootMargin: &apos;10px&apos; }</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>{ rootMargin: &apos;10px&apos; }</code></pre>
         </section>
         <section>
           <h3 id="intersection-observe-demo"><a href="#intersection-observe-demo">Intersection Observe DEMO</a></h3>

@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -181,14 +181,14 @@
         <h2 id="must-understand"><a href="#must-understand">must-understand</a></h2>
         <p>例としてここでは <code translate=no>999 New Status</code> という架空のステータスコードが新しく仕様化され、そのステータスコードにはデフォルトでキャッシュに関する要件が定義されていたとする。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=http><code translate=no>HTTP/1.1 999 New Status
+        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 999 New Status
 Content-Type: text/html
 Content-Length: 256
 Cache-Control: max-age=3600</code></pre>
         <p>このステータスコード <code translate=no>999</code> がまだ新しく、実装が広まってないうちは、受信した実装は「<code translate=no>999</code> を知らない」という理由だけで <code translate=no>Cache-Control</code> も無視してキャッシュを保存しない可能性がある。
         <p>この問題を解決するために Cache の改定版 ID では、該当部分が更新され <code translate=no>must-understand</code> というディレクティブが追加されている。
         <p>このディレクティブは、以下のように必ず <code translate=no>no-store</code> とともに付与される。
-        <pre class=http><code translate=no>HTTP/1.1 999 New Status
+        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 999 New Status
 Content-Type: text/html
 Content-Length: 256
 Cache-Control: max-age=3600, must-understand, no-store</code></pre>

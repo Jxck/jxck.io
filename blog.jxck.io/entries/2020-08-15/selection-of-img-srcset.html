@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -163,7 +163,7 @@
         <h2 id="srcset-attribute"><a href="#srcset-attribute">srcset attribute</a></h2>
         <p>まず以下のようなコードを考える。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=html><code translate=no>&lt;style&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
 body {
   margin: 0;
 }
@@ -276,7 +276,7 @@ body {
             <li>Save Data が有効な場合は最も小さいものを選択して終わり
             <li>SelectionLogic に候補を渡して画像を選択
           </ul>
-          <pre class=cpp data-path=pick-best-image-candidate.cpp><code translate=no>// device_scale_factor = DPR
+          <pre class=cpp data-code=cpp data-path=pick-best-image-candidate.cpp><code translate=no class=language-cpp>// device_scale_factor = DPR
 // source_size = sizes attr value
 static ImageCandidate PickBestImageCandidate(float device_scale_factor, float source_size, Vector&lt;ImageCandidate&gt;&amp; image_candidates, Document* document = nullptr) {
   const float kDefaultDensityValue = 1.0;
@@ -351,7 +351,7 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
             <li>そうでなければ curr
           </ul>
           <p>(DPR に 1 以下はあるのだろうか?)
-          <pre class=cpp data-path=selection-logic.cpp><code translate=no>// device_scale_factor = DPR
+          <pre class=cpp data-code=cpp data-path=selection-logic.cpp><code translate=no class=language-cpp>// device_scale_factor = DPR
 static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidates, float device_scale_factor) {
   unsigned i = 0;
 

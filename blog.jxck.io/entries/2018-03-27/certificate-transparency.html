@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -489,7 +489,7 @@
                    +-----------+</code></pre>
           <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-expect-ct">Expect-CT Extension for HTTP</a>
           <p>Expect-CT のディレクティブは、基本的に CSP と同じような設計になっている。
-          <pre class=http><code translate=no>Expect-CT: max-age=86400, enforce, report-uri=&quot;https://foo.example/report&quot;</code></pre>
+          <pre class=http data-code=http><code translate=no class=language-http>Expect-CT: max-age=86400, enforce, report-uri=&quot;https://foo.example/report&quot;</code></pre>
           <ul>
             <li><code translate=no>enforce</code>:  SCT のチェックをブラウザに強制させる
             <li><code translate=no>report-uri</code>: CSP レポートの送信先
@@ -498,7 +498,7 @@
           <p>なお <em>Expect-CT 自体が SCT の値を含むわけではない</em> 点に注意したい。
           <p>これにより、証明書が変わってもヘッダの値は変わらないため、 HPKP と比べて運用負荷が大きく下がる。
           <p>また、他の CSP のように <code translate=no>Expect-CT-Report-Only</code> は定義されておらず、 <code translate=no>enforce</code> を付けずに <code translate=no>report-uri</code> のみとすれば、レポートだけが飛ぶ。
-          <pre class=http><code translate=no>Expect-CT: max-age=86400, report-uri=&quot;https://foo.example/report&quot;</code></pre>
+          <pre class=http data-code=http><code translate=no class=language-http>Expect-CT: max-age=86400, report-uri=&quot;https://foo.example/report&quot;</code></pre>
         </section>
       </section>
       <section>
@@ -606,7 +606,7 @@ d0  d1  d2 [d3] d4  d5  d6  d7</code></pre>
           <p>証明書チェインを登録し、 SCT の値を取得する。
           <p>今回は、 CT Log Server として <a href="https://ct.googleapis.com/pilot">https://ct.googleapis.com/pilot</a> を対象とする。
           <p>本サイトの証明書は Let&apos;s Encrypt で発行しており、 fullchain.pem の証明書チェインは 2 つから成り立っている。
-          <pre class=bash><code translate=no>$ cat /etc/letsencrypt/live/jxck.io/fullchain.pem
+          <pre class=bash data-code=bash><code translate=no class=language-bash>$ cat /etc/letsencrypt/live/jxck.io/fullchain.pem
 -----BEGIN CERTIFICATE-----
 MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUA
 MEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQD
@@ -668,7 +668,7 @@ PfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6
 KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
 -----END CERTIFICATE-----</code></pre>
           <p>これを登録するリクエストは以下のようになる。
-          <pre class=bash><code translate=no>$ curl -H &apos;Content-Type:application/json&apos; \
+          <pre class=bash data-code=bash><code translate=no class=language-bash>$ curl -H &apos;Content-Type:application/json&apos; \
        -d &apos;{
          &quot;chain&quot;: [
            &quot;MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUAMEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQDExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xODAzMDYwNjA5MDZaFw0xODA2MDQwNjA5MDZaMBIxEDAOBgNVBAMTB2p4Y2suaW8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7UnbgMfyQOVAqOp9oNjcoHZ2p0H0sUkFERYzZ2VXXJRkg7QzFrZTAP7jdxw/HEhkMJTMNlX59cvEyxiEbgNqTLYQjwSP1Ibgtkjzq2EPlm2SsFkq6vwbuydZA31HQa2vEYqZzo9RUG69T4URUotmtZBTWqW5w8m9l9xwCuInzOxS8990rVW27FiWtSF+4HI/mBTzHAX/w1dJRaT9ESrWJnmKYcYCBayCswEfp9b6uOgNWASZBd67lKE2AfE0FDdgKclElttBbvK8Kl2TNpCzwRwwzt54Bt9AFt8MZr4p4SKUjuj5GkcFrlnvyESbXJuyZwnnUCNkbxxYP0LfsgfmnAgMBAAGjggLTMIICzzAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMnlleIsgD60xDmW8Pz/yWKKPjk4MB8GA1UdIwQYMBaAFKhKamMEfd265tE5t6ZFZe/zqOyhMG8GCCsGAQUFBwEBBGMwYTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AuaW50LXgzLmxldHNlbmNyeXB0Lm9yZzAvBggrBgEFBQcwAoYjaHR0cDovL2NlcnQuaW50LXgzLmxldHNlbmNyeXB0Lm9yZy8wgd0GA1UdEQSB1TCB0oINYWRtaW4uanhjay5pb4ILYXBpLmp4Y2suaW+CDGJsb2cuanhjay5pb4INZmlsZXMuanhjay5pb4IHanhjay5pb4IMbGFiMi5qeGNrLmlvggxsYWJzLmp4Y2suaW+CDGxvZ28uanhjay5pb4INcmFpbHMuanhjay5pb4IScmVwb3J0LXVyaS5qeGNrLmlvggtzZnUuanhjay5pb4INc2xpZGUuanhjay5pb4IMc3BlYy5qeGNrLmlvggp3cy5qeGNrLmlvggt3d3cuanhjay5pbzCB/gYDVR0gBIH2MIHzMAgGBmeBDAECATCB5gYLKwYBBAGC3xMBAQEwgdYwJgYIKwYBBQUHAgEWGmh0dHA6Ly9jcHMubGV0c2VuY3J5cHQub3JnMIGrBggrBgEFBQcCAjCBngyBm1RoaXMgQ2VydGlmaWNhdGUgbWF5IG9ubHkgYmUgcmVsaWVkIHVwb24gYnkgUmVseWluZyBQYXJ0aWVzIGFuZCBvbmx5IGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgQ2VydGlmaWNhdGUgUG9saWN5IGZvdW5kIGF0IGh0dHBzOi8vbGV0c2VuY3J5cHQub3JnL3JlcG9zaXRvcnkvMA0GCSqGSIb3DQEBCwUAA4IBAQA6Tnb6wxUgQE7mnf8N+5PgIzC5ebxjGps/I2ppEqnvuAECdrkWySdqPDG8e7lyuyxzzav6FTFUb3y8EwDrdT+UDquewpv6TxoP1NcnuMRhpjV41Y/otxRW53+Fz+g+Ub4XTnrJmK98aq8vzyMpvkWhHPMfs2xRsIkNH6L/T0h+8AL7MpKLiuqiy9SA4COVjNLX5Z2ZyK/xPaNhfJ1jv7vs/fvIGNLtJ7sCwVa54r8OycNVd1nj9zVFmtJ554S3fRBNFI5vZNJJw4npN1/q1bQ1B7oo8U1pLunDxqhvNHO247WDRVBeCvJLuZGZJc4g35W97iUTVVbwPLVfK4o82MOD&quot;,
@@ -676,7 +676,7 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
          ] }&apos; \
      https://ct.googleapis.com/pilot/ct/v1/add-chain | jq .</code></pre>
           <p>すると SCT(timestamp) を含む JSON が返る。
-          <pre class=json><code translate=no>{
+          <pre class=json data-code=json><code translate=no class=language-json>{
   &quot;sct_version&quot;: 0,
   &quot;id&quot;: &quot;pLkJkLQYWBSHuxOizGdwCjw1mAT5G9+443fNDsgN3BA=&quot;,
   &quot;timestamp&quot;: 1520466748750,
@@ -689,7 +689,7 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
           <h3 id="証明書の存在確認"><a href="#証明書の存在確認">証明書の存在確認</a></h3>
           <p>次にこの証明書が登録されていることを確認してみる。
           <p>まず、現時点での tree_size を取得する。
-          <pre class=bash><code translate=no>$ curl &apos;https://ct.googleapis.com/pilot/ct/v1/get-sth&apos; | jq .
+          <pre class=bash data-code=bash><code translate=no class=language-bash>$ curl &apos;https://ct.googleapis.com/pilot/ct/v1/get-sth&apos; | jq .
 {
   &quot;tree_size&quot;: 237390491,
   &quot;timestamp&quot;: 1521715637642,
@@ -699,7 +699,7 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
           <p>SCT から計算した Hash と、 tree_size をパラメータにし、リクエストを投げると結果が返る。
           <p>Hash はバイナリ演算が必要なため、書き捨てのスクリプトで行ったものを参考までに貼っておく。
           <p><a href="./ct.rb">ct.rb</a>
-          <pre class=bash><code translate=no>$ curl &apos;https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&amp;tree_size=237363285&apos; | jq .
+          <pre class=bash data-code=bash><code translate=no class=language-bash>$ curl &apos;https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&amp;tree_size=237363285&apos; | jq .
 {
   &quot;leaf_index&quot;: 229437452,
   &quot;audit_path&quot;: [
@@ -761,7 +761,7 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
           </picture>
         </p>
         <p>また、 <code translate=no>jxck.io</code> および <code translate=no>blog.jxck.io</code> に Expect-CT ヘッダを Enforce 無し(Report-Only 相当) で適用した。
-        <pre class=http><code translate=no>Expect-Ct: max-age=31536000, report-uri https://report-uri.example.com</code></pre>
+        <pre class=http data-code=http><code translate=no class=language-http>Expect-Ct: max-age=31536000, report-uri https://report-uri.example.com</code></pre>
         <p>HPKP をデプロイした時も、レポートなど来ないだろうと思っていたが、ある特定のサービスからレポートが頻繁に来ていた。
         <p>Expect-CT も、実際にどういうレポートが発生するのか未知であるため、知見を貯めていきたい。
       </section>

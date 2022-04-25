@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -181,12 +181,12 @@
           <p>CSRF は、この SNS の場合、別の罠サイトを用意し SNS への正規の投稿と同じリクエストを作り出すことで、ユーザに対して意図しない投稿を行わせるといった攻撃である。
           <p>例えば、正規の投稿はログイン状態で <code translate=no>https://sns.example.com/posts/new</code> にある以下の form から行うものであったとする。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=html><code translate=no>&lt;form action=/posts method=post&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;form action=/posts method=post&gt;
   &lt;textarea name=msg&gt;hello&lt;/textarea&gt;
   &lt;button type=submit&gt;post&lt;/button&gt;
 &lt;/form&gt;</code></pre>
           <p>この form を submit した時に送信される HTTP Request の概観は以下のようになるだろう
-          <pre class=http><code translate=no>POST /posts HTTP/1.1
+          <pre class=http data-code=http><code translate=no class=language-http>POST /posts HTTP/1.1
 Host: sns.example.com
 Cookie: deadbeef
 Origin: https://sns.example.com
@@ -195,14 +195,14 @@ Referer: https://sns.example.com/posts/new
 msg=hello</code></pre>
           <p>サーバは、 Cookie の正当性を確認し、正ければ投稿を受け付ける。
           <p>ここで、攻撃者は <code translate=no>https://darkside.jxck.io/csrf</code> に以下のような HTML を仕込んだ罠ページを用意する。
-          <pre class=html><code translate=no>&lt;form action=https://sns.example.com/posts/new method=post&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;form action=https://sns.example.com/posts/new method=post&gt;
   &lt;textarea name=msg&gt;こんにちはこんにちは&lt;/textarea&gt;
   &lt;button type=submit&gt;post&lt;/button&gt;
 &lt;/form&gt;</code></pre>
           <p>Form の action に URL 全体を入れている点に注目したい。
           <p>そして、 <code translate=no>https://sns.example.com</code> にログイン済みのユーザをこのページに誘導し、なんらかの方法で submit させる。もしくは Form を隠して JS で強制的に submit してもよい。
           <p>ここで生成される HTTP Request は以下のようになるだろう。
-          <pre class=http><code translate=no>POST /posts HTTP/1.1
+          <pre class=http data-code=http><code translate=no class=language-http>POST /posts HTTP/1.1
 Host: sns.example.com
 Cookie: deadbeef
 Origin: https://darkside.jxck.io/csrf
@@ -220,12 +220,12 @@ msg=こんにちはこんにちは</code></pre>
           <p>そして、残念ながら近年も <a href="https://insert-script.blogspot.jp/2018/05/adobe-reader-pdf-client-side-request.html">そうした脆弱性</a> が見つかっているため、追加で別の対策が求められているのが現状だ。
           <p><a href="https://blog.jxck.io/entries/2018-10-08/referrer-policy.html">参考: Referrer-Policy によるリファラ制御 | blog.jxck.io</a>
           <p>結果として、暗号論的に安全な乱数を One Time Token として生成し、それを Form に hidden で隠して、<em>意図した Form からのリクエスト</em> かを検証する方法が主流となっている。
-          <pre class=html><code translate=no>&lt;form action=https://sns.example.com/posts/new method=post&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;form action=https://sns.example.com/posts/new method=post&gt;
   &lt;textarea name=msg&gt;こんにちはこんにちは&lt;/textarea&gt;
   &lt;input type=hidden name=csrf_token value=asdfqwerzxcv&gt;
   &lt;button type=submit&gt;post&lt;/button&gt;
 &lt;/form&gt;</code></pre>
-          <pre class=http><code translate=no>POST /posts HTTP/1.1
+          <pre class=http data-code=http><code translate=no class=language-http>POST /posts HTTP/1.1
 Host: sns.example.com
 Cookie: deadbeef
 Origin: https://darkside.jxck.io/csrf
@@ -242,7 +242,7 @@ msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
           <p>Web のコンテキストで共通するのは、罠サイトから対象のサービスに向けて XHR などでリクエストを投げさせるというものだろう。
           <p>この時、実際にレスポンスを取得することができなくてもよく、リクエストにかかる時間を計測し、リクエストを変化させた時のレスポンスタイムの変化から機密情報を推測するというシナリオだ。
           <p>例えば先の SNS でユーザのページへリクエストする場合、 block していなければプロフィールページが表示されるが、 block していれば定型文が返るためレスポンスが速いとする。
-          <pre class=js><code translate=no>function timing_attack() {
+          <pre class=js data-code=js><code translate=no class=language-js>function timing_attack() {
   img = new Image()
   t1 = performance.now()
 
@@ -268,7 +268,7 @@ msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
           <p>こうした攻撃は TLS のプロトコルレベルでの解決(暗号方式の変更や圧縮の無効など)によって防ぐことが基本となるうえ、攻撃が成立した場合 Cookie 以外の情報も抜くことは可能である。
           <p>しかし、代表的な攻撃シナリオはやはり、ターゲットを罠サイトなどに誘導し、微妙にペイロードを操作しながら連続でリクエストを発生し、自動で付与される Cookie を推測するというものが多い。
           <p>例えば CRIME の場合は、 Cookie の値が一致すれば圧縮が効きパケットが小さくなることを観測するだけでよい、イメージとしては以下のような感じだ。
-          <pre class=js><code translate=no>for(...) {
+          <pre class=js data-code=js><code translate=no class=language-js>for(...) {
   word = `ここを変えて行く`
   await fetch(&quot;https://sns.example.com/&quot;, {
     body: `Cookie: ${word}`
@@ -287,7 +287,7 @@ msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
         <p>そもそも「<em>他のドメインからのリクエストでも、 Cookie が自動で付与される</em>」という挙動を制御できれば、多くの脆弱性に有効な対策になることがわかっただろう。
         <p>そこで、「この Cookie は他のサイトからのリクエストには <em>付与してはならない</em>」ということを明示的にブラウザに知らせるのが SameSite Cookie である。
         <p>SameSite Cookie は、 Set-Cookie ヘッダに付与する新しい属性であり、現状 2 つの値を取る。
-        <pre class=http><code translate=no>Set-Cookie: key=value; SameSite=Strict
+        <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: key=value; SameSite=Strict
 Set-Cookie: key=value; SameSite=Lax</code></pre>
         <ul>
           <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7">https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7</a>
@@ -391,7 +391,7 @@ Set-Cookie: key=value; SameSite=Lax</code></pre>
           </dl>
           <p>この 2 つに Cookie を分離し、 Write Cookie に Strict を適用すれば、より堅牢な設計となる。
           <p>Read Cookie は、副作用を起こす能力がなくなっているのであれば、 Lax でも SameSite 無しでも良い。
-          <pre class=http><code translate=no>Set-Cookie: read=zxcv; Path=/; Secure; HttpOnly;
+          <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: read=zxcv; Path=/; Secure; HttpOnly;
 Set-Cookie: write=asdf; Path=/; Secure; HttpOnly; SameSite=Strict</code></pre>
           <p>もし新規の開発や改修が可能であるならば、こうした構成も可能かもしれないが、既存のサービスのほとんどはここまで手を入れるのは難しだろう。
           <p>また、 HTTP Method に関わらず、副作用を起こす操作を全て Strict にしているため、例えば前述の足跡や既読のように、別ドメインからの Top Level Navigation で遷移しただけで副作用を起こす設計では、この構成は難しい。

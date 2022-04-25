@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -164,7 +164,7 @@
         <p>まず前提として、現状の Class の フィールドはコンストラクタで定義する必要がある。
         <p>例えば count フィールドを持つ Counter クラスを定義した場合、以下のようになる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   constructor() {
     this.count = 0
   }
@@ -185,7 +185,7 @@ console.log(c.count) // 3</code></pre>
         <p>ここでコンストラクタを介さず、フィールドを定義し初期化する構文が提案されている。
         <p><a href="https://github.com/tc39/proposal-class-fields">tc39/proposal-class-fields</a>
         <p>これが実装されると、以下のように書くことができる。
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   count = 0
   increment() {
     this.count ++
@@ -203,7 +203,7 @@ console.log(c.count) // 3</code></pre>
         <p>中でも Private フィールドについては、他のクラスベースオブジェクト指向の言語では標準であることが多く、これを入れるために議論が行われた。
         <p>現在は、先の class-fields の仕様にマージされ、先に結論を言うと、現状の仕様は以下のようになり、ブラウザの実装が進みつつある。
         <p><a href="https://github.com/tc39/proposal-class-fields">tc39/proposal-class-fields: Orthogonally-informed combination of public and private fields proposals</a>
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   // private field
   #count = 0
   increment() {
@@ -241,7 +241,7 @@ console.log(c.#count) // SyntaxError</code></pre>
         <h2 id="なぜ-private-にするのか"><a href="#なぜ-private-にするのか">なぜ Private にするのか</a></h2>
         <p>Private なフィールドを持つ理由は、意図しないものを外部に公開しないというモチベーションがまずある。
         <p>例えば、これまで Class には Private がなかったため、公開を意図しないフィールドには <code translate=no>_</code> をつけるなどの運用でカバーされてきた。
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   constructor() {
     this._count = 0
   }
@@ -254,14 +254,14 @@ console.log(c.#count) // SyntaxError</code></pre>
 }
 const c = new Counter()</code></pre>
         <p>あくまで意図を示しているだけで、実際にはアクセスできてしまう。
-        <pre class=js><code translate=no>console.log(c._count)</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>console.log(c._count)</code></pre>
         <p>結果、例えばライブラリの中の意図しない部分が開発者によってアクセスされ、実装を変更すると互換性が壊れるといった問題がしばしば起こっていた。
         <p>しかし、別の実装方法を用いると、 Private に近いことは実現が可能だ。
       </section>
       <section>
         <h2 id="symbol-を用いた-soft-private"><a href="#symbol-を用いた-soft-private">Symbol を用いた Soft Private</a></h2>
         <p>Symbol を用いると以下のように書くこともできる。
-        <pre class=js><code translate=no>const Counter = (function() {
+        <pre class=js data-code=js><code translate=no class=language-js>const Counter = (function() {
   const count = Symbol(&quot;count&quot;);
   return class {
     constructor() {
@@ -278,7 +278,7 @@ const c = new Counter()</code></pre>
 const c = new Counter()</code></pre>
         <p>この場合は、シンボルを保持していなければアクセスできない。
         <p>しかし、このシンボル自体は <code translate=no>Object.getOwnPropertySymbols()</code> で取ることができる。
-        <pre class=js><code translate=no>console.log(c[Object.getOwnPropertySymbols(c).pop()])</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>console.log(c[Object.getOwnPropertySymbols(c).pop()])</code></pre>
         <p>これは、通常の(パブリックな)プロパティと同等のアクセス手段は絶っただけで、そうしたプロパティが存在することを知ることが可能であり、かつアクセスする方法も残されている。
         <p>手段は違えど、 Reflection などで Private にアクセスできる言語は他にもあり、それと似ている。
         <p>このような挙動を <em>Soft Private</em> と呼ぶ。
@@ -286,7 +286,7 @@ const c = new Counter()</code></pre>
       <section>
         <h2 id="weakmap-を用いた-hard-private"><a href="#weakmap-を用いた-hard-private">WeakMap を用いた Hard Private</a></h2>
         <p>WeakMap を用いれば、アクセス方法を断つことも可能だ。
-        <pre class=js><code translate=no>const Counter = (function() {
+        <pre class=js data-code=js><code translate=no class=language-js>const Counter = (function() {
   const privates = new WeakMap();
   return class {
     constructor() {
@@ -353,13 +353,13 @@ console.log(c.count) // undefined</code></pre>
       <section>
         <h2 id="構文と動的言語"><a href="#構文と動的言語">構文と動的言語</a></h2>
         <p>まず思いつくのが、 JS がこの時のために予約しており、多くの言語が採用している <code translate=no>private</code> キーワードである。
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   private count = 0
 }</code></pre>
         <p>これで良ければ何の問題もなかったが、これではいくつか問題がある。
         <p>まず、以下のようなコードを考える。
         <p>もし other も Counter であれば、その Private フィールドを返す必要があるが、もし other が別のクラスだったら、単に public なフィールドを返す必要がある。
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   private count = 0
   equals(other) {
     // if (other の型が Counter か) {
@@ -373,7 +373,7 @@ console.log(c.count) // undefined</code></pre>
         <p>これは、 other がどの型であっても、必ず一度は確認処理が入ることを意味する。
         <p>すると、 Private を使ってない既存のコードを含めて、全体的にオーバーヘッドが増えそうなことが、想像に難くないだろう。
         <p>また、以下のように Private と同じ名前の public なフィールドが定義できてしまうことは、コード自体の誤認をおこしやすい。
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   private count = 0
   increment() {
     this.count += 1
@@ -391,7 +391,7 @@ c.count = 10 // 実際には public</code></pre>
         <h2 id="syntax-の導入"><a href="#syntax-の導入">Syntax の導入</a></h2>
         <p>Private フィールドを導入しつつ、既存のコードに影響を与えないパフォーマンスやセマンティクスを実現する方法として、構文の拡張が考えられる。
         <p>そこで、結果として <code translate=no>#</code> を prefix としたこの構文になった。
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   #count = 0
   increment() {
     this.#count ++
@@ -430,7 +430,7 @@ console.log(c.#count) // syntax error</code></pre>
         </ul>
         <p><code translate=no>%</code> は、中置演算子としては使われるが接頭辞には使われてないので、使えそうではあった。
         <p>しかし、以下のようなコードを考える。
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   %x;
   method() {
     calculate().my().value()
@@ -445,7 +445,7 @@ console.log(c.#count) // syntax error</code></pre>
       <section>
         <h2 id="short-hand"><a href="#short-hand">Short Hand</a></h2>
         <p>現在、以下のコードで <code translate=no>this.#count</code> の <code translate=no>this.</code> を省略することはできない。
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   #count = 0
   increment() {
     this.#count ++
@@ -453,7 +453,7 @@ console.log(c.#count) // syntax error</code></pre>
 }</code></pre>
         <p>将来的にはこれは省略するショートハンドを定義する余地は残っている。
         <p>実現すればこう書けるだろう。
-        <pre class=js><code translate=no>class Counter {
+        <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   #count = 0
   increment() {
     #count ++
@@ -462,7 +462,7 @@ console.log(c.#count) // syntax error</code></pre>
         <p>ちなみに、この余地を残すために却下された提案として、 <code translate=no>#</code> の前にドットを置かない記法もあった。
         <p><a href="https://github.com/tc39/proposal-private-fields/issues/39">Why not use obj#prop instead obj.#prop ? #39</a>
         <p>これがあれば <code translate=no>this#count</code> や <code translate=no>c#count</code> と書ける。
-        <pre class=js><code translate=no>class X {
+        <pre class=js data-code=js><code translate=no class=language-js>class X {
   #y
   z() {
     w()
@@ -470,7 +470,7 @@ console.log(c.#count) // syntax error</code></pre>
   }
 }</code></pre>
         <p>しかし、これを許すと、ショートハンドが入った際に問題が出る。
-        <pre class=js><code translate=no>class X {
+        <pre class=js data-code=js><code translate=no class=language-js>class X {
   #y
   z() {
     w()
@@ -483,12 +483,12 @@ console.log(c.#count) // syntax error</code></pre>
         <h2 id="dynamic-access"><a href="#dynamic-access">Dynamic Access</a></h2>
         <p><code translate=no>this.#x</code> を <code translate=no>this.[&quot;#x&quot;]</code> と書くことはできない。
         <p>まず、動的なアクセスの場合は <code translate=no>[&quot;#x&quot;]</code> は今の JS でも valid だ。
-        <pre class=js><code translate=no>o = {}
+        <pre class=js data-code=js><code translate=no class=language-js>o = {}
 o[&quot;#x&quot;] = 10
 o // {&quot;#x&quot;: 10}</code></pre>
         <p>これは既存のコードでもあり得るが、アクセス方法も <code translate=no>o[&quot;#x&quot;]</code> しかなく、 <code translate=no>.#x</code> でアクセスするコードは既存にはないので両方を許さなければ競合はしない。
         <p>また、動的に Private にアクセスできるとうことは、以下のようなことができてしまうことを意味する。
-        <pre class=js><code translate=no>class Dict {
+        <pre class=js data-code=js><code translate=no class=language-js>class Dict {
   #secret = &apos;secret values&apos;
   add(key, value) {
     this[key] = value;
@@ -506,7 +506,7 @@ dict.get(&apos;#secret&apos;); // secret values</code></pre>
         <h2 id="継承時の挙動"><a href="#継承時の挙動">継承時の挙動</a></h2>
         <p>Hard Private なので親クラス、子クラスからもアクセスできない。
         <p>例えば <code translate=no>super.#x</code> といったアクセスはできないため、以下の Point3D の <code translate=no>equals()</code> は前半を親に移譲することになる。
-        <pre class=js><code translate=no>class Point2D {
+        <pre class=js data-code=js><code translate=no class=language-js>class Point2D {
   #x;
   #y;
 
@@ -546,7 +546,7 @@ console.log(p1.display())</code></pre>
         <p>そこで、今後の拡張は Decorator ベースでやっていくのが良いのではないかと言う提案が出ている。
         <p><a href="https://github.com/littledan/proposal-reserved-decorator-like-syntax">littledan/proposal-reserved-decorator-like-syntax: Reserved decorator-like syntax as an extension point for future JavaScript syntax</a>
         <p>具体的には、以下のように今は書けない <code translate=no>[decorator]</code> とカッコを用いた構文を今のうちに予約しておくというものだ。
-        <pre class=js><code translate=no>@[typed]
+        <pre class=js data-code=js><code translate=no class=language-js>@[typed]
 class Point {
   @[type(float64)]
   #x;

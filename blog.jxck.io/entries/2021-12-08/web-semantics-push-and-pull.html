@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -163,7 +163,7 @@
         <p>身近な例として HTML の <a href="https://html.spec.whatwg.org/multipage/semantics.html#the-title-element"><code translate=no>&lt;title&gt;</code></a> を考えてみよう。
         <p><code translate=no>&lt;title&gt;</code> にはその文書のタイトルが入る。これは仕様にも明らかだ。例えばこのエントリだとタイトルタグは以下のような実装が考えられる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=html><code translate=no>&lt;title&gt;Web のセマンティクスにおける Push と Pull&lt;/title&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;title&gt;Web のセマンティクスにおける Push と Pull&lt;/title&gt;</code></pre>
         <p>同じく HTML を理解する各実装は、これを以下のように扱う。
         <ul>
           <li>ブラウザがタイトルバーやブックマークに表示する
@@ -179,7 +179,7 @@
           <img loading=lazy decoding=async src=pull.svg?211208_021838 alt="あらゆるクライアントに対してコンテンツを提供する" title="pull semantics" width=744 height=537>
         </p>
         <p>しかし、見ればわかるが筆者が実際に本サイトで行っている実装はこうだ。
-        <pre class=html><code translate=no>&lt;title&gt;Web のセマンティクスにおける Push と Pull | blog.jxck.io&lt;/title&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;title&gt;Web のセマンティクスにおける Push と Pull | blog.jxck.io&lt;/title&gt;</code></pre>
         <p>後ろにサイト名を補足している。本来の「独立した文書の表題」という観点でいえば、そこにサイト名は入らないだろう。しかし周知の通り、このように後ろにサイト名を入れる実装は、非常に一般的に行われている。
         <p>それはなぜだろうか?
         <p>理由の 1 つには、「純粋にタイトルだけが流通した場合に、どのサイトのものなのかがわかりにくい」という問題への対策があるだろう。特に SNS などでの流通を意識すると、それがどのサイトであるかを示した方がわかりやすい場合がある。他にも、サーチャビリティ/エゴサビリティの観点で、一意なサフィックスが共通して付与されていると便利な場面も想像できる。
@@ -190,7 +190,7 @@
           <img loading=lazy decoding=async src=push.svg?211208_021838 alt="特定のクライアントに対して最適化したコンテンツを提供する" title="push semantics" width=744 height=537>
         </p>
         <p>本来 <code translate=no>&lt;title&gt;</code> だけの流通で不便があり、サイト名などを補完する方が良いというユースケースがあるのならば、それを仕様にすることで解決するのが標準化だ。この例では、サイト名を含めるための <code translate=no>&lt;site&gt;</code> タグを標準化し、提供側は以下のようにそれを導入するといった方法が考えられる。
-        <pre class=html><code translate=no>&lt;title&gt;Web のセマンティクスにおける Push と Pull&lt;/title&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;title&gt;Web のセマンティクスにおける Push と Pull&lt;/title&gt;
 &lt;site&gt;blog.jxck.io&lt;/site&gt;</code></pre>
         <p>消費側は、 &quot;タイトル&quot; と &quot;サイト名&quot; をそれぞれ取得できるため、 <code translate=no>${title} | ${site}</code> などのように組み合わせて消費/流通してもよい。もちろん一行の文字列にせずとも、カード型の UI を作って表示しても良い。選択肢に対して何を選択するかは自由だ。
         <p>この <code translate=no>&lt;site&gt;</code> の標準化は、特定の実装に寄せる <em>Push 型の実装</em> が必要だったユースケースを、標準化によって <em>Pull 型の実装</em> に引き戻すことを意味する。
@@ -205,18 +205,18 @@
         <h2 id="srcset-と-client-hints"><a href="#srcset-と-client-hints">srcset と Client-Hints</a></h2>
         <p>画像を表示する際に、デバイスの DPR を意識して出し分けを行う場合を考えてみよう。ここでは DPR が x1, x2, x4 のサポートを想定する。
         <p>まず <code translate=no>&lt;img&gt;</code> の <code translate=no>srcset</code> 属性を使えば、両方の画像を以下のように出し分けられる。
-        <pre class=html><code translate=no>&lt;img srcset=&quot;img-300w.jpeg,
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;img srcset=&quot;img-300w.jpeg,
              img-600w.jpeg  2x,
              img-1200w.jpeg 4x&quot;
         src=&quot;img-300w.jpeg&quot;&gt;</code></pre>
         <p>一方、昨今 <code translate=no>User-Agent</code> ヘッダで話題になっている Client Hints の仕様は、もともとこの DPR の情報などを HTTP のリクエストヘッダで送りたいというモチベーションから始まった。
-        <pre class=http><code translate=no># response
+        <pre class=http data-code=http><code translate=no class=language-http># response
 Accept-CH: DPR
 
 # request
 DPR: 2</code></pre>
         <p>このヘッダを用いれば、ブラウザが送ってくる DPR に応じてサーバ側で画像を出し分けることができる。
-        <pre class=js><code translate=no>// DPR ヘッダによって x1, x2, x3 が送られる
+        <pre class=js data-code=js><code translate=no class=language-js>// DPR ヘッダによって x1, x2, x3 が送られる
 const dpr = req.headers.get(&quot;dpr&quot;);
 if (dpr === 1) {
   res.send(&quot;img-300w.jpg&quot;);
@@ -228,24 +228,24 @@ if (dpr === 1) {
   // ??
 }</code></pre>
         <p>すると、 HTML は以下のままで良い。
-        <pre class=html><code translate=no>&lt;!-- img タグ自体は 1 つだが、解像度に応じて画像は変わる --&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- img タグ自体は 1 つだが、解像度に応じて画像は変わる --&gt;
 &lt;img src=&quot;img.jpg&quot;&gt;</code></pre>
         <p>さて、読者はどちらが好みだろうか?
         <p>サイト全体の <code translate=no>&lt;img&gt;</code> タグ実装を余すところなく直すのは一般的に大変なので、サーバ設定一発で対応できそうなヘッダ方式の実装は、導入が楽で好まれがちだ。実際に、そうした機能を提供する画像系 CDN サービスは複数存在し、パフォーマンス改善の文脈で導入されている。
         <p>ところで、 <em>デバイス自体の DPR が 2 であることは、サーバが x2 の画像を返すべきことを本当に意味するだろうか?</em>
         <p>仕様上はそのまま「DPR が 2 である」ことを意味する以上の定義はない。それを踏まえてどの画像を返すかをサーバが決めているだけだ、これも Push 型の実装ととらえることができる。
         <p>例えば、 DPR が 4 の端末だが、月末で既にパケ死していて、帯域が制限されていたら、それでも x4 画像が表示されることをユーザは望むだろうか? これを明示的に示すために、同じく Client Hints に提案された <code translate=no>Save-Data</code> が一緒に送られてきたら、どっちをとるべきだろうか？
-        <pre class=http><code translate=no># 何を返す?
+        <pre class=http data-code=http><code translate=no class=language-http># 何を返す?
 DPR: 4
 Save-Data: on</code></pre>
         <p>他にも、仮に DPR が 4 だが実際は Width 300 程度の超高精細時計型ディスプレイがあった場合、そこに表示される DPR 2 と 4 の差は人間に認識できるだろうか? それでも x4 を返すべきだろうか?
-        <pre class=http><code translate=no># 何を返す?
+        <pre class=http data-code=http><code translate=no class=language-http># 何を返す?
 DPR: 4
 Width: 300</code></pre>
         <p>クライアントからありとあらゆる情報を収集し、それを条件に分岐を書くことで「クライアントが求める適切なものはこれだ」と思うものを想像で返す実装は可能だ。しかし、それはどこまでいっても提供側の「思い込み」の可能性がある。もっと酷く言えば、この画像を表示させたいという「提供側の都合を押し付けている」だけとも言えるかもしれない。
         <p>クライアントは多様な実装があり、それを使っているユーザにも多様な「条件」や「状態」や「都合」があるため、その全てのケースをカバーする実装がサーバ側でできるとは限らない。正確に言えば <em>どこまでやっても開発者の想像の域を出ない</em>。
         <p>一方 <code translate=no>&lt;img&gt;</code> での実装を見てみよう。
-        <pre class=html><code translate=no>&lt;img srcset=&quot;img-300w.jpeg,
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;img srcset=&quot;img-300w.jpeg,
              img-600w.jpeg 2x,
              img-1200w.jpeg 4x&quot;
         src=&quot;img-300w.jpeg&quot;&gt;</code></pre>
@@ -270,7 +270,7 @@ Width: 300</code></pre>
         <p>この後、 Microsoft が IE をリリースするにあたって、本来ならば以下のようにできただろう。
         <pre><code translate=no>MSIE/1.0 (Windows 3.1)</code></pre>
         <p>ところが当時非常に重宝されていた <code translate=no>&lt;frame&gt;</code> タグは、 Mozilla Netscape は対応していたが、 Mosaic は対応していなかった。そこで Web 開発者は、 <code translate=no>Mozilla</code> か <code translate=no>Mosaic</code> かで分岐し <code translate=no>&lt;frame&gt;</code> の出し分けをしていた。当時はメジャーなブラウザが 2 つしかなかったので、結果以下のような実装が横行した。
-        <pre class=js><code translate=no>function frame_supported(user_agent) {
+        <pre class=js data-code=js><code translate=no class=language-js>function frame_supported(user_agent) {
   if (user_agent.includes(&quot;Mozilla&quot;)) {
     return true
   } else {
@@ -289,7 +289,7 @@ Width: 300</code></pre>
       <section>
         <h2 id="wi-fi-かどうか"><a href="#wi-fi-かどうか">Wi-Fi かどうか</a></h2>
         <p><a href="https://wicg.github.io/netinfo/">Network Infromation API</a> は、接続しているネットワークが Wi-Fi なのか Cellular なのかを取れるようにしようとしているが、この仕様を見て「<em>Wi-Fi だったら大きいデータを送り、 Cellular だったら小さいデータを送る</em>」というユースケースが紹介されることがある。
-        <pre class=js><code translate=no>if (navigator.connection.type === &quot;wifi&quot;) {
+        <pre class=js data-code=js><code translate=no class=language-js>if (navigator.connection.type === &quot;wifi&quot;) {
   // 大きなデータをダウンロード
 } else {
   // 小さいデータをダウンロード

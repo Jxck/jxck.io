@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -176,7 +176,7 @@
           <p>そこで、 <code translate=no>grid-template-rows</code> / <code translate=no>grid-tempalet-columns</code> へ <code translate=no>masonry</code> を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると <code translate=no>grid: masonry / ${column}</code> になるため、 column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。
           <p>3 列の Masonly Layout は以下だ。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=html><code translate=no>&lt;style&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
 .grid {
   display: inline-grid;
   grid: masonry / repeat(3, auto);
@@ -204,7 +204,7 @@ img {
           </ul>
           <p>デフォルトでは、敷き詰める際に一番余白が空いているところに画像が挿入される。
           <p>これを制御するプロパティとして <code translate=no>masonry-auto-flow</code> が定義されており <code translate=no>next</code> にすると画像の HTML 上での出現順に積み上げるようにすることもできる。
-          <pre class=css><code translate=no>masonry-auto-flow: pack;
+          <pre class=css data-code=css><code translate=no class=language-css>masonry-auto-flow: pack;
 masonry-auto-flow: next;</code></pre>
           <p>他の値もあるがまだ定義が明示されてないようだ。このあたりのアルゴリズムは要件によって多様だと思われるため、仕様の策定とともに変わる可能性は高いだろう。
           <ul>

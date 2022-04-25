@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -236,7 +236,7 @@
         <p>当時 Netscape Navigator が、コードネームの <code translate=no>Mozilla</code> を UA に含んでおり、それを見て(Sniffing)処理を分岐していたサービスがあったようだ。
         <p>サーバ側の疑似コードとしてはこのようなイメージだ。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=js><code translate=no>if (UserAgent.match(/Mozilla.*/)) {
+        <pre class=js data-code=js><code translate=no class=language-js>if (UserAgent.match(/Mozilla.*/)) {
   // Netscape 用の処理
 }</code></pre>
         <p>すると、競合だった IE は素直に <code translate=no>MSIE...</code> で始まる UA を送ると、そのサービスが動作せず、ユーザに「使えないブラウザ」と認定されてしまう。
@@ -256,15 +256,15 @@
           <h3 id="js"><a href="#js">JS</a></h3>
           <p>対象がプログラムであるため、比較的簡単に行える。
           <p>多くの DOM API はクラスやプロパティの有無によって判断が可能だ。
-          <pre class=js><code translate=no>if (navigator.serviceWorker !== undefined) {
+          <pre class=js data-code=js><code translate=no class=language-js>if (navigator.serviceWorker !== undefined) {
   // service worker supported
 }</code></pre>
           <p>ECMAScript API (JS native の機能)の場合もメソッドの場合は同様に prototype などで判断する。
-          <pre class=js><code translate=no>if (String.prototype.padStart !== undefined) {
+          <pre class=js data-code=js><code translate=no class=language-js>if (String.prototype.padStart !== undefined) {
   // padStart supported
 }</code></pre>
           <p>構文の場合は物によるが、例えば ES Module サポートをどうしても調べたいといった場合は以下のような手段が一応ある。
-          <pre class=js><code translate=no>function supportsStaticImport() {
+          <pre class=js data-code=js><code translate=no class=language-js>function supportsStaticImport() {
   const script = document.createElement(&apos;script&apos;)
   return &apos;noModule&apos; in script
 }
@@ -283,7 +283,7 @@ function supportsDynamicImport() {
           <h3 id="css"><a href="#css">CSS</a></h3>
           <p>CSS はいわゆるプログラミング言語ではないため、基本的には Detection をするよりも、 Progressive Enhancement で進めてきた。
           <p>しかし、 CSS の API も複雑になってきたため最近では <code translate=no>@support</code> を用いた Detection がサポートされている。
-          <pre class=css><code translate=no>@supports (display: flex) {
+          <pre class=css data-code=css><code translate=no class=language-css>@supports (display: flex) {
   /* flexbox supported */
 }</code></pre>
           <p><code translate=no>and</code>, <code translate=no>or</code>, <code translate=no>not</code> などもあり、是非は別として複雑な Detection も可能となってきた。
@@ -308,7 +308,7 @@ function supportsDynamicImport() {
           <h3 id="content-negotiation"><a href="#content-negotiation">Content Negotiation</a></h3>
           <p>通信やフォーマットに関わるものは HTTP ヘッダによるネゴシエーションが基本である。
           <p>例えば、 Brotli や WebP のサポートなどは以下のように明示される場合がある。
-          <pre class=http><code translate=no>Accept-Encoding: gzip, deflate, br
+          <pre class=http data-code=http><code translate=no class=language-http>Accept-Encoding: gzip, deflate, br
 Accept: image/webp,image/apng,image/*,*/*;q=0.8</code></pre>
           <p>ヘッダのデフォルト情報は、それが使われるか使われないかに限らず、ブラウザからのリクエストの大半に付与されることになる。
           <p>Brotli 対応が <code translate=no>, br</code> という 4byte であったとしても、メジャーブラウザが Web のスケールで使われると、無視できる数字ではない。
@@ -316,9 +316,9 @@ Accept: image/webp,image/apng,image/*,*/*;q=0.8</code></pre>
           <p>従って、ブラウザベンダは、ヘッダの追加には非常に慎重である。
           <p>これは、新しいフォーマットが出るたびに、ヘッダの値が増えていくかというと、必ずしも期待できないことを意味する。
           <p>最近では、デフォルトではない追加の情報については、サーバから Client Hints で要求することもできる。
-          <pre class=http><code translate=no>Accept-CH: DPR, Viewport-Width</code></pre>
+          <pre class=http data-code=http><code translate=no class=language-http>Accept-CH: DPR, Viewport-Width</code></pre>
           <p>レスポンスに要求した値が載ってくる。
-          <pre class=http><code translate=no>Viewport-Width: 1366
+          <pre class=http data-code=http><code translate=no class=language-http>Viewport-Width: 1366
 DPR: 1</code></pre>
           <p>1RTT 必要になるため、メインリソースのレスポンスで返し、サブリソースで適用させるような用途が中心となる。
         </section>

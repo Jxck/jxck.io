@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -223,7 +223,7 @@
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
           <pre><code translate=no>quic-transport://example.com:3000/echo</code></pre>
           <p>これが JS API で以下のように使われる。
-          <pre class=js><code translate=no>const transport = new QuicTransport(`quic-transport://example.com:3000/echo`)</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>const transport = new QuicTransport(`quic-transport://example.com:3000/echo`)</code></pre>
           <p>WebSocket と比較すると SubProtocol が無い。
           <p>一方でドラフトでは何故か <code translate=no>/.well-known</code> が使えることが明記してあり、もしかしたら(SubProtocol のような)メタ情報や変数が有る場合、ここを何かに使うのかとも思ったが、深読みかもしれない。
         </section>
@@ -240,7 +240,7 @@
         <p>単純な datagram 送受信のサンプルは以下のようになる。
         <p>この場合送受信は un-reliable であり、送達は保証されない。
         <p>WebSocket に似た使用感ではあるが、細かいところが違う。
-        <pre class=js><code translate=no>const url = `quic-transport://example.com:3000/echo`
+        <pre class=js data-code=js><code translate=no class=language-js>const url = `quic-transport://example.com:3000/echo`
 const transport = new QuicTransport(url)
 
 await transport.ready
@@ -280,7 +280,7 @@ connected -&gt; closed
 connected -&gt; failed</code></pre>
           <p>この議論の結果によっては、 EventTarget にならなくなり、 developer experience としては今までと少し違う雰囲気の使用感になりそうだ。
           <p>もし、最近やっと Safari に入り Node でも入りそうな EventTarget を使ったほうが慣れているのであれば、以下のような感じで自分で Wrap することもできるだろう。
-          <pre class=js><code translate=no>class Transport extends EventTarget {
+          <pre class=js data-code=js><code translate=no class=language-js>class Transport extends EventTarget {
   constructor(url) {
     super()
     this.transport = new QuicTransport(url)
@@ -314,7 +314,7 @@ connected -&gt; failed</code></pre>
           <h3 id="stream"><a href="#stream">Stream</a></h3>
           <p>WebTransport の API は最初から Stream が考慮された実装になっている。
           <p>API interface 的に言うと、現状の定義は以下のようになっている。
-          <pre class=js><code translate=no>interface QuicTransport {}
+          <pre class=js data-code=js><code translate=no class=language-js>interface QuicTransport {}
 QuicTransport includes UnidirectionalStreamsTransport;
 QuicTransport includes BidirectionalStreamsTransport;
 QuicTransport includes DatagramTransport;
@@ -322,13 +322,13 @@ QuicTransport includes WebTransport;</code></pre>
           <p>Http3Transport も同じように 4 つ includes している。
           <p>そもそも WebTransport interface が 3 つ includes すれば良さそうだが、これは将来別の Transport パターンが実装されることがあった場合の拡張性だろうか。
           <p>UnidirectionalStreamTransport は以下のような定義だ。
-          <pre class=js><code translate=no>interface mixin UnidirectionalStreamsTransport {
+          <pre class=js data-code=js><code translate=no class=language-js>interface mixin UnidirectionalStreamsTransport {
   Promise&lt;SendStream&gt; createSendStream(optional SendStreamParameters parameters = {});
   ReadableStream receiveStreams();
 };</code></pre>
           <p>クライアントからサーバに対する 1 方向の場合は <code translate=no>createSendStream</code> を、逆は <code translate=no>receiveStreams()</code> によって、必要な Stream が得られる。
           <p>一方 BidirectionalStreamTransport の定義はこうだ。
-          <pre class=js><code translate=no>interface mixin BidirectionalStreamsTransport {
+          <pre class=js data-code=js><code translate=no class=language-js>interface mixin BidirectionalStreamsTransport {
   Promise&lt;BidirectionalStream&gt; createBidirectionalStream();
   ReadableStream receiveBidirectionalStreams();
 };</code></pre>
@@ -336,7 +336,7 @@ QuicTransport includes WebTransport;</code></pre>
           <p>(Uni/Bi)Directional x (Client/Server)Initiated が全てサポートされて Stream が得られるので、エコシステム的に言えば、 Sink/Source を定義して Stream を用意しておけば、 QUIC のメリットを活かしつつアプリケーションを組むことができる。
           <p>例として Bi-dir で <code translate=no>&lt;textarea&gt;</code> の入力を送り echo back で表示するサンプルを以下に作成した。
           <p>肝になる部分は以下のようになる。
-          <pre class=js><code translate=no>const transport = new QuicTransport(url)
+          <pre class=js data-code=js><code translate=no class=language-js>const transport = new QuicTransport(url)
 await transport.ready
 const {readable, writable} = await transport.createBidirectionalStream()
 

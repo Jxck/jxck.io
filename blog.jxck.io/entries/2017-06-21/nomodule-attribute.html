@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -154,14 +154,14 @@
         <p>classic script (module ではない JS) は、 <code translate=no>&lt;script&gt;</code> で指定すると、取得解析しそのまま実行される。
         <p>type は省略されることが多いが、その場合 <code translate=no>text/javascript</code> と解釈されている。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=html><code translate=no>&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;</code></pre>
         <p>一方、 module script (module として実装された JS) は、 <code translate=no>import/export</code> の処理や依存の解決など、これまでと異なる扱いが必要となる。
         <p>そこで、ブラウザにおいては同じ <code translate=no>&lt;script&gt;</code> で指定するが、新規に導入された <code translate=no>type=module</code> を指定し、 module script であることを明示することとなった。
-        <pre class=html><code translate=no>&lt;script type=module src=module.js&gt;&lt;/script&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=module src=module.js&gt;&lt;/script&gt;</code></pre>
         <p>しかし、 ES Modules に対応していないブラウザは <code translate=no>type=module</code> を知らないため、 <code translate=no>&lt;script&gt;</code> そのものを無視する。
         <p>結果、これだけでは何も実行されない。
         <p>かといって、両方書くと両方実行されてしまうためなんらかの切り分けの方法が必要だった。
-        <pre class=html><code translate=no>&lt;!-- module 対応ブラウザでは両方動く --&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- module 対応ブラウザでは両方動く --&gt;
 &lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;
 &lt;script type=module src=module.js&gt;&lt;/script&gt;</code></pre>
       </section>
@@ -177,7 +177,7 @@
           <li>どちらでも実行したい classic script の <code translate=no>analytics.js</code> を提供する。
         </ul>
         <p>この場合、以下のように指定できる。
-        <pre class=html><code translate=no>&lt;script type=module src=module.js&gt;&lt;/script&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=module src=module.js&gt;&lt;/script&gt;
 &lt;script nomodule type=text/javascript src=bundle.js&gt;&lt;/script&gt;
 &lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
         <p>挙動は ES Modules 対応/非対応によって以下のようになる。
@@ -185,7 +185,7 @@
       <section>
         <h2 id="es-modules-を実装していない場合"><a href="#es-modules-を実装していない場合">ES Modules を実装していない場合</a></h2>
         <p><code translate=no>type=module</code> と <code translate=no>nomodule</code> は知らないため無視され、以下と同等に解釈される。
-        <pre class=html><code translate=no>&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=text/javascript src=bundle.js&gt;&lt;/script&gt;
 &lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
       </section>
       <section>
@@ -194,7 +194,7 @@
         <p>したがって ES Modules に対応したとされた場合は <code translate=no>nomodule</code> が理解されているとみなす。
         <p>この場合、 <code translate=no>type=module</code> と <code translate=no>nomodule</code> を解釈し、 module script を実行する代わりに <code translate=no>nomodule</code> が指定された classic script を無視する。
         <p>結果、以下と同等に解釈される。
-        <pre class=html><code translate=no>&lt;script type=module src=module.js&gt;&lt;/script&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=module src=module.js&gt;&lt;/script&gt;
 &lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
       </section>
       <section>

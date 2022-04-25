@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -179,11 +179,11 @@
         <p>そして、実験が終われば Prefix は取られ、標準プロパティに置きかわり役目を終える。はずだった。
         <p>ところが、実際には多くのコンテンツが以下のようなコードを含む結果となった。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=css><code translate=no>.radius {
+        <pre class=css data-code=css><code translate=no class=language-css>.radius {
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
 }</code></pre>
-        <pre class=js><code translate=no>var peerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>var peerConnection = window.webkitRTCPeerConnection || window.mozRTCPeerConnection;</code></pre>
         <p>このコードには以下のような問題がある。
         <ul>
           <li>webkit/moz 以外のブラウザがその機能を実装しても有効にならない
@@ -191,14 +191,14 @@
           <li>実験だった筈が、挙動を大きく変更しにくい。
         </ul>
         <p>本来は以下のように書かれるべきだった。
-        <pre class=css><code translate=no>.radius {
+        <pre class=css data-code=css><code translate=no class=language-css>.radius {
   -webkit-border-radius: 1em;
   -ms-border-radius: 1em;
   -o-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
 }</code></pre>
-        <pre class=js><code translate=no>var peerConnection = window.RTCPeerConnection
+        <pre class=js data-code=js><code translate=no class=language-js>var peerConnection = window.RTCPeerConnection
                   || window.mozRTCPeerConnection
                   || window.webkitRTCPeerConnection
                   || window.msRTCPeerConnection;</code></pre>
@@ -285,7 +285,7 @@
         <section>
           <h3 id="html-の場合"><a href="#html-の場合">HTML の場合</a></h3>
           <p>HTML ページがある場合は、 <code translate=no>&lt;meta&gt;</code> タグに埋め込むことで、ブラウザがそれを認識し、ページ上で機能が有効になる。
-          <pre class=html><code translate=no>&lt;meta
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;meta
   http-equiv=&quot;origin-trial&quot;
   data-feature=&quot;Foreign Fetch&quot;
   data-expires=&quot;2016-10-27&quot;
@@ -294,7 +294,7 @@
         <section>
           <h3 id="http-header-の場合"><a href="#http-header-の場合">HTTP Header の場合</a></h3>
           <p>HTTP ヘッダの <code translate=no>Origin-Trial</code> ヘッダに埋め込むこともできる。ページの無い API などの場合はこちらを使う。
-          <pre class=http><code translate=no>Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9</code></pre>
+          <pre class=http data-code=http><code translate=no class=language-http>Origin-Trial: AjWBjwNj3D6ajLeOwcUojZHss8sYj1mPvbhnmUQRcdrLzXKs13uUlR4pXvlOB7e9R5oMUNZbngniw6X2SLHlXgYAAABXeyJvcmlnaW4iOiAiaHR0cHM6Ly9sYWJzLmp4Y2suaW86NDQzIiwgImZlYXR1cmUiOiAiRm9yZWlnbkZldGNoIiwgImV4cGlyeSI6IDE0Nzc1OTMwMDB9</code></pre>
         </section>
       </section>
       <section>

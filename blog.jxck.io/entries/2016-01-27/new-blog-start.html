@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -332,7 +332,7 @@
         <p>必ず <code translate=no>.webp</code> も提供する必要がある。
         <p>webp の推奨は以下
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=sh><code translate=no>$ cwebp -q 40 img.png -o img.webp</code></pre>
+        <pre class=sh data-code=sh><code translate=no class=language-sh>$ cwebp -q 40 img.png -o img.webp</code></pre>
       </section>
       <section>
         <h2 id="video"><a href="#video">Video</a></h2>
@@ -345,20 +345,20 @@
         </p>
         <p>必ず <code translate=no>.mp4</code>, <code translate=no>.webm</code> 両方を提供する必要がある。
         <p>Quick Time で screen record を取り gif 的に表示するなら推奨は以下。
-        <pre class=sh><code translate=no># メタデータを消し、 frame rate を 24 にし、Audio を消す
+        <pre class=sh data-code=sh><code translate=no class=language-sh># メタデータを消し、 frame rate を 24 にし、Audio を消す
 $ ffmpeg -i video.mov -map_metadata -1 -r 24 -an video.webm
 $ ffmpeg -i video.mov -map_metadata -1 -r 24 -an video.mp4</code></pre>
         <section>
           <h3 id="サンプルコード"><a href="#サンプルコード">サンプルコード</a></h3>
           <p>インラインの場合は <code translate=no>&lt;code&gt;</code> タグを用いて表現する。
           <p>コードブロックの場合は <code translate=no>&lt;pre&gt;</code> と <code translate=no>&lt;code&gt;</code> を用いて表現する。
-          <pre class=http><code translate=no># デフォルトリクエスト
+          <pre class=http data-code=http><code translate=no class=language-http># デフォルトリクエスト
 GET / HTTP/1.1
 Host: example.com
 User-Agent: browser
 Accept-Encoding: br, gz
 Accept-Language: ja-JP</code></pre>
-          <pre class=js><code translate=no>class Test {
+          <pre class=js data-code=js><code translate=no class=language-js>class Test {
   constructor(arg) {
     this.arg = arg
   }
@@ -371,8 +371,8 @@ const test = new Test(&apos;hello&apos;)
 test.print() // hello</code></pre>
           <p>ファイルからコードを読むこともできる。以下ハイライトテスト用。
           <pre><code translate=no>no tag</code></pre>
-          <pre class=text><code translate=no>hello world</code></pre>
-          <pre class=js data-path=sample.js><code translate=no>class Test {
+          <pre class=text data-code=text><code translate=no class=language-text>hello world</code></pre>
+          <pre class=js data-code=js data-path=sample.js><code translate=no class=language-js>class Test {
   constructor(arg) {
     this.arg = arg
   }
@@ -383,14 +383,14 @@ test.print() // hello</code></pre>
 
 const test = new Test(&apos;hello&apos;)
 test.print() // hello</code></pre>
-          <pre class=rb data-path=../2016-02-17/test.rb><code translate=no>#!/usr/bin/env ruby
+          <pre class=rb data-code=rb data-path=../2016-02-17/test.rb><code translate=no class=language-rb>#!/usr/bin/env ruby
 `rm *.gz`
 `rm result`
 `touch result`
 (1..10)
   .map { |i| i * 10 }
   .each { |i| `time -v -a -o result zopfli --i#{i} -c loading-css-over-http2.html &gt; loading-css-over-http2.html.#{i}.gz` }</code></pre>
-          <pre class=js data-path=../2016-10-27/searchparams.js><code translate=no>const URL = require(&apos;url&apos;).URL;
+          <pre class=js data-code=js data-path=../2016-10-27/searchparams.js><code translate=no class=language-js>const URL = require(&apos;url&apos;).URL;
 
 const u = new URL(&apos;https://jxck.io?log=warn&amp;lang=ja&apos;);
 const searchParams = u.searchParams;
@@ -406,7 +406,7 @@ for ([k, v] of searchParams) {
   // lang ja
   // debug true
 }</code></pre>
-          <pre class=js data-path=../2016-10-27/url-ext.js><code translate=no>const URL = require(&apos;url&apos;).URL;
+          <pre class=js data-code=js data-path=../2016-10-27/url-ext.js><code translate=no class=language-js>const URL = require(&apos;url&apos;).URL;
 
 // 日本語ドメイン
 const jp = new URL(&apos;https://じゃっく.jp&apos;);
@@ -438,7 +438,7 @@ console.log(ja);
 //   pathname: /%E3%81%B1%E3%81%99
 //   search: ?%E3%81%8D%E3%83%BC=%E3%81%B0%E3%82%8A%E3%82%85%E3%83%BC
 // }</code></pre>
-          <pre class=js data-path=../2016-10-27/url.js><code translate=no>const URL = require(&apos;url&apos;).URL;
+          <pre class=js data-code=js data-path=../2016-10-27/url.js><code translate=no class=language-js>const URL = require(&apos;url&apos;).URL;
 
 const u = new URL(&apos;https://jxck:password@blog.jxck.io/path/to/entry?log=true&amp;lang=ja#main&apos;);
 console.log(u);
@@ -452,7 +452,7 @@ console.log(u);
 //   search: ?log=true&amp;lang=ja
 //   hash: #main
 // }</code></pre>
-          <pre class=js data-path=../2016-12-12/random.js><code translate=no>self.addEventListener(&apos;install&apos;, (e) =&gt; {
+          <pre class=js data-code=js data-path=../2016-12-12/random.js><code translate=no class=language-js>self.addEventListener(&apos;install&apos;, (e) =&gt; {
   console.log(&apos;install&apos;);
   e.registerForeignFetch({
     scopes: [&apos;/random/number&apos;], // or self.registration.scope to handle everything
@@ -488,7 +488,7 @@ self.addEventListener(&apos;foreignfetch&apos;, (e) =&gt; {
       })
   );
 });</code></pre>
-          <pre class=js data-path=../2016-12-12/worker.js><code translate=no>const CACHE = &quot;foreign-fetch&quot;;
+          <pre class=js data-code=js data-path=../2016-12-12/worker.js><code translate=no class=language-js>const CACHE = &quot;foreign-fetch&quot;;
 self.addEventListener(&apos;install&apos;, (e) =&gt; {
   console.info(&apos;install&apos;, e);
 
@@ -521,18 +521,18 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
     })
   );
 });</code></pre>
-          <pre class=js data-path=../2017-07-10/ee.js><code translate=no>callback = console.log.bind(console)
+          <pre class=js data-code=js data-path=../2017-07-10/ee.js><code translate=no class=language-js>callback = console.log.bind(console)
 process.on(&apos;foo&apos;, callback)
 process.emit(&apos;foo&apos;, &apos;bar&apos;)
 // bar
 process.removeListener(&apos;foo&apos;, callback)</code></pre>
-          <pre class=js data-path=../2017-07-10/et.js><code translate=no>callback = console.log.bind(console)
+          <pre class=js data-code=js data-path=../2017-07-10/et.js><code translate=no class=language-js>callback = console.log.bind(console)
 $div = document.createElement(&apos;div&apos;)
 $div.addEventListener(&apos;foo&apos;, callback)
 $div.dispatchEvent(new CustomEvent(&apos;foo&apos;, {detail:&apos;bar&apos;}))
 // CustomEvent {type: &quot;foo&quot;, detail: &apos;bar&apos;...
 $div.removeEventListener(&apos;foo&apos;, callback)</code></pre>
-          <pre class=js data-path=../2017-07-10/timer-ee.js><code translate=no>EventEmitter = require(&apos;events&apos;)
+          <pre class=js data-code=js data-path=../2017-07-10/timer-ee.js><code translate=no class=language-js>EventEmitter = require(&apos;events&apos;)
 class Timer extends EventEmitter {
   constructor(interval) {
     super()
@@ -544,7 +544,7 @@ class Timer extends EventEmitter {
 
 timer = new Timer(100)
 timer.on(&apos;tick&apos;, console.log.bind(console))</code></pre>
-          <pre class=js data-path=../2017-07-10/timer-et.js><code translate=no>class Timer extends EventTarget {
+          <pre class=js data-code=js data-path=../2017-07-10/timer-et.js><code translate=no class=language-js>class Timer extends EventTarget {
   constructor(interval) {
     super()
     setInterval(() =&gt; {
@@ -555,7 +555,7 @@ timer.on(&apos;tick&apos;, console.log.bind(console))</code></pre>
 
 timer = new Timer(100)
 timer.addEventListener(&apos;tick&apos;, console.log.bind(console))</code></pre>
-          <pre class=js data-path=../2017-07-19/aborting-fetch.js><code translate=no>function main() {
+          <pre class=js data-code=js data-path=../2017-07-19/aborting-fetch.js><code translate=no class=language-js>function main() {
   // AbortController class が追加される
   const controller = new AbortController()
 
@@ -588,7 +588,7 @@ timer.addEventListener(&apos;tick&apos;, console.log.bind(console))</code></pre>
     controller.abort()
   }, 1000)
 }</code></pre>
-          <pre class=js data-path=../2017-07-19/long-task.js><code translate=no>class LongTask extends EventTarget {
+          <pre class=js data-code=js data-path=../2017-07-19/long-task.js><code translate=no class=language-js>class LongTask extends EventTarget {
   start() {
     //...
   }
@@ -647,7 +647,7 @@ function main() {
     controller.abort()
   }, 1000)
 }</code></pre>
-          <pre class=js data-path=../2017-07-19/race-fetch.js><code translate=no>const controlle = new AbortController()
+          <pre class=js data-code=js data-path=../2017-07-19/race-fetch.js><code translate=no class=language-js>const controlle = new AbortController()
 const signal = controller.signal
 
 // 同じリソースを複数のミラーに問い合わせて
@@ -672,7 +672,7 @@ Promise.race([
   // race の失敗
   console.error(err)
 })</code></pre>
-          <pre class=erlang data-path=../2018-01-14/erlang-record-to-map.erl><code translate=no>#!/usr/bin/env escript
+          <pre class=erlang data-code=erlang data-path=../2018-01-14/erlang-record-to-map.erl><code translate=no class=language-erlang>#!/usr/bin/env escript
 -module(main).
 
 -mode(compile).
@@ -688,7 +688,7 @@ main(_) -&gt;
     ?Log(Point),
     ?Log(?RtoM(point, Point)),
     ok.</code></pre>
-          <pre class=rb data-path=../2018-03-27/ct.rb><code translate=no>#!/usr/bin/env ruby
+          <pre class=rb data-code=rb data-path=../2018-03-27/ct.rb><code translate=no class=language-rb>#!/usr/bin/env ruby
 require &quot;base64&quot;
 require &quot;json&quot;
 require &quot;net/http&quot;
@@ -792,14 +792,14 @@ def main(host = &quot;ct.googleapis.com/pilot&quot;, pemfile)
   puts &quot;&quot;
   get_proof_by_hash(host, chain[0], tree_size, timestamp)
 end</code></pre>
-          <pre class=shell data-path=../2018-03-27/ct.sh><code translate=no>curl -H &apos;Content-Type:application/json&apos; \
+          <pre class=shell data-code=shell data-path=../2018-03-27/ct.sh><code translate=no class=language-shell>curl -H &apos;Content-Type:application/json&apos; \
      -d &apos;{ &quot;chain&quot;: [&quot;MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUAMEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQDExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xODAzMDYwNjA5MDZaFw0xODA2MDQwNjA5MDZaMBIxEDAOBgNVBAMTB2p4Y2suaW8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7UnbgMfyQOVAqOp9oNjcoHZ2p0H0sUkFERYzZ2VXXJRkg7QzFrZTAP7jdxw/HEhkMJTMNlX59cvEyxiEbgNqTLYQjwSP1Ibgtkjzq2EPlm2SsFkq6vwbuydZA31HQa2vEYqZzo9RUG69T4URUotmtZBTWqW5w8m9l9xwCuInzOxS8990rVW27FiWtSF+4HI/mBTzHAX/w1dJRaT9ESrWJnmKYcYCBayCswEfp9b6uOgNWASZBd67lKE2AfE0FDdgKclElttBbvK8Kl2TNpCzwRwwzt54Bt9AFt8MZr4p4SKUjuj5GkcFrlnvyESbXJuyZwnnUCNkbxxYP0LfsgfmnAgMBAAGjggLTMIICzzAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMnlleIsgD60xDmW8Pz/yWKKPjk4MB8GA1UdIwQYMBaAFKhKamMEfd265tE5t6ZFZe/zqOyhMG8GCCsGAQUFBwEBBGMwYTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AuaW50LXgzLmxldHNlbmNyeXB0Lm9yZzAvBggrBgEFBQcwAoYjaHR0cDovL2NlcnQuaW50LXgzLmxldHNlbmNyeXB0Lm9yZy8wgd0GA1UdEQSB1TCB0oINYWRtaW4uanhjay5pb4ILYXBpLmp4Y2suaW+CDGJsb2cuanhjay5pb4INZmlsZXMuanhjay5pb4IHanhjay5pb4IMbGFiMi5qeGNrLmlvggxsYWJzLmp4Y2suaW+CDGxvZ28uanhjay5pb4INcmFpbHMuanhjay5pb4IScmVwb3J0LXVyaS5qeGNrLmlvggtzZnUuanhjay5pb4INc2xpZGUuanhjay5pb4IMc3BlYy5qeGNrLmlvggp3cy5qeGNrLmlvggt3d3cuanhjay5pbzCB/gYDVR0gBIH2MIHzMAgGBmeBDAECATCB5gYLKwYBBAGC3xMBAQEwgdYwJgYIKwYBBQUHAgEWGmh0dHA6Ly9jcHMubGV0c2VuY3J5cHQub3JnMIGrBggrBgEFBQcCAjCBngyBm1RoaXMgQ2VydGlmaWNhdGUgbWF5IG9ubHkgYmUgcmVsaWVkIHVwb24gYnkgUmVseWluZyBQYXJ0aWVzIGFuZCBvbmx5IGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgQ2VydGlmaWNhdGUgUG9saWN5IGZvdW5kIGF0IGh0dHBzOi8vbGV0c2VuY3J5cHQub3JnL3JlcG9zaXRvcnkvMA0GCSqGSIb3DQEBCwUAA4IBAQA6Tnb6wxUgQE7mnf8N+5PgIzC5ebxjGps/I2ppEqnvuAECdrkWySdqPDG8e7lyuyxzzav6FTFUb3y8EwDrdT+UDquewpv6TxoP1NcnuMRhpjV41Y/otxRW53+Fz+g+Ub4XTnrJmK98aq8vzyMpvkWhHPMfs2xRsIkNH6L/T0h+8AL7MpKLiuqiy9SA4COVjNLX5Z2ZyK/xPaNhfJ1jv7vs/fvIGNLtJ7sCwVa54r8OycNVd1nj9zVFmtJ554S3fRBNFI5vZNJJw4npN1/q1bQ1B7oo8U1pLunDxqhvNHO247WDRVBeCvJLuZGZJc4g35W97iUTVVbwPLVfK4o82MOD&quot;, &quot;MIIEkjCCA3qgAwIBAgIQCgFBQgAAAVOFc2oLheynCDANBgkqhkiG9w0BAQsFADA/MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMTDkRTVCBSb290IENBIFgzMB4XDTE2MDMxNzE2NDA0NloXDTIxMDMxNzE2NDA0NlowSjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxIzAhBgNVBAMTGkxldCdzIEVuY3J5cHQgQXV0aG9yaXR5IFgzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnNMM8FrlLke3cl03g7NoYzDq1zUmGSXhvb418XCSL7e4S0EFq6meNQhY7LEqxGiHC6PjdeTm86dicbp5gWAf15Gan/PQeGdxyGkOlZHP/uaZ6WA8SMx+yk13EiSdRxta67nsHjcAHJyse6cF6s5K671B5TaYucv9bTyWaN8jKkKQDIZ0Z8h/pZq4UmEUEz9l6YKHy9v6Dlb2honzhT+Xhq+w3Brvaw2VFn3EK6BlspkENnWAa6xK8xuQSXgvopZPKiAlKQTGdMDQMc2PMTiVFrqoM7hD8bEfwzB/onkxEz0tNvjj/PIzark5McWvxI0NHWQWM6r6hCm21AvA2H3DkwIDAQABo4IBfTCCAXkwEgYDVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYwfwYIKwYBBQUHAQEEczBxMDIGCCsGAQUFBzABhiZodHRwOi8vaXNyZy50cnVzdGlkLm9jc3AuaWRlbnRydXN0LmNvbTA7BggrBgEFBQcwAoYvaHR0cDovL2FwcHMuaWRlbnRydXN0LmNvbS9yb290cy9kc3Ryb290Y2F4My5wN2MwHwYDVR0jBBgwFoAUxKexpHsscfrb4UuQdf/EFWCFiRAwVAYDVR0gBE0wSzAIBgZngQwBAgEwPwYLKwYBBAGC3xMBAQEwMDAuBggrBgEFBQcCARYiaHR0cDovL2Nwcy5yb290LXgxLmxldHNlbmNyeXB0Lm9yZzA8BgNVHR8ENTAzMDGgL6AthitodHRwOi8vY3JsLmlkZW50cnVzdC5jb20vRFNUUk9PVENBWDNDUkwuY3JsMB0GA1UdDgQWBBSoSmpjBH3duubRObemRWXv86jsoTANBgkqhkiG9w0BAQsFAAOCAQEA3TPXEfNjWDjdGBX7CVW+dla5cEilaUcne8IkCJLxWh9KEik3JHRRHGJouM2VcGfl96S8TihRzZvoroed6ti6WqEBmtzw3Wodatg+VyOeph4EYpr/1wXKtx8/wApIvJSwtmVi4MFU5aMqrSDE6ea73Mj2tcMyo5jMd6jmeWUHK8so/joWUoHOUgwuX4Po1QYz+3dszkDqMp4fklxBwXRsW10KXzPMTZ+sOPAveyxindmjkW8lGy+QsRlGPfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==&quot;] }&apos; \
      https://ct.googleapis.com/pilot/ct/v1/add-chain | jq .
 
 curl &apos;https://ct.googleapis.com/pilot/ct/v1/get-sth&apos; | jq .
 
 curl &apos;https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&amp;tree_size=237363285&apos; | jq .</code></pre>
-          <pre class=go data-path=../2018-03-27/main.go><code translate=no>package main
+          <pre class=go data-code=go data-path=../2018-03-27/main.go><code translate=no class=language-go>package main
 
 import (
 	&quot;bytes&quot;
@@ -887,8 +887,8 @@ func main() {
 	// この hash をつけてリクエスト
 	p(&quot;curl &apos;https://ct.googleapis.com/rocketter/ct/v1/get-proof-by-hash?hash=xxx&amp;tree_size=yyy&apos;&quot;)
 }</code></pre>
-          <pre class=http data-path=../2020-01-18/1.http><code translate=no>Content-Security-Policy: default-src &apos;self&apos; report-uri https://report-uri.example.com</code></pre>
-          <pre class=http data-path=../2020-01-18/2.http><code translate=no>Content-Security-Policy: default-src &apos;self&apos; report-to=default-endpoint
+          <pre class=http data-code=http data-path=../2020-01-18/1.http><code translate=no class=language-http>Content-Security-Policy: default-src &apos;self&apos; report-uri https://report-uri.example.com</code></pre>
+          <pre class=http data-code=http data-path=../2020-01-18/2.http><code translate=no class=language-http>Content-Security-Policy: default-src &apos;self&apos; report-to=default-endpoint
 Feature-Policy: syncxhr &apos;none&apos; report-to=default-endpoint
 NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
 Report-To: {
@@ -899,13 +899,13 @@ Report-To: {
                {&quot;url&quot;: &quot;https://report-uri2.example.com&quot;}
              ]
            }</code></pre>
-          <pre class=js data-path=../2020-01-18/3.js><code translate=no>const observer = new ReportingObserver((reports, observer) =&gt; {
+          <pre class=js data-code=js data-path=../2020-01-18/3.js><code translate=no class=language-js>const observer = new ReportingObserver((reports, observer) =&gt; {
   const message = JSON.stringify(reports)
   navigator.sendBeacon(&quot;https://report-uri.example.com&quot;, message)
 });
 
 observer.observe();</code></pre>
-          <pre class=http data-path=../2020-01-18/4.http><code translate=no>Report-To: {
+          <pre class=http data-code=http data-path=../2020-01-18/4.http><code translate=no class=language-http>Report-To: {
              &quot;max_age&quot;: 36000,
              &quot;endpoints&quot;: [
                {
@@ -934,7 +934,7 @@ observer.observe();</code></pre>
                }
              ]
            }</code></pre>
-          <pre class=http data-path=../2020-01-18/5.http><code translate=no>Content-Security-Policy: default-src &apos;self&apos; report-to=csp-endpoint
+          <pre class=http data-code=http data-path=../2020-01-18/5.http><code translate=no class=language-http>Content-Security-Policy: default-src &apos;self&apos; report-to=csp-endpoint
 Feature-Policy: syncxhr &apos;none&apos; report-to=default
 NEL: {&quot;report-to&quot;: &quot;default&quot;, &quot;max-age&quot;: 2592000}
 Report-To: {
@@ -946,7 +946,7 @@ Report-To: {
              &quot;group&quot;: &quot;csp-endpoint&quot;,
              &quot;endpoints&quot;: [{ &quot;url&quot;: &quot;https://reports.example.com/csp-endpoint&quot; }]
            }</code></pre>
-          <pre class=http data-path=../2020-01-18/6.http><code translate=no>POST /default-endpoint HTTP/1.1
+          <pre class=http data-code=http data-path=../2020-01-18/6.http><code translate=no class=language-http>POST /default-endpoint HTTP/1.1
 Host: reports.example.com
 Content-Type: application/reports+json
 Content-Length: 999
@@ -968,7 +968,7 @@ Content-Length: 999
     &quot;body&quot;: {...}
   },
 ]</code></pre>
-          <pre class=js data-path=../2020-01-18/7.js><code translate=no>{
+          <pre class=js data-code=js data-path=../2020-01-18/7.js><code translate=no class=language-js>{
   &quot;type&quot;: &quot;deprecation&quot;,
     &quot;url&quot;: &quot;https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html&quot;,
     &quot;body&quot;: {
@@ -995,7 +995,7 @@ Content-Length: 999
       &quot;columnNumber&quot;: 42
     }
 }</code></pre>
-          <pre class=cpp data-path=../2020-08-15/pick-best-image-candidate.cpp><code translate=no>// device_scale_factor = DPR
+          <pre class=cpp data-code=cpp data-path=../2020-08-15/pick-best-image-candidate.cpp><code translate=no class=language-cpp>// device_scale_factor = DPR
 // source_size = sizes attr value
 static ImageCandidate PickBestImageCandidate(float device_scale_factor, float source_size, Vector&lt;ImageCandidate&gt;&amp; image_candidates, Document* document = nullptr) {
   const float kDefaultDensityValue = 1.0;
@@ -1048,7 +1048,7 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
 
   return *de_duped_image_candidates[winner];
 }</code></pre>
-          <pre class=cpp data-path=../2020-08-15/selection-logic.cpp><code translate=no>// device_scale_factor = DPR
+          <pre class=cpp data-code=cpp data-path=../2020-08-15/selection-logic.cpp><code translate=no class=language-cpp>// device_scale_factor = DPR
 static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidates, float device_scale_factor) {
   unsigned i = 0;
 
@@ -1083,7 +1083,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
   }
   return i;
 }</code></pre>
-          <pre class=html data-path=../2016-04-24/claim.html><code translate=no>&lt;!DOCTYPE html&gt;
+          <pre class=html data-code=html data-path=../2016-04-24/claim.html><code translate=no class=language-html>&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;title&gt;Service Worker&lt;/title&gt;
 
@@ -1094,7 +1094,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
 &lt;input id=test type=button value=test&gt;
 
 &lt;script src=master.js&gt;&lt;/script&gt;</code></pre>
-          <pre class=html data-path=../2016-04-24/push.html><code translate=no>&lt;!DOCTYPE html&gt;
+          <pre class=html data-code=html data-path=../2016-04-24/push.html><code translate=no class=language-html>&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;title&gt;Service Worker Push Demo | labs.jxck.io&lt;/title&gt;
 
@@ -1103,7 +1103,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
 &lt;script src=master.js&gt;&lt;/script&gt;
 
 &lt;h1&gt;Push DEMO&lt;/h1&gt;</code></pre>
-          <pre class=js data-path=../2016-04-24/backgroundsync-master.js><code translate=no>// master.js
+          <pre class=js data-code=js data-path=../2016-04-24/backgroundsync-master.js><code translate=no class=language-js>// master.js
 navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
 }).then((registration) =&gt; {
@@ -1114,7 +1114,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
     }).catch(console.error.bind(console));
   });
 }).catch(console.error.bind(console));</code></pre>
-          <pre class=js data-path=../2016-04-24/backgroundsync-worker.js><code translate=no>// worker.js
+          <pre class=js data-code=js data-path=../2016-04-24/backgroundsync-worker.js><code translate=no class=language-js>// worker.js
 self.addEventListener(&apos;install&apos;, (e) =&gt; {
   console.info(&apos;install&apos;, e);
   e.waitUntil(skipWaiting());
@@ -1128,7 +1128,7 @@ self.addEventListener(&apos;activate&apos;, (e) =&gt; {
 self.addEventListener(&apos;sync&apos;, (e) =&gt; {
   console.log(&apos;sync&apos;, e);
 });</code></pre>
-          <pre class=js data-path=../2016-04-24/claim-master.js><code translate=no>console.log(&apos;master&apos;);
+          <pre class=js data-code=js data-path=../2016-04-24/claim-master.js><code translate=no class=language-js>console.log(&apos;master&apos;);
 
 document.getElementById(&apos;button&apos;).addEventListener(&apos;click&apos;, () =&gt; {
   fetch(&apos;/test&apos;);
@@ -1137,7 +1137,7 @@ document.getElementById(&apos;button&apos;).addEventListener(&apos;click&apos;, 
 navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   console.log(registration);
 });</code></pre>
-          <pre class=js data-path=../2016-04-24/claim-worker.js><code translate=no>console.info(&apos;worker&apos;);
+          <pre class=js data-code=js data-path=../2016-04-24/claim-worker.js><code translate=no class=language-js>console.info(&apos;worker&apos;);
 
 self.addEventListener(&apos;activate&apos;, (e) =&gt; {
   console.info(&apos;activate&apos;, e);
@@ -1152,7 +1152,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   }
   return;
 });</code></pre>
-          <pre class=js data-path=../2016-04-24/controllerchange-master.js><code translate=no>console.log(&apos;master&apos;);
+          <pre class=js data-code=js data-path=../2016-04-24/controllerchange-master.js><code translate=no class=language-js>console.log(&apos;master&apos;);
 
 let controllerChange = new Promise((resolve, reject) =&gt; {
   navigator.serviceWorker.addEventListener(&apos;controllerchange&apos;, () =&gt; {
@@ -1171,7 +1171,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
   console.log(controller);
   fetch(&apos;/test&apos;);
 });</code></pre>
-          <pre class=js data-path=../2016-04-24/controllerchange-worker.js><code translate=no>console.info(&apos;worker&apos;);
+          <pre class=js data-code=js data-path=../2016-04-24/controllerchange-worker.js><code translate=no class=language-js>console.info(&apos;worker&apos;);
 
 self.addEventListener(&apos;activate&apos;, (e) =&gt; {
   console.info(&apos;activate&apos;, e);
@@ -1186,7 +1186,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   }
   return;
 });</code></pre>
-          <pre class=js data-path=../2016-04-24/push-master.js><code translate=no>&apos;use strict&apos;;
+          <pre class=js data-code=js data-path=../2016-04-24/push-master.js><code translate=no class=language-js>&apos;use strict&apos;;
 let p = console.log.bind(console);
 
 navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
@@ -1209,7 +1209,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
   console.log(body);
 
 }).catch(console.error.bind(console));</code></pre>
-          <pre class=js data-path=../2016-04-24/push-worker.js><code translate=no>self.addEventListener(&apos;install&apos;, (e) =&gt; {
+          <pre class=js data-code=js data-path=../2016-04-24/push-worker.js><code translate=no class=language-js>self.addEventListener(&apos;install&apos;, (e) =&gt; {
   console.info(&apos;install&apos;, e);
   e.waitUntil(self.skipWaiting());
 });
@@ -1249,7 +1249,7 @@ self.addEventListener(&apos;notificationclick&apos;, (e) =&gt; {
       return clients.openWindow(URL);
   }));
 });</code></pre>
-          <pre class=js data-path=../2016-04-24/push.js><code translate=no>&apos;use strict&apos;;
+          <pre class=js data-code=js data-path=../2016-04-24/push.js><code translate=no class=language-js>&apos;use strict&apos;;
 
 let push = require(&apos;web-push&apos;);
 
@@ -1273,7 +1273,7 @@ push.sendNotification(data.endpoint, {
 .catch((err) =&gt; {
   console.error(&apos;fail&apos;, err);
 });</code></pre>
-          <pre class=js data-path=../2016-04-24/update-master.js><code translate=no>console.log(&apos;master&apos;);
+          <pre class=js data-code=js data-path=../2016-04-24/update-master.js><code translate=no class=language-js>console.log(&apos;master&apos;);
 
 navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   registration.addEventListener(&apos;updatefound&apos;, (e) =&gt; {
@@ -1287,7 +1287,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
     registration.update();
   }, 1000);
 });</code></pre>
-          <pre class=js data-path=../2016-04-24/update-worker.js><code translate=no>console.info(&apos;worker&apos;);
+          <pre class=js data-code=js data-path=../2016-04-24/update-worker.js><code translate=no class=language-js>console.info(&apos;worker&apos;);
 
 const ver = 1;
 
@@ -1313,7 +1313,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
 self.addEventListener(&apos;push&apos;, () =&gt; {
   self.registration.update();
 });</code></pre>
-          <pre class=js data-path=../2016-04-24/updatefound-master.js><code translate=no>console.log(&apos;master&apos;);
+          <pre class=js data-code=js data-path=../2016-04-24/updatefound-master.js><code translate=no class=language-js>console.log(&apos;master&apos;);
 
 navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   registration.addEventListener(&apos;updatefound&apos;, (e) =&gt; {
@@ -1321,7 +1321,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
   });
   return navigator.serviceWorker.ready;
 });</code></pre>
-          <pre class=js data-path=../2016-04-24/updatefound-worker.js><code translate=no>console.info(&apos;worker&apos;);
+          <pre class=js data-code=js data-path=../2016-04-24/updatefound-worker.js><code translate=no class=language-js>console.info(&apos;worker&apos;);
 
 const ver = 1;
 

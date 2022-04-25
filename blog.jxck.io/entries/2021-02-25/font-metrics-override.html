@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -175,7 +175,7 @@
         </dl>
         <p>これらの値を <code translate=no>@font-face</code> で指定する。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=css><code translate=no>@font-face {
+        <pre class=css data-code=css><code translate=no class=language-css>@font-face {
   font-family: &quot;helvetica-override&quot;;
   src: local(&quot;Helvetica&quot;);
   ascent-override: 105%;
@@ -196,7 +196,7 @@
           </picture>
         </p>
         <p>ここで、 Webfont 側に以下のようなスタイルを当てると、ある程度レイアウトの差分を減らすことができるとわかった。
-        <pre class=css><code translate=no>:root {
+        <pre class=css data-code=css><code translate=no class=language-css>:root {
   --line-height: 23px;
   --letter-spacing: 0.2px;
   --word-spacing: 0px;
@@ -228,9 +228,9 @@
         <p>しかし、プラットフォームごとにフォールバックフォントは違うため、この方法では環境ごとに Noto Sans 側のスタイルを出し分ける必要が出てしまう。
         <p>恐らく、実運用を考えるのであれば、プラットフォームごとのフォールバックフォント側のスタイルを上書きしておくことになると思われる。
         <p>例えば、以下のように WebFont である Noto Sans を優先しつつ、フォールバックとして 2 つのフォントを定義する場合を考える。
-        <pre class=css><code translate=no>font-family: &quot;Noto Sans Webfont&quot;, &quot;Osaka&quot;, &quot;Meiryo&quot;;</code></pre>
+        <pre class=css data-code=css><code translate=no class=language-css>font-family: &quot;Noto Sans Webfont&quot;, &quot;Osaka&quot;, &quot;Meiryo&quot;;</code></pre>
         <p>読み込む Noto Sans の設定は固定できるので、それに合わせてフォールバックフォントの 2 つを上書きする。
-        <pre class=css><code translate=no>:root {
+        <pre class=css data-code=css><code translate=no class=language-css>:root {
   --line-height: xxpx;
   --letter-spacing: xxpx;
   --word-spacing: x.xpx;

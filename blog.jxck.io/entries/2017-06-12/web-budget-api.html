@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -194,7 +194,7 @@
           <h3 id="budget.getbudget"><a href="#budget.getbudget">budget.getBudget()</a></h3>
           <p>現在から、将来に渡り利用できる budget のリストを取得する。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=js><code translate=no>navigator.budget.getBudget().then((budgets) =&gt; {
+          <pre class=js data-code=js><code translate=no class=language-js>navigator.budget.getBudget().then((budgets) =&gt; {
   budgets.forEach((budget) =&gt; {
     console.log(budget.time, budget.budgetAt);
   });
@@ -206,7 +206,7 @@
           <p>処理の Cost を取得する。
           <p>引数には、対象となる処理の名前を与えるが、この値は仕様に定義される。
           <p>執筆時点では <code translate=no>&quot;silent-push&quot;</code> のみ定義されている。
-          <pre class=js><code translate=no>navigator.budget.getCost(&apos;silent-push&apos;).then((cost) =&gt; {
+          <pre class=js data-code=js><code translate=no class=language-js>navigator.budget.getCost(&apos;silent-push&apos;).then((cost) =&gt; {
   console.log(cost); // 2
 });</code></pre>
           <p>ここで返される Cost は、上限値であり、実際の UA やデバイスの状況によっては、より低い Cost しか実行時に消費されない可能性がある。
@@ -217,7 +217,7 @@
           <p>実際に処理を実行する際に、 Budget を Cost 分消費する。
           <p>戻る Promise は、コストが足りたかどうかを bool で解決する。
           <p><code translate=no>silent-push</code> の場合は、コストが足りればそのまま処理を進められ、足りなかった場合は notification によってユーザに通知する必要が出る。
-          <pre class=js><code translate=no>self.addEventListener(&apos;push&apos;, (e) =&gt; {
+          <pre class=js data-code=js><code translate=no class=language-js>self.addEventListener(&apos;push&apos;, (e) =&gt; {
   return e.waitUntil(navigator.budget.reserve(&apos;silent-push&apos;).then((reserved) =&gt; {
     if (reserved) {
       // budget が足りている

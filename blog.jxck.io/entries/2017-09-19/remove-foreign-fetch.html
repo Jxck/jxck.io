@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -185,11 +185,11 @@
           <p>例えば、本サイト (jxck.io) が EC サイト(ec.example.com) の Ad などを埋め込んでいたとする。
           <p>すると、 jxck.io の閲覧者には ec.example.com からの <code translate=no>Set-Cookie</code> が送られ、保存される。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=http><code translate=no>// response-from: ec.example.com
+          <pre class=http data-code=http><code translate=no class=language-http>// response-from: ec.example.com
 Set-Cookie: history=jxck.io</code></pre>
           <p>同じく、筆者が保有する別のサイト (mozaic.fm) にも同じ Ad が含まれていたとした場合。
           <p>ユーザが mozaic.fm を閲覧すると、 Ad を取得する時に以下のように Cookie が送られる。
-          <pre class=http><code translate=no>// request-for: ec.example.com
+          <pre class=http data-code=http><code translate=no class=language-http>// request-for: ec.example.com
 Cookie: history=jxck.io</code></pre>
           <p>すると Ad プロバイダは、このユーザが過去に jxck.io を閲覧したということがわかる。
           <p>おおよそこのように行われるのが、 3rd Party Cookie によるユーザの行動追跡となる。

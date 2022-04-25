@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -181,7 +181,7 @@
         <h2 id="claer-site-data-header"><a href="#claer-site-data-header">Claer-Site-Data Header</a></h2>
         <p>ヘッダの値に Type を列挙するだけである。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=http><code translate=no>Clear-Site-Data: &quot;cache&quot;
+        <pre class=http data-code=http><code translate=no class=language-http>Clear-Site-Data: &quot;cache&quot;
 Clear-Site-Data: &quot;cache&quot;, &quot;cookies&quot;, &quot;storage&quot;, &quot;executionContexts&quot;
 Clear-Site-Data: &quot;*&quot;</code></pre>
         <p>Type は現時点では以下が定義されている。
@@ -251,7 +251,7 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
       <section>
         <h2 id="js-api"><a href="#js-api">JS API</a></h2>
         <p>現状削除されているが、もともとは JS の API も合わせて定義されていた。
-        <pre class=js><code translate=no>navigator.storage.clear(&quot;cache&quot;)</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>navigator.storage.clear(&quot;cache&quot;)</code></pre>
         <p>しかし、 <code translate=no>navigator.storage.clear(&quot;executionContexts&quot;)</code> を実行した場合、開いている全てのタブにおいて <code translate=no>location.reload()</code> 相当が実行されるという API の設計に疑問が出た。
         <ul>
           <li><a href="https://github.com/w3c/webappsec-clear-site-data/issues/21">storage.clear(&quot;executionContexts&quot;) ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data</a>

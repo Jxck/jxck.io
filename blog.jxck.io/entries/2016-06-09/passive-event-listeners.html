@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -189,7 +189,7 @@
         <p>この <code translate=no>preventDefault()</code> を呼ばないリスナを <em>Passive Listener</em> と表現する。
         <p>そして、登録したリスナが <em>Passive Listener</em> であることを明示するのが、今回追加された <code translate=no>passive</code> フラグである。
         <p>この値は、同じく今回追加された <code translate=no>addEventListener()</code> の第三引数に渡す <em>Event Listener Options</em> で指定する。
-        <pre class=js><code translate=no>document.addEventListener(&apos;touchstart&apos;, handler, {passive: true});</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>document.addEventListener(&apos;touchstart&apos;, handler, {passive: true});</code></pre>
         <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code translate=no>preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
         <p>なお Passive Listener 内で <code translate=no>preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code translate=no>defaultPrevented=false</code> のままになる。
         <p>Listener 内で <code translate=no>preventDefault()</code> を呼べるかどうかは、 <code translate=no>cancelable=true</code> となっているかどうかで分かる。
@@ -227,7 +227,7 @@
         <p><code translate=no>addEventListener</code> の第三引数は、既に <code translate=no>useCapture</code> として boolean が定義されている。
         <p>これが <code translate=no>true</code> の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
         <p>Event Listener Options 対応以降は、ここにオブジェクトを渡すことになるため、 <code translate=no>useCapture</code> フラグ相当は、 <code translate=no>{capture: true}</code> としてプロパティによる定義を行う。
-        <pre class=js><code translate=no>// before
+        <pre class=js data-code=js><code translate=no class=language-js>// before
 document.addEventListener(&apos;touchstart&apos;, handler, true);
 
 // after
@@ -240,10 +240,10 @@ document.addEventListener(&apos;touchstart&apos;, handler, {capture: true});</co
         <p>引数をオブジェクトにした結果、 Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
         <p>これは <code translate=no>{passive: true}</code> は JS としては truthy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code translate=no>useCapture</code> を有効にしたと解釈されてしまうためにおこる。
         <p>例えばキャプチャリングフェーズでの補足を <code translate=no>false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code translate=no>useCapture</code> を <code translate=no>true</code> にしたと解釈されてしまうのである。
-        <pre class=js><code translate=no>document.addEventListener(&apos;touchstart&apos;, handler, {capture: false});</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>document.addEventListener(&apos;touchstart&apos;, handler, {capture: false});</code></pre>
         <p>これを避けるためには Feature Detection が必要となる。
         <p>スペックにサンプルが掲載されているので、引用しコメントで解説を追記する。
-        <pre class=js><code translate=no>var supportsPassive = false;
+        <pre class=js data-code=js><code translate=no class=language-js>var supportsPassive = false;
 try {
   // getter として opts.passive を定義して、 addEventListener 内で呼ばれたことがわかるようにする
   var opts = Object.defineProperty({}, &apos;passive&apos;, {

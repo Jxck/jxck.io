@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -209,7 +209,7 @@
           <p>クライアントはサーバに username を送り、登録に必要な以下のような情報を要求する。
           <p>(ここではそのまま <code translate=no>navigatore.credentials.create()</code> に渡せる形でサーバから返している)
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=js><code translate=no>// https://w3c.github.io/webauthn/#dictionary-makecredentialoptions
+          <pre class=js data-code=js><code translate=no class=language-js>// https://w3c.github.io/webauthn/#dictionary-makecredentialoptions
 const clientCredentialOption = {
   rp: {
     id:   &quot;labs.jxck.io&quot;,
@@ -228,14 +228,14 @@ const clientCredentialOption = {
 }</code></pre>
           <p>重要なのは challenge で、この乱数に対してブラウザが認証をし、それをあとで検証する。
           <p>従って、これはセッションなどに保存しておく必要がある。
-          <pre class=js><code translate=no>req.session.challenge = challenge
+          <pre class=js data-code=js><code translate=no class=language-js>req.session.challenge = challenge
 req.session.username  = username // CAUTION!! this is only a sample</code></pre>
         </section>
         <section>
           <h3 id="2.-この-challenge-を元に-navigator.credentials.create-を呼ぶ"><a href="#2.-この-challenge-を元に-navigator.credentials.create-を呼ぶ">2. この challenge を元に <code translate=no>navigator.credentials.create()</code> を呼ぶ</a></h3>
           <p>ブラウザは、取得した値を元に <code translate=no>create()</code> を呼びクレデンシャルを生成する。
           <p>YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
-          <pre class=js><code translate=no>// create() PublicKeyCredential
+          <pre class=js data-code=js><code translate=no class=language-js>// create() PublicKeyCredential
 const credential = await navigator.credentials.create({publicKey: option})
 
 const {id, rawID, response, type} = credential // type = &quot;public-key&quot;
@@ -257,13 +257,13 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           </ul>
           <p>次に attestationObject を CBOR パースする。
           <p>ここには以下のようなデータが入っている。
-          <pre class=js><code translate=no>{
+          <pre class=js data-code=js><code translate=no class=language-js>{
   fmt,      // attestation statement format
   authData, // authenticator data
   attStmt,  // attestation statement
 } = attestationObject</code></pre>
           <p>ここまで確認したら、 clientDataJSON (バイナリ) を元に SHA-256 を取得しておく。
-          <pre class=js><code translate=no>const clientDataHash = crypto.createHash(&quot;sha256&quot;).update(clientDataJSON).digest()</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>const clientDataHash = crypto.createHash(&quot;sha256&quot;).update(clientDataJSON).digest()</code></pre>
           <p>これはあとで署名の検証に使用する。
           <section>
             <h4 id="fmt"><a href="#fmt">fmt</a></h4>
@@ -308,7 +308,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
             <p>credentialPublicKey は、さらに COSE という形式でエンコードされている。
             <p>これは JOSE の CBOR 版といった位置づけである。
             <p>CBOR でパースすると以下のように数字がキーのオブジェクトが得られる。
-            <pre class=js><code translate=no>{
+            <pre class=js data-code=js><code translate=no class=language-js>{
   1: kty=2,  // EC2 key type
   3: alg=-7, // ES256 signature algorithm
  -1: crv=1,  // P-256 curve
@@ -323,12 +323,12 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <h3 id="attstmt"><a href="#attstmt">attStmt</a></h3>
           <p>今回の fmt では attStmt は以下の構造になる。
           <p><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation">8.6. FIDO U2F Attestation Statement Format</a>
-          <pre class=js><code translate=no>u2fStmtFormat = {
+          <pre class=js data-code=js><code translate=no class=language-js>u2fStmtFormat = {
                   x5c: [ attestnCert: bytes ],
                   sig: bytes
                 }</code></pre>
           <p>x5c には Attestation Certificate が仕様上、丁度 1 つだけ入っている。
-          <pre class=js><code translate=no>attCert = x5c[0]</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>attCert = x5c[0]</code></pre>
           <p>sig は Attestation Signature の値だ。
           <p>ここまでの情報を元に、実際に署名を検証していく。
         </section>
@@ -338,19 +338,19 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <ul>
             <li><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation">https://w3c.github.io/webauthn/#fido-u2f-attestation</a>
           </ul>
-          <pre class=js><code translate=no>PublicKeyU2F = 0x04 || x || y</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>PublicKeyU2F = 0x04 || x || y</code></pre>
           <p>これと、 rpidHash, clientDataHash, credentialId を連結し、先頭に 0x00 を加えると、署名対象のデータが得られる。
-          <pre class=js><code translate=no>verificationData = 0x00 || rpIdHash || clientDataHash || credentialId || publicKeyU2F</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>verificationData = 0x00 || rpIdHash || clientDataHash || credentialId || publicKeyU2F</code></pre>
           <p>これを x5c から取り出した attCert で署名した結果が sig と同じになるかを確認すれば良い。
           <p>x5c は ANSI X9.62 Public Key Format というバイナリ形式で、 Node では PEM でないと扱いにくい。
           <p>これは base64 でシリアライズし 64 文字で改行し、ヘッダとフッタをつければ一応 PEM になる。
-          <pre class=js><code translate=no>const certificatePublicKeyPEM = [
+          <pre class=js data-code=js><code translate=no class=language-js>const certificatePublicKeyPEM = [
   &quot;-----BEGIN CERTIFICATE-----&quot;,
   ...(attCert.toString(&quot;base64&quot;).match(/.{1,64}/g)),
   &quot;-----END CERTIFICATE-----&quot;,
 ].join(&quot;\n&quot;)</code></pre>
           <p>これを用いて検証する。
-          <pre class=js><code translate=no>const verified = crypto.createVerify(&quot;sha256&quot;).update(verificationData).verify(certificatePublicKeyPEM, sig)</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>const verified = crypto.createVerify(&quot;sha256&quot;).update(verificationData).verify(certificatePublicKeyPEM, sig)</code></pre>
           <p>これが成功したら、証明書のチェインをルートまで確認する。(TODO)
           <p>ここまで成功すれば、ユーザが送ってきたデータが
           <ul>
@@ -368,7 +368,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <p>といったことが確認できる。
           <p>確認できたら、公開鍵の情報をユーザに紐付けて保存することで、パスワードの代わりに認証に使用する。
           <p>同じユーザが複数の認証デバイスを登録することも想定するなら、以下のようになる。
-          <pre class=js><code translate=no>storage[&quot;username&quot;] = {
+          <pre class=js data-code=js><code translate=no class=language-js>storage[&quot;username&quot;] = {
   id,
   authenticators: [
     {credentialID, credentialPublicKey, signCount}
@@ -383,7 +383,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <h3 id="1.-サービスに対して-challenge-乱数の発行を要求する_1"><a href="#1.-サービスに対して-challenge-乱数の発行を要求する_1">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
           <p>registration 同様、サーバに username を送り、認証に必要な以下の情報を要求する。
           <p>(ここではそのまま <code translate=no>navigatore.credentials.get()</code> に渡せる形でサーバから返している)
-          <pre class=js><code translate=no>{
+          <pre class=js data-code=js><code translate=no class=language-js>{
   challenge: crypto.randomBytes(32),
   allowCredentials: [
     { type: &quot;public-key&quot;, id: &quot;xxxxxx&quot; }
@@ -391,14 +391,14 @@ const {attestationObject, clientDataJSON} = response</code></pre>
 }</code></pre>
           <p>allowCredentials は、サーバに保存した、ログイン対象のユーザに紐付いた credential id だけを取り出し type をつけたもの。
           <p>challenge は登録時と同じくランダムな値。これもセッションなどに保存しておき、実際の認証で使う。
-          <pre class=js><code translate=no>req.session.challenge = challenge
+          <pre class=js data-code=js><code translate=no class=language-js>req.session.challenge = challenge
 req.session.username  = username // CAUTION!! this is only a sample</code></pre>
         </section>
         <section>
           <h3 id="2.-この-challenge-を元に-navigator.credentials.get-を呼ぶ"><a href="#2.-この-challenge-を元に-navigator.credentials.get-を呼ぶ">2. この challenge を元に <code translate=no>navigator.credentials.get()</code> を呼ぶ</a></h3>
           <p>ブラウザは、取得した値を元に <code translate=no>get()</code> を呼びクレデンシャルを生成する。
           <p>YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
-          <pre class=js><code translate=no>// get() PublicKeyCredential
+          <pre class=js data-code=js><code translate=no class=language-js>// get() PublicKeyCredential
 const credential = await navigator.credentials.get({publicKey: option})
 
 const { id, rawId, response } = credential // id は rawId の base64url
@@ -439,12 +439,12 @@ const { type, authenticatorData, signature, userHandle, clientDataJSON } // type
           <p>rpidHash が、 Registration 時にサーバの提示した RPID の SHA-256 と同じことを確認する。
           <p>flag も同じだが、今回は AttestedCredentialData も無いため、 UserPresent 以外 0 となる。
           <p>次に ClientDataJSON の SHA-256 ハッシュを取得する。
-          <pre class=js><code translate=no>const hash = crypto.createHash(&quot;sha256&quot;).update(clientDataJSON).digest()</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>const hash = crypto.createHash(&quot;sha256&quot;).update(clientDataJSON).digest()</code></pre>
           <p>これを、 authenticatorData と連結したものを署名したものが signature と一致するかを確認すれば良い。
           <p>ここで使う PublicKey は、 Registration でユーザに紐付けて保存した PublicKey だが、これを PEM にする場合は少しいじる必要が有る。
           <p>結論から言うと、以下のようなメタデータを付与する必要があり、それ以外は先の方法と同じく base64 を 64bit ごとに折り返せば良い。
           <p>(ここが一番ハマった)
-          <pre class=js><code translate=no>// https://github.com/fido-alliance/webauthn-demo/blob/master/utils.js
+          <pre class=js data-code=js><code translate=no class=language-js>// https://github.com/fido-alliance/webauthn-demo/blob/master/utils.js
 // https://stackoverflow.com/questions/45131935/export-an-elliptic-curve-key-from-ios-to-work-with-openssl
 //
 // If needed, we encode rawpublic key to ASN structure, adding metadata:
@@ -461,7 +461,7 @@ const publickKeyPEM = Buffer.concat([
   Buffer.from(publicKey),
 ]).toString(&quot;base64&quot;).match(/.{1,64}/g)</code></pre>
           <p>この鍵で署名を確認する。
-          <pre class=js><code translate=no>const verified = crypto
+          <pre class=js data-code=js><code translate=no class=language-js>const verified = crypto
                     .createVerify(&quot;sha256&quot;)
                     .update(Buffer.concat([authenticatorData, hash]))
                     .verify(publickKeyPEM, signature)</code></pre>

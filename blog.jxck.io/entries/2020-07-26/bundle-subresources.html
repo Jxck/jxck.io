@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -174,7 +174,7 @@
           <p>実際に <a href="https://github.com/WICG/webpackage/tree/master/go/bundle/cmd/gen-bundle">gen-bundle</a> を用いてサブリソースのみを Bundle する。
           <p>サブリソースを以下のように subresource ディレクトリにまとめたとする。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=sh-session><code translate=no>$ ls subresource
+          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ ls subresource
   a.js
   b.js
   c.css
@@ -185,7 +185,7 @@
           <p>gen-bundle は <code translate=no>-dir</code> を指定するとディレクトリ以下をまるっと bundle してくれる。
           <p>CLI の仕様上 <code translate=no>-primaryURL</code> (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chorme の実装もこれを無視しているようなので、適当に指定している。
           <p><code translate=no>-headerOverride</code> でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
-          <pre class=sh-session><code translate=no>$ gen-bundle \
+          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ gen-bundle \
     -version b1 \
     -baseURL    https://labs.jxck.io/webpackaging/subresource-webbundle/ \
     -primaryURL https://labs.jxck.io/webpackaging/subresource-webbundle/a.js \
@@ -193,7 +193,7 @@
     -headerOverride &quot;Cache-Control: max-age=60&quot; \
     -o bundle.wbn</code></pre>
           <p>dump-bundle すると以下のようになる。
-          <pre class=sh-session><code translate=no>$ dump-bundle -i bundle.wbn
+          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ dump-bundle -i bundle.wbn
 
 Version: b1
 Primary URL: https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
@@ -275,7 +275,7 @@ img {
           <p>この Bundle を読み込む HTML は以下のようになる。
           <p>普通にサブリソースを読む HTML に加え、 <code translate=no>&lt;link&gt;</code> で web bundle の読み込みを指定する。
           <p>この resources 属性に、 bundle 側で解決する URL を absolute URL で明示する必要がある。
-          <pre class=html><code translate=no>&lt;!DOCTYPE html&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;meta name=viewport content=&quot;width=device-width,initial-scale=1&quot;&gt;
 &lt;title&gt;Subresource Web Bundle DEMO&lt;/title&gt;
@@ -302,7 +302,7 @@ img {
         <section>
           <h3 id="挙動"><a href="#挙動">挙動</a></h3>
           <p>Chrome Canary を flag 付きで起動する。
-          <pre class=sh-session><code translate=no>$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles</code></pre>
+          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles</code></pre>
           <p>HTML にアクセスすると、以下の様にサブリソースが bundle から解決されていることがわかる。
           <ul>
             <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html">https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html</a>
@@ -318,7 +318,7 @@ img {
           <p>もし、ブラウザが Subresource Bundling に対応していなければ、 <code translate=no>&lt;link rel=webbundle&gt;</code> が無視され個別にリクエストが走ることになる。
           <p>ここでは wbn は no-store としているが、展開されたサブリソースは wbn 内で設定された Cache-Control が効いているため、個別にキャッシュが行われている。
           <p>また、ここでは一切署名を用いてないため、リソースの URL を別のものにすることも可能だ。
-          <pre class=sh-session><code translate=no>$ gen-bundle \
+          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ gen-bundle \
     -version b1 \
     -baseURL    https://example.com/webpackaging/subresource-webbundle/ \
     -primaryURL https://example.com/webpackaging/subresource-webbundle/a.js \
@@ -326,7 +326,7 @@ img {
     -headerOverride &quot;Cache-Control: max-age=60&quot; \
     -o bundle-3p.wbn</code></pre>
           <p>html はこうなる。
-          <pre class=html><code translate=no>&lt;link rel=webbundle
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=webbundle
       href=bundle-3p.wbn
       resources=&quot;
                  https://example.com/webpackaging/subresource-webbundle/a.js
@@ -346,7 +346,7 @@ img {
           <p>JS だけではなくあらゆる Subresource を対象に bundle できるということは、 Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
           <p>HTML, CSS, JS, Img などをまとめて、いわゆる WebComponent の単位で bundle を生成するといったことも可能だ。
           <p>以下の DEMO は、 <code translate=no>&lt;profile-card&gt;</code> を Custom Element として実装し、そこに必要なリソースを bundle している。
-          <pre class=sh-session><code translate=no>$ ls profile-card
+          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ ls profile-card
   jxck.png
   profile-card.js
   style.css

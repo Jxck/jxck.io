@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -264,15 +264,15 @@
           <p>逆に考えると、自分のドメインから他ドメインのコンテンツを配信することも可能になる。
           <p>例えば、 bundle が一般化した今はわからないが、かつて jquery は自分のドメインからではなく CDN から取得する構成が推奨された。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=html><code translate=no>&lt;script src=https://code.jquery.com/jquery-3.3.1.js&gt;&lt;/script&gt;</code></pre>
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;script src=https://code.jquery.com/jquery-3.3.1.js&gt;&lt;/script&gt;</code></pre>
           <p>この URL を使うと、もし他のサービスが同じ URL で取得しキャッシュしていれば、それがそのままキャッシュヒットするからである。
           <p>多くのサービスが同じ URL を使えば使うほど、そのメリットは増える。
           <p>もし jQuery が sxg を配布したら、そのファイルを自分のサーバから配布しつつ、 展開後の URL は同じになるため、キャッシュは同じになるということが可能になる。
           <p>ただし sxg への URL を src に書くと、取得する際にキャッシュが有ってもヒットされることができない。
-          <pre class=html><code translate=no>&lt;script src=https://cdn.example.com/jquery-3.3.1.js.sxg&gt;&lt;/script&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;script src=https://cdn.example.com/jquery-3.3.1.js.sxg&gt;&lt;/script&gt;
 &lt;!-- これだと https://code.jquery.com/jquery-3.3.1.js のキャッシュがあってもヒットしない --&gt;</code></pre>
           <p>そこで logicalsrc/physicalsrc を両方書く方法が提案されている。
-          <pre class=html><code translate=no>&lt;script logicalsrc=https://code.jquery.com/jquery-3.3.1.js
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;script logicalsrc=https://code.jquery.com/jquery-3.3.1.js
         physicalsrc=https://cdn.example.com/jquery-3.3.1.js.sxg&gt;&lt;/script&gt;</code></pre>
           <p><a href="https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-04#appendix-A.2">A.2. Explicit use of a content distributor for subresources</a>
         </section>
@@ -289,7 +289,7 @@
           <h3 id="subresource-integrity"><a href="#subresource-integrity">Subresource Integrity</a></h3>
           <p>Subresource Integrity (SRI) とは、 Subresouce が想定したものであることを確認し、改ざん等によって意図しないものに差し替えられることを防ぐ仕組みである。
           <p>以下は、 integrity 属性に jquery 全体の sha-256 ハッシュを含むことで、異なる jquery が実行されることを防ぐ。
-          <pre class=html><code translate=no>&lt;script src=https://code.jquery.com/jquery-3.3.1.js
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;script src=https://code.jquery.com/jquery-3.3.1.js
         integrity=&quot;sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=&quot;&gt;&lt;/script&gt;</code></pre>
           <p>WebAppSec はこの SRI に、単なるハッシュではなく、署名を取り入れる方法について議論している。
           <ul>
@@ -334,7 +334,7 @@
           </ol>
           <p>今回は DEMO 用に 3 を採用する。
           <p>まず、署名を行う mozaic.fm ドメイン用に、 CanSignHttpExchanges 拡張の入った自己証明書を以下のように作成する。
-          <pre class=shell><code translate=no>#! /bin/sh
+          <pre class=shell data-code=shell><code translate=no class=language-shell>#! /bin/sh
 
 # prime256v1 ecdsa の秘密鍵を生成
 openssl ecparam -out priv.key -name prime256v1 -genkey
@@ -357,7 +357,7 @@ openssl x509 -req -days 360 -in cert.csr -signkey priv.key -out cert.pem</code><
           <ul>
             <li><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-certurl</a>
           </ul>
-          <pre class=shell><code translate=no>#! /bin/sh
+          <pre class=shell data-code=shell><code translate=no class=language-shell>#! /bin/sh
 
 # gen-certurl の取得
 go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-certurl
@@ -386,7 +386,7 @@ echo &quot;ocsp&quot; &gt; tmp
           <ul>
             <li><a href="https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange">https://github.com/WICG/webpackage/tree/master/go/signedexchange/cmd/gen-signedexchange</a>
           </ul>
-          <pre class=shell><code translate=no>#! /bin/sh
+          <pre class=shell data-code=shell><code translate=no class=language-shell>#! /bin/sh
 
 # gen-signedexchange の取得
 go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-signedexchange
@@ -412,7 +412,7 @@ go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-signedexchange
           <p>つまり、 Origin Trials に登録し、正規の拡張付き証明書を使っていれば、 Chrome Canary などではそのまま表示できるだろう。
           <p>自己署名証明書の場合には、 Chrome にその証明書に関するエラーを無視させる必要がある。
           <p>cert.pem を以下のように base64 形式に変換し、それを <code translate=no>--ignore-certificate-errors-spki-list</code> に指定する。
-          <pre class=shell><code translate=no># 証明書の base64 の生成
+          <pre class=shell data-code=shell><code translate=no class=language-shell># 証明書の base64 の生成
 export BASE64 = openssl x509 -noout -pubkey -in cert.pem | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | base64
 
 # Mac で Canary を起動する場合
@@ -489,7 +489,7 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
           <h3 id="requestresponse"><a href="#requestresponse">Request/Response</a></h3>
           <p>Signing の対象は、単にファイルに署名するのではなく、そのファイルの Request/Response 全体に対して署名を行う。
           <p>今回の場合は、 HTML の Body を含め以下の Request/Response が対象となる。
-          <pre class=http><code translate=no>GET /index.html HTTP/1.1
+          <pre class=http data-code=http><code translate=no class=language-http>GET /index.html HTTP/1.1
 Host: mozaic.fm
 
 
@@ -521,7 +521,7 @@ Content-Encoding: mi-sha256-03
             <li>date: 生成時間の Unixtime
             <li>expires: 期限時間の Unixtime
           </ul>
-          <pre class=http><code translate=no>Signature: label;
+          <pre class=http data-code=http><code translate=no class=language-http>Signature: label;
   sig=*MEUCICiUdi2JhgJwmzPfWu8PVIC/eBOeHMkAcUN5aetK9PxZAiEAgOF6IajUh6TIHYLZk7cin1bLXLKc6jkKA6RIR6cJOEE=*;
   integrity=&quot;digest/mi-sha256-03&quot;;
   cert-url=&quot;https://labs.jxck.io/webpackaging/signed-http-exchange-b2/cert.cbor&quot;;

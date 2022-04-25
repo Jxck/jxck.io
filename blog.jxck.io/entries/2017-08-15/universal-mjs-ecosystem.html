@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -179,7 +179,7 @@
         <h2 id="esm--cjs"><a href="#esm--cjs">ESM / CJS</a></h2>
         <p>そもそも ES modules(ESM) が CommonJS(CJS) とは違う構文を策定したのには理由がある。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=js><code translate=no>// commonjs
+        <pre class=js data-code=js><code translate=no class=language-js>// commonjs
 const foo = require(&quot;./foo&quot;)
 module.exports = { message: &quot;hello world&quot; }
 
@@ -188,7 +188,7 @@ import foo from &quot;./foo&quot;
 export default { message: &quot;hello world&quot; }</code></pre>
         <p>CJS は ESM 以前の JS の範囲で実装されていたため、 <code translate=no>require</code> 関数や <code translate=no>modules</code> オブジェクトへの操作を特別扱いすることで実現していた。
         <p>しかし、この方式では例えば以下のように書くことも、 JS の範囲である以上正しくなってしまう。
-        <pre class=js><code translate=no>// commonjs
+        <pre class=js data-code=js><code translate=no class=language-js>// commonjs
 
 let version
 if (Math.random() &lt; 0.5) {
@@ -200,7 +200,7 @@ const foo = require(`./foo.v${version}`);</code></pre>
         <p>これでは、実行してからでないと、 <code translate=no>foo.v1</code>, <code translate=no>foo.v2</code> どちらで依存解決すべきかわからない。
         <p>したがって browserify などは、こうした書き方はしないという前提でビルドを行なっていた。
         <p>ESM は、関数やオブジェクトではなく、新しく「構文(syntax)」を用意することによって、この問題を解決している。
-        <pre class=js><code translate=no>// ex modules
+        <pre class=js data-code=js><code translate=no class=language-js>// ex modules
 import foo from &quot;./foo&quot;
 export default { message: &quot;hello world&quot; }</code></pre>
         <p>構文を定義することで、パースを行なった時点で曖昧な書かれ方をしている部分を Syntax Error として弾くことができる。
@@ -217,7 +217,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
           <h3 id="modules-on-browser"><a href="#modules-on-browser">Modules on Browser</a></h3>
           <p>ブラウザにおける Module の扱いは、 HTML の範囲での仕様策定を伴う。
           <p>具体的には、 <code translate=no>&lt;script&gt;</code> タグの <code translate=no>type</code> 属性を用いて Script であるか Module であるかを判別することが可能だ。
-          <pre class=html><code translate=no>&lt;script type=module src=module.js&gt;&lt;/script&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=module src=module.js&gt;&lt;/script&gt;
 &lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
           <p>また、ここに加えて <code translate=no>nomodule</code> 属性を用いて「ブラウザが modules を実装しているかどうか」の判別も可能となっている。
           <p>詳しくは以下の記事で解説している。

@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -186,7 +186,7 @@
         <h2 id="csp-trusted-types"><a href="#csp-trusted-types">CSP trusted-types</a></h2>
         <p>TrustedTypes は CSP により Opt-In で利用する。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=http><code translate=no>Content-Security-Policy: trusted-types</code></pre>
+        <pre class=http data-code=http><code translate=no class=language-http>Content-Security-Policy: trusted-types</code></pre>
         <p>これにより、現時点では以下のような処理がエラーとなる。
         <ul>
           <li><code translate=no>element.innerHTML</code>
@@ -194,7 +194,7 @@
           <li><code translate=no>script.src</code>
           <li><code translate=no>script.textContent</code>
         </ul>
-        <pre class=js><code translate=no>const $ = document.querySelector.bind(document);
+        <pre class=js data-code=js><code translate=no class=language-js>const $ = document.querySelector.bind(document);
 
 // Uncaught TypeError: Failed to set the &apos;innerHTML&apos; property on &apos;Element&apos;: This document requires `TrustedHTML` assignment.
 $(&apos;div&apos;).innerHTML = &apos;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&apos;
@@ -222,17 +222,17 @@ $(&apos;script&apos;).textContent = &apos;alert(0)&apos;</code></pre>
         <h2 id="trusted-types"><a href="#trusted-types">Trusted Types</a></h2>
         <p>DOMString を TrustedTypes に変換するには、まず TrustedTypePolicy を生成する必要がある。
         <p>これは、以下のように <code translate=no>createPolicy()</code> を用いて生成する。
-        <pre class=js><code translate=no>const escapePolicy = TrustedTypes.createPolicy(&apos;application-policy&apos;, {
+        <pre class=js data-code=js><code translate=no class=language-js>const escapePolicy = TrustedTypes.createPolicy(&apos;application-policy&apos;, {
   createHTML:      (unsafe) =&gt; {/*..*/},
   createURL:       (unsafe) =&gt; {/*..*/},
   createScriptURL: (unsafe) =&gt; {/*..*/},
   createScript:    (unsafe) =&gt; {/*..*/},
 })</code></pre>
         <p>例えば <code translate=no>innerHTML</code> できる TrustedHTML は、この Policy に定義した <code translate=no>createHTML()</code> を通して取得することができる。
-        <pre class=js><code translate=no>const trustedHTML = escapePolicy.createHTML(&apos;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&apos;)
+        <pre class=js data-code=js><code translate=no class=language-js>const trustedHTML = escapePolicy.createHTML(&apos;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&apos;)
 $(&apos;div&apos;).innerHTML = trustedHTML</code></pre>
         <p>つまり、 <code translate=no>innerHTML</code> の前には HTML Special Chars のエスケープを必須としたいという場合は、 <code translate=no>createPolicy()</code> の引数に渡す関数にその処理を入れれば良い。
-        <pre class=js><code translate=no>const escapePolicy = TrustedTypes.createPolicy(&apos;application-policy&apos;, {
+        <pre class=js data-code=js><code translate=no class=language-js>const escapePolicy = TrustedTypes.createPolicy(&apos;application-policy&apos;, {
   createHTML: (unsafe) =&gt; {
     return unsafe
       .replace(/&amp;/g, &quot;&amp;amp;&quot;)
@@ -252,9 +252,9 @@ $(&apos;div&apos;).innerHTML = trustedHTML // html special chars escaped</code><
         <h2 id="opt-in-policy"><a href="#opt-in-policy">Opt-In Policy</a></h2>
         <p>先のように <code translate=no>createPolicy(&apos;application-policy&apos;)</code> で定義した Policy を利用するためには、必ず CSP に「利用を許可する Policy の名前」の指定が必要だ。
         <p>これをしなければポリシーを利用した時点で CSP エラーとなる。
-        <pre class=http><code translate=no>Content-Security-Policy: trusted-types application-policy</code></pre>
+        <pre class=http data-code=http><code translate=no class=language-http>Content-Security-Policy: trusted-types application-policy</code></pre>
         <p>これは Policy から <code translate=no>createHTML</code> すれば型としては TrustedType であるため、なんらかの方法で Policy も仕込まれてしまうことを防ぐ目的もある。
-        <pre class=js><code translate=no>const dummyPolicy = TrustedTypes.createPolicy(&apos;dummy&apos;, {
+        <pre class=js data-code=js><code translate=no class=language-js>const dummyPolicy = TrustedTypes.createPolicy(&apos;dummy&apos;, {
   createHTML: (unsafe) =&gt; unsafe
 })
 
@@ -266,11 +266,11 @@ document.querySelector(&apos;div&apos;).innerHTML = trustedHTML</code></pre>
       <section>
         <h2 id="名前空間"><a href="#名前空間">名前空間</a></h2>
         <p>Policy オブジェクトは戻り値でしか取得できないため、広く参照される場合は expose によって明示的に公開することができる。
-        <pre class=js><code translate=no>TrustedTypes.createPolicy(&apos;escape&apos;, {
+        <pre class=js data-code=js><code translate=no class=language-js>TrustedTypes.createPolicy(&apos;escape&apos;, {
   createHTML: (unsafe) =&gt; {/*...*/}
 }, true); // expose = true</code></pre>
         <p>expose された Policy は <code translate=no>getExposedPolicy(name)</code> で取得が可能だ。
-        <pre class=js><code translate=no>const escapePolicy = TrustedTypes.getExposedPolicy(&apos;escape&apos;)
+        <pre class=js data-code=js><code translate=no class=language-js>const escapePolicy = TrustedTypes.getExposedPolicy(&apos;escape&apos;)
 const escapedValue = escapePolicy.createHTML(&apos;&lt;b&gt;escape me&lt;/b&gt;&apos;);</code></pre>
         <p>Global に Policy が定義されるため、名前が衝突する再定義はエラーになる。
         <p>基本は expose せずに閉じた範囲で利用し、ライブラリなどによって提供される Policy の場合は Prefix をつけるなどした方が良さそうだ。
@@ -284,7 +284,7 @@ const escapedValue = escapePolicy.createHTML(&apos;&lt;b&gt;escape me&lt;/b&gt;&
           <li>createScriptURL: セーフリストに無いオリジンはエラーとする
           <li>createScript:    定義しないことで利用そのものをエラーとする
         </ul>
-        <pre class=js><code translate=no>TrustedTypes.createPolicy(&apos;https://labs.jxck.io&apos;, {
+        <pre class=js data-code=js><code translate=no class=language-js>TrustedTypes.createPolicy(&apos;https://labs.jxck.io&apos;, {
   createHTML: (unsafe) =&gt; {
     console.log(&apos;createHTML&apos;)
     return unsafe
@@ -343,7 +343,7 @@ const escapedValue = escapePolicy.createHTML(&apos;&lt;b&gt;escape me&lt;/b&gt;&
         <section>
           <h3 id="expose-が-boolean"><a href="#expose-が-boolean">expose が boolean</a></h3>
           <p><code translate=no>createPolicy()</code> の第三引数の expose が、現時点では boolean で定義されている。
-          <pre class=js><code translate=no>TrustedTypePolicy createPolicy(DOMString policyName, TrustedTypeInnerPolicy policy, optional boolean expose = false);</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>TrustedTypePolicy createPolicy(DOMString policyName, TrustedTypeInnerPolicy policy, optional boolean expose = false);</code></pre>
           <p>これでは、仮にもう一つオプションを増やしたいという場合に、拡張に対して閉じてしまっている。
           <p>同じことは <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html#feature-detection">PassiveEventListener</a> でもあったため、基本的に最後のオプションはオブジェクトの方が良いだろう。
           <p>これは、 <a href="https://github.com/WICG/trusted-types/issues/123">issue</a> を上げておいた。

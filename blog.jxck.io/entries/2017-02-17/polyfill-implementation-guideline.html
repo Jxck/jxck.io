@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -198,11 +198,11 @@
           <h3 id="mootools-の-array.prototype.contains"><a href="#mootools-の-array.prototype.contains">Mootools の Array.prototype.contains</a></h3>
           <p>現在 <code translate=no>Array.prototype.includes()</code> として定義/実装されているものは、最初 <code translate=no>contains()</code> という名前で提案されており、実際に実装まで行われたブラウザがあった。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=js><code translate=no>[1, 2, 3].contains(2) // true</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>[1, 2, 3].contains(2) // true</code></pre>
           <p>しかし、この仕様を実装したブラウザで jsfiddle が壊れてことから、そこで使われていた MooTools が問題を起こしていたことが判明した。
           <p>MooTools は早い段階から <code translate=no>contains()</code> を実装していたのだが、その実装は行儀の良いものではなかった。
           <p>具体的には、その時点で Array が実装しているメソッドをセーフリストとして定義し、当時そのリストに無かった <code translate=no>contains()</code> の Polyfill を追加した独自の Array を提供していた。
-          <pre class=js><code translate=no>(&apos;Array&apos;, Array, [
+          <pre class=js data-code=js><code translate=no class=language-js>(&apos;Array&apos;, Array, [
   &apos;pop&apos;, &apos;push&apos;, &apos;reverse&apos;, &apos;shift&apos;, &apos;sort&apos;, &apos;splice&apos;, &apos;unshift&apos;, &apos;concat&apos;, &apos;join&apos;, &apos;slice&apos;,
   &apos;indexOf&apos;, &apos;lastIndexOf&apos;, &apos;filter&apos;, &apos;forEach&apos;, &apos;every&apos;, &apos;map&apos;, &apos;some&apos;, &apos;reduce&apos;, &apos;reduceRight&apos;
 ])</code></pre>
@@ -218,7 +218,7 @@
           <p>この <code translate=no>mode</code> については、どちらをデフォルトとするのかという議論があったようだが、結果として <code translate=no>createShadowRoot({mode})</code> のように、引数を必須とすることで、省略時のデフォルトを定義しない方向で策定されることとなった。
           <p>しかし、 <code translate=no>createShadowRoot()</code> は主に Google が先行して Chrome に実装しており、それがかなり広く普及してしまったため、途中から引数を必須にすることは実質不可能だった。ただし、 <code translate=no>mode</code> の概念を外すことはできないため、 <code translate=no>createShadowRoot()</code> は従来のままとし、代わりに「引数を必須とする別の名前のメソッド」を定義することでこの問題を回避することとなった。
           <p>これが v1 で引数必須として定義されている <code translate=no>attachShadow({mode})</code> である。
-          <pre class=js><code translate=no>// v0
+          <pre class=js data-code=js><code translate=no class=language-js>// v0
 document.createElement(&apos;div&apos;).createShadowRoot();
 
 // v1 (引数必須)
@@ -232,7 +232,7 @@ document.createElement(&apos;div&apos;).attachShadow({ mode: &apos;open&apos; })
         <p>Polyfill が、ネイティブの実装と別の名前で提供されているなら、これらの問題を避けることができる。
         <p>しかし、多くのコンテンツは、まだ仕様策定/実装が途中の機能を、将来使われるか、一部のブラウザだけが提供している仮の(&quot;fantasy&quot;)実装に寄せて使ってしまうため、依然問題となる。
         <p>例えば、以下のような記述はよく見られる。
-        <pre class=js><code translate=no>requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || polyfillRequestAnimationFrame;</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || polyfillRequestAnimationFrame;</code></pre>
         <p>もしこのコードを書いた時、最初の二つがなかった時は <code translate=no>polyfillRequestAnimationFrame</code> が使われるため、その挙動に依存した実装がされるだろう。
         <p>その後、 <code translate=no>window.webkitRequestAnimationFrame</code> がネイティブ実装されるとそちらが使われるが、それが <code translate=no>polyfillRequestAnimationFrame</code> の挙動と変わっていると、コンテンツが壊れてしまうことになる。また、ベンダプレフィックス付きの実装はあくまでも試験的な実装であるはずが、プレフィックスが取れた実装が提供された際に、そこで挙動が変わるとまたコンテンツが壊れる可能性が出る。
         <p>つまり、このコードは最終的な <code translate=no>requestAnimationFrame</code> が取り得る選択肢を、非常に狭めてしまう結果となるのだ。

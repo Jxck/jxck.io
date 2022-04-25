@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -186,7 +186,7 @@
           <p>その後輩は、 github の markdown を PDF にして協力会社に送る(!!?)のに、ページごとに開発者ツールから周りの DOM をポチポチ消して整形していた。
           <p>例えば、以下の README.md だった場合は、雑にやるとこんな感じでできそうだ。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=js><code translate=no>javascript: (() =&gt; {
+          <pre class=js data-code=js><code translate=no class=language-js>javascript: (() =&gt; {
   const readme = document.querySelector(&apos;#readme&apos;);
   document.body.innerHTML = &quot;&quot;;
   document.body.appendChild(readme);
@@ -198,7 +198,7 @@
           <h3 id="header-id-link"><a href="#header-id-link">header id link</a></h3>
           <p>ヘッダ要素が ID を持ってるので、ヘッダに対してリンクを貼りたいが、リンクになってないのでソースを見ないといけない場合。
           <p>それをリンクに直して、遷移できるようにする。
-          <pre class=js><code translate=no>javascript: (() =&gt; {
+          <pre class=js data-code=js><code translate=no class=language-js>javascript: (() =&gt; {
   let url = new URL(location.href);
   for (let $h of document.querySelectorAll(&apos;h1, h2, h3, h4&apos;)) {
     let $a = document.createElement(&apos;a&apos;);
@@ -216,7 +216,7 @@
           <h3 id="twitter-colored-link"><a href="#twitter-colored-link">Twitter Colored Link</a></h3>
           <p>Twitter のリンクが色も Underline も付かなくなって以降、 URL がどこにあるのかパッとわかりにくい。
           <p>そこで、対象の <code translate=no>&lt;a&gt;</code> に色をつける。
-          <pre class=js><code translate=no>javascript:Array.from(document.querySelectorAll(&apos;.js-display-url&apos;)).forEach((a) =&gt; a.style.color=&quot;red&quot;)</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>javascript:Array.from(document.querySelectorAll(&apos;.js-display-url&apos;)).forEach((a) =&gt; a.style.color=&quot;red&quot;)</code></pre>
           <p>それっぽい Class をなんとか探すのがポイント。
         </section>
         <section>
@@ -227,24 +227,24 @@
           <p>例えば 1 ヶ月を選ぶと以下が付与される。
           <pre><code translate=no>&amp;tbs=qdr:m</code></pre>
           <p>この <code translate=no>m</code> を <code translate=no>m3</code> にすると 3 ヶ月になる。
-          <pre class=js><code translate=no>javascript:location.href += &apos;&amp;tbs=qdr:m3&apos;</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>javascript:location.href += &apos;&amp;tbs=qdr:m3&apos;</code></pre>
         </section>
         <section>
           <h3 id="canonical"><a href="#canonical">canonical</a></h3>
           <p>綺麗な URL を取得したいのに、遷移元などの影響で不要なゴミクエリが付いているといった場合にそれを除去する。
-          <pre class=js><code translate=no>javascript:location.href = document.querySelector(&apos;link[rel=&quot;canonical&quot;]&apos;).href</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>javascript:location.href = document.querySelector(&apos;link[rel=&quot;canonical&quot;]&apos;).href</code></pre>
           <p>ところで、 Amazon の URL の canonical は以下のようになっている。
-          <pre class=url><code translate=no>https://www.amazon.co.jp/商品名/dp/XXXXXXXX</code></pre>
+          <pre class=url data-code=url><code translate=no class=language-url>https://www.amazon.co.jp/商品名/dp/XXXXXXXX</code></pre>
           <p>ただ、商品名が長いとブログなどに貼る時に URL が見づらくなる。
           <p>実際は dp 以降だけで良いので、商品名を削除してしまった方が使いやすかったりする。
-          <pre class=js><code translate=no>javascript:location.href = document.querySelector(&apos;link[rel=&quot;canonical&quot;]&apos;).href.replace(/amazon.co.jp\/.*\/dp/, &apos;amazon.co.jp/dp&apos;);</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>javascript:location.href = document.querySelector(&apos;link[rel=&quot;canonical&quot;]&apos;).href.replace(/amazon.co.jp\/.*\/dp/, &apos;amazon.co.jp/dp&apos;);</code></pre>
         </section>
         <section>
           <h3 id="preslide"><a href="#preslide">preslide</a></h3>
           <p>ネットワークが重いところで slideshare を見ると、ページを進めるたびにローディングでストレスだったので書いたもの。
           <p>一旦、最後のページまで自動で遷移させ、全ページ読み込みが終わったあたりで頭から読んでいる。
           <p>最後のページまで読むと次のスライドに映るという悪仕様があるため、手前で止めている。
-          <pre class=js><code translate=no>javascript: function loop(n) {
+          <pre class=js data-code=js><code translate=no class=language-js>javascript: function loop(n) {
   if (n == 0) {return;}
   setTimeout(function() {
     document.querySelector(&quot;#svPlayerId &gt; div.stage &gt; div.rightpoint.pointly&quot;).click();
@@ -256,7 +256,7 @@
           <h3 id="safari-picture-in-picture"><a href="#safari-picture-in-picture">safari picture-in-picture</a></h3>
           <p>今の Safari は PinP に対応している。
           <p><code translate=no>&lt;video&gt;</code> タグで再生されていれば基本的に表示が可能だが、 UI がない場合は以下で再生中のビデオを PinP できる。
-          <pre class=js><code translate=no>javascript: document.querySelector(&apos;video&apos;).webkitSetPresentationMode(&apos;picture-in-picture&apos;)</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>javascript: document.querySelector(&apos;video&apos;).webkitSetPresentationMode(&apos;picture-in-picture&apos;)</code></pre>
           <p>新しい Mac は touch bar に UI があるので、無い機種で使ってる。
         </section>
         <section>

@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -161,7 +161,7 @@
         <p><code translate=no>Promise.all()</code>, <code translate=no>Promise.race()</code> は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
         <p>all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=js><code translate=no>const fetches = [
+        <pre class=js data-code=js><code translate=no class=language-js>const fetches = [
   fetch(&apos;./page1.html&apos;),
   fetch(&apos;./page2.html&apos;),
   fetch(&apos;./page3.html&apos;),
@@ -179,7 +179,7 @@ await Promise.race(fetched)</code></pre>
         <section>
           <h3 id="all--reject"><a href="#all--reject">all + reject</a></h3>
           <p>all は、その中の一つでも Reject すると、全体が Reject してしまう。
-          <pre class=js><code translate=no>try {
+          <pre class=js data-code=js><code translate=no class=language-js>try {
   const fetches = [
     fetch(&apos;./page1.html&apos;),
     fetch(&apos;./page2.html&apos;),
@@ -205,7 +205,7 @@ await Promise.race(fetched)</code></pre>
         <h2 id="allsettled"><a href="#allsettled">allSettled</a></h2>
         <p>allSettled は、 all とは違い、個々が Resolve/Reject どちらになっても、最後までとにかく全て実行する。
         <p>実行した結果を配列として Resolve するため、基本的に allSettled 自体は Reject しない。
-        <pre class=js><code translate=no>const fetches = [
+        <pre class=js data-code=js><code translate=no class=language-js>const fetches = [
   fetch(&apos;./page1.html&apos;),
   fetch(&apos;./page2.html&apos;),
   fetch(&apos;./page3.html&apos;),
@@ -232,7 +232,7 @@ try {
       <section>
         <h2 id="race--reject"><a href="#race--reject">race + reject</a></h2>
         <p>race の場合は、最初の一つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
-        <pre class=js><code translate=no>const fetches = [
+        <pre class=js data-code=js><code translate=no class=language-js>const fetches = [
   fetch(&apos;./page1.html&apos;),
   fetch(&apos;./page2.html&apos;),
   fetch(&apos;./page3.html&apos;),
@@ -253,7 +253,7 @@ try {
         <h2 id="any"><a href="#any">any</a></h2>
         <p>any は rece とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
         <p>そして、全ての Promise が Reject した場合にのみ全体を Reject する。
-        <pre class=js><code translate=no>const fetches = [
+        <pre class=js data-code=js><code translate=no class=language-js>const fetches = [
   fetch(&apos;./page1.html&apos;),
   fetch(&apos;./page2.html&apos;),
   fetch(&apos;./page3.html&apos;),
@@ -291,7 +291,7 @@ try {
           <li>Promise.anyFulfilled: Promise.any
           <li>Promise.anySettled:   Promise.race
         </ul>
-        <pre class=js><code translate=no>Promise.allFulfilled = Promise.all
+        <pre class=js data-code=js><code translate=no class=language-js>Promise.allFulfilled = Promise.all
 Promise.allSettled   = Promise.allSettled
 Promise.anyFulfilled = Promise.any
 Promise.anySettled   = Promise.race</code></pre>

@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -180,7 +180,7 @@
         <p>そこで、トランスポートに対して &quot;m=&quot; line は 1 つにし、それを &quot;envelope&quot; とする。
         <p>その中に、マイクごとの定義を、 &quot;a=ssrc&quot; で記述する。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=sdp><code translate=no>m=audio 49170 RTP/AVP 101
+        <pre class=sdp data-code=sdp><code translate=no class=language-sdp>m=audio 49170 RTP/AVP 101
 a=ssrc:1 msid:left-mic
 a=ssrc:2 msid:center-mic
 a=ssrc:3 msid:right-mic</code></pre>
@@ -191,7 +191,7 @@ a=ssrc:3 msid:right-mic</code></pre>
         <p>Plan A は、 &quot;m=&quot; line をメディアごとに書くというシンプルな方法である。
         <p>もし多重化したい場合は、対象の &quot;m=&quot; line に対して BUNDLE を指定する。
         <p>この方式が WebRTC の標準として合意され、現在は Unified Plan として策定が進んでいる。
-        <pre class=sdp><code translate=no>...
+        <pre class=sdp data-code=sdp><code translate=no class=language-sdp>...
 a=group:BUNDLE m1 m2 m3
 ...
 m=audio 56600 RTP/SAVPF 0 109
@@ -213,7 +213,7 @@ a=mid:m3
         <p>このフラグを有効にすると、 RTCConfiguration に <code translate=no>&quot;sdpSemantics&quot;</code> という独自プロパティを定義される。
         <p>デフォルトは <code translate=no>&quot;plan-b&quot;</code> であり、明示的に <code translate=no>&quot;unified-plan&quot;</code> を指定すれば切り替えられる。
         <p>後にデフォルトを &quot;unified-plan&quot; に変更し、 <code translate=no>&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
-        <pre class=js><code translate=no>new RTCPeerConnection({sdpSemantics: &quot;unified-plan&quot;})</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>new RTCPeerConnection({sdpSemantics: &quot;unified-plan&quot;})</code></pre>
       </section>
       <section>
         <h2 id="影響"><a href="#影響">影響</a></h2>

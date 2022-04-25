@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -180,10 +180,10 @@
         <p>また、全てのレスポンスが揃ってから開始するわけではなく、届いた順に再生する。
         <p>HTTP 上は Range Request と Partial Response が使われ、途中から再生するような場合以下のようになる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=http><code translate=no>GET /mozaic-ep60.mp3 HTTP/1.1
+        <pre class=http data-code=http><code translate=no class=language-http>GET /mozaic-ep60.mp3 HTTP/1.1
 Host: files.mozaic.fm
 Range: bytes=54034432-</code></pre>
-        <pre class=http><code translate=no>HTTP/1.1 206 Partial Content
+        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 206 Partial Content
 content-type: audio/mpeg
 Content-Range: bytes 54034432-101797887/101797888
 Content-Length: 47763456</code></pre>
@@ -192,7 +192,7 @@ Content-Length: 47763456</code></pre>
       <section>
         <h2 id="service-worker-での-range-request"><a href="#service-worker-での-range-request">Service Worker での Range Request</a></h2>
         <p>ところが onfetch で Range になるはずのリクエストを見てみると、レスポンスが必ず 200 で返ってきていることに気付く。
-        <pre class=js><code translate=no>self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
+        <pre class=js data-code=js><code translate=no class=language-js>self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   e.respondWith((async () =&gt; {
     const req = e.request
     const res = await fetch(req)
@@ -243,7 +243,7 @@ Content-Length: 47763456</code></pre>
           <p>取得したい URL とオプションを登録する。
           <p>ID はそのタスク自体を識別するために登録し、もし同じ ID のタスクがある状態で再登録しようとすると例外が出る。
           <p>また、ダウンロード対象を複数登録して同時にダウンロードさせることができる。
-          <pre class=js><code translate=no>const id   = &apos;ep01&apos;
+          <pre class=js data-code=js><code translate=no class=language-js>const id   = &apos;ep01&apos;
 const mp3  = &apos;https://files.example.com/ep01.mp3&apos;
 const html = &apos;https://files.example.com/ep01.html&apos;
 const option = {
@@ -257,12 +257,12 @@ const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)</
         <section>
           <h3 id="foreground-event"><a href="#foreground-event">foreground event</a></h3>
           <p>ダウンロードの進捗は window 側で progress イベントで上がる
-          <pre class=js><code translate=no>task.addEventListener(&apos;progress&apos;, (e) =&gt; console.log(e.downloaded))</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>task.addEventListener(&apos;progress&apos;, (e) =&gt; console.log(e.downloaded))</code></pre>
         </section>
         <section>
           <h3 id="abort"><a href="#abort">abort()</a></h3>
           <p>中断は API から可能であり、 <code translate=no>abort()</code> を呼べば task が終了する。
-          <pre class=js><code translate=no>task.abort()</code></pre>
+          <pre class=js data-code=js><code translate=no class=language-js>task.abort()</code></pre>
           <p>ただし、 Pause/Resume は API がなく、<a href="https://github.com/WICG/background-fetch/issues/38">提案</a> はされてるが、その UI は OS 側が提供するというスタンスだ。
         </section>
       </section>
@@ -275,7 +275,7 @@ const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)</
           <li>backgroundfetchabort
           <li>backgroundfetchclick
         </ul>
-        <pre class=js><code translate=no>// ダウンロード完了
+        <pre class=js data-code=js><code translate=no class=language-js>// ダウンロード完了
 self.addEventListener(&apos;backgroundfetchsuccess&apos;, (e) =&gt; {
   e.waitUntil(async function() {
     try {
@@ -324,7 +324,7 @@ self.addEventListener(&apos;backgroundfetchabort&apos;, (e) =&gt; {
         <h2 id="cache-hit"><a href="#cache-hit">Cache HIT</a></h2>
         <p>キャッシュは Range などを気にする必要もなく普通に返せば良い。
         <p>実際に <code translate=no>&lt;audio&gt;</code> タグは途中からでも普通に再生できた。
-        <pre class=js><code translate=no>// ダウンロードしたものを返す
+        <pre class=js data-code=js><code translate=no class=language-js>// ダウンロードしたものを返す
 self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   e.respondWith(async function() {
     const cachedResponse = await caches.match(e.request.url)

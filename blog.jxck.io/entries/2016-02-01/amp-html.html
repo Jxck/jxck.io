@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -219,9 +219,9 @@
         <p>こうした場合は <code translate=no>&lt;link&gt;</code> タグで、クローラなどに相互のページの参照を伝えることができる。
         <p>このサイトでは <code translate=no>.html</code> に AMP 対応があることを伝える以下を追記した。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=html><code translate=no>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=amphtml href=${path}.amp.html&gt;</code></pre>
         <p>一方 <code translate=no>.amp.html</code> では、オリジナルコンテンツの存在と、ブックマークなどが統一できるように <code translate=no>canonical</code> を追加している。
-        <pre class=html><code translate=no>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=canonical href=${path}.html&gt;</code></pre>
         <p>access_log で UA などを追えば、 amphtml を見るクローラが追えるかもしれない。
         <section>
           <h3 id="js"><a href="#js">JS</a></h3>
@@ -269,7 +269,7 @@
           <p><a href="https://developers.google.com/analytics/devguides/collection/amp-analytics/">Adding Analytics to your AMP pages</a>
           <p>収集したい情報に応じてやり方がいくつかあるようだが、一番スタンダードな Page Tracking だけ設定した。
           <p>AMP Analytics のコードの読み込みは、 AMP JS Library よりも前に行う必要があるとドキュメントに書かれているので、このようになった。
-          <pre class=html><code translate=no>&lt;script async custom-element=&quot;amp-analytics&quot; src=&quot;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&quot;&gt;&lt;/script&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;script async custom-element=&quot;amp-analytics&quot; src=&quot;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&quot;&gt;&lt;/script&gt;
 &lt;script async src=&quot;https://cdn.ampproject.org/v0.js&quot;&gt;&lt;/script&gt;
 
 &lt;amp-analytics type=&quot;googleanalytics&quot; id=&quot;analytics1&quot;&gt;

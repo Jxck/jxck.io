@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -184,7 +184,7 @@
         <h2 id="ステータスコードとヘッダ"><a href="#ステータスコードとヘッダ">ステータスコードとヘッダ</a></h2>
         <p>テキストベースプロトコルである HTTP/1.1 のレスポンスはこうなっている。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=http><code translate=no>HTTP/1.1 200 OK
+        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
 Content-Length: 100
 Content-Type: text/html
 Link: &lt;/style.css&gt;; rel=preload
@@ -201,7 +201,7 @@ Link: &lt;/script.js&gt;; rel=preload
         <p><a href="https://tools.ietf.org/html/draft-kazuho-early-hints-status-code">An HTTP Status Code for Indicating Hints</a>
         <p>103 は、ヘッダだけを送る目的で使われ、実際のレスポンスは後から来るというセマンティクスになっている。
         <p>先の例の場合、 DB を引いてる最中に Link だけを 103 で送り、残りは後から送る。
-        <pre class=http><code translate=no>HTTP/1.1 103 Early Hints
+        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 103 Early Hints
 Link: &lt;/style.css&gt;; rel=preload
 Link: &lt;/script.js&gt;; rel=preload
 

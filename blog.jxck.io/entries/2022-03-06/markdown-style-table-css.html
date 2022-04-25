@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -164,7 +164,7 @@
         <h2 id="before"><a href="#before">Before</a></h2>
         <p>実現したいのは以下のような記法だ。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=md><code translate=no>| file type | size | ratio |
+        <pre class=md data-code=md><code translate=no class=language-md>| file type | size | ratio |
 |:----------|-----:|------:|
 | .webp     | 9474 |  100% |
 | .webp.gz  | 2609 |   28% |
@@ -193,7 +193,7 @@
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
           <p>まず、自作のパーサでは以下のような HTML が生成される。 Align は HTML の <code translate=no>align</code> 要素が <a href="https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align">Deprecate</a> だったため、 <code translate=no>class</code> で実装している。
-          <pre class=html><code translate=no>&lt;table&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
       &lt;th class=align-left&gt;file type&lt;/th&gt;
@@ -254,7 +254,7 @@
         <section>
           <h3 id="alternative-text"><a href="#alternative-text">Alternative Text</a></h3>
           <p>そこで、<a href="https://drafts.csswg.org/css-content-3/#alt">1.2. Alternative Text for Accessibility</a> に定義されているように Alternative Text を以下の用に指定した。
-          <pre class=css><code translate=no>th::before,
+          <pre class=css data-code=css><code translate=no class=language-css>th::before,
 td::before {
   content: &quot;|&quot; / &quot;&quot;; /* 読み上げ等に対しては空文字として認識させる */
   float: left;
@@ -265,7 +265,7 @@ td::before {
           <h3 id="fallback"><a href="#fallback">Fallback</a></h3>
           <p>しかし、 Safari や Firefox は <code translate=no>content</code> の Alternative Text に対応してないため、このままでは <code translate=no>content</code> そのものが無視される。
           <p>通常、フォールバックとして Alternative Text 無しのものを先に指定することで見た目上は回避できる。
-          <pre class=css><code translate=no>th::before,
+          <pre class=css data-code=css><code translate=no class=language-css>th::before,
 td::before {
   content: &quot;|&quot;; /* Safari 用のフォールバック */
   content: &quot;|&quot; / &quot;&quot;; /* 読み上げ等に対しては空文字として認識させる */
@@ -278,7 +278,7 @@ td::before {
           <h3 id="support-query"><a href="#support-query">Support query</a></h3>
           <p>Markdown Style を Table に提供しない場合は、 <code translate=no>|</code> や <code translate=no>-</code> がなくなって罫線の無い Table になることを避けるため、以前自分が実装した border での実装をベースに提供することにした。
           <p>そして、 <code translate=no>@supports</code> を用いて、以下のように Alternative Text に対応している場合のみ、 Markdown Style CSS を適用している。
-          <pre class=css><code translate=no>/** default implementation */
+          <pre class=css data-code=css><code translate=no class=language-css>/** default implementation */
 
 @supports (content: &quot;a&quot; / &quot;b&quot;) {
   /** Markdown Style **/
@@ -293,7 +293,7 @@ td::before {
           <h3 id="caption-記法"><a href="#caption-記法">Caption 記法</a></h3>
           <p>パーサとジェネレータは自作しているため、 <code translate=no>&lt;figure&gt;</code> で囲むのは簡単だが、問題は <code translate=no>&lt;figcaption&gt;</code> の内容を Markdown 上どう表現するかだ。
           <p>Markdown は Caption の記法を標準で持たないため、様々な実装が独自の拡張として実装している。 <code translate=no>[caption]</code> のように括弧で囲うタイプのものが多いが、 <code translate=no>[]</code> に独自の意味を持つ実装は割と多いため、未対応の場合は単なる <code translate=no>&lt;p&gt;</code> として扱われるよう、 <code translate=no>Caption: caption</code> という記法で Table の直前に置くことにした。
-          <pre class=md><code translate=no>Caption: Webp を gz/br 圧縮した結果
+          <pre class=md data-code=md><code translate=no class=language-md>Caption: Webp を gz/br 圧縮した結果
 | file type | size | ratio |
 |:----------|-----:|------:|
 | .webp     | 9474 |  100% |

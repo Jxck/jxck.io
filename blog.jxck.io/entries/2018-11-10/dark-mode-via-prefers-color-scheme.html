@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -182,7 +182,7 @@
         <h2 id="prefers-color-scheme"><a href="#prefers-color-scheme">prefers-color-scheme</a></h2>
         <p>Safari TP 69 では、 <code translate=no>prefers-color-scheme</code> を用いて Media Query でテーマごとに分岐した CSS を記述できるようになった。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=css><code translate=no>@media (prefers-color-scheme: light) {
+        <pre class=css data-code=css><code translate=no class=language-css>@media (prefers-color-scheme: light) {
   body {
     background-color: white;
     color: black;
@@ -198,7 +198,7 @@
         <p>多くの場合、現状のコンテンツが Ligth Mode と見なされるだろう。
         <p>その場合、差分のみを Dark Mode 用に書き、色を反転するデザインをあてれば良い。
         <p>しかし、今後 Dark 以外のテーマの出現や汎用性、メンテナンス性を考えると、カラーセットを Variables でまとめておき、切り替えるのが良いだろう。
-        <pre class=css><code translate=no>@media (prefers-color-scheme: light) {
+        <pre class=css data-code=css><code translate=no class=language-css>@media (prefers-color-scheme: light) {
   :root {
     --theme-base: white;
     --theme-font: black;
@@ -245,7 +245,7 @@ strong {
           <p>この <code translate=no>grayscale()</code> は引数を取り、 100% が完全な白黒になる。
           <p>注釈や赤線を引いたスクショもあるため、それらの色が認識でき、かつ明るさを抑えて先の dark mode の CSS デザインと混じる値を探す。
           <p>結果、以下に落ち着いた。
-          <pre class=css><code translate=no>article img {
+          <pre class=css data-code=css><code translate=no class=language-css>article img {
   filter: grayscale(50%);
 }</code></pre>
         </section>
@@ -255,14 +255,14 @@ strong {
           <p>これは、 <code translate=no>invert()</code> で反転させることで黒背景にすることが可能なので、黒背景にした dark mode とも合う。
           <p>しかし、そのままではやはり色が強くなりがちなので、ラスタと同じように <code translate=no>grayscale()</code> を適用することにした。
           <p>結果、以下に落ち着いた。
-          <pre class=css><code translate=no>article img[src*=svg] {
+          <pre class=css data-code=css><code translate=no class=language-css>article img[src*=svg] {
   filter: invert(100%) grayscale(50%);
 }</code></pre>
         </section>
         <section>
           <h3 id="画像についての備考"><a href="#画像についての備考">画像についての備考</a></h3>
           <p>本サイトが、そもそもモノクロデザインであるため、画像もモノクロにしてしまっても、なんとなくそれっぽく見える。
-          <pre class=css><code translate=no>article img[src*=svg] {
+          <pre class=css data-code=css><code translate=no class=language-css>article img[src*=svg] {
   filter: invert(100%) grayscale(100%);
 }
 
@@ -279,7 +279,7 @@ article img {
         <p>本サイトでは、コードスニペットにシンタックスハイライトを入れている。
         <p>ハイライト用のテーマを dark 用に用意するのも良いが、大変そうだったのでここも CSS filter を使うことにした。
         <p>ハイライト用に作ったカラーテーマは、そのまま <code translate=no>invert()</code> してもそれなりに違和感がなかったため、これを適用した。
-        <pre class=css><code translate=no>p &gt; code,
+        <pre class=css data-code=css><code translate=no class=language-css>p &gt; code,
 pre &gt; code {
   filter: invert(100%);
 }</code></pre>

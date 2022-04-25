@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -159,7 +159,7 @@
         <p>HTML 自体がコンポーネントを意識した作りになっている場合は、自然と CSS も <code translate=no>class</code> などを使いコンポーネント単位に作ることができるだろう。
         <p>しかし、 HTTP/1.1 では、リクエストの数を減らすために全ての CSS を 1 つ(もしくは少数個)に結合する最適化が主流だった。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=html><code translate=no>&lt;head&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;bundle.css&quot;&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -167,7 +167,7 @@
 &lt;/body&gt;</code></pre>
         <p>ところが、リクエストの多重化が可能な HTTP/2 においては、そこを心配する必要がなくなった。
         <p>このため、コンポーネントごとに CSS を分割するのは、キャッシュの容易性を考えても良い方法と言える。
-        <pre class=html><code translate=no>&lt;head&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;head&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/header.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/main.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;
@@ -215,7 +215,7 @@
       <section>
         <h2 id="http2-時代の最適化"><a href="#http2-時代の最適化">HTTP2 時代の最適化</a></h2>
         <p>HTTP2 では以下のように書くことが可能になる。
-        <pre class=html><code translate=no>&lt;head&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;head&gt;
 &lt;!-- header には、コンポーネントに依存する CSS は書かない --&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -281,7 +281,7 @@
         <h2 id="firefox-での-fouc-対策"><a href="#firefox-での-fouc-対策">Firefox での FOUC 対策</a></h2>
         <p>Firefox では、以下のように <code translate=no>&lt;script&gt;</code> をはさむことで CSS がロードされるまでパースをブロックし FOUC を回避できる。
         <p><code translate=no>&lt;script&gt;</code> には中身が必要だが、スペース 1 つで十分である。
-        <pre class=html><code translate=no>&lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;&lt;script&gt; &lt;/script&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;stylesheet&quot; href=&quot;/article.css&quot;&gt;&lt;script&gt; &lt;/script&gt;
 &lt;main&gt;&lt;/main&gt;</code></pre>
       </section>
       <section>

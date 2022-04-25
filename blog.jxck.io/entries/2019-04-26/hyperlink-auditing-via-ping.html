@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -164,10 +164,10 @@
         <h2 id="リンクの-ping-属性"><a href="#リンクの-ping-属性">リンクの ping 属性</a></h2>
         <p><code translate=no>&lt;a&gt;</code> には ping という属性があり、以下のように URL を指定する。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=html><code translate=no>&lt;a href=https:example.com ping=/path/to/report&gt;example.com&lt;/a&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=https:example.com ping=/path/to/report&gt;example.com&lt;/a&gt;</code></pre>
         <p><a href="https://html.spec.whatwg.org/#ping">HTML Standard - ping Attribute</a>
         <p>このリンクは、クリックすると <a href="https://example.com">https://example.com</a> に遷移するが、ブラウザは遷移すると同時に <code translate=no>/path/to/report</code> に対して、おおよそ以下のようなリクエストを投げる。
-        <pre class=http><code translate=no>POST /path/to/report HTTP/1.1
+        <pre class=http data-code=http><code translate=no class=language-http>POST /path/to/report HTTP/1.1
 Content-Type: text/ping
 Ping-From: http://labs.jxck.io/ping/
 Ping-To: http://labs.jxck.io/ping/
@@ -226,13 +226,13 @@ PING</code></pre>
           <p>最も想像しやすい手法は、 JS を用いた実装だろう。
           <p><code translate=no>onclick</code>, <code translate=no>onunload</code>, などをフックし、遷移の前に必要な情報を載せたリクエストをサーバに飛ばす方法だ。
           <p>XHR で飛ばすこともできるが、非同期だと送り終わる前にページが遷移してしまうなどの理由により、あえて同期の XHR でリクエストを投げ、終わるまで処理を止めてるという場合もある。
-          <pre class=js><code translate=no>window.addEventListener(&apos;unload&apos;, (e) =&gt; {
+          <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&apos;unload&apos;, (e) =&gt; {
   const xhr = new XMLHttpRequest()
   xhr.open(&apos;post&apos;, &apos;https://beacon.example/&apos;, false) // sync xhr
   xhr.send(data) // 必要な情報を収集する
 })</code></pre>
           <p>最近は Off The Main Thread の流れもあり、同期の XHR は徐々に無くしていく方向になっているため、標準化されている Beacon API や Keep Alive Fetch などを利用するのが理想的だ。
-          <pre class=js><code translate=no>window.addEventListener(&apos;unload&apos;, (e) =&gt; {
+          <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&apos;unload&apos;, (e) =&gt; {
   fetch(&apos;https://beacon.example/&apos;, {
     keepalive: true,
     method: &apos;post&apos;,
@@ -245,7 +245,7 @@ PING</code></pre>
           <h3 id="リダイレクト"><a href="#リダイレクト">リダイレクト</a></h3>
           <p>もう一つ、広く採用されている方法にリダイレクトがある。
           <p>例えば SNS や Chat などで URL を共有すると、以下のように URL が表示されるが、 href は別の URL に差し替えられている、という場合がある。
-          <pre class=html><code translate=no>&lt;a href=https://redirect.example?to=https://hello.example.com/world.html&gt;https://hello.example.com/world.html&lt;/a&gt;</code></pre>
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=https://redirect.example?to=https://hello.example.com/world.html&gt;https://hello.example.com/world.html&lt;/a&gt;</code></pre>
           <p>この場合、実際の遷移先のパラメータを入れておくことで、リダイレクト先で流出先を収集し、その後すぐリダイレクトをかけるというものだ。
           <p>Referer をとるか、 from をクエリに追加すれば、 <code translate=no>Ping-From</code>, <code translate=no>Ping-To</code> 同等の情報が得られる。
         </section>

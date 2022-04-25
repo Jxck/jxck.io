@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -187,7 +187,7 @@
         <p>CSP は全て Report-Only で HTTP ヘッダから適応しており、 CSP レポートを収集している。
         <p>現状は以下である。(まだ改善点はある)
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=http><code translate=no>content-security-policy-report-only:
+        <pre class=http data-code=http><code translate=no class=language-http>content-security-policy-report-only:
   default-src &apos;self&apos;
               https://jxck.io
               https://*.jxck.io
@@ -220,7 +220,7 @@
           <h3 id="dom-change-by-user"><a href="#dom-change-by-user">DOM Change by User</a></h3>
           <p>Bookmarklet などから DOM を変更することで、ページそのものをカスタマイズしたりするユーザや、 Devtools からこのサイト上で色々試したりするユーザもいるだろう。
           <p>一例として、以下のレポートは、 CSP の指定範囲外オリジンから jQuery を埋め込んだことによるレポートと思われる。
-          <pre class=json><code translate=no>{
+          <pre class=json data-code=json><code translate=no class=language-json>{
   &quot;csp-report&quot;: {
     &quot;document-uri&quot;:        &quot;https://blog.jxck.io/entries/...&quot;,
     &quot;referrer&quot;:            &quot;https://blog.jxck.io/&quot;,
@@ -240,7 +240,7 @@
           <h3 id="extension"><a href="#extension">Extension</a></h3>
           <p>以下のレポートは、ブラウザ拡張がブロックされたであろうと想像される。
           <p>画像について何か改変をしているようだが、詳細はわからない。
-          <pre class=js><code translate=no>{
+          <pre class=js data-code=js><code translate=no class=language-js>{
   &quot;csp-report&quot;: {
     &quot;document-uri&quot;:        &quot;https://blog.jxck.io/entries/...&quot;,
     &quot;violated-directive&quot;:  &quot;default-src &apos;self&apos; https://jxck.io ...&quot;,
@@ -271,7 +271,7 @@
               <img loading=lazy decoding=async src=chrome-inline-style-violation.png?200901_002432 alt="Chrome でテキストを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす" title="inline style violation for RSS feed in chrome" width=1667 height=656>
             </picture>
           </p>
-          <pre class=js><code translate=no>{
+          <pre class=js data-code=js><code translate=no class=language-js>{
   &quot;csp-report&quot;: {
   &quot;document-uri&quot;:        &quot;https://jxck.io/humans.txt&quot;,
   &quot;referrer&quot;:            &quot;&quot;,
@@ -303,7 +303,7 @@
         <section>
           <h3 id="aboutblank_"><a href="#aboutblank_">about:blank_</a></h3>
           <p>なんらかの操作によって、コンテキストが <code translate=no>about://blank</code> になりオリジンの違反としてレポートがちょくちょく来る。
-          <pre class=js><code translate=no>{
+          <pre class=js data-code=js><code translate=no class=language-js>{
   &quot;csp-report&quot;: {
     &quot;document-uri&quot;:        &quot;about://blank&quot;,
     &quot;violated-directive&quot;:  &quot;default-src &apos;self&apos; https://jxck.io...&quot;,

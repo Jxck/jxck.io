@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -189,19 +189,19 @@
           <h3 id="headding--sectioning"><a href="#headding--sectioning">Headding / Sectioning</a></h3>
           <p>大抵の Markdown 実装は <code translate=no>#</code>, <code translate=no>##</code> は <code translate=no>&lt;h1&gt;</code>, <code translate=no>&lt;h2&gt;</code> にそのままシリアライズされる。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=md><code translate=no># h1
+          <pre class=md data-code=md><code translate=no class=language-md># h1
 
 ## h2
 
 ### h3
 
 ### h3</code></pre>
-          <pre class=html><code translate=no>&lt;h1&gt;h1&lt;/h1&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;h1&gt;h1&lt;/h1&gt;
 &lt;h2&gt;h2&lt;/h2&gt;
 &lt;h3&gt;h3&lt;/h3&gt;
 &lt;h3&gt;h3&lt;/h3&gt;</code></pre>
           <p>これを <code translate=no>&lt;section&gt;</code> で階層化し、 <code translate=no>&lt;h1&gt;</code> だけは <code translate=no>&lt;article&gt;</code> にする。
-          <pre class=html><code translate=no>&lt;article&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;article&gt;
   &lt;h1&gt;h1&lt;/h1&gt;
   &lt;section&gt;
     &lt;h2&gt;h2&lt;/h2&gt;
@@ -214,7 +214,7 @@
   &lt;/section&gt;
 &lt;/article&gt;</code></pre>
           <p>さらに、見出しジャンプを入れる。その際、 ID を振るが、もし被った場合は後ろに連番を振る。
-          <pre class=html><code translate=no>&lt;article&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;article&gt;
   &lt;h1 id=&quot;h1&quot;&gt;&lt;a href=&quot;#h1&quot;&gt;h1&lt;/a&gt;&lt;/h1&gt;
   &lt;section&gt;
     &lt;h2 id=&quot;h2&quot;&gt;&lt;a href=&quot;#h2&quot;&gt;h2&lt;/a&gt;&lt;/h2&gt;
@@ -255,10 +255,10 @@
           <h3 id="blockquote-の-cite"><a href="#blockquote-の-cite">blockquote の cite</a></h3>
           <p>blockqote 記法の最後に書いた URL を <code translate=no>cite</code> として埋め込む。
           <p>例えばこれは
-          <pre class=md><code translate=no>&gt; example page
+          <pre class=md data-code=md><code translate=no class=language-md>&gt; example page
 &gt; --- https://example.com</code></pre>
           <p>以下のようになる。
-          <pre class=html><code translate=no>&lt;blockquote cite=&quot;https://example.com&quot;&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;blockquote cite=&quot;https://example.com&quot;&gt;
   &lt;p&gt;example page&lt;/p&gt;
   &lt;p&gt;
     &amp;mdash; &lt;cite&gt;&lt;a href=&quot;https://example.com&quot;&gt;example.com&lt;/a&gt;&lt;/cite&gt;
@@ -270,7 +270,7 @@
           <h3 id="外部-script-の読み込み"><a href="#外部-script-の読み込み">外部 script の読み込み</a></h3>
           <p>ブログを書く上で、コードブロックにサンプルコードを書くことは多く、その中身が多いと外部ファイルに出し、ビルド時に読み込めると便利だ。
           <p>そこで、本サイトは初期から以下の記法をサポートしていた。
-          <pre class=md><code translate=no>```js:script.js
+          <pre class=md data-code=md><code translate=no class=language-md>```js:script.js
 ```</code></pre>
           <p>このようにすると、 HTML ビルド時にカレントディレクトリの script.js を読み込んで HTML の <code translate=no>&lt;code&gt;</code> 内に展開してくれる。
         </section>
@@ -280,9 +280,9 @@
           <p>これを出し分けるために、画像記法は <code translate=no>&lt;picture&gt;</code> になるようにカスタマイズしている。 (SVG は単に <code translate=no>&lt;img&gt;</code> になる)
           <p>また width/height を明示できるよう、 URL の最後に fragment を <code translate=no>#256x256</code> のように指定すると width, height として解釈する。
           <p>さらに、画像を読み込んで <code translate=no>mtime</code> から最終更新時を算出し、それをクエリに付与して Cache Busting する。
-          <pre class=md><code translate=no>![alt text](image.png#256x256 &quot;title test&quot;)</code></pre>
+          <pre class=md data-code=md><code translate=no class=language-md>![alt text](image.png#256x256 &quot;title test&quot;)</code></pre>
           <p>これは以下のように展開される。
-          <pre class=html><code translate=no>&lt;picture&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;picture&gt;
   &lt;source type=image/webp srcset=image.webp?211010_101010&gt;
   &lt;img
     loading=&quot;lazy&quot;
@@ -295,8 +295,8 @@
   /&gt;
 &lt;/picture&gt;</code></pre>
           <p>そして、動画を埋め込む記法が Markdown にはないが、これまで gif アニメにしていたものは mp4 に移行しつつあるので、拡張子が mp4 だった場合は <code translate=no>&lt;video&gt;</code> になるようにしている。こちらは、 webm のフォールバックを入れている。
-          <pre class=md><code translate=no>![dummy video](dummy_video.mp4#1000x2000)</code></pre>
-          <pre class=html><code translate=no>&lt;video title=&quot;dummy video&quot; width=&quot;1000&quot; height=&quot;2000&quot; controls playsinline&gt;
+          <pre class=md data-code=md><code translate=no class=language-md>![dummy video](dummy_video.mp4#1000x2000)</code></pre>
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;video title=&quot;dummy video&quot; width=&quot;1000&quot; height=&quot;2000&quot; controls playsinline&gt;
   &lt;source type=video/mp4 src=dummy_video.mp4?211010_101010&gt; &lt;source
   type=video/webm src=dummy_video.webm?211010_101010&gt;
 &lt;/video&gt;</code></pre>
@@ -313,7 +313,7 @@
           <h3 id="table"><a href="#table"><code translate=no>&lt;table&gt;</code></a></h3>
           <p>Kramdown は、文の途中で <code translate=no>|</code> が来ると <code translate=no>&lt;table&gt;</code> が始まったと解釈する。
           <p>しかし、以下のようなリンクのタイトルは <code translate=no>|</code> を含むことが多く、エスケープが必要だった。
-          <pre class=md><code translate=no>- [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)</code></pre>
+          <pre class=md data-code=md><code translate=no class=language-md>- [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)</code></pre>
           <p>mozaic.fm の Monthly Web では、 Show Note に大量のリンクを貼るため、そこに出てくる <code translate=no>|</code> を全てエスケープするのは面倒だった。
           <p>一方、文の途中で <code translate=no>&lt;table&gt;</code> を始めることなどないため、 <code translate=no>|</code> は行頭にきた場合のみ <code translate=no>&lt;table&gt;</code> と解釈することに限定し、エスケープしないで良いようにした。
           <p>また、 <code translate=no>&lt;table&gt;</code> の align は <code translate=no>align</code> 属性で指定も可能だが、もう deprecate されているため、 CSS で align するために <code translate=no>class</code> をつけるようにしている。
@@ -327,14 +327,14 @@
         <section>
           <h3 id="h1"><a href="#h1">h1</a></h3>
           <p>h1 には以下のようにタグが書けるようにしている。
-          <pre class=md><code translate=no># [tag] hello world</code></pre>
+          <pre class=md data-code=md><code translate=no class=language-md># [tag] hello world</code></pre>
           <p>これも、 blog のタイトル上に埋め込んでいる。
         </section>
         <section>
           <h3 id="front-matter"><a href="#front-matter">Front Matter</a></h3>
           <p>特に moziac.fm のエピソードページでは、 mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
           <p>しかし、 Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
-          <pre class=md><code translate=no>---
+          <pre class=md data-code=md><code translate=no class=language-md>---
 type: podcast
 tags: [&quot;monthly web&quot;]
 audio: https://files.mozaic.fm/mozaic-ep89.mp3
@@ -353,12 +353,12 @@ guest: [@myakura](https://twitter.com/myakura)
           <h3 id="dl"><a href="#dl"><code translate=no>&lt;dl&gt;</code></a></h3>
           <p>定義リスト記法もサポートしている。
           <p>さらに <code translate=no>&lt;dl&gt;</code> の下の <code translate=no>&lt;dt&gt;</code> <code translate=no>&lt;dd&gt;</code> は <code translate=no>&lt;div&gt;</code> で囲むことが許されており、これがあるとスタイルがちょっと楽になる。
-          <pre class=md><code translate=no>key1
+          <pre class=md data-code=md><code translate=no class=language-md>key1
 : val1
 key2
 : val2
 : val3</code></pre>
-          <pre class=html><code translate=no>&lt;dl&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dl&gt;
   &lt;div&gt;
     &lt;dt&gt;key1&lt;/dt&gt;
     &lt;dd&gt;val1&lt;/dd&gt;
@@ -383,7 +383,7 @@ key2
           <h3 id="余計な空白はエラー"><a href="#余計な空白はエラー">余計な空白はエラー</a></h3>
           <p>以前はビルドとは別に linter のようなものを雑に作ってフォーマットを確認していた。
           <p>しかし、せっかくパーサを書いたので、パースの際に気に食わないところは、すべてエラーにすることにした。
-          <pre class=md><code translate=no>以下全部エラー
+          <pre class=md data-code=md><code translate=no class=language-md>以下全部エラー
 
 a **b** c
 a **b** c
@@ -397,7 +397,7 @@ a **b ** c
         <section>
           <h3 id="url-link"><a href="#url-link">URL link</a></h3>
           <p>Kramdown ではサポートされてなかった URL Like String を含めて、リンク記法は以下の 3 つを全てサポートしている。
-          <pre class=md><code translate=no>[title](https://example.com)
+          <pre class=md data-code=md><code translate=no class=language-md>[title](https://example.com)
 &lt;https://example.com&gt;
 https://example.com</code></pre>
           <p>最後の何も記法がないものは、とりあえず <code translate=no>http://</code> と <code translate=no>https://</code> で始まるものだけに絞ることで誤発動を防いでいる。

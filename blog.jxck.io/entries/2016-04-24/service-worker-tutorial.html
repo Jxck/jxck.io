@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -183,7 +183,7 @@
         <p>controller とは何か、いつ controller になるか、 <code translate=no>claim()</code> で何が起こるのかなどについて。
         <iframe src="https://www.youtube.com/embed/m6qBg4M3RTA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=html data-path=claim.html><code translate=no>&lt;!DOCTYPE html&gt;
+        <pre class=html data-code=html data-path=claim.html><code translate=no class=language-html>&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;title&gt;Service Worker&lt;/title&gt;
 
@@ -194,7 +194,7 @@
 &lt;input id=test type=button value=test&gt;
 
 &lt;script src=master.js&gt;&lt;/script&gt;</code></pre>
-        <pre class=js data-path=claim-master.js><code translate=no>console.log(&apos;master&apos;);
+        <pre class=js data-code=js data-path=claim-master.js><code translate=no class=language-js>console.log(&apos;master&apos;);
 
 document.getElementById(&apos;button&apos;).addEventListener(&apos;click&apos;, () =&gt; {
   fetch(&apos;/test&apos;);
@@ -203,7 +203,7 @@ document.getElementById(&apos;button&apos;).addEventListener(&apos;click&apos;, 
 navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   console.log(registration);
 });</code></pre>
-        <pre class=js data-path=claim-worker.js><code translate=no>console.info(&apos;worker&apos;);
+        <pre class=js data-code=js data-path=claim-worker.js><code translate=no class=language-js>console.info(&apos;worker&apos;);
 
 self.addEventListener(&apos;activate&apos;, (e) =&gt; {
   console.info(&apos;activate&apos;, e);
@@ -226,7 +226,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
         <h2 id="controllerchange"><a href="#controllerchange">controllerchange</a></h2>
         <p>register が終わった後、「新しく登録された controller が使えるようになったら」または「既に登録されている controller が使えるようになったら」という状態をとる方法と <code translate=no>controllerchange</code> イベント。
         <iframe src="https://www.youtube.com/embed/XoI0FPDV8Xo" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-        <pre class=js data-path=controllerchange-master.js><code translate=no>console.log(&apos;master&apos;);
+        <pre class=js data-code=js data-path=controllerchange-master.js><code translate=no class=language-js>console.log(&apos;master&apos;);
 
 let controllerChange = new Promise((resolve, reject) =&gt; {
   navigator.serviceWorker.addEventListener(&apos;controllerchange&apos;, () =&gt; {
@@ -245,7 +245,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
   console.log(controller);
   fetch(&apos;/test&apos;);
 });</code></pre>
-        <pre class=js data-path=controllerchange-worker.js><code translate=no>console.info(&apos;worker&apos;);
+        <pre class=js data-code=js data-path=controllerchange-worker.js><code translate=no class=language-js>console.info(&apos;worker&apos;);
 
 self.addEventListener(&apos;activate&apos;, (e) =&gt; {
   console.info(&apos;activate&apos;, e);
@@ -269,7 +269,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
         <p>Service Worker が更新される際の動きと、 <code translate=no>skipWaiting()</code> が何をスキップするのか?
         <p><code translate=no>install</code>, <code translate=no>activate</code> イベントの用途。
         <iframe src="https://www.youtube.com/embed/AMbQ7d9rjao" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-        <pre class=js data-path=updatefound-master.js><code translate=no>console.log(&apos;master&apos;);
+        <pre class=js data-code=js data-path=updatefound-master.js><code translate=no class=language-js>console.log(&apos;master&apos;);
 
 navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   registration.addEventListener(&apos;updatefound&apos;, (e) =&gt; {
@@ -277,7 +277,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
   });
   return navigator.serviceWorker.ready;
 });</code></pre>
-        <pre class=js data-path=updatefound-worker.js><code translate=no>console.info(&apos;worker&apos;);
+        <pre class=js data-code=js data-path=updatefound-worker.js><code translate=no class=language-js>console.info(&apos;worker&apos;);
 
 const ver = 1;
 
@@ -307,7 +307,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
         <h2 id="update"><a href="#update">update()</a></h2>
         <p><code translate=no>registration.update()</code> による worker の更新と、ブラウザキャッシュにヒットする場合の挙動。
         <iframe src="https://www.youtube.com/embed/7uRVh9PzV5o" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-        <pre class=js data-path=update-master.js><code translate=no>console.log(&apos;master&apos;);
+        <pre class=js data-code=js data-path=update-master.js><code translate=no class=language-js>console.log(&apos;master&apos;);
 
 navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   registration.addEventListener(&apos;updatefound&apos;, (e) =&gt; {
@@ -321,7 +321,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
     registration.update();
   }, 1000);
 });</code></pre>
-        <pre class=js data-path=update-worker.js><code translate=no>console.info(&apos;worker&apos;);
+        <pre class=js data-code=js data-path=update-worker.js><code translate=no class=language-js>console.info(&apos;worker&apos;);
 
 const ver = 1;
 
@@ -355,7 +355,7 @@ self.addEventListener(&apos;push&apos;, () =&gt; {
         <h2 id="backgroundsync"><a href="#backgroundsync">backgroundsync</a></h2>
         <p>sync の発火タイミングと fetch を sync で送る場合の考え方。
         <iframe src="https://www.youtube.com/embed/b7ZM7uzkykA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-        <pre class=js data-path=backgroundsync-master.js><code translate=no>// master.js
+        <pre class=js data-code=js data-path=backgroundsync-master.js><code translate=no class=language-js>// master.js
 navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
   return navigator.serviceWorker.ready;
 }).then((registration) =&gt; {
@@ -366,7 +366,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
     }).catch(console.error.bind(console));
   });
 }).catch(console.error.bind(console));</code></pre>
-        <pre class=js data-path=backgroundsync-worker.js><code translate=no>// worker.js
+        <pre class=js data-code=js data-path=backgroundsync-worker.js><code translate=no class=language-js>// worker.js
 self.addEventListener(&apos;install&apos;, (e) =&gt; {
   console.info(&apos;install&apos;, e);
   e.waitUntil(skipWaiting());
@@ -398,7 +398,7 @@ self.addEventListener(&apos;sync&apos;, (e) =&gt; {
             <li>manifest.json を作って HTML にリンクスする
           </ul>
           <iframe src="https://www.youtube.com/embed/MlCZWVvUiXM" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-          <pre class=json><code translate=no>{
+          <pre class=json data-code=json><code translate=no class=language-json>{
   &quot;name&quot;: &quot;labs.jxck.io push demo&quot;,
   &quot;short_name&quot;: &quot;labs.jxck.io&quot;,
   &quot;icons&quot;: [{
@@ -412,7 +412,7 @@ self.addEventListener(&apos;sync&apos;, (e) =&gt; {
   &quot;gcm_sender_id&quot;: &quot;************&quot;
 }</code></pre>
           <p>(<code translate=no>gcm_user_visible_only</code> は今はもういりません)
-          <pre class=html data-path=push.html><code translate=no>&lt;!DOCTYPE html&gt;
+          <pre class=html data-code=html data-path=push.html><code translate=no class=language-html>&lt;!DOCTYPE html&gt;
 &lt;meta charset=utf-8&gt;
 &lt;title&gt;Service Worker Push Demo | labs.jxck.io&lt;/title&gt;
 
@@ -426,7 +426,7 @@ self.addEventListener(&apos;sync&apos;, (e) =&gt; {
           <h3 id="2.master.js"><a href="#2.master.js">2.master.js</a></h3>
           <p><code translate=no>endpoint</code>, <code translate=no>userAuth</code>, <code translate=no>userPublickKey</code> をなんらかの方法でサーバに送ります。
           <iframe src="https://www.youtube.com/embed/f-ney12qAEI" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-          <pre class=js data-path=push-master.js><code translate=no>&apos;use strict&apos;;
+          <pre class=js data-code=js data-path=push-master.js><code translate=no class=language-js>&apos;use strict&apos;;
 let p = console.log.bind(console);
 
 navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt; {
@@ -453,7 +453,7 @@ navigator.serviceWorker.register(&apos;worker.js&apos;).then((registration) =&gt
         <section>
           <h3 id="3.worker.js"><a href="#3.worker.js">3.worker.js</a></h3>
           <iframe src="https://www.youtube.com/embed/k939NlThH4E" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-          <pre class=js data-path=push-worker.js><code translate=no>self.addEventListener(&apos;install&apos;, (e) =&gt; {
+          <pre class=js data-code=js data-path=push-worker.js><code translate=no class=language-js>self.addEventListener(&apos;install&apos;, (e) =&gt; {
   console.info(&apos;install&apos;, e);
   e.waitUntil(self.skipWaiting());
 });
@@ -498,7 +498,7 @@ self.addEventListener(&apos;notificationclick&apos;, (e) =&gt; {
           <h3 id="4.push.js"><a href="#4.push.js">4.push.js</a></h3>
           <p>使用したモジュール: <a href="https://github.com/web-push-libs/web-push">https://github.com/web-push-libs/web-push</a>
           <iframe src="https://www.youtube.com/embed/hIliK4l4wqw" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-          <pre class=js data-path=push.js><code translate=no>&apos;use strict&apos;;
+          <pre class=js data-code=js data-path=push.js><code translate=no class=language-js>&apos;use strict&apos;;
 
 let push = require(&apos;web-push&apos;);
 

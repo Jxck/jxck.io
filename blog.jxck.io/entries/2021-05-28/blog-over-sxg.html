@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -194,18 +194,18 @@
           <h3 id="webpkgserver"><a href="#webpkgserver">webpkgserver</a></h3>
           <p>webpkgserver は <code translate=no>go get</code> ではうまく動かなかったため、 README にある通りソースからビルドした。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=shell><code translate=no>git clone --depth 1 https://github.com/google/webpackager
+          <pre class=shell data-code=shell><code translate=no class=language-shell>git clone --depth 1 https://github.com/google/webpackager
 cd webpackager/cmd/webpkgserver
 go build .</code></pre>
           <p>これで <code translate=no>webpkgserver</code> コマンドが生成される。
           <p>実行には設定ファイルの toml を引数に渡す。
-          <pre class=shell-session><code translate=no>$ webpkgserver --config webpkgserver.toml</code></pre>
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ webpkgserver --config webpkgserver.toml</code></pre>
         </section>
         <section>
           <h3 id="webpkgserver.toml"><a href="#webpkgserver.toml">webpkgserver.toml</a></h3>
           <p>設定ファイルは、同梱されている <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/webpkgserver.example.toml">webpkgserver.example.toml</a> を修正する。
           <p>ほとんどデフォルトが使えるため、 Port と SXG 用の証明書、 Domain あたりを気をつければ良いだろう。
-          <pre class=yaml><code translate=no>[Listen]
+          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>[Listen]
   Port = 11000
 
 [Server]
@@ -223,7 +223,7 @@ go build .</code></pre>
   Domain = &apos;blog.jxck.io&apos;</code></pre>
           <p>これを引数にするだけでサーバは起動する。
           <p>ローカルで起動した時点で、動作の確認は以下のように行うことができる。
-          <pre class=shell><code translate=no>export URL=&quot;https://blog.jxck.io/&quot;
+          <pre class=shell data-code=shell><code translate=no class=language-shell>export URL=&quot;https://blog.jxck.io/&quot;
 curl -s --output - -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; http://127.0.0.1:11000/priv/doc/$URL &gt; dump.sxg
 dump-signedexchange -i dump.sxg</code></pre>
         </section>
@@ -244,7 +244,7 @@ dump-signedexchange -i dump.sxg</code></pre>
         <p>しかし、 Google の Bot だけでなく、 Chrome も現状このヘッダをデフォルトで付与しているため、単にこのヘッダの有無だけを見てルーティングすると、ブラウザからのリクエストにも SXG を返すことになる。
         <p>これについては Q value を参照するように <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/README.md#content-negotiation">ドキュメント</a> に書かれている。
         <p>具体的には Chrome と Google Bot の付与する Accept は以下のように異なる。
-        <pre class=http><code translate=no># Google Bot
+        <pre class=http data-code=http><code translate=no class=language-http># Google Bot
 Accept: text/html,application/xhtml+xml,application/signed-exchange;v=b3,application/xml;q=0.9,*/*;q=0.8
 
 # Chrome 90
@@ -252,7 +252,7 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/a
         <p>SXG に注目すると Chrome は Q value を HTML などよりも下げているが、 Google Bot は Q value を下げずに HTML と同等にしていることがわかる。
         <p>ドキュメントでは、 Google Bot は Q value を付与しないことで優先度を下げないため、 Q value の有無が判断材料になると書かれており、それを Nginx で実現する正規表現の例が書かれている。
         <p>しかしドキュメントの正規表現が気に入らず、また本サイトでは h2o の mruby handler で対応するため、以下のように否定先読みで実現することとした。
-        <pre class=ruby><code translate=no>if /application\/signed-exchange;v=b3(?!;q=)/.match(env[&quot;HTTP_ACCEPT&quot;])
+        <pre class=ruby data-code=ruby><code translate=no class=language-ruby>if /application\/signed-exchange;v=b3(?!;q=)/.match(env[&quot;HTTP_ACCEPT&quot;])
   # reproxy to backend wepkgserver
   next [307, {&quot;x-reproxy-url&quot; =&gt; &quot;http://127.0.0.1:11000/priv/doc/https://blog.jxck.io#{path}&quot;}, []]
 else
@@ -260,17 +260,17 @@ else
   next [399, {}, []]
 end</code></pre>
         <p>ここまでが成功しているかは、以下のようにテストをすることができる。
-        <pre class=shell><code translate=no>export URL=&quot;https://blog.jxck.io/&quot;
+        <pre class=shell data-code=shell><code translate=no class=language-shell>export URL=&quot;https://blog.jxck.io/&quot;
 curl -s --output - -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; $URL &gt; dump.sxg
 dump-signedexchange -i dump.sxg -signature</code></pre>
         <section>
           <h3 id="webpkg"><a href="#webpkg"><code translate=no>/webpkg</code></a></h3>
           <p>webpkgserver は SXG に必要な Certificate URL を自動で提供してくれる。
           <p>そのパスは <code translate=no>/webpkg/cert/#{base64}</code> となっているため、ここへのリクエストはそのまま転送すれば良い。
-          <pre class=h2o><code translate=no>&quot;/webpkg&quot;:
+          <pre class=h2o data-code=h2o><code translate=no class=language-h2o>&quot;/webpkg&quot;:
   proxy.reverse.url: &quot;http://127.0.0.1:11000/webpkg&quot;</code></pre>
           <p>dump した sxg の中に cert url があるためそこから URL を取得すると以下のようにテストできる。
-          <pre class=shell><code translate=no># dump certurl
+          <pre class=shell data-code=shell><code translate=no class=language-shell># dump certurl
 curl -s --output - https://blog.jxck.io/webpkg/cert/g8zY1NBH4DQt9qIWOWBqLWvs6jAnJmURAtNRc2WChDE &gt; cert.cbor
 dump-certurl -i cert.cbor</code></pre>
         </section>

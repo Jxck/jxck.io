@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -167,14 +167,14 @@
           </ul>
           <p>まず、 <code translate=no>listen</code> directive の中で <code translate=no>type: quic</code> を指定するとそれだけで QUIC が有効になり、HTTP3 が動くようだ。そして、そのとおり実際に動く。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=yaml><code translate=no># The following three lines enable HTTP3
+          <pre class=yaml data-code=yaml><code translate=no class=language-yaml># The following three lines enable HTTP3
 listen:
   &lt;&lt;: *ssl_listen
   type: quic
 header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
           <p>ここで注意が必要なのは、ブラウザの挙動とディレクティブの順番だ。
           <p>例えば、本サイトではテスト用に <code translate=no>http3.jxck.io</code> を切り、そこで以下のように検証を試みた。
-          <pre class=yaml><code translate=no>hosts:
+          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
   &quot;jxck.io:443&quot;:
       listen: 443
       ...
@@ -212,7 +212,7 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
           <p>これは、ブラウザが <code translate=no>Alt-Svc</code> を見てから初めて QUIC 対応を知るため、1 回目のアクセスは通常通り HTTP1 or 2 で行い、UDP しか待ち受けてない <code translate=no>http3.jxck.io</code> では接続が確立できず、フォールバックとして TCP での接続を受け取れる <code translate=no>jxck.io</code> の内容が表示されているようだ。
           <p>つまり <code translate=no>type: quic</code> を指定した listener は、HTTP2 と HTTP3 を同時に受けるわけではなく、完全に HTTP3 のみを listen するフラグとなっていることがわかる。
           <p>したがって、HTTP3 だけではなく HTTP2 も並行して待ち受け、HTTP2 側で <code translate=no>Alt-Svc</code> を返し、2 回目の接続から HTTP3 にアクセスするように構成する必要がある。
-          <pre class=yaml><code translate=no>hosts:
+          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
   &quot;http3.jxck.io:443&quot;: # http2
     listen:
       port: 443
@@ -223,7 +223,7 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
         type: quic
         ...</code></pre>
           <p>ところが、これでは <code translate=no>http3.jxck.io:443</code> という Map のキーがかぶってエラーになる。ただし、今までサンプル通りに書いていたここの Port 番号は無くてもよいようなので、リダイレクト用の 80 も含めて以下のようにした。
-          <pre class=yaml><code translate=no>hosts:
+          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
   &quot;http3.jxck.io:80&quot;: # http1
     listen:
       port: 80
@@ -242,7 +242,7 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
           <ul>
             <li><a href="https://github.com/h2o/h2o/wiki/Listening-to-both-HTTP-and-HTTPS">Listening to both HTTP and HTTPS · h2o/h2o Wiki (github.com)</a>
           </ul>
-          <pre class=yaml><code translate=no>hosts:
+          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
   &quot;http3.jxck.io&quot;:
     listen:
       port: 443
@@ -259,7 +259,7 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
       ...</code></pre>
           <p>結果、H3 -&gt; H2 -&gt; H1 の順で <code translate=no>listen</code> を記述し、全体で <code translate=no>Alt-Svc</code> を付与すると、意図したデプロイができることがわかった。
           <p>とはいえもう 80 はリダイレクトのためだけに listen しているのでそこは分けるといかのようになる。
-          <pre class=yaml><code translate=no>hosts:
+          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
   &quot;http3.jxck.io:80&quot;:
     listen:
       port: 80
@@ -339,12 +339,12 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
             </li>
           </ul>
           <p>今回はこれを HTTP3 のアドバタイズにのみ使用している。
-          <pre class=http><code translate=no>Alt-Svc: h3=&quot;:443&quot;;ma=60,quic=&quot;:443&quot;;ma=60&quot;</code></pre>
+          <pre class=http data-code=http><code translate=no class=language-http>Alt-Svc: h3=&quot;:443&quot;;ma=60,quic=&quot;:443&quot;;ma=60&quot;</code></pre>
           <p>実装中は <code translate=no>h3-25</code> などのように Draft のバージョンを付与したネゴシエーションも行われていたが、現状の Chrome Stable (M97)では <code translate=no>h3</code> のみで動作することを確認している。本来後ろの <code translate=no>quic</code> もいらないように思うが、なんとなく残している。
           <p><code translate=no>ma</code> は Max-Age であり、本来はもっと長い時間にするべきだが、デバッグ中なので短くしている。
           <p>他にも <code translate=no>persist</code> や <code translate=no>clear</code> があるが、今回は使ってないため挙動は確認してない。
           <p>指定する Port だが、例えばこれを <code translate=no>h3=:4433</code> などとして TCP-TLS 用の 443 とは別に QUIC のサーバを建てることもできるという仕様になっている。したがって、最初は以下のようにしていた。
-          <pre class=yaml><code translate=no>hosts:
+          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
   &quot;http3.jxck.io:443&quot;: # http2
     listen:
       port: 443
@@ -374,10 +374,10 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
           </li>
         </ul>
         <p>HTTPS の RR は全部解説すると長くなるので、HTTP3 に対応する部分にフォーカスすると以下のように <code translate=no>Alt-Svc</code> 相当の情報を提供すれば良い。
-        <pre class=dns><code translate=no>http3.jxck.io IN HTTPS 1 . alpn=&quot;h3&quot;</code></pre>
+        <pre class=dns data-code=dns><code translate=no class=language-dns>http3.jxck.io IN HTTPS 1 . alpn=&quot;h3&quot;</code></pre>
         <p>なお、このレコードも HTTP3 のためのものではなく、HTTPS に関する情報が提供できるため、例えば HSTS のように「サイトが HTTPS に対応している」ことをアドバタイズする用途にも使える。これまでは <code translate=no>Strict-Transport-Security</code> ヘッダか、ブラウザに登録する Preload HSTS を利用するしかなかったが、HTTPS RR を用いれば DNS レベルで <code translate=no>http://</code> アクセスを防ぐことができる。
         <p>ついでに、A や AAAA を別途引かないでも済むように、アドレスをヒントとして提供できるようになっている。
-        <pre class=dns><code translate=no>http3.jxck.io IN HTTPS 1 . (alpn=&quot;h3&quot; ipv4hint=&quot;160.16.91.134&quot; ipv6hint=&quot;2001:e42:102:1521:160:16:91:134&quot;)</code></pre>
+        <pre class=dns data-code=dns><code translate=no class=language-dns>http3.jxck.io IN HTTPS 1 . (alpn=&quot;h3&quot; ipv4hint=&quot;160.16.91.134&quot; ipv6hint=&quot;2001:e42:102:1521:160:16:91:134&quot;)</code></pre>
         <section>
           <h3 id="対応している-dns"><a href="#対応している-dns">対応している DNS</a></h3>
           <p>ドメインを持っていれば、どこかしらに DNS の設定を書いていると思うが、DNS によっては選択できるレコードタイプが限定されているものがある。

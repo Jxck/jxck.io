@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -149,9 +149,9 @@
         <h2 id="rtom"><a href="#rtom">?RtoM</a></h2>
         <p><code translate=no>record_info()</code> を使ってキーを取るが、指定する record のタイプが動的には取れないので、マクロにして展開する。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=erlang><code translate=no>-define(RtoM(Name, Record), lists:foldl(fun({I, E}, Acc) -&gt; Acc#{E =&gt; element(I, Record)} end, #{}, lists:zip(lists:seq(2, (record_info(size, Name))), (record_info(fields, Name))))).</code></pre>
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>-define(RtoM(Name, Record), lists:foldl(fun({I, E}, Acc) -&gt; Acc#{E =&gt; element(I, Record)} end, #{}, lists:zip(lists:seq(2, (record_info(size, Name))), (record_info(fields, Name))))).</code></pre>
         <p>使い方
-        <pre class=erlang data-path=erlang-record-to-map.erl><code translate=no>#!/usr/bin/env escript
+        <pre class=erlang data-code=erlang data-path=erlang-record-to-map.erl><code translate=no class=language-erlang>#!/usr/bin/env escript
 -module(main).
 
 -mode(compile).

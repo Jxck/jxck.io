@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -162,7 +162,7 @@
         <h2 id="strict-transport-security-ヘッダ"><a href="#strict-transport-security-ヘッダ">Strict-Transport-Security ヘッダ</a></h2>
         <p>以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=http><code translate=no>Strict-Transport-Security: max-age=7776000</code></pre>
+        <pre class=http data-code=http><code translate=no class=language-http>Strict-Transport-Security: max-age=7776000</code></pre>
         <p>このヘッダは、 HTTP ではなく HTTPS のレスポンスに付与する。
         <p>このヘッダを受け取ったブラウザは 7776000 秒(90 日) のあいだは、そのドメインに <code translate=no>http://~</code> で始まるリクエストを送信する際に、自動的にこれを <code translate=no>https://~</code> に置き換える。
         <p>これによって、例えば既にどこかのページに張られたリンクが <code translate=no>http://~</code> であったとしても、リダイレクトではなく最初から HTTPS を強制することができる。
@@ -185,7 +185,7 @@
         <p>また、 Chrome の Preload 登録の条件には、 <code translate=no>includeSubDomains</code> の適用が含まれている。
         <p>したがって同様の理由から、止むを得ず <em>preload 登録は見送る</em> こととした。
         <p>結果、現時点では <a href="https://jxck.io">jxck.io</a> 及び <a href="https://blog.jxck.io">blog.jxck.io</a> に対して、以下のヘッダを付与した。
-        <pre class=http><code translate=no>Strict-Transport-Security: max-age=31536000</code></pre>
+        <pre class=http data-code=http><code translate=no class=language-http>Strict-Transport-Security: max-age=31536000</code></pre>
       </section>
     </article>
   </main>

@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -204,7 +204,7 @@
         <p>これを利用して、ユーザを攻撃ページに誘導し、そのユーザの Cookie が無いと取得できないデータを <code translate=no>&lt;iframe&gt;</code> に読み、時間をかければ中身を推測できるという攻撃だ。
         <p>本来アクセスできない情報を外から推測することをサイドチャネル攻撃と呼び、その中でも特に時間という要素を利用する攻撃をタイミング攻撃と呼ぶ。今回の場合はそのどちらでもある。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=html><code translate=no>&lt;!-- 攻撃者が用意した罠サイト --&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- 攻撃者が用意した罠サイト --&gt;
 &lt;title&gt;attacker site&lt;/title&gt;
 
 &lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
@@ -247,7 +247,7 @@
         <p><code translate=no>&lt;iframe&gt;</code> 以外にも、 Cross Origin なリソースを同じプロセスに展開する方法が知られている。
         <p>例えば、ユーザが Cookie を持っているときにのみ取得できる JSON や HTML があったとする。
         <p>これらを <code translate=no>&lt;script&gt;</code> や <code translate=no>&lt;img&gt;</code> で読み込めば、メモリ上に展開できる。
-        <pre class=html><code translate=no>&lt;!-- 攻撃者が用意した罠サイト --&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- 攻撃者が用意した罠サイト --&gt;
 &lt;title&gt;attacker site&lt;/title&gt;
 
 &lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
@@ -302,7 +302,7 @@
         <p>例えば、 <code translate=no>&lt;script&gt;</code> から JS へのリクエストであれば成功してしまう。
         <p>そこで、 CORB と同等のことを Opt-In で行うのが Cross-Origin-Resource-Policy(CORP) だ。
         <p>そのヘッダが付いたリソースが、どの Origin から読まれて良いかを決める。
-        <pre class=html><code translate=no>&lt;!-- 攻撃者が用意した罠サイト --&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- 攻撃者が用意した罠サイト --&gt;
 &lt;title&gt;attacker site&lt;/title&gt;
 
 &lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
@@ -314,7 +314,7 @@
 --&gt;
 &lt;script src=https://admin.example.com/secret.js&gt;&lt;/script&gt;</code></pre>
         <p>この secret.js に対して以下のいずれかのヘッダをつける。
-        <pre class=http><code translate=no>Cross-Origin-Resource-Policy: same-origin
+        <pre class=http data-code=http><code translate=no class=language-http>Cross-Origin-Resource-Policy: same-origin
 Cross-Origin-Resource-Policy: same-site
 Cross-Origin-Resource-Policy: cross-origin</code></pre>
         <p>same-origin や same-site を指定すれば、ブラウザは secret.js のレスポンスヘッダを見た時点で、メモリへ展開してよいかどうかをブラウザが判断できる。
@@ -325,13 +325,13 @@ Cross-Origin-Resource-Policy: cross-origin</code></pre>
       <section>
         <h2 id="coep"><a href="#coep">COEP</a></h2>
         <p>現状は <code translate=no>require-corp</code> という値だけが定義されている。
-        <pre class=http><code translate=no>Cross-Origin-Embedder-Policy: require-corp</code></pre>
+        <pre class=http data-code=http><code translate=no class=language-http>Cross-Origin-Embedder-Policy: require-corp</code></pre>
         <p>これをトップフレームの HTML レスポンスに指定すると、そのサブリソース全てが CORP を指定したものでないといけなくなる。つまり、 <code translate=no>&lt;script&gt;</code> に読む JS や、 <code translate=no>&lt;img&gt;</code> に読む画像、 <code translate=no>&lt;iframe&gt;</code> に埋め込む別のページも、全て CORP を明示している必要があるということだ。
         <p>全てのサブリソースの CORP の値が、読み込みページと正しく整合してないとブロックされるため、 CORP を強制するということは、全てのサブリソースがそのトップフレームで読み込まれることを許可している状態であることを意味する。
         <p>これにより、全てのリソースが意図した読み込みで構成されている状態になるため、同じプロセスで展開されても問題無いことが保証できる。
         <p>ただし、 CORS に明示的に対応している場合はこの限りではない。
         <p>例えば <code translate=no>&lt;script&gt;</code> や <code translate=no>&lt;img&gt;</code> の場合は以下のように明示的に CORS mode でリクエストさせることができる。
-        <pre class=html><code translate=no>&lt;!-- cross origin script を CORS で取得する --&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- cross origin script を CORS で取得する --&gt;
 &lt;script crossorigin src=https://example.com/script.js&gt;</code></pre>
         <p>この場合、リクエストには Origin ヘッダが載り、サーバはそれを見て明示的に Access-Control-Allow-Origin を返すことになる。
         <p>つまり、すでに明示的に読み込める Origin を制限しているため、 CORP をつけていなくても COEP の要件を満たす。
@@ -348,7 +348,7 @@ Cross-Origin-Resource-Policy: cross-origin</code></pre>
         <ul>
           <li><a href="https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit">Cross-Origin-Opener-Policy Explainer</a>
         </ul>
-        <pre class=http><code translate=no>Cross-Origin-Opener-Policy: same-origin
+        <pre class=http data-code=http><code translate=no class=language-http>Cross-Origin-Opener-Policy: same-origin
 Cross-Origin-Opener-Policy: same-origin-allow-popups
 Cross-Origin-Opener-Policy: unsafe-none</code></pre>
         <p>対応は以下のようになる。
@@ -476,7 +476,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
           <h3 id="crossoriginisolated"><a href="#crossoriginisolated">crossOriginIsolated</a></h3>
           <p>Isolated な環境でしか利用できない API が存在するということは、分岐のために Isolated であるかどうかを知りたい場面がでてくる。
           <p>そこで、 CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが <code translate=no>self.corssOriginIsolated</code> だ。
-          <pre class=js><code translate=no>if (self.crossOriginIsolated) {
+          <pre class=js data-code=js><code translate=no class=language-js>if (self.crossOriginIsolated) {
   // Cross Origin Isolation が有効な場合 true を返す
 }</code></pre>
           <ul>

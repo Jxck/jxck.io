@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -182,7 +182,7 @@
         <p>最初のページを Parent 、開いたタブを Child とする。
         <p>child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=js><code translate=no>window.opener.location = http://example.com</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>window.opener.location = http://example.com</code></pre>
         <p>多くのブラウザでは、 child が <code translate=no>target=blank_</code> により別タブで開いた場合に、そちらが手前に表示され、 parent は裏に回る。
         <p>child で上記の JS が動くと、裏で勝手に parent が画面遷移している状態となる。
         <p>これは、オリジンが違っても可能であるため、リンクをたどってきたユーザを任意のサイトに誘導することが可能というわけである。
@@ -316,7 +316,7 @@
         <p><a href="http://caniuse.com/#feat=rel-noopener">rel=noopener | Can I use</a>
         <p>代替として <code translate=no>noreferrer</code> を指定することで同じ挙動が実現できる。
         <p>したがって、以下のようにすることで目的が達成できる。
-        <pre class=html><code translate=no>&lt;a href=&quot;http://example.com&quot; target=_blank rel=&quot;noopener noreferrer&quot;&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=&quot;http://example.com&quot; target=_blank rel=&quot;noopener noreferrer&quot;&gt;</code></pre>
         <p>ただし <code translate=no>noreferrer</code> はその名の通り Referrer を抑止する属性であるため、副作用には注意が必要である。
         <p><code translate=no>rel</code> の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
         <ul>

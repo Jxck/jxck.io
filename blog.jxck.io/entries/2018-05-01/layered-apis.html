@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -207,7 +207,7 @@
         <p>これまで Polyfill へのフォールバックは、様々な方法で行われてきた。
         <p>例えば以下のような例を考える。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=js><code translate=no>if (window.AsyncLocalStorage=== undefined) {
+        <pre class=js data-code=js><code translate=no class=language-js>if (window.AsyncLocalStorage=== undefined) {
   // polyfill for async local storage
 }
 
@@ -216,15 +216,15 @@ window.AsyncLocalStorage // native or polyfill</code></pre>
         <p>この場合、もしブラウザが API を実装していても、使われない Polyfill のコードは依然として読み込まれることになる。
         <p>また、新しい API を global に追加していくことは、影響もメンテナンスコストも大きい。
         <p>そこで、 ES Module の API を用いて、以下のように読み込む構文拡張が提案されている。
-        <pre class=js><code translate=no>import { storage } from &quot;std:async-local-storage&quot;;</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>import { storage } from &quot;std:async-local-storage&quot;;</code></pre>
         <p>現行の仕様では <code translate=no>from</code> の後ろには module への URL が書かれるが、ここに <code translate=no>std:</code> で始まるラベルを書くと、ブラウザの実装する標準 API を読み込むことができる。
         <p>これは Opt-In で読み込むことになるため、 Global を汚染せずに新しい API を Ship できるというメリットがある。
         <p>また以下のように書くと、もしブラウザが実装していなかった場合に、後半に書いた polyfill へフォールバックすることができる。
-        <pre class=js><code translate=no>import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
         <p>これにより、もしブラウザに実装があれば、 polyfill のコードは読み込む必要がなくなり、ネットワークコストが削減される。
         <p>また、最初からこの形で書いておけば、ブラウザの実装の差を低いコストで埋め、そのまま放置されてもネイティブのコードで置き換わるため、移行コストを低く抑えることができる。
         <p>同じことは、 HTML Element の実装においても利用が想定されている。
-        <pre class=html><code translate=no>&lt;script type=module src=&quot;std:infinite-list|https://some.cdn.com/infinite-list.js&quot;&gt;&lt;/script&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=module src=&quot;std:infinite-list|https://some.cdn.com/infinite-list.js&quot;&gt;&lt;/script&gt;
 &lt;infinite-list&gt;&lt;/infinite-list&gt;</code></pre>
         <p>いずれも、まだ提案段階の仕様である。
         <ul>
@@ -266,7 +266,7 @@ window.AsyncLocalStorage // native or polyfill</code></pre>
           <li><a href="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html">Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io</a>
         </ul>
         <p>例えば、以下の場合 polyfill とブラウザの実装で API が異なる場合は、ブラウザアップデートでアプリが壊れることになる。
-        <pre class=js><code translate=no>import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
         <p>もし十分に API が議論される前に「先走った Polyfill」が作られるとその問題は必ず起こる。
         <p>また、経験上 <code translate=no>std:xxx</code> のタグは取り合いになるだろう。同じタグを記述するサイトでも、全然別の API を元に作られている状態も容易に想像できる。
         <p>現時点でおこなわれている polyfilling でも同じことは起こっているため、何も変わってないと言えば変わってないし、 Module を使うことでマシにはなっている。

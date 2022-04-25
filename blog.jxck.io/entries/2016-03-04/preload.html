@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -193,9 +193,9 @@
         <p>重要なリソースがサブリソースに隠されている場合、どうしても取得までにラグが発生してしまい、画像を反映するには再レイアウトが発生し UX を損ねる場合がある。
         <p><code translate=no>&lt;link rel=preload&gt;</code> を記述すれば、こうした「<em>後から取得されるが、レイアウト上重要なリソース</em>」を Preload 段階で取得するようにブラウザに指示することができる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=html><code translate=no>&lt;link rel=preload as=image href=hero-image.png&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload as=image href=hero-image.png&gt;</code></pre>
         <p>Web Font の場合はこうなる。
-        <pre class=html><code translate=no>&lt;link rel=preload  as=font type=font/woff2 href=font.woff2 crossorigin&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload  as=font type=font/woff2 href=font.woff2 crossorigin&gt;</code></pre>
         <p>(Chrome は現状フォントの取得は暗黙的に CORS になるらしいため、 Same Origin からの取得でも <code translate=no>crossorigin</code> が必要らしい)
         <p><code translate=no>as</code> に指定可能な値は <a href="https://fetch.spec.whatwg.org/#concept-request-destination">fetch spec に一覧がある</a>、省略すると XHR や fetch と同じ挙動になる。
         <p><code translate=no>type</code> を指定すると、ブラウザがそのファイルタイプをサポートしている場合だけ取得するようにできる。
@@ -206,14 +206,14 @@
         <p>後から <code translate=no>&lt;script&gt;</code> を差し込むことで、 JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。
         <p>また、取得を XHR で行い保存しておいたものをあとで <code translate=no>eval</code> することもできるが、 Preload を使うことで実行を <code translate=no>&lt;script&gt;</code> で行え、ブラウザの Preloader に取得させるため、再利用が効く。
         <p>まず「取得」を Preload で行う、これは HTML に書いておいても良いし、それ自体も遅延したければ好きなタイミングで以下のようにノードを作れば良い。
-        <pre class=html><code translate=no>&lt;link rel=preload as=script href=script.js&gt;</code></pre>
-        <pre class=js><code translate=no>var preload = document.createElement(&apos;link&apos;);
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload as=script href=script.js&gt;</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>var preload = document.createElement(&apos;link&apos;);
 link.rel = &apos;preload&apos;;
 link.as = &apos;script&apos;;
 link.href = &apos;script.js&apos;;
 document.head.appendChild(link);</code></pre>
         <p>そして、「実行」は任意のタイミングで <code translate=no>&lt;script&gt;</code> を生成し行う。
-        <pre class=js><code translate=no>var script = document.createElement(&apos;script&apos;);
+        <pre class=js data-code=js><code translate=no class=language-js>var script = document.createElement(&apos;script&apos;);
 script.src = &apos;script.js&apos;;
 document.body.appendChild(script);</code></pre>
       </section>
@@ -222,11 +222,11 @@ document.body.appendChild(script);</code></pre>
         <p><code translate=no>&lt;link rel=preload&gt;</code> は自身で <code translate=no>onload</code> を発火する。
         <p>これを利用すると、 HTML と少しの JS で <em>非同期ローダ</em> を実現することができる。
         <p>例えば CSS の場合はこうなる。
-        <pre class=html><code translate=no>&lt;link rel=preload as=style href=style.css onload=&quot;this.rel=&apos;stylesheet&apos;&quot;&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload as=style href=style.css onload=&quot;this.rel=&apos;stylesheet&apos;&quot;&gt;</code></pre>
         <p>同じことは JS でも応用できる。
         <p><code translate=no>&lt;script async&gt;</code> があるが、これは <code translate=no>window.onload</code> をブロックするので、そこで使い分ける。
         <p>analytics のような場合。とにかく早く取得して、ユーザを取りこぼさず、かつ UX は一切損ないたく無い、特に onload を遅らせたくはない場合などに使える。
-        <pre class=html><code translate=no>&lt;link rel=preload as=script href=analytics.js
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload as=script href=analytics.js
       onload=&quot;var script = document.createElement(&apos;script&apos;);
               script.src = this.href;
               document.body.appendChild(script);&quot;&gt;</code></pre>
@@ -236,7 +236,7 @@ document.body.appendChild(script);</code></pre>
         <p>Preload はリンクであるため、仕様上 media 属性を持つ。(chrome ではまだ未サポート)
         <p>つまり Media Query を用いた条件付きローディングができる。
         <p>例えば <code translate=no>&lt;picture&gt;</code> で Image を読み分けている場合、その条件と同じものを <code translate=no>&lt;link rel=preload&gt;</code> に指定することで、一致した条件のみの画像を Prelaod できる。
-        <pre class=html><code translate=no>&lt;link rel=preload as=image href=large.png media=&quot;(max-width: 600px)&quot;&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload as=image href=large.png media=&quot;(max-width: 600px)&quot;&gt;
 &lt;link rel=preload as=image href=middle.png media=&quot;(max-width: 400px)&quot;&gt;
 &lt;link rel=preload as=image href=small.png media=&quot;(max-width: 300px)&quot;&gt;</code></pre>
       </section>
@@ -244,7 +244,7 @@ document.body.appendChild(script);</code></pre>
         <h2 id="header-での指定"><a href="#header-での指定">Header での指定</a></h2>
         <p>Preload は、同じセマンティクスを HTTP Header にも適用できる。
         <p>つまりここまでマークアップで示してきた例は、(onload hack など除き)基本的に全て HTTP Response Header で行うことができる。
-        <pre class=http><code translate=no>Link: &lt;script.js&gt;;rel=&quot;preload&quot;;as=&quot;script&quot;
+        <pre class=http data-code=http><code translate=no class=language-http>Link: &lt;script.js&gt;;rel=&quot;preload&quot;;as=&quot;script&quot;
 
 Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin</code></pre>
         <p>HTTP Header にすることによって、マークアップと最適化を分離することができる。
@@ -255,7 +255,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
         <p>Preload をヒントとして使っていれば、サポートされてい無いブラウザにおいては従来通りのタイミングで取得が走るだけになる。
         <p>しかし、 <code translate=no>onload</code> ハックなどを用いたより積極的な活用を行う上では、ブラウザのサポートの有無を知りたい場合もある。
         <p>そこで、サポートされる <code translate=no>rel</code> の値を DOM から取れるような提案がなされている。
-        <pre class=js><code translate=no>document.createElement(&quot;link&quot;).relList.supports(&quot;preload&quot;));</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>document.createElement(&quot;link&quot;).relList.supports(&quot;preload&quot;));</code></pre>
         <p>これを使えば、 Preload が無効な場合に問題があるサイトでは、フォールバックすることも可能になる。
       </section>
       <section>
@@ -277,7 +277,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
         <p>クライアントの状態を踏まえて、コンテントネゴシエーションを重視する場合に Preload を。
         <p>という感じに、組み合わせて使うのが最も理想だと言えるだろう。
         <p>なお、 HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、 <code translate=no>nopush</code> を付けることで Opt-Out することができる。
-        <pre class=http><code translate=no>Link: &lt;/app/style.css&gt;; rel=preload; as=style; nopush</code></pre>
+        <pre class=http data-code=http><code translate=no class=language-http>Link: &lt;/app/style.css&gt;; rel=preload; as=style; nopush</code></pre>
       </section>
       <section>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
@@ -296,7 +296,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
           <p>そのため HTTP Header で Link rel=preload を指定すれば、必ず HTTP2 Push が発生する。
           <p>まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">Cache Digest</a> を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
           <p>そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの <code translate=no>&lt;link&gt;</code> タグで指定することにした。
-          <pre class=html><code translate=no>&lt;link rel=preload as=script src=/assets/js/highlight.min.js&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload as=script src=/assets/js/highlight.min.js&gt;
 &lt;link rel=preload as=script src=//jxck.io/assets/js/ga.js&gt;</code></pre>
         </section>
         <section>

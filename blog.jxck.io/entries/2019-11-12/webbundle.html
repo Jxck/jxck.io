@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -213,7 +213,7 @@
           <p>WebBundle のフォーマットは、 CBOR のスキーマ定義である CDDL で表現されている。
           <p>特に仕様を読まなくても、見れば雰囲気でわかるだろう。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-          <pre class=cddl><code translate=no>webbundle = [
+          <pre class=cddl data-code=cddl><code translate=no class=language-cddl>webbundle = [
   ; 🌐📦 in UTF-8.
   magic: h&apos;F0 9F 8C 90 F0 9F 93 A6&apos;,
   version: bytes .size 4,
@@ -282,14 +282,14 @@ whatwg-url = tstr</code></pre>
           <h3 id="section-length"><a href="#section-length">section-length</a></h3>
           <p>section-length には、それぞれの section 長さが書かれているため、特定の section にアクセスしたい場合、そこまでジャンプすることができるようになっている。
           <p>今回は、 &quot;index&quot; と &quot;response&quot; しか使わないため、以下のようになる。
-          <pre class=json><code translate=no>[&quot;index&quot;,188,&quot;responses&quot;,1268]</code></pre>
+          <pre class=json data-code=json><code translate=no class=language-json>[&quot;index&quot;,188,&quot;responses&quot;,1268]</code></pre>
           <p>ページ全体をまとめる場合、ファイル全体が大きくなることが容易に想像できるため、先頭からのシーケンシャルアクセスではなく、必要な部分へのインデックスアクセスを可能にしている。
         </section>
         <section>
           <h3 id="index"><a href="#index">index</a></h3>
           <p>responses section には、複数の Response が含まれる。その個々の Response の場所を示すのが index だ。
           <p>今回の場合、具体的には以下のようになる。
-          <pre class=json><code translate=no>{
+          <pre class=json data-code=json><code translate=no class=language-json>{
   &quot;http://localhost.jxck.io:3000/&quot;:            [[],   1, 396],
   &quot;http://localhost.jxck.io:3000/script.js&quot;:   [[], 397, 267],
   &quot;http://localhost.jxck.io:3000/style.css&quot;:   [[], 664, 275],
@@ -300,7 +300,7 @@ whatwg-url = tstr</code></pre>
           <p>例えば、多言語対応しており Content-Language が &quot;en&quot; と &quot;ja&quot; で、中身が変わる HTML がある場合、それらを区別でき、クライアントは展開時に必要なものを選ぶことができる。
           <p>さらに Content-Encoding が &quot;gz&quot; &quot;br&quot; とあった場合には、そこで 4 通りの組み合わせがあるため、ここにその組み合わせが入ることになる。
           <p>(仕様には、それを見る側のクライアントの挙動は書かれているが、サーバでどう生成するかといった部分は特に書かれてないため、雰囲気で入れる。)
-          <pre class=json><code translate=no>{
+          <pre class=json data-code=json><code translate=no class=language-json>{
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;gz&quot;],   1, 100],
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;br&quot;], 101, 100],
   &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;en;gz&quot;], 201, 100],
@@ -313,7 +313,7 @@ whatwg-url = tstr</code></pre>
           <h3 id="responses"><a href="#responses">responses</a></h3>
           <p>index で示された位置個々の Response が入る。
           <p>Response は Header と Body の配列からなる。
-          <pre class=json><code translate=no>[ [header1, body1],
+          <pre class=json data-code=json><code translate=no class=language-json>[ [header1, body1],
   [header2, body2],
   [header3, body3]
   //..
@@ -332,7 +332,7 @@ whatwg-url = tstr</code></pre>
         <section>
           <h3 id="全体"><a href="#全体">全体</a></h3>
           <p>結果としては、だいたいこんな感じで組み立てた構造体を、 CBOR の実装でエンコードすれば WebBundle になる。
-          <pre class=js><code translate=no>[
+          <pre class=js data-code=js><code translate=no class=language-js>[
   &quot;🌐📦&quot;,
   [&quot;b&quot;,&quot;1&quot;,0,0],
   &quot;http://localhost.jxck.io:3000/&quot;,
@@ -413,7 +413,7 @@ whatwg-url = tstr</code></pre>
         <p>MIME は <code translate=no>application/webbundle</code> が登録される予定になっている。
         <p>HTTP でサーブする場合は、 Content-Type にこれを付与する。
         <p>また、 sniff による脆弱性を防ぐために、最初から nosniff の設定が MUST となっている点も面白い。
-        <pre class=http><code translate=no>Content-Type: application/webbundle
+        <pre class=http data-code=http><code translate=no class=language-http>Content-Type: application/webbundle
 X-Content-Type-Options: nosniff</code></pre>
       </section>
       <section>

@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -159,7 +159,7 @@
         <p>例えば button の disabled を例にとるとこうなる。
         <p>button を disabled にする場合は、仕様上は以下の 3 つの書き方がある。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=html><code translate=no>&lt;!-- 属性のみを書く --&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- 属性のみを書く --&gt;
 &lt;button id=target disabled&gt;toggle target&lt;/button&gt;
 
 &lt;!-- 値を empty string にする --&gt;
@@ -169,10 +169,10 @@
 &lt;button id=target disabled=disabled&gt;toggle target&lt;/button&gt;</code></pre>
         <p>値に <code translate=no>true</code>, <code translate=no>false</code> などを設定することで有効無効が切り替わるわけではなく、仕様上は許可されていない点に注意したい。
         <p>disabled 属性自体は JS から真偽値で操作できる。
-        <pre class=js><code translate=no>target.disabled = true
+        <pre class=js data-code=js><code translate=no class=language-js>target.disabled = true
 target.disabled = false</code></pre>
         <p>しかし、他の boolean attribute も含め、属性自体を汎用的に操作する場合は以下のようになる。
-        <pre class=js><code translate=no>target.setAttribute(&quot;disabled&quot;, &quot;&quot;);
+        <pre class=js data-code=js><code translate=no class=language-js>target.setAttribute(&quot;disabled&quot;, &quot;&quot;);
 target.removeAttribute(&quot;disabled&quot;);
 
 target.setAttribute(&quot;disabled&quot;, false); // 無効になるわけではない</code></pre>
@@ -184,7 +184,7 @@ target.setAttribute(&quot;disabled&quot;, false); // 無効になるわけでは
         <p>結果的には以下のような API に落ち着いた。
         <p>属性名を指定して toggleAttribute を呼べば、 ture/false を切り替えられる。
         <p>(値は empty string が採用された)
-        <pre class=js><code translate=no>// target = &lt;button id=target&gt;toggle target&lt;/button&gt;
+        <pre class=js data-code=js><code translate=no class=language-js>// target = &lt;button id=target&gt;toggle target&lt;/button&gt;
 
 target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot; disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
 console.log(target.disabled) // true
@@ -195,7 +195,7 @@ console.log(target.disabled) // false
 target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot; disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
 console.log(target.disabled) // true</code></pre>
         <p>第二引数を指定すると、現在の値に関わらず、第二引数の値に変更する。
-        <pre class=js><code translate=no>// 今が true であれ false であれ true にする
+        <pre class=js data-code=js><code translate=no class=language-js>// 今が true であれ false であれ true にする
 target.toggleAttribute(&quot;disabled&quot;, true)
 console.log(target.disabled) // true
 

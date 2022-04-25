@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -189,7 +189,7 @@
         </ul>
         <p>node の方が GIF にも対応してそうだったので、こちらを採用した。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=shell-session><code translate=no>$ npx avif -h
+        <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ npx avif -h
 
 Convert images to AVIF
 
@@ -216,7 +216,7 @@ Options:
           <h3 id="gif"><a href="#gif">GIF</a></h3>
           <p>しかし、実際にアニメーション GIF を変換してみるとアニメーションが動かなかった。
           <p>いくつか調べると <code translate=no>libavif</code> の Wiki に書かれていたので、これを用いて ffmpeg と avifenc を組み合わせて生成することができた。
-          <pre class=shell-session><code translate=no>$ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $*.avif</code></pre>
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $*.avif</code></pre>
           <ul>
             <li>
               AVIF Sequences
@@ -229,7 +229,7 @@ Options:
         <section>
           <h3 id="picture"><a href="#picture">Picture</a></h3>
           <p>すでに WebP の対応を <code translate=no>&lt;picture&gt;</code> で行なっているため、そこに AVIF の srcset を追加した。
-          <pre class=html><code translate=no>&lt;picture&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;picture&gt;
   &lt;source type=image/avif srcset=jxck.avif?220107_021153&gt;
   &lt;source type=image/webp srcset=jxck.webp?211030_222336&gt;
   &lt;img loading=lazy decoding=async src=jxck.png?211006_145713 alt=&quot;jxck&quot; title=&quot;jxck logo&quot; width=256 height=256&gt;

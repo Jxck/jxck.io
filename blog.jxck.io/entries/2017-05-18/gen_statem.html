@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -242,18 +242,18 @@ erlang:&apos;!&apos;                        -----&gt; Module:StateName/3
         <p>コールバックは減っていることがわかる。
         <p>大きいところとして、 gen_statem では、同期/非同期の使い分けが、 call/cast になっている。
         <p>そして、 Module:StateName/3 は引数の最初に Event Type を取り、ここで call/cast どちらで来たのかなどを受け取るようになった。 info の場合もここで分岐する。
-        <pre class=erlang><code translate=no>% Module:StateName(EventType, EventContent, Data) -&gt; StateFunctionResult
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>% Module:StateName(EventType, EventContent, Data) -&gt; StateFunctionResult
 hello({call, From}, eventname, Data) -&gt; ...; % From は返答先
 hello(cast, eventname, Data) -&gt; ...;
 hello(info, eventname, Data) -&gt; ...;</code></pre>
         <p>EventType は後述するものも含めて 6 種類ある。
         <p>これにより、 Module:StateName/3 へのハンドラの統合がされている。
         <p>ハンドラの戻り値はいくつかの種類があるが、 gen_fsm で <code translate=no>Timeout</code>, <code translate=no>hibernate</code> などとしていたタプルの 4 番目がアクションとして整理された。
-        <pre class=erlang><code translate=no>{next_state, NextStateName, NewStateData}
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>{next_state, NextStateName, NewStateData}
 {next_state, NextStateName, NewStateData, hibernate}
 {next_state, NextStateName, NewStateData, Timeout}</code></pre>
         <p>gen_fsm のようにも書けるが、複数のアクション(tuple)を配列で書くことができる。
-        <pre class=erlang><code translate=no>{next_state, NextStateName, NewStateData}
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>{next_state, NextStateName, NewStateData}
 {next_state, NextStateName, NewStateData, [{hibernate, true}]}
 {next_state, NextStateName, NewStateData, [{timeout, Time, Data1}, {state_timeout, Time, Data}2]}</code></pre>
         <p>追加されたアクションについても一部後述する。
@@ -261,19 +261,19 @@ hello(info, eventname, Data) -&gt; ...;</code></pre>
       <section>
         <h2 id="keep_state"><a href="#keep_state">keep_state</a></h2>
         <p>ハンドラの最後でステートを遷移しない場合、 gen_fsm では自身と同じステート名を明示的に指定していた。
-        <pre class=erlang><code translate=no>% hello から遷移しない
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>% hello から遷移しない
 hello(Event, Data) -&gt;
     {next_state, hello, Data}.</code></pre>
         <p>これを明示的に表すのに keep_state が使える。
-        <pre class=erlang><code translate=no>% hello から遷移しない
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>% hello から遷移しない
 hello(cast, Event, Data) -&gt;
     {keep_state, Data}.</code></pre>
         <p>データまで同じなら keep_state_and_data だけで良い。
-        <pre class=erlang><code translate=no>% hello から遷移しない
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>% hello から遷移しない
 hello(cast, Event, Data) -&gt;
     keep_state_and_data.</code></pre>
         <p>これは後述する、 timeout などのアクションを使う際に、アクションは実行したいがステートは遷移したくないという場合に使える。
-        <pre class=erlang><code translate=no>% hello から遷移しない
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>% hello から遷移しない
 hello(cast, Event, Data) -&gt;
     {keep_state_and_data, [{timeout, 1000, world}]}.</code></pre>
       </section>
@@ -281,21 +281,21 @@ hello(cast, Event, Data) -&gt;
         <h2 id="callback_mode"><a href="#callback_mode">callback_mode</a></h2>
         <p>gen_statem では callback_mode/0 というビヘイビアが追加された。
         <p>これは、コールバックの実装方法を指定するもので、 gen_fsm のように atom でステートに名前をつけ、対応する関数を実装するスタイルは <code translate=no>state_functions</code> になる。
-        <pre class=erlang><code translate=no>callback_mode() -&gt; state_functions.</code></pre>
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>callback_mode() -&gt; state_functions.</code></pre>
       </section>
       <section>
         <h2 id="handle_event_function"><a href="#handle_event_function">handle_event_function</a></h2>
         <p>gen_fsm では、ステートには atom で名前をつけるスタイルをとった。
         <p>しかし、なんらかのデータコンテナの値などをステートとして扱いたい場合 atom ではなくそのパターンマッチをそのままステートとして持つ方が便利な場合もある。
         <p>callback_mode/0 で <code translate=no>handle_event_function</code> を返すと、状態を任意の値で表現することができる。
-        <pre class=erlang><code translate=no>callback_mode() -&gt; handle_event_function.</code></pre>
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>callback_mode() -&gt; handle_event_function.</code></pre>
         <p>コールバックは <code translate=no>handle_event</code> 1 種類になり、この関数の引数のマッチだけで分離しながら扱うことができる。
-        <pre class=erlang><code translate=no>handle_event(EventType, EventContent, State, Data)</code></pre>
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>handle_event(EventType, EventContent, State, Data)</code></pre>
       </section>
       <section>
         <h2 id="state-enter-calls"><a href="#state-enter-calls">State Enter Calls</a></h2>
         <p><code translate=no>callback_mode</code> で <code translate=no>state_enter</code> を追加すると、状態遷移時に一度実行される State Enter Call を実行できる。
-        <pre class=erlang><code translate=no>callback_mode() -&gt;
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>callback_mode() -&gt;
     [state_functions, state_enter].
 
 StateName(enter, OldState, Data) -&gt;
@@ -315,48 +315,48 @@ StateName(cast, OldState, Data) -&gt;
         <section>
           <h3 id="timeout-event"><a href="#timeout-event">Timeout Event</a></h3>
           <p>以下のようなアクションを返すと、イベントタイムアウトが開始される。
-          <pre class=erlang><code translate=no>{next_state, NextState, Data, 10000}
+          <pre class=erlang data-code=erlang><code translate=no class=language-erlang>{next_state, NextState, Data, 10000}
 {next_state, NextState, Data, [{timeout, 10000, EventContent}]}</code></pre>
           <p>1000ms 以内に次のイベントが無ければ Timeout イベントが上がる。
-          <pre class=erlang><code translate=no>NextState(timeout, Context, Data)</code></pre>
+          <pre class=erlang data-code=erlang><code translate=no class=language-erlang>NextState(timeout, Context, Data)</code></pre>
           <p>どんなイベントが発生してもこのタイマーはキャンセルされる。
         </section>
         <section>
           <h3 id="state-timeout-event"><a href="#state-timeout-event">State Timeout Event</a></h3>
           <p>以下のようなアクションを返すと、ステートタイムアウトが開始される。
-          <pre class=erlang><code translate=no>{next_state, NextState, Data, [{state_timeout, 10000, EventContent}]}</code></pre>
+          <pre class=erlang data-code=erlang><code translate=no class=language-erlang>{next_state, NextState, Data, [{state_timeout, 10000, EventContent}]}</code></pre>
           <p>1000ms 以内にステートが遷移しなければ Timeout イベントが上がる。
-          <pre class=erlang><code translate=no>NextState(state_timeout, Context, Data)</code></pre>
+          <pre class=erlang data-code=erlang><code translate=no class=language-erlang>NextState(state_timeout, Context, Data)</code></pre>
           <p>どんな状態に遷移していもこのタイマーはキャンセルされる。
         </section>
         <section>
           <h3 id="erlang-timer"><a href="#erlang-timer">Erlang Timer</a></h3>
           <p>イベントやステートの変化などをまたぐ、独立したタイマーを自前で管理したい場合、ハンドラ内で erlang:start_timer/3 を用いてタイマーを作り、それを保持しておく。
-          <pre class=erlang><code translate=no>Timer = erlang:start_timer(1000, self(), Data)</code></pre>
+          <pre class=erlang data-code=erlang><code translate=no class=language-erlang>Timer = erlang:start_timer(1000, self(), Data)</code></pre>
           <p>このタイマーのタイムアウトが発生すると、その時いるステートでタイムアウトイベントが上がる。
-          <pre class=erlang><code translate=no>NextState(info, {timeout, Timer, Data}, Data)</code></pre>
+          <pre class=erlang data-code=erlang><code translate=no class=language-erlang>NextState(info, {timeout, Timer, Data}, Data)</code></pre>
           <p>キャンセルも自前で行う。
-          <pre class=erlang><code translate=no>erlang:cancel_timer(Timer)</code></pre>
+          <pre class=erlang data-code=erlang><code translate=no class=language-erlang>erlang:cancel_timer(Timer)</code></pre>
         </section>
       </section>
       <section>
         <h2 id="postponing"><a href="#postponing">Postponing</a></h2>
         <p>発生したイベントを先送りすることができるアクション。
         <p>先送りしたイベントはキューに積まれ、状態が遷移したら再度順番に再生される。
-        <pre class=erlang><code translate=no>{keep_state, Data, [postpone]}</code></pre>
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>{keep_state, Data, [postpone]}</code></pre>
       </section>
       <section>
         <h2 id="self-generated-events"><a href="#self-generated-events">Self Generated Events</a></h2>
         <p>ステートマシン内部から、自身に対してイベントを送信することができる。
         <p>gen_fsm では、イベントは gen_statem を用いて発行する以外になかったが、コールバック処理の結果別のイベントを発生したい場合がある。
         <p>gen_statem では、以下のような <code translate=no>next_event</code> アクションを返すことで、内部からイベントを発行できる。
-        <pre class=erlang><code translate=no>{keep_state, Data, [{reply, From, ok}, {next_event, cast, Arg}]};</code></pre>
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>{keep_state, Data, [{reply, From, ok}, {next_event, cast, Arg}]};</code></pre>
         <p>call, info などすべての EventType は、 <code translate=no>next_event</code> で送ることができ、外部からのイベントと同じように扱うことができる。
       </section>
       <section>
         <h2 id="internal-event"><a href="#internal-event">internal event</a></h2>
         <p><code translate=no>internal</code> という EventType があり、これは <code translate=no>next_event</code> でしか送ることができないようになっている。
-        <pre class=erlang><code translate=no>{keep_state, Data, [{reply, From, ok}, {next_event, internal, Arg}]};</code></pre>
+        <pre class=erlang data-code=erlang><code translate=no class=language-erlang>{keep_state, Data, [{reply, From, ok}, {next_event, internal, Arg}]};</code></pre>
         <p>逆をいえば、 <code translate=no>internal</code> は外部から送られてくることが無いため、内部で発生した Self Generated イベントであることが保証できる。
         <p>他の EventType は <code translate=no>next_event</code> で来たものか、外から来たものか区別ができないため、イベントを内部に閉じたい場合に利用することができる。
       </section>

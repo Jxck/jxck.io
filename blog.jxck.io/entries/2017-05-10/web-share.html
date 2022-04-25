@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -166,7 +166,7 @@
         <p>API は非常に簡素だ。
         <p>現状設定可能なパラメータは、 <code translate=no>title</code>, <code translate=no>text</code>, <code translate=no>url</code> のみである。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=js><code translate=no>if (navigator.share !== undefined) {
+        <pre class=js data-code=js><code translate=no class=language-js>if (navigator.share !== undefined) {
   document.getElementById(&quot;support&quot;).textContent = &quot;supported&quot;;
 }
 
@@ -184,7 +184,7 @@ navigator
         <p>また、 Web Share は Share の発信だけで無く、受信についても視野に入れいている。
         <p>現状その API は議論中だが、同様に navigator を基本に拡張されていくと思われる。
         <p>簡素な Share の送信だけであれば、以下のような URI Scheme の策定も可能かもしれない。
-        <pre class=html><code translate=no>&lt;a href=&quot;share:?title=Example%20Page&amp;amp;url=https://example.com/page&quot;&gt;Share this&lt;/a&gt;</code></pre>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=&quot;share:?title=Example%20Page&amp;amp;url=https://example.com/page&quot;&gt;Share this&lt;/a&gt;</code></pre>
         <p>しかし、上述のような サポート判別/成功判別/受信側の拡張 などを考えると JS API としての策定が妥当であるとし、今回の API が策定された。
         <p>Web Share を標準化する上での方針などについては以下にまとまっている。
         <p><a href="https://github.com/WICG/web-share/blob/master/docs/explainer.md">Web Share API Explained</a>

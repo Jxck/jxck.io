@@ -14,14 +14,14 @@
   <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220306_111357>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
 
   <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script defer src=https://www.google-analytics.com/analytics.js></script>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?220306_111357></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
   <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -194,14 +194,14 @@
         <p>WebP への変換ツールは、 Google が公式に提供しているバイナリか、 Linux/Mac ならパッケージで提供されているものを使うことができる。
         <p><a href="https://developers.google.com/speed/webp/download">Downloading and Installing WebP</a>
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
-        <pre class=sh-session><code translate=no>$ brew install webp    # mac
+        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ brew install webp    # mac
 $ apt-get install webp # linux</code></pre>
         <p>他にも、 gulp などのプラグインや、 GUI ツールなどもある。
       </section>
       <section>
         <h2 id="cwebp"><a href="#cwebp">cwebp</a></h2>
         <p>PNG からの変換は cwebp コマンドで行う。
-        <pre class=sh-session><code translate=no>$ cwebp
+        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ cwebp
 Usage:
 
    cwebp [options] -q quality input.png -o output.webp
@@ -230,7 +230,7 @@ Usage:
         <p>しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、 User-Agent での分岐は保守性の問題から避けるべきパターンの一つといえる。
         <p>現時点では、 HTML の <code translate=no>&lt;picture&gt;</code> を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
         <p>画像を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、 WebP や <code translate=no>&lt;picture&gt;</code> に対応していない場合は <code translate=no>&lt;img&gt;</code> に指定した画像にフォールバックする。
-        <pre class=html><code translate=no>&lt;picture&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;picture&gt;
   &lt;source type=image/webp srcset=hero-image.webp&gt;
   &lt;img src=hero-image.png alt=&quot;hero image&quot;&gt;
 &lt;/picture&gt;</code></pre>
