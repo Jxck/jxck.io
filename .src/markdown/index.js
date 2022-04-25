@@ -246,8 +246,9 @@ export function encode(node, option = {}) {
   function pre(node, indent) {
     const attr = node.attr
 
-    if (attr.has(`lang`)) {
-      attr.set(`class`, attr.get(`lang`))
+    const lang = attr.get(`lang`)
+    if (lang) {
+      attr.set(`class`, lang)
       attr.delete(`lang`)
     }
     if (attr.has(`path`)) {
@@ -255,8 +256,9 @@ export function encode(node, option = {}) {
       attr.delete(`path`)
     }
     const code = node.children.map((child) => child.text).join(`\n`)
+    const lang_class = lang ? ` class=language-${lang}`: ``
     return [
-      `${spaces(indent)}<pre${attr_str(attr)}><code translate=no>`,
+      `${spaces(indent)}<pre${attr_str(attr)}><code translate=no${lang_class}>`,
       hsc(code),
       `</code></pre>\n`
     ].join(``)
