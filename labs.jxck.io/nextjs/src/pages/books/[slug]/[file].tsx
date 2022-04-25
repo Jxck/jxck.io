@@ -9,19 +9,22 @@ type Props = {
   page: Page;
   frontmatter: string,
   html: string;
-  info: string;
+  date: string;
+  time: string;
+  zone: string;
+  hash: string;
+  file: string;
 };
 
-const Post = ({ slug, page, frontmatter, html, info }: Props) => {
+const Post = ({ slug, page, frontmatter, html, date, time, hash, file }: Props) => {
   return (
     <Layout>
       <Head>
         <title>{page.title}</title>
       </Head>
       <header>
-        <Link href={`/books/${slug}`}>{slug}</Link>
+        <Link href={`/books/${slug}`}>{slug}</Link> / {file} ({date} {time} #{hash})
         <pre>{frontmatter}</pre>
-        <pre>{info}</pre>
       </header>
       <main className="znc" dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
@@ -33,14 +36,18 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const file = params?.file as string;
   const page = await getPage(slug, file);
   const {frontmatter, html} = await getHTML(slug, file);
-  const info = await getCommitInfo();
+  const {date, time, zone, hash} = await getCommitInfo();
   return {
     props: {
       slug,
       page,
       frontmatter,
       html,
-      info
+      date,
+      time,
+      zone,
+      hash,
+      file
     },
   };
 };

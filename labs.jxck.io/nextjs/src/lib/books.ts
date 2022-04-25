@@ -39,7 +39,8 @@ async function getPageTitle(slug: string, file: string) {
 export async function getCommitInfo() {
   const command = `git -C ~/develop/web-anatomia show -s --format="%ci %h" HEAD`
   const { stdout } = await promisify(exec)(command)
-  return stdout
+  const [date, time, zone, hash] = stdout.trim().split(" ")
+  return {date, time, zone, hash}
 }
 
 export async function getBooks(): Promise<Book[]> {
