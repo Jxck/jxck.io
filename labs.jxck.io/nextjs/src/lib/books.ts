@@ -1,6 +1,6 @@
 import path from "path";
 import { readdir, readFile } from "fs/promises";
-import { encode, decode, traverse, Node } from "@jxck/markdown";
+import { encode, decode, traverse, node, Node } from "@jxck/markdown";
 
 export const booksDir = path.join(process.cwd(), "books");
 
@@ -94,14 +94,31 @@ export async function getHTML(slug: string, file: string) {
   const ast = decode(markdown);
 
   const root = traverse(ast, {
-    enter: (node) => node,
-    leave: (node) => {
-      if (node.name === "details") {
-        node.attr.set(`open`, null)
-        const section = node.children.at(1) as Node
+    enter: (elem) => elem,
+    leave: (elem) => {
+      if (elem.name === "details") {
+        elem.attr.set(`open`, null)
+        const section = elem.children.at(1) as Node
         section.attr.set(`class`, `details-content`)
       }
-      return node;
+      if (elem.name === "img") {
+        console.log(elem)
+        const figcaption = node({
+          name: `figcaption`,
+          type: `inline`,
+          text: elem.attr.get(`alt`) as string,
+          level: 0
+        })
+    
+        const figure = node({
+          name: `figure`,
+          type: `block`,
+          level: 0,
+          children: [elem, figcaption]
+        })
+        return figure
+      }
+      return elem;
     },
   });
 
