@@ -1,11 +1,14 @@
 /**
  * @typedef {Object} Serialized
  * @property {string} html
- * @property {Array.<Toc>} toc - TOC も HTML encode した結果にするため encode の結果として返す
+ * @property {Toc} toc - TOC も HTML encode した結果にするため encode の結果として返す
  * @property {Array.<string>} tags
 */
 /**
- * @typedef {Object} Toc
+ * @typedef {Array.<Headding>} Toc
+ */
+/**
+ * @typedef {Object} Headding
  * @property {number} level
  * @property {string} id
  * @property {string} hashed
@@ -113,10 +116,11 @@ export type Serialized = {
     /**
      * - TOC も HTML encode した結果にするため encode の結果として返す
      */
-    toc: Array<Toc>;
+    toc: Toc;
     tags: Array<string>;
 };
-export type Toc = {
+export type Toc = Array<Headding>;
+export type Headding = {
     level: number;
     id: string;
     hashed: string;

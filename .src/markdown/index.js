@@ -5,12 +5,16 @@ export { format } from "./formatter.js";
 /**
  * @typedef {Object} Serialized
  * @property {string} html
- * @property {Array.<Toc>} toc - TOC も HTML encode した結果にするため encode の結果として返す
+ * @property {Toc} toc - TOC も HTML encode した結果にするため encode の結果として返す
  * @property {Array.<string>} tags
 */
 
 /**
- * @typedef {Object} Toc
+ * @typedef {Array.<Headding>} Toc
+ */
+
+/**
+ * @typedef {Object} Headding
  * @property {number} level
  * @property {string} id
  * @property {string} hashed
@@ -179,7 +183,7 @@ export function encode(node, option = {}) {
   /** @type {Array.<string>} */
   const tags = []
 
-  /** @type {Array.<Toc>} */
+  /** @type {Array.<Headding>} */
   const toc = []
 
   /**
