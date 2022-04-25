@@ -6,8 +6,10 @@ After=network.target nss-lookup.target
 Type=simple
 Restart=always
 Environment="PATH=/home/jxck/dotfiles/pkg/nodebrew/current/bin:$PATH"
-WorkingDirectory=/home/jxck/server/web-anatomia
-ExecStart=/home/jxck/server/web-anatomia/node_modules/.bin/zenn preview --port 12000
+WorkingDirectory=/home/jxck/server/web-anatomia/.src
+ExecStart=/home/jxck/server/web-anatomia/.src/node_modules/.bin/next start --port=12000
+User=jxck
+Group=jxck
 
 [Install]
 WantedBy=default.target
