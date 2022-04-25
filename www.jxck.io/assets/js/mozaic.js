@@ -159,7 +159,9 @@ async function enableBeforeInstallPrompt(install_prompt) {
  * Create & Insret ToC
  */
 function insertToC() {
-  const $toc = document.importNode($('#toc').content, true)
+  const template = $('#toc')
+  if (template === null) return
+  const $toc = document.importNode(template.content, true)
   const $ul = $toc.querySelector('ul')
   document.querySelectorAll('h2, h3, h4, h5').forEach((h) => {
     const child = h.firstChild.cloneNode(true)
