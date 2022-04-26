@@ -462,7 +462,7 @@ function customise_image(node, base) {
  * @property {string} host
  * @property {string} title
  * @property {Array.<string>} tags
- * @property {Array.<import("./markdown").Toc>} toc
+ * @property {import("./markdown").Toc} toc
  * @property {string} article
  * @property {string} icon
  * @property {string} description
