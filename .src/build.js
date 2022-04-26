@@ -33,13 +33,17 @@ function map(obj) {
  */
 export function cache_busting(path) {
   const mtime = statSync(path).mtime
-  const y = (mtime.getFullYear() % 100).toString().padStart(2, `0`)
-  const m = (mtime.getMonth() + 1).toString().padStart(2, `0`)
-  const d = (mtime.getDate()).toString().padStart(2, `0`)
-  const H = (mtime.getHours()).toString().padStart(2, `0`)
-  const M = (mtime.getMinutes()).toString().padStart(2, `0`)
-  const S = (mtime.getSeconds()).toString().padStart(2, `0`)
-  return `?${y}${m}${d}_${H}${M}${S}`
+  const formatter = new Intl.DateTimeFormat(`ja-JP`, {
+    year: `2-digit`,
+    month: `2-digit`,
+    day: `2-digit`,
+    hour: `2-digit`,
+    minute: `2-digit`,
+    second: `2-digit`
+  })
+  const parts = Object.fromEntries(formatter.formatToParts(mtime).map(({ type, value }) => [type, value]))
+  const { year, month, day, hour, minute, second } = parts
+  return `?${year}${month}${day}_${hour}${minute}${second}`
 }
 
 /**
