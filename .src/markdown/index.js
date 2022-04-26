@@ -6,7 +6,6 @@ export { format } from "./formatter.js";
  * @typedef {Object} Serialized
  * @property {string} html
  * @property {Toc} toc - TOC も HTML encode した結果にするため encode の結果として返す
- * @property {Array.<string>} tags
 */
 
 /**
@@ -179,9 +178,6 @@ export class Node {
  * @returns {Serialized}
  */
 export function encode(node, option = {}) {
-
-  /** @type {Array.<string>} */
-  const tags = []
 
   /** @type {Array.<Headding>} */
   const toc = []
@@ -510,7 +506,7 @@ export function encode(node, option = {}) {
   }
 
   const html = serialize(node, option.indent)
-  return { html, toc, tags }
+  return { html, toc }
 }
 
 /**

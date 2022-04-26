@@ -2,7 +2,6 @@
  * @typedef {Object} Serialized
  * @property {string} html
  * @property {Toc} toc - TOC も HTML encode した結果にするため encode の結果として返す
- * @property {Array.<string>} tags
 */
 /**
  * @typedef {Array.<Headding>} Toc
@@ -117,7 +116,6 @@ export type Serialized = {
      * - TOC も HTML encode した結果にするため encode の結果として返す
      */
     toc: Toc;
-    tags: Array<string>;
 };
 export type Toc = Array<Headding>;
 export type Headding = {
