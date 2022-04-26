@@ -30,6 +30,11 @@ export function hsc(str: string): string;
  */
 export function serialize_child_text(node: Node): string;
 /**
+ * @param {Node} h
+ * @returns {string}
+ */
+export function create_id_from_text(h: Node): string;
+/**
  * @typedef {Object} NodeParam
  * @prop {string} name
  * @prop {string} type
