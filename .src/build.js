@@ -57,9 +57,9 @@ function to_text(node, acc = ``) {
 }
 
 /**
- * Date into mtime as yy-mm-dd fmt
+ * Convert mtime into yy-mm-dd fmt
  * @param {Date} mtime
- * @returns
+ * @returns {string}
  */
 function updated_at(mtime) {
   const formatter = new Intl.DateTimeFormat(`ja-JP`, { year: `numeric`, month: `2-digit`, day: `2-digit` })
