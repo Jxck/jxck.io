@@ -42,15 +42,6 @@ export function cache_busting(path) {
   return `?${y}${m}${d}_${H}${M}${S}`
 }
 
-// function description(md) {
-//   const _desc = md.match(/## (Intro|Theme)(([\n\r]|.)*?)##/m)[2]
-//     .replace(/\[(.*?)\]\(.*?\)/g, (m, p1, p2) => p1)
-//     .replace(/<(http.*?)>/g, (m, p1) => p1)
-//     .trim()
-//   const desc = hsc(_desc)
-//   return desc
-// }
-
 /**
  * serialize Node to string
  * @param {Node} node
