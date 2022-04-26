@@ -62,6 +62,19 @@ export function serialize_child_text(node) {
 }
 
 /**
+ * @param {Node} h
+ * @returns {string}
+ */
+export function create_id_from_text(h) {
+  const id = serialize_child_text(h)
+  .replace(/[!"#$%&'()*+,/:;<=>?\[\\\]^{|}~]/g, ``) // 記号は .-_ のみ
+  .replace(/[、。「」]/g, ``) // 全角記号も消す
+  .replace(/ /g, `-`)
+  .toLocaleLowerCase()
+  return id
+}
+
+/**
  * @typedef {Map.<string, string | null>} Attr
  */
 
@@ -554,13 +567,8 @@ export function decode(md) {
       children,
     })
 
-    const id = serialize_child_text(h)
-      .replace(/[!"#$%&'()*+,/:;<=>?\[\\\]^{|}~]/g, ``) // 記号は .-_ のみ
-      .replace(/[、。「」]/g, ``) // 全角記号も消す
-      .replace(/ /g, `-`)
-      .toLocaleLowerCase()
-
-    h.attr.set(`id`, id)
+    const id = create_id_from_text(h)
+     h.attr.set(`id`, id)
 
     section.appendChild(h)
 

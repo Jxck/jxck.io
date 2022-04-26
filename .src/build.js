@@ -270,25 +270,33 @@ function customise(ast, base) {
     pre: false,
   }
 
-  /**@type {Array.<string>} */
-  let tags = []
-  let description = ''
+  const state = {
+    /**@type {Array.<string>} */
+    tags: [],
+    /**@type {string} */
+    description: null,
+    /**@type {Array.<Node>} */
+    toc: []
+  }
 
   const root = traverse(ast, {
     enter: (node) => {
       return node
     },
     leave: (node) => {
-      if (node.name === `headding` && node.level === 1) {
-        const result = customise_headding(node)
-        tags = result.tags
-        return result.node
-      }
-      if (node.name === `headding` && node.level === 2) {
-        const id = node.attr.get(`id`)
-        if (id === `intro` || id === `theme`) {
-          description = hsc(to_text(node.parent))
+      if (node.name === `headding`) {
+        if (node.level === 1) {
+          const result = customise_headding(node)
+          state.tags = result.tags
+          node = result.node
         }
+        if (node.level === 2) {
+          const text = node.children.at(0).text
+          if (text === `Intro` || text === `Theme`) {
+            state.description = hsc(to_text(node.parent))
+          }
+        }
+        state.toc.push(node)
       }
       if (node.name === `figure` && style_flag.table === false) {
         if (style_flag.table === false) {
@@ -315,7 +323,7 @@ function customise(ast, base) {
       return node
     }
   })
-  return { root, description, tags }
+  return { root, ...state }
 }
 
 /**
