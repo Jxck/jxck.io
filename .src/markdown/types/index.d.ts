@@ -1,12 +1,4 @@
 /**
- * @typedef {Object} Serialized
- * @property {string} html
- * @property {Toc} toc - TOC も HTML encode した結果にするため encode の結果として返す
-*/
-/**
- * @typedef {Array.<Headding>} Toc
- */
-/**
  * @typedef {Object} Headding
  * @property {number} level
  * @property {string} id
@@ -35,6 +27,11 @@ export function serialize_child_text(node: Node): string;
  */
 export function create_id_from_text(h: Node): string;
 /**
+ * Headdings の配列を <ul> リストに組み直す
+ * @param {Array.<Node>} headdings
+ */
+export function to_toc(headdings: Array<Node>): Node;
+/**
  * @typedef {Object} NodeParam
  * @prop {string} name
  * @prop {string} type
@@ -58,9 +55,9 @@ export function node({ name, type, parent, children, level, text, attr, aligns }
  * Convert Markdown AST to HTML
  * @param {Node} node
  * @param {EncodeOption} [option]
- * @returns {Serialized}
+ * @returns {string}
  */
-export function encode(node: Node, option?: EncodeOption): Serialized;
+export function encode(node: Node, option?: EncodeOption): string;
 /**
  * Parse Markdown text to AST
  * @param {string} md
@@ -115,14 +112,6 @@ export class Node {
      */
     addText(text: string): void;
 }
-export type Serialized = {
-    html: string;
-    /**
-     * - TOC も HTML encode した結果にするため encode の結果として返す
-     */
-    toc: Toc;
-};
-export type Toc = Array<Headding>;
 export type Headding = {
     level: number;
     id: string;
@@ -130,6 +119,11 @@ export type Headding = {
     count: number;
     text: string;
 };
+/**
+ * HTML Attribute にエンコードされる値
+ * 内部の値を保つために `_` で始まる値は
+ * エンコード時に無視する (TODO: これ消したい)
+ */
 export type Attr = Map<string, string | null>;
 export type NodeParam = {
     name: string;

@@ -1,4 +1,4 @@
-import { encode, decode, traverse, hsc, Node } from "markdown"
+import { encode, decode, traverse, hsc, Node, create_id_from_text, to_toc, serialize_child_text } from "markdown"
 import { readFile, writeFile, stat } from "fs/promises";
 import { readFileSync, statSync } from "fs"
 import { promisify } from "util"
@@ -47,16 +47,16 @@ export function cache_busting(path) {
 }
 
 /**
- * serialize Node to string
+ * serialize description
  * @param {Node} node
  * @param {string} acc
  * @returns {string}
  */
-function to_text(node, acc = ``) {
+function serialize_description(node, acc = ``) {
   if (node.name === `headding`) return ``
   if (node.name === `text`) return node.text
   return node.children.map((child) => {
-    return to_text(child, acc)
+    return serialize_description(child, acc)
   }).join(``)
 }
 
@@ -259,16 +259,6 @@ async function renderFile(template, context) {
  * @returns
  */
 function customise(ast, base) {
-  /**
-   * table, pre など必ず出てくるわけではない CSS は
-   * 登場したら一度だけ CSS を読み込むように
-   * <link rel=stylesheet> を挿入する。
-   * 挿入したかを保持するグローバルフラグ
-   */
-  const style_flag = {
-    table: false,
-    pre: false,
-  }
 
   const state = {
     /**@type {Array.<string>} */
@@ -276,7 +266,21 @@ function customise(ast, base) {
     /**@type {string} */
     description: null,
     /**@type {Array.<Node>} */
-    toc: []
+    headdings: [],
+    /**@type {string} */
+    title: null,
+
+    /**
+     * table, pre など必ず出てくるわけではない CSS は
+     * 登場したら一度だけ CSS を読み込むように
+     * <link rel=stylesheet> を挿入する。
+     * 挿入したかを保持するグローバルフラグ
+     * @type {Object.<string, boolean>}
+     */
+    style: {
+      table: false,
+      pre: false,
+    }
   }
 
   const root = traverse(ast, {
@@ -289,19 +293,54 @@ function customise(ast, base) {
           const result = customise_headding(node)
           state.tags = result.tags
           node = result.node
+          state.title = node.children.map((child) => encode(child)).join(``)
         }
         if (node.level === 2) {
           const text = node.children.at(0).text
           if (text === `Intro` || text === `Theme`) {
-            state.description = hsc(to_text(node.parent))
+            state.description = hsc(serialize_description(node.parent))
           }
         }
-        state.toc.push(node)
+
+        // TOC を作りつつ、そこからリンクできるように <hn> に id を生成する
+        // id は <h2>text</h2> の部分から生成するが、そこにもタグがあった場合のために
+        // create_id_from_text でシリアライズしてエスケープした文字をベースにする
+        // 正式な id ではないので _id で保存。 _ がついてるとレンダリングしない実装
+        const _id = create_id_from_text(node)
+        node.attr.set(`_id`, _id)
+
+        // かぶるものが前にあったら _1, _2 などを suffix につける
+        // そのために、 TOC にある値を調べて重複をカウントする
+        // reduceRight できるかと思ったけど break できないので reduce で頭から見ていく
+        const last = state.headdings.reduce((prev, curr) => {
+          return curr.attr.get(`_id`) === _id ? curr : prev
+        }, null)
+
+        // あったらその重複カウント、なければ 0
+        const _id_count = last !== null ? parseInt(last.attr.get(`_id_count`)) + 1 : 0
+        const suffix = _id_count === 0 ? `` : `_${_id_count}`
+        const id = `${_id}${suffix}`
+
+        // 重複カウントを保存しつつ、 suffix をつけたものを正式 id として登録
+        node.attr.set(`_id_count`, `${_id_count}`)
+        node.attr.set(`id`, id)
+        state.headdings.push(node)
+
+        const attr = new Map()
+        if (node.level === 1) {
+          node.attr.delete(`id`)
+          attr.set(`href`, ``)
+        } else {
+          attr.set(`href`, `#${id}`)
+        }
+        const a = new Node({ name: `a`, type: `inline`, attr, children: node.children })
+        node.children = []
+        node.appendChild(a)
       }
-      if (node.name === `figure` && style_flag.table === false) {
-        if (style_flag.table === false) {
+      if (node.name === `figure` && state.style.table === false) {
+        if (state.style.table === false) {
           // 一度だけ table css を差し込む
-          style_flag.table = true
+          state.style.table = true
           return append_css(node, `https://www.jxck.io/assets/css/table.css`)
         }
       }
@@ -311,9 +350,9 @@ function customise(ast, base) {
           const code = readFileSync(`${base}${path}`, { encoding: `utf-8` }).trimEnd()
           node.addText(code)
         }
-        if (style_flag.pre === false) {
+        if (state.style.pre === false) {
           // 一度だけ pre css を差し込む
-          style_flag.pre = true
+          state.style.pre = true
           return append_css(node, `https://www.jxck.io/assets/css/pre.css`)
         }
       }
@@ -323,8 +362,11 @@ function customise(ast, base) {
       return node
     }
   })
-  return { root, ...state }
+  const { tags, description, headdings, title } = state
+  const toc = encode(to_toc(headdings), { indent: 14 })
+  return { root, tags, description, toc, title }
 }
+
 
 /**
  * @param {Node} node
@@ -466,7 +508,7 @@ function customise_image(node, base) {
  * @property {string} host
  * @property {string} title
  * @property {Array.<string>} tags
- * @property {import("./markdown").Toc} toc
+ * @property {string} toc
  * @property {string} article
  * @property {string} icon
  * @property {string} description
@@ -492,12 +534,8 @@ async function parse_entry(entry) {
   const relative = `${entries}/${created_at}/${filename}`
 
   const ast = decode(md)
-  const { root, description, tags } = customise(ast, base)
-  const encoded = encode(root, { indent: 4 })
-
-  const article = encoded.html
-  const [h1, ...toc] = encoded.toc
-  const title = h1.text
+  const { root, description, tags, toc, title } = customise(ast, base)
+  const article = encode(root, { indent: 4 })
 
   return {
     target,
@@ -540,18 +578,13 @@ async function parse_episode(entry, order) {
   const info = info_section({ published_at, guests })
   ast.children[0].children.splice(1, 0, info)
 
-  const { root, description } = customise(ast, base)
-
-  const encoded = encode(root, { indent: 2 })
+  const { root, description, toc, title } = customise(ast, base)
+  const article = encode(root, { indent: 2 })
 
   // Top ページのために Theme だけ別で encode する
   const theme_section = ast.children[0].children[2]
   theme_section.children.shift()
-  const theme = encode(theme_section, { indent: 4 }).html.trim()
-
-  const article = encoded.html
-  const [h1, ...toc] = encoded.toc
-  const title = h1.text
+  const theme = encode(theme_section, { indent: 4 }).trim()
 
   const audio_file = audio.replace(`https://`, `../`)
   const audio_stat = await stat(audio_file)

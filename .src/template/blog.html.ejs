@@ -73,11 +73,7 @@
           <details class=info>
             <summary>headings</summary>
             <nav>
-              <ul>
-                <%_ entry.toc.forEach(({level, hashed, count, text}) => { _%>
-                <li><a href=#<%= hashed %>><%= "#".repeat(level) %> <%- text %></a>
-                <%_ }) _%>
-              </ul>
+<%- entry.toc -%>
             </nav>
           </details>
         </dd>

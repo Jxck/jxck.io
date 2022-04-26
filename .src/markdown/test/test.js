@@ -1,4 +1,4 @@
-import { encode, decode, traverse, Node, node, dump } from "../index.js"
+import { encode, decode, traverse, node, Node, to_toc, dump } from "../index.js"
 import { format } from "../formatter.js";
 import { deepStrictEqual } from "assert";
 import fs from "fs";
@@ -19,7 +19,7 @@ function testcase() {
       // console.log(md)
       const ast = decode(md)
       // dump(ast)
-      const { html, toc } = encode(ast)
+      const html = encode(ast)
       // console.log({expected})
       // console.log({html})
       deepStrictEqual(html, expected + `\n`, html)
@@ -83,8 +83,55 @@ function formatter() {
   deepStrictEqual(format(before), after)
 }
 
+function util() {
+  function h(level, text) {
+    const attr = new Map([[`id`, text]])
+    const children = [node({ name: `text`, type: `inline`, text })]
+    return node({ name: `headding`, type: `inline`, attr, level, children })
+  }
+  const headdings = [
+    h(1, `a`),
+    h(2, `b`),
+    h(3, `c`),
+    h(2, `d`),
+    h(1, `e`),
+    h(2, `f`),
+    h(2, `g`),
+    h(3, `h`),
+    h(3, `i`),
+    h(2, `j`),
+    h(1, `k`),
+  ];
+  const toc = to_toc(headdings)
+  const actual = encode(toc)
+
+  const expected = `<ul>
+  <li><a href="#a">a</a>
+  <ul>
+    <li><a href="#b">b</a>
+    <ul>
+      <li><a href="#c">c</a>
+    </ul>
+    <li><a href="#d">d</a>
+  </ul>
+  <li><a href="#e">e</a>
+  <ul>
+    <li><a href="#f">f</a>
+    <li><a href="#g">g</a>
+    <ul>
+      <li><a href="#h">h</a>
+      <li><a href="#i">i</a>
+    </ul>
+    <li><a href="#j">j</a>
+  </ul>
+  <li><a href="#k">k</a>
+</ul>`
+  console.assert(actual, expected)
+}
+
 testcase()
 api()
 formatter()
+util()
 
 console.log("[done] test.js")

@@ -3,16 +3,6 @@
 export { format } from "./formatter.js";
 
 /**
- * @typedef {Object} Serialized
- * @property {string} html
- * @property {Toc} toc - TOC も HTML encode した結果にするため encode の結果として返す
-*/
-
-/**
- * @typedef {Array.<Headding>} Toc
- */
-
-/**
  * @typedef {Object} Headding
  * @property {number} level
  * @property {string} id
@@ -67,14 +57,55 @@ export function serialize_child_text(node) {
  */
 export function create_id_from_text(h) {
   const id = serialize_child_text(h)
-  .replace(/[!"#$%&'()*+,/:;<=>?\[\\\]^{|}~]/g, ``) // 記号は .-_ のみ
-  .replace(/[、。「」]/g, ``) // 全角記号も消す
-  .replace(/ /g, `-`)
-  .toLocaleLowerCase()
+    .replace(/[!"#$%&'()*+,/:;<=>?\[\\\]^{|}~]/g, ``) // 記号は .-_ のみ
+    .replace(/[、。「」]/g, ``) // 全角記号も消す
+    .replace(/ /g, `-`)
+    .toLocaleLowerCase()
   return id
 }
 
 /**
+ * Headdings の配列を <ul> リストに組み直す
+ * @param {Array.<Node>} headdings
+ */
+export function to_toc(headdings) {
+  const root = node({ name: `ul`, type: `block`, level: 1 });
+
+  /**
+   * @param {Array.<Node>} param0
+   * @param {Node} current
+   * @returns {Node}
+   */
+  function list([head, ...tail], current) {
+    if (head === undefined) return root;
+    const li = node({ name: `li`, type: `inline` })
+    li.appendChildren(head.children)
+
+    if (current.level === head.level) {
+      current.appendChild(li);
+      return list(tail, current);
+    }
+
+    // 一段ネスト
+    if (current.level + 1 === head.level) {
+      const ul = node({ name: `ul`, type: `block`, level: head.level });
+      current.appendChild(ul);
+      ul.appendChild(li);
+      return list(tail, ul);
+    }
+
+    // 上に戻る
+    if (current.level > head.level) {
+      return list([head, ...tail], current.parent);
+    }
+  }
+  return list(headdings, root)
+}
+
+/**
+ * HTML Attribute にエンコードされる値
+ * 内部の値を保つために `_` で始まる値は
+ * エンコード時に無視する (TODO: これ消したい)
  * @typedef {Map.<string, string | null>} Attr
  */
 
@@ -85,6 +116,10 @@ export function create_id_from_text(h) {
 function attr_str(attr = new Map()) {
   const quote = [`title`, `alt`, `cite`, `href`, `id`]
   return Array.from(attr).map(([k, v]) => {
+    // 内部で使う値なので無視
+    if (k.startsWith(`_`)) return ``
+
+    // 値のみ
     if (v === null) return ` ${k}`
 
     // align 属性は非推奨
@@ -188,12 +223,9 @@ export class Node {
  * Convert Markdown AST to HTML
  * @param {Node} node
  * @param {EncodeOption} [option]
- * @returns {Serialized}
+ * @returns {string}
  */
 export function encode(node, option = {}) {
-
-  /** @type {Array.<Headding>} */
-  const toc = []
 
   /**
    * @param {Node} node
@@ -231,28 +263,11 @@ export function encode(node, option = {}) {
     const name = `h${node.level}`
     const text = node.children.map((child) => serialize(child)).join(``)
     const attr = node.attr
-    const id = attr.get(`id`)
-
-    // ID が既出な場合は、一意にするために _連番 を後ろにつける
-    const prev = toc.reduce((last, curr) => {
-      // id が同じやつを頭からたどっていく
-      // TODO: 後ろから見れば良さそう
-      return curr.id === id ? curr : last
-    }, null)
-    const count = prev ? prev.count + 1 : 0
-    const suffix = count === 0 ? `` : `_${count}`
-    const hashed = `${id}${suffix}`
-
-    // TOC に積む
-    toc.push({ level: node.level, id, hashed, count, text })
 
     if (node.level === 1) {
-      // href は "" にすることで自身の URL を示す
-      attr.delete(`id`)
-      return `${spaces(indent)}<h1${attr_str(attr)}><a href="">${text}</a></h1>\n`
+      return `${spaces(indent)}<h1${attr_str(attr)}>${text}</h1>\n`
     } else {
-      attr.set(`id`, hashed)
-      return `${spaces(indent)}<${name}${attr_str(attr)}><a href="#${hashed}">${text}</a></${name}>\n`
+      return `${spaces(indent)}<${name}${attr_str(attr)}>${text}</${name}>\n`
     }
   }
 
@@ -288,7 +303,7 @@ export function encode(node, option = {}) {
       attr.delete(`path`)
     }
     const code = node.children.map((child) => serialize(child)).join(`\n`)
-    const lang_class = lang ? ` class=language-${lang}`: ``
+    const lang_class = lang ? ` class=language-${lang}` : ``
     return [
       `${spaces(indent)}<pre${attr_str(attr)}><code translate=no${lang_class}>`,
       code,
@@ -519,7 +534,7 @@ export function encode(node, option = {}) {
   }
 
   const html = serialize(node, option.indent)
-  return { html, toc }
+  return html
 }
 
 /**
@@ -566,9 +581,6 @@ export function decode(md) {
       level,
       children,
     })
-
-    const id = create_id_from_text(h)
-     h.attr.set(`id`, id)
 
     section.appendChild(h)
 
@@ -1634,7 +1646,7 @@ function main() {
   ].forEach((line) => {
     const ast = decode(line)
     dump(ast)
-    const { html, toc } = encode(ast, { indent: 2 })
+    const html = encode(ast, { indent: 2 })
     console.log(html)
   })
 }
