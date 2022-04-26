@@ -62,10 +62,11 @@ function to_text(node, acc = ``) {
  * @returns
  */
 function updated_at(mtime) {
-  const year = mtime.getFullYear()
-  const month = (mtime.getMonth() + 1).toString().padStart(2, `0`)
-  const date = mtime.getDate().toString().padStart(2, `0`)
-  return `${year}-${month}-${date}`
+  const formatter = new Intl.DateTimeFormat(`ja-JP`, { year: `numeric`, month: `2-digit`, day: `2-digit` })
+  return formatter.formatToParts(mtime).map(({ type, value }) => {
+    if (type === `literal`) return `-`
+    return value
+  }).join(``)
 }
 
 /**
