@@ -155,25 +155,6 @@ async function enableBeforeInstallPrompt(install_prompt) {
   })
 }
 
-/**
- * Create & Insret ToC
- */
-function insertToC() {
-  const template = $('#toc')
-  if (template === null) return
-  const $toc = document.importNode(template.content, true)
-  const $ul = $toc.querySelector('ul')
-  document.querySelectorAll('h2, h3, h4, h5').forEach((h) => {
-    const child = h.firstChild.cloneNode(true)
-    const level = parseInt(h.nodeName.charAt(1))
-    child.textContent = `${'#'.repeat(level)} ${child.textContent}`
-    const $li = document.createElement('li')
-    $li.appendChild(child)
-    $ul.appendChild($li)
-  })
-  $('dl.info').appendChild($toc)
-}
-
 // main
 if (window.ReportingObserver) {
   reportingObserver()
@@ -181,8 +162,6 @@ if (window.ReportingObserver) {
 
 document.on('DOMContentLoaded', async (e) => {
   console.log(e.type, e)
-
-  insertToC()
 
   if (navigator.clearAppBadge) {
     navigator.clearAppBadge()
@@ -305,7 +284,6 @@ window.on("pageshow", async (e) => {
 
 window?.navigation?.on("navigatesuccess", (e) => {
   console.log(e.type, e)
-  insertToC()
 })
 
 window?.navigation?.on("navigateerror", (e) => {
