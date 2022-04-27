@@ -74,11 +74,13 @@ export function create_id_from_text(h) {
 }
 
 /**
- * Headdings の配列を <ul> リストに組み直す
+ * Headdings の配列を <ul>/<ol> リストに組み直す
  * @param {Array.<Node>} headdings
+ * @param {{list:string}} opt
  */
-export function to_toc(headdings) {
-  const root = node({ name: `ul`, type: `block`, level: 1 });
+export function to_toc(headdings, opt = { list: `ol` }) {
+  const name = opt.list
+  const root = node({ name, type: `block`, level: 1 });
 
   /**
    * @param {Array.<Node>} param0
@@ -97,7 +99,7 @@ export function to_toc(headdings) {
 
     // 一段ネスト
     if (current.level + 1 === head.level) {
-      const ul = node({ name: `ul`, type: `block`, level: head.level });
+      const ul = node({ name, type: `block`, level: head.level });
       current.appendChild(ul);
       ul.appendChild(li);
       return list(tail, ul);

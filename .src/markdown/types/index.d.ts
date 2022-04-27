@@ -33,10 +33,13 @@ export function serialize_child_text(node: Node): string;
  */
 export function create_id_from_text(h: Node): string;
 /**
- * Headdings の配列を <ul> リストに組み直す
+ * Headdings の配列を <ul>/<ol> リストに組み直す
  * @param {Array.<Node>} headdings
+ * @param {{list:string}} opt
  */
-export function to_toc(headdings: Array<Node>): Node;
+export function to_toc(headdings: Array<Node>, opt?: {
+    list: string;
+}): Node;
 /**
  * @typedef {Object} NodeParam
  * @prop {string} name

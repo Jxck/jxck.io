@@ -380,7 +380,7 @@ function customise(ast, base) {
     }
   })
   const { tags, description, headdings, title } = state
-  const toc = to_toc(headdings)
+  const toc = to_toc(headdings, { list: `ul` })
   return { root, tags, description, toc, title }
 }
 
