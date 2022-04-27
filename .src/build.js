@@ -231,19 +231,19 @@ function info_section({ published_at, guests, toc }) {
   (() => {
     const div = new Node({ name: `div`, type: `block` })
     const dt = new Node({ name: `dt`, type: `inline` })
-    const dd = new Node({ name: `dd`, type: `inline` })
+    const dd = new Node({ name: `dd`, type: `block` })
     div.appendChildren([dt, dd])
     dt.addText(`toc`)
 
     const details = new Node({ name: `details`, type: `block` })
     const summary = new Node({ name: `summary`, type: `inline` })
     summary.addText(`headdings`)
-    const nav = new Node({ name: `nav`, type: `inline` })
+    const nav = new Node({ name: `nav`, type: `block` })
     nav.appendChild(toc)
     details.appendChildren([summary, nav])
     dd.appendChild(details)
 
-    dl.appendChildren([dt, dd])
+    dl.appendChild(div)
   })()
 
   return dl

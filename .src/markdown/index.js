@@ -351,11 +351,19 @@ export function encode(node, option = {}) {
   function dt(node, indent) {
     const name = node.name
     const attr = attr_str(node.attr)
-    return [
-      `${spaces(indent)}<${name}${attr}>`,
-      node.children.map((child) => serialize(child)).join(``),
-      `\n`
-    ].join(``)
+    if (node.type === `inline`) {
+      return [
+        `${spaces(indent)}<${name}${attr}>`,
+        node.children.map((child) => serialize(child)).join(``),
+        `\n`
+      ].join(``)
+    } else {
+      return [
+        `${spaces(indent)}<${name}${attr}>\n`,
+        node.children.map((child) => serialize(child, indent + 2)).join(``),
+        `${spaces(indent)}</${name}>\n`,
+      ].join(``)
+    }
   }
 
   /**
