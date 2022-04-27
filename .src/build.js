@@ -181,28 +181,29 @@ async function audio_duration(audio) {
 
 /**
  * create info section from yaml
- * @param {{published_at: string, guests: Array.<Guest>}} param
+ * @param {{published_at: string, guests: Array.<Guest>, toc: Node}} param
  * @returns {Node}
  */
-function info_section({ published_at, guests }) {
+function info_section({ published_at, guests, toc }) {
   // console.log({ published_at, guests })
 
   const dl = new Node({
     name: `dl`,
     type: `block`,
     attr: map({ class: `info` })
-  })
+  });
 
   // published_at
-  const div = new Node({ name: `div`, type: `block` })
-  const dt = new Node({ name: `dt`, type: `inline` })
-  const dd = new Node({ name: `dd`, type: `inline` })
-  dt.addText(`published_at`)
-  dd.addText(published_at)
-  div.appendChild(dt)
-  div.appendChild(dd)
-
-  dl.appendChild(div)
+  (() => {
+    const div = new Node({ name: `div`, type: `block` })
+    const dt = new Node({ name: `dt`, type: `inline` })
+    const dd = new Node({ name: `dd`, type: `inline` })
+    dt.addText(`published_at`)
+    dd.addText(published_at)
+    div.appendChild(dt)
+    div.appendChild(dd)
+    dl.appendChild(div)
+  })()
 
   // guests
   guests.forEach(({ name, url }) => {
@@ -224,7 +225,26 @@ function info_section({ published_at, guests }) {
     div.appendChild(dt)
     div.appendChild(dd)
     dl.appendChild(div)
-  })
+  });
+
+  // toc
+  (() => {
+    const div = new Node({ name: `div`, type: `block` })
+    const dt = new Node({ name: `dt`, type: `inline` })
+    const dd = new Node({ name: `dd`, type: `inline` })
+    div.appendChildren([dt, dd])
+    dt.addText(`toc`)
+
+    const details = new Node({ name: `details`, type: `block` })
+    const summary = new Node({ name: `summary`, type: `inline` })
+    summary.addText(`headdings`)
+    const nav = new Node({ name: `nav`, type: `inline` })
+    nav.appendChild(toc)
+    details.appendChildren([summary, nav])
+    dd.appendChild(details)
+
+    dl.appendChildren([dt, dd])
+  })()
 
   return dl
 }
@@ -363,7 +383,7 @@ function customise(ast, base) {
     }
   })
   const { tags, description, headdings, title } = state
-  const toc = encode(to_toc(headdings), { indent: 14 })
+  const toc = to_toc(headdings)
   return { root, tags, description, toc, title }
 }
 
@@ -508,7 +528,7 @@ function customise_image(node, base) {
  * @property {string} host
  * @property {string} title
  * @property {Array.<string>} tags
- * @property {string} toc
+ * @property {string} toc_html
  * @property {string} article
  * @property {string} icon
  * @property {string} description
@@ -535,6 +555,7 @@ async function parse_entry(entry) {
 
   const ast = decode(md)
   const { root, description, tags, toc, title } = customise(ast, base)
+  const toc_html = encode(toc, { indent: 14 })
   const article = encode(root, { indent: 4 })
 
   return {
@@ -544,7 +565,7 @@ async function parse_entry(entry) {
     host: `blog.jxck.io`,
     title,
     tags,
-    toc,
+    toc_html,
     article,
     icon: `https://blog.jxck.io/assets/img/jxck`,
     description,
@@ -574,11 +595,12 @@ async function parse_episode(entry, order) {
   const base = `${up}/${mozaic}/${episodes}/${ep}/`
   const ast = decode(markdown)
 
+  const { root, description, toc, title } = customise(ast, base)
+
   // yaml の情報を info section にして ast に差し込む
-  const info = info_section({ published_at, guests })
+  const info = info_section({ published_at, guests, toc })
   ast.children[0].children.splice(1, 0, info)
 
-  const { root, description, toc, title } = customise(ast, base)
   const article = encode(root, { indent: 2 })
 
   // Top ページのために Theme だけ別で encode する
