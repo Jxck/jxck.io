@@ -550,7 +550,9 @@ async function parse_entry(entry) {
 
   const ast = decode(md)
   const { root, description, tags, toc, title } = customise(ast, base)
-  const toc_html = encode(toc, { indent: 14 })
+  // h1 は除く
+  const ol = toc.children.at(-1)
+  const toc_html = encode(ol, { indent: 14 })
   const article = encode(root, { indent: 4 })
 
   return {
@@ -591,9 +593,10 @@ async function parse_episode(entry, order) {
   const ast = decode(markdown)
 
   const { root, description, toc, title } = customise(ast, base)
+  const ol = toc.children.at(-1) // toc から h1 を除く
 
   // yaml の情報を info section にして ast に差し込む
-  const info = info_section({ published_at, guests, toc })
+  const info = info_section({ published_at, guests, toc: ol })
   ast.children[0].children.splice(1, 0, info)
 
   const article = encode(root, { indent: 2 })
