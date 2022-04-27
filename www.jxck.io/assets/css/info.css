@@ -14,7 +14,7 @@ dl.info div {
 
 dl.info dt::after {
   content: ":";
-  content: ":" / "";
+  content: ":"/ "";
   padding-inline-end: calc(var(--grid)/2);
 }
 
@@ -30,12 +30,27 @@ dl.info dd i {
   padding-inline-end: calc(var(--grid)/3);
 }
 
-details.info > summary {
-}
+details.info>summary {}
 
-details.info ul {
+details.info ul,
+details.info ol {
   margin-block-start: 0;
   margin-inline-start: var(--grid);
+}
+
+details.info ol {
+  list-style: none;
+  counter-reset: counter;
+}
+
+details.info ol li::before {
+  content: counters(counter, ".") ". ";
+  counter-increment: counter;
+}
+
+details.info ol li ol {
+  list-style: none;
+  counter-reset: counter;
 }
 
 nav.tags {
@@ -52,18 +67,18 @@ nav.tags {
   content: none;
 }
 
-.tags li:first-child:before{
+.tags li:first-child:before {
   content: "[ ";
-  content: "[ " / "";
+  content: "[ "/ "";
 }
 
 .tags li:after {
   content: ",";
-  content: "," / "";
+  content: ","/ "";
   padding-inline-end: 0.5rem;
 }
 
 .tags li:last-child:after {
   content: " ]";
-  content: " ]" / "";
+  content: " ]"/ "";
 }
