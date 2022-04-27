@@ -20,6 +20,15 @@ export function spaces(indent) {
 }
 
 /**
+ * to map
+ * @param {Object} obj
+ * @returns {Map<string, string>}
+ */
+export function map(obj) {
+  return new Map(Object.entries(obj))
+}
+
+/**
  * @param {string} str
  * @returns {string}
  */
@@ -807,7 +816,7 @@ export function decode(md) {
         const td = node({
           name: `td`,
           type: `inline`,
-          attr: new Map([[`align`, align]]),
+          attr: map({ align }),
           children: inline(colmun.trim()),
         })
         tr.appendChild(td)
@@ -972,7 +981,7 @@ export function decode(md) {
 
       // url to <blockquote cite=${url}>
       const url = link[0].attr.get(`href`)
-      blockquote.attr = new Map([[`cite`, url]])
+      blockquote.attr = map({ cite: url })
 
       // also adding <cite>${url}</cite>
       const cite = node({
@@ -1042,7 +1051,7 @@ export function decode(md) {
       const details = node({
         name: `details`,
         type: `block`,
-        attr: new Map([[`class`, symbol]]), // message, alert はこの class で判別
+        attr: map({ class: symbol }), // message, alert はこの class で判別
       })
       ast.appendChild(details)
       return details
@@ -1255,12 +1264,12 @@ export function decode(md) {
     i++
 
     /** @type {Attr} */
-    const attr = new Map([
-      [`loading`, `lazy`],
-      [`decoding`, `async`],
-      [`src`, src],
-      [`alt`, alt]
-    ])
+    const attr = map({
+      loading: `lazy`,
+      decoding: `async`,
+      src: src,
+      alt: alt,
+    })
 
     if (title_exists) {
       const title_open = input[i]
@@ -1361,7 +1370,7 @@ export function decode(md) {
 
     const href = input.slice(url_start, i)
     i++ // skip `)`
-    child.attr = new Map([[`href`, href]])
+    child.attr = map({ href })
     child.addText(text)
     return { child, i }
   }
@@ -1390,7 +1399,7 @@ export function decode(md) {
     if (input[i - 1] === ` `) throw new Error(`too many spaces in "${input}"`)
 
     const href = input.slice(url_start, i)
-    const attr = new Map([[`href`, href]])
+    const attr = map({ href })
     const child = node({ name: `a`, type: `inline`, attr })
     child.addText(href)
 
@@ -1415,7 +1424,7 @@ export function decode(md) {
       i++
     }
     const href = input.slice(url_start, i)
-    const attr = new Map([[`href`, href]])
+    const attr = map({ href })
     const child = node({ name: `a`, type: `inline`, attr })
     child.addText(href)
     return { child, i }
@@ -1508,7 +1517,7 @@ export function decode(md) {
    */
   function code(input, i) {
     const text_start = i
-    const attr = new Map([[`translate`, `no`]])
+    const attr = map({ translate: `no` })
     const child = node({ name: `code`, type: `inline`, attr })
     while (true) {
       // "` a ` b `" みたいにマッチしてない場合

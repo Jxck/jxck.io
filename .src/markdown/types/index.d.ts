@@ -12,6 +12,12 @@
  */
 export function spaces(indent: number): string;
 /**
+ * to map
+ * @param {Object} obj
+ * @returns {Map<string, string>}
+ */
+export function map(obj: Object): Map<string, string>;
+/**
  * @param {string} str
  * @returns {string}
  */

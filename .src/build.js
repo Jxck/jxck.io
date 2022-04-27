@@ -1,10 +1,19 @@
-import { encode, decode, traverse, hsc, Node, create_id_from_text, to_toc, serialize_child_text } from "markdown"
 import { readFile, writeFile, stat } from "fs/promises";
 import { readFileSync, statSync } from "fs"
 import { promisify } from "util"
 import { render } from "ejs"
 import { exec } from "child_process"
 import glob from "glob"
+import {
+  encode,
+  decode,
+  traverse,
+  Node,
+  hsc,
+  map,
+  create_id_from_text,
+  to_toc
+} from "markdown"
 
 /**
  * dump for debug
@@ -15,15 +24,6 @@ function dump(ast) {
     if (key === `parent`) return undefined
     return value
   }, `  `))
-}
-
-/**
- * to map
- * @param {Object} obj
- * @returns {Map<string, string>}
- */
-function map(obj) {
-  return new Map(Object.entries(obj))
 }
 
 /**
@@ -200,8 +200,7 @@ function info_section({ published_at, guests, toc }) {
     const dd = new Node({ name: `dd`, type: `inline` })
     dt.addText(`published_at`)
     dd.addText(published_at)
-    div.appendChild(dt)
-    div.appendChild(dd)
+    div.appendChildren([dt, dd])
     dl.appendChild(div)
   })()
 
@@ -222,8 +221,7 @@ function info_section({ published_at, guests, toc }) {
     } else {
       dd.addText(name)
     }
-    div.appendChild(dt)
-    div.appendChild(dd)
+    div.appendChildren([dt, dd])
     dl.appendChild(div)
   });
 
@@ -232,17 +230,16 @@ function info_section({ published_at, guests, toc }) {
     const div = new Node({ name: `div`, type: `block` })
     const dt = new Node({ name: `dt`, type: `inline` })
     const dd = new Node({ name: `dd`, type: `block` })
-    div.appendChildren([dt, dd])
-    dt.addText(`toc`)
-
     const details = new Node({ name: `details`, type: `block` })
     const summary = new Node({ name: `summary`, type: `inline` })
-    summary.addText(`headdings`)
     const nav = new Node({ name: `nav`, type: `block` })
-    nav.appendChild(toc)
-    details.appendChildren([summary, nav])
-    dd.appendChild(details)
 
+    div.appendChildren([dt, dd])
+    dt.addText(`toc`)
+    dd.appendChild(details)
+    details.appendChildren([summary, nav])
+    nav.appendChild(toc)
+    summary.addText(`headdings`)
     dl.appendChild(div)
   })()
 
@@ -405,8 +402,7 @@ function append_css(node, css) {
     })
   })
   const empty = new Node({ name: `empty`, type: `block` })
-  empty.appendChild(link)
-  empty.appendChild(node)
+  empty.appendChildren([link, node])
   return empty
 }
 
@@ -489,8 +485,7 @@ function customise_image(node, base) {
         src: `${webm_src}${webm_query}`
       })
     })
-    video.appendChild(mp4)
-    video.appendChild(webm)
+    video.appendChildren([mp4, webm])
     return video
   }
 
