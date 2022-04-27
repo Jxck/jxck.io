@@ -72,10 +72,14 @@ nav.tags {
   content: "[ "/ "";
 }
 
-.tags li:after {
+.tags li > a:after {
   content: ",";
   content: ","/ "";
   padding-inline-end: 0.5rem;
+}
+
+.tags li:last-child > a:after {
+  content: none;
 }
 
 .tags li:last-child:after {
