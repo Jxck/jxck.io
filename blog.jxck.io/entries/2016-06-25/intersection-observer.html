@@ -105,7 +105,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_054853>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220304_061221>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_015803>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-06-25>2016-06-25</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-21>2022-02-21</time></dd></div>
@@ -128,36 +128,33 @@
             <summary>headings</summary>
             <nav>
               <ol>
-                <li><a href="">Intersection Observer を用いた要素出現検出の最適化</a>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#要素交差intersectionの検出">要素交差(intersection)の検出</a>
+                <li><a href="#従来の方法">従来の方法</a>
                 <ol>
-                  <li><a href="#intro">Intro</a>
-                  <li><a href="#要素交差intersectionの検出">要素交差(intersection)の検出</a>
-                  <li><a href="#従来の方法">従来の方法</a>
-                  <ol>
-                    <li><a href="#図">図</a>
-                    <li><a href="#スクロール量scrolltop">スクロール量(scrollTop)</a>
-                    <li><a href="#絶対位置offsettop">絶対位置(offsetTop)</a>
-                    <li><a href="#相対位置getboundingclientrect">相対位置(getBoundingClientRect)</a>
-                    <li><a href="#表示判定">表示判定</a>
-                    <li><a href="#onscroll-イベント">onscroll イベント</a>
-                    <li><a href="#scroll--position-api-demo">Scroll &amp; Position API DEMO</a>
-                  </ol>
-                  <li><a href="#問題点">問題点</a>
-                  <ol>
-                    <li><a href="#forced-synchronous-layout">Forced Synchronous Layout</a>
-                  </ol>
-                  <li><a href="#intersection-observer">Intersection Observer</a>
-                  <li><a href="#api">API</a>
-                  <ol>
-                    <li><a href="#callback">callback</a>
-                    <li><a href="#root">root</a>
-                    <li><a href="#threshold">threshold</a>
-                    <li><a href="#rootmargin">rootMargin</a>
-                    <li><a href="#intersection-observe-demo">Intersection Observe DEMO</a>
-                  </ol>
-                  <li><a href="#本サイトへの適用">本サイトへの適用</a>
-                  <li><a href="#links">Links</a>
+                  <li><a href="#図">図</a>
+                  <li><a href="#スクロール量scrolltop">スクロール量(scrollTop)</a>
+                  <li><a href="#絶対位置offsettop">絶対位置(offsetTop)</a>
+                  <li><a href="#相対位置getboundingclientrect">相対位置(getBoundingClientRect)</a>
+                  <li><a href="#表示判定">表示判定</a>
+                  <li><a href="#onscroll-イベント">onscroll イベント</a>
+                  <li><a href="#scroll--position-api-demo">Scroll &amp; Position API DEMO</a>
                 </ol>
+                <li><a href="#問題点">問題点</a>
+                <ol>
+                  <li><a href="#forced-synchronous-layout">Forced Synchronous Layout</a>
+                </ol>
+                <li><a href="#intersection-observer">Intersection Observer</a>
+                <li><a href="#api">API</a>
+                <ol>
+                  <li><a href="#callback">callback</a>
+                  <li><a href="#root">root</a>
+                  <li><a href="#threshold">threshold</a>
+                  <li><a href="#rootmargin">rootMargin</a>
+                  <li><a href="#intersection-observe-demo">Intersection Observe DEMO</a>
+                </ol>
+                <li><a href="#本サイトへの適用">本サイトへの適用</a>
+                <li><a href="#links">Links</a>
               </ol>
             </nav>
           </details>

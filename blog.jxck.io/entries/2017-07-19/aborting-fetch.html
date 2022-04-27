@@ -105,7 +105,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_054853>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220304_061221>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_015803>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-07-19>2017-07-19</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
@@ -127,24 +127,21 @@
             <summary>headings</summary>
             <nav>
               <ol>
-                <li><a href="">Fetch の中断と Promise のキャンセル方法の標準化</a>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#fetch-のミッシングピース">Fetch のミッシングピース</a>
+                <li><a href="#stream-対応">Stream 対応</a>
+                <li><a href="#abort-のインタフェースは誰が持つべきか">abort のインタフェースは誰が持つべきか</a>
+                <li><a href="#cancelable-promise">Cancelable Promise</a>
+                <li><a href="#aborting-fetch">aborting fetch</a>
+                <li><a href="#aborting-ongoing-activities">Aborting ongoing activities</a>
+                <li><a href="#abortcontroller">AbortController</a>
                 <ol>
-                  <li><a href="#intro">Intro</a>
-                  <li><a href="#fetch-のミッシングピース">Fetch のミッシングピース</a>
-                  <li><a href="#stream-対応">Stream 対応</a>
-                  <li><a href="#abort-のインタフェースは誰が持つべきか">abort のインタフェースは誰が持つべきか</a>
-                  <li><a href="#cancelable-promise">Cancelable Promise</a>
-                  <li><a href="#aborting-fetch">aborting fetch</a>
-                  <li><a href="#aborting-ongoing-activities">Aborting ongoing activities</a>
-                  <li><a href="#abortcontroller">AbortController</a>
-                  <ol>
-                    <li><a href="#汎例">汎例</a>
-                  </ol>
-                  <li><a href="#fetch">fetch</a>
-                  <li><a href="#promise.race">Promise.race()</a>
-                  <li><a href="#demo">DEMO</a>
-                  <li><a href="#懸念点">懸念点</a>
+                  <li><a href="#汎例">汎例</a>
                 </ol>
+                <li><a href="#fetch">fetch</a>
+                <li><a href="#promise.race">Promise.race()</a>
+                <li><a href="#demo">DEMO</a>
+                <li><a href="#懸念点">懸念点</a>
               </ol>
             </nav>
           </details>

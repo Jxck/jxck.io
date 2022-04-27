@@ -105,7 +105,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_054853>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220304_061221>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_015803>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-10-08>2018-10-08</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-25>2022-02-25</time></dd></div>
@@ -128,51 +128,48 @@
             <summary>headings</summary>
             <nav>
               <ol>
-                <li><a href="">Referrer-Policy によるリファラ制御</a>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#referer-or-referrer">Referer or Referrer</a>
+                <li><a href="#referer-ヘッダ">Referer ヘッダ</a>
+                <li><a href="#referer-の用途">Referer の用途</a>
                 <ol>
-                  <li><a href="#intro">Intro</a>
-                  <li><a href="#referer-or-referrer">Referer or Referrer</a>
-                  <li><a href="#referer-ヘッダ">Referer ヘッダ</a>
-                  <li><a href="#referer-の用途">Referer の用途</a>
-                  <ol>
-                    <li><a href="#簡易トラックバック">簡易トラックバック</a>
-                    <li><a href="#csrf-対策">CSRF 対策</a>
-                    <li><a href="#盗用防止">盗用防止</a>
-                  </ol>
-                  <li><a href="#referer-による情報漏洩">Referer による情報漏洩</a>
-                  <ol>
-                    <li><a href="#限定共有-url-の漏洩">限定共有 URL の漏洩</a>
-                    <li><a href="#イントラ情報の漏洩">イントラ情報の漏洩</a>
-                  </ol>
-                  <li><a href="#referer-の制御">Referer の制御</a>
-                  <ol>
-                    <li><a href="#ブラウザ設定">ブラウザ設定</a>
-                    <li><a href="#社内-proxy">社内 Proxy</a>
-                    <li><a href="#referrer-policy">Referrer Policy</a>
-                  </ol>
-                  <li><a href="#referrer-policy_1">Referrer-Policy</a>
-                  <ol>
-                    <li><a href="#no-referrer">no-referrer</a>
-                    <li><a href="#unsafe-url">unsafe-url</a>
-                    <li><a href="#origin">origin</a>
-                    <li><a href="#same-origin">same-origin</a>
-                    <li><a href="#strict-origin">strict-origin</a>
-                    <li><a href="#no-referrer-when-downgrade-default">no-referrer-when-downgrade (default)</a>
-                    <li><a href="#origin-when-cross-origin">origin-when-cross-origin</a>
-                    <li><a href="#strict-origin-when-cross-origin">strict-origin-when-cross-origin</a>
-                    <li><a href="#空文字列">空文字列</a>
-                    <li><a href="#policy-のまとめ">Policy のまとめ</a>
-                  </ol>
-                  <li><a href="#referrer-policy-の適用方法">Referrer-Policy の適用方法</a>
-                  <ol>
-                    <li><a href="#a-area-の-relnoreferrer"><code translate=no>&lt;a&gt;</code>, <code translate=no>&lt;area&gt;</code> の <code translate=no>rel=noreferrer</code></a>
-                    <li><a href="#referrerpolicy-属性">referrerpolicy 属性</a>
-                    <li><a href="#meta-の-referrer-属性"><code translate=no>&lt;meta&gt;</code> の referrer 属性</a>
-                    <li><a href="#http-header">HTTP Header</a>
-                  </ol>
-                  <li><a href="#demo">DEMO</a>
-                  <li><a href="#本サイトへの適用">本サイトへの適用</a>
+                  <li><a href="#簡易トラックバック">簡易トラックバック</a>
+                  <li><a href="#csrf-対策">CSRF 対策</a>
+                  <li><a href="#盗用防止">盗用防止</a>
                 </ol>
+                <li><a href="#referer-による情報漏洩">Referer による情報漏洩</a>
+                <ol>
+                  <li><a href="#限定共有-url-の漏洩">限定共有 URL の漏洩</a>
+                  <li><a href="#イントラ情報の漏洩">イントラ情報の漏洩</a>
+                </ol>
+                <li><a href="#referer-の制御">Referer の制御</a>
+                <ol>
+                  <li><a href="#ブラウザ設定">ブラウザ設定</a>
+                  <li><a href="#社内-proxy">社内 Proxy</a>
+                  <li><a href="#referrer-policy">Referrer Policy</a>
+                </ol>
+                <li><a href="#referrer-policy_1">Referrer-Policy</a>
+                <ol>
+                  <li><a href="#no-referrer">no-referrer</a>
+                  <li><a href="#unsafe-url">unsafe-url</a>
+                  <li><a href="#origin">origin</a>
+                  <li><a href="#same-origin">same-origin</a>
+                  <li><a href="#strict-origin">strict-origin</a>
+                  <li><a href="#no-referrer-when-downgrade-default">no-referrer-when-downgrade (default)</a>
+                  <li><a href="#origin-when-cross-origin">origin-when-cross-origin</a>
+                  <li><a href="#strict-origin-when-cross-origin">strict-origin-when-cross-origin</a>
+                  <li><a href="#空文字列">空文字列</a>
+                  <li><a href="#policy-のまとめ">Policy のまとめ</a>
+                </ol>
+                <li><a href="#referrer-policy-の適用方法">Referrer-Policy の適用方法</a>
+                <ol>
+                  <li><a href="#a-area-の-relnoreferrer"><code translate=no>&lt;a&gt;</code>, <code translate=no>&lt;area&gt;</code> の <code translate=no>rel=noreferrer</code></a>
+                  <li><a href="#referrerpolicy-属性">referrerpolicy 属性</a>
+                  <li><a href="#meta-の-referrer-属性"><code translate=no>&lt;meta&gt;</code> の referrer 属性</a>
+                  <li><a href="#http-header">HTTP Header</a>
+                </ol>
+                <li><a href="#demo">DEMO</a>
+                <li><a href="#本サイトへの適用">本サイトへの適用</a>
               </ol>
             </nav>
           </details>
