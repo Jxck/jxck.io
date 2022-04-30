@@ -261,15 +261,6 @@ export function encode(node, option = {}) {
    * @param {number} indent
    * @returns {string}
    */
-  function raw(node, indent) {
-    return `${spaces(indent)}${node.text}`
-  }
-
-  /**
-   * @param {Node} node
-   * @param {number} indent
-   * @returns {string}
-   */
   function headding(node, indent) {
     const name = `h${node.level}`
     const text = node.children.map((child) => serialize(child)).join(``)
