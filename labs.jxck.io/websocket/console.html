@@ -26,34 +26,40 @@
 </div>
 
 <script>
-  document.querySelector('#connect').addEventListener('submit', (e) => {
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  const log = console.log.bind(console)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  $('#connect').addEventListener('submit', (e) => {
     e.preventDefault()
-    let data = new FormData(e.target)
-    let url = data.get('url')
-    let subprotocol = data.get('subprotocol').split(',')
+    const data = new FormData(e.target)
+    const url = data.get('url')
+    const subprotocol = data.get('subprotocol').split(',')
 
     const ws = new WebSocket(url, subprotocol)
 
-    const $messages = document.querySelector('#messages')
-    const $input    = document.querySelector('#input')
-    const $send     = document.querySelector('#send')
+    const $messages = $('#messages')
+    const $input    = $('#input')
+    const $send     = $('#send')
 
-    ws.onopen = (e) => {
+    ws.on('open', (e) => {
       console.log(e)
-      $send.disabled = false
+      $('#send').disabled = false
 
-      $send.onclick = () => {
-        const value = $input.value
+      $('#send').on('click', () => {
+        const value = $('#input').value
         ws.send(value)
-      }
+      })
 
-      ws.onmessage = (e) => {
+      ws.on('message', (e) => {
         console.log(e)
         const value = e.data
         const $li = document.createElement('li')
         $li.textContent = value
-        $messages.appendChild($li)
-      }
-    }
+        $('#messages').appendChild($li)
+      })
+    })
   })
 </script>
