@@ -43,4 +43,11 @@ ws.on('open', (e) => {
     $('#messages').appendChild($li)
   })
 })
+
+ws.on('close', (e) => {
+  console.log(e)
+})
+ws.on('error', (e) => {
+  console.log(e)
+})
 </script>

@@ -38,11 +38,11 @@ export default function broadcast(request) {
 
   connection.on('close', (reasonCode, description) => {
     logger('close', connection.remoteAddress, reasonCode, description);
-    connections.deconste(connection);
+    connections.delete(connection);
   });
 
   connection.on('error', (err) => {
     logger('error', err);
-    connections.deconste(connection);
+    connections.delete(connection);
   });
 }
