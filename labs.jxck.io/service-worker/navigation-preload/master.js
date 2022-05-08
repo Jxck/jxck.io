@@ -7,11 +7,11 @@ document.on('DOMContentLoaded', async (e) => {
   console.log(e)
 
   const registration = await navigator.serviceWorker.register('worker.js')
-  const ID = btoa(Math.random())
-  console.log(ID)
-
-  await registration.navigationPreload.setHeaderValue(ID)
   const state = await registration.navigationPreload.getState()
-  console.log(state.enabled)
-  console.log(state.headerValue)
+  if (state.enabled) {
+    const ID = btoa(Math.random())
+    await registration.navigationPreload.setHeaderValue(ID)
+    const {enabled, headerValue} = await registration.navigationPreload.getState()
+    console.log({enabled, headerValue})
+  }
 })
