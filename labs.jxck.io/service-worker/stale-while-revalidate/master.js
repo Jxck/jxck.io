@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
   const $$ = document.querySelectorAll.bind(document)
 
   document.on('DOMContentLoaded', async (e) => {
-    console.log(e)
+    console.info(e.type, e)
 
     $('#test').on('click', async (e) => {
       console.log(await fetch('https://labs.jxck.io/service-worker/stale-while-revalidate/', {mode: 'cors'}))
@@ -20,7 +20,7 @@ if (typeof window !== 'undefined') {
 
     const registration = await navigator.serviceWorker.register(KEY)
     navigator.serviceWorker.addEventListener('controllerchange', (e) => {
-      console.log(e)
+      console.info(e.type, e)
     })
 
     registration.on('updatefound', (e) => {
@@ -181,7 +181,7 @@ if ('ServiceWorkerGlobalScope' in self && self instanceof ServiceWorkerGlobalSco
 //             update
 //           ]);
 //         }).catch((e) => {
-//           console.log(e);
+//           console.info(e.type, e);
 //           return e;
 //         });
 //       })

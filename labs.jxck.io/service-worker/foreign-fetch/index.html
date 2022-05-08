@@ -16,13 +16,10 @@
 <button id=button>fetch</button>
 
 <script>
-document.getElementById('button').addEventListener('click', () => {
-  fetch('https://api.jxck.io/random/number')
-    .then((res) => res.text())
-    .then((text) => {
-      console.log(text);
-      document.getElementById('random').textContent = text;
-    })
-    .catch(console.error.bind(console));
-});
+document.getElementById('button').addEventListener('click', async () => {
+  const res = await fetch('https://api.jxck.io/random/number')
+  const text = await res.text()
+  console.log(text)
+  document.getElementById('random').textContent = text
+})
 </script>

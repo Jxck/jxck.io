@@ -11,7 +11,7 @@ self.addEventListener("activate", (e) => {
 })
 
 self.addEventListener("fetch", (e) => {
-  console.log(e)
+  console.info(e.type, e)
   // e.respondWith(fetch(e.request))
   return
 })

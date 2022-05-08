@@ -1,33 +1,27 @@
-const CACHE = "foreign-fetch";
+const CACHE = "foreign-fetch"
 self.addEventListener('install', (e) => {
-  console.info('install', e);
-
-  e.waitUntil(
-    caches.open(CACHE).then((cache) => {
-      return cache.addAll([
-        '.',
-        './index.html',
-        './worker.js'
-      ])
-    })
-  );
-});
+  console.info(e.type, e)
+  e.waitUntil((async () => {
+    const cache = await caches.open(CACHE)
+    return cache.addAll([
+      '.',
+      './index.html',
+      './worker.js'
+    ])
+  })())
+})
 
 self.addEventListener('activate', (e) => {
-  console.info('activate', e);
-
-  e.waitUntil(self.clients.claim());
-});
+  console.info(e.type, e)
+  e.waitUntil(self.clients.claim())
+})
 
 self.addEventListener('fetch', (e) => {
-  console.info('fetch', e.request);
-
-  e.respondWith(
-    caches.open(CACHE).then((cache) => {
-      return cache.match(e.request).then((cached) => {
-        console.log('cached', cached);
-        return cached || fetch(e.request);
-      }).catch(console.error.bind(console))
-    })
-  );
-});
+  console.info(e.type, e.request)
+  e.respondWith((async () => {
+    const cache = await caches.open(CACHE)
+    const cached = await cache.match(e.request)
+    console.log({cached})
+    return cached || fetch(e.request)
+  })())
+})

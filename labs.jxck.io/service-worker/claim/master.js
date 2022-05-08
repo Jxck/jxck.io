@@ -4,7 +4,7 @@ const $$ = document.querySelectorAll.bind(document)
 EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
 document.on('DOMContentLoaded', async (e) => {
-  console.log(e)
+  console.info(e.type, e)
 
   $('#button').on('click', async () => {
     const res  = await fetch('/service-worker/claim/test')

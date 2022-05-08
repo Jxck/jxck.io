@@ -1,12 +1,12 @@
 console.info('worker')
 
 self.addEventListener('install', (e) => {
-  console.info('install', e)
+  console.info(e.type, e)
   e.waitUntil(skipWaiting())
 })
 
 self.addEventListener('activate', (e) => {
-  console.info('activate', e)
+  console.info(e.type, e)
   e.waitUntil(self.clients.claim())
 })
 
@@ -16,5 +16,6 @@ self.addEventListener('fetch', (e) => {
   if (path.endsWith('/test')) {
     e.respondWith(new Response('test'))
   }
+  // fallback to network
   return
 })

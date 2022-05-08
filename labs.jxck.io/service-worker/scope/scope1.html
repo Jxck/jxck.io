@@ -21,7 +21,7 @@ EventTarget.prototype.on = EventTarget.prototype.addEventListener
 console.log('scope1.html')
 
 document.on('DOMContentLoaded', async (e) => {
-  console.log(e)
+  console.info(e.type, e)
   await navigator.serviceWorker.register('scope1.js', { scope: './scope1.html' })
   await navigator.serviceWorker.ready
 })

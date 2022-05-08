@@ -16,13 +16,13 @@
 <button id=button>fetch</button>
 
 <script>
-'use strict';
+'use strict'
 const $  = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
 document.on('DOMContentLoaded', async (e) => {
-  console.log(e)
+  console.info(e.type, e)
 
   $('#button').on('click', async () => {
     const res  = await fetch('./random')
@@ -30,6 +30,6 @@ document.on('DOMContentLoaded', async (e) => {
     console.log(text)
     $('#random').textContent = text
   })
-  $('#button').dispatchEvent(new Event('click'));
+  $('#button').dispatchEvent(new Event('click'))
 })
 </script>

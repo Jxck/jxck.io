@@ -1,16 +1,16 @@
 self.addEventListener('install', (e) => {
-  console.info('install', e)
+  console.info(e.type, e)
   e.waitUntil(skipWaiting())
 })
 
 self.addEventListener('activate', (e) => {
-  console.info('activate', e)
+  console.info(e.type, e)
   e.waitUntil(self.clients.claim())
 })
 
 self.addEventListener('sync', (e) => {
-  console.log('background sync', e)
-  e.waitUntil(async function() {
+  console.log(e.type, e)
+  e.waitUntil((async () => {
     const rand  = btoa(Math.random())
     const res   = await fetch(`./?sync=${rand}`)
     const date  = res.headers.get('date')
@@ -18,5 +18,5 @@ self.addEventListener('sync', (e) => {
     url.search  = date
     const cache = await caches.open('background-sync')
     return cache.put(url, res)
-  }())
+  })())
 })

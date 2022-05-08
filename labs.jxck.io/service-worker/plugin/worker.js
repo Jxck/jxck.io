@@ -1,18 +1,18 @@
-console.info(` worker`);
+console.info(` worker`)
 
-console.log('before');
-importScripts('fetch1.js');
-importScripts('fetch2.js');
-console.log('after');
+console.log('before')
+importScripts('fetch1.js')
+importScripts('fetch2.js')
+console.log('after')
 
-const ver = 1;
+const ver = 1
 
 self.addEventListener('install', (e) => {
-  console.info(` install${ver}`, e);
-  e.waitUntil(skipWaiting());
-});
+  console.info(e.type, ver, e)
+  e.waitUntil(skipWaiting())
+})
 
 self.addEventListener('activate', (e) => {
-  console.info(` activate${ver}`, e);
-  e.waitUntil(self.clients.claim());
-});
+  console.info(e.type, ver, e)
+  e.waitUntil(self.clients.claim())
+})

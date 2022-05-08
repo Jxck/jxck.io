@@ -6,14 +6,14 @@ const KEY  = 'cache-expire'
 const URLS = ['.', 'master.js', 'worker.js']
 
 self.addEventListener('install', (e) => {
-  console.info('install', e)
+  console.info(e.type, e)
   e.waitUntil(skipWaiting())
 })
 
 self.addEventListener('activate', (e) => {
-  console.info('activate', e)
+  console.info(e.type, e)
 
-  e.waitUntil(async function() {
+  e.waitUntil((async () => {
     // remove old cache
     await caches.delete(KEY)
     console.log('clear cache')
@@ -24,14 +24,14 @@ self.addEventListener('activate', (e) => {
     console.log(`add ${URLS} to cache`)
 
     return self.clients.claim()
-  }())
+  })())
 })
 
 self.addEventListener('fetch', (e) => {
   console.info('fetch', e)
 
   const req = e.request
-  e.respondWith(async function() {
+  e.respondWith((async () => {
     const cache  = await caches.open(KEY)
     const cached = await cache.match(req)
     if (cached) {
@@ -42,5 +42,5 @@ self.addEventListener('fetch', (e) => {
     console.log('fetched !!', res)
     e.waitUntil(cache.put(req, res.clone()))
     return res
-  }())
+  })())
 })

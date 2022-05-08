@@ -6,7 +6,7 @@ self.addEventListener('install', async (e) => {
   e.waitUntil(skipWaiting())
 })
 
-self.addEventListener('activate', (e) => {
+self.addEventListener('activate', async (e) => {
   console.info(e.type, e)
   e.waitUntil(self.clients.claim())
 })

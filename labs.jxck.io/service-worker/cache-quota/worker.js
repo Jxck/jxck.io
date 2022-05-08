@@ -3,17 +3,17 @@ console.info('worker')
 const KEY  = 'cache-quota'
 
 self.addEventListener('install', (e) => {
-  console.info('install', e)
+  console.info(e.type, e)
   e.waitUntil(skipWaiting())
 })
 
 self.addEventListener('activate', (e) => {
-  e.waitUntil(async function() {
+  e.waitUntil((async () => {
     // remove old cache
     // await caches.delete(KEY)
     // console.log('clear cache')
     return self.clients.claim()
-  }())
+  })())
 })
 
 self.addEventListener('message', async (e) => {

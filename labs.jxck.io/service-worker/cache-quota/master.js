@@ -11,8 +11,7 @@ document.on('DOMContentLoaded', async (e) => {
   await navigator.serviceWorker.ready
 })
 
-async function* scheduler(interval, max = 10) {
-  let counter = 0
+async function* scheduler(interval, max = 10, counter = 0) {
   while(true) {
     if (counter > max) break
     await new Promise(done => setTimeout(done, interval))

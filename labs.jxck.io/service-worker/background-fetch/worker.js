@@ -3,18 +3,18 @@ console.info('worker')
 const CACHE_NAME = "v0.0.0"
 
 self.addEventListener('install', (e) => {
-  console.info('install', e)
+  console.info(e.type, e)
   e.waitUntil(skipWaiting())
 })
 
 self.addEventListener('activate', (e) => {
-  console.info('activate', e)
+  console.info(e.type, e)
   e.waitUntil(self.clients.claim())
 })
 
 self.addEventListener('backgroundfetchsuccess', (e) => {
   console.log(e.type)
-  e.waitUntil(async function() {
+  e.waitUntil((async () => {
     try {
       // 結果を取り出す
       const id = e.registration.id
@@ -36,7 +36,7 @@ self.addEventListener('backgroundfetchsuccess', (e) => {
       console.error(err)
       e.updateUI({ title: `download failed ${e.registration.id}` })
     }
-  }())
+  })())
 })
 
 self.addEventListener('backgroundfetchfail', (e) => {
@@ -51,7 +51,7 @@ self.addEventListener('backgroundfetchabort', (e) => {
 
 // download タスクをクリックした場合
 self.addEventListener('backgroundfetchclick', (e) => {
-  console.log(e)
+  console.info(e.type, e)
   e.waitUntil(async function() {
     const url = e.registration.id
     console.log(url)

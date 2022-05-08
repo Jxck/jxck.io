@@ -4,7 +4,7 @@ const $$ = document.querySelectorAll.bind(document)
 EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
 document.on('DOMContentLoaded', async (e) => {
-  console.log(e)
+  console.log(e.type, e)
 
   const registration = await navigator.serviceWorker.register('worker.js')
   await navigator.serviceWorker.ready
@@ -15,8 +15,8 @@ document.on('DOMContentLoaded', async (e) => {
   }
 
   const controller = await new Promise((done, fail) => {
-    navigator.serviceWorker.addEventListener('controllerchange', (e) => {
-      console.log(e)
+    navigator.serviceWorker.on('controllerchange', (e) => {
+      console.log(e.type, e)
       done(navigator.serviceWorker.controller)
     })
   })

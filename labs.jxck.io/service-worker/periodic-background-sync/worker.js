@@ -13,13 +13,14 @@ self.addEventListener('activate', (e) => {
 })
 
 self.addEventListener('fetch', (e) => {
+  console.info(e.type, e)
   return
 })
 
 self.addEventListener('periodicsync', (e) => {
-  console.log('periodicsync', e)
-  e.waitUntil(async function() {
+  console.info(e.type, e)
+  e.waitUntil((async () => {
     const cache = await caches.open('periodic-background-sync')
     return cache.add(new Request(`/?date=${new Date().toISOString()}`), new Response())
-  }())
+  })())
 })

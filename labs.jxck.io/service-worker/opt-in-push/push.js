@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
-let push = require('web-push');
+let push = require('web-push')
 
-const GCM_API_KEY = 'AIzaSyBGUlr41zf5bS_WrIKwdVD_ZXrpxLgYaSc';
-push.setGCMAPIKey(GCM_API_KEY);
+const GCM_API_KEY = 'AIzaSyBGUlr41zf5bS_WrIKwdVD_ZXrpxLgYaSc'
+push.setGCMAPIKey(GCM_API_KEY)
 
 const data = {
   "endpoint": "https://android.googleapis.com/gcm/send/eKTB50hStM0:APA91bEZXqUlC7zG5vhDWAn2c9MgFe-_w6VmfPh8O2kuVZP-lonvCDpyD6IarzP28SGXzzck0AbEuNTuTVGNBxU9T8wCdoHb7XT1bm4Cc76_WtG3--JBUv17WJXtPYFp_AKVNCx96LK3",
@@ -17,8 +17,8 @@ push.sendNotification(data.endpoint, {
   userPublicKey: data.userPublicKey,
 })
 .then((result) => {
-  console.log(result);
+  console.log(result)
 })
 .catch((err) => {
-  console.error('fail', err);
-});
+  console.error('fail', err)
+})

@@ -6,10 +6,10 @@ EventTarget.prototype.on = EventTarget.prototype.addEventListener
 console.log('master')
 
 document.on('DOMContentLoaded', async (e) => {
-  console.log(e)
+  console.info(e.type, e)
   const registration = await navigator.serviceWorker.register('worker.js')
   registration.on('updatefound', (e) => {
-    console.info('update', e)
+    console.info(e.type, e)
   })
   $('#update').on('click', async () => {
     console.log(await registration.update())
