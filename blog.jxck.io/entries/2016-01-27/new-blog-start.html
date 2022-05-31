@@ -494,39 +494,33 @@ self.addEventListener(&apos;foreignfetch&apos;, (e) =&gt; {
       })
   );
 });</code></pre>
-          <pre class=js data-code=js data-path=../2016-12-12/worker.js><code translate=no class=language-js>const CACHE = &quot;foreign-fetch&quot;;
+          <pre class=js data-code=js data-path=../2016-12-12/worker.js><code translate=no class=language-js>const CACHE = &quot;foreign-fetch&quot;
 self.addEventListener(&apos;install&apos;, (e) =&gt; {
-  console.info(&apos;install&apos;, e);
-
-  e.waitUntil(
-    caches.open(CACHE).then((cache) =&gt; {
-      return cache.addAll([
-        &apos;.&apos;,
-        &apos;./index.html&apos;,
-        &apos;./worker.js&apos;
-      ])
-    })
-  );
-});
+  console.info(e.type, e)
+  e.waitUntil((async () =&gt; {
+    const cache = await caches.open(CACHE)
+    return cache.addAll([
+      &apos;.&apos;,
+      &apos;./index.html&apos;,
+      &apos;./worker.js&apos;
+    ])
+  })())
+})
 
 self.addEventListener(&apos;activate&apos;, (e) =&gt; {
-  console.info(&apos;activate&apos;, e);
-
-  e.waitUntil(self.clients.claim());
-});
+  console.info(e.type, e)
+  e.waitUntil(self.clients.claim())
+})
 
 self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
-  console.info(&apos;fetch&apos;, e.request);
-
-  e.respondWith(
-    caches.open(CACHE).then((cache) =&gt; {
-      return cache.match(e.request).then((cached) =&gt; {
-        console.log(&apos;cached&apos;, cached);
-        return cached || fetch(e.request);
-      }).catch(console.error.bind(console))
-    })
-  );
-});</code></pre>
+  console.info(e.type, e.request)
+  e.respondWith((async () =&gt; {
+    const cache = await caches.open(CACHE)
+    const cached = await cache.match(e.request)
+    console.log({cached})
+    return cached || fetch(e.request)
+  })())
+})</code></pre>
           <pre class=js data-code=js data-path=../2017-07-10/ee.js><code translate=no class=language-js>callback = console.log.bind(console)
 process.on(&apos;foo&apos;, callback)
 process.emit(&apos;foo&apos;, &apos;bar&apos;)
