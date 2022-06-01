@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2022-05-31/text-javascript.html>
+
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
+
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
+  <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/webp sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/webp sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="長いこと作業が行われていた JavaScript の MIME タイプについての作業が完了し、 RFC 9239 として公開された。これにより、推奨される MIME タイプが text/javascript に統一されることになった。かつて推奨されていた applicati...">
+  <meta name=keywords            content="ietf,http,javascript">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2022-05-31/text-javascript.html>
+  <meta property=og:title        content="JavaScript のメディアタイプと RFC 9239 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="長いこと作業が行われていた JavaScript の MIME タイプについての作業が完了し、 RFC 9239 として公開された。これにより、推奨される MIME タイプが text/javascript に統一されることになった。かつて推奨されていた applicati...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "JavaScript のメディアタイプと RFC 9239 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2022-05-31T08:00:00+08:00",
+    "dateModified": "2022-06-01T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "長いこと作業が行われていた JavaScript の MIME タイプについての作業が完了し、 RFC 9239 として公開された。これにより、推奨される MIME タイプが text/javascript に統一されることになった。かつて推奨されていた applicati..."
+  }
+  </script>
+
+  <title>JavaScript のメディアタイプと RFC 9239 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220306_111358>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_054853>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023043>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2022-05-31>2022-05-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-06-01>2022-06-01</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#ietf">ietf</a>
+              <li><a href="/tags#http">http</a>
+              <li><a href="/tags#javascript">javascript</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#javascript-mime-types">JavaScript MIME Types</a>
+                <li><a href="#rfc4329--scripting-media-types">RFC4329  Scripting Media Types</a>
+                <li><a href="#html-standard">HTML Standard</a>
+                <li><a href="#rfc-9239-updates-to-ecmascript-media-types">RFC 9239: Updates to ECMAScript Media Types</a>
+                <li><a href="#encoding-charset">Encoding Charset</a>
+                <li><a href="#es-modules">ES Modules</a>
+                <li><a href="#outro">Outro</a>
+                <li><a href="#demo">DEMO</a>
+                <li><a href="#resources">Resources</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230657>
+    <article>
+      <h1><a href="">JavaScript のメディアタイプと RFC 9239</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>長いこと作業が行われていた JavaScript の MIME タイプについての作業が完了し、 RFC 9239 として公開された。
+        <p>これにより、推奨される MIME タイプが <code translate=no>text/javascript</code> に統一されることになった。
+        <p>かつて推奨されていた <code translate=no>application/javascript</code> ではなくなった経緯などを踏まえ、解説する。
+      </section>
+      <section>
+        <h2 id="javascript-mime-types"><a href="#javascript-mime-types">JavaScript MIME Types</a></h2>
+        <p>HTTP で Response する際に指定する <code translate=no>Content-Type</code> は、その内容がなんであるかを Client に Indicate し、適切な処理を促すために使用される。
+        <p>例えば HTML が <code translate=no>text/html</code> であったりするように、 JS も内容はテキストなので <code translate=no>text/javascript</code> が自然に思える。
+        <p>しかし、例えば MS が実装していた JS 互換の JScript は <code translate=no>text/jscript</code> となり、 JS がまだ Netscape で LiveScript と呼ばれていた時代は <code translate=no>text/livescript</code> になる。
+        <p>また、かつて Netscape は JS の実装にも他の言語のように Version を振っていた時代があり(これは ECMAScript のバージョンとは異なる)、そこでは <code translate=no>text/javascript1.0</code> などとなる。
+        <p>そんなこんなで、歴史的に様々な指定があったが、現在それらは ECMAScript として互換を吸収(全てではないが)し、単一の JS エンジンで実行されることとなった、要するに歴史的に JS の <code translate=no>Content-Type</code> には亜種がたくさんあるのだ。
+        <ul>
+          <li><code translate=no>text/ecmascript</code>
+          <li><code translate=no>text/javascript</code>
+          <li><code translate=no>text/javascript1.0</code>
+          <li><code translate=no>text/javascript1.1</code>
+          <li><code translate=no>text/javascript1.2</code>
+          <li><code translate=no>text/javascript1.3</code>
+          <li><code translate=no>text/javascript1.4</code>
+          <li><code translate=no>text/javascript1.5</code>
+          <li><code translate=no>text/jscript</code>
+          <li><code translate=no>text/livescript</code>
+          <li><code translate=no>text/x-ecmascript</code>
+          <li><code translate=no>text/x-javascript</code>
+        </ul>
+        <p>ただし、 JS は単なるテキストファイルではなく、実行されるプログラムであることから、 <code translate=no>text/javascript</code> ではなく <code translate=no>application/javascript</code> が適切とも言える(swf が <code translate=no>application/x-shockwave-flash</code> だったように)。
+        <p>そして、そこにも同じように亜種がある。
+        <ul>
+          <li><code translate=no>application/ecmascript</code>
+          <li><code translate=no>application/javascript</code>
+          <li><code translate=no>application/x-ecmascript</code>
+          <li><code translate=no>application/x-javascript</code>
+        </ul>
+        <p>WHATWG では、 MIME Sniffing の仕様にこのリストがある。
+        <ul>
+          <li><a href="https://mimesniff.spec.whatwg.org/#javascript-mime-type">https://mimesniff.spec.whatwg.org/#javascript-mime-type</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="rfc4329--scripting-media-types"><a href="#rfc4329--scripting-media-types">RFC4329  Scripting Media Types</a></h2>
+        <p>このような乱立を踏まえ、 2006 年に ECMAScript / JavaScript の MIME Type に対する Informational な RFC が公開された。
+        <p>この RFC では、「様々な MIME Type が適当に使われているが、その中できちんと推奨を決めて IANA に登録しよう」という趣旨のものだ。
+        <ul>
+          <li>
+            RFC 4329 - Scripting Media Types
+            <ul>
+              <li><a href="https://datatracker.ietf.org/doc/html/rfc4329#section-7.2">https://datatracker.ietf.org/doc/html/rfc4329#section-7.2</a>
+            </ul>
+          </li>
+        </ul>
+        <p>この中では
+        <blockquote>
+          <p>Use of the &quot;text&quot; top-level type for this kind of content is known to be problematic
+        </blockquote>
+        <p>とされており、以下の 2 つが <em>&quot;obsolete&quot;</em> とされた。
+        <ul>
+          <li><code translate=no>text/javascript</code>
+          <li><code translate=no>text/ecmascript</code>
+        </ul>
+        <p>代わりに、以下の利用が推奨(Should)とされている。
+        <ul>
+          <li><code translate=no>application/javascript</code>
+          <li><code translate=no>application/ecmascript</code>
+        </ul>
+        <p>これは、 「Media Type はこう使う」という部分のルールを定めた RFC 4288 (のちに更新され RFC 6838 になる)にあるルールに則ったものだ。
+        <ul>
+          <li>
+            RFC 4288: Media Type Specifications and Registration Procedures
+            <ul>
+              <li><a href="https://www.rfc-editor.org/rfc/rfc4288.html">https://www.rfc-editor.org/rfc/rfc4288.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="html-standard"><a href="#html-standard">HTML Standard</a></h2>
+        <p>しかし、だからといってブラウザがこの 2 つしかサポートしないというわけにはいかない。もし、そうしてしまえば、過去に動いていたスクリプトが突然動かなくなってしまうため、結局実装を絞ることはできない。また、一方で IE9 以前は <code translate=no>application/javascript</code> をサポートしてなかったため、デプロイ側でも <code translate=no>text/javascript</code> の利用が一般的となっていた。
+        <p>そうした現実を反映する意味でも、 HTML の仕様では以下のように書かれていた。
+        <blockquote cite="https://github.com/whatwg/html/pull/7938">
+          <p>Similarly, the MIME type used to refer to JavaScript in this specification is <code translate=no>text/javascript</code>,
+          <p>since that is the most commonly used type,
+          <p>despite it being an officially obsoleted type according to RFC 4329.
+          <p>&mdash; <cite><a href="https://github.com/whatwg/html/pull/7938">https://github.com/whatwg/html/pull/7938</a></cite>
+        </blockquote>
+        <blockquote cite="https://github.com/whatwg/html/pull/7938">
+          <p>Servers should use <code translate=no>text/javascript</code> for JavaScript resources.
+          <p>Servers should not use other JavaScript MIME types for JavaScript resources,
+          <p>and must not use non-JavaScript MIME types.
+          <p>&mdash; <cite><a href="https://github.com/whatwg/html/pull/7938">https://github.com/whatwg/html/pull/7938</a></cite>
+        </blockquote>
+        <p>つまり、 IETF と WHATWG で言ってることが違うという状況だ。 IETF はインターネット全般でのプロトコルを対象とし、 WHATWG はブラウザ特有の話なので、両者に細かな違いが起こるのは「見ているところが違う」という点ではしかたがない。ただ、 JS のユースケースを考えると、なんとかしたいところではある。
+      </section>
+      <section>
+        <h2 id="rfc-9239-updates-to-ecmascript-media-types"><a href="#rfc-9239-updates-to-ecmascript-media-types">RFC 9239: Updates to ECMAScript Media Types</a></h2>
+        <p>こうした状況に対して、数年前から RFC 4329 の更新作業が始まり、先日 RFC 9239 が公開された。
+        <ul>
+          <li>
+            RFC 9239: Updates to ECMAScript Media Types
+            <ul>
+              <li><a href="https://www.rfc-editor.org/rfc/rfc9239.html">https://www.rfc-editor.org/rfc/rfc9239.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>この中では、 JS の MIME Type のみにフォーカスして、現状が整理されている。まとめるとこうだ。
+        <ul>
+          <li>RFC 4329 は <code translate=no>text/javascript</code> を obsolete して <code translate=no>application/javascript</code> を使うように促した
+          <li>でも結局そうはならかなった
+          <li>そことの互換を守るために <code translate=no>text/javascript</code> を common usage として認める
+          <li>他全部は <code translate=no>text/javascript</code> のエイリアスとして obsolete する
+        </ul>
+        <p>これにともなって HTML 側の仕様も以下のように更新された。
+        <blockquote cite="https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages">
+          <p>Servers should use text/javascript for JavaScript resources, in accordance with Updates to ECMAScript Media Types.
+          <p>Servers should not use other JavaScript MIME types for JavaScript resources, and must not use non-JavaScript MIME types. [RFC9239]
+          <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages">https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages</a></cite>
+        </blockquote>
+        <p>結論として、 JS の MIME Type は <code translate=no>text/javascript</code> ということになったのだ。
+        <p>また、よく勘違いされるが WHATWG では「ブラウザは JS を必ず実装しないといけない」とも「ブラウザは JS 以外を実装してはいけない」とも言ってない。そして、もし別の言語を実装する場合は、この失敗を繰り返さないように <code translate=no>application/*</code> をきちんと付与するべきという点も RFC で言及されている。
+      </section>
+      <section>
+        <h2 id="encoding-charset"><a href="#encoding-charset">Encoding Charset</a></h2>
+        <p>RFC 6838 では同時に、 <code translate=no>text/*</code> では <code translate=no>charset</code> パラメータの併用を推奨しており、それに従うと <code translate=no>text/javascript; charset=utf8</code> のようになる。
+        <p>しかし、 RFC 9239 では <code translate=no>charset</code> もオプションとなっている。
+        <p>ここをちゃんと解説すると長くなるが、要するに UTF-8 を使えということだ。
+      </section>
+      <section>
+        <h2 id="es-modules"><a href="#es-modules">ES Modules</a></h2>
+        <p>ES Modules の登場により、 JS は ES Module の有無によって 2 つに分かれてしまった。どちらで解釈するべきかは、 JS をパースする前に知っておく必要がある。
+        <p>そこで、 ES Module を標準化する際に <code translate=no>text/es-modules</code> といった MIME Type による情報の付与を行うかどうかという議論になる。しかし、 TC39 では「それは Media Type の Scope ではない」ということになった。(個人的には、これをやり始めると、実質 JS にバージョンがあるのと同じような状況になり、新しい文法が互換を壊しても MIME を変えれば良い、という前例を作ることになるために避けられたのだろうと思っている)。
+        <p>つまり、 <code translate=no>text/javascript</code> は ES Module であろうとも変わらないことが明示された。
+        <p>この情報を提供するために、 Node や Deno は <code translate=no>.mjs</code> をはじめとした拡張子や package.json などをサポートし、ブラウザの場合は <code translate=no>&lt;script type=modules&gt;</code> によってそれを知らせることになった。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>JS の MIME Type は (ES Modules であろうとなかろうと) <code translate=no>text/javascript</code> になり、 UTF-8 でエンコードすべき、となった。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <ul>
+          <li>本サイトが h2o デフォルトで <code translate=no>application/javascript</code> であったため <code translate=no>text/javascript</code> に修正。
+          <li>h2o に Issue/PR 済み <a href="https://github.com/h2o/h2o/issues/3027">#3027</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                RFC 9239: Updates to ECMAScript Media Types
+                <ul>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc9239">https://www.rfc-editor.org/rfc/rfc9239</a>
+                </ul>
+              </li>
+              <li>
+                RFC 4329: Scripting Media Types
+                <ul>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc4329">https://www.rfc-editor.org/rfc/rfc4329</a>
+                </ul>
+              </li>
+              <li>
+                RFC 6838: Media Type Specifications and Registration Procedures
+                <ul>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc6838.html">https://www.rfc-editor.org/rfc/rfc6838.html</a>
+                </ul>
+              </li>
+              <li>
+                RFC 4288: Media Type Specifications and Registration Procedures
+                <ul>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc4288">https://www.rfc-editor.org/rfc/rfc4288</a>
+                </ul>
+              </li>
+              <li>
+                HTML Standard | 4.12.1.2 Scripting languages
+                <ul>
+                  <li><a href="https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages">https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Explainer
+          <li>Requirements Doc
+          <li>Mozilla Standard Position
+          <li>Webkit Position
+          <li>TAG Design Review
+          <li>Intents
+          <li>Chrome Platform Status
+          <li>WPT (Web Platform Test)
+          <li>DEMO
+          <li>Blog
+          <li>Presentation
+          <li>Issues
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>
