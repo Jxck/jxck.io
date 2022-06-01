@@ -177,4 +177,6 @@ JS の MIME Type は (ES Modules であろうとなかろうと) `text/javascrip
 - Blog
 - Presentation
 - Issues
+  - Issue #3027 - h2o/h2o
+    - https://github.com/h2o/h2o/issues/3027
 - Other
