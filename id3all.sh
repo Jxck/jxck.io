@@ -1353,3 +1353,16 @@ eyeD3 --title "ep96 Monthly Web 202204" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep97.mp3
+
+eyeD3 --title "ep97 Monthly Web 202205" \
+      --track 105 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep97.mp3
+
+
+
