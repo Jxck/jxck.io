@@ -863,9 +863,13 @@ iframe above
 
 改行しても **大丈夫**
 
+## コードブロック
+
 ```js
 console.log(0)
 ```
+
+## テーブル
 
 Caption: table
 | none | center |
@@ -873,8 +877,12 @@ Caption: table
 | aaa  | bbb    |
 | aaa  | bbb    |
 
+### リスト
+
 - リスト
   - リスト
+
+### 引用
 
 > blockquote
 > --- http://example.com
@@ -885,40 +893,52 @@ Caption: table
   <section>
     <p>これは <em>details</em> です
     <p>改行しても <strong>大丈夫</strong>
-    <pre class=js data-code=js><code translate=no class=language-js>console.log(0)</code></pre>
-    <figure>
-      <figcaption>table</figcaption>
-      <table>
-        <thead>
-          <tr>
-            <th class=align-center>none</th>
-            <th class=align-center>center</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class=align-center>aaa</td>
-            <td class=align-center>bbb</td>
-          </tr>
-          <tr>
-            <td class=align-center>aaa</td>
-            <td class=align-center>bbb</td>
-          </tr>
-        </tbody>
-      </table>
-    </figure>
-    <ul>
-      <li>
-        リスト
+    <section>
+      <h2>コードブロック</h2>
+      <pre class=js data-code=js><code translate=no class=language-js>console.log(0)</code></pre>
+    </section>
+    <section>
+      <h2>テーブル</h2>
+      <figure>
+        <figcaption>table</figcaption>
+        <table>
+          <thead>
+            <tr>
+              <th class=align-center>none</th>
+              <th class=align-center>center</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=align-center>aaa</td>
+              <td class=align-center>bbb</td>
+            </tr>
+            <tr>
+              <td class=align-center>aaa</td>
+              <td class=align-center>bbb</td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+      <section>
+        <h3>リスト</h3>
         <ul>
-          <li>リスト
+          <li>
+            リスト
+            <ul>
+              <li>リスト
+            </ul>
+          </li>
         </ul>
-      </li>
-    </ul>
-    <blockquote cite="http://example.com">
-      <p>blockquote
-      <p>&mdash; <cite><a href="http://example.com">http://example.com</a></cite>
-    </blockquote>
+      </section>
+      <section>
+        <h3>引用</h3>
+        <blockquote cite="http://example.com">
+          <p>blockquote
+          <p>&mdash; <cite><a href="http://example.com">http://example.com</a></cite>
+        </blockquote>
+      </section>
+    </section>
   </section>
 </details>
 

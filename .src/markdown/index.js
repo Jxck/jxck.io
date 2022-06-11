@@ -609,14 +609,12 @@ export function decode(md) {
       return parse(rest, section)
     }
 
-    if (ast.level > level) {
-      // adding section to parent
-      while (ast.level > level - 1) {
-        ast = ast.parent
-      }
-      ast.appendChild(section)
-      return parse(rest, section)
+    // adding section to parent
+    while (ast.level > level - 1) {
+      ast = ast.parent
     }
+    ast.appendChild(section)
+    return parse(rest, section)
   }
 
   /**
@@ -1649,10 +1647,19 @@ export function dump(ast) {
 
 function main() {
   [
-    `# [tag] Dead Beef`,
-    // `:::message alert
-    // 警告メッセージをここに
-    // :::`,
+`
+:::message alert
+警告メッセージをここに
+
+### foo
+
+text
+
+### bar
+
+text
+:::
+`,
   ].forEach((line) => {
     const ast = decode(line)
     dump(ast)
