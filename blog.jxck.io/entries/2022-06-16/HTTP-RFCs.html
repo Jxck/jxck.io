@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2022-06-16/HTTP-RFCs.html>
+
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163434>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
+
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163434></script>
+  <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/webp sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/png sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/webp sizes=256x256 href=https://blog.jxck.io/assets/img/jxck.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="2022/06/06 ~ 9 あたりに、長きに渡って策定作業が行われていた HTTP 関連の RFC が大量に公開された。RFC 9110: HTTP SemanticsRFC 9111: HTTP CachingRFC 9112: HTTP/1.1RFC 9113: HT...">
+  <meta name=keywords            content="HTTP,IETF">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2022-06-16/HTTP-RFCs.html>
+  <meta property=og:title        content="HTTP 関連 RFC が大量に出た話と 3 行まとめ | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="2022/06/06 ~ 9 あたりに、長きに渡って策定作業が行われていた HTTP 関連の RFC が大量に公開された。RFC 9110: HTTP SemanticsRFC 9111: HTTP CachingRFC 9112: HTTP/1.1RFC 9113: HT...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "HTTP 関連 RFC が大量に出た話と 3 行まとめ | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2022-06-16T08:00:00+08:00",
+    "dateModified": "2022-06-16T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.60x60.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": "2022/06/06 ~ 9 あたりに、長きに渡って策定作業が行われていた HTTP 関連の RFC が大量に公開された。RFC 9110: HTTP SemanticsRFC 9111: HTTP CachingRFC 9112: HTTP/1.1RFC 9113: HT..."
+  }
+  </script>
+
+  <title>HTTP 関連 RFC が大量に出た話と 3 行まとめ | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220306_111358>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_054853>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023043>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2022-06-16>2022-06-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-06-16>2022-06-16</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#HTTP">HTTP</a>
+              <li><a href="/tags#IETF">IETF</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#大きな流れ">大きな流れ</a>
+                <ol>
+                  <li><a href="#http-仕様のリファクタリング">HTTP 仕様のリファクタリング</a>
+                  <li><a href="#新しい仕様">新しい仕様</a>
+                </ol>
+                <li><a href="#概要">概要</a>
+                <ol>
+                  <li><a href="#rfc-9110-http-semantics">RFC 9110: HTTP Semantics</a>
+                  <li><a href="#rfc-9111-http-caching">RFC 9111: HTTP Caching</a>
+                  <li><a href="#rfc-9112-http1.1">RFC 9112: HTTP/1.1</a>
+                  <li><a href="#rfc-9113-http2">RFC 9113: HTTP/2</a>
+                  <li><a href="#rfc-9114-http3">RFC 9114: HTTP/3</a>
+                  <li><a href="#rfc-9163-expect-ct-extension-for-http">RFC 9163: Expect-CT Extension for HTTP</a>
+                  <li><a href="#rfc-9204-qpack-field-compression-for-http3">RFC 9204: QPACK: Field Compression for HTTP/3</a>
+                  <li><a href="#rfc-9205-building-protocols-with-http">RFC 9205: Building Protocols with HTTP</a>
+                  <li><a href="#rfc-9209-the-proxy-status-http-response-header-field">RFC 9209: The Proxy-Status HTTP Response Header Field</a>
+                  <li><a href="#rfc-9211-the-cache-status-http-response-header-field">RFC 9211: The Cache-Status HTTP Response Header Field</a>
+                  <li><a href="#rfc-9213-targeted-http-cache-control">RFC 9213: Targeted HTTP Cache Control</a>
+                  <li><a href="#rfc-9218-extensible-prioritization-scheme-for-http">RFC 9218: Extensible Prioritization Scheme for HTTP</a>
+                  <li><a href="#rfc-9220-bootstrapping-websockets-with-http3">RFC 9220: Bootstrapping WebSockets with HTTP/3</a>
+                  <li><a href="#rfc-9230-oblivious-dns-over-https">RFC 9230: Oblivious DNS over HTTPS</a>
+                </ol>
+                <li><a href="#http-rfc-publication-study">HTTP RFC Publication Study</a>
+                <li><a href="#outro">Outro</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230657>
+    <article>
+      <h1><a href="">HTTP 関連 RFC が大量に出た話と 3 行まとめ</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>2022/06/06 ~ 9 あたりに、長きに渡って策定作業が行われていた HTTP 関連の RFC が大量に公開された。
+        <ul>
+          <li><a href="https://rfc-editor.org/info/rfc9110">RFC 9110: HTTP Semantics</a>
+          <li><a href="https://rfc-editor.org/info/rfc9111">RFC 9111: HTTP Caching</a>
+          <li><a href="https://rfc-editor.org/info/rfc9112">RFC 9112: HTTP/1.1</a>
+          <li><a href="https://rfc-editor.org/info/rfc9113">RFC 9113: HTTP/2</a>
+          <li><a href="https://rfc-editor.org/info/rfc9114">RFC 9114: HTTP/3</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9163.html">RFC 9163: Expect-CT Extension for HTTP</a>
+          <li><a href="https://rfc-editor.org/info/rfc9204">RFC 9204: QPACK: Field Compression for HTTP/3</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9205">RFC 9205: Building Protocols with HTTP</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9209">RFC 9209: The Proxy\-Status HTTP Response Header Field</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9211">RFC 9211: The Cache-Status HTTP Response Header Field</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9213">RFC 9213: Targeted HTTP Cache Control</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9218">RFC 9218: Extensible Prioritization Scheme for HTTP</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9220">RFC 9220: Bootstrapping WebSockets with HTTP/3</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9230.html">RFC 9230: Oblivious DNS over HTTPS</a>
+        </ul>
+        <p>いったい何が起こっているのか、それぞれの経緯と開発者が知っておいた方がいいこと、そうでもないことを解説する。
+      </section>
+      <section>
+        <h2 id="大きな流れ"><a href="#大きな流れ">大きな流れ</a></h2>
+        <section>
+          <h3 id="http-仕様のリファクタリング"><a href="#http-仕様のリファクタリング">HTTP 仕様のリファクタリング</a></h3>
+          <p>HTTP/1.1 は、以下のような文字列を TCP で送るプロトコルであるため、「送りたい情報」と「送るフォーマット」が合わさったプロトコルになっていた。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_021226">
+          <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
+Host: example.com
+Accept: */*
+Accept-Language: ja-JP
+Accept-Encoding: gz, br</code></pre>
+          <p>これが HTTP/2 や HTTP/3 になれば、同じ情報をバイナリで送ることになる。「送りたい情報」は同じだが「送るフォーマット」が変わるのだ。
+          <p>そこで、 HTT/1.1 の仕様に一緒くたになっていた「送りたい情報」を HTTP/1.1 特有の「送るフォーマット」から引き剥がし、独立させるたのが RFC 9110 HTTP Semantics だ。
+          <p>HTT/1.1, HTTP/2, HTTP/3 の各仕様は、 HTTP Semantics を参照し、それぞれの「送るフォーマット」だけを定義することになった。これが RFC9112, 9113, 9114 だ。
+          <p>その過程で、 1 つの大きなトピックで括れる Caching をさらに Semantics から引き剥がしたのが RFC 9111 となる。
+          <p>今回新しく HTTP/3 を出すには
+          <ul>
+            <li>トランスポートである QUIC
+            <li>暗号化の TLS1.3
+            <li>ヘッダを圧縮する QPACK
+            <li>「送るフォーマット」である HTTP/3
+            <li>「送りたい情報」である HTTP Semantics
+            <li>Caching
+          </ul>
+          <p>が必要となる。 QUIC や TLS1.3 はすでに出ていたのに QPACK と HTTP/3 がなかなか出なかったのが、このリファクタリングを終わらせて、依存を整理してから出すためだった。
+          <p>つまり、新しいのは HTTP/3 と QPACK くらいで、それ以外の HTTP 関連 RFC は、(Errata のマージなどはあるが)ほとんど既存のものと変わらない。
+          <p>その意味では、ほとんどの開発者にとっては、あまり気にしなくても困らない話と言えそうだ。
+        </section>
+        <section>
+          <h3 id="新しい仕様"><a href="#新しい仕様">新しい仕様</a></h3>
+          <p>それ以外は、ほとんどが新しい仕様だ。特に新しく定義された Header Field だったり、プロトコルのたりてない部分を補うものだ。
+          <p>ものによっては、これから使われていくものもあるだろうため、なんとなくでも知っておくと良いかもしれない。
+        </section>
+      </section>
+      <section>
+        <h2 id="概要"><a href="#概要">概要</a></h2>
+        <p>各 3 行で紹介していく。
+        <section>
+          <h3 id="rfc-9110-http-semantics"><a href="#rfc-9110-http-semantics">RFC 9110: HTTP Semantics</a></h3>
+          <ul>
+            <li>HTTP をリファクタリングした結果の「送りたい情報」を切り出した仕様。
+            <li>HTTP Header と慣習的に読んでるアレの中には Trailer で送れるものがあるため、全ての仕様で Field (Header Field / Trailer Field)と呼ばれるようになった。
+            <li>HTTP/1.1 の時は Header-改行-Body となっていたが、他のプロトコルではそうではないので、 Body と読んでいたものが Content と呼ばれるようになった。(HTTP/1.1 は Content を Body で送る)
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9111-http-caching"><a href="#rfc-9111-http-caching">RFC 9111: HTTP Caching</a></h3>
+          <ul>
+            <li>いわゆるキャッシュに関する挙動と <code translate=no>Cache-Control</code> Field を切り出したもの
+            <li>ちょこちょこ改善されたり、古い記述が消えたりしてるが、おおむね今までと変わらない
+            <li><code translate=no>must-understand</code> が追加された。詳細は <a href="https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html">こちら</a>。
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9112-http1.1"><a href="#rfc-9112-http1.1">RFC 9112: HTTP/1.1</a></h3>
+          <ul>
+            <li>HTTP Semantics を Text Format でエンコードして TCP で送るバージョン
+            <li>つまり多くの開発者がよく知ってるアレ
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9113-http2"><a href="#rfc-9113-http2">RFC 9113: HTTP/2</a></h3>
+          <ul>
+            <li>HTTP Semantics を Binary Format でエンコードして TCP で送るバージョン
+            <li>HTTP Push はなくなった(Early Hints が代替)
+            <li>もともとあった Priority も複雑すぎたので修正
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9114-http3"><a href="#rfc-9114-http3">RFC 9114: HTTP/3</a></h3>
+          <ul>
+            <li>HTTP Semantics を Binary Format でエンコードして QUIC で送るバージョン
+            <li>QUIC が TLS1.3 を含んでるので実質暗号が必須に
+            <li>Field は QPACK でエンコード
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9163-expect-ct-extension-for-http"><a href="#rfc-9163-expect-ct-extension-for-http">RFC 9163: Expect-CT Extension for HTTP</a></h3>
+          <ul>
+            <li><code translate=no>Expect-CT</code> Field のこと
+            <li><a href="https://blog.jxck.io/entries/2018-03-27/certificate-transparency.html">以前解説</a> したあれ
+            <li>しかし、 SCT はブラウザで必須になりつつあり、その移行期間を支えてたものなので、今後使いことはなさそうと思ってよい
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9204-qpack-field-compression-for-http3"><a href="#rfc-9204-qpack-field-compression-for-http3">RFC 9204: QPACK: Field Compression for HTTP/3</a></h3>
+          <ul>
+            <li>HTTP/3 の Field を圧縮するための仕様、 HPACK の後継。
+            <li>HPACK よりも事前定義 Field のリストが増えた
+            <li>そこから選ぶと 1byte で送れるので知っておくと良さそう
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9205-building-protocols-with-http"><a href="#rfc-9205-building-protocols-with-http">RFC 9205: Building Protocols with HTTP</a></h3>
+          <ul>
+            <li>HTTP ってこうやって使うと旨味を一段と引き出せるよっていうベストプラクティス集(Best Current Practice)
+            <li>それの今回の更新対応版
+            <li>ちょっと知ってる人には当たり前のことしか書いてないけど、当たり前ができてない人は多い
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9209-the-proxy-status-http-response-header-field"><a href="#rfc-9209-the-proxy-status-http-response-header-field">RFC 9209: The Proxy-Status HTTP Response Header Field</a></h3>
+          <ul>
+            <li><code translate=no>Proxy-Status</code> Field のこと
+            <li>Proxy って知らないうちに挟まってそこで何かが起こってるけど、何が起こってるかわからん、を知らせるための Field
+            <li>昔は <code translate=no>Via</code> とか <code translate=no>Warning</code> とかあったけど、それの現代版ぽいイメージ
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9211-the-cache-status-http-response-header-field"><a href="#rfc-9211-the-cache-status-http-response-header-field">RFC 9211: The Cache-Status HTTP Response Header Field</a></h3>
+          <ul>
+            <li><code translate=no>Cache-Status</code> Field のこと
+            <li>Shared Cache も知らないうちに挟まってそこで何かが起こってるけど、何が起こってるかわらかん、を知らせるための Field
+            <li>よく CDN が <code translate=no>x-cache-hit</code> とか送ってるあれの標準仕様
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9213-targeted-http-cache-control"><a href="#rfc-9213-targeted-http-cache-control">RFC 9213: Targeted HTTP Cache Control</a></h3>
+          <ul>
+            <li><code translate=no>CDN-Cache-Control</code> Field のこと
+            <li>特定のキャッシュ(主に CDN)に対してだけ有効にしたい <code translate=no>Cache-Control</code> の名指し版
+            <li>Fastly でいう <code translate=no>Surrogate-Control</code> の標準仕様
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9218-extensible-prioritization-scheme-for-http"><a href="#rfc-9218-extensible-prioritization-scheme-for-http">RFC 9218: Extensible Prioritization Scheme for HTTP</a></h3>
+          <ul>
+            <li>HTTP/2 には優先度制御が最初から含まれていた
+            <li>でも難しすぎて誰も使いこなせなかった
+            <li>そっちは deprecate してもう少しシンプルで使いやすくしよう
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9220-bootstrapping-websockets-with-http3"><a href="#rfc-9220-bootstrapping-websockets-with-http3">RFC 9220: Bootstrapping WebSockets with HTTP/3</a></h3>
+          <ul>
+            <li>WebSocket を HTTP/3 の上で流すためのバインディング的な仕様
+            <li>開発者はあまり気にするところではない
+          </ul>
+        </section>
+        <section>
+          <h3 id="rfc-9230-oblivious-dns-over-https"><a href="#rfc-9230-oblivious-dns-over-https">RFC 9230: Oblivious DNS over HTTPS</a></h3>
+          <ul>
+            <li>ネットワークで Server につなぐと Client の IP が伝わってトラッキングできちゃうの良くない
+            <li>じゃあ間に Proxy を挟めば、 Server が知るのは Proxy の IP だから良さそう =&gt; Oblivious
+            <li>それを DoH に適用して、 DNS にも「誰が何を解決したのか」をわからなくする
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 id="http-rfc-publication-study"><a href="#http-rfc-publication-study">HTTP RFC Publication Study</a></h2>
+        <p>「これが出たら 1 人 10 分で雑に紹介する勉強会を出てから 3 日以内にやろう」という話を 1, 2 ヶ月前に深夜テンションで言い出し、先日それが出てしまったため大慌てで準備して行ったのが以下の勉強会だ。
+        <ul>
+          <li>
+            HTTP RFC Publication Study
+            <ul>
+              <li><a href="https://web-study.connpass.com/event/250730/">https://web-study.connpass.com/event/250730/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>アーカイブは以下に公開している。このあたりの話が資料付きで解説されているのでそちらで補足してほしい。
+        <ul>
+          <li>
+            HTTP RFC Publication Study - YouTube
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=_hfG0HCufbs">https://www.youtube.com/watch?v=_hfG0HCufbs</a>
+            </ul>
+          </li>
+        </ul>
+        <p>優秀な bokken だけが、言い出したときからコツコツ準備していたが、それ以外は本当に 3 日で準備したので、前日の夜チャットで「誰だよこんなこと言い出したの」といった怒号が飛び交うなか資料を作るあのヒリヒリ感は、なんか久々だった。
+        <p>次あったら、もっとしっかり準備してから行いたいとは思うが、結局前夜の様相は変わらないんだろうとも思う。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>RFC の数を見るとかなり大きな転換期だったが、真新しい内容ばかりではなかったのは、 HTTPWG が総力を上げて「今ある HTTP を壊さないように、でも今後も発展させていけるように」という大規模リファクタリングを行った結果だからだ。
+        <p>その結果 HTTP/3 をスッキリした形でリリースできたという点では、この苦労は後世の Web のために欠かすことができない重要な作業だったと見るべきだろう。
+        <p>まだ Cookie Bis (Cookie 仕様のリファクタリング)など残っているところもがあるが、しばらくは HTTPWG も少し休みをとる感じになりそうだ。
+        <p>HTTPWG を献身的に支え、牽引してくれた Mark Nottingham 氏には、この場を借りて感謝したい。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=/policies/site.html>Site Policy</a> and <a href=/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>
+  </footer>
+</body>
+</html>
