@@ -64,7 +64,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-06-16T08:00:00+08:00",
-    "dateModified": "2022-06-19T08:00:00+08:00",
+    "dateModified": "2022-06-22T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -108,7 +108,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023043>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-06-16>2022-06-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-06-19>2022-06-19</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-06-22>2022-06-22</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -198,7 +198,7 @@ Accept-Encoding: gz, br</code></pre>
           <p>そこで、 HTT/1.1 の仕様に一緒くたになっていた「送りたい情報」を HTTP/1.1 特有の「送るフォーマット」から引き剥がし、独立させたのが RFC 9110 HTTP Semantics だ。
           <p>HTT/1.1, HTTP/2, HTTP/3 の各仕様は、 HTTP Semantics を参照し、それぞれの「送るフォーマット」だけを定義することになった。これが RFC9112, 9113, 9114 だ。
           <p>その過程で、 1 つの大きなトピックで括れる Caching をさらに Semantics から引き剥がしたのが RFC 9111 となる。
-          <p>今回新しく HTTP/3 を出すには
+          <p>また、今回の目玉の 1 つである HTTP/3 は、以下に依存している。
           <ul>
             <li>トランスポートである QUIC
             <li>暗号化の TLS1.3
@@ -207,19 +207,19 @@ Accept-Encoding: gz, br</code></pre>
             <li>「送りたい情報」である HTTP Semantics
             <li>Caching
           </ul>
-          <p>が必要となる。 QUIC や TLS1.3 はすでに出ていたのに QPACK と HTTP/3 がなかなか出なかったのが、このリファクタリングを終わらせて、依存を整理してから出すためだった。
-          <p>つまり、新しいのは HTTP/3 と QPACK くらいで、それ以外の HTTP 関連 RFC は、(Errata のマージなどはあるが)ほとんど既存のものと変わらない。
+          <p>QUIC や TLS1.3 はすでに出ていたのに、 HTTP/3 がなかなか出なかったのが、このリファクタリングを終わらせて、依存を整理してから出すためだった。
+          <p>つまり HTTP/3 と、そこで使われる QPACK は新しいが、 Semantics, Caching, HTTP/1.1, HTTP/2 に関しては、細かい修正はあれど既存のものと大きくは変わらない。
           <p>その意味では、ほとんどの開発者にとっては、あまり気にしなくても困らない話と言えそうだ。
         </section>
         <section>
           <h3 id="新しい仕様"><a href="#新しい仕様">新しい仕様</a></h3>
-          <p>それ以外は、ほとんどが新しい仕様だ。特に新しく定義された Header Field だったり、プロトコルのたりてない部分を補うものだ。
+          <p>それ以外は、ほとんどが新しい仕様だ。新しく定義された Header Field や、プロトコルのたりてない部分を補うものが公開されている。
           <p>ものによっては、これから使われていくものもあるだろうため、なんとなくでも知っておくと良いかもしれない。
         </section>
       </section>
       <section>
         <h2 id="概要"><a href="#概要">概要</a></h2>
-        <p>各 3 行で紹介していく。
+        <p>以上を踏まえ、各 RFC を 3 行で紹介していく。
         <section>
           <h3 id="rfc-9110-http-semantics"><a href="#rfc-9110-http-semantics">RFC 9110: HTTP Semantics</a></h3>
           <ul>
@@ -255,7 +255,7 @@ Accept-Encoding: gz, br</code></pre>
           <h3 id="rfc-9114-http3"><a href="#rfc-9114-http3">RFC 9114: HTTP/3</a></h3>
           <ul>
             <li>HTTP Semantics を Binary Format でエンコードして QUIC で送るバージョン
-            <li>QUIC が TLS1.3 を含んでるので実質暗号が必須に
+            <li>QUIC が TLS1.3 を含んでるので実質暗号化が必須に
             <li>Field は QPACK でエンコード
           </ul>
         </section>
