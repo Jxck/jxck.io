@@ -12,7 +12,7 @@
 - [RFC 9163: Expect-CT Extension for HTTP](https://www.rfc-editor.org/rfc/rfc9163.html)
 - [RFC 9204: QPACK: Field Compression for HTTP/3](https://rfc-editor.org/info/rfc9204)
 - [RFC 9205: Building Protocols with HTTP](https://www.rfc-editor.org/rfc/rfc9205)
-- [RFC 9209: The Proxy\-Status HTTP Response Header Field](https://www.rfc-editor.org/rfc/rfc9209)
+- [RFC 9209: The Proxy-Status HTTP Response Header Field](https://www.rfc-editor.org/rfc/rfc9209)
 - [RFC 9211: The Cache-Status HTTP Response Header Field](https://www.rfc-editor.org/rfc/rfc9211)
 - [RFC 9213: Targeted HTTP Cache Control](https://www.rfc-editor.org/rfc/rfc9213)
 - [RFC 9218: Extensible Prioritization Scheme for HTTP](https://www.rfc-editor.org/rfc/rfc9218)
