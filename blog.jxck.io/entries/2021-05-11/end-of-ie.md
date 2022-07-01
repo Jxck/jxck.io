@@ -254,7 +254,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - https://techblog.yahoo.co.jp/entry/2022021630265506/
 
 
-## Expire
+## After Expire
 
 - 2022/06/15: Internet Explorer 11 has retired and is officially out of support -what you need to know | Windows Experience Blog
   - https://blogs.windows.com/windowsexperience/2022/06/15/internet-explorer-11-has-retired-and-is-officially-out-of-support-what-you-need-to-know/
@@ -262,6 +262,8 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - https://www.itmedia.co.jp/business/articles/2206/16/news102.html#utm_term=share_sp
 - 2022/06/16: 「Internet Explorer」サポート終了に自治体「なんで急に」報道　Twitterで「さすがに草」などの声（ITmedia ビジネスオンライン） - Yahoo!ニュース
   - https://news.yahoo.co.jp/articles/51c133f4a6b7e3ff77d1e6b1de2ea8756271838e
+- 2022/06/23: Internet Explorerのサポートが終了：今後も続く脅威とは？ | WIRED.jp
+  - https://wired.jp/article/internet-explorer-dead-security-risks/?utm_source=twitter&utm_medium=social
 - 2022/07/01: さらば、Internet Explorer！ | Vivaldi Browser
   - https://vivaldi.com/ja/blog/good-riddance-internet-explorer/
 
