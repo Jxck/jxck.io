@@ -24,6 +24,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 ## 2018
 
 - **2018/07/18: Internet Explorer の今後について – Japan IE Support Team Blog**
+  - https://social.msdn.microsoft.com/Forums/ja-JP/47290e24-fc66-4d3e-a2de-429643758d40/internet-explorer-12398201702446012395123881235612390?forum=edgeiesupportteamja&fbclid=IwAR3D0Yw4FEqGFAaOL4eYiTNSXloWKzJLqaOgTNMP3Jdk6WaY3s5oPEuLajo
   - http://web.archive.org/web/20180718022957/https://blogs.technet.microsoft.com/jpieblog/2018/07/18/internet-explorer-support/
   - 「Windows 10 においては、 Microsoft Edge と Internet Explorer というふたつのブラウザーが搭載されていますが、弊社としましては、 Internet Explorer との後方互換性が必要な業務 Web システムには Internet Explorer を利用いただき、 Internet Explorer でなければならない場合以外は Microsoft Edge をご利用いただくことを提案してきました。」
   - 「この考え方は今も基本的には変わりはありませんが、現在の Web アプリケーションが古いブラウザーである Internet Explorer 固有の機能に依存している状態であれば、そうした依存性を無くし、最新のブラウザーである Microsoft Edge で閲覧できるように見直していただくことを、今からご検討いただくようお伝えをしていくことが、私たちサポート チームの使命と考えています。」
@@ -251,6 +252,31 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - https://twitter.com/webkanpr/status/1488070799286312962
 - 2022/02/16: ヤフーのIE11 サポート終了の進め方 - Yahoo! JAPAN Tech Blog
   - https://techblog.yahoo.co.jp/entry/2022021630265506/
+
+
+## Expire
+
+- 2022/06/15: Internet Explorer 11 has retired and is officially out of support -what you need to know | Windows Experience Blog
+  - https://blogs.windows.com/windowsexperience/2022/06/15/internet-explorer-11-has-retired-and-is-officially-out-of-support-what-you-need-to-know/
+- 2022/06/16: 「Internet Explorer」サポート終了も「IEモード」で“ゾンビ化”　本当の混乱は7年後？ - ITmedia ビジネスオンライン
+  - https://www.itmedia.co.jp/business/articles/2206/16/news102.html#utm_term=share_sp
+- 2022/06/16: 「Internet Explorer」サポート終了に自治体「なんで急に」報道　Twitterで「さすがに草」などの声（ITmedia ビジネスオンライン） - Yahoo!ニュース
+  - https://news.yahoo.co.jp/articles/51c133f4a6b7e3ff77d1e6b1de2ea8756271838e
+- 2022/07/01: さらば、Internet Explorer！ | Vivaldi Browser
+  - https://vivaldi.com/ja/blog/good-riddance-internet-explorer/
+
+
+## IE 卒業式
+
+- 2022/06/16: IE 卒業式 - connpass
+  - https://web-study.connpass.com/event/250191/
+  - https://www.youtube.com/watch?v=VWHJ06K9UwY
+  - Internet Explorer は Microsoft Edge へ - IE の歩みとこれから - - Speaker Deck
+    - https://speakerdeck.com/yuhara0928/internet-explorer-ha-microsoft-edge-he-ie-falsebu-mitokorekara
+  - IE Graduation (IE の功績を讃える) - Speaker Deck
+    - https://speakerdeck.com/jxck/ie-graduation
+  - IE Graduation Certificate - Speaker Deck
+    - https://speakerdeck.com/jxck/ie-graduation-certificate
 
 
 ## IE 廃止セット
