@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>Test DEMO</title>
+
+<style>
+body {
+  font-family: SF Pro JP,SF Pro Display,SF Pro Icons,Hiragino Kaku Gothic Pro,\\30D2\30E9\30AE\30CE\89D2\30B4 Pro W3,\\30E1\30A4\30EA\30AA,Meiryo,"\FF2D\FF33   \FF30\30B4\30B7\30C3\30AF",Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  height: 50em;
+}
+</style>
+
+<button>ok</button>
+<textarea>
+</textarea>
+<section></section>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+
+  $('button').on('click', async (e) => {
+    const state = $('textarea').style.display
+    console.log(state)
+    if (state === '') {
+      toHTML()
+    } else {
+      toTextArea()
+    }
+  })
+
+  function p(text) {
+    const $p = document.createElement('p')
+    $p.textContent = text
+    return $p
+  }
+
+
+  function toHTML() {
+    const text = $('textarea').value
+    text.split('\n').forEach((line) => {
+      $('section').appendChild(p(line))
+    })
+
+    $('textarea').style.display = 'none'
+  }
+
+  function toTextArea() {
+    $('section').remove()
+    $('body').appendChild(document.createElement('section'))
+    $('textarea').style.display = ''
+  }
+</script>
