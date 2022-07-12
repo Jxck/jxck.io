@@ -11,7 +11,7 @@ import {
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  const [preview, setPreview] = useState(false);
+  const [preview, setPreview] = useState(true);
   const [note, setNote] = useState("");
 
   useEffect(() => {
@@ -31,11 +31,13 @@ const Home: NextPage = () => {
 
   const Preview = () => {
     return (
-      <div>
+      <section className={styles.section}>
         {note.split("\n").map((line, i) => (
-          <p key={i}>{line}</p>
+          <p className={styles.p} key={i}>
+            {line}
+          </p>
         ))}
-      </div>
+      </section>
     );
   };
 
