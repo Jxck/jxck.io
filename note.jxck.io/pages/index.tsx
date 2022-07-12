@@ -1,23 +1,60 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import { ChangeEvent, MouseEvent, TextareaHTMLAttributes, useState } from 'react'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import Head from "next/head";
+import {
+  ChangeEvent,
+  ChangeEventHandler,
+  MouseEvent,
+  useEffect,
+  useState,
+} from "react";
+
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  const [note, setNote] = useState("")
-  const [preView, setPreView] = useState(false)
+  const [preview, setPreview] = useState(false);
+  const [note, setNote] = useState("");
 
-  const KEY = "note.jxck.io" // storage key
+  useEffect(() => {
+    setNote(localStorage.getItem(KEY) || "");
+  }, [preview]);
+
+  const KEY = "note.jxck.io"; // storage key
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const value = e.target.value
-    localStorage.setItem(KEY, value)
-    setNote(value)
-  }
+    const value = e.target.value;
+    localStorage.setItem(KEY, value);
+  };
 
   const onClick = (e: MouseEvent<HTMLButtonElement>) => {
-    setPreView(!preView)
-  }
+    setPreview(!preview);
+  };
+
+  const Preview = () => {
+    return (
+      <div>
+        {note.split("\n").map((line, i) => (
+          <p key={i}>{line}</p>
+        ))}
+      </div>
+    );
+  };
+
+  const Editor = ({
+    onChange,
+  }: {
+    onChange: ChangeEventHandler<HTMLTextAreaElement>;
+  }) => {
+    return (
+      <textarea
+        className={styles.textarea}
+        autoFocus={true}
+        onChange={onChange}
+      >
+        {note}
+      </textarea>
+    );
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -25,18 +62,19 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <button type="button" onClick={onClick}>ok</button>
-        {preView ?
-          <div>{note.split("\n").map((line, i) => {
-            return <p key={i}>{line}</p>
-          })}</div>
-          :
-          <textarea autoFocus={true} onChange={onChange}>{note}</textarea>
-        }
-      </main>
+      <header>
+        <button type="button" onClick={onClick}>
+          ok
+        </button>
+      </header>
+      <main>{preview ? <Preview /> : <Editor onChange={onChange} />}</main>
+      <footer>
+        <button type="button" onClick={onClick}>
+          ok
+        </button>
+      </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
