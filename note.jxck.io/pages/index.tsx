@@ -11,7 +11,7 @@ import {
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  const [preview, setPreview] = useState(true);
+  const [preview, setPreview] = useState(false);
   const [note, setNote] = useState("");
 
   useEffect(() => {
