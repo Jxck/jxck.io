@@ -1,13 +1,22 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
+import { ChangeEvent, MouseEvent, TextareaHTMLAttributes, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
-  const [note, setNote] = useState("foo")
+  const [note, setNote] = useState("")
+  const [preView, setPreView] = useState(false)
 
-  const onChange = (e) => {
-    console.log({e})
+  const KEY = "note.jxck.io" // storage key
+
+  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value
+    localStorage.setItem(KEY, value)
+    setNote(value)
+  }
+
+  const onClick = (e: MouseEvent<HTMLButtonElement>) => {
+    setPreView(!preView)
   }
   return (
     <div className={styles.container}>
@@ -17,9 +26,14 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <button type="button">ok</button>
-        <textarea onChange={onChange}></textarea>
-        <div>{note}</div>
+        <button type="button" onClick={onClick}>ok</button>
+        {preView ?
+          <div>{note.split("\n").map((line, i) => {
+            return <p key={i}>{line}</p>
+          })}</div>
+          :
+          <textarea autoFocus={true} onChange={onChange}>{note}</textarea>
+        }
       </main>
     </div>
   )
