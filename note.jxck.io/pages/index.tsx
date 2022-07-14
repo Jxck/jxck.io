@@ -29,11 +29,11 @@ const Home: NextPage = () => {
     setPreview(!preview);
   };
 
-  const Preview = () => {
+  const Preview = ({ className }: { className: string }) => {
     return (
-      <section className={styles.section}>
+      <section className={className}>
         {note.split("\n").map((line, i) => (
-          <p className={styles.p} key={i}>
+          <p className="" key={i}>
             {line}
           </p>
         ))}
@@ -43,36 +43,42 @@ const Home: NextPage = () => {
 
   const Editor = ({
     onChange,
+    className,
   }: {
     onChange: ChangeEventHandler<HTMLTextAreaElement>;
+    className: string;
   }) => {
     return (
-      <textarea
-        className={styles.textarea}
-        autoFocus={true}
-        onChange={onChange}
-      >
+      <textarea className={className} autoFocus={true} onChange={onChange}>
         {note}
       </textarea>
     );
   };
 
   return (
-    <div className={styles.container}>
+    <div className="h-screen">
       <Head>
         <title>note.jxck.io</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
-        <button type="button" onClick={onClick}>
-          ok
-        </button>
-      </header>
-      <main>{preview ? <Preview /> : <Editor onChange={onChange} />}</main>
-      <footer>
-        <button type="button" onClick={onClick}>
-          ok
+      <main className="w-full h-5/6 border-solid border border-slate-300 rounded">
+        {preview ? (
+          <Preview className="p-4 h-full" />
+        ) : (
+          <Editor
+            className="w-full h-full p-4 bg-gray-100 border-solid border border-slate-300 rounded text-slate-800"
+            onChange={onChange}
+          />
+        )}
+      </main>
+      <footer className="">
+        <button
+          type="button"
+          onClick={onClick}
+          className="text-white bg-blue-400 px-2 py-1 rounded hover:bg-blue-800"
+        >
+          toggle
         </button>
       </footer>
     </div>
