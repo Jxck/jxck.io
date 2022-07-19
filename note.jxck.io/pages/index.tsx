@@ -33,7 +33,7 @@ const Home: NextPage = () => {
     return (
       <section className={className}>
         {note.split("\n").map((line, i) => (
-          <p className="" key={i}>
+          <p className="mt-4" key={i}>
             {line}
           </p>
         ))}
