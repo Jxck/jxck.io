@@ -62,12 +62,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="w-full h-5/6 border-solid border border-slate-300 rounded">
+      <main className="w-full border-solid border border-slate-300 rounded text-xl">
         {preview ? (
-          <Preview className="p-4 h-full" />
+          <Preview className="p-4" />
         ) : (
           <Editor
-            className="w-full h-full p-4 bg-gray-100 border-solid border border-slate-300 rounded text-slate-800"
+            className="w-full h-screen p-4 bg-gray-100 border-solid border border-slate-300 rounded text-slate-800"
             onChange={onChange}
           />
         )}
