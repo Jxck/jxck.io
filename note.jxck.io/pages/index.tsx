@@ -1,88 +1,98 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  MouseEvent,
-  useEffect,
-  useState,
-} from "react";
+import { FormEvent, useState } from "react";
 
-import styles from "../styles/Home.module.css";
+const Note: NextPage = () => {
+  const [text, setText] = useState("");
+  const [translate, setTranslate] = useState("");
 
-const Home: NextPage = () => {
-  const [preview, setPreview] = useState(false);
-  const [note, setNote] = useState("");
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const text = formData.get("text") as string;
+    setText(text);
 
-  useEffect(() => {
-    setNote(localStorage.getItem(KEY) || "");
-  }, [preview]);
-
-  const KEY = "note.jxck.io"; // storage key
-
-  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const value = e.target.value;
-    localStorage.setItem(KEY, value);
+    const submitEvent = e.nativeEvent as SubmitEvent;
+    const submitterName = submitEvent.submitter?.getAttribute("name") as string;
+    setTranslate(submitterName);
   };
 
-  const onClick = (e: MouseEvent<HTMLButtonElement>) => {
-    setPreview(!preview);
+  const Viewer = () => {
+    if (translate === "google") {
+      return <Google />;
+    }
+    if (translate === "deepl") {
+      return <Deepl />;
+    }
+    return <Editor />;
   };
 
-  const Preview = ({ className }: { className: string }) => {
+  const Editor = () => {
     return (
-      <section className={className}>
-        {note.split("\n").map((line, i) => (
-          <p className="mt-4" key={i}>
-            {line}
-          </p>
-        ))}
-      </section>
+      <textarea
+        className="w-full bg-red-50"
+        name="text"
+        autoFocus={true}
+      ></textarea>
     );
   };
 
-  const Editor = ({
-    onChange,
-    className,
-  }: {
-    onChange: ChangeEventHandler<HTMLTextAreaElement>;
-    className: string;
-  }) => {
+  function google_translate(text: string) {
+    return `google: ${text}`;
+  }
+
+  function deepl_translate(text: string) {
+    return `deepl: ${text}`;
+  }
+
+  const Google = () => {
+    const translated = google_translate(text);
     return (
-      <textarea className={className} autoFocus={true} onChange={onChange}>
-        {note}
-      </textarea>
+      <div>
+        {translated}
+        <input type="hidden" name="text" value={text} />
+      </div>
+    );
+  };
+
+  const Deepl = () => {
+    const translated = deepl_translate(text);
+    return (
+      <div>
+        {translated}
+        <input type="hidden" name="text" value={text} />
+      </div>
+    );
+  };
+
+  const Button = ({ name }: { name: string }) => {
+    return (
+      <button className="bg-slate-300 p-2 rounded" type="submit" name={name}>
+        {name}
+      </button>
     );
   };
 
   return (
     <div className="h-screen">
-      <Head>
-        <title>note.jxck.io</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className="w-full border-solid border border-slate-300 rounded text-xl">
-        {preview ? (
-          <Preview className="p-4" />
-        ) : (
-          <Editor
-            className="w-full h-screen p-4 bg-gray-100 border-solid border border-slate-300 rounded text-slate-800"
-            onChange={onChange}
-          />
-        )}
+        <form onSubmit={onSubmit}>
+          <Viewer />
+          <div className="flex gap-2">
+            <Button name="google" />
+            <Button name="deepl" />
+            <Button name="clear" />
+          </div>
+        </form>
+        <div>
+          Another important aspect of the structure of things is that, while an
+          account only has a single password, it can have multiple passkeys.
+          Thats because passkeys cant be copypasted around like passwords can.
+          Instead users will register a passkeys as needed to cover their set of
+          devices.
+        </div>
       </main>
-      <footer className="">
-        <button
-          type="button"
-          onClick={onClick}
-          className="text-white bg-blue-400 px-2 py-1 rounded hover:bg-blue-800"
-        >
-          toggle
-        </button>
-      </footer>
     </div>
   );
 };
 
-export default Home;
+export default Note;
