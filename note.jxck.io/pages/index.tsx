@@ -1,95 +1,99 @@
 import type { NextPage } from "next";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { TRANSLATE_VIA, translate } from "../lib/translate";
+
+type Pair = { ja: string; en: string }[];
+
+function useTranslator({ via, lines }: { via: string; lines: string[] }) {
+  const [translated, setTranslated] = useState<Pair>([]);
+  useEffect(() => {
+    (async () => {
+      const result = await Promise.all(
+        lines.map(async (en) => {
+          const ja = await translate(en, via);
+          return { en, ja };
+        })
+      );
+      setTranslated(result);
+    })();
+  }, [lines, via]);
+  return [translated];
+}
+
+const Translate = ({ via, lines }: { via: string; lines: string[] }) => {
+  console.log("translate", { via, lines });
+
+  const [translated] = useTranslator({ via, lines });
+  return (
+    <div className="p-4">
+      {translated.map(({ en, ja }, i) => {
+        return (
+          <div key={i} className="mb-4">
+            <p className="text-slate-500 mb-1">{en}</p>
+            <p className="text-slate-900 text-base">{ja}</p>
+          </div>
+        );
+      })}
+      <input type="hidden" name="text" value={lines.join("\n")} />
+    </div>
+  );
+};
+
+const Editor = () => {
+  return (
+    <textarea
+      className="w-full h-[90vh] p-2 border"
+      name="text"
+      autoFocus={true}
+    ></textarea>
+  );
+};
+
+const Viewer = ({ via, lines }: { via: string; lines: string[] }) => {
+  if (via === TRANSLATE_VIA.GCP || via === TRANSLATE_VIA.DEEPL) {
+    return <Translate via={via} lines={lines} />;
+  }
+  return <Editor />;
+};
+
+const Button = ({ name }: { name: string }) => {
+  return (
+    <button className="bg-slate-300 p-2 rounded" type="submit" name={name}>
+      {name}
+    </button>
+  );
+};
 
 const Note: NextPage = () => {
-  const [text, setText] = useState("");
-  const [translate, setTranslate] = useState("");
+  const [lines, setLines] = useState<string[]>([]);
+  const [via, setVia] = useState("");
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const text = formData.get("text") as string;
-    setText(text);
-
+    setLines(
+      text
+        .split("\n")
+        .map((line) => line.trim())
+        .filter((line) => line !== "")
+    );
     const submitEvent = e.nativeEvent as SubmitEvent;
     const submitterName = submitEvent.submitter?.getAttribute("name") as string;
-    setTranslate(submitterName);
-  };
-
-  const Viewer = () => {
-    if (translate === "google") {
-      return <Google />;
-    }
-    if (translate === "deepl") {
-      return <Deepl />;
-    }
-    return <Editor />;
-  };
-
-  const Editor = () => {
-    return (
-      <textarea
-        className="w-full bg-red-50"
-        name="text"
-        autoFocus={true}
-      ></textarea>
-    );
-  };
-
-  function google_translate(text: string) {
-    return `google: ${text}`;
-  }
-
-  function deepl_translate(text: string) {
-    return `deepl: ${text}`;
-  }
-
-  const Google = () => {
-    const translated = google_translate(text);
-    return (
-      <div>
-        {translated}
-        <input type="hidden" name="text" value={text} />
-      </div>
-    );
-  };
-
-  const Deepl = () => {
-    const translated = deepl_translate(text);
-    return (
-      <div>
-        {translated}
-        <input type="hidden" name="text" value={text} />
-      </div>
-    );
-  };
-
-  const Button = ({ name }: { name: string }) => {
-    return (
-      <button className="bg-slate-300 p-2 rounded" type="submit" name={name}>
-        {name}
-      </button>
-    );
+    setVia(submitterName);
   };
 
   return (
     <div className="h-screen">
-      <main className="w-full border-solid border border-slate-300 rounded text-xl">
+      <main className="w-full text-xl">
         <form onSubmit={onSubmit}>
-          <Viewer />
+          <Viewer via={via} lines={lines} />
           <div className="flex gap-2">
-            <Button name="google" />
-            <Button name="deepl" />
+            <Button name={TRANSLATE_VIA.GCP} />
+            <Button name={TRANSLATE_VIA.DEEPL} />
             <Button name="clear" />
           </div>
         </form>
-        <div>
-          Another important aspect of the structure of things is that, while an
-          account only has a single password, it can have multiple passkeys.
-          Thats because passkeys cant be copypasted around like passwords can.
-          Instead users will register a passkeys as needed to cover their set of
-          devices.
-        </div>
       </main>
     </div>
   );
