@@ -10,19 +10,19 @@ importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-precaching.p
 const precache =
 /*---build.js---*/
 [
-  "https://www.jxck.io/assets/js/main.js?220425_163434",
+  "https://www.jxck.io/assets/js/main.js?220425_163515",
   "https://www.jxck.io/assets/js/prism.js?210115_215132",
   "https://www.jxck.io/assets/js/ga.js?210325_165821",
   "https://www.jxck.io/assets/css/archive.css?220304_061221",
-  "https://www.jxck.io/assets/css/article.css?220222_230657",
+  "https://www.jxck.io/assets/css/article.css?220222_230717",
   "https://www.jxck.io/assets/css/body.css?220306_111358",
   "https://www.jxck.io/assets/css/footer.css?201223_011131",
   "https://www.jxck.io/assets/css/header.css?210426_190329",
   "https://www.jxck.io/assets/css/index.css?210924_151723",
-  "https://www.jxck.io/assets/css/info.css?220428_023043",
+  "https://www.jxck.io/assets/css/info.css?220428_023319",
   "https://www.jxck.io/assets/css/main.css?201223_011131",
-  "https://www.jxck.io/assets/css/markdown.css?220304_054853",
-  "https://www.jxck.io/assets/css/pre.css?220404_021226",
+  "https://www.jxck.io/assets/css/markdown.css?220304_061221",
+  "https://www.jxck.io/assets/css/pre.css?220404_030403",
   "https://www.jxck.io/assets/css/search.css?220304_061221",
   "https://www.jxck.io/assets/css/table.css?220306_111358",
   "https://www.jxck.io/assets/img/blog.svg?160301_215351",
@@ -32,7 +32,7 @@ const precache =
   "https://www.jxck.io/assets/img/jxck.svg?190123_200004",
   "https://www.jxck.io/assets/img/amp.svg?181110_002524",
   "https://www.jxck.io/assets/img/up.svg?160831_002319",
-  "https://www.jxck.io/assets/img/jxck.png?211006_145713",
+  "https://www.jxck.io/assets/img/jxck.png?210331_115006",
 ]
 /*---build.js---*/
 
