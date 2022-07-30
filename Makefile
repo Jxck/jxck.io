@@ -17,6 +17,29 @@ draft:
 fmt:
 	cd .src && node build.js format
 
+install:
+	npm install
+	workbox copyLibraries www.jxck.io/assets/js
+	$(DOTFILES)/install/install-avif.sh
+	$(DOTFILES)/install/install-brotli.sh
+	$(DOTFILES)/install/install-h2o.sh
+	$(DOTFILES)/install/install-webp.sh
+	$(DOTFILES)/install/install-guetzli.sh
+
+update:
+	ncu -u
+
+systemd-list:
+	@systemctl list-unit-files | grep $(foreach service, $(notdir $(wildcard ./.systemd/*)), -e '^$(service)')
+
+systemd-status:
+	$(foreach service, $(notdir $(wildcard ./.systemd/*)), systemctl status $(service))
+
+cron:
+	sudo crontab -u root .crontab/*
+	sudo crontab -u root -l
+
+
 ## optimize all image
 image:
 	which pngquant
@@ -214,39 +237,3 @@ _stop:
 _restart:
 	$(MAKE) _stop
 	$(MAKE) _start
-
-
-##########################
-# other
-##########################
-
-cron:
-	sudo crontab -u root .crontab/*
-	sudo crontab -u root -l
-
-install:
-	npm install
-	workbox copyLibraries www.jxck.io/assets/js
-	$(DOTFILES)/install/install-avif.sh
-	$(DOTFILES)/install/install-brotli.sh
-	$(DOTFILES)/install/install-h2o.sh
-	$(DOTFILES)/install/install-webp.sh
-	$(DOTFILES)/install/install-guetzli.sh
-	which pngquant
-	which optipng
-	which jpeg-recompress
-	which mozjpeg
-	which guetzli
-	which gifsicle
-	which avif
-	which ffmpeg
-	which cwebp gif2webp
-
-update:
-	ncu -u
-
-systemd-list:
-	@systemctl list-unit-files | grep $(foreach service, $(notdir $(wildcard ./.systemd/*)), -e '^$(service)')
-
-systemd-status:
-	$(foreach service, $(notdir $(wildcard ./.systemd/*)), systemctl status $(service))
