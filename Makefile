@@ -17,6 +17,24 @@ draft:
 fmt:
 	cd .src && node build.js format
 
+## optimize all image
+image:
+	which pngquant
+	which optipng
+	which jpeg-recompress
+	which mozjpeg
+	which guetzli
+	which gifsicle
+	which avif
+	which ffmpeg
+	which cwebp gif2webp
+	$(MAKE) png
+	$(MAKE) jpeg
+	$(MAKE) gif
+	$(MAKE) webp
+	$(MAKE) avif
+
+
 ##########################
 # Compression
 ##########################
@@ -101,7 +119,6 @@ gif:
 		| xargs -L1 -P$(shell core) -I{} sh -c '$(GIFSICLE) {} -o {}'
 
 
-
 PNG = $(wildcard ./blog.jxck.io/entries/**/*.png)
 JPG = $(wildcard ./blog.jxck.io/entries/**/*.jpeg)
 GIF = $(wildcard ./blog.jxck.io/entries/**/*.gif)
@@ -145,14 +162,6 @@ AVIF += $(GIF:.gif=.avif)
 
 avif: $(AVIF)
 
-
-## optimize all image
-image:
-	$(MAKE) png
-	$(MAKE) jpeg
-	$(MAKE) gif
-	$(MAKE) webp
-	$(MAKE) avif
 
 ##########################
 # formatter
@@ -210,6 +219,7 @@ _restart:
 ##########################
 # other
 ##########################
+
 cron:
 	sudo crontab -u root .crontab/*
 	sudo crontab -u root -l
