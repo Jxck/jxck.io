@@ -1,7 +1,7 @@
-importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-core.prod.js')
-importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-routing.prod.js')
-importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-strategies.prod.js')
-importScripts('https://www.jxck.io/assets/js/workbox-v6.1.5/workbox-precaching.prod.js')
+importScripts('https://www.jxck.io/assets/js/workbox-v6.5.4/workbox-core.prod.js')
+importScripts('https://www.jxck.io/assets/js/workbox-v6.5.4/workbox-routing.prod.js')
+importScripts('https://www.jxck.io/assets/js/workbox-v6.5.4/workbox-strategies.prod.js')
+importScripts('https://www.jxck.io/assets/js/workbox-v6.5.4/workbox-precaching.prod.js')
 
 /**
  * Ruby でビルドして version を更新するので
