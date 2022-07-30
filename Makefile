@@ -61,7 +61,6 @@ remove:
 ##########################
 # Build Markdown
 ##########################
-MARK = bundle exec ruby ./.script/main.rb
 
 # .md
 BMD = $(wildcard ./blog.jxck.io/entries/**/*.md)
@@ -216,9 +215,6 @@ cron:
 	sudo crontab -u root -l
 
 install:
-	# this will saved in ./bundle/config
-	bundle config set path './.bundle/vendor' --local
-	bundle install
 	npm install
 	npx workbox copyLibraries www.jxck.io/assets/js
 	#sudo apt install pngquant optipng
