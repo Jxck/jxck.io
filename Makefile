@@ -128,7 +128,7 @@ webp: $(WEBP)
 
 
 ## avif
-CAVIF = npx avif --speed 0 --quality 40 --verbose
+CAVIF = avif --speed 0 --quality 40 --verbose
 
 AVIF = $(PNG:.png=.avif)
 AVIF += $(JPG:.jpeg=.avif)
@@ -216,8 +216,21 @@ cron:
 
 install:
 	npm install
-	npx workbox copyLibraries www.jxck.io/assets/js
-	#sudo apt install pngquant optipng
+	workbox copyLibraries www.jxck.io/assets/js
+	$(DOTFILES)/install/install-avif.sh
+	$(DOTFILES)/install/install-brotli.sh
+	$(DOTFILES)/install/install-h2o.sh
+	$(DOTFILES)/install/install-webp.sh
+	$(DOTFILES)/install/install-guetzli.sh
+	which pngquant
+	which optipng
+	which jpeg-recompress
+	which mozjpeg
+	which guetzli
+	which gifsicle
+	which avif
+	which ffmpeg
+	which cwebp gif2webp
 
 update:
 	ncu -u
