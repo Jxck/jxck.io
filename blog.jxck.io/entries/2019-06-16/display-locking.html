@@ -292,9 +292,9 @@ for (const i = 0; i &lt; 100; i ++) {
           <p>わかりやすいように、 <code translate=no>appendChild</code> に <code translate=no>setTimeout</code> を仕込んだ例は以下のように挙動する。
           <p>
             <picture>
-              <source type=image/avif srcset=display-no-locking.avif?220108_003453>
-              <source type=image/webp srcset=display-no-locking.webp?220107_193959>
-              <img loading=lazy decoding=async src=display-no-locking.gif?200606_195616 alt="lock を取らず普通に appendChild する例" title="display with no locking" width=825 height=968>
+              <source type=image/avif srcset=display-no-locking.avif?220731_020617>
+              <source type=image/webp srcset=display-no-locking.webp?220731_020625>
+              <img loading=lazy decoding=async src=display-no-locking.gif?220731_020625 alt="lock を取らず普通に appendChild する例" title="display with no locking" width=825 height=968>
             </picture>
           </p>
           <p>そこで、 <code translate=no>&lt;ul&gt;</code> のロックを取得し、全ての <code translate=no>&lt;li&gt;</code> が追加されてから一気にレンダリングする場合以下のように書ける。
@@ -314,9 +314,9 @@ await container.displayLock.updateAndCommit()</code></pre>
           <p>こちらも、わかりやすいように <code translate=no>setTimeout</code> を仕込んだ例は以下のように挙動する。
           <p>
             <picture>
-              <source type=image/avif srcset=display-locking.avif?220108_003453>
-              <source type=image/webp srcset=display-locking.webp?220107_193959>
-              <img loading=lazy decoding=async src=display-locking.gif?200606_195616 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking" width=825 height=968>
+              <source type=image/avif srcset=display-locking.avif?220731_020617>
+              <source type=image/webp srcset=display-locking.webp?220731_020625>
+              <img loading=lazy decoding=async src=display-locking.gif?220731_020625 alt="ul の lock を取り追加が終わってから commit する例" title="display with locking" width=825 height=968>
             </picture>
           </p>
           <p>Lock 中に行われる <code translate=no>appendChild</code> は、メモリ上で DOM の処理を行うだけになり、 <code translate=no>commit()</code> でレンダリングが一度に走っていることがわかるだろう。
@@ -353,9 +353,9 @@ await container.displayLock.updateAndCommit()</code></pre>
           <p>説明よりも見た方が早いので以下にデモを示す。
           <p>
             <picture>
-              <source type=image/avif srcset=display-locking-activatable.avif?220108_003453>
-              <source type=image/webp srcset=display-locking-activatable.webp?220107_193959>
-              <img loading=lazy decoding=async src=display-locking-activatable.gif?200606_195616 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element" width=825 height=968>
+              <source type=image/avif srcset=display-locking-activatable.avif?220731_020617>
+              <source type=image/webp srcset=display-locking-activatable.webp?220731_020625>
+              <img loading=lazy decoding=async src=display-locking-activatable.gif?220731_005454 alt="commit してない要素が画面内検索で一致した際にレンダリングされる例" title="find in page commits activatable element" width=825 height=968>
             </picture>
           </p>
           <p>このデモでは、ランダムな文字列を <code translate=no>&lt;li&gt;</code> に入れ、ロックをとった <code translate=no>&lt;ul&gt;</code> に追加し commit してない状態で止めている。

@@ -207,17 +207,17 @@ body {
         <p>Firefox, Safari では以下の様に、想定した挙動になった。(代表して Firefox の挙動を載せる)
         <p>
           <picture>
-            <source type=image/avif srcset=srcset-firefox.avif?220108_003453>
-            <source type=image/webp srcset=srcset-firefox.webp?220107_193959>
-            <img loading=lazy decoding=async src=srcset-firefox.gif?200815_144345 alt="Firefox では仮定したサイズで画像が切り替わっている" title="srcset image selection on firefox" width=482 height=547>
+            <source type=image/avif srcset=srcset-firefox.avif?220731_020617>
+            <source type=image/webp srcset=srcset-firefox.webp?220731_020625>
+            <img loading=lazy decoding=async src=srcset-firefox.gif?220731_020625 alt="Firefox では仮定したサイズで画像が切り替わっている" title="srcset image selection on firefox" width=482 height=547>
           </picture>
         </p>
         <p>Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、 DPR を 2, 3 に変えたときだけ想定とは違う動きをした。
         <p>
           <picture>
-            <source type=image/avif srcset=srcset-chrome.avif?220108_003453>
-            <source type=image/webp srcset=srcset-chrome.webp?220107_193959>
-            <img loading=lazy decoding=async src=srcset-chrome.gif?200815_144341 alt="Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる" title="srcset image selection on chrome" width=482 height=547>
+            <source type=image/avif srcset=srcset-chrome.avif?220731_020617>
+            <source type=image/webp srcset=srcset-chrome.webp?220731_020625>
+            <img loading=lazy decoding=async src=srcset-chrome.gif?220731_020625 alt="Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる" title="srcset image selection on chrome" width=482 height=547>
           </picture>
         </p>
         <p>この理由をつきとめるのが今回の本題となる。
@@ -419,9 +419,9 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
         <ul>
           <li>
             <picture>
-              <source type=image/avif srcset=srcset-chrome-dpr2.avif?220108_003453>
-              <source type=image/webp srcset=srcset-chrome-dpr2.webp?220107_193959>
-              <img loading=lazy decoding=async src=srcset-chrome-dpr2.gif?200815_144257 alt="Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された" title="srcset image selection on chrome as expected" width=622 height=862>
+              <source type=image/avif srcset=srcset-chrome-dpr2.avif?220731_020617>
+              <source type=image/webp srcset=srcset-chrome-dpr2.webp?220731_020625>
+              <img loading=lazy decoding=async src=srcset-chrome-dpr2.gif?220731_020625 alt="Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された" title="srcset image selection on chrome as expected" width=622 height=862>
             </picture>
           </li>
         </ul>
