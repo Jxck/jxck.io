@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-11-30T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-08-03T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-11-30>2021-11-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-08-03>2022-08-03</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -297,9 +297,9 @@
           <h3 id="img-のカスタマイズ"><a href="#img-のカスタマイズ">img のカスタマイズ</a></h3>
           <p>画像の埋め込みは .png / .jpeg / .gif を一次ソースとしているが、必ず webp を提供している。
           <p>これを出し分けるために、画像記法は <code translate=no>&lt;picture&gt;</code> になるようにカスタマイズしている。 (SVG は単に <code translate=no>&lt;img&gt;</code> になる)
-          <p>また width/height を明示できるよう、 URL の最後に fragment を <code translate=no>#256x256</code> のように指定すると width, height として解釈する。
+          <p>また width/height を明示できるよう、 URL の最後に fragment を <code translate=no>#300x300</code> のように指定すると width, height として解釈する。
           <p>さらに、画像を読み込んで <code translate=no>mtime</code> から最終更新時を算出し、それをクエリに付与して Cache Busting する。
-          <pre class=md data-code=md><code translate=no class=language-md>![alt text](image.png#256x256 &quot;title test&quot;)</code></pre>
+          <pre class=md data-code=md><code translate=no class=language-md>![alt text](image.png#300x300 &quot;title test&quot;)</code></pre>
           <p>これは以下のように展開される。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;picture&gt;
   &lt;source type=image/webp srcset=image.webp?211010_101010&gt;
