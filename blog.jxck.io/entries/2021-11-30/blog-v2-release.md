@@ -145,12 +145,12 @@ blockqote 記法の最後に書いた URL を `cite` として埋め込む。
 
 これを出し分けるために、画像記法は `<picture>` になるようにカスタマイズしている。 (SVG は単に `<img>` になる)
 
-また width/height を明示できるよう、 URL の最後に fragment を `#256x256` のように指定すると width, height として解釈する。
+また width/height を明示できるよう、 URL の最後に fragment を `#300x300` のように指定すると width, height として解釈する。
 
 さらに、画像を読み込んで `mtime` から最終更新時を算出し、それをクエリに付与して Cache Busting する。
 
 ```md
-![alt text](image.png#256x256 "title test")
+![alt text](image.png#300x300 "title test")
 ```
 
 これは以下のように展開される。

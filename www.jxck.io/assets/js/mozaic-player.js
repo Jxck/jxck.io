@@ -126,17 +126,17 @@ export default class MozaicPlayer extends HTMLElement {
         artwork: [
           {
             src:   "https://mozaic.fm/assets/img/mozaic.png",
-            sizes: "256x256",
+            sizes: "300x300",
             type:  "image/png"
           },
           {
             src:   "https://mozaic.fm/assets/img/mozaic.webp",
-            sizes: "256x256",
+            sizes: "300x300",
             type:  "image/webp"
           },
           {
             src:   "https://mozaic.fm/assets/img/mozaic.jpeg",
-            sizes: "2000x2000",
+            sizes: "3000x3000",
             type:  "image/jpeg"
           },
           {
