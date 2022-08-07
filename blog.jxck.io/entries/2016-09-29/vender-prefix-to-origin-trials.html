@@ -193,7 +193,7 @@
           <li>o (Old versions of Opera)
           <li>ms (Internet Explorer)
         </ul>
-        <p>(<a href="https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix">Vendor Prefix - Glossary | MDN</a>)
+        <p>(<a href="https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix" target=_blank>Vendor Prefix - Glossary | MDN</a>)
         <p>Vender Prefix は、まさしくその機能が <em>実験中</em> であることを示すために用いられ、これを付したベンダは、実験の結果をより積極的に反映できると期待した。
         <p>そして、実験が終われば Prefix は取られ、標準プロパティに置きかわり役目を終える。はずだった。
         <p>ところが、実際には多くのコンテンツが以下のようなコードを含む結果となった。
@@ -232,17 +232,17 @@
           </picture>
         </p>
         <p>また、 Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。
-        <p>今年 Firefox が <a href="http://www.otsukare.info/2016/01/04/webkit-resolved-fixed">Prefix のついた webkit 独自拡張を見るようになった</a> のも、 Vender Prefix の性質を象徴する現象と言えると思う。
+        <p>今年 Firefox が <a href="http://www.otsukare.info/2016/01/04/webkit-resolved-fixed" target=_blank>Prefix のついた webkit 独自拡張を見るようになった</a> のも、 Vender Prefix の性質を象徴する現象と言えると思う。
       </section>
       <section>
         <h2 id="doing-science-on-the-web"><a href="#doing-science-on-the-web">Doing Science On The Web</a></h2>
         <p>かといって新しい仕様の検討や実装をあきらめるわけにはいかない。
         <p>仮説と検証、実装とドックフーディング、机上の空論で終わらないためには、実際にシップしてフィードバックを集めるプロセスは欠かせない。
-        <p><a href="https://infrequently.org/2015/08/doing-science-on-the-web/">Doing Science On The Web</a>
+        <p><a href="https://infrequently.org/2015/08/doing-science-on-the-web/" target=_blank>Doing Science On The Web</a>
         <p>新しい機能の実装を、特定の開発者にのみ提供するのであれば、既に方法はいくつかある。
         <ul>
-          <li>about:flags によるフラグの有効化(<a href="chrome://flags/#enable-experimental-web-platform-features">#enable-experimental-web-platform-features</a> etc)
-          <li>ブラウザの起動フラグによる有効化(<a href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags">--es_staging</a> etc)
+          <li>about:flags によるフラグの有効化(<a href="chrome://flags/#enable-experimental-web-platform-features" target=_blank>#enable-experimental-web-platform-features</a> etc)
+          <li>ブラウザの起動フラグによる有効化(<a href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags" target=_blank>--es_staging</a> etc)
           <li>beta, dev, canary ビルドの提供
           <li>devtools での有効化
         </ul>
@@ -254,7 +254,7 @@
       <section>
         <h2 id="origin-trials"><a href="#origin-trials">Origin Trials</a></h2>
         <p>Origin Trials は、その名の通り「<em>特定のオリジンにだけ、実験中の機能を、期限付きで提供する</em>」仕組みである。
-        <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/explainer.md">Motivation and Explainer</a>
+        <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/explainer.md" target=_blank>Motivation and Explainer</a>
         <p>開発者が Origin Trials の対象となっている機能を試したい場合、利用するオリジン(scheme + domain + port)へのトークンを申請する。
         <p>コンテンツにそのトークンを付与すると、ブラウザがそのトークンを認識し、そのオリジンでのみ実験中の機能を有効にする。
         <p>トークンには期限があり、役目を終えると Expire され、そうしたステータスの更新は登録時のアドレスにメールで通知される。
@@ -264,8 +264,8 @@
       </section>
       <section>
         <h2 id="利用の流れ"><a href="#利用の流れ">利用の流れ</a></h2>
-        <p>今回は、以下のガイドに沿って、ブラウザの持つ新しい機能を、筆者の持つ新機能実験用オリジンである <a href="https://labs.jxck.io">https://labs.jxck.io</a> でのみ使えるように、実際に申請をしながら解説する。
-        <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md">Origin Trials Guide for Web Developers</a>
+        <p>今回は、以下のガイドに沿って、ブラウザの持つ新しい機能を、筆者の持つ新機能実験用オリジンである <a href="https://labs.jxck.io" target=_blank>https://labs.jxck.io</a> でのみ使えるように、実際に申請をしながら解説する。
+        <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md" target=_blank>Origin Trials Guide for Web Developers</a>
         <section>
           <h3 id="対象機能"><a href="#対象機能">対象機能</a></h3>
           <p>Origin Trials の対象となる機能は、執筆時点で以下のとおりである。
@@ -278,7 +278,7 @@
           <p>それぞれ、トライアルのおおよその期間も記されている。
           <p>この期間になったら、トライアルが終わり、機能が使えなくなる可能性があることを、開発者は事前に了解する必要がある。
           <p>今後、 Origin Trials 対象となる機能については、以下にリストされるようである。
-          <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/available-trials.md">Current Experimental Features</a>
+          <p><a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/available-trials.md" target=_blank>Current Experimental Features</a>
           <p>また、最初にトライアルに登録した時点で自動で登録される ML でアナウンスを得ることもできるらしい。
         </section>
         <section>
@@ -286,13 +286,13 @@
           <p>今回は、 &quot;Foreign Fetch&quot; の Origin Trials を申請してみることとする。
           <p>申請は以下のフォームから行う。
           <ul>
-            <li><a href="http://bit.ly/OriginTrialSignup">http://bit.ly/OriginTrialSignup</a>
+            <li><a href="http://bit.ly/OriginTrialSignup" target=_blank>http://bit.ly/OriginTrialSignup</a>
           </ul>
           <p>入力は以下
           <ul>
             <li>使用者のメールアドレス
             <li>使用する機能 (Foreign Fetch)
-            <li>使用するオリジン (<a href="https://labs.jxck.io">https://labs.jxck.io</a>)
+            <li>使用するオリジン (<a href="https://labs.jxck.io" target=_blank>https://labs.jxck.io</a>)
             <li>いくつかの質問
           </ul>
         </section>
@@ -319,7 +319,7 @@
       <section>
         <h2 id="tool"><a href="#tool">Tool</a></h2>
         <p>一応 Origin Trials が有効になっているかを知る Chrome Extension があるが、これは HTML の方しか見ていない模様。
-        <p><a href="https://chrome.google.com/webstore/detail/origin-trials/abpmcigmbmlngkajkikaghaibaocdhkp/related">Origin Trials Chrome Extension</a>
+        <p><a href="https://chrome.google.com/webstore/detail/origin-trials/abpmcigmbmlngkajkikaghaibaocdhkp/related" target=_blank>Origin Trials Chrome Extension</a>
       </section>
       <section>
         <h2 id="foreign-fetch"><a href="#foreign-fetch">Foreign Fetch</a></h2>

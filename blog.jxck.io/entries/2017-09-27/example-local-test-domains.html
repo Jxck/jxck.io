@@ -182,10 +182,10 @@
         <p>仮に今は取得されていなかったとしても、今後取得される可能性もある。
         <p>もっと言えば、 gTLD (global top level domain) ですら近年は色々と増えている。
         <p>例えば、社内のネットワークで当時存在しなかった <code translate=no>.dev</code> を、開発用ドメインとして割り当てられるような環境を作っていたとする。
-        <p>現在、 <code translate=no>.dev</code> は正式に gTLD として認定され、 <a href="https://www.iana.org/domains/root/db/dev.html">Google</a> がそれを管理している。
+        <p>現在、 <code translate=no>.dev</code> は正式に gTLD として認定され、 <a href="https://www.iana.org/domains/root/db/dev.html" target=_blank>Google</a> がそれを管理している。
         <p>つまり、これまで社内のみと思われていた <code translate=no>.dev</code> のアドレスと、同じものが Google からリリースされる可能性もある。
         <p>合わせて、先日 Google は <code translate=no>.dev</code> 全体に対して Chrome に preload HSTS の設定をマージした。
-        <p><a href="https://chromium-review.googlesource.com/c/chromium/src/+/669923">Preload HSTS for the .dev gTLD</a>
+        <p><a href="https://chromium-review.googlesource.com/c/chromium/src/+/669923" target=_blank>Preload HSTS for the .dev gTLD</a>
         <p>HTTPS が前提の昨今、こうして先手を打って HSTS を TLD 以下に強制するということだろう。
         <p>もしくは、 <code translate=no>.dev</code> を社内で勝手に運用している環境を認識して、そうした環境にあっても Google の正規サービスであることを明示する目的もあるかもしれない。
         <p>いずれにせよ、自前で <code translate=no>.dev</code> を運用しているユーザには影響があるだろう。
@@ -196,8 +196,8 @@
         <p>以上のことを踏まえれば、将来に渡って取得されないことが保証され、こうした用途に使えるメインがあるのが望ましい。
         <p>そこで RFC6761 (was RFC2606) には、 <em>予約済みドメイン</em> としていくつかのドメインとその用途が記されている。
         <ul>
-          <li><a href="https://tools.ietf.org/html/rfc6761">RFC6761 Special-Use Domain Names</a>
-          <li><a href="https://tools.ietf.org/html/rfc2606">RFC2606 Reserved Top Level DNS Names</a>
+          <li><a href="https://tools.ietf.org/html/rfc6761" target=_blank>RFC6761 Special-Use Domain Names</a>
+          <li><a href="https://tools.ietf.org/html/rfc2606" target=_blank>RFC2606 Reserved Top Level DNS Names</a>
         </ul>
         <p>用途を守れば、そのドメインを所有していなくても、安心して使うことができるのだ。
       </section>
@@ -213,9 +213,9 @@
         </ul>
         <p>また、この 3 つは実際にインターネット上で HTTP をサーブしている。
         <ul>
-          <li><a href="http://example.com">http://example.com</a>
-          <li><a href="http://example.net">http://example.net</a>
-          <li><a href="http://example.org">http://example.org</a>
+          <li><a href="http://example.com" target=_blank>http://example.com</a>
+          <li><a href="http://example.net" target=_blank>http://example.net</a>
+          <li><a href="http://example.org" target=_blank>http://example.org</a>
         </ul>
         <p>ちなみに、これらのアドレスは実は結構便利な作りをしている。
         <ul>
@@ -244,7 +244,7 @@
         <p>もしこの設定がなければ、他のアドレス同様 DNS に問い合わせを行い、もし DNS が別のアドレスを返せば <code translate=no>localhost</code> は &quot;localhost&quot; ではなくなってしまう。
         <p>しかし、最近では HTTPS 必須のブラウザ機能が、 localhost だけは特別扱いするなどといった挙動になっている。
         <p>そこで、 <code translate=no>localhost</code> がループバックアドレスであることを保証するべきというドラフトが上がっている。
-        <p><a href="https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06">Let &apos;localhost&apos; be localhost. draft-west-let-localhost-be-localhost-06</a>
+        <p><a href="https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06" target=_blank>Let &apos;localhost&apos; be localhost. draft-west-let-localhost-be-localhost-06</a>
         <p>これが RFC になれば、 <code translate=no>.localhost</code> は明確にループバックアドレスとして使われることになるだろう。
         <p>先ほどの <code translate=no>.dev</code> 同様に <code translate=no>.localhost</code> を別のアドレスで解決する環境を作っていたりする場合は、やはり問題が出るかもしれない。
       </section>
@@ -274,9 +274,9 @@
         </ul>
         <p>詳細は下記参照
         <ul>
-          <li><a href="https://www.iana.org/domains/reserved">https://www.iana.org/domains/reserved</a>
-          <li><a href="https://jprs.jp/doc/rule/wideusejp-reserved.html">https://jprs.jp/doc/rule/wideusejp-reserved.html</a>
-          <li><a href="https://jprs.jp/faq/use/">https://jprs.jp/faq/use/</a>
+          <li><a href="https://www.iana.org/domains/reserved" target=_blank>https://www.iana.org/domains/reserved</a>
+          <li><a href="https://jprs.jp/doc/rule/wideusejp-reserved.html" target=_blank>https://jprs.jp/doc/rule/wideusejp-reserved.html</a>
+          <li><a href="https://jprs.jp/faq/use/" target=_blank>https://jprs.jp/faq/use/</a>
         </ul>
       </section>
     </article>

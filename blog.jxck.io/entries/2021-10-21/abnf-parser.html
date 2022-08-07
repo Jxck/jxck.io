@@ -171,7 +171,7 @@
       </section>
       <section>
         <h2 id="abnf-パーサ"><a href="#abnf-パーサ">ABNF パーサ</a></h2>
-        <p>筆者が直近で書いた <a href="https://www.rfc-editor.org/rfc/rfc8941.html">RFC 8941: Structured Field Values for HTTP</a> を例にする。
+        <p>筆者が直近で書いた <a href="https://www.rfc-editor.org/rfc/rfc8941.html" target=_blank>RFC 8941: Structured Field Values for HTTP</a> を例にする。
         <p>例えば、ヘッダが複数の値をリスト形式で取る場合
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=http data-code=http><code translate=no class=language-http>Example-List: sugar, tea, rum</code></pre>
@@ -179,7 +179,7 @@
         <pre class=abnf data-code=abnf><code translate=no class=language-abnf>sf-list       = list-member *( OWS &quot;,&quot; OWS list-member )
 list-member   = sf-item / inner-list</code></pre>
         <p><code translate=no>inner-list</code> を無視すると、これは <code translate=no>sf-item</code> がスペース(OWS)と <code translate=no>,</code> で区切られて複数あることになるといった具合だ。 <code translate=no>sf-item</code> はさらに別で定義されている。
-        <p><code translate=no>ALPHA</code> や <code translate=no>DIGIT</code> のように仕様をまたいで共通する定義は <a href="https://www.rfc-editor.org/rfc/rfc5234.html">ABNF</a> の RFC としてまとめられ、各仕様が参照している。
+        <p><code translate=no>ALPHA</code> や <code translate=no>DIGIT</code> のように仕様をまたいで共通する定義は <a href="https://www.rfc-editor.org/rfc/rfc5234.html" target=_blank>ABNF</a> の RFC としてまとめられ、各仕様が参照している。
         <p>ABNF は、実装方法を規定せずに、汎用的に「この形式であるべき」を定義する目的で使われているため、この形式でやりとりができるのであれば、 Parse/Serialize ともにどう実装されていても良い。
         <p>BNF から機械的にパーサを生成する手法などは知られているが、 RFC は実装にそれを強制するものではないため、メモリ効率や速度を重視してそうした手法を採用しないことが一般的だろう。
         <p>しかし、 ABNF に忠実な実装ができると、それは逆に <em>ABNF が意味的に正しいか</em> を検証する手段にもなる。
@@ -341,12 +341,12 @@ const list_member = alt([
             <li>
               Jxck/structured-field-values
               <ul>
-                <li><a href="https://github.com/Jxck/structured-field-values/blob/master/bnf/bnf.js">https://github.com/Jxck/structured-field-values/blob/master/bnf/bnf.js</a>
+                <li><a href="https://github.com/Jxck/structured-field-values/blob/master/bnf/bnf.js" target=_blank>https://github.com/Jxck/structured-field-values/blob/master/bnf/bnf.js</a>
               </ul>
             </li>
           </ul>
           <p>こうした処理を高度に抽象化したものがツールとして提供されていたりもするが、この考え方だけ覚えておけば、どんな言語でも RFC の ABNF 程度であれば実装が可能になるだろう。
-          <p>そして、この実装の過程で処理ができない ABNF が出てくれば、そこで ABNF 側のバグを見つけることができるというわけだ。この実装によって見つかった <a href="https://github.com/httpwg/http-extensions/issues/1273">SFV の Issue</a> もある。
+          <p>そして、この実装の過程で処理ができない ABNF が出てくれば、そこで ABNF 側のバグを見つけることができるというわけだ。この実装によって見つかった <a href="https://github.com/httpwg/http-extensions/issues/1273" target=_blank>SFV の Issue</a> もある。
         </section>
       </section>
       <section>
@@ -357,12 +357,12 @@ const list_member = alt([
         <p>一方で WHATWG は、主にブラウザの API を対象としているため、ブラウザ同士の厳密な互換性を維持することを考えると ABNF のような定義を採用するのは難しい。
         <p>代表例としては URL の仕様は、 IETF の RFC と WHATWG それぞれに仕様がある。
         <ul>
-          <li><a href="https://datatracker.ietf.org/doc/html/rfc3986">RFC3986 - IETF</a>
-          <li><a href="https://url.spec.whatwg.org/">URL Standard - WHATWG</a>
+          <li><a href="https://datatracker.ietf.org/doc/html/rfc3986" target=_blank>RFC3986 - IETF</a>
+          <li><a href="https://url.spec.whatwg.org/" target=_blank>URL Standard - WHATWG</a>
         </ul>
         <p>RFC の方は URL のフォーマットが ABNF で書かれているが、 WHATWG はパースのアルゴリズムが書かれている。前者は、実装方法に制限が無いが、 WHATWG は実装のアルゴリズムが基本的にはどの言語でも同じになる。
         <p>もちろん、 WHATWG の方はブラウザ特有の様々な要件が含まれているため、 RFC のような汎用的な URL の定義とは担っている範囲が違うとはいえ、それぞれの仕様におけるフォーマットの扱いが垣間見えておもしろい。
-        <p>IETF の方は昔書いて公開せずどこかに言ってしまったが、 WHATWG の方は <a href="https://github.com/Jxck/URL/blob/master/url.ts">公開</a> しているので、参考まで。
+        <p>IETF の方は昔書いて公開せずどこかに言ってしまったが、 WHATWG の方は <a href="https://github.com/Jxck/URL/blob/master/url.ts" target=_blank>公開</a> しているので、参考まで。
       </section>
     </article>
   </main>

@@ -174,9 +174,9 @@
         <p>この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。
         <p>今回は、この仕様の特徴と用途を解説し、本サイトへの適用について検討する。
         <ul>
-          <li><a href="https://w3c.github.io/preload/">W3C Preload Spec</a>
-          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_nu6HlbNQfo/XzaLNb1bBgAJ">Intent to Ship: <code translate=no>&lt;link rel=preload&gt;</code></a>
-          <li><a href="https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/">Preload: What Is It Good For?</a>
+          <li><a href="https://w3c.github.io/preload/" target=_blank>W3C Preload Spec</a>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_nu6HlbNQfo/XzaLNb1bBgAJ" target=_blank>Intent to Ship: <code translate=no>&lt;link rel=preload&gt;</code></a>
+          <li><a href="https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/" target=_blank>Preload: What Is It Good For?</a>
         </ul>
       </section>
       <section>
@@ -214,7 +214,7 @@
         <p>Web Font の場合はこうなる。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload  as=font type=font/woff2 href=font.woff2 crossorigin&gt;</code></pre>
         <p>(Chrome は現状フォントの取得は暗黙的に CORS になるらしいため、 Same Origin からの取得でも <code translate=no>crossorigin</code> が必要らしい)
-        <p><code translate=no>as</code> に指定可能な値は <a href="https://fetch.spec.whatwg.org/#concept-request-destination">fetch spec に一覧がある</a>、省略すると XHR や fetch と同じ挙動になる。
+        <p><code translate=no>as</code> に指定可能な値は <a href="https://fetch.spec.whatwg.org/#concept-request-destination" target=_blank>fetch spec に一覧がある</a>、省略すると XHR や fetch と同じ挙動になる。
         <p><code translate=no>type</code> を指定すると、ブラウザがそのファイルタイプをサポートしている場合だけ取得するようにできる。
       </section>
       <section>
@@ -265,7 +265,7 @@ document.body.appendChild(script);</code></pre>
 
 Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin</code></pre>
         <p>HTTP Header にすることによって、マークアップと最適化を分離することができる。
-        <p>既存コンテツをいじらずに最適化を追加したい場合や、コンテンツをスキャンして自動的に最適化を設定するような、外部の <a href="https://www.akamai.com/us/en/resources/front-end-optimization-feo.jsp">最適化エンジン</a> などに委ねる場合などに有用である。
+        <p>既存コンテツをいじらずに最適化を追加したい場合や、コンテンツをスキャンして自動的に最適化を設定するような、外部の <a href="https://www.akamai.com/us/en/resources/front-end-optimization-feo.jsp" target=_blank>最適化エンジン</a> などに委ねる場合などに有用である。
       </section>
       <section>
         <h2 id="feature-detection"><a href="#feature-detection">Feature Detection</a></h2>
@@ -288,7 +288,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
           <li>Client-Hints や Accept Header を使った最適化もできる。
           <li>Push と違い Preload は 3rb party にも使える。
         </ul>
-        <p>Push が既にブラウザにキャッシュされているリソースを考慮できないという問題は、別途 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">提案</a> があるが、基本的に Push はクライアントの状況を踏まえることが難しい。
+        <p>Push が既にブラウザにキャッシュされているリソースを考慮できないという問題は、別途 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest" target=_blank>提案</a> があるが、基本的に Push はクライアントの状況を踏まえることが難しい。
         <p>もともと HTTP を基本とする Web がプルベースを前提としているため、 Fetch でリクエストを投げる際にクライアントの情報を載せ、サーバがそれをレスポンスに反映するモデルの方が、細かい調整がしやすいのは自明である。
         <p>したがって、クライアントが置かれた状況を限定的に捉え、より積極的にリソースをキャッシュさせる用途で Push を。
         <p>クライアントの状態を踏まえて、コンテントネゴシエーションを重視する場合に Preload を。
@@ -311,7 +311,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
           <h3 id="指定方法"><a href="#指定方法">指定方法</a></h3>
           <p>本サイトは H2O でサーブしているが、まだ nopush には対応していない。
           <p>そのため HTTP Header で Link rel=preload を指定すれば、必ず HTTP2 Push が発生する。
-          <p>まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest">Cache Digest</a> を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
+          <p>まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest" target=_blank>Cache Digest</a> を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
           <p>そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの <code translate=no>&lt;link&gt;</code> タグで指定することにした。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload as=script src=/assets/js/highlight.min.js&gt;
 &lt;link rel=preload as=script src=//jxck.io/assets/js/ga.js&gt;</code></pre>
@@ -340,7 +340,7 @@ Link: &lt;font.woff2&gt;;rel=&quot;preload&quot;;as=&quot;font&quot;;crossorigin
           <p>同様に、いくつかのページで同様に試したが、もとが速すぎるので、もはや誤差のような結果にしかならなかった。
           <p>現状 Chrome Canary しか対応していないこと、このブログは作ってまだ間もないので、コンテンツも少ないことをふまえ、今回は導入を見送った。
           <p>今後コンテンツが増え、ボトルネックが発生した際に再度検証する。
-          <p>効果が体感できるコンテンツが作成できた場合は、デモとして <a href="https://labs.jxck.io">labs.jxck.io</a> に掲載する。
+          <p>効果が体感できるコンテンツが作成できた場合は、デモとして <a href="https://labs.jxck.io" target=_blank>labs.jxck.io</a> に掲載する。
         </section>
       </section>
     </article>

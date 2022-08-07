@@ -271,12 +271,12 @@ export default { message: &quot;hello world&quot; }</code></pre>
           </li>
         </ul>
         <p>ブラウザと違い、ここでどれを採用するかの議論が紛糾し、長らく結論が出ずにいた。
-        <p>その議論は <a href="https://github.com/nodejs/node-eps/issues/13">WRT PR #3 - ES module detection #13</a> などを参照。
+        <p>その議論は <a href="https://github.com/nodejs/node-eps/issues/13" target=_blank>WRT PR #3 - ES module detection #13</a> などを参照。
       </section>
       <section>
         <h2 id=".mjs-for-esm"><a href="#.mjs-for-esm">.mjs for ESM</a></h2>
         <p>結論として Node では <code translate=no>.mjs</code> という拡張子を採用することとなった。
-        <p><a href="https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#32-determining-if-source-is-an-es-module">3.2. Determining if source is an ES Module</a>
+        <p><a href="https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#32-determining-if-source-is-an-es-module" target=_blank>3.2. Determining if source is an ES Module</a>
         <p>これにより、 <code translate=no>.js</code> を維持したまま先に進むことができ、二回パースといったオーバーヘッドもなく、 TC39 の仕様外の独自拡張を Node が勝手に持ち込むことも防ぐことができる。
         <p>また、先述の通りブラウザは拡張子に頼った判別をしていないため、正しくマークアップをしていれば <code translate=no>.mjs</code> をブラウザ用に提供することも可能だ。
         <p>議論の中でもあったデメリットとして、これまでの多くのツール、ライブラリ、ミドルウェアなどの対応は懸念される。
@@ -301,9 +301,9 @@ export default { message: &quot;hello world&quot; }</code></pre>
           <p>Web サーバなどにおいては、ファイルを配信する際に拡張子をベースに Content-Type や、配信方法の最適化などを判断しているだろう。
           <p>ここで <code translate=no>.mjs</code> という拡張子を知らないサーバは、 <code translate=no>octet-stream</code> などで配信するのが一般的である。
           <p>ESM のための MIME タイプについても、 <code translate=no>text/javascript+module</code> などといった新しいものの追加が検討されたが、現在は以下のようになっている。
-          <p><a href="https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#321-mime-of-mjs-files">3.2.1 MIME of .mjs files</a>
+          <p><a href="https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#321-mime-of-mjs-files" target=_blank>3.2.1 MIME of .mjs files</a>
           <p>要するに、「これまでの JS と同じ MIME タイプを使う」ということになっている。
-          <p><a href="https://html.spec.whatwg.org/multipage/scripting.html#javascript-mime-type">JavaScript MIME type</a>
+          <p><a href="https://html.spec.whatwg.org/multipage/scripting.html#javascript-mime-type" target=_blank>JavaScript MIME type</a>
           <p>おおよそ、よくある以下などになっていれば問題ない。
           <ul>
             <li>text/javascript

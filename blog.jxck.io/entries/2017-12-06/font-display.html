@@ -195,7 +195,7 @@
         <h2 id="ブラウザデフォルト挙動"><a href="#ブラウザデフォルト挙動">ブラウザデフォルト挙動</a></h2>
         <p>まず、ブラウザ内部での Web Font の扱いを確認する。
         <p>基本的に、ブラウザは 3 つのチェックポイントを持つ。
-        <p><a href="https://drafts.csswg.org/css-fonts-4/#font-display-timeline">3.2. The Font Display Timeline | CSS Fonts Module Level 4</a>
+        <p><a href="https://drafts.csswg.org/css-fonts-4/#font-display-timeline" target=_blank>3.2. The Font Display Timeline | CSS Fonts Module Level 4</a>
         <ul>
           <li>block period
           <li>swap period
@@ -227,8 +227,8 @@
         </dl>
         <p>こうした現象を防ぐためには、 JavaScript でフォントの読み込み/表示を制御するのライブラリが使われることが多い。
         <ul>
-          <li><a href="https://github.com/typekit/webfontloader">https://github.com/typekit/webfontloader</a>
-          <li><a href="https://github.com/bramstein/fontfaceobserver">https://github.com/bramstein/fontfaceobserver</a>
+          <li><a href="https://github.com/typekit/webfontloader" target=_blank>https://github.com/typekit/webfontloader</a>
+          <li><a href="https://github.com/bramstein/fontfaceobserver" target=_blank>https://github.com/bramstein/fontfaceobserver</a>
         </ul>
       </section>
       <section>
@@ -252,7 +252,7 @@
           <h3 id="block"><a href="#block">block</a></h3>
           <p>block period を <code translate=no>3s</code> (推奨)、 swap period を <code translate=no>infinite</code> にする。
           <p>主に、代替のフォントでの表示を避けたい場合に利用されるが、 block period が <code translate=no>infinit</code> になるわけではない点に注意。
-          <p>例えば、 <a href="http://fontawesome.io/">FontAwesome</a> のようにフォントファイルを UI Icon に利用しており、代替フォントでの表示が望ましくない場面で利用できる。
+          <p>例えば、 <a href="http://fontawesome.io/" target=_blank>FontAwesome</a> のようにフォントファイルを UI Icon に利用しており、代替フォントでの表示が望ましくない場面で利用できる。
         </section>
         <section>
           <h3 id="fallback"><a href="#fallback">fallback</a></h3>
@@ -285,23 +285,23 @@
         <p>しかし、やはり重要視したいのは内容であり、フォントによるスタイル自体の重要度は低く考えている。
         <p>また、一旦取得されたフォントファイルには、 <code translate=no>immutable</code> キャッシュを指定しており、二回以降のアクセスでは Cache Hit が期待できる。
         <p><a href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化</a>
-        <p>今日ではブラウザのキャッシュ領域は取り合いであり、<a href="https://code.facebook.com/posts/964122680272229/web-performance-cache-efficiency-exercise/">次回のアクセスでもキャッシュがヒットすることは期待しづらい</a>が、それでもページ遷移などでは Web Font を FOIT 無しで適用できる可能性もある。
+        <p>今日ではブラウザのキャッシュ領域は取り合いであり、<a href="https://code.facebook.com/posts/964122680272229/web-performance-cache-efficiency-exercise/" target=_blank>次回のアクセスでもキャッシュがヒットすることは期待しづらい</a>が、それでもページ遷移などでは Web Font を FOIT 無しで適用できる可能性もある。
         <p>個人的には、ネットワークが著しく遅い環境で「ブラウザのフォント取得がどうなるか」や「別のページに遷移すると書体が変わる」という状況が、どういう UX になるかには興味があるため、実験の意味も含めて <code translate=no>font-display: optional</code> をページ全体に適用することとした。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/webfont/font-display.html">https://labs.jxck.io/webfont/font-display.html</a>
+          <li><a href="https://labs.jxck.io/webfont/font-display.html" target=_blank>https://labs.jxck.io/webfont/font-display.html</a>
         </ul>
         <p>本サイトとは別に、大きいフォントファイルを、 4 つのプロパティで表示するデモを以下に用意した。
       </section>
       <section>
         <h2 id="link"><a href="#link">Link</a></h2>
         <ul>
-          <li><a href="https://drafts.csswg.org/css-fonts-4/#font-display-desc">https://drafts.csswg.org/css-fonts-4/#font-display-desc</a>
-          <li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay">https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay</a>
-          <li><a href="https://font-display.glitch.me/">https://font-display.glitch.me/</a>
+          <li><a href="https://drafts.csswg.org/css-fonts-4/#font-display-desc" target=_blank>https://drafts.csswg.org/css-fonts-4/#font-display-desc</a>
+          <li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay" target=_blank>https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization#customize_the_text_rendering_delay</a>
+          <li><a href="https://font-display.glitch.me/" target=_blank>https://font-display.glitch.me/</a>
         </ul>
       </section>
     </article>

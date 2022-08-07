@@ -302,7 +302,7 @@ PC 周辺機器の広告
         <p>問題はその仕様なのか、ユースケースなのかを考えれば、本来は後者だろう。
         <p>昨今の議論の中で「3rd Party Cookie」が問題として取り扱われるが、 SSO は良くてターゲティング広告はだめなのであれば、本当の問題は Cookie そのものではなく、その後ろにある「トラッキング」というユースケースなはずだ。
         <p>すると Cookie の挙動を変えるのではなく、そのユースケースを制限すれば良い。それが、かつて提案された <em>DNT</em> (Do Not Track) や <em>P3P</em> (Platform for Privacy Preferences) だった。
-        <p>性善説で考えれば、そうしたヘッダを受け取ったサービスは、その内容を遵守してトラッキングを外すといったことを行えば、問題は全て解決した。しかし、現状この仕様の存在すら知らない人が大半なように、全く遵守されず、全く普及しなかった。あまつさえ、 DNT を送ることが Fingerprinting のベクタになるとして <a href="https://developer.apple.com/documentation/safari_release_notes/safari_12_1_release_notes">DNT の送信をやめたブラウザ</a>もある。
+        <p>性善説で考えれば、そうしたヘッダを受け取ったサービスは、その内容を遵守してトラッキングを外すといったことを行えば、問題は全て解決した。しかし、現状この仕様の存在すら知らない人が大半なように、全く遵守されず、全く普及しなかった。あまつさえ、 DNT を送ることが Fingerprinting のベクタになるとして <a href="https://developer.apple.com/documentation/safari_release_notes/safari_12_1_release_notes" target=_blank>DNT の送信をやめたブラウザ</a>もある。
         <p>Cookie という挙動は維持したいが、そのユースケースの一部には問題がある、という現状を解決するための手段として、ユースケースの方を制限するという手法は、全く上手くいかなかった。
         <p>そうなると挙動に手を入れるしかない。結果として 3rdPC を「<em>どう使われているかにかかわらず全てブロックする</em>」ということになる。それが今起こっていることだ。例え互換性を壊したとしてもだ。
       </section>
@@ -321,9 +321,9 @@ PC 周辺機器の広告
           <p>特に Firefox や Opera はそうした設定を持ち、有効にしている人も少なくないとされ、 Privacy 意識の高いユーザはそうしたブラウザを好んで使うという雰囲気があったように筆者は思う。
           <p>これがあくまでもユーザの Opt-In なのは、サイトが崩れた場合などのために、オフにできないと困るという性質が少なからずあったためだろう。
           <p>ところが Opt-In のままでは大半のユーザは無効のままなので、本来は「できるだけサイトを壊さないように、デフォルトで有効にすべき」という話になる。
-          <p>そこで、「その Cookie が何のユースケースで使われているかわからないなら、機械学習で推測して、トラッキングに使われていそうなやつだけブロックすれば、より正確にユーザを守ることができるのでは」という発想で実装されたのが Safari の <a href="https://webkit.org/blog/7675/intelligent-tracking-prevention/">ITP(Intelligent Tracking Prevention)</a> だ。
+          <p>そこで、「その Cookie が何のユースケースで使われているかわからないなら、機械学習で推測して、トラッキングに使われていそうなやつだけブロックすれば、より正確にユーザを守ることができるのでは」という発想で実装されたのが Safari の <a href="https://webkit.org/blog/7675/intelligent-tracking-prevention/" target=_blank>ITP(Intelligent Tracking Prevention)</a> だ。
           <p>実際にどういった機械学習が行われているかはブラックボックスであり、そのために Single Sign On が壊れたりといったこともあるが、ある意味「ユースケースをターゲットにしてブロックする」仕様であると言える。
-          <p>これに追従するようにして、 Firefox は <a href="https://support.mozilla.org/ja/kb/enhanced-tracking-protection-firefox-desktop">Enhanced Tracking Prevention</a> を、 new Edge は、 <a href="https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/">Tracking Prevention</a> がデフォルトで有効になっており、それぞれやり方は多少違うかもしれないが、 3rdPC がブロックされている。 ITP のような機械学習というよりは、ブロックリストなどを中心とした実装になっているようだ。
+          <p>これに追従するようにして、 Firefox は <a href="https://support.mozilla.org/ja/kb/enhanced-tracking-protection-firefox-desktop" target=_blank>Enhanced Tracking Prevention</a> を、 new Edge は、 <a href="https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/" target=_blank>Tracking Prevention</a> がデフォルトで有効になっており、それぞれやり方は多少違うかもしれないが、 3rdPC がブロックされている。 ITP のような機械学習というよりは、ブロックリストなどを中心とした実装になっているようだ。
           <p>Chrome は 2 年後までに 3rdPC を無くしていくことをアナウンスしており、現状ではまず SameSite=Lax をデフォルトにすることで、 opt-in されたサービス以外は自動で 3rdPC が飛ぶことを制限している。
           <p>いずれにせよ、 3rdPC から脱していくことは、ほぼすべてのブラウザで合意が取れており、こうした方法を使うと、結局 3rdPC 自体が、それがどういう使われ方をしているかに関わらずブロックされる。
           <p>多少壊れるサイトがあれば、それは 3rdPC 以外の方法で修正するなどを行ったとして、トラッキングについてはだいたい防ぐことができるかもしれない。
@@ -333,7 +333,7 @@ PC 周辺機器の広告
       <section>
         <h2 id="3rdpc-block-という対処療法"><a href="#3rdpc-block-という対処療法">3rdPC Block という対処療法</a></h2>
         <p>特に広告のためのトラッキングというユースケースは、それが実現できることが重要であり、 <em>3rdPC で実装されている必要があるわけではない</em>。
-        <p>つまり、 3rdPC がダメなら、広告会社は別の実装方法を探すだけだ。それが Finger Printing や <a href="https://medium.com/nextdns/cname-cloaking-the-dangerous-disguise-of-third-party-trackers-195205dc522a">CNAME Cloaking</a> であり、どちらもまたいたちごっこのように塞がれていくだろう。
+        <p>つまり、 3rdPC がダメなら、広告会社は別の実装方法を探すだけだ。それが Finger Printing や <a href="https://medium.com/nextdns/cname-cloaking-the-dangerous-disguise-of-third-party-trackers-195205dc522a" target=_blank>CNAME Cloaking</a> であり、どちらもまたいたちごっこのように塞がれていくだろう。
         <p>Web を見捨ててアプリにプラットフォームを移しても、今は IDFA などを用いたトラッキングがまだ可能かもしれないが、そこでも同じような議論がまたおこるだけだろう。
         <p>結局、インターネットユーザが「トラッキングされたくない」という問題は解決するためには、トラッキングというユースケース自体について向き合う必要がある。
         <p>対処療法として 3rdPC をブロックしても、それは <em>3rdPC をブロックしただけ</em> で、トラッキングの手法が別の何かに移っていくだけだ。ユーザから見たら問題は半分しか解決していない。
@@ -341,14 +341,14 @@ PC 周辺機器の広告
       <section>
         <h2 id="privacy-sandbox"><a href="#privacy-sandbox">Privacy Sandbox</a></h2>
         <p>結局ユースケースの方が解決しなければ、どの仕様を塞いでも迂回され続けていく。そしてそういった仕様へのパッチは、通常の Web の利用にも影響が出てしまう可能性がある。
-        <p>であれば、 <em>ユースケースそのものを仕様化</em>し、そこに誘導した方がよっぽどヘルシーだという発想が、 <a href="https://www.chromium.org/Home/chromium-privacy/privacy-sandbox">Privacy Sandbox</a> のアイデアだと筆者は捉えている。
+        <p>であれば、 <em>ユースケースそのものを仕様化</em>し、そこに誘導した方がよっぽどヘルシーだという発想が、 <a href="https://www.chromium.org/Home/chromium-privacy/privacy-sandbox" target=_blank>Privacy Sandbox</a> のアイデアだと筆者は捉えている。
         <p>例えば、サイトを跨いでコンバージョンを取りたいなら、「コンバージョンを取るための API」を、ターゲティングをしたいなら「ターゲティングをするための API」を定義する。
         <p>これは、無尽蔵に取ることができる API を定義するという意味ではない。むしろその逆だ。
         <p>仕様定義の中では、プライバシーに配慮したエントロピーのコントロールや、ユーザの許諾を取るような権限モデルを考慮することになる。
         <p>またブラウザの API として実装することで、ブラウザ設定から Opt-In/Out を選択できたり、より自分に合った設定を拡張で導入したりといった選択をユーザが可能になる。
         <p>結果、ブロックするかしないかという All or Nothing な現状から、ユーザとサービス側に API を通じた確かな合意形成と、標準仕様とブラウザ実装によって担保されたプライバシーの保護機構が確立し、新たなエコシステムが生まれる。
         <p>実際そうなるかは別として、単に「ブロックする」ことしかしてない各 Tracking Prevention に対して、「じゃあどうすれば良いのか」を模索する動きが Privacy Sandbox だと言えるだろう。
-        <p>これは Chrome が中心となって行っていることではあるが、その中心である <a href="https://github.com/csharrison/conversion-measurement-api">Conversion Management API</a> は、先行して Safari が提案した <a href="https://webkit.org/blog/8943/privacy-preserving-ad-click-attribution-for-the-web/">Ad Click Attribution</a> とかなり類似している。 <a href="https://webkit.org/blog/8124/introducing-storage-access-api/">Storage Access API</a> 含め、 Safari は ITP を始めたことと並行して、 Privacy Sandbox の礎となるような作業を既に始めていたと言ってもいいだろう。
+        <p>これは Chrome が中心となって行っていることではあるが、その中心である <a href="https://github.com/csharrison/conversion-measurement-api" target=_blank>Conversion Management API</a> は、先行して Safari が提案した <a href="https://webkit.org/blog/8943/privacy-preserving-ad-click-attribution-for-the-web/" target=_blank>Ad Click Attribution</a> とかなり類似している。 <a href="https://webkit.org/blog/8124/introducing-storage-access-api/" target=_blank>Storage Access API</a> 含め、 Safari は ITP を始めたことと並行して、 Privacy Sandbox の礎となるような作業を既に始めていたと言ってもいいだろう。
         <p>いずれにせよ、まだ議論が始まったばかりで、中身はほとんど揃ってないが、この動きがどうなるか、各 API がどこまで実現するかは、今後の Web の生態系に大きな影響を及ぼすと筆者は考える。
       </section>
       <section>

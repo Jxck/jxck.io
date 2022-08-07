@@ -235,7 +235,7 @@ Referer: https://example.com/index.html</code></pre>
           <p>しかし、この場合も前述の通り、あくまでも補助的な効果しか得られない場合もある。
           <p>また、 Form からの POST を対象とする場合は Origin ヘッダの方が用途として適しているだろう。
           <p>ただし、 Origin ヘッダにしても Referer ヘッダにしても、値が予測可能なため、任意のヘッダを含むことが可能な脆弱性が Extension や Plugin で見つかるとバイパスが可能となる。
-          <p>そうした脆弱性は、残念ながら <a href="https://insert-script.blogspot.com/2018/05/adobe-reader-pdf-client-side-request.html">最近でも見つかっている</a> ため、いまだに Token ベースの制御が行われている。
+          <p>そうした脆弱性は、残念ながら <a href="https://insert-script.blogspot.com/2018/05/adobe-reader-pdf-client-side-request.html" target=_blank>最近でも見つかっている</a> ため、いまだに Token ベースの制御が行われている。
           <p>(SameSite Cookie などが普及すればこの部分はもっと変わって行くだろうと思われるが、今回は触れない)
           <p>一方で、どんなに Token が正しくても Referer が明らかにおかしければ攻撃の可能性もあるため、やはり補助的な情報として採用は可能だ。
         </section>
@@ -244,7 +244,7 @@ Referer: https://example.com/index.html</code></pre>
           <p>画像などのサブリソースが直リンクによって無断転載されることを防ぐために、 Referer が他のサイトからのものであればブロックするといった使われ方が存在する。
           <p>確実に盗用を防ぐことはできず、あくまで補助的な効果となる。
           <p>逆に、 Referer を必須にしてしまうと、 Referer を送らないユーザには、意図したページ上でも画像が表示されないことになるため注意が必要だ。
-          <p>Origin ヘッダはサブリソースへの GET には <a href="https://wiki.mozilla.org/Security/Origin#When_Origin_is_served_.28and_when_it_is_.22null.22.29">付与されない</a> ため、代替はできない。
+          <p>Origin ヘッダはサブリソースへの GET には <a href="https://wiki.mozilla.org/Security/Origin#When_Origin_is_served_.28and_when_it_is_.22null.22.29" target=_blank>付与されない</a> ため、代替はできない。
         </section>
       </section>
       <section>
@@ -305,7 +305,7 @@ Referer: https://example.com/index.html</code></pre>
         <h2 id="referrer-policy_1"><a href="#referrer-policy_1">Referrer-Policy</a></h2>
         <p>Referrer-Policy は、ヘッダもしくは HTML の特定の要素に指定し、そのページからの遷移に伴う Referer ヘッダを制御するための Policy である。
         <ul>
-          <li><a href="https://w3c.github.io/webappsec-referrer-policy/">https://w3c.github.io/webappsec-referrer-policy/</a>
+          <li><a href="https://w3c.github.io/webappsec-referrer-policy/" target=_blank>https://w3c.github.io/webappsec-referrer-policy/</a>
         </ul>
         <p>執筆時点で、仕様には以下の Policy が定義されている。
         <ul>
@@ -562,7 +562,7 @@ Referer: https://example.com/index.html</code></pre>
           <li><code translate=no>&lt;meta&gt;</code> の referrer 属性
           <li>HTTP の Referrer-Policy ヘッダ
         </ol>
-        <p>仕様: <a href="https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute">https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute</a>
+        <p>仕様: <a href="https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute" target=_blank>https://html.spec.whatwg.org/multipage/urls-and-fetching.html#referrer-policy-attribute</a>
         <section>
           <h3 id="a-area-の-relnoreferrer"><a href="#a-area-の-relnoreferrer"><code translate=no>&lt;a&gt;</code>, <code translate=no>&lt;area&gt;</code> の <code translate=no>rel=noreferrer</code></a></h3>
           <p><code translate=no>&lt;a&gt;</code> と <code translate=no>&lt;area&gt;</code> には <code translate=no>rel=noreferrer</code> をつけることで、その遷移のリクエストを <code translate=no>no-referrer</code> の挙動とすることができる。
@@ -584,7 +584,7 @@ Referer: https://example.com/index.html</code></pre>
           <p>後述するページ全体への設定より優先されるため、特定のリンクだけ挙動を変えると言った使い方ができる。
           <p>つまり、 markdown から html に変換する CMS などを使っている場合は、ビルド時に外部へのリンクだけ policy をつけると言った使い方ができる。
           <p><code translate=no>&lt;a&gt;</code> には必ずこの属性をつけるが、 Policy 自体はページ全体のものに準拠したいといった場合は、属性を <code translate=no>&quot;&quot;</code> (空文字) にすれば良い。
-          <p>仕様: <a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute">https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute</a>
+          <p>仕様: <a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute" target=_blank>https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute</a>
         </section>
         <section>
           <h3 id="meta-の-referrer-属性"><a href="#meta-の-referrer-属性"><code translate=no>&lt;meta&gt;</code> の referrer 属性</a></h3>
@@ -592,21 +592,21 @@ Referer: https://example.com/index.html</code></pre>
           <pre class=html data-code=html><code translate=no class=language-html>&lt;meta name=&quot;referrer&quot; content=&quot;origin-when-cross-origin&quot;&gt;</code></pre>
           <p>サーバ指定だと影響範囲が大きい場合に CMS のテンプレートに追加するといった適用が考えられる。
           <p>なお、 <code translate=no>never</code> / <code translate=no>default</code> / <code translate=no>always</code> といった古い仕様が存在したため、対応表を元に新しい値を指定することが望ましい。
-          <p>仕様: <a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer">https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer</a>
+          <p>仕様: <a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" target=_blank>https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer</a>
         </section>
         <section>
           <h3 id="http-header"><a href="#http-header">HTTP Header</a></h3>
           <p>レスポンスの HTTP ヘッダで指定することにより、ページ全体に Policy を適用できる。
           <pre class=http data-code=http><code translate=no class=language-http>Referrer-Policy: no-referrer</code></pre>
           <p>コンテンツに手を入れられない場合や、漏れなく全てのレスポンスに適用したい場合などに利用できる。
-          <p>仕様: <a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn">https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn</a>
+          <p>仕様: <a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn" target=_blank>https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-header-dfn</a>
         </section>
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/referrer-policy/">https://labs.jxck.io/referrer-policy/</a>
+          <li><a href="https://labs.jxck.io/referrer-policy/" target=_blank>https://labs.jxck.io/referrer-policy/</a>
         </ul>
       </section>
       <section>

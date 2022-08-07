@@ -165,7 +165,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Chrome が予定している <code translate=no>&lt;link rel=stylesheet&gt;</code> の挙動の変更について、 Google Chrome チームの Jake が、興味深いブログを上げている。
-        <p><a href="https://jakearchibald.com/2016/link-in-body/">The future of loading CSS</a>
+        <p><a href="https://jakearchibald.com/2016/link-in-body/" target=_blank>The future of loading CSS</a>
         <p>この内容は、単に Chrome に対する変更だけではなく、 HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。
         <p>今回は、この内容を意訳+補足解説し、本サイトに適用していく。
       </section>
@@ -203,14 +203,14 @@
         <h2 id="css-の遅延ロード"><a href="#css-の遅延ロード">CSS の遅延ロード</a></h2>
         <p>この問題に対応するため、以下のような JS を用いて CSS を非同期ロードする方法がある。
         <ul>
-          <li><a href="https://github.com/filamentgroup/loadCSS">https://github.com/filamentgroup/loadCSS</a>
+          <li><a href="https://github.com/filamentgroup/loadCSS" target=_blank>https://github.com/filamentgroup/loadCSS</a>
         </ul>
         <p>スタイルが当たってない状態で表示されてほしくないコンポーネントには、 <code translate=no>display: none</code> などをつけておき、ロードされたスタイルの中で表示されるようにする。
         <p>この方法は、クリティカルレンダリングパスの改善方法の 1 つとして、多くのパフォーマンスエキスパートから推奨されている。
         <ul>
-          <li><a href="https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery">https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery</a>
-          <li><a href="https://www.filamentgroup.com/lab/performance-rwd.html">https://www.filamentgroup.com/lab/performance-rwd.html</a>
-          <li><a href="https://www.lukew.com/ff/entry.asp?1756">https://www.lukew.com/ff/entry.asp?1756</a>
+          <li><a href="https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery" target=_blank>https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery</a>
+          <li><a href="https://www.filamentgroup.com/lab/performance-rwd.html" target=_blank>https://www.filamentgroup.com/lab/performance-rwd.html</a>
+          <li><a href="https://www.lukew.com/ff/entry.asp?1756" target=_blank>https://www.lukew.com/ff/entry.asp?1756</a>
         </ul>
         <p>ただし、この方法には JS のライブラリが必須となる。
         <p>なぜなら、 Webkit は <code translate=no>&lt;link rel=stylesheet&gt;</code> が追加されると、それが JS によって追加されたものであれ、レンダリングをブロックしてしまうからである。
@@ -222,7 +222,7 @@
         <p>前述のパターンでは inline css でスタイルの当たっていない要素を隠し、非同期ロードした CSS でそれを出現させている。
         <p>これは、コンポーネントと対する CSS が複数になり、その複数の CSS が非同期に順不同で取得された場合に、要素がランダムに出現することを意味する。
         <p>最初の要素が表示され、読んでいる間に新しい要素の出現によりレイアウトが変わり、全部表示されるまで落ち着いて読めない。
-        <p>こうした Content-Shifting の問題は、広告が後から次々に表示されるページなどで多く発生し、<a href="https://www.youtube.com/watch?v=uPnEZd6wCtk">フラストレーションがたまった経験</a> は誰にでもあるだろう。
+        <p>こうした Content-Shifting の問題は、広告が後から次々に表示されるページなどで多く発生し、<a href="https://www.youtube.com/watch?v=uPnEZd6wCtk" target=_blank>フラストレーションがたまった経験</a> は誰にでもあるだろう。
         <iframe src="https://www.youtube.com/embed/uPnEZd6wCtk" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
         <p>本来なら、最初に見える部分=&quot;Above the fold&quot; を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。
         <p>サイズが分かっていれば、コンテンツを埋める枠のサイズを全て最初に指定することもできるが、以下の方法を使えば、どのような viewport でも適切に表示できることができる。
@@ -289,7 +289,7 @@
           </div>
         </dl>
         <p>Chrome は IE/Edge の方式に移ることを検討している。これにより Progressive Rendering パターンが可能になる。
-        <p>合わせて <a href="https://github.com/whatwg/html/pull/616"><code translate=no>&lt;body&gt;</code> 内の <code translate=no>&lt;link&gt;</code> を許可する仕様</a> の策定を進めている。
+        <p>合わせて <a href="https://github.com/whatwg/html/pull/616" target=_blank><code translate=no>&lt;body&gt;</code> 内の <code translate=no>&lt;link&gt;</code> を許可する仕様</a> の策定を進めている。
         <p>この変更は、後方互換であり、必要になるまでレンダリングされないだけである。
       </section>
       <section>
@@ -313,10 +313,10 @@
           <li>本サイトの CSS は、基本的には 1 つにまとめていたが、これをコンポーネント単位に分割した
           <li>記事をビルドする際に、 HTML のコンポーネントの前に <code translate=no>&lt;link rel=stylesheet&gt;</code> を追加した
           <li>Firefox 用の <code translate=no>&lt;script&gt; &lt;/script&gt;</code> はとりあえず無し
-          <li>まだ <code translate=no>&lt;body&gt;</code> 内の <code translate=no>&lt;link&gt;</code> は仕様上許容されてなので、 <a href="https://validator.w3.org/nu/">w3c validator</a> ではそこがひっかかる
+          <li>まだ <code translate=no>&lt;body&gt;</code> 内の <code translate=no>&lt;link&gt;</code> は仕様上許容されてなので、 <a href="https://validator.w3.org/nu/" target=_blank>w3c validator</a> ではそこがひっかかる
         </ul>
         <p>元のリソースが小さいため、ネットワークをスロットリングしても、大きな変化が確認できなかった。
-        <p>この記事のここのサンプルを、 <a href="https://labs.jxck.io">labs.jxck.io</a> に作成し、個々の CSS はサーバ側で遅延を入れる形で設定する。
+        <p>この記事のここのサンプルを、 <a href="https://labs.jxck.io" target=_blank>labs.jxck.io</a> に作成し、個々の CSS はサーバ側で遅延を入れる形で設定する。
       </section>
     </article>
   </main>

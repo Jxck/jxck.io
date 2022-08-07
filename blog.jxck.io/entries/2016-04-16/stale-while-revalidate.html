@@ -261,10 +261,10 @@
         <p>そこで提案されたのが <em>Stale-While-Revalidate</em> (SwR)という <code translate=no>Cache-Control</code> の拡張である。
         <p>簡単に言えば「<em>キャッシュから表示するが、裏で非同期にキャッシュを更新しておく</em>」という仕組みである。
         <ul>
-          <li><a href="https://tools.ietf.org/html/rfc5861">RFC 5861 - HTTP Cache-Control Extensions for Stale Content</a>
+          <li><a href="https://tools.ietf.org/html/rfc5861" target=_blank>RFC 5861 - HTTP Cache-Control Extensions for Stale Content</a>
         </ul>
         <p>なお、現時点では Chrome のみに実装されており、 flag を有効にすることで使用できる。
-        <p><a href="chrome://flags/#enable-stale-while-revalidate">chrome://flags/#enable-stale-while-revalidate</a>
+        <p><a href="chrome://flags/#enable-stale-while-revalidate" target=_blank>chrome://flags/#enable-stale-while-revalidate</a>
         <section>
           <h3 id="max-age"><a href="#max-age">max-age</a></h3>
           <p>まず、従来の方法で以下のヘッダがあった場合を考える。
@@ -307,10 +307,10 @@
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/stale-while-revalidate/">https://labs.jxck.io/stale-while-revalidate/</a>
+          <li><a href="https://labs.jxck.io/stale-while-revalidate/" target=_blank>https://labs.jxck.io/stale-while-revalidate/</a>
         </ul>
         <p>執筆時点では、実装ブラウザは Chrome のみであり、フラグを有効にすることで使用できる。
-        <p><a href="chrome://flags/#enable-stale-while-revalidate">chrome://flags/#enable-stale-while-revalidate</a>
+        <p><a href="chrome://flags/#enable-stale-while-revalidate" target=_blank>chrome://flags/#enable-stale-while-revalidate</a>
         <p>サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
         <p>そして、レスポンスに以下のヘッダを追加しているため、アクセスを繰り返せば挙動が確認できるだろう。
         <p>(Chrome はリロードではキャッシュを無視する場合があるため、画面に用意したリンクを踏むこと)
@@ -374,7 +374,7 @@
             <li>更新された日に RSS などからアクセスし、多少うろついて帰る
             <li>長いスパンを開けて、検索などからアクセスし、多少うろついて帰る
           </ul>
-          <p>現状、多くのサイトがキャッシュを設定しているため、ブラウザのローカルキャッシュは <a href="https://code.facebook.com/posts/964122680272229/web-performance-cache-efficiency-exercise/">2 日程度で消える</a> と言われている。
+          <p>現状、多くのサイトがキャッシュを設定しているため、ブラウザのローカルキャッシュは <a href="https://code.facebook.com/posts/964122680272229/web-performance-cache-efficiency-exercise/" target=_blank>2 日程度で消える</a> と言われている。
           <p>そのため、後者の長いスパンの中で、前回アクセス時のキャッシュの適用を期待するのは難しい。
           <p>どちらかというと、その日のアクセス後の導線上でキャッシュが効き、かつ、アクセス中に筆者が修正を適用しても、ある程度の速さで反映されて欲しい。
           <p>合わせて、筆者の設定ミスなどでブログが落ちていたとしても、その日のうちはキャッシュが代替表示として十分に機能すると考える。
@@ -397,8 +397,8 @@
       <section>
         <h2 id="link"><a href="#link">link</a></h2>
         <ul>
-          <li><a href="https://www.mnot.net/blog/2014/06/01/chrome_and_stale-while-revalidate">mnot&apos;s blog: Chrome and Stale-While-Revalidate</a>
-          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/chromium-dev/zchogDvIYrY/ZqWSdt3LJdMJ">[Web facing change PSA] Heads-up: Faster assets with the HTTP caching extension &quot;stale-while-revalidate&quot;</a>
+          <li><a href="https://www.mnot.net/blog/2014/06/01/chrome_and_stale-while-revalidate" target=_blank>mnot&apos;s blog: Chrome and Stale-While-Revalidate</a>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/chromium-dev/zchogDvIYrY/ZqWSdt3LJdMJ" target=_blank>[Web facing change PSA] Heads-up: Faster assets with the HTTP caching extension &quot;stale-while-revalidate&quot;</a>
         </ul>
       </section>
     </article>

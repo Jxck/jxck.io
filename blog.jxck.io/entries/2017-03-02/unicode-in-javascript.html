@@ -305,9 +305,9 @@ str.length // =&gt; 17</code></pre>
         <p>つまり、 JS が内部で保持している UTF-16 の配列を、元の Unicode の Code Point の配列に戻せば良さそうだ。
         <p>もちろん、この方法は知られている。
         <p>特に、ブラウザがこれをどう行うべきかというアルゴリズムは WHATWG の仕様に書かれているため、これを実装すれば Code Point の配列が手に入る。
-        <p><a href="https://www.w3.org/TR/WebIDL-1/#dfn-obtain-unicode">WebIDL-1#dfn-obtain-unicode</a>
+        <p><a href="https://www.w3.org/TR/WebIDL-1/#dfn-obtain-unicode" target=_blank>WebIDL-1#dfn-obtain-unicode</a>
         <p>筆者は、これを実装したライブラリも公開している。
-        <p><a href="https://github.com/Jxck/obtain-unicode">github.com/Jxck/obtain-unicode</a>
+        <p><a href="https://github.com/Jxck/obtain-unicode" target=_blank>github.com/Jxck/obtain-unicode</a>
         <p>Code Point の配列にしてしまえば、文字の数 (=== Code Point の数)を数える処理はそのまま length で行える。
         <pre class=js data-code=js><code translate=no class=language-js>str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
 codePoints = obtainUnicode(str);
@@ -503,11 +503,11 @@ Array.from(&apos;ǖ&apos;)
           <h3 id="unicode-text-segmentation"><a href="#unicode-text-segmentation">Unicode Text Segmentation</a></h3>
           <p>1 文字を <em>カーソルが 1 つ移動する分</em> と捉えているとなると、 Code Point の数を数えるだけではなく、合字も 1 文字と捉える必要が出てくる。
           <p>この <em>カーソルが 1 つ移動する分</em> を書記素クラスタと言い、 Code Point の列の中から、書記素クラスタの区切りを判別する方法は Unicode の中に定義されている。
-          <p><a href="http://unicode.org/reports/tr29/">UAX #29: Unicode Text Segmentation</a>
+          <p><a href="http://unicode.org/reports/tr29/" target=_blank>UAX #29: Unicode Text Segmentation</a>
           <p>この処理はそれなりに難しいものであるため、取り入れる際はライブラリを利用する方が良いだろう。
           <p>(どのライブラリが枯れているかは知らないため、ここでは紹介しないが、実装自体は探せばいくつかある。)
           <p>なお、 JavaScript に関しては、 TC39 にこれを標準で入れるというプロポーサルが上がっており、執筆時は Stage 3 である。
-          <p><a href="https://github.com/tc39/proposal-intl-segmenter">tc39/proposal-intl-segmenter: Unicode text segmentation for ECMAScript</a>
+          <p><a href="https://github.com/tc39/proposal-intl-segmenter" target=_blank>tc39/proposal-intl-segmenter: Unicode text segmentation for ECMAScript</a>
         </section>
       </section>
     </article>

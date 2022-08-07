@@ -199,7 +199,7 @@
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/webp/">https://labs.jxck.io/webp/</a>
+          <li><a href="https://labs.jxck.io/webp/" target=_blank>https://labs.jxck.io/webp/</a>
         </ul>
       </section>
       <section>
@@ -207,7 +207,7 @@
         <p>本サイトの画像は、 Mac で取得したスクリーンショットか cacoo で作成した図、その他フリー素材が中心である。
         <p>cacoo で作成した画像は SVG で書き出すため、主にスクリーンショットかフリー素材 が WebP 変換の対象となる。
         <p>WebP への変換ツールは、 Google が公式に提供しているバイナリか、 Linux/Mac ならパッケージで提供されているものを使うことができる。
-        <p><a href="https://developers.google.com/speed/webp/download">Downloading and Installing WebP</a>
+        <p><a href="https://developers.google.com/speed/webp/download" target=_blank>Downloading and Installing WebP</a>
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ brew install webp    # mac
 $ apt-get install webp # linux</code></pre>
@@ -229,18 +229,18 @@ Usage:
         <p>まずは、デフォルトの 80 で比較していく。
         <dl>
           <div>
-            <dt><a href="https://jxck.io/assets/img/jxck.png">jxck.png</a>
+            <dt><a href="https://jxck.io/assets/img/jxck.png" target=_blank>jxck.png</a>
             <dd>4061 byte
           </div>
           <div>
-            <dt><a href="https://jxck.io/assets/img/jxck.webp">jxck.webp</a>
+            <dt><a href="https://jxck.io/assets/img/jxck.webp" target=_blank>jxck.webp</a>
             <dd>1810 byte
           </div>
         </dl>
       </section>
       <section>
         <h2 id="picture-での-webp-の指定"><a href="#picture-での-webp-の指定"><code translate=no>&lt;picture&gt;</code> での WebP の指定</a></h2>
-        <p>ブラウザにおける <a href="https://caniuse.com/#feat=webp">WebP の対応はまだまだ限定的</a> であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
+        <p>ブラウザにおける <a href="https://caniuse.com/#feat=webp" target=_blank>WebP の対応はまだまだ限定的</a> であるため、非対応ブラウザには PNG/JPEG/GIF などを送る必要がある。
         <p>この方法として、 JS による補完や、 User-Agent を用いたサーバサイドでの分岐などが紹介される場合がある。
         <p>しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、 User-Agent での分岐は保守性の問題から避けるべきパターンの一つといえる。
         <p>現時点では、 HTML の <code translate=no>&lt;picture&gt;</code> を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
@@ -249,7 +249,7 @@ Usage:
   &lt;source type=image/webp srcset=hero-image.webp&gt;
   &lt;img src=hero-image.png alt=&quot;hero image&quot;&gt;
 &lt;/picture&gt;</code></pre>
-        <p>この場合、 WebP に対応しているが <code translate=no>&lt;picture&gt;</code> に対応していないブラウザがあるのかが気になるところだが、現状 <a href="https://caniuse.com/#search=picture">picture</a> に対応し <a href="https://caniuse.com/#search=webp">webp</a> に対応していないブラウザは無い。
+        <p>この場合、 WebP に対応しているが <code translate=no>&lt;picture&gt;</code> に対応していないブラウザがあるのかが気になるところだが、現状 <a href="https://caniuse.com/#search=picture" target=_blank>picture</a> に対応し <a href="https://caniuse.com/#search=webp" target=_blank>webp</a> に対応していないブラウザは無い。
         <p>したがって <code translate=no>&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、 <code translate=no>&lt;img&gt;</code> には PNG を指定する。
         <p>この指定は、現在 WebP に対応していないブラウザが将来対応した場合に、サイトに何も手を加える必要がない。
         <p>将来、新しい画像フォーマットが出た場合は <code translate=no>&lt;source&gt;</code> を加えることで、ブラウザに選択肢を増やせば良いため、 UA のメンテナンスと比べても、好ましい方法と言える。

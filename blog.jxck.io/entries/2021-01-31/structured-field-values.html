@@ -193,14 +193,14 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>HTTP Header の値を構造化する Structued Field Values の仕様が RFC になった。
         <ul>
-          <li><a href="https://www.rfc-editor.org/rfc/rfc8941.html">RFC 8941: Structured Field Values for HTTP</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc8941.html" target=_blank>RFC 8941: Structured Field Values for HTTP</a>
         </ul>
         <p>この仕様の詳細について、筆者の実装を交えて解説する。
       </section>
       <section>
         <h2 id="update"><a href="#update">Update</a></h2>
         <ul>
-          <li>2021-02-09: SFV が <a href="https://www.rfc-editor.org/rfc/rfc8941.html">RFC 8941</a> として公開されたため、 draft-19 へのリンクを RFC に置き換え。
+          <li>2021-02-09: SFV が <a href="https://www.rfc-editor.org/rfc/rfc8941.html" target=_blank>RFC 8941</a> として公開されたため、 draft-19 へのリンクを RFC に置き換え。
         </ul>
       </section>
       <section>
@@ -222,7 +222,7 @@ Permission-Policy: syncxhr &apos;none&apos; report-to=default-endpoint</code></p
           <h3 id="headers-から-field-values-へ"><a href="#headers-から-field-values-へ">Headers から Field Values へ</a></h3>
           <p>少し脱線するが、 httpbis では、別途並行して HTTP Semantics という仕様を策定している。(RFC 目前の仕様だ)
           <ul>
-            <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-14">draft-ietf-httpbis-semantics-14 - HTTP Semantics</a>
+            <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-14" target=_blank>draft-ietf-httpbis-semantics-14 - HTTP Semantics</a>
           </ul>
           <p>HTTP 1.x 系のプロトコルは、パケットのフォーマットとセマンティクスが密結合なところがあったが、 HTTP2 や 3 ではバイナリフォーマットが使われるようになった。
           <p>そこで、 HTTP プロトコルが備えていたセマンティクス(意味)と転送方法をきちんと分離し、セマンティクスだけを取り出したのが HTTP Semantics の仕様となる。
@@ -236,7 +236,7 @@ Permission-Policy: syncxhr &apos;none&apos; report-to=default-endpoint</code></p
           <h3 id="json-encoding-for-field-values-jfv"><a href="#json-encoding-for-field-values-jfv">JSON Encoding for Field Values (JFV)</a></h3>
           <p>既存のパーサを流用するという点で、わかりやすい方法の一つが Field Value を JSON にしてしまうという方針だ。
           <ul>
-            <li><a href="https://tools.ietf.org/html/draft-reschke-http-jfv-12">draft-reschke-http-jfv-12 - A JSON Encoding for HTTP Header Field Values</a>
+            <li><a href="https://tools.ietf.org/html/draft-reschke-http-jfv-12" target=_blank>draft-reschke-http-jfv-12 - A JSON Encoding for HTTP Header Field Values</a>
           </ul>
           <p>これは、ドラフト段階からいくつかの新しい Field 定義によって使われている。例えば Network Error Logging や Reporting API だ。
           <pre class=http data-code=http><code translate=no class=language-http>NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
@@ -251,8 +251,8 @@ Report-To: {
           <p>しかし、これでは問題があることが指摘され、代替として提案されたのが Structured Field Values だ。
           <p>なぜ JSON じゃだめなのかは、 Structured Field Values の中に書かれている。
           <ul>
-            <li><a href="https://www.rfc-editor.org/rfc/rfc8941.html#name-why-not-json">Structured Field Values for HTTP # Why Not JSON ?</a>
-            <li><a href="https://triple-underscore.github.io/http-header-structure-ja.html#why-not-json">翻訳: なぜ JSON じゃない?</a>
+            <li><a href="https://www.rfc-editor.org/rfc/rfc8941.html#name-why-not-json" target=_blank>Structured Field Values for HTTP # Why Not JSON ?</a>
+            <li><a href="https://triple-underscore.github.io/http-header-structure-ja.html#why-not-json" target=_blank>翻訳: なぜ JSON じゃない?</a>
           </ul>
           <p>詳細は原文にゆずるが、すでに汎用フォーマットとして使われている JSON をそのまま Field に応用はできないが、そこに制限を設けて注意喚起しても、実装も運用も追いつかないということだ。
           <p>JSON っぽいフォーマットだと、どうしても既存の JSON 実装が流用されることが想定されるため、 Field の要件に準拠した新しいフォーマットを作り、新しい実装を作ることで要件を満たすことになった。
@@ -414,12 +414,12 @@ Report-To: {
         <h2 id="対応仕様"><a href="#対応仕様">対応仕様</a></h2>
         <p>すでに SFV を用いて策定されている仕様も複数ある。
         <ul>
-          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-client-hints-15">draft-ietf-httpbis-client-hints-15 - HTTP Client Hints</a>
-          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-cache-header-07">draft-ietf-httpbis-cache-header-07 - The Cache-Status HTTP Response Header Field</a>
-          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-digest-headers-04">draft-ietf-httpbis-digest-headers-04 - Digest Headers</a>
-          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-proxy-status-02">draft-ietf-httpbis-proxy-status-02 - The Proxy-Status HTTP Response Header Field</a>
-          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-variants-06">draft-ietf-httpbis-variants-06 - HTTP Representation Variants</a>
-          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-message-signatures-01">draft-ietf-httpbis-message-signatures-01 - Signing HTTP Messages</a>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-client-hints-15" target=_blank>draft-ietf-httpbis-client-hints-15 - HTTP Client Hints</a>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-cache-header-07" target=_blank>draft-ietf-httpbis-cache-header-07 - The Cache-Status HTTP Response Header Field</a>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-digest-headers-04" target=_blank>draft-ietf-httpbis-digest-headers-04 - Digest Headers</a>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-proxy-status-02" target=_blank>draft-ietf-httpbis-proxy-status-02 - The Proxy-Status HTTP Response Header Field</a>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-variants-06" target=_blank>draft-ietf-httpbis-variants-06 - HTTP Representation Variants</a>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-message-signatures-01" target=_blank>draft-ietf-httpbis-message-signatures-01 - Signing HTTP Messages</a>
         </ul>
         <p>いずれもドラフトだが、実例の雰囲気がわかるよう参考として引用する。
         <p>特に httpbis の新しい仕様は基本的に SFV を使っていくことになるため、今後触れる機会も増えるだろう。
@@ -515,22 +515,22 @@ Report-To: {
         <h2 id="実装"><a href="#実装">実装</a></h2>
         <p>実装は以下に公開している。
         <ul>
-          <li><a href="https://github.com/jxck/structured-field-values">https://github.com/jxck/structured-field-values</a>
+          <li><a href="https://github.com/jxck/structured-field-values" target=_blank>https://github.com/jxck/structured-field-values</a>
         </ul>
         <p>npm にも上げており、 ES Module で書いてあるため Browser でもそのまま使える。
         <ul>
-          <li><a href="https://www.npmjs.com/package/structured-field-values">https://www.npmjs.com/package/structured-field-values</a>
+          <li><a href="https://www.npmjs.com/package/structured-field-values" target=_blank>https://www.npmjs.com/package/structured-field-values</a>
         </ul>
         <section>
           <h3 id="実装による検証"><a href="#実装による検証">実装による検証</a></h3>
           <p>この実装は、 SFV の実装を開発するというだけでなく、実装を開発することで仕様の不備を見つけることを目的として始めた。
           <p>そのため、パフォーマンスやメンテナンスなどを考えず、仕様にある汎用的なアルゴリズムを変数名やループ処理含めて極力そのまま実装している。
           <ul>
-            <li><a href="https://github.com/Jxck/structured-field-values/blob/54cfea375be670cfcb873b6c0c4c4fc57e642bc9/index.js">Implementation based on spec Algorithm</a>
+            <li><a href="https://github.com/Jxck/structured-field-values/blob/54cfea375be670cfcb873b6c0c4c4fc57e642bc9/index.js" target=_blank>Implementation based on spec Algorithm</a>
           </ul>
           <p>また、本来 BNF は参考なので、仕様についても機械的な検証などはあまり行われてないことがほとんどだが、それを検証する意味で再起降下パーサを手書きした実装も行った。
           <ul>
-            <li><a href="https://github.com/Jxck/structured-field-values/blob/54cfea375be670cfcb873b6c0c4c4fc57e642bc9/bnf.js">Implementation based on spec ABNF</a>
+            <li><a href="https://github.com/Jxck/structured-field-values/blob/54cfea375be670cfcb873b6c0c4c4fc57e642bc9/bnf.js" target=_blank>Implementation based on spec ABNF</a>
           </ul>
           <p>結果、 RFC Editor Queue に間に合わず取り込まれなかったものもあるが、ドキュメントの言い回しや BNF の不備などを報告している。
           <p>RFC が出れば一旦の役目を終えるため、使い勝手やパフォーマンスの改善を行ってから 1.0.0 を公開する予定だ。
@@ -539,13 +539,13 @@ Report-To: {
           <h3 id="テストケース"><a href="#テストケース">テストケース</a></h3>
           <p>最近の IETF の良い傾向として、こうした提案に付随してテストケースが公開されている。
           <ul>
-            <li><a href="https://github.com/httpwg/structured-field-tests">httpwg/structured-field-tests: Tests for HTTP Structured Field Values</a>
+            <li><a href="https://github.com/httpwg/structured-field-tests" target=_blank>httpwg/structured-field-tests: Tests for HTTP Structured Field Values</a>
           </ul>
           <p>実装する場合はこれを流すと互換性が上がるため、筆者もすべてパスしている。
         </section>
         <section>
           <h3 id="他-draft-の検証"><a href="#他-draft-の検証">他 Draft の検証</a></h3>
-          <p>本来は SFV のドラフトの検証用に書いたものだが、ある日 <a href="https://github.com/Jxck/structured-field-values/issues/1">Issue</a> で SFV を採用している別ドラフトの Example が SFV として正しいか相談を受けた。
+          <p>本来は SFV のドラフトの検証用に書いたものだが、ある日 <a href="https://github.com/Jxck/structured-field-values/issues/1" target=_blank>Issue</a> で SFV を採用している別ドラフトの Example が SFV として正しいか相談を受けた。
           <p>前述のサンプルにもあるように、まだ SFV の RFC は出ておらず実装も少ないため、他のドラフト作成者も雰囲気で SFV の Example を書いている場面が多く、パースできないサンプルも多く見つかっている。
           <p>後述する DEMO などを使えば簡単に検証できるので、今後はこの実装を使ってそうした Example の修正などをサポートするのに使っていきたい。
         </section>
@@ -560,7 +560,7 @@ Report-To: {
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://jxck.github.io/structured-field-values/demo.html">https://jxck.github.io/structured-field-values/demo.html</a>
+          <li><a href="https://jxck.github.io/structured-field-values/demo.html" target=_blank>https://jxck.github.io/structured-field-values/demo.html</a>
         </ul>
       </section>
       <section>
@@ -572,7 +572,7 @@ Report-To: {
               <li>
                 RFC 8941: Structured Field Values for HTTP
                 <ul>
-                  <li><a href="https://www.rfc-editor.org/rfc/rfc8941.html">https://www.rfc-editor.org/rfc/rfc8941.html</a>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc8941.html" target=_blank>https://www.rfc-editor.org/rfc/rfc8941.html</a>
                 </ul>
               </li>
             </ul>
@@ -588,14 +588,14 @@ Report-To: {
           <li>
             DEMO
             <ul>
-              <li><a href="https://jxck.github.io/structured-field-values/demo.html">https://jxck.github.io/structured-field-values/demo.html</a>
+              <li><a href="https://jxck.github.io/structured-field-values/demo.html" target=_blank>https://jxck.github.io/structured-field-values/demo.html</a>
             </ul>
           </li>
           <li>Blog
           <li>
             Presentation
             <ul>
-              <li><a href="https://speakerdeck.com/jxck/abnf-for-protocol-parser-at-ietf">https://speakerdeck.com/jxck/abnf-for-protocol-parser-at-ietf</a>
+              <li><a href="https://speakerdeck.com/jxck/abnf-for-protocol-parser-at-ietf" target=_blank>https://speakerdeck.com/jxck/abnf-for-protocol-parser-at-ietf</a>
             </ul>
           </li>
           <li>Issues

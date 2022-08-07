@@ -208,9 +208,9 @@
         </ul>
         <section>
           <h3 id="chrome-platform-status"><a href="#chrome-platform-status">Chrome Platform Status</a></h3>
-          <p>まず最初に、現状を把握する意味では Chrome Platform Status のページがある。元々は名前の通り Chrome だけの Status だったが、ここは <a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/R8oZsw6RLGs/m/l0KOUyuWAQAJ">Web の Status</a> として今後も他のブラウザ実装も含めて整備される流れのようだ。
+          <p>まず最初に、現状を把握する意味では Chrome Platform Status のページがある。元々は名前の通り Chrome だけの Status だったが、ここは <a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/R8oZsw6RLGs/m/l0KOUyuWAQAJ" target=_blank>Web の Status</a> として今後も他のブラウザ実装も含めて整備される流れのようだ。
           <ul>
-            <li><a href="https://www.chromestatus.com/feature/5669293909868544">https://www.chromestatus.com/feature/5669293909868544</a>
+            <li><a href="https://www.chromestatus.com/feature/5669293909868544" target=_blank>https://www.chromestatus.com/feature/5669293909868544</a>
           </ul>
           <p>これが現状だけを示す意味で最もスッキリまとまっている。
           <p>しかし、もう少し議論も含めて把握するために、筆者は Intents からたどることが多い。
@@ -220,7 +220,7 @@
           <h3 id="blink-dev"><a href="#blink-dev">blink-dev</a></h3>
           <p>WebCodecs の場合は、 Google が提案/実装を主導しているため、 blink-dev で進捗がわかる。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev">blink-dev | Google Group</a>
+            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev" target=_blank>blink-dev | Google Group</a>
           </ul>
           <p>この ML は、主に Chrome のエンジンである blink の開発に関するアナウンスが行われている。
           <p>大抵の新しい API は Chrome が何かしら作業をしている場合が多いので、まず blink-dev から当たると何かしら取っ掛かりが得られる。
@@ -291,14 +291,14 @@
           <p>もし該当の機能で何かしらヒットすれば、そこから調査を始めるのがわかりやすいだろう。
           <p>WebCodecs の場合は、 Intent to Experiment まで出ているので、実装は進みトライアルが始まろうとしていることがわかる。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/7OdxQf5HnlQ/m/oyb3oFVaAAAJ">Intent to Experiment: WebCodecs</a>
+            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/7OdxQf5HnlQ/m/oyb3oFVaAAAJ" target=_blank>Intent to Experiment: WebCodecs</a>
           </ul>
           <p>また、その中で以下のような情報が入っている。
           <ul>
-            <li>Explainer: <a href="https://github.com/WICG/web-codecs/blob/master/explainer.md">https://github.com/WICG/web-codecs/blob/master/explainer.md</a>
-            <li>Design docs: <a href="https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw/edit">https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw/edit</a>
-            <li>TAG review: <a href="https://github.com/w3ctag/design-reviews/issues/433">https://github.com/w3ctag/design-reviews/issues/433</a>
-            <li>Draft Spec: <a href="https://wicg.github.io/web-codecs/">https://wicg.github.io/web-codecs/</a>
+            <li>Explainer: <a href="https://github.com/WICG/web-codecs/blob/master/explainer.md" target=_blank>https://github.com/WICG/web-codecs/blob/master/explainer.md</a>
+            <li>Design docs: <a href="https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw/edit" target=_blank>https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw/edit</a>
+            <li>TAG review: <a href="https://github.com/w3ctag/design-reviews/issues/433" target=_blank>https://github.com/w3ctag/design-reviews/issues/433</a>
+            <li>Draft Spec: <a href="https://wicg.github.io/web-codecs/" target=_blank>https://wicg.github.io/web-codecs/</a>
           </ul>
           <p>これが調べていく起点となり、 Intents が見つからなかった場合は、仕様のリポジトリなどを探すことになる。
           <p>中身を順に解説していく。
@@ -307,11 +307,11 @@
       <section>
         <h2 id="explainer"><a href="#explainer">Explainer</a></h2>
         <p>新しい仕様が提案されるとき、まず最初に「こんな機能が欲しい」という概要とモチベーションを説明する <em>Explainer</em> が作られる。
-        <p>特に置かれる場所もフォーマットも決まってないため、 Google Docs, GitHub, Issue, ML, <a href="https://discourse.wicg.io/">Discourse</a> の投稿だったりすることもある。
+        <p>特に置かれる場所もフォーマットも決まってないため、 Google Docs, GitHub, Issue, ML, <a href="https://discourse.wicg.io/" target=_blank>Discourse</a> の投稿だったりすることもある。
         <p>いきなり仕様や実装を読むよりも、その仕様の概要を抑えるという意味では、まずこの Explainer を探して読み、概要を把握するのが良いだろう。
         <p>WebCodecs の場合は以下だ。
         <ul>
-          <li>Explainer: <a href="https://github.com/WICG/web-codecs/blob/master/explainer.md">https://github.com/WICG/web-codecs/blob/master/explainer.md</a>
+          <li>Explainer: <a href="https://github.com/WICG/web-codecs/blob/master/explainer.md" target=_blank>https://github.com/WICG/web-codecs/blob/master/explainer.md</a>
         </ul>
       </section>
       <section>
@@ -326,7 +326,7 @@
         <p>W3C の Tag (Technical Architecture Group) というグループのレビューを指す。
         <p>要するに、 Web 標準のエキスパートたちによるレビュープロセスで、これを通すのが基本だ。
         <ul>
-          <li><a href="https://github.com/w3ctag/design-reviews/issues/433">https://github.com/w3ctag/design-reviews/issues/433</a>
+          <li><a href="https://github.com/w3ctag/design-reviews/issues/433" target=_blank>https://github.com/w3ctag/design-reviews/issues/433</a>
         </ul>
         <p>GitHub の Issue で行われており、セキュリティや互換性など、様々な側面からレビューがされるため、 API にどういう懸念があり、どう解決したのかなどがわかる。
       </section>
@@ -338,12 +338,12 @@
           <h3 id="mozilla-standard-position"><a href="#mozilla-standard-position">Mozilla Standard Position</a></h3>
           <p>Mozilla の Position についてまとまったダッシュボードがある。
           <ul>
-            <li><a href="https://mozilla.github.io/standards-positions/">https://mozilla.github.io/standards-positions/</a>
+            <li><a href="https://mozilla.github.io/standards-positions/" target=_blank>https://mozilla.github.io/standards-positions/</a>
           </ul>
           <p>元々は、 Chrome が進めている仕様に対して明確な No(Harmful) を示すために作られた印象があるが、今では様々な仕様のポジションがわかって便利だ。
           <p>ポジションのリクエストは誰にでもできるので、まだリストにないもので、 Mozilla がどう考えているかを知りたい場合は、 Issue を立てるところから始めることができる。
           <ul>
-            <li><a href="https://mozilla.github.io/standards-positions/#web-codecs">https://mozilla.github.io/standards-positions/#web-codecs</a>
+            <li><a href="https://mozilla.github.io/standards-positions/#web-codecs" target=_blank>https://mozilla.github.io/standards-positions/#web-codecs</a>
           </ul>
           <p>逆に Issue を探してログを読めば、 Mozilla のスタンスがより細かく把握できる。
         </section>
@@ -352,7 +352,7 @@
           <p>Safari の場合は特にページが有るわけではなく、主に webkit-dev の ML で、 Chrome 開発者が &quot;Request for Position&quot; というタイトルの投稿をして聞いているというのが現状だ。
           <p>なので、基本的に Chrome 開発者が必要に応じて投げており、網羅性はそこまでない。解答も付いたり付かなかったり、付いても Apple の人間では無いっぽい人のコメントだったりと、気をつけるべき点が多い。
           <ul>
-            <li><a href="https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html">https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html</a>
+            <li><a href="https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html" target=_blank>https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html</a>
           </ul>
           <p>筆者は、キーマンとして &quot;Ryosuke Niwa&quot; さんの返事に注目している。
         </section>
@@ -374,7 +374,7 @@
           <h3 id="rfc"><a href="#rfc">RFC</a></h3>
           <p>例えば WebSocket の場合で見てみよう。 WebSocket は既に RFC になっており RFC6455 がそれにあたる。
           <ul>
-            <li><a href="https://tools.ietf.org/html/rfc6455">https://tools.ietf.org/html/rfc6455</a>
+            <li><a href="https://tools.ietf.org/html/rfc6455" target=_blank>https://tools.ietf.org/html/rfc6455</a>
           </ul>
           <p>RFC が出ていればそれを読めば良い。が、読み始める前にかならず確認すべきヘッダが 3 つある。
           <ul>
@@ -423,7 +423,7 @@
             </picture>
           </p>
           <ul>
-            <li><a href="https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-17">https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-17</a>
+            <li><a href="https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-17" target=_blank>https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-17</a>
           </ul>
           <p>これは、 WebSocket を策定する Working Group である Hybi (hypertext bidirectional) で議論された RFC になる前のドラフトだ、バージョンが 00 ~ 17 まであり、 18 相当が RFC になったことがわかる。
           <p>URL を見ると、 IETF の hybi が策定している the websocket protocol の v17 であることが読み取れるだろう。
@@ -440,7 +440,7 @@
             </picture>
           </p>
           <ul>
-            <li><a href="https://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76">https://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76</a>
+            <li><a href="https://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76" target=_blank>https://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76</a>
           </ul>
           <p>これは、 Hybi WG で議論する前に WebSocket の最初のデザインを書いた Hixie (Ian Hickson) 個人のドラフトだ。
           <p>このようにドラフトは最初個人が書き始め、議論を重ねた結果 WG で扱うべき(みんなで広く議論すべき)となったら、 WG のアイテムとして採用される。
@@ -449,7 +449,7 @@
           <h3 id="ドラフトの状態"><a href="#ドラフトの状態">ドラフトの状態</a></h3>
           <p>ここまでのことがわかると、例えば以下のようなドラフトを見たときに読み取れる情報はこうなる。
           <ul>
-            <li><a href="https://tools.ietf.org/html/draft-ietf-quic-http-32">https://tools.ietf.org/html/draft-ietf-quic-http-32</a>
+            <li><a href="https://tools.ietf.org/html/draft-ietf-quic-http-32" target=_blank>https://tools.ietf.org/html/draft-ietf-quic-http-32</a>
           </ul>
           <p>
             <picture>
@@ -470,11 +470,11 @@
           <p>ヘッダ上部にある <code translate=no>[WG]</code> というリンクから QUIC WG の作業全体が把握でき、そこにある <code translate=no>[List Archive]</code> というリンクが ML になる。
           <p>IETF は基本的には ML で議論行われ、ここを遡るとどんな議論があるのかわかる。全部見るのが大変な場合は、ドラフトに関わるキーマンを見つけ、その人の返信を見るだけでも役に立つ。
           <ul>
-            <li><a href="https://mailarchive.ietf.org/arch/browse/quic/">https://mailarchive.ietf.org/arch/browse/quic/</a>
+            <li><a href="https://mailarchive.ietf.org/arch/browse/quic/" target=_blank>https://mailarchive.ietf.org/arch/browse/quic/</a>
           </ul>
           <p>また QUIC のドラフトには、ドラフト内に GitHub へのリンクがあるように、最近は GitHub で管理されることも増えた。
           <ul>
-            <li><a href="https://github.com/quicwg/base-drafts">https://github.com/quicwg/base-drafts</a>
+            <li><a href="https://github.com/quicwg/base-drafts" target=_blank>https://github.com/quicwg/base-drafts</a>
           </ul>
           <p>GitHub の運用はドラフトによってまちまちで、 Issue / PR を受け付けるものや、単なるホスティングで議論は ML でやるように促すものもあるので、 README をよく読んでから行動したい。
         </section>
@@ -483,12 +483,12 @@
           <p>IETF は、年に 3 回みんなで集まって議論する総会を開催している。参加料さえ払えば誰でも出られるが、少し追うくらいなら、 WG のミーティングのログを追う方法を抑えておくとよいだろう。
           <p>ちょうど今 IETF109 がオンライン開催されており、 IETF のページからそこに飛ぶ。
           <ul>
-            <li><a href="https://www.ietf.org/how/meetings/109/">https://www.ietf.org/how/meetings/109/</a>
+            <li><a href="https://www.ietf.org/how/meetings/109/" target=_blank>https://www.ietf.org/how/meetings/109/</a>
           </ul>
           <p>そこに <code translate=no>Agenda (HTML)</code> というリンクがあるので、ここでスケジュールがわかる。 WG によっては IETF でミーティングを開催しないこともあるので、必ずあるとは限らない点には注意したい。
           <p>QUIC であれば以下のようにアレンジされていることがわかる。
           <ul>
-            <li><a href="https://datatracker.ietf.org/meeting/109/materials/agenda-109-quic-00">https://datatracker.ietf.org/meeting/109/materials/agenda-109-quic-00</a>
+            <li><a href="https://datatracker.ietf.org/meeting/109/materials/agenda-109-quic-00" target=_blank>https://datatracker.ietf.org/meeting/109/materials/agenda-109-quic-00</a>
           </ul>
           <p>開催方法も WG によってさまざまだが、基本は開催前に Agenda(予定表) と開催後に Minutes(議事録)が出るのは大体共通している。 Minutes には使われたスライドのリンクなども載るので、とにかく Minutes を探せば直近までの議論のまとめがわかるだろう。
         </section>
@@ -498,7 +498,7 @@
         <p>主にブラウザ API に関して策定される組織なため、 HTML や CSS から、 Service Worker や CSP といった様々な API が議論策定されている。ここは API が多岐にわたるため、探すのは少し慣れが必要だ。
         <p>慣れない人に一番オススメなのは MDN の仕様へのリンクを見ることだ、例えば CSP のページを見てみるとこのように関連仕様へのリンクがまとまっている。
         <ul>
-          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy</a>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target=_blank>https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy</a>
         </ul>
         <p>
           <picture>
@@ -522,9 +522,9 @@
           </p>
           <p>例えば CSP で言うと、検索すると以下の様にいくつかの URL が見つかるかもしれない。
           <ul>
-            <li><a href="https://www.w3.org/TR/2016/WD-CSP3-20160913/">https://www.w3.org/TR/2016/WD-CSP3-20160913/</a>
-            <li><a href="https://www.w3.org/TR/CSP3/">https://www.w3.org/TR/CSP3/</a>
-            <li><a href="https://w3c.github.io/webappsec-csp/">https://w3c.github.io/webappsec-csp/</a>
+            <li><a href="https://www.w3.org/TR/2016/WD-CSP3-20160913/" target=_blank>https://www.w3.org/TR/2016/WD-CSP3-20160913/</a>
+            <li><a href="https://www.w3.org/TR/CSP3/" target=_blank>https://www.w3.org/TR/CSP3/</a>
+            <li><a href="https://w3c.github.io/webappsec-csp/" target=_blank>https://w3c.github.io/webappsec-csp/</a>
           </ul>
           <p>w3c には仕様にスナップショットを打つプロセスがあるが、とにかく最新を見たい場合は、ヘッダにある <code translate=no>[Editor&apos;s Draft]</code> というリンクの URL を見ると良いだろう(上のリストだと最後のもの)。これが、著者が作業している Working Copy となる。
           <p>また、ここで GitHub のリポジトリも確認できることが多い。
@@ -533,12 +533,12 @@
           <h3 id="wg"><a href="#wg">WG</a></h3>
           <p>CSP の場合は Feedback のところに <code translate=no>public-webappsec</code> と書かれていたが、これが W3C における Working Group になる。
           <ul>
-            <li><a href="https://www.w3.org/2011/webappsec/">https://www.w3.org/2011/webappsec/</a>
+            <li><a href="https://www.w3.org/2011/webappsec/" target=_blank>https://www.w3.org/2011/webappsec/</a>
           </ul>
           <p>ここにいくと、他のドラフトや ML のリンクが探せるだろう。
           <p>Working Group のリストは以下にある。
           <ul>
-            <li><a href="https://www.w3.org/groups/wg/">https://www.w3.org/groups/wg/</a>
+            <li><a href="https://www.w3.org/groups/wg/" target=_blank>https://www.w3.org/groups/wg/</a>
           </ul>
           <p>名前からだいたい何をやってそうかわかるだろう。
         </section>
@@ -547,15 +547,15 @@
           <p>前述の WG にまだ属してないもの、もっと早い段階のものは、個人が提案として書いて、その後に WICG という Incubation のグループで議論されることもある。
           <p>例えば WebCodecs はまだ WG が無いため WICG で管理されている。
           <ul>
-            <li><a href="https://wicg.github.io/web-codecs/">https://wicg.github.io/web-codecs/</a>
+            <li><a href="https://wicg.github.io/web-codecs/" target=_blank>https://wicg.github.io/web-codecs/</a>
           </ul>
           <p>WICG のリポジトリは全部 GitHub にあるため、ここは比較的新しい仕様が集まっていることになる。(Portal, Display Locking, WebUSB etc)
           <ul>
-            <li><a href="https://github.com/wicg/">https://github.com/wicg/</a>
+            <li><a href="https://github.com/wicg/" target=_blank>https://github.com/wicg/</a>
           </ul>
           <p>WICG でもう 1 つ知っておきたいのが Discourse だ。
           <ul>
-            <li><a href="https://discourse.wicg.io/">https://discourse.wicg.io/</a>
+            <li><a href="https://discourse.wicg.io/" target=_blank>https://discourse.wicg.io/</a>
           </ul>
           <p>ここは、質問や提案をわりと自由にできるフォーラムになっており、例えば「こういう仕様が欲しい」とか「これについて聞きたいけどどこで聞けばいいかわからない」といった場合に、とりあえずここに投げてみると良いだろう。
         </section>
@@ -564,7 +564,7 @@
           <p>TPAC は一年に一度開かれる W3C の総会だ。 W3C は会員じゃないと入れないため、自分の所属する会社が会員だったりしない限り参加は難しい。しかし Minutes や Slide は基本的に公開されるため、議論を追うことは可能だ。
           <p>TPAC のスケジュールのページを見つけると良い。
           <ul>
-            <li><a href="https://www.w3.org/2020/10/TPAC/breakout-schedule.html#calendar">https://www.w3.org/2020/10/TPAC/breakout-schedule.html#calendar</a>
+            <li><a href="https://www.w3.org/2020/10/TPAC/breakout-schedule.html#calendar" target=_blank>https://www.w3.org/2020/10/TPAC/breakout-schedule.html#calendar</a>
           </ul>
           <p>あとは見たいトピックの会議の Minutes を見つければ、スライドのリンクなどもあるだろう。
         </section>
@@ -577,14 +577,14 @@
           <h3 id="proposals"><a href="#proposals">Proposals</a></h3>
           <p>機能の提案は以下のリポジトリで管理されている。
           <ul>
-            <li><a href="https://github.com/tc39/proposals">https://github.com/tc39/proposals</a>
+            <li><a href="https://github.com/tc39/proposals" target=_blank>https://github.com/tc39/proposals</a>
           </ul>
           <p>Stage が 0 ~ 4 まであり、以下のようになっている。
           <ul>
-            <li><a href="https://tc39.es/process-document/">https://tc39.es/process-document/</a>
+            <li><a href="https://tc39.es/process-document/" target=_blank>https://tc39.es/process-document/</a>
           </ul>
           <p>特に Stage 4 になる条件として、最低 2 つの実装が必要なので、例えば v8 だけで動いても 4 にはならない。他のベンダに実装の意図が無ければそこから先に進まないこともありえる。
-          <p>策定が進まなければ <a href="https://github.com/tc39/proposals/blob/master/inactive-proposals.md">Inactive</a> として終わっていくので、 Stage に載ってるものが(たとえ Stage 3 でも)そのまま ECMAScript の仕様に入るとは限らないため、記事やブログを書くときは注意したい。
+          <p>策定が進まなければ <a href="https://github.com/tc39/proposals/blob/master/inactive-proposals.md" target=_blank>Inactive</a> として終わっていくので、 Stage に載ってるものが(たとえ Stage 3 でも)そのまま ECMAScript の仕様に入るとは限らないため、記事やブログを書くときは注意したい。
         </section>
         <section>
           <h3 id="ecmascript"><a href="#ecmascript">ECMAScript</a></h3>
@@ -596,12 +596,12 @@
           <p>TC39 のミーティングは、以前は奇数月に開催されていたが、作業が増えたため人を増やし開催が増えている。
           <p>いつ開催するかは、 Agenda のリポジトリを見るとわかる。
           <ul>
-            <li><a href="https://github.com/tc39/agendas">https://github.com/tc39/agendas</a>
+            <li><a href="https://github.com/tc39/agendas" target=_blank>https://github.com/tc39/agendas</a>
           </ul>
           <p>ここで、議題などが把握できる。
           <p>終わったら、 Minutes が以下に公開される。リポジトリが別なこととちょっとラグがあることには注意だ。
           <ul>
-            <li><a href="https://github.com/tc39/notes">https://github.com/tc39/notes</a>
+            <li><a href="https://github.com/tc39/notes" target=_blank>https://github.com/tc39/notes</a>
           </ul>
           <p>ミーティングで作業が進めば、 Stage の変更がある。そのあたりも note から確認できる。
         </section>

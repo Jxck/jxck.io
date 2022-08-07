@@ -208,7 +208,7 @@
         <p>そこで時期焦燥かと思い寝かしたが、進捗を見てるとあと数年は寝かすことになりそうだった(特に JFV-&gt;SH)。
         <p>そんななか、最後のバグについて報告した issue が、 1 年がかりくらいでやっと修正された。
         <ul>
-          <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=917945">917945 - Reports from ReportingObserver aren&apos;t JSON Serializable</a>
+          <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=917945" target=_blank>917945 - Reports from ReportingObserver aren&apos;t JSON Serializable</a>
         </ul>
         <p>先日 Chrome80 でやっと挙動を確認したため、これを期にこの記事を公開することにした。
         <p>多くの問題がまだ解決しているとは言えず、実装もまだまだであるため、 Reporting 全般の途中経過だと思ってほしい。
@@ -218,7 +218,7 @@
         <p>いくつかの話が関わるので、一度全体像をまとめる。
         <p>Reporting API は、簡単に言えば「ブラウザの中で起こったこと」を情報として取得する API だ。
         <ul>
-          <li><a href="https://w3c.github.io/reporting/">Reporting API</a>
+          <li><a href="https://w3c.github.io/reporting/" target=_blank>Reporting API</a>
         </ul>
         <p>この仕様には Report の取得方法と言った全体の枠組みが定義されており、実際に取得できる情報は、目的ごとに別の仕様ができる(後述)。
         <p>Report の取得方法は大きく 2 つある。
@@ -241,7 +241,7 @@
         <p>CSP は JS の実行をブロックする場合があるので、その Report は JS で収集するより、ブラウザが直接送信する方が理にかなっている。
         <p>その後、他にも Report 送信を伴う API が提案された。
         <p>すると、個々のヘッダに report-uri を書くより、 Reporting エンドポイントをまとめて記述できる Report-To ヘッダを定義し、各 Policy がそれを参照する形に整理するという方向になった。
-        <p>(<a href="https://github.com/WICG/feature-policy/issues/142">Feature-Policy の report-to 対応は議論中</a>)
+        <p>(<a href="https://github.com/WICG/feature-policy/issues/142" target=_blank>Feature-Policy の report-to 対応は議論中</a>)
         <pre class=http data-code=http data-path=./2.http><code translate=no class=language-http>Content-Security-Policy: default-src &apos;self&apos; report-to=default-endpoint
 Feature-Policy: syncxhr &apos;none&apos; report-to=default-endpoint
 NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
@@ -299,7 +299,7 @@ observer.observe();</code></pre>
                }
              ]
            }</code></pre>
-          <p>このヘッダの値は、 JSON 形式(<a href="https://tools.ietf.org/html/draft-reschke-http-jfv">JFV</a>)が採用されている。
+          <p>このヘッダの値は、 JSON 形式(<a href="https://tools.ietf.org/html/draft-reschke-http-jfv" target=_blank>JFV</a>)が採用されている。
           <p>1 つのグループは以下のメンバーを持つ
           <ul>
             <li>group(optional): グループの識別子で、他のヘッダの report-to ディレクティブで指定される。デフォルトは &quot;default&quot;
@@ -314,10 +314,10 @@ observer.observe();</code></pre>
               </ul>
             </li>
           </ul>
-          <p>また、グループを複数指定するとき、配列のように記述しつつも前後の <code translate=no>[</code> と <code translate=no>]</code> は <a href="https://w3c.github.io/reporting/#header">省略</a> する点に注意したい。
+          <p>また、グループを複数指定するとき、配列のように記述しつつも前後の <code translate=no>[</code> と <code translate=no>]</code> は <a href="https://w3c.github.io/reporting/#header" target=_blank>省略</a> する点に注意したい。
           <p>上記の例は、 endpoint を 1 つ持つ <code translate=no>default</code> グループと、 CSP 用に 2 つのエンドポイントを持ち、負荷分散とフェイルオーバーを構成した <code translate=no>cap-endpoint</code> の 2 つがある。
           <ul>
-            <li><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/7dykNEdqvzA/DWcGTm4tDwAJ">Intent to implement: report-to header as part of Reporting API</a>
+            <li><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/7dykNEdqvzA/DWcGTm4tDwAJ" target=_blank>Intent to implement: report-to header as part of Reporting API</a>
           </ul>
         </section>
         <section>
@@ -325,15 +325,15 @@ observer.observe();</code></pre>
           <p>jfv は、ヘッダの値に統一された構造化を持ち込もうと、 JSON をベースとして始まったドラフトだ。
           <p>しかし、 JSON よりも独自に構造を定義した方が良いのではという流れで、対案として SH (Structured Header) が提案された。
           <ul>
-            <li><a href="https://tools.ietf.org/html/draft-reschke-http-jfv">JFV</a>
-            <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-header-structure">SH</a>
+            <li><a href="https://tools.ietf.org/html/draft-reschke-http-jfv" target=_blank>JFV</a>
+            <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-header-structure" target=_blank>SH</a>
           </ul>
-          <p>なお、 IETF 的には <a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2016OctDec/0505.html">JFV よりも SH が良さそう</a> という雰囲気に結構前になっている。
+          <p>なお、 IETF 的には <a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2016OctDec/0505.html" target=_blank>JFV よりも SH が良さそう</a> という雰囲気に結構前になっている。
           <p>そこで、 Reporting も SH に移行するという方向になっている。
           <ul>
-            <li><a href="https://github.com/w3c/reporting/issues/177">Switch reporting to Structured Headers - Issue #177 - w3c/reporting</a>
+            <li><a href="https://github.com/w3c/reporting/issues/177" target=_blank>Switch reporting to Structured Headers - Issue #177 - w3c/reporting</a>
           </ul>
-          <p><a href="https://github.com/w3c/reporting/issues/158">Mozilla</a> も、他で使うかわからない JFV よりも SH が良いという話をしているので、おそらくそうなるだろう。
+          <p><a href="https://github.com/w3c/reporting/issues/158" target=_blank>Mozilla</a> も、他で使うかわからない JFV よりも SH が良いという話をしているので、おそらくそうなるだろう。
           <p>よって、ここまでに書いたことも、将来また変わると思ったほうが良い。
           <p>場合によっては、また Report-To 以外のヘッダが出たりする可能性もあるので、そういう面倒を避けたいなら、導入はもう少し待っても良いかもしれない。
         </section>
@@ -369,7 +369,7 @@ Report-To: {
           <h3 id="reporting-request"><a href="#reporting-request">Reporting Request</a></h3>
           <p>ブラウザ自身が送信する Report リクエストの概観は以下のようなものになる。
           <ul>
-            <li><a href="https://w3c.github.io/reporting/#try-delivery">4.5. Attempt to deliver reports to endpoint</a>
+            <li><a href="https://w3c.github.io/reporting/#try-delivery" target=_blank>4.5. Attempt to deliver reports to endpoint</a>
           </ul>
           <pre class=http data-code=http data-path=./6.http><code translate=no class=language-http>POST /default-endpoint HTTP/1.1
 Host: reports.example.com
@@ -404,7 +404,7 @@ Content-Length: 999
           <p>特に Preflight には色々と議論があったが、最初はブラウザが生成し外から介入できない限定的なリクエストであるため、 Fetch の仕様に例外を設けていた。
           <p>しかし、やはりバイパスするようなことはせず CORS を遵守すべきということになり、 Preflight を送ることになった。
           <ul>
-            <li><a href="https://github.com/w3c/reporting/issues/41">Are report uploads supposed to send CORS preflights? - Issue #41</a>
+            <li><a href="https://github.com/w3c/reporting/issues/41" target=_blank>Are report uploads supposed to send CORS preflights? - Issue #41</a>
           </ul>
           <p>執筆時の Chrome や Fetch の Spec からは、 Preflight は無いように見えるが、 <em>これから Reporting Endpoint を作る場合は Preflight を前提にすべき</em> と言える。
         </section>
@@ -413,7 +413,7 @@ Content-Length: 999
         <h2 id="reporting-observer"><a href="#reporting-observer">Reporting Observer</a></h2>
         <p>ReportingObserver は JS で report を取得する API だ。
         <ul>
-          <li><a href="https://w3c.github.io/reporting/#observers">https://w3c.github.io/reporting/#observers</a>
+          <li><a href="https://w3c.github.io/reporting/#observers" target=_blank>https://w3c.github.io/reporting/#observers</a>
         </ul>
         <p>サンプルを再掲する。
         <pre class=js data-code=js data-path=./3.js><code translate=no class=language-js>const observer = new ReportingObserver((reports, observer) =&gt; {
@@ -422,7 +422,7 @@ Content-Length: 999
 });
 
 observer.observe();</code></pre>
-        <p>(この JSON.stringify ができなかったために、修正前は自分で Serialize するロジックを <a href="https://github.com/Jxck/jxck.io/commit/4a0cdc168a73e40fcb88a1fe74f6ae62b40750fa">ワークアラウンド</a> として入れて収集していた)
+        <p>(この JSON.stringify ができなかったために、修正前は自分で Serialize するロジックを <a href="https://github.com/Jxck/jxck.io/commit/4a0cdc168a73e40fcb88a1fe74f6ae62b40750fa" target=_blank>ワークアラウンド</a> として入れて収集していた)
         <p>JS で取得するため、 JS が動いていることが前提だ。
         <p>つまり、 CSP や Crash ではなく deprecation/intervention など軽微な Report を取得する。
         <p>仕様どおり &quot;default&quot; group に自動で送られるため、 UI でフィードバックを表示でもしない限り JS で取得する必要はあまりなさそうに思う。
@@ -437,7 +437,7 @@ observer.observe();</code></pre>
           <p>ブラウザで deprecate された API を呼び出している場合に発生する 。
           <p>特に古い API の deprecate/remove は段階ごとにアナウンスされるが、それが自身のサービス内でどの程度の影響があるかなどを正確にするのは難しい。
           <p>この report を収集すれば、サービス内のどのソースファイルの何行目でそれが使われているかまでわかるため、非常に有益な情報となる。
-          <p>なお、本サイトでは Chrome の拡張である <a href="https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin/related">HTTP/2 and SPDY indicator</a> から <code translate=no>chrome.loadTimes()</code> を呼んでいるという Report が最も多く送られてきている。
+          <p>なお、本サイトでは Chrome の拡張である <a href="https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin/related" target=_blank>HTTP/2 and SPDY indicator</a> から <code translate=no>chrome.loadTimes()</code> を呼んでいるという Report が最も多く送られてきている。
           <pre class=js data-code=js data-path=./7.js><code translate=no class=language-js>{
   &quot;type&quot;: &quot;deprecation&quot;,
     &quot;url&quot;: &quot;https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html&quot;,
@@ -470,14 +470,14 @@ observer.observe();</code></pre>
           <h3 id="intervention-report"><a href="#intervention-report">Intervention Report</a></h3>
           <p>Intervention とは、ブラウザが特定の挙動を変更するような介入を行うことである。
           <ul>
-            <li><a href="https://github.com/WICG/interventions">https://github.com/WICG/interventions</a>
+            <li><a href="https://github.com/WICG/interventions" target=_blank>https://github.com/WICG/interventions</a>
           </ul>
           <p>例えば、 ontouch イベントにハンドラが割り当てられている場合、スクロールするたびにハンドラが実行されてしまい、画面のレスポンスが悪くなる。
           <p>そこで、 ontouch イベントのハンドラは、ブラウザが勝手に PassiveEventListener として扱うといった挙動を Intervention という。
           <p>開発者は、この事実を Report として知ることで、ハンドラを PassiveEventListener にするといった実装の見直しを検討することができる。
           <p>今後こうした Intervention も増えていきそうな流れがある。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sQrAZpTA8WI/EWC7W6GOCwAJ">Intent to Ship: Intervention Reports</a>
+            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sQrAZpTA8WI/EWC7W6GOCwAJ" target=_blank>Intent to Ship: Intervention Reports</a>
           </ul>
         </section>
         <section>
@@ -485,7 +485,7 @@ observer.observe();</code></pre>
           <p>その名の通り Network Error が発生したことを取得できる。
           <p>主に HTTPS のエラーを収集することを目的としている。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nNji_u7BRxo/Zh8Y9hRlBAAJ">Intent to Ship: Reporting and Network Error Logging</a>
+            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nNji_u7BRxo/Zh8Y9hRlBAAJ" target=_blank>Intent to Ship: Reporting and Network Error Logging</a>
           </ul>
         </section>
         <section>
@@ -493,29 +493,29 @@ observer.observe();</code></pre>
           <p>なんらかの理由で画面がクラッシュした時に送られる Report である。
           <p>おそらく Tab レベルのクラッシュまでだろうと思うが、まだ Report を見たことがないため、細かい挙動はまだわからない。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/forum/#!searchin/blink-dev/crash$20reports%7Csort:date/blink-dev/ryK8SHcBzZw/uwkgibBvBQAJ">Intent to Ship: Crash Reports (via Reporting API)</a>
+            <li><a href="https://groups.google.com/a/chromium.org/forum/#!searchin/blink-dev/crash$20reports%7Csort:date/blink-dev/ryK8SHcBzZw/uwkgibBvBQAJ" target=_blank>Intent to Ship: Crash Reports (via Reporting API)</a>
           </ul>
         </section>
         <section>
           <h3 id="csp-violation"><a href="#csp-violation">CSP Violation</a></h3>
           <p>以前から report-uri/report-to で対応していた CSP の violation も、 ReportingObserver で取得できるようにする Intents が出ているが特に進んではいないし、 Report-To で集めれば良い。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dBc_epXL-r4/XhhajwQVBQAJ">Intent to Implement and Ship: CSP violation reports observable by ReportingObserver</a>
+            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dBc_epXL-r4/XhhajwQVBQAJ" target=_blank>Intent to Implement and Ship: CSP violation reports observable by ReportingObserver</a>
           </ul>
         </section>
         <section>
           <h3 id="feature-policy-violation"><a href="#feature-policy-violation">Feature Policy Violation</a></h3>
           <p>Feature Policy も violation が発生した場合にその事実が知りたいが、仕様には含まれていなかった。
-          <p><a href="https://github.com/w3c/webappsec-feature-policy/issues/142">提案</a>したところ、  Reporting への<a href="https://github.com/WICG/feature-policy/blob/master/reporting.md">対応</a>が入ることになり、 Chrome は Intents が出ている。
+          <p><a href="https://github.com/w3c/webappsec-feature-policy/issues/142" target=_blank>提案</a>したところ、  Reporting への<a href="https://github.com/WICG/feature-policy/blob/master/reporting.md" target=_blank>対応</a>が入ることになり、 Chrome は Intents が出ている。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5-3woY4Y1Qg/xHDTmUFAEAAJ">Intent to Implement: Feature Policy Violation Reporting</a>
+            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5-3woY4Y1Qg/xHDTmUFAEAAJ" target=_blank>Intent to Implement: Feature Policy Violation Reporting</a>
           </ul>
         </section>
         <section>
           <h3 id="sxg"><a href="#sxg">SXG</a></h3>
           <p>SXG の証明書検証などが発生した場合に distributor に知らせるための Report 。 Network Error Logging を継承している。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bHo6cy9qKuw/6xqZt_1LAAAJ">Intent to Ship: Signed Exchange Reporting for distributors</a>
+            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bHo6cy9qKuw/6xqZt_1LAAAJ" target=_blank>Intent to Ship: Signed Exchange Reporting for distributors</a>
           </ul>
         </section>
       </section>

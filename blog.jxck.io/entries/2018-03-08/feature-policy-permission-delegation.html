@@ -196,7 +196,7 @@
           <h3 id="権限の移譲"><a href="#権限の移譲">権限の移譲</a></h3>
           <p>geolocation, getusermedia など、強力な API については、ユーザに対して許可を求めるようになっている。
           <p>一方で、こうした許可を iframe に読み込んだクロスオリジンのコンテンツに対していかに付与するかという方法についも、長いこと議論されてきた。
-          <p>例えば、 <a href="https://jxck.io">https://jxck.io</a> の中で <a href="https://payment.example.com">https://payment.example.com</a> を iframe で埋め込んでいたとする。
+          <p>例えば、 <a href="https://jxck.io" target=_blank>https://jxck.io</a> の中で <a href="https://payment.example.com" target=_blank>https://payment.example.com</a> を iframe で埋め込んでいたとする。
           <p>iframe では強力な API が実行されるため、ユーザに許可を求める必要がある。
           <ul>
             <li><em>jxck.io の画面上</em> に <em>「example.com が xxx の許可を求めている」</em> とプロンプトが出ても、その意味がユーザに伝わるか。
@@ -206,15 +206,15 @@
           </ul>
           <p>こうした問題について、実際に検証した結果は以下に報告されている。
           <ul>
-            <li><a href="https://docs.google.com/document/d/1x5QejvpyQ71LPWhMLsaM1lWCfSsBsSQ8Dap9kJ6uLv0">Permission Delegation Proposal</a>
-            <li><a href="https://docs.google.com/presentation/d/1suzMhtvMtA11jxPUdH1jL1oPh-82rTymCnslgR3ehEE">Understanding Permission Requests From Iframes</a>
+            <li><a href="https://docs.google.com/document/d/1x5QejvpyQ71LPWhMLsaM1lWCfSsBsSQ8Dap9kJ6uLv0" target=_blank>Permission Delegation Proposal</a>
+            <li><a href="https://docs.google.com/presentation/d/1suzMhtvMtA11jxPUdH1jL1oPh-82rTymCnslgR3ehEE" target=_blank>Understanding Permission Requests From Iframes</a>
           </ul>
           <p>そして、結論としては以下のようなモデルが採用されることとなった。
           <ul>
-            <li>iframe 内では、強力な機能の権限を <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/mG6vL09JMOQ">デフォルトでオフにする</a>
-            <li>ユーザは基本的に URL バーに表示された <a href="https://jxck.io">https://jxck.io</a> を信頼の対象とする
+            <li>iframe 内では、強力な機能の権限を <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/mG6vL09JMOQ" target=_blank>デフォルトでオフにする</a>
+            <li>ユーザは基本的に URL バーに表示された <a href="https://jxck.io" target=_blank>https://jxck.io</a> を信頼の対象とする
             <li>permission ui は、 <code translate=no>「このサイトに権限を許可するか」</code> をユーザに問う
-            <li>権限を付与された <a href="https://jxck.io">https://jxck.io</a> は <a href="https://example.com">https://example.com</a> へ、その <em>権限を移譲</em> できる
+            <li>権限を付与された <a href="https://jxck.io" target=_blank>https://jxck.io</a> は <a href="https://example.com" target=_blank>https://example.com</a> へ、その <em>権限を移譲</em> できる
           </ul>
           <p>例えば、 Payment のために 3rd Party iframe を埋め込んだサイトがある場合、ユーザが信頼するかどうかを決めるのはあくまでその <em>サイト自体</em> ということだ。
           <p>埋め込まれた Payment 用の iframe を選定したのはそのサイトであり、そこを含めてユーザはそのサイトを信頼するかどうかを決めるべきという方針である。
@@ -230,7 +230,7 @@
         <p>iframe sandbox は、 iframe 内に展開したコンテンツにおいて、機能を制限できる。
         <p>これは、信頼の無いコンテンツを安全に読み込む場合などに利用できる。
         <ul>
-          <li><a href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox">https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox</a>
+          <li><a href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox" target=_blank>https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox</a>
         </ul>
         <p>iframe sandbox の特徴は、何をブロックするのかが先に決まっているという点だ。
         <p>もし制限を緩める場合は、許可する機能を明示的に指定するセーフリスト方式を採用している。
@@ -252,7 +252,7 @@
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=html data-code=html><code translate=no class=language-html>&lt;iframe sandbox=&quot;&quot; src=&quot;example.com&quot;&gt;&lt;/iframe&gt;</code></pre>
         <ul>
-          <li>DEMO: <a href="http://labs.jxck.io/iframe">http://labs.jxck.io/iframe</a>
+          <li>DEMO: <a href="http://labs.jxck.io/iframe" target=_blank>http://labs.jxck.io/iframe</a>
         </ul>
       </section>
       <section>
@@ -261,7 +261,7 @@
         <p>これを HTTP ヘッダで適用できるように、 CSP2 では sandbox ディレクティブが追加された。
         <pre class=http data-code=http><code translate=no class=language-http>Content-Security-Policy: sandbox</code></pre>
         <ul>
-          <li><a href="https://w3c.github.io/webappsec-csp/#directive-sandbox">https://w3c.github.io/webappsec-csp/#directive-sandbox</a>
+          <li><a href="https://w3c.github.io/webappsec-csp/#directive-sandbox" target=_blank>https://w3c.github.io/webappsec-csp/#directive-sandbox</a>
         </ul>
         <p>機能は基本的に HTML に書く場合と同じだ。
         <p>しかし、元々がセーフリスト方式であることにより、いくつか微妙なところがある。
@@ -272,7 +272,7 @@
         <p>つまり、 sandbox は <em>互換性のリスクなしに拡張することが実質できない</em>。
         <p>CSP のように、ブロックリスト方式を取っていれば、制限したい項目を増やしオプトインで適用していけるため、拡張に対して開いた設計となるのは、後から判明したのだろう。
         <ul>
-          <li>DEMO: <a href="http://labs.jxck.io/content-security-policy/sandbox.html">http://labs.jxck.io/content-security-policy/sandbox.html</a>
+          <li>DEMO: <a href="http://labs.jxck.io/content-security-policy/sandbox.html" target=_blank>http://labs.jxck.io/content-security-policy/sandbox.html</a>
         </ul>
       </section>
       <section>
@@ -281,7 +281,7 @@
         <p>また、逆にデフォルトでは無効になっている API へのアクセスを、明示的に許可したい場合もある。
         <p>このように、リソースに対して機能の制限/許可を行う汎用的な方法として定義されたのが Feature Policy である。
         <ul>
-          <li><a href="https://wicg.github.io/feature-policy/">https://wicg.github.io/feature-policy/</a>
+          <li><a href="https://wicg.github.io/feature-policy/" target=_blank>https://wicg.github.io/feature-policy/</a>
         </ul>
         <p>Feature Policy はレスポンスヘッダに付与し、対象機能の制限/許可をオリジン単位で設定することができる。
         <p>ここでは、 Chrome に実装されている <code translate=no>sync-xhr</code> で、同期 XHR の制限/許可を例に解説する。
@@ -316,7 +316,7 @@
           <p>もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
           <pre class=http data-code=http><code translate=no class=language-http>Feature-Policy: geolocation *</code></pre>
           <ul>
-            <li>DEMO: <a href="https://labs.jxck.io/feature-policy/geolocation/basic.html">https://labs.jxck.io/feature-policy/geolocation/basic.html</a>
+            <li>DEMO: <a href="https://labs.jxck.io/feature-policy/geolocation/basic.html" target=_blank>https://labs.jxck.io/feature-policy/geolocation/basic.html</a>
           </ul>
         </section>
         <section>
@@ -329,7 +329,7 @@
           <pre class=http data-code=http><code translate=no class=language-http>Content-Security-Policy: sandbox allow-scripts;
 Feature-Policy: sync-xhr &apos;none&apos;</code></pre>
           <ul>
-            <li>DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html">https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
+            <li>DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html" target=_blank>https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
           </ul>
         </section>
       </section>
@@ -338,9 +338,9 @@ Feature-Policy: sync-xhr &apos;none&apos;</code></pre>
         <p>仕様自体には Feature の一覧が無いが、いくつかリストを持っているドキュメントは存在する。
         <p>この辺の扱いについてはよくわかっていないが、現時点では実装ベースで判断する必用がありそうだ。
         <ul>
-          <li><a href="https://github.com/WICG/feature-policy/blob/gh-pages/features.md">https://github.com/WICG/feature-policy/blob/gh-pages/features.md</a>
-          <li><a href="https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit">https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit</a>
-          <li><a href="https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/feature_policy/FeaturePolicy.cpp?sq=package:chromium&dr=C&l=225">https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/feature_policy/FeaturePolicy.cpp?sq=package:chromium&amp;dr=C&amp;l=225</a>
+          <li><a href="https://github.com/WICG/feature-policy/blob/gh-pages/features.md" target=_blank>https://github.com/WICG/feature-policy/blob/gh-pages/features.md</a>
+          <li><a href="https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit" target=_blank>https://docs.google.com/document/d/1k0Ua-ZWlM_PsFCFdLMa8kaVTo32PeNZ4G7FFHqpFx4E/edit</a>
+          <li><a href="https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/feature_policy/FeaturePolicy.cpp?sq=package:chromium&dr=C&l=225" target=_blank>https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/feature_policy/FeaturePolicy.cpp?sq=package:chromium&amp;dr=C&amp;l=225</a>
         </ul>
       </section>
       <section>
@@ -348,7 +348,7 @@ Feature-Policy: sync-xhr &apos;none&apos;</code></pre>
         <p>Feature Policy には執筆時点で Reporting の仕様が無い。
         <p>しかし、これは Reporing 側で CORS の Preflight をどうするかの問題がブロッカーとなっているだけで、盛り込む予定ではあるようだ。
         <ul>
-          <li><a href="https://github.com/WICG/feature-policy/issues/142">https://github.com/WICG/feature-policy/issues/142</a>
+          <li><a href="https://github.com/WICG/feature-policy/issues/142" target=_blank>https://github.com/WICG/feature-policy/issues/142</a>
         </ul>
       </section>
       <section>

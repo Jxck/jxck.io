@@ -177,20 +177,20 @@
       <h1><a href="">AMP HTML 対応</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>Google が推奨する仕様である <a href="https://www.ampproject.org/">AMP HTML</a> に、このブログを対応した。
+        <p>Google が推奨する仕様である <a href="https://www.ampproject.org/" target=_blank>AMP HTML</a> に、このブログを対応した。
         <p>言いたいことは色々あるが、とりあえず非常に難しかったため、その対応方法や感想などを残す。
       </section>
       <section>
         <h2 id="update"><a href="#update">Update</a></h2>
         <p>以下の記事が出たので、古かったフォーマットのアップデートと <a href="https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html">JSON-LD によるメタデータの提供</a> に対応した。
         <ul>
-          <li><a href="https://googledevjp.blogspot.jp/2016/02/google-accelerated-mobile-pages.html">Google モバイル検索が Accelerated Mobile Pages に対応しました</a>
-          <li><a href="https://ymotongpoo.hatenablog.com/entry/2016/02/25/224159">AMP 対応 2016.02 版</a>
+          <li><a href="https://googledevjp.blogspot.jp/2016/02/google-accelerated-mobile-pages.html" target=_blank>Google モバイル検索が Accelerated Mobile Pages に対応しました</a>
+          <li><a href="https://ymotongpoo.hatenablog.com/entry/2016/02/25/224159" target=_blank>AMP 対応 2016.02 版</a>
         </ul>
       </section>
       <section>
         <h2 id="accelerated-mobile-pages"><a href="#accelerated-mobile-pages">Accelerated Mobile Pages</a></h2>
-        <p><a href="https://www.ampproject.org/">ACCELERATED MOBILE PAGES PROJECT</a>
+        <p><a href="https://www.ampproject.org/" target=_blank>ACCELERATED MOBILE PAGES PROJECT</a>
         <p>タイトルは識別しやすいよう AMP HTML としたが、実際には AMP という仕様(方針)があり、 HTML 以外にも手を入れている。
         <p>AMP は、特にモバイル向けに <em>静的コンテンツ</em> を最適化し、表示を高速化することを目的としている。
         <p>実際は、高速化するというより、 <em>遅くなる原因を排除する</em> という制約を課す仕様という作りになっている。
@@ -212,7 +212,7 @@
           <p>AMP に合意したベンダは、サイトをクロールし AMP 対応ページを見つけた際に、それをキャッシュし代わりに配信してくれる。
           <p>(AMP に対応していれば、自然とそういうことがしやすいサイトになっている)
           <p>現在 Google, Twitter, Pinterest などが対応しているらしく、対応ベンダが増えれば CDN エッジが増え、より最適なルートから素早くページが配信されるという仕組みになっている。
-          <p><a href="https://www.ampproject.org/docs/support/faqs.html#how-do-accelerated-mobile-pages-work">How do Accelerated Mobile Pages work?</a>
+          <p><a href="https://www.ampproject.org/docs/support/faqs.html#how-do-accelerated-mobile-pages-work" target=_blank>How do Accelerated Mobile Pages work?</a>
           <p>クローラに AMP 対応を知らせる方法は後述する。
         </section>
         <section>
@@ -265,7 +265,7 @@
         <section>
           <h3 id="amp-img"><a href="#amp-img">amp-img</a></h3>
           <p>AMP-HTML 内では、 <code translate=no>&lt;img&gt;</code> タグを直接書くことは禁止されており、代わりに、 <code translate=no>&lt;amp-img&gt;</code> というカスタムタグを使用する。
-          <p><a href="https://www.ampproject.org/docs/reference/amp-img.html">amp-img</a>
+          <p><a href="https://www.ampproject.org/docs/reference/amp-img.html" target=_blank>amp-img</a>
           <p>このタグには <code translate=no>width</code> <code translate=no>height</code> の記述が必須となっており、 <code translate=no>layout=responsive</code> とすることでそのサイズ比を保ったままレスポンシブ表示してくれる。
           <p>この記事では markdown から生成しているため、この指定はいちいち調べて URL の最後に <code translate=no>#widthxheight</code> などとサイズを付与しておき、 AMP バージョンだけビルド時にそれを読むようにした。
           <p>全てのイメージにサイズを付けるのは、特に既存のコンテンツがあるとなかなか難しそうな気がする。
@@ -273,11 +273,11 @@
         <section>
           <h3 id="amp-iframe"><a href="#amp-iframe">amp-iframe</a></h3>
           <p>AMP-HTML 内では、 <code translate=no>&lt;iframe&gt;</code> タグを直接書くことは禁止されており、代わりに、 <code translate=no>&lt;amp-iframe&gt;</code> というカスタムタグを使用する。
-          <p><a href="https://www.ampproject.org/docs/reference/extended/amp-iframe.html">amp-iframe</a>
+          <p><a href="https://www.ampproject.org/docs/reference/extended/amp-iframe.html" target=_blank>amp-iframe</a>
           <p>ただし、このタグもまた制約が多い。一番大きいのは <em>位置</em> に対する制約だ。
           <blockquote cite="https://www.ampproject.org/docs/reference/components/amp-iframe">
             <p>They must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top
-            <p>&mdash; <cite><a href="https://www.ampproject.org/docs/reference/components/amp-iframe">https://www.ampproject.org/docs/reference/components/amp-iframe</a></cite>
+            <p>&mdash; <cite><a href="https://www.ampproject.org/docs/reference/components/amp-iframe" target=_blank>https://www.ampproject.org/docs/reference/components/amp-iframe</a></cite>
           </blockquote>
           <p>要するに above-the-fold に iframe を入れたくないということだろう。これはコンテンツを作る時点で気にしておかないといけないし、自動で変換も難しい。
           <p>このサイトは markdown からビルドしているため、 <code translate=no>&lt;iframe&gt;</code> を埋め込む場合は自分で直接タグを書くことになる。
@@ -287,7 +287,7 @@
         <section>
           <h3 id="amp-analytics"><a href="#amp-analytics">amp-analytics</a></h3>
           <p>AMP での Google Analytics の設定は <code translate=no>&lt;amp-analytics&gt;</code> カスタムタグで行う。
-          <p><a href="https://developers.google.com/analytics/devguides/collection/amp-analytics/">Adding Analytics to your AMP pages</a>
+          <p><a href="https://developers.google.com/analytics/devguides/collection/amp-analytics/" target=_blank>Adding Analytics to your AMP pages</a>
           <p>収集したい情報に応じてやり方がいくつかあるようだが、一番スタンダードな Page Tracking だけ設定した。
           <p>AMP Analytics のコードの読み込みは、 AMP JS Library よりも前に行う必要があるとドキュメントに書かれているので、このようになった。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;script async custom-element=&quot;amp-analytics&quot; src=&quot;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&quot;&gt;&lt;/script&gt;

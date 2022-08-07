@@ -179,7 +179,7 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、 CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように <code translate=no>h2::before</code> に <code translate=no>content: &apos;##&apos;</code> を指定するといった具合だ。
         <p>しかし、これまで <code translate=no>&lt;table&gt;</code> だけはうまく Markdown 記法を再現する CSS が書けないでいた。
-        <p>そこで、周りの CSS 強者に実現できないか聞いてみたところ、<a href="https://twitter.com/shqld">@shqld</a>, <a href="https://twitter.com/arayaryoma">@araya</a>, <a href="https://twitter.com/yoshiko_pg">@yoshiko</a> 達の協力を得て、かなりの完成度にすることができた。実現方法を記録する。
+        <p>そこで、周りの CSS 強者に実現できないか聞いてみたところ、<a href="https://twitter.com/shqld" target=_blank>@shqld</a>, <a href="https://twitter.com/arayaryoma" target=_blank>@araya</a>, <a href="https://twitter.com/yoshiko_pg" target=_blank>@yoshiko</a> 達の協力を得て、かなりの完成度にすることができた。実現方法を記録する。
       </section>
       <section>
         <h2 id="before"><a href="#before">Before</a></h2>
@@ -204,8 +204,8 @@
         <h2 id="call-for-implementation"><a href="#call-for-implementation">Call for Implementation</a></h2>
         <p><a href="https://blog.jxck.io/entries/2021-11-30/blog-v2-release.html">Markdown のパーサを書きなおした</a> 際にこの作業を思い出し、誰か実現できる人がいたりしないか CSS に強そうなエンジニア何人かに聞いてみたところ、いくつかアドバイスをもらえたり、 PoC を返してもらえた。 URL のあるものだけ貼っておく。
         <ul>
-          <li>araya: <a href="https://codepen.io/arayaryoma/pen/XWzgVwx">https://codepen.io/arayaryoma/pen/XWzgVwx</a>
-          <li>yoshiko: <a href="http://jsfiddle.net/j4fm9scg/">http://jsfiddle.net/j4fm9scg/</a>
+          <li>araya: <a href="https://codepen.io/arayaryoma/pen/XWzgVwx" target=_blank>https://codepen.io/arayaryoma/pen/XWzgVwx</a>
+          <li>yoshiko: <a href="http://jsfiddle.net/j4fm9scg/" target=_blank>http://jsfiddle.net/j4fm9scg/</a>
         </ul>
         <p>これらを参考にさせてもらうことで、かなりの完成度まで実現することができた。
       </section>
@@ -213,7 +213,7 @@
         <h2 id="実装方針"><a href="#実装方針">実装方針</a></h2>
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
-          <p>まず、自作のパーサでは以下のような HTML が生成される。 Align は HTML の <code translate=no>align</code> 要素が <a href="https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align">Deprecate</a> だったため、 <code translate=no>class</code> で実装している。
+          <p>まず、自作のパーサでは以下のような HTML が生成される。 Align は HTML の <code translate=no>align</code> 要素が <a href="https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align" target=_blank>Deprecate</a> だったため、 <code translate=no>class</code> で実装している。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
@@ -265,7 +265,7 @@
       <section>
         <h2 id="generated-content-model"><a href="#generated-content-model">Generated Content Model</a></h2>
         <p>デザインとしてのスタイル指定で、 <code translate=no>content</code> に装飾用の文字を大量に指定した。本来はスタイルとして認識され、特に Crawler や Assistive Technology には無視されることが望ましい。
-        <p>しかし、 <a href="https://www.w3.org/TR/css-content-3/#accessibility">CSS Generated Content Module Level 3</a> の仕様では、以下のように定義されている。
+        <p>しかし、 <a href="https://www.w3.org/TR/css-content-3/#accessibility" target=_blank>CSS Generated Content Module Level 3</a> の仕様では、以下のように定義されている。
         <blockquote>
           <p>Generated content should be searchable, selectable, and available to assistive technologies.
           <p>The &apos;content&apos; property applies to speech and generated content must be rendered for speech output. [CSS3-SPEECH]
@@ -274,7 +274,7 @@
         <p>実際に Mac の Voice Over で検証したところ、確かに <code translate=no>:----</code> の部分が「ハイフン N 個」のように、スタイル部分をコンテンツとして認識している。
         <section>
           <h3 id="alternative-text"><a href="#alternative-text">Alternative Text</a></h3>
-          <p>そこで、<a href="https://drafts.csswg.org/css-content-3/#alt">1.2. Alternative Text for Accessibility</a> に定義されているように Alternative Text を以下の用に指定した。
+          <p>そこで、<a href="https://drafts.csswg.org/css-content-3/#alt" target=_blank>1.2. Alternative Text for Accessibility</a> に定義されているように Alternative Text を以下の用に指定した。
           <pre class=css data-code=css><code translate=no class=language-css>th::before,
 td::before {
   content: &quot;|&quot; / &quot;&quot;; /* 読み上げ等に対しては空文字として認識させる */
@@ -374,12 +374,12 @@ td::before {
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>単体で動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/table">https://labs.jxck.io/table</a>
+          <li><a href="https://labs.jxck.io/table" target=_blank>https://labs.jxck.io/table</a>
         </ul>
       </section>
       <section>
         <h2 id="謝辞"><a href="#謝辞">謝辞</a></h2>
-        <p>実装の助言をくれた 、<a href="https://twitter.com/shqld">@shqld</a>, <a href="https://twitter.com/arayaryoma">@araya</a>, <a href="https://twitter.com/yoshiko_pg">@yoshiko</a> に感謝する。
+        <p>実装の助言をくれた 、<a href="https://twitter.com/shqld" target=_blank>@shqld</a>, <a href="https://twitter.com/arayaryoma" target=_blank>@araya</a>, <a href="https://twitter.com/yoshiko_pg" target=_blank>@yoshiko</a> に感謝する。
       </section>
       <section>
         <h2 id="reference"><a href="#reference">Reference</a></h2>
@@ -390,13 +390,13 @@ td::before {
               <li>
                 CSS Generated Content Module Level 3
                 <ul>
-                  <li><a href="https://drafts.csswg.org/css-content/#content-property">https://drafts.csswg.org/css-content/#content-property</a>
+                  <li><a href="https://drafts.csswg.org/css-content/#content-property" target=_blank>https://drafts.csswg.org/css-content/#content-property</a>
                 </ul>
               </li>
               <li>
                 CSS Conditional Rules Module Level 3
                 <ul>
-                  <li><a href="https://drafts.csswg.org/css-conditional-3/#at-supports">https://drafts.csswg.org/css-conditional-3/#at-supports</a>
+                  <li><a href="https://drafts.csswg.org/css-conditional-3/#at-supports" target=_blank>https://drafts.csswg.org/css-conditional-3/#at-supports</a>
                 </ul>
               </li>
             </ul>
@@ -419,13 +419,13 @@ td::before {
               <li>
                 content - CSS | MDN
                 <ul>
-                  <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/content">https://developer.mozilla.org/ja/docs/Web/CSS/content</a>
+                  <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/content" target=_blank>https://developer.mozilla.org/ja/docs/Web/CSS/content</a>
                 </ul>
               </li>
               <li>
                 @supports - CSS | MDN
                 <ul>
-                  <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/@supports">https://developer.mozilla.org/ja/docs/Web/CSS/@supports</a>
+                  <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/@supports" target=_blank>https://developer.mozilla.org/ja/docs/Web/CSS/@supports</a>
                 </ul>
               </li>
             </ul>

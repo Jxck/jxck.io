@@ -226,12 +226,12 @@ Content-Length: 47763456</code></pre>
         <h2 id="ブラウザにおける-rangepartial"><a href="#ブラウザにおける-rangepartial">ブラウザにおける Range/Partial</a></h2>
         <p>以下のブログが出て初めて、実装ではなく仕様の問題だということがわかった。
         <ul>
-          <li><a href="https://jakearchibald.com/2018/i-discovered-a-browser-bug/">I discovered a browser bug - JakeArchibald.com</a>
+          <li><a href="https://jakearchibald.com/2018/i-discovered-a-browser-bug/" target=_blank>I discovered a browser bug - JakeArchibald.com</a>
         </ul>
         <p>結論から言うとこうだ。
         <blockquote cite="https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised">
           <p>They&apos;re standardised in HTTP, but not by HTML. We know what the headers look like, and when they should appear, but there&apos;s nothing to say what a browser should actually do with them.
-          <p>&mdash; <cite><a href="https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised">https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised</a></cite>
+          <p>&mdash; <cite><a href="https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised" target=_blank>https://jakearchibald.com/2018/i-discovered-a-browser-bug/#range-requests-were-never-standardised</a></cite>
         </blockquote>
         <ul>
           <li>Range/Partial の仕様はあくまで HTTP の仕様
@@ -280,7 +280,7 @@ const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)</
           <h3 id="abort"><a href="#abort">abort()</a></h3>
           <p>中断は API から可能であり、 <code translate=no>abort()</code> を呼べば task が終了する。
           <pre class=js data-code=js><code translate=no class=language-js>task.abort()</code></pre>
-          <p>ただし、 Pause/Resume は API がなく、<a href="https://github.com/WICG/background-fetch/issues/38">提案</a> はされてるが、その UI は OS 側が提供するというスタンスだ。
+          <p>ただし、 Pause/Resume は API がなく、<a href="https://github.com/WICG/background-fetch/issues/38" target=_blank>提案</a> はされてるが、その UI は OS 側が提供するというスタンスだ。
         </section>
       </section>
       <section>
@@ -359,7 +359,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/service-worker/background-fetch/">https://labs.jxck.io/service-worker/background-fetch/</a>
+          <li><a href="https://labs.jxck.io/service-worker/background-fetch/" target=_blank>https://labs.jxck.io/service-worker/background-fetch/</a>
         </ul>
       </section>
       <section>
@@ -371,7 +371,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
         <h2 id="next"><a href="#next">Next</a></h2>
         <p>ところが、 Podcast アプリなら、ユーザが操作してないときに自動でダウンロードしておきたい。
         <p>ネットワークに繋がっている場合、定期的にサーバに RSS を問い合わせ、更新があれば fetch する。
-        <p>ここでもう 1 つ待望だった API の <a href="https://github.com/WICG/periodic-background-sync">Periodic Background Sync</a> が利用できるだろう。
+        <p>ここでもう 1 つ待望だった API の <a href="https://github.com/WICG/periodic-background-sync" target=_blank>Periodic Background Sync</a> が利用できるだろう。
         <p>また、今回の保存先はあくまでもキャッシュなので、キャッシュが増えればいずれ消える。
         <p>そこでより積極的に保存を考える場合は File API も考慮できるだろう。
         <p>次回はそれらを解説したい。

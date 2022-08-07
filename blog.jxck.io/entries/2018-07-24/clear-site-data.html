@@ -189,7 +189,7 @@
         <p>SPA のように実装されている場合は、その状態を含めて初期化しないと不整合が発生する場合もある。
         <p>こうした問題に対して策定されたのが、 Clear-Site-Data Header である。
         <ul>
-          <li><a href="https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data">https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data</a>
+          <li><a href="https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data" target=_blank>https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data</a>
         </ul>
         <p>ブラウザにあるデータ削除機能が、 API として出たというイメージだ。
         <p>ページを遷移しなくても、 <code translate=no>fetch()</code> などで受信したレスポンスヘッダに含まれれば、そのコンテキストで削除が実施される。
@@ -213,7 +213,7 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
         <section>
           <h3 id="cookies"><a href="#cookies">cookies</a></h3>
           <p>httponly, secure の有無に関わらず、全ての Cookie が消える。
-          <p>(<code translate=no>document.cookie</code> や <a href="https://wicg.github.io/cookie-store/explainer.html">Cookie Store API</a> も全て同じ Cookie を見ているため、 storage ではなく cookie である)
+          <p>(<code translate=no>document.cookie</code> や <a href="https://wicg.github.io/cookie-store/explainer.html" target=_blank>Cookie Store API</a> も全て同じ Cookie を見ているため、 storage ではなく cookie である)
           <p>また Basic Auth の Authorization Header や TLS の Channel ID 、 Token Binding なども対象になっている。
         </section>
         <section>
@@ -271,7 +271,7 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
         <pre class=js data-code=js><code translate=no class=language-js>navigator.storage.clear(&quot;cache&quot;)</code></pre>
         <p>しかし、 <code translate=no>navigator.storage.clear(&quot;executionContexts&quot;)</code> を実行した場合、開いている全てのタブにおいて <code translate=no>location.reload()</code> 相当が実行されるという API の設計に疑問が出た。
         <ul>
-          <li><a href="https://github.com/w3c/webappsec-clear-site-data/issues/21">storage.clear(&quot;executionContexts&quot;) ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data</a>
+          <li><a href="https://github.com/w3c/webappsec-clear-site-data/issues/21" target=_blank>storage.clear(&quot;executionContexts&quot;) ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data</a>
         </ul>
         <p>結果、一旦これは Drop され、ニーズがあれば再度議論することとなった。
       </section>
@@ -279,15 +279,15 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/clear-site-data/">https://labs.jxck.io/clear-site-data/</a>
+          <li><a href="https://labs.jxck.io/clear-site-data/" target=_blank>https://labs.jxck.io/clear-site-data/</a>
         </ul>
       </section>
       <section>
         <h2 id="link"><a href="#link">Link</a></h2>
         <ul>
-          <li><a href="https://github.com/mozilla/standards-positions/issues/90">https://github.com/mozilla/standards-positions/issues/90</a>
-          <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1268889">https://bugzilla.mozilla.org/show_bug.cgi?id=1268889</a>
-          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data</a>
+          <li><a href="https://github.com/mozilla/standards-positions/issues/90" target=_blank>https://github.com/mozilla/standards-positions/issues/90</a>
+          <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1268889" target=_blank>https://bugzilla.mozilla.org/show_bug.cgi?id=1268889</a>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data" target=_blank>https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data</a>
         </ul>
       </section>
     </article>

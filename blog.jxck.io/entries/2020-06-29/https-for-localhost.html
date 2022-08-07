@@ -206,7 +206,7 @@
           <p>つまり localhost とは、単に多くの OS がデフォルトで hosts に書いているエントリというだけなので、 sudo が必要とはいえ、厳密には localhost の解決先が 127.0.0.1 である保証は実はない。そしてやったことは無いが、 hosts のエントリを消し DNS に localhost を解決させることも可能なはずだ。
           <p>そこで、様々な例外が認められた結果 Powerful Features が使い放題になった localhost が、必ず 127.0.0.1 を向くようにしようという提案もある。
           <ul>
-            <li><a href="https://tools.ietf.org/html/draft-ietf-dnsop-let-localhost-be-localhost-02">draft-ietf-dnsop-let-localhost-be-localhost-02 - Let &apos;localhost&apos; be localhost</a>
+            <li><a href="https://tools.ietf.org/html/draft-ietf-dnsop-let-localhost-be-localhost-02" target=_blank>draft-ietf-dnsop-let-localhost-be-localhost-02 - Let &apos;localhost&apos; be localhost</a>
           </ul>
           <p>とはいえ、開発上必要で /etc/hosts を書き換え、戻し忘れた経験が有る人も多いのではないだろうか。そもそも sudo が必要なところからも、 hosts は頻繁に書き換えるような用途で使うものとはいえず、特に初心者がよくわからずにいじるようなファイルではない。
         </section>
@@ -231,7 +231,7 @@
           <p>まず、自分が所有する jxck.io のサブドメインとして localhost.jxck.io を登録している。これは「<em>本物のドメイン</em>」だ。
           <p>そして、このドメインの A レコードを 127.0.0.1 にし、変えない。 (dig してもらえればわかる)
           <p>ここに対して Let&apos;s Encrypt で証明書を発行する。 127.0.0.1 ではサーバ(.well-known url)での認証はできないので、 DNS 認証で証明書を取る。すると、「<em>本物の https の証明書</em>」(すでに証明書ストアに入った証明書で検証できる証明書)が手に入る。
-          <p>この証明書と鍵を、<a href="https://github.com/Jxck/dotfiles/blob/master/bin/http">ローカルで立てるサーバ</a>が読むようにし、ブラウザに <a href="https://localhost.jxck.io:3000">https://localhost.jxck.io:3000</a> と入れれば、ブラウザには本物の https 環境がローカルで手に入る。
+          <p>この証明書と鍵を、<a href="https://github.com/Jxck/dotfiles/blob/master/bin/http" target=_blank>ローカルで立てるサーバ</a>が読むようにし、ブラウザに <a href="https://localhost.jxck.io:3000" target=_blank>https://localhost.jxck.io:3000</a> と入れれば、ブラウザには本物の https 環境がローカルで手に入る。
           <p>
             <picture>
               <source type=image/avif srcset=localhost.jxck.io.avif?220731_020617>
@@ -279,7 +279,7 @@
         <h2 id="追記"><a href="#追記">追記</a></h2>
         <p>別件で Chrome のソースを漁っていたら <code translate=no>host-rules</code> というフラグを見つけた。(コメントにあるように <code translate=no>host-resolver-rules</code> でもいけるらしい)
         <ul>
-          <li><a href="https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66">https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66</a>
+          <li><a href="https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66" target=_blank>https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66</a>
         </ul>
         <p>ためしに以下のように開いてみると、確かにマッピングが指定できる。
         <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ google-chrome --host-rules=&quot;MAP example.com 127.0.0.1&quot;</code></pre>

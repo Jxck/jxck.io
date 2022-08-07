@@ -208,11 +208,11 @@
           <p>実はここには機械的な処理方法がない。
           <p>そこで、「この組み合わせは eTLD だ」という判別のために存在するのが Public Suffix List だ。
           <ul>
-            <li><a href="https://publicsuffix.org/">https://publicsuffix.org/</a>
+            <li><a href="https://publicsuffix.org/" target=_blank>https://publicsuffix.org/</a>
           </ul>
           <p>今は GitHub で管理されており、全体は以下のリポジトリに 1.3 万行のテキストファイルとして存在する。
           <ul>
-            <li><a href="https://github.com/publicsuffix/list">https://github.com/publicsuffix/list</a>
+            <li><a href="https://github.com/publicsuffix/list" target=_blank>https://github.com/publicsuffix/list</a>
           </ul>
           <p>これはもともと Mozilla が管理を始めたものだ、しかし今ではこのファイルが多くのブラウザで使われている。
         </section>
@@ -244,13 +244,13 @@
           <p>しかし、近年これが一番ハイライトされた例に Same Site Cookie がある。 &quot;Same Site&quot; という概念は、 <em>eTLD+1 が同じ</em> であると新しく定義されたのだ。
           <p>これは、先の例で言えば <code translate=no>github.io</code> が eTLD で <code translate=no>jxck.github.io</code> が eTLD+1 にあたる。したがって <code translate=no>jxck.github.io</code> と <code translate=no>cdn.jxck.github.io</code> はドメインが違えど eTLD+1 が同じなので Same Site となる。
           <p>対して <code translate=no>jxck.github.io</code> と <code translate=no>www.github.io</code> は同じ <code translate=no>github.io</code> のサブドメインであるように見えながら eTLD+1 が違うので Cross Site となる。
-          <p>すると「<code translate=no>github.io</code> 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 <code translate=no>Domain=com</code> な Cookie が付与できないのと同じく <code translate=no>Domain=github.io</code> な Cookie は付与できない。(したがって <a href="https://github.io/">https://github.io/</a> や <a href="https://glitch.me/">https://glitch.me/</a> には何もデプロイされてない)
+          <p>すると「<code translate=no>github.io</code> 自体の Cookie はどうなるのか?」というと、 PSL に登録したドメインは TLD と同じように扱われるため、 <code translate=no>Domain=com</code> な Cookie が付与できないのと同じく <code translate=no>Domain=github.io</code> な Cookie は付与できない。(したがって <a href="https://github.io/" target=_blank>https://github.io/</a> や <a href="https://glitch.me/" target=_blank>https://glitch.me/</a> には何もデプロイされてない)
         </section>
         <section>
           <h3 id="psl-の運用"><a href="#psl-の運用">PSL の運用</a></h3>
-          <p>もともとは Mozilla の bugzilla で管理されていたものが GitHub に移された。しかし、当時担当だった Mozilla の <a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=Peter%20Saint%2DAndre%3A%20The%20PSL%20did%20start,the%20current%20folks%20who%20are%20active.">Gerv Markham</a> が亡くなってからは、数人のボランティアが引き継いでいるため、実質 Mozilla 管理というわけでもなく、良く言えばオープンになっている。
+          <p>もともとは Mozilla の bugzilla で管理されていたものが GitHub に移された。しかし、当時担当だった Mozilla の <a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=Peter%20Saint%2DAndre%3A%20The%20PSL%20did%20start,the%20current%20folks%20who%20are%20active." target=_blank>Gerv Markham</a> が亡くなってからは、数人のボランティアが引き継いでいるため、実質 Mozilla 管理というわけでもなく、良く言えばオープンになっている。
           <p>リクエストの受付も事実上一本化されているため、出す側は良いかもしれないが、メンテナンスをしている側のリソースは非常に少ない。同じように審査と登録をするレジストラや CA のような運用ではなく、人が手作業でボランティアでこの重要なリストをメンテナンスしているのだ。
-          <p><a href="https://github.com/publicsuffix/list/issues">Issue</a> を見てみるとアクティブに Assignee になっている人は 2,3 人しかいないようだ。
+          <p><a href="https://github.com/publicsuffix/list/issues" target=_blank>Issue</a> を見てみるとアクティブに Assignee になっている人は 2,3 人しかいないようだ。
           <p>ホスティングサービスのように、ユーザにサブドメインを振るサービス形態も増え、さらに近年は TLD 自体が増えていることもあり、これまでもリクエストは定期的にあった。
         </section>
       </section>
@@ -259,25 +259,25 @@
         <p>ここからが本題だ。
         <p>近年、そんな厳しい運用によってメンテナンスされている、非常に重要なファイルに対して、追加リクエストが頻発し問題になっている。
         <ul>
-          <li><a href="https://github.com/publicsuffix/list/issues/1245">New interaction between iOS 14 and Facebook Pixel causing increase in PSL inclusion requests - Issue #1245 - publicsuffix/list</a>
+          <li><a href="https://github.com/publicsuffix/list/issues/1245" target=_blank>New interaction between iOS 14 and Facebook Pixel causing increase in PSL inclusion requests - Issue #1245 - publicsuffix/list</a>
         </ul>
         <ul>
-          <li><a href="https://github.com/privacycg/private-click-measurement/issues/78">High volume of requests to add domains to the PSL - Issue #78 - privacycg/private-click-measurement</a>
+          <li><a href="https://github.com/privacycg/private-click-measurement/issues/78" target=_blank>High volume of requests to add domains to the PSL - Issue #78 - privacycg/private-click-measurement</a>
         </ul>
         <p>以降、ここでまとめられている問題を順に解説する。
         <section>
           <h3 id="ios14-と-facebook-pixel-問題"><a href="#ios14-と-facebook-pixel-問題">iOS14 と Facebook Pixel 問題</a></h3>
           <p>まず、 iOS 14.5 以降でトラッキングをする際は、 AppTrackingTransparency(ATT) を通じた許諾の取得が必須となった。
           <ul>
-            <li><a href="https://developer.apple.com/jp/app-store/user-privacy-and-data-use/">ユーザーのプライバシーとデータの使用 - App Store - Apple Developer</a>
+            <li><a href="https://developer.apple.com/jp/app-store/user-privacy-and-data-use/" target=_blank>ユーザーのプライバシーとデータの使用 - App Store - Apple Developer</a>
           </ul>
           <p>周知の通り、この変更は多くのトラッキングサービスに影響を与え、その 1 つに Facebook Pixel がある。
           <ul>
-            <li><a href="https://www.facebook.com/business/help/331612538028890?id=428636648170202">Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 | Facebook Business ヘルプセンター</a>
+            <li><a href="https://www.facebook.com/business/help/331612538028890?id=428636648170202" target=_blank>Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 | Facebook Business ヘルプセンター</a>
           </ul>
           <p>そこで Facebook Pixel は Aggregated Event Measurement(AEM) への移行を促した。
           <ul>
-            <li><a href="https://www.facebook.com/business/help/721422165168355">合算イベント測定について | Facebook Business ヘルプセンター</a>
+            <li><a href="https://www.facebook.com/business/help/721422165168355" target=_blank>合算イベント測定について | Facebook Business ヘルプセンター</a>
           </ul>
           <p>AEM ではドメインごとに 8 つまでしかコンバージョンイベントが設定できないため、多くのイベントを設定してたユーザにとっては厳しい制限となる。
           <p>ところが、このドメインの定義は PSL をサポートしているため、 eTLD+1 単位で設定ができることがガイドラインに明記されているのだ。
@@ -291,14 +291,14 @@
           <p>前者は対応されつつも、後者は棄却されたり、一時的に追加を凍結するといった対応が取られている。
           <p>ところが、トラッキング制約の迂回に躍起になっている人間からは、かなり攻撃的な反応が GitHub 以外の場所(電話など)から、中の人に対して来ているようだ。
           <ul>
-            <li><a href="https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711">https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711</a>
+            <li><a href="https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711" target=_blank>https://github.com/publicsuffix/list/issues/1245#issuecomment-818050711</a>
           </ul>
           <p>完全に健全な状態とは言えず、無視できない状況である一方、こうした運用を想定しなかった中の人は、ひたすらに消耗している。
           <p>近年 Privacy Sandbox 系の議論が行われている Privacy CG でも、この問題が取り上げられた。
           <ul>
-            <li><a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md">https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md</a>
+            <li><a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md" target=_blank>https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md</a>
           </ul>
-          <p>Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「<a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.">望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る</a> 」という趣旨の発言をしている。
+          <p>Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「<a href="https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it." target=_blank>望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る</a> 」という趣旨の発言をしている。
           <p>過去にも Fingerprinting や CNAME Cloaking など、代替手段として提供されたものはあったが、特に Safari はそうしたものを徹底して塞いできた。これまで運用されていた仕組みがワークアラウンドに利用されることを防ぐためにパッチングを積み重ねることは、 Web をより複雑にし、少しづつ歪が増え、将来的に負債になることは想像に難くない。
           <p>かりそめのワークアラウンドのために PSL が利用され、内部の運用まで圧迫している現状は、 Web を利用する誰にとっても良い結果にはならないと筆者は考えている。
         </section>
@@ -307,7 +307,7 @@
         <h2 id="理想的な状態は何か"><a href="#理想的な状態は何か">理想的な状態は何か</a></h2>
         <p>そもそも、そんな仕組みで動いてる現状自体が問題というのは、全くそのとおりであり、この問題は以前から指摘され続けてきた。
         <ul>
-          <li><a href="https://github.com/sleevi/psl-problems">Public Suffix List Problems</a>
+          <li><a href="https://github.com/sleevi/psl-problems" target=_blank>Public Suffix List Problems</a>
         </ul>
         <p>DNS の構造を無視していることも、 Origin の概念ともズレいてることも、レジストラやサービス提供者の気分次第で定義されることも、テキストファイルでメンテされていることも、そのメンテナンスが重要でありながらボランティアベースであることも、全てが問題といっていいだろう。
         <p>しかし、一旦このファイルが壊れれば、多くのサイトで Cookie に関するなんらかの問題が発生するか、各ベンダがフォークして互換性の問題が発生するか、もっと最悪な何かになる可能性がある。

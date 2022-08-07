@@ -177,7 +177,7 @@
       <h1><a href="">「Socket.IO は必要か?」または「WebSocket は通るのか?」問題について 2016 年版</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p><a href="https://twitter.com/chicken2227/status/766200604783882243">「Socket.IO 使ったほうがいいですか?」</a> という主旨の質問をもらった。
+        <p><a href="https://twitter.com/chicken2227/status/766200604783882243" target=_blank>「Socket.IO 使ったほうがいいですか?」</a> という主旨の質問をもらった。
         <p>これは、 WebSocket が繋がらない環境に向けて、フォールバック機能を有する Socket.IO にしておいた方が良いのかという意味である。
         <p>WebSocket が出てきた当初と比べて、 Web を取り巻く状況は変わったが、変わってないところもある。
         <p>念のためと Socket.IO を使うのもよいが、「本当に必要なのか」を問うのは重要である。
@@ -202,8 +202,8 @@
           <h3 id="問題の詳細"><a href="#問題の詳細">問題の詳細</a></h3>
           <p>WebSocket は標準仕様であるが、ブラウザが実装しているものを指す場合、これは大きく二つの仕様からなる。
           <ul>
-            <li>JS の API (WebSocket オブジェクトとそのメソッド) を定義した <a href="https://html.spec.whatwg.org/multipage/comms.html#network">W3C の仕様</a>
-            <li>ネットワークプロトコルを定義した <a href="https://tools.ietf.org/html/rfc6455">IETF の仕様</a>
+            <li>JS の API (WebSocket オブジェクトとそのメソッド) を定義した <a href="https://html.spec.whatwg.org/multipage/comms.html#network" target=_blank>W3C の仕様</a>
+            <li>ネットワークプロトコルを定義した <a href="https://tools.ietf.org/html/rfc6455" target=_blank>IETF の仕様</a>
           </ul>
           <p>前者は、仕様としては比較的初期から固まっており、後のバイナリ対応など細かい変更はあれど、簡単なテキストチャットを作るレベルでは、早い段階から落ちついていた。
           <p>つまり、これはブラウザが実装するかしないかという、いつもの問題とほぼ等しい。
@@ -221,13 +221,13 @@
           </ul>
           <p>これが、 Socket.IO が行っていた「互換性担保」の部分の実態である。
           <p>2016 年現在、 IE11 以降のモダンブラウザは RFC に対応したプロトコルをしゃべる WebSocket API を実装済みであるため、この部分の心配は IE11 に依存すると言える。
-          <p><a href="https://caniuse.com/#search=websocket">WebSocket | Can I use</a>
+          <p><a href="https://caniuse.com/#search=websocket" target=_blank>WebSocket | Can I use</a>
           <p>つまり RFC の WebSocket を実装したサーバと、モダンブラウザにある WebSocket API を直接使った実装で、十分 Interoperability が担保されているわけである。
         </section>
         <section>
           <h3 id="補足"><a href="#補足">補足</a></h3>
           <p>ほとんど無いと思うが、仮に「いまだに RFC 以前のプロトコルで話しかけてくるクライアントがいる」場合は、基本は落とせばいいだろう。
-          <p>ただし、それらを等しくサポートする、非常に苦しい選択を迫られている場合は、 Socket.IO の中でも使われている <a href="https://github.com/websockets/ws#protocol-support">WS</a> というモジュールが、古いプロコトルをカバーする実装になっている。
+          <p>ただし、それらを等しくサポートする、非常に苦しい選択を迫られている場合は、 Socket.IO の中でも使われている <a href="https://github.com/websockets/ws#protocol-support" target=_blank>WS</a> というモジュールが、古いプロコトルをカバーする実装になっている。
           <p>Socket.IO もこれを中で使っているため、もちろん Socket.IO を使っても良いが、その場合は通信の内容(つまり WebSocket の上で流すペイロード)にも、特定のフォーマット(Socket.IO プロトコルと呼ばれる)をサポートする必要があるので、 WS 単位ならそれがいらなくなる。
         </section>
       </section>
@@ -241,7 +241,7 @@
           <p>理由は様々だが、多くの場合はその後の通信をサポートしてない、未知のヘッダであるなどの理由から、ヘッダがあった時点でコネクションを切断したりする。
           <p>他にも、 Personal Firewall (要するにウィルス対策ソフト)の中に、こうしたヘッダを落とす製品があることも確認されていた。
           <p>この情報は、かつて Socket.IO の Wiki にまとめられていたが、現在は消えてしまったようだ。
-          <p>消されたのは、内容が古いからだろうが、自分が昔翻訳した方が残っていたので参考までに<a href="https://github.com/Jxck/socket.io/wiki/Socket.IO-and-firewall-software">貼っておく</a>。
+          <p>消されたのは、内容が古いからだろうが、自分が昔翻訳した方が残っていたので参考までに<a href="https://github.com/Jxck/socket.io/wiki/Socket.IO-and-firewall-software" target=_blank>貼っておく</a>。
         </section>
         <section>
           <h3 id="解決方法"><a href="#解決方法">解決方法</a></h3>

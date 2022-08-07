@@ -161,9 +161,9 @@
       <h1><a href="">EventTarget の継承可能化による EventEmitter の代替</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p><a href="https://twitter.com/Jxck_/status/826004140211843072">念願</a> だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。
+        <p><a href="https://twitter.com/Jxck_/status/826004140211843072" target=_blank>念願</a> だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。
         <p>これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。
-        <p><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586">Allow constructing and subclassing EventTarget</a>
+        <p><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586" target=_blank>Allow constructing and subclassing EventTarget</a>
       </section>
       <section>
         <h2 id="update"><a href="#update">Update</a></h2>
@@ -171,7 +171,7 @@
       </section>
       <section>
         <h2 id="eventtarget"><a href="#eventtarget">EventTarget</a></h2>
-        <p><a href="https://dom.spec.whatwg.org/#interface-eventtarget">EventTarget</a> には <code translate=no>addEventListener</code>, <code translate=no>removeEventListener</code>, <code translate=no>dispatchEvent</code> が定義されている。
+        <p><a href="https://dom.spec.whatwg.org/#interface-eventtarget" target=_blank>EventTarget</a> には <code translate=no>addEventListener</code>, <code translate=no>removeEventListener</code>, <code translate=no>dispatchEvent</code> が定義されている。
         <p>これは、ブラウザが内部で生成する Event や、任意に生成された CustomEvent を発火/補足するために利用される。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=js data-code=js data-path=et.js><code translate=no class=language-js>callback = console.log.bind(console)
@@ -213,11 +213,11 @@ timer.on(&apos;tick&apos;, console.log.bind(console))</code></pre>
         <h2 id="eventemitter-porting"><a href="#eventemitter-porting">EventEmitter porting</a></h2>
         <p>これまでは、ブラウザ上で任意の class を EventTarget にすることができなかった。
         <p>そこで、 Node における EventEmitter を用いた設計と同等のことを行うためには、 EventEmitter のポーティングなどが利用されていた。
-        <p>例えば browserify は <a href="https://github.com/Gozala/events">https://github.com/Gozala/events</a> を使っており、筆者も <a href="https://github.com/jxck/events">同じようなこと</a> をしたことがある。
+        <p>例えば browserify は <a href="https://github.com/Gozala/events" target=_blank>https://github.com/Gozala/events</a> を使っており、筆者も <a href="https://github.com/jxck/events" target=_blank>同じようなこと</a> をしたことがある。
         <p>しかし、こうした汎用的な処理をより効率よく実現するために、 EventTarget が継承可能となる仕様が追加された。
         <ul>
-          <li><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586">Allow constructing and subclassing EventTarget</a>
-          <li><a href="https://github.com/whatwg/dom/issues/441">Make EventTarget subclassable #441</a>
+          <li><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586" target=_blank>Allow constructing and subclassing EventTarget</a>
+          <li><a href="https://github.com/whatwg/dom/issues/441" target=_blank>Make EventTarget subclassable #441</a>
         </ul>
         <p>実装されれば、メソッド名をすり合わせる目的以外で EventEmitter porting は不要となるだろう。
       </section>
@@ -272,7 +272,7 @@ EventTarget.prototype.emit = function(name, detail) {
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="http://labs.jxck.io/event-target/">http://labs.jxck.io/event-target/</a>
+          <li><a href="http://labs.jxck.io/event-target/" target=_blank>http://labs.jxck.io/event-target/</a>
         </ul>
       </section>
     </article>

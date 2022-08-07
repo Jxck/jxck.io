@@ -194,13 +194,13 @@
       </section>
       <section>
         <h2 id="mixed-contents-の挙動"><a href="#mixed-contents-の挙動">mixed contents の挙動</a></h2>
-        <p><a href="https://w3c.github.io/webappsec-mixed-content/">Mixed Content</a>
+        <p><a href="https://w3c.github.io/webappsec-mixed-content/" target=_blank>Mixed Content</a>
         <p>まず、 mixed contents 発生時のブラウザの挙動について再度確認する。
         <p>mixed contents は URL バーが変化し、ユーザに注意を促す。
         <p>また、コンテンツが MITM により改ざんされた場合の影響によって、二つに分類されており、それによって挙動が変わる。
         <p>動作するデモを以下に用意した。
         <ul>
-          <li>DEMO: <a href="https://labs.jxck.io/mixed/mixed.html">https://labs.jxck.io/mixed/mixed.html</a>
+          <li>DEMO: <a href="https://labs.jxck.io/mixed/mixed.html" target=_blank>https://labs.jxck.io/mixed/mixed.html</a>
         </ul>
         <section>
           <h3 id="url-バーの変化"><a href="#url-バーの変化">URL バーの変化</a></h3>
@@ -237,7 +237,7 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
           <p>特に iframe を埋め込むタイプの広告の場合、 HTTP で配信される広告を HTTPS のページに埋め込むと、広告が表示されないことになる。
           <p>アドプロバイダの HTTPS 対応は進んでいるとはいえ、広告が表示されないことは実益に影響する場合が多いため、これが原因で HTTPS 化ができないサービスも少なからずある。
           <ul>
-            <li>DEMO: <a href="https://labs.jxck.io/mixed/mixed.html#active">https://labs.jxck.io/mixed/mixed.html#active</a>
+            <li>DEMO: <a href="https://labs.jxck.io/mixed/mixed.html#active" target=_blank>https://labs.jxck.io/mixed/mixed.html#active</a>
           </ul>
         </section>
         <section>
@@ -252,7 +252,7 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
           <p>そのため、これらコンテンツの読み込み自体は行われるが、ブラウザの URL バーは異常を検知したような表示になる。
           <p>特に EV 証明書で、 URL バーに組織名を表示しているような場合は、たとえコンテンツが表示されていたとしても、無視できない問題となってくる。
           <ul>
-            <li>DEMO: <a href="https://labs.jxck.io/mixed/mixed.html#passive">https://labs.jxck.io/mixed/mixed.html#passive</a>
+            <li>DEMO: <a href="https://labs.jxck.io/mixed/mixed.html#passive" target=_blank>https://labs.jxck.io/mixed/mixed.html#passive</a>
           </ul>
         </section>
       </section>
@@ -261,28 +261,28 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
         <p>Mixed Contents に対して、対策となりえる CSP のディレクティブを解説する。
         <section>
           <h3 id="upgrade-insecure-request"><a href="#upgrade-insecure-request">Upgrade-Insecure-Request</a></h3>
-          <p><a href="https://w3c.github.io/webappsec-upgrade-insecure-requests/">Upgrade Insecure Requests</a>
+          <p><a href="https://w3c.github.io/webappsec-upgrade-insecure-requests/" target=_blank>Upgrade Insecure Requests</a>
           <p>CSP の <code translate=no>Upgrade-Insecure-Request</code> を付与した場合、ブラウザは HTTPS コンテンツに埋め込まれた <code translate=no>http://</code> スキームのリンクを、 <code translate=no>https://</code> に読み替えて発行する。
           <p>コンテンツからは HTTP のリクエストが発生しないため、どんなコンテンツであっても URL バーは安全であるという表示になる。
           <p>コンテンツが膨大すぎて URL の書き換えが困難なサイトや、 CGM でありユーザが作ったコンテンツを勝手に書き換えることができない場合に、ヘッダだけで対応を終えることができる。
           <p>サーバ側が同じコンテンツを https で配布していなければ 404 になる代わりに、絶対に mixed contents にならないのがこのヘッダの特徴である。
           <p>しかし、対応していないブラウザでは問題が解決しないため、そのサーバが <code translate=no>Upgrade-Insecure-Request</code> に対応しているかを知りたい場合がある。
           <p>仕様では、 feature-detection のために、対応するブラウザはリクエストに <code translate=no>Upgrade-Insecure-Request: 1</code> というヘッダをつけることになっているため、これを用いて分岐することは可能だ。
-          <p><a href="https://w3c.github.io/webappsec-upgrade-insecure-requests/#feature-detect]">3.2. Feature Detecting Clients Capable of Upgrading</a>
+          <p><a href="https://w3c.github.io/webappsec-upgrade-insecure-requests/#feature-detect]" target=_blank>3.2. Feature Detecting Clients Capable of Upgrading</a>
           <ul>
-            <li>DEMO: <a href="https://labs.jxck.io/mixed/mixed.html?upgrade-insecure-request">https://labs.jxck.io/mixed/mixed.html?upgrade-insecure-request</a>
+            <li>DEMO: <a href="https://labs.jxck.io/mixed/mixed.html?upgrade-insecure-request" target=_blank>https://labs.jxck.io/mixed/mixed.html?upgrade-insecure-request</a>
           </ul>
           <p>理想はコンテンツ内の全てのリンクを修正したいところだ。
         </section>
         <section>
           <h3 id="block-all-mixed-contents"><a href="#block-all-mixed-contents">Block-All-Mixed-Contents</a></h3>
-          <p><a href="https://w3c.github.io/webappsec-mixed-content/#strict-checking">4. Strict Mixed Content Checking</a>
+          <p><a href="https://w3c.github.io/webappsec-mixed-content/#strict-checking" target=_blank>4. Strict Mixed Content Checking</a>
           <p>たとえ Mixed Passive Contents であったとしても、 MITM により改ざんされることが多大な影響を及ぼす場合もあるだろう。
           <p>この場合は、 CSP の <code translate=no>Block-All-Mixed-Contents</code> を有効にすることで、 Passive でも Active 同様にブロックし、改ざんされたコンテンツが表示されることを防ぐことができる。
           <p>ユーザにとってコンテンツが壊れる(画像などが表示されない)ことより、 MITM によって改ざんされるリスクを重く見る場合の対応となる。
           <p>また、 CSP の reporting に対応しているため、 block が発生した場合にそのことを指定した URI にレポートすることができる。
           <ul>
-            <li>DEMO: <a href="https://labs.jxck.io/mixed/mixed.html?block-all-mixed-content">https://labs.jxck.io/mixed/mixed.html?block-all-mixed-content</a>
+            <li>DEMO: <a href="https://labs.jxck.io/mixed/mixed.html?block-all-mixed-content" target=_blank>https://labs.jxck.io/mixed/mixed.html?block-all-mixed-content</a>
           </ul>
         </section>
         <section>
@@ -309,20 +309,20 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
             <img loading=lazy decoding=async src=iframe.png?220731_001936 alt="典型的な nested iframe" title="ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki" width=600 height=451>
           </picture>
         </p>
-        <p><a href="https://speakerdeck.com/suzuken/deisupureiguang-gao-falseji-chu-tosekiyuritei">ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki</a>
+        <p><a href="https://speakerdeck.com/suzuken/deisupureiguang-gao-falseji-chu-tosekiyuritei" target=_blank>ディスプレイ広告の基礎とセキュリティ(P7) by Kenta Suzuki</a>
         <p>iframe 自体を https で読み込んでいても、ネストした iframe 内に http で読み込まれるサブリソースがあると、大元のドキュメントは mixed contents 扱いになる。
         <ul>
-          <li>DEMO: <a href="https://labs.jxck.io/mixed/iframe.html">https://labs.jxck.io/mixed/iframe.html</a>
+          <li>DEMO: <a href="https://labs.jxck.io/mixed/iframe.html" target=_blank>https://labs.jxck.io/mixed/iframe.html</a>
         </ul>
         <p>もし大元のコンテンツに <code translate=no>Upgrade-Insecure-Request</code> をつければ、 iframe 内のサブリソースも全て https に読み替えられるため、サーバが対応していればそれで済む。
         <ul>
-          <li>DEMO: <a href="https://labs.jxck.io/mixed/iframe.html?upgrade-insecure-request">https://labs.jxck.io/mixed/iframe.html?upgrade-insecure-request</a>
+          <li>DEMO: <a href="https://labs.jxck.io/mixed/iframe.html?upgrade-insecure-request" target=_blank>https://labs.jxck.io/mixed/iframe.html?upgrade-insecure-request</a>
         </ul>
         <p>また、 <code translate=no>Block-All-Mixed-Contents</code> をつければ、 iframe 内のサブリソースはブロックされるため、 mixed contents を回避することはできる。
         <p>しかし、 <em>ネストした iframe 内の mixed contents をブロックしても report は発生しない</em>。
         <p>もし iframe の内側の mixed contents まで report ができてしまうと、その内容を把握できる可能性などセキュリティ上問題があるからだ。
         <ul>
-          <li>DEMO: <a href="https://labs.jxck.io/mixed/iframe.html?block-all-mixed-content">https://labs.jxck.io/mixed/iframe.html?block-all-mixed-content</a>
+          <li>DEMO: <a href="https://labs.jxck.io/mixed/iframe.html?block-all-mixed-content" target=_blank>https://labs.jxck.io/mixed/iframe.html?block-all-mixed-content</a>
         </ul>
         <p>つまり広告配信プラットフォームが提供する広告用の iframe 自体が https に対応していても、そこの入稿される広告コンテンツ本体のどこかに一つでも https 非対応なものがあれば、 mixed contents は避けられない。
         <p>したがって、広告配信プラットフォームが <code translate=no>Upgrade-Insecure-Request</code> や <code translate=no>Block-All-Mixed-Contents</code> などに対応し、広告の入稿時点で mixed contents の発生を抑止するといった対応以外には、コンテンツ側での対応には限界がある。

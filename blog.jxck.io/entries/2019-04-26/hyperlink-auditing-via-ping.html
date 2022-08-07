@@ -184,15 +184,15 @@
         <p><code translate=no>&lt;a&gt;</code> には ping という属性があり、以下のように URL を指定する。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=https:example.com ping=/path/to/report&gt;example.com&lt;/a&gt;</code></pre>
-        <p><a href="https://html.spec.whatwg.org/#ping">HTML Standard - ping Attribute</a>
-        <p>このリンクは、クリックすると <a href="https://example.com">https://example.com</a> に遷移するが、ブラウザは遷移すると同時に <code translate=no>/path/to/report</code> に対して、おおよそ以下のようなリクエストを投げる。
+        <p><a href="https://html.spec.whatwg.org/#ping" target=_blank>HTML Standard - ping Attribute</a>
+        <p>このリンクは、クリックすると <a href="https://example.com" target=_blank>https://example.com</a> に遷移するが、ブラウザは遷移すると同時に <code translate=no>/path/to/report</code> に対して、おおよそ以下のようなリクエストを投げる。
         <pre class=http data-code=http><code translate=no class=language-http>POST /path/to/report HTTP/1.1
 Content-Type: text/ping
 Ping-From: http://labs.jxck.io/ping/
 Ping-To: http://labs.jxck.io/ping/
 
 PING</code></pre>
-        <p><a href="https://html.spec.whatwg.org/#hyperlink-auditing">HTML Standard - 4.6.5.1 Hyperlink auditing</a>
+        <p><a href="https://html.spec.whatwg.org/#hyperlink-auditing" target=_blank>HTML Standard - 4.6.5.1 Hyperlink auditing</a>
         <p>このリクエストには <code translate=no>Ping-From</code> / <code translate=no>Ping-To</code> ヘッダが含まれ、それぞれの値は遷移元/遷移先の URL となる。
         <p>したがって ping リクエストを収集することにより、ユーザが「<em>どのページからどのページに遷移したか</em>」を取得することができるのだ。
         <p>従来も HTTP の Referer ヘッダを見れば「そのユーザがどこから遷移して来たか」を取ることができた。
@@ -300,7 +300,7 @@ PING</code></pre>
           <p>まず、 ping の仕様には以下が記述されている。
           <blockquote cite="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">
             <p>User agents should allow the user to adjust this behavior, for example in conjunction with a setting that disables the sending of HTTP <code translate=no>Referer</code> (sic) headers. Based on the user&apos;s preferences, UAs may either ignore the ping attribute altogether, or selectively ignore URLs in the list (e.g. ignoring any third-party URLs); this is explicitly accounted for in the steps above.
-            <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">HTML Standard</a></cite>
+            <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing" target=_blank>HTML Standard</a></cite>
           </blockquote>
           <p>つまり、この機能はブラウザの設定による無効化や、送られる情報の制限といった、ユーザコントロールの余地を盛り込むことが可能なのだ。
           <p>JS による収集は、究極的には JS を無効にしなければ Opt-Out できない。
@@ -309,7 +309,7 @@ PING</code></pre>
           <p>また、こうも書かれている。
           <blockquote cite="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">
             <p>When the ping attribute is present, user agents should clearly indicate to the user that following the hyperlink will also cause secondary requests to be sent in the background, possibly including listing the actual target URLs.
-            <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">HTML Standard</a></cite>
+            <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing" target=_blank>HTML Standard</a></cite>
           </blockquote>
           <p>各サービスが情報収集を行なっている場合、規約などに書かれているかもしれないが、実際に何がいつ送られたかまではユーザは知らされない。
           <p>あくまで JS が裏で走っているか、リダイレクトを繰り返しているだけであり、タイミングも画面遷移が伴っていることもあって、ここを indicate しているサービスを筆者は見たことがない。
@@ -340,7 +340,7 @@ PING</code></pre>
         <p>これは、「広告が表示されるくらいならマイニングされる方が良い」というユーザの選択肢や、「広告以外の方法でマネタイズができるかもしれない」というコンテンツの可能性を奪うだけでなく、あまつさえ「その合意形成のプロセスに積極的に参加する」ことすらを罪としてしまった。
         <p>罪の根拠としてプロセスの参加者が誰も納得しない別の合意が提示されたようだが、本来それが妥当かどうかを検証するプロセスが毀損されているのだから、それ自体が矛盾しているとしか筆者には見えない。
         <p>もちろん、合意の形成はゆるやかに行われるものだ、その間にユーザが危険にされされる可能性もあるだろう。
-        <p>ちょうど先月、 Firefox の safe browsing の <a href="https://github.com/mozilla-services/shavar-prod-lists/blob/7eaadac98bc9dcc95ce917eff7bbb21cb71484ec/disconnect-blacklist.json">black list</a> が更新され、マイニングの URL が追加された。
+        <p>ちょうど先月、 Firefox の safe browsing の <a href="https://github.com/mozilla-services/shavar-prod-lists/blob/7eaadac98bc9dcc95ce917eff7bbb21cb71484ec/disconnect-blacklist.json" target=_blank>black list</a> が更新され、マイニングの URL が追加された。
         <p>これは、ようやくプロセス自体が周り始める兆しだったと見ることもできただろう。
         <p>他のブラウザの動き、マイニングサービスからのフィードバック、サービスの検証、ユーザの反応、標準化への提案。
         <p>その結果、完全悪になることもあるかもしれない、より建設的ななにかにたどり着くかもしれない。
@@ -350,7 +350,7 @@ PING</code></pre>
       <section>
         <h2 id="ping-の実装の現状"><a href="#ping-の実装の現状">ping の実装の現状</a></h2>
         <p>話を戻すと、 ping はまだこうした合意形成の途中と言える。
-        <p>いまだに Privacy を懸念する声があがることもあり、<a href="https://github.com/w3c/html/issues/369">情報を追加するための API</a> を求める声もある。
+        <p>いまだに Privacy を懸念する声があがることもあり、<a href="https://github.com/w3c/html/issues/369" target=_blank>情報を追加するための API</a> を求める声もある。
         <p>実装についても、現時点ではまだ各ブラウザで差がある。
         <ul>
           <li>Chrome: 実装済みデフォルトで有効
@@ -359,21 +359,21 @@ PING</code></pre>
           <li>Edge: Chromium ベースの実装を継承
           <li>IE: 未実装
         </ul>
-        <p><a href="https://caniuse.com/#feat=ping">Can I use - ping</a>
+        <p><a href="https://caniuse.com/#feat=ping" target=_blank>Can I use - ping</a>
         <p>ユーザコントロールについては、 Chrome は無効にすることが可能になっている。
         <p>しかし、いわゆるメニュー画面ではなく、 chrome://flags であるため、開発者向けの色合いが強い。
         <p>Safari は、最近この件について態度を表明した。
         <p>メニューからは無効にできないが、トラッキングから Opt-Out する手段として Content-Blocker を提供するというものだ。
         <p>あまりに簡単に Opt-Out できると結局サービスが ping を使わなくなるため、デフォルトで 1st Party での収集を許可し ITP 同様 3rd Party の収集を厳しくする方針だ。
         <p>これは理想と現実のバランスを非常によくとった提案の一つだと筆者には思える。
-        <p><a href="https://webkit.org/blog/8821/link-click-analytics-and-privacy/">Link Click Analytics and Privacy - WebKit</a>
+        <p><a href="https://webkit.org/blog/8821/link-click-analytics-and-privacy/" target=_blank>Link Click Analytics and Privacy - WebKit</a>
         <p>Firefox は有効にするには <code translate=no>browser.send_pings</code> が必要だ。
-        <p><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/LXzY4gwaZFU/fVJIr55OAwAJ">Intent to implement and ship: ping, rel, referrerPolicy, relList, hreflang, type and text properties on SVG elements</a>
+        <p><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/LXzY4gwaZFU/fVJIr55OAwAJ" target=_blank>Intent to implement and ship: ping, rel, referrerPolicy, relList, hreflang, type and text properties on SVG elements</a>
         <p>各ブラウザの態度は、仕様の議論からも透けて見える。
         <ul>
-          <li><a href="https://github.com/w3c/html/issues/369">Add text for the ping attribute - Issue #369 - w3c/html</a>
-          <li><a href="https://github.com/w3c/html/issues/1456">Privacy concern with ping attribute - Issue #1456 - w3c/html</a>
-          <li><a href="https://github.com/whatwg/html/issues/3718">Privacy concern with ping attribute - Issue #3718 - whatwg/html</a>
+          <li><a href="https://github.com/w3c/html/issues/369" target=_blank>Add text for the ping attribute - Issue #369 - w3c/html</a>
+          <li><a href="https://github.com/w3c/html/issues/1456" target=_blank>Privacy concern with ping attribute - Issue #1456 - w3c/html</a>
+          <li><a href="https://github.com/whatwg/html/issues/3718" target=_blank>Privacy concern with ping attribute - Issue #3718 - whatwg/html</a>
         </ul>
         <p>この先どのような合意が形成されるかは未知だが、 Safari がブログで態度を表明したことは、この流れに少なからず影響するだろう。
         <p>次の Edge も Chromium が実装済みの ping を継承しているため、その UI をどうするかという議論には参加することになるだろう。

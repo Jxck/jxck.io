@@ -181,20 +181,20 @@
         <p>これを用いると、 FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。
         <p>今回は YubiKey 認証の実装を通じて、ブラウザ API の呼び出しと、サーバ側で必要な処理について解説する。
         <ul>
-          <li><a href="https://w3c.github.io/webauthn/">https://w3c.github.io/webauthn/</a>
+          <li><a href="https://w3c.github.io/webauthn/" target=_blank>https://w3c.github.io/webauthn/</a>
         </ul>
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/webauthentication/fido-u2f/">https://labs.jxck.io/webauthentication/fido-u2f/</a>
+          <li><a href="https://labs.jxck.io/webauthentication/fido-u2f/" target=_blank>https://labs.jxck.io/webauthentication/fido-u2f/</a>
         </ul>
         <p>YubiKey での動作のみ確認している。
         <p>コードは以下にあり、今回の解説もここから抜粋している。
         <p>(あくまで API の流れを解説するためのものであるため、飛ばした処理もあり、本番利用に耐えうるものではない。)
         <ul>
-          <li><a href="https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f">https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f</a>
+          <li><a href="https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f" target=_blank>https://github.com/Jxck/jxck.io/tree/master/labs.jxck.io/webauthentication/fido-u2f</a>
         </ul>
         <p>YubiKey Login の動作イメージは以下。
         <iframe src="https://www.youtube.com/embed/XL94v1t2aWk" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
@@ -203,8 +203,8 @@
         <h2 id="webauthentication-api"><a href="#webauthentication-api">WebAuthentication API</a></h2>
         <p>WebAuthentication API は、 Credential Management API の拡張になっている。
         <ul>
-          <li><a href="https://w3c.github.io/webappsec-credential-management/">Credential Management Level 1</a>
-          <li><a href="https://w3c.github.io/webauthn/">Web Authentication: An API for accessing Public Key Credentials - Level 1</a>
+          <li><a href="https://w3c.github.io/webappsec-credential-management/" target=_blank>Credential Management Level 1</a>
+          <li><a href="https://w3c.github.io/webauthn/" target=_blank>Web Authentication: An API for accessing Public Key Credentials - Level 1</a>
         </ul>
         <p>JS API としては、 Credential Management API をそのまま使う。
         <p>しかし、ユーザが入力する PasswordCredential ではなく、 FIDO U2F で生成する PublicKeyCredential を使う。
@@ -212,7 +212,7 @@
         <p>この時ブラウザから Authenticator を起動する API と、その結果をサーバで処理する方法がこの仕様に定義されている。
         <p>サーバ/ブラウザ間でやり取りするバイナリは、なんらかの方法でシリアライズして送る。
         <p>今回は、 Base64URL と JSON を用いるが、この範囲であれば別のフォーマットでも良さそうに思う。
-        <p>また、 Authenticator が生成する情報は一部 <a href="https://tools.ietf.org/html/rfc7049">CBOR</a> が利用されているが、その解説は省略する。
+        <p>また、 Authenticator が生成する情報は一部 <a href="https://tools.ietf.org/html/rfc7049" target=_blank>CBOR</a> が利用されているが、その解説は省略する。
         <p>実際に仕様に基づき、コードの流れを解説する。サーバも JS に揃えるため Node で実装している。
       </section>
       <section>
@@ -343,7 +343,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
         <section>
           <h3 id="attstmt"><a href="#attstmt">attStmt</a></h3>
           <p>今回の fmt では attStmt は以下の構造になる。
-          <p><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation">8.6. FIDO U2F Attestation Statement Format</a>
+          <p><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation" target=_blank>8.6. FIDO U2F Attestation Statement Format</a>
           <pre class=js data-code=js><code translate=no class=language-js>u2fStmtFormat = {
                   x5c: [ attestnCert: bytes ],
                   sig: bytes
@@ -357,7 +357,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <h3 id="verification-procedure"><a href="#verification-procedure">Verification Procedure</a></h3>
           <p>先程 COSE から取得した x と y を連結し、先頭に 0x04 を加えると PublicKey になる。
           <ul>
-            <li><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation">https://w3c.github.io/webauthn/#fido-u2f-attestation</a>
+            <li><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation" target=_blank>https://w3c.github.io/webauthn/#fido-u2f-attestation</a>
           </ul>
           <pre class=js data-code=js><code translate=no class=language-js>PublicKeyU2F = 0x04 || x || y</code></pre>
           <p>これと、 rpidHash, clientDataHash, credentialId を連結し、先頭に 0x00 を加えると、署名対象のデータが得られる。

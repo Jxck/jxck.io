@@ -174,7 +174,7 @@
           <li>
             mozilla standard position に RFP を上げたところ「実装はしないが仕様については <em>non-harmful</em>」となりそうだ。
             <ul>
-              <li><a href="https://github.com/mozilla/standards-positions/issues/131">PFP: Cache Digest Issue #131 mozilla/standards-positions</a>
+              <li><a href="https://github.com/mozilla/standards-positions/issues/131" target=_blank>PFP: Cache Digest Issue #131 mozilla/standards-positions</a>
             </ul>
           </li>
         </ul>
@@ -185,12 +185,12 @@
         <p>これは、例えば RPC 的な用途で双方向性のある通信を可能にした。
         <p>Web においては、リクエストが来る前にレスポンスを返しキャッシュに入れ込むことで、 RTT を減らすという効果が期待されていた。
         <p>ところが、コンテントネゴシエーションをせずに、一方的にキャッシュを送り込むこの仕組みは、ブラウザが既にキャッシュをしている場合にはむしろ無駄な通信になる。
-        <p>そこで、なんとかして「ブラウザがなるべくキャッシュしてなさそうなものを Push する」ために <a href="https://twitter.com/kazuho">@kazuho</a> さんが考案したのが、 Cache Digest である。
+        <p>そこで、なんとかして「ブラウザがなるべくキャッシュしてなさそうなものを Push する」ために <a href="https://twitter.com/kazuho" target=_blank>@kazuho</a> さんが考案したのが、 Cache Digest である。
       </section>
       <section>
         <h2 id="cache-digest"><a href="#cache-digest">Cache Digest</a></h2>
         <p>Cache Digest は以下のドラフトであり、現状 -05 である。
-        <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-cache-digest-05">draft-ietf-httpbis-cache-digest-05 - Cache Digests for HTTP/2</a>
+        <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-cache-digest-05" target=_blank>draft-ietf-httpbis-cache-digest-05 - Cache Digests for HTTP/2</a>
         <p>究極には、ブラウザが保存しているコンテンツのリストを送ってくれば、正確に Push が可能だが、その方法は問題しかない。
         <p>現代の Web でそれをやるとサイズが大きすぎるし、 Fingerprint などの問題も懸念される。
         <p>そこで、 Filtercuckoo Filter という Bloom Filter に似た確率的データ構造を用いるのがこの提案だ。
@@ -204,11 +204,11 @@
         <h2 id="cache-digest-status"><a href="#cache-digest-status">Cache Digest Status</a></h2>
         <p>Cache Digest は、どちらかというと実装待ちのフェーズだった。
         <p>直近の IETF 103 の minutes でも、「実装さえあれば WGLC にできる、無いんだけど」というログのみが残っている。
-        <p><a href="https://github.com/httpwg/wg-materials/blob/gh-pages/ietf103/minutes.md#cache-digests-for-http2">HTTP Working Group Minutes - IETF103 Bangkok</a>
+        <p><a href="https://github.com/httpwg/wg-materials/blob/gh-pages/ietf103/minutes.md#cache-digests-for-http2" target=_blank>HTTP Working Group Minutes - IETF103 Bangkok</a>
         <p>あるブラウザの開発者から「実装が難しすぎる」という話をちょっと聞いたことがあったが、やはり内部のキャッシュを総ざらいしてハッシュを付与するという実装は、負荷が高かったのかもしれない。
         <p>実際、主なブラウザにおいて積極的な実装のシグナルは確認できておらず、仕様は中に浮いた状態だっという印象だ。
         <p>そして、先日 httpwg の mnot から、以下の投稿が ML にあった。
-        <p><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2019JanMar/0033.html">Cache Digests status from Mark Nottingham</a>
+        <p><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2019JanMar/0033.html" target=_blank>Cache Digests status from Mark Nottingham</a>
         <p>要約するとこうだ。
         <ul>
           <li>標準化するに足るほど実装が普及してるとはいえない
@@ -225,20 +225,20 @@
         <p>これは、 Push を CDN に移譲したりといった一部のユースケースを満たすが、依然として Client が何を Cache しているかはわからない。
         <p>もう一つ、ちょうど先月提案されたのが Prefer-Push という仕組みだ。
         <ul>
-          <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018OctDec/0144.html">Prefer-Push, a HTTP extension</a>
-          <li><a href="https://github.com/evert/push-please/">evert/push-please: A proposal for a HTTP-client suggested push by link-relation</a>
+          <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018OctDec/0144.html" target=_blank>Prefer-Push, a HTTP extension</a>
+          <li><a href="https://github.com/evert/push-please/" target=_blank>evert/push-please: A proposal for a HTTP-client suggested push by link-relation</a>
         </ul>
         <p>これは、 Client 自身が Push してほしいリソースをヘッダで送るというものだ。
         <p>もし、サブリソースのリストがわかってればそれも可能だが、例えば前のページで次のページのそれがわかっている状況は prefetch などで代用できそうにも思う。
         <p>当然そういった指摘が ML でなされているようで、あまり追ってないが盛り上がっている感じではなさそうに見える。
         <p>もともとの Push は最初の Request に対する Response の前に送る仕様になっているが、これを Request が来る前に送ってしまうという仕様も flano_yuki によって提案されている。
-        <p><a href="https://tools.ietf.org/html/draft-goto-httpbis-preload-frame-02">The PRELOAD Frame Extension</a>
+        <p><a href="https://tools.ietf.org/html/draft-goto-httpbis-preload-frame-02" target=_blank>The PRELOAD Frame Extension</a>
         <p>モチベーションとしてローディングの最適化があるようだが、これもブラウザが実装するかどうかというと難しそうだ。
       </section>
       <section>
         <h2 id="push-on-chrome"><a href="#push-on-chrome">Push on Chrome</a></h2>
         <p>現状 Chrome では HTTP2 セッションのうち 0.04% が Push を行っているらしい。
-        <p><a href="https://datatracker.ietf.org/meeting/102/materials/slides-102-httpbis-chromes-view-on-push-01">Chrome&apos;s view on Push IETF 102, httpbis Brad Lassey</a>
+        <p><a href="https://datatracker.ietf.org/meeting/102/materials/slides-102-httpbis-chromes-view-on-push-01" target=_blank>Chrome&apos;s view on Push IETF 102, httpbis Brad Lassey</a>
         <p>現実的な用途が見出されず、利用も広まらないのであれば、このままブラウザがメンテを続ける必要も無くなるかもしれない。
         <p>ただ、 Service Worker における Server Push や WebSocket など、内部での別の通信が Push を含めた HTTP2 Stack を使うことは十分にありえると思うので、すぐに Push ごとなくすということはなさそうに思う。
       </section>
@@ -259,7 +259,7 @@
       </section>
       <section>
         <h2 id="special-thanks"><a href="#special-thanks">Special Thanks</a></h2>
-        <p>この記事を書くにあたり <a href="https://twitter.com/kazuho">@kazuho</a> さんにアドバイスをいただきました。ありがとうございます。
+        <p>この記事を書くにあたり <a href="https://twitter.com/kazuho" target=_blank>@kazuho</a> さんにアドバイスをいただきました。ありがとうございます。
       </section>
     </article>
   </main>

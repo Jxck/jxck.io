@@ -176,7 +176,7 @@
         <h2 id="meta-tag"><a href="#meta-tag">Meta Tag</a></h2>
         <p>まず HTML の仕様に従い、基本的なメタ情報を <code translate=no>&lt;meta&gt;</code> により定義した。
         <ul>
-          <li><a href="https://dev.w3.org/html5/spec-preview/the-meta-element.html">https://dev.w3.org/html5/spec-preview/the-meta-element.html</a>
+          <li><a href="https://dev.w3.org/html5/spec-preview/the-meta-element.html" target=_blank>https://dev.w3.org/html5/spec-preview/the-meta-element.html</a>
         </ul>
         <p>各要素は、テンプレート生成時に利用した値を埋め込んでいるため、 <a href="https://blog.jxck.io/entries/2016-02-09/atom-feed.html">本サイトの Atom RSS-feed</a> などと同じ値である。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
@@ -185,11 +185,11 @@
 &lt;meta name=keywords content=&quot;${this.tags}&quot;&gt;
 
 &lt;title&gt;${this.title} | blog.jxck.io&lt;/title&gt;</code></pre>
-        <p>これで、 <a href="https://support.google.com/webmasters/answer/79812?hl=ja">Google がサポートしているメタタグ</a> についてもカバーされている。
+        <p>これで、 <a href="https://support.google.com/webmasters/answer/79812?hl=ja" target=_blank>Google がサポートしているメタタグ</a> についてもカバーされている。
       </section>
       <section>
         <h2 id="schema.org"><a href="#schema.org">schema.org</a></h2>
-        <p><a href="http://schema.org">schema.org</a> には、メタ情報を表現するボキャブラリが定義されている。
+        <p><a href="http://schema.org" target=_blank>schema.org</a> には、メタ情報を表現するボキャブラリが定義されている。
         <p>そのボキャブラリを、サイト内に表現する方法として RDFa, Microdata, JSON-LD の三種類がある。
         <p>それぞれのフォーマットの詳細は割愛するが、基本的には Microdata で HTML の該当タグにボキャブラリを埋め込むか、 JSON-LD を用いて JSON 形式で一箇所に埋め込むかのいずれかが候補に挙がった。
         <p>結果として、本サイトでは以下を考慮し JSON-LD を採用した。
@@ -237,13 +237,13 @@
 }
 &lt;/script&gt;</code></pre>
           <p>フォーマットは Google の検証ツールを用いてチェックしながら作成した。
-          <p><a href="https://developers.google.com/structured-data/testing-tool/">Structured Data Testing Tool</a>
+          <p><a href="https://developers.google.com/structured-data/testing-tool/" target=_blank>Structured Data Testing Tool</a>
           <p>悩んだ点として、 Google の Validator では <code translate=no>publisher</code> が必須なのだが、 <code translate=no>publisher</code> の <code translate=no>@type</code> は <code translate=no>Person</code> だと怒られる。
           <p>実際には、本サイトは個人運営なのだが、しかたなく <code translate=no>Organization</code> を選択した。問題があったり、回避方法が見つかったら修正する。
         </section>
         <section>
           <h3 id="json-ld-と-ld-json"><a href="#json-ld-と-ld-json">JSON-LD と LD-JSON</a></h3>
-          <p>JSON-LD と紛らわしいものに <a href="https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON">LD-JSON (Line Delimitered JSON)</a> がある。
+          <p>JSON-LD と紛らわしいものに <a href="https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON" target=_blank>LD-JSON (Line Delimitered JSON)</a> がある。
           <p>それだけなら、実際全く関係ない仕様なのでまあ問題ない。
           <p>しかし、 JSON-LD の HTML 内の記述は script type が <em>application/ld+json</em> なのが微妙に引っかかる。
         </section>
@@ -256,8 +256,8 @@
         <section>
           <h3 id="twitter"><a href="#twitter">Twitter</a></h3>
           <ul>
-            <li><a href="https://dev.twitter.com/ja/cards/types/summary">twitter cards</a>
-            <li><a href="https://cards-dev.twitter.com/validator">Card validator</a>
+            <li><a href="https://dev.twitter.com/ja/cards/types/summary" target=_blank>twitter cards</a>
+            <li><a href="https://cards-dev.twitter.com/validator" target=_blank>Card validator</a>
           </ul>
           <pre class=html data-code=html><code translate=no class=language-html>&lt;meta name=twitter:card        content=summary&gt;
 &lt;meta name=twitter:site        content=@jxck_&gt;
@@ -269,8 +269,8 @@
         <section>
           <h3 id="facebook"><a href="#facebook">Facebook</a></h3>
           <ul>
-            <li><a href="https://developers.facebook.com/docs/sharing/webmasters">facebook open graph</a>
-            <li><a href="https://developers.facebook.com/tools/debug/">fecebook URL Debugger</a>
+            <li><a href="https://developers.facebook.com/docs/sharing/webmasters" target=_blank>facebook open graph</a>
+            <li><a href="https://developers.facebook.com/tools/debug/" target=_blank>fecebook URL Debugger</a>
           </ul>
           <pre class=html data-code=html><code translate=no class=language-html>&lt;meta property=og:type        content=&quot;article&quot;&gt;
 &lt;meta property=og:url         content=${this.canonical}&gt;

@@ -177,7 +177,7 @@
         <p>これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
         <p>現時点での仕様と実装を解説する。
         <ul>
-          <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ">Intent to Prototype: Subresource loading with Web Bundles</a>
+          <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ" target=_blank>Intent to Prototype: Subresource loading with Web Bundles</a>
         </ul>
       </section>
       <section>
@@ -190,7 +190,7 @@
         <p>HTML 自体は普通に配信し、複数サブリソースの取得を 1 fetch にまとめることができる。
         <section>
           <h3 id="gen-bundle"><a href="#gen-bundle">gen-bundle</a></h3>
-          <p>実際に <a href="https://github.com/WICG/webpackage/tree/master/go/bundle/cmd/gen-bundle">gen-bundle</a> を用いてサブリソースのみを Bundle する。
+          <p>実際に <a href="https://github.com/WICG/webpackage/tree/master/go/bundle/cmd/gen-bundle" target=_blank>gen-bundle</a> を用いてサブリソースのみを Bundle する。
           <p>サブリソースを以下のように subresource ディレクトリにまとめたとする。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ ls subresource
@@ -324,7 +324,7 @@ img {
           <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles</code></pre>
           <p>HTML にアクセスすると、以下の様にサブリソースが bundle から解決されていることがわかる。
           <ul>
-            <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html">https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html</a>
+            <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html" target=_blank>https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html</a>
           </ul>
           <p>
             <picture>
@@ -371,9 +371,9 @@ img {
   style.css
   template.html</code></pre>
           <ul>
-            <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html">https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html</a>
+            <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html" target=_blank>https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html</a>
           </ul>
-          <p>今は、 JS 以外は <code translate=no>import</code> できないため、 CSS は <code translate=no>@import</code> で、 HTML は <code translate=no>fetch()</code> で解決しているが、 別途策定が進んでいる <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md">Synthetic Modules</a> (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て <code translate=no>import</code> で扱える可能性がある。
+          <p>今は、 JS 以外は <code translate=no>import</code> できないため、 CSS は <code translate=no>@import</code> で、 HTML は <code translate=no>fetch()</code> で解決しているが、 別途策定が進んでいる <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md" target=_blank>Synthetic Modules</a> (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て <code translate=no>import</code> で扱える可能性がある。
           <p>これら関連仕様が進むと、 Synthetic Module ベースで構成された WebComponent の使い勝手がよくなり、 Bundle で fetch の数も気にせずに積極的に使えるようになるかもしれない。
         </section>
         <section>
@@ -387,7 +387,7 @@ img {
   - redux.wbn</code></pre>
           <p>実際このような Nested Bundle も生成可能で、 Chrome もそれを最後まで展開するところが確認できた。
           <ul>
-            <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/">https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/</a>
+            <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/" target=_blank>https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/</a>
           </ul>
         </section>
       </section>
@@ -400,7 +400,7 @@ img {
           <p>しかし npm にあるような依存の深いモジュールを単純に import で取得しては、発生する fetch が多すぎてオーバーヘッドが無視できない。
           <p>これは H2 や Prefetch を使うといった構成でもカバーしきれず、それを詳細に調査した Chrome のチームからは「100 を超えるなら webpack でバンドルした方が良い」というレポートが出てしまった。
           <ul>
-            <li><a href="https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit">Loading Performance with (Many) Modules: Summary as of Oct 7, 2017</a>
+            <li><a href="https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit" target=_blank>Loading Performance with (Many) Modules: Summary as of Oct 7, 2017</a>
           </ul>
           <p>この課題は すでに広く普及した webpack などのビルドツールにより解決されていたので、開発の現場ではあまり体感することはなかったかもしれない。
           <p>結果、 ES Module の import はブラウザがランタイムで依存解決するためではなく、ビルドツールが変換に使うための placeholder として使われて、多くの依存を bundle.js にまとめ、その中の 1byte でも変わったらバンドルし直して再取得させる運用が通常となっている。
@@ -420,7 +420,7 @@ img {
           </ul>
           <p>WebBundle の Explainer には、この問題に対する考慮が一応書いてあるため、ここの議論が進めばより理想に近づくと個人的には期待したい。
           <ul>
-            <li><a href="https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md#approximate-membership-query-datastructure">https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md#approximate-membership-query-datastructure</a>
+            <li><a href="https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md#approximate-membership-query-datastructure" target=_blank>https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md#approximate-membership-query-datastructure</a>
           </ul>
           <p>現状の実装ではそこまではスコープに無いと思われるので、今後この議論が進むかどうかに注目しつつ、フィードバックしていきたい。
         </section>
@@ -435,7 +435,7 @@ img {
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/webpackaging/subresource-webbundle/">https://labs.jxck.io/webpackaging/subresource-webbundle/</a>
+          <li><a href="https://labs.jxck.io/webpackaging/subresource-webbundle/" target=_blank>https://labs.jxck.io/webpackaging/subresource-webbundle/</a>
         </ul>
       </section>
       <section>
@@ -451,14 +451,14 @@ img {
           <li>
             Explainer
             <ul>
-              <li><a href="https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md">https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md</a>
-              <li><a href="https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit#">https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit#</a>
+              <li><a href="https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md" target=_blank>https://github.com/WICG/webpackage/blob/master/explainers/subresource-loading.md</a>
+              <li><a href="https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit#" target=_blank>https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit#</a>
             </ul>
           </li>
           <li>
             Requirements Doc
             <ul>
-              <li><a href="https://docs.google.com/document/d/1imEt4TZkuzRVidmkaOaTym9JzPRMK8KSXiPp83797cw/edit#">https://docs.google.com/document/d/1imEt4TZkuzRVidmkaOaTym9JzPRMK8KSXiPp83797cw/edit#</a>
+              <li><a href="https://docs.google.com/document/d/1imEt4TZkuzRVidmkaOaTym9JzPRMK8KSXiPp83797cw/edit#" target=_blank>https://docs.google.com/document/d/1imEt4TZkuzRVidmkaOaTym9JzPRMK8KSXiPp83797cw/edit#</a>
             </ul>
           </li>
           <li>Mozilla Standard Position
@@ -470,7 +470,7 @@ img {
               <li>
                 Intent to Prototype: Subresource loading with Web Bundles
                 <ul>
-                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ">https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ</a>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ</a>
                 </ul>
               </li>
             </ul>
@@ -478,13 +478,13 @@ img {
           <li>
             Chrome Platform Status
             <ul>
-              <li><a href="https://www.chromestatus.com/feature/5710618575241216">https://www.chromestatus.com/feature/5710618575241216</a>
+              <li><a href="https://www.chromestatus.com/feature/5710618575241216" target=_blank>https://www.chromestatus.com/feature/5710618575241216</a>
             </ul>
           </li>
           <li>
             DEMO
             <ul>
-              <li><a href="https://docs.google.com/document/d/18fFrURT6xD1GnqJwCx2K3Z81Te9Iv-r2ZsCkOvDH_04/">https://docs.google.com/document/d/18fFrURT6xD1GnqJwCx2K3Z81Te9Iv-r2ZsCkOvDH_04/</a>
+              <li><a href="https://docs.google.com/document/d/18fFrURT6xD1GnqJwCx2K3Z81Te9Iv-r2ZsCkOvDH_04/" target=_blank>https://docs.google.com/document/d/18fFrURT6xD1GnqJwCx2K3Z81Te9Iv-r2ZsCkOvDH_04/</a>
             </ul>
           </li>
           <li>Blog

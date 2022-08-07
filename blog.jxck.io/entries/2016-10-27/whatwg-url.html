@@ -175,8 +175,8 @@
         <p>片手間な正規表現や文字列処理が、 URL が本来持つ仕様(username/password, escape, punycode etc)を正しく満たせるとは限らず、それ自体が様々な問題(セキュリティ etc)を引き起こす要因になることも少なくなかった。
         <p>ところが近年、 <code translate=no>fetch()</code> や <code translate=no>&lt;input type=url&gt;</code> など、 URL を扱う仕様も増えてきたため、 URL のフォーマット及び処理方法を整備する目的で URL Standard の仕様が策定された。
         <p>それが以下である。
-        <p>原文: <a href="https://url.spec.whatwg.org">https://url.spec.whatwg.org</a>
-        <p>翻訳: <a href="https://triple-underscore.github.io/URL-ja.html">https://triple-underscore.github.io/URL-ja.html</a>
+        <p>原文: <a href="https://url.spec.whatwg.org" target=_blank>https://url.spec.whatwg.org</a>
+        <p>翻訳: <a href="https://triple-underscore.github.io/URL-ja.html" target=_blank>https://triple-underscore.github.io/URL-ja.html</a>
         <p>これによって、既存/新規 DOM API は、 URL を扱う際に、基本的にはこの仕様を参照することができるようになった。
       </section>
       <section>
@@ -186,11 +186,11 @@
         <p>にも関わらず、これを WHATWG が DOM のコンテキストで定義し直した理由についてはドラフトに書かれている。
         <blockquote cite="https://url.spec.whatwg.org/#goals">
           <p>Align RFC 3986 and RFC 3987 with contemporary implementations and obsolete them in the process. (E.g., spaces, other &quot;illegal&quot; code points, query encoding, equality, canonicalization, are all concepts not entirely shared, or defined.) URL parsing needs to become as solid as HTML parsing. [RFC3986] [RFC3987]
-          <p>&mdash; <cite><a href="https://url.spec.whatwg.org/#goals">原文</a></cite>
+          <p>&mdash; <cite><a href="https://url.spec.whatwg.org/#goals" target=_blank>原文</a></cite>
         </blockquote>
         <blockquote cite="https://triple-underscore.github.io/URL-ja.html#goals">
           <p>RFC 3986 と RFC 3987 を現今の実装に揃わせて、その過程の中でそれらを過去のものにする。 (例えば、空白類, 他の &quot;合法でない&quot; 符号位置, クエリの符号化方式, 同等性, 正準化, などの概念は、どれも完全には共有もしくは定義されていない。) URL の構文解析法は HTML の構文解析法と同程度に確定的になる必要がある。 [RFC3986] [RFC3987]
-          <p>&mdash; <cite><a href="https://triple-underscore.github.io/URL-ja.html#goals">翻訳</a></cite>
+          <p>&mdash; <cite><a href="https://triple-underscore.github.io/URL-ja.html#goals" target=_blank>翻訳</a></cite>
         </blockquote>
         <p>平たく言えば、不完全だったところを補完したという感じだろうか。
         <p>ともあれ、これによって、広く言えば Web のコンテキスト、狭く言えば DOM のコンテキスト、中間で言うとブラウザのコンテキストでの <em>正しい URL とは何か</em> および <em>その正しい処理方法は何か</em> が定義されたと言うことができる。
@@ -200,7 +200,7 @@
         <p>DOM や JS の API として Export されていなかっただけで、ブラウザ自体はもちろん URL を正しくパースすることがこれまでもできた。
         <p>しかし、片手間な正規表現や、パーサを実装したライブラリを使わず、ブラウザに URL の解析を依頼するためには、従来以下のような方法しかなかった。
         <ul>
-          <li><a href="https://gist.github.com/jlong/2428561">https://gist.github.com/jlong/2428561</a>
+          <li><a href="https://gist.github.com/jlong/2428561" target=_blank>https://gist.github.com/jlong/2428561</a>
         </ul>
         <p>ところが、 WHATWG のドラフトでは、前述した仕様が定義されたと同時に、それを提供する API が定義された。
         <p>それが URL オブジェクトであり、メジャーなブラウザは既に実装が進んでいる。
@@ -213,12 +213,12 @@
         <p>同じ JS であるにも関わらず、ブラウザと Node で API が違うというのは、 isomorphic/universal 化が進む昨今では決して嬉しいことではない。
         <p>そこで筆者はこの URL オブジェクトを実装していた時期があった。だいぶ実装は進んだが後述する punycode と unicode 周りの対応が面倒で途中で止まっていた。
         <ul>
-          <li><a href="https://github.com/jxck/url">URL</a>
-          <li><a href="https://github.com/jxck/urlsearchparams">URLSearchParams</a>
+          <li><a href="https://github.com/jxck/url" target=_blank>URL</a>
+          <li><a href="https://github.com/jxck/urlsearchparams" target=_blank>URLSearchParams</a>
         </ul>
         <p>ところが今年に入ってやっと、 Node の本体の url module に、この WHATWG の URL オブジェクトを追加するという形で実装が始まったのが以下の issue である。
-        <p><a href="https://github.com/nodejs/node/pull/7448">url: adding WHATWG URL support #7448</a>
-        <p>それが v7.0.0 で Experimental という形で <a href="https://nodejs.org/en/blog/release/v7.0.0/">ship</a> された。
+        <p><a href="https://github.com/nodejs/node/pull/7448" target=_blank>url: adding WHATWG URL support #7448</a>
+        <p>それが v7.0.0 で Experimental という形で <a href="https://nodejs.org/en/blog/release/v7.0.0/" target=_blank>ship</a> された。
       </section>
       <section>
         <h2 id="url-オブジェクト"><a href="#url-オブジェクト">URL オブジェクト</a></h2>
@@ -272,9 +272,9 @@ console.log(ja);
 //   pathname: /%E3%81%B1%E3%81%99
 //   search: ?%E3%81%8D%E3%83%BC=%E3%81%B0%E3%82%8A%E3%82%85%E3%83%BC
 // }</code></pre>
-        <p>なお、ブラウザの実装状況は caniuse に項目がまだ無い (<a href="https://github.com/Fyrd/caniuse/issues/1312">issue</a>) ので MDN を貼っておく。
+        <p>なお、ブラウザの実装状況は caniuse に項目がまだ無い (<a href="https://github.com/Fyrd/caniuse/issues/1312" target=_blank>issue</a>) ので MDN を貼っておく。
         <ul>
-          <li><a href="https://developer.mozilla.org/en/docs/Web/API/URL/URL">https://developer.mozilla.org/en/docs/Web/API/URL/URL</a>
+          <li><a href="https://developer.mozilla.org/en/docs/Web/API/URL/URL" target=_blank>https://developer.mozilla.org/en/docs/Web/API/URL/URL</a>
         </ul>
       </section>
       <section>
@@ -300,7 +300,7 @@ for ([k, v] of searchParams) {
         <p>ブラウザ上でも、おそらくこれまで <code translate=no>?</code> と <code translate=no>&amp;</code> と <code translate=no>=</code> で <code translate=no>split()</code> したり、 <code translate=no>join()</code> してきたであろう query だが、 URLSearchParams 経由で解析/組み立てを行えば、おろそかにされがちだったエスケープなども正しく行われるため、積極的に使っていきたい。
         <p>こちらは caniuse があるので、貼っておく。
         <ul>
-          <li><a href="https://caniuse.com/#feat=urlsearchparams">https://caniuse.com/#feat=urlsearchparams</a>
+          <li><a href="https://caniuse.com/#feat=urlsearchparams" target=_blank>https://caniuse.com/#feat=urlsearchparams</a>
         </ul>
       </section>
       <section>

@@ -188,7 +188,7 @@
         <p>これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテンツの配信を通信と分けて考えることができる。
         <p>Signed HTTP Exchange に比べると格段に簡単な仕様なので、現状のフォーマットと挙動について解説する。
         <ul>
-          <li><a href="https://wicg.github.io/webpackage/draft-yasskin-wpack-bundled-exchanges.html">draft-yasskin-wpack-bundled-exchanges-latest</a>
+          <li><a href="https://wicg.github.io/webpackage/draft-yasskin-wpack-bundled-exchanges.html" target=_blank>draft-yasskin-wpack-bundled-exchanges-latest</a>
         </ul>
       </section>
       <section>
@@ -212,7 +212,7 @@
         <p>例として、仕様をもとに以下のような構成のページを Bundle してみる。
         <ul>
           <li>
-            <a href="http://localhost.jxck.io:3000">http://localhost.jxck.io:3000</a>
+            <a href="http://localhost.jxck.io:3000" target=_blank>http://localhost.jxck.io:3000</a>
             <ul>
               <li>index.html
               <li>script.js
@@ -273,7 +273,7 @@ whatwg-url = tstr</code></pre>
           <p>最初は、全体が CBOR の Array で、その要素数が 6 と決まっており、 magic は String のヘッダに続くので、最初の 10 byte が固定値になる。
           <pre><code translate=no>[0x86, 0x48, 0xF0, 0x9F, 0x8C, 0x90, 0xF0, 0x9F, 0x93, 0xA6]</code></pre>
           <p>つまり、最初の 10byte を見れば、そのファイルが WebBundle であることが判定できる。
-          <p>ただし、見ているのが version の手前までで、将来に全体の配列要素が増える変更(例えば sections と length の間に extension が増えるなど)があると、ここが非互換になるのは少し<a href="https://github.com/WICG/webpackage/issues/528">気になっている</a>。
+          <p>ただし、見ているのが version の手前までで、将来に全体の配列要素が増える変更(例えば sections と length の間に extension が増えるなど)があると、ここが非互換になるのは少し<a href="https://github.com/WICG/webpackage/issues/528" target=_blank>気になっている</a>。
         </section>
         <section>
           <h3 id="version"><a href="#version">version</a></h3>
@@ -349,7 +349,7 @@ whatwg-url = tstr</code></pre>
         <h2 id="length"><a href="#length">length</a></h2>
         <p>最後に全体の長さが 64 bit で入っている。
         <p>通常の TLV 形式なら、長さはヘッダ部に来るが、最後に長さを入れると末尾追記とそこまでの再署名などが容易になる。
-        <p>zip や Electron の ASAR のように末尾にする<a href="https://github.com/WICG/webpackage/issues/20">要望</a>がありこうなった。
+        <p>zip や Electron の ASAR のように末尾にする<a href="https://github.com/WICG/webpackage/issues/20" target=_blank>要望</a>がありこうなった。
         <section>
           <h3 id="全体"><a href="#全体">全体</a></h3>
           <p>結果としては、だいたいこんな感じで組み立てた構造体を、 CBOR の実装でエンコードすれば WebBundle になる。
@@ -442,8 +442,8 @@ X-Content-Type-Options: nosniff</code></pre>
         <p>動作するデモを以下に用意した。
         <p>http でも wbn をサーブしているが、執筆時の Chrome は <code translate=no>file:///</code> からの展開にしか対応してないようなので、ローカルにダウンロードしてブラウザで開かないと動かない。
         <ul>
-          <li>orig: <a href="http://labs.jxck.io/webpackaging/webbundle/example/index.html">http://labs.jxck.io/webpackaging/webbundle/example/index.html</a>
-          <li>.wbn: <a href="http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn">http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn</a>
+          <li>orig: <a href="http://labs.jxck.io/webpackaging/webbundle/example/index.html" target=_blank>http://labs.jxck.io/webpackaging/webbundle/example/index.html</a>
+          <li>.wbn: <a href="http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn" target=_blank>http://labs.jxck.io/webpackaging/webbundle/labs.jxck.io.wbn</a>
         </ul>
         <p>Chrome Canary 80.0.3963.0 の挙動は以下のようになる。
         <p>
@@ -462,16 +462,16 @@ X-Content-Type-Options: nosniff</code></pre>
           <p>ところが、筆者が一番期待しているのは、 JS の依存の bundling だ。
           <p>例えば npm で package.json に書く module は少数でも、 node_modules には大量のファイルが存在することは周知だろう。
           <p>npm はローカルで解決できるのを前提に、小さいモジュールを大量に依存させる substack 由来の設計を良しとしてきたためだ。
-          <p>これが全て es modules の記法で書かれており、 <a href="https://wicg.github.io/import-maps/">import maps</a> で解決できるようにすれば、ブラウザでも動くかもしれない。しかし fetch が多くなりすぎる。
+          <p>これが全て es modules の記法で書かれており、 <a href="https://wicg.github.io/import-maps/" target=_blank>import maps</a> で解決できるようにすれば、ブラウザでも動くかもしれない。しかし fetch が多くなりすぎる。
           <p>すると、ブラウザ内部の IPC 負荷が大きくなり、例え http2 で多重化されると言えども、無視できないオーバーヘッドとなる。
-          <p>実際に 2017 年に行われた Chrome チームの調査結果では、<a href="https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit">100 以上もしくは依存のネストが 5 以上の場合は WebPack の利用を推奨</a>と報告されていた。
+          <p>実際に 2017 年に行われた Chrome チームの調査結果では、<a href="https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit" target=_blank>100 以上もしくは依存のネストが 5 以上の場合は WebPack の利用を推奨</a>と報告されていた。
           <p>これは WebPackaging ではなくツールの WebPack であり、すでに広く普及しているため、多くの開発者にとってはそのままでいいという話にはなる。
           <p>しかし、現在の Web における JS の依存は、この制限を超えることがしばしばあるため、せっかく仕様も実装も手に入った ES Modules へ移行する妨げになっていた。
           <p>結果、 <code translate=no>import</code> は単に WebPack に向けたアノテーションとしてしか使われてないという非常に残念な現状があり、今も開発者は全体を bundle.js に固めて配布している。(かつ、問題が解決しているため、それで良いと思っている)
           <p>ここでもし、例えば npm モジュール単位で依存を .wbn にまとめ、 1 回の fetch で依存をまるごと取得し、かつ展開した全てのファイルを個別に fetch したかのように保存できたらどうだろうか。
           <p>普通に <code translate=no>import</code> を用いたコードを書けるし、別々にキャッシュされればページを跨いだ再利用や、更新による再デプロイも変わってくるだろう。
           <p>JS のように依存がなくても、単にまとめられることは、 CSS Sprite(画像のまとめ), WebFont(weight など), Icon(favivcon.ico と apple-touch-cion etc)などにも適用できるのでは無いかと筆者は考えている。
-          <p>今は、そうした議論よりも先に、当初の目標である AMP のようなケースにフォーカスしていると思うが、ゆくゆくはそういうことに応用できるように、 <a href="https://github.com/WICG/webpackage/issues/526">feedback</a> を続けたい。
+          <p>今は、そうした議論よりも先に、当初の目標である AMP のようなケースにフォーカスしていると思うが、ゆくゆくはそういうことに応用できるように、 <a href="https://github.com/WICG/webpackage/issues/526" target=_blank>feedback</a> を続けたい。
         </section>
         <section>
           <h3 id="コンテンツの代理配布"><a href="#コンテンツの代理配布">コンテンツの代理配布</a></h3>
@@ -501,7 +501,7 @@ X-Content-Type-Options: nosniff</code></pre>
         <section>
           <h3 id="logging"><a href="#logging">logging</a></h3>
           <p>AMP もそうだが、いよいよサーバにリクエストが来ることを前提にした Acccess Log が限界を迎えつつある。
-          <p>コンテンツを開いたことを、各位が beacon などで取得している現状があるが、ここがもう少しユーザの裁量(opt-outable)を反映した標準の API になるべきだろうと<a href="https://discourse.wicg.io/t/proposal-html-ping-for-navigation/2839/7">常々思っている</a>。
+          <p>コンテンツを開いたことを、各位が beacon などで取得している現状があるが、ここがもう少しユーザの裁量(opt-outable)を反映した標準の API になるべきだろうと<a href="https://discourse.wicg.io/t/proposal-html-ping-for-navigation/2839/7" target=_blank>常々思っている</a>。
         </section>
       </section>
     </article>

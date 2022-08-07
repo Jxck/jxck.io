@@ -163,7 +163,7 @@
       <h1><a href="">mozaic.fm の v2 のリリースと Podcast の実装と移行</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p><a href="https://mozaic.fm">mozaic.fm</a> をリニューアルし、 v2 としてリリースした。
+        <p><a href="https://mozaic.fm" target=_blank>mozaic.fm</a> をリニューアルし、 v2 としてリリースした。
         <p>今回の更新のモチベーションは大きく分けて 2 つある。
         <ul>
           <li>tumblr を捨てたかった
@@ -198,7 +198,7 @@
         <p>いきなりサイトを更新するのも難しいため、まず基礎となるブログを作ることにした。
         <p>それが、本サイト <a href="https://blog.jxck.io">https://blog.jxck.io</a> である。
         <p>基本的には http2 ベースで設計しており、その他多くの技術を試しているが、その記録は全てこのサイト自体のエントリとして書き、ドックフーディングしてきたので、そちらをご覧いただきたい。
-        <p>新しい <a href="https://mozaic.fm">https://mozaic.fm</a> は、本サイトのコピペをベースとしている。
+        <p>新しい <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> は、本サイトのコピペをベースとしている。
       </section>
       <section>
         <h2 id="rss-実装"><a href="#rss-実装">RSS 実装</a></h2>
@@ -206,13 +206,13 @@
         <p>本サイト blog.jxck.io では最新である Atom を採用したが、 Podcast の RSS は <em>RSS2.0</em> を用いる必要があった。
         <p>RSS2.0 の仕様は以下にある。
         <ul>
-          <li><a href="http://cyber.law.harvard.edu/rss/rss.html">http://cyber.law.harvard.edu/rss/rss.html</a>
+          <li><a href="http://cyber.law.harvard.edu/rss/rss.html" target=_blank>http://cyber.law.harvard.edu/rss/rss.html</a>
         </ul>
         <p>また、 Apple は Podcast 向けの拡張ボキャブラリを追加しているため、それらも対応している。
         <ul>
-          <li><a href="https://help.apple.com/itc/podcasts_connect/#/itc1723472cb">https://help.apple.com/itc/podcasts_connect/#/itc1723472cb</a>
-          <li><a href="https://help.apple.com/itc/podcasts_connect/#/itca5b22233a">https://help.apple.com/itc/podcasts_connect/#/itca5b22233a</a>
-          <li><a href="https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76">https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76</a>
+          <li><a href="https://help.apple.com/itc/podcasts_connect/#/itc1723472cb" target=_blank>https://help.apple.com/itc/podcasts_connect/#/itc1723472cb</a>
+          <li><a href="https://help.apple.com/itc/podcasts_connect/#/itca5b22233a" target=_blank>https://help.apple.com/itc/podcasts_connect/#/itca5b22233a</a>
+          <li><a href="https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76" target=_blank>https://help.apple.com/itc/podcasts_connect/#/itc2b3780e76</a>
         </ul>
         <p>基本的には RSS2.0 に加え <code translate=no>&lt;itunes:xxx&gt;</code> な名前空間のタグが拡張されている。
         <ul>
@@ -235,7 +235,7 @@
         <h2 id="podcast-connect"><a href="#podcast-connect">podcast connect</a></h2>
         <p>itunes は podcast connect という場所がわかりにくい画面から、 feed url を変えられる。
         <ul>
-          <li><a href="https://podcastsconnect.apple.com/">https://podcastsconnect.apple.com/</a>
+          <li><a href="https://podcastsconnect.apple.com/" target=_blank>https://podcastsconnect.apple.com/</a>
         </ul>
       </section>
       <section>
@@ -247,8 +247,8 @@
           <li>tumblr 上で最後のエピソードを更新し、 feedburner のフィードに反映させる
           <li>DNS を変更し、 mozaic.fm を tumblr から新サイトへ向ける
           <li>feedburner が新サイトを見ないように、独自ドメインを剥がした tumblr に向ける
-          <li>mozaic.fm が自サーバを向いたので、 let&apos;s encrypt の certbot を走らせ <a href="https://mozaic.fm">https://mozaic.fm</a> を有効にする
-          <li><a href="http://mozaic.fm">http://mozaic.fm</a> を全て <a href="https://mozaic.fm">https://mozaic.fm</a> にリダイレクト
+          <li>mozaic.fm が自サーバを向いたので、 let&apos;s encrypt の certbot を走らせ <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> を有効にする
+          <li><a href="http://mozaic.fm" target=_blank>http://mozaic.fm</a> を全て <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> にリダイレクト
           <li>旧エピソードの tumblr 自体の URL を、新 URL にリダイレクトする
           <li>itunes の podcast connect から itunes に登録された mozaic.fm の feed を新しいものにする
         </ol>

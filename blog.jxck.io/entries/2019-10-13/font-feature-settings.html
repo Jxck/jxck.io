@@ -170,14 +170,14 @@
         <h2 id="fonttools"><a href="#fonttools">fonttools</a></h2>
         <p>これまで、フォントのサブセットの生成には以下の 2 つのツールを使用していた。
         <ul>
-          <li><a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a>
-          <li><a href="https://opentype.jp/woffconv.htm">WOFF コンバータ</a>
+          <li><a href="https://opentype.jp/subsetfontmk.htm" target=_blank>サブセットフォントメーカー</a>
+          <li><a href="https://opentype.jp/woffconv.htm" target=_blank>WOFF コンバータ</a>
         </ul>
         <p>しかし、 macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
         <p>これまで GUI で行なっていたが、せっかくなので自動化するために、代替コマンドを探し、プロセスを組んだ。
         <p>いくつかツールがあるが、今回は fonttools に同梱された pyftsubset を採用することとした。
         <ul>
-          <li><a href="https://github.com/fonttools/fonttools">fonttools/fonttools</a>
+          <li><a href="https://github.com/fonttools/fonttools" target=_blank>fonttools/fonttools</a>
         </ul>
       </section>
       <section>
@@ -214,7 +214,7 @@
         </ul>
         <blockquote cite="https://opentype.jp/subsetfontmk.htm">
           <p>フォントが、ヒント(OpenType フォントの場合)、カーニング情報、ビットマップデータ、 OpenType 機能を持っている場合、それらは削除されます。
-          <p>&mdash; <cite><a href="https://opentype.jp/subsetfontmk.htm">サブセットフォントメーカー</a></cite>
+          <p>&mdash; <cite><a href="https://opentype.jp/subsetfontmk.htm" target=_blank>サブセットフォントメーカー</a></cite>
         </blockquote>
         <p>今は、 NotoSansCJKjp-hinted.zip を元にすれば、ヒント情報を含むサブセットが作れるため、 CSS の font-feature-settings が指定できる。
         <p>全て削れば従来通りだが、せっかくなので指定を検証することにした。
@@ -227,13 +227,13 @@
           <li>CSS で指定可能なプロパティ
         </ul>
         <p>ところが、前者についてはリポジトリを見てもそれらしい情報にたどり着くことができなかった。
-        <p>後者は、 <a href="https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES">font-feature-settings の CSS の仕様</a>から、 MS にある Registered Features という一覧がリンクされていた。
+        <p>後者は、 <a href="https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES" target=_blank>font-feature-settings の CSS の仕様</a>から、 MS にある Registered Features という一覧がリンクされていた。
         <ul>
-          <li><a href="https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist">Registered features - Typography | Microsoft Docs</a>
+          <li><a href="https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist" target=_blank>Registered features - Typography | Microsoft Docs</a>
         </ul>
         <p>140 近い機能があるようだが、このうちのどれが使えるのかがわからなかったため、以下の DEMO ページを用意し Chrome で試した。
         <ul>
-          <li><a href="http://labs.jxck.io/webfont/font-feature-settings.html">Font Feature Settings DEMO</a>
+          <li><a href="http://labs.jxck.io/webfont/font-feature-settings.html" target=_blank>Font Feature Settings DEMO</a>
         </ul>
         <p>恐らく検証するための妥当な文字や、ブラウザの実装などといった変数もあるだろうが、その辺まで網羅するのはコストが高い。
         <p>そこで、適当なサンプル文章をベースに、プロパティを切り替えながら、明らかに見た目が変わる指定を把握するところまで行った。

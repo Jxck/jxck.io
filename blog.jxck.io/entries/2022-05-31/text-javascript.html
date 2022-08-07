@@ -200,7 +200,7 @@
         </ul>
         <p>WHATWG では、 MIME Sniffing の仕様にこのリストがある。
         <ul>
-          <li><a href="https://mimesniff.spec.whatwg.org/#javascript-mime-type">https://mimesniff.spec.whatwg.org/#javascript-mime-type</a>
+          <li><a href="https://mimesniff.spec.whatwg.org/#javascript-mime-type" target=_blank>https://mimesniff.spec.whatwg.org/#javascript-mime-type</a>
         </ul>
       </section>
       <section>
@@ -211,7 +211,7 @@
           <li>
             RFC 4329 - Scripting Media Types
             <ul>
-              <li><a href="https://datatracker.ietf.org/doc/html/rfc4329#section-7.2">https://datatracker.ietf.org/doc/html/rfc4329#section-7.2</a>
+              <li><a href="https://datatracker.ietf.org/doc/html/rfc4329#section-7.2" target=_blank>https://datatracker.ietf.org/doc/html/rfc4329#section-7.2</a>
             </ul>
           </li>
         </ul>
@@ -234,7 +234,7 @@
           <li>
             RFC 4288: Media Type Specifications and Registration Procedures
             <ul>
-              <li><a href="https://www.rfc-editor.org/rfc/rfc4288.html">https://www.rfc-editor.org/rfc/rfc4288.html</a>
+              <li><a href="https://www.rfc-editor.org/rfc/rfc4288.html" target=_blank>https://www.rfc-editor.org/rfc/rfc4288.html</a>
             </ul>
           </li>
         </ul>
@@ -247,13 +247,13 @@
           <p>Similarly, the MIME type used to refer to JavaScript in this specification is <code translate=no>text/javascript</code>,
           <p>since that is the most commonly used type,
           <p>despite it being an officially obsoleted type according to RFC 4329.
-          <p>&mdash; <cite><a href="https://github.com/whatwg/html/pull/7938">https://github.com/whatwg/html/pull/7938</a></cite>
+          <p>&mdash; <cite><a href="https://github.com/whatwg/html/pull/7938" target=_blank>https://github.com/whatwg/html/pull/7938</a></cite>
         </blockquote>
         <blockquote cite="https://github.com/whatwg/html/pull/7938">
           <p>Servers should use <code translate=no>text/javascript</code> for JavaScript resources.
           <p>Servers should not use other JavaScript MIME types for JavaScript resources,
           <p>and must not use non-JavaScript MIME types.
-          <p>&mdash; <cite><a href="https://github.com/whatwg/html/pull/7938">https://github.com/whatwg/html/pull/7938</a></cite>
+          <p>&mdash; <cite><a href="https://github.com/whatwg/html/pull/7938" target=_blank>https://github.com/whatwg/html/pull/7938</a></cite>
         </blockquote>
         <p>つまり、 IETF と WHATWG で言ってることが違うという状況だ。 IETF はインターネット全般でのプロトコルを対象とし、 WHATWG はブラウザ特有の話なので、両者に細かな違いが起こるのは「見ているところが違う」という点ではしかたがない。ただ、 JS のユースケースを考えると、なんとかしたいところではある。
       </section>
@@ -264,7 +264,7 @@
           <li>
             RFC 9239: Updates to ECMAScript Media Types
             <ul>
-              <li><a href="https://www.rfc-editor.org/rfc/rfc9239.html">https://www.rfc-editor.org/rfc/rfc9239.html</a>
+              <li><a href="https://www.rfc-editor.org/rfc/rfc9239.html" target=_blank>https://www.rfc-editor.org/rfc/rfc9239.html</a>
             </ul>
           </li>
         </ul>
@@ -279,7 +279,7 @@
         <blockquote cite="https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages">
           <p>Servers should use text/javascript for JavaScript resources, in accordance with Updates to ECMAScript Media Types.
           <p>Servers should not use other JavaScript MIME types for JavaScript resources, and must not use non-JavaScript MIME types. [RFC9239]
-          <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages">https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages</a></cite>
+          <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages" target=_blank>https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages</a></cite>
         </blockquote>
         <p>結論として、 JS の MIME Type は <code translate=no>text/javascript</code> ということになったのだ。
         <p>また、よく勘違いされるが WHATWG では「ブラウザは JS を必ず実装しないといけない」とも「ブラウザは JS 以外を実装してはいけない」とも言ってない。そして、もし別の言語を実装する場合は、この失敗を繰り返さないように <code translate=no>application/*</code> をきちんと付与するべきという点も RFC で言及されている。
@@ -305,7 +305,7 @@
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <ul>
           <li>本サイトが h2o デフォルトで <code translate=no>application/javascript</code> であったため <code translate=no>text/javascript</code> に修正。
-          <li>h2o に Issue/PR 済み <a href="https://github.com/h2o/h2o/issues/3027">#3027</a>
+          <li>h2o に Issue/PR 済み <a href="https://github.com/h2o/h2o/issues/3027" target=_blank>#3027</a>
         </ul>
       </section>
       <section>
@@ -317,31 +317,31 @@
               <li>
                 RFC 9239: Updates to ECMAScript Media Types
                 <ul>
-                  <li><a href="https://www.rfc-editor.org/rfc/rfc9239">https://www.rfc-editor.org/rfc/rfc9239</a>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc9239" target=_blank>https://www.rfc-editor.org/rfc/rfc9239</a>
                 </ul>
               </li>
               <li>
                 RFC 4329: Scripting Media Types
                 <ul>
-                  <li><a href="https://www.rfc-editor.org/rfc/rfc4329">https://www.rfc-editor.org/rfc/rfc4329</a>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc4329" target=_blank>https://www.rfc-editor.org/rfc/rfc4329</a>
                 </ul>
               </li>
               <li>
                 RFC 6838: Media Type Specifications and Registration Procedures
                 <ul>
-                  <li><a href="https://www.rfc-editor.org/rfc/rfc6838.html">https://www.rfc-editor.org/rfc/rfc6838.html</a>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc6838.html" target=_blank>https://www.rfc-editor.org/rfc/rfc6838.html</a>
                 </ul>
               </li>
               <li>
                 RFC 4288: Media Type Specifications and Registration Procedures
                 <ul>
-                  <li><a href="https://www.rfc-editor.org/rfc/rfc4288">https://www.rfc-editor.org/rfc/rfc4288</a>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc4288" target=_blank>https://www.rfc-editor.org/rfc/rfc4288</a>
                 </ul>
               </li>
               <li>
                 HTML Standard | 4.12.1.2 Scripting languages
                 <ul>
-                  <li><a href="https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages">https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages</a>
+                  <li><a href="https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages" target=_blank>https://html.spec.whatwg.org/multipage/scripting.html#scriptingLanguages</a>
                 </ul>
               </li>
             </ul>
@@ -363,7 +363,7 @@
               <li>
                 Issue #3027 - h2o/h2o
                 <ul>
-                  <li><a href="https://github.com/h2o/h2o/issues/3027">https://github.com/h2o/h2o/issues/3027</a>
+                  <li><a href="https://github.com/h2o/h2o/issues/3027" target=_blank>https://github.com/h2o/h2o/issues/3027</a>
                 </ul>
               </li>
             </ul>

@@ -184,7 +184,7 @@ navigator.serviceworker.register(&quot;/sw.js&quot;, { scope: &quot;/&quot; });<
         <p>これによって登録のためだけの <code translate=no>main.js</code> を読み込むオーバーヘッドがなくなる。
         <p>もしくは、別の JS から登録の処理を分離できるため、ページ(URL)単位でのハンドリングで有利な場合もあるだろう。
         <p>(なお、 <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> では現在 <code translate=no>&lt;link&gt;</code> の <code translate=no>rel</code> には <code translate=no>serviceworker</code> が許容されていないため、この方法は使えない。
-        <p>代わりに <a href="https://www.ampproject.org/docs/reference/components/amp-install-serviceworker">amp-install-serviceworker</a> が提供されているが、 <code translate=no>&lt;link&gt;</code> がサポートされていればこれは不要と考えているので <a href="https://github.com/ampproject/amphtml/issues/6601">issue</a> を登録しておいた。)
+        <p>代わりに <a href="https://www.ampproject.org/docs/reference/components/amp-install-serviceworker" target=_blank>amp-install-serviceworker</a> が提供されているが、 <code translate=no>&lt;link&gt;</code> がサポートされていればこれは不要と考えているので <a href="https://github.com/ampproject/amphtml/issues/6601" target=_blank>issue</a> を登録しておいた。)
       </section>
       <section>
         <h2 id="http-link-header-での登録"><a href="#http-link-header-での登録">HTTP Link Header での登録</a></h2>
@@ -200,7 +200,7 @@ navigator.serviceworker.register(&quot;/sw.js&quot;, { scope: &quot;/&quot; });<
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/service-worker/link-rel-service-worker/">https://labs.jxck.io/service-worker/link-rel-service-worker/</a>
+          <li><a href="https://labs.jxck.io/service-worker/link-rel-service-worker/" target=_blank>https://labs.jxck.io/service-worker/link-rel-service-worker/</a>
         </ul>
         <p>基本は次回の記事で解説する foreign-fetch と合わせた利用が主なユースケースになるため、 「Link ヘッダで Service Worker を登録する」という一点に絞ったデモを用意した。
         <p>ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの <code translate=no>./random</code> を fetch する。 <code translate=no>./random</code> はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。

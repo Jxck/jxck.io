@@ -210,7 +210,7 @@
         <h2 id="cancelable-promise"><a href="#cancelable-promise">Cancelable Promise</a></h2>
         <p>Promise にキャンセルさせる仕組みを持たせれば、 <code translate=no>fetch()</code> も同時にキャンセルできるし、今後 Promise を返す全ての API が中断を考慮できる。
         <p>これが、 TC39 で提案されていた Cancelable Promise である。
-        <p><a href="https://github.com/tc39/proposal-cancelable-promises/">tc39/proposal-cancelable-promises</a>
+        <p><a href="https://github.com/tc39/proposal-cancelable-promises/" target=_blank>tc39/proposal-cancelable-promises</a>
         <p>提案先が TC39 なのは、対象が JS の Promise そのものだからである。
         <p>要約すると以下のようなものだった。
         <ul>
@@ -219,21 +219,21 @@
         </ul>
         <p>しかし、結論から言うと議論の途中で頓挫してしまった。
         <p>なんで頓挫したかの詳細は、仕様策定の中心だった domenic の悲痛な一言に集約されている。
-        <p><a href="https://github.com/tc39/proposal-cancelable-promises/issues/70#issuecomment-267414933">Why was this proposal withdrawn? #70</a>
+        <p><a href="https://github.com/tc39/proposal-cancelable-promises/issues/70#issuecomment-267414933" target=_blank>Why was this proposal withdrawn? #70</a>
       </section>
       <section>
         <h2 id="aborting-fetch"><a href="#aborting-fetch">aborting fetch</a></h2>
         <p>Promise がキャンセルできないからといって、 <code translate=no>fetch()</code> の中断を諦めるわけにはいかない。
         <p>XHR であたりまえにできていたことが、できないままでは困る。
         <p>そこで Cancelable Promise 待ちだった <code translate=no>fetch()</code> の abort は、 <code translate=no>fetch()</code> 側で再度議論することとなった。
-        <p><a href="https://github.com/whatwg/fetch/issues/447">Aborting a fetch: The Next Generation #447</a>
-        <p>再出発から半年くらいの <a href="https://github.com/whatwg/fetch/pull/523">議論</a> を重ね、やっと <a href="https://github.com/w3c/web-platform-tests/pull/6484#issuecomment-315775251">まとまりつつ</a> ある。
+        <p><a href="https://github.com/whatwg/fetch/issues/447" target=_blank>Aborting a fetch: The Next Generation #447</a>
+        <p>再出発から半年くらいの <a href="https://github.com/whatwg/fetch/pull/523" target=_blank>議論</a> を重ね、やっと <a href="https://github.com/w3c/web-platform-tests/pull/6484#issuecomment-315775251" target=_blank>まとまりつつ</a> ある。
       </section>
       <section>
         <h2 id="aborting-ongoing-activities"><a href="#aborting-ongoing-activities">Aborting ongoing activities</a></h2>
         <p><code translate=no>fetch()</code> での議論の結果、 DOM 自体にいくつかの機能と、中断処理の方法を追加し、それを <code translate=no>fetch()</code> で利用する形に落ち着いた。
         <p>結果的に DOM の中に、実行中の処理を中断する一般的な方法が定義された形になる。
-        <p><a href="https://dom.spec.whatwg.org/#aborting-ongoing-activities">Aborting ongoing activities</a>
+        <p><a href="https://dom.spec.whatwg.org/#aborting-ongoing-activities" target=_blank>Aborting ongoing activities</a>
         <p>実際に、同じ問題を持っていた WebUSB API などの周辺仕様の反応も良好なようだ。
         <p>つまり、この方法が今後の Web における一般的な方法として使われていき、 Promise を繋いで非同期処理を行う上での頻出パターンの一つとなる可能性がある。
         <p>そうなったときのためにも、 <em>現状の提案を把握し異論があれば発言をする大事なタイミング</em> だと思われるため、この API を解説する。
@@ -377,7 +377,7 @@ Promise.race([
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/fetch/abort.html">https://labs.jxck.io/fetch/abort.html</a>
+          <li><a href="https://labs.jxck.io/fetch/abort.html" target=_blank>https://labs.jxck.io/fetch/abort.html</a>
         </ul>
       </section>
       <section>

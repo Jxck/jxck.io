@@ -191,7 +191,7 @@
         <p>しかし <code translate=no>TE</code> はブラウザ実装の問題のためか、歴史的にもあまり使われておらず、送信してくるブラウザもほとんどない。(Opera は送信すると言われているが未確認)。
         <p>そのため、 HTTP/1.1 対応のサーバでも <code translate=no>Transfer-Encoding: gzip</code> に対応したものは少なく、 h2o も対応していない。(<code translate=no>Transfer-Encoding: chunked</code> は対応している)
         <p>また、このヘッダは <em>コネクションに対する設定</em> であるが、 HTTP2 ではこうしたコネクションに対する設定は、代わりに <em>SETTINGS Frame</em> を利用することになったため、こうしたヘッダは設定不可とされている。
-        <p><a href="https://tools.ietf.org/html/rfc7540#section-8.1.2.2">8.1.2.2.  Connection-Specific Header Fields</a>
+        <p><a href="https://tools.ietf.org/html/rfc7540#section-8.1.2.2" target=_blank>8.1.2.2.  Connection-Specific Header Fields</a>
         <p>まとめると、以下の理由により、この方法は却下した。
         <ul>
           <li>TE を送るブラウザは少ない
@@ -207,7 +207,7 @@
           <p>以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=http data-code=http><code translate=no class=language-http>gzip: ON</code></pre>
-          <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip">Configure &gt; Gzip Directives &gt; &quot;gzip&quot;</a>
+          <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip" target=_blank>Configure &gt; Gzip Directives &gt; &quot;gzip&quot;</a>
           <p>これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。
           <p>圧縮時間分のオーバーヘッドは考えられるが、一般的に gzip の処理時間は小さく、転送量の削減によるネットワーク的メリットの方が高いため、この方法が採用されることが多い。
         </section>
@@ -215,7 +215,7 @@
           <h3 id="send-gzip-ディレクティブ"><a href="#send-gzip-ディレクティブ">send-gzip ディレクティブ</a></h3>
           <p>あらかじめコンテンツを gzip 圧縮した状態で <code translate=no>ファイル名.gz</code> で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
           <pre class=http data-code=http><code translate=no class=language-http>file.send-gzip: ON</code></pre>
-          <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip">Configure &gt; File Directives &gt; &quot;file.send-gzip&quot;</a>
+          <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip" target=_blank>Configure &gt; File Directives &gt; &quot;file.send-gzip&quot;</a>
           <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
           <p>しかし、バックエンドが動的に生成するレスポンスには適用できないため、事前に準備可能な静的ファイルへの適用に限定される。
         </section>
@@ -224,7 +224,7 @@
         <h2 id="zopfli"><a href="#zopfli">zopfli</a></h2>
         <p>zopfli は Google が開発した圧縮アルゴリズム、およびその実装である。
         <ul>
-          <li><a href="https://github.com/google/zopfli">https://github.com/google/zopfli</a>
+          <li><a href="https://github.com/google/zopfli" target=_blank>https://github.com/google/zopfli</a>
         </ul>
         <p><em>圧縮結果が gzip 互換</em> であるため、方式そのものは実質 gzip である。
         <section>
@@ -321,7 +321,7 @@
           </figure>
           <p>この結果だと <code translate=no>-i20</code> 以上は誤差のようである。
           <p>ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 <code translate=no>i=30</code> くらいに落ち着いた。
-          <p>また、 <a href="https://jxck.io/assets/img/jxck.webp">WebP</a> と <a href="https://jxck.io/assets/img/jxck.png">PNG</a> の画像ファイルでも検証したところ、以下のようになった。
+          <p>また、 <a href="https://jxck.io/assets/img/jxck.webp" target=_blank>WebP</a> と <a href="https://jxck.io/assets/img/jxck.png" target=_blank>PNG</a> の画像ファイルでも検証したところ、以下のようになった。
           <figure>
             <figcaption>画像圧縮フォーマットとサイズの関係</figcaption>
             <table>
@@ -378,13 +378,13 @@
       </section>
       <section>
         <h2 id="brotli"><a href="#brotli">brotli</a></h2>
-        <p>また Google は <a href="https://github.com/google/brotli">brotli</a> という圧縮フォーマットも持っている。
+        <p>また Google は <a href="https://github.com/google/brotli" target=_blank>brotli</a> という圧縮フォーマットも持っている。
         <p>こちらは、 gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。
-        <p>新しいフォーマットとして、 <a href="https://tools.ietf.org/html/draft-alakuijala-brotli-08">IETF へのドラフトの提出</a> もなされている。
-        <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL">Chrome が HTTPS のみでサポート</a> していおり、 Canary で <a href="chrome://flags#brotli">chrome://flags#brotli</a> を有効にすると、 <code translate=no>Accept-Encoding: br</code> が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
+        <p>新しいフォーマットとして、 <a href="https://tools.ietf.org/html/draft-alakuijala-brotli-08" target=_blank>IETF へのドラフトの提出</a> もなされている。
+        <p>現在は <a href="https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL" target=_blank>Chrome が HTTPS のみでサポート</a> していおり、 Canary で <a href="chrome://flags#brotli" target=_blank>chrome://flags#brotli</a> を有効にすると、 <code translate=no>Accept-Encoding: br</code> が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
         <p>ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため <code translate=no>Accept-Encoding</code> での判断を自分でハンドラに書く必要がある。
         <p>H2O には既に brotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
-        <p><a href="https://github.com/h2o/h2o/issues/660">Feature request: file.send-brotli #660</a>
+        <p><a href="https://github.com/h2o/h2o/issues/660" target=_blank>Feature request: file.send-brotli #660</a>
       </section>
     </article>
   </main>

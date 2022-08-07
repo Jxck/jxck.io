@@ -340,19 +340,19 @@
                 <li>
                   The WebTransport Protocol Framework
                   <ul>
-                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-overview-00">https://tools.ietf.org/html/draft-vvv-webtransport-overview-00</a>
+                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-overview-00" target=_blank>https://tools.ietf.org/html/draft-vvv-webtransport-overview-00</a>
                   </ul>
                 </li>
                 <li>
                   WebTransport over HTTP/3
                   <ul>
-                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-http3-00">https://tools.ietf.org/html/draft-vvv-webtransport-http3-00</a>
+                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-http3-00" target=_blank>https://tools.ietf.org/html/draft-vvv-webtransport-http3-00</a>
                   </ul>
                 </li>
                 <li>
                   WebTransport over QUIC
                   <ul>
-                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-00">https://tools.ietf.org/html/draft-vvv-webtransport-quic-00</a>
+                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-00" target=_blank>https://tools.ietf.org/html/draft-vvv-webtransport-quic-00</a>
                   </ul>
                 </li>
               </ul>
@@ -405,7 +405,7 @@
           <h3 id="alternatives"><a href="#alternatives">Alternatives</a></h3>
           <p>結局 WebSocket が TCP に縛られていなければ良いのではという点に注目すると、 WebSocket over HTTP/3 が実現できれば HoLB などの問題は解決しそうだ。
           <p>しかし、仮にそこに複数のストリームを束ねようとしても、 WS の特徴上ストリームごとに 1RTT のハンドシェイクが必要となる。また、サーバから Stream を開始することができない(本当にそれが必要なのかは疑問だが)という問題があげられている。
-          <p>また、 WebRTC の文脈で進んでいる <a href="https://w3c.github.io/webrtc-quic/">RTCQuicTransport</a> が、非常にというかあるケースではほぼ同じことを提供することになる点が指摘される。(策定者も同じ)
+          <p>また、 WebRTC の文脈で進んでいる <a href="https://w3c.github.io/webrtc-quic/" target=_blank>RTCQuicTransport</a> が、非常にというかあるケースではほぼ同じことを提供することになる点が指摘される。(策定者も同じ)
           <p>これもやはり、 WebRTC が P2P 前提の仕様でスタートした点と Client-Server ユースケースとの乖離をベースに説明されており、すでに RTCQuicTransport の下のレイヤに WebTransport の仕様が参照される形で更新されている。
         </section>
         <section>
@@ -430,8 +430,8 @@
             <li>
               Intent to Implement: WebSocketStream
               <ul>
-                <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ</a>
-                <li><a href="https://github.com/ricea/websocketstream-explainer/blob/master/README.md">https://github.com/ricea/websocketstream-explainer/blob/master/README.md</a>
+                <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ" target=_blank>https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ</a>
+                <li><a href="https://github.com/ricea/websocketstream-explainer/blob/master/README.md" target=_blank>https://github.com/ricea/websocketstream-explainer/blob/master/README.md</a>
               </ul>
             </li>
           </ul>
@@ -566,11 +566,11 @@ videoElem.srcObject = mediaStream;</code></pre>
         <h2 id="考察"><a href="#考察">考察</a></h2>
         <section>
           <h3 id="webrtc-の次のフェーズとしての-webtransport"><a href="#webrtc-の次のフェーズとしての-webtransport">WebRTC の次のフェーズとしての WebTransport</a></h3>
-          <p>ちょうど先日、 2011 年から WebRTC に関する作業を続けてきた Working Group である <a href="https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA">RTCWEB が Close するアナウンス</a> が舞い込んだ。
+          <p>ちょうど先日、 2011 年から WebRTC に関する作業を続けてきた Working Group である <a href="https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA" target=_blank>RTCWEB が Close するアナウンス</a> が舞い込んだ。
           <p>仕様を提案している 3 人は、いずれもこの RTCWEB で WebRTC や ORTC の仕様策定に関わってきた人達だ。
           <p>WebRTC の作業が終わったわけでは無いが、おそらく彼らは今後 WebTransport の方に注力していくことになるのだろう。
           <p>なかでも中心である Peter Thatcher は Googler で、彼の Explainer には Game を Cloud Gaming と書いている部分も多い。
-          <p>時期的にも「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、 6 月にあった <a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport">Web Games Workshop</a> での <a href="https://vimeo.com/350908362">Peter のトーク</a> を見た最初の感想だった。
+          <p>時期的にも「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、 6 月にあった <a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport" target=_blank>Web Games Workshop</a> での <a href="https://vimeo.com/350908362" target=_blank>Peter のトーク</a> を見た最初の感想だった。
           <p>確かに WebRTC は Web に UDP の API を初めてもたらしたが、その前提が P2P でのビデオチャットに寄りすぎており、ブラウザ持つコーデックで音声/映像が送れることを重視している。
           <p>DTLS - SRTP というツギハギな仕組みも、もう少しスッキリすればなと個人的にも思う。
           <p>DataChannel で任意のバイナリをやりとりできるとしても、前提として Client-Server で提供したいという要求がある以上、インピーダンスミスマッチが産まれるのは想像に難くない。
@@ -622,19 +622,19 @@ videoElem.srcObject = mediaStream;</code></pre>
                 <li>
                   The WebTransport Protocol Framework
                   <ul>
-                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-overview-00">https://tools.ietf.org/html/draft-vvv-webtransport-overview-00</a>
+                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-overview-00" target=_blank>https://tools.ietf.org/html/draft-vvv-webtransport-overview-00</a>
                   </ul>
                 </li>
                 <li>
                   WebTransport over HTTP/3
                   <ul>
-                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-http3-00">https://tools.ietf.org/html/draft-vvv-webtransport-http3-00</a>
+                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-http3-00" target=_blank>https://tools.ietf.org/html/draft-vvv-webtransport-http3-00</a>
                   </ul>
                 </li>
                 <li>
                   WebTransport over QUIC
                   <ul>
-                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-00">https://tools.ietf.org/html/draft-vvv-webtransport-quic-00</a>
+                    <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-00" target=_blank>https://tools.ietf.org/html/draft-vvv-webtransport-quic-00</a>
                   </ul>
                 </li>
               </ul>
@@ -645,7 +645,7 @@ videoElem.srcObject = mediaStream;</code></pre>
                 <li>
                   WebTransport
                   <ul>
-                    <li><a href="https://wicg.github.io/web-transport/">https://wicg.github.io/web-transport/</a>
+                    <li><a href="https://wicg.github.io/web-transport/" target=_blank>https://wicg.github.io/web-transport/</a>
                   </ul>
                 </li>
               </ul>
@@ -656,19 +656,19 @@ videoElem.srcObject = mediaStream;</code></pre>
                 <li>
                   Thread
                   <ul>
-                    <li><a href="https://discourse.wicg.io/t/webtransport-proposal/3508">https://discourse.wicg.io/t/webtransport-proposal/3508</a>
+                    <li><a href="https://discourse.wicg.io/t/webtransport-proposal/3508" target=_blank>https://discourse.wicg.io/t/webtransport-proposal/3508</a>
                   </ul>
                 </li>
                 <li>
                   Repo
                   <ul>
-                    <li><a href="https://github.com/WICG/web-transport">https://github.com/WICG/web-transport</a>
+                    <li><a href="https://github.com/WICG/web-transport" target=_blank>https://github.com/WICG/web-transport</a>
                   </ul>
                 </li>
                 <li>
                   Explainer
                   <ul>
-                    <li><a href="https://github.com/wicg/web-transport/blob/master/explainer.md">https://github.com/wicg/web-transport/blob/master/explainer.md</a>
+                    <li><a href="https://github.com/wicg/web-transport/blob/master/explainer.md" target=_blank>https://github.com/wicg/web-transport/blob/master/explainer.md</a>
                   </ul>
                 </li>
               </ul>
@@ -679,20 +679,20 @@ videoElem.srcObject = mediaStream;</code></pre>
                 <li>
                   QUIC Interim
                   <ul>
-                    <li><a href="https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf">https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf</a>
+                    <li><a href="https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf" target=_blank>https://github.com/quicwg/wg-materials/blob/master/interim-19-05/webtransport-20190522.pdf</a>
                   </ul>
                 </li>
                 <li>
                   IETF 105
                   <ul>
-                    <li><a href="https://datatracker.ietf.org/meeting/105/materials/slides-105-dispatch-webtransport-00">https://datatracker.ietf.org/meeting/105/materials/slides-105-dispatch-webtransport-00</a>
+                    <li><a href="https://datatracker.ietf.org/meeting/105/materials/slides-105-dispatch-webtransport-00" target=_blank>https://datatracker.ietf.org/meeting/105/materials/slides-105-dispatch-webtransport-00</a>
                   </ul>
                 </li>
                 <li>
                   W3C Web Games Workshop
                   <ul>
-                    <li><a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport">https://www.w3.org/2018/12/games-workshop/report.html#webtransport</a>
-                    <li><a href="https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit">https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit</a>
+                    <li><a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport" target=_blank>https://www.w3.org/2018/12/games-workshop/report.html#webtransport</a>
+                    <li><a href="https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit" target=_blank>https://docs.google.com/presentation/d/13hX5p8opMD8SrmCHwcdqn_mNkHjQBjI32jvq_gIDubM/edit</a>
                     <li>Minutes から Sony/BBC などが強い賛同を示している
                   </ul>
                 </li>
@@ -704,7 +704,7 @@ videoElem.srcObject = mediaStream;</code></pre>
                 <li>
                   webtransport
                   <ul>
-                    <li><a href="https://mailarchive.ietf.org/arch/browse/webtransport/">https://mailarchive.ietf.org/arch/browse/webtransport/</a>
+                    <li><a href="https://mailarchive.ietf.org/arch/browse/webtransport/" target=_blank>https://mailarchive.ietf.org/arch/browse/webtransport/</a>
                   </ul>
                 </li>
               </ul>
@@ -712,8 +712,8 @@ videoElem.srcObject = mediaStream;</code></pre>
             <li>
               Intent to Implement: WebSocketStream
               <ul>
-                <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ</a>
-                <li><a href="https://github.com/ricea/websocketstream-explainer/blob/master/README.md">https://github.com/ricea/websocketstream-explainer/blob/master/README.md</a>
+                <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ" target=_blank>https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ</a>
+                <li><a href="https://github.com/ricea/websocketstream-explainer/blob/master/README.md" target=_blank>https://github.com/ricea/websocketstream-explainer/blob/master/README.md</a>
               </ul>
             </li>
           </ul>
@@ -724,13 +724,13 @@ videoElem.srcObject = mediaStream;</code></pre>
             <li>
               Explainer
               <ul>
-                <li><a href="https://github.com/pthatcherg/web-codecs/blob/master/explainer.md">https://github.com/pthatcherg/web-codecs/blob/master/explainer.md</a>
+                <li><a href="https://github.com/pthatcherg/web-codecs/blob/master/explainer.md" target=_blank>https://github.com/pthatcherg/web-codecs/blob/master/explainer.md</a>
               </ul>
             </li>
             <li>
               WICG Tread
               <ul>
-                <li><a href="https://discourse.wicg.io/t/webcodecs-proposal/3662">https://discourse.wicg.io/t/webcodecs-proposal/3662</a>
+                <li><a href="https://discourse.wicg.io/t/webcodecs-proposal/3662" target=_blank>https://discourse.wicg.io/t/webcodecs-proposal/3662</a>
               </ul>
             </li>
           </ul>

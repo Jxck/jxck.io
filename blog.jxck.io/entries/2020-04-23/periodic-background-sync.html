@@ -219,7 +219,7 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
         </p>
         <p>また、 PBS 内での fetch 先を特定の攻撃対象に設定すれば、発生タイミングをある程度指定して DDOS を行う、 Bot Net の構築に応用可能であることも指摘されている。
         <ul>
-          <li><a href="https://github.com/WICG/BackgroundSync/issues/169">Periodic Background Sync has serious security risks, which are not described or adequately mitigated - Issue #169 - WICG/BackgroundSync</a>
+          <li><a href="https://github.com/WICG/BackgroundSync/issues/169" target=_blank>Periodic Background Sync has serious security risks, which are not described or adequately mitigated - Issue #169 - WICG/BackgroundSync</a>
         </ul>
         <p>これらは、 Periodic ではない従来の Background Sync でも同様であるため、現在 Mozilla は従来の PBS に加え、従来の Background Sync も Considered Harmful と表明した。
         <p>
@@ -230,11 +230,11 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
           </picture>
         </p>
         <ul>
-          <li><a href="https://mozilla.github.io/standards-positions/#periodic-background-sync">Mozilla Specification Positions</a>
+          <li><a href="https://mozilla.github.io/standards-positions/#periodic-background-sync" target=_blank>Mozilla Specification Positions</a>
         </ul>
         <p>ユーザを危険に晒す機能はそのままでは標準化できないため、策定を進めるにはなんらかの安全措置を講じる必要がある。
         <p>今回の場合は、ユーザの許可なく PBS が登録され、任意の状態(タイミング)でイベントが発火し、任意のタスクが実行できる場合に発生する問題のため、これらを防ぐための制限が必要だ。
-        <p>現状仕様には <a href="https://wicg.github.io/BackgroundSync/spec/#privacy-considerations">Privacy Consideration</a> が追加され、この問題に対する実装上の対応を求めている。
+        <p>現状仕様には <a href="https://wicg.github.io/BackgroundSync/spec/#privacy-considerations" target=_blank>Privacy Consideration</a> が追加され、この問題に対する実装上の対応を求めている。
         <p>では、 PBS を実装している Chrome は、これらの問題にどう対応しているのだろうか。
       </section>
       <section>
@@ -261,7 +261,7 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
           <p>一方、 Native App は、強力な OS 機能の利用を、ユーザによる明示的なインストールという操作(とそこで発生する認証や追加許諾)によって許可してきた。
           <p>この考え方に合わせれば、 「Web もユーザが明示的に Install すれば、 Native と同等の機能を許可できるのではないか」という発想に至る。
           <p>すでに MS は PWA を Store に並べるといったこともしており、 Install が OS ネイティブの Prompt を経由するのであれば、ある一定の説得力は有るだろう。
-          <p>また Add to Home Screen するには Chrome の場合 <a href="https://web.dev/install-criteria/">install criteria</a> をクリアする必要があり、すでに一定のしきい値を設けている。
+          <p>また Add to Home Screen するには Chrome の場合 <a href="https://web.dev/install-criteria/" target=_blank>install criteria</a> をクリアする必要があり、すでに一定のしきい値を設けている。
           <p>Android Chrome はこの方針を採用し始め、 PBS もこの方針に則っている。
         </section>
         <section>
@@ -274,7 +274,7 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
           <p>Chrome は、サイトの使用頻度を収集し Site Engagemnet という指標を Chrome 内部に作成している。
           <p>Site Engagement は以下の URL で確認できる。
           <ul>
-            <li><a href="chrome://site-engagement/">chrome://site-engagement/</a>
+            <li><a href="chrome://site-engagement/" target=_blank>chrome://site-engagement/</a>
           </ul>
           <p>
             <picture>
@@ -318,7 +318,7 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
           <h3 id="demo"><a href="#demo">DEMO</a></h3>
           <p>動作するデモを以下に用意した。
           <ul>
-            <li><a href="https://labs.jxck.io/service-worker/periodic-background-sync/">https://labs.jxck.io/service-worker/periodic-background-sync/</a>
+            <li><a href="https://labs.jxck.io/service-worker/periodic-background-sync/" target=_blank>https://labs.jxck.io/service-worker/periodic-background-sync/</a>
           </ul>
           <p>前述のように動作させるのは少し難しい。
         </section>
@@ -329,55 +329,55 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
           <li>
             Spec
             <ul>
-              <li><a href="https://wicg.github.io/BackgroundSync/spec/PeriodicBackgroundSync-index.html">https://wicg.github.io/BackgroundSync/spec/PeriodicBackgroundSync-index.html</a>
+              <li><a href="https://wicg.github.io/BackgroundSync/spec/PeriodicBackgroundSync-index.html" target=_blank>https://wicg.github.io/BackgroundSync/spec/PeriodicBackgroundSync-index.html</a>
             </ul>
           </li>
           <li>
             Explainer
             <ul>
-              <li><a href="https://github.com/WICG/BackgroundSync/blob/master/explainers/periodicsync-explainer.md">https://github.com/WICG/BackgroundSync/blob/master/explainers/periodicsync-explainer.md</a>
+              <li><a href="https://github.com/WICG/BackgroundSync/blob/master/explainers/periodicsync-explainer.md" target=_blank>https://github.com/WICG/BackgroundSync/blob/master/explainers/periodicsync-explainer.md</a>
             </ul>
           </li>
           <li>
             Requirements Doc
             <ul>
-              <li><a href="https://docs.google.com/document/d/1FI4x3G6vzEWDplghSx-pH13aAwuGHiUGtXliEkZf0Vc/edit#heading=h.puhs715welcu">https://docs.google.com/document/d/1FI4x3G6vzEWDplghSx-pH13aAwuGHiUGtXliEkZf0Vc/edit#heading=h.puhs715welcu</a>
+              <li><a href="https://docs.google.com/document/d/1FI4x3G6vzEWDplghSx-pH13aAwuGHiUGtXliEkZf0Vc/edit#heading=h.puhs715welcu" target=_blank>https://docs.google.com/document/d/1FI4x3G6vzEWDplghSx-pH13aAwuGHiUGtXliEkZf0Vc/edit#heading=h.puhs715welcu</a>
             </ul>
           </li>
           <li>
             Mozilla Standard Position
             <ul>
-              <li><a href="https://github.com/mozilla/standards-positions/issues/214">https://github.com/mozilla/standards-positions/issues/214</a>
+              <li><a href="https://github.com/mozilla/standards-positions/issues/214" target=_blank>https://github.com/mozilla/standards-positions/issues/214</a>
             </ul>
           </li>
           <li>
             TAG Design Review
             <ul>
-              <li><a href="https://github.com/w3ctag/design-reviews/issues/367">https://github.com/w3ctag/design-reviews/issues/367</a>
+              <li><a href="https://github.com/w3ctag/design-reviews/issues/367" target=_blank>https://github.com/w3ctag/design-reviews/issues/367</a>
             </ul>
           </li>
           <li>
             Intents
             <ul>
-              <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KSJViFp3hMc/e-Yzd3_-AwAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KSJViFp3hMc/e-Yzd3_-AwAJ</a>
+              <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KSJViFp3hMc/e-Yzd3_-AwAJ" target=_blank>https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KSJViFp3hMc/e-Yzd3_-AwAJ</a>
             </ul>
           </li>
           <li>
             Chrome Platform Status
             <ul>
-              <li><a href="https://www.chromestatus.com/feature/5689383275462656">https://www.chromestatus.com/feature/5689383275462656</a>
+              <li><a href="https://www.chromestatus.com/feature/5689383275462656" target=_blank>https://www.chromestatus.com/feature/5689383275462656</a>
             </ul>
           </li>
           <li>
             Blog
             <ul>
-              <li><a href="https://web.dev/periodic-background-sync">https://web.dev/periodic-background-sync</a>
+              <li><a href="https://web.dev/periodic-background-sync" target=_blank>https://web.dev/periodic-background-sync</a>
             </ul>
           </li>
           <li>
             Presentation
             <ul>
-              <li><a href="https://speakerdeck.com/jxck/periodic-background-sync">https://speakerdeck.com/jxck/periodic-background-sync</a>
+              <li><a href="https://speakerdeck.com/jxck/periodic-background-sync" target=_blank>https://speakerdeck.com/jxck/periodic-background-sync</a>
             </ul>
           </li>
           <li>
@@ -386,7 +386,7 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
               <li>
                 Periodic Background Sync has serious security risks, which are not described or adequately mitigated - Issue #169 - WICG/BackgroundSync
                 <ul>
-                  <li><a href="https://github.com/WICG/BackgroundSync/issues/169">https://github.com/WICG/BackgroundSync/issues/169</a>
+                  <li><a href="https://github.com/WICG/BackgroundSync/issues/169" target=_blank>https://github.com/WICG/BackgroundSync/issues/169</a>
                 </ul>
               </li>
             </ul>
@@ -397,7 +397,7 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
               <li>
                 Site Engagement - The Chromium Projects
                 <ul>
-                  <li><a href="https://www.chromium.org/developers/design-documents/site-engagement">https://www.chromium.org/developers/design-documents/site-engagement</a>
+                  <li><a href="https://www.chromium.org/developers/design-documents/site-engagement" target=_blank>https://www.chromium.org/developers/design-documents/site-engagement</a>
                 </ul>
               </li>
             </ul>

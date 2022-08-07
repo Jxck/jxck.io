@@ -198,13 +198,13 @@
           <li>
             draft-vvv-webtransport-quic-00 - WebTransport over QUIC
             <ul>
-              <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-01">https://tools.ietf.org/html/draft-vvv-webtransport-quic-01</a>
+              <li><a href="https://tools.ietf.org/html/draft-vvv-webtransport-quic-01" target=_blank>https://tools.ietf.org/html/draft-vvv-webtransport-quic-01</a>
             </ul>
           </li>
           <li>
             WebTransport
             <ul>
-              <li><a href="https://wicg.github.io/web-transport/">https://wicg.github.io/web-transport/</a>
+              <li><a href="https://wicg.github.io/web-transport/" target=_blank>https://wicg.github.io/web-transport/</a>
             </ul>
           </li>
         </ul>
@@ -213,8 +213,8 @@
         <h2 id="server"><a href="#server">Server</a></h2>
         <p>サーバの実装はまだ少ないが Chrome のリポジトリと、 WPT(WebPlatformTest) にサンプルの実装が入っている。
         <ul>
-          <li><a href="https://chromium.googlesource.com/chromium/src/+/master/net/tools/quic/quic_transport_simple_server_bin.cc">net/tools/quic/quic_transport_simple_server_bin.cc - chromium/src</a>
-          <li><a href="https://github.com/web-platform-tests/wpt/blob/master/tools/quic/quic_transport_server.py">wpt/quic_transport_server.py</a>
+          <li><a href="https://chromium.googlesource.com/chromium/src/+/master/net/tools/quic/quic_transport_simple_server_bin.cc" target=_blank>net/tools/quic/quic_transport_simple_server_bin.cc - chromium/src</a>
+          <li><a href="https://github.com/web-platform-tests/wpt/blob/master/tools/quic/quic_transport_server.py" target=_blank>wpt/quic_transport_server.py</a>
         </ul>
         <section>
           <h3 id="connection-確立"><a href="#connection-確立">Connection 確立</a></h3>
@@ -291,7 +291,7 @@ await transport.close()</code></pre>
           <p>従来であれば、内部の State は <code translate=no>state</code> に持ち、その変更を <code translate=no>onstatechange</code> で表すために EventTarget を継承するのが基本だった。
           <p>しかし、 <code translate=no>state</code> へのプロパティアクセスは同期処理であるため、 Promise で表現するほうが実装上のメリットがあるという議論がされている。
           <ul>
-            <li><a href="https://github.com/WICG/web-transport/issues/92">WebTransport.ready - Issue #92 - WICG/web-transport</a>
+            <li><a href="https://github.com/WICG/web-transport/issues/92" target=_blank>WebTransport.ready - Issue #92 - WICG/web-transport</a>
           </ul>
           <p>メッセージについては、明示的な <code translate=no>read()</code> もしくはそれを行う Stream の Pipe でを行うため、 <code translate=no>onmessage</code> イベントもいらない。
           <p>内部の状態は以下なので、これが増えたらどうするかという懸念もあるが、 WebSocket も同じ状態遷移で特に増えたことはないため、問題ないということだろう。
@@ -370,7 +370,7 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
   .then((e) =&gt; console.log(e))
   .catch((e) =&gt; console.error(e))</code></pre>
           <ul>
-            <li><a href="http://labs.jxck.io/webtransport/quictransport/stream_pipe.html">Stream Pipe DEMO</a>
+            <li><a href="http://labs.jxck.io/webtransport/quictransport/stream_pipe.html" target=_blank>Stream Pipe DEMO</a>
           </ul>
         </section>
       </section>
@@ -385,7 +385,7 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
           <p>Canvas 経由で ImageBitmap を取る、 WASM でエンコードする、別の Peer とつないだ PeerConnection から InsertableStream で抜くなどの方法は無くはないが、正攻法でいうと WebCodecs を待つことになる。
           <p>WebCodecs は現在 Intent to Implement なので、 Experiment が始まったら改めて検証する。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/3oVuczJ5Ty4/m/b8VLNNvyEAAJ">Intent to Implement WebCodecs</a>
+            <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/3oVuczJ5Ty4/m/b8VLNNvyEAAJ" target=_blank>Intent to Implement WebCodecs</a>
           </ul>
         </section>
         <section>
@@ -412,7 +412,7 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="http://labs.jxck.io/webtransport/">http://labs.jxck.io/webtransport/</a>
+          <li><a href="http://labs.jxck.io/webtransport/" target=_blank>http://labs.jxck.io/webtransport/</a>
         </ul>
       </section>
       <section>
@@ -424,13 +424,13 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
               <li>
                 WICG: WebTransport
                 <ul>
-                  <li><a href="https://wicg.github.io/web-transport/#quic-transport">https://wicg.github.io/web-transport/#quic-transport</a>
+                  <li><a href="https://wicg.github.io/web-transport/#quic-transport" target=_blank>https://wicg.github.io/web-transport/#quic-transport</a>
                 </ul>
               </li>
               <li>
                 IETF: QUIC: A UDP-Based Multiplexed and Secure Transport
                 <ul>
-                  <li><a href="https://quicwg.org/base-drafts/draft-ietf-quic-transport.html">https://quicwg.org/base-drafts/draft-ietf-quic-transport.html</a>
+                  <li><a href="https://quicwg.org/base-drafts/draft-ietf-quic-transport.html" target=_blank>https://quicwg.org/base-drafts/draft-ietf-quic-transport.html</a>
                 </ul>
               </li>
             </ul>
@@ -441,7 +441,7 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
               <li>
                 web-transport/explainer.md at master - WICG/web-transport
                 <ul>
-                  <li><a href="https://github.com/WICG/web-transport/blob/master/explainer.md">https://github.com/WICG/web-transport/blob/master/explainer.md</a>
+                  <li><a href="https://github.com/WICG/web-transport/blob/master/explainer.md" target=_blank>https://github.com/WICG/web-transport/blob/master/explainer.md</a>
                 </ul>
               </li>
             </ul>
@@ -452,7 +452,7 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
               <li>
                 QuicTransport Design Doc
                 <ul>
-                  <li><a href="https://docs.google.com/document/d/1UgviRBnZkMUq4OKcsAJvIQFX6UCXeCbOtX_wMgwD_es/edit">https://docs.google.com/document/d/1UgviRBnZkMUq4OKcsAJvIQFX6UCXeCbOtX_wMgwD_es/edit</a>
+                  <li><a href="https://docs.google.com/document/d/1UgviRBnZkMUq4OKcsAJvIQFX6UCXeCbOtX_wMgwD_es/edit" target=_blank>https://docs.google.com/document/d/1UgviRBnZkMUq4OKcsAJvIQFX6UCXeCbOtX_wMgwD_es/edit</a>
                 </ul>
               </li>
             </ul>
@@ -469,7 +469,7 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
               <li>
                 WebTransport - Issue #389 - w3ctag/design-reviews
                 <ul>
-                  <li><a href="https://github.com/w3ctag/design-reviews/issues/389">https://github.com/w3ctag/design-reviews/issues/389</a>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/389" target=_blank>https://github.com/w3ctag/design-reviews/issues/389</a>
                 </ul>
               </li>
             </ul>
@@ -480,7 +480,7 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
               <li>
                 Intent to Experiment: QuicTransport
                 <ul>
-                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ</a>
+                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ" target=_blank>https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ</a>
                 </ul>
               </li>
             </ul>

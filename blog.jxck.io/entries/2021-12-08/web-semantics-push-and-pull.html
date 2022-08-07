@@ -177,7 +177,7 @@
       </section>
       <section>
         <h2 id="title-タグとサイト名"><a href="#title-タグとサイト名">title タグとサイト名</a></h2>
-        <p>身近な例として HTML の <a href="https://html.spec.whatwg.org/multipage/semantics.html#the-title-element"><code translate=no>&lt;title&gt;</code></a> を考えてみよう。
+        <p>身近な例として HTML の <a href="https://html.spec.whatwg.org/multipage/semantics.html#the-title-element" target=_blank><code translate=no>&lt;title&gt;</code></a> を考えてみよう。
         <p><code translate=no>&lt;title&gt;</code> にはその文書のタイトルが入る。これは仕様にも明らかだ。例えばこのエントリだとタイトルタグは以下のような実装が考えられる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=html data-code=html><code translate=no class=language-html>&lt;title&gt;Web のセマンティクスにおける Push と Pull&lt;/title&gt;</code></pre>
@@ -301,11 +301,11 @@ Width: 300</code></pre>
         <p>元凶は何かというと、「<code translate=no>User-Agent</code> はあくまで User Agent を表しているだけ」なのに対し、開発者は「UA がこうであれば <code translate=no>&lt;frame&gt;</code> に対応している/していない」という解釈を入れ、それを Push で実装するために使ってしまっていることだ。
         <p>Progressive Enhancement という考え方が広がって以降は、特定機能の有無は Feature Detection によって行い、 Fallback や Polyfill の提供によってカバーされるのが定石となったが、当時はまだ Web の黎明期でそうしたプラクティスが無く、現実的にこの方法しかなかったのも事実だ。結局誰が悪いわけでもない。
         <p>昨今では、積み重なった嘘の数がエントロピーを上げ、 Fingerprint ベクタになり、これ以上悪化しないように改善されようとしている。しかし、十分に Ossification されているため、かなりの痛みを伴っているのは、開発者も痛感しているだろう。
-        <p>最初から Pull で実装されていれば、 <code translate=no>User-Agent</code> は今の <code translate=no>Sec-CH-UA</code> と同じくらいだったかもしれないし、そうなった原因は開発者による安易な Push 実装だということに開発者自身が気づかなければ、ブラウザは <code translate=no>Sec-CH-UA</code> でも嘘をつくことになるかもしれない。むしろ Safari は <a href="https://github.com/w3ctag/design-reviews/issues/640#issuecomment-895549581">実装するとしたらおそらく最初から嘘を付くだろう</a> という話をしている。
+        <p>最初から Pull で実装されていれば、 <code translate=no>User-Agent</code> は今の <code translate=no>Sec-CH-UA</code> と同じくらいだったかもしれないし、そうなった原因は開発者による安易な Push 実装だということに開発者自身が気づかなければ、ブラウザは <code translate=no>Sec-CH-UA</code> でも嘘をつくことになるかもしれない。むしろ Safari は <a href="https://github.com/w3ctag/design-reviews/issues/640#issuecomment-895549581" target=_blank>実装するとしたらおそらく最初から嘘を付くだろう</a> という話をしている。
       </section>
       <section>
         <h2 id="wi-fi-かどうか"><a href="#wi-fi-かどうか">Wi-Fi かどうか</a></h2>
-        <p><a href="https://wicg.github.io/netinfo/">Network Infromation API</a> は、接続しているネットワークが Wi-Fi なのか Cellular なのかを取れるようにしようとしているが、この仕様を見て「<em>Wi-Fi だったら大きいデータを送り、 Cellular だったら小さいデータを送る</em>」というユースケースが紹介されることがある。
+        <p><a href="https://wicg.github.io/netinfo/" target=_blank>Network Infromation API</a> は、接続しているネットワークが Wi-Fi なのか Cellular なのかを取れるようにしようとしているが、この仕様を見て「<em>Wi-Fi だったら大きいデータを送り、 Cellular だったら小さいデータを送る</em>」というユースケースが紹介されることがある。
         <pre class=js data-code=js><code translate=no class=language-js>if (navigator.connection.type === &quot;wifi&quot;) {
   // 大きなデータをダウンロード
 } else {
@@ -359,7 +359,7 @@ Width: 300</code></pre>
           <p>画像には <code translate=no>alt</code> という属性があり、ここには「代替表現」というセマンティクスがある。
           <p>もともとは、例えば画像サーバが落ちており画像が取得できなかった場合に、その属性を表示することで何が表示されるべきだったかを示す役割が主流だった。しかし、スクリーンリーダーが一般的になって以降は、読み上げられない画像の代わりに読み上げる目的が注目されるようになった。以降「読み上げたときに不自然ではない」オーサリングがなされることも増えたように思う。
           <p>読み上げるための別の属性が存在すれば、そこに読み上げのための文字(つまりセリフ)を含むのは Pull だが、汎用的な代替表現を読み上げに最適化するのは、スクリーンリーダーに対する Push の実装といえる。読み上げることに最適化してオーサリングされた <code translate=no>alt</code> が、別のシチュエーションで <code translate=no>alt</code> を消費する実装にとって適切とは限らないからだ。
-          <p>特に、 a11y の文脈でよく言われる「読み上げなくて良い画像の alt は空で良い」というのも Push の典型的な一例だ。そこに画像がある以上、それがアイコンであろうと罫線であろうと存在することに変わりはない。読み上げると邪魔だから不要というのは、他の消費者(クライアント)に対する配慮を欠いている点で、それをアクセシブルと呼んで良いのか個人的には非常に疑問だ。特に、最近議論されている <a href="https://w3c.github.io/coga/content-usable/">COGA</a> のように、弱視以外の理由でサポートが必要な人々(e.g. 認知/認識に関する障害など)にとって、 Screen Readerbility に最適化された <code translate=no>alt</code> がそのまま有効なのかについては、議論の余地があるだろう。
+          <p>特に、 a11y の文脈でよく言われる「読み上げなくて良い画像の alt は空で良い」というのも Push の典型的な一例だ。そこに画像がある以上、それがアイコンであろうと罫線であろうと存在することに変わりはない。読み上げると邪魔だから不要というのは、他の消費者(クライアント)に対する配慮を欠いている点で、それをアクセシブルと呼んで良いのか個人的には非常に疑問だ。特に、最近議論されている <a href="https://w3c.github.io/coga/content-usable/" target=_blank>COGA</a> のように、弱視以外の理由でサポートが必要な人々(e.g. 認知/認識に関する障害など)にとって、 Screen Readerbility に最適化された <code translate=no>alt</code> がそのまま有効なのかについては、議論の余地があるだろう。
           <p>本来それが contents ではなく style であるから不要、という理由であれば CSS でオーサリングすべきだし、読み上げと代替は別と考えるなら、適切な他の属性(e.g. Aria)を使うことで全てを Pull のまま実装することもできなくはない。しかし、 <code translate=no>alt</code> 以外にも、様々な属性や実装方法に対して、スクリーンリーダーの挙動を起点に考えるプラクティスは多くある。仮にコンテンツが Pull で実装されているにも関わらず、それがスクリーンリーダーにうまく消費されないのだとしたら、治すべきは本来「標準仕様」か「スクリーンリーダー」であるはずだ。しかし、開発者でシェアされる多くのプラクティスやガイドラインは、コンテンツガイドライン、つまりコンテンツ側を特定のスクリーンリーダー実装に対し Push にするためのものが多い。
           <p>ここに accessibility と screen readerbility の境を見出すと、 a11y は本来 Web のセマンティクスを正しく理解し、正しく実装する以上のものではない。そうならないならば、悪いのは仕様か実装であるはずだし、その世界においては a11y という明示的なラベルは本来不要だ。ただ、現実的にそうしたコンテンツを「正しくかつ適切に消費できるスクリーンリーダーの存在」は前提にできないため、コンテンツが歩み寄るしかない。つまり現状は Push するしかなく、その Push するベクトルに対して a11y というラベルがついている。
           <p>ただし、現状多くのサイトのコンテンツは、正しく Pull で実装されているわけでも、それによって Accessible なわけでもないもの事実だ。

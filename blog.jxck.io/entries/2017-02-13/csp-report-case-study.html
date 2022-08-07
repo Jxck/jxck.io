@@ -335,7 +335,7 @@
       </section>
       <section>
         <h2 id="reporting-server"><a href="#reporting-server">Reporting Server</a></h2>
-        <p>CSP のレポート収集サービスとして、 <a href="https://report-uri.io">report-uri.io</a> がよく紹介され、本サイトでもこれを用いてレポートを収集していた。
+        <p>CSP のレポート収集サービスとして、 <a href="https://report-uri.io" target=_blank>report-uri.io</a> がよく紹介され、本サイトでもこれを用いてレポートを収集していた。
         <p>無料で使うことができる点で導入の敷居が低いのは良かったが、現在は以下のような理由でもう使っていない。
         <ul>
           <li>レポートをエクスポートできない
@@ -348,9 +348,9 @@
         <p>それなりのサービスであれば、ログなどを解析/可視化する基盤(graphite, kibana, ES, BigQ, mackerel etc) があると思うので、エンドポイントを自分で立ててそこに流し込むのが良いだろう。
         <p>また、もし自分でエンドポイントを実装する際には、以下の点に注意して実装するのが良いと思われる。
         <ul>
-          <li>report-uri は非推奨なので、 <a href="http://wicg.github.io/reporting/">report-to</a> を前提として設計
+          <li>report-uri は非推奨なので、 <a href="http://wicg.github.io/reporting/" target=_blank>report-to</a> を前提として設計
           <li>レポートには UA やタイムスタンプはないので、必ず HTTP ヘッダ(全体)を一緒に保存する
-          <li>意図しないリクエストを <code translate=no>content-type: csp-report</code> で間引きたくなるが、<a href="https://www.tollmanz.com/content-security-policy-report-samples/">準拠してないクライアント</a> もあるようなので注意が必要
+          <li>意図しないリクエストを <code translate=no>content-type: csp-report</code> で間引きたくなるが、<a href="https://www.tollmanz.com/content-security-policy-report-samples/" target=_blank>準拠してないクライアント</a> もあるようなので注意が必要
         </ul>
         <p>report-uri から report-to への変更で、 CSP 以外も含めたレポート送信が Reporting API に統合される。
         <p>ここではヘッダ指定のしかたから、 Cookie の扱いなど色々変わりそうなので、本サイトで実装を終えたら追って解説しようと思う。
@@ -363,7 +363,7 @@
         <p>想像通り、 <code translate=no>&lt;input&gt;</code> が無い本サイトでもこれだけのレポートが来ていることから、 <code translate=no>&lt;input&gt;</code> によりユーザの入力を受けつけるサービスでは、より多くの違反が観測されるだろう。
         <p>そして、攻撃では無いポリシー違反を許容するためには、ポリシーを逐一更新して縛りを緩くしていく以外に方法はなく、一方で緩くすればするほどポリシーに穴ができ、実際の攻撃が発生した際に役に立たなくなる可能性がある。
         <p>CSP によるブロックは、かなり堅牢な防御となる一方、多くのユーザに影響を与えるもろ刃の剣でもある。
-        <p>それでも、 <a href="https://github.com">github</a> や <a href="https://twitter.com">twitter</a> は既に Report-Only 無しで CSP を運用しているため、ユーザのフィードバックを反映しながら、ポリシーの精度を向上し徐々に適用していけば、 Report-Only なしの運用も決して無理ではないだろう。
+        <p>それでも、 <a href="https://github.com" target=_blank>github</a> や <a href="https://twitter.com" target=_blank>twitter</a> は既に Report-Only 無しで CSP を運用しているため、ユーザのフィードバックを反映しながら、ポリシーの精度を向上し徐々に適用していけば、 Report-Only なしの運用も決して無理ではないだろう。
         <p>一方、レポートが収集できること、それを解析してサービス上で何が起こっているかが分かるだけでも、何もわからなかった従来と比べれば大きな進歩であると感じている。
         <p>そこで、 Report-Only を外すことを目的にポリシーを緩めるのではなく、厳しい CSP を Report-Only で運用する方針も決して無くはないだろう。
         <p>そもそも CSP は、それのみで攻撃を防ぐのでは無く、従来通りのセキュリティ対策を行った結果、意図せぬ漏れを埋めるために追加で行う対策である。
@@ -374,8 +374,8 @@
         <h2 id="参考"><a href="#参考">参考</a></h2>
         <p>この辺の話を発表した資料
         <ul>
-          <li><a href="https://speakerdeck.com/jxck/csp-and-real-world-reporting">CSP による防御とリアルワールドレポート収集</a>
-          <li><a href="https://speakerdeck.com/jxck/csp-a-powerful-security-steroid">CSP a Powerful Security Steroid (上の拡充版)</a>
+          <li><a href="https://speakerdeck.com/jxck/csp-and-real-world-reporting" target=_blank>CSP による防御とリアルワールドレポート収集</a>
+          <li><a href="https://speakerdeck.com/jxck/csp-a-powerful-security-steroid" target=_blank>CSP a Powerful Security Steroid (上の拡充版)</a>
         </ul>
       </section>
     </article>

@@ -198,7 +198,7 @@ c.increment()
 c.display() // 3
 console.log(c.count) // 3</code></pre>
         <p>ここでコンストラクタを介さず、フィールドを定義し初期化する構文が提案されている。
-        <p><a href="https://github.com/tc39/proposal-class-fields">tc39/proposal-class-fields</a>
+        <p><a href="https://github.com/tc39/proposal-class-fields" target=_blank>tc39/proposal-class-fields</a>
         <p>これが実装されると、以下のように書くことができる。
         <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   count = 0
@@ -217,7 +217,7 @@ console.log(c.count) // 3</code></pre>
         <p>しかし、初期の提案に全てを詰め込むことはせず、いくつかの機能(前述の class field/static/private etc)は、 Future Work になっていた。
         <p>中でも Private フィールドについては、他のクラスベースオブジェクト指向の言語では標準であることが多く、これを入れるために議論が行われた。
         <p>現在は、先の class-fields の仕様にマージされ、先に結論を言うと、現状の仕様は以下のようになり、ブラウザの実装が進みつつある。
-        <p><a href="https://github.com/tc39/proposal-class-fields">tc39/proposal-class-fields: Orthogonally-informed combination of public and private fields proposals</a>
+        <p><a href="https://github.com/tc39/proposal-class-fields" target=_blank>tc39/proposal-class-fields: Orthogonally-informed combination of public and private fields proposals</a>
         <pre class=js data-code=js><code translate=no class=language-js>class Counter {
   // private field
   #count = 0
@@ -249,7 +249,7 @@ console.log(c.#count) // SyntaxError</code></pre>
       <section>
         <h2 id="なぜこの構文になったのか"><a href="#なぜこの構文になったのか">なぜこの構文になったのか</a></h2>
         <p>かなり珍しい構文に落ち着いたこともあり、どうして <code translate=no>#</code> なのかは FAQ であり、本家のリポジトリにおおよそ書かれている。
-        <p><a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md">proposal-class-fields/PRIVATE_SYNTAX_FAQ.md</a>
+        <p><a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md" target=_blank>proposal-class-fields/PRIVATE_SYNTAX_FAQ.md</a>
         <p>ここでは、 JS における Private がどう挙動すべきかを含めた議論の過程を見ていく。
       </section>
       <section>
@@ -326,18 +326,18 @@ c.display()
 console.log(c.count) // undefined</code></pre>
         <p>この場合、 WeakMap はクロージャの中にあるため、スコープの外からはアクセスできない。
         <p>また、外からは Counter オブジェクトが内部でどのような Private フィールドを持っているかを知ることができない。
-        <p>WeakMap は内部的には、<a href="https://mozaic.fm/episodes/19/es7-sideshow.html">オブジェクトそのものに値を紐づけるような実装が可能</a> であるため、まさしくこの用途にあっている。
+        <p>WeakMap は内部的には、<a href="https://mozaic.fm/episodes/19/es7-sideshow.html" target=_blank>オブジェクトそのものに値を紐づけるような実装が可能</a> であるため、まさしくこの用途にあっている。
         <p>このような挙動を <em>Hard Private</em> と呼ぶ。
       </section>
       <section>
         <h2 id="soft-or-hard-private"><a href="#soft-or-hard-private">Soft or Hard Private</a></h2>
         <p>ECMAScript が Private フィールドを定義する上で、目指すのは Soft/Hard Private どちらであるかが議論となった。
-        <p><a href="https://github.com/tc39/proposal-private-fields/issues/33">Hard-private vs soft-private #33</a>
+        <p><a href="https://github.com/tc39/proposal-private-fields/issues/33" target=_blank>Hard-private vs soft-private #33</a>
         <p>例えばライブラリにおいて、作者が意図しないアクセスを完全に断つためには Hard Private が必要になる。
         <p>一方、テストなどの用途に限ってアクセスする余地を残すために、 Soft Private を支持する意見もあった。
-        <p>もし Soft Private で良いのであれば、 Symbol や <a href="https://github.com/tc39/proposal-private-fields/blob/master/DECORATORS.md">Decorator</a> などである程度実現可能であり、構文を拡張してまでやる必要があまりない。
+        <p>もし Soft Private で良いのであれば、 Symbol や <a href="https://github.com/tc39/proposal-private-fields/blob/master/DECORATORS.md" target=_blank>Decorator</a> などである程度実現可能であり、構文を拡張してまでやる必要があまりない。
         <p>結果としては、 WeakMap で実現したような挙動を、構文レベルでサポートすることにより、より手軽に Hard Private を実現することがこの仕様のゴールとなった。
-        <p>具体的に求められる挙動は <a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#what-do-you-mean-by-encapsulation--hard-private">以下</a> のようになる。
+        <p>具体的に求められる挙動は <a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#what-do-you-mean-by-encapsulation--hard-private" target=_blank>以下</a> のようになる。
         <ol>
           <li>
             Private フィールドにアクセスする方法が一切ない
@@ -437,7 +437,7 @@ console.log(c.#count) // syntax error</code></pre>
         <p>実際には、上述の条件が満たせれば、記号自体はなんでもよい。
         <p>しかし、 UTF8 で任意の文字を許容するといったことをしなければ、 ASCII で残っている文字は少ない。
         <p>すでに使われている演算子を除いた候補の議論も FAQ にまとまっている。
-        <p><a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#why-was-the-sigil--chosen-among-all-the-unicode-code-points">Why was the sigil # chosen, among all the Unicode code points?</a>
+        <p><a href="https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#why-was-the-sigil--chosen-among-all-the-unicode-code-points" target=_blank>Why was the sigil # chosen, among all the Unicode code points?</a>
         <ul>
           <li><code translate=no>@</code>: 一番良さそうだが Decorator が既に利用している。 Decorator との入れ替えも検討したが、トランスパイラで先走って使っているユーザも多く諦めた。
           <li><code translate=no>_</code>: 既に変数に付けられているコードが多い。
@@ -475,7 +475,7 @@ console.log(c.#count) // syntax error</code></pre>
   }
 }</code></pre>
         <p>ちなみに、この余地を残すために却下された提案として、 <code translate=no>#</code> の前にドットを置かない記法もあった。
-        <p><a href="https://github.com/tc39/proposal-private-fields/issues/39">Why not use obj#prop instead obj.#prop ? #39</a>
+        <p><a href="https://github.com/tc39/proposal-private-fields/issues/39" target=_blank>Why not use obj#prop instead obj.#prop ? #39</a>
         <p>これがあれば <code translate=no>this#count</code> や <code translate=no>c#count</code> と書ける。
         <pre class=js data-code=js><code translate=no class=language-js>class X {
   #y
@@ -559,7 +559,7 @@ console.log(p1.display())</code></pre>
         <p>ここまでの議論からもわかるように、 JavaScript を構文的に拡張する上で使える「記号」はほぼ枯渇している。
         <p>Pipeline Operator のように複数の記号を組み合わせていくか、 Unicode 全体まで範囲を広げるといった方向しかない。
         <p>そこで、今後の拡張は Decorator ベースでやっていくのが良いのではないかと言う提案が出ている。
-        <p><a href="https://github.com/littledan/proposal-reserved-decorator-like-syntax">littledan/proposal-reserved-decorator-like-syntax: Reserved decorator-like syntax as an extension point for future JavaScript syntax</a>
+        <p><a href="https://github.com/littledan/proposal-reserved-decorator-like-syntax" target=_blank>littledan/proposal-reserved-decorator-like-syntax: Reserved decorator-like syntax as an extension point for future JavaScript syntax</a>
         <p>具体的には、以下のように今は書けない <code translate=no>[decorator]</code> とカッコを用いた構文を今のうちに予約しておくというものだ。
         <pre class=js data-code=js><code translate=no class=language-js>@[typed]
 class Point {
@@ -574,7 +574,7 @@ class Point {
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/private-class-field/">https://labs.jxck.io/private-class-field/</a>
+          <li><a href="https://labs.jxck.io/private-class-field/" target=_blank>https://labs.jxck.io/private-class-field/</a>
         </ul>
       </section>
     </article>

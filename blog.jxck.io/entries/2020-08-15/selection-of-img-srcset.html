@@ -240,9 +240,9 @@ body {
       <section>
         <h2 id="調査"><a href="#調査">調査</a></h2>
         <p>この挙動だけを見ると、「Chromium の実装にバグが有るのでは」や、「Devtools の Emulation がおかしいのでは」といった点が浮かびがちだが、まずは仕様がどうなっているのかを見てみる。
-        <p>対象の仕様は HTML であるため、 <a href="https://html.spec.whatwg.org">https://html.spec.whatwg.org</a> のどこかにあり、探すとまさしく &quot;4.8.4.3.6 Selecting an image source&quot; に該当の記述がある。
+        <p>対象の仕様は HTML であるため、 <a href="https://html.spec.whatwg.org" target=_blank>https://html.spec.whatwg.org</a> のどこかにあり、探すとまさしく &quot;4.8.4.3.6 Selecting an image source&quot; に該当の記述がある。
         <ul>
-          <li><a href="https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source">HTML Standard - 4.8.4.3.6 Selecting an image source</a>
+          <li><a href="https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source" target=_blank>HTML Standard - 4.8.4.3.6 Selecting an image source</a>
         </ul>
         <p>短いので該当部分を引用する。
         <blockquote>
@@ -284,7 +284,7 @@ body {
         <section>
           <h3 id="pickbestimagecandidate"><a href="#pickbestimagecandidate">PickBestImageCandidate</a></h3>
           <ul>
-            <li><a href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F">https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F</a>
+            <li><a href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F" target=_blank>https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=422;drc=7b27ab4f4e042b410230e267d31f8e6f67d1bdc4?originalUrl=https:%2F%2Fcs.chromium.org%2F</a>
           </ul>
           <p>色々手を加えたコードを引用する。基本の流れは
           <ul>
@@ -350,7 +350,7 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
         <section>
           <h3 id="selectionlogic"><a href="#selectionlogic">SelectionLogic</a></h3>
           <ul>
-            <li><a href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F">https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F</a>
+            <li><a href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F" target=_blank>https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=1;l=380?originalUrl=https:%2F%2Fcs.chromium.org%2F</a>
           </ul>
           <p>ここで実際に画像を選択している。
           <ul>
@@ -450,7 +450,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
           <p>Currently the srcset resource selection simply picks the first candidate with a density that&apos;s equal or larger than DPR.
           <p>That results in cases where slight zooming causes a DPR of 1.1 and the download of a 2x resource,
           <p>even though the 1x resource would have been enough.
-          <p>&mdash; <cite><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=425511">425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium</a></cite>
+          <p>&mdash; <cite><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=425511" target=_blank>425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium</a></cite>
         </blockquote>
         <p>もともともモチベーションは、ズームで DPR が 1 -&gt; 1.1 のようにずれることに起因するらしい。これも考察した理由と根底では同じと言えるだろう。
         <p>(ズームで DPR がちゃんと変わってることは知らなかった)
@@ -473,7 +473,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/image/srcset/">https://labs.jxck.io/image/srcset/</a>
+          <li><a href="https://labs.jxck.io/image/srcset/" target=_blank>https://labs.jxck.io/image/srcset/</a>
         </ul>
       </section>
       <section>
@@ -482,7 +482,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
           <li>
             Spec
             <ul>
-              <li><a href="https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source">https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source</a>
+              <li><a href="https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source" target=_blank>https://html.spec.whatwg.org/multipage/images.html#selecting-an-image-source</a>
             </ul>
           </li>
           <li>Explainer
@@ -498,14 +498,14 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
           <li>
             Issues
             <ul>
-              <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=425511">https://bugs.chromium.org/p/chromium/issues/detail?id=425511</a>
+              <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=425511" target=_blank>https://bugs.chromium.org/p/chromium/issues/detail?id=425511</a>
             </ul>
           </li>
           <li>
             Other
             <ul>
-              <li><a href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=395;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=0?originalUrl=https:%2F%2Fcs.chromium.org%2F">https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=395;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=0?originalUrl=https:%2F%2Fcs.chromium.org%2F</a>
-              <li><a href="https://source.chromium.org/chromium/chromium/src/+/bb57934c360a33560365cc47af176a7c71d51f9d?originalUrl=https%2F:%2F%2F%2Fcs.chromium.org%2F">https://source.chromium.org/chromium/chromium/src/+/bb57934c360a33560365cc47af176a7c71d51f9d?originalUrl=https%2F:%2F%2F%2Fcs.chromium.org%2F</a>
+              <li><a href="https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=395;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=0?originalUrl=https:%2F%2Fcs.chromium.org%2F" target=_blank>https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/parser/html_srcset_parser.cc;l=395;drc=23f61cb65a94208dc2c4728e895e87d47f64a8b6;bpv=1;bpt=0?originalUrl=https:%2F%2Fcs.chromium.org%2F</a>
+              <li><a href="https://source.chromium.org/chromium/chromium/src/+/bb57934c360a33560365cc47af176a7c71d51f9d?originalUrl=https%2F:%2F%2F%2Fcs.chromium.org%2F" target=_blank>https://source.chromium.org/chromium/chromium/src/+/bb57934c360a33560365cc47af176a7c71d51f9d?originalUrl=https%2F:%2F%2F%2Fcs.chromium.org%2F</a>
             </ul>
           </li>
         </ul>

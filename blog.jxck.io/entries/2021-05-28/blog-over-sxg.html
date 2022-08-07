@@ -196,15 +196,15 @@
         </ul>
         <p>今年の 4 月に、 AMP だけでなく通常のコンテンツであっても SXG を配信すれば Google Bot がそれを取得し、 Google Search のモバイル検索結果で Prefetch が行われるようになった。
         <p>これにより、モバイル検索結果を表示した時点で SXG がブラウザに読み込まれ、結果をクリックしたら、リクエストを投げる代わりにキャッシュから HTML を表示するだけで済むため、検索流入のユーザに対して、初期表示のパフォーマンス向上が期待される。
-        <p>Google はこれを AMP SXG と対比して <a href="https://developers.google.com/search/docs/advanced/experience/signed-exchange#:~:text=non-,amp,-results">Non AMP SXG</a> と称しており、本サイトでもその使い分けを採用するが、実態はまさしく SXG そのものだ。
+        <p>Google はこれを AMP SXG と対比して <a href="https://developers.google.com/search/docs/advanced/experience/signed-exchange#:~:text=non-,amp,-results" target=_blank>Non AMP SXG</a> と称しており、本サイトでもその使い分けを採用するが、実態はまさしく SXG そのものだ。
       </section>
       <section>
         <h2 id="sxg-の配信"><a href="#sxg-の配信">SXG の配信</a></h2>
         <p>SXG の配信は、コンテンツを SXG に変換するだけではなく、 Content Negotiation の対応や Validity URL の提供など、いくつか対応が必要となる。
-        <p>また、 SXG はファイル自体に期限があるため、 <a href="https://github.com/WICG/webpackage/tree/main/go/signedexchange/cmd/gen-signedexchange">gen-signedexchange</a> といったツールで静的に作る場合は更新が必要となる。
+        <p>また、 SXG はファイル自体に期限があるため、 <a href="https://github.com/WICG/webpackage/tree/main/go/signedexchange/cmd/gen-signedexchange" target=_blank>gen-signedexchange</a> といったツールで静的に作る場合は更新が必要となる。
         <p>今回はこうした処理を全て肩代わりしてくれる Web Packager Server を用いることにした。
         <ul>
-          <li><a href="https://github.com/google/webpackager/tree/master/cmd/webpkgserver">Web Packager Server - google/webpackager</a>
+          <li><a href="https://github.com/google/webpackager/tree/master/cmd/webpkgserver" target=_blank>Web Packager Server - google/webpackager</a>
         </ul>
       </section>
       <section>
@@ -224,7 +224,7 @@ go build .</code></pre>
         </section>
         <section>
           <h3 id="webpkgserver.toml"><a href="#webpkgserver.toml">webpkgserver.toml</a></h3>
-          <p>設定ファイルは、同梱されている <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/webpkgserver.example.toml">webpkgserver.example.toml</a> を修正する。
+          <p>設定ファイルは、同梱されている <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/webpkgserver.example.toml" target=_blank>webpkgserver.example.toml</a> を修正する。
           <p>ほとんどデフォルトが使えるため、 Port と SXG 用の証明書、 Domain あたりを気をつければ良いだろう。
           <pre class=yaml data-code=yaml><code translate=no class=language-yaml>[Listen]
   Port = 11000
@@ -263,7 +263,7 @@ dump-signedexchange -i dump.sxg</code></pre>
         <h2 id="content-negotiation"><a href="#content-negotiation">Content Negotiation</a></h2>
         <p>基本的にはリクエストヘッダに <code translate=no>Accpet: application/signed-exchange;v=b3</code> が付与されている場合、 Web Package Server に転送すれば良い。
         <p>しかし、 Google の Bot だけでなく、 Chrome も現状このヘッダをデフォルトで付与しているため、単にこのヘッダの有無だけを見てルーティングすると、ブラウザからのリクエストにも SXG を返すことになる。
-        <p>これについては Q value を参照するように <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/README.md#content-negotiation">ドキュメント</a> に書かれている。
+        <p>これについては Q value を参照するように <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/README.md#content-negotiation" target=_blank>ドキュメント</a> に書かれている。
         <p>具体的には Chrome と Google Bot の付与する Accept は以下のように異なる。
         <pre class=http data-code=http><code translate=no class=language-http># Google Bot
 Accept: text/html,application/xhtml+xml,application/signed-exchange;v=b3,application/xml;q=0.9,*/*;q=0.8
@@ -301,7 +301,7 @@ dump-certurl -i cert.cbor</code></pre>
         <section>
           <h3 id="debug"><a href="#debug">Debug</a></h3>
           <p>curl でテストしても良いが、デプロイした後ならば Chrome でアクセスして Devtools で確認すると詳細がデバッグできる。
-          <p>しかし、今回の設定では Chrome のデフォルトの Q value がついた <code translate=no>Accept</code> ヘッダでは SXG が取得できないため、 <a href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj">ModHeader</a> などを用いて Q value を無くすよう上書きする必要がある。
+          <p>しかし、今回の設定では Chrome のデフォルトの Q value がついた <code translate=no>Accept</code> ヘッダでは SXG が取得できないため、 <a href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj" target=_blank>ModHeader</a> などを用いて Q value を無くすよう上書きする必要がある。
           <p>その状態でアクセスし、成功すれば以下のように SXG が確認できる。
           <p>まず、 Network の Timeline 上は SXG のレスポンスと CBOR リクエストが続き、 SXG から取り出された HTML が取得されている。
           <p>
@@ -326,7 +326,7 @@ dump-certurl -i cert.cbor</code></pre>
           <p>SXG が Google の Cache に乗ったかは、以下のような規則で生成したキャッシュ URL に直接アクセスすれば確認できる。
           <ul>
             <li>(before): <a href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html</a>
-            <li>( after): <a href="https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html</a>
+            <li>( after): <a href="https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html" target=_blank>https://blog-jxck-io.webpkgcache.com/doc/-/s/blog.jxck.io/entries/2016-07-12/cache-control-immutable.html</a>
           </ul>
         </section>
         <section>
@@ -356,7 +356,7 @@ dump-certurl -i cert.cbor</code></pre>
           <p>試しに 1 つ Search Console から AMP URL を削除するようにリクエストしたが、それでもなかなか反映されなかった。
           <p>結果、以下にある削除リクエストを実施した。
           <ul>
-            <li><a href="https://developers.google.com/amp/cache/update-cache">Update AMP Content</a>
+            <li><a href="https://developers.google.com/amp/cache/update-cache" target=_blank>Update AMP Content</a>
           </ul>
           <p>一晩放置したところ、検索結果から AMP が消え始めた。
         </section>
@@ -409,7 +409,7 @@ dump-certurl -i cert.cbor</code></pre>
           <li>
             TAG Design Review
             <ul>
-              <li><a href="https://github.com/w3ctag/design-reviews/issues/235">https://github.com/w3ctag/design-reviews/issues/235</a>
+              <li><a href="https://github.com/w3ctag/design-reviews/issues/235" target=_blank>https://github.com/w3ctag/design-reviews/issues/235</a>
             </ul>
           </li>
           <li>
@@ -418,7 +418,7 @@ dump-certurl -i cert.cbor</code></pre>
               <li>
                 Intent to Ship: Signed HTTP Exchanges (SXG)
                 <ul>
-                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc">https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc</a>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/gPH_BcOBEtc</a>
                 </ul>
               </li>
             </ul>
@@ -426,7 +426,7 @@ dump-certurl -i cert.cbor</code></pre>
           <li>
             Chrome Platform Status
             <ul>
-              <li><a href="https://www.chromestatus.com/feature/5745285984681984">https://www.chromestatus.com/feature/5745285984681984</a>
+              <li><a href="https://www.chromestatus.com/feature/5745285984681984" target=_blank>https://www.chromestatus.com/feature/5745285984681984</a>
             </ul>
           </li>
           <li>WPT (Web Platform Test)
@@ -440,19 +440,19 @@ dump-certurl -i cert.cbor</code></pre>
               <li>
                 Privacy-preserving instant loading for all web content – The AMP Blog
                 <ul>
-                  <li><a href="https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/">https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/</a>
+                  <li><a href="https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/" target=_blank>https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/</a>
                 </ul>
               </li>
               <li>
                 Get started with signed exchanges on Google Search - 検索セントラル
                 <ul>
-                  <li><a href="https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache">https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache</a>
+                  <li><a href="https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache" target=_blank>https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache</a>
                 </ul>
               </li>
               <li>
                 ページ エクスペリエンスの更新に対応するための期間、ツール、詳細情報 - Google 検索セントラル ブログ
                 <ul>
-                  <li><a href="https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja">https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja</a>
+                  <li><a href="https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja" target=_blank>https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja</a>
                 </ul>
               </li>
             </ul>

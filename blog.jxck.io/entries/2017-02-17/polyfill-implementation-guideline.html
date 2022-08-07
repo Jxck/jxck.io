@@ -169,7 +169,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。
-        <p><a href="https://w3ctag.github.io/polyfills/">Polyfills and the evolution of the Web</a>
+        <p><a href="https://w3ctag.github.io/polyfills/" target=_blank>Polyfills and the evolution of the Web</a>
         <p>Polyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避けるために、 Polyfill 実装者、利用者、仕様策定者などが、どう振る舞うべきかという趣旨である。
         <p>今回はこの内容を元に、 Web の進化と協調する Polyfill のあり方について、主に「実装者」がどうすべきかに着目し記す。
       </section>
@@ -207,7 +207,7 @@
       <section>
         <h2 id="speculative-polyfill"><a href="#speculative-polyfill">Speculative Polyfill</a></h2>
         <p>問題を起こしやすいのは、 1 から 4 の段階、つまり仕様がきっちりと固まってない段階で、早まった API を実装した Polyfill を提供してしまうパターンだ。
-        <p>これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて<a href="https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909">分類</a> されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて <em>Speculative Polyfill</em> としている。文意としては &quot;先走った Polyfill&quot; といったところか。
+        <p>これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて<a href="https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909" target=_blank>分類</a> されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて <em>Speculative Polyfill</em> としている。文意としては &quot;先走った Polyfill&quot; といったところか。
         <p>策定中の API は、クラス/メソッド名などが確定しておらず、議論や試験実装を経てそれらを変更する可能性がある。
         <p>しかし、 &quot;先走った Polyfill&quot; の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
         <p>実際にこれが問題になった事例もいくつかある。
@@ -223,7 +223,7 @@
   &apos;pop&apos;, &apos;push&apos;, &apos;reverse&apos;, &apos;shift&apos;, &apos;sort&apos;, &apos;splice&apos;, &apos;unshift&apos;, &apos;concat&apos;, &apos;join&apos;, &apos;slice&apos;,
   &apos;indexOf&apos;, &apos;lastIndexOf&apos;, &apos;filter&apos;, &apos;forEach&apos;, &apos;every&apos;, &apos;map&apos;, &apos;some&apos;, &apos;reduce&apos;, &apos;reduceRight&apos;
 ])</code></pre>
-          <p><a href="https://github.com/mootools/mootools-core/blob/09b99e5886ca466480d4ae9acbb769e284f4acf1/Source/Core/Core.js#L269">Core.js#L269</a>
+          <p><a href="https://github.com/mootools/mootools-core/blob/09b99e5886ca466480d4ae9acbb769e284f4acf1/Source/Core/Core.js#L269" target=_blank>Core.js#L269</a>
           <p>しかし、 <code translate=no>contains()</code> の実装を追加する前に <code translate=no>Array.prototype.contains</code> の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の <code translate=no>contains()</code> も Polyfill の <code translate=no>contains()</code> もない Array が提供されたというバグである。
         </section>
         <section>
@@ -255,7 +255,7 @@ document.createElement(&apos;div&apos;).attachShadow({ mode: &apos;open&apos; })
         <p>つまり、このコードは最終的な <code translate=no>requestAnimationFrame</code> が取り得る選択肢を、非常に狭めてしまう結果となるのだ。
         <p>本来ベンダプレフィックスは、先行実装であることを示すつもりで付けられていたが、こうした使われ方が広まった結果、本来の意図を果たすことができなかった。
         <p>特に WebKit が先行し、他のブラウザはプレフィックス付き実装すらしていなかった機能については、 webkit プレフィックスをつけて実装され、そのまま放置されているものも少なくない。
-        <p>そういったコンテンツを動作させられるよう、 <a href="https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo">Firefox</a> や <a href="https://msdn.microsoft.com/ja-jp/library/mt270097%28v=vs.85%29.aspx">Edge</a> が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
+        <p>そういったコンテンツを動作させられるよう、 <a href="https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo" target=_blank>Firefox</a> や <a href="https://msdn.microsoft.com/ja-jp/library/mt270097%28v=vs.85%29.aspx" target=_blank>Edge</a> が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
         <p>なお、 Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用さている。これについては以下を参照のこと。
         <p><a href="https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html">Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a>
       </section>
@@ -268,7 +268,7 @@ document.createElement(&apos;div&apos;).attachShadow({ mode: &apos;open&apos; })
         <ul>
           <li>既に実装しているブラウザが複数あるか?
           <li>インタフェース仕様の変更が起こりそうな問題を解決済みで、コンセンサスが取れた仕様があるか
-          <li><a href="https://github.com/w3c/web-platform-tests">Test Suite</a> が存在するか
+          <li><a href="https://github.com/w3c/web-platform-tests" target=_blank>Test Suite</a> が存在するか
           <li>メジャーなブラウザベンダから &quot;Intent To Implement&quot; がアナウンスされているか
         </ul>
       </section>
@@ -282,7 +282,7 @@ document.createElement(&apos;div&apos;).attachShadow({ mode: &apos;open&apos; })
         <p>他細かい点では以下があげられる。
         <ul>
           <li>module 機構を使い、 global スコープやネイティブオブジェクトのプロトタイプを直接汚染しない
-          <li>ユーザが最新の実装に追従しやすいよう、 npm や CDN(<a href="https://cdnjs.com">cdnjs.com</a>, <a href="https://polyfill.io">polyfill.io</a>) などで提供する
+          <li>ユーザが最新の実装に追従しやすいよう、 npm や CDN(<a href="https://cdnjs.com" target=_blank>cdnjs.com</a>, <a href="https://polyfill.io" target=_blank>polyfill.io</a>) などで提供する
           <li>Web Platform Test があったらパスすること
           <li>Polyfill の実装経験は貴重なので、気づいた点を仕様策定にフィードバックする
           <li>ネイティブ実装に移譲した場合はコンソールなどに Polyfill が不要であったことを知らせる

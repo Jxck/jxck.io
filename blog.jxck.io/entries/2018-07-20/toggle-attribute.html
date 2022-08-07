@@ -169,7 +169,7 @@
         <h2 id="boolean-attributes"><a href="#boolean-attributes">Boolean Attributes</a></h2>
         <p>Boolean Attribute とは、属性の存在によって真偽となる属性である。
         <ul>
-          <li><a href="https://html.spec.whatwg.org/#boolean-attribute">https://html.spec.whatwg.org/#boolean-attribute</a>
+          <li><a href="https://html.spec.whatwg.org/#boolean-attribute" target=_blank>https://html.spec.whatwg.org/#boolean-attribute</a>
         </ul>
         <p>例えば button の disabled を例にとるとこうなる。
         <p>button を disabled にする場合は、仕様上は以下の 3 つの書き方がある。
@@ -222,35 +222,35 @@ console.log(target.disabled) // false</code></pre>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.jxck.io/toggleAttribute/index.html">https://labs.jxck.io/toggleAttribute/index.html</a>
+          <li><a href="https://labs.jxck.io/toggleAttribute/index.html" target=_blank>https://labs.jxck.io/toggleAttribute/index.html</a>
         </ul>
       </section>
       <section>
         <h2 id="proposal"><a href="#proposal">Proposal</a></h2>
         <p>この機能の提案は 2017/5/23 に以下の issue で行われた。
-        <p><a href="https://github.com/whatwg/dom/issues/461">Consider boolean interface for properties - Issue #461 - whatwg/dom</a>
+        <p><a href="https://github.com/whatwg/dom/issues/461" target=_blank>Consider boolean interface for properties - Issue #461 - whatwg/dom</a>
         <p>Boolean 専用の setAttribute が欲しいというところから始まり、議論の末に名前などが代わり 5 月のうちにはおよそ今の形におちついた。
         <p>その後 Anne が <code translate=no>needs implementer interest</code> というラベルをつけて、そこから一年間は反応がなかった。
         <p>先月(2018/6)に入って、 Firefox, Chrome, Edge あたりが positive な反応を示し、同時に DOM の仕様への PR が作られる。
-        <p><a href="https://github.com/whatwg/dom/pull/656">Add toggleAttribute to Element. by jonathanKingston - Pull Request #656 - whatwg/dom</a>
+        <p><a href="https://github.com/whatwg/dom/pull/656" target=_blank>Add toggleAttribute to Element. by jonathanKingston - Pull Request #656 - whatwg/dom</a>
         <p>そこから一気に実装が始まった。
       </section>
       <section>
         <h2 id="implementation"><a href="#implementation">Implementation</a></h2>
         <p>Firefox は 61 をターゲットに intents を出している
         <ul>
-          <li><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ">https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ</a>
-          <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1469592">https://bugzilla.mozilla.org/show_bug.cgi?id=1469592</a>
+          <li><a href="https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ" target=_blank>https://groups.google.com/forum/#!msg/mozilla.dev.platform/wwU0TW80u1g/X_V3091yCAAJ</a>
+          <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1469592" target=_blank>https://bugzilla.mozilla.org/show_bug.cgi?id=1469592</a>
         </ul>
         <p>Chrome は intent to implement が出ており canary には入っている。
         <ul>
-          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ</a>
-          <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=854960">https://bugs.chromium.org/p/chromium/issues/detail?id=854960</a>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ" target=_blank>https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mAWBTaANvmE/OgaCRH04BAAJ</a>
+          <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=854960" target=_blank>https://bugs.chromium.org/p/chromium/issues/detail?id=854960</a>
         </ul>
         <p>safari は TP61 に入った
         <ul>
-          <li><a href="https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/">https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/</a>
-          <li><a href="https://trac.webkit.org/changeset/233475/webkit/">https://trac.webkit.org/changeset/233475/webkit/</a>
+          <li><a href="https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/" target=_blank>https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/</a>
+          <li><a href="https://trac.webkit.org/changeset/233475/webkit/" target=_blank>https://trac.webkit.org/changeset/233475/webkit/</a>
         </ul>
         <p>Edge もやっていると思われるが、トラックできるソースは見つからなかった。
       </section>

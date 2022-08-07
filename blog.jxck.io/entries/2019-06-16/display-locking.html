@@ -208,11 +208,11 @@
           <h3 id="async-dom-の提案"><a href="#async-dom-の提案">Async DOM の提案</a></h3>
           <p>同時期に出てきたというよりは、常に誰かが何かしら提案していた DOM API の改善提案が、 3~4 年くらい前から AsyncDOM としてまとめられた。
           <ul>
-            <li><a href="https://github.com/chrishtr/async-dom/blob/master/current-proposals.md">async-dom/current-proposals.md at master - chrishtr/async-dom</a>
+            <li><a href="https://github.com/chrishtr/async-dom/blob/master/current-proposals.md" target=_blank>async-dom/current-proposals.md at master - chrishtr/async-dom</a>
           </ul>
           <p>これを議論するための Mailing List ができたため、できてから 2 年くらいずっと気にかけていたのだが、特に大きな動きはなかった。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/forum/#!forum/async-dom">async-dom - Google グループ</a>
+            <li><a href="https://groups.google.com/a/chromium.org/forum/#!forum/async-dom" target=_blank>async-dom - Google グループ</a>
           </ul>
           <p>基本は、現状の DOM の持つ問題を大きく 2 つと考え、そのどちらかないし両方にアプローチしていると見るとだいたいわかる。
           <ul>
@@ -222,21 +222,21 @@
           <p>それを踏まえて簡単にそれぞれを解説する。
           <ul>
             <li>
-              <a href="https://github.com/WICG/async-append">asyncAppend</a>
+              <a href="https://github.com/WICG/async-append" target=_blank>asyncAppend</a>
               <ul>
                 <li>非同期版 Append を生やす
                 <li>単体 Append だけではなく、 DOM 処理の Batch 化もする
               </ul>
             </li>
             <li>
-              <a href="https://github.com/drufball/worker-node/">WokerNode</a>
+              <a href="https://github.com/drufball/worker-node/" target=_blank>WokerNode</a>
               <ul>
                 <li>Worker と行き来できる DOM 更新命令をまとめたオブジェクトの提案
                 <li>そのオブジェクトの適用には asyncAppend を使う
               </ul>
             </li>
             <li>
-              <a href="https://github.com/whatwg/dom/issues/270">DOM ChangeList</a>
+              <a href="https://github.com/whatwg/dom/issues/270" target=_blank>DOM ChangeList</a>
               <ul>
                 <li>DOM の更新命令をまとめるオブジェクトを提案
                 <li>それを適用すると一気に処理が走る、 VirtualDOM に似てる
@@ -244,7 +244,7 @@
               </ul>
             </li>
             <li>
-              <a href="https://github.com/WICG/display-locking">Display Locking</a>
+              <a href="https://github.com/WICG/display-locking" target=_blank>Display Locking</a>
               <ul>
                 <li>今回の本題なので後述
               </ul>
@@ -257,15 +257,15 @@
         <h2 id="display-locking"><a href="#display-locking">Display Locking</a></h2>
         <p>Async DOM の実装の中で、もっとも作業が進み、 Chrome で実装され始めたのがこの仕様だ。
         <ul>
-          <li>Proposal: <a href="https://discourse.wicg.io/t/proposal-display-locking/2905">Proposal: Display Locking - APIs - WICG</a>
-          <li>Draft: <a href="https://github.com/WICG/display-locking">WICG/display-locking: A repository for the Display Locking spec</a>
-          <li>Intents: <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ">Intent to Implement: Display Locking - Google グループ</a>
-          <li>Chromium Bug: <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=882663">882663 - Implement display locking (meta bug) - chromium - Monorail</a>
-          <li>TAG Review: <a href="https://github.com/w3ctag/design-reviews/issues/306">Display Locking - Issue #306 - w3ctag/design-reviews</a>
-          <li>Mozilla Standard Position: <a href="https://github.com/mozilla/standards-positions/issues/135">Display Locking API - Issue #135 - mozilla/standards-positions</a>
+          <li>Proposal: <a href="https://discourse.wicg.io/t/proposal-display-locking/2905" target=_blank>Proposal: Display Locking - APIs - WICG</a>
+          <li>Draft: <a href="https://github.com/WICG/display-locking" target=_blank>WICG/display-locking: A repository for the Display Locking spec</a>
+          <li>Intents: <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ" target=_blank>Intent to Implement: Display Locking - Google グループ</a>
+          <li>Chromium Bug: <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=882663" target=_blank>882663 - Implement display locking (meta bug) - chromium - Monorail</a>
+          <li>TAG Review: <a href="https://github.com/w3ctag/design-reviews/issues/306" target=_blank>Display Locking - Issue #306 - w3ctag/design-reviews</a>
+          <li>Mozilla Standard Position: <a href="https://github.com/mozilla/standards-positions/issues/135" target=_blank>Display Locking API - Issue #135 - mozilla/standards-positions</a>
         </ul>
-        <p>この仕様の状況としては、まず Intetns で <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ">positive feedback from ReactJS and Polymer</a> と書かれているため、なんらかのやり取りはあったようだ。
-        <p>しかし、 Mozilla は <a href="https://github.com/mozilla/standards-positions/issues/135">Standard Pisition</a> でこれを <em>harmful 寄り</em> としており、同じスレッドで Apple も <a href="https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851">we do not support this proposal</a> と言っている。
+        <p>この仕様の状況としては、まず Intetns で <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ" target=_blank>positive feedback from ReactJS and Polymer</a> と書かれているため、なんらかのやり取りはあったようだ。
+        <p>しかし、 Mozilla は <a href="https://github.com/mozilla/standards-positions/issues/135" target=_blank>Standard Pisition</a> でこれを <em>harmful 寄り</em> としており、同じスレッドで Apple も <a href="https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851" target=_blank>we do not support this proposal</a> と言っている。
         <p>ただし、どちらも現状の仕様の持つ課題に対する態度であり、前述したような現状の DOM API については共通の問題意識を持っており、 Display Locking の作業が全て無駄だという割り切りというわけでもない。
         <p>仕様が改善途中ということで Tag の Design Review はペンディングされている。
         <p>対外的にも Google I/O などで、多少話が出ることがある程度だ。
@@ -379,25 +379,25 @@ await container.displayLock.updateAndCommit()</code></pre>
           <p>これを利用すると、 Infinit Scroll で、少しづつ裏で DOM に挿しつつレンダリングは遅延させていても、検索にはヒットするといった実装が可能になる。
           <p>そのものずばりなユースケースとして、 Layered API の文脈で議論されている Virtual Scroll のニーズとも一致している。
           <ul>
-            <li><a href="https://github.com/WICG/virtual-scroller">WICG/virtual-scroller</a>
+            <li><a href="https://github.com/WICG/virtual-scroller" target=_blank>WICG/virtual-scroller</a>
           </ul>
           <p>この Virtual Scroller のページ検索のために、もともと別ドラフトであった Searchabel Invisible DOM という提案があった。
           <ul>
-            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ">Intent to Implement: Searchable Invisible DOM - Google グループ</a>
+            <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ" target=_blank>Intent to Implement: Searchable Invisible DOM - Google グループ</a>
           </ul>
           <p>これは現在 Display Locking の仕様に統合されたと記されている。
         </section>
         <section>
           <h3 id="効果と-junk-の回避"><a href="#効果と-junk-の回避">効果と Junk の回避</a></h3>
-          <p>より効果がわかりやすい DEMO として、 <a href="https://github.com/WICG/display-locking/blob/master/explainer.md">explainer</a> で紹介されている動画を引用する。
+          <p>より効果がわかりやすい DEMO として、 <a href="https://github.com/WICG/display-locking/blob/master/explainer.md" target=_blank>explainer</a> で紹介されている動画を引用する。
           <p>(MIME が指定されていないため、 <code translate=no>&lt;video&gt;</code> で埋め込むことができず、リンクしている)
           <p>ソースが公開されていないが、この DEMO では、アニメーションで円形のタイマーを回しており、通常は緑で表示される。
           <p>その背景に、複雑なレイアウトの DOM が表示されており、その表示/非表示を toggle ボタンで切り替えている模様だ。
           <p>まず display locking を利用しない場合は、背景を表示する際にかかるレンダリングコストが大きく、 Junk が発生してタイマー部が赤くなっていることがわかる。
-          <p><a href="https://drive.google.com/file/d/1Qip6D4Allotua8S6xSXzOhNolnvYPYjt/view">display locking を指定せず Junk が発生している例</a>
+          <p><a href="https://drive.google.com/file/d/1Qip6D4Allotua8S6xSXzOhNolnvYPYjt/view" target=_blank>display locking を指定せず Junk が発生している例</a>
           <p>これを、背景表示に Display Locking を適用した DEMO が以下だ。
           <p>レンダリングを一括して行なっているため、タイマー部の赤い部分が削減され Junk が最小に抑えられているように見える。
-          <p><a href="https://drive.google.com/file/d/1r1aBi4P1_DMCZNXlpzW5jAibCEdT38YB/view">display locking を指定し Junk を抑えた例</a>
+          <p><a href="https://drive.google.com/file/d/1r1aBi4P1_DMCZNXlpzW5jAibCEdT38YB/view" target=_blank>display locking を指定し Junk を抑えた例</a>
           <p>背景のレイアウトがどの程度複雑なのかは想像でしかないが、この規模のレンダリングコストがかかるということはそれなりに大きいのだろう。
           <p>SPA などでは、 DOM 変更の範囲が大きいページ遷移などが考えられそうだ。
         </section>
@@ -420,7 +420,7 @@ await container.displayLock.updateAndCommit()</code></pre>
           <h3 id="demo"><a href="#demo">DEMO</a></h3>
           <p>動作するデモを以下に用意した。
           <ul>
-            <li><a href="https://labs.jxck.io/display-locking/">https://labs.jxck.io/display-locking/</a>
+            <li><a href="https://labs.jxck.io/display-locking/" target=_blank>https://labs.jxck.io/display-locking/</a>
           </ul>
         </section>
       </section>

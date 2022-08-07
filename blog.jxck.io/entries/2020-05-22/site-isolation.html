@@ -253,7 +253,7 @@
         <p>そこで、 <code translate=no>&lt;iframe&gt;</code> などもきちんとプロセスを分離するというのが Chrome における Site Isolation となる。
         <p>Chrome はこれをマージするまでに 6 年近くかかったらしい。
         <ul>
-          <li><a href="https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html">Google Online Security Blog: Mitigating Spectre with Site Isolation in Chrome</a>
+          <li><a href="https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html" target=_blank>Google Online Security Blog: Mitigating Spectre with Site Isolation in Chrome</a>
         </ul>
         <p>これは 6 年前から Spectre が裏で共有されていたという意味ではなく、別の理由で必要な作業として行われていた。
         <p>特に V8 などにバグがあった場合に、そこから Renderer Process が掌握されても、その影響範囲を限定できるように実施されていた。それが Spectre 対策でも有効なことがわかったので、スピードアップしてマージしたという流れらしい。
@@ -306,12 +306,12 @@
         <p>ブラウザが勝手に行う intervention であるため、特にヘッダなどを付けるわけではない。
         <p>実際の条件はもう少し複雑で <code translate=no>X-C-T-O: no-sniff</code> がない場合は、 Sniffing を行わなければ壊れるサイトがある(html として img を配信してる etc)ため、色々と場合分けが必要なようだ。
         <ul>
-          <li><a href="https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md">Cross-Origin Read Blocking (CORB)</a>
-          <li><a href="https://www.chromium.org/Home/chromium-security/corb-for-developers">Cross-Origin Read Blocking for Web Developers - The Chromium Projects</a>
+          <li><a href="https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md" target=_blank>Cross-Origin Read Blocking (CORB)</a>
+          <li><a href="https://www.chromium.org/Home/chromium-security/corb-for-developers" target=_blank>Cross-Origin Read Blocking for Web Developers - The Chromium Projects</a>
         </ul>
         <p>また、これにより Prefix を付けてパースを抑制し XSSI を防ぐ場面も、 CORB のスコープに入っている。
         <ul>
-          <li><a href="https://docs.angularjs.org/api/ng/service/$http#json-vulnerability-protection">AngularJS: API: $http</a>
+          <li><a href="https://docs.angularjs.org/api/ng/service/$http#json-vulnerability-protection" target=_blank>AngularJS: API: $http</a>
         </ul>
         <p>基本的に CORB が発生するのは、攻撃のような場面しか無く、これによって既存のサイトが壊れることはほぼ無いはずだ。
       </section>
@@ -365,7 +365,7 @@ Cross-Origin-Resource-Policy: cross-origin</code></pre>
         <p>noopener は、 Opener が <code translate=no>window.opener</code> の削除を指定するが、 Openee はそれを拒否できない(そういう提案があった気もするが)。
         <p>COOP は Opener / Openee 両方に指定し、その両方の値が整合しなければ <code translate=no>window.opener</code> が削除されるという仕様だ。
         <ul>
-          <li><a href="https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit">Cross-Origin-Opener-Policy Explainer</a>
+          <li><a href="https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit" target=_blank>Cross-Origin-Opener-Policy Explainer</a>
         </ul>
         <pre class=http data-code=http><code translate=no class=language-http>Cross-Origin-Opener-Policy: same-origin
 Cross-Origin-Opener-Policy: same-origin-allow-popups
@@ -471,7 +471,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
             </tbody>
           </table>
         </figure>
-        <p><a href="https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#heading=h.fqpz10jiwbh9">Impact of the popup CrossOriginOpenerPolicy</a>
+        <p><a href="https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#heading=h.fqpz10jiwbh9" target=_blank>Impact of the popup CrossOriginOpenerPolicy</a>
         <p>これにより missing point だった Opener の生成を制限することができる。
       </section>
       <section>
@@ -482,7 +482,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
         <p>Spectre が緩和できたことは、それによって無効化されていた SharedArrayBuffer の再度有効化を可能にする。
         <p>Chrome では COEP/COOP が有効になったサイトにのみ、 SharedArrayBuffer を有効にする予定を発表している。
         <ul>
-          <li><a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/_0MEXs6TJhg">Planning isolation requirements (COOP/COEP) for SharedArrayBuffer</a>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/_0MEXs6TJhg" target=_blank>Planning isolation requirements (COOP/COEP) for SharedArrayBuffer</a>
         </ul>
         <p>そして、こうした理想的に分離された(Site Isolated)環境が手に入ったことは、今後より強力な API をブラウザに展開していく上での礎となる。
         <p>例えば <code translate=no>performance.measureMemory()</code> や JS Self-Profiling API などもそうした候補になり、 Isolated されている環境でのみ利用できるようにしていく計画も有る。
@@ -499,7 +499,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
   // Cross Origin Isolation が有効な場合 true を返す
 }</code></pre>
           <ul>
-            <li><a href="https://annevankesteren.nl/2020/01/shared-memory-feature-detection">Feature detection of SharedArrayBuffer objects and shared memory - Anne&apos;s Blog</a>
+            <li><a href="https://annevankesteren.nl/2020/01/shared-memory-feature-detection" target=_blank>Feature detection of SharedArrayBuffer objects and shared memory - Anne&apos;s Blog</a>
           </ul>
         </section>
         <section>
@@ -511,7 +511,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
           <p>また、 COOP + COEP の方向は良いにせよ、依存リソース全てが対応する必要があり対応負荷が高いこと、そして結果的に同じような結果になっても Origin Isolation をしたいという明示的なシグナルにはなってないことなどが指摘されている。
           <p>内部の実装へのケアが強いイメージがある提案で、完全には理解できてないが、策定が進んだら単体で解説したい。
           <ul>
-            <li><a href="https://github.com/WICG/origin-isolation/blob/master/README.md">https://github.com/WICG/origin-isolation/blob/master/README.md</a>
+            <li><a href="https://github.com/WICG/origin-isolation/blob/master/README.md" target=_blank>https://github.com/WICG/origin-isolation/blob/master/README.md</a>
           </ul>
         </section>
         <section>
@@ -541,7 +541,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
           </ul>
           <p>こうしたコンセプトを用意し、今後新しい Powerful Feature API が提供される際の指針にするという内容のようだ。
           <ul>
-            <li><a href="https://github.com/mikewest/securer-contexts/">https://github.com/mikewest/securer-contexts/</a>
+            <li><a href="https://github.com/mikewest/securer-contexts/" target=_blank>https://github.com/mikewest/securer-contexts/</a>
           </ul>
         </section>
       </section>
@@ -550,11 +550,11 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
         <p>CORP / COOP / COEP あたりは、最初の提案から名前が何度か変わったりしてややこしかったが、最近やっと落ち着いてきて実装が進みつつ有るため、今回解説するに至った。
         <p>より詳細な流れについては、以下が参考になるだろう。
         <ul>
-          <li><a href="https://mozaic.fm/episodes/63/cross-origin-info-leaks.html">ep63 Cross Origin Info Leaks | mozaic.fm</a>
+          <li><a href="https://mozaic.fm/episodes/63/cross-origin-info-leaks.html" target=_blank>ep63 Cross Origin Info Leaks | mozaic.fm</a>
         </ul>
         <p>これらのヘッダは、後から対応する負荷がある程度ある一方、今後の Powerful Feature の有効化の条件になる可能性が有るため、仮にこのまま進めば避けては通れないヘッダになる可能性が有る。
         <p>しかし、広告を初めとする 3rd Party Resource を多用している場合は、依存先の対応が必要なため、しばらくは対応が難しいかも知れない。
-        <p>そうした理由で <a href="https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html">広告</a> を入れている本サイトでは使用しなかったが、広告を外している <a href="https://mozaic.fm">mozaic.fm</a> の方は、 <a href="https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html">v3</a> で実装しデプロイ済みだ。
+        <p>そうした理由で <a href="https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html">広告</a> を入れている本サイトでは使用しなかったが、広告を外している <a href="https://mozaic.fm" target=_blank>mozaic.fm</a> の方は、 <a href="https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html">v3</a> で実装しデプロイ済みだ。
         <p>今回は解説してないが、それぞれ Reporting API で Report が取れるため、デプロイしていく上で Reporting Endpoint の確保は必須となるだろう。(report はまだ観測してない)
         <p>Origin-Isolation などの関連仕様の動向も気になるため、引き続き仕様の動向を追いつつ、 feedback につなげていきたい。
       </section>
@@ -569,7 +569,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
                 <li>
                   Fetch Standard
                   <ul>
-                    <li><a href="https://fetch.spec.whatwg.org/#corb">https://fetch.spec.whatwg.org/#corb</a>
+                    <li><a href="https://fetch.spec.whatwg.org/#corb" target=_blank>https://fetch.spec.whatwg.org/#corb</a>
                   </ul>
                 </li>
               </ul>
@@ -580,7 +580,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
                 <li>
                   Cross-Origin Read Blocking for Web Developers - The Chromium Projects
                   <ul>
-                    <li><a href="https://www.chromium.org/Home/chromium-security/corb-for-developers">https://www.chromium.org/Home/chromium-security/corb-for-developers</a>
+                    <li><a href="https://www.chromium.org/Home/chromium-security/corb-for-developers" target=_blank>https://www.chromium.org/Home/chromium-security/corb-for-developers</a>
                   </ul>
                 </li>
               </ul>
@@ -591,7 +591,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
                 <li>
                   Cross-Origin Read Blocking (CORB)
                   <ul>
-                    <li><a href="https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md">https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md</a>
+                    <li><a href="https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md</a>
                   </ul>
                 </li>
               </ul>
@@ -602,7 +602,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
                 <li>
                   Fetch: CORB - Issue #81 - mozilla/standards-positions
                   <ul>
-                    <li><a href="https://github.com/mozilla/standards-positions/issues/81">https://github.com/mozilla/standards-positions/issues/81</a>
+                    <li><a href="https://github.com/mozilla/standards-positions/issues/81" target=_blank>https://github.com/mozilla/standards-positions/issues/81</a>
                   </ul>
                 </li>
               </ul>
@@ -614,7 +614,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
                 <li>
                   Intent to Implement and Ship: Cross-Origin Read Blocking (CORB)
                   <ul>
-                    <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hnAWBzq1qys/DhyRSDKKBQAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hnAWBzq1qys/DhyRSDKKBQAJ</a>
+                    <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hnAWBzq1qys/DhyRSDKKBQAJ" target=_blank>https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hnAWBzq1qys/DhyRSDKKBQAJ</a>
                   </ul>
                 </li>
               </ul>
@@ -625,7 +625,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
                 <li>
                   Cross-Origin Read Blocking (CORB) - Chrome Platform Status
                   <ul>
-                    <li><a href="https://www.chromestatus.com/feature/5629709824032768">https://www.chromestatus.com/feature/5629709824032768</a>
+                    <li><a href="https://www.chromestatus.com/feature/5629709824032768" target=_blank>https://www.chromestatus.com/feature/5629709824032768</a>
                   </ul>
                 </li>
               </ul>
@@ -638,7 +638,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
                 <li>
                   Cross-Origin Read Blocking (CORB) - Issue #681 - whatwg/fetch
                   <ul>
-                    <li><a href="https://github.com/whatwg/fetch/issues/681">https://github.com/whatwg/fetch/issues/681</a>
+                    <li><a href="https://github.com/whatwg/fetch/issues/681" target=_blank>https://github.com/whatwg/fetch/issues/681</a>
                   </ul>
                 </li>
               </ul>
@@ -649,7 +649,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
                 <li>
                   CORB demo
                   <ul>
-                    <li><a href="https://anforowicz.github.io/xsdb-demo/index.html">https://anforowicz.github.io/xsdb-demo/index.html</a>
+                    <li><a href="https://anforowicz.github.io/xsdb-demo/index.html" target=_blank>https://anforowicz.github.io/xsdb-demo/index.html</a>
                   </ul>
                 </li>
               </ul>
@@ -666,7 +666,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Fetch Standard
                 <ul>
-                  <li><a href="https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header">https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header</a>
+                  <li><a href="https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header" target=_blank>https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header</a>
                 </ul>
               </li>
             </ul>
@@ -681,7 +681,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Intent to Implement and Ship: Cross-Origin Resource Policy
                 <ul>
-                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TBNHorRPhZk/4_gfRjfzDgAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TBNHorRPhZk/4_gfRjfzDgAJ</a>
+                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TBNHorRPhZk/4_gfRjfzDgAJ" target=_blank>https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TBNHorRPhZk/4_gfRjfzDgAJ</a>
                 </ul>
               </li>
             </ul>
@@ -692,7 +692,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Cross-Origin Resource Policy - Chrome Platform Status
                 <ul>
-                  <li><a href="https://www.chromestatus.com/feature/4647328103268352">https://www.chromestatus.com/feature/4647328103268352</a>
+                  <li><a href="https://www.chromestatus.com/feature/4647328103268352" target=_blank>https://www.chromestatus.com/feature/4647328103268352</a>
                 </ul>
               </li>
             </ul>
@@ -703,7 +703,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Consider deploying cross-origin resource policy!
                 <ul>
-                  <li><a href="https://resourcepolicy.fyi/">https://resourcepolicy.fyi/</a>
+                  <li><a href="https://resourcepolicy.fyi/" target=_blank>https://resourcepolicy.fyi/</a>
                 </ul>
               </li>
             </ul>
@@ -715,7 +715,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Cross-Origin-Resource-Policy (was: From-Origin) - Issue #687 - whatwg/fetch
                 <ul>
-                  <li><a href="https://github.com/whatwg/fetch/issues/687">https://github.com/whatwg/fetch/issues/687</a>
+                  <li><a href="https://github.com/whatwg/fetch/issues/687" target=_blank>https://github.com/whatwg/fetch/issues/687</a>
                 </ul>
               </li>
             </ul>
@@ -732,7 +732,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Cross-Origin Embedder Policy
                 <ul>
-                  <li><a href="https://wicg.github.io/cross-origin-embedder-policy/">https://wicg.github.io/cross-origin-embedder-policy/</a>
+                  <li><a href="https://wicg.github.io/cross-origin-embedder-policy/" target=_blank>https://wicg.github.io/cross-origin-embedder-policy/</a>
                 </ul>
               </li>
             </ul>
@@ -743,7 +743,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 COOP and COEP explained
                 <ul>
-                  <li><a href="https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit">https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit</a>
+                  <li><a href="https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit" target=_blank>https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit</a>
                 </ul>
               </li>
             </ul>
@@ -757,7 +757,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Intent to Ship: Cross-Origin-Embedder-Policy (COEP)
                 <ul>
-                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XBKAGb2_7uA/TDg_AkQbAAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XBKAGb2_7uA/TDg_AkQbAAAJ</a>
+                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XBKAGb2_7uA/TDg_AkQbAAAJ" target=_blank>https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XBKAGb2_7uA/TDg_AkQbAAAJ</a>
                 </ul>
               </li>
             </ul>
@@ -768,7 +768,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Cross-Origin-Embedder-Policy - Chrome Platform Status
                 <ul>
-                  <li><a href="https://www.chromestatus.com/feature/5642721685405696">https://www.chromestatus.com/feature/5642721685405696</a>
+                  <li><a href="https://www.chromestatus.com/feature/5642721685405696" target=_blank>https://www.chromestatus.com/feature/5642721685405696</a>
                 </ul>
               </li>
             </ul>
@@ -779,7 +779,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Making your website &quot;cross-origin isolated&quot; using COOP and COEP
                 <ul>
-                  <li><a href="https://web.dev/coop-coep/">https://web.dev/coop-coep/</a>
+                  <li><a href="https://web.dev/coop-coep/" target=_blank>https://web.dev/coop-coep/</a>
                 </ul>
               </li>
             </ul>
@@ -791,7 +791,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Making postMessage() work for SharedArrayBuffer (Cross-Origin-Embedder-Policy) - Issue #4175 - whatwg/html
                 <ul>
-                  <li><a href="https://github.com/whatwg/html/issues/4175">https://github.com/whatwg/html/issues/4175</a>
+                  <li><a href="https://github.com/whatwg/html/issues/4175" target=_blank>https://github.com/whatwg/html/issues/4175</a>
                 </ul>
               </li>
             </ul>
@@ -808,7 +808,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 coop.md
                 <ul>
-                  <li><a href="https://gist.github.com/annevk/6f2dd8c79c77123f39797f6bdac43f3e">https://gist.github.com/annevk/6f2dd8c79c77123f39797f6bdac43f3e</a>
+                  <li><a href="https://gist.github.com/annevk/6f2dd8c79c77123f39797f6bdac43f3e" target=_blank>https://gist.github.com/annevk/6f2dd8c79c77123f39797f6bdac43f3e</a>
                 </ul>
               </li>
             </ul>
@@ -819,19 +819,19 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Cross-Origin-Opener-Policy Explainer
                 <ul>
-                  <li><a href="https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit">https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit</a>
+                  <li><a href="https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit" target=_blank>https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit</a>
                 </ul>
               </li>
               <li>
                 Cross-Origin-Opener-Policy explainer
                 <ul>
-                  <li><a href="https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#">https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#</a>
+                  <li><a href="https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#" target=_blank>https://docs.google.com/document/d/1eQEdjHDaJHJ5SFyRKjcqohS7x8XSpF8xmajXimAKcHc/edit#</a>
                 </ul>
               </li>
               <li>
                 COOP and COEP explained
                 <ul>
-                  <li><a href="https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit">https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit</a>
+                  <li><a href="https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit" target=_blank>https://docs.google.com/document/d/1zDlfvfTJ_9e8Jdc8ehuV4zMEu9ySMCiTGMS9y0GU92k/edit</a>
                 </ul>
               </li>
             </ul>
@@ -845,7 +845,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Intent to Ship Cross-Origin-Opener-Policy
                 <ul>
-                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cJ5dXIcQCsc/eGgi0gkcAAAJ">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cJ5dXIcQCsc/eGgi0gkcAAAJ</a>
+                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cJ5dXIcQCsc/eGgi0gkcAAAJ" target=_blank>https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cJ5dXIcQCsc/eGgi0gkcAAAJ</a>
                 </ul>
               </li>
             </ul>
@@ -856,7 +856,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Cross-Origin-Opener-Policy - Chrome Platform Status
                 <ul>
-                  <li><a href="https://www.chromestatus.com/feature/5432089535053824">https://www.chromestatus.com/feature/5432089535053824</a>
+                  <li><a href="https://www.chromestatus.com/feature/5432089535053824" target=_blank>https://www.chromestatus.com/feature/5432089535053824</a>
                 </ul>
               </li>
             </ul>
@@ -876,7 +876,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 crossOriginIsolated - Chrome Platform Status
                 <ul>
-                  <li><a href="https://www.chromestatus.com/feature/5953286387531776">https://www.chromestatus.com/feature/5953286387531776</a>
+                  <li><a href="https://www.chromestatus.com/feature/5953286387531776" target=_blank>https://www.chromestatus.com/feature/5953286387531776</a>
                 </ul>
               </li>
             </ul>
@@ -887,7 +887,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 self.crossOriginIsolated
                 <ul>
-                  <li><a href="https://annevankesteren.nl/2020/01/shared-memory-feature-detection">https://annevankesteren.nl/2020/01/shared-memory-feature-detection</a>
+                  <li><a href="https://annevankesteren.nl/2020/01/shared-memory-feature-detection" target=_blank>https://annevankesteren.nl/2020/01/shared-memory-feature-detection</a>
                 </ul>
               </li>
             </ul>
@@ -903,13 +903,13 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Site Isolation - The Chromium Projects
                 <ul>
-                  <li><a href="https://www.chromium.org/Home/chromium-security/site-isolation">https://www.chromium.org/Home/chromium-security/site-isolation</a>
+                  <li><a href="https://www.chromium.org/Home/chromium-security/site-isolation" target=_blank>https://www.chromium.org/Home/chromium-security/site-isolation</a>
                 </ul>
               </li>
               <li>
                 Mitigating Side-Channel Attacks - The Chromium Projects
                 <ul>
-                  <li><a href="https://www.chromium.org/Home/chromium-security/ssca">https://www.chromium.org/Home/chromium-security/ssca</a>
+                  <li><a href="https://www.chromium.org/Home/chromium-security/ssca" target=_blank>https://www.chromium.org/Home/chromium-security/ssca</a>
                 </ul>
               </li>
             </ul>
@@ -920,7 +920,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Site Isolation Design Document - The Chromium Projects
                 <ul>
-                  <li><a href="https://www.chromium.org/developers/design-documents/site-isolation">https://www.chromium.org/developers/design-documents/site-isolation</a>
+                  <li><a href="https://www.chromium.org/developers/design-documents/site-isolation" target=_blank>https://www.chromium.org/developers/design-documents/site-isolation</a>
                 </ul>
               </li>
             </ul>
@@ -931,13 +931,13 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Google Online Security Blog: Mitigating Spectre with Site Isolation in Chrome
                 <ul>
-                  <li><a href="https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html">https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html</a>
+                  <li><a href="https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html" target=_blank>https://security.googleblog.com/2018/07/mitigating-spectre-with-site-isolation.html</a>
                 </ul>
               </li>
               <li>
                 Site Isolation for web developers
                 <ul>
-                  <li><a href="https://developers.google.com/web/updates/2018/07/site-isolation">https://developers.google.com/web/updates/2018/07/site-isolation</a>
+                  <li><a href="https://developers.google.com/web/updates/2018/07/site-isolation" target=_blank>https://developers.google.com/web/updates/2018/07/site-isolation</a>
                 </ul>
               </li>
             </ul>
@@ -953,7 +953,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 origin-isolation/README.md at master · WICG/origin-isolation
                 <ul>
-                  <li><a href="https://github.com/WICG/origin-isolation/blob/master/README.md">https://github.com/WICG/origin-isolation/blob/master/README.md</a>
+                  <li><a href="https://github.com/WICG/origin-isolation/blob/master/README.md" target=_blank>https://github.com/WICG/origin-isolation/blob/master/README.md</a>
                 </ul>
               </li>
             </ul>
@@ -964,7 +964,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Origin isolation - Chrome Platform Status
                 <ul>
-                  <li><a href="https://www.chromestatus.com/feature/5683766104162304">https://www.chromestatus.com/feature/5683766104162304</a>
+                  <li><a href="https://www.chromestatus.com/feature/5683766104162304" target=_blank>https://www.chromestatus.com/feature/5683766104162304</a>
                 </ul>
               </li>
             </ul>
@@ -975,7 +975,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Origin isolation · Issue #464 · w3ctag/design-reviews
                 <ul>
-                  <li><a href="https://github.com/w3ctag/design-reviews/issues/464">https://github.com/w3ctag/design-reviews/issues/464</a>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/464" target=_blank>https://github.com/w3ctag/design-reviews/issues/464</a>
                 </ul>
               </li>
             </ul>
@@ -986,7 +986,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Intent to Experiment: Origin isolation
                 <ul>
-                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/G0h3PFPeclA">https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/G0h3PFPeclA</a>
+                  <li><a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/G0h3PFPeclA" target=_blank>https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/G0h3PFPeclA</a>
                 </ul>
               </li>
             </ul>
@@ -997,7 +997,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
               <li>
                 Origin isolation - Issue #464 - w3ctag/design-reviews
                 <ul>
-                  <li><a href="https://github.com/w3ctag/design-reviews/issues/464">https://github.com/w3ctag/design-reviews/issues/464</a>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/464" target=_blank>https://github.com/w3ctag/design-reviews/issues/464</a>
                 </ul>
               </li>
             </ul>
@@ -1010,13 +1010,13 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
           <li>
             mikewest/securer-contexts: Secure Contexts, but with _more_ secureness!
             <ul>
-              <li><a href="https://github.com/mikewest/securer-contexts/">https://github.com/mikewest/securer-contexts/</a>
+              <li><a href="https://github.com/mikewest/securer-contexts/" target=_blank>https://github.com/mikewest/securer-contexts/</a>
             </ul>
           </li>
           <li>
             Securer Contexts - Issue #471 - w3ctag/design-reviews
             <ul>
-              <li><a href="https://github.com/w3ctag/design-reviews/issues/471">https://github.com/w3ctag/design-reviews/issues/471</a>
+              <li><a href="https://github.com/w3ctag/design-reviews/issues/471" target=_blank>https://github.com/w3ctag/design-reviews/issues/471</a>
             </ul>
           </li>
         </ul>
@@ -1027,7 +1027,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
           <li>
             Hack Patch!: 投機的な Web の修復
             <ul>
-              <li><a href="https://shhnjk.blogspot.com/2020/03/repairing-speculative-web.html">https://shhnjk.blogspot.com/2020/03/repairing-speculative-web.html</a>
+              <li><a href="https://shhnjk.blogspot.com/2020/03/repairing-speculative-web.html" target=_blank>https://shhnjk.blogspot.com/2020/03/repairing-speculative-web.html</a>
             </ul>
           </li>
         </ul>
@@ -1037,14 +1037,14 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
         <p>動作するデモを以下に用意した。
         <ul>
           <li>
-            <a href="https://labs.jxck.io/site-isolation/">Site Isolation</a>
+            <a href="https://labs.jxck.io/site-isolation/" target=_blank>Site Isolation</a>
             <ul>
-              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html">Cross-Origin-Read-Blocking DEMO</a>
-              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-resource-policy/index.html">Cross-Origin-Resource-Policy DEMO</a>
-              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/index.html">Cross-Origin-Embedder-Policy DEMO</a>
-              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html">Cross-Origin-Opener-Policy DEMO</a>
-              <li><a href="https://labs.jxck.io/site-isolation/crossOriginIsolated/index.html">crossOriginIsolated DEMO</a>
-              <li><a href="https://labs.jxck.io/site-isolation/origin-isolation/index.html">Origin-Isolation DEMO</a>
+              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html" target=_blank>Cross-Origin-Read-Blocking DEMO</a>
+              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-resource-policy/index.html" target=_blank>Cross-Origin-Resource-Policy DEMO</a>
+              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-embedder-policy/index.html" target=_blank>Cross-Origin-Embedder-Policy DEMO</a>
+              <li><a href="https://labs.jxck.io/site-isolation/cross-origin-opener-policy/index.html" target=_blank>Cross-Origin-Opener-Policy DEMO</a>
+              <li><a href="https://labs.jxck.io/site-isolation/crossOriginIsolated/index.html" target=_blank>crossOriginIsolated DEMO</a>
+              <li><a href="https://labs.jxck.io/site-isolation/origin-isolation/index.html" target=_blank>Origin-Isolation DEMO</a>
             </ul>
           </li>
         </ul>
@@ -1052,7 +1052,7 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
       <section>
         <h2 id="special-thanks"><a href="#special-thanks">Special Thanks</a></h2>
         <ul>
-          <li><a href="https://twitter.com/shhnjk">@shhnjk</a>
+          <li><a href="https://twitter.com/shhnjk" target=_blank>@shhnjk</a>
         </ul>
       </section>
     </article>

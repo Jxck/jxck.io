@@ -196,7 +196,7 @@
           <p><code translate=no>&lt;html&gt;</code>、 <code translate=no>&lt;head&gt;</code>、 <code translate=no>&lt;body&gt;</code> は、タグ自体を書かなくても良い場合があり、仕様に定義がある。
           <blockquote cite="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">
             <p>An html element&apos;s end tag may be omitted if the html element is not immediately followed by a comment.
-            <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a></cite>
+            <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission" target=_blank>https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a></cite>
           </blockquote>
           <p>すぐ次がコメントでないなら、 <code translate=no>&lt;html&gt;</code> は省略しても良い。 <code translate=no>&lt;head&gt;</code> や <code translate=no>&lt;body&gt;</code> も同様だ。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
@@ -223,7 +223,7 @@
           <p>例えば、 <code translate=no>&lt;/li&gt;</code> は以下の条件なら省略が可能だ。
           <blockquote cite="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">
             <p>An li element&apos;s end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.
-            <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a></cite>
+            <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission" target=_blank>https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a></cite>
           </blockquote>
           <ul>
             <li>その次にすぐ次の <code translate=no>&lt;li&gt;</code> がくる
@@ -250,7 +250,7 @@
           <p>もう一つ、要素を囲む引用符(<code translate=no>&apos;</code>, <code translate=no>&quot;</code>) も省略可能な場合があり、仕様では以下に定義がある。
           <blockquote cite="https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html">
             <p>The attribute value can remain unquoted if it doesn&apos;t contain space characters or any of &quot; &apos; ` = &lt; or &gt;. Otherwise, it has to be quoted using either single or double quotes.
-            <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html">https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html</a></cite>
+            <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html" target=_blank>https://html.spec.whatwg.org/multipage/introduction.html#a-quick-introduction-to-html</a></cite>
           </blockquote>
           <p>つまり、スペースや <code translate=no>&quot;</code>, <code translate=no>&apos;</code>, <code translate=no>`</code>, <code translate=no>=</code>, <code translate=no>&lt;</code>, <code translate=no>&gt;</code> が無ければ引用符はいらない。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- before --&gt;
@@ -271,7 +271,7 @@
         </section>
         <section>
           <h3 id="影響"><a href="#影響">影響</a></h3>
-          <p>生成した結果は <a href="https://validator.w3.org/nu/">HTML Validator</a> で確認しているが問題は無い。
+          <p>生成した結果は <a href="https://validator.w3.org/nu/" target=_blank>HTML Validator</a> で確認しているが問題は無い。
           <p>HTML として問題が無いのであれば、 HTML に対応したツールでは扱えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
           <p>まあ、そもそも HTML というのは、 XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、完全に扱いきれないツールがあっても多少は仕方がない。
           <p>特に片手間な正規表現で HTML を処理している場合(スクレイピング、エディタのシンタックスハイライト etc)は、影響が皆無ともいえないが、現状自分の環境で、特に困った場面はいまのところない。
@@ -305,12 +305,12 @@ $ wc html-no-compression.html
           <p>これなら、ペイロードが小さくなることによる、ネットワーク効率としてのメリットを重視するリスクはなさそうだ。
           <p>(もちろんサイズが大きくなれば変わるかもしれないが、このエントリはこのサイトの平均的なものなので問題ない)
           <p>同様の検証が他にもあったので貼っておく。結論はほぼ同じだった。
-          <p><a href="https://blog.leko.jp/post/omit-close-tag-in-html">「HTML のタグは一部省略可能」表示速度はどちらが早いのか調べてみた</a>
+          <p><a href="https://blog.leko.jp/post/omit-close-tag-in-html" target=_blank>「HTML のタグは一部省略可能」表示速度はどちらが早いのか調べてみた</a>
         </section>
         <section>
           <h3 id="方法"><a href="#方法">方法</a></h3>
-          <p>普通の Web アプリでも、 haml のように抽象度が高いフォーマットであれば、生成時に同様のオプションがあっても良さそうだが、 haml ではずっと <a href="https://github.com/haml/haml/blob/master/TODO#L19">TODO</a> のままのようだ。
-          <p>Google の PageSpeed でも、こうした最適化は <a href="https://developers.google.com/speed/pagespeed/service/OptimizeHtml">サポートされていた</a>。
+          <p>普通の Web アプリでも、 haml のように抽象度が高いフォーマットであれば、生成時に同様のオプションがあっても良さそうだが、 haml ではずっと <a href="https://github.com/haml/haml/blob/master/TODO#L19" target=_blank>TODO</a> のままのようだ。
+          <p>Google の PageSpeed でも、こうした最適化は <a href="https://developers.google.com/speed/pagespeed/service/OptimizeHtml" target=_blank>サポートされていた</a>。
           <p>ただ、一般にあまり普及した方法とはいえない気がする。
         </section>
       </section>

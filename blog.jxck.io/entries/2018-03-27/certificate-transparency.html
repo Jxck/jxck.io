@@ -261,14 +261,14 @@
         <p>それが Expect-CT ヘッダである。
         <p>Chrome は既に、 HPKP を Deprecate し Expect-CT への移行を促している
         <ul>
-          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/he9tr7p3rZ8/eNMwKPmUBAAJ">Intent To Deprecate And Remove: Public Key Pinning</a>
-          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/ct-policy/sz_3W_xKBNY/6jq2ghJXBAAJ">Certificate Transparency in Chrome - Change to Enforcement Date</a>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/he9tr7p3rZ8/eNMwKPmUBAAJ" target=_blank>Intent To Deprecate And Remove: Public Key Pinning</a>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/ct-policy/sz_3W_xKBNY/6jq2ghJXBAAJ" target=_blank>Certificate Transparency in Chrome - Change to Enforcement Date</a>
         </ul>
         <p>まず、前提としての CT のエコシステムについて解説する。
       </section>
       <section>
         <h2 id="certificate-transparency"><a href="#certificate-transparency">Certificate Transparency</a></h2>
-        <p><a href="https://www.certificate-transparency.org/">CT: Certificate Transparency</a> には、いくつかのロールがある。
+        <p><a href="https://www.certificate-transparency.org/" target=_blank>CT: Certificate Transparency</a> には、いくつかのロールがある。
         <p>ここでは、一番イメージしやすい例で以下のように整理し、図示する。
         <ul>
           <li>CA: 証明書を発行し Log を登録する
@@ -320,13 +320,13 @@
           <p>CA は一旦証明書(プレ証明書)を生成し、 SCT を取得し、それを埋め込んだ新たな証明書を生成し、それを発行することになる。
           <p>このため、 CA 内部の運用への影響が多少あるが、もし対応されれば、コンテンツプロバイダからすると運用が一番楽だろう。
           <p>Let&apos;s Encrypt は、対応を予定している。
-          <p><a href="https://letsencrypt.org/upcoming-features/">Upcoming Features - Let&apos;s Encrypt</a>
+          <p><a href="https://letsencrypt.org/upcoming-features/" target=_blank>Upcoming Features - Let&apos;s Encrypt</a>
         </section>
         <section>
           <h3 id="ocsp"><a href="#ocsp">OCSP</a></h3>
           <p>OCSP の情報に SCT を含む方式。これも CA 側の対応が必要。
           <p>Let&apos;s Encrypt は、証明書の方で対応する予定なので、こちらのプライオリティは低くなった。
-          <p><a href="https://github.com/letsencrypt/boulder/issues/592#issuecomment-262036049">Include SCT receipts in OCSP responses #592</a>
+          <p><a href="https://github.com/letsencrypt/boulder/issues/592#issuecomment-262036049" target=_blank>Include SCT receipts in OCSP responses #592</a>
         </section>
         <section>
           <h3 id="tls-extension"><a href="#tls-extension">TLS Extension</a></h3>
@@ -472,22 +472,22 @@
           <p>また、処理は冪等であるため、既に登録されている場合は同じ値が返る。
           <p>可用性のためにも、 Log は複数のサーバに登録することが望ましいとされている。
           <p>現在運用されている Log Server の一覧は以下にある。
-          <p><a href="https://www.certificate-transparency.org/known-logs">Known Logs - Certificate Transparency</a>
+          <p><a href="https://www.certificate-transparency.org/known-logs" target=_blank>Known Logs - Certificate Transparency</a>
         </section>
         <section>
           <h3 id="sct-を自分で埋め込む"><a href="#sct-を自分で埋め込む">SCT を自分で埋め込む</a></h3>
           <p>CA に頼らず SCT を自分で提供する場合は、 TLS Handshake の <code translate=no>signed_certificate_timestamp</code> 拡張を用いる。
-          <p>しかし、現在これに対応してるサーバは少なく、本サイトで使用している h2o は <a href="https://github.com/h2o/h2o/issues/448">執筆時では未対応</a> である。
+          <p>しかし、現在これに対応してるサーバは少なく、本サイトで使用している h2o は <a href="https://github.com/h2o/h2o/issues/448" target=_blank>執筆時では未対応</a> である。
           <p>(ハンドシェイクレベルなため mruby のハンドラでも手が出せない)
           <p>他のサーバの実装状況については、以下にまとまっている。
-          <p><a href="https://www.certificate-transparency.org/resources-for-site-owners">Resources for site owners - Certificate Transparency</a>
+          <p><a href="https://www.certificate-transparency.org/resources-for-site-owners" target=_blank>Resources for site owners - Certificate Transparency</a>
         </section>
         <section>
           <h3 id="ct-を自分で監視する"><a href="#ct-を自分で監視する">CT を自分で監視する</a></h3>
           <p>CT Log を監視することで、自身の保有するドメインの証明書が、知らないところで発行されていないかを監視することができる。
           <p>しかし、 CT Log Server は複数あり、登録される証明書も非常に多いので、個人が Monitor になる負荷は低くは無い。
           <p>本サイトでは Facebook が提供している CT monitoring のサービスを利用している。
-          <p><a href="https://developers.facebook.com/tools/ct/">証明書の透明性のモニタリング - 開発者向け Facebook</a>
+          <p><a href="https://developers.facebook.com/tools/ct/" target=_blank>証明書の透明性のモニタリング - 開発者向け Facebook</a>
           <p>ここに、監視したいドメインを登録すると、 CT Log 登録時に通知が来るので、手軽に監視ができる。
           <p>CT Log はパブリックなため、認証などはなく、任意のドメインの登録を監視できる。
           <p>ここから、 CT Log を通して公開されてない製品/サービスの推測などが懸念されており、別途議論が進んでいる点も把握しておきたい。
@@ -514,7 +514,7 @@
                    +-----------+
                    | Eve(MITM) |
                    +-----------+</code></pre>
-          <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-expect-ct">Expect-CT Extension for HTTP</a>
+          <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-expect-ct" target=_blank>Expect-CT Extension for HTTP</a>
           <p>Expect-CT のディレクティブは、基本的に CSP と同じような設計になっている。
           <pre class=http data-code=http><code translate=no class=language-http>Expect-CT: max-age=86400, enforce, report-uri=&quot;https://foo.example/report&quot;</code></pre>
           <ul>
@@ -626,12 +626,12 @@ d0  d1  d2 [d3] d4  d5  d6  d7</code></pre>
       <section>
         <h2 id="ct-log-server-へのリクエスト"><a href="#ct-log-server-へのリクエスト">CT Log Server へのリクエスト</a></h2>
         <p>では、実際に CT Log への HTTP リクエストを通して、ここまでの挙動を確認する。
-        <p><a href="https://tools.ietf.org/html/rfc6962">RFC 6962 - Certificate Transparency</a>
+        <p><a href="https://tools.ietf.org/html/rfc6962" target=_blank>RFC 6962 - Certificate Transparency</a>
         <p>なお、以下のコード例は、実際に本サイトで使用している証明書を用いたリクエストを書いているが、読者はこれをそのまま実行しても問題ない。
         <section>
           <h3 id="証明書の登録add-chain"><a href="#証明書の登録add-chain">証明書の登録(add-chain)</a></h3>
           <p>証明書チェインを登録し、 SCT の値を取得する。
-          <p>今回は、 CT Log Server として <a href="https://ct.googleapis.com/pilot">https://ct.googleapis.com/pilot</a> を対象とする。
+          <p>今回は、 CT Log Server として <a href="https://ct.googleapis.com/pilot" target=_blank>https://ct.googleapis.com/pilot</a> を対象とする。
           <p>本サイトの証明書は Let&apos;s Encrypt で発行しており、 fullchain.pem の証明書チェインは 2 つから成り立っている。
           <pre class=bash data-code=bash><code translate=no class=language-bash>$ cat /etc/letsencrypt/live/jxck.io/fullchain.pem
 -----BEGIN CERTIFICATE-----
@@ -778,7 +778,7 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
       <section>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
         <p>Let&apos;s Encrypt の SCT 埋め込みがサポートされた。
-        <p><a href="https://community.letsencrypt.org/t/signed-certificate-timestamps-embedded-in-certificates/57187/2">Signed Certificate Timestamps embedded in certificates - API Announcements - Let&apos;s Encrypt Community Support</a>
+        <p><a href="https://community.letsencrypt.org/t/signed-certificate-timestamps-embedded-in-certificates/57187/2" target=_blank>Signed Certificate Timestamps embedded in certificates - API Announcements - Let&apos;s Encrypt Community Support</a>
         <p>本サイトでは証明書を再発行し SCT が埋め込まれた証明書を取得した。
         <p>
           <picture>

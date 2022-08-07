@@ -238,7 +238,7 @@ msg=こんにちはこんにちは</code></pre>
           <p>罠サイトは Referrer Policy を用いることで、 Referer が送らないように設定できるため、 Referer をベースとした対策は万全とは言い難い。
           <p>Origin ヘッダは、そもそもが生成元の Origin を通知するためのものなので、この検証用途で使うには妥当と言える。
           <p>しかし、 valid な値が推測可能なため、もしブラウザからのリクエストに <em>任意のヘッダを追加できる脆弱性</em> が別で存在した場合には、簡単に偽装できてしまう。
-          <p>そして、残念ながら近年も <a href="https://insert-script.blogspot.jp/2018/05/adobe-reader-pdf-client-side-request.html">そうした脆弱性</a> が見つかっているため、追加で別の対策が求められているのが現状だ。
+          <p>そして、残念ながら近年も <a href="https://insert-script.blogspot.jp/2018/05/adobe-reader-pdf-client-side-request.html" target=_blank>そうした脆弱性</a> が見つかっているため、追加で別の対策が求められているのが現状だ。
           <p><a href="https://blog.jxck.io/entries/2018-10-08/referrer-policy.html">参考: Referrer-Policy によるリファラ制御 | blog.jxck.io</a>
           <p>結果として、暗号論的に安全な乱数を One Time Token として生成し、それを Form に hidden で隠して、<em>意図した Form からのリクエスト</em> かを検証する方法が主流となっている。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;form action=https://sns.example.com/posts/new method=post&gt;
@@ -279,7 +279,7 @@ msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
 }</code></pre>
           <p>これを利用して、対象者が誰を block しているか推測するといった攻撃が考えられる。
           <p>直近では Twitter に報告された Silhouette (シルエット攻撃)が、まさしくこれにあたる。
-          <p><a href="https://blog.twitter.com/engineering/en_us/topics/insights/2018/twitter_silhouette.html">Protecting user identity against Silhouette</a>
+          <p><a href="https://blog.twitter.com/engineering/en_us/topics/insights/2018/twitter_silhouette.html" target=_blank>Protecting user identity against Silhouette</a>
           <p>こうした攻撃の推測精度を下げるため、 performance.now の精度を落とすという施策がブラウザベンダによってなされることもある。
           <p>しかしこの場合も、罠サイトからのリクエストに Cookie 送信されなければ、毎回ログインページのレスポンスが返ることになり攻撃が成立しない。
         </section>
@@ -311,7 +311,7 @@ msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
         <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: key=value; SameSite=Strict
 Set-Cookie: key=value; SameSite=Lax</code></pre>
         <ul>
-          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7">https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7</a>
+          <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7" target=_blank>https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7</a>
         </ul>
         <section>
           <h3 id="strict"><a href="#strict">Strict</a></h3>
@@ -379,7 +379,7 @@ Set-Cookie: key=value; SameSite=Lax</code></pre>
               </tbody>
             </table>
           </figure>
-          <p><a href="https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/">https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/</a>
+          <p><a href="https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/" target=_blank>https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-attribute/</a>
         </section>
       </section>
       <section>
@@ -398,7 +398,7 @@ Set-Cookie: key=value; SameSite=Lax</code></pre>
           <p>より根本的に安全性を高めるのであれば、副作用のある操作は全て Strict にするのが望ましい。
           <p>そこで、 RFC では Cookie を Read Cookie と Write Cookie の 2 つにわける構成が言及されている。
           <ul>
-            <li><a href="https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2">https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2</a>
+            <li><a href="https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2" target=_blank>https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2</a>
           </ul>
           <dl>
             <div>
@@ -424,9 +424,9 @@ Set-Cookie: write=asdf; Path=/; Secure; HttpOnly; SameSite=Strict</code></pre>
       <section>
         <h2 id="cookie-の改善"><a href="#cookie-の改善">Cookie の改善</a></h2>
         <p>この Cookie の仕様に問題があるという認識は共通しており、 SameSite のような属性の付与では無く、根本的に設計し直そうという話もある。
-        <p><a href="https://github.com/mikewest/http-state-tokens">mikewest/http-state-tokens: Incrementally better HTTP state management</a>
+        <p><a href="https://github.com/mikewest/http-state-tokens" target=_blank>mikewest/http-state-tokens: Incrementally better HTTP state management</a>
         <p>また、ちょうど Read/Write の Cookie 分離を仕様レベルで行う提案が出たりもしている。
-        <p><a href="https://lists.w3.org/Archives/Public/public-webappsec/2018Oct/0029.html">[CSP3] Suggestion for COOKIE directive</a>
+        <p><a href="https://lists.w3.org/Archives/Public/public-webappsec/2018Oct/0029.html" target=_blank>[CSP3] Suggestion for COOKIE directive</a>
         <p>他にも類似する問題(Cookie に限らず)は、 Cross Origin Info Leaks という文脈で議論されることが多いが、長くなるのでここではこれ以上言及しない。
       </section>
       <section>
@@ -437,7 +437,7 @@ Set-Cookie: write=asdf; Path=/; Secure; HttpOnly; SameSite=Strict</code></pre>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="https://labs.mozaic.fm/same-site-cookie/">https://labs.mozaic.fm/same-site-cookie/</a>
+          <li><a href="https://labs.mozaic.fm/same-site-cookie/" target=_blank>https://labs.mozaic.fm/same-site-cookie/</a>
         </ul>
       </section>
     </article>

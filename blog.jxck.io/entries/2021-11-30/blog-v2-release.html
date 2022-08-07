@@ -193,12 +193,12 @@
       </section>
       <section>
         <h2 id="markdown"><a href="#markdown">Markdown</a></h2>
-        <p>本サイトは、一般に使われている Markdown -&gt; HTML の変換結果では要件を満たせないため、最も都合の良い AST を吐く <a href="https://kramdown.gettalong.org/">Kramdown</a> のパーサから AST だけを取得し、それを Traverser でカスタマイズしてから自前でシリアライズしていた。
+        <p>本サイトは、一般に使われている Markdown -&gt; HTML の変換結果では要件を満たせないため、最も都合の良い AST を吐く <a href="https://kramdown.gettalong.org/" target=_blank>Kramdown</a> のパーサから AST だけを取得し、それを Traverser でカスタマイズしてから自前でシリアライズしていた。
         <p>その実装を、微修正を繰り返しながら、継ぎ足し継ぎ足しで 5 年くらいイジってきたので、そろそろ自分がブログを書く上での要件も固まっており、記事中の Markdown のスタイルも固定してきた。
         <p>一方、 Kramdown の実装が原因でどうしてもワークアラウンドが必要だった部分に、フラストレーションも技術的負債も溜まっていたため、自作の Markdown パーサ/ビルダをフルスクラッチで作ることにした。
         <p>プレビュー表示などでブラウザでも使えるよう、一応 Pure JS (+ JSDoc Typed) で 1 ファイルにゴリっと書いている。また、汎用性は求めてないのでライブラリとして別リポジトリで公開はせず、ブログのソースに組み込んで密結合させている。
         <ul>
-          <li><a href="https://github.com/Jxck/jxck.io/tree/master/.src/markdown">jxck.io/.src/markdown at master · Jxck/jxck.io</a>
+          <li><a href="https://github.com/Jxck/jxck.io/tree/master/.src/markdown" target=_blank>jxck.io/.src/markdown at master · Jxck/jxck.io</a>
         </ul>
       </section>
       <section>
@@ -255,13 +255,13 @@
             <li>
               条件を満たした閉じタグは省略
               <ul>
-                <li><a href="https://html.spec.whatwg.org/multipage/syntax.html#optional-tags">https://html.spec.whatwg.org/multipage/syntax.html#optional-tags</a>
+                <li><a href="https://html.spec.whatwg.org/multipage/syntax.html#optional-tags" target=_blank>https://html.spec.whatwg.org/multipage/syntax.html#optional-tags</a>
               </ul>
             </li>
             <li>
               条件を満たしたクオートは省略
               <ul>
-                <li><a href="https://html.spec.whatwg.org/#unquoted">https://html.spec.whatwg.org/#unquoted</a>
+                <li><a href="https://html.spec.whatwg.org/#unquoted" target=_blank>https://html.spec.whatwg.org/#unquoted</a>
               </ul>
             </li>
           </ul>

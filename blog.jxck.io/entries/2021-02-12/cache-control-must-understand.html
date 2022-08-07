@@ -166,7 +166,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>IETF が策定する HTTP の仕様が更新されようとしている。
-        <p>ここには、 <a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html">Cache</a> の仕様も含まれており、そのなかで <code translate=no>must-understand</code> という <code translate=no>Cache-Control</code> のディレクティブが追加されている。
+        <p>ここには、 <a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html" target=_blank>Cache</a> の仕様も含まれており、そのなかで <code translate=no>must-understand</code> という <code translate=no>Cache-Control</code> のディレクティブが追加されている。
         <p>このディレクティブが追加された経緯と仕様について解説する。
       </section>
       <section>
@@ -178,7 +178,7 @@
           <p>however, status codes that are defined as being cacheable are allowed to be cached
           <p>without explicit freshness information.
           <p>Likewise, the definition of a status code can place constraints upon cache behavior...
-          <p>&mdash; <cite><a href="https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2">https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2</a></cite>
+          <p>&mdash; <cite><a href="https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2" target=_blank>https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2</a></cite>
         </blockquote>
         <p>つまり、その新しいステータスコードは、 <code translate=no>max-age</code> などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache 可能かどうかなどを定義できるのだ。
         <p>一方、キャッシュを保存する要件として以下があった。
@@ -186,7 +186,7 @@
           <p>A cache MUST NOT store a response to any request, unless:
           <p>The request method is understood by the cache and defined as being cacheable, and
           <p>the response status code is understood by the cache, and...
-          <p>&mdash; <cite><a href="https://httpwg.org/specs/rfc7234.html#response.cacheability">https://httpwg.org/specs/rfc7234.html#response.cacheability</a></cite>
+          <p>&mdash; <cite><a href="https://httpwg.org/specs/rfc7234.html#response.cacheability" target=_blank>https://httpwg.org/specs/rfc7234.html#response.cacheability</a></cite>
         </blockquote>
         <p>問題は、 3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
         <p>新しいステータスコードが標準化された場合に、そのステータスコードが未実装な場合はキャッシュできないように読めてしまう。実装者は、サポートしているステータスコードをリストとして埋め込み、突き合わせてキャッシュの制御を行うことになるだろう。
@@ -224,7 +224,7 @@ Cache-Control: max-age=3600, must-understand, no-store</code></pre>
             <p>the response status code is final (see Section 15 of [Semantics]);
             <p>if the response status code is 206 or 304, or the &quot;must-understand&quot; cache directive (see Section 5.2.2.2) is present: the cache understands the response status code;
             <p>...
-            <p>&mdash; <cite><a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3">https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3</a></cite>
+            <p>&mdash; <cite><a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3" target=_blank>https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#section-3</a></cite>
           </blockquote>
           <p>ステータスコードに <code translate=no>final</code> という概念が入ったのはまた別の話として解説したいが、問題は 3 つ目の条件だ。
           <p><code translate=no>must-understand</code> に加えて <code translate=no>206</code> と <code translate=no>304</code> が明示的に例外扱いされているのは、この 2 つは <code translate=no>must-understand</code> 以前からキャッシュに関して要件を持つステータスコードであり、明示的な扱いが必要だからだ。
@@ -248,7 +248,7 @@ Cache-Control: max-age=3600, must-understand, no-store</code></pre>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
         <p>動作するデモを以下に用意した。
         <ul>
-          <li><a href="http://labs.jxck.io/cache-control/must-understand.html">http://labs.jxck.io/cache-control/must-understand.html</a>
+          <li><a href="http://labs.jxck.io/cache-control/must-understand.html" target=_blank>http://labs.jxck.io/cache-control/must-understand.html</a>
         </ul>
         <p>(特に使うステータスコードが無いため 200 にしてある)
       </section>
@@ -258,7 +258,7 @@ Cache-Control: max-age=3600, must-understand, no-store</code></pre>
           <li>
             Spec
             <ul>
-              <li><a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#name-must-understand">https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#name-must-understand</a>
+              <li><a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#name-must-understand" target=_blank>https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html#name-must-understand</a>
             </ul>
           </li>
           <li>Explainer
@@ -275,7 +275,7 @@ Cache-Control: max-age=3600, must-understand, no-store</code></pre>
           <li>
             Issues
             <ul>
-              <li><a href="https://github.com/httpwg/http-core/issues/120">https://github.com/httpwg/http-core/issues/120</a>
+              <li><a href="https://github.com/httpwg/http-core/issues/120" target=_blank>https://github.com/httpwg/http-core/issues/120</a>
             </ul>
           </li>
           <li>Other
