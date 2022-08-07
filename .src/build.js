@@ -214,7 +214,10 @@ function info_section({ published_at, guests, toc }) {
       const a = new Node({
         name: `a`,
         type: `inline`,
-        attr: map({ href: url })
+        attr: map({
+          href: url,
+          target: `_blank`
+        })
       })
       a.addText(name)
       dd.appendChild(a)
