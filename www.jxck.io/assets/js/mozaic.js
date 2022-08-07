@@ -272,7 +272,7 @@ document.on('DOMContentLoaded', async (e) => {
       const root = await getPage(url, { cache, signal })
 
       document.title = root.title
-      document.querySelector("main").replaceWith(root.querySelector("main"))
+      document.body = root.body
       console.log("transition end")
     })())
   })
