@@ -1,40 +1,39 @@
-#!/home/jxck/dotfiles/pkg/nodebrew/current/bin/node
+#!/usr/bin/env ruby
 
-const fs = require('fs');
-const FILE = `${process.cwd()}/ping.log`;
+require "json"
+require "time"
 
-const content_length = process.env['CONTENT_LENGTH'];
-const content_type   = process.env['CONTENT_TYPE'];
-const ping_from      = process.env['HTTP_PING_FROM'];
-const ping_to        = process.env['HTTP_PING_TO'];
+FILE="#{Dir.pwd}/ping.log"
 
-process.stdin.setEncoding('utf-8')
-process.stdin.on('readable', async (e) => {
-  try {
-    if (content_type !== "text/ping") {
-      console.log('Status: 400 Bad Request')
-      console.log('')
-      return
-    }
+def append(file, data)
+  STDERR.puts "[reporting.cgi] append to file: #{data.size} byte"
+  file = File.open(file, 'a')
+  file.print(data+"\r\n")
+  file.close()
+  STDERR.puts "[reporting.cgi] append success"
+end
 
-    const req = process.stdin.read(content_length)
-    if (req !== "PING") {
-      console.log('Status: 400 Bad Request')
-      console.log('')
-      return
-    }
+begin
+  header = ENV
+    .entries
+    .select{|k,v| k.start_with?("HTTP_") }
+    .map{|k,v| [k.downcase.sub(/^http_/, ""), v]}
+    .to_h
 
-    fs.appendFile(FILE, `${ping_from}\t${ping_to}\n`, (err) => {
-      if (err) {
-        console.error(err)
-        console.log('Status: 500 Internal Server Error')
-      } else {
-        console.log('Status: 201 Created')
-      }
-      console.log('')
-    })
-  } catch (err) {
-    console.error(err)
-    console.log('Status: 500 Internal Server Error')
-  }
-})
+  ping_from = ENV["HTTP_PING_FROM"]
+  ping_to   = ENV["HTTP_PING_TO"]
+  body = STDIN.read
+
+  if body.empty?
+    STDERR.puts "[reporting.cgi] empty body\n"
+    STDOUT.print "Status: 400 Bad Request\n\n"
+    exit(0)
+  else
+    date = Time.now.iso8601
+    append(FILE, "#{date}\t#{body}\t#{ping_from}\t#{ping_to}")
+    STDOUT.print "Status: 201 Created\n\n"
+  end
+rescue => err
+  STDERR.puts "[reporting.cgi]\n" + err.full_message(highlight: true)
+  STDOUT.print "Status: 500 Internal Server Error\n\n"
+end
