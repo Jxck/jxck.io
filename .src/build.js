@@ -270,12 +270,18 @@ async function renderFile(template, context) {
 }
 
 /**
+ * @typedef {Object} Param
+ * @property {string} host
+ * @property {string} base
+ */
+
+/**
  * Customise AST with traverse()
  * @param {Node} ast
- * @param {string} base
+ * @param {Param} param
  * @returns
  */
-function customise(ast, base) {
+function customise(ast, { host, base }) {
 
   const state = {
     /**@type {Array.<string>} */
@@ -544,12 +550,12 @@ async function parse_entry(entry) {
   const canonical = target.replace(`../`, `https://`)
   const { mtime } = await stat(entry)
 
-  const [up, blog, entries, created_at, filename] = target.split(`/`)
-  const base = `${up}/${blog}/${entries}/${created_at}/`
+  const [up, host, entries, created_at, filename] = target.split(`/`)
+  const base = `${up}/${host}/${entries}/${created_at}/`
   const relative = `${entries}/${created_at}/${filename}`
 
   const ast = decode(md)
-  const { root, description, tags, toc, title } = customise(ast, base)
+  const { root, description, tags, toc, title } = customise(ast, { host, base })
   // h1 は除く
   const ol = toc.children.at(-1)
   const toc_html = encode(ol, { indent: 14 })
@@ -588,11 +594,11 @@ async function parse_episode(entry, order) {
   const yaml = parse_yaml(frontmatter)
   const { tags, published_at, audio, guests } = yaml
 
-  const [up, mozaic, episodes, ep, filename] = entry.path.split(`/`)
-  const base = `${up}/${mozaic}/${episodes}/${ep}/`
+  const [up, host, episodes, ep, filename] = entry.path.split(`/`)
+  const base = `${up}/${host}/${episodes}/${ep}/`
   const ast = decode(markdown)
 
-  const { root, description, toc, title } = customise(ast, base)
+  const { root, description, toc, title } = customise(ast, { host, base })
   const ol = toc.children.at(-1) // toc から h1 を除く
 
   // yaml の情報を info section にして ast に差し込む
