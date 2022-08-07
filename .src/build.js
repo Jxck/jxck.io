@@ -382,6 +382,12 @@ function customise(ast, { host, base }) {
       if (node.name === `img`) {
         return customise_image(node, base)
       }
+      if (node.name === `a`) {
+        const href = new URL(node.attr.get(`href`), `https://${host}`)
+        if (href.host !== host) {
+          node.attr.set(`target`, `_blank`)
+        }
+      }
       return node
     }
   })
