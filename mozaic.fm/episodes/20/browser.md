@@ -59,7 +59,7 @@ guest: [@takoratta](https://twitter.com/takoratta)
 
 - 人類にブラウザはもう一度作れるのか?
   - [Servo](https://github.com/servo/servo)
-  - [Palmscape](http://)
+  - Palmscape
   - [vivaldi](https://vivaldi.com/)
   - [Editing API](http://w3c.github.io/editing/)
   - [ACID Test](http://acid3.acidtests.org/)
