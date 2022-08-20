@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/102/monthly-ecosystem.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_005929></script>
+  <script type=module src=/assets/js/sw.js?220803_065757></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 102 回のテーマは 2022 年 8 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/102/monthly-ecosystem.html>
+  <meta property=og:title        content="ep102 Monthly Ecosystem 202208 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 102 回のテーマは 2022 年 8 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep102 Monthly Ecosystem 202208 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/101/passwordless.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?220306_111358>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210426_190329>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?220428_023319>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?220803_154117         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/101/passwordless.html>ep101 Passwordless</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep102 Monthly Ecosystem 202208</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2022-08-20
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headdings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 102 回のテーマは 2022 年 8 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          Grafbase: Instant serverless GraphQL backends - Grafbase
+          <ul>
+            <li><a href="https://grafbase.com/blog/announcing-grafbase" target=_blank>https://grafbase.com/blog/announcing-grafbase</a>
+          </ul>
+        </li>
+        <li>
+          Electron 20.0.0 | Electron
+          <ul>
+            <li><a href="https://www.electronjs.org/blog/electron-20-0" target=_blank>https://www.electronjs.org/blog/electron-20-0</a>
+            <li>レンダラーがデフォルトで sandbox 化されるようになった
+            <li>
+              最近出た脆弱性の情報
+              <ul>
+                <li><a href="https://news.infoseek.co.jp/article/mynavi_2463478/" target=_blank>https://news.infoseek.co.jp/article/mynavi_2463478/</a>
+              </ul>
+            </li>
+            <li>
+              リリースサイクル
+              <ul>
+                <li><a href="https://www.electronjs.org/blog/8-week-cadence" target=_blank>https://www.electronjs.org/blog/8-week-cadence</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          remix/streaming.md at deferred · remix-run/remix
+          <ul>
+            <li><a href="https://github.com/remix-run/remix/blob/deferred/docs/guides/streaming.md" target=_blank>https://github.com/remix-run/remix/blob/deferred/docs/guides/streaming.md</a>
+            <li>React 18 の suspence で watarfall だと遅延するため parallel にしたい
+            <li>Loader 内で明示的に deffer で囲い Await で fallback を出す
+            <li>Next での Layout 相当
+          </ul>
+        </li>
+        <li>
+          Vite 3.0
+          <ul>
+            <li><a href="https://vitejs.dev/blog/announcing-vite3.html" target=_blank>https://vitejs.dev/blog/announcing-vite3.html</a>
+            <li>
+              Cold Start Improvements
+              <ul>
+                <li>依存の欠損が発生した場合のリロードが減った
+              </ul>
+            </li>
+            <li>
+              Esbuild Deps Optimization at Build Time (Experimental)
+              <ul>
+                <li>
+                  今までは、 deps をスキャンして最適化してブラウザに渡していた
+                  <ul>
+                    <li>これだと渡したあとに欠損した deps があった場合、再度最適化してブラウザに渡してブラウザをリロードさせる必要がある
+                  </ul>
+                </li>
+                <li>今後は、 deps をスキャンして最適化して欠損を見つけてブラウザに渡すようにしたことにより、欠損がみつかったとしても再度ブラウザをリロードする必要がなくなった
+              </ul>
+            </li>
+            <li>
+              HMR Partial Accept (Experimental)
+              <ul>
+                <li>UI と純粋な関数の混合モジュールの HMR は関数側の書き換えでも起こってしまう
+                <li>これが起こらないように明示的に UI コンポーネントを指定する
+              </ul>
+            </li>
+            <li>Bundle Size Reduction
+            <li>Bug Fixing
+            <li>Compatibility Notes
+            <li>Upgrades to Vite Core
+            <li>The Ecosystem is Ready for v3
+          </ul>
+        </li>
+        <li>
+          Announcing Docusaurus 2.0
+          <ul>
+            <li><a href="https://docusaurus.io/blog/2022/08/01/announcing-docusaurus-2.0" target=_blank>https://docusaurus.io/blog/2022/08/01/announcing-docusaurus-2.0</a>
+          </ul>
+        </li>
+        <li>
+          Astro 1.0
+          <ul>
+            <li><a href="https://astro.build/blog/astro-1/" target=_blank>https://astro.build/blog/astro-1/</a>
+            <li>UI FW 非依存の SSG
+            <li><a href="https://docs.astro.build/en/concepts/mpa-vs-spa/" target=_blank>https://docs.astro.build/en/concepts/mpa-vs-spa/</a>
+            <li><a href="https://docs.astro.build/en/concepts/islands/" target=_blank>https://docs.astro.build/en/concepts/islands/</a>
+            <li>Island Architecture を独自解釈した Astro Island
+          </ul>
+        </li>
+        <li>
+          NestJS v9 is now available !
+          <ul>
+            <li><a href="https://trilon.io/blog/nestjs-9-is-now-available" target=_blank>https://trilon.io/blog/nestjs-9-is-now-available</a>
+            <li>REPL が入った
+            <li>Node v10 サポート終了
+          </ul>
+        </li>
+        <li>
+          Storybook 7.0 design sneak peek
+          <ul>
+            <li><a href="https://storybook.js.org/blog/storybook-7-0-design-sneak-peek/" target=_blank>https://storybook.js.org/blog/storybook-7-0-design-sneak-peek/</a>
+          </ul>
+        </li>
+        <li>
+          Storybook - 7.0 design alpha
+          <ul>
+            <li><a href="https://storybook.js.org/blog/7-0-design-alpha/" target=_blank>https://storybook.js.org/blog/7-0-design-alpha/</a>
+            <li><a href="https://www.chromatic.com/" target=_blank>https://www.chromatic.com/</a>
+            <li><a href="https://ladle.dev/blog/introducing-ladle" target=_blank>https://ladle.dev/blog/introducing-ladle</a>
+          </ul>
+        </li>
+        <li>
+          Release v1.24.0 · microsoft/playwright
+          <ul>
+            <li><a href="https://github.com/microsoft/playwright/releases/tag/v1.24.0" target=_blank>https://github.com/microsoft/playwright/releases/tag/v1.24.0</a>
+            <li>Component Tests Update
+            <li>beforeMount / afterMount hooks の導入
+          </ul>
+        </li>
+        <li>
+          Rome v0.8.0
+          <ul>
+            <li><a href="https://github.com/rome/tools/blob/main/CHANGELOG.md#080" target=_blank>https://github.com/rome/tools/blob/main/CHANGELOG.md#080</a>
+            <li>rome.json に formatter のセッティングが書ける
+          </ul>
+        </li>
+        <li>
+          Hermes as the Default
+          <ul>
+            <li><a href="https://reactnative.dev/blog/2022/07/08/hermes-as-the-default" target=_blank>https://reactnative.dev/blog/2022/07/08/hermes-as-the-default</a>
+            <li>React Native のデフォルトエンジンを Hermes にした
+          </ul>
+        </li>
+        <li>
+          🧙‍♂️ npx-import 🧙‍♀️ v1
+          <ul>
+            <li><a href="https://github.com/geelen/npx-import" target=_blank>https://github.com/geelen/npx-import</a>
+          </ul>
+        </li>
+        <li>
+          JiraCLI
+          <ul>
+            <li><a href="https://github.com/ankitpokhrel/jira-cli" target=_blank>https://github.com/ankitpokhrel/jira-cli</a>
+          </ul>
+        </li>
+        <li>
+          npm, introducing query
+          <ul>
+            <li><a href="https://github.blog/changelog/2022-08-03-introducing-the-new-npm-dependency-selector-syntax" target=_blank>https://github.blog/changelog/2022-08-03-introducing-the-new-npm-dependency-selector-syntax</a>
+            <li>npm に <code translate=no>query</code> コマンドが追加
+            <li><code translate=no>npm query &quot;[license=MIT]&quot;</code> とかすると MIT ライセンスなものだけ出る的な
+          </ul>
+        </li>
+        <li>
+          GitHub Pages now uses Actions by default
+          <ul>
+            <li><a href="https://github.blog/2022-08-10-github-pages-now-uses-actions-by-default/" target=_blank>https://github.blog/2022-08-10-github-pages-now-uses-actions-by-default/</a>
+            <li>gh-pages branch や docs dir が不要になり Actions だけで pages ができるようになる
+          </ul>
+        </li>
+        <li>
+          Cloudscape
+          <ul>
+            <li><a href="https://cloudscape.design/" target=_blank>https://cloudscape.design/</a>
+            <li>AWS の Design System
+          </ul>
+        </li>
+        <li>
+          Big Changes Ahead for Deno
+          <ul>
+            <li><a href="https://deno.com/blog/changes" target=_blank>https://deno.com/blog/changes</a>
+            <li>Deno の今後の方針について
+            <li>npm モジュールサポート
+            <li>最速の JS ランタイムにする。最速の HTTP サーバを搭載。
+            <li>企業サポート強化
+            <li>
+              この先のはなし
+              <ul>
+                <li><a href="https://github.com/denoland/deno/issues/12577" target=_blank>https://github.com/denoland/deno/issues/12577</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          ESLint&apos;s new config system, Part 1: Background
+          <ul>
+            <li><a href="https://eslint.org/blog/2022/08/new-config-system-part-1/" target=_blank>https://eslint.org/blog/2022/08/new-config-system-part-1/</a>
+          </ul>
+        </li>
+        <li>
+          Migrate Babel from Flow to TypeScript (except Babel parser) by zxbodya · Pull Request #11578 · babel/babel
+          <ul>
+            <li><a href="https://github.com/babel/babel/pull/11578" target=_blank>https://github.com/babel/babel/pull/11578</a>
+            <li><a href="https://medium.com/flow-type/clarity-on-flows-direction-and-open-source-engagement-e721a4eb4d8b" target=_blank>https://medium.com/flow-type/clarity-on-flows-direction-and-open-source-engagement-e721a4eb4d8b</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/101/passwordless.html>ep101 Passwordless</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep102.mp3
+    data-title="ep102 Monthly Ecosystem 202208"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
