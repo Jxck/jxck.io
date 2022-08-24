@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2022-08-25/hpke.html>
+
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163515>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
+
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163515></script>
+  <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="HPKE (Hybrid Public Key Encryption) が RFC 9180 として公開された。RFC 9180: Hybrid Public Key Encryptionhttps://www.rfc-editor.org/rfc/rfc9180.html...">
+  <meta name=keywords            content="hpke,crypto">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2022-08-25/hpke.html>
+  <meta property=og:title        content="HPKE とは何か | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="HPKE (Hybrid Public Key Encryption) が RFC 9180 として公開された。RFC 9180: Hybrid Public Key Encryptionhttps://www.rfc-editor.org/rfc/rfc9180.html...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "HPKE とは何か | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2022-08-25T08:00:00+08:00",
+    "dateModified": "2022-08-25T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "HPKE (Hybrid Public Key Encryption) が RFC 9180 として公開された。RFC 9180: Hybrid Public Key Encryptionhttps://www.rfc-editor.org/rfc/rfc9180.html..."
+  }
+  </script>
+
+  <title>HPKE とは何か | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220306_111358>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154131   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2022-08-25>2022-08-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-08-25>2022-08-25</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#hpke">hpke</a>
+              <li><a href="/tags#crypto">crypto</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#pke-これまで">PKE これまで</a>
+                <li><a href="#hybrid-crypto-system-の概要">Hybrid Crypto System の概要</a>
+                <li><a href="#kem-key-encapsulation-mechanism">KEM (Key Encapsulation Mechanism)</a>
+                <ol>
+                  <li><a href="#base">Base</a>
+                  <li><a href="#auth">Auth</a>
+                  <li><a href="#psk">PSK</a>
+                  <li><a href="#auth-psk">Auth PSK</a>
+                </ol>
+                <li><a href="#kdf-key-derivation-function">KDF (Key Derivation Function)</a>
+                <ol>
+                  <li><a href="#aead">AEAD</a>
+                </ol>
+                <li><a href="#export">Export</a>
+                <li><a href="#tls-との違い">TLS との違い</a>
+                <ol>
+                  <li><a href="#通信プロトコルではない">通信プロトコルではない</a>
+                  <li><a href="#双方向ではない">双方向ではない</a>
+                  <li><a href="#pki-は用いない">PKI は用いない</a>
+                </ol>
+                <li><a href="#use-case">Use Case</a>
+                <ol>
+                  <li><a href="#ech-encrypted-client-hello">ECH (Encrypted Client Hello)</a>
+                  <li><a href="#mls-messaging-layer-security">MLS (Messaging Layer Security)</a>
+                  <li><a href="#ohttp-oblivious-http">OHTTP (Oblivious HTTP)</a>
+                </ol>
+                <li><a href="#test-data">Test Data</a>
+                <li><a href="#outro">Outro</a>
+                <li><a href="#resources">Resources</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">HPKE とは何か</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>HPKE (Hybrid Public Key Encryption) が RFC 9180 として公開された。
+        <ul>
+          <li>
+            RFC 9180: Hybrid Public Key Encryption
+            <ul>
+              <li><a href="https://www.rfc-editor.org/rfc/rfc9180.html" target=_blank>https://www.rfc-editor.org/rfc/rfc9180.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>HPKE は、公開鍵暗号方式と共通鍵暗号方式を組み合わせて(ハイブリッド)任意の平文を暗号化するための、汎用的な枠組みとして標準化されている。
+        <p>この仕様は、多くのユースケースが想定されており、 RFC になる前から ECH (Encrypt Client Hello), MLS (Message Layer Security), OHTTP (Oblivious HTTP) など、さまざまな仕様から採用を検討されている。
+        <p>本サイトで書く予定の他の記事でも HPKE は頻出する予定であり、今後より多くの場面でこの仕様を見ることになると思われるため、一度この仕様の概観について解説する。
+        <p>(筆者は暗号の専門家ではないため、解釈や語彙使用の間違いがあるかもしれない。)
+      </section>
+      <section>
+        <h2 id="pke-これまで"><a href="#pke-これまで">PKE これまで</a></h2>
+        <p>ハイブリッド暗号は、要するに公開鍵暗号で鍵を交換し、その鍵で共通鍵暗号を行う方式全般を指す。その発想自体は古くからあり、まさしく TLS や PGP が行っていることがそれにあたる。
+        <p>これをより汎用化し、例えば TCP 通信に限らない場面でも、同方式でデータの暗号化による交換を実現したいユースケースは多くあり、 <a href="https://nacl.cr.yp.to/box.html" target=_blank>NaCl(Networking and Cryptography library)</a> や <a href="https://github.com/google/tink" target=_blank>tink</a> などの実装は存在したが、いずれも標準ではなく相互運用性の問題があった。
+        <p>また、 ANSI, IEEE, ISO などによる標準化の動きもあったが、、最新の暗号化技術への追従や、危殆化や脆弱性といった既知の問題の存在が指摘されていた。
+        <p>そこで、汎用性があり、かつ最新の暗号化の知見を反映し、将来にわたって拡張(e.g. 耐量子暗号)していくことが可能な、次世代の標準仕様として HPKE は策定されることとなった。
+        <p>なお、この仕様を策定したのは IETF ではなく、 IRTF (Internet Research Task Force) という姉妹団体の CFRG (Crypto Forum Research Group) であり、筆者の理解では IETF での仕様策定について暗号化の専門的なアドバイスなどを行う、要するに Cyrpto のガチ中のガチ勢のグループによって行われている。
+        <p>2019 年 7 月の draft-00 から 3 年の歳月を費やし作られたこの標準は、多くの研究者による分析や、多くの実装者による相互互換テストを経て標準化され、今後 IETF で策定される、ハイブリッド暗号を必要とするあらゆる標準において、参照されていくことだろう。
+        <p>要するに、今後のインターネットを支える重要なパーツとなる可能性があるのだ。
+      </section>
+      <section>
+        <h2 id="hybrid-crypto-system-の概要"><a href="#hybrid-crypto-system-の概要">Hybrid Crypto System の概要</a></h2>
+        <p>HPKE の概要は、情報処理技術者試験で最初に学ぶような、非常に基本的な公開鍵暗号方式そのものだ。
+        <ul>
+          <li>両者が秘密鍵と公開鍵のペアを作成する
+          <li>公開鍵暗号方式で共通鍵を交換する
+          <li>以降は共通鍵暗号方式でやりとりする
+        </ul>
+        <p>流れとしてはこの通りだが、実際にはこの各フェーズでどのようなアルゴリズムを用いるかが時代と共に変わったり、ユースケースによって異なる方式を用いたい場合がある。
+        <p>HPKE はそうしたユースケースを柔軟にカバーできるように、大きく 3 つの構成要素に分解されている。
+        <ul>
+          <li>KEM
+          <li>KDF
+          <li>AEAD
+        </ul>
+        <p>各要素を見ていこう。
+      </section>
+      <section>
+        <h2 id="kem-key-encapsulation-mechanism"><a href="#kem-key-encapsulation-mechanism">KEM (Key Encapsulation Mechanism)</a></h2>
+        <p>KEM は、両者が鍵ペアを生成し、送信者が生成した固定長乱数を受信者の公開鍵でカプセル化して受信者に渡す、まさしく公開鍵暗号方式を用いる部分だ。
+        <p>HPKE の仕様では、以下の曲線を用いた Diffie-Hellman が採用されており、 RSA などは用いない。DHKEM と言っているが、実質 TLS でいう ECDHE 相当だ。ただし Ephemeral つまり PFS による前方秘匿性が担保されているのは、送信側のみで受信側にはない(TLS でいう Server の鍵の漏洩は対応できるが、逆がないのと同じイメージ)。
+        <ul>
+          <li>DHKEM(P-256, HKDF-SHA256)
+          <li>DHKEM(P-384, HKDF-SHA384)
+          <li>DHKEM(P-521, HKDF-SHA512)
+          <li>DHKEM(X25519, HKDF-SHA256)
+          <li>DHKEM(X448, HKDF-SHA512)
+        </ul>
+        <p>基本的には、送信者が固定長乱数を受信者の公開鍵で暗号化し、受信者が秘密鍵で復号する流れだ。その固定長乱数を元に秘密鍵を生成した暗号化コンテキストを共有し、そのコンテキストを用いてメッセージの交換を行う。
+        <p>(以降の擬似コードは、 RFC のものではなく説明用にわかりやすくしたものである)
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=js data-code=js><code translate=no class=language-js>// 送信側
+// 受信者の公開鍵で暗号化
+{ shared_secret, enc } = Encap(receiver_public_key)
+// 暗号化コンテキストを生成
+ctx = KeySchedule(shared_secret)
+
+// 受信側
+// 自分の秘密鍵で復号
+shared_secret = Decap(enc, receiver_secret_key)
+// 暗号化コンテキストを生成
+ctx = KeySchedule(shared_secret)</code></pre>
+        <p>しかし、この公開鍵のやりとりに TLS のような証明書は含まれない。代わりに、受信者が送信者を認証する方法が必要になるため、 KEM には 4 つのモードが用意されている。
+        <ul>
+          <li>mode_base
+          <li>mode_psk
+          <li>mode_auth
+          <li>mode_auth_psk
+        </ul>
+        <section>
+          <h3 id="base"><a href="#base">Base</a></h3>
+          <p>通常の公開鍵暗号方式のみ行い、送信者の認証はない。
+          <pre class=js data-code=js><code translate=no class=language-js>// sender
+{ shared_secret, enc } = Encap(receiver_public_key)
+ctx = KeySchedule(shared_secret)
+
+// receiver
+shared_secret = Decap(enc, receiver_secret_key)
+ctx = KeySchedule(shared_secret)</code></pre>
+          <p>ここで保証できるのは、「受信者は送信時に利用した公開鍵と対になる秘密鍵を保有している」という点だ。
+          <p>受信者から見て、送信者が誰であるかを確証することはできない。つまり、別の攻撃者が同様に受信者の公開鍵で暗号化したものにメッセージを置き換えても、受信者は自分の秘密鍵で復号するだけなので、その事実を検証することができない。
+          <p>別の経路によって確証できる場合は問題ないが、受信者が送信者を認証したい場合は別のモードを使うことができる。
+        </section>
+        <section>
+          <h3 id="auth"><a href="#auth">Auth</a></h3>
+          <p>Base モードでは、送信者は「受信者の公開鍵」でカプセル化したが、 Auth モードではそこに「送信者の秘密鍵」を追加する。
+          <p>受信者は、自身の秘密鍵と送信者の公開鍵を用いて復号するため、そこから正しいコンテキストが生成できなければ、メッセージの復号に失敗することになる。これにより、受信者は送信者が「意図した鍵のペアを持った相手かどうか」を確証することができるため、認証として機能する。
+          <pre class=js data-code=js><code translate=no class=language-js>// sender
+{ shared_secret, enc } = Encap(receiver_public_key, sender_secret_key)
+ctx = KeySchedule(shared_secret)
+
+// receiver
+shared_secret = Decap(enc, receiver_secret_key, sender_public_key)
+ctx = KeySchedule(shared_secret)</code></pre>
+          <p>これを用いれば、仮に中間者によってメッセージが置き換えられたとしても、受信者が想定した送信者の公開鍵で復号しようとするとエラーになるため、改ざんに気づくことができる。もちろん、そのためには受信者は送信者の公開鍵を別の手段で取得しておく必要がある。
+        </section>
+        <section>
+          <h3 id="psk"><a href="#psk">PSK</a></h3>
+          <p>事前に鍵を共有することが可能な場合は、それを PSK (Pre Shared Key) として利用する PKS モードを利用することができる。
+          <p>PSK Mode では、 shared_secret の交換のあと、コンテキストの生成時に PSK を引数に追加する。
+          <pre class=js data-code=js><code translate=no class=language-js>// sender
+{ shared_secret, enc } = Encap(receiver_public_key)
+ctx = KeySchedule(shared_secret, psk)
+
+// receiver
+shared_secret = Decap(enc, receiver_secret_key)
+ctx = KeySchedule(shared_secret, psk)</code></pre>
+          <p>もし、両者が同じ PSK を持っていない場合は同じコンテキストが生成できないため、相手からのメッセージの復号に失敗することになる。これにより、受信者は送信者が「意図した PSK を持っているかどうか」を確証することができるため、認証として機能する。
+        </section>
+        <section>
+          <h3 id="auth-psk"><a href="#auth-psk">Auth PSK</a></h3>
+          <p>Auth と PSK を両方行うモード。
+        </section>
+      </section>
+      <section>
+        <h2 id="kdf-key-derivation-function"><a href="#kdf-key-derivation-function">KDF (Key Derivation Function)</a></h2>
+        <p>KEM で交換した shared_secret を元に、 Extract/Expand によって実際の共有鍵を生成する。
+        <ul>
+          <li>HKDF-SHA256
+          <li>HKDF-SHA384
+          <li>HKDF-SHA512
+        </ul>
+        <p>基本は TLS 1.3 と同じだ (SHA512 は TLS 1.3 の Mandatory ではないが)。
+        <section>
+          <h3 id="aead"><a href="#aead">AEAD</a></h3>
+          <p>生成した共通鍵を用いて共通鍵暗号を行う。 HPKE では認証付暗号である AES の GCM か ChaCha-Poly を用いる。
+          <p>DES や CBC などは最初から入っておらず、こちらも TLS 1.3 と同じだ。
+          <ul>
+            <li>AES-128-GCM
+            <li>AES-256-GCM
+            <li>ChaCha20Poly1305
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 id="export"><a href="#export">Export</a></h2>
+        <p>別の用途で共有鍵を用いたい場合のために、 HPKE で交換を終えた共有鍵を元に、必要な長さの鍵を別途生成する機能が Secret Export だ。
+        <p>WebRTC が DTLS の鍵交換を利用し、以降の SRTP 暗号化のために DTLS から Export した鍵を用いるように、すでに HPKE を使っていたり、鍵の交換を自分で考えたくないケースで、この Export を利用することが想定されている。
+      </section>
+      <section>
+        <h2 id="tls-との違い"><a href="#tls-との違い">TLS との違い</a></h2>
+        <p>構成要素からみれば、 HPKE をトランスポートプロトコルに仕立てたものが TLS というイメージになるだろうか。(実際そういう記述があるわけではないが、先に HPKE が出ていたら TLS 1.3 の仕様から参照され、記述が一部移譲できたのではとも思う)
+        <p>一応わかりやすい特徴を比較しておく。
+        <section>
+          <h3 id="通信プロトコルではない"><a href="#通信プロトコルではない">通信プロトコルではない</a></h3>
+          <p>行っていることが TLS などと同じであるにも関わらず、 HPKE が策定された理由は、 HPKE が汎用的であると言う点だ。
+          <p>例えば TLS1.2 の場合は、そこで行われる公開鍵暗号方式は、 TCP 上でのハンドシェイクに強く依存しており、暗号化されるのも通信上のパケットだ。これは、例えば手元にある JSON のある 1 つのプロパティだけ暗号化し、特定の相手だけがそれを読めるようにしたいといったユースケースに、 TLS を応用するには適さないことを意味する。
+          <p>HPKE は鍵の交換と暗号化の枠組みのみを標準化してはいるが、トランスポートプロトコルではないため、前述のようなユースケースもカバーできる。
+          <p>逆を言えば HPKE を内部に用いる別のプロトコルの場合は、 HPKE に必要なパラメータを交換する何らかの方法を考える必要がある。必ずしもオンデマンドのハンドシェイクではなく、自分が開発するシステムで採用しクライアントもサーバも自分で管理するような場合は、固定のパラメータに決め打ちし PSK を配布しておくといったこともできるだろう。
+        </section>
+        <section>
+          <h3 id="双方向ではない"><a href="#双方向ではない">双方向ではない</a></h3>
+          <p>HPKE のスコープは、「Alice が Bob に情報を暗号化して渡すこと」であり、逆は含まれていない。
+          <p>共有したコンテキストを逆方向に利用し、 Bob から Alice に暗号化した情報を渡すこともできそうだが(TLS はまさしくそれを行っている)、 HPKE ではこれが明確に禁止されている。
+          <blockquote cite="https://www.rfc-editor.org/rfc/rfc9180.html#section-5.2-13">
+            <p>The sender&apos;s context MUST NOT be used for decryption. Similarly, the recipient&apos;s context MUST NOT be used for encryption.
+            <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc9180.html#section-5.2-13" target=_blank>https://www.rfc-editor.org/rfc/rfc9180.html#section-5.2-13</a></cite>
+          </blockquote>
+          <p>もし Bi-Directional な利用をしたい場合は、 Secret Export の仕組みを用い、ユースケースに応じた Keying Material を生成して用いることが言及されている。
+          <blockquote cite="https://www.rfc-editor.org/rfc/rfc9180.html#section-9.8">
+            <p>Applications that require bidirectional encryption can derive necessary keying material with the secret export interface (Section 5.3).
+            <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc9180.html#section-9.8" target=_blank>https://www.rfc-editor.org/rfc/rfc9180.html#section-9.8</a></cite>
+          </blockquote>
+        </section>
+        <section>
+          <h3 id="pki-は用いない"><a href="#pki-は用いない">PKI は用いない</a></h3>
+          <p>TLS の場合は、ハンドシェイク中に CA の署名を受けたサーバ証明書(場合によってクライアント証明書)を提供し、署名を確認することでなりすましを防いでいる。
+          <p>HPKE は、あくまでパラメータの交換を仕様の外にしているため PKI は用いず、交換方法はデプロイや別のプロトコルでカバーすることになる。そのため、仕様には Certificate とその署名などについては含まれていない。
+          <p>ここで、公開鍵提供者が成りすますことを防ぐためにはは、前述の Auth/PKS モードを用いる(Sender がドメインを持ち、公開鍵の提供時に証明書を検証することもできるかもしれないが、それ自体は HPKE のデプロイ側の都合となる)。
+          <blockquote cite="https://www.rfc-editor.org/rfc/rfc9180.html#section-9.1.1-1">
+            <p>The DHKEM variants defined in this document are vulnerable to key-compromise impersonation attacks [BJM97]
+            <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc9180.html#section-9.1.1-1" target=_blank>https://www.rfc-editor.org/rfc/rfc9180.html#section-9.1.1-1</a></cite>
+          </blockquote>
+        </section>
+      </section>
+      <section>
+        <h2 id="use-case"><a href="#use-case">Use Case</a></h2>
+        <p>すでに、 HPKE を用いることを想定して策定が進んでいるプロトコルがいくつかある。ここでは、代表的なものを紹介する。
+        <section>
+          <h3 id="ech-encrypted-client-hello"><a href="#ech-encrypted-client-hello">ECH (Encrypted Client Hello)</a></h3>
+          <p>TLS 1.3 によって TLS Handshake の大部分が暗号化されるようになったが、 Client Hello だけはまだ暗号化の対象外であり、ここに SNI が含まれることにより、接続先の情報が盗聴されたり、 SNI をもとにブロックなどができる可能性がある。
+          <p>そこで、サーバの公開鍵を DNS の HTTPS Record で提供することで、 TLS Handshake 前に鍵を取得し Client Hello から暗号化を可能にする。ドラフトでは、この ECH の暗号化に HPKE を用いることが想定されている。
+          <ul>
+            <li>
+              TLS Encrypted Client Hello
+              <ul>
+                <li><a href="https://www.ietf.org/archive/id/draft-ietf-tls-esni-14.html" target=_blank>https://www.ietf.org/archive/id/draft-ietf-tls-esni-14.html</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="mls-messaging-layer-security"><a href="#mls-messaging-layer-security">MLS (Messaging Layer Security)</a></h3>
+          <p>チャットのようなサービスは、 TLS を用いてサーバとの通信を暗号化していても、サーバはそのメッセージの中身を見ることができてしまう。ここでメッセージに求められている E2E (End-To-End) 暗号化は、 Client-Server の暗号化ではなく Client-Client の暗号化だ。
+          <p>MLS は、自分がメッセージをやりとりする相手にのみメッセージの復号を許し、 Server にはメッセージを見せないと言った目的で策定されている。このドラフトで、メッセージの暗号化に HPKE を用いることが想定されている。
+          <ul>
+            <li>
+              The Messaging Layer Security (MLS) Protocol
+              <ul>
+                <li><a href="https://www.ietf.org/archive/id/draft-ietf-mls-protocol-16.html" target=_blank>https://www.ietf.org/archive/id/draft-ietf-mls-protocol-16.html</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="ohttp-oblivious-http"><a href="#ohttp-oblivious-http">OHTTP (Oblivious HTTP)</a></h3>
+          <p>OHTTP は、通信を Proxy で転送することで、 Client の IP が Server に伝わることを防ぐ目的で標準化されている仕様であり、 Apple がアナウンスした Private Relay 相当のものであるため、詳細は以下を参照してほしい。
+          <ul>
+            <li>
+              Private Relay と IP Blindness による Fingerprint 対策 | blog.jxck.io
+              <ul>
+                <li><a href="https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html">https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html</a>
+              </ul>
+            </li>
+          </ul>
+          <p>ここで、 Client と Proxy がメッセージを追加で暗号化するために HPKE を用いることが想定されている。
+          <ul>
+            <li>
+              Oblivious HTTP
+              <ul>
+                <li><a href="https://www.ietf.org/archive/id/draft-thomson-http-oblivious-02.html" target=_blank>https://www.ietf.org/archive/id/draft-thomson-http-oblivious-02.html</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 id="test-data"><a href="#test-data">Test Data</a></h2>
+        <p>近年の RFC では、 Appendix にテストデータが記載されており、実装者が受け入れテストとして使うことができる。 HPKE も全ページの半分くらいがテストケースに割かれており、これがそう互換性の向上に大きく寄与するだろう。実装する側としては、別実装と Interop しなくてもバグがわかるので、ありがたい限りだ。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>次世代の汎用 Public Key Encryption の標準である HPKE について解説した。
+        <p>正直、ハイブリッド暗号の利用なんて仕様も実装もいくらでもあると思い込んでいたため、策定が開始された時は「なぜ今更標準化するのだろう」と思い、何かニッチなケースのための仕様かと思ってスルーしていた。
+        <p>しかし、既に、これを採用するプロトコルが出始めているように、この汎用的な仕様は暗号化の重要性が増した現在では高いポテンシャルをもっているため、今後さまざまな場面で HPKE を見る機会が増えるだろうと予想される。
+        <p>多くの代表的なケースは、 HPKE に立脚して標準化されるプロトコルによってカバーされるだろうが、もしかしたらサービス開発の場面においても暗号化を必要とするユースケースで HPKE を採用する機会もあるのかもしれない。
+        <p>今後も HPKE がどのように使われていくのかを注視しつつ、このブログでも紹介していきたい。
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                RFC 9180: Hybrid Public Key Encryption
+                <ul>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc9180.html" target=_blank>https://www.rfc-editor.org/rfc/rfc9180.html</a>
+                </ul>
+              </li>
+              <li>
+                TLS Encrypted Client Hello
+                <ul>
+                  <li><a href="https://www.ietf.org/archive/id/draft-ietf-tls-esni-14.html" target=_blank>https://www.ietf.org/archive/id/draft-ietf-tls-esni-14.html</a>
+                </ul>
+              </li>
+              <li>
+                The Messaging Layer Security (MLS) Protocol
+                <ul>
+                  <li><a href="https://www.ietf.org/archive/id/draft-ietf-mls-protocol-16.html" target=_blank>https://www.ietf.org/archive/id/draft-ietf-mls-protocol-16.html</a>
+                </ul>
+              </li>
+              <li>
+                Oblivious HTTP
+                <ul>
+                  <li><a href="https://www.ietf.org/archive/id/draft-thomson-http-oblivious-02.html" target=_blank>https://www.ietf.org/archive/id/draft-thomson-http-oblivious-02.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Explainer
+          <li>Requirements Doc
+          <li>Mozilla Standard Position
+          <li>Webkit Position
+          <li>TAG Design Review
+          <li>Intents
+          <li>Chrome Platform Status
+          <li>WPT (Web Platform Test)
+          <li>DEMO
+          <li>
+            Blog
+            <ul>
+              <li>
+                HPKE: Standardizing public-key encryption (finally!)
+                <ul>
+                  <li><a href="https://blog.cloudflare.com/hybrid-public-key-encryption/" target=_blank>https://blog.cloudflare.com/hybrid-public-key-encryption/</a>
+                </ul>
+              </li>
+              <li>
+                Cloudflare and the IETF
+                <ul>
+                  <li><a href="https://blog.cloudflare.com/cloudflare-and-the-ietf/" target=_blank>https://blog.cloudflare.com/cloudflare-and-the-ietf/</a>
+                </ul>
+              </li>
+              <li>
+                Hybrid Public Key Encryption: My Involvement in Development and Analysis of a Cryptographic Standard - Benjamin Lipp
+                <ul>
+                  <li><a href="https://www.benjaminlipp.de/p/hpke-cryptographic-standard/" target=_blank>https://www.benjaminlipp.de/p/hpke-cryptographic-standard/</a>
+                </ul>
+              </li>
+              <li>
+                TL;DR - Hybrid Public Key Encryption
+                <ul>
+                  <li><a href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" target=_blank>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Presentation
+          <li>Issues
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!--<ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>-->
+  </footer>
+
+</body>
+</html>
