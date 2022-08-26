@@ -132,7 +132,7 @@ ctx = KeySchedule(shared_secret)
 
 ### PSK
 
-事前に鍵を共有することが可能な場合は、それを PSK (Pre Shared Key) として利用する PKS モードを利用することができる。
+事前に鍵を共有することが可能な場合は、それを PSK (Pre Shared Key) として利用する PSK モードを利用することができる。
 
 PSK Mode では、 shared_secret の交換のあと、コンテキストの生成時に PSK を引数に追加する。
 
@@ -222,7 +222,7 @@ TLS の場合は、ハンドシェイク中に CA の署名を受けたサーバ
 
 HPKE は、あくまでパラメータの交換を仕様の外にしているため PKI は用いず、交換方法はデプロイや別のプロトコルでカバーすることになる。そのため、仕様には Certificate とその署名などについては含まれていない。
 
-ここで、公開鍵提供者が成りすますことを防ぐためにはは、前述の Auth/PKS モードを用いる(Sender がドメインを持ち、公開鍵の提供時に証明書を検証することもできるかもしれないが、それ自体は HPKE のデプロイ側の都合となる)。
+ここで、公開鍵提供者が成りすますことを防ぐためには、前述の Auth/PSK モードを用いる(Sender がドメインを持ち、公開鍵の提供時に証明書を検証することもできるかもしれないが、それ自体は HPKE のデプロイ側の都合となる)。
 
 > The DHKEM variants defined in this document are vulnerable to key-compromise impersonation attacks [BJM97]
 > --- https://www.rfc-editor.org/rfc/rfc9180.html#section-9.1.1-1
@@ -268,7 +268,7 @@ OHTTP は、通信を Proxy で転送することで、 Client の IP が Server
 
 ## Test Data
 
-近年の RFC では、 Appendix にテストデータが記載されており、実装者が受け入れテストとして使うことができる。 HPKE も全ページの半分くらいがテストケースに割かれており、これがそう互換性の向上に大きく寄与するだろう。実装する側としては、別実装と Interop しなくてもバグがわかるので、ありがたい限りだ。
+近年の RFC では、 Appendix にテストデータが記載されており、実装者が受け入れテストとして使うことができる。 HPKE も全ページの半分くらいがテストケースに割かれており、これが相互互換性の向上に大きく寄与するだろう。実装する側としては、別実装と Interop しなくてもバグがわかるので、ありがたい限りだ。
 
 
 ## Outro
