@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>Binary DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+  pre {
+    border: solid 1px #ccc;
+    padding: 1em;
+  }
+</style>
+
+<h1>Binary DEMO</h1>
+<p>see console</p>
+<pre></pre>
+
+<script src=binary.js></script>
+<script>
+  (async () => {
+    const res = await fetch("binary.js")
+    const body = await res.text()
+    const $pre = document.querySelector("pre")
+    $pre.textContent = body
+  })()
+</script>
