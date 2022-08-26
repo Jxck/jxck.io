@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-08-25T08:00:00+08:00",
-    "dateModified": "2022-08-25T08:00:00+08:00",
+    "dateModified": "2022-08-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-08-25>2022-08-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-08-25>2022-08-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-08-26>2022-08-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -286,7 +286,7 @@ ctx = KeySchedule(shared_secret)</code></pre>
         </section>
         <section>
           <h3 id="psk"><a href="#psk">PSK</a></h3>
-          <p>事前に鍵を共有することが可能な場合は、それを PSK (Pre Shared Key) として利用する PKS モードを利用することができる。
+          <p>事前に鍵を共有することが可能な場合は、それを PSK (Pre Shared Key) として利用する PSK モードを利用することができる。
           <p>PSK Mode では、 shared_secret の交換のあと、コンテキストの生成時に PSK を引数に追加する。
           <pre class=js data-code=js><code translate=no class=language-js>// sender
 { shared_secret, enc } = Encap(receiver_public_key)
@@ -356,7 +356,7 @@ ctx = KeySchedule(shared_secret, psk)</code></pre>
           <h3 id="pki-は用いない"><a href="#pki-は用いない">PKI は用いない</a></h3>
           <p>TLS の場合は、ハンドシェイク中に CA の署名を受けたサーバ証明書(場合によってクライアント証明書)を提供し、署名を確認することでなりすましを防いでいる。
           <p>HPKE は、あくまでパラメータの交換を仕様の外にしているため PKI は用いず、交換方法はデプロイや別のプロトコルでカバーすることになる。そのため、仕様には Certificate とその署名などについては含まれていない。
-          <p>ここで、公開鍵提供者が成りすますことを防ぐためにはは、前述の Auth/PKS モードを用いる(Sender がドメインを持ち、公開鍵の提供時に証明書を検証することもできるかもしれないが、それ自体は HPKE のデプロイ側の都合となる)。
+          <p>ここで、公開鍵提供者が成りすますことを防ぐためには、前述の Auth/PSK モードを用いる(Sender がドメインを持ち、公開鍵の提供時に証明書を検証することもできるかもしれないが、それ自体は HPKE のデプロイ側の都合となる)。
           <blockquote cite="https://www.rfc-editor.org/rfc/rfc9180.html#section-9.1.1-1">
             <p>The DHKEM variants defined in this document are vulnerable to key-compromise impersonation attacks [BJM97]
             <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc9180.html#section-9.1.1-1" target=_blank>https://www.rfc-editor.org/rfc/rfc9180.html#section-9.1.1-1</a></cite>
@@ -416,7 +416,7 @@ ctx = KeySchedule(shared_secret, psk)</code></pre>
       </section>
       <section>
         <h2 id="test-data"><a href="#test-data">Test Data</a></h2>
-        <p>近年の RFC では、 Appendix にテストデータが記載されており、実装者が受け入れテストとして使うことができる。 HPKE も全ページの半分くらいがテストケースに割かれており、これがそう互換性の向上に大きく寄与するだろう。実装する側としては、別実装と Interop しなくてもバグがわかるので、ありがたい限りだ。
+        <p>近年の RFC では、 Appendix にテストデータが記載されており、実装者が受け入れテストとして使うことができる。 HPKE も全ページの半分くらいがテストケースに割かれており、これが相互互換性の向上に大きく寄与するだろう。実装する側としては、別実装と Interop しなくてもバグがわかるので、ありがたい限りだ。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
