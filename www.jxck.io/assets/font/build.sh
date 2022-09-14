@@ -32,11 +32,11 @@ foreach target in $BOLD
  mv $woff2 ../
 end
 
-sed -i -e "s/2020[0-9]\{4\}\.woff2/$NOW.woff2/g" $SERVER/jxck.io/.mruby.handler/*
-sed -i -e "s/2020[0-9]\{4\}\.woff2/$NOW.woff2/g" $SERVER/jxck.io/.script/template/*.erb
-sed -i -e "s/2020[0-9]\{4\}\.woff2/$NOW.woff2/g" $SERVER/jxck.io/labs.jxck.io/**/*.html
-sed -i -e "s/2020[0-9]\{4\}\.woff2/$NOW.woff2/g" $SERVER/jxck.io/www.jxck.io/assets/js/*.js
-sed -i -e "s/2020[0-9]\{4\}\.woff2/$NOW.woff2/g" $SERVER/jxck.io/www.jxck.io/assets/css/*.css
+sed -i -e "s/2020[0-9]\{4\}\.woff2/$NOW.woff2/g" $DEV/jxck.io/.mruby.handler/*
+sed -i -e "s/2020[0-9]\{4\}\.woff2/$NOW.woff2/g" $DEV/jxck.io/.script/template/*.erb
+sed -i -e "s/2020[0-9]\{4\}\.woff2/$NOW.woff2/g" $DEV/jxck.io/labs.jxck.io/**/*.html
+sed -i -e "s/2020[0-9]\{4\}\.woff2/$NOW.woff2/g" $DEV/jxck.io/www.jxck.io/assets/js/*.js
+sed -i -e "s/2020[0-9]\{4\}\.woff2/$NOW.woff2/g" $DEV/jxck.io/www.jxck.io/assets/css/*.css
 
 cd ../
 \rm -rf ./tmp

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 def main()
-  path = "#{ENV['SERVER']}/jxck.io"
+  path = "#{ENV['DEV']}/jxck.io"
   result =
     Dir.glob([
       "#{path}/blog.jxck.io/entries/**/*.md",
