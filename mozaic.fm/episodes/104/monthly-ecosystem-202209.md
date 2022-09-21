@@ -4,7 +4,7 @@ tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep104.mp3
 published_at: 2022-09-21
 guest: [@sakito](https://twitter.com/__sakito__)
-guest: [@hirppy](https://twitter.com/about_hiroppy)
+guest: [@hiroppy](https://twitter.com/about_hiroppy)
 ---
 
 # ep104 Monthly Ecosystem 202209
