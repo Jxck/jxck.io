@@ -1444,3 +1444,16 @@ eyeD3 --title "ep103 Monthly Platform 202208" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep104.mp3
+
+eyeD3 --title "ep104 Monthly Ecosystem 202209" \
+      --track 112 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep104.mp3
+
+
+

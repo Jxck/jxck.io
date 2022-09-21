@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/104/monthly-ecosystem-202209.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_005929></script>
+  <script type=module src=/assets/js/sw.js?220803_065757></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 104 回のテーマは 2022 年 9 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/104/monthly-ecosystem-202209.html>
+  <meta property=og:title        content="ep104 Monthly Ecosystem 202209 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 104 回のテーマは 2022 年 9 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep104 Monthly Ecosystem 202209 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/103/monthly-platform-202208.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?220306_111358>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210426_190329>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?220428_023319>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?220803_154117         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/103/monthly-platform-202208.html>ep103 Monthly Platform 202208</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep104 Monthly Ecosystem 202209</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2022-09-21
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headdings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 104 回のテーマは 2022 年 9 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          <em>Blog - Next.js 12.3 | Next.js</em>
+          <ul>
+            <li>
+              <a href="https://nextjs.org/blog/next-12-3" target=_blank>https://nextjs.org/blog/next-12-3</a>
+              <ul>
+                <li>7 倍速くなるらしい swc minify, next/future/image の安定化, ts のデフォルトサポート
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <em>Next.js Layouts RFC in 5 minutes - Vercel</em>
+          <ul>
+            <li>
+              <a href="https://vercel.com/blog/next-js-layouts-rfc-in-5-minutes" target=_blank>https://vercel.com/blog/next-js-layouts-rfc-in-5-minutes</a>
+              <ul>
+                <li>今後、フロントエンドエンジニアの設計力とパフォーマンスの知識が求められる
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <em>Next Conf 2022</em>
+          <ul>
+            <li><a href="https://vercel.com/blog/nextjs-conf-2022" target=_blank>https://vercel.com/blog/nextjs-conf-2022</a>
+          </ul>
+        </li>
+        <li>
+          <em>experimental_useEvent by poteto · Pull Request #25229 · facebook/react</em>
+          <ul>
+            <li><a href="https://github.com/facebook/react/pull/25229" target=_blank>https://github.com/facebook/react/pull/25229</a>
+            <li>
+              <a href="https://github.com/facebook/react/pull/25285" target=_blank>https://github.com/facebook/react/pull/25285</a>
+              <ul>
+                <li>eslint の追加も PR で出てる
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <em>Implement basic stylesheet Resources for react-dom by gnoff · Pull Request #25060 · facebook/react</em>
+          <ul>
+            <li><a href="https://github.com/facebook/react/pull/25060" target=_blank>https://github.com/facebook/react/pull/25060</a>
+            <li><a href="https://github.com/facebook/react/pull/25243" target=_blank>https://github.com/facebook/react/pull/25243</a>
+          </ul>
+        </li>
+        <li>
+          <em>React Router 6.4</em>
+          <ul>
+            <li>
+              <a href="https://remix.run/blog/react-router-v6.4" target=_blank>https://remix.run/blog/react-router-v6.4</a>
+              <ul>
+                <li>Remix で使われているデータの読み込み、更新や Skeleton UI などが追加されている
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <em>Node v18.8.0 (Current) | Node.js</em>
+          <ul>
+            <li>
+              <a href="https://nodejs.org/en/blog/release/v18.8.0/" target=_blank>https://nodejs.org/en/blog/release/v18.8.0/</a>
+              <ul>
+                <li>user-land snapshot
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          7.19.0 Released: Stage 3 decorators and more RegExp features! · Babel
+          <ul>
+            <li><a href="https://babeljs.io/blog/2022/09/05/7.19.0" target=_blank>https://babeljs.io/blog/2022/09/05/7.19.0</a>
+          </ul>
+        </li>
+        <li>
+          TypeScript 4.9 Iteration Plan · Issue #50457 · microsoft/TypeScript
+          <ul>
+            <li><a href="https://github.com/microsoft/TypeScript/issues/50457" target=_blank>https://github.com/microsoft/TypeScript/issues/50457</a>
+          </ul>
+        </li>
+        <li>
+          facebookincubator/memlab: A framework for finding JavaScript memory leaks and analyzing heap snapshots
+          <ul>
+            <li>
+              <a href="https://github.com/facebookincubator/memlab" target=_blank>https://github.com/facebookincubator/memlab</a>
+              <ul>
+                <li>SPA で発生するメモリリークを調査するツール、中は puppeteer
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <em>t3-oss/create-t3-app: Quickest way to start a new web app with full stack typesafety</em>
+          <ul>
+            <li><a href="https://github.com/t3-oss/create-t3-app" target=_blank>https://github.com/t3-oss/create-t3-app</a>
+            <li>Next.js
+            <li>tRPC
+            <li>TailwindCSS
+            <li>TypeScript
+            <li>Prisma
+          </ul>
+        </li>
+        <li>
+          <em>tRPC - Move Fast and Break Nothing. End-to-end typesafe APIs made easy. | tRPC</em>
+          <ul>
+            <li><a href="https://trpc.io/" target=_blank>https://trpc.io/</a>
+            <li>RPC のスキーマ共有を TS の型ベースで行う
+            <li>zod で validation
+            <li>t3Stack
+          </ul>
+        </li>
+        <li>
+          <em>A New Collaboration with Adobe</em>
+          <ul>
+            <li><a href="https://www.figma.com/blog/a-new-collaboration-with-adobe/" target=_blank>https://www.figma.com/blog/a-new-collaboration-with-adobe/</a>
+            <li>Adobe が figma を 200 億ドルで買収
+            <li><a href="https://stocker.jp/diary/figma-adobe-xd/" target=_blank>https://stocker.jp/diary/figma-adobe-xd/</a>
+          </ul>
+        </li>
+        <li>
+          <em>Token CSS</em>
+          <ul>
+            <li><a href="https://tokencss.com/" target=_blank>https://tokencss.com/</a>
+          </ul>
+        </li>
+        <li>
+          Fresh 1.1 - automatic JSX, plugins, DevTools, and more
+          <ul>
+            <li><a href="https://deno.com/blog/fresh-1.1" target=_blank>https://deno.com/blog/fresh-1.1</a>
+          </ul>
+        </li>
+        <li>
+          <em>Signals | Preact: Fast 3kb React alternative with the same ES6 API. Components &amp; Virtual DOM.</em>
+          <ul>
+            <li>
+              <a href="https://preactjs.com/guide/v10/signals/" target=_blank>https://preactjs.com/guide/v10/signals/</a>
+              <ul>
+                <li>新しい状態管理システム
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          facebookresearch/shumai: Fast Differentiable Tensor Library in JavaScript and TypeScript with Bun + Flashlight
+          <ul>
+            <li><a href="https://github.com/facebookresearch/shumai" target=_blank>https://github.com/facebookresearch/shumai</a>
+          </ul>
+        </li>
+        <li>
+          Redwood v3
+          <ul>
+            <li><a href="https://community.redwoodjs.com/t/redwood-3-0-0-is-now-available/3989" target=_blank>https://community.redwoodjs.com/t/redwood-3-0-0-is-now-available/3989</a>
+          </ul>
+        </li>
+        <li>
+          <em>Lightning CSS</em>
+          <ul>
+            <li><a href="https://lightningcss.dev/" target=_blank>https://lightningcss.dev/</a>
+            <li>
+              gatsbyjs は乗り換えるぽい雰囲気ある
+              <ul>
+                <li><a href="https://github.com/gatsbyjs/gatsby/pull/36577" target=_blank>https://github.com/gatsbyjs/gatsby/pull/36577</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <em>Storybook 6.5.11</em>
+          <ul>
+            <li><a href="https://github.com/storybookjs/storybook/releases/tag/v6.5.11" target=_blank>https://github.com/storybookjs/storybook/releases/tag/v6.5.11</a>
+            <li>これで Stroybook 6.5 にしたときに、 @storybook/testing-react が原因で型が落ちていたのが直る
+          </ul>
+        </li>
+        <li>
+          Rollup v3 の Issue
+          <ul>
+            <li><a href="https://github.com/rollup/rollup/pull/4549" target=_blank>https://github.com/rollup/rollup/pull/4549</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/103/monthly-platform-202208.html>ep103 Monthly Platform 202208</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep104.mp3
+    data-title="ep104 Monthly Ecosystem 202209"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
