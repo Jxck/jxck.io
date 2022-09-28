@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>DEMO | labs.jxck.io</title>
+<title>Video DEMO | labs.jxck.io</title>
 
 <style>
 body, figure, video {
@@ -17,7 +17,7 @@ video {
 }
 </style>
 
-<h1>Test</h1>
+<h1>Video DEMO</h1>
 
 <div>
 </div>
@@ -27,10 +27,8 @@ video {
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  console.log(mediaJSON)
-
   // https://gist.githubusercontent.com/jsturgis/3b19447b304616f18657/raw/a8c1f60074542d28fa8da4fe58c3788610803a65/gistfile1.txt
-  var mediaJSON = {
+  const movies = {
     "categories" : [
       { "name" : "Movies",
         "videos" : [
@@ -112,16 +110,20 @@ video {
             "thumb" : "images/WhatCarCanYouGetForAGrand.jpg",
             "title" : "What care can you get for a grand?"
           }
-        ]}]};
+        ]
+      }
+    ]
+  }
 
-  (mediaJSON.categories[0].videos).forEach((e) => {
-    const $figure = document.createElement('figure')
+  console.log(movies)
+
+  movies.categories.at(0).videos.forEach((e) => {
+    const $figure = document.createElement("figure")
 
     $figure.innerHTML = `
       <video controls src=${e.sources[0]}></video>
       <figcaption>${e.title}/${e.subtitle}</figcaption>
     `
-    $('div').appendChild($figure)
+    $("div").appendChild($figure)
   })
 </script>
-
