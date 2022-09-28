@@ -1,53 +1,52 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <title>WebSocket Chat DEMO | labs.jxck.io</title>
 
-<style>
-</style>
+<style></style>
 
 <h1>WebSocket Chat DEMO</h1>
 
-<ul id=messages></ul>
+<ul id="messages"></ul>
 
-<form id=form>
-  <input id=input type=text />
-  <button id=send type=submit disabled=true>send</button>
+<form id="form">
+  <input id="input" type="text" />
+  <button id="send" type="submit" disabled="true">send</button>
 </form>
 
 <script>
-'use strict';
-const $  = document.querySelector.bind(document)
-const $$ = document.querySelectorAll.bind(document)
-const log = console.log.bind(console)
-EventTarget.prototype.on = EventTarget.prototype.addEventListener
+  "use strict"
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  const log = console.log.bind(console)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-const ws = new WebSocket('wss://ws.jxck.io', ['broadcast', 'chat'])
+  const ws = new WebSocket("wss://ws.jxck.io", ["broadcast", "chat"])
 
-ws.on('open', (e) => {
-  log(e)
-  $('#send').disabled = false
-
-  $('#form').on('submit', (e) => {
-    e.preventDefault()
-    const value = $('#input').value
-    ws.send(value)
-  })
-
-  ws.on('message', (e) => {
+  ws.on("open", (e) => {
     log(e)
-    const value = e.data
-    const $li = document.createElement('li')
-    $li.textContent = value
-    $('#messages').appendChild($li)
-  })
-})
+    $("#send").disabled = false
 
-ws.on('close', (e) => {
-  console.log(e)
-})
-ws.on('error', (e) => {
-  console.log(e)
-})
+    $("#form").on("submit", (e) => {
+      e.preventDefault()
+      const value = $("#input").value
+      ws.send(value)
+    })
+
+    ws.on("message", (e) => {
+      log(e)
+      const value = e.data
+      const $li = document.createElement("li")
+      $li.textContent = value
+      $("#messages").appendChild($li)
+    })
+  })
+
+  ws.on("close", (e) => {
+    console.log(e)
+  })
+  ws.on("error", (e) => {
+    console.log(e)
+  })
 </script>

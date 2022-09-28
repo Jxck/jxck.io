@@ -26,39 +26,39 @@
 </div>
 
 <script>
-  'use strict';
+  "use strict";
   const $  = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   const log = console.log.bind(console)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  $('#connect').addEventListener('submit', (e) => {
+  $("#connect").addEventListener("submit", (e) => {
     e.preventDefault()
     const data = new FormData(e.target)
-    const url = data.get('url')
-    const subprotocol = data.get('subprotocol').split(',')
+    const url = data.get("url")
+    const subprotocol = data.get("subprotocol").split(",")
 
     const ws = new WebSocket(url, subprotocol)
 
-    const $messages = $('#messages')
-    const $input    = $('#input')
-    const $send     = $('#send')
+    const $messages = $("#messages")
+    const $input    = $("#input")
+    const $send     = $("#send")
 
-    ws.on('open', (e) => {
+    ws.on("open", (e) => {
       console.log(e)
-      $('#send').disabled = false
+      $("#send").disabled = false
 
-      $('#send').on('click', () => {
-        const value = $('#input').value
+      $("#send").on("click", () => {
+        const value = $("#input").value
         ws.send(value)
       })
 
-      ws.on('message', (e) => {
+      ws.on("message", (e) => {
         console.log(e)
         const value = e.data
-        const $li = document.createElement('li')
+        const $li = document.createElement("li")
         $li.textContent = value
-        $('#messages').appendChild($li)
+        $("#messages").appendChild($li)
       })
     })
   })
