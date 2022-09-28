@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <title>random DEMO | labs.jxck.io</title>
 
 <style>
-pre {
-  font-family: monospace;
-  border: 1px solid #ccc;
-  padding: 1em;
-  background-color: #ccc;
-}
+  pre {
+    font-family: monospace;
+    font-size: 2em;
+    padding: 1em;
+    background-color: #eee;
+  }
 </style>
 
 <h1>Random</h1>
@@ -24,7 +24,6 @@ btoa(Math.random())
 // with crypto
 btoa(crypto.getRandomValues(new Uint8Array(16)))
 </pre>
-
 
 <pre>
 // base64 has `=` remove them
@@ -51,11 +50,10 @@ btoa(crypto.getRandomValues(new Uint8Array(16))).replace(/[0-9]/g, "").replace(/
 crypto.getRandomValues(new Uint8Array(16)).join("")
 </pre>
 
-
 <script>
-Array.from(document.querySelectorAll('pre')).forEach((pre) => {
-  let code = pre.textContent;
-  let result = eval(code);
-  pre.textContent = `${code}// => ${result}`
-});
+  document.querySelectorAll("pre").forEach(($pre) => {
+    const code = $pre.textContent
+    const result = eval(code)
+    $pre.textContent = `${code}// => ${result}`
+  })
 </script>
