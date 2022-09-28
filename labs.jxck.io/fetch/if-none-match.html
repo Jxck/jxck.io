@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>If-None-Match DEMO</title>
+
+<style>
+pre {
+}
+</style>
+
+<h1>If-None-Match DEMO</h1>
+<button id=fetch>if-none-match</button>
+<button id=clear>clear</button>
+<pre></pre>
+
+<script>
+const $ = document.querySelector.bind(document)
+$("#fetch").addEventListener("click", async () => {
+  const res = await fetch("https://httpbin.org/headers", {
+    headers: {
+      "If-None-Match": "abc"
+    }
+  });
+  const json = await res.json();
+  $("pre").textContent = JSON.stringify(json, null, 2);
+})
+$("#clear").addEventListener("click", async () => {
+  $("pre").textContent = ""
+})
+</script>

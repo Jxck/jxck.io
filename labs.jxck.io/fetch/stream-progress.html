@@ -16,10 +16,10 @@ textarea {
 <textarea></textarea>
 
 <script>
-let $log = document.querySelector('textarea')
+const $log = document.querySelector('textarea')
 $log.value = ''
 function log(message) {
-  $log.value = `${message}\n` + $log.value
+  $log.value += `${message}\n`
 }
 </script>
 
@@ -32,15 +32,22 @@ function log(message) {
   const total = res.headers.get('content-length')
   log(`content-length: ${total}\n`)
 
-  let reader = res.body.getReader()
+  const reader = res.body.getReader()
   let chunk = 0
 
+  // TODO Async Iterable
+  // https://bugs.chromium.org/p/chromium/issues/detail?id=929585
+  // for await (let result of reader) {
+  //   console.log(result)
+  // }
   while (true) {
     const result = await reader.read()
     if (result.done) break
 
     chunk += result.value.length
-    log(`received: ${chunk}(${Math.round(chunk/total * 100)} %)`)
+
+    const progress = Math.round(chunk/total * 100)
+    log(`received: ${chunk.toString().padStart(8)}(${progress.toString().padStart(3)}%)`)
   }
 })()
 </script>
