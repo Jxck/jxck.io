@@ -1,12 +1,11 @@
-document.on('DOMContentLoaded', async (e) => {
+document.addEventListener("DOMContentLoaded", async (e) => {
   console.log(e)
 
-  a?.b   // a == null ? undefined : a.b
-  a?.[x] // a == null ? undefined : a[x]
-  a?.b() // a == null ? undefined : a.b()
-  a?.()  // a == null ? undefined : a()
+  console.log(e?.b    ) // e == null ? undefined : e.b
+  console.log(e?.[0]  ) // e == null ? undefined : e[0]
+  console.log(e?.b?.()) // e == null ? undefined : e.b()
 
-  const none = document.querySelector('.none')?.textContent
+  const none = document.querySelector(".none")?.textContent
   console.log(none)
 
   console.log(window.bar?.())
