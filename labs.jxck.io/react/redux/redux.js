@@ -1,8 +1,7 @@
 // Action Type
-const INCREMENT = 'INCREMENT'
-const DECREMENT = 'DECREMENT'
-const RESET     = 'RESET'
-
+const INCREMENT = "INCREMENT"
+const DECREMENT = "DECREMENT"
+const RESET     = "RESET"
 
 // Action Creator
 const increment = () => {
@@ -17,29 +16,28 @@ const reset = () => {
   return { type: RESET }
 }
 
-
 // Reducer
-const counterReducer = (state = {value: 0}, action) => {
+const counterReducer = (state = { value: 0 }, action) => {
   switch (action.type) {
     case INCREMENT:
-      return {...state, value: state.value + 1}
+      return { ...state, value: state.value + 1 }
     case DECREMENT:
-      return {...state, value: state.value - 1}
+      return { ...state, value: state.value - 1 }
     case RESET:
-      return {...state, value: 0}
+      return { ...state, value: 0 }
     default:
       return state
   }
 }
 
 // Component
-const App: React.FC = () => {
+const App = () => {
   const useEffect = React.useEffect
-  const dispatch  = ReactRedux.useDispatch()
-  const value     = ReactRedux.useSelector((state) => state.value)
+  const dispatch = ReactRedux.useDispatch()
+  const value = ReactRedux.useSelector((state) => state.value)
 
-  const handleIncrement      = () => dispatch(increment())
-  const handleDecrement      = () => dispatch(decrement())
+  const handleIncrement = () => dispatch(increment())
+  const handleDecrement = () => dispatch(decrement())
   const handleIncrementAsync = () => {
     setTimeout(() => {
       dispatch(increment())
@@ -70,5 +68,5 @@ ReactDOM.render(
   <ReactRedux.Provider store={store}>
     <App />
   </ReactRedux.Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 )

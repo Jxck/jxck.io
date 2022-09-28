@@ -1,12 +1,11 @@
-'use strict';
-let log = console.error.bind(console);
+"use strict"
+const log = console.error.bind(console)
 
 class Controller extends React.Component {
-
   onSubmit(e) {
     e.preventDefault()
     const formData = new FormData(e.target)
-    const message  = formData.get('message')
+    const message = formData.get("message")
     this.props.onTODO(message)
   }
 
@@ -15,7 +14,7 @@ class Controller extends React.Component {
       <section>
         <h2>TODO</h2>
         <form onSubmit={this.onSubmit.bind(this)}>
-          <input name="message" type="text"/>
+          <input name="message" type="text" />
           <button type="submit">+</button>
         </form>
       </section>
@@ -25,7 +24,7 @@ class Controller extends React.Component {
 
 class Messages extends React.Component {
   render() {
-    const {messages} = this.props
+    const { messages } = this.props
     const $li = messages.map((message, key) => <li key={key}>{message}</li>)
     return (
       <section>
@@ -47,7 +46,7 @@ class Root extends React.Component {
   onTODO(message) {
     const messages = this.state.messages
     messages.push(message)
-    const state = Object.assign(this.state, {messages})
+    const state = Object.assign(this.state, { messages })
     this.setState(state)
   }
 
@@ -62,7 +61,4 @@ class Root extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Root />,
-  document.querySelector('#root')
-)
+ReactDOM.render(<Root />, document.querySelector("#root"))
