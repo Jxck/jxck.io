@@ -6,6 +6,7 @@
 
 <style>
 #prot {
+  font-family: sans-serif;
   font-size: 2em;
   color: red;
 }
@@ -17,14 +18,14 @@
 </style>
 
 <script>
-var start = Date.now();
-window.addEventListener('load', (event) => {
-  var end = Date.now();
-  document.getElementById('total').textContent = end-start;
+const start = Date.now()
+window.addEventListener("load", (event) => {
+  const end = Date.now()
+  document.getElementById("total").textContent = end-start
 
-  var url = new URL(location.href);
-  document.getElementById('prot').textContent = url.protocol;
-});
+  const url = new URL(location.href)
+  document.getElementById("prot").textContent = url.protocol
+})
 </script>
 
 <h1>Head of Line Blocking Demo</h1>
