@@ -47,8 +47,21 @@
     const mm = (~~(n / (60 * 1000)) % 60).toString().padStart(2, 0)
     const ss = (~~(n / 1000) % 60).toString().padStart(2, 0)
     const ms = (n % 1000).toString().padStart(3, 0)
-
     return `${hh}:${mm}:${ss}:${ms}`
+
+    // const formatter = new Intl.DateTimeFormat("en-GB", {
+    //   hour: "2-digit",
+    //   minute: "2-digit",
+    //   second: "2-digit",
+    //   fractionalSecondDigits: 2,
+    //   hour12: false,
+    // })
+
+    // const parts = Object.fromEntries(
+    //   formatter.formatToParts(n).map(({ type, value }) => [type, value])
+    // )
+    // const { hour, minute, second, fractionalSecond } = parts
+    // return `${hour}:${minute}:${second}:${fractionalSecond}`
   }
 
   // Audio Setup
@@ -109,14 +122,15 @@
       "male3.wav",
     ]
 
-    let n = 0
-
     play(files)
 
+    const start = Date.now()
+
     setInterval(() => {
-      n += 10
+      const end = Date.now()
+      const diff = new Date(end - start)
       // calculate and update <time>
-      $time.textContent = format(n)
+      $time.textContent = format(diff)
     }, 10)
   })
 </script>
