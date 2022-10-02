@@ -140,7 +140,7 @@ Fetch の仕様が生まれたことは、他にも多くの副産物を産ん�
 - Streams Standard
   - https://streams.spec.whatwg.org/
 
-このとき同時に XHR も WHATWG 側で独立した仕様として切り出され、内部では Fetch を参照する形で整理された。つまり、 `fetch()` は XHR の上位互換だ、 `fetch()` にできて XHR にできないことはない。(嘘だ、 XHR は sycn でリクエストできる。 `fetch()` はできないのではなく "許さない" のだ。)
+このとき同時に XHR も WHATWG 側で独立した仕様として切り出され、内部では Fetch を参照する形で整理された。つまり、 `fetch()` は XHR の上位互換だ、 `fetch()` にできて XHR にできないことはない。(嘘だ、 XHR は sync でリクエストできる。 `fetch()` はできないのではなく "許さない" のだ。)
 
 - XMLHttpRequest Standard
   - https://xhr.spec.whatwg.org/
