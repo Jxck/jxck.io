@@ -226,7 +226,7 @@ Feature Policy は *sandbox が制限する機能は重複して持たず* sandb
 
 設定する際は、 CSP の sandbox を基準とし、許可したいものを `allow-*` で、追加で制限したいものを Feature Policy で行うことになるだろう。
 
-例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
+例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sync-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
 
 ```http
 Content-Security-Policy: sandbox allow-scripts;

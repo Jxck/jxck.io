@@ -325,7 +325,7 @@
           <p>そこで、 iframe に対して sandbox に入っていない機能を、追加で無効化する用途でも Feature Policy を用いる。
           <p>Feature Policy は <em>sandbox が制限する機能は重複して持たず</em> sandbox と組み合わせて利用することが想定されている。
           <p>設定する際は、 CSP の sandbox を基準とし、許可したいものを <code translate=no>allow-*</code> で、追加で制限したいものを Feature Policy で行うことになるだろう。
-          <p>例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sycn-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
+          <p>例として、 iframe Sandbox を有効にしつつ、 script の実行を許可するが、それによって sync-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
           <pre class=http data-code=http><code translate=no class=language-http>Content-Security-Policy: sandbox allow-scripts;
 Feature-Policy: sync-xhr &apos;none&apos;</code></pre>
           <ul>
