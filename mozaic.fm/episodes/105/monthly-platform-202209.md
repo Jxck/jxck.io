@@ -10,7 +10,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Theme
 
-第 105 回のテーマは 2022 年 9 月の Monthly Web です。
+第 105 回のテーマは 2022 年 9 月の Monthly Platform です。
 
 
 ## Show Note
