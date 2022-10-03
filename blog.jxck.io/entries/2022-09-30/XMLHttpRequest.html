@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-09-30T08:00:00+08:00",
-    "dateModified": "2022-10-02T08:00:00+08:00",
+    "dateModified": "2022-10-03T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-09-30>2022-09-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-10-02>2022-10-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-10-03>2022-10-03</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -218,11 +218,12 @@
           <p>(plus- XML was the hot technology at the time and it seemed like some good marketing for the component).
           <p>&mdash; <cite><a href="https://web.archive.org/web/20070314021601/http://www.alexhopmann.com/story-of-xmlhttp/" target=_blank>https://web.archive.org/web/20070314021601/http://www.alexhopmann.com/story-of-xmlhttp/</a></cite>
         </blockquote>
+        <p>その政治的理由がなければ <code translate=no>HttpRequest</code> だったかと考えると、モノには歴史と理由があることがよくわかる。
       </section>
       <section>
         <h2 id="ajax"><a href="#ajax">Ajax</a></h2>
         <p>こうして XHR は IE に実装され Outlook で使われたという。 MS の人たちは「他で使われることはないだろう」と思っていたようだが、実際にはこの機能に目をつけた多くのサイトが、 XHR を使い Web サイトに革命を起こしていくことになる。
-        <p>そうして世界中の Web が便利になっていくその流れに対し、「Web は XHR と DHTML で大きく変わる」という発想自体に名前をつけたのが &quot;<em>Ajax</em>&quot; だ。 2005 年に公開されたこのたった 1 つのブログが、 XHR が起こしている Web の変化に名前をつけた。
+        <p>そうして世界中の Web が便利になっていくその流れに対し、「Web は XHR と DHTML で大きく変わる」という発想自体に名前をつけたのが &quot;<em>Ajax</em>&quot; だ。 2005 年に公開されたこのたった 1 つのブログが、 XHR が起こしている Web の変化に名前をつけた。(これもアーカイブ落ちしてしまっている)
         <ul>
           <li>
             Ajax: A New Approach to Web Applications | Adaptive Path
@@ -232,7 +233,7 @@
           </li>
         </ul>
         <p>&quot;Ajax&quot; が &quot;AJAX&quot; ではないのは、最初からなんかの略語であることを目指してないからだろう。 &quot;Asyncrynous JavaScript + XML&quot; は全部後付けで、 Ajax はアメリカで一般的に使われている洗剤の名前だ。当時が XML 全盛だったことを思い出して欲しい、そこで一世を風靡していたプロトコルこそ SOAP (石鹸)だった。
-        <p>(昔優秀な後輩が US 帰りに買ってきてくれたお土産の Ajax。見てわかるように本家は大文字だ。フロントエンドエンジニアへのお土産に困ったらスーパーで買える。)
+        <p>(昔優秀な後輩が US 帰りに買ってきてくれたお土産の Ajax。ラベルが大文字なのはラベルだからだろう。フロントエンドエンジニアへのお土産に困ったらスーパーで買える。)
         <p>
           <picture>
             <source type=image/avif srcset=ajax.avif?221002_014723>
@@ -243,12 +244,12 @@
         <p>実際、すでに JSON も存在したため、 XML ではなく JSON が使われることは普通にあった。ただ、今と違ってブラウザに JSON オブジェクトはなく、本当に最初は <code translate=no>eval()</code> していたが、それはまずいので JSON2.js というパーサライブラリをみんなが入れていた。
         <p>(日本人は名前の持つ意味を重要視するために、「Ajax は XML じゃないといけない」などと言い出す人もいた。日本人が思っている以上に英語圏では名前で遊んでることは、知っておいた方がいい)
         <p>Ajax も JSON も、すでに存在し実装として使われていたものに名前をつけただけだ。よってこれらは、「策定」や「実装」ではなく単なる「命名」というか「言語化」だ。筆者は実装の中から見出したので「発見」という表現を気に入っている。
-        <p>Ajax は発見されてから普及したのではなく、すでに大手のサイトでもかなり目立つところで使われていた。当時代表例として挙げられていたのは Google 検索の Suggest だ。検索フォームに入力している途中から、推測して単語をリストしてくれるという今では当たり前のこの機能は、多くの人が「どうやってやってるんだ?」と血眼でソースを読み、真似した機能だった。そこで XHR を知った人も多いだろう。
+        <p>Ajax は発見されてから普及したのではなく、すでに大手のサイトでもかなり目立つところで使われていた。当時代表例として挙げられていたのは Google 検索の Suggest だ。検索フォームに入力している途中から、推測して単語をリストしてくれるという今では当たり前のこの機能は、多くの人が「どうやってやってるんだ?」と血眼でソースを読み、真似した機能だった。そこで XHR を知った人も多いだろう。JS はオープンソースじゃなくてもソースがオープンだった良さだ。
         <p>もっとわかりやすいところでは、画面遷移せずにグリグリ動かせる Google Map がある。当時こうしたサイトを実装するのは Flash や ActiveX が基本だった(実際 XHR のフォールバックは ActiveX だった)、それがプラグイン無しで動くことに気づいた他の Web 開発者は、雷に打たれていただろう。画面を下にドラッグしたら南側をグレーで塗りつぶし、四角く切った画像を非同期で取ってきてタイル状に並べるなんて発想は、当時の Web 開発にはなかった。
         <p>Ajax を用いて作られたアプリは、画面を更新しなくても情報が表示される。この流れがコミュニケーションツールの主戦場をブラウザに移し SNS の隆盛につながった。
-        <p>XHR で叩く API のアーキテクチャとして REST が、 API 共有するために CORS が、共有のための権限付与のために OAuth が、それぞれミッシングピースを補うように整備されマッシュアップにより様々なサービスが作られた。 &quot;Web サイト&quot; は &quot;Web アプリ&quot; になり、できることが増えるる一方出来ないことが浮き彫りになり、そのギャップを埋めるために HTML5 時代に突入していく。
-        <p>Web2.0 に括られたこの一連の変化は、 1 レイヤ上の社会基盤としての Web においてはコミュニケーションの変化として捉えられているが、技術基盤に目を向ければ XHR の登場を無視できない。それがなければ今 JSON に色をつけて生計を立てている多くのエンジニアの仕事は、存在すらしなかったかもしれない。
-        <p>MS の人も言っているように、技術的にはすでに数年前からあり、一部では使われていたものでも、そこに名前をつけ、言語化し、輪郭を示し、多少の夢を振りかけてマーケティングを成功させれば、世界に大きな影響を与えるというわかりやすい実例だと思う。まさしく Web3 が追いかけている背中なのかもしれない。
+        <p>XHR で叩く API のアーキテクチャとして REST が、 API 共有するために CORS が、共有の権限付与のために OAuth が、それぞれミッシングピースを補うように整備されマッシュアップにより様々なサービスが作られた。 &quot;Web サイト&quot; は &quot;Web アプリ&quot; になり、できることが増える一方出来ないことが浮き彫りになり、そのギャップを埋めるために HTML5 時代に突入していく。
+        <p>Web2.0 に括られたこの一連の変化は、 1 レイヤ上の社会基盤としての Web においては、コミュニケーションの変化として捉えられているが、技術基盤に目を向ければ XHR の登場を無視できない。それがなければ今 JSON に色をつけて生計を立てている多くのエンジニアの仕事は、存在すらしなかったかもしれない。
+        <p>Alex のブログにもあるように、技術的にはすでに数年前からあり、一部では使われていたものでも、そこに名前をつけ、言語化し、輪郭を示し、多少の夢を振りかけてマーケティングを成功させれば、世界に大きな影響を与えるというわかりやすい実例だと思う。まさしく Web3 が追いかけている背中なのかもしれない。
       </section>
       <section>
         <h2 id="fetch-の策定"><a href="#fetch-の策定">Fetch の策定</a></h2>
@@ -263,7 +264,7 @@
         </ul>
         <p>ここにあるのは、非常にざっくりとした枠組みだ。 Link Click や Form Submit 以外でも、 XHR, <code translate=no>&lt;img&gt;</code>, <code translate=no>&lt;script&gt;</code>, <code translate=no>background-image</code>, <code translate=no>@font-face</code> etc etc etc と、様々なところでリソースは取得されるが、それらが実際にどう挙動すべきかは Well-Defined とは言えない状況であり、実装差もあった。
         <p>リダイレクトはフォローするか? Basic 認証があったらどうするか? ステータスコードが 700 だったら? 指定されたのが <code translate=no>data:</code> や <code translate=no>about:</code> だったら? Referer ヘッダに載せる値は? など、一見簡単そうに見えて実はかなり複雑なのだ。
-        <p>(ということが、 Ann のブログに書かれていたのだが、このブログはもう消えてしまった。 WebArchive にもない。 Google 検索のキャッシュがあるので一応リンクを貼っておこう。それがいつまで見られるかはわからないが。)
+        <p>(ということが、 Ann のブログに書かれていたのだが、このブログはもう消えてしまった。これに至っては WebArchive にもない。 Google 検索のキャッシュがあるので一応リンクを貼っておこう。それがいつまで見られるかはわからないが。)
         <ul>
           <li>
             Fetching URLs - Anne&apos;s Blog
@@ -283,7 +284,7 @@
             </ul>
           </li>
         </ul>
-        <p>この仕様は、 JS に export された XHR の改善版の <code translate=no>fetch()</code> を目的とした仕様に見えるが、出自から考えると <code translate=no>fetch()</code> 自体はおまけのようなものだ。重要なのは仕様の前半に、前述のような細かい挙動をアルゴリズムとして整理し、レビューし、テストを書き、メジャーブラウザがそれを参照することで「どのブラウザでも同じように Fetching が行われる」ことを目指して作られている、し、そこに最大の価値がある。
+        <p>この仕様は、 XHR の改善版である <code translate=no>fetch()</code> を目的とした仕様に見えるが、出自から考えると <code translate=no>fetch()</code> 自体はおまけのようなものだ。重要なのは仕様の前半に、前述のような細かい挙動をアルゴリズムとして整理し、レビューし、テストを書き、メジャーブラウザがそれを参照することで「どのブラウザでも同じように Fetching が行われる」ことを目指して作られている。し、そこに最大の価値がある。
         <p>これにより HTML にある「リソースの取得を伴う API」は全て Fetch を参照すれば良くなった。新しく作られる API も、リソースの取得は Fetch を参照すれば良い。継ぎ足しで作られた仕様が、大きくリファクタリングされたのだ。
         <p>Fetch の仕様が生まれたことは、他にも多くの副産物を産んでいる。取得するリソースを示すのは常に URL だが、 IETF の URL 仕様はあくまで BNF でフォーマットを指定するのみで、パースの仕方は実装に依存する。しかし、ブラウザはそれをパースした結果が「どのブラウザでも同じ」でないとセキュリティ上の問題などに発展する。
         <p>そこで URL や Encoding や Stream などの仕様が、 Fetch と並行して作られた。
@@ -307,7 +308,7 @@
             </ul>
           </li>
         </ul>
-        <p>このとき同時に XHR も WHATWG 側で独立した仕様として切り出され、内部では Fetch を参照する形で整理された。つまり、 <code translate=no>fetch()</code> は XHR の上位互換だ、 <code translate=no>fetch()</code> にできて XHR にできないことはない。(嘘だ、 XHR は sync でリクエストできる。 <code translate=no>fetch()</code> はできないのではなく &quot;許さない&quot; のだ。)
+        <p>このとき同時に XHR も WHATWG 側で独立した仕様として切り出され、内部では Fetch を参照する形で整理された。つまり、 <code translate=no>fetch()</code> は XHR の上位互換だ、 <code translate=no>fetch()</code> にできて XHR にできないことはない。(嘘だ、 XHR は sync でリクエストできる。 <code translate=no>fetch()</code> は &quot;できな&quot; いのではなく &quot;許さない&quot; のだ。)
         <ul>
           <li>
             XMLHttpRequest Standard
@@ -316,7 +317,7 @@
             </ul>
           </li>
         </ul>
-        <p>こうした低レベル API の整理は、 Extensible Web という標語で語られたこともあったが、実際には Fetch のリファクタリングの副産物だったと思う。しかし、これら仕様が整理した Well-Defined な挙動を、 JS からも扱える範囲で提供した API があるのは望ましい。そこで、それぞれの仕様が単体の API (<code translate=no>fetch()</code>, <code translate=no>URLSearchParams</code>, <code translate=no>FormData</code>, <code translate=no>URL</code>, <code translate=no>ReadableStream</code>, <code translate=no>TextDecoder</code> etc) を提供したことは良い結果をもたらしたため、新しい API をある程度低レベルに分解する方針自体は、これ移行重視されるようになっていると感じる。
+        <p>こうした低レベル API の整理は、 Extensible Web という標語で語られたこともあったが、実際には Fetch のリファクタリングの副産物だったと思う。しかし、これら仕様が整理した Well-Defined な挙動を、 JS からも扱える範囲で提供した API があるのは望ましい。そこで、それぞれの仕様が単体の API (<code translate=no>fetch()</code>, <code translate=no>URLSearchParams</code>, <code translate=no>FormData</code>, <code translate=no>URL</code>, <code translate=no>ReadableStream</code>, <code translate=no>TextDecoder</code> etc) を提供したことは良い結果をもたらしたため、新しい API をある程度低レベルに分解する方針自体は、これ以降重視されるようになっていると感じる。
       </section>
       <section>
         <h2 id="fetch-はなぜ関数か"><a href="#fetch-はなぜ関数か">fetch() はなぜ関数か</a></h2>
@@ -336,7 +337,7 @@ xhr.abort()
 xhr.addEventListener(&quot;progress&quot;, (e) =&gt; {
   console.log(e)
 })</code></pre>
-        <p>確かに旧来の多くの Web API はそのように設計されており、多少の不恰好(まあ急いで実装するとそんなものだ)さはあるが XHR もそのマナーに従っている。しかし、そのデザイン自体にも問題がある。
+        <p>確かに旧来の多くの Web API はそのように設計されており、多少の不恰好さ(まあ急いで実装するとそんなものだ)はあるが XHR もそのマナーに従っている。しかし、そのデザイン自体にも問題がある。
         <p>たとえば、既に取得の終わった XHR のインスタンスを再度 <code translate=no>.open()</code> したり <code translate=no>.send()</code> したら何が起こるべきだろうか? 実は取得が終わってなかったらメソッドの呼び出しにはどう反応すべきだろうか?
         <p>「こう実装すれば良いだけじゃないか」と想像するのは簡単だ。問題は、「全てのブラウザが全く同じように挙動する」ことを保証する部分だ。きちんと仕様を定義し、実装もそれを遵守する必要がある。それは想像ほど簡単なことではない。
         <p>また、 JS では当たり前に使われているイベントリスナによるイベントハンドリングは、終わったら剥がさないとメモリリークする可能性がある。イベントリスナの掃除は面倒だ。イベント名を指定するだけで消えるなどの API ならまだ良いが、ブラウザではどこから取得した JS でも同じスコープで実行されるため、他人の貼ったイベントリスナを消せてしまうと問題がある。そこで、削除対象のコールバックの参照を指定させることで、追加した人にしか消せない設計になっている。理屈はわかるが丁寧にそのクリーンアップを実装するのは面倒だ。
@@ -385,7 +386,7 @@ const res = await fetch(req, { signal })</code></pre>
         <p>そこで llhttp に注目が集まる。これは、 node の http_parser を llparse に移植したもの。 llparse は JS で書いて LLVM IR を出力できるため、 JS/TS でコードベースがメンテ可能になるのだ。 C でメンテするよりも楽になるだけではなく、速くなったという話もある。
         <p>この llhttp を使ったクライアントライブラリが unidici で、イタリア語で 11 という意味だ。 HTTP/1.1 のライブラリであることを意味している。
         <p>Next-10 で議論されたのは、ものすごく雑にまとめると「unidici を入れてしまえばいいのではないか?」という話だ。それだけ出来が良かったということだろう。
-        <p>すると当然 unicichi の API を Node から全部出すのか? という話になる。しかし、触れるところを増やすのは後に響く問題になりやすいし、直接 socket を触りたい時もあるが、大抵はリクエストを投げてレスポンスを受け取れればいいだろう。結果「程よく良く抽象化され、かつ適切に制御ができる必要十分な API」が必要となる。そこで白羽の矢が立ったのが <code translate=no>fetch()</code> だったのだ。
+        <p>すると当然 unicichi の API を Node から全部出すのか? という話になる。しかし、触れるところを増やすのは後に響く問題になりやすいし、直接 socket を触りたい時もあるが、大抵はリクエストを投げてレスポンスを受け取れればいいだろう。結果「程よく抽象化され、かつ適切に制御ができる必要十分な API」が必要となる。そこで白羽の矢が立ったのが <code translate=no>fetch()</code> だったのだ。
         <p><code translate=no>fetch()</code> を入れたかったというよりも、入れようとしたら <code translate=no>fetch()</code> くらいしかなかった。 Polyfill がどう、バンドルサイズがどうという話とは、レイヤの違うところで行われていた議論の結果だったといえる。が、実際に作業を始めると案の上スレッドは長く伸びた。
         <ul>
           <li>
@@ -407,7 +408,7 @@ const res = await fetch(req, { signal })</code></pre>
       </section>
       <section>
         <h2 id="移行期"><a href="#移行期">移行期</a></h2>
-        <p><code translate=no>fetch()</code> のような新しい API が出てくると「XHR はもう古い、これからは <code translate=no>fetch()</code> だ」と早々と言い出す人は一定いたわけだが、初期の <code translate=no>fetch()</code> はまだ AbortSignal も ReadableStream も無かったため、キャンセルもプログレスも取れなかったため、勇み足な移行をした人も多かったかもしれない。
+        <p><code translate=no>fetch()</code> のような新しい API が出てくると「XHR はもう古い、これからは <code translate=no>fetch()</code> だ」と早々と言い出す人は一定いたわけだが、初期の <code translate=no>fetch()</code> はまだ AbortSignal も ReadableStream も無かったため、キャンセルもプログレスも取れず、勇み足な移行をした人も多かったかもしれない。
         <p>どちらにせよ、 IE のために Polyfill を入れる必要があり、 <code translate=no>fetch()</code> の Polyfill を XHR で実装するという自己矛盾感半端ないライブラリを踏み台に、徐々に移行が始まっていった。
         <p>Promise ベースでありながら Polyfill でもあり、痒いところにも手が届く Axios がちょうど良い落とし所になり、今でも多くのコードベースに SWR あたりと一緒に入ってるだろう。
         <p>そうこうしているうちに Stream が入り、遅れて紆余曲折あった AbortSignal も実装がそろい <code translate=no>fetch()</code> は完成形に近づき、それらは Node にも入りつつある。IE がリタイアしそのサポートを切ることができるのであれば Polyfill する必要はなく <code translate=no>fetch()</code> はそのまま使える。
@@ -415,7 +416,8 @@ const res = await fetch(req, { signal })</code></pre>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>今となっては嫌われる「ブラウザ独自機能」として始まった XHR だが、もしあのタイミングでこれがなかったら、我々はいまだに Web1.0 の世界観に留まっていたかもしれない。 XHR が存在しない世界線で標準化のマナーに則り「ブラウザから JS で HTTP を叩く <code translate=no>fetch()</code> という API を作ろう」と言い出して、議論が進んで標準化を迎えていたかというと、その姿は想像しがたい気もする。標準化プロセスを伴って策定を進めることは大事だが、それが浸透した現在にたまに現れる「枠を外れた提案」に対して「気持ちはわかるけど気持ちしかわからないなぁ」などという杓子定規でしか見れてないんじゃ無いかと、思わず自戒する。
+        <p>今となっては嫌われる「ブラウザ独自機能」として始まった XHR だが、もしあのタイミングでこれがなかったら、我々はいまだに Web1.0 の世界観に留まっていたかもしれない。
+        <p>XHR が存在しない世界線で標準化のマナーに則り「ブラウザから JS で HTTP を叩く <code translate=no>fetch()</code> という API を作ろう」と言い出して、議論が進んで標準化を迎えていたかというと、その姿は想像しがたい気もする。標準化プロセスを伴って策定を進めることは大事だが、それが浸透した現在にたまに現れる「枠を外れた提案」に対して「気持ちはわかるけど気持ちしかわからないなぁ」などという杓子定規でしか見れてないんじゃ無いかと、思わず自戒する。
         <p>DHTML 以上に発展してなかった世界線では、その後我々が直面した HTML5 も、 PWA も、 SPA もないだろう、 JS API を中心とした今の Web のエコシステムは発展してただろうか? フロントの JS も大して書いてない開発者に、 Node が今ほど受け入れられてただろうか? Frontend Engineer という職種が生まれることも無かったかもしれない。
         <p>独自実装という忌み嫌われがちな出自ながら、その後世界を変えるほど大活躍し、今では標準化され一定の互換性を保っているにもかかわらず、これから徐々に使われる機会が減っていくというドラマのような栄枯盛衰を辿る XHR という API が存在したことを、急に残しておきたくなった。
       </section>
