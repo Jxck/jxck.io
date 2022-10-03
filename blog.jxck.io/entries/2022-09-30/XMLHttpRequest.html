@@ -195,13 +195,13 @@
         <p>信じられないかもしれないが、昔の Web サイトは HTML と CSS だけで作るのが基本であり、ろくに「動き」はなかった。
         <p>あっても、文字を左から右にアニメーションさせる <code translate=no>&lt;marquee&gt;</code> や、点滅される <code translate=no>&lt;blink&gt;</code> 、あとは  gif アニメくらいのもので、ゲームなどは Flash プラグインを入れてやるのが基本だ。
         <p>次第に JavaScript が普及し、様々な動きが付けられるようになる。個人のホームページではオブジェクトを動かしたり、クリックしたら大きさや色が変わったり、マウスカーソルの後ろにキャラクターのアイコンがついて来たりといったものが多かった。一方、プロの作るサイトでは、フォームのバリデーションや Tab UI など、適切に導入して UX を向上したサイトも多くあった。
-        <p>JS を用いた DOM 操作は、今でこそ普通のことだが、当時はそれまでの Static HTML と比して <strong>Dynamic HTML(DHTML)</strong> と特筆して呼ばれるような新しい技術だった。この DHTML によって、 JS から触れる DOM API の重要性が高まり、そうやって作られたサイトがどのブラウザでも同じく動くように、細部まで標準化が重ねられていく。
+        <p>JS を用いた DOM 操作は、今でこそ普通のことだが、当時はそれまでの Static HTML と比して <em>Dynamic HTML(DHTML)</em> と特筆して呼ばれるような新しい技術だった。この DHTML によって、 JS から触れる DOM API の重要性が高まり、そうやって作られたサイトがどのブラウザでも同じく動くように、細部まで標準化が重ねられていく。
         <p>今と決定的に違うのは、「表示された DOM をいじる」ことしかできないことだ。あくまでも、静的サイトの味付けのために行われていた。
       </section>
       <section>
         <h2 id="xhr"><a href="#xhr">XHR</a></h2>
         <p>DHTML で画面が多少リッチになっても、新しいデータを取得するには画面更新を避けられなかった。
-        <p>全てのサイトは単なる紙芝居(今で言う MPA)で、チャットやメールは更新しないと返事が見られないため &quot;<strong>F5 連打</strong>&quot; という言葉を産み、それを JS から自動で行うオプションが提供された。地図は画面の 8 方向に矢印リンクがあり、それをクリックするとその方向に少し移動した新しい画面に更新される作りだった。(拡大縮小ももちろんリンク)
+        <p>全てのサイトは単なる紙芝居(今で言う MPA)で、チャットやメールは更新しないと返事が見られないため &quot;<em>F5 連打</em>&quot; という言葉を産み、それを JS から自動で行うオプションが提供された。地図は画面の 8 方向に矢印リンクがあり、それをクリックするとその方向に少し移動した新しい画面に更新される作りだった。(拡大縮小ももちろんリンク)
         <p>
           <picture>
             <source type=image/avif srcset=good-old-map.avif?221002_014749>
@@ -222,7 +222,7 @@
       <section>
         <h2 id="ajax"><a href="#ajax">Ajax</a></h2>
         <p>こうして XHR は IE に実装され Outlook で使われたという。 MS の人たちは「他で使われることはないだろう」と思っていたようだが、実際にはこの機能に目をつけた多くのサイトが、 XHR を使い Web サイトに革命を起こしていくことになる。
-        <p>そうして世界中の Web が便利になっていくその流れに対し、「Web は XHR と DHTML で大きく変わる」という発想自体に名前をつけたのが &quot;<strong>Ajax</strong>&quot; だ。 2005 年に公開されたこのたった 1 つのブログが、 XHR が起こしている Web の変化に名前をつけた。
+        <p>そうして世界中の Web が便利になっていくその流れに対し、「Web は XHR と DHTML で大きく変わる」という発想自体に名前をつけたのが &quot;<em>Ajax</em>&quot; だ。 2005 年に公開されたこのたった 1 つのブログが、 XHR が起こしている Web の変化に名前をつけた。
         <ul>
           <li>
             Ajax: A New Approach to Web Applications | Adaptive Path
@@ -274,7 +274,7 @@
           </li>
         </ul>
         <p>特に Ajax によるマッシュアップの隆盛が、 Origin を跨いだ連携を必要としながら、現実解が JSONP しかない状態は問題があったため、明示的に Origin を跨ぐ CORS が策定さていくことになるが、その仕様をそのまま HTML5 の仕様に追加していくのは実際かなり複雑だった。その後には、接続先を制限する CSP のマージも考えないといけない。
-        <p>そこで Ann は、「<strong>ブラウザがリソースを取得するとはどういうことか</strong>」を整理し、仕様として切り出した。それが Fetch のスペックだ。
+        <p>そこで Ann は、「<em>ブラウザがリソースを取得するとはどういうことか</em>」を整理し、仕様として切り出した。それが Fetch のスペックだ。
         <ul>
           <li>
             Fetch Standard
@@ -350,7 +350,7 @@ xhr.addEventListener(&quot;progress&quot;, (e) =&gt; {
         <pre class=js data-code=js><code translate=no class=language-js>const res = await fetch(&quot;/&quot;)
 console.log(res)</code></pre>
         <p>チャンクの取得は、 Response から取り出す Stream で表現できる。
-        <p>Stream もまた &quot;<strong>Promise の List</strong>&quot; として捉えることができるため、同様のメリットがある。これが EventEmitter ベースで設計された Node.js の Stream との最大の違いだ。
+        <p>Stream もまた &quot;<em>Promise の List</em>&quot; として捉えることができるため、同様のメリットがある。これが EventEmitter ベースで設計された Node.js の Stream との最大の違いだ。
         <pre class=js data-code=js><code translate=no class=language-js>const res = await fetch(&quot;/&quot;)
 const reader = res.body.getReader()
 while (true) {
