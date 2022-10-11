@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>FencedFrame DEMO</title>
+
+<style>
+  main {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  iframe, fencedframe {
+    background: solid 1px pink;
+    border: none;
+    box-sizing: border-box;
+  }
+</style>
+
+<h1>FencedFrame DEMO</h1>
+
+<main>
+  <section>
+    <h2>direct &lt;iframe&gt;</h2>
+    <iframe      width=300 height=300 src=child.html></iframe>
+  </section>
+
+  <section>
+    <h2>direct &lt;fencedframe&gt;</h2>
+    <fencedframe width=300 height=300 src=child.html></fencedframe>
+  </section>
+
+  <section>
+    <h2>nest &lt;iframe&gt; in &lt;iframe&gt;</h2>
+    <iframe scrolling="no" width=300 height=300 src=iframe.html></iframe>
+  </section>
+
+  <section>
+    <h2>nest &lt;fencedframe&gt; in &lt;iframe&gt;</h2>
+    <iframe  scrolling="no" width=300 height=300 src=fencedframe.html></iframe>
+  </section>
+</main>
+
+<aside>
+  <ul>
+    <li><a target="_blank" href=child.html>child.html</a></li>
+    <li><a target="_blank" href=iframe.html>iframe.html</a></li>
+    <li><a target="_blank" href=fencedframe.html>fencedframe.html</a></li>
+  </ul>
+</aside>
+
