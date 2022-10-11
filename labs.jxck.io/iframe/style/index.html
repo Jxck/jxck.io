@@ -5,15 +5,24 @@
 <title>FencedFrame DEMO</title>
 
 <style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
   main {
+    width: 60vw;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    font-size: 0.6em;
   }
 
   iframe, fencedframe {
-    background: solid 1px pink;
+    background-color: pink;
     border: none;
     box-sizing: border-box;
+
   }
 </style>
 
@@ -22,22 +31,32 @@
 <main>
   <section>
     <h2>direct &lt;iframe&gt;</h2>
-    <iframe      width=300 height=300 src=child.html></iframe>
+    <iframe      width=300 height=250 src=child.html></iframe>
   </section>
 
   <section>
     <h2>direct &lt;fencedframe&gt;</h2>
-    <fencedframe width=300 height=300 src=child.html></fencedframe>
+    <fencedframe width=300 height=250 src=child.html></fencedframe>
   </section>
 
   <section>
     <h2>nest &lt;iframe&gt; in &lt;iframe&gt;</h2>
-    <iframe scrolling="no" width=300 height=300 src=iframe.html></iframe>
+    <iframe scrolling="no" width=300 height=250 src=iframe.html></iframe>
   </section>
 
   <section>
     <h2>nest &lt;fencedframe&gt; in &lt;iframe&gt;</h2>
-    <iframe  scrolling="no" width=300 height=300 src=fencedframe.html></iframe>
+    <iframe  scrolling="no" width=300 height=250 src=fencedframe.html></iframe>
+  </section>
+
+  <section>
+    <h2>direct &lt;fencedframe&gt; with <code>opaque-ads</code></h2>
+    <fencedframe mode="opaque-ads" width=300 height=250 src=child.html></fencedframe>
+  </section>
+
+  <section>
+    <h2>nest &lt;fencedframe&gt; in &lt;iframe&gt; with <code>opaque-ads</code></h2>
+    <iframe width=300 height=250 src=fencedframe-opaque.html></iframe>
   </section>
 </main>
 
