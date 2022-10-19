@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/106/monthly-ecosystem-202210.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_005929></script>
+  <script type=module src=/assets/js/sw.js?220803_065757></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 106 回のテーマは 2022 年 10 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/106/monthly-ecosystem-202210.html>
+  <meta property=og:title        content="ep106 Monthly Ecosystem 106 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 106 回のテーマは 2022 年 10 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep106 Monthly Ecosystem 106 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/105/monthly-platform-202209.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?220306_111358>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210426_190329>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?220428_023319>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?220803_154117         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/105/monthly-platform-202209.html>ep105 Monthly Platform 202209</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep106 Monthly Ecosystem 106</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2022-10-19
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headdings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 106 回のテーマは 2022 年 10 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          <em>Astro 1.4.0/1.5.0 Release | Astro</em>
+          <ul>
+            <li><a href="https://astro.build/blog/astro-140/" target=_blank>https://astro.build/blog/astro-140/</a>
+            <li><a href="https://astro.build/blog/astro-150/" target=_blank>https://astro.build/blog/astro-150/</a>
+            <li>node/standalone が追加され、 express とかのコード書かなくて良くなった + SSR の preview ができるようになった
+            <li>tailwind/tsconfig の HMR 対応
+            <li>cookie のライブラリ buit-in
+            <li><code translate=no>:where</code> で css が出力されるようになった
+          </ul>
+        </li>
+        <li>
+          <em>RFC: First class support for promises and async/await</em>
+          <ul>
+            <li><a href="https://github.com/reactjs/rfcs/pull/229" target=_blank>https://github.com/reactjs/rfcs/pull/229</a>
+            <li><code translate=no>use</code> Hook と Server Components での async/await のサポートについて
+            <li>
+              Suspense で Promise を解決するもの
+              <ul>
+                <li>これでデータの取得を解決し、別の RFC で cache についてのサポートも追加予定らしい
+              </ul>
+            </li>
+            <li>Server Components と Client Components で同じような Promise の解決をしたいモチベーションがあり、 async/await を使用していることが、 Server Components であるという指標にもなるらしい。
+            <li>
+              Client Components はいくつかの技術的な問題があり、 Server Components のような async/await コンポーネントにできないらしい
+              <ul>
+                <li><a href="https://github.com/acdlite/rfcs/blob/first-class-promises/text/0000-first-class-support-for-promises.md#why-cant-client-components-be-async-functions" target=_blank>https://github.com/acdlite/rfcs/blob/first-class-promises/text/0000-first-class-support-for-promises.md#why-cant-client-components-be-async-functions</a>
+              </ul>
+            </li>
+            <li>
+              postgres
+              <ul>
+                <li><a href="https://github.com/facebook/react/blob/main/packages/react-pg/src/ReactPostgres.js" target=_blank>https://github.com/facebook/react/blob/main/packages/react-pg/src/ReactPostgres.js</a>
+              </ul>
+            </li>
+            <li>
+              wg
+              <ul>
+                <li><a href="https://github.com/reactwg/server-components/discussions/2" target=_blank>https://github.com/reactwg/server-components/discussions/2</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <em>Substack が Github のアカウント削除</em>
+          <ul>
+            <li><a href="https://web.archive.org/web/20220709104641/https://twitter.com/substack/status/1545720920735551489" target=_blank>https://web.archive.org/web/20220709104641/https://twitter.com/substack/status/1545720920735551489</a>
+            <li>Substack が Github から消えて npm のモジュールがヤバいことになってる
+            <li>どうやら消した理由は npm/github の 2FA 必須に反対しているかららしい
+            <li><a href="https://twitter.com/ljharb/status/1579610392414007299" target=_blank>https://twitter.com/ljharb/status/1579610392414007299</a>
+            <li>パッケージのサルベージも始まっている
+          </ul>
+        </li>
+        <li>
+          <em>rollup@3.0.0</em>
+          <ul>
+            <li><a href="https://github.com/rollup/rollup/releases/tag/v3.0.0" target=_blank>https://github.com/rollup/rollup/releases/tag/v3.0.0</a>
+            <li><code translate=no>node:</code> prefix が使えるようになった
+          </ul>
+        </li>
+        <li>
+          <em>Add no-nested-components ESLint rule</em>
+          <ul>
+            <li><a href="https://github.com/facebook/react/pull/25360" target=_blank>https://github.com/facebook/react/pull/25360</a>
+            <li>コンポーネントのネストを防ぐ ESLint ルール
+          </ul>
+        </li>
+        <li>
+          <em>Introducing OG Image Generation: Fast, dynamic social card images at the Edge - Vercel</em>
+          <ul>
+            <li><a href="https://vercel.com/blog/introducing-vercel-og-image-generation-fast-dynamic-social-card-images" target=_blank>https://vercel.com/blog/introducing-vercel-og-image-generation-fast-dynamic-social-card-images</a>
+            <li>OG の Image を SVG で動的に作るライブラリ
+            <li>HTML + CSS を Satori というエンジンで SVG に変換している
+            <li>Satori はさらに Yoga というレイアウトエンジンの WASM ビルドを使っている
+            <li>Next.js Conf のチケットとかがそれを使っている
+          </ul>
+        </li>
+        <li>
+          <em>Fastly で Next.js アプリケーションを実行 | Fastly</em>
+          <ul>
+            <li><a href="https://www.fastly.com/jp/blog/run-your-next-js-app-on-fastly" target=_blank>https://www.fastly.com/jp/blog/run-your-next-js-app-on-fastly</a>
+          </ul>
+        </li>
+        <li>
+          <em>vanilla-extract が vanilla-extract-css として SEEK 社から org として独立</em>
+          <ul>
+            <li><a href="https://github.com/vanilla-extract-css" target=_blank>https://github.com/vanilla-extract-css</a>
+            <li>
+              <a href="https://twitter.com/mattcompiles/status/1575729572783394816?s=20&t=Sk7MUukc5Fhu6GBiIMiEMg" target=_blank>https://twitter.com/mattcompiles/status/1575729572783394816?s=20&amp;t=Sk7MUukc5Fhu6GBiIMiEMg</a>
+              <ul>
+                <li>メインメンテナーの人が SEEK 社を退職したからぽい
+                <li>
+                  <a href="https://twitter.com/mattcompiles/status/1577440099939164160?s=20&t=Sk7MUukc5Fhu6GBiIMiEMg" target=_blank>https://twitter.com/mattcompiles/status/1577440099939164160?s=20&amp;t=Sk7MUukc5Fhu6GBiIMiEMg</a>
+                  <ul>
+                    <li>アトラシアンでも引き続き vanilla-extract をやってるぽい
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <em>V8 の人が meta に転職して React Core Team に入ったらしい</em>
+          <ul>
+            <li><a href="https://twitter.com/_gsathya/status/1578816177371250688?s=20&t=2zEEpVl0jaChMvXpBnYqbw" target=_blank>https://twitter.com/_gsathya/status/1578816177371250688?s=20&amp;t=2zEEpVl0jaChMvXpBnYqbw</a>
+            <li>ツイート内容的にコンパイル周りとか色々するっぽい?
+          </ul>
+        </li>
+        <li>
+          <em>Release v1.0.0 · axios/axios</em>
+          <ul>
+            <li><a href="https://github.com/axios/axios/releases/tag/v1.0.0" target=_blank>https://github.com/axios/axios/releases/tag/v1.0.0</a>
+          </ul>
+        </li>
+        <li>
+          <em>lost-pixel/lost-pixel: Holistic visual testing for your Frontend 🖼 First class integration with Storybook, Ladle &amp; other frontend libraries.</em>
+          <ul>
+            <li><a href="https://github.com/lost-pixel/lost-pixel" target=_blank>https://github.com/lost-pixel/lost-pixel</a>
+            <li>Storybook / Ladle の上で VRT を実現するツール
+          </ul>
+        </li>
+        <li>
+          <em>First-class Vite support in Storybook</em>
+          <ul>
+            <li><a href="https://storybook.js.org/blog/first-class-vite-support-in-storybook/" target=_blank>https://storybook.js.org/blog/first-class-vite-support-in-storybook/</a>
+          </ul>
+        </li>
+        <li>
+          RFC: File System-Based Native Routing with Expo and React Native | by Evan Bacon | Sep, 2022 | Exposition
+          <ul>
+            <li><a href="https://blog.expo.dev/rfc-file-system-based-routing-in-react-native-7a35474722a" target=_blank>https://blog.expo.dev/rfc-file-system-based-routing-in-react-native-7a35474722a</a>
+          </ul>
+        </li>
+        <li>
+          Announcing TypeScript 4.9 Beta - TypeScript
+          <ul>
+            <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-4-9-beta/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-4-9-beta/</a>
+          </ul>
+        </li>
+        <li>
+          Ten Years of TypeScript - TypeScript
+          <ul>
+            <li><a href="https://devblogs.microsoft.com/typescript/ten-years-of-typescript/" target=_blank>https://devblogs.microsoft.com/typescript/ten-years-of-typescript/</a>
+          </ul>
+        </li>
+        <li>
+          Volar 1.0 &quot;Nika&quot; Released! | The Vue Point
+          <ul>
+            <li><a href="https://blog.vuejs.org/posts/volar-1.0.html" target=_blank>https://blog.vuejs.org/posts/volar-1.0.html</a>
+          </ul>
+        </li>
+        <li>
+          Gatsby v5 Alpha is Here (and it&apos;s Pretty Exciting!) | Gatsby
+          <ul>
+            <li><a href="https://www.gatsbyjs.com/blog/gatsby-v5-alpha-is-here-and-its-pretty-exciting/" target=_blank>https://www.gatsbyjs.com/blog/gatsby-v5-alpha-is-here-and-its-pretty-exciting/</a>
+            <li>Gatsby にも Partial Hydration ができるようになるらしい
+          </ul>
+        </li>
+        <li>
+          appwrite/appwrite: Secure Backend Server for Web, Mobile &amp; Flutter Developers 🚀 AKA the 100% open-source Firebase alternative.
+          <ul>
+            <li><a href="https://github.com/appwrite/appwrite" target=_blank>https://github.com/appwrite/appwrite</a>
+            <li>Firebase の代替、セキュアな BaaS
+            <li>Firebase っぽいことがだいたいできそう
+          </ul>
+        </li>
+        <li>
+          whyframe
+          <ul>
+            <li><a href="https://whyframe.dev/" target=_blank>https://whyframe.dev/</a>
+            <li>iframe でいいかんじにコンポーネントレンダリングしてくれる
+            <li>ドキュメントサイトとかでコンポーネントだけレンダリングしたいとかに使用するもの向け
+          </ul>
+        </li>
+        <li>
+          D1: our quest to simplify databases
+          <ul>
+            <li><a href="https://blog.cloudflare.com/whats-new-with-d1/" target=_blank>https://blog.cloudflare.com/whats-new-with-d1/</a>
+          </ul>
+        </li>
+        <li>
+          Introducing workerd: the Open Source Workers runtime
+          <ul>
+            <li><a href="https://blog.cloudflare.com/workerd-open-source-workers-runtime/" target=_blank>https://blog.cloudflare.com/workerd-open-source-workers-runtime/</a>
+          </ul>
+        </li>
+        <li>
+          R2 is now Generally Available
+          <ul>
+            <li><a href="https://blog.cloudflare.com/r2-ga/" target=_blank>https://blog.cloudflare.com/r2-ga/</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/105/monthly-platform-202209.html>ep105 Monthly Platform 202209</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep106.mp3
+    data-title="ep106 Monthly Ecosystem 106"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
