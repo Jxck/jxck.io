@@ -7,7 +7,7 @@ guest: [@sakito](https://twitter.com/__sakito__)
 guest: [@hiroppy](https://twitter.com/about_hiroppy)
 ---
 
-# ep106 Monthly Ecosystem 106
+# ep106 Monthly Ecosystem 202210
 
 ## Theme
 
