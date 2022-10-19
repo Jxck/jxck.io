@@ -1472,7 +1472,7 @@ eyeD3 --title "ep105 Monthly Platform 202209" \
 
 eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep106.mp3
 
-eyeD3 --title "ep106 Monthly Ecosystem 106" \
+eyeD3 --title "ep106 Monthly Ecosystem 202210" \
       --track 114 \
       --artist 'Jxck' \
       --album 'mozaic.fm' \
