@@ -1,4 +1,4 @@
-# [corb][isolation][spectre][security] CORB から ORB へ
+# [orb][corb][isolation][spectre][security] CORB から ORB へ
 
 ## Intro
 
@@ -9,9 +9,11 @@ CORB (Cross Origin Read Blocking) が Fetch の仕様から消え、後継の OR
 
 ## CORB
 
-CORB が出てきたのは、 Spectre に端を発する Site Isolation の走りとして始まった。
+CORB はもともと、 Spectre に端を発する Site Isolation の走りとして始まった。
 
 Spectre のサイドチャネル対策のためには、本来アクセスできてはならない Cross Origin のリソースが、同一のプロセスに展開されることを防ぐ必要がある。
+
+CORS で行われるなら良いが、 no-cors な読み込みが可能なリソースでは、その読み込みが安全かどうかは別途確認する必要がある。
 
 そこで、リソースをメモリ上に展開するためだけの、攻撃用途くらいしかあり得ないようなリソース読み込みをブロックする対策が行われた、これが CORB だ。
 
@@ -44,15 +46,17 @@ Mozilla は、 Spectre 対策として仕様の目的自体には理解を示す
 
 ## ORB
 
-そこで、 CORB をベースに Allow List として定義し直されたのが ORB という位置付けのようだ。
+そこで、 CORB をベースに、元 Mozilla の Ann によって Allow List として定義し直されたのが ORB という位置付けのようだ。
 
 - annevk/orb: Opaque Response Blocking (CORB++)
   - https://github.com/annevk/orb
 
-CORB と ORB の違いについては、以下で詳細に解説されている。
+CORB と ORB の違いについては、以下に詳細がある。
 
 - Cross-Origin Read Blocking / Opaque Resource Blocking (CORB/ORB)
   - https://chromium.googlesource.com/chromium/src/+/HEAD/services/network/public/cpp/corb/README.md
+
+大きな違いは以下のように解説されている。
 
 > The fundamental difference between CORB and ORB is that CORB picked specific type mismatches to disallow,
 > while ORB enumerates the data formats that we expect to occur in "no-cors" requests and blocks the rest.
@@ -60,9 +64,7 @@ CORB と ORB の違いについては、以下で詳細に解説されている�
 > It also makes ORB a much bigger risk for web compatibility.
 > --- https://chromium.googlesource.com/chromium/src/+/HEAD/services/network/public/cpp/corb/README.md
 
-解説の中には、ケースごとにどのような結果になるかが表にされている。
-
-仕様を比較してみると、 ORB にも `blocklist` な変数が定義されているため、一見両方とも Allow と Blck を併用してるように見えるが、ステップの最後が `allow(true)` を返すか `deny(false)` を返すのかの違いが大きいということのようだ。
+仕様を比較してみると、 ORB にも `blocklist` な変数が定義されているため、一見両方とも Allow と Block を併用してるように見えるが、ステップの最後が `allow(true)` を返すか `deny(false)` を返すのかの違いが大きいということのようだ。
 
 - Define opaque-response blocking by annevk · Pull Request #1442 · whatwg/fetch
   - https://github.com/whatwg/fetch/pull/1442/files
@@ -71,7 +73,7 @@ CORB と ORB の違いについては、以下で詳細に解説されている�
 
 また、これらの仕様は最終的には Fetch 側にマージされることになる。現状 CORB はすでに削除されており、 ORB はまだレビュー中でマージされてない。
 
-CORB にしても ORB にしても、大抵は攻撃に使われるようなおかしな読み込みを防ぐという目的でありながら、それによって成り立っていた既存の実装があった場合に、 breaking changes になる。そこで ORB も、まずは ORB v1.0 というサブセットを作り、そこから展開していく計画のようだ。
+CORB にしても ORB にしても、大抵は攻撃に使われるようなおかしな読み込みを防ぐという目的でありながら、それによって成り立っていた既存の実装があった場合に、 breaking changes になる。そこで Chrome は、まずは ORB v1.0 というサブセットを作り、そこから展開していく計画のようだ。
 
 - Intent to Ship: Opaque Response Blocking (ORB, aka CORB++) v0.1
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ScjhKz3Z6U4/m/I6KIhSnyBAAJ
@@ -81,9 +83,9 @@ CORB にしても ORB にしても、大抵は攻撃に使われるようなお�
 
 CORB もそうだったが、 ORB でも既に動いていたものが動かなくなる可能性をはらんでいる。
 
-しかし、そうした実装は、 `Content-Type` の適切な指定がなかったり、なにかしら適切でない読み込みが行われいる場合に限られるだろう。
+レスポンスするリソースに対し、適切な MIME を指定し、適切な方法(HTML タグなど)で読み込む。という基本的なことを実施できていれば、引っかかることは少ないと思われる。
 
-レスポンスするリソースに対し、適切な MIME を指定し、適切な方法(HTML タグなど)で読み込む。という基本的なことを実施できていれば、引っかかることは少ないだろう。
+逆を言えば、引っかかった場合は `Content-Type` の適切な指定がなかったり、なにかしら適切でない読み込みが行われいる可能性があるため、配布/読み込みの方法を見直すとよさそうだ。
 
 また、 CORB/ORB はあくまで「おかしな読み込み」を防ぐことを目的とし、正常な読み込みによって発生する攻撃は防げない。そこを防ぐためには、 Opt-In での CORP/COOP/COEP などに Opt-In で対応していく必要があるだろう。
 
@@ -94,7 +96,7 @@ CORB もそうだったが、 ORB でも既に動いていたものが動かな�
 
 - https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html
 
-Canary M109 で試した時点では、エラーは CORB のままだった。これが今後変わるのかは不明だが恐らくこのデモのまま確認できると思われる。
+Canary M109 で試した時点では、エラーメッセージは "CORB" のままだった。これが今後変わるのかは不明だが恐らくこのデモのまま確認できると思われる。
 
 
 ## Resources
