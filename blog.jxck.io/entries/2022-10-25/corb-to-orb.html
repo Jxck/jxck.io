@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2022-10-25/corb-to-orb.html>
+
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163515>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
+
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163515></script>
+  <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="CORB (Cross Origin Read Blocking) が Fetch の仕様から消え、後継の ORB (Opaque Response Blocking) が策定作業中である。ここでどのような変更が起こっているのかを調査し、記録する。">
+  <meta name=keywords            content="orb,corb,isolation,spectre,security">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2022-10-25/corb-to-orb.html>
+  <meta property=og:title        content="CORB から ORB へ | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="CORB (Cross Origin Read Blocking) が Fetch の仕様から消え、後継の ORB (Opaque Response Blocking) が策定作業中である。ここでどのような変更が起こっているのかを調査し、記録する。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "CORB から ORB へ | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2022-10-25T08:00:00+08:00",
+    "dateModified": "2022-10-25T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "CORB (Cross Origin Read Blocking) が Fetch の仕様から消え、後継の ORB (Opaque Response Blocking) が策定作業中である。ここでどのような変更が起こっているのかを調査し、記録する。"
+  }
+  </script>
+
+  <title>CORB から ORB へ | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220306_111358>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154131   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2022-10-25>2022-10-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-10-25>2022-10-25</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#orb">orb</a>
+              <li><a href="/tags#corb">corb</a>
+              <li><a href="/tags#isolation">isolation</a>
+              <li><a href="/tags#spectre">spectre</a>
+              <li><a href="/tags#security">security</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#corb">CORB</a>
+                <li><a href="#allow-list-と-block-list">Allow List と Block List</a>
+                <li><a href="#orb">ORB</a>
+                <li><a href="#outro">Outro</a>
+                <li><a href="#demo">DEMO</a>
+                <li><a href="#resources">Resources</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">CORB から ORB へ</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>CORB (Cross Origin Read Blocking) が Fetch の仕様から消え、後継の ORB (Opaque Response Blocking) が策定作業中である。
+        <p>ここでどのような変更が起こっているのかを調査し、記録する。
+      </section>
+      <section>
+        <h2 id="corb"><a href="#corb">CORB</a></h2>
+        <p>CORB はもともと、 Spectre に端を発する Site Isolation の走りとして始まった。
+        <p>Spectre のサイドチャネル対策のためには、本来アクセスできてはならない Cross Origin のリソースが、同一のプロセスに展開されることを防ぐ必要がある。
+        <p>CORS で行われるなら良いが、 no-cors な読み込みが可能なリソースでは、その読み込みが安全かどうかは別途確認する必要がある。
+        <p>そこで、リソースをメモリ上に展開するためだけの、攻撃用途くらいしかあり得ないようなリソース読み込みをブロックする対策が行われた、これが CORB だ。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- 通常はあり得ないがメモリ上にリソースを展開できるコード --&gt;
+&lt;img src=&quot;https://example.com/secret.html&quot;&gt;</code></pre>
+        <p>これは CORB が Opt-In ではなくブラウザの Intervention であることを意味し、もちろん全てのケースを防ぐことはできない。
+        <p>例えば、 JS を Script タグに読むことは防げない。そこで、そうした CORB で防げないものは、 CORP/COOP/COEP を用いて Opt-In で対策する必要がある。
+      </section>
+      <section>
+        <h2 id="allow-list-と-block-list"><a href="#allow-list-と-block-list">Allow List と Block List</a></h2>
+        <p>Opt-In の CORP/COOP/COEP は、ヘッダの指定が整合していなければブロックするだけなので、仕様は比較的シンプルであるが、Intervention として防ぐ CORB は、ブラウザが「何をどういう条件でブロックするのか」を定義する必要がある。
+        <p>その定義の方法として、 CORB は「このケースでは読み込みを許可しない」という Block List の形式で定義がされていた。
+        <p>そして、 Mozilla は CORB を実装しておらず、その理由として Standard Position の中で以下のように示している。
+        <blockquote cite="https://mozilla.github.io/standards-positions/#corb">
+          <p>Blocklist certain opaque responses based on MIME type and return an &apos;emptied&apos; response instead.
+          <p>While this is an important aspect of a robust Spectre-defense, we would like to see a safelist-based approach pursued, e.g., Opaque Response Blocking.
+          <p>&mdash; <cite><a href="https://mozilla.github.io/standards-positions/#corb" target=_blank>https://mozilla.github.io/standards-positions/#corb</a></cite>
+        </blockquote>
+        <p>Mozilla は、 Spectre 対策として仕様の目的自体には理解を示す一方、 Block List 方式の仕様である点を指摘し、 Allow List での実装が望ましいとしていることがわかる。
+        <p>セキュリティ対策の仕様などは通常、 Block List よりも Allow List の方が好まれる。Allow List の方が、それ以外は全部ブロックするため話がシンプルであり、コーナーケースの安全性を担保しやすいためだ。
+      </section>
+      <section>
+        <h2 id="orb"><a href="#orb">ORB</a></h2>
+        <p>そこで、 CORB をベースに、元 Mozilla の Ann によって Allow List として定義し直されたのが ORB という位置付けのようだ。
+        <ul>
+          <li>
+            annevk/orb: Opaque Response Blocking (CORB++)
+            <ul>
+              <li><a href="https://github.com/annevk/orb" target=_blank>https://github.com/annevk/orb</a>
+            </ul>
+          </li>
+        </ul>
+        <p>CORB と ORB の違いについては、以下に詳細がある。
+        <ul>
+          <li>
+            Cross-Origin Read Blocking / Opaque Resource Blocking (CORB/ORB)
+            <ul>
+              <li><a href="https://chromium.googlesource.com/chromium/src/+/HEAD/services/network/public/cpp/corb/README.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/HEAD/services/network/public/cpp/corb/README.md</a>
+            </ul>
+          </li>
+        </ul>
+        <p>大きな違いは以下のように解説されている。
+        <blockquote cite="https://chromium.googlesource.com/chromium/src/+/HEAD/services/network/public/cpp/corb/README.md">
+          <p>The fundamental difference between CORB and ORB is that CORB picked specific type mismatches to disallow,
+          <p>while ORB enumerates the data formats that we expect to occur in &quot;no-cors&quot; requests and blocks the rest.
+          <p>This makes ORB a better fit for our security requirements.
+          <p>It also makes ORB a much bigger risk for web compatibility.
+          <p>&mdash; <cite><a href="https://chromium.googlesource.com/chromium/src/+/HEAD/services/network/public/cpp/corb/README.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/HEAD/services/network/public/cpp/corb/README.md</a></cite>
+        </blockquote>
+        <p>仕様を比較してみると、 ORB にも <code translate=no>blocklist</code> な変数が定義されているため、一見両方とも Allow と Block を併用してるように見えるが、ステップの最後が <code translate=no>allow(true)</code> を返すか <code translate=no>deny(false)</code> を返すのかの違いが大きいということのようだ。
+        <ul>
+          <li>
+            Define opaque-response blocking by annevk · Pull Request #1442 · whatwg/fetch
+            <ul>
+              <li><a href="https://github.com/whatwg/fetch/pull/1442/files" target=_blank>https://github.com/whatwg/fetch/pull/1442/files</a>
+            </ul>
+          </li>
+          <li>
+            Remove CORB by annevk · Pull Request #1441 · whatwg/fetch
+            <ul>
+              <li><a href="https://github.com/whatwg/fetch/pull/1441/files" target=_blank>https://github.com/whatwg/fetch/pull/1441/files</a>
+            </ul>
+          </li>
+        </ul>
+        <p>また、これらの仕様は最終的には Fetch 側にマージされることになる。現状 CORB はすでに削除されており、 ORB はまだレビュー中でマージされてない。
+        <p>CORB にしても ORB にしても、大抵は攻撃に使われるようなおかしな読み込みを防ぐという目的でありながら、それによって成り立っていた既存の実装があった場合に、 breaking changes になる。そこで Chrome は、まずは ORB v1.0 というサブセットを作り、そこから展開していく計画のようだ。
+        <ul>
+          <li>
+            Intent to Ship: Opaque Response Blocking (ORB, aka CORB++) v0.1
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/ScjhKz3Z6U4/m/I6KIhSnyBAAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/ScjhKz3Z6U4/m/I6KIhSnyBAAJ</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>CORB もそうだったが、 ORB でも既に動いていたものが動かなくなる可能性をはらんでいる。
+        <p>レスポンスするリソースに対し、適切な MIME を指定し、適切な方法(HTML タグなど)で読み込む。という基本的なことを実施できていれば、引っかかることは少ないと思われる。
+        <p>逆を言えば、引っかかった場合は <code translate=no>Content-Type</code> の適切な指定がなかったり、なにかしら適切でない読み込みが行われいる可能性があるため、配布/読み込みの方法を見直すとよさそうだ。
+        <p>また、 CORB/ORB はあくまで「おかしな読み込み」を防ぐことを目的とし、正常な読み込みによって発生する攻撃は防げない。そこを防ぐためには、 Opt-In での CORP/COOP/COEP などに Opt-In で対応していく必要があるだろう。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>以前作成した CORB エラーのデモがそのまま使えると思われる。
+        <ul>
+          <li><a href="https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html" target=_blank>https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html</a>
+        </ul>
+        <p>Canary M109 で試した時点では、エラーメッセージは &quot;CORB&quot; のままだった。これが今後変わるのかは不明だが恐らくこのデモのまま確認できると思われる。
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li><a href="https://github.com/annevk/orb" target=_blank>https://github.com/annevk/orb</a>
+            </ul>
+          </li>
+          <li>Explainer
+          <li>Requirements Doc
+          <li>
+            Mozilla Standard Position
+            <ul>
+              <li><a href="https://mozilla.github.io/standards-positions/#corb" target=_blank>https://mozilla.github.io/standards-positions/#corb</a>
+            </ul>
+          </li>
+          <li>
+            Webkit Position
+            <ul>
+              <li><a href="https://github.com/WebKit/standards-positions/issues/64" target=_blank>https://github.com/WebKit/standards-positions/issues/64</a>
+              <li>執筆時点で回答なし
+            </ul>
+          </li>
+          <li>
+            TAG Design Review
+            <ul>
+              <li><a href="https://github.com/w3ctag/design-reviews/issues/618" target=_blank>https://github.com/w3ctag/design-reviews/issues/618</a>
+            </ul>
+          </li>
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Ship: Opaque Response Blocking (ORB, aka CORB++) v0.1
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/ScjhKz3Z6U4/m/I6KIhSnyBAAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/ScjhKz3Z6U4/m/I6KIhSnyBAAJ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li><a href="https://chromestatus.com/feature/4933785622675456" target=_blank>https://chromestatus.com/feature/4933785622675456</a>
+            </ul>
+          </li>
+          <li>
+            WPT (Web Platform Test)
+            <ul>
+              <li><a href="https://github.com/web-platform-tests/wpt/tree/master/fetch/corb" target=_blank>https://github.com/web-platform-tests/wpt/tree/master/fetch/corb</a>
+            </ul>
+          </li>
+          <li>DEMO
+          <li>Blog
+          <li>Presentation
+          <li>Issues
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!--<ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>-->
+  </footer>
+
+</body>
+</html>
