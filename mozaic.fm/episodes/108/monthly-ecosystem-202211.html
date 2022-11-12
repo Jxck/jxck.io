@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/108/monthly-ecosystem-202211.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_005929></script>
+  <script type=module src=/assets/js/sw.js?220803_065757></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 108 回のテーマは 2022 年 11 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/108/monthly-ecosystem-202211.html>
+  <meta property=og:title        content="ep108 Monthly Ecosystem 202211 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 108 回のテーマは 2022 年 11 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep108 Monthly Ecosystem 202211 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/107/monthly-platform-202210.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?220306_111358>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210426_190329>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?220428_023319>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?220803_154117         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/107/monthly-platform-202210.html>ep107 Monthly Platform 202210</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep108 Monthly Ecosystem 202211</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2022-11-12
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headdings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 108 回のテーマは 2022 年 11 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          <em>Next.js 13</em>
+          <ul>
+            <li>
+              Blog - Next.js 13 | Next.js
+              <ul>
+                <li><a href="https://nextjs.org/blog/next-13" target=_blank>https://nextjs.org/blog/next-13</a>
+                <li>
+                  app Directory (beta):
+                  <ul>
+                    <li>
+                      Layouts
+                      <ul>
+                        <li>ディレクトリ構成とファイル名で共通レイアウト、ページ、テンプレート、 loading などを実現するもの
+                      </ul>
+                    </li>
+                    <li>
+                      React Server Components
+                      <ul>
+                        <li><code translate=no>fetch()</code> の拡張、<code translate=no>use()</code>、<code translate=no>&quot;use client&quot;</code> ディレクティブなど
+                      </ul>
+                    </li>
+                    <li>
+                      Streaming
+                      <ul>
+                        <li>UI のデータを段階的に読み込むもの
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Turbopack (alpha):
+                  <ul>
+                    <li>後述
+                  </ul>
+                </li>
+                <li>
+                  New next/image:
+                  <ul>
+                    <li>フロント側の JS を減らす
+                    <li>デフォルトで <code translate=no>alt</code> を強制
+                    <li>ネイティブの lazy を使って JS 削減
+                  </ul>
+                </li>
+                <li>
+                  New @next/font (beta):
+                  <ul>
+                    <li>フォントのビルドとセルフホストが可能に
+                    <li>Google Fonts を取ってきてビルドできる
+                    <li><code translate=no>size-adjust</code> で自動的にレイアウトシフトを抑制
+                  </ul>
+                </li>
+                <li>
+                  Improved next/link:
+                  <ul>
+                    <li><code translate=no>&lt;link&gt;</code> の下に <code translate=no>&lt;a&gt;</code> がいらなくなった
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="https://beta.nextjs.org/docs/getting-started" target=_blank>https://beta.nextjs.org/docs/getting-started</a>
+              <ul>
+                <li>このドキュメントに色々と詳細がある
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <em>Turbopack</em>
+          <ul>
+            <li>
+              Introducing Turbopack: Rust-based successor to Webpack - Vercel
+              <ul>
+                <li><a href="https://vercel.com/blog/turbopack" target=_blank>https://vercel.com/blog/turbopack</a>
+                <li>Rust に置き換えてさまざまなツールが早くなった
+                <li>ついに Webpack にメスを入れた
+                <li>Bazel などに習い関数レベルでキャッシュを強力に効かせる設計
+                <li>Next 12(Webpack+SWC loader) や Vite よりも速い
+                <li>React Server Component もネイティブに対応していく
+                <li>キャッシュはチーム共有できるようにしていく
+              </ul>
+            </li>
+            <li>
+              Turbopack Performance Benchmarks
+              <ul>
+                <li><a href="https://turbo.build/blog/turbopack-benchmarks" target=_blank>https://turbo.build/blog/turbopack-benchmarks</a>
+                <li>ベンチマークの計測詳細
+              </ul>
+            </li>
+            <li>
+              Is Turbopack really 10x Faster than Vite?
+              <ul>
+                <li><a href="https://github.com/yyx990803/vite-vs-next-turbo-hmr/discussions/8" target=_blank>https://github.com/yyx990803/vite-vs-next-turbo-hmr/discussions/8</a>
+                <li>Evanyou 氏の Turbopack 計測に関するもの
+                <li>React Server Components(RSC) を使用している場合は HMR が遅く、 RSC を使用せずにルートを​​ use client ディレクディブにすると、 Vite の 2 倍ほど HMR が早くなったとのこと
+                <li>Vite の HMR に vite-plugin-swc-react-refresh を使用すると Next と同等のスピードになったとのこと
+                <li>上記の Turbopack Performance Benchmarks の記事も Vite より 10 倍早くなるにはある一定の状況である必要があり、数字の切り上げも Vite と Turbopack で違うという記載もある
+              </ul>
+            </li>
+            <li>
+              Make ship happen by sokra · Pull Request #2315 · vercel/turbo
+              <ul>
+                <li><a href="https://github.com/vercel/turbo/pull/2315" target=_blank>https://github.com/vercel/turbo/pull/2315</a>
+              </ul>
+            </li>
+            <li>
+              Supporting React Server Components in Vite · Discussion #4591 · vitejs/vite
+              <ul>
+                <li><a href="https://github.com/vitejs/vite/discussions/4591" target=_blank>https://github.com/vitejs/vite/discussions/4591</a>
+              </ul>
+            </li>
+            <li>
+              Jared による Turbopack の発端の話
+              <ul>
+                <li><a href="https://twitter.com/jaredpalmer/status/1584971637694222336" target=_blank>https://twitter.com/jaredpalmer/status/1584971637694222336</a>
+                <li>Vercel に入った Jared が Sokra と次世代の Bundler/Builder を議論
+                <li>並列かつ強力なキャッシュの 2 つに注力して低レベルの Turbo Engine を作成
+                <li>これをベースに Webpack の後継として作られたのが Turbopack
+                <li>ここの関数結果レベルでインメモリキャッシュが強いので Next.js の開発が高速に
+                <li>これをファイルキャッシュにすれば、リモート共有できチーム開発も早くなる
+                <li>Turborepo と Turboengine は Go だったが Turbopack は Rust で、 repo/engine も Rust に置き換え予定
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          What is the reason to patch the fetch? · Issue #25573 · facebook/react
+          <ul>
+            <li><a href="https://github.com/facebook/react/issues/25573" target=_blank>https://github.com/facebook/react/issues/25573</a>
+          </ul>
+        </li>
+        <li>
+          Mixing It Up: Remix Joins Shopify to Push the Web Forward - Development (2022)
+          <ul>
+            <li><a href="https://shopify.engineering/remix-joins-shopify" target=_blank>https://shopify.engineering/remix-joins-shopify</a>
+          </ul>
+        </li>
+        <li>
+          Hydrogen: Shopify&apos;s opinionated framework for building headless e-commerce
+          <ul>
+            <li><a href="https://hydrogen.shopify.dev/roadmap/" target=_blank>https://hydrogen.shopify.dev/roadmap/</a>
+          </ul>
+        </li>
+        <li>
+          <em>Announcing TypeScript 4.9 RC - TypeScript</em>
+          <ul>
+            <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-4-9-rc/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-4-9-rc/</a>
+            <li>
+              The satisfies Operator
+              <ul>
+                <li>型をつけるのではなく、推論を活かしつつ特定の型を満たすか検証だけする演算子
+              </ul>
+            </li>
+            <li>Unlisted Property Narrowing with the in Operator
+            <li>
+              Auto-Accessors in Classes
+              <ul>
+                <li>Ruby にあるような機能
+                <li>Decorators を実装する上で先に必要
+              </ul>
+            </li>
+            <li>Checks For Equality on NaN
+            <li>
+              File-Watching Now Uses File System Events
+              <ul>
+                <li>様々なプラットフォーム対応のためにファイルの監視をポーリングで行っていた
+                <li>多様な環境を意識する必要も減ったため、イベントベースに移行
+                <li>負荷が減り、エディタのリソース消費も減り、スケールするようになった
+                <li>互換のない環境はフラグで戻せる
+                <li>NFS なら VSCode から SSH で入ってローカル編集がおすすめ
+              </ul>
+            </li>
+            <li>
+              &quot;Remove Unused Imports&quot; and &quot;Sort Imports&quot; Commands for Editors
+              <ul>
+                <li>未使用インポートの削除、とソートが提供された
+              </ul>
+            </li>
+            <li>Go-to-Definition on return Keywords
+            <li>Performance Improvements
+            <li>
+              Correctness Fixes and Breaking Changes
+              <ul>
+                <li>lib.d.ts Updates
+                <li>Better Types for Promise.resolve
+                <li>JavaScript Emit No Longer Elides Imports
+                <li>exports is Prioritized Over typesVersions
+              </ul>
+            </li>
+            <li>substitute Replaced With constraint on SubstitutionTypes
+          </ul>
+        </li>
+        <li>
+          <em>TypeScript 5.0 Iteration Plan · Issue #51362 · microsoft/TypeScript</em>
+          <ul>
+            <li><a href="https://github.com/microsoft/TypeScript/issues/51362" target=_blank>https://github.com/microsoft/TypeScript/issues/51362</a>
+            <li>
+              Language and Compiler Features
+              <ul>
+                <li>
+                  ECMAScript Decorators
+                  <ul>
+                    <li>TS Decorator を実装する
+                  </ul>
+                </li>
+                <li>
+                  Unify All enums as Unions
+                  <ul>
+                    <li>Enum で Union 相当が定義されるようになる
+                    <li>値がない場合は自動の連番
+                    <li><a href="https://github.com/rbuckton/proposal-enum" target=_blank>https://github.com/rbuckton/proposal-enum</a>
+                  </ul>
+                </li>
+                <li>
+                  Legacy Flag Deprecation
+                  <ul>
+                    <li>古いフラグの削除
+                  </ul>
+                </li>
+                <li>Investigate Bundler-Oriented Module Resolution Options
+                <li>Support .ts as a Module Specifier for Bundler/Loader Scenarios
+                <li>Declaration Files for Non-JavaScript Files
+                <li>Allow Arrays in extends for tsconfig.json Files
+                <li>Investigate Per-File Settings
+                <li>lib.d.ts Updates
+                <li>Make @types/web Versionable
+              </ul>
+            </li>
+            <li>
+              Editor Productivity
+              <ul>
+                <li>switch/case Snippet Completions
+                <li>Investigate SharedArrayBuffer-Backed Host for Web Editing Contexts
+                <li>Investigate Limited ATA-Like Scenarios in Web Editing Contexts
+                <li>Implement Cancellation in Web Editing Contexts
+                <li>Easy Run/Debug for Loose TypeScript Files
+              </ul>
+            </li>
+            <li>
+              Performance
+              <ul>
+                <li>Investigate Module Resolution Caching in .tsbuildinfo Files
+                <li>Optimizing .tsbuildinfo
+                <li>Investigate Tooling for JIT Deoptimizations
+              </ul>
+            </li>
+            <li>
+              Infrastructure
+              <ul>
+                <li>Migrate TypeScript to Modules
+                <li>Enable strictFunctionTypes on TypeScript Codebase
+              </ul>
+            </li>
+            <li>
+              Website
+              <ul>
+                <li>Make Onboarding and Cross-Platform Installation Smoother
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          ​​ Mark Zuckerberg&apos;s Message to Meta Employees | Meta
+          <ul>
+            <li><a href="https://about.fb.com/news/2022/11/mark-zuckerberg-layoff-message-to-employees/" target=_blank>https://about.fb.com/news/2022/11/mark-zuckerberg-layoff-message-to-employees/</a>
+            <li>Meta が 13% (1.1 万人以上)のレイオフを発表
+            <li>Facebook を始めとしたアプリから、 VR (Reality Labs) 事業まで幅広く影響予定
+            <li>採用も絞る
+            <li>React を始めとする OSS 関連への影響も心配
+            <li><a href="https://twitter.com/rickhanlonii/status/1590369312845762560" target=_blank>https://twitter.com/rickhanlonii/status/1590369312845762560</a>
+          </ul>
+        </li>
+        <li>
+          Remix RFC - Flat Routes
+          <ul>
+            <li><a href="https://github.com/remix-run/remix/discussions/4482" target=_blank>https://github.com/remix-run/remix/discussions/4482</a>
+          </ul>
+        </li>
+        <li>
+          ViteConf 2022 Replay
+          <ul>
+            <li><a href="https://viteconf.org/2022/replay" target=_blank>https://viteconf.org/2022/replay</a>
+            <li>Vite Conf の録画
+          </ul>
+        </li>
+        <li>
+          Qwik React
+          <ul>
+            <li><a href="https://qwik.builder.io/qwikcity/integrations/react/" target=_blank>https://qwik.builder.io/qwikcity/integrations/react/</a>
+            <li>Qwik で React が使用できるようになった
+          </ul>
+        </li>
+        <li>
+          Findings from the Jamstack Community Survey 2022
+          <ul>
+            <li><a href="https://jamstack.org/survey/2022/" target=_blank>https://jamstack.org/survey/2022/</a>
+            <li>Jamstack に関するアンケート結果
+          </ul>
+        </li>
+        <li>
+          TanStack Router BETA
+          <ul>
+            <li><a href="https://tanstack.com/router/v1" target=_blank>https://tanstack.com/router/v1</a>
+            <li>ライブラリに依存しない Router
+            <li><a href="https://react-location.tanstack.com/" target=_blank>https://react-location.tanstack.com/</a> と作者は同じ
+            <li>上記のライブラリに依存しない版になると思われる
+          </ul>
+        </li>
+        <li>
+          <em>Announcing Rome v10</em>
+          <ul>
+            <li><a href="https://rome.tools/blog/2022/11/08/rome-10/" target=_blank>https://rome.tools/blog/2022/11/08/rome-10/</a>
+            <li>
+              サイトもリニューアル
+              <ul>
+                <li><a href="https://rome.tools/" target=_blank>https://rome.tools/</a>
+                <li>JSON: Dec 2022
+                <li>Compiler: Mar 2023
+                <li>Bundler: Mar 2023
+                <li>Testing: Jun 2023
+                <li>HTML: Jun 2023
+                <li>CSS: Nov 2023
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Gatsby 5 のリリース
+          <ul>
+            <li><a href="https://www.gatsbyjs.com/gatsby-5/" target=_blank>https://www.gatsbyjs.com/gatsby-5/</a>
+            <li><a href="https://github.com/gatsbyjs/gatsby/releases/tag/gatsby%405.0.0" target=_blank>https://github.com/gatsbyjs/gatsby/releases/tag/gatsby%405.0.0</a>
+          </ul>
+        </li>
+        <li>
+          Vitest v0.25.0
+          <ul>
+            <li><a href="https://github.com/vitest-dev/vitest/releases/tag/v0.25.0" target=_blank>https://github.com/vitest-dev/vitest/releases/tag/v0.25.0</a>
+            <li>Builtin TypeChecking として型テストが入ってる
+          </ul>
+        </li>
+        <li>
+          [sharing only] npm@9 が GA
+          <ul>
+            <li><a href="https://github.blog/changelog/2022-11-09-npm-cli-v9-is-now-generally-available/" target=_blank>https://github.blog/changelog/2022-11-09-npm-cli-v9-is-now-generally-available/</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          10 月
+          <ul>
+            <li>
+              25: Next.js Conf 2022
+              <ul>
+                <li><a href="https://nextjs.org/conf" target=_blank>https://nextjs.org/conf</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          11 月
+          <ul>
+            <li>
+              12: clarity conf 2022
+              <ul>
+                <li><a href="https://www.clarityconf.com/" target=_blank>https://www.clarityconf.com/</a>
+              </ul>
+            </li>
+            <li>
+              17-18: Remix Conf Europe 2022
+              <ul>
+                <li><a href="https://remixconf.eu/" target=_blank>https://remixconf.eu/</a>
+              </ul>
+            </li>
+            <li>
+              26: JSConf JP
+              <ul>
+                <li><a href="https://jsconf.jp/2022/" target=_blank>https://jsconf.jp/2022/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>12 月
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/107/monthly-platform-202210.html>ep107 Monthly Platform 202210</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep108.mp3
+    data-title="ep108 Monthly Ecosystem 202211"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
