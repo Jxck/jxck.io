@@ -1,0 +1,192 @@
+---
+type: podcast
+tags: ["monthly ecosystem"]
+audio: https://files.mozaic.fm/mozaic-ep108.mp3
+published_at: 2022-11-12
+guest: [@sakito](https://twitter.com/__sakito__)
+guest: [@hiroppy](https://twitter.com/about_hiroppy)
+---
+
+# ep108 Monthly Ecosystem 202211
+
+## Theme
+
+第 108 回のテーマは 2022 年 11 月の Monthly Ecosystem です。
+
+
+## Show Note
+
+- *Next.js 13*
+  - Blog - Next.js 13 | Next.js
+    - https://nextjs.org/blog/next-13
+    - app Directory (beta):
+      - Layouts
+        - ディレクトリ構成とファイル名で共通レイアウト、ページ、テンプレート、 loading などを実現するもの
+      - React Server Components
+        - `fetch()` の拡張、`use()`、`"use client"` ディレクティブなど
+      - Streaming
+        - UI のデータを段階的に読み込むもの
+    - Turbopack (alpha):
+      - 後述
+    - New next/image:
+      - フロント側の JS を減らす
+      - デフォルトで `alt` を強制
+      - ネイティブの lazy を使って JS 削減
+    - New @next/font (beta):
+      - フォントのビルドとセルフホストが可能に
+      - Google Fonts を取ってきてビルドできる
+      - `size-adjust` で自動的にレイアウトシフトを抑制
+    - Improved next/link:
+      - `<link>` の下に `<a>` がいらなくなった
+  - https://beta.nextjs.org/docs/getting-started
+    - このドキュメントに色々と詳細がある
+- *Turbopack*
+  - Introducing Turbopack: Rust-based successor to Webpack - Vercel
+    - https://vercel.com/blog/turbopack
+    - Rust に置き換えてさまざまなツールが早くなった
+    - ついに Webpack にメスを入れた
+    - Bazel などに習い関数レベルでキャッシュを強力に効かせる設計
+    - Next 12(Webpack+SWC loader) や Vite よりも速い
+    - React Server Component もネイティブに対応していく
+    - キャッシュはチーム共有できるようにしていく
+  - Turbopack Performance Benchmarks
+    - https://turbo.build/blog/turbopack-benchmarks
+    - ベンチマークの計測詳細
+  - Is Turbopack really 10x Faster than Vite?
+    - https://github.com/yyx990803/vite-vs-next-turbo-hmr/discussions/8
+    - Evanyou 氏の Turbopack 計測に関するもの
+    - React Server Components(RSC) を使用している場合は HMR が遅く、 RSC を使用せずにルートを​​ use client ディレクディブにすると、 Vite の 2 倍ほど HMR が早くなったとのこと
+    - Vite の HMR に vite-plugin-swc-react-refresh を使用すると Next と同等のスピードになったとのこと
+    - 上記の Turbopack Performance Benchmarks の記事も Vite より 10 倍早くなるにはある一定の状況である必要があり、数字の切り上げも Vite と Turbopack で違うという記載もある
+  - Make ship happen by sokra · Pull Request #2315 · vercel/turbo
+    - https://github.com/vercel/turbo/pull/2315
+  - Supporting React Server Components in Vite · Discussion #4591 · vitejs/vite
+    - https://github.com/vitejs/vite/discussions/4591
+  - Jared による Turbopack の発端の話
+    - https://twitter.com/jaredpalmer/status/1584971637694222336
+    - Vercel に入った Jared が Sokra と次世代の Bundler/Builder を議論
+    - 並列かつ強力なキャッシュの 2 つに注力して低レベルの Turbo Engine を作成
+    - これをベースに Webpack の後継として作られたのが Turbopack
+    - ここの関数結果レベルでインメモリキャッシュが強いので Next.js の開発が高速に
+    - これをファイルキャッシュにすれば、リモート共有できチーム開発も早くなる
+    - Turborepo と Turboengine は Go だったが Turbopack は Rust で、 repo/engine も Rust に置き換え予定
+- What is the reason to patch the fetch? · Issue #25573 · facebook/react
+  - https://github.com/facebook/react/issues/25573
+- Mixing It Up: Remix Joins Shopify to Push the Web Forward - Development (2022)
+  - https://shopify.engineering/remix-joins-shopify
+- Hydrogen: Shopify's opinionated framework for building headless e-commerce
+  - https://hydrogen.shopify.dev/roadmap/
+- *Announcing TypeScript 4.9 RC - TypeScript*
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-4-9-rc/
+  - The satisfies Operator
+    - 型をつけるのではなく、推論を活かしつつ特定の型を満たすか検証だけする演算子
+  - Unlisted Property Narrowing with the in Operator
+  - Auto-Accessors in Classes
+    - Ruby にあるような機能
+    - Decorators を実装する上で先に必要
+  - Checks For Equality on NaN
+  - File-Watching Now Uses File System Events
+    - 様々なプラットフォーム対応のためにファイルの監視をポーリングで行っていた
+    - 多様な環境を意識する必要も減ったため、イベントベースに移行
+    - 負荷が減り、エディタのリソース消費も減り、スケールするようになった
+    - 互換のない環境はフラグで戻せる
+    - NFS なら VSCode から SSH で入ってローカル編集がおすすめ
+  - "Remove Unused Imports" and "Sort Imports" Commands for Editors
+    - 未使用インポートの削除、とソートが提供された
+  - Go-to-Definition on return Keywords
+  - Performance Improvements
+  - Correctness Fixes and Breaking Changes
+    - lib.d.ts Updates
+    - Better Types for Promise.resolve
+    - JavaScript Emit No Longer Elides Imports
+    - exports is Prioritized Over typesVersions
+  - substitute Replaced With constraint on SubstitutionTypes
+- *TypeScript 5.0 Iteration Plan · Issue #51362 · microsoft/TypeScript*
+  - https://github.com/microsoft/TypeScript/issues/51362
+  - Language and Compiler Features
+    - ECMAScript Decorators
+      - TS Decorator を実装する
+    - Unify All enums as Unions
+      - Enum で Union 相当が定義されるようになる
+      - 値がない場合は自動の連番
+      - https://github.com/rbuckton/proposal-enum
+    - Legacy Flag Deprecation
+      - 古いフラグの削除
+    - Investigate Bundler-Oriented Module Resolution Options
+    - Support .ts as a Module Specifier for Bundler/Loader Scenarios
+    - Declaration Files for Non-JavaScript Files
+    - Allow Arrays in extends for tsconfig.json Files
+    - Investigate Per-File Settings
+    - lib.d.ts Updates
+    - Make @types/web Versionable
+  - Editor Productivity
+    - switch/case Snippet Completions
+    - Investigate SharedArrayBuffer-Backed Host for Web Editing Contexts
+    - Investigate Limited ATA-Like Scenarios in Web Editing Contexts
+    - Implement Cancellation in Web Editing Contexts
+    - Easy Run/Debug for Loose TypeScript Files
+  - Performance
+    - Investigate Module Resolution Caching in .tsbuildinfo Files
+    - Optimizing .tsbuildinfo
+    - Investigate Tooling for JIT Deoptimizations
+  - Infrastructure
+    - Migrate TypeScript to Modules
+    - Enable strictFunctionTypes on TypeScript Codebase
+  - Website
+    - Make Onboarding and Cross-Platform Installation Smoother
+- ​​ Mark Zuckerberg's Message to Meta Employees | Meta
+  - https://about.fb.com/news/2022/11/mark-zuckerberg-layoff-message-to-employees/
+  - Meta が 13% (1.1 万人以上)のレイオフを発表
+  - Facebook を始めとしたアプリから、 VR (Reality Labs) 事業まで幅広く影響予定
+  - 採用も絞る
+  - React を始めとする OSS 関連への影響も心配
+  - https://twitter.com/rickhanlonii/status/1590369312845762560
+- Remix RFC - Flat Routes
+  - https://github.com/remix-run/remix/discussions/4482
+- ViteConf 2022 Replay
+  - https://viteconf.org/2022/replay
+  - Vite Conf の録画
+- Qwik React
+  - https://qwik.builder.io/qwikcity/integrations/react/
+  - Qwik で React が使用できるようになった
+- Findings from the Jamstack Community Survey 2022
+  - https://jamstack.org/survey/2022/
+  - Jamstack に関するアンケート結果
+- TanStack Router BETA
+  - https://tanstack.com/router/v1
+  - ライブラリに依存しない Router
+  - https://react-location.tanstack.com/ と作者は同じ
+  - 上記のライブラリに依存しない版になると思われる
+- *Announcing Rome v10*
+  - https://rome.tools/blog/2022/11/08/rome-10/
+  - サイトもリニューアル
+    - https://rome.tools/
+    - JSON: Dec 2022
+    - Compiler: Mar 2023
+    - Bundler: Mar 2023
+    - Testing: Jun 2023
+    - HTML: Jun 2023
+    - CSS: Nov 2023
+- Gatsby 5 のリリース
+  - https://www.gatsbyjs.com/gatsby-5/
+  - https://github.com/gatsbyjs/gatsby/releases/tag/gatsby%405.0.0
+- Vitest v0.25.0
+  - https://github.com/vitest-dev/vitest/releases/tag/v0.25.0
+  - Builtin TypeChecking として型テストが入ってる
+- [sharing only] npm@9 が GA
+  - https://github.blog/changelog/2022-11-09-npm-cli-v9-is-now-generally-available/
+
+
+## Events
+
+- 10 月
+  - 25: Next.js Conf 2022
+    - https://nextjs.org/conf
+- 11 月
+  - 12: clarity conf 2022
+    - https://www.clarityconf.com/
+  - 17-18: Remix Conf Europe 2022
+    - https://remixconf.eu/
+  - 26: JSConf JP
+    - https://jsconf.jp/2022/
+- 12 月
