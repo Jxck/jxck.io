@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-08-18T08:00:00+08:00",
-    "dateModified": "2022-02-21T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-08-18>2019-08-18</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-21>2022-02-21</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -187,7 +187,7 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。
         <p>その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。
-        <p>WebScoket/MSE/WebRTC/WASM など、 Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。
+        <p>WebSocket/MSE/WebRTC/WASM など、 Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。
         <p>しかし、できることが増えればこそ、それぞれのパーツの不足する部分が浮き彫りになる。
         <p>WebTransport と WebCodecs は、主にそんな Web Game の需要から「本当に必要としているもの」を再考した結果をまとめた提案と言えるだろう。
         <p>これが、単に Web Game 開発の需要を満たすだけで終わるものか、ゲーム以外の Web の開発にどこまで影響を及ぼすか。
@@ -418,7 +418,7 @@
           <p>ただ、以下のような気持ちは汲み取る。
           <ul>
             <li>Promise/Stream をきちんと導入しモダンに仕上げる
-            <li>Stream による backpressure も対応する
+            <li>Stream による back pressure も対応する
             <li>Uni/Bi-Directional / Datagram はそのまま対応
             <li>Transport Interface で具体的なプロトコルを抽象化
           </ul>
@@ -436,7 +436,7 @@
             </li>
           </ul>
           <p>WebSocket の API は、 Promise や Stream が定義される前に策定されたため、それらに対応していない。
-          <p>特に、 Stream に対応すれば、 WebTransport の問題意識の一つである、 backpressure にも対応可能であるため、よりモダンな API に再設計出来れば、単にコードの見た目以上のメリットも出てくる。
+          <p>特に、 Stream に対応すれば、 WebTransport の問題意識の一つである、 back pressure にも対応可能であるため、よりモダンな API に再設計出来れば、単にコードの見た目以上のメリットも出てくる。
           <p>これを行うために、 WebSocket を Stream 対応する仕様策定と実装が WebSocketStream であり、現在 Chrome チームにより進められている。
           <p>プロトコルに手を入れる訳ではないため、 WebSocketStream が WebTransport のユースケースをカバーできる訳ではないが、 API 的には非常に近いため、先行して進む WebSocketStream の作業は WebTransport や今後出てくる API にも少なからず影響するだろう。
           <p>せっかく新しく作るので、これらがうまく連携し、 ES が培った機能をうまく取り込んで洗練された API 設計に落ち着いて欲しい。

@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-04-22T08:00:00+08:00",
-    "dateModified": "2022-05-04T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-04-22>2022-04-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-05-04>2022-05-04</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -206,7 +206,7 @@
           <h3 id="spa-第一期-fragment-による実装"><a href="#spa-第一期-fragment-による実装">SPA 第一期: fragment による実装</a></h3>
           <p>URL の fragment 部 (<code translate=no>https://example.com#foo</code> の <code translate=no>#foo</code>)は、サーバには送られない、クライアントでのみ使われる URL Component だ。
           <p>基本は <code translate=no>&lt;pre id=&quot;sample_code&quot;&gt;</code> のようにした場合 <code translate=no>https://example.com#sample_code</code> でサンプルコードまでスクロールするといったユースケースで用いられる。そこで、サーバにリクエストをせずにクライアントの状態を変えるという部分だけに着目し、 SPA のルーティングを fragment にエンコードするという実装が考えられた。
-          <p>クライアントの状態であるため、直接アクセスしてもその状態を復元できるのはブラウザのみだ。したがって、当時はそのような構成のサイトが正しく検索できないという問題があった。そこで、 Google Bot は <code translate=no>#!</code> で始まるフラグメントの利用を推奨し、 <code translate=no>https://example.com#!foo</code> を発見した場合はサーバに対して <code translate=no>htts://example.com/_escaped_fragment_=foo</code> を代わりにリクエストすることで、サーバは <code translate=no>#!foo</code> で表示されるべき画面を SSR して返すように求めるというサポートを行っていた。
+          <p>クライアントの状態であるため、直接アクセスしてもその状態を復元できるのはブラウザのみだ。したがって、当時はそのような構成のサイトが正しく検索できないという問題があった。そこで、 Google Bot は <code translate=no>#!</code> で始まるフラグメントの利用を推奨し、 <code translate=no>https://example.com#!foo</code> を発見した場合はサーバに対して <code translate=no>https://example.com/_escaped_fragment_=foo</code> を代わりにリクエストすることで、サーバは <code translate=no>#!foo</code> で表示されるべき画面を SSR して返すように求めるというサポートを行っていた。
           <ul>
             <li>
               A proposal for making AJAX crawlable  |  Google Search Central Blog  |  Google Developers
@@ -240,8 +240,8 @@ window.on(&apos;popstate&apos;, (e) =&gt; {
 })</code></pre>
           <p><code translate=no>history</code> は実際に履歴のリストを持っているが、ここにアクセスできるとプライバシー上の問題があるため、直接リストにアクセスすることはできない。代わりに、遷移するための方法が提供されている。
           <pre class=js data-code=js><code translate=no class=language-js>history.back() // 戻る
-history.forwad() // 進む
-hostory.go(-2) // ページを引数で指定し遷移</code></pre>
+history.forward() // 進む
+history.go(-2) // ページを引数で指定し遷移</code></pre>
           <p>大きなところでは、 Twitter が 2012 年に対応をアナウンスしている。これはそれなりに早い方の移行だったと思う。
           <ul>
             <li>
@@ -343,7 +343,7 @@ after
           <p>History API でいう <code translate=no>history.pushState()</code> に相当するのが <code translate=no>navigation.navigate()</code> だ。 URL に紐づけて State を保存し、 Entry List を操作する。
           <pre class=js data-code=js><code translate=no class=language-js>await navigation.navigate(&quot;/foo&quot;, { state: {count: 1}, info: &quot;shortcut&quot;, history: &quot;push&quot; }).finish</code></pre>
           <p><code translate=no>state</code> は any だが、シリアライズ可能なものに限る。 <code translate=no>history</code> は <code translate=no>&quot;push&quot;</code> なら追記、 <code translate=no>&quot;replace&quot;</code> なら現在の Entry を置き換える。その遷移だけで用いるエフェメラルな値は <code translate=no>info</code> で送ることができる。
-          <p>戻り値は <code translate=no>{ commited, finish }</code> という 2 つの Promise だ。 <code translate=no>commited</code> は <code translate=no>navigate()</code> 開始と共に即座に Resolve し、 <code translate=no>finished</code> は <code translate=no>navigate()</code> が完了したら Resolve する。
+          <p>戻り値は <code translate=no>{ committed, finish }</code> という 2 つの Promise だ。 <code translate=no>committed</code> は <code translate=no>navigate()</code> 開始と共に即座に Resolve し、 <code translate=no>finished</code> は <code translate=no>navigate()</code> が完了したら Resolve する。
         </section>
         <section>
           <h3 id="currententry.getstate"><a href="#currententry.getstate">currentEntry.getState()</a></h3>
@@ -379,7 +379,7 @@ console.assert(navigation.currentEntry.getState().count === 2);</code></pre>
         </section>
         <section>
           <h3 id="backforwardreload"><a href="#backforwardreload">back()/forward()/reload()</a></h3>
-          <p><code translate=no>history.back()</code> / <code translate=no>hostory.forward()</code> / <code translate=no>location.realod()</code> 相当のメソッドもある。
+          <p><code translate=no>history.back()</code> / <code translate=no>history.forward()</code> / <code translate=no>location.reload()</code> 相当のメソッドもある。
           <p><code translate=no>navigation.back()</code> / <code translate=no>navigation.forward()</code> は <code translate=no>info</code> を渡すことができ、 back/forward が可能かどうかを知るためのフラグが <code translate=no>navigation.canGoBack</code> および <code translate=no>navigation.canGoForward</code> で提供されている。
           <pre class=js data-code=js><code translate=no class=language-js>if (navigation.canGoBack) {
   await navigation.back({info: &quot;click-prev&quot;}).finished
@@ -462,13 +462,13 @@ window?.navigation?.on(&quot;navigateerror&quot;, (e) =&gt; {
   console.log(e)
 })</code></pre>
           <p>(実装の雰囲気は Service Worker の <code translate=no>fetch</code> イベントのハンドラに近い)
-          <p>途中の処理が全て成功(Resolve)すれば <code translate=no>navigatesuccess</code> イベントを発火し、失敗(Reject)すれば <code translate=no>navigationerror</code> が発火することで、結果を取得することもできる。
+          <p>途中の処理が全て成功(Resolve)すれば <code translate=no>navigatesuccess</code> イベントを発火し、失敗(Reject)すれば <code translate=no>navigateerror</code> が発火することで、結果を取得することもできる。
           <p>見た目上、同様のことを実現すること自体は従来でもできた。それを踏まえて、この API の何が凄いのかを細かく見ていこう。
         </section>
         <section>
           <h3 id="遷移の開始と完了"><a href="#遷移の開始と完了">遷移の「開始」と「完了」</a></h3>
           <p>まず、 <code translate=no>transitionWhile()</code> は、呼び出した瞬間が「<em>遷移の開始</em>」で、全て終わったら「<em>遷移の完了</em>」であることがわかる。ここが <code translate=no>await</code> なので、 <code translate=no>transitionWhile()</code> は渡された Promise が Resolve されるまでを「遷移」と定義していることになる。
-          <p>この遷移(navigation event)が <code translate=no>navigation.navigate()</code> によって発火していた場合は、「開始」と「完了」が先ほどの <code translate=no>{ commited, finished }</code> Promise に対応することになる。
+          <p>この遷移(navigation event)が <code translate=no>navigation.navigate()</code> によって発火していた場合は、「開始」と「完了」が先ほどの <code translate=no>{ committed, finished }</code> Promise に対応することになる。
           <pre class=js data-code=js><code translate=no class=language-js>// transitionWhile() による画面遷移が終わるのを待つ
 await navigation.navigate(url, state).finished</code></pre>
           <p>この「開始」と「完了」というセマンティクスは、 JS 上だけではなくブラウザ、支援技術、計測ツール、開発者ツールなど、あらゆる実装に対して有益な情報だ。

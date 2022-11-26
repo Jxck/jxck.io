@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-05-15T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-05-15>2018-05-15</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -228,7 +228,7 @@
         <section>
           <h3 id="1.-サービスに対して-challenge-乱数の発行を要求する"><a href="#1.-サービスに対して-challenge-乱数の発行を要求する">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
           <p>クライアントはサーバに username を送り、登録に必要な以下のような情報を要求する。
-          <p>(ここではそのまま <code translate=no>navigatore.credentials.create()</code> に渡せる形でサーバから返している)
+          <p>(ここではそのまま <code translate=no>navigator.credentials.create()</code> に渡せる形でサーバから返している)
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=js data-code=js><code translate=no class=language-js>// https://w3c.github.io/webauthn/#dictionary-makecredentialoptions
 const clientCredentialOption = {
@@ -403,7 +403,7 @@ const {attestationObject, clientDataJSON} = response</code></pre>
         <section>
           <h3 id="1.-サービスに対して-challenge-乱数の発行を要求する_1"><a href="#1.-サービスに対して-challenge-乱数の発行を要求する_1">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
           <p>registration 同様、サーバに username を送り、認証に必要な以下の情報を要求する。
-          <p>(ここではそのまま <code translate=no>navigatore.credentials.get()</code> に渡せる形でサーバから返している)
+          <p>(ここではそのまま <code translate=no>navigator.credentials.get()</code> に渡せる形でサーバから返している)
           <pre class=js data-code=js><code translate=no class=language-js>{
   challenge: crypto.randomBytes(32),
   allowCredentials: [
@@ -477,7 +477,7 @@ const { type, authenticatorData, signature, userHandle, clientDataJSON } // type
 //   BITSTRING &lt;raw public key&gt;
 // }
 // Luckily, to do that, we just need to prefix it with constant 26 bytes (metadata is constant).
-const publickKeyPEM = Buffer.concat([
+const publicKeyPEM = Buffer.concat([
   Buffer.from(&quot;3059301306072a8648ce3d020106082a8648ce3d030107034200&quot;, &quot;hex&quot;),
   Buffer.from(publicKey),
 ]).toString(&quot;base64&quot;).match(/.{1,64}/g)</code></pre>
@@ -485,7 +485,7 @@ const publickKeyPEM = Buffer.concat([
           <pre class=js data-code=js><code translate=no class=language-js>const verified = crypto
                     .createVerify(&quot;sha256&quot;)
                     .update(Buffer.concat([authenticatorData, hash]))
-                    .verify(publickKeyPEM, signature)</code></pre>
+                    .verify(publicKeyPEM, signature)</code></pre>
           <p>最後に、ここで取得した signCount が、保存しているものよりも大きいことを確認する。
           <p>ここまで成功すれば、認証が完了したとみなすことができる。
         </section>

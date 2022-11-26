@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-07-21T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-07-21>2016-07-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -207,13 +207,13 @@
         <ul>
           <li><a href="https://labs.jxck.io/fetch/basic.html" target=_blank>Fetch Basic DEMO</a>
         </ul>
-        <p><code translate=no>res.text()</code> が body を resolve する Promsie を返していることが分かる。
+        <p><code translate=no>res.text()</code> が body を resolve する Promise を返していることが分かる。
         <p>この API では、以下の二つができない。
         <ul>
           <li><code translate=no>foo.txt</code> が大きかった場合、 fetch を中断(キャンセル)する。
           <li><code translate=no>foo.txt</code> が大きかった場合、ダウンロードの進捗(プログレス)を得る。
         </ul>
-        <p>現在の Promise の仕様では、非同期処理に対してあくまで <em>fullfilled(完了した)</em> か <em>rejected(失敗した)</em> の二つの状態を返すことしかできない。
+        <p>現在の Promise の仕様では、非同期処理に対してあくまで <em>fulfilled(完了した)</em> か <em>rejected(失敗した)</em> の二つの状態を返すことしかできない。
         <p>このため、その途中の状態に処理を挟む余地がないためである。
       </section>
       <section>
@@ -324,7 +324,7 @@
       <section>
         <h2 id="promise-の-cancel"><a href="#promise-の-cancel">Promise の cancel</a></h2>
         <p>現在の仕様では、 Stream を経由せず Promise のレベルで fetch をキャンセルすることはできない。
-        <p>これは Promsie そのものにキャンセルという概念が含まれていないためである。
+        <p>これは Promise そのものにキャンセルという概念が含まれていないためである。
         <p>もし Promise 自体にキャンセルの概念が入れば、 Stream の取得は不要となる。
         <p>fetch を含めて Promise を返す API は増加しつつあるため、 Cancelable Promise の議論は現在も続いている。
         <ul>
@@ -337,7 +337,7 @@
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>Stream での progress と cancel は可能になったが、まだ <em>ブラウザが実装しているか</em> という問題もある。
         <ul>
-          <li><a href="https://caniuse.com/#feat=fetch" target=_blank>Fetch | canuise</a>
+          <li><a href="https://caniuse.com/#feat=fetch" target=_blank>Fetch | caniuse</a>
         </ul>
         <p>一方 XHR が無くなることはないため、今後も利用可能である。
         <p>以上のような仕様と現状を踏まえた上で、何を採用するか検討するのが良いだろう。

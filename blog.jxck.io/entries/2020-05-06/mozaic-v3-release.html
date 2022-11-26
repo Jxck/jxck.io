@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-05-06T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-05-06>2020-05-06</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -290,7 +290,7 @@
           <p>Podcast アプリの実態は、音声が再生できる RSS リーダーであり、定期的にフィードを取得し Podcast の更新を取得する。
           <p>Service Worker は background sync が従来からあるが、これは「オフライン中に発生したリクエストを、オンライン復帰時に再送する」といったユースケースをカバーしている。
           <p>サーバ側でフィードを更新したときに Push を送る方法もあるが、 Push は届くとは限らない上に、 Permission の問題もある。
-          <p>そこで、 Slient Push を待っていたのだが、先に Periodic Background Sync(PBS) が提案された。
+          <p>そこで、 Silent Push を待っていたのだが、先に Periodic Background Sync(PBS) が提案された。
           <ul>
             <li><a href="https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html">Periodic Background Sync 及び Web を Install するということ | blog.jxck.io</a>
           </ul>
@@ -315,7 +315,7 @@
           <p>本当は Periodic Background Sync で Background Fetch を実行する方向で考えていたが、今の Android Chrome では、それをしてもタスクが登録されるだけでダウンロードが実行されない。
           <p>ユーザが明示的にタスクを許可しないといけないため、ここは普通に Fetch して Cache に入れるようにした。
           <p>PBS + Bgfetch が鉄板の組み合わせだと思っていたので、ここは意外だった。詳細は詰めきれていないが理由などをもう少し調査しておきたい。
-          <p>なお、 Bgfetch は cors が必要だが、 <code translate=no>&lt;aduio&gt;</code> のリクエストが no-cors なこと、そして SW を経由したときに Cross-Origin-Resource-Policy の設定を求められたあたりがハマった。
+          <p>なお、 Bgfetch は cors が必要だが、 <code translate=no>&lt;audio&gt;</code> のリクエストが no-cors なこと、そして SW を経由したときに Cross-Origin-Resource-Policy の設定を求められたあたりがハマった。
         </section>
         <section>
           <h3 id="badging-api"><a href="#badging-api">Badging API</a></h3>
@@ -351,7 +351,7 @@
           <p>Audio の API も生で操作し、フレームワークなどは一切利用してない。
           <p>HTML Modules は実装されてないため、 fetch で代用しているが、 module は mjs を import している。
           <p>Player ではないが、 Bgfetch を行うためのダウンロードアイコンも、アイコン自体に Download 機能をもたせた WebComponents にしている。
-          <p>これまでは Tempalte をレンダリングした静的ページだったが、今後もこのように UI に機能を統合した WebComponents 群の組み合わせによる実装に移行していきたい。
+          <p>これまでは Template をレンダリングした静的ページだったが、今後もこのように UI に機能を統合した WebComponents 群の組み合わせによる実装に移行していきたい。
         </section>
         <section>
           <h3 id="wai-aria"><a href="#wai-aria">WAI-ARIA</a></h3>
@@ -429,7 +429,7 @@
             <li>Cross-Origin Opener Policy
           </ul>
           <p>これら全てを有効にしている。
-          <p>加えて CSP/Trusted Types を有効にした環境を Securere Context と定義し、そこではさらに強力な機能を有効にできるのではないかという提案がなされている。
+          <p>加えて CSP/Trusted Types を有効にした環境を Securer Context と定義し、そこではさらに強力な機能を有効にできるのではないかという提案がなされている。
           <ul>
             <li><a href="https://github.com/mikewest/securer-contexts/blob/master/README.md" target=_blank>mikewest/securer-contexts</a>
           </ul>

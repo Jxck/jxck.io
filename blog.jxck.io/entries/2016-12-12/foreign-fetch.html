@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-12-12T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-12-12>2016-12-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -151,7 +151,7 @@
                 <li><a href="#foreign-fetch-の仕組み">foreign-fetch の仕組み</a>
                 <li><a href="#3rd-party-service-worker-の登録">3rd Party Service Worker の登録</a>
                 <li><a href="#foreign-fetch-によるサービス間連携">foreign-fetch によるサービス間連携</a>
-                <li><a href="#micro-serivce-workers">Micro Serivce Workers</a>
+                <li><a href="#micro-service-workers">Micro Service Workers</a>
                 <li><a href="#foreign-fetch">foreign-fetch</a>
               </ol>
             </nav>
@@ -302,7 +302,7 @@ self.addEventListener(&apos;foreignfetch&apos;, (e) =&gt; {
         <p>サービス連携のような使い方が可能になるのだ。
       </section>
       <section>
-        <h2 id="micro-serivce-workers"><a href="#micro-serivce-workers">Micro Serivce Workers</a></h2>
+        <h2 id="micro-service-workers"><a href="#micro-service-workers">Micro Service Workers</a></h2>
         <p>1st Party Service Worker で全ての処理を行う必要があったモデルには、かなり無理があった。
         <p>3rd Party が持つロジックを全て適切に 1st Party 内に実装するのは難しいし、そもそも 1st Party が必ずそれを行うことを前提とするのは非現実的だ。
         <p>3rd Party が API に Service Worker を含めて提供し、それが 1st Party から見れば透過的に動作するのは非常に自然かつ妥当であると言える。
@@ -315,7 +315,7 @@ self.addEventListener(&apos;foreignfetch&apos;, (e) =&gt; {
       <section>
         <h2 id="foreign-fetch"><a href="#foreign-fetch">foreign-fetch</a></h2>
         <p>foreign-fetch は現状まだ Origin-Trials の対象であるが、 Trials を外れれば、今後各 API が Service Worker を提供するのが一般的になっていく可能性がある。
-        <p>また Microservices 化を進める 1 つの Origanization の中の複数の Service も、 foreign-fetch を用いたもろもろの連携が視野に入ってくると、 JSON API までにとどまりがちだった Service の定義がもう少し広がるかもしれない。
+        <p>また Microservices 化を進める 1 つの Organization の中の複数の Service も、 foreign-fetch を用いたもろもろの連携が視野に入ってくると、 JSON API までにとどまりがちだった Service の定義がもう少し広がるかもしれない。
         <p>デバッグなどが難しいという問題があるが、本ブログでも積極的に導入し知見を貯めていきたい。
       </section>
     </article>

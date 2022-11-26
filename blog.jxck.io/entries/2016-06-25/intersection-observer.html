@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-06-25T08:00:00+08:00",
-    "dateModified": "2022-02-21T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-06-25>2016-06-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-21>2022-02-21</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -256,7 +256,7 @@
         <section>
           <h3 id="onscroll-イベント"><a href="#onscroll-イベント">onscroll イベント</a></h3>
           <p>上記の判定は、スクロールするたび、つまり onscroll イベントごとに計算すれば DOM の出現監視になる。
-          <p>ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Jank を引き起こす可能性がある。
+          <p>ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Junk を引き起こす可能性がある。
           <p>対策としては、まずコールバックを実行するイベントを間引く throttling がある。
           <p>例えば、 underscore.js の <a href="http://underscorejs.org/#throttle" target=_blank>throttle()</a> 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
           <p>また、計算処理のみでコールバックを抜けるのであれば、 <code translate=no>.preventDefault()</code> を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
@@ -276,7 +276,7 @@
         <h2 id="問題点"><a href="#問題点">問題点</a></h2>
         <p>さて、ここまで見て来た方法には多くの問題があった。
         <ol>
-          <li>scroll event のハンドラが Scroll Jank を引き起こす可能性がある
+          <li>scroll event のハンドラが Scroll Junk を引き起こす可能性がある
           <li>全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
           <li>サイズや位置を取得する API は Forced Synchronous Layout を発生させる
           <li>API が分かりづらく、互換性も微妙で、単純に実装が面倒くさい
@@ -294,7 +294,7 @@
         <p>Intersection Observer は交点(Intersection) を監視し、指定した要素同士の交差が発生したら、イベントを発火する Observer である。
         <p>交点の検出処理は、ブラウザが内部で行っているため、前述のような onscroll 内での同期処理などは一切必要がなくなる。
         <p>逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
-        <p>これにより、 Scroll Jank の原因が除去され、効率良く実装することが可能となる。
+        <p>これにより、 Scroll Junk の原因が除去され、効率良く実装することが可能となる。
       </section>
       <section>
         <h2 id="api"><a href="#api">API</a></h2>
@@ -394,7 +394,7 @@ observer.observe(target);</code></pre>
           <ul>
             <li><a href="https://labs.jxck.io/intersection-observer/intersection.html" target=_blank>Intersection Observer DEMO</a>
           </ul>
-          <p>また以下に Intersecton Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
+          <p>また以下に Intersection Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
           <p>こちらは、 <code translate=no>overflow: scroll</code> な div を親とする出現検出も含めてある。
           <ul>
             <li><a href="https://labs.jxck.io/intersection-observer/visibility-change.html" target=_blank>Visibility Change DEMO</a>

@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-08-15T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-08-15>2020-08-15</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -288,8 +288,8 @@ body {
           </ul>
           <p>色々手を加えたコードを引用する。基本の流れは
           <ul>
-            <li>srcset にある候補について、 img.width を size (w) で割った値を Dencity として算出
-            <li>その Dencity で候補をソートし重複を排除
+            <li>srcset にある候補について、 img.width を size (w) で割った値を Density として算出
+            <li>その Density で候補をソートし重複を排除
             <li>Save Data が有効な場合は最も小さいものを選択して終わり
             <li>SelectionLogic に候補を渡して画像を選択
           </ul>
@@ -355,13 +355,13 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
           <p>ここで実際に画像を選択している。
           <ul>
             <li>候補を順に見ていき、現在の値を curr 次を next とする
-            <li>next の dencity が DPR を超えるまで先に進む
+            <li>next の density が DPR を超えるまで先に進む
             <li>curr &amp;lt; DPR &amp;lt; next になったらそこで curr/next どちらを見るか決める
-            <li>まず curr/next の dencity の幾何平均(相乗平均)をとる
+            <li>まず curr/next の density の幾何平均(相乗平均)をとる
             <li>
               以下は next を使う
               <ul>
-                <li>DPR が 1 で curr.dencity がそれより小さい
+                <li>DPR が 1 で curr.density がそれより小さい
                 <li>幾何平均が DPR より小さい
               </ul>
             </li>
@@ -408,14 +408,14 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
             <li>
               DPR が 1 の場合
               <ul>
-                <li>dencity が 1 を超える一番小さいものを選ぶ
+                <li>density が 1 を超える一番小さいものを選ぶ
               </ul>
             </li>
             <li>
               DPR が 1 以上の場合
               <ul>
-                <li>dencity が DPR を上下にまたぐ 2 つの画像を選ぶ
-                <li>その 2 つの dencity の幾何平均を取る
+                <li>density が DPR を上下にまたぐ 2 つの画像を選ぶ
+                <li>その 2 つの density の幾何平均を取る
                 <li>幾何平均 &lt; DPR なら next
                 <li>幾何平均 &gt; DPR なら curr
               </ul>
@@ -430,7 +430,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
         <p>img.width = 572 の時、 sqrt((1024/572) * (640/572)) は 2.001 で DPR より大きいため、 1024w が採用される。
         <p>img.width = 573 の時、 sqrt((1024/573) * (640/573)) は 1.998 で DPR より小さいため、 1280w が採用される。
         <p>つまり、 512px を超えても画像は切り替わらず 572px までは 1024w が使われている結果となるはずだ。
-        <p>Dencity とその幾何平均を見ながら画像の切り替わりポイントを確かめたところ、計算通りの結果になった。
+        <p>Density とその幾何平均を見ながら画像の切り替わりポイントを確かめたところ、計算通りの結果になった。
         <ul>
           <li>
             <picture>

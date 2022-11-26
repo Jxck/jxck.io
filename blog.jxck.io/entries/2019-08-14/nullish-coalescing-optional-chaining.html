@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-08-14T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-08-14>2019-08-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -230,7 +230,7 @@ param = param ?? &apos;default&apos; // &apos;&apos;</code></pre>
   option.flag     = option.flag    ?? true
   option.logging  = {debug: true}
 
-  cosnole.log(option)
+  console.log(option)
 }
 
 main({
@@ -263,7 +263,7 @@ a?.b?.c() // a? で undefined になるが、後続の .b? がエラーになる
         <p>したがって、以下のように副作用のある処理も実行されない。
         <pre class=js data-code=js><code translate=no class=language-js>a = null
 a?.b[x++] // ?. より右は実行されず x は増えない</code></pre>
-        <p>この挙動を Short Circuting と言う。
+        <p>この挙動を Short Circuiting と言う。
         <p>もし Short Circuit を止めて、評価を実行したい場合は、対象を括弧でくくればその範囲のみに限定することもできる。
         <pre class=js data-code=js><code translate=no class=language-js>(a?.b).c // a が null でも .c は実行される</code></pre>
       </section>
@@ -323,7 +323,7 @@ const lang = document.querySelector(&apos;code&apos;)? // node が無ければ n
                      .toUpperCase()
 
 if (lang === undefined) {
-  cosnole.error(&apos;something wrong&apos;)
+  console.error(&apos;something wrong&apos;)
 } else {
   console.log(lang)
 }

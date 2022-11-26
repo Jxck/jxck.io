@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-06-16T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-06-16>2019-06-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -182,9 +182,9 @@
         <h2 id="現状の-dom-操作の課題"><a href="#現状の-dom-操作の課題">現状の DOM 操作の課題</a></h2>
         <p>まず、以下のような処理を考える。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
-        <pre class=js data-code=js><code translate=no class=language-js>body.appencCild($div)</code></pre>
+        <pre class=js data-code=js><code translate=no class=language-js>body.appendChild($div)</code></pre>
         <p>この処理が JS の途中で出現すれば、その瞬間 Window にある DOM Tree はロックを取得し、 <code translate=no>$div</code> の追加処理が行われ、 DOM Tree が atomic に更新される。
-        <p>DOM Tree の更新が終わったら、レンダリング処理(style -&gt; layout -&gt; paint -&gt; composit)が発生し、すぐさま画面上に新たな要素が表示される。
+        <p>DOM Tree の更新が終わったら、レンダリング処理(style -&gt; layout -&gt; paint -&gt; composite)が発生し、すぐさま画面上に新たな要素が表示される。
         <p>このモデルは非常にわかりやすい一方で、大規模なアプリケーションを開発する際には、様々な課題を産むことになる。
         <p>まず、レンダリングはメインループで行われ、しかも同期処理だ。
         <p>もしこの appendChild した <code translate=no>$div</code> がものすごく大きかった場合は、そこでメインループをブロックし、 JS の実行もユーザのインタラクションもブロックされる。
@@ -199,7 +199,7 @@
           <p>React や lit-html は、この State の DOM への展開をライブラリで抽象化し、更新コストのコントロールを提供している。
           <p>実装はそれぞれ違うが、簡単にいえば既に展開されている DOM から、更新結果の DOM までの間を、最小限の操作で変化できる方法を割り出すという点では共通しているだろう。
           <p>React は Virtual DOM による差分更新、 lit-html は Tagged Template Literal で割り出した Strict/Dynamic Part の識別によりこれを行なっている。
-          <p>少し違うアプローチとして Worker DOM は、 DOM の処理を Woker で実行しているように見せているが、実際には当然 Window にコマンドを発行し DOM API を呼ぶ。
+          <p>少し違うアプローチとして Worker DOM は、 DOM の処理を Worker で実行しているように見せているが、実際には当然 Window にコマンドを発行し DOM API を呼ぶ。
           <p>どんなに最適化をしても、最終的にはブラウザの持つ DOM API を呼び出す必要があるため、そこがボトルネックになるのは避けられない。
           <p>そこには、標準 API によりブラウザが担保し、ベンダが実装によって最適化する余地があるだろう。
           <p>当然同じことを考える人は多く、おおよそ 4 つの異なるアプローチによる提案がなされ、それらは Async DOM という文脈でまとめられていた。
@@ -229,7 +229,7 @@
               </ul>
             </li>
             <li>
-              <a href="https://github.com/drufball/worker-node/" target=_blank>WokerNode</a>
+              <a href="https://github.com/drufball/worker-node/" target=_blank>WorkerNode</a>
               <ul>
                 <li>Worker と行き来できる DOM 更新命令をまとめたオブジェクトの提案
                 <li>そのオブジェクトの適用には asyncAppend を使う
@@ -264,8 +264,8 @@
           <li>TAG Review: <a href="https://github.com/w3ctag/design-reviews/issues/306" target=_blank>Display Locking - Issue #306 - w3ctag/design-reviews</a>
           <li>Mozilla Standard Position: <a href="https://github.com/mozilla/standards-positions/issues/135" target=_blank>Display Locking API - Issue #135 - mozilla/standards-positions</a>
         </ul>
-        <p>この仕様の状況としては、まず Intetns で <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ" target=_blank>positive feedback from ReactJS and Polymer</a> と書かれているため、なんらかのやり取りはあったようだ。
-        <p>しかし、 Mozilla は <a href="https://github.com/mozilla/standards-positions/issues/135" target=_blank>Standard Pisition</a> でこれを <em>harmful 寄り</em> としており、同じスレッドで Apple も <a href="https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851" target=_blank>we do not support this proposal</a> と言っている。
+        <p>この仕様の状況としては、まず Intents で <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ" target=_blank>positive feedback from ReactJS and Polymer</a> と書かれているため、なんらかのやり取りはあったようだ。
+        <p>しかし、 Mozilla は <a href="https://github.com/mozilla/standards-positions/issues/135" target=_blank>Standard Position</a> でこれを <em>harmful 寄り</em> としており、同じスレッドで Apple も <a href="https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851" target=_blank>we do not support this proposal</a> と言っている。
         <p>ただし、どちらも現状の仕様の持つ課題に対する態度であり、前述したような現状の DOM API については共通の問題意識を持っており、 Display Locking の作業が全て無駄だという割り切りというわけでもない。
         <p>仕様が改善途中ということで Tag の Design Review はペンディングされている。
         <p>対外的にも Google I/O などで、多少話が出ることがある程度だ。
@@ -376,12 +376,12 @@ await container.displayLock.updateAndCommit()</code></pre>
           <p>このデモでは、ランダムな文字列を <code translate=no>&lt;li&gt;</code> に入れ、ロックをとった <code translate=no>&lt;ul&gt;</code> に追加し commit してない状態で止めている。
           <p>ここで、 CTL+F で「ページ内検索」を行い、ランダムな文字列にヒットするように検索をすると、レンダリングが走り遷移していることがわかるだろう。
           <p>ブラウザは、まだメモリ上にありレンダリングされてない要素を、検索やフォーカス移動などの対象に含み、必要に応じて commit することができるのだ。
-          <p>これを利用すると、 Infinit Scroll で、少しづつ裏で DOM に挿しつつレンダリングは遅延させていても、検索にはヒットするといった実装が可能になる。
+          <p>これを利用すると、 Infinite Scroll で、少しづつ裏で DOM に挿しつつレンダリングは遅延させていても、検索にはヒットするといった実装が可能になる。
           <p>そのものずばりなユースケースとして、 Layered API の文脈で議論されている Virtual Scroll のニーズとも一致している。
           <ul>
             <li><a href="https://github.com/WICG/virtual-scroller" target=_blank>WICG/virtual-scroller</a>
           </ul>
-          <p>この Virtual Scroller のページ検索のために、もともと別ドラフトであった Searchabel Invisible DOM という提案があった。
+          <p>この Virtual Scroller のページ検索のために、もともと別ドラフトであった Searchable Invisible DOM という提案があった。
           <ul>
             <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ" target=_blank>Intent to Implement: Searchable Invisible DOM - Google グループ</a>
           </ul>

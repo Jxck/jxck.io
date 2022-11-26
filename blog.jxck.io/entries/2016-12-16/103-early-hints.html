@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-12-16T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-12-16>2016-12-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -244,7 +244,7 @@ Content-Type: text/html
         <p>HTTP の Link の用途は H2 Push だけではなく、 Resource Hints と呼ばれる仕様によって、次に利用するリソースの情報を提供する仕様がある。
         <p>こうした情報は、投機的にクライアントに与えられ消費されるわけだが、これもステータスコードの決定を待つ必要が無い場合が多い。
         <p>そこで、 Reverse Proxy の存在を前提とせずとも、直接クライアントに対して 103 を送り、消費させる構成も考えられるだろう。
-        <p>H2 の Push が可能なのは、そのサーバが扱えるコンテンツ = 1st Party リソースに限るが、 Resouce Hints にはこの制限が無い。そこで、別オリジンの CDN などを利用し、 3rd Party の静的アセットを配信する場合も、そのサブリソースの存在をいち早く伝える上で、 Early Hints は有用である。
+        <p>H2 の Push が可能なのは、そのサーバが扱えるコンテンツ = 1st Party リソースに限るが、 Resource Hints にはこの制限が無い。そこで、別オリジンの CDN などを利用し、 3rd Party の静的アセットを配信する場合も、そのサブリソースの存在をいち早く伝える上で、 Early Hints は有用である。
         <p>ただし、 103 に対応していないクライアントに送った場合、意図しない挙動があり得るため、時期尚早といえる。しばらくは、実装が担保できる Reverse Proxy を前提としてデプロイすることになるだろう。
       </section>
       <section>

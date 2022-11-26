@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-03-04T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-04>2016-03-04</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -182,21 +182,21 @@
       <section>
         <h2 id="preload"><a href="#preload">Preload</a></h2>
         <p>Preload はリソースのローディングを最適化することを目的に策定された仕様である。
-        <p>link 属性ファミリーで、最適化に用いられる値としては、以前書いた <a href="https://blog.jxck.io/entries/2016-02-11/resource-hints.html">Resouce Hints 系</a> と近いが、仕様としては別になっている。
+        <p>link 属性ファミリーで、最適化に用いられる値としては、以前書いた <a href="https://blog.jxck.io/entries/2016-02-11/resource-hints.html">Resource Hints 系</a> と近いが、仕様としては別になっている。
         <p>また、既に HTTP2 においてこの仕様の一部が使われており、最適化の意味合いとしてはかかわり合う部分もある。
         <p>現在 Chrome Canary にのみ実装されており、 4 月には Chrome Stable にも入る予定である。他のブラウザの実装も進みつつある模様。
       </section>
       <section>
         <h2 id="preload-の特徴"><a href="#preload-の特徴">Preload の特徴</a></h2>
-        <p>Resource Hints の例えば Prefetch との違いは、 Prefetch がナビゲーションの前に動作するのに対して、 Prelaod はナビゲーションが行われた後に動作することが上げられる。
+        <p>Resource Hints の例えば Prefetch との違いは、 Prefetch がナビゲーションの前に動作するのに対して、 Preload はナビゲーションが行われた後に動作することが上げられる。
         <p>Prefetch は、画面を遷移する前に、次の遷移先で必要となるリソースについて、投機的な取得を指示していた。
-        <p>一方 Preload は現在表示しようとしているページに遷移した後、そのページ内でのリソース取得を最適化する。(Chrome が独自に実装している Subresouce というのもあった、それに近い)
+        <p>一方 Preload は現在表示しようとしているページに遷移した後、そのページ内でのリソース取得を最適化する。(Chrome が独自に実装している Subresource というのもあった、それに近い)
         <p>また、 Preload は以下のような特徴を持ち、今までできなかったことができるようになる。
         <ul>
           <li>属性の指定によっていくつかのコントロールが可能である。
           <li>Content-Security-Policy を満たしているかを確認できる。
           <li>リソースに適した Accept ヘッダ(<code translate=no>image/webp</code> etc)を付与できる。
-          <li>Prealod はそれ自体が <code translate=no>onload</code> を発火する。
+          <li>Preload はそれ自体が <code translate=no>onload</code> を発火する。
           <li><code translate=no>window.onload</code> をブロックしない
         </ul>
       </section>
@@ -252,7 +252,7 @@ document.body.appendChild(script);</code></pre>
         <h2 id="media-query"><a href="#media-query">Media Query</a></h2>
         <p>Preload はリンクであるため、仕様上 media 属性を持つ。(chrome ではまだ未サポート)
         <p>つまり Media Query を用いた条件付きローディングができる。
-        <p>例えば <code translate=no>&lt;picture&gt;</code> で Image を読み分けている場合、その条件と同じものを <code translate=no>&lt;link rel=preload&gt;</code> に指定することで、一致した条件のみの画像を Prelaod できる。
+        <p>例えば <code translate=no>&lt;picture&gt;</code> で Image を読み分けている場合、その条件と同じものを <code translate=no>&lt;link rel=preload&gt;</code> に指定することで、一致した条件のみの画像を Preload できる。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload as=image href=large.png media=&quot;(max-width: 600px)&quot;&gt;
 &lt;link rel=preload as=image href=middle.png media=&quot;(max-width: 400px)&quot;&gt;
 &lt;link rel=preload as=image href=small.png media=&quot;(max-width: 300px)&quot;&gt;</code></pre>

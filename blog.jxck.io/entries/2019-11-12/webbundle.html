@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-11-12T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-11-12>2019-11-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -470,7 +470,7 @@ X-Content-Type-Options: nosniff</code></pre>
           <p>結果、 <code translate=no>import</code> は単に WebPack に向けたアノテーションとしてしか使われてないという非常に残念な現状があり、今も開発者は全体を bundle.js に固めて配布している。(かつ、問題が解決しているため、それで良いと思っている)
           <p>ここでもし、例えば npm モジュール単位で依存を .wbn にまとめ、 1 回の fetch で依存をまるごと取得し、かつ展開した全てのファイルを個別に fetch したかのように保存できたらどうだろうか。
           <p>普通に <code translate=no>import</code> を用いたコードを書けるし、別々にキャッシュされればページを跨いだ再利用や、更新による再デプロイも変わってくるだろう。
-          <p>JS のように依存がなくても、単にまとめられることは、 CSS Sprite(画像のまとめ), WebFont(weight など), Icon(favivcon.ico と apple-touch-cion etc)などにも適用できるのでは無いかと筆者は考えている。
+          <p>JS のように依存がなくても、単にまとめられることは、 CSS Sprite(画像のまとめ), WebFont(weight など), Icon(favicon.ico と apple-touch-cion etc)などにも適用できるのでは無いかと筆者は考えている。
           <p>今は、そうした議論よりも先に、当初の目標である AMP のようなケースにフォーカスしていると思うが、ゆくゆくはそういうことに応用できるように、 <a href="https://github.com/WICG/webpackage/issues/526" target=_blank>feedback</a> を続けたい。
         </section>
         <section>
@@ -500,7 +500,7 @@ X-Content-Type-Options: nosniff</code></pre>
         </section>
         <section>
           <h3 id="logging"><a href="#logging">logging</a></h3>
-          <p>AMP もそうだが、いよいよサーバにリクエストが来ることを前提にした Acccess Log が限界を迎えつつある。
+          <p>AMP もそうだが、いよいよサーバにリクエストが来ることを前提にした Access Log が限界を迎えつつある。
           <p>コンテンツを開いたことを、各位が beacon などで取得している現状があるが、ここがもう少しユーザの裁量(opt-outable)を反映した標準の API になるべきだろうと<a href="https://discourse.wicg.io/t/proposal-html-ping-for-navigation/2839/7" target=_blank>常々思っている</a>。
         </section>
       </section>

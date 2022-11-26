@@ -50,7 +50,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ...">
+  <meta name=description         content="DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Junk) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ...">
   <meta name=keywords            content="rendering,performance">
   <meta name=theme-color         content=#000000>
 
@@ -58,7 +58,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html>
   <meta property=og:title        content="Passive Event Listeners によるスクロールの改善 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ...">
+  <meta property=og:description  content="DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Junk) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-06-09T08:00:00+08:00",
-    "dateModified": "2022-02-21T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -95,7 +95,7 @@
         "width": 120
       }
     },
-    "description": "DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ..."
+    "description": "DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Junk) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイ..."
   }
   </script>
 
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-06-09>2016-06-09</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-21>2022-02-21</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -144,7 +144,7 @@
               <ol>
                 <li><a href="#intro">Intro</a>
                 <li><a href="#scroll-event-の-preventdefault">Scroll Event の PreventDefault()</a>
-                <li><a href="#scroll-jank">Scroll Jank</a>
+                <li><a href="#scroll-junk">Scroll Junk</a>
                 <li><a href="#影響">影響</a>
                 <li><a href="#passive-event-listeners">Passive Event Listeners</a>
                 <li><a href="#event-listener-options">Event Listener Options</a>
@@ -170,7 +170,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。
-        <p>このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。
+        <p>このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Junk) を解決するために導入されたものである。
         <p>今回は、この仕様が解決する問題と、本サイトへの適用を解説する。
         <p><a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md" target=_blank>Passive Event Listeners Spec</a>
       </section>
@@ -179,20 +179,20 @@
         <p>画面のスクロールに合わせたインタラクションを実装する場合、 Scroll Event にイベントリスナを登録する。
         <p>典型的な例では <code translate=no>touchstart</code> や <code translate=no>touchend</code> をフックし、その中で DOM の操作などを実施するなどがある。
         <p>場合によってはイベントリスナ内で <code translate=no>preventDefault()</code> を呼ぶことで、スクロールそのものを止めることもできる。
-        <p>実はこれが Scroll Jank の原因となることが非常に多いことがわかっている。
+        <p>実はこれが Scroll Junk の原因となることが非常に多いことがわかっている。
       </section>
       <section>
-        <h2 id="scroll-jank"><a href="#scroll-jank">Scroll Jank</a></h2>
+        <h2 id="scroll-junk"><a href="#scroll-junk">Scroll Junk</a></h2>
         <p>ブラウザは、単純なドキュメントであれば、そのスクロールがスムーズになるように最適化することができる。
         <p>しかし、 Scroll Event にイベントリスナが登録された場合、そのイベントリスナの中で <code translate=no>preventDefault()</code> が呼ばれる場合は、スクロールを止めなくてはいけない。
         <p>ところが、登録されたイベントリスナの中で <code translate=no>preventDefault()</code> が実行されるかどうかは、実際にイベントリスナを実行してみないとわからない。
         <p>つまりブラウザは、 Scroll Event にイベントリスナが登録されている場合、ハンドラの実行が完了し <code translate=no>preventDefault()</code> が呼ばれなかったことを確認してからでないと、スクロールすることができない。
-        <p>これが Scroll Jank が発生する原因となる。
+        <p>これが Scroll Junk が発生する原因となる。
       </section>
       <section>
         <h2 id="影響"><a href="#影響">影響</a></h2>
-        <p>イベントリスナを実際に実行し、その処理が終わるまで <code translate=no>preventDefault()</code> が呼ばれるかどうかわからないため、 Scroll Jank がおこる。
-        <p>つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Jank の影響が大きくなる。
+        <p>イベントリスナを実際に実行し、その処理が終わるまで <code translate=no>preventDefault()</code> が呼ばれるかどうかわからないため、 Scroll Junk がおこる。
+        <p>つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Junk の影響が大きくなる。
         <p>Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre><code translate=no>explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</code></pre>

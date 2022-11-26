@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-05-20T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-05-20>2019-05-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -343,7 +343,7 @@
           <p>2.0KB 分、画像のヘッダを取得することにより、画像のサイズ情報が取得できるため、 <code translate=no>&lt;img&gt;</code> のサイズが決まるということだ。
           <p>ただし、 2.0KB は、決して小さくない。
           <p>これをどこまで小さくできるは事前にはわからず、小さくしすぎて欲しい情報が入っていなければ、無駄足になる。
-          <p>サイズを知りたいだけなら <code translate=no>&lt;img&gt;</code> に width/height もしくは intrinsicsize を指定すれば問題なさそうだが、明示してもヘッダの取得は走るようだ。
+          <p>サイズを知りたいだけなら <code translate=no>&lt;img&gt;</code> に width/height もしくは intrinsic size を指定すれば問題なさそうだが、明示してもヘッダの取得は走るようだ。
           <p>逆に width/height などから <code translate=no>&lt;img&gt;</code> のサイズが確定できれば、将来この Range リクエストは不要にできる可能性があると考えている。
           <p>しかし、それでは HTML に手を入れられないコンテンツで lazyload をしたいと場合に、 2.0KB リクエストは防げないことになる。
           <p>素人考えだと、 HTTP HEAD リクエストを発行させる属性を <code translate=no>&lt;img&gt;</code> に追加し、 <code translate=no>Image-Size: 200x300</code> などのヘッダを返すといったこともできなく無い気がするがどうなのだろうか。

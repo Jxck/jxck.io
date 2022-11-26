@@ -212,7 +212,7 @@
    <link href="https://blog.jxck.io/entries/2020-12-03/masonry-layout.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-12-03</id>
    <updated>2020-12-03T00:00:00Z</updated>
-   <summary>Pinterest でおなじみの Masonry Layout を CSS の標準にする作業と実装が進んでいる。以下のように画像を敷き詰めるタイルレイアウトのことを Masonry (石工やレンガ造りの意味らしい) Layout という。上の例の場合は、 Height が不揃いの画像を並べる上で、左から敷き詰め、折り返したら既にある画像の高さに合わせて二列目が始まるというロジックになる。これを実現するには、割と複雑な CSS を書く必要があり、様々なサイトで CSS ライブラリや、 Grid などを用いて再現する方法が紹介されている。これをそのまま CSS の標準にする作業が Layout API の文脈で行われており、既に一部が(主に Firefox で)実装されている。仕様は以下だ。CSS Grid Layout Module Level 3https://drafts.csswg.org/css-grid-3/従来の CSS Grid は、縦横が揃った Grid を展開し、そこに対して要素を割り当てるのが基本だが、それでは縦が揃わないため Masonry は実現できない。そこで、 grid-template-rows / grid-tempalet-columns へ masonry を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると grid: masonry / ${column} になるため、 column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。3 列の Masonly Layout は以下だ。&lt;style&gt;.grid {  display: inline-grid;  grid: masonry / repeat(3, auto);  border: 1px solid;  gap: 1vw;  masonry-auto-flow: pack;  width: 32vw;}img {  width: 10vw;}&lt;/style&gt;&lt;div class=masonry&gt;  &lt;img&gt;  &lt;img&gt;  &lt;img&gt;  ...&lt;/div&gt;敷き詰めるためのアルゴリズムは仕様で決まっている。https://drafts.csswg.org/css-grid-3/#masonry-layout-algorithmデフォルトでは、敷き詰める際に一番余白が空いているところに画像が挿入される。これを制御するプロパティとして masonry-auto-flow が定義されており next にすると画像の HTML 上での出現順に積み上げるようにすることもできる。masonry-auto-flow: pack;masonry-auto-flow: next;他の値もあるがまだ定義が明示されてないようだ。このあたりのアルゴリズムは要件によって多様だと思われるため、仕様の策定とともに変わる可能性は高いだろう。https://drafts.csswg.org/css-grid-3/#masonry-auto-flow</summary>
+   <summary>Pinterest でおなじみの Masonry Layout を CSS の標準にする作業と実装が進んでいる。以下のように画像を敷き詰めるタイルレイアウトのことを Masonry (石工やレンガ造りの意味らしい) Layout という。上の例の場合は、 Height が不揃いの画像を並べる上で、左から敷き詰め、折り返したら既にある画像の高さに合わせて二列目が始まるというロジックになる。これを実現するには、割と複雑な CSS を書く必要があり、様々なサイトで CSS ライブラリや、 Grid などを用いて再現する方法が紹介されている。これをそのまま CSS の標準にする作業が Layout API の文脈で行われており、既に一部が(主に Firefox で)実装されている。仕様は以下だ。CSS Grid Layout Module Level 3https://drafts.csswg.org/css-grid-3/従来の CSS Grid は、縦横が揃った Grid を展開し、そこに対して要素を割り当てるのが基本だが、それでは縦が揃わないため Masonry は実現できない。そこで、 grid-template-rows / grid-template-columns へ masonry を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると grid: masonry / ${column} になるため、 column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。3 列の Masonry Layout は以下だ。&lt;style&gt;.grid {  display: inline-grid;  grid: masonry / repeat(3, auto);  border: 1px solid;  gap: 1vw;  masonry-auto-flow: pack;  width: 32vw;}img {  width: 10vw;}&lt;/style&gt;&lt;div class=masonry&gt;  &lt;img&gt;  &lt;img&gt;  &lt;img&gt;  ...&lt;/div&gt;敷き詰めるためのアルゴリズムは仕様で決まっている。https://drafts.csswg.org/css-grid-3/#masonry-layout-algorithmデフォルトでは、敷き詰める際に一番余白が空いているところに画像が挿入される。これを制御するプロパティとして masonry-auto-flow が定義されており next にすると画像の HTML 上での出現順に積み上げるようにすることもできる。masonry-auto-flow: pack;masonry-auto-flow: next;他の値もあるがまだ定義が明示されてないようだ。このあたりのアルゴリズムは要件によって多様だと思われるため、仕様の策定とともに変わる可能性は高いだろう。https://drafts.csswg.org/css-grid-3/#masonry-auto-flow</summary>
   </entry>
 
   <entry>
@@ -356,7 +356,7 @@
    <link href="https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-11-03</id>
    <updated>2019-11-03T00:00:00Z</updated>
-   <summary>家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外からアクセスできるようにした。備忘録を兼ねて記す。</summary>
+   <summary>家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Forwarding を使って、固定 IP の無い家に外からアクセスできるようにした。備忘録を兼ねて記す。</summary>
   </entry>
 
   <entry>
@@ -388,7 +388,7 @@
    <link href="https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-08-18</id>
    <updated>2019-08-18T00:00:00Z</updated>
-   <summary>Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。WebScoket/MSE/WebRTC/WASM など、 Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。しかし、できることが増えればこそ、それぞれのパーツの不足する部分が浮き彫りになる。WebTransport と WebCodecs は、主にそんな Web Game の需要から「本当に必要としているもの」を再考した結果をまとめた提案と言えるだろう。これが、単に Web Game 開発の需要を満たすだけで終わるものか、ゲーム以外の Web の開発にどこまで影響を及ぼすか。現状の仕様の提案とそのモチベーションを元に、考察していく。</summary>
+   <summary>Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。WebSocket/MSE/WebRTC/WASM など、 Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。しかし、できることが増えればこそ、それぞれのパーツの不足する部分が浮き彫りになる。WebTransport と WebCodecs は、主にそんな Web Game の需要から「本当に必要としているもの」を再考した結果をまとめた提案と言えるだろう。これが、単に Web Game 開発の需要を満たすだけで終わるものか、ゲーム以外の Web の開発にどこまで影響を及ぼすか。現状の仕様の提案とそのモチベーションを元に、考察していく。</summary>
   </entry>
 
   <entry>
@@ -548,7 +548,7 @@
    <link href="https://blog.jxck.io/entries/2018-05-01/layered-apis.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-05-01</id>
    <updated>2018-05-01T00:00:00Z</updated>
-   <summary>Extensible Web Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。合わせて ES Modules の Import を用いて、 pollyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。また、同等の話を 東京 Node 学園 #tng30 で行った資料は以下である。Web over Layered APIs</summary>
+   <summary>Extensible Web Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。合わせて ES Modules の Import を用いて、 polyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。また、同等の話を 東京 Node 学園 #tng30 で行った資料は以下である。Web over Layered APIs</summary>
   </entry>
 
   <entry>
@@ -972,7 +972,7 @@
    <link href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-06-09</id>
    <updated>2016-06-09T00:00:00Z</updated>
-   <summary>DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Jank) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイトへの適用を解説する。Passive Event Listeners Spec</summary>
+   <summary>DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Junk) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイトへの適用を解説する。Passive Event Listeners Spec</summary>
   </entry>
 
   <entry>

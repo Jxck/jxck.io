@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-05-01T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-05-01>2018-05-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -145,8 +145,8 @@
             <nav>
               <ol>
                 <li><a href="#intro">Intro</a>
-                <li><a href="#standarize-low-level-api">Standarize Low Level API</a>
-                <li><a href="#standarize-high-level-api">Standarize High Level API</a>
+                <li><a href="#standardize-low-level-api">Standardize Low Level API</a>
+                <li><a href="#standardize-high-level-api">Standardize High Level API</a>
                 <li><a href="#layered-apis">Layered APIs</a>
                 <li><a href="#layered-apis-fallback-syntax">Layered APIs fallback syntax</a>
                 <li><a href="#proposals">proposals</a>
@@ -166,13 +166,13 @@
         <p><a href="https://extensiblewebmanifesto.org/" target=_blank>Extensible Web Manifest</a> 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。
         <p>そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。
         <p>基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。
-        <p>合わせて ES Modules の Import を用いて、 pollyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
+        <p>合わせて ES Modules の Import を用いて、 polyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
         <p>本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。
         <p>また、同等の話を <a href="https://nodejs.connpass.com/event/83639/" target=_blank>東京 Node 学園 #tng30</a> で行った資料は以下である。
         <p><a href="https://speakerdeck.com/jxck/web-over-layered-apis" target=_blank>Web over Layered APIs</a>
       </section>
       <section>
-        <h2 id="standarize-low-level-api"><a href="#standarize-low-level-api">Standarize Low Level API</a></h2>
+        <h2 id="standardize-low-level-api"><a href="#standardize-low-level-api">Standardize Low Level API</a></h2>
         <p>Extensible Web Manifest 以降、標準化の場面では Low Level な Primitive の策定に注力してきた。
         <p><a href="https://extensiblewebmanifesto.org/ja" target=_blank>Extensible Web Manifesto</a>
         <p>これにより、多様化する開発者のニーズを標準化のタイムラインから解放し、開発者自身がある程度の裁量を持って機能を実装できることを目的とした。
@@ -193,7 +193,7 @@
         <p>Low Level API の整備が軌道に乗った今こそ、 High Level API に対して標準化の側面からどういう態度を取るか、を考える時期でもある。
       </section>
       <section>
-        <h2 id="standarize-high-level-api"><a href="#standarize-high-level-api">Standarize High Level API</a></h2>
+        <h2 id="standardize-high-level-api"><a href="#standardize-high-level-api">Standardize High Level API</a></h2>
         <p>High Level API を標準化するといっても、闇雲に採用し実装するわけにもいかない。
         <p>新しい実装によるバグ、セキュリティホール、オーバーヘッド、技術的負債の発生を、いかに防ぐかを考える必要がある。
         <p>また、策定しても実装されるまでの間は、 Polyfill を利用するだろう。これが安全に行われなければ、 Ever Green な Web を作るのは難しい。
@@ -212,7 +212,7 @@
         <p>別に難しいことではないが、これによりいくつかのメリットがある。
         <ul>
           <li>ブラウザが既に実装している Low Level API を使って Polyfill が可能
-          <li>既にレビューを通った Low Leve API だけに依存するため、新たなプライバシー/セキュリティリスクを産みにくい
+          <li>既にレビューを通った Low Level API だけに依存するため、新たなプライバシー/セキュリティリスクを産みにくい
         </ul>
         <p>逆にもし Polyfill が不可能であれば、新たな Low Level API の可能性(Use Case)がそこに存在するとし、そちらを先に定義することになるだろう。
         <p>ここでは例として Async Local Storage (Local Storage の非同期版) を例に解説していく。

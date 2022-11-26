@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-01-17T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-01-17>2018-01-17</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -147,7 +147,7 @@
                 <li><a href="#freeze-user-agent">Freeze User Agent</a>
                 <li><a href="#finger-printing">Finger Printing</a>
                 <ol>
-                  <li><a href="#tracking-by-fingerpirnt-">Tracking by Fingerpirnt ?</a>
+                  <li><a href="#tracking-by-fingerprint-">Tracking by Fingerprint ?</a>
                 </ol>
                 <li><a href="#user-metrics">User Metrics</a>
                 <li><a href="#useragent-detection">UserAgent Detection</a>
@@ -230,7 +230,7 @@
         <p>「それが誰であるか」は特定できなくとも、それが「さっきと同じ人である」がわかれば、それだけで Tracking が可能だ。
         <p>もし 3rd Party Cookie を付与できれば確実だが、 Cookie 付与前、 Cookie 削除後、 Private Browse などでもユーザを特定したいというニーズはある。
         <section>
-          <h3 id="tracking-by-fingerpirnt-"><a href="#tracking-by-fingerpirnt-">Tracking by Fingerpirnt ?</a></h3>
+          <h3 id="tracking-by-fingerprint-"><a href="#tracking-by-fingerprint-">Tracking by Fingerprint ?</a></h3>
           <p>Apple が実施する <em>ITP</em>(Intelligent Tracking Prevention) によって、 3rd Party Cookie が絶たれるため、広告プロバイダは Finger Printing などの代替技術に救いを求めるのは想像に難くない。
           <p>特に広告関係では、ターゲットに対してパーソナライズするため、サービスをまたいでの識別、つまり追跡(Tracking)には、こうした固定情報が扱いやすい。
           <p>Safari の今回の変更は、この Finger Printing の手段を断つのが目的と見ることができそうだ。
@@ -355,7 +355,7 @@ DPR: 1</code></pre>
           <h3 id="outro"><a href="#outro">Outro</a></h3>
           <p>現時点では、この変更に乗っかる別のブラウザは確認していないため、将来的に全てのブラウザのマイナーアップデートで UA が固定される世界が来るかは未知だ。
           <p>しかし、 Feature Detection の方法は UA に頼らずともかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
-          <p>Uaser-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、歴史的にも負債を残してきた。
+          <p>User-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、歴史的にも負債を残してきた。
           <p>UA で分岐するような実装がある場合は本当にそれが妥当か見直すべきだろう。
           <p>それを踏まえた上で、アップデートが自動化し、仕様も Living Standard になった現状、メジャーブラウザについて細かくバージョンを把握するニーズがどのくらいあるのかは、今一度考え直すタイミングかもしれない。
         </section>

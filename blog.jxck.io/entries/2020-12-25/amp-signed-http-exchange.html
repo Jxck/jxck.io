@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-12-25T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-12-25>2020-12-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -206,7 +206,7 @@
         <p>そこで、サーバ用の HTTPS の鍵と証明書が SXG にも転用されることを防ぐためにも、別途取得させるようにいくつかの制限が課されている。具体的には。
         <ul>
           <li>鍵は prime256v1 の EC が必須
-          <li>通常の HTTPS 用の証明書にはない CanSignedHTTPExchage 拡張が必須
+          <li>通常の HTTPS 用の証明書にはない CanSignedHTTPExchange 拡張が必須
         </ul>
         <p>openssl を使うと以下のように確認できる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
@@ -215,7 +215,7 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep &apos;ASN1 OID: prime256v1&apos
 # CanSignHttpExchanges 拡張がある
 $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code></pre>
         <p>(おそらく将来的にはこの拡張がついた証明書で HTTPS がサーブされている場合、ブラウザはそれを拒否するようになったりするのかもしれない。)
-        <p>鍵は openssl などで普通に作れるが、 CanSignedHTTPExchage 拡張のついた証明書は現状 Digicert しか発行していない。また、発行した証明書は、今回は AMP SXG に使用するが、通常の SXG にも利用できるため、それはまた別途解説する。
+        <p>鍵は openssl などで普通に作れるが、 CanSignedHTTPExchange 拡張のついた証明書は現状 Digicert しか発行していない。また、発行した証明書は、今回は AMP SXG に使用するが、通常の SXG にも利用できるため、それはまた別途解説する。
       </section>
       <section>
         <h2 id="amppackager"><a href="#amppackager">amppackager</a></h2>
@@ -314,8 +314,8 @@ WantedBy=multi-user.target</code></pre>
         </section>
         <section>
           <h3 id="privdoc"><a href="#privdoc"><code translate=no>/priv/doc</code></a></h3>
-          <p>このパスが amppckager が SXG を返すパスとなる。
-          <p>Origin に来るリクエストは AMP の URL であるため、そこへのリクエストの中で <code translate=no>AMP-Cache-Transform</code> が付いたものだけ、 amppkger のこのパスに転送する。
+          <p>このパスが amppackager が SXG を返すパスとなる。
+          <p>Origin に来るリクエストは AMP の URL であるため、そこへのリクエストの中で <code translate=no>AMP-Cache-Transform</code> が付いたものだけ、 amppkg のこのパスに転送する。
           <p>h2o は Path ベースでの Proxy は簡単だが、ヘッダをベースに分岐するには mruby handler 内で proxy する必要があり、その方法がよくわからず最初は <code translate=no>http_request</code> でリクエストを再構築して書いていた。
           <p>後から、 <a href="https://h2o.examp1e.net/configure/reproxy_directives.html#reproxy" target=_blank>reproxy</a> という機能がそのまま使えることを教えてもらい、一瞬で解決した。
           <p>(機能は知っていたが、 Example を見て同じドメインの別のパスに移譲すると勝手に思い込んでいたが、普通に別ポートにも移譲できた。)
@@ -366,9 +366,9 @@ end</code></pre>
         </section>
         <section>
           <h3 id="cli"><a href="#cli">CLI</a></h3>
-          <p>CLI の場合は <code translate=no>dump-signedexchage</code> で行うのが手軽だろう。
+          <p>CLI の場合は <code translate=no>dump-signedexchange</code> で行うのが手軽だろう。
           <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ dump-signedexchange -uri $URL -requestHeader AMP-Cache-Transform:any -version=1b3 -headers=false -payload=false -verify
-The exchage has a valid signature</code></pre>
+The exchange has a valid signature</code></pre>
           <p>これは cert-url から証明書チェインを取得してくれているらしいので、これが通れば一通り通ってると思われる。
           <p>個々のステップを細かく見たい場合は curl で取得してから順番に解くなどすると良いかもしれない。
           <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ curl -s --output - -H &apos;amp-cache-transform: google;v=&quot;3&quot;&apos; -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html &gt; dump.sxg

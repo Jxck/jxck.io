@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-09-01T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-09-01>2020-09-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -194,7 +194,7 @@
       <section>
         <h2 id="webtransport"><a href="#webtransport">WebTransport</a></h2>
         <p>QUIC/HTTP3 の実装が進んでから、このトランスポートを WebSocket のように直接触れる API があり、任意のバイナリを送れるようにしようという発想から始まったのが WebTransport だ。
-        <p>仕様上は Http3Transport と QuicTranport の両方が検討されているが、現状 Chrome は QuicTransport のみ実装を進めている。
+        <p>仕様上は Http3Transport と QuicTransport の両方が検討されているが、現状 Chrome は QuicTransport のみ実装を進めている。
         <ul>
           <li><a href="https://blog.jxck.io/entries/2020-06-09/quic-transport.html">QuicTransport によるアプリケーションレイヤでの QUIC 活用</a>
         </ul>
@@ -354,7 +354,7 @@ videoDecoder.decode(chunk)</code></pre>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>WebCodecs と WebTrasnport を用いて WebRTC のようなビデオ会議が、よりシンプルなスタックで可能になった。
+        <p>WebCodecs と WebTransport を用いて WebRTC のようなビデオ会議が、よりシンプルなスタックで可能になった。
         <p>バイナリをエンコードし、それを送る、その間に必要なロジックは、標準ではなく要件に合わせて開発者が用意するという世界観は、 Extensible Web Manifest 以来進められてきた API の低レイヤ化の流れを組んでいるといえる。
         <p>そうして、ユースケースに特化し膨らんだ WebRTC の解体は、ブラウザが内側にもつスタックを、 ArrayBuffer を取り回すという低レベル API として開発者に提供したことによって、可能性を広げたと考えられる。
         <p>本ブログでは、ビデオ会議の側面から API を比較するため、全体の一部しか触れてないが、並行して進められている SIMD+WASM は ArrayBuffer の加工に最適なため、今後はそちらも含めて色々と試しつつ、フィードバックにつなげていきたい。

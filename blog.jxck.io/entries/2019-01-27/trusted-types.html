@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-01-27T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-01-27>2019-01-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -275,7 +275,7 @@ $(&apos;div&apos;).innerHTML = trustedHTML // html special chars escaped</code><
   createHTML: (unsafe) =&gt; unsafe
 })
 
-// CSP で dummuy が定義されていなければ使えない
+// CSP で dummy が定義されていなければ使えない
 const trustedHTML = dummyPolicy.createHTML(&apos;&lt;img src=/ onerror=&quot;alert(10)&quot;&gt;&apos;)
 document.querySelector(&apos;div&apos;).innerHTML = trustedHTML</code></pre>
         <p>ここで定義した Policy 名の <code translate=no>dummy</code> は、 CSP で指定されていないため使うことができない。
@@ -378,7 +378,7 @@ const escapedValue = escapePolicy.createHTML(&apos;&lt;b&gt;escape me&lt;/b&gt;&
         <section>
           <h3 id="csp-無効での利用"><a href="#csp-無効での利用">CSP 無効での利用</a></h3>
           <p>CSP によって有効になるのは、型が違う場合にエラーをあげることだけだ。
-          <p>つまり Pocliy のメソッドを経由して DOMString を TrustedTypes に変換することは、 CSP で有効にしなくても可能だ。
+          <p>つまり Policy のメソッドを経由して DOMString を TrustedTypes に変換することは、 CSP で有効にしなくても可能だ。
           <p>これだけでも以下の二つのメリットが考えられる
           <ul>
             <li>標準化された型があることにより、 WebIDL を参考に TypeScript などに導入し、型の検証に利用することができる。

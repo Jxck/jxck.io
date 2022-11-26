@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-07-26T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-07-26>2020-07-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,11 +156,11 @@
                 <ol>
                   <li><a href="#bundle-のネイティブ化への期待の背景">bundle のネイティブ化への期待の背景</a>
                   <li><a href="#動的な-bundling">動的な bundling</a>
-                  <li><a href="#resouces">resouces</a>
+                  <li><a href="#resources">resources</a>
                 </ol>
                 <li><a href="#demo">DEMO</a>
                 <li><a href="#outro">Outro</a>
-                <li><a href="#resources">Resources</a>
+                <li><a href="#resources_1">Resources</a>
               </ol>
             </nav>
           </details>
@@ -202,7 +202,7 @@
   favicon.ico</code></pre>
           <p>なお、 <code translate=no>a.js</code> は <code translate=no>b.js</code> を import し、 <code translate=no>c.css</code> は <code translate=no>d.css</code> を import している。
           <p>gen-bundle は <code translate=no>-dir</code> を指定するとディレクトリ以下をまるっと bundle してくれる。
-          <p>CLI の仕様上 <code translate=no>-primaryURL</code> (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chorme の実装もこれを無視しているようなので、適当に指定している。
+          <p>CLI の仕様上 <code translate=no>-primaryURL</code> (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chrome の実装もこれを無視しているようなので、適当に指定している。
           <p><code translate=no>-headerOverride</code> でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
           <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ gen-bundle \
     -version b1 \
@@ -425,8 +425,8 @@ img {
           <p>現状の実装ではそこまではスコープに無いと思われるので、今後この議論が進むかどうかに注目しつつ、フィードバックしていきたい。
         </section>
         <section>
-          <h3 id="resouces"><a href="#resouces">resouces</a></h3>
-          <p>bundle で fetch の数が解決して、 ES Module を積極利用するとなると、自動生成するとしても link タグの resouces が少し肥大しすぎるあたりも気になる。
+          <h3 id="resources"><a href="#resources">resources</a></h3>
+          <p>bundle で fetch の数が解決して、 ES Module を積極利用するとなると、自動生成するとしても link タグの resources が少し肥大しすぎるあたりも気になる。
           <p>ぱっと思い浮かぶのは import map だが、そちらも最近どうなってるかよくわからない。
           <p>今はナイーブに全部書く実装になっているとは言え、あくまで Explainer ベースであり、仕様もかっちり固まっているわけではなく、さらに Explainer でも別の案について書かれているため、 Experiment を進める中でもう少し良い代替案がでることを期待したい。
         </section>
@@ -445,7 +445,7 @@ img {
         <p>なにより Cache-Digest の問題が気になるところなので、今後仕様策定が進んで改善されていくことを期待しつつ、検証を続けていきたい。
       </section>
       <section>
-        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <h2 id="resources_1"><a href="#resources_1">Resources</a></h2>
         <ul>
           <li>Spec
           <li>
