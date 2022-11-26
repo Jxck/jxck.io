@@ -27,9 +27,9 @@ Pinterest でおなじみの Masonry Layout を CSS の標準にする作業と�
 
 従来の CSS Grid は、縦横が揃った Grid を展開し、そこに対して要素を割り当てるのが基本だが、それでは縦が揃わないため Masonry は実現できない。
 
-そこで、 `grid-template-rows` / `grid-tempalet-columns` へ `masonry` を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると `grid: masonry / ${column}` になるため、 column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。
+そこで、 `grid-template-rows` / `grid-template-columns` へ `masonry` を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると `grid: masonry / ${column}` になるため、 column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。
 
-3 列の Masonly Layout は以下だ。
+3 列の Masonry Layout は以下だ。
 
 ```html
 <style>

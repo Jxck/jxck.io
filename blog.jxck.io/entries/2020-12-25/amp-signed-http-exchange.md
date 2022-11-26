@@ -35,7 +35,7 @@ SXG はまだ過渡期の技術であるため、鍵や証明書が色々なプ�
 そこで、サーバ用の HTTPS の鍵と証明書が SXG にも転用されることを防ぐためにも、別途取得させるようにいくつかの制限が課されている。具体的には。
 
 - 鍵は prime256v1 の EC が必須
-- 通常の HTTPS 用の証明書にはない CanSignedHTTPExchage 拡張が必須
+- 通常の HTTPS 用の証明書にはない CanSignedHTTPExchange 拡張が必須
 
 openssl を使うと以下のように確認できる。
 
@@ -48,7 +48,7 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:
 
 (おそらく将来的にはこの拡張がついた証明書で HTTPS がサーブされている場合、ブラウザはそれを拒否するようになったりするのかもしれない。)
 
-鍵は openssl などで普通に作れるが、 CanSignedHTTPExchage 拡張のついた証明書は現状 Digicert しか発行していない。また、発行した証明書は、今回は AMP SXG に使用するが、通常の SXG にも利用できるため、それはまた別途解説する。
+鍵は openssl などで普通に作れるが、 CanSignedHTTPExchange 拡張のついた証明書は現状 Digicert しか発行していない。また、発行した証明書は、今回は AMP SXG に使用するが、通常の SXG にも利用できるため、それはまた別途解説する。
 
 
 ## amppackager
@@ -163,9 +163,9 @@ amppackager は SXG に必要な Certificate URL を自動で提供してくれ�
 
 ### `/priv/doc`
 
-このパスが amppckager が SXG を返すパスとなる。
+このパスが amppackager が SXG を返すパスとなる。
 
-Origin に来るリクエストは AMP の URL であるため、そこへのリクエストの中で `AMP-Cache-Transform` が付いたものだけ、 amppkger のこのパスに転送する。
+Origin に来るリクエストは AMP の URL であるため、そこへのリクエストの中で `AMP-Cache-Transform` が付いたものだけ、 amppkg のこのパスに転送する。
 
 h2o は Path ベースでの Proxy は簡単だが、ヘッダをベースに分岐するには mruby handler 内で proxy する必要があり、その方法がよくわからず最初は `http_request` でリクエストを再構築して書いていた。
 
@@ -211,11 +211,11 @@ Devtools で見ると以下のように確認できる。
 
 ### CLI
 
-CLI の場合は `dump-signedexchage` で行うのが手軽だろう。
+CLI の場合は `dump-signedexchange` で行うのが手軽だろう。
 
 ```sh-session
 $ dump-signedexchange -uri $URL -requestHeader AMP-Cache-Transform:any -version=1b3 -headers=false -payload=false -verify
-The exchage has a valid signature
+The exchange has a valid signature
 ```
 
 これは cert-url から証明書チェインを取得してくれているらしいので、これが通れば一通り通ってると思われる。

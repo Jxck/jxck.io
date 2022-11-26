@@ -95,7 +95,7 @@ Service Worker は background sync が従来からあるが、これは「オフ
 
 サーバ側でフィードを更新したときに Push を送る方法もあるが、 Push は届くとは限らない上に、 Permission の問題もある。
 
-そこで、 Slient Push を待っていたのだが、先に Periodic Background Sync(PBS) が提案された。
+そこで、 Silent Push を待っていたのだが、先に Periodic Background Sync(PBS) が提案された。
 
 - [Periodic Background Sync 及び Web を Install するということ | blog.jxck.io](https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html)
 
@@ -131,7 +131,7 @@ Service Worker の Cache は Cache API で行うのが基本だ。
 
 PBS + Bgfetch が鉄板の組み合わせだと思っていたので、ここは意外だった。詳細は詰めきれていないが理由などをもう少し調査しておきたい。
 
-なお、 Bgfetch は cors が必要だが、 `<aduio>` のリクエストが no-cors なこと、そして SW を経由したときに Cross-Origin-Resource-Policy の設定を求められたあたりがハマった。
+なお、 Bgfetch は cors が必要だが、 `<audio>` のリクエストが no-cors なこと、そして SW を経由したときに Cross-Origin-Resource-Policy の設定を求められたあたりがハマった。
 
 
 ### Badging API
@@ -182,7 +182,7 @@ HTML Modules は実装されてないため、 fetch で代用しているが、
 
 Player ではないが、 Bgfetch を行うためのダウンロードアイコンも、アイコン自体に Download 機能をもたせた WebComponents にしている。
 
-これまでは Tempalte をレンダリングした静的ページだったが、今後もこのように UI に機能を統合した WebComponents 群の組み合わせによる実装に移行していきたい。
+これまでは Template をレンダリングした静的ページだったが、今後もこのように UI に機能を統合した WebComponents 群の組み合わせによる実装に移行していきたい。
 
 
 ### WAI-ARIA
@@ -294,7 +294,7 @@ Site Isolation を固めることで、サイトをより強固に Origin に閉
 
 これら全てを有効にしている。
 
-加えて CSP/Trusted Types を有効にした環境を Securere Context と定義し、そこではさらに強力な機能を有効にできるのではないかという提案がなされている。
+加えて CSP/Trusted Types を有効にした環境を Securer Context と定義し、そこではさらに強力な機能を有効にできるのではないかという提案がなされている。
 
 - [mikewest/securer-contexts](https://github.com/mikewest/securer-contexts/blob/master/README.md)
 

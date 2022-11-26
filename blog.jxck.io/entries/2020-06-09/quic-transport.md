@@ -219,7 +219,7 @@ interface mixin BidirectionalStreamsTransport {
 };
 ```
 
-Bidirectional Stream をクライアントから確立する場合は `createBidirectionalStream()` を、サーバから確立する場合は `receiveBidirectionaStreams()` を用いる。
+Bidirectional Stream をクライアントから確立する場合は `createBidirectionalStream()` を、サーバから確立する場合は `receiveBidirectionalStreams()` を用いる。
 
 (Uni/Bi)Directional x (Client/Server)Initiated が全てサポートされて Stream が得られるので、エコシステム的に言えば、 Sink/Source を定義して Stream を用意しておけば、 QUIC のメリットを活かしつつアプリケーションを組むことができる。
 

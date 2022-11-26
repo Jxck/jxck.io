@@ -11,7 +11,7 @@ Origin は Web におけるセキュリティモデルの一つとして、コ�
 概要と現状について解説する。
 
 
-## DEMO & Resouces
+## DEMO & Resources
 
 量が多いため、動作する DEMO と関連リソースは、ページ下部にまとめてある。
 
@@ -319,7 +319,7 @@ Chrome では COEP/COOP が有効になったサイトにのみ、 SharedArrayBu
 
 Isolated な環境でしか利用できない API が存在するということは、分岐のために Isolated であるかどうかを知りたい場面がでてくる。
 
-そこで、 CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが `self.corssOriginIsolated` だ。
+そこで、 CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが `self.crossOriginIsolated` だ。
 
 ```js
 if (self.crossOriginIsolated) {

@@ -42,7 +42,7 @@ $ ls subresource
 
 gen-bundle は `-dir` を指定するとディレクトリ以下をまるっと bundle してくれる。
 
-CLI の仕様上 `-primaryURL` (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chorme の実装もこれを無視しているようなので、適当に指定している。
+CLI の仕様上 `-primaryURL` (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chrome の実装もこれを無視しているようなので、適当に指定している。
 
 `-headerOverride` でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
 
@@ -315,9 +315,9 @@ WebBundle の Explainer には、この問題に対する考慮が一応書い�
 現状の実装ではそこまではスコープに無いと思われるので、今後この議論が進むかどうかに注目しつつ、フィードバックしていきたい。
 
 
-### resouces
+### resources
 
-bundle で fetch の数が解決して、 ES Module を積極利用するとなると、自動生成するとしても link タグの resouces が少し肥大しすぎるあたりも気になる。
+bundle で fetch の数が解決して、 ES Module を積極利用するとなると、自動生成するとしても link タグの resources が少し肥大しすぎるあたりも気になる。
 
 ぱっと思い浮かぶのは import map だが、そちらも最近どうなってるかよくわからない。
 

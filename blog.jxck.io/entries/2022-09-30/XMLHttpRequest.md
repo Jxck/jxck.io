@@ -104,7 +104,7 @@ Alex のブログにもあるように、技術的にはすでに数年前から
 
 ## Fetch の策定
 
-ブラウザがネットワークを経由してリソースを取得することは、仕様上 "fetching resources" というコンセプトで記されている。もともとは Hixi によって HTML5 のスペック中に書かれていた。
+ブラウザがネットワークを経由してリソースを取得することは、仕様上 "fetching resources" というコンセプトで記されている。もともとは Hixie によって HTML5 のスペック中に書かれていた。
 
 - 2.6 Fetching resources | HTML5
   - https://www.w3.org/TR/2009/WD-html5-20090212/infrastructure.html#fetching-resources

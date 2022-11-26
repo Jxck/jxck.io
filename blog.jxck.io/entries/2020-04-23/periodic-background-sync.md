@@ -137,7 +137,7 @@ PBS を導入したサイトが多くなり、それらの登録したタスク�
 
 Native App の場合も、同様のことが OS レベルで行われ、 iPhone であればそもそもアプリ自体が UnInstall されたりするのに近い。
 
-Chrome は、サイトの使用頻度を収集し Site Engagemnet という指標を Chrome 内部に作成している。
+Chrome は、サイトの使用頻度を収集し Site Engagement という指標を Chrome 内部に作成している。
 
 Site Engagement は以下の URL で確認できる。
 

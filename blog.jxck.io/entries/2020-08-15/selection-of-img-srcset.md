@@ -148,8 +148,8 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 
 色々手を加えたコードを引用する。基本の流れは
 
-- srcset にある候補について、 img.width を size (w) で割った値を Dencity として算出
-- その Dencity で候補をソートし重複を排除
+- srcset にある候補について、 img.width を size (w) で割った値を Density として算出
+- その Density で候補をソートし重複を排除
 - Save Data が有効な場合は最も小さいものを選択して終わり
 - SelectionLogic に候補を渡して画像を選択
 
@@ -164,11 +164,11 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 ここで実際に画像を選択している。
 
 - 候補を順に見ていき、現在の値を curr 次を next とする
-- next の dencity が DPR を超えるまで先に進む
+- next の density が DPR を超えるまで先に進む
 - curr &lt; DPR &lt; next になったらそこで curr/next どちらを見るか決める
-- まず curr/next の dencity の幾何平均(相乗平均)をとる
+- まず curr/next の density の幾何平均(相乗平均)をとる
 - 以下は next を使う
-  - DPR が 1 で curr.dencity がそれより小さい
+  - DPR が 1 で curr.density がそれより小さい
   - 幾何平均が DPR より小さい
 - そうでなければ curr
 
@@ -180,10 +180,10 @@ W3C に限らず、 IETF によるプロトコルの仕様にもよくあるこ�
 つまり挙動としてはこうなるだろう。
 
 - DPR が 1 の場合
-  - dencity が 1 を超える一番小さいものを選ぶ
+  - density が 1 を超える一番小さいものを選ぶ
 - DPR が 1 以上の場合
-  - dencity が DPR を上下にまたぐ 2 つの画像を選ぶ
-  - その 2 つの dencity の幾何平均を取る
+  - density が DPR を上下にまたぐ 2 つの画像を選ぶ
+  - その 2 つの density の幾何平均を取る
   - 幾何平均 \< DPR なら next
   - 幾何平均 > DPR なら curr
 
@@ -200,7 +200,7 @@ img.width = 573 の時、 sqrt((1024/573) \* (640/573)) は 1.998 で DPR より
 
 つまり、 512px を超えても画像は切り替わらず 572px までは 1024w が使われている結果となるはずだ。
 
-Dencity とその幾何平均を見ながら画像の切り替わりポイントを確かめたところ、計算通りの結果になった。
+Density とその幾何平均を見ながら画像の切り替わりポイントを確かめたところ、計算通りの結果になった。
 
 - ![Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された](srcset-chrome-dpr2.gif#622x862 "srcset image selection on chrome as expected")
 

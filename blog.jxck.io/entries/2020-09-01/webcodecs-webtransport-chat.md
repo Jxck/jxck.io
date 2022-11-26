@@ -34,7 +34,7 @@ WebRTC は UDP 上に DTLS で交換した鍵を用いて、 RTP を SRTP で流
 
 QUIC/HTTP3 の実装が進んでから、このトランスポートを WebSocket のように直接触れる API があり、任意のバイナリを送れるようにしようという発想から始まったのが WebTransport だ。
 
-仕様上は Http3Transport と QuicTranport の両方が検討されているが、現状 Chrome は QuicTransport のみ実装を進めている。
+仕様上は Http3Transport と QuicTransport の両方が検討されているが、現状 Chrome は QuicTransport のみ実装を進めている。
 
 - [QuicTransport によるアプリケーションレイヤでの QUIC 活用](https://blog.jxck.io/entries/2020-06-09/quic-transport.html)
 
@@ -258,7 +258,7 @@ WebRTC よりも軽いスタックでビデオ会議が実現可能になった�
 
 ## Outro
 
-WebCodecs と WebTrasnport を用いて WebRTC のようなビデオ会議が、よりシンプルなスタックで可能になった。
+WebCodecs と WebTransport を用いて WebRTC のようなビデオ会議が、よりシンプルなスタックで可能になった。
 
 バイナリをエンコードし、それを送る、その間に必要なロジックは、標準ではなく要件に合わせて開発者が用意するという世界観は、 Extensible Web Manifest 以来進められてきた API の低レイヤ化の流れを組んでいるといえる。
 
