@@ -91,7 +91,7 @@ Chrome は、現在の Stable では Webkit と同じだが、 Canary では Fir
 
 <iframe src="https://www.youtube.com/embed/uPnEZd6wCtk" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
 
-本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素で成り立つかは viewwport に依存する。
+本来なら、最初に見える部分="Above the fold" を最適化したいわけだが、それがどの要素で成り立つかは viewport に依存する。
 
 サイズが分かっていれば、コンテンツを埋める枠のサイズを全て最初に指定することもできるが、以下の方法を使えば、どのような viewport でも適切に表示できることができる。
 

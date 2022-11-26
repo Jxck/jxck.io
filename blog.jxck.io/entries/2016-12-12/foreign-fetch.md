@@ -127,7 +127,7 @@ Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...
 サービス連携のような使い方が可能になるのだ。
 
 
-## Micro Serivce Workers
+## Micro Service Workers
 
 1st Party Service Worker で全ての処理を行う必要があったモデルには、かなり無理があった。
 
@@ -150,6 +150,6 @@ Micro Services に分割されたそれぞれの API は、対応する Service 
 
 foreign-fetch は現状まだ Origin-Trials の対象であるが、 Trials を外れれば、今後各 API が Service Worker を提供するのが一般的になっていく可能性がある。
 
-また Microservices 化を進める 1 つの Origanization の中の複数の Service も、 foreign-fetch を用いたもろもろの連携が視野に入ってくると、 JSON API までにとどまりがちだった Service の定義がもう少し広がるかもしれない。
+また Microservices 化を進める 1 つの Organization の中の複数の Service も、 foreign-fetch を用いたもろもろの連携が視野に入ってくると、 JSON API までにとどまりがちだった Service の定義がもう少し広がるかもしれない。
 
 デバッグなどが難しいという問題があるが、本ブログでも積極的に導入し知見を貯めていきたい。

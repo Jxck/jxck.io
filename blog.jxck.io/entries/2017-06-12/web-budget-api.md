@@ -15,7 +15,7 @@ PWA の普及により、バックグラウンド処理をいかに制限する�
 
 - https://github.com/mozilla/standards-positions/issues/73#issuecomment-373681407
 
-元のリポジトリに Issue で現状を問い合わせたところ、結局開発者からの支持が得られず、 Obsolute されたとのこと。
+元のリポジトリに Issue で現状を問い合わせたところ、結局開発者からの支持が得られず、 Obsolete されたとのこと。
 
 blink-dev では Intent to Remove も出て、削除のパッチも上がっている。
 

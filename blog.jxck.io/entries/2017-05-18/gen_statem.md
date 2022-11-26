@@ -331,7 +331,7 @@ call, info などすべての EventType は、 `next_event` で送ることが�
 
 ## Module:format_status/2
 
-sys:get_status/1,2 や teminate 時のダンプなどで出力される State の値を、事前に加工できるフックが導入された。
+sys:get_status/1,2 や terminate 時のダンプなどで出力される State の値を、事前に加工できるフックが導入された。
 
 オプションなので、 Export されていなくても良い。
 

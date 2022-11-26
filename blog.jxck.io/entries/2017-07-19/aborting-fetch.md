@@ -33,7 +33,7 @@ DOM の API が Promise ベースに移行しつつある流れを汲み、 `fet
 
 resolve される response から得られる body が stream に対応したため、 [2 つのことが可能](https://blog.jxck.io/entries/2016-07-21/fetch-progress-cancel.html)となった。
 
-- chunk が取得できるようになり、実質 progess の取得が可能になった
+- chunk が取得できるようになり、実質 progress の取得が可能になった
 - stream を中断することが可能になった
 
 後者の stream の中断は、 `fetch()` の中断の一種として使うこともできる。

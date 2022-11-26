@@ -46,7 +46,7 @@ WOFF2 は WOFF よりも圧縮率が高いとされている。
 
 なお、本当は Emoji についての言及もしたため、 [Noto Color Emoji](https://www.google.com/get/noto/help/emoji/) からの追加も考えたが、非常に少ないため、運用負荷を下げるため Emoji はシステムフォントに任せることとした。
 
-結果、今回作成するフォントセットは以下の 全エントリの利用文字 - (Emojio x 5 + ZWJ) = 2416 文字である
+結果、今回作成するフォントセットは以下の 全エントリの利用文字 - (Emoji x 5 + ZWJ) = 2416 文字である
 
 - [All.txt](https://blog.jxck.io/entries/2018-02-13/All.txt)
 

@@ -68,7 +68,7 @@ User-Agent 単体では大別しかできないが、そこに対して他の情
 もし 3rd Party Cookie を付与できれば確実だが、 Cookie 付与前、 Cookie 削除後、 Private Browse などでもユーザを特定したいというニーズはある。
 
 
-### Tracking by Fingerpirnt ?
+### Tracking by Fingerprint ?
 
 Apple が実施する *ITP*(Intelligent Tracking Prevention) によって、 3rd Party Cookie が絶たれるため、広告プロバイダは Finger Printing などの代替技術に救いを求めるのは想像に難くない。
 
@@ -277,7 +277,7 @@ HTTP2 や TLS1.3, QUIC その他プロトコルの対応は、基本的にはプ
 
 しかし、 Feature Detection の方法は UA に頼らずともかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
 
-Uaser-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、歴史的にも負債を残してきた。
+User-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、歴史的にも負債を残してきた。
 
 UA で分岐するような実装がある場合は本当にそれが妥当か見直すべきだろう。
 

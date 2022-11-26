@@ -81,7 +81,7 @@ HTML5 時代には、特に実装が早い webkit/moz あたりを取り上げ�
 
 Vender Prefix は、 *「変更や消滅がありえる」ということを使う側に強制することができなかった* ため、本来の目的を果たすためには弱い仕組みだったといえる。
 
-![Veder Prefix 付きの API が呼ばれているため DevTools に警告(warning)が出ている](vender-prefix-warning.png#570x194 "vender prefix warning")
+![Vender Prefix 付きの API が呼ばれているため DevTools に警告(warning)が出ている](vender-prefix-warning.png#570x194 "vender prefix warning")
 
 また、 Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。
 

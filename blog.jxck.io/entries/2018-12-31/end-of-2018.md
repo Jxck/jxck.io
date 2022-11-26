@@ -42,7 +42,7 @@ Monthly の流れがある程度確立したので、来年以降はもう少し
 
 細かいものも含め、スライドを作ったのは 8 回。
 
-builderscon は難産だったが、そのおかげでここまでの Web の整理に加え、今年のテーマの 1 つである Permissioin/User Consent について深掘りできたし、 [mozaic.fm ep43](https://mozaic.fm/episodes/43/permission.html) にも繋がったので得るものが多かった。
+builderscon は難産だったが、そのおかげでここまでの Web の整理に加え、今年のテーマの 1 つである Permission/User Consent について深掘りできたし、 [mozaic.fm ep43](https://mozaic.fm/episodes/43/permission.html) にも繋がったので得るものが多かった。
 
 大きめの発表が続いたので、もう少し LT とかカジュアル目な発表も増やしたい気もする。
 

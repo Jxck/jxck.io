@@ -351,7 +351,7 @@ Array.of(...'𩸽定食')
 ```
 
 
-### Destructoring
+### Destructuring
 
 分割代入時の分割も Iterator で行われる。
 

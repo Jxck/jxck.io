@@ -65,7 +65,7 @@ Alliance のメンバーには AMD, ARM, Intel, NVIDIA などが名を連ね、�
 
 そして、 Google, Microsoft, Mozilla がいるため、 Chrome/Edge/Firefox については実装が期待される。
 
-コンテンツも、既に Amazon Prim, Youtube, Nertflix, Hulu などの指示も取り付けているようだ。
+コンテンツも、既に Amazon Prim, Youtube, Netflix, Hulu などの指示も取り付けているようだ。
 
 つまり、 WebRTC 的に言えば「*あと Apple だけ*」だった。
 

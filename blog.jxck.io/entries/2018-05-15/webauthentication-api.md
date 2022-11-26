@@ -73,7 +73,7 @@ JS API としては、 Credential Management API をそのまま使う。
 
 クライアントはサーバに username を送り、登録に必要な以下のような情報を要求する。
 
-(ここではそのまま `navigatore.credentials.create()` に渡せる形でサーバから返している)
+(ここではそのまま `navigator.credentials.create()` に渡せる形でサーバから返している)
 
 ```js
 // https://w3c.github.io/webauthn/#dictionary-makecredentialoptions
@@ -316,7 +316,7 @@ storage["username"] = {
 
 registration 同様、サーバに username を送り、認証に必要な以下の情報を要求する。
 
-(ここではそのまま `navigatore.credentials.get()` に渡せる形でサーバから返している)
+(ここではそのまま `navigator.credentials.get()` に渡せる形でサーバから返している)
 
 ```js
 {
@@ -414,7 +414,7 @@ const hash = crypto.createHash("sha256").update(clientDataJSON).digest()
 //   BITSTRING <raw public key>
 // }
 // Luckily, to do that, we just need to prefix it with constant 26 bytes (metadata is constant).
-const publickKeyPEM = Buffer.concat([
+const publicKeyPEM = Buffer.concat([
   Buffer.from("3059301306072a8648ce3d020106082a8648ce3d030107034200", "hex"),
   Buffer.from(publicKey),
 ]).toString("base64").match(/.{1,64}/g)
@@ -426,7 +426,7 @@ const publickKeyPEM = Buffer.concat([
 const verified = crypto
                     .createVerify("sha256")
                     .update(Buffer.concat([authenticatorData, hash]))
-                    .verify(publickKeyPEM, signature)
+                    .verify(publicKeyPEM, signature)
 ```
 
 最後に、ここで取得した signCount が、保存しているものよりも大きいことを確認する。

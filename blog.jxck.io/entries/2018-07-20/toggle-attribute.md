@@ -57,7 +57,7 @@ target.setAttribute("disabled", false); // 無効になるわけではない
 
 結果的には以下のような API に落ち着いた。
 
-属性名を指定して toggleAttribute を呼べば、 ture/false を切り替えられる。
+属性名を指定して toggleAttribute を呼べば、 true/false を切り替えられる。
 
 (値は empty string が採用された)
 

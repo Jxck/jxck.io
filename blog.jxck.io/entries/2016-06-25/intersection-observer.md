@@ -109,7 +109,7 @@ let rect = target.getBoundingClientRect();
 
 上記の判定は、スクロールするたび、つまり onscroll イベントごとに計算すれば DOM の出現監視になる。
 
-ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Jank を引き起こす可能性がある。
+ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Junk を引き起こす可能性がある。
 
 対策としては、まずコールバックを実行するイベントを間引く throttling がある。
 
@@ -131,7 +131,7 @@ let rect = target.getBoundingClientRect();
 
 さて、ここまで見て来た方法には多くの問題があった。
 
-1. scroll event のハンドラが Scroll Jank を引き起こす可能性がある
+1. scroll event のハンドラが Scroll Junk を引き起こす可能性がある
 2. 全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
 3. サイズや位置を取得する API は Forced Synchronous Layout を発生させる
 4. API が分かりづらく、互換性も微妙で、単純に実装が面倒くさい
@@ -156,7 +156,7 @@ Intersection Observer は交点(Intersection) を監視し、指定した要素�
 
 逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
 
-これにより、 Scroll Jank の原因が除去され、効率良く実装することが可能となる。
+これにより、 Scroll Junk の原因が除去され、効率良く実装することが可能となる。
 
 
 ## API
@@ -264,7 +264,7 @@ threshold を 10% にし、 intersectionRatio を表示するように実装し�
 
 - [Intersection Observer DEMO](https://labs.jxck.io/intersection-observer/intersection.html)
 
-また以下に Intersecton Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
+また以下に Intersection Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
 
 こちらは、 `overflow: scroll` な div を親とする出現検出も含めてある。
 

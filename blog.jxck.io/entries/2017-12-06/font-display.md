@@ -98,7 +98,7 @@ Web Font 読み込み系のライブラリは、 `swap` や `fallback` などに
 
 block period を `3s` (推奨)、 swap period を `infinite` にする。
 
-主に、代替のフォントでの表示を避けたい場合に利用されるが、 block period が `infinit` になるわけではない点に注意。
+主に、代替のフォントでの表示を避けたい場合に利用されるが、 block period が `infinite` になるわけではない点に注意。
 
 例えば、 [FontAwesome](http://fontawesome.io/) のようにフォントファイルを UI Icon に利用しており、代替フォントでの表示が望ましくない場面で利用できる。
 

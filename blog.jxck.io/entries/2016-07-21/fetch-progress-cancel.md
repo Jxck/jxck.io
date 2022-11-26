@@ -51,14 +51,14 @@ fetch('foo.txt').then((res) => {
 
 - [Fetch Basic DEMO](https://labs.jxck.io/fetch/basic.html)
 
-`res.text()` が body を resolve する Promsie を返していることが分かる。
+`res.text()` が body を resolve する Promise を返していることが分かる。
 
 この API では、以下の二つができない。
 
 - `foo.txt` が大きかった場合、 fetch を中断(キャンセル)する。
 - `foo.txt` が大きかった場合、ダウンロードの進捗(プログレス)を得る。
 
-現在の Promise の仕様では、非同期処理に対してあくまで *fullfilled(完了した)* か *rejected(失敗した)* の二つの状態を返すことしかできない。
+現在の Promise の仕様では、非同期処理に対してあくまで *fulfilled(完了した)* か *rejected(失敗した)* の二つの状態を返すことしかできない。
 
 このため、その途中の状態に処理を挟む余地がないためである。
 
@@ -193,7 +193,7 @@ fetch(url).then((res) => {
 
 現在の仕様では、 Stream を経由せず Promise のレベルで fetch をキャンセルすることはできない。
 
-これは Promsie そのものにキャンセルという概念が含まれていないためである。
+これは Promise そのものにキャンセルという概念が含まれていないためである。
 
 もし Promise 自体にキャンセルの概念が入れば、 Stream の取得は不要となる。
 
@@ -209,7 +209,7 @@ fetch を含めて Promise を返す API は増加しつつあるため、 Cance
 
 Stream での progress と cancel は可能になったが、まだ *ブラウザが実装しているか* という問題もある。
 
-- [Fetch | canuise](https://caniuse.com/#feat=fetch)
+- [Fetch | caniuse](https://caniuse.com/#feat=fetch)
 
 一方 XHR が無くなることはないため、今後も利用可能である。
 

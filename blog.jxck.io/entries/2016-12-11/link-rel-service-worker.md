@@ -31,7 +31,7 @@ Service Worker は、その処理(ここでいう `sw.js` の中身)をインラ
 
 `sw.js` を登録するだけであれば、 HTML のメタタグを用いて行うことができる。
 
-(`registrer()` の引数相当は、 HTML attributes で表現する)
+(`register()` の引数相当は、 HTML attributes で表現する)
 
 ```js
 <link rel="serviceworker" href="sw.js" scope="/">
@@ -50,7 +50,7 @@ Service Worker は、その処理(ここでいう `sw.js` の中身)をインラ
 
 同じことを HTTP のレスポンスだけで行うこともできる。
 
-(`registrer()` の引数相当は、 HTTP Header の attribute で表現する)
+(`register()` の引数相当は、 HTTP Header の attribute で表現する)
 
 ```http
 Link: <sw.js>; rel="serviceworker"; scope="/"

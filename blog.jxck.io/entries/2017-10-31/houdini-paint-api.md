@@ -144,7 +144,7 @@ Worklet はメインスレッドと Global を共有せず、必要な情報は�
 registerPaint('border-double-custom', class {
   static get inputProperties() { }
   static get inputArguments() { }
-  paint(ctx, size, styleMap, argments) { }
+  paint(ctx, size, styleMap, arguments) { }
 })
 ```
 

@@ -11,7 +11,7 @@
 
 - 2/2: Beta [Chrome57](https://blog.chromium.org/2017/02/chrome-57-beta-css-grid-layout-improved.html)
   - Grid
-  - Add to Home Screeen
+  - Add to Home Screen
   - Media Session
   - text padding
   - SW NavigationPreload
@@ -170,7 +170,7 @@ Finding っていう資料が二つ出た。
   - Android Chrome で media の再生が便利に
   - [sample](https://googlechrome.github.io/samples/media-session)
 
-- 1/31: [Securitry and Frontend Performance](http://www.oreilly.com/webops-perf/free/security-and-frontend-performance.csp)
+- 1/31: [Security and Frontend Performance](http://www.oreilly.com/webops-perf/free/security-and-frontend-performance.csp)
   - Web のパフォーマンスとセキュリティをあえて一緒に扱う書籍。 CSP, HSTS, ResourceHints, SW など
 
 - 1/31: [Edge の WebRTC1.0 紹介](https://blogs.windows.com/msedgedev/2017/01/31/introducing-webrtc-microsoft-edge/)
@@ -307,7 +307,7 @@ Finding っていう資料が二つ出た。
   - ブラウザは常に最新にアップデートしよう
   - ブラウザの実装もちゃんと仕様に追従しよう
   - 組み込む時は適当なサブセット作るのやめよう
-  - みたいな TAG の Findig という資料
+  - みたいな TAG の Findings という資料
 
 - 2/9: [JS Start-up Performance](https://medium.com/@addyosmani/javascript-start-up-performance-69200f43b201)
   - devtools で測定しながら

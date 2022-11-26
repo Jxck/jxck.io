@@ -102,7 +102,7 @@ p {
 そこで、 CSS の Multi Column Layout で 2 column にするオプションを追加した。
 
 ```css
-.colmun {
+.column {
   column-count: 2;
   column-gap: calc(var(--grid) * 2);
   padding: var(--grid);

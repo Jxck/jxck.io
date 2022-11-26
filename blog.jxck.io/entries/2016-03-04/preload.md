@@ -17,7 +17,7 @@ Preload を指定する `<link rel=preload>` の仕様が公開されており�
 
 Preload はリソースのローディングを最適化することを目的に策定された仕様である。
 
-link 属性ファミリーで、最適化に用いられる値としては、以前書いた [Resouce Hints 系](https://blog.jxck.io/entries/2016-02-11/resource-hints.html) と近いが、仕様としては別になっている。
+link 属性ファミリーで、最適化に用いられる値としては、以前書いた [Resource Hints 系](https://blog.jxck.io/entries/2016-02-11/resource-hints.html) と近いが、仕様としては別になっている。
 
 また、既に HTTP2 においてこの仕様の一部が使われており、最適化の意味合いとしてはかかわり合う部分もある。
 
@@ -26,18 +26,18 @@ link 属性ファミリーで、最適化に用いられる値としては、以
 
 ## Preload の特徴
 
-Resource Hints の例えば Prefetch との違いは、 Prefetch がナビゲーションの前に動作するのに対して、 Prelaod はナビゲーションが行われた後に動作することが上げられる。
+Resource Hints の例えば Prefetch との違いは、 Prefetch がナビゲーションの前に動作するのに対して、 Preload はナビゲーションが行われた後に動作することが上げられる。
 
 Prefetch は、画面を遷移する前に、次の遷移先で必要となるリソースについて、投機的な取得を指示していた。
 
-一方 Preload は現在表示しようとしているページに遷移した後、そのページ内でのリソース取得を最適化する。(Chrome が独自に実装している Subresouce というのもあった、それに近い)
+一方 Preload は現在表示しようとしているページに遷移した後、そのページ内でのリソース取得を最適化する。(Chrome が独自に実装している Subresource というのもあった、それに近い)
 
 また、 Preload は以下のような特徴を持ち、今までできなかったことができるようになる。
 
 - 属性の指定によっていくつかのコントロールが可能である。
 - Content-Security-Policy を満たしているかを確認できる。
 - リソースに適した Accept ヘッダ(`image/webp` etc)を付与できる。
-- Prealod はそれ自体が `onload` を発火する。
+- Preload はそれ自体が `onload` を発火する。
 - `window.onload` をブロックしない
 
 
@@ -137,7 +137,7 @@ Preload はリンクであるため、仕様上 media 属性を持つ。(chrome 
 
 つまり Media Query を用いた条件付きローディングができる。
 
-例えば `<picture>` で Image を読み分けている場合、その条件と同じものを `<link rel=preload>` に指定することで、一致した条件のみの画像を Prelaod できる。
+例えば `<picture>` で Image を読み分けている場合、その条件と同じものを `<link rel=preload>` に指定することで、一致した条件のみの画像を Preload できる。
 
 ```html
 <link rel=preload as=image href=large.png media="(max-width: 600px)">

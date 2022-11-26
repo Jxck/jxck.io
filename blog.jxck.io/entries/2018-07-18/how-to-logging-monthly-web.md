@@ -201,7 +201,7 @@ Intents は Chrome と似た運用だが、カバー率が低く Intents なし�
 
 - https://wiki.mozilla.org/RapidRelease/Calendar
 
-ブログでは Web だけでなく Internet の話題、例えば NetNeutrarity なども積極的に出してくるが、政治や法律などレイヤの高い話題は Monthly Web では省いている。
+ブログでは Web だけでなく Internet の話題、例えば NetNeutrality なども積極的に出してくるが、政治や法律などレイヤの高い話題は Monthly Web では省いている。
 
 
 ### Intents
@@ -260,7 +260,7 @@ Mozilla の場合は一番目立つのは Mozilla Festival だろう。
 
 - https://mozillafestival.org
 
-Web に限らず Decentrarization や Net Neutrality といった、レイヤの高い話も多い。
+Web に限らず Decentralization や Net Neutrality といった、レイヤの高い話も多い。
 
 Web についても、 Web Literacy や HTTPS Everywhere のような啓蒙が多いイメージがある。
 
@@ -355,7 +355,7 @@ Web にかかわるアウトプットは少ないが、 Safari のアップデ�
 
 最近は、とにかく Tracking を許さないという強固な態度や、新機能を入れるよりはパフォーマンス改善を優先すると言った、他のブラウザと比べて特徴のある方針を取ることが多い。
 
-標準化の場面でも Template Instantiation や CSS Everioment Variable などを率先していたりと、面白い動きも多い。
+標準化の場面でも Template Instantiation や CSS Environment Variable などを率先していたりと、面白い動きも多い。
 
 
 ## Edge 動向
@@ -619,7 +619,7 @@ TPAC への参加は、基本 W3C 会員しかできないため、自身の所�
 他にも様々なイベントが催されており、 News Blog を見て入れば知ることができる。
 
 
-### Othre
+### Other
 
 W3C は歴史も長く、組織やプロセスが枯れているため、かなりシステマチックだ。
 
@@ -763,7 +763,7 @@ IETF は、チケットさえ買えばだれでも参加できるという点で
 
 他にも、期間中に行われるプレナリーやハッカソンなどもアウトプットが出る場合がある。
 
-ちなみに、初参加者には IETF 自体のビギナーセミナや、 New Commer シールなど、初心者へのフォローも充実している。
+ちなみに、初参加者には IETF 自体のビギナーセミナや、 New Comer シールなど、初心者へのフォローも充実している。
 
 何年かに一度、開催が日本になることもあるので、参加してみると面白いと思う。
 
@@ -774,7 +774,7 @@ IETF は、チケットさえ買えばだれでも参加できるという点で
 
 特に最近では以下のようなものが多い。
 
-- CA insident や証明書周りの動向
+- CA incident や証明書周りの動向
 - Browser/Openssl など実装脆弱性 (CVE)
 - セキュリティ対策ヘッダ(CSP etc)
 - セキュリティやプライバシーによるブラウザの挙動変化

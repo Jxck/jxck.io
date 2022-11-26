@@ -8,7 +8,7 @@
 
 基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。
 
-合わせて ES Modules の Import を用いて、 pollyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
+合わせて ES Modules の Import を用いて、 polyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
 
 本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。
 
@@ -17,7 +17,7 @@
 [Web over Layered APIs](https://speakerdeck.com/jxck/web-over-layered-apis)
 
 
-## Standarize Low Level API
+## Standardize Low Level API
 
 Extensible Web Manifest 以降、標準化の場面では Low Level な Primitive の策定に注力してきた。
 
@@ -48,7 +48,7 @@ Low Level API の整備は、関連する他の API との整合性にも良い�
 Low Level API の整備が軌道に乗った今こそ、 High Level API に対して標準化の側面からどういう態度を取るか、を考える時期でもある。
 
 
-## Standarize High Level API
+## Standardize High Level API
 
 High Level API を標準化するといっても、闇雲に採用し実装するわけにもいかない。
 
@@ -74,7 +74,7 @@ Layered API(LAPIs) は、簡単に言えば High Level API を定義する上で
 別に難しいことではないが、これによりいくつかのメリットがある。
 
 - ブラウザが既に実装している Low Level API を使って Polyfill が可能
-- 既にレビューを通った Low Leve API だけに依存するため、新たなプライバシー/セキュリティリスクを産みにくい
+- 既にレビューを通った Low Level API だけに依存するため、新たなプライバシー/セキュリティリスクを産みにくい
 
 逆にもし Polyfill が不可能であれば、新たな Low Level API の可能性(Use Case)がそこに存在するとし、そちらを先に定義することになるだろう。
 

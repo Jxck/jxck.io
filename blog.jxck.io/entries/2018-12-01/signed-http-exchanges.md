@@ -38,7 +38,7 @@ mozaic.fm の管理者は、保有する秘密鍵を用いて、このコンテ�
 
 ## Bundling (Bundled HTTP Exchanges)
 
-Siging は、単一の Request/Response に対する署名を行う。
+Signing は、単一の Request/Response に対する署名を行う。
 
 つまり index.html に署名をしても、そこに読み込まれる JS や CSS といったサブリソースは含まれない。
 
@@ -166,7 +166,7 @@ AMP キャッシュと同じことが、一般の CDN でも可能になる。
 
 ### Subresource Integrity
 
-Subresource Integrity (SRI) とは、 Subresouce が想定したものであることを確認し、改ざん等によって意図しないものに差し替えられることを防ぐ仕組みである。
+Subresource Integrity (SRI) とは、 Subresource が想定したものであることを確認し、改ざん等によって意図しないものに差し替えられることを防ぐ仕組みである。
 
 以下は、 integrity 属性に jquery 全体の sha-256 ハッシュを含むことで、異なる jquery が実行されることを防ぐ。
 
@@ -493,7 +493,7 @@ SignedHTTPExchange はまだいくつかの課題がある。筆者が把握し�
 
 ### offline 対応
 
-現時点では certURL と validitiURL にアクセスし、署名を検証できなければいけない。
+現時点では certURL と validateURL にアクセスし、署名を検証できなければいけない。
 
 つまり、 sxg 自体がオフラインで共有できても、署名検証が offline で実施できない。
 

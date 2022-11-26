@@ -248,7 +248,7 @@ Caption: Lax Cookie が送られるかどうかの API まとめ
 | Type      | Code                                | Lax |
 |:----------|:------------------------------------|:---:|
 | Link      | `<a href="..."></a>`                | o   |
-| Perender  | `<link rel="prerender" href=".."/>` | o   |
+| Prerender | `<link rel="prerender" href=".."/>` | o   |
 | Form GET  | `<form method="GET" action="...">`  | o   |
 | Form POST | `<form method="POST" action="...">` | x   |
 | iframe    | `<iframe src="..."></iframe>`       | x   |

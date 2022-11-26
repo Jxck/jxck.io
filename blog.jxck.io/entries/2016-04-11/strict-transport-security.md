@@ -43,7 +43,7 @@ Strict-Transport-Security: max-age=7776000
 
 この性質は [HPKP](https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html) 同様 *TOFU* (Trust of First Use) と呼ばれる。
 
-そこで、ブラウザに HSTS 対象ドメインのリストをあらかじめ含んでおくことで、ユーザがまだアクセスしたことがないドメインについても、初回アクセス時から HTTS アクセスを強制する仕組みが HSTS Preload である。
+そこで、ブラウザに HSTS 対象ドメインのリストをあらかじめ含んでおくことで、ユーザがまだアクセスしたことがないドメインについても、初回アクセス時から HTTPS アクセスを強制する仕組みが HSTS Preload である。
 
 Chrome の場合は、以下からドメインを申請すると、審査が実施され、条件を満たすものは Chrome のソースコード中にある preload hsts のリストに追加される。
 

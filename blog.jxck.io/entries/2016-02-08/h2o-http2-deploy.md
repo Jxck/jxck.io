@@ -65,7 +65,7 @@ paths:
 
 やるなら mruby.handler を使うしかない。
 
-(399 は、 fallthroug の独自ルールになっているらしい)
+(399 は、 fallthrough の独自ルールになっているらしい)
 
 ```yaml
 "/":

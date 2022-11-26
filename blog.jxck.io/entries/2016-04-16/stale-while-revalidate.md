@@ -168,7 +168,7 @@ Cache-Control: max-age=3600, stale-if-error=360
 
 もちろん、上記二つは組み合わせて使うことができる。
 
-![fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる](stale-if-error.svg#552x352 "stale-if-erro header")
+![fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる](stale-if-error.svg#552x352 "stale-if-error header")
 
 
 ## DEMO
@@ -195,7 +195,7 @@ Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15
 
 サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
 
-![statle-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている](stale-while-revalidate-demo.gif#1000x510 "stale-while-revalidate demo gif")
+![stale-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている](stale-while-revalidate-demo.gif#1000x510 "stale-while-revalidate demo gif")
 
 
 ## SwR を用いたキャッシュ戦略の考察

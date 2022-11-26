@@ -105,7 +105,7 @@ $target.addEventListener('resize', ({detail: entries}) => {
 
 [ElementQuery](http://elementqueries.com/) は MediaQuery の要素版といったコンセプトで作られたライブラリである。
 
-例えば以下のように、 `min-widht` を境に色を変えるといったことが可能になる。
+例えば以下のように、 `min-width` を境に色を変えるといったことが可能になる。
 
 ```css
 @element .minwidthpixels and (min-width: 500px) {
@@ -171,6 +171,6 @@ CSS に持ってくるには、 Houdini で策定中の [CSS Parser API](https:/
 
 ResizeObserver によって、単一要素のリサイズがとれるようになり、それを起点にしたよりレスポンシブなレイアウトが可能となった。
 
-ここに Parser API や Custom At-Rule, Custom Puesud Element が実装可能になれば、ライブラリとしての Element Query 実装もかなり改善されるだろう。
+ここに Parser API や Custom At-Rule, Custom Pseudo Element が実装可能になれば、ライブラリとしての Element Query 実装もかなり改善されるだろう。
 
 より広範囲に渡るレイアウトについては、将来的には Layout API によって Worklet に落とした実装が可能なるかもしれないが、部分的な用途ではこうした方法も選択肢に入りそうだ。

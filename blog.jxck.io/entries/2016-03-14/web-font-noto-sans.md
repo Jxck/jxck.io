@@ -385,7 +385,7 @@ body {
 ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新が皆無ではないため、 URL にバージョンを忘れずに入れる。(font-face の指定参照)
 
 ```css
-url("/paht-to-font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014") format("woff");
+url("/path-to-font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014") format("woff");
 ```
 
 ここでは max-age を一年とし、フォントを作り直した場合はバージョンを変える

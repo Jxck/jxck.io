@@ -51,7 +51,7 @@ type は省略されることが多いが、その場合 `text/javascript` と�
 例えば以下を考える。
 
 - module script である `module.js` をベースとして提供する。
-- ES Moduels 非対応ブラウザに対して WebPack などで bundle した classic script である `bundle.js` を提供する。
+- ES Modules 非対応ブラウザに対して WebPack などで bundle した classic script である `bundle.js` を提供する。
 - どちらでも実行したい classic script の `analytics.js` を提供する。
 
 この場合、以下のように指定できる。

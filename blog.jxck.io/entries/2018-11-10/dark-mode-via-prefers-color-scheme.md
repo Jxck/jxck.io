@@ -53,7 +53,7 @@ Safari TP 69 では、 `prefers-color-scheme` を用いて Media Query でテー
 }
 ```
 
-多くの場合、現状のコンテンツが Ligth Mode と見なされるだろう。
+多くの場合、現状のコンテンツが Light Mode と見なされるだろう。
 
 その場合、差分のみを Dark Mode 用に書き、色を反転するデザインをあてれば良い。
 
