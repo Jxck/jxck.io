@@ -37,7 +37,7 @@ URL の fragment 部 (`https://example.com#foo` の `#foo`)は、サーバには
 
 基本は `<pre id="sample_code">` のようにした場合 `https://example.com#sample_code` でサンプルコードまでスクロールするといったユースケースで用いられる。そこで、サーバにリクエストをせずにクライアントの状態を変えるという部分だけに着目し、 SPA のルーティングを fragment にエンコードするという実装が考えられた。
 
-クライアントの状態であるため、直接アクセスしてもその状態を復元できるのはブラウザのみだ。したがって、当時はそのような構成のサイトが正しく検索できないという問題があった。そこで、 Google Bot は `#!` で始まるフラグメントの利用を推奨し、 `https://example.com#!foo` を発見した場合はサーバに対して `htts://example.com/_escaped_fragment_=foo` を代わりにリクエストすることで、サーバは `#!foo` で表示されるべき画面を SSR して返すように求めるというサポートを行っていた。
+クライアントの状態であるため、直接アクセスしてもその状態を復元できるのはブラウザのみだ。したがって、当時はそのような構成のサイトが正しく検索できないという問題があった。そこで、 Google Bot は `#!` で始まるフラグメントの利用を推奨し、 `https://example.com#!foo` を発見した場合はサーバに対して `https://example.com/_escaped_fragment_=foo` を代わりにリクエストすることで、サーバは `#!foo` で表示されるべき画面を SSR して返すように求めるというサポートを行っていた。
 
 - A proposal for making AJAX crawlable  |  Google Search Central Blog  |  Google Developers
   - https://developers.google.com/search/blog/2009/10/proposal-for-making-ajax-crawlable
@@ -70,8 +70,8 @@ window.on('popstate', (e) => {
 
 ```js
 history.back() // 戻る
-history.forwad() // 進む
-hostory.go(-2) // ページを引数で指定し遷移
+history.forward() // 進む
+history.go(-2) // ページを引数で指定し遷移
 ```
 
 大きなところでは、 Twitter が 2012 年に対応をアナウンスしている。これはそれなりに早い方の移行だったと思う。
@@ -192,7 +192,7 @@ await navigation.navigate("/foo", { state: {count: 1}, info: "shortcut", history
 
 `state` は any だが、シリアライズ可能なものに限る。 `history` は `"push"` なら追記、 `"replace"` なら現在の Entry を置き換える。その遷移だけで用いるエフェメラルな値は `info` で送ることができる。
 
-戻り値は `{ commited, finish }` という 2 つの Promise だ。 `commited` は `navigate()` 開始と共に即座に Resolve し、 `finished` は `navigate()` が完了したら Resolve する。
+戻り値は `{ committed, finish }` という 2 つの Promise だ。 `committed` は `navigate()` 開始と共に即座に Resolve し、 `finished` は `navigate()` が完了したら Resolve する。
 
 
 ### currentEntry.getState()
@@ -248,7 +248,7 @@ await navigation.traverseTo(key).finished;
 
 ### back()/forward()/reload()
 
-`history.back()` / `hostory.forward()` / `location.realod()` 相当のメソッドもある。
+`history.back()` / `history.forward()` / `location.reload()` 相当のメソッドもある。
 
 `navigation.back()` / `navigation.forward()` は `info` を渡すことができ、 back/forward が可能かどうかを知るためのフラグが `navigation.canGoBack` および `navigation.canGoForward` で提供されている。
 
@@ -351,7 +351,7 @@ window?.navigation?.on("navigateerror", (e) => {
 
 (実装の雰囲気は Service Worker の `fetch` イベントのハンドラに近い)
 
-途中の処理が全て成功(Resolve)すれば `navigatesuccess` イベントを発火し、失敗(Reject)すれば `navigationerror` が発火することで、結果を取得することもできる。
+途中の処理が全て成功(Resolve)すれば `navigatesuccess` イベントを発火し、失敗(Reject)すれば `navigateerror` が発火することで、結果を取得することもできる。
 
 見た目上、同様のことを実現すること自体は従来でもできた。それを踏まえて、この API の何が凄いのかを細かく見ていこう。
 
@@ -360,7 +360,7 @@ window?.navigation?.on("navigateerror", (e) => {
 
 まず、 `transitionWhile()` は、呼び出した瞬間が「*遷移の開始*」で、全て終わったら「*遷移の完了*」であることがわかる。ここが `await` なので、 `transitionWhile()` は渡された Promise が Resolve されるまでを「遷移」と定義していることになる。
 
-この遷移(navigation event)が `navigation.navigate()` によって発火していた場合は、「開始」と「完了」が先ほどの `{ commited, finished }` Promise に対応することになる。
+この遷移(navigation event)が `navigation.navigate()` によって発火していた場合は、「開始」と「完了」が先ほどの `{ committed, finished }` Promise に対応することになる。
 
 ```js
 // transitionWhile() による画面遷移が終わるのを待つ

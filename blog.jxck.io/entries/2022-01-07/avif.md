@@ -96,7 +96,7 @@ $ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15
 
 ### DEMO
 
-動作する DMEO を作成した。
+動作する DEMO を作成した。
 
 - WebP DEMO | labs.jxck.io
   - https://labs.jxck.io/avif/
