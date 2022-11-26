@@ -6,7 +6,7 @@ Transport として HTTP over TCP を基本としていた Web のあり方は�
 
 その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。
 
-WebScoket/MSE/WebRTC/WASM など、 Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。
+WebSocket/MSE/WebRTC/WASM など、 Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。
 
 しかし、できることが増えればこそ、それぞれのパーツの不足する部分が浮き彫りになる。
 
@@ -156,7 +156,7 @@ Caption: オプションごとのプロトコルサポート
 ただ、以下のような気持ちは汲み取る。
 
 - Promise/Stream をきちんと導入しモダンに仕上げる
-- Stream による backpressure も対応する
+- Stream による back pressure も対応する
 - Uni/Bi-Directional / Datagram はそのまま対応
 - Transport Interface で具体的なプロトコルを抽象化
 
@@ -171,7 +171,7 @@ Caption: オプションごとのプロトコルサポート
 
 WebSocket の API は、 Promise や Stream が定義される前に策定されたため、それらに対応していない。
 
-特に、 Stream に対応すれば、 WebTransport の問題意識の一つである、 backpressure にも対応可能であるため、よりモダンな API に再設計出来れば、単にコードの見た目以上のメリットも出てくる。
+特に、 Stream に対応すれば、 WebTransport の問題意識の一つである、 back pressure にも対応可能であるため、よりモダンな API に再設計出来れば、単にコードの見た目以上のメリットも出てくる。
 
 これを行うために、 WebSocket を Stream 対応する仕様策定と実装が WebSocketStream であり、現在 Chrome チームにより進められている。
 

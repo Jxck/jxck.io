@@ -138,7 +138,7 @@ const dummyPolicy = TrustedTypes.createPolicy('dummy', {
   createHTML: (unsafe) => unsafe
 })
 
-// CSP で dummuy が定義されていなければ使えない
+// CSP で dummy が定義されていなければ使えない
 const trustedHTML = dummyPolicy.createHTML('<img src=/ onerror="alert(10)">')
 document.querySelector('div').innerHTML = trustedHTML
 ```
@@ -277,7 +277,7 @@ CSP で有効にした時点で、対象となる全ての処理にフックが�
 
 CSP によって有効になるのは、型が違う場合にエラーをあげることだけだ。
 
-つまり Pocliy のメソッドを経由して DOMString を TrustedTypes に変換することは、 CSP で有効にしなくても可能だ。
+つまり Policy のメソッドを経由して DOMString を TrustedTypes に変換することは、 CSP で有効にしなくても可能だ。
 
 これだけでも以下の二つのメリットが考えられる
 

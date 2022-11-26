@@ -6,7 +6,7 @@
 
 前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。
 
-また、外出時もアクセスできるように SSH Port Fowarding を使って、固定 IP の無い家に外からアクセスできるようにした。
+また、外出時もアクセスできるように SSH Port Forwarding を使って、固定 IP の無い家に外からアクセスできるようにした。
 
 備忘録を兼ねて記す。
 
@@ -83,7 +83,7 @@ Ubuntu 19.10 eoan を入れたが、これもすんなり入った。
 
 しかし、せっかく作った環境は、外出先等でも使いたいため、外からもアクセスできるようにしたい。
 
-すでに Sakura VPS には固定 IP を振っているため、これを用いた最も安価で簡単な方法は SSH の Portfowarding だろう。
+すでに Sakura VPS には固定 IP を振っているため、これを用いた最も安価で簡単な方法は SSH の Port Forwarding だろう。
 
 
 ### 構成
@@ -98,7 +98,7 @@ Ubuntu 19.10 eoan を入れたが、これもすんなり入った。
 
 このとき NUC から VPS には SSH できるが、逆は NUC に IP が無いためできない。
 
-そこで、 NUC と VPS の SSH を張りっぱなしにしておき、 laptop からの SSH をそこを通して NUC に届けるのが Port Fowarding だ。
+そこで、 NUC と VPS の SSH を張りっぱなしにしておき、 laptop からの SSH をそこを通して NUC に届けるのが Port Forwarding だ。
 
 まず NUC から VPS に -R で SSH をつなぐ。
 
@@ -143,7 +143,7 @@ Host reverse-ssh
   TCPKeepAlive no
 ```
 
-Foward に失敗したり、応答が返らなければ落ちる。ただし TCP の接続が一時的に不安定になっても影響を受けないといった設定だ。
+Forward に失敗したり、応答が返らなければ落ちる。ただし TCP の接続が一時的に不安定になっても影響を受けないといった設定だ。
 
 肝は、変な状態でとどまらず、おかしかったら落ちることだ。落ちれば、後述の方法で再接続できる。
 
@@ -256,7 +256,7 @@ $ sudo /usr/bin/autossh reverse-ssh -NTR 22222:localhost:22
 
 NUC には、 VPS からの key を用いた ssh のみを許可したい。
 
-まず `/etc/ssh/sshd_cinfig` でパスワードによる接続を無効にする。
+まず `/etc/ssh/sshd_config` でパスワードによる接続を無効にする。
 
 ```config
 PasswordAuthentication no

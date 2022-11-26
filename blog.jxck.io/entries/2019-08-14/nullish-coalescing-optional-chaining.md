@@ -83,7 +83,7 @@ function main(option) {
   option.flag     = option.flag    ?? true
   option.logging  = {debug: true}
 
-  cosnole.log(option)
+  console.log(option)
 }
 
 main({
@@ -143,7 +143,7 @@ a = null
 a?.b[x++] // ?. より右は実行されず x は増えない
 ```
 
-この挙動を Short Circuting と言う。
+この挙動を Short Circuiting と言う。
 
 もし Short Circuit を止めて、評価を実行したい場合は、対象を括弧でくくればその範囲のみに限定することもできる。
 
@@ -225,7 +225,7 @@ const lang = document.querySelector('code')? // node が無ければ null
                      .toUpperCase()
 
 if (lang === undefined) {
-  cosnole.error('something wrong')
+  console.error('something wrong')
 } else {
   console.log(lang)
 }

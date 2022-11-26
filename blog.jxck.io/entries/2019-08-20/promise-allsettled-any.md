@@ -59,7 +59,7 @@ try {
   await Promise.all(fetched)
 } catch(err) {
   // 一つでも Reject すると Reject する
-  cosnole.error(err) // abort
+  console.error(err) // abort
 }
 ```
 
@@ -132,7 +132,7 @@ try {
 
 ## any
 
-any は rece とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
+any は race とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
 
 そして、全ての Promise が Reject した場合にのみ全体を Reject する。
 

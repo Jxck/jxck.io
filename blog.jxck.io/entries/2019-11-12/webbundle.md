@@ -373,7 +373,7 @@ npm はローカルで解決できるのを前提に、小さいモジュール�
 
 普通に `import` を用いたコードを書けるし、別々にキャッシュされればページを跨いだ再利用や、更新による再デプロイも変わってくるだろう。
 
-JS のように依存がなくても、単にまとめられることは、 CSS Sprite(画像のまとめ), WebFont(weight など), Icon(favivcon.ico と apple-touch-cion etc)などにも適用できるのでは無いかと筆者は考えている。
+JS のように依存がなくても、単にまとめられることは、 CSS Sprite(画像のまとめ), WebFont(weight など), Icon(favicon.ico と apple-touch-cion etc)などにも適用できるのでは無いかと筆者は考えている。
 
 今は、そうした議論よりも先に、当初の目標である AMP のようなケースにフォーカスしていると思うが、ゆくゆくはそういうことに応用できるように、 [feedback](https://github.com/WICG/webpackage/issues/526) を続けたい。
 
@@ -421,6 +421,6 @@ Origin と暗号化した通信にどうやって middle box が共有キャッ�
 
 ### logging
 
-AMP もそうだが、いよいよサーバにリクエストが来ることを前提にした Acccess Log が限界を迎えつつある。
+AMP もそうだが、いよいよサーバにリクエストが来ることを前提にした Access Log が限界を迎えつつある。
 
 コンテンツを開いたことを、各位が beacon などで取得している現状があるが、ここがもう少しユーザの裁量(opt-outable)を反映した標準の API になるべきだろうと[常々思っている](https://discourse.wicg.io/t/proposal-html-ping-for-navigation/2839/7)。

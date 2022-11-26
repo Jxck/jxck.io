@@ -18,12 +18,12 @@ React や lit-html などにより、 DOM 操作の抽象化に加えて最適�
 まず、以下のような処理を考える。
 
 ```js
-body.appencCild($div)
+body.appendChild($div)
 ```
 
 この処理が JS の途中で出現すれば、その瞬間 Window にある DOM Tree はロックを取得し、 `$div` の追加処理が行われ、 DOM Tree が atomic に更新される。
 
-DOM Tree の更新が終わったら、レンダリング処理(style -> layout -> paint -> composit)が発生し、すぐさま画面上に新たな要素が表示される。
+DOM Tree の更新が終わったら、レンダリング処理(style -> layout -> paint -> composite)が発生し、すぐさま画面上に新たな要素が表示される。
 
 このモデルは非常にわかりやすい一方で、大規模なアプリケーションを開発する際には、様々な課題を産むことになる。
 
@@ -52,7 +52,7 @@ React や lit-html は、この State の DOM への展開をライブラリで�
 
 React は Virtual DOM による差分更新、 lit-html は Tagged Template Literal で割り出した Strict/Dynamic Part の識別によりこれを行なっている。
 
-少し違うアプローチとして Worker DOM は、 DOM の処理を Woker で実行しているように見せているが、実際には当然 Window にコマンドを発行し DOM API を呼ぶ。
+少し違うアプローチとして Worker DOM は、 DOM の処理を Worker で実行しているように見せているが、実際には当然 Window にコマンドを発行し DOM API を呼ぶ。
 
 どんなに最適化をしても、最終的にはブラウザの持つ DOM API を呼び出す必要があるため、そこがボトルネックになるのは避けられない。
 
@@ -81,7 +81,7 @@ React は Virtual DOM による差分更新、 lit-html は Tagged Template Lite
 - [asyncAppend](https://github.com/WICG/async-append)
   - 非同期版 Append を生やす
   - 単体 Append だけではなく、 DOM 処理の Batch 化もする
-- [WokerNode](https://github.com/drufball/worker-node/)
+- [WorkerNode](https://github.com/drufball/worker-node/)
   - Worker と行き来できる DOM 更新命令をまとめたオブジェクトの提案
   - そのオブジェクトの適用には asyncAppend を使う
 - [DOM ChangeList](https://github.com/whatwg/dom/issues/270)
@@ -105,9 +105,9 @@ Async DOM の実装の中で、もっとも作業が進み、 Chrome で実装�
 - TAG Review: [Display Locking - Issue #306 - w3ctag/design-reviews](https://github.com/w3ctag/design-reviews/issues/306)
 - Mozilla Standard Position: [Display Locking API - Issue #135 - mozilla/standards-positions](https://github.com/mozilla/standards-positions/issues/135)
 
-この仕様の状況としては、まず Intetns で [positive feedback from ReactJS and Polymer](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ) と書かれているため、なんらかのやり取りはあったようだ。
+この仕様の状況としては、まず Intents で [positive feedback from ReactJS and Polymer](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ) と書かれているため、なんらかのやり取りはあったようだ。
 
-しかし、 Mozilla は [Standard Pisition](https://github.com/mozilla/standards-positions/issues/135) でこれを *harmful 寄り* としており、同じスレッドで Apple も [we do not support this proposal](https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851) と言っている。
+しかし、 Mozilla は [Standard Position](https://github.com/mozilla/standards-positions/issues/135) でこれを *harmful 寄り* としており、同じスレッドで Apple も [we do not support this proposal](https://github.com/mozilla/standards-positions/issues/135#issuecomment-476952851) と言っている。
 
 ただし、どちらも現状の仕様の持つ課題に対する態度であり、前述したような現状の DOM API については共通の問題意識を持っており、 Display Locking の作業が全て無駄だという割り切りというわけでもない。
 
@@ -219,13 +219,13 @@ activatable は、メモリ上にあるがレンダリングされてない DOM 
 
 ブラウザは、まだメモリ上にありレンダリングされてない要素を、検索やフォーカス移動などの対象に含み、必要に応じて commit することができるのだ。
 
-これを利用すると、 Infinit Scroll で、少しづつ裏で DOM に挿しつつレンダリングは遅延させていても、検索にはヒットするといった実装が可能になる。
+これを利用すると、 Infinite Scroll で、少しづつ裏で DOM に挿しつつレンダリングは遅延させていても、検索にはヒットするといった実装が可能になる。
 
 そのものずばりなユースケースとして、 Layered API の文脈で議論されている Virtual Scroll のニーズとも一致している。
 
 - [WICG/virtual-scroller](https://github.com/WICG/virtual-scroller)
 
-この Virtual Scroller のページ検索のために、もともと別ドラフトであった Searchabel Invisible DOM という提案があった。
+この Virtual Scroller のページ検索のために、もともと別ドラフトであった Searchable Invisible DOM という提案があった。
 
 - [Intent to Implement: Searchable Invisible DOM - Google グループ](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Icw_sU6PqVA/8hwXw0jTDwAJ)
 
