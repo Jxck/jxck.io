@@ -1,4 +1,4 @@
-﻿---
+---
 type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep109.mp3
