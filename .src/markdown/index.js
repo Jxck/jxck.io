@@ -1572,7 +1572,7 @@ export function decode(md) {
     if (result = /^:::((?<symbol>.+?)((?<spaces> +)(?<text>.*))*){0,1}$/.exec(head)) return details(result, rest, ast)
 
     // html
-    if (result = /^( *)\<(\/{0,1})(iframe|div|span|p|pre|code).*/.exec(head)) {
+    if (result = /^( *)\<(\/{0,1})(iframe|div|span|p|pre|code|\!--).*/.exec(head)) {
       return html(result, rest, ast)
     }
 
@@ -1648,17 +1648,9 @@ export function dump(ast) {
 function main() {
   [
 `
-:::message alert
-警告メッセージをここに
-
-### foo
-
-text
-
-### bar
-
-text
-:::
+<p>コメントの前
+<!-- これはコメントです -->
+<p>コメントの後
 `,
   ].forEach((line) => {
     const ast = decode(line)
