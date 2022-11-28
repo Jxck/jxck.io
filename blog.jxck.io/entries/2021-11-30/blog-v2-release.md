@@ -102,7 +102,7 @@ HTML の仕様には、閉じタグやクオートの省略条件が書かれて
 
 ### blockquote の cite
 
-blockqote 記法の最後に書いた URL を `cite` として埋め込む。
+blockquote 記法の最後に書いた URL を `cite` として埋め込む。
 
 例えばこれは
 
