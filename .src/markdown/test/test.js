@@ -3,7 +3,7 @@ import { format } from "../formatter.js";
 import { deepStrictEqual } from "assert";
 import fs from "fs";
 
-function testcase() {
+function test_case() {
   const text = fs.readFileSync("./test.txt").toString()
   const cases = text.split(`=`.repeat(30))
     .filter((line) => {
@@ -129,7 +129,7 @@ function util() {
   console.assert(actual, expected)
 }
 
-testcase()
+test_case()
 api()
 formatter()
 util()
