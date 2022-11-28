@@ -25,7 +25,7 @@
 メモとして実装上の要件を記しておく。
 
 
-### Headding / Sectioning
+### Heading / Sectioning
 
 大抵の Markdown 実装は `#`, `##` は `<h1>`, `<h2>` にそのままシリアライズされる。
 
@@ -216,9 +216,9 @@ mozaic.fm の Monthly Web では、 Show Note に大量のリンクを貼るた�
 
 ### TOC の生成
 
-前述で生成した headding とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
+前述で生成した heading とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
 
-TOC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Headding のリストを保持することになるので、それをそのまま ToC として AST と一緒に返すようにした。
+TOC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Heading のリストを保持することになるので、それをそのまま ToC として AST と一緒に返すようにした。
 
 この TOC は、 blog のタイトル上に埋め込んでいる。
 

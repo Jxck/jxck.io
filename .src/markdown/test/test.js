@@ -87,9 +87,9 @@ function util() {
   function h(level, text) {
     const attr = new Map([[`id`, text]])
     const children = [node({ name: `text`, type: `inline`, text })]
-    return node({ name: `headding`, type: `inline`, attr, level, children })
+    return node({ name: `heading`, type: `inline`, attr, level, children })
   }
-  const headdings = [
+  const headings = [
     h(1, `a`),
     h(2, `b`),
     h(3, `c`),
@@ -102,7 +102,7 @@ function util() {
     h(2, `j`),
     h(1, `k`),
   ];
-  const toc = to_toc(headdings)
+  const toc = to_toc(headings)
   const actual = encode(toc)
 
   const expected = `<ul>

@@ -53,7 +53,7 @@ export function cache_busting(path) {
  * @returns {string}
  */
 function serialize_description(node, acc = ``) {
-  if (node.name === `headding`) return ``
+  if (node.name === `heading`) return ``
   if (node.name === `text`) return node.text
   return node.children.map((child) => {
     return serialize_description(child, acc)
@@ -242,7 +242,7 @@ function info_section({ published_at, guests, toc }) {
     dd.appendChild(details)
     details.appendChildren([summary, nav])
     nav.appendChild(toc)
-    summary.addText(`headdings`)
+    summary.addText(`headings`)
     dl.appendChild(div)
   })()
 
@@ -292,7 +292,7 @@ function customise(ast, { host, base }) {
     /**@type {string} */
     description: null,
     /**@type {Array.<Node>} */
-    headdings: [],
+    headings: [],
     /**@type {string} */
     title: null,
 
@@ -314,9 +314,9 @@ function customise(ast, { host, base }) {
       return node
     },
     leave: (node) => {
-      if (node.name === `headding`) {
+      if (node.name === `heading`) {
         if (node.level === 1) {
-          const result = customise_headding(node)
+          const result = customise_heading(node)
           state.tags = result.tags
           node = result.node
           state.title = node.children.map((child) => encode(child)).join(``)
@@ -338,7 +338,7 @@ function customise(ast, { host, base }) {
         // かぶるものが前にあったら _1, _2 などを suffix につける
         // そのために、 TOC にある値を調べて重複をカウントする
         // reduceRight できるかと思ったけど break できないので reduce で頭から見ていく
-        const last = state.headdings.reduce((prev, curr) => {
+        const last = state.headings.reduce((prev, curr) => {
           return curr.attr.get(`_id`) === _id ? curr : prev
         }, null)
 
@@ -350,7 +350,7 @@ function customise(ast, { host, base }) {
         // 重複カウントを保存しつつ、 suffix をつけたものを正式 id として登録
         node.attr.set(`_id_count`, `${_id_count}`)
         node.attr.set(`id`, id)
-        state.headdings.push(node)
+        state.headings.push(node)
 
         const attr = new Map()
         if (node.level === 1) {
@@ -394,8 +394,8 @@ function customise(ast, { host, base }) {
       return node
     }
   })
-  const { tags, description, headdings, title } = state
-  const toc = to_toc(headdings, { list: `ol` })
+  const { tags, description, headings, title } = state
+  const toc = to_toc(headings, { list: `ol` })
   return { root, tags, description, toc, title }
 }
 
@@ -426,7 +426,7 @@ function append_css(node, css) {
  * @param {Node} node
  * @returns {{node: Node, tags: Array.<string>}}
  */
-function customise_headding(node) {
+function customise_heading(node) {
   const text = node.children[0].text
   const result = /(?<tag>\[.*\])?(?<title>.*)/.exec(text)?.groups
   const { tag, title } = result

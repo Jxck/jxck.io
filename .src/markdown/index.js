@@ -3,7 +3,7 @@
 export { format } from "./formatter.js";
 
 /**
- * @typedef {Object} Headding
+ * @typedef {Object} Heading
  * @property {number} level
  * @property {string} id
  * @property {string} hashed
@@ -74,11 +74,11 @@ export function create_id_from_text(h) {
 }
 
 /**
- * Headdings の配列を <ul>/<ol> リストに組み直す
- * @param {Array.<Node>} headdings
+ * Headings の配列を <ul>/<ol> リストに組み直す
+ * @param {Array.<Node>} headings
  * @param {{list:string}} opt
  */
-export function to_toc(headdings, opt = { list: `ol` }) {
+export function to_toc(headings, opt = { list: `ol` }) {
   const name = opt.list
   const root = node({ name, type: `block`, level: 1 });
 
@@ -110,7 +110,7 @@ export function to_toc(headdings, opt = { list: `ol` }) {
       return list([head, ...tail], current.parent);
     }
   }
-  return list(headdings, root)
+  return list(headings, root)
 }
 
 /**
@@ -261,7 +261,7 @@ export function encode(node, option = {}) {
    * @param {number} indent
    * @returns {string}
    */
-  function headding(node, indent) {
+  function heading(node, indent) {
     const name = `h${node.level}`
     const text = node.children.map((child) => serialize(child)).join(``)
     const attr = node.attr
@@ -492,7 +492,7 @@ export function encode(node, option = {}) {
     const name = node.name
     if (name === `text`) /*          */ return text(node, indent)
     if (name === `raw`) /*           */ return raw(node, indent)
-    if (name === `headding`) /*      */ return headding(node, indent)
+    if (name === `heading`) /*      */ return heading(node, indent)
     if (name === `section`) /*       */ return section(node, indent)
     if (name === `a`) /*             */ return a(node, indent)
     if (name === `pre`) /*           */ return pre(node, indent)
@@ -560,7 +560,7 @@ export function decode(md) {
    * @param {Node} ast
    * @returns {Node}
    */
-  function headding(result, rest, ast) {
+  function heading(result, rest, ast) {
     const { symbol, spaces, text } = result.groups
 
     if (spaces.length > 1) throw new Error(`too many spaces in "${result.input}"`)
@@ -586,7 +586,7 @@ export function decode(md) {
     }, [])
 
     const h = node({
-      name: `headding`,
+      name: `heading`,
       type: `inline`,
       level,
       children,
@@ -1579,7 +1579,7 @@ export function decode(md) {
     // skip break line
     if (head === ``) return parse(rest, rise(ast, `section`))
 
-    if (result = /^(?<symbol>#+)(?<spaces> +)(?<text>.+)$/.exec(head)) /*           */ return headding(result, rest, ast)
+    if (result = /^(?<symbol>#+)(?<spaces> +)(?<text>.+)$/.exec(head)) /*           */ return heading(result, rest, ast)
     if (result = /^(?<indent> *)(?<number>\d+)\.(?<spaces> +)(?<text>.+)$/.exec(head)) return list(`ol`, result, rest, ast)
     if (result = /^(?<indent> *)\-(?<spaces> +)(?<text>.+)$/.exec(head)) /*         */ return list(`ul`, result, rest, ast)
     if (result = /^(\:)(?<spaces> +)(?<text>.+)$/.exec(head)) /*                    */ return dl(result, rest, ast)

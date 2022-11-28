@@ -1,5 +1,5 @@
 /**
- * @typedef {Object} Headding
+ * @typedef {Object} Heading
  * @property {number} level
  * @property {string} id
  * @property {string} hashed
@@ -33,11 +33,11 @@ export function serialize_child_text(node: Node): string;
  */
 export function create_id_from_text(h: Node): string;
 /**
- * Headdings の配列を <ul>/<ol> リストに組み直す
- * @param {Array.<Node>} headdings
+ * Headings の配列を <ul>/<ol> リストに組み直す
+ * @param {Array.<Node>} headings
  * @param {{list:string}} opt
  */
-export function to_toc(headdings: Array<Node>, opt?: {
+export function to_toc(headings: Array<Node>, opt?: {
     list: string;
 }): Node;
 /**
@@ -121,7 +121,7 @@ export class Node {
      */
     addText(text: string): void;
 }
-export type Headding = {
+export type Heading = {
     level: number;
     id: string;
     hashed: string;

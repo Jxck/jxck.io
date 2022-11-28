@@ -288,8 +288,8 @@ function serialize(node, option) {
     return `[${text}](${href})`
   }
 
-  if (name === `headding`) {
-    /** headding の手前が headding 以外だったら改行入れたい */
+  if (name === `heading`) {
+    /** heading の手前が heading 以外だったら改行入れたい */
     // # aaa
     // (<< ここは改行x1 )
     // ## bbb
@@ -316,8 +316,8 @@ function serialize(node, option) {
     let space = `\n`
     if (i > 0) { // 自分より前に要素があり
       const prevsection = grand.children.at(i - 1)
-      // それが headding だった場合は
-      if (prevsection.name === `headding`) {
+      // それが heading だった場合は
+      if (prevsection.name === `heading`) {
         // 1 回しか改行しない
         space = ``
       }
