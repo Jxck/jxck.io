@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-11-30T08:00:00+08:00",
-    "dateModified": "2022-08-03T08:00:00+08:00",
+    "dateModified": "2022-11-28T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-11-30>2021-11-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-08-03>2022-08-03</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-28>2022-11-28</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -146,7 +146,7 @@
                 <li><a href="#markdown">Markdown</a>
                 <li><a href="#要件">要件</a>
                 <ol>
-                  <li><a href="#headding--sectioning">Headding / Sectioning</a>
+                  <li><a href="#heading--sectioning">Heading / Sectioning</a>
                   <li><a href="#閉じタグとクオートの省略">閉じタグとクオートの省略</a>
                   <li><a href="#インデント">インデント</a>
                   <li><a href="#blockquote-の-cite">blockquote の cite</a>
@@ -205,7 +205,7 @@
         <h2 id="要件"><a href="#要件">要件</a></h2>
         <p>メモとして実装上の要件を記しておく。
         <section>
-          <h3 id="headding--sectioning"><a href="#headding--sectioning">Headding / Sectioning</a></h3>
+          <h3 id="heading--sectioning"><a href="#heading--sectioning">Heading / Sectioning</a></h3>
           <p>大抵の Markdown 実装は <code translate=no>#</code>, <code translate=no>##</code> は <code translate=no>&lt;h1&gt;</code>, <code translate=no>&lt;h2&gt;</code> にそのままシリアライズされる。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=md data-code=md><code translate=no class=language-md># h1
@@ -339,8 +339,8 @@
         </section>
         <section>
           <h3 id="toc-の生成"><a href="#toc-の生成">TOC の生成</a></h3>
-          <p>前述で生成した headding とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
-          <p>TOC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Headding のリストを保持することになるので、それをそのまま ToC として AST と一緒に返すようにした。
+          <p>前述で生成した heading とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
+          <p>TOC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Heading のリストを保持することになるので、それをそのまま ToC として AST と一緒に返すようにした。
           <p>この TOC は、 blog のタイトル上に埋め込んでいる。
         </section>
         <section>
