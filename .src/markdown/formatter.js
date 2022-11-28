@@ -315,9 +315,9 @@ function serialize(node, option) {
     // デフォルトでは 2 回改行するが
     let space = `\n`
     if (i > 0) { // 自分より前に要素があり
-      const prevsection = grand.children.at(i - 1)
+      const prev_section = grand.children.at(i - 1)
       // それが heading だった場合は
-      if (prevsection.name === `heading`) {
+      if (prev_section.name === `heading`) {
         // 1 回しか改行しない
         space = ``
       }

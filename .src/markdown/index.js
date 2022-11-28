@@ -518,13 +518,13 @@ export function encode(node, option = {}) {
     }
 
     if (node.children.length === 0) {
-      // 子要素が無いやつ (link, srouce, img)
+      // 子要素が無いやつ (link, source, img)
       const name = node.name
       const attr = attr_str(node.attr)
       return `${spaces(indent)}<${name}${attr}>\n`
     }
 
-    // Other Inlines
+    // Other Inline
     if (node.type === `inline`) {
       const attr = attr_str(node.attr)
       return `<${name}${attr}>${node.children.map((child) => serialize(child)).join(``)}</${name}>`
@@ -744,9 +744,9 @@ export function decode(md) {
     const columns = row.split(`|`)
 
     if (row.startsWith(`:`) || row.startsWith(`-`)) {
-      const aligns = columns.map((colmun) => {
-        const start = Number(colmun.startsWith(`:`))
-        const end = Number(colmun.endsWith(`:`))
+      const aligns = columns.map((column) => {
+        const start = Number(column.startsWith(`:`))
+        const end = Number(column.endsWith(`:`))
         if (!(start ^ end)) return `center`
         if (start) return `left`
         if (end) return `right`
@@ -773,11 +773,11 @@ export function decode(md) {
 
     if (ast.name === `thead`) {
       const thead = ast
-      const th = columns.map((colmun) => {
+      const th = columns.map((column) => {
         return node({
           name: `th`,
           type: `inline`,
-          children: inline(colmun.trim()),
+          children: inline(column.trim()),
         })
       })
 
@@ -802,13 +802,13 @@ export function decode(md) {
         level: 0,
       })
 
-      columns.forEach((colmun, i) => {
+      columns.forEach((column, i) => {
         const align = aligns.at(i)
         const td = node({
           name: `td`,
           type: `inline`,
           attr: map({ align }),
-          children: inline(colmun.trim()),
+          children: inline(column.trim()),
         })
         tr.appendChild(td)
       })
@@ -1431,7 +1431,7 @@ export function decode(md) {
     const child = node({ name: `em`, type: `inline` })
     while (true) {
       // "* a * b *" みたいにマッチしてない場合
-      if (i > input.length) throw new Error(`unmatch </em> on "${input}"`)
+      if (i > input.length) throw new Error(`unmatched </em> on "${input}"`)
 
       // escape を無視
       if (input[i] === `\\`) {
@@ -1471,7 +1471,7 @@ export function decode(md) {
     const child = node({ name: `strong`, type: `inline` })
     while (true) {
       // "** a" みたいにマッチしてない場合
-      if (i > input.length) throw new Error(`unmatch </strong> on "${input}"`)
+      if (i > input.length) throw new Error(`unmatched </strong> on "${input}"`)
 
       // escape を無視
       if (input[i] === `\\`) {
@@ -1512,7 +1512,7 @@ export function decode(md) {
     const child = node({ name: `code`, type: `inline`, attr })
     while (true) {
       // "` a ` b `" みたいにマッチしてない場合
-      if (i > input.length) throw new Error(`unmatch </code> on "${input}"`)
+      if (i > input.length) throw new Error(`unmatched </code> on "${input}"`)
 
       // escape を無視
       if (input[i] === `\\`) {

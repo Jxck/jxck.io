@@ -279,12 +279,12 @@ async function renderFile(template, context) {
  */
 
 /**
- * Customise AST with traverse()
+ * Customize AST with traverse()
  * @param {Node} ast
  * @param {Param} param
  * @returns
  */
-function customise(ast, { host, base }) {
+function customize(ast, { host, base }) {
 
   const state = {
     /**@type {Array.<string>} */
@@ -316,7 +316,7 @@ function customise(ast, { host, base }) {
     leave: (node) => {
       if (node.name === `heading`) {
         if (node.level === 1) {
-          const result = customise_heading(node)
+          const result = customize_heading(node)
           state.tags = result.tags
           node = result.node
           state.title = node.children.map((child) => encode(child)).join(``)
@@ -383,7 +383,7 @@ function customise(ast, { host, base }) {
         }
       }
       if (node.name === `img`) {
-        return customise_image(node, base)
+        return customize_image(node, base)
       }
       if (node.name === `a`) {
         const href = new URL(node.attr.get(`href`), `https://${host}`)
@@ -426,7 +426,7 @@ function append_css(node, css) {
  * @param {Node} node
  * @returns {{node: Node, tags: Array.<string>}}
  */
-function customise_heading(node) {
+function customize_heading(node) {
   const text = node.children[0].text
   const result = /(?<tag>\[.*\])?(?<title>.*)/.exec(text)?.groups
   const { tag, title } = result
@@ -446,7 +446,7 @@ function customise_heading(node) {
  * @param {string} base
  * @returns 
  */
-function customise_image(node, base) {
+function customize_image(node, base) {
   const attr = node.attr
   /**
    * TODO: parse 方法を見直す
@@ -564,7 +564,7 @@ async function parse_entry(entry) {
   const relative = `${entries}/${created_at}/${filename}`
 
   const ast = decode(md)
-  const { root, description, tags, toc, title } = customise(ast, { host, base })
+  const { root, description, tags, toc, title } = customize(ast, { host, base })
   // h1 は除く
   const ol = toc.children.at(-1)
   const toc_html = encode(ol, { indent: 14 })
@@ -607,7 +607,7 @@ async function parse_episode(entry, order) {
   const base = `${up}/${host}/${episodes}/${ep}/`
   const ast = decode(markdown)
 
-  const { root, description, toc, title } = customise(ast, { host, base })
+  const { root, description, toc, title } = customize(ast, { host, base })
   const ol = toc.children.at(-1) // toc から h1 を除く
 
   // yaml の情報を info section にして ast に差し込む
@@ -713,7 +713,7 @@ async function blog(files, params = { preview: false }) {
   await writeFile(`../blog.jxck.io/feeds/sitemap.xml`, sitemap_result)
 
   // build tags
-  const tagmap = entries.reduce((acc, entry) => {
+  const tag_map = entries.reduce((acc, entry) => {
     entry.tags.forEach((tag) => {
       if (acc.has(tag)) {
         acc.get(tag).push(entry)
@@ -724,7 +724,7 @@ async function blog(files, params = { preview: false }) {
     return acc
   }, new Map())
 
-  const tags = Array.from(tagmap.entries()).sort((a, b) => {
+  const tags = Array.from(tag_map.entries()).sort((a, b) => {
     return a[0] > b[0] ? 1 : -1
   }).map(([k, v]) => {
     return [k, v.sort()]
@@ -762,7 +762,7 @@ async function blog(files, params = { preview: false }) {
  */
 async function podcast(files, params = { preview: false }) {
   /**@type {Array.<Podcast>} */
-  const pathes = files.map((path) => {
+  const paths = files.map((path) => {
     const [dot, mozaic, episodes, ep, file] = path.split(`/`)
     const title = readFileSync(path, { encoding: `utf-8` }).match(/# (?<h1>.*)/).groups.h1
     return {
@@ -789,7 +789,7 @@ async function podcast(files, params = { preview: false }) {
     })
     .reverse()
 
-  const episodes = await Promise.all(pathes.map((path, i) => parse_episode(path, i)))
+  const episodes = await Promise.all(paths.map((path, i) => parse_episode(path, i)))
 
   // build episodes
   const podcast_template_file = `./template/podcast.html.ejs`
@@ -836,8 +836,8 @@ async function podcast(files, params = { preview: false }) {
 async function workbox() {
   const js = await readFile(`../www.jxck.io/assets/js/workbox.js`, { encoding: `utf-8` })
 
-  const boudary = `---build.js---`
-  const reg = new RegExp(`\\/\\*${boudary}\\*\\/(?<list>[\\s\\S]*)\\/\\*${boudary}\\*\\/`, `m`)
+  const boundary = `---build.js---`
+  const reg = new RegExp(`\\/\\*${boundary}\\*\\/(?<list>[\\s\\S]*)\\/\\*${boundary}\\*\\/`, `m`)
   const matched = js.match(reg)
   /**@type {Array.<string>} */
   const scripts = eval(matched.groups.list)
@@ -851,11 +851,11 @@ async function workbox() {
   }).join(`\n`)
 
   const fragment = [
-    `/*${boudary}*/`,
+    `/*${boundary}*/`,
     `[`,
     array,
     `]`,
-    `/*${boudary}*/`,
+    `/*${boundary}*/`,
   ].join(`\n`)
 
   const replaced = js.replace(reg, () => fragment)
