@@ -7,7 +7,7 @@ guest: [@sakito](https://twitter.com/__sakito__)
 guest: [@hiroppy](https://twitter.com/about_hiroppy)
 ---
 
-# ep110 Yearly Ecosystem 110
+# ep110 Yearly Ecosystem 2022
 
 ## Theme
 
