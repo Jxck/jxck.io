@@ -18,7 +18,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 ## Show Note
 
-今年一年で思い出に残っているトピック 3 つ
+### 今年一年で思い出に残っているトピック 3 つ
 
 1. Jxck
   1. Node.js fetch + Winter CG
