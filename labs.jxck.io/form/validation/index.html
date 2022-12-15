@@ -6,27 +6,36 @@
 
 <h1>Form Validation DEMO</h1>
 
-<form>
-  <fieldset>
-    <legend>Login</legend>
-    <div>
-      <label for=name>name</label>
-      <input id=name name=name type=text pattern="[a-z]" />
-    </div>
+<style>
+div:has(input:paceholder-shown) {
+  background-color: skyblue;
+}
+</style>
 
-    <div>
-      <label for=email>email</label>
-      <input id=email name=email type=email />
-    </div>
+<main>
+  <p><strong>form is invalid</strong></p>
+  <form>
+    <fieldset>
+      <legend>Login</legend>
+      <div>
+        <label for=name>name</label>
+        <input id=name name=name type=text pattern="[a-z]" placeholder="your name..." required>
+      </div>
 
-    <div>
-      <label for=password>password</label>
-      <input id=password name=password type=password />
-    </div>
+      <div>
+        <label for=email>email</label>
+        <input id=email name=email type=email placeholder="mail@example.com" required>
+      </div>
 
-    <button type=submit>ok</button>
-  </fieldset>
-</form>
+      <div>
+        <label for=password>password</label>
+        <input id=password name=password type=password placeholder="xxxxxxxx" required>
+      </div>
+
+      <button type=submit>ok</button>
+    </fieldset>
+  </form>
+</main>
 
 <script>
 let form = document.querySelector('form')
