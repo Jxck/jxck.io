@@ -30,31 +30,29 @@ guest: [@myakura](https://twitter.com/myakura)
   - Yearly Platform と Yearly Ecosystem 両方実施
 
 
-### Jxck
+### 今年のキーワード
 
-- HTTP RFC 大量更新(Semantics, Caching, HTTP/3 etc)
-- IE リタイア
-- Interop 2022
-- Passkey/Passwordless
-- Layer, Container Query, `:has`, `:is`, `:where`, scope, nesting
-- Winter CG
-- Web3 どうなった?
-- デジタル庁デザインシステム
-
-
-### myakura
-
-- Interop 2022
-- CSS
-- IE サポート終了
-- バージョン 100
-- `:has()` 互換性
-- Apple/Safari/WebKit
-- Igalia
-- W3C Inc.設立準備
+- Jxck
+  - HTTP RFC 大量更新(Semantics, Caching, HTTP/3 etc)
+  - IE リタイア
+  - Interop 2022
+  - Passkey/Passwordless
+  - Layer, Container Query, `:has`, `:is`, `:where`, scope, nesting
+  - Winter CG
+  - Web3 どうなった?
+  - デジタル庁デザインシステム
+- myakura
+  - Interop 2022
+  - CSS
+  - IE サポート終了
+  - バージョン 100
+  - `:has()` 互換性
+  - Apple/Safari/WebKit
+  - Igalia
+  - W3C Inc.設立準備
 
 
-## 2023 Check Point
+### 2023 年チェックポイント
 
 - Style Query
 - CSS scope
@@ -64,8 +62,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Figma 買収での Adobe 製品の今後
 - Addon-gated と Permission
 
-
-## Review
 
 ### 1 月
 
