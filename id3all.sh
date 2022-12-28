@@ -1535,3 +1535,16 @@ eyeD3 --title "ep110 Yearly Ecosystem 2022" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep111.mp3
+
+eyeD3 --title "ep111 Yearly Platform 2022" \
+      --track 119 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep111.mp3
+
+
+

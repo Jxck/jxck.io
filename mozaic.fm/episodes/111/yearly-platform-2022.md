@@ -1,4 +1,4 @@
-﻿---
+---
 type: podcast
 tags: ["yearly platform"]
 audio: https://files.mozaic.fm/mozaic-ep111.mp3
@@ -8,7 +8,16 @@ guest: [@myakura](https://twitter.com/myakura)
 
 # ep111 Yearly Platform 2022
 
-## 今年の mozaic.fm
+## Theme
+
+第 111 回のテーマは 2022 年 の Yearly Platform です。
+
+今年の 8 月まで実施した Monthly Web と、 8 月からの Monthly Platform を踏まえ、今年の Web Platform を振り返ります。
+
+
+## Show Note
+
+### 今年の mozaic.fm
 
 - 1 月: 通常回 ep93 Web3
 - 8 月: ep100
@@ -20,8 +29,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 12 月: Yearly Web
   - Yearly Platform と Yearly Ecosystem 両方実施
 
-
-## 2022 Keywords
 
 ### Jxck
 

@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/111/yearly-platform-2022.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_005929></script>
+  <script type=module src=/assets/js/sw.js?220803_065757></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 111 回のテーマは 2022 年 の Yearly Platform です。今年の 8 月まで実施した Monthly Web と、 8 月からの Monthly Platform を踏まえ、今年の Web Platform を振り返ります。">
+  <meta name=keywords            content="yearly platform">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/111/yearly-platform-2022.html>
+  <meta property=og:title        content="ep111 Yearly Platform 2022 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 111 回のテーマは 2022 年 の Yearly Platform です。今年の 8 月まで実施した Monthly Web と、 8 月からの Monthly Platform を踏まえ、今年の Web Platform を振り返ります。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep111 Yearly Platform 2022 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/110/yearly-ecosystem-2022.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?220306_111358>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210426_190329>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?220428_023319>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?220803_154117         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/110/yearly-ecosystem-2022.html>ep110 Yearly Ecosystem 2022</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep111 Yearly Platform 2022</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2022-12-29
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/myakura" target=_blank>@myakura</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <ol>
+                  <li><a href="#今年の-mozaic.fm">今年の mozaic.fm</a>
+                  <li><a href="#jxck">Jxck</a>
+                  <li><a href="#myakura">myakura</a>
+                </ol>
+                <li><a href="#2023-check-point">2023 Check Point</a>
+                <li><a href="#review">Review</a>
+                <ol>
+                  <li><a href="#1-月">1 月</a>
+                  <li><a href="#2-月">2 月</a>
+                  <li><a href="#3-月">3 月</a>
+                  <li><a href="#4-月">4 月</a>
+                  <li><a href="#5-月">5 月</a>
+                  <li><a href="#6-月">6 月</a>
+                  <li><a href="#7-月">7 月</a>
+                  <li><a href="#8-月">8 月</a>
+                  <li><a href="#9-月">9 月</a>
+                  <li><a href="#10-月">10 月</a>
+                  <li><a href="#11-月">11 月</a>
+                </ol>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 111 回のテーマは 2022 年 の Yearly Platform です。
+      <p>今年の 8 月まで実施した Monthly Web と、 8 月からの Monthly Platform を踏まえ、今年の Web Platform を振り返ります。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <section>
+        <h3 id="今年の-mozaic.fm"><a href="#今年の-mozaic.fm">今年の mozaic.fm</a></h3>
+        <ul>
+          <li>1 月: 通常回 ep93 Web3
+          <li>
+            8 月: ep100
+            <ul>
+              <li>イベントは断念し State of mozaic.fm を実施
+              <li>Logo 刷新
+              <li>Monthly Web を Monthly Platform に
+              <li>Monthly Ecosystem スタート
+            </ul>
+          </li>
+          <li>8 月: 通常回 ep101 Passwordless
+          <li>
+            12 月: Yearly Web
+            <ul>
+              <li>Yearly Platform と Yearly Ecosystem 両方実施
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="jxck"><a href="#jxck">Jxck</a></h3>
+        <ul>
+          <li>HTTP RFC 大量更新(Semantics, Caching, HTTP/3 etc)
+          <li>IE リタイア
+          <li>Interop 2022
+          <li>Passkey/Passwordless
+          <li>Layer, Container Query, <code translate=no>:has</code>, <code translate=no>:is</code>, <code translate=no>:where</code>, scope, nesting
+          <li>Winter CG
+          <li>Web3 どうなった?
+          <li>デジタル庁デザインシステム
+        </ul>
+      </section>
+      <section>
+        <h3 id="myakura"><a href="#myakura">myakura</a></h3>
+        <ul>
+          <li>Interop 2022
+          <li>CSS
+          <li>IE サポート終了
+          <li>バージョン 100
+          <li><code translate=no>:has()</code> 互換性
+          <li>Apple/Safari/WebKit
+          <li>Igalia
+          <li>W3C Inc.設立準備
+        </ul>
+      </section>
+    </section>
+    <section>
+      <h2 id="2023-check-point"><a href="#2023-check-point">2023 Check Point</a></h2>
+      <ul>
+        <li>Style Query
+        <li>CSS scope
+        <li>Apple のブラウザエンジン制限
+        <li>User-Agent reduction completion
+        <li>Winter CG の今後
+        <li>Figma 買収での Adobe 製品の今後
+        <li>Addon-gated と Permission
+      </ul>
+    </section>
+    <section>
+      <h2 id="review"><a href="#review">Review</a></h2>
+      <section>
+        <h3 id="1-月"><a href="#1-月">1 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                97
+                <ul>
+                  <li><em>WebTransport</em>
+                  <li><code translate=no>script.supports()</code>
+                  <li>FindLast/FindLastIndex
+                </ul>
+              </li>
+              <li>
+                98
+                <ul>
+                  <li>COLRv1 fonts
+                  <li>HDR media queries
+                  <li><em><code translate=no>structuredClone()</code></em>
+                  <li>Private Network Access Preflight
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li><em><code translate=no>showPicker()</code></em>
+                  <li>mix-blend-mode: plus-lighter
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>focusgroup
+                  <li>Subgrid
+                </ul>
+              </li>
+              <li>
+                Other
+                <ul>
+                  <li>State of CSS
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                96
+                <ul>
+                  <li><em>SameSite=Lax by default</em>
+                  <li>Web Locks API
+                </ul>
+              </li>
+              <li>
+                互換性/障害
+                <ul>
+                  <li><em>Schemeful SameSite ロールバック</em>
+                  <li><em>Telemetry の HTTP/3 実装で障害</em>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>Form-associated custom elements
+                  <li><em><code translate=no>&lt;dialog&gt;</code></em>
+                </ul>
+              </li>
+              <li>
+                Unship
+                <ul>
+                  <li>WebVR
+                </ul>
+              </li>
+              <li>
+                SpiderMonkey
+                <ul>
+                  <li><em>Records/Tuples</em>
+                  <li>New Set methods
+                  <li>Import Assertions
+                  <li>WritableStream/pipeTo()
+                </ul>
+              </li>
+              <li>
+                Other
+                <ul>
+                  <li>Why are hyperlinks blue revisited
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                15.2
+                <ul>
+                  <li>WASM enhancements
+                  <li><em>COOP/COEP</em>
+                  <li>Wide-gamut Canvas
+                </ul>
+              </li>
+              <li>
+                TP 137
+                <ul>
+                  <li><em><code translate=no>:has()</code></em>
+                  <li>Web Locks API
+                </ul>
+              </li>
+              <li>
+                TP 138
+                <ul>
+                  <li><em><code translate=no>:focus-visible</code> by default</em>
+                  <li>Containment by default
+                  <li>Navigation Preload
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li>Private Relay Overview
+                  <li>Safari 15 IndexedDB Leaks
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Edge
+          <li>
+            WHATWG/W3C
+            <ul>
+              <li>Layers 含む Cascading &amp; Inheritance Lv5 が CR
+              <li>WCAG 3.0 が WG Draft
+              <li>CSS Snapshot 2021
+              <li>Meta と Mozilla が Interoperable Private Attribution (IPA) を提出
+            </ul>
+          </li>
+          <li>
+            TC39
+            <ul>
+              <li>Record &amp; Tuples referenced Object
+            </ul>
+          </li>
+          <li>
+            IETF
+            <ul>
+              <li>AUTH48 で HTTP Core &amp; H3 に採番される
+            </ul>
+          </li>
+          <li>
+            CDN
+            <ul>
+              <li>2022 年に入って 5 箇所でインターネット切断
+            </ul>
+          </li>
+          <li>
+            セキュリティ動向
+            <ul>
+              <li><em>Coinhive 無罪</em>
+              <li><em>Color.js / Faker.js に悪意のあるコード</em>
+            </ul>
+          </li>
+          <li>
+            周辺動向
+            <ul>
+              <li>NTT がドメインを変更(docomo.ne.jp / ntt.co.jp)
+              <li><em>Vivaldi は暗号通貨に手を出さない</em>
+              <li><em>Opera は Crypto Browser として Web3 進めていく</em>
+              <li>State of CSS / State of JS
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="2-月"><a href="#2-月">2 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                98
+                <ul>
+                  <li>COLRv1
+                </ul>
+              </li>
+              <li>
+                99
+                <ul>
+                  <li><em>Cascade Layers</em>
+                  <li><code translate=no>input.showPicker()</code>
+                  <li>Window Controls Overlay
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>Autofill in ShadowDOM
+                  <li><code translate=no>AbortSignal.throwIfAborted()</code>
+                  <li>Network State Partitioning
+                  <li>UA reduction phase 4 (MAJOR.0.0.0)
+                  <li>Sec-CH-UA-WoW64
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>bfcache on Cache-Control: no-store
+                  <li><code translate=no>AbortSignal.timeout()</code>
+                  <li>Document Picture-in-Picture
+                </ul>
+              </li>
+              <li>
+                Ready for Trial
+                <ul>
+                  <li><em>FedCM</em>
+                </ul>
+              </li>
+              <li>
+                Other
+                <ul>
+                  <li>Version 100 on March 29
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                97
+                <ul>
+                  <li>CSS <code translate=no>cap</code>/<code translate=no>ic</code> unit
+                  <li><em>Cascade Layers</em>
+                  <li><code translate=no>scroll-gutter</code>
+                  <li>CSS <code translate=no>d</code>
+                  <li><code translate=no>AbortSignal.throwIfAborted()</code>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li><em>OffScreenCanvas (WebGL only) for Zoom</em>
+                  <li>Soft reload cache revalidation
+                </ul>
+              </li>
+              <li>
+                Other
+                <ul>
+                  <li>SameSite=Lax デフォルト化のバックアウト
+                  <li>Privacy Preserving Attributes for Advertising
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                <em>15.4 Beta</em>
+                <ul>
+                  <li>
+                    CSS
+                    <ul>
+                      <li>Containment <code translate=no>contain</code> property
+                      <li><em>Cascade Layers</em>
+                      <li><em><code translate=no>:has()</code></em>
+                      <li>new viewport units
+                      <li><em><code translate=no>:focus-visible</code></em>
+                      <li>CSS <code translate=no>sin()</code>/<code translate=no>cos()</code>/<code translate=no>tan()</code> etc.
+                      <li>unprefix
+                    </ul>
+                  </li>
+                  <li>
+                    HTML
+                    <ul>
+                      <li><em><code translate=no>&lt;dialog&gt;</code></em>
+                      <li><em><code translate=no>&lt;img loading&gt;</code></em>
+                    </ul>
+                  </li>
+                  <li>
+                    Web API
+                    <ul>
+                      <li>BroadCastChannel
+                      <li>Navigation Preload
+                      <li>Web Locks
+                    </ul>
+                  </li>
+                  <li>
+                    JavaScript
+                    <ul>
+                      <li><code translate=no>Object.hasOwn()</code>
+                      <li><code translate=no>self.structuredClone()</code>
+                      <li><em><code translate=no>Array.findLast()</code>/<code translate=no>Array.findLastIndex()</code></em>
+                      <li><em><code translate=no>at()</code></em>
+                    </ul>
+                  </li>
+                  <li>
+                    Security
+                    <ul>
+                      <li>CSP3
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>TP 139
+              <li>
+                TP 140
+                <ul>
+                  <li><code translate=no>:has(:not(foo))</code>
+                  <li><em><code translate=no>form.requestSubmit()</code></em>
+                </ul>
+              </li>
+              <li><em>Origin Private File System</em>
+              <li>Intro Dialog Element
+              <li>
+                Other
+                <ul>
+                  <li><em><code translate=no>:focus-visible</code> のための Igalia のクラファンが Apple によるものという勘違い炎上</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Edge
+            <ul>
+              <li>88 から Guard 系のセキュリティ強化
+              <li>IE を Selenium でテストする方法
+            </ul>
+          </li>
+          <li>WHATWG/W3C
+          <li>TC39
+          <li>
+            IETF
+            <ul>
+              <li>
+                HTTPWG interim
+                <ul>
+                  <li>Retrofit Structured Fields for HTTP
+                  <li>The Geo-Hash HTTP Client Hint
+                </ul>
+              </li>
+              <li>
+                Auth48 で番号が変わった
+                <ul>
+                  <li>HTTP3: 9113 -&gt; 9114
+                  <li>QPACK: 9114 -&gt; 9204
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>CDN 動向
+          <li>セキュリティ動向
+          <li>
+            周辺動向
+            <ul>
+              <li><em>Igalia が Firefox Reality を Fork した Wolvic ブラウザ</em>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="3-月"><a href="#3-月">3 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                99
+                <ul>
+                  <li>Cascade Layers
+                  <li>showPicker()
+                </ul>
+              </li>
+              <li>
+                <em>100</em>
+                <ul>
+                  <li>UA reduction deprecation trial
+                  <li>AbortSignal.throwIfAborted()
+                  <li>Capability Delegation
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>Priority Hints
+                  <li><code translate=no>hidden=until-found</code> / <code translate=no>beforematch</code>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>Cookie age upper limit
+                  <li><em><code translate=no>@scope</code></em>
+                  <li>bfcache NotRestoredReason API
+                  <li>update on Popup API
+                </ul>
+              </li>
+              <li>
+                web.dev
+                <ul>
+                  <li>Interop 2022
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                98
+                <ul>
+                  <li><code translate=no>&lt;dialog&gt;</code>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li><code translate=no>pipeTo()</code>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li><code translate=no>content-visibility: hidden</code>
+                </ul>
+              </li>
+              <li>
+                Other
+                <ul>
+                  <li>Tuple implementation by Igalia
+                  <li>Exposure guidelines update on standardization venue
+                  <li><em>MDN redesign</em>
+                  <li><em>MDN and Open Web Docs</em>
+                  <li><em>MDN Plus</em>
+                  <li><em>Web Vision</em>
+                  <li>Interop 2022
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                <em>15.4</em>
+                <ul>
+                  <li>lazyload
+                  <li><code translate=no>&lt;dialog&gt;</code>
+                  <li><code translate=no>:has()</code>
+                  <li>Cascade Layers
+                  <li><code translate=no>svw</code>, <code translate=no>lvw</code>, <code translate=no>dvw</code>, etc.
+                  <li><code translate=no>:focus-visible</code>
+                  <li>BroadCastChannel
+                  <li><code translate=no>findLast()</code>/<code translate=no>findLastIndex()</code>
+                  <li><code translate=no>hasOwn()</code>
+                  <li><code translate=no>at()</code>
+                  <li>CSP Level 3
+                </ul>
+              </li>
+              <li>
+                TP 141
+                <ul>
+                  <li><code translate=no>overscroll-behavior</code>
+                  <li><code translate=no>AbortSignal.timeout()</code>
+                </ul>
+              </li>
+              <li>
+                TP 142
+                <ul>
+                  <li><em>Subgrid</em>
+                  <li><em>Container Queries</em>
+                </ul>
+              </li>
+              <li>
+                Position Request
+                <ul>
+                  <li>positive on FedCM
+                </ul>
+              </li>
+              <li>
+                Other
+                <ul>
+                  <li>Interop 2022
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Edge
+            <ul>
+              <li>Interop 2022
+              <li>Cognitive API で alt の自動生成
+              <li>IE11 から Edge への強制移行が「日本を除く」になってる
+            </ul>
+          </li>
+          <li>
+            W3C/WHATWG
+            <ul>
+              <li>Add <code translate=no>&lt;search&gt;</code> element to html
+            </ul>
+          </li>
+          <li>
+            TC39
+            <ul>
+              <li>
+                2021/3 の Meeting が盛り上がりそう
+                <ul>
+                  <li>Decorators for Stage 3
+                  <li>Pattern Matching for Stage 2
+                  <li>Types as Comments for Stage 1
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            IETF
+            <ul>
+              <li><em>IETF | IETF 113 Vienna and Online</em>
+            </ul>
+          </li>
+          <li>
+            CDN 動向
+            <ul>
+              <li>
+                Cloudflare
+                <ul>
+                  <li>DDR サポート on 1.1.1.1
+                  <li>ウクライナのトラフィック解析
+                  <li><em>iCloud Private Relay の Egress を担当している話</em>
+                </ul>
+              </li>
+              <li>
+                Akamai
+                <ul>
+                  <li><em>iCloud Private Relay の Egress を担当している話</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            セキュリティ動向
+            <ul>
+              <li>Meta, MS, Google による Trusted Types の Rollout Report
+              <li>SCT Auditing の Paper
+            </ul>
+          </li>
+          <li>
+            周辺動向
+            <ul>
+              <li><em>Open Web Advocacy</em>
+              <li>PayPay 銀行 Firefox サポート終了
+              <li><em>Interop 2022 の各社ブログ</em>
+              <li><em>Internet Society の「国境でアクセスを弾いたりしない」</em>
+              <li><em>ロシア情勢が Web/Internet/Tech に与えた影響の記録 2022 年 3 月</em>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="4-月"><a href="#4-月">4 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                101
+                <ul>
+                  <li><em>Reduced UA string (MAJOR.0.0.0)</em>
+                  <li>FedCM OT
+                  <li>Priority Hints
+                </ul>
+              </li>
+              <li>
+                102
+                <ul>
+                  <li>Network State Partitioning
+                  <li><em>Speculation Rules</em>
+                  <li>Subresource loading with Web Bundles
+                  <li><em>inert</em>
+                  <li>Local Font Access
+                  <li><em>Navigation API</em>
+                  <li><code translate=no>hidden=until-found</code>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>Media Queries 4 syntax
+                  <li>Speculation Rules (prefetch)
+                  <li>Speculation Rules (same-origin prerendering)
+                  <li>Subresource loading with Web Bundles
+                  <li><em>Navigation API</em>
+                  <li>Early Hints preload/preconnect
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>CSS toggles
+                  <li>Isolated Web Apps
+                  <li>Element.isVisible
+                </ul>
+              </li>
+              <li>
+                developer.chrome.com
+                <ul>
+                  <li>hidden=until-found
+                  <li>inert
+                  <li>BlinkNG
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>99
+              <li>
+                Ship
+                <ul>
+                  <li>small/large/dynamic viewport units
+                  <li>prefers-contrast
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li><em>Import maps</em>
+                  <li><code translate=no>input.showPicker()</code>
+                </ul>
+              </li>
+              <li>
+                Other
+                <ul>
+                  <li>Platform 2022 planned work
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                TP 143
+                <ul>
+                  <li>Container Queries
+                  <li>Subgrid
+                  <li>inert by default
+                  <li>Permissions API by default
+                </ul>
+              </li>
+              <li>
+                15.5 Beta
+                <ul>
+                  <li>inert
+                </ul>
+              </li>
+              <li>
+                Position request
+                <ul>
+                  <li><em>Topics API: negative</em>
+                  <li><em>Media Queries 4 syntax: supportive</em>
+                </ul>
+              </li>
+              <li>
+                Other
+                <ul>
+                  <li>Private Click Measurement の Fraud Prevention blog
+                  <li>Inert blog
+                  <li><em>GitHub 移行に向けた話</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Edge
+            <ul>
+              <li>30 days of PWA tutorial
+            </ul>
+          </li>
+          <li>
+            W3C/WHATWG
+            <ul>
+              <li>Fonts for the Web Rationale 1996 公開
+              <li>TPAC 2022 バンクーバーで hybrid のアナウンス
+              <li><em>HTML Outline Algorithm の削除</em>
+            </ul>
+          </li>
+          <li>
+            TC39
+            <ul>
+              <li>2022/3 の meeting minutes
+              <li>Type Annotation to Stage 1
+              <li><em>Decorators to Stage 3</em>
+            </ul>
+          </li>
+          <li>
+            IETF
+            <ul>
+              <li>httpwg が IETF114 でひさびさのミーティングのアナウンス
+            </ul>
+          </li>
+          <li>
+            CDN 動向
+            <ul>
+              <li>Cloudflare 1500 万 rps の記録的な HTTPS DOS を確認
+              <li><em>Fastly iCloud Private Relay のブログ</em>
+            </ul>
+          </li>
+          <li>セキュリティ動向
+          <li>
+            周辺動向
+            <ul>
+              <li>DuckDuckGo mac 向けブラウザ
+              <li>Digital Ocean が CSS-Tricks を買収
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="5-月"><a href="#5-月">5 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                101
+                <ul>
+                  <li><code translate=no>hwb()</code>
+                  <li><em>Priority Hints</em>
+                </ul>
+              </li>
+              <li>102
+              <li>
+                Ship
+                <ul>
+                  <li>Container Queries
+                  <li><code translate=no>Element.isVisible</code>
+                  <li>Subresource loading with Web Bundles
+                  <li><code translate=no>:has()</code>
+                  <li><code translate=no>:modal</code> pseudo class
+                  <li><code translate=no>Response.json()</code>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>HTTPS DNS records with h3 ALPN param
+                  <li><em><code translate=no>Accept-Language</code> reduce fingerprinting</em>
+                  <li><code translate=no>AbortSignal.any()</code>
+                  <li>COEP reflection API
+                  <li><em>Origin-bound cookies</em>
+                  <li><em>Prerender2 for Desktop</em>
+                </ul>
+              </li>
+              <li>
+                I/O
+                <ul>
+                  <li><em>INP (Interaction to Next Paint)</em>
+                  <li>password-free auth in Yahoo! JAPAN
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li><em>BlinkOn 16</em>
+                  <li>Passkey standardization
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                <em>100</em>
+                <ul>
+                  <li><em>WritableStream</em>
+                  <li><code translate=no>pipeTo()</code>
+                  <li><code translate=no>AbortSignal.timeout()</code>
+                  <li>soft-reloading not cause cache revalidation
+                </ul>
+              </li>
+              <li>
+                101
+                <ul>
+                  <li><code translate=no>prefers-contrast</code>
+                  <li><em>small/large/dynamic viewport units</em>
+                  <li><code translate=no>input.showPicker()</code>
+                  <li>Constructable stylesheets
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>TransformStreams
+                  <li>BYOBStreams
+                  <li><em>URL query stripping (on ETP Strict and Private Browsing modes)</em>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>transferable streams
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li>Certificate revocation policy update
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                TP 144
+                <ul>
+                  <li>display: contents accessibility support
+                </ul>
+              </li>
+              <li>TP 145
+              <li>
+                15.5
+                <ul>
+                  <li><code translate=no>inert</code>
+                </ul>
+              </li>
+              <li>TP 146
+            </ul>
+          </li>
+          <li>
+            Edge
+            <ul>
+              <li><code translate=no>select</code> 要素のスタイルガイド
+              <li>MS Build 2022
+              <li>Edge Secure Network VPN
+            </ul>
+          </li>
+          <li>
+            W3C/WHATWG
+            <ul>
+              <li>W3C Strategic Highlights April 2022
+              <li>AB Election
+            </ul>
+          </li>
+          <li>TC39
+          <li>
+            IETF
+            <ul>
+              <li>QPACK が Header Comp から Field Comp に改名
+              <li><em>RFC 9239 - Updates to ECMAScript Media Types</em>
+              <li>Post Alien Crypto
+            </ul>
+          </li>
+          <li>
+            CDN 動向
+            <ul>
+              <li>
+                Cloudflare
+                <ul>
+                  <li><em>WinterCG と Worker の OSS 公開</em>
+                  <li><em>D1, R2, Magic Nat, MQTT など新製品公開</em>
+                  <li>Web3 系
+                </ul>
+              </li>
+              <li>
+                Fastly
+                <ul>
+                  <li>H3/QUIC available for all user
+                  <li><em>Glitch 買収</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            セキュリティ動向
+            <ul>
+              <li>Martin の Entropy の記事
+              <li>EKR の Online ID の記事
+            </ul>
+          </li>
+          <li>
+            周辺動向
+            <ul>
+              <li>WebEngine Hackfest
+              <li><em>Ryan Dahl の container に関する Blog (WinterCG)</em>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="6-月"><a href="#6-月">6 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                102
+                <ul>
+                  <li>Navigation API
+                </ul>
+              </li>
+              <li>
+                103
+                <ul>
+                  <li><em>Early Hints</em>
+                </ul>
+              </li>
+              <li>
+                104
+                <ul>
+                  <li><em>range media query syntax</em>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li><code translate=no>navigateEvent.intercept()</code>
+                  <li><em><code translate=no>import.meta.resolve()</code></em>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>Background Blur API
+                  <li>CSS trigonometric functions
+                  <li>Private Network Access permission
+                </ul>
+              </li>
+              <li>
+                Deprecate
+                <ul>
+                  <li><em><code translate=no>navigateEvent.transitionWhile()</code></em>
+                </ul>
+              </li>
+              <li>
+                web.dev
+                <ul>
+                  <li><em>farewell HTML5Rocks</em>
+                </ul>
+              </li>
+              <li>
+                Chrome Developers
+                <ul>
+                  <li>Early Hints
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                102
+                <ul>
+                  <li>TransformStreams
+                </ul>
+              </li>
+              <li>
+                SpiderMonkey
+                <ul>
+                  <li>findLast/findLastIndex
+                  <li><em>ESMification</em>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>Transferable Streams
+                  <li>scroll-snap-stop
+                  <li>Array.findLast/findLastIndex
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>CSS <code translate=no>linear()</code> easing function
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li><em>ECMAScript license</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                WWDC
+                <ul>
+                  <li>Safari 16
+                  <li><em>Web Push</em>
+                  <li><em>Passkeys</em>
+                </ul>
+              </li>
+              <li>
+                Safari 16
+                <ul>
+                  <li>Container Queries
+                  <li>Web Push
+                  <li>Subgrid
+                  <li>Shared Workers
+                </ul>
+              </li>
+              <li>
+                TP 147
+                <ul>
+                  <li>Safari 16 features
+                </ul>
+              </li>
+              <li>
+                TP 148
+                <ul>
+                  <li>:modal pseudo-class
+                  <li>Link nonces
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li><em>WebKit is now on GitHub</em>
+                  <li><em>WebKit standard-position repo on GitHub</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Edge
+            <ul>
+              <li><em>IE11 サポート終了</em>
+            </ul>
+          </li>
+          <li>
+            W3C/WHATWG
+            <ul>
+              <li><em>legal NPO in 2023</em>
+              <li>AB Election 終了
+              <li>W3C が Metaverse Standards Forum に Join
+              <li><em>Outline Algorithm がなくなる</em>
+            </ul>
+          </li>
+          <li>
+            TC39
+            <ul>
+              <li><code translate=no>proposal-intl-temporal</code>
+            </ul>
+          </li>
+          <li>
+            IETF
+            <ul>
+              <li><em>HTTP RFC 大量公開</em>
+              <li>Incremental Font Transfer レビュー依頼
+            </ul>
+          </li>
+          <li>
+            CDN 動向
+            <ul>
+              <li>
+                Cloudflare
+                <ul>
+                  <li>Early Hints
+                  <li><em>Private Access Token</em>
+                  <li><em>6/21 大規模障害</em>
+                </ul>
+              </li>
+              <li>
+                Fastly
+                <ul>
+                  <li><em>Private Access Token</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            セキュリティ動向
+            <ul>
+              <li><em>メタップス行政処分</em>
+              <li><em>尼崎市 USB 紛失</em>
+            </ul>
+          </li>
+          <li>
+            周辺動向
+            <ul>
+              <li><em>Anne leaving Mozilla</em>
+              <li>What would Chromium-only Web look like by mnot
+              <li>モバイルエコシステムに対するパブコメ募集
+              <li><em>行政におけるデザインシステムの在り方</em>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="7-月"><a href="#7-月">7 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                Ship
+                <ul>
+                  <li><em><code translate=no>fetch()</code> upload streaming</em>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>COOP restrict-properties
+                </ul>
+              </li>
+              <li>
+                Deprecate and Remove
+                <ul>
+                  <li><em><code translate=no>Expect-CT</code></em>
+                </ul>
+              </li>
+              <li>
+                Chrome Developers
+                <ul>
+                  <li><em>Privacy Sandbox 延期</em>
+                  <li><em>CSS Nesting syntax poll</em>
+                </ul>
+              </li>
+              <li>
+                other blogs
+                <ul>
+                  <li><em>DoH3 in Android</em>
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li>proposing changes to First-Party Sets
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                103
+                <ul>
+                  <li><em>Cookie partitioning by default</em>
+                  <li><em><code translate=no>::backdrop-filter</code></em>
+                  <li><em><code translate=no>scroll-snap-stop</code></em>
+                  <li><em><code translate=no>:modal</code></em>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>OffscreenCanvas
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li><code translate=no>animation-composition</code>
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li><em>Martin on Private Click Measurement</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                15.6
+                <ul>
+                  <li><em><code translate=no>:modal</code></em>
+                </ul>
+              </li>
+              <li>
+                TP 149
+                <ul>
+                  <li><em>AVIF</em>
+                </ul>
+              </li>
+              <li>TP 150
+              <li>
+                blog
+                <ul>
+                  <li>understanding GC
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li><em>Anne to Apple</em>
+                  <li><em>Lockdown Mode で JIT が無効化</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Edge
+            <ul>
+              <li>ディスクキャッシュの圧縮
+              <li><em>ericlaw Edge チームを離れる</em>
+            </ul>
+          </li>
+          <li>
+            W3C/WHATWG
+            <ul>
+              <li>
+                Spec
+                <ul>
+                  <li>DID 1.0 勧告
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li>W3C, Inc. Board of Directors
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TC39
+            <ul>
+              <li>proposal-catch-guards: catch で捉える例外をパターンマッチする
+              <li>proposal-symbol-predicates: isRegistered / isWellKnown などを symbol に生やす
+              <li>proposal-policy-map-set: Map/Set にメモリ使用量制限をつける
+              <li>proposal-function-memo: 関数メモ化
+              <li>proposal-object-pick-or-omit: オブジェクトのサブセットを作る
+            </ul>
+          </li>
+          <li>
+            IETF
+            <ul>
+              <li>IETF 114 Philadelphia
+              <li>RFC 9264: Linkset: Media Types and a Link Relation Type for Link Sets
+            </ul>
+          </li>
+          <li>CDN 動向
+          <li>Cloudflare Workers WASI サポート
+          <li>Fastly The state of TLS fingerprinting
+          <li>
+            セキュリティ動向
+            <ul>
+              <li><em>NIST から対量子暗号ガイドのアナウンス</em>
+            </ul>
+          </li>
+          <li>
+            周辺動向
+            <ul>
+              <li>Wolvic 1.0
+              <li><em>謎のオープンソース企業 Igalia について中の人や Bloomberg の人にインタビュー</em>
+              <li>ImperialViolet - Passkeys
+              <li>State of CSS Survey 2022 のフィードバック募集
+              <li><em>AV1 に対して EU の公正取引調査</em>
+              <li><em>「いちばんやさしい Web3 の教本」回収</em>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="8-月"><a href="#8-月">8 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                105
+                <ul>
+                  <li><em>Container Queries</em>
+                  <li><em><code translate=no>:has()</code></em>
+                  <li>Fetch Upload Streaming
+                  <li><em>Sanitizer API</em>
+                  <li><em><code translate=no>import.meta.resolve()</code></em>
+                  <li><code translate=no>Response.json()</code>
+                  <li><em>Remove WebSQL in non-secure contexts</em>
+                </ul>
+              </li>
+              <li>
+                106 Beta
+                <ul>
+                  <li>Anonymous iframes
+                  <li><em>Pop-up API</em>
+                  <li>Intl.NumberFormat v3 API
+                  <li><em>Remove HTTP/2 Server Push</em>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>
+                    <em><code translate=no>ic</code> length unit</em>
+                    <ul>
+                      <li>水か永か
+                    </ul>
+                  </li>
+                  <li><code translate=no>@font-face</code> <code translate=no>tech()</code> function
+                  <li>Permissions Policy Origins にワイルドカード
+                  <li><em>UA Reduction Phase 5 (freezing desktop platform version)</em>
+                </ul>
+              </li>
+              <li>
+                other intents
+                <ul>
+                  <li>Apple から <code translate=no>&lt;model&gt;</code> のフィードバック
+                </ul>
+              </li>
+              <li>
+                Chrome Developers
+                <ul>
+                  <li>top layer
+                  <li>Container Queries
+                  <li><code translate=no>:has()</code>
+                  <li>Removing HTTP/2 Server Push
+                  <li>Deprecating and removing Web SQL
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                104
+                <ul>
+                  <li><code translate=no>Array.findLast()</code>/<code translate=no>Array.findLastIndex()</code>
+                  <li><code translate=no>element.focus({ focusVisible })</code>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li><em>COLRv1</em>
+                  <li><em>JavaScript decorators</em>
+                </ul>
+              </li>
+              <li>other intents
+              <li>
+                other
+                <ul>
+                  <li>Origin Trials (OffscreenCanvas and COEP: credentialless)
+                  <li><em>position signals が positive, neutral, negative に</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                TP 151
+                <ul>
+                  <li><em>color-mix()</em>
+                  <li>scan media query
+                  <li>:dir
+                  <li>Range の ordering check 削除
+                </ul>
+              </li>
+              <li>
+                TP 152
+                <ul>
+                  <li><em>Array の rename #groupBy -&gt; #group と #groupByToMap -&gt; groupToMap</em>
+                </ul>
+              </li>
+              <li>Blog
+              <li>
+                Other
+                <ul>
+                  <li><code translate=no>:has()</code> のブログ
+                  <li>WebKit on GitHub
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Edge
+            <ul>
+              <li><em>104 で Enhanced Security Mode 導入</em>
+              <li><em>Chrome の OT Token が Edge でも動く</em>
+            </ul>
+          </li>
+          <li>
+            W3C/WHATWG
+            <ul>
+              <li>
+                Spec
+                <ul>
+                  <li>
+                    Geolocation API in W3C Recommendation
+                    <ul>
+                      <li>Living Standard にして Level N を無くす
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Other
+                <ul>
+                  <li><code translate=no>ic</code> での &quot;水&quot; か &quot;永&quot; か問題
+                  <li><em><code translate=no>:has()</code> と forgiving selector list で jQuery の独自拡張 <code translate=no>:has()</code> が壊れる</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TC39
+            <ul>
+              <li>
+                Meeting 2022-07
+                <ul>
+                  <li>Change Array by Copy の toSplice 廃止
+                  <li>NumberFormat v3 の Range order check 廃止
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            IETF
+            <ul>
+              <li>IETF 114
+              <li><em>RFC 9292 Binary Representation of HTTP Messages</em>
+            </ul>
+          </li>
+          <li>
+            CDN 動向
+            <ul>
+              <li>Zip with WASI on Cloudflare Workers
+            </ul>
+          </li>
+          <li>
+            セキュリティ動向
+            <ul>
+              <li>Coincheck が Sign in with Apple の廃止
+            </ul>
+          </li>
+          <li>周辺動向
+        </ul>
+      </section>
+      <section>
+        <h3 id="9-月"><a href="#9-月">9 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                106
+                <ul>
+                  <li><em>Popup API Origin Trial</em>
+                </ul>
+              </li>
+              <li>
+                107
+                <ul>
+                  <li><em>wildcards in permissions policy origins</em>
+                  <li><em>Declarative Pending Beacon API OT</em>
+                  <li><em>Permissions-Policy: unload OT</em>
+                  <li>Expect-CT removal
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>Android OSK resizes visual viewport
+                  <li><em>Array grouping</em>
+                  <li><em><code translate=no>@supports</code> selector non-forgiving parsing</em>
+                  <li><em>Small/Large/Dynamic viewport units</em>
+                  <li><em>OPFS on Android</em>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li><em><code translate=no>lh</code> unit</em>
+                  <li><em>Same-site cross-origin prerendering by Speculation Rules</em>
+                  <li>Web Smart Card API
+                </ul>
+              </li>
+              <li>
+                web.dev
+                <ul>
+                  <li><em>Interop 2023 proposals</em>
+                  <li>Learn HTML/Accessibility
+                </ul>
+              </li>
+              <li>
+                Chrome Developers
+                <ul>
+                  <li>Popup API
+                  <li>CDS 2022 開催はなし
+                </ul>
+              </li>
+              <li>
+                Chromium blog
+                <ul>
+                  <li><em>Chrome Root Program</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                105
+                <ul>
+                  <li><em>TextEncoderStream/TextDecoderStream</em>
+                  <li><em>OffscreenCanvas</em>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li><em>COLRv1 fonts</em>
+                  <li>ElementInternals ARIA reflection
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li><em>HSTS preload list に <code translate=no>asus.com</code> が追加されルータに繋がらなくなったバグ</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                16.0
+                <ul>
+                  <li>Container Queries
+                  <li>Subgrid
+                  <li><em>passkeys on iOS</em>
+                  <li>non-animated AVIF
+                  <li>Shared Workers
+                </ul>
+              </li>
+              <li>
+                TP 153
+                <ul>
+                  <li>Import Assertions and JSON modules
+                  <li>Imperative Slot API
+                  <li>aria-description
+                </ul>
+              </li>
+              <li>
+                TP 154
+                <ul>
+                  <li><code translate=no>:dir</code>
+                  <li>ElementInternals ARIA reflection
+                  <li><em>Scroll To Text Fragment</em>
+                </ul>
+              </li>
+              <li>blog
+              <li>
+                other
+                <ul>
+                  <li><em>Disable ShadowRealm</em>
+                  <li><em>Prototype Declarative Shadow DOM</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Edge
+            <ul>
+              <li><em>Window Controls Overlay で 30px のタイトルバー部分が使える</em>
+            </ul>
+          </li>
+          <li>
+            W3C/WHATWG
+            <ul>
+              <li>
+                TPAC
+                <ul>
+                  <li>
+                    Breakout
+                    <ul>
+                      <li>File System
+                      <li>Open UI
+                      <li>Fugu
+                      <li>CSS Anchoring
+                    </ul>
+                  </li>
+                  <li>
+                    WebPerf
+                    <ul>
+                      <li><em>MSN.com が React から WebComponents に移行した話</em>
+                      <li><em>no-vary-query</em>
+                      <li>Super Early Hints
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Spec
+                <ul>
+                  <li>Trusted Types FPWD
+                  <li>Well-Known URL Change Password FPWD
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li><em>TPAC で <code translate=no>:has</code> 問題の議論がふんわり終わってしまった</em>
+                  <li><em>Permissions and User Consent の 2 回目を予定</em>
+                  <li>Tantek による Sustainability CG Meeting まとめ
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TC39
+            <ul>
+              <li>proposal-extractors
+              <li><em>Rust 実装の ICU4X1.0 リリースで FF Intl.Segmenter が進みそう</em>
+            </ul>
+          </li>
+          <li>
+            IETF
+            <ul>
+              <li>Alt-SVC デザインチームができた
+            </ul>
+          </li>
+          <li>
+            CDN 動向
+            <ul>
+              <li><em>Cloudflare が過激化した Kiwifarms をブロックした話</em>
+              <li>Private Access Token 系の記事が多い
+            </ul>
+          </li>
+          <li>
+            セキュリティ動向
+            <ul>
+              <li><em>GTA と Uber に MFA Fatigue 攻撃</em>
+              <li><em>EV 証明書の OCSP 検証が無くなったため高速化したサイトの話 by WebPageTest</em>
+            </ul>
+          </li>
+          <li>
+            周辺動向
+            <ul>
+              <li><em>Open Web Docs Steering Committee に Apple 参加</em>
+              <li><em>JavaScript の商標を手放して欲しい by Ryan Dahl</em>
+              <li>Let&apos;s Encrypt の立ち上げに貢献した Peter が死去
+              <li><em>Adobe Figma 買収が Web に与える影響</em>
+              <li><em>2022 Web Almanac</em>
+              <li><em>Stadia 終了アナウンス</em>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="10-月"><a href="#10-月">10 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                107
+                <ul>
+                  <li>PendingBeacon OT
+                </ul>
+              </li>
+              <li>
+                108 Beta
+                <ul>
+                  <li>svh/dvh/lvh
+                  <li>FedCM
+                  <li>Wildcards in Permissions Policy Origins
+                  <li>Variable COLRv1
+                  <li>Inactive CSS properties in DevTools
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li><em>CHIPS</em>
+                  <li>FedCM
+                  <li><em>Origin Isolation by default / deprecate document.domain</em>
+                  <li>Same-site cross-origin prerendering
+                  <li><em>Anonymous iframes</em>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li><em>CSS Initial Letters</em>
+                  <li>CSS Nesting
+                  <li><em>Document Rules</em>
+                  <li><code translate=no>scheduler.yield()</code>
+                </ul>
+              </li>
+              <li>
+                web.dev
+                <ul>
+                  <li>Passkeys
+                </ul>
+              </li>
+              <li>
+                Chrome Developers
+                <ul>
+                  <li>No spooky cookies
+                  <li><em>Is Project Fugu Done? -&gt; far from it</em>
+                </ul>
+              </li>
+              <li>Chromium blog
+              <li>other blogs
+              <li>other
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                106
+                <ul>
+                  <li><em><code translate=no>@supports font-tech()</code> / <code translate=no>@supports font-format()</code></em>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li><em>Import maps</em>
+                  <li><em>CSS trigonometric functions</em>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li><em>ORB (partial) in Nightly</em>
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li>Page Collections from Chromium
+                  <li><code translate=no>import.meta.resolve()</code>
+                  <li><em>Early Hints, WebTransport, OHTTP 実装中</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                TP 155
+                <ul>
+                  <li>disabled ShadowRealm for now
+                  <li>Reporting API
+                </ul>
+              </li>
+              <li>
+                TP 156
+                <ul>
+                  <li><em><code translate=no>import.meta.resolve()</code></em>
+                  <li><em>Import Maps</em>
+                  <li><code translate=no>Clear-Site-Data</code>
+                  <li><em>prototype Declarative Shadow DOM</em>
+                </ul>
+              </li>
+              <li>
+                16.1
+                <ul>
+                  <li><em>Web Push for Ventura</em>
+                  <li><em>Animated AVIF</em>
+                  <li><em>Passkeys</em>
+                  <li><em>Scroll to Text Fragment</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Edge
+            <ul>
+              <li>MS Ignite
+            </ul>
+          </li>
+          <li>
+            W3C/WHATWG
+            <ul>
+              <li>
+                Spec
+                <ul>
+                  <li>PNG の EXIF や HDR 対応更新
+                  <li><em>Shared Element Transition が CSS View Transitions Module に</em>
+                  <li>Scroll-linked Animations
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li><em>12 月 Permission Workshop 開催</em>
+                  <li><em>WCG/HDR の Workshop report</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TC39
+            <ul>
+              <li>9 月のミーティング
+              <li>
+                <em>Record &amp; Tuple</em>
+                <ul>
+                  <li>isRecord/isTuple がなくなる
+                  <li>JSON.parseImmutable は別ドラフト
+                  <li>Object を含むのはやめ WeakMap を使え
+                </ul>
+              </li>
+              <li>Iterator helpers を method ではなく function にする提案
+              <li><em>分割代入時にロジックを挟む Extractor Objects</em>
+            </ul>
+          </li>
+          <li>
+            IETF
+            <ul>
+              <li>特になし
+            </ul>
+          </li>
+          <li>
+            CDN 動向
+            <ul>
+              <li>
+                Cloudflare
+                <ul>
+                  <li><em>Alexa Top100 後継を 1.1.1.1 の統計情報で</em>
+                  <li>OHTTP のブログ
+                  <li>Early Hints で Cloudflare pages を速く
+                </ul>
+              </li>
+              <li>
+                Fastly
+                <ul>
+                  <li><em>Yamagoya 2022</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            セキュリティ動向
+            <ul>
+              <li><em>PayPal が Passkey 対応</em>
+            </ul>
+          </li>
+          <li>
+            周辺動向
+            <ul>
+              <li><em>Facebook が Chromium-based WebView for Android</em>
+              <li>Igalia の MPArch の記事
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="11-月"><a href="#11-月">11 月</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>
+                Ship
+                <ul>
+                  <li><em>Change Array by copy</em>
+                  <li><em>Symbols as WeakMap keys</em>
+                  <li><em>TLS ClientHello extension permutation</em>
+                  <li><em>CSS Initial Letters</em>
+                  <li><em>Media Session slides actions</em>
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>View Transition Same-Origin Navigation
+                  <li>Inactive Document Invalidation API
+                  <li>Incoming Call Notifications
+                  <li><em>WebSocket over h3</em>
+                </ul>
+              </li>
+              <li>
+                Experiment
+                <ul>
+                  <li>
+                    <em>SAB in non-isolated pages</em>
+                    <ul>
+                      <li>COEP credentialless
+                      <li>Cross-origin Isolated + popups
+                      <li>Anonymous iframes
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                web.dev
+                <ul>
+                  <li>Building Chrometober
+                  <li>
+                    <em>new to the web platform in October</em>
+                    <ul>
+                      <li>AVIF
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Chrome Developers
+                <ul>
+                  <li>Storage Buckets
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li>BlinkOn 17
+                  <li><em>JPEG XL support dropped</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                107
+                <ul>
+                  <li><em><code translate=no>contain-intrinsic-size</code></em>
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li><em>Mixed contents Lv2 upgrading image, audio, video</em>
+                  <li><em>Addon-gated WebMIDI</em>
+                  <li><em>OPFS</em>
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li><em>revamp MDN Contribution docs</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>
+                TP 157
+                <ul>
+                  <li>CSS lh/rlh
+                  <li>WebCodecs
+                  <li><code translate=no>Sec-Fetch-Site</code>
+                  <li><em>Cap Cookie lifetime to 7 days from 3rd-party IP addresses (CNAME Cloaking)</em>
+                </ul>
+              </li>
+              <li>
+                TP 158
+                <ul>
+                  <li>contain-intrinsic-size
+                  <li>AVIF for Monterey and Big Sur
+                  <li><em>enable WebCodecs by default</em>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            W3C/WHATWG
+            <ul>
+              <li>
+                Spec
+                <ul>
+                  <li><em>CSS Snapshot 2022</em>
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li>TAG election
+                  <li>agenda for Permissions Workshop
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TC39
+            <ul>
+              <li>Meeting も Stage 移動もなし
+            </ul>
+          </li>
+          <li>
+            IETF
+            <ul>
+              <li>
+                IETF115 London
+                <ul>
+                  <li>Well-known for ECHConfigList
+                  <li>DNS や Proxy の設定をまとめる JSON for Masque
+                </ul>
+              </li>
+              <li>
+                HTTP Workshop
+                <ul>
+                  <li>
+                    HTTP Client を作る上でどういう API が良いのかという発表
+                    <ul>
+                      <li><em>ついでに adobe/fetch が紹介されてた</em>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            CDN 動向
+            <ul>
+              <li><em>CF: ブラジル選挙、大統領中間選挙、サンクスギビングのトラフィックレポート</em>
+              <li>CF: OpenSSL の CVE が BoringSSL 使ってるから影響なかった
+              <li><em>CF: WinterCG の活動について</em>
+              <li>Fastly: ECDSA 証明書を使う理由
+            </ul>
+          </li>
+          <li>
+            セキュリティ動向
+            <ul>
+              <li><em>ケニアの大統領が「盗聴してないので E2EE する必要はない」と宣言</em>
+            </ul>
+          </li>
+          <li>
+            周辺動向
+            <ul>
+              <li><em>FB Instant Article 2023/4 にサポート終了</em>
+              <li>FB Git 互換のソース管理 Sapling 公開
+              <li><em>Netscape, Chrome の重鎮 Darin Fisher が The Browser Company に入った</em>
+              <li><em>Igalia の BlinkOn と WebKit Contributors Meeting レポート</em>
+              <li>Google Fonts が IP のプライバシーに関する声明
+              <li><em>CMA による Cloud Gaming の寡占に関するレポート</em>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/110/yearly-ecosystem-2022.html>ep110 Yearly Ecosystem 2022</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep111.mp3
+    data-title="ep111 Yearly Platform 2022"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
