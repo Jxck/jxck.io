@@ -58,7 +58,6 @@
 - [ep109 Monthly Platform 202211](https://mozaic.fm/episodes/109/monthly-platform-202211.html)
 - [ep110 Yearly Ecosystem 2022](https://mozaic.fm/episodes/110/yearly-ecosystem-2022.html)
 - [ep111 Yearly Platform 2022](https://mozaic.fm/episodes/111/yearly-platform-2022.html)
- 
 
 ## イベント
 
