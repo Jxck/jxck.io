@@ -57,7 +57,8 @@
 - [ep108 Monthly Ecosystem 202211](https://mozaic.fm/episodes/108/monthly-ecosystem-202211.html)
 - [ep109 Monthly Platform 202211](https://mozaic.fm/episodes/109/monthly-platform-202211.html)
 - [ep110 Yearly Ecosystem 2022](https://mozaic.fm/episodes/110/yearly-ecosystem-2022.html)
-
+- [ep111 Yearly Platform 2022](https://mozaic.fm/episodes/111/yearly-platform-2022.html)
+ 
 
 ## イベント
 
@@ -81,6 +82,8 @@
 なかなか長い章になってしまったが、同時に MDN の Cache 関連ページをまるっと更新したことをきっかけに、間接的に mnot 直々にレビューしてもらえたのは良い経験だった。
 
 おおよそ Cache に関する必要な知識は詰め込んだので、今後も標準やブラウザの更新に追従してメンテナンスしていきたい。
+
+Zenn には非常にお世話になった。エディタ/レビュー部分は痒いところが残ってるが、公開/課金周りは出来が良いので、執筆環境は自分で作り、デプロイ先として活用させてもらってる。今後も応援したい。
 
 来年は次の章の公開を目標にする。
 
