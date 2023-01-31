@@ -319,7 +319,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - *Change in release schedule from Chrome 110*
     - https://developer.chrome.com/en/blog/early-stable/
     - 一部のユーザーに対して 1 週間 Stable が早く届くようになる
-  -    * DevTools Tips: Debugging Project Fugu APIs
+  - DevTools Tips: Debugging Project Fugu APIs
     - https://developer.chrome.com/en/blog/devtools-tips-17/
   - Change the destination output device in Web Audio
     - https://developer.chrome.com/en/blog/audiocontext-setsinkid/
@@ -415,7 +415,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1805967
     - Firefox 110 以降で IE11 と誤検知され動かないサイトが出た
       - UA 文字列に含まれる `rv:110` が原因
-    -  IE11 の UA 文字列に `rv:11.0` という部分があり、 IE11 を検出しようと`/rv:11/.test(navigator.userAgent)` のように書いてたコードに引っかかった
+    - IE11 の UA 文字列に `rv:11.0` という部分があり、 IE11 を検出しようと`/rv:11/.test(navigator.userAgent)` のように書いてたコードに引っかかった
     - 回避策として 110 台のバージョンは `rv:109` に固定する
 - 1806690 - Remove the frozen `rv:109.0` IE11 UA workaround after Firefox reaches version 120 (desktop and Android)
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1806690
@@ -705,7 +705,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/httpwg/wg-materials/
   - HTTP Testing Hackathon in Yokohama?
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2023JanMar/0047.html
-    -    * Last Call: `<draft-ietf-httpbis-origin-h3-03.txt>` (The ORIGIN Extension in HTTP/3) to Proposed Standard from The IESG
+  - Last Call: `<draft-ietf-httpbis-origin-h3-03.txt>` (The ORIGIN Extension in HTTP/3) to Proposed Standard from The IESG
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2023JanMar/0046.html
 - quicwg
   - https://mailarchive.ietf.org/arch/browse/quic/
@@ -819,7 +819,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - そこで 25 年前に卒業した mnot が Law school に戻って勉強した
 - The State of JS 2022
   - https://2022.stateofjs.com/en-US/
-  - * *Igalia Brings MathML Back to Chromium | Igalia*
+- *Igalia Brings MathML Back to Chromium | Igalia*
   - https://www.igalia.com/2023/01/10/Igalia-Brings-MathML-Back-to-Chromium.html
   - WebKit フォーク後の Blink では消されていた MathML が戻ってくる
 - *ウェブアクセシビリティ導入ガイドブック|デジタル庁*
@@ -914,7 +914,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Interop2022
     - Font Features
     - Last Baseline
-    -    * TP160
+  - TP160
     - Media Queries range syntax
     - resizable ArrayBuffer
     - Atomics.waitAsync
