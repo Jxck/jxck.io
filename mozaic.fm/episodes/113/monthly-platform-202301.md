@@ -8,16 +8,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 # ep113 Monthly Platform 202301
 
-
 ## Theme
 
 第 113  回のテーマは 2023  年 1 月の Monthly Platform です。
 
+
 ## Show Note
 
-
 ### Chrome 動向
-
 
 #### Stable: 109
 
@@ -91,6 +89,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Deprecations and removals
     - *Remove Web SQL in non-secure contexts*
     - Remove window.webkitStorageInfo
+
 
 #### Intents
 
@@ -254,12 +253,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - PSA Resource-Timing for cross-origin iframes: change in behavior
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/b0-4JXb3kuo
 
+
 #### V8
 
 - *Introducing the WebAssembly JavaScript Promise Integration API · V8*
   - https://v8.dev/blog/jspi
 - Pointer compression in Oilpan · V8
   - https://v8.dev/blog/oilpan-pointer-compression
+
 
 #### Other
 
@@ -352,15 +353,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - A difficult decision to set us up for the future
     - https://blog.google/inside-google/message-ceo/january-update/
 
-### Firefox 動向
 
+### Firefox 動向
 
 #### Stable: 109.0
 
 
 #### Updates
-
-
 
 - Firefox 108.0, See All New Features, Updates and Fixes
   - https://www.mozilla.org/en-US/firefox/108.0/releasenotes/
@@ -370,13 +369,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - *CSP `style-src-elem`/`style-src-attr`/`script-src-elem`/`script-src-attr`*
     - *Import Maps*
     - *add-on gated Web MIDI API*
-      - *https://support.mozilla.org/en-US/kb/site-permission-add-ons*
+      - https://support.mozilla.org/en-US/kb/site-permission-add-ons
 - *Firefox 109.0, See All New Features, Updates and Fixes*
   - https://www.mozilla.org/en-US/firefox/109.0/releasenotes/
     - Manifest V3 が有効に
 - Firefox 109 for developers - Mozilla | MDN
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/109
     - `scrollend` event
+
 
 #### Intents
 
@@ -409,6 +409,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
+
 #### Other
 
 - *1805967 - Freeze `rv:` segment in the User Agent string to `rv:109.0` to avoid erroneous IE11 detection*
@@ -430,7 +431,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 短期的には基本的な CSS レイアウトの実装、中期的には IoT デバイスなど用途が絞られたところのエンジンにしていきたい
 - project/tsc-2023-01-23.md at master · servo/project · GitHub
   - https://github.com/servo/project/blob/master/governance/tsc/tsc-2023-01-23.md
-- *New year, new updates to Firefox – These Weeks in Firefox: Issue 130 – Firefox Nightly News*
+- *New year, new updates to Firefox - These Weeks in Firefox: Issue 130 - Firefox Nightly News*
   - https://blog.nightly.mozilla.org/2023/01/24/new-year-new-updates-to-firefox-these-weeks-in-firefox-issue-130/
 - *Firefox Security & Privacy Newsletter for Q4 of 2022*
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/dyiRVtqjock
@@ -440,8 +441,8 @@ guest: [@myakura](https://twitter.com/myakura)
 - Introducing about:logging
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/2Xv74MmiYpI/m/sIrino8gAwAJ
 
-### Safari 動向
 
+### Safari 動向
 
 #### Stable: 16.3
 
@@ -537,13 +538,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - Accessibility
     - Enabled default ARIA for custom elements (258743@main)
 
+
 #### Other
 
 - *Help choose the syntax for CSS Nesting*
   - https://webkit.org/blog/13607/help-choose-from-options-for-css-nesting-syntax/
 
-### Edge 動向
 
+### Edge 動向
 
 #### Stable: 109
 
@@ -568,22 +570,22 @@ guest: [@myakura](https://twitter.com/myakura)
 - Microsoft Edge のロールバック方法について | Japan Developer Support Internet Team Blog
   - https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-to-rollback-edge/
 - Eric 先生の攻撃/防御テクニックシリーズ
-  - Attack Techniques: Priming Attacks on Legitimate Sites – text/plain
+  - Attack Techniques: Priming Attacks on Legitimate Sites - text/plain
     - https://textslashplain.com/2023/01/11/attack-techniques-priming-attacks-on-legitimate-sites/
-  - Attack Techniques: Phishing via Mailto – text/plain
+  - Attack Techniques: Phishing via Mailto - text/plain
     - https://textslashplain.com/2023/01/11/attack-techniques-phishing-via-mailto/
-  - Attack Techniques: Phishing via Local Files – text/plain
+  - Attack Techniques: Phishing via Local Files - text/plain
     - https://textslashplain.com/2023/01/11/attack-techniques-phishing-via-local-files/
-  - Defense Techniques: Reporting Phish – text/plain
+  - Defense Techniques: Reporting Phish - text/plain
     - https://textslashplain.com/2023/01/19/defense-techniques-reporting-phish/
-- *TLS Certificate Verification Changes in Edge – text/plain*
+- *TLS Certificate Verification Changes in Edge - text/plain*
   - https://textslashplain.com/2022/12/06/tls-certificate-verification-changes-in-edge/
 - *Microsoft Edge に「ウィンドウの分割」機能が導入。 2 つのページを同時に閲覧可能に | ソフトアンテナ*
   - https://softantenna.com/blog/microsoft-edge-split-window/
     - Edge の Canary に分割表示のフラグがあるらしい
 
-### WHATWG/W3C 動向
 
+### WHATWG/W3C 動向
 
 #### Draft
 
@@ -605,6 +607,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - First Public Working Draft: Web Locks API | W3C News
     - https://www.w3.org/blog/news/archives/9806
 - Chartering
+
 
 #### Other
 
@@ -628,8 +631,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - jQuery 3.6.3 Released: A Quick Selector Fix | Official jQuery Blog
     - https://blog.jquery.com/2022/12/20/jquery-3-6-3-released-a-quick-selector-fix/
 
-### TC39 動向
 
+### TC39 動向
 
 #### Meeting
 
@@ -637,6 +640,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/agendas/blob/main/2022/11.md
   - https://github.com/tc39/notes/tree/main/meetings/2022-11
   - https://twitter.com/mozaicfm/status/1608087053002235905
+
 
 #### Proposals Diff
 
@@ -656,6 +660,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Explicit Resource Management
 - 3->4
   - Intl.Enumeration
+
 
 #### New Proposals
 
@@ -688,11 +693,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - dynamic import だと async になるので
   - 非同期に読み込む import を定義したい
 
+
 #### Other
 
 
 ### IETF 動向
-
 
 #### WG
 
@@ -726,6 +731,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
 
 - *mikewest/baseline-header*
@@ -733,9 +739,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - セキュリティ関連のヘッダをまとめて指定できる提案
 
 
-
 ### CDN 動向
-
 
 #### Cloudflare
 
@@ -743,6 +747,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/the-state-of-http-in-2022/
 - *Cyberattacks on Holocaust educational websites increased in 2022*
   - https://blog.cloudflare.com/cyberattacks-on-holocaust-educational-websites-increased-in-2022/
+
 
 #### Fastly
 
@@ -767,6 +772,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Beyond CWV: 11 More Performance Metrics to Monitor, Part 3 of 5 | Akamai
     - https://www.akamai.com/blog/developers/beyond-cwv-more-performance-metrics-to-monitor-part-3-of-5
 
+
 ### セキュリティ動向
 
 - *LastPass / Slack / Circle CI / Twitter / Paypal 内で相次いでインシデント*
@@ -788,6 +794,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.yomiuri.co.jp/national/20230107-OYT1T50303/
 - *The death of the line of death | Emily M. Stark*
   - https://emilymstark.com/2022/12/18/death-to-the-line-of-death.html
+
 
 ### 周辺動向
 
@@ -837,6 +844,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 4. Network SLOs(Service Level Objective)
   - 5. L4 ルーティングの一貫性の向上
 
+
 ### イベント
 
 - 1 月
@@ -844,6 +852,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 3 月
   - 25-31: IETF116 Yokohama
     - https://www.ietf.org/how/meetings/116/
+
 
 ### Wrap Up
 
