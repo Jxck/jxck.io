@@ -16,6 +16,19 @@ Shadow DOM は JS を用いた命令的 API により有効にする必要があ
 おさらいとして、 Shadow DOM を用いて Custom Element に Shadow Root を追加するには、以下のようなコードが必要となる。
 
 
+## Streaming
+
+Chromium has shipped [1] a version of declarative shadow DOM in M90 which currently has 0.014% usage [2]. Mostly, the low usage is due to the spec PR being stalled with no input from other implementers. Recently, there has been renewed interest in the feature, and discussions have resumed. As part of those discussions, two changes have been generally agreed upon:
+
+Chromium は M90 で declarative shadow DOM のバージョンを出荷しましたが [1]、現在の使用率は 0.014% です [2]。使用率が低いのは、他の実装者からの意見もなく、仕様PRが滞っていることが原因です。最近、この機能に対する関心が再び高まり、議論が再開されています。その議論の中で、2つの変更点が概ね合意された。
+
+ 1. Rename the `<template>` attribute from `shadowroot` to `shadowrootmode`.
+ 2. Support streaming, by attaching the shadow root on the opening, rather than the closing, template tag.
+
+While the PR hasn't landed, and there is still an open issue (related to the DOMParser), we would like to ship the agreed upon behavior listed above. WebKit has already enabled this behavior by default.
+
+PRはまだ到着しておらず、（DOMParserに関連する）未解決の問題がありますが、私たちは上記の合意された動作を出荷したいと思います。WebKit はすでにこの動作をデフォルトで有効にしています。
+
 
 
 
