@@ -2,32 +2,23 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>title</title>
+  <title>Container Queries DEMO</title>
 </head>
 <style>
-.post {
-  container-type: inline-size;
+.container {
+  --theme: foo;
+  color: green;
 }
 
-/* Default heading styles for the card title */
-.card h2 {
-  font-size: 1em;
-}
-
-/* If the container is larger than 700px */
-@container (min-width: 700px) {
-  .card h2 {
-    font-size: 2em;
+@container style(--theme: foo) {
+  em {
+    color: red;
   }
 }
 </style>
 <body>
-  <h1>container query</h1>
-  <div class="post">
-    <div class="card">
-      <h2>Card title</h2>
-      <p>Card content</p>
-    </div>
+  <div style="--theme: foo">
+    <p>hello container <em>style</em> query !!</p>
   </div>
 </body>
 </html>
