@@ -1587,3 +1587,16 @@ eyeD3 --title "ep114 Monthly Ecosystem 202302" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep115.mp3
+
+eyeD3 --title "ep115 Monthly Platform 202302" \
+      --track 123 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep115.mp3
+
+
+
