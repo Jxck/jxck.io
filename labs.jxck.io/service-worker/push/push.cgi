@@ -2,7 +2,7 @@
 
 const webpush   = require('web-push')
 const vapidKeys = require('./vapid-keys.json')
-const contact   = 'mailto:admin@jxck.io'
+const contact   = 'mailto:jxck@jxck.io'
 webpush.setVapidDetails(contact, vapidKeys.publicKey, vapidKeys.privateKey)
 
 const content_length = process.env['CONTENT_LENGTH']

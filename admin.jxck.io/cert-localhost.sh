@@ -5,5 +5,5 @@ sudo certbot certonly \
   --manual \
   --manual-public-ip-logging-ok \
   --preferred-challenges dns \
-  --email admin@jxck.io \
+  --email jxck@jxck.io \
   --domain localhost.jxck.io

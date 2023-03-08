@@ -2,7 +2,7 @@ sudo certbot certonly \
   -n \
   --webroot \
   --agree-tos \
-  --email admin@mozaic.fm \
+  --email jxck@jxck.io \
   -w ../mozaic.fm \
   --expand \
   --force-renewal \

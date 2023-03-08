@@ -1,7 +1,7 @@
 #certbot-auto certonly \
 #  # --force-renewal \
 #  --manual \
-#  --email admin@jxck.io \
+#  --email jxck@jxck.io \
 #  --agree-tos \
 #  -d jxck.io \
 #  -d *.jxck.io \
@@ -13,7 +13,7 @@ sudo certbot certonly \
   -n \
   --webroot \
   --agree-tos \
-  --email admin@jxck.io \
+  --email jxck@jxck.io \
   -w ../www.jxck.io \
   --expand \
   --force-renewal \
