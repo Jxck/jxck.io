@@ -187,7 +187,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/learn-images/
   - New to the web platform in January
     - https://web.dev/web-platform-01-2023/
-  - *Interop 2023: continuing to improve the web for developers[a]*
+  - *Interop 2023: continuing to improve the web for developers*
     - https://web.dev/interop-2023/
     - Border Image in CSS
     - Color Spaces and Functions in CSS
@@ -354,7 +354,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - *Interop 2022: Outcomes - Mozilla Hacks - the Web developer blog*
   - https://hacks.mozilla.org/2023/01/interop-2022-outcomes/
-- *Announcing Interop 2023 - Mozilla Hacks - the Web developer blog[b]*
+- *Announcing Interop 2023 - Mozilla Hacks - the Web developer blog*
   - https://hacks.mozilla.org/2023/02/announcing-interop-2023/
   - Interop プロジェクト自体の説明が詳しい
 - *JavaScript Import maps, Part 1: Introduction*
@@ -511,7 +511,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://webkit.org/blog/13813/try-css-nesting-today-in-safari-technology-preview/
 - *Declarative Shadow DOM*
   - https://webkit.org/blog/13851/declarative-shadow-dom/
-- *The User Activation API[c]*
+- *The User Activation API*
   - https://webkit.org/blog/13862/the-user-activation-api/
 
 
