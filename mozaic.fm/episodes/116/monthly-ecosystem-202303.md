@@ -1,4 +1,4 @@
-﻿---
+---
 type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep116.mp3
