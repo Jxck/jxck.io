@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-03-24/proofreading-via-openai.html>
+
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163515>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
+
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163515></script>
+  <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="OpenAI の API を用いて、長年の課題だった文書校正を VSCode 上で実現するプラグインを修作したところ、思った以上の成果だった。">
+  <meta name=keywords            content="chatgpt,openai">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-03-24/proofreading-via-openai.html>
+  <meta property=og:title        content="OpenAI API を用いた文書校正(誤字脱字検出) | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="OpenAI の API を用いて、長年の課題だった文書校正を VSCode 上で実現するプラグインを修作したところ、思った以上の成果だった。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "OpenAI API を用いた文書校正(誤字脱字検出) | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-03-24T08:00:00+08:00",
+    "dateModified": "2023-03-24T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "OpenAI の API を用いて、長年の課題だった文書校正を VSCode 上で実現するプラグインを修作したところ、思った以上の成果だった。"
+  }
+  </script>
+
+  <title>OpenAI API を用いた文書校正(誤字脱字検出) | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220306_111358>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154131   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-03-24>2023-03-24</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-03-24>2023-03-24</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#chatgpt">chatgpt</a>
+              <li><a href="/tags#openai">openai</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#文章校正と誤字脱字検出">文章校正と誤字脱字検出</a>
+                <li><a href="#chatgpt-での校正">ChatGPT での校正</a>
+                <li><a href="#vscode-plugin">VSCode Plugin</a>
+                <li><a href="#精度">精度</a>
+                <li><a href="#outro">Outro</a>
+                <li><a href="#resources">Resources</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">OpenAI API を用いた文書校正(誤字脱字検出)</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>OpenAI の API を用いて、長年の課題だった文書校正を VSCode 上で実現するプラグインを修作したところ、思った以上の成果だった。
+      </section>
+      <section>
+        <h2 id="文章校正と誤字脱字検出"><a href="#文章校正と誤字脱字検出">文章校正と誤字脱字検出</a></h2>
+        <p>執筆を補助するツールは多々開発されているが、基本は形態素解析を用いた品詞分析の延長で行うものが多かった。
+        <p>よくある「助詞の連続」、「漢字の開き閉じ」、「一文の長さ」などは、ある程度の精度で検出可能ではあるが、結局執筆時に一番検出して欲しいのは「<em>誤字脱字</em>」だ。
+        <p>文体をどんなに揃えたところで、誤字脱字があるとやはりクオリティが低く感じるし、そこさえ抑えられていれば、他のスタイル統一は訓練である程度なんとかなる。
+        <p>英語のスペルチェックはかなり進んでいるが、日本語においてはそこまで革新的なものが見当たらない。あらゆるツールを試したが、結局満足のいく精度が出る誤字脱字検出は「Word の校正機能」しかなかった。
+        <p>そこで筆者は、書籍執筆などは Markdown で原稿を書き、ある程度まとまったら HTML でレンダリングしたものを Word に流し込んで校正していたが、これはあまりにも面倒くさい。
+        <p>Word の校正機能だけ CLI にならないかと何度も夢みたが、それが叶うはずもなく。「紙に印刷して読んだ方が見つけられる」「音声読み上げしたら気づける」などのワークアラウンドでなんとか見つけだし、それを次の修正で誤字脱字だらけに戻しながら、たまに Word を行き来して今に至る。
+        <p>こんなに執筆エコシステムが発達しているのに、 VSCode での執筆フローの中で効率よく誤字脱字を検出し修正する方法には、巡り会えないままでいた。
+      </section>
+      <section>
+        <h2 id="chatgpt-での校正"><a href="#chatgpt-での校正">ChatGPT での校正</a></h2>
+        <p>ChatGPT の Proofreading プロンプトは、頻出ユースケースの一つだ。そして、これは日本語でも動作する。
+        <p>筆者が求めているのは、ヒントから文章を書き上げて欲しいわけでも、丸っと書き直して欲しいわけでもなく、「誤字脱字だけ見つけて直してほしい」だけなので、指令はごくシンプルだ。
+        <p>むしろ、細かく条件を加えた方が、 ChatGPT が余計なことをしだすので、さまざまなプロンプトを試しながら、結局このシンプルなものに戻ってきた。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=diff data-code=diff><code translate=no class=language-diff>次の文章の誤字、脱字、スペルミスを修正してください。
+
+- 執筆を補助するツールは多々開発されいるが、基本は携帯素解析を用いた品詞分析の延長で行うものが多かった。
++ 執筆を補助するツールは多々開発されているが、基本は形態素解析を用いた品詞分析の延長で行うものが多かった。</code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=./gpt4-proofreading.avif?230324_025547>
+            <source type=image/webp srcset=./gpt4-proofreading.webp?230324_025213>
+            <img loading=lazy decoding=async src=./gpt4-proofreading.jpeg?230324_025213 alt="GPT-4 で文書校正を依頼し、上記の結果を得た様子" width=2078 height=1186>
+          </picture>
+        </p>
+        <p>もちろん、試行差があるため同じ結果にならない場合があるが、この精度が出るのであれば、執筆しながらの校正補助には十分使えそうだ。
+        <p>毎回 Chat のプロンプトで依頼するのはもちろん手間なので、これを OpenAI API を用いて自動化する VSCode プラグインを作成すれば良い。
+      </section>
+      <section>
+        <h2 id="vscode-plugin"><a href="#vscode-plugin">VSCode Plugin</a></h2>
+        <p>もともと筆者は、執筆などに必要な全く汎用性の無い機能を雑に詰め込んだ自分用プラグインを持っており、ちょっとした機能を都度追加して使っている。今回もそこに追加実装した。
+        <p>内容は、選択したテキストを OpenAI API に渡し、前述の処理を行った結果を上書きする簡単なものだ。 Git で管理していれば、見比べて気に食わなければ簡単に Revert できるため、精度はあまり気にする必要がない。
+        <p>筆者はまだ GPT-4 API の利用が許可されてない(Waiting List にだいぶ並んでるがいつ落ちてくるんだろうか...)ので 3.5 ベースだが、とにかく呼び出すべきは Edits API だ。
+        <ul>
+          <li><a href="https://platform.openai.com/docs/api-reference/edits" target=_blank>https://platform.openai.com/docs/api-reference/edits</a>
+        </ul>
+        <p>VSCode の Extension は node v16 ベースなので <code translate=no>fetch()</code> は使えないが、もし使えるとしたら大体こんな感じのコードになる(疑似コードである点に注意)。
+        <pre class=js data-code=js><code translate=no class=language-js>async function openai_edit(input) {
+  const url = &quot;https://api.openai.com/v1/edits&quot;
+  const model = &quot;text-davinci-edit-001&quot;
+  const instruction = &quot;文章の誤字、脱字、スペルミスを修正してください。&quot;
+  const body = {
+    model,
+    input,
+    instruction,
+    temperature: 0.2
+  }
+
+  const res = await fetch(url, {
+    method: &quot;POST&quot;,
+    headers: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;,
+      Authorization: `Bearer ${process.env.api_key}`
+    },
+    body: JSON.stringify(body)
+  })
+
+  const result = await res.json()
+  console.log(result)
+}</code></pre>
+        <p>あとは、選択範囲を取得したり、 API Key を Config から取ったり、 <code translate=no>fetch()</code> を HTTP Module で書き直したりなどをすれば、拡張自体を作るのは難しくない。
+        <p>長いと落ちるが、行ごとだと API コールが増えるので、セクションごとくらいで呼び出しつつ、意図しない修正は Git で revert していく運用を想定している。
+      </section>
+      <section>
+        <h2 id="精度"><a href="#精度">精度</a></h2>
+        <p>試しに <a href="https://blog.jxck.io/entries/2023-02-28/jquery-has-forgiving-problem.html">前回のブログ</a> の原稿を校正した(月一回は書きたいという個人的な目標を達成するために、月末に大急ぎで書いたため、誤字脱字だらけだった)。
+        <p>検出した Diff が以下だ。
+        <pre class=diff data-code=diff><code translate=no class=language-diff>- ブラウザがバースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで
++ ブラウザがパースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで
+
+- `:has(:contains(div))` のようなセレクタがエラーにならいのは
++ `:has(:contains(div))` のようなセレクタがエラーにならないのは
+  
+- そして jQuery こそが `:has()` の有用性証明の一旦を担っていたため、それがなければ標準化されることもなかったかもしれない。
++ そして jQuery こそが `:has()` の有用性証明の一端を担っていたため、それがなければ標準化されることもなかったかもしれない。
+  
+- 「古い実装が足をひっぱてる」
++ 「古い実装が足を引っ張ってる」
+  
+- 解決をみたことでもう話題にはならないだろうが
++ 解決を見たことでもう話題にはならないだろうが</code></pre>
+        <p>これこそが、筆者が長年追い求めていた、紛れも無い「誤字脱字修正」の自動化だと言える。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>GPT-4 でなくても十分な精度だと思える。今後精度がさらに向上すると、もう Word での校正からも卒業できるかもしれない。
+        <p>ご時世的には、ちょっとしたアウトラインを書いて、残りは ChatGPT に書かせるような使い方が示されているが、書籍を表現手段として自分で書きたい筆者にとっては、欲しいのは Generator というよりも Linter だった。
+        <p>今回「誤字脱字検出」というミッシングピースが埋まったことは、地味かもしれないが、筆者にとっては非常に大きな進歩なので、本当に興奮している。
+        <p>本当に興奮しているのだ。
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li><a href="https://platform.openai.com/docs/api-reference/edits" target=_blank>https://platform.openai.com/docs/api-reference/edits</a>
+            </ul>
+          </li>
+          <li>Explainer
+          <li>Requirements Doc
+          <li>Mozilla Standard Position
+          <li>Webkit Position
+          <li>TAG Design Review
+          <li>Intents
+          <li>Chrome Platform Status
+          <li>WPT (Web Platform Test)
+          <li>DEMO
+          <li>Blog
+          <li>Presentation
+          <li>Issues
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!--<ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>-->
+  </footer>
+
+</body>
+</html>
