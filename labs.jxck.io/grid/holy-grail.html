@@ -1,103 +1,169 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Holy Grail Grid Layout DEMO | labs.jxck.io</title>
 
 <style>
-body {
-  display: grid;
+  body {
+    display: grid;
+    padding: 0;
+    margin: 0;
+  }
 
-  padding: 0;
-  margin: 0;
+  @media (1024px <= width) {
+    body {
+      grid-template-columns: minmax(min-content, auto) minmax(auto, 1024px) minmax(min-content, auto);
+      grid-template-rows: 100px 1fr 50px;
+      grid-template-areas:
+        "header header header"
+        "navigation main toc"
+        "footer footer footer";
+    }
+  }
 
-  grid-template-columns: minmax(min-content, auto) minmax(auto, 1024px) minmax(min-content, auto);
-  grid-template-rows: 150px 1fr 80px;
-  grid-template-areas:
-    "header header header"
-    "left main right"
-    "footer footer footer"
-}
-header {
-  grid-area: header;
-  background-color: #0CC;
-  position: sticky;
-  top: 0px;
-}
-main {
-  grid-area: main;
-  background-color: #CCC;
-  height: auto;
-}
-aside.left {
-  grid-area: left;
-  background-color: #CC0;
-}
-aside.right {
-  grid-area: right;
-  background-color: #0C0;
-}
-footer {
-  grid-area: footer;
-  background-color: #C0C;
-  position: sticky;
-  bottom: 0;
-}
+  @media (768px <= width < 1024px) {
+    body {
+      grid-template-columns: minmax(min-content, auto) minmax(auto, 800px);
+      grid-template-areas:
+        "header header"
+        "navigation main"
+        "toc main"
+        "footer footer";
+    }
+  }
+
+  @media (width < 768px) {
+    body {
+      grid-template-areas:
+        "header"
+        "main"
+        "navigation"
+        "toc"
+        "footer";
+    }
+  }
+
+  header {
+    grid-area: header;
+    background-color: #0cc;
+    position: sticky;
+    top: 0px;
+  }
+
+  main {
+    grid-area: main;
+    background-color: #ccc;
+    height: auto;
+  }
+
+  aside.navigation {
+    grid-area: navigation;
+    background-color: #cc0;
+  }
+
+  aside.toc {
+    grid-area: toc;
+    background-color: #0c0;
+  }
+
+  footer {
+    grid-area: footer;
+    background-color: #c0c;
+    position: sticky;
+    bottom: 0;
+  }
 </style>
 
 <body>
-  <header>Header <h1>Holy Grail Grid Layout DEMO</h1></header>
+  <header>
+    <h1>Holy Grail Grid Layout DEMO</h1>
+  </header>
   <main>
-    <section>
-      <h2>Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </section>
+    <article>
+      <section>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
 
-    <section>
-      <h2>Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </section>
+      <section>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
 
-    <section>
-      <h2>Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </section>
+      <section>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
 
-    <section>
-      <h2>Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </section>
+      <section>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
 
-    <section>
-      <h2>Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </section>
+      <section>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
 
-    <section>
-      <h2>Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </section>
+      <section>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
 
-    <section>
-      <h2>Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </section>
+      <section>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
 
-    <section>
-      <h2>Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </section>
+      <section>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
 
-    <section>
-      <h2>Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </section>
+      <section>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
 
-    <section>
-      <h2>Lorem ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </section>
+      <section>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
+    </article>
   </main>
-  <aside class=left>Left</aside>
-  <aside class=right>Right</aside>
-  <footer>Footer</footer>
+  <aside class="navigation">
+    <h3>Navigation</h3>
+    <nav>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+        <li><a href="#">consectetur adipiscing elit</a></li>
+        <li><a href="#">sed do eiusmod tempor incididunt</a></li>
+        <li><a href="#">ut labore et dolore magna aliqua</a></li>
+        <li><a href="#">Ut enim ad minim veniam</a></li>
+        <li><a href="#">quis nostrud exercitation ullamco aboris</a></li>
+        <li><a href="#">nisi ut aliquip ex ea commodo consequat</a></li>
+        <li><a href="#">Duis aute irure dolor in reprehenderit</a></li>
+        <li><a href="#">in voluptate velit esse cillum dolore</a></li>
+        <li><a href="#">eu fugiat nulla pariatur</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <aside class="toc">
+    <h3>ToC</h3>
+    <nav>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+        <li><a href="#">consectetur adipiscing elit</a></li>
+        <li><a href="#">sed do eiusmod tempor incididunt</a></li>
+        <li><a href="#">ut labore et dolore magna aliqua</a></li>
+        <li><a href="#">Ut enim ad minim veniam</a></li>
+        <li><a href="#">quis nostrud exercitation ullamco aboris</a></li>
+        <li><a href="#">nisi ut aliquip ex ea commodo consequat</a></li>
+        <li><a href="#">Duis aute irure dolor in reprehenderit</a></li>
+        <li><a href="#">in voluptate velit esse cillum dolore</a></li>
+        <li><a href="#">eu fugiat nulla pariatur</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <footer>Copyright © 2016 Jxck. All Rights Reserved. See Site Policy and Privacy Policy.</footer>
 </body>
