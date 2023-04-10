@@ -113,7 +113,7 @@ hosts:
 
 これだとパス部分を 3 回コピーする必要がある。Yaml のエイリアスが使えるとは言え、ちょっと微妙だ。
 
-と思ってドキュメントを眺めていたら以下の書き方でもいけることがわかった。Yaml 的にはアウトな気がするが `listen` はかぶっても良いらしい。
+と思ってドキュメントを眺めていたら以下の書き方でもいけることがわかった。Yaml 的にはアウトな気がするが `listen` は重複しても良いらしい。
 
 - [Listening to both HTTP and HTTPS · h2o/h2o Wiki (github.com)](https://github.com/h2o/h2o/wiki/Listening-to-both-HTTP-and-HTTPS)
 

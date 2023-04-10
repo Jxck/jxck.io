@@ -192,7 +192,7 @@ await navigation.navigate("/foo", { state: {count: 1}, info: "shortcut", history
 
 `state` は any だが、シリアライズ可能なものに限る。 `history` は `"push"` なら追記、 `"replace"` なら現在の Entry を置き換える。その遷移だけで用いるエフェメラルな値は `info` で送ることができる。
 
-戻り値は `{ committed, finish }` という 2 つの Promise だ。 `committed` は `navigate()` 開始と共に即座に Resolve し、 `finished` は `navigate()` が完了したら Resolve する。
+戻り値は `{ committed, finished }` という 2 つの Promise だ。 `committed` は `navigate()` 開始と共に即座に Resolve し、 `finished` は `navigate()` が完了したら Resolve する。
 
 
 ### currentEntry.getState()
@@ -205,7 +205,7 @@ navigation.currentEntry.getState() // {count: 1}
 
 `entry.getState()` は `history.state` と類似するが、既存の問題をいくつか解決している。
 
-まず、 `history.state` はセッション上ではプロパティアクセスにより更新できたように見えるが、永続化はされてないため誤解を招くような挙動に見える。
+まず、 `history.state` はセッション上ではプロパティアクセスにより更新できたように見えるが、永続化はされていないため誤解を招くような挙動に見える。
 
 ```js
 // https://github.com/WICG/navigation-api/issues/36
@@ -232,7 +232,7 @@ navigation.currentEntry.getState().count = 3;
 console.assert(navigation.currentEntry.getState().count === 2);
 ```
 
-先ほどの `navigation.entries()` がメソッドなのも、常にコピーを返すことで、その戻り値の変更がブラウザには反映されてないことを明確にする意図もある。
+先ほどの `navigation.entries()` がメソッドなのも、常にコピーを返すことで、その戻り値の変更がブラウザには反映されていないことを明確にする意図もある。
 
 
 ### navigation.traverseTo(key)

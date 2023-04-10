@@ -66,7 +66,7 @@ WHATWG では、 MIME Sniffing の仕様にこのリストがある。
 - `text/javascript`
 - `text/ecmascript`
 
-代わりに、以下の利用が推奨(Should)とされている。
+代わりに、以下の利用が推奨(SHOULD)とされている。
 
 - `application/javascript`
 - `application/ecmascript`
@@ -79,7 +79,7 @@ WHATWG では、 MIME Sniffing の仕様にこのリストがある。
 
 ## HTML Standard
 
-しかし、だからといってブラウザがこの 2 つしかサポートしないというわけにはいかない。もし、そうしてしまえば、過去に動いていたスクリプトが突然動かなくなってしまうため、結局実装を絞ることはできない。また、一方で IE9 以前は `application/javascript` をサポートしてなかったため、デプロイ側でも `text/javascript` の利用が一般的となっていた。
+しかし、だからといってブラウザがこの 2 つしかサポートしないというわけにはいかない。もし、そうしてしまえば、過去に動いていたスクリプトが突然動かなくなってしまうため、結局実装を絞ることはできない。また、一方で IE9 以前は `application/javascript` をサポートしていなかったため、デプロイ側でも `text/javascript` の利用が一般的となっていた。
 
 そうした現実を反映する意味でも、 HTML の仕様では以下のように書かれていた。
 
@@ -106,7 +106,7 @@ WHATWG では、 MIME Sniffing の仕様にこのリストがある。
 この中では、 JS の MIME Type のみにフォーカスして、現状が整理されている。まとめるとこうだ。
 
 - RFC 4329 は `text/javascript` を obsolete して `application/javascript` を使うように促した
-- でも結局そうはならかなった
+- でも結局そうはならなかった
 - そことの互換を守るために `text/javascript` を common usage として認める
 - 他全部は `text/javascript` のエイリアスとして obsolete する
 

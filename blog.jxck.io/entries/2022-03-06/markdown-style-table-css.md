@@ -21,7 +21,7 @@
 | .webp.br  | 2544 |   27% |
 ```
 
-特に `<thead>`, `<tbody>` の間に入るセパレータ (`|:---|---:|---:|`) の部分の長さを内容に合わせるためには `<td>` 内の文字数を CSS 内で取得する必要がある。これは JS 無しには難しそうだった。 JS は使いたくないし、もし使うしかないなら Houdini の Pain API などで実装したい。しかし、 Paint PAI も当時は Text Rendering がサポートされてなかったため、それも諦めていた。
+特に `<thead>`, `<tbody>` の間に入るセパレータ (`|:---|---:|---:|`) の部分の長さを内容に合わせるためには `<td>` 内の文字数を CSS 内で取得する必要がある。これは JS 無しには難しそうだった。 JS は使いたくないし、もし使うしかないなら Houdini の Paint API などで実装したい。しかし、 Paint API も当時は Text Rendering がサポートされてなかったため、それも諦めていた。
 
 などと考えている間に飽きて、適当に border を dash にしただけのお粗末な実装で誤魔化していた。
 
@@ -42,7 +42,7 @@
 
 ### HTML
 
-まず、自作のパーサでは以下のような HTML が生成される。 Align は HTML の `align` 要素が [Deprecate](https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align) だったため、 `class` で実装している。
+まず、自作のパーサでは以下のような HTML が生成される。 Align は HTML の `align` 要素が [Deprecated](https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align) だったため、 `class` で実装している。
 
 ```html
 <table>
@@ -138,7 +138,7 @@ td::before {
 
 しかし、これでは Safari/Firefox を Voice Over で読み上げるような場合に、 `content` 部分が認識される。もし先頭に 1 文字つく程度ならまだ許容できるかもしれないが、今回は文字が多いため、煩わしさは他の記法とも異なるだろう。
 
-せっかく表としてマークアップしているのに、スタイルのために読みにくい状況になるのは不本意なため、 Fallback の指定は辞め Alternative Text 未対応のブラウザには Table の Markdown Style を適用するのをやめることにした。
+せっかく表としてマークアップしているのに、スタイルのために読みにくい状況になるのは不本意なため、 Fallback の指定は辞め、 Alternative Text 未対応のブラウザには Table の Markdown Style を適用するのをやめることにした。
 
 
 ### Support query

@@ -38,9 +38,9 @@ Accept-Encoding: gz, br
 
 これが HTTP/2 や HTTP/3 になれば、同じ情報をバイナリで送ることになる。「送りたい情報」は同じだが「送るフォーマット」が変わるのだ。
 
-そこで、 HTT/1.1 の仕様に一緒くたになっていた「送りたい情報」を HTTP/1.1 特有の「送るフォーマット」から引き剥がし、独立させたのが RFC 9110 HTTP Semantics だ。
+そこで、 HTTP/1.1 の仕様に一緒くたになっていた「送りたい情報」を HTTP/1.1 特有の「送るフォーマット」から引き剥がし、独立させたのが RFC 9110 HTTP Semantics だ。
 
-HTT/1.1, HTTP/2, HTTP/3 の各仕様は、 HTTP Semantics を参照し、それぞれの「送るフォーマット」だけを定義することになった。これが RFC9112, 9113, 9114 だ。
+HTTP/1.1, HTTP/2, HTTP/3 の各仕様は、 HTTP Semantics を参照し、それぞれの「送るフォーマット」だけを定義することになった。これが RFC9112, 9113, 9114 だ。
 
 その過程で、 1 つの大きなトピックで括れる Caching をさらに Semantics から引き剥がしたのが RFC 9111 となる。
 
@@ -62,7 +62,7 @@ QUIC や TLS1.3 はすでに出ていたのに、 HTTP/3 がなかなか出な�
 
 ### 新しい仕様
 
-それ以外は、ほとんどが新しい仕様だ。新しく定義された Header Field や、プロトコルのたりてない部分を補うものが公開されている。
+それ以外は、ほとんどが新しい仕様だ。新しく定義された Header Field や、プロトコルの足りてない部分を補うものが公開されている。
 
 ものによっては、これから使われていくものもあるだろうため、なんとなくでも知っておくと良いかもしれない。
 
@@ -75,97 +75,97 @@ QUIC や TLS1.3 はすでに出ていたのに、 HTTP/3 がなかなか出な�
 ### RFC 9110: HTTP Semantics
 
 - HTTP をリファクタリングした結果の「送りたい情報」を切り出した仕様。
-- HTTP Header と慣習的に読んでるアレの中には Trailer で送れるものがあるため、全ての仕様で Field (Header Field / Trailer Field)と呼ばれるようになった。
-- HTTP/1.1 の時は Header-改行-Body となっていたが、他のプロトコルではそうではないので、 Body と読んでいたものが Content と呼ばれるようになった。(HTTP/1.1 は Content を Body で送る)
+- HTTP Header と慣習的に読んでるアレの中には Trailer で送れるものがあるため、全ての仕様で Field (Header Field / Trailer Field) と呼ばれるようになった。
+- HTTP/1.1 の時は Header-改行-Body となっていたが、他のプロトコルではそうではないので、 Body と読んでいたものが Content と呼ばれるようになった。(HTTP/1.1 は Content を Body で送る)。
 
 
 ### RFC 9111: HTTP Caching
 
-- いわゆるキャッシュに関する挙動と `Cache-Control` Field を切り出したもの
-- ちょこちょこ改善されたり、古い記述が消えたりしてるが、おおむね今までと変わらない
+- いわゆるキャッシュに関する挙動と `Cache-Control` Field を切り出したもの。
+- ちょこちょこ改善されたり、古い記述が消えたりしてるが、おおむね今までと変わらない。
 - `must-understand` が追加された。詳細は [こちら](https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html)。
 
 
 ### RFC 9112: HTTP/1.1
 
-- HTTP Semantics を Text Format でエンコードして TCP で送るバージョン
-- つまり多くの開発者がよく知ってるアレ
+- HTTP Semantics を Text Format でエンコードして TCP で送るバージョン。
+- つまり多くの開発者がよく知ってるアレ。
 
 
 ### RFC 9113: HTTP/2
 
-- HTTP Semantics を Binary Format でエンコードして TCP で送るバージョン
-- HTTP Push はなくなった(Early Hints が代替)
-- もともとあった Priority も複雑すぎたので修正
+- HTTP Semantics を Binary Format でエンコードして TCP で送るバージョン。
+- HTTP Push はなくなった(Early Hints が代替)。
+- もともとあった Priority も複雑すぎたので修正。
 
 
 ### RFC 9114: HTTP/3
 
-- HTTP Semantics を Binary Format でエンコードして QUIC で送るバージョン
-- QUIC が TLS1.3 を含んでるので実質暗号化が必須に
-- Field は QPACK でエンコード
+- HTTP Semantics を Binary Format でエンコードして QUIC で送るバージョン。
+- QUIC が TLS1.3 を含んでるので実質暗号化が必須に。
+- Field は QPACK でエンコード。
 
 
 ### RFC 9163: Expect-CT Extension for HTTP
 
-- `Expect-CT` Field のこと
-- [以前解説](https://blog.jxck.io/entries/2018-03-27/certificate-transparency.html) したあれ
-- しかし、 SCT はブラウザで必須になりつつあり、その移行期間を支えてたものなので、今後使いことはなさそうと思ってよい
+- `Expect-CT` Field のこと。
+- [以前解説](https://blog.jxck.io/entries/2018-03-27/certificate-transparency.html) したあれ。
+- しかし、 SCT はブラウザで必須になりつつあり、その移行期間を支えてたものなので、今後使うことはなさそうと思ってよい。
 
 
 ### RFC 9204: QPACK: Field Compression for HTTP/3
 
 - HTTP/3 の Field を圧縮するための仕様、 HPACK の後継。
-- HPACK よりも事前定義 Field のリストが増えた
-- そこから選ぶと 1byte で送れるので知っておくと良さそう
+- HPACK よりも事前定義 Field のリストが増えた。
+- そこから選ぶと 1byte で送れるので知っておくと良さそう。
 
 
 ### RFC 9205: Building Protocols with HTTP
 
-- HTTP ってこうやって使うと旨味を一段と引き出せるよっていうベストプラクティス集(Best Current Practice)
-- それの今回の更新対応版
-- ちょっと知ってる人には当たり前のことしか書いてないけど、当たり前ができてない人は多い
+- HTTP ってこうやって使うと旨味を一段と引き出せるよっていうベストプラクティス集(Best Current Practice)。
+- それの今回の更新対応版。
+- ちょっと知ってる人には当たり前のことしか書いてないけど、当たり前ができてない人は多い。
 
 
 ### RFC 9209: The Proxy-Status HTTP Response Header Field
 
-- `Proxy-Status` Field のこと
-- Proxy って知らないうちに挟まってそこで何かが起こってるけど、何が起こってるかわからん、を知らせるための Field
-- 昔は `Via` とか `Warning` とかあったけど、それの現代版ぽいイメージ
+- `Proxy-Status` Field のこと。
+- Proxy って知らないうちに挟まってそこで何かが起こってるけど、何が起こってるかわからん、を知らせるための Field。
+- 昔は `Via` とか `Warning` とかあったけど、それの現代版ぽいイメージ。
 
 
 ### RFC 9211: The Cache-Status HTTP Response Header Field
 
-- `Cache-Status` Field のこと
-- Shared Cache も知らないうちに挟まってそこで何かが起こってるけど、何が起こってるかわらかん、を知らせるための Field
-- よく CDN が `x-cache-hit` とか送ってるあれの標準仕様
+- `Cache-Status` Field のこと。
+- Shared Cache も知らないうちに挟まってそこで何かが起こってるけど、何が起こってるかわからん、を知らせるための Field。
+- よく CDN が `x-cache-hit` とか送ってるあれの標準仕様。
 
 
 ### RFC 9213: Targeted HTTP Cache Control
 
-- `CDN-Cache-Control` Field のこと
-- 特定のキャッシュ(主に CDN)に対してだけ有効にしたい `Cache-Control` の名指し版
-- Fastly でいう `Surrogate-Control` の標準仕様
+- `CDN-Cache-Control` Field のこと。
+- 特定のキャッシュ(主に CDN)に対してだけ有効にしたい `Cache-Control` の名指し版。
+- Fastly でいう `Surrogate-Control` の標準仕様。
 
 
 ### RFC 9218: Extensible Prioritization Scheme for HTTP
 
-- HTTP/2 には優先度制御が最初から含まれていた
-- でも難しすぎて誰も使いこなせなかった
-- そっちは deprecate してもう少しシンプルで使いやすくしよう
+- HTTP/2 には優先度制御が最初から含まれていた。
+- でも難しすぎて誰も使いこなせなかった。
+- そっちは deprecate してもう少しシンプルで使いやすくしよう。
 
 
 ### RFC 9220: Bootstrapping WebSockets with HTTP/3
 
-- WebSocket を HTTP/3 の上で流すためのバインディング的な仕様
-- 開発者はあまり気にするところではない
+- WebSocket を HTTP/3 の上で流すためのバインディング的な仕様。
+- 開発者はあまり気にするところではない。
 
 
 ### RFC 9230: Oblivious DNS over HTTPS
 
-- ネットワークで Server につなぐと Client の IP が伝わってトラッキングできちゃうの良くない
-- じゃあ間に Proxy を挟めば、 Server が知るのは Proxy の IP だから良さそう => Oblivious
-- それを DoH に適用して、 DNS にも「誰が何を解決したのか」をわからなくする
+- ネットワークで Server につなぐと Client の IP が伝わってトラッキングできちゃうの良くない。
+- じゃあ間に Proxy を挟めば、 Server が知るのは Proxy の IP だから良さそう => Oblivious。
+- それを DoH に適用して、 DNS にも「誰が何を解決したのか」をわからなくする。
 
 
 ## HTTP RFC Publication Study

@@ -31,7 +31,7 @@ CORS で行われるなら良いが、 no-cors な読み込みが可能なリソ
 
 Opt-In の CORP/COOP/COEP は、ヘッダの指定が整合していなければブロックするだけなので、仕様は比較的シンプルであるが、Intervention として防ぐ CORB は、ブラウザが「何をどういう条件でブロックするのか」を定義する必要がある。
 
-その定義の方法として、 CORB は「このケースでは読み込みを許可しない」という Block List の形式で定義がされていた。
+その定義の方法として、 CORB は「このケースでは読み込みを許可しない」という Block List の形式で定義されていた。
 
 そして、 Mozilla は CORB を実装しておらず、その理由として Standard Position の中で以下のように示している。
 
@@ -46,7 +46,7 @@ Mozilla は、 Spectre 対策として仕様の目的自体には理解を示す
 
 ## ORB
 
-そこで、 CORB をベースに、元 Mozilla の Ann によって Allow List として定義し直されたのが ORB という位置付けのようだ。
+そこで、 CORB をベースに、元 Mozilla の Anne によって Allow List として定義し直されたのが ORB という位置付けのようだ。
 
 - annevk/orb: Opaque Response Blocking (CORB++)
   - https://github.com/annevk/orb
@@ -71,7 +71,7 @@ CORB と ORB の違いについては、以下に詳細がある。
 - Remove CORB by annevk · Pull Request #1441 · whatwg/fetch
   - https://github.com/whatwg/fetch/pull/1441/files
 
-また、これらの仕様は最終的には Fetch 側にマージされることになる。現状 CORB はすでに削除されており、 ORB はまだレビュー中でマージされてない。
+また、これらの仕様は最終的には Fetch 側にマージされることになる。現状 CORB はすでに削除されており、 ORB はまだレビュー中でマージされていない。
 
 CORB にしても ORB にしても、大抵は攻撃に使われるようなおかしな読み込みを防ぐという目的でありながら、それによって成り立っていた既存の実装があった場合に、 breaking changes になる。そこで Chrome は、まずは ORB v1.0 というサブセットを作り、そこから展開していく計画のようだ。
 
@@ -96,7 +96,7 @@ CORB もそうだったが、 ORB でも既に動いていたものが動かな�
 
 - https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html
 
-Canary M109 で試した時点では、エラーメッセージは "CORB" のままだった。これが今後変わるのかは不明だが恐らくこのデモのまま確認できると思われる。
+Canary M109 で試した時点では、エラーメッセージは "CORB" のままだった。これが今後変わるのかは不明だが、恐らくこのデモのまま確認できると思われる。
 
 
 ## Resources
