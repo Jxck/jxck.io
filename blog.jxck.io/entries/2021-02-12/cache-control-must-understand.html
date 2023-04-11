@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-02-12T08:00:00+08:00",
-    "dateModified": "2022-02-13T08:00:00+08:00",
+    "dateModified": "2023-04-11T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-02-12>2021-02-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-13>2022-02-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-11>2023-04-11</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -180,7 +180,7 @@
           <p>Likewise, the definition of a status code can place constraints upon cache behavior...
           <p>&mdash; <cite><a href="https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2" target=_blank>https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2</a></cite>
         </blockquote>
-        <p>つまり、その新しいステータスコードは、 <code translate=no>max-age</code> などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache 可能かどうかなどを定義できるのだ。
+        <p>つまり、その新しいステータスコードは、 <code translate=no>max-age</code> などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache が可能かどうかなどを定義できるのだ。
         <p>一方、キャッシュを保存する要件として以下があった。
         <blockquote cite="https://httpwg.org/specs/rfc7234.html#response.cacheability">
           <p>A cache MUST NOT store a response to any request, unless:
@@ -190,7 +190,7 @@
         </blockquote>
         <p>問題は、 3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
         <p>新しいステータスコードが標準化された場合に、そのステータスコードが未実装な場合はキャッシュできないように読めてしまう。実装者は、サポートしているステータスコードをリストとして埋め込み、突き合わせてキャッシュの制御を行うことになるだろう。
-        <p>この点は、先程の要件と矛盾が有り、例えば <code translate=no>max-age</code> を伴う新しいステータスコードのレスポンスを受信した実装が、そのステータスコードを実装してない場合に、どうすべきかということになる。
+        <p>この点は、先程の要件と矛盾があり、例えば <code translate=no>max-age</code> を伴う新しいステータスコードのレスポンスを受信した実装が、そのステータスコードを実装してない場合に、どうすべきかということになる。
         <p>実装に対する制限は後者なので、安全側に倒すと「キャッシュしない」方を選ぶことになり、すると実装が普及するまではキャッシュが効かないことになる。
         <p>すると、セマンティクスよりもキャッシュ効率を求める開発者により、意味的に適した新しいステータスコードを利用する代わりに、既存のステータスコードが使われてしまう可能性があるのだ。
       </section>

@@ -183,7 +183,7 @@
         <section>
           <h3 id="top-level-domain-tld"><a href="#top-level-domain-tld">Top Level Domain (TLD)</a></h3>
           <p>例えば、このブログのドメインは <code translate=no>blog.jxck.io</code> であり、これは筆者が取得したドメイン <code translate=no>jxck.io</code> のサブドメインだ。
-          <p><code translate=no>jxck.io</code> は、 <code translate=no>.io</code> という TLD のサブドメインを販売しているレジストラから購入できる。もちろん <code translate=no>io</code> そのものをドメインを購入して、例えば <code translate=no>https://io</code> というサイトを建てることはできない。
+          <p><code translate=no>jxck.io</code> は、 <code translate=no>.io</code> という TLD のサブドメインを販売しているレジストラから購入できる。もちろん <code translate=no>io</code> そのもののドメインを購入して、例えば <code translate=no>https://io</code> というサイトを建てることはできない。
           <p><code translate=no>jxck.io</code> のように、我々がレジストラから割当を受けられる(購入できる)ドメインを Registerable Domain と言う。
           <p>すると、 Registerable Domain とは TLD の一個下の階層、つまり <em>TLD + 1</em> と思うかもしれない。しかしここには例外がある。
         </section>
@@ -206,11 +206,11 @@
           <p><code translate=no>.jp</code> が TLD なのは機械的にわかる。ドメインを <code translate=no>.</code> で区切った一番右は常に TLD だ。
           <p>しかし、 <code translate=no>co.jp</code> が eTLD で <code translate=no>example.jp</code> が Registerable Domain であるというのは、どう見分ければ良いのだろうか?
           <p>実はここには機械的な処理方法がない。
-          <p>そこで、「この組み合わせは eTLD だ」という判別のために存在するのが Public Suffix List だ。
+          <p>そこで、「この組み合わせは eTLD である」という判別のために存在するのが Public Suffix List だ。
           <ul>
             <li><a href="https://publicsuffix.org/" target=_blank>https://publicsuffix.org/</a>
           </ul>
-          <p>今は GitHub で管理されており、全体は以下のリポジトリに 1.3 万行のテキストファイルとして存在する。
+          <p>今は GitHub で管理されており、全体は以下のリポジトリに 1.3 万行のテキストファイルとして存在している。
           <ul>
             <li><a href="https://github.com/publicsuffix/list" target=_blank>https://github.com/publicsuffix/list</a>
           </ul>
@@ -309,7 +309,7 @@
         <ul>
           <li><a href="https://github.com/sleevi/psl-problems" target=_blank>Public Suffix List Problems</a>
         </ul>
-        <p>DNS の構造を無視していることも、 Origin の概念ともズレいてることも、レジストラやサービス提供者の気分次第で定義されることも、テキストファイルでメンテされていることも、そのメンテナンスが重要でありながらボランティアベースであることも、全てが問題といっていいだろう。
+        <p>DNS の構造を無視していることも、 Origin の概念ともズレていることも、レジストラやサービス提供者の気分次第で定義されることも、テキストファイルでメンテされていることも、そのメンテナンスが重要でありながらボランティアベースであることも、全てが問題といっていいだろう。
         <p>しかし、一旦このファイルが壊れれば、多くのサイトで Cookie に関するなんらかの問題が発生するか、各ベンダがフォークして互換性の問題が発生するか、もっと最悪な何かになる可能性がある。
         <p>既に動いている様々な機能が、 PSL を基底に構築されてしまっている以上、 PSL をやめるためにはそれら全ての仕様を更新し、実装をリリースし、サービスが対応しないといけない。
         <p>これが簡単ではないことは、説明しなくてもわかるだろう。したがって、現状はなんとかこの PSL の運用が健全に行える状態に戻すことが先決となる。
