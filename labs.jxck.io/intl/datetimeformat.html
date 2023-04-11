@@ -5,7 +5,8 @@
 
 <h1>Intl.DateTimeFormat Labs</h1>
 
-<p>yyyy/mm/dd: <time><time></p>
+<p>yyyy/mm/dd: <time id="slash"><time></p>
+<p>yyyy-mm-dd: <time id="hyphen"><time></p>
 
 <script>
 function yyyymmdd(date) {
@@ -13,5 +14,16 @@ function yyyymmdd(date) {
   return formatter.format(date)
 }
 
-document.querySelector('time').textContent = yyyymmdd(new Date())
+document.querySelector('#slash').textContent = yyyymmdd(new Date())
+
+function yyyy_mm_dd(date) {
+  const formatter = new Intl.DateTimeFormat("ja-jp", { year: `numeric`, month: `2-digit`, day: `2-digit` })
+  const parts = formatter.formatToParts(date).map(({type, value}) => [type, value])
+  const { year, month, day } = Object.fromEntries(parts)
+  return `${year}-${month}-${day}`
+}
+
+yyyy_mm_dd(new Date()) // 2023-04-11
+
+document.querySelector('#hyphen').textContent = yyyy_mm_dd(new Date())
 </script>
