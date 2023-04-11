@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-05-31T08:00:00+08:00",
-    "dateModified": "2022-06-01T08:00:00+08:00",
+    "dateModified": "2023-04-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-05-31>2022-05-31</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-06-01>2022-06-01</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-10>2023-04-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -224,7 +224,7 @@
           <li><code translate=no>text/javascript</code>
           <li><code translate=no>text/ecmascript</code>
         </ul>
-        <p>代わりに、以下の利用が推奨(Should)とされている。
+        <p>代わりに、以下の利用が推奨(SHOULD)とされている。
         <ul>
           <li><code translate=no>application/javascript</code>
           <li><code translate=no>application/ecmascript</code>
@@ -241,7 +241,7 @@
       </section>
       <section>
         <h2 id="html-standard"><a href="#html-standard">HTML Standard</a></h2>
-        <p>しかし、だからといってブラウザがこの 2 つしかサポートしないというわけにはいかない。もし、そうしてしまえば、過去に動いていたスクリプトが突然動かなくなってしまうため、結局実装を絞ることはできない。また、一方で IE9 以前は <code translate=no>application/javascript</code> をサポートしてなかったため、デプロイ側でも <code translate=no>text/javascript</code> の利用が一般的となっていた。
+        <p>しかし、だからといってブラウザがこの 2 つしかサポートしないというわけにはいかない。もし、そうしてしまえば、過去に動いていたスクリプトが突然動かなくなってしまうため、結局実装を絞ることはできない。また、一方で IE9 以前は <code translate=no>application/javascript</code> をサポートしていなかったため、デプロイ側でも <code translate=no>text/javascript</code> の利用が一般的となっていた。
         <p>そうした現実を反映する意味でも、 HTML の仕様では以下のように書かれていた。
         <blockquote cite="https://github.com/whatwg/html/pull/7938">
           <p>Similarly, the MIME type used to refer to JavaScript in this specification is <code translate=no>text/javascript</code>,
@@ -271,7 +271,7 @@
         <p>この中では、 JS の MIME Type のみにフォーカスして、現状が整理されている。まとめるとこうだ。
         <ul>
           <li>RFC 4329 は <code translate=no>text/javascript</code> を obsolete して <code translate=no>application/javascript</code> を使うように促した
-          <li>でも結局そうはならかなった
+          <li>でも結局そうはならなかった
           <li>そことの互換を守るために <code translate=no>text/javascript</code> を common usage として認める
           <li>他全部は <code translate=no>text/javascript</code> のエイリアスとして obsolete する
         </ul>

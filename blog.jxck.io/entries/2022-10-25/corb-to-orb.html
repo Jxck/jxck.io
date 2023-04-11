@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-10-25T08:00:00+08:00",
-    "dateModified": "2022-10-25T08:00:00+08:00",
+    "dateModified": "2023-04-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-10-25>2022-10-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-10-25>2022-10-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-10>2023-04-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -182,7 +182,7 @@
       <section>
         <h2 id="allow-list-と-block-list"><a href="#allow-list-と-block-list">Allow List と Block List</a></h2>
         <p>Opt-In の CORP/COOP/COEP は、ヘッダの指定が整合していなければブロックするだけなので、仕様は比較的シンプルであるが、Intervention として防ぐ CORB は、ブラウザが「何をどういう条件でブロックするのか」を定義する必要がある。
-        <p>その定義の方法として、 CORB は「このケースでは読み込みを許可しない」という Block List の形式で定義がされていた。
+        <p>その定義の方法として、 CORB は「このケースでは読み込みを許可しない」という Block List の形式で定義されていた。
         <p>そして、 Mozilla は CORB を実装しておらず、その理由として Standard Position の中で以下のように示している。
         <blockquote cite="https://mozilla.github.io/standards-positions/#corb">
           <p>Blocklist certain opaque responses based on MIME type and return an &apos;emptied&apos; response instead.
@@ -194,7 +194,7 @@
       </section>
       <section>
         <h2 id="orb"><a href="#orb">ORB</a></h2>
-        <p>そこで、 CORB をベースに、元 Mozilla の Ann によって Allow List として定義し直されたのが ORB という位置付けのようだ。
+        <p>そこで、 CORB をベースに、元 Mozilla の Anne によって Allow List として定義し直されたのが ORB という位置付けのようだ。
         <ul>
           <li>
             annevk/orb: Opaque Response Blocking (CORB++)
@@ -235,7 +235,7 @@
             </ul>
           </li>
         </ul>
-        <p>また、これらの仕様は最終的には Fetch 側にマージされることになる。現状 CORB はすでに削除されており、 ORB はまだレビュー中でマージされてない。
+        <p>また、これらの仕様は最終的には Fetch 側にマージされることになる。現状 CORB はすでに削除されており、 ORB はまだレビュー中でマージされていない。
         <p>CORB にしても ORB にしても、大抵は攻撃に使われるようなおかしな読み込みを防ぐという目的でありながら、それによって成り立っていた既存の実装があった場合に、 breaking changes になる。そこで Chrome は、まずは ORB v1.0 というサブセットを作り、そこから展開していく計画のようだ。
         <ul>
           <li>
@@ -259,7 +259,7 @@
         <ul>
           <li><a href="https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html" target=_blank>https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html</a>
         </ul>
-        <p>Canary M109 で試した時点では、エラーメッセージは &quot;CORB&quot; のままだった。これが今後変わるのかは不明だが恐らくこのデモのまま確認できると思われる。
+        <p>Canary M109 で試した時点では、エラーメッセージは &quot;CORB&quot; のままだった。これが今後変わるのかは不明だが、恐らくこのデモのまま確認できると思われる。
       </section>
       <section>
         <h2 id="resources"><a href="#resources">Resources</a></h2>

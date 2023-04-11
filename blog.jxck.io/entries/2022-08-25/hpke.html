@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-08-25T08:00:00+08:00",
-    "dateModified": "2022-09-06T08:00:00+08:00",
+    "dateModified": "2023-04-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-08-25>2022-08-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-09-06>2022-09-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-10>2023-04-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -194,7 +194,7 @@
           </li>
         </ul>
         <p>HPKE は、公開鍵暗号方式と共通鍵暗号方式を組み合わせて(ハイブリッド)任意の平文を暗号化するための、汎用的な枠組みとして標準化されている。
-        <p>この仕様は、多くのユースケースが想定されており、 RFC になる前から ECH (Encrypt Client Hello), MLS (Message Layer Security), OHTTP (Oblivious HTTP) など、さまざまな仕様から採用を検討されている。
+        <p>この仕様は、多くのユースケースが想定されており、 RFC になる前から ECH (Encrypted Client Hello), MLS (Message Layer Security), OHTTP (Oblivious HTTP) など、さまざまな仕様から採用を検討されている。
         <p>本サイトで書く予定の他の記事でも HPKE は頻出する予定であり、今後より多くの場面でこの仕様を見ることになると思われるため、一度この仕様の概観について解説する。
         <p>(筆者は暗号の専門家ではないため、解釈や語彙使用の間違いがあるかもしれない。)
       </section>
@@ -202,7 +202,7 @@
         <h2 id="pke-これまで"><a href="#pke-これまで">PKE これまで</a></h2>
         <p>ハイブリッド暗号は、要するに公開鍵暗号で鍵を交換し、その鍵で共通鍵暗号を行う方式全般を指す。その発想自体は古くからあり、まさしく TLS や PGP が行っていることがそれにあたる。
         <p>これをより汎用化し、例えば TCP 通信に限らない場面でも、同方式でデータの暗号化による交換を実現したいユースケースは多くあり、 <a href="https://nacl.cr.yp.to/box.html" target=_blank>NaCl(Networking and Cryptography library)</a> や <a href="https://github.com/google/tink" target=_blank>tink</a> などの実装は存在したが、いずれも標準ではなく相互運用性の問題があった。
-        <p>また、 ANSI, IEEE, ISO などによる標準化の動きもあったが、、最新の暗号化技術への追従や、危殆化や脆弱性といった既知の問題の存在が指摘されていた。
+        <p>また、 ANSI, IEEE, ISO などによる標準化の動きもあったが、最新の暗号化技術への追従や、危殆化や脆弱性といった既知の問題の存在が指摘されていた。
         <p>そこで、汎用性があり、かつ最新の暗号化の知見を反映し、将来にわたって拡張(e.g. 耐量子暗号)していくことが可能な、次世代の標準仕様として HPKE は策定されることとなった。
         <p>なお、この仕様を策定したのは IETF ではなく、 IRTF (Internet Research Task Force) という姉妹団体の CFRG (Crypto Forum Research Group) であり、筆者の理解では IETF での仕様策定について暗号化の専門的なアドバイスなどを行う、要するに Crypto のガチ中のガチ勢のグループによって行われている。
         <p>2019 年 7 月の draft-00 から 3 年の歳月を費やし作られたこの標準は、多くの研究者による分析や、多くの実装者による相互互換テストを経て標準化され、今後 IETF で策定される、ハイブリッド暗号を必要とするあらゆる標準において、参照されていくことだろう。
@@ -223,7 +223,7 @@
           <li>KDF
           <li>AEAD
         </ul>
-        <p>各要素を見ていこう。
+        <p>各要素を見ていく。
       </section>
       <section>
         <h2 id="kem-key-encapsulation-mechanism"><a href="#kem-key-encapsulation-mechanism">KEM (Key Encapsulation Mechanism)</a></h2>
@@ -259,7 +259,7 @@ ctx = KeySchedule(shared_secret)</code></pre>
         </ul>
         <section>
           <h3 id="base"><a href="#base">Base</a></h3>
-          <p>通常の公開鍵暗号方式のみ行い、送信者の認証はない。
+          <p>通常の公開鍵暗号方式のみ行い、送信者の認証は行わない。
           <pre class=js data-code=js><code translate=no class=language-js>// sender
 { shared_secret, enc } = Encap(receiver_public_key)
 ctx = KeySchedule(shared_secret)
@@ -356,7 +356,7 @@ ctx = KeySchedule(shared_secret, psk)</code></pre>
           <h3 id="pki-は用いない"><a href="#pki-は用いない">PKI は用いない</a></h3>
           <p>TLS の場合は、ハンドシェイク中に CA の署名を受けたサーバ証明書(場合によってクライアント証明書)を提供し、署名を確認することでなりすましを防いでいる。
           <p>HPKE は、あくまでパラメータの交換を仕様の外にしているため PKI は用いず、交換方法はデプロイや別のプロトコルでカバーすることになる。そのため、仕様には Certificate とその署名などについては含まれていない。
-          <p>ここで、公開鍵提供者が成りすますことを防ぐためには、前述の Auth/PSK モードを用いる(Sender がドメインを持ち、公開鍵の提供時に証明書を検証することもできるかもしれないが、それ自体は HPKE のデプロイ側の都合となる)。
+          <p>ここで、公開鍵提供者がなりすますことを防ぐためには、前述の Auth/PSK モードを用いる(Sender がドメインを持ち、公開鍵の提供時に証明書を検証することもできるかもしれないが、それ自体は HPKE のデプロイ側の都合となる)。
           <blockquote cite="https://www.rfc-editor.org/rfc/rfc9180.html#section-9.1.1-1">
             <p>The DHKEM variants defined in this document are vulnerable to key-compromise impersonation attacks [BJM97]
             <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc9180.html#section-9.1.1-1" target=_blank>https://www.rfc-editor.org/rfc/rfc9180.html#section-9.1.1-1</a></cite>

@@ -50,7 +50,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 6 回...">
+  <meta name=description         content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配信するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 6 回...">
   <meta name=keywords            content="avif,image,performance">
   <meta name=theme-color         content=#000000>
 
@@ -58,7 +58,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2022-01-07/avif.html>
   <meta property=og:title        content="画像最適化戦略 AVIF 編 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 6 回...">
+  <meta property=og:description  content="本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配信するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 6 回...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-01-07T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2023-04-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -95,7 +95,7 @@
         "width": 120
       }
     },
-    "description": "本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 6 回..."
+    "description": "本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配信するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 6 回..."
   }
   </script>
 
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-01-07>2022-01-07</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-10>2023-04-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -167,7 +167,7 @@
       <h1><a href="">画像最適化戦略 AVIF 編</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配布するようにした。
+        <p>本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配信するようにした。
         <p>フォーマットを出し分けるため、画像の指定は <code translate=no>&lt;picture&gt;</code> 要素を用いて対応した。
         <p>画像最適化シリーズ第 6 回目のエントリである。
         <ol>
@@ -182,7 +182,7 @@
       <section>
         <h2 id="avif"><a href="#avif">AVIF</a></h2>
         <p>AVIF は、ロイヤリティフリーなコーデックを目指して AOMedia が開発した AV1 を、画像に転用したものだ。 AV1 Image File Format の略とされ、 AV1 の I フレームを静止画として表示するイメージだ。
-        <p>Chrome 85, Firefox 93 あたりかた対応が始まり、いまはデフォルトで有効になっている。
+        <p>Chrome 85, Firefox 93 あたりから対応が始まり、いまはデフォルトで有効になっている。
         <p>Edge はなぜか AVIF を取得しないようだが、理由はわかってない。
         <p>Safari は、 AOM には参加しているようだが WebP の対応も割と最近なので、気長に待ちたい。
       </section>
@@ -282,13 +282,13 @@ Options:
             <li>WebP: 13936088byte = 13.3MB
             <li>AVIF: 5467910byte = 5.21MB
           </ul>
-          <p>正直ここまでの差が出ると、おそらく webp と avif の Quality 指定のスケールは同じではない可能性が考えられるが、サイトを見た感じで特に画像に問題を感じてないためこの設定でデプロイすることにした。
+          <p>正直ここまでの差が出ると、おそらく WebP と AVIF の Quality 指定のスケールは同じではない可能性が考えられるが、サイトを見た感じで特に画像に問題を感じてないためこの設定でデプロイすることにした。
         </section>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>雑に変換しただけでも画質を損ねることなく、かなりファイルを圧縮できそうなことがわかった。
-        <p>特に時間をかけてエンコードすればかなりの圧縮率になるため、事前に圧縮可能な場合はより効力を発揮しそうだ。
+        <p>特に時間をかけてエンコードすればかなりの圧縮率になるため、事前に圧縮可能な場合はより効果を発揮しそうだ。
         <p>あとは、 APNG をどうするかはおいおい考えていきたい。
       </section>
       <section>

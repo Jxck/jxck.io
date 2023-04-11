@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-01-07T08:00:00+08:00",
-    "dateModified": "2023-01-07T08:00:00+08:00",
+    "dateModified": "2023-04-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-01-07>2023-01-07</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-01-07>2023-01-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-10>2023-04-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -332,7 +332,7 @@
         <p>今目立っているフロントエンドフレームワークにおいて、 CSS はコンポーネントに付随するおまけフラグメントとして扱われるか、 Tailwind/Bootstrap か MUI/Chakra のように外で解決される何かになっていた。どう扱っても扱いにくいため、なんとなく妥当に見える形で扱い、手厚くプロセスを通してなんとか吐き出す困った何かだ。
         <p>問題の 1 つは、 CSS という名前には皮肉なことだが、コンポーネントはそこまでカスケードを求めていない点にあるのだと思う。あるとすれば、共通するテーマカラーなどはコンテナから降ってきても良いかもしれないが、それも別にカスタムプロパティに吐いたカラーパレットを共有できていれば足りる場合が多いだろう。
         <p>かといって、コンテナから全てをプロパティとして渡し、コンポーネントのスタイルは全てスコープに閉じ込めるような作りは、愚直すぎて重複も多そうなため、コンテンツサイズの肥大を考えるともう少しスマートにやりたくなる。
-        <p>Scope と Layer を用いた設計は、これまでのカスケーディングの発想とかなり変わるため、納得感のあるオーガナイズをするには、設計方針がかなり変わってくるだろう。それこそ BEM, SMACS, ITCSS etc で行われていた設計の &quot;工夫&quot; や、 CSS in JS や CSS Modules (Webpack) のような管理を、 Scope, Layer, CSS Modules (標準) などを上手に用いて変えていくことになる。
+        <p>Scope と Layer を用いた設計は、これまでのカスケーディングの発想とかなり変わるため、納得感のあるオーガナイズをするには、設計方針がかなり変わってくるだろう。それこそ BEM, SMACSS, ITCSS etc で行われていた設計の &quot;工夫&quot; や、 CSS in JS や CSS Modules (Webpack) のような管理を、 Scope, Layer, CSS Modules (標準) などを上手に用いて変えていくことになる。
         <p>CSS がコンポーネントのプロパティとして初めて堂々と扱える存在になると、ビルドのプロセスも、生成結果も、ブラウザでの扱いも変わる。この時点で、今出ている CSS に関するあらゆるノウハウが、一旦過去のものになる程度には転換があるだろう。
         <p>また Scope/Layer に合わせて Shadow Realms/Modules が揃うと、 Shadow DOM が狙っていたはずのユースケースはカバーできそうに思う。各フレームワークがそれらを束ねて Custom Elements を必要に応じて登録すれば、軽量で SSR もできてブラウザにも認識させられる。それこそが開発者が本当に求めてた Web Components なのではないだろうか?
       </section>

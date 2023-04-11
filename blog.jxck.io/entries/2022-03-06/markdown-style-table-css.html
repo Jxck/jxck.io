@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-03-06T08:00:00+08:00",
-    "dateModified": "2022-04-04T08:00:00+08:00",
+    "dateModified": "2023-04-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-03-06>2022-03-06</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-04-04>2022-04-04</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-10>2023-04-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -190,7 +190,7 @@
 | .webp     | 9474 |  100% |
 | .webp.gz  | 2609 |   28% |
 | .webp.br  | 2544 |   27% |</code></pre>
-        <p>特に <code translate=no>&lt;thead&gt;</code>, <code translate=no>&lt;tbody&gt;</code> の間に入るセパレータ (<code translate=no>|:---|---:|---:|</code>) の部分の長さを内容に合わせるためには <code translate=no>&lt;td&gt;</code> 内の文字数を CSS 内で取得する必要がある。これは JS 無しには難しそうだった。 JS は使いたくないし、もし使うしかないなら Houdini の Pain API などで実装したい。しかし、 Paint PAI も当時は Text Rendering がサポートされてなかったため、それも諦めていた。
+        <p>特に <code translate=no>&lt;thead&gt;</code>, <code translate=no>&lt;tbody&gt;</code> の間に入るセパレータ (<code translate=no>|:---|---:|---:|</code>) の部分の長さを内容に合わせるためには <code translate=no>&lt;td&gt;</code> 内の文字数を CSS 内で取得する必要がある。これは JS 無しには難しそうだった。 JS は使いたくないし、もし使うしかないなら Houdini の Paint API などで実装したい。しかし、 Paint API も当時は Text Rendering がサポートされてなかったため、それも諦めていた。
         <p>などと考えている間に飽きて、適当に border を dash にしただけのお粗末な実装で誤魔化していた。
         <p>
           <picture>
@@ -213,7 +213,7 @@
         <h2 id="実装方針"><a href="#実装方針">実装方針</a></h2>
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
-          <p>まず、自作のパーサでは以下のような HTML が生成される。 Align は HTML の <code translate=no>align</code> 要素が <a href="https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align" target=_blank>Deprecate</a> だったため、 <code translate=no>class</code> で実装している。
+          <p>まず、自作のパーサでは以下のような HTML が生成される。 Align は HTML の <code translate=no>align</code> 要素が <a href="https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align" target=_blank>Deprecated</a> だったため、 <code translate=no>class</code> で実装している。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
@@ -293,7 +293,7 @@ td::before {
   float: left;
 }</code></pre>
           <p>しかし、これでは Safari/Firefox を Voice Over で読み上げるような場合に、 <code translate=no>content</code> 部分が認識される。もし先頭に 1 文字つく程度ならまだ許容できるかもしれないが、今回は文字が多いため、煩わしさは他の記法とも異なるだろう。
-          <p>せっかく表としてマークアップしているのに、スタイルのために読みにくい状況になるのは不本意なため、 Fallback の指定は辞め Alternative Text 未対応のブラウザには Table の Markdown Style を適用するのをやめることにした。
+          <p>せっかく表としてマークアップしているのに、スタイルのために読みにくい状況になるのは不本意なため、 Fallback の指定は辞め、 Alternative Text 未対応のブラウザには Table の Markdown Style を適用するのをやめることにした。
         </section>
         <section>
           <h3 id="support-query"><a href="#support-query">Support query</a></h3>

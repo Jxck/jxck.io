@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-06-16T08:00:00+08:00",
-    "dateModified": "2022-06-29T08:00:00+08:00",
+    "dateModified": "2023-04-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-06-16>2022-06-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-06-29>2022-06-29</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-10>2023-04-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -210,8 +210,8 @@ Accept: */*
 Accept-Language: ja-JP
 Accept-Encoding: gz, br</code></pre>
           <p>これが HTTP/2 や HTTP/3 になれば、同じ情報をバイナリで送ることになる。「送りたい情報」は同じだが「送るフォーマット」が変わるのだ。
-          <p>そこで、 HTT/1.1 の仕様に一緒くたになっていた「送りたい情報」を HTTP/1.1 特有の「送るフォーマット」から引き剥がし、独立させたのが RFC 9110 HTTP Semantics だ。
-          <p>HTT/1.1, HTTP/2, HTTP/3 の各仕様は、 HTTP Semantics を参照し、それぞれの「送るフォーマット」だけを定義することになった。これが RFC9112, 9113, 9114 だ。
+          <p>そこで、 HTTP/1.1 の仕様に一緒くたになっていた「送りたい情報」を HTTP/1.1 特有の「送るフォーマット」から引き剥がし、独立させたのが RFC 9110 HTTP Semantics だ。
+          <p>HTTP/1.1, HTTP/2, HTTP/3 の各仕様は、 HTTP Semantics を参照し、それぞれの「送るフォーマット」だけを定義することになった。これが RFC9112, 9113, 9114 だ。
           <p>その過程で、 1 つの大きなトピックで括れる Caching をさらに Semantics から引き剥がしたのが RFC 9111 となる。
           <p>また、今回の目玉の 1 つである HTTP/3 は、以下に依存している。
           <ul>
@@ -228,7 +228,7 @@ Accept-Encoding: gz, br</code></pre>
         </section>
         <section>
           <h3 id="新しい仕様"><a href="#新しい仕様">新しい仕様</a></h3>
-          <p>それ以外は、ほとんどが新しい仕様だ。新しく定義された Header Field や、プロトコルのたりてない部分を補うものが公開されている。
+          <p>それ以外は、ほとんどが新しい仕様だ。新しく定義された Header Field や、プロトコルの足りてない部分を補うものが公開されている。
           <p>ものによっては、これから使われていくものもあるだろうため、なんとなくでも知っておくと良いかもしれない。
         </section>
       </section>
@@ -239,110 +239,110 @@ Accept-Encoding: gz, br</code></pre>
           <h3 id="rfc-9110-http-semantics"><a href="#rfc-9110-http-semantics">RFC 9110: HTTP Semantics</a></h3>
           <ul>
             <li>HTTP をリファクタリングした結果の「送りたい情報」を切り出した仕様。
-            <li>HTTP Header と慣習的に読んでるアレの中には Trailer で送れるものがあるため、全ての仕様で Field (Header Field / Trailer Field)と呼ばれるようになった。
-            <li>HTTP/1.1 の時は Header-改行-Body となっていたが、他のプロトコルではそうではないので、 Body と読んでいたものが Content と呼ばれるようになった。(HTTP/1.1 は Content を Body で送る)
+            <li>HTTP Header と慣習的に読んでるアレの中には Trailer で送れるものがあるため、全ての仕様で Field (Header Field / Trailer Field) と呼ばれるようになった。
+            <li>HTTP/1.1 の時は Header-改行-Body となっていたが、他のプロトコルではそうではないので、 Body と読んでいたものが Content と呼ばれるようになった。(HTTP/1.1 は Content を Body で送る)。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9111-http-caching"><a href="#rfc-9111-http-caching">RFC 9111: HTTP Caching</a></h3>
           <ul>
-            <li>いわゆるキャッシュに関する挙動と <code translate=no>Cache-Control</code> Field を切り出したもの
-            <li>ちょこちょこ改善されたり、古い記述が消えたりしてるが、おおむね今までと変わらない
+            <li>いわゆるキャッシュに関する挙動と <code translate=no>Cache-Control</code> Field を切り出したもの。
+            <li>ちょこちょこ改善されたり、古い記述が消えたりしてるが、おおむね今までと変わらない。
             <li><code translate=no>must-understand</code> が追加された。詳細は <a href="https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html">こちら</a>。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9112-http1.1"><a href="#rfc-9112-http1.1">RFC 9112: HTTP/1.1</a></h3>
           <ul>
-            <li>HTTP Semantics を Text Format でエンコードして TCP で送るバージョン
-            <li>つまり多くの開発者がよく知ってるアレ
+            <li>HTTP Semantics を Text Format でエンコードして TCP で送るバージョン。
+            <li>つまり多くの開発者がよく知ってるアレ。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9113-http2"><a href="#rfc-9113-http2">RFC 9113: HTTP/2</a></h3>
           <ul>
-            <li>HTTP Semantics を Binary Format でエンコードして TCP で送るバージョン
-            <li>HTTP Push はなくなった(Early Hints が代替)
-            <li>もともとあった Priority も複雑すぎたので修正
+            <li>HTTP Semantics を Binary Format でエンコードして TCP で送るバージョン。
+            <li>HTTP Push はなくなった(Early Hints が代替)。
+            <li>もともとあった Priority も複雑すぎたので修正。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9114-http3"><a href="#rfc-9114-http3">RFC 9114: HTTP/3</a></h3>
           <ul>
-            <li>HTTP Semantics を Binary Format でエンコードして QUIC で送るバージョン
-            <li>QUIC が TLS1.3 を含んでるので実質暗号化が必須に
-            <li>Field は QPACK でエンコード
+            <li>HTTP Semantics を Binary Format でエンコードして QUIC で送るバージョン。
+            <li>QUIC が TLS1.3 を含んでるので実質暗号化が必須に。
+            <li>Field は QPACK でエンコード。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9163-expect-ct-extension-for-http"><a href="#rfc-9163-expect-ct-extension-for-http">RFC 9163: Expect-CT Extension for HTTP</a></h3>
           <ul>
-            <li><code translate=no>Expect-CT</code> Field のこと
-            <li><a href="https://blog.jxck.io/entries/2018-03-27/certificate-transparency.html">以前解説</a> したあれ
-            <li>しかし、 SCT はブラウザで必須になりつつあり、その移行期間を支えてたものなので、今後使いことはなさそうと思ってよい
+            <li><code translate=no>Expect-CT</code> Field のこと。
+            <li><a href="https://blog.jxck.io/entries/2018-03-27/certificate-transparency.html">以前解説</a> したあれ。
+            <li>しかし、 SCT はブラウザで必須になりつつあり、その移行期間を支えてたものなので、今後使うことはなさそうと思ってよい。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9204-qpack-field-compression-for-http3"><a href="#rfc-9204-qpack-field-compression-for-http3">RFC 9204: QPACK: Field Compression for HTTP/3</a></h3>
           <ul>
             <li>HTTP/3 の Field を圧縮するための仕様、 HPACK の後継。
-            <li>HPACK よりも事前定義 Field のリストが増えた
-            <li>そこから選ぶと 1byte で送れるので知っておくと良さそう
+            <li>HPACK よりも事前定義 Field のリストが増えた。
+            <li>そこから選ぶと 1byte で送れるので知っておくと良さそう。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9205-building-protocols-with-http"><a href="#rfc-9205-building-protocols-with-http">RFC 9205: Building Protocols with HTTP</a></h3>
           <ul>
-            <li>HTTP ってこうやって使うと旨味を一段と引き出せるよっていうベストプラクティス集(Best Current Practice)
-            <li>それの今回の更新対応版
-            <li>ちょっと知ってる人には当たり前のことしか書いてないけど、当たり前ができてない人は多い
+            <li>HTTP ってこうやって使うと旨味を一段と引き出せるよっていうベストプラクティス集(Best Current Practice)。
+            <li>それの今回の更新対応版。
+            <li>ちょっと知ってる人には当たり前のことしか書いてないけど、当たり前ができてない人は多い。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9209-the-proxy-status-http-response-header-field"><a href="#rfc-9209-the-proxy-status-http-response-header-field">RFC 9209: The Proxy-Status HTTP Response Header Field</a></h3>
           <ul>
-            <li><code translate=no>Proxy-Status</code> Field のこと
-            <li>Proxy って知らないうちに挟まってそこで何かが起こってるけど、何が起こってるかわからん、を知らせるための Field
-            <li>昔は <code translate=no>Via</code> とか <code translate=no>Warning</code> とかあったけど、それの現代版ぽいイメージ
+            <li><code translate=no>Proxy-Status</code> Field のこと。
+            <li>Proxy って知らないうちに挟まってそこで何かが起こってるけど、何が起こってるかわからん、を知らせるための Field。
+            <li>昔は <code translate=no>Via</code> とか <code translate=no>Warning</code> とかあったけど、それの現代版ぽいイメージ。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9211-the-cache-status-http-response-header-field"><a href="#rfc-9211-the-cache-status-http-response-header-field">RFC 9211: The Cache-Status HTTP Response Header Field</a></h3>
           <ul>
-            <li><code translate=no>Cache-Status</code> Field のこと
-            <li>Shared Cache も知らないうちに挟まってそこで何かが起こってるけど、何が起こってるかわらかん、を知らせるための Field
-            <li>よく CDN が <code translate=no>x-cache-hit</code> とか送ってるあれの標準仕様
+            <li><code translate=no>Cache-Status</code> Field のこと。
+            <li>Shared Cache も知らないうちに挟まってそこで何かが起こってるけど、何が起こってるかわからん、を知らせるための Field。
+            <li>よく CDN が <code translate=no>x-cache-hit</code> とか送ってるあれの標準仕様。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9213-targeted-http-cache-control"><a href="#rfc-9213-targeted-http-cache-control">RFC 9213: Targeted HTTP Cache Control</a></h3>
           <ul>
-            <li><code translate=no>CDN-Cache-Control</code> Field のこと
-            <li>特定のキャッシュ(主に CDN)に対してだけ有効にしたい <code translate=no>Cache-Control</code> の名指し版
-            <li>Fastly でいう <code translate=no>Surrogate-Control</code> の標準仕様
+            <li><code translate=no>CDN-Cache-Control</code> Field のこと。
+            <li>特定のキャッシュ(主に CDN)に対してだけ有効にしたい <code translate=no>Cache-Control</code> の名指し版。
+            <li>Fastly でいう <code translate=no>Surrogate-Control</code> の標準仕様。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9218-extensible-prioritization-scheme-for-http"><a href="#rfc-9218-extensible-prioritization-scheme-for-http">RFC 9218: Extensible Prioritization Scheme for HTTP</a></h3>
           <ul>
-            <li>HTTP/2 には優先度制御が最初から含まれていた
-            <li>でも難しすぎて誰も使いこなせなかった
-            <li>そっちは deprecate してもう少しシンプルで使いやすくしよう
+            <li>HTTP/2 には優先度制御が最初から含まれていた。
+            <li>でも難しすぎて誰も使いこなせなかった。
+            <li>そっちは deprecate してもう少しシンプルで使いやすくしよう。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9220-bootstrapping-websockets-with-http3"><a href="#rfc-9220-bootstrapping-websockets-with-http3">RFC 9220: Bootstrapping WebSockets with HTTP/3</a></h3>
           <ul>
-            <li>WebSocket を HTTP/3 の上で流すためのバインディング的な仕様
-            <li>開発者はあまり気にするところではない
+            <li>WebSocket を HTTP/3 の上で流すためのバインディング的な仕様。
+            <li>開発者はあまり気にするところではない。
           </ul>
         </section>
         <section>
           <h3 id="rfc-9230-oblivious-dns-over-https"><a href="#rfc-9230-oblivious-dns-over-https">RFC 9230: Oblivious DNS over HTTPS</a></h3>
           <ul>
-            <li>ネットワークで Server につなぐと Client の IP が伝わってトラッキングできちゃうの良くない
-            <li>じゃあ間に Proxy を挟めば、 Server が知るのは Proxy の IP だから良さそう =&gt; Oblivious
-            <li>それを DoH に適用して、 DNS にも「誰が何を解決したのか」をわからなくする
+            <li>ネットワークで Server につなぐと Client の IP が伝わってトラッキングできちゃうの良くない。
+            <li>じゃあ間に Proxy を挟めば、 Server が知るのは Proxy の IP だから良さそう =&gt; Oblivious。
+            <li>それを DoH に適用して、 DNS にも「誰が何を解決したのか」をわからなくする。
           </ul>
         </section>
       </section>

@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-02-25T08:00:00+08:00",
-    "dateModified": "2022-02-25T08:00:00+08:00",
+    "dateModified": "2023-04-11T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-02-25>2020-02-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-02-25>2022-02-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-11>2023-04-11</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -153,7 +153,7 @@
                   <li><a href="#広告">広告</a>
                 </ol>
                 <li><a href="#問題の本質">問題の本質</a>
-                <li><a href="#web-が互換性を壊す時">Web が互換性を壊す時</a>
+                <li><a href="#web-が互換性を壊すとき">Web が互換性を壊すとき</a>
                 <ol>
                   <li><a href="#tracking-prevention">Tracking Prevention</a>
                 </ol>
@@ -183,7 +183,7 @@
         <p>Web にある API の中でも Cookie はいくつかの点で特異な挙動をする
         <ul>
           <li>一度保存すれば、次から自動で送る
-          <li>現在の Origin と関係なくどこにでも送る(CORS 不要)
+          <li>現在の Origin と関係なくどこにでも送る (CORS 不要)
           <li>長さ以外特に制限が無く任意のシリアライズされた値を入れられる
         </ul>
         <p>結果、その緩い仕様がゆえに、 Cookie はあらゆるユースケースを背負い込むことになった。
@@ -193,7 +193,7 @@
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: theme=dark
 Cookie: theme=dark</code></pre>
-          <p>これにより、同じユーザでも違うブラウザであれば設定値を変えることができ、 JS を使わなくてもサービス側が CSS を切り替えてページを返すと言った実装が可能だ。
+          <p>これにより、同じユーザでも違うブラウザであれば設定値を変えることができ、 JS を使わなくてもサービス側が CSS を切り替えてページを返すといった実装が可能だ。
           <p>毎回リクエストに乗るということを無視して JS API を用いれば、単なる KVS としても使えるため、 LocalStorage 以前は Cookie がその代替を担っていた。
         </section>
         <section>
@@ -206,7 +206,7 @@ Cookie: SID=q1w2e3r4t5y # 同じユーザであることがわかる</code></pre
         <section>
           <h3 id="credential"><a href="#credential">Credential</a></h3>
           <p>単に個々のアノニマスユーザを識別するだけだった SID に対して、サーバ側でユーザアカウントを紐付ける行為がログイン認証だと言える。
-          <p>メールサービスが受信ボックスを見せるのも、 EC サイトが購入履歴を見せるのも、全てこの乱数がキーとなり、もしこのキーを盗み出せれば、そのユーザに成りすますことができる。
+          <p>メールサービスが受信ボックスを見せるのも、 EC サイトが購入履歴を見せるのも、全てこの乱数がキーとなり、もしこのキーを盗み出せれば、そのユーザになりすますことができる。
           <p>一部の仕様の中で、 Cookie のことを <em>Credential</em> と呼ぶのはこのためだ。
           <p>Web における攻撃の大半は、最終的にこの Cookie を盗む(ex. XSS, MITM etc)か、 Cookie の挙動を利用(ex, CSRF, Timing Attack etc)している。
           <p>HTTPS Everywhere が必要なことも、 HttpOnly や Secure 属性が必要なのも、 Credential としての Cookie が漏れることを防ぐために必要不可欠だからだ。
@@ -229,7 +229,7 @@ Location: http://a.example.com?token=q1w2e3r4t5y6u7i8o9p0</code></pre>
         </section>
         <section>
           <h3 id="analytics"><a href="#analytics">Analytics</a></h3>
-          <p>サイトに簡単なスクリプトを設置するだけで、単なるアクセスログだけでは取りにくい、ユーザの行動などの細かな情報を取得する仕組みが Analytics だ。
+          <p>サイトに簡単なスクリプトを設置するだけで、単なるアクセスログだけでは取りにくいユーザの行動などの細かな情報を取得する仕組みが Analytics だ。
           <p>これも実装が色々あるが、よくあるのは <code translate=no>&lt;img&gt;</code> を使う方法だろう。
           <p>a.example.com のアクセスを analytics.example というアナリティクスサービスで収集したい場合、 a.example.com に以下のような <code translate=no>&lt;img&gt;</code> を埋め込む。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;body&gt;
@@ -307,7 +307,7 @@ PC 周辺機器の広告
         <p>そうなると挙動に手を入れるしかない。結果として 3rdPC を「<em>どう使われているかにかかわらず全てブロックする</em>」ということになる。それが今起こっていることだ。例え互換性を壊したとしてもだ。
       </section>
       <section>
-        <h2 id="web-が互換性を壊す時"><a href="#web-が互換性を壊す時">Web が互換性を壊す時</a></h2>
+        <h2 id="web-が互換性を壊すとき"><a href="#web-が互換性を壊すとき">Web が互換性を壊すとき</a></h2>
         <p>「Web は互換性を重視する」という前提をよく聞くだろう。実際 Smoosh Gate のようなことが起こってしまう程度に、仕様策定の現場では互換性は重要視されている。
         <p>世の開発者がブラウザ互換性に悩まされる原因は、まだ標準化が終わってない仕様にモダンだと勘違いして飛びついた時か、逆に仕様に準拠できてない古いブラウザの挙動に依存したコンテンツを作り、ブラウザ側が改善された時が大半だろう。一度作業を終え、正しく実装されたあとの仕様は、互換を壊して変わることは基本ない。しかし、「基本はない」だけで例外はいくつかある。最もわかりやすいのは「ユーザの安全」だ。
         <p><em>Web はユーザの安全を守るために、互換性を壊すことがある。</em>
@@ -356,7 +356,7 @@ PC 周辺機器の広告
         <p>よく、特定のベンダが 3rdPC を殺そうとしているとか、あのベンダは Web に興味がないから広告を締め付けることでアプリに誘導しているといった短絡的な解説が上がるのを見る。
         <p>そもそもベンダを主語に語れるほど問題は単純ではない。ほぼ全てのベンダが実際に 3rd Party Cookie をなんらかの形で利用し、それとは別の文脈で「プライバシー」を真剣に考えているチームがある。
         <p>そうしたチームがユーザを守るために 3rdPC をブロックしたことを考えれば、実際に 3rd Party Cookie を殺したのは、その緩い仕様に甘んじてトラッキングなどに利用し続けた、どちらかといえば Web サービス開発者側に責任が有ると言える。
-        <p>そしてブラウザベンダにおいて、 3rdPC を脱していくこはこれからの Web を形作る上での合意事項となりつつあり、標準化や実装の現場は、既にその後の話をしている。
+        <p>そしてブラウザベンダにおいて、 3rdPC を脱していくことはこれからの Web を形作る上での合意事項となりつつあり、標準化や実装の現場は、既にその後の話をしている。
         <p>サービス開発者も、 「3rdPC が防がれたから別の精度の高い Tracking 方法を探す」のではなく、プライバシーの側面から自分たちが行うべきことを考え、必要となるユースケースに関しては Privacy Sandbox や各 API に対してフィードバックしていく方がよっぽど健全だろう。
         <p>Web におけるマネタイズの大半は広告なのが現状だ。特に代替としてのマイニングなどが出遅れた日本にとって、広告を無くすことはできない。しかし、広告がこのままで良いとはならない以上、ならどうしていけば良いのかを考えるしか無い。
         <p>大手は、 Top Level Domain を SuperApp 的な構成にして、配下に並べたコンテンツ間を 1st Party Cookie でトラッキングするといった荒業もできるかもしれないが、そうではない小さなドメインにも価値があるものは多くあり、それらが広告によって成り立っていることは十分考えられる。(このドメインは <a href="/entries/2020-01-31/ads-for-blog.html">こういう理由</a> で広告を貼っているだけなので、特に困りはしないが)

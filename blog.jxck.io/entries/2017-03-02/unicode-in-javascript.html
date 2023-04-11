@@ -79,7 +79,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-03-02T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2023-04-11T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -123,7 +123,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-03-02>2017-03-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-11>2023-04-11</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -223,7 +223,7 @@
         <section>
           <h3 id="utf-32"><a href="#utf-32">UTF-32</a></h3>
           <p>単純に考えれば、この Code Point をバイナリデータとしてそのまま送れば良いだろう。
-          <p>Code Point はおおよそ 4byte あれば収まるので 32bit のデータとして送ることができる。
+          <p>Code Point はおおよそ 4byte あれば収まるので、32bit のデータとして送ることができる。
           <pre class=js data-code=js><code translate=no class=language-js>[0x00, 0x01, 0xF6, 0x2D] // 😭
 // 0x1F62D を二進数にし 32 bit になるまで先頭に 0 を追加してから 8 bit づつ区切った配列</code></pre>
           <p>受け取った側は、データを 32bit づつ Code Point とみなして文字に置き換えていけば良いし、受け取ったバイト数を 4 で割れば文字の数もわかる。
@@ -328,8 +328,8 @@ String.fromCharCode(&apos;鯖&apos;.charCodeAt(0)) //&quot;鯖&quot;
 String.fromCharCode(&apos;𩸽&apos;.charCodeAt(0)) // &quot;�&quot;</code></pre>
         <p>一方、 <code translate=no>codePointAt()</code> と <code translate=no>fromCodePoint()</code> は、その名の通り Code Point に対応している。
         <p>これならサロゲートペアもうまく扱う事ができる。
-        <pre class=js data-code=js><code translate=no class=language-js>&apos;𩸽定食&apos;.codePointAt(0) // 0x9BD6
-&apos;鯖定食&apos;.codePointAt(0) // 0x29E3D
+        <pre class=js data-code=js><code translate=no class=language-js>&apos;𩸽定食&apos;.codePointAt(0) // 0x29E3D
+&apos;鯖定食&apos;.codePointAt(0) // 0x9BD6
 
 String.fromCodePoint(&apos;鯖&apos;.codePointAt(0)) // &quot;鯖&quot;
 String.fromCodePoint(&apos;𩸽&apos;.codePointAt(0)) // &quot;𩸽&quot;</code></pre>
