@@ -61,7 +61,7 @@ ID が 13 個あるので、この文字列は 13 文字だと考えることが
 
 単純に考えれば、この Code Point をバイナリデータとしてそのまま送れば良いだろう。
 
-Code Point はおおよそ 4byte あれば収まるので 32bit のデータとして送ることができる。
+Code Point はおおよそ 4byte あれば収まるので、32bit のデータとして送ることができる。
 
 ```js
 [0x00, 0x01, 0xF6, 0x2D] // 😭
@@ -244,8 +244,8 @@ String.fromCharCode('𩸽'.charCodeAt(0)) // "�"
 これならサロゲートペアもうまく扱う事ができる。
 
 ```js
-'𩸽定食'.codePointAt(0) // 0x9BD6
-'鯖定食'.codePointAt(0) // 0x29E3D
+'𩸽定食'.codePointAt(0) // 0x29E3D
+'鯖定食'.codePointAt(0) // 0x9BD6
 
 String.fromCodePoint('鯖'.codePointAt(0)) // "鯖"
 String.fromCodePoint('𩸽'.codePointAt(0)) // "𩸽"

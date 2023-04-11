@@ -31,7 +31,7 @@ localhost を https にするという方法もあるが、そのように紹介
 
 ### localhost の特異性
 
-通信が外に出ないのを良いことに、ブラウザは開発向けに様々な例外を localhost に許している。例えば ServiceWorker や WebRTC(getUserMedia) といった https でしか使えない API の利用を、 localhost の場合だけ http でも許すと言ったものだ。
+通信が外に出ないのを良いことに、ブラウザは開発向けに様々な例外を localhost に許している。例えば ServiceWorker や WebRTC(getUserMedia) といった https でしか使えない API の利用を、 localhost の場合だけ http でも許すといったものだ。
 
 localhost で開発し確認していても、実際にデプロイすると permission 周りの挙動の違いや、 mixed contents の見落としなど、様々な差異に気づくという経験をした人も、少なく無いのではないだろうか?
 
