@@ -40,7 +40,7 @@ SXG はまだ過渡期の技術であるため、鍵や証明書が色々なプ�
 openssl を使うと以下のように確認できる。
 
 ```sh-session
-# key type が EC prim256v1
+# key type が EC prime256v1
 $ openssl x509 -in blog_jxck_io.crt -text | grep 'ASN1 OID: prime256v1'
 # CanSignHttpExchanges 拡張がある
 $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:
