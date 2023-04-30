@@ -1,6 +1,6 @@
 ---
 type: podcast
-tags: ["monthly web"]
+tags: ["password", "passkey", "openid"]
 audio: https://files.mozaic.fm/mozaic-ep101.mp3
 published_at: 2022-08-07
 guest: [@nov](https://twitter.com/nov)
@@ -14,12 +14,12 @@ guest: [@nov](https://twitter.com/nov)
 
 OIDC や WebAuthN もある程度普及し、我々が「ログイン画面」を実装するとにきに考えることも、ひと昔前と比べるとかなり変わってきました。
 
-その中で常に課題として上がる「Web からパスワードを無くすという大きな流れ」について、今何が起こっており、これからどうなっていくのか、我々開発者は何を考えないといけないのか、ユーザに必要なリテラシレベルはどこなのか、などについて OpenID Fundation エヴァンジェリストである [@nov](https://twitter.com/nov) さんをお呼びし、議論しました。
+その中で常に課題として上がる「Web からパスワードを無くすという大きな流れ」について、今何が起こっており、これからどうなっていくのか、我々開発者は何を考えないといけないのか、ユーザに必要なリテラシレベルはどこなのか、などについて OpenID Foundation エヴァンジェリストである [@nov](https://twitter.com/nov) さんをお呼びし、議論しました。
 
 
 ## Show Note
 
-- OpenID Fundation Japan
+- OpenID Foundation Japan
   - https://www.openid.or.jp/
 - FIDO Alliance - Open Authentication Standards More Secure than Passwords
   - https://fidoalliance.org/
