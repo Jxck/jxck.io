@@ -8,7 +8,7 @@
   <link rel=manifest  href=/manifest.webmanifest>
   <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
 
-  <link rel=canonical href=https://mozaic.fm/episodes/101/passwordless.html>
+  <link rel=canonical href=https://mozaic.fm/episodes/119/live-streaming.html>
   <!--
   <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
   -->
@@ -41,24 +41,23 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
   <meta name=author              content=Jxck>
-  <meta name=description         content="第 101 回のテーマは Passwordless です。OIDC や WebAuthN もある程度普及し、我々が「ログイン画面」を実装するとにきに考えることも、ひと昔前と比べるとかなり変わってきました。その中で常に課題として上がる「Web からパスワードを無くすという大き...">
-  <meta name=keywords            content="password,passkey,openid">
+  <meta name=description         content="第 119 回のテーマは 大規模ライブ配信 です。Abema TV が 2022 年に全試合生放送を行った「FIFA ワールドカップ カタール 2022」で行われた、大規模ライブ配信の話を元に、今の Web でライブ配信を行うとどうなるのか、より規模の大きい配信を行うために...">
+  <meta name=keywords            content="livestreaming,webtransport,webrtc">
   <meta name=theme-color         content=#000000>
 
   <meta property=og:type         content=article>
-  <meta property=og:url          content=https://mozaic.fm/episodes/101/passwordless.html>
-  <meta property=og:title        content="ep101 Passwordless | mozaic.fm">
+  <meta property=og:url          content=https://mozaic.fm/episodes/119/live-streaming.html>
+  <meta property=og:title        content="ep119 大規模ライブ配信 | mozaic.fm">
   <meta property=og:site_name    content=mozaic.fm>
-  <meta property=og:description  content="第 101 回のテーマは Passwordless です。OIDC や WebAuthN もある程度普及し、我々が「ログイン画面」を実装するとにきに考えることも、ひと昔前と比べるとかなり変わってきました。その中で常に課題として上がる「Web からパスワードを無くすという大き...">
+  <meta property=og:description  content="第 119 回のテーマは 大規模ライブ配信 です。Abema TV が 2022 年に全試合生放送を行った「FIFA ワールドカップ カタール 2022」で行われた、大規模ライブ配信の話を元に、今の Web でライブ配信を行うとどうなるのか、より規模の大きい配信を行うために...">
   <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
   <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
 
 
-  <title>ep101 Passwordless | mozaic.fm</title>
-  <link rel=prev href=https://mozaic.fm/episodes/100/state-of-mozaic.fm.html>
-  <link rel=next href=https://mozaic.fm/episodes/102/monthly-ecosystem-202208.html>
+  <title>ep119 大規模ライブ配信 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/118/monthly-ecosystem-202304.html>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?220306_111358>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210426_190329>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
@@ -102,19 +101,23 @@
 
 <main>
   <nav>
-    <span>&lt;&lt;&nbsp;<a href=/episodes/100/state-of-mozaic.fm.html>ep100 State of mozaic.fm</a></span>
-    <span><a href=/episodes/102/monthly-ecosystem-202208.html>ep102 Monthly Ecosystem 202208</a>&nbsp;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/118/monthly-ecosystem-202304.html>ep118 Monthly Ecosystem 202304</a></span>
+    <span>&nbsp;&gt;&gt;</span>
   </nav>
   <article>
-    <h1><a href="">ep101 Passwordless</a></h1>
+    <h1><a href="">ep119 大規模ライブ配信</a></h1>
     <dl class=info>
       <div>
         <dt>published_at
-        <dd>2022-08-07
+        <dd>2023-05-01
       </div>
       <div>
         <dt>guest
-        <dd><a href="https://twitter.com/nov" target=_blank>@nov</a>
+        <dd><a href="https://twitter.com/ygoto3_" target=_blank>@ygoto3_</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/nodaguti" target=_blank>@nodaguti</a>
       </div>
       <div>
         <dt>toc
@@ -133,59 +136,41 @@
     </dl>
     <section>
       <h2 id="theme"><a href="#theme">Theme</a></h2>
-      <p>第 101 回のテーマは Passwordless です。
-      <p>OIDC や WebAuthN もある程度普及し、我々が「ログイン画面」を実装するとにきに考えることも、ひと昔前と比べるとかなり変わってきました。
-      <p>その中で常に課題として上がる「Web からパスワードを無くすという大きな流れ」について、今何が起こっており、これからどうなっていくのか、我々開発者は何を考えないといけないのか、ユーザに必要なリテラシレベルはどこなのか、などについて OpenID Foundation エヴァンジェリストである <a href="https://twitter.com/nov" target=_blank>@nov</a> さんをお呼びし、議論しました。
+      <p>第 119 回のテーマは <strong>大規模ライブ配信</strong> です。
+      <p>Abema TV が 2022 年に全試合生放送を行った「FIFA ワールドカップ カタール 2022」で行われた、大規模ライブ配信の話を元に、今の Web でライブ配信を行うとどうなるのか、より規模の大きい配信を行うために今の Web に足りないものは何か、を議論しました。
+      <p>議論の内容は、 Abema チームが 2023/04/19 に開催した「ABEMA Developer Conference 2023」の発表内容をベースにしています。
     </section>
     <section>
       <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
       <ul>
         <li>
-          OpenID Foundation Japan
+          数字で振り返る「ABEMA」の「FIFA ワールドカップ カタール 2022」 | 株式会社サイバーエージェント
           <ul>
-            <li><a href="https://www.openid.or.jp/" target=_blank>https://www.openid.or.jp/</a>
+            <li><a href="https://www.cyberagent.co.jp/news/detail/id=28368" target=_blank>https://www.cyberagent.co.jp/news/detail/id=28368</a>
           </ul>
         </li>
         <li>
-          FIDO Alliance - Open Authentication Standards More Secure than Passwords
+          FIFA ワールドカップ 2022 における、ABEMA の技術的挑戦 | ABEMA Developer Conference 2023
           <ul>
-            <li><a href="https://fidoalliance.org/" target=_blank>https://fidoalliance.org/</a>
+            <li><a href="https://developer.abema.io/2023/sessions/yAJhfNCXch/" target=_blank>https://developer.abema.io/2023/sessions/yAJhfNCXch/</a>
           </ul>
         </li>
         <li>
-          Have I Been Pwned: Check if your email has been compromised in a data breach
+          FIFA ワールドカップ 2022 に向けたキャパシティ確保の軌跡 | ABEMA Developer Conference 2023
           <ul>
-            <li><a href="https://haveibeenpwned.com/" target=_blank>https://haveibeenpwned.com/</a>
+            <li><a href="https://developer.abema.io/2023/sessions/axlOoyAFHa/" target=_blank>https://developer.abema.io/2023/sessions/axlOoyAFHa/</a>
           </ul>
         </li>
         <li>
-          RFC 6749: The OAuth 2.0 Authorization Framework
+          大規模イベントを成功させるための負荷・障害・セキュリティ対策 | ABEMA Developer Conference 2023
           <ul>
-            <li><a href="https://www.rfc-editor.org/rfc/rfc6749.html" target=_blank>https://www.rfc-editor.org/rfc/rfc6749.html</a>
+            <li><a href="https://developer.abema.io/2023/sessions/nNlnFHfPVp/" target=_blank>https://developer.abema.io/2023/sessions/nNlnFHfPVp/</a>
           </ul>
         </li>
         <li>
-          Web Authentication: An API for accessing Public Key Credentials - Level
+          マルチデバイス x 大規模 x ライブで快適な視聴体験を提供する再生品質制御 | ABEMA Developer Conference 2023
           <ul>
-            <li><a href="https://w3c.github.io/webauthn/" target=_blank>https://w3c.github.io/webauthn/</a>
-          </ul>
-        </li>
-        <li>
-          Yubico | YubiKey Strong Two Factor Authentication
-          <ul>
-            <li><a href="https://www.yubico.com/" target=_blank>https://www.yubico.com/</a>
-          </ul>
-        </li>
-        <li>
-          NIST SP 800-63 Digital Identity Guidelines
-          <ul>
-            <li><a href="https://pages.nist.gov/800-63-3/" target=_blank>https://pages.nist.gov/800-63-3/</a>
-          </ul>
-        </li>
-        <li>
-          Passkeys Overview - Apple Developer
-          <ul>
-            <li><a href="https://developer.apple.com/passkeys/" target=_blank>https://developer.apple.com/passkeys/</a>
+            <li><a href="https://developer.abema.io/2023/sessions/qjZbGXFDkR/" target=_blank>https://developer.abema.io/2023/sessions/qjZbGXFDkR/</a>
           </ul>
         </li>
       </ul>
@@ -193,8 +178,8 @@
   </article>
   <portal id=preview></portal>
   <nav>
-    <span>&lt;&lt;&nbsp;<a href=/episodes/100/state-of-mozaic.fm.html>ep100 State of mozaic.fm</a></span>
-    <span><a href=/episodes/102/monthly-ecosystem-202208.html>ep102 Monthly Ecosystem 202208</a>&nbsp;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/118/monthly-ecosystem-202304.html>ep118 Monthly Ecosystem 202304</a></span>
+    <span>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
 
@@ -205,8 +190,8 @@
 <mozaic-player>
   <audio
     slot=audio
-    src=https://files.mozaic.fm/mozaic-ep101.mp3
-    data-title="ep101 Passwordless"
+    src=https://files.mozaic.fm/mozaic-ep119.mp3
+    data-title="ep119 大規模ライブ配信"
     data-forward=+30
     data-back=-10>
   </audio>
