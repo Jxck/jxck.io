@@ -1652,3 +1652,16 @@ eyeD3 --title "ep119 大規模ライブ配信" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep120.mp3
+
+eyeD3 --title "ep120 Monthly Platform 202304" \
+      --track 128 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep120.mp3
+
+
+
