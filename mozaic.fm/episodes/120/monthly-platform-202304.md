@@ -1,4 +1,4 @@
-﻿---
+---
 type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep120.mp3
@@ -8,16 +8,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 # ep120 Monthly Platform 202304
 
-
 ## Theme
 
 第 120  回のテーマは 2023 年 04 月の Monthly Platform です。
 
+
 ## Show Note
 
-
 ### Chrome 動向
-
 
 #### Stable: 113
 
@@ -109,6 +107,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - `profile()` command populates Performance > Main
     - Warning for slow user interactions
   - JavaScript Profiler deprecation: Phase three
+
 
 #### Intents
 
@@ -265,6 +264,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - *FYI: HSTS preload enforcing continued requirements*
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/gJZkQN4g17o
 
+
 #### V8
 
 
@@ -393,8 +393,8 @@ guest: [@myakura](https://twitter.com/myakura)
 - *Jake Archibald が Google を離れる*
   - https://twitter.com/jaffathecake/status/1656239197898801152
 
-### Firefox 動向
 
+### Firefox 動向
 
 #### Stable: 113
 
@@ -425,14 +425,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - `:nth-child(An+B of S)`
   - CSS `scripting` media feature
   - Compression Streams
-- Dropping the Banner Hammer and More – These Weeks in Firefox: Issue 134 – Firefox Nightly News
+- Dropping the Banner Hammer and More - These Weeks in Firefox: Issue 134 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2023/04/14/dropping-the-banner-hammer-and-more-these-weeks-in-firefox-issue-134/
-- Jam-packed with Updates – These Weeks in Firefox: Issue 135 – Firefox Nightly News
+- Jam-packed with Updates - These Weeks in Firefox: Issue 135 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2023/04/14/jam-packed-with-updates-these-weeks-in-firefox-issue-135/
-- Harder, Better, Faster, Stronger, Prettier – These Weeks in Firefox: Issue 136 – Firefox Nightly News
+- Harder, Better, Faster, Stronger, Prettier - These Weeks in Firefox: Issue 136 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2023/04/25/harder-better-faster-stronger-prettier-these-weeks-in-firefox-issue-136/
-- Short but Sweet – These Weeks in Firefox: Issue 137 – Firefox Nightly News
+- Short but Sweet - These Weeks in Firefox: Issue 137 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2023/05/05/short-but-sweet-these-weeks-in-firefox-issue-137/
+
 
 #### Intents
 
@@ -479,6 +480,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
+
 #### Other
 
 - *Welcome to the MDN blog | MDN Blog*
@@ -494,7 +496,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/en/mozilla/amy-keating-joins-the-mozilla-foundation-board-of-directors/
 - Amy Keating: Why I am Joining the Mozilla Board
   - https://blog.mozilla.org/en/mozilla/amy-keating-why-i-am-joining-the-mozilla-board/
-- Never Look at the Data: Why did we start getting so many pings from Korea? – Data@Mozilla
+- Never Look at the Data: Why did we start getting so many pings from Korea? - Data@Mozilla
   - https://blog.mozilla.org/data/2023/04/27/never-look-at-the-data-why-did-we-start-getting-so-many-pings-from-korea/
 - Firefox 113 significantly boosts accessibility performance
   - https://blog.mozilla.org/en/products/firefox/firefox-news/firefox-accessibility-boost/
@@ -507,8 +509,8 @@ guest: [@myakura](https://twitter.com/myakura)
 - Engineering Effectiveness Newsletter (April 2023 Edition)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Fp80jrh31C4
 
-### Safari 動向
 
+### Safari 動向
 
 #### Stable:16.4
 
@@ -594,7 +596,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - *Implemented the Response.json static method (261960@main)*
   - Accessibility
     - *Added support for code ARIA role (261640@main)*
-    - *Implemented `generic' role mapping (261894@main)*
+    - *Implemented `generic` role mapping (261894@main)*
 - *Release Notes for Safari Technology Preview 168*
   - https://webkit.org/blog/14106/release-notes-for-safari-technology-preview-168/
   - CSS
@@ -617,7 +619,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Implemented the from-font value for font-size-adjust (262800@main)
   - JavaScript
     - Added and optimized enumerator_put_by_val (263056@main)
-    - Optimized Array#join`s toString operation for Objects (263117@main)
+    - Optimized Array#join's toString operation for Objects (263117@main)
     - Implemented megamorphic load IC (262872@main, 263200@main)
   - Popover
     - Renamed :open to :popover-open and removed :closed (262764@main)
@@ -637,10 +639,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - *Introducing WebKit Documentation*
   - https://webkit.org/blog/14139/introducing-webkit-documentation/
 
+
 #### Standard Positions
 
 - どうやって追うかまださだまってない
   - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+created%3A%3E2023-03-20+
+
 
 #### Other
 
@@ -648,8 +652,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://fantasai.inkedblade.net/weblog/2023/affiliation-change/
   - いろんな CSS 仕様の editor を務める fantasai が Apple に
 
-### Edge 動向
 
+### Edge 動向
 
 #### Stable: 113
 
@@ -669,17 +673,17 @@ guest: [@myakura](https://twitter.com/myakura)
 - Introducing cloud.microsoft: a unified domain for Microsoft 365 apps and services - Microsoft Community Hub
   - https://techcommunity.microsoft.com/t5/microsoft-365-blog/introducing-cloud-microsoft-a-unified-domain-for-microsoft-365/ba-p/3804961
   - Microsoft 365 などサービスのドメインを `*.cloud.microsoft` へ移行する予定
-- Explainer: File Types – text/plain
+- Explainer: File Types - text/plain
   - https://textslashplain.com/2023/04/05/file-types/
-- Auth Flows in a Partitioned World – text/plain
+- Auth Flows in a Partitioned World - text/plain
   - https://textslashplain.com/2023/04/12/auth-flows-in-a-partitioned-world/
-- (The Futility of) Keeping Secrets from Yourself – text/plain
+- (The Futility of) Keeping Secrets from Yourself - text/plain
   - https://textslashplain.com/2023/04/14/the-futility-of-keeping-secrets-from-yourself/
-- A Beautiful 10K – text/plain
+- A Beautiful 10K - text/plain
   - https://textslashplain.com/2023/04/16/a-beautiful-10k/
 
-### WHATWG/W3C 動向
 
+### WHATWG/W3C 動向
 
 #### Draft
 
@@ -695,6 +699,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - First Public Working Drafts: EdDSA Cryptosuite v2022; ECDSA Cryptosuite v2019
     - https://www.w3.org/blog/news/archives/9888
 - Chartering
+
 
 #### Other
 
@@ -715,8 +720,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - TAG F2F が Google Japan であったらしい
 - *Agenda for Apr 27, 2023 · Issue #323 · web-platform-tests/interop*
   - https://github.com/web-platform-tests/interop/issues/323#issuecomment-1527746305
-  - > * Having a Logo of Interop #289
-  - >    * Consensus: great idea! Would be a nice-to-have for 2024, if we find a designer, but not a blocker
+  - > Having a Logo of Interop #289
+  - > Consensus: great idea! Would be a nice-to-have for 2024, if we find a designer, but not a blocker
 - *Agenda for May 11, 2023 · Issue #329 · web-platform-tests/interop*
   - https://github.com/web-platform-tests/interop/issues/329#issuecomment-1545819060
 - *Interop 2024 brainstorming · Issue #331 · web-platform-tests/interop*
@@ -728,8 +733,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - H å kon Wium Lie へのインタビュー
   - コンピューターとの出会い、 CSS の話、 VR や ChatGPT など最近の流行りなど
 
-### TC39 動向
 
+### TC39 動向
 
 #### Meeting
 
@@ -739,6 +744,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - tc39 minutes を読む
   - https://twitter.com/mozaicfm/status/1647223716747837440
   - https://docs.google.com/document/d/1qXUf4QRTbexUj0fg2sgYTxWwOT2v_q7lmjR282BOWLU
+
 
 #### 3/21
 
@@ -781,6 +787,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - その実装方法について 3 つの案
   - Option 1 でコンセンサス
 
+
 #### 3/22
 
 - Import reflection update
@@ -821,13 +828,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - Type Annotation によって間違ったコードが型として消される場合があるよね
     - `< >` がジェネリクスになっちゃうとか
 - *Await Dictionary for stage 1*
-  - const obj = {
-  -   shape: await getShape(),
-  -   color: await getColor(),
-  -   mass: await getMass(),
-  - };
+  - `const obj = { shape: await getShape(), color: await getColor() }`
   - これが waterfall になるから、並行してやりたいけど、 Promise.all は面倒
   - Stage1
+
 
 #### 3/23
 
@@ -866,6 +870,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Async Explicit Resource Management again
   - 条件付き Stage 3
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2023-01-01}...main@{2023-02-01}
@@ -883,6 +888,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Async Explicit Resource Management
 - 3->4
 
+
 #### New Proposals
 
 
@@ -890,9 +896,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### WinterCG 動向
-
-
-
 
 #### Meeting
 
@@ -906,8 +909,8 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/whatwg/streams/pull/1083
   - Prioritization of Web Crypto Stream
 
-### IETF 動向
 
+### IETF 動向
 
 #### IETF116
 
@@ -917,6 +920,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://twitter.com/mozaicfm/status/1643962835393986560
 - IETF116 復習(録音)
   - https://twitter.com/mozaicfm/status/1646499507583225857
+
 
 #### WG
 
@@ -943,6 +947,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - HTTP Dictionary Compression
     - https://wiki.ietf.org/meeting/116/sidemeetings
 
+
 #### Other
 
 - Httpdir early review of draft-ietf-satp-core-00
@@ -966,8 +971,8 @@ guest: [@myakura](https://twitter.com/myakura)
 - I-D Action: draft-ietf-httpbis-digest-headers-12.txt
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2023AprJun/0063.html
 
-### CDN 動向
 
+### CDN 動向
 
 #### Cloudflare
 
@@ -984,6 +989,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Cloudflare's view of Internet disruptions in Pakistan
   - https://blog.cloudflare.com/cloudflares-view-of-internet-disruptions-in-pakistan/
 
+
 #### Fastly
 
 - ETags: What they are, and how to use them | Fastly
@@ -992,6 +998,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/announcing-mutual-tls-from-fastly
 - Join Fastly at RSA Conference 2023 | Fastly
   - https://www.fastly.com/blog/join-fastly-at-rsa-conference-2023
+
 
 #### Akamai
 
@@ -1006,15 +1013,18 @@ guest: [@myakura](https://twitter.com/myakura)
 - Phishing: The Oldest and Wisest Attack Vector | Akamai
   - https://www.akamai.com/blog/security/phishing-oldest-wisest-attack-vector
 
+
 #### Other
 
-- Streaming for Serverless Node.js and Edge Runtimes with Vercel Functions – Vercel
+- Streaming for Serverless Node.js and Edge Runtimes with Vercel Functions - Vercel
   - https://vercel.com/blog/streaming-for-serverless-node-js-and-edge-runtimes-with-vercel-functions
+
 
 ### セキュリティ動向
 
 - 2023 USA | RSA Conference
   - https://www.rsaconference.com/usa
+
 
 ### 周辺動向
 
@@ -1030,7 +1040,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - プロトタイプメソッドや static なメソッドと区別できないので問題視されていた
   - Documenting missing interoperable web features
     - https://openwebdocs.org/content/posts/complete-interop-features/
-- *`Can I Use...', but for ARIA! - Bocoup*
+- *Can I Use...', but for ARIA! - Bocoup*
   - https://bocoup.com/blog/can-i-use-but-for-aria
   - https://aria-at.w3.org/reports
 - Why xHE-AAC is being embraced at Meta - Engineering at Meta
@@ -1045,6 +1055,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://engineering.fb.com/2023/04/17/networking-traffic/millisampler-network-traffic-analysis/
 - The malware threat landscape: NodeStealer, DuckTail, and more
   - https://engineering.fb.com/2023/05/03/security/malware-nodestealer-ducktail/
+
 
 ### イベント
 
@@ -1067,6 +1078,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 9 月
   - 11-15: TPAC 2023
     - https://www.w3.org/2023/09/TPAC/
+
 
 ### Wrap Up
 
@@ -1166,7 +1178,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - WebKit Documentation
   - other
     - fantasai → Apple
-- * W3C/WHATWG
+- W3C/WHATWG
   - other
     - seeking next CEO
     - AB election
