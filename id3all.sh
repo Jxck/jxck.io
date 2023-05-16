@@ -1665,3 +1665,16 @@ eyeD3 --title "ep120 Monthly Platform 202304" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep121.mp3
+
+eyeD3 --title "ep121 Monthly Ecosystem 202305" \
+      --track 129 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep121.mp3
+
+
+
