@@ -792,19 +792,21 @@ async function podcast(files, params = { preview: false }) {
   const episodes = await Promise.all(paths.map((path, i) => parse_episode(path, i)))
   const latest = episodes.at(0)
 
-  // set id3
-  console.log(await promisify(exec)(`eyeD3 --remove-all ../${latest.audio_file}`))
-  console.log(await promisify(exec)(`
-    eyeD3 --title "${latest.title}" \
-    --track ${episodes.length} \
-    --artist 'Jxck' \
-    --album 'mozaic.fm' \
-    --genre 'Podcast' \
-    --add-image ../www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
-    --to-v2.3 \
-    ../${latest.audio_file}
-  `.trim()))
-  
+  if (params.preview === false) {
+    // set id3
+    console.log(await promisify(exec)(`eyeD3 --remove-all ../${latest.audio_file}`))
+    console.log(await promisify(exec)(`
+      eyeD3 --title "${latest.title}" \
+      --track ${episodes.length} \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ../www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../${latest.audio_file}
+    `.trim()))
+  }
+
   // build episodes
   const podcast_template_file = `./template/podcast.html.ejs`
   const podcast_template = await readFile(podcast_template_file, { encoding: `utf-8` })
