@@ -98,10 +98,6 @@ SFV に限らず、割と色々な RFC の ABNF を実装してきたが、残�
 > Julian, you've had many opportunities to bring this up before (having participated in the original issue about empty lists).
 > It would have been much more helpful if you'd expressed your concerns earlier -- even during WGLC -- instead of after IETF LC.
 
-先ほども指摘された、 Julian の見つけた Empty List についての Bug は以下だ。
-
-TODO:
-
 そして、「消してしまってもいい」という mnot に対する反応は、賛成ではなかった。
 
 Julian のコメント
@@ -160,7 +156,7 @@ mnot がここで Bis の範囲として提示した作業が以下だ。
 
 要するに、 SFV を参照する仕様は以下のように ABNF の仕様を参照するものがあるという点だ。
 
-```
+```http
 Foo: sf-list
 ```
 
@@ -189,14 +185,14 @@ HTTPWG の仕様はブラウザで実装されることが多いため、ブラ�
 
 今回の話だけで、「本当に ABNF は必要なのか」という議論事態に決着がついたわけではない。 Julian の言うように、 ABNF があることで仕様が読みやすくなる人は一定いるのも事実だろう。 SFV くらい複雑になると、全てを Example で書き下すよりは、ワイヤーフォーマットを想起する方法として妥当ではあると思う。
 
-問題はやっぱり「パースするための仕様」として ABNF を扱う部分だろう。実装してる身としても、「エラーにする」「無視する」などの細かい例外処理の表現については、どうしても ABNF よりも Parsing Algorithm に分があると感じる。
+問題はやはり「パースするための仕様」として ABNF を扱う部分だろう。実装してる身としても、「エラーにする」「無視する」などの細かい例外処理の表現については、どうしても ABNF よりも Parsing Algorithm に分があると感じる。
 
 実装者は少なくとも "仕様に明記されている通り" Parsing Algorithm に基づいて実装を行うべきだろう。
 
 一方で、 Appendix にある non-normative だからといって、 ABNF が勘で適当に書かれた、明らかに間違っているものになっていて良いとも思えない。
 
-なお、今回の Draft-02 については実装し、挙動を確認した。
+なお、今回の SFVbis Draft-02 については実装し、挙動を確認した。
 
 - https://github.com/Jxck/structured-field-values
 
-少なくとも筆者が気づいた範囲では、ドラフト段階(できれば WGLC、最低でも IESG レビューの前)くらいには、実装して動くことを確認し、矛盾があれば指摘できるように、貢献を続けたいと思う。
+今後も、少なくとも筆者が気づいた範囲では、ドラフト段階(できれば WGLC、最低でも IESG レビューの前)くらいには、実装して動くことを確認し、矛盾があれば指摘できるように、貢献を続けたいと思う。
