@@ -1,4 +1,4 @@
-# IETF RFC における ABNF と Parsing Algorithm の関係
+# [bnf][sfv][http][ietf] IETF RFC における ABNF と Parsing Algorithm の関係
 
 ## Intro
 
@@ -11,27 +11,20 @@ HTTPBis では、 RFC 8941: Structured Field Values (以下 SFV) の更新作業
 
 それは、「RFC における ABNF の立ち位置」に関するものだ。
 
+
 ## ABNF と Parsing Algorithm
 
-SFV は、簡単に言えば HTTP Field Value のための構造化フォーマットで、 JSON がそのまま使えなかったことに対する代替仕様だ。
+SFV は、簡単に言えば HTTP Field Value のための構造化フォーマットで、 JSON がそのまま使えなかったことに対する代替仕様だ。よって、基本的には目的となる構造体と文字列フォーマット間の Encode / Decode が定義されている。
 
-よって、基本は目的となる構造体と文字列フォーマット間の Encode / Decode が定義されている。
-
-文字列フォーマットの解析といえば、 ABNF による仕様定義がよく知られており、 IETF の RFC では古くから利用されている。
-
-HTTP/1.1 のプロトコルも、 JSON も、 URL も、全部 ABNF が仕様の中にあり、それをパースするためのノウハウもよく知られているだろう。
+文字列フォーマットの解析といえば、 ABNF による仕様定義がよく知られており、 IETF の RFC では古くから利用されている。HTTP/1.1 のプロトコルも、 JSON も、 URL も、全部 ABNF が仕様の中にあり、それをパースするためのノウハウもよく知られている。
 
 そして、 SFV にも ABNF による定義が書かれている。
 
 - https://www.rfc-editor.org/rfc/rfc8941.html#section-3
 
-しかし、同時に「この値はこの順序でパースすべき」という "Parsing Algorithm" も定義されている。
+しかし、同時に「この値はこの順序でパースすべき」という "Parsing Algorithm" も定義されている。両者が全く同じ結果になるのなら良いかもしれないが、両者はそもそもやっていることが違う。
 
-両者が全く同じ結果になるのなら良いかもしれないが、両者はそもそもやっていることが違う。
-
-ABNF は「実装の結果」を示すのみであり、実装方法は実装者に委ねられる側面が強い。
-
-一方 Parsing Algorithm は、その通り実装することが求められているため、実装によるブレが減る。
+ABNF は「実装の結果」を示すのみであり、実装方法は実装者に委ねられる側面が強い。一方 Parsing Algorithm は、その通り実装することが求められているため、実装によるブレが減る。
 
 では、実装者はどちらに従うべきだろうか?
 
@@ -39,9 +32,7 @@ ABNF は「実装の結果」を示すのみであり、実装方法は実装者
 
 > When parsing from HTTP fields, implementations MUST have behavior that is indistinguishable from following the algorithms.
 > If there is disagreement between the parsing algorithms and ABNF, the specified algorithms take precedence.
->
 > --- https://www.rfc-editor.org/rfc/rfc8941.html#section-1.2-3
-
 
 ABNF がもたらす実装方法の幅は、互換性の問題を生じやすいのは事実だ。特に Web においては、その実装差がブラウザの挙動として現れるのを極力避けたい。
 
@@ -68,20 +59,16 @@ SFV 仕様を策定している段階から、この ABNF の扱いについて�
 
 例えば、 RFC になるための IESG の Ben による最終レビューでは、以下のようなコメントがつけられている。
 
-- Benjamin Kaduk's Discuss on draft-ietf-httpbis-header-structure-18: (with DISCUSS and COMMENT) from Benjamin Kaduk via Datatracker on 2020-05-19 (ietf-http-wg@w3.org from April to June 2020)
-  - https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0168.html
-
-
 > Most notably, there is the inherent risk of skew when both prose algorithms and ABNF constructions are provided for the same structures.
 > While Section 1.2 is careful to disclaim that the prose algorithm takes precedence over the ABNF for parsing, to my reading the coverage in the following paragraph of serialization procedures imply that it is the ABNF that is authoritative.
 > In particular, "[i]mplementations MAY vary from the specified behavior so long as the output still matches the ABNF" seems to admit deviations from the prose algorithms but require compliance with the ABNF, in effect making the ABNF take precedence over the prose algorithm.
 > Having a different description of the procedure normative for generation vs. consumption invites interoperability-affecting feature skew, such as the handling of empty lists as Julian noted on the list.
+> --- https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0168.html
 
 - 同じ構造をパースするのに Algorithm と ABNF が両方提供されているため、両者の差異が生じるリスクがある
 - Algorithm 優先と書いているが、シリアライズは ABNF ベースで行うよう暗黙的に書かれているように読める
 - "実装は、少なくとも ABNF を満たす範囲であれば、仕様に書かれた方法からある程度の逸脱は認める" という文は実質 ABNF を優先しているように読める
 - 生成と消費で手順が異なることは、相互互換性に影響する可能性がある。(実際に empty list の処理で見つかったように)
-
 
 この指摘は、個人的には全くその通りだと感じている。
 
@@ -96,7 +83,6 @@ SFV に限らず、割と色々な RFC の ABNF を実装してきたが、残�
 筆者があえて、あまり実用的ではない ABNF からの愚直実装を作るのは、 RFC 前にそれをやれば、 ABNF を検証して直せるかもしれないという、それ自体が目的だからだ。
 
 
-
 ### ABNF を消すかどうか
 
 先のコメントに対し、 Chair である mnot の返信はこうだった。
@@ -105,41 +91,28 @@ SFV に限らず、割と色々な RFC の ABNF を実装してきたが、残�
 > The proposed edit clarifies that.
 > If that's still felt to be confusing, the right thing to do would be to remove ABNF from the spec completely, to avoid the confusion.
 > I'm happy to do that if the IESG wishes so.
-> 
 > --- https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0175.html
 
 確かに、 Parsing Algorithm が正であり、そこに ABNF があることで問題が生じるのであれば、 ABNF を消してしまうのは理に叶っているように思う。
 
 > Julian, you've had many opportunities to bring this up before (having participated in the original issue about empty lists).
-> It would have been much more helpful if you'd expressed your concerns earlier -- even during WGLC -- instead of after IETF LC. 
+> It would have been much more helpful if you'd expressed your concerns earlier -- even during WGLC -- instead of after IETF LC.
 
 先ほども指摘された、 Julian の見つけた Empty List についての Bug は以下だ。
 
 TODO:
 
-
-
 そして、「消してしまってもいい」という mnot に対する反応は、賛成ではなかった。
-
-Ben のコメント
-
-> I get that. What I'm saying is that this is confusing, and that there would be less confusion if the ABNF simply allowed empty lists.
-> WRT removing the ABNF: please, no. Absent the ABNF, the algorithms are the only thing to look at, and they really only help if you implement them.
-
 
 Julian のコメント
 
-> I now actually *did* implement the spec so to be able to properly review it. So please don't shoot the messenger, in particular if the feedback comes just a few days after end of LC (which, FWIW and as a reminder, was not announced on the WG mailing list).
->
+> WRT removing the ABNF: please, no. Absent the ABNF, the algorithms are the only thing to look at, and they really only help if you implement them.
 > --- https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0176.html
-
 
 Ben のコメント
 
 > I do agree with Julian that making the (minor!) change to the ABNF to remove that axis of skew seems worthwhile, though I do not think I can make that a Discuss point (given that I, like him, would prefer to keep the ABNF as-is over removing it entirely as you propose).
->
 > --- https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0178.html
-
 
 どっちも、 ABNF は残すべきだという意見だった。
 
@@ -154,7 +127,7 @@ Julian の言うように、 Algorithm だけになってしまうと、実装�
 
 結局 RFC 8941 は ABNF + Parsing Algorithm のまま、 ABNF を修正して公開された。流石にあそこから大きく書き直すのは、難しかったというのもあると思う。
 
-そして、 RFC が出てすぐくらいに次の作業が始まった。Retrofit と Bis だ。Bis は改訂作業につく Suffix で、ラテン語で繰り返すという意味だ。(イタリアでは「アンコール」の際に "bis! bis!" と叫ぶらしい)。
+そして、 RFC が出てすぐくらいに次の作業が始まった。Retrofit と Bis だ。Bis は改訂作業につく Suffix で、ラテン語で繰り返すという意味だ。(イタリアでは「アンコール」の際に "bis! bis!" と叫ぶらしい)
 
 - Retrofit: 既存の HTTP Header の値をどうにか SFV にできないかという別作業
 - Bis: Retrofit で必要になった Date を RFC 8941 に追加する改訂作業
@@ -165,26 +138,25 @@ mnot がここで Bis の範囲として提示した作業が以下だ。
 > - Removing ABNF from the specification (as discussed, it's confusing and current editorial style is NOT to use it[2])
 > - Addressing technical issues that are or could qualify as errata (e.g., minor algorithm clarifications)
 > - Minor and purely editorial work (e.g., improving wording, explanations, correcting typos if found)
->
 > --- https://lists.w3.org/Archives/Public/ietf-http-wg/2022OctDec/0013.html
 
-ここで改めて、 ABNF をどうするかという話があげられている。(やっぱり mnot は ABNF 消したいんだなという感じも伺える)
+ここで改めて、 ABNF をどうするかという話があがっている。(やっぱり mnot は ABNF 消したいんだなという感じも伺える)
 
 この議論は GitHub に Issue が立ち、そこで続きを行うことになった。
 
-- ABNF · Issue #2338 · httpwg/http-extensions
+- ABNF - Issue #2338 - httpwg/http-extensions
   - https://github.com/httpwg/http-extensions/issues/2338
 
-その議論の結果、折衷案として「ABNF は残すが Appendix に移す」となり、本文(Appendix 以前)の全ての項目から ABNF が消えて Parsing Algorithm のみが残ることになった。(mnot が押し切り Julian はあまり納得してない感じがするが)
+その議論の結果、折衷案として「ABNF は残すが Appendix に移す」となり、本文(Appendix 以前)の全ての項目から ABNF が消えて Parsing Algorithm のみが残ることになった。(mnot が押し切って、 Julian はあまり納得してない感じがするが)
 
 少なくとも「実装をする開発者」にとって、ブレのない実装が行われることの期待と、「実装を持たない開発者」が SFV の姿を ABNF から想起するという二点は満たされているため、落とし所としては妥当なのかと思う。
+
 
 ### SFV の参照
 
 この変更は、 SFV を参照する側にも多少の影響が出る。
 
 - https://lists.w3.org/Archives/Public/ietf-http-wg/2022JanMar/0147.html
-
 
 要するに、 SFV を参照する仕様は以下のように ABNF の仕様を参照するものがあるという点だ。
 
@@ -194,10 +166,9 @@ Foo: sf-list
 
 これは、 ABNF ではなく SFV で定義されているデータ型(この場合 "List")で書く方が望ましいことになる。
 
-HTTPWG では、新しく定義する Header Field は基本的に SFV を使うべきことが、 Style Guide で定義されている。今回の変更も Style Guide に明記され、祖に基づいて先の例を書き直すと以下のようになる。
+HTTPWG では、新しく定義する Header Field は基本的に SFV を使うべきことが、 Style Guide で定義されている。今回の変更も Style Guide に明記され、その基づいて先の例を書き直すと以下のようになる。
 
-> The Foo header field’s value is a List of Integers.
->
+> The Foo header field's value is a List of Integers.
 > - https://httpwg.org/admin/editors/style-guide#structured-fields
 
 この変更は httpwg の中ですでに SFV を参照する仕様に適用されている。
@@ -207,7 +178,8 @@ HTTPWG では、新しく定義する Header Field は基本的に SFV を使う
 
 この変更を見るとわかるが、 ABNF を参照しなくなったことで、自然と参照元からも ABNF が消えている。
 
-つまり、少なくとも HTTPWG の範囲では、その仕様自体が ABNF を必要としなければ ABNF が書かれる機会は減り、書かれるとして同じように Appendix になっていくのだろう。
+つまり、少なくとも HTTPWG の範囲では、その仕様自体が ABNF を必要としなければ ABNF が書かれる機会は減り、書かれるとしても同じように Appendix になっていくのだろう。
+
 
 ## Outro
 
@@ -219,11 +191,8 @@ HTTPWG の仕様はブラウザで実装されることが多いため、ブラ�
 
 問題はやっぱり「パースするための仕様」として ABNF を扱う部分だろう。実装してる身としても、「エラーにする」「無視する」などの細かい例外処理の表現については、どうしても ABNF よりも Parsing Algorithm に分があると感じる。
 
-実装者は少なくとも "仕様に明記されている通り" Parsing Algorithm に基づいて実装を起こすべきだろう。
+実装者は少なくとも "仕様に明記されている通り" Parsing Algorithm に基づいて実装を行うべきだろう。
 
 一方で、 Appendix にある non-normative だからといって、 ABNF が勘で適当に書かれた、明らかに間違っているものになっていて良いとも思えない。
 
 少なくとも筆者が気づいた範囲では、ドラフト段階(できれば WGLC、最低でも IESG レビューの前)くらいには、実装して動くことを確認し、矛盾があれば指摘できるように、貢献を続けたいと思う。
-
-
-
