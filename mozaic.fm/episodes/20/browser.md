@@ -102,7 +102,7 @@ guest: [@takoratta](https://twitter.com/takoratta)
 
 - エコシステムの話
   - [セキュキャンで話した Rails の話](http://qiita.com/Jxck_/items/ec8e928f69d099b25764)
-  - [Rails の回](http://mozaic.fm/post/104575088493/12-rails)
+  - [Rails の回](https://mozaic.fm/episodes/12/rails.html)
 
 - Web へのロックイン、ブラウザへのロックイン
   - [Shadow DOM の F2F](https://lists.w3.org/Archives/Public/public-webapps/2015JanMar/0661.html)

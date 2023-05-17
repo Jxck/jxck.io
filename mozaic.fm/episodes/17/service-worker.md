@@ -80,7 +80,7 @@ guest: [@nhiroki_](https://twitter.com/nhiroki_)
 ### 今後予定している API (54:00~)
 
 - [GeoFenching](https://github.com/slightlyoff/Geofencing)
-- [Navigator.connect](http://mkruisselbrink.github.io/navigator-connect/) ([#15](http://mozaic.fm/post/108491263993/15-extensible-web) で @myakura さんが言及)
+- [Navigator.connect](http://mkruisselbrink.github.io/navigator-connect/) ([#15](https://mozaic.fm/episodes/15/extensible-web.html) で @myakura さんが言及)
 
 
 ### CacheAPI と Browser Cache の違い (57:30~)

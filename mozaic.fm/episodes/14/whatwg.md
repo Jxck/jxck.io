@@ -15,7 +15,7 @@ guest: [@nunnun](https://twitter.com/nunnun)
 
 今回は [@myakura](https://twitter.com/myakura) さんと [@nunnun (hiro)](https://twitter.com/nunnun) さんをお迎えして、 WHATWG 、 W3C 、 TAG などの成り立ちや、それらがやっていること。先日の HTML5 勧告の意味。 LivingStandard とはどう考えればいいのか?といった話から、標準化において「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか?」を議論しました。
 
-後半は Extensible Web の話になったので、 [次のエピソード](http://mozaic.fm/post/108491263993/15-extensible-web) に分けています。
+後半は Extensible Web の話になったので、 [次のエピソード](https://mozaic.fm/episodes/15/extensible-web.html) に分けています。
 
 
 ## Show Note
@@ -69,4 +69,4 @@ guest: [@nunnun](https://twitter.com/nunnun)
   - [SVG](https://github.com/w3c/svgwg/) の Github リポジトリ
   - [慶応大学 W3C のメーリングリスト](http://www.w3.org/Consortium/contact-keio-ja.html)
 - 1:13:20 ~: Extensible Web の話
-  - [次のエピソード](http://mozaic.fm/post/108491263993/15-extensible-web) に分けます
+  - [次のエピソード](https://mozaic.fm/episodes/15/extensible-web.html) に分けます
