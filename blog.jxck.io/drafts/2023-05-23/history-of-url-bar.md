@@ -22,19 +22,19 @@ URL バーの表示の変遷を一度まとめておく。
 
 最も基本的な URL バーは、表示している URL をそのまま表示するものだったと言えるだろう。
 
-![](http-full-gray.svg)
+![プレーンに URL 全体を表示した HTTP の URL バー](http-full-gray.svg)
 
 そして、 HTTPS が登場して以降ここに「安全である」という意味合いを追加する UI が付与される。一般的に鍵アイコンと呼ばれるものだ。
 
-![](https-full-green-lock.svg)
+![先頭に緑の鍵マークが追加された HTTP の URL バー](https-full-green-lock.svg)
 
 さらに、その証明書が EV であれば、発行先の組織名が表示された。
 
-![](https-full-green-ev.svg)
+![先頭に EV の組織名が追加された HTTPS の URL バー](https-full-green-ev.svg)
 
 Netscape や IE5.5, 6 とかのレベルになると、もっと異なる UI だった。そこから徐々に変わってここに至るので、一般にいつこのイメージが定着したのかというと、断定は難しい。
 
-推定すると、 Chrome は 2010 年にリリースされ、初期のころからこの UI だったように思う。ずっと空いて 2016 年に Let's Encrypt が始まるが、その時点では少なくとも日本の HTTPS の普及率は決して高くなく(2,3割)、逆に銀行などが EV を入れており、「鍵が出てると安全」「組織名の表示を確認を」といった啓蒙が、リテラシーの高い一般ユーザに対して行われていたと思う。
+推定すると、 Chrome は 2010 年にリリースされ、初期のころからこの UI だったように思う。ずっと空いて 2016 年に Let's Encrypt が始まるが、その時点では少なくとも日本の HTTPS の普及率は決して高くなく(2,3 割)、逆に銀行などが EV を入れており、「鍵が出てると安全」「組織名の表示を確認を」といった啓蒙が、リテラシーの高い一般ユーザに対して行われていたと思う。
 
 したがって、このイメージが一般に定着していったのは 2012~15 年あたりかと思う。IE でいうと 9,10 くらいか。
 
@@ -47,14 +47,14 @@ HTTP が一般である上で、 Advanced なものとして HTTPS が提供さ�
 
 プラットフォーム側ではこれに呼応するように、ブラウザに HTTPS Only な機能が増え、 IETF プロトコル策定に暗号化が必須となり、極め付けに Let's Encrypt が登場して一気に HTTPS 化が広まった。
 
-各位が　HTTPS Everywhere に向かって進んでいたのは、だいたい Let's Encrypt 登場の直前 2015 年から 2020 年あたりの話と言えるだろう。
+各位が  HTTPS Everywhere に向かって進んでいたのは、だいたい Let's Encrypt 登場の直前 2015 年から 2020 年あたりの話と言えるだろう。
 
 結果 Web の前提が代わり、それに合わせて URL バーのデザインも変わっていくことになる。
 
 
 ## HTTP as Non Secure (2016~)
 
-HTTPS のいう "Secure" はあくまで「*通信の安全*」であり、だれかが盗聴/改竄/なりすましをしてないことを保証するものだ。そのため、証明書の発行は基本的に「Issuer はそのドメインを本当に保持しているか」を基準に行われる。
+HTTPS のいう "Secure" はあくまで「_通信の安全_」であり、だれかが盗聴/改竄/なりすましをしてないことを保証するものだ。そのため、証明書の発行は基本的に「Issuer はそのドメインを本当に保持しているか」を基準に行われる。
 
 重要なのは、「そのサイトのコンテンツは安全であるか」などという保証は、たとえ EV であっても HTTPS にはない点だ。 HTTPS 化が遅れた銀行を偽装したフィッシングサイトが、 Let's Encrypt で HTTPS 化されてたなどという、皮肉な話もあったりした。
 
@@ -65,15 +65,15 @@ HTTPS のいう "Secure" はあくまで「*通信の安全*」であり、だ�
 - Rethinking Connection Security Indicators | usenix
   - https://www.usenix.org/system/files/conference/soups2016/soups2016-paper-porter-felt.pdf
 
-そこで、 HTTPS が前提な世界においては「*HTTPS が Secure*」なのではなく「*HTTP が　Non Secure*」だという価値観にベースをシフトする必要があった。
+そこで、 HTTPS が前提な世界においては「_HTTPS が Secure_」なのではなく「_HTTP が  Non Secure_」だという価値観にベースをシフトする必要があった。
 
-![](baseline.svg)
-
+![HTTP の more secure が HTTPS だったのが、 HTTPS の less secure が HTTP という価値観のシフト](baseline.svg)
 
 結果 HTTPS を控えめに表示し、 HTTP の場合のみ Not Secure であることを示するように表示が変わっていくことになる。
 
-![](http-full-gray-notsecure.svg)
-![](https-full-gray.svg)
+![先頭に Not Secure と表示した HTTP の URL バー](http-full-gray-notsecure.svg)
+
+![先頭に鍵アイコンを表示した HTTPS の URL バー](https-full-gray.svg)
 
 この流れは 2016 年ごろはじまった。
 
@@ -93,8 +93,9 @@ HTTPS のいう "Secure" はあくまで「*通信の安全*」であり、だ�
 
 赤くなる前提でいうとだいたいこういう感じだ。
 
-![](http-full-red-notsecure.svg)
-![](https-full-gray.svg)
+![先頭に赤で Not Secure を追加した HTTPS の URL バー](http-full-red-notsecure.svg)
+
+![先頭に黒で鍵アイコンを追加した HTTPS の URL バー](https-full-gray.svg)
 
 
 ## Removing EV Badge
@@ -104,9 +105,6 @@ EV 証明書の発行は、 DV 同様のドメイン所持確認に加えて、�
 PoC として有名なのは、 "Identity Verified" という会社を作って EV を取得することで、
 
 また、アメリカでは州が別なら同じ社名の会社が作れる?とかで、実際に Stripe と同じ組織名が表示される EV 証明書が取得可能であること実証された。
-
-
-
 
 こうした研究から、 EV 証明書の組織名は、表示する方がむしろ良くないのではないかという論調が、特にセキュリティ研究者周りで強まった。 2017 年くらいのことだ。
 
@@ -121,13 +119,13 @@ PoC として有名なのは、 "Identity Verified" という会社を作って 
   - https://groups.google.com/a/chromium.org/forum/#!topic/security-dev/h1bTcoTpfeI
   - https://chromium.googlesource.com/chromium/src/+/HEAD/docs/security/ev-to-page-info.md
 - Ship: Move Extended Validation Information out of the URL bar
-https://groups.google.com/forum/#!msg/mozilla.dev.platform/o18n0SZRyUE/bsbGzuO6AQAJ
+  https://groups.google.com/forum/#!msg/mozilla.dev.platform/o18n0SZRyUE/bsbGzuO6AQAJ
 
 結果 HTTPS であるかどうかが重要になり、アイコンをクリックしたりしない限り EV の特別扱いはなくなった。
-  
-![](http-full-red-notsecure.svg)
-![](https-full-gray.svg)
 
+![先頭に赤で Not Secure を追加した HTTPS の URL バー](http-full-red-notsecure.svg)
+
+![先頭に黒で鍵アイコンを追加した HTTPS の URL バー](https-full-gray.svg)
 
 
 ## eTLD+1 のみの表示
@@ -138,7 +136,7 @@ https://groups.google.com/forum/#!msg/mozilla.dev.platform/o18n0SZRyUE/bsbGzuO6A
 
 一方、ユーザは URL の仕様を正しく認識しているわけではなく、サブドメインが知ってるサイトだったり、長いパスやクエリで特にモバイルでの視認性が下がっている場合などに、攻撃にひっかってしまうという研究結果がでた。
 
-- Measuring Identity Confusion with Uniform Resource Locators – Google Research
+- Measuring Identity Confusion with Uniform Resource Locators - Google Research
   - https://research.google/pubs/pub49166/
 
 そこで、 URL の中でとりわけ重要な、そのサイトのアイデンティティとも言える eTLD+1 のみを表示することで、ユーザにサイトをより明確に認識させるという方式が、特にモバイルで採用されるようになった。 Chrome では 2020 年に発表されている。
@@ -146,9 +144,9 @@ https://groups.google.com/forum/#!msg/mozilla.dev.platform/o18n0SZRyUE/bsbGzuO6A
 - Chromium Blog: Helping people spot the spoofs: a URL experiment(2020/08: M86)
   - https://blog.chromium.org/2020/08/helping-people-spot-spoofs-url.html
 
+![先頭に赤で Not Secure と追加したドメインのみ表示する URL バー](http-domain-red-notsecure.svg)
 
-![](http-domain-red-notsecure.svg)
-![](https-domain-gray-lock.svg)
+![先頭に黒で鍵アイコンを追加したドメインのみ表示する URL バー](https-domain-gray-lock.svg)
 
 
 ## ロックアイコン
@@ -173,24 +171,24 @@ HTTPS は、緑ではないにせよロックアイコン自体は表示され�
 
 他のブラウザがどうするのかは、発表を見てないように思う。 Chrome と同じ Tune アイコンではないだろうということで、擬似的に中立的なハンバーガーメニューで図を作っておく。
 
+![先頭に赤で Not Secure と追加したドメインのみ表示する URL バー](http-domain-red-notsecure.svg)
 
-![](http-domain-red-notsecure.svg)
-![](https-domain-gray.svg)
+![先頭に黒でメニューアイコンを追加したドメインのみ表示する URL バー](https-domain-gray.svg)
 
+
+## Outro
+
+少なくとも HTTPS に関する部分では、 URL Bar の表示は HTTP をいつどう赤くするか/しないかあたりを残し、おおよそ落ち着いたんだじゃないかと思う。
+
+数年後は、「昔 URL が緑だった時代がある」と懐古する時に、このエントリが引っ張り出せると思う。
 
 
 ## References
 
-
-
-
-- TLS: browser UI — Anne’s Blog
+- TLS: browser UI - Anne's Blog
   - https://annevankesteren.nl/2014/10/tls-browser-ui
   - Anne が 2014 から書いてた
 
-
-
-
-
 Chromium Docs - Guidelines for URL Display
+
 https://chromium.googlesource.com/chromium/src/+/HEAD/docs/security/url_display_guidelines/url_display_guidelines.md
