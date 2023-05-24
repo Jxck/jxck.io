@@ -13,14 +13,14 @@
 
 本当なら古いブラウザのスクショを集めたいところだったが、これは非常に難しい。ネットで色々落ちてるものをかき集めても、ライセンスや解像度や表示されている URL などを考えると、使い勝手は決して良くない。
 
-スクショを撮り直すため、試しに古い Chromium ビルドを CI から取得してみたが、一定より古いものはうまく開くことすらできなかった。開くことができたバージョンもあったが、どうやらそれだけでは当時の URL バーの UI までは再現されないようだ。
+スクショを撮り直すため、試しに古い Chromium をビルドしてみたが、一定より古いものはうまく開くことすらできなかった。開くことができたバージョンもあったが、どうやらそれだけでは当時の URL バーの UI までは再現されないようだ。
 
-そこで、正確な実装はあきらめ「一般的な URL バーのイメージ」で書いた図で、おおまかな変遷を解説する。
+そこで、正確な実装はあきらめ「一般的な URL バーのイメージ」を書いた図で、おおまかな変遷を辿る。
 
 
 ## 原始の URL バー
 
-もっとも基本的な URL バーは、表示している URL をそのまま表示するものだったと言えるだろう。
+最も基本的な URL バーは、表示している URL をそのまま表示するものだったと言えるだろう。
 
 ![](schemefull.svg)
 
@@ -36,10 +36,10 @@ Netscape や IE5.5, 6 とかのレベルになると、もっと異なる UI だ
 
 推定すると、 Chrome は 2010 年にリリースされ、初期のころからこの UI だったように思う。ずっと空いて 2016 年に Let's Encrypt が始まるが、その時点では少なくとも日本の HTTPS の普及率は決して高くなく(2,3割)、逆に銀行などが EV を入れており、「鍵が出てると安全」「組織名の表示を確認を」といった啓蒙が、リテラシーの高い一般ユーザに対して行われていたと思う。
 
-したがって、このイメージは 2012~15 年くらいの間に、一般に定着していったと思う。 IE でいうと 9,10 くらいか。
+したがって、このイメージが一般に定着していったのは 2012~15 年あたりかと思う。IE でいうと 9,10 くらいか。
 
 
-## HTTPS EveryWhere
+## HTTPS Everywhere
 
 HTTP が大半である中に、 Advanced なものとして HTTPS が提供されていたために、それを「Secure」とラベル付するのは一定の納得感があった。
 
@@ -73,7 +73,7 @@ HTTPS のいう "Secure" はあくまで「通信の安全」であり、だれ�
 ![](not-secure-full.svg)
 ![](lock.svg)
 
-Chrome でいうと、この流れは 2016 年ごろはじまった。もちろん、いきなりドラスティックに変えるのは難しいため、 2018年までかけて段階的に行う計画となっている。
+Chrome でいうと、この流れは 2016 年ごろはじまった。
 
 - Google Online Security Blog: Moving towards a more secure web
   - https://security.googleblog.com/2016/09/moving-towards-more-secure-web.html
@@ -82,29 +82,21 @@ Chrome でいうと、この流れは 2016 年ごろはじまった。もちろ�
 - Marking HTTP As Non-Secure
   - https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure/
 
+- Firefox 70 Address Bar Gets New Security Indicators, Shames Insecure Sites
+  - https://www.bleepingcomputer.com/news/security/firefox-70-address-bar-gets-new-security-indicators-shames-insecure-sites/
 
-
-## HTTP as affirmatively Non Secure
-
-前述の　Chrome の UI の置き換えは、長期的な計画だった。
-
-最終的には HTTPS からロックアイコンを外し、 HTTP は赤いエラーのような表示にしていくのが目標だが、いきなりドラスティックに変えるのは難しいため、段階を踏むというものだ。
-
-- Marking HTTP As Non-Secure
-  - https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure/
-
-
-そして、この計画は 2018 年に最終段階を迎えている。全ての HTTP を赤くするまでは至ってないが、 HTTP で Form を入力する際は赤くなるというものだ。
+もちろん、いきなりドラスティックに変えるのは難しいため、 2018年までかけて段階的に行う計画だった。すでに最終段階を迎えており、全ての HTTP を赤くするまでは至ってないが、 HTTP で Form を入力する際は赤くなるというアナウンスが 2018 年にあった。
 
 - Chromium Blog: Evolving Chrome's security indicators
   - https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html
 
-ところが、実際にやってみると赤くはならない。このあたりの計画がどうなってるのかはよくわからない。
+赤くなる条件はブラウザや PC/Mobile で異なるが、ざっくりこういう感じだ。
 
+TODO: red
 
 ## Removing EV Badge
 
-EV 証明書の発行は、基本的に組織の実在チェック(ペーパーカンパニーではないか)であり、そのプロセスがある程度重たくなっていることで信頼性が認められている。逆を言えば、その要件を満たせば取得はできる。アメリカなどでは州ごとに同じ社名の会社が作れる(?)とかで、実際に Stripe と同じ組織名が表示される EV 証明書が取得可能であること実証された。
+EV 証明書の発行は、基本的に組織の実在チェック(ペーパーカンパニーではないか)であり、そのプロセスがある程度重たくなっていることで信頼性が認められている。逆を言えば、その要件を満たせば取得はできる。アメリカでは州ごとに同じ社名の会社が作れる(?)とかで、実際に Stripe と同じ組織名が表示される EV 証明書が取得可能であること実証された。
 
 こうした研究から、 EV 証明書の組織名は、表示する方がむしろ良くないのではないかという論調が、特にセキュリティ研究者周りで強まった。 2017 年くらいのことだ。
 
@@ -176,8 +168,7 @@ HTTPS は、緑ではないにせよロックアイコン自体は表示され�
 
 
 
-## EV バッジ
-
+## References
 
 
 
@@ -186,8 +177,7 @@ HTTPS は、緑ではないにせよロックアイコン自体は表示され�
   - https://annevankesteren.nl/2014/10/tls-browser-ui
   - Anne が 2014 から書いてた
 
-Firefox 70 Address Bar Gets New Security Indicators, Shames Insecure Sites
-https://www.bleepingcomputer.com/news/security/firefox-70-address-bar-gets-new-security-indicators-shames-insecure-sites/
+
 
 
 
