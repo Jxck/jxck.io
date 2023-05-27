@@ -102,24 +102,41 @@ HTTPS のいう "Secure" はあくまで「_通信の安全_」であり、だ�
 
 EV 証明書の発行は、 DV 同様のドメイン所持確認に加えて、組織の実在チェック(ペーパーカンパニーではないか)などを付加価値として追加している。逆を言えば、悪意をもったものでも要件を満たせば取得はできる。
 
-PoC として有名なのは、 "Identity Verified" という会社を作って EV を取得することで、
+PoC として有名なのは、 "Identity Verified" という会社を作って EV を取得することで、まるで安全であるかのように組織名を表示するという実証がある。
+
+- First part of phishing with EV
+  - https://web.archive.org/web/20170914040209/https://0.me.uk/ev-phishing/
+  - https://web.archive.org/web/20191126204558/https://www.typewritten.net/writer/ev-phishing/
+  - (オリジナルサイトは消えてるためアーカイブ)
 
 また、アメリカでは州が別なら同じ社名の会社が作れる?とかで、実際に Stripe と同じ組織名が表示される EV 証明書が取得可能であること実証された。
+
+- Extended Validation is Broken
+  - https://web.archive.org/web/20171212011746/https://stripe.ian.sh/
+  - (オリジナルサイトは消えてるためアーカイブ)
 
 こうした研究から、 EV 証明書の組織名は、表示する方がむしろ良くないのではないかという論調が、特にセキュリティ研究者周りで強まった。 2017 年くらいのことだ。
 
 - On the value of EV
   - https://groups.google.com/g/mozilla.dev.security.policy/c/szD2KBHfwl8/m/kWLDMfPhBgAJ
 
-結果、 2018 年に Safari 12 から組織名の表示が消えた。 2019 年には Chrome と Firefox が EV の組織名表示を消すと発表した。
+結果、 2018 年に Safari 12 から組織名の表示が消えた。
 
 - Safari on iOS 12 changes the look of the URL/Search bar
   - https://twitter.com/BasileBailey/status/1041787756697899008
+- Minutes of the F2F 44 Meeting in London, England, 6-7 June 2018 - CAB Forum
+  - https://cabforum.org/2018/06/06/minutes-for-ca-browser-forum-f2f-meeting-44-london-6-7-june-2018/#Apple-Root-Program-Update
+- Apple
+  - https://cabforum.org/2018/06/06/minutes-for-ca-browser-forum-f2f-meeting-44-london-6-7-june-2018/#Apple-Root-Program-Update
+
+2019 年には Chrome と Firefox が EV の組織名表示を消すと発表した。
+
 - Upcoming Change to Chrome's Identity Indicators
-  - https://groups.google.com/a/chromium.org/forum/#!topic/security-dev/h1bTcoTpfeI
+  - https://groups.google.com/a/chromium.org/g/security-dev/c/h1bTcoTpfeI
+- Chromium Docs - EV UI Moving to Page Info
   - https://chromium.googlesource.com/chromium/src/+/HEAD/docs/security/ev-to-page-info.md
-- Ship: Move Extended Validation Information out of the URL bar
-  https://groups.google.com/forum/#!msg/mozilla.dev.platform/o18n0SZRyUE/bsbGzuO6AQAJ
+- Intent to Ship: Move Extended Validation Information out of the URL bar
+  - https://groups.google.com/g/mozilla.dev.platform/c/o18n0SZRyUE/m/bsbGzuO6AQAJ
 
 結果 HTTPS であるかどうかが重要になり、アイコンをクリックしたりしない限り EV の特別扱いはなくなった。
 
@@ -178,20 +195,52 @@ HTTPS は、緑ではないにせよロックアイコン自体は表示され�
 
 ## Outro
 
-
-
-
 少なくとも HTTPS に関する部分では、 URL Bar の表示は HTTP をいつどう赤くするか/しないかあたりを残し、おおよそ落ち着いたんだじゃないかと思う。
 
 数年後は、「昔 URL が緑だった時代がある」と懐古する時に、このエントリが引っ張り出せると思う。
 
 
-## References
+## Outro
 
-- TLS: browser UI - Anne's Blog
-  - https://annevankesteren.nl/2014/10/tls-browser-ui
-  - Anne が 2014 から書いてた
 
-Chromium Docs - Guidelines for URL Display
+## DEMO
 
-https://chromium.googlesource.com/chromium/src/+/HEAD/docs/security/url_display_guidelines/url_display_guidelines.md
+
+## Resources
+
+- Spec
+- Explainer
+- Requirements Doc
+  - Chromium Docs - Guidelines for URL Display
+    - https://chromium.googlesource.com/chromium/src/+/HEAD/docs/security/url_display_guidelines/url_display_guidelines.md
+- Mozilla Standard Position
+- Webkit Position
+- TAG Design Review
+- Intents
+- Chrome Platform Status
+- WPT (Web Platform Test)
+- DEMO
+- Blog
+  - TLS: browser UI - Anne's Blog
+    - https://annevankesteren.nl/2014/10/tls-browser-ui
+  - Troy Hunt: Extended Validation Certificates are Dead (2018/9)
+    - https://www.troyhunt.com/extended-validation-certificates-are-dead/
+  - Troy Hunt: PayPal's Beautiful Demonstration of Extended Validation FUD (2019/5)
+    - https://www.troyhunt.com/paypals-beautiful-demonstration-of-extended-validation-fud/
+  - Troy Hunt: Extended Validation Certificates are (Really, Really) Dead (2019/8)
+    - https://www.troyhunt.com/extended-validation-certificates-are-really-really-dead/
+  - Are EV certificates worth the paper they're written on? (2017/12)
+    - https://scotthelme.co.uk/are-ev-certificates-worth-the-paper-theyre-written-on/
+  - Sites that used to have EV (2018/8)
+    - https://scotthelme.co.uk/sites-that-used-to-have-ev/
+  - Gone forEVer! (2019/8)
+    - https://scotthelme.co.uk/gone-for-ever/
+  - Extended Validation not so... extended? How I revoked $1,000,000 worth of EV certificates! (2019/9)
+    - https://scotthelme.co.uk/extended-validation-not-so-extended/
+  - If it looks like a duck, swims like a duck, and QWACs like a duck, then it's probably an EV Certificate (2022/1)
+    - https://scotthelme.co.uk/looks-like-a-duck-swims-like-a-duck-qwacs-like-a-duck-probably-an-ev-certifiacate/
+- Presentation
+- Issues
+  - On the value of EV
+    - https://groups.google.com/g/mozilla.dev.security.policy/c/szD2KBHfwl8/m/kWLDMfPhBgAJ
+- Other
