@@ -33,7 +33,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-tY85-WOCD8/m/QaG6qaVSBgAJ
 - Ship: BYOB support for Fetch
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/I0X6IturxWA
-- *Prototype: CSS Scrollbars: scrollbar-color, scrollbar-width[a]*
+- *Prototype: CSS Scrollbars: scrollbar-color, scrollbar-width*
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zwG2m_KG0RY
 - Prototype: Multiple Readers and Writers in File System Access API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/o_Cm6xUTGZA
@@ -145,7 +145,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/3gWCLxUccHQ
 - *Ship: supports conditions for CSS imports*
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ee9M0DJrNDQ
-- *Prototype and Ship: submitting element directionality via the dirname attribute[b]*
+- *Prototype and Ship: submitting element directionality via the dirname attribute*
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/F6T4y2kQbvk
   - https://www.w3.org/International/questions/qa-html-dir#reportingdirection
 - Prototype and Ship: TimerThread efficiency improvements
@@ -166,7 +166,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.mozilla.org/en-US/blog/aria-accessibility-html-landmark-roles/
 - How to draw any regular shape with just one JavaScript function | MDN Blog
   - https://developer.mozilla.org/en-US/blog/javascript-shape-drawing-function/
-- *Firefox Developer Experience - Your Go-To Resource for Web Development & Compatibility[c]*
+- *Firefox Developer Experience - Your Go-To Resource for Web Development & Compatibility*
   - https://fxdx.dev/
   - Developer Tools や Compatibility チームのブログができたらしい
 - *Access Denied*
@@ -333,7 +333,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - tlswg
   - https://mailarchive.ietf.org/arch/browse/tls/
   - https://github.com/tlswg/wg-materials
-  - *[TLS] WGLC for draft-ietf-tls-rfc8446bis and draft-ietf-tls-rfc8447bis[d]*
+  - *[TLS] WGLC for draft-ietf-tls-rfc8446bis and draft-ietf-tls-rfc8447bis*
     - https://mailarchive.ietf.org/arch/msg/tls/kz12NYnBurCDXhfyMGkhVRs3bl4/
     - The Transport Layer Security (TLS) Protocol Version 1.3
       - https://www.ietf.org/archive/id/draft-ietf-tls-rfc8446bis-07.html
@@ -341,16 +341,16 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://www.ietf.org/archive/id/draft-ietf-tls-rfc8447bis-04.html
       - IANA の拡張や Cipher Suite に推奨かどうかの列を追加
 - ohai
-  - *[Ohai] Working Group Last Call for draft-ietf-ohai-svcb-config[e]*
+  - *[Ohai] Working Group Last Call for draft-ietf-ohai-svcb-config*
     - https://mailarchive.ietf.org/arch/msg/ohai/5t3hDg29uYqAnL9VPI_XjJSpDXA/
     - SVCB/HTTPS Record での OHTTP アドバタイズ
 - httpapi
-  - *Last Call: \<draft-ietf-httpapi-link-template-02.txt> (The Link-Template HTTP Header Field) to Proposed Standard[f]*
+  - *Last Call: \<draft-ietf-httpapi-link-template-02.txt> (The Link-Template HTTP Header Field) to Proposed Standard*
     - https://mailarchive.ietf.org/arch/msg/ietf-announce/3JLLhRU0IkeY2RCP7Js2mkLPzPQ/
     - `Link-Template: "/{username}"; rel="https://example.org/rel/user"`
     - `Link-Template: </books/{book_id}/author>; rel="author" anchor="#{book_id}"`
     - のように URL のテンプレートを示すことができる
-  - Last Call: draft-ietf-httpapi-yaml-mediatypes-04.txt (YAML Media Type) to Informational RFC[g]
+  - Last Call: draft-ietf-httpapi-yaml-mediatypes-04.txt (YAML Media Type) to Informational RFC
     - https://mailarchive.ietf.org/arch/msg/ietf-announce/X7r4GcJyC7Zin61HRW_Qxyvupos/
     - application/yaml
 
