@@ -67,7 +67,7 @@ HTTPS のいう "Secure" はあくまで「_通信の安全_」であり、だ�
 
 そこで、 HTTPS が前提な世界においては「_HTTPS が Secure_」なのではなく「_HTTP が  Non Secure_」だという価値観にベースをシフトする必要があった。
 
-![HTTP の more secure が HTTPS だったのが、 HTTPS の less secure が HTTP という価値観のシフト](baseline.svg#330x169)
+![HTTP の more secure が HTTPS だったのが、 HTTPS の less secure が HTTP という価値観のシフト](baseline.svg#380x220)
 
 結果 HTTPS を控えめに表示し、 HTTP の場合のみ Not Secure であることを示するように表示が変わっていくことになる。
 
