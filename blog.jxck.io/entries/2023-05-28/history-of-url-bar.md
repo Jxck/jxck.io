@@ -1,4 +1,4 @@
-# URL バーの表示の変遷
+# [https][url] URL バーの表示の変遷
 
 ## Intro
 
