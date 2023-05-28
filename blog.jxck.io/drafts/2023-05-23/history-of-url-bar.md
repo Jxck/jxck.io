@@ -24,9 +24,9 @@ URL バーの表示の変遷を一度まとめておく。
 
 ![プレーンに URL 全体を表示した HTTP の URL バー](http-full-gray.svg)
 
-そして、 HTTPS が登場して以降ここに「安全である」という意味合いを追加する UI が付与される。一般的に鍵アイコンと呼ばれるものだ。
+そして、 HTTPS が登場して以降ここに「安全である」という意味合いを追加する UI が付与される。一般的に Lock Icon (鍵アイコン) と呼ばれるものだ。
 
-![先頭に緑の鍵マークが追加された HTTP の URL バー](https-full-green-lock.svg)
+![先頭に緑のロックアイコンが追加された HTTP の URL バー](https-full-green-lock.svg)
 
 さらに、その証明書が EV であれば、発行先の組織名が表示された。
 
@@ -60,7 +60,7 @@ HTTPS のいう "Secure" はあくまで「_通信の安全_」であり、だ�
 
 ここに "**Secure**" と "**Trustworthy**" の差がある。
 
-しかし、研究によって多くのユーザは鍵アイコンが示す "Secure" という表示の意味をそのようには理解しておらず、当然ページの中身が安全なだという "Trustworthy" を示すと誤解していたこともわかってきた。
+しかし、研究によって多くのユーザは Lock Icon が示す "Secure" という表示の意味をそのようには理解しておらず、当然ページの中身が安全なだという "Trustworthy" を示すと誤解していたこともわかってきた。
 
 - Rethinking Connection Security Indicators | usenix
   - https://www.usenix.org/system/files/conference/soups2016/soups2016-paper-porter-felt.pdf
@@ -73,7 +73,7 @@ HTTPS のいう "Secure" はあくまで「_通信の安全_」であり、だ�
 
 ![先頭に Not Secure と表示した HTTP の URL バー](http-full-gray-notsecure.svg)
 
-![先頭に鍵アイコンを表示した HTTPS の URL バー](https-full-gray.svg)
+![先頭にロックアイコンを表示した HTTPS の URL バー](https-full-gray.svg)
 
 この流れは 2016 年ごろはじまった。
 
@@ -95,7 +95,7 @@ HTTPS のいう "Secure" はあくまで「_通信の安全_」であり、だ�
 
 ![先頭に赤で Not Secure を追加した HTTPS の URL バー](http-full-red-notsecure.svg)
 
-![先頭に黒で鍵アイコンを追加した HTTPS の URL バー](https-full-gray.svg)
+![先頭に黒でロックアイコンを追加した HTTPS の URL バー](https-full-gray.svg)
 
 
 ## Removing EV Badge
@@ -142,7 +142,7 @@ PoC として有名なのは、 "Identity Verified" という会社を作って 
 
 ![先頭に赤で Not Secure を追加した HTTPS の URL バー](http-full-red-notsecure.svg)
 
-![先頭に黒で鍵アイコンを追加した HTTPS の URL バー](https-full-gray.svg)
+![先頭に黒でロックアイコンを追加した HTTPS の URL バー](https-full-gray.svg)
 
 
 ## eTLD+1 のみの表示
@@ -163,20 +163,20 @@ PoC として有名なのは、 "Identity Verified" という会社を作って 
 
 ![先頭に赤で Not Secure と追加したドメインのみ表示する URL バー](http-domain-red-notsecure.svg)
 
-![先頭に黒で鍵アイコンを追加したドメインのみ表示する URL バー](https-domain-gray-lock.svg)
+![先頭に黒でロックアイコンを追加したドメインのみ表示する URL バー](https-domain-gray-lock.svg)
 
 
-## ロックアイコン
+## Lock Icon
 
-HTTPS は、緑ではないにせよロックアイコン自体は表示されていた。
+HTTPS は、緑ではないにせよ Lock Icon 自体は表示されていた。
 
 しかし、 HTTP as Non Secure というベースシフトが起こたことに合わせ、 HTTPS を Secure とする UI からより Normal なものとしていくことになる。
 
-結果、 Chrome は HTTPS からロックアイコンの削除をすると発表した。
+結果、 Chrome は HTTPS から Lock Icon の削除をすると発表した。
 
-当初の計画では、単純にロックアイコンがなくなるような絵がかかれていたが、実際には今ロックアイコンは Permission や Cookie など、この間にブラウザに実装されたさまざまな設定へのエントリポイントを兼ねていた。
+当初の計画では、単純に Lock Icon がなくなるような絵がかかれていたが、実際には今 Lock Icon は Permission や Cookie など、この間にブラウザに実装されたさまざまな設定へのエントリポイントを兼ねていた。
 
-そこで、ロックアイコンを単純に消すのではなく、代わりに「このサイトが安全かどうかを示してそうに見えない」何か、ハンバーガーメニューや三点メニューのようなメニューアイコンに置き換える必要が出た。 2021 年の段階では下三角のよくあるアコーディオンのアイコンのデモがあった。
+そこで、Lock Icon を単純に消すのではなく、代わりに「このサイトが安全かどうかを示してそうに見えない」何か、ハンバーガーメニューや三点メニューのようなメニューアイコンに置き換える必要が出た。 2021 年の段階では下三角のよくあるアコーディオンのアイコンのデモがあった。
 
 - Chromium Blog: Increasing HTTPS adoption(2021/07: M94)
   - https://blog.chromium.org/2021/07/increasing-https-adoption.html
@@ -197,13 +197,14 @@ HTTPS は、緑ではないにせよロックアイコン自体は表示され�
 
 少なくとも HTTPS に関する部分では、 URL Bar の表示は HTTP をいつどう赤くするか/しないかあたりを残し、おおよそ落ち着いたんだじゃないかと思う。
 
+実際には、この過程で Mixed Contents をどう表示/処理するかといったサイドワークもあったが、まあそれは少しズレるので今回は省いた。
+
 数年後は、「昔 URL が緑だった時代がある」と懐古する時に、このエントリが引っ張り出せると思う。
 
 
-## Outro
-
-
 ## DEMO
+
+N/A
 
 
 ## Resources
