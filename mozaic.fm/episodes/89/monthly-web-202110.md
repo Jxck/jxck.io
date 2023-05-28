@@ -297,7 +297,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - `input-security: none;` で `<input type=password>` が User Visible になる
 - Prototype and ship: Implement self.structuredClone()
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/VLCUezPWGS4
-- *Unship: Cache clearing via the Clear-Site-Data header[a]*
+- *Unship: Cache clearing via the Clear-Site-Data header*
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/I939w1yrTp4
   - サイト上の Cross Origin なキャッシュも含めて消せる機能を削除
   - storage partition されている場合にそれをまたぐことになる

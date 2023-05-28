@@ -144,7 +144,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/biH6g79KclA
   - サブドメインをワイルドカードにした Policy 範囲の指定ができる
   - これまではサブドメインを列挙する必要があった
-  - これ A-C-A-O でも使えるのでは?[a][b]
+  - これ A-C-A-O でも使えるのでは?
 - Implement and Ship: Rich PWA installation dialogs - desktop
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/HWXv_04ORyU
 - *Implement and Ship: User-Agent Reduction Phase 5 (platform and OsCpu reduction)*
