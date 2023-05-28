@@ -22,15 +22,15 @@ URL バーの表示の変遷を一度まとめておく。
 
 最も基本的な URL バーは、表示している URL をそのまま表示するものだったと言えるだろう。
 
-![プレーンに URL 全体を表示した HTTP の URL バー](http-full-gray.svg)
+![プレーンに URL 全体を表示した HTTP の URL バー](http-full-gray.svg#380x37)
 
 そして、 HTTPS が登場して以降ここに「安全である」という意味合いを追加する UI が付与される。一般的に Lock Icon (鍵アイコン) と呼ばれるものだ。
 
-![先頭に緑のロックアイコンが追加された HTTP の URL バー](https-full-green-lock.svg)
+![先頭に緑のロックアイコンが追加された HTTP の URL バー](https-full-green-lock.svg#380x37)
 
 さらに、その証明書が EV であれば、発行先の組織名が表示された。
 
-![先頭に EV の組織名が追加された HTTPS の URL バー](https-full-green-ev.svg)
+![先頭に EV の組織名が追加された HTTPS の URL バー](https-full-green-ev.svg#380x37)
 
 Netscape や IE5.5, 6 とかのレベルになると、もっと異なる UI だった。そこから徐々に変わってここに至るので、一般にいつこのイメージが定着したのかというと、断定は難しい。
 
@@ -67,13 +67,13 @@ HTTPS のいう "Secure" はあくまで「_通信の安全_」であり、だ�
 
 そこで、 HTTPS が前提な世界においては「_HTTPS が Secure_」なのではなく「_HTTP が  Non Secure_」だという価値観にベースをシフトする必要があった。
 
-![HTTP の more secure が HTTPS だったのが、 HTTPS の less secure が HTTP という価値観のシフト](baseline.svg)
+![HTTP の more secure が HTTPS だったのが、 HTTPS の less secure が HTTP という価値観のシフト](baseline.svg#330x169)
 
 結果 HTTPS を控えめに表示し、 HTTP の場合のみ Not Secure であることを示するように表示が変わっていくことになる。
 
-![先頭に Not Secure と表示した HTTP の URL バー](http-full-gray-notsecure.svg)
+![先頭に Not Secure と表示した HTTP の URL バー](http-full-gray-notsecure.svg#380x37)
 
-![先頭にロックアイコンを表示した HTTPS の URL バー](https-full-gray.svg)
+![先頭にロックアイコンを表示した HTTPS の URL バー](https-full-gray.svg#380x37)
 
 この流れは 2016 年ごろはじまった。
 
@@ -93,9 +93,9 @@ HTTPS のいう "Secure" はあくまで「_通信の安全_」であり、だ�
 
 赤くなる前提でいうとだいたいこういう感じだ。
 
-![先頭に赤で Not Secure を追加した HTTPS の URL バー](http-full-red-notsecure.svg)
+![先頭に赤で Not Secure を追加した HTTPS の URL バー](http-full-red-notsecure.svg#380x37)
 
-![先頭に黒でロックアイコンを追加した HTTPS の URL バー](https-full-gray.svg)
+![先頭に黒でロックアイコンを追加した HTTPS の URL バー](https-full-gray.svg#380x37)
 
 
 ## Removing EV Badge
@@ -140,9 +140,9 @@ PoC として有名なのは、 "Identity Verified" という会社を作って 
 
 結果 HTTPS であるかどうかが重要になり、アイコンをクリックしたりしない限り EV の特別扱いはなくなった。
 
-![先頭に赤で Not Secure を追加した HTTPS の URL バー](http-full-red-notsecure.svg)
+![先頭に赤で Not Secure を追加した HTTPS の URL バー](http-full-red-notsecure.svg#380x37)
 
-![先頭に黒でロックアイコンを追加した HTTPS の URL バー](https-full-gray.svg)
+![先頭に黒でロックアイコンを追加した HTTPS の URL バー](https-full-gray.svg#380x37)
 
 
 ## eTLD+1 のみの表示
@@ -161,9 +161,9 @@ PoC として有名なのは、 "Identity Verified" という会社を作って 
 - Chromium Blog: Helping people spot the spoofs: a URL experiment(2020/08: M86)
   - https://blog.chromium.org/2020/08/helping-people-spot-spoofs-url.html
 
-![先頭に赤で Not Secure と追加したドメインのみ表示する URL バー](http-domain-red-notsecure.svg)
+![先頭に赤で Not Secure と追加したドメインのみ表示する URL バー](http-domain-red-notsecure.svg#380x37)
 
-![先頭に黒でロックアイコンを追加したドメインのみ表示する URL バー](https-domain-gray-lock.svg)
+![先頭に黒でロックアイコンを追加したドメインのみ表示する URL バー](https-domain-gray-lock.svg#380x37)
 
 
 ## Lock Icon
@@ -188,9 +188,9 @@ HTTPS は、緑ではないにせよ Lock Icon 自体は表示されていた。
 
 他のブラウザがどうするのかは、発表を見てないように思う。 Chrome と同じ Tune アイコンではないだろうということで、擬似的に中立的なハンバーガーメニューで図を作っておく。
 
-![先頭に赤で Not Secure と追加したドメインのみ表示する URL バー](http-domain-red-notsecure.svg)
+![先頭に赤で Not Secure と追加したドメインのみ表示する URL バー](http-domain-red-notsecure.svg#380x37)
 
-![先頭に黒でメニューアイコンを追加したドメインのみ表示する URL バー](https-domain-gray.svg)
+![先頭に黒でメニューアイコンを追加したドメインのみ表示する URL バー](https-domain-gray.svg#380x37)
 
 
 ## Outro
