@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AbortSignal.any DEMO | labs.jxck.io</title>
+
+<h1>AbortSignal.any DEMO</h1>
+
+<ul>
+  <li>fetch responses in 3 sec</li>
+  <li>timeout will abort in 1 sec</li>
+  <li>click button will cancle</li>
+</ul>
+
+<p>see the console</p>
+
+<pre>
+$ open -a Google\ Chrome\ Beta --args --enable-blink-features=AbortSignalAny
+</pre>
+
+<button>Cancle</button>
+
+<script>
+  "use strict"
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  const timeoutSignal = AbortSignal.timeout(1000)
+
+  document.on("DOMContentLoaded", async (e) => {
+    console.log(e)
+
+    const controller = new AbortController()
+    const cancelSignal = controller.signal
+    $("button").on("click", (e) => {
+      e.preventDefault()
+      controller.abort()
+    })
+
+    const signal = AbortSignal.any([timeoutSignal, cancelSignal])
+
+    try {
+      const res = await fetch("https://api.jxck.io/sleep?3", { signal })
+      const json = await res.json()
+      console.log(json)
+    } catch (err) {
+      if (err.name === "AbortError") {
+        console.error(err.name, {err})
+      } else {
+        console.error(err.name, {err})
+      }
+    }
+  })
+</script>
