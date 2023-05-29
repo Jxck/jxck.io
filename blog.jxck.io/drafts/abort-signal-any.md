@@ -1,10 +1,12 @@
-# [wintercg][abortsignal][promise] イベントハンドラのメモリリークと AbortSignal.any()
+# [wintercg][abortsignal][promise] AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal
 
 ## Intro
 
-最近 `AbortSignal.any()` が定義され、急速に実装が進んでいる。
+最近 `AbortSignal.any()` が提案され、急速に実装が進んでいる。
 
-出自が WinterCG であることもあり、気になっていたのでモチベーションと設計を中心にまとめる。
+すでに定義されている `AbortSignal.timeout()` や `addEventListener` への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてきた。
+
+これら API のモチベーションと設計を中心にまとめる。
 
 
 ## Abort 後のリソース処理
@@ -139,8 +141,8 @@ const controller = new AbortController()
 const signal = controller.signal
 
 eventTarget.addEventListener("foo", (e) => {
-  // signal が abort したらこのハンドラは削除される
-}, { signal } )
+    // signal が abort したらこのハンドラは削除される
+}, { signal })
 ```
 
 この提案は有用と認められ、 Node で試しながら DOM にバックポートされた。
@@ -394,11 +396,16 @@ function main() {
 ```
 
 
+## 例外処理
+
+本来は `AbortSignal.Timeout()` は `AbortError` ではなく `TimeoutError` になることを踏まえた、例外処理周りの話もしようと思ったが、 Chrome と Safari が仕様に反して `AbortError` を上げるバグを見つけ、 wpt も整備されてなかったようなので、それについては今回割愛する。
+
+
 ## Outro
 
-AbortSignal 周りはかなり様々な API が急速に追加されている。一方で、まだユーザランドではノウハウの共有が進んでないようにも思う。
+AbortSignal 周りはかなり様々な API が急速に整備されつつある。一方で、まだユーザランドではノウハウの共有が進んでないようにも思う。
 
-こうした API をうまく使うことで、 Abort 処理の実装がかなり楽になると思うので、うまく取り入れていけると良いだろう。
+メモリーリークしない適切な実装のためにも、こうした API をうまく取り入れていけると良いだろう。
 
 
 ## DEMO
