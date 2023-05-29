@@ -40,11 +40,12 @@ $ open -a Google\ Chrome\ Beta --args --enable-blink-features=AbortSignalAny
     const signal = AbortSignal.any([timeoutSignal, cancelSignal])
 
     try {
-      const res = await fetch("https://api.jxck.io/sleep?3", { signal })
+      const res = await fetch("https://api.jxck.io/sleep?3", { signal: timeoutSignal })
       const json = await res.json()
       console.log(json)
     } catch (err) {
       if (err.name === "AbortError") {
+        console.log({timeoutSignal})
         console.error(err.name, {err})
       } else {
         console.error(err.name, {err})

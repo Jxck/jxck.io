@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AbortSignal.any DEMO | labs.jxck.io</title>
+
+<h1>AbortSignal.any DEMO</h1>
+
+<ul>
+  <li>fetch responses in 3 sec</li>
+  <li>timeout will abort in 1 sec</li>
+</ul>
+
+<p>see the console</p>
+
+<script>
+  "use strict"
+  document.addEventListener("DOMContentLoaded", async (e) => {
+    const timeoutSignal = AbortSignal.timeout(1000)
+    try {
+      const res = await fetch("https://api.jxck.io/sleep?3", { signal: timeoutSignal })
+      const json = await res.json()
+      console.log(json)
+    } catch (err) {
+      console.log({ err })
+    }
+  })
+</script>
