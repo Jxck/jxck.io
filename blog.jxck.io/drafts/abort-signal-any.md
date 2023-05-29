@@ -1,4 +1,4 @@
-# [wintercg][abortsignal][promise] AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal
+# [timeout][abortsignal][promise] AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal
 
 ## Intro
 
@@ -9,7 +9,7 @@
 これら API のモチベーションと設計を中心にまとめる。
 
 
-## Abort 後のリソース処理
+## Abort 後のリソース解放
 
 AbortSignal によって、非同期処理のキャンセルが可能になった。例として、 Server 上での Fetch のタイムアウトの例を考えよう。
 
@@ -32,7 +32,7 @@ app.get("/entries", (req, res) => {
 })
 ```
 
-ここで `perRequestController` はあくまで Request のハンドラに閉じているため、 Reponse を返したら全て消える。
+ここで `perRequestController` はあくまで Request のハンドラに閉じているため、 Response を返したら全て消える。
 
 次に、この Server プロセスが `SIGINT` 時に、連動して実行中の Fetch を止めたい場合を考えてみよう。
 
@@ -71,7 +71,7 @@ app.get("/entries", (req, res) => {
 
 Request の処理が終わっても `rootController` のハンドラはクリーンアップされないため、このコードでは Request ごとにハンドラを付与し続けることになる。そこに `perRequestController` の参照も残り続けるため、メモリーリークすることになる。
 
-`rootController.once()` にしても `SIGINT` が発火しない限り残るので意味はない。正しくは Response が正常に返された後に `rootController` (と、本来なら `setTimeout`) のハンドラを削除してやる必要がある。
+`rootController.once()` にしても `SIGINT` が発火しない限り残るので意味はない。正しくは Response が正常に返された後に `rootController` (と、本来なら `setTimeout`) のハンドラを削除する必要がある。
 
 ところが、このミスは非常に多く発生し、特に `AbortSignal` を連携する場面では、親が子の参照を保持することによるメモリーリークは珍しいことではないようだ。
 
@@ -238,7 +238,7 @@ app.get("/entries", (req, res) => {
 })
 ```
 
-さて、これを踏まえて先ほどの `SIGINT` を連携を見てみよう。
+さて、これを踏まえて先ほどの `SIGINT` との連携を見てみよう。
 
 ```js
 // SIGINT と連動
@@ -247,7 +247,7 @@ rootController.on("abort", () => {
 })
 ```
 
-直接 `timeoutSignal` を作っているため `perRequestController` 相当がなくなっている。これでは、 SIGINT とタイムアウトが連携できない。
+直接 `timeoutSignal` を作っているため `perRequestController` 相当がなくなっている。これでは、 `SIGINT` とタイムアウトが連携できない。
 
 実は、この `AbortSignal.timeout()` の策定の時点で、前述の「Signal の連結」を行う API の構想が進みつつあったのだ。
 
@@ -347,12 +347,12 @@ Firefox は Positive だが実装はまだのようだ。
 
 今回紹介しただけでも、かなり重要な API がいくつか追加されていることがわかる。
 
-あと、今回は解説しなかったが `AbortSignal.prototype.thorwIfAborted()` もある。
+あと、今回は解説しなかったが `AbortSignal.prototype.throwIfAborted()` もある。
 
 - `AbortSignal` in `addEventListener`
 - `AbortSignal.timeout()`
 - `AbortSignal.prototype.any()`
-- `AbortSignal.prototype.thorwIfAborted()`
+- `AbortSignal.prototype.throwIfAborted()`
 
 まず基本的な使い方として、 Signal を安全に連結する方法が手に入ったため、 `AbortSignal.timeout()` のように、`AbortSignal` を返す API を実装するのは、非常に理にかなったものになる。例えば、先ほどの SIGINT の処理を、以下のように提供するイメージだ。
 
@@ -403,7 +403,7 @@ function main() {
 
 ## Outro
 
-AbortSignal 周りはかなり様々な API が急速に整備されつつある。一方で、まだユーザランドではノウハウの共有が進んでないようにも思う。
+AbortSignal 周りはかなり様々な API が急速に整備されつつある。一方で、まだユーザランドではノウハウの共有が進んでいないようにも思う。
 
 メモリーリークしない適切な実装のためにも、こうした API をうまく取り入れていけると良いだろう。
 
