@@ -412,7 +412,10 @@ AbortSignal 周りはかなり様々な API が急速に整備されつつある
 
 動作するデモを以下に用意した。
 
-- https://labs.jxck.io/
+- AbortSignal.any DEMO | labs.jxck.io
+  - https://labs.jxck.io/promise/abortsignal-timeout/
+- AbortSignal.timeout DEMO | labs.jxck.io
+  - https://labs.jxck.io/promise/abortsignal-timeout/
 
 
 ## Resources
