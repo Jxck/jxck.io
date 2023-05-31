@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-06-01/abort-signal-any.html>
+
+  <link rel=preload as=script href=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>
+  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?220425_163515>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/ga.js?210325_165821>
+
+  <script defer src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+  <script defer src=https://www.google-analytics.com/analytics.js></script>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?220425_163515></script>
+  <script defer src=https://www.jxck.io/assets/js/ga.js?210325_165821></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="最近 AbortSignal.any() が提案され、急速に実装が進んでいる。すでに定義されている AbortSignal.timeout() や addEventListener への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてき...">
+  <meta name=keywords            content="timeout,abortsignal,promise">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-06-01/abort-signal-any.html>
+  <meta property=og:title        content="AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="最近 AbortSignal.any() が提案され、急速に実装が進んでいる。すでに定義されている AbortSignal.timeout() や addEventListener への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてき...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-06-01T08:00:00+08:00",
+    "dateModified": "2023-06-01T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "最近 AbortSignal.any() が提案され、急速に実装が進んでいる。すでに定義されている AbortSignal.timeout() や addEventListener への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてき..."
+  }
+  </script>
+
+  <title>AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220306_111358>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154131   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-06-01>2023-06-01</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-06-01>2023-06-01</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#timeout">timeout</a>
+              <li><a href="/tags#abortsignal">abortsignal</a>
+              <li><a href="/tags#promise">promise</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#abort-後のリソース解放">Abort 後のリソース解放</a>
+                <li><a href="#abortcontroller.prototype.followsignal">AbortController.prototype.follow(signal)</a>
+                <li><a href="#abortsignal-in-addeventlistener">AbortSignal in addEventListener</a>
+                <li><a href="#abortsignal.timeout">AbortSignal.timeout()</a>
+                <li><a href="#abortsignal.prototype.any">AbortSignal.prototype.any()</a>
+                <li><a href="#status">Status</a>
+                <li><a href="#abort-handling-practice">Abort Handling Practice</a>
+                <li><a href="#例外処理">例外処理</a>
+                <li><a href="#outro">Outro</a>
+                <li><a href="#demo">DEMO</a>
+                <li><a href="#resources">Resources</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>最近 <code translate=no>AbortSignal.any()</code> が提案され、急速に実装が進んでいる。
+        <p>すでに定義されている <code translate=no>AbortSignal.timeout()</code> や <code translate=no>addEventListener</code> への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてきた。
+        <p>これら API のモチベーションと設計を中心にまとめる。
+      </section>
+      <section>
+        <h2 id="abort-後のリソース解放"><a href="#abort-後のリソース解放">Abort 後のリソース解放</a></h2>
+        <p>AbortSignal によって、非同期処理のキャンセルが可能になった。例として、 Server 上での Fetch のタイムアウトの例を考えよう。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=js data-code=js><code translate=no class=language-js>app.get(&quot;/entries&quot;, (req, res) =&gt; {
+  const perRequestController = new AbortController()
+  const perRequestSignal = perRequestController.signal
+
+  // 1s でタイムアウト
+  const timeoutId= setTimeout(() =&gt; {
+    perRequestController.abort()
+  }, 1000)
+
+  const entries = await fetch(&quot;https://api.example/entries&quot;, { signal: perRequestSignal })
+  clearTimeout(timeoutId)
+
+  /* ~~~~~ */
+
+  res.send(/*response*/)
+})</code></pre>
+        <p>ここで <code translate=no>perRequestController</code> はあくまで Request のハンドラに閉じているため、 Response を返したら全て消える。
+        <p>次に、この Server プロセスが <code translate=no>SIGINT</code> 時に、連動して実行中の Fetch を止めたい場合を考えてみよう。
+        <pre class=js data-code=js><code translate=no class=language-js>const rootController = new AbortController()
+const rootSignal = rootController.signal
+
+process.on(&quot;SIGINT&quot;, () =&gt; {
+  rootController.abort()
+})
+
+
+app.get(&quot;/entries&quot;, (req, res) =&gt; {
+  const perRequestController = new AbortController()
+  const perRequestSignal = perRequestController.signal
+
+  // 1s でタイムアウト
+  const timeoutId = setTimeout(() =&gt; {
+    perRequestController.abort()
+  }, 1000)
+
+  // SIGINT と連動
+  rootController.on(&quot;abort&quot;, () =&gt; {
+    perRequestController.abort()
+  })
+
+  const entries = await fetch(&quot;https://api.example/entries&quot;, { signal: perRequestSignal })
+  clearTimeout(timeoutId)
+
+  /* ~~~~~ */
+  res.send(/*response*/)
+})</code></pre>
+        <p>さて、この実装には問題がある。
+        <p>Request の処理が終わっても <code translate=no>rootController</code> のハンドラはクリーンアップされないため、このコードでは Request ごとにハンドラを付与し続けることになる。そこに <code translate=no>perRequestController</code> の参照も残り続けるため、メモリーリークすることになる。
+        <p><code translate=no>rootController.once()</code> にしても <code translate=no>SIGINT</code> が発火しない限り残るので意味はない。正しくは Response が正常に返された後に <code translate=no>rootController</code> (と、本来なら <code translate=no>setTimeout</code>) のハンドラを削除する必要がある。
+        <p>ところが、このミスは非常に多く発生し、特に <code translate=no>AbortSignal</code> を連携する場面では、親が子の参照を保持することによるメモリーリークは珍しいことではないようだ。
+        <p>実際 Node も <code translate=no>timer</code> の中で発生しており、それを直すと同時に、こうしたバグを防ぐため <code translate=no>maxListeners</code> というスレッショルドを実装したいという Issue が MS の Benjamin によって立てられた。
+        <ul>
+          <li>
+            Warn on EventTarget maxListeners &gt; THRESHOLD · Issue #35990 · nodejs/node
+            <ul>
+              <li><a href="https://github.com/nodejs/node/issues/35990" target=_blank>https://github.com/nodejs/node/issues/35990</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="abortcontroller.prototype.followsignal"><a href="#abortcontroller.prototype.followsignal">AbortController.prototype.follow(signal)</a></h2>
+        <p>スレッショルドを実装したところで、根本の問題は解決しない。そこで、標準の API でこの問題を解決できる方法へと議論が発展した。
+        <ul>
+          <li>
+            Consider adding AbortController.prototype.follow(signal) · Issue #920 · whatwg/dom
+            <ul>
+              <li><a href="https://github.com/whatwg/dom/issues/920" target=_blank>https://github.com/whatwg/dom/issues/920</a>
+            </ul>
+          </li>
+        </ul>
+        <p>理想的には、 Abort を連携する際に以下のようなコードが使われれば、メモリーリークは防ぐことができるというものだ。
+        <p>Issue で提示されたコードを、先ほどのサンプルに合わせて書くと以下のようになる。
+        <pre class=js data-code=js><code translate=no class=language-js>function follow(perRequestController, rootSignal) {
+  // 1. 子がすでに Abort してたらリターン
+  if (perRequestController.signal.aborted) {
+    return
+  }
+
+  // 2. 親がすでに Abort していたら子を Abort してリターン
+  if (rootSignal.aborted) {
+    perRequestController.abort()
+    return
+  }
+
+  // 3. 親と子の連携
+  // 3.1. remove 用にハンドラの参照を残す
+  const onAbort = () =&gt; {
+    perRequestController.abort()
+  }
+
+  // 3.2. 親が Abort したら、子も Abort
+  // once にすることで、 Abort 時は自動でハンドラを削除
+  rootSignal.addEventListener(&quot;abort&quot;, onAbort, { once: true })
+
+  // 3.3. 子が Abort したら親からハンドラを削除
+  perRequestController.signal.addEventListener(&quot;abort&quot;, () =&gt; {
+    rootSignal.removeEventListener(&quot;abort&quot;, onAbort)
+  })
+}</code></pre>
+        <p>書いてみればそのままだが、徹底するのは難しいタイプのコードだ。 API として提供するのは一定の価値があるだろう。
+        <p>このころは、 <code translate=no>AbortController.prototype.follow(signal)</code> という名前がついていた。
+      </section>
+      <section>
+        <h2 id="abortsignal-in-addeventlistener"><a href="#abortsignal-in-addeventlistener">AbortSignal in addEventListener</a></h2>
+        <p>この議論と同じ頃、並行して <code translate=no>addEventListener</code> に <code translate=no>AbortSignal</code> を渡せるようにする提案が、同じく Benjamin から上がった。
+        <ul>
+          <li>
+            Support <code translate=no>AbortSignal</code>s in <code translate=no>addEventListener</code>s options to unsubscribe from events? · Issue #911 · whatwg/dom
+            <ul>
+              <li><a href="https://github.com/whatwg/dom/issues/911" target=_blank>https://github.com/whatwg/dom/issues/911</a>
+            </ul>
+          </li>
+        </ul>
+        <p>読んだ通り <code translate=no>AbortSignal</code> が <code translate=no>abort</code> したら、 EventListener を削除するという提案だ。
+        <pre class=js data-code=js><code translate=no class=language-js>const controller = new AbortController()
+const signal = controller.signal
+
+eventTarget.addEventListener(&quot;foo&quot;, (e) =&gt; {
+    // signal が abort したらこのハンドラは削除される
+}, { signal })</code></pre>
+        <p>この提案は有用と認められ、 Node で試しながら DOM にバックポートされた。
+        <ul>
+          <li>
+            add signal to addEventListener by benjamingr · Pull Request #919 · whatwg/dom
+            <ul>
+              <li><a href="https://github.com/whatwg/dom/pull/919" target=_blank>https://github.com/whatwg/dom/pull/919</a>
+            </ul>
+          </li>
+        </ul>
+        <p>結果、 EventEmitter でも EventTarget でも使える API になり、 Node および全メジャーブラウザで実装されている。
+        <p>これを使うと、先ほどの <code translate=no>follow</code> は以下のように書き直せる。
+        <pre class=js data-code=js><code translate=no class=language-js>function follow(perRequestController, rootSignal) {
+  // 1. 子がすでに Abort してたらリターン
+  if (perRequestController.signal.aborted) {
+    return
+  }
+
+  // 2. 親がすでに Abort していたら子を Abort してリターン
+  if (rootSignal.aborted) {
+    perRequestController.abort()
+    return
+  }
+
+  // 3. 親と子の連携
+  // 3.1. 親が Abort したら、子も Abort
+  rootSignal.addEventListener(&quot;abort&quot;, () =&gt; {
+    perRequestController.abort()
+  }, {
+    // once にすることで、 Abort 時は自動でハンドラを削除
+    once: true
+    // 子が Abort したら親からハンドラを削除
+    signal: perRequestController.signal
+  })
+}</code></pre>
+        <p>さて、これで良さそうだが、これも実は問題を半分しか解決してない。
+        <p>このコードでは、親か子のどちらかが Abort する場合はクリーンアップできるが、全てがうまくいってしまった場合(最初の例で言えば、 Timeout も SIGINT もない場合)はクリーンアップされない。
+        <p>正常処理時のクリーンアップは、 Signal だけをみても不可能なので、結局ユーザランドで気をつけて実装するしかない。もし <code translate=no>follow()</code> 側でやるなら、 <code translate=no>rootSignal.addEventListener()</code> が Weak な参照を持つでもない限り不可能なのだ。
+        <p>そこで、「本当に必要なものは何か」を整理した結果、ユーザランドでは難しい「Signal の連結」を行う API の必要性が浮き彫りになった。
+        <p>しかし、このあたりで一旦議論が止まり、並行して別の議論が進むことになる。
+      </section>
+      <section>
+        <h2 id="abortsignal.timeout"><a href="#abortsignal.timeout">AbortSignal.timeout()</a></h2>
+        <p>ところで、ずっと気になっているであろうタイムアウトの処理の方をもう少し見てみよう。
+        <pre class=js data-code=js><code translate=no class=language-js>app.get(&quot;/entries&quot;, (req, res) =&gt; {
+  const perRequestController = new AbortController()
+  const perRequestSignal = perRequestController.signal
+
+  // 1s でタイムアウト
+  const timeoutId = setTimeout(() =&gt; {
+    perRequestController.abort()
+  }, 1000)
+
+  const entries = await fetch(&quot;https://api.example/entries&quot;, { signal: perRequestSignal })
+  clearTimeout(timeoutId)
+
+  /* ~~~~~ */
+
+  res.send(/*response*/)
+})</code></pre>
+        <p>この <code translate=no>fetch()</code> のタイムアウト、かなり頻出処理でありながら、毎回書くのは非常に面倒だ。本来なら <code translate=no>fetch(url, {timeout: 1000})</code> などと書きたいところで、そのような要望は定期的にあった。
+        <p>しかし、 <code translate=no>fetch()</code> だけタイムアウトできても汎用的にはならないため(というか、それもあって <code translate=no>fetch()</code> 策定中に <code translate=no>AbortSignal</code> が生まれた)、より汎用的なのはタイムアウト用の <code translate=no>AbortSignal</code> を生成することだ。
+        <p>そこで提案されたのが <code translate=no>AbortSignal.timeout()</code> だ。
+        <ul>
+          <li>
+            Introduce AbortSignal.timeout() by domenic · Pull Request #1032 · whatwg/dom
+            <ul>
+              <li><a href="https://github.com/whatwg/dom/pull/1032" target=_blank>https://github.com/whatwg/dom/pull/1032</a>
+            </ul>
+          </li>
+        </ul>
+        <p>これを使うと、以下のようにかなりすっきり実装できる。
+        <pre class=js data-code=js><code translate=no class=language-js>app.get(&quot;/entries&quot;, (req, res) =&gt; {
+  // 1s でタイムアウト
+  const timeoutSignal = AbortSignal.timeout(1000)
+
+  const entries = await fetch(&quot;https://api.example/entries&quot;, { signal: timeoutSignal })
+
+  /* ~~~~~ */
+
+  res.send(/*response*/)
+})</code></pre>
+        <p>さて、これを踏まえて先ほどの <code translate=no>SIGINT</code> との連携を見てみよう。
+        <pre class=js data-code=js><code translate=no class=language-js>// SIGINT と連動
+rootController.on(&quot;abort&quot;, () =&gt; {
+  perRequestController.abort()
+})</code></pre>
+        <p>直接 <code translate=no>timeoutSignal</code> を作っているため <code translate=no>perRequestController</code> 相当がなくなっている。これでは、 <code translate=no>SIGINT</code> とタイムアウトが連携できない。
+        <p>実は、この <code translate=no>AbortSignal.timeout()</code> の策定の時点で、前述の「Signal の連結」を行う API の構想が進みつつあったのだ。
+      </section>
+      <section>
+        <h2 id="abortsignal.prototype.any"><a href="#abortsignal.prototype.any">AbortSignal.prototype.any()</a></h2>
+        <p>結局必要なのは、「Signal の連結」を行う API だったが、その API をどうデザインするかの段階で多少議論が止まっていた。
+        <p>それが今年になって急速に進み、提案されたのが <code translate=no>AbortSignal.any()</code> だ。
+        <ul>
+          <li>
+            abort-signal-any/README.md at main · shaseley/abort-signal-any · GitHub
+            <ul>
+              <li><a href="https://github.com/shaseley/abort-signal-any/blob/main/README.md" target=_blank>https://github.com/shaseley/abort-signal-any/blob/main/README.md</a>
+            </ul>
+          </li>
+        </ul>
+        <p>これは、 Signal の配列を渡すと、連結された Signal が返る API であるため、先のサンプルは以下のように書き換えられる。
+        <pre class=js data-code=js><code translate=no class=language-js>const rootController = new AbortController()
+const rootSignal = rootController.signal
+
+process.on(&quot;SIGINT&quot;, () =&gt; {
+  rootController.abort()
+})
+
+
+app.get(&quot;/entries&quot;, (req, res) =&gt; {
+  const perRequestController = new AbortController()
+  const perRequestSignal = perRequestController.signal
+
+  // 1s でタイムアウト
+  setTimeout(() =&gt; {
+    perRequestController.abort()
+  }, 1000)
+
+  // SIGINT と連結した Signal を生成
+  const combinedSignal = AbortSignal.any([rootSignal, perRequestSignal])
+
+  const entries = await fetch(&quot;https://api.example/entries&quot;, { signal: combinedSignal })
+
+  /* ~~~~~ */
+
+  res.send(/*response*/)
+})</code></pre>
+        <p><code translate=no>combinedSignal</code> は、<code translate=no>SIGINT</code> とタイムアウトどちらが発生しても <code translate=no>fetch()</code> を Abort できる。
+        <p>しかし、 Request のハンドラから <code translate=no>rootController</code> の参照が消え、ハンドラのクリーンアップについて気にする必要がなくなった。
+        <p>そして、これを <code translate=no>AbortSignal.timeout()</code> にするとこうなる。
+        <pre class=js data-code=js><code translate=no class=language-js>const rootController = new AbortController()
+const rootSignal = rootController.signal
+
+process.on(&quot;SIGINT&quot;, () =&gt; {
+  rootController.abort()
+})
+
+
+app.get(&quot;/entries&quot;, (req, res) =&gt; {
+  // 1s でタイムアウト
+  const timeoutSignal = AbortSignal.timeout(1000)
+
+  // SIGINT と連結した Signal を生成
+  const combinedSignal = AbortSignal.any([rootSignal, timeoutSignal])
+
+  const entries = await fetch(&quot;https://api.example/entries&quot;, { signal: combinedSignal })
+
+  /* ~~~~~ */
+
+  res.send(/*response*/)
+})</code></pre>
+        <p><code translate=no>perRequestController</code> も消えていることがわかる。
+      </section>
+      <section>
+        <h2 id="status"><a href="#status">Status</a></h2>
+        <p>Chrome は M116 で Ship のアナウンスが出ている。
+        <ul>
+          <li>
+            Intent to Ship: AbortSignal.any()
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/-tY85-WOCD8/m/QaG6qaVSBgAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/-tY85-WOCD8/m/QaG6qaVSBgAJ</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Safari も実装済。
+        <ul>
+          <li>
+            256176 - Implement AbortSignal.any()
+            <ul>
+              <li><a href="https://bugs.webkit.org/show_bug.cgi?id=256176" target=_blank>https://bugs.webkit.org/show_bug.cgi?id=256176</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Firefox は Positive だが実装はまだのようだ。
+        <ul>
+          <li>
+            Request for Mozilla Position: AbortSignal.any() · Issue #774 · mozilla/standards-positions
+            <ul>
+              <li><a href="https://github.com/mozilla/standards-positions/issues/774" target=_blank>https://github.com/mozilla/standards-positions/issues/774</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="abort-handling-practice"><a href="#abort-handling-practice">Abort Handling Practice</a></h2>
+        <p>今回紹介しただけでも、かなり重要な API がいくつか追加されていることがわかる。
+        <p>あと、今回は解説しなかったが <code translate=no>AbortSignal.prototype.throwIfAborted()</code> もある。
+        <ul>
+          <li><code translate=no>AbortSignal</code> in <code translate=no>addEventListener</code>
+          <li><code translate=no>AbortSignal.timeout()</code>
+          <li><code translate=no>AbortSignal.prototype.any()</code>
+          <li><code translate=no>AbortSignal.prototype.throwIfAborted()</code>
+        </ul>
+        <p>まず基本的な使い方として、 Signal を安全に連結する方法が手に入ったため、 <code translate=no>AbortSignal.timeout()</code> のように、<code translate=no>AbortSignal</code> を返す API を実装するのは、非常に理にかなったものになる。例えば、先ほどの SIGINT の処理を、以下のように提供するイメージだ。
+        <pre class=js data-code=js><code translate=no class=language-js>async function processSIGINT() {
+  const controller = new AbortController()
+  const signal = controller.signal
+
+  process.once(&quot;SIGINT&quot;, () =&gt; {
+    controller.abort()
+  }, { signal })
+
+  return signal
+}</code></pre>
+        <p>また、フロントエンドで「タイムアウトかユーザのキャンセル操作で止めたい」といった場面は、以下のような書き方ができる。
+        <pre class=js data-code=js><code translate=no class=language-js>async function cancelSignal($button, msec) {
+  const timoutSignal = AbortSignal.timeout(msec)
+
+  const controller = new AbortController()
+  const userSignal = controller.signal
+
+  // タイムアウトかボタンクリックでキャンセル
+  const conbinedSignal = AbortSignal.any([timoutSignal, userSignal])
+
+  $button.addEventListener(&quot;click&quot;, () =&gt; {
+    controller.abort()
+  }, { signal: conbinedSignal }) // どっちでもリスナーを消す
+}
+
+function main() {
+  const $button = $(&quot;.button&quot;)
+  const signal = cancelSignal($button, 1000)
+
+  const res = await fetch(url, { signal })
+  // ...
+}</code></pre>
+      </section>
+      <section>
+        <h2 id="例外処理"><a href="#例外処理">例外処理</a></h2>
+        <p>本来は <code translate=no>AbortSignal.Timeout()</code> は <code translate=no>AbortError</code> ではなく <code translate=no>TimeoutError</code> になることを踏まえた、 <code translate=no>fetch()</code> 中断時の例外処理周りの話もしようと思ったが、 Chrome と Safari が仕様に反して <code translate=no>AbortError</code> を上げるバグがあるため、それについては今回割愛する。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>AbortSignal 周りはかなり様々な API が急速に整備されつつある。一方で、まだユーザランドではノウハウの共有が進んでいないようにも思う。
+        <p>メモリーリークしない適切な実装のためにも、こうした API をうまく取り入れていけると良いだろう。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作するデモを以下に用意した。
+        <ul>
+          <li>
+            AbortSignal.any DEMO | labs.jxck.io
+            <ul>
+              <li><a href="https://labs.jxck.io/promise/abortsignal-timeout/" target=_blank>https://labs.jxck.io/promise/abortsignal-timeout/</a>
+            </ul>
+          </li>
+          <li>
+            AbortSignal.timeout DEMO | labs.jxck.io
+            <ul>
+              <li><a href="https://labs.jxck.io/promise/abortsignal-timeout/" target=_blank>https://labs.jxck.io/promise/abortsignal-timeout/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                DOM Standard
+                <ul>
+                  <li><a href="https://dom.spec.whatwg.org/#dom-abortsignal-any" target=_blank>https://dom.spec.whatwg.org/#dom-abortsignal-any</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                abort-signal-any/README.md at main · shaseley/abort-signal-any · GitHub
+                <ul>
+                  <li><a href="https://github.com/shaseley/abort-signal-any/blob/main/README.md" target=_blank>https://github.com/shaseley/abort-signal-any/blob/main/README.md</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Requirements Doc
+            <ul>
+              <li>
+                AbortSignal.any() - Chrome Platform Status
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/5202879349522432" target=_blank>https://chromestatus.com/feature/5202879349522432</a>
+                </ul>
+              </li>
+              <li>
+                Design review: AbortSignal.any() · Issue #737 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/737" target=_blank>https://github.com/w3ctag/design-reviews/issues/737</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Mozilla Standard Position
+            <ul>
+              <li>
+                Request for Mozilla Position: AbortSignal.any() · Issue #774 · mozilla/standards-positions
+                <ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/774" target=_blank>https://github.com/mozilla/standards-positions/issues/774</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Webkit Position
+            <ul>
+              <li>
+                AbortSignal.any() · Issue #166 · WebKit/standards-positions
+                <ul>
+                  <li><a href="https://github.com/WebKit/standards-positions/issues/166" target=_blank>https://github.com/WebKit/standards-positions/issues/166</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TAG Design Review
+            <ul>
+              <li>
+                Design review: AbortSignal.any() · Issue #737 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/737" target=_blank>https://github.com/w3ctag/design-reviews/issues/737</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Ship: AbortSignal.any()
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/-tY85-WOCD8/m/QaG6qaVSBgAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/-tY85-WOCD8/m/QaG6qaVSBgAJ</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Prototype: AbortSignal.any()
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/FSH6hrJMaxM" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/FSH6hrJMaxM</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                AbortSignal.any() - Chrome Platform Status
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/5202879349522432" target=_blank>https://chromestatus.com/feature/5202879349522432</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>WPT (Web Platform Test)
+          <li>DEMO
+          <li>Blog
+          <li>Presentation
+          <li>
+            Issues
+            <ul>
+              <li>
+                1323391 - Implement AbortSignal.any()
+                <ul>
+                  <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1323391" target=_blank>https://bugs.chromium.org/p/chromium/issues/detail?id=1323391</a>
+                </ul>
+              </li>
+              <li>
+                Add AbortSignal.any() · whatwg/dom@6c02df2
+                <ul>
+                  <li><a href="https://github.com/whatwg/dom/commit/6c02df28ffe592dda901fd29a924906c648baa54" target=_blank>https://github.com/whatwg/dom/commit/6c02df28ffe592dda901fd29a924906c648baa54</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Other
+            <ul>
+              <li>
+                once() and on() async utilities for EventTarget · Issue #1038 · whatwg/dom
+                <ul>
+                  <li><a href="https://github.com/whatwg/dom/issues/1038" target=_blank>https://github.com/whatwg/dom/issues/1038</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!--<ins class=adsbygoogle data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-2902784829138215 data-ad-slot=9735419796></ins>-->
+  </footer>
+
+</body>
+</html>
