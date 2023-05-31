@@ -663,7 +663,12 @@ async function parse_episode(entry, order) {
  * @param {BuildOption} params
  */
 async function blog(files, params = { preview: false }) {
-  const entries = await Promise.all(files.map((file) => parse_entry(file)).reverse())
+  const entries = await Promise.all(
+    files
+      .sort()
+      .reverse()
+      .map((file) => parse_entry(file))
+  )
 
   // build entries
   const entry_template_file = `./template/blog.html.ejs`
