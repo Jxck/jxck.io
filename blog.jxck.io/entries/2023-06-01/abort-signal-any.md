@@ -1,10 +1,10 @@
-# [timeout][abortsignal][promise] AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal
+# [timeout][abortsignal][promise] AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener() の Signal
 
 ## Intro
 
 最近 `AbortSignal.any()` が提案され、急速に実装が進んでいる。
 
-すでに定義されている `AbortSignal.timeout()` や `addEventListener` への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてきた。
+すでに定義されている `AbortSignal.timeout()` や `addEventListener()` への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてきた。
 
 これら API のモチベーションと設計を中心にまとめる。
 
@@ -252,7 +252,7 @@ rootController.on("abort", () => {
 実は、この `AbortSignal.timeout()` の策定の時点で、前述の「Signal の連結」を行う API の構想が進みつつあったのだ。
 
 
-## AbortSignal.prototype.any()
+## AbortSginal.any()
 
 結局必要なのは、「Signal の連結」を行う API だったが、その API をどうデザインするかの段階で多少議論が止まっていた。
 
@@ -347,12 +347,12 @@ Firefox は Positive だが実装はまだのようだ。
 
 今回紹介しただけでも、かなり重要な API がいくつか追加されていることがわかる。
 
-あと、今回は解説しなかったが `AbortSignal.prototype.throwIfAborted()` もある。
+あと、今回は解説しなかったが `AbortSignal.throwIfAborted()` もある。
 
 - `AbortSignal` in `addEventListener`
 - `AbortSignal.timeout()`
-- `AbortSignal.prototype.any()`
-- `AbortSignal.prototype.throwIfAborted()`
+- `AbortSginal.any()`
+- `AbortSignal.throwIfAborted()`
 
 まず基本的な使い方として、 Signal を安全に連結する方法が手に入ったため、 `AbortSignal.timeout()` のように、`AbortSignal` を返す API を実装するのは、非常に理にかなったものになる。例えば、先ほどの SIGINT の処理を、以下のように提供するイメージだ。
 
