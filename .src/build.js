@@ -3,7 +3,7 @@ import { readFileSync, statSync } from "fs"
 import { promisify } from "util"
 import { render } from "ejs"
 import { exec } from "child_process"
-import glob from "glob"
+import { glob } from "glob"
 import {
   encode,
   decode,
@@ -885,8 +885,8 @@ async function workbox() {
 async function main(arg) {
   if (arg === `build`) {
     const [entries, episodes] = await Promise.all([
-      promisify(glob)(`../blog.jxck.io/entries/**/*.md`),
-      promisify(glob)(`../mozaic.fm/episodes/**/*.md`),
+      glob(`../blog.jxck.io/entries/**/*.md`),
+      glob(`../mozaic.fm/episodes/**/*.md`),
     ])
     return await Promise.all([
       blog(entries),
@@ -897,11 +897,11 @@ async function main(arg) {
 
   if (arg === `preview`) {
     // const entries = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
-    const entries = await promisify(glob)(`../blog.jxck.io/entries/**/*.md`)
+    const entries = await glob(`../blog.jxck.io/entries/**/*.md`)
     await blog([entries.pop()], { preview: true })
 
     // const episodes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
-    const episodes = await promisify(glob)(`../mozaic.fm/episodes/**/*.md`)
+    const episodes = await glob(`../mozaic.fm/episodes/**/*.md`)
     return await podcast([episodes.pop()], { preview: true })
   }
 
