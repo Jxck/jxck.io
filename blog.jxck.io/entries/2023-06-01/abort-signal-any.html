@@ -50,15 +50,15 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="最近 AbortSignal.any() が提案され、急速に実装が進んでいる。すでに定義されている AbortSignal.timeout() や addEventListener への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてき...">
+  <meta name=description         content="最近 AbortSignal.any() が提案され、急速に実装が進んでいる。すでに定義されている AbortSignal.timeout() や addEventListener() への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備され...">
   <meta name=keywords            content="timeout,abortsignal,promise">
   <meta name=theme-color         content=#000000>
 
   <meta property=og:type         content=article>
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-06-01/abort-signal-any.html>
-  <meta property=og:title        content="AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal | blog.jxck.io">
+  <meta property=og:title        content="AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener() の Signal | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="最近 AbortSignal.any() が提案され、急速に実装が進んでいる。すでに定義されている AbortSignal.timeout() や addEventListener への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてき...">
+  <meta property=og:description  content="最近 AbortSignal.any() が提案され、急速に実装が進んでいる。すでに定義されている AbortSignal.timeout() や addEventListener() への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備され...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -73,7 +73,7 @@
       "@type":"WebPage",
       "@id":"https://blog.jxck.io"
     },
-    "headline": "AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal | blog.jxck.io",
+    "headline": "AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener() の Signal | blog.jxck.io",
     "image": [
       "https://www.jxck.io/assets/img/jxck.png",
       "https://logo.jxck.io/jxck.1200x1200.png"
@@ -95,11 +95,11 @@
         "width": 120
       }
     },
-    "description": "最近 AbortSignal.any() が提案され、急速に実装が進んでいる。すでに定義されている AbortSignal.timeout() や addEventListener への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてき..."
+    "description": "最近 AbortSignal.any() が提案され、急速に実装が進んでいる。すでに定義されている AbortSignal.timeout() や addEventListener() への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備され..."
   }
   </script>
 
-  <title>AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal | blog.jxck.io</title>
+  <title>AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener() の Signal | blog.jxck.io</title>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220306_111358>
 </head>
 <body>
@@ -148,7 +148,7 @@
                 <li><a href="#abortcontroller.prototype.followsignal">AbortController.prototype.follow(signal)</a>
                 <li><a href="#abortsignal-in-addeventlistener">AbortSignal in addEventListener</a>
                 <li><a href="#abortsignal.timeout">AbortSignal.timeout()</a>
-                <li><a href="#abortsignal.prototype.any">AbortSignal.prototype.any()</a>
+                <li><a href="#abortsginal.any">AbortSginal.any()</a>
                 <li><a href="#status">Status</a>
                 <li><a href="#abort-handling-practice">Abort Handling Practice</a>
                 <li><a href="#例外処理">例外処理</a>
@@ -164,11 +164,11 @@
 
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
     <article>
-      <h1><a href="">AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener の Signal</a></h1>
+      <h1><a href="">AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener() の Signal</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>最近 <code translate=no>AbortSignal.any()</code> が提案され、急速に実装が進んでいる。
-        <p>すでに定義されている <code translate=no>AbortSignal.timeout()</code> や <code translate=no>addEventListener</code> への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてきた。
+        <p>すでに定義されている <code translate=no>AbortSignal.timeout()</code> や <code translate=no>addEventListener()</code> への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてきた。
         <p>これら API のモチベーションと設計を中心にまとめる。
       </section>
       <section>
@@ -386,7 +386,7 @@ rootController.on(&quot;abort&quot;, () =&gt; {
         <p>実は、この <code translate=no>AbortSignal.timeout()</code> の策定の時点で、前述の「Signal の連結」を行う API の構想が進みつつあったのだ。
       </section>
       <section>
-        <h2 id="abortsignal.prototype.any"><a href="#abortsignal.prototype.any">AbortSignal.prototype.any()</a></h2>
+        <h2 id="abortsginal.any"><a href="#abortsginal.any">AbortSginal.any()</a></h2>
         <p>結局必要なのは、「Signal の連結」を行う API だったが、その API をどうデザインするかの段階で多少議論が止まっていた。
         <p>それが今年になって急速に進み、提案されたのが <code translate=no>AbortSignal.any()</code> だ。
         <ul>
@@ -483,12 +483,12 @@ app.get(&quot;/entries&quot;, (req, res) =&gt; {
       <section>
         <h2 id="abort-handling-practice"><a href="#abort-handling-practice">Abort Handling Practice</a></h2>
         <p>今回紹介しただけでも、かなり重要な API がいくつか追加されていることがわかる。
-        <p>あと、今回は解説しなかったが <code translate=no>AbortSignal.prototype.throwIfAborted()</code> もある。
+        <p>あと、今回は解説しなかったが <code translate=no>AbortSignal.throwIfAborted()</code> もある。
         <ul>
           <li><code translate=no>AbortSignal</code> in <code translate=no>addEventListener</code>
           <li><code translate=no>AbortSignal.timeout()</code>
-          <li><code translate=no>AbortSignal.prototype.any()</code>
-          <li><code translate=no>AbortSignal.prototype.throwIfAborted()</code>
+          <li><code translate=no>AbortSginal.any()</code>
+          <li><code translate=no>AbortSignal.throwIfAborted()</code>
         </ul>
         <p>まず基本的な使い方として、 Signal を安全に連結する方法が手に入ったため、 <code translate=no>AbortSignal.timeout()</code> のように、<code translate=no>AbortSignal</code> を返す API を実装するのは、非常に理にかなったものになる。例えば、先ほどの SIGINT の処理を、以下のように提供するイメージだ。
         <pre class=js data-code=js><code translate=no class=language-js>async function processSIGINT() {
