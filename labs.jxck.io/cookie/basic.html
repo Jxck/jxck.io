@@ -9,11 +9,11 @@
 
 <script>
 document.cookie = [
-  `client-plain=client`,
-  `Expires=${new Date(Date.now() + 3600000).toUTCString()}`, // 1 hour
+  `__Host-session-id=client`,
+  // `Expires=${new Date(Date.now() + 3600000).toUTCString()}`, // 1 hour
+  `Max-Age=${60*60*24}`,
+  `Path=/`,
   `Secure`,
-  // `HttpOnly`,
-  // `Max-Age=10`,
 ].join("; ")
 
 console.log(document.cookie)

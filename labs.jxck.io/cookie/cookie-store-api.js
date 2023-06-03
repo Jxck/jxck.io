@@ -3,8 +3,7 @@ const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-cookieStore.addEventListener("change", (e) => {
-  console.log(e.type, e)
+cookieStore.on("change", (e) => {
   for (const changed of e.changed) {
     console.log({ changed })
   }
@@ -14,13 +13,24 @@ cookieStore.addEventListener("change", (e) => {
 })
 
 document.on("DOMContentLoaded", async (e) => {
-  const name = "__Host-session_id"
-  const oneyearlater = Date.now() + 1000 * 60 * 60 * 24 * 365
-  const cookie = [`__Host-session_id=${btoa(Math.random())}`, `Path=/`, `expires=${new Date(oneyearlater).toGMTString()}`, `Secure`, `SameSite=Lax`].join("; ")
+  const cookies = await cookieStore.getAll()
+  console.log(cookies)
+  for await (const { name } of cookies) {
+    console.log({ name })
+    await cookieStore.delete(name)
+  }
 
-  console.log(cookie)
-  document.cookie = cookie
-  console.log(document.cookie)
+  const name = "__Host-session-id"
+  const oneyearlater = Date.now() + 1000 * 60 * 60 * 24 * 365
+  await cookieStore.set({
+    name,
+    value: btoa(Math.random()),
+    expires: oneyearlater,
+    path: "/",
+    sameSite: "lax",
+    secure: true,
+    domain: null,
+  })
 
   console.log(await cookieStore.get(name))
   // {
@@ -33,18 +43,4 @@ document.on("DOMContentLoaded", async (e) => {
   //   "domain": null,
   //   "partitioned": false,
   // }
-
-  await cookieStore.set({
-    name,
-    value: btoa(Math.random()),
-    expires: oneyearlater,
-    path: "/",
-    sameSite: "lax",
-    secure: true,
-    domain: null,
-  })
-
-  console.log(await cookieStore.get(name))
-
-  cookieStore.delete(name)
 })
