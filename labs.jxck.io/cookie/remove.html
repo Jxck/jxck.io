@@ -9,4 +9,9 @@
 
 <script>
   console.log(document.cookie)
+  const cookies = new Map(document.cookie.split(`;`).map((e) => e.trim().split("=")))
+  console.log(cookies)
+  for (const [k, v] of cookies.entries()) {
+    document.cookie=`${k}=${v}; Max-Age=0`
+  }
 </script>
