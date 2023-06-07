@@ -32,9 +32,25 @@ Coinhive 事件で起訴され、最高裁で無罪を勝ち取ったモロさ�
 - mozaic.fm で Coinhive に言及していた部分
   - ep32 Yearly Web 2017 | mozaic.fm
     - https://mozaic.fm/episodes/32/yearly-web-2017.html
-    - 49:17 ~ 1:01:10
+    - 49:17 ~
     - Ad を無くせるのではという期待があった話
   - ep39 Monthly Web 201806 | mozaic.fm
     - https://mozaic.fm/episodes/39/monthly-web-201806.html
-    - 2:01:11 ~ 2:06:15
+    - 2:01:11 ~
     - 事件の話を受けて他人事に思えなかった話
+  - ep50 Monthly Web 201903 | mozaic.fm
+    - https://mozaic.fm/episodes/50/monthly-web-201903.html
+    - 2:21:50 ~
+    - 一審無罪判決を受けて
+  - ep64 Monthly Web 202002 | mozaic.fm
+    - https://mozaic.fm/episodes/64/monthly-web-202002.html
+    - 1:53:47 ~
+    - 二審有罪判決を受けて
+  - ep91 Yearly Web 2021 | mozaic.fm
+    - https://mozaic.fm/episodes/91/yearly-web-2021.html
+    - 2:57:34 ~
+    - 最終答弁を受けて
+  - ep95 Monthly Web 202203 | mozaic.fm
+    - https://mozaic.fm/episodes/95/monthly-web-202203.html
+    - 2:02:51
+    - 無罪判決とその後のイベントの話
