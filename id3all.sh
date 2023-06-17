@@ -1704,3 +1704,16 @@ eyeD3 --title "ep123 Engineering Risk" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep124.mp3
+
+eyeD3 --title "ep124 Monthly Ecosystem 202306" \
+      --track 132 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep124.mp3
+
+
+
