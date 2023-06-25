@@ -89,9 +89,5 @@ if (navigator.serviceWorker) {
   })()
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
-  // AdSense
-  (adsbygoogle = window.adsbygoogle || []).push({})
-  console.log(adsbygoogle)
 })
