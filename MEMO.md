@@ -1,14 +1,12 @@
 # jxck.io
 
-
 ## blog.jxck.io
 
-- <https://github.com/Jxck/jxck.io/tree/master/blog.jxck.io>
+- https://github.com/Jxck/jxck.io/tree/master/blog.jxck.io
   - ビルド済み静的サイト
   - CSP/FeaturePolicy
   - Reporting
   - 鉄下駄として
-    - adsense
     - analytics
     - youtbe embed
     - etc を導入
@@ -77,9 +75,9 @@ image の記法で video に展開される。
 - Feature Policy などを調整
 
 
-### Analytics/Ad
+### Analytics
 
-- 鉄下駄としてアナリティクス/広告を導入
+- 鉄下駄としてアナリティクスを導入
 - これを入れても早い状態を維持したい
 - CSP なども調整
 
@@ -90,13 +88,13 @@ image の記法で video に展開される。
 - entries 以下に日付フォルダを作りそこに置く
 - `make build` で全体の変換や圧縮のなどを一式行う
   - これで build 結果をコミットしたら終わり
-- `make x`
+- `make preview`
   - markdown 変換だけを行う。テスト用。
+
 
 ### md
 
 以下のフォーマットで始める。そうでなければビルドが通らない。
-
 
 ```
 # [tag][tag2] タイトル
@@ -124,7 +122,7 @@ image の記法で video に展開される。
 
 その他細かい挙動は最初のエントリをテストエントリにしているのでそこで確認。
 
-<https://blog.jxck.io/entries/2016-01-27/new-blog-start.html#test-section>
+https://blog.jxck.io/entries/2016-01-27/new-blog-start.html#test-section
 
 パーサは独自実装
 
@@ -137,7 +135,6 @@ image の記法で video に展開される。
 
 alt, title, 画像のサイズがないといけない。
 
-
 ```md
 ![alt](image.png#120x120 "title")
 ```
@@ -149,7 +146,6 @@ alt, title, 画像のサイズがないといけない。
 これは make webp でできる。
 
 だいたい q=40 でやっている。
-
 
 ```sh
 $ cwebp -q 40 image.png -o image.webp
@@ -194,7 +190,6 @@ https://github.com/Jxck/jxck.io/tree/master/mozaic.fm
 ### md
 
 以下のフォーマットで始める。
-
 
 ```md
 ---
@@ -250,7 +245,6 @@ ID3 には複数のバージョンがありおおよそ以下のようになっ�
 - [eyeD3](https://eyed3.readthedocs.io/en/latest/)
 
 HTML/RSS をビルドするときに収集するメタデータを用いて、各ファイルに対するコマンドファイルの shell を精製し、それを必要に応じて(通常は公開時)に実行する。
-
 
 ```shell
 eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep0.mp3
