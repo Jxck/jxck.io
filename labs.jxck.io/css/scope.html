@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+
+<title>CSS @scope Labs | labs.jxck.io</title>
+
+<h1>@scope Labs</h1>
+
+<main>
+  <div id="red">
+    <p>red</p>
+  </div>
+  <div id="green">
+    <p>green</p>
+  </div>
+  <div id="red">
+    <p>blue</p>
+  </div>
+</main>
+
+<style>
+@scope (#red) {
+  p {
+    color: red;
+  }
+}
+</style>
+
+
+<section data-scope="main-component">
+  <p data-scope="main-component">...<p>
+
+  <!-- sub-component root is in both scopes -->
+  <section data-scope="main-component sub-component">
+    <!-- children are only in the inner scope -->
+    <p data-scope="sub-component">...<p>
+  </section>
+</section>
