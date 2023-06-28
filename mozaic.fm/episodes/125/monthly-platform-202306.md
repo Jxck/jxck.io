@@ -8,16 +8,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 # ep125 Monthly Platform 202306
 
-
 ## Theme
 
 第 125 回のテーマは 2023 年 6 月の Monthly Platform です。
 
+
 ## Show Note
 
-
 ### Chrome 動向
-
 
 #### Stable:114
 
@@ -164,6 +162,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Generating Extension API documentation
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RPHc8j68S48
 
+
 #### V8
 
 
@@ -238,8 +237,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.youtube.com/watch?v=2xdV-xut7EQ
   - Google Chrome Developers チャンネルのパスキー解説動画
 
-### Firefox 動向
 
+### Firefox 動向
 
 #### Stable: 114
 
@@ -261,7 +260,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - `Window.print()` now opens a print dialog on Firefox for Android, allowing the current document to be printed (Firefox bug 1809922).
     - The WebTransport API is now supported, which includes the following interfaces: WebTransport, WebTransportBidirectionalStream, WebTransportDatagramDuplexStream, WebTransportReceiveStream, WebTransportDatagramDuplexStream and WebTransportError. For more information see Firefox bug 1692754, Firefox bug 1818754, and Firefox bug 1791835.
     - CSSImportRule.supportsText can now be used for getting any `supports()` conditions that were specified when using the `@import` at-rule (Firefox bug 1829590).
-  -    * WebDriver BiDi
+  - WebDriver BiDi
     - Added support for the commands input.performActions and input.releaseActions, which can be used to emulate user input for interacting with elements on web pages. Similar to Marionette all the available input sources of the WebDriver specification are supported, which are key, pointer, and wheel (Firefox bug 1832380).
     - Added support for custom browser to client messages, which allows to send a script.message event from within a script formerly installed via script.addPreloadScript (Firefox bug 1824187).
     - Added support for the serializationOptions parameter for script.evaluate and script.callFunction to customize the RemoteValue serialization (Firefox bug 1824953).
@@ -271,24 +270,25 @@ guest: [@myakura](https://twitter.com/myakura)
     - Fixed an issue where the command `WebDriver:GetComputedRole` didn't properly return the WAI-ARIA roles (Firefox bug 1822112).
     - Fixed an issue where modifier keys were not reset when they were used again within the same WebDriver:ElementSendKeys command (Firefox bug 1776190).
     - The deprecated and non-standard mozImageSmoothingEnabled property is permanently removed. See the imageSmoothingEnabled property for smoothing in scaled images (Firefox bug 1228850).
-- *Firefox Translations and Other Innovations – These Weeks in Firefox: Issue 139 – Firefox Nightly News*
+- *Firefox Translations and Other Innovations - These Weeks in Firefox: Issue 139 - Firefox Nightly News*
   - https://blog.nightly.mozilla.org/2023/06/01/firefox-translations-and-other-innovations-these-weeks-in-firefox-issue-139/
-- Brief and Blissful – These Weeks in Firefox: Issue 140 – Firefox Nightly News
+- Brief and Blissful - These Weeks in Firefox: Issue 140 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2023/06/20/brief-and-blissful-these-weeks-in-firefox-issue-140/
 - *SpiderMonkey Newsletter (Firefox 114-115) | SpiderMonkey JavaScript/WebAssembly Engine*
   - https://spidermonkey.dev/blog/2023/06/09/newsletter-firefox-114-115.html
   - Firefox 114 で Module Worker が ship
   - Firefox 115 で `Array.fromAsync()` と Change Array by Copy が ship
-- Firefox WebDriver Newsletter - 114 – Firefox Developer Experience
+- Firefox WebDriver Newsletter - 114 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-114/
-- Firefox DevTools Newsletter - 114 – Firefox Developer Experience
+- Firefox DevTools Newsletter - 114 - Firefox Developer Experience
   - https://fxdx.dev/firefox-devtools-newsletter-114/
+
 
 #### Intents
 
-- Ship: Canvas2d TextMetrics.*Baseline attributes
+- Ship: Canvas2d `TextMetrics.*Baseline` attributes
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/VQOR2A6X1NU
-- Ship: Canvas2d TextMetrics.fontBoundingBox* attributes
+- Ship: Canvas2d `TextMetrics.fontBoundingBox*` attributes
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/o8Dda85M40k
 - Ship: File paste support in ClipboardEvent
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ysU5Q-uVhlk
@@ -317,12 +317,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Engineering Effectiveness Newsletter (May 2023 Edition)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/5R1wabKbGrc
 
+
 #### MDN Blog
 
 - MDN doc updates: CSS selectors & media queries, WebGPU & WebTransport APIs, Progressive web apps | MDN Blog
   - https://developer.mozilla.org/en-US/blog/mdn-docs-june-2023/
 - *Introducing the MDN Playground: Bring your code to life! | MDN Blog*
   - https://developer.mozilla.org/en-US/blog/introducing-the-mdn-playground/
+
 
 #### Other
 
@@ -331,8 +333,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - そして CDC (Centers for Disease Control) の CFA (Forecasting and Outbreak Analytics) の Chief Technologist に就任
   - https://www.linkedin.com/feed/update/urn:li:activity:7073037304184909824/
 
-### Safari 動向
 
+### Safari 動向
 
 #### Stable: 16.5
 
@@ -467,6 +469,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for inline predictions for autocomplete. (105197136)
     - Current page is Safari 17 Beta Release Notes
 
+
 #### Standard Positions
 
 - Closed
@@ -477,6 +480,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Permissions Policy: Unload
   - https://github.com/WebKit/standards-positions/issues/127
   - 別 Issue に移動
+
 
 #### Other
 
@@ -551,8 +555,8 @@ guest: [@myakura](https://twitter.com/myakura)
 - MotionMark Moves to Open Governance | WebKit
   - https://webkit.org/blog/14359/motionmark-moves-to-open-governance/
 
-### Edge 動向
 
+### Edge 動向
 
 #### Stable: 114
 
@@ -565,16 +569,16 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- Improving the Microsoft Defender Browser Protection Extension – text/plain
+- Improving the Microsoft Defender Browser Protection Extension - text/plain
   - https://textslashplain.com/2023/05/31/improving-the-microsoft-defender-browser-protection-extension/
-- *Browser SSO / Automatic Signin – text/plain*
+- *Browser SSO / Automatic Signin - text/plain*
   - https://textslashplain.com/2023/06/22/browser-sso-automatic-signin/
 - *Announcing Windows 11 Insider Preview Build 23486 | Windows Insider Blog*
   - https://blogs.windows.com/windows-insider/2023/06/22/announcing-windows-11-insider-preview-build-23486/
   - Windows Hello でパスキーのサポート
 
-### WHATWG/W3C 動向
 
+### WHATWG/W3C 動向
 
 #### Draft
 
@@ -590,6 +594,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - First Public Working Draft: Verifiable Credentials JSON Schema Specification 2023
     - https://www.w3.org/news/2023/first-public-working-draft-verifiable-credentials-json-schema-specification-2023/
 - Chartering
+
 
 #### Other
 
@@ -608,8 +613,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/whatwg/html/issues/9334
   - AI の学習にコンテンツが使われるのを防ぎたい人がオプトアウトできる手段を提案
 
-### TC39 動向
 
+### TC39 動向
 
 #### Meeting
 
@@ -625,7 +630,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Stage 4 へ
   - ES2024 入り
 - *Base64 for Uint8Array for Stage 2*
-  - Base64, Hex の Uint8Array <=> String したい
+  - Base64, Hex の Uint8Array = String したい
   - Stage 2 に(割とサポーティブな人が多そう)
 - *Module Harmony: interaction semantics of the different proposals*
   - module 関連の仕様が乱立してるし依存も複雑
@@ -659,6 +664,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 概ね構文は認めるが意見が割れてる
   - Stage 2 のまま
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2023-05-01}...main@{2023-07-01}
@@ -677,6 +683,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Atomics.waitAsync
   - RegExp v flag
 
+
 #### New Proposals
 
 
@@ -684,7 +691,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 
 ### WinterCG 動向
-
 
 #### Meeting
 
@@ -697,8 +703,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - Add import.meta.url and import.meta.resolve to the Minimum common API
   - Write up draft for pattern-matching dynamic imports for bundlers (@lucacasonato)
 
-### IETF 動向
 
+### IETF 動向
 
 #### WG
 
@@ -742,16 +748,16 @@ guest: [@myakura](https://twitter.com/myakura)
 - tlswg
   - https://mailarchive.ietf.org/arch/browse/tls/
   - https://github.com/tlswg/wg-materials
-  - Last Call: <draft-ietf-uta-rfc6125bis-13.txt> (Service Identity in TLS) to Proposed Standard
+  - Last Call: draft-ietf-uta-rfc6125bis-13.txt (Service Identity in TLS) to Proposed Standard
     - https://mailarchive.ietf.org/arch/msg/ietf-announce/VDQT2_46mCb2Ex-KUSo0DwFxCQE/
 - wpack
   - https://mailarchive.ietf.org/arch/browse/wpack/
 - masque
 - pearg
 - privacypass
-  - Last Call: <draft-ietf-privacypass-auth-scheme-11.txt> (The Privacy Pass HTTP Authentication Scheme) to Proposed Standard
+  - Last Call: draft-ietf-privacypass-auth-scheme-11.txt (The Privacy Pass HTTP Authentication Scheme) to Proposed Standard
     - https://mailarchive.ietf.org/arch/msg/ietf-announce/612IJDogdcA8UjrvIpfMUl5__fo/
-  - Last Call: <draft-ietf-privacypass-architecture-13.txt> (The Privacy Pass Architecture) to Informational RFC
+  - Last Call: draft-ietf-privacypass-architecture-13.txt (The Privacy Pass Architecture) to Informational RFC
     - https://mailarchive.ietf.org/arch/msg/ietf-announce/zA9DE86MggK4OQjQq3ii2QReJMY/
 - dispatch
   - https://mailarchive.ietf.org/arch/browse/dispatch/
@@ -768,14 +774,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - Protocol Action: 'CoAP Transfer for the Certificate Management Protocol' to Proposed Standard (draft-ietf-ace-cmpv2-coap-transport-10.txt)
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/5capVXdu4x1d_m_A8Dtz9OiljMg/
 
+
 #### Other
 
 - *Reflections on Ten Years Past The Snowden Revelations*
   - https://www.ietf.org/archive/id/draft-farrell-tenyearsafter-05.html
   - スノーデン事件から 10 年のまとめ
 
-### CDN 動向
 
+### CDN 動向
 
 #### Cloudflare
 
@@ -790,6 +797,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Introducing Low-Latency HLS Support for Cloudflare Stream
   - https://blog.cloudflare.com/low-latency-hls-support-for-cloudflare-stream/
 
+
 #### Fastly
 
 
@@ -800,6 +808,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - *OWASP Top 10 API Security Risks: The 2023 Edition Is Finally Here | Akamai*
   - https://www.akamai.com/blog/security/owasp-top-10-api-security-risks-2023-edition
 
+
 ### セキュリティ動向
 
 - *Passkeys, iOS 17, and 1Password: A Sneak Peek at What's Coming | 1Password*
@@ -808,6 +817,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.asahi.com/articles/ASR6R6W9YR6QUTFK016.html
 - 総務省|報道資料|電気通信事業法の一部改正(卸協議の適正性の確保に係る制度整備関係)に係る関係ガイドラインの改定
   - https://www.soumu.go.jp/menu_news/s-news/01kiban03_02000859.html
+
 
 ### 周辺動向
 
@@ -820,7 +830,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google Domains が Squarespace に事業譲渡
   - TLD ポリシー | Cloudflare
     - https://www.cloudflare.com/tld-policies/
-- Squarespace Enters Definitive Agreement to Acquire Google Domains Assets – Squarespace
+- Squarespace Enters Definitive Agreement to Acquire Google Domains Assets - Squarespace
   - https://www.squarespace.com/press-releases/2023/6/15/squarespace-enters-definitive-agreement-to-acquire-google-domains-assets
 - Conference News for June 2023 | Igalia
   - https://www.igalia.com/2023/05/31/Conference-News-for-June-2023.html
@@ -828,11 +838,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.igalia.com/2023/webengineshackfest.html
 - Web Apps on macOS Sonoma 14 Beta
   - https://blog.tomayac.com/2023/06/07/web-apps-on-macos-sonoma-14-beta/
-- Secure Curves in the Web Cryptography API – make everything intensely
+- Secure Curves in the Web Cryptography API - make everything intensely
   - https://blogs.igalia.com/jfernandez/2023/06/20/secure-curves-in-the-web-cryptography-api/
 - *モバイル・エコシステムに関する競争評価 最終報告(案)*
   - https://www.kantei.go.jp/jp/singi/digitalmarket/kyosokaigi/dai7/siryou1s.pdf
   - https://www.kantei.go.jp/jp/singi/digitalmarket/kyosokaigi/dai7/siryou2s.pdf
+
 
 ### イベント
 
@@ -845,9 +856,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 9 月
   - 11-15: TPAC 2023
     - https://www.w3.org/2023/09/TPAC/
-    -    * 26-28: W3C Workshop Secure the Web Forward
+  - 26-28: W3C Workshop Secure the Web Forward
     - https://www.w3.org/2023/03/secure-the-web-forward/
-    - ### Wrap Up
+
+
+### Wrap Up
+
 - Chrome
   - 114
     - text-wrap: balance
@@ -947,4 +961,3 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google Domains が Squarespace に事業譲渡
   - Web Engines Hackfest 2023 Starts Monday | Igalia
   - モバイル・エコシステムに関する競争評価 最終報告(案)
-
