@@ -8,13 +8,9 @@
   <link rel=manifest  href=/manifest.webmanifest>
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
 
-  <link rel=preload as=script href=https://www.google-analytics.com/analytics.js>
   <link rel=preload as=script href=<%= version("https://www.jxck.io/assets/js/main.js") %>>
-  <link rel=preload as=script href=<%= version("https://www.jxck.io/assets/js/ga.js") %>>
 
-  <script defer src=https://www.google-analytics.com/analytics.js></script>
   <script defer src=<%= version("https://www.jxck.io/assets/js/main.js") %>></script>
-  <script defer src=<%= version("https://www.jxck.io/assets/js/ga.js") %>></script>
 
   <%- indent(include("favicon.html.ejs", first)) -%>
 
