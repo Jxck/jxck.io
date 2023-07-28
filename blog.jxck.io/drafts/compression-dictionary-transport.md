@@ -1,5 +1,14 @@
 # Compression Dictionary Transport (Shared Brotli)
 
+## Intro
+
+Chrome で Compression Dictionary Transport の Experiment が行われている。
+
+- Intent to Experiment: Compression dictionary transport with Shared Brotli
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E
+
+この提案の仕様および本サイトへの適用について解説する。
+
 
 ## brotli の Dictionary
 
@@ -11,7 +20,7 @@ from: aaaabbbbb
 to:   a4b5
 ```
 
-この方式は、対象としたデータの中で、如何に効率よく「同じ値」を見つけるかが肝となる。例えば以下の例は、探索範囲をとこまでとるかによって、圧縮結果が変わることがわかる。
+この方式は、対象としたデータの中で、如何に効率よく「同じ値」を見つけるかが肝となる。例えば以下の例は、探索範囲をどこまでとるかによって、圧縮結果が変わることがわかる。
 
 ```
 from: ababcdababcd
@@ -21,13 +30,13 @@ from: ababcdababcd
 to:   ababcd2
 ```
 
-圧縮ツールでクオリティのようなものが指定できる場合、ざっくりいえばこの「同じ値」をどこまでの範囲で探すかを指定している場合が多い。丁寧に探せば圧縮率はあがるが時間がかかり、時間を重視すると圧縮率が下がる。
+圧縮ツールでクオリティのようなものが指定できる場合、ざっくりいえばこの「同じ値」をどこまでの範囲で探すかを指定している場合が多い。丁寧に探せば圧縮率は向上するが時間がかかり、時間を重視すると圧縮率が下がる。
 
-ところが、これは中身がどんな情報化を気にしない汎用的なデータに対する手法だが、中身がどんなタイプのデータがわかっている場合はその情報を辞書として用意しておくことで、「こういう単語(データ列)がよく出てくる」ということを圧縮アルゴリズムに教えることができる。
+ところが、これは中身がどんな情報かを気にしない、汎用的なデータに対する手法だ。中身がどんなタイプのデータがわかっている場合は、その情報を辞書として用意しておくことで「データ列がよく出てくる」ということを、圧縮アルゴリズムにヒントとして提供することができる。
 
-たとえば、中身が HTML だとわかっていた場合 `<!doctype html>` が辞書にあれば、その一致で効率よく圧縮箇所を見つけられるというものだ。
+例えば、中身が HTML だとわかっていた場合 `<!doctype html>` が辞書にあれば、その一致で効率よく圧縮箇所を見つけられるというものだ。
 
-ちなみに、 brotli は最初から「Web 上でやりとりする値」にフォーカスしているため、実際に Web 上でやり取りされている情報を沢山あつめてきて、そこから辞書を生成し、仕様の中に Static Dictionary として直書きされている。
+ちなみに、 brotli は最初から「Web 上でやりとりする値」にフォーカスしているため、実際に Web 上でやり取りされている情報を大量に集め、そこから辞書を生成し、仕様の中に Static Dictionary として直書きしている。
 
 以下の長い Hex がそれに当たる。
 
@@ -42,7 +51,7 @@ to:   ababcd2
 timedownlifeleftbackcodedatashowonlysitecityopenjustlikefreeworktextyearoverbodyloveformbookplaylivelinehelphomesidemorewordlongthemviewfindpagedaysfullheadtermeachareafromtruemarkableuponhighdatelandnewsevennextcasebothpostusedmadehandherewhatnameLinkblogsizebaseheldmakemainuser') 
 ```
 
-途中はなんとなく JS 感がある。(改行も含めて圧縮できるよう、辞書内に改行がそのまま入ってる)
+途中はなんとなく JS 感がある(改行も含めて圧縮できるよう、辞書内に改行がそのまま入っている)。
 
 ```
 exit:35Zvarsbeat'});diet999;anne}}</[i].LangkmĀ²wiretoysaddssealalex;
@@ -72,17 +81,28 @@ s:// [];tollplug(){
 body, tr, input, textmeta name="robots" conmethod="post" action=">
 ```
 
-Web 系コンテンツに対して、汎用圧縮アルゴリズムよりも brotli の方が有利なのは、ほぼこの辞書の存在と言っても過言ではないだろう。
+Web 系コンテンツに対して、汎用圧縮アルゴリズムよりも brotli の方が有利なのは、この辞書の存在が大きい。
 
-## Compression Dictionary Transport
 
-もし自分がデプロイしているサービスにおいて、そこでどんなコンテンツが使われているのかを元に独自の辞書を生成し、 brotli に食わせることができれば、より圧縮率が高くなるだろうことは容易に想像できる。
+## Web における辞書共有
+
+もし自分がデプロイしているサービスにおいて、そこでどんなコンテンツが使われているのかを元に独自の辞書を生成し、 brotli にヒントを与えることができれば、より圧縮率が高くなるだろうことは容易に想像できる。
 
 前述の辞書は仕様にベタ書きされた必須のものなので、 brotli 実装なら等しく持っているが、独自の辞書を作る場合、問題はその辞書をどうやって送信元/送信先で共有するかになる。
 
-そこで、この独自辞書共有の方法を定義し、より高度に圧縮することを目的として始まったのが "Shared brotli" だ。
+実は過去にも「サーバとクライアントで辞書を共有し圧縮率を上げる」というこの目的のために作られた SDCH (Shared Dictionary Compression for HTTP) という仕様が存在し、 Chrome にも実装されていた。
 
-しかし、あとから「brotli 以外の圧縮(例えば zstd)でも使える方法なはずだ」ということで、名前をより汎用的な "Compression Dictionary Transport (CDT)" にリネームして現在の提案に至っている。
+しかし、この仕様は提案時期が 2008 年頃とかなり古く、仕様も複雑だった。当時はまだ CORS なども普及する前であるため、安全性の問題もあり、全くと言ってよいほど普及せず、 2016 年には Chrome からも削除された。
+
+- Shared_Dictionary_Compression_over_HTTP.pdf
+  - https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/Shared_Dictionary_Compression_over_HTTP.pdf
+
+過去の失敗を踏まえて仕様をシンプルに絞り、 CORS を前提とする昨今のセキュリティマナーに則った形で、この辞書共有を再定義し、より高度に圧縮することを目的として始まったのが "Shared brotli" だ。
+
+あとから「brotli 以外の圧縮(例えば zstd)でも使える方法なはずだ」ということで、名前をより汎用的な "Compression Dictionary Transport (CDT)" にリネームして現在の提案に至っている。
+
+
+## Compression Dictionary Transport
 
 CDT は、任意のコンテンツから辞書を作り、それをサーバ/クライアント間で共有する 2 つの方式が提案されている。
 
@@ -91,20 +111,16 @@ CDT は、任意のコンテンツから辞書を作り、それをサーバ/ク
 - Delta Compression
   - クライアントがすでに取得したコンテンツを、次の取得の辞書にする
 
-以降は、各実装法を試していく。
 
-まずは、 Shared Brotli のツールを用意する。
-
-
-## Shared Dictionary
+### Shared Dictionary
 
 Shared Dictionary は、その名の通り共有辞書を事前生成しておく方法だ。
 
 例えば、テンプレートエンジンに値を埋め込んで作るタイプのページでは、埋め込む値のバリエーションは数あっても、テンプレートエンジン部分は共通している。
 
-そこで、テンプレートエンジンを元に辞書を作成し、事前にブラウザに取得させれば、そのテンプレートを使ったページは全て圧縮率を上げられるというものだ。
+そこで、テンプレートエンジンを元に辞書を作成し、事前にブラウザに取得させれば、そのテンプレートを使ったページは圧縮率を上げられるといったものだ。
 
-Shared Dictionary の場合は、辞書の元にしたいコンテンツを指定し、そこから辞書を生成する。
+Shared Dictionary の場合は、辞書の元にしたいサンプルを指定し、そこから辞書を生成する。
 
 ```sh
 $ ./dictionary_generator ./shared.dict ./*.template.html
@@ -116,15 +132,15 @@ $ ./dictionary_generator ./shared.dict ./*.template.html
 <link rel="dictionary" href="/shared.dict">
 ```
 
-`/shared.dict` のレスポンスヘッダで、辞書が対象とするパスを以下のように指定する。
+この HTML を表示した際に、ブラウザは辞書の存在に気づき、それをダウンロードすることで、以降のコンテンツの圧縮に利用できる。つまり Prefetch 方式であるため、例えばメインページのための辞書をログインページで落としておくといった、投機的な提供を行う必要がある。
+
+`/shared.dict` のレスポンスヘッダには、辞書が対象とするパスを以下のように指定する。
 
 ```http
 Use-As-Dictionary: match="/path/to/target/*"
 ```
 
-この HTML を表示した際に、ブラウザは辞書の存在に気づき、それをダウンロードすることで、以降のコンテンツの圧縮に利用できる。つまり Prefetch 方式だであるため、例えばメインページのための辞書をログインページで落としておくといった、提供タイミングの工夫が必要になる。
-
-クライアントが `Use-As-Dictionary` に指定されたパスに遷移した際は、 Brotli での CDT に対応していること(`sbr`)、そこで適用可能な辞書があることを以下のようにリクエストヘッダに付与する。
+クライアントが `Use-As-Dictionary` に指定されたパスに遷移した際は、 Brotli での CDT に対応していること(`sbr`)、そこで適用可能な辞書を持っていることを以下のようにリクエストヘッダに付与する。
 
 ```http
 Accept-Encoding: sbr
@@ -133,86 +149,75 @@ Sec-Available-Dictionary: <SHA-256 of Dictionary>
 
 サーバは、クライアントが指定してきた辞書を使用し、コンテンツを圧縮して返すことができる。
 
-辞書を用いた圧縮を行った場合は、以下のようになる。辞書のハッシュで Vary することで、 Cache のキーを分けている。
-
+辞書を用いた圧縮を行った場合は、レスポンスは以下のようになる。辞書によって同一コンテンツのエンコーディング結果が変わるため、 Cache のキーに辞書のハッシュを追加するように、 `Sec-Available-Dictionary` を `Vary` に追加する。
 
 ```http
 Content-Encoding: sbr
 Vary: Accept-Encoding, Sec-Available-Dictionary
 ```
 
-- horo-t/compression-dictionary-transport-shop-demo
-  - https://github.com/horo-t/compression-dictionary-transport-shop-demo
-
-- 複数辞書を送る？
-- 辞書を辞書で圧縮して頻繁に取得する
+辞書を事前に生成する方式であるため、静的サイトジェネレータなどと相性の良い方式と言えるだろう。
 
 
 ## Delta Compression
 
-Delta Compression は、既に取得したリソースを辞書とし、次に取得するリソースを差分圧縮するというものだ。
+ちょっとだけ違うリソースを連続して取得するような場面では、前回取得したものを辞書に圧縮を行えば、圧縮率を上げられる。そこで、既に取得したリソースを辞書とし、次に取得するリソースを差分圧縮するのが、Delta Compression だ。
 
-ちょっとだけ違うリソースを連続して取得するような場面では、前回取得したものを辞書に圧縮を行えば、圧縮率を上げられるというものだ。
-
-例えばページごとにビルドされた JS は、フレームワーク部分など共通する場所が多いだろう。そこで、全てのページで JS のレスポンスに以下のヘッダを付与する。
+例えばページごとにビルドされた JS は、フレームワーク部分など共通箇所が多いだろう。そこで、全てのページで JS のレスポンスに以下のヘッダを付与する。
 
 ```http
 Use-As-Dictionary: match="/js/*"
 ```
 
-次にページを遷移すると、ブラウザは先程同様に以下を返す。
+この設定で、まず `a.js` を取得したブラウザは、次に `b.js` を取得する際に以下のようにリクエストを行う。
 
 ```http
 Accept-Encoding: sbr
-Sec-Available-Dictionary: <SHA-256 of Dictionary>
+Sec-Available-Dictionary: <SHA-256 of a.js>
 ```
 
-提示された辞書を元に、次の JS を圧縮して返すことで、差分圧縮が可能なる。次の JS も `Use-As-Dictionary` を付与していれば、それを更に次の辞書として使うことができるのだ。
+提示されたハッシュから、クライアントが `a.js` を辞書として持っていることを知ったサーバは、次に返す `b.js` を `a.js` で圧縮して返すことで、差分圧縮が可能になる。 Diff だけ送っているようなイメージだ。
+
+辞書は特別なフォーマットではなく、どんなコンテンツでも利用することができることがわかるだろう。ほとんど同じでちょっとだけ異なる画像などであっても、同様に辞書として差分圧縮ができる。
+
+以降の `b.js` にも `Use-As-Dictionary` を付与することで、それを更に `c.js` を圧縮する辞書として使うことができる。
+
+Delta Compression の場合は、基本的には送られてきた hash を元に辞書を特定し、それを用いて動的に圧縮することになるだろう。数が少なければ、全ての (辞書, コンテンツ) の組から事前に生成することも可能かもしれないが、一般的には非現実的だろう。
+
+つまり、動的な圧縮にかかるコストが、圧縮率向上によって得られるメリットを上回ると、単にオーバーヘッドになる点には注意が必要だ。
+
 
 ## その他の仕様
 
-- 辞書は別オリジンからも取得できるが、サイドチャネル対策もあってもちろん CORS 必須。
+- 辞書は別オリジンからも取得できるが、サイドチャネル対策もあって、もちろん CORS 必須。
 - Use-As-Dictionary は SFV になっており、`match` 以外にも `expires` と `algorithm` がある。
   - `expires` は Cache-Control と独立させるためにあるようだが、ライフタイム管理がどうなるのか今ひとつよくわからない。デフォルト 1 年は長いと思うので設定した方が良さそう。
   - `algorithm` は仕様も実装も現状 `sha-256` のみなため、将来拡張されない限り特に不要そう。
-- `Sec-Availabe-Dictionary` は 1 つしか送らないことでシンプルさを保っている。
+- `Sec-Available-Dictionary` は 1 つしか送らないことでシンプルさを保っている。
   - そのおかげで `Vary` に指定できる。
   - 代わりに、被った Path 以下で持ってる辞書を全部アドバタイズさせてサーバで選ぶみたいなことはできない。
+  - Delta の場合は、辞書とコンテンツの差分が多い場合、動的圧縮のオーバーヘッドが勝る可能性にも注意。
 - Fingerprinting 対策のため Cookie 同様に Partitioning される
-  - つまり Public CDN 的な使い方で辞書をサイト間共有することはできない(まあ今は Cache 自体ができないが)
+  - つまり Public CDN 的な使い方で辞書をサイト間共有することはできない
+  - 今は Cache 自体も共有できない(条件あり)のであまり影響はないだろう。
 
 
 ## 本サイトへの適用
 
-
 ### 構成
 
-本サイトは、静的なブログだけであり、テンプレートエンジンに HTML 化した Markdown を流し込んで、事前に生成している。
+本サイトは、静的なブログだけであり、テンプレートエンジンに HTML 化した Markdown を流し込んで、事前に生成した静的ファイルを h2o で配信している。
 
-記事は基本的に Web 技術に一貫しており、使っている単語や言い回しも近いところがある。
+静的ファイルは、ビルド時に brotli で事前圧縮しているので、 Delta Compression を行うとしても brotli のプロセスを動的に立ち上げるオーバーヘッドはペイしないだろう。
 
-そうした特性上、以下のような二種類の辞書を提供する構成が妥当だろう。
+そこで、本サイトでは、記事ページ(`/entries/*`)のテンプレートから生成した Shared Dictionary を事前生成し、それを記事一覧ページ(`/index.html`)で配布する構成をとることにした。
 
-- 記事一覧で、記事ページのテンプレートから生成した Shared Dictionary を配布
-- 記事ページはそのまま辞書として、記事を遷移した際に Delta Compression として利用
-
-おそらく、典型的な利用例と思われる。
-
-### 効果測定の観点
-
-本サイトは既に全て事前に br 圧縮をかけてデプロイしている。そのため、適用は非常に分が悪い。
-
-本来なら、動的にレスポンスを生成する際に、同一プロセス内で圧縮を行うなどで、そのオーバーヘッドをしても転送量が減らせるメリットはあるかもしれない。
-
-しかし、静的に事前生成した HTML を返しているだけの本サイトでは、辞書を使って圧縮率を上げられたとしても、それを動的に行うために起動する brotli のプロセスがオーバーヘッドになることは明白だ。
-
-そこで、通常の brotli 圧縮済みファイルの生成に加え、 Dictionary を用いた圧縮も事前に行っておくことにした。
-
+おそらく、静的サイトでの典型的な利用例と思われる。
 
 
 ## Install
 
-shared brotli に用いる dictionary を生成するためのツールは、 brotli のリポジトリに入っている。
+Shared brotli に用いる dictionary を生成するためのツールは、 brotli のリポジトリに入っている。
 
 - brotli/research/dictionary_generator.cc at master · google/brotli
   - https://github.com/google/brotli/blob/master/research/dictionary_generator.cc
@@ -260,7 +265,7 @@ Unrecognized option '-h'
 $ dictionary_generator ./shared.dict ./template/*.ejs
 ```
 
-これをデプロイする際、静的サーバでは `Sec-Availabe-Dictionary` の SHA256 を検証するのは面倒なため、ファイル名そのものを Dictionary の SHA256 にしておき、パスで解決できるようにする。これで、ヘッダを検証せずに差分圧縮を返しても、辞書が更新されたことによって解凍に失敗する可能性を防ぐことができる。
+基本的に静的ファイルは Cache Busting しておきたいので、 `Sec-Available-Dictionary` に利用される SHA256 の値でファイルをリネームしておく。
 
 ```sh
 $ sha256sum ./shared.dict
@@ -268,30 +273,124 @@ $ sha256sum ./shared.dict
 $ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict
 ```
 
-この辞書をデプロイする。なお、この辞書のための MIME は定義されておらず、任意のものを使ってよいとされている。
+この辞書をデプロイする。なお、この辞書のための MIME は定義されておらず、辞書に用いたコンテンツに応じて任意のものを使ってよいとされている。
 
-HTML をソースにしたら辞書も `text/html` となる。今回は EJS をソースにしているが、 HTML そのものではないので、一応 `text/plain` としておく。
+つまり、 HTML をソースにしたら辞書も `text/html` となるということだが、今回は EJS をソースにしており HTML そのものではないので、一応 `text/plain` としておく。(HTML, JS, CSS などを混ぜて辞書を作ったら、どういう値にするのがよいのだろうか?)
 
-この辞書を index.html の HTML に辞書を追加する。
+この辞書を index.html の HTML でアドバタイズする。
 
 ```html
 <link rel="dictionary" href="/91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict">
 ```
 
-
-次に、このテンプレートを使って生成した HTML を、辞書を使って事前に圧縮しておく。
+次に、先程ビルドした brotli リポジトリのバイナリを使って、テンプレートを使って生成した各 HTML を、辞書を使って圧縮する。
 
 ```sh
-$ brotli index.html -D 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict -o index.html.sbr
+$ brotli \
+  -f \
+  --dictionary=91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict \
+  --suffix=.sbr \
+  /path/to/entry.html
 ```
 
-最後に、サーバが `Accept-Encoding: sbr` に対して `.sbr` ファイルを返すように設定する必要がある。
-
-本サイトは h2o でサーブしているが、 h2o はまだ `.sbr` に対応してないのでパッチを当ててビルドした。
-
-(TODO: `send-compression` を有効にしたときに、拡張子付きのファイルを探してくれる部分をいじったが、拡張子が 2 文字前提の実装になってたので、とりいそぎ手を抜いて `.sbr` を `.sb` にしてデプロイしている。)
+最後に、サーバが `Accept-Encoding: sbr` に対して、指定されたハッシュと同じ辞書で圧縮した `.sbr` ファイルを返すようにデプロイすれば完了だ。
 
 
+## H2O のパッチ
 
-- horo-t/compression-dictionary-transport-threejs-demo
-  - https://github.com/horo-t/compression-dictionary-transport-threejs-demo
+本サイトは h2o でサーブしているが、 h2o はまだ `.sbr` に対応していないのでパッチを当ててビルドした。
+
+`send-compression` を有効にしたときに、拡張子付きのファイルを探してくれる部分をいじったが、拡張子が 2 文字前提の実装になっていたので、とりいそぎ手を抜いて `.sbr` を `.sb` にしてデプロイしている。
+
+また、 `.sb` を返す際に `Sec-Available-Dictionary` のハッシュを検証したり、 `Vary` を付与するためには、 conf で mruby を呼ぶか、同じくパッチを当てるしか無い。ここも手を抜いて、辞書の `expire` を短くしておくにとどめた。
+
+
+## 検証
+
+Chrome Canary 117.0.5912.0 で以下のフラグを有効にし、挙動を検証した。
+
+- #enable-compression-dictionary-transport
+- #enable-compression-dictionary-transport-backend
+
+この状態で本ブログのインデックスページにアクセスすると、以下のようにメインコンテンツの後に辞書が取得されていることがわかる。
+
+TODO: 図
+
+次に、記事に遷移すると、コンテントネゴシエーションの結果 sbr が返されていることがわかる。
+
+TODO: 図
+
+[前回の記事](/entries/2023-06-18/cookie-store-api.html) の圧縮結果を比較すると、以下のようになっている。
+
+Caption: 圧縮率の比較
+| format | byte  | ratio |
+|-------:|------:|------:|
+|   html | 27278 |  100% |
+|     br |  5453 |   20% |
+|    sbr |  4559 |   17% |
+
+この結果では 3 point 圧縮率が向上している。全ファイルを同様に計算したが、平均で 4 point の向上だった。また、 1 つだけ、結果が -1 point (br の方が sbr より 1byte 少ない)という結果もあった。
+
+今回使った辞書のサイズは 7245 byte で、これを通常の br 圧縮して 1557 byte だったが、事前にバックグラウンドで取得することを考えると、辞書はもう少し大きくても問題はないだろう。
+
+今回はテンプレートをただくっつけただけの辞書だったため、本文の内容の圧縮には寄与してない。 brotli のデフォルト辞書がそもそも HTML を考慮していることを考えると、むしろそこに出てこない日本語部分で、頻出単語を並べるといった方法で辞書を作った方が、圧縮率は向上したかもしれない。
+
+いずれにせよ、辞書の作り方が非常に重要になることがよくわかる。
+
+そして、このサイトではほとんど使ってない JS/CSS の圧縮は今回対象外だったが、 SPA ではそうしたアセットの圧縮こそ本仕様の本領が発揮される部分だと思われる。
+
+そのあたりは今後の課題としたい。
+
+
+## Outro
+
+Shared Compression Dictionary の検証のため、本サイトの HTML を事前辞書で圧縮し、検証を行った。
+
+今後この仕様が進めば、ちょっと違うが全部取得し直さないといけない Webpack に代表されるバンドル結果の転送なども、より効率的にできるだろう。
+
+フロントエンドエコシステムや、 CDN などを巻き込んで策定が進めば、将来的にはよりシームレスに採用していけるかもしれない。
+
+今後を期待したい仕様の 1 つだ。
+
+
+## DEMO
+
+本サイトそのものがデモになっている。
+
+
+## Resources
+
+- Spec
+  - Compression Dictionary Transport
+    - https://www.ietf.org/archive/id/draft-meenan-httpbis-compression-dictionary-04.html
+- Explainer
+  - WICG/compression-dictionary-transport
+    - https://github.com/WICG/compression-dictionary-transport
+- Requirements Doc
+  - Compression dictionary transport with Shared Brotli
+    - https://docs.google.com/document/d/1IcRHLv-e9boECgPA5J4t8NDv9FPHDGgn0C12kfBgANg/edit
+- Mozilla Standard Position
+  - Request for Mozilla Position on Compression dictionary transport · Issue #771 · mozilla/standards-positions
+    - https://github.com/mozilla/standards-positions/issues/771
+- Webkit Position
+  - Compression Dictionary Transport · Issue #160 · WebKit/standards-positions
+    - https://github.com/WebKit/standards-positions/issues/160
+- TAG Design Review
+  - Tag review for Compression Dictionary Transport · Issue #877 · w3ctag/design-reviews
+    - https://github.com/w3ctag/design-reviews/issues/877
+- Intents
+  - Intent to Experiment: Compression dictionary transport with Shared Brotli
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E
+- Chrome Platform Status
+  - Intent to Experiment: Compression dictionary transport with Shared Brotli
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E
+- WPT (Web Platform Test)
+- DEMO
+  - horo-t/compression-dictionary-transport-shop-demo
+    - https://github.com/horo-t/compression-dictionary-transport-shop-demo
+  - horo-t/compression-dictionary-transport-threejs-demo
+    - https://github.com/horo-t/compression-dictionary-transport-threejs-demo
+- Blog
+- Presentation
+- Issues
+- Other
