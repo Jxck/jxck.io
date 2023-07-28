@@ -257,7 +257,7 @@ Unrecognized option '-h'
 これを用いてソースとなるファイルから辞書を生成する。
 
 ```sh
-$ dictionary_generator -t100k ./shared.dict ./template/*.ejs
+$ dictionary_generator ./shared.dict ./template/*.ejs
 ```
 
 これをデプロイする際、静的サーバでは `Sec-Availabe-Dictionary` の SHA256 を検証するのは面倒なため、ファイル名そのものを Dictionary の SHA256 にしておき、パスで解決できるようにする。これで、ヘッダを検証せずに差分圧縮を返しても、辞書が更新されたことによって解凍に失敗する可能性を防ぐことができる。
@@ -285,7 +285,11 @@ HTML をソースにしたら辞書も `text/html` となる。今回は EJS を
 $ brotli index.html -D 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict -o index.html.sbr
 ```
 
+最後に、サーバが `Accept-Encoding: sbr` に対して `.sbr` ファイルを返すように設定する必要がある。
 
+本サイトは h2o でサーブしているが、 h2o はまだ `.sbr` に対応してないのでパッチを当ててビルドした。
+
+(TODO: `send-compression` を有効にしたときに、拡張子付きのファイルを探してくれる部分をいじったが、拡張子が 2 文字前提の実装になってたので、とりいそぎ手を抜いて `.sbr` を `.sb` にしてデプロイしている。)
 
 
 
