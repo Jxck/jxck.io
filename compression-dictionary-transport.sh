@@ -14,7 +14,7 @@ dictionary_generator ./shared.dict ./sample.ejs
 
 hash=`sha256sum ./shared.dict | cut -f1 -d' '`
 
-cp shared.dict ${hash}.dict
+mv shared.dict ${hash}.dict
 
 brotli \
   ../entries/2016-01-27/new-blog-start.html \

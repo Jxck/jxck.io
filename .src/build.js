@@ -688,6 +688,8 @@ async function blog(files, params = { preview: false }) {
 
   if (params.preview) return
 
+  console.log(await promisify(exec)(`../compression-dictionary-transport.sh`))
+
   // build index
   const entries_per_year = entries.reduce((acc, entry) => {
     const year = entry.created_at.split(`-`)[0]
@@ -699,6 +701,9 @@ async function blog(files, params = { preview: false }) {
     return acc
   }, new Map())
 
+  const dict_path = (await glob(`../blog.jxck.io/dictionary/*.dict`)).at(0).split("/").at(-1)
+  console.log({ dict_path })
+
   const index_result = await renderFile(`./template/blog.index.html.ejs`, {
     indent,
     short,
@@ -706,6 +711,7 @@ async function blog(files, params = { preview: false }) {
     version,
     entries_per_year,
     first: entries[0],
+    dict_path
   })
   await writeFile(`../blog.jxck.io/index.html`, index_result)
 
