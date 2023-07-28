@@ -16,8 +16,8 @@ hash=`sha256sum ./shared.dict | cut -f1 -d' '`
 
 mv shared.dict ${hash}.dict
 
-brotli \
-  ../entries/2016-01-27/new-blog-start.html \
-   -D ${hash}.dict \
-   -o ../entries/2016-01-27/new-blog-start.html.sb \
-   -f
+# brotli \
+#   ../entries/2016-01-27/new-blog-start.html \
+#    -D ${hash}.dict \
+#    -o ../entries/2016-01-27/new-blog-start.html.sb \
+#    -f

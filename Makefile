@@ -68,7 +68,10 @@ BLO = $(shell selects path from "./blog.jxck.io/**/*" where "file?" "==" "true" 
 MOZ = $(shell selects path from "./mozaic.fm/**/*"    where "file?" "==" "true" and extname "!~" ".gz|.br|.png|.jpeg|.gif|.webp|.avif|.mp4|.webm|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
 TARGET = $(WWW) $(BLO) $(MOZ)
 
+ENTRIES = $(shell selects path from "./blog.jxck.io/entries/**/*.html")
+
 BR = $(addsuffix .br, $(TARGET))
+SB = $(addsuffix .sb, $(ENTRIES))
 
 #HASH_TARGET = $(shell etag.rb $(filter-out %.html, $(TARGET)))
 #COMP_TARGET = $(addsuffix .br, $(HASH_TARGET) $(filter %.html, $(TARGET)))
@@ -84,13 +87,17 @@ BR = $(addsuffix .br, $(TARGET))
 	brotli -f $<
 	touch -r $< $@
 
+%.sb: %
+	brotli -f --dictionary=$(wildcard ./blog.jxck.io/dictionary/*dict) --suffix=.sb $<
+	touch -r $< $@
 
 # 対象ファイルを圧縮
-comp: $(BR)
+comp: $(BR) $(SB)
 
 # 圧縮を削除
 clean:
 	@rm -fv $(BR)
+	@rm -fv $(SB)
 
 # ビルド結果(HTML)も削除
 remove:
