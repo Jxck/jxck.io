@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=<%= entry.canonical %>>
+
+  <link rel=preload as=script href=<%= version("https://www.jxck.io/assets/js/prism.js") %>>
+  <link rel=preload as=script href=<%= version("https://www.jxck.io/assets/js/main.js") %>>
+
+  <script defer src=<%= version("https://www.jxck.io/assets/js/prism.js") %>></script>
+  <script defer src=<%= version("https://www.jxck.io/assets/js/main.js") %>></script>
+
+  <%- indent(include("favicon.html.ejs", entry)) -%>
+
+  <%- indent(include("meta.html.ejs", entry)) -%>
+
+  <%- indent(include("json-ld.html.ejs", entry)) -%>
+
+  <title><%- entry.title %> | <%= entry.host %></title>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/body.css") %>>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/header.css") %>>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/blog.svg") %>   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/search.svg") %> title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/up.svg") %>     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/rss.svg") %>    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/humans.svg") %> title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=<%= version("https://www.jxck.io/assets/img/jxck.svg") %>   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/markdown.css") %>>
+  <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/main.css") %>>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/info.css") %>>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=<%= entry.created_at %>><%= entry.created_at %></time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=<%= entry.updated_at %>><%= entry.updated_at %></time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <%_ entry.tags.forEach((tag) => { _%>
+              <li><a href="/tags#<%=tag.replace(/ /g, '%20')%>"><%=tag%></a>
+              <%_ }) _%>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+<%- entry.toc_html -%>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/article.css") %>>
+<%- entry.article -%>
+  </main>
+  <hr>
+
+  <%- indent(include("blog.footer.html.ejs")) -%>
+</body>
+</html>
+<link rel=icon type=image/svg+xml sizes=any href=<%= icon %>.svg>
+<link rel=icon type=image/png sizes=120x120 href=<%= icon %>.120x120.png>
+<link rel=icon type=image/png sizes=300x300 href=<%= icon %>.300x300.png>
+<link rel=icon type=image/png sizes=600x600 href=<%= icon %>.600x600.png>
+<link rel=icon type=image/png sizes=1200x1200 href=<%= icon %>.1200x1200.png>
+<link rel=icon type=image/png sizes=3000x3000 href=<%= icon %>.3000x3000.png>
+
+<link rel=icon type=image/webp sizes=120x120 href=<%= icon %>.120x120.webp>
+<link rel=icon type=image/webp sizes=300x300 href=<%= icon %>.300x300.webp>
+<link rel=icon type=image/webp sizes=600x600 href=<%= icon %>.600x600.webp>
+<link rel=icon type=image/webp sizes=1200x1200 href=<%= icon %>.1200x1200.webp>
+<link rel=icon type=image/webp sizes=3000x3000 href=<%= icon %>.3000x3000.webp>
+
+<link rel=apple-touch-icon type=image/png sizes=120x120 href=<%= icon %>.120x120.png>
+<link rel=apple-touch-icon type=image/png sizes=300x300 href=<%= icon %>.300x300.png>
+<link rel=apple-touch-icon type=image/png sizes=600x600 href=<%= icon %>.600x600.png>
+<link rel=apple-touch-icon type=image/png sizes=1200x1200 href=<%= icon %>.1200x1200.png>
+<link rel=apple-touch-icon type=image/png sizes=3000x3000 href=<%= icon %>.3000x3000.png>
+
+<link rel=apple-touch-icon type=image/webp sizes=120x120 href=<%= icon %>.120x120.webp>
+<link rel=apple-touch-icon type=image/webp sizes=300x300 href=<%= icon %>.300x300.webp>
+<link rel=apple-touch-icon type=image/webp sizes=600x600 href=<%= icon %>.600x600.webp>
+<link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=<%= icon %>.1200x1200.webp>
+<link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=<%= icon %>.3000x3000.webp><meta name=author              content=Jxck>
+<meta name=description         content="<%- short(description) %>">
+<meta name=keywords            content="<%- tags.join(`,`) %>">
+<meta name=theme-color         content=#000000>
+
+<meta property=og:type         content=article>
+<meta property=og:url          content=<%= canonical %>>
+<meta property=og:title        content="<%- title %> | <%= host %>">
+<meta property=og:site_name    content=<%= host %>>
+<meta property=og:description  content="<%- short(description) %>">
+<meta property=og:image        content=<%= icon %>.600x600.png>
+
+<meta name="Hatena::Bookmark" content="nocomment">
+<link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+<script type=application/ld+json>
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://<%= host %>"
+  },
+  "headline": "<%- title %> | <%= host %>",
+  "image": [
+    "https://www.jxck.io/assets/img/jxck.png",
+    "https://logo.jxck.io/jxck.1200x1200.png"
+  ],
+  "datePublished": "<%= created_at %>T08:00:00+08:00",
+  "dateModified": "<%= updated_at %>T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jxck",
+    "image": "<%= icon %>.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jxck",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://logo.jxck.io/jxck.120x120.png",
+      "height": 120,
+      "width": 120
+    }
+  },
+  "description": "<%- short(description) %>"
+}
+</script><link rel=stylesheet property=stylesheet type=text/css href=<%= version("https://www.jxck.io/assets/css/footer.css") %>>
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+</footer>
