@@ -10,10 +10,10 @@
   <link rel=canonical href=https://blog.jxck.io/entries/2021-08-02/3rd-party-iframe-dialog.html>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230626_015654>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?230626_015654></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -103,7 +103,7 @@
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154131   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
@@ -203,16 +203,16 @@
         <p>
           <picture>
             <source type=image/avif srcset=1st-prompt.avif?220731_020617>
-            <source type=image/webp srcset=1st-prompt.webp?220731_020625>
-            <img loading=lazy decoding=async src=1st-prompt.png?220731_211907 alt="トップレベルで prompt() を呼んだ場合 "labs.jxck.io says" と表示される" width=1260 height=700>
+            <source type=image/webp srcset=1st-prompt.webp?220107_193959>
+            <img loading=lazy decoding=async src=1st-prompt.png?220731_020714 alt="トップレベルで prompt() を呼んだ場合 "labs.jxck.io says" と表示される" width=1260 height=700>
           </picture>
         </p>
         <p>以下は Cross Origin iframe として埋め込んだ lab2.jxck.io で呼び出した場合の挙動だ。
         <p>
           <picture>
             <source type=image/avif srcset=3rd-prompt.avif?220731_020617>
-            <source type=image/webp srcset=3rd-prompt.webp?220731_020625>
-            <img loading=lazy decoding=async src=3rd-prompt.png?220731_211907 alt="Cross Origin iframe で prompt() を呼んだ場合 "An embedded page at lab2.jxck.io sayz" と表示される" width=1260 height=700>
+            <source type=image/webp srcset=3rd-prompt.webp?220107_193959>
+            <img loading=lazy decoding=async src=3rd-prompt.png?220731_020714 alt="Cross Origin iframe で prompt() を呼んだ場合 "An embedded page at lab2.jxck.io sayz" と表示される" width=1260 height=700>
           </picture>
         </p>
         <p>ユーザにとってこの表示の意味を理解するのは必ずしも容易ではない。 ただの <code translate=no>alert()</code> であれば得られる情報はないが、 <code translate=no>prompt()</code> の場合はユーザに入力を求め、それを JS で取得することができてしまう。

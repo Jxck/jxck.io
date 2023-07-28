@@ -10,10 +10,10 @@
   <link rel=canonical href=https://blog.jxck.io/entries/2020-08-15/selection-of-img-srcset.html>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230626_015654>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?230626_015654></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -103,7 +103,7 @@
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154131   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
@@ -214,7 +214,7 @@ body {
         <p>
           <picture>
             <source type=image/avif srcset=srcset-firefox.avif?220731_020617>
-            <source type=image/webp srcset=srcset-firefox.webp?220731_020625>
+            <source type=image/webp srcset=srcset-firefox.webp?220107_193959>
             <img loading=lazy decoding=async src=srcset-firefox.gif?220731_020625 alt="Firefox では仮定したサイズで画像が切り替わっている" title="srcset image selection on firefox" width=482 height=547>
           </picture>
         </p>
@@ -222,7 +222,7 @@ body {
         <p>
           <picture>
             <source type=image/avif srcset=srcset-chrome.avif?220731_020617>
-            <source type=image/webp srcset=srcset-chrome.webp?220731_020625>
+            <source type=image/webp srcset=srcset-chrome.webp?220107_193959>
             <img loading=lazy decoding=async src=srcset-chrome.gif?220731_020625 alt="Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる" title="srcset image selection on chrome" width=482 height=547>
           </picture>
         </p>
@@ -426,7 +426,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
           <li>
             <picture>
               <source type=image/avif srcset=srcset-chrome-dpr2.avif?220731_020617>
-              <source type=image/webp srcset=srcset-chrome-dpr2.webp?220731_020625>
+              <source type=image/webp srcset=srcset-chrome-dpr2.webp?220107_193959>
               <img loading=lazy decoding=async src=srcset-chrome-dpr2.gif?220731_020625 alt="Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された" title="srcset image selection on chrome as expected" width=622 height=862>
             </picture>
           </li>

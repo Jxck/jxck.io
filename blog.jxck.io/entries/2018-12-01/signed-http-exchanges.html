@@ -10,10 +10,10 @@
   <link rel=canonical href=https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230626_015654>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?230626_015654></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -103,7 +103,7 @@
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154131   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
@@ -450,8 +450,8 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
           <p>
             <picture>
               <source type=image/avif srcset=1-index.avif?220731_020617>
-              <source type=image/webp srcset=1-index.webp?220731_020625>
-              <img loading=lazy decoding=async src=1-index.png?220731_002106 alt="sxg へ遷移する前のページ" title="index page" width=748 height=457>
+              <source type=image/webp srcset=1-index.webp?220107_193959>
+              <img loading=lazy decoding=async src=1-index.png?200901_002432 alt="sxg へ遷移する前のページ" title="index page" width=748 height=457>
             </picture>
           </p>
           <p>ページ下部のリンクから sxg に遷移する。
@@ -462,8 +462,8 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
           <p>
             <picture>
               <source type=image/avif srcset=2-sxg-response.avif?220731_020617>
-              <source type=image/webp srcset=2-sxg-response.webp?220731_020625>
-              <img loading=lazy decoding=async src=2-sxg-response.png?220731_002117 alt="sxg のレスポンスヘッダ" title="sxg response" width=748 height=457>
+              <source type=image/webp srcset=2-sxg-response.webp?220107_193959>
+              <img loading=lazy decoding=async src=2-sxg-response.png?191119_151451 alt="sxg のレスポンスヘッダ" title="sxg response" width=748 height=457>
             </picture>
           </p>
           <p>このファイルを展開したブラウザは、ファイルをパースし、必要な情報を取得する。
@@ -471,8 +471,8 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
           <p>
             <picture>
               <source type=image/avif srcset=3-sxg-signing-detail.avif?220731_020617>
-              <source type=image/webp srcset=3-sxg-signing-detail.webp?220731_020625>
-              <img loading=lazy decoding=async src=3-sxg-signing-detail.png?220731_002154 alt="sxg の署名部分の詳細" title="sxg signing detail" width=748 height=457>
+              <source type=image/webp srcset=3-sxg-signing-detail.webp?220107_193959>
+              <img loading=lazy decoding=async src=3-sxg-signing-detail.png?200901_002432 alt="sxg の署名部分の詳細" title="sxg signing detail" width=748 height=457>
             </picture>
           </p>
           <p>ここで取得した Certificate URL から証明書を取得する。
@@ -480,16 +480,16 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
           <p>
             <picture>
               <source type=image/avif srcset=4-cert-chain-cbor.avif?220731_020617>
-              <source type=image/webp srcset=4-cert-chain-cbor.webp?220731_020625>
-              <img loading=lazy decoding=async src=4-cert-chain-cbor.png?220731_002159 alt="証明書チェインの詳細" title="cert chain cbor" width=748 height=457>
+              <source type=image/webp srcset=4-cert-chain-cbor.webp?220107_193959>
+              <img loading=lazy decoding=async src=4-cert-chain-cbor.png?191119_151451 alt="証明書チェインの詳細" title="cert chain cbor" width=748 height=457>
             </picture>
           </p>
           <p>これを用いて署名の検証が完了したら、ブラウザは Original の URL でコンテンツを表示する。
           <p>
             <picture>
               <source type=image/avif srcset=5-rendered-contents.avif?220731_020617>
-              <source type=image/webp srcset=5-rendered-contents.webp?220731_020625>
-              <img loading=lazy decoding=async src=5-rendered-contents.png?220731_002236 alt="Logical URL で表示された HTML" width=748 height=457>
+              <source type=image/webp srcset=5-rendered-contents.webp?220107_193959>
+              <img loading=lazy decoding=async src=5-rendered-contents.png?191119_151451 alt="Logical URL で表示された HTML" width=748 height=457>
             </picture>
           </p>
           <p>内部的には改めてリクエストが発生しているように見えるが、サーバにはリクエストは飛んでいない。

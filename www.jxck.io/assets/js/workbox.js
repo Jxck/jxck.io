@@ -10,7 +10,7 @@ importScripts('https://www.jxck.io/assets/js/workbox-v6.5.4/workbox-precaching.p
 const precache =
 /*---build.js---*/
 [
-  "https://www.jxck.io/assets/js/main.js?230626_015654",
+  "https://www.jxck.io/assets/js/main.js?230728_230731",
   "https://www.jxck.io/assets/js/prism.js?210115_215132",
   "https://www.jxck.io/assets/js/ga.js?210325_165821",
   "https://www.jxck.io/assets/css/archive.css?220304_061221",
@@ -29,10 +29,10 @@ const precache =
   "https://www.jxck.io/assets/img/search.svg?190421_130410",
   "https://www.jxck.io/assets/img/rss.svg?160227_124312",
   "https://www.jxck.io/assets/img/humans.svg?160831_002319",
-  "https://www.jxck.io/assets/img/jxck.svg?220803_154131",
+  "https://www.jxck.io/assets/img/jxck.svg?190123_200004",
   "https://www.jxck.io/assets/img/amp.svg?181110_002524",
   "https://www.jxck.io/assets/img/up.svg?160831_002319",
-  "https://www.jxck.io/assets/img/jxck.png?220803_063509",
+  "https://www.jxck.io/assets/img/jxck.png?210331_115006",
 ]
 /*---build.js---*/
 

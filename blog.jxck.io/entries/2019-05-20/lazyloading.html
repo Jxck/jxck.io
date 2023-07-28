@@ -10,10 +10,10 @@
   <link rel=canonical href=https://blog.jxck.io/entries/2019-05-20/lazyloading.html>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230626_015654>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
 
   <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?230626_015654></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -103,7 +103,7 @@
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154131   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
@@ -268,8 +268,8 @@
           <p>
             <picture>
               <source type=image/avif srcset=eagerload.avif?220731_020617>
-              <source type=image/webp srcset=eagerload.webp?220731_020625>
-              <img loading=lazy decoding=async src=eagerload.png?220731_002211 alt="Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ" title="eager loading images" width=1366 height=768>
+              <source type=image/webp srcset=eagerload.webp?220107_193959>
+              <img loading=lazy decoding=async src=eagerload.png?200901_002432 alt="Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ" title="eager loading images" width=1366 height=768>
             </picture>
           </p>
         </section>
@@ -283,16 +283,16 @@
           <p>
             <picture>
               <source type=image/avif srcset=lazyload-above.avif?220731_020617>
-              <source type=image/webp srcset=lazyload-above.webp?220731_020625>
-              <img loading=lazy decoding=async src=lazyload-above.png?220731_002225 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing above the fold" width=1366 height=768>
+              <source type=image/webp srcset=lazyload-above.webp?220107_193959>
+              <img loading=lazy decoding=async src=lazyload-above.png?200901_002432 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing above the fold" width=1366 height=768>
             </picture>
           </p>
           <p>あとは、スクロールに従って残りの <code translate=no>&lt;img&gt;</code> が Viewport に近づくと、その画像の全体を再度取得する。
           <p>
             <picture>
               <source type=image/avif srcset=lazyload-below.avif?220731_020617>
-              <source type=image/webp srcset=lazyload-below.webp?220731_020625>
-              <img loading=lazy decoding=async src=lazyload-below.png?220731_002237 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing below the fold" width=1366 height=768>
+              <source type=image/webp srcset=lazyload-below.webp?220107_193959>
+              <img loading=lazy decoding=async src=lazyload-below.png?191119_151451 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing below the fold" width=1366 height=768>
             </picture>
           </p>
           <p>同じ検証の動画を以下に付記しておく。
