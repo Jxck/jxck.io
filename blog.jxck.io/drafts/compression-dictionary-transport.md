@@ -95,23 +95,6 @@ CDT は、任意のコンテンツから辞書を作り、それをサーバ/ク
 
 まずは、 Shared Brotli のツールを用意する。
 
-## Install
-
-shared brotli に用いる dictionary を生成するためのツールは、 brotli のリポジトリに入っている。
-
-- brotli/research/dictionary_generator.cc at master · google/brotli
-  - https://github.com/google/brotli/blob/master/research/dictionary_generator.cc
-
-bazel を使ってこれをビルドする。
-
-```sh
-$ git clone https://github.com/google/brotli.git
-$ cd brotli
-$ bazel build brotli
-$ cd research
-$ bazel build dictionary_generator
-```
-
 
 ## Shared Dictionary
 
@@ -224,6 +207,83 @@ Sec-Available-Dictionary: <SHA-256 of Dictionary>
 しかし、静的に事前生成した HTML を返しているだけの本サイトでは、辞書を使って圧縮率を上げられたとしても、それを動的に行うために起動する brotli のプロセスがオーバーヘッドになることは明白だ。
 
 そこで、通常の brotli 圧縮済みファイルの生成に加え、 Dictionary を用いた圧縮も事前に行っておくことにした。
+
+
+
+## Install
+
+shared brotli に用いる dictionary を生成するためのツールは、 brotli のリポジトリに入っている。
+
+- brotli/research/dictionary_generator.cc at master · google/brotli
+  - https://github.com/google/brotli/blob/master/research/dictionary_generator.cc
+
+bazel を使ってこれをビルドする。
+
+```sh
+$ git clone https://github.com/google/brotli.git
+$ cd brotli
+$ bazel build brotli
+$ cd research
+$ bazel build dictionary_generator
+$ ./dictionary_generator -h
+Usage: dictionary_generator [OPTION]... DICTIONARY [SAMPLE]...
+Options:
+  --dm       use 'deorummolae' engine
+  --distill  rewrite samples; unique text parts are removed
+  --dsh      use 'durchschlag' engine (default)
+  --purify   rewrite samples; unique text parts are zeroed out
+  --sieve    use 'sieve' engine
+  -b#, --block_len=#
+             set block length for 'durchschlag'; default: 1024
+  -s#, --slice_len=#
+             set slice length for 'distill', 'durchschlag', 'purify'
+             and 'sieve'; default: 16
+  -t#, --target_dict_len=#
+             set target dictionary length (limit); default: 16K
+  -u#, --min_slice_pop=#
+             set minimum slice population (for rewrites); default: 2
+  -c#, --chunk_len=#
+             if positive, samples are cut into chunks of this length;
+             default: 0; cannot mix with 'rewrite samples'
+  -o#, --overlap_len=#
+             set chunk overlap length; default 0
+# is a decimal number with optional k/K/m/M suffix.
+WARNING: 'distill' and 'purify' will overwrite original samples!
+         Completely unique samples might become empty files.
+
+Unrecognized option '-h'
+```
+
+これを用いてソースとなるファイルから辞書を生成する。
+
+```sh
+$ dictionary_generator -t100k ./shared.dict ./template/*.ejs
+```
+
+これをデプロイする際、静的サーバでは `Sec-Availabe-Dictionary` の SHA256 を検証するのは面倒なため、ファイル名そのものを Dictionary の SHA256 にしておき、パスで解決できるようにする。これで、ヘッダを検証せずに差分圧縮を返しても、辞書が更新されたことによって解凍に失敗する可能性を防ぐことができる。
+
+```sh
+$ sha256sum ./shared.dict
+91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2
+$ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict
+```
+
+この辞書をデプロイする。なお、この辞書のための MIME は定義されておらず、任意のものを使ってよいとされている。
+
+HTML をソースにしたら辞書も `text/html` となる。今回は EJS をソースにしているが、 HTML そのものではないので、一応 `text/plain` としておく。
+
+この辞書を index.html の HTML に辞書を追加する。
+
+```html
+<link rel="dictionary" href="/91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict">
+```
+
+
+次に、このテンプレートを使って生成した HTML を、辞書を使って事前に圧縮しておく。
+
+```sh
+$ brotli index.html -D 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict -o index.html.sbr
+```
 
 
 
