@@ -348,9 +348,7 @@ Shared Compression Dictionary の検証のため、本サイトの HTML を事�
 
 今後この仕様が進めば、ちょっと違うが全部取得し直さないといけない Webpack に代表されるバンドル結果の転送なども、より効率的にできる可能性がある。
 
-フロントエンドエコシステムや、 CDN などを巻き込んで策定が進めば、将来的にはよりシームレスに採用していけるかもしれない。
-
-TODO: cloudflare のブログと mozilla positive
+Mozilla も Positive であり、 Cloudflare もブログで興味を示している。引き続き、フロントエンドエコシステムや CDN などを巻き込んで策定が進めば、将来的にはよりシームレスに採用していけるかもしれない。
 
 
 ## DEMO
@@ -391,6 +389,8 @@ TODO: cloudflare のブログと mozilla positive
   - horo-t/compression-dictionary-transport-threejs-demo
     - https://github.com/horo-t/compression-dictionary-transport-threejs-demo
 - Blog
+  - All the way up to 11: Serve Brotli from origin and Introducing Compression Rules
+    - https://blog.cloudflare.com/this-is-brotli-from-origin/#the-future-of-web-compression
 - Presentation
 - Issues
 - Other
