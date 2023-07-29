@@ -1,4 +1,4 @@
-# Compression Dictionary Transport (Shared Brotli)
+# Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化
 
 ## Intro
 

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-07-29/compression-dictionary-transport.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Chrome で Compression Dictionary Transport の Experiment が行われている。Intent to Experiment: Compression dictionary transport with Shared Brotlih...">
+  <meta name=keywords            content="">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-07-29/compression-dictionary-transport.html>
+  <meta property=og:title        content="Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Chrome で Compression Dictionary Transport の Experiment が行われている。Intent to Experiment: Compression dictionary transport with Shared Brotlih...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-07-29T08:00:00+08:00",
+    "dateModified": "2023-07-29T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Chrome で Compression Dictionary Transport の Experiment が行われている。Intent to Experiment: Compression dictionary transport with Shared Brotlih..."
+  }
+  </script>
+
+  <title>Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?220306_111358>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?210426_190329>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-07-29>2023-07-29</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-07-29>2023-07-29</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#brotli-の-dictionary">brotli の Dictionary</a>
+                <li><a href="#web-における辞書共有">Web における辞書共有</a>
+                <li><a href="#compression-dictionary-transport">Compression Dictionary Transport</a>
+                <ol>
+                  <li><a href="#shared-dictionary">Shared Dictionary</a>
+                </ol>
+                <li><a href="#delta-compression">Delta Compression</a>
+                <li><a href="#その他の仕様">その他の仕様</a>
+                <li><a href="#本サイトへの適用">本サイトへの適用</a>
+                <ol>
+                  <li><a href="#構成">構成</a>
+                </ol>
+                <li><a href="#install">Install</a>
+                <li><a href="#h2o-のパッチ">H2O のパッチ</a>
+                <li><a href="#検証">検証</a>
+                <li><a href="#outro">Outro</a>
+                <li><a href="#demo">DEMO</a>
+                <li><a href="#resources">Resources</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Chrome で Compression Dictionary Transport の Experiment が行われている。
+        <ul>
+          <li>
+            Intent to Experiment: Compression dictionary transport with Shared Brotli
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E</a>
+            </ul>
+          </li>
+        </ul>
+        <p>この提案の仕様および本サイトへの適用について解説する。
+      </section>
+      <section>
+        <h2 id="brotli-の-dictionary"><a href="#brotli-の-dictionary">brotli の Dictionary</a></h2>
+        <p>圧縮方式は、基本的に「同じ値が出てきたら、それらをまとめて小さく表現する」という方式が中心となる。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre><code translate=no># 繰り返しを数値で表現する場合
+from: aaaabbbbb
+to:   a4b5</code></pre>
+        <p>この方式は、対象としたデータの中で、如何に効率よく「同じ値」を見つけるかが肝となる。例えば以下の例は、探索範囲をどこまでとるかによって、圧縮結果が変わることがわかる。
+        <pre><code translate=no>from: ababcdababcd
+to:   ab2cdab2cd
+
+from: ababcdababcd
+to:   ababcd2</code></pre>
+        <p>圧縮ツールでクオリティのようなものが指定できる場合、ざっくりいえばこの「同じ値」をどこまでの範囲で探すかを指定している場合が多い。丁寧に探せば圧縮率は向上するが時間がかかり、時間を重視すると圧縮率が下がる。
+        <p>ところが、これは中身がどんな情報かを気にしない、汎用的なデータに対する手法だ。中身がどんなタイプのデータがわかっている場合は、その情報を辞書として用意しておくことで「データ列がよく出てくる」ということを、圧縮アルゴリズムにヒントとして提供することができる。
+        <p>例えば、中身が HTML だとわかっていた場合 <code translate=no>&lt;!doctype html&gt;</code> が辞書にあれば、その一致で効率よく圧縮箇所を見つけられるというものだ。
+        <p>ちなみに、 brotli は最初から「Web 上でやりとりする値」にフォーカスしているため、実際に Web 上でやり取りされている情報を大量に集め、そこから辞書を生成し、仕様の中に Static Dictionary として直書きしている。
+        <p>以下の長い Hex がそれに当たる。
+        <ul>
+          <li>
+            RFC 7932 - Brotli Compressed Data Format
+            <ul>
+              <li><a href="https://datatracker.ietf.org/doc/html/rfc7932#appendix-A" target=_blank>https://datatracker.ietf.org/doc/html/rfc7932#appendix-A</a>
+            </ul>
+          </li>
+        </ul>
+        <p>実際にバイナリを覗いてみると、テキストとして認識可能な箇所が多々ある。
+        <p>最初の部分は、頻出英単語だろう。
+        <pre><code translate=no>timedownlifeleftbackcodedatashowonlysitecityopenjustlikefreeworktextyearoverbodyloveformbookplaylivelinehelphomesidemorewordlongthemviewfindpagedaysfullheadtermeachareafromtruemarkableuponhighdatelandnewsevennextcasebothpostusedmadehandherewhatnameLinkblogsizebaseheldmakemainuser&apos;) </code></pre>
+        <p>途中はなんとなく JS 感がある(改行も含めて圧縮できるよう、辞書内に改行がそのまま入っている)。
+        <pre><code translate=no>exit:35Zvarsbeat&apos;});diet999;anne}}&lt;/[i].LangkmĀ²wiretoysaddssealalex;
+	}echonine.org005)tonyjewssandlegsroof000) 200winegeardogsbootgarycutstyletemption.xmlcockgang$(&apos;.50pxPh.Dmiscalanloandeskmileryanunixdisc);}
+dustclip).
+
+70px-200DVDs7]&gt;&lt;tapedemoi++)wageeurophiloptsholeFAQsasin-26TlabspetsURL bulkcook;}
+HEAD[0])abbrjuan(198leshtwin&lt;/i&gt;sonyguysfuckpipe|-
+!002)ndow[1];[];
+Log salt
+		bangtrimbath){
+00px
+});ko:ģfeesad&gt;
+s:// [];tollplug(){
+{
+ .js&apos;200pdualboat.JPG);
+}quot);
+
+&apos;);</code></pre>
+        <p>後半の方は明らかに頻出 HTML だ
+        <pre><code translate=no>&lt;html &lt;meta charset=&quot;utf-8&quot;&gt;:url&quot; content=&quot;http://.css&quot; rel=&quot;stylesheet&quot;style type=&quot;text/css&quot;&gt;type=&quot;text/css&quot; href=&quot;w3.org/1999/xhtml&quot; xmltype=&quot;text/javascript&quot; method=&quot;get&quot; action=&quot;link rel=&quot;stylesheet&quot;  = document.getElementtype=&quot;image/x-icon&quot; /&gt;cellpadding=&quot;0&quot; cellsp.css&quot; type=&quot;text/css&quot; &lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot;&quot;&gt;&lt;a href=&quot;http://www.style=&quot;display:none;&quot;&gt;alternate&quot; type=&quot;appli-//W3C//DTD XHTML 1.0 ellspacing=&quot;0&quot; cellpad type=&quot;hidden&quot; value=&quot;/a&gt;&amp;nbsp;&lt;span role=&quot;s
+&lt;input type=&quot;hidden&quot; language=&quot;JavaScript&quot;  document.getElementsBg=&quot;0&quot; cellspacing=&quot;0&quot; ype=&quot;text/css&quot; media=&quot;type=&apos;text/javascript&apos;with the exception of ype=&quot;text/css&quot; rel=&quot;st height=&quot;1&quot; width=&quot;1&quot; =&apos;+encodeURIComponent(&lt;link rel=&quot;alternate&quot; 
+body, tr, input, textmeta name=&quot;robots&quot; conmethod=&quot;post&quot; action=&quot;&gt;</code></pre>
+        <p>Web 系コンテンツに対して、汎用圧縮アルゴリズムよりも brotli の方が有利なのは、この辞書の存在が大きい。
+      </section>
+      <section>
+        <h2 id="web-における辞書共有"><a href="#web-における辞書共有">Web における辞書共有</a></h2>
+        <p>もし自分がデプロイしているサービスにおいて、そこでどんなコンテンツが使われているのかを元に独自の辞書を生成し、 brotli にヒントを与えることができれば、より圧縮率が高くなるだろうことは容易に想像できる。
+        <p>前述の辞書は仕様にベタ書きされた必須のものなので、 brotli 実装なら等しく持っているが、独自の辞書を作る場合、問題はその辞書をどうやって送信元/送信先で共有するかになる。
+        <p>実は過去にも「サーバとクライアントで辞書を共有し圧縮率を上げる」というこの目的のために作られた SDCH (Shared Dictionary Compression for HTTP) という仕様が存在し、 Chrome にも実装されていた。
+        <p>しかし、この仕様は提案時期が 2008 年頃とかなり古く、仕様も複雑だった。当時はまだ CORS なども普及する前であるため、安全性の問題もあり、全くと言ってよいほど普及せず、 2016 年には Chrome からも削除された。
+        <ul>
+          <li>
+            Shared_Dictionary_Compression_over_HTTP.pdf
+            <ul>
+              <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/Shared_Dictionary_Compression_over_HTTP.pdf" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/Shared_Dictionary_Compression_over_HTTP.pdf</a>
+            </ul>
+          </li>
+        </ul>
+        <p>過去の失敗を踏まえて仕様をシンプルに絞り、 CORS を前提とする昨今のセキュリティマナーに則った形で、この辞書共有を再定義し、より高度に圧縮することを目的として始まったのが &quot;Shared brotli&quot; だ。
+        <p>あとから「brotli 以外の圧縮(例えば zstd)でも使える方法なはずだ」ということで、名前をより汎用的な &quot;Compression Dictionary Transport (CDT)&quot; にリネームして現在の提案に至っている。
+      </section>
+      <section>
+        <h2 id="compression-dictionary-transport"><a href="#compression-dictionary-transport">Compression Dictionary Transport</a></h2>
+        <p>CDT は、任意のコンテンツから辞書を作り、それをサーバ/クライアント間で共有する 2 つの方式が提案されている。
+        <ul>
+          <li>
+            Shared Dictionary
+            <ul>
+              <li>事前にサーバが用意した辞書をクライアントが取得する
+            </ul>
+          </li>
+          <li>
+            Delta Compression
+            <ul>
+              <li>クライアントがすでに取得したコンテンツを、次の取得の辞書にする
+            </ul>
+          </li>
+        </ul>
+        <section>
+          <h3 id="shared-dictionary"><a href="#shared-dictionary">Shared Dictionary</a></h3>
+          <p>Shared Dictionary は、その名の通り共有辞書を事前生成しておく方法だ。
+          <p>例えば、テンプレートエンジンに値を埋め込んで作るタイプのページでは、埋め込む値のバリエーションは数あっても、テンプレートエンジン部分は共通している。
+          <p>そこで、テンプレートエンジンを元に辞書を作成し、事前にブラウザに取得させれば、そのテンプレートを使ったページは圧縮率を上げられるといったものだ。
+          <p>Shared Dictionary の場合は、辞書の元にしたいサンプルを指定し、そこから辞書を生成する。
+          <pre class=sh data-code=sh><code translate=no class=language-sh>$ ./dictionary_generator ./shared.dict ./*.template.html</code></pre>
+          <p>この <code translate=no>shared.dict</code> をサーバにデプロイし、 HTML に <code translate=no>&lt;link&gt;</code> で指定する。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;dictionary&quot; href=&quot;/shared.dict&quot;&gt;</code></pre>
+          <p>この HTML を表示した際に、ブラウザは辞書の存在に気づき、それをダウンロードすることで、以降のコンテンツの圧縮に利用できる。つまり Prefetch 方式であるため、例えばメインページのための辞書をログインページで落としておくといった、投機的な提供を行う必要がある。
+          <p><code translate=no>/shared.dict</code> のレスポンスヘッダには、辞書が対象とするパスを以下のように指定する。
+          <pre class=http data-code=http><code translate=no class=language-http>Use-As-Dictionary: match=&quot;/path/to/target/*&quot;</code></pre>
+          <p>クライアントが <code translate=no>Use-As-Dictionary</code> に指定されたパスに遷移した際は、 Brotli での CDT に対応していること(<code translate=no>sbr</code>)、そこで適用可能な辞書を持っていることを以下のようにリクエストヘッダに付与する。
+          <pre class=http data-code=http><code translate=no class=language-http>Accept-Encoding: sbr
+Sec-Available-Dictionary: &lt;SHA-256 of Dictionary&gt;</code></pre>
+          <p>サーバは、クライアントが指定してきた辞書を使用し、コンテンツを圧縮して返すことができる。
+          <p>辞書を用いた圧縮を行った場合は、レスポンスは以下のようになる。辞書によって同一コンテンツのエンコーディング結果が変わるため、 Cache のキーに辞書のハッシュを追加するように、 <code translate=no>Sec-Available-Dictionary</code> を <code translate=no>Vary</code> に追加する。
+          <pre class=http data-code=http><code translate=no class=language-http>Content-Encoding: sbr
+Vary: Accept-Encoding, Sec-Available-Dictionary</code></pre>
+          <p>辞書を事前に生成する方式であるため、静的サイトジェネレータなどと相性の良い方式と言えるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="delta-compression"><a href="#delta-compression">Delta Compression</a></h2>
+        <p>ちょっとだけ違うリソースを連続して取得するような場面では、前回取得したものを辞書に圧縮を行えば、圧縮率を上げられる。そこで、既に取得したリソースを辞書とし、次に取得するリソースを差分圧縮するのが、Delta Compression だ。
+        <p>例えばページごとにビルドされた JS は、フレームワーク部分など共通箇所が多いだろう。そこで、全てのページで JS のレスポンスに以下のヘッダを付与する。
+        <pre class=http data-code=http><code translate=no class=language-http>Use-As-Dictionary: match=&quot;/js/*&quot;</code></pre>
+        <p>この設定で、まず <code translate=no>a.js</code> を取得したブラウザは、次に <code translate=no>b.js</code> を取得する際に以下のようにリクエストを行う。
+        <pre class=http data-code=http><code translate=no class=language-http>Accept-Encoding: sbr
+Sec-Available-Dictionary: &lt;SHA-256 of a.js&gt;</code></pre>
+        <p>提示されたハッシュから、クライアントが <code translate=no>a.js</code> を辞書として持っていることを知ったサーバは、次に返す <code translate=no>b.js</code> を <code translate=no>a.js</code> で圧縮して返すことで、差分圧縮が可能になる。 Diff だけ送っているようなイメージだ。
+        <p>辞書は特別なフォーマットではなく、どんなコンテンツでも利用することができることがわかるだろう。ほとんど同じでちょっとだけ異なる画像などであっても、同様に辞書として差分圧縮ができる。
+        <p>以降の <code translate=no>b.js</code> にも <code translate=no>Use-As-Dictionary</code> を付与することで、それを更に <code translate=no>c.js</code> を圧縮する辞書として使うことができる。
+        <p>Delta Compression の場合は、基本的には送られてきた hash を元に辞書を特定し、それを用いて動的に圧縮することになるだろう。数が少なければ、全ての (辞書, コンテンツ) の組から事前に生成することも可能かもしれないが、一般的には非現実的だろう。
+        <p>つまり、動的な圧縮にかかるコストが、圧縮率向上によって得られるメリットを上回ると、単にオーバーヘッドになる点には注意が必要だ。
+      </section>
+      <section>
+        <h2 id="その他の仕様"><a href="#その他の仕様">その他の仕様</a></h2>
+        <ul>
+          <li>辞書は別オリジンからも取得できるが、サイドチャネル対策もあって、もちろん CORS 必須。
+          <li>
+            Use-As-Dictionary は SFV になっており、<code translate=no>match</code> 以外にも <code translate=no>expires</code> と <code translate=no>algorithm</code> がある。
+            <ul>
+              <li><code translate=no>expires</code> は Cache-Control と独立させるためにあるようだが、ライフタイム管理がどうなるのか今ひとつよくわからない。デフォルト 1 年は長いと思うので設定した方が良さそう。
+              <li><code translate=no>algorithm</code> は仕様も実装も現状 <code translate=no>sha-256</code> のみなため、将来拡張されない限り特に不要そう。
+            </ul>
+          </li>
+          <li>
+            <code translate=no>Sec-Available-Dictionary</code> は 1 つしか送らないことでシンプルさを保っている。
+            <ul>
+              <li>そのおかげで <code translate=no>Vary</code> に指定できる。
+              <li>代わりに、被った Path 以下で持ってる辞書を全部アドバタイズさせてサーバで選ぶみたいなことはできない。
+              <li>Delta の場合は、辞書とコンテンツの差分が多い場合、動的圧縮のオーバーヘッドが勝る可能性にも注意。
+            </ul>
+          </li>
+          <li>
+            Fingerprinting 対策のため Cookie 同様に Partitioning される
+            <ul>
+              <li>つまり Public CDN 的な使い方で辞書をサイト間共有することはできない
+              <li>今は Cache 自体も共有できない(条件あり)のであまり影響はないだろう。
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+        <section>
+          <h3 id="構成"><a href="#構成">構成</a></h3>
+          <p>本サイトは、静的なブログだけであり、テンプレートエンジンに HTML 化した Markdown を流し込んで、事前に生成した静的ファイルを h2o で配信している。
+          <p>静的ファイルは、ビルド時に brotli で事前圧縮しているので、 Delta Compression を行うとしても brotli のプロセスを動的に立ち上げるオーバーヘッドはペイしないだろう。
+          <p>そこで、本サイトでは、記事ページ(<code translate=no>/entries/*</code>)のテンプレートから生成した Shared Dictionary を事前生成し、それを記事一覧ページ(<code translate=no>/index.html</code>)で配布する構成をとることにした。
+          <p>おそらく、静的サイトでの典型的な利用例と思われる。
+        </section>
+      </section>
+      <section>
+        <h2 id="install"><a href="#install">Install</a></h2>
+        <p>Shared brotli に用いる dictionary を生成するためのツールは、 brotli のリポジトリに入っている。
+        <ul>
+          <li>
+            brotli/research/dictionary_generator.cc at master · google/brotli
+            <ul>
+              <li><a href="https://github.com/google/brotli/blob/master/research/dictionary_generator.cc" target=_blank>https://github.com/google/brotli/blob/master/research/dictionary_generator.cc</a>
+            </ul>
+          </li>
+        </ul>
+        <p>bazel を使ってこれをビルドする。
+        <pre class=sh data-code=sh><code translate=no class=language-sh>$ git clone https://github.com/google/brotli.git
+$ cd brotli
+$ bazel build brotli
+$ cd research
+$ bazel build dictionary_generator
+$ ./dictionary_generator -h
+Usage: dictionary_generator [OPTION]... DICTIONARY [SAMPLE]...
+Options:
+  --dm       use &apos;deorummolae&apos; engine
+  --distill  rewrite samples; unique text parts are removed
+  --dsh      use &apos;durchschlag&apos; engine (default)
+  --purify   rewrite samples; unique text parts are zeroed out
+  --sieve    use &apos;sieve&apos; engine
+  -b#, --block_len=#
+             set block length for &apos;durchschlag&apos;; default: 1024
+  -s#, --slice_len=#
+             set slice length for &apos;distill&apos;, &apos;durchschlag&apos;, &apos;purify&apos;
+             and &apos;sieve&apos;; default: 16
+  -t#, --target_dict_len=#
+             set target dictionary length (limit); default: 16K
+  -u#, --min_slice_pop=#
+             set minimum slice population (for rewrites); default: 2
+  -c#, --chunk_len=#
+             if positive, samples are cut into chunks of this length;
+             default: 0; cannot mix with &apos;rewrite samples&apos;
+  -o#, --overlap_len=#
+             set chunk overlap length; default 0
+# is a decimal number with optional k/K/m/M suffix.
+WARNING: &apos;distill&apos; and &apos;purify&apos; will overwrite original samples!
+         Completely unique samples might become empty files.
+
+Unrecognized option &apos;-h&apos;</code></pre>
+        <p>これを用いてソースとなるファイルから辞書を生成する。
+        <pre class=sh data-code=sh><code translate=no class=language-sh>$ dictionary_generator ./shared.dict ./template/*.ejs</code></pre>
+        <p>基本的に静的ファイルは Cache Busting しておきたいので、 <code translate=no>Sec-Available-Dictionary</code> に利用される SHA256 の値でファイルをリネームしておく。
+        <pre class=sh data-code=sh><code translate=no class=language-sh>$ sha256sum ./shared.dict
+91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2
+$ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict</code></pre>
+        <p>この辞書をデプロイする。なお、この辞書のための MIME は定義されておらず、辞書に用いたコンテンツに応じて任意のものを使ってよいとされている。
+        <p>つまり、 HTML をソースにしたら辞書も <code translate=no>text/html</code> となるということだが、今回は EJS をソースにしており HTML そのものではないので、一応 <code translate=no>text/plain</code> としておく。(HTML, JS, CSS などを混ぜて辞書を作ったら、どういう値にするのがよいのだろうか?)
+        <p>この辞書を index.html の HTML でアドバタイズする。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;dictionary&quot; href=&quot;/91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict&quot;&gt;</code></pre>
+        <p>次に、先程ビルドした brotli リポジトリのバイナリを使って、テンプレートを使って生成した各 HTML を、辞書を使って圧縮する。
+        <pre class=sh data-code=sh><code translate=no class=language-sh>$ brotli \
+  -f \
+  --dictionary=91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict \
+  --suffix=.sbr \
+  /path/to/entry.html</code></pre>
+        <p>最後に、サーバが <code translate=no>Accept-Encoding: sbr</code> に対して、指定されたハッシュと同じ辞書で圧縮した <code translate=no>.sbr</code> ファイルを返すようにデプロイすれば完了だ。
+      </section>
+      <section>
+        <h2 id="h2o-のパッチ"><a href="#h2o-のパッチ">H2O のパッチ</a></h2>
+        <p>本サイトは h2o でサーブしているが、 h2o はまだ <code translate=no>.sbr</code> に対応していないのでパッチを当ててビルドした。
+        <p><code translate=no>send-compression</code> を有効にしたときに、拡張子付きのファイルを探してくれる部分をいじったが、拡張子が 2 文字前提の実装になっていたので、とりいそぎ手を抜いて <code translate=no>.sbr</code> を <code translate=no>.sb</code> にしてデプロイしている。
+        <p>また、 <code translate=no>.sb</code> を返す際に <code translate=no>Sec-Available-Dictionary</code> のハッシュを検証したり、 <code translate=no>Vary</code> を付与するためには、 conf で mruby を呼ぶか、同じくパッチを当てるしか無い。ここも手を抜いて、辞書の <code translate=no>expire</code> を短くしておくにとどめた。
+      </section>
+      <section>
+        <h2 id="検証"><a href="#検証">検証</a></h2>
+        <p>Chrome Canary 117.0.5912.0 で以下のフラグを有効にし、挙動を検証した。
+        <ul>
+          <li>#enable-compression-dictionary-transport
+          <li>#enable-compression-dictionary-transport-backend
+        </ul>
+        <p>この状態で本ブログのインデックスページにアクセスすると、以下のようにメインコンテンツの後に辞書が取得されていることがわかる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=./compression.avif?230729_191742>
+            <source type=image/webp srcset=./compression.webp?230729_191345>
+            <img loading=lazy decoding=async src=./compression.png?230729_191242 alt="dictionary が取得されている devtools timeline のスクショ" width=3584 height=2106>
+          </picture>
+        </p>
+        <p>次に、記事に遷移すると、コンテントネゴシエーションの結果 sbr が返されていることがわかる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=./dictionary.avif?230729_191521>
+            <source type=image/webp srcset=./dictionary.webp?230729_191358>
+            <img loading=lazy decoding=async src=./dictionary.png?230729_191241 alt="Content-Encoding sbr が取得されている devtools timeline のスクショ" width=3584 height=2108>
+          </picture>
+        </p>
+        <p><a href="/entries/2023-06-18/cookie-store-api.html">前回の記事</a> の圧縮結果を比較すると、以下のようになっている。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?220306_111358">
+        <figure>
+          <figcaption>圧縮率の比較</figcaption>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-right>format</th>
+                <th class=align-right>byte</th>
+                <th class=align-right>ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-right>html</td>
+                <td class=align-right>27278</td>
+                <td class=align-right>100%</td>
+              </tr>
+              <tr>
+                <td class=align-right>br</td>
+                <td class=align-right>5453</td>
+                <td class=align-right>20%</td>
+              </tr>
+              <tr>
+                <td class=align-right>sbr</td>
+                <td class=align-right>4559</td>
+                <td class=align-right>17%</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+        <p>この結果では 3 point 圧縮率が向上している。全ファイルを同様に計算したが、平均で 4 point の向上だった。また、 1 つだけ、結果が -1 point (br の方が sbr より 1byte 少ない)という結果もあった。
+        <p>今回使った辞書のサイズは 7245 byte で、これを通常の br 圧縮して 1557 byte だったが、事前にバックグラウンドで取得することを考えると、辞書はもう少し大きくても問題はないだろう。
+        <p>今回はテンプレートをただくっつけただけの辞書だったため、本文の内容の圧縮には寄与してない。 brotli のデフォルト辞書がそもそも HTML を考慮していることを考えると、むしろそこに出てこない日本語部分で、頻出単語を並べるといった方法で辞書を作った方が、圧縮率は向上したかもしれない。
+        <p>いずれにせよ、辞書の作り方が非常に重要になることがよくわかる。
+        <p>そして、このサイトではほとんど使ってない JS/CSS の圧縮は今回対象外だったが、 SPA ではそうしたアセットの圧縮こそ本仕様の本領が発揮される部分だと思われる。
+        <p>そのあたりは今後の課題としたい。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>Shared Compression Dictionary の検証のため、本サイトの HTML を事前辞書で圧縮し、検証を行った。
+        <p>今後この仕様が進めば、ちょっと違うが全部取得し直さないといけない Webpack に代表されるバンドル結果の転送なども、より効率的にできる可能性がある。
+        <p>Mozilla も Positive であり、 Cloudflare もブログで興味を示している。引き続き、フロントエンドエコシステムや CDN などを巻き込んで策定が進めば、将来的にはよりシームレスに採用していけるかもしれない。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>本サイトそのものがデモになっている。
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                Compression Dictionary Transport
+                <ul>
+                  <li><a href="https://www.ietf.org/archive/id/draft-meenan-httpbis-compression-dictionary-04.html" target=_blank>https://www.ietf.org/archive/id/draft-meenan-httpbis-compression-dictionary-04.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                WICG/compression-dictionary-transport
+                <ul>
+                  <li><a href="https://github.com/WICG/compression-dictionary-transport" target=_blank>https://github.com/WICG/compression-dictionary-transport</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Requirements Doc
+            <ul>
+              <li>
+                Compression dictionary transport with Shared Brotli
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1IcRHLv-e9boECgPA5J4t8NDv9FPHDGgn0C12kfBgANg/edit" target=_blank>https://docs.google.com/document/d/1IcRHLv-e9boECgPA5J4t8NDv9FPHDGgn0C12kfBgANg/edit</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Mozilla Standard Position
+            <ul>
+              <li>
+                Request for Mozilla Position on Compression dictionary transport · Issue #771 · mozilla/standards-positions
+                <ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/771" target=_blank>https://github.com/mozilla/standards-positions/issues/771</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Webkit Position
+            <ul>
+              <li>
+                Compression Dictionary Transport · Issue #160 · WebKit/standards-positions
+                <ul>
+                  <li><a href="https://github.com/WebKit/standards-positions/issues/160" target=_blank>https://github.com/WebKit/standards-positions/issues/160</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TAG Design Review
+            <ul>
+              <li>
+                Tag review for Compression Dictionary Transport · Issue #877 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/877" target=_blank>https://github.com/w3ctag/design-reviews/issues/877</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Experiment: Compression dictionary transport with Shared Brotli
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                Intent to Experiment: Compression dictionary transport with Shared Brotli
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>WPT (Web Platform Test)
+          <li>
+            DEMO
+            <ul>
+              <li>
+                horo-t/compression-dictionary-transport-shop-demo
+                <ul>
+                  <li><a href="https://github.com/horo-t/compression-dictionary-transport-shop-demo" target=_blank>https://github.com/horo-t/compression-dictionary-transport-shop-demo</a>
+                </ul>
+              </li>
+              <li>
+                horo-t/compression-dictionary-transport-threejs-demo
+                <ul>
+                  <li><a href="https://github.com/horo-t/compression-dictionary-transport-threejs-demo" target=_blank>https://github.com/horo-t/compression-dictionary-transport-threejs-demo</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Blog
+            <ul>
+              <li>
+                All the way up to 11: Serve Brotli from origin and Introducing Compression Rules
+                <ul>
+                  <li><a href="https://blog.cloudflare.com/this-is-brotli-from-origin/#the-future-of-web-compression" target=_blank>https://blog.cloudflare.com/this-is-brotli-from-origin/#the-future-of-web-compression</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Presentation
+          <li>Issues
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
