@@ -299,7 +299,7 @@ dump-certurl -i cert.cbor</code></pre>
             <picture>
               <source type=image/avif srcset=sxg-timeline.avif?220731_020617>
               <source type=image/webp srcset=sxg-timeline.webp?220107_193959>
-              <img loading=lazy decoding=async src=sxg-timeline.png?220731_020714 alt="SXG レスポンス、 CBOR レスポンス、 SXG から取り出された HTML の順に取得されている Devtools Timeline の図" width=2390 height=300>
+              <img loading=lazy decoding=async src=sxg-timeline.png?230731_162859 alt="SXG レスポンス、 CBOR レスポンス、 SXG から取り出された HTML の順に取得されている Devtools Timeline の図" width=2390 height=300>
             </picture>
           </p>
           <p>SXG の Preview タブを見ると、 Signature や Certificate も正しく解釈されていることが確認できる。
@@ -307,7 +307,7 @@ dump-certurl -i cert.cbor</code></pre>
             <picture>
               <source type=image/avif srcset=sxg-response.avif?220731_020617>
               <source type=image/webp srcset=sxg-response.webp?220107_193959>
-              <img loading=lazy decoding=async src=sxg-response.png?220731_020714 alt="SXG の Signature や Certificate が正しく解釈されている Devtools の Preview の図" width=2128 height=1192>
+              <img loading=lazy decoding=async src=sxg-response.png?230731_162859 alt="SXG の Signature や Certificate が正しく解釈されている Devtools の Preview の図" width=2128 height=1192>
             </picture>
           </p>
         </section>
@@ -328,7 +328,7 @@ dump-certurl -i cert.cbor</code></pre>
             <picture>
               <source type=image/avif srcset=gsrp-amp.avif?220731_020617>
               <source type=image/webp srcset=gsrp-amp.webp?220107_193959>
-              <img loading=lazy decoding=async src=gsrp-amp.jpeg?211016_025159 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" width=2322 height=684>
+              <img loading=lazy decoding=async src=gsrp-amp.jpeg?230731_162859 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" width=2322 height=684>
             </picture>
           </p>
           <p>どうやら Non AMP SXG がクロールされても、同時に AMP および AMP SXG に対応している場合は、現状 AMP 側が優先されるようだ。
@@ -359,7 +359,7 @@ dump-certurl -i cert.cbor</code></pre>
             <picture>
               <source type=image/avif srcset=gsrp-sxg.avif?220731_020617>
               <source type=image/webp srcset=gsrp-sxg.webp?220107_193959>
-              <img loading=lazy decoding=async src=gsrp-sxg.jpeg?211016_025159 alt="Non AMP SXG が Prefetch されている" width=2406 height=774>
+              <img loading=lazy decoding=async src=gsrp-sxg.jpeg?230731_162859 alt="Non AMP SXG が Prefetch されている" width=2406 height=774>
             </picture>
           </p>
           <p>これにより、検索結果を表示した時点で HTML は Google の SXG Cache から取得されている。
@@ -367,7 +367,7 @@ dump-certurl -i cert.cbor</code></pre>
             <picture>
               <source type=image/avif srcset=sxg-prefetch.avif?220731_020617>
               <source type=image/webp srcset=sxg-prefetch.webp?220107_193959>
-              <img loading=lazy decoding=async src=sxg-prefetch.png?220731_020714 alt="検索結果を表示した時点で HTML は Google の SXG Cache から取得されている" width=3030 height=742>
+              <img loading=lazy decoding=async src=sxg-prefetch.png?230731_162859 alt="検索結果を表示した時点で HTML は Google の SXG Cache から取得されている" width=3030 height=742>
             </picture>
           </p>
           <p>実際に検索結果に遷移すると、 HTTP Request は筆者のサーバには発生せず、 Prefetch された HTML から展開されていることがわかる。
@@ -375,7 +375,7 @@ dump-certurl -i cert.cbor</code></pre>
             <picture>
               <source type=image/avif srcset=sxg-navigate.avif?220731_020617>
               <source type=image/webp srcset=sxg-navigate.webp?220107_193959>
-              <img loading=lazy decoding=async src=sxg-navigate.png?220731_020714 alt="検索結果に遷移すると Prefetch した HMTL が展開されている" width=3044 height=736>
+              <img loading=lazy decoding=async src=sxg-navigate.png?230731_162859 alt="検索結果に遷移すると Prefetch した HMTL が展開されている" width=3044 height=736>
             </picture>
           </p>
           <p>このとき(スクショでは切れているが)、アドレスバーには SXG Cache の URL である <code translate=no>https://blog-jxck-io.webpkgcache.com/</code> ではなく、 SXG を検証した結果として <code translate=no>https://blog.jxck.io</code> が表示されている。
