@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-07-29T08:00:00+08:00",
-    "dateModified": "2023-07-29T08:00:00+08:00",
+    "dateModified": "2023-07-30T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-07-29>2023-07-29</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-07-29>2023-07-29</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-07-30>2023-07-30</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -187,7 +187,7 @@ to:   ab2cdab2cd
 from: ababcdababcd
 to:   ababcd2</code></pre>
         <p>圧縮ツールでクオリティのようなものが指定できる場合、ざっくりいえばこの「同じ値」をどこまでの範囲で探すかを指定している場合が多い。丁寧に探せば圧縮率は向上するが時間がかかり、時間を重視すると圧縮率が下がる。
-        <p>ところが、これは中身がどんな情報かを気にしない、汎用的なデータに対する手法だ。中身がどんなタイプのデータがわかっている場合は、その情報を辞書として用意しておくことで「データ列がよく出てくる」ということを、圧縮アルゴリズムにヒントとして提供することができる。
+        <p>ところが、これは中身がどんな情報かを気にしない、汎用的なデータに対する手法だ。中身がどんなタイプのデータかがわかっている場合は、その情報を辞書として用意しておくことで「どんなデータ列がよく出てくるか」ということを、圧縮アルゴリズムにヒントとして提供することができる。
         <p>例えば、中身が HTML だとわかっていた場合 <code translate=no>&lt;!doctype html&gt;</code> が辞書にあれば、その一致で効率よく圧縮箇所を見つけられるというものだ。
         <p>ちなみに、 brotli は最初から「Web 上でやりとりする値」にフォーカスしているため、実際に Web 上でやり取りされている情報を大量に集め、そこから辞書を生成し、仕様の中に Static Dictionary として直書きしている。
         <p>以下の長い Hex がそれに当たる。
@@ -229,7 +229,7 @@ body, tr, input, textmeta name=&quot;robots&quot; conmethod=&quot;post&quot; act
       <section>
         <h2 id="web-における辞書共有"><a href="#web-における辞書共有">Web における辞書共有</a></h2>
         <p>もし自分がデプロイしているサービスにおいて、そこでどんなコンテンツが使われているのかを元に独自の辞書を生成し、 brotli にヒントを与えることができれば、より圧縮率が高くなるだろうことは容易に想像できる。
-        <p>前述の辞書は仕様にベタ書きされた必須のものなので、 brotli 実装なら等しく持っているが、独自の辞書を作る場合、問題はその辞書をどうやって送信元/送信先で共有するかになる。
+        <p>前述の辞書は仕様にベタ書きされた共有のものなので、 brotli 実装なら等しく持っているが、独自の辞書を作る場合、問題はその辞書をどうやって送信元/送信先で共有するかになる。
         <p>実は過去にも「サーバとクライアントで辞書を共有し圧縮率を上げる」というこの目的のために作られた SDCH (Shared Dictionary Compression for HTTP) という仕様が存在し、 Chrome にも実装されていた。
         <p>しかし、この仕様は提案時期が 2008 年頃とかなり古く、仕様も複雑だった。当時はまだ CORS なども普及する前であるため、安全性の問題もあり、全くと言ってよいほど普及せず、 2016 年には Chrome からも削除された。
         <ul>
@@ -293,8 +293,8 @@ Sec-Available-Dictionary: &lt;SHA-256 of a.js&gt;</code></pre>
         <p>提示されたハッシュから、クライアントが <code translate=no>a.js</code> を辞書として持っていることを知ったサーバは、次に返す <code translate=no>b.js</code> を <code translate=no>a.js</code> で圧縮して返すことで、差分圧縮が可能になる。 Diff だけ送っているようなイメージだ。
         <p>辞書は特別なフォーマットではなく、どんなコンテンツでも利用することができることがわかるだろう。ほとんど同じでちょっとだけ異なる画像などであっても、同様に辞書として差分圧縮ができる。
         <p>以降の <code translate=no>b.js</code> にも <code translate=no>Use-As-Dictionary</code> を付与することで、それを更に <code translate=no>c.js</code> を圧縮する辞書として使うことができる。
-        <p>Delta Compression の場合は、基本的には送られてきた hash を元に辞書を特定し、それを用いて動的に圧縮することになるだろう。数が少なければ、全ての (辞書, コンテンツ) の組から事前に生成することも可能かもしれないが、一般的には非現実的だろう。
-        <p>つまり、動的な圧縮にかかるコストが、圧縮率向上によって得られるメリットを上回ると、単にオーバーヘッドになる点には注意が必要だ。
+        <p>Delta Compression の場合は、基本的には送られてきた hash を元に辞書を特定し、それを用いて動的に圧縮することになる。数が少なければ、全ての (辞書, コンテンツ) の組から事前に生成することも可能かもしれないが、一般的には非現実的だろう。
+        <p>つまり、動的な圧縮にかかるコストが、圧縮率とトレードオフになっており、圧縮率があまり変わらなければ、単にオーバーヘッドになる点には注意が必要だ。
       </section>
       <section>
         <h2 id="その他の仕様"><a href="#その他の仕様">その他の仕様</a></h2>
@@ -329,8 +329,8 @@ Sec-Available-Dictionary: &lt;SHA-256 of a.js&gt;</code></pre>
         <section>
           <h3 id="構成"><a href="#構成">構成</a></h3>
           <p>本サイトは、静的なブログだけであり、テンプレートエンジンに HTML 化した Markdown を流し込んで、事前に生成した静的ファイルを h2o で配信している。
-          <p>静的ファイルは、ビルド時に brotli で事前圧縮しているので、 Delta Compression を行うとしても brotli のプロセスを動的に立ち上げるオーバーヘッドはペイしないだろう。
-          <p>そこで、本サイトでは、記事ページ(<code translate=no>/entries/*</code>)のテンプレートから生成した Shared Dictionary を事前生成し、それを記事一覧ページ(<code translate=no>/index.html</code>)で配布する構成をとることにした。
+          <p>静的ファイルは、ビルド時に brotli で事前圧縮しているので、 Delta Compression を行うために追加で brotli のプロセスを動的に立ち上げるオーバーヘッドはペイしないだろう。
+          <p>そこで、本サイトでは、記事ページ(<code translate=no>/entries/*</code>)のテンプレートから生成した Shared Dictionary を事前生成し、全ての記事を事前に圧縮しておき、辞書を記事一覧ページ(<code translate=no>/index.html</code>)で配布する構成をとることにした。
           <p>おそらく、静的サイトでの典型的な利用例と思われる。
         </section>
       </section>
@@ -400,7 +400,7 @@ $ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f
         <h2 id="h2o-のパッチ"><a href="#h2o-のパッチ">H2O のパッチ</a></h2>
         <p>本サイトは h2o でサーブしているが、 h2o はまだ <code translate=no>.sbr</code> に対応していないのでパッチを当ててビルドした。
         <p><code translate=no>send-compression</code> を有効にしたときに、拡張子付きのファイルを探してくれる部分をいじったが、拡張子が 2 文字前提の実装になっていたので、とりいそぎ手を抜いて <code translate=no>.sbr</code> を <code translate=no>.sb</code> にしてデプロイしている。
-        <p>また、 <code translate=no>.sb</code> を返す際に <code translate=no>Sec-Available-Dictionary</code> のハッシュを検証したり、 <code translate=no>Vary</code> を付与するためには、 conf で mruby を呼ぶか、同じくパッチを当てるしか無い。ここも手を抜いて、辞書の <code translate=no>expire</code> を短くしておくにとどめた。
+        <p>また、 <code translate=no>.sb</code> を返す際に <code translate=no>Sec-Available-Dictionary</code> のハッシュを検証したり、 <code translate=no>Vary</code> を付与するためには、 conf で mruby を呼ぶか、同じくパッチを当てるしか無い。そのオーバーヘッドは検証に影響するため、ここも省略して辞書の <code translate=no>expire</code> を短くしておくにとどめた。
       </section>
       <section>
         <h2 id="検証"><a href="#検証">検証</a></h2>
@@ -466,8 +466,8 @@ $ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>Shared Compression Dictionary の検証のため、本サイトの HTML を事前辞書で圧縮し、検証を行った。
-        <p>今後この仕様が進めば、ちょっと違うが全部取得し直さないといけない Webpack に代表されるバンドル結果の転送なども、より効率的にできる可能性がある。
-        <p>Mozilla も Positive であり、 Cloudflare もブログで興味を示している。引き続き、フロントエンドエコシステムや CDN などを巻き込んで策定が進めば、将来的にはよりシームレスに採用していけるかもしれない。
+        <p>今後この仕様が進めば、ほぼ同じだがちょっと違うため毎回取得し直さないといけないため、キャッシュも 304 もしにくい Webpack に代表されるバンドル結果の転送なども、差分だけならかなり小さくなり、より効率的にできる可能性がある。
+        <p>Mozilla も Positive であり、 Cloudflare も <a href="https://blog.cloudflare.com/this-is-brotli-from-origin/#the-future-of-web-compression" target=_blank>ブログ</a>で興味を示している。引き続き、フロントエンドエコシステムや CDN などを巻き込んで策定が進めば、将来的にはよりシームレスに採用していけるかもしれない。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
