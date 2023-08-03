@@ -314,11 +314,11 @@ Chrome Canary 117.0.5912.0 で以下のフラグを有効にし、挙動を検�
 
 この状態で本ブログのインデックスページにアクセスすると、以下のようにメインコンテンツの後に辞書が取得されていることがわかる。
 
-![dictionary が取得されている devtools timeline のスクショ](./compression.png#3584x2106)
+![dictionary が取得されている devtools timeline のスクショ](./dictionary.png#3584x2108)
 
 次に、記事に遷移すると、コンテントネゴシエーションの結果 sbr が返されていることがわかる。
 
-![Content-Encoding sbr が取得されている devtools timeline のスクショ](./dictionary.png#3584x2108)
+![Content-Encoding sbr が取得されている devtools timeline のスクショ](./compression.png#3584x2106)
 
 [前回の記事](/entries/2023-06-18/cookie-store-api.html) の圧縮結果を比較すると、以下のようになっている。
 
