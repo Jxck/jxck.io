@@ -909,11 +909,11 @@ async function main(arg) {
   if (arg === `preview`) {
     // const entries = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
     const entries = await glob(`../blog.jxck.io/entries/**/*.md`)
-    await blog([entries.pop()], { preview: true })
+    await blog([entries.at(0)], { preview: true })
 
     // const episodes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
     const episodes = await glob(`../mozaic.fm/episodes/**/*.md`)
-    return await podcast([episodes.pop()], { preview: true })
+    return await podcast([episodes.at(0)], { preview: true })
   }
 
   if (arg === `draft`) {
