@@ -1,4 +1,4 @@
-# Cookie2 とは何か
+# [cookie] Cookie2 とは何か
 
 ## Intro
 
