@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-08-19T08:00:00+08:00",
-    "dateModified": "2023-08-19T08:00:00+08:00",
+    "dateModified": "2023-08-21T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-08-19>2023-08-19</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-08-19>2023-08-19</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-08-21>2023-08-21</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -206,14 +206,14 @@
           </li>
         </ul>
         <p>また、余談だがこの時点から Privacy に関する議論、特にヨーロッパ圏からのフィードバックが多くあり、来年(2024 年)に予定されている 3rd Party Cookie Deprecation の実に 30 年前、なんなら仕様ができる前から、プライバシーをめぐる議論は始まっていたこともわかる。
-        <p>Subgroup では、いくつかある提案から Netscape の Cookie をベースに、作業を開始することが決まった。既存デプロイとの互換性を考えても、新しい機構を生み出すより Running Code をとるのが理にかなっているのは IETF のあり方だ。 Netscape の薄っぺらい仕様の曖昧な部分(構文定義、属性値、ドメイン判定など)を厳格にするところから着手することになり、追加で以下のような議論がされた。
+        <p>Subgroup では、いくつかある提案から Netscape の Cookie をベースに作業を開始することが決まった。既存デプロイとの互換性を考えても、新しい機構を生み出すより Running Code をとるのが理にかなっているのは IETF のあり方だ。 Netscape の薄っぺらい仕様の曖昧な部分(構文定義、属性値、ドメイン判定など)を厳格にするところから着手することになり、追加で以下のような議論がされた。
         <ul>
           <li>Cookie が送られるドメインの判定
           <li>プライバシーの考慮
           <li>Proxy を経由する際の挙動
         </ul>
-        <p>ドメインの判定についても、まだ当時は Public Suffix List はなかった。代わりに TLD も今ほど乱立してなかったため、当時のルールは &quot;ドメインに含まれるドットの数&quot; で判定していた。
-        <p>基本は <code translate=no>Domain=example.co.jp</code> のようにドットが 2 つ入るが、以下の特別な 7 つの TLD のみ <code translate=no>Domain=example.com</code> のようにドットが 1 つで良かった。今のように TLD が乱立する前だからできたロジックだ。
+        <p>ドメインの判定についても、まだ当時は Public Suffix List はなかった。代わりに TLD も少なかったため、当時のルールは &quot;ドメインに含まれるドットの数&quot; で判定していた。
+        <p>基本は <code translate=no>Domain=example.co.jp</code> のようにドットが 2 つ入るが、以下の特別な 7 つの TLD のみ <code translate=no>Domain=example.com</code> のようにドットが 1 つで良かった。今のように TLD が乱立し eTLD を判定しないでも良かった からできたロジックだ。
         <ul>
           <li>&quot;.com&quot;
           <li>&quot;.edu&quot;
@@ -266,7 +266,7 @@
         <p>結論から言うと <code translate=no>Set-Cookie2</code>/<code translate=no>Cookie2</code> は、その後全くと言ってよいほど使われなかった。
         <p><code translate=no>Set-Cookie</code> をデプロイしているサービスにとって、 <code translate=no>Set-Cookie2</code> に移行する強力なインセンティブがなければ、わざわざ重複する 2 つのヘッダを送る移行期を経てまで、刷新するモチベーションがない。旧仕様をサポートしたクライアントも、サーバが両方送る以上旧仕様のままでも困らないので、サポートを広げるインセンティブがない。新仕様デプロイにおける典型的な鶏/卵問題だ。
         <p>RFC 2965 の議論の段階から指摘されていた問題は、そもそもこの仕様の策定にブラウザベンダが関わってないこと、そして仕様の策定が「理想の追求」であり「現実世界の反映」ではなかったことだった。
-        <p>IETF の理念として RFC 策定の目的は _De-jure_ ではなく _De-facto_ 、つまり実世界にはどのようなランニングコードがあるのかを調査し、それらが互換性を保てるように仕様を策定することが求められる。 RFC 2965 は De-jure 策定側に寄ってしまい、結果「_理想的で誰も使わない仕様_」ができてしまった。
+        <p>IETF の理念として RFC 策定の目的は <em>De-jure</em> ではなく <em>De-facto</em> 、つまり実世界にはどのようなランニングコードがあるのかを調査し、それらが互換性を保てるように仕様を策定することが求められる。 RFC 2965 は De-jure 策定側に寄ってしまい、結果「<em>理想的で誰も使わない仕様</em>」ができてしまった。
         <p>そこから 10 年ほど経った 2009 年頃、 Cookie の改定を行うため WG が再始動した。作業を開始するにあたって示される Charter には、以下のように記されている。
         <ul>
           <li>
