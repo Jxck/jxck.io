@@ -31,16 +31,18 @@ sudo certbot certonly \
   -d api.jxck.io \
   -d ws.jxck.io \
   -d zenn.jxck.io \
-  -d reporting.jxck.io \
-  -d publisher.labs.jxck.io \
-  -d advertiser.labs.jxck.io \
-  -d adtech.labs.jxck.io \
-  -d ssp.labs.jxck.io \
-  -d dsp.labs.jxck.io \
-  -d shopping.labs.jxck.io \
-  -d travel.labs.jxck.io \
+  -d reporting.jxck.io \ 
   -d http3.jxck.io \
   -d note.jxck.io
+  
+  # -d publisher.labs.jxck.io \
+  # -d advertiser.labs.jxck.io \
+  # -d adtech.labs.jxck.io \
+  # -d ssp.labs.jxck.io \
+  # -d dsp.labs.jxck.io \
+  # -d shopping.labs.jxck.io \
+  # -d travel.labs.jxck.io \
+
 
 cd /keys
 sudo ./pkcs8.sh
