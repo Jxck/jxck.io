@@ -31,7 +31,7 @@ sudo certbot certonly \
   -d api.jxck.io \
   -d ws.jxck.io \
   -d zenn.jxck.io \
-  -d reporting.jxck.io \ 
+  -d reporting.jxck.io \
   -d http3.jxck.io \
   -d note.jxck.io
   
