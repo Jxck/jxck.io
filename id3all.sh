@@ -1769,3 +1769,16 @@ eyeD3 --title "ep128 Monthly Ecosystem 202308" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep129.mp3
+
+eyeD3 --title "ep129 Monthly Platform 202308" \
+      --track 137 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep129.mp3
+
+
+
