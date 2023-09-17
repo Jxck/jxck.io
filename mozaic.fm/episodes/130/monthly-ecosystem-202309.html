@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/130/monthly-ecosystem-202309.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065828></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 130 回のテーマは 2023 年 9 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/130/monthly-ecosystem-202309.html>
+  <meta property=og:title        content="ep130 Monthly Ecosystem 202309 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 130 回のテーマは 2023 年 9 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep130 Monthly Ecosystem 202309 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/129/monthly-platform-202309.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?220306_111358>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?210426_190329>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?220428_023319>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/129/monthly-platform-202309.html>ep129 Monthly Platform 202308</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep130 Monthly Ecosystem 202309</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2023-09-17
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/yoshiko_pg" target=_blank>@yoshiko</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 130 回のテーマは 2023 年 9 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          biomejs
+          <ul>
+            <li><a href="https://biomejs.dev/blog/annoucing-biome" target=_blank>https://biomejs.dev/blog/annoucing-biome</a>
+            <li><a href="https://www.canva.com/design/DAFtZwHgpTY/EKSvfQac4SL1_VVN8MjPog/edit" target=_blank>https://www.canva.com/design/DAFtZwHgpTY/EKSvfQac4SL1_VVN8MjPog/edit</a>
+          </ul>
+        </li>
+        <li>
+          Bun 1.0
+          <ul>
+            <li><a href="https://bun.sh/blog/bun-v1.0" target=_blank>https://bun.sh/blog/bun-v1.0</a>
+            <li><a href="https://vercel.com/changelog/bun-install-is-now-supported-with-zero-configuration" target=_blank>https://vercel.com/changelog/bun-install-is-now-supported-with-zero-configuration</a>
+            <li><a href="https://bun.sh/guides/runtime/import-toml" target=_blank>https://bun.sh/guides/runtime/import-toml</a>
+            <li><a href="https://bun.sh/docs/bundler/macros" target=_blank>https://bun.sh/docs/bundler/macros</a>
+            <li><a href="https://twitter.com/jarredsumner/status/1700815403717730415" target=_blank>https://twitter.com/jarredsumner/status/1700815403717730415</a>
+          </ul>
+        </li>
+        <li>
+          Turbo 8 is dropping TypeScript
+          <ul>
+            <li><a href="https://world.hey.com/dhh/turbo-8-is-dropping-typescript-70165c01" target=_blank>https://world.hey.com/dhh/turbo-8-is-dropping-typescript-70165c01</a>
+            <li><a href="https://github.com/hotwired/turbo/pull/971" target=_blank>https://github.com/hotwired/turbo/pull/971</a>
+            <li><a href="https://changelog.com/jsparty/292" target=_blank>https://changelog.com/jsparty/292</a>
+            <li><a href="https://world.hey.com/dhh/open-source-hooliganism-and-the-typescript-meltdown-a474bfda" target=_blank>https://world.hey.com/dhh/open-source-hooliganism-and-the-typescript-meltdown-a474bfda</a>
+            <li><a href="https://github.com/rails/rails/pull/49241" target=_blank>https://github.com/rails/rails/pull/49241</a>
+          </ul>
+        </li>
+        <li>
+          v0
+          <ul>
+            <li><a href="https://v0.dev/" target=_blank>https://v0.dev/</a>
+            <li><a href="https://atmarkit.itmedia.co.jp/ait/articles/2309/11/news069.html" target=_blank>https://atmarkit.itmedia.co.jp/ait/articles/2309/11/news069.html</a>
+            <li><a href="https://www.gizmodo.jp/2023/09/microsoft-water-usage-ai-iowa-data-center.html" target=_blank>https://www.gizmodo.jp/2023/09/microsoft-water-usage-ai-iowa-data-center.html</a>
+          </ul>
+        </li>
+        <li>
+          Next.Nav
+          <ul>
+            <li><a href="https://www.next-nav.com/" target=_blank>https://www.next-nav.com/</a>
+            <li><a href="https://qiita.com/KokiSakano/items/86b6b85902eba103f70d" target=_blank>https://qiita.com/KokiSakano/items/86b6b85902eba103f70d</a>
+          </ul>
+        </li>
+        <li>
+          Astro 3.0 | Astro
+          <ul>
+            <li><a href="https://astro.build/blog/astro-3/" target=_blank>https://astro.build/blog/astro-3/</a>
+            <li><a href="https://docs.astro.build/en/guides/view-transitions/#naming-a-transition" target=_blank>https://docs.astro.build/en/guides/view-transitions/#naming-a-transition</a>
+          </ul>
+        </li>
+        <li>
+          Making Sense of React Server Components
+          <ul>
+            <li><a href="https://www.joshwcomeau.com/react/server-components/" target=_blank>https://www.joshwcomeau.com/react/server-components/</a>
+          </ul>
+        </li>
+        <li>
+          React use in Canary
+          <ul>
+            <li><a href="https://react.dev/reference/react/use" target=_blank>https://react.dev/reference/react/use</a>
+          </ul>
+        </li>
+        <li>
+          React cache in Canary
+          <ul>
+            <li><a href="https://react.dev/reference/react/cache" target=_blank>https://react.dev/reference/react/cache</a>
+          </ul>
+        </li>
+        <li>
+          TanStack Form v0
+          <ul>
+            <li><a href="https://tanstack.com/form/latest" target=_blank>https://tanstack.com/form/latest</a>
+          </ul>
+        </li>
+        <li>
+          TanStack Router CLI
+          <ul>
+            <li><a href="https://tanstack.com/router/v1/docs/api/router-cli" target=_blank>https://tanstack.com/router/v1/docs/api/router-cli</a>
+          </ul>
+        </li>
+        <li>
+          State of CSS 2023
+          <ul>
+            <li><a href="https://2023.stateofcss.com/en-US" target=_blank>https://2023.stateofcss.com/en-US</a>
+          </ul>
+        </li>
+        <li>
+          Node.js includes built-in support for .env files
+          <ul>
+            <li><a href="https://philna.sh/blog/2023/09/05/nodejs-supports-dotenv/" target=_blank>https://philna.sh/blog/2023/09/05/nodejs-supports-dotenv/</a>
+          </ul>
+        </li>
+        <li>
+          tshy
+          <ul>
+            <li><a href="https://isaacs.github.io/tshy/#md:tshy---typescript-hybridizer" target=_blank>https://isaacs.github.io/tshy/#md:tshy---typescript-hybridizer</a>
+          </ul>
+        </li>
+        <li>
+          Bringing forward the End-of-Life Date for Node.js 16
+          <ul>
+            <li><a href="https://nodejs.org/en/blog/announcements/nodejs16-eol" target=_blank>https://nodejs.org/en/blog/announcements/nodejs16-eol</a>
+          </ul>
+        </li>
+        <li>
+          electron: Support Node&apos;s ES Modules
+          <ul>
+            <li><a href="https://github.com/electron/electron/issues/21457" target=_blank>https://github.com/electron/electron/issues/21457</a>
+          </ul>
+        </li>
+        <li>
+          マイクロソフト、Web アプリテストの自動化サービス「Microsoft Playwright Testing」プレビューを開始
+          <ul>
+            <li><a href="https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing.html" target=_blank>https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing.html</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          9/19 ~ 21 : GraphQLConf 2023
+          <ul>
+            <li><a href="https://graphql.org/conf/" target=_blank>https://graphql.org/conf/</a>
+          </ul>
+        </li>
+        <li>
+          9/27 ~ 28: Meta Connect 2023: Virtual Event
+          <ul>
+            <li><a href="https://www.metaconnect.com/en/home" target=_blank>https://www.metaconnect.com/en/home</a>
+            <li><a href="https://www.meta.com/ja-jp/blog/quest/connect-2023-september-27-28-menlo-park-vr-ai/" target=_blank>https://www.meta.com/ja-jp/blog/quest/connect-2023-september-27-28-menlo-park-vr-ai/</a>
+          </ul>
+        </li>
+        <li>
+          9/26 ~ 29 : RedwoodJS Conference
+          <ul>
+            <li><a href="https://www.redwoodjsconf.com/" target=_blank>https://www.redwoodjsconf.com/</a>
+          </ul>
+        </li>
+        <li>
+          10/5 ~ 6: Vite Conf
+          <ul>
+            <li><a href="https://viteconf.org/23/" target=_blank>https://viteconf.org/23/</a>
+          </ul>
+        </li>
+        <li>
+          11/19: JSConf JP
+          <ul>
+            <li><a href="https://jsconf.jp/2023/" target=_blank>https://jsconf.jp/2023/</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/129/monthly-platform-202309.html>ep129 Monthly Platform 202308</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep130.mp3
+    data-title="ep130 Monthly Ecosystem 202309"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
