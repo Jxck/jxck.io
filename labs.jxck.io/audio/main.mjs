@@ -1,6 +1,13 @@
 // add mozaic player
-import MozaicPlayer from './mozaic-player.mjs'
+const $ = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+DocumentFragment.prototype.$ = DocumentFragment.prototype.querySelector
+Element.prototype.$ = Element.prototype.querySelector
+EventTarget.prototype.on = EventTarget.prototype.addEventListener
+EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+EventTarget.prototype.emit = EventTarget.prototype.dispatchEvent
 
+import MozaicPlayer from './mozaic-player.mjs'
 // Enable debug log adding #debug into url
 const log = location.hash === "#debug" ? console.log.bind(console) : () => {}
 
@@ -8,8 +15,6 @@ log(MozaicPlayer)
 customElements.define('mozaic-player', MozaicPlayer);
 
 // main
-EventTarget.prototype.on = EventTarget.prototype.addEventListener
-const $ = document.querySelector.bind(document)
 document.on('keydown', ({key}) => {
   log(key, document.activeElement)
 
