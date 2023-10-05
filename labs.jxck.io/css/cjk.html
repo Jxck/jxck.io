@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>" />
+    <title>CSS features for CJK</title>
+
+    <style>
+      @media screen and (width <= 900px) {
+        body {
+          width: 90vw;
+        }
+      }
+
+      @media screen and (900px < width) {
+        body {
+          width: 40vw;
+        }
+      }
+
+      body {
+        margin: 0 auto;
+      }
+
+      blockquote {
+        border: solid 0.8px #ccc;
+        padding: 0.2em;
+        margin: 1em 0;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      pre:has(> code) {
+        border: solid 0.2px #ccc;
+        padding: 0.4em 1em;
+        background-color: #eee;
+        border-radius: 2px;
+        overflow: scroll;
+      }
+
+      label pre {
+        display: inline;
+      }
+
+      .auto-phrase {
+        word-break: auto-phrase;
+      }
+
+      .space-all {
+        text-spacing-trim: space-all;
+      }
+
+      .no-autospace {
+        text-autospace: no-autospace;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>CJK Sample Text</h1>
+      <ul>
+        <li>
+          <input type="checkbox" id="auto-phrase" />:
+          <label for="auto-phrase">
+            <pre>word-break: auto-phrase</pre>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="space-all" />:
+          <label for="space-all">
+            <pre>text-spacing-trim: space-all</pre>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="no-autospace" />:
+          <label for="no-autospace">
+            <pre>text-autospace: no-autospace</pre>
+          </label>
+        </li>
+        <li>
+          <input type="range" id="font-size" min="0" max="20" step="1" value="15" />:
+          <label for="size">
+            <pre>font-size: <span id="size">15</span></pre>
+          </label>
+        </li>
+      </ul>
+      <pre><code>$ open -a Google\ Chrome\ Canary --args --enable-blink-features=CSSTextSpacingTrim,CSSTextAutoSpace</code></pre>
+      <blockquote>
+        <p><strong>Cascading Style Sheets</strong>（<strong>CSS</strong>、カスケーディング・スタイル・シート、カスケード・スタイル・シート）は、HTMLやXMLの要素をどのように修飾（表示）するかを指示する仕様の一つで、World Wide Web Consortium (W3C)がとりまとめ勧告する、文書の構造と体裁を分離させるという理念を実現するために提唱されたスタイルシートの具体的な仕様の一つ。</p>
+
+        <p>CSSはHTMLで表現可能と考えられるデザインの大部分を実現できる要素を取り入れつつ、新たなデザイン機能を備える。以下の点を特徴とする。</p>
+
+        <ul>
+          <li>ページを表示するメディアに合わせてスタイルシートを切り替えることで、メディアごとに表示を変化させることができる。</li>
+          <li>ユーザーエージェント（多くの場合ウェブブラウザ）、ウェブサイト制作者、ユーザがそれぞれ定義したCSSのもたらす効果を重ね合わせる（カスケードする）ことができる</li>
+        </ul>
+
+        <p>CSSは、1994年にWWW生誕の地であるCERNに勤務するホーコン・ウィウム・リーにより提唱された。</p>
+
+        <p>
+          <cite>--- <a href="https://ja.wikipedia.org/wiki/Cascading_Style_Sheets">Cascading Style Sheets - Wikipedia</a></cite>
+        </p>
+      </blockquote>
+    </main>
+  </body>
+
+  <script>
+    const $ = document.querySelector.bind(document)
+    const $$ = document.querySelectorAll.bind(document)
+    EventTarget.prototype.on = EventTarget.prototype.addEventListener
+    document.on("DOMContentLoaded", async (e) => {
+      const $texts = $("blockquote")
+      $("#auto-phrase").on("change", (e) => {
+        $texts.classList.toggle("auto-phrase")
+      })
+      $("#space-all").on("change", (e) => {
+        $texts.classList.toggle("space-all")
+      })
+      $("#no-autospace").on("change", (e) => {
+        $texts.classList.toggle("no-autospace")
+      })
+      $("#font-size").on("input", (e) => {
+        const value = `${e.target.value}px`
+        $("#size").textContent = value
+        $texts.style.fontSize = value
+      })
+
+      // previously default
+      $("#space-all").click()
+      $("#no-autospace").click()
+    })
+  </script>
+</html>
