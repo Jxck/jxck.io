@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/133/monthly-ecosystem-202310.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065828></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 133 回のテーマは 2023 年 10 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/133/monthly-ecosystem-202310.html>
+  <meta property=og:title        content="ep133 Monthly Ecosystem 202310 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 133 回のテーマは 2023 年 10 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep133 Monthly Ecosystem 202310 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/132/monthly-platform-202309.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?231005_173031>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?230926_134831>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?220428_023319>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/132/monthly-platform-202309.html>ep132 Monthly Platform 202309</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep133 Monthly Ecosystem 202310</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2023-10-22
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 133 回のテーマは 2023 年 10 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          TypeScript Origins: The Documentary - YouTube
+          <ul>
+            <li><a href="https://www.youtube.com/watch?v=U6s2pdxebSo" target=_blank>https://www.youtube.com/watch?v=U6s2pdxebSo</a>
+          </ul>
+        </li>
+        <li>
+          Announcing TypeScript 5.3 Beta - TypeScript
+          <ul>
+            <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-3-beta/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-3-beta/</a>
+          </ul>
+        </li>
+        <li>
+          The Saga of the Closure Compiler, and Why TypeScript Won
+          <ul>
+            <li><a href="https://effectivetypescript.com/2023/09/27/closure-compiler/" target=_blank>https://effectivetypescript.com/2023/09/27/closure-compiler/</a>
+          </ul>
+        </li>
+        <li>
+          Node v21.0.0 (Current)
+          <ul>
+            <li><a href="https://nodejs.org/en/blog/release/v21.0.0" target=_blank>https://nodejs.org/en/blog/release/v21.0.0</a>
+            <li>stable fetch and WebStreams
+            <li>CommonJS to ES modules (<code translate=no>--experimental-default-type</code>),
+          </ul>
+        </li>
+        <li>
+          Nue / Frontend troublesolver
+          <ul>
+            <li><a href="https://nuejs.org/" target=_blank>https://nuejs.org/</a>
+          </ul>
+        </li>
+        <li>
+          Remix v2 | Remix
+          <ul>
+            <li><a href="https://remix.run/blog/remix-v2" target=_blank>https://remix.run/blog/remix-v2</a>
+          </ul>
+        </li>
+        <li>
+          Support for Remix v2 - Vercel
+          <ul>
+            <li><a href="https://vercel.com/changelog/support-for-remix-v2" target=_blank>https://vercel.com/changelog/support-for-remix-v2</a>
+          </ul>
+        </li>
+        <li>
+          Remix の Vite サポート
+          <ul>
+            <li><a href="https://github.com/remix-run/remix/pull/7590" target=_blank>https://github.com/remix-run/remix/pull/7590</a>
+          </ul>
+        </li>
+        <li>
+          Vercel の生成 AI
+          <ul>
+            <li><a href="http://v0.dev" target=_blank>http://v0.dev</a>
+          </ul>
+        </li>
+        <li>
+          Astro 3.3: Picture component | Astro
+          <ul>
+            <li><a href="https://astro.build/blog/astro-330/" target=_blank>https://astro.build/blog/astro-330/</a>
+            <li><code translate=no>&lt;picture&gt;</code> の使用
+          </ul>
+        </li>
+        <li>
+          pnpm@8.9.0
+          <ul>
+            <li><a href="https://github.com/pnpm/pnpm/releases/tag/v8.9.0" target=_blank>https://github.com/pnpm/pnpm/releases/tag/v8.9.0</a>
+            <li>
+              pacquet
+              <ul>
+                <li><a href="https://github.com/pnpm/pacquet" target=_blank>https://github.com/pnpm/pacquet</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          How we optimized package imports in Next.js
+          <ul>
+            <li><a href="https://vercel.com/blog/how-we-optimized-package-imports-in-next-js" target=_blank>https://vercel.com/blog/how-we-optimized-package-imports-in-next-js</a>
+          </ul>
+        </li>
+        <li>
+          Flat config rollout plans
+          <ul>
+            <li><a href="https://eslint.org/blog/2023/10/flat-config-rollout-plans/" target=_blank>https://eslint.org/blog/2023/10/flat-config-rollout-plans/</a>
+            <li>
+              Implement Flat Config #13481
+              <ul>
+                <li><a href="https://github.com/eslint/eslint/issues/13481" target=_blank>https://github.com/eslint/eslint/issues/13481</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          vite conf
+          <ul>
+            <li><a href="https://viteconf.org/23/replay/welcome" target=_blank>https://viteconf.org/23/replay/welcome</a>
+            <li><a href="https://docs.google.com/presentation/d/1oZnjsPBnb3OB2HxU88vYkZLa54GV-xNKrF8XkOIqLAU/edit#slide=id.p" target=_blank>https://docs.google.com/presentation/d/1oZnjsPBnb3OB2HxU88vYkZLa54GV-xNKrF8XkOIqLAU/edit#slide=id.p</a>
+            <li>Rolldown
+          </ul>
+        </li>
+        <li>
+          vike
+          <ul>
+            <li><a href="https://vike.dev/" target=_blank>https://vike.dev/</a>
+          </ul>
+        </li>
+        <li>
+          rollup@4.0.0
+          <ul>
+            <li><a href="https://github.com/rollup/rollup/releases/tag/v4.0.0" target=_blank>https://github.com/rollup/rollup/releases/tag/v4.0.0</a>
+          </ul>
+        </li>
+        <li>
+          Rspress
+          <ul>
+            <li><a href="https://rspress.dev/" target=_blank>https://rspress.dev/</a>
+            <li><a href="https://github.com/web-infra-dev/rspress" target=_blank>https://github.com/web-infra-dev/rspress</a>
+            <li>
+              Rspress, the Rspack-based static site generator
+              <ul>
+                <li><a href="https://github.com/orgs/web-infra-dev/discussions/5" target=_blank>https://github.com/orgs/web-infra-dev/discussions/5</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Lit v3
+          <ul>
+            <li><a href="https://lit.dev/blog/2023-10-10-lit-3.0/" target=_blank>https://lit.dev/blog/2023-10-10-lit-3.0/</a>
+            <li>
+              @lit/react@1.0.0
+              <ul>
+                <li><a href="https://lit.dev/blog/2023-10-10-lit-3.0/" target=_blank>https://lit.dev/blog/2023-10-10-lit-3.0/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          parcel@2.10.0
+          <ul>
+            <li><a href="https://github.com/parcel-bundler/parcel/releases/tag/v2.10.0" target=_blank>https://github.com/parcel-bundler/parcel/releases/tag/v2.10.0</a>
+          </ul>
+        </li>
+        <li>
+          TanStack Query v5
+          <ul>
+            <li><a href="https://x.com/TkDodo/status/1714262102305632643?s=20" target=_blank>https://x.com/TkDodo/status/1714262102305632643?s=20</a>
+          </ul>
+        </li>
+        <li>
+          Lottielab | Create and Edit Lottie Animations
+          <ul>
+            <li><a href="https://www.lottielab.com/" target=_blank>https://www.lottielab.com/</a>
+          </ul>
+        </li>
+        <li>
+          ja.react.dev の紹介
+          <ul>
+            <li><a href="https://blog.koba04.com/post/2023/10/05/new-japanese-react-dev" target=_blank>https://blog.koba04.com/post/2023/10/05/new-japanese-react-dev</a>
+          </ul>
+        </li>
+        <li>
+          Support Server Actions by kotarella1110 · Pull Request #11061 · react-hook-form/react-hook-form
+          <ul>
+            <li><a href="https://github.com/react-hook-form/react-hook-form/pull/11061" target=_blank>https://github.com/react-hook-form/react-hook-form/pull/11061</a>
+          </ul>
+        </li>
+        <li>
+          マイクロソフト、Web アプリのテスト自動化サービス「Microsoft Playwright Testing」プレビュー公開。クロスブラウザ／クロスプラットフォームのテストを並列実行
+          <ul>
+            <li><a href="https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing_1.html" target=_blank>https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing_1.html</a>
+          </ul>
+        </li>
+        <li>
+          pattycake
+          <ul>
+            <li><a href="https://github.com/aidenybai/pattycake" target=_blank>https://github.com/aidenybai/pattycake</a>
+          </ul>
+        </li>
+        <li>
+          Announcing Deno Queues
+          <ul>
+            <li><a href="https://deno.com/blog/queues" target=_blank>https://deno.com/blog/queues</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          10/5 ~ 6: Vite Conf
+          <ul>
+            <li><a href="https://viteconf.org/23/" target=_blank>https://viteconf.org/23/</a>
+          </ul>
+        </li>
+        <li>
+          10/26: Nextjs Conf
+          <ul>
+            <li><a href="https://nextjs.org/conf" target=_blank>https://nextjs.org/conf</a>
+          </ul>
+        </li>
+        <li>
+          11/19: JSConf JP
+          <ul>
+            <li><a href="https://jsconf.jp/2023/" target=_blank>https://jsconf.jp/2023/</a>
+          </ul>
+        </li>
+        <li>
+          12/16: 次世代 Web カンファレンス
+          <ul>
+            <li>TBD
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/132/monthly-platform-202309.html>ep132 Monthly Platform 202309</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep133.mp3
+    data-title="ep133 Monthly Ecosystem 202310"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
