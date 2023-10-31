@@ -62,11 +62,29 @@
         padding: 1em;
         width: 10em;
       }
+      h2 {
+        padding: 0;
+        margin: 0;
+      }
+      h2 > span {
+        border: solid 0.4px #ccc;
+      }
+      p {
+        font-size: 0.4em;
+        padding: 0;
+        margin: 0;
+        font-family: monospace;
+      }
     </style>
   </head>
   <body>
     <main>
       <h1>CJK Sample Text</h1>
+      <p>new default</p>
+      <h2><span>H</span><span>T</span><span>M</span><span>L</span><span>と</span><span>C</span><span>S</span><span>S</span></h2>
+      <p>no-autospace</p>
+      <h2 class="no-autospace"><span>H</span><span>T</span><span>M</span><span>L</span><span>と</span><span>C</span><span>S</span><span>S</span></h2>
+
       <ul>
         <li>
           <input type="checkbox" id="auto-phrase" />:
