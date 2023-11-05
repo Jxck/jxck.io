@@ -127,7 +127,6 @@ If-Modified-Since: Sat, 11 Nov 2023 11:11:11 GMT
 
 もしここで、 `/home.html` を表示した状態で Realod をすると、以下のようなリクエストが飛ぶ。
 
-
 ```http
 GET /home.html HTTP/1.1
 ...
@@ -168,6 +167,3 @@ Provisional headers are shown, Disable cache to see full headers.
 ```
 
 ![Provisional headers are shown, Disable cache to see full headers.](immutable-subresource-request.png)
-
-
-## One more thing
