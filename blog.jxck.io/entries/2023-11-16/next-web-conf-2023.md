@@ -212,9 +212,9 @@
 
 ### 2019
 
-[![次世代 Web カンファレンス 2019](https://gist.githubusercontent.com/Jxck/962238fc4627546646e697039a3f6518/raw/a693f102306cbb3dda74068cc30f6fdc30660c29/2019-min.png)](https://nextwebconf.connpass.com/event/103056/)
+[![次世代 Web カンファレンス 2019](nwc-2019-min.png#1600x400)](https://nextwebconf.connpass.com/event/103056/)
 
 
 ### 2015
 
-[![次世代 Web カンファレンス 2015](https://gist.githubusercontent.com/Jxck/962238fc4627546646e697039a3f6518/raw/a693f102306cbb3dda74068cc30f6fdc30660c29/2015-min.png)](https://nextwebconf.connpass.com/event/19699/)
+[![次世代 Web カンファレンス 2015](nwc-2015-min.png#1600x400)](https://nextwebconf.connpass.com/event/19699/)
