@@ -8,13 +8,13 @@
 2023/12/16(土) に、 3 回目となる「*次世代 Web カンファレンス*」を開催します。
 
 - 名称: 次世代 Web カンファレンス
-- 日時: 2023/12/16(土) 12:00-20:00
+- 日時: 2023/12/16(土) 11:00-20:00
 - 場所: サイボウズ
 - 参加費: 無料
-- ハッシュタグ(全体): [#nwc_all](https://twitter.com/hashtag/nwc_all)
 - 配信: なし
 - アーカイブ: 未定
 - 懇親会: なし
+- ハッシュタグ(全体): [#nwc_all](https://twitter.com/hashtag/nwc_all)
 
 
 ## Schedule
@@ -36,7 +36,7 @@
 
 そして、スライドなどを用いて何かを「発表する」のではなく、進化の早い Web で「*今何が起こっているか?*」と「*これからどうなっていくのか?*」という、答えの無いもの、でもみんなが気になり考えていること、今だからこそ考えないといけないことを真っ向から議論する場というのが、もっとあっても良いのではないかと考えていました。
 
-今回開催するカンファレンスは、この「*議論*」だけからなるものです、それ以外のことはしません。
+今回開催するカンファレンスは、この「*議論*」だけからなるものです。それ以外のことはしません。
 
 この趣旨に賛同してくださった、各分野のプロフェッショナルに協力頂き、「*次世代 Web カンファレンス*」として、 4 年ぶり 3 回目の開催をさせていただくことになりました。
 
@@ -45,7 +45,7 @@
 
 やることはシンプルです。
 
-> テーマ毎に、 **今 Web がどうなっていて、これからどうなっていくのか**  をひたすら議論するセッションのみのカンファレンス
+> テーマ毎に *今 Web がどうなっていて、これからどうなっていくのか*  をひたすら議論するセッションのみのカンファレンス
 
 
 ## やらないこと
@@ -69,10 +69,9 @@
 - テーマ毎に 90 分のセッションを行う。
 - 3 トラック並行で実施。
 - セッションオーナー(まとめ役) + 3 人の登壇者で実施。
-- スライドやデモ・台本・概要などを事前に一切用意しない。
+- スライドやデモ/台本/概要などを事前に一切用意しない。
 - プロジェクタは固定スライドを表示。
 - 資料が無いので、資料公開はなし。代わりにセッション自体の録画を公開(予定)。
-- 配信はベストエフォートで実施。
 - 終わった後に、延長戦可能な会場を設置(予定)。
 - 「*登壇者の発言は、所属する組織とは関係なく、個人の発言である*」を全体共通とする。
 
@@ -81,17 +80,17 @@
 
 全ての登壇者に以下をお願いしています。
 
-- 「**登壇者の発言は、所属する組織・団体とは関係なく、個人の発言である**」を前提としてください。
-- 何かを宣伝する目的で出ないでください。
+- 「*登壇者の発言は、所属する組織とは関係なく、個人の発言である*」を前提としてください。
+- 何かを宣伝する目的で出演しないでください。
 - (初心者など)聞き手のレベルを意識せず、話したいレベルで話してください。
-- 録画を公開させてください(声だけも可)。
-- 資料やデモなどの準備はいりません、というかプロジェクタを使いません。
-- 細かく打ち合わせしすぎると、当日話す事がなくなり失敗するので、打ち合わせしないでください。
-- ひたすら日頃思っている事を議論してください。
-- なにか特定の「結論」を出すことが目的ではありません。
+- 録画を公開させてください(声だけでも可)。
+- 資料やデモなどの準備は必要ありません、というかプロジェクタを使いません。
+- 細かく打ち合わせしすぎると、当日話すことがなくなり失敗するので、打ち合わせしないでください。
+- ひたすら日頃思っていることを議論してください。
+- 特定の「結論」を出すことが目的ではありません。 90 分で結論が出るような浅い話は求めてません。
 - 無理に話をまとめる必要もありません。走り切って時間がきたら終わればいいです。
-- 登壇者にスタッフも兼ねてもらいます。
-- 出演費・移動費など、お金は一切出ません。
+- 登壇者にはスタッフも兼ねてもらいます。
+- 出演費/移動費/宿泊費など、お金は一切出ません。
 - 実施形態に納得できない場合は出演を断ってください。
 
 
@@ -99,20 +98,20 @@
 
 全ての参加者に以下をお願いします。
 
-- **connpass の受付票がない限り、どんな理由があっても参加できません。**
-- 勧誘・宣伝・取材目的の参加を禁止します。
-- 主催・登壇者に内々に問い合わせても参加枠などは融通できません。
+- *connpass の受付票がない限り、どんな理由があっても参加できません。*
+- 勧誘/宣伝/取材目的の参加を禁止します。
+- 主催/登壇者に内々に問い合わせても参加枠などは融通できません。
 - セッション中の移動は議論を妨げになるので控えてください。
-- 人が集中しすぎた場合は、セッションルームや会場全体で入場規制をする場合もあります。
-- エレベーターはとても混みます。見たいセッションがあるなら前もって来ましょう。
-- 飲食の用意は一切ありません。自販機もありません。長丁場になるので買ってきてください。
-- ゴミ箱はないので全て持ち帰ってください。
+- 人が集中しすぎた場合は、セッションルームや会場全体で *入場規制* をする場合があります。
+- エレベーターはとても混みます。見たいセッションの直前に会場についても間に合いません。
+- 飲食の用意は一切ありません。自販機もありません。長丁場になるので事前に買ってきてください。
+- ゴミ箱は無いので全て持ち帰ってください。
 - 実施形態に納得できない場合は参加しないでください。
 
 
 ## Speakers
 
-### CSS ([#nwc_css](https://twitter.com/hashtag/nwc_css))
+### CSS
 
 - [@myakura](https://github.com/myakura)
 - [@poteboy](https://twitter.com/_poteboy_)
@@ -120,7 +119,7 @@
 - [@_yuheiy](https://twitter.com/_yuheiy)
 
 
-### Performance ([#nwc_performance](https://twitter.com/hashtag/nwc_performance))
+### Performance
 
 - [@narirou](https://x.com/narirow)
 - [@progfay](https://x.com/progfay)
@@ -128,7 +127,7 @@
 - [@catatsuy](https://twitter.com/catatsuy)
 
 
-### Web3 ([#nwc_web3](https://twitter.com/hashtag/nwc_web3))
+### Web3
 
 - [@aggre](https://twitter.com/aggre_)
 - [@hal_sk](https://twitter.com/hal_sk)
@@ -136,7 +135,7 @@
 - [@zsh0x](https://twitter.com/zsh0x)
 
 
-### Testing ([#nwc_testing](https://twitter.com/hashtag/nwc_testing))
+### Testing
 
 - [@takepepe](https://twitter.com/takepepe)
 - [@nus3_](https://twitter.com/nus3_)
@@ -144,7 +143,7 @@
 - [@wadackel](https://github.com/wadackel)
 
 
-### A11y ([#nwc_a11y](https://twitter.com/hashtag/nwc_a11y))
+### A11y
 
 - [@emim](https://twitter.com/emim)
 - [@TheGodOfNeet](https://x.com/@TheGodOfNeet)
@@ -152,7 +151,7 @@
 - [@kara_d](https://twitter.com/kara_d)
 
 
-### Privacy ([#nwc_privacy](https://twitter.com/hashtag/nwc_privacy))
+### Privacy
 
 - [@k-o-ta](https://github.com/k-o-ta)
 - [@kyotonio](https://twitter.com/kyotonio)
@@ -160,7 +159,7 @@
 - [@tana3939](https://twitter.com/tana3939)
 
 
-### Design Technology ([#nwc_design_technology](https://twitter.com/hashtag/nwc_design_technology))
+### Design Technology
 
 - [@__amishiratori](https://twitter.com/__amishiratori)
 - [@atarapi](https://twitter.com/yuiokurasukiyo)
@@ -168,7 +167,7 @@
 - [@xrxoxcxox](https://twitter.com/xrxoxcxox)
 
 
-### Edge Computing ([#nwc_edge_computing](https://twitter.com/hashtag/nwc_edge_computing))
+### Edge Computing
 
 - [@kt3k](https://github.com/kt3k)
 - [@yusukebe](https://twitter.com/yusukebe)
@@ -176,7 +175,7 @@
 - [@seiyanuta](https://x.com/seiyanuta)
 
 
-## Tooling ([#nwc_tooling](https://twitter.com/hashtag/nwc_tooling))
+### Tooling
 
 - [@sosukesuzuki](https://github.com/sosukesuzuki)
 - [@nissy-dev](https://github.com/nissy-dev)
@@ -184,7 +183,7 @@
 - [@ota-meshi](https://github.com/ota-meshi)
 
 
-### Frontend Architecture ([#nwc_frontend_architecture](https://twitter.com/hashtag/nwc_frontend_architecture))
+### Frontend Architecture
 
 - [@yoshiko](https://twitter.com/yoshiko_pg)
 - [@youske_furukawa](https://twitter.com/yosuke_furukawa)
@@ -192,7 +191,7 @@
 - [@koba04](https://github.com/koba04)
 
 
-### Technical Writing ([#nwc_technical_writing](https://twitter.com/hashtag/nwc_technical_writing))
+### Technical Writing
 
 - [@mochikoAsTech](https://twitter.com/mochikoAsTech)
 - [@keroyama](https://twitter.com/writerkaeru)
@@ -200,7 +199,7 @@
 - [@yazakimakoto](https://twitter.com/yazakimakoto)
 
 
-### Passkey ([#nwc_passkey](https://twitter.com/hashtag/nwc_passkey))
+### Passkey
 
 - [@bang_yy](https://twitter.com/bang_yy)
 - [@kocko](https://twitter.com/kocko)
@@ -208,7 +207,7 @@
 - [@nomitan](https://www.facebook.com/matsui.toshiki.7)
 
 
-## Past
+## Past Conferences
 
 - [次世代 Web カンファレンス 2019](https://nextwebconf.connpass.com/event/103056/)
 - [次世代 Web カンファレンス 2015](https://nextwebconf.connpass.com/event/19699/)
