@@ -9,11 +9,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2022-03-06/markdown-style-table-css.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-03-06T08:00:00+08:00",
-    "dateModified": "2023-04-10T08:00:00+08:00",
+    "dateModified": "2023-11-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,30 +91,30 @@
   </script>
 
   <title>Markdown の Table 記法を CSS で実現する | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231005_173031>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134831>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
-        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
-        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
-        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
-        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-03-06>2022-03-06</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-10>2023-04-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-11-16>2023-11-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -163,7 +163,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
     <article>
       <h1><a href="">Markdown の Table 記法を CSS で実現する</a></h1>
       <section>
@@ -175,7 +175,7 @@
       <section>
         <h2 id="before"><a href="#before">Before</a></h2>
         <p>実現したいのは以下のような記法だ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
         <pre class=md data-code=md><code translate=no class=language-md>| file type | size | ratio |
 |:----------|-----:|------:|
 | .webp     | 9474 |  100% |
@@ -185,9 +185,9 @@
         <p>などと考えている間に飽きて、適当に border を dash にしただけのお粗末な実装で誤魔化していた。
         <p>
           <picture>
-            <source type=image/avif srcset=table-before.avif?220731_020617>
-            <source type=image/webp srcset=table-before.webp?220306_120321>
-            <img loading=lazy decoding=async src=table-before.png?230731_162859 alt="border を dash にしただけの実装" width=622 height=330>
+            <source type=image/avif srcset=table-before.avif?231116_154951>
+            <source type=image/webp srcset=table-before.webp?231116_154951>
+            <img loading=lazy decoding=async src=table-before.png?231116_154951 alt="border を dash にしただけの実装" width=622 height=330>
           </picture>
         </p>
       </section>
@@ -245,9 +245,9 @@
           <p>これで見た目が以下のようになる。
           <p>
             <picture>
-              <source type=image/avif srcset=table-after.avif?220731_020617>
-              <source type=image/webp srcset=table-after.webp?220306_120321>
-              <img loading=lazy decoding=async src=table-after.png?230731_162859 alt="Markdown Like の実装" width=578 height=238>
+              <source type=image/avif srcset=table-after.avif?231116_154951>
+              <source type=image/webp srcset=table-after.webp?231116_154951>
+              <img loading=lazy decoding=async src=table-after.png?231116_154951 alt="Markdown Like の実装" width=578 height=238>
             </picture>
           </p>
           <p>スタイル自体はこれで完成だ。
@@ -314,9 +314,9 @@ td::before {
           <p>せっかくなので、論文のようにキャプションの前に &quot;表 1:&quot; のようなプレフィックスを CSS Counter を用いて付与し、以下のように表示するようにした。
           <p>
             <picture>
-              <source type=image/avif srcset=figcaption.avif?220731_020617>
-              <source type=image/webp srcset=figcaption.webp?220306_120321>
-              <img loading=lazy decoding=async src=figcaption.png?230731_162859 alt="figcaption を付与した table" width=598 height=310>
+              <source type=image/avif srcset=figcaption.avif?231116_154951>
+              <source type=image/webp srcset=figcaption.webp?231116_154951>
+              <img loading=lazy decoding=async src=figcaption.png?231116_154951 alt="figcaption を付与した table" width=598 height=310>
             </picture>
           </p>
         </section>
@@ -324,7 +324,7 @@ td::before {
       <section>
         <h2 id="after"><a href="#after">After</a></h2>
         <p>以上を踏まえて実装した表が以下だ。 Chrome などでは Markdown Style で表示され、 Safari / Firefox などでは従来の border style で表示される。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?220306_111358">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?231116_154953">
         <figure>
           <figcaption>Webp を gz/br 圧縮した結果</figcaption>
           <table>
@@ -427,7 +427,7 @@ td::before {
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

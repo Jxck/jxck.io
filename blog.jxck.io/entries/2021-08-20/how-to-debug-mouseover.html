@@ -9,11 +9,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2021-08-20/how-to-debug-mouseover.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-08-20T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2023-11-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,30 +91,30 @@
   </script>
 
   <title>mouseover 中に表示される DOM のデバッグ | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231005_173031>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134831>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
-        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
-        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
-        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
-        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-08-20>2021-08-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-11-16>2023-11-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -149,7 +149,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
     <article>
       <h1><a href="">mouseover 中に表示される DOM のデバッグ</a></h1>
       <section>
@@ -164,8 +164,8 @@
         <p>この UI を表示した状態で Devtools で DOM を見たい場合、 Devtools 側にマウスを移動すると UI が消えてしまい、 inspect できない。
         <p>
           <video title="マウスオーバーで出る UI が devtools でうまく inspect できない様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source type=video/mp4 src=0.debug-mouseover.mp4?210820_181335>
-            <source type=video/webm src=0.debug-mouseover.webm?210820_180609>
+            <source type=video/mp4 src=0.debug-mouseover.mp4?231116_154951>
+            <source type=video/webm src=0.debug-mouseover.webm?231116_154951>
           </video>
         </p>
         <p>JS のどの処理で変更されているかわかっていれば、そこに break point を打って止めればよいのだが、近年の bundle/minify されたコードを source map なしにデバッグすると、面倒な上にムダに時間がかかる場合もある。
@@ -180,8 +180,8 @@
         <p>GitHub の場合は、アイコンの mouseleave と、表示されたプロフィールの mouseleave を消すと、落ち着いて DOM を inspect できるようになる。
         <p>
           <video title="mouseleave を消すことで UI が消えないようにし inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source type=video/mp4 src=1.remove-mouseleave.mp4?210820_180414>
-            <source type=video/webm src=1.remove-mouseleave.webm?210820_180435>
+            <source type=video/mp4 src=1.remove-mouseleave.mp4?231116_154951>
+            <source type=video/webm src=1.remove-mouseleave.webm?231116_154951>
           </video>
         </p>
       </section>
@@ -198,8 +198,8 @@
         <p>GitHub の場合は、ページ下部に非表示の DOM が先にあり、この属性を変えているタイプの実装なので、そこが判明していれば、以下のように inspect できる。
         <p>
           <video title="attribute modification に break point を設定し UI が消えないようにし inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source type=video/mp4 src=2.break-on-state.mp4?210820_180419>
-            <source type=video/webm src=2.break-on-state.webm?210820_180440>
+            <source type=video/mp4 src=2.break-on-state.mp4?231116_154951>
+            <source type=video/webm src=2.break-on-state.webm?231116_154951>
           </video>
         </p>
       </section>
@@ -210,8 +210,8 @@
         <p>GitHub の場合は、プロフィールを表示してから F8 を押してからマウスを動かせば、 mouseleave の JS 発火時に break できる。
         <p>
           <video title="UI が消える前に F8 でスクリプト実行を停止し inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source type=video/mp4 src=3.break-F8.mp4?210820_180424>
-            <source type=video/webm src=3.break-F8.webm?210820_180445>
+            <source type=video/mp4 src=3.break-F8.mp4?231116_154951>
+            <source type=video/webm src=3.break-F8.webm?231116_154951>
           </video>
         </p>
         <p>同じことを、 console に <code translate=no>setTimeout(() =&gt; {debugger}, 1000)</code> を貼り付けて 1 秒以内に UI を出して、 debugger で JS を止めるというやり方で紹介していることもあるようだが、やっていることは同じだ。
@@ -249,7 +249,7 @@
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

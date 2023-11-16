@@ -9,11 +9,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-05-28T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2023-11-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,30 +91,30 @@
   </script>
 
   <title>Non AMP SXG による Prefetch 対応と AMP 提供の停止 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231005_173031>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134831>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
-        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
-        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
-        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
-        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-05-28>2021-05-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-11-16>2023-11-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -165,7 +165,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
     <article>
       <h1><a href="">Non AMP SXG による Prefetch 対応と AMP 提供の停止</a></h1>
       <section>
@@ -205,7 +205,7 @@
         <section>
           <h3 id="webpkgserver"><a href="#webpkgserver">webpkgserver</a></h3>
           <p>webpkgserver は <code translate=no>go get</code> ではうまく動かなかったため、 README にある通りソースからビルドした。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
           <pre class=shell data-code=shell><code translate=no class=language-shell>git clone --depth 1 https://github.com/google/webpackager
 cd webpackager/cmd/webpkgserver
 go build .</code></pre>
@@ -297,17 +297,17 @@ dump-certurl -i cert.cbor</code></pre>
           <p>まず、 Network の Timeline 上は SXG のレスポンスと CBOR リクエストが続き、 SXG から取り出された HTML が取得されている。
           <p>
             <picture>
-              <source type=image/avif srcset=sxg-timeline.avif?220731_020617>
-              <source type=image/webp srcset=sxg-timeline.webp?220107_193959>
-              <img loading=lazy decoding=async src=sxg-timeline.png?230731_162859 alt="SXG レスポンス、 CBOR レスポンス、 SXG から取り出された HTML の順に取得されている Devtools Timeline の図" width=2390 height=300>
+              <source type=image/avif srcset=sxg-timeline.avif?231116_154951>
+              <source type=image/webp srcset=sxg-timeline.webp?231116_154951>
+              <img loading=lazy decoding=async src=sxg-timeline.png?231116_154951 alt="SXG レスポンス、 CBOR レスポンス、 SXG から取り出された HTML の順に取得されている Devtools Timeline の図" width=2390 height=300>
             </picture>
           </p>
           <p>SXG の Preview タブを見ると、 Signature や Certificate も正しく解釈されていることが確認できる。
           <p>
             <picture>
-              <source type=image/avif srcset=sxg-response.avif?220731_020617>
-              <source type=image/webp srcset=sxg-response.webp?220107_193959>
-              <img loading=lazy decoding=async src=sxg-response.png?230731_162859 alt="SXG の Signature や Certificate が正しく解釈されている Devtools の Preview の図" width=2128 height=1192>
+              <source type=image/avif srcset=sxg-response.avif?231116_154951>
+              <source type=image/webp srcset=sxg-response.webp?231116_154951>
+              <img loading=lazy decoding=async src=sxg-response.png?231116_154951 alt="SXG の Signature や Certificate が正しく解釈されている Devtools の Preview の図" width=2128 height=1192>
             </picture>
           </p>
         </section>
@@ -326,9 +326,9 @@ dump-certurl -i cert.cbor</code></pre>
           <p>しかし、本サイトは既に <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> と <a href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html">AMP SXG</a> に対応しているため、モバイルの検索結果では AMP がヒットし、 AMP SXG がリンクされている。
           <p>
             <picture>
-              <source type=image/avif srcset=gsrp-amp.avif?220731_020617>
-              <source type=image/webp srcset=gsrp-amp.webp?220107_193959>
-              <img loading=lazy decoding=async src=gsrp-amp.jpeg?230731_162859 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" width=2322 height=684>
+              <source type=image/avif srcset=gsrp-amp.avif?231116_154951>
+              <source type=image/webp srcset=gsrp-amp.webp?231116_154951>
+              <img loading=lazy decoding=async src=gsrp-amp.jpeg?231116_154951 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" width=2322 height=684>
             </picture>
           </p>
           <p>どうやら Non AMP SXG がクロールされても、同時に AMP および AMP SXG に対応している場合は、現状 AMP 側が優先されるようだ。
@@ -357,25 +357,25 @@ dump-certurl -i cert.cbor</code></pre>
           <p>また、ページの DOM 中に <code translate=no>&lt;link rel=prefetch&gt;</code> が挿入されていることが確認できる。
           <p>
             <picture>
-              <source type=image/avif srcset=gsrp-sxg.avif?220731_020617>
-              <source type=image/webp srcset=gsrp-sxg.webp?220107_193959>
-              <img loading=lazy decoding=async src=gsrp-sxg.jpeg?230731_162859 alt="Non AMP SXG が Prefetch されている" width=2406 height=774>
+              <source type=image/avif srcset=gsrp-sxg.avif?231116_154951>
+              <source type=image/webp srcset=gsrp-sxg.webp?231116_154951>
+              <img loading=lazy decoding=async src=gsrp-sxg.jpeg?231116_154951 alt="Non AMP SXG が Prefetch されている" width=2406 height=774>
             </picture>
           </p>
           <p>これにより、検索結果を表示した時点で HTML は Google の SXG Cache から取得されている。
           <p>
             <picture>
-              <source type=image/avif srcset=sxg-prefetch.avif?220731_020617>
-              <source type=image/webp srcset=sxg-prefetch.webp?220107_193959>
-              <img loading=lazy decoding=async src=sxg-prefetch.png?230731_162859 alt="検索結果を表示した時点で HTML は Google の SXG Cache から取得されている" width=3030 height=742>
+              <source type=image/avif srcset=sxg-prefetch.avif?231116_154951>
+              <source type=image/webp srcset=sxg-prefetch.webp?231116_154951>
+              <img loading=lazy decoding=async src=sxg-prefetch.png?231116_154951 alt="検索結果を表示した時点で HTML は Google の SXG Cache から取得されている" width=3030 height=742>
             </picture>
           </p>
           <p>実際に検索結果に遷移すると、 HTTP Request は筆者のサーバには発生せず、 Prefetch された HTML から展開されていることがわかる。
           <p>
             <picture>
-              <source type=image/avif srcset=sxg-navigate.avif?220731_020617>
-              <source type=image/webp srcset=sxg-navigate.webp?220107_193959>
-              <img loading=lazy decoding=async src=sxg-navigate.png?230731_162859 alt="検索結果に遷移すると Prefetch した HMTL が展開されている" width=3044 height=736>
+              <source type=image/avif srcset=sxg-navigate.avif?231116_154951>
+              <source type=image/webp srcset=sxg-navigate.webp?231116_154951>
+              <img loading=lazy decoding=async src=sxg-navigate.png?231116_154951 alt="検索結果に遷移すると Prefetch した HMTL が展開されている" width=3044 height=736>
             </picture>
           </p>
           <p>このとき(スクショでは切れているが)、アドレスバーには SXG Cache の URL である <code translate=no>https://blog-jxck-io.webpkgcache.com/</code> ではなく、 SXG を検証した結果として <code translate=no>https://blog.jxck.io</code> が表示されている。
@@ -454,7 +454,7 @@ dump-certurl -i cert.cbor</code></pre>
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

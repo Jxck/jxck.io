@@ -9,11 +9,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-06-09T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2023-11-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,30 +91,30 @@
   </script>
 
   <title>Passive Event Listeners によるスクロールの改善 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231005_173031>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134831>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
-        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
-        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
-        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
-        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-06-09>2016-06-09</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-11-16>2023-11-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -155,7 +155,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
     <article>
       <h1><a href="">Passive Event Listeners によるスクロールの改善</a></h1>
       <section>
@@ -185,7 +185,7 @@
         <p>イベントリスナを実際に実行し、その処理が終わるまで <code translate=no>preventDefault()</code> が呼ばれるかどうかわからないため、 Scroll Junk がおこる。
         <p>つまり、 Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、 Scroll Junk の影響が大きくなる。
         <p>Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
         <pre><code translate=no>explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</code></pre>
         <p>ただし、イベントリスナの実行自体にも多少のオーバーヘッドがあるため、空のイベントリスナを登録しただけでも、ブラウザのスクロール最適化を邪魔するには十分であり、影響がでることも確認されている。
         <p>仕様には Scroll Event にイベントリスナを登録したサイトの中で、実際に <code translate=no>preventDefault()</code> を呼ぶのは 20% 程度という調査結果が記載されている。
@@ -201,7 +201,7 @@
         <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code translate=no>preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
         <p>なお Passive Listener 内で <code translate=no>preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code translate=no>defaultPrevented=false</code> のままになる。
         <p>Listener 内で <code translate=no>preventDefault()</code> を呼べるかどうかは、 <code translate=no>cancelable=true</code> となっているかどうかで分かる。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?220306_111358">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?231116_154953">
         <figure>
           <figcaption>cancelable と preventDefault の関係</figcaption>
           <table>
@@ -293,9 +293,9 @@ function addEventListenerWithOptions(target, type, handler, options) {
           <p>touchstart イベントに時間がかかっているため、スクロールが詰まる。
           <p>
             <picture>
-              <source type=image/avif srcset=passive-event-listeners-false.avif?220731_020617>
-              <source type=image/webp srcset=passive-event-listeners-false.webp?220107_193959>
-              <img loading=lazy decoding=async src=passive-event-listeners-false.gif?220731_020624 alt="リスナが Active であるため、スクロールが詰まる" title="Active Event Listener DEMO" width=1347 height=687>
+              <source type=image/avif srcset=passive-event-listeners-false.avif?231116_154951>
+              <source type=image/webp srcset=passive-event-listeners-false.webp?231116_154951>
+              <img loading=lazy decoding=async src=passive-event-listeners-false.gif?231116_154951 alt="リスナが Active であるため、スクロールが詰まる" title="Active Event Listener DEMO" width=1347 height=687>
             </picture>
           </p>
         </section>
@@ -304,9 +304,9 @@ function addEventListenerWithOptions(target, type, handler, options) {
           <p>スクロールが詰まらない。
           <p>
             <picture>
-              <source type=image/avif srcset=passive-event-listeners-true.avif?220731_020617>
-              <source type=image/webp srcset=passive-event-listeners-true.webp?220107_193959>
-              <img loading=lazy decoding=async src=passive-event-listeners-true.gif?220731_020624 alt="リスナが Passive であるため、スクロールが詰まらない" title="Passive Event Listener DEMO" width=1347 height=687>
+              <source type=image/avif srcset=passive-event-listeners-true.avif?231116_154951>
+              <source type=image/webp srcset=passive-event-listeners-true.webp?231116_154951>
+              <img loading=lazy decoding=async src=passive-event-listeners-true.gif?231116_154951 alt="リスナが Passive であるため、スクロールが詰まらない" title="Passive Event Listener DEMO" width=1347 height=687>
             </picture>
           </p>
         </section>
@@ -338,7 +338,7 @@ function addEventListenerWithOptions(target, type, handler, options) {
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

@@ -9,11 +9,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-04-23T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2023-11-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,30 +91,30 @@
   </script>
 
   <title>Periodic Background Sync 及び Web を Install するということ | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231005_173031>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134831>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
-        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
-        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
-        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
-        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-04-23>2020-04-23</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-11-16>2023-11-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -158,7 +158,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
     <article>
       <h1><a href="">Periodic Background Sync 及び Web を Install するということ</a></h1>
       <section>
@@ -179,7 +179,7 @@
           <h3 id="api"><a href="#api">API</a></h3>
           <p>現在提案されている API は非常にシンプルだ。
           <p>まず ServiceWorkerRegistration 経由で task を登録する。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
           <pre class=js data-code=js><code translate=no class=language-js>const registration = await navigator.serviceWorker.ready
 await registration.periodicSync.register(&apos;update-feed&apos;, {
   minInterval: 12 * 60 * 60 * 1000 // 12h
@@ -203,9 +203,9 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
         <p>一度 SW が登録されたら、ユーザがアプリを開いてないところでも、ユーザが認識できない形でトラッキングが可能ということになってしまう。
         <p>
           <picture>
-            <source type=image/avif srcset=ip-tracking.avif?220731_020617>
-            <source type=image/webp srcset=ip-tracking.webp?220107_193959>
-            <img loading=lazy decoding=async src=ip-tracking.png?200901_002432 alt="定期的に IP を取得することで、国をまたいだ移動などをトラッキング可能" title="IP Tracking by Periodic Background Sync" width=2032 height=1084>
+            <source type=image/avif srcset=ip-tracking.avif?231116_154951>
+            <source type=image/webp srcset=ip-tracking.webp?231116_154951>
+            <img loading=lazy decoding=async src=ip-tracking.png?231116_154951 alt="定期的に IP を取得することで、国をまたいだ移動などをトラッキング可能" title="IP Tracking by Periodic Background Sync" width=2032 height=1084>
           </picture>
         </p>
         <p>また、 PBS 内での fetch 先を特定の攻撃対象に設定すれば、発生タイミングをある程度指定して DDOS を行う、 Bot Net の構築に応用可能であることも指摘されている。
@@ -215,9 +215,9 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
         <p>これらは、 Periodic ではない従来の Background Sync でも同様であるため、現在 Mozilla は従来の PBS に加え、従来の Background Sync も Considered Harmful と表明した。
         <p>
           <picture>
-            <source type=image/avif srcset=mozilla-standard-position-for-sync.avif?220731_020617>
-            <source type=image/webp srcset=mozilla-standard-position-for-sync.webp?220107_193959>
-            <img loading=lazy decoding=async src=mozilla-standard-position-for-sync.png?200901_002432 alt="Mozilla は PBS/BS 双方に Harmful という Position を表明している" title="Mozilla Standard Position for Periodic Background Sync & Background Sync" width=2416 height=974>
+            <source type=image/avif srcset=mozilla-standard-position-for-sync.avif?231116_154951>
+            <source type=image/webp srcset=mozilla-standard-position-for-sync.webp?231116_154951>
+            <img loading=lazy decoding=async src=mozilla-standard-position-for-sync.png?231116_154951 alt="Mozilla は PBS/BS 双方に Harmful という Position を表明している" title="Mozilla Standard Position for Periodic Background Sync & Background Sync" width=2416 height=974>
           </picture>
         </p>
         <ul>
@@ -269,9 +269,9 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
           </ul>
           <p>
             <picture>
-              <source type=image/avif srcset=site-engagement.avif?220731_020617>
-              <source type=image/webp srcset=site-engagement.webp?220107_193959>
-              <img loading=lazy decoding=async src=site-engagement.png?200901_002432 alt="Chrome の site-engagement ページで、サイトの利用頻度を表示できる" title="Site Engagement Page" width=2414 height=1108>
+              <source type=image/avif srcset=site-engagement.avif?231116_154951>
+              <source type=image/webp srcset=site-engagement.webp?231116_154951>
+              <img loading=lazy decoding=async src=site-engagement.png?231116_154951 alt="Chrome の site-engagement ページで、サイトの利用頻度を表示できる" title="Site Engagement Page" width=2414 height=1108>
             </picture>
           </p>
           <p>この値が高ければ PBS は minInterval に近い値で発火し、そうでなければほとんど発火しない。
@@ -399,7 +399,7 @@ await registration.periodicSync.register(&apos;update-feed&apos;, {
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
