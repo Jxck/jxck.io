@@ -1,6 +1,6 @@
 # 次世代 Web カンファレンス 2023 開催告知
 
-![これからの Web について真剣に議論する](https://gist.githubusercontent.com/Jxck/962238fc4627546646e697039a3f6518/raw/da362b4bfcebf6ea2ced78bd19012123a50387fe/Background.png)
+![これからの Web について真剣に議論する](theme.svg#7888x2400)
 
 
 ## Intro
@@ -210,11 +210,5 @@
 
 ## Past
 
-### 2019
-
-[![次世代 Web カンファレンス 2019](nwc-2019-min.png#1600x400)](https://nextwebconf.connpass.com/event/103056/)
-
-
-### 2015
-
-[![次世代 Web カンファレンス 2015](nwc-2015-min.png#1600x400)](https://nextwebconf.connpass.com/event/19699/)
+- [次世代 Web カンファレンス 2019](https://nextwebconf.connpass.com/event/103056/)
+- [次世代 Web カンファレンス 2015](https://nextwebconf.connpass.com/event/19699/)
