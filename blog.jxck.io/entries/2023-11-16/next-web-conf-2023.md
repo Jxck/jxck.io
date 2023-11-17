@@ -189,7 +189,7 @@
 ### Frontend Architecture
 
 - [@yoshiko](https://twitter.com/yoshiko_pg)
-- [@youske_furukawa](https://twitter.com/yosuke_furukawa)
+- [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 - [@herablog](https://twitter.com/herablog)
 - [@koba04](https://github.com/koba04)
 
