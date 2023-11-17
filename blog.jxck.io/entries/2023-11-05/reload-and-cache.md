@@ -11,7 +11,7 @@
 
 - サーバで `Cache-Control` を付与したのにキャッシュがヒットしない
 - サーバで `ETag` を付与したのに `If-None-Match` が送られない
-- サーバで `Last-Modified-Since` を付与したのに `If-Modified-Since` が送られない
+- サーバで `Last-Modified` を付与したのに `If-Modified-Since` が送られない
 
 先日も、筆者が書いた MDN の Cache セクションで「記述が間違っているのでは?」と同様の質問を受けた。
 
