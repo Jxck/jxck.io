@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/135/monthly-ecosystem-202311.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?231116_154953></script>
+  <script type=module src=/assets/js/sw.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 135 回のテーマは 2023 年 11 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/135/monthly-ecosystem-202311.html>
+  <meta property=og:title        content="ep135 Monthly Ecosystem 202311 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 135 回のテーマは 2023 年 11 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep135 Monthly Ecosystem 202311 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/134/monthly-platform-202310.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?231116_154953>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?231116_154953         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?231116_154953         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?231116_154953 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?231116_154953        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?231116_154953        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?231116_154953 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?231116_154953   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?231116_154953  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/134/monthly-platform-202310.html>ep134 Monthly Platform 202310</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep135 Monthly Ecosystem 202311</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2023-11-19
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 135 回のテーマは 2023 年 11 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          Building the most ambitious sites on the Web with Vercel and Next.js 14 - Vercel
+          <ul>
+            <li><a href="https://vercel.com/blog/building-the-most-ambitious-sites-on-the-web-with-vercel-and-next-js-14" target=_blank>https://vercel.com/blog/building-the-most-ambitious-sites-on-the-web-with-vercel-and-next-js-14</a>
+            <li>
+              Server Actions は React Canary に入ってる
+              <ul>
+                <li><a href="https://x.com/reactjs/status/1716573234160967762?s=20" target=_blank>https://x.com/reactjs/status/1716573234160967762?s=20</a>
+                <li><a href="https://react.dev/community/versioning-policy#canary-channel" target=_blank>https://react.dev/community/versioning-policy#canary-channel</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Building towards a new default rendering model for web applications - Vercel
+          <ul>
+            <li><a href="https://vercel.com/blog/partial-prerendering-with-next-js-creating-a-new-default-rendering-model" target=_blank>https://vercel.com/blog/partial-prerendering-with-next-js-creating-a-new-default-rendering-model</a>
+          </ul>
+        </li>
+        <li>
+          Next.js 14 on Vercel - Vercel
+          <ul>
+            <li><a href="https://vercel.com/changelog/next-js-14" target=_blank>https://vercel.com/changelog/next-js-14</a>
+          </ul>
+        </li>
+        <li>
+          Why I Won&apos;t Use Next.js
+          <ul>
+            <li><a href="https://www.epicweb.dev/why-i-wont-use-nextjs" target=_blank>https://www.epicweb.dev/why-i-wont-use-nextjs</a>
+          </ul>
+        </li>
+        <li>
+          Why I&apos;m Using Next.js
+          <ul>
+            <li><a href="https://leerob.io/blog/using-nextjs" target=_blank>https://leerob.io/blog/using-nextjs</a>
+            <li>
+              Deep Dive: Caching and Revalidating
+              <ul>
+                <li><a href="https://github.com/vercel/next.js/discussions/54075" target=_blank>https://github.com/vercel/next.js/discussions/54075</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Astro 3.5: i18n Routing
+          <ul>
+            <li><a href="https://astro.build/blog/astro-350/" target=_blank>https://astro.build/blog/astro-350/</a>
+          </ul>
+        </li>
+        <li>
+          oxc
+          <ul>
+            <li>formatter <a href="https://github.com/oxc-project/oxc/pull/1260" target=_blank>https://github.com/oxc-project/oxc/pull/1260</a>
+            <li>lint <a href="https://www.npmjs.com/package/oxlint" target=_blank>https://www.npmjs.com/package/oxlint</a>
+          </ul>
+        </li>
+        <li>
+          prettier 3.1
+          <ul>
+            <li><a href="https://prettier.io/blog/2023/11/13/3.1.0.html" target=_blank>https://prettier.io/blog/2023/11/13/3.1.0.html</a>
+          </ul>
+        </li>
+        <li>
+          ESLint v9
+          <ul>
+            <li><a href="https://eslint.org/blog/2023/11/whats-coming-in-eslint-9.0.0/" target=_blank>https://eslint.org/blog/2023/11/whats-coming-in-eslint-9.0.0/</a>
+          </ul>
+        </li>
+        <li>
+          node
+          <ul>
+            <li>use biome as formatter <a href="https://github.com/nodejs/node/pull/50672" target=_blank>https://github.com/nodejs/node/pull/50672</a>
+            <li>v21.2.0 <a href="https://nodejs.org/en/blog/release/v21.2.0" target=_blank>https://nodejs.org/en/blog/release/v21.2.0</a>
+          </ul>
+        </li>
+        <li>
+          deno 1.38
+          <ul>
+            <li><a href="https://deno.com/blog/v1.38" target=_blank>https://deno.com/blog/v1.38</a>
+          </ul>
+        </li>
+        <li>
+          vite 5[a]
+          <ul>
+            <li><a href="https://vitejs.dev/blog/announcing-vite5" target=_blank>https://vitejs.dev/blog/announcing-vite5</a>
+          </ul>
+        </li>
+        <li>
+          Remix ❤️ Vite
+          <ul>
+            <li><a href="https://remix.run/blog/remix-heart-vite" target=_blank>https://remix.run/blog/remix-heart-vite</a>
+          </ul>
+        </li>
+        <li>
+          Remix v2.3.0
+          <ul>
+            <li><a href="https://github.com/remix-run/remix/blob/main/CHANGELOG.md#v230" target=_blank>https://github.com/remix-run/remix/blob/main/CHANGELOG.md#v230</a>
+          </ul>
+        </li>
+        <li>
+          yarn 4
+          <ul>
+            <li><a href="https://yarnpkg.com/blog/release/4.0" target=_blank>https://yarnpkg.com/blog/release/4.0</a>
+          </ul>
+        </li>
+        <li>
+          tldraw で書いたやつを UI 生成してくれる
+          <ul>
+            <li><a href="https://makereal.tldraw.com/" target=_blank>https://makereal.tldraw.com/</a>
+            <li>
+              デモ
+              <ul>
+                <li><a href="https://x.com/tldraw/status/1724892287304646868?s=20" target=_blank>https://x.com/tldraw/status/1724892287304646868?s=20</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          @storybook-test: more streamlined and powerful testing
+          <ul>
+            <li><a href="https://storybook.js.org/blog/storybook-test/" target=_blank>https://storybook.js.org/blog/storybook-test/</a>
+          </ul>
+        </li>
+        <li>
+          Geist Font - Vercel
+          <ul>
+            <li><a href="https://vercel.com/font" target=_blank>https://vercel.com/font</a>
+          </ul>
+        </li>
+        <li>
+          Jest v30 alpha
+          <ul>
+            <li><a href="https://github.com/jestjs/jest/releases/tag/v30.0.0-alpha.1" target=_blank>https://github.com/jestjs/jest/releases/tag/v30.0.0-alpha.1</a>
+          </ul>
+        </li>
+        <li>
+          Chromatic Visual Test addon enters private beta
+          <ul>
+            <li><a href="https://storybook.js.org/blog/chromatic-visual-test-addon-private-beta/" target=_blank>https://storybook.js.org/blog/chromatic-visual-test-addon-private-beta/</a>
+          </ul>
+        </li>
+        <li>
+          Redux tool kit v2
+          <ul>
+            <li>リリースが近いらしい
+            <li><a href="https://blog.isquaredsoftware.com/presentations/2023-11-rtk-2.0-new/?slideIndex=0&stepIndex=0" target=_blank>https://blog.isquaredsoftware.com/presentations/2023-11-rtk-2.0-new/?slideIndex=0&amp;stepIndex=0</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          10/26: Nextjs Conf
+          <ul>
+            <li><a href="https://nextjs.org/conf" target=_blank>https://nextjs.org/conf</a>
+          </ul>
+        </li>
+        <li>
+          11/19: JSConf JP
+          <ul>
+            <li><a href="https://jsconf.jp/2023/" target=_blank>https://jsconf.jp/2023/</a>
+          </ul>
+        </li>
+        <li>
+          12/16: 次世代 Web カンファレンス 2023
+          <ul>
+            <li><a href="https://nextwebconf.connpass.com/event/300174/" target=_blank>https://nextwebconf.connpass.com/event/300174/</a>
+          </ul>
+        </li>
+        <li>3/8: TDB
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/134/monthly-platform-202310.html>ep134 Monthly Platform 202310</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep135.mp3
+    data-title="ep135 Monthly Ecosystem 202311"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
