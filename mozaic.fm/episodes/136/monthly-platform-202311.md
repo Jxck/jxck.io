@@ -2,7 +2,7 @@
 type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep136.mp3
-published_at: TODO
+published_at: 2023-11-30
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
