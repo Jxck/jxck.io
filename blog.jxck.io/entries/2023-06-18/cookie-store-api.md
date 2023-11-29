@@ -77,7 +77,7 @@ Cookie を明示的に削除する API は存在せず、 `Expires` を過去に
 
 ## Cookie Store API
 
-そこで、 Cookie にアクセス可能な非同期 API として _Async Cookie API_ の策定が始まり、そこに様々な負債を解消するためのプリミティブが詰め込まれ、 _Cookie Store API_ と名前を変えて今に至る。
+そこで、 Cookie にアクセス可能な非同期 API として *Async Cookie API* の策定が始まり、そこに様々な負債を解消するためのプリミティブが詰め込まれ、 *Cookie Store API* と名前を変えて今に至る。
 
 - WICG/cookie-store: Asynchronous access to cookies from JavaScript
   - https://github.com/WICG/cookie-store
