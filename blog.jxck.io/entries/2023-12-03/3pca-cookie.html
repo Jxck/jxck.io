@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-03/3pca-cookie.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 3 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-03/3pca-cookie.html>
+  <meta property=og:title        content="3PCA 3 日目: 自動で送られる Cookie | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 3 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 3 日目: 自動で送られる Cookie | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-03T08:00:00+08:00",
+    "dateModified": "2023-11-30T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 3 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
+  }
+  </script>
+
+  <title>3PCA 3 日目: 自動で送られる Cookie | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-03>2023-12-03</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-11-30>2023-11-30</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#保存したドメインに自動で送り返す">保存したドメインに自動で送り返す</a>
+                <li><a href="#直接アクセスしてなくても送る">直接アクセスしてなくても送る</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 3 日目: 自動で送られる Cookie</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 3 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>前回は 「Cookie は <em>区別</em> と <em>識別</em> の用途があり、 <em>区別</em> だけのユースケースもある」という解説をした。
+        <p>今回も、もう少し Cookie の性質を振り返っていく。
+      </section>
+      <section>
+        <h2 id="保存したドメインに自動で送り返す"><a href="#保存したドメインに自動で送り返す">保存したドメインに自動で送り返す</a></h2>
+        <p>ブラウザは <code translate=no>Set-Cookie</code> してきたサイトを覚えておき、そのサイトにアクセスするたびに <code translate=no>Cookie</code> ヘッダで自動で送り返すという話だった。
+        <p>例として、EC サイトにログインし Cookie が振られた場面を考える。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+        <pre class=http data-code=http><code translate=no class=language-http>POST /login HTTP/1.1
+Host: shop.example
+
+username=jxck&amp;password=******</code></pre>
+        <p>ここで認証した結果、 Jxck に対して ID を振る。
+        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
+Content-Type: text/html
+Set-Cookie: id=31d4d96e407aad42
+
+&lt;!doctype html&gt;</code></pre>
+        <p>一度 shop.example でログインしたら、あとでまた shop.example にアクセスしたときに、この Cookie を送り返す。
+        <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
+Host: shop.example
+Cookie: id=31d4d96e407aad42</code></pre>
+        <p>これを毎回自動で行うため、しばらくアクセスしてなくても、またアクセスすればログイン済み状態になっている。
+        <p>これは、サービス側が付与した Cookie を削除するか、ブラウザから Cookie が消えるまで、基本的には続く。
+      </section>
+      <section>
+        <h2 id="直接アクセスしてなくても送る"><a href="#直接アクセスしてなくても送る">直接アクセスしてなくても送る</a></h2>
+        <p>さて、先ほど shop.example で Cookie を取得したブラウザが、 EC サイトとはまったく関係ない筆者のブログにアクセスしたところを考えてみよう。
+        <p>URL は <a href="https://blog.jxck.io">https://blog.jxck.io</a> とする。
+        <p>このサイトは、まず blog.jxck.io に HTML を問い合わせる。
+        <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
+Host: blog.jxck.io
+Accept: text/html
+...
+&lt;!doctype html&gt;
+...
+&lt;title&gt;index | blog.jxck.io&lt;/title&gt;
+...
+&lt;script src=https://shop.example/js/script.js&gt;&lt;/script&gt;
+...</code></pre>
+        <p>ブラウザは取得した HTML をパースしながら、途中で出てきた <code translate=no>&lt;script&gt;</code> を shop.example に取得しに行く。
+        <pre class=http data-code=http><code translate=no class=language-http>GET /js/script.js HTTP/1.1
+Host: shop.example
+Accept: text/javascript
+Cookie: id=31d4d96e407aad42 # NOTICE!</code></pre>
+        <p>ここで shop.example に送信されている Cookie に注目したい。
+        <p>「一度取得した Cookie は、そのサイトにアクセスするたびに自動で毎回送る」というルールだったが、これはいわゆる画面に表示される URL だけではなく、そのサブリソースにも適用される点が重要だ。
+        <p>したがって、全く関係ない blog.jxck.io にアクセスしても、そこに埋め込まれた JS を EC サイトに取得しに行くリクエストには shop.example で付与された Cookie が送られる。
+        <p>この場合は JS だが、 JS 以外にも例えば CSS, Image, iframe などでも同じように送られる。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;script src=https://shop.example/js/script.js&gt;&lt;/script&gt;
+&lt;link rel=stylesheet href=https://shop.example/css/style.css /&gt;
+&lt;img src=https://shop.example/img/image.png&gt;&lt;/img&gt;
+&lt;iframe src=https://shop.example/iframe/frame.html&gt;&lt;/iframe&gt;</code></pre>
+        <p>これに何のメリットがあるのか。これを何に使えるのか。
+        <p>次回はいよいよ 3rd Party Cookie の実態について解説する。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
