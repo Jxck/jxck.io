@@ -1,4 +1,4 @@
-# [cookie][3pca] 2 日目: Cookie による区別と識別
+# [cookie][3pca] 3PCA 2 日目: Cookie による区別と識別
 
 ## Intro
 
