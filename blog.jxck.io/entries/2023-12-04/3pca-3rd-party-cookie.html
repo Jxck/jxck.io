@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-04/3pca-3rd-party-cookie.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 4 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-04/3pca-3rd-party-cookie.html>
+  <meta property=og:title        content="4 日目: 3rd Party Cookie の正体 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 4 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "4 日目: 3rd Party Cookie の正体 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-04T08:00:00+08:00",
+    "dateModified": "2023-12-03T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 4 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
+  }
+  </script>
+
+  <title>4 日目: 3rd Party Cookie の正体 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-04>2023-12-04</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-03>2023-12-03</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#さっき見てた商品が出るのからくり">「さっき見てた商品が出る」のからくり</a>
+                <li><a href="#広告での-cookie">広告での Cookie</a>
+                <li><a href="#3rd-party-cookie-の正体">3rd Party Cookie の正体</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">4 日目: 3rd Party Cookie の正体</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 4 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>前回は「サブリソースにまで Cookie が送られて何が嬉しいのか」という話だった。
+        <p>今回はそのユースケースについて考えていく。
+      </section>
+      <section>
+        <h2 id="さっき見てた商品が出るのからくり"><a href="#さっき見てた商品が出るのからくり">「さっき見てた商品が出る」のからくり</a></h2>
+        <p>例えば、 EC サイトで色々な商品を探した後に、全然関係のないサイトで、なぜかさっきまで見ていた商品がそのサイト内でおすすめされている、という経験があるだろう。
+        <p>今回はリアルワールドの例として、楽天の実装を引用する。
+        <p>まず、楽天市場のサイトでミネラルウォーターを物色する。
+        <p>
+          <picture>
+            <source type=image/avif srcset=rakuten.avif?231203_143247>
+            <source type=image/webp srcset=rakuten.webp?231203_143247>
+            <img loading=lazy decoding=async src=rakuten.jpeg?231203_143247 alt="楽天市場のサイトでミネラルウォーターを物色している様子" width=5120 height=2880>
+          </picture>
+        </p>
+        <p>その後、 Yahoo! Japan のトップページにアクセスすると、楽天からミネラルウォーターの広告が表示される。
+        <p>
+          <picture>
+            <source type=image/avif srcset=yahoo.avif?231203_143247>
+            <source type=image/webp srcset=yahoo.webp?231203_143247>
+            <img loading=lazy decoding=async src=yahoo.jpeg?231203_143247 alt="Yahoo! Japan のトップページの右端に楽天市場の広告が表示され水がおすすめされている" width=5120 height=2880>
+          </picture>
+        </p>
+        <p>このように、一見異なるサイトが連携しているかのように見えるこの実装にこそ、ここまで解説した Cookie の性質が利用されている。
+      </section>
+      <section>
+        <h2 id="広告での-cookie"><a href="#広告での-cookie">広告での Cookie</a></h2>
+        <p>実際の広告配信の構造は非常に複雑なので、ここからは実際とは異なる簡素化した仮想的な実装例で考えていく。
+        <p>通常、 Web における広告は以下の 3 つのロールがある。
+        <ul>
+          <li>媒体主(publisher.example): サイト内の広告枠を売りたい(上の例では Yahoo)
+          <li>広告主(advertiser.example): 広告枠を買い、広告を表示したい(上の例では楽天)
+          <li>広告ネットワーク(ads.example): 両者を繋ぐ代理店
+        </ul>
+        <p>まず、広告主のサイトには以下のように、「広告ネットワークのスクリプト」が埋め込まれている。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!doctype html&gt;
+...
+&lt;title&gt;Shopping Site&lt;/title&gt;
+&lt;script src=https://ads.example/advertiser.js?interest=water&gt;&lt;/script&gt;</code></pre>
+        <p>このとき「このユーザは水をみている」といった情報を付与してリクエストすることで、広告ネットワークは「このユーザが誰かは不明だが、水を探している」という事実を把握できる。
+        <pre class=http data-code=http><code translate=no class=language-http>GET /advertiser.js?interest=water
+Host: ads.example</code></pre>
+        <p>このレスポンスに「区別するための Cookie」を 3rd Party Cookie として付与する。
+        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
+Content-Type: text/javascript
+Set-Cookie: 31d4d96e407aad42</code></pre>
+        <p>媒体主のページも同様に、広告ネットワークのスクリプトを埋め込んでいる。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!doctype html&gt;
+...
+&lt;title&gt;Portal Top&lt;/title&gt;
+&lt;script src=https://ads.example/publisher.js&gt;&lt;/script&gt;</code></pre>
+        <p>このページにアクセスした際、広告ネットワークには以下のようなリクエストが飛ぶ。
+        <pre class=http data-code=http><code translate=no class=language-http>GET /publisher.js HTTP/1.1
+Host: ads.example
+Cookie: id=31d4d96e407aad42
+...</code></pre>
+        <p>このリクエストを受け取った楽天は、「アカウントは不明だが、このユーザは、先ほどミネラルウォーターを見ていたユーザだ」とわかる。結果、返した JS が動的に <code translate=no>&lt;iframe&gt;</code> を埋め込み、そこにミネラルウォーターに関する広告を返すことができるのだ。
+        <p>実際に閲覧データや購買データをやり取りしなくても、両者が同じ広告ネットワークを利用しているだけで、この仕組みが実現できているわけだ。
+      </section>
+      <section>
+        <h2 id="3rd-party-cookie-の正体"><a href="#3rd-party-cookie-の正体">3rd Party Cookie の正体</a></h2>
+        <p>このとき、ユーザ自身は広告主(ex. 楽天)や媒体主(ex. Yahoo)にアクセスしているため、広告主や媒体主の Cookie を付与されても特に不思議なことではない。しかし裏では「直接アクセスしていない広告ネットワークにも Cookie が送られている」ことになり、こちらはユーザが意図したものとは言えないだろう。
+        <p>ここで「広告主」と「媒体主」が 1st Party で、第三者である「広告ネットワーク」が 3rd Party となり、付与される Cookie がそれぞれ 1st Party Cookie と 3rd Party Cookie になるのだ。こう考えれば「2nd Party Cookie」と呼ばれるものは存在しないことがわかるだろう。
+        <p>また、「先ほど興味がありそうだったけど購買に繋がらなかった広告を、別のサイトでもリコメンドする」というこの方式を、「リターゲティング」などと呼ぶ。リターゲティングは、広告における 3rd Party Cookie の代表的なユースケースの 1 つだ。
+        <p>そして、もちろんこのような仕組みになっていることを知らない一般ユーザの中には、「他のサイトで水を見ていたら、別のサイトでも水の広告が出た」という事実を、単純に「気持ち悪い」と感じるユーザもいる。これが、 3rd Party Cookie が問題視される原因の一つでもあるのだが、それについては追って解説する。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
