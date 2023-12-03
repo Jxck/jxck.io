@@ -1,4 +1,4 @@
-# [cookie][3pca] 4 日目: 3rd Party Cookie の正体
+# [cookie][3pca] 3PCA 4 日目: 3rd Party Cookie の正体
 
 ## Intro
 
