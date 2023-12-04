@@ -136,13 +136,13 @@ SOAP をはじめとした XML 全盛時代の、機械可読で自動ネゴシ�
 
 これは 2000 年初頭の時点で、 3rd Party Cookie をデフォルトで無効にしているブラウザが既にあったことを意味する。
 
-今からは想像できないかもしれないが、当時の IE といえばトップシェアだ。無視することなどできない。それでも P3P が普及しなかったのは、 IE が CP が解釈できなかった場合のフォールバックを 3rd Party Cookie の許可側に倒していた点が大きい。
+今からは想像できないかもしれないが、当時の IE といえばトップシェアだ。無視することなどできない。それでも P3P が普及しなかったのは、 IE が CP を解釈できなかった場合に、フォールバックとして 3rd  Party Cookie の許可側に倒していた点が大きい。
 
 要するに、何かしら CP を送っておけば、 3rd Party Cookie は使えたのだ。「P3P というコンセプト」は普及しなかったが、「形骸化した P3P ヘッダ」は、3rd Party Cookie を IE でも使いたいサービスには、広く普及していた。
 
 一般開発者にも「よくわからないが `P3P: CP='UNI CUR OUR'` って入れればいいらしい」程度のおまじないとして認識されていたようだ。(この CP はざっくり言うとトラッキングしてないよという意味らしい)。
 
-有名なところでは Google は以下のような P3P を提供していた。当時の様子を象徴する実装だろう。
+有名なところで、 Google は以下のような P3P を提供していた。当時の様子を象徴する実装だろう。
 
 ```http
 P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
@@ -153,7 +153,7 @@ P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
 
 IE 以外にも Netscape と Firefox が少し実装したようだが、それもすぐ消えた。他のブラウザは後に「3rd Party Cookie を自己責任でブロックできる設定を載せる方が使いやすい」と続かなかったのだ。(これが今ブラウザの Settings にある 3rd Party Cookie block の設定に繋がる)
 
-以下の 2010 年の調査(卒論?)では、策定から 8 年経っても対応率は数 % だったという結果だ。
+以下の 2010 年の調査(卒論?)では、策定から 8 年経っても対応率は数 % だったという結果がある。
 
 - WWW における P3P コンパクトポリシーの利用状況に関する調査
   - https://db-event.jpn.org/deim2010/proceedings/files/D8-5.pdf
@@ -168,6 +168,6 @@ IE 以外にも Netscape と Firefox が少し実装したようだが、それ�
 - P3P is no longer supported (Windows) | Microsoft Learn
   - https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/mt146424(v=vs.85)
 
-XML 全盛の時代とはいえ、少し見ただけでも普及は難しそうだということがわかるだろう。では、もっと簡単な仕様だったら上手くいっただろうか?
+XML 全盛の時代とはいえ、少し見ただけでも普及は難しそうな仕様だということがわかるだろう。では、もっと簡単な仕様だったら上手くいっただろうか?
 
 ここまで言えば、感のいい人は気づくかもしれない。そう、次回はそのヘッダの話をする。
