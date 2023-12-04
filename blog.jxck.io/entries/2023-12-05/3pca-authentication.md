@@ -22,7 +22,7 @@
 
 Auth1 は、以下のような UI を提供し、ログイン画面をサイトに埋め込むことができるとする。
 
-![iframe で埋め込まれた認証](embedded-login.drawio.svg)
+![iframe で埋め込まれた認証](embedded-login.drawio.svg#380x400)
 
 このログイン画面は、実際は Auth1 の提供する `<iframe>` の中にある。
 
@@ -49,7 +49,7 @@ Cookie: id=${Auth1 の cookie}
 
 これを受け取った Auth1 は、「このユーザはログイン済みだ」と、画面の代わりに認証結果をいきなり返せる。例えばログイン済みユーザが表示されたページなどだ。
 
-![ログイン済みと表示された UI](embedded-logged-in.drawio.svg)
+![ログイン済みと表示された UI](embedded-logged-in.drawio.svg#380x400)
 
 同時に認証が終わっていることを示す情報を、外側の HTML に JS で渡せば、ユーザにとっては自動的にログインが終わっていることになる。
 
