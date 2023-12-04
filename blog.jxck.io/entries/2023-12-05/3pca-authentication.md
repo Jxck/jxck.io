@@ -1,4 +1,4 @@
-# [cookie][3pca] 5 日目: 認証の連携
+# [cookie][3pca] 3PCA 5 日目: 認証の連携
 
 ## Intro
 
