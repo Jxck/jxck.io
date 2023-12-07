@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-04T08:00:00+08:00",
-    "dateModified": "2023-12-03T08:00:00+08:00",
+    "dateModified": "2023-12-07T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-04>2023-12-04</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-03>2023-12-03</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-07>2023-12-07</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -197,9 +197,9 @@
         <pre class=html data-code=html><code translate=no class=language-html>&lt;!doctype html&gt;
 ...
 &lt;title&gt;Shopping Site&lt;/title&gt;
-&lt;script src=https://ads.example/advertiser.js?interest=water&gt;&lt;/script&gt;</code></pre>
+&lt;script src=&quot;https://ads.example/advertiser.js?interest=water&quot;&gt;&lt;/script&gt;</code></pre>
         <p>このとき「このユーザは水をみている」といった情報を付与してリクエストすることで、広告ネットワークは「このユーザが誰かは不明だが、水を探している」という事実を把握できる。
-        <pre class=http data-code=http><code translate=no class=language-http>GET /advertiser.js?interest=water
+        <pre class=http data-code=http><code translate=no class=language-http>GET /advertiser.js?interest=water HTTP/1.1
 Host: ads.example</code></pre>
         <p>このレスポンスに「区別するための Cookie」を 3rd Party Cookie として付与する。
         <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
@@ -209,7 +209,7 @@ Set-Cookie: 31d4d96e407aad42</code></pre>
         <pre class=html data-code=html><code translate=no class=language-html>&lt;!doctype html&gt;
 ...
 &lt;title&gt;Portal Top&lt;/title&gt;
-&lt;script src=https://ads.example/publisher.js&gt;&lt;/script&gt;</code></pre>
+&lt;script src=&quot;https://ads.example/publisher.js&quot;&gt;&lt;/script&gt;</code></pre>
         <p>このページにアクセスした際、広告ネットワークには以下のようなリクエストが飛ぶ。
         <pre class=http data-code=http><code translate=no class=language-http>GET /publisher.js HTTP/1.1
 Host: ads.example
