@@ -2,7 +2,7 @@
 
 ## Intro
 
-このエントリは、 3rd Party Cookie Advent Calendar の 2 日目である。
+このエントリは、 3rd Party Cookie Advent Calendar の 7 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
@@ -51,7 +51,7 @@ Set-Cookie: id=31d4d96e407aad42; Comment="このクッキーは広告の改善�
 また、当時 Cookie2 の仕様策定に従事し、最終的に 3rd Party Cookie を残すという重要な決断をした Lou Montulli は、以下のように書いている。
 
 > Any company that had the ability to track users across a large section of the web would need to be a large publicly visible company.
-> Web で広範囲にわたってユーザをトラッキングする能力を有するには、一般に認知さるほどの大企業である必要がある。
+> Web で広範囲にわたってユーザをトラッキングする能力を有するには、一般に認知されるほどの大企業である必要がある。
 > Cookies could be seen by users so a tracking company can't hide from the public.
 > Cookie はユーザが認識できるので、トラッキング会社はそれを隠れて行うことはできない。
 > In this way the public has a natural feedback mechanism to constrain those that would seek to track them.
