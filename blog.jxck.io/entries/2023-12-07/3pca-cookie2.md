@@ -51,14 +51,15 @@ Set-Cookie: id=31d4d96e407aad42; Comment="このクッキーは広告の改善�
 また、当時 Cookie2 の仕様策定に従事し、最終的に 3rd Party Cookie を残すという重要な決断をした Lou Montulli は、以下のように書いている。
 
 > Any company that had the ability to track users across a large section of the web would need to be a large publicly visible company.
-> Web で広範囲にわたってユーザをトラッキングする能力を有するには、一般に認知されるほどの大企業である必要がある。
 > Cookies could be seen by users so a tracking company can't hide from the public.
-> Cookie はユーザが認識できるので、トラッキング会社はそれを隠れて行うことはできない。
 > In this way the public has a natural feedback mechanism to constrain those that would seek to track them.
-> したがって一般市民は、自分たちをトラッキングしようとする企業を抑制するための自然なフィードバックメカニズムを持つ。
 > If 3rd party cookies were disabled ad companies would use another mechanism to accomplish the same thing, and that mechanism would not have the same level of visibility and control as cookies.
-> もし 3rd Party Cookie が無効になれば、広告会社は同じことを達成するために別の仕組みを使うでしょう、そしてそれは Cookie よりももっと認識/制御することが難しいメカニズムになりえます。
 > We would be trading out one problem for another.
+> 
+> Web で広範囲にわたってユーザをトラッキングする能力を有するには、一般に認知されるほどの大企業である必要があります。
+> Cookie はユーザが認識できるので、トラッキング会社はそれを隠れて行うことはできません。
+> したがって一般市民は、自分たちをトラッキングしようとする企業を抑制するための自然なフィードバックメカニズムを持ちます。
+> もし 3rd Party Cookie が無効になれば、広告会社は同じことを達成するために別の仕組みを使うでしょう、そしてそれは Cookie よりももっと認識/制御することが難しいメカニズムになりえます。
 > 今ある問題を、別の問題と引き換えるだけになるでしょう。
 > --- https://montulli.blogspot.com/2013/05/the-reasoning-behind-web-cookies.html
 
