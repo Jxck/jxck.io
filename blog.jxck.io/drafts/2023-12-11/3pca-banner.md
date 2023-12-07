@@ -88,7 +88,7 @@ GDPR は「同意についてのガイドライン」を公開しており、個
 
 バナーはサイト下部に Window 幅のパターンで実装されている。
 
-![欧州委員会の Cookie Banner](TODO)
+![欧州委員会の Cookie Banner](europa.eu.png#2442x460)
 
 まず、文言を見てみる。
 
@@ -109,7 +109,7 @@ GDPR は「同意についてのガイドライン」を公開しており、個
 
 特に注目したいのは以下のテーブルだ。
 
-![Cookie の名前や用途のテーブル](TODO)
+![Cookie の名前や用途のテーブル](europa.eu.cookie-table.png#1644x2058)
 
 サイトで利用する全 Cookie の名前と、目的、そして保存期間までがリストになってる。
 
@@ -123,13 +123,13 @@ GDPR は「同意についてのガイドライン」を公開しており、個
 
 こちらは、サイトの上部に Window 幅 Sticky のパターンで実装されている。
 
-![ドイツ連邦政府の Cookie Banner](TODO)
+![ドイツ連邦政府の Cookie Banner](bundesregierung.de.png#2348x1000)
 
 今回は少し複雑で、必須 Cookie だけあらかじめチェックが入ってる。そして、追加で Statistics を選ぶことができる作りだ。 "Select all" すると "Statistics" も選ばれるが、おそらくもっと多くの用途で Cookie があっても、選択肢が増やせる使える作りにあらかじめ実装されているのだろう。
 
 "Confirm selection" するとバナーが消え、選択結果が Cookie として保存される。なお GDPR では、合意をとる前に Cookie を用いることはできないと解釈されているため、この時点で JS から Cookie を保存するのが一般的だ。従って `HttpOnly` にはできない。
 
-![選択結果が反映されたことを保存する Cookie](TODO)
+![選択結果が反映されたことを保存する Cookie](./bundesregierung.de.cookie.png#1738x192)
 
 なお、一旦バナーは消えるが、この同意は簡単に取り消せる(オプトアウトできる)必要がある。そのため、ページ下部にある "Privacy Settings" のリンクから、またバナーを出すことができる。
 
@@ -140,7 +140,7 @@ GDPR は「同意についてのガイドライン」を公開しており、個
 
 GDPR に準拠していることや、使っている Cookie の値も書かれている。
 
-![使っている Cookie の値の説明](TODO)
+![使っている Cookie の値の説明](./bundesregierung.de.explanation.png#1912x2294)
 
 
 ## イギリス政府
@@ -150,7 +150,7 @@ GDPR に準拠していることや、使っている Cookie の値も書かれ�
 
 次はイギリス、こちらもページトップの実装だ。
 
-![イギリス政府サイトの Cookie Banner](TODO)
+![イギリス政府サイトの Cookie Banner](gov.uk.png#1628x648)
 
 もうここはいいね。注目は View Cookies のページ。
 
@@ -159,7 +159,7 @@ GDPR に準拠していることや、使っている Cookie の値も書かれ�
 
 このページは、さらに詳細な Cookie の説明を別ページにし、その上で以下のような設定 UI を持つ。
 
-![イギリス政府の Cookie についての説明のページ](TODO)
+![イギリス政府の Cookie についての説明のページ](gov.uk.explanation.png#1372x2434)
 
 ここでは、三つの Cookie について個別に設定できるようになっている。
 
@@ -176,13 +176,15 @@ GDPR に準拠していることや、使っている Cookie の値も書かれ�
 
 政府系以外も見てみよう、メディア系の例として Guardian のバナーが以下。
 
+![Guardian の Cookie Banner](guardian.png#2314x2538)
+
 割と大きめに表示し、かつ背景をブラーしている。これはどちらか選ばないと先に進めないという作り。
 
 こういう作りを "Cookie Wall" などと言い、特に広告収入が重要なメディア系企業では良くある作りだ。昔はここで同意しないとサイトが閲覧できないといった実装もあったが、 GDPR 的には良くないという解釈が広まったのか、今は Reject できるようになっている。
 
 Manage or reject を選ぶと、以下のポップアップが出てくる。
 
-![Guardian の Cookie Settings](TODO)
+![Guardian の Cookie Settings](guardian.settings.png#1128x2360)
 
 結構複雑で、一般ユーザが読んでわかるかは疑問だ。
 
@@ -197,11 +199,11 @@ Manage or reject を選ぶと、以下のポップアップが出てくる。
 
 同じくメディア系企業である Financial Times。ここはポップアップ実装だ。
 
-![Financial Times の Cookie Banner]()
+![Financial Times の Cookie Banner](financial-times.png#982x600)
 
 Manage cookies の UI もわかりやすい。
 
-Financial Times の Manage Cookie
+![Financial Times の Manage Cookies](financial-times-manage-cookies.png#1348x2182)
 
 
 ## デジタル庁
@@ -210,17 +212,17 @@ Financial Times の Manage Cookie
 
 [デジタル庁 (digital.go.jp)](https://www.digital.go.jp/)
 
-![デジタル庁のトップページ]()
+![デジタル庁のトップページ](digital.go.jp.png#2440x906)
 
 特に Cookie バナーは無いようだ。
 
 プライバシーポリシーを見る。
 
-![クッキーの利用に関する説明]()
+![クッキーの利用に関する説明](digital.go.jp.cookies.png#2412x1800)
 
 アナリティクスツールである User Insight を入れているようだ。 Cookie 自体は 1st Party のようだが、ネットワークをみると外部に送ってるように見える。
 
-リンクされているユーザローカルのページ
+![リンクされているユーザローカルのページ](userlocal.jp.policy.png#2140x1622)
 
 ユーザローカルのページに行くと、ここにはオプトアウトの UI がある。
 
