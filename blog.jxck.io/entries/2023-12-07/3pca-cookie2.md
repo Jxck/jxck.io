@@ -55,7 +55,7 @@ Set-Cookie: id=31d4d96e407aad42; Comment="このクッキーは広告の改善�
 > In this way the public has a natural feedback mechanism to constrain those that would seek to track them.
 > If 3rd party cookies were disabled ad companies would use another mechanism to accomplish the same thing, and that mechanism would not have the same level of visibility and control as cookies.
 > We would be trading out one problem for another.
-> 
+>
 > Web で広範囲にわたってユーザをトラッキングする能力を有するには、一般に認知されるほどの大企業である必要があります。
 > Cookie はユーザが認識できるので、トラッキング会社はそれを隠れて行うことはできません。
 > したがって一般市民は、自分たちをトラッキングしようとする企業を抑制するための自然なフィードバックメカニズムを持ちます。
