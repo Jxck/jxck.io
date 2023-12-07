@@ -45,13 +45,13 @@
 <!doctype html>
 ...
 <title>Shopping Site</title>
-<script src=https://ads.example/advertiser.js?interest=water></script>
+<script src="https://ads.example/advertiser.js?interest=water"></script>
 ```
 
 このとき「このユーザは水をみている」といった情報を付与してリクエストすることで、広告ネットワークは「このユーザが誰かは不明だが、水を探している」という事実を把握できる。
 
 ```http
-GET /advertiser.js?interest=water
+GET /advertiser.js?interest=water HTTP/1.1
 Host: ads.example
 ```
 
@@ -69,7 +69,7 @@ Set-Cookie: 31d4d96e407aad42
 <!doctype html>
 ...
 <title>Portal Top</title>
-<script src=https://ads.example/publisher.js></script>
+<script src="https://ads.example/publisher.js"></script>
 ```
 
 このページにアクセスした際、広告ネットワークには以下のようなリクエストが飛ぶ。

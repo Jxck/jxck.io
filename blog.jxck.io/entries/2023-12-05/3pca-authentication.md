@@ -30,7 +30,7 @@ Auth1 は、以下のような UI を提供し、ログイン画面をサイト�
 <!doctype html>
 ....
 
-<iframe src=https://auth1.com/login></iframe>
+<iframe src="https://auth1.com/login"></iframe>
 ```
 
 初回のアクセス時、このログイン画面から Auth1 にログインする。
