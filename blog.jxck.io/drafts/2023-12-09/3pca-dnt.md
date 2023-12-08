@@ -29,26 +29,24 @@
 
 ## オプトアウト拡張
 
-2009 年に Google は DoubleClick のオプトアウト Cookie を永続化する "Google's Advertising Cookie Opt Out Plugin" という拡張をリリースしたりした。これは多くの広告事業者のうち 1 つだけしかカバーしてないが、オプトアウト Cookie もどこかで消えてしまうという問題は解決を解決するものだった。
+2009 年に Google は DoubleClick のオプトアウト Cookie を永続化する "Google's Advertising Cookie Opt Out Plugin" という拡張をリリースした。
 
 - Google Analytics Opt-out Browser Add-on Download Page
   - https://tools.google.com/dlpage/gaoptout?hl=en
 
-これに触発されたセキュリティエンジニアの Christopher Soghoian は、 Apache 2.0 だったこの拡張をフォークし、そこに他の広告事業者のオプトアウト Cookie を追加したものを TACO(Targeted Advertising Cookie Opt-Out project) としてリリースした。
+これに触発されたセキュリティエンジニアの Christopher Soghoian は、他の広告事業者のオプトアウト Cookie を追加した拡張機能を TACO(Targeted Advertising Cookie Opt-Out project)としてリリースした。
 
 - slight paranoia: The History of the Do Not Track Header
   - http://paranoia.dubfire.net/2011/01/history-of-do-not-track-header.html
-- Google inspires behavioral ad-zapping Firefox add-on • The Register
-  - https://www.theregister.com/2009/03/16/taco_add/
 
 Christopher は夜な夜な広告ネットワークのオプトアウト Cookie を探し、それを TACO に追加していった。最終的には 100 以上のオプトアウト Cookie をサポートする人気の拡張となった。一方で、彼はこの機能を Firefox に組み込み、リストのメンテナンスから手を引けないか Mozilla に持ちかけた。 Mozilla 側は一定の理解を示すも、リストを維持メンテする方法はスケールしないと難色を示していた。
 
 そこで、 `X-Tracking-Opt-Out` のようなヘッダを標準化し、広告事業者にそれを尊重するように求める方法が模索され始めた。
 
 
-## Header based opt-out
+## Header-based opt-out
 
-Christopher は周りの協力を得ながら、 TACO にまず 2 つのヘッダのプロトタイプを実装した。
+Christopher は TACO にまず 2 つのヘッダのプロトタイプを実装した。
 
 ```http
 X-Behavioral-Ad-Opt-Out: 1
@@ -57,12 +55,10 @@ X-Do-Not-Track: 1
 
 2 つある理由は、広告会社が以下の両方を Tracking と言っており、その実態が会社によって違ったからだ。
 
-- トラッキング結果を広告のカスタマイズに使用しないこと
-- トラッキング自体をしないこと
+1. トラッキング結果を広告のカスタマイズに使用しないこと
+2. トラッキング自体をしないこと
 
-つまり、 1 だけをオプトアウトしても 2 は続けられる場合があったのだ。そして、この違いはユーザにとって把握が難しい。
-
-そこで、1, 2 両方をオプトアウトしたいという意図を明確にするため、ヘッダを 2 つにしたのだ。
+1 だけをオプトアウトしても 2 は続けられる場合があり、この違いはユーザにとって把握が難しい。そこで、両方からのオプトアウトを明示するため 2 つにしたのだ。
 
 2009 年 7 月に彼はこのヘッダを Future of Privacy Forum というミーティングで発表し、業界にスピーチした。しかし、実際にはどの広告会社も興味を示さなかった。
 
@@ -80,21 +76,21 @@ X-Do-Not-Track: 1
 - FTC Mulls Browser-Based Block for Online Ads | Internet News
   - https://www.internetnews.com/it-management/ftc-mulls-browser-based-block-for-online-ads/
 
-広告業界(当時 $23B 規模)は「すでにオプトアウト Cookie の仕組みがある」「無料のサービスが立ち行かなくなる」としてこれに反対し、ブラウザベンダはそれぞれ検証を始めた。
+広告業界(当時 $23B 規模)は「すでにオプトアウト Cookie の仕組みがある」「無料のサービスが立ち行かなくなる」としてこれに反対していたが、ブラウザベンダはそれぞれ検証を始めた。
 
-その直後、まず MS が IE9 に Tracking Protection を入れた。これはトラッカーのドメインリストを入れて自動でブロックする、いわゆる 2 の方式だ。今でいうアドブロッカー型の機能で、 MS は FTC から賞賛された。
+その直後、まず MS が IE9 に Tracking Protection を入れた。これはトラッカーのドメインリストを入れて自動でブロックする、いわゆる 2 の方式だ。
+
+もともと 2008 年頃の IE8 には、 InPrivate Filtering / InPrivate Subscriptions といった同等のブロック機能があったが、 $6B で買収したばかりの aQuantive という広告会社からの圧力で 2010 年初頭 IE8 からその機能が消えていた。それを戻した形になる。
 
 - Microsoft to Add 'Tracking Protection' to Web Browser
   - https://www.wsj.com/articles/SB10001424052748703296604576005542201534546
 
-しかし、デフォルトはオフで、リストは自分でどこかからとってくる必要があるため、利用の敷居は低くはなかった。
-
-もともと IE8 には、2008 年頃から InPrivate Filtering という機能があり、トラッカー判定したドメインをブロックする機能が提案されていた。また、プライバシー団体がメンテするリストになれば、自動ブロックする InPrivate Subscriptions 機能というものも提案されていた。しかし、MS が aQuantive という広告会社を $6B で買収したばかりで、そこからの圧力で 2010 年初頭 IE8 からその機能が消えていた。それを戻した形になる。
+ FTC は MS を賞賛したが、デフォルトはオフで、リストは自分でどこかからとってくる必要があるため、利用の敷居は低くはなかった。
 
 
 ## Do Not Track Header
 
-"Do Not Track" は標語となり、どう実現するかが各所で議論されていた。 IE のような 2 の方法はスケールしないため、 3 の方法にシフトし、ブラウザから HTTP ヘッダで明示的に示せるようにして、広告会社側がそれを見るようにしようということで、提案されたのが DNT ヘッダだ。名前に名残があるのはこういう経緯だ。
+"Do Not Track" は標語となり、どう実現するかが各所で議論されていた。 IE のような 2 の方法はスケールしないため、 3 の方法にシフトした。 TACO の試みが再評価され、できたのが DNT ヘッダだ。
 
 ```http
 DNT: 1
@@ -104,7 +100,7 @@ P3P はサービスがレスポンスするものだったが、 DNT はクラ�
 
 また、その値も `1` だと "拒否"、 `0` だと "許可" という非常にシンプルな仕様だ。
 
-最初に Mozilla が 2011 年 1 月に実装したのをきっかけに、 IE, Safari, Chrome, Opera と、次々と実装していくことになる。
+(TACO と関わりをもっていたためだろう)最初に Mozilla が 2011 年 1 月に実装したのをきっかけに、 IE, Safari, Chrome, Opera と、次々と実装していくことになる。
 
 - Firefox Web Tool to Deter Tracking - WSJ (2011/01/24)
   - https://www.wsj.com/articles/SB10001424052748704213404576100441609997236#U4017830322951v
@@ -115,7 +111,7 @@ P3P はサービスがレスポンスするものだったが、 DNT はクラ�
 - Opera Desktop Team - Core update with Do Not Track, and mail and theme fixes (2012/02/10)
   - https://web.archive.org/web/20130310122003/http://my.opera.com/desktopteam/blog/2012/02/10/core-dnt-mail-themes
 
-「DNT を送る」といったオプションを有効にすれば、このヘッダが飛ぶようになったため、ユーザの意図が示せるようになった。また、デフォルトで送っているわけでもないため、互換性への影響も少ない。
+「DNT を送る」といったオプションを有効にすれば、この DNT が飛ぶようになったため、ユーザの意図が示せるようになった。また、デフォルトで送っているわけでもないため、互換性への影響も少ない。
 
 残る問題は、このヘッダを見るトラッカー側だ。
 
@@ -141,7 +137,7 @@ Yahoo は 2014 年にポリシーを更新している。
 
 また、 IE が一部のユーザに DNT をデフォルトで有効にしたことがあり、そのせいで「ユーザの意図の反映とは言えない」という批判があった。
 
-一方 DAA (Digital Advertising Alliance) は、 DNT を Web の標準とすることについて、 W3C が政策にまで関与していることを意味し、活動の本分を超えていると批判した。
+一方 DAA (Digital Advertising Alliance) は、 DNT を Web の標準とすることについて、 W3C が本分を超えて政策にまで関与していると批判した。
 
 結果、広告側の言い分は以下のようになる。
 
