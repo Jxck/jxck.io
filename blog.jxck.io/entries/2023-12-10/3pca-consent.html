@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-10/3pca-consent.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 10 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-10/3pca-consent.html>
+  <meta property=og:title        content="3PCA 10 日目: なぜ Cookie には同意が必要なのか? | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 10 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 10 日目: なぜ Cookie には同意が必要なのか? | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-10T08:00:00+08:00",
+    "dateModified": "2023-12-09T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 10 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 10 日目: なぜ Cookie には同意が必要なのか? | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-10>2023-12-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-09>2023-12-09</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#eprivacy-と-gdpr">ePrivacy と GDPR</a>
+                <li><a href="#ccpa-california-consumer-privacy-act">CCPA (California Consumer Privacy Act)</a>
+                <li><a href="#個人情報保護法と電気通信事業者法">個人情報保護法と電気通信事業者法</a>
+                <li><a href="#cookie-と同意">Cookie と同意</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 10 日目: なぜ Cookie には同意が必要なのか?</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 10 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今回は、この話をする上で避けては通れない、規制や法律について触れておく。
+        <p><strong>しかし、筆者はあくまでエンジニアであり、この分野は専門外だ。内容については、素人が適当に書いており、信頼性は AI 以下だと思って読んで欲しい。</strong>
+      </section>
+      <section>
+        <h2 id="eprivacy-と-gdpr"><a href="#eprivacy-と-gdpr">ePrivacy と GDPR</a></h2>
+        <p>ヨーロッパは「プライバシーは人権だ」という点について非常に敏感な文化がある。
+        <p>1993 年に EU ができたとき、それまでバラバラだった加盟国のプライバシー保護について、きちんと統一しようという話になり「<em>EU データ保護指令</em>」と呼ばれるものができた。ただし、これはあくまで「指令(Directive)」であり、これ自体が法的な強制力を持つものではなかった。むしろ、「こうした内容の法律整備を各国でやるように」というガイドラインのようなものだった。
+        <p>その後 2002 年に「<em>ePrivacy 指令</em>」ができ、ここで初めて具体的に Cookie を規制する内容が盛り込まれた。ここではまだ 3rd Party Cookie 云々の話はなく、「きちんと説明し同意をとること」といった言及がされている。この「同意(consent)」がなんなのかはそこまではっきりしておらず、これもまた「指令(Directive)」であるため、詳細は各国の法令に任せる立ち位置だ。これは 2009 年に改定され、ここで Cookie の同意取得の義務付けなどが入り、規制が強化された。
+        <p>で、2016 年に誰もが一度は聞いたことあるだろう「<em>GDPR</em>」ができる。位置付けとしては「EU データ保護指令」の改訂版だ。この最後は「規則(Regulation)」となっており、「指令(Directive)」よりも強いものだ。これ自体がもう拘束力を持つため、EU 全体がこれに従う必要がある。違反すれば罰金もある。(ePrivacy も Directive ではなく Regulation 版を出すと言われて結構経つけがまだ出てない)。
+        <p>GDPR は個人情報保護周り全般について触れており、ePrivacy はその電子通信部分を補完しているという関係だ。従って GDPR に従うためには、Cookie の利用に対して合意を取る必要が出る。これが Cookie Banner, Cookie Notice Cookie Consent などと言われる、合意のポップアップをよく見るようになった現代の Web に繋がっていく。
+        <p>EU 以外は無関係かというと、そんなことはない。GDPR は「EU に拠点を置く企業」はもとより「EU にサービスを提供している他国の企業」も対象となっているためだ。従って、英語で作られていたり、 i18n で英語も提供しているようなサービスは、対象になる可能性がある。したがって、日本であっても無視はできないのだ。
+        <p>2016 年に出てから 2018 年の適用までに、 2 年間の準備期間があった。しかし、多くのサービスは動き出しが遅れ、 2018 年直前になって大急ぎで対応をすることになる。「Cookie のポップアップを出すだけなら、そんなに大変ではないのでは?」と思うかもしれないが、前述のように GDPR は Cookie だけを規制する目的ではないため、プライバシーポリシーの整備や、データの管理責任者設置など、様々なことを見直す必要がある。 Cookie バナーはその氷山の一角でしかないのだ。
+        <p>対応が追いつかない会社は、思い切って EU 圏からのアクセスを IP ベースでシャットアウトしたため、「GDPR のせいで、インターネットが分断する」と騒ぐ人もいた。 Yahoo が欧州圏へのサービス提供を停止した理由も、こうした法規制への対応だったとされている。
+        <ul>
+          <li>
+            【重要】欧州などからご利用のお客様へ - Yahoo! JAPAN
+            <ul>
+              <li><a href="https://privacy.yahoo.co.jp/notice/globalaccess.html" target=_blank>https://privacy.yahoo.co.jp/notice/globalaccess.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="ccpa-california-consumer-privacy-act"><a href="#ccpa-california-consumer-privacy-act">CCPA (California Consumer Privacy Act)</a></h2>
+        <p>もう 1 つ、この分野で押さえておくべきものが、CCPA (カリフォルニア州消費者プライバシー法)だ。
+        <p>カリフォルニア州のかつてシリコンバレーと呼ばれたエリアには、こうした法律の対象になるテック系企業の本社が多くあるため、州が独自でルールを色々と持っている。CCPA は 2020 年に作られたもので、カリフォルニアに拠点がある企業だけでなく、カリフォルニア州の住民の個人情報を扱うサイトで一定の条件を満たした企業に適用されるため、これもやはり世界中に影響のある法律と言える。
+        <p>GDPR と似てはいるが、実際は少し趣が違う。まず「個人情報」の定義が変わるが、より分かりやすいところとしては、 GDPR は「オプトイン」を重要視しているが、 CCPA はどちらかというと「オプトアウト」を重要視している。 GDPR のように許可なく収集することを制限しないが、集められた情報の「削除を求める」や「転売を拒否する」といった権利を重要視しているのだ。したがって、 Cookie バナーそのものが必須というわけではないとされ、代わりに &quot;Do Not Sell My Personal Information&quot; といったリンクがサイト下部やプライバリーポリシーによく見られるようになった。
+      </section>
+      <section>
+        <h2 id="個人情報保護法と電気通信事業者法"><a href="#個人情報保護法と電気通信事業者法">個人情報保護法と電気通信事業者法</a></h2>
+        <p>日本における個人情報関連の立法は、欧米のこうした制度を手本にしているため、GDPR と ePrivacy の関係が、そのまま個人情報保護法と電気通信事業者法の関係と類似している。個人情報保護法は 2022 年 4 月に改正され、電気通信事業者法は 2023 年 6 月に改正されている。
+        <p>ただし、GDPR は「Cookie も個人情報だ」としているのに対し、改正個人情報保護法は「Cookie 自体は個人情報ではなく、個人関連情報(個人情報と紐づく場合は同意が必要)」といった微妙な違いがあり、日本では業務改善命令が先に課されるといった違いがあるため、 GDPR と比べればいくらか緩い規制と捉えられている。
+        <p>重要なのは、電気通信事業者法にある「外部送信規律」とよばれるものだ。これが、いわゆる 3rd Party Cookie の送信などによる連携に関わるもので、基本的にその事実を「通知」か「公表」することが義務化された。「通知」はポップアップ、「公表」は Privacy Policy ページに相当するものだ。明示的に外部送信規律に対応する場合「外部送信ポリシー」などの表記になる場合もある。
+        <p>しかし、個人情報保護法上の個人情報に当たらない Cookie の取得については、合意取得は求められてないため、日本の二つの法律に対応する上では Cookie バナーは合意取得ではなく通知目的になる。そのため、いわゆる&quot;Accept&quot;, &quot;Reject&quot; 形式ではない実装になることが多い。逆に GDPR の「合意取得」や CCPA の「オプトアウト」への対応をすでに行なっている場合は、「通知」と「公表」をそれで代替できる場合もある。
+      </section>
+      <section>
+        <h2 id="cookie-と同意"><a href="#cookie-と同意">Cookie と同意</a></h2>
+        <p>何度も言うが、各法律の中身について筆者は専門ではないため、詳細に触れるつもりはない。
+        <p>しかし、ここまでの経緯や目的を踏まえれば、「プライバシーを保護する目的で、トラッキングが行われるような Cookie の利用には、同意や通知が必要」ということがわかるだろう。
+        <p>では、実際にどのような UI で実装したら良いのだろうか? 次回はそれを見ていく。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
