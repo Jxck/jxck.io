@@ -337,4 +337,5 @@ Cookie バナーが表示される。
 
 そこからリンクされた「外部送信一覧」も見やすい。
 
-![日経電子版の外部送信一覧](nikkei-opt-out.png#2560x1440)
+- 日本経済新聞社 - ご利用履歴情報の外部送信一覧
+  - https://www.nikkei.com/lounge/privacy/cookie/optout.html

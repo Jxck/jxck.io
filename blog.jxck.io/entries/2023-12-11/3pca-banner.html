@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-11/3pca-banner.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 11 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-11/3pca-banner.html>
+  <meta property=og:title        content="3PCA 11 日目: Cookie Banner | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 11 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 11 日目: Cookie Banner | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-11T08:00:00+08:00",
+    "dateModified": "2023-12-10T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 11 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 11 日目: Cookie Banner | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-11>2023-12-11</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-10>2023-12-10</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#cookie-banner">Cookie Banner</a>
+                <li><a href="#必須の-cookie">必須の Cookie</a>
+                <li><a href="#gdpr">GDPR</a>
+                <ol>
+                  <li><a href="#gdpr-ガイドライン">GDPR ガイドライン</a>
+                  <li><a href="#欧州委員会">欧州委員会</a>
+                  <li><a href="#ドイツ連邦政府">ドイツ連邦政府</a>
+                  <li><a href="#イギリス政府">イギリス政府</a>
+                  <li><a href="#guardian">Guardian</a>
+                </ol>
+                <li><a href="#ccpa">CCPA</a>
+                <ol>
+                  <li><a href="#ガイドライン">ガイドライン</a>
+                  <li><a href="#financial-times">Financial Times</a>
+                </ol>
+                <li><a href="#disqus">Disqus</a>
+                <li><a href="#電気通信事業者法">電気通信事業者法</a>
+                <ol>
+                  <li><a href="#ガイドライン_1">ガイドライン</a>
+                  <li><a href="#デジタル庁">デジタル庁</a>
+                  <li><a href="#日経電子版">日経電子版</a>
+                </ol>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 11 日目: Cookie Banner</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 11 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>前回は、各国で法律が整備されていった流れや、主な法律の特徴を解説した。
+        <p>しかし、法律はあくまで法律であり仕様ではないため、「どう実装するべきか」は各サービスに委ねられている(ガイドラインなどはあるが)。
+        <p>多くの場合これを Web の実装に落とし込むと、いわゆる「Cookie バナー」相当になるわけだ。
+        <p>今回は、実世界でどのようなバナーが提供されているのかを見ていく。
+      </section>
+      <section>
+        <h2 id="cookie-banner"><a href="#cookie-banner">Cookie Banner</a></h2>
+        <p>&quot;Cookie Banner&quot;, &quot;Cookie Notice&quot;, &quot;Cookie Consent&quot; など表現は色々あるが、要するに同意取得のために画面に追加される UI をこのように呼ぶ。
+        <p>パターンは以下のようなものが多いだろう。
+        <ul>
+          <li>画面の下に Window 幅で Sticky
+          <li>画面の上に Window 幅で Sticky
+          <li>画面右/左下に必要幅で Popup
+        </ul>
+        <p>多くの開発者が知りたいのは、ここに何を書くかだ。もっと言えば、コピペすれば終わりなコード片が欲しいかもしれない。
+        <p>しかし、ここまで解説したように、ユーザの情報をどのように扱っているかはサービスによって全く異なり、そこでどういう同意取得が求められているかも、適用される法律によって微妙に異なる。つまり、「これをコピペすればよし」とはならないのだ。
+        <p>立法側も、もちろんそうしたリファレンス実装のようなものを提供しているわけではなく、提供しているのはあくまで要件だ。一般的に法律は解釈と判例に基づいて運用されるため、実装した結果が正しいかどうかも &quot;Ask your lawyer&quot; ということになり、最終的には裁判をしないとわからないところもある。
+        <p><strong>もちろん、筆者も「このように実装すべき」といったアドバイスをする立場にはなく、またその責任を負うものではない。</strong>
+        <p>それを踏まえた上で、実装するための手掛かりになるものをいくつか紹介していく。
+      </section>
+      <section>
+        <h2 id="必須の-cookie"><a href="#必須の-cookie">必須の Cookie</a></h2>
+        <p>「Cookie の利用に合意をとる」と言っているが、ここまでの成り立ちを考えると「トラッキング目的の 3rd Party Cookie の利用に合意をとる」という目的であることがわかるだろう。
+        <p>したがって、「Cookie を使うならなんでも合意が必要」というわけではないと解釈される。例えば Session を維持するための Cookie に合意を取得したとして、これをユーザが拒否してショッピングカートが使えなくなっても、それはユーザが求めるプライバシー保護とはいえないだろう。
+        <p>こうした Cookie は「必須の Cookie」とみなされ、合意取得の対象外と解釈されるのが一般的だ。
+        <p>例として、 GitHub は 2022 年に全ての Cookie バナーを削除すると発表した。これは、必須 Cookie のみの利用にとどめたという意味だ。
+        <ul>
+          <li>
+            No cookie for you - The GitHub Blog
+            <ul>
+              <li><a href="https://github.blog/2020-12-17-no-cookie-for-you/" target=_blank>https://github.blog/2020-12-17-no-cookie-for-you/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ただし、これを「1st Party Cookie の利用には合意がいらない」と解釈できるという話とは限らないだろう。
+        <p>前述した通り、「問題は機能ではなくユースケース」だ。各法律の目的は「3rd Party Cookie の利用を規制」することではなく、「ユーザのプライバシーを守る」ことが目的であり、例え 1st Party Cookie でも、それを用いて 3rd Party と連携し、何かしらのトラッキングを実現しているような場合は、合意取得の対象となるだろう。
+        <p>法律の目的が、実装方法の規制ではないという点は、再度認識しておきた点だ。そこを取り違えると、「3rd Party Cookie が使えなくなったのなら、 1st Party Cookie でやればいい」といった解釈に走りがちだ。 1st Party Cookie であっても、やっていることが「トラッキングである」という認識がある場合は、法的な規制の範疇となる可能性はある。それが Fingerprinting や CNAME Cloaking など、 Cookie を用いない手法であってもだ。
+      </section>
+      <section>
+        <h2 id="gdpr"><a href="#gdpr">GDPR</a></h2>
+        <section>
+          <h3 id="gdpr-ガイドライン"><a href="#gdpr-ガイドライン">GDPR ガイドライン</a></h3>
+          <p>GDPR は「同意についてのガイドライン」を公開しており、個人情報保護委員会による訳が公開されている。
+          <ul>
+            <li>
+              Guidelines 05/2020 on consent under Regulation 2016/679
+              <ul>
+                <li><a href="https://edpb.europa.eu/sites/default/files/files/file1/edpb_guidelines_202005_consent_en.pdf" target=_blank>https://edpb.europa.eu/sites/default/files/files/file1/edpb_guidelines_202005_consent_en.pdf</a>
+              </ul>
+            </li>
+            <li>
+              同意に関するガイドライン 05/2020 - 個人情報保護委員会 - (ppc.go.jp)
+              <ul>
+                <li><a href="https://www.ppc.go.jp/files/pdf/doui_guideline_v1.1_koushin.pdf" target=_blank>https://www.ppc.go.jp/files/pdf/doui_guideline_v1.1_koushin.pdf</a>
+              </ul>
+            </li>
+          </ul>
+          <p>筆者の感覚では、どの法律も細かい差異はあれど、目的は基本「ユーザのプライバシーを守る」であるため、例えば GDPR に準拠すれば、他への対応もそこまで大きな飛躍はないと考える。その意味でも、世界で広く適用され、参考実装の多い GDPR とそのガイドラインは、他の法律に対応する上でも参考になるだろう。
+          <p>特に注目したい点が、以下の 4 項目だ。
+          <ul>
+            <li>
+              freely given
+              <ul>
+                <li>自由に選んでる、つまり同意の圧力をかけられたりしていない。
+                <li>合意しないとコンテンツにアクセスできない、いわゆる Cookie Wall はだめ。
+              </ul>
+            </li>
+            <li>
+              specific
+              <ul>
+                <li>特定されている、つまりどのデータが何に使われてるのが「それぞれ個別に」同意できる。
+                <li>用途ごとに Cookie を分け、それぞれの用途について別々に設定が可能な UI である。
+              </ul>
+            </li>
+            <li>
+              informed and
+              <ul>
+                <li>わかるように説明を受けている。
+                <li>「専門用語でユーザを捲し立てて取った同意」は認めないということ。
+              </ul>
+            </li>
+            <li>
+              unambiguous indication of the data subject&apos;s wishes by which he or she, by a statement or by a clear affirmative action, signifies agreement to the processing of personal data relating to him or her.
+              <ul>
+                <li>本人の明確で積極的な意思表示によって得た同意が必要
+                <li>「デフォルトで同意になっておりあとで無効にできる」ではなく「自分で同意ボタンをクリックする」である必要がある
+              </ul>
+            </li>
+          </ul>
+          <p>実装方法に特段指定はなく、強いて言えば「ここで同意を取得して初めて Cookie を利用できる」ことになるため、 <code translate=no>HttpOnly</code> ではなく JS から保存することになるだろう。
+          <p>では実例を見ていこう。
+        </section>
+        <section>
+          <h3 id="欧州委員会"><a href="#欧州委員会">欧州委員会</a></h3>
+          <p>最初は EU の政策執行機関である欧州委員会のサイト。 GDPR のお膝元という意味で、ある種のお手本と捉えられるだろう。
+          <ul>
+            <li>
+              European Commission, official website (europa.eu)
+              <ul>
+                <li><a href="https://commission.europa.eu/index_en" target=_blank>https://commission.europa.eu/index_en</a>
+              </ul>
+            </li>
+          </ul>
+          <p>バナーはサイト下部に Window 幅のパターンで実装されている。
+          <p>
+            <picture>
+              <source type=image/avif srcset=europa.eu.avif?231208_001939>
+              <source type=image/webp srcset=europa.eu.webp?231209_190143>
+              <img loading=lazy decoding=async src=europa.eu.png?231207_234422 alt="欧州委員会の Cookie Banner" width=2442 height=460>
+            </picture>
+          </p>
+          <p>まず、文言を見てみる。
+          <blockquote>
+            <p>This site uses cookies to offer you a better browsing experience. Find out more on <a href="https://commission.europa.eu/cookies-policy_en" target=_blank>how we use cookies.</a>
+          </blockquote>
+          <p>シンプルにまとめ、詳細は別ページにしている。
+          <p>そして、ボタンとしては <code translate=no>&quot;Accept all cookies&quot;</code> と <code translate=no>&quot;Accept only essential cookies&quot;</code> の二択となっている。後者が「必須 Cookie だけ許可する」にあたる。ここを &quot;essential&quot; じゃなくて &quot;necessary&quot; と表しているサイトもある。
+          <p>このボタンを明示的に自分でクリックすることが、先ほど挙げたような条件を満たしてるわけだ。ここで &quot;Deny&quot; だけあって &quot;Deny&quot; しなかった場合に同意とみなす実装や、あらかじめチェックボックスをチェックしておくような実装、 &quot;Accept&quot; だけ表示して &quot;Deny&quot; はリンク先に隠すといった実装は、ガイドラインに違反してると判断されかねないだろう。
+          <p>&quot;how we use cookies&quot; のリンク先は以下のページだ。
+          <ul>
+            <li>
+              Cookies policy (europa.eu)
+              <ul>
+                <li><a href="https://commission.europa.eu/cookies-policy_en" target=_blank>https://commission.europa.eu/cookies-policy_en</a>
+              </ul>
+            </li>
+          </ul>
+          <p>このページでは「Cookie とは何か」から始まって、「なぜ、どのように使っているのか」といったことも全て説明している。これが「十分な説明」の実装にあたる。
+          <p>特に注目したいのは以下のテーブルだ。
+          <p>
+            <picture>
+              <source type=image/avif srcset=europa.eu.cookie-table.avif?231208_001935>
+              <source type=image/webp srcset=europa.eu.cookie-table.webp?231209_190143>
+              <img loading=lazy decoding=async src=europa.eu.cookie-table.png?231207_234422 alt="Cookie の名前や用途のテーブル" width=1644 height=2058>
+            </picture>
+          </p>
+          <p>サイトで利用する全 Cookie の &quot;Cookie 名&quot; と、 &quot;目的&quot; 、そして &quot;保存期間(Max-Age)&quot; までがリストになってる。メンテナンスを考えると、ここのテーブルを実装と同期するのは大変そうだ。
+          <p>これだけ数があるからか、 &quot;Cookie ごとの設定&quot; の実装はされてないようだ。これは 3rd Party Cookie 視点で言えば &quot;All&quot; or &quot;Noting&quot; に振っているわけだが、 &quot;Noting&quot; があるため、個別指定の UI は省いても良さそうなことが見て取れる(実際、ここまで多いと個別に指定できるユーザは皆無だろう)。
+        </section>
+        <section>
+          <h3 id="ドイツ連邦政府"><a href="#ドイツ連邦政府">ドイツ連邦政府</a></h3>
+          <p>次はドイツ政府だ。
+          <ul>
+            <li>
+              Website of the Federal Government | Bundesregierung
+              <ul>
+                <li><a href="https://www.bundesregierung.de/breg-en" target=_blank>https://www.bundesregierung.de/breg-en</a>
+              </ul>
+            </li>
+          </ul>
+          <p>こちらは、サイトの上部に Window 幅 Sticky のパターンで実装されている。
+          <p>
+            <picture>
+              <source type=image/avif srcset=bundesregierung.de.avif?231208_001901>
+              <source type=image/webp srcset=bundesregierung.de.webp?231209_190142>
+              <img loading=lazy decoding=async src=bundesregierung.de.png?231207_234422 alt="ドイツ連邦政府の Cookie Banner" width=2348 height=1000>
+            </picture>
+          </p>
+          <p>今回は少し複雑で、必須 Cookie だけあらかじめチェックが入ってる。そして、追加で Statistics を選ぶことができる作りだ。 &quot;Select all&quot; すると &quot;Statistics&quot; も選ばれるが、おそらくもっと多くの用途で Cookie があっても、選択肢が増やせる使える作りにあらかじめ実装されているのだろう。
+          <p>&quot;Confirm selection&quot; するとバナーが消え、選択結果が JS で Cookie に保存される。
+          <p>
+            <picture>
+              <source type=image/avif srcset=./bundesregierung.de.cookie.avif?231208_001851>
+              <source type=image/webp srcset=./bundesregierung.de.cookie.webp?231209_190141>
+              <img loading=lazy decoding=async src=./bundesregierung.de.cookie.png?231207_234422 alt="選択結果が反映されたことを保存する Cookie" width=1738 height=192>
+            </picture>
+          </p>
+          <p>なお、一旦バナーは消えるが、この同意は簡単に取り消せる(オプトアウトできる)必要がある。そのため、ページ下部にある &quot;Privacy Settings&quot; のリンクから、またバナーを出すことができる。
+          <p>次はポリシーのページだ。
+          <ul>
+            <li>
+              Data Privacy Policy (bundesregierung.de)
+              <ul>
+                <li><a href="https://www.bundesregierung.de/breg-en/service/data-privacy-information/data-privacy-policy-1534306#[anker]" target=_blank>https://www.bundesregierung.de/breg-en/service/data-privacy-information/data-privacy-policy-1534306#[anker]</a>
+              </ul>
+            </li>
+          </ul>
+          <p>GDPR に準拠していることや、使っている Cookie の値も書かれている。
+          <p>
+            <picture>
+              <source type=image/avif srcset=./bundesregierung.de.explanation.avif?231208_001858>
+              <source type=image/webp srcset=./bundesregierung.de.explanation.webp?231209_190142>
+              <img loading=lazy decoding=async src=./bundesregierung.de.explanation.png?231207_234422 alt="使っている Cookie の値の説明" width=1912 height=2294>
+            </picture>
+          </p>
+          <p><code translate=no>CM_SESSION_ID</code> は 1st Party の Session Cookie だが、その説明も含めて書かれていることがわかる。必須の 1st Party Cookie の説明は必須ではなさそうに思うが、筆者には判断の自信はない。
+        </section>
+        <section>
+          <h3 id="イギリス政府"><a href="#イギリス政府">イギリス政府</a></h3>
+          <p>次はイギリス政府だ。2020 年の Brexit で EU から離脱しているが、独自の立法を GDPR 準拠と認め、基本的には互換のある法に従っている。
+          <ul>
+            <li>
+              Welcome to GOV.UK (www.gov.uk)
+              <ul>
+                <li><a href="https://www.gov.uk/" target=_blank>https://www.gov.uk/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>こちらもページトップの実装だ。
+          <p>
+            <picture>
+              <source type=image/avif srcset=gov.uk.avif?231208_002007>
+              <source type=image/webp srcset=gov.uk.webp?231209_190144>
+              <img loading=lazy decoding=async src=gov.uk.png?231207_234422 alt="イギリス政府サイトの Cookie Banner" width=1628 height=648>
+            </picture>
+          </p>
+          <p>注目すべきは &quot;View Cookies&quot; のページだ。
+          <ul>
+            <li>
+              Cookies on GOV.UK
+              <ul>
+                <li><a href="https://www.gov.uk/help/cookies" target=_blank>https://www.gov.uk/help/cookies</a>
+              </ul>
+            </li>
+          </ul>
+          <p>このページは、さらに詳細な Cookie の説明を別ページにし、その上で以下のような設定 UI を持つ。
+          <p>
+            <picture>
+              <source type=image/avif srcset=gov.uk.explanation.avif?231208_002004>
+              <source type=image/webp srcset=gov.uk.explanation.webp?231209_190144>
+              <img loading=lazy decoding=async src=gov.uk.explanation.png?231207_234422 alt="イギリス政府の Cookie についての説明のページ" width=1372 height=2434>
+            </picture>
+          </p>
+          <p>ここでは、3 つの Cookie について個別に設定できるようになっており、「用途ごとの同意」を実現しているわけだ。
+          <ul>
+            <li>GA, SpeedCurve によるメジャーメント
+            <li>YouTube などによるコミュニケーションとマーケティング
+            <li>ユーザの設定保存
+          </ul>
+          <p>前 2 つはわかるが、最後の「ユーザ設定」は言語設定やダークモードといったものだろうか? 筆者としては、それは 1st Party の必須機能の 1 つとして考えて良いのではと思うが、こうした部分も &quot;Ask your lawyer&quot; しないと確信が持てないあたりは、開発者としてはむず痒い。
+        </section>
+        <section>
+          <h3 id="guardian"><a href="#guardian">Guardian</a></h3>
+          <p>政府系以外も見てみよう、メディア系の例として Guardian を見てみる。
+          <ul>
+            <li>
+              News, sport and opinion from the Guardian&apos;s global edition | The Guardian
+              <ul>
+                <li><a href="https://www.theguardian.com/international" target=_blank>https://www.theguardian.com/international</a>
+              </ul>
+            </li>
+          </ul>
+          <p>
+            <picture>
+              <source type=image/avif srcset=guardian.avif?231208_002016>
+              <source type=image/webp srcset=guardian.webp?231209_190145>
+              <img loading=lazy decoding=async src=guardian.png?231207_234421 alt="Guardian の Cookie Banner" width=2314 height=2538>
+            </picture>
+          </p>
+          <p>割と大きめに表示し、かつ背景をブラーしている。これはどちらか選ばないと先に進めないという作りだ。
+          <p>ここで、同意しないと先に進めない場合は完全に &quot;Cookie Wall&quot; になるが、この場合は選択肢に Deny があったとしてもコンテンツに進めない実装なので、 &quot;freely given&quot; が満たせているのかは筆者には判断しかねる。 Guardian が &quot;Ask your lawyer&quot; した結果この判断になったのだろう。
+          <p>Manage or reject を選ぶと、以下のポップアップが出てくる。
+          <p>
+            <picture>
+              <source type=image/avif srcset=guardian.settings.avif?231208_002031>
+              <source type=image/webp srcset=guardian.settings.webp?231209_190145>
+              <img loading=lazy decoding=async src=guardian.settings.png?231207_234421 alt="Guardian の Cookie Settings" width=1128 height=2360>
+            </picture>
+          </p>
+          <p>かなり複雑に思えるが、細かく説明がなされており、用途ごとの合意が実装されている。上には &quot;Accept All&quot; と &quot;Reject All&quot; があり、 &quot;Reject All&quot; は要するに必須 Cookie 以外の Reject にあたる。
+          <p>このバナーも、サイト下部の &quot;Privacy Setting&quot; リンクからいつでも出せる。いつでも簡単にオプトアウトできる GDPR の条件を満たしているといえるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="ccpa"><a href="#ccpa">CCPA</a></h2>
+        <section>
+          <h3 id="ガイドライン"><a href="#ガイドライン">ガイドライン</a></h3>
+          <p>CCPA のガイドラインにあたるものは以下にある。
+          <ul>
+            <li>
+              California Consumer Privacy Act (CCPA) | State of California - Department of Justice - Office of the Attorney General
+              <ul>
+                <li><a href="https://oag.ca.gov/privacy/ccpa" target=_blank>https://oag.ca.gov/privacy/ccpa</a>
+              </ul>
+            </li>
+          </ul>
+          <p>特に注意すべきは、 CCPA が認めている 6 つの権利だろう。
+          <ul>
+            <li>The right to know (何が集められているかを知る)
+            <li>The right to delete (それを削除させる)
+            <li>The right to opt-out (集めることからオプトアウト)
+            <li>The right to non-discrimination (権利行使の差別を受けない)
+            <li>The right to correct (集められた情報の修正する)
+            <li>The right to limit (使用と開示の制限を課す)
+          </ul>
+          <p>また、オプトアウトのために &quot;Do not sell (share) my informantion&quot; リンクを含む必要があるとされているため、この文言に類似したリンクを footer にもつサイトが多くある。
+          <p>実例を見ていきたいが、法律の適用範囲上、 CCPA に対応してて GDPR には対応してないサイトを見つけるのが難しい。ある程度の規模のサイトは、やはり両方に対応しているようだ。
+        </section>
+        <section>
+          <h3 id="financial-times"><a href="#financial-times">Financial Times</a></h3>
+          <p>メディア系企業である Financial Times。
+          <ul>
+            <li>
+              Financial Times
+              <ul>
+                <li><a href="https://www.ft.com/" target=_blank>https://www.ft.com/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>ここはポップアップ実装だ。
+          <p>
+            <picture>
+              <source type=image/avif srcset=financial-times.avif?231208_001958>
+              <source type=image/webp srcset=financial-times.webp?231209_190144>
+              <img loading=lazy decoding=async src=financial-times.png?231207_234421 alt="Financial Times の Cookie Banner" width=982 height=600>
+            </picture>
+          </p>
+          <p>&quot;Manage cookies&quot; の UI は、個別選択の実装をせず &quot;Allow&quot; / &quot;Block&quot; のみの、シンプルで分かりやすい実装だ。
+          <p>
+            <picture>
+              <source type=image/avif srcset=financial-times-manage-cookies.avif?231208_001956>
+              <source type=image/webp srcset=financial-times-manage-cookies.webp?231209_190144>
+              <img loading=lazy decoding=async src=financial-times-manage-cookies.png?231207_234421 alt="Financial Times の Manage Cookies" width=1348 height=2182>
+            </picture>
+          </p>
+          <p>&quot;Manage cookies&quot; のリンクも footer にある。
+          <p>Privacy Policy をみると、 GDPR だけでなく CCPA にも対応していることが言及されている。
+          <ul>
+            <li>
+              Privacy policy | Help Centre
+              <ul>
+                <li><a href="https://help.ft.com/legal-privacy/privacy-policy/" target=_blank>https://help.ft.com/legal-privacy/privacy-policy/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>&quot;Do Not Sell My Personal Information&quot; の Policy についても記載されている。
+        </section>
+      </section>
+      <section>
+        <h2 id="disqus"><a href="#disqus">Disqus</a></h2>
+        <p>サイト上にコメント欄を埋め込める Disqus を見てみる。
+        <ul>
+          <li>
+            Disqus
+            <ul>
+              <li><a href="https://disqus.com/" target=_blank>https://disqus.com/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>このサイト自体はバナーが出ないが、サービスは 3rd Party として機能を提供するものであるため、サイトの下部に &quot;Do Not Sell or Share My Info&quot; リンクがある。
+        <p>
+          <picture>
+            <source type=image/avif srcset=disqus-footer.avif?231209_190206>
+            <source type=image/webp srcset=disqus-footer.webp?231209_190143>
+            <img loading=lazy decoding=async src=disqus-footer.png?231209_182820 alt="Disqus のフッター" width=2584 height=360>
+          </picture>
+        </p>
+        <p>この先にオプトアウトの UI が設置されている。
+        <p>
+          <picture>
+            <source type=image/avif srcset=disqus-optout.avif?231209_190208>
+            <source type=image/webp srcset=disqus-optout.webp?231209_190143>
+            <img loading=lazy decoding=async src=disqus-optout.png?231209_183432 alt="Disqus のオプトアウト" width=2584 height=360>
+          </picture>
+        </p>
+        <p>どちらかというと、 Disqus を導入している他のサイト上で表示された Privacy Policy などから、 Disqus にオプトアウト目的で訪れた人がたどり着くべきページとして用意されていると考えられる。
+      </section>
+      <section>
+        <h2 id="電気通信事業者法"><a href="#電気通信事業者法">電気通信事業者法</a></h2>
+        <section>
+          <h3 id="ガイドライン_1"><a href="#ガイドライン_1">ガイドライン</a></h3>
+          <p>次は我が国の「個人情報保護法」および「電気通信事業者法」を見ていく。
+          <p>ガイドラインとしては、前回紹介した「外部送信規律」についてのガイドが分かりやすい。
+          <ul>
+            <li>
+              外部送信規律ガイドライン
+              <ul>
+                <li><a href="https://www.soumu.go.jp/main_content/000862755.pdf" target=_blank>https://www.soumu.go.jp/main_content/000862755.pdf</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="デジタル庁"><a href="#デジタル庁">デジタル庁</a></h3>
+          <p>まず、日本を代表してデジタル庁を見てみる。
+          <ul>
+            <li>
+              デジタル庁
+              <ul>
+                <li><a href="https://www.digital.go.jp/" target=_blank>https://www.digital.go.jp/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>
+            <picture>
+              <source type=image/avif srcset=digital.go.jp.avif?231208_001911>
+              <source type=image/webp srcset=digital.go.jp.webp?231209_190143>
+              <img loading=lazy decoding=async src=digital.go.jp.png?231207_234421 alt="デジタル庁のトップページ" width=2440 height=906>
+            </picture>
+          </p>
+          <p>特に Cookie バナーは無い。
+          <p>プライバシーポリシーを見る。
+          <p>
+            <picture>
+              <source type=image/avif srcset=digital.go.jp.cookies.avif?231208_001907>
+              <source type=image/webp srcset=digital.go.jp.cookies.webp?231209_190142>
+              <img loading=lazy decoding=async src=digital.go.jp.cookies.png?231207_234420 alt="クッキーの利用に関する説明" width=2412 height=1800>
+            </picture>
+          </p>
+          <p>アナリティクスツールである User Insight を入れているようだ。Cookie 自体は 1st Party を用いて連携している。
+          <p>この場合、プライバシーポリシーが「外部送信規律」の「公表」に当たるのだろう。ここでカバーしているため「通知」にあたるバナーのような実装は不要となっている。
+          <p>なお、 User Insight を提供しているユーザローカルのページがリンクされている。。
+          <p>
+            <picture>
+              <source type=image/avif srcset=userlocal.jp.policy.avif?231208_002037>
+              <source type=image/webp srcset=userlocal.jp.policy.webp?231209_190147>
+              <img loading=lazy decoding=async src=userlocal.jp.policy.png?231207_234420 alt="リンクされているユーザローカルのページ" width=2140 height=1622>
+            </picture>
+          </p>
+          <p>ここにはオプトアウトの UI がある。
+        </section>
+        <section>
+          <h3 id="日経電子版"><a href="#日経電子版">日経電子版</a></h3>
+          <p>最後は、日経新聞の電子版を見てみる。
+          <ul>
+            <li>
+              日本経済新聞 - ニュース・速報 最新情報
+              <ul>
+                <li><a href="https://www.nikkei.com/" target=_blank>https://www.nikkei.com/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>Cookie バナーが表示される。
+          <p>
+            <picture>
+              <source type=image/avif srcset=nikkei-banner.avif?231209_190218>
+              <source type=image/webp srcset=nikkei-banner.webp?231209_190145>
+              <img loading=lazy decoding=async src=nikkei-banner.png?231209_184055 alt="日経電子版のバナー" width=1100 height=394>
+            </picture>
+          </p>
+          <p>これは、「外部送信規律」の「通知」にあたる UI だろう。特に Accpet/Reject ではなく、利用している事実のみを述べ、ポリシーへの導線のみを伝えている。
+          <ul>
+            <li>
+              日本経済新聞社 - クッキーなどで取得する情報の取り扱いについて
+              <ul>
+                <li><a href="https://www.nikkei.com/lounge/privacy/cookie/policy.html" target=_blank>https://www.nikkei.com/lounge/privacy/cookie/policy.html</a>
+              </ul>
+            </li>
+          </ul>
+          <p>今回世界中の様々なサイトを調べたが、この日経の Cookie ポリシーのページは、日本語であることを差し置いても、群を抜いて分かりやすく書かれている。
+          <p>
+            <picture>
+              <source type=image/avif srcset=nikkei-policy.avif?231209_190247>
+              <source type=image/webp srcset=nikkei-policy.webp?231209_190146>
+              <img loading=lazy decoding=async src=nikkei-policy.png?231209_184443 alt="日経電子版の Cookie ポリシー" width=1062 height=2128>
+            </picture>
+          </p>
+          <p>このページの中にも、行動ターゲティングのオプトアウト UI は設置されている。
+          <p>そこからリンクされた「外部送信一覧」も見やすい。
+          <ul>
+            <li>
+              日本経済新聞社 - ご利用履歴情報の外部送信一覧
+              <ul>
+                <li><a href="https://www.nikkei.com/lounge/privacy/cookie/optout.html" target=_blank>https://www.nikkei.com/lounge/privacy/cookie/optout.html</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
