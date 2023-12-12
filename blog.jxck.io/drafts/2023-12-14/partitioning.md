@@ -132,3 +132,12 @@ Set-Cookie: session_id=deadbeef; SameSite=None; Partitioned;
 ここに合わせて `Partitioned` を付与すると、 Partition された 3rd Party Cookie にアクセスできるように制限を弱めることができるのだ。
 
 暗黙的に分割して壊れるよりも、明示的にオプトインする方が、開発者としては対応がしやすく、移行パスも明確になる。この仕様は Firefox も Safari も概ね同意しており、おそらくどちらも最終的には暗黙的な Partitioning をやめ、デフォルトブロック + CHIPS or SAA になると思われる。
+
+しかし、こうした変更は特に埋め込みのウィジェットを提供しているようなサービスには影響が大きい。例えば、オンラインホワイトボードを提供する Miro は、 Miro の Cookie を 3rd Party でも送ることで、 `<iframe>` 内にユーザのボードを表示することができた。しかし 3rd Party Cookie Deprecation によって影響を受け、どうするかという内容がまとまっている。
+
+- The end of third-party cookies and its impact on Miro apps and integrations | by Darren | Miro Engineering | Nov, 2023 | Medium
+  - https://medium.com/miro-engineering/the-end-of-third-party-cookies-and-its-impact-on-miro-apps-and-integrations-ee73358cda1e
+
+CHIPS では埋め込みごとに Miro にログインする必要があり、 SAA では Prompt が出るという難しさがあるが、現状その方法しかないため、実装を修正し将来のアップデートに合わせて改善していくという内容が書かれている。
+
+まさしく埋め込みユースケースを持つサービスには、参考になるだろう。
