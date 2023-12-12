@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>DEMO | labs.jxck.io</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Storage Access API Basic DEMO | labs.jxck.io</title>
 
-<style>
-</style>
+<h1>Storage Access API Basic DEMO</h1>
+<p>see devtools console</p>
+<button id="gesture">grant</button>
 
-<h1>Test</h1>
+<script>
+  async function access() {
+    const hasAccess = await document.hasStorageAccess()
+    // Boolean hasAccess says whether the document has access or not.
+    console.log({ hasAccess })
+    if (hasAccess) return true
+    try {
+      const result = await document.requestStorageAccess()
+      console.log("granted", result)
+    } catch (err) {
+      console.error("denied", err)
+    }
+  }
 
-<iframe
-  sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin"
-  src="https://lab2.jxck.io/storage-access-api/basic/index.html"
-  ></iframe>
+  document.addEventListener("DOMContentLoaded", (e) => {
+    access()
+  })
+
+  document.querySelector("#gesture").addEventListener("click", () => {
+    access()
+  })
+</script>

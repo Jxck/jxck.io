@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>Storage Access API Basic DEMO | labs.jxck.io</title>
+<title>DEMO | labs.jxck.io</title>
 
+<style>
+</style>
 
-<h1>Storage Access API Basic DEMO</h1>
-<p>see devtools console</p>
+<h1>Test</h1>
 
-<script>
-  document.hasStorageAccess().then((hasAccess) => {
-    // Boolean hasAccess says whether the document has access or not.
-    console.log(hasAccess)
-  }).catch((reason) => {
-    // Promise was rejected for some reason.
-    console.error(reason)
-  })
-
-  document.requestStorageAccess().then(() => {
-    console.log('granted')
-  }).catch(() => {
-    console.error('denied')
-  })
-</script>
+<iframe
+  sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin"
+  src="https://labs.mozaic.fm/storage-access-api/basic/iframe.html"
+  ></iframe>
