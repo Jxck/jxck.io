@@ -7,6 +7,7 @@
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
 
+
 ## Intelligent Tracking Prevention
 
 前述のように、 Safari は 3rd Party Cookie を保存はしないが、1st Party ですでに保存している Cookie を 3rd Party のコンテキストでは送るという、限定的なブロックは実装していた。
