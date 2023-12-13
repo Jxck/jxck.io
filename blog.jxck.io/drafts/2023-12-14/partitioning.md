@@ -38,7 +38,7 @@ Caption: 複合主キーの Cookie Storage
 
 ## 様々な Partitioning
 
-プライバシーを考慮すると、Partitioning した方がいいのはは Cookie だけではない。
+プライバシーを考慮すると、Partitioning した方がいいのは Cookie だけではない。
 
 例えば、LocalStorage や IndexedDB などのストレージも同様に、 `<iframe>` 間で共有されるとトラッキングに使用される可能性がある。
 
@@ -57,7 +57,7 @@ Cookie 含めた LocalStorage や IndexedDB その他もろもろは、 *Storage
 
 例えば、SSO の IDP でログインし RP のサイトに遷移した場合、 key が変わるため認証が切れてしまい、再度ログインする必要がでてしまう。 Cache が分かれていても壊れるわけではないが、SSO の仕組みによっては IDP から RP に戻った時に Cookie が切れ、再度 IDP に飛ばされるといったループに入り、最悪ログインできない状態が続く可能性もある。
 
-Safari は ITP の初期バージョンで、トラッカーと判定されたサイトの Cookie を Partitioning する方式を採用していた。しかし、壊れてしまうサイトが多かったため、諦めて元にた経緯がある。
+Safari は ITP の初期バージョンで、トラッカーと判定されたサイトの Cookie を Partitioning する方式を採用していた。しかし、壊れてしまうサイトが多かったため、諦めて元に戻した経緯がある。
 
 一方、Firefox は ETP(Enhanced Tracking Protection)で Cookie の Partitioning を行い、壊れそうなサイトをヒューリスティクス判定で除外するなどの対策を行っている。しかし、これもやはり除外が難しく、壊れるサイトが出ているようだ。
 
@@ -95,7 +95,7 @@ async function storage_access() {
 
 こうした操作を「ユーザジェスチャ」と呼び、ジェスチャがある状態は「ユーザインタラクションがある」とみなされる。この場合は、対象はトラッカーではなく正規のユースケースとして Cookie を必要としているため、ブラウザはアクセスを許可できるわけだ。
 
-2 つ目は、もっと単純に「この `<iframe>` は Cookie へのアクセスを求めている」という許可の Prompt を出すというものだ。Push Notification と同じような、ブラウザが出すポップアップだ。そもそも通知の意味が一般ユーザに伝わるか怪しいく、多くのユーザは反射的に Deny してしまうかもしれないため、扱いが難しいと思われる。
+2 つ目は、もっと単純に「この `<iframe>` は Cookie へのアクセスを求めている」という許可の Prompt を出すというものだ。Push Notification と同じような、ブラウザが出すポップアップだ。そもそも通知の意味が一般ユーザに伝わるか怪しく、多くのユーザは反射的に Deny してしまうかもしれないため、扱いが難しいと思われる。
 
 よって、ブラウザはこの辺りを組み合わせながら、あまり簡単に取得できすぎず、しかし適切にユーザの意図を反映し、負荷がある程度低いところを常に探っている。今の実装は、まだ過渡期の可能性を踏まえておいた方が良いだろう。
 
@@ -112,9 +112,9 @@ SAA は、パーティションをやめて、3rd Party Cookie へのアクセ�
 
 例えば、サイトの右下に 3rd Party のサポートチャットを埋め込んでいるような場合を考えよう。もし 3rd Party Cookie がブロックされると、毎回新規の会話になってしまう。しかし、過去の会話の履歴はなんとか残したい。この場合は、同じサポートチャットを埋め込んでいる別のサービス間で、同じ履歴を共有したいわけではない。
 
-この場合は、 SSA で 3rd Party Cookie を使うよりも、 Top Level ごとに異なる Partitioned Cookie で良いのだ。
+この場合は、 SAA で 3rd Party Cookie を使うよりも、 Top Level ごとに異なる Partitioned Cookie で良いのだ。
 
-確かに、「デフォルトで全ての 3rd Party Cookie を Partitioning する」は失敗したが、「デフォルトで 3rd Party をブロックするが、 Opt-In で Partitioning された Cookie へのアクセスを許可する」っていう方式が、 SSA の代替としてあっても良いだろうということになった。
+確かに、「デフォルトで全ての 3rd Party Cookie を Partitioning する」は失敗したが、「デフォルトで 3rd Party をブロックするが、 Opt-In で Partitioning された Cookie へのアクセスを許可する」っていう方式が、 SAA の代替としてあっても良いだろうということになった。
 
 ここで、それぞれが独自かつ暗黙的にやっていたことを、明示的かつオプトインな API として標準化するために Chrome が提案したのが CHIPS (Cookie Having Independent Partitioned State) だ。
 
