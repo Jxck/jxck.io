@@ -51,7 +51,7 @@ HTTP Cache の Partitioning は *Network State Partitioning* や *Cache Partitio
 Cookie 含めた LocalStorage や IndexedDB その他もろもろは、 *Storage Partitioning* と呼ばれ、この辺はブラウザによって微妙に異なる実装になっている。
 
 
-## Cookie Partitioning
+### Cookie Partitioning
 
 様々な場所で Partitioning が行われているが、特に Cookie の Partitioning は他よりも難しい。
 
@@ -62,7 +62,7 @@ Safari は ITP の初期バージョンで、トラッカーと判定された�
 一方、Firefox は ETP(Enhanced Tracking Protection)で Cookie の Partitioning を行い、壊れそうなサイトをヒューリスティクス判定で除外するなどの対策を行っている。しかし、これもやはり除外が難しく、壊れるサイトが出ているようだ。
 
 
-## Storage Access API
+### Storage Access API
 
 Safari は Partition を諦める代わりに、そこまでに試作していた Storage Access API (SAA) を提供することで、「許可があれば 3rd Party Cookie にアクセスできる」という手段を提供することにした。
 
@@ -104,7 +104,7 @@ async function storage_access() {
 今では他のブラウザも実装しており、Firefox はこの時 Resolve されれば、Cookie だけでなく全 Storage API への許可が同時に手に入るといった細かい違いがある。
 
 
-## CHIPS
+### CHIPS
 
 SAA は、パーティションをやめて、3rd Party Cookie へのアクセスを求めるために、場合によっては Prompt を出すことにした。
 
@@ -124,7 +124,7 @@ SAA は、パーティションをやめて、3rd Party Cookie へのアクセ�
 CHIPS は Cookie に `Partitioned` 属性を付与することで使用できる。
 
 ```http
-Set-Cookie: session_id=deadbeef; SameSite=None; Partitioned;
+Set-Cookie: session_id=deadbeef; Secure; SameSite=None; Partitioned;
 ```
 
 `SameSite=None` がついているから、そもそもこれは 3rd Party Cookie だということがわかる。つまり、これは今後デフォルトでブロックされる。
