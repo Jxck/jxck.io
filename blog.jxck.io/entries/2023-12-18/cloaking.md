@@ -1,4 +1,4 @@
-# [cookie][3pca] 3PCA 18 日目: Cloacking
+# [cookie][3pca] 3PCA 18 日目: Cloaking
 
 ## Intro
 

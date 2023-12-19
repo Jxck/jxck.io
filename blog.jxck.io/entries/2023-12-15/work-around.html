@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-15/work-around.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 15 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-15/work-around.html>
+  <meta property=og:title        content="3PCA 15 日目: Work Around | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 15 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 15 日目: Work Around | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-15T08:00:00+08:00",
+    "dateModified": "2023-12-19T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 15 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 15 日目: Work Around | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-15>2023-12-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-19>2023-12-19</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#制限をどう迂回するか">制限をどう迂回するか</a>
+                <li><a href="#イタチごっこ">イタチごっこ</a>
+                <li><a href="#理想的な着地点">理想的な着地点</a>
+                <li><a href="#迂回手段">迂回手段</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 15 日目: Work Around</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 15 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今回は ITP が始まったことで試行された、迂回方法について見ていく。
+      </section>
+      <section>
+        <h2 id="制限をどう迂回するか"><a href="#制限をどう迂回するか">制限をどう迂回するか</a></h2>
+        <p>ITP 以降、 3rd Party Cookie への制限が厳しくなると、従来トラッキングをしていた事業者たちは「トラッキングができる別の方法」を求めることになった。
+        <p>今まで動いていた機能が動かなくなれば、代替手段を探したくなる気持ちはわからなくはない。トラッキングができなくなることで、広告のための分析精度が落ちると、収益が下がってサービスの継続性に関わる場合もあるだろう。
+        <p>しかし、この連載を通して何度も言っているように、そもそもの目的は「<em>3rd Party Cookie をなくす</em>」ではなく「<em>トラッキングを防ぐ</em>」なのだ。
+        <p><strong>「3rd Party Cookie が使えないなら、別の手法でトラッキングをしよう」という発想自体が間違っている。</strong>
+      </section>
+      <section>
+        <h2 id="イタチごっこ"><a href="#イタチごっこ">イタチごっこ</a></h2>
+        <p>ITP が発表された直後、「弊社は独自の手法で、従来の 3rd Party Cookie と同等の精度でトラッキングできるソリューションをご提供します」といったサービスが散見された。
+        <p>そうしたソリューションも、大抵の場合は 3rd Party Cookie ほどの精度が出ない眉唾なものが多いだろう。しかし、もし本当に精度の高い未知の手法が提供されているなら、それは解析され、報告され、最終的にはブラウザと標準化団体によって塞がれることになるだろう。その時点では使えても、半年後も有効かはわからない。
+        <p>そして、多くの研究によってだいたいが既に塞がれているため、今の時点で精度の高いトラッキング手法を見出すこと自体がかなり困難だ。
+        <p>仮にブラウザが直接防ぐことが難しい技術でも、そうした技術への依存自体によって、ドメインがブラウザにトラッカー判定されたり、司法により違反と判断され罰金が課せられるなど、より厳しい結果につながってしまう可能性もあるのだ。
+        <p>こうした背景を知らなければ、代替トラッキングサービスにうっかり大金を払って契約をしてしまうかもしれない。特に来年は、そうしたサービスは散見されるだろう。トラッキングに強く依存しているユースケースを持っていれば、藁にも縋る思いで導入してしまうかもしれない。そこにコストを払うのは自由だが、コストをかけるべきが本当にそのサービスの導入なのかは一考すべきだ。
+      </section>
+      <section>
+        <h2 id="理想的な着地点"><a href="#理想的な着地点">理想的な着地点</a></h2>
+        <p>こうなった元凶として ITP を非難する声も多くあるが、今の時点で「トラッキングができない」ことに不平不満を言うのは「ユーザはタダで使える代わりに黙ってプライバシーを売り渡すべきだ」と公言しているのと、変わらなくなってしまっている。
+        <p>今回振り返って来たように、この問題は別にどこか一つのベンダや団体が、自分たちの利益やポジションのために気まぐれで実施している変化ではなく、長いこと先送りにされて来た問題への決着なのだ。
+        <p>これを、まるで自分たちが一方的に被害を被っていると捉える事業者がいると、通常の Web 技術の枠を超えたより高いリスクを伴う過激な手法へ依存していく可能性がある。
+        <p>例えば、事業者がユーザのメールアドレスをキーに 1st Party の情報を互いに共有し合うような行為を、ある程度の精度でトラッキングは可能かもしれない。
+        <p>もちろん、ユーザの同意を得た上での実施は別だが、ユーザに黙って行えば法規制に抵触する可能性が高い。しかし、小さい規模で沢山行われると、摘発するのは困難だろう。そして、その行為をブラウザで防ぐことは原理上不可能だ。
+        <p>こうした新たな問題を生み出さないためには、各事業者が「問題はトラッキングにある」という事実自体を正しく認識する必要がある。
+        <p>筆者としてはこれを機に、迂回手段ではなく、時代に即した正しい姿は何なのか、実装だけでなくビジネスモデルも踏まえて模索する方を推奨したい。
+      </section>
+      <section>
+        <h2 id="迂回手段"><a href="#迂回手段">迂回手段</a></h2>
+        <p>以上を踏まえた上で、以降しばらくは ITP に対して考えられた代表的なワークアラウンドがどのように防がれていったのかを解説する。
+        <p>対象は、以下を予定している。
+        <ul>
+          <li>Bounce Tracking
+          <li>Link Decoration
+          <li>CNAME Cloaking
+          <li>Fingerprinting
+          <li>Super Cookie
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>

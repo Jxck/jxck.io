@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-18/cloaking.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 18 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-18/cloaking.html>
+  <meta property=og:title        content="3PCA 18 日目: Cloaking | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 18 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 18 日目: Cloaking | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-18T08:00:00+08:00",
+    "dateModified": "2023-12-19T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 18 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 18 日目: Cloaking | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-18>2023-12-18</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-19>2023-12-19</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#cloaking">Cloaking</a>
+                <ol>
+                  <li><a href="#cname-cloaking">CNAME Cloaking</a>
+                  <li><a href="#ip-cloaking">IP Cloaking</a>
+                  <li><a href="#ns-cloaking">NS Cloaking</a>
+                </ol>
+                <li><a href="#cloaking-のリスク">Cloaking のリスク</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 18 日目: Cloaking</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 18 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今日は、 ITP の迂回で注目された Cloaking について解説する。
+      </section>
+      <section>
+        <h2 id="cloaking"><a href="#cloaking">Cloaking</a></h2>
+        <p>これが今、トラッカーが最も期待している 3rd Party Cookie の迂回技術だろう。
+        <p>例えば、広告やアナリティクスなどなんらかのトラッカーを 3rd Party として利用している場合は、今後 3rd Party Cookie での連携ができなくなる。
+        <p>そこで、そのトラッカーサービス自体を自分のサブドメインで運用してしまえば、 eTLD+1 が同じになり、 1st Party で連携できる。つまり <code translate=no>example.com</code> に対して <code translate=no>analytics.example.com</code> にトラッカーをデプロイしてしまえば、両者は SameSite になるといった手法だ。
+        <p>しかし、自分でトラッカーになるサービスをデプロイ/メンテするのは負荷が高いため、ドメインを業者に預け、そこにデプロイしてもらう方が運用する側は楽だ。
+        <p>ここで用いられるのが Cloaking だ。方法はいくつかある。
+        <section>
+          <h3 id="cname-cloaking"><a href="#cname-cloaking">CNAME Cloaking</a></h3>
+          <p>まず最初に用いられたのは、CNAME を用いる方法だ。
+          <p>例えば、 ads.example が提供しているトラッカーを、 <code translate=no>analytics.example.com</code> にデプロイし、 <code translate=no>example.com</code> と SameSite にしたい場合、 DNS を以下のように設定する。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+          <pre><code translate=no>analytics.example.com.    IN    CNAME    deadbeef.ads.example.</code></pre>
+          <p>CNAME で事業者のレコードを参照すれば、そのサブドメインを事業者が運用できるのだ。このように CNAME を預ける方法を CNAME Cloaking (コート預けるクロークのこと)と言う。
+          <p>これは ITP 迂回の筆頭として問題になったので、 Safari ではもちろん対策がされている。CNAME の先を辿って、最終的に 3rd Party だったら Cookie 付与された Cookie を短命にするといったものだ。
+        </section>
+        <section>
+          <h3 id="ip-cloaking"><a href="#ip-cloaking">IP Cloaking</a></h3>
+          <p>CNAME では Safari にバレてしまうため、次にトラッカーが考えたのがこれを IP にしてしまう IP Cloaking だ。
+          <p>単純に、トラッカーのサービスの IP を設定するというものだ。
+          <pre><code translate=no>analytics.example.com.    IN    CNAME    203.0.113.10</code></pre>
+          <p>大手のトラッカーであれば、 IP がバレるとトラッカー判定されるかもしれないが、事業者が小さければこの方法は判定が難しい。
+          <p>しかし、トラッカー側にとっては、 IP を変えることができないといった運用上の制限が発生する。
+        </section>
+        <section>
+          <h3 id="ns-cloaking"><a href="#ns-cloaking">NS Cloaking</a></h3>
+          <p>そこでさらに考えられるのが NS の Cloaking だ。
+          <p>これは、例えば <code translate=no>*.analytics.example.com</code> のサブドメインを、丸ごとトラッカーに移譲してしまうというものだ。
+          <pre><code translate=no>analytics.example.com.    IN    NS    dns.ads.example.</code></pre>
+          <p>これで、トラッカーはトラッキングサービスの運用をある程度自由に行うことができる。
+          <p>この場合、規模の大きいトラッカーの DNS を丸ごとトラッカー判定するといったことは原理上可能と思われるが、実際にそうした対策が行われているかは不明だ。
+        </section>
+      </section>
+      <section>
+        <h2 id="cloaking-のリスク"><a href="#cloaking-のリスク">Cloaking のリスク</a></h2>
+        <p>ドメインオーナーにとっては、一部であれ自分のドメインの管理を外部に移譲することになる。
+        <p>もし悪質な業者であれば、自社のドメインの上に何か悪質なコンテンツを公開したり、 <code translate=no>Domain</code> 属性が指定された正規の Cookie を盗むといったことも、不可能ではない。
+        <p>Web だけでなく、例えばメールなども含めて、もしそのドメインが悪質なものと判定されれば、そのリスクはサービス全体に及ぶだろう。
+        <p>事業者にドメインを乗っ取られたり、ドメインの価値が毀損されれば、それは 3rd Party Cookie を使えなくなることよりも、大きな損失を生むかもしれない。
+        <p>いずれにせよ、安易に選ぶべき方法ではないだろう。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-16/bounce-tracking.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 16 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-16/bounce-tracking.html>
+  <meta property=og:title        content="3PCA 16 日目: Bounce Tracking | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 16 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 16 日目: Bounce Tracking | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-16T08:00:00+08:00",
+    "dateModified": "2023-12-19T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 16 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 16 日目: Bounce Tracking | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-16>2023-12-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-19>2023-12-19</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#bounce-tracking">Bounce Tracking</a>
+                <li><a href="#bounce-tracking-の制限">Bounce Tracking の制限</a>
+                <li><a href="#link-decoration">Link Decoration</a>
+                <li><a href="#link-decoration-の制限">Link Decoration の制限</a>
+                <li><a href="#制限の問題">制限の問題</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 16 日目: Bounce Tracking</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 16 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今日は 3rd Party Cookie の迂回としてトラッキングに用いられた、 Bounce Tracking について解説する。
+      </section>
+      <section>
+        <h2 id="bounce-tracking"><a href="#bounce-tracking">Bounce Tracking</a></h2>
+        <p>例として、 X でポスト中のリンクをクリックすると、 <code translate=no>t.co</code> というドメインに一旦遷移し、そこでリダイレクトしてから目的の URL に遷移する作りになってる。
+        <p>このように、「一旦リダイレクトを挟む」のは、X からすれば、 <code translate=no>t.co</code> のログを見ることで、誰がどのポストを見て、どのサイトに離脱していったかを知ることができるというのは、なんとなくわかるだろう。
+        <p>ところで、一瞬であっても <code translate=no>t.co</code> に遷移していれば、それが Top Level Domain になる。つまり、そこで保存/取得する Cookie は 1st Party Cookie だ。たとえそのリンクをクリックしたユーザが X にログインしてなかったとしても、 <code translate=no>t.co</code> の Cookie でトラッキングが可能ということになる。
+        <p>例えば、 X 上に投稿された <code translate=no>https://example.com</code> が、 <code translate=no>https://t.co/deadbeef</code> に置き換えられていたとしよう。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- X 上のポストのリンク --&gt;
+&lt;a href=&quot;https://t.co/deadbeef&quot;&gt;example.com&lt;/a&gt;</code></pre>
+        <p>この t.co へのリクエストは t.co の Cookie が付与される。つまり、過去に同様に t.co を経由していれば、その Cookie が送られるのだ。実際の挙動をみてみると以下のような Cookie が付与されている。
+        <pre class=http data-code=http><code translate=no class=language-http>GET /deadbeef HTTP/1.1
+Cookie: muc=54832623-...; muc_ads=548045683-...</code></pre>
+        <p>このレスポンスで Cookie を更新しつつリダイレクトしている。
+        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 301 Moved Permanently
+Location: https://example.com/
+Set-Cookie: muc=9f9222787-...; Path=/; Domain=t.co; Secure; SameSite=None ...
+Set-Cookie: muc_ads=9f928101-...; Path=/; Domain=t.co; Secure; SameSite=None ...</code></pre>
+        <p>このように 3rd Party Context では送られない 3rd Party (<code translate=no>t.co</code> の) Cookie を、リダイレクトしてトラッカー(<code translate=no>t.co</code>)の 1st Party Context でやりとりすることでトラッキングを行うというこの手法を、 <em>Bounce Tracking</em> と言う。
+      </section>
+      <section>
+        <h2 id="bounce-tracking-の制限"><a href="#bounce-tracking-の制限">Bounce Tracking の制限</a></h2>
+        <p>このように、Bounce Tracking は、初期の ITP を迂回する手段として使われたりもした。
+        <p>これに対し Safari は ITP の更新で「リダイレクトだけで通り抜けるのではなく、そのサイトを利用していない場合はトラッカーとみなす」という変更を入れたため、現在はもう塞がれている。
+        <p>ここでいう「利用」とは、ユーザがそのページに対する何らかの操作(scroll や click)をしているかを元に判定される。これは、 <em>User Gesture</em> や <em>User Activation</em> と呼ばれ、ジェスチャがないページの 1st Party Cookie は消してしまうという制限だ。
+        <p>なお、Brave は「バウンスしている」と判定したら、間のリダイレクトを削除して最後のページに直接遷移する機能を入れ対策している。
+        <ul>
+          <li>
+            Bounce Tracking Meaning &amp; Definition | Brave
+            <ul>
+              <li><a href="https://brave.com/glossary/bounce-tracking" target=_blank>https://brave.com/glossary/bounce-tracking</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今では、 Safari に限らない全ブラウザ共通の課題として、どうやって防ぐかが議論されている。
+        <ul>
+          <li>
+            nav-tracking-mitigations/bounce-tracking-explainer.md at main - privacycg/nav-tracking-mitigations
+            <ul>
+              <li><a href="https://github.com/privacycg/nav-tracking-mitigations/blob/main/bounce-tracking-explainer.md" target=_blank>https://github.com/privacycg/nav-tracking-mitigations/blob/main/bounce-tracking-explainer.md</a>
+            </ul>
+          </li>
+        </ul>
+        <p>逆に、利用する API によっては、遷移された後に User Activation が発生しているかどうかを知る必要がある。そこで提案されたのが User Activation API だ。
+        <ul>
+          <li>
+            The User Activation API | WebKit
+            <ul>
+              <li><a href="https://webkit.org/blog/13862/the-user-activation-api/" target=_blank>https://webkit.org/blog/13862/the-user-activation-api/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="link-decoration"><a href="#link-decoration">Link Decoration</a></h2>
+        <p>Facebook 内のリンクで外のサイトにいくと、遷移した先の URL に <code translate=no>fbclid=xxxxxxxxxxxxx...</code> というクエリが URL に付与されていることに気づくだろう。
+        <p>このように、プラットフォームからの遷移に URL クエリを付与することによって、その先に対応してる JS (Facebook のボタンなど) があれば、クエリを取得しサイトの 1st Party Cookie として保存することで、トラッキングに使うという手法だ。
+        <pre class=js data-code=js><code translate=no class=language-js>// 遷移先の JS
+const url = new URL(location.href)
+const fbclid = url.searchParams.get(&quot;fbclid&quot;)
+if (fbclid) {
+  // クエリがあったら Cookie に保存
+  document.cookie = `fbclid=${fbclid}`
+}</code></pre>
+        <p>この手法を <em>Link Decoration</em> と言う。
+        <p>Google なら gclid、Yahoo なら yclid といった名前でこうした ID を付与することが多く、 Google や Yahoo の提供するスクリプトを埋め込んでいるサイトが多ければ多いほど、この ID が広く共有されることになる。
+        <p>Link Decoration は Bounce Tracking と組み合わせて使われることも多い。
+        <p>例えば、複数のトラッカーでタライ回しのようにリダイレクトを繰り返しながら、各トラッカーが 1st Party Cookie を元にそのユーザについて知っている属性情報を集約しながらクエリに追加していく。
+        <p>最後に、その結果を集約した ID を JS で Cookie に保存すれば、トラッキングの精度を寄ってたかって高めることができるのだ。
+        <p>瞬時にリダイレクトをたくさん繰り返すようなサービスは、こうしたことを裏で行なっている場合が多い。
+      </section>
+      <section>
+        <h2 id="link-decoration-の制限"><a href="#link-decoration-の制限">Link Decoration の制限</a></h2>
+        <p>ITP では「JS (document.cookie) で保存された Cookie は 1st Party であっても短期間で消える」という変更を入れたことで、すでに塞がれている。
+        <p>また、 Decoration に使われるクエリの ID は既知のものが多いため、トラッカー判定されている ID は、送ってること自体がトラッカーの判定に使われたり、ブラウザによって削除してしまうといった話もある。(このあたりは現状どうなのか把握してない)
+      </section>
+      <section>
+        <h2 id="制限の問題"><a href="#制限の問題">制限の問題</a></h2>
+        <p>しかし、この制限には重要な問題が 1 つある。それが認証連携だ。
+        <p>Federation や SSO の実装は、外部の IDP に遷移し、そこの 1st Party Cookie で認証が確認できたら、 Token をクエリに付与してリダイレクトで戻ってくるような実装がある。
+        <p>このケースは、 Bounce Tracking + Link Decoration との見分けが難しく、巻き込まれて壊れることが懸念されている。
+        <p>実際どのくらい壊れるのかは、ブラウザの課している制限によって変わるが、もし壊れていることがわかったら、気にすべき点は以下だ。
+        <p>まず、 IDP のページをリダイレクトで通り過ぎるのではなく、ユーザに表示する。そこに「このアカウントで続行する」といったボタンなどの UI を置いて、それをユーザにクリックさせることで IDP 上でジェスチャーを発生させるといった対応が考えられる。
+        <p>次に、 IDP -&gt; RP への遷移でも、 Token を JS ではなくサーバで受け取り、サーバからの <code translate=no>Set-Cookie</code> で認証情報を保存する(もしくは、 Session に紐づける)といった実装にする。
+        <p>そして、認証連携などのユースケースを持つドメインは、ドメイン自体がトラッカー判定されないように、同じドメインの他の部分でトラッキングをしてないかに注意しておくといいだろう。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
