@@ -53,12 +53,12 @@ GDPR をはじめとした法制度の整備は各国で進んではいるが、
 - Chromium Blog: Building a more private web: A path towards making third party cookies obsolete
   - https://blog.chromium.org/2020/01/building-more-private-web-path-towards.html
 
-結果から言うと、 2022 年の廃止は Chrome だけでなくエコシステム全体として作業が間に合わなかったため、延長されることになる。
+しかし、 2022 年の廃止は Chrome だけでなくエコシステム全体として作業が間に合わなかったため、延長された。
 
-現時点では、2024 年 Q1 から徐々にリリースを開始し、2024 年中には 100% Deprecate するという計画に変更されている。
+現時点では、 **2024/01/04** (JST で 1/5) から徐々にリリースを開始し、2024 年中には 100% Deprecate するという計画が発表されている。
 
-- Preparing for the end of third-party cookies  |  Privacy Sandbox  |  Google for Developers
-  - https://developers.google.com/privacy-sandbox/blog/cookie-countdown-2023oct?hl=en
+- Google shares update on next step toward phasing out third-party cookies in Chrome
+  - https://blog.google/products/chrome/privacy-sandbox-tracking-protection/
 
 
 ## Web 史上最大の破壊的変更
