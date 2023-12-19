@@ -1,8 +1,8 @@
-# [cookie][3pca] 3PCA 19 日目: Cloacking
+# [cookie][3pca] 3PCA 18 日目: Cloacking
 
 ## Intro
 
-このエントリは、 3rd Party Cookie Advent Calendar の 19 日目である。
+このエントリは、 3rd Party Cookie Advent Calendar の 18 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
