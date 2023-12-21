@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-21/same-site.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 21 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-21/same-site.html>
+  <meta property=og:title        content="3PCA 21 日目: SameSite Cookie | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 21 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 21 日目: SameSite Cookie | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-21T08:00:00+08:00",
+    "dateModified": "2023-12-21T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 21 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 21 日目: SameSite Cookie | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-21>2023-12-21</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-21>2023-12-21</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#etld1-とは">eTLD+1 とは</a>
+                <li><a href="#same-site-とは">Same Site とは</a>
+                <ol>
+                  <li><a href="#samesitestrict">SameSite=Strict</a>
+                  <li><a href="#samesitelax">SameSite=Lax</a>
+                  <li><a href="#samesitenone">SameSite=None</a>
+                </ol>
+                <li><a href="#lax-by-default">Lax by Default</a>
+                <li><a href="#csrf-の緩和">CSRF の緩和</a>
+                <li><a href="#理想の-cookie">理想の Cookie</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 21 日目: SameSite Cookie</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 21 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Google が 3rd Party Cookie を Deprecate していく方針を発表してから、最初に始めたのが SameSite Lax by Default だった。
+        <p>これが何のために行われたのかを解説する。
+      </section>
+      <section>
+        <h2 id="etld1-とは"><a href="#etld1-とは">eTLD+1 とは</a></h2>
+        <p>SameSite とは「eTLD+1 が同じ」という説明になる。これを理解するには eTLD を理解する必要がある。
+        <p>例として example.com ドメインを持ち、そこに以下のような Cookie を付与するところを考える。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+        <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; Domain=example.com</code></pre>
+        <p>これは、この Cookie が <a href="https://example.com" target=_blank>https://example.com</a> とそのサブドメイン全体に送られるように設定するものだ。この Domain 属性をつけなければ、 <a href="https://example.com/" target=_blank>https://example.com/</a> にしか送られない。
+        <p>ここで、以下を考える。
+        <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; Domain=com</code></pre>
+        <p>これでもし、この Cookie が <code translate=no>.com</code> のあらゆるサブドメインに送られるようになると問題だ。
+        <p>従ってドメインの末尾にある Top Level Domain (TLD) である <code translate=no>.com</code> は指定できないようになってる。
+        <p>では、次はどうだろう?
+        <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; Domain=example.co.jp
+Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
+        <p><a href="https://example.co.jp" target=_blank>https://example.co.jp</a> を持ってるなら、 <code translate=no>*.example.co.jp</code> に送られるのは問題ない。しかし <code translate=no>Domain=co.jp</code> を指定できてしまうと、その Cookie があらゆる <code translate=no>*.co.jp</code> サイトに送られるため問題になる。
+        <p>この場合 TLD は <code translate=no>.jp</code> であるが「Domain に TLD は指定できない」ではルールが緩すぎるのだ。
+        <p><code translate=no>.jp</code> のサブドメインでありながら、 <a href="https://co.jp/" target=_blank>https://co.jp/</a> や <a href="https://ne.jp/" target=_blank>https://ne.jp/</a> はドメインレジストラでは取得できない。 <code translate=no>co.jp</code> や <code translate=no>ne.jp</code> は TLD ではないが TLD のように振る舞う。これを Effective Top Level Domain (eTLD) という。
+        <p>ドメインレジストラで購入できるドメインは、 eTLD の左に 1 単語以上を繋いだ eTLD+1 (co.jp + example) になる。これが eTLD+1 の正体だ。
+        <p>eTLD である組み合わせは、 Public Suffix List という巨大なテキストファイルで管理されている。
+      </section>
+      <section>
+        <h2 id="same-site-とは"><a href="#same-site-とは">Same Site とは</a></h2>
+        <p><a href="https://example.co.jp" target=_blank>https://example.co.jp</a> とそのサブドメインである <a href="https://admin.example.co.jp" target=_blank>https://admin.example.co.jp</a> は、通常同じ管理者が運用しているだろうと考えられる。つまり eTLD+1 (<a href="https://example.co.jp/" target=_blank>https://example.co.jp/</a>)までが同じであれば、そのサブドメインも同じサイトだと考えることができる。
+        <p>これを Same Site と言い、 Same Site Cookie とは「eTLD+1 が同じである Same Site にしか送らない Cookie」を意味する。対して Cross Site Cookie は、まさしく 3rd Party Cookie を意味することになるのだ。
+        <section>
+          <h3 id="samesitestrict"><a href="#samesitestrict">SameSite=Strict</a></h3>
+          <p>たとえば <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> で以下のような Set-Cookie を返した場合、この Cookie は厳密(Strict)に SameSite に閉じる。つまり <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> とそのサブドメインにしか送らないという指定になるのだ。
+          <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; SameSite=Strict</code></pre>
+          <p>逆を言うと、別サイト、つまり 3rd Party には送られないため、この属性がついてることは、「この Cookie は 3rd Party Cookie ではない」というラベルにもなる。
+          <p>この <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> がどこか別のサイト(つまり Cross Site)に <code translate=no>&lt;iframe&gt;</code> で埋め込まれた場合、この Cookie は <a href="https://example.co.jp/" target=_blank>https://example.co.jp/</a> には送られないということだ。
+        </section>
+        <section>
+          <h3 id="samesitelax"><a href="#samesitelax">SameSite=Lax</a></h3>
+          <p>ところが、これはあまりにも厳密であり、この Cookie は例えば <a href="https://example.com/" target=_blank>https://example.com/</a> という Cross Site からの「画面遷移」でも送られない。もし <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> にログイン済みでも、 <a href="https://example.com/" target=_blank>https://example.com/</a> 上のリンクをクリックして遷移してたら、 Cookie が送られないためログイン済みにならない。といったことが起こってしまうのだ。
+          <p>これは流石に制限が強すぎるため、緩和策として画面遷移(Top Level Navigation)だけは、例外的に Cookie を送るようにするための緩和仕様が <code translate=no>Lax</code> だ。
+          <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; SameSite=Lax</code></pre>
+          <p>これで、 <code translate=no>&lt;iframe&gt;</code> などの埋め込みでは送られないが、画面遷移の場合は送られ、認証済みの状態が維持できるようになる。
+        </section>
+        <section>
+          <h3 id="samesitenone"><a href="#samesitenone">SameSite=None</a></h3>
+          <p>逆に、これらの制限を外し、 Cross Site にも送れるようにする属性が <code translate=no>None</code> だ。
+          <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; SameSite=None</code></pre>
+          <p>Cross Site にも送ると言うことは、これは 3rd Party Cookie として使えるということだ。
+          <p>つまり、 <code translate=no>SameSite=None</code> は「<em>これは 3rd Party Cookie だと明示的に示すマーカー</em>」とみなすことができる。
+        </section>
+      </section>
+      <section>
+        <h2 id="lax-by-default"><a href="#lax-by-default">Lax by Default</a></h2>
+        <p>Chrome は、3rd Party Cookie Deprecation の計画を発表した時に、まず Cookie のデフォルトを <code translate=no>Lax</code> にするという変更を行なった。
+        <p>画面遷移では送られるため、ログインセッションは維持できる。しかし、3rd Party Cookie としては送られない。という非常に重要な破壊的変更だ。
+        <p>この変更により 3rd Party Cookie がブロックされ、さまざまなユースケースが壊れる。ワークアラウンドとして、 3rd Party Cookie に依存している場合は、明示的に <code translate=no>SameSite=None</code> を付与する必要がでたのだ。
+        <p>結果、世界中の広告プラットフォームや、認証連携や、 SNS のボタンなどで用いられるあらゆる 3rd Party Cookie には、 <code translate=no>SameSite=None</code> がつけられた。(対応が難しい場合は、サービスで使っている Cookie を全てにとりあえず <code translate=no>SameSite=None</code> を付与するといった対応もあった。)
+        <p>しかし、いずれにせよこの作業を経て「<em>世界中の 3rd Party Cookie が可視化された</em>」ことになる。
+        <p>ブラウザが <code translate=no>SameSite=None</code> の使用量をメトリクスで監視すれば、世界でどのくらい 3rd Party Cookie が使われているのかを把握でき、事業者は自分たちのコードベースに <code translate=no>SameSite=None</code> どのくらい残っているのかを把握することで、どの程度 3rd Party Cookie への対応ができているのかを知ることができるのだ。
+        <p>そして、 3rd Party Cookie を無くしていく作業は、この <code translate=no>SameSite=None</code> とマークされている Cookie を無くしていく作業ということになる。つまり、 Chrome が最後に「<code translate=no>SameSite=None</code> を無視する」という変更をブラウザに入れることが 3rd Party Cookie Deprecation のゴールになるわけだ。
+      </section>
+      <section>
+        <h2 id="csrf-の緩和"><a href="#csrf-の緩和">CSRF の緩和</a></h2>
+        <p><code translate=no>SameSite=Lax</code> がデフォルトになるメリットは、 3rd Party Cookie の可視化だけではない。
+        <p>CSRF 攻撃は、もともと Cross Site に Cookie が送られることを利用していたため、これも <code translate=no>SameSite=Lax</code> がデフォルトになることで、かなりのケースで攻撃が成立しなくなる。
+        <p>しかしこれを理由に、従来の対策方法だった CSRF token ベースの防御が不要になるかと言うと、セキュリティ専門家は懐疑的か否定をしている。 OWASP にはそも理由が書いてある。
+        <blockquote cite="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html">
+          <p>SameSite Cookie Attribute can be used for session cookies but be careful to NOT set a cookie specifically for a domain.
+          <p>This action introduces a security vulnerability because all subdomains of that domain will share the cookie,
+          <p>and this is particularly an issue if a subdomain has a CNAME to domains not in your control.
+          <p>&mdash; <cite><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html" target=_blank>https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html</a></cite>
+        </blockquote>
+        <p>タラレバな部分もあるような気がするが、万全の対策には従来の手法を最終層に置いた、多少防御が必要となる。
+        <p>しかし、 <code translate=no>SameSite=Lax</code> によって大半が落とされ、さらに <code translate=no>Sec-Fetch-Dest</code>/<code translate=no>Sec-Fetch-Mode</code>/<code translate=no>Sec-Fetch-Site</code>/<code translate=no>Sec-Fetch-User</code> あたりをチェックすれば、ミドルウェアで攻撃リクエストを落とすことができ、 CSRF Token を格納している redis などの Cookie Storage への I/O の削減に繋がるだろう。
+      </section>
+      <section>
+        <h2 id="理想の-cookie"><a href="#理想の-cookie">理想の Cookie</a></h2>
+        <p>ちなみに 3rd Party Cookie とは離れるが、 Same Site Cookie を最大限使いこなすには read/write を分離するのがベストプラクティスとされている。
+        <p>これはつまり、 API への Read 権限を <code translate=no>Lax</code> にし、 Write 権限を <code translate=no>Strict</code> にするというものだ。
+        <p>従来の 1st Party Session Cookie は、それ単体で Read も Write も担っていた。これを 2 つにわけて Read つまり GET で画面を遷移するのには <code translate=no>Lax</code> を使い、その Cookie だけでは POST/PUT/DELETE はできなくする。
+        <p>代わりに POST/PUT/DELETE 用に <code translate=no>Strict</code> な Cookie が付与されるようにするというものだ。
+        <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: __Host-session_read=deadbeef;  Secure; HttpOnly; Path=/; SameSite=Lax
+Set-Cookie: __Host-session_write=facefeed; Secure; HttpOnly; Path=/; SameSite=Strict</code></pre>
+        <p>リクエストを受け付ける時は、まずミドルウェアでメソッドの種類と、それに応じた Cookie が送られてきているかをチェックする。
+        <p>イメージとしては以下のような感じだ。
+        <pre class=js data-code=js><code translate=no class=language-js>app.use((req, res, next) =&gt; {
+  const method = req.method
+
+  // POST/PUT/DELETE は Write Cookie を要求
+  if ([&quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;].includes(method)) {
+    const cookie = req.cookies[&quot;session_write&quot;]
+    // 無ければエラー
+    if (cookie === null) return res.send(400)
+    // あれば値を Storage に確認
+    if (checkCookie(cookie)) return next()
+    // 値がおかしければエラー
+    return res.send(400)
+  }
+
+  // GET は Read Cookie を要求
+  if (method === &quot;GET&quot;) {
+    // 無ければエラー
+    if (cookie === null) return res.send(400)
+    // あれば値を Storage に確認
+    if (checkCookie(cookie)) return next()
+    // 値がおかしければエラー
+    return res.send(400)
+  }
+
+  return res.send(405)
+})</code></pre>
+        <p>リファクタリングとしては多少難易度が高いが、この分離が可能であれば、ついでに Cookie Prefix の付与や、ミドルウェアでの Sec-Fetch 系のチェックなども入れられると、より堅牢な実装ができるだろう。
+        <p>Read/Write 分離の運用は、 GitHub が既に行なっているため参考になる。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
