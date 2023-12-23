@@ -1,0 +1,2340 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/137/yearly-ecosystem-2023.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?231116_154953></script>
+  <script type=module src=/assets/js/sw.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 137 回のテーマは 2023 年を振り返る Yearly Ecosystem です。">
+  <meta name=keywords            content="Yearly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/137/yearly-ecosystem-2023.html>
+  <meta property=og:title        content="ep137 Yearly Ecosystem 2023 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 137 回のテーマは 2023 年を振り返る Yearly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep137 Yearly Ecosystem 2023 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/136/monthly-platform-202311.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?231116_154953>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?231116_154953         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?231116_154953         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?231116_154953 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?231116_154953        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?231116_154953        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?231116_154953 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?231116_154953   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?231116_154953  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/136/monthly-platform-202311.html>ep136 Monthly Platform 202311</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep137 Yearly Ecosystem 2023</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2023-12-TODO
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/yoshiko_pg" target=_blank>@yoshiko</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/koba04" target=_blank>@koba04</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <ol>
+                  <li><a href="#今年のキーワード">今年のキーワード</a>
+                  <li><a href="#来年のキーワード">来年のキーワード</a>
+                  <li><a href="#1-月">1 月</a>
+                  <li><a href="#2-月">2 月</a>
+                  <li><a href="#3-月">3 月</a>
+                  <li><a href="#4-月">4 月</a>
+                  <li><a href="#5-月">5 月</a>
+                  <li><a href="#6-月">6 月</a>
+                  <li><a href="#7-月">7 月</a>
+                  <li><a href="#8-月">8 月</a>
+                  <li><a href="#9-月">9 月</a>
+                  <li><a href="#10-月">10 月</a>
+                  <li><a href="#11-月">11 月</a>
+                </ol>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 137 回のテーマは 2023 年を振り返る Yearly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <section>
+        <h3 id="今年のキーワード"><a href="#今年のキーワード">今年のキーワード</a></h3>
+        <ul>
+          <li>
+            Jxck
+            <ul>
+              <li>Rome to Biome
+              <li>RSC
+              <li>Next App Router
+              <li>React - Next のごちゃごちゃ感
+              <li>Hono + JSX
+              <li>CSS in JS -&gt; Modules
+              <li>Rust 化
+            </ul>
+          </li>
+          <li>
+            Sakito
+            <ul>
+              <li>Rome と Biome
+              <li>AI
+              <li>
+                UI ツール周りの進化
+                <ul>
+                  <li>Figma とか AI とか Storybook 連携とか
+                  <li>Storybook
+                </ul>
+              </li>
+              <li>コピペで利用できる UI ライブラリが増えそう
+            </ul>
+          </li>
+          <li>
+            Hiroppy
+            <ul>
+              <li>RSC, Server Actions
+              <li>
+                toolchain の変化
+                <ul>
+                  <li>
+                    bundler
+                    <ul>
+                      <li>Bun
+                      <li>rspack
+                      <li>turbopack
+                      <li>vite (esbuild, rollup + rolldown)
+                    </ul>
+                  </li>
+                  <li>
+                    linter, fmt
+                    <ul>
+                      <li>oxlint
+                      <li>biome
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Astro
+                <ul>
+                  <li>View Transitions, etc..
+                </ul>
+              </li>
+              <li>node.js パーミッション
+            </ul>
+          </li>
+          <li>
+            Yoshiko
+            <ul>
+              <li>Server 回帰
+              <li>
+                CSS の進化とスタイリング手法の多様化
+                <ul>
+                  <li>Native CSS に寄せる(css module など)
+                  <li>CSS in JS (zero runtime - linaria / stylex etc)
+                  <li>Utility First (tailwind etc)
+                </ul>
+              </li>
+              <li>AI で UI
+            </ul>
+          </li>
+          <li>
+            Koba04
+            <ul>
+              <li>2 周目
+              <li>RSC
+              <li>Vite
+              <li>CJS -&gt; ESM
+            </ul>
+          </li>
+          <li>
+            Other
+            <ul>
+              <li>pnpm が当たり前になった
+              <li>Parser 戦国時代
+              <li>State Management
+              <li>Byte Dance をよく見るように
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="来年のキーワード"><a href="#来年のキーワード">来年のキーワード</a></h3>
+        <ul>
+          <li>Vite の覇権を Turbopack, RSPack が奪えるか?
+          <li>Storybook は覇権をとって、 Chromatic もすごくなりそう
+          <li>Next Approuter が本当に広がるか
+          <li>RSC 対応の Bundler が増えて Next 以外の解が見れそう
+          <li>アプリケーションの Rust 化くるか?
+          <li>React Forget
+          <li>Figma Config 2024 の Adobe の影響
+          <li>State Management どうなってく? (Context, Jotai, SWR, Signal)
+          <li>ESLint to flat config or Biome
+          <li>AI driven FE Development
+          <li>CSS の新しい方法論
+        </ul>
+      </section>
+      <section>
+        <h3 id="1-月"><a href="#1-月">1 月</a></h3>
+        <ul>
+          <li>
+            State of JS 2022
+            <ul>
+              <li><a href="https://2022.stateofjs.com/en-US/" target=_blank>https://2022.stateofjs.com/en-US/</a>
+            </ul>
+          </li>
+          <li>
+            2022 JavaScript Rising Stars
+            <ul>
+              <li><a href="https://risingstars.js.org/2022/en" target=_blank>https://risingstars.js.org/2022/en</a>
+            </ul>
+          </li>
+          <li>
+            State of CSS 2022
+            <ul>
+              <li><a href="https://2022.stateofcss.com/en-US/" target=_blank>https://2022.stateofcss.com/en-US/</a>
+            </ul>
+          </li>
+          <li>
+            First-class Support for TypeScript
+            <ul>
+              <li><a href="https://reactnative.dev/blog/2023/01/03/typescript-first" target=_blank>https://reactnative.dev/blog/2023/01/03/typescript-first</a>
+              <li>
+                React Native が TS デフォルトサポートになった
+                <ul>
+                  <li>これにより @types/react-native が不要に
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            vite@4
+            <ul>
+              <li><a href="https://vitejs.dev/blog/announcing-vite4.html" target=_blank>https://vitejs.dev/blog/announcing-vite4.html</a>
+            </ul>
+          </li>
+          <li>
+            Announcing SWR 2.0
+            <ul>
+              <li><a href="https://swr.vercel.app/blog/swr-v2" target=_blank>https://swr.vercel.app/blog/swr-v2</a>
+              <li>SWR v2 のリリース
+              <li>
+                日本語の解説
+                <ul>
+                  <li><a href="https://blog.koba04.com/post/2022/12/13/swr-v2" target=_blank>https://blog.koba04.com/post/2022/12/13/swr-v2</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            The Turbopack vision - Vercel
+            <ul>
+              <li><a href="https://vercel.com/blog/the-turbopack-vision" target=_blank>https://vercel.com/blog/the-turbopack-vision</a>
+              <li>
+                Turbo engine
+                <ul>
+                  <li>キャッシュ、インクリメンタルビルドなど
+                </ul>
+              </li>
+              <li>
+                Turbopack
+                <ul>
+                  <li>リソースのバンドルを行う
+                </ul>
+              </li>
+              <li>
+                Next13.1 にアルファリリースを含む
+                <ul>
+                  <li>PostCSS / Tailwind
+                  <li>next/image
+                  <li>next/font
+                  <li>next.config.js
+                  <li>Built-in module transpilation によって、 next-transpile-modules がいらなくなった
+                </ul>
+              </li>
+              <li>
+                Roadmap - Turbopack
+                <ul>
+                  <li><a href="https://turbo.build/pack/docs/roadmap" target=_blank>https://turbo.build/pack/docs/roadmap</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Rome に関わってたエンジニアがやめたらしい
+            <ul>
+              <li><a href="https://twitter.com/MichaReiser/status/1613474278808162304" target=_blank>https://twitter.com/MichaReiser/status/1613474278808162304</a>
+              <li>これにより?  Rome の開発が遅れ気味な雰囲気
+            </ul>
+          </li>
+          <li>
+            Runtime Keys
+            <ul>
+              <li><a href="https://runtime-keys.proposal.wintercg.org/" target=_blank>https://runtime-keys.proposal.wintercg.org/</a>
+              <li>さまざまな Runtime 環境を表す key を定める仕様
+            </ul>
+          </li>
+          <li>
+            Vercel が pnpm へ移行
+            <ul>
+              <li><a href="https://twitter.com/ArrowoodTech/status/1613322462179241984" target=_blank>https://twitter.com/ArrowoodTech/status/1613322462179241984</a>
+            </ul>
+          </li>
+          <li>
+            chakra-ui が figma から js コンポーネント作成機能を提供
+            <ul>
+              <li><a href="https://figma.chakra-ui.com/" target=_blank>https://figma.chakra-ui.com/</a>
+              <li>
+                UXPin
+                <ul>
+                  <li><a href="https://www.uxpin.com/jp" target=_blank>https://www.uxpin.com/jp</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Future of Storybook in 2023
+            <ul>
+              <li><a href="https://storybook.js.org/blog/future-of-storybook-in-2023/" target=_blank>https://storybook.js.org/blog/future-of-storybook-in-2023/</a>
+              <li>2023 年の Storybook についてと 2022 年まとめ
+              <li>
+                2023 年の大きめのもの
+                <ul>
+                  <li>
+                    2023 年 3 月に 2 年ぶりのメジャーバージョンの v7 をリリース予定
+                    <ul>
+                      <li>カンファレンス開催予定
+                    </ul>
+                  </li>
+                  <li>Turbopack チームと連携して、 2023 年にサポートに追加
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Tamagui 1.0 🎉
+            <ul>
+              <li><a href="https://tamagui.dev/blog/version-one" target=_blank>https://tamagui.dev/blog/version-one</a>
+              <li>React Native 、 React for Web 対応の UI ライブラが v1 リリース
+            </ul>
+          </li>
+          <li>
+            ESLint&apos;s 2022 year in review
+            <ul>
+              <li><a href="https://eslint.org/blog/2023/01/eslint-2022-year-review/" target=_blank>https://eslint.org/blog/2023/01/eslint-2022-year-review/</a>
+              <li>ESLint の 2022 年まとめ、起きた変化や収益、経費など
+            </ul>
+          </li>
+          <li>
+            Announcing SvelteKit 1.0
+            <ul>
+              <li><a href="https://svelte.dev/blog/announcing-sveltekit-1.0" target=_blank>https://svelte.dev/blog/announcing-sveltekit-1.0</a>
+              <li>Svelte でアプリケーションを作る公式フレームワークの v1 リリース
+            </ul>
+          </li>
+          <li>
+            Our top Core Web Vitals recommendations for 2023
+            <ul>
+              <li><a href="https://web.dev/top-cwv-2023/" target=_blank>https://web.dev/top-cwv-2023/</a>
+            </ul>
+          </li>
+          <li>
+            Node v18.13.0 (LTS) | Node.js
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v18.13.0/" target=_blank>https://nodejs.org/en/blog/release/v18.13.0/</a>
+            </ul>
+          </li>
+          <li>
+            🗺️ Vanilla Extract · Issue #4708 · remix-run/remix
+            <ul>
+              <li><a href="https://github.com/remix-run/remix/issues/4708" target=_blank>https://github.com/remix-run/remix/issues/4708</a>
+              <li>Remix に Vanilla Extract が入る
+            </ul>
+          </li>
+          <li>
+            Rename experimental useEvent to useEffectEvent by sebmarkbage · Pull Request #25881 · facebook/react
+            <ul>
+              <li><a href="https://github.com/facebook/react/pull/25881" target=_blank>https://github.com/facebook/react/pull/25881</a>
+              <li>useEvent は useEffectEvent に名前が変わる
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="2-月"><a href="#2-月">2 月</a></h3>
+        <ul>
+          <li>
+            <em>Rome からもう一人やめる</em>
+            <ul>
+              <li><a href="https://twitter.com/MichaReiser/status/1613474278808162304" target=_blank>https://twitter.com/MichaReiser/status/1613474278808162304</a>
+            </ul>
+          </li>
+          <li>
+            <em>Blazor United prototype - YouTube</em>
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=48G_CEGXZZM" target=_blank>https://www.youtube.com/watch?v=48G_CEGXZZM</a>
+              <li>C#/.NET で作る Web 開発プラットフォーム Blazor の紹介
+              <li>SSR と CSR を切り替えられるフレームワークが Blazor United
+            </ul>
+          </li>
+          <li>
+            <em>The Future (and the Past) of the Web is Server Side Rendering</em>
+            <ul>
+              <li><a href="https://deno.com/blog/the-future-and-past-is-server-side-rendering" target=_blank>https://deno.com/blog/the-future-and-past-is-server-side-rendering</a>
+              <li>SSR + Hydration だと重いので SSR してこうという話
+              <li>そこで Isomorphic な JS が活きてくる
+              <li>これが Deno + Fresh で実現できるという話
+            </ul>
+          </li>
+          <li>
+            Electron ライクな新フレームワーク「Gluon」登場。 Chromium 内蔵せず Web ブラウザを利用、 Node.js だけでなく Deno と Bun にも対応 - Publickey
+            <ul>
+              <li><a href="https://www.publickey1.jp/blog/23/electrongluonchromiumwebnodejsdenobun.html" target=_blank>https://www.publickey1.jp/blog/23/electrongluonchromiumwebnodejsdenobun.html</a>
+            </ul>
+          </li>
+          <li>
+            <em>RFC: React DOM for Native</em>
+            <ul>
+              <li><a href="https://github.com/necolas/discussions-and-proposals/blob/reduce-fragmentation/proposals/0000-reduce-fragmentation.md" target=_blank>https://github.com/necolas/discussions-and-proposals/blob/reduce-fragmentation/proposals/0000-reduce-fragmentation.md</a>
+              <li>React Native の API を可能な限り Web API に近づけようという RFC
+              <li>ブラウザ上でのオーバーヘッドを考えた機能的な部分と開発者がクロスプラットフォームで開発するために学ぶことが減るという DX の両面があるよう
+            </ul>
+          </li>
+          <li>
+            <em>React 周辺動向</em>
+            <ul>
+              <li>
+                React Core Team から Vercel へ
+                <ul>
+                  <li><a href="https://twitter.com/acdlite/status/1623353741750546439" target=_blank>https://twitter.com/acdlite/status/1623353741750546439</a>
+                </ul>
+              </li>
+              <li>
+                Replace Create React App recommendation with Vite
+                <ul>
+                  <li><a href="https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-140972074" target=_blank>https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-140972074</a>
+                  <li>Create React App をモダンな構成に変えようという起点の PR
+                  <li>そこに React Core Team の Dan 氏から CRA の歴史的経緯、いまの React の思想、フレームワークとの関係の説明があった
+                  <li>
+                    先日ツイッター上でも似たような話が React Core Team からあったところ
+                    <ul>
+                      <li><a href="https://twitter.com/acdlite/status/1617611126514266112" target=_blank>https://twitter.com/acdlite/status/1617611126514266112</a>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Next.js 周辺動向</em>
+            <ul>
+              <li>
+                SEO サポートが入るらしい
+                <ul>
+                  <li><a href="https://twitter.com/leeerob/status/1619743437577912321" target=_blank>https://twitter.com/leeerob/status/1619743437577912321</a>
+                </ul>
+              </li>
+              <li>
+                Next Router に型が入るらしい
+                <ul>
+                  <li><a href="https://twitter.com/shuding_/status/1620137501192253440" target=_blank>https://twitter.com/shuding_/status/1620137501192253440</a>
+                </ul>
+              </li>
+              <li>
+                Turbopack で webpack loader の読み込みができるようになるらしい
+                <ul>
+                  <li><a href="https://twitter.com/jaredpalmer/status/1619071988181651456" target=_blank>https://twitter.com/jaredpalmer/status/1619071988181651456</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Bun v0.5 | Bun Blog</em>
+            <ul>
+              <li><a href="https://bun.sh/blog/bun-v0.5.0" target=_blank>https://bun.sh/blog/bun-v0.5.0</a>
+              <li>Bun が WebSocket 標準から外れた API をいれたり
+              <li>
+                JSX 拡張して TS にも入れてって言ってたり
+                <ul>
+                  <li>
+                    <a href="https://github.com/microsoft/TypeScript/issues/52057" target=_blank>https://github.com/microsoft/TypeScript/issues/52057</a>
+                    <ul>
+                      <li>
+                        JSX の WG の提案について
+                        <ul>
+                          <li><a href="https://github.com/facebook/jsx/issues/119" target=_blank>https://github.com/facebook/jsx/issues/119</a>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>WinterCG メンバーでありながらなんか色々やってる
+            </ul>
+          </li>
+          <li>
+            TypeScript 5.0 Iteration Plan · Issue #51362 · microsoft/TypeScript
+            <ul>
+              <li><a href="https://github.com/microsoft/TypeScript/issues/51362" target=_blank>https://github.com/microsoft/TypeScript/issues/51362</a>
+            </ul>
+          </li>
+          <li>
+            styled-components: Releases
+            <ul>
+              <li><a href="https://styled-components.com/releases" target=_blank>https://styled-components.com/releases</a>
+            </ul>
+          </li>
+          <li>
+            Release v29.4.0 · facebook/jest
+            <ul>
+              <li><a href="https://github.com/facebook/jest/releases/tag/v29.4.0" target=_blank>https://github.com/facebook/jest/releases/tag/v29.4.0</a>
+            </ul>
+          </li>
+          <li>
+            <em>Storybook Component Story Format 3 is here</em>
+            <ul>
+              <li><a href="https://storybook.js.org/blog/storybook-csf3-is-here/" target=_blank>https://storybook.js.org/blog/storybook-csf3-is-here/</a>
+              <li>CSF 3 はいまでも使えるけど、 Storybook 7 で正式に入るにあたって色々と追加要素の説明がある
+            </ul>
+          </li>
+          <li>
+            <em>Improved type safety in Storybook 7</em>
+            <ul>
+              <li><a href="https://storybook.js.org/blog/improved-type-safety-in-storybook-7/" target=_blank>https://storybook.js.org/blog/improved-type-safety-in-storybook-7/</a>
+              <li>Storybook の story ファイルに型をつける説明
+              <li>satisfies を使った事例がある
+            </ul>
+          </li>
+          <li>
+            <em>Gatsby</em>
+            <ul>
+              <li><a href="https://www.gatsbyjs.com/blog/gatsby-is-joining-netlify/" target=_blank>https://www.gatsbyjs.com/blog/gatsby-is-joining-netlify/</a>
+              <li>gatsby が netlify に買収された
+              <li>build system 、さまざまなコンテンツ ソースからの Webhook 、 deploy 、 edge runtime などを結び付ける composable architectures と呼ばれる Web UI レイヤーを構築していく
+              <li><a href="https://thenewstack.io/netlify-acquires-gatsby-its-struggling-jamstack-competitor/" target=_blank>https://thenewstack.io/netlify-acquires-gatsby-its-struggling-jamstack-competitor/</a>
+              <li>
+                server components
+                <ul>
+                  <li><a href="https://github.com/gatsbyjs/gatsby/pull/36485" target=_blank>https://github.com/gatsbyjs/gatsby/pull/36485</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <em>Astro</em>
+            <ul>
+              <li><a href="https://astro.build/blog/astro-2/" target=_blank>https://astro.build/blog/astro-2/</a>
+              <li>content collections
+              <li>hybrid rendering
+            </ul>
+          </li>
+          <li>
+            <em>Node</em>
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v19.6.0/" target=_blank>https://nodejs.org/en/blog/release/v19.6.0/</a>
+              <li>loader chain
+              <li>
+                npm isolated mode が追加されたバージョンが内包
+                <ul>
+                  <li><a href="https://github.com/npm/rfcs/blob/main/accepted/0042-isolated-mode.md" target=_blank>https://github.com/npm/rfcs/blob/main/accepted/0042-isolated-mode.md</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            MSW v1
+            <ul>
+              <li><a href="https://github.com/mswjs/msw/releases/tag/v1.0.0" target=_blank>https://github.com/mswjs/msw/releases/tag/v1.0.0</a>
+            </ul>
+          </li>
+          <li>
+            deno@1.30
+            <ul>
+              <li><a href="https://deno.com/blog/v1.30" target=_blank>https://deno.com/blog/v1.30</a>
+            </ul>
+          </li>
+          <li>
+            elysiajs/elysia: Fast, and friendly Bun web framework
+            <ul>
+              <li><a href="https://github.com/elysiajs/elysia" target=_blank>https://github.com/elysiajs/elysia</a>
+            </ul>
+          </li>
+          <li>
+            <em>DanielXMoore/Civet: The modern way to write TypeScript</em>
+            <ul>
+              <li><a href="https://github.com/DanielXMoore/Civet" target=_blank>https://github.com/DanielXMoore/Civet</a>
+              <li>CoffeeScript の TS 版みたいなもの
+              <li>今年どうなるか注目
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="3-月"><a href="#3-月">3 月</a></h3>
+        <ul>
+          <li>
+            rspack
+            <ul>
+              <li><a href="https://www.rspack.dev/blog/announcement.html" target=_blank>https://www.rspack.dev/blog/announcement.html</a>
+              <li>
+                Rspack: The Rust-Based Web Bundler that Combines High Performance with Interoperability
+                <ul>
+                  <li><a href="https://valor-software.com/press-release/rs-pack-rust-based-web-bundler" target=_blank>https://valor-software.com/press-release/rs-pack-rust-based-web-bundler</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Storybook v7 について
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=P0hJm5v8TJw" target=_blank>https://www.youtube.com/watch?v=P0hJm5v8TJw</a>
+              <li>
+                RC のリリース
+                <ul>
+                  <li><a href="https://github.com/storybookjs/storybook/releases/tag/v7.0.0-rc.0" target=_blank>https://github.com/storybookjs/storybook/releases/tag/v7.0.0-rc.0</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            React.js: The Documentary
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=8pDqJVdNa44" target=_blank>https://www.youtube.com/watch?v=8pDqJVdNa44</a>
+              <li>Reactjs の開発ドキュメンタリー
+              <li><a href="https://twitter.com/jordwalke" target=_blank>https://twitter.com/jordwalke</a>
+            </ul>
+          </li>
+          <li>
+            deno が package.json をサポート
+            <ul>
+              <li><a href="https://deno.com/blog/v1.31" target=_blank>https://deno.com/blog/v1.31</a>
+              <li><a href="https://deno.land/manual@v1.31.3/basics/import_maps" target=_blank>https://deno.land/manual@v1.31.3/basics/import_maps</a>
+              <li><a href="https://2019.jsconf.eu/kat-marchan/tink-a-next-generation-package-manager.html" target=_blank>https://2019.jsconf.eu/kat-marchan/tink-a-next-generation-package-manager.html</a>
+              <li><a href="https://github.com/npm/tink" target=_blank>https://github.com/npm/tink</a>
+            </ul>
+          </li>
+          <li>
+            fresh はビルドステップをランタイムで行う話
+            <ul>
+              <li><a href="https://deno.com/blog/you-dont-need-a-build-step" target=_blank>https://deno.com/blog/you-dont-need-a-build-step</a>
+            </ul>
+          </li>
+          <li>
+            bun がバンドラー作ってる
+            <ul>
+              <li><a href="https://github.com/oven-sh/bun/pull/2312" target=_blank>https://github.com/oven-sh/bun/pull/2312</a>
+            </ul>
+          </li>
+          <li>
+            typescript@5.0
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/</a>
+            </ul>
+          </li>
+          <li>
+            vite
+            <ul>
+              <li><a href="https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#420-2023-03-16" target=_blank>https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#420-2023-03-16</a>
+            </ul>
+          </li>
+          <li>
+            sandpack
+            <ul>
+              <li><a href="https://www.publickey1.jp/blog/23/webnodejswebnextjsviteastrosandpack_20.html" target=_blank>https://www.publickey1.jp/blog/23/webnodejswebnextjsviteastrosandpack_20.html</a>
+              <li><a href="https://codesandbox.io/codesandbox-for-ios" target=_blank>https://codesandbox.io/codesandbox-for-ios</a>
+            </ul>
+          </li>
+          <li>
+            nextjs13.2
+            <ul>
+              <li><a href="https://nextjs.org/blog/next-13-2" target=_blank>https://nextjs.org/blog/next-13-2</a>
+            </ul>
+          </li>
+          <li>
+            Sveltekit v1.0
+            <ul>
+              <li><a href="https://svelte.dev/blog/announcing-sveltekit-1.0" target=_blank>https://svelte.dev/blog/announcing-sveltekit-1.0</a>
+              <li><a href="https://svelte.dev/blog/streaming-snapshots-sveltekit" target=_blank>https://svelte.dev/blog/streaming-snapshots-sveltekit</a>
+            </ul>
+          </li>
+          <li>
+            Introducing react.dev
+            <ul>
+              <li><a href="https://react.dev/blog/2023/03/16/introducing-react-dev" target=_blank>https://react.dev/blog/2023/03/16/introducing-react-dev</a>
+              <li>React のドキュメントサイトリニューアル
+            </ul>
+          </li>
+          <li>
+            TanStack Query v5 alpha
+            <ul>
+              <li><a href="https://twitter.com/TkDodo/status/1630159547405877249" target=_blank>https://twitter.com/TkDodo/status/1630159547405877249</a>
+              <li>React 17 サポート切れ
+              <li>query の引数が object 形式のみに
+              <li>
+                Migrating to TanStack Query v5
+                <ul>
+                  <li><a href="https://tanstack.com/query/v5/docs/react/guides/migrating-to-v5" target=_blank>https://tanstack.com/query/v5/docs/react/guides/migrating-to-v5</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TanStack Start
+            <ul>
+              <li><a href="https://tanstack.com/" target=_blank>https://tanstack.com/</a>
+              <li>TanStack のメタフレームワークの準備中
+            </ul>
+          </li>
+          <li>
+            Node v19.8.0
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v19.8.0" target=_blank>https://nodejs.org/en/blog/release/v19.8.0</a>
+            </ul>
+          </li>
+          <li>
+            Introducing Service Weaver: A Framework for Writing Distributed Applications
+            <ul>
+              <li><a href="https://opensource.googleblog.com/2023/03/introducing-service-weaver-framework-for-writing-distributed-applications.html" target=_blank>https://opensource.googleblog.com/2023/03/introducing-service-weaver-framework-for-writing-distributed-applications.html</a>
+              <li><a href="https://www.publickey1.jp/blog/23/googleservice_weaver.html" target=_blank>https://www.publickey1.jp/blog/23/googleservice_weaver.html</a>
+            </ul>
+          </li>
+          <li>
+            Remixing Hydrogen
+            <ul>
+              <li><a href="https://hydrogen.shopify.dev/updates" target=_blank>https://hydrogen.shopify.dev/updates</a>
+              <li>Remix + Hydrogen(Shopify のコンポーネントライブラリ)続報
+            </ul>
+          </li>
+          <li>
+            GPT-4
+            <ul>
+              <li><a href="https://openai.com/research/gpt-4" target=_blank>https://openai.com/research/gpt-4</a>
+              <li><a href="https://www.bing.com/search?toWww=1&redig=62629AE8D1064E45AC7AF348327DDDDB&q=Bing+AI&showconv=1" target=_blank>https://www.bing.com/search?toWww=1&amp;redig=62629AE8D1064E45AC7AF348327DDDDB&amp;q=Bing+AI&amp;showconv=1</a>
+              <li><a href="https://twitter.com/towernter/status/1635950636935049219" target=_blank>https://twitter.com/towernter/status/1635950636935049219</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="4-月"><a href="#4-月">4 月</a></h3>
+        <ul>
+          <li>
+            Next.js
+            <ul>
+              <li><a href="https://nextjs.org/blog/next-13-3" target=_blank>https://nextjs.org/blog/next-13-3</a>
+              <li>13.3 リリース
+              <li>
+                App Directory
+                <ul>
+                  <li>Metadata API
+                  <li>
+                    Static Export Support
+                    <ul>
+                      <li><a href="https://beta.nextjs.org/docs/configuring/static-export" target=_blank>https://beta.nextjs.org/docs/configuring/static-export</a>
+                      <li>Server Components は next build 時にデータ取得
+                    </ul>
+                  </li>
+                  <li>Parallel Routes
+                  <li>Intercepting Routes
+                </ul>
+              </li>
+              <li>@vercel/og の ImageResponse が next/server に入った
+            </ul>
+          </li>
+          <li>
+            Add Zod and router state validation by shuding · Pull Request #46962 · vercel/next.js
+            <ul>
+              <li><a href="https://github.com/vercel/next.js/pull/46962" target=_blank>https://github.com/vercel/next.js/pull/46962</a>
+              <li><code translate=no>typedRoutes</code>を提供し、 Next に Zod を入れてやってるぽい
+            </ul>
+          </li>
+          <li>
+            RFC: <code translate=no>next/third-parties</code> - vercel/next.js - Discussion #48256
+            <ul>
+              <li><a href="https://github.com/vercel/next.js/discussions/48256" target=_blank>https://github.com/vercel/next.js/discussions/48256</a>
+              <li>Nextjs でよく使われる
+              <li>3rd party script のラッパーライブラリーの RFC
+            </ul>
+          </li>
+          <li>
+            Remix without Limits - Vercel
+            <ul>
+              <li><a href="https://vercel.com/blog/vercel-remix-integration-with-edge-functions-support" target=_blank>https://vercel.com/blog/vercel-remix-integration-with-edge-functions-support</a>
+              <li>Vercel が Remix 向けにテンプレートとパッケージを発表
+            </ul>
+          </li>
+          <li>
+            React Labs: What We&apos;ve Been Working On - March 2023 - React
+            <ul>
+              <li><a href="https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023" target=_blank>https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023</a>
+              <li>React Labs の研究報告
+              <li>
+                RSC が入ったが、これを最大限生かすには bundler の integration が必須
+                <ul>
+                  <li>今の Bundler は Client に特化してる
+                  <li>単一のモジュールグラフを Server/Client で分割できるものがない
+                  <li>なので、 Bundler 開発者と組んでやっていく
+                </ul>
+              </li>
+              <li>
+                Asset Loading
+                <ul>
+                  <li>CSS, Font, Img を Suspence と統合していく
+                </ul>
+              </li>
+              <li>
+                Document Metadata
+                <ul>
+                  <li><code translate=no>&lt;title&gt;</code>, <code translate=no>&lt;meta&gt;</code>, <code translate=no>&lt;link&gt;</code> を任意の場所で書いて勝手に <code translate=no>&lt;head&gt;</code> に入るようにする
+                  <li>
+                    Next,js 13.2 に入ったやつ
+                    <ul>
+                      <li><a href="https://nextjs.org/blog/next-13-2#built-in-seo-support-with-new-metadata-api" target=_blank>https://nextjs.org/blog/next-13-2#built-in-seo-support-with-new-metadata-api</a>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                React Optimizing Compiler
+                <ul>
+                  <li>React Forget = &quot;auto-memoizing Compiler&quot; or &quot;automatic reactivity compiler&quot;
+                  <li>React が過剰に再レンダリングしないようにメモ化を取り入れる目的
+                  <li>が、オブジェクトの一意性の比較ではなく意味的な比較で更新する
+                  <li>Meta で実験中、もうコアは Babel から剥がされている。
+                  <li>
+                    React Conf 2021 の続報的なもの
+                    <ul>
+                      <li><a href="https://www.youtube.com/watch?v=lGEMwh32soc" target=_blank>https://www.youtube.com/watch?v=lGEMwh32soc</a>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Offscreen Rendering
+                <ul>
+                  <li>content-visibliity の React 版
+                  <li>ルータがバックグラウンドで prerendering したりできる
+                  <li>Meta 内部で実験中で、良い結果がでてる。今年後半には RFC 出す
+                </ul>
+              </li>
+              <li>
+                Transition Trace
+                <ul>
+                  <li>React Transitions が遅くなったことを検知できる
+                  <li>実装済みだがプロジェクトが休止中
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            React の公式ドキュメントサイトリニューアルについての Dan 氏の解説
+            <ul>
+              <li><a href="https://react.dev/" target=_blank>https://react.dev/</a>
+              <li><a href="https://twitter.com/dan_abramov/status/1638004334544707584" target=_blank>https://twitter.com/dan_abramov/status/1638004334544707584</a>
+              <li>ドキュメントの最初の方には hooks が登場しなくて、 Server Components でも動くような説明を意識してる
+              <li>memo 系の関数は使用されてなくて、多くのコードで問題なく、 React labs でやってるコンパイラ周りで解決されることを確信している(使うことが非推奨とかではない)
+              <li>Effects 周りと Refs はあまり使用しない方向でドキュメントの最後の Escape Hatches のコンテンツへ(使うことが非推奨とかではない)
+              <li>なんで最初から Effects 周りはそうなってなかったかというと、まぁすぐにベストプラクティスができるわけでもないからさ〜ってやつ
+            </ul>
+          </li>
+          <li>
+            Storybook v7
+            <ul>
+              <li><a href="https://storybook.js.org/blog/storybook-7-0/" target=_blank>https://storybook.js.org/blog/storybook-7-0/</a>
+              <li>
+                <a href="https://github.com/storybookjs/storybook/blob/v7.0.0/CHANGELOG.md" target=_blank>https://github.com/storybookjs/storybook/blob/v7.0.0/CHANGELOG.md</a>
+                <ul>
+                  <li>First-class Vite support
+                  <li>Zero-config support for NextJS &amp; SvelteKit powered by the new Frameworks API
+                  <li>Component Story Format 3 with improved type safety
+                  <li>Docs overhaul: MDX2 support &amp; streamlined doc blocks
+                  <li>UI design refresh
+                  <li>Improved interaction testing &amp; test coverage
+                  <li>Enhanced stability via pre-bundling and Ecosystem CI
+                  <li>Hundreds more improvements at every level
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chakra UI
+            <ul>
+              <li><a href="https://www.adebayosegun.com/blog/the-future-of-chakra-ui" target=_blank>https://www.adebayosegun.com/blog/the-future-of-chakra-ui</a>
+              <li>脱 Runtime CSS-in-JS
+              <li>
+                以下三つに分割されるっぽい
+                <ul>
+                  <li>
+                    Zag (ステートマシンベースの UI 実装)
+                    <ul>
+                      <li><a href="https://zagjs.com/" target=_blank>https://zagjs.com/</a>
+                    </ul>
+                  </li>
+                  <li>
+                    Ark (zagjs を使ったヘッドレスコンポーネントライブラリ)
+                    <ul>
+                      <li><a href="https://ark-ui.com/" target=_blank>https://ark-ui.com/</a>
+                    </ul>
+                  </li>
+                  <li>
+                    Panda (zero-runtime CSS in JS)
+                    <ul>
+                      <li><a href="https://panda-css.com/" target=_blank>https://panda-css.com/</a>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>Ultra というデザイントークンのための SaaS Platform を開発中
+            </ul>
+          </li>
+          <li>
+            Client-side Routing - Issue #532 - withastro/roadmap
+            <ul>
+              <li><a href="https://github.com/withastro/roadmap/issues/532" target=_blank>https://github.com/withastro/roadmap/issues/532</a>
+              <li>Astro の SPA の Client-side Routing に関する提案が出てる
+            </ul>
+          </li>
+          <li>
+            Sass: Sass and Native Nesting
+            <ul>
+              <li><a href="https://sass-lang.com/blog/sass-and-native-nesting" target=_blank>https://sass-lang.com/blog/sass-and-native-nesting</a>
+              <li>Sass と CSS Nestting に関する違いと、今後のプラン
+              <li>CSS だと <code translate=no>:is()</code> を使用するが、 Sass は使用しないので、適用されるパターンに違いがある
+              <li><code translate=no>:is()</code> のシェアが 98%を超えたら、 Sass も <code translate=no>:is()</code> を使用するプラン
+            </ul>
+          </li>
+          <li>
+            layer - vanilla-extract
+            <ul>
+              <li><a href="https://vanilla-extract.style/documentation/api/layer/#layer" target=_blank>https://vanilla-extract.style/documentation/api/layer/#layer</a>
+              <li>vanilla-extract のレイヤーサポート
+            </ul>
+          </li>
+          <li>
+            Announcing Rome v12
+            <ul>
+              <li><a href="https://rome.tools/blog/2023/03/28/rome12/" target=_blank>https://rome.tools/blog/2023/03/28/rome12/</a>
+              <li>JSON サポート
+              <li>TS v5 サポート
+            </ul>
+          </li>
+          <li>
+            GitHub Actions - Visual Studio Marketplace
+            <ul>
+              <li><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions" target=_blank>https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions</a>
+              <li>VS CodeGitHub Actions の実行や記法の静的構文エラー解析してくれる
+            </ul>
+          </li>
+          <li>
+            Copilot
+            <ul>
+              <li><a href="https://github.com/features/preview/copilot-x" target=_blank>https://github.com/features/preview/copilot-x</a>
+              <li><a href="https://githubnext.com/projects/copilot-for-pull-requests" target=_blank>https://githubnext.com/projects/copilot-for-pull-requests</a>
+            </ul>
+          </li>
+          <li>
+            Vercel
+            <ul>
+              <li><a href="https://twitter.com/vercel/status/1643270051049660417" target=_blank>https://twitter.com/vercel/status/1643270051049660417</a>
+              <li>謎告知
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="5-月"><a href="#5-月">5 月</a></h3>
+        <ul>
+          <li>
+            Vercel のイベントで Vercel や Next.js のアップデート情報が出た
+            <ul>
+              <li><a href="https://vercel.com/ship" target=_blank>https://vercel.com/ship</a>
+              <li>
+                Next.13.4
+                <ul>
+                  <li><a href="https://nextjs.org/blog/next-13-4" target=_blank>https://nextjs.org/blog/next-13-4</a>
+                  <li>App Router の Stable
+                </ul>
+              </li>
+              <li>
+                Improved support for Nuxt on Vercel
+                <ul>
+                  <li><a href="https://vercel.com/blog/nuxt-on-vercel" target=_blank>https://vercel.com/blog/nuxt-on-vercel</a>
+                  <li>Vercerl の Nuxt 対応
+                  <li>
+                    Nuxt の nitro に対応が入っている
+                    <ul>
+                      <li><a href="https://github.com/unjs/nitro/releases/tag/v2.4.0" target=_blank>https://github.com/unjs/nitro/releases/tag/v2.4.0</a>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Introducing storage on Vercel
+                <ul>
+                  <li><a href="https://vercel.com/blog/vercel-storage" target=_blank>https://vercel.com/blog/vercel-storage</a>
+                  <li>Vercel KV
+                  <li>Vercel Postgres
+                  <li>Vercel Blob
+                </ul>
+              </li>
+              <li>Vercel Spaces
+              <li>Visual Editing
+              <li>server action
+            </ul>
+          </li>
+          <li>
+            React の新しい experimental hoooks
+            <ul>
+              <li>
+                useOptimistic
+                <ul>
+                  <li><a href="https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions#experimental-useoptimistic" target=_blank>https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions#experimental-useoptimistic</a>
+                </ul>
+              </li>
+              <li>
+                useFormStatus
+                <ul>
+                  <li><a href="https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions#experimental-useformstatus" target=_blank>https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions#experimental-useformstatus</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            deno kv
+            <ul>
+              <li><a href="https://deno.com/blog/kv" target=_blank>https://deno.com/blog/kv</a>
+            </ul>
+          </li>
+          <li>
+            deno@2 will be out
+            <ul>
+              <li><a href="https://deno.com/blog/v1.33" target=_blank>https://deno.com/blog/v1.33</a>
+            </ul>
+          </li>
+          <li>
+            deno with npm
+            <ul>
+              <li><a href="https://deno.com/blog/v1.32" target=_blank>https://deno.com/blog/v1.32</a>
+            </ul>
+          </li>
+          <li>
+            Node.js compatibility for Cloudflare Workers - starting with Async Context Tracking, EventEmitter, Buffer, assert, and util
+            <ul>
+              <li><a href="https://blog.cloudflare.com/workers-node-js-asynclocalstorage/" target=_blank>https://blog.cloudflare.com/workers-node-js-asynclocalstorage/</a>
+            </ul>
+          </li>
+          <li>
+            Svelte が TS から JS に移行してる
+            <ul>
+              <li><a href="https://github.com/sveltejs/svelte/pull/8569" target=_blank>https://github.com/sveltejs/svelte/pull/8569</a>
+              <li>理由はビルドステップを無くすとデバッグが簡素になり開発が捗る
+              <li>JSDoc でも TS 同等の型システムは得られている
+            </ul>
+          </li>
+          <li>
+            React の Canary リリース
+            <ul>
+              <li><a href="https://react.dev/blog/2023/05/03/react-canaries" target=_blank>https://react.dev/blog/2023/05/03/react-canaries</a>
+            </ul>
+          </li>
+          <li>
+            State of React が行われる予定
+            <ul>
+              <li><a href="https://github.com/Devographics/surveys/issues/85" target=_blank>https://github.com/Devographics/surveys/issues/85</a>
+            </ul>
+          </li>
+          <li>
+            React のドキュメントの日本語翻訳が進んでいる
+            <ul>
+              <li><a href="https://ja.react.dev/learn" target=_blank>https://ja.react.dev/learn</a>
+            </ul>
+          </li>
+          <li>
+            Base UI
+            <ul>
+              <li><a href="https://mui.com/base/getting-started/overview/" target=_blank>https://mui.com/base/getting-started/overview/</a>
+              <li>mui の emotion ない版
+            </ul>
+          </li>
+          <li>
+            日本人から Rome の core contributor
+            <ul>
+              <li><a href="https://zenn.dev/nissy_dev/articles/become-a-core-contributor-of-rome" target=_blank>https://zenn.dev/nissy_dev/articles/become-a-core-contributor-of-rome</a>
+              <li>最近の開発状況についても
+              <li>
+                <blockquote>
+                  <p>現在の開発は、元コアメンバーである Emanuele さんを中心とした有志が集まって進めているという状態になっています。そのため、チームでの開発体制や明確なマイルストーンなどはなく、次のリリースもいつ、どのような内容で行うのかという点についてはあまり議論していません。最近だと、 formatter や linter の不具合や ECMAScript decorator などの対応を行っています。
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+          <li>
+            apollo の next app dir サポート
+            <ul>
+              <li><a href="https://www.apollographql.com/blog/announcement/frontend/using-apollo-client-with-next-js-13-releasing-an-official-library-to-support-the-app-router/" target=_blank>https://www.apollographql.com/blog/announcement/frontend/using-apollo-client-with-next-js-13-releasing-an-official-library-to-support-the-app-router/</a>
+            </ul>
+          </li>
+          <li>
+            astro@2.4
+            <ul>
+              <li><a href="https://astro.build/blog/astro-240/" target=_blank>https://astro.build/blog/astro-240/</a>
+            </ul>
+          </li>
+          <li>
+            node@20
+            <ul>
+              <li><a href="https://openjsf.org/blog/2023/04/18/node-js-20-now-available/" target=_blank>https://openjsf.org/blog/2023/04/18/node-js-20-now-available/</a>
+              <li>
+                Highlights include:
+                <ul>
+                  <li>Experimental Permission Model
+                  <li>A synchronous import.meta.resolve
+                  <li>Stable Test Runner
+                  <li>V8 JavaScript engine updated to 11.3
+                  <li>Single Executable Apps
+                  <li>Ada to 2.0
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            vite@4.3
+            <ul>
+              <li><a href="https://vitejs.dev/blog/announcing-vite4-3.html" target=_blank>https://vitejs.dev/blog/announcing-vite4-3.html</a>
+            </ul>
+          </li>
+          <li>
+            Qwik@1.0.0
+            <ul>
+              <li><a href="https://www.builder.io/blog/qwik-v1" target=_blank>https://www.builder.io/blog/qwik-v1</a>
+            </ul>
+          </li>
+          <li>
+            Angular v16 is here!
+            <ul>
+              <li><a href="https://blog.angular.io/angular-v16-is-here-4d7a28ec680d\" target=_blank>https://blog.angular.io/angular-v16-is-here-4d7a28ec680d\</a>
+            </ul>
+          </li>
+          <li>
+            Virtual DOM: Back in Block
+            <ul>
+              <li><a href="https://millionjs.org/blog/virtual-dom" target=_blank>https://millionjs.org/blog/virtual-dom</a>
+            </ul>
+          </li>
+          <li>
+            Karma が Deprecated
+            <ul>
+              <li><a href="https://github.com/karma-runner/karma#karma-is-deprecated-and-is-not-accepting-new-features-or-general-bug-fixes" target=_blank>https://github.com/karma-runner/karma#karma-is-deprecated-and-is-not-accepting-new-features-or-general-bug-fixes</a>
+              <li>新しいランナーのパフォーマンスがよく優位性もなくなったため
+              <li>特に Angular で利用が多いので WebTestRunner などへの移行を促す
+            </ul>
+          </li>
+          <li>
+            Chromatic に Safari サポートが入った
+            <ul>
+              <li><a href="https://www.chromatic.com/blog/safari-edge-and-pricing-improvements/" target=_blank>https://www.chromatic.com/blog/safari-edge-and-pricing-improvements/</a>
+            </ul>
+          </li>
+          <li>
+            jQuery v4 で IE サポート切れるらしい
+            <ul>
+              <li><a href="https://blog.jquery.com/2023/05/11/jquery-3-7-0-released-staying-in-order/" target=_blank>https://blog.jquery.com/2023/05/11/jquery-3-7-0-released-staying-in-order/</a>
+              <li>
+                <blockquote>
+                  <p>If you&apos;re curious, support for IE will be dropped in jQuery 4.0 and many of those changes are already in our main branch.
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Redwood v5
+            <ul>
+              <li><a href="https://community.redwoodjs.com/t/redwood-v5-0-0-is-now-available/4830/1" target=_blank>https://community.redwoodjs.com/t/redwood-v5-0-0-is-now-available/4830/1</a>
+              <li>React 18 対応など
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="6-月"><a href="#6-月">6 月</a></h3>
+        <ul>
+          <li>
+            Turborepo 1.10 - Turbo
+            <ul>
+              <li><a href="https://turbo.build/blog/turbo-1-10-0" target=_blank>https://turbo.build/blog/turbo-1-10-0</a>
+              <li>実験段階だが、 scafolding ができるようになる(copy, add, append, etc)
+              <li>.env のよみとりができるようになった
+              <li>環境変数名でワイルドカードが使えるようになった
+              <li><a href="https://www.hygen.io/" target=_blank>https://www.hygen.io/</a>
+            </ul>
+          </li>
+          <li>
+            Fresh 1.2 - welcoming a full-time maintainer, sharing state between islands, limited npm support, and more
+            <ul>
+              <li><a href="https://deno.com/blog/fresh-1.2" target=_blank>https://deno.com/blog/fresh-1.2</a>
+              <li>Preact のメンテナ Marvin が Deno に入り、 Fresh のフルタイムコミッターになる
+            </ul>
+          </li>
+          <li>
+            RSC From Scratch. Part 1: Server Components · reactwg/server-components · Discussion #5
+            <ul>
+              <li><a href="https://github.com/reactwg/server-components/discussions/5" target=_blank>https://github.com/reactwg/server-components/discussions/5</a>
+              <li>Dan による RSC の deep dive
+            </ul>
+          </li>
+          <li>
+            add react-server-dom-vite impl and fixture by nksaraf · Pull Request #26926 · facebook/react
+            <ul>
+              <li><a href="https://github.com/facebook/react/pull/26926" target=_blank>https://github.com/facebook/react/pull/26926</a>
+              <li>RSC を Vite でも動かせるようにする PR
+            </ul>
+          </li>
+          <li>
+            Remix + RSC PoC が進んでるらしい
+            <ul>
+              <li><a href="https://twitter.com/ryanflorence/status/1663587026384584704" target=_blank>https://twitter.com/ryanflorence/status/1663587026384584704</a>
+            </ul>
+          </li>
+          <li>
+            RedwoodJS&apos; Next Epoch: All In on React Server Components
+            <ul>
+              <li><a href="https://tom.preston-werner.com/2023/05/30/redwoods-next-epoch-all-in-on-rsc.html" target=_blank>https://tom.preston-werner.com/2023/05/30/redwoods-next-epoch-all-in-on-rsc.html</a>
+              <li>RedwoodJS も RSC 対応するらしい
+              <li>
+                dai-shi/waku: Minimalistic React Framework
+                <ul>
+                  <li><a href="https://github.com/dai-shi/waku#wakus-minimal-spec-for-react-server-components" target=_blank>https://github.com/dai-shi/waku#wakus-minimal-spec-for-react-server-components</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Announcing TypeScript 5.1 - TypeScript
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-1/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-1/</a>
+              <li>Easier Implicit Returns for undefined-Returning Functions
+              <li>Unrelated Types for Getters and Setters
+              <li>Decoupled Type-Checking Between JSX Elements and JSX Tag Types
+              <li>Namespaced JSX Attributes
+              <li>typeRoots Are Consulted In Module Resolution
+              <li>Linked Cursors for JSX Tags
+              <li>Snippet Completions for @param JSDoc Tags
+              <li>Optimizations
+              <li>Breaking Changes
+            </ul>
+          </li>
+          <li>
+            Stack Overflow Developer Survey 2023
+            <ul>
+              <li><a href="https://survey.stackoverflow.co/2023/" target=_blank>https://survey.stackoverflow.co/2023/</a>
+              <li>Stack Overflow の開発者アンケート
+            </ul>
+          </li>
+          <li>
+            Deno 1.34: deno compile supports npm packages
+            <ul>
+              <li><a href="https://deno.com/blog/v1.34" target=_blank>https://deno.com/blog/v1.34</a>
+            </ul>
+          </li>
+          <li>
+            The Bun Bundler | Bun Blog
+            <ul>
+              <li><a href="https://bun.sh/blog/bun-bundler" target=_blank>https://bun.sh/blog/bun-bundler</a>
+              <li>Bun に bundler 実装
+            </ul>
+          </li>
+          <li>
+            Boshen/oxc: The JavaScript Oxidation Compiler
+            <ul>
+              <li><a href="https://github.com/Boshen/oxc" target=_blank>https://github.com/Boshen/oxc</a>
+            </ul>
+          </li>
+          <li>
+            Bun v0.6.8 | Bun Blog
+            <ul>
+              <li><a href="https://bun.sh/blog/bun-v0.6.8" target=_blank>https://bun.sh/blog/bun-v0.6.8</a>
+              <li>password
+              <li>test の mock, spyOn, toMatchObject 追加。結構 jest 意識してそう
+              <li><a href="https://github.com/oven-sh/bun/issues/159" target=_blank>https://github.com/oven-sh/bun/issues/159</a>
+            </ul>
+          </li>
+          <li>
+            Announcing Lit 3.0 Pre-releases - Lit
+            <ul>
+              <li><a href="https://lit.dev/blog/2023-05-15-lit-3.0-prerelease/" target=_blank>https://lit.dev/blog/2023-05-15-lit-3.0-prerelease/</a>
+              <li>IE11 is no longer supported.
+              <li>
+                Lit&apos;s npm modules are now published as ES2021.
+                <ul>
+                  <li><a href="https://github.com/lit/lit/pull/3775" target=_blank>https://github.com/lit/lit/pull/3775</a>
+                </ul>
+              </li>
+              <li>APIs deprecated during the Lit 1.x release timeframe have been removed.
+              <li>SSR hydration support modules were moved to the @lit-labs/ssr-client package.
+            </ul>
+          </li>
+          <li>
+            evanw/polywasm
+            <ul>
+              <li><a href="https://github.com/evanw/polywasm" target=_blank>https://github.com/evanw/polywasm</a>
+              <li>wasm が実装されていない環境で wasm ファイルを動かす polyfill
+              <li>各 WebAssembly 関数を js に変換する
+            </ul>
+          </li>
+          <li>
+            Astro 2.6: Middleware | Astro
+            <ul>
+              <li><a href="https://astro.build/blog/astro-260/" target=_blank>https://astro.build/blog/astro-260/</a>
+              <li>
+                安定化
+                <ul>
+                  <li>hybrid ssr
+                  <li>middleware
+                  <li>Custom client directives
+                  <li>CSS inlining
+                </ul>
+              </li>
+              <li>
+                実験的
+                <ul>
+                  <li>Redirects
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Starlight
+            <ul>
+              <li><a href="https://starlight.astro.build/" target=_blank>https://starlight.astro.build/</a>
+              <li>Astro でドキュメントサイト作るテンプレ
+            </ul>
+          </li>
+          <li>
+            Parcel v2.9.0
+            <ul>
+              <li><a href="https://parceljs.org/blog/v2-9-0/" target=_blank>https://parceljs.org/blog/v2-9-0/</a>
+              <li>SWC minifier 使うらしい
+            </ul>
+          </li>
+          <li>
+            On this day 14 years ago: Node.js was created!
+            <ul>
+              <li><a href="https://twitter.com/nodejs/status/1662511486512640000" target=_blank>https://twitter.com/nodejs/status/1662511486512640000</a>
+              <li>Node 14 年目、祝って
+            </ul>
+          </li>
+          <li>
+            Celebrating 10 Years of React
+            <ul>
+              <li><a href="https://vercel.com/blog/10-years-of-react" target=_blank>https://vercel.com/blog/10-years-of-react</a>
+              <li>React 10 周年
+            </ul>
+          </li>
+          <li>
+            Release Version 7.44.0 · react-hook-form/react-hook-form
+            <ul>
+              <li><a href="https://github.com/react-hook-form/react-hook-form/releases/tag/v7.44.0" target=_blank>https://github.com/react-hook-form/react-hook-form/releases/tag/v7.44.0</a>
+              <li>
+                Form コンポーネントの追加
+                <ul>
+                  <li>コンポーネントから post や status code の検証も可能
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            State of Node.js Performance 2023
+            <ul>
+              <li><a href="https://blog.rafaelgss.dev/state-of-nodejs-performance-2023" target=_blank>https://blog.rafaelgss.dev/state-of-nodejs-performance-2023</a>
+            </ul>
+          </li>
+          <li>
+            Thinking in React Query | TkDodo&apos;s blog
+            <ul>
+              <li><a href="https://tkdodo.eu/blog/thinking-in-react-query" target=_blank>https://tkdodo.eu/blog/thinking-in-react-query</a>
+              <li>先日あった React Summit での React Query の概要資料
+            </ul>
+          </li>
+          <li>
+            Announcing Rspack 0.2
+            <ul>
+              <li><a href="https://www.rspack.dev/blog/announcing-0.2.html" target=_blank>https://www.rspack.dev/blog/announcing-0.2.html</a>
+              <li>loader や Storybook 対応など
+            </ul>
+          </li>
+          <li>
+            Release 7.0.0 · lerna/lerna
+            <ul>
+              <li><a href="https://github.com/lerna/lerna/releases/tag/7.0.0" target=_blank>https://github.com/lerna/lerna/releases/tag/7.0.0</a>
+            </ul>
+          </li>
+          <li>
+            Tailwind の Rust 化
+            <ul>
+              <li><a href="https://github.com/tailwindlabs/tailwindcss/pull/11394" target=_blank>https://github.com/tailwindlabs/tailwindcss/pull/11394</a>
+            </ul>
+          </li>
+          <li>
+            Introducing the Vercel AI SDK - Vercel
+            <ul>
+              <li><a href="https://vercel.com/blog/introducing-the-vercel-ai-sdk" target=_blank>https://vercel.com/blog/introducing-the-vercel-ai-sdk</a>
+              <li>vercel の AI インターフェース
+            </ul>
+          </li>
+          <li>
+            Electron 25.0.0 | Electron
+            <ul>
+              <li><a href="https://www.electronjs.org/blog/electron-25-0" target=_blank>https://www.electronjs.org/blog/electron-25-0</a>
+              <li>
+                net.fetch
+                <ul>
+                  <li>API のインターフェースは Node の fetch と同様
+                  <li>
+                    Chromium が内部で URL ロードの様々な異なるモード(navigation 、 subresouce 、 worker)を区別しており、 electron ではそれらを気にすることが多く、コードが散らばってしまい一元化したいのでこのモジュールを追加
+                    <ul>
+                      <li>Is there a webRequest handler that needs to be invoked?
+                      <li>Has any extension registered a chrome.webRequest handler? (This is not the same thing as webRequest.)
+                      <li>Is this a request to a custom protocol (registered with protocol.register*Protocol)?
+                      <li>Is there an intercept handler registered for this protocol (from protocol.interceptProtocol)?
+                      <li>Should the connection limit be applied to this request? (i.e. is the domain listed in --ignore-connections-limit)?
+                      <li>Should access to file: be allowed? (We do some hacks here to allow service workers to be loaded in file:// domains; arguably we should not do this)
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="7-月"><a href="#7-月">7 月</a></h3>
+        <ul>
+          <li>
+            Agenda | Config 2023
+            <ul>
+              <li><a href="https://config.figma.com/agenda" target=_blank>https://config.figma.com/agenda</a>
+              <li>​​ <a href="https://twitter.com/figma/status/1671556665479659520" target=_blank>https://twitter.com/figma/status/1671556665479659520</a>
+              <li>Dev Mode, a new space for developers
+              <li>Variables
+              <li>Advanced prototyping
+              <li>Auto layout updates
+              <li>Font picker
+              <li>File browser redesign
+              <li><a href="https://speakerdeck.com/sakito/figmanosi-xiang-toxin-ji-neng?slide=30" target=_blank>https://speakerdeck.com/sakito/figmanosi-xiang-toxin-ji-neng?slide=30</a>
+            </ul>
+          </li>
+          <li>
+            Announcing TypeScript 5.2 Beta
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-2-beta/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-2-beta/</a>
+              <li><a href="https://github.com/evanw/esbuild/releases/tag/v0.18.7" target=_blank>https://github.com/evanw/esbuild/releases/tag/v0.18.7</a>
+              <li>using Declarations and Explicit Resource Management
+              <li>Decorator Metadata
+              <li>Named and Anonymous Tuple Elements
+              <li>Easier Method Usage for Unions of Arrays
+              <li>Comma Completions for Object Members
+              <li>Inline Variable Refactoring
+              <li>Breaking Changes and Correctness Fixes
+            </ul>
+          </li>
+          <li>
+            CommonJS is hurting JavaScript
+            <ul>
+              <li><a href="https://deno.com/blog/commonjs-is-hurting-javascript" target=_blank>https://deno.com/blog/commonjs-is-hurting-javascript</a>
+              <li>CJS は問題があるので ESM に移行すべきだ
+            </ul>
+          </li>
+          <li>
+            CommonJS is not going away | Bun Blog
+            <ul>
+              <li><a href="https://bun.sh/blog/commonjs-is-not-going-away" target=_blank>https://bun.sh/blog/commonjs-is-not-going-away</a>
+              <li>CJS は十分に普及しているので今後も一級市民だ
+            </ul>
+          </li>
+          <li>
+            Prettier 3.0: Hello, ECMAScript Modules!
+            <ul>
+              <li><a href="https://prettier.io/blog/2023/07/05/3.0.0.html" target=_blank>https://prettier.io/blog/2023/07/05/3.0.0.html</a>
+              <li>ESModule ベースに移行
+              <li>Markdown で全角/半角間にスペース足すのをやめる
+            </ul>
+          </li>
+          <li>
+            Panda CSS
+            <ul>
+              <li><a href="https://panda-css.com/" target=_blank>https://panda-css.com/</a>
+            </ul>
+          </li>
+          <li>
+            styled-components v6.0.0
+            <ul>
+              <li><a href="https://github.com/styled-components/styled-components/releases/tag/v6.0.0" target=_blank>https://github.com/styled-components/styled-components/releases/tag/v6.0.0</a>
+            </ul>
+          </li>
+          <li>
+            next.js が vanilla-extract support
+            <ul>
+              <li><a href="https://github.com/vercel/next.js/pull/48306" target=_blank>https://github.com/vercel/next.js/pull/48306</a>
+            </ul>
+          </li>
+          <li>
+            Rome の contributor からみた Oxc の印象
+            <ul>
+              <li><a href="https://zenn.dev/cybozu_frontend/articles/thinking-about-oxc" target=_blank>https://zenn.dev/cybozu_frontend/articles/thinking-about-oxc</a>
+            </ul>
+          </li>
+          <li>
+            dnt - Deno to Node Transform
+            <ul>
+              <li><a href="https://github.com/denoland/dnt" target=_blank>https://github.com/denoland/dnt</a>
+            </ul>
+          </li>
+          <li>
+            Deno 1.35: A fast and convenient way to build web servers
+            <ul>
+              <li><a href="https://deno.com/blog/v1.35" target=_blank>https://deno.com/blog/v1.35</a>
+            </ul>
+          </li>
+          <li>
+            Node v20.4.0 (Current)
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v20.4.0" target=_blank>https://nodejs.org/en/blog/release/v20.4.0</a>
+            </ul>
+          </li>
+          <li>
+            NestJS v10 is now available!
+            <ul>
+              <li><a href="https://trilon.io/blog/nestjs-10-is-now-available" target=_blank>https://trilon.io/blog/nestjs-10-is-now-available</a>
+            </ul>
+          </li>
+          <li>
+            An Introduction to Streaming on the Web
+            <ul>
+              <li><a href="https://vercel.com/blog/an-introduction-to-streaming-on-the-web" target=_blank>https://vercel.com/blog/an-introduction-to-streaming-on-the-web</a>
+            </ul>
+          </li>
+          <li>
+            Announcing Svelte 4
+            <ul>
+              <li><a href="https://svelte.dev/blog/svelte-4" target=_blank>https://svelte.dev/blog/svelte-4</a>
+            </ul>
+          </li>
+          <li>
+            Introducing the Vercel Platforms Starter Kit
+            <ul>
+              <li><a href="https://vercel.com/blog/platforms-starter-kit" target=_blank>https://vercel.com/blog/platforms-starter-kit</a>
+            </ul>
+          </li>
+          <li>
+            ECMAScript 2023
+            <ul>
+              <li><a href="https://262.ecma-international.org/14.0/" target=_blank>https://262.ecma-international.org/14.0/</a>
+              <li>Array findFromLast()
+              <li>Change Array by Copy
+              <li>Hashbang Grammar
+              <li>Symbols as WeakMap keys
+            </ul>
+          </li>
+          <li>
+            Announcing typescript-eslint v6
+            <ul>
+              <li><a href="https://typescript-eslint.io/blog/announcing-typescript-eslint-v6/" target=_blank>https://typescript-eslint.io/blog/announcing-typescript-eslint-v6/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="8-月"><a href="#8-月">8 月</a></h3>
+        <ul>
+          <li>
+            koba04 さんライブコーディング@Encraft
+            <ul>
+              <li><a href="https://zenn.dev/knowledgework/articles/d460315cb4c16b" target=_blank>https://zenn.dev/knowledgework/articles/d460315cb4c16b</a>
+            </ul>
+          </li>
+          <li>
+            How React 18 Improves Application Performance
+            <ul>
+              <li><a href="https://vercel.com/blog/how-react-18-improves-application-performance" target=_blank>https://vercel.com/blog/how-react-18-improves-application-performance</a>
+            </ul>
+          </li>
+          <li>
+            Understanding React Server Components
+            <ul>
+              <li><a href="https://vercel.com/blog/understanding-react-server-components" target=_blank>https://vercel.com/blog/understanding-react-server-components</a>
+            </ul>
+          </li>
+          <li>
+            Everything I wish I knew before moving 50,000 lines of code to React Server Components
+            <ul>
+              <li><a href="https://www.mux.com/blog/what-are-react-server-components" target=_blank>https://www.mux.com/blog/what-are-react-server-components</a>
+            </ul>
+          </li>
+          <li>
+            PodCast and Videos to understand RSC
+            <ul>
+              <li>
+                The future of React with Dan Abramov &amp; Joe Savona (JS Party #267) |&gt; Changelog
+                <ul>
+                  <li><a href="https://changelog.com/jsparty/267" target=_blank>https://changelog.com/jsparty/267</a>
+                </ul>
+              </li>
+              <li>
+                React Server Components: Part 1 - JSJ 582 - JavaScript Jabber - Top End Devs
+                <ul>
+                  <li><a href="https://topenddevs.com/podcasts/javascript-jabber/episodes/react-server-components-part-1-jsj-582" target=_blank>https://topenddevs.com/podcasts/javascript-jabber/episodes/react-server-components-part-1-jsj-582</a>
+                </ul>
+              </li>
+              <li>
+                React Server Components: Part 2- JSJ 583 - JavaScript Jabber - Top End Devs
+                <ul>
+                  <li><a href="https://topenddevs.com/podcasts/javascript-jabber/episodes/react-server-components-part-2-jsj-583" target=_blank>https://topenddevs.com/podcasts/javascript-jabber/episodes/react-server-components-part-2-jsj-583</a>
+                </ul>
+              </li>
+              <li>
+                React Roundtable: Server Components, Suspense, and Actions - YouTube
+                <ul>
+                  <li><a href="https://www.youtube.com/watch?v=g5BGoLyGjY0" target=_blank>https://www.youtube.com/watch?v=g5BGoLyGjY0</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            &quot;i feel bittersweet sharing i&apos;m leaving my job at meta in a few weeks. working in the react org at meta has been an honor. i am thankful to my past and present colleagues for taking me in, letting me make mistakes, helping me see my strengths, being kind, and sharing their time.&quot;
+            <ul>
+              <li><a href="https://twitter.com/dan_abramov/status/1682029195843739649" target=_blank>https://twitter.com/dan_abramov/status/1682029195843739649</a>
+              <li><a href="https://twitter.com/dan_abramov/status/1682685169868701696" target=_blank>https://twitter.com/dan_abramov/status/1682685169868701696</a>
+            </ul>
+          </li>
+          <li>
+            UI2: Figma&apos;s Design System - Figma
+            <ul>
+              <li><a href="https://www.figma.com/community/file/1271813911103366792" target=_blank>https://www.figma.com/community/file/1271813911103366792</a>
+              <li><a href="https://www.figma.com/community/file/928108847914589057/UI2%3A-Figma's-Design-System" target=_blank>https://www.figma.com/community/file/928108847914589057/UI2%3A-Figma&apos;s-Design-System</a>
+            </ul>
+          </li>
+          <li>
+            What&apos;s happening in the future of recoil? #1495
+            <ul>
+              <li><a href="https://github.com/facebookexperimental/Recoil/issues/1495#issuecomment-1439803842" target=_blank>https://github.com/facebookexperimental/Recoil/issues/1495#issuecomment-1439803842</a>
+            </ul>
+          </li>
+          <li>
+            Blogged Answers: My Experience Modernizing Packages to ESM
+            <ul>
+              <li><a href="https://blog.isquaredsoftware.com/2023/08/esm-modernization-lessons/" target=_blank>https://blog.isquaredsoftware.com/2023/08/esm-modernization-lessons/</a>
+            </ul>
+          </li>
+          <li>
+            Introducing Valibot, a &lt; 1kb Zod Alternative
+            <ul>
+              <li><a href="https://www.builder.io/blog/introducing-valibot" target=_blank>https://www.builder.io/blog/introducing-valibot</a>
+            </ul>
+          </li>
+          <li>
+            Shopify&apos;s platform is the Web platform
+            <ul>
+              <li><a href="https://shopify.engineering/shopifys-platform-is-the-web-platform" target=_blank>https://shopify.engineering/shopifys-platform-is-the-web-platform</a>
+            </ul>
+          </li>
+          <li>
+            Wait for it... Announcing Apollo Client 3.8 with React Suspense Integration
+            <ul>
+              <li><a href="https://www.apollographql.com/blog/announcement/frontend/wait-for-it-announcing-apollo-client-3-8-with-react-suspense-integration/" target=_blank>https://www.apollographql.com/blog/announcement/frontend/wait-for-it-announcing-apollo-client-3-8-with-react-suspense-integration/</a>
+            </ul>
+          </li>
+          <li>
+            Two new Storybook versions and faster release cycle
+            <ul>
+              <li><a href="https://storybook.js.org/blog/july-2023-update/" target=_blank>https://storybook.js.org/blog/july-2023-update/</a>
+            </ul>
+          </li>
+          <li>
+            Visual Tests addon sneak peek
+            <ul>
+              <li><a href="https://storybook.js.org/blog/visual-tests-addon-sneak-peek/" target=_blank>https://storybook.js.org/blog/visual-tests-addon-sneak-peek/</a>
+            </ul>
+          </li>
+          <li>
+            Cross-browser testing for 2023
+            <ul>
+              <li><a href="https://www.chromatic.com/blog/cross-browser-testing-2023/" target=_blank>https://www.chromatic.com/blog/cross-browser-testing-2023/</a>
+            </ul>
+          </li>
+          <li>
+            Tailwind Connect 2023: Recap of our first in-person event - Tailwind CSS
+            <ul>
+              <li><a href="https://tailwindcss.com/blog/2023-07-18-tailwind-connect-2023-recap" target=_blank>https://tailwindcss.com/blog/2023-07-18-tailwind-connect-2023-recap</a>
+            </ul>
+          </li>
+          <li>
+            shadcn/ui とか作ってた人が Vercel へ
+            <ul>
+              <li><a href="https://shadcn.com/" target=_blank>https://shadcn.com/</a>
+            </ul>
+          </li>
+          <li>
+            Biome
+            <ul>
+              <li><a href="https://github.com/biomejs/biome" target=_blank>https://github.com/biomejs/biome</a>
+              <li><a href="https://biomejs.dev/internals/language-support/" target=_blank>https://biomejs.dev/internals/language-support/</a>
+            </ul>
+          </li>
+          <li>
+            Using TypeScript
+            <ul>
+              <li><a href="https://react.dev/learn/typescript" target=_blank>https://react.dev/learn/typescript</a>
+            </ul>
+          </li>
+          <li>
+            Fresh 1.4 - Faster Page Loads, Layouts and More
+            <ul>
+              <li><a href="https://deno.com/blog/fresh-1.4" target=_blank>https://deno.com/blog/fresh-1.4</a>
+            </ul>
+          </li>
+          <li>
+            Node.js&apos;s Config Hell Problem
+            <ul>
+              <li><a href="https://deno.com/blog/node-config-hell" target=_blank>https://deno.com/blog/node-config-hell</a>
+            </ul>
+          </li>
+          <li>
+            ViteConf is back!
+            <ul>
+              <li><a href="https://blog.stackblitz.com/posts/viteconf-is-back/" target=_blank>https://blog.stackblitz.com/posts/viteconf-is-back/</a>
+            </ul>
+          </li>
+          <li>
+            Introducing Next.js Commerce 2.0 - Vercel
+            <ul>
+              <li><a href="https://vercel.com/blog/introducing-next-js-commerce-2-0" target=_blank>https://vercel.com/blog/introducing-next-js-commerce-2-0</a>
+            </ul>
+          </li>
+          <li>
+            Announcing TypeScript 5.2 RC
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-2-rc/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-2-rc/</a>
+              <li>Beta からはほとんど変わってなさそう
+            </ul>
+          </li>
+          <li>
+            Introducing React Tweet
+            <ul>
+              <li><a href="https://vercel.com/blog/introducing-react-tweet" target=_blank>https://vercel.com/blog/introducing-react-tweet</a>
+            </ul>
+          </li>
+          <li>
+            Concept: test mode for Playwright and similar integration tools #52520
+            <ul>
+              <li><a href="https://github.com/vercel/next.js/pull/52520" target=_blank>https://github.com/vercel/next.js/pull/52520</a>
+            </ul>
+          </li>
+          <li>
+            How Turborepo is porting from Go to Rust - Vercel
+            <ul>
+              <li><a href="https://vercel.com/blog/how-turborepo-is-porting-from-go-to-rust" target=_blank>https://vercel.com/blog/how-turborepo-is-porting-from-go-to-rust</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="9-月"><a href="#9-月">9 月</a></h3>
+        <ul>
+          <li>
+            biomejs
+            <ul>
+              <li><a href="https://biomejs.dev/blog/annoucing-biome" target=_blank>https://biomejs.dev/blog/annoucing-biome</a>
+              <li><a href="https://www.canva.com/design/DAFtZwHgpTY/EKSvfQac4SL1_VVN8MjPog/edit" target=_blank>https://www.canva.com/design/DAFtZwHgpTY/EKSvfQac4SL1_VVN8MjPog/edit</a>
+            </ul>
+          </li>
+          <li>
+            Bun 1.0
+            <ul>
+              <li><a href="https://bun.sh/blog/bun-v1.0" target=_blank>https://bun.sh/blog/bun-v1.0</a>
+              <li><a href="https://vercel.com/changelog/bun-install-is-now-supported-with-zero-configuration" target=_blank>https://vercel.com/changelog/bun-install-is-now-supported-with-zero-configuration</a>
+              <li><a href="https://bun.sh/guides/runtime/import-toml" target=_blank>https://bun.sh/guides/runtime/import-toml</a>
+              <li><a href="https://bun.sh/docs/bundler/macros" target=_blank>https://bun.sh/docs/bundler/macros</a>
+              <li><a href="https://twitter.com/jarredsumner/status/1700815403717730415" target=_blank>https://twitter.com/jarredsumner/status/1700815403717730415</a>
+            </ul>
+          </li>
+          <li>
+            Turbo 8 is dropping TypeScript
+            <ul>
+              <li><a href="https://world.hey.com/dhh/turbo-8-is-dropping-typescript-70165c01" target=_blank>https://world.hey.com/dhh/turbo-8-is-dropping-typescript-70165c01</a>
+              <li><a href="https://github.com/hotwired/turbo/pull/971" target=_blank>https://github.com/hotwired/turbo/pull/971</a>
+              <li><a href="https://changelog.com/jsparty/292" target=_blank>https://changelog.com/jsparty/292</a>
+              <li><a href="https://world.hey.com/dhh/open-source-hooliganism-and-the-typescript-meltdown-a474bfda" target=_blank>https://world.hey.com/dhh/open-source-hooliganism-and-the-typescript-meltdown-a474bfda</a>
+              <li><a href="https://github.com/rails/rails/pull/49241" target=_blank>https://github.com/rails/rails/pull/49241</a>
+            </ul>
+          </li>
+          <li>
+            v0
+            <ul>
+              <li><a href="https://v0.dev/" target=_blank>https://v0.dev/</a>
+              <li><a href="https://atmarkit.itmedia.co.jp/ait/articles/2309/11/news069.html" target=_blank>https://atmarkit.itmedia.co.jp/ait/articles/2309/11/news069.html</a>
+              <li><a href="https://www.gizmodo.jp/2023/09/microsoft-water-usage-ai-iowa-data-center.html" target=_blank>https://www.gizmodo.jp/2023/09/microsoft-water-usage-ai-iowa-data-center.html</a>
+            </ul>
+          </li>
+          <li>
+            Next.Nav
+            <ul>
+              <li><a href="https://www.next-nav.com/" target=_blank>https://www.next-nav.com/</a>
+              <li><a href="https://qiita.com/KokiSakano/items/86b6b85902eba103f70d" target=_blank>https://qiita.com/KokiSakano/items/86b6b85902eba103f70d</a>
+            </ul>
+          </li>
+          <li>
+            Astro 3.0 | Astro
+            <ul>
+              <li><a href="https://astro.build/blog/astro-3/" target=_blank>https://astro.build/blog/astro-3/</a>
+              <li><a href="https://docs.astro.build/en/guides/view-transitions/#naming-a-transition" target=_blank>https://docs.astro.build/en/guides/view-transitions/#naming-a-transition</a>
+            </ul>
+          </li>
+          <li>
+            Making Sense of React Server Components
+            <ul>
+              <li><a href="https://www.joshwcomeau.com/react/server-components/" target=_blank>https://www.joshwcomeau.com/react/server-components/</a>
+            </ul>
+          </li>
+          <li>
+            React use in Canary
+            <ul>
+              <li><a href="https://react.dev/reference/react/use" target=_blank>https://react.dev/reference/react/use</a>
+            </ul>
+          </li>
+          <li>
+            React cache in Canary
+            <ul>
+              <li><a href="https://react.dev/reference/react/cache" target=_blank>https://react.dev/reference/react/cache</a>
+            </ul>
+          </li>
+          <li>
+            TanStack Form v0
+            <ul>
+              <li><a href="https://tanstack.com/form/latest" target=_blank>https://tanstack.com/form/latest</a>
+            </ul>
+          </li>
+          <li>
+            TanStack Router CLI
+            <ul>
+              <li><a href="https://tanstack.com/router/v1/docs/api/router-cli" target=_blank>https://tanstack.com/router/v1/docs/api/router-cli</a>
+            </ul>
+          </li>
+          <li>
+            State of CSS 2023
+            <ul>
+              <li><a href="https://2023.stateofcss.com/en-US" target=_blank>https://2023.stateofcss.com/en-US</a>
+            </ul>
+          </li>
+          <li>
+            Node.js includes built-in support for .env files
+            <ul>
+              <li><a href="https://philna.sh/blog/2023/09/05/nodejs-supports-dotenv/" target=_blank>https://philna.sh/blog/2023/09/05/nodejs-supports-dotenv/</a>
+            </ul>
+          </li>
+          <li>
+            tshy
+            <ul>
+              <li><a href="https://isaacs.github.io/tshy/#md:tshy---typescript-hybridizer" target=_blank>https://isaacs.github.io/tshy/#md:tshy---typescript-hybridizer</a>
+            </ul>
+          </li>
+          <li>
+            Bringing forward the End-of-Life Date for Node.js 16
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/announcements/nodejs16-eol" target=_blank>https://nodejs.org/en/blog/announcements/nodejs16-eol</a>
+            </ul>
+          </li>
+          <li>
+            electron: Support Node&apos;s ES Modules
+            <ul>
+              <li><a href="https://github.com/electron/electron/issues/21457" target=_blank>https://github.com/electron/electron/issues/21457</a>
+            </ul>
+          </li>
+          <li>
+            マイクロソフト、 Web アプリテストの自動化サービス「Microsoft Playwright Testing」プレビューを開始
+            <ul>
+              <li><a href="https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing.html" target=_blank>https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="10-月"><a href="#10-月">10 月</a></h3>
+        <ul>
+          <li>
+            TypeScript Origins: The Documentary - YouTube
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=U6s2pdxebSo" target=_blank>https://www.youtube.com/watch?v=U6s2pdxebSo</a>
+            </ul>
+          </li>
+          <li>
+            Announcing TypeScript 5.3 Beta - TypeScript
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-3-beta/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-3-beta/</a>
+            </ul>
+          </li>
+          <li>
+            The Saga of the Closure Compiler, and Why TypeScript Won
+            <ul>
+              <li><a href="https://effectivetypescript.com/2023/09/27/closure-compiler/" target=_blank>https://effectivetypescript.com/2023/09/27/closure-compiler/</a>
+            </ul>
+          </li>
+          <li>
+            Node v21.0.0 (Current)
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v21.0.0" target=_blank>https://nodejs.org/en/blog/release/v21.0.0</a>
+              <li>stable fetch and WebStreams
+              <li>CommonJS to ES modules (--experimental-default-type),
+            </ul>
+          </li>
+          <li>
+            Nue / Frontend troublesolver
+            <ul>
+              <li><a href="https://nuejs.org/" target=_blank>https://nuejs.org/</a>
+            </ul>
+          </li>
+          <li>
+            Remix v2 | Remix
+            <ul>
+              <li><a href="https://remix.run/blog/remix-v2" target=_blank>https://remix.run/blog/remix-v2</a>
+            </ul>
+          </li>
+          <li>
+            Support for Remix v2 - Vercel
+            <ul>
+              <li><a href="https://vercel.com/changelog/support-for-remix-v2" target=_blank>https://vercel.com/changelog/support-for-remix-v2</a>
+            </ul>
+          </li>
+          <li>
+            Remix の Vite サポート
+            <ul>
+              <li><a href="https://github.com/remix-run/remix/pull/7590" target=_blank>https://github.com/remix-run/remix/pull/7590</a>
+            </ul>
+          </li>
+          <li>
+            Vercel の生成 AI
+            <ul>
+              <li><a href="http://v0.dev" target=_blank>http://v0.dev</a>
+            </ul>
+          </li>
+          <li>
+            Astro 3.3: Picture component | Astro
+            <ul>
+              <li><a href="https://astro.build/blog/astro-330/" target=_blank>https://astro.build/blog/astro-330/</a>
+              <li><code translate=no>&lt;picture&gt;</code> の使用
+            </ul>
+          </li>
+          <li>
+            pnpm@8.9.0
+            <ul>
+              <li><a href="https://github.com/pnpm/pnpm/releases/tag/v8.9.0" target=_blank>https://github.com/pnpm/pnpm/releases/tag/v8.9.0</a>
+              <li>
+                pacquet
+                <ul>
+                  <li><a href="https://github.com/pnpm/pacquet" target=_blank>https://github.com/pnpm/pacquet</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            How we optimized package imports in Next.js
+            <ul>
+              <li><a href="https://vercel.com/blog/how-we-optimized-package-imports-in-next-js" target=_blank>https://vercel.com/blog/how-we-optimized-package-imports-in-next-js</a>
+            </ul>
+          </li>
+          <li>
+            Flat config rollout plans
+            <ul>
+              <li><a href="https://eslint.org/blog/2023/10/flat-config-rollout-plans/" target=_blank>https://eslint.org/blog/2023/10/flat-config-rollout-plans/</a>
+              <li>
+                Implement Flat Config #13481
+                <ul>
+                  <li><a href="https://github.com/eslint/eslint/issues/13481" target=_blank>https://github.com/eslint/eslint/issues/13481</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            vite conf
+            <ul>
+              <li><a href="https://viteconf.org/23/replay/welcome" target=_blank>https://viteconf.org/23/replay/welcome</a>
+              <li><a href="https://docs.google.com/presentation/d/1oZnjsPBnb3OB2HxU88vYkZLa54GV-xNKrF8XkOIqLAU/edit#slide=id.p" target=_blank>https://docs.google.com/presentation/d/1oZnjsPBnb3OB2HxU88vYkZLa54GV-xNKrF8XkOIqLAU/edit#slide=id.p</a>
+              <li>Rolldown
+            </ul>
+          </li>
+          <li>
+            vike
+            <ul>
+              <li><a href="https://vike.dev/" target=_blank>https://vike.dev/</a>
+            </ul>
+          </li>
+          <li>
+            rollup@4.0.0
+            <ul>
+              <li><a href="https://github.com/rollup/rollup/releases/tag/v4.0.0" target=_blank>https://github.com/rollup/rollup/releases/tag/v4.0.0</a>
+            </ul>
+          </li>
+          <li>
+            Rspress
+            <ul>
+              <li><a href="https://rspress.dev/" target=_blank>https://rspress.dev/</a>
+              <li><a href="https://github.com/web-infra-dev/rspress" target=_blank>https://github.com/web-infra-dev/rspress</a>
+              <li>
+                Rspress, the Rspack-based static site generator
+                <ul>
+                  <li><a href="https://github.com/orgs/web-infra-dev/discussions/5" target=_blank>https://github.com/orgs/web-infra-dev/discussions/5</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Lit v3
+            <ul>
+              <li><a href="https://lit.dev/blog/2023-10-10-lit-3.0/" target=_blank>https://lit.dev/blog/2023-10-10-lit-3.0/</a>
+              <li>
+                @lit/react@1.0.0
+                <ul>
+                  <li><a href="https://lit.dev/blog/2023-10-10-lit-3.0/" target=_blank>https://lit.dev/blog/2023-10-10-lit-3.0/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            parcel@2.10.0
+            <ul>
+              <li><a href="https://github.com/parcel-bundler/parcel/releases/tag/v2.10.0" target=_blank>https://github.com/parcel-bundler/parcel/releases/tag/v2.10.0</a>
+            </ul>
+          </li>
+          <li>
+            TanStack Query v5
+            <ul>
+              <li><a href="https://x.com/TkDodo/status/1714262102305632643?s=20" target=_blank>https://x.com/TkDodo/status/1714262102305632643?s=20</a>
+            </ul>
+          </li>
+          <li>
+            Lottielab | Create and Edit Lottie Animations
+            <ul>
+              <li><a href="https://www.lottielab.com/" target=_blank>https://www.lottielab.com/</a>
+              <li>e.g. <a href="https://file.notion.so/f/f/2cb23a70-6b85-4194-b079-a8452c7cde23/c949ce32-41d5-48c2-9047-c13cb84823b0/Ghost_loader_example_03.json?id=99d678bd-d225-4f2a-914a-f81754108f2d&table=block&spaceId=2cb23a70-6b85-4194-b079-a8452c7cde23&expirationTimestamp=1703152800000&signature=aSm9kqsTpqTEGSbXBTu5kCjpRkNzJmYYo81jP34gxus&downloadName=Ghost_loader_example.json" target=_blank>https://file.notion.so/f/f/2cb23a70-6b85-4194-b079-a8452c7cde23/c949ce32-41d5-48c2-9047-c13cb84823b0/Ghost_loader_example_03.json?id=99d678bd-d225-4f2a-914a-f81754108f2d&amp;table=block&amp;spaceId=2cb23a70-6b85-4194-b079-a8452c7cde23&amp;expirationTimestamp=1703152800000&amp;signature=aSm9kqsTpqTEGSbXBTu5kCjpRkNzJmYYo81jP34gxus&amp;downloadName=Ghost_loader_example.json</a>
+            </ul>
+          </li>
+          <li>
+            ja.react.dev の紹介
+            <ul>
+              <li><a href="https://blog.koba04.com/post/2023/10/05/new-japanese-react-dev" target=_blank>https://blog.koba04.com/post/2023/10/05/new-japanese-react-dev</a>
+            </ul>
+          </li>
+          <li>
+            Support Server Actions by kotarella1110 · Pull Request #11061 · react-hook-form/react-hook-form
+            <ul>
+              <li><a href="https://github.com/react-hook-form/react-hook-form/pull/11061" target=_blank>https://github.com/react-hook-form/react-hook-form/pull/11061</a>
+            </ul>
+          </li>
+          <li>
+            マイクロソフト、 Web アプリのテスト自動化サービス「Microsoft Playwright Testing」プレビュー公開。クロスブラウザ/クロスプラットフォームのテストを並列実行
+            <ul>
+              <li><a href="https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing_1.html" target=_blank>https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing_1.html</a>
+            </ul>
+          </li>
+          <li>
+            pattycake
+            <ul>
+              <li><a href="https://github.com/aidenybai/pattycake" target=_blank>https://github.com/aidenybai/pattycake</a>
+            </ul>
+          </li>
+          <li>
+            Announcing Deno Queues
+            <ul>
+              <li><a href="https://deno.com/blog/queues" target=_blank>https://deno.com/blog/queues</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="11-月"><a href="#11-月">11 月</a></h3>
+        <ul>
+          <li>
+            Building the most ambitious sites on the Web with Vercel and Next.js 14 - Vercel
+            <ul>
+              <li><a href="https://vercel.com/blog/building-the-most-ambitious-sites-on-the-web-with-vercel-and-next-js-14" target=_blank>https://vercel.com/blog/building-the-most-ambitious-sites-on-the-web-with-vercel-and-next-js-14</a>
+              <li>
+                Server Actions は React Canary に入ってる
+                <ul>
+                  <li><a href="https://x.com/reactjs/status/1716573234160967762?s=20" target=_blank>https://x.com/reactjs/status/1716573234160967762?s=20</a>
+                  <li><a href="https://react.dev/community/versioning-policy#canary-channel" target=_blank>https://react.dev/community/versioning-policy#canary-channel</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Building towards a new default rendering model for web applications - Vercel
+            <ul>
+              <li><a href="https://vercel.com/blog/partial-prerendering-with-next-js-creating-a-new-default-rendering-model" target=_blank>https://vercel.com/blog/partial-prerendering-with-next-js-creating-a-new-default-rendering-model</a>
+            </ul>
+          </li>
+          <li>
+            Next.js 14 on Vercel - Vercel
+            <ul>
+              <li><a href="https://vercel.com/changelog/next-js-14" target=_blank>https://vercel.com/changelog/next-js-14</a>
+            </ul>
+          </li>
+          <li>
+            Why I Won&apos;t Use Next.js
+            <ul>
+              <li><a href="https://www.epicweb.dev/why-i-wont-use-nextjs" target=_blank>https://www.epicweb.dev/why-i-wont-use-nextjs</a>
+            </ul>
+          </li>
+          <li>
+            Why I&apos;m Using Next.js
+            <ul>
+              <li><a href="https://leerob.io/blog/using-nextjs" target=_blank>https://leerob.io/blog/using-nextjs</a>
+              <li>
+                Deep Dive: Caching and Revalidating
+                <ul>
+                  <li>
+                    <a href="https://github.com/vercel/next.js/discussions/54075" target=_blank>https://github.com/vercel/next.js/discussions/54075</a>
+                    <ul>
+                      <li>Next.js の
+                      <li>cache は
+                      <li>むずかしい
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Astro 3.5: i18n Routing
+            <ul>
+              <li><a href="https://astro.build/blog/astro-350/" target=_blank>https://astro.build/blog/astro-350/</a>
+            </ul>
+          </li>
+          <li>
+            oxc
+            <ul>
+              <li>formatter <a href="https://github.com/oxc-project/oxc/pull/1260" target=_blank>https://github.com/oxc-project/oxc/pull/1260</a>
+              <li>lint <a href="https://www.npmjs.com/package/oxlint" target=_blank>https://www.npmjs.com/package/oxlint</a>
+            </ul>
+          </li>
+          <li>
+            prettier 3.1
+            <ul>
+              <li><a href="https://prettier.io/blog/2023/11/13/3.1.0.html" target=_blank>https://prettier.io/blog/2023/11/13/3.1.0.html</a>
+            </ul>
+          </li>
+          <li>
+            ESLint v9
+            <ul>
+              <li><a href="https://eslint.org/blog/2023/11/whats-coming-in-eslint-9.0.0/" target=_blank>https://eslint.org/blog/2023/11/whats-coming-in-eslint-9.0.0/</a>
+            </ul>
+          </li>
+          <li>
+            node
+            <ul>
+              <li>use biome as formatter <a href="https://github.com/nodejs/node/pull/50672" target=_blank>https://github.com/nodejs/node/pull/50672</a>
+              <li>v21.2.0 <a href="https://nodejs.org/en/blog/release/v21.2.0" target=_blank>https://nodejs.org/en/blog/release/v21.2.0</a>
+            </ul>
+          </li>
+          <li>
+            deno 1.38
+            <ul>
+              <li><a href="https://deno.com/blog/v1.38" target=_blank>https://deno.com/blog/v1.38</a>
+            </ul>
+          </li>
+          <li>
+            vite5
+            <ul>
+              <li><a href="https://vitejs.dev/blog/announcing-vite5" target=_blank>https://vitejs.dev/blog/announcing-vite5</a>
+            </ul>
+          </li>
+          <li>
+            Remix ❤️ Vite
+            <ul>
+              <li><a href="https://remix.run/blog/remix-heart-vite" target=_blank>https://remix.run/blog/remix-heart-vite</a>
+            </ul>
+          </li>
+          <li>
+            Remix v2.3.0
+            <ul>
+              <li><a href="https://github.com/remix-run/remix/blob/main/CHANGELOG.md#v230" target=_blank>https://github.com/remix-run/remix/blob/main/CHANGELOG.md#v230</a>
+            </ul>
+          </li>
+          <li>
+            yarn 4
+            <ul>
+              <li><a href="https://yarnpkg.com/blog/release/4.0" target=_blank>https://yarnpkg.com/blog/release/4.0</a>
+            </ul>
+          </li>
+          <li>
+            tldraw で書いたやつを UI 生成してくれる
+            <ul>
+              <li><a href="https://makereal.tldraw.com/" target=_blank>https://makereal.tldraw.com/</a>
+              <li>
+                デモ
+                <ul>
+                  <li><a href="https://x.com/tldraw/status/1724892287304646868?s=20" target=_blank>https://x.com/tldraw/status/1724892287304646868?s=20</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            @storybook-test: more streamlined and powerful testing
+            <ul>
+              <li><a href="https://storybook.js.org/blog/storybook-test/" target=_blank>https://storybook.js.org/blog/storybook-test/</a>
+            </ul>
+          </li>
+          <li>
+            Geist Font - Vercel
+            <ul>
+              <li><a href="https://vercel.com/font" target=_blank>https://vercel.com/font</a>
+            </ul>
+          </li>
+          <li>
+            Jest v30 alpha
+            <ul>
+              <li><a href="https://github.com/jestjs/jest/releases/tag/v30.0.0-alpha.1" target=_blank>https://github.com/jestjs/jest/releases/tag/v30.0.0-alpha.1</a>
+            </ul>
+          </li>
+          <li>
+            Chromatic Visual Test addon enters private beta
+            <ul>
+              <li><a href="https://storybook.js.org/blog/chromatic-visual-test-addon-private-beta/" target=_blank>https://storybook.js.org/blog/chromatic-visual-test-addon-private-beta/</a>
+            </ul>
+          </li>
+          <li>
+            Redux tool kit v2
+            <ul>
+              <li>リリースが近いらしい
+              <li><a href="https://blog.isquaredsoftware.com/presentations/2023-11-rtk-2.0-new/?slideIndex=0&stepIndex=0" target=_blank>https://blog.isquaredsoftware.com/presentations/2023-11-rtk-2.0-new/?slideIndex=0&amp;stepIndex=0</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/136/monthly-platform-202311.html>ep136 Monthly Platform 202311</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep137.mp3
+    data-title="ep137 Yearly Ecosystem 2023"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
