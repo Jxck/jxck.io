@@ -453,7 +453,6 @@ https://youtu.be/_8dCa8wj8QY
 今年の説明会動画を貼っておく。
 
 - 次世代 Web カンファレンス 2023 説明会 - YouTube
-
   - https://www.youtube.com/watch?v=7M7wgPmcN24
 
 
