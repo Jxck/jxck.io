@@ -2,7 +2,7 @@
 type: podcast
 tags: ["Yearly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep137.mp3
-published_at: 2023-12-TODO
+published_at: 2023-12-23
 guest: [@sakito](https://twitter.com/__sakito__)
 guest: [@hiroppy](https://twitter.com/about_hiroppy)
 guest: [@yoshiko](https://twitter.com/yoshiko_pg)
