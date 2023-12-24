@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-24/privacy-sandbox.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 22 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-24/privacy-sandbox.html>
+  <meta property=og:title        content="3PCA 22 日目: Privacy Sandbox | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 22 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 22 日目: Privacy Sandbox | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-24T08:00:00+08:00",
+    "dateModified": "2023-12-24T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 22 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 22 日目: Privacy Sandbox | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-24>2023-12-24</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-24>2023-12-24</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#単にふさげば良いのか">単にふさげば良いのか?</a>
+                <li><a href="#privacy-sandbox">Privacy Sandbox</a>
+                <li><a href="#特殊な-api-策定">特殊な API 策定</a>
+                <ol>
+                  <li><a href="#google-が始めたこと">Google が始めたこと?</a>
+                  <li><a href="#広告やってないと関係ない">広告やってないと関係ない?</a>
+                  <li><a href="#google-だけが嬉しい">Google だけが嬉しい?</a>
+                  <li><a href="#特殊な標準化">特殊な標準化</a>
+                  <li><a href="#abuse-を防ぐ-enroll">Abuse を防ぐ Enroll</a>
+                </ol>
+                <li><a href="#まとめ">まとめ</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 22 日目: Privacy Sandbox</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 22 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今日からいよいよ Privacy Sandbox の話に入っていく。
+      </section>
+      <section>
+        <h2 id="単にふさげば良いのか"><a href="#単にふさげば良いのか">単にふさげば良いのか?</a></h2>
+        <p>各ブラウザが「3rd Party Cookie をブロックしよう」合意した。しかし、単に使えなくすればそれでいいのか? というと、実はそんなに簡単ではない。
+        <p>まず、何度も言ってるように「認証連携」や、トラッキング問題とは関係ないポジティブなユースケースまで使えなくなることで、多くのサイトが壊れてしまう懸念はある。
+        <p>ITP によって壊れたサイトは多くあったが、 Chrome でしか動かないサイトも多くあるため、次はそれらが壊れることになるだろう。シェアも違うため、これまで軽微だった影響が、無視できなくなることもある。
+        <p>次に、特にメディア系のサイトは、広告収入があることで無料で提供できているものが多い。トラッキングの精度が下がったり、コンバージョンがあってもそれを正確に測れなくなったりすることで、収入が減って運営できなくなる可能性もある。
+        <p>ビジネスが立ち行かなくなったサービス同士が結託し、メールアドレスをキーにユーザの情報を交換しあって紐付けるといったことを始めれば、それはもうブラウザ側からは関与/制限できない。 Cookie に依存していたからこそブラウザがコントロールしていた頃と比べ、より野放しな悪い方向に向かってしまう可能性があるのだ。
+        <p>すると、何度も言ってる「問題は Cookie そのものではなくトラッキングをはじめとしたプライバシー」であることに立ち返ると、 Cookie をブロックする一方で「プライバシーの問題なく既存のユースケースが満たせる安全な API がブラウザにあった方が良いのではないか?」という発想になる。
+      </section>
+      <section>
+        <h2 id="privacy-sandbox"><a href="#privacy-sandbox">Privacy Sandbox</a></h2>
+        <p>例えば、今までは 3rd Party Cookie を用いて「ID xxxxxx の人が、この広告を見て、この商品を買った」まで正確だったものを、「この一ヶ月で、この広告を見て、この商品を買った人が、何人いる」まで集約された情報しかとれなければ、プライバシーの問題はかなり解消できつつ、既存のユースケースを(完璧では無いまでも)満たせる可能性がある。
+        <p>こうして、一個一個のユースケースに対して、 Cookie を塞ぐと同時に対応する API を用意してはどうだろうか? というのが Privacy Sandbox の発想だ。これは HTML5, PWA, Fugu などと同じ「コンセプト」に近い枠組みの名前であり、この中に以下のような API がそれぞれ提案されている。
+        <ul>
+          <li>Protected Audience API
+          <li>Fenced Frame
+          <li>Attribution Reporting API
+          <li>Topics API
+          <li>Private State Token
+          <li>Web Related Sets
+          <li>FedCM
+          <li>Storage Access API
+          <li>CHIPS
+          <li>etc
+        </ul>
+        <p>基本的には、どの API もかなり難しい。そして、用途がはっきりしているため、そのユースケースを持たなければ、一生縁のない API がほとんどだ。特に広告系の人でもなければ、全部を知っておく必要は全くない。
+      </section>
+      <section>
+        <h2 id="特殊な-api-策定"><a href="#特殊な-api-策定">特殊な API 策定</a></h2>
+        <p>Privacy Sandbox は「Google のもの」として認識している人も多いだろう。単に「Google が自分たちのために、勝手にやってるだけ」という理解でも別に構わないが、実際には非常に複雑な構造がある。
+        <p>筆者としても、本当に全体が理解できているとは思っておらず、立場によって見え方も異なるだろう。
+        <p>一つだけ言えるのは、 Privacy Sandbox は従来の Web 標準の捉え方からすると「非常に特殊な成り立ち」の API だという点だ。従来の Web 標準に慣れている人が不審に感じる点もそこにあると思うため、ある程度の背景を書いておく。
+        <p>筆者の見えている範囲での理解であるため、おまけ程度に読んで欲しい。
+        <section>
+          <h3 id="google-が始めたこと"><a href="#google-が始めたこと">Google が始めたこと?</a></h3>
+          <p>現状 Google がイニシアチブを取っているように見えるのは、決して間違いでは無い。しかし、そもそも「塞がれる API を標準にしよう」という発想は、どちらかというと Safari の提案が先にある。
+          <p>Safari は ITP を実施している最中に、開発者からのフィードバックを踏まえ、広告計測用の Ad Click Attribution や Storage Access API などを独自に提案した。
+          <p>ところが、 Apple はいつも Safari にリリースするところで発表し、内容もブログだけというスタンスで、標準化は後回しな出し方をすることが多い。
+          <p>Google は標準を重視するため、 Attribution Reporting API などは Ad Click Attribution を踏まえて仕様を策定したものを、 W3C のプロセスに乗せたニュアンスが強い。
+          <p>他にも多くの仕様を、最終的には Google のエンジニアが仕様に起こしているため、「Google のもの」に見えるのは、 Web ではいつものことだ。
+          <p>実際の仕様の策定は W3C の Privacy CG や Web Advertizing BG などで行われており、これらが会員企業に閉じているため、勝手にやっているように見えるのは仕方がないとは思う。
+        </section>
+        <section>
+          <h3 id="広告やってないと関係ない"><a href="#広告やってないと関係ない">広告やってないと関係ない?</a></h3>
+          <p>確かに Attribution Reporting, Protected Audience, Topics など、広告に関係する API は多い。それらを必要とするのも広告事業者だろう。
+          <p>しかし、 &quot;3rd Party Cookie&quot; にまつわるユースケースを対象としているため、それだけではない。
+          <p>例えば、認証連携は FedCM、埋め込み用途では CHIPS, Storage Access API, Related Website Sets など、一般的な Web 開発をしている開発者にも、無関係ではない API もある。
+        </section>
+        <section>
+          <h3 id="google-だけが嬉しい"><a href="#google-だけが嬉しい">Google だけが嬉しい?</a></h3>
+          <p>確かに Google は世界で最も Web 広告で売り上げている企業であることは事実だろう。そのため、特に広告系仕様があれば、 Google にとってメリットが多く見えるだろう。
+          <p>しかし、実際はそんな簡単な話ではない。なぜなら、 Google は First Party Data を多く所持しているからだ。
+          <p>3rd Party Cookie がなくなってトラッキングができなくなると、(Fingerprint などにすがりつくのを諦めれば) 1st Party Data の活用が重要になるとされている。
+          <p>しかし、 1st Party Data の保有となれば、 GAFA に代表されるビックテックが圧倒的に有利になってしまう。その中で特に Google は &quot;1st Party Data&quot;, 広告事業, ブラウザの全てを持っているのだ。
+          <p>つまり何が起こるかと言うと、「1st Party Data を潤沢に持つ Google が、 Chrome の 3rd Party Cookie をただブロックすることは、他の広告会社に対する不当な圧力だ」とみなされてしまう可能性があるのだ。
+          <p>そこで、 CMA は、独占禁止法的な意味での不正競争の防止の目的で、 Google が「代替手段を準備せずに 3rd Party Cookie をブロックしないように見張る」というプロセスを開始した。
+          <ul>
+            <li>
+              CMA to investigate Google&apos;s &apos;Privacy Sandbox&apos; browser changes - GOV.UK
+              <ul>
+                <li><a href="https://www.gov.uk/government/news/cma-to-investigate-google-s-privacy-sandbox-browser-changes" target=_blank>https://www.gov.uk/government/news/cma-to-investigate-google-s-privacy-sandbox-browser-changes</a>
+              </ul>
+            </li>
+          </ul>
+          <p>この API こそが Privacy Sandbox だ、つまり Google は「自分たちのため」どころか、「3rd Party Cookie に依存している他の企業が困らないようにするため」に Privacy Sandbox をやっていると言っても過言ではないのだ。
+          <p>CMA による最初の調査が入ったのは 2021/01 と記録されている。これは 3rd Party Cookie Deprecation について発表されたよりも後だ。
+          <ul>
+            <li>
+              Investigation into Google&apos;s &apos;Privacy Sandbox&apos; browser changes - GOV.UK
+              <ul>
+                <li><a href="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes" target=_blank>https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これ以降 Google は定期的に CMA のレビューを受けながらプロセスを進めることになる。
+          <p>多くのユースケースそれぞれに、代替手段となる API を策定し、それを実装し、リリースし、 CMA の許可を得て初めて Chrome は 3rd Party Cookie をブロックできるのだ。
+          <p>結果、一度リスケを挟んで、ゴールが 2024 年 Q1 になったが、そもそもこの規模のプロジェクトを、 3 年たらずで終わらせることの難しさは、容易に想像できるだろう。
+          <p>それが故の歪みも、多少はある。
+        </section>
+        <section>
+          <h3 id="特殊な標準化"><a href="#特殊な標準化">特殊な標準化</a></h3>
+          <p>3rd Party Cookie の代替になる API を策定する必要はあるが、それが新たな Tracking Vector や Fingerprinting Vector になってはならない。
+          <p>従って、例えば情報を取得するまでにラグがあったり、ノイズを含めたり、特殊な環境でしか実行できなくしたりと、 Privacy Sandbox でしか見ない様なさまざまな仕組みが盛り込まれている。
+          <p>背景がわからなければ、「なんでそんなことするの?」なものが非常に多いだろう。
+          <p>そして、その加減も難しい。W3C でも、広告事業者が集まる Web Advertising BG に参加する広告事業者はもっと精度の高い情報を欲しがり、 Privacy CG に集まるプライバシーの専門家はその反対を言う。
+          <p>この「どこまでの情報を提供できる API にするか」は非常に匙加減が難しく、人によってスタンスが異なる。ここの匙加減をミスると、新しく作った API が 3rd Party Cookie よりずっとエントロピーを低くして代替するという前提を省いて、「プライバシーを侵害する API が提供されようとしている」として非難されることになるからだ。
+          <p>また、ある程度の議論と合意をもとに標準化しても、それを他のブラウザが実装するとは限らない。標準化は互換性のために行うものだが、標準化している段階から「この機能は実装しない」と他のブラウザがかなりはっきり表明することもある。
+          <p>実装しない理由は、プライバシーがほとんどだ。 3rd Party Cookie よりマシな API を提供する目的だとしても、 3rd Party Cookie が無くなった世界線でその API を追加したと考えれば、余計な情報が取れる API にしか見えないということになるため、背景を無視すれば否定する方が最初から圧倒的に有利なので仕方がない。
+          <p>が、それでも Chrome は策定を止めるわけにはいかず、結果として特に広告系の API については Chrome だけが実装しているものがほとんどになっている。
+          <p>広告以外の API については、他のブラウザも徐々に実装が進んでいるものもあるが、 Privacy Sandbox == 広告系 API に見えている人にとっては、 Google が勝手に標準化し、勝手に実装し、勝手に使っている API に見えるだろう。
+        </section>
+        <section>
+          <h3 id="abuse-を防ぐ-enroll"><a href="#abuse-を防ぐ-enroll">Abuse を防ぐ Enroll</a></h3>
+          <p>Privacy Sandbox は、その API から取得できる情報のエントロピーを非常に慎重に調整してはいるが、それでも多くのドメインを使って名寄せしたり、事業者が結託すると、意図した以上の情報を得る Abuse が起こる可能性がどうしても残る。
+          <p>そこで、あまり知られてないと思うが、現状 Privacy Sandbox の API を使うには、 Enroll という登録作業が必要になる。
+          <p>簡単に言うと「この会社が、このドメインで、この用途のために、この API を使いたい」という事前登録をする必要があるのだ。
+          <ul>
+            <li>
+              attestation/how-to-enroll.md at main · privacysandbox/attestation
+              <ul>
+                <li><a href="https://github.com/privacysandbox/attestation/blob/main/how-to-enroll.md" target=_blank>https://github.com/privacysandbox/attestation/blob/main/how-to-enroll.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これまで、 Origin Trials を除き、「API を利用するために登録をし審査が必要」なんていう API は、少なくとも筆者は見たことが無い。
+          <p>現状、対象の API を実装しているのが Chrome しかないため、 Enroll 自体を Chrome しかやっておらず、他のブラウザも今後これをやるのかなどはよくわかってない。
+          <p>これを見て「Chrome が Web を独占しコントロールしようとしている」と思うのは自由だ。しかし、これを CMA のレビューのもとやっていることを忘れてはいけない。
+          <p>中身はしらないが、登録だけなら自動化できても、審査となるとそうもいかないだろう。まともなブラウザベンダだったら、必要に駆られずに自分たちであえてこんな面倒なことはしない。というのは容易に想像できそうだ。
+        </section>
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>以上のように、 Privacy Sandbox は筆者の知る中でも非常に特殊な API 群だ。
+        <p>出自からプロセスからゴールまで、何もかもが特殊で、これまでの Web では考えられなかったことが、かなりたくさん起こっている。
+        <p>API が多すぎて、筆者にももはや全体など到底把握しきれない。
+        <p>それでも一応、次回からは Privacy Sandbox の代表的な API を紹介していく。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
