@@ -16,11 +16,11 @@
 ベストエフォートでの録画なため、一部途切れいているが、サイボウズさんの協力で録画を残すことができたため、以下に公開している。
 
 - Conference
-  - https://youtu.be/cUqZA6U0d88
+  - https://youtu.be/nmnsuqlcvfM
 - Bar
-  - https://youtu.be/sBa6PTDnpSc
+  - https://youtu.be/JSxwRcfJoYU
 - Factory
-  - https://youtu.be/mpdya_6Lt0A
+  - https://youtu.be/mVGz5-F7_hY
 
 
 ## Togetter
