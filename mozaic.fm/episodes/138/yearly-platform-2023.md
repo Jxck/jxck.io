@@ -2,7 +2,7 @@
 type: podcast
 tags: ["yearly platform"]
 audio: https://files.mozaic.fm/mozaic-ep138.mp3
-published_at: TODO
+published_at: 2023-12-26
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
@@ -10,7 +10,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Theme
 
-第 138 回のテーマは 2023 年の Yearly Platform です。
+第 138 回のテーマは 2023 年を振り返る Yearly Platform です。
 
 
 ## Show Note
