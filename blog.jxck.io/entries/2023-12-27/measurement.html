@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-27/measurement.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 25 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-27/measurement.html>
+  <meta property=og:title        content="3PCA 25 日目: Measurement | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 25 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 25 日目: Measurement | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-27T08:00:00+08:00",
+    "dateModified": "2023-12-27T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 25 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 25 日目: Measurement | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-27>2023-12-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-27>2023-12-27</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#広告の効果測定というユースケース">広告の効果測定というユースケース</a>
+                <li><a href="#measurement--reporting-api">Measurement &amp; Reporting API</a>
+                <ol>
+                  <li><a href="#private-click-measurement">Private Click Measurement</a>
+                  <li><a href="#attribution-reporting-api">Attribution Reporting API</a>
+                  <li><a href="#interoperable-private-attribution">Interoperable Private Attribution</a>
+                  <li><a href="#private-ad-measurement">Private Ad Measurement</a>
+                </ol>
+                <li><a href="#まとめ">まとめ</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 25 日目: Measurement</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 25 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今日は、広告の測定について解説する。
+      </section>
+      <section>
+        <h2 id="広告の効果測定というユースケース"><a href="#広告の効果測定というユースケース">広告の効果測定というユースケース</a></h2>
+        <p>広告ビジネスは、広告枠を売る媒体主と、それを買い出稿する広告主で成り立つ。
+        <p>最終的には表示した広告が「どのくらい表示されたか」「どのくらいクリックされたのか」「どのくらい購買につながったか」などを計測し、その結果に応じて対価が支払われるのだ。
+        <p>ここが測れなくなると、広告ビジネスというもの自体が成り立たなくなる。
+        <p>他とは違い、 Chrome だけでなく Safari や Firefox も、これができなくなることは問題だと感じているのだ。
+        <p>なぜなら、たとえトラッキングがなくても、広告の表示自体はできる。そのサイトの内容に合わせたコンテキスト広告や、タイアップの広告など、広告の選択手段はリターゲティングだけではないからだ。
+        <p>せっかく「リターゲティングができなくなったから、コンテンツの質を上げ、そこに合った適切なクリエイティブを表示していこう」というポジティブな方向に舵を切るとしても、計測ができなければ足枷になってしまう。
+        <p>プライバシーに配慮した形で、表示数やクリック数、購買へのコンバージョンなどを取得できる API の必要性は、 3 ベンダともに認めている。しかし、 API は別々だ。
+      </section>
+      <section>
+        <h2 id="measurement--reporting-api"><a href="#measurement--reporting-api">Measurement &amp; Reporting API</a></h2>
+        <section>
+          <h3 id="private-click-measurement"><a href="#private-click-measurement">Private Click Measurement</a></h3>
+          <p>最初に提案したのは Safari だ。これは ITP の途中で「トラッキングはいいとしても、計測できないのはこまる」という前述したようなフィードバックをもとに出された。
+          <p>最初は Ad Click Attribution という名前で、後に Private Click Measurement という名前に変わっている。
+          <ul>
+            <li>
+              Privacy Preserving Ad Click Attribution For the Web
+              <ul>
+                <li><a href="https://webkit.org/blog/8943/privacy-preserving-ad-click-attribution-for-the-web/" target=_blank>https://webkit.org/blog/8943/privacy-preserving-ad-click-attribution-for-the-web/</a>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              Introducing Private Click Measurement, PCM
+              <ul>
+                <li><a href="https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/" target=_blank>https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>この API は、「広告のクリックと、それによってつながった購買を、ブラウザ上で紐づける」というものだ。
+          <p>紐づいた結果はレポートとしてサーバに送られるが、すぐに送るとサーバ側でタイミングをみて紐付けができてしまうため、結果をブラウザ上に溜めて、 24h ~ 48h の間でランダムにレポートされる。
+          <p>しかし、この API はプライバシーに強く配慮した結果、広告側が 8bit で購買側が 4bit しか情報を紐づけられない。
+          <p>例えば、広告ごとに ID を振っていてもそれは 8bit に収まらないため、広告で言う「キャンペーン」の ID くらいしか送れない。コンバージョンも「購入した個数」とかそういう荒い情報しかわからないのだ。
+          <p>レポートも、クリックが発生したドメインの <code translate=no>.well-known</code> に送られるため、送り先を広告プロバイダなどに変えることができない。
+          <p>結果、かなり狭いケースしかサポートできない API であるため、広告プロバイダは CNAME Cloaking などを使って 1st Party Cookie で行う方法を ITP 対策として出しているのが現実のようだ。
+          <p>確かにプライバシーに敏感で ITP をやるような Safari だからこそ、制限がきついのはうなづける。しかし、筆者にとって意外だったのは「<strong>それでも計測ユースケースには別の API を出した</strong>」という点だ。
+          <p>それだけ「計測」はポジティブなユースケースであるとみなされており、 3rd Party Cookie なき後も必要性を認めているということだろう。
+          <p>また、 Ad Click Attribution のように「ユースケースを単体で API にする」というこの発想は、のちの Privacy Sandbox に強く影響したと筆者は感じている。
+        </section>
+        <section>
+          <h3 id="attribution-reporting-api"><a href="#attribution-reporting-api">Attribution Reporting API</a></h3>
+          <p>Privacy Sandbox Family として Google が出したのが Conversion Measurement API であり、今は名前が変わって Attribution Reporting API だ。
+          <ul>
+            <li>
+              WICG/attribution-reporting-api: Attribution Reporting API
+              <ul>
+                <li><a href="https://github.com/WICG/attribution-reporting-api/tree/main" target=_blank>https://github.com/WICG/attribution-reporting-api/tree/main</a>
+              </ul>
+            </li>
+          </ul>
+          <p>Safari との違いは、広告のクリック(Click Throught Conversion)だけでなく表示(View Throught Conversion) もサポートしている点だ。
+          <p>Click は <code translate=no>&lt;a&gt;</code> に、 View は <code translate=no>&lt;img&gt;</code> に属性を仕込むことになる。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=&quot;https://advertiser.example/landing&quot;
+   attributionsrc=&quot;https://adtech.example/attribution_source?my_ad_id=123&quot;&gt;
+  &lt;img src=&quot;https://advertiser.example/pixel&quot;
+     attributionsrc=&quot;https://adtech.example/attribution_source?my_ad_id=123&quot;&gt;
+&lt;/a&gt;</code></pre>
+          <p>ID も 64bit とかなり大きく、広告一つ一つを識別できるため、既存のユースケースのカバーとしては有利だ。一方、もちろんこれが Safari や Firefox からは批判される的となっている。
+          <p>表示やクリックの情報がブラウザに溜まり、遅延をかけて送られるのは Safari と同じだ。ただし、送り先は 3rd Party も指定できる。
+          <p>また、より詳細なデータを集計結果として必要とするユースケースのために、Private Aggregation API (Summery Report とも言われる)という追加の仕様も提案されている。
+          <p>集計は広告プロバイダに依頼するために、ブラウザから情報が送られるが、暗号化され広告プロバイダには中身が読めない。
+          <p>代わりに、 Protected Audience API の時に解説したのと同じく TEE を用いて、そこにデータを入れると、その中で複合され、集計され、結果が取り出せるというものだ。
+          <p>Safari に比べればかなり色々とできる API であることはわかるだろう。
+        </section>
+        <section>
+          <h3 id="interoperable-private-attribution"><a href="#interoperable-private-attribution">Interoperable Private Attribution</a></h3>
+          <p>最後が Meta が Mozilla と組んで取り組んでいると発表した Interoperable Private Attribution だ。
+          <ul>
+            <li>
+              ipa/IPA-End-to-End.md at main · patcg-individual-drafts/ipa
+              <ul>
+                <li><a href="https://github.com/patcg-individual-drafts/ipa/blob/main/IPA-End-to-End.md" target=_blank>https://github.com/patcg-individual-drafts/ipa/blob/main/IPA-End-to-End.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>特徴はサーバ側での計算に、複数サーバが分散で処理する MPC (Multi Party Computation) モデルを用いてる点だ。複数の参加者がセグメントに分割したデータを暗号化して共有し、特定の組織がユーザのトラッキングをできないようにするものだ。
+          <p>これがホストされている GitHub の PATCG とは W3C の Private Advertising Technology Community Group のことで、その名の通りプライバシーに配慮した広告 API を策定するためのグループだ。
+          <p>ここでは近年、 TEE よりも MPC を利用する流れがあるように感じる。
+          <p>これは Chrome の提案するような TEE を GCP にデプロイして Google が Aggregation を利用したとして、信用できるのか? という問題へのアンチテーゼなんだろうというのが筆者の理解だ。
+        </section>
+        <section>
+          <h3 id="private-ad-measurement"><a href="#private-ad-measurement">Private Ad Measurement</a></h3>
+          <p>今年 Safari が、追加で提案してきた仕様だ。
+          <p>Private Click Measurement にはなかった、 Aggrigation Report 相当のものを追加する仕様だ。
+          <p>これも TEE ではなく MPC を用いている。
+          <ul>
+            <li>
+              patcg-individual-drafts/private-ad-measurement: Privacy preserving advertising attribution
+              <ul>
+                <li><a href="https://github.com/patcg-individual-drafts/private-ad-measurement/tree/main" target=_blank>https://github.com/patcg-individual-drafts/private-ad-measurement/tree/main</a>
+              </ul>
+            </li>
+          </ul>
+          <p>もちろん、 Attribution Reporting と比べれば制限は強いが、それでも Safari があえて追加で仕様を提案してくるくらい、「計測」というユースケースを重要視していることはわかるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>Standard Position で言えば、もちろんそれぞれが API を提案しているため、ポジションとしては「自分が提案している API 以外は Negative」というのが回答になるだろう。
+        <p>しかし、どのベンダーも「広告の効果測定」というユースケース自体には、ポジティブであるという一定の合意があることが、見て取れると思う。
+        <p>とはいえ、それぞれの仕様がバラバラであるため、全てのブラウザの違いを吸収した製品を出すといったことは、広告プロバイダにとってはかなり難しい課題になりそうだ。
+        <p>どの程度これらの API が使われるのか、それによって既存の広告ビジネスの要件がどの程度満たされるのかは、現時点ではよくわからない。
+        <p>本来広告はトラッキングが前提ではないはずだ。コンテキスト/純広告を出すために、コンテンツの質に注力するメディアが存続するためにも、この分野の発展は重要だろう。
+        <p>どこにいってもコンプレックス広告が出たり、とにかく全画面で出してクリックを誘ったり、全てのメディアが課金前提になって検索してもなにも辿り着けない Web になることを避けるためにも、測定だけはうまく着地して欲しいとは思う。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
