@@ -1,8 +1,8 @@
-# [cookie][3pca] 3PCA 26 日目: Retargeting
+# [cookie][3pca] 3PCA 24 日目: Retargeting
 
 ## Intro
 
-このエントリは、 3rd Party Cookie Advent Calendar の 26 日目である。
+このエントリは、 3rd Party Cookie Advent Calendar の 24 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie

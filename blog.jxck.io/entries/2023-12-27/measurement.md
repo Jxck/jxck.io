@@ -1,8 +1,8 @@
-# [cookie][3pca] 3PCA 27 日目: Reporting
+# [cookie][3pca] 3PCA 25 日目: Reporting
 
 ## Intro
 
-このエントリは、 3rd Party Cookie Advent Calendar の 27 日目である。
+このエントリは、 3rd Party Cookie Advent Calendar の 25 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie

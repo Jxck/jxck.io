@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-25/interest-based-advertising.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 23 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-25/interest-based-advertising.html>
+  <meta property=og:title        content="3PCA 23 日目: Interest Based Advertising | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 23 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 23 日目: Interest Based Advertising | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-25T08:00:00+08:00",
+    "dateModified": "2023-12-27T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 23 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 23 日目: Interest Based Advertising | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-25>2023-12-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-27>2023-12-27</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#interest-based-advertising">Interest Based Advertising</a>
+                <ol>
+                  <li><a href="#floc">FLoC</a>
+                  <li><a href="#topics">Topics</a>
+                </ol>
+                <li><a href="#standard-position">Standard Position</a>
+                <ol>
+                  <li><a href="#mozilla">Mozilla</a>
+                  <li><a href="#safari">Safari</a>
+                </ol>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 23 日目: Interest Based Advertising</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 23 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今回からは、 Privacy Sandbox の API を、ジャンルごとに分けて概要を解説していく。
+        <p>個々の API は非常に複雑であり、また今後も細かい点が変わっていくだろう。
+        <p>どうせガッツリ使うのであれば、仕様を読む必要があるため、ここでは「何がしたいのか」「何ができるのか」に絞って解説する。
+      </section>
+      <section>
+        <h2 id="interest-based-advertising"><a href="#interest-based-advertising">Interest Based Advertising</a></h2>
+        <section>
+          <h3 id="floc"><a href="#floc">FLoC</a></h3>
+          <p>広告表示時に「このユーザは何に興味があるのか」というインタレストを知ることは、表示する広告を選ぶ上で重要な情報だ(Interest Based Advertising)。
+          <p>従来は、細かくユーザをトラッキングし「どんなサイトを閲覧するのか」「どんな行動を取るのか」「どんな時間に活動するのか」などの情報を細かく集め、ユーザのパーソナリティを分析し、インタレストを推測してきた。
+          <p>このユースケースをカバーするために、最初に提案されたのが FLoC (Federated Learning of Cohorts) だった。
+          <ul>
+            <li>
+              FLoC  |  Privacy Sandbox  |  Google for Developers
+              <ul>
+                <li><a href="https://developers.google.com/privacy-sandbox/archive/floc" target=_blank>https://developers.google.com/privacy-sandbox/archive/floc</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これは、基本的に「ブラウザの閲覧履歴」をソースとして、ハッシュ値を生成するようなイメージだ。このハッシュ値 SimHash と呼ばれ「閲覧履歴が似ている人は同じ値になる」という特徴がある。似たインタレストのユーザを「コホート(群)」に分類し、そこに値を付与するアルゴリズムをブラウザが持つのだ。
+          <p>Cohort の値はわかるが、別にそこから「この人はどういうサイトを見ている人か」がわかるわけではない(K-anonimity)。
+          <p>もし First Party で大量の顧客情報を持っていれば、「同じコホート値の人々の属性情報」を持ち、そこから共通部分を割り出すと言った分析も可能かもしれない。
+          <p>しかし、それがない一般的な用途としては、例えば「このコホート値の人にこの広告を表示したら効果があった、であればこっちの人にも同じものを表示してみよう」程度の使い方しかできないだろう。 3rd Party Cookie と比べると、非常に精度の低い情報、むしろ役に立てられるかも正直よくわからない。
+          <p>その点では、必ずしも平等と言えるかは微妙だというのが、筆者の印象だった。
+          <p>結果としてこの API は提案段階で大炎上するのだが、それはこの不平等さ云々以前に「Google が閲覧履歴を吸い取ろうとしている」という心象的な原因によって起こった。
+          <p>直近でアクセスした URL のドメイン(eTLD+1)部分しか使わず、その値から URL リストを逆算することもできず、 Google の管理している「センシティブな情報」の URL は除外し、一週間程度で再生成されるが、それでも「気持ち悪い」という心象は拭えなかったようだ。
+          <p>「我々は最初からこの API をオプトアウトします」といった表明をするサービスが出て、批判するニュースが飛び交った。
+          <p>そして、 mozilla からは「この値が Fingerprint ベクターになる」というレポートが出たのもあり、結局この API は取り下げられることになった。
+        </section>
+        <section>
+          <h3 id="topics"><a href="#topics">Topics</a></h3>
+          <p>FLoC の改善版として登場したのが Topics だ。
+          <p>Topics は、ハッシュの代わりに事前に定義された 350 個の分類(Taxonomy) が返る API になった。分類は以下に定義されている(今後拡張する可能性もあるらしい)。
+          <ul>
+            <li>
+              topics/taxonomy_v1.md at main · patcg-individual-drafts/topics
+              <ul>
+                <li><a href="https://github.com/patcg-individual-drafts/topics/blob/main/taxonomy_v1.md" target=_blank>https://github.com/patcg-individual-drafts/topics/blob/main/taxonomy_v1.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>毎週履歴を集計し、この値を計算して、その中から 3 つを返す API だ。
+          <p>あらゆる履歴が対象となるわけではなく、一週間でリセットされ、返る値にはノイズを混ぜ、さらに値を人間が見てわかるようにし、かつエントロピーを下げて Fingerpriting ベクタにならないように調整した結果であることが強調されている。
+          <ul>
+            <li>
+              patcg-individual-drafts/topics: The Topics API
+              <ul>
+                <li><a href="https://github.com/patcg-individual-drafts/topics" target=_blank>https://github.com/patcg-individual-drafts/topics</a>
+              </ul>
+            </li>
+          </ul>
+          <p>API は Privacy Sandbox の中で一番単純なものだ。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+          <pre class=js data-code=js><code translate=no class=language-js>await document.browsingTopics()
+// [&quot;/Sports/American Football&quot;]</code></pre>
+          <p>このように具体的な値が返ってくれば、どんな広告を出せばいいかは保有する First Party Data に依存しないというフェアネスはある。
+          <p>ただし、思った以上にさまざまな条件が課せられているため、実際にどのくらい広告に使われるのか/使えるのかは、正直筆者にはよくわからない。
+        </section>
+      </section>
+      <section>
+        <h2 id="standard-position"><a href="#standard-position">Standard Position</a></h2>
+        <p>Mozilla と Apple のポジションを引用しておく。
+        <section>
+          <h3 id="mozilla"><a href="#mozilla">Mozilla</a></h3>
+          <ul>
+            <li>
+              Mozilla: Negative
+              <ul>
+                <li><a href="https://mozilla.github.io/standards-positions/#topics" target=_blank>https://mozilla.github.io/standards-positions/#topics</a>
+              </ul>
+            </li>
+          </ul>
+          <blockquote>
+            <p>Mozilla is unable to see a way to make the Topics API work from a privacy standpoint.
+            <p>Though the information the API provides is small,
+            <p>our belief is that this is more likely to reduce the usefulness of the information for advertisers
+            <p>than it provides meaningful protection for privacy.
+            <p>Unfortunately, it is hard to identify concrete ways in which this might be improved.
+          </blockquote>
+        </section>
+        <section>
+          <h3 id="safari"><a href="#safari">Safari</a></h3>
+          <ul>
+            <li>
+              Safari: Oppose
+              <ul>
+                <li><a href="https://github.com/WebKit/standards-positions/issues/111" target=_blank>https://github.com/WebKit/standards-positions/issues/111</a>
+              </ul>
+            </li>
+          </ul>
+          <blockquote>
+            <p>Our analysis of the proposal assumes full per-top-level-site partitioning
+            <p>and no high entropy device fingerprinting such as IP address available cross-site.
+            <p>It&apos;s important that any pre-existing privacy deficiencies on the web
+            <p>not be used as excuses for privacy deficiencies in new specs and proposals.
+          </blockquote>
+        </section>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
