@@ -38,7 +38,7 @@
 
 ![FedCM Account Chooser](fedcm-account-chooser.png)
 
-これを RP 側で呼び出すには、基本的には JS を多少呼び出せば対応できるため、 RP 側のコストはそこまで高くはないだろう。
+これを RP 側で呼び出すには、基本的には JS を多少呼び出せば対応できるため、 RP 側のコストはそこまで高くはないだろう。 API は Credential Management API の拡張として定義されている。
 
 ```js
 const credential = await navigator.credentials.get({
