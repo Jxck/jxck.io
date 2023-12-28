@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2023-12-29/fedcm.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 27 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-29/fedcm.html>
+  <meta property=og:title        content="3PCA 27 日目: FedCM | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 27 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 27 日目: FedCM | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2023-12-29T08:00:00+08:00",
+    "dateModified": "2023-12-29T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 27 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 27 日目: FedCM | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-29>2023-12-29</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-29>2023-12-29</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#federated-credential-management">Federated Credential Management</a>
+                <ol>
+                  <li><a href="#認証連携">認証連携</a>
+                  <li><a href="#fedcm-api">FedCM API</a>
+                  <li><a href="#iframe-からの呼び出し">iframe からの呼び出し</a>
+                </ol>
+                <li><a href="#standard-position">Standard Position</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <article>
+      <h1><a href="">3PCA 27 日目: FedCM</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 27 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今日は、散々壊れるユースケースとして解説してきた「認証連携」をカバーする FedCM について解説する。
+      </section>
+      <section>
+        <h2 id="federated-credential-management"><a href="#federated-credential-management">Federated Credential Management</a></h2>
+        <section>
+          <h3 id="認証連携"><a href="#認証連携">認証連携</a></h3>
+          <p>あるサイト(RP)の認証を、別のサイト(IDP)の認証で行いたい場合、両者の連携は 3rd Party Cookie で行われてきた。
+          <p>例えば、 RP に <code translate=no>&lt;iframe&gt;</code> で IDP を埋め込み、 IDP に対するログイン済みの Cookie があれば、その情報を JS で RP に渡して認証済みにするといった構成だ。
+          <p>これは、 <code translate=no>&lt;iframe&gt;</code> の中が Partition されているため、 SAA などを使わない限りアクセスできなくなった。 SAA が入る前の ITP 対策としてよく行われていたのは、一旦 IDP のページに遷移し、そこでジェスチャを発生させ、認証結果をクエリにつけて RP にリダイレクトバックする方法だった。詳細は過去の記事で解説している。
+          <p>これは SSO などでも使われており、 3rd Party Cookie を用いたユースケースとしてはかなりポジティブなものとして捉えられている。
+        </section>
+        <section>
+          <h3 id="fedcm-api"><a href="#fedcm-api">FedCM API</a></h3>
+          <p>このユースケースと、関連する認証周りをそのままブラウザ API に落とし込んだ提案として WebID があった、今は名前が変わって FedCM になっている。
+          <ul>
+            <li>
+              fedidcg/FedCM: A privacy preserving identity exchange Web API
+              <ul>
+                <li><a href="https://github.com/fedidcg/FedCM" target=_blank>https://github.com/fedidcg/FedCM</a>
+              </ul>
+            </li>
+          </ul>
+          <p>簡単に言えばブラウザに対して IDP に対するログインの処理を委譲できる。もしログイン済みでなければ IDP のログイン画面を表示し、そこからログインができる。(画像は Google のドキュメントから引用)
+          <p>
+            <picture>
+              <source type=image/avif srcset=fedcm-login-popup.avif?231228_162443>
+              <source type=image/webp srcset=fedcm-login-popup.webp?231228_162416>
+              <img loading=lazy decoding=async src=fedcm-login-popup.png?231228_041129 alt="fedcm-login-popup" width=650 height=419>
+            </picture>
+          </p>
+          <p>ブラウザが IDP に対して行うリクエストには Cookie が付与されるため、そのセッションの有無で認証を連携することができるのだ。もしログイン済みなら、そのアカウントをブラウザの UI で表示し、選択することができる。ブラウザのネイティブ UI だが多少はカスタマイズもできる。
+          <p>
+            <picture>
+              <source type=image/avif srcset=fedcm-account-chooser.avif?231228_162436>
+              <source type=image/webp srcset=fedcm-account-chooser.webp?231228_162400>
+              <img loading=lazy decoding=async src=fedcm-account-chooser.png?231228_040941 alt="FedCM Account Chooser" width=974 height=488>
+            </picture>
+          </p>
+          <p>これを RP 側で呼び出すには、基本的には JS を多少呼び出せば対応できるため、 RP 側のコストはそこまで高くはないだろう。 API は Credential Management API の拡張として定義されている。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+          <pre class=js data-code=js><code translate=no class=language-js>const credential = await navigator.credentials.get({
+  identity: {
+    providers: [
+      {
+        configURL: &quot;https://idp.example/config&quot;
+        clientId: &quot;https://rp.example&quot;,
+        nonce
+      }
+    ]
+  },
+  mediation: &quot;optional&quot;
+})
+const { token } = credential
+console.log({ token })</code></pre>
+          <p>この API を呼ぶと、裏でブラウザは IDP へリクエストを送り必要な情報を収集する。そのため IDP 側は、 FedCM の <code translate=no>/.well-known</code> エンドポイントなどを追加する必要がある。
+          <p>既存の実装の上に FedCM とのダンスのための口を追加するような対応が必要になるだろう。
+          <p>まだ <code translate=no>chrome://fedcm-internals</code> が無いため、ブラウザが裏側で行なっている処理が見えにくく、エラーでハマるとデバッグが面倒だ。
+        </section>
+        <section>
+          <h3 id="iframe-からの呼び出し"><a href="#iframe-からの呼び出し">iframe からの呼び出し</a></h3>
+          <p>FedCM は <code translate=no>&lt;iframe&gt;</code> の中からも呼び出すことができる。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;iframe src=&quot;https://embedded.example&quot; allow=&quot;identity-credentials-get&quot;&gt;&lt;/iframe&gt;</code></pre>
+          <p>これは、例えば YouTube を埋め込んでいるがログイン済みにならず、課金しているのに広告が出てしまうといったケースをカバーできる可能性がある。
+          <p>つまり、認証を繋ぐだけであれば、 SAA や CHIPS に頼らずともユースケースを実現できる可能性がありそうだ。
+          <p>ただ、これがどこまでどういった制限をもっているのかは、正直まだ筆者にもあまりわかっておらず、実際に使っているケースもまだ見てないため、今後検証したい。
+        </section>
+      </section>
+      <section>
+        <h2 id="standard-position"><a href="#standard-position">Standard Position</a></h2>
+        <p>認証連携というユースケースがポジティブに捉えられているため、各ブラウザのポジションも悪くない。
+        <p>まず Mozilla は Positive だ。
+        <ul>
+          <li>
+            Mozilla: Positive
+            <ul>
+              <li><a href="https://mozilla.github.io/standards-positions/#fedcm" target=_blank>https://mozilla.github.io/standards-positions/#fedcm</a>
+            </ul>
+          </li>
+        </ul>
+        <p>コメントは珍しく長いので引用は割愛する。
+        <p>次に Webkit だが、まだポジションは決まってない。 FedCM に関する複数のポジションリクエストはあるが、態度を保留している。
+        <ul>
+          <li>
+            Webkit: N/A
+            <ul>
+              <li><a href="https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+fedcm" target=_blank>https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+fedcm</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ただ、 Standard Position が webkit-dev で問い合わせられていた頃は、 Positive な返事があった。
+        <ul>
+          <li>
+            [webkit-dev] Request for position on FedCM (was WebID)
+            <ul>
+              <li><a href="https://lists.webkit.org/pipermail/webkit-dev/2022-March/032162.html" target=_blank>https://lists.webkit.org/pipermail/webkit-dev/2022-March/032162.html</a>
+            </ul>
+          </li>
+        </ul>
+        <blockquote>
+          <p>We are generally supportive and interested in working together to make this coexist well with passkeys.
+        </blockquote>
+        <p>Apple も &quot;Sign In with Apple&quot; を持っているため、ユースケース自体は認めているのだろう。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
