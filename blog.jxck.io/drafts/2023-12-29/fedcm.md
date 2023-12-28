@@ -30,13 +30,13 @@
 - fedidcg/FedCM: A privacy preserving identity exchange Web API
   - https://github.com/fedidcg/FedCM
 
-簡単に言えばブラウザに対して IDP に対するログインの処理を委譲できる。もしログイン済みでなければ IDP のログイン画面を表示し、そこからログインができる。
+簡単に言えばブラウザに対して IDP に対するログインの処理を委譲できる。もしログイン済みでなければ IDP のログイン画面を表示し、そこからログインができる。(画像は Google のドキュメントから引用)
 
-![fedcm-login-popup](fedcm-login-popup.png)
+![fedcm-login-popup](fedcm-login-popup.png#650x419)
 
 ブラウザが IDP に対して行うリクエストには Cookie が付与されるため、そのセッションの有無で認証を連携することができるのだ。もしログイン済みなら、そのアカウントをブラウザの UI で表示し、選択することができる。ブラウザのネイティブ UI だが多少はカスタマイズもできる。
 
-![FedCM Account Chooser](fedcm-account-chooser.png)
+![FedCM Account Chooser](fedcm-account-chooser.png#974x488)
 
 これを RP 側で呼び出すには、基本的には JS を多少呼び出せば対応できるため、 RP 側のコストはそこまで高くはないだろう。 API は Credential Management API の拡張として定義されている。
 
