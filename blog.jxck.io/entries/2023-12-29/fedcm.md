@@ -57,7 +57,11 @@ const { token } = credential
 console.log({ token })
 ```
 
-一方 IDP 側は、 FedCM のための `/.well-known` エンドポイントなどを追加する必要はある。既存の実装の上に FedCM とのダンスのための口を追加するような対応が必要になるだろう。
+この API を呼ぶと、裏でブラウザは IDP へリクエストを送り必要な情報を収集する。そのため IDP 側は、 FedCM の `/.well-known` エンドポイントなどを追加する必要がある。
+
+既存の実装の上に FedCM とのダンスのための口を追加するような対応が必要になるだろう。
+
+まだ `chrome://fedcm-internals` が無いため、ブラウザが裏側で行なっている処理が見えにくく、エラーでハマるとデバッグが面倒だ。
 
 
 ### iframe からの呼び出し
@@ -86,9 +90,16 @@ FedCM は `<iframe>` の中からも呼び出すことができる。
 
 コメントは珍しく長いので引用は割愛する。
 
-次に Webkit だが、まだポジションは決まってない。 FedCM に関する複数のポジションリクエストがあり、コメントもまだあまり付いておらず、態度を保留しているようだ。
+次に Webkit だが、まだポジションは決まってない。 FedCM に関する複数のポジションリクエストはあるが、態度を保留している。
 
 - Webkit: N/A
   - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+fedcm
 
-Apple も "Sign In with Apple" を持っているため、ユースケース自体は認めていると思われる。
+ただ、 Standard Position が webkit-dev で問い合わせられていた頃は、 Positive な返事があった。
+
+- [webkit-dev] Request for position on FedCM (was WebID)
+  - https://lists.webkit.org/pipermail/webkit-dev/2022-March/032162.html
+
+> We are generally supportive and interested in working together to make this coexist well with passkeys.
+
+Apple も "Sign In with Apple" を持っているため、ユースケース自体は認めているのだろう。
