@@ -14,22 +14,25 @@
 
 グローバル企業であれば、各国の ccTLD でローカライズされたサービスを提供するのは一般的な運用だ。
 
-- example.jp
-- example.de
-- example.fr
+- google.co.jp
+- google.co.uk
+- google.de
+- google.fr
 - etc
 
-他にも、例えば用途毎にサブドメインを切る運用は一般的だろう。
+他にも、例えば用途毎にドメインを分ける運用も一般的だろう。
 
-- cdn.example.com
-- id.example.com
-- mail.example.com
+- google.com
+- googleusercontent.com
+- fonts.gstatic.com
 - etc
 
-また、筆者は jxck.io と mozaic.fm という全く別のドメインを持っている。このように別ドメインだが連携している場合もあるだろう。
+また、ドメインは全く別だが、同一組織の運営する別ブランのな場合もあるだろう。
 
-- jxck.io
-- mozaic.fm
+- office.com
+- live.com
+- microsoft.com
+- etc
 
 これらは全て Cross Site だ。
 
