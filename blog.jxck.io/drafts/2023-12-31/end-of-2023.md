@@ -7,9 +7,12 @@
 
 ## blog
 
+今年書いたのは全部で 43 本。今年はアドベントカレンダーを一人でやったので、過去最高のエントリ数になった。
+
+
 ### Entry
 
-今年はアドベントカレンダーを一人でやったので、過去最高のエントリ数になった。
+ブログは 15 本書いた。
 
 - 2023-01-07: [次世代 CSS 仕様が与えるコンポーネント時代の Web への影響](https://blog.jxck.io/entries/2023-01-07/new-css-capabilities-for-component.html)
 - 2023-02-28: [誇りを被った仕様の針に意図を通す](https://blog.jxck.io/entries/2023-02-28/jquery-has-forgiving-problem.html)
@@ -69,11 +72,11 @@
 
 ## mozaic.fm
 
+過去最多の 27 本を公開した。
+
 ### 通常回
 
-去年 Monthly が Platform / Ecosystem の 2 本体制になってから 1 年、そこに通常回を加えて過去最多の 27 本となった。
-
-そこに加えて、通常回は 2 本。ワールドカップ配信における日本のインターネットの限界の話と、 Coinhive 事件の裏側という、非常に興味深い 2 本になった。
+通常回は 2 本。ワールドカップ配信における日本のインターネットの限界の話と、 Coinhive 事件の裏側という、非常に興味深い 2 本になった。
 
 - [ep119 大規模ライブ配信 | mozaic.fm](https://mozaic.fm/episodes/119/live-streaming.html)
 - [ep123 Engineering Risk | mozaic.fm](https://mozaic.fm/episodes/123/engineering-risk.html)
@@ -90,6 +93,10 @@
 
 
 ### Monthly
+
+去年 Monthly が Platform / Ecosystem の 2 本体制になってから 1 年経った。 12 月も Yearly を 2 本撮ったが、どちらも楽しかった。
+
+やりたい形が軌道に乗った年だった。
 
 - [ep112 Monthly Ecosystem 202301](https://mozaic.fm/episodes/112/monthly-ecosystem-202301.html)
 - [ep113 Monthly Platform 202301](https://mozaic.fm/episodes/113/monthly-platform-202301.html)
