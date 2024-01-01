@@ -66,6 +66,7 @@
 - 2023-12-27: [3PCA 25 日目: Measurement](https://blog.jxck.io/entries/2023-12-27/measurement.html)
 - 2023-12-28: [3PCA 26 日目: Related Website Sets](https://blog.jxck.io/entries/2023-12-28/related-website-sets.html)
 - 2023-12-29: [3PCA 27 日目: FedCM](https://blog.jxck.io/entries/2023-12-29/fedcm.html)
+- 2023-12-30: [3PCA 最終日: 3rd Party Cookie 亡き後の Web はどうなるか?](https://blog.jxck.io/entries/2023-12-30/after-deprecation.html)
 
 25 日では収まらず 3 日オーバーしたし、次世代 Web カンファレンスの時期は出せなかったため遅延もあったが、最後はオンスケで完走できた。もう二度とやらない。
 
@@ -73,6 +74,7 @@
 ## mozaic.fm
 
 過去最多の 27 本を公開した。
+
 
 ### 通常回
 
