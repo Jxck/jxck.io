@@ -58,6 +58,8 @@ https://example.co.jp とそのサブドメインである https://admin.example
 
 これを Same Site と言い、 Same Site Cookie とは「eTLD+1 が同じである Same Site にしか送らない Cookie」を意味する。対して Cross Site Cookie は、まさしく 3rd Party Cookie を意味することになるのだ。
 
+![ドメインの関連: Same Origin/Same Site/Schemeful Same Site/Subset/3rd Party の違い](domain-relation.png#6166x5132)
+
 
 ### SameSite=Strict
 

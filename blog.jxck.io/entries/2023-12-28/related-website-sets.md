@@ -70,6 +70,8 @@ Chrome はこれを読み込んで、ドメインの関連を認識するのだ�
 
 もちろん、無尽蔵に登録できるわけではなく、様々な制限はあるが、それでも全く無いよりは良いため、登録が増えているのだろう。
 
+![ドメインの関連: Same Origin/Same Site/Schemeful Same Site/Subset/3rd Party の違い](domain-relation.png#6166x5132)
+
 
 ## Storage Access API
 

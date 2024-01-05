@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-21T08:00:00+08:00",
-    "dateModified": "2023-12-21T08:00:00+08:00",
+    "dateModified": "2024-01-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-21>2023-12-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-21>2023-12-21</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-01-06>2024-01-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -192,6 +192,13 @@ Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
         <h2 id="same-site-とは"><a href="#same-site-とは">Same Site とは</a></h2>
         <p><a href="https://example.co.jp" target=_blank>https://example.co.jp</a> とそのサブドメインである <a href="https://admin.example.co.jp" target=_blank>https://admin.example.co.jp</a> は、通常同じ管理者が運用しているだろうと考えられる。つまり eTLD+1 (<a href="https://example.co.jp/" target=_blank>https://example.co.jp/</a>)までが同じであれば、そのサブドメインも同じサイトだと考えることができる。
         <p>これを Same Site と言い、 Same Site Cookie とは「eTLD+1 が同じである Same Site にしか送らない Cookie」を意味する。対して Cross Site Cookie は、まさしく 3rd Party Cookie を意味することになるのだ。
+        <p>
+          <picture>
+            <source type=image/avif srcset=domain-relation.avif?240106_024217>
+            <source type=image/webp srcset=domain-relation.webp?240106_024140>
+            <img loading=lazy decoding=async src=domain-relation.png?240106_024026 alt="ドメインの関連: Same Origin/Same Site/Schemeful Same Site/Subset/3rd Party の違い" width=6166 height=5132>
+          </picture>
+        </p>
         <section>
           <h3 id="samesitestrict"><a href="#samesitestrict">SameSite=Strict</a></h3>
           <p>たとえば <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> で以下のような Set-Cookie を返した場合、この Cookie は厳密(Strict)に SameSite に閉じる。つまり <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> とそのサブドメインにしか送らないという指定になるのだ。
