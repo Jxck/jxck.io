@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-29T08:00:00+08:00",
-    "dateModified": "2023-12-29T08:00:00+08:00",
+    "dateModified": "2024-01-12T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-29>2023-12-29</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-29>2023-12-29</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-01-12>2024-01-12</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -168,14 +168,14 @@
         <h2 id="federated-credential-management"><a href="#federated-credential-management">Federated Credential Management</a></h2>
         <section>
           <h3 id="認証連携"><a href="#認証連携">認証連携</a></h3>
-          <p>あるサイト(RP)の認証を、別のサイト(IDP)の認証で行いたい場合、両者の連携は 3rd Party Cookie で行われてきた。
-          <p>例えば、 RP に <code translate=no>&lt;iframe&gt;</code> で IDP を埋め込み、 IDP に対するログイン済みの Cookie があれば、その情報を JS で RP に渡して認証済みにするといった構成だ。
-          <p>これは、 <code translate=no>&lt;iframe&gt;</code> の中が Partition されているため、 SAA などを使わない限りアクセスできなくなった。 SAA が入る前の ITP 対策としてよく行われていたのは、一旦 IDP のページに遷移し、そこでジェスチャを発生させ、認証結果をクエリにつけて RP にリダイレクトバックする方法だった。詳細は過去の記事で解説している。
+          <p>あるサイト(RP)の認証を別のサイト(IDP)の認証で行いたい場合、両者の連携は 3rd Party Cookie で行われてきた。
+          <p>例えば、 RP に IDP を <code translate=no>&lt;iframe&gt;</code> で埋め込み、 IDP に対するログイン済みの Cookie があれば、その情報を JS で RP に渡して認証済みにするといった構成だ。
+          <p>これは、 <code translate=no>&lt;iframe&gt;</code> の中が Partition されているため、 SAA などを使わない限りアクセスできなくなった。 SAA が入る前の ITP 対策としてよく行われていたのは、一旦 IDP のページに遷移し、そこでジェスチャを発生させ、認証結果をクエリに付けて RP にリダイレクトバックする方法だった。詳細は過去の記事で解説している。
           <p>これは SSO などでも使われており、 3rd Party Cookie を用いたユースケースとしてはかなりポジティブなものとして捉えられている。
         </section>
         <section>
           <h3 id="fedcm-api"><a href="#fedcm-api">FedCM API</a></h3>
-          <p>このユースケースと、関連する認証周りをそのままブラウザ API に落とし込んだ提案として WebID があった、今は名前が変わって FedCM になっている。
+          <p>このユースケースと、関連する認証周りをそのままブラウザ API に落とし込んだ提案として WebID があった。今は名前が変わって FedCM になっている。
           <ul>
             <li>
               fedidcg/FedCM: A privacy preserving identity exchange Web API
@@ -192,7 +192,7 @@
               <img loading=lazy decoding=async src=fedcm-login-popup.png?231228_041129 alt="fedcm-login-popup" width=650 height=419>
             </picture>
           </p>
-          <p>ブラウザが IDP に対して行うリクエストには Cookie が付与されるため、そのセッションの有無で認証を連携することができるのだ。もしログイン済みなら、そのアカウントをブラウザの UI で表示し、選択することができる。ブラウザのネイティブ UI だが多少はカスタマイズもできる。
+          <p>ブラウザが IDP に送信するリクエストには Cookie が付与されるため、セッションの有無で認証を連携することができるのだ。もしログイン済みなら、そのアカウントをブラウザの UI で表示し、選択することができる。ブラウザのネイティブ UI だが、多少のカスタマイズも可能だ。
           <p>
             <picture>
               <source type=image/avif srcset=fedcm-account-chooser.avif?231228_162436>
@@ -206,7 +206,7 @@
   identity: {
     providers: [
       {
-        configURL: &quot;https://idp.example/config&quot;
+        configURL: &quot;https://idp.example/config&quot;,
         clientId: &quot;https://rp.example&quot;,
         nonce
       }
@@ -216,7 +216,7 @@
 })
 const { token } = credential
 console.log({ token })</code></pre>
-          <p>この API を呼ぶと、裏でブラウザは IDP へリクエストを送り必要な情報を収集する。そのため IDP 側は、 FedCM の <code translate=no>/.well-known</code> エンドポイントなどを追加する必要がある。
+          <p>この API を呼び出すと、ブラウザは裏で IDP にリクエストを送信し、必要な情報を収集する。そのため、IDP 側は FedCM のための <code translate=no>/.well-known</code> エンドポイントなどを追加する必要がある。
           <p>既存の実装の上に FedCM とのダンスのための口を追加するような対応が必要になるだろう。
           <p>まだ <code translate=no>chrome://fedcm-internals</code> が無いため、ブラウザが裏側で行なっている処理が見えにくく、エラーでハマるとデバッグが面倒だ。
         </section>
