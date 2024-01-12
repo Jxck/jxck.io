@@ -14,18 +14,18 @@
 
 ### 認証連携
 
-あるサイト(RP)の認証を、別のサイト(IDP)の認証で行いたい場合、両者の連携は 3rd Party Cookie で行われてきた。
+あるサイト(RP)の認証を別のサイト(IDP)の認証で行いたい場合、両者の連携は 3rd Party Cookie で行われてきた。
 
-例えば、 RP に `<iframe>` で IDP を埋め込み、 IDP に対するログイン済みの Cookie があれば、その情報を JS で RP に渡して認証済みにするといった構成だ。
+例えば、 RP に IDP を `<iframe>` で埋め込み、 IDP に対するログイン済みの Cookie があれば、その情報を JS で RP に渡して認証済みにするといった構成だ。
 
-これは、 `<iframe>` の中が Partition されているため、 SAA などを使わない限りアクセスできなくなった。 SAA が入る前の ITP 対策としてよく行われていたのは、一旦 IDP のページに遷移し、そこでジェスチャを発生させ、認証結果をクエリにつけて RP にリダイレクトバックする方法だった。詳細は過去の記事で解説している。
+これは、 `<iframe>` の中が Partition されているため、 SAA などを使わない限りアクセスできなくなった。 SAA が入る前の ITP 対策としてよく行われていたのは、一旦 IDP のページに遷移し、そこでジェスチャを発生させ、認証結果をクエリに付けて RP にリダイレクトバックする方法だった。詳細は過去の記事で解説している。
 
 これは SSO などでも使われており、 3rd Party Cookie を用いたユースケースとしてはかなりポジティブなものとして捉えられている。
 
 
 ### FedCM API
 
-このユースケースと、関連する認証周りをそのままブラウザ API に落とし込んだ提案として WebID があった、今は名前が変わって FedCM になっている。
+このユースケースと、関連する認証周りをそのままブラウザ API に落とし込んだ提案として WebID があった。今は名前が変わって FedCM になっている。
 
 - fedidcg/FedCM: A privacy preserving identity exchange Web API
   - https://github.com/fedidcg/FedCM
@@ -34,7 +34,7 @@
 
 ![fedcm-login-popup](fedcm-login-popup.png#650x419)
 
-ブラウザが IDP に対して行うリクエストには Cookie が付与されるため、そのセッションの有無で認証を連携することができるのだ。もしログイン済みなら、そのアカウントをブラウザの UI で表示し、選択することができる。ブラウザのネイティブ UI だが多少はカスタマイズもできる。
+ブラウザが IDP に送信するリクエストには Cookie が付与されるため、セッションの有無で認証を連携することができるのだ。もしログイン済みなら、そのアカウントをブラウザの UI で表示し、選択することができる。ブラウザのネイティブ UI だが、多少のカスタマイズも可能だ。
 
 ![FedCM Account Chooser](fedcm-account-chooser.png#974x488)
 
@@ -45,7 +45,7 @@ const credential = await navigator.credentials.get({
   identity: {
     providers: [
       {
-        configURL: "https://idp.example/config"
+        configURL: "https://idp.example/config",
         clientId: "https://rp.example",
         nonce
       }
@@ -57,7 +57,7 @@ const { token } = credential
 console.log({ token })
 ```
 
-この API を呼ぶと、裏でブラウザは IDP へリクエストを送り必要な情報を収集する。そのため IDP 側は、 FedCM の `/.well-known` エンドポイントなどを追加する必要がある。
+この API を呼び出すと、ブラウザは裏で IDP にリクエストを送信し、必要な情報を収集する。そのため、IDP 側は FedCM のための `/.well-known` エンドポイントなどを追加する必要がある。
 
 既存の実装の上に FedCM とのダンスのための口を追加するような対応が必要になるだろう。
 
