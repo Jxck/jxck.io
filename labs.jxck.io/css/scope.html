@@ -5,33 +5,77 @@
 
 <h1>@scope Labs</h1>
 
-<main>
-  <div id="red">
-    <p>red</p>
-  </div>
-  <div id="green">
-    <p>green</p>
-  </div>
-  <div id="red">
-    <p>blue</p>
-  </div>
-</main>
-
 <style>
-@scope (#red) {
-  p {
-    color: red;
+  body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
   }
-}
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    width: calc((300px * 4) + (20px * 3));
+    margin: 0 auto;
+  }
+  @scope (.card) {
+    :scope {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 3;
+      background-color: #eee;
+      border: solid 1px #ccc;
+      box-sizing: border-box;
+    }
+    h2 {
+      /* border-bottom: solid 4px #eee; */
+      padding: 0 1rem;
+    }
+    p {
+      color: red;
+      padding: 1rem;
+      margin: 0;
+      height: 4rem;
+      overflow: hidden;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+    }
+  }
 </style>
 
-
-<section data-scope="main-component">
-  <p data-scope="main-component">...<p>
-
-  <!-- sub-component root is in both scopes -->
-  <section data-scope="main-component sub-component">
-    <!-- children are only in the inner scope -->
-    <p data-scope="sub-component">...<p>
+<main class="container">
+  <section class="card">
+    <h2>Title</h2>
+    <img src="https://logo.jxck.io/jxck.png" width="300" height="300">
+    <p>logo of jxck</p>
   </section>
-</section>
+</main>
+<script>
+  const $ = document.querySelector.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  async function feed() {
+    const res = await fetch("https://blog.jxck.io/feeds/atom.xml")
+    const body = await res.text()
+    const parser = new DOMParser();
+    const rss = parser.parseFromString(body, "application/xml");
+    const entries = Array.from(rss.querySelectorAll("entry"))
+    return entries.slice(50, 60)
+  }
+
+  document.on("DOMContentLoaded", async () => {
+    const entries = await feed()
+
+    entries.forEach((entry) => {
+      console.log()
+      const $card = $('.card').cloneNode(true)
+      $card.querySelector("h2").textContent = entry.querySelector('title').textContent
+      const summary = entry.querySelector('summary').textContent
+      console.log(summary.split("。"))
+      $card.querySelector("p").textContent = summary
+      $('main').appendChild($card)
+    })
+  })
+</script>
