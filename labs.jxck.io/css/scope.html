@@ -47,7 +47,7 @@
 
 <main class="container">
   <section class="card">
-    <h2>Title</h2>
+    <h3>Title</h3>
     <img src="https://logo.jxck.io/jxck.png" width="300" height="300">
     <p>logo of jxck</p>
   </section>
@@ -57,10 +57,10 @@
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
   async function feed() {
-    const res = await fetch("https://blog.jxck.io/feeds/atom.xml")
+    const res = await fetch("atom.xml")
     const body = await res.text()
-    const parser = new DOMParser();
-    const rss = parser.parseFromString(body, "application/xml");
+    const parser = new DOMParser()
+    const rss = parser.parseFromString(body, "application/xml")
     const entries = Array.from(rss.querySelectorAll("entry"))
     return entries.slice(50, 60)
   }
@@ -70,12 +70,12 @@
 
     entries.forEach((entry) => {
       console.log()
-      const $card = $('.card').cloneNode(true)
-      $card.querySelector("h2").textContent = entry.querySelector('title').textContent
-      const summary = entry.querySelector('summary').textContent
+      const $card = $(".card").cloneNode(true)
+      $card.querySelector("h2").textContent = entry.querySelector("title").textContent
+      const summary = entry.querySelector("summary").textContent
       console.log(summary.split("。"))
       $card.querySelector("p").textContent = summary
-      $('main').appendChild($card)
+      $("main").appendChild($card)
     })
   })
 </script>
