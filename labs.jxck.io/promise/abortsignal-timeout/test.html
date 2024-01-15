@@ -1,0 +1,44 @@
+<div>
+  <button id="fetch">fetch</button>
+  <button id="cancel">cancel</button>
+</div>
+
+<div>
+<textarea id="log"></textarea>
+</div>
+
+<script>
+const $fetch = document.querySelector("#fetch");
+const $cancel = document.querySelector("#cancel");
+
+const cancelController = new AbortController();
+const cancelSignal = cancelController.signal;
+
+$fetch.addEventListener("click", async () => {
+  const timeoutController = new AbortController();
+  const timeoutSignal = timeoutController.signal;
+
+  // 1s でタイムアウト
+  const timeoutId = setTimeout(() => {
+    timeoutController.abort();
+  }, 1000);
+
+  cancelSignal.addEventListener("abort", () => {
+    timeoutController.abort();
+  });
+
+  try {
+    const res = await fetch("https://httpbin.org/delay/3", {
+      signal: timeoutSignal
+    });
+    console.log(res.ok);
+  } catch (err) {
+    console.error({ err });
+  }
+});
+
+$cancel.addEventListener("click", async () => {
+  cancelController.abort();
+});
+
+</script>
