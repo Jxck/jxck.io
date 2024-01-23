@@ -1,4 +1,4 @@
-# [web-exam] Web 技術年末試験 2023 講評 #web_exam2023
+# [web_exam] Web 技術年末試験 2023 講評 #web_exam2023
 
 ## Intro
 
