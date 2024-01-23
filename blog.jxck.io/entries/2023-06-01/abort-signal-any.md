@@ -372,21 +372,23 @@ async function processSIGINT() {
 また、フロントエンドで「タイムアウトかユーザのキャンセル操作で止めたい」といった場面は、以下のような書き方ができる。
 
 ```js
-async function cancelSignal($button, msec) {
+function cancelSignal($button, msec) {
   const timoutSignal = AbortSignal.timeout(msec)
 
   const controller = new AbortController()
   const userSignal = controller.signal
 
   // タイムアウトかボタンクリックでキャンセル
-  const conbinedSignal = AbortSignal.any([timoutSignal, userSignal])
+  const combinedSignal = AbortSignal.any([timoutSignal, userSignal])
 
   $button.addEventListener("click", () => {
     controller.abort()
-  }, { signal: conbinedSignal }) // どっちでもリスナーを消す
+  }, { signal: combinedSignal }) // どっちでもリスナーを消す
+
+  return combinedSignal;
 }
 
-function main() {
+async function main() {
   const $button = $(".button")
   const signal = cancelSignal($button, 1000)
 
