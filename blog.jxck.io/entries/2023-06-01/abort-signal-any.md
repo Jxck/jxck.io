@@ -101,8 +101,7 @@ function follow(perRequestController, rootSignal) {
 
   // 2. 親がすでに Abort していたら子を Abort してリターン
   if (rootSignal.aborted) {
-    perRequestController.abort()
-    return
+    return perRequestController.abort()
   }
 
   // 3. 親と子の連携
@@ -141,7 +140,7 @@ const controller = new AbortController()
 const signal = controller.signal
 
 eventTarget.addEventListener("foo", (e) => {
-    // signal が abort したらこのハンドラは削除される
+  // signal が abort したらこのハンドラは削除される
 }, { signal })
 ```
 
@@ -163,8 +162,7 @@ function follow(perRequestController, rootSignal) {
 
   // 2. 親がすでに Abort していたら子を Abort してリターン
   if (rootSignal.aborted) {
-    perRequestController.abort()
-    return
+    return perRequestController.abort()
   }
 
   // 3. 親と子の連携
@@ -357,7 +355,7 @@ Firefox は Positive だが実装はまだのようだ。
 まず基本的な使い方として、 Signal を安全に連結する方法が手に入ったため、 `AbortSignal.timeout()` のように、`AbortSignal` を返す API を実装するのは、非常に理にかなったものになる。例えば、先ほどの SIGINT の処理を、以下のように提供するイメージだ。
 
 ```js
-async function processSIGINT() {
+function processSIGINT() {
   const controller = new AbortController()
   const signal = controller.signal
 
