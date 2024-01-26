@@ -14,12 +14,12 @@
 AbortSignal によって、非同期処理のキャンセルが可能になった。例として、 Server 上での Fetch のタイムアウトの例を考えよう。
 
 ```js
-app.get("/entries", (req, res) => {
+app.get("/entries", async (req, res) => {
   const perRequestController = new AbortController()
   const perRequestSignal = perRequestController.signal
 
   // 1s でタイムアウト
-  const timeoutId= setTimeout(() => {
+  const timeoutId = setTimeout(() => {
     perRequestController.abort()
   }, 1000)
 
@@ -44,8 +44,7 @@ process.on("SIGINT", () => {
   rootController.abort()
 })
 
-
-app.get("/entries", (req, res) => {
+app.get("/entries", async (req, res) => {
   const perRequestController = new AbortController()
   const perRequestSignal = perRequestController.signal
 
@@ -55,7 +54,7 @@ app.get("/entries", (req, res) => {
   }, 1000)
 
   // SIGINT と連動
-  rootController.on("abort", () => {
+  rootSignal.addEventListener("abort", () => {
     perRequestController.abort()
   })
 
@@ -69,13 +68,13 @@ app.get("/entries", (req, res) => {
 
 さて、この実装には問題がある。
 
-Request の処理が終わっても `rootController` のハンドラはクリーンアップされないため、このコードでは Request ごとにハンドラを付与し続けることになる。そこに `perRequestController` の参照も残り続けるため、メモリーリークすることになる。
+Request の処理が終わっても `rootController` のハンドラはクリーンアップされないため、このコードでは Request ごとにハンドラが追加され続けることになる。そこに `perRequestController` の参照も残り続けるため、メモリーリークが発生する。
 
 `rootController.once()` にしても `SIGINT` が発火しない限り残るので意味はない。正しくは Response が正常に返された後に `rootController` (と、本来なら `setTimeout`) のハンドラを削除する必要がある。
 
-ところが、このミスは非常に多く発生し、特に `AbortSignal` を連携する場面では、親が子の参照を保持することによるメモリーリークは珍しいことではないようだ。
+しかし、このミスは非常に頻繁に発生し、特に `AbortSignal` を連携する場面では、親が子の参照を保持することによるメモリーリークは珍しいことではないようだ。
 
-実際 Node も `timer` の中で発生しており、それを直すと同時に、こうしたバグを防ぐため `maxListeners` というスレッショルドを実装したいという Issue が MS の Benjamin によって立てられた。
+実際、 Node.js でも`timer` の中でこの問題が発生しており、これを修正すると同時に、このようなバグを防ぐために `maxListeners` というスレッショルドを実装するという Issue が、 Microsoft の Benjamin によって立てられた。
 
 - Warn on EventTarget maxListeners > THRESHOLD · Issue #35990 · nodejs/node
   - https://github.com/nodejs/node/issues/35990
@@ -83,23 +82,23 @@ Request の処理が終わっても `rootController` のハンドラはクリー
 
 ## AbortController.prototype.follow(signal)
 
-スレッショルドを実装したところで、根本の問題は解決しない。そこで、標準の API でこの問題を解決できる方法へと議論が発展した。
+スレッショルドを実装したところで、根本的な問題は解決しない。そこで、標準の API でこの問題を解決するための方法へと議論が発展した。
 
 - Consider adding AbortController.prototype.follow(signal) · Issue #920 · whatwg/dom
   - https://github.com/whatwg/dom/issues/920
 
-理想的には、 Abort を連携する際に以下のようなコードが使われれば、メモリーリークは防ぐことができるというものだ。
+理想的には、以下のようなコードで Abort を連携することで、メモリーリークを防ぐことができるとされる。
 
 Issue で提示されたコードを、先ほどのサンプルに合わせて書くと以下のようになる。
 
 ```js
 function follow(perRequestController, rootSignal) {
-  // 1. 子がすでに Abort してたらリターン
+  // 1. 子がすでに Abort していた場合はリターン
   if (perRequestController.signal.aborted) {
     return
   }
 
-  // 2. 親がすでに Abort していたら子を Abort してリターン
+  // 2. 親がすでに Abort していた場合は子を Abort してリターン
   if (rootSignal.aborted) {
     return perRequestController.abort()
   }
@@ -110,8 +109,8 @@ function follow(perRequestController, rootSignal) {
     perRequestController.abort()
   }
 
-  // 3.2. 親が Abort したら、子も Abort
-  // once にすることで、 Abort 時は自動でハンドラを削除
+  // 3.2. 親が Abort したら子も Abort
+  // once にすることで、Abort 時は自動でハンドラを削除
   rootSignal.addEventListener("abort", onAbort, { once: true })
 
   // 3.3. 子が Abort したら親からハンドラを削除
@@ -121,10 +120,9 @@ function follow(perRequestController, rootSignal) {
 }
 ```
 
-書いてみればそのままだが、徹底するのは難しいタイプのコードだ。 API として提供するのは一定の価値があるだろう。
+書いてみればそのままだが、徹底するのは難しいタイプのコードだ。 API として提供する価値はあるだろう。
 
-このころは、 `AbortController.prototype.follow(signal)` という名前がついていた。
-
+このころは、 `AbortController.prototype.follow(signal)` という名前が付けられていた。
 
 ## AbortSignal in addEventListener
 
@@ -212,7 +210,7 @@ app.get("/entries", (req, res) => {
 })
 ```
 
-この `fetch()` のタイムアウト、かなり頻出処理でありながら、毎回書くのは非常に面倒だ。本来なら `fetch(url, {timeout: 1000})` などと書きたいところで、そのような要望は定期的にあった。
+この `fetch()` のタイムアウトは、かなり頻出処理でありながら、毎回書くのは非常に面倒だ。本来なら `fetch(url, {timeout: 1000})` などと書きたいところで、そのような要望は定期的にあった。
 
 しかし、 `fetch()` だけタイムアウトできても汎用的にはならないため(というか、それもあって `fetch()` 策定中に `AbortSignal` が生まれた)、より汎用的なのはタイムアウト用の `AbortSignal` を生成することだ。
 
@@ -221,7 +219,7 @@ app.get("/entries", (req, res) => {
 - Introduce AbortSignal.timeout() by domenic · Pull Request #1032 · whatwg/dom
   - https://github.com/whatwg/dom/pull/1032
 
-これを使うと、以下のようにかなりすっきり実装できる。
+これを使うと、以下のようにかなりすっきりと実装できる。
 
 ```js
 app.get("/entries", (req, res) => {
@@ -245,7 +243,7 @@ rootController.on("abort", () => {
 })
 ```
 
-直接 `timeoutSignal` を作っているため `perRequestController` 相当がなくなっている。これでは、 `SIGINT` とタイムアウトが連携できない。
+直接 `timeoutSignal` を作っているため、`perRequestController` 相当のものがなくなっている。これでは、 `SIGINT` とタイムアウトが連携できない。
 
 実は、この `AbortSignal.timeout()` の策定の時点で、前述の「Signal の連結」を行う API の構想が進みつつあったのだ。
 
@@ -280,7 +278,7 @@ app.get("/entries", (req, res) => {
   }, 1000)
 
   // SIGINT と連結した Signal を生成
-  const combinedSignal = AbortSignal.any([rootSignal, perRequestSignal])
+  const combinedSignal = AbortSignal.any([ rootSignal, perRequestSignal ])
 
   const entries = await fetch("https://api.example/entries", { signal: combinedSignal })
 
@@ -310,7 +308,7 @@ app.get("/entries", (req, res) => {
   const timeoutSignal = AbortSignal.timeout(1000)
 
   // SIGINT と連結した Signal を生成
-  const combinedSignal = AbortSignal.any([rootSignal, timeoutSignal])
+  const combinedSignal = AbortSignal.any([ rootSignal, timeoutSignal ])
 
   const entries = await fetch("https://api.example/entries", { signal: combinedSignal })
 
@@ -349,7 +347,7 @@ Firefox は Positive だが実装はまだのようだ。
 
 - `AbortSignal` in `addEventListener`
 - `AbortSignal.timeout()`
-- `AbortSginal.any()`
+- `AbortSignal.any()`
 - `AbortSignal.throwIfAborted()`
 
 まず基本的な使い方として、 Signal を安全に連結する方法が手に入ったため、 `AbortSignal.timeout()` のように、`AbortSignal` を返す API を実装するのは、非常に理にかなったものになる。例えば、先ほどの SIGINT の処理を、以下のように提供するイメージだ。
@@ -371,13 +369,13 @@ function processSIGINT() {
 
 ```js
 function cancelSignal($button, msec) {
-  const timoutSignal = AbortSignal.timeout(msec)
+  const timeoutSignal = AbortSignal.timeout(msec)
 
   const controller = new AbortController()
   const userSignal = controller.signal
 
   // タイムアウトかボタンクリックでキャンセル
-  const combinedSignal = AbortSignal.any([timoutSignal, userSignal])
+  const combinedSignal = AbortSignal.any([ timoutSignal, userSignal ])
 
   $button.addEventListener("click", () => {
     controller.abort()
