@@ -2,7 +2,7 @@
 type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep140.mp3
-published_at: 140
+published_at: 2024-01-28
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
