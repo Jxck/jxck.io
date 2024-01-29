@@ -9,11 +9,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-04-16/stale-while-revalidate.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-04-16T08:00:00+08:00",
-    "dateModified": "2023-11-16T08:00:00+08:00",
+    "dateModified": "2022-11-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,30 +91,30 @@
   </script>
 
   <title>Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?230926_134917>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
-        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
-        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
-        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
-        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-04-16>2016-04-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-11-16>2023-11-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -169,7 +169,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
     <article>
       <h1><a href="">Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新</a></h1>
       <section>
@@ -210,7 +210,7 @@
           <p>そこで、現実的には期間を長く、推奨される最大値の <em>1 年</em> などを指定し、更新があったらそのリソースの URL を変更するという運用がよく行われる。
           <p>例えば <code translate=no>production.min.js</code> を 1 年間ブラウザにキャッシュさせる。
           <p>この JS を <code translate=no>index.html</code> に指定する際は、以下のようにバージョンを含める。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;script src=&quot;production.min.js?ver=1&quot;&gt;&lt;/script&gt;</code></pre>
           <p>これで <code translate=no>ver=1</code> を参照している間はキャッシュが使われる。
           <p>もし JS が更新されたらバージョンを変えることで、 URL を以下のように変更する。
@@ -263,7 +263,7 @@
           <p>すると、 fetch したレスポンスは 3600s の間は <em>fresh</em> とみなされ、その期間はキャッシュヒットする。
           <p>しかし、 3600s をすぎるとキャッシュは <em>stale</em> とみなされ破棄し、次のリクエストで fetch が走る。
           <p>
-            <img loading=lazy decoding=async src=max-age.svg?231116_154951 alt="max-age の期間はキャッシュがヒットし、期間を過ぎると取得し直す" title="max-age header flow" width=552 height=352>
+            <img loading=lazy decoding=async src=max-age.svg?180105_115707 alt="max-age の期間はキャッシュがヒットし、期間を過ぎると取得し直す" title="max-age header flow" width=552 height=352>
           </p>
         </section>
         <section>
@@ -277,7 +277,7 @@
           <p><code translate=no>stale-while-revalidate</code> の時間が過ぎれば必ず fetch が発生するということは、従来設定していた <code translate=no>max-age</code> = <code translate=no>max-age</code> + <code translate=no>stale-while-revalidate</code> の時間と設定すれば、従来との差異はキャッシュの新しさだけになる。
           <p>したがって、この設定からであれば、導入はそこまで難しく無いと考えられる。
           <p>
-            <img loading=lazy decoding=async src=stale-while-revalidate.svg?231116_154951 alt="fresh で無くなってからも、 while-revalidate の期間は fetch に対し stale なキャッシュをヒットさせし、裏で更新する" title="stale-while-revalidate header flow" width=552 height=352>
+            <img loading=lazy decoding=async src=stale-while-revalidate.svg?180105_115707 alt="fresh で無くなってからも、 while-revalidate の期間は fetch に対し stale なキャッシュをヒットさせし、裏で更新する" title="stale-while-revalidate header flow" width=552 height=352>
           </p>
         </section>
         <section>
@@ -290,7 +290,7 @@
           <p>これにより、ブラウザのエラー画面が表示されるのを防ぐことができる。
           <p>もちろん、上記二つは組み合わせて使うことができる。
           <p>
-            <img loading=lazy decoding=async src=stale-if-error.svg?231116_154951 alt="fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる" title="stale-if-error header" width=552 height=352>
+            <img loading=lazy decoding=async src=stale-if-error.svg?180105_115707 alt="fresh で無くなってからも、オリジンがエラーを返す場合は stale なキャッシュをヒットさせる" title="stale-if-error header" width=552 height=352>
           </p>
         </section>
       </section>
@@ -311,7 +311,7 @@
         <p>
           <picture>
             <source type=image/avif srcset=stale-while-revalidate-demo.avif?231116_154951>
-            <source type=image/webp srcset=stale-while-revalidate-demo.webp?231116_154951>
+            <source type=image/webp srcset=stale-while-revalidate-demo.webp?220107_193959>
             <img loading=lazy decoding=async src=stale-while-revalidate-demo.gif?231116_154951 alt="stale-while-revalidate の期間はキャッシュを利用し、裏で更新が行われている" title="stale-while-revalidate demo gif" width=1000 height=510>
           </picture>
         </p>
@@ -396,7 +396,7 @@
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

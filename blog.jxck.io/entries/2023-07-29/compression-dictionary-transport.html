@@ -9,11 +9,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2023-07-29/compression-dictionary-transport.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-07-29T08:00:00+08:00",
-    "dateModified": "2023-11-16T08:00:00+08:00",
+    "dateModified": "2023-08-19T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,30 +91,30 @@
   </script>
 
   <title>Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?230926_134917>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
-        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
-        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
-        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
-        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-07-29>2023-07-29</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-11-16>2023-11-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-08-19>2023-08-19</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -159,7 +159,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
     <article>
       <h1><a href="">Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化</a></h1>
       <section>
@@ -178,7 +178,7 @@
       <section>
         <h2 id="brotli-の-dictionary"><a href="#brotli-の-dictionary">brotli の Dictionary</a></h2>
         <p>圧縮方式は、基本的に「同じ値が出てきたら、それらをまとめて小さく表現する」という方式が中心となる。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre><code translate=no># 繰り返しを数値で表現する場合
 from: aaaabbbbb
 to:   a4b5</code></pre>
@@ -415,20 +415,20 @@ $ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f
         <p>
           <picture>
             <source type=image/avif srcset=./dictionary.avif?231116_154951>
-            <source type=image/webp srcset=./dictionary.webp?231116_154951>
-            <img loading=lazy decoding=async src=./dictionary.png?231116_154951 alt="dictionary が取得されている devtools timeline のスクショ" width=3584 height=2108>
+            <source type=image/webp srcset=./dictionary.webp?230729_191825>
+            <img loading=lazy decoding=async src=./dictionary.png?230731_162900 alt="dictionary が取得されている devtools timeline のスクショ" width=3584 height=2108>
           </picture>
         </p>
         <p>次に、記事に遷移すると、コンテントネゴシエーションの結果 sbr が返されていることがわかる。
         <p>
           <picture>
             <source type=image/avif srcset=./compression.avif?231116_154951>
-            <source type=image/webp srcset=./compression.webp?231116_154951>
-            <img loading=lazy decoding=async src=./compression.png?231116_154951 alt="Content-Encoding sbr が取得されている devtools timeline のスクショ" width=3584 height=2106>
+            <source type=image/webp srcset=./compression.webp?230729_191825>
+            <img loading=lazy decoding=async src=./compression.png?230731_162900 alt="Content-Encoding sbr が取得されている devtools timeline のスクショ" width=3584 height=2106>
           </picture>
         </p>
         <p><a href="/entries/2023-06-18/cookie-store-api.html">前回の記事</a> の圧縮結果を比較すると、以下のようになっている。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?231116_154953">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?220306_111358">
         <figure>
           <figcaption>圧縮率の比較</figcaption>
           <table>
@@ -604,7 +604,7 @@ $ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

@@ -9,11 +9,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?231116_154953>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?231116_154953>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?231116_154953></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?231116_154953></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-09-22T08:00:00+08:00",
-    "dateModified": "2023-11-16T08:00:00+08:00",
+    "dateModified": "2022-01-27T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -91,30 +91,30 @@
   </script>
 
   <title>Private Relay と IP Blindness による Fingerprint 対策 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?230926_134917>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?231116_154953   title=blog   alt="blog logo" class=logo></a>
-        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?231116_154953 title=search alt=search></a>
-        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?231116_154953     title=up     alt="move to parent directory"></a>
-        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?231116_154953    title=rss    alt="rss feed"></a>
-        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?231116_154953 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?231116_154953   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?231116_154953>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?231116_154953>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-09-22>2021-09-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-11-16>2023-11-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -161,7 +161,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?231116_154953>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
     <article>
       <h1><a href="">Private Relay と IP Blindness による Fingerprint 対策</a></h1>
       <section>
@@ -230,8 +230,8 @@
         <p>
           <picture>
             <source type=image/avif srcset=private-relay.avif?231116_154951>
-            <source type=image/webp srcset=private-relay.webp?231116_154951>
-            <img loading=lazy decoding=async src=private-relay.png?231116_154951 alt="Private Relay のシーケンス図 - IETF の資料より" width=2164 height=1624>
+            <source type=image/webp srcset=private-relay.webp?220107_193959>
+            <img loading=lazy decoding=async src=private-relay.png?230731_162900 alt="Private Relay のシーケンス図 - IETF の資料より" width=2164 height=1624>
           </picture>
         </p>
         <p>Apple の資料によれば、 Private Relay が有効になると、 Ingress Proxy(前段) と Egress Proxy(後段) という 2 つ Proxy が割り当てられる。
@@ -253,16 +253,16 @@
           <p>
             <picture>
               <source type=image/avif srcset=ios15.avif?231116_154951>
-              <source type=image/webp srcset=ios15.webp?231116_154951>
-              <img loading=lazy decoding=async src=ios15.png?231116_154951 alt="iOS15 - iCloud から Private Relay の設定" width=531 height=944>
+              <source type=image/webp srcset=ios15.webp?220107_193959>
+              <img loading=lazy decoding=async src=ios15.png?230731_162900 alt="iOS15 - iCloud から Private Relay の設定" width=531 height=944>
             </picture>
           </p>
           <p>位置情報については以下の選択肢がある。 IP ジオロケーションについては後述するが、おそらく以下のような差だろう。
           <p>
             <picture>
               <source type=image/avif srcset=ios15-ipgeo.avif?231116_154951>
-              <source type=image/webp srcset=ios15-ipgeo.webp?231116_154951>
-              <img loading=lazy decoding=async src=ios15-ipgeo.png?231116_154951 alt="iOS15 - Private Relay のジオロケーション設定" width=531 height=944>
+              <source type=image/webp srcset=ios15-ipgeo.webp?220107_193959>
+              <img loading=lazy decoding=async src=ios15-ipgeo.png?230731_162900 alt="iOS15 - Private Relay のジオロケーション設定" width=531 height=944>
             </picture>
           </p>
           <ul>
@@ -273,7 +273,7 @@
         <section>
           <h3 id="挙動"><a href="#挙動">挙動</a></h3>
           <p>まず、無効状態で <code translate=no>https://jxck.io</code> に接続したところが以下だ。ちなみに SIM はラインモバイルを使用している。(IP アドレスは微妙に変えてある)
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?231116_154953">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre><code translate=no>2021/09/21 04:28:11.010 180.10.203.175 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>
           <p>次に Private Relay 有効状態だと以下のようになる。
           <pre><code translate=no>2021/09/21 04:40:07.430 2606:54c0:3b00:10::16:e1 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>
@@ -449,7 +449,7 @@
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?231116_154953>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
