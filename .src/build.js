@@ -838,6 +838,7 @@ async function podcast(files, params = { preview: false }) {
       --genre 'Podcast' \
       --add-image ../www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
       --to-v2.3 \
+      --preserve-file-times \
       ../${latest.audio_file}
     `.trim()))
   }
