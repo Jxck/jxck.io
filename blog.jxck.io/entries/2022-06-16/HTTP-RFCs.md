@@ -1,4 +1,4 @@
-# [HTTP][IETF] HTTP 関連 RFC が大量に出た話と 3 行まとめ
+# [http][ietf] HTTP 関連 RFC が大量に出た話と 3 行まとめ
 
 ## Intro
 
