@@ -1,6 +1,6 @@
 ---
 type: podcast
-tags: ["Yearly ecosystem"]
+tags: ["yearly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep137.mp3
 published_at: 2023-12-23
 guest: [@sakito](https://twitter.com/__sakito__)
