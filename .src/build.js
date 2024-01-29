@@ -47,6 +47,20 @@ export function cache_busting(path) {
 }
 
 /**
+ * Over Write File if modified
+ * @param {string} path
+ * @param {string} body
+ */
+export async function overWriteFile(path, body) {
+  const current = await readFile(path, { encoding: `utf-8` })
+
+  if (body === current) {
+    return console.log(`skip overwrite ${path}`)
+  }
+  return await writeFile(path, body)
+}
+
+/**
  * serialize description
  * @param {Node} node
  * @param {string} acc
@@ -193,7 +207,7 @@ function info_section({ published_at, guests, toc }) {
 
   // validate date format
   if (/20[1-2]\d-[0-1]\d-[0-3]\d/.test(published_at) === false) throw new Error(`${published_at} is invalid date format`)
-  
+
   const dl = new Node({
     name: `dl`,
     type: `block`,
@@ -693,7 +707,7 @@ async function blog(files, params = { preview: false }) {
       filename: entry_template_file,
     }
     const result = render(entry_template, context)
-    await writeFile(context.entry.target, result)
+    await overWriteFile(context.entry.target, result)
   }
 
   if (params.preview) return
@@ -723,15 +737,15 @@ async function blog(files, params = { preview: false }) {
     first: entries[0],
     dict_path
   })
-  await writeFile(`../blog.jxck.io/index.html`, index_result)
+  await overWriteFile(`../blog.jxck.io/index.html`, index_result)
 
   // build rss
   const rss_result = await renderFile(`./template/blog.atom.xml.ejs`, { entries })
-  await writeFile(`../blog.jxck.io/feeds/atom.xml`, rss_result)
+  await overWriteFile(`../blog.jxck.io/feeds/atom.xml`, rss_result)
 
   // build sitemap
   const sitemap_result = await renderFile(`./template/blog.sitemap.xml.ejs`, { entries })
-  await writeFile(`../blog.jxck.io/feeds/sitemap.xml`, sitemap_result)
+  await overWriteFile(`../blog.jxck.io/feeds/sitemap.xml`, sitemap_result)
 
   // build tags
   const tag_map = entries.reduce((acc, entry) => {
@@ -760,7 +774,7 @@ async function blog(files, params = { preview: false }) {
     version,
     indent,
   })
-  await writeFile(`../blog.jxck.io/tags/index.html`, tags_result)
+  await overWriteFile(`../blog.jxck.io/tags/index.html`, tags_result)
 }
 
 
@@ -841,7 +855,7 @@ async function podcast(files, params = { preview: false }) {
       filename: podcast_template_file,
     }
     const result = render(podcast_template, context)
-    await writeFile(episode.target, result)
+    await overWriteFile(episode.target, result)
   }
 
   if (params.preview) return
@@ -855,19 +869,19 @@ async function podcast(files, params = { preview: false }) {
     episodes,
     first: episodes[0],
   })
-  await writeFile(`../mozaic.fm/index.html`, result)
+  await overWriteFile(`../mozaic.fm/index.html`, result)
 
   // build rss
   const rss_result = await renderFile(`./template/podcast.rss2.xml.ejs`, { episodes })
-  await writeFile(`../feed.mozaic.fm/index.xml`, rss_result)
+  await overWriteFile(`../feed.mozaic.fm/index.xml`, rss_result)
 
   // build rss json
   const json_result = await renderFile(`./template/podcast.rss2.json.ejs`, { episodes })
-  await writeFile(`../feed.mozaic.fm/index.json`, json_result)
+  await overWriteFile(`../feed.mozaic.fm/index.json`, json_result)
 
   // build id3all
   const id3_result = await renderFile(`./template/podcast.id3all.ejs`, { episodes })
-  await writeFile(`../id3all.sh`, id3_result)
+  await overWriteFile(`../id3all.sh`, id3_result)
 }
 
 async function workbox() {
@@ -896,7 +910,7 @@ async function workbox() {
   ].join(`\n`)
 
   const replaced = js.replace(reg, () => fragment)
-  await writeFile(`../www.jxck.io/assets/js/workbox.js`, replaced)
+  await overWriteFile(`../www.jxck.io/assets/js/workbox.js`, replaced)
 }
 
 /**
