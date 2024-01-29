@@ -187,6 +187,9 @@ async function audio_duration(audio) {
 function info_section({ published_at, guests, toc }) {
   // console.log({ published_at, guests })
 
+  // validate date format
+  if (/20[1-2]\d-[0-1]\d-[0-3]\d/.test(published_at) === false) throw new Error(`${published_at} is invalid date format`)
+  
   const dl = new Node({
     name: `dl`,
     type: `block`,
