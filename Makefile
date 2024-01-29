@@ -85,11 +85,11 @@ SB = $(addsuffix .sb, $(ENTRIES))
 
 %.br: %
 	brotli -f $<
-	touch -r $< $@
+#	touch -r $< $@
 
 %.sb: %
 	brotli -f --dictionary=$(wildcard ./blog.jxck.io/dictionary/*dict) --suffix=.sb $<
-	touch -r $< $@
+# touch -r $< $@
 
 # 対象ファイルを圧縮
 comp: $(BR) $(SB)
