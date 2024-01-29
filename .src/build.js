@@ -118,6 +118,10 @@ function parse_yaml(str) {
           .match(/^\[(?<values>.*?)\]/).groups.values
           .split(`, `)
           .map((value) => value.match(/"(?<value>.*)"/).groups.value)
+          .map((tag) => {
+            if (/[A-Z]+/.test(tag)) throw new Error(`tag should be lowercase: ${tag}`)
+            return tag
+          })
         return acc
       }
       if (key === `guest`) {
@@ -436,6 +440,9 @@ function customize_heading(node) {
   // tag は optional
   const tags = Array.from(tag?.matchAll(/\[(?<tag>.*?)\]/g) ?? []).map((match) => {
     return match.groups.tag
+  }).map((tag) => {
+    if (/[A-Z]+/.test(tag)) throw new Error(`tag should be lowercase: ${tag}`)
+    return tag
   })
   node.children[0].text = title.trim()
   return { node, tags }
