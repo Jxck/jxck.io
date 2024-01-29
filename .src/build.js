@@ -829,7 +829,7 @@ async function podcast(files, params = { preview: false }) {
 
   if (params.preview === false) {
     // set id3
-    console.log(await promisify(exec)(`eyeD3 --remove-all ../${latest.audio_file}`))
+    console.log(await promisify(exec)(`eyeD3 --remove-all --preserve-file-times ../${latest.audio_file}`))
     console.log(await promisify(exec)(`
       eyeD3 --title "${latest.title}" \
       --track ${episodes.length} \
