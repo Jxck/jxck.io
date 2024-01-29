@@ -54,9 +54,9 @@ export function cache_busting(path) {
 export async function overWriteFile(path, body) {
   const current = await readFile(path, { encoding: `utf-8` })
 
-  if (body === current) {
-    return console.log(`skip overwrite ${path}`)
-  }
+  if (body === current) return
+
+  console.log(`overwrite ${path}`)
   return await writeFile(path, body)
 }
 
@@ -577,7 +577,7 @@ function customize_image(node, base) {
  * @returns {Promise.<Blog>}
  */
 async function parse_entry(entry) {
-  console.log(entry)
+  process.stdout.write("b")
   const md = await readFile(entry, { encoding: `utf-8` })
   const target = entry.replace(`.md`, `.html`)
   const canonical = target.replace(`../`, `https://`)
@@ -617,7 +617,7 @@ async function parse_entry(entry) {
  * @returns {Promise.<any>}
  */
 async function parse_episode(entry, order) {
-  console.log(entry.path)
+  process.stdout.write("m")
   const md = await readFile(entry.path, { encoding: `utf-8` })
   const target = entry.path.replace(`.md`, `.html`)
   const canonical = target.replace(`../`, `https://`)
@@ -687,6 +687,8 @@ async function parse_episode(entry, order) {
  * @param {BuildOption} params
  */
 async function blog(files, params = { preview: false }) {
+  console.log(`\ncompile blog entries: ${files.length}`)
+
   const entries = await Promise.all(
     files
       .sort()
@@ -796,6 +798,8 @@ async function blog(files, params = { preview: false }) {
  * @param {BuildOption} params
  */
 async function podcast(files, params = { preview: false }) {
+  console.log(`\ncompile podcast episodes: ${files.length}`)
+
   /**@type {Array.<Podcast>} */
   const paths = files.map((path) => {
     const [dot, mozaic, episodes, ep, file] = path.split(`/`)
@@ -829,6 +833,7 @@ async function podcast(files, params = { preview: false }) {
 
   if (params.preview === false) {
     // set id3
+    console.log("\n")
     console.log(await promisify(exec)(`eyeD3 --remove-all --preserve-file-times ../${latest.audio_file}`))
     console.log(await promisify(exec)(`
       eyeD3 --title "${latest.title}" \
