@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-01-28T08:00:00+08:00",
-    "dateModified": "2024-01-29T08:00:00+08:00",
+    "dateModified": "2024-01-31T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-01-28>2024-01-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-01-29>2024-01-29</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-01-31>2024-01-31</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -174,15 +174,15 @@
             </ul>
           </li>
         </ul>
-        <p>ストアやペイメントの緩和もあるが、ここでは Webkit に関する部分だけを抜粋し、どのような条件があるのかをまとめておく。
+        <p>ストアやペイメントの緩和もあるが、ここでは WebKit に関する部分だけを抜粋し、どのような条件があるのかをまとめておく。
         <p>筆者が公開情報を読んで解釈したものなので、内容は保証しない。
       </section>
       <section>
         <h2 id="前提"><a href="#前提">前提</a></h2>
-        <p>iOS/iPadOS に入れられるブラウザには、 Webkit を用いる必要があるという制限があった。
-        <p>つまり、App Store から Chrome や Firefox を入れても、それは PC にインストールできる Chromium や Gecko ベースではなく、 Webkit の上に実装されたもの。つまり、 UI だけが異なる Safari のようなものだった。
-        <p>従ってこれまで iPhone にインストールできた Chrome や Firefox は、 Chromium や Getcko に実装されていても、 Webkit が実装してない機能は使えなかったのだ。
-        <p>もし Webkit 以外のエンジンでブラウザを作っても、それを App Store に公開する際に申請で落とされることになる。これは、ブラウザという非常に重要なアプリの上で行われるユーザのアクティビティや、そのパフォーマンス体験を Apple が守るといった理由がある。もしストアや実装が自由になれば、マルウェア化したブラウザアプリの普及でユーザが被害を被る可能性が否定できないからだ。
+        <p>iOS/iPadOS に入れられるブラウザには、 WebKit を用いる必要があるという制限があった。
+        <p>つまり、App Store から Chrome や Firefox を入れても、それは PC にインストールできる Chromium や Gecko ベースではなく、 WebKit の上に実装されたもの。つまり、 UI だけが異なる Safari のようなものだった。
+        <p>従ってこれまで iPhone にインストールできた Chrome や Firefox は、 Chromium や Gecko に実装されていても、 WebKit が実装してない機能は使えなかったのだ。
+        <p>もし WebKit 以外のエンジンでブラウザを作っても、それを App Store に公開する際に申請で落とされることになる。これは、ブラウザという非常に重要なアプリの上で行われるユーザのアクティビティや、そのパフォーマンス体験を Apple が守るといった理由がある。もしストアや実装が自由になれば、マルウェア化したブラウザアプリの普及でユーザが被害を被る可能性が否定できないからだ。
         <p>一方、このような Apple の制限は、独占禁止法に抵触するという問題が指摘され、長い間調査と議論が行われてきた。一定の安全性は保たれるかもしれないが、自由にアプリを作成できず、健全な経済活動に寄与できてないというものだ。
         <p>今回は、特にこの分野に敏感な EU からの要請を飲んだ形で、 Apple が EU 限定で制限を緩和することになった。
       </section>
@@ -219,7 +219,7 @@
       </section>
       <section>
         <h2 id="browser-engine-entitlement"><a href="#browser-engine-entitlement">Browser Engine Entitlement</a></h2>
-        <p>EU において、 iOS17.4 から Webkit 以外のブラウザエンジンが利用可能になるというものだ。
+        <p>EU において、 iOS17.4 から WebKit 以外のブラウザエンジンが利用可能になるというものだ。
         <p>申請には、 2 つの種類があるとされている。
         <dl>
           <div>
@@ -241,7 +241,7 @@
           <h3 id="requirements"><a href="#requirements">Requirements</a></h3>
           <ul>
             <li>EU 圏 iOS のみ
-            <li>ブラウザを作るなら Webkit 版とは別バイナリで出す
+            <li>ブラウザを作るなら WebKit 版とは別バイナリで出す
             <li>
               最低限以下を満たすエンジンであること
               <ul>
@@ -290,8 +290,8 @@
             <li>App Privacy Report でのネットワークタグ付
             <li>Permission は一般的な Web 標準に準拠
           </ul>
-          <p>Cookie や IDFA も、基本的に Webkit ベースのものを維持する。今回の緩和で Chrome のシェアがまた広がったとしても Cookie は ITP 相当を求めている。
-          <p>Permission 周りは、条件や UI がまだブラウザ間や API ごとに揺れている部分もあるため、&quot;Follow commonly adopted web standards&quot; とあるが、それがなんなのかは変わっていくと思われる。そこを、 Webkit ベースに準拠するように求めることになるのだろう。
+          <p>Cookie や IDFA も、基本的に WebKit ベースのものを維持する。今回の緩和で Chrome のシェアがまた広がったとしても Cookie は ITP 相当を求めている。
+          <p>Permission 周りは、条件や UI がまだブラウザ間や API ごとに揺れている部分もあるため、&quot;Follow commonly adopted web standards&quot; とあるが、それがなんなのかは変わっていくと思われる。そこを、 WebKit ベースに準拠するように求めることになるのだろう。
         </section>
       </section>
       <section>
@@ -348,7 +348,7 @@
         <p>では、ユーザがわざわざ iPhone に Chromium Chrome や Gecko Firefox を入れるモチベーションはあるだろうか? 一般的に見れば、ユーザ側が機能の有無などで積極的に選択するかというと怪しい。あっても、常用アカウントの連携などといった外的要因の方が多いと思われる。
         <p>むしろ最悪の想定は、 Web サービスの開発者側が Chrome でしか見れないページなどを提供する可能性だ。iPhone でサイトを開いても、 Store へ誘導しインストールを求めるのは、無料である点で PayWall よりは敷居が低い。その結果、 Privacy Sandbox 系の API が動くなら、メディア系のサービスはそちらを強制したいかもしれないし、 Fugu 系の API が動けばデバイス機能を活用したいサービスはそちらに誘導したい。そこまで積極的な理由でなくても、サービス開発者にとって iOS Safari の評判は決して良かったとは言えないため、単にサポートブラウザを減らすことは、コストメリットに繋がるのを否定できない。Interop は、こうしたバランスの調整のための活動であり、既に一定の成果が出ているが、それでもやはり複数ブラウザの対応に苦労している開発者がいるのも事実だ。
         <p>近年の Safari のアップデートには、それまで音沙汰なかった機能が続々と追加されたように思うが、これもそうしたギャップをなるべく埋めた上でこの日を迎えたかったのではないかという邪推もできる。しかし、 API によっては Standard Position で否定され Safari には絶対に入らないことが決定済みなものもあるため、これを Chromium が提供できるとなると、その格差はスタンスよりも星取表で評価されてしまう可能性もあるだろう。
-        <p>今回の決定は、独占禁止法をベースとしたビジネス上のフェアネスに由来するものだ。それが Web というエコシステムに、長期的にどういう影響を与えるかとはまた別の視点が必要だ。 Apple は Webkit を必須にすべきだという気はないが、この後ろ盾が無くなった Apple が Webkit をどれだけ本気で育て、健全なシェア争いを繰り広げてくれるかはかなり重要になると思う。そして、サービス開発者についても、シェアやコストを理由に安易にサポートを狭めるようなことがないよう、 Interop などに Web 全体で取り組んでいくことも重要だと思う。
+        <p>今回の決定は、独占禁止法をベースとしたビジネス上のフェアネスに由来するものだ。それが Web というエコシステムに、長期的にどういう影響を与えるかとはまた別の視点が必要だ。 Apple は WebKit を必須にすべきだという気はないが、この後ろ盾が無くなった Apple が WebKit をどれだけ本気で育て、健全なシェア争いを繰り広げてくれるかはかなり重要になると思う。そして、サービス開発者についても、シェアやコストを理由に安易にサポートを狭めるようなことがないよう、 Interop などに Web 全体で取り組んでいくことも重要だと思う。
         <p>この話が「iPhone でのブラウザエンジンの選択が自由になった」という表面上の変化以上の大きな流れとして、今後の Web にどう影響していくか。はたまた全て杞憂で特に何ごともなく進んでいくか。 2024 年の重要なトピックとして、注視していきたい。
       </section>
     </article>
