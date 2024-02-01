@@ -34,6 +34,7 @@ sudo certbot certonly \
   -d reporting.jxck.io \
   -d http3.jxck.io \
   -d ipv6.jxck.io \
+  -d ipv4.jxck.io \
   -d note.jxck.io
   
   # -d publisher.labs.jxck.io \
