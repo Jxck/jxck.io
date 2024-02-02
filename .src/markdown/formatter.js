@@ -8,25 +8,6 @@ import * as process from "process"
 const FULL_HALF = /(?<full>[\p{sc=Hira}\p{sc=Kana}\p{sc=Han}]+)(?<half>[a-zA-Z0-9]+)/gu
 const HALF_FULL = /(?<half>[a-zA-Z0-9]+)(?<full>[\p{sc=Hira}\p{sc=Kana}\p{sc=Han}]+)/gu
 
-// https://github.com/tc39/proposal-relative-indexing-method#polyfill
-if (Array.prototype.at === undefined) {
-  Object.defineProperty(Array.prototype, "at", {
-    writable: true,
-    enumerable: false,
-    configurable: true,
-    value: function (/**@type {number}*/n) {
-      // ToInteger() abstract op
-      n = Math.trunc(n) || 0;
-      // Allow negative indexing from the end
-      if (n < 0) n += this.length;
-      // OOB access is guaranteed to return undefined
-      if (n < 0 || n >= this.length) return undefined;
-      // Otherwise, this is just normal property access
-      return this[n];
-    }
-  });
-}
-
 /**
  * 全角と半角の間にスペースを入れる
  * @param {string} text
