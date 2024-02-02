@@ -265,12 +265,7 @@ export function encode(node, option = {}) {
     const name = `h${node.level}`
     const text = node.children.map((child) => serialize(child)).join(``)
     const attr = node.attr
-
-    if (node.level === 1) {
-      return `${spaces(indent)}<h1${attr_str(attr)}>${text}</h1>\n`
-    } else {
-      return `${spaces(indent)}<${name}${attr_str(attr)}>${text}</${name}>\n`
-    }
+    return `${spaces(indent)}<${name}${attr_str(attr)}>${text}</${name}>\n`
   }
 
   /**
