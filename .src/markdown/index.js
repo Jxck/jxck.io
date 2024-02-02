@@ -47,7 +47,7 @@ export function hsc(str) {
  * @param {string} str
  * @returns {string}
  */
-function unescape(str) {
+export function unescape(str) {
   return str.replace(/\\([\*|\`|\!|\[|\]|\<|\>|\(|\)|])/g, `$1`)
 }
 
