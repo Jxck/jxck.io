@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-02-06/tc39-stage-2.7.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="TC39 の Stage 2 と 3 の間に、新しく Stage 2.7 が追加された。これはなんだろうと思った人が、検索で辿りつけるよう、その経緯と目的をまとめる。">
+  <meta name=keywords            content="tc39">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-02-06/tc39-stage-2.7.html>
+  <meta property=og:title        content="TC39 に Stage 2.7 が新設された | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="TC39 の Stage 2 と 3 の間に、新しく Stage 2.7 が追加された。これはなんだろうと思った人が、検索で辿りつけるよう、その経緯と目的をまとめる。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "TC39 に Stage 2.7 が新設された | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-02-06T08:00:00+08:00",
+    "dateModified": "2024-02-06T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "TC39 の Stage 2 と 3 の間に、新しく Stage 2.7 が追加された。これはなんだろうと思った人が、検索で辿りつけるよう、その経緯と目的をまとめる。"
+  }
+  </script>
+
+  <title>TC39 に Stage 2.7 が新設された | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?230926_134917>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-02-06>2024-02-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-02-06>2024-02-06</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#tc39">tc39</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#tc39-stages">TC39 Stages</a>
+                <li><a href="#communication-while-working-towards-stage-4">Communication while working towards Stage 4</a>
+                <li><a href="#reducing-wasted-effort-due-to-proposal-churn">Reducing wasted effort due to proposal churn</a>
+                <li><a href="#bikeshed">Bikeshed</a>
+                <li><a href="#new-stage-2.7">New Stage 2.7</a>
+                <li><a href="#outro">Outro</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">TC39 に Stage 2.7 が新設された</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>TC39 の Stage 2 と 3 の間に、新しく Stage 2.7 が追加された。
+        <p>これはなんだろうと思った人が、検索で辿りつけるよう、その経緯と目的をまとめる。
+      </section>
+      <section>
+        <h2 id="tc39-stages"><a href="#tc39-stages">TC39 Stages</a></h2>
+        <p>TC39 は、 ECMAScript (つまりまあ JS) の新機能を議論する Task Group だ。
+        <p>ここでは、比較的自由に新機能の提案がなされ、定期的に行われるミーティングでの議論や、実装からのフィードバックを経て、 Stage が上がっていく仕組みをとっている。
+        <p>旧来の Stage は 0~4 まであった。ざっくり言うと以下のようなものだ。
+        <dl>
+          <div>
+            <dt>Stage 0
+            <dd>ただドラフトが提案された状態、メンバーならだれでもできる。
+          </div>
+          <div>
+            <dt>Stage 1
+            <dd>仕様の責任者的な &quot;Champion&quot; が決まり、ユースケースやおおよその API が示され、それをもとに「TC39 で取り組む価値がある」と認められた状態
+          </div>
+          <div>
+            <dt>Stage 2
+            <dd>仕様(構文やマンティクス)を書き起こし、実装に必要な材料が揃った状態。
+          </div>
+          <div>
+            <dt>Stage 3
+            <dd>実際に JS エンジンなどに実装され、十分なテストも整備され、実装からのフィードバックを待つ状態
+          </div>
+          <div>
+            <dt>Stage 4
+            <dd>最低二つの実装があり、 Issue も全て解決し、承認された状態。次の ECMA 262 に取り込まれるのを待つだけ。
+          </div>
+        </dl>
+        <p>細かな条件や基準は、以下のドキュメントにまとめられている。
+        <ul>
+          <li>
+            The TC39 Process
+            <ul>
+              <li><a href="https://tc39.es/process-document/" target=_blank>https://tc39.es/process-document/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="communication-while-working-towards-stage-4"><a href="#communication-while-working-towards-stage-4">Communication while working towards Stage 4</a></h2>
+        <p>最初の提案は、 2023 年 5 月の TC39 meeting で提案された以下から始まる。
+        <ul>
+          <li>
+            Stage 3 Proposals and Implementors - Communication while working towards Stage 4
+            <ul>
+              <li><a href="https://github.com/msaboff/tc39/blob/master/Proposal%20Implementation%20Status.pdf" target=_blank>https://github.com/msaboff/tc39/blob/master/Proposal%20Implementation%20Status.pdf</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ここでは、 Array Grouping の作業が二転三転した経緯から振り返っている。
+        <p>簡単にまとめると、 Array Grouping は 2021/12 に Stage 3 になったが、そこから数回メソッド名が変更された。さらには互換性の問題で Prototype から Static メソッドに変えるため一度 Stage 3 から Stage 2 に Down Stage もしている。
+        <p>他の例では、現在作業中の Temporal は、 Stage 2 の段階でおおよその目的や API が決まっているにも関わらず、数年に渡って Normative Changes が継続的に発生し、その度に実装側にも修正が入ることになる。
+        <p>一方、この機能を各エンジンは実装し、リリースのスケジュールを組んだり、実際に Ship を予定したりもするのだ。
+        <p>実装があっての Stage 4 であるため、実装者は Stage 3 の仕様を実装する方向で進めるが、実際には Stage 3 だからといって「今すぐリリースしても大丈夫とは限らない」という微妙な仕様も存在するのが現状だ。そして、実装者はそこまで細かく自体を把握できずに、現状の仕様で Ship してしまう場合もある。
+        <p>そこで、各 Stage 3 の仕様に、メタ情報として「Ship しても大丈夫か?」というステータスを表示しようと言うのが、最初の提案だった。
+      </section>
+      <section>
+        <h2 id="reducing-wasted-effort-due-to-proposal-churn"><a href="#reducing-wasted-effort-due-to-proposal-churn">Reducing wasted effort due to proposal churn</a></h2>
+        <p>次の 7 月のミーティングでは、別の人が以下の提案をしている。
+        <ul>
+          <li>
+            reducing wasted effort due to proposal churn
+            <ul>
+              <li><a href="https://docs.google.com/presentation/d/1V3Fg6HVC-VA41YCu0Yhqynvqhsu5kVj7tiWuVfp8S90" target=_blank>https://docs.google.com/presentation/d/1V3Fg6HVC-VA41YCu0Yhqynvqhsu5kVj7tiWuVfp8S90</a>
+            </ul>
+          </li>
+        </ul>
+        <p>この提案は、別の人でありながら、先の提案と解決したい問題は同じだ。
+        <p>ここでは Stage 2 と 3 の間の行き来によるオーバーヘッドを減らすことにフォーカスしている。
+        <p>そもそも、 Stage 3 になった時点では Test262 は求められてないため、実装する人が一緒に Test262 を書きながら実装するというのが、現在の標準的なフローになっている。しかし、仕様に手戻りがあれば、実装および Test262 の修正など、実装側に大きな手戻りを発生させることになっている。
+        <p>そこで、 Stage 2 と 3 の間に、もう一つ以下のようなステージを用意してはどうか? というのがこの提案だ。
+        <dl>
+          <div>
+            <dt>New Stage
+            <dd>test262 などを整備する状態。簡単な Polyfill などはあってもいいが、エンジンへの本格実装のタイミングでは無い。
+          </div>
+        </dl>
+        <p>このステージで、スペックの整備と実装の開始の間を埋め、 Test262 の知見から Normative Changes をできる限り潰してから実装に入れるように吸収する。そして、 Test262 も最初の実装者に丸投げするのではなく、(完璧では無いにせよ) Champion が行うべきでは? という点も付け加えられている。
+        <p>この発想は、色々と議論があったが、概ね支持された。問題は Stage の名前だ。
+        <p>この時点では仮に Stage 2¾ と呼ばれていた。
+      </section>
+      <section>
+        <h2 id="bikeshed"><a href="#bikeshed">Bikeshed</a></h2>
+        <p>あとは想像通り Bikeshed だ。
+        <p>既存のステージに対する解釈の齟齬を防ぐためにも、 Stage を一個ずらして 0 ~ 5 にするといったことはできない。つまり、 2 と 3 の間にどういう名前にするかという自由闊達な議論が 11 月に行われた。
+        <p>議事録から出てきた案を拾ってまとめてみる。
+        <ul>
+          <li>Stage 2¾
+          <li>Stage e (2.718...)
+          <li>Stage 25 (既存は全部 10 倍する)
+          <li>Stage 2.b
+          <li>Stage 2B
+          <li>Stage pre-3
+          <li>Stage 2.5
+          <li>Stage 2.7
+          <li>Stage 2.9
+        </ul>
+        <p>そしてこの中で Temperature Check (投票) を行なったが、議事録を見る限り、 TC39 は投票に慣れてないために色々とごたついてたようだが、それでも一応 2.7 に落ち着いた。
+      </section>
+      <section>
+        <h2 id="new-stage-2.7"><a href="#new-stage-2.7">New Stage 2.7</a></h2>
+        <p>結果、最初に貼った Process Document は既に更新されており、 Stage 2.7 が追加されている。
+        <ul>
+          <li>
+            The TC39 Process
+            <ul>
+              <li><a href="https://tc39.es/process-document/" target=_blank>https://tc39.es/process-document/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ざっくりと言うと以下だ。
+        <dl>
+          <div>
+            <dt>Stage 0
+            <dd>ただドラフトが提案された状態、メンバーならだれでもできる。
+          </div>
+          <div>
+            <dt>Stage 1
+            <dd>仕様の責任者的な &quot;Champion&quot; が決まり、ユースケースやおおよその API が示され、それをもとに「TC39 で取り組む価値がある」と認められた状態
+          </div>
+          <div>
+            <dt>Stage 2
+            <dd>仕様(構文やマンティクス)を書き起こし、実装に必要な材料が揃った状態。
+          </div>
+          <div>
+            <dt>Stage 2.7
+            <dd><strong>仕様は固まり、実装する前にテストやプロトタイピングで実験する状態。</strong>
+          </div>
+          <div>
+            <dt>Stage 3
+            <dd>実際に JS エンジンなどに実装され、十分なテストも整備され、実装からのフィードバックを待つ状態
+          </div>
+          <div>
+            <dt>Stage 4
+            <dd>最低二つの実装があり、 Issue も全て解決し、承認された状態。次の ECMA 262 に取り込まれるのを待つだけ。
+          </div>
+        </dl>
+        <p>なお、既存の提案では、 Stage 3 で少しグダついている Decorator Metadata の仕様が、 2.7 に戻されることになった。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>TC39 の Stage に Stage 2.7 が新設された。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
