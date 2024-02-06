@@ -1,4 +1,4 @@
-import { readFile, writeFile, stat } from "fs/promises";
+import { readFile, writeFile, stat, open } from "fs/promises";
 import { readFileSync, statSync } from "fs"
 import { promisify } from "util"
 import { render } from "ejs"
@@ -52,12 +52,20 @@ export function cache_busting(path) {
  * @param {string} body
  */
 export async function overWriteFile(path, body) {
-  const current = await readFile(path, { encoding: `utf-8` })
-
-  if (body === current) return
-
-  console.log(`overwrite ${path}`)
-  return await writeFile(path, body)
+  try {
+    const current = await readFile(path, { encoding: `utf-8` })
+    if (body === current) return
+  } catch(err) {
+    const { code } = err
+    if (code === "ENOENT") {
+      // creating new file, do nothing
+    } else {
+      console.error(err)
+    }
+  } finally {
+    console.log(`overwrite ${path}`)
+    return await writeFile(path, body)
+  }
 }
 
 /**
