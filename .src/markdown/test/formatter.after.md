@@ -2,10 +2,6 @@
 
 ## message
 
-:::message
-これはメッセージ
-:::
-
-:::message alert
-これはアラート
-:::
+> this is block quote
+>
+> これはブロッククオート

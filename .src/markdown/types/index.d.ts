@@ -23,6 +23,12 @@ export function map(obj: Object): Map<string, string>;
  */
 export function hsc(str: string): string;
 /**
+ * unescape markdown syntax
+ * @param {string} str
+ * @returns {string}
+ */
+export function unescape(str: string): string;
+/**
  * @param {Node} node
  * @returns {string}
  */

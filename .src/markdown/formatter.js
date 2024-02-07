@@ -327,7 +327,10 @@ function serialize(node, option) {
   }
 
   if (name === `blockquote`) {
-    return `> ${children.join(`> `)}`
+    return children.map((line) => {
+      if (line === `\n`) return `>\n` // empty line
+      return `> ${line}`
+    }).join("")
   }
 
   if (name === `details`) {

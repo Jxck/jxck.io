@@ -487,7 +487,7 @@ export function encode(node, option = {}) {
     const name = node.name
     if (name === `text`) /*          */ return text(node, indent)
     if (name === `raw`) /*           */ return raw(node, indent)
-    if (name === `heading`) /*      */ return heading(node, indent)
+    if (name === `heading`) /*       */ return heading(node, indent)
     if (name === `section`) /*       */ return section(node, indent)
     if (name === `a`) /*             */ return a(node, indent)
     if (name === `pre`) /*           */ return pre(node, indent)
@@ -945,6 +945,7 @@ export function decode(md) {
 
     if (spaces.length > 1) throw new Error(`too many spaces in "${result.input}"`)
     if (text.endsWith(` `)) throw new Error(`too many spaces around "${result.input}"`)
+    if (spaces === ` ` && text == ``) throw new Error(`too many spaces at empty line in blockquote`)
 
     const blockquote = (() => {
       if (ast.name === `blockquote`) return ast
@@ -1578,7 +1579,7 @@ export function decode(md) {
     if (result = /^(?<indent> *)(?<number>\d+)\.(?<spaces> +)(?<text>.+)$/.exec(head)) return list(`ol`, result, rest, ast)
     if (result = /^(?<indent> *)\-(?<spaces> +)(?<text>.+)$/.exec(head)) /*         */ return list(`ul`, result, rest, ast)
     if (result = /^(\:)(?<spaces> +)(?<text>.+)$/.exec(head)) /*                    */ return dl(result, rest, ast)
-    if (result = /^(\>)(?<spaces> +)(?<text>.+)$/.exec(head)) /*                    */ return blockquote(result, rest, ast)
+    if (result = /^(\>)(?<spaces> *)(?<text>.*)$/.exec(head)) /*                    */ return blockquote(result, rest, ast)
     if (result = /^Caption: (?<caption>.+)$/.exec(head)) /*                         */ return table_caption(result, rest, ast)
     if (result = /^\|(?<row>.*)\|$/.exec(head)) /*                                  */ return table(result, rest, ast)
 
