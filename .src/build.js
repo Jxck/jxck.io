@@ -60,12 +60,11 @@ export async function overWriteFile(path, body) {
     if (code === "ENOENT") {
       // creating new file, do nothing
     } else {
-      console.error(err)
+      return console.error(err)
     }
-  } finally {
-    console.log(`overwrite ${path}`)
-    return await writeFile(path, body)
   }
+  console.log(`overwrite ${path}`)
+  return await writeFile(path, body)
 }
 
 /**
