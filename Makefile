@@ -18,7 +18,7 @@ draft:
 	cd .src && $(NODE) build.js draft
 
 fmt:
-	cd .src && $(NODE) build.js format
+	.src/markdown/formatter.js blog.jxck.io/entries/**/*.md
 
 install:
 	npm install
