@@ -85,7 +85,7 @@ Letter の中身はそこまで感情的な批判ではなく、存在や効果�
 
 AMP Letter が公開されるのとほぼ同時期、というかなんなら数日前に、タイミングを合わせたかのように AMP から以下のアナウンスがある。
 
-- [Improving URLs for AMP pages – Accelerated Mobile Pages Project](https://amphtml.wordpress.com/2018/01/09/improving-urls-for-amp-pages/)
+- [Improving URLs for AMP pages - Accelerated Mobile Pages Project](https://amphtml.wordpress.com/2018/01/09/improving-urls-for-amp-pages/)
 
 AMP の URL が google.com になる問題は、 WebPackaging (というか SXG) で解決していくという話だ。そもそも WebPackaging (SXG + WebBundle) の話が出始めたのは 2016 か 2017 年くらいだったと思う。 mozaic.fm の Monthly の初回 [ep26](https://mozaic.fm/episodes/26/monthly-web-201708.html) ではすでにしているが、それより前は細かく覚えていない。確か、突然のように MHTML の標準化みたいな話が出てきて、あれよあれよと WebPackaging の話が IETF で始まっていた気がする。
 
@@ -182,7 +182,7 @@ CWV という指標によって、「遅くないサイトである」という�
 
 「検索結果で優遇されるための要件」という責務の降りた AMP も、この「[WebComponent ベースのフレームワーク](https://amp.dev/documentation/guides-and-tutorials/start/bento_guide/?format=websites)」としていまだ健在だ。そこで、この Web Components ベースのフレームワークとしての AMP (AMP as Framework) をより汎用的に使えるように、 Web サイトを作る際に Next.js や Lit HTML などと並んで選択肢に上がるようなフレームワークにする、というのが AMP Project 自体が次に目指す方向として動き出しており、その目的地が Bento AMP だ。
 
-- [Use AMP Components everywhere – Announcing Bento Developer Preview – The AMP Blog](https://blog.amp.dev/2021/01/28/bento/)
+- [Use AMP Components everywhere - Announcing Bento Developer Preview - The AMP Blog](https://blog.amp.dev/2021/01/28/bento/)
 
 現状の AMP は、カルーセルやアコーディオンといった頻出 UI コンポーネントを持っていながら、 bundle された JS が前提だったり、 AMP が全体として Valid であることが前提になっていたりと、部分的に取り出して利用するのに適した作りになっていない面もあるため、そのへんも含めてより汎用的にし、さらにコンポーネントを充実させフレームワークとして育っていくのだろう。
 

@@ -290,7 +290,7 @@ AMP をやめる方法は基本は以下だ。
 - Presentation
 - Issues
 - Other
-  - Privacy-preserving instant loading for all web content – The AMP Blog
+  - Privacy-preserving instant loading for all web content - The AMP Blog
     - https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/
   - Get started with signed exchanges on Google Search - 検索セントラル
     - https://developers.google.com/search/docs/advanced/experience/signed-exchange?hl=ja#debug-the-google-sxg-cache

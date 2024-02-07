@@ -164,7 +164,7 @@ $ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15
     - https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/
 - Presentation
 - Issues
-  - 207750 – AVIF decoding support
+  - 207750 - AVIF decoding support
     - https://bugs.webkit.org/show_bug.cgi?id=207750
 - Other
   - https://caniuse.com/avif

@@ -124,6 +124,7 @@ function follow(perRequestController, rootSignal) {
 
 このころは、 `AbortController.prototype.follow(signal)` という名前が付けられていた。
 
+
 ## AbortSignal in addEventListener
 
 この議論と同じ頃、並行して `addEventListener` に `AbortSignal` を渡せるようにする提案が、同じく Benjamin から上がった。
