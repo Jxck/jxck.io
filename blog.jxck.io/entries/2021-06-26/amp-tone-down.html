@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-06-26T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-02-07T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-06-26>2021-06-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-02-07>2024-02-07</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -212,7 +212,7 @@
         <h2 id="webpackaging-と-sxg"><a href="#webpackaging-と-sxg">WebPackaging と SXG</a></h2>
         <p>AMP Letter が公開されるのとほぼ同時期、というかなんなら数日前に、タイミングを合わせたかのように AMP から以下のアナウンスがある。
         <ul>
-          <li><a href="https://amphtml.wordpress.com/2018/01/09/improving-urls-for-amp-pages/" target=_blank>Improving URLs for AMP pages – Accelerated Mobile Pages Project</a>
+          <li><a href="https://amphtml.wordpress.com/2018/01/09/improving-urls-for-amp-pages/" target=_blank>Improving URLs for AMP pages - Accelerated Mobile Pages Project</a>
         </ul>
         <p>AMP の URL が google.com になる問題は、 WebPackaging (というか SXG) で解決していくという話だ。そもそも WebPackaging (SXG + WebBundle) の話が出始めたのは 2016 か 2017 年くらいだったと思う。 mozaic.fm の Monthly の初回 <a href="https://mozaic.fm/episodes/26/monthly-web-201708.html" target=_blank>ep26</a> ではすでにしているが、それより前は細かく覚えていない。確か、突然のように MHTML の標準化みたいな話が出てきて、あれよあれよと WebPackaging の話が IETF で始まっていた気がする。
         <p>IETF の draft 見ると、 WebPackaging には PWA チームも興味があったようだけど、 SXG はやはり AMP のモチベーションが大きかったんじゃないだろうか。今思えば、事前に WebPackaging の話を進めながら、なんとかなりそうという段階で Letter に合わせて Answer を出せるように調整していたようにも見える。
@@ -275,7 +275,7 @@
         <p>あと、あまり話題にならないが、 AMP は現状「<em>世界でもっとも普及した WebComponents ベースのフレームワーク</em>」ということができるのではないだろうか。 <code translate=no>&lt;img&gt;</code> を <code translate=no>&lt;amp-img&gt;</code> にするだけで「画像読み込みのベストプラクティス」が適用されるが、その内部実装を気にする必要はない、というのは WebComponents が目指していた世界そのものであり、 AMP はそれを周辺エコシステムと様々な実装知見と合わせて、すでに 5 年程度の運用実績がある。 AMP のその点はもっと評価されてもいいと思う。
         <p>「検索結果で優遇されるための要件」という責務の降りた AMP も、この「<a href="https://amp.dev/documentation/guides-and-tutorials/start/bento_guide/?format=websites" target=_blank>WebComponent ベースのフレームワーク</a>」としていまだ健在だ。そこで、この Web Components ベースのフレームワークとしての AMP (AMP as Framework) をより汎用的に使えるように、 Web サイトを作る際に Next.js や Lit HTML などと並んで選択肢に上がるようなフレームワークにする、というのが AMP Project 自体が次に目指す方向として動き出しており、その目的地が Bento AMP だ。
         <ul>
-          <li><a href="https://blog.amp.dev/2021/01/28/bento/" target=_blank>Use AMP Components everywhere – Announcing Bento Developer Preview – The AMP Blog</a>
+          <li><a href="https://blog.amp.dev/2021/01/28/bento/" target=_blank>Use AMP Components everywhere - Announcing Bento Developer Preview - The AMP Blog</a>
         </ul>
         <p>現状の AMP は、カルーセルやアコーディオンといった頻出 UI コンポーネントを持っていながら、 bundle された JS が前提だったり、 AMP が全体として Valid であることが前提になっていたりと、部分的に取り出して利用するのに適した作りになっていない面もあるため、そのへんも含めてより汎用的にし、さらにコンポーネントを充実させフレームワークとして育っていくのだろう。
         <p>一方で他のフレームワークも、「普通に作れば遅くはならない」ような設計にするのが常識になりつつあり、そうであれば AMP よりも使い慣れたフレームワークが選ばれるだろう。 AMP には先行者利益があるとはいえ、競争はもっと熾烈になるとは思うが。
