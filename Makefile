@@ -1,21 +1,24 @@
 .PHONY: blog podcast comp gz br remove clean webp avif
 .SUFFIXES: .html .md .amp .amp.html .webp .avif .png .jpeg .gif
 
+NODE := $(DEV)/jxck.io/node_modules/.bin/bun
+
 build:
-	cd .src && node build.js build
+	cd .src && $(NODE) build.js build
 	make comp
 
 compile:
-	cd .src && node build.js build
+	$(NODE) -v
+	cd .src && $(NODE) build.js build
 
 preview:
-	cd .src && node build.js preview
+	cd .src && $(NODE) build.js preview
 
 draft:
-	cd .src && node build.js draft
+	cd .src && $(NODE) build.js draft
 
 fmt:
-	cd .src && node build.js format
+	cd .src && $(NODE) build.js format
 
 install:
 	npm install
