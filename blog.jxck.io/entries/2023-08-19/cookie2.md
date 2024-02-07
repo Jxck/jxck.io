@@ -145,16 +145,19 @@ IETF の理念として RFC 策定の目的は *De-jure* ではなく *De-facto*
 ここまでの流れを踏まえると、このような Charter になった意味がよくわかる。(意訳付きで引用)
 
 > The HTTP State Management Mechanism (aka Cookies) was originally created by Netscape Communications in their informal Netscape cookie specification ("cookie_spec.html"), from which formal specifications RFC 2109 and RFC 2965 evolved. The formal specifications, however, were never fully implemented in practice; RFC 2109, in addition to cookie_spec.html, more closely resemble real-world implementations than RFC 2965, even though RFC 2965 officially obsoletes the former. Compounding the problem are undocumented features (such as HTTPOnly), and varying behaviors among real-world implementations.
+>
 > Netscape の独自仕様を RFC 2109、 RFC 2965 と仕様化してきたが、全くと言っていいほど使われなかった。 RFC 2109 は RFC 2965 に Obsolete されたにもかかわらず、リアルワールドは RFC 2109 の方が体現してる。そのうえで、 HTTPOnly のように仕様化されてないけど、使われており、実装によって動作が違うものもある。
 > --- https://datatracker.ietf.org/doc/charter-ietf-httpstate/
 
 > Where commonalities exist in the most widely used implementations, the working group will specify the common behavior. Where differences exist among the most widely used implementations, the working group will document the variations and seek consensus to reduce variation by selecting among the most widely used variations.
+>
 > WG の仕事は以下
 > - 広く使われている実装間に共通点があるなら、その共通部分を仕様にする。
 > - 広く使われている実装間に差異があるなら、そのバリエーションをドキュメントにし、その中で最も使われているものを選ぶことでバリエーションを減らすためのコンセンサスを取る。
 > --- https://datatracker.ietf.org/doc/charter-ietf-httpstate/
 
 > The working group must not introduce any new syntax or new semantics not already in common use.
+>
 > WG は、実際に使われてない新しい構文やセマンティクスを勝手に導入してはならない。
 > --- https://datatracker.ietf.org/doc/charter-ietf-httpstate/
 
