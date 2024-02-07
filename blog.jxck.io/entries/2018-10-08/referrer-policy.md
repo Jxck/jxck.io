@@ -119,7 +119,7 @@ https://orange.trac.example.com/
 
 ```url
 https://ticket.orange.example.com/%7B%E7%A4%BE%E5%93%A1%E5%90%8D%7D/issue/xxxxxx/[%E7%A4%BE%E5%A4%96%E7%A7%98]1%E6%9C%8811%E6%97%A5%E3%81%AE%E3%83%97%E3%83%AC%E3%82%B9%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E5%8E%9F%E7%A8%BF
-// https://ticket.orange.example.com/{社員名}/issue/xxxxxx/[社外秘]1月11日のプレスリリース原稿
+// https://ticket.orange.example.com/{社員名}/issue/xxxxxx/[社外秘]１月１１日のプレスリリース原稿
 ```
 
 他にも、キーワード検索の結果から外部のページに飛べる場合、検索したキーワードが残る場合もある。

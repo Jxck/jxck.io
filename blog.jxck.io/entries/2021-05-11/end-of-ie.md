@@ -23,13 +23,13 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 
 ## 2018
 
-- **2018/07/18: Internet Explorer の今後について – Japan IE Support Team Blog**
+- **2018/07/18: Internet Explorer の今後について - Japan IE Support Team Blog**
   - https://social.msdn.microsoft.com/Forums/ja-JP/47290e24-fc66-4d3e-a2de-429643758d40/internet-explorer-12398201702446012395123881235612390?forum=edgeiesupportteamja&fbclid=IwAR3D0Yw4FEqGFAaOL4eYiTNSXloWKzJLqaOgTNMP3Jdk6WaY3s5oPEuLajo
   - http://web.archive.org/web/20180718022957/https://blogs.technet.microsoft.com/jpieblog/2018/07/18/internet-explorer-support/
   - 「Windows 10 においては、 Microsoft Edge と Internet Explorer というふたつのブラウザーが搭載されていますが、弊社としましては、 Internet Explorer との後方互換性が必要な業務 Web システムには Internet Explorer を利用いただき、 Internet Explorer でなければならない場合以外は Microsoft Edge をご利用いただくことを提案してきました。」
   - 「この考え方は今も基本的には変わりはありませんが、現在の Web アプリケーションが古いブラウザーである Internet Explorer 固有の機能に依存している状態であれば、そうした依存性を無くし、最新のブラウザーである Microsoft Edge で閲覧できるように見直していただくことを、今からご検討いただくようお伝えをしていくことが、私たちサポート チームの使命と考えています。」
   - 「Internet Explorer はいつまでサポートが提供されるのか?など、将来の予定についてお問い合せをいただいたとしても、大変恐縮ですが回答することはできません。ただ、世の中の大きな流れとして、 Web ブラウザーという観点では相互運用性を保ちつつも、最新の Web 標準の技術を取り入れる方向性となっていることをご認識いただき、引き続き Legacy Web から Modern Web への移行を十分に余裕をもった計画で検討を進める必要があるということを、今回の記事をきかっけに改めて意識をしていただけますと幸いです。」
-- 2018/11/26: Internet Explorer 11 のサポート終了のお知らせ – Zendesk ヘルプ
+- 2018/11/26: Internet Explorer 11 のサポート終了のお知らせ - Zendesk ヘルプ
   - [https://support.zendesk.com/hc/ja/articles/360002084367-Internet-Explorer-11 のサポート終了のお知らせ](https://support.zendesk.com/hc/ja/articles/4408822547098-Internet-Explorer-11%E3%81%AE%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B)
 
 
@@ -66,16 +66,16 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 
 ## 2020
 
-- **2020/01/16: 新たな年に新たなブラウザーを – 新しい Microsoft Edge はプレビューを終え、ダウンロード提供を開始 - Windows Blog for Japan**
+- **2020/01/16: 新たな年に新たなブラウザーを - 新しい Microsoft Edge はプレビューを終え、ダウンロード提供を開始 - Windows Blog for Japan**
   - https://blogs.windows.com/japan/2020/01/16/new-year-new-browser-the-new-microsoft-edge-is-out-of-preview-and-now-available-for-download/
   - Chromium ベースの Edge リリースアナウンス
   - (日本のみ確定申告を懸念し遅延した)
 - 2020/01/16: Internet Explorer 11(IE11)のサポート終了について - board
   - https://the-board.jp/blogs/news_end_of_support_for_ie11
-- **2020/01/19: Retiring Internet Explorer – text/plain**
+- **2020/01/19: Retiring Internet Explorer - text/plain**
   - https://textslashplain.com/2020/01/19/retiring-internet-explorer/
   - Eric Lawrence による回顧録と IE モードの話
-- 2020/06/01: Zendesk Chat:Internet Explorer 11 のサポート終了のお知らせ – Zendesk ヘルプ
+- 2020/06/01: Zendesk Chat:Internet Explorer 11 のサポート終了のお知らせ - Zendesk ヘルプ
   - https://support.zendesk.com/hc/ja/articles/360048439353-Zendesk-Chat-Internet-Explorer-11%E3%81%AE%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B
 - 2020/06/16  Bootstrap 5 alpha! | Bootstrap Blog
   - https://blog.getbootstrap.com/2020/06/16/bootstrap-5-alpha/
@@ -140,7 +140,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - https://workspaceupdates.googleblog.com/2021/02/reminder-ending-support-for-ie11-for.html
 - 2021/02/26: Internet Explorer サポート終了のお知らせ |マネーフォワード クラウド料金・契約
   - https://support.biz.moneyforward.com/valuepack/news/important/20210226.html
-- 2021/03/04: Discussion: Dropping support for IE11 – Make WordPress Core
+- 2021/03/04: Discussion: Dropping support for IE11 - Make WordPress Core
   - https://make.wordpress.org/core/2021/03/04/discussion-dropping-support-for-ie11/
   - IE11 でのアクセスはすでに 1% を下回っている
 - 2021/03/05: 2021 年 4 月以降における Internet Explorer への対応について | ミツエーリンクス
@@ -152,7 +152,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - [https://webclass.jp/blog/2021/03/18/webclass の internet-explorer サポート終了(2021 年 7 月末)のお知らせ](https://webclass.jp/blog/2021/03/18/webclass%e3%81%aeinternet-explorer%e3%82%b5%e3%83%9d%e3%83%bc%e3%83%88%e7%b5%82%e4%ba%86%ef%bc%882021%e5%b9%b47%e6%9c%88%e6%9c%ab%ef%bc%89%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/)
 - 2021/03/19: STUDIO サイトが Internet Explorer で閲覧できなくなります | STUDIO Blog
   - https://blog.studio.design/ja/posts/IE-support
-- 2021/03/19: Internet Explorer 11 への消極的対応について – カーリルのブログ
+- 2021/03/19: Internet Explorer 11 への消極的対応について - カーリルのブログ
   - https://blog.calil.jp/2021/03/ie11-deprecate-slowly.html
 - 2021/03/22: Internet Explorer サポート終了のお知らせ | News | BRANU 株式会社 | 建設 DX プラットフォーム
   - https://branu.jp/news/page/210322/
@@ -162,10 +162,10 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - https://info.lancers.jp/25512
 - 2021/03/25: Internet Explorer 対応終了のお知らせ|NINJA SIGN(忍者サイン)【公式】|note
   - https://note.com/ninjasign/n/nb579ba9d1b3a
-- 2021/03/26: WordPress to Drop Support for IE11 in Upcoming 5.8 or 5.9 Release – WordPress Tavern
+- 2021/03/26: WordPress to Drop Support for IE11 in Upcoming 5.8 or 5.9 Release - WordPress Tavern
   - https://wptavern.com/wordpress-to-drop-support-for-ie11-in-upcoming-5-8-or-5-9-release
   - https://ja.wordpress.org/2021/05/19/dropping-support-for-internet-explorer-11/
-- 2021/03/26: Internet Explorer 11 サポート終了に伴うバナー表示のお知らせ – HENNGE One ヘルプセンター
+- 2021/03/26: Internet Explorer 11 サポート終了に伴うバナー表示のお知らせ - HENNGE One ヘルプセンター
   - https://support.hdeone.com/hc/ja/articles/900006326923
 - 2021/04/01:【重要なお知らせ】 Internet Explorer サポート終了について - goo blog スタッフブログ
   - https://blog.goo.ne.jp/staffblog/e/6f4121c97f4dbab4c5bb0018d1fba65e
@@ -173,9 +173,9 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - https://intro.kimaroom.jp/news/news1385
 - 2021/04/02: Vue3 IE11 Support | vuejs/rfcs
   - https://github.com/vuejs/rfcs/blob/master/active-rfcs/0038-vue3-ie11-support.md
-- 2021/04/06:[重要なお知らせ]Internet Explorer 11 サポート終了のお知らせ – Hulu ヘルプセンター
+- 2021/04/06:[重要なお知らせ]Internet Explorer 11 サポート終了のお知らせ - Hulu ヘルプセンター
   - https://help.hulu.jp/hc/ja/articles/900005502846
-- 2021/04/12:【テレ東 BIZ Web サイト】 Internet Explorer サポート終了のお知らせ – テレ東 BIZ ヘルプセンター
+- 2021/04/12:【テレ東 BIZ Web サイト】 Internet Explorer サポート終了のお知らせ - テレ東 BIZ ヘルプセンター
   - https://help-txbiz.tv-tokyo.co.jp/hc/ja/articles/1500007334741
 - 2021/04/14: Internet Explorer サポート終了のお知らせ | みらいマルシェ
   - https://www.miraimarche.com/press/news/20210414
@@ -205,7 +205,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/internet-explorer-app-end-of-support/
 - 2021/05/20: Microsoft Edge 組み込みのサイト リスト マネージャーについて | Japan Developer Support Internet Team Blog
   - https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/edge-ie-mode-site-list-manager/
-- 2021/05/27: Internet Explorer: A Brief History – Ben Slivka
+- 2021/05/27: Internet Explorer: A Brief History - Ben Slivka
   - https://benslivka.com/2021/05/27/internet-explorer-a-brief-history/
 
 
@@ -222,35 +222,35 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 - List of APIs that will be available due to IE termination
   - https://github.com/progfay/benefit-from-end-of-ie
   - IE が終了することで使えるようになる API 一覧
-- 2021/06/15: 当社製品・サービスでのInternet Explorer 11サポート終了について | サイボウズからのお知らせ
+- 2021/06/15: 当社製品・サービスでの Internet Explorer 11 サポート終了について | サイボウズからのお知らせ
   - https://cs.cybozu.co.jp/2021/007430.html
-- 2021/06/15: 2022年6月「Internet Explorer」サポートが終了へ ～ サポートが継続する他のブラウザへの切り替えを ～ IPA 独立行政法人 情報処理推進機構
+- 2021/06/15: 2022 年 6 月「Internet Explorer」サポートが終了へ ～ サポートが継続する他のブラウザへの切り替えを ～ IPA 独立行政法人 情報処理推進機構
   - https://www.ipa.go.jp/security/anshin/mgdayori20210615.html
-- 2021/06/23: Internet Explorerサポート終了のお知らせ –Chatwork
+- 2021/06/23: Internet Explorer サポート終了のお知らせ - Chatwork
   - https://help.chatwork.com/hc/ja/articles/900007012223
 - **2021/06/25: Windows 11 の仕様 - Microsoft**
   - https://www.microsoft.com/ja-jp/windows/windows-11-specifications
   - 「Internet Explorer は無効になります。」
   - 「従来の Internet Explorer ベースの Web サイトやアプリケーションに直接アクセスできる「Internet Explorer モード (IE モード) 」を搭載した Microsoft Edge をご利用ください。」
-- 2021/07/13: Internet Explorerの対応を終了します - カクヨムからのお知らせ
+- 2021/07/13: Internet Explorer の対応を終了します - カクヨムからのお知らせ
   - https://kakuyomu.jp/info/entry/2021/07/13/125755
 - 2021/07/20: Deprecation of Internet Explorer Support - The AMP Blog
   - https://blog.amp.dev/2021/07/20/deprecation-of-internet-explorer-support/
 - 2021/08/04: Internet Explorer 11 サポート終了のお知らせ | ニコニコインフォ
   - https://blog.nicovideo.jp/niconews/155803.html
-- 2021/08: Internet Explorerサポート終了のご案内 - 少年ジャンプ＋α
+- 2021/08: Internet Explorer サポート終了のご案内 - 少年ジャンプ+α
   - https://shonenjumpplus.com/article/information_0818
-- 2021/09/07: Yahoo! JAPANの推奨ブラウザー
+- 2021/09/07: Yahoo! JAPAN の推奨ブラウザー
   - https://support.yahoo-net.jp/PccYjcommon/s/article/H000011350
 - 2021/10/02: Google の検索結果
   - https://twitter.com/cramforce/status/1443962459723755533
-- 2021/11/09: Internet Explorerのサポートを終了いたします - Qiita Blog
+- 2021/11/09: Internet Explorer のサポートを終了いたします - Qiita Blog
   - https://blog.qiita.com/end-ie11-support/
 - 2021/11: クラウドサイン ヘルプセンター
   - https://help.cloudsign.jp/ja/articles/2570393-クラウドサインの推奨環境を教えてください
-- 2022/01/31: 【重要なお知らせ：IE11 サポート終了について】 日経電子版ウェブサイト
+- 2022/01/31: 【重要なお知らせ:IE11 サポート終了について】 日経電子版ウェブサイト
   - https://twitter.com/webkanpr/status/1488070799286312962
-- 2022/02/16: ヤフーのIE11 サポート終了の進め方 - Yahoo! JAPAN Tech Blog
+- 2022/02/16: ヤフーの IE11 サポート終了の進め方 - Yahoo! JAPAN Tech Blog
   - https://techblog.yahoo.co.jp/entry/2022021630265506/
 
 
@@ -258,13 +258,13 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 
 - 2022/06/15: Internet Explorer 11 has retired and is officially out of support -what you need to know | Windows Experience Blog
   - https://blogs.windows.com/windowsexperience/2022/06/15/internet-explorer-11-has-retired-and-is-officially-out-of-support-what-you-need-to-know/
-- 2022/06/16: 「Internet Explorer」サポート終了も「IEモード」で“ゾンビ化”　本当の混乱は7年後？ - ITmedia ビジネスオンライン
+- 2022/06/16: 「Internet Explorer」サポート終了も「IE モード」で"ゾンビ化" 本当の混乱は 7 年後? - ITmedia ビジネスオンライン
   - https://www.itmedia.co.jp/business/articles/2206/16/news102.html#utm_term=share_sp
-- 2022/06/16: 「Internet Explorer」サポート終了に自治体「なんで急に」報道　Twitterで「さすがに草」などの声（ITmedia ビジネスオンライン） - Yahoo!ニュース
+- 2022/06/16: 「Internet Explorer」サポート終了に自治体「なんで急に」報道 Twitter で「さすがに草」などの声(ITmedia ビジネスオンライン) - Yahoo!ニュース
   - https://news.yahoo.co.jp/articles/51c133f4a6b7e3ff77d1e6b1de2ea8756271838e
-- 2022/06/23: Internet Explorerのサポートが終了：今後も続く脅威とは？ | WIRED.jp
+- 2022/06/23: Internet Explorer のサポートが終了:今後も続く脅威とは? | WIRED.jp
   - https://wired.jp/article/internet-explorer-dead-security-risks/?utm_source=twitter&utm_medium=social
-- 2022/07/01: さらば、Internet Explorer！ | Vivaldi Browser
+- 2022/07/01: さらば、Internet Explorer! | Vivaldi Browser
   - https://vivaldi.com/ja/blog/good-riddance-internet-explorer/
 
 
