@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+
+<title>Promise.withResolvers Labs | labs.jxck.io</title>
+
+<h1>Promise.withResolvers Labs</h1>
+
+<button>request</button>
+
+<p>see the console</p>
+
+<script>
+  async function request() {
+    const { promise, resolve, reject } = Promise.withResolvers()
+    document.querySelector("button").addEventListener("click", async () => {
+      try {
+        const res = await fetch(".")
+        const body = res.text()
+        resolve(body)
+      } catch (err) {
+        reject(err)
+      }
+    })
+    return promise
+  }
+
+  async function request() {
+    return new Promise((resolve, reject) => {
+      document.querySelector("button").addEventListener("click", async () => {
+        try {
+          const res = await fetch(".")
+          const body = res.text()
+          resolve(body)
+        } catch (err) {
+          reject(err)
+        }
+      })
+    })
+  }
+
+  async function main() {
+    console.log(await request())
+  }
+
+  main()
+</script>
