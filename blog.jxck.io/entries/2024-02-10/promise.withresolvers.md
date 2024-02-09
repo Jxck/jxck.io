@@ -114,3 +114,35 @@ async function request() {
 イベントのハンドリングを Promise で包んで返すパターンは一般的であるため、今後こうした処理を書く場合に導入が検討できるだろう。
 
 また、同等の Utility を用いてる場合は、置き換えを検討できる。
+
+
+## DEMO
+
+動作するデモを以下に用意した。
+
+- Promise.withResolvers Labs
+  - https://labs.jxck.io/promise/withResolvers/
+
+
+## Resources
+
+- Spec
+  - ES Promise.withResolvers (2023)
+    - https://tc39.es/proposal-promise-with-resolvers/
+- Explainer
+  - tc39/proposal-promise-with-resolvers
+    - https://github.com/tc39/proposal-promise-with-resolvers
+- Requirements Doc
+- Mozilla Standard Position
+- Webkit Position
+- TAG Design Review
+- Intents
+- Chrome Platform Status
+- WPT (Web Platform Test)
+- DEMO
+- Blog
+  - Promise.withResolvers Labs
+    - https://labs.jxck.io/promise/withResolvers/
+- Presentation
+- Issues
+- Other
