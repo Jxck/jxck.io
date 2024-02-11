@@ -122,8 +122,8 @@ BHTML = $(BMD:.md=.html)
 PHTML = $(PMD:.md=.html)
 
 # .md -> .html
-.md.html:
-	$(MARK) $(if $(findstring blog.jxck.io, $*), --blog, --podcast) ./$*.md
+# .md.html:
+# 	$(MARK) $(if $(findstring blog.jxck.io, $*), --blog, --podcast) ./$*.md
 
 
 ##########################
