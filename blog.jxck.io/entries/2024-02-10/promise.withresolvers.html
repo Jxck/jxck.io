@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Promise.withResolvers() が stage 4 であり、 ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、活用方法を解説する。">
+  <meta name=description         content="Promise.withResolvers() は、 Stage 4 であり ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、その活用方法を解説する。">
   <meta name=keywords            content="promise,tc39">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-02-10/promise.withresolvers.html>
   <meta property=og:title        content="Promise.withResolvers によるイベントの Promise 化 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Promise.withResolvers() が stage 4 であり、 ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、活用方法を解説する。">
+  <meta property=og:description  content="Promise.withResolvers() は、 Stage 4 であり ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、その活用方法を解説する。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-02-10T08:00:00+08:00",
-    "dateModified": "2024-02-10T08:00:00+08:00",
+    "dateModified": "2024-02-16T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "Promise.withResolvers() が stage 4 であり、 ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、活用方法を解説する。"
+    "description": "Promise.withResolvers() は、 Stage 4 であり ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、その活用方法を解説する。"
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-02-10>2024-02-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-02-10>2024-02-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-02-16>2024-02-16</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -152,8 +152,8 @@
       <h1><a href="">Promise.withResolvers によるイベントの Promise 化</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p><code translate=no>Promise.withResolvers()</code> が stage 4 であり、 ES2024 の候補となった。
-        <p>すでにブラウザでの実装も進んでいるため、活用方法を解説する。
+        <p><code translate=no>Promise.withResolvers()</code> は、 Stage 4 であり ES2024 の候補となった。
+        <p>すでにブラウザでの実装も進んでいるため、その活用方法を解説する。
       </section>
       <section>
         <h2 id="イベントの-promise-化"><a href="#イベントの-promise-化">イベントの Promise 化</a></h2>
@@ -167,7 +167,7 @@
     document.querySelector(&quot;button&quot;).addEventListener(&quot;click&quot;, async () =&gt; {
       try {
         const res = await fetch(&quot;/&quot;)
-        const body = res.text()
+        const body = await res.text()
         resolve(body)
       } catch (err) {
         reject(err)
@@ -175,7 +175,7 @@
     })
   })
 }</code></pre>
-        <p><code translate=no>resolve</code>/<code translate=no>reject</code> がコールバックの引数で渡るため、ネストするこうしたコードになりがちだ。
+        <p><code translate=no>resolve</code>/<code translate=no>reject</code> がコールバックの引数で渡されるため、このようにネストしたコードになりがちだ。
       </section>
       <section>
         <h2 id="resolvereject"><a href="#resolvereject">resolve/reject</a></h2>
@@ -234,7 +234,7 @@
   return promise
 }</code></pre>
         <p>既にブラウザへの実装も進んでいる。
-        <p>なお、 Firefox は内部で <code translate=no>PromiseUtils.defer()</code> という名前で実装していたが、今は <code translate=no>Promise.withResolvers()</code> で置き換えられている。
+        <p>なお、 Firefox は内部で <code translate=no>PromiseUtils.defer()</code> という名前で実装していたが、現在は <code translate=no>Promise.withResolvers()</code> に置き換えられている。
         <ul>
           <li>
             PSA: PromiseUtils.defer() has been replaced by Promise.withResolvers()
