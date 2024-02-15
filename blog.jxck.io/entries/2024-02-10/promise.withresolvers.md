@@ -2,9 +2,9 @@
 
 ## Intro
 
-`Promise.withResolvers()` が stage 4 であり、 ES2024 の候補となった。
+`Promise.withResolvers()` は、 Stage 4 であり ES2024 の候補となった。
 
-すでにブラウザでの実装も進んでいるため、活用方法を解説する。
+すでにブラウザでの実装も進んでいるため、その活用方法を解説する。
 
 
 ## イベントの Promise 化
@@ -23,7 +23,7 @@ async function request() {
     document.querySelector("button").addEventListener("click", async () => {
       try {
         const res = await fetch("/")
-        const body = res.text()
+        const body = await res.text()
         resolve(body)
       } catch (err) {
         reject(err)
@@ -33,7 +33,7 @@ async function request() {
 }
 ```
 
-`resolve`/`reject` がコールバックの引数で渡るため、ネストするこうしたコードになりがちだ。
+`resolve`/`reject` がコールバックの引数で渡されるため、このようにネストしたコードになりがちだ。
 
 
 ## resolve/reject
@@ -103,7 +103,7 @@ async function request() {
 
 既にブラウザへの実装も進んでいる。
 
-なお、 Firefox は内部で `PromiseUtils.defer()` という名前で実装していたが、今は `Promise.withResolvers()` で置き換えられている。
+なお、 Firefox は内部で `PromiseUtils.defer()` という名前で実装していたが、現在は `Promise.withResolvers()` に置き換えられている。
 
 - PSA: PromiseUtils.defer() has been replaced by Promise.withResolvers()
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/FqOnd1J4-YI
