@@ -54,7 +54,7 @@ HTTP が一般的である上で、 Advanced なものとして HTTPS が提供�
 
 ## HTTP as Non Secure (2016~)
 
-HTTPS のいう "Secure" はあくまで「_通信の安全_」であり、だれかが盗聴/改竄/なりすましをしてないことを保証するものだ。そのため、証明書の発行は基本的に「Issuer はそのドメインを本当に保持しているか」を基準に行われる。
+HTTPS のいう "Secure" はあくまで「*通信の安全*」であり、だれかが盗聴/改竄/なりすましをしてないことを保証するものだ。そのため、証明書の発行は基本的に「Issuer はそのドメインを本当に保持しているか」を基準に行われる。
 
 重要なのは、「そのサイトのコンテンツは安全であるか」などという保証は、たとえ EV であっても HTTPS にはない点だ。 HTTPS 化が遅れた銀行を偽装したフィッシングサイトが、 Let's Encrypt で HTTPS 化されてたなどという、皮肉な話もあったりした。
 
@@ -65,7 +65,7 @@ HTTPS のいう "Secure" はあくまで「_通信の安全_」であり、だ�
 - Rethinking Connection Security Indicators | usenix
   - https://www.usenix.org/system/files/conference/soups2016/soups2016-paper-porter-felt.pdf
 
-そこで、 HTTPS が前提な世界においては「_HTTPS が Secure_」なのではなく「_HTTP が  Non Secure_」だという価値観にベースをシフトする必要があった。
+そこで、 HTTPS が前提な世界においては「*HTTPS が Secure*」なのではなく「*HTTP が  Non Secure*」だという価値観にベースをシフトする必要があった。
 
 ![HTTP の more secure が HTTPS だったのが、 HTTPS の less secure が HTTP という価値観のシフト](baseline.svg#380x220)
 
