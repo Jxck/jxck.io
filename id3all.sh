@@ -1925,3 +1925,16 @@ eyeD3 --title "ep140 Monthly Platform 202401" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep141.mp3
+
+eyeD3 --title "ep141 Monthly Ecosystem 202402" \
+      --track 149 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep141.mp3
+
+
+
