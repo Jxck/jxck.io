@@ -2,7 +2,7 @@
 type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep142.mp3
-published_at: TODO
+published_at: 2024-02-27
 guest: [@myakura](https://twitter.com/myakura)
 ---
 
@@ -820,7 +820,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - *ShadowRealm Stage 2 update*
     - https://docs.google.com/presentation/d/17esbBbAlKe1nZzWx47ItpVP1XovIupxKEAL1PgUDFrk/edit#slide=id.g26255f6e788_0_0
     - https://github.com/tc39/proposal-shadowrealm/issues/393 にて API を議論中
-    - [Exposed=Window,Worker] だったのが [Exposed=\\*] と変更されたものが入る
+    - [Exposed=Window,Worker] だったのが [Exposed=\\\*] と変更されたものが入る
     - Salesforce が Igalia をスポンサーして WebKit に実装中
     - CSP も議論中
     - Stage2 keep
