@@ -1195,11 +1195,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - draft-kazuho-httpbis-reverse-tunnel-00
 - CDN 動向
 - セキュリティ動向
-  - OpenGFW (Grate Firewall 実装)
-  - polyfipl.io 売却
+  - OpenGFW (Great Firewall 実装)
+  - polyfill.io 売却
   - E2EE by Emily Stark
   - Avast が閲覧データ売却で罰金
 - 周辺動向
   - AWS Serverless 用ランタイム LLRT
 - Cookie 動向
-  - nintendo.co.jp -> nontendo.com/jp リダイレクト
+  - nintendo.co.jp -> nintendo.com/jp リダイレクト
