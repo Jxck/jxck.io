@@ -5,9 +5,9 @@ After=network.target nss-lookup.target
 [Service]
 Type=simple
 Restart=always
-Environment="PATH=/home/jxck/dotfiles/pkg/nodebrew/current/bin:$PATH"
-WorkingDirectory=/home/jxck/server/web-anatomia/.src
-ExecStart=/home/jxck/server/web-anatomia/.src/node_modules/.bin/next dev --port=12000
+Environment="PATH=/home/jxck/.deno/bin:$PATH"
+WorkingDirectory=/home/jxck/server/web-anatomia/.server
+ExecStart=/home/jxck/.deno/bin/deno task start
 User=jxck
 Group=jxck
 
