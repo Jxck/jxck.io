@@ -130,7 +130,7 @@ CSRF 攻撃は、もともと Cross Site に Cookie が送られることを利�
 > and this is particularly an issue if a subdomain has a CNAME to domains not in your control.
 > --- https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 
-タラレバな部分もあるような気がするが、万全の対策には従来の手法を最終層に置いた、多少防御が必要となる。
+タラレバな部分もあるような気がするが、万全の対策には従来の手法を最終層に置いた、多層防御が必要となる。
 
 しかし、 `SameSite=Lax` によって大半が落とされ、さらに `Sec-Fetch-Dest`/`Sec-Fetch-Mode`/`Sec-Fetch-Site`/`Sec-Fetch-User` あたりをチェックすれば、ミドルウェアで攻撃リクエストを落とすことができ、 CSRF Token を格納している redis などの Cookie Storage への I/O の削減に繋がるだろう。
 
