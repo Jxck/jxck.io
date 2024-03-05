@@ -456,22 +456,22 @@ Array.from('👍🏻👍🏼👍🏽👍🏾👍🏿')
 よく例に上がるのが `パ` と `パ` だ。
 
 ```js
-Array.from('パ')
+Array.from("パ") // 0x30d1
 ["パ"]
-Array.from('パ')
+Array.from("パ") // 0x30cf, 0x309a
 ["ハ", "゚"]
 ```
 
-このように、前者は 1 つの CodePoint だが、後者は 「ハ」と「半濁点」の 2 CodePoint から成り立っている。
+このように、見た目上どちらも 1 文字だが、前者は 1 つの CodePoint 、後者は 「ハ」と「半濁点」の 2 つの CodePoint から成り立っている。
 
 ウムラウトやマクロンのような記号でも同じことがおこる。以下の文字は 3 つの方法で表すことができる。
 
 ```js
-Array.from('ǖ')
+Array.from('ǖ') // 0x1d6
 ["ǖ"]
-Array.from('ǖ')
+Array.from('ǖ') // 0xfc, 0x304
 ["ü", "̄"]
-Array.from('ǖ')
+Array.from('ǖ') // 0x75, 0x308, 0x304
 ["u", "̈", "̄"]
 ```
 
@@ -483,11 +483,44 @@ CodePoint の数が変わるため、文字数も表現方法によって結果�
 
 そこで、 Unicode ではこれらを「なるべく単一の CodePoint で表す」か「なるべく結合で表す」のどちらかに変換する方法が知られている。
 
-これが *正規化* と呼ばれるものであり、前者を *NFC* (Normalization Form Canonical Composition) 後者を *NFD* (Normalization Form Canonical Decomposition) という。
+これが *正規化* と呼ばれるものであり、前者を *NFC* 後者を *NFD* という。
 
-CodePoint によって文字数を数える観点からは、 NFC によって最小の CodePoint を数える方が一般的だろう。
+NFC (Normalization Form Canonical Composition)
+: なるべく単一の CodePoint で表す
+NFD (Normalization Form Canonical Decomposition)
+: なるべく結合で表す
 
-しかし、 Unicode の正規化は単純ではないため、安易に行うと意図しないことが起こる場合があるため、よく検証してから行いたい。
+JavaScript では、 `String.prototype.normalize()` を用いるとこれを変換することが可能だ。
+
+```js
+Array.from("パ".normalize("NFC"))
+["パ"]
+Array.from("パ".normalize("NFD"))
+["ハ", "゚" ]
+```
+
+NFC, NFD は単純に結合かどうかを変更するが、この派生として NFKC, NFKD もある。
+
+K は Compatibility のことであり、 C だと Composition と被るのであえて K で表している。これは「互換等価」であるものへの変換も同時に行うオプションだ。
+
+「互換等価」とは、要するに「意味的に同じ」ということであり、例を見るとわかりやすいだろう。
+
+```js
+"Ａ１".normalize("NFKC")
+// 'A1' (全角英数を半角に)
+"ｱ".normalize("NFKC")
+// 'ア' (半角カナを全角に)
+"①".normalize("NFKC")
+// '1' (囲み文字を数字に)
+"㌶".normalize("NFKC")
+// 'ヘクタール' (互換用文字をカタカナに)
+```
+
+特に全角半角文字の正規化は、入力文字列のクレンジングなどにも使うことができる。
+
+CodePoint によって文字数を数える観点からは、 NFC または文脈によっては NFKC によって最小の CodePoint を数える方が一般的だろう。
+
+しかし、注意点もあり、例えば `Ⅲ` (ローマ数字 3)は `III` (I が三つ)になったりなどが、入力者によって意図しない変換である場合もあるため、安易な変換には注意が必要だ。
 
 
 ### ZWJ
