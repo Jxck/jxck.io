@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-21T08:00:00+08:00",
-    "dateModified": "2024-01-06T08:00:00+08:00",
+    "dateModified": "2024-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-21>2023-12-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-01-06>2024-01-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-03-06>2024-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -242,7 +242,7 @@ Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
           <p>and this is particularly an issue if a subdomain has a CNAME to domains not in your control.
           <p>&mdash; <cite><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html" target=_blank>https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html</a></cite>
         </blockquote>
-        <p>タラレバな部分もあるような気がするが、万全の対策には従来の手法を最終層に置いた、多少防御が必要となる。
+        <p>タラレバな部分もあるような気がするが、万全の対策には従来の手法を最終層に置いた、多層防御が必要となる。
         <p>しかし、 <code translate=no>SameSite=Lax</code> によって大半が落とされ、さらに <code translate=no>Sec-Fetch-Dest</code>/<code translate=no>Sec-Fetch-Mode</code>/<code translate=no>Sec-Fetch-Site</code>/<code translate=no>Sec-Fetch-User</code> あたりをチェックすれば、ミドルウェアで攻撃リクエストを落とすことができ、 CSRF Token を格納している redis などの Cookie Storage への I/O の削減に繋がるだろう。
       </section>
       <section>
