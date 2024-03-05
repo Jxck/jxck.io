@@ -232,11 +232,11 @@ codePoints.length // => 13
 `𩸽` の方は前半のバイトしかないため、元に戻らない。
 
 ```js
-'鯖定食'.charCodeAt(0) === 0x9BD6
-'𩸽定食'.charCodeAt(0) === 0xD867
+"鯖定食".charCodeAt(0) === 0x9BD6
+"𩸽定食".charCodeAt(0) === 0xD867
 
-String.fromCharCode('鯖'.charCodeAt(0)) //"鯖"
-String.fromCharCode('𩸽'.charCodeAt(0)) // "�"
+String.fromCharCode("鯖".charCodeAt(0)) //"鯖"
+String.fromCharCode("𩸽".charCodeAt(0)) // "�"
 ```
 
 一方、 `codePointAt()` と `fromCodePoint()` は、その名の通り Code Point に対応している。
@@ -244,11 +244,11 @@ String.fromCharCode('𩸽'.charCodeAt(0)) // "�"
 これならサロゲートペアもうまく扱う事ができる。
 
 ```js
-'𩸽定食'.codePointAt(0) // 0x29E3D
-'鯖定食'.codePointAt(0) // 0x9BD6
+"𩸽定食".codePointAt(0) // 0x29E3D
+"鯖定食".codePointAt(0) // 0x9BD6
 
-String.fromCodePoint('鯖'.codePointAt(0)) // "鯖"
-String.fromCodePoint('𩸽'.codePointAt(0)) // "𩸽"
+String.fromCodePoint("鯖".codePointAt(0)) // "鯖"
+String.fromCodePoint("𩸽".codePointAt(0)) // "𩸽"
 ```
 
 
@@ -259,35 +259,35 @@ String.fromCodePoint('𩸽'.codePointAt(0)) // "𩸽"
 したがって、サロゲートペアがあると 1 文字にマッチせず、途中で切れる。
 
 ```js
-'吉野家'.match(/./) // ["吉"]
-'𠮷野家'.match(/./) // ["�"]
+"吉野家".match(/./) // ["吉"]
+"𠮷野家".match(/./) // ["�"]
 
-'吉野家'.match(/.{3}/) // ["吉野家"]
-'𠮷野家'.match(/.{3}/) // ["𠮷野"] 変なところで切れる
+"吉野家".match(/.{3}/) // ["吉野家"]
+"𠮷野家".match(/.{3}/) // ["𠮷野"] 変なところで切れる
 ```
 
 そこで、 ES2015 では Unicode Flag というフラグが入った。これで Code Point の単位でマッチさせることができるようになる。
 
 ```js
-'吉野家'.match(/./u) // ["吉"]
-'𠮷野家'.match(/./u) // ["𠮷"]
+"吉野家".match(/./u) // ["吉"]
+"𠮷野家".match(/./u) // ["𠮷"]
 
-'吉野家'.match(/.{3}/u) // ["吉野家"]
-'𠮷野家'.match(/.{3}/u) // ["𠮷野家"]
+"吉野家".match(/.{3}/u) // ["吉野家"]
+"𠮷野家".match(/.{3}/u) // ["𠮷野家"]
 ```
 
-文字列を文字の配列に分解するのに使われる `split('')` も、サロゲートペアがあると崩れてしまう。
+文字列を文字の配列に分解するのに使われる `split("")` も、サロゲートペアがあると崩れてしまう。
 
 ```js
-'叱られる'.split('') // ["叱", "ら", "れ", "る"]
-'𠮟られる'.split('') // ["�", "�", "ら", "れ", "る"]
+"叱られる".split("") // ["叱", "ら", "れ", "る"]
+"𠮟られる".split("") // ["�", "�", "ら", "れ", "る"]
 ```
 
 代わりに、 Unicode フラグを使った正規表現を使うと、正しく文字の配列に分解できる。
 
 ```js
-'叱られる'.match(/./ug) // ["叱", "ら", "れ", "る"]
-'𠮟られる'.match(/./ug) // ["𠮟", "ら", "れ", "る"]
+"叱られる".match(/./ug) // ["叱", "ら", "れ", "る"]
+"𠮟られる".match(/./ug) // ["𠮟", "ら", "れ", "る"]
 ```
 
 
@@ -296,23 +296,23 @@ String.fromCodePoint('𩸽'.codePointAt(0)) // "𩸽"
 繰り返し処理も注意が必要だ。特に文字列に対する添え字アクセスは、 UTF-16 配列に対するアクセスだとイメージするとわかりやすい。(ちなみに `charAt()` も同じだ)
 
 ```js
-'鯖定食'[0] === "鯖"
-'鯖定食'.charAt(0) === "鯖"
+"鯖定食"[0] === "鯖"
+"鯖定食".charAt(0) === "鯖"
 
-'𩸽定食'[0] === "�"
-'𩸽定食'.charAt(0) === "�"
+"𩸽定食"[0] === "�"
+"𩸽定食".charAt(0) === "�"
 ```
 
 よって 1 文字ずつ処理をするという処理に for を使う場合は、添え字を基準にすることができない。
 
 ```js
-const str = '鯖定食'
+const str = "鯖定食"
 for (const i in str) console.log(str[i])
 // 鯖
 // 定
 // 食
 
-const str = '𩸽定食'
+const str = "𩸽定食"
 for (const i in str) console.log(str[i])
 // �
 // �
@@ -334,7 +334,7 @@ for (const i in str) console.log(str[i])
 例えば ES2015 で追加された `for of` は Iterator に対応しているため、 Code Point 単位の繰り返し処理が可能だ。
 
 ```js
-for (let c of '𩸽定食') console.log(c)
+for (let c of "𩸽定食") console.log(c)
 // 𩸽
 // 定
 // 食
@@ -346,8 +346,8 @@ for (let c of '𩸽定食') console.log(c)
 Spread Operator を用いた分割も Iterator で行われる。
 
 ```js
-[...'𩸽定食']  // 𩸽 定 食
-Array.of(...'𩸽定食')
+[..."𩸽定食"]  // 𩸽 定 食
+Array.of(..."𩸽定食")
 ```
 
 
@@ -356,7 +356,7 @@ Array.of(...'𩸽定食')
 分割代入時の分割も Iterator で行われる。
 
 ```js
-[a, b, c] = '𩸽定食'
+[a, b, c] = "𩸽定食"
 a // "𩸽"
 b // "定"
 c // "食"
@@ -368,8 +368,8 @@ c // "食"
 Array.from は Iterator をもとに配列を作る。
 
 ```js
-Array.from('叱られた😭')
-[ '叱', 'ら', 'れ', 'た', '😭' ]
+Array.from("叱られた😭")
+[ "叱", "ら", "れ", "た", "😭" ]
 ```
 
 
@@ -434,7 +434,7 @@ str = "葛󠄀城市"
 肌の色を変える skin tone は 5 種類定義されており、これを直後に置くことで表示上肌の色を変えられるのである。
 
 ```js
-Array.from('👍🏻👍🏼👍🏽👍🏾👍🏿')
+Array.from("👍🏻👍🏼👍🏽👍🏾👍🏿")
 [
   "👍", "🏻", // "0x1F44D", "0x1F3FB"
   "👍", "🏼", // "0x1F44D", "0x1F3FC"
@@ -467,11 +467,11 @@ Array.from("パ") // 0x30cf, 0x309a
 ウムラウトやマクロンのような記号でも同じことがおこる。以下の文字は 3 つの方法で表すことができる。
 
 ```js
-Array.from('ǖ') // 0x1d6
+Array.from("ǖ") // 0x1d6
 ["ǖ"]
-Array.from('ǖ') // 0xfc, 0x304
+Array.from("ǖ") // 0xfc, 0x304
 ["ü", "̄"]
-Array.from('ǖ') // 0x75, 0x308, 0x304
+Array.from("ǖ") // 0x75, 0x308, 0x304
 ["u", "̈", "̄"]
 ```
 
@@ -507,13 +507,13 @@ K は Compatibility のことであり、 C だと Composition と被るので�
 
 ```js
 "Ａ１".normalize("NFKC")
-// 'A1' (全角英数を半角に)
+// "A1" (全角英数を半角に)
 "ｱ".normalize("NFKC")
-// 'ア' (半角カナを全角に)
+// "ア" (半角カナを全角に)
 "①".normalize("NFKC")
-// '1' (囲み文字を数字に)
+// "1" (囲み文字を数字に)
 "㌶".normalize("NFKC")
-// 'ヘクタール' (互換用文字をカタカナに)
+// "ヘクタール" (互換用文字をカタカナに)
 ```
 
 特に全角半角文字の正規化は、入力文字列のクレンジングなどにも使うことができる。
@@ -528,7 +528,7 @@ CodePoint によって文字数を数える観点からは、 NFC または文�
 他にも `👨‍👩‍👧‍👦` も合字を利用している。
 
 ```js
-Array.from('👨‍👩‍👧‍👦')
+Array.from("👨‍👩‍👧‍👦")
 ["👨", "‍", "👩", "‍", "👧", "‍", "👦"]
 ```
 
