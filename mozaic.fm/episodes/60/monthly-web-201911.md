@@ -3,7 +3,7 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep60.mp3
 published_at: 2019-12-08
-guest: [@arayaryoma](https://twitter.com/arayaryoma)
+guest: [@araya](https://twitter.com/arayaryoma)
 ---
 
 # ep60 Monthly Web 201911
