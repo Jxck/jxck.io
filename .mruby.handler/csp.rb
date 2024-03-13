@@ -19,6 +19,7 @@ Proc.new do |env|
     ],
     "frame-src": [
       "https://www.youtube.com",
+      "https://www.docswell.com",
     ],
     "connect-src": [
       "wss://ws.jxck.io",
