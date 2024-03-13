@@ -25,7 +25,6 @@ mozaic.fm は 2014 年 3 月に配信を開始したが、これまで一度も�
   - https://mozaic.fm/episodes/143/mozaicfm-10-years-anniv.html
 
 
-
 ### 会場
 
 今回は五反田にある [ゲンロンカフェ](https://genron-cafe.jp/) をお借りした。
@@ -69,6 +68,9 @@ Session 2 は会場のみの非公開セッションであり、 SNS へも「�
 
 mozaic.fm の始まりから現在までを振り返った。
 
+- state of mozaic.fm | ドクセル
+  - https://www.docswell.com/s/jxck/K381E1-state-of-mozaicfm
+
 
 ## Session 2: mozaic.fm の作り方
 
@@ -89,6 +91,7 @@ mozaic.fm を聴いていないと(聴いていても)難しかったと思う�
 
 - QUIZ: mozaic.fm | ドクセル
   - https://www.docswell.com/s/jxck/5P9DME-quiz-mozaicfm
+
 
 ## グッズ
 
