@@ -28,4 +28,4 @@ Session 2 は、会場限定のコンテンツのため、本編には含まれ�
 詳細は以下。
 
 - mozaic.fm 10 周年記念イベント開催後記 | blog.jxck.io
-  - https://blog.jxck.io/entries/2024-03-13/mozaicfm-10-years-anniv.md
+  - https://blog.jxck.io/entries/2024-03-13/mozaicfm-10-years-anniv.html
