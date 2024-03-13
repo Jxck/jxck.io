@@ -1,7 +1,8 @@
 .PHONY: blog podcast comp gz br remove clean webp avif
 .SUFFIXES: .html .md .amp .amp.html .webp .avif .png .jpeg .gif
 
-NODE := $(DEV)/jxck.io/node_modules/.bin/bun
+# NODE := $(DEV)/jxck.io/node_modules/.bin/bun
+NODE := $(DOTFILES)/pkg/nodebrew/current/bin/node
 
 build:
 	cd .src && $(NODE) build.js build
