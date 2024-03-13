@@ -29,7 +29,7 @@ mozaic.fm は 2014 年 3 月に配信を開始したが、これまで一度も�
 
 今回は五反田にある [ゲンロンカフェ](https://genron-cafe.jp/) をお借りした。
 
-![ゲンロンカフェ外観](genroncafe.png#1948x2597)
+![ゲンロンカフェ外観](genroncafe.png#500x667)
 
 普段エンジニアがイベントを行う会場というよりは、人文/サブカル系のイベントが主に行われているスペースだ。
 
@@ -37,7 +37,7 @@ mozaic.fm は 2014 年 3 月に配信を開始したが、これまで一度も�
 
 設備も整っており、スタッフの方の対応もよく、この規模のイベントを行うには非常に良い会場だった。
 
-![ゲンロンカフェステージ](stage.png#3464x2598)
+![ゲンロンカフェステージ](stage.png#500x375)
 
 
 ### 募集
@@ -67,6 +67,8 @@ Session 2 は会場のみの非公開セッションであり、 SNS へも「�
 ## Session 1: state of mozaic.fm
 
 mozaic.fm の始まりから現在までを振り返った。
+
+<iframe src="https://www.docswell.com/slide/K381E1/embed" allowfullscreen="true" width="552" height="311" style="border: 0px; display: block; padding: 0px;"></iframe>
 
 - state of mozaic.fm | ドクセル
   - https://www.docswell.com/s/jxck/K381E1-state-of-mozaicfm
@@ -110,11 +112,11 @@ mozaic.fm を聴いていないと(聴いていても)難しかったと思う�
 
 ベースは、白 T の定番 Heins の Beefy を用いている。試作で作ったものが筆者の手元にある以外は、世界に一点しかない。おそらく洗濯もできない。
 
-![ペイントTシャツ](painted-tshirt.png#1252x939)
+![ペイントTシャツ](painted-tshirt.png#500x375)
 
 本人の希望で、レギュラー 4 人のサインを入れてお渡しした。
 
-![サイン入り T シャツ](autograph-tshirt.png#704x939)
+![サイン入り T シャツ](autograph-tshirt.png#500x667)
 
 勝ち取ってくれた方は、「オフィスに飾る」と言ってくれており、非常に嬉しかった。有名な会社だったため、いつか見学できたら嬉しい。
 
@@ -123,7 +125,7 @@ mozaic.fm を聴いていないと(聴いていても)難しかったと思う�
 
 6x6 のルービックキューブに、シールを貼り直してロゴを再現した一点もの。
 
-![ルービックキューブ](rubiks-cube.png#960x720)
+![ルービックキューブ](rubiks-cube.png#500x375)
 
 一度崩したら二度と戻せないだろう。もしかしたら世界一難易度の高いルービックキューブが意図せずできたかもしれない。
 
@@ -132,7 +134,7 @@ mozaic.fm を聴いていないと(聴いていても)難しかったと思う�
 
 Suzuri のヘビーウェイト T に、ロゴをあしらったものだ。
 
-![ロゴ T シャツ](logo-tshirt.png#1948x2597)
+![ロゴ T シャツ](logo-tshirt.png#500x667)
 
 今回は 5 枚だけ用意した。
 
@@ -143,7 +145,7 @@ Suzuri のヘビーウェイト T に、ロゴをあしらったものだ。
 
 mozaic.fm の 10 周年記念版ステッカーを制作した。
 
-![限定ロゴステッカー](sticker.png#1444x1633)
+![限定ロゴステッカー](sticker.png#500x565)
 
 mozaic.fm のステッカーは、いつも声をかけてくれたリスナーに渡していたが、これはイベント限定盤とした。
 
