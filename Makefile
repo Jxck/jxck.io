@@ -136,7 +136,7 @@ PNGQUANT := pngquant --force --skip-if-larger --speed 1 --strip --ext .png --ver
 OPTIPNG  := optipng -o7
 png:
 	find ./blog.jxck.io/entries/**/*.png \
-	  | xargs -P$(shell core) -i{} sh -c '$(OPTIPNG) {}'
+	  | xargs -P$(shell core) -I{} sh -c '$(OPTIPNG) {}'
 		#| xargs -P$(shell core) -i{} sh -c '$(PNGQUANT) {}'
 
 ## jpeg
@@ -145,7 +145,7 @@ MOZJPEG    := mozjpeg -optimize
 GUETZLI    := guetzli
 jpeg:
 	find ./blog.jxck.io/entries/**/*.jpeg \
-		| xargs -P$(shell core) -i{} sh -c 'echo {} && $(GUETZLI) {} {}'
+		| xargs -P$(shell core) -I{} sh -c 'echo {} && $(GUETZLI) {} {}'
 		#| xargs -P$(shell core) -i{} sh -c 'echo {} && $(JPEGRECOMP) {} {}'
 		#| xargs -P$(shell core) -i{} sh -c '$(MOZJPEG) -outfile {} {}'
 
@@ -153,7 +153,7 @@ jpeg:
 GIFSICLE := gifsicle --optimize=3 --colors 256 -v
 gif:
 	find ./blog.jxck.io/entries/**/*.gif \
-		| xargs -P$(shell core) -i{} sh -c '$(GIFSICLE) {} -o {}'
+		| xargs -P$(shell core) -I{} sh -c '$(GIFSICLE) {} -o {}'
 
 
 PNG = $(wildcard ./blog.jxck.io/entries/**/*.png)
