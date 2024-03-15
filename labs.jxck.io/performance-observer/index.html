@@ -8,8 +8,9 @@
 
 <h1>Test</h1>
 
-<img src=https://logo.jxck.io/jxck.256x256.png>
+<pre>
 
+</pre>
 <script>
   'use strict';
   const $  = document.querySelector.bind(document)
@@ -50,8 +51,14 @@
             performance[entry.name] = entry.startTime
             break;
           case "resource":
-            performance.resource = performance.resource || {}
-            performance.resource[entry.name] = entry.duration
+            console.log(entry.name)
+            // $("pre").textContent = `
+            //   content-type: ${entry.contentType}
+            //   content-encoding: ${entry.contentEncoding}
+            //   ${JSON.stringify(entry, '  ', '  ')}
+            // `
+            // performance.resource = performance.resource || {}
+            // performance.resource[entry.name] = entry.duration
             break;
           case "layout-shift":
             performance.layoutshift = performance.layoutshift || 0
@@ -61,19 +68,32 @@
             performance.longtask += entry.duration
             break;
           case "first-input":
-            console.log(entry)
+            // console.log(entry)
             break;
           default:
-            console.log(entry)
+            // console.log(entry)
         }
       }
     })
     observer.observe({entryTypes: PerformanceObserver.supportedEntryTypes});
 
     setTimeout(() => {
+      // const link = document.createElement("link")
+      // link.rel = 'stylesheet'
+      // link.href = 'test.css'
+      // document.body.appendChild(link)
+
+      // console.log('take')
       observer.takeRecords()
-      observer.disconnect()
-      console.log(JSON.stringify(performance, " ", " "))
+       observer.disconnect()
+      // console.log(JSON.stringify(performance, " ", " "))
+
     }, 3000)
+
   }
 </script>
+
+
+<link rel="stylesheet" href="test.css" />
+<img width=100 height=100 src=https://logo.jxck.io/jxck.png>
+
