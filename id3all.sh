@@ -1964,3 +1964,16 @@ eyeD3 --title "ep143 mozaic.fm 10 周年記念イベント" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep144.mp3
+
+eyeD3 --title "ep144 Monthly Ecosystem 202403" \
+      --track 152 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep144.mp3
+
+
+
