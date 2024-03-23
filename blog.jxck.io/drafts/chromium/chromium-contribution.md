@@ -22,7 +22,14 @@ Chromium にコントリビュートするためには、ソースコードを�
 - Chromium Code Search
   - https://source.chromium.org/chromium/chromium/src
   - コードをインタラクティブに検索するためのサイト
-  - こんなふうにコードを引用することもある [global_fetch.cc - Chromium Code Search](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/fetch/global_fetch.cc;l=207)
+  - Workspace 風の UI だし、シンボルがリンクなので捗る
+  - Related File や Blame もできる
+  - 右上の "View in Gitiles" で Gitiles に飛べる
+- Gitiles
+  - https://chromium.googlesource.com/
+  - Git のリポジトリがそのまま上がっている場所
+  - ソースのリンクはこっちが使われることもある。
+  - こっちから Code Search に飛ぶ方法はわからない。
 - Issue Tracker
   - https://issues.chromium.org/issues?q=fetch
   - 元々は https://bugs.chromium.org だったが最近移行された
@@ -40,10 +47,6 @@ Chromium にコントリビュートするためには、ソースコードを�
   - https://chromiumdash.appspot.com/home
   - もともとは [omahaproxy](https://omahaproxy.appspot.com/) というサービスだったもの
   - ビルドやリリースに関する情報がまとまっている
-- Git at Google
-  - https://chromium.googlesource.com/
-  - Git のリポジトリがそのまま上がっている場所
-  - あまり開発で使うことはないらしい
 
 
 ### Chromium Code Search
@@ -73,6 +76,42 @@ Chromium にコントリビュートするためには、ソースコードを�
 今回の場合は 96 でリリースされたことがわかる。
 
 逆にここから Review や Bug にも飛べる。
+
+
+## Flag
+
+新しく入れた機能は、最初フラグの裏に隠されることが多い。
+
+その場合は、以下のように有効にする。
+
+```sh
+chrome --enable-features=SubresourceWebBundle
+```
+
+この値は `*_features.json5` というファイルがいくつかあり、そこに書かれている。
+
+- file:features.json5 - Search
+  - https://source.chromium.org/search?q=file:features.json5&ss=chromium
+
+よく見るのは、 renderer/platform のもの。
+
+- runtime_enabled_features.json5 - Chromium Code Search
+  - https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/runtime_enabled_features.json5
+
+`features.cc` の場合もあるらしい。
+
+ある程度安定したら、 CLI フラグではなく chrome://flags に入る。
+
+- about_flags.cc - Chromium Code Search
+  - https://source.chromium.org/chromium/chromium/src/+/main:chrome/browser/about_flags.cc
+
+このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく。これを Finch という。
+
+Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
+
+- chrome://version/?show-variations-cmd
+
+で表示される、一番下に `Command-line variations` が追加される。よくわらかないフィーマットでワンラインにされているが、これを雑に `,` や `*` で改行すると、有効になってる機能が確認できるだろう。
 
 
 ## 公式の参考リソース
