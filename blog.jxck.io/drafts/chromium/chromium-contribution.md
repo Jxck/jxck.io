@@ -39,7 +39,6 @@ Chromium にコントリビュートするためには、ソースコードを�
   - https://crbug.com/10000
   - 何かバグを見つけた場合もここから登録する
   - 作業をする場合もここから探す
-  - [Hotlist-GoodFirstBug](https://issues.chromium.org/issues?q=Hotlist-GoodFirstBug) とか P2, P3 あたりから始めるのが良い
 - gerrit
   - https://chromium-review.googlesource.com/dashboard/self
   - レビューをするためのサイト
@@ -89,7 +88,7 @@ Chromium にコントリビュートするためには、ソースコードを�
 
 ## crbug
 
-関連するバグに割り当てるタグは Component と呼ばれる。
+バグがどのコンポーネントに関連するかを示す Component が付与されている。
 
 これを先に見つけると色々捗る。
 
@@ -99,7 +98,21 @@ Blink>PerformanceAPIs
 ...
 ```
 
+また、関連するバグをまとめるタグのようなものは HotList と呼ばれる。
+
+例えば、 Hotlist-GoodFirstBug とか。
+
+- Hotlist-GoodFirstBug
+  - https://issues.chromium.org/issues?q=Hotlist-GoodFirstBug
+
 ここでバグを見つけて、もしレビューがあったらそっちを見ると、どういうコードが入ったのかわかる。
+
+
+## crrev
+
+この UI は慣れないと難しい。
+
+TODO: 使い方
 
 
 ### Chromium Dash
