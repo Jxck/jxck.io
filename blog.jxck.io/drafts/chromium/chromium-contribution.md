@@ -19,18 +19,20 @@ Chromium にコントリビュートするためには、ソースコードを�
 
 似たようないくつかのサイトがあり、使い分けがされているからだ。
 
-- Chromium Code Search
+- code search
   - https://source.chromium.org/chromium/chromium/src
   - コードをインタラクティブに検索するためのサイト
   - Workspace 風の UI だし、シンボルがリンクなので捗る
   - Related File や Blame もできる
   - 右上の "View in Gitiles" で Gitiles に飛べる
-- Gitiles
+- gitiles
   - https://chromium.googlesource.com/
   - Git のリポジトリがそのまま上がっている場所
   - ソースのリンクはこっちが使われることもある。
   - こっちから Code Search に飛ぶ方法はわからない。
-- Issue Tracker
+  - 特定バージョン時点でのコードは以下で見られる
+    - https://chromium.googlesource.com/chromium/src.git/+refs
+- crbug
   - https://issues.chromium.org/issues?q=fetch
   - 元々は https://bugs.chromium.org だったが最近移行された
   - crbug とも呼ばれ以下で圧縮できる
@@ -38,21 +40,66 @@ Chromium にコントリビュートするためには、ソースコードを�
   - 何かバグを見つけた場合もここから登録する
   - 作業をする場合もここから探す
   - [Hotlist-GoodFirstBug](https://issues.chromium.org/issues?q=Hotlist-GoodFirstBug) とか P2, P3 あたりから始めるのが良い
-- Gerrit Code Review
+- gerrit
   - https://chromium-review.googlesource.com/dashboard/self
   - レビューをするためのサイト
   - crrev とも呼ばれ、以下で短縮できる
   - https://crrev.com/c/10000
-- Chromium Dash
+- chromium dash
   - https://chromiumdash.appspot.com/home
   - もともとは [omahaproxy](https://omahaproxy.appspot.com/) というサービスだったもの
   - ビルドやリリースに関する情報がまとまっている
 
 
-### Chromium Code Search
+## code search
 
 - 検索クエリとして使える構文
   - https://developers.google.com/code-search/reference?hl=ja
+
+おおよその階層はこうなってるので、そこを絞ってからディレクトリ内検索する方が良い。
+
+- `chrome/`
+  - Chrome 固有の機能
+  - 拡張とかオートフィルとかブックマークとか
+- `content/`
+  - タブの中に必要な機能
+  - Web 系の機能はここ
+- `component/`
+  - iOS 版/WebView とかアーキテクチャ共通のもの
+- `service/`
+  - いわゆる基盤となる機能
+  - mojo の定義などはここ
+- `third_party/blink/`
+  - レンダリングエンジンの Blink
+  - 一番触ると思うが意外と深い場所にある
+  - 3rd party なのは歴史的経緯
+
+基本的に Chromium はマルチプロセルになっている。
+
+親プロセスとして browser process があり、各タブを開くごとに独立した rendering process が開かれる。 rendering process と browser process は IPC しかできない。
+
+これによって rendering process がサンドボックス化されて、インターネットの有象無象なコードを落としてきて、仮に rendering process が攻撃されても、そこから browser process は守られているので、 OS から情報を抜いたりはできないようにサンドボックス化されている。
+
+![chrome process architecture](chrome-process-architecture.png)
+
+というあたりを把握しておくと検索しやすい。
+
+両者を繋ぐ IPC が mojo。デバッグ中はだいたい mojo まで到達するとそこから辿れなくなる。
+
+
+## crbug
+
+関連するバグに割り当てるタグは Component と呼ばれる。
+
+これを先に見つけると色々捗る。
+
+```
+Blink>Network>FetchAPI
+Blink>PerformanceAPIs
+...
+```
+
+ここでバグを見つけて、もしレビューがあったらそっちを見ると、どういうコードが入ったのかわかる。
 
 
 ### Chromium Dash
@@ -105,6 +152,18 @@ chrome --enable-features=SubresourceWebBundle
 - about_flags.cc - Chromium Code Search
   - https://source.chromium.org/chromium/chromium/src/+/main:chrome/browser/about_flags.cc
 
+Experimental で Origin Trials が始まると、それも features.json5 で管理される。
+
+```json
+{
+  name: "CompressionDictionaryTransport",
+  base_feature: "none",
+  origin_trial_feature_name: "CompressionDictionaryTransportV2",
+  origin_trial_allows_third_party: true,
+  public: true,
+},
+```
+
 このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく。これを Finch という。
 
 Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
@@ -123,6 +182,9 @@ Finch がどうコントロールされているかは外にはでてこない�
 - C++ in Chromium 101 - Codelab
   - https://chromium.googlesource.com/chromium/src/+/HEAD/codelabs/cpp101/README.md
   - C++ のコードラボ
+- Chrome University
+  - https://www.youtube.com/playlist?list=PLNYkxOF6rcICgS7eFJrGDhMBwWtdTgzpx
+  - 公式の教育ビデオコンテンツ
 
 
 ## 外部リソース
@@ -138,9 +200,31 @@ Finch がどうコントロールされているかは外にはでてこない�
 
 Chromium は、一部を開発するにも、基本は全てをチェックアウトしてビルドする必要がある。
 
+- Linux ビルド環境
+  - https://chromium.googlesource.com/chromium/src/+/main/docs/linux/build_instructions.md
+- Mac ビルド環境
+  - https://chromium.googlesource.com/chromium/src/+/main/docs/mac_build_instructions.md
+
+基本は書かれている通りやるだけ。
+
 ビルドは、基本的に Linux が一番早い(ファイルシステムやプロセス生成の影響がでかい)らしいので、 OS 依存でない限りは Mac より Linux を用意する方が良さそう。
 
-それでも、一般的なサーバではビルドに一晩かかるので、そこは覚悟が必要。
+ちなみに Mac(2020 Corei7/32GB) だと。
+
+- ネットワークによるが最初の sync だけで 4 時間ぐらい。
+- Build 時間は一晩。
+- Build 後はソース+バイナリーでディスク 96GB
+
+Google 社員は Goma という超絶分散ビルド環境が使える。これはコントリビュートしてるとアクセス権がもらえるらしい。それまでは頑張る。
+
+
+## 実行
+
+TODO
+
+```
+out/Default chrome --log-net-log=./chromium_netlog.json --auto-open-devtools-for-tabs --enable-logging=stderr --v=1 > chromium_debuglog.txt 2>&1
+```
 
 
 ## デバッグ
@@ -151,6 +235,14 @@ Chromium は、一部を開発するにも、基本は全てをチェックア�
 
 ```cpp
 LOG(ERROR) << "Foo";
+LOG(ERROR) << __FILE__ << "Foo"
+```
+
+レベルを分けることもできる
+
+```cpp
+// --enable-logging=stderr --v=1
+DVLOG(1) << __FILE__  << "Foo
 ```
 
 他にも色々用意されている。よく使う型なら良い感じに変換されるようになってる。
@@ -213,4 +305,60 @@ $ git cl issue 123456
 
 # 書いたコードを gerrit にアップする
 $ git cl upload
+```
+
+
+## IDL
+
+WebIDL 相当のもの。
+
+ここから python script で interface 付きの DOM API コードが生成される。
+
+例えば `URL` の IDL は以下。
+
+- url.idl - Chromium Code Search
+  - https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/url/url.idl
+
+```
+// https://url.spec.whatwg.org/#url
+
+[
+    Exposed=(Window,Worker),
+    ImplementedAs=DOMURL,
+    LegacyWindowAlias=webkitURL
+] interface URL {
+    [RaisesException] constructor(USVString url, optional USVString base);
+
+    static boolean canParse(USVString url, optional USVString base);
+
+    [RaisesException=Setter] stringifier attribute USVString href;
+    readonly attribute USVString origin;
+    attribute USVString protocol;
+    attribute USVString username;
+    attribute USVString password;
+    attribute USVString host;
+    attribute USVString hostname;
+    attribute USVString port;
+    attribute USVString pathname;
+    attribute USVString search;
+    [SameObject] readonly attribute URLSearchParams searchParams;
+    attribute USVString hash;
+
+    USVString toJSON();
+};
+```
+
+
+## sqlite3
+
+色々なデータの格納に sqlite が使われている。
+
+例えば Cookie は以下
+
+TODO:
+
+```
+sqlite> .tables
+sqlite> .schema
+sqlite> select * from table
 ```
