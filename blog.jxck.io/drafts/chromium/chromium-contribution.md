@@ -375,3 +375,105 @@ sqlite> .tables
 sqlite> .schema
 sqlite> select * from table
 ```
+
+
+## WPT
+
+Web Platform Tests は、各ブラウザが共通して実行する Web の単体テスト群のようなもの。
+
+最近でいうと、 Interop は WPT の達成度合いを上げていこうという取り組みだったりする。
+
+Chromium は WPT をリポジトリの中に入れており、 Web 標準の機能を実装する際はそのテストを直接 WPT にも追加してレビューに投げる。マージされたらそのテストは WPT 本体にもアップロードされるようになっている。
+
+WPT の実行の仕方とテストの書き方も慣れが必要。
+
+
+### 実行
+
+WPT の実行は、公式では `wpt` コマンドが提供されている。
+
+- wpt - Chromium Code Search
+  - https://source.chromium.org/chromium/chromium/src/+/main:third_party/wpt_tools/wpt/wpt
+
+しかし Chromium の中では、これではなく `/third_party/blink/tools` 以下のコマンドを使うっぽい。
+
+自分がビルドした Chromium のインスタンスで、特定の WPT を実行する。
+
+```shell
+$ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blink/web_tests/external/wpt/resource-timing/content-encoding.https.html -vv
+```
+
+これで、該当の HTML がブラウザ上で実行され、テストが走るイメージ。
+
+手動で実行して試したい場合は、サーバだけ起動してアクセスする。
+
+```shell
+$ ./third_party/blink/tools/run_blink_wptserve.py
+Server running on http://localhost:8001
+Server running on http://localhost:8081
+Server running on http://localhost:8082
+Server running on http://localhost:8093
+Server running on https://localhost:8444
+Server running on https://localhost:8445
+Server running on https://localhost:8446
+Server running on https://localhost:8447
+Server running on https://localhost:9000
+Server running on ws://localhost:9001
+Server running on wss://localhost:9444
+WebTransportH3 server running on https://localhost:11000
+```
+
+とりあえず 8001 ポートにアクセスすれば試せる。
+
+テスト用のドメインとしては `web-platform.test` などのドメインが使われる。
+
+これを解決できないと実行できないテストがある場合は、 `/etc/hosts` に追加する必要があるが、その自動構成スクリプトは以下にある。
+
+- Command-Line Arguments - web-platform-tests documentation
+  - https://web-platform-tests.org/running-tests/command-line-arguments.html#make-hosts-file
+
+
+## テストサーバ
+
+fetch などでサーバを叩いたりするテストのために、 mock server を書く方法がいくつかある。
+
+- Server Features - web-platform-tests documentation
+  - https://web-platform-tests.org/writing-tests/server-features.html
+
+まず、普通にファイル (`/example/text.html`) をおけば、それは静的ファイルとしてアクセスできる。
+
+これにヘッダをつけたい場合は、 .headers ファイルをつくる(`/example/test.html.headers`)
+
+```
+Access-Control-Allow-Origin: *
+```
+
+.asis ファイルを作ると、その中に書いたレスポンスがまるっとそのまま返る。(Apatch As-Is という仕様らしい)
+
+```http
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Content-Length: 5
+
+hello
+```
+
+動的にレスポンスを生成したい場合は wptserve という Python のサーバを書く。
+
+```py
+def main(request, response):
+    content_type = request.GET.first('content-type')
+    response.headers.set(b'content-type', content_type)
+    response.content = b'hello'
+```
+
+書き方は色々あるが、だいたい見ればわかるので、近くのファイルを参考にする。
+
+
+### HTTPS
+
+注意点として、もしそのファイルに https でアクセスしたい場合は、 `${name}.https.${ext}` のように、ファイル名に https を入れる必要がある。
+
+特に、 HTTPS でしか動かない機能のテストはこれを忘れると落ちるので注意。
+
+その上で HTTP/2 が必要なら `${name}.h2.${ext}` とするなど、他のフラグもある。
