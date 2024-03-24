@@ -88,11 +88,11 @@ SB = $(addsuffix .sb, $(ENTRIES))
 #$(COMP_TARGET): $(HASH_TARGET)
 
 %.br: %
-	brotli -f $<
+	brotli -q 11 -f $<
 #	touch -r $< $@
 
 %.sb: %
-	brotli -f --dictionary=$(wildcard ./blog.jxck.io/dictionary/*dict) --suffix=.sb $<
+	brotli -q 11 -f --dictionary=$(wildcard ./blog.jxck.io/dictionary/*dict) --suffix=.sb $<
 # touch -r $< $@
 
 # 対象ファイルを圧縮
