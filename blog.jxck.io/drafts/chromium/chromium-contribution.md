@@ -55,18 +55,13 @@ Chromium にコントリビュートするためには、ソースコードを�
 - 検索クエリとして使える構文
   - https://developers.google.com/code-search/reference?hl=ja
 
-おおよその階層を把握し、そこを絞ってからディレクトリ内検索する方が良い。
+よく使うもののおおよその階層を把握し、そこを絞ってからディレクトリ内検索する方が良い。
 
 - `chrome/`
   - Chrome アプリ固有の機能
   - 拡張機能やオートフィル、ブックマークなど
 - `content/`
   - タブ内で必要な機能
-- `component/`
-  - iOS 版や WebView など、アーキテクチャ共通のもの
-- `service/`
-  - 基盤となる機能
-  - mojo の定義などはここにある
 - `third_party/blink/`
   - レンダリングエンジン Blink
   - 筆者としては一番触るディレクトリ
@@ -236,10 +231,6 @@ $ out/Default chrome
 
 オプションは色々ある。(TODO: まとめる)
 
-```sh
-out/Default chrome --log-net-log=./chromium_netlog.json --auto-open-devtools-for-tabs --enable-logging=stderr --v=1 > chromium_debuglog.txt 2>&1
-```
-
 
 ## デバッグ
 
@@ -290,7 +281,7 @@ VSCode でのステップ実行方法もある。
 - Chromium Docs - Visual Studio Code Dev
   - https://chromium.googlesource.com/chromium/src/+/master/docs/vscode.md
 
-これが動くなら理想。しかし、いつからかステップ実行するとプロセスが落ちるようになり、原因もわからなかったので、筆者もおとなしくプリントデバッグしている。
+これが動くなら理想。たまに落ちる。
 
 docs 以下を debug で検索すると色々テクニックが出てくる。
 
