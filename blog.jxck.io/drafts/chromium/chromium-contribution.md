@@ -1,4 +1,4 @@
-# Chromium にコントリビュートするための周辺知識
+# [chromium] Chromium にコントリビュートするための周辺知識
 
 ## Intro
 
@@ -531,3 +531,8 @@ def main(request, response):
 特に、 HTTPS でしか動かない機能のテストはこれを忘れると落ちるので注意。
 
 その上で HTTP/2 が必要なら `${name}.h2.${ext}` とするなど、他のフラグもある。
+
+
+## Outro
+
+TODO: 思い出したら色々追記
