@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-03-26/chromium-contribution.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Chromium にコントリビュートするためには、ソースコードを理解する以外にも、もろもろ必要な周辺知識がある。ドキュメントはかなり整備されている方ではあるが、そのドキュメントにたどり着くのが難しい場合もある。レビュアーなどが親切に教えてくれるものをローカルにメモしているが...">
+  <meta name=keywords            content="chromium">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-03-26/chromium-contribution.html>
+  <meta property=og:title        content="Chromium にコントリビュートするための周辺知識 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Chromium にコントリビュートするためには、ソースコードを理解する以外にも、もろもろ必要な周辺知識がある。ドキュメントはかなり整備されている方ではあるが、そのドキュメントにたどり着くのが難しい場合もある。レビュアーなどが親切に教えてくれるものをローカルにメモしているが...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Chromium にコントリビュートするための周辺知識 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-03-26T08:00:00+08:00",
+    "dateModified": "2024-03-26T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Chromium にコントリビュートするためには、ソースコードを理解する以外にも、もろもろ必要な周辺知識がある。ドキュメントはかなり整備されている方ではあるが、そのドキュメントにたどり着くのが難しい場合もある。レビュアーなどが親切に教えてくれるものをローカルにメモしているが..."
+  }
+  </script>
+
+  <title>Chromium にコントリビュートするための周辺知識 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?230926_134917>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-03-26>2024-03-26</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#chromium">chromium</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#関連サイト">関連サイト</a>
+                <ol>
+                  <li><a href="#code-search">code search</a>
+                  <li><a href="#crbug">crbug</a>
+                  <li><a href="#crrev">crrev</a>
+                  <li><a href="#chromium-dash">chromium dash</a>
+                </ol>
+                <li><a href="#公式の参考リソース">公式の参考リソース</a>
+                <ol>
+                  <li><a href="#環境構築">環境構築</a>
+                  <li><a href="#実行">実行</a>
+                  <li><a href="#デバッグ">デバッグ</a>
+                  <li><a href="#テスト関連">テスト関連</a>
+                  <li><a href="#flag">Flag</a>
+                  <li><a href="#git">Git</a>
+                </ol>
+                <li><a href="#tips">Tips</a>
+                <ol>
+                  <li><a href="#idl">IDL</a>
+                  <li><a href="#sqlite3">sqlite3</a>
+                </ol>
+                <li><a href="#wpt">WPT</a>
+                <ol>
+                  <li><a href="#実行_1">実行</a>
+                  <li><a href="#テストサーバ">テストサーバ</a>
+                  <li><a href="#https">HTTPS</a>
+                </ol>
+                <li><a href="#outro">Outro</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Chromium にコントリビュートするための周辺知識</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Chromium にコントリビュートするためには、ソースコードを理解する以外にも、もろもろ必要な周辺知識がある。
+        <p>ドキュメントはかなり整備されている方ではあるが、そのドキュメントにたどり着くのが難しい場合もある。
+        <p>レビュアーなどが親切に教えてくれるものをローカルにメモしているが、それも散らばってきたため、ここにまとめることにする。
+        <p>まずは初期状態で公開するが、どんどん更新していき、長くなっても分割しないで追記を繰り返そうと考えている。
+      </section>
+      <section>
+        <h2 id="関連サイト"><a href="#関連サイト">関連サイト</a></h2>
+        <p>始めて取り組もうとすると、まずどこを見ればわからないところから始まる。
+        <p>似たようないくつかのサイトがあり、使い分けがされているからだ。
+        <ul>
+          <li>
+            code search
+            <ul>
+              <li><a href="https://source.chromium.org/chromium/chromium/src" target=_blank>https://source.chromium.org/chromium/chromium/src</a>
+              <li>コードをインタラクティブに検索するためのサイト
+              <li>Workspace 風の UI であり、シンボルがリンクなので捗る
+              <li>Related File や Blame もできる
+              <li>右上の &quot;View in Gitiles&quot; で Gitiles に飛べる
+            </ul>
+          </li>
+          <li>
+            gitiles
+            <ul>
+              <li><a href="https://chromium.googlesource.com/" target=_blank>https://chromium.googlesource.com/</a>
+              <li>Git のリポジトリがそのまま上がっている場所
+              <li>ソースのリンクはこちらが使われることもある。
+              <li>こちらから Code Search に飛ぶ方法はわからない。
+              <li>
+                特定バージョン時点でのコードは以下で見られる
+                <ul>
+                  <li><a href="https://chromium.googlesource.com/chromium/src.git/+refs" target=_blank>https://chromium.googlesource.com/chromium/src.git/+refs</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            crbug
+            <ul>
+              <li><a href="https://issues.chromium.org/issues?q=fetch" target=_blank>https://issues.chromium.org/issues?q=fetch</a>
+              <li>元々は <a href="https://bugs.chromium.org" target=_blank>https://bugs.chromium.org</a> だったが最近移行された
+              <li>crbug とも呼ばれ以下で短縮できる
+              <li><a href="https://crbug.com/10000" target=_blank>https://crbug.com/10000</a>
+              <li>何かバグを見つけた場合もここから登録する
+              <li>作業をする場合もここから探す
+            </ul>
+          </li>
+          <li>
+            gerrit
+            <ul>
+              <li><a href="https://chromium-review.googlesource.com/dashboard/self" target=_blank>https://chromium-review.googlesource.com/dashboard/self</a>
+              <li>レビューをするためのサイト
+              <li>crrev とも呼ばれ、以下で短縮できる
+              <li><a href="https://crrev.com/c/10000" target=_blank>https://crrev.com/c/10000</a>
+            </ul>
+          </li>
+          <li>
+            chromium dash
+            <ul>
+              <li><a href="https://chromiumdash.appspot.com/home" target=_blank>https://chromiumdash.appspot.com/home</a>
+              <li>もともとは <a href="https://omahaproxy.appspot.com/" target=_blank>omahaproxy</a> というサービスだったもの
+              <li>ビルドやリリースに関する情報がまとまっている
+            </ul>
+          </li>
+        </ul>
+        <section>
+          <h3 id="code-search"><a href="#code-search">code search</a></h3>
+          <ul>
+            <li>
+              検索クエリとして使える構文
+              <ul>
+                <li><a href="https://developers.google.com/code-search/reference?hl=ja" target=_blank>https://developers.google.com/code-search/reference?hl=ja</a>
+              </ul>
+            </li>
+          </ul>
+          <p>例えば「ファイルパスじゃなくて中身に、全部小文字の &quot;fetch&quot; が出てくる <code translate=no>.cc</code> でテストじゃないやつを blink 以下で探す」はこんな感じ。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+          <pre><code translate=no>content:fetch case:y f:third_party/blink/renderer/core/fetch f:.cc -test</code></pre>
+          <p><code translate=no>lang:cpp</code> だと <code translate=no>.h</code> も入るので拡張子の方が絞れる。
+          <p>よく使うもののおおよその階層を把握し、そこを絞ってからディレクトリ内検索する方が良い。
+          <ul>
+            <li>
+              <code translate=no>chrome/</code>
+              <ul>
+                <li>Chrome アプリ固有の機能
+                <li>拡張機能やオートフィル、ブックマークなど
+              </ul>
+            </li>
+            <li>
+              <code translate=no>content/</code>
+              <ul>
+                <li>タブ内で必要な機能
+              </ul>
+            </li>
+            <li>
+              <code translate=no>third_party/blink/</code>
+              <ul>
+                <li>レンダリングエンジン Blink
+                <li>筆者としては一番触るディレクトリ
+              </ul>
+            </li>
+            <li>
+              <code translate=no>url</code>
+              <ul>
+                <li>Google 謹製の URL パーサ
+              </ul>
+            </li>
+            <li>
+              <code translate=no>v8</code>
+              <ul>
+                <li>JS エンジンの V8
+              </ul>
+            </li>
+          </ul>
+          <p>基本的に Chromium はマルチプロセスになっている。
+          <p>親プロセスとして browser process があり、各タブを開くごとに独立した rendering process が開かれる。 rendering process と browser process は IPC しかできない。
+          <p>これによって rendering process がサンドボックス化されている。つまり、インターネットの有象無象なコードを落として実行し、仮に rendering process が攻撃されても、そこから browser process は守られているため、 OS から情報を抜いたりはできない。
+          <p>
+            <picture>
+              <source type=image/avif srcset=chrome-process-architecture.avif?240326_010150>
+              <source type=image/webp srcset=chrome-process-architecture.webp?240326_010558>
+              <img loading=lazy decoding=async src=chrome-process-architecture.png?240326_005751 alt="chrome process architecture" width=720 height=405>
+            </picture>
+          </p>
+          <p>というあたりを把握しておくと検索しやすい。
+          <p>両者を繋ぐ IPC が mojo だ。デバッグ中はだいたい mojo まで到達するとそこから辿れなくなる。(この辺を越えられるようになりたい)
+          <p>ソースコードの歩き方を解説している記事が日英ともにちょいちょいあるが、割と大きなリネームがあったり、構造が変わったりしているので、記事の鮮度には注意が必要。
+        </section>
+        <section>
+          <h3 id="crbug"><a href="#crbug">crbug</a></h3>
+          <p>何かバグを見つけた時に報告する先。
+          <p>
+            <picture>
+              <source type=image/avif srcset=crbug.avif?240326_010221>
+              <source type=image/webp srcset=crbug.webp?240326_010558>
+              <img loading=lazy decoding=async src=crbug.png?240326_005751 alt="crbug" width=4226 height=1350>
+            </picture>
+          </p>
+          <p>最近 Issue Tracker という新しいツールにマイグレートされたので、使い方がまだよくわからない。調べて出てくる crbug は大抵古い UI なので注意が必要。
+          <ul>
+            <li>
+              入門ガイド
+              <ul>
+                <li><a href="https://developers.google.com/issue-tracker/concepts/components?hl=ja" target=_blank>https://developers.google.com/issue-tracker/concepts/components?hl=ja</a>
+              </ul>
+            </li>
+          </ul>
+          <p>報告するぶんには、とりあえずわかってることを全部書いておけば、誰かしらがトリアージしてくれる。
+          <p>探す上では、バグがどのコンポーネントに関連するかを示す Component を先に見つけると捗る。
+          <pre><code translate=no>Blink&gt;Network&gt;FetchAPI
+Blink&gt;PerformanceAPIs&gt;ResourceTiming
+...</code></pre>
+          <p>また、関連する複数のバグは Hotlist というものでまとめられる。
+          <p>例えば、 Hotlist-GoodFirstBug とか。
+          <ul>
+            <li>
+              Hotlist-GoodFirstBug
+              <ul>
+                <li><a href="https://issues.chromium.org/issues?q=Hotlist-GoodFirstBug" target=_blank>https://issues.chromium.org/issues?q=Hotlist-GoodFirstBug</a>
+              </ul>
+            </li>
+          </ul>
+          <p>ここでバグを見つけて、もしレビューがあったらそっちを見ると、どういうコードが入ったのかわかる。
+        </section>
+        <section>
+          <h3 id="crrev"><a href="#crrev">crrev</a></h3>
+          <p>Git で upload したコードはここに入りレビューされる。この UI は慣れないと難しい。
+          <p>
+            <picture>
+              <source type=image/avif srcset=crrev.avif?240326_010224>
+              <source type=image/webp srcset=crrev.webp?240326_010558>
+              <img loading=lazy decoding=async src=crrev.png?240326_005751 alt="crrev" width=1872 height=864>
+            </picture>
+          </p>
+          <p>コントリビューションガイドを読んでおくといい。
+          <ul>
+            <li>
+              Chromium Docs - Contributing to Chromium
+              <ul>
+                <li><a href="https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/contributing.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/contributing.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>とりあえずレビューを立てたら Description を書いて、コードをあげる。
+          <p>Reviewers の下のペンボタンを押すと、コードのディレクトリの中にある OWNERS ファイルに書かれた人からサジェストされる。普通は先に issue があるはずなので、そこでコミュニケーションした人を選べば良い。
+          <p>
+            <picture>
+              <source type=image/avif srcset=review-files.avif?240326_010241>
+              <source type=image/webp srcset=review-files.webp?240326_010558>
+              <img loading=lazy decoding=async src=review-files.png?240326_005751 alt="review files" width=1466 height=1116>
+            </picture>
+          </p>
+          <p>選んだら Start Review すると初めてリクエストが送られる。これをしないと誰も見てくれない気がする。
+          <p>crrev には Patchset という概念があり、これは複数コミットがあっても <code translate=no>git cl upload</code> した単位でつく。
+          <p>この単位でレビューコメントが付き、それに対応していくことになる。
+          <p>
+            <picture>
+              <source type=image/avif srcset=review.avif?240326_010244>
+              <source type=image/webp srcset=review.webp?240326_010558>
+              <img loading=lazy decoding=async src=review.png?240326_005751 alt="review" width=1246 height=394>
+            </picture>
+          </p>
+          <p>レビューが付いたら、そこに対して REPLY でコメントを返すか、次の Patchset で直して、治ったら DONE にする。
+          <p>コメントをつけたら、それだけで相手に通知がいくわけではない。コメントをつけたり DONE を押したら、必ず画面上部の REPLY を押す必要がある。これがないと Submit されないので、夜コメント書いて朝返事があるかなと思ったら REPLY 押し忘れてたみたいなことがあるので注意。
+          <p>
+            <picture>
+              <source type=image/avif srcset=reply.avif?240326_010229>
+              <source type=image/webp srcset=reply.webp?240326_010558>
+              <img loading=lazy decoding=async src=reply.png?240326_005751 alt="reply" width=770 height=246>
+            </picture>
+          </p>
+          <p>Rebase は UI 上からできるが、全部のコメントを一旦終えてから Rebase するのがマナーらしい。
+          <p>Rebase が終わったら、 &quot;CQ DRY RUN&quot; する。これが CI でビルドと全テストを流すボタン。ただし、権限のある人にしかできないので、 Reviewer にやってもらうことになる。
+          <p>
+            <picture>
+              <source type=image/avif srcset=rebase-dry-run.avif?240326_010227>
+              <source type=image/webp srcset=rebase-dry-run.webp?240326_010558>
+              <img loading=lazy decoding=async src=rebase-dry-run.png?240326_005751 alt="rebase-dry-run" width=688 height=80>
+            </picture>
+          </p>
+          <p>全部終わると、 Code-Review +1 がもらえる。これがないとマージされない。
+          <p>
+            <picture>
+              <source type=image/avif srcset=lgtm.avif?240326_010226>
+              <source type=image/webp srcset=lgtm.webp?240326_010558>
+              <img loading=lazy decoding=async src=lgtm.png?240326_005751 alt="lgtm" width=1204 height=360>
+            </picture>
+          </p>
+          <p>もろもろ終わると自動でマージされる。
+        </section>
+        <section>
+          <h3 id="chromium-dash"><a href="#chromium-dash">chromium dash</a></h3>
+          <p>リリースなどに関する情報が集まったダッシュボード。
+          <p>マージされたコードがいつリリースされたかを知りたい場合、ここで知ることができる。
+          <p>まず、マージされた Patchset のコミットハッシュを取得する。(crrev だと Patchset の横からコピーできる)
+          <p>
+            <picture>
+              <source type=image/avif srcset=patchset-hash.avif?240326_010227>
+              <source type=image/webp srcset=patchset-hash.webp?240326_010558>
+              <img loading=lazy decoding=async src=patchset-hash.png?240326_005751 alt="patchset hash" width=664 height=132>
+            </picture>
+          </p>
+          <p>それを Chromium Dash の Commits に入れれば情報が出る。
+          <p>例えば以下なら。
+          <ul>
+            <li>
+              Rename InterestGroup API flag for common use and add flag for PARAKEET impl (3158266) · Gerrit Code Review
+              <ul>
+                <li><a href="https://chromium-review.googlesource.com/c/chromium/src/+/3158266" target=_blank>https://chromium-review.googlesource.com/c/chromium/src/+/3158266</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これ。
+          <ul>
+            <li>
+              Chromium Dash
+              <ul>
+                <li><a href="https://chromiumdash.appspot.com/commit/4359c5ebd238c93c22e69d369cbe813ae3081b6c" target=_blank>https://chromiumdash.appspot.com/commit/4359c5ebd238c93c22e69d369cbe813ae3081b6c</a>
+              </ul>
+            </li>
+          </ul>
+          <p>
+            <picture>
+              <source type=image/avif srcset=commit-landed.avif?240326_010152>
+              <source type=image/webp srcset=commit-landed.webp?240326_010558>
+              <img loading=lazy decoding=async src=commit-landed.png?240326_005751 alt="commit landed" width=1398 height=188>
+            </picture>
+          </p>
+          <p>今回の場合は 96 でリリースされたことがわかる。
+          <p>逆にここから Review や Bug にも飛べる。
+        </section>
+      </section>
+      <section>
+        <h2 id="公式の参考リソース"><a href="#公式の参考リソース">公式の参考リソース</a></h2>
+        <ul>
+          <li>
+            docs - Chromium Code Search
+            <ul>
+              <li><a href="https://source.chromium.org/chromium/chromium/src/+/main:docs/" target=_blank>https://source.chromium.org/chromium/chromium/src/+/main:docs/</a>
+              <li>このディレクトリに色々ある
+              <li>まずは <a href="https://source.chromium.org/chromium/chromium/src/+/main:docs/README.md" target=_blank>README.md</a>
+            </ul>
+          </li>
+          <li>
+            C++ in Chromium 101 - Codelab
+            <ul>
+              <li><a href="https://chromium.googlesource.com/chromium/src/+/HEAD/codelabs/cpp101/README.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/HEAD/codelabs/cpp101/README.md</a>
+              <li>C++ のコードラボ
+            </ul>
+          </li>
+          <li>
+            Chrome University
+            <ul>
+              <li><a href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICgS7eFJrGDhMBwWtdTgzpx" target=_blank>https://www.youtube.com/playlist?list=PLNYkxOF6rcICgS7eFJrGDhMBwWtdTgzpx</a>
+              <li>公式の教育ビデオコンテンツ
+            </ul>
+          </li>
+        </ul>
+        <section>
+          <h3 id="環境構築"><a href="#環境構築">環境構築</a></h3>
+          <p>Chromium は、一部を開発するにも、基本は全てをチェックアウトしてビルドする必要がある。
+          <ul>
+            <li>
+              Linux ビルド環境
+              <ul>
+                <li><a href="https://chromium.googlesource.com/chromium/src/+/main/docs/linux/build_instructions.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/main/docs/linux/build_instructions.md</a>
+              </ul>
+            </li>
+            <li>
+              Mac ビルド環境
+              <ul>
+                <li><a href="https://chromium.googlesource.com/chromium/src/+/main/docs/mac_build_instructions.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/main/docs/mac_build_instructions.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>基本は書かれている通りやるだけ。
+          <p>ビルドは、基本的に Linux が一番早い(ファイルシステムやプロセス生成の影響がでかい)らしいので、 OS 依存でない限りは Mac より Linux を用意する方が良さそう。
+          <p>ちなみに Mac(2020 Core i7/32GB) だと。
+          <ul>
+            <li>ネットワークによるが最初の sync だけで 4,5 時間
+            <li>Build は一晩
+            <li>Build 後はソース + バイナリで 100GB くらい
+          </ul>
+          <p>Google 社員は Reclient という分散ビルド環境を使っている(以前は Goma という環境だった)。これはコントリビュートを重ねてから申請するとアクセス権がもらえるらしい。それまでは手持ちのマシンで頑張るしかない。ちょっとでもビルドを早くするための細かいテクニックも書かれているので、全部やると良さそう。
+        </section>
+        <section>
+          <h3 id="実行"><a href="#実行">実行</a></h3>
+          <p>ビルド結果の実行は以下。
+          <pre class=sh data-code=sh><code translate=no class=language-sh>$ out/Default chrome</code></pre>
+          <p>オプションは色々ある。(TODO: まとめる)
+        </section>
+        <section>
+          <h3 id="デバッグ"><a href="#デバッグ">デバッグ</a></h3>
+          <p>開発者のほとんどがプリントデバッグだけで開発しているらしい。
+          <p>基本はこれ。
+          <pre class=cpp data-code=cpp><code translate=no class=language-cpp>LOG(ERROR) &lt;&lt; &quot;Foo&quot;;
+LOG(ERROR) &lt;&lt; __FILE__ &lt;&lt; &quot;Foo&quot;</code></pre>
+          <p>レベルを分けることもできる
+          <pre class=cpp data-code=cpp><code translate=no class=language-cpp>// --enable-logging=stderr --v=1
+DVLOG(1) &lt;&lt; __FILE__  &lt;&lt; &quot;Foo</code></pre>
+          <p>他にも色々用意されている。よく使う型なら良い感じに変換されるようになってる。
+          <ul>
+            <li>
+              logging.h - chromium/src/base - Git at Google
+              <ul>
+                <li><a href="https://chromium.googlesource.com/chromium/src/base/+/refs/heads/master/logging.h" target=_blank>https://chromium.googlesource.com/chromium/src/base/+/refs/heads/master/logging.h</a>
+              </ul>
+            </li>
+          </ul>
+          <p>stack trace の取り方はこう。
+          <pre class=cpp data-code=cpp><code translate=no class=language-cpp>#include &quot;base/debug/stack_trace.h&quot;
+
+base::debug::StackTrace().Print();
+// or
+LOG(ERROR) &lt;&lt; base::debug::StackTrace();</code></pre>
+          <p>詳細は以下。
+          <ul>
+            <li>
+              getting started with blink debugging
+              <ul>
+                <li><a href="https://source.chromium.org/chromium/chromium/src/+/main:docs/website/site/blink/getting-started-with-blink-debugging/index.md" target=_blank>https://source.chromium.org/chromium/chromium/src/+/main:docs/website/site/blink/getting-started-with-blink-debugging/index.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>GDB を使うことも可能だが、はまりどころは多いらしい。
+          <ul>
+            <li>
+              debugging.md - Chromium Code Search
+              <ul>
+                <li><a href="https://source.chromium.org/chromium/chromium/src/+/main:docs/linux/debugging.md" target=_blank>https://source.chromium.org/chromium/chromium/src/+/main:docs/linux/debugging.md</a>
+                <li><code translate=no>--no-sandbox</code> で sandbox を無効にして実効しないとうまくデバッグできないケースに注意。
+              </ul>
+            </li>
+          </ul>
+          <p>VSCode でのステップ実行方法もある。
+          <ul>
+            <li>
+              Chromium Docs - Visual Studio Code Dev
+              <ul>
+                <li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/vscode.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/master/docs/vscode.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これが動くなら理想。たまに落ちる。
+          <p>docs 以下を debug で検索すると色々テクニックが出てくる。
+          <ul>
+            <li>
+              debug - Search
+              <ul>
+                <li><a href="https://source.chromium.org/search?q=debug&sq=&ss=chromium%2Fchromium%2Fsrc:docs%2F" target=_blank>https://source.chromium.org/search?q=debug&amp;sq=&amp;ss=chromium%2Fchromium%2Fsrc:docs%2F</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="テスト関連"><a href="#テスト関連">テスト関連</a></h3>
+          <ul>
+            <li>
+              テストの実行方法
+              <ul>
+                <li><a href="https://www.chromium.org/developers/testing/running-tests/" target=_blank>https://www.chromium.org/developers/testing/running-tests/</a>
+              </ul>
+            </li>
+            <li>
+              Unittest の一覧
+              <ul>
+                <li><a href="https://source.chromium.org/chromium/chromium/src/+/main:docs/testing/test_descriptions.md" target=_blank>https://source.chromium.org/chromium/chromium/src/+/main:docs/testing/test_descriptions.md</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="flag"><a href="#flag">Flag</a></h3>
+          <p>新しく入れた機能は、最初フラグの裏に隠されることが多い。
+          <p>その場合は、以下のように有効にする。
+          <pre class=sh data-code=sh><code translate=no class=language-sh>chrome --enable-features=SubresourceWebBundle</code></pre>
+          <p>この値は <code translate=no>*_features.json5</code> というファイルがいくつかあり、そこに書かれている。
+          <ul>
+            <li>
+              file:features.json5 - Search
+              <ul>
+                <li><a href="https://source.chromium.org/search?q=file:features.json5&ss=chromium" target=_blank>https://source.chromium.org/search?q=file:features.json5&amp;ss=chromium</a>
+              </ul>
+            </li>
+          </ul>
+          <p>よく見るのは、 renderer/platform のもの。
+          <ul>
+            <li>
+              runtime_enabled_features.json5 - Chromium Code Search
+              <ul>
+                <li><a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/runtime_enabled_features.json5" target=_blank>https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/runtime_enabled_features.json5</a>
+              </ul>
+            </li>
+          </ul>
+          <p><code translate=no>features.cc</code> の場合もあるらしい。
+          <p>ある程度安定したら、 CLI フラグではなく chrome://flags に入る。
+          <ul>
+            <li>
+              about_flags.cc - Chromium Code Search
+              <ul>
+                <li><a href="https://source.chromium.org/chromium/chromium/src/+/main:chrome/browser/about_flags.cc" target=_blank>https://source.chromium.org/chromium/chromium/src/+/main:chrome/browser/about_flags.cc</a>
+              </ul>
+            </li>
+          </ul>
+          <p>Experimental で Origin Trials が始まると、それも features.json5 で管理される。
+          <pre class=json data-code=json><code translate=no class=language-json>{
+  name: &quot;CompressionDictionaryTransport&quot;,
+  base_feature: &quot;none&quot;,
+  origin_trial_feature_name: &quot;CompressionDictionaryTransportV2&quot;,
+  origin_trial_allows_third_party: true,
+  public: true,
+},</code></pre>
+          <p>このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく。これを Finch という。
+          <p>Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
+          <ul>
+            <li>chrome://version/?show-variations-cmd
+          </ul>
+          <p>で表示される、一番下に <code translate=no>Command-line variations</code> が追加される。よくわらかないフィーマットでワンラインにされているが、これを雑に <code translate=no>,</code> や <code translate=no>*</code> で改行すると、有効になってる機能が確認できるだろう。
+        </section>
+        <section>
+          <h3 id="git"><a href="#git">Git</a></h3>
+          <p>Chromium 用の Git の拡張が用意されており、それを用いてコントリビュートする。
+          <ul>
+            <li>
+              Chromium www.chromium.org Website - site/developers/gerrit-guide/index.md
+              <ul>
+                <li><a href="https://chromium.googlesource.com/website/+/HEAD/site/developers/gerrit-guide/index.md" target=_blank>https://chromium.googlesource.com/website/+/HEAD/site/developers/gerrit-guide/index.md</a>
+              </ul>
+            </li>
+          </ul>
+          <pre class=shell data-code=shell><code translate=no class=language-shell># Issue 番号で紐づける
+$ git cl issue 123456
+
+# 書いたコードを gerrit にアップする
+$ git cl upload</code></pre>
+        </section>
+      </section>
+      <section>
+        <h2 id="tips"><a href="#tips">Tips</a></h2>
+        <section>
+          <h3 id="idl"><a href="#idl">IDL</a></h3>
+          <p>WebIDL 相当のもの。
+          <p>ここから python script で interface 付きの DOM API コードが生成される。
+          <p>例えば <code translate=no>URL</code> の IDL は以下。
+          <ul>
+            <li>
+              url.idl - Chromium Code Search
+              <ul>
+                <li><a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/url/url.idl" target=_blank>https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/url/url.idl</a>
+              </ul>
+            </li>
+          </ul>
+          <pre><code translate=no>// https://url.spec.whatwg.org/#url
+
+[
+    Exposed=(Window,Worker),
+    ImplementedAs=DOMURL,
+    LegacyWindowAlias=webkitURL
+] interface URL {
+    [RaisesException] constructor(USVString url, optional USVString base);
+
+    static boolean canParse(USVString url, optional USVString base);
+
+    [RaisesException=Setter] stringifier attribute USVString href;
+    readonly attribute USVString origin;
+    attribute USVString protocol;
+    attribute USVString username;
+    attribute USVString password;
+    attribute USVString host;
+    attribute USVString hostname;
+    attribute USVString port;
+    attribute USVString pathname;
+    attribute USVString search;
+    [SameObject] readonly attribute URLSearchParams searchParams;
+    attribute USVString hash;
+
+    USVString toJSON();
+};</code></pre>
+        </section>
+        <section>
+          <h3 id="sqlite3"><a href="#sqlite3">sqlite3</a></h3>
+          <p>色々なデータの格納に sqlite が使われている。
+          <p>例えば Cookie は以下
+          <p>TODO:
+          <pre><code translate=no>sqlite&gt; .tables
+sqlite&gt; .schema
+sqlite&gt; select * from table</code></pre>
+        </section>
+      </section>
+      <section>
+        <h2 id="wpt"><a href="#wpt">WPT</a></h2>
+        <p>Web Platform Tests は、各ブラウザが共通して実行する Web の単体テスト群のようなもの。
+        <p>最近でいうと、 Interop は WPT の達成度合いを上げていこうという取り組みだったりする。
+        <p>Chromium は WPT をリポジトリの中に入れており、 Web 標準の機能を実装する際はそのテストを直接 WPT にも追加してレビューに投げる。マージされたらそのテストは WPT 本体にもアップロードされるようになっている。
+        <p>WPT の実行の仕方とテストの書き方も慣れが必要。
+        <section>
+          <h3 id="実行_1"><a href="#実行_1">実行</a></h3>
+          <p>WPT の実行は、公式では <code translate=no>wpt</code> コマンドが提供されている。
+          <ul>
+            <li>
+              wpt - Chromium Code Search
+              <ul>
+                <li><a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/wpt_tools/wpt/wpt" target=_blank>https://source.chromium.org/chromium/chromium/src/+/main:third_party/wpt_tools/wpt/wpt</a>
+              </ul>
+            </li>
+          </ul>
+          <p>しかし、Chromium の中では、この代わりに <code translate=no>/third_party/blink/tools</code> 以下のコマンドを使用するっぽい。
+          <p>自分がビルドした Chromium のインスタンスで、特定の WPT を実行する。
+          <pre class=shell data-code=shell><code translate=no class=language-shell>$ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blink/web_tests/external/wpt/resource-timing/content-encoding.https.html -vv</code></pre>
+          <p>これで、該当の HTML がブラウザ上で実行され、テストが走るイメージ。
+          <p>手動で実行して試したい場合は、サーバだけ起動してアクセスする。
+          <pre class=shell data-code=shell><code translate=no class=language-shell>$ ./third_party/blink/tools/run_blink_wptserve.py
+Server running on http://localhost:8001
+Server running on http://localhost:8081
+Server running on http://localhost:8082
+Server running on http://localhost:8093
+Server running on https://localhost:8444
+Server running on https://localhost:8445
+Server running on https://localhost:8446
+Server running on https://localhost:8447
+Server running on https://localhost:9000
+Server running on ws://localhost:9001
+Server running on wss://localhost:9444
+WebTransportH3 server running on https://localhost:11000</code></pre>
+          <p>とりあえず 8001 ポートにアクセスすれば試せる。
+          <p>テスト用のドメインとしては <code translate=no>web-platform.test</code> などのドメインが使われる。
+          <p>これを解決できないと実行できないテストがある場合は、 <code translate=no>/etc/hosts</code> に追加する必要があるが、その自動構成スクリプトは以下にある。
+          <ul>
+            <li>
+              Command-Line Arguments - web-platform-tests documentation
+              <ul>
+                <li><a href="https://web-platform-tests.org/running-tests/command-line-arguments.html#make-hosts-file" target=_blank>https://web-platform-tests.org/running-tests/command-line-arguments.html#make-hosts-file</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="テストサーバ"><a href="#テストサーバ">テストサーバ</a></h3>
+          <p>fetch などでサーバを叩いたりするテストのために、 mock server を書く方法がいくつかある。
+          <ul>
+            <li>
+              Server Features - web-platform-tests documentation
+              <ul>
+                <li><a href="https://web-platform-tests.org/writing-tests/server-features.html" target=_blank>https://web-platform-tests.org/writing-tests/server-features.html</a>
+              </ul>
+            </li>
+          </ul>
+          <p>まず、普通にファイル (<code translate=no>/example/text.html</code>) を置けば、それは静的ファイルとしてアクセスできる。
+          <p>これにヘッダをつけたい場合は、 .headers ファイルを作る(<code translate=no>/example/test.html.headers</code>)
+          <pre><code translate=no>Access-Control-Allow-Origin: *</code></pre>
+          <p>.asis ファイルを作ると、その中に書いたレスポンスがまるっとそのまま返る。(Apache As-Is という仕様らしい)
+          <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
+Content-Type: text/plain
+Content-Length: 5
+
+hello</code></pre>
+          <p>動的にレスポンスを生成したい場合は wptserve という Python のサーバを書く。
+          <pre class=py data-code=py><code translate=no class=language-py>def main(request, response):
+    content_type = request.GET.first(&apos;content-type&apos;)
+    response.headers.set(b&apos;content-type&apos;, content_type)
+    response.content = b&apos;hello&apos;</code></pre>
+          <p>書き方は色々あるが、だいたい見ればわかるので、近くのファイルを参考にする。
+        </section>
+        <section>
+          <h3 id="https"><a href="#https">HTTPS</a></h3>
+          <p>注意点として、もしそのファイルに HTTPS でアクセスしたい場合は、 <code translate=no>${name}.https.${ext}</code> のように、ファイル名に https を入れる必要があります。
+          <p>特に、 HTTPS でしか動かない機能のテストはこれを忘れると落ちるので注意。
+          <p>その上で HTTP/2 が必要なら <code translate=no>${name}.h2.${ext}</code> とするなど、他のフラグもある。
+        </section>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>TODO: 思い出したら色々追記
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
