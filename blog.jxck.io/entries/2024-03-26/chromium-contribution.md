@@ -84,7 +84,7 @@ content:fetch case:y f:third_party/blink/renderer/core/fetch f:.cc -test
 
 これによって rendering process がサンドボックス化されている。つまり、インターネットの有象無象なコードを落として実行し、仮に rendering process が攻撃されても、そこから browser process は守られているため、 OS から情報を抜いたりはできない。
 
-![chrome process architecture](chrome-process-architecture.png)
+![chrome process architecture](chrome-process-architecture.png#720x405)
 
 というあたりを把握しておくと検索しやすい。
 
@@ -97,7 +97,7 @@ content:fetch case:y f:third_party/blink/renderer/core/fetch f:.cc -test
 
 何かバグを見つけた時に報告する先。
 
-![crbug](crbug.png)
+![crbug](crbug.png#4226x1350)
 
 最近 Issue Tracker という新しいツールにマイグレートされたので、使い方がまだよくわからない。調べて出てくる crbug は大抵古い UI なので注意が必要。
 
@@ -128,7 +128,7 @@ Blink>PerformanceAPIs>ResourceTiming
 
 Git で upload したコードはここに入りレビューされる。この UI は慣れないと難しい。
 
-![crrev](crrev.png)
+![crrev](crrev.png#1872x864)
 
 コントリビューションガイドを読んでおくといい。
 
@@ -139,7 +139,7 @@ Git で upload したコードはここに入りレビューされる。この U
 
 Reviewers の下のペンボタンを押すと、コードのディレクトリの中にある OWNERS ファイルに書かれた人からサジェストされる。普通は先に issue があるはずなので、そこでコミュニケーションした人を選べば良い。
 
-![review files](review-files.png)
+![review files](review-files.png#1466x1116)
 
 選んだら Start Review すると初めてリクエストが送られる。これをしないと誰も見てくれない気がする。
 
@@ -147,23 +147,23 @@ crrev には Patchset という概念があり、これは複数コミットが�
 
 この単位でレビューコメントが付き、それに対応していくことになる。
 
-![review](review.png)
+![review](review.png#1246x394)
 
 レビューが付いたら、そこに対して REPLY でコメントを返すか、次の Patchset で直して、治ったら DONE にする。
 
 コメントをつけたら、それだけで相手に通知がいくわけではない。コメントをつけたり DONE を押したら、必ず画面上部の REPLY を押す必要がある。これがないと Submit されないので、夜コメント書いて朝返事があるかなと思ったら REPLY 押し忘れてたみたいなことがあるので注意。
 
-![REPLY](reply.png)
+![reply](reply.png#770x246)
 
 Rebase は UI 上からできるが、全部のコメントを一旦終えてから Rebase するのがマナーらしい。
 
 Rebase が終わったら、 "CQ DRY RUN" する。これが CI でビルドと全テストを流すボタン。ただし、権限のある人にしかできないので、 Reviewer にやってもらうことになる。
 
-![rebase-dry-run](rebase-dry-run.png)
+![rebase-dry-run](rebase-dry-run.png#688x80)
 
 全部終わると、 Code-Review +1 がもらえる。これがないとマージされない。
 
-![lgtm](lgtm.png)
+![lgtm](lgtm.png#1204x360)
 
 もろもろ終わると自動でマージされる。
 
@@ -176,7 +176,7 @@ Rebase が終わったら、 "CQ DRY RUN" する。これが CI でビルドと�
 
 まず、マージされた Patchset のコミットハッシュを取得する。(crrev だと Patchset の横からコピーできる)
 
-![patchset hash](patchset-hash.png)
+![patchset hash](patchset-hash.png#664x132)
 
 それを Chromium Dash の Commits に入れれば情報が出る。
 
@@ -190,7 +190,7 @@ Rebase が終わったら、 "CQ DRY RUN" する。これが CI でビルドと�
 - Chromium Dash
   - https://chromiumdash.appspot.com/commit/4359c5ebd238c93c22e69d369cbe813ae3081b6c
 
-![commit landed](commit-landed.png)
+![commit landed](commit-landed.png#1398x188)
 
 今回の場合は 96 でリリースされたことがわかる。
 
