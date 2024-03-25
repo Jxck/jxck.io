@@ -50,7 +50,7 @@ Chromium にコントリビュートするためには、ソースコードを�
   - ビルドやリリースに関する情報がまとまっている
 
 
-## code search
+### code search
 
 - 検索クエリとして使える構文
   - https://developers.google.com/code-search/reference?hl=ja
@@ -93,7 +93,7 @@ content:fetch case:y f:third_party/blink/renderer/core/fetch f:.cc -test
 ソースコードの歩き方を解説している記事が日英ともにちょいちょいあるが、割と大きなリネームがあったり、構造が変わったりしているので、記事の鮮度には注意が必要。
 
 
-## crbug
+### crbug
 
 何かバグを見つけた時に報告する先。
 
@@ -124,7 +124,7 @@ Blink>PerformanceAPIs>ResourceTiming
 ここでバグを見つけて、もしレビューがあったらそっちを見ると、どういうコードが入ったのかわかる。
 
 
-## crrev
+### crrev
 
 Git で upload したコードはここに入りレビューされる。この UI は慣れないと難しい。
 
@@ -168,7 +168,7 @@ Rebase が終わったら、 "CQ DRY RUN" する。これが CI でビルドと�
 もろもろ終わると自動でマージされる。
 
 
-## Chromium Dash
+### chromium dash
 
 リリースなどに関する情報が集まったダッシュボード。
 
@@ -197,54 +197,6 @@ Rebase が終わったら、 "CQ DRY RUN" する。これが CI でビルドと�
 逆にここから Review や Bug にも飛べる。
 
 
-## Flag
-
-新しく入れた機能は、最初フラグの裏に隠されることが多い。
-
-その場合は、以下のように有効にする。
-
-```sh
-chrome --enable-features=SubresourceWebBundle
-```
-
-この値は `*_features.json5` というファイルがいくつかあり、そこに書かれている。
-
-- file:features.json5 - Search
-  - https://source.chromium.org/search?q=file:features.json5&ss=chromium
-
-よく見るのは、 renderer/platform のもの。
-
-- runtime_enabled_features.json5 - Chromium Code Search
-  - https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/runtime_enabled_features.json5
-
-`features.cc` の場合もあるらしい。
-
-ある程度安定したら、 CLI フラグではなく chrome://flags に入る。
-
-- about_flags.cc - Chromium Code Search
-  - https://source.chromium.org/chromium/chromium/src/+/main:chrome/browser/about_flags.cc
-
-Experimental で Origin Trials が始まると、それも features.json5 で管理される。
-
-```json
-{
-  name: "CompressionDictionaryTransport",
-  base_feature: "none",
-  origin_trial_feature_name: "CompressionDictionaryTransportV2",
-  origin_trial_allows_third_party: true,
-  public: true,
-},
-```
-
-このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく。これを Finch という。
-
-Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
-
-- chrome://version/?show-variations-cmd
-
-で表示される、一番下に `Command-line variations` が追加される。よくわらかないフィーマットでワンラインにされているが、これを雑に `,` や `*` で改行すると、有効になってる機能が確認できるだろう。
-
-
 ## 公式の参考リソース
 
 - docs - Chromium Code Search
@@ -259,7 +211,7 @@ Finch がどうコントロールされているかは外にはでてこない�
   - 公式の教育ビデオコンテンツ
 
 
-## 環境構築
+### 環境構築
 
 Chromium は、一部を開発するにも、基本は全てをチェックアウトしてビルドする必要がある。
 
@@ -272,16 +224,16 @@ Chromium は、一部を開発するにも、基本は全てをチェックア�
 
 ビルドは、基本的に Linux が一番早い(ファイルシステムやプロセス生成の影響がでかい)らしいので、 OS 依存でない限りは Mac より Linux を用意する方が良さそう。
 
-ちなみに Mac(2020 Corei7/32GB) だと。
+ちなみに Mac(2020 Core i7/32GB) だと。
 
-- ネットワークによるが最初の sync だけで 4 時間ぐらい。
-- Build 時間は一晩。
-- Build 後はソース+バイナリーでディスク 96GB
+- ネットワークによるが最初の sync だけで 4,5 時間
+- Build は一晩
+- Build 後はソース + バイナリで 100GB くらい
 
 Google 社員は Reclient という分散ビルド環境を使っている(以前は Goma という環境だった)。これはコントリビュートを重ねてから申請するとアクセス権がもらえるらしい。それまでは手持ちのマシンで頑張るしかない。ちょっとでもビルドを早くするための細かいテクニックも書かれているので、全部やると良さそう。
 
 
-## 実行
+### 実行
 
 ビルド結果の実行は以下。
 
@@ -292,7 +244,7 @@ $ out/Default chrome
 オプションは色々ある。(TODO: まとめる)
 
 
-## デバッグ
+### デバッグ
 
 開発者のほとんどがプリントデバッグだけで開発しているらしい。
 
@@ -349,7 +301,7 @@ docs 以下を debug で検索すると色々テクニックが出てくる。
   - https://source.chromium.org/search?q=debug&sq=&ss=chromium%2Fchromium%2Fsrc:docs%2F
 
 
-## テスト関連
+### テスト関連
 
 - テストの実行方法
   - https://www.chromium.org/developers/testing/running-tests/
@@ -357,7 +309,55 @@ docs 以下を debug で検索すると色々テクニックが出てくる。
   - https://source.chromium.org/chromium/chromium/src/+/main:docs/testing/test_descriptions.md
 
 
-## Git
+### Flag
+
+新しく入れた機能は、最初フラグの裏に隠されることが多い。
+
+その場合は、以下のように有効にする。
+
+```sh
+chrome --enable-features=SubresourceWebBundle
+```
+
+この値は `*_features.json5` というファイルがいくつかあり、そこに書かれている。
+
+- file:features.json5 - Search
+  - https://source.chromium.org/search?q=file:features.json5&ss=chromium
+
+よく見るのは、 renderer/platform のもの。
+
+- runtime_enabled_features.json5 - Chromium Code Search
+  - https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/runtime_enabled_features.json5
+
+`features.cc` の場合もあるらしい。
+
+ある程度安定したら、 CLI フラグではなく chrome://flags に入る。
+
+- about_flags.cc - Chromium Code Search
+  - https://source.chromium.org/chromium/chromium/src/+/main:chrome/browser/about_flags.cc
+
+Experimental で Origin Trials が始まると、それも features.json5 で管理される。
+
+```json
+{
+  name: "CompressionDictionaryTransport",
+  base_feature: "none",
+  origin_trial_feature_name: "CompressionDictionaryTransportV2",
+  origin_trial_allows_third_party: true,
+  public: true,
+},
+```
+
+このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく。これを Finch という。
+
+Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
+
+- chrome://version/?show-variations-cmd
+
+で表示される、一番下に `Command-line variations` が追加される。よくわらかないフィーマットでワンラインにされているが、これを雑に `,` や `*` で改行すると、有効になってる機能が確認できるだろう。
+
+
+### Git
 
 Chromium 用の Git の拡張が用意されており、それを用いてコントリビュートする。
 
@@ -373,7 +373,9 @@ $ git cl upload
 ```
 
 
-## IDL
+## Tips
+
+### IDL
 
 WebIDL 相当のもの。
 
@@ -414,7 +416,7 @@ WebIDL 相当のもの。
 ```
 
 
-## sqlite3
+### sqlite3
 
 色々なデータの格納に sqlite が使われている。
 
@@ -485,7 +487,7 @@ WebTransportH3 server running on https://localhost:11000
   - https://web-platform-tests.org/running-tests/command-line-arguments.html#make-hosts-file
 
 
-## テストサーバ
+### テストサーバ
 
 fetch などでサーバを叩いたりするテストのために、 mock server を書く方法がいくつかある。
 
