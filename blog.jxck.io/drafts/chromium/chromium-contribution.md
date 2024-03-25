@@ -55,6 +55,14 @@ Chromium にコントリビュートするためには、ソースコードを�
 - 検索クエリとして使える構文
   - https://developers.google.com/code-search/reference?hl=ja
 
+例えば「ファイルパスじゃなくて中身に、全部小文字の "fetch" が出てくる `.cc` でテストじゃないやつを blink 以下で探す」はこんな感じ。
+
+```
+content:fetch case:y f:third_party/blink/renderer/core/fetch f:.cc -test
+```
+
+`lang:cpp` だと `.h` も入るので拡張子の方が絞れる。
+
 よく使うもののおおよその階層を把握し、そこを絞ってからディレクトリ内検索する方が良い。
 
 - `chrome/`
@@ -87,17 +95,26 @@ Chromium にコントリビュートするためには、ソースコードを�
 
 ## crbug
 
-バグがどのコンポーネントに関連するかを示す Component が付与されている。
+何かバグを見つけた時に報告する先。
 
-これを先に見つけると色々捗る。
+![crbug](crbug.png)
+
+最近 Issue Tracker という新しいツールにマイグレートされたので、使い方がまだよくわからない。調べて出てくる crbug は大抵古い UI なので注意が必要。
+
+- 入門ガイド
+  - https://developers.google.com/issue-tracker/concepts/components?hl=ja
+
+報告するぶんには、とりあえずわかってることを全部書いておけば、誰かしらがトリアージしてくれる。
+
+探す上では、バグがどのコンポーネントに関連するかを示す Component を先に見つけると捗る。
 
 ```
 Blink>Network>FetchAPI
-Blink>PerformanceAPIs
+Blink>PerformanceAPIs>ResourceTiming
 ...
 ```
 
-また、関連するバグをまとめるタグのようなものは HotList と呼ばれる。
+また、関連する複数のバグは Hotlist というものでまとめられる。
 
 例えば、 Hotlist-GoodFirstBug とか。
 
@@ -109,23 +126,66 @@ Blink>PerformanceAPIs
 
 ## crrev
 
-この UI は慣れないと難しい。
+Git で upload したコードはここに入りレビューされる。この UI は慣れないと難しい。
 
-TODO: 使い方
+![crrev](crrev.png)
+
+コントリビューションガイドを読んでおくといい。
+
+- Chromium Docs - Contributing to Chromium
+  - https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/contributing.md
+
+とりあえずレビューを立てたら Description を書いて、コードをあげる。
+
+Reviewers の下のペンボタンを押すと、コードのディレクトリの中にある OWNERS ファイルに書かれた人からサジェストされる。普通は先に issue があるはずなので、そこでコミュニケーションした人を選べば良い。
+
+![review files](review-files.png)
+
+選んだら Start Review すると初めてリクエストが送られる。これをしないと誰も見てくれない気がする。
+
+crrev には Patchset という概念があり、これは複数コミットがあっても `git cl upload` した単位でつく。
+
+この単位でレビューコメントが付き、それに対応していくことになる。
+
+![review](review.png)
+
+レビューが付いたら、そこに対して REPLY でコメントを返すか、次の Patchset で直して、治ったら DONE にする。
+
+コメントをつけたら、それだけで相手に通知がいくわけではない。コメントをつけたり DONE を押したら、必ず画面上部の REPLY を押す必要がある。これがないと Submit されないので、夜コメント書いて朝返事があるかなと思ったら REPLY 押し忘れてたみたいなことがあるので注意。
+
+![REPLY](reply.png)
+
+Rebase は UI 上からできるが、全部のコメントを一旦終えてから Rebase するのがマナーらしい。
+
+Rebase が終わったら、 "CQ DRY RUN" する。これが CI でビルドと全テストを流すボタン。ただし、権限のある人にしかできないので、 Reviewer にやってもらうことになる。
+
+![rebase-dry-run](rebase-dry-run.png)
+
+全部終わると、 Code-Review +1 がもらえる。これがないとマージされない。
+
+![lgtm](lgtm.png)
+
+もろもろ終わると自動でマージされる。
 
 
-### Chromium Dash
+## Chromium Dash
 
-例えば、以下がいつリリースされたかを知りたい場合。
+リリースなどに関する情報が集まったダッシュボード。
 
-- Rename InterestGroup API flag for common use and add flag for PARAKEET impl (3158266) · Gerrit Code Review
-  - https://chromium-review.googlesource.com/c/chromium/src/+/3158266
+マージされたコードがいつリリースされたかを知りたい場合、ここで知ることができる。
 
-このサイトの Patchset 13 の横にあるコミットハッシュをコピーする。
+まず、マージされた Patchset のコミットハッシュを取得する。(crrev だと Patchset の横からコピーできる)
 
 ![patchset hash](patchset-hash.png)
 
 それを Chromium Dash の Commits に入れれば情報が出る。
+
+例えば以下なら。
+
+- Rename InterestGroup API flag for common use and add flag for PARAKEET impl (3158266) · Gerrit Code Review
+  - https://chromium-review.googlesource.com/c/chromium/src/+/3158266
+
+これ。
 
 - Chromium Dash
   - https://chromiumdash.appspot.com/commit/4359c5ebd238c93c22e69d369cbe813ae3081b6c
@@ -218,7 +278,7 @@ Chromium は、一部を開発するにも、基本は全てをチェックア�
 - Build 時間は一晩。
 - Build 後はソース+バイナリーでディスク 96GB
 
-Google 社員は Goma という超絶分散ビルド環境が使える。これはコントリビュートしてるとアクセス権がもらえるらしい。それまでは頑張る。
+Google 社員は Reclient という分散ビルド環境を使っている(以前は Goma という環境だった)。これはコントリビュートを重ねてから申請するとアクセス権がもらえるらしい。それまでは手持ちのマシンで頑張るしかない。ちょっとでもビルドを早くするための細かいテクニックも書かれているので、全部やると良さそう。
 
 
 ## 実行
