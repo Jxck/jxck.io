@@ -357,6 +357,8 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
           </ul>
           <p>とりあえずレビューを立てたら Description を書いて、コードをあげる。
           <p>Reviewers の下のペンボタンを押すと、コードのディレクトリの中にある OWNERS ファイルに書かれた人からサジェストされる。普通は先に issue があるはずなので、そこでコミュニケーションした人を選べば良い。
+          <p>選んだら Start Review すると初めてリクエストが送られる。これをしないと誰も見てくれない気がする。
+          <p>crrev には Patchset という概念があり、これは複数コミットがあっても <code translate=no>git cl upload</code> した単位でつく。
           <p>
             <picture>
               <source type=image/avif srcset=review-files.avif?240326_010241>
@@ -364,8 +366,6 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
               <img loading=lazy decoding=async src=review-files.png?240326_005751 alt="review files" width=1466 height=1116>
             </picture>
           </p>
-          <p>選んだら Start Review すると初めてリクエストが送られる。これをしないと誰も見てくれない気がする。
-          <p>crrev には Patchset という概念があり、これは複数コミットがあっても <code translate=no>git cl upload</code> した単位でつく。
           <p>この単位でレビューコメントが付き、それに対応していくことになる。
           <p>
             <picture>
@@ -642,7 +642,7 @@ LOG(ERROR) &lt;&lt; base::debug::StackTrace();</code></pre>
               </ul>
             </li>
           </ul>
-          <pre class=shell data-code=shell><code translate=no class=language-shell># Issue 番号で紐づける
+          <pre class=sh data-code=sh><code translate=no class=language-sh># Issue 番号で紐づける
 $ git cl issue 123456
 
 # 書いたコードを gerrit にアップする
@@ -720,10 +720,10 @@ sqlite&gt; select * from table</code></pre>
           </ul>
           <p>しかし、Chromium の中では、この代わりに <code translate=no>/third_party/blink/tools</code> 以下のコマンドを使用するっぽい。
           <p>自分がビルドした Chromium のインスタンスで、特定の WPT を実行する。
-          <pre class=shell data-code=shell><code translate=no class=language-shell>$ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blink/web_tests/external/wpt/resource-timing/content-encoding.https.html -vv</code></pre>
+          <pre class=sh data-code=sh><code translate=no class=language-sh>$ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blink/web_tests/external/wpt/resource-timing/content-encoding.https.html -vv</code></pre>
           <p>これで、該当の HTML がブラウザ上で実行され、テストが走るイメージ。
           <p>手動で実行して試したい場合は、サーバだけ起動してアクセスする。
-          <pre class=shell data-code=shell><code translate=no class=language-shell>$ ./third_party/blink/tools/run_blink_wptserve.py
+          <pre class=sh data-code=sh><code translate=no class=language-sh>$ ./third_party/blink/tools/run_blink_wptserve.py
 Server running on http://localhost:8001
 Server running on http://localhost:8081
 Server running on http://localhost:8082
@@ -761,7 +761,7 @@ WebTransportH3 server running on https://localhost:11000</code></pre>
           </ul>
           <p>まず、普通にファイル (<code translate=no>/example/text.html</code>) を置けば、それは静的ファイルとしてアクセスできる。
           <p>これにヘッダをつけたい場合は、 .headers ファイルを作る(<code translate=no>/example/test.html.headers</code>)
-          <pre><code translate=no>Access-Control-Allow-Origin: *</code></pre>
+          <pre class=http data-code=http><code translate=no class=language-http>Access-Control-Allow-Origin: *</code></pre>
           <p>.asis ファイルを作ると、その中に書いたレスポンスがまるっとそのまま返る。(Apache As-Is という仕様らしい)
           <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
 Content-Type: text/plain
@@ -769,7 +769,7 @@ Content-Length: 5
 
 hello</code></pre>
           <p>動的にレスポンスを生成したい場合は wptserve という Python のサーバを書く。
-          <pre class=py data-code=py><code translate=no class=language-py>def main(request, response):
+          <pre class=python data-code=python><code translate=no class=language-python>def main(request, response):
     content_type = request.GET.first(&apos;content-type&apos;)
     response.headers.set(b&apos;content-type&apos;, content_type)
     response.content = b&apos;hello&apos;</code></pre>
