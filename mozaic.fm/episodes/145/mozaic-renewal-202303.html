@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/145/mozaic-renewal-202303.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065828></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 145 回のテーマは 2024 年 3 月の mozaic.fm renewal project です。Monthly Ecosystem では、様々なツールやフレームワーク、開発手法に触れていますが、実践する機会を確保するのが難しい場合もあります。そこで、最新のフレー...">
+  <meta name=keywords            content="mozaic-renewal">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/145/mozaic-renewal-202303.html>
+  <meta property=og:title        content="ep145 mozaic.fm renewal project 202403 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 145 回のテーマは 2024 年 3 月の mozaic.fm renewal project です。Monthly Ecosystem では、様々なツールやフレームワーク、開発手法に触れていますが、実践する機会を確保するのが難しい場合もあります。そこで、最新のフレー...">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep145 mozaic.fm renewal project 202403 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/144/monthly-ecosystem-202403.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?230926_134917>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?230926_134917>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?220428_023319>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/144/monthly-ecosystem-202403.html>ep144 Monthly Ecosystem 202403</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep145 mozaic.fm renewal project 202403</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2024-03-26
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#現状">現状</a>
+                <li><a href="#方針">方針</a>
+                <li><a href="#進捗">進捗</a>
+                <ol>
+                  <li><a href="#init-repo">init repo</a>
+                  <li><a href="#storybook">storybook</a>
+                  <li><a href="#chromatic">chromatic</a>
+                  <li><a href="#figma-devmode">figma devmode</a>
+                </ol>
+                <li><a href="#スケジュール">スケジュール</a>
+                <li><a href="#show-note">Show Note</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 145 回のテーマは 2024 年 3 月の mozaic.fm renewal project です。
+      <p>Monthly Ecosystem では、様々なツールやフレームワーク、開発手法に触れていますが、実践する機会を確保するのが難しい場合もあります。
+      <p>そこで、最新のフレームワークや手法を用いながら mozaic.fm のサイトを刷新するシリーズを始めます。
+      <p>月一で進捗確認兼方針の相談などをそのまま配信していきます。
+    </section>
+    <section>
+      <h2 id="現状"><a href="#現状">現状</a></h2>
+      <p>現場の mozaic.fm は、 blog.jxck.io と同じスタックでできています。
+      <ul>
+        <li>markdown でエピソードの Show Note を書く
+        <li>自作の markdwon パーサでパースし、筆者好みの HTML にレンダリングする
+        <li>EJS のレイアウトに流して静的な HTML を作成
+        <li>音楽プレイヤーは自作の WebComponents
+        <li>それを h2o で配信
+        <li>画面は、一覧、個別、検索のみ
+        <li>検索は Ruby で書いた CGI (h2o だけでやる方法が mruby か gci しかないため)
+      </ul>
+    </section>
+    <section>
+      <h2 id="方針"><a href="#方針">方針</a></h2>
+      <ul>
+        <li>
+          Server
+          <ul>
+            <li>Hono か HonoX
+            <li>Cloudflare にデプロイ
+          </ul>
+        </li>
+        <li>
+          デザイン
+          <ul>
+            <li>Figma で作る
+            <li>DevMode で Storybook に JSX を起こす
+            <li>Cromatic で VRT/E2E
+            <li>Component ライブラリは入れない
+            <li>CSS は @scope ベース
+            <li><code translate=no>prefer-*</code> は全て意識(dark mode あり)
+          </ul>
+        </li>
+        <li>
+          Test
+          <ul>
+            <li>Storybook Test / Vitest
+          </ul>
+        </li>
+        <li>Lint/Format は Biome
+        <li>
+          サポートブラウザ
+          <ul>
+            <li>どうせエピソードは好きな Podcast Player で聞ける
+            <li>最悪 Chrome でしか動かないサイトでもいい
+          </ul>
+        </li>
+        <li>
+          認証をつけたい
+          <ul>
+            <li>idp.jxck.io に IDP
+            <li>それに federation で入れるようにする
+            <li>Cookie 周りの検証を兼ねる
+            <li>Passkey, FedCM, Storage Access API など試したい
+            <li>認証する理由は今のところない
+            <li>何かアカウントを作るモチベーションを提供する必要?
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="進捗"><a href="#進捗">進捗</a></h2>
+      <section>
+        <h3 id="init-repo"><a href="#init-repo">init repo</a></h3>
+        <p><a href="https://github.com/Jxck/mozaic.fm" target=_blank>https://github.com/Jxck/mozaic.fm</a>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=sh data-code=sh><code translate=no class=language-sh>$ npm init
+$ npm install --save-dev --save-exact @biomejs/biome</code></pre>
+      </section>
+      <section>
+        <h3 id="storybook"><a href="#storybook">storybook</a></h3>
+        <pre class=sh data-code=sh><code translate=no class=language-sh>$ npx storybook@latest init
+&gt; react
+&gt; vite</code></pre>
+      </section>
+      <section>
+        <h3 id="chromatic"><a href="#chromatic">chromatic</a></h3>
+        <pre class=sh data-code=sh><code translate=no class=language-sh>$ npm install --save-dev chromatic
+$ npx chromatic --project-token=$PORJECT_TOKEN</code></pre>
+      </section>
+      <section>
+        <h3 id="figma-devmode"><a href="#figma-devmode">figma devmode</a></h3>
+        <ul>
+          <li>figma で create team
+          <li>Professional 課金で dev-mode を有効に
+          <li>Storybook Connect Plugin を入れる Chromatic と連携
+          <li>Chromatic 側でも Storybook と連携
+          <li>Component を Chromatic と紐づける
+          <li>VSCode に Figma for VSCode を入れる
+          <li>Figma に Figma to Code を入れる(Anima はアカウントが必要?)
+        </ul>
+        <p>Figma でコンポーネントを作り、それを Figma to Code で JSX / HTML を表示できる。
+        <p>その Figma を VSCode に表示でき、その CSS がサジェストされるようになる。
+        <p>これを元にコンポーネントを作り、 Storybook を作れば、 Chromatic にあげてテストできる。
+      </section>
+    </section>
+    <section>
+      <h2 id="スケジュール"><a href="#スケジュール">スケジュール</a></h2>
+      <ul>
+        <li>8 月: デザイン - Component - (一覧ページ|個別ページ)
+        <li>? 月: プレイヤーで再生
+        <li>? 月: RSS
+        <li>? 月: 検索
+        <li>11 月: デプロイ
+        <li>1 月: 振り返り?
+      </ul>
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/144/monthly-ecosystem-202403.html>ep144 Monthly Ecosystem 202403</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep145.mp3
+    data-title="ep145 mozaic.fm renewal project 202403"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
