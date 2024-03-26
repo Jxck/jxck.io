@@ -137,11 +137,11 @@ Git で upload したコードはここに入りレビューされる。この U
 
 Reviewers の下のペンボタンを押すと、コードのディレクトリの中にある OWNERS ファイルに書かれた人からサジェストされる。普通は先に issue があるはずなので、そこでコミュニケーションした人を選べば良い。
 
-![review files](review-files.png#1466x1116)
-
 選んだら Start Review すると初めてリクエストが送られる。これをしないと誰も見てくれない気がする。
 
 crrev には Patchset という概念があり、これは複数コミットがあっても `git cl upload` した単位でつく。
+
+![review files](review-files.png#1466x1116)
 
 この単位でレビューコメントが付き、それに対応していくことになる。
 
@@ -362,7 +362,7 @@ Chromium 用の Git の拡張が用意されており、それを用いてコン
 - Chromium www.chromium.org Website - site/developers/gerrit-guide/index.md
   - https://chromium.googlesource.com/website/+/HEAD/site/developers/gerrit-guide/index.md
 
-```shell
+```sh
 # Issue 番号で紐づける
 $ git cl issue 123456
 
@@ -451,7 +451,7 @@ WPT の実行は、公式では `wpt` コマンドが提供されている。
 
 自分がビルドした Chromium のインスタンスで、特定の WPT を実行する。
 
-```shell
+```sh
 $ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blink/web_tests/external/wpt/resource-timing/content-encoding.https.html -vv
 ```
 
@@ -459,7 +459,7 @@ $ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blin
 
 手動で実行して試したい場合は、サーバだけ起動してアクセスする。
 
-```shell
+```sh
 $ ./third_party/blink/tools/run_blink_wptserve.py
 Server running on http://localhost:8001
 Server running on http://localhost:8081
@@ -496,7 +496,7 @@ fetch などでサーバを叩いたりするテストのために、 mock serve
 
 これにヘッダをつけたい場合は、 .headers ファイルを作る(`/example/test.html.headers`)
 
-```
+```http
 Access-Control-Allow-Origin: *
 ```
 
@@ -512,7 +512,7 @@ hello
 
 動的にレスポンスを生成したい場合は wptserve という Python のサーバを書く。
 
-```py
+```python
 def main(request, response):
     content_type = request.GET.first('content-type')
     response.headers.set(b'content-type', content_type)
