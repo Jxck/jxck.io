@@ -307,6 +307,30 @@ docs 以下を debug で検索すると色々テクニックが出てくる。
   - https://source.chromium.org/chromium/chromium/src/+/main:docs/testing/test_descriptions.md
 
 
+### Unittest
+
+unittest そのものをビルドして実行
+
+```sh
+$ autoninja -C out/Default unit_tests
+$ ./out/Debug/base_unittests
+```
+
+
+### Web Tests (Layout Tests)
+
+- Web Tests (formerly known as "Layout Tests" or "LayoutTests")
+  - https://chromium.googlesource.com/chromium/src/+/HEAD/docs/testing/web_tests.md
+
+blink_tests をビルドして run_web_tests.py で実行
+
+```sh
+$ autoninja -C out/Default blink_tests
+$ ./third_party/blink/tools/run_web_tests.py
+$ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker/webexposed/global-interface-listing-service-worker.html
+```
+
+
 ### Flag
 
 新しく入れた機能は、最初フラグの裏に隠されることが多い。
