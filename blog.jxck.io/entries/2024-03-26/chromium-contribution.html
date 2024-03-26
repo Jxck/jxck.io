@@ -146,6 +146,8 @@
                   <li><a href="#実行">実行</a>
                   <li><a href="#デバッグ">デバッグ</a>
                   <li><a href="#テスト関連">テスト関連</a>
+                  <li><a href="#unittest">Unittest</a>
+                  <li><a href="#web-tests-layout-tests">Web Tests (Layout Tests)</a>
                   <li><a href="#flag">Flag</a>
                   <li><a href="#git">Git</a>
                 </ol>
@@ -582,6 +584,27 @@ LOG(ERROR) &lt;&lt; base::debug::StackTrace();</code></pre>
               </ul>
             </li>
           </ul>
+        </section>
+        <section>
+          <h3 id="unittest"><a href="#unittest">Unittest</a></h3>
+          <p>unittest そのものをビルドして実行
+          <pre class=sh data-code=sh><code translate=no class=language-sh>$ autoninja -C out/Default unit_tests
+$ ./out/Debug/base_unittests</code></pre>
+        </section>
+        <section>
+          <h3 id="web-tests-layout-tests"><a href="#web-tests-layout-tests">Web Tests (Layout Tests)</a></h3>
+          <ul>
+            <li>
+              Web Tests (formerly known as &quot;Layout Tests&quot; or &quot;LayoutTests&quot;)
+              <ul>
+                <li><a href="https://chromium.googlesource.com/chromium/src/+/HEAD/docs/testing/web_tests.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/HEAD/docs/testing/web_tests.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>blink_tests をビルドして run_web_tests.py で実行
+          <pre class=sh data-code=sh><code translate=no class=language-sh>$ autoninja -C out/Default blink_tests
+$ ./third_party/blink/tools/run_web_tests.py
+$ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker/webexposed/global-interface-listing-service-worker.html</code></pre>
         </section>
         <section>
           <h3 id="flag"><a href="#flag">Flag</a></h3>
