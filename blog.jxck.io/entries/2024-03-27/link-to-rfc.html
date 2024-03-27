@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-03-27/link-to-rfc.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="IETF の RFC は、いくつかの場所で同じものが公開されている。どの URL が最適なのか、という話。結論は www.rfc-editor.org だ。">
+  <meta name=keywords            content="rfc,ietf">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-03-27/link-to-rfc.html>
+  <meta property=og:title        content="RFC の URL はどのドメインで貼るのが良いか | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="IETF の RFC は、いくつかの場所で同じものが公開されている。どの URL が最適なのか、という話。結論は www.rfc-editor.org だ。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "RFC の URL はどのドメインで貼るのが良いか | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-03-27T08:00:00+08:00",
+    "dateModified": "2024-03-28T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "IETF の RFC は、いくつかの場所で同じものが公開されている。どの URL が最適なのか、という話。結論は www.rfc-editor.org だ。"
+  }
+  </script>
+
+  <title>RFC の URL はどのドメインで貼るのが良いか | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?230926_134917>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160317_235345   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_131029 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160317_235345     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160317_235345    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160417_010238 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?160317_235345   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-27>2024-03-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-03-28>2024-03-28</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#rfc">rfc</a>
+              <li><a href="/tags#ietf">ietf</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#rfc-hosting-site">RFC Hosting Site</a>
+                <ol>
+                  <li><a href="#tools.ietf.org">tools.ietf.org</a>
+                  <li><a href="#datatracker.ietf.org">datatracker.ietf.org</a>
+                  <li><a href="#rfc-editor.org">rfc-editor.org</a>
+                  <li><a href="#httpwg.org">httpwg.org</a>
+                </ol>
+                <li><a href="#rfc-の読みにくさ">RFC の読みにくさ</a>
+                <li><a href="#どれを使うべきかの議論">どれを使うべきかの議論</a>
+                <li><a href="#聞いてみた">聞いてみた。</a>
+                <li><a href="#まとめ">まとめ</a>
+                <li><a href="#outro">Outro</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">RFC の URL はどのドメインで貼るのが良いか</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>IETF の RFC は、いくつかの場所で同じものが公開されている。
+        <p>どの URL が最適なのか、という話。
+        <p>結論は <code translate=no>www.rfc-editor.org</code> だ。
+      </section>
+      <section>
+        <h2 id="rfc-hosting-site"><a href="#rfc-hosting-site">RFC Hosting Site</a></h2>
+        <p>例えば RFC 9110 - HTTP Semantics で言うと、以下の 4 つがある。
+        <ul>
+          <li><a href="https://tools.ietf.org/html/rfc9110" target=_blank>https://tools.ietf.org/html/rfc9110</a>
+          <li><a href="https://datatracker.ietf.org/doc/html/rfc9110" target=_blank>https://datatracker.ietf.org/doc/html/rfc9110</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9110.html" target=_blank>https://www.rfc-editor.org/rfc/rfc9110.html</a>
+          <li><a href="https://httpwg.org/specs/rfc9110.html" target=_blank>https://httpwg.org/specs/rfc9110.html</a>
+        </ul>
+        <p>まずは、これらの違いを簡単に解説する。
+        <section>
+          <h3 id="tools.ietf.org"><a href="#tools.ietf.org">tools.ietf.org</a></h3>
+          <p>IETF がホストする RFC は、 tools.ietf.org だった。
+          <ul>
+            <li>
+              RFC 2616: Hypertext Transfer Protocol -- HTTP/1.1
+              <ul>
+                <li><a href="https://web.archive.org/web/20070301142401/https://tools.ietf.org/html/rfc2616" target=_blank>https://web.archive.org/web/20070301142401/https://tools.ietf.org/html/rfc2616</a>
+              </ul>
+            </li>
+          </ul>
+          <p>
+            <picture>
+              <source type=image/avif srcset=tools.ietf.org.avif?240327_185329>
+              <source type=image/webp srcset=tools.ietf.org.webp?240327_185512>
+              <img loading=lazy decoding=async src=tools.ietf.org.png?240327_185226 alt="tools.ietf.org" width=1500 height=1802>
+            </picture>
+          </p>
+          <p>しかし、 2021 年 tools と xml2rfc/bibxml をメンテしていた Henrik 氏が引退し、それを機に刷新が行われることになった。
+          <ul>
+            <li>
+              Clarifying the state of and the transition plan for tools.ietf.org
+              <ul>
+                <li><a href="https://mailarchive.ietf.org/arch/msg/ietf/0n-6EXEmkTp3Uv_vj-5Vnm3o0bo/" target=_blank>https://mailarchive.ietf.org/arch/msg/ietf/0n-6EXEmkTp3Uv_vj-5Vnm3o0bo/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>既存のページはマイグレーションされて、 URL は datatracker.ietf.org にリダイレクトされている。
+          <ul>
+            <li>
+              Reminder: tools.ietf.org is shutting down before IETF 113
+              <ul>
+                <li><a href="https://mailarchive.ietf.org/arch/msg/ietf-announce/xKzJZIyanPCclTd7DU9PxBAbwhA/" target=_blank>https://mailarchive.ietf.org/arch/msg/ietf-announce/xKzJZIyanPCclTd7DU9PxBAbwhA/</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="datatracker.ietf.org"><a href="#datatracker.ietf.org">datatracker.ietf.org</a></h3>
+          <p>tools.ietf からのリダイレクト先は datatracker だ。
+          <ul>
+            <li>
+              RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1
+              <ul>
+                <li><a href="https://datatracker.ietf.org/doc/html/rfc2616" target=_blank>https://datatracker.ietf.org/doc/html/rfc2616</a>
+              </ul>
+            </li>
+          </ul>
+          <p>tools の持っていた機能は RFC 本文の表示だけではなく、そのメタ情報の表示でもあった。
+          <p>特に、RFC がどのような変遷を経てきたのか、Author は誰であるか、Errata はどこにあるか、Internet Standard なのか Informational なのかなどが含まれていた。
+          <p>昔はディスプレイも小さかったため、サイドバーは存在せず、ヘッダと別ページに記載されていたが、datatracker はこれをサイドバーに踏襲している。
+          <p>
+            <picture>
+              <source type=image/avif srcset=datatracker.ietf.org.avif?240327_185307>
+              <source type=image/webp srcset=datatracker.ietf.org.webp?240328_010100>
+              <img loading=lazy decoding=async src=datatracker.ietf.org.png?240328_010100 alt="datatracker.ietf.org" width=2536 height=1714>
+            </picture>
+          </p>
+          <p>このように、最も情報量が豊富なのは datatracker であると言える。
+        </section>
+        <section>
+          <h3 id="rfc-editor.org"><a href="#rfc-editor.org">rfc-editor.org</a></h3>
+          <p>最近よく見かけるのが rfc-editor.org だ。
+          <ul>
+            <li>
+              RFC 9110: HTTP Semantics
+              <ul>
+                <li><a href="https://www.rfc-editor.org/rfc/rfc9110" target=_blank>https://www.rfc-editor.org/rfc/rfc9110</a>
+              </ul>
+            </li>
+          </ul>
+          <p>気がついたらあったが、いつどのようにできたのかは追いきれなかった。
+          <p>
+            <picture>
+              <source type=image/avif srcset=www.rfc-editor.org.avif?240327_185334>
+              <source type=image/webp srcset=www.rfc-editor.org.webp?240327_185512>
+              <img loading=lazy decoding=async src=www.rfc-editor.org.png?240327_185226 alt="www.rfc-editor.org" width=2524 height=1902>
+            </picture>
+          </p>
+          <p>ヘッダ部分にメタデータはあるが、デザインはシンプルで、サイドバーには ToC がある。
+          <p>見た目が良くなったサイトだ、と言いたいところだが、これはサイトが新しいからではなく、RFC の生成ツールが刷新されているからだ。
+          <p>従って、古い RFC はそのまま古いスタイルで表示される。
+          <ul>
+            <li>
+              RFC 2616: Hypertext Transfer Protocol -- HTTP/1.1
+              <ul>
+                <li><a href="https://www.rfc-editor.org/rfc/rfc2616" target=_blank>https://www.rfc-editor.org/rfc/rfc2616</a>
+              </ul>
+            </li>
+          </ul>
+          <p>また、ヘッダ部分から datatracker に飛べる。
+          <p>
+            <picture>
+              <source type=image/avif srcset=link-to-datatracker.avif?240327_185310>
+              <source type=image/webp srcset=link-to-datatracker.webp?240327_185512>
+              <img loading=lazy decoding=async src=link-to-datatracker.png?240327_185226 alt="datatracker へのリンク" width=2536 height=1714>
+            </picture>
+          </p>
+        </section>
+        <section>
+          <h3 id="httpwg.org"><a href="#httpwg.org">httpwg.org</a></h3>
+          <p>もう一つ最近見るようになったのがこのドメインだ。
+          <ul>
+            <li>
+              RFC 9110 - HTTP Semantics
+              <ul>
+                <li><a href="https://httpwg.org/specs/rfc9110.html" target=_blank>https://httpwg.org/specs/rfc9110.html</a>
+              </ul>
+            </li>
+          </ul>
+          <p>
+            <picture>
+              <source type=image/avif srcset=httpwg.org.avif?240327_185309>
+              <source type=image/webp srcset=httpwg.org.webp?240327_185512>
+              <img loading=lazy decoding=async src=httpwg.org.png?240327_185226 alt="httpwg.org" width=2604 height=1704>
+            </picture>
+          </p>
+          <p>名前の通り、これは HTTPWG が独自に管理しているものであり、リポジトリの GitHub Pages で配信されている。
+          <ul>
+            <li>
+              httpwg/httpwg.github.io: HTTP Home Page
+              <ul>
+                <li><a href="https://github.com/httpwg/httpwg.github.io" target=_blank>https://github.com/httpwg/httpwg.github.io</a>
+              </ul>
+            </li>
+          </ul>
+          <p>HTTPWG は、策定活動に GitHub をかなり多用する WG であり、仕様も全て GitHub のリポジトリで管理されている。
+          <p>そのリソースを、策定段階から独自の読みやすいスタイル(CSS)で出してくれているものだ。
+          <p>つまり、 IETF 公式といえるかというと微妙だ。
+        </section>
+      </section>
+      <section>
+        <h2 id="rfc-の読みにくさ"><a href="#rfc-の読みにくさ">RFC の読みにくさ</a></h2>
+        <p>tools から datatracker に移行するのと同時期くらいに、 RFC 自体のフォーマットをなんとかしようという動きがあった。
+        <p>以前の RFC は、本文が ASCII 固定文字数で折り返し、 HTML では全体が <code translate=no>&lt;pre&gt;</code> というフォーマットだった。
+        <p>
+          <picture>
+            <source type=image/avif srcset=old-rfc.avif?240327_185321>
+            <source type=image/webp srcset=old-rfc.webp?240327_185512>
+            <img loading=lazy decoding=async src=old-rfc.png?240327_185226 alt="RFC の古いスタイル" width=1226 height=2308>
+          </picture>
+        </p>
+        <p>これはそもそも RFC は固定長折り返しのテキスト形式がもとで、そこから HTML や PDF へとバリエーションが増えていき、そこで Text と同じスタイルが保たれたからと思われる。
+        <p>文の途中でも固定長で折り返しているため、例えば読み上げも途切れるし、自動翻訳も意味がつながらずうまく動かない。左寄せでセンタリングもされてない。
+        <p>ディスプレイが小さかったころに、安定したテキストフォーマットとしては良かったかもしれないが、全くアクセシブルでないこのフォーマットには筆者も不信感があった。
+        <p>HTTPWG が独自に HTML を生成してホストしていたのも、このあたりの理由から読みやすいものを独自に公開していたように思う。
+        <p>その後 RFC 8650 あたりから、 RFC を生成するツールも刷新され、それを用いて現在のモダンな HTML が吐かれるようになった。
+        <p>
+          <picture>
+            <source type=image/avif srcset=new-rfc.avif?240327_185316>
+            <source type=image/webp srcset=new-rfc.webp?240327_185512>
+            <img loading=lazy decoding=async src=new-rfc.png?240327_185226 alt="RFC の新しいスタイル" width=1192 height=1466>
+          </picture>
+        </p>
+        <p>先ほど言った、新しい/古いフォーマットどちらかは、ドメインによるものではない。例えば以下の二つは見た目が違うように見えるが、 HTML のソース自体は同じだ。
+        <ul>
+          <li><a href="https://datatracker.ietf.org/doc/html/rfc7932" target=_blank>https://datatracker.ietf.org/doc/html/rfc7932</a>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc7932.html" target=_blank>https://www.rfc-editor.org/rfc/rfc7932.html</a>
+        </ul>
+        <p>しかし、ソースを見るとどちらも <code translate=no>&lt;pre&gt;</code> であることは変わらず、センタリングがされているか程度の違いしか実際はない。過渡期であるがゆえの微妙な差と言える。
+      </section>
+      <section>
+        <h2 id="どれを使うべきかの議論"><a href="#どれを使うべきかの議論">どれを使うべきかの議論</a></h2>
+        <p>以下に、 Stack Exchange で不具合があった際に IETF 担当者とやりとりしたログが残っている。
+        <ul>
+          <li>
+            Links to HTML versions of RFC&apos;s need to move from &quot;tools&quot; to &quot;datatracker&quot; - Meta Stack Exchange
+            <ul>
+              <li><a href="https://meta.stackexchange.com/questions/367881/links-to-html-versions-of-rfcs-need-to-move-from-tools-to-datatracker" target=_blank>https://meta.stackexchange.com/questions/367881/links-to-html-versions-of-rfcs-need-to-move-from-tools-to-datatracker</a>
+            </ul>
+          </li>
+        </ul>
+        <blockquote>
+          <p>rfc-editor.org is the canonical location for RFC documents, and will remain the correct destination for now. The RFC document locations at the various IETF URLs aren&apos;t canonical repositories, even though they do ultimately point to the same documents. I gather (but could be wrong) that these are more so &apos;working repositories&apos; than the reference documents themselves.
+          <p>
+          </p>
+          <p>rfc-editor.org は RFC の正規の場所であり、今のところ正しい保存先と言える。複数の IETF URL にある RFC 文書の場所は、最終的に同じ文書を指しているとはいえ、正規のリポジトリではない。私は(間違っているかもしれないが)、これらは参照文書そのものというよりも、「作業用リポジトリ」だと考えている。
+        </blockquote>
+        <p>つまり、文書としての RFC の Canonical URL は rfc-editor であり、そのリポジトリが datatracker ということになる。
+        <p>類似する議論として WHATWG HTML の仕様の URL はどうするかという議論もあった。
+        <ul>
+          <li>
+            Editorial: move <code translate=no>ietf</code> links to <code translate=no>datatracker</code> · Issue #7671 · whatwg/html
+            <ul>
+              <li><a href="https://github.com/whatwg/html/issues/7671" target=_blank>https://github.com/whatwg/html/issues/7671</a>
+            </ul>
+          </li>
+        </ul>
+        <p>この中で MDN のとっているルールを採用することになり、そのルールは以下だ。
+        <ul>
+          <li>If an httpwg version exists, use that
+          <li>Otherwise, if an rfc-editor version exists, use that
+          <li>Otherwise, use the datatracker version
+        </ul>
+        <p>これは、あくまで読みやすいことを優先している。また HTTPWG のスペックしか httpwg.org にはない。
+      </section>
+      <section>
+        <h2 id="聞いてみた"><a href="#聞いてみた">聞いてみた。</a></h2>
+        <p>公式見解を探そうにも、そもそも <code translate=no>datatracker</code> や <code translate=no>rfc-editor</code> での検索が RFC 自体に引っかかりまくるので、検索が困難だった。
+        <p>そこで、 IETF の discussion で聞いてみた。
+        <ul>
+          <li>
+            What is the difference between datatracker.ietf.org &amp; www.rfc-editor.org and which is Official URL for RFC ? · ietf-tools/datatracker · Discussion #7259
+            <ul>
+              <li><a href="https://github.com/ietf-tools/datatracker/discussions/7259" target=_blank>https://github.com/ietf-tools/datatracker/discussions/7259</a>
+            </ul>
+          </li>
+        </ul>
+        <p>答えは以下のドキュメントに書かれていた。
+        <blockquote cite="https://authors.ietf.org/en/references-in-rfcxml">
+          <p>For RFCs the official site is rfc-editor.org. The information page for each RFC has a link to the BibXML file.
+          <p>&mdash; <cite><a href="https://authors.ietf.org/en/references-in-rfcxml" target=_blank>https://authors.ietf.org/en/references-in-rfcxml</a></cite>
+        </blockquote>
+        <p>このことからも、ドメインは rfc-editor.org が正しいようだ。
+        <p>ではパスはどうかというと、以下に言及がある。
+        <blockquote cite="https://www.rfc-editor.org/styleguide/part2/#ref_rfcs">
+          <p>The Digital Object Identifier (DOI) is now listed in each reference to an RFC. The first example in Section 4.8.6.2 of RFC 7322 is updated as follows.
+          <p>For one author or editor:
+          <p>[RFCXXXX] Last name, First initial., Ed. (if applicable), &quot;RFC Title&quot;, Sub-series number (if applicable), RFC number, DOI, Date of publication, <a href="https://www.rfc-editor.org/info/rfc#." target=_blank>https://www.rfc-editor.org/info/rfc#.</a>
+          <p>&mdash; <cite><a href="https://www.rfc-editor.org/styleguide/part2/#ref_rfcs" target=_blank>https://www.rfc-editor.org/styleguide/part2/#ref_rfcs</a></cite>
+        </blockquote>
+        <p>Digital Object Identifier (DOI) は、その対象物に振られる一意な識別子で、例えば RFC 9110 であれば以下のように参照できる。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre><code translate=no>10.17487/RFC9110</code></pre>
+        <p>これを DOI を解するサービスを経由すれば、リダイレクトされる。
+        <pre><code translate=no>https://doi.org/10.17487/RFC9110</code></pre>
+        <p>これにより、 IETF がドメインを変えたり構成が変わっても、リダイレクト先を登録しなおせば参照が切れないという仕組みだ。
+        <p>そして、その DOI に登録されている(つまりリダイレクトされる先)は以下だ。
+        <pre><code translate=no>https://www.rfc-editor.org/info/rfc9110</code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=rfc-info.avif?240327_185323>
+            <source type=image/webp srcset=rfc-info.webp?240327_185512>
+            <img loading=lazy decoding=async src=rfc-info.png?240327_185226 alt="RFC Info" width=2038 height=1308>
+          </picture>
+        </p>
+        <p>本文ではなく、メタデータ部分のページであり、複数のリンクから好きなフォーマットで見ることができる。
+        <p>そして、 RFC の引用ルールではこのページを貼るように指定されているのだ。
+        <p>ここにコンテンツを含まないでいいのかは、IETF の中でも議論があるようだ。
+        <p>ただし、これはあくまで「RFC を書く場合」のルールであり、RFC へのリンクを外部から貼る人にも求められる要件とは読めなさそうだ。
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>RFC へのリンクを貼る場合、公式の、統一された、安定的な URL を求めるのであれば、ドメインは <em>rfc-editor</em> を用いるのが良いだろう。
+        <p>そして RFC を書く場合や、論文や出版で DOI を意識したのであれば、 <code translate=no>/info</code> を貼る必要がある。
+        <p>しかし、一般的な文書や書籍では、 <code translate=no>/info</code> である必要はないだろうし、必要なら DOI そのものを併記すれば良い場合がほとんどと思われる。
+        <p>従って、以下を用いるのが良いだろう。
+        <ul>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9110.html" target=_blank>https://www.rfc-editor.org/rfc/rfc9110.html</a>
+        </ul>
+        <p>PDF や TEXT フォーマットが良い場合は、拡張子だけ変えれば良い。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>本ブログや、筆者が書く文書では、RFC へのリンクは rfc-editor の HTML リンクを採用することとする。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
