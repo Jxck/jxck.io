@@ -525,6 +525,14 @@ CodePoint によって文字数を数える観点からは、 NFC または文�
 
 ### ZWJ
 
+:::details UPDATE: macOS/iOS 17.4.1 での family 絵文字変更
+2024 年 3 月の macOS/iOS 17.4.1 から family の絵文字が性別などを明示しないものに変更になったため、以下の内容がわかりにくくなってしまった。
+
+参考までに、変更前の "family with mother father son daughter" の絵文字のデザインを以下に貼っておく。
+
+![family with mother father son daughter](family-with-mother-father-son-daughter.png#160x160)
+:::
+
 他にも `👨‍👩‍👧‍👦` も合字を利用している。
 
 ```js
