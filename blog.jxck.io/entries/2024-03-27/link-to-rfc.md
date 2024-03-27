@@ -1,10 +1,12 @@
-# [rfc][ietf] RFC のリンクはどのドメインで貼るのが良いか
+# [rfc][ietf] RFC の URL はどのドメインで貼るのが良いか
 
 ## Intro
 
-IETF の RFC はいくつかの場所に同じものが上がっている。
+IETF の RFC は、いくつかの場所で同じものが公開されている。
 
-どれがいいのか、という話。
+どの URL が最適なのか、という話。
+
+結論は `www.rfc-editor.org` だ。
 
 
 ## RFC Hosting Site
@@ -16,7 +18,7 @@ IETF の RFC はいくつかの場所に同じものが上がっている。
 - https://www.rfc-editor.org/rfc/rfc9110.html
 - https://httpwg.org/specs/rfc9110.html
 
-まずは違いを簡単に解説する。
+まずは、これらの違いを簡単に解説する。
 
 
 ### tools.ietf.org
@@ -48,18 +50,18 @@ tools.ietf からのリダイレクト先は datatracker だ。
 
 tools の持っていた機能は RFC 本文の表示だけではなく、そのメタ情報の表示でもあった。
 
-特に、 RFC 以前にどのような変遷を辿ったのか、 Author は誰で、 Errata はどこなのか。 Internet Standard なのか Informational なのか etc
+特に、RFC がどのような変遷を経てきたのか、Author は誰であるか、Errata はどこにあるか、Internet Standard なのか Informational なのかなどが含まれていた。
 
-昔はディスプレイも小さかったので、サイドバーはなくヘッダと別ページに書かれていたが、 datatracker はこれをサイドバーに踏襲している。
+昔はディスプレイも小さかったため、サイドバーは存在せず、ヘッダと別ページに記載されていたが、datatracker はこれをサイドバーに踏襲している。
 
-![datatraker.ietf.org](datatraker.ietf.org.png#2536x1714)
+![datatracker.ietf.org](datatracker.ietf.org.png#2536x1714)
 
-と言う意味で、もっとも情報量が多いのは datatracker と言える。
+このように、最も情報量が豊富なのは datatracker であると言える。
 
 
 ### rfc-editor.org
 
-最近よく見るのが rfc-editor.org だ。
+最近よく見かけるのが rfc-editor.org だ。
 
 - RFC 9110: HTTP Semantics
   - https://www.rfc-editor.org/rfc/rfc9110
@@ -70,7 +72,7 @@ tools の持っていた機能は RFC 本文の表示だけではなく、その
 
 ヘッダ部分にメタデータはあるが、デザインはシンプルで、サイドバーには ToC がある。
 
-見た目が良くなったサイトだ、と言いたいところがが、これはサイトが新しいからではなく、 RFC の生成ツールが刷新されているからだ。
+見た目が良くなったサイトだ、と言いたいところだが、これはサイトが新しいからではなく、RFC の生成ツールが刷新されているからだ。
 
 従って、古い RFC はそのまま古いスタイルで表示される。
 
@@ -81,6 +83,7 @@ tools の持っていた機能は RFC 本文の表示だけではなく、その
 
 ![datatracker へのリンク](link-to-datatracker.png#2536x1714)
 
+
 ### httpwg.org
 
 もう一つ最近見るようになったのがこのドメインだ。
@@ -88,7 +91,7 @@ tools の持っていた機能は RFC 本文の表示だけではなく、その
 - RFC 9110 - HTTP Semantics
   - https://httpwg.org/specs/rfc9110.html
 
-![httpwg.org](httpwg.png)
+![httpwg.org](httpwg.org.png#2604x1704)
 
 名前の通り、これは HTTPWG が独自に管理しているものであり、リポジトリの GitHub Pages で配信されている。
 
@@ -99,18 +102,18 @@ HTTPWG は、策定活動に GitHub をかなり多用する WG であり、仕�
 
 そのリソースを、策定段階から独自の読みやすいスタイル(CSS)で出してくれているものだ。
 
-つまり、 IETF 公式といえるかというと微妙ではある。
+つまり、 IETF 公式といえるかというと微妙だ。
 
 
 ## RFC の読みにくさ
 
-tools から datatrakcer に移行するのと同時期くらいに、 RFC 自体のフォーマットをなんとかしようという動きがあった。
+tools から datatracker に移行するのと同時期くらいに、 RFC 自体のフォーマットをなんとかしようという動きがあった。
 
 以前の RFC は、本文が ASCII 固定文字数で折り返し、 HTML では全体が `<pre>` というフォーマットだった。
 
-![RFC の古いスタイル](old-rfc.png)
+![RFC の古いスタイル](old-rfc.png#1226x2308)
 
-これはそもそも RFC は固定長折り返しのテキスト形式がもとで、そこから HTML や PDF へとバリエーションが増えていき、そこで Text と同じスタイルがが保たれたからと思われる。
+これはそもそも RFC は固定長折り返しのテキスト形式がもとで、そこから HTML や PDF へとバリエーションが増えていき、そこで Text と同じスタイルが保たれたからと思われる。
 
 文の途中でも固定長で折り返しているため、例えば読み上げも途切れるし、自動翻訳も意味がつながらずうまく動かない。左寄せでセンタリングもされてない。
 
@@ -120,14 +123,14 @@ HTTPWG が独自に HTML を生成してホストしていたのも、このあ�
 
 その後 RFC 8650 あたりから、 RFC を生成するツールも刷新され、それを用いて現在のモダンな HTML が吐かれるようになった。
 
-![RFC の新しいスタイル](new-rfc.png)
+![RFC の新しいスタイル](new-rfc.png#1192x1466)
 
 先ほど言った、新しい/古いフォーマットどちらかは、ドメインによるものではない。例えば以下の二つは見た目が違うように見えるが、 HTML のソース自体は同じだ。
 
 - https://datatracker.ietf.org/doc/html/rfc7932
 - https://www.rfc-editor.org/rfc/rfc7932.html
 
-しかし、ソースをみるとどちらも `<pre>` であることは変わらず、センタリングがされているか程度の違いしか実際はない。過渡期であるがゆえの微妙な差と言える。
+しかし、ソースを見るとどちらも `<pre>` であることは変わらず、センタリングがされているか程度の違いしか実際はない。過渡期であるがゆえの微妙な差と言える。
 
 
 ## どれを使うべきかの議論
@@ -154,7 +157,7 @@ HTTPWG が独自に HTML を生成してホストしていたのも、このあ�
 - Otherwise, if an rfc-editor version exists, use that
 - Otherwise, use the datatracker version
 
-これは、あくまで読みやすいことを優先している。また HTTPWG のスペックしか HTTPWG にはない。
+これは、あくまで読みやすいことを優先している。また HTTPWG のスペックしか httpwg.org にはない。
 
 
 ## 聞いてみた。
@@ -171,13 +174,13 @@ HTTPWG が独自に HTML を生成してホストしていたのも、このあ�
 > For RFCs the official site is rfc-editor.org. The information page for each RFC has a link to the BibXML file.
 > --- https://authors.ietf.org/en/references-in-rfcxml
 
-このことからも、 ドメインは rfc-editor.org が正しいようだ。
+このことからも、ドメインは rfc-editor.org が正しいようだ。
 
-ではパスはどうかというと。以下に言及がある。
+ではパスはどうかというと、以下に言及がある。
 
 > The Digital Object Identifier (DOI) is now listed in each reference to an RFC. The first example in Section 4.8.6.2 of RFC 7322 is updated as follows.
-> For one author or editor: 
-> [RFCXXXX] Last name, First initial., Ed. (if applicable), “RFC Title”, Sub-series number (if applicable), RFC number, DOI, Date of publication, <https://www.rfc-editor.org/info/rfc#>.
+> For one author or editor:
+> [RFCXXXX] Last name, First initial., Ed. (if applicable), "RFC Title", Sub-series number (if applicable), RFC number, DOI, Date of publication, https://www.rfc-editor.org/info/rfc#.
 > --- https://www.rfc-editor.org/styleguide/part2/#ref_rfcs
 
 Digital Object Identifier (DOI) は、その対象物に振られる一意な識別子で、例えば RFC 9110 であれば以下のように参照できる。
@@ -206,25 +209,26 @@ https://www.rfc-editor.org/info/rfc9110
 
 そして、 RFC の引用ルールではこのページを貼るように指定されているのだ。
 
-ここにコンテンツを含まないでいいのかは、 IETF の中でも議論があるらしい。
+ここにコンテンツを含まないでいいのかは、IETF の中でも議論があるようだ。
 
-ただし、これはあくまで「RFC を書く場合」のルールであり、 RFC へのリンクを外部から貼る人にも求められる要件とはよめなさそうだ。
+ただし、これはあくまで「RFC を書く場合」のルールであり、RFC へのリンクを外部から貼る人にも求められる要件とは読めなさそうだ。
+
 
 ## まとめ
 
-あらゆるエリアの RFC について、公式の、統一された、安定的な URL を求めるのであれば、ドメインは *rfc-editor* を用いるのが良いだろう。
+RFC へのリンクを貼る場合、公式の、統一された、安定的な URL を求めるのであれば、ドメインは *rfc-editor* を用いるのが良いだろう。
 
 そして RFC を書く場合や、論文や出版で DOI を意識したのであれば、 `/info` を貼る必要がある。
 
 しかし、一般的な文書や書籍では、 `/info` である必要はないだろうし、必要なら DOI そのものを併記すれば良い場合がほとんどと思われる。
 
-従って、以下のどれかをフォーマットに応じて引用するのが良いと言えそうだ。
+従って、以下を用いるのが良いだろう。
 
 - https://www.rfc-editor.org/rfc/rfc9110.html
-- https://www.rfc-editor.org/rfc/rfc9110.pdf
-- https://www.rfc-editor.org/rfc/rfc9110.txt
+
+PDF や TEXT フォーマットが良い場合は、拡張子だけ変えれば良い。
 
 
 ## Outro
 
-本ブログや、筆者が書く文書では、 RFC へのリンクは rfc-editor の html のリンクを採用することとする。
+本ブログや、筆者が書く文書では、RFC へのリンクは rfc-editor の HTML リンクを採用することとする。
