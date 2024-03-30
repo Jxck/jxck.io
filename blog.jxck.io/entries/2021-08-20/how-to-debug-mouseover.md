@@ -1,5 +1,19 @@
 # [devtools][debug][tips] mouseover 中に表示される DOM のデバッグ
 
+## Update
+
+2024-03-30: Chrome 123 から "Emulate a focused page" が追加された。
+
+これを用いれば良いため、以降の全ての方式は古くなった。
+
+- Apply other effects: enable automatic dark theme, emulate focus, and more
+  - https://developer.chrome.com/docs/devtools/rendering/apply-effects#emulate_a_focused_page
+
+マウスが乗ってないと出ない UI も、そこに Tab などでフォーカスを移し、その状態で Dev Tools の `"Emulate a focused page"` を有効にすれば良い。
+
+![Tab などでフォーカスした状態で "Emulate a focused page" を有効にする](4.emulate-a-focused-page.mp4#2880x1800 "emulate a forcused page")
+
+
 ## Intro
 
 先日、後輩が「*mouseover 中にしか表示されない DOM のデバッグ*」に手こずっていたのを見て、たまには小ネタもということで、いくつかのテクニックを紹介する。
