@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-08-20T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-03-30T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-08-20>2021-08-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-03-30>2024-03-30</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -134,6 +134,7 @@
             <summary>headings</summary>
             <nav>
               <ol>
+                <li><a href="#update">Update</a>
                 <li><a href="#intro">Intro</a>
                 <li><a href="#mouseover-tooltip">mouseover tooltip</a>
                 <li><a href="#1.-mouseleavemouseout-を消す">1. mouseleave/mouseout を消す</a>
@@ -152,6 +153,26 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
     <article>
       <h1><a href="">mouseover 中に表示される DOM のデバッグ</a></h1>
+      <section>
+        <h2 id="update"><a href="#update">Update</a></h2>
+        <p>2024-03-30: Chrome 123 から &quot;Emulate a focused page&quot; が追加された。
+        <p>これを用いれば良いため、以降の全ての方式は古くなった。
+        <ul>
+          <li>
+            Apply other effects: enable automatic dark theme, emulate focus, and more
+            <ul>
+              <li><a href="https://developer.chrome.com/docs/devtools/rendering/apply-effects#emulate_a_focused_page" target=_blank>https://developer.chrome.com/docs/devtools/rendering/apply-effects#emulate_a_focused_page</a>
+            </ul>
+          </li>
+        </ul>
+        <p>マウスが乗ってないと出ない UI も、そこに Tab などでフォーカスを移し、その状態で Dev Tools の <code translate=no>&quot;Emulate a focused page&quot;</code> を有効にすれば良い。
+        <p>
+          <video title="Tab などでフォーカスした状態で "Emulate a focused page" を有効にする" width=2880 height=1800 controls playsinline>
+            <source type=video/mp4 src=4.emulate-a-focused-page.mp4?240330_162816>
+            <source type=video/webm src=4.emulate-a-focused-page.webm?240330_162816>
+          </video>
+        </p>
+      </section>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>先日、後輩が「<em>mouseover 中にしか表示されない DOM のデバッグ</em>」に手こずっていたのを見て、たまには小ネタもということで、いくつかのテクニックを紹介する。
