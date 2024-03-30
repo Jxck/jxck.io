@@ -551,7 +551,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.unicode.org/L2/L2023/23029-family-emoji.pdf
 - iOS 17.4 Emoji Changelog
   - https://blog.emojipedia.org/ios-17-4-emoji-changelog/
-- *Update*
+- *Update: 2024-03-30*
   - Family にカラーバリエーションをつけるとバラけるのは、以前のフォントからそうでした。
 
 ### Edge 動向
