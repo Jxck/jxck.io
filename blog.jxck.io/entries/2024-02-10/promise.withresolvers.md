@@ -101,6 +101,20 @@ async function request() {
 }
 ```
 
+例えば以下のように使えば、 EventTarget を継承した API の Promise 化もできる。
+
+```js
+async function readFile(file: File) {
+  const { promise, resolve, reject } = Promise.withResolvers()
+  const reader = new FileReader()
+  reader.onload = resolve
+  reader.onerror = reject
+  reader.onabort = reject
+  reader.readAsText(file)
+  return promise
+}
+```
+
 既にブラウザへの実装も進んでいる。
 
 なお、 Firefox は内部で `PromiseUtils.defer()` という名前で実装していたが、現在は `Promise.withResolvers()` に置き換えられている。
