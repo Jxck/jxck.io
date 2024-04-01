@@ -25,14 +25,14 @@ const precache =
   "https://www.jxck.io/assets/css/pre.css?220404_030403",
   "https://www.jxck.io/assets/css/search.css?220304_061221",
   "https://www.jxck.io/assets/css/table.css?220306_111358",
-  "https://www.jxck.io/assets/img/blog.svg?160317_235345",
-  "https://www.jxck.io/assets/img/search.svg?190421_131029",
-  "https://www.jxck.io/assets/img/rss.svg?160317_235345",
-  "https://www.jxck.io/assets/img/humans.svg?160417_010238",
-  "https://www.jxck.io/assets/img/jxck.svg?160317_235345",
-  "https://www.jxck.io/assets/img/amp.svg?160317_235345",
-  "https://www.jxck.io/assets/img/up.svg?160317_235345",
-  "https://www.jxck.io/assets/img/jxck.png?211006_145713",
+  "https://www.jxck.io/assets/img/blog.svg?160301_215351",
+  "https://www.jxck.io/assets/img/search.svg?190421_130410",
+  "https://www.jxck.io/assets/img/rss.svg?160227_124312",
+  "https://www.jxck.io/assets/img/humans.svg?160831_002319",
+  "https://www.jxck.io/assets/img/jxck.svg?190123_200004",
+  "https://www.jxck.io/assets/img/amp.svg?181110_002524",
+  "https://www.jxck.io/assets/img/up.svg?160831_002319",
+  "https://www.jxck.io/assets/img/jxck.png?210331_115006",
 ]
 /*---build.js---*/
 
