@@ -204,11 +204,13 @@ str.length // => 17
 
 特に、ブラウザがこれをどう行うべきかというアルゴリズムは WHATWG の仕様に書かれているため、これを実装すれば Code Point の配列が手に入る。
 
-[WebIDL-1#dfn-obtain-unicode](https://www.w3.org/TR/WebIDL-1/#dfn-obtain-unicode)
+- WebIDL-1#dfn-obtain-unicode
+  - https://www.w3.org/TR/WebIDL-1/#dfn-obtain-unicode
 
 筆者は、これを実装したライブラリも公開している。
 
-[github.com/Jxck/obtain-unicode](https://github.com/Jxck/obtain-unicode)
+- github.com/Jxck/obtain-unicode
+  - https://github.com/Jxck/obtain-unicode
 
 Code Point の配列にしてしまえば、文字の数 (=== Code Point の数)を数える処理はそのまま length で行える。
 
@@ -557,9 +559,10 @@ Array.from("👨‍👩‍👧‍👦")
 
 1 文字を *カーソルが 1 つ移動する分* と捉えているとなると、 Code Point の数を数えるだけではなく、合字も 1 文字と捉える必要が出てくる。
 
-この *カーソルが 1 つ移動する分* を書記素クラスタと言い、 Code Point の列の中から、書記素クラスタの区切りを判別する方法は Unicode の中に定義されている。
+この *カーソルが 1 つ移動する分* を Grapheme と言い、 Code Point の列の中から、書記素クラスタの区切りを判別する方法は Unicode の中に定義されている。
 
-[UAX #29: Unicode Text Segmentation](http://unicode.org/reports/tr29/)
+- UAX #29: Unicode Text Segmentation
+  - https://unicode.org/reports/tr29/
 
 この処理はそれなりに難しいものであるため、取り入れる際はライブラリを利用する方が良いだろう。
 
@@ -567,4 +570,13 @@ Array.from("👨‍👩‍👧‍👦")
 
 なお、 JavaScript に関しては、 TC39 にこれを標準で入れるというプロポーサルが上がっており、執筆時は Stage 3 である。
 
-[tc39/proposal-intl-segmenter: Unicode text segmentation for ECMAScript](https://github.com/tc39/proposal-intl-segmenter)
+- tc39/proposal-intl-segmenter: Unicode text segmentation for ECMAScript
+  - https://github.com/tc39/proposal-intl-segmenter
+
+これを用いると以下のように実現できる。
+
+```js
+const segmenter = new Intl.Segmenter("ja-JP", { granularity: "grapheme" })
+const segments = [...segmenter.segment("👪")]
+// [{ "segment": "👪", "index": 0, "input": "👪" }]
+```
