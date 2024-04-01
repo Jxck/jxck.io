@@ -185,7 +185,7 @@ webp: $(WEBP)
 
 
 ## avif
-CAVIF = avif --speed 0 --quality 40 --verbose
+CAVIF = avif --speed 0 --quality 40
 
 AVIF = $(PNG:.png=.avif)
 AVIF += $(JPG:.jpeg=.avif)
@@ -193,12 +193,15 @@ AVIF += $(GIF:.gif=.avif)
 
 .png.avif:
 	$(CAVIF) --input $*.png
+	touch -r $< $@
 
 .jpeg.avif:
 	$(CAVIF) --input $*.jpeg
+	touch -r $< $@
 
 .gif.avif:
 	ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $*.avif
+	touch -r $< $@
 
 avif: $(AVIF)
 
