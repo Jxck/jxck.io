@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-03-02T08:00:00+08:00",
-    "dateModified": "2024-03-27T08:00:00+08:00",
+    "dateModified": "2024-04-02T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-03-02>2017-03-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-03-27>2024-03-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-02>2024-04-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -296,9 +296,23 @@ str.length // =&gt; 17</code></pre>
         <p>つまり、 JS が内部で保持している UTF-16 の配列を、元の Unicode の Code Point の配列に戻せば良さそうだ。
         <p>もちろん、この方法は知られている。
         <p>特に、ブラウザがこれをどう行うべきかというアルゴリズムは WHATWG の仕様に書かれているため、これを実装すれば Code Point の配列が手に入る。
-        <p><a href="https://www.w3.org/TR/WebIDL-1/#dfn-obtain-unicode" target=_blank>WebIDL-1#dfn-obtain-unicode</a>
+        <ul>
+          <li>
+            WebIDL-1#dfn-obtain-unicode
+            <ul>
+              <li><a href="https://www.w3.org/TR/WebIDL-1/#dfn-obtain-unicode" target=_blank>https://www.w3.org/TR/WebIDL-1/#dfn-obtain-unicode</a>
+            </ul>
+          </li>
+        </ul>
         <p>筆者は、これを実装したライブラリも公開している。
-        <p><a href="https://github.com/Jxck/obtain-unicode" target=_blank>github.com/Jxck/obtain-unicode</a>
+        <ul>
+          <li>
+            github.com/Jxck/obtain-unicode
+            <ul>
+              <li><a href="https://github.com/Jxck/obtain-unicode" target=_blank>https://github.com/Jxck/obtain-unicode</a>
+            </ul>
+          </li>
+        </ul>
         <p>Code Point の配列にしてしまえば、文字の数 (=== Code Point の数)を数える処理はそのまま length で行える。
         <pre class=js data-code=js><code translate=no class=language-js>str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
 codePoints = obtainUnicode(str);
@@ -534,12 +548,30 @@ Array.from(&quot;パ&quot;.normalize(&quot;NFD&quot;))
         <section>
           <h3 id="unicode-text-segmentation"><a href="#unicode-text-segmentation">Unicode Text Segmentation</a></h3>
           <p>1 文字を <em>カーソルが 1 つ移動する分</em> と捉えているとなると、 Code Point の数を数えるだけではなく、合字も 1 文字と捉える必要が出てくる。
-          <p>この <em>カーソルが 1 つ移動する分</em> を書記素クラスタと言い、 Code Point の列の中から、書記素クラスタの区切りを判別する方法は Unicode の中に定義されている。
-          <p><a href="http://unicode.org/reports/tr29/" target=_blank>UAX #29: Unicode Text Segmentation</a>
+          <p>この <em>カーソルが 1 つ移動する分</em> を Grapheme と言い、 Code Point の列の中から、書記素クラスタの区切りを判別する方法は Unicode の中に定義されている。
+          <ul>
+            <li>
+              UAX #29: Unicode Text Segmentation
+              <ul>
+                <li><a href="https://unicode.org/reports/tr29/" target=_blank>https://unicode.org/reports/tr29/</a>
+              </ul>
+            </li>
+          </ul>
           <p>この処理はそれなりに難しいものであるため、取り入れる際はライブラリを利用する方が良いだろう。
           <p>(どのライブラリが枯れているかは知らないため、ここでは紹介しないが、実装自体は探せばいくつかある。)
           <p>なお、 JavaScript に関しては、 TC39 にこれを標準で入れるというプロポーサルが上がっており、執筆時は Stage 3 である。
-          <p><a href="https://github.com/tc39/proposal-intl-segmenter" target=_blank>tc39/proposal-intl-segmenter: Unicode text segmentation for ECMAScript</a>
+          <ul>
+            <li>
+              tc39/proposal-intl-segmenter: Unicode text segmentation for ECMAScript
+              <ul>
+                <li><a href="https://github.com/tc39/proposal-intl-segmenter" target=_blank>https://github.com/tc39/proposal-intl-segmenter</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これを用いると以下のように実現できる。
+          <pre class=js data-code=js><code translate=no class=language-js>const segmenter = new Intl.Segmenter(&quot;ja-JP&quot;, { granularity: &quot;grapheme&quot; })
+const segments = [...segmenter.segment(&quot;👪&quot;)]
+// [{ &quot;segment&quot;: &quot;👪&quot;, &quot;index&quot;: 0, &quot;input&quot;: &quot;👪&quot; }]</code></pre>
         </section>
       </section>
     </article>
