@@ -171,12 +171,15 @@ WEBP += $(GIF:.gif=.webp)
 
 .png.webp:
 	$(CWEBP) $*.png -o $*.webp
+	touch -r $< $@
 
 .jpeg.webp:
 	$(CWEBP) $*.jpeg -o $*.webp
+	touch -r $< $@
 
 .gif.webp:
 	$(GWEBP) $*.gif -o $*.webp
+	touch -r $< $@
 
 webp: $(WEBP)
 
