@@ -214,6 +214,44 @@ https://www.rfc-editor.org/info/rfc9110
 ただし、これはあくまで「RFC を書く場合」のルールであり、RFC へのリンクを外部から貼る人にも求められる要件とは読めなさそうだ。
 
 
+## おまけ
+
+### Draft
+
+rfc-editor は RFC はホストしているが、 RFC になる前の draft については datatracker にしかない。
+
+- https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-p6-cache-26
+
+したがって、 RFC と Draft が並ぶ場合は、統一のために datatracker に寄せるのもありかもしれない。
+
+
+### Inline Errata
+
+RFC 発行後に報告された問題は Errata と呼ばれる。
+
+- RFC Errata Report » RFC Editor
+  - https://www.rfc-editor.org/errata/rfc9110
+
+Errata があったとしても、一度発行した RFC は内容を変えることができないため、マージするには改訂を行い新たな RFC を出す必要がある。
+
+しかし、 RFC を出すのは一定の労力がかかるため、 Errata が存在するままの RFC は多く存在する。実装時などに「なにかがおかしい?」と思ったら実は Errata があったということはよく起こるため、最初に Errata の存在を確認するのは重要だった。
+
+RFC では、ひっそりと Errata Exsists と書かれたリンクから見ることができる。
+
+![Errata exists](errata-exists.png)
+
+ところが、最近では受理された Errata をインラインにマージした RFC のフォーマットがあることに気づいた。(いつからあるのかはよくわからない)
+
+![inline errata](inline-errata.png)
+
+これは rfc-editor に別パスで公開されている。
+
+- RFC 9110 HTML with inline errata
+  - https://www.rfc-editor.org/rfc/inline-errata/rfc9110.html
+
+実装をする場合などはこちらを見ると良いだろう。
+
+
 ## まとめ
 
 RFC へのリンクを貼る場合、公式の、統一された、安定的な URL を求めるのであれば、ドメインは *rfc-editor* を用いるのが良いだろう。
