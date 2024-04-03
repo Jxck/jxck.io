@@ -395,6 +395,31 @@ $ git cl upload
 ```
 
 
+### VSCode
+
+最近はコアコントリビュータも VSCode での開発が多いらしい。
+
+基本はここにある通りに設定すればいい。
+
+- Chromium Docs - Visual Studio Code Dev
+  - https://chromium.googlesource.com/chromium/src/+/master/docs/vscode.md
+
+C++ のシンボルやヘッダの参照が壊れて真っ赤になる時がある。
+
+![clangd-error](clangd-error.png#1386x1140)
+
+これは、 clangd 用のデータベースがなく、自動では作られないかららしい。
+
+- Chromium Docs - Clangd
+  - https://chromium.googlesource.com/chromium/src/+/master/docs/clangd.md
+
+これを作るコマンドがあるので、 `src/compile_commands.json` を作ってから、起動しなおしたりすると治る。
+
+```sh
+$ tools/clang/scripts/generate_compdb.py -p out/Default > compile_commands.json
+```
+
+
 ## Tips
 
 ### IDL
