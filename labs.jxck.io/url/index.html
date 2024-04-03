@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>URL DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+</style>
+
+<h1>URL DEMO</h1>
+
+<textarea>
+</textarea>
+
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    const $textarea = $("textarea")
+    const url = URL.parse("https://example.com")
+    console.log(url)
+    $textarea.value = url
+
+    const url2 = URL.parse("00")
+    console.log(url2)
+})
+</script>
