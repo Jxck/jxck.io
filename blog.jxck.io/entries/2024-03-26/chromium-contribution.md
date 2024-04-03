@@ -534,6 +534,30 @@ WebTransportH3 server running on https://localhost:11000
   - https://web-platform-tests.org/running-tests/command-line-arguments.html#make-hosts-file
 
 
+### content_shell
+
+content_shell が原因で落ちる場合
+
+```
+The content_shell process crashed while starting:
+"b'/home/jxck/chromium/src/out/Default/content_shell: symbol lookup error: /home/jxck/chromium/src/out/Default/libgpu_ipc_gl_in_process_context.so: undefined symbol: _ZN3gpu5gles219GLES2Implementation28ProduceTextureDirectCHROMIUMEjPa\n'"
+content_shell took too long to startup.
+[1/2] external/wpt/url/url-statics-parse.any.worker.html failed unexpectedly (content_shell crashed [pid=1287193])
+The content_shell process crashed while starting:
+"b'/home/jxck/chromium/src/out/Default/content_shell: symbol lookup error: /home/jxck/chromium/src/out/Default/libgpu_ipc_gl_in_process_context.so: undefined symbol: _ZN3gpu5gles219GLES2Implementation28ProduceTextureDirectCHROMIUMEjPa\n'"
+content_shell took too long to startup.
+[2/2] external/wpt/url/url-statics-parse.any.html failed unexpectedly (content_shell crashed [pid=1287194])
+```
+
+content_shell はよくわかってないが、テストを流す前に対象がビルドできてないっぽい。
+
+他のも含めてだいたい以下をビルドしてからテストを流すと良さそう。
+
+```sh
+$ autoninja -C out/Default blink_tests all_blink content_shell
+```
+
+
 ### テストサーバ
 
 fetch などでサーバを叩いたりするテストのために、 mock server を書く方法がいくつかある。
