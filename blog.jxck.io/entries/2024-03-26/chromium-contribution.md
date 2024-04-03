@@ -534,6 +534,26 @@ WebTransportH3 server running on https://localhost:11000
   - https://web-platform-tests.org/running-tests/command-line-arguments.html#make-hosts-file
 
 
+### expected / actual file
+
+WPT は網羅的にテストがあるが、 Chromium は全部を通せるわけじゃない。(それを通るようにするのが Interop の目的)
+
+これは、 WPT のテストケースに対して、通らないものは「落ちる結果」を expected ファイルに書いて、実行結果が生成する actual ファイルと一致するかどうかを見るような仕組みになっている。
+
+つまり、「意図した通りに落ちるか」をテストしているような感じだ。
+
+- url-setters.any.worker_include=file-expected.txt - Chromium Code Search
+  - https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/web_tests/external/wpt/url/url-setters.any.worker_include%3Dfile-expected.txt
+
+実装するとこのファイルの結果も変更し、全部通るとこのファイルを消すことができる。
+
+`--reset-results` をつけると、実行結果で expected ファイルを更新してくれる。
+
+```sh
+$ ./third_party/blink/tools/run_web_tests.py -t Default --reset-results path-to-test.js
+```
+
+
 ### content_shell
 
 content_shell が原因で落ちる場合
