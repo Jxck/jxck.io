@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-26T08:00:00+08:00",
-    "dateModified": "2024-03-26T08:00:00+08:00",
+    "dateModified": "2024-04-03T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-03-26>2024-03-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-03>2024-04-03</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -150,6 +150,7 @@
                   <li><a href="#web-tests-layout-tests">Web Tests (Layout Tests)</a>
                   <li><a href="#flag">Flag</a>
                   <li><a href="#git">Git</a>
+                  <li><a href="#vscode">VSCode</a>
                 </ol>
                 <li><a href="#tips">Tips</a>
                 <ol>
@@ -670,6 +671,38 @@ $ git cl issue 123456
 
 # 書いたコードを gerrit にアップする
 $ git cl upload</code></pre>
+        </section>
+        <section>
+          <h3 id="vscode"><a href="#vscode">VSCode</a></h3>
+          <p>最近はコアコントリビュータも VSCode での開発が多いらしい。
+          <p>基本はここにある通りに設定すればいい。
+          <ul>
+            <li>
+              Chromium Docs - Visual Studio Code Dev
+              <ul>
+                <li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/vscode.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/master/docs/vscode.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>C++ のシンボルやヘッダの参照が壊れて真っ赤になる時がある。
+          <p>
+            <picture>
+              <source type=image/avif srcset=clangd-error.avif?240403_162525>
+              <source type=image/webp srcset=clangd-error.webp?240403_162525>
+              <img loading=lazy decoding=async src=clangd-error.png?240403_162525 alt="clangd-error" width=1386 height=1140>
+            </picture>
+          </p>
+          <p>これは、 clangd 用のデータベースがなく、自動では作られないかららしい。
+          <ul>
+            <li>
+              Chromium Docs - Clangd
+              <ul>
+                <li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/clangd.md" target=_blank>https://chromium.googlesource.com/chromium/src/+/master/docs/clangd.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これを作るコマンドがあるので、 <code translate=no>src/compile_commands.json</code> を作ってから、起動しなおしたりすると治る。
+          <pre class=sh data-code=sh><code translate=no class=language-sh>$ tools/clang/scripts/generate_compdb.py -p out/Default &gt; compile_commands.json</code></pre>
         </section>
       </section>
       <section>
