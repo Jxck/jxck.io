@@ -160,6 +160,8 @@
                 <li><a href="#wpt">WPT</a>
                 <ol>
                   <li><a href="#実行_1">実行</a>
+                  <li><a href="#expected--actual-file">expected / actual file</a>
+                  <li><a href="#content_shell">content_shell</a>
                   <li><a href="#テストサーバ">テストサーバ</a>
                   <li><a href="#https">HTTPS</a>
                 </ol>
@@ -803,6 +805,38 @@ WebTransportH3 server running on https://localhost:11000</code></pre>
               </ul>
             </li>
           </ul>
+        </section>
+        <section>
+          <h3 id="expected--actual-file"><a href="#expected--actual-file">expected / actual file</a></h3>
+          <p>WPT は網羅的にテストがあるが、 Chromium は全部を通せるわけじゃない。(それを通るようにするのが Interop の目的)
+          <p>これは、 WPT のテストケースに対して、通らないものは「落ちる結果」を expected ファイルに書いて、実行結果が生成する actual ファイルと一致するかどうかを見るような仕組みになっている。
+          <p>つまり、「意図した通りに落ちるか」をテストしているような感じだ。
+          <ul>
+            <li>
+              url-setters.any.worker_include=file-expected.txt - Chromium Code Search
+              <ul>
+                <li><a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/web_tests/external/wpt/url/url-setters.any.worker_include%3Dfile-expected.txt" target=_blank>https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/web_tests/external/wpt/url/url-setters.any.worker_include%3Dfile-expected.txt</a>
+              </ul>
+            </li>
+          </ul>
+          <p>実装するとこのファイルの結果も変更し、全部通るとこのファイルを消すことができる。
+          <p><code translate=no>--reset-results</code> をつけると、実行結果で expected ファイルを更新してくれる。
+          <pre class=sh data-code=sh><code translate=no class=language-sh>$ ./third_party/blink/tools/run_web_tests.py -t Default --reset-results path-to-test.js</code></pre>
+        </section>
+        <section>
+          <h3 id="content_shell"><a href="#content_shell">content_shell</a></h3>
+          <p>content_shell が原因で落ちる場合
+          <pre><code translate=no>The content_shell process crashed while starting:
+&quot;b&apos;/home/jxck/chromium/src/out/Default/content_shell: symbol lookup error: /home/jxck/chromium/src/out/Default/libgpu_ipc_gl_in_process_context.so: undefined symbol: _ZN3gpu5gles219GLES2Implementation28ProduceTextureDirectCHROMIUMEjPa\n&apos;&quot;
+content_shell took too long to startup.
+[1/2] external/wpt/url/url-statics-parse.any.worker.html failed unexpectedly (content_shell crashed [pid=1287193])
+The content_shell process crashed while starting:
+&quot;b&apos;/home/jxck/chromium/src/out/Default/content_shell: symbol lookup error: /home/jxck/chromium/src/out/Default/libgpu_ipc_gl_in_process_context.so: undefined symbol: _ZN3gpu5gles219GLES2Implementation28ProduceTextureDirectCHROMIUMEjPa\n&apos;&quot;
+content_shell took too long to startup.
+[2/2] external/wpt/url/url-statics-parse.any.html failed unexpectedly (content_shell crashed [pid=1287194])</code></pre>
+          <p>content_shell はよくわかってないが、テストを流す前に対象がビルドできてないっぽい。
+          <p>他のも含めてだいたい以下をビルドしてからテストを流すと良さそう。
+          <pre class=sh data-code=sh><code translate=no class=language-sh>$ autoninja -C out/Default blink_tests all_blink content_shell</code></pre>
         </section>
         <section>
           <h3 id="テストサーバ"><a href="#テストサーバ">テストサーバ</a></h3>
