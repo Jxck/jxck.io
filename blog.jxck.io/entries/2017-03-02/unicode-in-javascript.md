@@ -580,3 +580,11 @@ const segmenter = new Intl.Segmenter("ja-JP", { granularity: "grapheme" })
 const segments = [...segmenter.segment("👪")]
 // [{ "segment": "👪", "index": 0, "input": "👪" }]
 ```
+
+
+## DEMO
+
+動作する DEMO を以下に用意した。
+
+- Intl.Segmenter DEMO
+  - https://labs.jxck.io/intl/segmenter.html
