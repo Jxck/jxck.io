@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>" />
+<title>Intl.Segmenter DEMO</title>
+
+<meta http-equiv="origin-trial" content="" />
+
+<style>
+  body {
+    padding: 0 2rem;
+    font-family: sans-serif;
+  }
+  main {
+    /* display: flex;
+    justify-content: space-between;
+    gap: 2em; */
+  }
+  textarea {
+    field-sizing: content;
+    width: 100%;
+    min-height: 4rem;
+    flex: 1;
+  }
+  dl {
+    width: fit-content;
+  }
+  dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  dt {
+    font-weight: bold;
+  }
+  dt::after {
+    content: ":";
+  }
+  dd {
+    margin: 0;
+  }
+  dd input {
+  }
+
+  table {
+    font-family: monospace;
+  }
+  th {
+    font-weight: bold;
+  }
+  td {
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+  }
+  tr td:nth-child(1) {
+    text-align: center;
+  }
+</style>
+
+<h1>文字数カウント DEMO</h1>
+
+<main>
+  <textarea autofocus>𠮷野屋で𩸽頼んで𠮟られる🧑‍🧑‍🧒‍🧒</textarea>
+
+  <dl>
+    <div>
+      <dt>Grapheme</dt>
+      <dd><input type="text" id="grapheme" /></dd>
+    </div>
+
+    <div>
+      <dt>Code Point</dt>
+      <dd><input type="text" id="codepoint" /></dd>
+    </div>
+
+    <div>
+      <dt>UTF-16</dt>
+      <dd><input type="text" id="utf16" /></dd>
+    </div>
+
+    <div>
+      <dt>UTF-8</dt>
+      <dd><input type="text" id="utf8" /></dd>
+    </div>
+  </dl>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Font</th>
+        <th>CodePoint</th>
+        <th>CharCode</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</main>
+
+<script>
+  "use strict"
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on("DOMContentLoaded", async (e) => {
+    const segmenter = new Intl.Segmenter("ja-JP", { granularity: "grapheme" })
+    const encoder = new TextEncoder()
+
+    $("textarea").on("input", (e) => {
+      const { value } = e.target
+      console.log(value)
+
+      const segments = [...segmenter.segment(value)]
+      $("#grapheme").value = segments.length
+
+      const codepoints = [...value]
+      $("#codepoint").value = codepoints.length
+
+      $("#utf16").value = value.length
+
+      const utf8 = encoder.encode(value)
+      $("#utf8").value = utf8.length
+
+      function td(textContent) {
+        const $td = document.createElement("td")
+        $td.textContent = textContent
+        return $td
+      }
+
+      // table
+      Array.from($("tbody").children).forEach((tr) => tr.remove())
+      segments.forEach(({ segment }) => {
+        const $line = document.createElement("tr")
+        $line.appendChild(td(segment))
+
+        const codePoint = `0x${segment.codePointAt(0).toString(16)}`
+        $line.appendChild(td(codePoint))
+
+        const charCode = []
+        for (let i = 0; i < segment.length; i++) {
+          charCode.push(`0x${segment.charCodeAt(i)}`)
+        }
+        $line.appendChild(td(charCode.join(",")))
+
+        $("tbody").appendChild($line)
+      })
+    })
+
+    $("textarea").dispatchEvent(new Event("input"))
+  })
+</script>
