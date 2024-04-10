@@ -153,6 +153,18 @@ crrev には Patchset という概念があり、これは複数コミットが�
 
 ![reply](reply.png#770x246)
 
+今ボールを持っている人は、名前の隣に Attention (矢印)のマークが付く。
+
+![attention](attention.png#422x148)
+
+Attention が自分のままだとレビューをしてもらえないので、レビューしてもらう準備が整ったら、ここの MODIFY から Attention をレビュアーに変える必要がある。
+
+![modify attention set](modify-attention-set.png#834x127)
+
+ここで Reviewer に矢印を移して Send するとボールが相手に移る。
+
+![modify attention to](modify-attention-to.png#839x254)
+
 Rebase は UI 上からできるが、全部のコメントを一旦終えてから Rebase するのがマナーらしい。
 
 Rebase が終わったら、 "CQ DRY RUN" する。これが CI でビルドと全テストを流すボタン。ただし、権限のある人にしかできないので、 Reviewer にやってもらうことになる。
