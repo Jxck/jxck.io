@@ -636,6 +636,29 @@ def main(request, response):
 その上で HTTP/2 が必要なら `${name}.h2.${ext}` とするなど、他のフラグもある。
 
 
+## Intents
+
+新機能の追加など Web Facing な変更については、 Launch Process というプロセスを踏んで進める必要がある。
+
+- Launching Features
+  - https://www.chromium.org/blink/launching-features/#process-existing-standard
+
+新機能の追加は、その機能についての Chrome Status エントリの作成から始まる。
+
+![Create Platform Status Entry](platform-status-create.jpeg#850x366)
+
+作成したエントリは以下。
+
+- URL.parse() - Chrome Platform Status
+  - https://chromestatus.com/feature/6301071388704768
+
+下部にある Development Stages から、 Intents や OT の開始をすることができる。
+
+![Development Stages](development-stages.jpeg#894x308)
+
+通常は Intent to Prototype で開発開始を宣言するが、すでに議論と合意が終わっている仕様などは、開発してから Intent to Ship を行うこともある。
+
+
 ## Outro
 
 TODO: 思い出したら色々追記
