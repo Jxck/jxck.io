@@ -165,6 +165,7 @@
                   <li><a href="#テストサーバ">テストサーバ</a>
                   <li><a href="#https">HTTPS</a>
                 </ol>
+                <li><a href="#intents">Intents</a>
                 <li><a href="#outro">Outro</a>
               </ol>
             </nav>
@@ -895,6 +896,44 @@ hello</code></pre>
           <p>特に、 HTTPS でしか動かない機能のテストはこれを忘れると落ちるので注意。
           <p>その上で HTTP/2 が必要なら <code translate=no>${name}.h2.${ext}</code> とするなど、他のフラグもある。
         </section>
+      </section>
+      <section>
+        <h2 id="intents"><a href="#intents">Intents</a></h2>
+        <p>新機能の追加など Web Facing な変更については、 Launch Process というプロセスを踏んで進める必要がある。
+        <ul>
+          <li>
+            Launching Features
+            <ul>
+              <li><a href="https://www.chromium.org/blink/launching-features/#process-existing-standard" target=_blank>https://www.chromium.org/blink/launching-features/#process-existing-standard</a>
+            </ul>
+          </li>
+        </ul>
+        <p>新機能の追加は、その機能についての Chrome Status エントリの作成から始まる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=platform-status-create.avif?240410_171546>
+            <source type=image/webp srcset=platform-status-create.webp?240410_171546>
+            <img loading=lazy decoding=async src=platform-status-create.jpeg?240410_171546 alt="Create Platform Status Entry" width=850 height=366>
+          </picture>
+        </p>
+        <p>作成したエントリは以下。
+        <ul>
+          <li>
+            URL.parse() - Chrome Platform Status
+            <ul>
+              <li><a href="https://chromestatus.com/feature/6301071388704768" target=_blank>https://chromestatus.com/feature/6301071388704768</a>
+            </ul>
+          </li>
+        </ul>
+        <p>下部にある Development Stages から、 Intents や OT の開始をすることができる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=development-stages.avif?240410_171546>
+            <source type=image/webp srcset=development-stages.webp?240410_171546>
+            <img loading=lazy decoding=async src=development-stages.jpeg?240410_171546 alt="Development Stages" width=894 height=308>
+          </picture>
+        </p>
+        <p>通常は Intent to Prototype で開発開始を宣言するが、すでに議論と合意が終わっている仕様などは、開発してから Intent to Ship を行うこともある。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
