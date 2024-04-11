@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-26T08:00:00+08:00",
-    "dateModified": "2024-04-10T08:00:00+08:00",
+    "dateModified": "2024-04-11T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-10>2024-04-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-11>2024-04-11</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -658,6 +658,24 @@ $ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker
             </li>
           </ul>
           <p><code translate=no>features.cc</code> の場合もあるらしい。
+          <p>ここにエントリを追加したら、コード上で Flag のガードを書く。
+          <ul>
+            <li>
+              RuntimeEnabledFeatures.md - Chromium Code Search
+              <ul>
+                <li><a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/RuntimeEnabledFeatures.md" target=_blank>https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/RuntimeEnabledFeatures.md</a>
+              </ul>
+            </li>
+          </ul>
+          <pre class=cpp data-code=cpp><code translate=no class=language-cpp>// インラインならこう
+if (RuntimeEnabledFeatures::ResourceTimingContentEncodingEnabled()) {
+  builder.AddString(&quot;contentEncoding&quot;, contentEncoding());
+}
+
+// 定義ならこう
+interface URL {
+  [RuntimeEnabled=URLParse] static URL? parse(USVString url, optional USVString base);
+}</code></pre>
           <p>ある程度安定したら、 CLI フラグではなく chrome://flags に入る。
           <ul>
             <li>
