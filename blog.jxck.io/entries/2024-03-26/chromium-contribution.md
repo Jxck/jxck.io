@@ -365,6 +365,23 @@ chrome --enable-features=SubresourceWebBundle
 
 `features.cc` の場合もあるらしい。
 
+ここにエントリを追加したら、コード上で Flag のガードを書く。
+
+- RuntimeEnabledFeatures.md - Chromium Code Search
+  - https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/RuntimeEnabledFeatures.md
+
+```cpp
+// インラインならこう
+if (RuntimeEnabledFeatures::ResourceTimingContentEncodingEnabled()) {
+  builder.AddString("contentEncoding", contentEncoding());
+}
+
+// 定義ならこう
+interface URL {
+  [RuntimeEnabled=URLParse] static URL? parse(USVString url, optional USVString base);
+}
+```
+
 ある程度安定したら、 CLI フラグではなく chrome://flags に入る。
 
 - about_flags.cc - Chromium Code Search
