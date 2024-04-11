@@ -412,8 +412,46 @@ Finch がどうコントロールされているかは外にはでてこない�
 
 Chromium 用の Git の拡張が用意されており、それを用いてコントリビュートする。
 
+- depot_tools_tutorial(7)
+  - https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html
 - Chromium www.chromium.org Website - site/developers/gerrit-guide/index.md
   - https://chromium.googlesource.com/website/+/HEAD/site/developers/gerrit-guide/index.md
+
+```sh
+# まず新規作業用ブランチを作る
+$ git new-branch fix_typo
+
+# コードを書き普通にコミットを重ねる
+
+# branch
+$ git map-branches
+origin/main
+  chap2 *
+  fix_typo
+
+# 構成を見る
+$ git map
+615ffa720f	(HEAD -> fix_typo) 2014-04-10
+beec6f4746	(origin/main, origin/HEAD) 2014-04-10
+41290e02b7	2014-04-10
+a76fde7b7b	2014-04-10
+9de7a713b3	2014-04-10
+073b0c203a	2014-04-10
+2250f532d7	2014-04-10
+33a7a742b7	2014-04-10
+
+# 書いたコードを gerrit にアップする
+$ git cl upload
+
+# またしばらくコードを書く
+
+# コードを更新する
+$ git rebase-update
+$ gclient sync
+$ git map
+* 93fe917ad1	(HEAD -> fix-typo) 2014-04-10
+* 5d26fec369	(origin/main, origin/HEAD) 2014-04-10
+```
 
 ```sh
 # Issue 番号で紐づける
