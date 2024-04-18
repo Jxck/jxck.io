@@ -155,9 +155,8 @@ API バックエンドなどに対して JSON で送りたい場合もあるだ�
 ```js
 document.querySelector('#login').onsubmit = (e) => {
   e.preventDefault()
-  const form_data = new FormData(e.target)
-  const object = Array.from(form_data).reduce((o, [k, v]) => { o[k] = v; return o }, {})
-  const json = JSON.stringify(object)
+  const data = Object.fromEntries(new FormData(e.target).entries())
+  const json = JSON.stringify(data)
   fetch('/login', {
     method: 'POST',
     body: json
