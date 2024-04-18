@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link
+  rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>"
+/>
+<title>popover in form DEMO</title>
+
+<meta http-equiv="origin-trial" content="" />
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  form {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    
+    textarea {
+      width: 100%;
+      height: 10rem;
+    }
+    button {
+      width: min-content;
+    }
+
+    :popover-open {
+      padding: 0 1rem;
+      box-sizing: border-box;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+    }
+
+    @supports (top: anchor(top)) {
+      :popover-open {
+        width: max-content;
+        bottom: anchor(bottom);
+        right: anchor(right);
+        position: relative;
+        top: unset;
+        left: unset;
+      }
+    }
+  }
+</style>
+
+
+<form>
+  <h1><label>popover DEMO</label></h1>
+  <textarea id="anchor" name="body"></textarea>
+  <div id="popover" anchor="anchor" popover>
+    <p>you dont have permission</p>
+  </div>
+  <button type="button" popovertarget="popover">ok</button>
+</form>
+
+
+<script>
+  "use strict"
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on("DOMContentLoaded", async (e) => {
+    console.log(e)
+    $("form").on("submit", (e) => {
+      e.preventDefault()
+      console.log(e)
+    })
+  })
+</script>
