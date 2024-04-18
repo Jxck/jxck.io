@@ -382,10 +382,27 @@ interface URL {
 }
 ```
 
-ある程度安定したら、 CLI フラグではなく chrome://flags に入る。
+blink の runtime_enabled_features.json5 に Status を Experimental で入れた機能は、そのまま Experimental Web Platform Feature に入る。
 
 - about_flags.cc - Chromium Code Search
   - https://source.chromium.org/chromium/chromium/src/+/main:chrome/browser/about_flags.cc
+
+つまり
+
+```json
+{
+  name: "URLParse",
+  status: "experimental",
+}
+```
+
+これは
+
+```
+chrome://flags/#enable-experimental-web-platform-features
+```
+
+で有効にできる。
 
 Experimental で Origin Trials が始まると、それも features.json5 で管理される。
 
@@ -399,11 +416,13 @@ Experimental で Origin Trials が始まると、それも features.json5 で管
 },
 ```
 
-このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく。これを Finch という。
+このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく場合がある。これを Finch という。
 
 Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
 
-- chrome://version/?show-variations-cmd
+```
+chrome://version/?show-variations-cmd
+```
 
 で表示される、一番下に `Command-line variations` が追加される。よくわらかないフィーマットでワンラインにされているが、これを雑に `,` や `*` で改行すると、有効になってる機能が確認できるだろう。
 
@@ -707,11 +726,21 @@ def main(request, response):
 - URL.parse() - Chrome Platform Status
   - https://chromestatus.com/feature/6301071388704768
 
-下部にある Development Stages から、 Intents や OT の開始をすることができる。
+下部にある Development Stages から、この機能に関わるあらゆる情報を入力して集約することができる。
 
 ![Development Stages](development-stages.jpeg#894x308)
 
 通常は Intent to Prototype で開発開始を宣言するが、すでに議論と合意が終わっている仕様などは、開発してから Intent to Ship を行うこともある。
+
+情報を入力し終えたら、右上の鉛筆マークから移動する。
+
+![platform status edit](platform-status-edit.jpeg#1792x236)
+
+すると Intents のメールを自動生成する UI が出てくる。基本はこれをコピって blink-dev に送れば良い。
+
+![Draft intent to Ship email](draft-intent-to-ship.jepg#1746x1036)
+
+blink-dev で API オーナーから LGTM が 3 つもらえれば、その機能を Ship することができる。
 
 
 ## Outro
