@@ -738,7 +738,7 @@ def main(request, response):
 
 すると Intents のメールを自動生成する UI が出てくる。基本はこれをコピって blink-dev に送れば良い。
 
-![Draft intent to Ship email](draft-intent-to-ship.jepg#1746x1036)
+![Draft intent to Ship email](draft-intent-to-ship.jpeg#1746x1036)
 
 blink-dev で API オーナーから LGTM が 3 つもらえれば、その機能を Ship することができる。
 

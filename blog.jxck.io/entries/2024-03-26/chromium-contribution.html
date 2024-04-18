@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-26T08:00:00+08:00",
-    "dateModified": "2024-04-11T08:00:00+08:00",
+    "dateModified": "2024-04-18T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-11>2024-04-11</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-18>2024-04-18</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -676,7 +676,7 @@ if (RuntimeEnabledFeatures::ResourceTimingContentEncodingEnabled()) {
 interface URL {
   [RuntimeEnabled=URLParse] static URL? parse(USVString url, optional USVString base);
 }</code></pre>
-          <p>ある程度安定したら、 CLI フラグではなく chrome://flags に入る。
+          <p>blink の runtime_enabled_features.json5 に Status を Experimental で入れた機能は、そのまま Experimental Web Platform Feature に入る。
           <ul>
             <li>
               about_flags.cc - Chromium Code Search
@@ -685,6 +685,14 @@ interface URL {
               </ul>
             </li>
           </ul>
+          <p>つまり
+          <pre class=json data-code=json><code translate=no class=language-json>{
+  name: &quot;URLParse&quot;,
+  status: &quot;experimental&quot;,
+}</code></pre>
+          <p>これは
+          <pre><code translate=no>chrome://flags/#enable-experimental-web-platform-features</code></pre>
+          <p>で有効にできる。
           <p>Experimental で Origin Trials が始まると、それも features.json5 で管理される。
           <pre class=json data-code=json><code translate=no class=language-json>{
   name: &quot;CompressionDictionaryTransport&quot;,
@@ -693,11 +701,9 @@ interface URL {
   origin_trial_allows_third_party: true,
   public: true,
 },</code></pre>
-          <p>このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく。これを Finch という。
+          <p>このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく場合がある。これを Finch という。
           <p>Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
-          <ul>
-            <li>chrome://version/?show-variations-cmd
-          </ul>
+          <pre><code translate=no>chrome://version/?show-variations-cmd</code></pre>
           <p>で表示される、一番下に <code translate=no>Command-line variations</code> が追加される。よくわらかないフィーマットでワンラインにされているが、これを雑に <code translate=no>,</code> や <code translate=no>*</code> で改行すると、有効になってる機能が確認できるだろう。
         </section>
         <section>
@@ -982,7 +988,7 @@ hello</code></pre>
             </ul>
           </li>
         </ul>
-        <p>下部にある Development Stages から、 Intents や OT の開始をすることができる。
+        <p>下部にある Development Stages から、この機能に関わるあらゆる情報を入力して集約することができる。
         <p>
           <picture>
             <source type=image/avif srcset=development-stages.avif?240410_171546>
@@ -991,6 +997,23 @@ hello</code></pre>
           </picture>
         </p>
         <p>通常は Intent to Prototype で開発開始を宣言するが、すでに議論と合意が終わっている仕様などは、開発してから Intent to Ship を行うこともある。
+        <p>情報を入力し終えたら、右上の鉛筆マークから移動する。
+        <p>
+          <picture>
+            <source type=image/avif srcset=platform-status-edit.avif?240418_151245>
+            <source type=image/webp srcset=platform-status-edit.webp?240418_151245>
+            <img loading=lazy decoding=async src=platform-status-edit.jpeg?240418_151245 alt="platform status edit" width=1792 height=236>
+          </picture>
+        </p>
+        <p>すると Intents のメールを自動生成する UI が出てくる。基本はこれをコピって blink-dev に送れば良い。
+        <p>
+          <picture>
+            <source type=image/avif srcset=draft-intent-to-ship.avif?240418_151245>
+            <source type=image/webp srcset=draft-intent-to-ship.webp?240418_151245>
+            <img loading=lazy decoding=async src=draft-intent-to-ship.jpeg?240418_151245 alt="Draft intent to Ship email" width=1746 height=1036>
+          </picture>
+        </p>
+        <p>blink-dev で API オーナーから LGTM が 3 つもらえれば、その機能を Ship することができる。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
