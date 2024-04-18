@@ -185,7 +185,7 @@ webp: $(WEBP)
 
 
 ## avif
-CAVIF = avif --speed 0 --quality 40
+CAVIF = npx avif --speed 0 --quality 40
 
 AVIF = $(PNG:.png=.avif)
 AVIF += $(JPG:.jpeg=.avif)
