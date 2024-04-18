@@ -2,7 +2,7 @@
 .SUFFIXES: .html .md .amp .amp.html .webp .avif .png .jpeg .gif
 
 # NODE := $(DEV)/jxck.io/node_modules/.bin/bun
-NODE := $(DOTFILES)/pkg/nodebrew/current/bin/node
+NODE := $(HOME)/.local/share/mise/installs/node/latest/bin/node
 
 build:
 	cd .src && $(NODE) build.js build
