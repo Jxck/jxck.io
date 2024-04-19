@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link
+  rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>"
+/>
+<title>Test DEMO</title>
+
+<meta http-equiv="origin-trial" content="" />
+
+<style>
+  :root {
+    --col-h: 200; /* hue */
+    --col-s: 10%; /* saturation */
+
+    --background-color: light-dark(
+      hsl(var(--col-h), var(--col-s), 100%),
+      hsl(var(--col-h), var(--col-s), 20%)
+    );
+
+    --background-color-header: light-dark(
+      hsl(var(--col-h), var(--col-s), 100%),
+      hsl(var(--col-h), var(--col-s), 10%)
+    );
+
+    --font-color: light-dark(
+      hsl(var(--col-h), var(--col-s), 20%),
+      hsl(var(--col-h), var(--col-s), 100%)
+    );
+
+    --font-color-sub: light-dark(
+      hsl(var(--col-h), var(--col-s), 40%),
+      hsl(var(--col-h), var(--col-s), 80%)
+    );
+
+    --border-color: light-dark(
+      hsl(var(--col-h), var(--col-s), 100%),
+      hsl(var(--col-h), var(--col-s), 20%)
+    );
+
+    --border-textarea-color: light-dark(
+      hsl(var(--col-h), var(--col-s), 80%),
+      hsl(var(--col-h), var(--col-s), 40%)
+    );
+
+    --background-textarea-color: light-dark(
+      hsl(var(--col-h), var(--col-s), 98%),
+      hsl(var(--col-h), var(--col-s), 30%)
+    );
+
+    --background-code-color: light-dark(
+      hsl(var(--col-h), var(--col-s), 95%),
+      hsl(var(--col-h), var(--col-s), 40%)
+    );
+
+    --border-image-color: light-dark(
+      hsl(var(--col-h), var(--col-s), 100%),
+      hsl(var(--col-h), var(--col-s), 100%)
+    );
+
+    --border-ogp-image-color: light-dark(
+      hsl(var(--col-h), var(--col-s), 94%),
+      hsl(var(--col-h), var(--col-s), 30%)
+    );
+
+    --border: solid 1px var(--border-color);
+    --font-size: 1.2rem;
+    --line-height: 1.6rem;
+    --grid-width: 60vw;
+    --gap: 1rem;
+    --image-size: 20vw;
+
+    --header-height: 30vh;
+    --section-height: 20vh;
+    --footer-height: 10vh;
+  }
+
+  @supports not (color: light-dark(white, black)) {
+    :root {
+      --background-color-header: hsl(var(--col-h), var(--col-s), 100%);
+      --background-color: hsl(var(--col-h), var(--col-s), 100%);
+      --font-color: hsl(var(--col-h), var(--col-s), 20%);
+      --font-color-sub: hsl(var(--col-h), var(--col-s), 40%);
+      --border-color: hsl(var(--col-h), var(--col-s), 100%);
+      --border-textarea-color: hsl(var(--col-h), var(--col-s), 80%);
+      --background-textarea-color: hsl(var(--col-h), var(--col-s), 98%);
+      --border-ogp-image-color: hsl(var(--col-h), var(--col-s), 94%);
+      --border-image-color: hsl(var(--col-h), var(--col-s), 100%);
+    }
+  }
+
+  @media screen and (width < 1024px) {
+    :root {
+      --grid-width: 95vw;
+      --gap: 0.4rem;
+      --font-size: 1rem;
+      --image-size: 100%;
+    }
+
+    img.icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color-scheme: light dark;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  @scope (body) {
+    :scope {
+      font-family: Inter, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo,
+        sans-serif;
+      line-height: var(--line-height);
+      color: var(--font-color);
+      background-color: var(--background-color);
+      overflow: auto;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      line-break: strict;
+    }
+  }
+
+  /***********************************/
+
+  .container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    display: block;
+  }
+
+  :is(header, main, footer) {
+    width: 80vw;
+    margin: 0 auto;
+  }
+
+  @scope (header) {
+    :scope {
+      height: var(--header-height);
+      border-block-end: var(--border);
+      background-color: var(--background-color);
+      text-align: center;
+
+      position: sticky;
+      top: 0;
+
+      h1 {
+        display: inline-block;
+        text-align: center;
+        height: calc(var(--header-height) * 0.4);
+        align-content: center;
+      }
+
+      form {
+        width: 100%;
+        height: calc(var(--header-height) * 0.6);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-end;
+
+        fieldset {
+          border: none;
+          display: contents;
+
+          :is(legend, label) {
+            display: none;
+          }
+
+          textarea {
+            width: 100%;
+            min-height: 6lh;
+            padding: 0.4lh;
+            field-sizing: content;
+            border-radius: 4px;
+            border: 1px solid var(--border-textarea-color);
+            background-color: var(--background-textarea-color);
+          }
+
+          button {
+            width: fit-content;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            color: white;
+            background-color: rgb(5, 109, 255);
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    section {
+      height: var(--section-height);
+
+      align-content: center;
+      text-align: center;
+
+      scroll-snap-align: start;
+      scroll-margin-block-start: var(--header-height);
+
+      background-color: aliceblue;
+      border: solid 1px #ccc;
+    }
+  }
+
+  footer {
+    height: var(--footer-height);
+    background-color: #ccc;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>times.jxck.io</h1>
+      <form id="note" method="post" action="/note">
+        <fieldset form="note">
+          <legend>note</legend>
+          <label for="body">body</label>
+          <textarea id="body" name="body" required=""></textarea>
+          <button type="submit">post</button>
+        </fieldset>
+      </form>
+    </header>
+    <main>
+      <section>
+        <h2>Section 1</h2>
+      </section>
+      <section>
+        <h2>Section 2</h2>
+      </section>
+      <section>
+        <h2>Section 3</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+    </main>
+    <footer>
+      <p class="copyright">
+        <small>
+          Copyright © 2024 <a href="https://jxck.io">Jxck</a>. All Rights
+          Reserved.
+        </small>
+      </p>
+    </footer>
+  </div>
+</body>
+<script>
+  "use strict"
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on("DOMContentLoaded", async (e) => {
+    console.log(e)
+  })
+</script>
