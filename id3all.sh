@@ -2003,3 +2003,16 @@ eyeD3 --title "ep146 Monthly Platform 202403" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep147.mp3
+
+eyeD3 --title "ep147 Monthly Ecosystem 202404" \
+      --track 155 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep147.mp3
+
+
+
