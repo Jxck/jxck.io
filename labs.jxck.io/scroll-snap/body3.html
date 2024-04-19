@@ -16,10 +16,11 @@
     box-sizing: border-box;
   }
 
-  main {
+  .wrapper {
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: scroll;
     scroll-snap-type: y mandatory;
+    display: block;
   }
 
   section {
@@ -31,81 +32,100 @@
     text-align: center;
 
     scroll-snap-align: start;
+    scroll-margin-block-start: 10vh;
 
     background-color: aliceblue;
     border: solid 1px #ccc;
   }
+
+  header {
+    height: 10vh;
+    background-color: #ccc;
+    position: sticky;
+    top: 0;
+  }
+
+  footer {
+    height: 10vh;
+    background-color: #ccc;
+  }
 </style>
 
 <body>
-  <main>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-    <section>
-      <h2>Section</h2>
-    </section>
-  </main>
+  <div class="wrapper">
+    <header>
+      <h1>header</h1>
+    </header>
+    <main>
+      <section>
+        <h2>Section 1</h2>
+      </section>
+      <section>
+        <h2>Section 2</h2>
+      </section>
+      <section>
+        <h2>Section 3</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+      <section>
+        <h2>Section</h2>
+      </section>
+    </main>
+    <footer>footer</footer>
+  </div>
 </body>
 <script>
   "use strict"
