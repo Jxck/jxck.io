@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link
+  rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>"
+/>
+<title>Test DEMO</title>
+
+<meta http-equiv="origin-trial" content="" />
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  html {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80vw;
+    margin: 0 auto;
+
+    header {
+      height: 10vh;
+      position: sticky;
+      top: 0;
+      background-color: aquamarine;
+      width: 100%;
+    }
+    main {
+      width: 100%;
+      li {
+        list-style: none;
+        width: 100%;
+
+        scroll-margin-top: 10vh;
+        scroll-snap-align: start none;
+        width: 100%;
+        background-color: azure;
+        height: 10vh;
+        box-sizing: border-box;
+        border: solid 1px #ccc;
+      }
+    }
+  }
+</style>
+
+<body>
+  <header>
+    <h1>fooo</h1>
+  </header>
+  <main>
+    <ul>
+      <li>aaa</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+      <li>fooo</li>
+    </ul>
+  </main>
+</body>
+<script>
+  "use strict"
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on("DOMContentLoaded", async (e) => {
+    console.log(e)
+  })
+</script>
