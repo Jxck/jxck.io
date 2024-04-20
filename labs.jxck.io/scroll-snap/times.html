@@ -63,7 +63,10 @@
       hsl(var(--col-h), var(--col-s), 94%),
       hsl(var(--col-h), var(--col-s), 30%)
     );
+  }
 
+  :root {
+    --width: 80vw;
     --border: solid 1px var(--border-color);
     --font-size: 1.2rem;
     --line-height: 1.6rem;
@@ -71,7 +74,7 @@
     --gap: 1rem;
     --image-size: 20vw;
 
-    --header-height: 30vh;
+    --header-height: 25vh;
     --section-height: 20vh;
     --footer-height: 10vh;
   }
@@ -119,6 +122,15 @@
     text-decoration: underline;
   }
 
+  img {
+    max-width: 100%;
+  }
+
+  :is(header, main, footer) {
+    width: var(--width);
+    margin: 0 auto;
+  }
+
   @scope (body) {
     :scope {
       font-family: Inter, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo,
@@ -130,21 +142,13 @@
       overflow-wrap: anywhere;
       word-break: normal;
       line-break: strict;
+
+      .container {
+        height: 100vh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+      }
     }
-  }
-
-  /***********************************/
-
-  .container {
-    height: 100vh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    display: block;
-  }
-
-  :is(header, main, footer) {
-    width: 80vw;
-    margin: 0 auto;
   }
 
   @scope (header) {
@@ -160,16 +164,16 @@
       h1 {
         display: inline-block;
         text-align: center;
-        height: calc(var(--header-height) * 0.4);
+        height: calc(var(--header-height) * 0.3);
         align-content: center;
       }
 
       form {
         width: 100%;
-        height: calc(var(--header-height) * 0.6);
+        height: calc(var(--header-height) * 0.7);
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items: flex-end;
 
         fieldset {
@@ -203,24 +207,195 @@
     }
   }
 
-  main {
+  @scope (main) to (article) {
+    :scope {
+    }
+
     section {
-      height: var(--section-height);
-
-      align-content: center;
-      text-align: center;
-
       scroll-snap-align: start;
       scroll-margin-block-start: var(--header-height);
 
-      background-color: aliceblue;
+      border-inline-start: var(--border);
+      border-inline-end: var(--border);
+      border-block-end: var(--border);
+
+      padding: calc(var(--gap) * 1.6) 0;
+      display: flex;
+      gap: var(--gap);
+
+      img {
+        border-radius: 50%;
+        border: solid 1px var(--border-icon-color);
+      }
+
+      div {
+        font-size: var(--font-size);
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        gap: calc(var(--gap) / 1.2);
+
+        time {
+          font-family: monospace;
+          font-size: calc(var(--font-size) / 1.2);
+          color: var(--font-color-sub);
+        }
+      }
+    }
+  }
+
+  @scope (article) to (section.ogp) {
+    :scope {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--gap) / 2);
+
+      h1 {
+        font-size: calc(var(--font-size) * 1.2);
+        line-height: calc(var(--line-height) * 1.4);
+      }
+
+      h1::before {
+        content: "# ";
+      }
+
+      h2 {
+        font-size: var(--font-size);
+        line-height: calc(var(--line-height) * 1.2);
+      }
+
+      h2::before {
+        content: "## ";
+      }
+
+      :is(ul, ol) {
+        padding: 0 1.2rem;
+
+        li {
+        }
+      }
+
+      pre {
+        padding: calc(var(--gap) / 2);
+      }
+
+      blockquote {
+        width: 100%;
+        border: solid 1px #ccc;
+        padding: calc(var(--gap) / 2);
+
+        p::before {
+          content: "> ";
+        }
+      }
+
+      :is(p, li) > code {
+        background-color: var(--background-code-color);
+        border-radius: 4px;
+        padding: 0rem 0.4rem;
+      }
+
+      img {
+        width: var(--image-size);
+        height: auto;
+      }
+    }
+  }
+
+  @scope (pre) {
+    :scope {
+      line-break: strict;
+      white-space: pre-wrap;
       border: solid 1px #ccc;
     }
   }
 
-  footer {
-    height: var(--footer-height);
-    background-color: #ccc;
+  @scope (section.ogp) {
+    :scope {
+      width: 100%;
+      display: flex;
+
+      font-family: sans-serif;
+      border: solid 1px var(--border-textarea-color);
+      border-radius: 4px;
+
+      div.text {
+        width: 80%;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+
+        padding: var(--gap);
+        font-size: calc(var(--font-size) / 1.2);
+        line-height: 1rem;
+
+        h1 {
+        }
+
+        .site_name {
+          font-size: calc(var(--font-size) / 1.6);
+        }
+
+        .description {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      div.image {
+        width: 20%;
+        display: flex;
+        align-content: center;
+        img {
+          width: 100%;
+          aspect-ratio: 16/9;
+          object-fit: contain;
+          box-sizing: border-box;
+          border: solid 1px var(--border-ogp-image-color);
+        }
+      }
+    }
+
+    @media screen and (width < 1024px) {
+      :scope {
+        flex-direction: column;
+        div.text {
+          width: 100%;
+        }
+        div.image {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @scope (table) {
+    :scope {
+      border-spacing: 0;
+      border-collapse: collapse;
+      :is(thead, tbody) {
+        tr {
+          :is(th, td) {
+            padding: 4px 8px;
+            border: solid 1px var(--border-textarea-color);
+          }
+        }
+        tr:nth-child(2n) {
+          background-color: var(--background-textarea-color);
+        }
+      }
+      thead {
+        tr {
+          background-color: var(--background-textarea-color);
+        }
+      }
+    }
+  }
+
+  @scope (footer) {
+    p {
+      text-align: end;
+    }
   }
 </style>
 
@@ -239,70 +414,869 @@
     </header>
     <main>
       <section>
-        <h2>Section 1</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-20 12:51:13</time>
+          <article>
+            <p>
+              <a
+                href="https://mozaic.fm/episodes/147/monthly-ecosystem-202404.html"
+                >https://mozaic.fm/episodes/147/monthly-ecosystem-202404.html</a
+              >
+            </p>
+            <section class="ogp">
+              <div class="text">
+                <h1>
+                  <a
+                    href="https://mozaic.fm/episodes/147/monthly-ecosystem-202404.html"
+                    target="__blank"
+                    >ep147 Monthly Ecosystem 202404 | mozaic.fm</a
+                  >
+                </h1>
+                <p class="site_name">mozaic.fm</p>
+                <p class="description">
+                  第 147 回のテーマは 2024 年 4 月の Monthly Ecosystem です。
+                </p>
+              </div>
+
+              <div class="image">
+                <img
+                  src="https://mozaic.fm/assets/img/mozaic.600x600.png"
+                  alt="第 147 回のテーマは 2024 年 4 月の Monthly Ecosystem です。"
+                />
+              </div>
+            </section>
+            <p></p>
+            <p>JSR とか vlt みたいなの、どうやってマネタイズするんだろ？</p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section 2</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-20 00:06:57</time>
+          <article>
+            <p>
+              body を scroll-snap-type して section を start
+              で止めたいけどなんかうまくいかない気がする。一個 div
+              挟むとうまくいく。 なんか見落としてるのか。
+            </p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section 3</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-19 17:42:11</time>
+          <article>
+            <p>ここの目的(暫定)</p>
+            <ul>
+              <li>honox + cloudflare を手なづけておく</li>
+              <li>あわよくば hono にコントリビューションする</li>
+              <li>新しい CSS 周りの機能を色々試す</li>
+              <li>ブラウザのバグも見つけて報告する</li>
+              <li>あわよくば自分で直す</li>
+              <li>作業をメモして、溜まったらブログにする</li>
+            </ul>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-19 15:54:03</time>
+          <article>
+            <p>
+              scroll-snap で body &gt; ul &gt; li のスクロールを start で snap
+              させたいんだけど、これって ul が overflow
+              している前提じゃ無いとできないのかな。
+            </p>
+            <p>body がそもそももってる scroll で snap したいんだけどなぁ。</p>
+            <p>
+              なんか HTML に scroll-snap-type
+              してしまうこともできるらしい。が、なんかスクロールを続けていくと上下で変な空白ができる挙動になる。
+            </p>
+            <p>
+              他の実装サンプルと比べたら、どうやらこれは flexbox
+              と組み合わせたら起こっているっぽい？ flexbox
+              使わなければうまくいくっぽい？
+            </p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-19 12:53:29</time>
+          <article>
+            <p>color pallet は</p>
+            <ul>
+              <li>hsl でベースの色を決める</li>
+              <li>color-mod でバリエーションを作る</li>
+              <li>light-dark で出し分け</li>
+              <li>color-scheme をいじれるSwitch UI</li>
+              <li>accent-color で UI に反映</li>
+            </ul>
+            <p>あたりをやっていく</p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-19 12:47:05</time>
+          <article>
+            <p>css の書き方はこんな感じにしてる</p>
+            <pre
+              class="shiki shiki-themes github-light github-dark"
+              style="
+                background-color: #fff;
+                --shiki-dark-bg: #24292e;
+                color: #24292e;
+                --shiki-dark: #e1e4e8;
+              "
+              tabindex="0"
+            ><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">@scope</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> (body) {</span></span>
+    <span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">  :scope</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+    <span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    main</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+    <span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">       article</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">       }</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+    <span class="line"></span></code></pre>
+            <p>
+              これで書き下していって、どこかでコンテキストを切り替えたくなったら(たとえば
+              <code>pre &gt; code</code> や
+              <code>div.ogp</code> に差し掛かったり) そこで終端するように
+              <code>@scope (body) to (:is(pre, .ogp))</code>
+              みたいに切ってしまう。
+            </p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-19 11:05:16</time>
+          <article>
+            <p>ESM がなんで今こんな状況なのかまとめるかぁ</p>
+            <p>
+              と思って取り掛かったけど、色々手を広げすぎて収集つかなくなってるのがいっこある。
+            </p>
+            <p>なんとか終わらせたい。。</p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-19 03:46:40</time>
+          <article>
+            <h1>新人研修 - 演習 (思いついた)</h1>
+            <p>以下のような構造の form がある。</p>
+            <pre
+              class="shiki shiki-themes github-light github-dark"
+              style="
+                background-color: #fff;
+                --shiki-dark-bg: #24292e;
+                color: #24292e;
+                --shiki-dark: #e1e4e8;
+              "
+              tabindex="0"
+            ><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">&lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">form</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> method</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"post"</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> action</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"/"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  &lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">label</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;username: &lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">input</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">text</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">username</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;&lt;/</span><span style="color:#B31D28;--shiki-dark:#FDAEB7;font-style:italic;--shiki-dark-font-style:italic">input</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;&lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">label</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  &lt;</span><span style="color:#B31D28;--shiki-dark:#FDAEB7;font-style:italic;--shiki-dark-font-style:italic">lable</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;password: &lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">input</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">password</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">password</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;&lt;/</span><span style="color:#B31D28;--shiki-dark:#FDAEB7;font-style:italic;--shiki-dark-font-style:italic">input</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;&lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">label</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  &lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">button</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">submit</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;ok&lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">button</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">&lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">form</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">&lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">script</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">  // answer code here</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">&lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">script</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"></span></code></pre>
+            <p>
+              この script タグの中にコードを書き、 form が submit されたときの
+              username/password を JSON 形式で console.log しなさい。
+              ただし以下のメソッドの使用は禁止する。
+            </p>
+            <ul>
+              <li><code>document.get*</code></li>
+              <li><code>document.query*</code></li>
+              <li><code>document.all</code></li>
+            </ul>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-18 23:54:41</time>
+          <article>
+            <p>
+              <a
+                href="https://groups.google.com/a/chromium.org/g/blink-dev/c/G070zUd0e4c"
+                >https://groups.google.com/a/chromium.org/g/blink-dev/c/G070zUd0e4c</a
+              >
+            </p>
+            <section class="ogp">
+              <div class="text">
+                <h1>
+                  <a
+                    href="https://groups.google.com/a/chromium.org/g/blink-dev/c/G070zUd0e4c"
+                    target="__blank"
+                    >Intent to Ship: URL.parse()</a
+                  >
+                </h1>
+              </div>
+            </section>
+            <p></p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-18 17:03:46</time>
+          <article>
+            <p>
+              <code>form</code> 内の
+              <code>button[type=submit]</code> を、条件を満たしてない時に
+              <code>button[type=button]</code>
+              にし、そこでアラート的なものを出したい。
+            </p>
+            <pre
+              class="shiki shiki-themes github-light github-dark"
+              style="
+                background-color: #fff;
+                --shiki-dark-bg: #24292e;
+                color: #24292e;
+                --shiki-dark: #e1e4e8;
+              "
+              tabindex="0"
+            ><code><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">&lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">form</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  &lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">label</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;login&lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">label</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  &lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">textarea</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"anchor"</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"body"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;&lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">textarea</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  &lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">div</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"popover"</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> anchor</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"anchor"</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    &lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">p</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;you don't have permission!!&lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">p</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  &lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">div</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">  &lt;</span><span style="color:#22863A;--shiki-dark:#85E89D">button</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"button"</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> popovertarget</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"popover"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;ok&lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">button</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">&lt;/</span><span style="color:#22863A;--shiki-dark:#85E89D">form</span><span style="color:#24292E;--shiki-dark:#E1E4E8">&gt;</span></span>
+    <span class="line"></span></code></pre>
+            <p>これは Chrome だとちゃんと出る。が、 Safari だと出ない。</p>
+            <p>調べたら issue としてはこれっぽい。</p>
+            <p>
+              <a href="https://github.com/whatwg/html/issues/10032"
+                >https://github.com/whatwg/html/issues/10032</a
+              >
+            </p>
+            <section class="ogp">
+              <div class="text">
+                <h1>
+                  <a
+                    href="https://github.com/whatwg/html/issues/10032"
+                    target="__blank"
+                    >Change when button has activation behavior · Issue #10032 ·
+                    whatwg/html</a
+                  >
+                </h1>
+                <p class="site_name">GitHub</p>
+                <p class="description">
+                  What is the issue with the HTML Standard? The specification is
+                  currently phrased such that a button always has activation
+                  behavior. According to the dispatch algorithm, there is at a
+                  maximum one ac...
+                </p>
+              </div>
+
+              <div class="image">
+                <img
+                  src="https://opengraph.githubassets.com/c115d63a162b9252b0b2cf9569ebb1dc500019a9e5ba470f1048be4c494cc9a3/whatwg/html/issues/10032"
+                  alt="What is the issue with the HTML Standard? The specification is currently phrased such that a button always has activation behavior. According to the dispatch algorithm, there is at a maximum one ac..."
+                />
+              </div>
+            </section>
+            <p></p>
+            <p>こっちも関連してるらしい。</p>
+            <p>
+              <a href="https://github.com/whatwg/html/issues/1567"
+                >https://github.com/whatwg/html/issues/1567</a
+              >
+            </p>
+            <section class="ogp">
+              <div class="text">
+                <h1>
+                  <a
+                    href="https://github.com/whatwg/html/issues/1567"
+                    target="__blank"
+                    >&lt;button&gt; shouldn't have activation behavior when it
+                    is not in a form · Issue #1567 · whatwg/html</a
+                  >
+                </h1>
+                <p class="site_name">GitHub</p>
+                <p class="description">
+                  data:text/html,&lt;a href="data:text/html,link
+                  followed"&gt;&lt;button&gt;click me&lt;/button&gt;&lt;/a&gt;
+                  follows the link in Gecko and Blink. Spec says in
+                  https://html.spec.whatwg.org/multipage/interaction.html#nearest...
+                </p>
+              </div>
+
+              <div class="image">
+                <img
+                  src="https://opengraph.githubassets.com/dcf81d7c7473fe1a2233ae3d2e1b7cc28ca3fc6ba5ca43d904dec020862344a6/whatwg/html/issues/1567"
+                  alt='data:text/html,&lt;a href="data:text/html,link followed"&gt;&lt;button&gt;click me&lt;/button&gt;&lt;/a&gt; follows the link in Gecko and Blink. Spec says in https://html.spec.whatwg.org/multipage/interaction.html#nearest...'
+                />
+              </div>
+            </section>
+            <p></p>
+            <p>ちょっと読んでもよくわからんが、近いことは言ってるな。</p>
+            <p>
+              そもそも問題は form なのか popover
+              なのか確認するためにリンクされている仕様をみる。
+            </p>
+            <p>
+              <a
+                href="https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-type"
+                >https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-type</a
+              >
+            </p>
+            <section class="ogp">
+              <div class="text">
+                <h1>
+                  <a
+                    href="https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-type"
+                    target="__blank"
+                    >HTML Standard</a
+                  >
+                </h1>
+              </div>
+            </section>
+            <p></p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Keyword</th>
+                  <th>State</th>
+                  <th>Brief description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>submit</td>
+                  <td>Submit Button</td>
+                  <td>Submits the form.</td>
+                </tr>
+                <tr>
+                  <td>reset</td>
+                  <td>Reset Button</td>
+                  <td>Resets the form.</td>
+                </tr>
+                <tr>
+                  <td>button</td>
+                  <td>Button</td>
+                  <td>Does nothing.</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              この button が does nothing なのは、 popover の表示も含めてなのか?
+              form に対してだと思うが。
+            </p>
+            <p>まあ Webkit のバグだろうと思ったらあった。</p>
+            <p>
+              <a href="https://bugs.webkit.org/show_bug.cgi?id=261945"
+                >https://bugs.webkit.org/show_bug.cgi?id=261945</a
+              >
+            </p>
+            <section class="ogp">
+              <div class="text">
+                <h1>
+                  <a
+                    href="https://bugs.webkit.org/show_bug.cgi?id=261945"
+                    target="__blank"
+                    >261945 – iOS 17 &gt; &lt;button /&gt; inner &lt;form /&gt;
+                    can't summon popover element.</a
+                  >
+                </h1>
+              </div>
+            </section>
+            <p></p>
+            <p>一応 +1 コメントしておいた。</p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-18 16:43:23</time>
+          <article><p>URL.parse の Intent to Ship 出した。</p></article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-18 13:58:20</time>
+          <article>
+            <p>
+              URL.parse() - Chrome Platform Status
+              <a href="https://chromestatus.com/feature/6301071388704768"
+                >https://chromestatus.com/feature/6301071388704768</a
+              >
+            </p>
+            <section class="ogp">
+              <div class="text">
+                <h1>
+                  <a
+                    href="https://chromestatus.com/feature/6301071388704768"
+                    target="__blank"
+                    >Chrome Platform Status</a
+                  >
+                </h1>
+              </div>
+            </section>
+            <p></p>
+            <p>こいつを実装したので Intents を出す。</p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-18 13:41:09</time>
+          <article>
+            <p>
+              popover は anchoring
+              が無いと、表示場所の指定が相対位置にできないけど、 anchoring
+              はまだそこまで実装されてない。
+            </p>
+            <p>結果、真ん中に出すとか画面端に出すくらいしかなくなる。</p>
+            <p>
+              もともと Toast
+              的な使い方が想定されてたから、とりあえずはそれでもいいのかな。
+            </p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-18 04:36:54</time>
+          <article>
+            <p>
+              <a href="https://tech.repro.io/entry/2024/04/12/160541"
+                >https://tech.repro.io/entry/2024/04/12/160541</a
+              >
+            </p>
+            <section class="ogp">
+              <div class="text">
+                <h1>
+                  <a
+                    href="https://tech.repro.io/entry/2024/04/12/160541"
+                    target="__blank"
+                    >@hono/zod-openapiで型安全なAPI開発 - Repro Tech Blog</a
+                  >
+                </h1>
+                <p class="site_name">Repro Tech Blog</p>
+                <p class="description">
+                  はじめに
+                  こんにちは、Reproで新規事業の開発を行っているエンジニアの兼信です。
+                  今回は @hono/zod-openapi
+                  を採用して型安全なAPI開発を行なっている事例をご紹介します。
+                  導入の経緯
+                  私たちが提供する「Repro」は、デジタル領域のマーケターに対し、エンドユーザーとの付加価値の高いコミュニケーション手段を提供するためのSaaSプロダクトです。一方でそのコミュニケーションを次のステージに導くための新規事業も準備しており、そのために新しいプロダクトの開発も行っています。
+                  すでにRepro
+                  という規模が大きくなっているプロダクト・ソリューションをもっているため、最初から一定の規模…
+                </p>
+              </div>
+
+              <div class="image">
+                <img
+                  src="https://ogimage.blog.st-hatena.com/17391345971647302736/6801883189096977427/1712905541"
+                  alt="はじめに こんにちは、Reproで新規事業の開発を行っているエンジニアの兼信です。 今回は @hono/zod-openapi を採用して型安全なAPI開発を行なっている事例をご紹介します。 導入の経緯 私たちが提供する「Repro」は、デジタル領域のマーケターに対し、エンドユーザーとの付加価値の高いコミュニケーション手段を提供するためのSaaSプロダクトです。一方でそのコミュニケーションを次のステージに導くための新規事業も準備しており、そのために新しいプロダクトの開発も行っています。 すでにRepro という規模が大きくなっているプロダクト・ソリューションをもっているため、最初から一定の規模…"
+                />
+              </div>
+            </section>
+            <p></p>
+            <p>Zod + OpenAPI のミドルウェアもあるのか。</p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-18 01:15:41</time>
+          <article>
+            <p>今後混ぜ込みたい機能(思いついた順)</p>
+            <ul>
+              <li>IPv6 only</li>
+              <li>H3 only</li>
+              <li>ondemand zstd</li>
+              <li>HTTPS record</li>
+              <li>何かしらを WASM にする</li>
+              <li>cloudflare rpc</li>
+              <li>R2 + 画像アップロード + AVIF</li>
+              <li>display: masonry mode</li>
+              <li>
+                <code>&lt;input type="checkbox" switch&gt;</code> と
+                color-scheme で dark mode
+              </li>
+              <li>setHTMLSafe() を dangerouslySetInnerHTMl で</li>
+              <li>User Activation API (無駄に)</li>
+              <li>DSD (無駄に)</li>
+              <li>margin-trim</li>
+              <li>text-wrap</li>
+              <li>text-autospace</li>
+              <li>text-box-trim</li>
+              <li>View Transition</li>
+              <li>style query</li>
+              <li>Scroll-driven animation</li>
+              <li>form-associated custom elements</li>
+              <li>Popover</li>
+              <li>Invokers</li>
+              <li>selectlist</li>
+              <li><code>&lt;hr&gt;</code> in <code>&lt;select&gt;</code></li>
+              <li>popover</li>
+              <li>CSS Anchor Positioning</li>
+              <li>accent-color</li>
+              <li>leading-trim</li>
+            </ul>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-17 21:31:00</time>
+          <article>
+            <p>
+              Honox いまのところいい感じだけど、 Vite
+              力が不足してるのでそっちをなんとかしないとだな。
+            </p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-17 21:28:19</time>
+          <article><p>画像貼れるようにしたい。</p></article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-17 18:13:22</time>
+          <article>
+            <p>Markdown 周りは Remark を使った。</p>
+            <p>
+              Unified が Honox (というか Vite)
+              でうまく動かなかったので、面倒臭いから Markdown 渡すと HTML
+              にしつつ URL は OGP 展開して返してくれる Worker を別に立てた。
+            </p>
+            <p>OGP は HTMLRewriter 使って自前で Remark のプラグイン書いた。</p>
+            <p>RPC で呼べるようになったはずだけど、今は HTTP で呼んでる。</p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-17 18:09:19</time>
+          <article>
+            <p>CSS は割と新目のをガンガン入れた</p>
+            <ul>
+              <li><code>light-dark</code></li>
+              <li><code>hsl()</code></li>
+              <li><code>@scope</code></li>
+              <li>Nesting</li>
+              <li><code>field-sizing: content;</code></li>
+              <li>full flex</li>
+              <li>full logical property</li>
+              <li>etc etc etc</li>
+            </ul>
+            <p>ので Safari はギリ見えるようにしたけど Firefox ではガタガタ。</p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-17 16:50:44</time>
+          <article>
+            <p>
+              Highlight は Shiki にしたけど、 Honox
+              上だとうまく動かずクライアントでやることにした。
+            </p>
+            <p>
+              依存が <code>module</code> 使ってるぽい。Vite の CSJ
+              対応がまだよくわかってない。
+            </p>
+          </article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-17 15:10:58</time>
+          <article><p>簡易認証つけた</p></article>
+        </div>
       </section>
       <section>
-        <h2>Section</h2>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-17 05:03:54</time>
+          <article><p>Session Middle Ware は自分で作るか。</p></article>
+        </div>
+      </section>
+      <section>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-17 03:17:22</time>
+          <article>
+            <p>
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox"
+                >https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox</a
+              >
+            </p>
+            <section class="ogp">
+              <div class="text">
+                <h1>
+                  <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox"
+                    target="__blank"
+                    >Basic concepts of flexbox - CSS: Cascading Style Sheets |
+                    MDN</a
+                  >
+                </h1>
+                <p class="site_name">MDN Web Docs</p>
+                <p class="description">
+                  The flexible box layout module, usually referred to as
+                  flexbox, was designed as a one-dimensional layout model, and
+                  as a method that could offer space distribution between items
+                  in an interface and powerful alignment capabilities. This
+                  article gives an outline of the main features of flexbox,
+                  which we will be exploring in more detail in the rest of these
+                  guides.
+                </p>
+              </div>
+
+              <div class="image">
+                <img
+                  src="https://developer.mozilla.org/mdn-social-share.cd6c4a5a.png"
+                  alt="The flexible box layout module, usually referred to as flexbox, was designed as a one-dimensional layout model, and as a method that could offer space distribution between items in an interface and powerful alignment capabilities. This article gives an outline of the main features of flexbox, which we will be exploring in more detail in the rest of these guides."
+                />
+              </div>
+            </section>
+            <p></p>
+            <p>
+              flexbox の {justfy, align}|{content, items} が一生覚えられない。
+            </p>
+          </article>
+        </div>
+      </section>
+      <section>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-17 00:51:50</time>
+          <article>
+            <p>
+              <a href="https://github.com/honojs/honox"
+                >https://github.com/honojs/honox</a
+              >
+            </p>
+            <section class="ogp">
+              <div class="text">
+                <h1>
+                  <a href="https://github.com/honojs/honox" target="__blank"
+                    >GitHub - honojs/honox: HonoX - Hono based meta framework</a
+                  >
+                </h1>
+                <p class="site_name">GitHub</p>
+                <p class="description">
+                  HonoX - Hono based meta framework. Contribute to honojs/honox
+                  development by creating an account on GitHub.
+                </p>
+              </div>
+
+              <div class="image">
+                <img
+                  src="https://opengraph.githubassets.com/989e46190df20f0d20ce01b600be0a0e99826c29efa0befb45edcdb5edfc7476/honojs/honox"
+                  alt="HonoX - Hono based meta framework. Contribute to honojs/honox development by creating an account on GitHub."
+                />
+              </div>
+            </section>
+            <p></p>
+          </article>
+        </div>
+      </section>
+      <section>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-16 22:11:46</time>
+          <article><p>基本はできてきたかな</p></article>
+        </div>
+      </section>
+      <section>
+        <img
+          width="60"
+          height="60"
+          src="https://logo.jxck.io/jxck.svg"
+          alt="jxck"
+          class="icon"
+        />
+        <div>
+          <time>2024-04-16 05:42:18</time>
+          <article><p>test</p></article>
+        </div>
       </section>
     </main>
     <footer>
