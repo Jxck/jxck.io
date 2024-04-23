@@ -710,7 +710,7 @@ def main(request, response):
 その上で HTTP/2 が必要なら `${name}.h2.${ext}` とするなど、他のフラグもある。
 
 
-## Intents
+## Launch Process
 
 新機能の追加など Web Facing な変更については、 Launch Process というプロセスを踏んで進める必要がある。
 
@@ -729,6 +729,10 @@ def main(request, response):
 下部にある Development Stages から、この機能に関わるあらゆる情報を入力して集約することができる。
 
 ![Development Stages](development-stages.jpeg#894x308)
+
+以下のボタンから各種レビュー(Privacy, Security, Enterprise, Debuggability, Testing) をリクエストできる。 Intent to Ship の前にこのレビューが終わらせる必要があるが、レビューには割と時間がかるっぽい。
+
+![Review Request](review-request.png#g1256x248)
 
 通常は Intent to Prototype で開発開始を宣言するが、すでに議論と合意が終わっている仕様などは、開発してから Intent to Ship を行うこともある。
 
