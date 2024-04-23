@@ -732,7 +732,7 @@ def main(request, response):
 
 以下のボタンから各種レビュー(Privacy, Security, Enterprise, Debuggability, Testing) をリクエストできる。 Intent to Ship の前にこのレビューが終わらせる必要があるが、レビューには割と時間がかるっぽい。
 
-![Review Request](review-request.png#g1256x248)
+![Review Request](review-request.png#1256x248)
 
 通常は Intent to Prototype で開発開始を宣言するが、すでに議論と合意が終わっている仕様などは、開発してから Intent to Ship を行うこともある。
 
