@@ -396,13 +396,17 @@ blink の runtime_enabled_features.json5 に Status を Experimental で入れ�
 }
 ```
 
-これは
+status は 3 種類
+
+- stabel: 全プラットフォームで有効(通常 stable になったらこのエントリは消される)
+- experimental: フラグで有効にできる
+- test: ContentShell でのみ有効でテストが走る
+
+experimental の場合に用いるフラグが、よく新機能を試すときに使うこれだ。
 
 ```
 chrome://flags/#enable-experimental-web-platform-features
 ```
-
-で有効にできる。
 
 Experimental で Origin Trials が始まると、それも features.json5 で管理される。
 
@@ -417,6 +421,12 @@ Experimental で Origin Trials が始まると、それも features.json5 で管
 ```
 
 このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく場合がある。これを Finch という。
+
+runtime_enabled_features.json5 に登録した名前がそのまま Finch の名前になり、その名前がコントロールする範囲に対して Kill Switch がある状態だ。
+
+もし、ロールアウトして問題があったりした場合に、 Chrome のリリースを伴わずに機能をリモートから無効にすることができる。
+
+別で Finch のコントロールを定義する場合は `base::Feature` のインスタンスを作る必要があるが、その辺は Finch のシステムにアクセスできない外部コントリビューターがやることはあまりないだろう。
 
 Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
 
