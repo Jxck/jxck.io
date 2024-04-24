@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-26T08:00:00+08:00",
-    "dateModified": "2024-04-23T08:00:00+08:00",
+    "dateModified": "2024-04-24T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-23>2024-04-23</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-24>2024-04-24</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -690,9 +690,14 @@ interface URL {
   name: &quot;URLParse&quot;,
   status: &quot;experimental&quot;,
 }</code></pre>
-          <p>これは
+          <p>status は 3 種類
+          <ul>
+            <li>stabel: 全プラットフォームで有効(通常 stable になったらこのエントリは消される)
+            <li>experimental: フラグで有効にできる
+            <li>test: ContentShell でのみ有効でテストが走る
+          </ul>
+          <p>experimental の場合に用いるフラグが、よく新機能を試すときに使うこれだ。
           <pre><code translate=no>chrome://flags/#enable-experimental-web-platform-features</code></pre>
-          <p>で有効にできる。
           <p>Experimental で Origin Trials が始まると、それも features.json5 で管理される。
           <pre class=json data-code=json><code translate=no class=language-json>{
   name: &quot;CompressionDictionaryTransport&quot;,
@@ -702,6 +707,9 @@ interface URL {
   public: true,
 },</code></pre>
           <p>このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく場合がある。これを Finch という。
+          <p>runtime_enabled_features.json5 に登録した名前がそのまま Finch の名前になり、その名前がコントロールする範囲に対して Kill Switch がある状態だ。
+          <p>もし、ロールアウトして問題があったりした場合に、 Chrome のリリースを伴わずに機能をリモートから無効にすることができる。
+          <p>別で Finch のコントロールを定義する場合は <code translate=no>base::Feature</code> のインスタンスを作る必要があるが、その辺は Finch のシステムにアクセスできない外部コントリビューターがやることはあまりないだろう。
           <p>Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
           <pre><code translate=no>chrome://version/?show-variations-cmd</code></pre>
           <p>で表示される、一番下に <code translate=no>Command-line variations</code> が追加される。よくわらかないフィーマットでワンラインにされているが、これを雑に <code translate=no>,</code> や <code translate=no>*</code> で改行すると、有効になってる機能が確認できるだろう。
