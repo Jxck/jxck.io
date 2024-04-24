@@ -530,7 +530,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
         <section>
           <h3 id="実行"><a href="#実行">実行</a></h3>
           <p>ビルド結果の実行は以下。
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ out/Default chrome</code></pre>
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ out/Default chrome</code></pre>
           <p>オプションは色々ある。(TODO: まとめる)
         </section>
         <section>
@@ -616,7 +616,7 @@ LOG(ERROR) &lt;&lt; base::debug::StackTrace();</code></pre>
         <section>
           <h3 id="unittest"><a href="#unittest">Unittest</a></h3>
           <p>unittest そのものをビルドして実行
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ autoninja -C out/Default unit_tests
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ autoninja -C out/Default unit_tests
 $ ./out/Debug/base_unittests</code></pre>
         </section>
         <section>
@@ -630,7 +630,7 @@ $ ./out/Debug/base_unittests</code></pre>
             </li>
           </ul>
           <p>blink_tests をビルドして run_web_tests.py で実行
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ autoninja -C out/Default blink_tests
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ autoninja -C out/Default blink_tests
 $ ./third_party/blink/tools/run_web_tests.py
 $ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker/webexposed/global-interface-listing-service-worker.html</code></pre>
         </section>
@@ -638,7 +638,7 @@ $ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker
           <h3 id="flag"><a href="#flag">Flag</a></h3>
           <p>新しく入れた機能は、最初フラグの裏に隠されることが多い。
           <p>その場合は、以下のように有効にする。
-          <pre class=sh data-code=sh><code translate=no class=language-sh>chrome --enable-features=SubresourceWebBundle</code></pre>
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ chrome --enable-features=SubresourceWebBundle</code></pre>
           <p>この値は <code translate=no>*_features.json5</code> というファイルがいくつかあり、そこに書かれている。
           <ul>
             <li>
@@ -731,7 +731,7 @@ interface URL {
               </ul>
             </li>
           </ul>
-          <pre class=sh data-code=sh><code translate=no class=language-sh># まず新規作業用ブランチを作る
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session># まず新規作業用ブランチを作る
 $ git new-branch fix_typo
 
 # コードを書き普通にコミットを重ねる
@@ -764,7 +764,7 @@ $ gclient sync
 $ git map
 * 93fe917ad1	(HEAD -&gt; fix-typo) 2014-04-10
 * 5d26fec369	(origin/main, origin/HEAD) 2014-04-10</code></pre>
-          <pre class=sh data-code=sh><code translate=no class=language-sh># Issue 番号で紐づける
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session># Issue 番号で紐づける
 $ git cl issue 123456
 
 # 書いたコードを gerrit にアップする
@@ -800,7 +800,7 @@ $ git cl upload</code></pre>
             </li>
           </ul>
           <p>これを作るコマンドがあるので、 <code translate=no>src/compile_commands.json</code> を作ってから、起動しなおしたりすると治る。
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ tools/clang/scripts/generate_compdb.py -p out/Default &gt; compile_commands.json</code></pre>
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ tools/clang/scripts/generate_compdb.py -p out/Default &gt; compile_commands.json</code></pre>
         </section>
       </section>
       <section>
@@ -874,10 +874,10 @@ sqlite&gt; select * from table</code></pre>
           </ul>
           <p>しかし、Chromium の中では、この代わりに <code translate=no>/third_party/blink/tools</code> 以下のコマンドを使用するっぽい。
           <p>自分がビルドした Chromium のインスタンスで、特定の WPT を実行する。
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blink/web_tests/external/wpt/resource-timing/content-encoding.https.html -vv</code></pre>
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blink/web_tests/external/wpt/resource-timing/content-encoding.https.html -vv</code></pre>
           <p>これで、該当の HTML がブラウザ上で実行され、テストが走るイメージ。
           <p>手動で実行して試したい場合は、サーバだけ起動してアクセスする。
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ ./third_party/blink/tools/run_blink_wptserve.py
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ ./third_party/blink/tools/run_blink_wptserve.py
 Server running on http://localhost:8001
 Server running on http://localhost:8081
 Server running on http://localhost:8082
@@ -917,7 +917,7 @@ WebTransportH3 server running on https://localhost:11000</code></pre>
           </ul>
           <p>実装するとこのファイルの結果も変更し、全部通るとこのファイルを消すことができる。
           <p><code translate=no>--reset-results</code> をつけると、実行結果で expected ファイルを更新してくれる。
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ ./third_party/blink/tools/run_web_tests.py -t Default --reset-results path-to-test.js</code></pre>
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ ./third_party/blink/tools/run_web_tests.py -t Default --reset-results path-to-test.js</code></pre>
         </section>
         <section>
           <h3 id="content_shell"><a href="#content_shell">content_shell</a></h3>
@@ -932,7 +932,7 @@ content_shell took too long to startup.
 [2/2] external/wpt/url/url-statics-parse.any.html failed unexpectedly (content_shell crashed [pid=1287194])</code></pre>
           <p>content_shell はよくわかってないが、テストを流す前に対象がビルドできてないっぽい。
           <p>他のも含めてだいたい以下をビルドしてからテストを流すと良さそう。
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ autoninja -C out/Default blink_tests all_blink content_shell</code></pre>
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ autoninja -C out/Default blink_tests all_blink content_shell</code></pre>
         </section>
         <section>
           <h3 id="テストサーバ"><a href="#テストサーバ">テストサーバ</a></h3>

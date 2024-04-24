@@ -247,7 +247,7 @@ Google 社員は Reclient という分散ビルド環境を使っている(以�
 
 ビルド結果の実行は以下。
 
-```sh
+```shell-session
 $ out/Default chrome
 ```
 
@@ -323,7 +323,7 @@ docs 以下を debug で検索すると色々テクニックが出てくる。
 
 unittest そのものをビルドして実行
 
-```sh
+```shell-session
 $ autoninja -C out/Default unit_tests
 $ ./out/Debug/base_unittests
 ```
@@ -336,7 +336,7 @@ $ ./out/Debug/base_unittests
 
 blink_tests をビルドして run_web_tests.py で実行
 
-```sh
+```shell-session
 $ autoninja -C out/Default blink_tests
 $ ./third_party/blink/tools/run_web_tests.py
 $ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker/webexposed/global-interface-listing-service-worker.html
@@ -349,8 +349,8 @@ $ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker
 
 その場合は、以下のように有効にする。
 
-```sh
-chrome --enable-features=SubresourceWebBundle
+```shell-session
+$ chrome --enable-features=SubresourceWebBundle
 ```
 
 この値は `*_features.json5` というファイルがいくつかあり、そこに書かれている。
@@ -446,7 +446,7 @@ Chromium 用の Git の拡張が用意されており、それを用いてコン
 - Chromium www.chromium.org Website - site/developers/gerrit-guide/index.md
   - https://chromium.googlesource.com/website/+/HEAD/site/developers/gerrit-guide/index.md
 
-```sh
+```shell-session
 # まず新規作業用ブランチを作る
 $ git new-branch fix_typo
 
@@ -482,7 +482,7 @@ $ git map
 * 5d26fec369	(origin/main, origin/HEAD) 2014-04-10
 ```
 
-```sh
+```shell-session
 # Issue 番号で紐づける
 $ git cl issue 123456
 
@@ -511,7 +511,7 @@ C++ のシンボルやヘッダの参照が壊れて真っ赤になる時があ�
 
 これを作るコマンドがあるので、 `src/compile_commands.json` を作ってから、起動しなおしたりすると治る。
 
-```sh
+```shell-session
 $ tools/clang/scripts/generate_compdb.py -p out/Default > compile_commands.json
 ```
 
@@ -596,7 +596,7 @@ WPT の実行は、公式では `wpt` コマンドが提供されている。
 
 自分がビルドした Chromium のインスタンスで、特定の WPT を実行する。
 
-```sh
+```shell-session
 $ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blink/web_tests/external/wpt/resource-timing/content-encoding.https.html -vv
 ```
 
@@ -604,7 +604,7 @@ $ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blin
 
 手動で実行して試したい場合は、サーバだけ起動してアクセスする。
 
-```sh
+```shell-session
 $ ./third_party/blink/tools/run_blink_wptserve.py
 Server running on http://localhost:8001
 Server running on http://localhost:8081
@@ -645,7 +645,7 @@ WPT は網羅的にテストがあるが、 Chromium は全部を通せるわけ
 
 `--reset-results` をつけると、実行結果で expected ファイルを更新してくれる。
 
-```sh
+```shell-session
 $ ./third_party/blink/tools/run_web_tests.py -t Default --reset-results path-to-test.js
 ```
 
@@ -669,7 +669,7 @@ content_shell はよくわかってないが、テストを流す前に対象が
 
 他のも含めてだいたい以下をビルドしてからテストを流すと良さそう。
 
-```sh
+```shell-session
 $ autoninja -C out/Default blink_tests all_blink content_shell
 ```
 
