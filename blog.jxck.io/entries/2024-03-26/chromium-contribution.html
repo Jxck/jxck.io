@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-26T08:00:00+08:00",
-    "dateModified": "2024-04-24T08:00:00+08:00",
+    "dateModified": "2024-04-26T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-24>2024-04-24</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-26>2024-04-26</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -373,6 +373,16 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             </picture>
           </p>
           <p>この単位でレビューコメントが付き、それに対応していくことになる。
+          <p>各ディレクトリにはオーナーがおり、全てのファイルのオーナーにレビューをしてもらう必要がある。適切なオーナーがレビューに入ってないと、ファイルの頭に赤いバツが出る。
+          <p>
+            <picture>
+              <source type=image/avif srcset=missing-owner.avif?240426_182004>
+              <source type=image/webp srcset=missing-owner.webp?240426_182004>
+              <img loading=lazy decoding=async src=missing-owner.png?240426_182004 alt="missing-owner" width=864 height=263>
+            </picture>
+          </p>
+          <p>オーナーは、各ディレクトリの OWNERS ファイルを探すと書かれている。基本は SUGGESTED OWNER のボタンで自動で探してサジェストされるが、ファイルから選んで足しても良い。
+          <p>ある程度のコードのコア部分のレビューが終わったら、テストや設定ファイルのオーナーを追加して、マージまでに全員のレビューをもらわないと、マージ直前で警告が出て差し戻される。
           <p>
             <picture>
               <source type=image/avif srcset=review.avif?240326_010244>
@@ -430,7 +440,15 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
               <img loading=lazy decoding=async src=lgtm.png?240326_005751 alt="lgtm" width=1204 height=360>
             </picture>
           </p>
-          <p>もろもろ終わると自動でマージされる。
+          <p>テストが通り Code-Review +2 がもらえると、ついに Ready to submit になり、 &quot;SUBMIT TO CQ&quot; ボタンが出る。
+          <p>
+            <picture>
+              <source type=image/avif srcset=ready-to-submit.avif?240426_182505>
+              <source type=image/webp srcset=ready-to-submit.webp?240426_182505>
+              <img loading=lazy decoding=async src=ready-to-submit.jpeg?240426_182505 alt="ready to submit" width=1896 height=606>
+            </picture>
+          </p>
+          <p>これを権限のある人に押してもらうと、最後にテストが走ってからマージされる。
         </section>
         <section>
           <h3 id="chromium-dash"><a href="#chromium-dash">chromium dash</a></h3>
