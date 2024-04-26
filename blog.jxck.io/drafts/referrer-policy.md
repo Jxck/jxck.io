@@ -19,23 +19,25 @@
 - strict-origin-when-cross-origin
 - unsafe-url
 
-しかし全部を覚える必要はない。以下だけわかっていればいい。
+しかし全部を覚える必要はない。
 
 - no-referrer
   - 常に送らない
-- origin
-  - origin しか送らない
-- origin-when-cross-origin
-  - same origin の時は path
-  - cross origin の時は origin
 - no-referrer-when-downgrade
-  - downgrade の時だけ送らない
-- same-origin
-  - same origin の時だけ送る
-- strict-origin
+  - 常に path を送る
+  - downgrade では送らない
 - strict-origin-when-cross-origin
   - same origin の時は path
   - cross origin の時は　origin
   - downgrade では送らない
-- unsafe-url
-  - 常に path を送る
+- same-origin
+  - same origin の時だけ path
+
+
+ポリシーの観点は以下だ。
+
+- Same Origin なら Path が送られても問題はない
+- 平文通信では送るべきではない
+
+この上で Cross Origin への送信をどうするかを考えることになる。
+
