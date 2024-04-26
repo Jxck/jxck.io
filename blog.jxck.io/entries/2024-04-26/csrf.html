@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-04-26/csrf.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものすることができプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をたまにみる。確かに現実的にそれによって攻撃の成立は難しくなり、救わ...">
+  <meta name=keywords            content="csrf,security">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-04-26/csrf.html>
+  <meta property=og:title        content="令和時代の API 実装のベースプラクティスと CSRF 対策 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものすることができプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をたまにみる。確かに現実的にそれによって攻撃の成立は難しくなり、救わ...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "令和時代の API 実装のベースプラクティスと CSRF 対策 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-04-26T08:00:00+08:00",
+    "dateModified": "2024-04-26T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものすることができプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をたまにみる。確かに現実的にそれによって攻撃の成立は難しくなり、救わ..."
+  }
+  </script>
+
+  <title>令和時代の API 実装のベースプラクティスと CSRF 対策 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?230926_134917>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-04-26>2024-04-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-26>2024-04-26</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#csrf">csrf</a>
+              <li><a href="/tags#security">security</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#csrf-成立の条件">CSRF 成立の条件</a>
+                <li><a href="#csrf-が成立する問題点">CSRF が成立する問題点</a>
+                <li><a href="#origin-ヘッダの付与">Origin ヘッダの付与</a>
+                <ol>
+                  <li><a href="#samesite-cookie-の登場">SameSite Cookie の登場</a>
+                  <li><a href="#csrf-token-は不要なのか">CSRF Token は不要なのか</a>
+                  <li><a href="#令和時代の対策">令和時代の対策</a>
+                </ol>
+                <li><a href="#ack">Ack</a>
+                <li><a href="#outro">Outro</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">令和時代の API 実装のベースプラクティスと CSRF 対策</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものすることができプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をたまにみる。
+        <p>確かに現実的にそれによって攻撃の成立は難しくなり、救われているサービスもある。が、それはプラットフォームが用意した対策の本質から言うと、解釈が少しずれていると言えるだろう。
+        <p>今回は、「CSRF がどうして成立していたのか」を振り返ることで、本当にプラットフォームに足りていなかったものと、それを補っていった経緯を振り返ることで、本当にすべき対策はなんであるかを解説していく。
+        <p>結果として見えてくるのは、今サービスを実装する上での「ベース」(not ベスト)となるプラクティスだと筆者は考えている。
+      </section>
+      <section>
+        <h2 id="csrf-成立の条件"><a href="#csrf-成立の条件">CSRF 成立の条件</a></h2>
+        <p>例えば、攻撃者が用意した attack.example に以下のような form が仕込まれていたとする。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- attack.example に仕込まれた攻撃用 form --&gt;
+&lt;form method=post action=https://sns.example/post&gt;
+  &lt;input type=hidden name=body value=&quot;こんにちはこんにちは&quot;&gt;
+  &lt;button type=submit&gt;いますぐここをクリック&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        <p>この form は、どのサイトに埋め込まれていても、ボタンをクリックすることで form の submit によるリクエストが対象のドメインに飛ぶ。
+        <p>もしこのボタンをクリックしたユーザが、 sns.example のユーザであり、ログイン済みの Cookie を持っていた場合、発生するリクエストが以下のようになったとする。
+        <pre class=http data-code=http><code translate=no class=language-http>POST /post HTTP/1.1
+Host: sns.example
+Content-Type: application/x-www-form-urlencoded
+Cookie: deadbeef
+
+body=こんにちはこんにちは</code></pre>
+        <p>このリクエストが sns.example の持つ投稿の API に準拠している場合、ログイン済みの Cookie が付与されたことを理由に投稿が受理されれば、そのユーザのアカウントで body が投稿される。
+        <p>無作為な攻撃なら誰かしらにボタンをクリックさせるのは容易であり、狙いすまして攻撃する場合も JS などを組み合わせて方法はいくらでもある。
+        <p>この攻撃の手軽さと影響の大きさによって、 CSRF 攻撃は XSS や SQL Injection などと並ぶ有名な攻撃手法として認知されるまでになった。
+        <p>対策としては、 sns.example そのものが設置する投稿のフォームに One Time Token (以下 CSRF Token)を仕込み、その Token の一致によって投稿を受理することで、「それ以外の form からの投稿を無視する」という方法が一般的だった。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;form method=post action=https://sns.example/post&gt;
+  &lt;textarea name=body&gt;&lt;/textarea&gt;
+  &lt;input type=hidden name=csrf_token value=facefeedbadcoffee&gt;
+  &lt;button type=submit&gt;post&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        <p>さて、ではそもそも「CSRF が成立するのはプラットフォームに何が足りないから」だったのだろうか?
+      </section>
+      <section>
+        <h2 id="csrf-が成立する問題点"><a href="#csrf-が成立する問題点">CSRF が成立する問題点</a></h2>
+        <p>CSRF Token が無い状態で CSRF が成立するのは、以下のようなサーバの実装が想定される。
+        <pre class=js data-code=js><code translate=no class=language-js>app.post(&quot;/post&quot;, session(), async (req, res) =&gt; {
+  await createPost(req.body)
+  // ...
+})</code></pre>
+        <p>この実装では、 Cookie による Session がミドルウェアで実現され、 Cookie を持ったユーザのアカウントで body を投稿に採用している。
+        <p>つまり、攻撃者が用意した別の form からの投稿が成立するのは、「攻撃者の form からのリクエストにも SNS の Cookie が付与されるから」という点を問題とみなすことができる。
+        <p>すると、 SameSite Cookie という概念を導入し、「別の Site からのリクエストには Cookie が付与されないようにする」という変更は、対策として成立していると考えられるだろう。
+        <p>ところが、実際その問題の対策として CSRF Token が機能している事実は、「このリクエストはどこから来たものなのか」が分かれば対策できるという証拠でもある。
+        <p>つまり、「リクエストの出自がわからない」ということの方が、本来注目すべき点であるはずなのだ。
+      </section>
+      <section>
+        <h2 id="origin-ヘッダの付与"><a href="#origin-ヘッダの付与">Origin ヘッダの付与</a></h2>
+        <p>この問題に対するプラットフォームの回答は、「リクエストに Origin ヘッダを付与する」というものだ。
+        <p>現在のブラウザで先ほどの攻撃 form を submit すると、送られるリクエストは以下のように Origin ヘッダが付与されている。
+        <pre class=http data-code=http><code translate=no class=language-http>POST /post HTTP/1.1
+Host: sns.example
+Content-Type: application/x-www-form-urlencoded
+Origin: attack.example
+Cookie:deadbeef
+
+body=こんにちはこんにちは</code></pre>
+        <p>Origin ヘッダの値に着目すれば、これが少なくとも sns.example からではないことは容易に判別できる。つまり、 Cookie があろうとなかろうと、 sns.example は以下のような実装によって「意図しない Origin からのリクエスト」を弾くことができるのだ。
+        <pre class=js data-code=js><code translate=no class=language-js>app.post(&quot;/post&quot;, session(), (req, res) =&gt; {
+  if (req.headers.origin !== &quot;https://sns.example&quot;) {
+    return res.send(400)
+  }
+  // ...
+})</code></pre>
+        <p>このヘッダの必要性は少なくとも 16 年前くらいから言われており、 7 年前に Firefox が実装することで全てのブラウザが form からの submit に Origin ヘッダを付与するようになっている。
+        <ul>
+          <li>
+            446344 - Implement Origin header CSRF mitigation
+            <ul>
+              <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=446344" target=_blank>https://bugzilla.mozilla.org/show_bug.cgi?id=446344</a>
+            </ul>
+          </li>
+          <li>
+            1424076 - Enable network.http.sendOriginHeader by default
+            <ul>
+              <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1424076" target=_blank>https://bugzilla.mozilla.org/show_bug.cgi?id=1424076</a>
+            </ul>
+          </li>
+        </ul>
+        <p>つまり、 SameSite Cookie が導入されるずっと以前から、「リクエストの出自を知る」ことはでき、それを用いて攻撃リクエストを弾くことはできたのだ。
+        <p>もちろん、そもそも form を使わずに <code translate=no>fetch()</code> を用いた実装にし、 Origin を確認しながら適切な <code translate=no>Access-Control-Allow-Origin</code> を返しているならば、「どこから来たかわからないリクエスト」を弾くことはずっと可能であった。
+        <section>
+          <h3 id="samesite-cookie-の登場"><a href="#samesite-cookie-の登場">SameSite Cookie の登場</a></h3>
+          <p>SameSite Cookie が登場したことで、上記のような Active な対策をしてこなかったサービスも、 Passive な変更によって保護される結果になった。
+          <p>しかし、これはかなり副次的な効果だったと言って良い。
+          <p>そもそも SameSite Cookie が出たのは、 3rd Party Cookie をマークする目的が大きい。インターネットを飛び交う <code translate=no>SameSite=None</code> Cookie の数が、未対策の 3rd Party Cookie であり、 3rd Party Cookie Deprecate の執着地点は <code translate=no>SameSite=None</code> Cookie が送られれないようにすることだからだ。それがたまたま 3rd Party Cookie を攻撃に使っている CSRF の対策にも繋がっているだけだ。
+          <ul>
+            <li>
+              3PCA 21 日目: SameSite Cookie | blog.jxck.io
+              <ul>
+                <li><a href="https://blog.jxck.io/entries/2023-12-21/same-site.html">https://blog.jxck.io/entries/2023-12-21/same-site.html</a>
+              </ul>
+            </li>
+          </ul>
+          <p>別途 3rd Party Cookie が今のように問題になる前の Web においては、 Cookie は「Cross Site でも送られる」ことに依存して、比較的自由な連携が行われており、それによって成立する認証連携などのポジティブなユースケースで広く使われていた。
+          <p>CSRF の方が遥かに古くから問題だったのに、最近まで「どの form からも Cookie が付与されるのはよくない」という方針での対策が出なかったのは、「サイトを跨いだ Cookie が送られること」よりも「リクエストの出自がわからないこと」の方が、 CSRF に対してプラットフォームが対策すべき問題であるとされていたからだ。
+          <p>今 SameSite Lax が default になったのを理由に、「Origin のチェック」を怠った実装をしているのであれば、それは本質的な対策を怠った片手落ちの実装で、たまたま助かっているだけだと言えるだろう。
+        </section>
+        <section>
+          <h3 id="csrf-token-は不要なのか"><a href="#csrf-token-は不要なのか">CSRF Token は不要なのか</a></h3>
+          <p>OWASP の CSRF Cheat Sheet では、今でも Token ベースの対策が推奨されている。
+          <ul>
+            <li>
+              Cross-Site Request Forgery Prevention - OWASP Cheat Sheet Series
+              <ul>
+                <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html" target=_blank>https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html</a>
+              </ul>
+            </li>
+          </ul>
+          <p>たまに更新されるが、そのベースは変わらず、かつ、そうでないといけない理由の部分は不明瞭な部分が多い。
+          <ul>
+            <li>
+              CSRF 対策はいまだに Token が必須なのか?
+              <ul>
+                <li><a href="https://zenn.dev/jxck/scraps/704a507575a7d2" target=_blank>https://zenn.dev/jxck/scraps/704a507575a7d2</a>
+              </ul>
+            </li>
+          </ul>
+          <p>筆者はこの推奨がずっと気になっており、おりをみて OWASP その他 CSRF Token ベースの対策を推奨する人に質問をするが、だいたい以下のような理由が帰ってくる。
+          <ul>
+            <li>XSS があった場合
+            <li>ヘッダをいじっている可能性
+            <li>GET で API があると成立する攻撃
+            <li>サブドメインが乗っ取られる攻撃
+          </ul>
+          <p>まずわかりやすいのは、 XSS などで sns.example 自体に偽装の form をつくられたら、 Origin ヘッダを見ても偽装されたリクエストの判別ができないことへの指摘だ。しかし、基本的に XSS などがあるならそれは XSS の問題であり、 XSS を対策すべきという話でしか無い。その XSS によって、 DOM に展開された CSRF Token を盗めない道理はないため、 CSRF Token なら優位である根拠も希薄だ。
+          <p>また、 CSRF Token はランダムな値を毎回用いることに対して、 Origin ヘッダは固定値であることを理由に、任意のヘッダが Inject できる脆弱性があった場合に効果がないといった指摘もある。これはかつてブラウザの拡張などの脆弱性で、任意のヘッダが付与できた事件があったことなどを根拠にされるものだ。これも、仮に拡張やブラウザ自体に脆弱性があったら、どんなにサービスが対策をしてもいくらでもバイパスできるという点で、サービス提供者が想定するべき対策として視点がずれている。ブラウザや拡張に問題があれば、それはブラウザベンダ側が対策する以外にサービスができることは基本的にない。また、ユーザ設定や Proxy が意図的に Origin ヘッダを落としたり改変するような環境があるという話を持ち出す人もいるが、「サービスを安全に提供する」という観点で言えば、相手がルールを守ってないならこちらがそれをサポートする道理はない。むしろ、そういう環境をサービス側が許容してしまうとの方が、ルールを守っているクライアントにインシデントをもたらし兼ねないため、適切に落とすべきだろう。
+          <p>特に SameSite や Origin が対策にならない理由として、様々な条件(prerender, iframe etc etc)によってそれらが機能しないリクエストを生成できるという指摘もある。ただし、これらの条件はその裏に「API が GET だった場合に攻撃が成立する」という条件に収束することがほとんどだ。そもそも、副作用のある API を GET で提供している実装に救いはないので、セキュリティのプラクティスを語る上でバッドプラクティスを前提にしているというズレが生じている。
+          <p>SameSite Cookie だけに依存した対策は、サブドメインが SameSite であることを理由に攻撃が可能であるという指摘は真っ当だ、だからこそ一時防御は「Cookie が Lax であること」ではなく「リクエストの Origin のチェックすること」である必要があるのだ。
+          <p>一方で、 CSRF Token を付与する実装はだいぶこなれており堅牢であることも確かだ。フレームワークなどもデフォルトで提供することが多く、開発者の間でも認知が広がっている。導入するコストもかなり低くなっていため、少なくとも現状入っているなら「積極的に外す理由」とまではいかないだろう。筆者も「そんな実装古いから外してしまえ」というつもりはない。
+          <p>ところが、防御の一層目として認識されていたこの手法も、今となっては多層防御の二層目だという認識を持つべきだ。つまり Token を出していたとしても「リクエストの出自を確認する」という実装は一層目にあるべきだし、それはもはや CSRF 対策にとどまらない。 CSRF 対策のリスクがあるから Origin を見るのではなく、全ての場所で Origin を確認するのがプラクティスだと考えて良い。
+        </section>
+        <section>
+          <h3 id="令和時代の対策"><a href="#令和時代の対策">令和時代の対策</a></h3>
+          <p>本来なら、 GET も含めた全てのリクエストに Origin をつければ良いのだが、「Origin ヘッダのあるリクエストは XHR からのものだ」という前提の実装が世に蔓延った後なので、そこまでドラスティックな変更ができずにいた。
+          <p>そこで、 Origin ヘッダとは別に定義されたのが Fetch Metadata だ。今のブラウザで先ほどのリクエストを見れば、実際にはこうなっているだろう。
+          <pre class=http data-code=http><code translate=no class=language-http>POST /post HTTP/1.1
+Host: sns.example
+Content-Type: application/x-www-form-urlencoded
+Origin: attack.example
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Cookie:deadbeef
+
+body=こんにちはこんにちは</code></pre>
+          <p>このように、リクエストの出自を確認する手法はかなり整備されてきた。これらを見ずに捨てるのは、プラットフォームが差し伸べている手を振り払っているのと同じだ。
+          <p>これを踏まえて、現代において「副作用があるエンドポイントをどう実装すべきか」をまとめると、優先順位としては以下のようになる。
+          <ol>
+            <li>POST にする(副作用のある API を GET にしないの意)
+            <li>Origin を確認する
+            <li>SameSite Lax/Strict を明示する
+            <li>Fetch Metadata も確認する
+          </ol>
+          <p>もし Fetch Metadata のサポートに不安がある場合「存在したら値をチェックする」という実装でも良いだろう。 <code translate=no>Sec-</code> は JS から弄れないヘッダであるため、値がある場合だけのチェックでも意味がある。
+          <p>実装に落とすとミドルウェアとエンドポイントは、以下のようなものになる。
+          <pre class=js data-code=js><code translate=no class=language-js>app.use((req, res, next) =&gt; {
+  // post である場合は origin と sec-fetch-site をチェック
+  if (req.method === &quot;post&quot;) {
+    if (req.headers.origin !== &quot;https://sns.example&quot;) {
+      return res.send(400)
+    }
+    if (req.headers.secFetchSite &amp;&amp; req.headers.secFetchSite !== &quot;same-origin&quot;) {
+      return res.send(400)
+    }
+  }
+  return next()
+})
+
+// デフォルトに頼らず Cookie に Lax を明示
+// 理想は read と write に cookie を分け write を Strict にする
+app.use(session(&quot;Lax&quot;))
+
+// 副作用のある API は必ず POST にする
+app.post(&quot;/post&quot;, async (req, res) =&gt; {
+  await createPost(req.body)
+  // ...
+})</code></pre>
+          <p>実際のところこれは「CSRF 対策のベストプラクティス」というよりは、今アプリを実装する上でのベースであるべき実装だ。 7 年前からそうで、今は令和 6 年なので、ちょうど令和のプラクティスと言って良さそうだ。
+          <p>追加のストレージコストなども不要で、コードだけで実装できるためレイテンシーも最小だ。もし今からフレームワークを実装するなら、これがそのレールの基盤として存在するのが望ましい。
+          <p>そして、これを逸脱するコードが必要になって初めて、そこに「自分は今のプラットフォームが推奨するレールから外れている」ということを認識した上で、 CORS などの適切な対策をしながら拡張していくのが、サイト間の連携をしていく正しいあり方と言えるだろう。
+          <p>これを踏まえた上で、「やっぱり Token がないと不安だ」というのであれば、それを止めることはしない。が、このベースを伴わずに Token を載せても片手落ちだということは、念を押しておきたい。
+          <p>むしろ、この実装をベースにしても Token が無いと防げない CSRF が可能であるならば、そのケースはおそらくプラットフォームにおけるバグの可能性があり、プラットフォームで対処すべき問題である可能性が高い。見つけたら、ぜひ W3C の WebAppSec などで議論すべき題材だろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="ack"><a href="#ack">Ack</a></h2>
+        <p>この記事は <a href="https://twitter.com/shhnjk" target=_blank>@shhnjk</a> さんにレビューいただきました。ありがとうございました。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>少し長くなったが、ここまでの話は今の Web 開発においての大前提となる知識であって、本当に書きたかったことはこの話を踏まえた次のエントリに書くことにする。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
