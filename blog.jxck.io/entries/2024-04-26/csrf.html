@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものすることができプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をたまにみる。確かに現実的にそれによって攻撃の成立は難しくなり、救わ...">
+  <meta name=description         content="CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものにすることができたプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をみることがある。確かに、現実的にそれによって攻撃の成立は難しく...">
   <meta name=keywords            content="csrf,security">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-04-26/csrf.html>
   <meta property=og:title        content="令和時代の API 実装のベースプラクティスと CSRF 対策 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものすることができプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をたまにみる。確かに現実的にそれによって攻撃の成立は難しくなり、救わ...">
+  <meta property=og:description  content="CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものにすることができたプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をみることがある。確かに、現実的にそれによって攻撃の成立は難しく...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものすることができプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をたまにみる。確かに現実的にそれによって攻撃の成立は難しくなり、救わ..."
+    "description": "CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものにすることができたプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をみることがある。確かに、現実的にそれによって攻撃の成立は難しく..."
   }
   </script>
 
@@ -156,9 +156,9 @@
       <h1><a href="">令和時代の API 実装のベースプラクティスと CSRF 対策</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものすることができプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をたまにみる。
-        <p>確かに現実的にそれによって攻撃の成立は難しくなり、救われているサービスもある。が、それはプラットフォームが用意した対策の本質から言うと、解釈が少しずれていると言えるだろう。
-        <p>今回は、「CSRF がどうして成立していたのか」を振り返ることで、本当にプラットフォームに足りていなかったものと、それを補っていった経緯を振り返ることで、本当にすべき対策はなんであるかを解説していく。
+        <p>CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものにすることができたプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説をみることがある。
+        <p>確かに、現実的にそれによって攻撃の成立は難しくなり、救われているサービスもある。が、それはプラットフォームが用意した対策の本質から言うと、解釈が少しずれていると言えるだろう。
+        <p>今回は、「CSRF がどうして成立していたのか」を振り返ることで、本当にプラットフォームに足りていなかったものと、それを補っていった経緯、本当にすべき対策はなんであるかを解説していく。
         <p>結果として見えてくるのは、今サービスを実装する上での「ベース」(not ベスト)となるプラクティスだと筆者は考えている。
       </section>
       <section>
