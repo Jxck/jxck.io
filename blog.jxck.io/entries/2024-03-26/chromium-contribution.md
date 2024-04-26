@@ -163,7 +163,7 @@ crrev には Patchset という概念があり、これは複数コミットが�
 
 今ボールを持っている人は、名前の隣に Attention (矢印)のマークが付く。
 
-![attention](attention.png#422x148)
+![attention](attention.jpeg#978x492)
 
 Attention が自分のままだとレビューをしてもらえないので、レビューしてもらう準備が整ったら、ここの MODIFY から Attention をレビュアーに変える必要がある。
 
