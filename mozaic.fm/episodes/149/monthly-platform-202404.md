@@ -434,7 +434,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.w3.org/TR/2024/NOTE-w3c-vision-20240403/
 - Breakouts Day 2024 Recap
   - https://www.w3.org/blog/2024/breakouts-day-2024-recap/
-- *Warn that the XML syntax is not recommended by sideshowbarker · Pull Request #10239 · whatwg/html[a]*
+- *Warn that the XML syntax is not recommended by sideshowbarker · Pull Request #10239 · whatwg/html*
   - https://github.com/whatwg/html/pull/10239
   - XML 構文での仕様はメンテされておらず推奨されないことが明記された
   - Declarative Shadow DOM for XML Syntax · Issue #10237 · whatwg/html

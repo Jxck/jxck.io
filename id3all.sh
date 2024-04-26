@@ -2029,3 +2029,16 @@ eyeD3 --title "ep148 mozaic renewal 202404" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep149.mp3
+
+eyeD3 --title "ep149 Monthly Platform 202404" \
+      --track 157 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep149.mp3
+
+
+
