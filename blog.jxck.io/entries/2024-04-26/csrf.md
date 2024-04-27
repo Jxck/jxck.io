@@ -122,7 +122,7 @@ SameSite Cookie が登場したことで、上記のような Active な対策�
 
 しかし、これはかなり副次的な効果だったと言って良い。
 
-そもそも SameSite Cookie が出たのは、 3rd Party Cookie をマークする目的が大きい。インターネットを飛び交う `SameSite=None` Cookie の数が、未対策の 3rd Party Cookie であり、 3rd Party Cookie Deprecate の執着地点は `SameSite=None` Cookie が送られれないようにすることだからだ。それがたまたま 3rd Party Cookie を攻撃に使っている CSRF の対策にも繋がっているだけだ。
+そもそも SameSite Cookie が出たのは、 3rd Party Cookie をマークする目的が大きい。インターネットを飛び交う `SameSite=None` Cookie の数が、未対策の 3rd Party Cookie であり、 3rd Party Cookie Deprecate の終着地点は `SameSite=None` Cookie が送られないようにすることだからだ。それがたまたま 3rd Party Cookie を攻撃に使っている CSRF の対策にも繋がっているだけだ。
 
 - 3PCA 21 日目: SameSite Cookie | blog.jxck.io
   - https://blog.jxck.io/entries/2023-12-21/same-site.html
