@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>Paste DEMO</title>
+<meta http-equiv="origin-trial" content="">
+
+<style>
+  img {
+    width: 100px;
+    border: solid 1px #ccc;
+  }
+</style>
+
+<h1>Paste DEMO</h1>
+<p><textarea autofocus></textarea></p>
+<p><img></img></p>
+
+<script>
+  'use strict';
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+    $('textarea').on('paste', (e) => {
+      console.log(e)
+      const file = e.clipboardData.items[0].getAsFile()
+
+      const fr = new FileReader()
+      fr.on('load', (e) => {
+        const base64 = e.target.result;
+        $('img').src = base64
+      })
+      fr.readAsDataURL(file)
+    })
+  })
+</script>
