@@ -260,7 +260,7 @@ Google 社員は Reclient という分散ビルド環境を使っている(以�
 ビルド結果の実行は以下。
 
 ```shell-session
-$ out/Default chrome
+$ out/Default/chrome
 ```
 
 オプションは色々ある。(TODO: まとめる)
