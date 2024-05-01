@@ -72,6 +72,16 @@ html {
   scroll-padding-top: calc((var(--icon-size) + var(--grid) * 2));
 }
 
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
 body {
   font-family: var(--regular-font);
   background-color: var(--background-color);
