@@ -1,10 +1,15 @@
-# Referrer-Policy の制限を強めると安全になるという誤解
+# [referer][security] Referrer-Policy の制限を強めると安全になるという誤解
 
 ## Intro
 
 `Referrer-Policy` は、送信される `Referer` の値を制御することが可能だ。
 
-このヘッダの副次的な効果がよくわかってないと、「`no-referer` にして送らないのが最も安全だ」という勘違いを産むことになる。
+このヘッダの副次的な効果がよく理解していないと、「`no-referer` にして送らないのが最も安全だ」という誤解を生むことになる。
+
+この記事は、前提として前回の記事の「リクエストの出自をチェックすることは現代の実装のベースプラクティスである」という点を踏まえている。
+
+- 令和時代の API 実装のベースプラクティスと CSRF 対策 | blog.jxck.io
+  - https://blog.jxck.io/entries/2024-04-26/csrf.html
 
 
 ## Referer とアナリティクス
@@ -117,7 +122,7 @@ HTTP/1.1 の RFC が更新された際に、 Referer の節には以下のよう
 
 ## Referrer-Policy: no-referrer
 
-`Referer-Policy: no-referrer` は、それを付与することでブラウザが一切の Referer を送らなくなる。つまり、遷移先に対して遷移元の URL がなんであったかは、全て送られなくなるのだ。 Same Origin であってもだ。
+`Referer-Policy: no-referrer` は、それを付与することでブラウザが一切の Referer を送らなくなる。つまり、遷移先に対して遷移元の URL が何であったかは、全て送られなくなるのだ。Same Origin であってもだ。
 
 実はこのディレクティブには副作用がある。
 
@@ -140,7 +145,7 @@ Note: A request's referrer policy is taken into account for all fetches where th
 --- https://fetch.spec.whatwg.org/#append-a-request-origin-header
 ```
 
-つまり、 CORS のように明示的に Origin を確認させる場合はそちらを優先するが、 CORS でなくかつ GET/HEAD でない場合は、 `Referrer-Policy: no-referrer` を受けていた場合 `Origin: null` にしてしまうのだ。
+つまり、 CORS のように明示的に Origin を確認させる場合はそちらを優先するが、 CORS でなくかつ GET/HEAD でない場合は、 `Referrer-Policy: no-referrer` を受けていた場合、 `Origin: null` にしてしまうのだ。
 
 そのケースが何かというと、まさしく `<form method=post>` のことだ。
 
@@ -162,9 +167,9 @@ Note: A request's referrer policy is taken into account for all fetches where th
 - strict-origin-when-cross-origin
 - unsafe-url
 
-しかし全部を覚える必要はない。
+しかし、全部を覚える必要はない。
 
-観点として重要なのは以下の 3 つだ。
+重要なのは以下の 3 つの観点だ。
 
 - 送るのは Full Path か Origin か
 - 送る対象は Same Origin か Cross Origin か
@@ -180,16 +185,16 @@ Note: A request's referrer policy is taken into account for all fetches where th
 - no-referrer
   - 常に送らない
 - no-referrer-when-downgrade
-  - 常に path を送る
+  - 常に Path を送る
   - downgrade では送らない
 - strict-origin-when-cross-origin
-  - same origin の時は path
-  - cross origin の時は origin
+  - Same Origin の時は Path
+  - Cross Origin の時は Origin
   - downgrade では送らない
 - same-origin
-  - same origin の時だけ path
+  - Same Origin の時だけ Path
 
-従来、ブラウザのデフォルトは `no-referrer-when-downgrade` がデフォルトだった。しかし、 Cross Origin にも Full Path を送るのはエントロピーが高くトラッキングベクタにもなり得る。一方で、完全に送らなければ、出自チェックに使えなくなる。そこで、従来の Web における「外部への情報提供」と「自サイトないでの出自検証」を両立しつつ、前者には Origin だけ、後者には Full Path を送るという最もバランスが取れた設定として、 `strict-origin-when-cross-origin` を新しくブラウザのデフォルトにする流れがあった。 2018 年ごろの話だ。
+従来、ブラウザのデフォルトは `no-referrer-when-downgrade` だった。しかし、 Cross Origin にも Full Path を送るのはエントロピーが高くトラッキングベクタにもなり得る。一方で、完全に送らなければ、出自チェックに使えなくなる。そこで、従来の Web における「外部への情報提供」と「自サイト内での出自検証」を両立しつつ、前者には Origin だけ、後者には Full Path を送るという最もバランスが取れた設定として、 `strict-origin-when-cross-origin` を新しくブラウザのデフォルトにする流れがあった。 2018 年ごろの話だ。
 
 - Referrer-Policy によるリファラ制御 | blog.jxck.io
   - https://blog.jxck.io/entries/2018-10-08/referrer-policy.html
