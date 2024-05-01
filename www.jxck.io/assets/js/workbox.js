@@ -15,7 +15,7 @@ const precache =
   "https://www.jxck.io/assets/js/ga.js?210325_165821",
   "https://www.jxck.io/assets/css/archive.css?220304_061221",
   "https://www.jxck.io/assets/css/article.css?220222_230717",
-  "https://www.jxck.io/assets/css/body.css?230926_134917",
+  "https://www.jxck.io/assets/css/body.css?240502_021319",
   "https://www.jxck.io/assets/css/footer.css?201223_011131",
   "https://www.jxck.io/assets/css/header.css?230926_134917",
   "https://www.jxck.io/assets/css/index.css?210924_151723",
