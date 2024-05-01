@@ -24,6 +24,7 @@ Referer: https://blog.jxck.io/entries/2099-12-12/referer.html
 
 従って、多くの場合はマーケティングてきな用途が想像されやすく、実際アナリティクスなどはこの情報を重要視している。
 
+
 ## Referer による情報漏洩
 
 例えば、ユーザが VPN などでアクセスする社内のポータルに貼られた URL から遷移した場合、以下のように外部からアクセスできない URL が付与されることになる。
@@ -81,56 +82,76 @@ Referer: https://issues.company.example/bugs/csrf-reported-on-admin-page.html
 
 ところが、リクエストの出自を知る方法は、 Origin 以前からあった。それが Referer だ。
 
-では、なぜ Referer をそのまま活用しないのかというと、「Referer はプライバシーの侵害につながるのでブラウザの設定で無効にする」というプラクティスが、特にハイリテラシー層に十分に浸透していたからだ。ブラウザもその機能をプライバシー重視であることのコマーシャルと共に提供し、無いブラウザでも探せばだいたいは拡張が手に入る状況だ。
+では、なぜ Referer をそのまま活用しないのかというと、「Referer はプライバシーの侵害につながるのでブラウザの設定で無効にする」というプラクティスが、特にハイリテラシー層に十分に浸透していたからだ。ブラウザもその機能をプライバシー重視であることのコマーシャルと共に提供し、無いブラウザでも探せばだいたいは拡張が手に入る状況だ。HTTPS が一般化する前は、企業内 Proxy などが自動的に Referrer ヘッダを落としていた時代もある。
 
 その状況で、 Referer に依存してリクエストのフィルタリングを行うことはできない。そこで、 CORS の策定時に「最低限の出自情報」として Origin ヘッダが定義された。 Origin には Path 情報がないため、最小限の情報のみが提供される。そして CORS で連携するというのは、 `Access-Control-Allow-Oring` でその Origin との連携を明示的に許可することで実現するものであり、連携情報としての Origin 提供は漏洩とは見做されない(それも許せないなら、連携は使わないべき)という仕組みになっている。 Referer を落としているユーザであっても、新設された Origin は正しく送られていると想定すべきであり、それが送られてないのであれば、安全な連携は提供できないとして扱うべきなのだ。
 
-その Origin ヘッダを、 Form の POST でも提供するようにし、「POST はどこから来たのか？」を確認することで「意図した連携」なのか「意図しない連携(これが CSRF の実態」なのかを識別できるように、やっと仕様を整備し互換性を担保して今にいたるのだ。つまり、現行の Web のルール上「Origin を確認しないということは、セキュアな実装ができてない」とみなして良く、このインフラとしての Origin ヘッダは慎重に扱われるべきものなのだ。
+その Origin ヘッダを、 Form の POST でも提供するようにし、「POST はどこから来たのか?」を確認することで「意図した連携」なのか「意図しない連携(これが CSRF の実態」なのかを識別できるように、やっと仕様を整備し互換性を担保して今にいたるのだ。つまり、現行の Web のルール上「Origin を確認しないということは、セキュアな実装ができてない」とみなして良く、このインフラとしての Origin ヘッダは慎重に扱われるべきものなのだ。
+
+
+## RFC 7231 における Referer の扱い
+
+HTTP/1.1 の RFC が更新された際に、 Referer の節には以下のような注意書きが追加された。
+
+> Some intermediaries have been known to indiscriminately remove Referer header fields from outgoing requests.
+> This has the unfortunate side effect of interfering with protection against CSRF attacks, which can be far more harmful to their users.
+> Intermediaries and user agent extensions that wish to limit information disclosure in Referer ought to restrict their changes to specific edits,
+> such as replacing internal domain names with pseudonyms or truncating the query and/or path components.
+> An intermediary SHOULD NOT modify or delete the Referer header field when the field value shares the same scheme and host as the request target.
+>
+> 一部の中継者は、外向けのリクエストから Referer ヘッダを無差別に除去することが知られている。
+> これは CSRF 攻撃に対する保護に干渉するような，望ましくない副作用を及ぼし、それは、ユーザにとってはるかに有害となる。
+> Referer 内への情報開示を制限したい中継者/UA 拡張はそれらの変更を、内部ドメイン名を匿名化したり、 query や path を切り落とすなどの、特定の編集に制約するべきである。
+> 中継者は、ヘッダがリクエストターゲットと同じ scheme / host であれば、 Referer ヘッダを改変したり削除するべきでない。
+>
+> --- https://www.rfc-editor.org/rfc/rfc7231.html#section-5.5.2
+
+もちろん消すべき時もあるが、なんでもかんでも「消せばいい」とは限らないということが、この文章からもわかるだろう。
+
+特に最後の一行は重要だ。 Same Origin でのリクエストであれば、サイト内の回遊などログでもなんでも自明であるため、わざわざ Referer を落とすことのメリットはない。むしろ、それによって「リクエストの出自が検証できなくなる == 外からの工作されたリクエストではない」ということがわからなくなるため、セキュリティ上はマイナスにしか作用しないのだ。
+
+ところが、「とはいえ Referer ではなく Origin をチェックするから Referrer-Policy は関係ないのでは?」と思うかもしれない。
+
+ここにもう 1 つの落とし穴があるのだ。
+
 
 ## Referrer-Policy: no-referrer
 
-`Referer-Policy: no-referrer` は、それを付与することでブラウザが一切の Referer を送らなくなる。つまり、遷移先に対して遷移元の URL がなんであったかは、全て送られなくなるのだ。
+`Referer-Policy: no-referrer` は、それを付与することでブラウザが一切の Referer を送らなくなる。つまり、遷移先に対して遷移元の URL がなんであったかは、全て送られなくなるのだ。 Same Origin であってもだ。
 
-このディレクティブは強力で、副作用がある。 Referer ヘッダを送らなくなるだけではなく、 Origin ヘッダも `null` にしてしまうのだ。
+実はこのディレクティブには副作用がある。
 
 ```
-3. Otherwise, if request’s method is neither `GET` nor `HEAD`, then:
-  1. If request’s mode is not "cors", then switch on request’s referrer policy:
+To append a request `Origin` header, given a request request, run these steps:
+
+1. Let serializedOrigin be the result of byte-serializing a request origin with request.
+2. If request's response tainting is "cors" or request's mode is "websocket", then append (`Origin`, serializedOrigin) to request's header list.
+3. Otherwise, if request's method is neither `GET` nor `HEAD`, then:
+  1. If request's mode is not "cors", then switch on request's referrer policy:
     - "no-referrer": Set serializedOrigin to `null`.
     - "no-referrer-when-downgrade"
     - "strict-origin"
-    - "strict-origin-when-cross-origin": If request’s origin is a tuple origin, its scheme is "https", and request’s current URL’s scheme is not "https", then set serializedOrigin to `null`.
-    - "same-origin": If request’s origin is not same origin with request’s current URL’s origin, then set serializedOrigin to `null`.
+    - "strict-origin-when-cross-origin": If request's origin is a tuple origin, its scheme is "https", and request's current URL's scheme is not "https", then set serializedOrigin to `null`.
+    - "same-origin": If request's origin is not same origin with request's current URL's origin, then set serializedOrigin to `null`.
     - Otherwise: Do nothing.
+
+Note: A request's referrer policy is taken into account for all fetches where the fetcher did not explicitly opt into sharing their origin with the server, e.g., via using the CORS protocol.
 
 --- https://fetch.spec.whatwg.org/#append-a-request-origin-header
 ```
 
+つまり、 CORS のように明示的に Origin を確認させる場合はそちらを優先するが、 CORS でなくかつ GET/HEAD でない場合は、 `Referrer-Policy: no-referrer` を受けていた場合 `Origin: null` にしてしまうのだ。
 
-これはつまり、自分のサイト内に設置した form からのリクエストにも、
+そのケースが何かというと、まさしく `<form method=post>` のことだ。
 
-Referrer は 1 つ前のページ、つまり「リクエストの出自」を表現している。
+安直に `Referrer-Policy: no-referrer` にすると、 Referer ヘッダを送らなくなるだけではなく、 Origin ヘッダも `null` にしてしまい、同じサイトからのリクエストなのに、その事実が Origin から判断できなくなるのだ。
 
-「リクエストの出自」
-
-
-
+まあ、最近のサービスは `fetch()` 以外でリクエストを送ることも減ってきてはいるかもしれない。一方で、 Progressive Enhancement として生の form によるリクエスト「も」使えるようにする場合もある。そうでなくても、例えばレガシーなアプリを Origin を検査する簡単なミドルウェアや WAF/CDN 相当のレイヤ追加だけで格段に安全にできるものを、「Referrer は送らない方が安全」という勘違いで台無しにし得るのだ。
 
 
+## Referrer-Policy 値の選定
 
-
-
-
-
-
-
-
-
-
-
-
-
-`Referrer-Policy` には複数のディレクティブがある。
+以上を踏まえて `Referrer-Policy` のディレクティブを確認してみよう。
 
 - no-referrer
 - no-referrer-when-downgrade
@@ -143,6 +164,19 @@ Referrer は 1 つ前のページ、つまり「リクエストの出自」を�
 
 しかし全部を覚える必要はない。
 
+観点として重要なのは以下の 3 つだ。
+
+- 送るのは Full Path か Origin か
+- 送る対象は Same Origin か Cross Origin か
+- HTTP でも送るか
+
+ここまでの話を適用すると、以下がベースとなる。
+
+- Same Origin なら Path が送られても問題はない
+- 平文通信では送るべきではない
+
+この上で 「*Cross Origin への送信*」をどうするかだけを比較すると、候補は以下に絞られる。
+
 - no-referrer
   - 常に送らない
 - no-referrer-when-downgrade
@@ -150,16 +184,25 @@ Referrer は 1 つ前のページ、つまり「リクエストの出自」を�
   - downgrade では送らない
 - strict-origin-when-cross-origin
   - same origin の時は path
-  - cross origin の時は　origin
+  - cross origin の時は origin
   - downgrade では送らない
 - same-origin
   - same origin の時だけ path
 
+従来、ブラウザのデフォルトは `no-referrer-when-downgrade` がデフォルトだった。しかし、 Cross Origin にも Full Path を送るのはエントロピーが高くトラッキングベクタにもなり得る。一方で、完全に送らなければ、出自チェックに使えなくなる。そこで、従来の Web における「外部への情報提供」と「自サイトないでの出自検証」を両立しつつ、前者には Origin だけ、後者には Full Path を送るという最もバランスが取れた設定として、 `strict-origin-when-cross-origin` を新しくブラウザのデフォルトにする流れがあった。 2018 年ごろの話だ。
 
-ポリシーの観点は以下だ。
+- Referrer-Policy によるリファラ制御 | blog.jxck.io
+  - https://blog.jxck.io/entries/2018-10-08/referrer-policy.html
 
-- Same Origin なら Path が送られても問題はない
-- 平文通信では送るべきではない
+したがって、多くのサイトにとっては、このデフォルトの値が十分にバランスが取れ、互換性の面でも問題を起こしにくい値となっていることがわかる。
 
-この上で Cross Origin への送信をどうするかを考えることになる。
+その上で、もし「Origin であっても外部に漏洩させたくない」という、企業内サイトなどであれば、選択すべきは `no-referrer` ではなく `same-origin` なのだ。これであれば、外に情報は出ず、内部でのリクエストはきっちりと出自の確認ができる。 Origin ももちろん消えない。
 
+
+## Outro
+
+「とにかく Referer は送らないのが安全だ」という勘違いは、「リクエストに出自情報が載るのは漏洩だ」という短絡的な勘違いに起因していることが分かっただろう。
+
+むしろ、これまで欠落していた出自を適切に送り、サーバはそれを確認することで安全を担保する、という状態を実現するために Web プラットフォームは長い時間をかけて「デフォルトで安全な状態」を実現し今に至るのだ。
+
+その理由をよく分かってない状態で、「強く制限すれば安全になる」という思い込みが、現代のセキュアな実装のための基盤を脆くしている可能性には、十分に注意したい。
