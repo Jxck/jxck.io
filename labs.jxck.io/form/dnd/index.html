@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link
+  rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>"
+/>
+<title>Drag & Drop DEMO</title>
+
+<meta http-equiv="origin-trial" content="" />
+
+<style>
+  textarea {
+    width: 80vw;
+    height: 30vh;
+  }
+  .dragging {
+    background-color: #ccc;
+  }
+</style>
+
+<h1>Drag & Drop DEMO</h1>
+
+<textarea></textarea>
+
+<script>
+  "use strict"
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on("DOMContentLoaded", async (e) => {
+    $("textarea").on("drop", (e) => {
+      e.preventDefault()
+      const dataTransfer = e.dataTransfer
+      const files = dataTransfer.files
+      for (const file of files) {
+        console.log(file)
+      }
+      e.target.classList.remove("dragging")
+    })
+    $("textarea").on("dragenter", (e) => {
+      console.log(e.type)
+      e.target.classList.add("dragging")
+    })
+    $("textarea").on("dragleave", (e) => {
+      console.log(e.type)
+      e.target.classList.remove("dragging")
+    })
+
+    $("textarea").on("dragstart", (e) => {
+      console.log(e.type)
+    })
+    $("textarea").on("dragend", (e) => {
+      console.log(e.type)
+    })
+    $("textarea").on("dragover", (e) => {
+      console.log(e.type)
+    })
+  })
+</script>
