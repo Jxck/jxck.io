@@ -5,7 +5,6 @@ import { readFileSync, statSync } from "fs"
 import { promisify } from "util"
 import { render } from "ejs"
 import { exec } from "child_process"
-// import { glob } from "glob"
 import { glob } from "node:fs/promises"
 
 import {
