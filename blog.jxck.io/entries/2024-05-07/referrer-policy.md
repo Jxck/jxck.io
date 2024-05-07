@@ -4,7 +4,7 @@
 
 `Referrer-Policy` は、送信される `Referer` の値を制御することが可能だ。
 
-このヘッダの副次的な効果をよく理解していないと、「`no-referer` にして送らないのが最も安全だ」という誤解を生むことになる。
+このヘッダの副次的な効果をよく理解していないと、「`no-referrer` にして送らないのが最も安全だ」という誤解を生むことになる。
 
 では、複数あるポリシーの中でどのような観点で、どのディレクティブを採用するのが良いのだろうか?
 
@@ -97,9 +97,9 @@ Cookie: ${login-cookie}
 では本当にそうだろうか?
 
 
-## no-referer の副作用
+## no-referrer の副作用
 
-`Referrer-Policy: no-referer` は、それを付与することでブラウザが一切の Referer を送らなくなる。つまり、遷移先に対して遷移元の URL が何であったかは、全て送られなくなるのだ。それが Same Origin、つまり今アクセスしているサイトであってもだ。
+`Referrer-Policy: no-referrer` は、それを付与することでブラウザが一切の Referer を送らなくなる。つまり、遷移先に対して遷移元の URL が何であったかは、全て送られなくなるのだ。それが Same Origin、つまり今アクセスしているサイトであってもだ。
 
 従って、社内システムなどにはこれを付与し、 URL の情報が外に漏れないように設定している人もいるだろう。
 
@@ -111,20 +111,20 @@ To append a request `Origin` header, given a request request, run these steps:
 1. Let serializedOrigin be the result of byte-serializing a request origin with request.
 2. If request's response tainting is "cors" or request's mode is "websocket", then append (`Origin`, serializedOrigin) to request's header list.
 3. Otherwise, if request's method is neither `GET` nor `HEAD`, then:
-  1. If request's mode is not "cors", then switch on request's Referer policy:
-    - "no-referer": Set serializedOrigin to `null`.
-    - "no-referer-when-downgrade"
+  1. If request's mode is not "cors", then switch on request's Referrer policy:
+    - "no-referrer": Set serializedOrigin to `null`.
+    - "no-referrer-when-downgrade"
     - "strict-origin"
     - "strict-origin-when-cross-origin": If request's origin is a tuple origin, its scheme is "https", and request's current URL's scheme is not "https", then set serializedOrigin to `null`.
     - "same-origin": If request's origin is not same origin with request's current URL's origin, then set serializedOrigin to `null`.
     - Otherwise: Do nothing.
 
-Note: A request's Referer policy is taken into account for all fetches where the fetcher did not explicitly opt into sharing their origin with the server, e.g., via using the CORS protocol.
+Note: A request's Referrer policy is taken into account for all fetches where the fetcher did not explicitly opt into sharing their origin with the server, e.g., via using the CORS protocol.
 
 --- https://fetch.spec.whatwg.org/#append-a-request-origin-header
 ```
 
-つまり、 CORS のように明示的に Origin を確認させる場合はそちらを優先するが、「CORS ではない」かつ「GET/HEAD でない」場合は、 `Referrer-Policy: no-referer` を受けていた場合、 `Origin: null` になってしまう。これは、 「Referer を送らない」と設定しているのに、同等の情報が Origin ヘッダで送られては意味がないからだ。
+つまり、 CORS のように明示的に Origin を確認させる場合はそちらを優先するが、「CORS ではない」かつ「GET/HEAD でない」場合は、 `Referrer-Policy: no-referrer` を受けていた場合、 `Origin: null` になってしまう。これは、 「Referer を送らない」と設定しているのに、同等の情報が Origin ヘッダで送られては意味がないからだ。
 
 これは、いわゆる別サイトに出ていくリクエストだけでなく、同じサイト内でも送られなくなるため、 form の POST ようなケースで Origin ヘッダが `null` になってしまい、同じサイトからのリクエストなのにその事実をサービスが確認できなくなるのだ。
 
@@ -170,17 +170,17 @@ HTTP/1.1 の RFC が更新された際に、 Referer の節には以下のよう
 
 しかし、特に最後の一行にあるように、 Same Origin でのリクエストであれば、サーバは Referer が無くてもユーザがどのページからどのページに遷移しているかを知るのは容易だ。つまり、わざわざ Referer を落とすことのメリットはない。外部に送るリスクはわかるが、同一サイトで送ることにリスクを感じるのは、見積もり方として間違っていると言える。
 
-従って、 `no-referer` にすることで `Referer` ヘッダを Same Origin にすら送らず、あまつさえ、セキュリティ対策のために Web プラットフォームがが時間をかけて手に入れた `Origin` ヘッダを `null` にしてしまい、「リクエストの出自が検証できなくなる == 外からの工作されたリクエストではないと検査できない」という状態になるのは、セキュリティの面から見ると必ずしもプラスとは言えないのだ。
+従って、 `no-referrer` にすることで `Referer` ヘッダを Same Origin にすら送らず、あまつさえ、セキュリティ対策のために Web プラットフォームがが時間をかけて手に入れた `Origin` ヘッダを `null` にしてしまい、「リクエストの出自が検証できなくなる == 外からの工作されたリクエストではないと検査できない」という状態になるのは、セキュリティの面から見ると必ずしもプラスとは言えないのだ。
 
-では、 `Referer-Policy` は何を選べばいいのだろうか?
+では、 `Referrer-Policy` は何を選べばいいのだろうか?
 
 
 ## Referrer-Policy 値の選定
 
 以上を踏まえて `Referrer-Policy` のディレクティブを確認してみよう。
 
-- no-referer
-- no-referer-when-downgrade
+- no-referrer
+- no-referrer-when-downgrade
 - origin
 - origin-when-cross-origin
 - same-origin
@@ -203,10 +203,10 @@ HTTP/1.1 の RFC が更新された際に、 Referer の節には以下のよう
 
 その上で 「*Cross Origin への送信*」をどうするかだけを比較すると、候補は以下に絞られる。
 
-- no-referer
+- no-referrer
   - 常に送らない
   - Origin ヘッダも `null` にする
-- no-referer-when-downgrade
+- no-referrer-when-downgrade
   - 常に Path を送る
   - downgrade では送らない
 - strict-origin-when-cross-origin
@@ -216,14 +216,14 @@ HTTP/1.1 の RFC が更新された際に、 Referer の節には以下のよう
 - same-origin
   - Same Origin の時だけ Path
 
-従来、ブラウザのデフォルトは `no-referer-when-downgrade` だった。しかし、 Cross Origin にも Full Path を送るのはエントロピーが高くトラッキングベクタにもなり得る。一方で、完全に送らなければ、出自チェックに使えなくなる。そこで、従来の Web における「外部への情報提供」と「自サイト内での出自検証」を両立しつつ、前者には Origin だけ、後者には Full Path を送るという最もバランスが取れた設定として、 `strict-origin-when-cross-origin` を新しくブラウザのデフォルトにする流れがあった。 2018 年ごろからはじまり、 2020 年ごろにはだいたいデフォルトの移行が終わっている。
+従来、ブラウザのデフォルトは `no-referrer-when-downgrade` だった。しかし、 Cross Origin にも Full Path を送るのはエントロピーが高くトラッキングベクタにもなり得る。一方で、完全に送らなければ、出自チェックに使えなくなる。そこで、従来の Web における「外部への情報提供」と「自サイト内での出自検証」を両立しつつ、前者には Origin だけ、後者には Full Path を送るという最もバランスが取れた設定として、 `strict-origin-when-cross-origin` を新しくブラウザのデフォルトにする流れがあった。 2018 年ごろからはじまり、 2020 年ごろにはだいたいデフォルトの移行が終わっている。
 
 - A new default Referrer-Policy for Chrome - strict-origin-when-cross-origin  |  Blog  |  Chrome for Developers
   - https://developer.chrome.com/blog/referrer-policy-new-chrome-default
 
 したがって、多くのサイトにとっては、このデフォルトの値が十分にバランスが取れ、互換性の面でも問題を起こしにくい値となっていることがわかる。
 
-その上で、もし「Origin であっても外部に漏洩させたくない」という、企業内サイトなどであれば、選択すべきは `no-referer` ではなく `same-origin` と考えるべきだろう。これであれば、外に情報は出ず、内部でのリクエストはきっちりと出自の確認ができる。 Origin も `null` にはならない。
+その上で、もし「Origin であっても外部に漏洩させたくない」という、企業内サイトなどであれば、選択すべきは `no-referrer` ではなく `same-origin` と考えるべきだろう。これであれば、外に情報は出ず、内部でのリクエストはきっちりと出自の確認ができる。 Origin も `null` にはならない。
 
 まとめると、 2 択だ。
 
@@ -234,7 +234,7 @@ HTTP/1.1 の RFC が更新された際に、 Referer の節には以下のよう
 
 また、 1 はモダンブラウザでならデフォルトだ。 Private Gist や Google Docs など「URL を知っている人のみアクセス可能」のアクセス制御も、多くは `strict-origin-when-cross-origin` を使っている。
 
-デフォルトではないブラウザが意識されるケースのために、明示するプラクティスもまだ残っているが、 IE はどちらにせよ `Referer-Policy` 自体に対応していない。 `Referer-Policy` に対応したモダンブラウザでかつ、デフォルトが `no-referer-when-downgrade` だったくらい古いバージョンのために明示したところで、そうしたブラウザの利用自体がリスクであるため、今日において `strict-origin-when-cross-origin` の明示が必須だとは筆者は考えてない。
+デフォルトではないブラウザが意識されるケースのために、明示するプラクティスもまだ残っているが、 IE はどちらにせよ `Referrer-Policy` 自体に対応していない。 `Referrer-Policy` に対応したモダンブラウザでかつ、デフォルトが `no-referrer-when-downgrade` だったくらい古いバージョンのために明示したところで、そうしたブラウザの利用自体がリスクであるため、今日において `strict-origin-when-cross-origin` の明示が必須だとは筆者は考えてない。
 
 (なお、 QPACK の static table にも無いので、 QUIC でもそのまま 48byte の追加データになる)
 
