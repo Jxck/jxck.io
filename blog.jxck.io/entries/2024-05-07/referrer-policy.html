@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-05-07/referrer-policy.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Referrer-Policy は、送信される Referer の値を制御することが可能だ。このヘッダの副次的な効果をよく理解していないと、「no-referer にして送らないのが最も安全だ」という誤解を生むことになる。では、複数あるポリシーの中でどのような観点で、どのデ...">
+  <meta name=keywords            content="referer,security">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-05-07/referrer-policy.html>
+  <meta property=og:title        content="Referrer-Policy の制限を強めると安全になるという誤解 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Referrer-Policy は、送信される Referer の値を制御することが可能だ。このヘッダの副次的な効果をよく理解していないと、「no-referer にして送らないのが最も安全だ」という誤解を生むことになる。では、複数あるポリシーの中でどのような観点で、どのデ...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Referrer-Policy の制限を強めると安全になるという誤解 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-05-07T08:00:00+08:00",
+    "dateModified": "2024-05-07T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Referrer-Policy は、送信される Referer の値を制御することが可能だ。このヘッダの副次的な効果をよく理解していないと、「no-referer にして送らないのが最も安全だ」という誤解を生むことになる。では、複数あるポリシーの中でどのような観点で、どのデ..."
+  }
+  </script>
+
+  <title>Referrer-Policy の制限を強めると安全になるという誤解 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240502_021319>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-05-07>2024-05-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-07>2024-05-07</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#referer">referer</a>
+              <li><a href="/tags#security">security</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#referer-とアナリティクス">Referer とアナリティクス</a>
+                <li><a href="#referer-による情報漏洩">Referer による情報漏洩</a>
+                <li><a href="#referer-によるプライバシーのリスク">Referer によるプライバシーのリスク</a>
+                <li><a href="#referrer-policy">Referrer-Policy</a>
+                <li><a href="#no-referer-の副作用">no-referer の副作用</a>
+                <li><a href="#rfc-7231-における-referer-の扱い">RFC 7231 における Referer の扱い</a>
+                <li><a href="#referrer-policy-値の選定">Referrer-Policy 値の選定</a>
+                <li><a href="#outro">Outro</a>
+                <li><a href="#ack">Ack</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Referrer-Policy の制限を強めると安全になるという誤解</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p><code translate=no>Referrer-Policy</code> は、送信される <code translate=no>Referer</code> の値を制御することが可能だ。
+        <p>このヘッダの副次的な効果をよく理解していないと、「<code translate=no>no-referer</code> にして送らないのが最も安全だ」という誤解を生むことになる。
+        <p>では、複数あるポリシーの中でどのような観点で、どのディレクティブを採用するのが良いのだろうか?
+        <p>前提として前回の記事の「<em>リクエストの出自をチェックすることは現代の実装のベースプラクティスである</em>」という点を踏まえて考えてみる。
+        <ul>
+          <li>
+            令和時代の API 実装のベースプラクティスと CSRF 対策 | blog.jxck.io
+            <ul>
+              <li><a href="https://blog.jxck.io/entries/2024-04-26/csrf.html">https://blog.jxck.io/entries/2024-04-26/csrf.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="referer-とアナリティクス"><a href="#referer-とアナリティクス">Referer とアナリティクス</a></h2>
+        <p>Referer は、リクエストに対してその前のページの URL を送るところから始まった。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
+Host: example.com
+Content-Type: text/html
+Referer: https://blog.jxck.io/entries/2099-12-12/referer.html</code></pre>
+        <p>この情報によって、 example.com はユーザが blog.jxck.io の記事から遷移してきたことがわかる。
+        <p>これが検索エンジンの URL であれば、検索からの流入であることがわかり、 SNS であれば拡散されたポストからであることもわかる。
+        <p>従って、多くの場合 Referer はマーケティング用途が想像されやすく、実際アナリティクスなどはこの情報を重要視している。
+      </section>
+      <section>
+        <h2 id="referer-による情報漏洩"><a href="#referer-による情報漏洩">Referer による情報漏洩</a></h2>
+        <p>例えば、ユーザが VPN などでアクセスする社内サイトから遷移した場合も、ブラウザは自分が VPN 以下にいることなど知らないため、 Referer に社内サイトの URL が付与されることになる。
+        <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
+Host: example.com
+Content-Type: text/html
+Referer: https://wiki.company.example/secret/new-product.html</code></pre>
+        <p>URL は雄弁であるため、そこから読み取れる情報は決して少なくない。特に新製品の名前がパスやサブドメインに使われれば、未公開の情報が推測できるかもしれない。
+        <p>もし社内の Issue Tracker が、タイトルの内容をそのまま URL に入れるタイプのものであれば、まるっと脆弱性情報が漏洩する可能性もある。
+        <pre><code translate=no>GET / HTTP/1.1
+Host: blog.jxck.io
+Content-Type: text/html
+Referer: https://issues.company.example/bugs/csrf-reported-on-admin-page.html</code></pre>
+        <p>社外からの接続をきっちりブロックしていても、 Referer は社員のブラウザを経由して送られていくため、意図しない漏洩に繋がる可能性があるのだ。
+        <p>また、「URL を知っている人のみ見られる」系のアクセス制御も、その URL のフルパスが Referer で飛んでしまうと、意図した制御として使えないことにもなる。
+      </section>
+      <section>
+        <h2 id="referer-によるプライバシーのリスク"><a href="#referer-によるプライバシーのリスク">Referer によるプライバシーのリスク</a></h2>
+        <p>例えば、 EC サイトに書かれたレビューのリンクから、ログイン済みの SNS に遷移したとしよう。
+        <pre><code translate=no>GET / HTTP/1.1
+Host: sns.example
+Content-Type: text/html
+Referer: https://ec.example/product/0230596283
+Cookie: ${login-cookie}</code></pre>
+        <p>この場合、 SNS サイトはユーザの情報を持っているため、追加でユーザが何に興味を持っているのかを知ることができる。
+        <p>この構造は、送信元/送信先サイトの組み合わせによってリスクが多様化する。趣味趣向、政治宗教感、疾病障害などのセンシティブな情報の漏洩リスクもゼロではない。
+        <p>このため、個人のレベルでも Referer を送らないような設定を行うユーザもおり、特にブラウザに Private Mode が搭載されるようになる前は、プライバシーリテラシーが高いユーザは拡張などで Referer を落としていた。
+      </section>
+      <section>
+        <h2 id="referrer-policy"><a href="#referrer-policy">Referrer-Policy</a></h2>
+        <p>デフォルトであった Referer の送信を制御するために、 Referrer-Policy が整備された。
+        <p>ポリシーの観点は「送信対象」と「情報の粒度」だ。基本的には 3 つの観点がある。
+        <ul>
+          <li>送る情報は Full Path か Origin か
+          <li>別 Origin に送るか
+          <li>HTTP (平文通信)に送るか
+        </ul>
+        <p>さて、前述のようなリスクを考えると、多くの人はこう考えるだろう。
+        <blockquote>
+          <p>Referer は一切送らないのがセキュリティ上のプラクティスだ。つまり必ず <code translate=no>no-referrer</code> を設定すべきだ。
+        </blockquote>
+        <p>いわゆるセキュリティ専門家のような人も、それを推奨している場合がある。
+        <p>では本当にそうだろうか?
+      </section>
+      <section>
+        <h2 id="no-referer-の副作用"><a href="#no-referer-の副作用">no-referer の副作用</a></h2>
+        <p><code translate=no>Referrer-Policy: no-referer</code> は、それを付与することでブラウザが一切の Referer を送らなくなる。つまり、遷移先に対して遷移元の URL が何であったかは、全て送られなくなるのだ。それが Same Origin、つまり今アクセスしているサイトであってもだ。
+        <p>従って、社内システムなどにはこれを付与し、 URL の情報が外に漏れないように設定している人もいるだろう。
+        <p>しかし、このディレクティブには副作用がある。
+        <pre><code translate=no>To append a request `Origin` header, given a request request, run these steps:
+
+1. Let serializedOrigin be the result of byte-serializing a request origin with request.
+2. If request&apos;s response tainting is &quot;cors&quot; or request&apos;s mode is &quot;websocket&quot;, then append (`Origin`, serializedOrigin) to request&apos;s header list.
+3. Otherwise, if request&apos;s method is neither `GET` nor `HEAD`, then:
+  1. If request&apos;s mode is not &quot;cors&quot;, then switch on request&apos;s Referer policy:
+    - &quot;no-referer&quot;: Set serializedOrigin to `null`.
+    - &quot;no-referer-when-downgrade&quot;
+    - &quot;strict-origin&quot;
+    - &quot;strict-origin-when-cross-origin&quot;: If request&apos;s origin is a tuple origin, its scheme is &quot;https&quot;, and request&apos;s current URL&apos;s scheme is not &quot;https&quot;, then set serializedOrigin to `null`.
+    - &quot;same-origin&quot;: If request&apos;s origin is not same origin with request&apos;s current URL&apos;s origin, then set serializedOrigin to `null`.
+    - Otherwise: Do nothing.
+
+Note: A request&apos;s Referer policy is taken into account for all fetches where the fetcher did not explicitly opt into sharing their origin with the server, e.g., via using the CORS protocol.
+
+--- https://fetch.spec.whatwg.org/#append-a-request-origin-header</code></pre>
+        <p>つまり、 CORS のように明示的に Origin を確認させる場合はそちらを優先するが、「CORS ではない」かつ「GET/HEAD でない」場合は、 <code translate=no>Referrer-Policy: no-referer</code> を受けていた場合、 <code translate=no>Origin: null</code> になってしまう。これは、 「Referer を送らない」と設定しているのに、同等の情報が Origin ヘッダで送られては意味がないからだ。
+        <p>これは、いわゆる別サイトに出ていくリクエストだけでなく、同じサイト内でも送られなくなるため、 form の POST ようなケースで Origin ヘッダが <code translate=no>null</code> になってしまい、同じサイトからのリクエストなのにその事実をサービスが確認できなくなるのだ。
+        <pre class=http data-code=http><code translate=no class=language-http>POST /post HTTP/1.1
+Host: example.com
+Origin: null
+Content-Type: application/x-www-form-urlencoded
+# Referer 無し
+
+body=こんにちはこんにちは</code></pre>
+        <p>近年は <code translate=no>fetch()</code> でのリクエストが一般的で、それ以外のリクエストは減ってきてはいる。であれば、 <code translate=no>Origin: null</code> も含めて全部落としてしまえばどちらにせよ安全である、と思うかもしれない。
+        <p>一方で、 Progressive Enhancement として生の form によるリクエスト「も」使えるようにする場合もある。そうでなくても、例えばレガシーなアプリを Origin を検査する簡単なミドルウェアや WAF/CDN 相当のレイヤ追加だけで格段に安全にできるはずのものを、「Referer は送らない方が安全」によって毀損する結果になるのだ。
+      </section>
+      <section>
+        <h2 id="rfc-7231-における-referer-の扱い"><a href="#rfc-7231-における-referer-の扱い">RFC 7231 における Referer の扱い</a></h2>
+        <p>そもそも、「<em>送らない方が安全</em>」というのは「<em>どこに対して</em>」だろうか?
+        <p>HTTP/1.1 の RFC が更新された際に、 Referer の節には以下のような注意書きが追加された。
+        <blockquote cite="https://www.rfc-editor.org/rfc/rfc7231.html#section-5.5.2">
+          <p>Some intermediaries have been known to indiscriminately remove Referer header fields from outgoing requests.
+          <p>This has the unfortunate side effect of interfering with protection against CSRF attacks, which can be far more harmful to their users.
+          <p>Intermediaries and user agent extensions that wish to limit information disclosure in Referer ought to restrict their changes to specific edits,
+          <p>such as replacing internal domain names with pseudonyms or truncating the query and/or path components.
+          <p>An intermediary SHOULD NOT modify or delete the Referer header field when the field value shares the same scheme and host as the request target.
+          <p>
+          </p>
+          <p>一部の中継者は、外向けのリクエストから Referer ヘッダを無差別に除去することが知られている。
+          <p>これは CSRF 攻撃に対する保護に干渉するような望ましくない副作用を及ぼし、それは、ユーザにとってはるかに有害となる。
+          <p>Referer 内への情報開示を制限したい中継者/UA 拡張はそれらの変更を、内部ドメイン名を匿名化したり、 query や path を切り落とすなどの、特定の編集に制約するべきである。
+          <p>中継者は、ヘッダがリクエストターゲットと同じ scheme / host であれば、 Referer ヘッダを改変したり削除するべきでない。
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc7231.html#section-5.5.2" target=_blank>https://www.rfc-editor.org/rfc/rfc7231.html#section-5.5.2</a></cite>
+        </blockquote>
+        <p>なんでもかんでも「消せばいい」とは限らないということが、この文章からもわかるだろう。
+        <p>近年は HTTPS が普及したため、 Proxy がヘッダを落とすということは構成的にレアになった。従って消すとすればクライアントの設定や拡張、サービスごとの <code translate=no>Referrer-Policy</code> のデプロイくらいしかない。この記述を無視した拡張やサービスを実装することは、自身が「行儀の良い実装」から逸脱していることを意味すると言っても良いだろう。
+        <p>補足しておくと、本エントリは「CSRF 対策のために Referer を受け取り確認すべきだ」と言っているわけではない。前述の通り、既に Referer を送らないクライアントは多いため、受信側がセキュリティ対策のために依存するうえで的確なヘッダとは言えないからだ。
+        <p>しかし、特に最後の一行にあるように、 Same Origin でのリクエストであれば、サーバは Referer が無くてもユーザがどのページからどのページに遷移しているかを知るのは容易だ。つまり、わざわざ Referer を落とすことのメリットはない。外部に送るリスクはわかるが、同一サイトで送ることにリスクを感じるのは、見積もり方として間違っていると言える。
+        <p>従って、 <code translate=no>no-referer</code> にすることで <code translate=no>Referer</code> ヘッダを Same Origin にすら送らず、あまつさえ、セキュリティ対策のために Web プラットフォームがが時間をかけて手に入れた <code translate=no>Origin</code> ヘッダを <code translate=no>null</code> にしてしまい、「リクエストの出自が検証できなくなる == 外からの工作されたリクエストではないと検査できない」という状態になるのは、セキュリティの面から見ると必ずしもプラスとは言えないのだ。
+        <p>では、 <code translate=no>Referer-Policy</code> は何を選べばいいのだろうか?
+      </section>
+      <section>
+        <h2 id="referrer-policy-値の選定"><a href="#referrer-policy-値の選定">Referrer-Policy 値の選定</a></h2>
+        <p>以上を踏まえて <code translate=no>Referrer-Policy</code> のディレクティブを確認してみよう。
+        <ul>
+          <li>no-referer
+          <li>no-referer-when-downgrade
+          <li>origin
+          <li>origin-when-cross-origin
+          <li>same-origin
+          <li>strict-origin
+          <li>strict-origin-when-cross-origin
+          <li>unsafe-url
+        </ul>
+        <p>全部を覚える必要はない。
+        <p>重要なのは以下の 3 つの観点だ。
+        <ul>
+          <li>送るのは Full Path か Origin か
+          <li>送る対象は Same Origin か Cross Origin か
+          <li>平文 HTTP でも送るか
+        </ul>
+        <p>ここまでの話を適用すると、以下が前提となる。
+        <ul>
+          <li>Same Origin なら Path が送られても問題はない
+          <li>平文 HTTP では送るべきではない
+        </ul>
+        <p>その上で 「<em>Cross Origin への送信</em>」をどうするかだけを比較すると、候補は以下に絞られる。
+        <ul>
+          <li>
+            no-referer
+            <ul>
+              <li>常に送らない
+              <li>Origin ヘッダも <code translate=no>null</code> にする
+            </ul>
+          </li>
+          <li>
+            no-referer-when-downgrade
+            <ul>
+              <li>常に Path を送る
+              <li>downgrade では送らない
+            </ul>
+          </li>
+          <li>
+            strict-origin-when-cross-origin
+            <ul>
+              <li>Same Origin の時は Path
+              <li>Cross Origin の時は Origin
+              <li>downgrade では送らない
+            </ul>
+          </li>
+          <li>
+            same-origin
+            <ul>
+              <li>Same Origin の時だけ Path
+            </ul>
+          </li>
+        </ul>
+        <p>従来、ブラウザのデフォルトは <code translate=no>no-referer-when-downgrade</code> だった。しかし、 Cross Origin にも Full Path を送るのはエントロピーが高くトラッキングベクタにもなり得る。一方で、完全に送らなければ、出自チェックに使えなくなる。そこで、従来の Web における「外部への情報提供」と「自サイト内での出自検証」を両立しつつ、前者には Origin だけ、後者には Full Path を送るという最もバランスが取れた設定として、 <code translate=no>strict-origin-when-cross-origin</code> を新しくブラウザのデフォルトにする流れがあった。 2018 年ごろからはじまり、 2020 年ごろにはだいたいデフォルトの移行が終わっている。
+        <ul>
+          <li>
+            A new default Referrer-Policy for Chrome - strict-origin-when-cross-origin  |  Blog  |  Chrome for Developers
+            <ul>
+              <li><a href="https://developer.chrome.com/blog/referrer-policy-new-chrome-default" target=_blank>https://developer.chrome.com/blog/referrer-policy-new-chrome-default</a>
+            </ul>
+          </li>
+        </ul>
+        <p>したがって、多くのサイトにとっては、このデフォルトの値が十分にバランスが取れ、互換性の面でも問題を起こしにくい値となっていることがわかる。
+        <p>その上で、もし「Origin であっても外部に漏洩させたくない」という、企業内サイトなどであれば、選択すべきは <code translate=no>no-referer</code> ではなく <code translate=no>same-origin</code> と考えるべきだろう。これであれば、外に情報は出ず、内部でのリクエストはきっちりと出自の確認ができる。 Origin も <code translate=no>null</code> にはならない。
+        <p>まとめると、 2 択だ。
+        <ol>
+          <li>外部に Origin が送られるのは許容するなら <code translate=no>strict-origin-when-cross-origin</code>
+          <li>外部に Origin が送られるのも許容できないなら <code translate=no>same-origin</code>
+        </ol>
+        <p>他のディレクティブは互換性などのために仕様に起こされているだけで、「Referer が Path ごと送られることに依存し、それをチェックする実装」でも残ってない限り、特に明示する理由はないだろう。
+        <p>また、 1 はモダンブラウザでならデフォルトだ。 Private Gist や Google Docs など「URL を知っている人のみアクセス可能」のアクセス制御も、多くは <code translate=no>strict-origin-when-cross-origin</code> を使っている。
+        <p>デフォルトではないブラウザが意識されるケースのために、明示するプラクティスもまだ残っているが、 IE はどちらにせよ <code translate=no>Referer-Policy</code> 自体に対応していない。 <code translate=no>Referer-Policy</code> に対応したモダンブラウザでかつ、デフォルトが <code translate=no>no-referer-when-downgrade</code> だったくらい古いバージョンのために明示したところで、そうしたブラウザの利用自体がリスクであるため、今日において <code translate=no>strict-origin-when-cross-origin</code> の明示が必須だとは筆者は考えてない。
+        <p>(なお、 QPACK の static table にも無いので、 QUIC でもそのまま 48byte の追加データになる)
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>Referer や Origin は、その歴史的な経緯も、重要度も、時代に応じたセキュリティやプライバシーの扱いも含め、 Web プラットフォームにとって非常に重要な要素だ。
+        <p>だからこそ、 Web プラットフォームは長い時間をかけて、互換性、実装差異、リアルワールドでの使われ方、最新のプラクティスなどを踏まえ、仕様を整備し、それを「ブラウザのデフォルト」にし、適切な追加仕様を策定してきた。
+        <p>そこをすっ飛ばして「とにかく Referer は送らないのが安全だから、 <code translate=no>no-referrer</code> がベストプラクティスだ」と考えるのは、こうした背景が分かってない典型的な勘違いだと筆者は考えている。
+        <p>しかし、セキュリティ専門家による記事の推奨をみると、おそらく今回のような内容と違い「<code translate=no>no-referrer</code> を設定すべき」と書かれているものも多いだろう。
+        <p>筆者はセキュリティ専門家ではないので、判断は各自に委ねたい。
+      </section>
+      <section>
+        <h2 id="ack"><a href="#ack">Ack</a></h2>
+        <p>この記事は <a href="https://twitter.com/shhnjk" target=_blank>@shhnjk</a> さんにレビューしていただきました。ありがとうございました。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
