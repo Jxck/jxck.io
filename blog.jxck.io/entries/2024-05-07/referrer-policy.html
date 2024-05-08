@@ -282,7 +282,7 @@ body=こんにちはこんにちは</code></pre>
         <p>補足しておくと、本エントリは「CSRF 対策のために Referer を受け取り確認すべきだ」と言っているわけではない。前述の通り、既に Referer を送らないクライアントは多いため、受信側がセキュリティ対策のために依存するうえで的確なヘッダとは言えないからだ。
         <p>しかし、特に最後の一行にあるように、 Same Origin でのリクエストであれば、サーバは Referer が無くてもユーザがどのページからどのページに遷移しているかを知るのは容易だ。つまり、わざわざ Referer を落とすことのメリットはない。外部に送るリスクはわかるが、同一サイトで送ることにリスクを感じるのは、見積もり方として間違っていると言える。
         <p>従って、 <code translate=no>no-referrer</code> にすることで <code translate=no>Referer</code> ヘッダを Same Origin にすら送らず、あまつさえ、セキュリティ対策のために Web プラットフォームがが時間をかけて手に入れた <code translate=no>Origin</code> ヘッダを <code translate=no>null</code> にしてしまい、「リクエストの出自が検証できなくなる == 外からの工作されたリクエストではないと検査できない」という状態になるのは、セキュリティの面から見ると必ずしもプラスとは言えないのだ。
-        <p>では、 <code translate=no>Referer-Policy</code> は何を選べばいいのだろうか?
+        <p>では、 <code translate=no>Referrer-Policy</code> は何を選べばいいのだろうか?
       </section>
       <section>
         <h2 id="referrer-policy-値の選定"><a href="#referrer-policy-値の選定">Referrer-Policy 値の選定</a></h2>
@@ -358,7 +358,7 @@ body=こんにちはこんにちは</code></pre>
         </ol>
         <p>他のディレクティブは互換性などのために仕様に起こされているだけで、「Referer が Path ごと送られることに依存し、それをチェックする実装」でも残ってない限り、特に明示する理由はないだろう。
         <p>また、 1 はモダンブラウザでならデフォルトだ。 Private Gist や Google Docs など「URL を知っている人のみアクセス可能」のアクセス制御も、多くは <code translate=no>strict-origin-when-cross-origin</code> を使っている。
-        <p>デフォルトではないブラウザが意識されるケースのために、明示するプラクティスもまだ残っているが、 IE はどちらにせよ <code translate=no>Referer-Policy</code> 自体に対応していない。 <code translate=no>Referer-Policy</code> に対応したモダンブラウザでかつ、デフォルトが <code translate=no>no-referrer-when-downgrade</code> だったくらい古いバージョンのために明示したところで、そうしたブラウザの利用自体がリスクであるため、今日において <code translate=no>strict-origin-when-cross-origin</code> の明示が必須だとは筆者は考えてない。
+        <p>デフォルトではないブラウザが意識されるケースのために、明示するプラクティスもまだ残っているが、 IE はどちらにせよ <code translate=no>Referrer-Policy</code> 自体に対応していない。 <code translate=no>Referrer-Policy</code> に対応したモダンブラウザでかつ、デフォルトが <code translate=no>no-referrer-when-downgrade</code> だったくらい古いバージョンのために明示したところで、そうしたブラウザの利用自体がリスクであるため、今日において <code translate=no>strict-origin-when-cross-origin</code> の明示が必須だとは筆者は考えてない。
         <p>(なお、 QPACK の static table にも無いので、 QUIC でもそのまま 48byte の追加データになる)
       </section>
       <section>
