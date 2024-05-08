@@ -172,7 +172,7 @@ HTTP/1.1 の RFC が更新された際に、 Referer の節には以下のよう
 
 従って、 `no-referrer` にすることで `Referer` ヘッダを Same Origin にすら送らず、あまつさえ、セキュリティ対策のために Web プラットフォームがが時間をかけて手に入れた `Origin` ヘッダを `null` にしてしまい、「リクエストの出自が検証できなくなる == 外からの工作されたリクエストではないと検査できない」という状態になるのは、セキュリティの面から見ると必ずしもプラスとは言えないのだ。
 
-では、 `Referer-Policy` は何を選べばいいのだろうか?
+では、 `Referrer-Policy` は何を選べばいいのだろうか?
 
 
 ## Referrer-Policy 値の選定
@@ -234,7 +234,7 @@ HTTP/1.1 の RFC が更新された際に、 Referer の節には以下のよう
 
 また、 1 はモダンブラウザでならデフォルトだ。 Private Gist や Google Docs など「URL を知っている人のみアクセス可能」のアクセス制御も、多くは `strict-origin-when-cross-origin` を使っている。
 
-デフォルトではないブラウザが意識されるケースのために、明示するプラクティスもまだ残っているが、 IE はどちらにせよ `Referer-Policy` 自体に対応していない。 `Referer-Policy` に対応したモダンブラウザでかつ、デフォルトが `no-referrer-when-downgrade` だったくらい古いバージョンのために明示したところで、そうしたブラウザの利用自体がリスクであるため、今日において `strict-origin-when-cross-origin` の明示が必須だとは筆者は考えてない。
+デフォルトではないブラウザが意識されるケースのために、明示するプラクティスもまだ残っているが、 IE はどちらにせよ `Referrer-Policy` 自体に対応していない。 `Referrer-Policy` に対応したモダンブラウザでかつ、デフォルトが `no-referrer-when-downgrade` だったくらい古いバージョンのために明示したところで、そうしたブラウザの利用自体がリスクであるため、今日において `strict-origin-when-cross-origin` の明示が必須だとは筆者は考えてない。
 
 (なお、 QPACK の static table にも無いので、 QUIC でもそのまま 48byte の追加データになる)
 

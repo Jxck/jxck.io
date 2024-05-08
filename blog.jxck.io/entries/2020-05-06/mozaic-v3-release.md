@@ -25,7 +25,7 @@
   - Cross Origin Embedder Policy
   - Expect-CT
   - NEL
-  - Referer Policy
+  - Referrer Policy
 - その他
   - Transpile Less
   - Scroll To Text Fragment Search
@@ -249,7 +249,7 @@ blog.jxck.io の方に Analytics / Ad を入れたため、 3rd Party のコー�
 - Cross Origin Resource Policy
 - Cross Origin Opener Policy
 - Cross Origin Embedder Policy
-- Referer Policy
+- Referrer Policy
 - Document Policy
 - Trusted Types
 
@@ -301,7 +301,7 @@ Site Isolation を固めることで、サイトをより強固に Origin に閉
 全て行っておくことで、今後より高い権限が必要になる強力な機能が入っても、有効にしていける土台になるだろう。
 
 
-### Referer Policy
+### Referrer Policy
 
 Referrer Policy は `no-referrer-when-downgrade` が default とされており、 Cross Origin でも URL 全体が送られる。
 
