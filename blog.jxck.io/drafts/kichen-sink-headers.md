@@ -12,17 +12,19 @@ Cache-Control: no-store, no-cache, max-age=0, must-revalidate, proxy-revalidate
 
 Kichen Sink は、 Cache-Control に限らず様々な場面で行われている。
 
-なぜ、台所には無作為に皿が積み上げられてしまうのだろうか?
+なぜ、台所には無造作に皿が積み上げられてしまうのだろうか?
+
 
 ## Kichen Sink
 
 前述の Cache-Control の例は、仕様上最も制限の強いディレクティブが採用され、それ以外は無視されることになる。
 
-つまり、以下と同等の効果しかない。
+つまり、仕様上は以下と同等の効果しかない。
 
 ```http
 Cache-Control: no-store
 ```
 
 それ以外のディレクティブは全て無駄だ。つまり 56 byte のバラストを送っていることになる。
+
 
