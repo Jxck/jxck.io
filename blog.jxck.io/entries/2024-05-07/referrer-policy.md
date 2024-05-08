@@ -22,10 +22,10 @@ Referer は、リクエストに対してその前のページの URL を送る�
 GET / HTTP/1.1
 Host: example.com
 Content-Type: text/html
-Referer: https://blog.jxck.io/entries/2099-12-12/referer.html
+Referer: https://blog.example/entries/2099-12-12/referer.html
 ```
 
-この情報によって、 example.com はユーザが blog.jxck.io の記事から遷移してきたことがわかる。
+この情報によって、 example.com はユーザが blog.example の記事から遷移してきたことがわかる。
 
 これが検索エンジンの URL であれば、検索からの流入であることがわかり、 SNS であれば拡散されたポストからであることもわかる。
 
