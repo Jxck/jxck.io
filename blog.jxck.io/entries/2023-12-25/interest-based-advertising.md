@@ -50,19 +50,19 @@ Cohort の値はわかるが、別にそこから「この人はどういうサ�
 
 FLoC の改善版として登場したのが Topics だ。
 
-Topics は、ハッシュの代わりに事前に定義された 350 個の分類(Taxonomy) が返る API になった。分類は以下に定義されている(今後拡張する可能性もあるらしい)。
+Topics は、ハッシュの代わりに事前に定義された 350 個の分類(Taxonomy) が返る API となった。分類は以下に定義されている(今後拡張する可能性もあるらしい)。
 
 - topics/taxonomy_v1.md at main · patcg-individual-drafts/topics
   - https://github.com/patcg-individual-drafts/topics/blob/main/taxonomy_v1.md
 
 毎週履歴を集計し、この値を計算して、その中から 3 つを返す API だ。
 
-あらゆる履歴が対象となるわけではなく、一週間でリセットされ、返る値にはノイズを混ぜ、さらに値を人間が見てわかるようにし、かつエントロピーを下げて Fingerpriting ベクタにならないように調整した結果であることが強調されている。
+あらゆる履歴が対象となるわけではなく、一週間でリセットされ、返る値にはノイズを混ぜ、さらに値を人間が見てわかるようにし、かつエントロピーを下げて Fingerprinting ベクタにならないように調整した結果であることが強調されている。
 
 - patcg-individual-drafts/topics: The Topics API
   - https://github.com/patcg-individual-drafts/topics
 
-API は Privacy Sandbox の中で一番単純なものだ。
+API は Privacy Sandbox の中で最も単純なものだ。
 
 ```js
 await document.browsingTopics()
