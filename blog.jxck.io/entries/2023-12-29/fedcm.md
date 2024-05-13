@@ -90,7 +90,7 @@ FedCM は `<iframe>` の中からも呼び出すことができる。
 
 コメントは珍しく長いので引用は割愛する。
 
-次に Webkit だが、まだポジションは決まってない。 FedCM に関する複数のポジションリクエストはあるが、態度を保留している。
+次に Webkit だが、まだポジションは決まっていない。 FedCM に関する複数のポジションリクエストはあるが、態度を保留している。
 
 - Webkit: N/A
   - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+fedcm
