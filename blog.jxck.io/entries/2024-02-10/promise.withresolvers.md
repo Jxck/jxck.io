@@ -50,7 +50,7 @@ async function request() {
   document.querySelector("button").addEventListener("click", async () => {
     try {
       const res = await fetch("/")
-      const body = res.text()
+      const body = await res.text()
       resolve(body)
     } catch (err) {
       reject(err)
@@ -91,7 +91,7 @@ async function request() {
   document.querySelector("button").addEventListener("click", async () => {
     try {
       const res = await fetch("/")
-      const body = res.text()
+      const body = await res.text()
       resolve(body)
     } catch (err) {
       reject(err)
@@ -127,8 +127,7 @@ async function readFile(file: File) {
 
 イベントのハンドリングを Promise でラップして返すパターンは一般的であるため、今後このような処理を書く際に導入を検討できるだろう。
 
-また、同等の Utility を用いてる場合は、置き換えを検討できる。
-
+また、同等の Utility を用いている場合は、置き換えを検討できる。
 
 ## DEMO
 
