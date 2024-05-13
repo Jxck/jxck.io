@@ -88,7 +88,7 @@ POST /post HTTP/1.1
 Host: sns.example
 Content-Type: application/x-www-form-urlencoded
 Origin: attack.example
-Cookie:deadbeef
+Cookie: deadbeef
 
 body=こんにちはこんにちは
 ```
@@ -98,7 +98,7 @@ Origin ヘッダの値に着目すれば、これが少なくとも sns.example 
 ```js
 app.post("/post", session(), (req, res) => {
   if (req.headers.origin !== "https://sns.example") {
-    return res.send(400)
+    return res.sendStatus(400);
   }
   // ...
 })
