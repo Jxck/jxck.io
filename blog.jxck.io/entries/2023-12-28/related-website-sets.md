@@ -43,12 +43,12 @@
 
 ## Related Website Sets
 
-もともとは First Party Sets と呼ばれ、名前が変わったのが Related Website Sets だ。
+もともとは First Party Sets と呼ばれていたが、名前が変わり Related Website Sets となった。
 
 - WICG/first-party-sets
   - https://github.com/WICG/first-party-sets
 
-これは、「このドメインに、このドメインが関連している」という情報を、 JSON で定義する。
+これは、「このドメインは、これらのドメインと関連している」という情報を JSON で定義するものである。
 
 ```js
 {
@@ -92,7 +92,7 @@ document.requestStorageAccessFor("https://cdn.example.com")
 
 ## Standard Position
 
-Firefox, Safari 共に First Party Sets 時代から反対している。
+Firefox, Safari は共に First Party Sets の時代から反対している。
 
 - Mozilla: Negative
   - https://mozilla.github.io/standards-positions/#first-party-sets
@@ -108,7 +108,7 @@ Firefox, Safari 共に First Party Sets 時代から反対している。
 > We have already implemented partitioning of state and storage by top-level site.
 > We think that is where the web platform should be.
 
-確かに、多くのドメインを持っているサービスにとって、全ての連携が切れるのは問題だろう。
+確かに、多くのドメインを持つサービスにとって、すべての連携が切れるのは問題だろう。
 
 しかし、それを個別の API に落とし込むならまだしも、完全に迂回できる手段を用意するということは、他のブラウザにとって看過し難いことは容易に想像できる。
 
@@ -120,6 +120,6 @@ PSL は Mozilla 発だが、今はコミュニティ運営されており、非�
 
 それを知っていながら、これと同じ運用を新たに行おうとすること自体が、うまくいくのかは個人的に疑問だ。
 
-また、そのリポジトリが Google Chrome 以下にあり、マージは Google の人間が行なっていることになる。
+また、そのリポジトリが Google Chrome の下にあり、マージは Google の人間が行っていることになる。
 
 一つの組織が独自に審査し、それを特例として認めているとみなされかねないこの JSON の扱いは、これまでの Web の常識からすると、かなり特殊なものと感じられる。
