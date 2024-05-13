@@ -20,7 +20,7 @@
 
 他とは違い、 Chrome だけでなく Safari や Firefox も、これができなくなることは問題だと感じているのだ。
 
-なぜなら、たとえトラッキングがなくても、広告の表示自体はできる。そのサイトの内容に合わせたコンテキスト広告や、タイアップの広告など、広告の選択手段はリターゲティングだけではないからだ。
+なぜなら、たとえトラッキングがなくても、広告の表示自体は可能だ。そのサイトの内容に合わせたコンテキスト広告や、タイアップの広告など、広告の選択手段はリターゲティングだけではないからだ。
 
 せっかく「リターゲティングができなくなったから、コンテンツの質を上げ、そこに合った適切なクリエイティブを表示していこう」というポジティブな方向に舵を切るとしても、計測ができなければ足枷になってしまう。
 
@@ -62,12 +62,12 @@
 
 ### Attribution Reporting API
 
-Privacy Sandbox Family として Google が出したのが Conversion Measurement API であり、今は名前が変わって Attribution Reporting API だ。
+Privacy Sandbox Family の一環として Google が発表したのが Conversion Measurement API であり、現在は名前が変わって Attribution Reporting API となっている。
 
 - WICG/attribution-reporting-api: Attribution Reporting API
   - https://github.com/WICG/attribution-reporting-api/tree/main
 
-Safari との違いは、広告のクリック(Click Throught Conversion)だけでなく表示(View Throught Conversion) もサポートしている点だ。
+Safari との違いは、広告のクリック(Click Through Conversion)だけでなく表示(View Through Conversion)もサポートしている点だ。
 
 Click は `<a>` に、 View は `<img>` に属性を仕込むことになる。
 
@@ -83,11 +83,11 @@ ID も 64bit とかなり大きく、広告一つ一つを識別できるため�
 
 表示やクリックの情報がブラウザに溜まり、遅延をかけて送られるのは Safari と同じだ。ただし、送り先は 3rd Party も指定できる。
 
-また、より詳細なデータを集計結果として必要とするユースケースのために、Private Aggregation API (Summery Report とも言われる)という追加の仕様も提案されている。
+また、より詳細なデータを集計結果として必要とするユースケースのために、Private Aggregation API (Summary Report とも言われる)という追加の仕様も提案されている。
 
 集計は広告プロバイダに依頼するために、ブラウザから情報が送られるが、暗号化され広告プロバイダには中身が読めない。
 
-代わりに、 Protected Audience API の時に解説したのと同じく TEE を用いて、そこにデータを入れると、その中で複合され、集計され、結果が取り出せるというものだ。
+代わりに、 Protected Audience API の時に解説したのと同じく TEE を用いて、そこにデータを入れると、その中で復号され、集計され、結果が取り出せるというものだ。
 
 Safari に比べればかなり色々とできる API であることはわかるだろう。
 
@@ -134,4 +134,4 @@ Standard Position で言えば、もちろんそれぞれが API を提案して
 
 本来広告はトラッキングが前提ではないはずだ。コンテキスト/純広告を出すために、コンテンツの質に注力するメディアが存続するためにも、この分野の発展は重要だろう。
 
-どこにいってもコンプレックス広告が出たり、とにかく全画面で出してクリックを誘ったり、全てのメディアが課金前提になって検索してもなにも辿り着けない Web になることを避けるためにも、測定だけはうまく着地して欲しいとは思う。
+どこに行ってもコンプレックス広告が出たり、とにかく全画面で出してクリックを誘ったり、全てのメディアが課金前提になって検索しても何も辿り着けない Web になることを避けるためにも、測定だけはうまく着地してほしいとは思う。
