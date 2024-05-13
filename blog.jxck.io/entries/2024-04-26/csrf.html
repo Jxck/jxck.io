@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-04-26T08:00:00+08:00",
-    "dateModified": "2024-05-01T08:00:00+08:00",
+    "dateModified": "2024-05-14T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-04-26>2024-04-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-01>2024-05-01</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -210,13 +210,13 @@ body=こんにちはこんにちは</code></pre>
 Host: sns.example
 Content-Type: application/x-www-form-urlencoded
 Origin: attack.example
-Cookie:deadbeef
+Cookie: deadbeef
 
 body=こんにちはこんにちは</code></pre>
         <p>Origin ヘッダの値に着目すれば、これが少なくとも sns.example からではないことは容易に判別できる。つまり、 Cookie があろうとなかろうと、 sns.example は以下のような実装によって「意図しない Origin からのリクエスト」を弾くことができるのだ。
         <pre class=js data-code=js><code translate=no class=language-js>app.post(&quot;/post&quot;, session(), (req, res) =&gt; {
   if (req.headers.origin !== &quot;https://sns.example&quot;) {
-    return res.send(400)
+    return res.sendStatus(400);
   }
   // ...
 })</code></pre>

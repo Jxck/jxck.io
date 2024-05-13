@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-05-07T08:00:00+08:00",
-    "dateModified": "2024-05-08T08:00:00+08:00",
+    "dateModified": "2024-05-14T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-05-07>2024-05-07</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-08>2024-05-08</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -182,12 +182,12 @@ Referer: https://blog.example/entries/2099-12-12/referer.html</code></pre>
       </section>
       <section>
         <h2 id="referer-による情報漏洩"><a href="#referer-による情報漏洩">Referer による情報漏洩</a></h2>
-        <p>例えば、ユーザが VPN などでアクセスする社内サイトから遷移した場合も、ブラウザは自分が VPN 以下にいることなど知らないため、 Referer に社内サイトの URL が付与されることになる。
+        <p>例えば、ユーザが VPN などでアクセスする社内サイトから遷移した場合も、ブラウザは自分が VPN 下にいることなど知らないため、 Referer に社内サイトの URL が付与されることになる。
         <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
 Host: example.com
 Content-Type: text/html
 Referer: https://wiki.company.example/secret/new-product.html</code></pre>
-        <p>URL は雄弁であるため、そこから読み取れる情報は決して少なくない。特に新製品の名前がパスやサブドメインに使われれば、未公開の情報が推測できるかもしれない。
+        <p>URL は雄弁であるため、そこから読み取れる情報は決して少なくない。特に新製品の名前がパスやサブドメインに使われていれば、未公開の情報が推測できるかもしれない。
         <p>もし社内の Issue Tracker が、タイトルの内容をそのまま URL に入れるタイプのものであれば、まるっと脆弱性情報が漏洩する可能性もある。
         <pre><code translate=no>GET / HTTP/1.1
 Host: blog.jxck.io
@@ -255,7 +255,7 @@ Content-Type: application/x-www-form-urlencoded
 
 body=こんにちはこんにちは</code></pre>
         <p>近年は <code translate=no>fetch()</code> でのリクエストが一般的で、それ以外のリクエストは減ってきてはいる。であれば、 <code translate=no>Origin: null</code> も含めて全部落としてしまえばどちらにせよ安全である、と思うかもしれない。
-        <p>一方で、 Progressive Enhancement として生の form によるリクエスト「も」使えるようにする場合もある。そうでなくても、例えばレガシーなアプリを Origin を検査する簡単なミドルウェアや WAF/CDN 相当のレイヤ追加だけで格段に安全にできるはずのものを、「Referer は送らない方が安全」によって毀損する結果になるのだ。
+        <p>一方で、 Progressive Enhancement として生の form によるリクエスト「も」使えるようにする場合もある。そうでなくても、例えばレガシーなアプリを Origin を検査する簡単なミドルウェアや WAF/CDN 相当のレイヤを追加するだけで格段に安全にできるはずのものを、「Referer は送らない方が安全」によって毀損する結果になるのだ。
       </section>
       <section>
         <h2 id="rfc-7231-における-referer-の扱い"><a href="#rfc-7231-における-referer-の扱い">RFC 7231 における Referer の扱い</a></h2>
@@ -365,8 +365,8 @@ body=こんにちはこんにちは</code></pre>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>Referer や Origin は、その歴史的な経緯も、重要度も、時代に応じたセキュリティやプライバシーの扱いも含め、 Web プラットフォームにとって非常に重要な要素だ。
         <p>だからこそ、 Web プラットフォームは長い時間をかけて、互換性、実装差異、リアルワールドでの使われ方、最新のプラクティスなどを踏まえ、仕様を整備し、それを「ブラウザのデフォルト」にし、適切な追加仕様を策定してきた。
-        <p>そこをすっ飛ばして「とにかく Referer は送らないのが安全だから、 <code translate=no>no-referrer</code> がベストプラクティスだ」と考えるのは、こうした背景が分かってない典型的な勘違いだと筆者は考えている。
-        <p>しかし、セキュリティ専門家による記事の推奨をみると、おそらく今回のような内容と違い「<code translate=no>no-referrer</code> を設定すべき」と書かれているものも多いだろう。
+        <p>そこをすっ飛ばして「とにかく Referer は送らないのが安全だから、<code translate=no>no-referrer</code> がベストプラクティスだ」と考えるのは、こうした背景が分かっていない典型的な勘違いであると筆者は考えている。
+        <p>しかし、セキュリティ専門家による記事の推奨を見ると、おそらく今回のような内容と違い「<code translate=no>no-referrer</code> を設定すべき」と書かれているものも多いだろう。
         <p>筆者はセキュリティ専門家ではないので、判断は各自に委ねたい。
       </section>
       <section>

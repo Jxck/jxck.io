@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-28T08:00:00+08:00",
-    "dateModified": "2024-03-09T08:00:00+08:00",
+    "dateModified": "2024-05-14T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-28>2023-12-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-03-09>2024-03-09</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -191,7 +191,7 @@
       </section>
       <section>
         <h2 id="related-website-sets"><a href="#related-website-sets">Related Website Sets</a></h2>
-        <p>もともとは First Party Sets と呼ばれ、名前が変わったのが Related Website Sets だ。
+        <p>もともとは First Party Sets と呼ばれていたが、名前が変わり Related Website Sets となった。
         <ul>
           <li>
             WICG/first-party-sets
@@ -200,7 +200,7 @@
             </ul>
           </li>
         </ul>
-        <p>これは、「このドメインに、このドメインが関連している」という情報を、 JSON で定義する。
+        <p>これは、「このドメインは、これらのドメインと関連している」という情報を JSON で定義するものである。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=js data-code=js><code translate=no class=language-js>{
   &quot;primary&quot;: &quot;https://primary.com&quot;,
@@ -238,7 +238,7 @@
       </section>
       <section>
         <h2 id="standard-position"><a href="#standard-position">Standard Position</a></h2>
-        <p>Firefox, Safari 共に First Party Sets 時代から反対している。
+        <p>Firefox, Safari は共に First Party Sets の時代から反対している。
         <ul>
           <li>
             Mozilla: Negative
@@ -265,13 +265,13 @@
           <p>We have already implemented partitioning of state and storage by top-level site.
           <p>We think that is where the web platform should be.
         </blockquote>
-        <p>確かに、多くのドメインを持っているサービスにとって、全ての連携が切れるのは問題だろう。
+        <p>確かに、多くのドメインを持つサービスにとって、すべての連携が切れるのは問題だろう。
         <p>しかし、それを個別の API に落とし込むならまだしも、完全に迂回できる手段を用意するということは、他のブラウザにとって看過し難いことは容易に想像できる。
         <p>したがって、この JSON が読み込まれる実装がこの先増えるかは疑問だ。
         <p>また、あらゆるサービスのドメインをリストにしていくというのは Public Suffix List と同等の運用になる。
         <p>PSL は Mozilla 発だが、今はコミュニティ運営されており、非常に負荷が高い割にクリティカルなソースなので度々問題になっている。
         <p>それを知っていながら、これと同じ運用を新たに行おうとすること自体が、うまくいくのかは個人的に疑問だ。
-        <p>また、そのリポジトリが Google Chrome 以下にあり、マージは Google の人間が行なっていることになる。
+        <p>また、そのリポジトリが Google Chrome の下にあり、マージは Google の人間が行っていることになる。
         <p>一つの組織が独自に審査し、それを特例として認めているとみなされかねないこの JSON の扱いは、これまでの Web の常識からすると、かなり特殊なものと感じられる。
       </section>
     </article>

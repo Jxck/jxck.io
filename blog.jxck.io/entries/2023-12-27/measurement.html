@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-27T08:00:00+08:00",
-    "dateModified": "2023-12-27T08:00:00+08:00",
+    "dateModified": "2024-05-14T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-27>2023-12-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-27>2023-12-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -172,7 +172,7 @@
         <p>最終的には表示した広告が「どのくらい表示されたか」「どのくらいクリックされたのか」「どのくらい購買につながったか」などを計測し、その結果に応じて対価が支払われるのだ。
         <p>ここが測れなくなると、広告ビジネスというもの自体が成り立たなくなる。
         <p>他とは違い、 Chrome だけでなく Safari や Firefox も、これができなくなることは問題だと感じているのだ。
-        <p>なぜなら、たとえトラッキングがなくても、広告の表示自体はできる。そのサイトの内容に合わせたコンテキスト広告や、タイアップの広告など、広告の選択手段はリターゲティングだけではないからだ。
+        <p>なぜなら、たとえトラッキングがなくても、広告の表示自体は可能だ。そのサイトの内容に合わせたコンテキスト広告や、タイアップの広告など、広告の選択手段はリターゲティングだけではないからだ。
         <p>せっかく「リターゲティングができなくなったから、コンテンツの質を上げ、そこに合った適切なクリエイティブを表示していこう」というポジティブな方向に舵を切るとしても、計測ができなければ足枷になってしまう。
         <p>プライバシーに配慮した形で、表示数やクリック数、購買へのコンバージョンなどを取得できる API の必要性は、 3 ベンダともに認めている。しかし、 API は別々だ。
       </section>
@@ -210,7 +210,7 @@
         </section>
         <section>
           <h3 id="attribution-reporting-api"><a href="#attribution-reporting-api">Attribution Reporting API</a></h3>
-          <p>Privacy Sandbox Family として Google が出したのが Conversion Measurement API であり、今は名前が変わって Attribution Reporting API だ。
+          <p>Privacy Sandbox Family の一環として Google が発表したのが Conversion Measurement API であり、現在は名前が変わって Attribution Reporting API となっている。
           <ul>
             <li>
               WICG/attribution-reporting-api: Attribution Reporting API
@@ -219,7 +219,7 @@
               </ul>
             </li>
           </ul>
-          <p>Safari との違いは、広告のクリック(Click Throught Conversion)だけでなく表示(View Throught Conversion) もサポートしている点だ。
+          <p>Safari との違いは、広告のクリック(Click Through Conversion)だけでなく表示(View Through Conversion)もサポートしている点だ。
           <p>Click は <code translate=no>&lt;a&gt;</code> に、 View は <code translate=no>&lt;img&gt;</code> に属性を仕込むことになる。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=&quot;https://advertiser.example/landing&quot;
@@ -229,9 +229,9 @@
 &lt;/a&gt;</code></pre>
           <p>ID も 64bit とかなり大きく、広告一つ一つを識別できるため、既存のユースケースのカバーとしては有利だ。一方、もちろんこれが Safari や Firefox からは批判される的となっている。
           <p>表示やクリックの情報がブラウザに溜まり、遅延をかけて送られるのは Safari と同じだ。ただし、送り先は 3rd Party も指定できる。
-          <p>また、より詳細なデータを集計結果として必要とするユースケースのために、Private Aggregation API (Summery Report とも言われる)という追加の仕様も提案されている。
+          <p>また、より詳細なデータを集計結果として必要とするユースケースのために、Private Aggregation API (Summary Report とも言われる)という追加の仕様も提案されている。
           <p>集計は広告プロバイダに依頼するために、ブラウザから情報が送られるが、暗号化され広告プロバイダには中身が読めない。
-          <p>代わりに、 Protected Audience API の時に解説したのと同じく TEE を用いて、そこにデータを入れると、その中で複合され、集計され、結果が取り出せるというものだ。
+          <p>代わりに、 Protected Audience API の時に解説したのと同じく TEE を用いて、そこにデータを入れると、その中で復号され、集計され、結果が取り出せるというものだ。
           <p>Safari に比べればかなり色々とできる API であることはわかるだろう。
         </section>
         <section>
@@ -273,7 +273,7 @@
         <p>とはいえ、それぞれの仕様がバラバラであるため、全てのブラウザの違いを吸収した製品を出すといったことは、広告プロバイダにとってはかなり難しい課題になりそうだ。
         <p>どの程度これらの API が使われるのか、それによって既存の広告ビジネスの要件がどの程度満たされるのかは、現時点ではよくわからない。
         <p>本来広告はトラッキングが前提ではないはずだ。コンテキスト/純広告を出すために、コンテンツの質に注力するメディアが存続するためにも、この分野の発展は重要だろう。
-        <p>どこにいってもコンプレックス広告が出たり、とにかく全画面で出してクリックを誘ったり、全てのメディアが課金前提になって検索してもなにも辿り着けない Web になることを避けるためにも、測定だけはうまく着地して欲しいとは思う。
+        <p>どこに行ってもコンプレックス広告が出たり、とにかく全画面で出してクリックを誘ったり、全てのメディアが課金前提になって検索しても何も辿り着けない Web になることを避けるためにも、測定だけはうまく着地してほしいとは思う。
       </section>
     </article>
   </main>
