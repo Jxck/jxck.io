@@ -29,7 +29,7 @@ iOS/iPadOS に入れられるブラウザには、 WebKit を用いる必要が�
 
 ## 日本での対応
 
-今回は EU だけだが、日本でもこの問題は政府を中心に調査、議論、パブコメの募集などが行われている。
+今回は EU だけであるが、日本でもこの問題は政府を中心に調査、議論、パブリックコメントの募集などが行われている。
 
 - モバイル・エコシステムに関する競争評価 最終報告
   - https://www.kantei.go.jp/jp/singi/digitalmarket/kyosokaigi/dai7/siryou2s.pdf
@@ -49,7 +49,7 @@ iOS/iPadOS に入れられるブラウザには、 WebKit を用いる必要が�
 - Using alternative browser engines in the European Union - Support - Apple Developer
   - https://developer.apple.com/support/alternative-browser-engines/#web-browser-engine-entitlement
 
-この内容について、詳細をみていく。
+この内容について、詳細を見ていく。
 
 
 ## Browser Engine Entitlement
@@ -123,16 +123,16 @@ Permission 周りは、条件や UI がまだブラウザ間や API ごとに揺
 
 ### Secure SDLC (Software Development Lifecycle)
 
-前半は、「Web コンテンツは悪意だらけだから読み込む上での注意が必要」ということで、セキュリティ面、脆弱性対応、セキュアコーディングに注意するように求めてる。
+前半では、「Web コンテンツは悪意に満ちているため、読み込む際の注意が必要である」と述べており、セキュリティ面、脆弱性対応、セキュアコーディングに注意を払うよう求めている。
 
-後半は、またメモリセーフだ。ここではメモリセーフな言語として Swift を挙げており、 C++ への注意や std::span の紹介などをしている。
+後半は、メモリセーフに焦点を当てている。ここではメモリセーフな言語として Swift を挙げ、C++への注意や std::span の紹介などを行っている。
 
-とにかく、バグったブラウザが iPhone で動くことを防ぎたいという気持ちが伝わる。
+とにかく、バグのあるブラウザが iPhone で動作することを防ぎたいという意志が伝わる。
 
 
 ### Vulnerability Management
 
-脆弱性報告を受け付ける体制や、トリアージや緊急リリースパスなど、対応プロセスを組むように求めたり、 CVE の採用を推奨している。
+脆弱性報告を受け付ける体制や、トリアージや緊急リリースパスなど、対応プロセスを組むよう求めたり、CVE の採用を推奨している。
 
 現在の主要なブラウザベンダはこれを行っているが、「これを機に自分も独自ブラウザを作って iPhone にリリースする」と考えた人が、 Blink をフォークしてコードを書けたとしても、ここが一番大変かもしれない。
 
@@ -154,7 +154,7 @@ Permission 周りは、条件や UI がまだブラウザ間や API ごとに揺
 - [BrowserEngineCore](https://developer.apple.com/documentation/browserenginecore)
 - [Preparing your app to be the default browser](https://developer.apple.com/documentation/xcode/preparing-your-app-to-be-the-default-browser)
 
-それぞれ実装上の API や、細かな条件が書かれているが、特に最後のものは、対応すればデフォルトブラウザを自前エンジンのものに変更できる。
+それぞれ実装上の API や、細かな条件が記されているが、特に最後のものは、対応すればデフォルトブラウザを自前エンジンのものに変更できる。
 
 つまり、例えば Chromium Chrome をインストールして、それをデフォルトにする、ということが iPhone でも可能になるということだ。
 
