@@ -1,4 +1,4 @@
-# [timeout][abortsignal][promise] AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener() の Signal
+# [timeout][abortsignal][promise] AbortSignal.any(), AbortSignal.timeout(), そして addEventListener() の Signal
 
 ## Intro
 
