@@ -10,9 +10,9 @@ const result = await Promise.all([
 console.log({ result });
 console.timeLog();
 
-result.forEach((n) => {
-  console.log(task(n));
-});
+// result.forEach((n) => {
+//   console.log(task(n));
+// });
 
 console.timeEnd();
 export {};

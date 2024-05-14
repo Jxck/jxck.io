@@ -2,34 +2,31 @@ import { get } from "./task.ts";
 
 const tasks = [
   get(3),
-  get(-2),
   get(1),
+  get(-2),
   get(2),
 ];
 
 // https://stackoverflow.com/questions/70044213/async-generator-yielding-promise-results-as-they-are-resolved
 tasks[Symbol.asyncIterator] = async function* () {
-  const promises: Array<Promise<any>> = [];
-  const resolves: Array<(value: any) => void> = [];
-  const rejects: Array<(reason: any) => void> = [];
-  for (const task of this) {
-    //@ts-ignore
+  const promises = new Set(tasks.map((task) => {
+    // @ts-ignore
     const { promise, resolve, reject } = Promise.withResolvers();
-    promises.push(promise);
-    resolves.push(resolve);
-    rejects.push(reject);
     task
       .then((result) => {
-        resolves.shift()?.(result);
-        rejects.shift();
+        resolve(result);
       })
       .catch((error) => {
-        resolves.shift();
-        rejects.shift()?.(error);
+        reject(error);
+      })
+      .finally(() => {
+        promises.delete(promise);
       });
-  }
-  for (const promise of promises) {
-    yield promise;
+    return promise;
+  }));
+
+  while (promises.size) {
+    yield Promise.race(promises);
   }
 };
 
