@@ -2,12 +2,17 @@ import { sleep, task } from "./task.ts";
 
 console.time();
 
-const result = await Promise.all([
-  sleep(3),
-  sleep(2),
-  sleep(1),
-]);
-console.log({ result });
+try {
+  const result = await Promise.race([
+    sleep(-3),
+    sleep(-2),
+    sleep(-1),
+    sleep(-2),
+  ]);
+  console.log({ result });
+} catch (err) {
+  console.error("err", err);
+}
 console.timeLog();
 
 // result.forEach((n) => {

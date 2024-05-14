@@ -3,7 +3,7 @@ import { sleep } from "./task.ts";
 const tasks = [
   sleep(3),
   sleep(1),
-  sleep(-2),
+  sleep(2),
   sleep(2),
 ];
 
