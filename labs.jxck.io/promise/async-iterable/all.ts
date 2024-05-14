@@ -1,11 +1,11 @@
-import { get, task } from "./task.ts";
+import { sleep, task } from "./task.ts";
 
 console.time();
 
 const result = await Promise.all([
-  get(3),
-  get(2),
-  get(1),
+  sleep(3),
+  sleep(2),
+  sleep(1),
 ]);
 console.log({ result });
 console.timeLog();

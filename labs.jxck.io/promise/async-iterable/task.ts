@@ -1,6 +1,6 @@
 // n >= 0 : resolve in n sec
 // n <  0 : reject  in n sec
-export function get(n: number): Promise<number> {
+export function sleep(n: number): Promise<number> {
   // @ts-ignore
   const { promise, resolve, reject } = Promise.withResolvers();
 

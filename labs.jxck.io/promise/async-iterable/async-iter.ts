@@ -1,10 +1,10 @@
-import { get } from "./task.ts";
+import { sleep } from "./task.ts";
 
 const tasks = [
-  get(3),
-  get(-2),
-  get(1),
-  get(2),
+  sleep(3),
+  sleep(-2),
+  sleep(1),
+  sleep(2),
 ];
 
 // https://stackoverflow.com/questions/70044213/async-generator-yielding-promise-results-as-they-are-resolved
