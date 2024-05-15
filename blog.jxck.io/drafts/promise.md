@@ -1,6 +1,6 @@
 # 複数 Promise 処理の頻出考慮漏れ集
 
-Promise には標準で `all()`, `race()`, `any()` などが備わっているが、 `allSettled()` 以外を使っているコードの大半は、何かの考慮が漏れている可能性が高いと、筆者は経験的に感じている。
+Promise には標準で `all()`, `allSettled()`, `race()`, `any()` などが備わっているが、 `allSettled()` 以外を使っているコードの大半は、何かの考慮が漏れている可能性が高いと、筆者は経験的に感じている。
 
 今回は、それぞれの典型的な処理を見ていき、何の考慮が漏れ、どう考慮したら良いかを解説する。
 
@@ -51,9 +51,58 @@ controller.abort() // 残りを終了する
 
 そうでなくても、 AbortSignal を用いた終了処理は、特に frontend では雑に行われがちなので、「失敗した場合」だけでなく「中断処理」もきちんと管理するべきだ。
 
-- `any()` を直接使っている場合 abort まで考えられてないケースが多い
-- そうでなくても abort が考えられてない処理は結構多い。
-- `race()` の使い道は、一般的な開発ではそこまでない
+一方、単にリソースの取得などだけではなく、イベントを待ち合わせたいだけの場合なども使われる。例えば以下の場合は、 iframe の読み込みに時間がかかりすぎている場合に、タイムアウトを設定したいといったものだ。
+
+```js
+Promise.any([
+  new Promise((resolve) => iframe.addEventListener('load', resolve)),
+  new Promise((resolve) => setTimeout(resolve, 1500)),
+])
+```
+
+この場合は、先にタイムアウトしても iframe の読み込みを中断したりはしない可能性はあるだろう。逆に、先に load が終わったら、 setTimeout は clearTimeout した方が良い(この程度なら問題は小さいが)。
+
+また、通常はどちらの Promise も reject されることを想定しないため、この場合は race も any も変わらないだろう。
+
+一方で、重たいリソース取得などの Promise を `setTimeout()` やイベントで待つ場合は、その取得で発生する Error にも関心があるため、 any ではなく race を使う。
+
+```js
+Promise.race([
+  heavyResourceLoading(),
+  new Promise((resolve) => cancelButton.addEventListener('click', resolve)),
+  new Promise((resolve) => setTimeout(resolve, 1500)),
+])
+```
+
+が、こうした場合はむしろ、 AbortSignal を使うようにリソース取得を直す方が良い。
+
+```js
+const controller = new AbortController()
+const signal = controller.signal
+cancelButton.addEventListener('click', () => {
+  controller.abort()
+})
+
+setTimeout(() => {
+  controller.abort()
+}, 1500)
+
+heavyResourceLoading({ signal }),
+```
+
+ただし、このような場合は `AbortSignal.timeout()` を使い、 `AbortSignal.any()` で合成する。
+
+```js
+const controller = new AbortController()
+const cancelSignal = controller.signal
+cancelButton.addEventListener('click', () => {
+  controller.abort()
+})
+
+const timeout = AbortSignal.timeout(1500)
+const signal = AbortSignal.any([timeout, cancelSignal])
+heavyResourceLoading({ signal }),
+```
 
 
 ## Promise.all() / allSettled()
