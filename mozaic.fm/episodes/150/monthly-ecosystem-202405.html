@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/150/monthly-ecosystem-202405.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065828></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 150 回のテーマは 2024 年 5 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/150/monthly-ecosystem-202405.html>
+  <meta property=og:title        content="ep150 Monthly Ecosystem 202405 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 150 回のテーマは 2024 年 5 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep150 Monthly Ecosystem 202405 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/149/monthly-platform-202404.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?240502_021319>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?230926_134917>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?220428_023319>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/149/monthly-platform-202404.html>ep149 Monthly Platform 202404</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep150 Monthly Ecosystem 202405</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2024-05-16
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 150 回のテーマは 2024 年 5 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          React 19 Beta - React
+          <ul>
+            <li><a href="https://react.dev/blog/2024/04/25/react-19" target=_blank>https://react.dev/blog/2024/04/25/react-19</a>
+            <li>
+              useActionSate の追加
+              <ul>
+                <li>useFormState には isPending がなく、その場合は useFormStatus を利用する必要があるがあったがそれらを統合した汎用的 hook として用意された
+              </ul>
+            </li>
+            <li>
+              useFormStatus
+              <ul>
+                <li>親の form のステータスを読む hook
+              </ul>
+            </li>
+            <li>
+              useOptimistic
+              <ul>
+                <li>楽観的更新を行う hook
+                <li>先にユーザーに結果を返してしまい裏で実際の実行が終わると実際の結果を反映させることができる
+              </ul>
+            </li>
+            <li>
+              use
+              <ul>
+                <li>Promise や Context を実行する関数
+                <li>コンポーネントの top level 以外でも利用できる
+              </ul>
+            </li>
+            <li>
+              RSC
+              <ul>
+                <li>バンドルする前に、クライアント アプリケーションまたは SSR サーバーとは別の環境でコンポーネントを事前にレンダリングできる新しいオプション
+                <li>ビルド時に作成したり、リクエスト事に実行もできる
+              </ul>
+            </li>
+            <li>
+              Server Actions
+              <ul>
+                <li>注意: server component 用の directive はなく、use server は server actions のもの
+                <li>フレームワークはサーバー関数への参照を自動的に作成し、その参照をクライアント コンポーネントに渡す。その関数がクライアントで呼び出されると、React はサーバーにリクエストを送信して関数を実行し、結果を返す
+              </ul>
+            </li>
+            <li>
+              forwardRef が不要に
+              <ul>
+                <li>今までは子供が fowardRef でラップされてないときには、ref は props として渡せなかったが、今後は渡せるようになった
+              </ul>
+            </li>
+            <li>createContext で作られる Context が Provider として直接利用可能になり、Context.Provider が不要になった
+            <li>
+              ref に useEffect と同じシンタックスのクリーンアップ関数が追加
+              <ul>
+                <li><code translate=no>return () =&gt; {}</code>
+              </ul>
+            </li>
+            <li>useDeferredValue へ初期値を追加できるようなった
+            <li>
+              metadata のサポート
+              <ul>
+                <li>コンポーネントのどこにでも metadata を定義でき、react-helmet などを使わなくても title などの上書きが用意になった
+              </ul>
+            </li>
+            <li>
+              スタイルシートのサポート
+              <ul>
+                <li>スタイルの優先度を考えて配置する必要があったが、コンポーネント内で定義できるようになり、挿入順序を明確にできるようになった
+              </ul>
+            </li>
+            <li>
+              非同期スクリプトのサポート
+              <ul>
+                <li>script async
+              </ul>
+            </li>
+            <li>
+              リソースのプリロードサポート
+              <ul>
+                <li>native にある prefetchDNS, preconnect, preload, preinit を react 側でもサポート
+                <li>e.g. フォントなどの追加リソースの検出をスタイルシートの読み込みから移動することで、最初のページ読み込みを最適化
+              </ul>
+            </li>
+            <li>
+              Custom Elements のサポート
+              <ul>
+                <li>以下を見ると対応の差がわかりやすい
+                <li><a href="https://custom-elements-everywhere.com/#react-beta" target=_blank>https://custom-elements-everywhere.com/#react-beta</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          React 19 Beta Upgrade Guide - React
+          <ul>
+            <li><a href="https://react.dev/blog/2024/04/25/react-19-upgrade-guide" target=_blank>https://react.dev/blog/2024/04/25/react-19-upgrade-guide</a>
+            <li>
+              Note
+              <ul>
+                <li>React 18.3 has also been published
+              </ul>
+            </li>
+            <li>
+              Installing
+              <ul>
+                <li>
+                  Note
+                  <ul>
+                    <li>New JSX Transform is now required
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Breaking changes
+              <ul>
+                <li>Errors in render are not re-thrown
+                <li>
+                  Removed deprecated React APIs
+                  <ul>
+                    <li>Removed: propTypes and defaultProps for functions
+                    <li>Removed: Legacy Context using contextTypes and getChildContext
+                    <li>Removed: string refs
+                  </ul>
+                </li>
+                <li>
+                  Note
+                  <ul>
+                    <li>Removed: Module pattern factories
+                    <li>Removed: React.createFactory
+                    <li>Removed: react-test-renderer/shallow
+                  </ul>
+                </li>
+                <li>
+                  Note
+                  <ul>
+                    <li>Please reconsider shallow rendering
+                  </ul>
+                </li>
+                <li>
+                  Removed deprecated React DOM APIs
+                  <ul>
+                    <li>Removed: react-dom/test-utils
+                    <li>Removed: ReactDOM.render
+                    <li>Removed: ReactDOM.hydrate
+                    <li>Removed: unmountComponentAtNode
+                    <li>Removed: ReactDOM.findDOMNode
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              New deprecations
+              <ul>
+                <li>Deprecated: element.ref
+                <li>Deprecated: react-test-renderer
+              </ul>
+            </li>
+            <li>
+              Notable changes
+              <ul>
+                <li>StrictMode changes
+                <li>UMD builds removed
+                <li>Libraries depending on React internals may block upgrades
+              </ul>
+            </li>
+            <li>
+              TypeScript changes
+              <ul>
+                <li>Removed deprecated TypeScript types
+                <li>Note
+                <li>ref cleanups required
+                <li>useRef requires an argument
+                <li>Changes to the ReactElement TypeScript type
+                <li>The JSX namespace in TypeScript
+                <li>Better useReducer typings
+              </ul>
+            </li>
+            <li>
+              Changelog
+              <ul>
+                <li>Other breaking changes
+                <li>Other notable changes
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          React DevTools のアップデートが入る
+          <ul>
+            <li><a href="https://github.com/facebook/react/pull/29022" target=_blank>https://github.com/facebook/react/pull/29022</a>
+          </ul>
+        </li>
+        <li>
+          Remove automatic fetch cache instrumentation
+          <ul>
+            <li><a href="https://github.com/facebook/react/pull/28896" target=_blank>https://github.com/facebook/react/pull/28896</a>
+            <li><a href="https://github.com/facebook/react/issues/25573#issuecomment-2074913216" target=_blank>https://github.com/facebook/react/issues/25573#issuecomment-2074913216</a>
+            <li>
+              Request Memoization がなくなった
+              <ul>
+                <li>
+                  next に実装されるのか? コミット消されたからわからない。。
+                  <ul>
+                    <li><a href="https://github.com/vercel/next.js/commit/1af74ecc4399b494984ec578fcab9e2aa5b77cb4" target=_blank>https://github.com/vercel/next.js/commit/1af74ecc4399b494984ec578fcab9e2aa5b77cb4</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          React で Date をパッチするかも
+          <ul>
+            <li><a href="https://twitter.com/acdlite/status/1785691330988986587" target=_blank>https://twitter.com/acdlite/status/1785691330988986587</a>
+            <li>SSR / Hydration でのミスマッチを防ぐため
+            <li><a href="https://twitter.com/acdlite/status/1785757921676087604" target=_blank>https://twitter.com/acdlite/status/1785757921676087604</a>
+            <li><a href="https://twitter.com/sebmarkbage/status/1785755094132068361" target=_blank>https://twitter.com/sebmarkbage/status/1785755094132068361</a>
+          </ul>
+        </li>
+        <li>
+          Figma からデザインとコードを結びつける Code Connect 機能が出た
+          <ul>
+            <li><a href="https://www.figma.com/blog/introducing-code-connect/" target=_blank>https://www.figma.com/blog/introducing-code-connect/</a>
+            <li>
+              Github
+              <ul>
+                <li><a href="https://github.com/figma/code-connect" target=_blank>https://github.com/figma/code-connect</a>
+              </ul>
+            </li>
+            <li>@figma/code-connect パッケージと CLI を使用し hoge.figma.tsx ファイルを作り、Figma にコードを連携させることで DevMode のコードが紐づく
+            <li>
+              Readme に全部書いてある
+              <ul>
+                <li><a href="https://github.com/figma/code-connect/tree/main/react" target=_blank>https://github.com/figma/code-connect/tree/main/react</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          JSR Is Not Another Package Manager
+          <ul>
+            <li><a href="https://deno.com/blog/jsr-is-not-another-package-manager" target=_blank>https://deno.com/blog/jsr-is-not-another-package-manager</a>
+            <li>npm はほぼ進歩してない
+            <li>かつて node で requre を採用し、のちに import ができたが、結局配布は複雑なまま
+            <li>JSR は ESM/TS ファーストで、設定要らずなシンプルなもの
+            <li>JSR は npm を補完する。 JSR パッケージは npm に依存できる
+            <li>JSR 自体も npm としてアクセスできる(npm.jsr.io)
+            <li>private registries も使える
+            <li>OIDC token を GH Action と連携し、 SALSA に準拠した署名を Sigsotre に保存する
+          </ul>
+        </li>
+        <li>
+          Node.js - Node.js 22 is now available!
+          <ul>
+            <li><a href="https://nodejs.org/en/blog/announcements/v22-release-announce" target=_blank>https://nodejs.org/en/blog/announcements/v22-release-announce</a>
+            <li>v8 が 12.4 で Array.fromAsync や Set Methods、 Iterator Helpers が入った
+            <li>Maglev Compiler が入り短命な CLI 実行がはやくなった
+            <li><code translate=no>--experimental-require-module</code> で reqire(esm)
+            <li><code translate=no>node --run tast</code> のサポート
+            <li>watch mode stable
+            <li>websocket client default
+            <li>glob/globSync default
+            <li>2025/4 に Node 18 が EOL なので 20 (LTS) か 22 (もうすぐ TLS) に移行しよう
+          </ul>
+        </li>
+        <li>
+          Bun v1.1.5 | Bun Blog
+          <ul>
+            <li><a href="https://bun.sh/blog/bun-v1.1.5" target=_blank>https://bun.sh/blog/bun-v1.1.5</a>
+            <li>--compile で実行ファイルをクロスコンパイル
+            <li>package.json で末尾カンマとコメントサポート
+            <li>
+              任意ファイルをテキストとしてインポート
+              <ul>
+                <li><code translate=no>import html from &quot;./index.html&quot; with type { type: &quot;text&quot; };</code>
+              </ul>
+            </li>
+            <li>json, toml, file も type にサポート
+            <li>Bun,.serve が SNI に対応
+          </ul>
+        </li>
+        <li>
+          Bun - proxy -
+          <ul>
+            <li><a href="https://twitter.com/bunjavascript/status/1785615815838175658" target=_blank>https://twitter.com/bunjavascript/status/1785615815838175658</a>
+            <li>独自拡張
+          </ul>
+        </li>
+        <li>
+          biome 1.7
+          <ul>
+            <li><a href="https://biomejs.dev/blog/biome-v1-7/" target=_blank>https://biomejs.dev/blog/biome-v1-7/</a>
+            <li>migrate eslint が追加され、eslint config から biome config へ移植可能になった
+            <li>migrate prettier で overrides を利用した glob パターンの prettier の設定が、biome config へ移植可能になった
+            <li>check --staged が追加され、pre-commit としての実行が可能になった
+          </ul>
+        </li>
+        <li>
+          Remix SaaS
+          <ul>
+            <li><a href="https://remix-saas.fly.dev/" target=_blank>https://remix-saas.fly.dev/</a>
+          </ul>
+        </li>
+        <li>
+          Tini
+          <ul>
+            <li><a href="https://tinijs.dev/" target=_blank>https://tinijs.dev/</a>
+            <li>SPA や PWA などの構築をサポートするフレームワークでルーティング、バックエンド、UI も提供している
+            <li>標準を拡張するフレームワークでドキュメントだと lit と一緒に使われている
+          </ul>
+        </li>
+        <li>
+          Figma&apos;s journey to TypeScript | Figma Blog
+          <ul>
+            <li><a href="https://www.figma.com/ja-jp/blog/figmas-journey-to-typescript-compiling-away-our-custom-programming-language/" target=_blank>https://www.figma.com/ja-jp/blog/figmas-journey-to-typescript-compiling-away-our-custom-programming-language/</a>
+            <li>Figma は multi platform のために skew という言語を作ってトランスパイルしてた
+            <li>しかし、社内で負債化していったため、全部 TS に移行した
+            <li>モバイルでも WASM が動くようになり Skew engine の C++ ほとんどは WASM にできたのもでかい
+            <li>残りは Skew to TS のトランスパイラを作り、徐々に変換していった
+            <li>Skew のソースマップを吐いて、デバッグできるようにした
+            <li>etc etc etc
+            <li><a href="https://www.figma.com/ja-jp/blog/how-we-built-the-figma-plugin-system/" target=_blank>https://www.figma.com/ja-jp/blog/how-we-built-the-figma-plugin-system/</a>
+          </ul>
+        </li>
+        <li>
+          Announcing TypeScript 5.5 Beta
+          <ul>
+            <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-5-beta/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-5-beta/</a>
+            <li><code translate=no>Array.prototype.filter</code>で絞り込みに型がつくようになった
+            <li><code translate=no>typeof obj[key] === &quot;string&quot;</code> みたいな固定できるパターンの条件が落ちなくなった
+            <li>正規表現の構文チェックが行えるようになった
+            <li>isolatedDeclarations オプションの追加で、並列ビルドの高速化を行う
+          </ul>
+        </li>
+        <li>
+          vercel がエッジレンダリングを Node.js へ戻した
+          <ul>
+            <li><a href="https://twitter.com/leeerob/status/1780705942734331983" target=_blank>https://twitter.com/leeerob/status/1780705942734331983</a>
+            <li>エッジからデータまでの距離が遠い
+            <li>
+              Node.js で SSR + ストリーミングを実行した方が、エッジ レンダリングよりも高速だった
+              <ul>
+                <li>Vercel Serverless Functions (aws lambda) へ戻す
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Eslint compat
+          <ul>
+            <li><a href="https://eslint.org/blog/2024/05/eslint-compatibility-utilities/" target=_blank>https://eslint.org/blog/2024/05/eslint-compatibility-utilities/</a>
+            <li>メジャーバージョンが上がったにも関わらず、主要なプラグインが追従できていない、例えば next.js も import など。なので 8 との互換性を持てるように変更する
+          </ul>
+        </li>
+        <li>
+          Astro 4.8
+          <ul>
+            <li><a href="https://astro.build/blog/astro-480/" target=_blank>https://astro.build/blog/astro-480/</a>
+            <li>4.7 <a href="https://astro.build/blog/astro-470/" target=_blank>https://astro.build/blog/astro-470/</a>
+            <li>
+              Astro Actions の追加 (experimental.actions)
+              <ul>
+                <li>server actions と同様の機能
+              </ul>
+            </li>
+            <li>
+              リクエストの切り替え (experimental.rewriting)
+              <ul>
+                <li>ページ内リダイレクト等を行うため
+              </ul>
+            </li>
+            <li>
+              typescript の preset で allowJs を true へ
+              <ul>
+                <li>厳密すぎるらしく、緩めることができるように
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Astro 初のオフラインイベント
+          <ul>
+            <li><a href="https://lu.ma/astro-together-meetup-2024" target=_blank>https://lu.ma/astro-together-meetup-2024</a>
+          </ul>
+        </li>
+        <li>
+          Playwright v1.44
+          <ul>
+            <li><a href="https://playwright.dev/docs/release-notes#version-144" target=_blank>https://playwright.dev/docs/release-notes#version-144</a>
+            <li>アクセシビリティに関するアサーションの追加
+            <li>
+              <code translate=no>--last-failed</code> の追加
+              <ul>
+                <li>前回実行したときに落ちたテストだけ実行できるようになる
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Style-Dictionary V4 release plans
+          <ul>
+            <li><a href="https://tokens.studio/blog/style-dictionary-v4-plan" target=_blank>https://tokens.studio/blog/style-dictionary-v4-plan</a>
+            <li>デザイントークンの json を変換する OSS ツールの Style-Dictionary v4 に関するリリース計画
+            <li>v3 が 2021 年に出てから長い間メジャーバージョンのリリースがなかった
+            <li>W3C Design Token Community Group の仕様に沿ったアップデート等を含む予定
+          </ul>
+        </li>
+        <li>
+          React Aria の 5 月更新
+          <ul>
+            <li><a href="https://react-spectrum.adobe.com/releases/2024-05-01.html" target=_blank>https://react-spectrum.adobe.com/releases/2024-05-01.html</a>
+          </ul>
+        </li>
+        <li>
+          Express 5.0 - last push!
+          <ul>
+            <li><a href="https://github.com/expressjs/discussions/issues/233" target=_blank>https://github.com/expressjs/discussions/issues/233</a>
+            <li>溜まっていたライブラリのアップデート対応
+            <li>細かいバグ修正
+          </ul>
+        </li>
+        <li>
+          HashiCorp joins IBM to accelerate multi-cloud automation
+          <ul>
+            <li><a href="https://www.hashicorp.com/blog/hashicorp-joins-ibm" target=_blank>https://www.hashicorp.com/blog/hashicorp-joins-ibm</a>
+          </ul>
+        </li>
+        <li>
+          The Intl.Segmenter object is now part of Baseline
+          <ul>
+            <li><a href="https://web.dev/blog/intl-segmenter" target=_blank>https://web.dev/blog/intl-segmenter</a>
+          </ul>
+        </li>
+        <li>
+          Electron 30.0.0
+          <ul>
+            <li><a href="https://www.electronjs.org/blog/electron-30-0" target=_blank>https://www.electronjs.org/blog/electron-30-0</a>
+            <li>File API のサポート
+            <li>
+              windows に ASAR 整合性のサポート
+              <ul>
+                <li>Windows プラットフォーム上の整合性チェック機能がなかったが、それができるようになった。これによりアプリケーションのファイルとリソースの整合性を検証することで、意図しない変更や改ざんを防ぐことができるようになった
+              </ul>
+            </li>
+            <li>BrowserView が非推奨になって、WebContentsView と BaseWindow が main プロセスに追加
+          </ul>
+        </li>
+        <li>
+          rollup optimizes tree-shaking
+          <ul>
+            <li><a href="https://github.com/rollup/rollup/pull/5443" target=_blank>https://github.com/rollup/rollup/pull/5443</a>
+            <li>固定化されたパラメータをすべて根本まで追跡して、関数内で副作用の検出とツリーシェイクを実行できるようにする
+          </ul>
+        </li>
+        <li>
+          Headless UI v2.0 for React
+          <ul>
+            <li><a href="https://tailwindcss.com/blog/headless-ui-v2" target=_blank>https://tailwindcss.com/blog/headless-ui-v2</a>
+          </ul>
+        </li>
+        <li>
+          pnpm 9.0
+          <ul>
+            <li><a href="https://github.com/pnpm/pnpm/releases/tag/v9.0.0" target=_blank>https://github.com/pnpm/pnpm/releases/tag/v9.0.0</a>
+          </ul>
+        </li>
+        <li>
+          Introducing Mdxts - MDXTS
+          <ul>
+            <li><a href="https://www.mdxts.dev/blog/introducing-mdxts" target=_blank>https://www.mdxts.dev/blog/introducing-mdxts</a>
+          </ul>
+        </li>
+        <li>
+          Percel のフル Rust 書き換え構想
+          <ul>
+            <li><a href="https://twitter.com/devongovett/status/1789796247483937045" target=_blank>https://twitter.com/devongovett/status/1789796247483937045</a>
+            <li>20 倍早くなりそう
+          </ul>
+        </li>
+        <li>
+          Gulp Survey
+          <ul>
+            <li><a href="https://www.surveyhero.com/c/ctrpnqkr" target=_blank>https://www.surveyhero.com/c/ctrpnqkr</a>
+          </ul>
+        </li>
+        <li>
+          svelte5
+          <ul>
+            <li><a href="https://svelte.dev/blog/svelte-5-release-candidate" target=_blank>https://svelte.dev/blog/svelte-5-release-candidate</a>
+          </ul>
+        </li>
+        <li>
+          Introducing TypeSpec: A New Language for API-Centric Development | TypeSpec
+          <ul>
+            <li><a href="https://typespec.io/blog/2024-04-25-introducing" target=_blank>https://typespec.io/blog/2024-04-25-introducing</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          5 月
+          <ul>
+            <li>
+              11: TSKaigi
+              <ul>
+                <li><a href="https://tskaigi.org/" target=_blank>https://tskaigi.org/</a>
+              </ul>
+            </li>
+            <li>
+              <em>15-16: React Conf</em>
+              <ul>
+                <li><a href="https://conf.react.dev/" target=_blank>https://conf.react.dev/</a>
+              </ul>
+            </li>
+            <li>
+              23: Vercel Ship
+              <ul>
+                <li><a href="https://vercel.com/ship" target=_blank>https://vercel.com/ship</a>
+              </ul>
+            </li>
+            <li>
+              28:Astro Together
+              <ul>
+                <li><a href="https://lu.ma/astro-together-meetup-2024" target=_blank>https://lu.ma/astro-together-meetup-2024</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          6 月
+          <ul>
+            <li>
+              14-18: React Summit in Amsterdam
+              <ul>
+                <li><a href="https://reactsummit.com/" target=_blank>https://reactsummit.com/</a>
+              </ul>
+            </li>
+            <li>
+              <em>26-27: Figma Config</em>
+              <ul>
+                <li><a href="https://config.figma.com/" target=_blank>https://config.figma.com/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          8 月
+          <ul>
+            <li>
+              24: フロントエンドカンファレンス北海道 2024
+              <ul>
+                <li><a href="https://note.com/fec_hokkaido/n/nbb62b53069a5" target=_blank>https://note.com/fec_hokkaido/n/nbb62b53069a5</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          9 月
+          <ul>
+            <li>
+              10-12: GraphQL Conf
+              <ul>
+                <li><a href="https://graphql.org/blog/2024-03-28-announcing-graphqlconf-2024/" target=_blank>https://graphql.org/blog/2024-03-28-announcing-graphqlconf-2024/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          11 月
+          <ul>
+            <li>
+              19-22: React Summit in NY
+              <ul>
+                <li><a href="https://reactsummit.us/" target=_blank>https://reactsummit.us/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/149/monthly-platform-202404.html>ep149 Monthly Platform 202404</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep150.mp3
+    data-title="ep150 Monthly Ecosystem 202405"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
