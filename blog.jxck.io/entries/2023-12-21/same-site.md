@@ -56,20 +56,20 @@ eTLD である組み合わせは、 Public Suffix List という巨大なテキ�
 
 https://example.co.jp とそのサブドメインである https://admin.example.co.jp は、通常同じ管理者が運用しているだろうと考えられる。つまり、eTLD+1 (https://example.co.jp/)までが同じであれば、そのサブドメインも同じサイトだと考えることができる。
 
-これを Same Site と言い、 Same Site Cookie とは「eTLD+1 が同じである Same Site にしか送らない Cookie」を意味する。対して Cross Site Cookie は、まさしく 3rd Party Cookie を意味することになるのだ。
+これを Same Site と言い、 Same Site Cookie とは「eTLD+1 が同じである Same Site 以外からのリクエストがあった場合に送られない Cookie」を意味する。対して Cross Site Cookie は、まさしく 3rd Party Cookie を意味することになるのだ。
 
 ![ドメインの関連: Same Origin/Same Site/Schemeful Same Site/Subset/3rd Party の違い](domain-relation.png#6166x5132)
 
 
 ### SameSite=Strict
 
-たとえば https://example.co.jp で以下のような Set-Cookie を返した場合、この Cookie は厳密(Strict)に SameSite に制限される。つまり https://example.co.jp とそのサブドメインにしか送られないという指定になるのだ。
+たとえば https://example.co.jp で以下のような Set-Cookie を返した場合、この Cookie は厳密(Strict)に SameSite に制限される。つまり https://example.co.jp とそのサブドメイン以外からのリクエストがあった場合には送られないという指定になるのだ。
 
 ```http
 Set-Cookie: session_id=deadbeef; SameSite=Strict
 ```
 
-逆を言うと、別サイト、つまり 3rd Party には送られないため、この属性がついていることは、「この Cookie は 3rd Party Cookie ではない」というラベルにもなる。
+逆を言うと、別サイトからのリクエストがあった場合には送られないため、この属性がついていることは、「この Cookie は 3rd Party Cookie ではない」というラベルにもなる。
 
 この https://example.co.jp がどこか別のサイト(つまり Cross Site)に `<iframe>` で埋め込まれた場合、この Cookie は https://example.co.jp/ には送られないということだ。
 
