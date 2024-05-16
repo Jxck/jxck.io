@@ -1,0 +1,261 @@
+---
+type: podcast
+tags: ["monthly ecosystem"]
+audio: https://files.mozaic.fm/mozaic-ep150.mp3
+published_at: 2024-05-16
+guest: [@sakito](https://twitter.com/__sakito__)
+guest: [@hiroppy](https://twitter.com/about_hiroppy)
+---
+
+# ep150 Monthly Ecosystem 202405
+
+## Theme
+
+第 150 回のテーマは 2024 年 5 月の Monthly Ecosystem です。
+
+## Show Note
+
+- React 19 Beta - React
+  - https://react.dev/blog/2024/04/25/react-19
+  - useActionSate の追加
+    - useFormState には isPending がなく、その場合は useFormStatus を利用する必要があるがあったがそれらを統合した汎用的 hook として用意された
+  - useFormStatus
+    - 親の form のステータスを読む hook
+  - useOptimistic
+    - 楽観的更新を行う hook
+    - 先にユーザーに結果を返してしまい裏で実際の実行が終わると実際の結果を反映させることができる
+  - use
+    - Promise や Context を実行する関数
+    - コンポーネントの top level 以外でも利用できる
+  - RSC
+    - バンドルする前に、クライアント アプリケーションまたは SSR サーバーとは別の環境でコンポーネントを事前にレンダリングできる新しいオプション
+    - ビルド時に作成したり、リクエスト事に実行もできる
+  - Server Actions
+    - 注意: server component 用の directive はなく、use server は server actions のもの
+    - フレームワークはサーバー関数への参照を自動的に作成し、その参照をクライアント コンポーネントに渡す。その関数がクライアントで呼び出されると、React はサーバーにリクエストを送信して関数を実行し、結果を返す
+  - forwardRef が不要に
+    - 今までは子供が fowardRef でラップされてないときには、ref は props として渡せなかったが、今後は渡せるようになった
+  - createContext で作られる Context が Provider として直接利用可能になり、Context.Provider が不要になった
+  - ref に useEffect と同じシンタックスのクリーンアップ関数が追加
+    - `return () => {}`
+  - useDeferredValue へ初期値を追加できるようなった
+  - metadata のサポート
+    - コンポーネントのどこにでも metadata を定義でき、react-helmet などを使わなくても title などの上書きが用意になった
+  - スタイルシートのサポート
+    - スタイルの優先度を考えて配置する必要があったが、コンポーネント内で定義できるようになり、挿入順序を明確にできるようになった
+  - 非同期スクリプトのサポート
+    - script async
+  - リソースのプリロードサポート
+    - native にある prefetchDNS, preconnect, preload, preinit を react 側でもサポート
+    - e.g. フォントなどの追加リソースの検出をスタイルシートの読み込みから移動することで、最初のページ読み込みを最適化
+  - Custom Elements のサポート
+    - 以下を見ると対応の差がわかりやすい
+    - https://custom-elements-everywhere.com/#react-beta
+- React 19 Beta Upgrade Guide - React
+  - https://react.dev/blog/2024/04/25/react-19-upgrade-guide
+  - Note
+    - React 18.3 has also been published
+  - Installing
+    - Note
+      - New JSX Transform is now required
+  - Breaking changes
+    - Errors in render are not re-thrown
+    - Removed deprecated React APIs
+      - Removed: propTypes and defaultProps for functions
+      - Removed: Legacy Context using contextTypes and getChildContext
+      - Removed: string refs
+    - Note
+      - Removed: Module pattern factories
+      - Removed: React.createFactory
+      - Removed: react-test-renderer/shallow
+    - Note
+      - Please reconsider shallow rendering
+    - Removed deprecated React DOM APIs
+      - Removed: react-dom/test-utils
+      - Removed: ReactDOM.render
+      - Removed: ReactDOM.hydrate
+      - Removed: unmountComponentAtNode
+      - Removed: ReactDOM.findDOMNode
+  - New deprecations
+    - Deprecated: element.ref
+    - Deprecated: react-test-renderer
+  - Notable changes
+    - StrictMode changes
+    - UMD builds removed
+    - Libraries depending on React internals may block upgrades
+  - TypeScript changes
+    - Removed deprecated TypeScript types
+    - Note
+    - ref cleanups required
+    - useRef requires an argument
+    - Changes to the ReactElement TypeScript type
+    - The JSX namespace in TypeScript
+    - Better useReducer typings
+  - Changelog
+    - Other breaking changes
+    - Other notable changes
+- React DevTools のアップデートが入る
+  - https://github.com/facebook/react/pull/29022
+- Remove automatic fetch cache instrumentation
+  - https://github.com/facebook/react/pull/28896
+  - https://github.com/facebook/react/issues/25573#issuecomment-2074913216
+  - Request Memoization がなくなった
+    - next に実装されるのか? コミット消されたからわからない。。
+      - https://github.com/vercel/next.js/commit/1af74ecc4399b494984ec578fcab9e2aa5b77cb4
+- React で Date をパッチするかも
+  - https://twitter.com/acdlite/status/1785691330988986587
+  - SSR / Hydration でのミスマッチを防ぐため
+  - https://twitter.com/acdlite/status/1785757921676087604
+  - https://twitter.com/sebmarkbage/status/1785755094132068361
+- Figma からデザインとコードを結びつける Code Connect 機能が出た
+  - https://www.figma.com/blog/introducing-code-connect/
+  - Github
+    - https://github.com/figma/code-connect
+  - @figma/code-connect パッケージと CLI を使用し hoge.figma.tsx ファイルを作り、Figma にコードを連携させることで DevMode のコードが紐づく
+  - Readme に全部書いてある
+    - https://github.com/figma/code-connect/tree/main/react
+- JSR Is Not Another Package Manager
+  - https://deno.com/blog/jsr-is-not-another-package-manager
+  - npm はほぼ進歩してない
+  - かつて node で requre を採用し、のちに import ができたが、結局配布は複雑なまま
+  - JSR は ESM/TS ファーストで、設定要らずなシンプルなもの
+  - JSR は npm を補完する。 JSR パッケージは npm に依存できる
+  - JSR 自体も npm としてアクセスできる(npm.jsr.io)
+  - private registries も使える
+  - OIDC token を GH Action と連携し、 SALSA に準拠した署名を Sigsotre に保存する
+- Node.js - Node.js 22 is now available!
+  - https://nodejs.org/en/blog/announcements/v22-release-announce
+  - v8 が 12.4 で Array.fromAsync や Set Methods、 Iterator Helpers が入った
+  - Maglev Compiler が入り短命な CLI 実行がはやくなった
+  - `--experimental-require-module` で reqire(esm)
+  - `node --run tast` のサポート
+  - watch mode stable
+  - websocket client default
+  - glob/globSync default
+  - 2025/4 に Node 18 が EOL なので 20 (LTS) か 22 (もうすぐ TLS) に移行しよう
+- Bun v1.1.5 | Bun Blog
+  - https://bun.sh/blog/bun-v1.1.5
+  - --compile で実行ファイルをクロスコンパイル
+  - package.json で末尾カンマとコメントサポート
+  - 任意ファイルをテキストとしてインポート
+    - `import html from "./index.html" with type { type: "text" };`
+  - json, toml, file も type にサポート
+  - Bun,.serve が SNI に対応
+- Bun - proxy -
+  - https://twitter.com/bunjavascript/status/1785615815838175658
+  - 独自拡張
+- biome 1.7
+  - https://biomejs.dev/blog/biome-v1-7/
+  - migrate eslint が追加され、eslint config から biome config へ移植可能になった
+  - migrate prettier で overrides を利用した glob パターンの prettier の設定が、biome config へ移植可能になった
+  - check --staged が追加され、pre-commit としての実行が可能になった
+- Remix SaaS
+  - https://remix-saas.fly.dev/
+- Tini
+  - https://tinijs.dev/
+  - SPA や PWA などの構築をサポートするフレームワークでルーティング、バックエンド、UI も提供している
+  - 標準を拡張するフレームワークでドキュメントだと lit と一緒に使われている
+- Figma's journey to TypeScript | Figma Blog
+  - https://www.figma.com/ja-jp/blog/figmas-journey-to-typescript-compiling-away-our-custom-programming-language/
+  - Figma は multi platform のために skew という言語を作ってトランスパイルしてた
+  - しかし、社内で負債化していったため、全部 TS に移行した
+  - モバイルでも WASM が動くようになり Skew engine の C++ ほとんどは WASM にできたのもでかい
+  - 残りは Skew to TS のトランスパイラを作り、徐々に変換していった
+  - Skew のソースマップを吐いて、デバッグできるようにした
+  - etc etc etc
+  - https://www.figma.com/ja-jp/blog/how-we-built-the-figma-plugin-system/
+- Announcing TypeScript 5.5 Beta
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-5-beta/
+  - `Array.prototype.filter`で絞り込みに型がつくようになった
+  - `typeof obj[key] === "string"` みたいな固定できるパターンの条件が落ちなくなった
+  - 正規表現の構文チェックが行えるようになった
+  - isolatedDeclarations オプションの追加で、並列ビルドの高速化を行う
+- vercel がエッジレンダリングを Node.js へ戻した
+  - https://twitter.com/leeerob/status/1780705942734331983
+  - エッジからデータまでの距離が遠い
+  - Node.js で SSR + ストリーミングを実行した方が、エッジ レンダリングよりも高速だった
+    - Vercel Serverless Functions (aws lambda) へ戻す
+- Eslint compat
+  - https://eslint.org/blog/2024/05/eslint-compatibility-utilities/
+  - メジャーバージョンが上がったにも関わらず、主要なプラグインが追従できていない、例えば next.js も import など。なので 8 との互換性を持てるように変更する
+- Astro 4.8
+  - https://astro.build/blog/astro-480/
+  - 4.7 https://astro.build/blog/astro-470/
+  - Astro Actions の追加 (experimental.actions)
+    - server actions と同様の機能
+  - リクエストの切り替え (experimental.rewriting)
+    - ページ内リダイレクト等を行うため
+  - typescript の preset で allowJs を true へ
+    - 厳密すぎるらしく、緩めることができるように
+- Astro 初のオフラインイベント
+  - https://lu.ma/astro-together-meetup-2024
+- Playwright v1.44
+  - https://playwright.dev/docs/release-notes#version-144
+  - アクセシビリティに関するアサーションの追加
+  - `--last-failed` の追加
+    - 前回実行したときに落ちたテストだけ実行できるようになる
+- Style-Dictionary V4 release plans
+  - https://tokens.studio/blog/style-dictionary-v4-plan
+  - デザイントークンの json を変換する OSS ツールの Style-Dictionary v4 に関するリリース計画
+  - v3 が 2021 年に出てから長い間メジャーバージョンのリリースがなかった
+  - W3C Design Token Community Group の仕様に沿ったアップデート等を含む予定
+- React Aria の 5 月更新
+  - https://react-spectrum.adobe.com/releases/2024-05-01.html
+- Express 5.0 - last push!
+  - https://github.com/expressjs/discussions/issues/233
+  - 溜まっていたライブラリのアップデート対応
+  - 細かいバグ修正
+- HashiCorp joins IBM to accelerate multi-cloud automation
+  - https://www.hashicorp.com/blog/hashicorp-joins-ibm
+- The Intl.Segmenter object is now part of Baseline
+  - https://web.dev/blog/intl-segmenter
+- Electron 30.0.0
+  - https://www.electronjs.org/blog/electron-30-0
+  - File API のサポート
+  - windows に ASAR 整合性のサポート
+    - Windows プラットフォーム上の整合性チェック機能がなかったが、それができるようになった。これによりアプリケーションのファイルとリソースの整合性を検証することで、意図しない変更や改ざんを防ぐことができるようになった
+  - BrowserView が非推奨になって、WebContentsView と BaseWindow が main プロセスに追加
+- rollup optimizes tree-shaking
+  - https://github.com/rollup/rollup/pull/5443
+  - 固定化されたパラメータをすべて根本まで追跡して、関数内で副作用の検出とツリーシェイクを実行できるようにする
+- Headless UI v2.0 for React
+  - https://tailwindcss.com/blog/headless-ui-v2
+- pnpm 9.0
+  - https://github.com/pnpm/pnpm/releases/tag/v9.0.0
+- Introducing Mdxts - MDXTS
+  - https://www.mdxts.dev/blog/introducing-mdxts
+- Percel のフル Rust 書き換え構想
+  - https://twitter.com/devongovett/status/1789796247483937045
+  - 20 倍早くなりそう
+- Gulp Survey
+  - https://www.surveyhero.com/c/ctrpnqkr
+- svelte5
+  - https://svelte.dev/blog/svelte-5-release-candidate
+- Introducing TypeSpec: A New Language for API-Centric Development | TypeSpec
+  - https://typespec.io/blog/2024-04-25-introducing
+
+## Events
+
+- 5 月
+  - 11: TSKaigi
+    - https://tskaigi.org/
+  - *15-16: React Conf*
+    - https://conf.react.dev/
+  - 23: Vercel Ship
+    - https://vercel.com/ship
+  - 28:Astro Together
+    - https://lu.ma/astro-together-meetup-2024
+- 6 月
+  - 14-18: React Summit in Amsterdam
+    - https://reactsummit.com/
+  - *26-27: Figma Config*
+    - https://config.figma.com/
+- 8 月
+  - 24: フロントエンドカンファレンス北海道 2024
+    - https://note.com/fec_hokkaido/n/nbb62b53069a5
+- 9 月
+  - 10-12: GraphQL Conf
+    - https://graphql.org/blog/2024-03-28-announcing-graphqlconf-2024/
+- 11 月
+  - 19-22: React Summit in NY
+    - https://reactsummit.us/
