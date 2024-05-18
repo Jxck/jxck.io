@@ -35,7 +35,7 @@ analytics.example.com.    IN    CNAME    deadbeef.ads.example.
 
 CNAME で事業者のレコードを参照すれば、そのサブドメインを事業者が運用できるのだ。このように CNAME を預ける方法を CNAME Cloaking (コート預けるクロークのこと)と言う。
 
-これは ITP 迂回の筆頭として問題になったので、 Safari ではもちろん対策がされている。CNAME の先を辿って、最終的に 3rd Party だったら Cookie 付与された Cookie を短命にするといったものだ。
+これは ITP 迂回の筆頭として問題になったので、 Safari ではもちろん対策がされている。CNAME の先を辿って、最終的に 3rd Party だったら付与された Cookie を短命にするといったものだ。
 
 
 ### IP Cloaking
