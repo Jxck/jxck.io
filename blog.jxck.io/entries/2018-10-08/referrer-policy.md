@@ -13,7 +13,7 @@
 
 本来の英語としては *RefeRRer* が正しいが、 HTTP Header ではスペルミスした *RefeRer* が互換性を保つためそのまま使われている。
 
-しかし、新しく定義された Referre-Policy は、正しいスペルが採用されている。
+しかし、新しく定義された Referrer-Policy は、正しいスペルが採用されている。
 
 
 ## Referer ヘッダ
@@ -96,7 +96,7 @@ URL が知られることを望まない例としては大きく以下がある�
 
 身近な例として Private Gist のように、 URL さえ共有すればアクセスできるタイプのサービスがよくある。
 
-こうしたサービは、検索エンジンのクローラなどに対しては robots.txt などで index を拒否している場合が多い。
+こうしたサービスは、検索エンジンのクローラなどに対しては robots.txt などで index を拒否している場合が多い。
 
 しかし、 Referer を制御しないと、リンク先に URL が送られ、意図しない人からアクセスされる可能性がある。
 
@@ -348,7 +348,7 @@ Caption: Policy のまとめ
 | origin-when-cross-origin        |    Same Origin |    URL |
 | strict-origin-when-cross-origin |      Downgrade |   無し |
 | strict-origin-when-cross-origin |   Cross Origin | Origin |
-| strict-origin-when-cross-origin |    SameO rigin |    URL |
+| strict-origin-when-cross-origin |    Same Origin |    URL |
 
 
 ## Referrer-Policy の適用方法
