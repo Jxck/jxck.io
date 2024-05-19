@@ -129,6 +129,7 @@ async function readFile(file: File) {
 
 また、同等の Utility を用いている場合は、置き換えを検討できる。
 
+
 ## DEMO
 
 動作するデモを以下に用意した。
