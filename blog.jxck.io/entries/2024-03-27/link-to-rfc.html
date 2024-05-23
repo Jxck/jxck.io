@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-27T08:00:00+08:00",
-    "dateModified": "2024-04-02T08:00:00+08:00",
+    "dateModified": "2024-05-24T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-27>2024-03-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-02>2024-04-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-24>2024-05-24</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -146,6 +146,7 @@
                 <li><a href="#聞いてみた">聞いてみた。</a>
                 <li><a href="#おまけ">おまけ</a>
                 <ol>
+                  <li><a href="#rfc-の正式表記">RFC の正式表記</a>
                   <li><a href="#draft">Draft</a>
                   <li><a href="#inline-errata">Inline Errata</a>
                 </ol>
@@ -420,6 +421,46 @@
       </section>
       <section>
         <h2 id="おまけ"><a href="#おまけ">おまけ</a></h2>
+        <section>
+          <h3 id="rfc-の正式表記"><a href="#rfc-の正式表記">RFC の正式表記</a></h3>
+          <p>RFC の表記について、以下のスタイルガイドに言及がある。
+          <ul>
+            <li>
+              RFC 7322 - RFC Style Guide
+              <ul>
+                <li><a href="https://datatracker.ietf.org/doc/html/rfc7322#section-3.5" target=_blank>https://datatracker.ietf.org/doc/html/rfc7322#section-3.5</a>
+              </ul>
+            </li>
+          </ul>
+          <blockquote cite="https://datatracker.ietf.org/doc/html/rfc7322#section-3.5">
+            <p>A citation/reference tag must not contain spaces.
+            <p>Example: &quot;[RFC2119]&quot; rather than &quot;[RFC 2119]&quot;
+            <p>
+            </p>
+            <p>However, the proper textual naming of an RFC contains a space.
+            <p>Example: &quot;See RFC 2119 [BCP14] for more information.&quot;
+            <p>
+            </p>
+            <p>&mdash; <cite><a href="https://datatracker.ietf.org/doc/html/rfc7322#section-3.5" target=_blank>https://datatracker.ietf.org/doc/html/rfc7322#section-3.5</a></cite>
+          </blockquote>
+          <p>要約すると。
+          <ul>
+            <li>
+              RFC 内に参考文献を貼る場合はカッコで囲み、スペース入れない
+              <ul>
+                <li>つまり <code translate=no>[RFC2119]</code>
+              </ul>
+            </li>
+            <li>
+              しかし、文章中に RFC を書く場合、数字との間にスペースが入る
+              <ul>
+                <li>つまり <code translate=no>RFC 2119</code>
+              </ul>
+            </li>
+          </ul>
+          <p>とはいえ、これは「RFC を書く人」が守るべきルールなので、他の文書もそうであるべきかは文書側のルールになるだろう。
+          <p>しかし、 RFC を書く場合にスペースを入れるのが &quot;<em>proper</em>&quot; とされているのは、注目したい。
+        </section>
         <section>
           <h3 id="draft"><a href="#draft">Draft</a></h3>
           <p>rfc-editor は RFC はホストしているが、 RFC になる前の draft については datatracker にしかない。
