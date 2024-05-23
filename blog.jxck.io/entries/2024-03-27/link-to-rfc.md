@@ -216,6 +216,33 @@ https://www.rfc-editor.org/info/rfc9110
 
 ## おまけ
 
+### RFC の正式表記
+
+RFC の表記について、以下のスタイルガイドに言及がある。
+
+- RFC 7322 - RFC Style Guide
+  - https://datatracker.ietf.org/doc/html/rfc7322#section-3.5
+
+> A citation/reference tag must not contain spaces.
+> Example: "[RFC2119]" rather than "[RFC 2119]"
+>
+> However, the proper textual naming of an RFC contains a space.
+> Example: "See RFC 2119 [BCP14] for more information."
+>
+> --- https://datatracker.ietf.org/doc/html/rfc7322#section-3.5
+
+要約すると。
+
+- RFC 内に参考文献を貼る場合はカッコで囲み、スペース入れない
+  - つまり `[RFC2119]`
+- しかし、文章中に RFC を書く場合、数字との間にスペースが入る
+  - つまり `RFC 2119`
+
+とはいえ、これは「RFC を書く人」が守るべきルールなので、他の文書もそうであるべきかは文書側のルールになるだろう。
+
+しかし、 RFC を書く場合にスペースを入れるのが "*proper*" とされているのは、注目したい。
+
+
 ### Draft
 
 rfc-editor は RFC はホストしているが、 RFC になる前の draft については datatracker にしかない。
