@@ -238,7 +238,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tADbkn88F5Y
 - *Prototype: No-Vary-Search Hint for Prerender Speculation Rules*
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/wMTc-74B9Ic
-- *Prototype: Partitioned Popins[a]*
+- *Prototype: Partitioned Popins*
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ApU_zUmpQ2g/
 - Prototype: Timing information for ServiceWorker Static routing API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/_967Rs7QJRo
@@ -474,10 +474,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - IntersectionObserver V2: Detecting occlusion and visual effects
     - https://github.com/mozilla/standards-positions/issues/109
 - Negative
-  - *Digital Credentials[b]*
+  - *Digital Credentials*
     - https://github.com/mozilla/standards-positions/issues/1003
 - Defer
-  - *Partitioned Popins[c]*
+  - *Partitioned Popins*
     - https://github.com/mozilla/standards-positions/issues/1023
 
 
@@ -531,7 +531,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Dark mode and the light-dark() color function
     - Starting style
     - Features queries for importing CSS
-      - *@import "nested-styles.css" supports(selector(&));[d][e]*
+      - *@import "nested-styles.css" supports(selector(&));*
   - WebCodecs
   - WebGL
   - WKWebView
