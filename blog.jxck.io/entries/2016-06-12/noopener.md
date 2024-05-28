@@ -24,7 +24,7 @@
 
 最初のページを Parent 、開いたタブを Child とする。
 
-child 側では以下のような JS が書かれており、 parent 側の location を変えて、任意の URL に遷移されることが可能である。
+Child 側では以下のような JS が書かれており、 Parent 側の location を変えて、任意の URL に遷移させることが可能である。
 
 ```js
 window.opener.location = http://example.com
