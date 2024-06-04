@@ -8,7 +8,7 @@
   <link rel=manifest  href=/manifest.webmanifest>
   <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
 
-  <link rel=canonical href=https://mozaic.fm/episodes/148/mozaic-renewal-202404.html>
+  <link rel=canonical href=https://mozaic.fm/episodes/152/mozaic-renewal-202406.html>
   <!--
   <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
   -->
@@ -41,24 +41,23 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
   <meta name=author              content=Jxck>
-  <meta name=description         content="第 148 回のテーマは 2024 年 4 月の mozaic.fm renewal project です。">
+  <meta name=description         content="第 152 回のテーマは 2024 年 6 月の mozaic.fm renewal project です。">
   <meta name=keywords            content="mozaic renewal">
   <meta name=theme-color         content=#000000>
 
   <meta property=og:type         content=article>
-  <meta property=og:url          content=https://mozaic.fm/episodes/148/mozaic-renewal-202404.html>
-  <meta property=og:title        content="ep148 mozaic.fm Renewal Project 202404 | mozaic.fm">
+  <meta property=og:url          content=https://mozaic.fm/episodes/152/mozaic-renewal-202406.html>
+  <meta property=og:title        content="ep152 mozaic.fm Renewal Project 202406 | mozaic.fm">
   <meta property=og:site_name    content=mozaic.fm>
-  <meta property=og:description  content="第 148 回のテーマは 2024 年 4 月の mozaic.fm renewal project です。">
+  <meta property=og:description  content="第 152 回のテーマは 2024 年 6 月の mozaic.fm renewal project です。">
   <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
   <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
 
 
-  <title>ep148 mozaic.fm Renewal Project 202404 | mozaic.fm</title>
-  <link rel=prev href=https://mozaic.fm/episodes/147/monthly-ecosystem-202404.html>
-  <link rel=next href=https://mozaic.fm/episodes/149/monthly-platform-202404.html>
+  <title>ep152 mozaic.fm Renewal Project 202406 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/151/monthly-platform-202405.html>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?240502_021319>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?230926_134917>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
@@ -102,15 +101,15 @@
 
 <main>
   <nav>
-    <span>&lt;&lt;&nbsp;<a href=/episodes/147/monthly-ecosystem-202404.html>ep147 Monthly Ecosystem 202404</a></span>
-    <span><a href=/episodes/149/monthly-platform-202404.html>ep149 Monthly Platform 202404</a>&nbsp;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/151/monthly-platform-202405.html>ep151 Monthly Platform 202405</a></span>
+    <span>&nbsp;&gt;&gt;</span>
   </nav>
   <article>
-    <h1><a href="">ep148 mozaic.fm Renewal Project 202404</a></h1>
+    <h1><a href="">ep152 mozaic.fm Renewal Project 202406</a></h1>
     <dl class=info>
       <div>
         <dt>published_at
-        <dd>2024-04-22
+        <dd>2024-06-04
       </div>
       <div>
         <dt>guest
@@ -141,30 +140,40 @@
     </dl>
     <section>
       <h2 id="theme"><a href="#theme">Theme</a></h2>
-      <p>第 148 回のテーマは 2024 年 4 月の mozaic.fm renewal project です。
+      <p>第 152 回のテーマは 2024 年 6 月の mozaic.fm renewal project です。
     </section>
     <section>
       <h2 id="進捗"><a href="#進捗">進捗</a></h2>
       <ul>
         <li>
-          jxck
+          Jxck
           <ul>
-            <li>Honox で初期構成の PR
-            <li>Cloudflare のセットアップとデプロイ
+            <li>Hono -&gt; Next.js に全部書き直し
+            <li>既存のコードを捨てたので Figma, Storybook, Chromatic の連携もやり直し
+            <li>
+              デプロイ済み
+              <ul>
+                <li><a href="https://mozaicfm.pages.dev/" target=_blank>https://mozaicfm.pages.dev/</a>
+              </ul>
+            </li>
           </ul>
         </li>
         <li>
-          sakito
+          Sakito
           <ul>
-            <li>現状デザインの Figma への書き起こし
-            <li>カードレイアウト案作成
+            <li>進捗なし、すいません。
           </ul>
         </li>
         <li>
-          hiroppy
+          Hiroppy
           <ul>
-            <li>pnpm への以降
-            <li>インフラ周りの構築
+            <li>フロントエンドのインフラ再作成
+            <li>
+              algolia 調査、別のライブラリ調査中
+              <ul>
+                <li>Pagefind
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>
@@ -175,14 +184,19 @@
         <li>
           jxck
           <ul>
-            <li>honox での SPA
             <li>
               markdown パース
               <ul>
                 <li>自前 or Mdx (remark)
               </ul>
             </li>
-            <li>こまかいところの実装開始
+            <li>markdown は最終的にはリポジトリに入れる
+            <li>
+              こまかいところの実装開始
+              <ul>
+                <li>player component
+              </ul>
+            </li>
           </ul>
         </li>
         <li>
@@ -192,7 +206,7 @@
               デザイン案
               <ul>
                 <li>カードレイアウトベース
-                <li>リスト切り替え?
+                <li>リスト切り替え？
                 <li>light/dark
                 <li>mobile
                 <li>検索
@@ -224,6 +238,12 @@
                   要件
                   <ul>
                     <li>エピソードの順に結果を表示したい
+                    <li>
+                      markdown はここ
+                      <ul>
+                        <li><a href="https://github.com/Jxck/jxck.io/tree/main/mozaic.fm/episodes" target=_blank>https://github.com/Jxck/jxck.io/tree/main/mozaic.fm/episodes</a>
+                      </ul>
+                    </li>
                   </ul>
                 </li>
                 <li>
@@ -236,6 +256,7 @@
                 </li>
               </ul>
             </li>
+            <li>Storybook - Figma - Chromatic 連携
             <li>
               Review
               <ul>
@@ -250,13 +271,24 @@
       <h2 id="done"><a href="#done">Done</a></h2>
       <ul>
         <li>Git Repo
-        <li>Figma + Storybook + Chromatic
+        <li>Init Next.js
       </ul>
     </section>
     <section>
       <h2 id="スタック"><a href="#スタック">スタック</a></h2>
       <ul>
-        <li>Honox
+        <li>
+          Next.js
+          <ul>
+            <li>Approuter
+          </ul>
+        </li>
+        <li>
+          Markdown
+          <ul>
+            <li>MDX
+          </ul>
+        </li>
         <li>
           Figma
           <ul>
@@ -283,6 +315,7 @@
           Test
           <ul>
             <li>Vitest
+            <li>Storybook
           </ul>
         </li>
         <li>
@@ -326,8 +359,8 @@
   </article>
   <portal id=preview></portal>
   <nav>
-    <span>&lt;&lt;&nbsp;<a href=/episodes/147/monthly-ecosystem-202404.html>ep147 Monthly Ecosystem 202404</a></span>
-    <span><a href=/episodes/149/monthly-platform-202404.html>ep149 Monthly Platform 202404</a>&nbsp;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/151/monthly-platform-202405.html>ep151 Monthly Platform 202405</a></span>
+    <span>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
 
@@ -338,8 +371,8 @@
 <mozaic-player>
   <audio
     slot=audio
-    src=https://files.mozaic.fm/mozaic-ep148.mp3
-    data-title="ep148 mozaic.fm Renewal Project 202404"
+    src=https://files.mozaic.fm/mozaic-ep152.mp3
+    data-title="ep152 mozaic.fm Renewal Project 202406"
     data-forward=+30
     data-back=-10>
   </audio>

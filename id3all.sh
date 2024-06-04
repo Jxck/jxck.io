@@ -1979,7 +1979,7 @@ eyeD3 --title "ep144 Monthly Ecosystem 202403" \
 
 eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep145.mp3
 
-eyeD3 --title "ep145 mozaic.fm renewal project 202403" \
+eyeD3 --title "ep145 mozaic.fm Renewal Project 202403" \
       --track 153 \
       --artist 'Jxck' \
       --album 'mozaic.fm' \
@@ -2018,7 +2018,7 @@ eyeD3 --title "ep147 Monthly Ecosystem 202404" \
 
 eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep148.mp3
 
-eyeD3 --title "ep148 mozaic renewal 202404" \
+eyeD3 --title "ep148 mozaic.fm Renewal Project 202404" \
       --track 156 \
       --artist 'Jxck' \
       --album 'mozaic.fm' \
@@ -2065,6 +2065,19 @@ eyeD3 --title "ep151 Monthly Platform 202405" \
       --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
       --to-v2.3 \
       ../files.mozaic.fm/mozaic-ep151.mp3
+
+
+
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep152.mp3
+
+eyeD3 --title "ep152 mozaic.fm Renewal Project 202406" \
+      --track 160 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep152.mp3
 
 
 
