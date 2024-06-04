@@ -7,7 +7,7 @@ guest: [@sakito](https://twitter.com/__sakito__)
 guest: [@hiroppy](https://twitter.com/about_hiroppy)
 ---
 
-# ep152 mozaic renewal 202406
+# ep152 mozaic.fm Renewal Project 202406
 
 ## Theme
 
