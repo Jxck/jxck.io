@@ -57,6 +57,9 @@ CFP の募集には fortee を使ってみようと思います。まだ慣れ�
 
 また、採択は fortee のプロポーサルのスターを第一基準にするので、聞きたいのはスターしてください。(なので、多分応募は早い方が有利です)
 
+- プロポーザル | Web Developer Conference 2024 - fortee.jp
+  - https://fortee.jp/web-dev-conf-2024/proposal/all
+
 募集は Session と LT の 2 枠です。
 
 
