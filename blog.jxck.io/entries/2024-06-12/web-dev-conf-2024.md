@@ -4,6 +4,8 @@
 
 夏に Web 開発周りの話をするカンファレンスをやります。
 
+![Web Developer Conference 2024](./banner.png#1600x800)
+
 Session と LT の募集を fortee で今日から開始したので応募を待ってます。
 
 - Web Developer Conference 2024 - fortee.jp
