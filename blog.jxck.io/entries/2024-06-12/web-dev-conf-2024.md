@@ -43,7 +43,7 @@ Caption: Time Table (仮)
 | 12:00 | 12:40 | Opening                  |            |            |
 | 13:00 | 13:40 | Session 1                | Session 2  | Session 3  |
 | 14:00 | 14:40 | Session 4                | Session 5  | Session 6  |
-|       |       | break                    |
+|       |       | break                    |            |            |
 | 16:00 | 17:00 | Session 7                | Session 8  | Session 9  |
 | 17:00 | 17:40 | Session 10               | Session 11 | Session 12 |
 |       |       | break                    |            |            |
