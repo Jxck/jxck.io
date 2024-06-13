@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-06-14/url.parse.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Chrome 126 で筆者が実装した URL.parse が Ship された。Chromium にコントリビュートしたことは何回かあったが、単体機能を Ship したのは初めてだった。">
+  <meta name=keywords            content="url,chromium">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-06-14/url.parse.html>
+  <meta property=og:title        content="URL.parse を Chromium で Ship するまで | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Chrome 126 で筆者が実装した URL.parse が Ship された。Chromium にコントリビュートしたことは何回かあったが、単体機能を Ship したのは初めてだった。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "URL.parse を Chromium で Ship するまで | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-06-14T08:00:00+08:00",
+    "dateModified": "2024-06-14T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Chrome 126 で筆者が実装した URL.parse が Ship された。Chromium にコントリビュートしたことは何回かあったが、単体機能を Ship したのは初めてだった。"
+  }
+  </script>
+
+  <title>URL.parse を Chromium で Ship するまで | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240502_021319>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-06-14>2024-06-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-06-14>2024-06-14</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#url">url</a>
+              <li><a href="/tags#chromium">chromium</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <details class=info>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#intro">Intro</a>
+                <li><a href="#invalid-url-の処理">invalid URL の処理</a>
+                <li><a href="#url.parse">URL.parse</a>
+                <li><a href="#implementor-assing">Implementor Assing</a>
+                <li><a href="#intent-to-ship">Intent to Ship</a>
+                <li><a href="#outro">Outro</a>
+                <li><a href="#blink-api-owners-gift">Blink API Owners Gift</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">URL.parse を Chromium で Ship するまで</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Chrome 126 で筆者が実装した URL.parse が Ship された。
+        <p>Chromium にコントリビュートしたことは何回かあったが、単体機能を Ship したのは初めてだった。
+      </section>
+      <section>
+        <h2 id="invalid-url-の処理"><a href="#invalid-url-の処理">invalid URL の処理</a></h2>
+        <p><code translate=no>new URL()</code> によって、文字列の URL をパースすることができるようになって久しいが、この API は invalid な場合に例外を投げる。
+        <p>例外処理をするよりも、先に URL としてパース可能かどうかを知るための <code translate=no>URL.canParse()</code> が提案され、先に実装が進んだ。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=js data-code=js><code translate=no class=language-js>URL.canParse(str) // boolean</code></pre>
+        <p>しかし、これでは二回パースが必要になるため無駄が多い。
+        <pre class=js data-code=js><code translate=no class=language-js>if (URL.canParse(str)) { // 1 回目のパース
+  return new URL(str) // 2 回目のパース
+}</code></pre>
+        <p>そこで、失敗したら null にし、成功したら URL を返せば良いという発想が、 <code translate=no>URL.parse()</code> だ。
+        <p>そもそも、リアルワールドでは以下のように例外を握りつぶすコードがよく使われていることも知られていたため、賛同が多かった。
+        <pre class=js data-code=js><code translate=no class=language-js>function URLparse(str) {
+  try {
+    return new URL(str)
+  } catch (err) {
+    return null
+  }
+}</code></pre>
+      </section>
+      <section>
+        <h2 id="url.parse"><a href="#url.parse">URL.parse</a></h2>
+        <p>URL.parse の提案は以下で議論された。
+        <ul>
+          <li>
+            Consider adding non-throwing URL.parse(input, base) · Issue #372 · whatwg/url
+            <ul>
+              <li><a href="https://github.com/whatwg/url/issues/372" target=_blank>https://github.com/whatwg/url/issues/372</a>
+            </ul>
+          </li>
+        </ul>
+        <p>その後 URL の仕様にマージされている。
+        <ul>
+          <li>
+            Add URL.parse() by annevk · Pull Request #825 · whatwg/url
+            <ul>
+              <li><a href="https://github.com/whatwg/url/pull/825" target=_blank>https://github.com/whatwg/url/pull/825</a>
+            </ul>
+          </li>
+          <li>
+            URL Standard
+            <ul>
+              <li><a href="https://url.spec.whatwg.org/#dom-url-parse" target=_blank>https://url.spec.whatwg.org/#dom-url-parse</a>
+            </ul>
+          </li>
+        </ul>
+        <p>使い方もそのままだ。
+        <pre class=js data-code=js><code translate=no class=language-js>URL.parse(str) // null or URL</code></pre>
+        <p>機能としては小さく、 Firefox や Safari は比較的早く実装を進めていた。
+        <ul>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                1887611 - Implement URL.parse()
+                <ul>
+                  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1887611" target=_blank>https://bugzilla.mozilla.org/show_bug.cgi?id=1887611</a>
+                </ul>
+              </li>
+              <li>
+                Intent to prototype &amp; ship: URL.parse()
+                <ul>
+                  <li><a href="https://groups.google.com/a/mozilla.org/g/dev-platform/c/3QgJqDYpEwA/m/4n1pJEtqAAAJ" target=_blank>https://groups.google.com/a/mozilla.org/g/dev-platform/c/3QgJqDYpEwA/m/4n1pJEtqAAAJ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Webkit
+            <ul>
+              <li>
+                Implement URL.parse() by annevk · Pull Request #26403 · WebKit/WebKit
+                <ul>
+                  <li><a href="https://github.com/WebKit/WebKit/pull/26403" target=_blank>https://github.com/WebKit/WebKit/pull/26403</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>Firefox と Safari が実装したので、そろそろこの機能を使おうと思ったところ、 Chrome が未実装だったことに気づいた。
+      </section>
+      <section>
+        <h2 id="implementor-assing"><a href="#implementor-assing">Implementor Assing</a></h2>
+        <p>Issue を調べると、その時点では Chrome だけまだアサインが浮いていた。
+        <ul>
+          <li>
+            Implement URL.parse() [331041242] - Chromium
+            <ul>
+              <li><a href="https://issues.chromium.org/u/0/issues/331041242" target=_blank>https://issues.chromium.org/u/0/issues/331041242</a>
+            </ul>
+          </li>
+        </ul>
+        <p>仕様が小さいことも、ほぼ <code translate=no>URL.canParse()</code> と同じように実装できることがわかっていたので、自分で手を挙げたところアサインしてもらうことになり、実装に着手した。
+        <p>小さいパッチは投げたことはあっても、単体の機能を実装するのは初めてだった。また、 crrev などはちょっと使わないとすぐにわからなくなるので、中の人にはかなり手取り足取り教えてもらいながら進めることになった。
+        <p>一度教えてもらったことを何度も聞かないで済むよう、この作業中に教わったことは全て以下にまとめている。
+        <ul>
+          <li>
+            Chromium にコントリビュートするための周辺知識 | blog.jxck.io
+            <ul>
+              <li><a href="https://blog.jxck.io/entries/2024-03-26/chromium-contribution.html">https://blog.jxck.io/entries/2024-03-26/chromium-contribution.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>実装したパッチのレビューなどは以下で行った。
+        <ul>
+          <li>
+            Implement URL.parse() (5414853) · Gerrit Code Review
+            <ul>
+              <li><a href="https://chromium-review.googlesource.com/c/chromium/src/+/5414853" target=_blank>https://chromium-review.googlesource.com/c/chromium/src/+/5414853</a>
+            </ul>
+          </li>
+        </ul>
+        <p>書くコード自体は特に難しいところはなく、ただ書くだけだ。どちらかというと、レビュアーとの非同期なやり取りや、 CI を回すにも権限のある中の人に頼まないといけないあたりに、時間がかかったと思う。
+        <p>また、こんな小さい機能でありながらも、新しい標準機能を Web Platform に出すためには、様々な角度からのレビューが行われる。具体的には、 Privacy, Security, Enterprise, Debuggability, Testing, API Ownwers の各 Approve を得て、初めて Ship できるのだ。
+        <ul>
+          <li>
+            URL.parse() - Chrome Platform Status
+            <ul>
+              <li><a href="https://chromestatus.com/feature/6301071388704768?gate=4813144208965632" target=_blank>https://chromestatus.com/feature/6301071388704768?gate=4813144208965632</a>
+            </ul>
+          </li>
+        </ul>
+        <p>実装に着手したのが 4 月頭で、マージが 4 月末、そこから Ship のプロセスを進めたので、まるまる 1 ヶ月かかったことになる。
+      </section>
+      <section>
+        <h2 id="intent-to-ship"><a href="#intent-to-ship">Intent to Ship</a></h2>
+        <p>今回もっとも良い経験になったのは、 Intents を初めて出したことだろう。
+        <ul>
+          <li>
+            Intent to Ship: URL.parse()
+            <ul>
+              <li><a href="https://groups.google.com/u/0/a/chromium.org/g/blink-dev/c/G070zUd0e4c" target=_blank>https://groups.google.com/u/0/a/chromium.org/g/blink-dev/c/G070zUd0e4c</a>
+            </ul>
+          </li>
+        </ul>
+        <p>これまで 10 年近く、ほぼ全ての Intents に目を通してきたが、自分がそれを出す側になることで、裏にあるプロセスやツールなど初めて知るこも多く、解像度もかなり上がった。
+        <p>通常、新しい機能を実装するには、膨大なステップがある。
+        <ol>
+          <li>仕様の提案
+          <li>Explainer, Draft の作成
+          <li>WG や Issue での議論
+          <li>Tag Review
+          <li>WPT などの整備
+          <li>Intent to Prototype
+          <li>Intent to Experience
+          <li>様々な修正
+          <li>Intent to Ship
+        </ol>
+        <p>本来、これを外部のコントリビューターが全て行うのは難しい。通常は中の人が行うのを手伝ったり、議論に参加したり、細かいバグを後から直したり、仕様の差分だけを実装したりと言ったコントリビュートが多いだろう。
+        <p>しかし、今回は仕様策定がすでに終わり、他のブラウザも Implement/Ship 済みだったため、全部すっ飛ばして実装と Ship だけを行えるという、社会科見学としては最高のタスクに運良く携わることができた。
+        <p>Stable が 124 の時にマージし、今週リリースされた Chrome M126 が Stable に落ちてきて、無事 <code translate=no>URL.parse()</code> の挙動を確認することができたので、やっとタスクとして終了した実感がある。
+        <p>
+          <picture>
+            <source type=image/avif srcset=url-parse-on-m126.avif?240614_051436>
+            <source type=image/webp srcset=url-parse-on-m126.webp?240614_051436>
+            <img loading=lazy decoding=async src=url-parse-on-m126.png?240614_051436 alt="Chrome 126 で URL.parse が動いているところ" width=1552 height=326>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>Chromium のコードはちょくちょくいじってはいるが、機能を Ship するのは基本的に敷居が高いため、良い経験になった。
+        <p>ここまで面倒を見てくれた <a href="https://x.com/horo" target=_blank>@horo</a> さん、 <a href="https://x.com/hayatoito" target=_blank>@hayatoito</a> さん、 <a href="https://x.com/toyoshim" target=_blank>@toyoshim</a> さんには非常に感謝しています。ありがとうございました。今後もコントリビュートは続けたいので、引き続きよろしくお願いします。
+      </section>
+      <section>
+        <h2 id="blink-api-owners-gift"><a href="#blink-api-owners-gift">Blink API Owners Gift</a></h2>
+        <p>コードがマージされたあと、中の人(API Owner)からメールをもらった。機能の Ship までを行った人には、お祝いとしてギフトを贈るというものだった。
+        <p>後日忘れた頃に国際郵便で届いたのは、 Chromium の LGTM ステッカーだった。
+        <p>
+          <picture>
+            <source type=image/avif srcset=blink-api-owners-gift.avif?240614_051913>
+            <source type=image/webp srcset=blink-api-owners-gift.webp?240614_051913>
+            <img loading=lazy decoding=async src=blink-api-owners-gift.png?240614_051913 alt="Blink API Owners Gift" width=4032 height=3024>
+          </picture>
+        </p>
+        <p>嬉しい。
+        <p>すでに次のタスクももらってるので、そっちもガンバる。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
