@@ -90,19 +90,82 @@ Issue を調べると、その時点では Chrome だけまだアサインが浮
 - Chromium にコントリビュートするための周辺知識 | blog.jxck.io
   - https://blog.jxck.io/entries/2024-03-26/chromium-contribution.html
 
+
+## Patchset
+
 実装したパッチのレビューなどは以下で行った。
 
 - Implement URL.parse() (5414853) · Gerrit Code Review
   - https://chromium-review.googlesource.com/c/chromium/src/+/5414853
 
-書くコード自体は特に難しいところはなく、ただ書くだけだ。どちらかというと、レビュアーとの非同期なやり取りや、 CI を回すにも権限のある中の人に頼まないといけないあたりに、時間がかかったと思う。
+書くコード自体は特に難しいところはなく、ただ書くだけだ。
 
-また、こんな小さい機能でありながらも、新しい標準機能を Web Platform に出すためには、様々な角度からのレビューが行われる。具体的には、 Privacy, Security, Enterprise, Debuggability, Testing, API Ownwers の各 Approve を得て、初めて Ship できるのだ。
+基本的には URL の WebIDL が変わるので、そこを追加する。
+
+![URL の WebIDL にメソッドを追加する](web-idl-for-url.png#2864x838)
+
+- url.idl | Gerrit Code Review
+  - https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/renderer/core/url/url.idl
+
+これをもとに Python のスクリプトで binding が生成されるので、その実態となる C++ のコードを書く。
+
+![C++ での binding の実装](dom_url-implementation.png#1186x1464)
+
+- dom_url.cc | Gerrit Code Review
+  - https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/renderer/core/url/dom_url.cc
+
+Chromium の中には、ありとあらゆるリアルワールド URL をパースしてきた歴戦(Battle Tested)の URL パーサーである KURL という実装がある。
+
+これに、後から標準化された JS の URL API のために、ガワを被せて外に出す作りになっているため、実際は KRUL を呼んだら終わりだ。
+
+DOMURL のコンストラクタがそもそも例外を投げる実装になっているため、一旦 KURL でパースして IsValid() が ture ならその KURL を元に DOMURL を生成できるコンストラクタを追加しただけだ。
+
+つまり、全く難しくない。 C++ 書いたことがなくても、見ればわかるくらいの変更だ。
+
+
+## WPT
+
+この API は先に Firefox で実装されたので、そのときに WPT のテストが追加されていた。WPT はブラウザが共有しているテストスイートなので基本的にこれを通せばよい。
+
+Chromium が WPT を内部で流していながら、 WPT にある URL.parse のテストでこれまで落ちなかったのは、 Chromium が持つ expected ファイルによるものだ。
+
+- url-statics-parse.any-expected.txt · Gerrit Code Review
+  - https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/web_tests/external/wpt/url/url-statics-parse.any-expected.txt
+
+これは、 WPT の実行結果をそのまま保存したファイルになっており、「その結果が変わらないことをテストする」という仕組みになっている。つまり、実装前は「落ちることを期待する」というテストだった。
+
+今回、実装して WPT が通るようになったことで、この expected ファイルは削除し今後は WPT の結果を直接見るようになる。
+
+このような expected テストはいたることろにあるため、自分で一個一個探して書き直すのではなく、テストを流す時に `--reset-result` をつけて上書きし、その diff をチェックするのが基本らしい。それを知らずに、手作業でやっていたため、ここでかなり時間がかかった。
+
+また、 `--reset-result` する対象は、 CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
+
+![CQ DRY RUN の結果](cq-dry-run-result.png)
+
+しかし、 CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら `--reset-result` したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
+
+
+## API Review
+
+こんな小さい機能でありながらも、新しい標準機能を Web Platform に出すためには、様々な角度からのレビューが行われる。(コードレビューではなく Ship のためのレビュー)
+
+具体的には、以下の各レビュアーの Approve を得て、初めて Ship できるのだ。
+
+- Privacy
+- Security
+- Enterprise
+- Debuggability
+- Testing
+- API Ownwers
+
+このレビューは Chrome Plaform Status からリクエストをする。いつも見ていた Platform Status にその機能があることはここで初めて知った。
+
+![Chrome Plaform Status からのレビューリクエスト](prepare-to-ship.png#1752x348)
 
 - URL.parse() - Chrome Platform Status
   - https://chromestatus.com/feature/6301071388704768?gate=4813144208965632
 
-実装に着手したのが 4 月頭で、マージが 4 月末、そこから Ship のプロセスを進めたので、まるまる 1 ヶ月かかったことになる。
+実装に着手したのが 4 月頭で、マージが 4 月末、そこから Ship のプロセスを進めたので、まるまる 1 ヶ月かかったことになる。ほとんどは、コードを書く以外の時間と待ち時間だった。
 
 
 ## Intent to Ship
@@ -126,7 +189,7 @@ Issue を調べると、その時点では Chrome だけまだアサインが浮
 8. 様々な修正
 9. Intent to Ship
 
-本来、これを外部のコントリビューターが全て行うのは難しい。通常は中の人が行うのを手伝ったり、議論に参加したり、細かいバグを後から直したり、仕様の差分だけを実装したりと言ったコントリビュートが多いだろう。
+本来、これを外部のコントリビューターが全て行うのは難しい。通常は中の人が行うのを手伝ったり、議論に参加したり、細かいバグを後から直したり、仕様の差分だけを実装したりと言ったコントリビュートが多いだろう。作業自体も年単位になるのが普通だ。
 
 しかし、今回は仕様策定がすでに終わり、他のブラウザも Implement/Ship 済みだったため、全部すっ飛ばして実装と Ship だけを行えるという、社会科見学としては最高のタスクに運良く携わることができた。
 
