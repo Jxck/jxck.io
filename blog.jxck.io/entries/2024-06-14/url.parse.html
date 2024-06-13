@@ -137,6 +137,9 @@
                 <li><a href="#invalid-url-の処理">invalid URL の処理</a>
                 <li><a href="#url.parse">URL.parse</a>
                 <li><a href="#implementor-assing">Implementor Assing</a>
+                <li><a href="#patchset">Patchset</a>
+                <li><a href="#wpt">WPT</a>
+                <li><a href="#api-review">API Review</a>
                 <li><a href="#intent-to-ship">Intent to Ship</a>
                 <li><a href="#outro">Outro</a>
                 <li><a href="#blink-api-owners-gift">Blink API Owners Gift</a>
@@ -258,6 +261,9 @@
             </ul>
           </li>
         </ul>
+      </section>
+      <section>
+        <h2 id="patchset"><a href="#patchset">Patchset</a></h2>
         <p>実装したパッチのレビューなどは以下で行った。
         <ul>
           <li>
@@ -267,8 +273,89 @@
             </ul>
           </li>
         </ul>
-        <p>書くコード自体は特に難しいところはなく、ただ書くだけだ。どちらかというと、レビュアーとの非同期なやり取りや、 CI を回すにも権限のある中の人に頼まないといけないあたりに、時間がかかったと思う。
-        <p>また、こんな小さい機能でありながらも、新しい標準機能を Web Platform に出すためには、様々な角度からのレビューが行われる。具体的には、 Privacy, Security, Enterprise, Debuggability, Testing, API Ownwers の各 Approve を得て、初めて Ship できるのだ。
+        <p>書くコード自体は特に難しいところはなく、ただ書くだけだ。
+        <p>基本的には URL の WebIDL が変わるので、そこを追加する。
+        <p>
+          <picture>
+            <source type=image/avif srcset=web-idl-for-url.avif?240614_053905>
+            <source type=image/webp srcset=web-idl-for-url.webp?240614_053905>
+            <img loading=lazy decoding=async src=web-idl-for-url.png?240614_053905 alt="URL の WebIDL にメソッドを追加する" width=2864 height=838>
+          </picture>
+        </p>
+        <ul>
+          <li>
+            url.idl | Gerrit Code Review
+            <ul>
+              <li><a href="https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/renderer/core/url/url.idl" target=_blank>https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/renderer/core/url/url.idl</a>
+            </ul>
+          </li>
+        </ul>
+        <p>これをもとに Python のスクリプトで binding が生成されるので、その実態となる C++ のコードを書く。
+        <p>
+          <picture>
+            <source type=image/avif srcset=dom_url-implementation.avif?240614_054217>
+            <source type=image/webp srcset=dom_url-implementation.webp?240614_054217>
+            <img loading=lazy decoding=async src=dom_url-implementation.png?240614_054217 alt="C++ での binding の実装" width=1186 height=1464>
+          </picture>
+        </p>
+        <ul>
+          <li>
+            dom_url.cc | Gerrit Code Review
+            <ul>
+              <li><a href="https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/renderer/core/url/dom_url.cc" target=_blank>https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/renderer/core/url/dom_url.cc</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Chromium の中には、ありとあらゆるリアルワールド URL をパースしてきた歴戦(Battle Tested)の URL パーサーである KURL という実装がある。
+        <p>これに、後から標準化された JS の URL API のために、ガワを被せて外に出す作りになっているため、実際は KRUL を呼んだら終わりだ。
+        <p>DOMURL のコンストラクタがそもそも例外を投げる実装になっているため、一旦 KURL でパースして IsValid() が ture ならその KURL を元に DOMURL を生成できるコンストラクタを追加しただけだ。
+        <p>つまり、全く難しくない。 C++ 書いたことがなくても、見ればわかるくらいの変更だ。
+      </section>
+      <section>
+        <h2 id="wpt"><a href="#wpt">WPT</a></h2>
+        <p>この API は先に Firefox で実装されたので、そのときに WPT のテストが追加されていた。WPT はブラウザが共有しているテストスイートなので基本的にこれを通せばよい。
+        <p>Chromium が WPT を内部で流していながら、 WPT にある URL.parse のテストでこれまで落ちなかったのは、 Chromium が持つ expected ファイルによるものだ。
+        <ul>
+          <li>
+            url-statics-parse.any-expected.txt · Gerrit Code Review
+            <ul>
+              <li><a href="https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/web_tests/external/wpt/url/url-statics-parse.any-expected.txt" target=_blank>https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/web_tests/external/wpt/url/url-statics-parse.any-expected.txt</a>
+            </ul>
+          </li>
+        </ul>
+        <p>これは、 WPT の実行結果をそのまま保存したファイルになっており、「その結果が変わらないことをテストする」という仕組みになっている。つまり、実装前は「落ちることを期待する」というテストだった。
+        <p>今回、実装して WPT が通るようになったことで、この expected ファイルは削除し今後は WPT の結果を直接見るようになる。
+        <p>このような expected テストはいたることろにあるため、自分で一個一個探して書き直すのではなく、テストを流す時に <code translate=no>--reset-result</code> をつけて上書きし、その diff をチェックするのが基本らしい。それを知らずに、手作業でやっていたため、ここでかなり時間がかかった。
+        <p>また、 <code translate=no>--reset-result</code> する対象は、 CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
+        <p>
+          <picture>
+            <source type=image/avif srcset=cq-dry-run-result.avif?240614_055815>
+            <source type=image/webp srcset=cq-dry-run-result.webp?240614_055815>
+            <img loading=lazy decoding=async src=cq-dry-run-result.png?240614_055815 alt="CQ DRY RUN の結果" width=2804 height=1646>
+          </picture>
+        </p>
+        <p>しかし、 CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら <code translate=no>--reset-result</code> したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
+      </section>
+      <section>
+        <h2 id="api-review"><a href="#api-review">API Review</a></h2>
+        <p>こんな小さい機能でありながらも、新しい標準機能を Web Platform に出すためには、様々な角度からのレビューが行われる。(コードレビューではなく Ship のためのレビュー)
+        <p>具体的には、以下の各レビュアーの Approve を得て、初めて Ship できるのだ。
+        <ul>
+          <li>Privacy
+          <li>Security
+          <li>Enterprise
+          <li>Debuggability
+          <li>Testing
+          <li>API Ownwers
+        </ul>
+        <p>このレビューは Chrome Plaform Status からリクエストをする。いつも見ていた Platform Status にその機能があることはここで初めて知った。
+        <p>
+          <picture>
+            <source type=image/avif srcset=prepare-to-ship.avif?240614_060240>
+            <source type=image/webp srcset=prepare-to-ship.webp?240614_060240>
+            <img loading=lazy decoding=async src=prepare-to-ship.png?240614_060240 alt="Chrome Plaform Status からのレビューリクエスト" width=1752 height=348>
+          </picture>
+        </p>
         <ul>
           <li>
             URL.parse() - Chrome Platform Status
@@ -277,7 +364,7 @@
             </ul>
           </li>
         </ul>
-        <p>実装に着手したのが 4 月頭で、マージが 4 月末、そこから Ship のプロセスを進めたので、まるまる 1 ヶ月かかったことになる。
+        <p>実装に着手したのが 4 月頭で、マージが 4 月末、そこから Ship のプロセスを進めたので、まるまる 1 ヶ月かかったことになる。ほとんどは、コードを書く以外の時間と待ち時間だった。
       </section>
       <section>
         <h2 id="intent-to-ship"><a href="#intent-to-ship">Intent to Ship</a></h2>
@@ -303,7 +390,7 @@
           <li>様々な修正
           <li>Intent to Ship
         </ol>
-        <p>本来、これを外部のコントリビューターが全て行うのは難しい。通常は中の人が行うのを手伝ったり、議論に参加したり、細かいバグを後から直したり、仕様の差分だけを実装したりと言ったコントリビュートが多いだろう。
+        <p>本来、これを外部のコントリビューターが全て行うのは難しい。通常は中の人が行うのを手伝ったり、議論に参加したり、細かいバグを後から直したり、仕様の差分だけを実装したりと言ったコントリビュートが多いだろう。作業自体も年単位になるのが普通だ。
         <p>しかし、今回は仕様策定がすでに終わり、他のブラウザも Implement/Ship 済みだったため、全部すっ飛ばして実装と Ship だけを行えるという、社会科見学としては最高のタスクに運良く携わることができた。
         <p>Stable が 124 の時にマージし、今週リリースされた Chrome M126 が Stable に落ちてきて、無事 <code translate=no>URL.parse()</code> の挙動を確認することができたので、やっとタスクとして終了した実感がある。
         <p>

@@ -140,7 +140,7 @@ Chromium が WPT を内部で流していながら、 WPT にある URL.parse �
 
 また、 `--reset-result` する対象は、 CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
 
-![CQ DRY RUN の結果](cq-dry-run-result.png)
+![CQ DRY RUN の結果](cq-dry-run-result.png#2804x1646)
 
 しかし、 CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら `--reset-result` したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
 
