@@ -1,11 +1,13 @@
-# [chromium] URL.parse を Chromium で Ship した流れ
+# [chromium] URL.parse を Chromium で Ship するまで
 
 ## Intro
 
+Chrome 126 で URL.parse が ship された。
+
+Chromium にコントリビュートしたことは何回かあったが、単体機能を Ship したのは初めてだったので、流れを残す。
 
 
-
-## Chromium
+## URL.parse
 
 以下で仕様が追加された。
 
