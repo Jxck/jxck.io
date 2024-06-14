@@ -67,14 +67,14 @@ URL.parse(str) // null or URL
     - https://bugzilla.mozilla.org/show_bug.cgi?id=1887611
   - Intent to prototype & ship: URL.parse()
     - https://groups.google.com/a/mozilla.org/g/dev-platform/c/3QgJqDYpEwA/m/4n1pJEtqAAAJ
-- Webkit
+- WebKit
   - Implement URL.parse() by annevk · Pull Request #26403 · WebKit/WebKit
     - https://github.com/WebKit/WebKit/pull/26403
 
 Firefox と Safari が実装したので、そろそろこの機能を使おうと思ったところ、 Chrome が未実装だったことに気づいた。
 
 
-## Implementor Assing
+## Implementor Assign
 
 Issue を調べると、その時点では Chrome だけまだアサインが浮いていた。
 
@@ -97,7 +97,7 @@ Issue を調べると、その時点では Chrome だけまだアサインが浮
 
 書くコード自体は特に難しいところはなく、ただ書くだけだ。どちらかというと、レビュアーとの非同期なやり取りや、 CI を回すにも権限のある中の人に頼まないといけないあたりに、時間がかかったと思う。
 
-また、こんな小さい機能でありながらも、新しい標準機能を Web Platform に出すためには、様々な角度からのレビューが行われる。具体的には、 Privacy, Security, Enterprise, Debuggability, Testing, API Ownwers の各 Approve を得て、初めて Ship できるのだ。
+また、こんな小さい機能でありながらも、新しい標準機能を Web Platform に出すためには、様々な角度からのレビューが行われる。具体的には、 Privacy, Security, Enterprise, Debuggability, Testing, API Owners の各 Approve を得て、初めて Ship できるのだ。
 
 - URL.parse() - Chrome Platform Status
   - https://chromestatus.com/feature/6301071388704768?gate=4813144208965632
@@ -112,7 +112,7 @@ Issue を調べると、その時点では Chrome だけまだアサインが浮
 - Intent to Ship: URL.parse()
   - https://groups.google.com/u/0/a/chromium.org/g/blink-dev/c/G070zUd0e4c
 
-これまで 10 年近く、ほぼ全ての Intents に目を通してきたが、自分がそれを出す側になることで、裏にあるプロセスやツールなど初めて知るこも多く、解像度もかなり上がった。
+これまで 10 年近く、ほぼ全ての Intents に目を通してきたが、自分がそれを出す側になることで、裏にあるプロセスやツールなど初めて知ることも多く、解像度もかなり上がった。
 
 通常、新しい機能を実装するには、膨大なステップがある。
 
@@ -122,11 +122,11 @@ Issue を調べると、その時点では Chrome だけまだアサインが浮
 4. Tag Review
 5. WPT などの整備
 6. Intent to Prototype
-7. Intent to Experience
+7. Intent to Experiment
 8. 様々な修正
 9. Intent to Ship
 
-本来、これを外部のコントリビューターが全て行うのは難しい。通常は中の人が行うのを手伝ったり、議論に参加したり、細かいバグを後から直したり、仕様の差分だけを実装したりと言ったコントリビュートが多いだろう。
+本来、これを外部のコントリビューターが全て行うのは難しい。通常は中の人が行うのを手伝ったり、議論に参加したり、細かいバグを後から直したり、仕様の差分だけを実装したりといったコントリビュートが多いだろう。
 
 しかし、今回は仕様策定がすでに終わり、他のブラウザも Implement/Ship 済みだったため、全部すっ飛ばして実装と Ship だけを行えるという、社会科見学としては最高のタスクに運良く携わることができた。
 
