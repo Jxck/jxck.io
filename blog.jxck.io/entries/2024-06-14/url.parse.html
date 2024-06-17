@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-06-14T08:00:00+08:00",
-    "dateModified": "2024-06-14T08:00:00+08:00",
+    "dateModified": "2024-06-17T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-06-14>2024-06-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-06-14>2024-06-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-06-17>2024-06-17</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -136,7 +136,7 @@
                 <li><a href="#intro">Intro</a>
                 <li><a href="#invalid-url-の処理">invalid URL の処理</a>
                 <li><a href="#url.parse">URL.parse</a>
-                <li><a href="#implementor-assing">Implementor Assing</a>
+                <li><a href="#implementor-assign">Implementor Assign</a>
                 <li><a href="#patchset">Patchset</a>
                 <li><a href="#wpt">WPT</a>
                 <li><a href="#api-review">API Review</a>
@@ -226,7 +226,7 @@
             </ul>
           </li>
           <li>
-            Webkit
+            WebKit
             <ul>
               <li>
                 Implement URL.parse() by annevk · Pull Request #26403 · WebKit/WebKit
@@ -240,7 +240,7 @@
         <p>Firefox と Safari が実装したので、そろそろこの機能を使おうと思ったところ、 Chrome が未実装だったことに気づいた。
       </section>
       <section>
-        <h2 id="implementor-assing"><a href="#implementor-assing">Implementor Assing</a></h2>
+        <h2 id="implementor-assign"><a href="#implementor-assign">Implementor Assign</a></h2>
         <p>Issue を調べると、その時点では Chrome だけまだアサインが浮いていた。
         <ul>
           <li>
@@ -277,9 +277,9 @@
         <p>基本的には URL の WebIDL が変わるので、そこを追加する。
         <p>
           <picture>
-            <source type=image/avif srcset=web-idl-for-url.avif?240614_053905>
-            <source type=image/webp srcset=web-idl-for-url.webp?240614_053905>
-            <img loading=lazy decoding=async src=web-idl-for-url.png?240614_053905 alt="URL の WebIDL にメソッドを追加する" width=2864 height=838>
+            <source type=image/avif srcset=web-idl-for-url.avif?240617_153447>
+            <source type=image/webp srcset=web-idl-for-url.webp?240617_153447>
+            <img loading=lazy decoding=async src=web-idl-for-url.png?240617_153429 alt="URL の WebIDL にメソッドを追加する" width=2864 height=838>
           </picture>
         </p>
         <ul>
@@ -293,9 +293,9 @@
         <p>これをもとに Python のスクリプトで binding が生成されるので、その実態となる C++ のコードを書く。
         <p>
           <picture>
-            <source type=image/avif srcset=dom_url-implementation.avif?240614_054217>
-            <source type=image/webp srcset=dom_url-implementation.webp?240614_054217>
-            <img loading=lazy decoding=async src=dom_url-implementation.png?240614_054217 alt="C++ での binding の実装" width=1186 height=1464>
+            <source type=image/avif srcset=dom_url-implementation.avif?240617_153447>
+            <source type=image/webp srcset=dom_url-implementation.webp?240617_153447>
+            <img loading=lazy decoding=async src=dom_url-implementation.png?240617_153429 alt="C++ での binding の実装" width=1186 height=1464>
           </picture>
         </p>
         <ul>
@@ -329,9 +329,9 @@
         <p>また、 <code translate=no>--reset-result</code> する対象は、 CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
         <p>
           <picture>
-            <source type=image/avif srcset=cq-dry-run-result.avif?240614_055815>
-            <source type=image/webp srcset=cq-dry-run-result.webp?240614_055815>
-            <img loading=lazy decoding=async src=cq-dry-run-result.png?240614_055815 alt="CQ DRY RUN の結果" width=2804 height=1646>
+            <source type=image/avif srcset=cq-dry-run-result.avif?240617_153447>
+            <source type=image/webp srcset=cq-dry-run-result.webp?240617_153447>
+            <img loading=lazy decoding=async src=cq-dry-run-result.png?240617_153429 alt="CQ DRY RUN の結果" width=2804 height=1646>
           </picture>
         </p>
         <p>しかし、 CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら <code translate=no>--reset-result</code> したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
@@ -351,9 +351,9 @@
         <p>このレビューは Chrome Plaform Status からリクエストをする。いつも見ていた Platform Status にその機能があることはここで初めて知った。
         <p>
           <picture>
-            <source type=image/avif srcset=prepare-to-ship.avif?240614_060240>
-            <source type=image/webp srcset=prepare-to-ship.webp?240614_060240>
-            <img loading=lazy decoding=async src=prepare-to-ship.png?240614_060240 alt="Chrome Plaform Status からのレビューリクエスト" width=1752 height=348>
+            <source type=image/avif srcset=prepare-to-ship.avif?240617_153447>
+            <source type=image/webp srcset=prepare-to-ship.webp?240617_153447>
+            <img loading=lazy decoding=async src=prepare-to-ship.png?240617_153429 alt="Chrome Plaform Status からのレビューリクエスト" width=1752 height=348>
           </picture>
         </p>
         <ul>
@@ -377,7 +377,7 @@
             </ul>
           </li>
         </ul>
-        <p>これまで 10 年近く、ほぼ全ての Intents に目を通してきたが、自分がそれを出す側になることで、裏にあるプロセスやツールなど初めて知るこも多く、解像度もかなり上がった。
+        <p>これまで 10 年近く、ほぼ全ての Intents に目を通してきたが、自分がそれを出す側になることで、裏にあるプロセスやツールなど初めて知ることも多く、解像度もかなり上がった。
         <p>通常、新しい機能を実装するには、膨大なステップがある。
         <ol>
           <li>仕様の提案
@@ -386,7 +386,7 @@
           <li>Tag Review
           <li>WPT などの整備
           <li>Intent to Prototype
-          <li>Intent to Experience
+          <li>Intent to Experiment
           <li>様々な修正
           <li>Intent to Ship
         </ol>
