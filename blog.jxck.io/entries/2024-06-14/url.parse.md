@@ -67,14 +67,14 @@ URL.parse(str) // null or URL
     - https://bugzilla.mozilla.org/show_bug.cgi?id=1887611
   - Intent to prototype & ship: URL.parse()
     - https://groups.google.com/a/mozilla.org/g/dev-platform/c/3QgJqDYpEwA/m/4n1pJEtqAAAJ
-- Webkit
+- WebKit
   - Implement URL.parse() by annevk · Pull Request #26403 · WebKit/WebKit
     - https://github.com/WebKit/WebKit/pull/26403
 
 Firefox と Safari が実装したので、そろそろこの機能を使おうと思ったところ、 Chrome が未実装だったことに気づいた。
 
 
-## Implementor Assing
+## Implementor Assign
 
 Issue を調べると、その時点では Chrome だけまだアサインが浮いていた。
 
@@ -175,7 +175,7 @@ Chromium が WPT を内部で流していながら、 WPT にある URL.parse �
 - Intent to Ship: URL.parse()
   - https://groups.google.com/u/0/a/chromium.org/g/blink-dev/c/G070zUd0e4c
 
-これまで 10 年近く、ほぼ全ての Intents に目を通してきたが、自分がそれを出す側になることで、裏にあるプロセスやツールなど初めて知るこも多く、解像度もかなり上がった。
+これまで 10 年近く、ほぼ全ての Intents に目を通してきたが、自分がそれを出す側になることで、裏にあるプロセスやツールなど初めて知ることも多く、解像度もかなり上がった。
 
 通常、新しい機能を実装するには、膨大なステップがある。
 
@@ -185,7 +185,7 @@ Chromium が WPT を内部で流していながら、 WPT にある URL.parse �
 4. Tag Review
 5. WPT などの整備
 6. Intent to Prototype
-7. Intent to Experience
+7. Intent to Experiment
 8. 様々な修正
 9. Intent to Ship
 
