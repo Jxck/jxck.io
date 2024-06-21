@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dialog Animation DEMO | labs.jxck.io</title>
+
+<h1>Dialog Animation DEMO</h1>
+
+<style>
+  div {
+    padding: 1rem;
+    border: solid 4px red;
+    background-color: pink;
+    width: fit-content;
+    align-content: center;
+    text-align: center;
+
+    display: none;
+    opacity: 0;
+  }
+
+
+  .fade-in-transition {
+    opacity: 1;
+    display: block;
+    transition: opacity 1s, display 1s allow-discrete;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  .fade-out-transition {
+    opacity: 0;
+    display: none;
+    transition: opacity 1s, display 1s allow-discrete;
+  }
+
+
+  .fade-in-animation {
+    animation: fade-in-animation 1s forwards;
+    display: block;
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-in-animation {
+    100% {
+      opacity: 1;
+      display: block;
+    }
+  }
+
+  .fade-out-animation {
+    animation: fade-out-animation 1s forwards;
+    @starting-style {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out-animation {
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
+</style>
+<button id="fade-in-transition">fade-in-transition</button>
+<button id="fade-out-transition">fade-out-transition</button>
+<button id="fade-in-animation">fade-in-animation</button>
+<button id="fade-out-animation">fade-out-animation</button>
+
+<main></main>
+
+<script>
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  const $div = document.createElement("div")
+  $div.textContent = "hello dialog"
+  $("main").appendChild($div)
+  $("#fade-in-transition").on("click", () => {
+    $div.classList.remove("fade-out-transition")
+    $div.classList.add("fade-in-transition")
+  })
+  $("#fade-out-transition").on("click", () => {
+    $div.classList.remove("fade-in-transition")
+    $div.classList.add("fade-out-transition")
+  })
+
+  $("#fade-in-animation").on("click", () => {
+    $div.classList.remove("fade-out-animation")
+    $div.classList.add("fade-in-animation")
+  })
+  $("#fade-out-animation").on("click", () => {
+    $div.classList.remove("fade-in-animation")
+    $div.classList.add("fade-out-animation")
+  })
+</script>
