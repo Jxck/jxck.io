@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dialog Animation DEMO | labs.jxck.io</title>
+
+<h1>Dialog Animation DEMO</h1>
+
+<style>
+  dialog {
+    /** base **/
+    padding: 1rem;
+    width: fit-content;
+    align-content: center;
+    text-align: center;
+
+    border: solid 4px red;
+    background-color: pink;
+
+    /** for modal backdrop **/
+    &::backdrop {
+      background-color: rgba(250 150 150 / 20%);
+    }
+
+    /** fade-out **/
+    &, &::backdrop {
+      opacity: 0;
+      transition: opacity 1s,
+                  overlay 1s allow-discrete,
+                  display 1s allow-discrete;
+    }
+  }
+
+  dialog[open] {
+     /** fade-in */
+    &, &::backdrop {
+      opacity: 1;
+      transition: opacity 1s;
+      @starting-style {
+        &, &::backdrop {
+          opacity: 0;
+        }
+      }
+    }
+  }
+</style>
+
+<button id="dialog">open dialog</button>
+<button id="modal">open modal dialog</button>
+
+<dialog>
+
+  <p>hello</p>
+  <form method="dialog">
+    <button>Close</button>
+  </form>
+</dialog>
+
+<script>
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  $("#dialog").on("click", () => {
+    $("dialog").show()
+  })
+  $("#modal").on("click", () => {
+    $("dialog").showModal()
+  })
+</script>
