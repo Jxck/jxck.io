@@ -6,6 +6,11 @@
 
 ![Web Developer Conference 2024](./banner.png#1600x800)
 
+参加は Connpass で募集しています。
+
+- Web Developer Conference 2024 - connpass
+  - https://web-study.connpass.com/event/321711/
+
 Session と LT の募集を fortee で今日から開始したので応募を待ってます。
 
 - Web Developer Conference 2024 - fortee.jp
@@ -17,7 +22,7 @@ Session と LT の募集を fortee で今日から開始したので応募を待
 - 日程: 2024/09/07 (土) 12:00 - 20:00
 - 場所: サイボウズ
 - 募集: 100 人
-- 募集: Connpass
+- 募集: [Connpass](https://web-study.connpass.com/event/321711/)
 - CFP: Fortee
 - 配信/アーカイブなし
 - 懇親会なし
@@ -30,9 +35,7 @@ Session と LT の募集を fortee で今日から開始したので応募を待
 
 ## タイムライン
 
-- CFP 募集開始(fortee): 2024/06/12
 - CFP 募集終了(fortee): 2024/07/12
-- 参加募集開始(connpass): 2024/07/20
 - 参加抽選確定(connpass): 2024/08/01
 - 参加募集終了(connpass): 2024/09/01
 - 当日: 2024/09/07
