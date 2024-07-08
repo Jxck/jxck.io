@@ -2107,3 +2107,16 @@ eyeD3 --title "ep154 Monthly Platform 202406" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep155.mp3
+
+eyeD3 --title "ep155 mozaic renewal 202407" \
+      --track 163 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep155.mp3
+
+
+
