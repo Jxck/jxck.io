@@ -46,9 +46,9 @@
     $message.hidePopover()
     const res = await fetch(url)
     if (res.ok) {
-      $output.innerHTML = "Fetch Succeed"
+      $output.textContent = "Fetch Succeed"
     } else {
-      $output.innerHTML = "Fetch Failed"
+      $output.textContent = "Fetch Failed"
     }
     $message.showPopover()
   })

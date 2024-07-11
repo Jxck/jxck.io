@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>" />
+<title>Test DEMO</title>
+<meta http-equiv="origin-trial" content="" />
+
+<style>
+    ul {
+      li {
+        margin: 4px 2px;
+
+        a {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    /* なぜか invalid property
+    [data-anchor-name] {
+      anchor-name: attr(data-anchor-name);
+    } */
+
+    [popover] {
+      top: anchor(end);
+      left: anchor(start);
+      width: fit-content;
+      translate: 2% 4%;
+      margin: 0;
+
+      &:popover-open {
+        /** open animation */
+        @starting-style {
+          opacity: 0;
+        }
+        opacity: 1;
+      }
+      /** close animation */
+      opacity: 0;
+      transition: opacity 0.5s, display 0.5s;
+      transition-behavior: allow-discrete;
+
+      /* 
+      &.fade-in {
+        opacity: 1;
+        display: block;
+        transition: opacity 0.4s, display 0.4s allow-discrete;
+        @starting-style {
+          opacity: 0;
+        }
+      }
+      &.fade-out {
+        opacity: 0;
+        display: none;
+        transition: opacity 0.2s, display 0.2s allow-discrete;
+      } */
+    }
+
+</style>
+
+<h1>Tooltip DEMO</h1>
+
+<ul>
+  <li><a data-anchor-name="--com" href="https://example.com">https://example.com</a></li>
+  <li><a data-anchor-name="--jp"  href="https://example.co.jp">https://example.co.jp</a></li>
+  <li><a data-anchor-name="--net" href="https://example.net">https://example.net</a></li>
+</ul>
+
+<div id="tooltip" popover>
+  <h1></h1>
+  <p>This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.</p>
+  <p>More information...</p>
+</div>
+
+<script>
+  'use strict';
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    const $popover = $('div[popover]')
+    $$('a').forEach(($a) => {
+      $a.style.anchorName = $a.dataset.anchorName
+      $a.on('mouseover', async (e) => {
+        const href = e.target.href
+        $popover.querySelector('h1').textContent = href
+        setTimeout(() => {
+          const anchorName = e.target.dataset.anchorName
+          console.log(anchorName)
+          $popover.style.positionAnchor = anchorName
+          $popover.showPopover()
+        }, 250)
+      })
+      $a.on('mouseleave', (e) => {
+        $popover.hidePopover()
+      })
+    })
+  })
+</script>
