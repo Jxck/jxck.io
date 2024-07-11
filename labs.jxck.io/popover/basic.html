@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>" />
+<title>Test DEMO</title>
+
+<meta http-equiv="origin-trial" content="" />
+
+<style>
+#load {
+  position: absolute;
+  right: 10px;
+}
+[popover] {
+  top: anchor(end);
+  left: anchor(self-end);
+  position-try-options: flip-inline, flip-block;
+  position-try-order: most-width;
+}
+</style>
+
+
+<h1>Test DEMO</h1>
+
+<div id="popover" popover>Hello Popover</div>
+<button type="button" popovertarget="popover" popovertargetaction="show">show</button>
+<button type="button" popovertarget="popover" popovertargetaction="hide">hide</button>
+<button type="button" popovertarget="popover" popovertargetaction="toggle">toggle</button>
+
+<hr />
+
+<button id="load">load</button>
+<div id="message" popover anchor="load">
+  <output></output>
+  <button popovertarget="message" popovertargetaction="hide">x</button>
+</div>
+
+<script>
+  const url = "https://api.jxck.io/sleep?1"
+
+  const $load = document.querySelector("#load")
+  const $message = document.querySelector("#message")
+  const $output = $message.querySelector("output")
+
+  $load.addEventListener("click", async () => {
+    $message.hidePopover()
+    const res = await fetch(url)
+    if (res.ok) {
+      $output.innerHTML = "Fetch Succeed"
+    } else {
+      $output.innerHTML = "Fetch Failed"
+    }
+    $message.showPopover()
+  })
+</script>
