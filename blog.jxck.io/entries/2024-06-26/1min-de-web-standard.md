@@ -1,4 +1,4 @@
-# 「1 分 de Web 標準」のやり方 at Web Developer Conference 2024 #wdc2024
+# [wdc][web]「1 分 de Web 標準」のやり方 at Web Developer Conference 2024 #wdc2024
 
 ## Intro
 
