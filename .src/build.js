@@ -636,7 +636,7 @@ async function parse_entry(entry) {
   const { root, description, tags, toc, title } = customize(ast, { host, base })
   // h1 は除く
   const ol = toc.children.at(-1)
-  const toc_html = encode(ol, { indent: 14 })
+  const toc_html = encode(ol, { indent: 12 })
   const article = encode(root, { indent: 4 })
 
   return {

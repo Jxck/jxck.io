@@ -61,12 +61,12 @@
       <div>
         <dt>toc</dt>
         <dd>
-          <details class=info>
-            <summary>headings</summary>
-            <nav>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
 <%- entry.toc_html -%>
-            </nav>
-          </details>
+          </nav>
         </dd>
       </div>
     </dl>

@@ -30,27 +30,57 @@ dl.info dd i {
   padding-inline-end: calc(var(--grid)/3);
 }
 
-details.info>summary {}
+#toc[popover] {
+  font-size: 0.8rem;
+  margin-top: 0;
+  margin-right: 0;
 
-details.info ul,
-details.info ol {
-  margin-block-start: 0;
-  margin-inline-start: var(--grid);
-}
+  width: 10rem;
+  max-height: 4rem;
+  transition: max-height 0.4s ease-out;
 
-details.info ol {
-  list-style: none;
-  counter-reset: counter;
-}
+  border-radius: var(--radius);
 
-details.info ol li::before {
-  content: counters(counter, ".") ". ";
-  counter-increment: counter;
-}
+  &:hover {
+    max-height: 100vh;
+    transition: max-height 1s ease-out;
+  }
 
-details.info ol li ol {
-  list-style: none;
-  counter-reset: counter;
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+  }
+
+  button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: none;
+    border: none;
+    filter: grayscale(100%);
+  }
+
+  ul,
+  ol {
+    margin-block-start: 0;
+    margin-inline-start: calc(var(--grid)/2);
+  }
+
+  ol {
+    list-style: none;
+    counter-reset: counter;
+    li {
+      ol {
+        list-style: none;
+        counter-reset: counter;
+      }
+    }
+    li::before {
+      content: counters(counter, ".") ". ";
+      counter-increment: counter;
+    }
+  }
 }
 
 nav.tags {
