@@ -111,7 +111,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_031351>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-06-16>2022-06-16</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-01-29>2024-01-29</time></dd></div>
@@ -129,38 +129,38 @@
       <div>
         <dt>toc</dt>
         <dd>
-          <details class=info>
-            <summary>headings</summary>
-            <nav>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#大きな流れ">大きな流れ</a>
               <ol>
-                <li><a href="#intro">Intro</a>
-                <li><a href="#大きな流れ">大きな流れ</a>
-                <ol>
-                  <li><a href="#http-仕様のリファクタリング">HTTP 仕様のリファクタリング</a>
-                  <li><a href="#新しい仕様">新しい仕様</a>
-                </ol>
-                <li><a href="#概要">概要</a>
-                <ol>
-                  <li><a href="#rfc-9110-http-semantics">RFC 9110: HTTP Semantics</a>
-                  <li><a href="#rfc-9111-http-caching">RFC 9111: HTTP Caching</a>
-                  <li><a href="#rfc-9112-http1.1">RFC 9112: HTTP/1.1</a>
-                  <li><a href="#rfc-9113-http2">RFC 9113: HTTP/2</a>
-                  <li><a href="#rfc-9114-http3">RFC 9114: HTTP/3</a>
-                  <li><a href="#rfc-9163-expect-ct-extension-for-http">RFC 9163: Expect-CT Extension for HTTP</a>
-                  <li><a href="#rfc-9204-qpack-field-compression-for-http3">RFC 9204: QPACK: Field Compression for HTTP/3</a>
-                  <li><a href="#rfc-9205-building-protocols-with-http">RFC 9205: Building Protocols with HTTP</a>
-                  <li><a href="#rfc-9209-the-proxy-status-http-response-header-field">RFC 9209: The Proxy-Status HTTP Response Header Field</a>
-                  <li><a href="#rfc-9211-the-cache-status-http-response-header-field">RFC 9211: The Cache-Status HTTP Response Header Field</a>
-                  <li><a href="#rfc-9213-targeted-http-cache-control">RFC 9213: Targeted HTTP Cache Control</a>
-                  <li><a href="#rfc-9218-extensible-prioritization-scheme-for-http">RFC 9218: Extensible Prioritization Scheme for HTTP</a>
-                  <li><a href="#rfc-9220-bootstrapping-websockets-with-http3">RFC 9220: Bootstrapping WebSockets with HTTP/3</a>
-                  <li><a href="#rfc-9230-oblivious-dns-over-https">RFC 9230: Oblivious DNS over HTTPS</a>
-                </ol>
-                <li><a href="#http-rfc-publication-study">HTTP RFC Publication Study</a>
-                <li><a href="#outro">Outro</a>
+                <li><a href="#http-仕様のリファクタリング">HTTP 仕様のリファクタリング</a>
+                <li><a href="#新しい仕様">新しい仕様</a>
               </ol>
-            </nav>
-          </details>
+              <li><a href="#概要">概要</a>
+              <ol>
+                <li><a href="#rfc-9110-http-semantics">RFC 9110: HTTP Semantics</a>
+                <li><a href="#rfc-9111-http-caching">RFC 9111: HTTP Caching</a>
+                <li><a href="#rfc-9112-http1.1">RFC 9112: HTTP/1.1</a>
+                <li><a href="#rfc-9113-http2">RFC 9113: HTTP/2</a>
+                <li><a href="#rfc-9114-http3">RFC 9114: HTTP/3</a>
+                <li><a href="#rfc-9163-expect-ct-extension-for-http">RFC 9163: Expect-CT Extension for HTTP</a>
+                <li><a href="#rfc-9204-qpack-field-compression-for-http3">RFC 9204: QPACK: Field Compression for HTTP/3</a>
+                <li><a href="#rfc-9205-building-protocols-with-http">RFC 9205: Building Protocols with HTTP</a>
+                <li><a href="#rfc-9209-the-proxy-status-http-response-header-field">RFC 9209: The Proxy-Status HTTP Response Header Field</a>
+                <li><a href="#rfc-9211-the-cache-status-http-response-header-field">RFC 9211: The Cache-Status HTTP Response Header Field</a>
+                <li><a href="#rfc-9213-targeted-http-cache-control">RFC 9213: Targeted HTTP Cache Control</a>
+                <li><a href="#rfc-9218-extensible-prioritization-scheme-for-http">RFC 9218: Extensible Prioritization Scheme for HTTP</a>
+                <li><a href="#rfc-9220-bootstrapping-websockets-with-http3">RFC 9220: Bootstrapping WebSockets with HTTP/3</a>
+                <li><a href="#rfc-9230-oblivious-dns-over-https">RFC 9230: Oblivious DNS over HTTPS</a>
+              </ol>
+              <li><a href="#http-rfc-publication-study">HTTP RFC Publication Study</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
         </dd>
       </div>
     </dl>

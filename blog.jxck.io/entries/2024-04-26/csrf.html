@@ -111,7 +111,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_031351>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-04-26>2024-04-26</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
@@ -129,24 +129,24 @@
       <div>
         <dt>toc</dt>
         <dd>
-          <details class=info>
-            <summary>headings</summary>
-            <nav>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#csrf-成立の条件">CSRF 成立の条件</a>
+              <li><a href="#csrf-が成立する問題点">CSRF が成立する問題点</a>
+              <li><a href="#origin-ヘッダの付与">Origin ヘッダの付与</a>
               <ol>
-                <li><a href="#intro">Intro</a>
-                <li><a href="#csrf-成立の条件">CSRF 成立の条件</a>
-                <li><a href="#csrf-が成立する問題点">CSRF が成立する問題点</a>
-                <li><a href="#origin-ヘッダの付与">Origin ヘッダの付与</a>
-                <ol>
-                  <li><a href="#samesite-cookie-の登場">SameSite Cookie の登場</a>
-                  <li><a href="#csrf-token-は不要なのか">CSRF Token は不要なのか</a>
-                  <li><a href="#令和時代の対策">令和時代の対策</a>
-                </ol>
-                <li><a href="#ack">Ack</a>
-                <li><a href="#outro">Outro</a>
+                <li><a href="#samesite-cookie-の登場">SameSite Cookie の登場</a>
+                <li><a href="#csrf-token-は不要なのか">CSRF Token は不要なのか</a>
+                <li><a href="#令和時代の対策">令和時代の対策</a>
               </ol>
-            </nav>
-          </details>
+              <li><a href="#ack">Ack</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
         </dd>
       </div>
     </dl>

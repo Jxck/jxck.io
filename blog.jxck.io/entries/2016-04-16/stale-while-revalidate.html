@@ -111,7 +111,7 @@
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?220428_023319>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_031351>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-04-16>2016-04-16</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
@@ -131,40 +131,40 @@
       <div>
         <dt>toc</dt>
         <dd>
-          <details class=info>
-            <summary>headings</summary>
-            <nav>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#web-におけるキャッシュ">Web におけるキャッシュ</a>
               <ol>
-                <li><a href="#intro">Intro</a>
-                <li><a href="#web-におけるキャッシュ">Web におけるキャッシュ</a>
-                <ol>
-                  <li><a href="#キャッシュの種類">キャッシュの種類</a>
-                  <li><a href="#cache-control-expires">Cache-Control, Expires</a>
-                  <li><a href="#etag-last-modified">Etag, Last-Modified</a>
-                </ol>
-                <li><a href="#stale-while-revalidate">Stale-While-Revalidate</a>
-                <ol>
-                  <li><a href="#max-age">max-age</a>
-                  <li><a href="#stale-while-revalidate_1">stale-while-revalidate</a>
-                  <li><a href="#stale-if-error">stale-if-error</a>
-                </ol>
-                <li><a href="#demo">DEMO</a>
-                <li><a href="#swr-を用いたキャッシュ戦略の考察">SwR を用いたキャッシュ戦略の考察</a>
-                <ol>
-                  <li><a href="#1-year-fresh-cache">1 year fresh cache</a>
-                  <li><a href="#1-year-stale-cache">1 year stale cache</a>
-                  <li><a href="#1-year-freshstale-cache">1 year fresh/stale cache</a>
-                </ol>
-                <li><a href="#本サイトへの適用">本サイトへの適用</a>
-                <ol>
-                  <li><a href="#現状">現状</a>
-                  <li><a href="#アクセスパターン">アクセスパターン</a>
-                  <li><a href="#設定">設定</a>
-                </ol>
-                <li><a href="#link">link</a>
+                <li><a href="#キャッシュの種類">キャッシュの種類</a>
+                <li><a href="#cache-control-expires">Cache-Control, Expires</a>
+                <li><a href="#etag-last-modified">Etag, Last-Modified</a>
               </ol>
-            </nav>
-          </details>
+              <li><a href="#stale-while-revalidate">Stale-While-Revalidate</a>
+              <ol>
+                <li><a href="#max-age">max-age</a>
+                <li><a href="#stale-while-revalidate_1">stale-while-revalidate</a>
+                <li><a href="#stale-if-error">stale-if-error</a>
+              </ol>
+              <li><a href="#demo">DEMO</a>
+              <li><a href="#swr-を用いたキャッシュ戦略の考察">SwR を用いたキャッシュ戦略の考察</a>
+              <ol>
+                <li><a href="#1-year-fresh-cache">1 year fresh cache</a>
+                <li><a href="#1-year-stale-cache">1 year stale cache</a>
+                <li><a href="#1-year-freshstale-cache">1 year fresh/stale cache</a>
+              </ol>
+              <li><a href="#本サイトへの適用">本サイトへの適用</a>
+              <ol>
+                <li><a href="#現状">現状</a>
+                <li><a href="#アクセスパターン">アクセスパターン</a>
+                <li><a href="#設定">設定</a>
+              </ol>
+              <li><a href="#link">link</a>
+            </ol>
+          </nav>
         </dd>
       </div>
     </dl>
