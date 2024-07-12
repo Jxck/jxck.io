@@ -6,63 +6,62 @@
 <meta http-equiv="origin-trial" content="" />
 
 <style>
-    ul {
-      li {
-        margin: 4px 2px;
+  ul {
+    li {
+      margin: 4px 2px;
 
-        a {
-          font-size: 2rem;
-        }
+      a {
+        font-size: 2rem;
       }
     }
+  }
 
-    /* なぜか invalid property
-    [data-anchor-name] {
-      anchor-name: attr(data-anchor-name);
-    } */
+  /* なぜか invalid property
+  [data-anchor-name] {
+    anchor-name: attr(data-anchor-name);
+  } */
 
-    [popover] {
-      top: anchor(end);
-      left: anchor(start);
-      width: fit-content;
-      translate: 2% 4%;
-      margin: 0;
+  [popover] {
+    top: anchor(end);
+    left: anchor(start);
+    width: fit-content;
+    translate: 2% 4%;
+    margin: 0;
 
-      &:popover-open {
-        /** open animation */
-        @starting-style {
-          opacity: 0;
-        }
-        opacity: 1;
-      }
-      /** close animation */
-      opacity: 0;
-      transition: opacity 0.5s, display 0.5s;
-      transition-behavior: allow-discrete;
-
-      /* 
-      &.fade-in {
-        opacity: 1;
-        display: block;
-        transition: opacity 0.4s, display 0.4s allow-discrete;
-        @starting-style {
-          opacity: 0;
-        }
-      }
-      &.fade-out {
+    &:popover-open {
+      /** open animation */
+      @starting-style {
         opacity: 0;
-        display: none;
-        transition: opacity 0.2s, display 0.2s allow-discrete;
-      } */
+      }
+      opacity: 1;
     }
+    /** close animation */
+    opacity: 0;
+    transition: opacity 0.5s, display 0.5s;
+    transition-behavior: allow-discrete;
 
+    /*
+    &.fade-in {
+      opacity: 1;
+      display: block;
+      transition: opacity 0.4s, display 0.4s allow-discrete;
+      @starting-style {
+        opacity: 0;
+      }
+    }
+    &.fade-out {
+      opacity: 0;
+      display: none;
+      transition: opacity 0.2s, display 0.2s allow-discrete;
+    } */
+  }
 </style>
 
 <h1>Tooltip DEMO</h1>
 
 <ul>
   <li><a data-anchor-name="--com" href="https://example.com">https://example.com</a></li>
-  <li><a data-anchor-name="--jp"  href="https://example.co.jp">https://example.co.jp</a></li>
+  <li><a data-anchor-name="--jp" href="https://example.co.jp">https://example.co.jp</a></li>
   <li><a data-anchor-name="--net" href="https://example.net">https://example.net</a></li>
 </ul>
 
