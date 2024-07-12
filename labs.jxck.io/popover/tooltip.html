@@ -95,5 +95,11 @@
         $popover.hidePopover()
       })
     })
-  })
+    $popover.on("beforetoggle", (e) => {
+      console.log(e)
+    })
+    $popover.on("toggle", (e) => {
+      console.log(e)
+    })
+})
 </script>
