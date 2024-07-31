@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-07-31/deprecating-the-deprecation.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 29 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=keywords            content="">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-07-31/deprecating-the-deprecation.html>
+  <meta property=og:title        content="3PCA 29 日目: Privacy Sandbox の方針転換は何を意味するか | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 29 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 29 日目: Privacy Sandbox の方針転換は何を意味するか | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-07-31T08:00:00+08:00",
+    "dateModified": "2024-07-31T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 29 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+  }
+  </script>
+
+  <title>3PCA 29 日目: Privacy Sandbox の方針転換は何を意味するか | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-07-31>2024-07-31</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-07-31>2024-07-31</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#privacy-sandbox-の方針転換">Privacy Sandbox の方針転換</a>
+              <li><a href="#cma-による発表">CMA による発表</a>
+              <li><a href="#ユーザプロンプトが提供された場合">ユーザプロンプトが提供された場合</a>
+              <li><a href="#選択の方法">「選択」の方法</a>
+              <ol>
+                <li><a href="#最初に必ず選択させるプロンプト">最初に必ず選択させるプロンプト</a>
+                <li><a href="#ユーザが操作しないと出ないプロンプト">ユーザが操作しないと出ないプロンプト</a>
+              </ol>
+              <li><a href="#3rd-party-cookie-の無効化は諦められたのか">3rd Party Cookie の無効化は諦められたのか?</a>
+              <li><a href="#構図の変化">構図の変化</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">3PCA 29 日目: Privacy Sandbox の方針転換は何を意味するか</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、 3rd Party Cookie Advent Calendar の 29 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>先日、 Google より Privacy Sandbox の方針転換について発表があった。
+        <p>本当は、まだ記事を書くには情報が足りていないため、あまり書く気はなかったが、今後出てくる発表に備えて経緯をまとめるために、「何がまだ分かっていないか」の現状を書いておくことにする。
+      </section>
+      <section>
+        <h2 id="privacy-sandbox-の方針転換"><a href="#privacy-sandbox-の方針転換">Privacy Sandbox の方針転換</a></h2>
+        <p>問題の記事は 2024/07/22 に公開された以下だ。
+        <ul>
+          <li>
+            A new path for Privacy Sandbox on the web
+            <ul>
+              <li><a href="https://privacysandbox.com/news/privacy-sandbox-update/" target=_blank>https://privacysandbox.com/news/privacy-sandbox-update/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>そもそも、世間では「3rd Party Cookie の Deprecation を撤回した」と騒がれているようだが、そもそものタイトルは「Privacy Sandbox の方針転換」だ。
+        <p>長い発表ではないため、筆者による段落一行訳を載せておく。
+        <ul>
+          <li>オンラインプライバシーの問題を解決するため Privacy Sandbox などに取り組んできた。
+          <li>その活動は CMA や ICO その他各機関や業界からフィードバックを得てきた。
+          <li>検証の結果、効果は出ているが、それでも業界の移行に時間がかかりすぎており、影響も大きい。
+          <li>そこで、 3rd Party Cookie の廃止をやめて、ユーザが「informed choice」できるように方針を変更していくことにする。
+          <li>それでも Privacy Sandbox は重要なので投資は続ける。またユーザのプライバシーのために、プライベートモードに IP Protection を入れる。
+          <li>業界への謝辞。
+        </ul>
+        <p>重要なのは、以下の文だ。
+        <blockquote cite="https://privacysandbox.com/news/privacy-sandbox-update/">
+          <p>Instead of deprecating third-party cookies,
+          <p>we would introduce a new experience in Chrome
+          <p>that lets people make an informed choice that
+          <p>applies across their web browsing,
+          <p>and they&apos;d be able to adjust that choice at any time.
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://privacysandbox.com/news/privacy-sandbox-update/" target=_blank>https://privacysandbox.com/news/privacy-sandbox-update/</a></cite>
+        </blockquote>
+        <p>今回の発表でまだわかっていないのは、この「<em>informed choice が可能な UX の提供</em>」が何を指しているか、だ。
+        <p>これがはっきりしない限りは、なんとも言えない。
+      </section>
+      <section>
+        <h2 id="cma-による発表"><a href="#cma-による発表">CMA による発表</a></h2>
+        <p>さて、このアドベントカレンダーの中でも触れてきたように、 Google が行う 3PC Deprecation の一連の流れについては、 Google の一存で決めて進めているわけではない。
+        <p>基本的に全て CMA (日本で言う公正取引委員会)や ICO (日本で言う個人情報保護委員会)などがレビューに入っており、ここまでにあった 3 回の延期を含めた進め方についても、それらのレビューを通った上で行われている。
+        <p>そして今回の件について、 CMA も小さくアップデートを出している。
+        <blockquote cite="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes">
+          <p>On 22 July 2024, Google announced that it is changing its approach to Privacy Sandbox.
+          <p>Instead of removing third-party cookies from Chrome, <strong>it will be introducing a user-choice prompt,</strong>
+          <p><strong>which will allow users to choose whether to retain third party cookies.</strong>
+          <p>The CMA will now work closely with the ICO to carefully consider Google&apos;s new approach to Privacy Sandbox.
+          <p>We welcome views on Google&apos;s revised approach, including possible implications for consumers and market outcomes.
+          <p>...
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes" target=_blank>https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes</a></cite>
+        </blockquote>
+        <p>こちらでは、「ユーザが 3rd Party Cookie を保存するかを選択できるユーザプロンプトを代わりに導入する」と、 Google 以上にはっきりと書かれている。
+        <p>もし仮に、これがそのまま Google の計画なのであれば、想像できるのは iPhone でいう <em>トラッキング許可プロンプト</em> (ATT: App Tracking Transparency) と同等のものを、 Chrome がブラウザとして提供するというものだ。
+        <p>
+          <picture>
+            <source type=image/avif srcset=att.avif?240730_003514>
+            <source type=image/webp srcset=att.webp?240730_003514>
+            <img loading=lazy decoding=async src=att.png?240730_003514 alt="iPhone の、アプリにトラッキングを許可するかどうかのプロンプト" width=700 height=1000>
+          </picture>
+        </p>
+        <p>(引用: <a href="https://support.apple.com/ja-jp/102420" target=_blank>https://support.apple.com/ja-jp/102420</a>)
+      </section>
+      <section>
+        <h2 id="ユーザプロンプトが提供された場合"><a href="#ユーザプロンプトが提供された場合">ユーザプロンプトが提供された場合</a></h2>
+        <p>ここからは、「ATT のようなプロンプトを Chrome が出すとしたら」という仮の話になる。
+        <p>このアドベントカレンダーの前半で散々解説したように、プロンプトなどをユーザに出すといった取り組みは、過去にも様々な形で試された。ところが、それが何を意味するのかをきちんと理解して選択できるユーザは非常に限られ、ほとんど失敗してきた。
+        <p>ATT についても、「トラッキング」という言葉に(なんだかよくわかっていなくても)ネガティブなイメージを持つユーザにとっては、拒否したところで特にアプリが動かなくなるわけでもないため、許可するインセンティブがない。
+        <p>許可率の調査などは、探せばいくらでも出てくるが、決して「みんなが許可している」なんて世界ではないことは、体感的にもわかるだろう。
+        <p>同じことが Cookie で行われるとなれば、結果起こるのは「Chrome は 3rd Party Cookie を無効にしない。無効にするのはユーザだ。」という主体の変化だけになる可能性が高い。
+      </section>
+      <section>
+        <h2 id="選択の方法"><a href="#選択の方法">「選択」の方法</a></h2>
+        <p>「プロンプトが出るかどうか」の次に大事なのは「どのタイミングで、どの粒度で、どの範囲の選択ができるのか」だ。
+        <p>ATT の場合は IDFA をそのアプリに渡すかどうか、という割とシンプルな選択だが、 Web の場合はもう少し事情が変わるだろう。
+        <p>ここで、表示されるプロンプトには二種類の方式が考えられる。
+        <section>
+          <h3 id="最初に必ず選択させるプロンプト"><a href="#最初に必ず選択させるプロンプト">最初に必ず選択させるプロンプト</a></h3>
+          <p>ATT のようにページに遷移したときにとにかく一旦プロンプトを表示し、そこで選ばせる方式だ。かつての Push Notification などがそうだった。
+          <p>iPhone アプリはインストール後の最初の起動時に一回だが、 Web の場合はページに遷移するたびにプロンプトが出て、ユーザにとっては非常に煩わしいことになる。その上で
+          <ul>
+            <li>どの粒度(ドメイン単位、広告を表示している iframe 単位、ページ単位 etc)でプロンプトを出すか
+            <li>そこでの選択は他のサイトにアクセスした場合も維持されるか
+          </ul>
+          <p>といったことも重要になる。
+          <p>細かく操作ができてもユーザに理解は難しいだろうし、最悪 Chrome 自体が「他と比べてプロンプトばかり出す不便なブラウザ」として悪評がつくリスクもある。
+        </section>
+        <section>
+          <h3 id="ユーザが操作しないと出ないプロンプト"><a href="#ユーザが操作しないと出ないプロンプト">ユーザが操作しないと出ないプロンプト</a></h3>
+          <p>もう一つが、ユーザが操作しない限りプロンプトが出ない方式だ。
+          <p>Push Notification もプロンプトがウザすぎるため、 URL バーにバッジが出るだけになり、ユーザが明示的にクリックしないとプロンプトは出ないように変更された。それと同じ方式だ。
+          <p>代わりにこの場合はデフォルトで Deny の形になる。
+          <p>GDPR などを遵守し Cookie Banner を出しているサイトにとっては、どうせ許可がないと付与できない点で、実装がブラウザ側にいくだけとも言える。
+          <p>しかし、デフォルトが Deny になっていれば、それはもう 3PC が Deprecate されたといって良いことになるだろう。
+          <p>逆に、プロンプトは操作しないと出ないが、デフォルトが Deny ではない、という方式は、現状とほぼ変わらない。
+          <p>これまで Settings から行ってきたようなブロック操作が、少し手軽にできるようになるだけだ。その方式で CMA が満足するとは、筆者にはあまり思えない。
+        </section>
+      </section>
+      <section>
+        <h2 id="3rd-party-cookie-の無効化は諦められたのか"><a href="#3rd-party-cookie-の無効化は諦められたのか">3rd Party Cookie の無効化は諦められたのか?</a></h2>
+        <p>以上を踏まえた上でも「3rd Party Cookie の無効化は諦められたのか?」は、「どのようなプロンプトを出すのか」によって大きく左右されるだろう。
+        <ol>
+          <li>アクセスのたびにプロンプトを出す。
+          <li>デフォルトが Deny で、操作しないとプロンプトが出ない。
+          <li>デフォルトが Accept で、操作しないとプロンプトが出ない。
+        </ol>
+        <p>1, 2 は 3PC がユーザによってブロックされている可能性が高くなり、実質 3PC の Deprecation が終わったと考えて良い状態になるだろう。
+        <p>3 は現状とほぼ変わらないため、「Deprecation は諦めた」に近い状態になると考えられる。
+        <p>これがはっきりするまで、「Chrome は 3rd Party Cookie を排するのを諦めた、これまで通り使い続けられる!!」と歓喜できるかは、かなり怪しいと筆者は感じている。
+        <p>Cookie のプロンプトの拒否率が低くないと想定するならば、結局広告は Privacy Sandbox を駆使してネイティブに許可された粒度の情報をかき集める必要があり、認証連携は壊れないように FedCM などに移行する必要があるだろう。
+        <p>であれば、「Chrome 自体が 3rd Party Cookie を無効にするのを撤回した」のだとしても、開発者が備えるべき未来はほとんど変わっていないことになる。
+      </section>
+      <section>
+        <h2 id="構図の変化"><a href="#構図の変化">構図の変化</a></h2>
+        <p>今回の発表で筆者が期待したいのは、むしろ構図の変化の部分だ。
+        <p>これまでは、「<em>無効化を進める Chrome vs それに振り回される業界</em>」という構図がどうしてもあり、同じことを他のブラウザはほぼ終えているにも関わらず、あらゆる批判や Issue が Chrome に一極集中していた。壊れる全てのサイトを洗い出せるはずもなく、ましてやそれら全てを直せるはずもなく、しかしそれを地道にやっている状態だ。
+        <p>代替として用意しているはずの Privacy Sandbox も、標準化の段階からビジネス色が強く、 W3C のプロセスも閉じ気味で、 CMA など標準化以外の団体の介入もあり、実装する前から他のブラウザに Considered Harmful されながら、 Chrome だけがそこへの移行を啓蒙し続けるという、 Web 史上類をみない「変なこと」がずっと起こっていた。本来は協調して進めていくはずの Web 標準が、 Chrome によるお仕着せの破壊的変更のように扱われ、都合 3 回延期したとて、結果はそこまで変わらない。
+        <p>ここ 4,5 年のこの動きは、すごく「Web っぽくないやり方」だったし、筆者はそこがずっと好きになれなかった。
+        <p>それを続けても Privacy Sandbox はうまくはいかないだろうと思っていたし、それでも 3PC の Deprecate は既定路線だから、どこかでバッサリ強行し、壊れた部分を向こう 10 年くらいかけて徐々に均していくんだろうな、というのが筆者の想像だった。
+        <p>しかし、今回の動きは、プロンプトがどうあれ「<em>ブロックしたのは Chrome ではない。ユーザによる選択である。</em>」という結果になるだろう。すると「<em>自分で選択したユーザ vs それをサポートするサービス</em>」という構図に、課題を個別分散したと見ることができる。
+        <p>ユーザがどんな選択をしようとそれを尊重したいサービスは、 Privacy Sandbox や FedCM などへの移行にコストを払うインセンティブがある。そこで初めて Privacy Sandbox はお仕着せの仕様ではなく選択肢になる。
+        <p>コストなどの問題で現状の実装を維持するため、ユーザの選択をサポート外とし、エラーメッセージなどでユーザをプロンプトに誘導し、明示的な許可を求めるという方法もあるだろう。
+        <p>それは、あくまで個別に起こる事象に対しての、サービスの対応だと考えると、 Chrome が 0 or 1 で行い一方向にしか道がなかった時と比べ、ワークアラウンドを行う余地がユーザランドに残ることになる可能性が出てきた(これも、プロンプト次第だが)。
+        <p>そもそも「プライバシー」は、ユーザが選択するべきものだという、問題の原点に立ち返りつつ、「一極集中していた問題」を「個別分散させて解決する」というやり方は、非常に「Web っぽい」なと筆者は感じた。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>今回の発表から、今後の 3rd Party Cookie が「今までどおり使える」なのか「結局使えなくなる」なのか、それ以外の何かになるのか、実際のところ全くわからない。
+        <p>プロンプトの出し方についても、一回のリリースでは終わらず、ここから先数年かけて徐々に行なっていくことになるんだろう。
+        <p>Web は誰のものでもない。にもかかわらず、先に Deprecate を終えたブラウザは高みの見物で、 Chrome だけが孤軍奮闘している変な構図が、これで終わればいいと思う。
+        <p>それを含めてどうなっていくか、今後も注視して、場合によってはこのアドカレに追加していきたい。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
