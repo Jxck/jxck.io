@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/157/monthly-platform-202407.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065828></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 157 回のテーマは 2024 年 7 月の Monthly Platform です。">
+  <meta name=keywords            content="monthly platform">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/157/monthly-platform-202407.html>
+  <meta property=og:title        content="ep157 Monthly Platform 202407 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 157 回のテーマは 2024 年 7 月の Monthly Platform です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep157 Monthly Platform 202407 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/156/monthly-ecosystem-202407.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?240701_012822>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?230926_134917>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?240713_033306>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/156/monthly-ecosystem-202407.html>ep156 Monthly Ecosystem 202407</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep157 Monthly Platform 202407</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2024-07-31
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/myakura" target=_blank>@myakura</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <ol>
+                  <li><a href="#chrome-動向">Chrome 動向</a>
+                  <ol>
+                    <li><a href="#stable-127">Stable: 127</a>
+                    <li><a href="#updates">Updates</a>
+                    <li><a href="#intents">Intents</a>
+                    <li><a href="#other">Other</a>
+                  </ol>
+                  <li><a href="#firefox-動向">Firefox 動向</a>
+                  <ol>
+                    <li><a href="#stable-128">Stable: 128</a>
+                    <li><a href="#updates_1">Updates</a>
+                    <li><a href="#intents_1">Intents</a>
+                    <li><a href="#newsletter">Newsletter</a>
+                    <li><a href="#mdn--open-web-docs">MDN / Open Web Docs</a>
+                    <li><a href="#standard-position">Standard Position</a>
+                    <li><a href="#other_1">Other</a>
+                  </ol>
+                  <li><a href="#safari-動向">Safari 動向</a>
+                  <ol>
+                    <li><a href="#stable-17.6">Stable: 17.6</a>
+                    <li><a href="#updates_2">Updates</a>
+                    <li><a href="#standard-positions">Standard Positions</a>
+                    <li><a href="#other_2">Other</a>
+                  </ol>
+                  <li><a href="#edge-動向">Edge 動向</a>
+                  <ol>
+                    <li><a href="#stable-127_1">Stable: 127</a>
+                    <li><a href="#updates_3">Updates</a>
+                    <li><a href="#other_3">Other</a>
+                  </ol>
+                  <li><a href="#whatwgw3c-動向">WHATWG/W3C 動向</a>
+                  <ol>
+                    <li><a href="#draft">Draft</a>
+                    <li><a href="#openui">Open/UI</a>
+                    <li><a href="#whatnot">WHATNOT</a>
+                    <li><a href="#other_4">Other</a>
+                  </ol>
+                  <li><a href="#tc39-動向">TC39 動向</a>
+                  <ol>
+                    <li><a href="#meeting">Meeting</a>
+                    <li><a href="#proposals-diff">Proposals Diff</a>
+                    <li><a href="#new-proposals">New Proposals</a>
+                    <li><a href="#other_5">Other</a>
+                  </ol>
+                  <li><a href="#wintercg-動向">WinterCG 動向</a>
+                  <ol>
+                    <li><a href="#meeting_1">Meeting</a>
+                  </ol>
+                  <li><a href="#ietf-動向">IETF 動向</a>
+                  <ol>
+                    <li><a href="#ietf120">IETF120</a>
+                    <li><a href="#wg">WG</a>
+                    <li><a href="#other_6">Other</a>
+                  </ol>
+                  <li><a href="#cdn-動向">CDN 動向</a>
+                  <ol>
+                    <li><a href="#cloudflare">Cloudflare</a>
+                    <li><a href="#fastly">Fastly</a>
+                    <li><a href="#other_7">Other</a>
+                  </ol>
+                  <li><a href="#セキュリティ動向">セキュリティ動向</a>
+                  <li><a href="#周辺動向">周辺動向</a>
+                  <li><a href="#cookie-動向">Cookie 動向</a>
+                  <li><a href="#イベント">イベント</a>
+                  <li><a href="#wrap-up">Wrap Up</a>
+                </ol>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 157 回のテーマは 2024 年 7 月の Monthly Platform です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <section>
+        <h3 id="chrome-動向"><a href="#chrome-動向">Chrome 動向</a></h3>
+        <section>
+          <h4 id="stable-127"><a href="#stable-127">Stable: 127</a></h4>
+        </section>
+        <section>
+          <h4 id="updates"><a href="#updates">Updates</a></h4>
+          <ul>
+            <li>
+              <strong>New in Chrome 127</strong>
+              <ul>
+                <li><a href="https://developer.chrome.com/blog/new-in-chrome-127" target=_blank>https://developer.chrome.com/blog/new-in-chrome-127</a>
+                <li>CSS font-size-adjust
+                <li>Document picture-in-picture: propagate user activation
+                <li>Keyboard focusable scroll containers.
+              </ul>
+            </li>
+            <li>
+              <strong>What&apos;s new in DevTools, Chrome 127</strong>
+              <ul>
+                <li><a href="https://developer.chrome.com/blog/new-in-devtools-127?hl=en" target=_blank>https://developer.chrome.com/blog/new-in-devtools-127</a>
+                <li>Inspect CSS anchor positioning in the Elements panel
+                <li>
+                  Sources panel improvements
+                  <ul>
+                    <li>Enhanced &apos;Never Pause Here&apos;
+                    <li>New scroll snap event listeners
+                  </ul>
+                </li>
+                <li>
+                  Network panel improvements
+                  <ul>
+                    <li>Updated network throttling presets
+                    <li>Service worker information in custom fields of the HAR format
+                  </ul>
+                </li>
+                <li>Send and receive WebSocket events in the Performance panel
+              </ul>
+            </li>
+            <li>
+              What&apos;s New in WebGPU (Chrome 127)
+              <ul>
+                <li><a href="https://developer.chrome.com/blog/new-in-webgpu-127" target=_blank>https://developer.chrome.com/blog/new-in-webgpu-127</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Chrome 128 beta</strong>
+              <ul>
+                <li><a href="https://developer.chrome.com/blog/chrome-128-beta" target=_blank>https://developer.chrome.com/blog/chrome-128-beta</a>
+                <li>
+                  CSS
+                  <ul>
+                    <li>CSS ruby-align property
+                    <li>Line-breakable ruby
+                    <li>Minimum size of <code translate=no>&lt;option&gt;</code> within <code translate=no>&lt;select&gt;</code> dropdown
+                    <li>Standardized CSS zoom property
+                  </ul>
+                </li>
+                <li>
+                  Web APIs
+                  <ul>
+                    <li>Additions to Attribution Reporting
+                    <li>AudioContext.onerror
+                    <li>Cross-site ancestor chain bit for CookiePartitionKey of partitioned cookies
+                    <li>document.caretPositionFromPoint
+                    <li>PointerEvent.deviceProperties for Multi-Pen Inking
+                    <li>Private Aggregation API: client-side contribution merging
+                    <li>Promise.try
+                    <li>SkipAd media session action
+                    <li>WebAuthn hints
+                    <li>Write image/svg+xml content in UTF-8 format on Windows
+                    <li>Web Share API on macOS
+                  </ul>
+                </li>
+                <li>
+                  New origin trials
+                  <ul>
+                    <li>Deprecate 0.0.0.0 for Private Network Access (PNA)
+                    <li>Digital Credentials API
+                    <li>FedCM multiple identity providers in single get() call
+                    <li>FedCM: Button Mode for Chrome on Android
+                    <li>FedCM: Continuation API bundle for Chrome on Android
+                    <li>Disable standardized CSS zoom
+                    <li>WebGPU Subgroups experimentation
+                  </ul>
+                </li>
+                <li>
+                  Deprecations and removals
+                  <ul>
+                    <li>There are no deprecations or removals planned for Chrome 128.
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="intents"><a href="#intents">Intents</a></h4>
+          <ul>
+            <li>
+              <strong>Ship: CSS Anchor Positioning: Unwrapped inset-area()</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/svDZprJ-LjE" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/svDZprJ-LjE</a>
+                <li><code translate=no>position-try-fallbacks:inset-area(top)</code> を <code translate=no>position-try-fallbacks:top</code> って書ける
+              </ul>
+            </li>
+            <li>
+              <strong>Ship: Intl.DurationFormat</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/Ft8-RWx0e2Q" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/Ft8-RWx0e2Q</a>
+              </ul>
+            </li>
+            <li>
+              Ship: Promise.try
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/1cxpRmqIY44" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/1cxpRmqIY44</a>
+              </ul>
+            </li>
+            <li>
+              Ship: Private Aggregation API: filtering IDs
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/_04scQwbWhk" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/_04scQwbWhk</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Ship: Rename inset-area to position-area</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/D-vUkcOSHEg" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/D-vUkcOSHEg</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Ship: Rename position-try-options to position-try-fallbacks</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/kJwhHYXupWk" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/kJwhHYXupWk</a>
+              </ul>
+            </li>
+            <li>
+              Ship: Attribution Reporting Feature: Changes to source-destination-limit logic
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/qlsv7fn0zRE" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/qlsv7fn0zRE</a>
+              </ul>
+            </li>
+            <li>
+              Ship: Attribution Reporting Feature: Flexible contributions filtering
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/VKGn41wMYlg" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/VKGn41wMYlg</a>
+              </ul>
+            </li>
+            <li>
+              Ship: AudioContext.onerror
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/B0t-BZzs8s4" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/B0t-BZzs8s4</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Ship: CSS interpolate-size property and calc-size() function</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/FjyMSSaSPEg" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/FjyMSSaSPEg</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Ship: Isolated Web Apps</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/iMfYonTs414" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/iMfYonTs414</a>
+              </ul>
+            </li>
+            <li>
+              Ship: Web Authentication API: JSON serialization methods
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/ZUbw6XzeJEU" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/ZUbw6XzeJEU</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Ship: Coalesce selectionchange events</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/H-X3bbS8Ag4" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/H-X3bbS8Ag4</a>
+              </ul>
+            </li>
+            <li>
+              Ship: Protected Audience: cross-origin trusted signals fetches
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/5nvBAjmoO2g" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/5nvBAjmoO2g</a>
+              </ul>
+            </li>
+            <li>
+              Ship: Remove PointerEvent.getCoalescedEvents() from insecure contexts
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/eQ5cQA-Fz30" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/eQ5cQA-Fz30</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Ship: Web Permissions API on WebView</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/aB_5aOGtaGI" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/aB_5aOGtaGI</a>
+              </ul>
+            </li>
+            <li>
+              Ship: WebGPU extended range (HDR) support
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/rBQIRHUEAe8" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/rBQIRHUEAe8</a>
+              </ul>
+            </li>
+            <li>
+              Implement and Ship: WebUSB Interface Class Filtering
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/LZXocaeCwDw" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/LZXocaeCwDw</a>
+              </ul>
+            </li>
+            <li>
+              Prototype: Pause media playback on not-rendered iframes
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/D0j1igiVHR8" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/D0j1igiVHR8</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Prototype: Selection API across Shadow DOM and Selection.getComposedRanges</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/HwQQqrbEfvc" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/HwQQqrbEfvc</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Prototype: Support currentcolor in Relative Color Syntax</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/bdtHZOUvGTI" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/bdtHZOUvGTI</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Prototype: Add bugfix version number to User-Agent string on Bling</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/I5r9cxliL-0" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/I5r9cxliL-0</a>
+                <li>iOS 版 Chrome の UA 文字列の OS バージョン部分にパッチバージョンを追加 (<code translate=no>_1</code> の部分)
+                <li><code translate=no>Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X)...</code>
+                <li><code translate=no>Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X)...</code>
+              </ul>
+            </li>
+            <li>
+              Prototype: Nested view transitions
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/iG4WDZOOzxY" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/iG4WDZOOzxY</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Prototype: Sanitizer API</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/DTyARSjGP4g" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/DTyARSjGP4g</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Prototype: Shared Storage API enhancement (allow cross-origin script in addModule &amp; align createWorklet)</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/YZ4XGewKVuk" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/YZ4XGewKVuk</a>
+              </ul>
+            </li>
+            <li>
+              Prototype: Transferable RTCDataChannel to workers
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/64yIg0Ya3No" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/64yIg0Ya3No</a>
+              </ul>
+            </li>
+            <li>
+              Prototype: Update the syntax of <code translate=no>text-wrap</code> to match the new spec
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/dDCIG2rQs7Q" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/dDCIG2rQs7Q</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Prototype: HTML handwriting attribute</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/0r_tV6k0NyA" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/0r_tV6k0NyA</a>
+                <li><code translate=no>&lt;textarea handwriting&gt;&lt;/textarea&gt;</code>
+              </ul>
+            </li>
+            <li>
+              Deprecate and Remove: Deprecation of CSS Anchor Positioning property <code translate=no>inset-area</code>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/SLOin9wVpZA" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/SLOin9wVpZA</a>
+              </ul>
+            </li>
+            <li>
+              Experiment: Partitioning :visited links history Phase 2
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/qbHl0W-75zA" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/qbHl0W-75zA</a>
+              </ul>
+            </li>
+            <li>
+              Experiment: Call stacks in crash reports from unresponsive web pages
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/l3do9tvEGws" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/l3do9tvEGws</a>
+              </ul>
+            </li>
+            <li>
+              Experiment: Cookies Having Independent Partitioned State (CHIPS)
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/_dJFNJpf91U" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/_dJFNJpf91U</a>
+              </ul>
+            </li>
+            <li>
+              Experiment: FileSystemObserver interface
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/AeztwhhHaYo" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/AeztwhhHaYo</a>
+              </ul>
+            </li>
+            <li>
+              Extend Experiment: WebAssembly JS String Builtins
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/lTUazmHwxwI" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/lTUazmHwxwI</a>
+              </ul>
+            </li>
+            <li>
+              Extend Experiment: Cookie Deprecation Label Throughout 3PC Phaseout
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/Xgpz_MnjL4k" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/Xgpz_MnjL4k</a>
+              </ul>
+            </li>
+            <li>
+              Extend Experiment: Explicit Compile Hints with Magic Comments
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/mwZYYTBJ12g" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/mwZYYTBJ12g</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Ready for Developer Testing: Intl.DurationFormat</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/TTdMixrlxfk" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/TTdMixrlxfk</a>
+              </ul>
+            </li>
+            <li>
+              Web-Facing Change PSA: Rename position-try-options to position-try-fallbacks
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/zuwwttisa9E" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/zuwwttisa9E</a>
+              </ul>
+            </li>
+            <li>
+              Web-Facing Change PSA: Rename inset-area to position-area
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/GU9zSycWOP8" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/GU9zSycWOP8</a>
+              </ul>
+            </li>
+            <li>
+              Web-Facing Change PSA: Coalesced/predicted events in untrusted PointerEvents will retain original targets
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/5UbeICCy4wY" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/5UbeICCy4wY</a>
+              </ul>
+            </li>
+            <li>
+              Web-Facing Change PSA: Update CSS backdrop-filter to use mirror edgeMode
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/ZtMnFCHZhMQ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/ZtMnFCHZhMQ</a>
+              </ul>
+            </li>
+            <li>
+              fetch API and filesystem: URLs (a Manifest v3 migration blocker)
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/2eRqvKcQewk" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/2eRqvKcQewk</a>
+              </ul>
+            </li>
+            <li>
+              Turning off use_v8_context_snapshot in non-production builds by default
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/wBFL-m_A-S8" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/wBFL-m_A-S8</a>
+              </ul>
+            </li>
+            <li>
+              PSA: H264 profile level changed from 3.1 to 4.2
+              <ul>
+                <li><a href="https://groups.google.com/g/discuss-webrtc/c/frk9q-F3XbE/m/JwZoV3tjAAAJ" target=_blank>https://groups.google.com/g/discuss-webrtc/c/frk9q-F3XbE/m/JwZoV3tjAAAJ</a>
+              </ul>
+            </li>
+            <li>
+              Action required: You&apos;re invited to BlinkOn 19 on Oct 8-10th!
+              <ul>
+                <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/XZPgZ3DymqY" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/XZPgZ3DymqY</a>
+              </ul>
+            </li>
+            <li>Change:
+            <li>Unship:
+            <li>Remove:
+          </ul>
+        </section>
+        <section>
+          <h4 id="other"><a href="#other">Other</a></h4>
+          <ul>
+            <li>
+              web.dev
+              <ul>
+                <li>
+                  blog
+                  <ul>
+                    <li>
+                      <strong>How to use container queries now</strong>
+                      <ul>
+                        <li><a href="https://web.dev/blog/how-to-use-container-queries-now?hl=en" target=_blank>https://web.dev/blog/how-to-use-container-queries-now</a>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Interop 2024 mid-year update</strong>
+                      <ul>
+                        <li><a href="https://web.dev/blog/interop-2024-midyear?hl=en" target=_blank>https://web.dev/blog/interop-2024-midyear</a>
+                      </ul>
+                    </li>
+                    <li>
+                      New to the web platform in June
+                      <ul>
+                        <li><a href="https://web.dev/blog/web-platform-06-2024?hl=en" target=_blank>https://web.dev/blog/web-platform-06-2024</a>
+                      </ul>
+                    </li>
+                    <li>
+                      @property: Next-gen CSS variables now with universal browser support
+                      <ul>
+                        <li><a href="https://web.dev/blog/at-property-baseline" target=_blank>https://web.dev/blog/at-property-baseline</a>
+                      </ul>
+                    </li>
+                    <li>
+                      CSS font-size-adjust is now in Baseline
+                      <ul>
+                        <li><a href="https://web.dev/blog/font-size-adjust" target=_blank>https://web.dev/blog/font-size-adjust</a>
+                      </ul>
+                    </li>
+                    <li>
+                      New to the web platform in July
+                      <ul>
+                        <li><a href="https://web.dev/blog/web-platform-07-2024" target=_blank>https://web.dev/blog/web-platform-07-2024</a>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              google for developers
+              <ul>
+                <li>
+                  Bringing the I/O magic to Berlin - Google Developers Blog
+                  <ul>
+                    <li><a href="https://developers.googleblog.com/en/bringing-the-io-magic-to-berlin/" target=_blank>https://developers.googleblog.com/en/bringing-the-io-magic-to-berlin/</a>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Google URL Shortener links will no longer be available - Google Developers Blog</strong>
+                  <ul>
+                    <li><a href="https://developers.googleblog.com/en/google-url-shortener-links-will-no-longer-be-available/" target=_blank>https://developers.googleblog.com/en/google-url-shortener-links-will-no-longer-be-available/</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              google developer japan blog
+              <ul>
+                <li>
+                  Google Developers Japan: Google Ads API v17 のお知らせ
+                  <ul>
+                    <li><a href="https://developers-jp.googleblog.com/2024/07/google-ads-api-v17.html" target=_blank>https://developers-jp.googleblog.com/2024/07/google-ads-api-v17.html</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              chrome developer blog
+              <ul>
+                <li>
+                  Adding Trusted Types to YouTube
+                  <ul>
+                    <li><a href="https://developer.chrome.com/blog/trusted-types-on-youtube?hl=en" target=_blank>https://developer.chrome.com/blog/trusted-types-on-youtube</a>
+                  </ul>
+                </li>
+                <li>
+                  What&apos;s happening in Chrome Extensions?
+                  <ul>
+                    <li><a href="https://developer.chrome.com/blog/extension-news-july-2024" target=_blank>https://developer.chrome.com/blog/extension-news-july-2024</a>
+                  </ul>
+                </li>
+                <li>
+                  Chrome Extensions: Important policy updates
+                  <ul>
+                    <li><a href="https://developer.chrome.com/blog/cws-policy-updates-2024" target=_blank>https://developer.chrome.com/blog/cws-policy-updates-2024</a>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Misconceptions about view transitions</strong>
+                  <ul>
+                    <li><a href="https://developer.chrome.com/blog/view-transitions-misconceptions" target=_blank>https://developer.chrome.com/blog/view-transitions-misconceptions</a>
+                  </ul>
+                </li>
+                <li>
+                  <strong>How Chrome helps users install the apps they value</strong>
+                  <ul>
+                    <li><a href="https://developer.chrome.com/blog/how_chrome_helps_users_install_the_apps_they_value" target=_blank>https://developer.chrome.com/blog/how_chrome_helps_users_install_the_apps_they_value</a>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Line-breakable <code translate=no>&lt;ruby&gt;</code> and CSS ruby-align property</strong>
+                  <ul>
+                    <li><a href="https://developer.chrome.com/blog/line-breakable-ruby" target=_blank>https://developer.chrome.com/blog/line-breakable-ruby</a>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Request for developer feedback on reading-flow and elements with display: contents</strong>
+                  <ul>
+                    <li><a href="https://developer.chrome.com/blog/reading-flow-display-contents" target=_blank>https://developer.chrome.com/blog/reading-flow-display-contents</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              chromium blog
+              <ul>
+                <li><a href="https://blog.chromium.org/" target=_blank>https://blog.chromium.org/</a>
+              </ul>
+            </li>
+            <li>
+              canary
+              <ul>
+                <li><a href="https://www.chromium.org/getting-involved/dev-channel" target=_blank>https://www.chromium.org/getting-involved/dev-channel</a>
+              </ul>
+            </li>
+            <li>
+              google security blog
+              <ul>
+                <li>
+                  <strong>Google Online Security Blog: Sustaining Digital Certificate Security - Entrust Certificate Distrust</strong>
+                  <ul>
+                    <li><a href="https://security.googleblog.com/2024/06/sustaining-digital-certificate-security.html" target=_blank>https://security.googleblog.com/2024/06/sustaining-digital-certificate-security.html</a>
+                  </ul>
+                </li>
+                <li>
+                  Q2 2024 Summary from Chrome Security
+                  <ul>
+                    <li><a href="https://groups.google.com/a/chromium.org/g/security-dev/c/lqwmgK-jlKY" target=_blank>https://groups.google.com/a/chromium.org/g/security-dev/c/lqwmgK-jlKY</a>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Google Online Security Blog: Building security into the redesigned Chrome downloads experience</strong>
+                  <ul>
+                    <li><a href="https://security.googleblog.com/2024/07/building-security-into-redesigned.html" target=_blank>https://security.googleblog.com/2024/07/building-security-into-redesigned.html</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              search blog
+              <ul>
+                <li>
+                  Configure your shipping and returns directly in Search Console
+                  <ul>
+                    <li><a href="https://developers.google.com/search/blog/2024/07/configure-shipping-and-returns-search-console" target=_blank>https://developers.google.com/search/blog/2024/07/configure-shipping-and-returns-search-console</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Project Zero: The Windows Registry Adventure #3: Learning resources
+              <ul>
+                <li><a href="https://googleprojectzero.blogspot.com/2024/06/the-windows-registry-adventure-3.html" target=_blank>https://googleprojectzero.blogspot.com/2024/06/the-windows-registry-adventure-3.html</a>
+              </ul>
+            </li>
+            <li>
+              v8
+              <ul>
+                <li><a href="https://v8.dev/" target=_blank>https://v8.dev/</a>
+              </ul>
+            </li>
+            <li>
+              <strong><code translate=no>*.google.com</code> だけ CPU/GPU/Memory usage をフルで取れる API が Chrome にある話</strong>
+              <ul>
+                <li><a href="https://x.com/lcasdev/status/1810696257137959018" target=_blank>https://x.com/lcasdev/status/1810696257137959018</a>
+                <li><a href="https://x.com/simonw/status/1810731216796324080" target=_blank>https://x.com/simonw/status/1810731216796324080</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Google Workspace Updates: Import and export Markdown in Google Docs</strong>
+              <ul>
+                <li><a href="https://workspaceupdates.googleblog.com/2024/07/import-and-export-markdown-in-google-docs.html" target=_blank>https://workspaceupdates.googleblog.com/2024/07/import-and-export-markdown-in-google-docs.html</a>
+                <li>Docs の Markdown のエクスポートが可能に
+                <li>mozaic.fm 的には待望の神機能
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3 id="firefox-動向"><a href="#firefox-動向">Firefox 動向</a></h3>
+        <section>
+          <h4 id="stable-128"><a href="#stable-128">Stable: 128</a></h4>
+        </section>
+        <section>
+          <h4 id="updates_1"><a href="#updates_1">Updates</a></h4>
+          <ul>
+            <li>
+              Firefox 128.0, See All New Features, Updates and Fixes
+              <ul>
+                <li><a href="https://www.mozilla.org/en-US/firefox/128.0/releasenotes/" target=_blank>https://www.mozilla.org/en-US/firefox/128.0/releasenotes/</a>
+                <li>ユーザーデータ削除ダイアログの UI 改良
+                <li>Privacy Preserving Attribution API の実験開始
+              </ul>
+            </li>
+            <li>
+              Firefox 128 for developers - Mozilla | MDN
+              <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/128" target=_blank>https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/128</a>
+                <li>@property
+                <li>Relative Color Syntax
+                <li>content プロパティの代替テキスト
+                <li>Resizeable ArrayBuffer
+                <li>HTTP Priority ヘッダー
+                <li>Request/Response/Blob.bytes()
+              </ul>
+            </li>
+            <li>
+              100% WebDriver BiDi and 101% more! - These Weeks in Firefox: Issue 164 - Firefox Nightly News
+              <ul>
+                <li><a href="https://blog.nightly.mozilla.org/2024/07/18/100-webdriver-bidi-and-101-more-these-weeks-in-firefox-issue-164/" target=_blank>https://blog.nightly.mozilla.org/2024/07/18/100-webdriver-bidi-and-101-more-these-weeks-in-firefox-issue-164/</a>
+              </ul>
+            </li>
+            <li>
+              Concise and compact - These Weeks in Firefox: Issue 165 - Firefox Nightly News
+              <ul>
+                <li><a href="https://blog.nightly.mozilla.org/2024/07/30/concise-and-compact-these-weeks-in-firefox-issue-165/" target=_blank>https://blog.nightly.mozilla.org/2024/07/30/concise-and-compact-these-weeks-in-firefox-issue-165/</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="intents_1"><a href="#intents_1">Intents</a></h4>
+          <ul>
+            <li>
+              Ship: screen and viewport options for vector-effect
+              <ul>
+                <li><a href="https://groups.google.com/a/mozilla.org/g/dev-platform/c/D-7LtjA-kUw" target=_blank>https://groups.google.com/a/mozilla.org/g/dev-platform/c/D-7LtjA-kUw</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Ship: Iterator Helpers</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/mozilla.org/g/dev-platform/c/Y7aNEjKLel4" target=_blank>https://groups.google.com/a/mozilla.org/g/dev-platform/c/Y7aNEjKLel4</a>
+              </ul>
+            </li>
+            <li>Prototype:
+            <li>
+              Implement: HTMLVideoElement&apos;s requestVideoFrameCallback
+              <ul>
+                <li><a href="https://groups.google.com/a/mozilla.org/g/dev-platform/c/HcC0OHvYgHc" target=_blank>https://groups.google.com/a/mozilla.org/g/dev-platform/c/HcC0OHvYgHc</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Prototype: CSS &apos;stretch&apos; sizing keyword (with &apos;-webkit-fill-available&apos; as an alias)</strong>
+              <ul>
+                <li><a href="https://groups.google.com/a/mozilla.org/g/dev-platform/c/-pMSV-kgUjA" target=_blank>https://groups.google.com/a/mozilla.org/g/dev-platform/c/-pMSV-kgUjA</a>
+              </ul>
+            </li>
+            <li>Change:
+            <li>Remove:
+          </ul>
+        </section>
+        <section>
+          <h4 id="newsletter"><a href="#newsletter">Newsletter</a></h4>
+          <ul>
+            <li>
+              Firefox WebDriver Newsletter - 128 - Firefox Developer Experience
+              <ul>
+                <li><a href="https://fxdx.dev/firefox-webdriver-newsletter-128/" target=_blank>https://fxdx.dev/firefox-webdriver-newsletter-128/</a>
+                <li>Support for the &quot;BiDi flag&quot;
+              </ul>
+            </li>
+            <li>
+              Necko Newsletter Q2 2024
+              <ul>
+                <li><a href="https://groups.google.com/a/mozilla.org/g/dev-platform/c/kfLDXD_M6IA/m/V8RKsQHhAAAJ" target=_blank>https://groups.google.com/a/mozilla.org/g/dev-platform/c/kfLDXD_M6IA</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="mdn--open-web-docs"><a href="#mdn--open-web-docs">MDN / Open Web Docs</a></h4>
+          <ul>
+            <li>
+              Static Site Generation (SSG) with Next.js
+              <ul>
+                <li><a href="https://developer.mozilla.org/en-US/blog/static-site-generation-with-nextjs/" target=_blank>https://developer.mozilla.org/en-US/blog/static-site-generation-with-nextjs/</a>
+              </ul>
+            </li>
+            <li>
+              Introducing the MDN HTTP Observatory
+              <ul>
+                <li><a href="https://developer.mozilla.org/en-US/blog/mdn-http-observatory-launch/" target=_blank>https://developer.mozilla.org/en-US/blog/mdn-http-observatory-launch/</a>
+              </ul>
+            </li>
+            <li>
+              MDN partners with Scrimba to enhance web development learning
+              <ul>
+                <li><a href="https://developer.mozilla.org/en-US/blog/mdn-scrimba-partnership/" target=_blank>https://developer.mozilla.org/en-US/blog/mdn-scrimba-partnership/</a>
+              </ul>
+            </li>
+            <li>
+              Exploring the Broadcast Channel API for cross-tab communication
+              <ul>
+                <li><a href="https://developer.mozilla.org/en-US/blog/exploring-the-broadcast-channel-api-for-cross-tab-communication/" target=_blank>https://developer.mozilla.org/en-US/blog/exploring-the-broadcast-channel-api-for-cross-tab-communication/</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="standard-position"><a href="#standard-position">Standard Position</a></h4>
+          <ul>
+            <li>
+              今月 Close された Issue と PR ものをみる
+              <ul>
+                <li><a href="https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2024-07-01+" target=_blank>https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2024-07-01+</a>
+                <li>
+                  Positive
+                  <ul>
+                    <li>
+                      New <code translate=no>trusted-types-eval</code> keyword for CSP script-src
+                      <ul>
+                        <li><a href="https://github.com/mozilla/standards-positions/issues/1032" target=_blank>https://github.com/mozilla/standards-positions/issues/1032</a>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="other_1"><a href="#other_1">Other</a></h4>
+          <ul>
+            <li>
+              Transform Firefox into the ultimate minimalist browser
+              <ul>
+                <li><a href="https://blog.mozilla.org/en/products/firefox/firefox-tips/transform-firefox-into-minimalist-workspace/" target=_blank>https://blog.mozilla.org/en/products/firefox/firefox-tips/transform-firefox-into-minimalist-workspace/</a>
+              </ul>
+            </li>
+            <li>
+              Snapshots for IPC Fuzzing - Mozilla Hacks - the Web developer blog
+              <ul>
+                <li><a href="https://hacks.mozilla.org/2024/06/snapshots-for-ipc-fuzzing/" target=_blank>https://hacks.mozilla.org/2024/06/snapshots-for-ipc-fuzzing/</a>
+              </ul>
+            </li>
+            <li>
+              Draft &quot;Lessons Learned&quot; Wiki Page - Seeking Feedback
+              <ul>
+                <li><a href="https://www.mail-archive.com/dev-security-policy@mozilla.org/msg01703.html" target=_blank>https://www.mail-archive.com/dev-security-policy@mozilla.org/msg01703.html</a>
+              </ul>
+            </li>
+            <li>
+              Intent to Approve Cybertrust / JCSI Japan Root Inclusions
+              <ul>
+                <li><a href="https://www.mail-archive.com/dev-security-policy@mozilla.org/msg01709.html" target=_blank>https://www.mail-archive.com/dev-security-policy@mozilla.org/msg01709.html</a>
+              </ul>
+            </li>
+            <li>
+              Disclosure of Advisory Role with Entrust
+              <ul>
+                <li><a href="https://www.mail-archive.com/dev-security-policy@mozilla.org/msg01711.html" target=_blank>https://www.mail-archive.com/dev-security-policy@mozilla.org/msg01711.html</a>
+              </ul>
+            </li>
+            <li>
+              Firefox tips and tricks for journalists
+              <ul>
+                <li><a href="https://blog.mozilla.org/en/products/firefox/firefox-tips/firefox-features-for-journalists/" target=_blank>https://blog.mozilla.org/en/products/firefox/firefox-tips/firefox-features-for-journalists/</a>
+              </ul>
+            </li>
+            <li>
+              Top 5 Firefox features for tab maximalists
+              <ul>
+                <li><a href="https://blog.mozilla.org/en/products/firefox/firefox-tips/efficient-tab-management-firefox/" target=_blank>https://blog.mozilla.org/en/products/firefox/firefox-tips/efficient-tab-management-firefox/</a>
+              </ul>
+            </li>
+            <li>
+              Picture-in-Picture lets you watch videos while &apos;working&apos;
+              <ul>
+                <li><a href="https://blog.mozilla.org/en/products/firefox/picture-in-picture/" target=_blank>https://blog.mozilla.org/en/products/firefox/picture-in-picture/</a>
+              </ul>
+            </li>
+            <li>
+              Privacy-Preserving Attribution | Firefox Help
+              <ul>
+                <li><a href="https://support.mozilla.org/en-US/kb/privacy-preserving-attribution" target=_blank>https://support.mozilla.org/en-US/kb/privacy-preserving-attribution</a>
+              </ul>
+            </li>
+            <li>
+              <strong>A Word About Private Attribution in Firefox : r/firefox</strong>
+              <ul>
+                <li><a href="https://www.reddit.com/r/firefox/comments/1e43w7v/a_word_about_private_attribution_in_firefox/" target=_blank>https://www.reddit.com/r/firefox/comments/1e43w7v/a_word_about_private_attribution_in_firefox/</a>
+                <li>Firefox 128 で PPA の実験を開始したところ炎上したことに対し CTO が Reddit で PPA の仕組みを説明
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3 id="safari-動向"><a href="#safari-動向">Safari 動向</a></h3>
+        <section>
+          <h4 id="stable-17.6"><a href="#stable-17.6">Stable: 17.6</a></h4>
+        </section>
+        <section>
+          <h4 id="updates_2"><a href="#updates_2">Updates</a></h4>
+          <ul>
+            <li>
+              Release Notes for Safari Technology Preview 198 | WebKit
+              <ul>
+                <li><a href="https://webkit.org/blog/15694/release-notes-for-safari-technology-preview-198/" target=_blank>https://webkit.org/blog/15694/release-notes-for-safari-technology-preview-198/</a>
+                <li>Added support for the :active-view-transition pseudo-class.
+              </ul>
+            </li>
+            <li>
+              Release Notes for Safari Technology Preview 199 | WebKit
+              <ul>
+                <li><a href="https://webkit.org/blog/15735/release-notes-for-safari-technology-preview-199/" target=_blank>https://webkit.org/blog/15735/release-notes-for-safari-technology-preview-199/</a>
+                <li>Added support for Uint8Array.prototype.toBase64 and Uint8Array.prototype.toHex.
+              </ul>
+            </li>
+            <li>
+              <strong>Private Browsing 2.0 | WebKit</strong>
+              <ul>
+                <li><a href="https://webkit.org/blog/15697/private-browsing-2-0/" target=_blank>https://webkit.org/blog/15697/private-browsing-2-0/</a>
+                <li>
+                  Safari が強化してきたプライバシー保護のまとめ
+                  <ul>
+                    <li>Link Tracking Protection
+                    <li>Tracker(CNAME-cloaker も)排除
+                    <li>Advanced Fingerprinting Protection
+                    <li>Extensions による website や history へのアクセスデフォルト無効
+                    <li>3rd Party IP からの Cookie を短命に
+                    <li>Partitioned SessionStorage, blob URL
+                  </ul>
+                </li>
+                <li>ついでに Topics API を批判
+              </ul>
+            </li>
+            <li>
+              WebKit Features in Safari 17.6 | WebKit
+              <ul>
+                <li><a href="https://webkit.org/blog/15739/webkit-features-in-safari-17-6/" target=_blank>https://webkit.org/blog/15739/webkit-features-in-safari-17-6/</a>
+                <li><strong>Safe alignment in Flexbox</strong>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="standard-positions"><a href="#standard-positions">Standard Positions</a></h4>
+          <ul>
+            <li>
+              今月 Close されたものをみる
+              <ul>
+                <li><a href="https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2024-07-01+" target=_blank>https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2024-07-01+</a>
+                <li>
+                  Support
+                  <ul>
+                    <li>
+                      Trusted Types
+                      <ul>
+                        <li><a href="https://github.com/WebKit/standards-positions/issues/186" target=_blank>https://github.com/WebKit/standards-positions/issues/186</a>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Oppose
+                  <ul>
+                    <li>
+                      CSS Nesting: @nest
+                      <ul>
+                        <li><a href="https://github.com/WebKit/standards-positions/issues/337" target=_blank>https://github.com/WebKit/standards-positions/issues/337</a>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="other_2"><a href="#other_2">Other</a></h4>
+          <ul>
+            <li>
+              Fifteen Years of Contributing to WebKit
+              <ul>
+                <li><a href="https://rniwa.com/2024-07-20/fifteen-years-of-contributing-to-webkit/" target=_blank>https://rniwa.com/2024-07-20/fifteen-years-of-contributing-to-webkit/</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3 id="edge-動向"><a href="#edge-動向">Edge 動向</a></h3>
+        <section>
+          <h4 id="stable-127_1"><a href="#stable-127_1">Stable: 127</a></h4>
+        </section>
+        <section>
+          <h4 id="updates_3"><a href="#updates_3">Updates</a></h4>
+          <ul>
+            <li>
+              <a href="https://blogs.windows.com/msedgedev/" target=_blank>https://blogs.windows.com/msedgedev/</a>
+              <ul>
+                <li>ここがメイン
+              </ul>
+            </li>
+            <li>
+              <a href="https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel" target=_blank>https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel</a>
+              <ul>
+                <li>ここでも見れる
+              </ul>
+            </li>
+            <li>
+              <a href="https://twitter.com/MSEdgeDev" target=_blank>https://twitter.com/MSEdgeDev</a>
+              <ul>
+                <li>これを見るしか無い
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="other_3"><a href="#other_3">Other</a></h4>
+          <ul>
+            <li>
+              Seamless SVG copy-paste on the web - Microsoft Edge Blog
+              <ul>
+                <li><a href="https://blogs.windows.com/msedgedev/2024/07/11/seamless-svg-copy-paste-on-the-web/" target=_blank>https://blogs.windows.com/msedgedev/2024/07/11/seamless-svg-copy-paste-on-the-web/</a>
+              </ul>
+            </li>
+            <li>
+              Browser Features: Find in Page - text/plain
+              <ul>
+                <li><a href="https://textslashplain.com/2024/07/15/browser-features-find-in-page/" target=_blank>https://textslashplain.com/2024/07/15/browser-features-find-in-page/</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3 id="whatwgw3c-動向"><a href="#whatwgw3c-動向">WHATWG/W3C 動向</a></h3>
+        <section>
+          <h4 id="draft"><a href="#draft">Draft</a></h4>
+          <ul>
+            <li>Recommendation
+            <li>Proposed Recommendation
+            <li>Candidate Recommendation
+            <li>Working Draft
+            <li>First Public Working Draft
+          </ul>
+        </section>
+        <section>
+          <h4 id="openui"><a href="#openui">Open/UI</a></h4>
+          <ul>
+            <li><a href="https://github.com/openui/open-ui/tree/main/meetings/telecon" target=_blank>https://github.com/openui/open-ui/tree/main/meetings/telecon</a>
+            <li>
+              OpenUI-WHATWG/HTML-CSSWG Meeting 2024-07-25
+              <ul>
+                <li><a href="https://lists.w3.org/Archives/Public/www-style/2024Jul/0011.html" target=_blank>https://lists.w3.org/Archives/Public/www-style/2024Jul/0011.html</a>
+                <li>How to implement and shape API for <code translate=no>&lt;selectedoption&gt;</code> element for <code translate=no>&lt;select&gt;</code>
+                <li>Popover Topics
+                <li>Pseudo-elements for stylable select
+              </ul>
+            </li>
+            <li>
+              Open UI Telecon, June 27, 2024
+              <ul>
+                <li>Welcome back... and, no meeting next week due to holiday conflicts
+                <li>[select] as an alternative to split buttons and <code translate=no>&lt;button type=popover&gt;</code> #1063
+                <li>[interest invokers] How to define/control the action on &quot;losing interest&quot; #1064
+                <li>Introduction to Foundation for the Global Design System component library #1066
+              </ul>
+            </li>
+            <li>
+              Open UI Telecon, July 11, 2024
+              <ul>
+                <li>Foundation for the Global Design System component library #1066
+                <li>Toggle Button Proposal #1058
+                <li>[invokers] should we pursue proposing method names to match invoke actions? #954
+              </ul>
+            </li>
+            <li>
+              Open UI Telecon, July 25, 2024
+              <ul>
+                <li>[invokers] should we pursue proposing method names to match invoke actions? #954
+                <li>[invokers] Casing for action values #969
+                <li>Foundation for the Global Design System component library #1066
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="whatnot"><a href="#whatnot">WHATNOT</a></h4>
+          <ul>
+            <li>
+              Upcoming WHATNOT meeting on 7/4/2024
+              <ul>
+                <li><a href="https://github.com/whatwg/html/issues/10441" target=_blank>https://github.com/whatwg/html/issues/10441</a>
+                <li>
+                  Review past action items
+                  <ul>
+                    <li>1a. Mason to post a proposal for moving forward with Invoker Buttons
+                    <li>Done.
+                  </ul>
+                </li>
+                <li>
+                  Carryovers from last time
+                  <ul>
+                    <li>
+                      2a. Emilio to collect compat data and propose a spec PR for min/max in [forms] Number input intrinsic size.
+                      <ul>
+                        <li>The spec has some text to this regard already. Only question is whether we want to make size apply to number inputs. If so, happy to write a PR.
+                      </ul>
+                    </li>
+                    <li>
+                      2b. Emilio to work on pulling out the common points for iframe throttling into the issue about Consider improving interoperability of <code translate=no>&lt;iframe&gt;</code> throttling margins, and maybe a spec PR.
+                      <ul>
+                        <li>Waiting to get review on a Gecko patch that implements what would be my formal proposal, in order to confirm it is web-compatible.
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  New topics
+                  <ul>
+                    <li>[Anne] Severing a document&apos;s opener relationship regardless of origin
+                    <li><code translate=no>&lt;input type=color&gt;</code> enhancements
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Upcoming WHATNOT meeting on 2024-07-11
+              <ul>
+                <li><a href="https://github.com/whatwg/html/issues/10463" target=_blank>https://github.com/whatwg/html/issues/10463</a>
+                <li>
+                  Review past action items
+                  <ul>
+                    <li>None
+                  </ul>
+                </li>
+                <li>
+                  Carryovers from last time
+                  <ul>
+                    <li>None.
+                  </ul>
+                </li>
+                <li>
+                  New topics
+                  <ul>
+                    <li>
+                      [Anne] Enhance <code translate=no>&lt;input type=color&gt;</code> with alpha and colorspace=display-p3
+                      <ul>
+                        <li>Domenic will ping Mason/Joey for implementation interest from Chromium. Kagami will ask Emilio/Olli to chime in.
+                      </ul>
+                    </li>
+                    <li>
+                      [Keith] Tie in AbortControllers with CustomElements
+                      <ul>
+                        <li>The discussion will continue on the issue. Keith will summarize the proposed options and tradeoffs.
+                      </ul>
+                    </li>
+                    <li>
+                      [Daniel/Freddy] Upstreaming from the Sanitizer API
+                      <ul>
+                        <li>Consensus in the room that this is ready for stage 2.
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Upcoming WHATNOT meeting on 2024-07-18
+              <ul>
+                <li><a href="https://github.com/whatwg/html/issues/10471" target=_blank>https://github.com/whatwg/html/issues/10471</a>
+                <li>
+                  Review past action items
+                  <ul>
+                    <li>
+                      Domenic will ping Mason/Joey for implementation interest from Chromium on Enhance <code translate=no>&lt;input type=color&gt;</code> with alpha and colorspace=display-p3. Kagami will ask Emilio/Olli to chime in.
+                      <ul>
+                        <li>Joey and Emilio are positive about the proposal.
+                      </ul>
+                    </li>
+                    <li>
+                      Keith will summarize the options and tradeoffs on Tie in AbortControllers with CustomElements.
+                      <ul>
+                        <li>Done. Anne will move it to the DOM repo and Keith will update the title.
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Carryovers from last time
+                  <ul>
+                    <li>None.
+                  </ul>
+                </li>
+                <li>
+                  New topics
+                  <ul>
+                    <li>
+                      [Yoav] Severing a document&apos;s opener relationship regardless of origin
+                      <ul>
+                        <li>Yoav will ask Artur and Arthur to comment on the issue.
+                      </ul>
+                    </li>
+                    <li>
+                      [Andrew] redact location.ancestorOrigins according to Referrer Policy
+                      <ul>
+                        <li>Chris will find someone from Chromium to look into this. Anne thinks the WebKit behavior can be changed. If Chromium is on board, we will need someone to step up with a concrete proposal to review.
+                      </ul>
+                    </li>
+                    <li>
+                      [Keith] [Proposal] Invoker Buttons - allowing popover/dialog and more to be invoked without JS
+                      <ul>
+                        <li>Keith will switch to use &quot;source&quot;. Discussed various options around naming, and consensus is for the name to start with a single dash. Agreed to only support <code translate=no>&lt;button&gt;</code> for now.
+                      </ul>
+                    </li>
+                    <li>
+                      [Michael] &quot;Fragment serializing algorithm&quot; outputs node itself instead of its contents for elements in non-HTML documents
+                      <ul>
+                        <li>Luke has some precursory work that will move things forward here.
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Upcoming WHATNOT meeting on 2024-07-25
+              <ul>
+                <li><a href="https://github.com/whatwg/html/issues/10496" target=_blank>https://github.com/whatwg/html/issues/10496</a>
+                <li>???
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="other_4"><a href="#other_4">Other</a></h4>
+          <ul>
+            <li>
+              <strong>Third Party Cookies Must Be Removed</strong>
+              <ul>
+                <li><a href="https://www.w3.org/2001/tag/doc/web-without-3p-cookies/" target=_blank>https://www.w3.org/2001/tag/doc/web-without-3p-cookies/</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Third-party cookies have got to go</strong>
+              <ul>
+                <li><a href="https://www.w3.org/blog/2024/third-party-cookies-have-got-to-go/" target=_blank>https://www.w3.org/blog/2024/third-party-cookies-have-got-to-go/</a>
+              </ul>
+            </li>
+            <li>
+              <strong>W3C Team appointments to the TAG ratified</strong>
+              <ul>
+                <li><a href="https://www.w3.org/news/2024/w3c-team-appointments-to-the-tag-ratified/" target=_blank>https://www.w3.org/news/2024/w3c-team-appointments-to-the-tag-ratified/</a>
+              </ul>
+            </li>
+            <li>
+              W3C offers an Inclusion Fund for TPAC 2024
+              <ul>
+                <li><a href="https://www.w3.org/news/2024/w3c-offers-an-inclusion-fund-for-tpac-2024/" target=_blank>https://www.w3.org/news/2024/w3c-offers-an-inclusion-fund-for-tpac-2024/</a>
+              </ul>
+            </li>
+            <li>
+              WebAssembly spec advancement to Candidate Recommendation
+              <ul>
+                <li><a href="https://lists.w3.org/Archives/Public/public-webassembly/2024Jul/0000.html" target=_blank>https://lists.w3.org/Archives/Public/public-webassembly/2024Jul/0000.html</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3 id="tc39-動向"><a href="#tc39-動向">TC39 動向</a></h3>
+        <section>
+          <h4 id="meeting"><a href="#meeting">Meeting</a></h4>
+          <ul>
+            <li>Meeting Note が公開された時だけやる、それ以外はやらない。
+            <li>
+              2024-06
+              <ul>
+                <li><a href="https://github.com/tc39/notes/tree/main/meetings/2024-06" target=_blank>https://github.com/tc39/notes/tree/main/meetings/2024-06</a>
+                <li>
+                  JSON Modules
+                  <ul>
+                    <li>assert の unship が終わって with (attributes) がくれば stage 4 になる
+                  </ul>
+                </li>
+                <li>
+                  Float16Array
+                  <ul>
+                    <li>みんな実装中
+                  </ul>
+                </li>
+                <li>
+                  <strong>Decorators and Decorator Metadata</strong>
+                  <ul>
+                    <li>仕様も Stage3 で test262 もほぼでき
+                    <li>実装があつまるようなら 2.7 に戻す必要も特にない
+                    <li>実装待ち
+                  </ul>
+                </li>
+                <li>
+                  Regex Expression Pattern Modifiers
+                  <ul>
+                    <li>インラインでフラグを部分的に変えるやつ
+                    <li>2 年前に Stage 3, Test262 が完成
+                    <li>実装中
+                  </ul>
+                </li>
+                <li>
+                  Explicit Resource Management
+                  <ul>
+                    <li>実装中
+                    <li>テストも作成中
+                  </ul>
+                </li>
+                <li>
+                  <strong>Promise.try for Stage 3</strong>
+                  <ul>
+                    <li>Test262 完成
+                    <li>Stage 3 へ
+                  </ul>
+                </li>
+                <li>
+                  <strong>RegExp Escaping</strong>
+                  <ul>
+                    <li>2.7 へ
+                  </ul>
+                </li>
+                <li>
+                  <strong>ShadowRealm Update</strong>
+                  <ul>
+                    <li>HTML integration が進んでる
+                    <li>more feedback を求めてる
+                    <li>&quot;confidentiality&quot; でもめてる
+                    <li>WPT 書くのむずそう
+                  </ul>
+                </li>
+                <li>
+                  Joint Iteration for Stage 2.7
+                  <ul>
+                    <li>zipToArrays/zipToObjects
+                    <li>zipToArrays は zip に改名
+                    <li>&quot;shortest/longest/strinct
+                    <li>2.7 へ
+                    <li>Demo
+                    <li><a href="https://tc39.es/proposal-joint-iteration/demo/" target=_blank>https://tc39.es/proposal-joint-iteration/demo/</a>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Temporal Stage 3 update and scope reduction</strong>
+                  <ul>
+                    <li>Temporal.Calendar, Temporal.TimeZone などの仕様を削って範囲を狭める
+                    <li>substract()/since() は削除されない
+                    <li>Stage 3 キープ
+                    <li>Temporal の近況(主に Scope を狭める話)
+                    <li><a href="https://zenn.dev/cybozu_frontend/articles/temporal-reduces-scope" target=_blank>https://zenn.dev/cybozu_frontend/articles/temporal-reduces-scope</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="proposals-diff"><a href="#proposals-diff">Proposals Diff</a></h4>
+          <ul>
+            <li><a href="https://github.com/tc39/proposals/compare/main@{2024-06-01}...main@{2024-08-01}" target=_blank>https://github.com/tc39/proposals/compare/main@{2024-06-01}...main@{2024-08-01}</a>
+            <li><a href="https://tc39.github.io/beta/" target=_blank>https://tc39.github.io/beta/</a>
+            <li>
+              0-&gt;1
+              <ul>
+                <li>Unordered Async Iterator Helpers
+              </ul>
+            </li>
+            <li>
+              1-&gt;2
+              <ul>
+                <li>Error.isError
+                <li>Iterator Sequencing
+                <li>ESM Phase import
+                <li>Discard (void) Bindings
+              </ul>
+            </li>
+            <li>
+              2-&gt;2.7
+              <ul>
+                <li>Deferring Module Evaluation
+                <li>Joint Iteration
+              </ul>
+            </li>
+            <li>
+              2.7-&gt;3
+              <ul>
+                <li>Promise.try
+                <li>RegExp.escape
+                <li>Time Zone Canonicalization
+              </ul>
+            </li>
+            <li>3-&gt;4
+          </ul>
+        </section>
+        <section>
+          <h4 id="new-proposals"><a href="#new-proposals">New Proposals</a></h4>
+        </section>
+        <section>
+          <h4 id="other_5"><a href="#other_5">Other</a></h4>
+          <ul>
+            <li>
+              Summary of the June 2024 TC39 plenary in Helsinki
+              <ul>
+                <li><a href="https://blogs.igalia.com/compilers/2024/07/18/summary-of-the-june-2024-tc39-plenary-in-helsinki/" target=_blank>https://blogs.igalia.com/compilers/2024/07/18/summary-of-the-june-2024-tc39-plenary-in-helsinki/</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3 id="wintercg-動向"><a href="#wintercg-動向">WinterCG 動向</a></h3>
+        <ul>
+          <li>Meeting や大きな動きがあった月だけやる
+        </ul>
+        <section>
+          <h4 id="meeting_1"><a href="#meeting_1">Meeting</a></h4>
+          <ul>
+            <li>
+              2024-06 Meeting
+              <ul>
+                <li><a href="https://github.com/wintercg/admin/issues/49" target=_blank>https://github.com/wintercg/admin/issues</a>
+                <li>no meeting
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3 id="ietf-動向"><a href="#ietf-動向">IETF 動向</a></h3>
+        <section>
+          <h4 id="ietf120"><a href="#ietf120">IETF120</a></h4>
+          <ul>
+            <li>
+              HTTPbis
+              <ul>
+                <li><a href="https://httpwg.org/wg-materials/ietf120/minutes.html" target=_blank>https://httpwg.org/wg-materials/ietf120/minutes.html</a>
+                <li>
+                  20 min - <a href="https://datatracker.ietf.org/doc/draft-ietf-intarea-proxy-config/" target=_blank>Communicating Proxy Configurations in Provisioning Domains</a> - Tommy Pauly
+                  <ul>
+                    <li><a href="https://datatracker.ietf.org/meeting/120/materials/slides-120-httpbis-pvd-proxy-discovery-00" target=_blank>https://datatracker.ietf.org/meeting/120/materials/slides-120-httpbis-pvd-proxy-discovery-00</a>
+                    <li>Proxy 自体に新しいプロトコルのサポートとかを問い合わせる?
+                    <li>.well-know に JSON
+                    <li>connect-udp とか
+                    <li>pvd = ProVisioning Domains
+                    <li>Apple から (Private Relay 関連?)
+                  </ul>
+                </li>
+                <li>
+                  20 min - Revising Cookies (again) -- Johann Hofmann
+                  <ul>
+                    <li><a href="https://datatracker.ietf.org/meeting/120/materials/slides-120-httpbis-sessa-cookies-future-00" target=_blank>https://datatracker.ietf.org/meeting/120/materials/slides-120-httpbis-sessa-cookies-future-00</a>
+                    <li><a href="https://github.com/johannhof/draft-annevk-johannhof-httpbis-cookies" target=_blank>https://github.com/johannhof/draft-annevk-johannhof-httpbis-cookies</a>
+                    <li>6265bis でもカバーできてない話がある
+                    <li>
+                      から、新しいドラフトを書いたよ
+                      <ul>
+                        <li>Cookie Store とか
+                        <li>3PC blocking とか
+                        <li>Non Browser U-A とか
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              QUIC
+              <ul>
+                <li><a href="https://github.com/quicwg/wg-materials/blob/main/ietf120/minutes.md" target=_blank>https://github.com/quicwg/wg-materials/blob/main/ietf120/minutes.md</a>
+              </ul>
+            </li>
+            <li>
+              TLS
+              <ul>
+                <li><a href="https://notes.ietf.org/notes-ietf-120-tls" target=_blank>https://notes.ietf.org/notes-ietf-120-tls</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="wg"><a href="#wg">WG</a></h4>
+          <ul>
+            <li>RFC
+            <li>
+              Work
+              <ul>
+                <li>
+                  I-D Action: draft-ietf-httpbis-connect-tcp-03.txt
+                  <ul>
+                    <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0001.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0001.html</a>
+                  </ul>
+                </li>
+                <li>
+                  I-D Action: draft-ietf-httpbis-optimistic-upgrade-00.txt
+                  <ul>
+                    <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0004.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0004.html</a>
+                  </ul>
+                </li>
+                <li>
+                  I-D Action: draft-ietf-httpbis-resumable-upload-04.txt
+                  <ul>
+                    <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0014.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0014.html</a>
+                  </ul>
+                </li>
+                <li>
+                  I-D Action: draft-ietf-httpbis-compression-dictionary-06.txt
+                  <ul>
+                    <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0007.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0007.html</a>
+                  </ul>
+                </li>
+                <li>
+                  I-D Action: draft-ietf-httpbis-unprompted-auth-08.txt
+                  <ul>
+                    <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0009.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0009.html</a>
+                  </ul>
+                </li>
+                <li>
+                  Working Group Last Call: Window Sizing for Zstandard Content Encoding
+                  <ul>
+                    <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2024AprJun/0124.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2024AprJun/0124.html</a>
+                  </ul>
+                </li>
+                <li>
+                  Publication has been requested for draft-ietf-httpbis-compression-dictionary-05
+                  <ul>
+                    <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0006.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0006.html</a>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Possible ambiguity in RFC 6265bis</strong>
+                  <ul>
+                    <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0125.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0125.html</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>Meeting
+          </ul>
+        </section>
+        <section>
+          <h4 id="other_6"><a href="#other_6">Other</a></h4>
+          <ul>
+            <li>
+              Openness in Internet Standards: Necessary, but Insufficient
+              <ul>
+                <li><a href="https://www.mnot.net/blog/2024/07/05/open_internet_standards" target=_blank>https://www.mnot.net/blog/2024/07/05/open_internet_standards</a>
+              </ul>
+            </li>
+            <li>
+              <strong>Are Internet Standards Competitive or Collaborative?</strong>
+              <ul>
+                <li><a href="https://www.mnot.net/blog/2024/07/16/collaborative_standards" target=_blank>https://www.mnot.net/blog/2024/07/16/collaborative_standards</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3 id="cdn-動向"><a href="#cdn-動向">CDN 動向</a></h3>
+        <section>
+          <h4 id="cloudflare"><a href="#cloudflare">Cloudflare</a></h4>
+          <ul>
+            <li>
+              Cloudflare 1.1.1.1 incident on June 27, 2024
+              <ul>
+                <li><a href="https://blog.cloudflare.com/cloudflare-1111-incident-on-june-27-2024/" target=_blank>https://blog.cloudflare.com/cloudflare-1111-incident-on-june-27-2024/</a>
+              </ul>
+            </li>
+            <li>
+              Application Security report: 2024 update
+              <ul>
+                <li><a href="https://blog.cloudflare.com/application-security-report-2024-update/" target=_blank>https://blog.cloudflare.com/application-security-report-2024-update/</a>
+              </ul>
+            </li>
+            <li>
+              Q2 2024 Internet disruption summary
+              <ul>
+                <li><a href="https://blog.cloudflare.com/q2-2024-internet-disruption-summary/" target=_blank>https://blog.cloudflare.com/q2-2024-internet-disruption-summary/</a>
+              </ul>
+            </li>
+            <li>
+              Exploring Internet traffic during the 2024 U.S. Republican National Convention
+              <ul>
+                <li><a href="https://blog.cloudflare.com/exploring-internet-traffic-during-the-2024-us-republican-national-convention/" target=_blank>https://blog.cloudflare.com/exploring-internet-traffic-during-the-2024-us-republican-national-convention/</a>
+              </ul>
+            </li>
+            <li>
+              Countdown to Paris 2024 Olympics: France leads in web interest
+              <ul>
+                <li><a href="https://blog.cloudflare.com/countdown-to-paris-2024-france-leads-in-olympic-web-interest/" target=_blank>https://blog.cloudflare.com/countdown-to-paris-2024-france-leads-in-olympic-web-interest/</a>
+              </ul>
+            </li>
+            <li>
+              How the Paris 2024 Summer Olympics has impacted Internet traffic
+              <ul>
+                <li><a href="https://blog.cloudflare.com/paris-2024-summer-olympics-impacted-internet-traffic/" target=_blank>https://blog.cloudflare.com/paris-2024-summer-olympics-impacted-internet-traffic/</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="fastly"><a href="#fastly">Fastly</a></h4>
+          <ul>
+            <li>
+              Level up your images: JPEG XL now supported by Image Optimizer | Fastly
+              <ul>
+                <li><a href="https://www.fastly.com/blog/level-up-your-images-jpeg-xl-now-supported-by-image-optimizer/" target=_blank>https://www.fastly.com/blog/level-up-your-images-jpeg-xl-now-supported-by-image-optimizer/</a>
+              </ul>
+            </li>
+            <li>
+              Is purging still the hardest problem in computer science? | Fastly
+              <ul>
+                <li><a href="https://www.fastly.com/blog/is-purging-still-the-hardest-problem-in-computer-science/" target=_blank>https://www.fastly.com/blog/is-purging-still-the-hardest-problem-in-computer-science/</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 id="other_7"><a href="#other_7">Other</a></h4>
+          <ul>
+            <li>
+              Akamai Early Hints: A New Way for Improving User Experience and Core Web Vitals | Akamai
+              <ul>
+                <li><a href="https://www.akamai.com/blog/performance/2024/jul/akamai-early-hints-improving-user-experience" target=_blank>https://www.akamai.com/blog/performance/2024/jul/akamai-early-hints-improving-user-experience</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3 id="セキュリティ動向"><a href="#セキュリティ動向">セキュリティ動向</a></h3>
+        <ul>
+          <li>
+            <strong>Persistent npm Campaign Shipping Trojanized jQuery</strong>
+            <ul>
+              <li><a href="https://blog.phylum.io/persistent-npm-campaign-shipping-trojanized-jquery/" target=_blank>https://blog.phylum.io/persistent-npm-campaign-shipping-trojanized-jquery/</a>
+              <li>jQuery に悪意のあるコードを含んで、同梱配布しているパッケージがみつかった
+            </ul>
+          </li>
+          <li>
+            <strong>Security Alert: Update to the Authy Android (v25.1.0) and iOS App (v26.1.0) | Twilio</strong>
+            <ul>
+              <li><a href="https://www.twilio.com/en-us/changelog/Security_Alert_Authy_App_Android_iOS" target=_blank>**https://www.twilio.com/en-us/changelog/Security_Alert_Authy_App_Android_iOS**</a>
+              <li>Authy ハッキングで 3,300 万件の電話番号流出
+            </ul>
+          </li>
+          <li>
+            <strong>Unlawful Access of Customer Data - AT&amp;T Bill &amp; account Customer Support</strong>
+            <ul>
+              <li><a href="https://www.att.com/support/article/my-account/000102979" target=_blank>https://www.att.com/support/article/my-account/000102979</a>
+              <li>AT&amp;T の電話番号がほぼ全て(1.1 億人)流出発覚
+            </ul>
+          </li>
+          <li>
+            <strong>Intent to End OCSP Service - Let&apos;s Encrypt</strong>
+            <ul>
+              <li><a href="https://letsencrypt.org/2024/07/23/replacing-ocsp-with-crls.html" target=_blank>https://letsencrypt.org/2024/07/23/replacing-ocsp-with-crls.html</a>
+              <li>OCSP の提供をやめ CRL に移行する
+              <li>もともと CRL の改善のために提案されたのが OCSP だった
+              <li>OCSP レスポンダーは訪問者のアクセス先 IP がわかってしまう問題があった
+              <li>LE に限らず OCSP をきちんと運用し続けるのはむずかしく、落ちることも多々ある
+              <li>それでもサイトが見えるように、ブラウザは OCSP がエラーでも閲覧を続けていた
+              <li>それでも OCSP を提供し続けるコストもペイしない、やめればインフラもシンプルになる
+              <li>CAB でも OCSP はオプショナルとして合意された
+              <li>MS だけが反対してるが、おそらくそのうち変わるだろう
+              <li>OCSP はほぼフェイルオープンな扱いなので影響は少ないが、使ってるアプリは確認が必要
+            </ul>
+          </li>
+          <li>
+            <strong>Windows resiliency: Best practices and the path forward - Microsoft Community Hub</strong>
+            <ul>
+              <li><a href="https://techcommunity.microsoft.com/t5/windows-it-pro-blog/windows-resiliency-best-practices-and-the-path-forward/ba-p/4201550" target=_blank>https://techcommunity.microsoft.com/t5/windows-it-pro-blog/windows-resiliency-best-practices-and-the-path-forward/ba-p/4201550</a>
+            </ul>
+          </li>
+          <li>
+            <strong>Windows Security best practices for integrating and managing security tools | Microsoft Security Blog</strong>
+            <ul>
+              <li><a href="https://www.microsoft.com/en-us/security/blog/2024/07/27/windows-security-best-practices-for-integrating-and-managing-security-tools/" target=_blank>https://www.microsoft.com/en-us/security/blog/2024/07/27/windows-security-best-practices-for-integrating-and-managing-security-tools/</a>
+            </ul>
+          </li>
+          <li>
+            <strong>How Windows 3.1 is saving Southwest&apos;s butt | Digital Trends</strong>
+            <ul>
+              <li><a href="https://www.digitaltrends.com/computing/southwest-cloudstrike-windows-3-1/" target=_blank>https://www.digitaltrends.com/computing/southwest-cloudstrike-windows-3-1/</a>
+            </ul>
+          </li>
+          <li>
+            <strong>Apple、信頼できる企業や人物を装いユーザーの機密データを入手しようとする「ソーシャルエンジニアリング攻撃」に対して注意勧告。</strong>
+            <ul>
+              <li><a href="https://applech2.com/archives/20240704-apple-social-engineering-attackers.html" target=_blank>https://applech2.com/archives/20240704-apple-social-engineering-attackers.html</a>
+            </ul>
+          </li>
+          <li>
+            <strong>ランサムウェア攻撃による情報漏洩に関する さらなる犯行声明および当社グループの対応状況について | 株式会社ドワンゴ</strong>
+            <ul>
+              <li><a href="https://dwango.co.jp/news/5129602523463680/" target=_blank>https://dwango.co.jp/news/5129602523463680/</a>
+            </ul>
+          </li>
+          <li>
+            <strong>～ニコニコ動画が 8/5 に再開、新バージョンに～ ニコニコの復旧状況およびサービス停止に伴う補償について|ニコニコインフォ</strong>
+            <ul>
+              <li><a href="https://blog.nicovideo.jp/niconews/225330.html" target=_blank>https://blog.nicovideo.jp/niconews/225330.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="周辺動向"><a href="#周辺動向">周辺動向</a></h3>
+        <ul>
+          <li>
+            <strong>Open Internet Governance</strong>
+            <ul>
+              <li><a href="https://open-internet-governance.org/" target=_blank>https://open-internet-governance.org/</a>
+              <li>An Open Letter to the United Nations
+              <li><a href="https://open-internet-governance.org/letter" target=_blank>https://open-internet-governance.org/letter</a>
+              <li>Press Release
+              <li><a href="https://open-internet-governance.org/press-release" target=_blank>https://open-internet-governance.org/press-release</a>
+              <li>国連の Global Digital Compact のプロセスにオープンな標準化の団体が関われておらず、内容にもオープンとずれてるとこがあると懸念があっての公開書簡
+            </ul>
+          </li>
+          <li>
+            <strong>Announcing the Ladybird Browser Initiative</strong>
+            <ul>
+              <li><a href="https://ladybird.org/announcement.html" target=_blank>https://ladybird.org/announcement.html</a>
+              <li>Serenity OS (90 年代の OS を再現したようなやつ)の HTML Viewer から始まった
+              <li>他のブラウザからはコードを借りずにゼロから実装する
+              <li>すでに GitHub の Issue や PR は動いてる
+              <li>Ladybird Browser Initiative で寄付ベースで開発をすすめる
+              <li>企業との取引などによる収益化はしない
+            </ul>
+          </li>
+          <li>
+            <strong>Why we need Ladybird - Chris Wanstrath</strong>
+            <ul>
+              <li><a href="https://ladybird.org/why-ladybird.html" target=_blank>https://ladybird.org/why-ladybird.html</a>
+              <li>Safari / Firefox は、デフォルト検索エンジンを Google にするために年間数億ドルを受け取ってる
+              <li>新しいブラウザを作るのは不可能で、 Chrome の座は奪えないという人はたくさんいる
+              <li>完全にゼロから、寄付のみで運用されるブラウザを作ることが非常に重要
+            </ul>
+          </li>
+          <li>
+            Igalians Celebrated with Prestigious Awards | Igalia
+            <ul>
+              <li><a href="https://www.igalia.com/2024/07/10/Igalians-Celebrated-with-Prestigious-Awards.html" target=_blank>https://www.igalia.com/2024/07/10/Igalians-Celebrated-with-Prestigious-Awards.html</a>
+            </ul>
+          </li>
+          <li>
+            <strong>Marc Andreessen on Building Netscape &amp; the Birth of the Browser - YouTube</strong>
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=8aTjA_bGZO4" target=_blank>https://www.youtube.com/watch?v=8aTjA_bGZO4</a>
+              <li>Netscape ができたころの話
+            </ul>
+          </li>
+          <li>
+            <strong>Mac OSX support · Issue #1314 · MicrosoftEdge/WebView2Feedback</strong>
+            <ul>
+              <li><a href="https://github.com/MicrosoftEdge/WebView2Feedback/issues/1314#issuecomment-2211683486" target=_blank>https://github.com/MicrosoftEdge/WebView2Feedback/issues/1314#issuecomment-2211683486</a>
+              <li>WebView2 の Mac/Linux 展開をやめることに
+            </ul>
+          </li>
+          <li>
+            <strong>Misfire - Infrequently Noted</strong>
+            <ul>
+              <li><a href="https://infrequently.org/2024/07/misfire/" target=_blank>https://infrequently.org/2024/07/misfire/</a>
+              <li>3rd Party Cookie に関する一連の流れについて、の TAG に対する批判
+              <li>「TAG がやるべきこと」という視点でまとめられている
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="cookie-動向"><a href="#cookie-動向">Cookie 動向</a></h3>
+        <ul>
+          <li>
+            How Chromium&apos;s cookies get evicted
+            <ul>
+              <li><a href="https://blog.yoav.ws/posts/how_chromium_cookies_get_evicted/" target=_blank>https://blog.yoav.ws/posts/how_chromium_cookies_get_evicted/</a>
+            </ul>
+          </li>
+          <li>
+            <strong>A new path for Privacy Sandbox on the web</strong>
+            <ul>
+              <li><a href="https://privacysandbox.com/news/privacy-sandbox-update/" target=_blank>https://privacysandbox.com/news/privacy-sandbox-update/</a>
+              <li>オンラインプライバシーの問題を解決するため Privacy Sandbox などに取り組んできた。
+              <li>その活動は CMA や ICO その他各機関や業界からフィードバックを得てきた。
+              <li>検証の結果、効果は出ているが、それでも業界の移行に時間がかかりすぎており、影響も大きい。
+              <li>そこで、 3rd Party Cookie の廃止をやめて、ユーザが「informed choice」できるように方針を変更していくことにする。
+              <li>それでも Privacy Sandbox は重要なので投資は続ける。またユーザのプライバシーのために、プライベートモードに IP Protection を入れる。
+            </ul>
+          </li>
+          <li>
+            <strong>Investigation into Google&apos;s &apos;Privacy Sandbox&apos; browser changes - GOV.UK</strong>
+            <ul>
+              <li><a href="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes" target=_blank>https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes</a>
+            </ul>
+          </li>
+          <li>
+            <strong>Learnings from Privacy Sandbox Testing</strong>
+            <ul>
+              <li><a href="https://privacysandbox.com/news/learnings-from-privacy-sandbox-testing/" target=_blank>https://privacysandbox.com/news/learnings-from-privacy-sandbox-testing/</a>
+            </ul>
+          </li>
+          <li>
+            <strong>Results from Privacy Sandbox APIs testing</strong>
+            <ul>
+              <li><a href="https://support.google.com/admanager/answer/15189422" target=_blank>https://support.google.com/admanager/answer/15189422</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="イベント"><a href="#イベント">イベント</a></h3>
+        <ul>
+          <li>
+            7 月
+            <ul>
+              <li>
+                20-26: IETF 120 Vancouver
+                <ul>
+                  <li><a href="https://www.ietf.org/meeting/120/" target=_blank>https://www.ietf.org/meeting/120/</a>
+                </ul>
+              </li>
+              <li>
+                28-01: TC39
+                <ul>
+                  <li><a href="https://github.com/tc39/agendas/blob/main/2024/07.md" target=_blank>https://github.com/tc39/agendas/blob/main/2024/07.md</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>8 月
+          <li>
+            9 月
+            <ul>
+              <li>
+                7: Web Developer Conference 2024 - connpass
+                <ul>
+                  <li><a href="https://web-study.connpass.com/event/321711/" target=_blank>https://web-study.connpass.com/event/321711/</a>
+                  <li><a href="https://fortee.jp/web-dev-conf-2024/proposal/all" target=_blank>https://fortee.jp/web-dev-conf-2024/proposal/all</a>
+                </ul>
+              </li>
+              <li>
+                23-27: TPAC 2024 Anaheim
+                <ul>
+                  <li><a href="https://www.w3.org/2024/09/TPAC/" target=_blank>https://www.w3.org/2024/09/TPAC/</a>
+                </ul>
+              </li>
+              <li>?: CMA の Q3 レポート
+            </ul>
+          </li>
+          <li>
+            10 月
+            <ul>
+              <li>
+                8-10: blinkOn19
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/XZPgZ3DymqY" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/XZPgZ3DymqY</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="wrap-up"><a href="#wrap-up">Wrap Up</a></h3>
+        <ul>
+          <li>
+            Chrome
+            <ul>
+              <li>127
+              <li>
+                128 beta
+                <ul>
+                  <li>CSS ruby-align / line-breakable ruby
+                  <li><code translate=no>&lt;option&gt;</code> minimum size
+                  <li>CSS zoom
+                  <li>Promise.try
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>inset-area -&gt; position-area
+                  <li>position-try-options -&gt; position-try-fallbacks
+                  <li>interpolate-size property &amp; calc-size()
+                  <li>Isolated Web Apps
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>currentcolor in RCS
+                  <li>iOS Chrome の UA 文字列に iOS のパッチバージョンを追加
+                  <li>Sanitizer API
+                  <li>HTML handwriting attribute
+                </ul>
+              </li>
+              <li>
+                other intents
+                <ul>
+                  <li>Intl.DurationFormat ready for developer testing
+                </ul>
+              </li>
+              <li>
+                web.dev
+                <ul>
+                  <li>Interop 2024 mid-year update
+                </ul>
+              </li>
+              <li>
+                Google Developer Blog
+                <ul>
+                  <li>goo.gl
+                </ul>
+              </li>
+              <li>
+                Chrome Developers
+                <ul>
+                  <li>misconceptions about view transitions
+                </ul>
+              </li>
+              <li>Chromium blog
+              <li>
+                other blogs
+                <ul>
+                  <li>Entrust distrust
+                  <p>    -
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li>Markdown import/export in Google Docs (Workspace)
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Firefox
+            <ul>
+              <li>
+                128
+                <ul>
+                  <li>PPA experiment
+                  <li>@property
+                  <li>Relative Color Syntax
+                  <li>content プロパティの代替テキスト
+                </ul>
+              </li>
+              <li>
+                Ship
+                <ul>
+                  <li>Iterator Helpers
+                </ul>
+              </li>
+              <li>
+                Prototype
+                <ul>
+                  <li>CSS stretch keyword
+                </ul>
+              </li>
+              <li>
+                MDN Blog
+                <ul>
+                  <li>MDN HTTP Obsevatory
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li>PPA の実験で炎上
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Safari
+            <ul>
+              <li>TP 198
+              <li>
+                TP 199
+                <ul>
+                  <li>Uint8Array.toBase64()
+                </ul>
+              </li>
+              <li>
+                17.6
+                <ul>
+                  <li>Safe alignment in Flexbox
+                </ul>
+              </li>
+              <li>
+                blog
+                <ul>
+                  <li>Private Browsing 2.0
+                </ul>
+              </li>
+              <li>
+                Standard Position
+                <ul>
+                  <li>
+                    support
+                    <ul>
+                      <li>Trusted Types
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                other
+                <ul>
+                  <li>rniwa さん WebKit contribution 15 年
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Edge
+            <ul>
+              <li>特になし
+            </ul>
+          </li>
+          <li>
+            W3C/WHATWG
+            <ul>
+              <li>
+                Open/UI
+                <ul>
+                  <li>meetings
+                  <li>WHATNOT
+                </ul>
+              </li>
+              <li>
+                Other
+                <ul>
+                  <li>TAG on third-party cookies
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TC39
+            <ul>
+              <li>Decorator (Metadata) 実装待ち
+              <li>RegExp.escape / Promise.try Stage 3
+              <li>ShadowRealm がむずそう
+              <li>Temporal スコープ狭めて Stage3
+            </ul>
+          </li>
+          <li>WinterCG
+          <li>
+            IETF
+            <ul>
+              <li>IETF120
+              <li>Communicating Proxy Configurations in Provisioning Domains by Apple
+              <li>Revising Cookies (again) で RFC6265bis のカバーできてない話
+            </ul>
+          </li>
+          <li>CDN 動向
+          <li>
+            セキュリティ動向
+            <ul>
+              <li>悪意のあるコードが入った jQuery 同梱パッケージ
+              <li>Authy ハッキング
+              <li>AT&amp;T で大規模情報漏洩
+              <li>Let&apos;s Encrypt OCSP 辞める
+              <li>CrowdStrike で世界中の Windows がブルースクリーン
+              <li>Apple ソーシャルエンジニアリング攻撃への啓蒙
+              <li>ニコ動 8/5 再開
+            </ul>
+          </li>
+          <li>
+            周辺動向
+            <ul>
+              <li>Open Internet Governance
+              <li>Ladybird
+              <li>Netscape ができたころの昔話
+              <li>WebView 2 の Mac/Linux 展開やめる
+              <li>Alex Russel 先生 TAG へん怒りブログ
+            </ul>
+          </li>
+          <li>
+            Cookie 動向
+            <ul>
+              <li>Privacy Sandbox の方針変更
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/156/monthly-ecosystem-202407.html>ep156 Monthly Ecosystem 202407</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep157.mp3
+    data-title="ep157 Monthly Platform 202407"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
