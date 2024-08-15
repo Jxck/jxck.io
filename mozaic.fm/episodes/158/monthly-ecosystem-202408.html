@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/158/monthly-ecosystem-202408.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065828></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 158 回のテーマは 2024 年 8 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/158/monthly-ecosystem-202408.html>
+  <meta property=og:title        content="ep158 Monthly Ecosystem 202408 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 158 回のテーマは 2024 年 8 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep158 Monthly Ecosystem 202408 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/157/monthly-platform-202407.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?240701_012822>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?230926_134917>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?240713_033306>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?220428_023319>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/157/monthly-platform-202407.html>ep157 Monthly Platform 202407</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep158 Monthly Ecosystem 202408</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2024-08-15
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 158 回のテーマは 2024 年 8 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          Figma Config 2024
+          <ul>
+            <li>
+              サマリ
+              <ul>
+                <li><a href="https://www.figma.com/blog/config-2024-recap/" target=_blank>https://www.figma.com/blog/config-2024-recap/</a>
+                <li>Figma AI: Think bigger and build faster
+                <li>UI3: Figma, redesigned
+                <li>Figma Slides: Build, collaborate, and present
+                <li>Dev Mode updates: From design ready to dev complete
+                <li>Quality-of-life improvements: Auto Layout, UI Kits, and prototype viewer
+              </ul>
+            </li>
+            <li>
+              セッション一覧
+              <ul>
+                <li><a href="https://www.youtube.com/playlist?list=PLXDU_eVOJTx402DljIPagaDKLibF-qfF0" target=_blank>https://www.youtube.com/playlist?list=PLXDU_eVOJTx402DljIPagaDKLibF-qfF0</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Node v22.5.0 (Current)
+          <ul>
+            <li><a href="https://nodejs.org/en/blog/release/v22.5.0" target=_blank>https://nodejs.org/en/blog/release/v22.5.0</a>
+            <li>node:http に websocket(undici 経由)を追加
+            <li>node:sqlite を追加
+            <li>node:path に正規表現が入力に一致するかを検証する <code translate=no>matchesGlob</code> を追加
+            <li>
+              process.finalization の追加
+              <ul>
+                <li>Node プロセスが終了するときに登録したオブジェクトを適切に破棄し、メモリリークを防ぐことができる
+              </ul>
+            </li>
+            <li>node:worker_thread に <code translate=no>postMessageToThread</code> を追加
+          </ul>
+        </li>
+        <li>
+          Node v22.6.0 (Current)
+          <ul>
+            <li><a href="https://nodejs.org/en/blog/release/v22.6.0" target=_blank>https://nodejs.org/en/blog/release/v22.6.0</a>
+            <li>strip types の追加(experimental)
+            <li>
+              ネットワーク インスペクションの追加
+              <ul>
+                <li>chrome 側の対応待ち
+                <li><a href="https://issues.chromium.org/issues/353924015" target=_blank>https://issues.chromium.org/issues/353924015</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          module: add <code translate=no>--experimental-transform-types</code> flag
+          <ul>
+            <li><a href="https://github.com/nodejs/node/pull/54283" target=_blank>https://github.com/nodejs/node/pull/54283</a>
+            <li>以前は対応してなかった TypeScript の独自構文である Enum や Namespace に対応
+          </ul>
+        </li>
+        <li>
+          bun
+          <ul>
+            <li>
+              v1.1.23
+              <ul>
+                <li><a href="https://bun.sh/blog/bun-v1.1.23" target=_blank>https://bun.sh/blog/bun-v1.1.23</a>
+                <li><code translate=no>TextEncoderStream</code>、<code translate=no>TextDecoderStream</code> の追加
+                <li><code translate=no>console.log</code> が 50%速くなった
+              </ul>
+            </li>
+            <li>
+              v1.1.22
+              <ul>
+                <li><a href="https://bun.sh/blog/bun-v1.1.22" target=_blank>https://bun.sh/blog/bun-v1.1.22</a>
+                <li>Express が 3 倍速くなった
+                <li><code translate=no>util.aborted()</code> の追加
+                <li><code translate=no>events.getEventListeners()</code> の追加
+              </ul>
+            </li>
+            <li>
+              v1.1.21
+              <ul>
+                <li><a href="https://bun.sh/blog/bun-v1.1.21" target=_blank>https://bun.sh/blog/bun-v1.1.21</a>
+                <li><code translate=no>--fetch-preconnect</code> の追加
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Announcing TypeScript 5.6 Beta
+          <ul>
+            <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-6-beta/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-6-beta/</a>
+            <li>
+              構文的には動くが、実際は動かない真偽/null のコードを警告できるように
+              <ul>
+                <li>eslint の <code translate=no>no-constant-binary-expression</code> ルールと同様
+              </ul>
+            </li>
+            <li>
+              map や filter などのイテレータヘルパーメソッドを追加
+              <ul>
+                <li>tc39/iterator-helpers
+                <li><a href="https://github.com/tc39/proposal-iterator-helpers" target=_blank>https://github.com/tc39/proposal-iterator-helpers</a>
+              </ul>
+            </li>
+            <li>
+              <code translate=no>--noUncheckedSideEffectImports​</code>
+              <ul>
+                <li>side effect import されたソースがない場合に TS は無視するが、無視せずに存在を検証するオプション
+              </ul>
+            </li>
+            <li>
+              <code translate=no>--noCheck​</code>
+              <ul>
+                <li>すべての型チェックをスキップする
+                <li>これにより JS ファイルの生成と型チェックを分離することができる
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Node Sass is end-of-life
+          <ul>
+            <li><a href="https://sass-lang.com/blog/node-sass-is-end-of-life/" target=_blank>https://sass-lang.com/blog/node-sass-is-end-of-life/</a>
+          </ul>
+        </li>
+        <li>
+          Astro 4.12: Server Islands
+          <ul>
+            <li><a href="https://astro.build/blog/astro-4120/" target=_blank>https://astro.build/blog/astro-4120/</a>
+            <li>
+              Server Islands の実験サポート
+              <ul>
+                <li>動的な部分は Next.js の Partial Pre Rendering と似た機能
+                <li><a href="https://server-islands.com/" target=_blank>https://server-islands.com/</a>
+              </ul>
+            </li>
+            <li>
+              Image へ <code translate=no>inferRemoteSize</code> の追加
+              <ul>
+                <li>リモート画像の大きさを自動推測
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Astro 4.13
+          <ul>
+            <li><a href="https://astro.build/blog/astro-4130/" target=_blank>https://astro.build/blog/astro-4130/</a>
+            <li>リクエストのリライト機能が安定へ
+            <li>content collection で JSON Schema の自動作成が安定へ
+          </ul>
+        </li>
+        <li>
+          state of react
+          <ul>
+            <li><a href="https://2023.stateofreact.com/en-US/" target=_blank>https://2023.stateofreact.com/en-US/</a>
+          </ul>
+        </li>
+        <li>
+          mui: Migrating to v6
+          <ul>
+            <li><a href="https://next.mui.com/material-ui/migration/migrating-to-v6/" target=_blank>https://next.mui.com/material-ui/migration/migrating-to-v6/</a>
+          </ul>
+        </li>
+        <li>
+          Tokens Studio 2.0
+          <ul>
+            <li><a href="https://feedback.tokens.studio/changelog/release-20" target=_blank>https://feedback.tokens.studio/changelog/release-20</a>
+            <li>W3C DTCG format
+            <li>A new variables experience
+            <li>Non-local variable references
+            <li>Variables in typography styles, shadows, border tokens and gradients
+            <li>Typography tokens
+            <li>Bitbucket support
+            <li>Tokens Studio (platform) support
+          </ul>
+        </li>
+        <li>
+          Style Dictionary
+          <ul>
+            <li><a href="https://github.com/amzn/style-dictionary/releases/tag/v4.0.0" target=_blank>https://github.com/amzn/style-dictionary/releases/tag/v4.0.0</a>
+            <li>ずっと止まっていたアップデートがやっと出た
+          </ul>
+        </li>
+        <li>
+          Revolutionising Design Systems: The Future of UI Design using Graphs &amp; Node-based Design
+          <ul>
+            <li><a href="https://tokens.studio/blog/revolutionising-design-systems-the-future-of-ui-design-using-graphs-node-based-design" target=_blank>https://tokens.studio/blog/revolutionising-design-systems-the-future-of-ui-design-using-graphs-node-based-design</a>
+            <li>Token の依存グラフを視覚的に作成することができるツール
+          </ul>
+        </li>
+        <li>
+          Software Sharing for Modern Companies | Fair.io
+          <ul>
+            <li><a href="https://fair.io/" target=_blank>https://fair.io/</a>
+            <li>
+              オープンソースとは違う新しい取り組み「Fair Source」登場。ビジネスの持続性とソースコード公開の両立を目指す
+              <ul>
+                <li><a href="https://www.publickey1.jp/blog/24/fair_source.html" target=_blank>https://www.publickey1.jp/blog/24/fair_source.html</a>
+              </ul>
+            </li>
+            <li>ビジネスを守るための最小限の制約をもつが、利用や再配布が可能で一定期間後オープンになる
+            <li>Sentry の提唱で、コードの公開とソフトウェアビジネスの両立のためのもの
+          </ul>
+        </li>
+        <li>
+          ESLint v9.9.0 released
+          <ul>
+            <li><a href="https://eslint.org/blog/2024/08/eslint-v9.9.0-released/" target=_blank>https://eslint.org/blog/2024/08/eslint-v9.9.0-released/</a>
+            <li>実験的に設定ファイルの TS サポート
+          </ul>
+        </li>
+        <li>
+          Announcing typescript-eslint v8
+          <ul>
+            <li><a href="https://typescript-eslint.io/blog/announcing-typescript-eslint-v8/" target=_blank>https://typescript-eslint.io/blog/announcing-typescript-eslint-v8/</a>
+            <li>eslint v9 のサポート
+            <li>いくつかのルールが変更される
+          </ul>
+        </li>
+        <li>
+          NLnet; Servo improvements for Tauri
+          <ul>
+            <li><a href="https://nlnet.nl/project/Verso/" target=_blank>https://nlnet.nl/project/Verso/</a>
+            <li>
+              Rust 製ブラウザエンジン「Servo」搭載、新たな Web ブラウザ「Verso」の開発プロジェクトが立ち上がる
+              <ul>
+                <li><a href="https://www.publickey1.jp/blog/24/rustservowebverso.html" target=_blank>https://www.publickey1.jp/blog/24/rustservowebverso.html</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          What we got wrong about HTTP imports
+          <ul>
+            <li><a href="https://deno.com/blog/http-imports" target=_blank>https://deno.com/blog/http-imports</a>
+          </ul>
+        </li>
+        <li>
+          Apollo Client 3.11
+          <ul>
+            <li>Subscription API の改善
+            <li>React 19 サポート
+            <li>テストライブラリの変更。MSW を利用した graphql-testing-library へ
+            <li>
+              Devtools オプションの追加
+              <ul>
+                <li>今まで 1 つしか対応できてなかった
+                <li>このオプションで複数の apollo client インスタンスに対応
+              </ul>
+            </li>
+            <li>nextFetchPolicy の呼び出しタイミング変更
+          </ul>
+        </li>
+        <li>
+          HonoHub
+          <ul>
+            <li><a href="https://honohub.dev/" target=_blank>https://honohub.dev/</a>
+            <li>Hono ライクな OSS の Headless CMS ぽい?
+          </ul>
+        </li>
+        <li>
+          Frontend AI
+          <ul>
+            <li>生成 AI のツール
+            <li>UI を生成したりコードも出してくれるぽい
+          </ul>
+        </li>
+        <li>
+          Lottielab Interactivity
+          <ul>
+            <li>Lottielab で作ってたエディターがアップデートして正式アプデぽい
+          </ul>
+        </li>
+        <li>
+          Postgres Sandbox
+          <ul>
+            <li><a href="https://postgres.new/" target=_blank>https://postgres.new/</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          9 月
+          <ul>
+            <li>
+              7: Web Developer Conference
+              <ul>
+                <li><a href="https://web-study.connpass.com/event/321711/" target=_blank>https://web-study.connpass.com/event/321711/</a>
+              </ul>
+            </li>
+            <li>
+              10-12: GraphQL Conf
+              <ul>
+                <li><a href="https://graphql.org/blog/2024-03-28-announcing-graphqlconf-2024/" target=_blank>https://graphql.org/blog/2024-03-28-announcing-graphqlconf-2024/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          10 月
+          <ul>
+            <li>
+              2-3: Compose2024
+              <ul>
+                <li><a href="https://www.netlify.com/compose" target=_blank>https://www.netlify.com/compose</a>
+              </ul>
+            </li>
+            <li>
+              3: ViteConf
+              <ul>
+                <li><a href="https://viteconf.org/?2024" target=_blank>https://viteconf.org/?2024</a>
+              </ul>
+            </li>
+            <li>
+              19: Vue Fes Japan 2024
+              <ul>
+                <li><a href="https://vuefes.jp/2024/" target=_blank>https://vuefes.jp/2024/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          11 月
+          <ul>
+            <li>
+              23: JSConfJP
+              <ul>
+                <li><a href="https://jsconf.jp/2024/" target=_blank>https://jsconf.jp/2024/</a>
+              </ul>
+            </li>
+            <li>
+              19-22: React Summit in NY
+              <ul>
+                <li><a href="https://reactsummit.us/" target=_blank>https://reactsummit.us/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/157/monthly-platform-202407.html>ep157 Monthly Platform 202407</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep158.mp3
+    data-title="ep158 Monthly Ecosystem 202408"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
