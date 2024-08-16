@@ -21,7 +21,7 @@ draft:
 
 fmt:
 	.src/markdown/formatter.js blog.jxck.io/entries/**/*.md
-	.src/markdown/formatter.js mozaic.fm/episodes/**/*.md
+	prettier -w mozaic.fm/episodes/**/*.md
 
 install:
 	npm install
