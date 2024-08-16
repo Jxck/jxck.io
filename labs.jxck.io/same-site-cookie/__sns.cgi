@@ -1,4 +1,4 @@
-#!/home/jxck/dotfiles/pkg/nodebrew/current/bin/node
+#!/home/jxck/.local/share/mise/installs/node/latest/bin/node
 
 const fs = require("fs");
 const FILE = `${process.cwd()}/ping.log`;

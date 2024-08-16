@@ -7,7 +7,7 @@ Type=simple
 Restart=always
 Environment=NODE_ENV=production RPID=labs.jxck.io ORIGIN=https://labs.jxck.io PORT=9000 SERVER=/home/jxck/server
 WorkingDirectory=/home/jxck/server/jxck.io/labs.jxck.io/webauthentication/fido-u2f
-ExecStart=/home/jxck/dotfiles/pkg/nodebrew/current/bin/node --experimental-modules app.mjs
+ExecStart=/home/jxck/.local/share/mise/installs/node/latest/bin/node --experimental-modules app.mjs
 
 [Install]
 WantedBy=multi-user.target
