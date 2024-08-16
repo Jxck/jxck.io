@@ -28,7 +28,6 @@ Coinhive 事件で起訴され、最高裁で無罪を勝ち取ったモロさ�
 - 一般社団法人日本ハッカー協会
   - https://www.hacker.or.jp/
 
-
 - mozaic.fm で Coinhive に言及していた部分
   - ep32 Yearly Web 2017 | mozaic.fm
     - https://mozaic.fm/episodes/32/yearly-web-2017.html

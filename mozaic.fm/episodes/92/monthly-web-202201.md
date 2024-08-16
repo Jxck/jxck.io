@@ -188,7 +188,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1749910
   - 1/13 に障害
   - Mozilla のサービスで使う GCP のロードバランサーが HTTP/3 に対応したところ、 Telemetry でデータをアップロードする際にソケットスレッドで無限ループを引き起こしたらしい
-- These Weeks in Firefox: Issue 107 – Firefox Nightly News
+- These Weeks in Firefox: Issue 107 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/01/18/these-weeks-in-firefox-issue-107/
 
 
@@ -324,7 +324,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 同一セッション内のタブやフレームで、データベース名が漏れてしまう
     - データベースに触ると、同じ名前を持つ空のデータベースが他のタブやフレームにも作られる
     - Google などは User ID を名前に使っているので、 Google の各種 API を使ってプロフィール画像などが取得できる
-  - Changeset 288078 – WebKit - database names leak cross-origin within the same browser session ​
+  - Changeset 288078 - WebKit - database names leak cross-origin within the same browser session ​
     - https://trac.webkit.org/changeset/288078/webkit
     - 1/16 に修正が trunk に入った
 
@@ -349,7 +349,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- Debugging Compatibility in Edge – text/plain
+- Debugging Compatibility in Edge - text/plain
   - https://textslashplain.com/2022/01/20/debugging-compatibility-in-edge/
 
 
@@ -362,7 +362,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Candidate Recommendation
   - Media Queries Level 4
     - https://www.w3.org/TR/2021/CRD-mediaqueries-4-20211225/
-    - CSS WG Blog – Updated CRD of Media Queries Level 4
+    - CSS WG Blog - Updated CRD of Media Queries Level 4
       - https://www.w3.org/blog/CSS/2022/01/02/updated-crd-of-media-queries-level-4/
   - CSS Conditional Rules Module Level 3
     - https://www.w3.org/TR/2022/CR-css-conditional-3-20220113/
@@ -376,15 +376,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/TR/2021/WD-wcag-3.0-20211207/
   - CSS Overflow Module Level 3
     - https://www.w3.org/TR/2021/WD-css-overflow-3-20211202/
-    - CSS WG Blog – Updated WD of CSS Overflow Level 3
+    - CSS WG Blog - Updated WD of CSS Overflow Level 3
       - https://www.w3.org/blog/CSS/2021/12/02/css-overflow-3-update/
   - CSS Values and Units Module Level 4
     - https://www.w3.org/TR/2021/WD-css-values-4-20211216/
-    - CSS WG Blog – CSS Values and Units Level 4 Update
+    - CSS WG Blog - CSS Values and Units Level 4 Update
       - https://www.w3.org/blog/CSS/2021/12/31/css-values-4-wide-review/
   - Media Queries Level 5
     - https://www.w3.org/TR/2021/WD-mediaqueries-5-20211218/
-    - CSS WG Blog – Updated Working Draft for Media Queries 5
+    - CSS WG Blog - Updated Working Draft for Media Queries 5
       - https://www.w3.org/blog/CSS/2022/01/02/update-working-draft-for-media-queries-5/
 - First Public Working Draft
   - EditContext API
@@ -394,7 +394,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/TR/2021/DNOTE-wcag-3.0-explainer-20211207/
   - *CSS Snapshot 2021*
     - https://www.w3.org/TR/css-2021/
-    - CSS WG Blog – CSS Snapshot 2021 Published
+    - CSS WG Blog - CSS Snapshot 2021 Published
       - https://www.w3.org/blog/CSS/2022/01/01/css-snapshot-2021-published/
 - Chartering
 

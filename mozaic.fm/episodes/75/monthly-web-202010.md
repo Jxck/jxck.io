@@ -197,11 +197,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - AMP Fest 2020 - amp.dev
     - https://amp.dev/events/amp-fest-2020/
-  - Google launches a new home for Web Stories on Discover – The AMP Blog
+  - Google launches a new home for Web Stories on Discover - The AMP Blog
     - https://blog.amp.dev/2020/10/06/google-launches-a-new-home-for-web-stories-on-discover/
-  - Make sure your Signed Exchanges serving is up and healthy – The AMP Blog
+  - Make sure your Signed Exchanges serving is up and healthy - The AMP Blog
     - https://blog.amp.dev/2020/10/20/make-sure-your-signed-exchanges-serving-is-up-and-healthy/
-  - OpenJS Foundation AMA: AMP Project TSC – The AMP Blog
+  - OpenJS Foundation AMA: AMP Project TSC - The AMP Blog
     - https://blog.amp.dev/2020/11/05/openjs-foundation-ama-amp-project-tsc/
 
 
@@ -213,9 +213,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2020/10/coming-through-with-firefox-82/
     - Media Session API
     - `::file-selector-button`
-  - These Weeks in Firefox: Issue 81 – Firefox Nightly News
+  - These Weeks in Firefox: Issue 81 - Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/10/13/these-weeks-in-firefox-issue-81/
-  - These Weeks in Firefox: Issue 82 – Firefox Nightly News
+  - These Weeks in Firefox: Issue 82 - Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/10/21/these-weeks-in-firefox-issue-82/
   - *SpiderMonkey Newsletter 7 (Firefox 82-83) | spidermonkey.dev*
     - https://mozilla-spidermonkey.github.io/blog/2020/10/27/newsletter-7.html
@@ -328,7 +328,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Updates
   - Manifest V3 changes are now available to test in Microsoft Edge
     - https://blogs.windows.com/msedgedev/2020/10/14/extension-manifest-chromium-edge/
-  - ICYMI – Recapping Microsoft Edge at Ignite 2020
+  - ICYMI - Recapping Microsoft Edge at Ignite 2020
     - https://blogs.windows.com/msedgedev/2020/10/15/icymi-edge-ignite-2020/
   - Announcing Microsoft Edge WebView2 General Availability
     - https://blogs.windows.com/msedgedev/2020/10/19/edge-webview2-general-availability/
@@ -359,16 +359,16 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://edge.microsoft.com/neededge/v1
 - Chakra
 - Other
-  - Images Keeping You Awake? – text/plain
+  - Images Keeping You Awake? - text/plain
     - https://textslashplain.com/2020/10/05/images-keeping-you-awake/
-  - Web "Sessions" in Private Mode – text/plain
+  - Web "Sessions" in Private Mode - text/plain
     - https://textslashplain.com/2020/10/09/web-sessions/
     - Private Tab を複数ひらいてるときにセッションを共有すべきかどうか
     - 今は共有される、でも裏で別タブがあるのに、新しい Private Tag がログイン済みになって混乱する人もいる
     - 完全にタブごとにわけるのは UX 的にも実装的にも難しい
-  - Client Certificates and Logout – text/plain
+  - Client Certificates and Logout - text/plain
     - https://textslashplain.com/2020/10/19/client-certificates-and-logout/
-  - Simply Making Simple Fixes Simple for Chromium – text/plain
+  - Simply Making Simple Fixes Simple for Chromium - text/plain
     - https://textslashplain.com/2020/10/27/simply-making-simple-fixes-simple-for-chromium/
     - ブログの見た目がめっちゃ変わった
 

@@ -233,9 +233,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Better control for displayed fonts
   - Top-level await
   - PerformanceEventTiming
-- These Weeks in Firefox: Issue 95 – Firefox Nightly News
+- These Weeks in Firefox: Issue 95 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/06/04/these-weeks-in-firefox-issue-95/
-- These Weeks in Firefox: Issue 96 – Firefox Nightly News
+- These Weeks in Firefox: Issue 96 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/06/23/these-weeks-in-firefox-issue-96/
 
 

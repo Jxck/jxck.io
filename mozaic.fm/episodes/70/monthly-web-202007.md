@@ -232,7 +232,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - Multi-value support shipped
     - Support for JS BigInts
 - Other
-  - Contributions to Web Platform Interoperability (First Half of 2020) – The AMP Blog
+  - Contributions to Web Platform Interoperability (First Half of 2020) - The AMP Blog
     - https://blog.amp.dev/2020/07/06/contributions-to-web-platform-interoperability-first-half-of-2020/
   - *Official Google Webmaster Central Blog: Prepare for mobile-first indexing (with a little extra time)*
     - https://webmasters.googleblog.com/2020/07/prepare-for-mobile-first-indexing-with.html
@@ -389,9 +389,9 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blogs.windows.com/msedgedev/2020/07/08/introducing-storage-access-api/
 - Chakra
 - Other
-  - *Revealing Passwords – text/plain*
+  - *Revealing Passwords - text/plain*
     - https://textslashplain.com/2020/07/29/revealing-passwords/
-  - Web Proxy Auto Discovery – text/plain
+  - Web Proxy Auto Discovery - text/plain
     - https://textslashplain.com/2020/07/14/web-proxy-auto-discovery/
   - Introducing the Microsoft Edge enterprise roadmap and release schedule
     - https://blogs.windows.com/msedgedev/2020/07/23/introducing-enterprise-roadmap-release-schedule/
@@ -399,7 +399,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blogs.windows.com/msedgedev/2020/07/23/reducing-distractions-quiet-notification-requests/
   - Multitasking improvements in Windows 10 and Microsoft Edge
     - https://blogs.windows.com/msedgedev/2020/07/22/multitasking-improvements-windows-10-microsoft-edge/
-  - What's new in Microsoft Edge – July 2020 / Microsoft Inspire Edition
+  - What's new in Microsoft Edge - July 2020 / Microsoft Inspire Edition
     - https://blogs.windows.com/windowsexperience/2020/07/21/whats-new-in-microsoft-edge-july-2020-microsoft-inspire-edition/
 
 

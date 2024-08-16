@@ -283,13 +283,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/en/security/mozilla-eff-cybersecurity-experts-publish-letter-on-dangers-of-article-452-eidas-regulation/
 - How to make sure you aren't spreading misinformation online
   - https://blog.mozilla.org/en/internet-culture/spotting-misinformation-online/
-- Documenting outages to seek transparency and accountability – Data@Mozilla
+- Documenting outages to seek transparency and accountability - Data@Mozilla
   - https://blog.mozilla.org/data/2022/03/09/mozilla-opens-access-to-dataset-on-network-outages/
-- These Weeks in Firefox: Issue 110 – Firefox Nightly News
+- These Weeks in Firefox: Issue 110 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/02/24/these-weeks-in-firefox-issue-110/
-- These Weeks In Firefox: Issue 111 – Firefox Nightly News
+- These Weeks In Firefox: Issue 111 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/03/11/these-weeks-in-firefox-issue-111/
-- These Weeks In Firefox: Issue 112 – Firefox Nightly News
+- These Weeks In Firefox: Issue 112 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/03/24/these-weeks-in-firefox-issue-112/
 - *The web is for everyone: Our vision for the evolution of the web*
   - https://blog.mozilla.org/en/mozilla/mozilla-webvision-future-of-web/
@@ -483,7 +483,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 50x50 未満の画像
     - 大きすぎる画像
     - 性的な画像
-- *Internet Explorer 11 デスクトップ アプリケーションのサポート終了 – 発表に関連する FAQ のアップデート - Windows Blog for Japan*
+- *Internet Explorer 11 デスクトップ アプリケーションのサポート終了 - 発表に関連する FAQ のアップデート - Windows Blog for Japan*
   - https://blogs.windows.com/japan/2022/02/21/internet-explorer-11-desktop-app-retirement-faq/
   - 2022 年 6 月 15 日に提供終了した後には、IE11 はサポートの提供が終了となります。日本を除くすべての国のユーザーは、2022 年 6 月 15 日以降から Microsoft Edge への移行が開始されます。
 
@@ -493,7 +493,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- Edge/Chrome Policy Registry Entries – text/plain
+- Edge/Chrome Policy Registry Entries - text/plain
   - https://textslashplain.com/2022/03/22/edge-chrome-policy-registry-entries/
 
 

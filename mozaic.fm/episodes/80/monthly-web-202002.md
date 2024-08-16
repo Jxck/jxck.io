@@ -276,9 +276,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- These Weeks in Firefox: Issue 87 – Firefox Nightly News
+- These Weeks in Firefox: Issue 87 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/02/05/these-weeks-in-firefox-issue-86-2/
-- These Weeks in Firefox: Issue 88 – Firefox Nightly News
+- These Weeks in Firefox: Issue 88 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/02/26/these-weeks-in-firefox-issue-88/
 - What WebRTC means for you - The Mozilla Blog
   - https://blog.mozilla.org/blog/2021/02/04/what-webrtc-means-for-you/
@@ -434,18 +434,18 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- `window.close()` Restrictions – text/plain
+- `window.close()` Restrictions - text/plain
   - https://textslashplain.com/2021/02/04/window-close-restrictions/
-- Web Proxy Authentication – text/plain
+- Web Proxy Authentication - text/plain
   - https://textslashplain.com/2021/02/12/web-proxy-authentication/
-- Basic Authentication and Exchange Online – February 2021 Update - Microsoft Tech Community
+- Basic Authentication and Exchange Online - February 2021 Update - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-and-exchange-online-february-2021-update/ba-p/2111904
 - Partner Center improvements related to Microsoft Edge extensions store listing and certification - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/articles/partner-center-improvements-related-to-microsoft-edge-extensions/m-p/2118981#M4722
 - Edge App shortcuts being removed from desktop - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/articles/edge-app-shortcuts-being-removed-from-desktop/m-p/2091021#M4668
 - *IE サポート終了の流れ*
-  - 【重要】「ABEMA」 Internet Explorer 11 サポート終了のお知らせ – ABEMA ヘルプ
+  - 【重要】「ABEMA」 Internet Explorer 11 サポート終了のお知らせ - ABEMA ヘルプ
     - https://help.abema.tv/hc/ja/articles/360055647611
   - Internet Explorer への対応終了のお知らせ | SmartHR
     - https://smarthr.jp/other/22512

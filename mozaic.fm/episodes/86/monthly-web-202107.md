@@ -302,7 +302,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Lock icon をやめてよりニュートラルなアイコンに
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
-- *Deprecation of Internet Explorer Support – The AMP Blog*
+- *Deprecation of Internet Explorer Support - The AMP Blog*
   - https://blog.amp.dev/2021/07/20/deprecation-of-internet-explorer-support/
 
 

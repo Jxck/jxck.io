@@ -355,7 +355,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://miketaylr.com/posts/2021/09/chrome-version-100-testing.html
 - Project Zero: Fuzzing Closed-Source JavaScript Engines with Coverage Feedback
   - https://googleprojectzero.blogspot.com/2021/09/fuzzing-closed-source-javascript.html
-- Web Stories call to action buttons get an upgrade – The AMP Blog
+- Web Stories call to action buttons get an upgrade - The AMP Blog
   - https://blog.amp.dev/2021/09/15/web-stories-call-to-action-buttons-get-an-upgrade/
 
 
@@ -425,9 +425,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Firefox Nightly は 2022 年 3 月 に 100 になる
   - その中で壊れるサイトがあったら報告してほしい
   - すでに Slack の emoji が壊れてるのを発見済み
-- These Weeks in Firefox: Issue 99 – Firefox Nightly News
+- These Weeks in Firefox: Issue 99 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/09/09/these-weeks-in-firefox-issue-99/
-- These Weeks in Firefox: Issue 100 – Firefox Nightly News
+- These Weeks in Firefox: Issue 100 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/09/21/these-weeks-in-firefox-issue-100/
 - Necko Newsletter (2021-09-27)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/_hYnRM1DvRg
@@ -574,7 +574,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Make Microsoft Edge DevTools your own
   - https://blogs.windows.com/msedgedev/2021/09/14/edge-devtools-93-personalization/
-- *Microsoft announces passwordless future – available across Microsoft Edge and Microsoft 365 apps | Windows Experience Blog*
+- *Microsoft announces passwordless future - available across Microsoft Edge and Microsoft 365 apps | Windows Experience Blog*
   - https://blogs.windows.com/windowsexperience/2021/09/15/microsoft-announces-passwordless-future-available-across-microsoft-edge-and-microsoft-365-apps/
 
 
@@ -808,7 +808,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://storage.googleapis.com/pub-tools-public-publication-data/pdf/9c56e856f0ea76454f01cabec9959f7c5b31b285.pdf
   - JSONPS: Secure an inherently insecure practice with this one weird trick!
     - https://secweb.work/papers/lekies2021jsonps.pdf
-  - Determining OS Platform Version – text/plain
+  - Determining OS Platform Version - text/plain
     - https://textslashplain.com/2021/09/21/determining-os-platform-version/
 - HTTPS Is Actually Everywhere | Electronic Frontier Foundation
   - https://www.eff.org/deeplinks/2021/09/https-actually-everywhere

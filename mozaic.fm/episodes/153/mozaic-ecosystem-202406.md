@@ -12,7 +12,9 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 ## Theme
 
 第 153 回のテーマは 2024 年 6 月の Monthly Ecosystem です。
+
 (冒頭で間違えて 5 月って言ってた。)
+
 
 ## Show Note
 
@@ -40,7 +42,7 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - fetch リクエスト、GET のルートハンドラー、Page コンポーネントの Client Router のキャッシュはデフォルトで無効化
   - Partial Prerendering (PPR) (Experimental)
   - next/after (Experimental)
-  - Next 15 GA で何かアナウンスがある？
+  - Next 15 GA で何かアナウンスがある?
 - Vercel Ship 2024 recap
   - https://vercel.com/blog/vercel-ship-2024
   - Improved platform and Next.js integrations for feature flags
@@ -111,6 +113,7 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - https://deno.com/blog/stabilize-std
   - Deno std が v1.0 にしていく
   - パッケージごとにリリースタイミングは違う
+
 
 ## Events
 

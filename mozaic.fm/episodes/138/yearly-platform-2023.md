@@ -17,10 +17,10 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 今年の mozaic.fm
 
-- 5月: 大規模ライブ配信
-- 6月: Coinhive
-- 9月: Drive Talk
-- 8月: Monthly Ecosystem 1 周年
+- 5 月: 大規模ライブ配信
+- 6 月: Coinhive
+- 9 月: Drive Talk
+- 8 月: Monthly Ecosystem 1 周年
 
 
 ### 2023 年チェックポイント

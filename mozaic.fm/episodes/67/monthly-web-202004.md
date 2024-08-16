@@ -175,11 +175,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/covid19/
   - Storage for the web
     - https://web.dev/storage-for-the-web/
-  - Cumulative Layout Shift (CLS) in AMP – The AMP Blog
+  - Cumulative Layout Shift (CLS) in AMP - The AMP Blog
     - https://blog.amp.dev/2020/04/16/cumulative-layout-shift-in-amp/
-  - Adobe Experience Cloud Extends AMP Support – The AMP Blog
+  - Adobe Experience Cloud Extends AMP Support - The AMP Blog
     - https://blog.amp.dev/2020/04/10/adobe-experience-cloud-extends-amp-support/
-  - *Introducing the fastest and most user-friendly content encryption – The AMP Blog*
+  - *Introducing the fastest and most user-friendly content encryption - The AMP Blog*
     - https://blog.amp.dev/2020/04/27/introducing-the-fastest-and-most-user-friendly-content-encryption/
     - 暗号化した結果をクライアントに送り、ログインしている場合だけ復号して表示する
     - Paywall をなくすための仕組み
@@ -248,9 +248,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - Removing FTP support
     - Enforcing MIME check for worker scripts
     - Rotating JPEG images
-  - These Weeks in Firefox: Issue 72 – Firefox Nightly News
+  - These Weeks in Firefox: Issue 72 - Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/04/06/these-weeks-in-firefox-issue-72/
-  - These Weeks in Firefox: Issue 73 – Firefox Nightly News
+  - These Weeks in Firefox: Issue 73 - Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/04/17/these-weeks-in-firefox-issue-73/
   - Firefox's Bug Bounty in 2019 and into the Future | Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/04/23/bug-bounty-2019-and-future/

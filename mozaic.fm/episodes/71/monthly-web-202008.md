@@ -297,14 +297,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - 他の Microsoft 365 アプリも 2021 年 8 月 17 日で IE11 のサポートを終了
   - Announcing a new way to paste URLs, Link format! - Microsoft Tech Community - 1600094
     - https://techcommunity.microsoft.com/t5/articles/announcing-a-new-way-to-paste-urls-link-format/m-p/1600094#M3152
-  - *Beating Private Mode Blockers with an Ephemeral Profile – text/plain*
+  - *Beating Private Mode Blockers with an Ephemeral Profile - text/plain*
     - https://textslashplain.com/2020/08/11/beating-private-mode-blockers-with-an-ephemeral-profile/
     - Private Browse Blocker なサイトを見るために、専用別アカウントを用意するという話
-  - *Seamless Single Sign-On – text/plain*
+  - *Seamless Single Sign-On - text/plain*
     - https://textslashplain.com/2020/08/17/seamless-single-sign-on/
     - 401 での認証のプロンプトは、セキュリティの都合上 3rd Party の画像に対しては出ないようになっている
     - それを利用して、画像を読み込んで成功すればトークンが残ってる、失敗すれば認証フローに行けば良い、という切り分けをプロンプトを出すことなくできる。
-  - Managing Edge via Policy – text/plain
+  - Managing Edge via Policy - text/plain
     - https://textslashplain.com/2020/08/24/managing-edge-via-policy/
 
 

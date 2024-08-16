@@ -260,15 +260,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/web-animations/
   - Profiling Web Audio apps in Chrome
     - https://web.dev/profiling-web-audio-apps-in-chrome/
-  - AMP + Web Vitals – a better web, together – The AMP Blog
+  - AMP + Web Vitals - a better web, together - The AMP Blog
     - https://blog.amp.dev/2020/05/06/amp-web-vitals-a-better-web-together/
-  - Creating accessible sites with AMP – The AMP Blog
+  - Creating accessible sites with AMP - The AMP Blog
     - https://blog.amp.dev/2020/05/04/creating-accessible-sites-with-amp/
-  - Web Stories, powered by AMP – The AMP Blog
+  - Web Stories, powered by AMP - The AMP Blog
     - https://blog.amp.dev/2020/05/01/web-stories-powered-by-amp/
-  - Infinite recommendations with a new and improved amp-next-page – The AMP Blog
+  - Infinite recommendations with a new and improved amp-next-page - The AMP Blog
     - https://blog.amp.dev/2020/05/12/infinite-recommendations-with-a-new-and-improved-amp-next-page/
-  - AMP: a well-lit path to optimizing for Google's page experience signal – The AMP Blog
+  - AMP: a well-lit path to optimizing for Google's page experience signal - The AMP Blog
     - https://blog.amp.dev/2020/05/28/amp-page-experience/
 
 
@@ -284,7 +284,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - devtools updates
   - Firefox 77 Beta and Developer Edition are out, COVID-19 continues to affect the development
     - https://www.fxsitecompat.dev/en-CA/blog/2020/firefox-77-beta-and-developer-edition-are-out-covid-19-continues-to-affect-the-development/
-  - These Weeks in Firefox: Issue 74 – Firefox Nightly News
+  - These Weeks in Firefox: Issue 74 - Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/05/26/these-weeks-in-firefox-issue-74/
 - Intents
   - Ship: "JS BigInt to I64 integration" WebAssembly proposal
@@ -323,9 +323,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/blog/2020/05/22/usa-freedom-and-browsing-history/
   - Mozilla's journey to environmental sustainability - The Mozilla Blog
     - https://blog.mozilla.org/blog/2020/05/28/mozillas-journey-to-environmental-sustainability/
-  - Sharing data on Italy's mid-pandemic internet outage – Data@Mozilla
+  - Sharing data on Italy's mid-pandemic internet outage - Data@Mozilla
     - https://blog.mozilla.org/data/2020/05/18/sharing-data-on-italys-mid-pandemic-internet-outage/
-  - How does the Glean SDK send gzipped pings – Data@Mozilla
+  - How does the Glean SDK send gzipped pings - Data@Mozilla
     - https://blog.mozilla.org/data/2020/05/26/how-does-the-glean-sdk-send-gzipped-pings/
   - Extensions in Firefox 77
     - https://blog.mozilla.org/addons/2020/05/28/extensions-in-firefox-77/

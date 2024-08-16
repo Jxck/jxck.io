@@ -205,7 +205,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.googleblog.com/2021/10/announcing-google-forms-api_01768004272.html
   - Google OAuth incremental authorization improvement
     - https://developers.googleblog.com/2021/10/granular-google-account-update.html
-  - What is Google's Dev Library –– a new open-source platform for developers
+  - What is Google's Dev Library -- a new open-source platform for developers
     - https://developers.googleblog.com/2021/10/what-is-the-dev-library.html
 - google developer japan blog
   - *DevFest 2021 が日本各地で開催されます*
@@ -278,9 +278,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/
 - Implementing form filling and accessibility in the Firefox PDF viewer - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2021/10/implementing-form-filling-and-accessibility-in-the-firefox-pdf-viewer/
-- These Weeks in Firefox: Issue 101 – Firefox Nightly News
+- These Weeks in Firefox: Issue 101 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/09/30/these-weeks-in-firefox-issue-101/
-- These Weeks in Firefox: Issue 102 – Firefox Nightly News
+- These Weeks in Firefox: Issue 102 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/10/21/these-weeks-in-firefox-issue-102/
 
 
@@ -423,13 +423,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - > Windows 11 では Internet Explorer 11 デスクトップアプリケーションに代わり、 Microsoft Edge の IE モードが導入されます。
 - *Bug bounty hunter to working at Microsoft | Microsoft Browser Vulnerability Research*
   - https://microsoftedge.github.io/edgevr/posts/bug-bounty-hunter-to-working-at-microsoft/
-- Spooky: Enhancing Dark Mode in Chromium – text/plain
+- Spooky: Enhancing Dark Mode in Chromium - text/plain
   - https://textslashplain.com/2021/10/17/spooky-enhancing-dark-mode-in-chromium/
-- MoarTLS: Non-Secure Download Blocking – text/plain
+- MoarTLS: Non-Secure Download Blocking - text/plain
   - https://textslashplain.com/2021/10/14/moartls-non-secure-download-blocking/
-- Accessibility (UIA) Troubleshooting – text/plain
+- Accessibility (UIA) Troubleshooting - text/plain
   - https://textslashplain.com/2021/10/12/accessibility-uia-troubleshooting/
-- Practical Time Machines – text/plain
+- Practical Time Machines - text/plain
   - https://textslashplain.com/2021/10/01/practical-time-machines/
 - *vscode.dev*
   - https://code.visualstudio.com/blogs/2021/10/20/vscode-dev

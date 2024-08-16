@@ -179,7 +179,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - *Chromium Platform Security Summit!*
     - https://groups.google.com/a/chromium.org/forum/#!msg/security-dev/dPfHNzHWr5I/WmvdrwXeBAAJ
     - I/O の前くらいに開催予定
-  - Behind the Scenes: Deploying the AMP Runtime – The AMP Blog
+  - Behind the Scenes: Deploying the AMP Runtime - The AMP Blog
     - https://blog.amp.dev/2020/02/05/behind-the-scenes-deploying-the-amp-runtime/
   - Official Google Webmaster Central Blog [EN]: Google Search News for January 2020
     - https://webmasters.googleblog.com/2020/01/google-search-news-for-january-2020.htm
@@ -211,7 +211,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/73
   - *Firefox 73.0, See All New Features, Updates and Fixes*
     - https://www.mozilla.org/en-US/firefox/73.0/releasenotes/
-  - These Weeks in Firefox: Issue 69 – Firefox Nightly News
+  - These Weeks in Firefox: Issue 69 - Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/02/14/these-weeks-in-firefox-issue-69/
   - *Firefox continues push to bring DNS over HTTPS by default for US users - The Mozilla Blog*
     - https://blog.mozilla.org/blog/2020/02/25/firefox-continues-push-to-bring-dns-over-https-by-default-for-us-users/
@@ -298,7 +298,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/public-webappsec/2020Feb/0008.html
     - https://github.com/WebKit/explainers/tree/master/IsLoggedIn
     - IsLoggedIn の Explainer が更新されたっぽい
-  - *Changeset 256501 – WebKit*
+  - *Changeset 256501 - WebKit*
     - https://trac.webkit.org/changeset/256501/webkit
     - WebKit の Nightly に WebP が実装
 - Other

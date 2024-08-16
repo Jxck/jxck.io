@@ -554,6 +554,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - *Update: 2024-03-30*
   - Family にカラーバリエーションをつけるとバラけるのは、以前のフォントからそうでした。
 
+
 ### Edge 動向
 
 #### Stable: 123

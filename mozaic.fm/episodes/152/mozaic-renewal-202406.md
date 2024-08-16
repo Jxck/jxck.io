@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 152 回のテーマは 2024 年 6 月の mozaic.fm renewal project です。
 
+
 ## 進捗
 
 - Jxck
@@ -27,6 +28,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - algolia 調査、別のライブラリ調査中
     - Pagefind
 
+
 ## タスク
 
 - jxck
@@ -38,7 +40,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - sakito
   - デザイン案
     - カードレイアウトベース
-    - リスト切り替え？
+    - リスト切り替え?
     - light/dark
     - mobile
     - 検索
@@ -62,10 +64,12 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - Review
     - https://github.com/Jxck/mozaic.fm/pull/14
 
+
 ## Done
 
 - Git Repo
 - Init Next.js
+
 
 ## スタック
 
@@ -97,6 +101,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - Component
   - 全部自作
   - aria とかも全部自分で考える
+
 
 ## スケジュール
 

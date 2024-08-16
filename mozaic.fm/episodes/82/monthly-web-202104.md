@@ -226,7 +226,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - stage 3 なら mozilla は少なくとも harmful じゃない
     - harmful ならそもそも stage 3 にはならない
     - temporal は worth prototyping
-- These Weeks in Firefox: Issue 91 – Firefox Nightly News
+- These Weeks in Firefox: Issue 91 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/04/12/these-weeks-in-firefox-issue-91/
 - *Notes on Implementing Vaccine Passports - The Mozilla Blog*
   - https://blog.mozilla.org/blog/2021/04/22/notes-on-implementing-vaccine-passports/

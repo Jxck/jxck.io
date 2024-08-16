@@ -204,11 +204,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - キーボードのメディアキーに対応
   - Firefox 81 for developers - Mozilla
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/81
-  - These Weeks in Firefox: Issue 78 – Firefox Nightly News
+  - These Weeks in Firefox: Issue 78 - Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/08/31/these-weeks-in-firefox-issue-78/
-  - These Weeks in Firefox: Issue 79 – Firefox Nightly News
+  - These Weeks in Firefox: Issue 79 - Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/09/19/these-weeks-in-firefox-issue-79/
-  - These Weeks in Firefox: Issue 80 – Firefox Nightly News
+  - These Weeks in Firefox: Issue 80 - Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/09/23/these-weeks-in-firefox-issue-80/
 - Intents
   - *Ship: Media Session API*
@@ -254,9 +254,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - *Join the anti-establishment | The Firefox Frontier*
     - https://blog.mozilla.org/firefox/join-the-anti-establishment/
     - プラットフォーマーではないサービスの紹介
-  - Data Publishing @ Mozilla – Data@Mozilla
+  - Data Publishing @ Mozilla - Data@Mozilla
     - https://blog.mozilla.org/data/2020/09/25/data-publishing-mozilla/
-  - This Week in Glean: glean-core to Wasm experiment – Data@Mozilla
+  - This Week in Glean: glean-core to Wasm experiment - Data@Mozilla
     - https://blog.mozilla.org/data/2020/09/25/this-week-in-glean-glean-core-to-wasm-experiment/
   - To Eleventy and Beyond - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/10/to-eleventy-and-beyond/
@@ -330,7 +330,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://myignite.microsoft.com/sessions/b46a7722-c3d2-4f0e-9004-3b32c077461f
     - Introducing Microsoft Edge on Linux
       - https://myignite.microsoft.com/sessions/6b216b31-0efe-442c-9f5c-97481c2a2310
-  - *Improvements in PDF Reader – Table of Contents and Smooth Scrolling - Microsoft Tech Community*
+  - *Improvements in PDF Reader - Table of Contents and Smooth Scrolling - Microsoft Tech Community*
     - https://techcommunity.microsoft.com/t5/articles/improvements-in-pdf-reader-table-of-contents-and-smooth/m-p/1732029
   - *Introducing web capture for Microsoft Edge - Microsoft Tech Community*
     - https://techcommunity.microsoft.com/t5/articles/introducing-web-capture-for-microsoft-edge/m-p/1721318
@@ -385,15 +385,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - *Introducing Web APIs for Dual Screen and Foldable Devices*
     - https://blogs.windows.com/msedgedev/2020/09/14/introducing-dual-screen-foldable-web-apis/
     - foldable device のための JS/CSS の書き方の解説
-  - Web-to-App Communication: The Native Messaging API – text/plain
+  - Web-to-App Communication: The Native Messaging API - text/plain
     - https://textslashplain.com/2020/09/04/web-to-app-communication-the-native-messaging-api/
-  - Browser Memory Limits – text/plain
+  - Browser Memory Limits - text/plain
     - https://textslashplain.com/2020/09/15/browser-memory-limits/
-  - Web Debugging: Watching Element Changes – text/plain
+  - Web Debugging: Watching Element Changes - text/plain
     - https://textslashplain.com/2020/09/25/web-debugging-watching-element-changes/
-  - Local Data Encryption in Chromium – text/plain
+  - Local Data Encryption in Chromium - text/plain
     - https://textslashplain.com/2020/09/28/local-data-encryption-in-chromium/
-  - Debugging Browsers – Tools and Techniques – text/plain
+  - Debugging Browsers - Tools and Techniques - text/plain
     - https://textslashplain.com/2020/09/29/debugging-browsers-tools-and-techniques/
 
 
@@ -498,12 +498,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - `let b = dbg!(a());` みたいに debug macro みたいなことをしたい
   - Proposal for additional static methods on Math
     - https://github.com/phoddie/integer-and-modulus-math-proposal
-    - `Math.mod(x, y)` – IEEE 754 modulus
-    - `Math.idiv(x, y)` –Int32 division
-    - `Math.imod(x, y)` – Int32 modulus
-    - `Math.idivmod(x, y)` – Int32 division with modulus, returns `[division result, modulus result]`
-    - `Math.imuldiv(x, y, z)` – Int32 multiply and divide with 64-bit intermediate result - `(x * y) / z`
-    - `Math.irem(x, y)` – Int32 remainder
+    - `Math.mod(x, y)` - IEEE 754 modulus
+    - `Math.idiv(x, y)` -Int32 division
+    - `Math.imod(x, y)` - Int32 modulus
+    - `Math.idivmod(x, y)` - Int32 division with modulus, returns `[division result, modulus result]`
+    - `Math.imuldiv(x, y, z)` - Int32 multiply and divide with 64-bit intermediate result - `(x * y) / z`
+    - `Math.irem(x, y)` - Int32 remainder
   - proposal-decorators
     - https://github.com/tc39/proposal-decorators/blob/simplified/README.md
     - littledan が decorator の仕様を更新した

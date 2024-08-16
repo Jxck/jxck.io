@@ -303,7 +303,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.google.com/search/blog/2021/11/bringing-page-experience-to-desktop
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
-- *Introducing Bento – The AMP Blog*
+- *Introducing Bento - The AMP Blog*
   - https://blog.amp.dev/2021/12/08/introducing-bento/
   - `<bento-fit-text>Hello World!</bento-fit-text>` | bentojs.dev
   - https://bentojs.dev/blog/introducing-the-bento-components-library/
@@ -337,11 +337,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - *Firefox 95 for developers - Mozilla | MDN*
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/95
   - `crypto.randomUUID()`
-- These Weeks in Firefox: Issue 103 – Firefox Nightly News
+- These Weeks in Firefox: Issue 103 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/11/10/these-weeks-in-firefox-issue-103/
-- These Weeks in Firefox: Issue 104 – Firefox Nightly News
+- These Weeks in Firefox: Issue 104 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/11/18/these-weeks-in-firefox-issue-104/
-- These Weeks in Firefox: Issue 105 – Firefox Nightly News
+- These Weeks in Firefox: Issue 105 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/12/07/these-weeks-in-firefox-issue-105/
 
 
@@ -397,7 +397,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/en/internet-culture/hacked-real-estate-scam/
 - Securing the proxy API for Firefox add-ons - Mozilla Security Blog
   - https://blog.mozilla.org/security/2021/10/25/securing-the-proxy-api-for-firefox-add-ons/
-- *Finding and Fixing DOM-based XSS with Static Analysis – Attack & Defense*
+- *Finding and Fixing DOM-based XSS with Static Analysis - Attack & Defense*
   - https://blog.mozilla.org/attack-and-defense/2021/11/03/finding-and-fixing-dom-based-xss-with-static-analysis/
 - Introducing Firefox Relay Premium, allowing more aliases to protect your identity from spammers
   - https://blog.mozilla.org/en/mozilla/firefox-relay-and-premium-service/
@@ -584,11 +584,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://techcommunity.microsoft.com/t5/articles/introducing-transparent-ads-in-microsoft-edge-preview/m-p/3035970#M6283
 - *Introducing Buy now, pay later in Microsoft Edge - Microsoft Tech Community*
   - https://techcommunity.microsoft.com/t5/articles/introducing-buy-now-pay-later-in-microsoft-edge/m-p/2967030#M6024
-- Microsoft Edge's Many Processes – text/plain
+- Microsoft Edge's Many Processes - text/plain
   - https://textslashplain.com/2021/12/01/microsoft-edges-many-processes/
-- *Great Bug Reports via "Recreate My Problem" in Microsoft Edge – text/plain*
+- *Great Bug Reports via "Recreate My Problem" in Microsoft Edge - text/plain*
   - https://textslashplain.com/2021/12/01/great-bug-reports-via-recreate-my-problem-in-microsoft-edge/
-- View-Source – text/plain
+- View-Source - text/plain
   - https://textslashplain.com/2021/11/11/view-source/
 - *Edge に「Chrome のダウンロードを中止するように必死で促す新機能」が追加、実際の画面はこんな感じ - GIGAZINE*
   - https://gigazine.net/news/20211203-edge-chrome/
@@ -602,7 +602,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - TPAC 2021: Overview
   - https://www.w3.org/2021/10/TPAC/Overview.html
   - 10/12: AC meeting (member-only)
-  - 10/18 – 22: breakout sessions, social events
+  - 10/18 - 22: breakout sessions, social events
     - https://web-eur.cvent.com/event/2b77fe3d-2536-467d-b71b-969b2e6419b5/websitePage:efc4b117-4ea4-4be5-97b4-c521ce3a06db
     - *State of CSS 2021*
       - https://docs.google.com/presentation/d/1FIMa9TXTdGusG_oJBtMmQLSyOuF0xgHsrvn7CKZH7Yw/edit?resourcekey=0-cFnhzvjncEEQaOB426PXnw#slide=id.gf91e504777_0_292
@@ -612,7 +612,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://lists.w3.org/Archives/Public/www-archive/2021Oct/att-0003/TPAC_2021_breakout_WebRTC_-_NV_Use_cases.pdf
     - focusgroup_toggle_and_tabs.pdf
       - https://lists.w3.org/Archives/Public/www-archive/2021Oct/att-0005/focusgroup_toggle_and_tabs.pdf
-  - 10/25 – 29: group & joint meetings
+  - 10/25 - 29: group & joint meetings
     - https://web-eur.cvent.com/event/2b77fe3d-2536-467d-b71b-969b2e6419b5/websitePage:efc4b117-4ea4-4be5-97b4-c521ce3a06db
     - Second Screen WG/CG - TPAC 2021 agenda · Issue #3 · w3c/secondscreen-wg
       - https://github.com/w3c/secondscreen-wg/issues/3
@@ -640,8 +640,8 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://www.w3.org/WAI/GL/task-forces/coga/wiki/TPAC_2021_initial_planning#AG_groups_.28Silver.2C_ACT.29
       - COGA
       - https://w3c.github.io/coga/content-usable/
-  - 10/18 – 29: expo space
-  - 10/18 – 29: networking
+  - 10/18 - 29: expo space
+  - 10/18 - 29: networking
   - webappsec/2021-10-19-minutes.md at main · w3c/webappsec
     - https://github.com/w3c/webappsec/blob/main/meetings/2021/2021-10-19-minutes.md
     - TPAC とは別?

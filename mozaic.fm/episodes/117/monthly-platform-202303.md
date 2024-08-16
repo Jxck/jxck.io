@@ -457,7 +457,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Implemented in WebKit and Intent to ship in Chromium.
   - Needs Review:
     - Common-minimum API subset in the ShadowRealm:
-    - Explore relationship with ShadowRealms, [Exposed=\\*] proposal-common-minimum-api#21
+    - Explore relationship with ShadowRealms, `[Exposed=*]` proposal-common-minimum-api#21
     - CM-API should be a superset of the APIs exposed in the ShadowRealm
   - Fetch:
     - Relax forbidden header restrictions for non-browser runtimes: Relax forbidden header restrictions for non-browser runtimes fetch#19

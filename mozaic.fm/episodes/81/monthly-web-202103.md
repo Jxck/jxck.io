@@ -272,7 +272,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
 - amp
-  - Optimizing your AMP page experience for Core Web Vitals – The AMP Blog
+  - Optimizing your AMP page experience for Core Web Vitals - The AMP Blog
     - https://blog.amp.dev/2021/03/23/optimizing-your-amp-page-experience-for-core-web-vitals/
 - *Privacy, sustainability and the importance of "and"*
   - https://blog.google/products/chrome/privacy-sustainability-and-the-importance-of-and/
@@ -305,9 +305,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - ETP の Strict mode ではリソースの読み込みをブロックしている
   - ブロックされたスクリプトに依存したページが読めない問題があった
   - ページが表示されるように shim を用意し提供
-- These Weeks in Firefox: Issue 89 – Firefox Nightly News
+- These Weeks in Firefox: Issue 89 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/03/12/these-weeks-in-firefox-issue-89/
-- These Weeks in Firefox: Issue 90 – Firefox Nightly News
+- These Weeks in Firefox: Issue 90 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/03/25/these-weeks-in-firefox-issue-90/
 
 
@@ -487,9 +487,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- Per-Site Permissions in Edge – text/plain
+- Per-Site Permissions in Edge - text/plain
   - https://textslashplain.com/2021/03/29/per-site-permissions-in-edge/
-- Specifying Per-Site Policy with Chromium's URL Filter Format – text/plain
+- Specifying Per-Site Policy with Chromium's URL Filter Format - text/plain
   - https://textslashplain.com/2021/03/29/specifying-per-site-policy-with-chromiums-url-filter-format/
 
 

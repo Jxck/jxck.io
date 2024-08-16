@@ -279,9 +279,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
 - amp
-  - Contributions to Web Platform Interoperability (Second Half of 2020) – The AMP Blog
+  - Contributions to Web Platform Interoperability (Second Half of 2020) - The AMP Blog
     - https://blog.amp.dev/2021/04/27/contributions-to-web-platform-interoperability-second-half-of-2020/
-  - An Easier Path to Great Page Experiences Using AMP for WordPress – The AMP Blog
+  - An Easier Path to Great Page Experiences Using AMP for WordPress - The AMP Blog
     - https://blog.amp.dev/2021/05/27/an-easier-path-to-great-page-experiences-using-amp-for-wordpress/
 
 
@@ -334,11 +334,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - *Growing the Bytecode Alliance - The Mozilla Blog*
   - https://blog.mozilla.org/blog/2021/04/28/growing-the-bytecode-alliance/
-- These Weeks in Firefox: Issue 92 – Firefox Nightly News
+- These Weeks in Firefox: Issue 92 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/04/26/these-weeks-in-firefox-issue-92/
-- These Weeks in Firefox: Issue 93 – Firefox Nightly News
+- These Weeks in Firefox: Issue 93 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/05/14/these-weeks-in-firefox-issue-93/
-- *These Weeks in Firefox: Issue 94 – Firefox Nightly News*
+- *These Weeks in Firefox: Issue 94 - Firefox Nightly News*
   - https://blog.nightly.mozilla.org/2021/05/21/these-weeks-in-firefox-issue-94/
 - *Manifest v3 update | Mozilla Add-ons Blog*
   - https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/
@@ -526,11 +526,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- Download Blocking by File Type – text/plain
+- Download Blocking by File Type - text/plain
   - https://textslashplain.com/2021/05/19/download-blocking-by-file-type/
-- Offline NetLog Viewing – text/plain
+- Offline NetLog Viewing - text/plain
   - https://textslashplain.com/2021/05/25/offline-netlog-viewing/
-- *Internet Explorer: A Brief History – Ben Slivka*
+- *Internet Explorer: A Brief History - Ben Slivka*
   - https://benslivka.com/2021/05/27/internet-explorer-a-brief-history/
   - IE の歴史
 

@@ -439,7 +439,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://blogs.windows.com/msedgedev/2020/06/17/improving-memory-usage/
     - Windows のヒープを改善
     - Edge での閲覧時に最大 27% メモリ消費を削減
-  - ICYMI – Recapping Microsoft Edge at Build 2020
+  - ICYMI - Recapping Microsoft Edge at Build 2020
     - https://blogs.windows.com/msedgedev/2020/06/18/icymi-recap-edge-build-2020/
     - Build での Edge 関連まとめ
 - Chakra
@@ -452,13 +452,13 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://techcommunity.microsoft.com/t5/articles/microsoft-edge-extends-tools-for-the-pdf-reader/m-p/1303243
   - *Microsoft Edge Read aloud: Now with PDF support - Microsoft Tech Community - 1418076*
     - https://techcommunity.microsoft.com/t5/articles/microsoft-edge-read-aloud-now-with-pdf-support/m-p/1418076
-  - Known Issue – Microsoft Edge Launching on Startup - Microsoft Tech Community - 1457853
+  - Known Issue - Microsoft Edge Launching on Startup - Microsoft Tech Community - 1457853
     - https://techcommunity.microsoft.com/t5/articles/known-issue-microsoft-edge-launching-on-startup/m-p/1457853
   - *Roadmap for PDF reader in Microsoft Edge - Microsoft Tech Community - 1467667*
     - https://techcommunity.microsoft.com/t5/articles/roadmap-for-pdf-reader-in-microsoft-edge/m-p/1467667
   - The all-new Microsoft Edge Add-ons website is now live - Microsoft Tech Community - 1467980
     - https://techcommunity.microsoft.com/t5/articles/the-all-new-microsoft-edge-add-ons-website-is-now-live/m-p/1467980
-  - Known Issue – Adblock causing errors on YouTube - Microsoft Tech Community - 1486882
+  - Known Issue - Adblock causing errors on YouTube - Microsoft Tech Community - 1486882
     - https://techcommunity.microsoft.com/t5/articles/known-issue-adblock-causing-errors-on-youtube/m-p/1486882
   - *Password Monitor is now available in Microsoft Edge preview builds - Microsoft Tech Community - 1499656*
     - https://techcommunity.microsoft.com/t5/articles/password-monitor-is-now-available-in-microsoft-edge-preview/m-p/1499656

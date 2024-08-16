@@ -381,7 +381,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *No, Apple Did Not Crowdfund :focus-visible in Safari – Eric's Archived Thoughts*
+- *No, Apple Did Not Crowdfund :focus-visible in Safari - Eric's Archived Thoughts*
   - https://meyerweb.com/eric/thoughts/2022/01/24/no-apple-did-not-crowdfund-focus-visible-in-safari/
   - Safari TP で `:focus-visible` が有効になったことを Apple の人がツイート
   - Igalia の貢献とクラウドファンディングについて言及したところ、 Apple が自分で実装せずにクラウドファンディングに頼ったと見られちょっと炎上
@@ -410,11 +410,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- Smarter Defaults by Paying Attention – text/plain
+- Smarter Defaults by Paying Attention - text/plain
   - https://textslashplain.com/2022/02/15/smarter-defaults-by-paying-attention/
-- MHTML in Chromium – text/plain
+- MHTML in Chromium - text/plain
   - https://textslashplain.com/2022/02/09/mhtml-in-chromium/
-- Adding Protocol Schemes to Chromium – text/plain
+- Adding Protocol Schemes to Chromium - text/plain
   - https://textslashplain.com/2022/01/21/adding-protocol-schemes-to-chromium/
 - Microsoft Edge Add-ons: NEW features to improve extension discoverability - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/articles/microsoft-edge-add-ons-new-features-to-improve-extension/m-p/3109094#M6391

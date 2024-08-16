@@ -184,7 +184,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/css-grid-tooling/
   - Troubleshooting Chrome's origin trials - Chrome Developers
     - https://developer.chrome.com/en/blog/origin-trial-troubleshooting/
-- *An update on how AMP is served at the OpenJS Foundation – The AMP Blog*
+- *An update on how AMP is served at the OpenJS Foundation - The AMP Blog*
   - https://blog.amp.dev/2021/08/16/an-update-on-how-amp-is-served-at-the-openjs-foundation/
 - ss2021 - 日本ソフトウェア科学会 プログラミング論研究会 (JSSST-SIGPPL)
   - http://ppl.jssst.or.jp/index.php?ss2021
@@ -210,9 +210,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - *Firefox 91 introduces HTTPS by Default in Private Browsing*
   - https://blog.mozilla.org/security/2021/08/10/firefox-91-introduces-https-by-default-in-private-browsing/
   - 91 からプライベートモードではデフォルトで HTTPS アクセスをする
-- These Weeks in Firefox: Issue 97 – Firefox Nightly News
+- These Weeks in Firefox: Issue 97 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/08/11/these-weeks-in-firefox-issue-97/
-- These Weeks in Firefox: Issue 98 – Firefox Nightly News
+- These Weeks in Firefox: Issue 98 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/08/13/these-weeks-in-firefox-issue-98/
 - *Security Vulnerabilities fixed in Firefox 91.0.1 and Thunderbird 91.0.1*
   - https://www.mozilla.org/en-US/security/advisories/mfsa2021-37/
@@ -585,7 +585,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- Inspecting Certificates in Edge – text/plain
+- Inspecting Certificates in Edge - text/plain
   - https://textslashplain.com/2021/08/02/inspecting-certificates-in-edge/
 - Privacy-Enhancing Technologies and Building for the Future | Facebook for Business
   - https://www.facebook.com/business/news/building-for-the-future
@@ -611,7 +611,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.quirksmode.org/blog/archives/2021/08/breaking_the_we.html
   - HTTP 203: Is Safari the new IE?
     - https://http203.libsyn.com/is-safari-the-new-ie
-  - For developers, Apple's Safari is crap and outdated – Perry Sun | Blog
+  - For developers, Apple's Safari is crap and outdated - Perry Sun | Blog
     - https://blog.perrysun.com/2021/07/15/for-developers-safari-is-crap-and-outdated/
   - Safari isn't protecting the web, it's killing it | HTTP Toolkit
     - https://httptoolkit.tech/blog/safari-is-killing-the-web/

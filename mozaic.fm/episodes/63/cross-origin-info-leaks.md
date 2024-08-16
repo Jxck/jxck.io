@@ -40,7 +40,7 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
     - https://chromium.googlesource.com/chromium/src/+/master/docs/security/side-channel-threat-model.md
   - Hack Patch!: ブラウザ セキュリティの近状
     - https://shhnjk.blogspot.com/2017/12/Browser-Security.html
-  - Chrome Rewards – Application Security – Google
+  - Chrome Rewards - Application Security - Google
     - https://www.google.com/about/appsecurity/chrome-rewards/index.html#special
     - Site Isolation はバグを見つけると報奨金も高い
 - Out Of Renderer CORS

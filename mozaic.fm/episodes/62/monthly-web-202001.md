@@ -191,9 +191,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - Feedback from the summer 2019 image optimization survey
     - https://web.dev/image-optimization-survey-2019/
-  - AMP 2019 Decoded: Thank You for an Incredible Year – The AMP Blog
+  - AMP 2019 Decoded: Thank You for an Incredible Year - The AMP Blog
     - https://blog.amp.dev/2019/12/20/amp-2019-decoded-thank-you-for-an-incredible-year/
-  - *CCPA support in AMP – The AMP Blog*
+  - *CCPA support in AMP - The AMP Blog*
     - https://blog.amp.dev/2019/12/20/ccpa-support-in-amp/
   - Google Developers Blog: Project Connected Home over IP
     - https://developers.googleblog.com/2019/12/project-connected-home-over-ip.html
@@ -223,7 +223,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - *Official Google Webmaster Central Blog [EN]: Sunsetting support for data-vocabulary*
     - https://webmasters.googleblog.com/2020/01/data-vocabulary.html
     - schema.org に注力するため Google 検索での data-vocabulary.org 対応を 2020/4 に終える
-  - Cookie classification on AMP – The AMP Blog
+  - Cookie classification on AMP - The AMP Blog
     - https://blog.amp.dev/2020/01/27/cookie-classification-on-amp/
   - Multi-Origin Trusted Web Activities
     - https://developers.google.com/web/updates/2020/01/twa-multi-origin
@@ -412,7 +412,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 79
 - Update
-  - *新たな年に新たなブラウザーを – 新しい Microsoft Edge はプレビューを終え、ダウンロード提供を開始 - Windows Blog for Japan*
+  - *新たな年に新たなブラウザーを - 新しい Microsoft Edge はプレビューを終え、ダウンロード提供を開始 - Windows Blog for Japan*
     - https://blogs.windows.com/japan/2020/01/16/new-year-new-browser-the-new-microsoft-edge-is-out-of-preview-and-now-available-for-download/
     - 「日本のお客様に対しては、確定申告への影響を考慮し、 Windows Update を通じた新しい Microsoft Edge の配信は令和 2 年 4 月 1 日以降、順次開始される予定です。」
     - とのこと

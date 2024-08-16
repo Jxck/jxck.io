@@ -336,9 +336,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google のドメイン遊び
 - Migrating Puppeteer to TypeScript
   - https://developers.google.com/web/updates/2021/01/puppeteer-typescript
-- *AMP implementation best practices and common pitfalls – The AMP Blog*
+- *AMP implementation best practices and common pitfalls - The AMP Blog*
   - https://blog.amp.dev/2020/12/17/amp-implementation-best-practices-and-common-pitfalls/
-- Correlation between Core Web Vitals and AMP – The AMP Blog
+- Correlation between Core Web Vitals and AMP - The AMP Blog
   - https://blog.amp.dev/2021/01/15/correlation-between-core-web-vitals-and-amp/
 - *Form Submit 時に Security Alert が出てしまうようになった件の報告が殺到*
   - HTTP -> HTTPS redirect で HTTPS 対応しているが、 Form Submit 後の Redirect (PRG Pattern) のリダイレクト先(Location)が HTTP になってる場合、`not secure` なエラー画面が出てしまい、 Submit できない。
@@ -428,7 +428,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2020/12/18/these-weeks-in-firefox-issue-85/
 - These Weeks in Firefox: Issue 86
   - https://blog.nightly.mozilla.org/2021/01/19/these-weeks-in-firefox-issue-86/
-- *Guest Blog Post: Leaking silhouettes of cross-origin images – Attack & Defense*
+- *Guest Blog Post: Leaking silhouettes of cross-origin images - Attack & Defense*
   - https://blog.mozilla.org/attack-and-defense/2021/01/11/leaking-silhouettes-of-cross-origin-images/
   - Canvas の `drawImage()` でピクセルの不透明度によって処理速度が変わるのを利用し、 cross origin info leaks が起きる脆弱性があった
   - 利用している Skia で透明度によって処理を分けており、ソフトウェアデコーダの場合に処理速度が特に変わっていた
@@ -605,7 +605,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://techcommunity.microsoft.com/t5/articles/recent-and-upcoming-changes-to-the-microsoft-edge-add-ons-store/m-p/1992030
 - *Now, autofill your saved passwords from Microsoft Edge on your phone!*
   - https://techcommunity.microsoft.com/t5/articles/now-autofill-your-saved-passwords-from-microsoft-edge-on-your/m-p/1990161
-- *Sandboxing vs. Elevated Browsing (As Administrator) – text/plain*
+- *Sandboxing vs. Elevated Browsing (As Administrator) - text/plain*
   - https://textslashplain.com/2021/01/07/sandboxing-vs-elevated-browsing-as-administrator/
 
 
@@ -901,7 +901,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.blog/2020-12-17-no-cookie-for-you/
   - Github から 3rd Party Cookie を全て無くし、 Session Cookie のみにした
   - 合意を取る必要がなくなったため、 Cookie Banner が無くなった
-- *エンドツーエンド暗号化と法規制 – JPNIC Blog*
+- *エンドツーエンド暗号化と法規制 - JPNIC Blog*
   - https://blog.nic.ad.jp/2020/5545/
   - E2E に関する規制への署名の話の詳細
   - > 声明に署名した 7 ヶ国および EU が言っていることは、バックドアを作るか鍵を預けなさいということだと考えられます。 ISOC が主張するように、 E2EE を破ることは一般の人を脆弱にさらすことになり、声明署名国や EU が主張するような、プライバシーを守りつつ法執行機関が暗号化された通信コンテンツにアクセスできるようにする方法は、両立しないと考えます。とはいえ、犯罪被害者になり、 E2EE のため犯人がつかまらない、となった場合、 E2EE が絶対といえるか、と考えると難しいものがあります。

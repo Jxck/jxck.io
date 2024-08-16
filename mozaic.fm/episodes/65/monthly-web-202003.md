@@ -595,7 +595,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Enigma Conference 2020 – Browser Privacy Panel*
+- *Enigma Conference 2020 - Browser Privacy Panel*
   - https://textslashplain.com/2020/03/11/enigma-conference-2020-browser-privacy-panel/
   - 1 月の Enigma Conference で、ブラウザベンダ各位の Privacy に関する発表が有った
   - Brave/Firefox/Chrome/Edge
