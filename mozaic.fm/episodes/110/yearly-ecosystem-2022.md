@@ -19,18 +19,18 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 ### 今年一年で思い出に残っているトピック 3 つ
 
-1. Jxck
-   1. Node.js fetch + Winter CG
-   2. React 18 + Next.js 13
-   3. Marak + Substack
-2. Sakito
-   1. Bun
-   2. Redwood
-   3. Cypress + Playwright のコンポーネントテスト
-3. Hiroppy
-   1. Turbopack
-   2. Astro
-   3. Deno + npm
+- Jxck
+  1. Node.js fetch + Winter CG
+  2. React 18 + Next.js 13
+  3. Marak + Substack
+- Sakito
+  1. Bun
+  2. Redwood
+  3. Cypress + Playwright のコンポーネントテスト
+- Hiroppy
+  1. Turbopack
+  2. Astro
+  3. Deno + npm
 
 ### 1 月
 
