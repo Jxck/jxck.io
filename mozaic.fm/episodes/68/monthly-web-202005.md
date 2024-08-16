@@ -19,7 +19,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 83
 - Updates
-  - *New in Chrome 83*
+  - **New in Chrome 83**
     - https://developers.google.com/web/updates/2020/05/nic83
     - Trusted types
     - Updates to form controls
@@ -33,7 +33,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - New ARIA annotations for comments, suggestions, and text highlights (similar to `<mark>`).
     - prefers-color-scheme
     - modules in shared workers.
-  - *Chromium Blog: Chrome 84 Beta: Web OTP, Web Animations, New Origin Trials and More*
+  - **Chromium Blog: Chrome 84 Beta: Web OTP, Web Animations, New Origin Trials and More**
     - https://blog.chromium.org/2020/05/chrome-84-beta-web-otp-web-animations.html
     - Web OTP API
     - Web Animations
@@ -63,7 +63,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.google.com/web/updates/2020/05/chrome-84-deps-rems
     - @import rules in CSSStyleSheet.replace() removed
     - Remove TLS 1.0 and TLS 1.1
-  - *What's New In DevTools (Chrome 84)*
+  - **What's New In DevTools (Chrome 84)**
     - https://developers.google.com/web/updates/2020/05/devtools
     - Fix site issues with the new Issues tab
     - View accessibility information in the Inspect Mode tooltip
@@ -77,20 +77,20 @@ guest: [@myakura](https://twitter.com/myakura)
     - App shortcuts support in the Manifest pane
   - Chromium Blog: Introducing Web Vitals: essential metrics for a healthy site
     - https://blog.chromium.org/2020/05/introducing-web-vitals-essential-metrics.html
-  - *Chromium Blog: Protecting Chrome users from abusive notifications*
+  - **Chromium Blog: Protecting Chrome users from abusive notifications**
     - https://blog.chromium.org/2020/05/protecting-chrome-users-from-abusive.html
-  - *Chromium Blog: Resuming SameSite Cookie Changes in July*
+  - **Chromium Blog: Resuming SameSite Cookie Changes in July**
     - https://blog.chromium.org/2020/05/resuming-samesite-cookie-changes-in-july.html
     - 延期されていた SameSite=Lax by default を 7/14 の M84 で再開する計画
-  - *Chromium Blog: Protecting against resource-heavy ads in Chrome*
+  - **Chromium Blog: Protecting against resource-heavy ads in Chrome**
     - https://blog.chromium.org/2020/05/resource-heavy-ads-in-chrome.html
-  - *Chromium Blog: A safer and more private browsing experience with Secure DNS*
+  - **Chromium Blog: A safer and more private browsing experience with Secure DNS**
     - https://blog.chromium.org/2020/05/a-safer-and-more-private-browsing-DoH.html
-  - *Chromium Blog: Celebrating 10 years of WebM and WebRTC*
+  - **Chromium Blog: Celebrating 10 years of WebM and WebRTC**
     - https://blog.chromium.org/2020/05/celebrating-10-years-of-webm-and-webrtc.html
   - Chromium Blog: web.dev LIVE: A digital event over three days and three time zones
     - https://blog.chromium.org/2020/05/webdev-live-digital-event-over-three.html
-  - *Web Vitals*
+  - **Web Vitals**
     - https://web.dev/vitals/
     - LCP + FID + CLS
     - Optimize Largest Contentful Paint
@@ -110,7 +110,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - font の FOUT/FOIT も preload / font-display: optional
     - Defining the Core Web Vitals metrics thresholds
       - https://web.dev/defining-core-web-vitals-thresholds/
-    - *Chromium Blog: The Science Behind Web Vitals*
+    - **Chromium Blog: The Science Behind Web Vitals**
       - https://blog.chromium.org/2020/05/the-science-behind-web-vitals.html
     - Tools to measure Core Web Vitals
       - https://web.dev/vitals-tools/
@@ -118,7 +118,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://web.dev/vitals-measurement-getting-started/
     - Best practices for measuring Web Vitals in the field
       - https://web.dev/vitals-field-measurement-best-practices/
-    - *Official Google Webmaster Central Blog: Evaluating page experience for a better web*
+    - **Official Google Webmaster Central Blog: Evaluating page experience for a better web**
       - https://webmasters.googleblog.com/2020/05/evaluating-page-experience.html
       - Core Web Vitals のスコアを Page Experience に入れる
       - Top Story に乗る条件から AMP を外す
@@ -140,7 +140,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 永続としてマークされると、領域が圧迫されても消えない
     - 実際領域の圧迫で消えることはほとんどない
     - ユーザが自分で消すことの方が一般的
-  - *Handling Heavy Ad Interventions*
+  - **Handling Heavy Ad Interventions**
     - https://developers.google.com/web/updates/2020/05/heavy-ad-interventions
     - 重たい広告を自動で削除する Intervention について
     - 基準
@@ -153,7 +153,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/HYDQLFPAHC0/m/BsF9T0wGAAAJ
   - Ship: Forced Colors Mode
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/hkjRPJ1-Ruk/m/AS6HBVfCAAAJ
-  - *Ship: App Shortcuts Menu*
+  - **Ship: App Shortcuts Menu**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FgzYX7AFbUQ/f2i0-f-BAQAJ
     - installed app にショートカットアイコンを追加できる
   - Ship: Promise.any
@@ -178,7 +178,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/sAm4neyQybU/m/gu-gO1ctAAAJ
   - Implement and Ship: CSS Color Adjust: Remove 'only' and support used 'dark' for preferred 'light' for color-scheme
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/3RhZFvZE1LM/m/2n93K-kPAwAJ
-  - *Prototype: Federated Learning of Cohorts*
+  - **Prototype: Federated Learning of Cohorts**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/DpZZG5K1PWs/m/IJT1W69wCAAJ
     - ユーザの興味関心を荒く収集し Ad. サーバなどに送るための API
   - Prototype: optional total field in PaymentRequest
@@ -186,30 +186,30 @@ guest: [@myakura](https://twitter.com/myakura)
   - Prototype: Beforematch event
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/QKUZ_ALJdM8/m/d0Qu1wJcAQAJ
     - 検索や id, scroll to text frag でヒットした時に移動する前に発火するイベント
-  - *Prototype: Subresource loading with Web Bundles*
+  - **Prototype: Subresource loading with Web Bundles**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wYn13HabRN0/L4y4iY1-AgAJ
   - Prototype: API for receiving multicast
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/JVKSTHFiDzo/XlduZcFWAgAJ
-  - *Prototype: Client-side video editing (MediaBlob)*
+  - **Prototype: Client-side video editing (MediaBlob)**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/3eac-HVygFY/m/N_OXaOs7AAAJ
   - Prototype: CSS advanced `attr()` function (Was: Intent to Implement and Ship)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/viBACPfSsEM/m/URCnDl81AAAJ
   - Prototype: Adding adaptivePtime to RTCRtpEncodingParameters.
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/lOi5XonBstA/m/lUMku8g0AwAJ
-  - *Experiment: Cookie Store API*
+  - **Experiment: Cookie Store API**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/bBdx2xIB7OQ/m/k2fMXf-WAAAJ
     - document.cookie の代替 API
     - document/service worker 両方から触れる
     - sw からはより細かい粒度で判断できる
     - 将来的に cookie を無くし state token していく上での布石でもある(cooki を考え直す機会)
-  - *Experiment: Origin isolation*
+  - **Experiment: Origin isolation**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/G0h3PFPeclA/m/Lqt872UCAAAJ
-  - *Experiment: Trust Token API*
+  - **Experiment: Trust Token API**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/UIvia1WwIhk/m/DuXLKdF7AgAJ
   - Experiment: `fetch()` upload streaming
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/l7QI1bsq80Y/Z1TJ0nplAQAJ
     - ReadableStream で chunked upload
-  - *Experiment: QuicTransport*
+  - **Experiment: QuicTransport**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mHV_ZALf07Q/d7J9W0a1CQAJ
   - Extend Origin Trial: performance.measureMemory
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LuoryMqT7wQ/DEiG_IpAAgAJ
@@ -218,7 +218,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Change:
 - Unship:
 - Remove:
-- *Blink launch process update*
+- **Blink launch process update**
   - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/R8oZsw6RLGs/l0KOUyuWAQAJ
   - intents の公開や Chrome Status への反映などを行ってきた
   - chromium を利用したプロジェクトや、関わる人も多くなった
@@ -229,12 +229,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_0MEXs6TJhg/F0UduPfpAQAJ
 - A few clarifications for the API owners process
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2jon7dlhvLo/m/zOWmPnkKAgAJ
-- *Important: change to the "browser signals" section of the intent-to-ship process*
+- **Important: change to the "browser signals" section of the intent-to-ship process**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4sKJR-XPghU/m/UoUHsBExAAAJ
 - v8
   - V8 release v8.3 · V8
     - https://v8.dev/blog/v8-release-83
-  - *Up to 4GB of memory in WebAssembly · V8*
+  - **Up to 4GB of memory in WebAssembly · V8**
     - https://v8.dev/blog/4gb-wasm-memory
     - WASM で 4G までのメモリが扱えるようになった
     - そこに向かって発生した変更のまとめ
@@ -254,7 +254,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/betty-crocker/
   - Detect inactive users with the Idle Detection API
     - https://web.dev/idle-detection/
-  - *What's New in Lighthouse 6.0*
+  - **What's New in Lighthouse 6.0**
     - https://web.dev/lighthouse-whats-new-6.0/
   - Web Animations API improvements in Chromium 84
     - https://web.dev/web-animations/
@@ -276,7 +276,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 76
 - Updates
-  - *Firefox 76: Audio worklets and other tricks - Mozilla Hacks - the Web developer blog*
+  - **Firefox 76: Audio worklets and other tricks - Mozilla Hacks - the Web developer blog**
     - https://hacks.mozilla.org/2020/05/firefox-76-audio-worklets-and-other-tricks/
     - Fresh in Dev Edition: CSS Compatibility Panel
       - CSS のブラウザ対応が表示される
@@ -291,17 +291,17 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/D72xparvfC8/1g2GQ6OyAQAJ
   - Ship: :read-only / :read-write pseudo-classes
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/3CguC7Mp3yQ/dQIFGug8AQAJ
-  - *Ship: RegExp Named Capture Groups*
+  - **Ship: RegExp Named Capture Groups**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/0Z49y1Hdaic/cb5hy62sAAAJ
   - Ship: ParentNode#replaceChildren
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/eZ-UZT6rT5g/Jt82qvL5AQAJ
-  - *Ship: and Link: rel=preload support on Nightly and Early Beta*
+  - **Ship: and Link: rel=preload support on Nightly and Early Beta**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/MShUZ4VTa6s/E4XFYfL5AQAJ
-  - *Prototype: CSS aspect-ratio in [css-sizing-4]*
+  - **Prototype: CSS aspect-ratio in [css-sizing-4]**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/mWViuwFw8b8/HVHJ8yAnAAAJ
   - Prototype: ::file-chooser-button
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/70ODk1Gqrzs/CBLgePEkAAAJ
-  - *Prototype: Schemeful Cookie Same-Site*
+  - **Prototype: Schemeful Cookie Same-Site**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/8EjoeN7NXrc/TlxdZcSpAgAJ
   - Prototype: WebAssembly SIMD
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Y-IR14CRxGc/CM-rT8-HAQAJ
@@ -310,9 +310,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/security/2020/05/08/may-2020-ca-communication/
   - Welcome Adam Seligman, Mozilla's new Chief Operating Officer - The Mozilla Blog
     - https://blog.mozilla.org/blog/2020/05/13/welcome-adam-seligman-mozillas-new-chief-operating-officer/
-  - *High Performance Web Audio with AudioWorklet in Firefox - Mozilla Hacks - the Web developer blog*
+  - **High Performance Web Audio with AudioWorklet in Firefox - Mozilla Hacks - the Web developer blog**
     - https://hacks.mozilla.org/2020/05/high-performance-web-audio-with-audioworklet-in-firefox/
-  - *Gecko Web Platform Update (2020-05-15)*
+  - **Gecko Web Platform Update (2020-05-15)**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/ms-_ExGEm_E/H3SvcHIJAwAJ
     - 隔週で共有するらしい
   - Soft code freeze for Firefox 78 starts May 28
@@ -347,7 +347,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 13.1
 - Updates
-  - *Release Notes for Safari Technology Preview 106*
+  - **Release Notes for Safari Technology Preview 106**
     - https://webkit.org/blog/10580/release-notes-for-safari-technology-preview-106/
     - Enabled async frame and overflow scrolling by default on macOS (r260276)
     - Implemented `jump-*` functions for `steps()` timing functions (r261046)
@@ -359,7 +359,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for Intl.RelativeTimeFormat (r260349)
     - Redesigned for-of iteration for arrays (r260323)
     - Enabled using credentials for same-origin CSS mask images (r260598)
-  - *Release Notes for Safari Technology Preview 107*
+  - **Release Notes for Safari Technology Preview 107**
     - https://webkit.org/blog/10585/release-notes-for-safari-technology-preview-107/
     - Changed the initial value of transform-box to be view-box to fix some SVG animations (r261752)
     - Changed the cursor to update during the rendering steps, rather than on a 20ms timer (r261741)
@@ -373,7 +373,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Ensured IntlCollator.prototype.resolvedOptions returns relevant locale extension keys in alphabetical order (r261182)
     - Enabled clipboard API access when pasting from a menu item or key binding (r261825)
     - Implemented accessibility of HTML 5.1 Drag & Drop (r261248)
-- *Position*
+- **Position**
   - Webkit-dev から Position Request についてだけ抜粋
     - 返信は apple の開発者個々人の意見や、 apple 外の人からもくる
     - 単純に Yes/No にまとめることはできない
@@ -411,7 +411,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 83
 - Build
-  - *MyBuild - Home*
+  - **MyBuild - Home**
     - https://mybuild.microsoft.com/
     - Live Session
       - MyBuild - Moving the web forward with Microsoft Edge and Chromium
@@ -439,7 +439,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - MyBuild - Moving the web forward with Microsoft Edge and Chromium
         - https://mybuild.microsoft.com/sessions/a0f213d7-66f7-4a6e-a595-4c0d7acb2e6e
 - Updates
-  - *Everything new from Microsoft Edge at Build 2020*
+  - **Everything new from Microsoft Edge at Build 2020**
     - https://blogs.windows.com/msedgedev/2020/05/19/microsoft-edge-news-developers-build-2020/
     - Edge リリース後初の Build カンファレンス
     - What's new for web developers
@@ -455,12 +455,12 @@ guest: [@myakura](https://twitter.com/myakura)
       - Data security gets a boost with Windows Information Protection
       - Easily move between work and personal profiles
       - Microsoft Search in Bing puts your work results all in one place
-  - *Origin Trials - Microsoft Edge Developer*
+  - **Origin Trials - Microsoft Edge Developer**
     - https://developer.microsoft.com/en-us/microsoft-edge/origin-trials/
     - Edge も Origin Trials を始める
     - Chrome と仕組みは同じ
     - VirtualKeyboardPolicy と PenButtonEvents からから
-  - *Making the web more accessible and inclusive for all with Microsoft Edge*
+  - **Making the web more accessible and inclusive for all with Microsoft Edge**
     - https://blogs.windows.com/windowsexperience/2020/05/21/making-the-web-more-accessible-and-inclusive-for-all-with-microsoft-edge/
     - Chromium に取り組み始めてから、 150 以上の a11y 機能改善を実施した
     - 「Immersive Reader で開く」ができるように
@@ -469,10 +469,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - Picture Dictionary の搭載により、単語の隣にそれを示す絵が出る
   - Introducing an improved spellcheck experience in Microsoft Edge - Microsoft Edge Blog
     - https://blogs.windows.com/msedgedev/2020/05/28/improved-spellcheck-microsoft-edge-83/
-  - *Introducing the new surf game in Microsoft Edge - Microsoft Edge Blog*
+  - **Introducing the new surf game in Microsoft Edge - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2020/05/26/surf-game-edge-stable/
     - edge://surf でサーフィンゲームができる
-  - *Hi Reddit! We're the team behind Microsoft Edge and we're back for our third AMA. Ask us anything! : MicrosoftEdge*
+  - **Hi Reddit! We're the team behind Microsoft Edge and we're back for our third AMA. Ask us anything! : MicrosoftEdge**
     - https://www.reddit.com/r/MicrosoftEdge/comments/gnweyj/hi_reddit_were_the_team_behind_microsoft_edge_and/
     - Reddit で AMA
 - Chakra
@@ -493,7 +493,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Proposed Recommendation
   - Call for Review: JSON-LD 1.1 Specifications are W3C Proposed Recommendations
     - https://www.w3.org/blog/news/archives/8529
-  - *Call for Review: DOM Review Draft - Published 18 June 2019 is a W3C Proposed Recommendation*
+  - **Call for Review: DOM Review Draft - Published 18 June 2019 is a W3C Proposed Recommendation**
     - https://www.w3.org/blog/news/archives/8538
 - Candidate Recommendation
 - Working Draft
@@ -522,14 +522,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - Tzviya Siegman (Wiley)
     - David Singer (Apple)
     - Alan Stearns (Adobe)
-  - *W3C Website Redesign Discovery Phase: New Survey*
+  - **W3C Website Redesign Discovery Phase: New Survey**
     - https://lists.w3.org/Archives/Public/www-style/2020May/0001.html
     - サイト更新に先立つアンケート
-  - *CfC: Renaming Feature Policy to Permissions Policy*
+  - **CfC: Renaming Feature Policy to Permissions Policy**
     - https://lists.w3.org/Archives/Public/public-webappsec/2020May/0008.html
     - feature-policy が permission-policy に rename
     - https://github.com/w3c/webappsec-feature-policy/pull/379
-  - *design principles for new CSS features*
+  - **design principles for new CSS features**
     - https://lists.w3.org/Archives/Public/www-style/2020May/0009.html
   - W3C Strategic Highlights, May 2020
     - https://www.w3.org/blog/news/archives/8564
@@ -610,7 +610,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Can QUIC match the computational efficiency of TCP? Our research says yes.*
+- **Can QUIC match the computational efficiency of TCP? Our research says yes.**
   - https://www.fastly.com/blog/measuring-quic-vs-tcp-computational-efficiency
 - Does the QUIC handshake require compression to be fast?
   - https://www.fastly.com/blog/quic-handshake-tls-compression-certificates-extension-study

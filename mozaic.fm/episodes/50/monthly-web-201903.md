@@ -35,7 +35,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Long tasks in Performance recordings
     - First Paint in the Timings section
     - New DOM tutorial
-  - *KV Storage: the Web's First Built-in Module*
+  - **KV Storage: the Web's First Built-in Module**
     - https://developers.google.com/web/updates/2019/03/kv-storage
     - AsyncLocalStorage が KV Storage になった
     - Built-in で `'std:kv-storage'` に
@@ -43,7 +43,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Move Ya! Or maybe, don't, if the user prefers-reduced-motion!
     - https://developers.google.com/web/updates/2019/03/prefers-reduced-motion
     - prefers-reduces-motion
-  - *Chromium Blog: Chrome Lite Pages - For a faster, leaner loading experience*
+  - **Chromium Blog: Chrome Lite Pages - For a faster, leaner loading experience**
     - https://blog.chromium.org/2019/03/chrome-lite-pages-for-faster-leaner.html
     - data-saver を利用していると Google のサーバで最適化されたページが表示される
   - Introducing JsDbg - Browser-based debugging extensions for Chromium
@@ -54,7 +54,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 今は Windows のみで、 WinDbg や VS debugger で使える
     - 他の OS や他のデバッガ(GDB)などは future work
     - BlinkOn 10 で話すらしい
-  - *Chromium Blog: Chrome 74 beta: reducing unwanted motion, private class fields, and feature policy API*
+  - **Chromium Blog: Chrome 74 beta: reducing unwanted motion, private class fields, and feature policy API**
     - https://blog.chromium.org/2019/03/chrome-74-beta-reducing-unwanted-motion.html
     - prefers-reduced-motion
     - Private class fields ([blog](https://blog.jxck.io/entries/2019-03-14/private-class-field.html))
@@ -74,7 +74,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Intents
   - Ship: Background Fetch
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-iAATJCpcNY/o6Kb_ktrBQAJ
-  - *Ship: Feature Policy control over document.domain*
+  - **Ship: Feature Policy control over document.domain**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rZOaOONFCNI/4IZTJBYMCAAJ
     - `document.domain` に代入すると `throw error` するようになる
   - Ship: WebAssembly non-trapping float-to-int conversions
@@ -85,14 +85,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GRl1_Qy97jM/h7v1qIDsBwAJ
   - Implement and Ship: ImageCapture support for Pan/Tilt
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/j-Q08QgBipM/F3a5sau1BwAJ
-  - *Implement and Ship: HTMLVideoElement.playsInline*
+  - **Implement and Ship: HTMLVideoElement.playsInline**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0TJyePKiegs/24w8YsCQCAAJ
     - mobile で fullscreen にならないための属性
     - iPhone Safari の独自だったもの
-  - *Implement: line-break: anywhere*
+  - **Implement: line-break: anywhere**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/r7PkIqQDvlU/X0aocVo9BQAJ
     - 単語の途中などでも任意の Character Unit で折り返しする
-  - *Implement: Impl threaded scrollbar scrolling*
+  - **Implement: Impl threaded scrollbar scrolling**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hwZCeiK4wR8/qZvGvW8WBwAJ
     - Scrollbar のスクロールを off the main thread する話
     - メインループが混んでてもスクロールができる
@@ -101,7 +101,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SwwNS8tPkzw/K1UaiYgqCAAJ
   - Implement outline-color: invert
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/p0nHeY_ZSEg/-leLPafWCQAJ
-  - *Implement: Subresource prefetching+loading via Signed HTTP Exchange*
+  - **Implement: Subresource prefetching+loading via Signed HTTP Exchange**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/zdvJLcditVA/FPuTNAKnCQAJ
     - https://docs.google.com/document/d/1tARwhN_yymddnhyGrYmmM8b9RP0RKPKW_6T9yEI5CAg/edit
     - AMP Cache から index.html.sxg を取る場合、サブリソースも AMP Cache から取りたい
@@ -113,7 +113,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - ブラウザは img を読む時にその AMP Cache 側にリクエストを投げる
     - 署名されてるので AMP Cache が勝手に中身を差し替えたりできないし
     - HTML を書き換えなくても origin のリクエストを全部 AMP Cache に向けられる
-  - *Implement: Alternative Text in CSS Generated Content*
+  - **Implement: Alternative Text in CSS Generated Content**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xnoMlEorXxw/mZisL9zqBwAJ
     - CSS の background-image などで貼った画像に alt をつける
     - content タグに書いた文字が alt として扱われる予定
@@ -123,7 +123,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9B7OHgwwEzs/jnmdgx_7DAAJ
   - Implement: Native Caret Browsing
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ZEEwLuKlmcw/Nrj2wFkJAwAJ
-  - *Implement: requestPostAnimationFrame*
+  - **Implement: requestPostAnimationFrame**
     - https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/m-UwqK3cdjA
   - Remove: overflow: -webkit-paged-x , overflow: -webkit-paged-y
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_UhJEz04sqA/aCcX58-mBwAJ
@@ -137,7 +137,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2SsgfcYYE1U/4qyqdjsZCwAJ
   - Experiment: WebRTC audio relative packet arrival delay statistic
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/YbhMyqLXXXo/gwuazcvpCQAJ
-  - *Experiment: KV storage built-in module + import maps*
+  - **Experiment: KV storage built-in module + import maps**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sEwWEF80T4s/Nss9VxM3BAAJ
   - Experiment: navigator.scheduling.isInputPending
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ItkbDBevOrs/yFffQlqTBQAJ
@@ -151,7 +151,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WosJkkBDY_c/uyRYvR_4BgAJ
 - Team Weekly Snippet
 - v8
-  - *JIT-less V8*
+  - **JIT-less V8**
     - https://v8.dev/blog/jitless
     - 組み込み用途では実行可能メモリへのアクセスを許可できないため V8 が使えなかった
     - そこで JIT 無しのインタプリタのみのモードを入れた
@@ -166,18 +166,18 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://amphtml.wordpress.com/2019/03/05/welcome-to-the-amp-roadshow-2019-first-stop-africa/
   - Encouraging more voices in AMP
     - https://amphtml.wordpress.com/2019/03/06/encouraging-more-voices-in-amp/
-  - *Browser Bug Searcher*
+  - **Browser Bug Searcher**
     - https://browser-issue-tracker-search.appspot.com/
   - [BlinkOn 10] Draft schedule
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HxTVkDgXDWw/jCSkQlsCBwAJ
   - Announcing the AMP Conf Lineup!
     - https://amphtml.wordpress.com/2019/03/11/announcing-the-amp-conf-lineup/
-  - *Take action and stay up-to-date with dynamic email in Gmail*
+  - **Take action and stay up-to-date with dynamic email in Gmail**
     - https://www.blog.google/products/gmail/take-action-and-stay-up-to-date-with-dynamic-email-in-gmail/
     - AMP for Email
   - Building the future of email with AMP - Accelerated Mobile Pages Project
     - https://blog.amp.dev/2019/03/26/building-the-future-of-email-with-amp/
-  - Elliott Sprehn on Twitter: "I'm rethinking my former advice around web storage: localStorage reads are super fast since they read an in memory cache, writes are very slow. IndexedDB KV storage (like the built-in API proposal) has slow reads *and* writes and event loop delays on reads. @shubhie @_developit"
+  - Elliott Sprehn on Twitter: "I'm rethinking my former advice around web storage: localStorage reads are super fast since they read an in memory cache, writes are very slow. IndexedDB KV storage (like the built-in API proposal) has slow reads **and** writes and event loop delays on reads. @shubhie @_developit"
     - https://twitter.com/ElliottZ/status/1105342069449474048
 
 
@@ -200,11 +200,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Firefox Front-End Performance Update #15 | Mike Conley's Blog
     - https://mikeconley.ca/blog/2019/03/22/firefox-front-end-performance-update-15/
 - Intents
-  - *Ship: Dynamic module imports (JS 'import()' syntax)*
+  - **Ship: Dynamic module imports (JS 'import()' syntax)**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Mji-LGbuPOg/heV3n1BvAwAJ
-  - *Ship: String.prototype.matchAll*
+  - **Ship: String.prototype.matchAll**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/BTnxShq-LQc/eWZIcxQjCQAJ
-  - *Ship: CSS Containment*
+  - **Ship: CSS Containment**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/lcGPwhu1Bcg/TxZz8qz2BgAJ
   - Ship: Backward-Compatibility FIDO U2F support for Google Accounts
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/q5cj38hGTEA/lC834665BQAJ
@@ -212,13 +212,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/ke-KMmY1Mak/1yNRc4ATBQAJ
   - Ship: URL classifier classification by default
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/7tsOBwlpgw0/_NaqDRJGCQAJ
-  - *Ship: Backward-Compatibility FIDO U2F support for Google Accounts*
+  - **Ship: Backward-Compatibility FIDO U2F support for Google Accounts**
     - https://groups.google.com/forum/#!topic/mozilla.dev.platform/q5cj38hGTEA
-  - *Implement and Ship the CSS Scroll Snap Module Level 1 and unship old scroll snap properties*
+  - **Implement and Ship the CSS Scroll Snap Module Level 1 and unship old scroll snap properties**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/s0rMvOBnO_4/AFjL0qHpAwAJ
-  - *Implement and Ship: CSS revert keyword.*
+  - **Implement and Ship: CSS revert keyword.**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/AvR6VqGeSJs/HgWB907xCAAJ
-  - *Implement and Ship: CSS ::marker pseudo-element*
+  - **Implement and Ship: CSS ::marker pseudo-element**
     - https://groups.google.com/forum/#!topic/mozilla.dev.platform/PSbIck_Jj4s
   - Implement and Ship: built-in CSS counter 'list-item'
     - https://groups.google.com/forum/#!topic/mozilla.dev.platform/5V37Xg997Mg
@@ -229,7 +229,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - [blog](https://blog.jxck.io/entries/2018-10-08/referrer-policy.html)
   - Implement: Limit the maximum life-time of cookies set through document.cookie to seven days
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/lECBPeiGTy4/cPP52vyZAwAJ
-  - *Implement: cryptomining and fingerprinting resource blocking*
+  - **Implement: cryptomining and fingerprinting resource blocking**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/8KLyZ_pisEI/_1itq_i9CQAJ
     - コンテンツブロッキングのリストに Mining/Fingerprint が追加された
     - Coinhive なども入っている
@@ -239,16 +239,16 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/ATbLAQpWLXE/naA1CZreAwAJ
   - Disabling document.createEvent("TouchEvent"), `document.createTouch*` and `ontouch*` event handlers on desktop
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/dwRNENReBuU/81z1N78zAwAJ
-  - *Implement and Experiment: Require user interaction for notification permission prompts*
+  - **Implement and Experiment: Require user interaction for notification permission prompts**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/15s-U_wXHeA/cekU32UyBwAJ
-  - *Unship: Some Shadow DOM v0 APIs*
+  - **Unship: Some Shadow DOM v0 APIs**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/zFwps4VTiXw/mT44PT8dBgAJ
 - Site Compat
   - https://www.fxsitecompat.com
 - Other
   - Real virtuality: connecting real things to virtual reality using web technologies - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2019/03/connecting-real-things-to-virtual-worlds-using-web/
-  - *Fast, Bump-Allocated Virtual DOMs with Rust and Wasm*
+  - **Fast, Bump-Allocated Virtual DOMs with Rust and Wasm**
     - https://hacks.mozilla.org/2019/03/fast-bump-allocated-virtual-doms-with-rust-and-wasm/
     - Dodrio
 
@@ -260,7 +260,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Release Notes for Safari Technology Preview 77
     - https://webkit.org/blog/8658/release-notes-for-safari-technology-preview-77/
     - Fixed getUserMedia with an ideal deviceId constraint to always select the correct device (r241489)
-    - *Made navigator.mediaDevices SecureContext (r241602)*
+    - **Made navigator.mediaDevices SecureContext (r241602)**
     - Fixed WebSocket to not fire events after being stopped (r241599)
     - Fixed Same-Site Lax cookies to be sent with cross-site redirect from a client-initiated load (r241918)
     - Updated the MIME type parser (r241863)
@@ -273,16 +273,16 @@ guest: [@myakura](https://twitter.com/myakura)
     - Made the window.safari object available in frames opened to safari-extension:// resources
   - Release Notes for Safari Technology Preview 78
     - https://webkit.org/blog/8676/release-notes-for-safari-technology-preview-78/
-    - *Enabled support for Pointer Events by default (r242232)*
+    - **Enabled support for Pointer Events by default (r242232)**
     - Added support for Pointer Events on macOS (r242137)
     - Fixed string not getting terminated with a null character (r242352)
     - Adjusted XMLHttpRequest Content-Type handling (r242284)
-    - *Added support for the referrerpolicy attribute (r242534)*
+    - **Added support for the referrerpolicy attribute (r242534)**
     - Implemented further CORS restrictions (r242786)
     - Added remote search support for keyboard focusable element search type (r242528)
-    - *Removed HEVC as a codec requiring hardware support (r242357)*
+    - **Removed HEVC as a codec requiring hardware support (r242357)**
 - Other
-  - *On the Road to WebRTC 1.0, Including VP8*
+  - **On the Road to WebRTC 1.0, Including VP8**
     - https://webkit.org/blog/8672/on-the-road-to-webrtc-1-0-including-vp8/
     - VP8 Video Codec
     - Video Simulcast
@@ -309,7 +309,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Windows Defender Application Guard as browser extensions in Google Chrome and Mozilla Firefox
     - Microsoft 、 Chrome と Firefox 向け「Windows Defender Application Guard」拡張機能公開
     - https://www.itmedia.co.jp/news/articles/1903/18/news077.html
-  - *Japan Support Blog がついにアクセスできなくなる*
+  - **Japan Support Blog がついにアクセスできなくなる**
     - https://blogs.technet.microsoft.com/jpieblog/2018/12/30/japan-ie-support-team-blog-終了のお知らせ/
     - forum に記事がポートされているが新着はなし
     - https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja
@@ -317,7 +317,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### WHATWG/W3C 動向
 
-- *#Web30*
+- **#Web30**
   - W3C celebrates the 30th anniversary of the Web
     - https://www.w3.org/blog/news/archives/7663
   - 30 years on, what's next #ForTheWeb?
@@ -325,45 +325,45 @@ guest: [@myakura](https://twitter.com/myakura)
   - Building browsers! #Web30 | Vivaldi Browser
     - https://vivaldi.com/ja/blog/building-browsers/
 - Recommendation
-  - *Web Authentication: An API for accessing Public Key Credentials Level 1 is a W3C Recommendation*
+  - **Web Authentication: An API for accessing Public Key Credentials Level 1 is a W3C Recommendation**
     - https://www.w3.org/blog/news/archives/7598
 - Proposed Recommendation
 - Candidate Recommendation
 - Working Draft
 - First Public Working Draft
-  - *First Public Working Draft: User Timing Level 3*
+  - **First Public Working Draft: User Timing Level 3**
     - https://www.w3.org/blog/news/archives/7617
 - Chartering
   - zot protocol Community Group Proposed
     - https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0004.html
   - [wbs] response to 'Call for Review: Patents and Standards Interest Group Charter'
     - https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0003.html
-  - *Patents and Standards Interest Group (PSIG)*
+  - **Patents and Standards Interest Group (PSIG)**
     - https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0001.html
-  - *Web Applications Working Group*
+  - **Web Applications Working Group**
     - https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0000.html
-  - *Scalable Vector Graphics (SVG) Working Group Revised Charter Approved; Call for Participation*
+  - **Scalable Vector Graphics (SVG) Working Group Revised Charter Approved; Call for Participation**
     - https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0008.html
 - Other
   - Upcoming: Second W3C Workshop on the Web of Things
     - https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0002.html
   - W3C Workshop Report: Strong Authentication and Identity
     - https://www.w3.org/blog/news/archives/7638
-  - *[ External ] Moving Delivered JavaScript Forward*
+  - **[ External ] Moving Delivered JavaScript Forward**
     - https://docs.google.com/document/d/1kOLu53dYzwElJZ6JBgMR137-Rdj8cDc_rX2YkPFYUsY/edit
     - Add first-class support for differential script loading · Issue #4432 · whatwg/html
     - https://github.com/whatwg/html/issues/4432
     - syntax 属性を追加して、 ECMA 2019 などのバージョンで読み込むスクリプトを変えられるようにする提案
     - babel などで変換する粒度を変えられる
-  - *Upcoming: W3C Workshop on Web Games, 27-28 June*
+  - **Upcoming: W3C Workshop on Web Games, 27-28 June**
     - https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0007.html
     - https://www.w3.org/blog/news/archives/7666
     - https://twitter.com/deltakosh/status/1107995743741083649
     - MS の人主導っぽい
-  - *Name suggestions · Issue #2 · mikewest/sec-metadata*
+  - **Name suggestions · Issue #2 · mikewest/sec-metadata**
     - https://github.com/mikewest/sec-metadata/issues/2
     - `sec-metadata` は `sec-fetch-*` で land されたのでフィニッシュ
-  - *Unpopular opinions: Standards edition (TC39, W3C, WHATWG, IETF, ISO, whatever) What do you \*really\* think?  by littledan*
+  - **Unpopular opinions: Standards edition (TC39, W3C, WHATWG, IETF, ISO, whatever) What do you \*really\* think?  by littledan**
     - https://twitter.com/littledan/status/1109521891864338438
     - 「標準化ってぶっちゃけどう思う?」
   - W3C doesn't help its invited experts. It should. - Tobie Langel - Medium
@@ -387,7 +387,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/mikesamuel/proposal-array-is-template-object
     - 来月扱う
 - Other
-  - *A Homepage for the JavaScript Specification*
+  - **A Homepage for the JavaScript Specification**
     - https://hacks.mozilla.org/2019/03/a-homepage-for-the-javascript-specification/
     - https://tc39.github.io/
     - JS のスペックや Proposal を追うためのハブサイト
@@ -415,7 +415,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - httpwg/wg-materials
     - https://github.com/httpwg/wg-materials/blob/gh-pages/ietf104/agenda.md
 - RFC
-  - *RFC 8555 - Automatic Certificate Management Environment (ACME)*
+  - **RFC 8555 - Automatic Certificate Management Environment (ACME)**
     - https://tools.ietf.org/html/rfc8555
     - https://letsencrypt.org/2019/03/11/acme-protocol-ietf-standard.html
 - IETF Last Call
@@ -500,7 +500,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/monsters-in-the-middleboxes/
   - MITMEngine
   - MALCOLM
-- *Coinhive*
+- **Coinhive**
   - https://twitter.com/moro_is/status/1110748839831470081
   - 無罪判決
   - Coinhive 自体も 3 月で終了
@@ -515,14 +515,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *OpenJS Foundation*
+- **OpenJS Foundation**
   - https://openjsf.org/
 - NGINX to Join F5: Proud to Finish One Chapter and Excited to Start the Next - NGINX
   - https://www.nginx.com/blog/nginx-joins-f5/
   - https://www.publickey1.jp/blog/19/nginxf5f5nginx.html
 - Preventing Request Loops Using CDN-Loop
   - https://blog.cloudflare.com/preventing-request-loops-using-cdn-loop/
-- *Why Fastly loves QUIC and HTTP/3*
+- **Why Fastly loves QUIC and HTTP/3**
   - https://www.fastly.com/blog/why-fastly-loves-quic-http3
 - Google to offer Android users browser choice - QuirksBlog
   - https://www.quirksmode.org/blog/archives/2019/03/google_to_offer.html

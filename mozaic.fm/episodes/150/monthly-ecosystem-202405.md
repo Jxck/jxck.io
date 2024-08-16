@@ -241,7 +241,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - 5 月
   - 11: TSKaigi
     - https://tskaigi.org/
-  - *15-16: React Conf*
+  - **15-16: React Conf**
     - https://conf.react.dev/
   - 23: Vercel Ship
     - https://vercel.com/ship
@@ -250,7 +250,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - 6 月
   - 14-18: React Summit in Amsterdam
     - https://reactsummit.com/
-  - *26-27: Figma Config*
+  - **26-27: Figma Config**
     - https://config.figma.com/
 - 8 月
   - 24: フロントエンドカンファレンス北海道 2024

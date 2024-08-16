@@ -19,7 +19,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 80
 - Updates
-  - *New in Chrome 80*
+  - **New in Chrome 80**
     - https://developers.google.com/web/updates/2020/02/nic80
     - Modules in workers
     - Optional chaining in JavaScript
@@ -39,10 +39,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.google.com/web/updates/2020/02/notification-permission-data-in-crux
   - Trusted Web Activities, the Lay of the Land
     - https://developers.google.com/web/updates/2020/02/twa-lay-of-the-land
-  - *Chromium Blog: Protecting users from insecure downloads in Google Chrome*
+  - **Chromium Blog: Protecting users from insecure downloads in Google Chrome**
     - https://blog.chromium.org/2020/02/protecting-users-from-insecure.html
     - 平文通信のダウンロードを段階的にできないように
-  - *Chromium Blog: Videos with fewer intrusive ads*
+  - **Chromium Blog: Videos with fewer intrusive ads**
     - https://blog.chromium.org/2020/02/videos-with-fewer-intrusive-ads.html
     - 長い動画広告を中断するように
   - Chromium Blog: SameSite Cookie Changes in February 2020: What You Need to Know
@@ -53,14 +53,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - Augmented Reality and Hit Testing
     - PointerLock unadjustedMovement Origin Trials
     - Buffered Flag for Long Tasks
-    - *CSS image-orientation property*
+    - **CSS image-orientation property**
     - CSS Color Adjust: color-scheme
     - Exclude Implicit Tracks from grid-template-rows and grid-template-columns Resolved Values
     - hrefTranslate attribute on HTMLAnchorElement
     - IntersectionObserver Document Root
-    - *Modernized Form Controls*
+    - **Modernized Form Controls**
     - Move onwebkit{animation,transition}XX handlers to GlobalEventHandlers
-    - *Position State for Media Session*
+    - **Position State for Media Session**
     - SubmitEvent
     - WebAudio: ConvolverNode.channelCount and channelCountMode
     - RTCPeerConnection.onicecandidateerror event changes
@@ -68,10 +68,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - WorkerOptions for shared workers constructor
     - WritableStream.close()
     - Intl.DisplayNames()
-    - *Deprecation and Remove "basic-card" support Payment Handler*
+    - **Deprecation and Remove "basic-card" support Payment Handler**
     - Remove supportedType field from BasicCardRequest
     - Remove the `<discard>` element
-    - *Remove TLS 1.0 and TLS 1.1*
+    - **Remove TLS 1.0 and TLS 1.1**
     - TLS 1.3 downgrade hardening bypass
   - Interact with NFC devices on Chrome for Android
     - https://web.dev/nfc/
@@ -92,9 +92,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2uume_z0n8M/dUFRWmVNBgAJ
   - Ship: disallowdocument access iframe attribute
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TzuPAx9ZOk0/HYOf3FFFBgAJ
-  - *Ship: CSS contain-intrinsic-size*
+  - **Ship: CSS contain-intrinsic-size**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Dbpth-n7LZo/vtyZAmMIBgAJ
-  - *Ship: Custom state pseudo class*
+  - **Ship: Custom state pseudo class**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dJibhmzE73o/jzB1zkJeCQAJ
     - Custom Component などで独自の疑似クラスを定義できる
   - Implement and Ship: 'font-display: optional' without relayout
@@ -105,33 +105,33 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FMPV2LCc0Ho/X4minYyAAQAJ
   - Prototype: MediaCapabilities: Query HDR with decodingInfo()
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/jBzVLBz-Yk4/ORuQg2zAEwAJ
-  - *Prototype: prefers-reduced-data*
+  - **Prototype: prefers-reduced-data**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oNJTem41LBs/CA4Nx05aAwAJ
     - Save-Data の CSS 版
     - Data Saver などが有効な場合に、 background-image を無くすとか
   - Prototype: CanMakePaymentEvent.respondWithMinimalUI
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kTLpgFJz6Ck/IQeiGDtOAwAJ
-  - *Prototype: CSS primitives for foldable devices*
+  - **Prototype: CSS primitives for foldable devices**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KsPRO3hkOGw/md4jgIAaAgAJ
     - 折りたたみデバイス向けの CSS
   - Prototype: Delegated Ink Trail
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/JeGBzAfR_Bw/Ppo1u7ofBgAJ
   - Prototype: WebRTC RTP header extension control
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/65YdUi02yZk/dXL1a8PYBQAJ
-  - *Prototype: Declarative Shadow DOM*
+  - **Prototype: Declarative Shadow DOM**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nJDc-1s3R9U/uCJKsEqpAwAJ
     - 宣言的な Shadow DOM の定義
     - `<template shadowroot="open">` にするとその下が Shadow DOM として扱われる
     - Shadow DOM が SSR できる
-  - *Prototype: Media Feeds*
+  - **Prototype: Media Feeds**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/D1sGl6UkCzs/bSiEw3rlCAAJ
     - Web App Manifest に "dataFeedElement" を追加
     - RSS などがあることを UA に伝える
-  - *Prototype: Imperative Shadow DOM Distribution API*
+  - **Prototype: Imperative Shadow DOM Distribution API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TNYIAu5E_M4/1i7LME9WCwAJ
     - Shadow DOM への slot の割当を命令的に行う?
     - `<summary>`/`<detail>` みたなことが、今の slot の仕組みだとできない
-  - *Prototype: URL Protocol Handler Registration for PWAs*
+  - **Prototype: URL Protocol Handler Registration for PWAs**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/x4Ev_l9Oj2U/6bGPs7MVCwAJ
     - Web App Manifest に "protocol_handler" を追加
     - 他のアプリや Web アプリを呼べるように
@@ -139,7 +139,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/UHRmDD20FWE/sCmwI9oxGgAJ
   - Experiment: scheduler.postTask
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/31qZ-bMToM8/bLhpSdXhEgAJ
-  - *Experiment: Querying HTTPSSVC*
+  - **Experiment: Querying HTTPSSVC**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/brZTXr6-2PU/g0g8wWwCAwAJ
     - HTTPS に関わる追加情報を入れた DNS record の HTTPSSVC を取得するように
     - ESNI, ALT-SVC, HSTS 情報などを入れる
@@ -157,7 +157,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NUMVehBQ9yc/L4c9OMyHBwAJ
   - PSA: content-type attached to beacon with ArrayBufferView has changed
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/k_JNBV9OC1s/R4JmR8VjBwAJ
-  - *Blink API OWNERS Requirements*
+  - **Blink API OWNERS Requirements**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/erJ4pMd5rv8/qCWFqIwDAwAJ
     - https://www.chromium.org/blink/blink-api-owners-requirements
     - API オーナーの満たすべき基準
@@ -168,7 +168,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Your flag: enable-layout-ng is expiring in M82
     - https://groups.google.com/a/chromium.org/forum/#!msg/layout-dev/QDrBnD9KM9M/6GXd5PjhAQAJ
 - v8
-  - *V8 release v8.1 · V8*
+  - **V8 release v8.1 · V8**
     - https://v8.dev/blog/v8-release-81
     - Intl.DisplayNames
   - Understanding the ECMAScript spec, part 1 · V8
@@ -176,7 +176,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - ECMAScript 仕様の読み方の解説
     - hasOwnProperty を例に読み進め方が書かれている
 - Other
-  - *Chromium Platform Security Summit!*
+  - **Chromium Platform Security Summit!**
     - https://groups.google.com/a/chromium.org/forum/#!msg/security-dev/dPfHNzHWr5I/WmvdrwXeBAAJ
     - I/O の前くらいに開催予定
   - Behind the Scenes: Deploying the AMP Runtime - The AMP Blog
@@ -201,7 +201,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 73.0.1
 - Updates
-  - *Securing Firefox with WebAssembly - Mozilla Hacks - the Web developer blog*
+  - **Securing Firefox with WebAssembly - Mozilla Hacks - the Web developer blog**
     - https://hacks.mozilla.org/2020/02/securing-firefox-with-webassembly/
     - WASM で作ったサンドボックス内でコードを実行しセキュアにしていく話し
     - 主に 3rd Party Libs から注力していく
@@ -209,18 +209,18 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2020/02/firefox-73-is-upon-us/
   - Firefox 73 for developers - Mozilla | MDN
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/73
-  - *Firefox 73.0, See All New Features, Updates and Fixes*
+  - **Firefox 73.0, See All New Features, Updates and Fixes**
     - https://www.mozilla.org/en-US/firefox/73.0/releasenotes/
   - These Weeks in Firefox: Issue 69 - Firefox Nightly News
     - https://blog.nightly.mozilla.org/2020/02/14/these-weeks-in-firefox-issue-69/
-  - *Firefox continues push to bring DNS over HTTPS by default for US users - The Mozilla Blog*
+  - **Firefox continues push to bring DNS over HTTPS by default for US users - The Mozilla Blog**
     - https://blog.mozilla.org/blog/2020/02/25/firefox-continues-push-to-bring-dns-over-https-by-default-for-us-users/
     - US で DoH がデフォルト有効に
   - The Facts: Mozilla's DNS over HTTPs (DoH) - Open Policy & Advocacy
     - https://blog.mozilla.org/netpolicy/2020/02/25/the-facts-mozillas-dns-over-https-doh/
     - DoH についての FAQ
 - Intents
-  - *Ship: a change to the initial value of image-orientation*
+  - **Ship: a change to the initial value of image-orientation**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/PDYzBgRz8gk/6biEHyB_BwAJ
     - image-orientation の初期値を none から from-image にする
     - EXIF の持つ回転の情報がデフォルトで使われるように
@@ -232,15 +232,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/NB0Ht1UGoSw/KiPRi_ncBgAJ
   - Implement and ship: updated values for text-decoration properties
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Rxnb4jD5gU8/J0Q7Rc7OAwAJ
-  - *Prototype and ship: CSS comparison functions: min() / max() / clamp()*
+  - **Prototype and ship: CSS comparison functions: min() / max() / clamp()**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/i6V9W5XJjpA/DoxHJkiqBwAJ
-  - *Prototype and ship: lazy load images*
+  - **Prototype and ship: lazy load images**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/3CH2pXxTWl4/xXc4_7QJBQAJ
-  - *Prototype and ship: ARIA annotations*
+  - **Prototype and ship: ARIA annotations**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/eh_O7G4H26Q/mFy5IambGQAJ
   - Prototype and ship: running background color animations on the compositor thread
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/rHmM7kQaH7Q/jdrJS7sgCQAJ
-  - *Prototype: :focus-visible pseudo-class.*
+  - **Prototype: :focus-visible pseudo-class.**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/QzmcYfffVQ4/gk8iCALCCAAJ
   - Prototype: Document as explicit root of an intersection observer
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/64nDLTAZGzY/CQMV7WqtCAAJ
@@ -255,14 +255,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - It's the Boot for TLS 1.0 and TLS 1.1 - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/02/its-the-boot-for-tls-1-0-and-tls-1-1/
-  - *(とりこぼし) backgroundsync と periodicbacgkroundsync が harmful に*
+  - **(とりこぼし) backgroundsync と periodicbacgkroundsync が harmful に**
     - https://github.com/mozilla/standards-positions/pull/232/files
-  - *Images are now rotated by default according to Exif data | Firefox Site Compatibility*
+  - **Images are now rotated by default according to Exif data | Firefox Site Compatibility**
     - https://www.fxsitecompat.dev/en-CA/docs/2020/images-are-now-rotated-by-default-according-to-exif-data/
     - 画像の表示に Exif の rotate 情報をみるように
   - Resolve data breaches with Firefox Monitor | The Firefox Frontier
     - https://blog.mozilla.org/firefox/resolve-data-breaches/
-  - *Intent to implement: Cookie SameSite=lax by default and SameSite=none only if secure*
+  - **Intent to implement: Cookie SameSite=lax by default and SameSite=none only if secure**
     - https://groups.google.com/d/msg/mozilla.dev.platform/nx2uP0CzA9k/REUNAW2YGQAJ
     - Nightly で SameSite=Lax がデフォルト有効に
 
@@ -277,7 +277,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Fixed User Verification (UV) option present on a CTAP2 authenticatorMakeCredential while the authenticator has not advertised support for it (r254710)
     - Added support for allow="fullscreen" feature policy (r255162)
     - Added finite timeout when synchronously terminating a service worker (r254706)
-    - *Fixed EXIF orientation ignored for some CSS images (r254841)*
+    - **Fixed EXIF orientation ignored for some CSS images (r254841)**
     - Fixed elements no longer stay fixed with elastic overscroll (r255037)
     - Added support for MediaRecorder.requestData (r255085)
     - Implemented sub-source texImage2D and texSubImage2D (r255316)
@@ -292,13 +292,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - Fixed pages that trigger a redirect sometimes getting left blank (r256452)
     - Disallowed setting base URL to a data or JavaScript URL (r256191)
     - Fixed highlight text decorations to work with all decoration types and colors (r256451)
-    - *Implemented OffscreenCanvas.copiedImage (r256505)*
+    - **Implemented OffscreenCanvas.copiedImage (r256505)**
     - Updated to remember if legacy TLS was used in the back-forward cache (r256073)
-  - *Explainer: IsLoggedIn (on GitHub)*
+  - **Explainer: IsLoggedIn (on GitHub)**
     - https://lists.w3.org/Archives/Public/public-webappsec/2020Feb/0008.html
     - https://github.com/WebKit/explainers/tree/master/IsLoggedIn
     - IsLoggedIn の Explainer が更新されたっぽい
-  - *Changeset 256501 - WebKit*
+  - **Changeset 256501 - WebKit**
     - https://trac.webkit.org/changeset/256501/webkit
     - WebKit の Nightly に WebP が実装
 - Other
@@ -314,7 +314,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blogs.windows.com/msedgedev/2020/02/04/localizing-edge-devtools/
   - implifying Microsoft Edge configuration profiles for Jamf Pro
     - https://blogs.windows.com/msedgedev/2020/02/20/edge-profiles-jamf-applications-custom-settings/
-  - *Protecting users from potentially unwanted applications in Microsoft Edge - Microsoft Edge Blog*
+  - **Protecting users from potentially unwanted applications in Microsoft Edge - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2020/02/27/protecting-users-potentially-unwanted-apps/
 - Chakra
   - Release ChakraCore v1.11.16 · microsoft/ChakraCore
@@ -343,13 +343,13 @@ guest: [@myakura](https://twitter.com/myakura)
 - First Public Working Draft
   - First Public Working Draft: Requirements for Personalization Semantics
     - https://www.w3.org/blog/news/archives/8290
-  - *First Public Working Drafts: Media Capabilities, Picture-in-Picture, Media Session Standard*
+  - **First Public Working Drafts: Media Capabilities, Picture-in-Picture, Media Session Standard**
     - https://www.w3.org/blog/news/archives/8285
   - First Public Working Drafts: Resize Observer; CSS Scroll Anchoring Module Level 1
     - https://www.w3.org/blog/news/archives/8311
   - First Public Working Draft: XR Accessibility User Requirements
     - https://www.w3.org/blog/news/archives/8320
-  - *First Public Working Draft: WCAG 2.2*
+  - **First Public Working Draft: WCAG 2.2**
     - https://www.w3.org/blog/news/archives/8334
 - Chartering
   - CSS Print Community Group created
@@ -409,7 +409,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/younies/proposal-intl-duration-format
   - decimal
     - https://github.com/littledan/proposal-decimal
-  - *Ergonomic brand checks for Private Fields(private-fields-in-in)*
+  - **Ergonomic brand checks for Private Fields(private-fields-in-in)**
     - https://github.com/ljharb/proposal-private-fields-in-in
     - private filed に対応しているかどうかを try-catch なしで判別する
 - Other
@@ -448,7 +448,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-irtf-iccrg-rledbat-00
   - An Unreliable Datagram Extension to QUIC
     - https://tools.ietf.org/html/draft-ietf-quic-datagram-00
-  - *Network-Based Website Fingerprinting*
+  - **Network-Based Website Fingerprinting**
     - https://tools.ietf.org/html/draft-irtf-pearg-website-fingerprinting-00
   - Compatible Version Negotiation for QUIC
     - https://tools.ietf.org/html/draft-ietf-quic-version-negotiation-00
@@ -457,13 +457,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *暗号資産「無断採掘」、二審は有罪 閲覧者 PC 利用-東京高裁:時事ドットコム*
+- **暗号資産「無断採掘」、二審は有罪 閲覧者 PC 利用-東京高裁:時事ドットコム**
   - https://www.jiji.com/jc/article?k=2020020700330&g=soc
 - Three ways TLS 1.3 protects origin names
   - https://www.fastly.com/blog/3-ways-tls-1-3-protects-origin-names
 - Bypassing AppProtocol Prompts | text/plain
   - https://textslashplain.com/2020/02/20/bypassing-appprotocol-prompts/
-- *DNS over HTTPS Providers Chromium*
+- **DNS over HTTPS Providers Chromium**
   - https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/Fz3VfevdFmg/o1GhsWWnAwAJ
   - NextDNS が DoH 対応し、 Chrome の対応プロバイダリストへの登録を依頼
   - なお、 CNAME Cloaking 回避もできるらしい
@@ -479,7 +479,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - How 1500 bytes became the MTU of the internet
   - https://blog.benjojo.co.uk/post/why-is-ethernet-mtu-1500
   - MTU が 1500 になった理由
-- *Introducing Acrobat on the Web, Powered by WebAssembly*
+- **Introducing Acrobat on the Web, Powered by WebAssembly**
   - https://medium.com/adobetech/acrobat-on-the-web-powered-by-webassembly-782385e4947e
   - Adobe が Web 版の Acrobat を発表
   - Mobile PDF Library を wasm にコンパイルして利用している

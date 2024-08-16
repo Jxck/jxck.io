@@ -22,7 +22,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 104*
+- **New in Chrome 104**
   - https://developer.chrome.com/en/blog/new-in-chrome-104/
   - Specify a crop area with region capture
   - Easier media queries with level 4 syntax and evaluation
@@ -58,21 +58,21 @@ guest: [@myakura](https://twitter.com/myakura)
     - Deprecations in the Navigation API
     - Deprecate Non-ASCII Characters in Cookie Domain Attributes
     - Remove Gesture Scroll DOM Events
-- *New in Chrome 105*
+- **New in Chrome 105**
   - https://developer.chrome.com/en/blog/new-in-chrome-105/
   - Container queries and the `:has()` CSS property
   - Sanitizer API
   - Deprecating Web SQL for non-secure contexts
-- *Deprecations and removals in Chrome 105*
+- **Deprecations and removals in Chrome 105**
   - https://developer.chrome.com/en/blog/deps-rems-105/
   - Remove Web SQL in non-secure contexts
-  - *CSS default keyword is disallowed in custom identifiers*
+  - **CSS default keyword is disallowed in custom identifiers**
   - Deprecations in the Navigation API
   - Deprecate non-ASCII characters in cookie domain attributes
   - Remove Gesture Scroll DOM Events
-- *What's New In DevTools (Chrome 105)*
+- **What's New In DevTools (Chrome 105)**
   - https://developer.chrome.com/en/blog/new-in-devtools-105/
-  - *Step-by-step replay in the Recorder*
+  - **Step-by-step replay in the Recorder**
   - Support mouse over event in the Recorder panel
   - Largest Contentful Paint (LCP) in the Performance insights panel
   - Identify flashes of text (FOIT, FOUT) as potential root causes for layout shifts
@@ -80,38 +80,38 @@ guest: [@myakura](https://twitter.com/myakura)
   - Top layer badge in the Elements panel
   - Attach Wasm debugging information at runtime
   - Support live edit during debugging
-  - *View and edit `@scope` at rules in the Styles pane*
+  - **View and edit `@scope` at rules in the Styles pane**
   - Sourcemap improvements
   - Miscellaneous highlights
-- *Chromium Blog: Chrome 106 Beta: New CSS Features, WebCodecs and WebXR Improvements, and More*
+- **Chromium Blog: Chrome 106 Beta: New CSS Features, WebCodecs and WebXR Improvements, and More**
   - https://blog.chromium.org/2022/09/chrome-106-beta-new-css-features.html
   - Origin Trials
-    - *Anonymous iframes*
-    - *Pop-Up API*
+    - **Anonymous iframes**
+    - **Pop-Up API**
   - Other Features in this Release
     - Client Hints persistency in Android WebView
     - CSS
       - grid-template properties interpolation
-      - *'ic' length unit*
+      - **'ic' length unit**
       - `preserve-parent-color` value for the `forced-color-adjust` CSS property.
       - Unprefix -webkit-hyphenate-character property
-    - *JavaScript: Intl.NumberFormat v3 API*
+    - **JavaScript: Intl.NumberFormat v3 API**
     - SerialPort BYOB reader support
     - WebCodecs dequeue event
     - WebXR Raw Camera Access
   - Deprecations, and Removals
     - Remove non-ASCII characters in cookie domain attributes
-    - *Remove HTTP/2 push*
-- *Deprecations and removals in Chrome 106*
+    - **Remove HTTP/2 push**
+- **Deprecations and removals in Chrome 106**
   - https://developer.chrome.com/en/blog/deps-rems-106/
   - Remove non-ASCII characters in cookie domain attributes
   - Remove HTTP/2 push
-  - *Remove Persistent Quota*
+  - **Remove Persistent Quota**
 
 
 #### Intents
 
-- *Ship: CSS 'ic' Length Unit*
+- **Ship: CSS 'ic' Length Unit**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Pw4cLvAUGco
   - "水" 一文字の大きさを基準とした単位
     - 仕様を変えよう運動が起こって intent が止まった
@@ -129,7 +129,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LoCH4tthbsI
 - Ship: accent-color CSS property
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/WwYkLjbGhoA
-- *Ship: `tech()` function support in @font-face src: descriptor*
+- **Ship: `tech()` function support in @font-face src: descriptor**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/_9k-Ne8FRu4
   - font を選択する上で、必要になる機能(tech)をサポートしたものを選ばせるための機能
 - Ship: `AudioContext.setSinkId()`
@@ -140,14 +140,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/N_Y40YIHMtI
 - Prototype and Ship: SerialPort BYOB reader support
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/M5xrITaEs9o
-- *Prototype and Ship: Wildcards in Permissions Policy Origins*
+- **Prototype and Ship: Wildcards in Permissions Policy Origins**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/biH6g79KclA
   - サブドメインをワイルドカードにした Policy 範囲の指定ができる
   - これまではサブドメインを列挙する必要があった
   - これ A-C-A-O でも使えるのでは?
 - Implement and Ship: Rich PWA installation dialogs - desktop
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/HWXv_04ORyU
-- *Implement and Ship: User-Agent Reduction Phase 5 (platform and OsCpu reduction)*
+- **Implement and Ship: User-Agent Reduction Phase 5 (platform and OsCpu reduction)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kC-AeZ1fSdY
   - 2022 年 10 月から始まる UA Reduction Phase 5(デスクトップ OS のバージョン固定)の展開について
   - 古い Windows で影響が出るかもしれないので影響を見ながら少しずつ展開していく
@@ -173,7 +173,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Sp5UI7RaaGg
 - Experiment: TLS Encrypted Client Hello (ECH)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KrPqrd-pO2M
-- *Origin Trial on WebView moving to 10% stable roll-out*
+- **Origin Trial on WebView moving to 10% stable roll-out**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/qxZrsSCYJU0
 - Extend Experiment 2: Web app launch handler
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3jO8Ij2UZoI
@@ -199,7 +199,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bmEvNTLNPbU
 - Ready for Trial: TLS ClientHello extension permutation
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zdmNs2rTyVI
-- *Seeking feedback on `<model>` element proposal*
+- **Seeking feedback on `<model>` element proposal**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4sw9JYPub_Q
 - Reminder: Registration for BlinkOn 17 is open!
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0NtqfBwQc6E
@@ -221,7 +221,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/custom-properties-web-components/
   - Why is CrUX data different from my RUM data?
     - https://web.dev/crux-and-rum-differences/
-  - *New to the web platform in August*
+  - **New to the web platform in August**
     - https://web.dev/web-platform-08-2022/
     - Individual transforms
     - New media query syntax
@@ -239,7 +239,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google Developers Japan: Chrome 105 ベータ版 : カスタム ハイライト、フェッチ アップロード ストリーミングなど
     - https://developers-jp.googleblog.com/2022/08/chrome-105.html
 - chrome developer blog
-  - *Meet the top layer: a solution to z-index:10000*
+  - **Meet the top layer: a solution to z-index:10000**
     - https://developer.chrome.com/en/blog/what-is-the-top-layer/
   - DevTools Tips: How to inspect CSS grid
     - https://developer.chrome.com/en/blog/devtools-tips-7/
@@ -247,9 +247,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/third-party-scripts/
   - Changes to NavigateEvent in Chrome 105
     - https://developer.chrome.com/en/blog/navigateevent-intercept/
-  - *`@container` and `:has()`: two powerful new responsive APIs landing in Chromium 105*
+  - **`@container` and `:has()`: two powerful new responsive APIs landing in Chromium 105**
     - https://developer.chrome.com/en/blog/has-with-cq-m105/
-  - *`:has()`: the family selector*
+  - **`:has()`: the family selector**
     - https://developer.chrome.com/en/blog/has-m105/
   - DevTools Tips: Get actionable insights on your website's performance
     - https://developer.chrome.com/en/blog/devtools-tips-8/
@@ -257,13 +257,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/devtools-tips-12/
   - Web custom formats for the Async Clipboard API
     - https://developer.chrome.com/en/blog/web-custom-formats-for-the-async-clipboard-api/
-  - *Removing HTTP/2 Server Push from Chrome*
+  - **Removing HTTP/2 Server Push from Chrome**
     - https://developer.chrome.com/en/blog/removing-push/
   - Open sourcing the FLEDGE Key/Value service
     - https://developer.chrome.com/en/blog/open-sourcing-fledge-key-value-service/
   - FLEDGE services for Chrome and Android
     - https://developer.chrome.com/en/blog/fledge-service-overview/
-  - *Prepare for User-Agent Reduction changes in October*
+  - **Prepare for User-Agent Reduction changes in October**
     - https://developer.chrome.com/en/blog/user-agent-reduction-oct-2022-updates/
     - 10 月の M107 から Phase 5 がロールアウトされていく
     - デスクトップの OS バージョンが固定される
@@ -273,7 +273,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/angular-image-directive/
   - Compression and decompression in the browser with the Compression Streams API
     - https://developer.chrome.com/en/blog/compression-streams-api/
-  - *Deprecating and removing Web SQL*
+  - **Deprecating and removing Web SQL**
     - https://developer.chrome.com/en/blog/deprecating-web-sql/
   - Case Study: Better Angular Debugging with DevTools
     - https://developer.chrome.com/en/blog/devtools-better-angular-debugging/
@@ -300,13 +300,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Firefox 104.0, See All New Features, Updates and Fixes*
+- **Firefox 104.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/104.0/releasenotes/
-- *Firefox 104 for developers - Mozilla | MDN*
+- **Firefox 104 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/104
     - `Array.findLast()` / `Array.findLastIndex()`
     - `element.focus({ focusVisible })`
-- *1750972 - Re-enable same-site schemeful*
+- **1750972 - Re-enable same-site schemeful**
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1750972
   - Firefox 104 で Schemeful SameSite が再び有効に
 
@@ -315,9 +315,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Prototype and Ship: TextDecoderStream and TextEncoderStream
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/QtcGTx8gJWQ
-- *Prototype: COLRv1 (enhanced color font format) support*
+- **Prototype: COLRv1 (enhanced color font format) support**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/u7gjLLRkfy0
-- *Prototype: JavaScript decorators proposal*
+- **Prototype: JavaScript decorators proposal**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/wAomN2An7NQ
 - Prototype: OriginPrivateFileSystem
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/gc4BxcgkN7E
@@ -333,11 +333,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/R7ZXzdEXU4Q
 - Firefox Security Newsletter/FSN-2022-Q2 - MozillaWiki
   - https://wiki.mozilla.org/Firefox_Security_Newsletter/FSN-2022-Q2
-- *Origin Trials - MozillaWiki*
+- **Origin Trials - MozillaWiki**
   - https://wiki.mozilla.org/Origin_Trials
 - SpiderMonkey Newsletter (Firefox 104-105)
   - https://spidermonkey.dev/blog/2022/08/29/newsletter-firefox-104-105.html
-- *Positive, neutral, and negative positions*
+- **Positive, neutral, and negative positions**
   - https://github.com/mozilla/standards-positions/pull/680
 
 
@@ -348,13 +348,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Release Notes for Safari Technology Preview 151*
+- **Release Notes for Safari Technology Preview 151**
   - https://webkit.org/blog/13093/release-notes-for-safari-technology-preview-151/
   - CSS
-    - *Enabled support for the color-mix() function (252716@main)*
-    - *Enabled support for specifying the interpolation color space in CSS gradients (252716@main)*
-    - *Added support for the scan media query (252717@main)*
-    - *Added a basic implementation of :dir (252737@main)*
+    - **Enabled support for the color-mix() function (252716@main)**
+    - **Enabled support for specifying the interpolation color space in CSS gradients (252716@main)**
+    - **Added support for the scan media query (252717@main)**
+    - **Added a basic implementation of :dir (252737@main)**
   - Rendering
     - Added dark mode support for plain text documents (252673@main)
     - Added a check for WebGL Extensions in `getIndexedParameter()` and `getSamplerParameter()` (252895@main)
@@ -362,27 +362,27 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for legacy VP8 and VP9 codec names (252535@main)
     - Added missing default CSS style for text and background colors for WebVTT (252464@main)
   - JavaScript
-    - *Removed ordering check for Intl.NumberFormat, Intl.DateTimeFormat, and Intl.PluralRules range functions (252911@main)*
+    - **Removed ordering check for Intl.NumberFormat, Intl.DateTimeFormat, and Intl.PluralRules range functions (252911@main)**
   - Web API
     - Aligned `StorageEvent.initStorageEvent()` with the HTML specification (252521@main)
     - Aligned XHR aborting with the specification (252611@main)
   - Web Components
     - Updated shadow DOM and dialog element focusing to the latest spec (252959@main)
     - Updated delegatesFocus to match the latest spec (252901@main)
-- *Release Notes for Safari Technology Preview 152*
+- **Release Notes for Safari Technology Preview 152**
   - https://webkit.org/blog/13137/release-notes-for-safari-technology-preview-152/
   - JavaScript
-    - *Enabled and renamed `Array#groupBy` to `Array#group` and `Array#groupByToMap` to `Array#groupToMap` (253101@main)*
+    - **Enabled and renamed `Array#groupBy` to `Array#group` and `Array#groupByToMap` to `Array#groupToMap` (253101@main)**
   - Web API
     - Implemented Compression Streams API (253093@main)
 
 
 #### Other
 
-- *Using `:has()` as a CSS Parent Selector and much more*
+- **Using `:has()` as a CSS Parent Selector and much more**
   - https://webkit.org/blog/13096/css-has-pseudo-class/
   - `:has()` が革命的だという話
-- *WebKit on GitHub!*
+- **WebKit on GitHub!**
   - https://webkit.org/blog/13140/webkit-on-github/
   - Git と GitHub へ移行した
   - 時代遅れの CHANGELOG ファイルから git log に移った
@@ -399,13 +399,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Version 104.0.1293.47: August 5 Microsoft Edge release notes for Stable Channel*
+- **Version 104.0.1293.47: August 5 Microsoft Edge release notes for Stable Channel**
   - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel#version-1040129347-august-5
     - Enhanced security mode が導入
     - Strict にすると JIT が無効になる
     - Browse more safely with Microsoft Edge | Microsoft Docs
     - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-security-browse-safer
-- *The new sidebar in Microsoft Edge helps you multitask smarter*
+- **The new sidebar in Microsoft Edge helps you multitask smarter**
   - https://blogs.windows.com/msedgedev/2022/09/01/microsoft-edge-sidebar-multitask-smarter/
 
 
@@ -414,14 +414,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *"A friendly reminder that OT tokens for Chrome also work in Edge"*
+- **"A friendly reminder that OT tokens for Chrome also work in Edge"**
   - https://twitter.com/slightlylate/status/1559623799762407424
   - Chrome の Origin Trial のトークンは Edge でも動くらしい
 - Passkeys - Syncable WebAuthN credentials - text/plain
   - https://textslashplain.com/2022/08/05/passkeys/
 - Understanding Browser Channels - text/plain
   - https://textslashplain.com/2022/08/04/understanding-browser-channels/
-- *Certificate Revocation in Microsoft Edge - text/plain*
+- **Certificate Revocation in Microsoft Edge - text/plain**
   - https://textslashplain.com/2022/08/01/certificate-revocation-in-microsoft-edge/
 - Basic Authentication Deprecation in Exchange Online - September 2022 Update - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-deprecation-in-exchange-online-september/ba-p/3609437
@@ -432,7 +432,7 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Draft
 
 - Recommendation
-  - *Geolocation API is a W3C Recommendation*
+  - **Geolocation API is a W3C Recommendation**
     - https://www.w3.org/blog/news/archives/9660
     - Living Standard にしたいので "Level N" といった表記をやめた
 - Proposed Recommendation
@@ -448,9 +448,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *TPAC topics -- please contribute to this list*
+- **TPAC topics -- please contribute to this list**
   - https://lists.w3.org/Archives/Public/public-webappsec/2022Aug/0005.html
-- *[css-values-4][css-writing-modes-4] Revisit decision to use 永 instead of 水 as the ic unit*
+- **[css-values-4][css-writing-modes-4] Revisit decision to use 永 instead of 水 as the ic unit**
   - https://github.com/w3c/csswg-drafts/issues/7577
   - `ic` が参照する文字を "水" から "永" に変えようという運動
     - Chrome の intent を見て違和感を持った中国の開発者が SNS で盛り上がった
@@ -459,7 +459,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Level 3 は勧告もしているので、変更にはプロセス的にも負荷のある作業
   - Chromium では仕様の変更には賛成するが、"水" と "永" で幅が変わることはないことから、内部的な実装は "水" のままにするらしい
   - 仕様と実装がばらけるのでそれは避けたいという話になっている
-- *[selectors] The forgiving nature of :has breaks jQuery when used with a complex :has selector*
+- **[selectors] The forgiving nature of :has breaks jQuery when used with a complex :has selector**
   - https://github.com/w3c/csswg-drafts/issues/7676
   - Chrome 105 で `:has()` が有効になったところ、 jQuery が壊れた
   - jQuery は昔から `:has()` セレクタや、`:contains` などを独自拡張として持っていた
@@ -520,11 +520,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - httpwg
   - https://lists.w3.org/Archives/Public/ietf-http-wg/
   - https://github.com/httpwg/wg-materials/
-  - *RFC 9292 on Binary Representation of HTTP Messages*
+  - **RFC 9292 on Binary Representation of HTTP Messages**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022JulSep/0128.html
   - Draft minutes from IETF 114 from Tommy Pauly
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022JulSep/0054.html
-  - *Call for Adoption: draft-tus-httpbis-resumable-uploads-protocol-02*
+  - **Call for Adoption: draft-tus-httpbis-resumable-uploads-protocol-02**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022JulSep/0055.html
 - quicwg
   - https://mailarchive.ietf.org/arch/browse/quic/
@@ -558,7 +558,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Cloudflare の不正利用に対するポリシーとその取り組み
     - https://blog.cloudflare.com/cloudflares-abuse-policies-and-approach-ja-jp/
 - Developers
-  - *Running Zig with WASI on Cloudflare Workers*
+  - **Running Zig with WASI on Cloudflare Workers**
     - https://blog.cloudflare.com/running-zig-with-wasi-on-cloudflare-workers/
 - Deep Dive
   - Deep dives & how the Internet works
@@ -573,13 +573,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *「Apple でログイン」によるログイン機能廃止のお知らせ|コインチェック株式会社*
+- **「Apple でログイン」によるログイン機能廃止のお知らせ|コインチェック株式会社**
   - https://corporate.coincheck.com/news/Zj9osP2j
 
 
 ### 周辺動向
 
-- *All Change, Still Purple. | by Daniel Appelquist*
+- **All Change, Still Purple. | by Daniel Appelquist**
   - https://medium.com/@torgo/all-change-still-purple-b7430e84afa
 
 

@@ -18,13 +18,13 @@ guest: [@araya](https://twitter.com/arayaryoma)
 ### Chrome 動向
 
 - Stable: 78
-- *Chrome Dev Summit 2019*
+- **Chrome Dev Summit 2019**
   - https://developer.chrome.com/devsummit/
   - Chromium Blog: Chrome Dev Summit 2019: Elevating the Web Together
     - https://blog.chromium.org/2019/11/chrome-dev-summit-2019-elevating-web.html
   - Highlights from Chrome Dev Summit 2019
     - https://bitsofco.de/chrome-dev-summit-2019/
-  - *Keynote*
+  - **Keynote**
     - https://www.youtube.com/watch?v=F1UP7wRCPH8
     - LayoutNG
       - 約 10 %のレイアウトバグの修正
@@ -51,7 +51,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://www.youtube.com/watch?v=vZUDAdIozXM
   - Web as a building block for user experience
     - https://www.youtube.com/watch?v=2x046UBf2xI
-  - *HTML isn't done!*
+  - **HTML isn't done!**
     - https://www.youtube.com/watch?v=ZFvPLrKZywA
     - Edge & Chrome form control collaboration
       - chrome://flags/#form-controls-refresh
@@ -65,13 +65,13 @@ guest: [@araya](https://twitter.com/arayaryoma)
       - select, option を拡張が拡張できるように今後していく
     - New components
       - Display Locking is available in Origin Trial
-  - *Intent to explain: Demystifying the Blink shipping process*
+  - **Intent to explain: Demystifying the Blink shipping process**
     - https://www.youtube.com/watch?v=y3EZx_b-7tk
     - Intent to Implement と読んでいたものを Intent to Prototype に変更
       - フラグ付きで試験的に提供するだけで、強いコミットメントではないことを明確にしたかった
   - Bridging the native app gap
     - https://www.youtube.com/watch?v=JKVZMqpiY7w
-  - *PWA and the installable web*
+  - **PWA and the installable web**
     - https://www.youtube.com/watch?v=Hp_dQvQyYEI
     - OYO の事例 by Mukund, Product Manager for OYO Consumer Experience
       - もとのサイトに比べて、 Chrome の PWA では 4.4 倍、 Trusted Web Activity では 6.6 倍の conversion があった。
@@ -88,7 +88,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://www.youtube.com/watch?v=WxXF17k1dko
     - SMS Receiver API
     - Web Authentication API
-  - *Protecting users on a thriving web*
+  - **Protecting users on a thriving web**
     - https://www.youtube.com/watch?v=WnCKlNE52tc
     - ユーザーがどこにいるか、ウェブサイトがユーザーから何を得ているかを明確にすることがゴール
     - IDN spoofing の対策
@@ -126,22 +126,22 @@ guest: [@araya](https://twitter.com/arayaryoma)
 - BlinkOn11
   - Video
     - https://www.youtube.com/playlist?list=PL9ioqAuyl6UI6MmaMnRWHl2jHzflPcmA6
-  - *Keynote*
+  - **Keynote**
     - 日本でのモバイルデータ通信の紹介
       - 月末になるにつれ、 4G 対応デバイスでの Web ページのロード数が減少する
       - 1 ページあたりのロード時間は増加する
     - Chromium: The past 6 months
 - Updates
-  - *Chromium Blog: Chrome 79 Beta: Virtual Reality Comes to the Web*
+  - **Chromium Blog: Chrome 79 Beta: Virtual Reality Comes to the Web**
     - https://blog.chromium.org/2019/10/chrome-79-beta-virtual-reality-comes-to.html
-    - *Virtual Reality Comes to the Web*
+    - **Virtual Reality Comes to the Web**
     - Support for rendersubtree Attribute
     - Wake Lock API based on Promises
     - Adaptive Icon Display for Installed PWAs on Android
     - Autofocus Support for any Focusable HTML/SVG Element
     - Compute img/video Aspect Ratio from Width Or Height HTML Attributes
-    - *font-optical-sizing*
-    - *list-style-type: `<string>`*
+    - **font-optical-sizing**
+    - **list-style-type: `<string>`**
     - Reject `Worklet.addModule()` with a More Specific Error
     - Retrieve a Service Worker Object Corresponding to a Worker Itself
     - Stop Evaluating Script Elements Moved Between Documents During Fetching
@@ -158,10 +158,10 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - Ship: Default Accessibility Semantics for Custom Elements (without relationship properties)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/BcWAX13du9w/wlp9E1YGEAAJ
     - custom element に ElementInternals I/F を経由して role や prop などを追加できる
-  - *Ship: CSS intrinsic-size*
+  - **Ship: CSS intrinsic-size**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CQVTVOYx1XI/zSEBfVhKBQAJ
     - 仕様上 Not Ready for Implementation になってるのに出ている
-    - コメントで指摘されており、この intents は *撤回された*
+    - コメントで指摘されており、この intents は **撤回された**
   - Ship: MediaCapabilities: encrypted (EME) decodingInfo()
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0yw8CuNaQEw/ppTxJme2EQAJ
   - Ship: DOMMatrix setTransform/getTransform on OffscreenCanvas
@@ -170,13 +170,13 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XKNtAVyO4AY/ujOrvaYsBwAJ
   - Ship: getInstalledRelatedApps
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wB7mDJqrUZ8/Ga2LMxdfBwAJ
-  - *Ship: Contacts API*
+  - **Ship: Contacts API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7UX5LNeAaCk/JBWfbrheBwAJ
   - Ship: [Payments] shipping address and contact info delegation
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9sZrotql9I8/JIGupWGaCAAJ
   - Ship: ActiveText, Field, and FieldText system colors
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/zv6k2X7Wr1M/Xu2GcClIBgAJ
-  - *Ship: JS String.prototype.replaceAll*
+  - **Ship: JS String.prototype.replaceAll**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/raep1X9R_SE/V8ofHrBdAgAJ
   - Ship: HTMLVideoElement.getVideoPlaybackQuality()
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fgE0Ua9ZSU8/3XM9bU1LAgAJ
@@ -192,7 +192,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/30mN_Ec4JBY/R3VKx-9mAQAJ
   - Prototype and Ship: ResizeObserver updates
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_j6K_xSxWj0/fbn4kzx9AgAJ
-  - *Implement and Ship: SubmitEvent interface*
+  - **Implement and Ship: SubmitEvent interface**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AZO9T-eHy4E/nv4aQN9oAwAJ
     - submit event に submitter (submit した button etc) が入る
   - Implement and Ship: buffered flag for longtasks
@@ -203,7 +203,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/yYJ0f99smmQ/s7-CKpNmEAAJ
   - Implement: fetch() upload streaming
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hqzIf3gdahs/SzVoOzenBQAJ
-  - *Implement: Window Placement*
+  - **Implement: Window Placement**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SFyBx9MrGRo/ucdX5HGWBQAJ
   - Implement: CSS Spatial Navigation (only spatialNavigationSearch API)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Mjm4FzfxekY/YR8d2FdfBwAJ
@@ -215,10 +215,10 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AJpqos6iG5Y/7pGU2RRcBAAJ
 - Change:
 - Unship:
-  - *Unship: HPKP (dynamic key pinning)*
+  - **Unship: HPKP (dynamic key pinning)**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/AyMlrNHYepE/B5bgjjsiBwAJ
 - Remove:
-  - *Renaming Intent to Implement => Intent to Prototype*
+  - **Renaming Intent to Implement => Intent to Prototype**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-cO4R73AHos/EoBtspToBQAJ
   - Deprecate/Remove: [un]registerProtocolHandler() APIs in non-secure contexts
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0bfCDijaUzs/kBVBFK4uCQAJ
@@ -233,9 +233,9 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - V8 release v7.9 · V8
     - https://v8.dev/blog/v8-release-79
 - Other
-  - *Virtual reality comes to the web*
+  - **Virtual reality comes to the web**
     - https://web.dev/vr-comes-to-the-web/
-  - *Google Developers Blog: 10 shortcuts made possible by .new*
+  - **Google Developers Blog: 10 shortcuts made possible by .new**
     - https://developers.googleblog.com/2019/10/10-shortcuts-made-possible-by-new.html
     - Playlist.new: Spotify.
     - Story.new: Medium
@@ -253,7 +253,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://blog.chromium.org/2019/11/intent-to-explain-demystifying-blink.html
   - Chromium Blog: Moving towards a faster web
     - https://blog.chromium.org/2019/11/moving-towards-faster-web.html
-  - *Chromium Blog: Making new experiences possible on the web*
+  - **Chromium Blog: Making new experiences possible on the web**
     - https://blog.chromium.org/2019/11/making-new-experiences-possible-on-web.html
     - WebAssembly
     - Advanced Capabilities
@@ -265,7 +265,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://developers.google.com/web/fundamentals/codelabs/web-serial/
   - Creating Delightful User Experiences Using AMP On Adobe Experience Manager
     - https://blog.amp.dev/2019/11/19/creating-delightful-user-experiences-using-amp-on-adobe-experience-manager/
-  - *Rendering Weekly, November 19, 2019*
+  - **Rendering Weekly, November 19, 2019**
     - https://groups.google.com/a/chromium.org/forum/#!msg/layout-dev/-CX18RgwMis/YQhiuSzCAwAJ
     - 議事録っぽい?続くのだろうか?
   - The Chromium Chronicle: GWP-ASan: Detect bugs in the wild
@@ -276,7 +276,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 
 - Stable: 70
 - Updates
-  - *Upcoming notification permission changes in Firefox 72*
+  - **Upcoming notification permission changes in Firefox 72**
     - https://hacks.mozilla.org/2019/11/upcoming-notification-permission-changes-in-firefox-72/
     - https://blog.mozilla.org/futurereleases/2019/11/04/restricting-notification-permission-prompts-in-firefox/
     - Permission Prompt は非常に人気がなかった
@@ -290,21 +290,21 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - Extensions in Firefox 71
     - https://blog.mozilla.org/addons/2019/11/12/extensions-in-firefox-71/
 - Intents
-  - *Ship: Add image/webp to default Accept header*
+  - **Ship: Add image/webp to default Accept header**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/UTHTGok5x4o/ZGRKyFLAAQAJ
   - Ship: Require user interaction for notification permission prompts
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Mezd5pLjnJU/jaqcJyngAgAJ
-  - *Ship: CSS Shadow Parts.*
+  - **Ship: CSS Shadow Parts.**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/dWnXJtFKY0I/WiwbWH8MAAAJ
   - Ship: [css-transforms-2] Individual Transform Properties (i.e. translate, rotate, scale)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/4oyeCHOqt4I/ebrHWT8iBwAJ
   - Ship: motion path module level 1
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/nOOIRsuxvuc/spfjWTwiBwAJ
-  - *Ship: String.prototype.replaceAll()*
+  - **Ship: String.prototype.replaceAll()**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/YhvEXIF3SIw/Mn8qXjVTAAAJ
   - Unship: HTTP Refresh header support when the content is handled as a download
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/MIiej_8ajVQ/hryqeRa5AQAJ
-  - *Unship: DTLS 1.0 for WebRTC*
+  - **Unship: DTLS 1.0 for WebRTC**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/wUoBf0FqqcE/d2QvOvCQBQAJ
   - Prototype: Delegate and restrict permission in third party context
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/BdFOMAuCGW8/-fqk-MWIAQAJ
@@ -317,7 +317,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://www.fxsitecompat.dev/en-CA/docs/2019/vibration-api-can-no-longer-be-used-from-cross-origin-iframe/
   - DH algorithm support has been removed from Web Crypto API
     - https://www.fxsitecompat.dev/en-CA/docs/2019/dh-algorithm-support-has-been-removed-from-web-crypto-api/
-  - *HTTP Public Key Pinning is no longer supported*
+  - **HTTP Public Key Pinning is no longer supported**
     - https://www.fxsitecompat.dev/en-CA/docs/2019/http-public-key-pinning-is-no-longer-supported/
   - image/webp has been added to default HTTP Accept header
     - https://www.fxsitecompat.dev/en-CA/docs/2019/image-webp-has-been-added-to-default-http-accept-header/
@@ -353,7 +353,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 
 - Stable:13.0.3
 - Updates
-  - *Release Notes for Safari Technology Preview 96*
+  - **Release Notes for Safari Technology Preview 96**
     - https://webkit.org/blog/9658/release-notes-for-safari-technology-preview-96/
     - Enabled the Web Animations JavaScript API by default (r251237)
     - Implemented AuthenticatorCancel (r251295)
@@ -368,10 +368,10 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - Changed :part rules to be able to override the style attribute (r251285)
     - Removed wasmAwareLexicalGlobalObject (r251529)
     - Implemented EnterPictureInPictureEvent support (r251530)
-    - *Added runtime logging for the Picture-in-Picture API (r251458)*
+    - **Added runtime logging for the Picture-in-Picture API (r251458)**
     - Added support for callbacks for manifest events (r251626)
     - Fixed MP4 video element broken with Service Worker (r251594)
-    - *update BF Cache*
+    - **update BF Cache**
   - WebGPU and WSL in Web Inspector
     - https://webkit.org/blog/9624/webgpu-and-wsl-in-web-inspector/
 - Other
@@ -430,12 +430,12 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - Proposed W3C Charter: Web of Things Working Group
     - http://lists.w3.org/Archives/Public/public-new-work/2019Nov/0005.html
 - Other
-  - *Contract for the Web*
+  - **Contract for the Web**
     - https://contractfortheweb.org/
     - https://blog.mozilla.org/blog/2019/11/28/mozilla-and-the-contract-for-the-web/
   - W3C Website redesign, phase 1 RFP
     - https://www.w3.org/blog/news/archives/8030
-  - *PSA: "same site" definition has changed and moved*
+  - **PSA: "same site" definition has changed and moved**
     - http://lists.w3.org/Archives/Public/public-webappsec/2019Nov/0004.html
     - Mike West の提案で Same Site の定義を変えることに
     - "Same site" が scheme を考慮するようになる。考慮しない場合 "schemelessly same site"
@@ -502,7 +502,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
       - https://github.com/quicwg/wg-materials/blob/master/ietf106/quic-interop-runner.pdf
     - Quick QUIC Update
       - https://datatracker.ietf.org/meeting/106/materials/slides-106-tsvarea-quick-quic-update-mark-nottingham-00
-  - *wpack*
+  - **wpack**
     - minutes
       - https://datatracker.ietf.org/meeting/106/materials/minutes-106-wpack-00
     - Web Packaging (WPACK) Bof @ IETF106
@@ -515,18 +515,18 @@ guest: [@araya](https://twitter.com/arayaryoma)
       - https://datatracker.ietf.org/meeting/106/materials/slides-106-wpack-embedded-use-case-00
     - AMP SXG
       - https://datatracker.ietf.org/meeting/106/materials/slides-106-wpack-amp-use-cases-00
-    - *Unsigned Bundles Sharing*
+    - **Unsigned Bundles Sharing**
       - https://datatracker.ietf.org/meeting/106/materials/slides-106-wpack-bundle-sharing-00
       - Sign しない bundle の有用性の話
       - Origin にアクセスしないと完全性はわからない
       - それでもネットワークが悪い場所では有用
       - ブラウザの UI で wbn 作り、隣の人と共有
-    - *Web Packaging Design*
+    - **Web Packaging Design**
       - https://datatracker.ietf.org/meeting/106/materials/slides-106-wpack-wpack-proposed-solution-01
       - 特に Origin Trust (署名や検証、証明書の期限)をどうするかの話
       - 証明書を 7 日で切る、 DNS AAC を送る、 Credential は載せないなど
-  - *webtrans*
-    - *minutes*
+  - **webtrans**
+    - **minutes**
       - https://github.com/DavidSchinazi/webtrans-wg-materials/blob/master/ietf106/minutes.md
       - https://datatracker.ietf.org/meeting/106/materials/minutes-106-webtrans-02
       - 「WebSocket は、簡単に書ける API だったけど、簡単に運用できるものではなかった、その失敗を繰り返したくないので API 慎重にやろう」
@@ -636,10 +636,10 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://annevankesteren.nl/2019/10/encapsulation-theory
 - bye: FTP Support Is Going Away | text/plain
   - https://textslashplain.com/2019/11/04/bye-ftp-support-is-going-away/
-- *wasi: introduce initial WASI support by cjihrig · Pull Request #30258 · nodejs/node*
+- **wasi: introduce initial WASI support by cjihrig · Pull Request #30258 · nodejs/node**
   - https://github.com/nodejs/node/pull/30258
   - Node に WASI サポートの PR
-- *DNS Wars*
+- **DNS Wars**
   - https://pc.nanog.org/static/published/meetings/NANOG77/2033/20191028_Vixie_Keynote_Dns_Wars__v1.pdf
   - https://www.potaroo.net/ispcol/2019-11/dnswars.html
   - DNS 戦争の歴史
@@ -649,9 +649,9 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://www.pika.dev/code
   - CDN などをやってる Pika が modern な code editor を作っているらしい
   - Early access を募集中
-- *The Maturing of QUIC*
+- **The Maturing of QUIC**
   - https://www.fastly.com/blog/maturing-of-quic
-- *Visual Studio Online - Web ベースの IDE と共同コード エディター*
+- **Visual Studio Online - Web ベースの IDE と共同コード エディター**
   - https://visualstudio.microsoft.com/ja/services/visual-studio-online/?rr=https%3A%2F%2Fweekly.statuscode.com%2Fissues%2F241
 - Facebook Is Still Failing at Ad Transparency (No Matter What They Claim) - The Mozilla Blog
   - https://blog.mozilla.org/blog/2019/10/31/facebook-is-still-failing-at-ad-transparency-no-matter-what-they-claim/
@@ -659,7 +659,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://blog.cloudflare.com/even-faster-connection-establishment-with-quic-0-rtt-resumption/
 - Web-to-WebApp Communication: Custom Scheme Handlers | text/plain
   - https://textslashplain.com/2019/11/21/web-to-webapp-communication-custom-scheme-handlers/
-- *Flow - Ekioh が開発している新しい Web ブラウザ*
+- **Flow - Ekioh が開発している新しい Web ブラウザ**
   - https://www.ekioh.com/flow-browser/
   - マルチスレッド処理と GPU を駆使して他のブラウザの 2 倍以上のフレームレートを実現する
   - レンダリングエンジンはフルスクラッチ、 JS エンジンは SpiderMonkey

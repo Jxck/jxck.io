@@ -85,7 +85,7 @@ guest: [@cubicdaiya](https://twitter.com/cubicdaiya)
 ### QUIC はどうか?(58:10~)
 
 - [QUIC](http://blog.chromium.org/2013/06/experimenting-with-quic.html)
-- *Google はインターネットを fork しようとしている*
+- **Google はインターネットを fork しようとしている**
 
 
 ### Nginx 1.9 の新機能(1:05:10~)

@@ -22,7 +22,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Chromium Blog: Chrome 100 Beta: Reduced User-Agent Strings, Multi-Screen Window Placement, and More*
+- **Chromium Blog: Chrome 100 Beta: Reduced User-Agent Strings, Multi-Screen Window Placement, and More**
   - https://blog.chromium.org/2022/03/chrome-100-beta-reduced-user-agent.html
   - Last Version for Unreduced User-Agent String
   - Multi-Screen Window Placement
@@ -42,12 +42,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - Web NFC: NDEFReader makeReadOnly()
     - WebTransport serverCertificateHashes Option
   - Deprecations, and Removals
-- *New in Chrome 99*
+- **New in Chrome 99**
   - https://developer.chrome.com/en/blog/new-in-chrome-99/
   - Chrome 100 and Firefox 100
   - CSS Cascade Layers
   - showPicker() for input elements
-- *What's New In DevTools (Chrome 99)*
+- **What's New In DevTools (Chrome 99)**
   - https://developer.chrome.com/en/blog/new-in-devtools-99/
   - Throttling WebSocket requests
   - New Reporting API pane in the Application panel
@@ -92,13 +92,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-t-f7I6VvOI/m/Hu4J1brbDQAJ
 - Ship: Make 'true' a truthy value for window.open boolean features
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ePJ4GE6VzVc/m/urs3-4rHDAAJ
-- *Ship: Priority Hints*
+- **Ship: Priority Hints**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/WS_ZBvTyvM4/m/xi-Xl4u9DAAJ
 - Ship: USBDevice forget()
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/pSM2W0TtKEI/m/LDcq9NhuAgAJ
 - Ship: Region Capture
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/eZE9LTJMUlk
-- *Ship: hidden=until-found HTML attribute and beforematch event*
+- **Ship: hidden=until-found HTML attribute and beforematch event**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/e8n8Z5dzMs0
 - Ship: MediaCapabilities API for WebRTC
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/loWlekYWswQ
@@ -118,7 +118,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/sxZ4iCrdcb0
 - Implement and Ship: CSS Values Level 4 Calc Simplification and Serialization
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LCDtbrKnH9M
-- *Prototype: Cookie Expires/Max-Age attribute upper limit*
+- **Prototype: Cookie Expires/Max-Age attribute upper limit**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Pm7Or-u27js
 - Prototype: Mediacapture-transform VideoTrackGenerator
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/npJUFM5Kn4Y/m/itP_KwFzAgAJ
@@ -126,10 +126,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/59uTw_dxM3M/m/vF9lF9BVAgAJ
 - Prototype: CSS object-view-box and object-overflow
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0ynSPqb-k04
-- *Prototype: @scope*
+- **Prototype: @scope**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/O2xZZT_xCZM
   - CSS Cascade Level 6 で追加される Scoped styles の実装
-- *Protype: Back/Forward Cache NotRestoredReason API*
+- **Protype: Back/Forward Cache NotRestoredReason API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/leFmfcpSOGM
 - Prototype: Range API improvements for rendered text content
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3yKF8pW6r_k
@@ -153,7 +153,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JPD001kqeck
 - Ready for Trial: Increased max nesting level for setTimeout(0)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-TjeYs7shTQ
-- *Prototype: HTMLPopupElement - `<popup>`*
+- **Prototype: HTMLPopupElement - `<popup>`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/9y-Thg9UCxY
   - 2021/01 のスレッドへの update
   - 元々は `<popup>` 要素を I2P する予定だった
@@ -183,7 +183,7 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Other
 
 - web.dev
-  - *Interop 2022: browsers working together to improve the web for developers*
+  - **Interop 2022: browsers working together to improve the web for developers**
     - https://web.dev/interop-2022/
   - New to the web platform in February
     - https://web.dev/web-platform-02-2022/
@@ -237,11 +237,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: WritableStreams and ReadableStream's pipeTo method*
+- **Ship: WritableStreams and ReadableStream's pipeTo method**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ewGRRA4n3As
 - Ship: WebAssembly exception-handling
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/8YQ-YKantdk
-- *Prototype: content-visibility: hidden*
+- **Prototype: content-visibility: hidden**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/kVs-TVhreWQ
 - Prototype: WebAssembly tail calls
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/6BIXCsOmJk8
@@ -252,11 +252,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/O8xtLi1W0Q8
 - PSA: Theming changes on Nightly (for Firefox 100)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/LRc4tWKKHEg
-- *SpiderMonkey Newsletter (Firefox 98-99)*
+- **SpiderMonkey Newsletter (Firefox 98-99)**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/T3vH107vkuA
     - Contributors Rolf Glomsrud and Sigurd Sesta implemented Array grouping (Nightly-only).
     - Igalia implemented the Tuple.prototype methods from the Record and Tuple proposal (disabled by default).
-- *Updates to standardization requirements for new features*
+- **Updates to standardization requirements for new features**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/fdrUZtYyOH0
   - 実装する機能をちゃんと標準化するためにも標準化するグループを明記せよ的な
 - Firefox Security & Privacy Newsletter 2021 Q4
@@ -265,11 +265,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *A new year, a new MDN - Mozilla Hacks - the Web developer blog*
+- **A new year, a new MDN - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/
-- *Mozilla and Open Web Docs working together on MDN - Mozilla Hacks - the Web developer blog*
+- **Mozilla and Open Web Docs working together on MDN - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2022/03/mozilla-and-open-web-docs-working-together-on-mdn/
-- *Announcing Interop 2022 - Mozilla Hacks - the Web developer blog*
+- **Announcing Interop 2022 - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2022/03/interop-2022/
 - Firefox Extension Helps Bring Movie Magic To Theaters Near You
   - https://blog.mozilla.org/en/products/firefox/extensions-addons/firefox-extension-helps-bring-movie-magic-to-theaters-near-you/
@@ -291,7 +291,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2022/03/11/these-weeks-in-firefox-issue-111/
 - These Weeks In Firefox: Issue 112 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/03/24/these-weeks-in-firefox-issue-112/
-- *The web is for everyone: Our vision for the evolution of the web*
+- **The web is for everyone: Our vision for the evolution of the web**
   - https://blog.mozilla.org/en/mozilla/mozilla-webvision-future-of-web/
   - https://webvision.mozilla.org/full/
   - Mozilla これまでやってきた活動の方針などを改めて明文化した感じ
@@ -300,7 +300,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - パフォーマンス、アクセシビリティ
     - 英語以外の言語を使う人にも
     - centralization, monetization については "What We Don't Know"
-- *Introducing MDN Plus: Make MDN your own - Mozilla Hacks - the Web developer blog*
+- **Introducing MDN Plus: Make MDN your own - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/#countries
   - https://developer.mozilla.org/en-US/plus
   - MDN の有料サブスクサービス
@@ -318,7 +318,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Safari 15.4 Release Notes | Apple Developer Documentation
   - https://developer.apple.com/documentation/safari-release-notes/safari-15_4-release-notes
-- *New WebKit Features in Safari 15.4*
+- **New WebKit Features in Safari 15.4**
   - https://webkit.org/blog/12445/new-webkit-features-in-safari-15-4/
   - HTML
     - lazyload
@@ -365,30 +365,30 @@ guest: [@myakura](https://twitter.com/myakura)
     - Fullscreen API
   - Safari Web Extensions
   - Web Inspector
-- *Release Notes for Safari Technology Preview 141*
+- **Release Notes for Safari Technology Preview 141**
   - https://webkit.org/blog/12434/release-notes-for-safari-technology-preview-141/
   - CSS
-    - *Enabled support for overflow: clip (r288973)*
-    - *Implemented CSS overscroll-behavior for asynchronous scrolling on macOS (r288777)*
+    - **Enabled support for overflow: clip (r288973)**
+    - **Implemented CSS overscroll-behavior for asynchronous scrolling on macOS (r288777)**
   - JS
     - Added support for the WASM branch hinting proposal (r288758, r288761)
-    - *Added support for the import assertion syntax behind a flag (r288473)*
+    - **Added support for the import assertion syntax behind a flag (r288473)**
   - WebAPI
-    - *Implemented `AbortSignal.timeout()` (r289058)*
+    - **Implemented `AbortSignal.timeout()` (r289058)**
   - WebAuthn
     - Added authenticator attachment to PublicKeyCredential (r288622)
   - Content Security Policy
     - Implemented wasm-unsafe-eval (r289022)
-- *Release Notes for Safari Technology Preview 142*
+- **Release Notes for Safari Technology Preview 142**
   - https://webkit.org/blog/12522/release-notes-for-safari-technology-preview-142/
   - Web Inspector
   - CSS Subgrid
-    - *Enabled subgrid by default (r290111)*
+    - **Enabled subgrid by default (r290111)**
     - Added accounting for subgrid margin, border, and padding when sizing (r290096)
     - Added support for parsing subgrid in grid-template-columns and grid-template-row (r289722)
     - Implemented getComputedStyle for subgrids (r289993)
   - CSS Container Queries
-    - *Enabled CSS Container Queries by default (r290025)*
+    - **Enabled CSS Container Queries by default (r290025)**
     - Added query container tracking so they can be invalidated on size change (r289457)
     - Added support for all size features (r289838)
     - Added support for full range notation in size queries (r290037)
@@ -401,7 +401,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Matched container queries correctly in non-rendered subtrees (r290205
   - CSS
     - Enabled CSS Motion Path by default (r290071)
-    - *Enabled overscroll-behavior by default (r289683)*
+    - **Enabled overscroll-behavior by default (r289683)**
   - Web Animations
     - Enabled the KeyframeEffect.composite property (r290067)
     - Added composite accumulation support for transform properties (r289599)
@@ -414,7 +414,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Forms
     - Changed input elements to return an empty string for an invalid floating-point number that ends with "." (r290124)
   - JavaScript
-    - *Enabled Shadow Realms support by default (r290119)*
+    - **Enabled Shadow Realms support by default (r290119)**
     - Implemented Temporal.PlainDate behind a flag: `__XPC_JSC_useTemporal=1` (r290209)
   - Shared Workers
     - Added support for sharing Shared Workers (including across WebProcesses) (r289247)
@@ -429,7 +429,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for the optional_host_permissions manifest key in manifest_version 3 extensions (this is a WECG proposal)
     - Added support for browser.runtime.getFrameId() so it easier to get frame identifiers from content scripts (this is a WECG proposal)
     - Added support for the frameId option that can be passed to browser.tabs.sendMessage()
-- *Working together on Interop 2022*
+- **Working together on Interop 2022**
   - https://webkit.org/blog/12288/working-together-on-interop-2022/
   - 以下に focus
   - Cascade Layers
@@ -446,7 +446,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Position
 
-- *[webkit-dev] Request for position on FedCM (was WebID)*
+- **[webkit-dev] Request for position on FedCM (was WebID)**
   - https://lists.webkit.org/pipermail/webkit-dev/2022-March/032153.html
   - > We are generally supportive and interested in working together to make this coexist well with passkeys.
 
@@ -466,9 +466,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Improving DevTools together: Announcing the new Edge DevTools feedback repository
   - https://blogs.windows.com/msedgedev/2022/03/09/improving-devtools-together-announcing-the-new-edge-devtools-feedback-repository/
-- *Microsoft Edge and Interop 2022*
+- **Microsoft Edge and Interop 2022**
   - https://blogs.windows.com/msedgedev/2022/03/03/microsoft-edge-and-interop-2022/
-- *Appears to say: Microsoft Edge now provides auto-generated image labels*
+- **Appears to say: Microsoft Edge now provides auto-generated image labels**
   - https://blogs.windows.com/msedgedev/2022/03/17/appears-to-say-microsoft-edge-auto-generated-image-labels/
   - Edge で alt のない画像の alt を Cognitive の Computer Vision API で自動生成
   - Computer Vision API でできること
@@ -483,7 +483,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 50x50 未満の画像
     - 大きすぎる画像
     - 性的な画像
-- *Internet Explorer 11 デスクトップ アプリケーションのサポート終了 - 発表に関連する FAQ のアップデート - Windows Blog for Japan*
+- **Internet Explorer 11 デスクトップ アプリケーションのサポート終了 - 発表に関連する FAQ のアップデート - Windows Blog for Japan**
   - https://blogs.windows.com/japan/2022/02/21/internet-explorer-11-desktop-app-retirement-faq/
   - 2022 年 6 月 15 日に提供終了した後には、IE11 はサポートの提供が終了となります。日本を除くすべての国のユーザーは、2022 年 6 月 15 日以降から Microsoft Edge への移行が開始されます。
 
@@ -515,10 +515,10 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Add the `<search>` element by domenic · Pull Request #7320 · whatwg/html*
+- **Add the `<search>` element by domenic · Pull Request #7320 · whatwg/html**
   - https://github.com/whatwg/html/pull/7320
   - `role=search` に対応する要素がないため `<search>` を追加する
-- *The WHATWG Blog - Retro-specifying fetch/performance*
+- **The WHATWG Blog - Retro-specifying fetch/performance**
   - https://blog.whatwg.org/retro-specifying-fetch-performance
   - Fetch / Performance API / HTML など仕様が別れている実装の非互換を解消するために取り組む
     - preload の挙動
@@ -543,14 +543,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - RegExp set notation + Unicode properties of strings for Stage 3
   - Change Array by Copy for Stage 3
   - Bikeshedding pipe operator's topic token
-  - *Decorators for Stage 3*
+  - **Decorators for Stage 3**
   - Bikeshedding call-this syntax
-  - *Pattern matching for Stage 2*
+  - **Pattern matching for Stage 2**
   - String.dedent Status Update
   - Units Conversion For stage 1 slides
   - Intl.MessageFormat for Stage 1
-  - *Function.prototype.once for Stage 1*
-  - *Types as Comments for Stage 1*
+  - **Function.prototype.once for Stage 1**
+  - **Types as Comments for Stage 1**
 
 
 #### Proposals Diff
@@ -565,7 +565,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### New Proposals
 
-- *Types as Comments*
+- **Types as Comments**
   - https://github.com/giltayar/proposal-types-as-comments/
   - TS のような型アノテーションをコメントとして無視する提案
   - JSDoc では表現力に限界があるし冗長
@@ -650,16 +650,16 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Unlocking QUIC's proxying potential with MASQUE
   - https://blog.cloudflare.com/unlocking-quic-proxying-potential/
-- *DNSSEC issues take Fiji domains offline*
+- **DNSSEC issues take Fiji domains offline**
   - https://blog.cloudflare.com/dnssec-issues-fiji/
   - DNSSec の設定ミスでフィジーのドメインが全て落ちた
-- *Announcing experimental DDR in 1.1.1.1*
+- **Announcing experimental DDR in 1.1.1.1**
   - https://blog.cloudflare.com/announcing-ddr-support/
   - DoH, DoT をサポートしているかを知るためのプロトコル
-- *Internet traffic patterns in Ukraine since February 21, 2022*
+- **Internet traffic patterns in Ukraine since February 21, 2022**
   - https://blog.cloudflare.com/internet-traffic-patterns-in-ukraine-since-february-21-2022/
   - ウクライナでのトラフィック解析
-- *iCloud Private Relay: information for Cloudflare customers*
+- **iCloud Private Relay: information for Cloudflare customers**
   - https://blog.cloudflare.com/icloud-private-relay/
   - Apple の Private Relay の一部は Cloudflare のインフラだった
   - Ingress は Apple で Egress は Cloudflare
@@ -675,15 +675,15 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Akamai Blog | Powering and Protecting Online Privacy: iCloud Private Relay and Information for Akamai Customers*
+- **Akamai Blog | Powering and Protecting Online Privacy: iCloud Private Relay and Information for Akamai Customers**
   - https://www.akamai.com/blog/cloud/powering-and-protecting-online-privacy-icloud-private-relay
 
 
 ### セキュリティ動向
 
-- *Validate all the things: improve your security with input validation! | The GitHub Blog*
+- **Validate all the things: improve your security with input validation! | The GitHub Blog**
   - https://github.blog/2022-03-21-validate-all-things-input-validation/
-- *Trusted Types rollouts - w3c*
+- **Trusted Types rollouts - w3c**
   - https://gadgets.kotowicz.net/poc/Trusted%20Types%20rollouts%20-%20w3c.pdf
   - Meta, MS, Google による Trusted Types の deploy report
 - SoK: SCT Auditing in Certificate Transparency
@@ -692,7 +692,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Open Web Advocacy*
+- **Open Web Advocacy**
   - https://open-web-advocacy.org/
   - Apple が iOS 上でのブラウザエンジンを webkit に限定していることを批判
   - CMA に対して事態を説明する機会があるため、コメントを集めている
@@ -711,7 +711,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - サポートが減るのは Win10 のみで macOS は最初から Safari のみ
   - 「Firefox」サポートしないサービス続々 国内シェア今や 6%足らずに: J-CAST トレンド
     - https://www.j-cast.com/trend/2022/03/26433910.html
-- *Interop 2022*
+- **Interop 2022**
   - Interop 2022: browsers working together to improve the web for developers
     - https://web.dev/interop-2022/
   - Announcing Interop 2022 - Mozilla Hacks - the Web developer blog
@@ -724,13 +724,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.igalia.com/news/interop2022.html
   - Bocoup and Interop 2022 - web standards - Bocoup
     - https://bocoup.com/blog/interop-2022
-- *Why the World Must Resist Calls to Undermine the Internet - Internet Society*
+- **Why the World Must Resist Calls to Undermine the Internet - Internet Society**
   - https://www.internetsociety.org/blog/2022/03/why-the-world-must-resist-calls-to-undermine-the-internet/
   - ロシアをインターネットから隔離すべきという主張をすべき人がいる
   - しかし、それはインターネットの基本的な部分を見落としている
   - そもそもインターネットは国境を尊重するような作りではない
   - アクセスする権利を選ぶようなことはしない、インターネットは全ての人のためのものだ
-- *ロシア情勢が Web / Internet / Tech に与えた影響の記録 2022 年 3 月*
+- **ロシア情勢が Web / Internet / Tech に与えた影響の記録 2022 年 3 月**
   - https://zenn.dev/jxck/scraps/80c3e1c272c02b
   - まとめてみたらキリがなかった
 

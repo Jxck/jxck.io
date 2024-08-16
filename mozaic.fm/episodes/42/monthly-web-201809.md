@@ -19,7 +19,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 69 (https://www.chromestatus.com/features/schedule)
 - Updates
-  - *New in Chrome 69*
+  - **New in Chrome 69**
     - https://developers.google.com/web/updates/2018/09/nic69
     - 10 才おめでとう
     - CSS Scroll Snap
@@ -29,7 +29,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - toggleAttribute()
     - flat() and flatMap()
     - OffscreenCanvas
-  - *Deprecations and removals in Chrome 70*
+  - **Deprecations and removals in Chrome 70**
     - https://developers.google.com/web/updates/2018/09/chrome-70-deps-rems
     - Remove AppCache from insecure contexts
     - Remove anonymous getter for HTMLFrameSetElement
@@ -48,7 +48,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.chromium.org/2018/09/10-years-of-speed-in-chrome_11.html
   - Chromium Blog: How we designed Chrome 10 years ago
     - https://blog.chromium.org/2018/09/how-we-designed-chrome-10-years-ago.html
-  - *Chromium Blog: Chrome 70 beta: shape detection, web authentication, and more*
+  - **Chromium Blog: Chrome 70 beta: shape detection, web authentication, and more**
     - https://blog.chromium.org/2018/09/chrome-70-beta-shape-detection-web.html
     - Face Detection API / Barcode Detection API / Text Detection API
     - PublickeyCredential
@@ -77,9 +77,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Intents
   - Ship: TextEncoderStream and TextDecoderStream APIs
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/jx2joIL5SbU/pGuwgvi7EAAJ
-  - *Ship: User Activation API*
+  - **Ship: User Activation API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/vTnSjFcPwNc/kkTX92hpBgAJ
-  - *Ship: CSP: `report-to` directive*
+  - **Ship: CSP: `report-to` directive**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/eYCm_qnf9BA/zZvhlGXXBwAJ
   - Ship: Intl.RelativeTimeFormat
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IQZ1dPG5OU8/NitHvpVTCgAJ
@@ -89,41 +89,41 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/p4zOqY16sks/lt2sTvq8BgAJ
   - Implement and Ship: CSP3: `script-src-attr`, `script-src-elem`, `style-src-attr`, `style-src-elem` directives
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uauMQQQ7fAI/UAY5FX9UBgAJ
-  - *Implement and Ship: Module scripts fetched with same-origin credentials mode by default*
+  - **Implement and Ship: Module scripts fetched with same-origin credentials mode by default**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CUAxbvtnCh4/EXMN-n09BwAJ
-  - *Implement: ElementTiming for img Elements*
+  - **Implement: ElementTiming for img Elements**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2twP4Xdd1VI/yFE1pbwVBgAJ
     - PerformanceObserver に element timing
     - 画像が表示された時点を取れる
-  - *Implement: Do not apply hover when mouse does not move*
+  - **Implement: Do not apply hover when mouse does not move**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5BJSTl-FMGY/smiF_uIjBgAJ
     - マウスを動かさずスクロールした後に hover を更新するために偽のイベントを定期的に発行している
     - これが無駄なのでなくす、テストも楽になり、パフォーマンスも改善
-  - *Implement: Ability to Query User Activation State*
+  - **Implement: Ability to Query User Activation State**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/peRlfsYaDIw/bw2CJHrvAgAJ
-  - *Implement: Display Locking*
+  - **Implement: Display Locking**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2Yo590-USNo/7Da9scWwBwAJ
     - 一旦ディスプレイをロックし、終わったらロックを解除してそこまでの変更をレイアウト/ペイントする
   - Implement: PaymentMethodChange event
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/e8Zrmy52r9w/jj4mwEz3BwAJ
   - Implement: NavigatorContentUtils.IsProtocolHandlerRegistered API
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ljkPttdvVuc/atNE2qYSCAAJ
-  - *Implement: Serial API*
+  - **Implement: Serial API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GcqEnSW5yHs/r7G3iMmDCQAJ
   - Implement: IndexedDB database enumeration API
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qKjn0tLMezI/TCix0GI0CgAJ
-  - *Implement: Crash Reports (via Reporting API)*
+  - **Implement: Crash Reports (via Reporting API)**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rbqI2wiszyY/RzIx7aIFCQAJ
   - Implement: PointerEvent.getPredictedEvents
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CgFyxYikn6A/viBXhqRSBgAJ
-  - *Implement: Gamepad Touchpad*
+  - **Implement: Gamepad Touchpad**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cMoPvrdcF0E/bt2Uwsn8BgAJ
     - ボタンやスティックを前提とした API を拡張してタッチパッドをサポートする
     - Sony の人が出している
-  - *Implement: Expose Web Speech API interfaces*
+  - **Implement: Expose Web Speech API interfaces**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8_H3FUZm23g/342J_ThMCQAJ
   - Experiment:
-  - *Continue Experimenting : WebXR Device API*
+  - **Continue Experimenting : WebXR Device API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QdjD9onSDFU/TPL9NPPrEAAJ
     - Chrome 72 で終わる予定
   - Change:
@@ -145,17 +145,17 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/v8js/status/1044202940494475265
     - https://v8.dev/
 - Other
-  - *883038 - Feedback: Eliding www/m subdomains - chromium - Monorail*
+  - **883038 - Feedback: Eliding www/m subdomains - chromium - Monorail**
     - https://bugs.chromium.org/p/chromium/issues/detail?id=883038
     - chrome 69 で `www.` と `m.` のサブドメインを非表示にする変更を入れた
     - 一旦戻したが 70 では `www.` は非表示し `m.` は残す
-  - *Google Font で Noto Sans の Early Access が取れた*
+  - **Google Font で Noto Sans の Early Access が取れた**
     - https://fonts.google.com/?subset=japanese
   - Why developing a PWA using AMP might be right for you
     - https://medium.com/dev-channel/why-developing-a-pwa-using-amp-might-be-right-for-you-f87b70ea7dd6
   - Chrome's turning 10, here's what's new
     - https://www.blog.google/products/chrome/chromes-turning-10-heres-whats-new/
-  - *Asynchronous Access to HTTP Cookies*
+  - **Asynchronous Access to HTTP Cookies**
     - https://developers.google.com/web/updates/2018/09/asynchronous-access-to-http-cookies
     - Cookie Store API の Origin Trial がスタート
     - 非同期の Cookie 操作が可能に。変更検知もイベントでできる
@@ -168,10 +168,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/
   - Compare images on AMP pages with amp-image-slider
     - https://amphtml.wordpress.com/2018/09/14/compare-images-on-amp-pages-with-amp-image-slider/
-  - *Non-Persisted HTML5 by Default (Target: Chrome 69 - September 2018)*
+  - **Non-Persisted HTML5 by Default (Target: Chrome 69 - September 2018)**
     - https://www.chromium.org/flash-roadmap#TOC-Non-Persisted-HTML5-by-Default-Target:-Chrome-69---September-2018-
     - Flash コンテンツは毎回実行許可が必要に
-  - *An open governance model for the AMP Project*
+  - **An open governance model for the AMP Project**
     - https://amphtml.wordpress.com/2018/09/18/governance/
   - Measuring user journeys across the AMP Cache and your website
     - https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/
@@ -186,7 +186,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.google.com/web/updates/2018/09/inside-browser-part2
     - https://developers.google.com/web/updates/2018/09/inside-browser-part3
     - https://developers.google.com/web/updates/2018/09/inside-browser-part4
-  - *Product updates based on your feedback*
+  - **Product updates based on your feedback**
     - https://www.blog.google/products/chrome/product-updates-based-your-feedback/
     - Chrome 69 でひっそりと、 Google 系サービスにログインしたら Chrome にもログインするようになった
     - 複数ユーザーで PC を共有する際に混乱を避けるためとの説明だが
@@ -195,7 +195,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 批判いろいろ
       - https://blog.cryptographyengineering.com/2018/09/23/why-im-leaving-chrome/
     - 70 でいくつか修正を加えるとのこと
-  - *Google Chrome's biggest challenge at age 10 might just be its own success - CNET*
+  - **Google Chrome's biggest challenge at age 10 might just be its own success - CNET**
     - https://www.cnet.com/news/google-chromes-biggest-challenge-at-age-10-might-just-be-its-own-success/
     - Chrome のこれまでと Google web になっていることへの危惧
 
@@ -204,7 +204,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 62
 - Updates
-  - *Firefox 62*
+  - **Firefox 62**
     - https://www.mozilla.org/en-US/firefox/62.0/releasenotes/
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/62
     - CSS Shapes
@@ -213,19 +213,19 @@ guest: [@myakura](https://twitter.com/myakura)
     - import.meta
     - JSON superset
     - 接頭辞なしの `::selection`
-  - *FastBlock is enabled by default in Nightly now*
+  - **FastBlock is enabled by default in Nightly now**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/b4H6PmciaOA/jGFhWMb8AwAJ
     - 遅いトラッキングスクリプトをブロックする
     - https://github.com/mozilla/FastBlockShield
-  - *Why we need better tracking protection*
+  - **Why we need better tracking protection**
     - https://blog.mozilla.org/security/2018/09/05/why-we-need-better-tracking-protection/
-  - *Variable Fonts Arrive in Firefox 62*
+  - **Variable Fonts Arrive in Firefox 62**
     - https://hacks.mozilla.org/2018/09/variable-fonts-arrive-in-firefox-62/
   - Firefox 62 - Tools Cool for School! - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2018/09/firefox-62/
   - Developer Tools support for Web Components in Firefox 63
     - https://blog.nightly.mozilla.org/2018/09/06/developer-tools-support-for-web-components-in-firefox-63/
-  - *Dweb: Creating Decentralized Organizations with Aragon*
+  - **Dweb: Creating Decentralized Organizations with Aragon**
     - https://hacks.mozilla.org/2018/09/aragon-ethereum-dweb/
   - These Weeks in Firefox: Issue 45
     - https://blog.nightly.mozilla.org/2018/09/24/these-weeks-in-firefox-issue-45/
@@ -236,11 +236,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/uizXjqHDmQ8/5yrdVG-LCQAJ
   - Ship: scrollbar-color and scrollbar-width properties
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/YtuN54Fi-84/6CuLmKxODAAJ
-  - *Implement and Ship: New cookie jar policy to block storage access from tracking resources*
+  - **Implement and Ship: New cookie jar policy to block storage access from tracking resources**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/oFZivEmLC40/1rHs3IuICQAJ
   - Implement and Ship: getDisplayMedia()
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/20EhEy_ahKg/2OWJTbGeCgAJ
-  - *Implement: Storage Access API*
+  - **Implement: Storage Access API**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/l8bV4RFgAc4/MKl9jbJpBQAJ
     - Safari の実装とは少し挙動が違うらしい
     - 試しながら段階的に進める模様
@@ -273,7 +273,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2018/09/converting-a-webgl-application-to-webvr/
   - New API to Bring Augmented Reality to the Web - Mozilla Hacks
     - https://hacks.mozilla.org/2018/09/webxr/
-  - *DNS over HTTPS (DoH) - Testing on Beta - Future Releases*
+  - **DNS over HTTPS (DoH) - Testing on Beta - Future Releases**
     - https://blog.mozilla.org/futurereleases/2018/09/13/dns-over-https-doh-testing-on-beta/
     - Cloudflare 以外の TRR も検討中
   - WebRender newsletter #22 - Mozilla Gfx Team Blog
@@ -282,17 +282,17 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2018/09/performance-tuning-webvr-game/
   - Browser Architecture Newsletter #7 (S02E02)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/jZQ3SFALiM0/TENQ1IRrCQAJ
-  - *User Agent Strings in Firefox and their history*
+  - **User Agent Strings in Firefox and their history**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/28BG-2WgXLg/fe06XYxVCgAJ
     - https://docs.google.com/document/d/1cizvn4wahdfwHUVG_H_Uf15HPBTWyB6GH7j_utHdrKc/edit
     - https://miketaylr.com/posts/2018/09/notable-moments-in-firefox-for-android-ua-string-history.html
     - Firefox の UA 文字列の歴史
-  - *Firefox Monitor*
+  - **Firefox Monitor**
     - https://monitor.firefox.com/
     - 脆弱性を点かれてデータが流出したサービスにおいて自分のデータがどうかを知るサービス
   - Introducing Firefox Monitor, Helping People Take Control After a Data Breach - The Mozilla Blog
     - https://blog.mozilla.org/blog/2018/09/25/introducing-firefox-monitor-helping-people-take-control-after-a-data-breach/
-  - *Storage access policy: Block cookies from trackers*
+  - **Storage access policy: Block cookies from trackers**
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy
 
 
@@ -336,7 +336,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - 2018 年 9 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました
     - https://blogs.technet.microsoft.com/jpieblog/2018/09/12/securityupdate201809/
-  - *Microsoft tests 'warning' Windows 10 users not to install Chrome or Firefox - The Verge*
+  - **Microsoft tests 'warning' Windows 10 users not to install Chrome or Firefox - The Verge**
     - https://www.theverge.com/2018/9/12/17850146/microsoft-windows-10-chrome-firefox-warning
     - https://twitter.com/firefox/status/1039930814627307520
     - Windows に Chrome や Firefox を入れようとすると、「Edge がもう入ってるよ!」ってプロンプトを出す機能を β テスト中らしい
@@ -364,7 +364,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - First Public Working Draft: Device Memory
     - https://www.w3.org/blog/news/archives/7316
     - https://www.w3.org/TR/2018/WD-device-memory-1-20180925/
-  - *First Public Working Draft: CSS Scrollbars Module Level 1*
+  - **First Public Working Draft: CSS Scrollbars Module Level 1**
     - https://www.w3.org/blog/news/archives/7314
     - https://www.w3.org/TR/2018/WD-css-scrollbars-1-20180925/
     - スクロールバーの色や太さを指定するプロパティを定義
@@ -374,7 +374,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - TAG Review Request: RTCIceTransport & RTCQuicTransport
     - https://github.com/w3ctag/design-reviews/issues/296#issuecomment-418572658
-  - *W3C Workshop on Permissions and User Consent*
+  - **W3C Workshop on Permissions and User Consent**
     - https://www.w3.org/Privacy/permissions-ws-2018/schedule.html
     - ドラフトが出た
 
@@ -423,9 +423,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-tsvwg-fecframe-ext-04
   - RPKI Autonomous Systems Cones: A Profile To Define Sets of Autonomous Systems Numbers To Facilitate BGP Filtering
     - https://tools.ietf.org/html/draft-ietf-grow-rpki-as-cones-00
-  - *The Cache HTTP Response Header*
+  - **The Cache HTTP Response Header**
     - https://tools.ietf.org/html/draft-nottingham-cache-header-00
-  - *Encrypted Server Name Indication for TLS 1.3*
+  - **Encrypted Server Name Indication for TLS 1.3**
     - https://tools.ietf.org/html/draft-ietf-tls-esni-00
     - ekr, kazuho, nick(cloudflare), chris(apple)
   - A Binary Manifest Serialization Format
@@ -446,13 +446,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-moskowitz-eddsa-pki-00
   - Updates to Requirements for IPv6 Options
     - https://tools.ietf.org/html/draft-herbert-ipv6-update-opts-00
-  - *GitHub Configuration for IETF Working Groups*
+  - **GitHub Configuration for IETF Working Groups**
     - https://tools.ietf.org/html/draft-cooper-wugh-github-wg-configuration-00
   - DNS Query Name Minimisation to Improve Privacy
     - https://tools.ietf.org/html/draft-ietf-dnsop-rfc7816bis-00
   - Simple TCP Convergence-Layer Protocol
     - https://tools.ietf.org/html/draft-burleigh-dtn-stcp-00
-  - *Deprecating TLSv1.0 and TLSv1.1*
+  - **Deprecating TLSv1.0 and TLSv1.1**
     - https://tools.ietf.org/html/draft-ietf-tls-oldversions-deprecate-00
   - Preparation, Enforcement, and Comparison of Internationalized Strings (PRECIS) Test Vectors
     - https://tools.ietf.org/html/draft-whited-precis-test-vectors-00
@@ -460,7 +460,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-ace-oauth-params-00
   - IP geolocation load balancing Resource Record
     - https://tools.ietf.org/html/draft-sonoda-dnsop-lb-00
-  - *HTTP SEARCH Method*
+  - **HTTP SEARCH Method**
     - https://tools.ietf.org/html/draft-snell-search-method-01
   - Codec-Layer Feedback for the Real-time Transport Control Protocol (RTCP)
     - https://tools.ietf.org/html/draft-realvnc-rtcp-codec-00
@@ -484,24 +484,24 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://twitter.com/__apf__/status/1037057121961967616
 - A Crisis of Permissions
   - https://medium.com/samsung-internet-dev/a-crisis-of-permissions-80cf3b2c802e
-- *Public Wifi が平文通信のページに広告を差し込む話*
+- **Public Wifi が平文通信のページに広告を差し込む話**
   - https://twitter.com/jaffathecake/status/1044121129848377344
   - 静的サイトでも暗号化する必要の 1 つという話
-- *Protecting user identity against Silhouette*
+- **Protecting user identity against Silhouette**
   - https://blog.twitter.com/engineering/en_us/topics/insights/2018/twitter_silhouette.html
   - 「シルエット」という攻撃が早稲田大学と NTT から報告されたらしい
   - block しているユーザへのリクエストが他よりも早いことを利用した情報の抜き取り
   - 理想は same-site cookie を使って対処したいが
   - 今はリファラチェックなど複数を組み合わせて対処
-- *さらば DES 暗号、 2023 年終了へカウントダウン*
+- **さらば DES 暗号、 2023 年終了へカウントダウン**
   - https://tech.nikkeibp.co.jp/atcl/nxt/column/18/00001/00986/
 
 
 ### 周辺動向
 
-- *Testing HTTP freshness in CDNs*
+- **Testing HTTP freshness in CDNs**
   - https://www.fastly.com/blog/testing-http-freshness-in-cdns
-- *Safari, Caching and Third-Party Resources - Andy Davies*
+- **Safari, Caching and Third-Party Resources - Andy Davies**
   - https://andydavies.me/blog/2018/09/06/safari-caching-and-3rd-party-resources/
   - ITP で Public CDN の効果が減るという指摘
 - libcurl gets a URL API
@@ -510,7 +510,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://daniel.haxx.se/blog/2018/09/06/doh-in-curl/
 - jest が Object からネイティブの Map クラスを使ったら 20% テストランナーが速くなった
   - https://twitter.com/v8js/status/1040219491358179328
-- *AV1 のテストを YouTube や Netflix などが開始*
+- **AV1 のテストを YouTube や Netflix などが開始**
   - https://www.youtube.com/playlist?list=PLyqf6gJt7KuHBmeVzZteZUlNUQAVLwrZS
     - YouTube が AV1 をベータ提供しテストを開始
     - http://youtube.com/testtube から opt-in し Chrome 70 か Firefox Nightly build
@@ -519,7 +519,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Netflix public AV1 test streams
     - https://twitter.com/cconcolato/status/1039656215725277185
     - http://download.opencontent.netflix.com/?prefix=AV1/
-  - *Star Trek はどうやって異星人間でビデオコーデックのネゴシエーションをしているのか*
+  - **Star Trek はどうやって異星人間でビデオコーデックのネゴシエーションをしているのか**
     - https://twitter.com/jdrosen2/status/1042952371494629376
     - CISCO CTO のジョークレス
 

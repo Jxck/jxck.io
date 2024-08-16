@@ -30,10 +30,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - And more!
   - Further reading
   - Subscribe
-- *Chrome 121 beta*
+- **Chrome 121 beta**
   - https://developer.chrome.com/blog/chrome-121-beta
   - CSS
-    - *CSS Highlight Inheritance*
+    - **CSS Highlight Inheritance**
     - CSS Scrollbars: scrollbar-color and scrollbar-width
     - CSS font-palette animation for color fonts
     - CSS spelling and grammar features
@@ -92,7 +92,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CY54qsjcKfU
 - Ship: Fenced Frames - Enable Leaving IGs, and Ads Report at Top Level Navigation Start (Chrome - 120)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1YXDYY9Ib2A
-- *Ship: field-sizing CSS property*
+- **Ship: field-sizing CSS property**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/MjCCRQo9Qk0
   - textarea の入力行に合わせて拡大するプロパティ
 - Ship: Interoperable mousemove default action
@@ -101,7 +101,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xcGJyic7ttI
 - Ship: Navigational prefetch: follow redirects
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/YBfIntsxMuk
-- *Ship: Third-party cookie deprecation exemption heuristics*
+- **Ship: Third-party cookie deprecation exemption heuristics**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/yGhI6iTAfeA
   - Bugs
     - https://issuetracker.google.com/issues?q=status:open%20componentid:1306484
@@ -113,7 +113,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xl4fIl60JtY
 - Ship: Set methods
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JiGDyWroyng
-- *Ship: Use specific fetch destination for JSON/CSS modules*
+- **Ship: Use specific fetch destination for JSON/CSS modules**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8BbZ_NUVZ5Q
 - Ship: WGSL: packed 4x8 integer dot product (DP4)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JxQT5bIlet8
@@ -131,9 +131,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/f10-tDq6EUY
 - Ship: Allow Cross-Origin Subframes to Send Automatic Beacons
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/byT9ygyWlo0
-- *Ship: CSS Pseudo Element ::backdrop inheriting from Originating Element*
+- **Ship: CSS Pseudo Element ::backdrop inheriting from Originating Element**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/yXTxBfLthzc
-- *Ship: Import attributes 'with' syntax*
+- **Ship: Import attributes 'with' syntax**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/at-bKcdakOo
 - Ship: Long Animation Frame Timing
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5IzAuV4WtfU
@@ -143,27 +143,27 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/pd3Hksi3jq0
 - Ship: Allow for WebAuthn credential creation in a cross-origin iframe
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Sq2WAVbPz6g
-- *Ship: CSS Highlight Inheritance*
+- **Ship: CSS Highlight Inheritance**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/73qlvaSFmfg
   - 10 月に出た intent だが、 WordPress のエディターが壊れることがわかり延期に
 - Prototype and Ship: MessagePort.onclose
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/enQs5VEdOmU
 - Implement and ship: blocking=render on inline scripts
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bMzZvBSmSOk
-- *Implement and Ship: Allow elements with CSS display:contents to be focusable*
+- **Implement and Ship: Allow elements with CSS display:contents to be focusable**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/9hvYiSZy868
-- *Prototype: Confirmation of Action API*
+- **Prototype: Confirmation of Action API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JBpUXKsJ5qg
   - https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/Accessibility/AriaNotify/explainer.md
   - 元スレは古いがこれに繋がったらしい
-- *Prototype: Eye Gaze Correction API.*
+- **Prototype: Eye Gaze Correction API.**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/EMiN_hyfZ0Y
   - ビデオ通話で視線が合わないのを修正するプラットフォーム API があるらしい
 - Prototype: FedCM Button Mode API and Add Account API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hZg8ice8f0A
 - prototype: fenced frames with local unpartitioned data access
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ofii__csdOY
-- *Prototype: Locked Mode API*
+- **Prototype: Locked Mode API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2fqPL6OhmUs
 - Prototype: Unprefixed cross-fade()
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/XRdTX1fOa7Q
@@ -175,12 +175,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/MeM7TRtTsOs
 - Prototype: CSS view-transition-class and class VT argument syntax
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1-1weImG02I
-- *Prototype: Declarative shadow DOM serialization*
+- **Prototype: Declarative shadow DOM serialization**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/PE4VwMjLVTo
   - getInnerHTML が getHTML に更新される
 - Extend Experiment: Compute Pressure API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/s83S7wXxa6E
-- *Deprecate: SMIL*
+- **Deprecate: SMIL**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5o0yiO440LM
   - SVG で宣言的なアニメーションを記述するやつ
   - 2015 年に intent to deprecate が出たが批判がでた
@@ -210,11 +210,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/GNF8NoTC9wI
 - PSA: FedCM: Chrome relaxes explicit mediation requirement if IdP has third party cookies access
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/aZdqfifYnNI
-- *PSA: Fix handling invalid date "0" for Expires header value as expired*
+- **PSA: Fix handling invalid date "0" for Expires header value as expired**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Pk-L56RLfG4
 - PSA: Bug fix in permissions policy parser to correctly handle newlines
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/GbQCEIHk4ZU
-- *Web-Facing Change PSA: align-content CSS property for blocks*
+- **Web-Facing Change PSA: align-content CSS property for blocks**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RZILN94pAqk
   - 普通のブロックでも上下中央寄せができるようにしたい
   - Netflix が壊れたので一旦 revert
@@ -248,14 +248,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ScIKVcPF5Yw
 - [PSA] python 2 removed from depot_tools, vpython still available
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KRUgJBFVbqQ
-- *New API owner: Domenic Denicola*
+- **New API owner: Domenic Denicola**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/IBBUEIpi0k4
 
 
 #### Other
 
 - web.dev
-  - *A definition update for Baseline*
+  - **A definition update for Baseline**
     - https://web.dev/blog/baseline-definition-update
     - 全ブラウザに実装されると Newly Available
     - そこから 30 ヶ月経過すると Widely Available
@@ -266,7 +266,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/articles/avoid-invisible-text
   - Baseline
     - https://web.dev/baseline
-  - *Baseline 2023*
+  - **Baseline 2023**
     - https://web.dev/blog/baseline2023
   - Content delivery networks (CDNs)
     - https://web.dev/articles/content-delivery-networks
@@ -294,9 +294,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/articles/resize-observer
   - The inert attribute
     - https://web.dev/articles/inert
-  - *What makes for a good sign-out experience?*
+  - **What makes for a good sign-out experience?**
     - https://web.dev/articles/sign-out-best-practices
-  - *Discoverable credentials deep dive*
+  - **Discoverable credentials deep dive**
     - https://web.dev/articles/webauthn-discoverable-credentials
   - 5 CSS snippets every front-end developer should know in 2024
     - https://web.dev/articles/5-css-snippets-every-front-end-developer-should-know-in-2024
@@ -318,7 +318,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/blog/saa-non-cookie-storage
   - DevTools Tips: Debugging bfcache
     - https://developer.chrome.com/blog/devtools-tips-29
-  - *Revisiting Chrome's installability criteria*
+  - **Revisiting Chrome's installability criteria**
     - https://developer.chrome.com/blog/update-install-criteria
     - Chrome でサイトが PWA としてインストール可能になる条件が変わっている
   - How Chrome DevTools helps to defend against self-XSS attacks
@@ -331,7 +331,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/blog/chrome-headless-shell
   - What's New in WebGPU (Chrome 120)
     - https://developer.chrome.com/blog/new-in-webgpu-120
-  - *Chrome enables desktop mode by default on premium tablets*
+  - **Chrome enables desktop mode by default on premium tablets**
     - https://developer.chrome.com/blog/desktop-mode
     - Pixel Tablet の Chrome の UA が変更
     - Linux デスクトップと違いがなくなる
@@ -370,21 +370,21 @@ guest: [@myakura](https://twitter.com/myakura)
   - V8 is Faster and Safer than Ever! · V8
     - https://v8.dev/blog/holiday-season-2023
 - other
-  - *[scroll-customization-api] is there still interest/ongoing discussions for scroll customization? · Issue #1118 · w3c/css-houdini-drafts*
+  - **[scroll-customization-api] is there still interest/ongoing discussions for scroll customization? · Issue #1118 · w3c/css-houdini-drafts**
     - https://github.com/w3c/css-houdini-drafts/issues/1118#issuecomment-1854163406
     - Rick Byers が Extensible Web Manifest について言及
     - > I still agree with what I said about higher-level APIs being fundamentally limited and low-level primitives being more powerful. But I also now think it was a grave error for me to argue against prioritizing such APIs like snap points in favour of getting scroll customization primitives (I just underestimated the challenge by at least an order of magnitude). While I still agree with much of the philosophy of the extensible web manifesto, I think we got the priority wrong then. IMHO in a world of quite limited resources for browser engine investment (especially considering across WebKit/Gecko/Chromium) the first priority should be to ensure the 95% use cases can be done easily and (crucially) in a highly-performant way with declarative APIs. Making the remaining 5% possible in some way is also important probably less so.
     - 低レイヤーの API の重要性は認めるも、実装としては 95% のユースケースを満たせる宣言的な API を優先した方が良い
-  - *Google Chrome December update: New performance and security features*
+  - **Google Chrome December update: New performance and security features**
     - https://blog.google/products/chrome/google-chrome-december-2023-update/
     - タブにメモリの消費量が表示されるように
-  - *Explainers by Googlers*
+  - **Explainers by Googlers**
     - https://github.com/explainers-by-googlers
     - いつの間にかできていた
   - Bramus: "Frontend Mastodon, I need your help!🪆 How would you like to see Chrome DevTools handle Nesting?" - Front-End Social
     - https://front-end.social/@bramus/111561967310461072
     - DevTools で CSS Nesting の UI をどうするか
-  - *An update on our preparations for the DMA*
+  - **An update on our preparations for the DMA**
     - https://blog.google/around-the-globe/google-europe/an-update-on-our-preparations-for-the-dma/
     - 2024 年 3 月から検索エンジンやブラウザの選択画面がヨーロッパ圏で提供される
   - DMA Choice Screen
@@ -400,17 +400,17 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Firefox 122.0, See All New Features, Updates and Fixes*
+- **Firefox 122.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/122.0/releasenotes/
   - macOS で Passkey サポート
-- *Firefox 122 for developers - Mozilla | MDN*
+- **Firefox 122 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/122
   - `<hr>` in `<select>`
   - `select.showPicker()`
   - offset-path
   - `ArrayBuffer.prototype.transfer()`
   - LargestContentfulPaint API
-- *"URL" Gonna Want To Check This Out - These Weeks in Firefox: Issue 150 - Firefox Nightly News*
+- **"URL" Gonna Want To Check This Out - These Weeks in Firefox: Issue 150 - Firefox Nightly News**
   - https://blog.nightly.mozilla.org/2023/12/04/url-gonna-want-to-check-this-out-these-weeks-in-firefox-issue-150/
   - DevTools で遅い `:has()` に警告アイコンがが表示されるようになった
   - DevTools に難読化ツールが入れる `debugger` 文を無効にするトグルがついた
@@ -424,7 +424,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Ship: HTML editor respects CSS display property to consider inline vs. block
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/mTdHrYtsMPU
-- *Ship: Declarative ShadowDOM*
+- **Ship: Declarative ShadowDOM**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/P-ZBI_7fEaE
 - Ship: Screen Wake Lock API
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/aN9u94_d3r8
@@ -432,7 +432,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/kXp-yUvkNKQ
 - Prototype and ship: http(s) and relative URLs for WebSocket
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/1je37gGZel0
-- *Prototype and ship: AbortSignal.any*
+- **Prototype and ship: AbortSignal.any**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/p84BwYsBdOg
 - Prototype:
 - Change:
@@ -451,9 +451,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Developer essentials: JavaScript console methods | MDN Blog
   - https://developer.mozilla.org/en-US/blog/learn-javascript-console-methods/
-- *Baseline's evolution on MDN | MDN Blog*
+- **Baseline's evolution on MDN | MDN Blog**
   - https://developer.mozilla.org/en-US/blog/baseline-evolution-on-mdn/
-- *Saying goodbye to third-party cookies in 2024 | MDN Blog*
+- **Saying goodbye to third-party cookies in 2024 | MDN Blog**
   - https://developer.mozilla.org/en-US/blog/goodbye-third-party-cookies/
 - Build AI-powered applications using OpenLLM and Vultr Cloud GPU | MDN Blog
   - https://developer.mozilla.org/en-US/blog/build-ai-powered-apps-openllm-vultr-gpu/
@@ -490,10 +490,10 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Platform Tilt: Documenting the Uneven Playing Field for an Independent Browser Like Firefox - Open Policy & Advocacy*
+- **Platform Tilt: Documenting the Uneven Playing Field for an Independent Browser Like Firefox - Open Policy & Advocacy**
   - https://blog.mozilla.org/netpolicy/2024/01/19/platform-tilt/
   - ブラウザの競争の妨げになる要因をプラットフォームごとにまとめ公開
-- *Platform Tilt - Mozilla*
+- **Platform Tilt - Mozilla**
   - https://mozilla.github.io/platform-tilt/
   - https://github.com/mozilla/platform-tilt/
 - Introducing llamafile - Mozilla Hacks - the Web developer blog
@@ -505,24 +505,24 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://hacks.mozilla.org/2023/12/puppeteer-webdriver-bidi/
   - Puppeteer が WebDriver BiDi をサポート
   - Firefox の CDP 部分実装よりもできることが増えた
-- *PSA: PromiseUtils.defer() has been replaced by Promise.withResolvers()*
+- **PSA: PromiseUtils.defer() has been replaced by Promise.withResolvers()**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/FqOnd1J4-YI
   - 内部で使ってたユーティリティ関数が標準に置き換わった
 - Advancing Mozilla's mission through our work on localization standards | Mozilla L10N
   - https://blog.mozilla.org/l10n/2024/01/18/advancing-mozillas-mission-through-our-work-on-localization-standards/
 - Mozilla Localization in 2023 | Mozilla L10N
   - https://blog.mozilla.org/l10n/2024/01/15/mozilla-localization-in-2023/
-- *This year in Servo: over 1000 pull requests and beyond - Servo, the embeddable, independent, memory-safe, modular, parallel web rendering engine*
+- **This year in Servo: over 1000 pull requests and beyond - Servo, the embeddable, independent, memory-safe, modular, parallel web rendering engine**
   - https://servo.org/blog/2023/12/18/this-year-in-servo/
   - https://gigazine.net/news/20231220-servo-is-well-and-truly-back/
 - 1423593 - Add Intl.Segmenter API
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1423593
   - 122 の Nightly に Intl.Segmenter が入った
-- *www.google.com - The page is blank when accessed · Issue #131916 · webcompat/web-bugs*
+- **www.google.com - The page is blank when accessed · Issue #131916 · webcompat/web-bugs**
   - https://github.com/webcompat/web-bugs/issues/131916
   - Android 版 Firefox で Google 検索が真っ白になっていた
     - https://status.search.google.com/incidents/hySMmncEDZ7Xpaf9i32C
-- *Update Serial position (#959) · mozilla/standards-positions@5e6937f*
+- **Update Serial position (#959) · mozilla/standards-positions@5e6937f**
   - https://github.com/mozilla/standards-positions/commit/5e6937f1e68adac03628f2df80b9490b31cf45d6
   - Add-on gated なパーミッションモデルなら Web Serial も negative ではない
   - 実装する予定はないがパッチがあれば受け取るとも
@@ -531,7 +531,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://fxdx.dev/geckodriver-0-34-0-released/
 - Fixing keyboard navigation in Inspector Rules view - Firefox Developer Experience
   - https://fxdx.dev/rules-view-enter-key/
-- *What's next for Mozilla? | TechCrunch*
+- **What's next for Mozilla? | TechCrunch**
   - https://techcrunch-com.cdn.ampproject.org/c/s/techcrunch.com/2024/01/03/whats-next-for-mozilla/amp/
 
 
@@ -547,8 +547,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - Added support for CSS custom properties on dialog ::backdrop (270246@main) (117949961)
   - Added support for ArrayBuffer.prototype.detached, ArrayBuffer.prototype.transfer, and ArrayBuffer.prototype.transferToFixedLength. (270349@main) (118037759)
   - Added support for all of HTML's character entities in WebVTT. (270240@main) (51064890)
-  - *Added support for AbortSignal.any(). (270268@main) (117985827)*
-  - *Added support for element.checkVisibility(). (270425@main) (118157977)*
+  - **Added support for AbortSignal.any(). (270268@main) (117985827)**
+  - **Added support for element.checkVisibility(). (270425@main) (118157977)**
   - Enabled extended constant expressions. (270475@main) (118190467)
   - Added support for grouping source map load errors. (270834@main) (109239646)
   - Added an editor for the CSS linear() timing function. (270855@main) (115095425)
@@ -593,12 +593,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Updating to Safari 17.2
 - Release Notes for Safari Technology Preview 185
   - https://webkit.org/blog/14885/release-notes-for-safari-technology-preview-185/
-  - *Added support for align-content on block containers. (271818@main) (114740670)*
+  - **Added support for align-content on block containers. (271818@main) (114740670)**
   - Added percentage values support for letter-spacing and word-spacing. (271357@main) (116562262)
-  - *Added support for scroll anchoring with overflow-anchor. (271790@main) (118365809)*
-  - *Added support for @scope. (271670@main) (119261250)*
+  - **Added support for scroll anchoring with overflow-anchor. (271790@main) (118365809)**
+  - **Added support for @scope. (271670@main) (119261250)**
   - Added WebCodecs VP9 profile 2 support. (271238@main) (118879753)
-  - *Added Element.prototype.setHTMLUnsafe(), ShadowRoot.prototype.setHTMLUnsafe(), and Document.parseHTMLUnsafe() methods. (271423@main) (115345128)*
+  - **Added Element.prototype.setHTMLUnsafe(), ShadowRoot.prototype.setHTMLUnsafe(), and Document.parseHTMLUnsafe() methods. (271423@main) (115345128)**
   - Expanded OffscreenCanvas support for bitmaprenderer, webgl, and webgl2. (271300@main) (109594232)
   - Added Grid overlay support for Masonry layout. (271332@main) (118833618)
   - Added support for getClientCapabilities(). (271584@main) (119058559)
@@ -613,7 +613,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for align-content on table cells. (272373@main) (119701629)
     - Added support for content-visibility to be animate-able. (272364@main) (119940258)
   - Forms
-    - *Added focus ring support for \<input type="checkbox" switch>. (271884@main) (119499785)*
+    - **Added focus ring support for \<input type="checkbox" switch>. (271884@main) (119499785)**
     - Added vertical rendering support for input type="checkbox" switch. (272405@main) (119940157)
   - Web API
     - Added a "gamepad" permission policy defaulting to `*` for the allow list. (272199@main) (83219098)
@@ -646,7 +646,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Nicole Sullivan: "Today was my first day working on WebKit at Apple. Squeee! I'm the Eng Manager for Layout and Rendering." - Front-End Social*
+- **Nicole Sullivan: "Today was my first day working on WebKit at Apple. Squeee! I'm the Eng Manager for Layout and Rendering." - Front-End Social**
   - https://front-end.social/@stubbornella/111565293257301386
   - 先日 Google をやめた Nicole Sullivan が Apple に
 
@@ -658,9 +658,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Microsoft Edge: Looking back at an unforgettable 2023*
+- **Microsoft Edge: Looking back at an unforgettable 2023**
   - https://blogs.windows.com/msedgedev/2023/12/28/microsoft-edge-looking-back-at-an-unforgettable-2023/
-- *Inside the all-new Edge DevTools user interface*
+- **Inside the all-new Edge DevTools user interface**
   - https://blogs.windows.com/msedgedev/2023/12/20/inside-the-all-new-edge-devtools-ui/
   - アクティビティバーがアイコン導入によりコンパクトに
 
@@ -682,14 +682,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Candidate Recommendation
 - Working Draft
 - First Public Working Draft
-  - *First Public Working Draft: Accessible Rich Internet Applications (WAI-ARIA) 1.3*
+  - **First Public Working Draft: Accessible Rich Internet Applications (WAI-ARIA) 1.3**
     - https://www.w3.org/news/2024/first-public-working-draft-accessible-rich-internet-applications-wai-aria-1-3/
 - Chartering
   - Web Accessibility Initiative (WAI) Interest Group Charter extended until 2024-06-30
     - https://lists.w3.org/Archives/Public/public-new-work/2024Jan/0001.html
   - Web & Networks Interest Group Charter
     - https://www.w3.org/2023/11/proposed-web-networks-charter.html
-  - *JSX as markup language Community Group created*
+  - **JSX as markup language Community Group created**
     - https://lists.w3.org/Archives/Public/public-new-work/2024Jan/0003.html
 
 
@@ -705,20 +705,20 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.w3.org/news/2024/hiring-privacy-lead/
   - Privacy Lead job posting
     - https://www.w3.org/careers/2024-privacy-lead-job-posting/
-- *Seeking W3C community input for TAG appointees | 2023 | Blog | W3C*
+- **Seeking W3C community input for TAG appointees | 2023 | Blog | W3C**
   - https://www.w3.org/blog/2023/seeking-w3c-community-input-for-tag-appointees/
   - 新しい W3C Process では TAG の多様性を上げるため外部から人を招聘するルールが追加されたらしい
   - つよい人を募集中
-- *Change of list purpose for public-new-work; creation of public-review-comments*
+- **Change of list purpose for public-new-work; creation of public-review-comments**
   - https://lists.w3.org/Archives/Public/public-new-work/2024Jan/0002.html
   - public-new-work はアナウンス用になった
   - レビューは public-review-comments に流れる
     - https://lists.w3.org/Archives/Public/public-review-comments/
-- *selectlist feedback from apple · Issue #970 · openui/open-ui*
+- **selectlist feedback from apple · Issue #970 · openui/open-ui**
   - https://github.com/openui/open-ui/issues/970
   - Apple のフィードバックにより selectlist が stylable select element に変わった
   - `<select>` の中に `<button>` や `<datalist>` を入れられるようにする
-- *w3c/breakouts-day-2024: Remote event for the W3C community to share new ideas*
+- **w3c/breakouts-day-2024: Remote event for the W3C community to share new ideas**
   - https://github.com/w3c/breakouts-day-2024
   - 2024 年 3 月 12 日開催
 - WC Face-to-Face: Y23Q1 - Google Docs
@@ -768,7 +768,7 @@ guest: [@myakura](https://twitter.com/myakura)
 #### WG
 
 - RFC
-  - *[Ohai] RFC 9458 on Oblivious HTTP*
+  - **[Ohai] RFC 9458 on Oblivious HTTP**
     - https://mailarchive.ietf.org/arch/msg/ohai/iZlxEqrYuS__roEq9nhGJbgszCY/
 - Work
   - [httpapi] Idempotency Key - Are we ready for last call?
@@ -788,9 +788,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *RFC 9518 - What Can Internet Standards Do About Centralisation?*
+- **RFC 9518 - What Can Internet Standards Do About Centralisation?**
   - https://www.mnot.net/blog/2023/12/19/standards-and-centralization
-- *Exploiting QUIC's Path Validation | Marten Seemann*
+- **Exploiting QUIC's Path Validation | Marten Seemann**
   - https://seemann.io/posts/2023-12-18-exploiting-quics-path-validation/
   - QUIC の脆弱性の話
   - 仕様のまま実装するとメモリが無限に使えてしまう
@@ -825,7 +825,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - A hard look at Certificate Transparency: CT in Reality
   - https://educatedguesswork.org/posts/transparency-part-2/
-- *パスキーの基本とそれにまつわる誤解を解きほぐす*
+- **パスキーの基本とそれにまつわる誤解を解きほぐす**
   - https://blog.agektmr.com/2023/12/passkey-mythbusting
 - The Last Mile of Encrypting the Web: 2023 Year in Review | Electronic Frontier Foundation
   - https://www.eff.org/deeplinks/2023/12/year-review-last-mile-encrypting-web
@@ -833,7 +833,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://letsencrypt.org/2023/12/13/ngos.html
 - Terrapin Attack
   - https://terrapin-attack.com/
-- *2023.12.11 【お知らせ】[お名前.com]「ネット de 診断」自動診断の提供開始のお知らせ|お知らせ|ドメイン取るならお名前.com*
+- **2023.12.11 【お知らせ】[お名前.com]「ネット de 診断」自動診断の提供開始のお知らせ|お知らせ|ドメイン取るならお名前.com**
   - https://www.onamae.com/news/domain/20231211_3/
 - 2023.12.22 【お知らせ】[お名前.com] 「ネット de 診断」自動診断のご提供について|お知らせ|ドメイン取るならお名前.com
   - https://www.onamae.com/news/domain/20231222_1/
@@ -863,11 +863,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Trial for Third Party Cookie Deprecation for Top Level Sites
   - https://developer.chrome.com/origintrials/#/view_trial/4360047389248061441
   - 3rd Party Cookie の修正猶予を得る Deprecation Trials
-- *「Cookie 等の利用に関するガイドライン」改訂のご案内|ニコニコインフォ*
+- **「Cookie 等の利用に関するガイドライン」改訂のご案内|ニコニコインフォ**
   - https://blog.nicovideo.jp/niconews/210274.html
   - Cookie からハッシュベースのトラッキングに移行
   - 特に Banner は出してなさそう?
-- *Google shares update on next step toward phasing out third-party cookies in Chrome*
+- **Google shares update on next step toward phasing out third-party cookies in Chrome**
   - https://blog.google/products/chrome/privacy-sandbox-tracking-protection/
   - 3PCD ロールアウトスタート
   - ブロックされたページでは Omnibox にアイコンが表示され、一時的に解除できる
@@ -883,7 +883,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://engineering.fb.com/2024/01/18/developer-tools/lazy-imports-cinder-machine-learning-meta/
 - Why Are Tech Reporters Sleeping On The Biggest App Store Story? - Infrequently Noted
   - https://infrequently.org/2024/01/the-web-is-the-app-store/
-- *政府 巨大 IT 企業を規制する新たな法律を制定する方向で検討 | NHK | IT ・ネット*
+- **政府 巨大 IT 企業を規制する新たな法律を制定する方向で検討 | NHK | IT ・ネット**
   - https://www3-nhk-or-jp.cdn.ampproject.org/c/s/www3.nhk.or.jp/news/html/20240117/amp/k10014323591000.html
   - > アップルやグーグルといった巨大 IT 企業は、スマートフォンの基本ソフトの分野で寡占状態にあるなど、優越的な地位にあり、新規参入の妨げや利用する事業者のコスト上昇を懸念する声も出ています。
   - >
@@ -895,17 +895,17 @@ guest: [@myakura](https://twitter.com/myakura)
   - > ▽ブラウザー
   - > ▽基本ソフト
   - > の分野になるということです。
-- *Brave browser simplifies its fingerprinting protections | Brave*
+- **Brave browser simplifies its fingerprinting protections | Brave**
   - https://brave.com/privacy-updates/28-sunsetting-strict-fingerprinting-mode/
   - Brave が Strict のフィンガープリンティング防止モードを削除する
   - サイトがうまく動かないことがあり、またユーザーも少なくモードの存在自体がフィンガープリンティングのベクターになりうることから
 - The New York Times now has a web Flash player - eagereyes.org
   - https://eagereyes.org/blog/2024/nytimes-web-flash-player
   - 古い記事で使われていた Flash コンテンツの再生用に Web ベースのランタイムを使い始めたらしい
-- *カンファレンスイベントで会場回線を過信してはいけない - notoken の覚書*
+- **カンファレンスイベントで会場回線を過信してはいけない - notoken の覚書**
   - https://notoken.hatenadiary.com/entry/2023/12/06/233552
   - > QUIC とは、本来 TCP で通信を行うべき HTTPS の通信をお気持ち実装の UDP で通すトンデモ通信規格 である。
-- *Free Wi-Fi(00000JAPAN)は安全なのか? #初心者 - Qiita*
+- **Free Wi-Fi(00000JAPAN)は安全なのか? #初心者 - Qiita**
   - https://qiita.com/ngkwtys/items/3756edcd690d5b6221cb
 - BFCache を利用して Next.js で実装した無限スクロールの UX 改善をした話 | PR TIMES 開発者ブログ
   - https://developers.prtimes.jp/2023/12/15/enhancing-ux-with-bfcache-in-infinite-scrolling-implemented-with-nextjs/

@@ -28,7 +28,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Chrome Dev Summit 2019
   - What's New In DevTools (Chrome 78)
     - https://developers.google.com/web/updates/2019/09/devtools
-  - *Chromium Blog: Chrome 78 Beta: a new Houdini API, native file system access and more*
+  - **Chromium Blog: Chrome 78 Beta: a new Houdini API, native file system access and more**
     - https://blog.chromium.org/2019/09/chrome-78-beta-new-houdini-api-native.html
     - CSS Properties and Values
     - Native File System
@@ -36,14 +36,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - SMS Receiver API
     - Apply Opacity for the Default Style of INPUT/TEXTAREA placeholder
     - Don't Allow Popups During Page Unload
-    - *Extend Byte-for-Byte Update Check to all Service Worker importScripts() Resources*
+    - **Extend Byte-for-Byte Update Check to all Service Worker importScripts() Resources**
       - これまで importScripts は初期ロードでキャッシュされていた
       - 更新したい場合は URL にハッシュを追加して Top Level Script を更新する必要
       - これからはちゃんと確認しに行く
       - updateViaCache='none' や Cache-Control: max-age=0 (no-store?)等を設定
       - Firefox/Safari と挙動が揃った
       - https://developers.google.com/web/updates/2019/09/fresher-sw#checks_for_updates_to_imported_scripts
-    - *Faster Web Sockets*
+    - **Faster Web Sockets**
       - Linux: 7.5 times faster
       - Windows: 4.1 times faster
       - Mac: 7.8 times faster
@@ -57,7 +57,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - XSS Auditor
   - Trusted Web Activities Quick Start Guide
     - https://developers.google.com/web/updates/2019/08/twas-quickstart
-  - *Network Service ownership and next steps*
+  - **Network Service ownership and next steps**
     - https://groups.google.com/a/chromium.org/forum/#!msg/network-service-dev/5HATwq4CE50/JMMOI9QJAAAJ
     - 2.5 年かけて off the main thread を進めてきた
     - 1100 bugs の 3200 行を 150 人が書き 250 人がレビューした
@@ -82,19 +82,19 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pNru6E5rda4/3D0KDY5nBgAJ
   - Implement: IndexedDB relaxed durability transactions
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aDDJXM8TZnk/xdhSlY-ZDwAJ
-  - *Implement: window.isFramePending*
+  - **Implement: window.isFramePending**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/brAJpwPoix8/FDmDG9VfDgAJ
-  - *Implement: EditContext API*
+  - **Implement: EditContext API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OHqvPx9mFww/ikcYp9K_DwAJ
-  - *Implement: Compute img/video aspect ratio from width and height HTML attributes*
+  - **Implement: Compute img/video aspect ratio from width and height HTML attributes**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hbhKRuBzZ4o/pmehGGHKAAAJ
     - intrinsicsize 属性をやめて width/height をそのまま使うように
     - https://github.com/WICG/intrinsicsize-attribute/issues/16#issuecomment-500941775
-  - *Implement: Navigation to Bundled Exchanges (Web Packaging)*
+  - **Implement: Navigation to Bundled Exchanges (Web Packaging)**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XQEO617FMhA/LShCefAgAgAJ
   - Implement: WebXR DOM Overlay for Handheld AR
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QRbZ0ZUjhmI/kdS3S9OtAgAJ
-  - *Implement navigation-controls media query*
+  - **Implement navigation-controls media query**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6CllchdqZl8/Cyy7groFAwAJ
     - 旧 back button media query
     - 「戻るボタン」が UI 上表示されているかどうかを知る media query
@@ -103,13 +103,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - media query で提供することで CSS だけではなく、 JS にも API が出る
   - Implement: Navigation-controls media query
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/b5vXvm1bP3s/BDBx92QxAwAJ
-  - *Implement: rendersubtree attribute.*
+  - **Implement: rendersubtree attribute.**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Bh0bSdkQlbk/7n6b50N6AwAJ
-  - *Implement: Screen Enumeration*
+  - **Implement: Screen Enumeration**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LDymWZeV7jo/DCcYyBYtAwAJ
   - Implement: ARIA Annotation roles
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wdWtyA1gyvI/37hqCDu5BgAJ
-  - *Implement: [Intervention] Heavy Ad Intervention*
+  - **Implement: [Intervention] Heavy Ad Intervention**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pZq73q_Mc-c/chp8ssUKBgAJ
     - CPU やネットワークを使いすぎる Ad を unload
       - Cyptominers
@@ -144,7 +144,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Change:
   - Unship:
   - Remove:
-  - *What to do about scroll anchoring?*
+  - **What to do about scroll anchoring?**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hjg5X55FnwE/7iIGXDp_BgAJ
     - mozilla.dev.platform からのマルチポスト(そちら参照)
 - AMP
@@ -179,7 +179,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!topic/discuss-webrtc/b1tdwrXKuHI
   - Official Google Webmaster Central Blog: Saying goodbye to the old Search Console
     - https://webmasters.googleblog.com/2019/09/goodbye-old-search-console.html
-  - *Chromium Blog: Experimenting with same-provider DNS-over-HTTPS upgrade*
+  - **Chromium Blog: Experimenting with same-provider DNS-over-HTTPS upgrade**
     - https://blog.chromium.org/2019/09/experimenting-with-same-provider-dns.html
     - DoH の検証を対応しているプラットフォーム(Linux/iOS 以外)で開始
     - サポートしている DNS を使っているユーザのみアップグレードされる
@@ -190,7 +190,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.googleblog.com/2019/09/flutter-news-from-gdd-china-flutter1.9.html
   - Prefetch resources to speed up future navigations
     - https://web.dev/link-prefetch/
-  - *Official Google Webmaster Central Blog: Evolving "nofollow" - new ways to identify the nature of links*
+  - **Official Google Webmaster Central Blog: Evolving "nofollow" - new ways to identify the nature of links**
     - https://webmasters.googleblog.com/2019/09/evolving-nofollow-new-ways-to-identify.html
     - コメントスパムをクローラが辿らないように `rel=nofollow` が使われてきた
     - Google は nofollow は完全に無視してきたが、そこにも情報が多いことがわかってきた
@@ -208,7 +208,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 69.0
 - Updates
-  - *Firefox 69 - a tale of Resize Observer, microtasks, CSS, and DevTools*
+  - **Firefox 69 - a tale of Resize Observer, microtasks, CSS, and DevTools**
     - https://hacks.mozilla.org/2019/09/firefox-69-a-tale-of-resize-observer-microtasks-css-and-devtools/
     - New logical properties for overflow
     - @supports for selectors
@@ -216,25 +216,25 @@ guest: [@myakura](https://twitter.com/myakura)
     - Resize Observer
     - Microtasks
     - Developer tools updates in 69
-  - *Firefox 69 for developers*
+  - **Firefox 69 for developers**
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/69
     - CSS Containment
     - line-break プロパティ
     - @supports の selector()
     - Public Class Fields
     - unhandledrejection
-  - *The Baseline Interpreter: a faster JS interpreter in Firefox 70*
+  - **The Baseline Interpreter: a faster JS interpreter in Firefox 70**
     - https://hacks.mozilla.org/2019/08/the-baseline-interpreter-a-faster-js-interpreter-in-firefox-70/
     - Baseline JIT の前段に多くのコードを共有した Interpreter を作ったら少ないコストで大きな効果が出た
   - Today's Firefox Blocks Third-Party Tracking Cookies and Cryptomining by Default
     - https://blog.mozilla.org/blog/2019/09/03/todays-firefox-blocks-third-party-tracking-cookies-and-cryptomining-by-default/
-  - *What's next in making Encrypted DNS-over-HTTPS the Default*
+  - **What's next in making Encrypted DNS-over-HTTPS the Default**
     - https://blog.mozilla.org/futurereleases/2019/09/06/whats-next-in-making-dns-over-https-the-default/
     - US で DoH をデフォルト有効に
     - split-horizon などが検出された場合は、 OS の設定にフォールバック
   - Firefox's Test Pilot Program Returns with Firefox Private Network Beta
     - https://blog.mozilla.org/blog/2019/09/10/firefoxs-test-pilot-program-returns-with-firefox-private-network-beta/
-  - *Moving Firefox to a faster 4-week release cycle*
+  - **Moving Firefox to a faster 4-week release cycle**
     - https://hacks.mozilla.org/2019/09/moving-firefox-to-a-faster-4-week-release-cycle/
     - 2020 年 Q1 より Firefox のリリースが 4 週ごとになる
     - それまでのリリースも間隔をだんだん短くしていく
@@ -245,19 +245,19 @@ guest: [@myakura](https://twitter.com/myakura)
 - Intents
   - Ship: `|clip-path: path()|`
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/RM5O36MZ4x4/FV5Tp9y4EQAJ
-  - *Ship: Support XCTO: nosniff for navigations*
+  - **Ship: Support XCTO: nosniff for navigations**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/nC0DLYQsR5w/etyfo4sDAQAJ
-  - *Ship: Event-based form participation*
+  - **Ship: Event-based form participation**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/-VDYiEAWjw4/SspRnY1HAQAJ
   - Ship: line-height returns normal as a resolved value.
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/8uvGB3BCpl8/ThRSVYZdAgAJ
-  - *Ship: CSS properties text-decoration-skip-ink, text-decoration-thickness, and text-underline-offset*
+  - **Ship: CSS properties text-decoration-skip-ink, text-decoration-thickness, and text-underline-offset**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/2h1Nlx4_WIU/URQBNSN_BAAJ
   - Prototype: Implement the MathMLElement interface and the corresponding content attributes
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/ssTytf-pT7k/afVBh9vuAQAJ
   - Prototype: Have window.outerHeight/outerWidth lie and report the innerHeight/innerWidth
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/qvU_vbvBrsI/bhiwOtPTAQAJ
-  - *Unship: TLS 1.0 and TLS 1.1*
+  - **Unship: TLS 1.0 and TLS 1.1**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/8EFRYDR3N1c/gPh6v01ABAAJ
   - Unship: MathML menclose notation "radical"
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/vwAkuZIEhnY/KALRPR3wAQAJ
@@ -265,7 +265,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/JnJVGTmIwPE/xrido8-zAQAJ
   - Unship SVGZoomAndPan interface
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/2hEP9p6I2Ws/pNnGfmgwCAAJ
-  - *Remove: Fennec*
+  - **Remove: Fennec**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/-qWdNVODVTU/UowVBDckAQAJ
     - 現行の Android 版 Firefox がメンテナンスモードになったのでコードベースから削除
     - 後継の Fenix は 2020 年を予定しているらしい
@@ -273,7 +273,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/IpRMO1A6uwg/s85OeaXPAAAJ
   - New Web IDL constructor syntax
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/GqNeIzSN2Io/7xlz4d2CBAAJ
-  - *What to do about scroll anchoring?*
+  - **What to do about scroll anchoring?**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/66jW_XKCZew/Ushg_p3dBwAJ
     - scroll anchoring is really a mess
     - レイアウトが変わったときの追従
@@ -292,9 +292,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.fxsitecompat.dev/en-CA/blog/2019/firefox-70-beta-and-developer-edition-are-out/
   - ontouchstart, ontouchmove event handlers are now passive by default
     - https://www.fxsitecompat.dev/en-CA/docs/2019/ontouchstart-ontouchmove-event-handlers-are-now-passive-by-default/
-  - *EV SSL certificate indicator has been removed from location bar*
+  - **EV SSL certificate indicator has been removed from location bar**
     - https://www.fxsitecompat.dev/en-CA/docs/2019/ev-ssl-certificate-indicator-has-been-removed-from-location-bar/
-  - *TLS 1.0 and 1.1 are now deprecated*
+  - **TLS 1.0 and 1.1 are now deprecated**
     - https://www.fxsitecompat.dev/en-CA/docs/2019/tls-1-0-and-1-1-are-now-deprecated/
     - 2020/3 に全メジャーブラウザから消えるから備えよ
 - Other
@@ -314,7 +314,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/community/2019/08/30/firefox-69-new-contributors/
   - Debugging TypeScript in Firefox DevTools
     - https://hacks.mozilla.org/2019/09/debugging-typescript-in-firefox-devtools/
-  - *Caniuse and MDN compatibility data collaboration*
+  - **Caniuse and MDN compatibility data collaboration**
     - https://hacks.mozilla.org/2019/09/caniuse-and-mdn-compat-data-collaboration/
     - Caniuse と MDN がそれぞれ Compatibility Data を持っている
     - ここのスキーマなどに互換性を持たせようという取り組みがスタート
@@ -340,7 +340,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for the Pointer Events API enabling consistent access to mouse, trackpad, touch, and Apple Pencil events.
     - Added support for the Visual Viewport API for adjusting web content to avoid overlays, such as the onscreen keyboard.
     - Removed support for WebSQL.
-  - *Release Notes for Safari Technology Preview 91*
+  - **Release Notes for Safari Technology Preview 91**
     - https://webkit.org/blog/9526/release-notes-for-safari-technology-preview-91/
     - Disabled legacy TLS 1.0 and TLS 1.1 (r249019)
     - Added a public API for unhandled promise rejections (r249058)
@@ -350,13 +350,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - Changed to avoid looking up the join function each time Array.prototype.toString is called (r248906)
     - Ensured `x?.y ?? z` is fast (r249117)
     - etc
-  - *Release Notes for Safari Technology Preview 92*
+  - **Release Notes for Safari Technology Preview 92**
     - https://webkit.org/blog/9568/release-notes-for-safari-technology-preview-92/
-    - *Fixed Math.round() which produced a wrong result for value prior to 0.5 (r249597)*
-    - *Made Promise implementation faster (r249509)*
+    - **Fixed Math.round() which produced a wrong result for value prior to 0.5 (r249597)**
+    - **Made Promise implementation faster (r249509)**
     - Implemented GPUUncapturedErrorEvent (r249539)
     - Implemented SampleLevel(), SampleBias(), and SampleGrad() in WSL (r249453)
-    - *Changed to respect EXIF orientations by default when images are rendered (r249364)*
+    - **Changed to respect EXIF orientations by default when images are rendered (r249364)**
     - Fixed document.fonts.ready resolving too quickly (r249295)
     - Fixed responseXML for XMLHttpRequest in some cases returning null if a valid Content-Type ends with +xml (r249361)
     - Added missing origin check for Service-Worker-Allowed header (r249733)
@@ -366,10 +366,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - Provided a way to view XML, HTML, and SVG resource responses as a DOM tree (r249451)
     - Fixed jarring white box-shadows in the Overview Timeline View in dark mode (r249655)
     - Fixed children cache to be re-computed if the tab index is removed (r249534)
-    - *Disabled TLS 1.0 and TLS 1.1 in WebSockets (r249684)*
+    - **Disabled TLS 1.0 and TLS 1.1 in WebSockets (r249684)**
   - WebGPU and WSL in Safari
     - https://webkit.org/blog/9528/webgpu-and-wsl-in-safari/
-  - *Intelligent Tracking Prevention 2.3*
+  - **Intelligent Tracking Prevention 2.3**
     - https://webkit.org/blog/9521/intelligent-tracking-prevention-2-3/
     - 2.2 では link-decoration については既存サービスへの影響も考え弱くしていた
     - 具体的には JS 書き込みの Cookie を 24h に
@@ -389,7 +389,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Release ChakraCore v1.11.13 · microsoft/ChakraCore
     - https://github.com/microsoft/ChakraCore/releases/tag/v1.11.13
 - Other
-  - *Update on removing Flash from Microsoft Edge and Internet Explorer - Microsoft Edge Blog*
+  - **Update on removing Flash from Microsoft Edge and Internet Explorer - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2019/08/30/update-removing-flash-microsoft-edge-internet-explorer/
 
 
@@ -416,19 +416,19 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://www.w3.org/2019/09/18-jsbuiltin-minutes.html
     - New Module types: JSON, CSS, HTML
       - https://www.w3.org/2019/09/18-new-modules-minutes.html
-    - *Bullet Chatting*
+    - **Bullet Chatting**
       - https://www.w3.org/2019/09/18-bulletchat-minutes.html
     - Portals
       - https://www.w3.org/2019/09/18-portals-minutes.html
     - Privacy Budget
       - https://www.w3.org/2019/09/18-privacybudget-minutes.html
-    - *MiniApps*
+    - **MiniApps**
       - https://www.w3.org/2019/09/18-miniapp-minutes.html
     - Virtual Scroller
       - https://www.w3.org/2019/09/18-virtual-scroller-minutes.html
-    - *WebTransport*
+    - **WebTransport**
       - https://www.w3.org/2019/09/18-webtransport-minutes.html
-    - *WebCodecs*
+    - **WebCodecs**
       - https://www.w3.org/2019/09/18-webcodecs-minutes.html
     - Project Fugu
       - https://www.w3.org/2019/09/18-capable-web-minutes.html
@@ -460,7 +460,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://github.com/w3c/webcomponents/issues/839
   - Web and TV IG
     - https://www.w3.org/2011/webtv/wiki/Face_to_face_meeting_during_TPAC_2019
-  - *WebAppSec*
+  - **WebAppSec**
     - https://github.com/w3c/webappsec/blob/master/meetings/2019/2019-09-TPAC-agenda.md
     - https://github.com/w3c/webappsec/blob/master/meetings/2019/2019-09-TPAC-minutes.md
     - https://www.w3.org/2011/webappsec/
@@ -489,7 +489,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/public-new-work/2019Sep/0001.html
   - Proposed W3C Charter: Accessibility Guidelines Working Group (AG WG) (until 2019-10-08)
     - https://lists.w3.org/Archives/Public/public-new-work/2019Sep/0006.html
-  - *MiniApps Ecosystem Community Group created*
+  - **MiniApps Ecosystem Community Group created**
     - https://lists.w3.org/Archives/Public/public-new-work/2019Sep/0015.html
     - MiniApps は Web 技術ベースのモバイルアプリの仕様
     - ネイティブとのハイブリッドを目指す?
@@ -501,7 +501,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - New Resource: Making Audio and Video Media Accessible
     - https://www.w3.org/blog/news/archives/7939
-  - *Intent to Migrate trusted-types to W3C Security WG*
+  - **Intent to Migrate trusted-types to W3C Security WG**
     - https://lists.w3.org/Archives/Public/public-webappsec/2019Sep/0003.html
     - Trusted Types を WICG W3C に移す
     - react/lit-html が取り込み作業をしており、 JS community は positive と
@@ -509,7 +509,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/facebook/react/pull/16157
     - https://github.com/Polymer/lit-html/pull/970
     - https://github.com/WICG/trusted-types/issues/215
-  - *Explainer: IsLoggedIn (in preparation for TPAC)*
+  - **Explainer: IsLoggedIn (in preparation for TPAC)**
     - https://lists.w3.org/Archives/Public/public-webappsec/2019Sep/0004.html
     - 謎だった login API の正体の Explainer
     - login/logout などを明示的にブラウザの API で行う
@@ -564,7 +564,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - RateLimit-Reset
   - T.140 Real-time Text Conversation over WebRTC Data Channels
     - https://tools.ietf.org/html/draft-ietf-mmusic-t140-usage-data-channel-00
-  - *Report from the IAB Workshop on Exploring Synergy between Content Aggregation and the Publisher Ecosystem (ESCAPE)*
+  - **Report from the IAB Workshop on Exploring Synergy between Content Aggregation and the Publisher Ecosystem (ESCAPE)**
     - https://tools.ietf.org/html/draft-thomson-escape-report-00
     - ESCAPE の成果を informational として
     - https://tools.ietf.org/html/draft-iab-escape-report-00
@@ -576,7 +576,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - OAuth 2.0 Pushed Authorization Requests
     - https://tools.ietf.org/html/draft-lodderstedt-oauth-par-00
 - Other
-  - *Change in HTTPbis chairs from Patrick McManus*
+  - **Change in HTTPbis chairs from Patrick McManus**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2019JulSep/0272.html
     - patrick と mnot が fastly に入ったため 201810 に Apple の tommy を追加し 3 人にした
     - https://mozaic.fm/episodes/44/monthly-web-201810.html
@@ -595,15 +595,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/castle-building-codeless-customer-account-protection/
   - Castle というセキュリティソリューションの紹介
   - 不穏なアタックなどを検知するらしい
-- *EV Jurisdiction of Incorporation*
+- **EV Jurisdiction of Incorporation**
   - https://groups.google.com/forum/#!topic/mozilla.dev.security.policy/DxtWaeIQKfM
   - EV の発行プロセスを外(コミュニティ)から監視する仕組みの提案
 - Let's Encrypt makes certs for almost 30% of web domains! RC4/3DES/TLS 1.0 are still used! Certs for hundreds of years! Analyzing hundreds of millions of SSL handshakes
   - https://www.leebutterman.com/2019/08/05/analyzing-hundreds-of-millions-of-ssl-connections.html
-- *(CVE-2019-1030) Microsoft Edge - Universal XSS*
+- **(CVE-2019-1030) Microsoft Edge - Universal XSS**
   - https://leucosite.com/Microsoft-Edge-uXSS/
   - 印刷 Preview 内の XSS で Cookie を盗む
-- *Release DOMPurify 2.0.0 · cure53/DOMPurify*
+- **Release DOMPurify 2.0.0 · cure53/DOMPurify**
   - https://github.com/cure53/DOMPurify/releases/tag/2.0.0
   - TrustedTypes が有効になる
   - しかし立て続けに mXSS のバイパスが見つかってリリースが続いてる模様
@@ -618,10 +618,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/observability-in-live-broadcasts
 - Cloudflare's Approach to Research
   - https://blog.cloudflare.com/cloudflares-approach-to-research/
-- *Can I email ... Support tables for HTML and CSS in emails*
+- **Can I email ... Support tables for HTML and CSS in emails**
   - https://www.caniemail.com/
   - メールクライアントの HTML メールのサポートの caniuse
-- *Wikipedia's JavaScript initialisation on a budget*
+- **Wikipedia's JavaScript initialisation on a budget**
   - https://phabricator.wikimedia.org/phame/live/7/post/175/wikipedia_s_javascript_initialisation_on_a_budget/
   - 1 年かけて Wikipedia の JS 初期ロードを 36KB から 28KB に減らし、 1 日 4.3TB の転送を削減
   - TCP 初期ウインドウサイズ 14KB の倍数として budget を設定
@@ -636,11 +636,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/introducing-browser-insights/
 - WARP is here (sorry it took so long)
   - https://blog.cloudflare.com/announcing-warp-plus/
-- *The Technical Challenges of Building Cloudflare WARP*
+- **The Technical Challenges of Building Cloudflare WARP**
   - https://blog.cloudflare.com/warp-technical-challenges/
 - When TCP sockets refuse to die
   - https://blog.cloudflare.com/when-tcp-sockets-refuse-to-die/
-- *HTTP/3: the past, the present, and the future*
+- **HTTP/3: the past, the present, and the future**
   - https://blog.cloudflare.com/http3-the-past-present-and-future/
   - Cloudflare のエッジが HTTP/3 に対応
   - OSS で Rust 実装の quiche を使用

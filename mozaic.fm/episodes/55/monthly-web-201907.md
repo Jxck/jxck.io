@@ -35,7 +35,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Prefetch cache in Network panel
     - Private properties when viewing objects
     - Notifications and push messages in the Application panel
-  - *Web Components update: more time to upgrade to v1 APIs*
+  - **Web Components update: more time to upgrade to v1 APIs**
     - https://developers.google.com/web/updates/2019/07/web-components-time-to-upgrade
     - Web Components v0 の deprecation が延期
     - 2020 年 2 月の Chrome 80 から reverse Origin Trial がスタート
@@ -56,11 +56,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Intents
   - Ship: Alternative Text for CSS Generated Content
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nC5p6W8nM3g/Bk6GOoaYAwAJ
-  - *Ship: Largest Contentful Paint*
+  - **Ship: Largest Contentful Paint**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/S36p6Y16u5c/tCz9124UAQAJ
   - Ship: Element Timing
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/DXSoS7dMmok/30ColVMUAQAJ
-  - *Ship: Layout Instability API*
+  - **Ship: Layout Instability API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bI7qfrSQBZY/RgzD9zMrBAAJ
     - Layout Junk を取得する API
     - PerformanceObserver から取得
@@ -71,7 +71,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Shape Detection API のうちバーコードをまず ship したいと
   - Implement and Ship: PerformanceObserverInit buffered flag
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/YMrf4l2DqtM/B8FB2axQAQAJ
-  - *Implement and Ship: WebRTC Perfect Negotiation APIs*
+  - **Implement and Ship: WebRTC Perfect Negotiation APIs**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OqPfCpC5RYU/SjapegYYAgAJ
     - WebRTC の細かい問題に対処する 4 つの API 更新のこと
       1. restartIce()
@@ -82,12 +82,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SdPIaBdhzAQ/f26Mp_3REAAJ
   - Implement: Dynamic Delegation of Autoplay Capability
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ETM5NChezQo/5gi9nXx2AQAJ
-  - *Implement: WebSocketStream*
+  - **Implement: WebSocketStream**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ
     - Stream や Promise の無い時代に設計された今の WS API を置き換える API
     - 従来は backpressure が無かった問題も Stream によって解決
     - Promise によるエラー処理や、 AbortController のサポートも入る
-  - *Implement: JSON Modules*
+  - **Implement: JSON Modules**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ojwkySW-bpQ/ecR5pnocAgAJ
     - Synthetic Modules (builtin module の共通仕様) の JSON 版
     - 要するに module import で JSON が読める
@@ -97,17 +97,17 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1jmTFQS95zs/4gZD-7-DBAAJ
   - Implement: WebRTC SVC extensions
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/--ZpYlTo6LE/BTWcojtpBQAJ
-  - *Implement: Secure context restriction for external requests*
+  - **Implement: Secure context restriction for external requests**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EeGg7TxW6U4/9aohper3BQAJ
     - External Requests は Public Netowrk リソースが発生する Private Network リクエスト
     - 改ざんされている場合、踏み台にされ、情報を抜かれる可能性がある
     - これを https only にする
-  - *Implement: Storage Access API*
+  - **Implement: Storage Access API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/e5fu5Q06ntA/UUqPuA8hEQAJ
     - Microsoft から Edge の Tracking Prevention を見据えてか intent が出た
   - Implement: document-access feature policy
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Cibo-GNPs7Y/RznlX7WKDAAJ
-  - *Implement: Prefetch Request Changes for Double-Keyed Cache*
+  - **Implement: Prefetch Request Changes for Double-Keyed Cache**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bSMOY-evrV4/tMnXA_0yEgAJ
   - Extend Origin Trial: getInstalledRelatedApps()
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/M3ZMGLo362Y/oCUiqQrAAQAJ
@@ -115,15 +115,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/s9NlCCv3Spc/1s8JTdkbAgAJ
   - Extend Origin Trial: Trusted Types
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/JVQ34vvuApE/RC2wl0hOAgAJ
-  - *Experiment and launch: DNS over HTTPS auto-upgrade in Chrome (Targeting M78: branch cut @ Sept 5th; estimated Stable @ Oct 22nd)*
+  - **Experiment and launch: DNS over HTTPS auto-upgrade in Chrome (Targeting M78: branch cut @ Sept 5th; estimated Stable @ Oct 22nd)**
     - https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/BgLpAi9O4MY/yD015PqwDgAJ
-  - *Extend Origin Trial: isInputPending*
+  - **Extend Origin Trial: isInputPending**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0Bw-JW1POdw/ru7xMH2vCwAJ
   - Change:
   - Unship:
   - Deprecate and Remove: -webkit-appearance keywords for arbitrary elements
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1d9FpHEVI64/VSELVHzbAQAJ
-  - *Deprecate and Remove: XSSAuditor*
+  - **Deprecate and Remove: XSSAuditor**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TuYw-EZhO9g/blGViehIAwAJ
     - デメリットが多いので消す
     - IE は既に消している
@@ -142,20 +142,20 @@ guest: [@myakura](https://twitter.com/myakura)
   - Emscripten and the LLVM WebAssembly backend · V8
     - https://v8.dev/blog/emscripten-llvm-wasm
 - Other
-  - *Official Google Webmaster Central Blog: Formalizing the Robots Exclusion Protocol Specification*
+  - **Official Google Webmaster Central Blog: Formalizing the Robots Exclusion Protocol Specification**
     - https://webmasters.googleblog.com/2019/07/rep-id.html
     - robots.txt を標準化したい
-  - *Google's robots.txt Parser is Now Open Source*
+  - **Google's robots.txt Parser is Now Open Source**
     - https://opensource.googleblog.com/2019/07/googles-robotstxt-parser-is-now-open.html
     - 標準化するにあたり、 Google の実装を公開
   - Official Google Webmaster Central Blog: A note on unsupported rules in robots.txt
     - https://webmasters.googleblog.com/2019/07/a-note-on-unsupported-rules-in-robotstxt.html
-  - *Robots.txt Specifications*
+  - **Robots.txt Specifications**
     - https://developers.google.com/search/reference/robots_txt#what-changed
     - 公開に伴い色々更新が
   - Chromium Blog: Easier Payments with Chrome
     - https://blog.chromium.org/2019/07/easier-payments-with-chrome.html
-  - *Remove Mixed Content Shield*
+  - **Remove Mixed Content Shield**
     - https://docs.google.com/document/d/17wJ0mWvunJjuKlS2sdZq9G-n9YsQsqLGgCek_PIvHk0/edit#
     - Mixed Contents のブロックアイコンを出してもあまり有益とは言い切れない場面が多い
     - これを外しつつ別の方法でのオプトインなどを導入したい
@@ -171,7 +171,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Updates
   - Firefox 68.0, See All New Features, Updates and Fixes
     - https://www.mozilla.org/en-US/firefox/68.0/releasenotes/
-  - *Firefox 68 for developers*
+  - **Firefox 68 for developers**
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/68
     - CSS Scroll Snap の実装が最新仕様に追従
     - `-webkit-line-clamp` プロパティ
@@ -205,11 +205,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/IgqT8s21rsQ/hddyOIIFAwAJ
   - Ship: Document.clear/captureEvents/releaseEvents no-op methods, and Document.all property
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/OL0I1NyaE3I/MpQKkRzPAQAJ
-  - *Ship: Add wildcard to Access-Control-Expose-Headers, Access-Control-Allow-Methods, and Access-Control-Allow-Headers*
+  - **Ship: Add wildcard to Access-Control-Expose-Headers, Access-Control-Allow-Methods, and Access-Control-Allow-Headers**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/R3KuZvyGIQA/C7hD2hRDAwAJ
     - Access-Control-Allow-Origin のように `*` が指定可能に
     - ただし no-credential
-  - *Ship: Show an indicator for insecure HTTP in the URL bar*
+  - **Ship: Show an indicator for insecure HTTP in the URL bar**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/RzmOHmoksdU/Gjo44QBeAQAJ
     - HTTP の場合は鍵アイコンに赤線が入るように
   - Ship: accumulating most JS scripts' data as UTF-8, then directly parsing as UTF-8 (without inflating to UTF-16)
@@ -218,12 +218,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/EJ9EDv8bqxI/inabUbgZAwAJ
   - Implement and ship: Limit the length of Referer header to 4k
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/GWvDmAn8n3M/3OAbLI_3CgAJ
-  - *Implement & Ship: WebRTC Perfect Negotiation APIs*
+  - **Implement & Ship: WebRTC Perfect Negotiation APIs**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/b27B35YuYKM/r781o7GYAwAJ
     - Chrome と同じ (Chrome Intents 参照)
   - Implement: CSS backdrop-filter
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/7tgkiUSa70w/6UPVgRbPCgAJ
-  - *Experiment: Web Share API*
+  - **Experiment: Web Share API**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/RHk3QJbV_7o/YCDCWRCCCgAJ
   - Unship: DOMQuad.prototype.bounds
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/q01sJZp3LH8/xYSa8cXmCQAJ
@@ -273,7 +273,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/press/2019/07/latest-firefox-release-available-today-for-ios-and-desktop/
   - Latest Firefox Release Available today for iOS and Desktop - The Mozilla Blog
     - https://blog.mozilla.org/blog/2019/07/09/latest-firefox-release-available-today-for-ios-and-desktop/
-  - *Testing Picture-in-Picture for videos in Firefox 69 Beta and Developer Edition - Mozilla Hacks - the Web developer blog*
+  - **Testing Picture-in-Picture for videos in Firefox 69 Beta and Developer Edition - Mozilla Hacks - the Web developer blog**
     - https://hacks.mozilla.org/2019/07/testing-picture-in-picture-for-videos-in-firefox-69/
     - Picture-in-Picture の UI が Windows 版 Firefox 69 (Beta, Dev) で試験導入中
     - Chrome が提案中の API は現時点では未実装
@@ -295,7 +295,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 12.1
 - Updates
-  - *Safari Technology Preview 87*
+  - **Safari Technology Preview 87**
     - https://webkit.org/blog/9414/release-notes-for-safari-technology-preview-87/
     - Added an experimental behavior to prevent a 5 second delay for initial paint on pages that are using Google's anti-flicker optimization when content blockers are enabled (r246764)
     - Added support for sending blob messages when using web sockets platform APIs (r246964)
@@ -304,7 +304,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Implemented console.countReset (r246850)
     - Implemented console.timeLog (r246798)
     - Open tabs are blank on initial launch after upgrading to Safari Technology Preview 87 and loading all tabs from the last session. To correct this behavior, reload open tabs or relaunch Safari Technology Preview.
-  - *Technology Preview 88*
+  - **Technology Preview 88**
     - https://webkit.org/blog/9445/release-notes-for-safari-technology-preview-88/
     - Enabled Intl.PluralRules and Intl.NumberFormatToParts by default (r247247)
     - Registered a MediaStreamTrack as media producer only if it is a capture track (r247208, r247382)
@@ -312,7 +312,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added accessibility announcement notifications to show, dismiss and selection change for the datalist suggestions view (r247418)
     - Implemented support for ARIA roles: insertion, deletion, subscript, superscript, and time (r247349)
     - Added most of the remainder of the standard library (r247174)
-  - *WebDriver is Coming to Safari in iOS 13*
+  - **WebDriver is Coming to Safari in iOS 13**
     - https://webkit.org/blog/9395/webdriver-is-coming-to-safari-in-ios-13/
 - Other
 
@@ -321,7 +321,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: Edge 43? / EdgeHTML 18? (Preview 77)
 - Status Updates
-  - *No Dev channel update for 7/2/2019 - Microsoft Tech Community - 734924*
+  - **No Dev channel update for 7/2/2019 - Microsoft Tech Community - 734924**
     - 7/4 が独立記念日でみんないないので 7/2 の Dev Channel update は 7/9 に延期
     - https://techcommunity.microsoft.com/t5/Discussions/No-Dev-channel-update-for-7-2-2019/m-p/734924
 - EdgeHTML
@@ -330,17 +330,17 @@ guest: [@myakura](https://twitter.com/myakura)
   - Release ChakraCore v1.11.11 · microsoft/ChakraCore
     - https://github.com/microsoft/ChakraCore/releases/tag/v1.11.11
 - Other
-  - *Debug the DOM in Visual Studio Code using Elements for Microsoft Edge - Microsoft Edge Blog*
+  - **Debug the DOM in Visual Studio Code using Elements for Microsoft Edge - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2019/07/12/debug-dom-vs-code-elements-for-microsoft-edge/
-  - *The next version of Microsoft Edge: Enterprise evaluation and roadmap - Microsoft Edge Blog*
+  - **The next version of Microsoft Edge: Enterprise evaluation and roadmap - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2019/07/16/microsoft-edge-enterprise-evaluation-roadmap/
     - 色々あるが IE11 モードの話が大きい
     - Same Site Cookie が引き起こす問題の話
       - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AknSSyQTGYs/lXBt8xyGAgAJ
-  - *Updating Browsers Quickly: Flags, Respins, and Components | text/plain*
+  - **Updating Browsers Quickly: Flags, Respins, and Components | text/plain**
     - https://textslashplain.com/2019/07/16/updating-browsers-quickly-flags-respins-and-components/
     - Chromium 版 Edge や Chrome のリリースサイクル、試験機能などについて
-  - *Livin' on the Edge: Dude Where's My Fix?!? | text/plain*
+  - **Livin' on the Edge: Dude Where's My Fix?!? | text/plain**
     - https://textslashplain.com/2019/07/17/finding-where-fixes-landed-in-chrome-edge-chromium/
     - OmahaProxy
 
@@ -358,7 +358,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/7842
   - CSS Syntax Module Level 3
     - https://www.w3.org/blog/news/archives/7853
-  - *Three WebAssembly drafts*
+  - **Three WebAssembly drafts**
     - https://www.w3.org/blog/news/archives/7864
     - Core
     - JS API
@@ -373,7 +373,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/7845
 - Chartering
 - Other
-  - *W3C TAG Ethical Web Principles*
+  - **W3C TAG Ethical Web Principles**
     - https://www.w3.org/2001/tag/doc/ethical-web-principles/
   - Call for Exclusions: WebAssembly Web API
     - https://lists.w3.org/Archives/Public/public-webassembly/2019Jul/0003.html
@@ -408,13 +408,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - TC39 proposal that enables flexible brand checks before dynamic code loading
     - https://github.com/tc39/proposal-dynamic-code-brand-checks
 - Other
-  - *QuickJS Javascript Engine*
+  - **QuickJS Javascript Engine**
     - https://bellard.org/quickjs/quickjs.html
     - Fabrice Bellard (ffmpeg 作者)実装の JS エンジン
     - C で書かれ外部依存が無く小さい
     - ES2019 準拠に加え、 BigInt/BigFloat/Operator Overload など計算向けの機能を追加
     - JS を実行可能バイナリにコンパイル可能
-  - *Hermes: A new open source JavaScript engine optimized for mobile apps*
+  - **Hermes: A new open source JavaScript engine optimized for mobile apps**
     - https://code.fb.com/android/hermes/
     - Facebook 製の JS エンジン
     - ReactNative on Android を効率よく実行することに特化している
@@ -427,25 +427,25 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### IETF 動向
 
-- *ESCAPE Workshop*
+- **ESCAPE Workshop**
   - Exploring Synergy between Content Aggregation and the Publisher Ecosystem Workshop 2019
     - https://www.iab.org/activities/workshops/escape-workshop/
     - Minutes はまだ https://www.iab.org/documents/minutes/
 - IETF 105 Montreal
-  - *httpwg/wg-materials*
+  - **httpwg/wg-materials**
     - https://github.com/httpwg/wg-materials/blob/gh-pages/ietf105/agenda.md
     - https://github.com/httpwg/wg-materials/blob/gh-pages/ietf105/minutes.md
     - Kazuho's Weblog: HTTP のプライオリティが大きく変わろうとしている話(その他 IETF 105 雑感)
     - http://blog.kazuhooku.com/2019/07/http-ietf-105.html
     - H2 Priority の実装が少なく、そのまま H3 に持っていくのではなく HTTP Header ベースに変えていく
-    - *The Priority HTTP Header Field*
+    - **The Priority HTTP Header Field**
       - https://tools.ietf.org/html/draft-kazuho-httpbis-priority-00
       - HTTP に priority header を入れてそこで優先度を指定できるように
       - `-1` ~ `6` までの 8 通りを設定可能
-    - *Declaring Support for HTTP/2 Priorities*
+    - **Declaring Support for HTTP/2 Priorities**
       - https://tools.ietf.org/html/draft-lassey-priority-setting-00
       - H2 の Priority を使わなくしていく
-    - *Deprecation of HTTP/2 Priority Signaling Hints*
+    - **Deprecation of HTTP/2 Priority Signaling Hints**
       - https://tools.ietf.org/html/draft-peon-httpbis-h2-priority-one-less-00
       - 使いたい場合に明示的に知らせる SETTINGS frame
       - SETTINGS_ENABLE_HTTP2_PRIORITIES
@@ -463,7 +463,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Call for Adoption
 - I-D Action
 - Draft
-  - *HTTP Partial POST Replay*
+  - **HTTP Partial POST Replay**
     - https://tools.ietf.org/html/draft-frindell-httpbis-partial-post-replay-00
     - ファイルアップロードなど時間のかかる POST が途中で失敗した場合
     - 再試行すると成功していた部分が無駄なので、途中から再開したい
@@ -475,7 +475,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-yasskin-wpack-bundled-exchanges-01
   - COSE and JOSE Registrations for WebAuthn Algorithms
     - https://tools.ietf.org/html/draft-ietf-cose-webauthn-algorithms-01
-  - *An Internet for Users Again*
+  - **An Internet for Users Again**
     - https://tools.ietf.org/html/draft-lazanski-smart-users-internet-00
   - Cross-Area Work in IETF
     - https://tools.ietf.org/html/draft-li-cross-ietf-area-work-00
@@ -495,7 +495,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-kuhn-quic-4-sat-00
   - TCP ACK Pull
     - https://tools.ietf.org/html/draft-gomez-tcpm-ack-pull-00
-  - *Synchronization for HTTP*
+  - **Synchronization for HTTP**
     - https://tools.ietf.org/html/draft-toomim-braid-00
     - Stateful な braid protocol の提案
   - Authoritative DNS-over-TLS Operational Considerations
@@ -526,7 +526,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Facebook の CDN で障害
   - https://twitter.com/facebook/status/1146453213777936386
   - https://gigazine.net/news/20190704-facebook-instagram-network-incident/
-- *Challenges with Federated Identity in modern browsers*
+- **Challenges with Federated Identity in modern browsers**
   - https://textslashplain.com/2019/07/05/challenges-with-federated-identity-in-modern-browsers/
   - 最近のブラウザは、これまでの Fererated 認証が前提としてきたものと挙動が変わってる
   - 1rd Party と 3rd Party が Cookie や Storage 情報を共有できないものも
@@ -536,7 +536,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 様々なブラウザの様々な設定でテストしよう
 - セキュリティを重視した開発手法ベストプラクティス - The GitHub Blog - Japan
   - https://github.blog/jp/2019-07-05-best-practice-for-secure-sw-development/
-- *A better zip bomb*
+- **A better zip bomb**
   - https://www.bamsoftware.com/hacks/zipbomb/
   - zip bomb: zip だと小さいけど伸張するとでかくなる攻撃
   - 今までは、限界があったので再帰的に伸張させる攻撃が主流
@@ -545,13 +545,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - 42KB => 5.5GB
     - 10MB => 281TB
     - 46MB => 4.5PB
-- *ISPA announces finalists for 2019 Internet Heroes and Villains: Trump and Mozilla lead the way as Villain nominees >> News, Press Releases | The Internet Service Providers Association*
+- **ISPA announces finalists for 2019 Internet Heroes and Villains: Trump and Mozilla lead the way as Villain nominees >> News, Press Releases | The Internet Service Providers Association**
   - https://www.ispa.org.uk/ispa-announces-finalists-for-2019-internet-heroes-and-villains-trump-and-mozilla-lead-the-way-as-villain-nominees/
   - https://jp.techcrunch.com/2019/07/06/2019-07-05-isp-group-mozilla-internet-villain-dns-privacy/
   - DoH を実装するとペアレンタルコントロールができなくなり、 UK の ISP が義務を履行できない。
   - ISPA (ISP 業界団体)から「Mozilla は悪(Villan)」 だと認定された。
   - ちなみに他の Hero は Sir TBL, Villan は Trump
-- *An Analysis of Godlua Backdoor*
+- **An Analysis of Godlua Backdoor**
   - https://blog.netlab.360.com/an-analysis-of-godlua-backdoor-en/
   - https://japan.zdnet.com/article/35139444/
   - Lua で書かれた DDoS マルウェア
@@ -571,7 +571,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google Public DNS の DoH が RFC 8484 準拠に
   - API の URL も変わる
   - https://dns.google/dns-query
-- *Zoom Zero Day: 4+ Million Webcams & maybe an RCE? Just get them to visit your website!*
+- **Zoom Zero Day: 4+ Million Webcams & maybe an RCE? Just get them to visit your website!**
   - https://medium.com/bugbountywriteup/zoom-zero-day-4-million-webcams-maybe-an-rce-just-get-them-to-visit-your-website-ac75c83f4ef5
   - Zoom の脆弱性の話
   - CORS を迂回するために localhost サーバを起動していた
@@ -590,7 +590,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/forum/#!topic/security-dev/jhFzTokfpLM
   - 韓国の GPKI が、不正な証明書を発行している
   - 連続して発行した二つの証明書が同じシリアルナンバー
-- *1567114 - MITM on all HTTPS traffic in Kazakhstan*
+- **1567114 - MITM on all HTTPS traffic in Kazakhstan**
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1567114
   - カザフスタンが全てのデバイスに国の証明書を入れさせているらしい
   - 実際に MITM も発生した模様
@@ -614,7 +614,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Chrome's privacy changes are a humbling reminder for subscription publishers - Digiday*
+- **Chrome's privacy changes are a humbling reminder for subscription publishers - Digiday**
   - https://digiday.com/media/publishers-worry-chromes-privacy-tests-could-short-circuit-metered-paywalls/
   - https://digiday.jp/platforms/publishers-worry-chromes-privacy-tests-could-short-circuit-metered-paywalls/
   - Chrome の Private Mode では FileSystem API が潰されていたことを利用に判定に使われていた
@@ -622,7 +622,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/paul_irish/status/1138471166115368960
   - Chrome としては個人情報保護強化だが、パブリッシャーにはペイウォール回避で非難
   - そこから転じて、 Chrome が縦割り組織でどうこうという話にまで
-- *The Web We Want*
+- **The Web We Want**
   - https://webwewant.fyi/
   - Web に対する要望を投げられるサイト
   - Marcos C á ceres (Mozilla, W3C)
@@ -630,7 +630,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Aaron Gustafson (Microsoft) - Project Founder
   - Chris Wilson (Google, W3C)
   - らによる。
-- *Is postMessage slow? - DasSur.ma*
+- **Is postMessage slow? - DasSur.ma**
   - https://dassur.ma/things/is-postmessage-slow/
   - Object の深さ、要素数を変えた時の postMessage への影響について
   - シリアライズと転送のコストは、要素の大きさと相関している

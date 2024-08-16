@@ -37,9 +37,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Ship: Expose TransformStreamDefaultController
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/I3ANo1F_NkM/m/ZSA9Qwk-AgAJ
-- *Ship: `fetch()` upload streaming*
+- **Ship: `fetch()` upload streaming**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zwKGB0_ksQU/m/mtVsZDH1AwAJ
-- *Ship: CSS Overflow for replaced elements*
+- **Ship: CSS Overflow for replaced elements**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/MuTeW_AFgxA/m/boPlODonAwAJ
 - Ship: Add onbeforeinput global event handler content attribute
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hOhg-Rw6qww/m/LCJ9CzXiAgAJ
@@ -51,7 +51,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/DKeklNbLG5s
 - Prototype: Align async API read/write HTML format with DataTransfer API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/j9fDbU9E2Ds/m/bYquF9mdAAAJ
-- *Prototype: COOP: restrict-properties*
+- **Prototype: COOP: restrict-properties**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/27CzR01sZYI/m/eoefKZNWBAAJ
 - Prototype: ContentVisibilityAutoStateChanged event
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/MtgwTiMvXGc/m/1t4_G4cTBAAJ
@@ -69,13 +69,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-7H19EHTenU
 - Experiment: COOP: restrict-properties
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JrMX5H2PX_o/m/JipeWijACAAJ
-- *Extend experiment: Privacy Sandbox Ads APIs*
+- **Extend experiment: Privacy Sandbox Ads APIs**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/SD8Ot2gpz4g
 - Extend Experiment: Dark mode support for web apps
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2c8msRrrcF0
 - Extend Origin Trial: WebGPU
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/gBMsYQ1Aurw
-- *Deprecate and Remove: Expect-CT*
+- **Deprecate and Remove: Expect-CT**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bGLVLwSKNJY/m/nbg4hWckAwAJ
 - Deprecate and Remove: CSS default keyword is disallowed in custom identifiers
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/o89R2kMX-yI/m/xh_omNilBgAJ
@@ -93,7 +93,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/44EYjwSZrjQ
 - PSA: FileSystemReadWriteOptions to become optional on Access Handles
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/BboiMXq2-xg
-- *Upcoming chromestatus.com edit permissions change*
+- **Upcoming chromestatus.com edit permissions change**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/eVVBa8It2dA
 - Inactive OWNERS cleanup
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-xIo9nN7F7Q
@@ -109,7 +109,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - web.dev
   - How the BBC is rolling out HSTS for better security and performance.
     - https://web.dev/bbc-hsts/
-  - *New to the web platform in July*
+  - **New to the web platform in July**
     - https://web.dev/web-platform-07-2022/
   - New patterns
     - https://web.dev/new-patterns-july-2022/
@@ -125,9 +125,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.chrome.com/en/blog/devtools-tips-11/
 - Revamping Analytics in the Chrome Web Store Developer Dashboard
   - https://developer.chrome.com/en/blog/cws-analytics-revamp/
-- *Expanding Privacy Sandbox testing*
+- **Expanding Privacy Sandbox testing**
   - https://developer.chrome.com/en/blog/expanding-privacy-sandbox-testing/
-- *Help pick a syntax for CSS nesting*
+- **Help pick a syntax for CSS nesting**
   - https://developer.chrome.com/en/blog/help-css-nesting/
   - CSS nesting の syntax をどうするか議論中でアンケート
   - 1: `&` でネストし、曖昧さが生まれる場合はさらに `@nest` を付ける
@@ -141,7 +141,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.chrome.com/en/blog/devtools-tips-10/
 - Chrome Dev Insider: The CSS and UI edition
   - https://developer.chrome.com/en/blog/insider-july-2022/
-- *Progress in the Privacy Sandbox (May - June 2022)*
+- **Progress in the Privacy Sandbox (May - June 2022)**
   - https://developer.chrome.com/en/blog/progress-in-the-privacy-sandbox-2022-06/
 - Signed Exchanges launched for desktop sites
   - https://developer.chrome.com/en/blog/sxg-desktop/
@@ -149,16 +149,16 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.chromium.org/
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
-- *Google Online Security Blog: DNS-over-HTTP/3 in Android*
+- **Google Online Security Blog: DNS-over-HTTP/3 in Android**
   - https://security.googleblog.com/2022/07/dns-over-http3-in-android.html
 - Expanding testing for the Privacy Sandbox for the Web
   - https://blog.google/products/chrome/update-testing-privacy-sandbox-web/
-- *Google Japan Blog: ウェブ向けプライバシー サンドボックスのテスト期間延長について*
+- **Google Japan Blog: ウェブ向けプライバシー サンドボックスのテスト期間延長について**
   - https://japan.googleblog.com/2022/07/blog-post.html
   - トライアルのフィードバックを元にスケジュールの変更
   - API 実装が 2023 Q3 、 3P Cookie 廃止が late 2024 に 1 年延期
   - 2021/6 にも API 実装が late 2022 、 3P Cookie 廃止を late 2023 に延期していた
-- *Proposing changes to First-Party Sets based on community feedback · Issue #92 · WICG/first-party-sets*
+- **Proposing changes to First-Party Sets based on community feedback · Issue #92 · WICG/first-party-sets**
   - https://github.com/WICG/first-party-sets/issues/92
     - 「セット」をカテゴリごとのサブセットで考える
     - Storage Access API を使う
@@ -170,11 +170,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Stable: 103
 
-- *Firefox 103.0, See All New Features, Updates and Fixes*
+- **Firefox 103.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/103.0/releasenotes/
     - > Removed a configuration option to allow SHA-1 signatures in certificates
     - > Your information now has increased protection from online tracking via Total Cookie Protection enabled by default. All third-party cookies are now isolated into partitioned storage.
-- *Firefox 103 for developers - Mozilla | MDN*
+- **Firefox 103 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/103
     - `backdrop-filter` プロパティ
     - `scroll-snap-stop` プロパティ
@@ -196,7 +196,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/LlxUr3vIBWc
 - Prototype: width and height attributes on `<source>` elements
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/V0nhaTr86LA
-- *Prototype: animation-composition property*
+- **Prototype: animation-composition property**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/s0_mISL9ac8
 - Engineering Effectiveness Newsletter (June 2022 Edition)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/H389vt45F0Y
@@ -204,21 +204,21 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *ESMification Prep: What is JSM?*
+- **ESMification Prep: What is JSM?**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Dr2OVHL2ZSk
-- *ESMification Prep 2: What is an ESM?*
+- **ESMification Prep 2: What is an ESM?**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/6ahIMBNIamo
-- *ESMification Prep 3: Dive into example migrations*
+- **ESMification Prep 3: Dive into example migrations**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/hSQXSb_n-9U
 - These Weeks In Firefox: Issue 120 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/07/18/these-weeks-in-firefox-issue-120/
 - These Weeks In Firefox: Issue 121 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/07/28/these-weeks-in-firefox-issue-121/
-- *Understanding Apple's Private Click Measurement*
+- **Understanding Apple's Private Click Measurement**
   - https://blog.mozilla.org/en/mozilla/understanding-apples-private-click-measurement/
   - Martin Thomson による PCM の評価
   - > Overall, the design choices in PCM that aim to safeguard privacy provide insufficient privacy protections, but they appear to make the API less useful for measurement.
-- *Facebook が URL の形式を変更。一部ブラウザーが実装したパラメーター削除機能への対策か【やじうま Watch 】 - INTERNET Watch*
+- **Facebook が URL の形式を変更。一部ブラウザーが実装したパラメーター削除機能への対策か【やじうま Watch 】 - INTERNET Watch**
   - https://internet.watch.impress.co.jp/docs/yajiuma/1426324.html
 
 
@@ -229,11 +229,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New WebKit Features in Safari 15.6*
+- **New WebKit Features in Safari 15.6**
   - https://webkit.org/blog/13009/new-webkit-features-in-safari-15-6/
     - Newly defined in CSS Selectors level 4, the :modal pseudo-class can be used to select dialog elements opened with the showModal() API.
     - Fixed `<link rel=preconnect>` to respect crossorigin=anonymous and prevent sending credentials to different-origin links
-- *Release Notes for Safari Technology Preview 149*
+- **Release Notes for Safari Technology Preview 149**
   - https://webkit.org/blog/12998/release-notes-for-safari-technology-preview-149/
   - Web Inspector
     - Added support for forcing pseudo-class :focus-visible, :focus-within, and :target (251656@main, 251628@main)
@@ -253,7 +253,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web API
     - Added support for waiting for event in custom element (251718@main)
   - Security
-- *Release Notes for Safari Technology Preview 150*
+- **Release Notes for Safari Technology Preview 150**
   - https://webkit.org/blog/13066/release-notes-for-safari-technology-preview-150/
   - Web Inspector
   - CSS
@@ -276,10 +276,10 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Apple -  Anne's Blog*
+- **Apple -  Anne's Blog**
   - https://annevankesteren.nl/2022/07/apple
   - Anne が Mozilla から Apple へ
-- *Apple expands commitment to protect users from mercenary spyware - Apple*
+- **Apple expands commitment to protect users from mercenary spyware - Apple**
   - https://www.apple.com/newsroom/2022/07/apple-expands-commitment-to-protect-users-from-mercenary-spyware/
   - Apple が OS に Lockdown Mode を導入する
   - Pegasus など要人や人権活動家のスマートフォンに仕込まれたスパイウェアから守る
@@ -299,12 +299,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Disk caching in Microsoft Edge*
+- **Disk caching in Microsoft Edge**
   - https://blogs.windows.com/msedgedev/2022/07/27/disk-caching-in-microsoft-edge/
   - Edge のディスクキャッシュを自動的に圧縮して容量を減らすように
 - New Recipes for 3rd Party Cookies - text/plain
   - https://textslashplain.com/2022/07/27/new-recipes-for-cookies/
-- *My Next Opportunity - text/plain*
+- **My Next Opportunity - text/plain**
   - https://textslashplain.com/2022/07/22/iwebbrowser3beforenavigate/
 - Edge URL Schemes - text/plain
   - https://textslashplain.com/2022/07/18/edge-url-schemes/
@@ -315,7 +315,7 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Draft
 
 - Recommendation
-  - *Decentralized Identifiers (DIDs) v1.0*
+  - **Decentralized Identifiers (DIDs) v1.0**
     - https://www.w3.org/TR/did-core/
     - Google と Mozilla から Formal Objection が出ていたが勧告された
 - Proposed Recommendation
@@ -327,9 +327,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *W3C offers an Inclusion Fund and Fellowships for TPAC 2022*
+- **W3C offers an Inclusion Fund and Fellowships for TPAC 2022**
   - https://www.w3.org/blog/news/archives/9613
-- *W3C calls for nominations in the election for the Board of Directors of W3C, Inc.*
+- **W3C calls for nominations in the election for the Board of Directors of W3C, Inc.**
   - https://www.w3.org/blog/news/archives/9631
 - W3C Board of Directors Job Description
   - https://www.w3.org/2022/07/w3c-board-of-directors-job-description.html
@@ -341,7 +341,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Meeting
 
-- *2021-06*
+- **2021-06**
   - https://github.com/tc39/agendas/blob/main/2022/06.md
   - https://github.com/tc39/notes/tree/main/meetings/2022-06
 
@@ -412,7 +412,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022JulSep/0015.html
   - HTTP Working Group Materials - IETF114
     - https://httpwg.org/wg-materials/ietf114/
-  - *RFC 9264: Linkset: Media Types and a Link Relation Type for Link Sets*
+  - **RFC 9264: Linkset: Media Types and a Link Relation Type for Link Sets**
     - https://www.rfc-editor.org/rfc/rfc9264.html
 - quicwg
   - https://mailarchive.ietf.org/arch/browse/quic/
@@ -450,18 +450,18 @@ guest: [@myakura](https://twitter.com/myakura)
   - 2022 年第 2 四半期における DDoS 攻撃の傾向
     - https://blog.cloudflare.com/ja-jp/ddos-attack-trends-for-2022-q2-ja-jp/
 - Developers
-  - *Announcing support for WASI on Cloudflare Workers*
+  - **Announcing support for WASI on Cloudflare Workers**
     - https://blog.cloudflare.com/announcing-wasi-on-workers/
 - Deep Dive
-  - *When the window is not fully open, your TCP stack is doing more than you think*
+  - **When the window is not fully open, your TCP stack is doing more than you think**
     - https://blog.cloudflare.com/when-the-window-is-not-fully-open-your-tcp-stack-is-doing-more-than-you-think/
-  - *NIST's pleasant post-quantum surprise*
+  - **NIST's pleasant post-quantum surprise**
     - https://blog.cloudflare.com/nist-post-quantum-surprise/
 
 
 #### Fastly
 
-- *The state of TLS fingerprinting: What's Working, What Isn't, and What's Next | Fastly*
+- **The state of TLS fingerprinting: What's Working, What Isn't, and What's Next | Fastly**
   - https://www.fastly.com/blog/the-state-of-tls-fingerprinting-whats-working-what-isnt-and-whats-next
 
 
@@ -470,24 +470,24 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *NIST Announces First Four Quantum-Resistant Cryptographic Algorithms | NIST*
+- **NIST Announces First Four Quantum-Resistant Cryptographic Algorithms | NIST**
   - https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms
 
 
 ### 周辺動向
 
-- *Wolvic 1.0 | Igalia*
+- **Wolvic 1.0 | Igalia**
   - https://www.igalia.com/2022/07/08/Wolvic-1.0.html
 - Igalia in the News | Igalia
   - https://www.igalia.com/2022/07/29/Igalia-in-the-News.html
-- *Igalia: the Open Source Powerhouse You've Never Heard of - The New Stack*
+- **Igalia: the Open Source Powerhouse You've Never Heard of - The New Stack**
   - https://thenewstack.io/igalia-the-open-source-powerhouse-youve-never-heard-of/
   - 謎のオープンソース企業 Igalia について中の人や Bloomberg の人にインタビュー
-- *Some highlights of the Web Engines Hackfest 2022 - Rego's Everyday Life*
+- **Some highlights of the Web Engines Hackfest 2022 - Rego's Everyday Life**
   - https://blogs.igalia.com/mrego/2022/07/20/some-highlights-of-the-web-engines-hackfest-2022/
-- *ImperialViolet - Passkeys*
+- **ImperialViolet - Passkeys**
   - https://www.imperialviolet.org/2022/07/04/passkeys.html
-- *Help design the State of CSS Survey 2022! - Lea Verou*
+- **Help design the State of CSS Survey 2022! - Lea Verou**
   - https://lea.verou.me/2022/07/help-design-the-state-of-css-survey-2022/
   - Google の UI fund を得て Lea Verou が State of CSS 2022 の設計に協力
   - 8 月 20 日までに GitHub でフィードバックを集めている
@@ -495,9 +495,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - ブラウザ開発者が見ているのでみんな参加して
 - The History of JavaScript - DEV Community
   - https://dev.to/iarchitsharma/the-history-of-javascript-5e98
-- *Apple, Google, Facebook's AV1 standards group under antitrust investigation in EU*
+- **Apple, Google, Facebook's AV1 standards group under antitrust investigation in EU**
   - https://appleinsider.com/articles/22/07/07/apple-google-facebooks-av1-standards-group-under-antitrust-investigation-in-eu/amp/
-- *書籍「いちばんやさしい Web3 の教本 人気講師が教える NFT 、 DAO 、 DeFi が織りなす新世界」の回収について - インプレスブックス*
+- **書籍「いちばんやさしい Web3 の教本 人気講師が教える NFT 、 DAO 、 DeFi が織りなす新世界」の回収について - インプレスブックス**
   - https://book.impress.co.jp/info/20220725.html
 
 

@@ -19,14 +19,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 75
 - Updates
-  - *New in Chrome 75*
+  - **New in Chrome 75**
     - https://developers.google.com/web/updates/2019/06/nic75
     - Hint for low latency canvas contexts
     - Share files with the Web Share API
     - Numeric literals
   - What's New In DevTools (Chrome 76)
     - https://developers.google.com/web/updates/2019/05/devtools
-  - *Chromium Blog: Chrome 76 Beta: dark mode, payments, new PWA features and more*
+  - **Chromium Blog: Chrome 76 Beta: dark mode, payments, new PWA features and more**
     - https://blog.chromium.org/2019/06/chrome-76-beta-dark-mode-payments-new.html
     - Dark Mode
     - Payments API Updates
@@ -53,11 +53,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dTL2nW5mhGc/Rfp52LCnBgAJ
   - Ship: Throw on invalid "basic-card" data
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/mKytaPCs8ZE/S-D8r4GjAgAJ
-  - *Ship: Animation Worklet*
+  - **Ship: Animation Worklet**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aRKT0BkrF-8/G-KuTnMBBgAJ
   - Ship: Add [Exposed=Window,Worker] to PaymentManager
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8WnMLRKeaog/VL4eBEJHAwAJ
-  - *Implement and Ship: Cookies with SameSite by default*
+  - **Implement and Ship: Cookies with SameSite by default**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AknSSyQTGYs/SSB1rTEkBgAJ
     - Chrome 77 での ship を計画していたが、 macOS/iOS の CFNetwork にバグがあった。
     - SameSite=None (や他の未知の値)が SameSite=Strict として解釈されるため Chrome 80 まで延期
@@ -65,7 +65,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ik4vvlOg0jc/-EYx9IdxBAAJ
   - Implement and Ship: Let all early errors be SyntaxErrors
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VizkBlcoy3M/7g4YAY88BgAJ
-  - *Implement and Ship: Limit `Referer` header's length to 4k*
+  - **Implement and Ship: Limit `Referer` header's length to 4k**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lckJ5OAkUNo/ooVNdvhLAgAJ
   - Implement and Ship: CSS font-size: xxx-large
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ucEUTqoi4Nc/wx3q-B7tAQAJ
@@ -77,40 +77,40 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fs-Y4awdYj0/1UOKRxzmBQAJ
   - Implement and Ship: Discard input events targeting recently-moved iframes
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MzXscv7fT0w/ygq7qc6sBQAJ
-  - *Implement and Ship: SRI support for link preloads*
+  - **Implement and Ship: SRI support for link preloads**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/F0IiHq9EHyc/F4qC3QCQCwAJ
-  - *Implement and Ship: Error structured serialization*
+  - **Implement and Ship: Error structured serialization**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/f8JngIi8qYs/QR6GTJTACwAJ
     - Worker とやり取りできるように Error をシリアライズ可能に
     - Transferable Stream がモチベーション
-  - *Implement and Ship: CSS min(), max() and clamp()*
+  - **Implement and Ship: CSS min(), max() and clamp()**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7FaMtRBfTBU/-Sm3s-gFAwAJ
   - Implement and Ship: Overscroll Behavior logical longhands
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/V86fOkIaEQA/7bbQ4rP8AgAJ
-  - *Implement: Largest contentful paint*
+  - **Implement: Largest contentful paint**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WVqgYtyaGJk/q-TGbeExBgAJ
   - Implement: Add millisecondDigits option to Intl.DateTimeFormat
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WXd9nh03a1M/z7QeIMgrBgAJ
-  - *Implement: Cross-Origin-Resource-Policy-Policy (the name will be changed)*
+  - **Implement: Cross-Origin-Resource-Policy-Policy (the name will be changed)**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oS94Kp3BOOU/sj6lcwYIBgAJ
     - Cross-Origin-Embedder-Policy になりそう
   - Implement: Support step timing functions jump-start/end/both/none
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/u65DesVOzmY/htUnPfFcBgAJ
   - Implement: PushSubscriptionChangeEvent & PushManager.refreshSubscription
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rzNq9b5QSDc/p66EeehZBgAJ
-  - *Implement: Cross-Origin-Opener-Policy*
+  - **Implement: Cross-Origin-Opener-Policy**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RN0PfhoxdHI/ASzdxxoMBgAJ
     - opener の一括制限
   - Implement: JavaScript Memory API
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cdUOyBAtWzo/MRmGAURjBQAJ
-  - *Implement: Toast UI element*
+  - **Implement: Toast UI element**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Gl7FIKM5IFw/tA70X9ZIBQAJ
     - `<std-toast>`
     - intent プロセスや Chrome チームのやりかた、機能に対して解決する問題、 toast という名前などいろんな観点で燃えている
-  - *Implement: Toggle switch control element*
+  - **Implement: Toggle switch control element**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kP556piqDR8/XHuly9HMAwAJ
     - `<std-switch>`
-  - *Implement: Content Index API*
+  - **Implement: Content Index API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qERxZjYu6SE/JGd_lkyXBQAJ
   - Extend Origin Trial: lowLatency canvas contexts (through end of M74)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hqhrB2BIIr0/q7TfR2I1BgAJ
@@ -141,7 +141,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - v8
   - Code caching for WebAssembly developers - V8
     - https://v8.dev/blog/wasm-code-caching
-  - *V8 release v7.6 · V8*
+  - **V8 release v7.6 · V8**
     - https://v8.dev/blog/v8-release-76
     - chrome 76 に入る
     - JSON.parse improvements
@@ -149,7 +149,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Promise.allSettled
     - Improved BigInt support
     - etc
-  - *The cost of JavaScript in 2019 · V8*
+  - **The cost of JavaScript in 2019 · V8**
     - https://v8.dev/blog/cost-of-javascript-2019
     - JS の fetch/parse/compile/cache などにつて
     - JS の object 記法より JSON.parse() の方が速いという話が話題
@@ -158,39 +158,39 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.amp.dev/2019/05/23/debunking-common-amp-myths/
   - Innovation in navigation on the web platform
     - https://blog.amp.dev/2019/06/05/innovation-in-navigation-on-the-web-platform/
-  - *Learn web development with AMP!*
+  - **Learn web development with AMP!**
     - https://blog.amp.dev/2019/06/20/learn-web-development-with-amp/
-  - *Introducing Cloudflare AMP Real URL*
+  - **Introducing Cloudflare AMP Real URL**
     - https://blog.amp.dev/2019/06/17/introducing-cloudflare-amp-real-url/
     - Cloudflare の SXG
 - Other
   - Chromium Blog: Taking Action on Deceptive Installation Tactics
     - https://blog.chromium.org/2019/05/taking-action-on-deceptive-installation.html
-  - *Web Feature Deprecation: A Case Study for Chrome*
+  - **Web Feature Deprecation: A Case Study for Chrome**
     - https://ai.google/research/pubs/pub47833
     - Chrome でなにか機能を deprecate したい場合において行っていること
-  - *Fixing HTTPS Misconfigurations at Scale: An Experiment with Security Notifications - Google AI*
+  - **Fixing HTTPS Misconfigurations at Scale: An Experiment with Security Notifications - Google AI**
     - https://ai.google/research/pubs/pub48162
     - TLS 設定の問題をサイトオーナーにどう伝えたらいいのかを Google が実験
     - サーチコンソールでの通知や WHOIS のコンタクト先にメールを送るなど、様々な組み合わせで実験した
-  - *Chrome Enterprise release notes - Google Chrome Enterprise Help*
+  - **Chrome Enterprise release notes - Google Chrome Enterprise Help**
     - https://support.google.com/chrome/a/answer/7679408
     - エンタープライズポリシーについて
     - Flash blocked by default in Chrome 76 についても書かれている
-  - *Chromium Blog: Web Request and Declarative Net Request: Explaining the impact on Extensions in Manifest V3*
+  - **Chromium Blog: Web Request and Declarative Net Request: Explaining the impact on Extensions in Manifest V3**
     - https://blog.chromium.org/2019/06/web-request-and-declarative-net-request.html
     - Declarative にして制限を強くすることにより Google がアドブロッカーを締め出そうとしているという懸念に対する解説ポスト
-  - *Google Earth*
+  - **Google Earth**
     - How we're bringing Google Earth to the Web
       - https://web.dev/earth-webassembly/
     - Chromium Blog: WebAssembly brings Google Earth to more browsers
       - https://blog.chromium.org/2019/06/webassembly-brings-google-earth-to-more.html
     - Google Earth の WASM 版正式リリース
-  - *How do I notify users that my PWA is installable?*
+  - **How do I notify users that my PWA is installable?**
     - https://developers.google.com/web/updates/2019/06/pwa-install-patterns
     - Chrome 76 で beforeinstallprompt イベントを `preventDefault()` するとミニバーが表示されなくなる
     - PWA なこと、インストール可能なことをどう表現するか
-  - *Bringing service workers to Google Search*
+  - **Bringing service workers to Google Search**
     - https://web.dev/google-search-sw
     - Google Search に SW を入れた苦労話
     - Navigation Preload によるオーバーヘッド削減
@@ -199,7 +199,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Cookie の PostMessage でのやりとり
     - Cache の期限
     - etc
-  - *Reader Mode flag*
+  - **Reader Mode flag**
     - https://chromium.googlesource.com/chromium/src/+/766c2ad9b387457c4538cc702d4a0e5c73dc83f2
     - https://japan.cnet.com/article/35138001/
     - https://crbug.com/925965
@@ -208,13 +208,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://chromium.googlesource.com/chromium/src/+/52b1b1e94dba734bda175cf96596f0a1d65e0b81
   - Making JavaScript and Google Search work together
     - https://web.dev/javascript-and-google-search-io-2019/
-  - *The Layout Instability API*
+  - **The Layout Instability API**
     - https://web.dev/layout-instability-api/
   - Updates to the Web Payments APIs
     - https://web.dev/web-payments-updates/
   - Web components: the secret ingredient helping power the web
     - https://web.dev/web-components-io-2019/
-  - *Image policies for fast load times and more*
+  - **Image policies for fast load times and more**
     - https://web.dev/image-policies/
   - Chromium Blog: New Chrome Protections from Deception
     - https://blog.chromium.org/2019/06/new-chrome-protections-from-deception.html
@@ -234,37 +234,37 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 67
 - Updates
-  - *When it comes to privacy, default settings matter!*
+  - **When it comes to privacy, default settings matter!**
     - https://blog.mozilla.org/blog/2019/06/04/when-it-comes-to-privacy-default-settings-matter/
     - 新規インストールされた Firefox でトラッキング抑止機能がデフォルトで有効に
   - These Weeks in Firefox: Issue 59
     - https://blog.nightly.mozilla.org/2019/06/10/these-weeks-in-firefox-issue-59-2/
-  - *Security vulnerabilities fixed in Firefox 67.0.3 and Firefox ESR 60.7.1*
+  - **Security vulnerabilities fixed in Firefox 67.0.3 and Firefox ESR 60.7.1**
     - https://www.mozilla.org/en-US/security/advisories/mfsa2019-18/
     - CVE-2019-11707: Type confusion in Array.pop
     - Array.pop に脆弱性があり、これを利用した標的型攻撃を確認している
     - Firefox 67.0.3 と Firefox ESR 60.7.1 を緊急リリース
-  - *Reinventing Firefox for Android: a Preview - Future Releases*
+  - **Reinventing Firefox for Android: a Preview - Future Releases**
     - https://blog.mozilla.org/futurereleases/2019/06/27/reinventing-firefox-for-android-a-preview/
     - GeckoView ベースの新しい Android 版 Firefox (Fenix) のプレビューが公開
-  - *GeckoView in 2019 - Mozilla Hacks - the Web developer blog*
+  - **GeckoView in 2019 - Mozilla Hacks - the Web developer blog**
     - https://hacks.mozilla.org/2019/06/geckoview-in-2019/
     - GeckoView と使われているブラウザについて
-  - *won't fix: New Firefox Preview for Android*
+  - **won't fix: New Firefox Preview for Android**
     - https://wontfix.blogspot.com/2019/06/new-firefox-preview-for-android.html
     - GeckoView の概要と Fenix などで使われている Androdid Components について
 - Intents
-  - *Ship: JavaScript public fields*
+  - **Ship: JavaScript public fields**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/GhSNChVLgZQ/rA2Ytc0TAgAJ
-  - *Ship: @supports selector()*
+  - **Ship: @supports selector()**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/xeODJ3-0jH4/RAz3vmY-CQAJ
-  - *Implement: CSS text-underline-offset*
+  - **Implement: CSS text-underline-offset**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/iwkhLi-2mxw/2aJPi80TAgAJ
   - Implement: CSS text-decoration-width
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/VWcV5QUzJF0/O9hET80TAgAJ
-  - *Implement: Cookie SameSite=lax by default and SameSite=none only if secure*
+  - **Implement: Cookie SameSite=lax by default and SameSite=none only if secure**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/nx2uP0CzA9k/BNVPWDHsAQAJ
-  - *Implement and ship: queueMicrotask*
+  - **Implement and ship: queueMicrotask**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/QFSmwlof1_I/lHLmiFw7AgAJ
   - Implement and ship: Document.open/close/write/writeln
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/7-yXFPe6oMw/3nGNnIUXAgAJ
@@ -280,7 +280,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/d00fuC4qwzs/mZ5krQBMAwAJ
   - Implement and ship: Document colour properties
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/BrE5XnufrHs/1aOts40UAAAJ
-  - *Implement and ship: Resize Observer API*
+  - **Implement and ship: Resize Observer API**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/WXeYAj_ji8I/ighAqJ3DAQAJ
   - Implement and ship: break-spaces value of the white-space property
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/RB8dwZ3_DeA/ZCaq16JxAQAJ
@@ -316,7 +316,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - hasExtension() has been removed from some SVG interfaces
     - https://www.fxsitecompat.com/en-CA/docs/2019/hasextension-has-been-removed-from-some-svg-interfaces/
 - Other
-  - *Mozilla Position on Web Packaging*
+  - **Mozilla Position on Web Packaging**
     - https://docs.google.com/document/d/1ha00dSGKmjoEh2mRiG8FIA5sJ1KihTuZe-AXX1r8P-8
     - Mozilla の Web Packaging に対するポジション
     - WebPackaging が Web Platform にもたらす変更は大く、影響も大きい
@@ -327,7 +327,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Workshop で Feedback を集めるなどをもう少しやる必要がある
     - 7/18-19 https://www.iab.org/activities/workshops/escape-workshop/
     - Exploring Synergy between Content Aggregation and the Publisher Ecosystem (ESCAPE) Workshop 2019
-  - *CSS Grid subgrid lands in Firefox Nightly*
+  - **CSS Grid subgrid lands in Firefox Nightly**
     - https://www.rachelandrew.co.uk/archives/2019/05/23/css-grid-subgrid-lands-in-firefox-nightly/
   - CSS Grid Level 2 - subgrid is coming to Firefox
     - https://hacks.mozilla.org/2019/06/css-grid-level-2-subgrid-is-coming-to-firefox/
@@ -338,11 +338,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - JS をデザインする上での調査として、 JS に関する調査をやっている
     - どっちの書き方が読みやすいか、あなたならどう書くか、みたいなやつ
     - pipeline operator 周りの話が出る選択肢もある模様
-  - *Firefox Now Available with Enhanced Tracking Protection by Default Plus Updates to Facebook Container, Firefox Monitor and Lockwise*
+  - **Firefox Now Available with Enhanced Tracking Protection by Default Plus Updates to Facebook Container, Firefox Monitor and Lockwise**
     - https://blog.mozilla.org/blog/2019/06/04/firefox-now-available-with-enhanced-tracking-protection-by-default/
     - トラッキング抑止デフォルト化のほか、パスワードマネージャの Lockwise や Firefox Monitor など、セキュリティやプライバシーに関する取り組みの紹介
     - Facebook Container 拡張は Share や Like ボタン経由のトラッキングも新たにブロックするようになった
-  - *Next steps in privacy-preserving Telemetry with Prio*
+  - **Next steps in privacy-preserving Telemetry with Prio**
     - https://blog.mozilla.org/security/2019/06/06/next-steps-in-privacy-preserving-telemetry-with-prio/
     - トラッキング抑止機能がデフォルトで有効になったが、迂回もされるだろう
     - 迂回されたことを知りたいが、プライバシーを尊重するかたちでデータを集めなければいけない
@@ -361,46 +361,46 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 12.1.1
 - WWDC
-  - *What's New in Authentication - WWDC 2019 - Videos - Apple Developer*
+  - **What's New in Authentication - WWDC 2019 - Videos - Apple Developer**
     - https://developer.apple.com/videos/play/wwdc2019/516
     - Configuring Your Webpage for Sign In with Apple
       - https://developer.apple.com/documentation/signinwithapplejs/configuring_your_webpage_for_sign_in_with_apple
       - SignIn With Apple JS
-  - *Introducing Desktop-class Browsing on iPad - WWDC 2019 - Videos - Apple Developer*
+  - **Introducing Desktop-class Browsing on iPad - WWDC 2019 - Videos - Apple Developer**
     - https://developer.apple.com/videos/play/wwdc2019/203/
     - iPadOS の Safari は基本デスクトップ版の Safari に
       - iPad mini やスプリットモードなどではモバイルになることも
       - WebView などはカスタマイズできる
     - Pointer Events サポート
-  - *Introducing Low-Latency HLS - WWDC 2019 - Videos - Apple Developer*
+  - **Introducing Low-Latency HLS - WWDC 2019 - Videos - Apple Developer**
     - https://developer.apple.com/videos/play/wwdc2019/502/
   - Introducing Sign In with Apple - WWDC 2019 - Videos - Apple Developer
     - https://developer.apple.com/videos/play/wwdc2019/706/
 - Updates
   - Safari 13 Beta Release Notes
     - https://developer.apple.com/documentation/safari_release_notes/safari_13_beta_release_notes
-  - *Release Notes for Safari Technology Preview 83*
+  - **Release Notes for Safari Technology Preview 83**
     - https://webkit.org/blog/8967/release-notes-for-safari-technology-preview-83/
-    - *Enabled WebAuthN by default on macOS (r245589)*
+    - **Enabled WebAuthN by default on macOS (r245589)**
     - Implemented line-break: anywhere (r245275)
     - Implemented a modern "clearfix" with display: flow-root (r245494)
     - Implemented `page-break-*` and `-webkit-column-break-*` as legacy-shorthands. (r245276)
-    - *Limited the number of prefetches of a given page (r245171)*
+    - **Limited the number of prefetches of a given page (r245171)**
   - Safari Technology Preview 84, with Safari 13 Features, is Now Available
     - https://webkit.org/blog/9170/safari-technology-preview-84-with-safari-13-features-is-now-available/
-  - *Release Notes for Safari Technology Preview 85*
+  - **Release Notes for Safari Technology Preview 85**
     - https://webkit.org/blog/9281/release-notes-for-safari-technology-preview-85/
     - Added support for Attestation Conveyance Preference (r245638)
     - Fixed inserting a newline in contenteditable add one character, not two (r245912, r245980)
     - Added an option to mute audio capture automatically when page is not visible (r246002)
     - Fixed createAnswer() SDP Rejected by setLocalDescription() (r245829)
-    - *Implemented feature policy self, none, and \* parsing (r245625)*
-    - *Implemented imagesrcset and imagesizes attributes on link rel=preload (r246045)*
-    - *Implemented Promise.allSettled (r245869)*
-    - *Implemented support for Numeric Separators (r245655)*
+    - **Implemented feature policy self, none, and \* parsing (r245625)**
+    - **Implemented imagesrcset and imagesizes attributes on link rel=preload (r246045)**
+    - **Implemented Promise.allSettled (r245869)**
+    - **Implemented support for Numeric Separators (r245655)**
     - Implemented opwide16 and opwide32 and introduced 16-bit version bytecode (r245906)
     - Implemented property resolver (r245680, r245722)
-  - *Release Notes for Safari Technology Preview 86*
+  - **Release Notes for Safari Technology Preview 86**
     - https://webkit.org/blog/9375/release-notes-for-safari-technology-preview-86/
     - Added support for chorded button interactions (r246103, r246149)
     - Added support for String.prototype.matchAll (r246567))
@@ -418,7 +418,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 50% メモリ使用量削減
     - Safari 12.1 と TP で有効に
 - Other
-  - *Audits in Web Inspector*
+  - **Audits in Web Inspector**
     - https://webkit.org/blog/8935/audits-in-web-inspector/
     - Audit で a11y チェックを実行できる。
     - 同じようなことを、 JSON で設定することで任意のツールで実行できる。
@@ -432,7 +432,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://webkit.org/blog/8993/cpu-timeline-in-web-inspector/
   - What's New in the Payment Request API for Apple Pay
     - https://webkit.org/blog/9167/whats-new-in-the-payment-request-api-for-apple-pay/
-  - *Did Apple remove dashboard in MacOS Catalina? - Appleosophy*
+  - **Did Apple remove dashboard in MacOS Catalina? - Appleosophy**
     - https://appleosophy.com/2019/06/04/did-apple-kill-the-dashboard-in-macos-catalina/
     - Dashboard が macOS Catalina で削除
     - Canvas や HTML5 の原点
@@ -447,7 +447,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 古い Windows 版の Edge Dev/Canary がリリース
   - Building hybrid applications with the WebView2 developer preview - Microsoft Edge Blog
     - https://blogs.windows.com/msedgedev/2019/06/18/building-hybrid-applications-with-the-webview2-developer-preview/
-  - *Introducing tracking prevention, now available in Microsoft Edge preview builds*
+  - **Introducing tracking prevention, now available in Microsoft Edge preview builds**
     - https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/
     - 悪意あるトラッカーをブロックする設定がフラグ付きで導入された
     - Trust Protection Lists というのにサイトの情報があり、それをもとにサイトがトラッカーかどうかを判断
@@ -497,7 +497,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/public-new-work/2019May/0005.html
   - Graph Standardization Business Group
     - https://lists.w3.org/Archives/Public/public-new-work/2019May/0006.html
-  - *HTML Working Group Charter*
+  - **HTML Working Group Charter**
     - https://www.w3.org/2019/06/htmlwg-charter.html
     - WHATWG HTML / DOM を W3C 勧告として公開する新しい HTML WG の charter が承認
     - 12 ヶ月に一度は WHATWG の Review Draft をそのまま REC にする
@@ -519,9 +519,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - zot protocol Community Group created
     - https://lists.w3.org/Archives/Public/public-new-work/2019Jun/0008.html
 - Other
-  - *W3C and WHATWG to work together to advance the open Web platform*
+  - **W3C and WHATWG to work together to advance the open Web platform**
     - https://www.w3.org/blog/2019/05/w3c-and-whatwg-to-work-together-to-advance-the-open-web-platform/
-  - *Lazyload images and iframes by bengreenstein · Pull Request #3752 · whatwg/html*
+  - **Lazyload images and iframes by bengreenstein · Pull Request #3752 · whatwg/html**
     - https://github.com/whatwg/html/pull/3752#issuecomment-498114767
     - kinu さんが loading=lazy で Range リクエストを投げる提案についてコメント
     - 実装の複雑さが増すことや、 Service Worker で 206 をうまく扱えないことへの懸念
@@ -530,13 +530,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - A report from the AMP Advisory Committee Meeting - Terence Eden's Blog
     - https://shkspr.mobi/blog/2019/05/a-report-from-the-amp-advisory-committee-meeting/
     - 5 月の取りこぼし
-  - *W3C Advisory Committee Elects Advisory Board*
+  - **W3C Advisory Committee Elects Advisory Board**
     - https://www.w3.org/blog/news/archives/7762
-  - *Introducing new HTML elements that are polyfillable*
+  - **Introducing new HTML elements that are polyfillable**
     - https://github.com/whatwg/html/issues/4696
     - `<std-xxx>` が進んでいる一方、本当にその名前でいいのか?がまた議論に
     - `<std_toast>` は最終的に `<toast>` になることを狙ってるのか問題
-  - *W3C Workshop Report: Permissions and User Consent*
+  - **W3C Workshop Report: Permissions and User Consent**
     - https://www.w3.org/blog/news/archives/7797
     - https://www.w3.org/Privacy/permissions-ws-2018/report.html
     - 2018/9 のワークショップの Report がでた
@@ -547,10 +547,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/7784
   - Updated: Inaccessibility of CAPTCHA, alternatives to Visual Turing Tests on the Web
     - https://www.w3.org/blog/news/archives/7834
-  - *Adactio: Journal-Toast*
+  - **Adactio: Journal-Toast**
     - https://adactio.com/journal/15357
     - toast に対してあった批判についてのまとめ
-  - *Privacy Anti-Patterns in Standards*
+  - **Privacy Anti-Patterns in Standards**
     - https://www.w3.org/blog/2019/06/privacy-anti-patterns-in-standards/
     - Privacy Interest Group (PING)
 
@@ -600,14 +600,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Call for Adoption
 - I-D Action
 - Draft
-  - *Resource Digests for HTTP*
+  - **Resource Digests for HTTP**
     - https://tools.ietf.org/html/draft-polli-resource-digests-http-00
   - Hypertext Transfer Protocol (HTTP/1.1): Activity Identifiers
     - https://tools.ietf.org/html/draft-activity-identifiers-01
     - 2016 年に提案されたものが更新
   - Intermediate Exchange in the IKEv2 Protocol
     - https://tools.ietf.org/html/draft-ietf-ipsecme-ikev2-intermediate-00
-  - *RFC Publication of Errata of Standards Track Documents Considered Harmful*
+  - **RFC Publication of Errata of Standards Track Documents Considered Harmful**
     - https://tools.ietf.org/html/draft-klensin-newtrk-8540style-harmful-00
   - IETF Meeting Network Requirements
     - https://tools.ietf.org/html/draft-odonoghue-netrqmts-00
@@ -618,21 +618,21 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *(取りこぼし) [1905.01051] Browser Fingerprinting: A survey*
+- **(取りこぼし) [1905.01051] Browser Fingerprinting: A survey**
   - https://arxiv.org/abs/1905.01051
   - ブラウザ fingerprinting に関する研究報告
 - Certificate Transparency (CT) Logs - Let's Encrypt - Free SSL/TLS Certificates
   - https://letsencrypt.org/docs/ct-logs/
-- *自宅サーバーで Twitter 連携サービスを運営してたら家宅捜索された件 - Qiita*
+- **自宅サーバーで Twitter 連携サービスを運営してたら家宅捜索された件 - Qiita**
   - https://qiita.com/204504bySE/items/1ffc94d1866d96da4793
   - Twitter 連携サービスを運用していたら神奈川県警に家宅捜索された
   - 連携しているユーザの違反画像投稿の投稿主だと勘違いされた模様
-- *Surprise: Undead Session Cookies*
+- **Surprise: Undead Session Cookies**
   - https://textslashplain.com/2019/06/24/surprise-undead-session-cookies/
   - Firefox/Chrome/Edge76+ には session を復元する設定がある
   - ブラウザを閉じても session cookie や session storage を消さない
   - 1 年にした Persistent Cookie よりも長生きする可能性もある
-- *mnot's blog: Moving Control to the Endpoints*
+- **mnot's blog: Moving Control to the Endpoints**
   - https://www.mnot.net/blog/2019/06/11/endpoint_control
   - プロトコルの暗号化によって中間者が介入できなくなった
   - これは中間者がサービス提供する人か、攻撃者かが区別できないから
@@ -667,24 +667,24 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://techblog.yahoo.co.jp/entry/20190530678295/
 - curl user survey 2019 analysis
   - https://daniel.haxx.se/blog/2019/06/04/curl-user-survey-2019-analysis/
-- *閉鎖した「サークル K ・サンクス」公式サイト、中古ドメインが売られる 入札殺到し 6 日間で 50 万円に - ITmedia NEWS*
+- **閉鎖した「サークル K ・サンクス」公式サイト、中古ドメインが売られる 入札殺到し 6 日間で 50 万円に - ITmedia NEWS**
   - https://www.itmedia.co.jp/news/articles/1906/06/news123.html
   - circleksunkus.jp が保持されず競売にかけられている
   - https://www.onamae.com/auc/jp/detail/91346
   - 60,000,300 円(6 千万)で落札
-- *Online Tracking and Publishers' Revenues:An Empirical Analysis (PDF)*
+- **Online Tracking and Publishers' Revenues:An Empirical Analysis (PDF)**
   - https://weis2019.econinfosec.org/wp-content/uploads/sites/6/2019/05/WEIS_2019_paper_38.pdf
   - トラッキングによってパブリッシャーにもたらされるレベニューが 4% 増にしかならないという研究
   - 先月話題になった Wall Street Journal の記事のソース
   - Behavioral Ad Targeting Not Paying Off for Publishers, Study Suggests - WSJ https://www.wsj.com/articles/behavioral-ad-targeting-not-paying-off-for-publishers-study-suggests-11559167195
-- *Pika CDN - Pika*
+- **Pika CDN - Pika**
   - https://www.pika.dev/cdn
   - CDN for modern JavaScript
   - NPM 上の esm 対応モジュールだけ配布する CDN
   - UA に応じたトランスパイルして出し分けている
 - When should you be using Web Workers?
   - https://dassur.ma/things/when-workers/
-- *HAProxy 2.0 and Beyond - HAProxy Technologies*
+- **HAProxy 2.0 and Beyond - HAProxy Technologies**
   - https://www.haproxy.com/blog/haproxy-2-0-and-beyond/
   - Cloud-Native Threading & Logging
   - HTTP Representation (HTX)
@@ -707,9 +707,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - New Fetches
   - Miscellaneous Improvements
   - LTS Support for 1.9 Features
-- *Google to reimplement curl in libcrurl*
+- **Google to reimplement curl in libcrurl**
   - https://daniel.haxx.se/blog/2019/06/19/google-to-reimplement-curl-in-libcrurl/
-- *The State of CSS 2019*
+- **The State of CSS 2019**
   - https://2019.stateofcss.com/
   - Flexbox や calc はもうほとんど一般的になっている
   - rem の利用が増えてきた
@@ -726,7 +726,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://aws.amazon.com/jp/blogs/aws/new-udp-load-balancing-for-network-load-balancer/
 - Today is the last day to register a .uk domain
   - https://www.techradar.com/news/today-is-the-last-day-to-register-a-uk-domain
-- *Dark Mode.js*
+- **Dark Mode.js**
   - https://darkmodejs.learn.uno/
   - 全体を bgcolor white の div で覆い、 mix-blend-mode: difference で反転する
   - https://dev.to/wgao19/night-mode-with-mix-blend-mode-difference-23lm
@@ -736,7 +736,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://news.mynavi.jp/article/20190621-846088/
   - Nginx のシェアがどんどん増え、 Web の 1/3 で使われている
   - Apache は徐々に減り、来年にも Nginx が上回る可能性も
-- *Building the most inaccessible site possible with a perfect Lighthouse score - Manuel Matuzovi ć*
+- **Building the most inaccessible site possible with a perfect Lighthouse score - Manuel Matuzovi ć**
   - https://www.matuzo.at/blog/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/
   - Lighthouse で 100 点がとれるもっともアクセシブルではないサイトの作り方
   - ~ もっとも遅いサイトの作り方、にインスパイアされた
@@ -750,7 +750,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 7 月 1 日よりモバイルファーストなインデックスが新規サイトに対して適用される
 - pipeline operator
   - Ruby に入ったおかげで、 JS の Pipeline Operator とかがちょっと引き合いに出されたり云々
-- *Introducing time.cloudflare.com*
+- **Introducing time.cloudflare.com**
   - https://blog.cloudflare.com/secure-time/
   - CloudFlare が NTP を始めた
 - Troy Hunt: Project Svalbard: The Future of Have I Been Pwned

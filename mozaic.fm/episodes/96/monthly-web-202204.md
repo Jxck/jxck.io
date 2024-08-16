@@ -22,14 +22,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 100*
+- **New in Chrome 100**
   - https://developer.chrome.com/en/blog/new-in-chrome-100/
   - 100 Cool Web Moments
   - Reduced User-Agent string
   - Multi-screen window placement API
 - Celebrate Chrome 100 with #100CoolWebMoments
   - https://developer.chrome.com/en/blog/100-web-moments/
-- *Chromium Blog: Chrome 101: Federated Credential Management Origin Trial, Media Capabilities for WebRTC, and More*
+- **Chromium Blog: Chrome 101: Federated Credential Management Origin Trial, Media Capabilities for WebRTC, and More**
   - https://blog.chromium.org/2022/03/chrome-101-federated-credential.html
   - Reduce User Agent String Information
   - Origin Trials
@@ -48,7 +48,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - WebUSB sameObject Behavior
   - Deprecations, and Removals
     - Remove WebSQL in Third-Party Contexts
-- *What's New In DevTools (Chrome 101)*
+- **What's New In DevTools (Chrome 101)**
   - https://developer.chrome.com/en/blog/new-in-devtools-101/
   - Import and export recorded user flows as a JSON file
   - View cascade layers in the Styles pane
@@ -56,11 +56,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Improved the display of private properties
   - Miscellaneous highlights
   - [Experimental] New timespan and snapshot mode in the Lighthouse panel
-- *Deprecations and removals in Chrome 101*
+- **Deprecations and removals in Chrome 101**
   - https://developer.chrome.com/en/blog/deps-rems-101/
   - Reduce user agent string information
   - Remove WebSQL in third-party contexts
-- *Chromium Blog: Chrome 102: Window Controls Overlay, a Host of Finished Origin Trials, PWAs as File Handlers and More*
+- **Chromium Blog: Chrome 102: Window Controls Overlay, a Host of Finished Origin Trials, PWAs as File Handlers and More**
   - https://blog.chromium.org/2022/04/chrome-102-window-controls-overlay-host.html
   - Window Controls Overlay for Installed Desktop Web Apps
   - Completed Origin Trials
@@ -87,7 +87,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Ship: Digital Goods API 2.1
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2lJD-MYZWBs/m/M5WaWqNLEwAJ
-- *Ship: Media Queries Level 4 Syntax & Evaluation*
+- **Ship: Media Queries Level 4 Syntax & Evaluation**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/E4Vd7w70OsU/m/Q43yNphBEwAJ
   - Lv3 まで `@media (min-width: 300px) and (max-width: 750px)`
   - Lv4 では `@media (300px <= width <= 750px) {`
@@ -97,22 +97,22 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xTUSN930_gM/m/ED3pHltrEgAJ
 - Ship: Cookie Expires/Max-Age attribute upper limit
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tZ52DF6uoBU/m/eL9UpEPIEQAJ
-- *Ship: Speculation Rules (Prefetch)*
+- **Ship: Speculation Rules (Prefetch)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3Ga0Y2BEz7E/m/3U5zwXjWGwAJ
   - Prefetch 限定での Speculation Rules のリリース
   - prerendering のトライアルをしている publisher のために gapless launch したいらしい
-- *Ship: Same-origin prerendering triggered by the speculation rules API*
+- **Ship: Same-origin prerendering triggered by the speculation rules API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/EdW7O8yG7Jc
   - Speculation Rule で書かれた Same Origin での Prerendering のみ ship
-- *Ship: Subresource Loading with Web Bundles*
+- **Ship: Subresource Loading with Web Bundles**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/VS9UgOC7Wqc/m/P0vG6qfEEwAJ
   - v1 ~ v3 に分割リリースの予定。今回は v1 でコアの機能のみをリリースする。
   - v2 はキャッシュ対応, bundle preload, bundle dependencies など
-- *Ship: Navigation API*
+- **Ship: Navigation API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5iuGWgO8aMo/m/A9vvTY61AQAJ
   - History API を改善したもの
   - [blog](https://blog.jxck.io/entries/2022-04-22/navigation-api.html)
-- *Ship: Early Hints preload/preconnect during Navigation*
+- **Ship: Early Hints preload/preconnect during Navigation**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8iIvkmZNUhU
   - Navigation 中の 103 による preload/preconnect をサポート
   - CDN 向けだった機能がブラウザでも動くように
@@ -126,7 +126,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/cCB8F0ut6cU
 - Ship: `AbortSignal.timeout()` Static Method
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/pfiJqsImPtQ
-- *Prototype and Ship: RFC 9225*
+- **Prototype and Ship: RFC 9225**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/qRzX_B5OByA/m/XE6B4s1OEAAJ
   - Joke RFC : Software Defects Considered Harmful の intents
 - Prototype and Ship: Permissions Policy for Web Bluetooth API
@@ -139,19 +139,19 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zQqZIzZv-a8/m/A2kMhCXMEQAJ
 - Prototype: IndexedDB: batchGetAll()
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4_P-do5nY_c
-- *Prototype: CSS toggles*
+- **Prototype: CSS toggles**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/06dTetmFjEU/m/NdkJtoVYHAAJ
   - CSS に toggle 可能な state を持たせる
   - これをクエリできるようにし、状態でクエリしたり、状態に紐づいたスタイルを定義可能に
 - Prototype: "deflate-raw" compression format
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-Qghy4VUznA
-- *Prototype: Isolated Web Apps*
+- **Prototype: Isolated Web Apps**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/9r7YaFuASec
   - メッセージングアプリでは、サーバが侵害され悪意のあるコードが提供される脅威がある
   - バージョン管理され、署名されたパッケージをストアで配布したい
   - そこで Signal や WhatsApp は Chrome Apps が無くなり、ダウンロードする Electron に移行
   - このケースを WebBundle + CSP などを用いて Web で実現するのが IWA
-- *Prototype: Element.isVisible method*
+- **Prototype: Element.isVisible method**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/IH33LShRgt0
   - あらゆる要因を考慮して visible かを返す API
 - Experiment: Viewport-height client hint
@@ -175,7 +175,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/OLbI-axDyH0
 - Continue Experimenting: Digital Goods API v2 (M100, Android)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/DqnurOUBA9s/m/5H18GilKEQAJ
-- *Ready for Trial: Focusgroup*
+- **Ready for Trial: Focusgroup**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ssexbn7P0lU
 - Change:
 - Unship:
@@ -185,7 +185,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - PSA
   - FYI Privacy Sandbox Ads APIs origin trial
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/Vi-Rj37aZLs/m/wzeBWfxxEgAJ
-  - *some tweaks to the Intent process*
+  - **some tweaks to the Intent process**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/zXspYC0DFco
 
 
@@ -224,17 +224,17 @@ guest: [@myakura](https://twitter.com/myakura)
 - chrome developer blog
   - Testing the Privacy Sandbox ads relevance and measurement APIs
     - https://developer.chrome.com/en/blog/privacy-sandbox-unified-origin-trial/
-  - *Making collapsed content accessible with hidden=until-found*
+  - **Making collapsed content accessible with hidden=until-found**
     - https://developer.chrome.com/en/blog/hidden-until-found/
-  - *Introducing inert*
+  - **Introducing inert**
     - https://developer.chrome.com/en/blog/inert/
   - Participate in a Federated Credential Management API origin trial for IdPs
     - https://developer.chrome.com/en/blog/fedcm-origin-trial/
-  - *Project Fugu API showcase*
+  - **Project Fugu API showcase**
     - https://developer.chrome.com/en/blog/fugu-showcase/
   - Optimizing LCP using Signed Exchanges
     - https://developer.chrome.com/en/blog/optimizing-lcp-using-signed-exchanges/
-  - *RenderingNG deep-dive: BlinkNG*
+  - **RenderingNG deep-dive: BlinkNG**
     - https://developer.chrome.com/en/blog/blinkng/
   - Join Privacy Sandbox developer office hours #1: learn about Chrome Origin Trials
     - https://developer.chrome.com/en/blog/privacy-sandbox-office-hours-1/
@@ -262,7 +262,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/99
     - navigator.pdfViewerEnabled
     - RTCPeerConnection.setConfiguration()
-- *MDN Plus now available in more countries - Mozilla Hacks - the Web developer blog*
+- **MDN Plus now available in more countries - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2022/04/mdn-plus-now-available-in-more-markets/
   - 日本はまだ
 - Adopting users' design feedback - Mozilla Hacks - the Web developer blog
@@ -277,21 +277,21 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: small/large/dynamic/logical viewport units*
+- **Ship: small/large/dynamic/logical viewport units**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/dBTGmEfg8_8
-- *Ship: prefers-contrast*
+- **Ship: prefers-contrast**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/dtdrmhIjjfM
 - Prototype: TransformStreams and ReadableStream.pipeThrough
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/fXJYs75ijoQ
 - Prototype: LargestContentfulPaint API
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/aL0gvvDxhwI
-- *Prototype: Import maps*
+- **Prototype: Import maps**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/tiReRwpIT30
 - Prototype and ship: Block external protocols in sandboxed iframes
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/41BviX-s6T4
 - Prototype and ship: wasm-unsafe-eval Content-Security-Policy directive
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/XzIMEc9_KAY
-- *Prototype and ship: HTMLInputElement `showPicker()`*
+- **Prototype and ship: HTMLInputElement `showPicker()`**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/bqYnYxOQhww
 - Implement: RTCRtpSendParameters.transactionId
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/q3BVRRN1wbQ
@@ -304,7 +304,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Internet spring cleaning: How to delete Instagram, Facebook and other accounts*
+- **Internet spring cleaning: How to delete Instagram, Facebook and other accounts**
   - https://blog.mozilla.org/en/internet-culture/how-to-delete-instagram-facebook-online-accounts/
   - 春だしいらないアカウントは削除しようシリーズ
 - How to delete your Spotify account
@@ -331,9 +331,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2022/04/11/these-weeks-in-firefox-issue-113/
 - These Weeks In Firefox: Issue 114 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/04/26/these-weeks-in-firefox-issue-114/
-- *[Article] 0. Firefox UI UX history · black7375/Firefox-UI-Fix Wiki*
+- **[Article] 0. Firefox UI UX history · black7375/Firefox-UI-Fix Wiki**
   - https://github.com/black7375/Firefox-UI-Fix/wiki/%5BArticle%5D-0.-Firefox-UI-UX-history
-- *Platform/2022PlannedWork - MozillaWiki*
+- **Platform/2022PlannedWork - MozillaWiki**
   - https://wiki.mozilla.org/Platform/2022PlannedWork
 
 
@@ -344,21 +344,21 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Release Notes for Safari Technology Preview 143*
+- **Release Notes for Safari Technology Preview 143**
   - https://webkit.org/blog/12563/release-notes-for-safari-technology-preview-143/
   - Web Inspector
-  - *CSS Container Queries*
+  - **CSS Container Queries**
     - Added support for nested container queries (r290257)
     - Added basic support for container units (r291474)
   - CSS Cascade Layers
     - Added support for revert in @keyframes (r290457)
     - Added support for revert-layer in @keyframes (r290729)
-  - *Subgrid*
+  - **Subgrid**
   - CSS
     - Implemented text-decoration as a shorthand (r290756, r291244)
     - Implemented logical properties for CSS overscroll-behavior (r290422)
   - JavaScript
-    - *Added CalendarDateTime parsing (r290248)*
+    - **Added CalendarDateTime parsing (r290248)**
   - Rendering
   - Web Animations
     - Added support for passing an optional timeline to Element.animate() (r290655)
@@ -412,23 +412,23 @@ guest: [@myakura](https://twitter.com/myakura)
     - Improved virtual authenticator support ( r291423 , r291321)
   - WebGL
   - HTML
-    - *Enabled the inert attribute by default (r290587)*
+    - **Enabled the inert attribute by default (r290587)**
   - Web API
-    - *Enabled the Permissions API by default (r291116, r290301)*
-    - *Removed the 1ms minimum for setTimeout (r291476)*
+    - **Enabled the Permissions API by default (r291116, r290301)**
+    - **Removed the 1ms minimum for setTimeout (r291476)**
   - Media
     - Implemented remote-inbound-rtp packetsLost (r290865)
   - Accessibility
   - File System Access
   - Web Extensions
-- *Safari 15.5 Beta Release Notes | Apple Developer Documentation*
+- **Safari 15.5 Beta Release Notes | Apple Developer Documentation**
   - https://developer.apple.com/documentation/safari-release-notes/safari-15_5-release-notes
     - inert
 
 
 #### Position
 
-- *[webkit-dev] ChangeLog Deprecation Plans*
+- **[webkit-dev] ChangeLog Deprecation Plans**
   - https://lists.webkit.org/pipermail/webkit-dev/2022-April/032189.html
   - svn から git に移行するにあたり毎回 conflict する CHANGELOG をやめたいという議論
 - [webkit-dev] WebKit and GitHub Update
@@ -448,7 +448,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Private Click Measurement: Conversion Fraud Prevention and Replacement For Tracking Pixels
   - https://webkit.org/blog/12566/private-click-measurement-conversion-fraud-prevention-and-replacement-for-tracking-pixels/
-- *Non-interactive Elements with the inert attribute*
+- **Non-interactive Elements with the inert attribute**
   - https://webkit.org/blog/12578/non-interactive-elements-with-the-inert-attribute/
 
 
@@ -485,7 +485,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Recommendation
   - Last Call for Review of Proposed Corrections: Media Queries Level 3
     - https://www.w3.org/blog/news/archives/9494
-  - *Preload Published as a Discontinued Draft*
+  - **Preload Published as a Discontinued Draft**
     - https://www.w3.org/blog/news/archives/9488
 - Proposed Recommendation
   - Call for Review: Geolocation API is a W3C Proposed Recommendation
@@ -500,7 +500,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - First Public Working Draft: Region Capture
     - https://www.w3.org/blog/news/archives/9492
 - Group Note
-  - *Fonts for the Web: Rationale, 1996*
+  - **Fonts for the Web: Rationale, 1996**
     - https://www.w3.org/TR/2022/NOTE-font-rationale-20220414/
     - 1996 年にまとめられた Web フォント実現に向けての要件
     - W3C Member 限定のメーリングリストに残っていたドラフトを公開
@@ -511,11 +511,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *W3C TPAC 2022 will be a hybrid meeting*
+- **W3C TPAC 2022 will be a hybrid meeting**
   - https://www.w3.org/blog/news/archives/9503
     - バンクーバーで開催
     - 中国にハブを設けてそこで少しセッションもやる
-- *replace current outline algorithm with one based on heading levels*
+- **replace current outline algorithm with one based on heading levels**
   - https://github.com/whatwg/html/pull/7829
 
 
@@ -559,7 +559,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - httpwg
   - https://lists.w3.org/Archives/Public/ietf-http-wg/
   - https://github.com/httpwg/wg-materials/
-  - *httpbis - New Meeting Session Request for IETF 114*
+  - **httpbis - New Meeting Session Request for IETF 114**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022AprJun/0073.html
   - HTTP (httpbis) WG Virtual Meeting: 2022-05-31 CHANGED
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022AprJun/0072.html
@@ -589,7 +589,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *http-core spec publication soonish from Julian Reschke*
+- **http-core spec publication soonish from Julian Reschke**
   - https://www.rfc-editor.org/auth48/C430
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2022JanMar/0234.html
   - > the http core specs are very very very close to be published.
@@ -615,7 +615,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Cloudflare
 
-- *Cloudflare blocks 15M rps HTTPS DDoS attack*
+- **Cloudflare blocks 15M rps HTTPS DDoS attack**
   - https://blog.cloudflare.com/15m-rps-ddos-attack/
   - 今月はじめ 15.3 million request-per-second (rps) の HTTPS DDoS を検出
   - 記録的な規模の攻撃でこれを自動で防いだ
@@ -624,7 +624,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Fastly
 
-- *Trusted services for a privacy-preserving internet: iCloud Private Relay and what it means for customers | Fastly*
+- **Trusted services for a privacy-preserving internet: iCloud Private Relay and what it means for customers | Fastly**
   - https://www.fastly.com/blog/icloud-private-relay-and-a-privacy-preserving-internet
   - iCloud の Private Relay の Egress に Fastly が使われていることの記事
   - 先月の Akamai / Cloudflare に続いて 3 つ目の記事
@@ -638,12 +638,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Introducing DuckDuckGo for Mac: A Private, Fast, and Secure Browsing App*
+- **Introducing DuckDuckGo for Mac: A Private, Fast, and Secure Browsing App**
   - https://spreadprivacy.com/introducing-duckduckgo-for-mac/
   - WebView ベース
 - CSS-Tricks joins DigitalOcean, expanding our commitment to community
   - https://www.digitalocean.com/blog/css-tricks-joins-digitalocean
-- *ロシア情勢が Web / Internet / Tech に与えた影響の記録 2022 年 4 月*
+- **ロシア情勢が Web / Internet / Tech に与えた影響の記録 2022 年 4 月**
   - https://zenn.dev/jxck/scraps/bccc75a5d7fbd1
 
 

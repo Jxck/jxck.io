@@ -19,12 +19,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 79
 - Updates
-  - *New in Chrome 79*
+  - **New in Chrome 79**
     - https://developers.google.com/web/updates/2019/12/nic79
     - Maskable Icons
     - Web XR
     - Wake Lock Origin Trial
-    - *rendersubtree attribute origin trial*
+    - **rendersubtree attribute origin trial**
   - Chromium Blog: Chrome 80, Content Indexing, ES Modules and More
     - https://blog.chromium.org/2019/12/chrome-80-content-indexing-es-modules.html
     - Content Indexing origin trial
@@ -32,10 +32,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - Origin Trials
       - New Properties for the Contact Picker
     - Other features in this release
-      - *Autoupgrade Mixed Content*
+      - **Autoupgrade Mixed Content**
       - Compression Streams
       - Contact Picker API
-      - *Cookie updates*
+      - **Cookie updates**
         - Disallow defaulting of SameSite attribute to 'None'
         - Value 'None' no longer allowed on insecure contexts
       - CSS Improvements
@@ -57,7 +57,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - Non-origin-clean ImageBitmap serialization and transferring removed
       - Protocol handling now requires a secure context
       - Remove -webkit-appearance:button for arbitrary elements
-      - *Web Components v0 removed*
+      - **Web Components v0 removed**
   - Deprecations and removals in Chrome 80
     - https://developers.google.com/web/updates/2019/12/chrome-80-deps-rems
     - Disallow Synchronous XMLHTTPRequest() in Page Dismissal
@@ -76,15 +76,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.google.com/web/updates/2019/12/webassembly
   - WebVR 1.1 removed from Chrome
     - https://developers.google.com/web/updates/2019/12/webvr-1-1-removed
-  - *Chromium Blog: Intent to Explain: Demystifying the Blink Shipping Process*
+  - **Chromium Blog: Intent to Explain: Demystifying the Blink Shipping Process**
     - https://blog.chromium.org/2019/11/intent-to-explain-demystifying-blink.html
     - Blink の Ship プロセスや Deprecation プロセスについての解説
-  - *Chromium Blog: Introducing quieter permission UI for notifications*
+  - **Chromium Blog: Introducing quieter permission UI for notifications**
     - https://blog.chromium.org/2020/01/introducing-quieter-permission-ui-for.html
     - Chrome 80 より通知許可のダイアログが多少簡素なものに設定可能に(Quiet UI)
     - デスクトップは Omnibox の右端に、モバイルでは画面下の snackbar に表示
     - 通知を頻繁にブロックするユーザー、通知が頻繁にブロックされているサイトは自動的に Quiet UI が適用される
-  - *Chromium Blog: Building a more private web: A path towards making third party cookies obsolete*
+  - **Chromium Blog: Building a more private web: A path towards making third party cookies obsolete**
     - https://blog.chromium.org/2020/01/building-more-private-web-path-towards.html
     - 今後 2 年でサードパーティ Cookie を廃止したいとの発表
     - 代替手段としての Privacy Sandbox も今年から Conversion Measurement を皮切りに Origin Trial を開始する
@@ -107,7 +107,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bYqDvpPTawc/rG2sOEAOCQAJ
   - Ship: Badging API (M81)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/fHc49JNFTAU/bJD25Yr7CAAJ
-  - *Ship: Client Hints infrastructure and UA Client Hints*
+  - **Ship: Client Hints infrastructure and UA Client Hints**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/A4wxFpvqUfA/g7iccl9ICgAJ
     - UA 文字列の代わりになる Client Hints の提案
   - Ship: IntersectionObserver accepting Document as root
@@ -124,21 +124,21 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/BXxS2U5EaN0/cSVmzxSmDQAJ
   - Implement and Ship: Reversed range support for
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GTPDv_MQbR0/fMjKxd5iDgAJ
-  - *Prototype: Service Worker Scopes Pattern Matching*
+  - **Prototype: Service Worker Scopes Pattern Matching**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rSavaKsqd0o/mqos8JyEAwAJ
-  - *Prototype: Add timezonechange event to Window/WorkerGlobalScope*
+  - **Prototype: Add timezonechange event to Window/WorkerGlobalScope**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4BUSE2aTQEc/bNQv4jyTCQAJ
   - Prototype: Support replaceable animations
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/H5sz_dg6fKc/1X7K7U4XCgAJ
-  - *Prototype: Origin isolation*
+  - **Prototype: Origin isolation**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0vuiPTvBGvQ/4faGCaqnDQAJ
-  - *Prototype: Origin Policy*
+  - **Prototype: Origin Policy**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/phH1_G6qI0o/2O4YR8RkCgAJ
   - Prototype: Run PWA on Startup
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/T6d2zqF_jpw/-ZmHBqlKDgAJ
   - Prototype: Curve25519 in Web Cryptography
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PgBVW4ru1EQ/5dllcdVoDgAJ
-  - *Prototype: Schemeful Same-Site*
+  - **Prototype: Schemeful Same-Site**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qB7DKqxkiaA/IEqPn3RYDgAJ
   - Prototype: Gutters in flexbox: row-gap and column-gap properties
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VU1zkDOL3bc/AU9FjKl2DQAJ
@@ -159,7 +159,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/q3MkzsLYeJE/srEN4-t8DQAJ
   - Deprecate and Remove: TLS 1.3 downgrade hardening bypass (take two)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CK0Xxdz-4Mg/KIOaBAXmBQAJ
-  - *Deprecate and Freeze: The User-Agent string*
+  - **Deprecate and Freeze: The User-Agent string**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-2JIRNMWJ7s/yHe4tQNLCgAJ
     - Blink principles of web compatibility
       - https://docs.google.com/document/d/1RC-pBBvsazYfCNNUSkPqAVpSpNJ96U8trhNkfV0v9fk/edit
@@ -167,7 +167,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pEXIK2EkM0U/zyY0HB_mBQAJ
   - Extend Origin Trial: Native File System API
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7HasvKUZm5c/7k3QehJBCAAJ
-  - *Experiment: Web NFC*
+  - **Experiment: Web NFC**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8bsAd-PsdbA/ZTcgiwf7CQAJ
   - Experiment: PointerLock unadjusted mouse movement Origin Trial
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EL_IQ4BKpT0/5eDDVw02CQAJ
@@ -175,15 +175,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kscJbfVjR5k/z73iZYlHCQAJ
   - "New System Color Keyboards" typo on Chrome Platform Status
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LB0dTAxJBEE/wd52nmvHBgAJ
-  - *Congratulations Edge team!*
+  - **Congratulations Edge team!**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0t0gEPp0c4o/-QNXjY-3DQAJ
     - 1659 patches to chromium
     - 408 in devtools-frontend
     - 293 in v8
     - 23 in webrtc
-  - *FYI: Storage Isolation Project*
+  - **FYI: Storage Isolation Project**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uETccgMb9H0/4VehycniDQAJ
-  - *Storage Isolation Project*
+  - **Storage Isolation Project**
     - https://docs.google.com/document/d/1V8sFDCEYTXZmwKa_qWUfTVNAuBcPsu6FC0PhqMD6KKQ
 - v8
   - V8 release v8.0 · V8
@@ -193,11 +193,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/image-optimization-survey-2019/
   - AMP 2019 Decoded: Thank You for an Incredible Year - The AMP Blog
     - https://blog.amp.dev/2019/12/20/amp-2019-decoded-thank-you-for-an-incredible-year/
-  - *CCPA support in AMP - The AMP Blog*
+  - **CCPA support in AMP - The AMP Blog**
     - https://blog.amp.dev/2019/12/20/ccpa-support-in-amp/
   - Google Developers Blog: Project Connected Home over IP
     - https://developers.googleblog.com/2019/12/project-connected-home-over-ip.html
-  - *DNS over HTTPS same-provider auto-upgrade in Chrome: heads-up about our post-experiment plan*
+  - **DNS over HTTPS same-provider auto-upgrade in Chrome: heads-up about our post-experiment plan**
     - https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/lIm9esAFjQ0/vJ93oMbAAgAJ
   - Threading the web with module workers
     - https://web.dev/module-workers/
@@ -207,7 +207,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/content-indexing-api/
   - Advancing the web framework ecosystem
     - https://web.dev/advancing-framework-ecosystem-cds-2019/
-  - *Get Ready for New SameSite=None; Secure Cookie Settings*
+  - **Get Ready for New SameSite=None; Secure Cookie Settings**
     - https://webmasters.googleblog.com/2020/01/get-ready-for-new-samesitenone-secure.html
   - The Search Console Training video series is rolling out
     - https://webmasters.googleblog.com/2020/01/search-console-training-videos.html
@@ -215,12 +215,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://webmasters.googleblog.com/2020/01/new-removals-report-in-search-console.html
   - Google Developers Blog: MediaPipe on the Web
     - https://developers.googleblog.com/2020/01/mediapipe-on-web.html
-  - *Chromium Blog: Moving Forward from Chrome Apps*
+  - **Chromium Blog: Moving Forward from Chrome Apps**
     - https://blog.chromium.org/2020/01/moving-forward-from-chrome-apps.html
     - 2022 年をもって Chrome OS 含め Chrome Apps を終了
   - Chromium Blog: AppCache Scope Restricted
     - https://blog.chromium.org/2020/01/appcache-scope-restricted.html
-  - *Official Google Webmaster Central Blog [EN]: Sunsetting support for data-vocabulary*
+  - **Official Google Webmaster Central Blog [EN]: Sunsetting support for data-vocabulary**
     - https://webmasters.googleblog.com/2020/01/data-vocabulary.html
     - schema.org に注力するため Google 検索での data-vocabulary.org 対応を 2020/4 に終える
   - Cookie classification on AMP - The AMP Blog
@@ -229,7 +229,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.google.com/web/updates/2020/01/twa-multi-origin
   - Introducing android-browser-helper, a library for building Trusted Web Activities
     - https://developers.google.com/web/updates/2020/01/twa-android-browser-helper
-  - *Chromium Blog: Rethinking Payment Request for iOS Chrome*
+  - **Chromium Blog: Rethinking Payment Request for iOS Chrome**
     - https://blog.chromium.org/2020/01/rethinking-payment-request-for-ios.html
     - Chrome の Payment Request API から basic-card を削除する
     - まずは iOS の Chrome 81 から
@@ -255,30 +255,30 @@ guest: [@myakura](https://twitter.com/myakura)
     - clip-path: path()
     - Promise.allSettled()
     - Media Session API
-  - *Firefox 72 - our first song of 2020 - Mozilla Hacks - the Web developer blog*
+  - **Firefox 72 - our first song of 2020 - Mozilla Hacks - the Web developer blog**
     - https://hacks.mozilla.org/2020/01/firefox-72-our-first-song-of-2020/
     - CSS Shadow Parts
     - CSS Motion Path
     - individual transform properties
     - Nullish coalescing operator
     - FormData イベント
-    - *許可ダイアログが必要になる系の API でユーザージェスチャーが必須に*
+    - **許可ダイアログが必要になる系の API でユーザージェスチャーが必須に**
   - Debugging Variables With Watchpoints in Firefox 72 - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2019/12/debugging-variables-with-watchpoints-in-firefox-72/
 - Intents
-  - *Ship: the Cross-Origin-Resource-Policy header*
+  - **Ship: the Cross-Origin-Resource-Policy header**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/dy72fIaeTtM/E1W3lIsoCwAJ
   - Ship: text-underline-position
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/FgKLdwRhCyA/RTSY3a-QDAAJ
   - Ship: native rendering of outline-style: auto
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/acQMQCHXKZY/kIWdZ4koCwAJ
-  - *Ship: Optional Chaining Operator*
+  - **Ship: Optional Chaining Operator**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/pUSE44V8yTY/JOG0lHXlAQAJ
   - Prototype and ship: IDBTransaction.commit
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/FFUkDL33g0s/FO61jTnkBAAJ
   - Implement and Ship: CSS overscroll-behavior-{block,inline}
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Vd8kd41Zoew/bXgiKIViBwAJ
-  - *Prototype: Constructable Stylesheet Objects*
+  - **Prototype: Constructable Stylesheet Objects**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/d4jO-DUBTE8/JDxCM7nhBAAJ
   - Prototype: NavigationPreloadManager API
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/wZwIB-QFugs/mLPLKbfhBAAJ
@@ -286,13 +286,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/zKsl5XCB8LM/y9KgzrOcBAAJ
   - Prototype: Character encoding detector
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/rNfQ0EFpn04/UOTgiTL1AwAJ
-  - *Implement: AVIF (AV1 Image Format) support*
+  - **Implement: AVIF (AV1 Image Format) support**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/bIM8ZaFS-d8/VwbG7okoCwAJ
   - Prototype: beforeinput event (disabled by default even in Nightly channel)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/qZ66aK0hZOY/ecdNMp5jDQAJ
   - Implement and partially Ship: extended TextMetrics attributes for canvas text measurement
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/n7ADkrywS8U/pXRqjXPlAQAJ
-  - *Prototype: CSS Masonry layout*
+  - **Prototype: CSS Masonry layout**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/iBKhDXB89OA/3NZ_7UGjAAAJ
   - Unship: JavaScript toSource and uneval
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/WVk3jvpzsgs/q3PpSPHkCQAJ
@@ -309,15 +309,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/blog/2019/12/19/more-questions-about-org/
   - Keeping the Internet Open & Accessible To All As It Evolves: Mozilla Research Grants - The Mozilla Blog
     - https://blog.mozilla.org/blog/2019/12/18/keeping-the-internet-open-accessible-to-all-as-it-evolves-mozilla-research-grants/
-  - *Firefox Announces New Partner in Delivering Private and Secure DNS Services to Users - The Mozilla Blog*
+  - **Firefox Announces New Partner in Delivering Private and Secure DNS Services to Users - The Mozilla Blog**
     - https://blog.mozilla.org/blog/2019/12/17/firefox-announces-new-partner-in-delivering-private-and-secure-dns-services-to-users/
     - DoH の Trusted Recursive Resolver として NextDNS が追加
   - Expanding Mozilla's Boards in 2020 - The Mozilla Blog
     - https://blog.mozilla.org/blog/2020/01/08/expanding-mozillas-boards-in-2020/
-  - *Readying for the Future at Mozilla - The Mozilla Blog*
+  - **Readying for the Future at Mozilla - The Mozilla Blog**
     - https://blog.mozilla.org/blog/2020/01/15/readying-for-the-future-at-mozilla/
     - 70 人近いレイオフがあった
-  - *This year in web-platform-tests - 2019 edition*
+  - **This year in web-platform-tests - 2019 edition**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/5JL5VNWlass/ATkoDS1rBwAJ
   - January 2020 CA Communication | Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/01/13/january-2020-ca-communication/
@@ -337,7 +337,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable:13.0.3
 - Updates
-  - *Release Notes for Safari Technology Preview 97*
+  - **Release Notes for Safari Technology Preview 97**
     - https://webkit.org/blog/9672/release-notes-for-safari-technology-preview-97/
     - Enabled Resize Observer by default (r251822)
     - Added UI with instructions for authenticating with a security key while authenticating
@@ -358,7 +358,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Enabled the Picture-in-Picture API by default (r251925, r251745, r251797)
     - Added support for the :picture-in-picture CSS pseudo-class for video elements in picture-in-picture mode (r252330)
     - Fixed picture-in-picture events to fire when entering or exiting the picture-in-picture mode (r252240)
-  - *Release Notes for Safari Technology Preview 98*
+  - **Release Notes for Safari Technology Preview 98**
     - https://webkit.org/blog/9689/release-notes-for-safari-technology-preview-98/
     - Enabled Web Animations CSS Integration, a new implementation of CSS Animations and CSS Transitions, by default (r252945)
     - Implemented Animation.commitStyles() (r252966)
@@ -369,7 +369,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added sanitization for HTML and image data written using clipboard.write (r253486)
     - Changed to issue the load sooner on swipe back/forward navigation (r253360)
     - Re-disabled TLS 1.0 and TLS 1.1 by default (r253292)
-  - *Release Notes for Safari Technology Preview 99*
+  - **Release Notes for Safari Technology Preview 99**
     - https://webkit.org/blog/9992/release-notes-for-safari-technology-preview-99/
     - Removed support for Adobe Flash
     - Added support for using valid non-zero width and height attributes to become the default aspect ratio of `<img>` (r254669)
@@ -377,13 +377,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - Denied Notification API access for non-secure contexts (r253899)
     - Removed the low priority resource load for sendBeacon to reduce failure rates (r253847)
     - Added support for image-set() standard syntax (r254406)
-    - *Added support for rendering highlights specified in CSS Highlight API (r253857)*
+    - **Added support for rendering highlights specified in CSS Highlight API (r253857)**
     - Enabled HDR Media Capabilities by default (r253853)
     - Implemented "create a potential-CORS request" (r254000)
     - Implemented transceiver setCodecPreferences (r253966)
     - Stopped creating CSS Animations for `<noscript>` elements (r254201)
     - Added support for a user gesture to allow using the Web Share API even when preceded by an XHR call (r254178)
-  - *New WebKit Features in Safari 13*
+  - **New WebKit Features in Safari 13**
     - https://webkit.org/blog/9674/new-webkit-features-in-safari-13/
     - Desktop-class Browsing on iPad
     - Pointer Events
@@ -401,7 +401,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Safari WebDriver for iOS
     - Web Inspector Improvements
 - Other
-  - *Preventing Tracking Prevention Tracking | WebKit*
+  - **Preventing Tracking Prevention Tracking | WebKit**
     - https://webkit.org/blog/9661/preventing-tracking-prevention-tracking/
     - ITP がトラッキングベクタになる可能性
   - ResizeObserver in WebKit | WebKit
@@ -412,11 +412,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 79
 - Update
-  - *新たな年に新たなブラウザーを - 新しい Microsoft Edge はプレビューを終え、ダウンロード提供を開始 - Windows Blog for Japan*
+  - **新たな年に新たなブラウザーを - 新しい Microsoft Edge はプレビューを終え、ダウンロード提供を開始 - Windows Blog for Japan**
     - https://blogs.windows.com/japan/2020/01/16/new-year-new-browser-the-new-microsoft-edge-is-out-of-preview-and-now-available-for-download/
     - 「日本のお客様に対しては、確定申告への影響を考慮し、 Windows Update を通じた新しい Microsoft Edge の配信は令和 2 年 4 月 1 日以降、順次開始される予定です。」
     - とのこと
-  - *Improving Tracking Prevention in Microsoft Edge*
+  - **Improving Tracking Prevention in Microsoft Edge**
     - https://blogs.windows.com/msedgedev/2019/12/03/improving-tracking-prevention-microsoft-edge-79/
     - 新 Edge では追跡防止が三段階である
       - Basic (本当に危険なものだけブロック)
@@ -432,7 +432,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blogs.windows.com/windowsexperience/2020/01/15/new-year-new-browser-the-new-microsoft-edge-is-out-of-preview-and-now-available-for-download/
   - Get started building extensions for the new Microsoft Edge
     - https://blogs.windows.com/msedgedev/2019/12/16/get-started-extensions-addons-microsoft-edge-chromium/
-  - *Retiring Internet Explorer | text/plain*
+  - **Retiring Internet Explorer | text/plain**
     - https://textslashplain.com/2020/01/19/retiring-internet-explorer/
   - Capture Network Logs from Edge and Chrome | text/plain
     - https://textslashplain.com/2020/01/17/capture-network-logs-from-edge-and-chrome/
@@ -440,20 +440,20 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - Try out WebView2 with the new interactive API sample
     - https://blogs.windows.com/msedgedev/2019/12/11/webview2-interactive-api-sample/
-  - *microsoft/playwright: Node library to automate Chromium, Firefox and WebKit with a single API*
+  - **microsoft/playwright: Node library to automate Chromium, Firefox and WebKit with a single API**
     - https://github.com/microsoft/playwright
     - Chromium/Firefox/WebKit の自動化ライブラリ
     - Puppeteer チームから派生、ベンダ中立な開発をする
     - Chrome に限らずモダンなエンジンをサポートしていく
-  - *Exchange and SameSite Updates - Microsoft Tech Community - 1127984*
+  - **Exchange and SameSite Updates - Microsoft Tech Community - 1127984**
     - https://techcommunity.microsoft.com/t5/exchange-team-blog/exchange-and-samesite-updates/ba-p/1127984
-  - *[確定申告書等作成コーナー]-Microsoft Edge への対応について*
+  - **[確定申告書等作成コーナー]-Microsoft Edge への対応について**
     - https://www.keisan.nta.go.jp/r1yokuaru/cat1/cat11/cid532.html
     - new Edge では eTax が使えない(主にマイナンバーを読む NFC)
     - IE11 か Edge44 が推奨
   - Microsoft Edge をご利用の方へ(令和 2 年 1 月 30 日) | e-Tax
     - http://www.e-tax.nta.go.jp/topics/topics_new_edge.htm
-  - *Today, the Trident Era Ends*
+  - **Today, the Trident Era Ends**
     - https://schepp.dev/posts/today-the-trident-era-ends/
     - Trident の先進的だった機能のまとめ
     - Page Transition Filters
@@ -475,7 +475,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - .NET ランタイムを WASM にしてブラウザに読ませ、そこで .NET を実行
     - 2MB あるがリリースまでに brotli で 1.5MB にする
     - 2020 May にリリースのスケジュール
-  - *Retiring Internet Explorer | text/plain*
+  - **Retiring Internet Explorer | text/plain**
     - https://textslashplain.com/2020/01/19/retiring-internet-explorer/
 
 
@@ -507,7 +507,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - http://lists.w3.org/Archives/Public/public-new-work/2019Dec/0012.html
   - Service Workers Working Group Charter Extended
     - http://lists.w3.org/Archives/Public/public-new-work/2019Dec/0009.html
-  - *Privacy Community Group created*
+  - **Privacy Community Group created**
     - http://lists.w3.org/Archives/Public/public-new-work/2020Jan/0005.html
     - http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0017.html
     - https://privacycg.github.io/
@@ -534,7 +534,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0004.html
   - Scripting Policy sketch
     - http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0002.html
-  - *W3C Advisory Committee Elects Technical Architecture Group*
+  - **W3C Advisory Committee Elects Technical Architecture Group**
     - https://www.w3.org/blog/news/archives/8100
     - https://www.w3.org/blog/news/archives/8231
       - David Baron (Mozilla Foundation)
@@ -551,7 +551,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - Lukasz Olejnik (W3C Invited Expert)
   - Upcoming: W3C Workshop on Web & Machine Learning
     - https://www.w3.org/blog/news/archives/8238
-  - *The WHATWG Blog - Considering accessibility*
+  - **The WHATWG Blog - Considering accessibility**
     - https://blog.whatwg.org/considering-accessibility
     - HTML 仕様に Accessiblity Considerations が追加/整備された
     - for authors/for implementers リンクなど
@@ -567,7 +567,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Proposals Diff
   - https://tc39.github.io/beta/
   - 0->1
-    - *Module Attributes*
+    - **Module Attributes**
       - module を import するときに type を指定する
       - synthetic modules の対応と思われる
     - Operator Overloading
@@ -600,7 +600,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-richanna-http-message-signatures-00
   - Internet Message Format
     - https://tools.ietf.org/html/draft-resnick-rfc5322bis-00
-  - *Partial Uploads in HTTP*
+  - **Partial Uploads in HTTP**
     - https://tools.ietf.org/html/draft-wright-http-partial-upload-01
   - SMTP Extension for Longer Email Address
     - https://tools.ietf.org/html/draft-viruthagiri-email-address-length-01
@@ -608,7 +608,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-klensin-rfc5321bis-01
   - JSON serialization for Web Linking
     - https://tools.ietf.org/html/draft-pot-json-link-00
-  - *JSON Web Message*
+  - **JSON Web Message**
     - https://tools.ietf.org/html/draft-looker-jwm-00
   - TLS Ticket Request Message
     - https://tools.ietf.org/html/draft-rashok-tls-ticket-request-msg-00
@@ -624,9 +624,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ma-identifier-access-http-01
   - ACME Integrations
     - https://tools.ietf.org/html/draft-ietf-acme-integrations-00
-  - *ACME for Subdomains*
+  - **ACME for Subdomains**
     - https://tools.ietf.org/html/draft-friel-acme-subdomains-01
-  - *JSContact: A JSON representation of contact data*
+  - **JSContact: A JSON representation of contact data**
     - https://tools.ietf.org/html/draft-ietf-calext-jscontact-00
   - Sender Control of Acknowledgement Delays in QUIC
     - https://tools.ietf.org/html/draft-iyengar-quic-delayed-ack-00
@@ -643,7 +643,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *Information Leaks via Safari's Intelligent Tracking Prevention*
+- **Information Leaks via Safari's Intelligent Tracking Prevention**
   - https://arxiv.org/ftp/arxiv/papers/2001/2001.07421.pdf
   - https://twitter.com/othermaciej/status/1220541919777787905
   - Safari の ITP でブロックされたことを利用しトラッキングに応用可能できるという Google のリサーチ
@@ -652,12 +652,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - 12 月に WebKit のブログで発表されていたものとは別らしい
 - Security Zones in Edge | text/plain
   - https://textslashplain.com/2020/01/30/security-zones-in-edge/
-- *CNAME Cloaking, the dangerous disguise of third-party trackers*
+- **CNAME Cloaking, the dangerous disguise of third-party trackers**
   - https://medium.com/nextdns/cname-cloaking-the-dangerous-disguise-of-third-party-trackers-195205dc522a
   - CNAME で広告を first party にして tracking する方法
   - チェックできるサイト
   - https://trackingthetrackers.com/site/
-- *Announcing SecWeb 2020*
+- **Announcing SecWeb 2020**
   - https://secweb.work/
   - http://lists.w3.org/Archives/Public/public-webappsec/2020Jan/0016.html
   - 6/19 の IEEE に合わせて Genova で開催
@@ -684,7 +684,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/fastly-ccpa
 - 8 best practices for multi-CDN implementations
   - https://www.fastly.com/blog/best-practices-multi-cdn-implementations
-- *Adopting a new approach to HTTP prioritization*
+- **Adopting a new approach to HTTP prioritization**
   - https://blog.cloudflare.com/adopting-a-new-approach-to-http-prioritization/
 - Fixing HTTP/2 and preparing for HTTP/3 over QUIC
   - https://quic.edm.uhasselt.be/files/fixingH2_preparingH3_RobinMarx_Velocity19.pdf
@@ -694,7 +694,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Who Can Use
   - https://whocanuse.com/
   - コントラスト比の算出と、どういう人に影響があるかを見るツール
-- *User Agent Changes | Vivaldi Browser*
+- **User Agent Changes | Vivaldi Browser**
   - https://vivaldi.com/ja/blog/user-agent-changes/
   - Vivaldi の UA が弾かれるサービスがある
   - UA を Chrome のものに変えることにした
@@ -714,7 +714,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://paul.kinlan.me/thinking-about-developer-satisfaction-and-web-developers/
 - Transport database: understand, size and troubleshoot - Microsoft Tech Community - 1113388
   - https://techcommunity.microsoft.com/t5/exchange-team-blog/transport-database-understand-size-and-troubleshoot/ba-p/1113388
-- *New browser on the block: Flow - QuirksBlog*
+- **New browser on the block: Flow - QuirksBlog**
   - https://www.quirksmode.org/blog/archives/2020/01/new_browser_on.html
   - Ekioh の Flow
   - 2006 年、組み込み SVG エンジンから始まり徐々に HTML/CSS も実装

@@ -22,13 +22,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Chromium Blog: Speeding up Chrome's release cycle*
+- **Chromium Blog: Speeding up Chrome's release cycle**
   - https://blog.chromium.org/2021/03/speeding-up-release-cycle.html
   - https://developer.chrome.com/blog/faster-release-cycle/
   - M94 から 6 週間ごとのリリースが 4 週間ごとになる
   - さらに組み込み利用などにむけ 8 週間ごとの Extended Stable を並行リリース
   - Extended もセキュリティ更新は 2 週間ごとにくる
-- *Chromium Blog: Chrome 90 Beta: AV1 Encoder for WebRTC, New Origin Trials, and More*
+- **Chromium Blog: Chrome 90 Beta: AV1 Encoder for WebRTC, New Origin Trials, and More**
   - https://blog.chromium.org/2021/03/chrome-90-beta-av1-encoder-for-webrtc.html
   - https://developers-jp.googleblog.com/2021/04/chrome-90-webrtc-av1.html
   - AV1 Encoder
@@ -42,27 +42,27 @@ guest: [@myakura](https://twitter.com/myakura)
       - WebXR AR Lighting Estimation
   - Other Features in this Release
     - CSS
-    - *aspect-ratio Interpolation*
+    - **aspect-ratio Interpolation**
     - Custom State Pseudo Classes
     - Implement 'auto' value for appearance and -webkit-appearance
     - overflow: clip Property
     - overflow-clip-margin Property
-    - *Permissions-Policy Header*
+    - **Permissions-Policy Header**
     - Protect application/x-protobuffer via Cross-Origin-Read-Blocking
     - Seeking Past the End of a File in the File System Access API
     - StaticRange Constructor
     - Support Specifying Width and Height on `<source>` Elements for `<picture>`
     - WebAudio: OscillatorOptions.periodicWave is Not Nullable
   - JavaScript
-    - *Relative Indexing Method for Array, String, and TypedArrays*
+    - **Relative Indexing Method for Array, String, and TypedArrays**
   - Deprecations, and Removals
     - Remove Content Security Policy Directive 'plugin-types'
     - Remove WebRTC RTP Data Channels
     - Return Empty for navigator.plugins and navigator.mimeTypes
-- *What's New In DevTools (Chrome 90)*
+- **What's New In DevTools (Chrome 90)**
   - https://developer.chrome.com/blog/new-in-devtools-90/
-  - *New CSS flexbox debugging tools*
-  - *New Core Web Vitals overlay*
+  - **New CSS flexbox debugging tools**
+  - **New Core Web Vitals overlay**
   - Issues tab updates
     - Moved issue count to the Console status bar
     - Report Trusted Web Activity issues
@@ -73,13 +73,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - New Remote Address Space column in the Network panel
   - Performance improvements
   - Display allowed/disallowed features in the Frame details view
-  - *New SameParty column in the Cookies pane*
+  - **New SameParty column in the Cookies pane**
   - Deprecated non-standard fn.displayName support
   - Deprecation of Don't show Chrome Data Saver warning in the Settings menu
   - Experimental features
     - Automatic low-contrast issue reporting in the Issues tab
     - Full accessibility tree view in the Elements panel
-- *Chromium Blog: Mitigating Side-Channel Attacks*
+- **Chromium Blog: Mitigating Side-Channel Attacks**
   - https://blog.chromium.org/2021/03/mitigating-side-channel-attacks.html
   - Sec-Fetch
   - CORP
@@ -90,12 +90,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - などを組み合わせると Side Channel 攻撃対策になるという話
 - Chromium Blog: Advanced memory management and more performance improvements in M89
   - https://blog.chromium.org/2021/03/advanced-memory-management-and-more.html
-- *Chromium Blog: A safer default for navigation: HTTPS*
+- **Chromium Blog: A safer default for navigation: HTTPS**
   - https://blog.chromium.org/2021/03/a-safer-default-for-navigation-https.html
   - M90 から URL の直接入力で HTTPS がデフォルトになる
   - だめだったら HTTP にフォールバック
   - localhost などは別
-- *Google Online Security Blog: A Spectre proof-of-concept for a Spectre-proof web*
+- **Google Online Security Blog: A Spectre proof-of-concept for a Spectre-proof web**
   - https://security.googleblog.com/2021/03/a-spectre-proof-of-concept-for-spectre.html
   - https://leaky.page/
   - これまであまり公開されてこなかった Spectre の DEMO が公開された
@@ -105,15 +105,15 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: Critical-CH, a Client Hint reliability mechanism*
+- **Ship: Critical-CH, a Client Hint reliability mechanism**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/V3Yo20_ZZLc
 - Ship: Single `<compound-selector>` for :host(), :host-context()
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ztanzClftBA
-- *Ship: Import Assertions and JSON Modules*
+- **Ship: Import Assertions and JSON Modules**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dppzCKHI874
 - Ship: Block HTTP port 554
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kyVo08TtOp8
-- *Ship: Class static initializer blocks*
+- **Ship: Class static initializer blocks**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/pzy_Z3AwmaY/m/FeXzN3hnAwAJ
   - 別で Temporal の Position を Mozilla に聞いた
   - Anne "反対だったら Stage 3 になる前に止めてるからいちいち聞くな"
@@ -130,7 +130,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/clPEmywkX4w/m/LbIZZv-fBQAJ
 - Ship: Managed configuration for Web Applications
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xPQYlcf-N-0/m/se6xRssBCAAJ
-- *Ship: inert attribute*
+- **Ship: inert attribute**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/_P5bxPTo6XE/m/1tqu3dzCBwAJ
 - Ship: Clear window name for cross-site navigations that switches browsing context group
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/86VeIi5sZzc/m/fPOAbuRHCAAJ
@@ -142,7 +142,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/OwUSsHWokpA
 - Prototype and Ship: ES Modules for service workers ('module' type option)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/iJaPCv9HOrE/m/MRJDqCRvAgAJ
-- *Prototype: document.prerendering*
+- **Prototype: document.prerendering**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8R6kvHjiqdw
   - もともと `document.visibilityState == 'prerendering'` が Ship されていた
   - しかし `hidden` でも `prerendering` な場合もあるため Unship
@@ -150,9 +150,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - prerender2 の準備っぽい
 - Prototype: App history API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/R1D5xYccqb0
-- *Prototype: First "Locally-Executed Decision over Groups" Experiment (FLEDGE)*
+- **Prototype: First "Locally-Executed Decision over Groups" Experiment (FLEDGE)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/w9hm8eQCmNI
-- *Prototype: Media Session API: Video conferencing actions*
+- **Prototype: Media Session API: Video conferencing actions**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0WrBY77sfh0/m/78tjw5GsAwAJ
 - Prototype: Note taking new note URL
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/uJ1tuT7HTd8/m/gP8ixHXiBQAJ
@@ -160,7 +160,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/006tkVwj1yw/m/7i4d1XXiBQAJ
 - Prototype: JPEG XL decoding support (image/jxl) in blink
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/WjCKcBw219k/m/BK9qXyz1BwAJ
-- *Prototype: Compute Pressure*
+- **Prototype: Compute Pressure**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LTIRZ24C5Os/m/BPSeJ8y0BwAJ
 - Prototype: ALPS and ACCEPT_CH HTTP/2 and HTTP/3 frames
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/DJEygGmiSz4/m/UGcmivJBCAAJ
@@ -217,11 +217,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - web.dev
   - Agrofy: A 70% improvement in LCP correlated to a 76% reduction in load abandonment
     - https://web.dev/agrofy/
-  - *How CLS optimizations increased Yahoo! JAPAN News's page views per session by 15%*
+  - **How CLS optimizations increased Yahoo! JAPAN News's page views per session by 15%**
     - https://web.dev/yahoo-japan-news/
   - JavaScript: What is the meaning of this?
     - https://web.dev/javascript-this/
-  - *Debugging layout shifts*
+  - **Debugging layout shifts**
     - https://web.dev/debugging-layout-shifts/
     - URL が変わった? => debug-layout-shifts
   - How Wix improved website performance by evolving their infrastructure
@@ -234,7 +234,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/strict-csp/
   - Lowe's website is among fastest performing e-commerce websites
     - https://web.dev/lowes/
-  - *Compat2021: Eliminating five top compatibility pain points on the web*
+  - **Compat2021: Eliminating five top compatibility pain points on the web**
     - https://web.dev/compat2021/
     - 互換性に関する調査から、特に 5 つの問題にフォーカスする
     - CSS Flexbox
@@ -244,9 +244,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - CSS transforms
   - What is Federated Learning of Cohorts (FLoC)?
     - https://web.dev/floc/
-  - *Best practices for cookie notices*
+  - **Best practices for cookie notices**
     - https://web.dev/cookie-notice-best-practices/
-  - *Debug Web Vitals in the field*
+  - **Debug Web Vitals in the field**
     - https://web.dev/debug-web-vitals-in-the-field/
   - Debug layout shifts
     - https://web.dev/debug-layout-shifts/
@@ -254,9 +254,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developers.google.com/web/updates/2021/03/crux-rank-magnitude
 - google developer blog
   - https://developers.googleblog.com/
-  - *Clarifications about the SharedArrayBuffer object message*
+  - **Clarifications about the SharedArrayBuffer object message**
     - https://developers.google.com/search/blog/2021/03/sharedarraybuffer-notes
-  - *New resources for video SEO  |  Google Search Central Blog*
+  - **New resources for video SEO  |  Google Search Central Blog**
     - https://developers.google.com/search/blog/2021/03/new-resources-for-video-seo
     - Make your videos available on the web
     - Provide structured data with VideoObject markup
@@ -274,12 +274,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - amp
   - Optimizing your AMP page experience for Core Web Vitals - The AMP Blog
     - https://blog.amp.dev/2021/03/23/optimizing-your-amp-page-experience-for-core-web-vitals/
-- *Privacy, sustainability and the importance of "and"*
+- **Privacy, sustainability and the importance of "and"**
   - https://blog.google/products/chrome/privacy-sustainability-and-the-importance-of-and/
   - FLoC の Origin Trial を一部地域で開始するというアナウンス
     - Australia, Brazil, Canada, India, Indonesia, Japan, Mexico, New Zealand, Philippines and the U.S
   - あわせて https://www.privacysandbox.com/ も公開
-- *Android の Chrome と WebView で障害*
+- **Android の Chrome と WebView で障害**
   - https://twitter.com/googlejapan/status/1374269162961268741
   - Google Japan on Twitter: "Android アプリが一部のユーザーで強制終了する問題を修正しました。不具合が解消しない場合は、 Google Play ストアから Android システムの WebView と Google Chrome をアップデートしてください。ご迷惑をおかけした皆さまにお詫び申し上げます。" / Twitter
 
@@ -300,7 +300,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Firefox 87 trims HTTP Referrers by default to protect user privacy - Mozilla Security Blog
   - https://blog.mozilla.org/security/2021/03/22/firefox-87-trims-http-referrers-by-default-to-protect-user-privacy/
   - デフォルトの Referrer が strict-origin-when-cross-origin に
-- *Firefox 87 introduces SmartBlock for Private Browsing - Mozilla Security Blog*
+- **Firefox 87 introduces SmartBlock for Private Browsing - Mozilla Security Blog**
   - https://blog.mozilla.org/security/2021/03/23/introducing-smartblock/
   - ETP の Strict mode ではリソースの読み込みをブロックしている
   - ブロックされたスクリプトに依存したページが読めない問題があった
@@ -316,7 +316,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Ship:
   - Enable State Partitioning in Private Browsing Mode
     - https://groups.google.com/g/mozilla.dev.platform/c/-S-28sBh9-I/m/hCT3m7utAwAJ
-  - *Top Level Await*
+  - **Top Level Await**
     - https://groups.google.com/g/mozilla.dev.platform/c/YcLW7hzQp8U/m/Oe0mS5BoAwAJ
   - PerformanceEventTiming API
     - https://groups.google.com/g/mozilla.dev.platform/c/eLXz442Icxs/m/KKqM5_KuAQAJ
@@ -324,11 +324,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/g/mozilla.dev.platform/c/-DF65QZSmzs/m/fxnzasFoBgAJ
   - sha2 windows signing
     - https://groups.google.com/g/mozilla.dev.platform/c/2bTkUj6LmDs/m/k9mbK-02AgAJ
-  - *AbortSignal.abort()*
+  - **AbortSignal.abort()**
     - https://groups.google.com/g/mozilla.dev.platform/c/23hnabutNlA/m/VV6OTp12AgAJ
   - AV1 Still Image File Format (AVIF)
     - https://groups.google.com/g/mozilla.dev.platform/c/eWIa9XXxHsc/m/Wzs20e0kAAAJ
-  - *aspect-ratio property*
+  - **aspect-ratio property**
     - https://groups.google.com/g/mozilla.dev.platform/c/selXOOzcRkU/m/GKxYv-0kAAAJ
 - Prototype and Ship
   - Support `document.execCommand` and related API in `<input>` and `<textarea>`
@@ -362,9 +362,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Reinstating net neutrality in the US - The Mozilla Blog*
+- **Reinstating net neutrality in the US - The Mozilla Blog**
   - https://blog.mozilla.org/blog/2021/03/19/reinstating-net-neutrality-in-the-us/
-- *MDN localization in March - Tier 1 locales unfrozen, and future plans*
+- **MDN localization in March - Tier 1 locales unfrozen, and future plans**
   - https://hacks.mozilla.org/2021/03/mdn-localization-in-march-tier-1-locales-unfrozen-and-future-plans/
   - Tier 1 (fr, ja, ru, zh-CN, zh-TW) のロケールが編集可能に戻った
   - アクティブコントリビューターが紹介されている(日本人による ja チームも)
@@ -386,25 +386,25 @@ guest: [@myakura](https://twitter.com/myakura)
 - Release Notes for Safari Technology Preview 122
   - https://webkit.org/blog/11577/release-notes-for-safari-technology-preview-122/
   - CSS
-    - *Implemented :focus-visible (r273812, r272983)*
+    - **Implemented :focus-visible (r273812, r272983)**
     - Implemented the first case in Definite and Indefinite Sizes specifications in section 9.8 for flexbox (r273072)
     - Added experimental support for CSS Color 5 color-contrast() (r273683)
     - Added experimental support for CSS Color 5 color-mix() (r273244)
     - Added experimental support for CSS Color 5 Relative Color Syntax (r273127)
     - Added support for aspect-ratio on flexbox items (r273193)
   - JavaScript
-    - *Enabled private methods (r273125)*
-    - *Implemented private static methods (r273107)*
-    - *Implemented top-level-await (r273225)*
-    - *Implemented RegExp Match Indices (r273086)*
+    - **Enabled private methods (r273125)**
+    - **Implemented private static methods (r273107)**
+    - **Implemented top-level-await (r273225)**
+    - **Implemented RegExp Match Indices (r273086)**
     - Implemented GC verifier (r273138)
-    - *Added support for modules in Workers and Worklets (r273203)*
-    - *Added support for modules in Service Workers (r273224)*
+    - **Added support for modules in Workers and Worklets (r273203)**
+    - **Added support for modules in Service Workers (r273224)**
   - WebAssembly
     - Extended wasm type with type index (r273813)
     - Implemented non-trapping float to int conversion (r272933)
   - Web API
-    - *Enabled Paint Timing (r273221, r273220)*
+    - **Enabled Paint Timing (r273221, r273220)**
   - WebRTC
     - Added support for WebRTC priority (r273550)
     - Added support for BigInt as media-stream encryption key (r273158)
@@ -413,11 +413,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Release Notes for Safari Technology Preview 123
   - https://webkit.org/blog/11585/release-notes-for-safari-technology-preview-123/
   - CSS
-    - *Changed to consider intrinsic sizes as automatic whenever the block axis of the flex item is the flexible box main size (r273955)*
-    - *Fixed orthogonal items with percentage sizes in Flexbox (r273958)*
+    - **Changed to consider intrinsic sizes as automatic whenever the block axis of the flex item is the flexible box main size (r273955)**
+    - **Fixed orthogonal items with percentage sizes in Flexbox (r273958)**
     - Fixed position: sticky behavior in a table with dir=RTL (r273982)
   - Web API
-    - *Removed the Origin header if the navigation request goes from POST to GET (r273905)*
+    - **Removed the Origin header if the navigation request goes from POST to GET (r273905)**
 
 
 #### Position
@@ -432,9 +432,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://lists.webkit.org/pipermail/webkit-dev/2021-March/031729.html
 - [webkit-dev] Request for Position on Sanitizer API
   - https://lists.webkit.org/pipermail/webkit-dev/2021-March/031731.html
-- *[webkit-dev] Request For Position on CSS containment*
+- **[webkit-dev] Request For Position on CSS containment**
   - https://lists.webkit.org/pipermail/webkit-dev/2021-March/031733.html
-- *[webkit-dev] Request for position: Aligning high-resolution timer granularity to cross-origin isolated capability*
+- **[webkit-dev] Request for position: Aligning high-resolution timer granularity to cross-origin isolated capability**
   - https://lists.webkit.org/pipermail/webkit-dev/2021-March/031739.html
 - [webkit-dev] Request for Position: COLR v1 Vector Color Fonts
   - https://lists.webkit.org/pipermail/webkit-dev/2021-March/031753.html
@@ -470,13 +470,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Microsoft Edge Legacy desktop application support ends today - Microsoft Edge Blog*
+- **Microsoft Edge Legacy desktop application support ends today - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2021/03/09/microsoft-edge-legacy-end-of-support/
   - Edge Legacy のサポートが 3/9 で終了
-- *Serving our customers more effectively with new release cycles for Microsoft Edge - Microsoft Edge Blog*
+- **Serving our customers more effectively with new release cycles for Microsoft Edge - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2021/03/12/new-release-cycles-microsoft-edge-extended-stable/
   - Chrome と同じ
-- *Microsoft Edge 89: Delivering improved browser performance to get the job done - Microsoft Edge Blog*
+- **Microsoft Edge 89: Delivering improved browser performance to get the job done - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2021/03/04/edge-89-performance/
 - Joining forces on better browser compatibility in 2021 - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2021/03/22/better-compatibility-compat2021/
@@ -508,7 +508,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - First Public Working Draft
   - First Public Working Draft: Open Screen Protocol
     - https://www.w3.org/blog/news/archives/8973
-  - *First Public Working Draft: Post-Spectre Web Development*
+  - **First Public Working Draft: Post-Spectre Web Development**
     - https://www.w3.org/blog/news/archives/8956
   - First Public Working Draft: Indexed Database API 3.0
     - https://www.w3.org/blog/news/archives/8944
@@ -523,7 +523,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### ES2021
 
-- *Release ES2021 Candidate March 2021 · tc39/ecma262*
+- **Release ES2021 Candidate March 2021 · tc39/ecma262**
   - https://github.com/tc39/ecma262/releases/tag/es2021-candidate-2021-03
   - String.prototype.replaceAll
   - Promise.any()
@@ -534,7 +534,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Meeting
 
-- *2021-03*
+- **2021-03**
   - https://github.com/tc39/agendas/blob/master/2021/03.md
   - https://github.com/tc39/notes/blob/master/meetings/2021-03/mar-9.md
   - https://github.com/tc39/notes/blob/master/meetings/2021-03/mar-10.md
@@ -543,16 +543,16 @@ guest: [@myakura](https://twitter.com/myakura)
   - Normative: specify creation order for capturing group properties
   - Backup incumbent tracking for FinalizationRegistry jobs
   - Class Static Initialization Blocks
-  - *Records and Tuples update*
+  - **Records and Tuples update**
   - Async Do update towards stage 2
   - Top-level await status update
   - ECMA Recognition Awards
   - Module Fragments (For Stage 1)
   - Collection normalization methods
-  - *Temporal for Stage 3*
+  - **Temporal for Stage 3**
   - RegExp set notation: Update
   - Error.prototype.cause for stage 3
-  - *Promise.anySettled*
+  - **Promise.anySettled**
   - Array find from last
   - ResizableArrayBuffer for Stage 3
   - Incubation call chartering
@@ -580,7 +580,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### New Proposals
 
-- *Provides additional methods to Array.prototype to enable changes on an array by returning a new copy of it with the change.*
+- **Provides additional methods to Array.prototype to enable changes on an array by returning a new copy of it with the change.**
   - https://github.com/rricard/proposal-change-array-by-copy
   - record / tuple に必要な immutable な method を Array.prototype にも入れる案
   - pushed / shifted / with など
@@ -613,7 +613,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JanMar/0264.html
   - I-D Action: draft-ietf-httpbis-bcp56bis-11.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JanMar/0298.html
-  - *Re-WGLC for BCP65bis*
+  - **Re-WGLC for BCP65bis**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0003.html
     - いよいよ大詰めだけど最後の WGLC が結構前なのでもう一度
   - Call for Adoption: draft-bdc-something-something-certificate-05
@@ -698,7 +698,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Brave acquires search engine to offer the first private alternative to Google Search and Google Chrome on both mobile and desktop*
+- **Brave acquires search engine to offer the first private alternative to Google Search and Google Chrome on both mobile and desktop**
   - https://brave.com/brave-search/
   - 2020 年にサービス終了した検索エンジン Cliqz の開発者が集うオープンな検索エンジン Tailcat を買収
   - Brave Search という検索エンジンを提供予定
@@ -708,7 +708,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://infrequently.org/2021/03/reactive-data-modern-js/
 - Good news about display: contents and Chrome
   - https://www.rachelandrew.co.uk/archives/2021/03/11/good-news-about-display-contents-and-chrome/
-- *Who has the fastest F1 website in 2021?*
+- **Who has the fastest F1 website in 2021?**
   - Part 1 - JakeArchibald.com
     - https://jakearchibald.com/2021/f1-perf-part-1/
   - Part 2 - JakeArchibald.com

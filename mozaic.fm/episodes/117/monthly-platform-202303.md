@@ -22,21 +22,21 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 111*
+- **New in Chrome 111**
   - https://developer.chrome.com/en/blog/new-in-chrome-111/
   - View Transitions API.
   - CSS Color Level 4.
   - New color devtools.
-- *Chrome 112 beta*
+- **Chrome 112 beta**
   - https://developer.chrome.com/en/blog/chrome-112-beta/
   - CSS
-    - *CSS Nesting*
+    - **CSS Nesting**
     - CSS animation-composition property
   - Web APIs
     - "Reload this page" infobar no longer shown if top-level frame is observing permission changes
-    - *Add optional submitter parameter to the FormData constructor*
-    - *RegExp `v` flag with set notation and properties of strings*
-    - *Updated `<dialog>` initial focus algorithm*
+    - **Add optional submitter parameter to the FormData constructor**
+    - **RegExp `v` flag with set notation and properties of strings**
+    - **Updated `<dialog>` initial focus algorithm**
     - WebAssembly tail call
     - WebGLContextEvent on Web Workers
     - Skip service worker no-op fetch handler
@@ -48,7 +48,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Deprecations and removals
     - Deprecate the document.domain setter
     - Remove stats objects track and stream from the getStats() method of RTCPeerConnection
-- *What's New in DevTools (Chrome 112)*
+- **What's New in DevTools (Chrome 112)**
   - https://developer.chrome.com/en/blog/new-in-devtools-112/
   - Recorder updates
     - Replay extensions support
@@ -73,33 +73,33 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tO598HXuS94
 - Ship: Display and content-visibility animations
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UV9POKsNZA8
-- *Ship: First-party sets*
+- **Ship: First-party sets**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/7_6JDIfE1as
   - 異なるサイトを同一 Party として宣言する API
   - 最初の提案からはだいぶ変わっている
   - Storage Access API と requestStorageAccessFor API で利用
-- *Ship: Storage Access API (within First-Party Sets)*
+- **Ship: Storage Access API (within First-Party Sets)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/V9PzoCvIIIs
-- *Ship: requestStorageAccessFor (for First-Party Sets)*
+- **Ship: requestStorageAccessFor (for First-Party Sets)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zCW6oEALAl4
-- *Ship: Forbidden and escaped host characters compliant with the URL standard*
+- **Ship: Forbidden and escaped host characters compliant with the URL standard**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ZkeDSeuBx0Q
   - URL の仕様に合わせるため、 Host で利用できる文字の制限が修正
   - % エンコードされる文字も修正
-- *Ship: Private State Tokens API*
+- **Ship: Private State Tokens API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/vKCYxKqw8k0
   - 旧 Trust Token だったもの
   - Privacy Pass の Web 実装として、適切な名前に変わった
 - Ship: Removal of X-Requested-With in WebView
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Z70s8CQ8PbU
-- *Ship: Skip service worker no-op fetch handler*
+- **Ship: Skip service worker no-op fetch handler**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tEFS0BH8UmE
   - PWA にするために SW を提供するがハンドラは何もしない実装がある
   - onfetch に登録された `() => {}` のようなハンドラを no-op handler と呼ぶ
   - その場合は SW の起動をスキップして起動を高速化する
 - Ship: Speculation rules: Content Security Policy extension
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Spjosgl4z-8
-- *Ship: The Popover API*
+- **Ship: The Popover API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/uB_jxbRmjAM
 - Ship: Transitions on specified discrete properties
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UK6TtET2gOI
@@ -113,11 +113,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dX61V0HAAz4
 - Prototype: CSS font-palette property animation
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/oHg2u4ijXUU
-- *Prototype: CSS inline leading-trim*
+- **Prototype: CSS inline leading-trim**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tYeALJeWwDc
 - Prototype: CapturedMouseEvent
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/DYb5fXICJvo
-- *Prototype: Compression dictionary transport with Shared Brotli*
+- **Prototype: Compression dictionary transport with Shared Brotli**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-qYpLo9DTjw
   - brotli の辞書をコンテンツに基づいて生成し、圧縮率をあげる
   - レスポンスを元に br の辞書を作り次の圧縮に使う delta compression
@@ -128,7 +128,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Aef4fm1Wn18
 - Prototype: XRPose Motion APIs
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0Bctfvd-Sg8
-- *Prototype: popover=hint*
+- **Prototype: popover=hint**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/n_FPQNFt_9k
   - auto/manual に加えた三つ目の popover タイプ
   - 一度に開ける hint は一つなどの制約がある
@@ -141,9 +141,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RA7HlvPbinY
 - Change:
 - Unship:
-- *BlinkOn 18 timing & location*
+- **BlinkOn 18 timing & location**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CVblH9r0NJ8
-- *[Call for feedback] Proposal to gradually skip unload events: already unreliable, top back/forward cache blocker, better alternatives available!*
+- **[Call for feedback] Proposal to gradually skip unload events: already unreliable, top back/forward cache blocker, better alternatives available!**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/oU1yt5cdGH8
 - deprecate forwarding of mdoc-scheme URLs as Android Intents
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/wcCrcMTELS0
@@ -157,10 +157,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - web.dev
   - 6 CSS snippets every front-end developer should know in 2023
     - https://web.dev/6-css-snippets-every-front-end-developer-should-know-in-2023/
-  - *Trigonometric functions in CSS*
+  - **Trigonometric functions in CSS**
     - https://web.dev/css-trig-functions/
 - google developer blog
-  - *Let's go. It's Google I/O 2023*
+  - **Let's go. It's Google I/O 2023**
     - https://developers.googleblog.com/2023/03/lets-go-its-google-io-2023.html
 - google developer japan blog
   - Google Developers Japan: Google Ads API v11 の提供終了に関するお知らせ
@@ -172,7 +172,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google Developers Japan: Google 広告の検索、ショッピング、ディスプレイ、 P-MAX キャンペーンの地域ターゲティングの変更について
     - https://developers-jp.googleblog.com/2023/03/changes-to-location-targeting-in-google-ads.html
 - chrome developer blog
-  - *SPA view transitions land in Chrome 111 - Chrome Developers*
+  - **SPA view transitions land in Chrome 111 - Chrome Developers**
     - https://developer.chrome.com/en/blog/spa-view-transitions-land/
   - A new home for the Project Fugu API Showcase - Chrome Developers
     - https://developer.chrome.com/en/blog/a-new-home-for-the-project-fugu-api-showcase/
@@ -182,10 +182,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/fedcm-auto-reauthn-origin-trial/
   - Improving user privacy by requiring opt-in to send X-Requested-With header from WebView - Chrome Developers
     - https://developer.chrome.com/en/blog/android-webview-header-privacy/
-  - *Partnering with Fastly-Oblivious HTTP relay for FLEDGE's 𝑘-anonymity server - Chrome Developers*
+  - **Partnering with Fastly-Oblivious HTTP relay for FLEDGE's 𝑘-anonymity server - Chrome Developers**
     - https://developer.chrome.com/en/blog/oblivious-http-for-k-anon-server-with-fastly/
     - OHTTP を Fledge で使う話
-  - *From Web SQL to SQLite Wasm: the database migration guide - Chrome Developers*
+  - **From Web SQL to SQLite Wasm: the database migration guide - Chrome Developers**
     - https://developer.chrome.com/en/blog/from-web-sql-to-sqlite-wasm/
 - chromium blog
   - https://blog.chromium.org/
@@ -207,7 +207,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Firefox 111 for developers - Mozilla | MDN*
+- **Firefox 111 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/111
     - `autocapitalize` attribute
     - `translate` attribute
@@ -219,19 +219,19 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: Compatible join and split node direction in HTML editor*
+- **Ship: Compatible join and split node direction in HTML editor**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Ob-T1HSe-4I/m/VJ76Bcs1AQAJ
-- *Ship: change-array-by-copy*
+- **Ship: change-array-by-copy**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/2ArmKfy2POQ
-- *Ship: inert attribute*
+- **Ship: inert attribute**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/05UFVR_nj3I
-- *Prototype and ship: :nth-child(An+B of \<selector list>)*
+- **Prototype and ship: :nth-child(An+B of \<selector list>)**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/eQeeFKYJ038
-- *Prototype and ship: Additional CSS Color (level 4) functions*
+- **Prototype and ship: Additional CSS Color (level 4) functions**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/eTJLWJEuLv0
-- *Prototype: Async clipboard API improvement for read()/readText() and write()*
+- **Prototype: Async clipboard API improvement for read()/readText() and write()**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/doxNXSEFtEE/m/CGsR1fLlAgAJ
-- *Prototype: prefers-reduced-transparency media query*
+- **Prototype: prefers-reduced-transparency media query**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/l410J8odZjA
 - Prototype: CSS Custom Highlight API
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/fE37aJ_YdA8
@@ -251,7 +251,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/en/mozilla/email-protection-just-got-easier-in-firefox/
 - Mozilla Launches Responsible AI Challenge
   - https://blog.mozilla.org/en/mozilla/mozilla-launches-responsible-ai-challenge/
-- *Introducing Mozilla.ai: Investing in trustworthy AI*
+- **Introducing Mozilla.ai: Investing in trustworthy AI**
   - https://blog.mozilla.org/en/mozilla/introducing-mozilla-ai-investing-in-trustworthy-ai/
 - Mozilla Launches Responsible AI Challenge - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2023/03/mozilla-launches-responsible-ai-challenge/
@@ -266,28 +266,28 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Release Notes for Safari Technology Preview 165*
+- **Release Notes for Safari Technology Preview 165**
   - https://webkit.org/blog/13932/release-notes-for-safari-technology-preview-165/
-  - *Added support for `text-transform: full-size-kana` (260307@main)*
+  - **Added support for `text-transform: full-size-kana` (260307@main)**
   - Added support for `x` units in `calc()` function (260678@main)
-  - *Added support to `image-set()` for resolution and type as optional arguments (260796@main)*
+  - **Added support to `image-set()` for resolution and type as optional arguments (260796@main)**
   - Added support for RegExp Duplicate Named Capture Groups (260692@main)
-  - *Added `Headers.prototype.getSetCookie`. (260533@main)*
-  - *Added support for `link rel=modulepreload` (260761@main, 260709@main, 260659@main)*
-- *Release Notes for Safari Technology Preview 166*
+  - **Added `Headers.prototype.getSetCookie`. (260533@main)**
+  - **Added support for `link rel=modulepreload` (260761@main, 260709@main, 260659@main)**
+- **Release Notes for Safari Technology Preview 166**
   - https://webkit.org/blog/13964/release-notes-for-safari-technology-preview-166/
-  - *Enabled `@counter-style` by default (261182@main, 260912@main, 261135@main)*
-  - *Enabled CSS `contain-intrinsic-size` by default (261185@main)*
+  - **Enabled `@counter-style` by default (261182@main, 260912@main, 261135@main)**
+  - **Enabled CSS `contain-intrinsic-size` by default (261185@main)**
   - Implemented `text-transform: full-width` (261211@main)
   - Implemented RegExp `v` flag with set notation and properties of strings (261188@main)
-  - *Enabled the `popover` attribute (261193@main)*
+  - **Enabled the `popover` attribute (261193@main)**
   - Implemented `[popover=auto]` and light dismiss behavior (261093@main)
-  - *Added support for `preconnect` via HTTP early hints (261079@main)*
+  - **Added support for `preconnect` via HTTP early hints (261079@main)**
   - Added Cancel, Unknown, and Clear keycodes (261008@main)
   - Added selection API that works across shadow boundaries (261021@main)
   - Added support for `largeBlob` extension for the local authenticator (260958@main)
   - Adjusted text input `scrollWidth` and `scrollHeight` to include padding and any whitespace added by decorations (261121@main)
-- *Enabling the Inspection of Web Content in Apps*
+- **Enabling the Inspection of Web Content in Apps**
   - https://webkit.org/blog/13936/enabling-the-inspection-of-web-content-in-apps/
 
 ####
@@ -295,7 +295,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Issues · WebKit/standards-positions*
+- **Issues · WebKit/standards-positions**
   - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+is%3Aclosed+closed%3A%3E2023-02-28+
   - 今後は定期観測していく
 
@@ -321,11 +321,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2023/03/20/going-electric-solar/
 - Attack Techniques: Spoofing via UserInfo - text/plain
   - https://textslashplain.com/2023/03/22/attack-techniques-spoofing-via-userinfo/
-- *How Microsoft Edge Updates - text/plain*
+- **How Microsoft Edge Updates - text/plain**
   - https://textslashplain.com/2023/03/25/how-microsoft-edge-updates/
-- *Taking control of your application's title bar*
+- **Taking control of your application's title bar**
   - https://blogs.windows.com/msedgedev/2023/03/14/taking-control-of-your-applications-title-bar/
-- *Video super resolution in Microsoft Edge*
+- **Video super resolution in Microsoft Edge**
   - https://blogs.windows.com/msedgedev/2023/03/08/video-super-resolution-in-microsoft-edge/
 
 
@@ -338,7 +338,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Candidate Recommendation
 - Working Draft
 - First Public Working Draft
-  - *First Public Working Draft: CSS Animations Level 2*
+  - **First Public Working Draft: CSS Animations Level 2**
     - https://www.w3.org/blog/news/archives/9854
 - Chartering
 - Declarative Dynamic Extensions to HTML Community Group Proposed
@@ -361,21 +361,21 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *popover attribute may not be web compatible · Issue #9042 · whatwg/html*
+- **popover attribute may not be web compatible · Issue #9042 · whatwg/html**
   - https://github.com/whatwg/html/issues/9042
     - WebKit が Popover API を試験実装したところ、サイトが壊れたと報告があった
     - `popover` 属性の UA スタイルシートに `display: none` が追加されたため
-- *Add the `<search>` element · whatwg/html@c598ff0*
+- **Add the `<search>` element · whatwg/html@c598ff0**
   - https://github.com/whatwg/html/commit/c598ff023f081dd3f03b2e43177a632fb7dc92ec
     - `role="search"` に対応する新しい HTML 要素が追加された
-- *Workshop overview - W3C Workshop Secure the Web Forward*
+- **Workshop overview - W3C Workshop Secure the Web Forward**
   - https://www.w3.org/2023/03/secure-the-web-forward/
     - 2023 年 6 月 7 日/8 日開催
 - Upcoming W3C Workshop: Secure the Web Forward
   - https://www.w3.org/blog/news/archives/9860
 - W3C welcomes feedback on the beta of its new website
   - https://www.w3.org/blog/news/archives/9851
-- *Add `URL.canParse()` by annevk · Pull Request #763 · whatwg/url*
+- **Add `URL.canParse()` by annevk · Pull Request #763 · whatwg/url**
   - https://github.com/whatwg/url/pull/763
 
 
@@ -469,13 +469,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Cloudflare
 
-- *無料であるべきポスト量子暗号を永久に無料で提供します*
+- **無料であるべきポスト量子暗号を永久に無料で提供します**
   - https://blog.cloudflare.com/ja-jp/post-quantum-crypto-should-be-free-ja-jp/
 - Mutual TLS now available for Workers
   - https://blog.cloudflare.com/mtls-workers/
 - The White House's National Cybersecurity Strategy asks the private sector to step up to fight cyber attacks. Cloudflare is ready
   - https://blog.cloudflare.com/the-white-houses-national-cybersecurity-strategy-asks-the-private-sector-to-step-up-to-fight-cyber-attacks-cloudflare-is-ready/
-- *Security Week 2023 へようこそ*
+- **Security Week 2023 へようこそ**
   - https://blog.cloudflare.com/ja-jp/welcome-to-security-week-2023-ja-jp/
 - 最もフィッシング攻撃されやすいブランド上位 50 件と、フィッシングから社員を守るために使える新しいツール
   - https://blog.cloudflare.com/ja-jp/50-most-impersonated-brands-protect-phishing-ja-jp/
@@ -493,13 +493,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/ja-jp/security-week-2023-wrap-up-ja-jp/
 - The quantum state of a TCP port
   - https://blog.cloudflare.com/the-quantum-state-of-a-tcp-port/
-- *Out now! Auto-renew TLS certificates with DCV Delegation*
+- **Out now! Auto-renew TLS certificates with DCV Delegation**
   - https://blog.cloudflare.com/introducing-dcv-delegation/
 
 
 #### Fastly
 
-- *ネット上のプライバシーを強化する Oblivious HTTP | Fastly*
+- **ネット上のプライバシーを強化する Oblivious HTTP | Fastly**
   - https://www.fastly.com/jp/blog/enabling-privacy-on-the-internet-with-oblivious-http
 
 
@@ -520,7 +520,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Intent To Ship on Twitter: "The admin of this account has been permanently suspended from Twitter"*
+- **Intent To Ship on Twitter: "The admin of this account has been permanently suspended from Twitter"**
   - https://twitter.com/intenttoship/status/1636087416959258625
   - ブラウザの Intent to Ship をウォッチするボットを作っている人のアカウントがサスペンドされた
 - Be a Part of Web Engines HackFest 2023 | Igalia

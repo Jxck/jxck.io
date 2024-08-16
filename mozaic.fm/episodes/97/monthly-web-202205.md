@@ -30,7 +30,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.chrome.com/en/blog/new-in-devtools-102/
 - Deprecations and removals in Chrome 103
   - https://developer.chrome.com/en/blog/deps-rems-103/
-- *Chromium Blog: Chrome 103 Beta: Early Navigation Hints, a Host of Completed Origin Trials, and More*
+- **Chromium Blog: Chrome 103 Beta: Early Navigation Hints, a Host of Completed Origin Trials, and More**
   - https://blog.chromium.org/2022/05/chrome-103-beta-early-navigation-hints.html
   - Early Hints for Navigation
   - Origin Trials
@@ -64,15 +64,15 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Ship: "deflate-raw" on compression and decompression streams
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/t7NX_-RH9nE
-- *Ship: Container Queries*
+- **Ship: Container Queries**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/gwzxnTJDLJ8
-- *Ship: Element.isVisible method*
+- **Ship: Element.isVisible method**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/fvpRgcE8_Yg
-- *Ship: Opaque Response Blocking (ORB, aka CORB++) v0.1*
+- **Ship: Opaque Response Blocking (ORB, aka CORB++) v0.1**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ScjhKz3Z6U4
-- *Ship: Subresource Loading with Web Bundles*
+- **Ship: Subresource Loading with Web Bundles**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/VS9UgOC7Wqc
-- *Ship: User Agent Client Hints GREASE Update*
+- **Ship: User Agent Client Hints GREASE Update**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zdFNms0Nxqg
 - Ship: form rel attribute
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Ram6i7ffgkM
@@ -84,7 +84,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/G2hKM5GnERQ
 - Ship: 'blocking=rendering' attribute on scripts and style sheets
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Ydpc6Lfx_7k
-- *Ship: CSS `:modal` Pseudo Class*
+- **Ship: CSS `:modal` Pseudo Class**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kGHVBtVS1X8
 - Ship: Default SVG cursor size set from OS settings
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/AeJt7SUA5lQ
@@ -108,22 +108,22 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/znbNAoUFoR8
 - Prototype and Ship: CSS grid-template properties interpolation
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Ll7br0giMk8
-- *Prototype and Ship: `Response.json()`*
+- **Prototype and Ship: `Response.json()`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/buq5vsaTh5Q
   - Body が JSON な response を簡単に作る API
 - Prototype: Back/forward cache NotRestoredReason API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/os3qUVtqyWo
-- *Prototype: HTTP/3 protocol upgrade for HTTPS DNS records with h3 alpn parameter*
+- **Prototype: HTTP/3 protocol upgrade for HTTPS DNS records with h3 alpn parameter**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hqvk-XxBIN0
-- *Prototype: Reduce fingerprinting in the Accept-Language header and support for HTTP Variants*
+- **Prototype: Reduce fingerprinting in the Accept-Language header and support for HTTP Variants**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/V4FS3zMbZ08
 - Prototype: Secure Payment Confirmation - Opt-Out Support
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2HBw2uw1mOM
 - Prototype: User Agent Launch Type in PerformanceNavigationTiming
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/o0F7nBKsgg0
-- *Prototype: `AbortSignal.any()`*
+- **Prototype: `AbortSignal.any()`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/FSH6hrJMaxM
-- *Prototype: COEP reflection API*
+- **Prototype: COEP reflection API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CS8S90_4djA
 - Prototype: DisplayMediaStreamConstraints.selfBrowserSurface
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/COid122-_AE
@@ -133,11 +133,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bVVEn-TOTYs
 - Prototype: MediaTrackSupportedConstraints.suppressLocalAudioPlayback
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/cANVKeNMHyE
-- *Prototype: Origin-Bound Cookies*
+- **Prototype: Origin-Bound Cookies**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xKTem_X2LU8
-- *Prototype: Prerender2 for Desktop*
+- **Prototype: Prerender2 for Desktop**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/cQZddR4izx4
-- *Prototype: Stack Switching Promise Integration*
+- **Prototype: Stack Switching Promise Integration**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hXJHsmUFIHU
 - Prototype: Tabbed web apps
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/IvfIkjvQYuY
@@ -164,7 +164,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2V7lIYDkdtI
 - Deprecate and Remove: Non-ASCII characters in cookie domain attributes
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/x3DY-PuZhNw
-- *Sign up to host a breakout talk @ BlinkOn16!*
+- **Sign up to host a breakout talk @ BlinkOn16!**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/_HnlcMRADpw
 - The countdown to BlinkOn 16 is on!
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/gJQeiRABcUo
@@ -197,7 +197,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/state-of-css-2022/
   - Bridging the gap
     - https://web.dev/bridging-the-gap/
-  - *Yahoo! JAPAN's password-free authentication reduced inquiries by 25%, sped up sign-in time by 2.6x*
+  - **Yahoo! JAPAN's password-free authentication reduced inquiries by 25%, sped up sign-in time by 2.6x**
     - https://web.dev/yahoo-japan-identity-case-study/
   - Finding courage and inspiration in the developer community
     - https://web.dev/gde-mentoring/
@@ -213,7 +213,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/gov-uk-drops-jquery/
   - Building a button component
     - https://web.dev/building-a-button-component/
-  - *How do modern frameworks perform on the new INP metric*
+  - **How do modern frameworks perform on the new INP metric**
     - https://web.dev/inp-in-frameworks/
   - Synchronize audio and video playback on the web
     - https://web.dev/audio-output-latency/
@@ -241,7 +241,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/advanced-web-apps-fund/
   - Better Tab Sharing with Capture Handle
     - https://developer.chrome.com/en/blog/capture-handle/
-  - *Interaction to Next Paint (INP) tool support*
+  - **Interaction to Next Paint (INP) tool support**
     - https://developer.chrome.com/en/blog/inp-tools-2022/
   - Progress in the Privacy Sandbox (March - April 2022)
     - https://developer.chrome.com/en/blog/progress-in-the-privacy-sandbox-2022-04/
@@ -271,20 +271,20 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Firefox 100 for developers - Mozilla | MDN*
+- **Firefox 100 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/100
     - dynamic-range/video-dynamic-range media features
     - WritableStream
     - pipeTo()
     - AbortSignal.timeout()
-- *Firefox 100.0, See All New Features, Updates and Fixes*
+- **Firefox 100.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/100.0/releasenotes/
     - captions support in PiP window
     - overlay scrollbars on Windows 11 and LInux
     - new focus indicator for links
     - > Firefox now ignores less restricted referrer policies-including unsafe-url, no-referrer-when-downgrade, and origin-when-cross-origin-for cross-site subresource/iframe requests to prevent privacy leaks from the referrer.
     - > Soft-reloading a web page will no longer cause revalidation for all resources.
-- *Firefox 101 for developers - Mozilla | MDN*
+- **Firefox 101 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/101
     - prefers-contrast
     - small/large/dynamic viewport units
@@ -304,7 +304,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2022/05/25/these-weeks-in-firefox-issue-116/
 - These Weeks In Firefox: Issue 117 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/06/02/these-weeks-in-firefox-issue-117/
-- *Upgrading Mozilla's Root Store Policy to Version 2.8 - Mozilla Security Blog*
+- **Upgrading Mozilla's Root Store Policy to Version 2.8 - Mozilla Security Blog**
   - https://blog.mozilla.org/security/2022/05/23/upgrading-mrsp-to-v-2-8/
 - Prioritized Task Scheduling API is Prototyped in Nightly - Mozilla Performance
   - https://blog.mozilla.org/performance/2022/06/02/prioritized-task-scheduling-api-is-prototyped-in-nightly/
@@ -320,7 +320,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/aGz_MUa-nJg
 - Ship: TransformStreams and ReadableStream.pipeThrough
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/v-3ABR6oAnY
-- *Ship: URL Query String Stripping (ETP Strict and Private Browsing Mode)*
+- **Ship: URL Query String Stripping (ETP Strict and Private Browsing Mode)**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/YsG7Hax_VJ4
 - Ship: CSS constructable stylesheets.
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/nGCnIvYEUd0
@@ -331,7 +331,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Experiment:
 - Change:
 - Remove:
-- *Unship: window.sidebar*
+- **Unship: window.sidebar**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/5Yp3hPu3mZc
 - Unship: `IDBDatabase.createMutableFile()` and the relevant classes
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/jDrDstL2MGU
@@ -347,11 +347,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/en/products/firefox/firefox-credit-card-autofill-uk-france-germany/
 - Firefox's Picture-in-Picture rolls out subtitles - a Mozilla Connect community requested feature
   - https://blog.mozilla.org/en/products/firefox/firefox-picture-in-picture-rolls-out-subtitles/
-- *Revocation Reason Codes for TLS Server Certificates - Mozilla Security Blog*
+- **Revocation Reason Codes for TLS Server Certificates - Mozilla Security Blog**
   - https://blog.mozilla.org/security/2022/05/16/revocation-reason-codes-for-tls-server-certificates/
 - Manifest v3 in Firefox: Recap & Next Steps | Mozilla Add-ons Community Blog
   - https://blog.mozilla.org/addons/2022/05/18/manifest-v3-in-firefox-recap-next-steps/
-- *Marketing our privacy products while preserving privacy*
+- **Marketing our privacy products while preserving privacy**
   - https://blog.mozilla.org/en/products/mozilla-vpn/marketing-our-privacy-products-while-preserving-privacy/
 
 
@@ -362,14 +362,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Release Notes for Safari Technology Preview 144*
+- **Release Notes for Safari Technology Preview 144**
   - https://webkit.org/blog/12621/release-notes-for-safari-technology-preview-144/
-  - *Added Typed OM support for container units (r291524)*
+  - **Added Typed OM support for container units (r291524)**
   - Enabled support for mutable timelines by default (r291868)
   - Added getAssertion support for virtual HID authenticators (r291624)
   - Added support for focused and visible ServiceWorkerWindowClient states (r291888)
   - Added a check for whether the origin can access storage in the Storage API (r291726)
-  - *Included initial accessibility support for display: contents (r291570)*
+  - **Included initial accessibility support for display: contents (r291570)**
 - Release Notes for Safari Technology Preview 145
   - https://webkit.org/blog/12629/release-notes-for-safari-technology-preview-145/
   - Allowed Response Local Overrides to map to a file on disk
@@ -395,7 +395,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Implemented ServiceWorkerWindowClient.navigate (r292459)
 - Safari 15.5 Release Notes | Apple Developer Documentation
   - https://developer.apple.com/documentation/safari-release-notes/safari-15_5-release-notes
-- *New WebKit Features in Safari 15.5*
+- **New WebKit Features in Safari 15.5**
   - https://webkit.org/blog/12669/new-webkit-features-in-safari-15-5/
   - support for the inert property in HTML;
   - support for the worker-src Content Security Policy directive;
@@ -439,11 +439,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - > なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。
 - Find and manage your installed apps and sites
   - https://blogs.windows.com/msedgedev/2022/05/18/find-and-manage-your-installed-apps-and-sites/
-- *Styling `select` elements for real*
+- **Styling `select` elements for real**
   - https://blogs.windows.com/msedgedev/2022/05/05/styling-select-elements-for-real/
-- *What's new for Microsoft Edge at Build 2022*
+- **What's new for Microsoft Edge at Build 2022**
   - https://blogs.windows.com/msedgedev/2022/05/24/microsoft-edge-build-2022/
-- *Introducing Microsoft Edge Secure Network - Microsoft Tech Community*
+- **Introducing Microsoft Edge Secure Network - Microsoft Tech Community**
   - https://techcommunity.microsoft.com/t5/articles/introducing-microsoft-edge-secure-network/m-p/3367243
   - Microsoft Edge Secure Network という VPN を搭載
   - Cloudflare と提携、 1GB まで無料
@@ -475,11 +475,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *W3C Strategic Highlights, April 2022*
+- **W3C Strategic Highlights, April 2022**
   - https://www.w3.org/blog/news/archives/9532
 - Judy Brewer receives ACM award for her leadership of the Web Accessibility Initiative
   - https://www.w3.org/blog/news/archives/9523
-- *W3C opens Advisory Board (AB) election*
+- **W3C opens Advisory Board (AB) election**
   - https://www.w3.org/blog/news/archives/9521
 - ARIA Authoring Practices Guide | APG | WAI | W3C
   - https://www.w3.org/WAI/ARIA/apg/
@@ -529,11 +529,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022AprJun/0082.html
   - ABNF and Structured fields
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022AprJun/0076.html
-  - *Title change for QPACK: Field Compression*
+  - **Title change for QPACK: Field Compression**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022AprJun/0091.html
   - Signing Set-Cookie
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022AprJun/0124.html
-  - *DRAFT minutes for the May interim meeting*
+  - **DRAFT minutes for the May interim meeting**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022AprJun/0121.html
     - https://httpwg.org/wg-materials/interim-22-05/minutes.html
   - Message signatures, structured fields and ABNF
@@ -574,7 +574,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *RFC 9239 - Updates to ECMAScript Media Types*
+- **RFC 9239 - Updates to ECMAScript Media Types**
   - https://datatracker.ietf.org/doc/html/rfc9239
 - draft-fabbrini-algorithm-post-alien-cryptography-00
   - https://datatracker.ietf.org/doc/html/draft-fabbrini-algorithm-post-alien-cryptography-00
@@ -593,7 +593,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/magic-nat/
 - Introducing Workers Analytics Engine
   - https://blog.cloudflare.com/workers-analytics-engine/
-- *Announcing D1: our first SQL database*
+- **Announcing D1: our first SQL database**
   - https://blog.cloudflare.com/introducing-d1/
   - SQLite ベースのクラウド SQL DB
   - Cloudflare 上でリードレプリカが自動作成
@@ -602,7 +602,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/introducing-cache-reserve/
 - Durable Objects Alarms - a wake-up call for your applications
   - https://blog.cloudflare.com/durable-objects-alarms/
-- *A New Hope for Object Storage: R2 enters open beta*
+- **A New Hope for Object Storage: R2 enters open beta**
   - https://blog.cloudflare.com/r2-open-beta/
   - S3 互換のオブジェクトストレージ
   - とにかく安くて安心して使える
@@ -618,18 +618,18 @@ guest: [@myakura](https://twitter.com/myakura)
 - Welcome to Platform Week
   - https://blog.cloudflare.com/platform-week-2022/
   - このあとの発表群の前振り
-- *The next chapter for Cloudflare Workers: open source*
+- **The next chapter for Cloudflare Workers: open source**
   - https://blog.cloudflare.com/workers-open-source-announcement/
   - Cloudflare Workers のコードを OSS に
   - この Worker へのロックインを避ける意味で WinterCG が同時に発表されている
-- *A Community Group for Web-interoperable JavaScript runtimes*
+- **A Community Group for Web-interoperable JavaScript runtimes**
   - https://blog.cloudflare.com/introducing-the-wintercg/
   - https://wintercg.org/
   - WHATWG はブラウザに特化した API を策定してきた
   - Node や Deno 、 Edge コンピューティングのランタイムでは合わない場合もある
   - その差分をうめるための WinterCG を設立 W3C みたいなプロセスだが参加は自由
   - Cloudflare, Vercel, Shopify, Node.js, Deno などが参加
-- *Zaraz use Workers to make third-party tools secure and fast*
+- **Zaraz use Workers to make third-party tools secure and fast**
   - https://blog.cloudflare.com/zaraz-use-workers-to-make-third-party-tools-secure-and-fast/
   - タグマネージャの Zaraz を買収
   - ブラウザでやっていたタグマネージャの処理を Edge 上でやろうとしている
@@ -648,11 +648,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/how-ramadan-shows-up-in-internet-trends/
 - Network performance update: Platform Week
   - https://blog.cloudflare.com/network-performance-update-platform-week/
-- *Proof of Stake and our next experiments in web3*
+- **Proof of Stake and our next experiments in web3**
   - https://blog.cloudflare.com/next-gen-web3-network/
-- *Public access for our Ethereum and IPFS gateways now available*
+- **Public access for our Ethereum and IPFS gateways now available**
   - https://blog.cloudflare.com/ea-web3-gateways/
-- *Serving Cloudflare Pages sites to the IPFS network*
+- **Serving Cloudflare Pages sites to the IPFS network**
   - https://blog.cloudflare.com/cloudflare-pages-on-ipfs/
 - Gaining visibility in IPFS systems
   - https://blog.cloudflare.com/ipfs-measurements/
@@ -682,9 +682,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/threat-hunting-network-callbacks-in-waf-data
 - Product design at Fastly: How we create useful enterprise experiences | Fastly
   - https://www.fastly.com/blog/product-design-at-fastly-how-we-create-useful-enterprise-experiences
-- *HTTP/3 and QUIC are now available for our entire customer base at no additional charge | Fastly*
+- **HTTP/3 and QUIC are now available for our entire customer base at no additional charge | Fastly**
   - https://www.fastly.com/blog/http-3-and-quic-are-now-available-for-our-entire-customer-base-at-no-additional-charge
-- *Fastly announces acquisition of Glitch: A future of "yes code" at the edge | Fastly*
+- **Fastly announces acquisition of Glitch: A future of "yes code" at the edge | Fastly**
   - https://www.fastly.com/blog/fastly-announces-acquisition-of-glitch-a-future-of-yes-code-at-the-edge
   - https://www.fastly.com/jp/press/press-releases/fastly-announces-acquisition-of-glitch
   - https://blog.glitch.com/post/an-exciting-leap-forward-for-glitch
@@ -705,7 +705,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Join us for the 2022 Web Engines Hackfest | Igalia*
+- **Join us for the 2022 Web Engines Hackfest | Igalia**
   - https://www.igalia.com/2022/05/12/Join-us-for-the-2022-Web-Engines-Hackfest.html
   - https://www.igalia.com/2022/05/23/Web-Engines-Hackfest-2022-Agenda-Announced.html
   - https://www.youtube.com/channel/UCPQ8NaRSfsGei1j1meO4pNg/videos
@@ -715,7 +715,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - などに関わっている人を集めたオフラインイベント
 - Igalia at BlinkOn 16 | Igalia
   - https://www.igalia.com/2022/05/11/Igalia-at-BlinkOn-16.html
-- *JavaScript Containers*
+- **JavaScript Containers**
   - https://tinyclouds.org/javascript_containers
   - Deno では JS コンテナを模索するという Ryan Dahl の記事
 

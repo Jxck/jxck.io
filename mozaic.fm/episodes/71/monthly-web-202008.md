@@ -19,14 +19,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 85
 - Updates
-  - *New in Chrome 85*
+  - **New in Chrome 85**
     - https://developers.google.com/web/updates/2020/08/nic85
     - Content Visibility
     - @property and CSS variables
     - Get installed related apps
     - App Icon Shortcuts
     - Origin Trial: Streaming requests with fetch()
-  - *What's New In DevTools (Chrome 86)*
+  - **What's New In DevTools (Chrome 86)**
     - https://developers.google.com/web/updates/2020/08/devtools
     - New Media panel
     - Capture node screenshots via Elements panel context menu
@@ -41,14 +41,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - Show coverage summary for filtered items
     - New frame detailed view in Application panel
     - Elements and Network panel updates
-  - *Chromium Blog: Helping people spot the spoofs: a URL experiment*
+  - **Chromium Blog: Helping people spot the spoofs: a URL experiment**
     - https://blog.chromium.org/2020/08/helping-people-spot-spoofs-url.html
-  - *Chromium Blog: Highlighting great user experiences on the mobile web*
+  - **Chromium Blog: Highlighting great user experiences on the mobile web**
     - https://blog.chromium.org/2020/08/highlighting-great-user-experiences-on.html
     - Fast Page バッチがでるように
   - Chromium Blog: Protecting Google Chrome users from insecure forms
     - https://blog.chromium.org/2020/08/protecting-google-chrome-users-from.html
-  - *Chromium Blog: Chrome just got faster with Profile Guided Optimization*
+  - **Chromium Blog: Chrome just got faster with Profile Guided Optimization**
     - https://blog.chromium.org/2020/08/chrome-just-got-faster-with-profile.html
     - Profile Guided Optimization が有効になり 10% 程度ページロードが高速化した
     - ビルドして一回タスクを動かして情報を集め最適化する
@@ -56,7 +56,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.googleblog.com/2020/08/guidance-for-our-effort-to-block-less-secure-browser-and-apps.html
   - Debugging memory leaks in WebAssembly using Emscripten
     - https://web.dev/webassembly-memory-debugging/
-  - *Unblocking clipboard access*
+  - **Unblocking clipboard access**
     - https://web.dev/async-clipboard/
     - Async Clipboard API の実装が進んだので改めて紹介
     - テキストを扱う writeText()/readText()
@@ -69,23 +69,23 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/serial/
   - ARIA: poison or antidote?
     - https://web.dev/aria-poison-or-antidote/
-  - *content-visibility: the new CSS property that boosts your rendering performance*
+  - **content-visibility: the new CSS property that boosts your rendering performance**
     - https://web.dev/content-visibility/
 - Intents
-  - *Ship: WebRTC Insertable Streams*
+  - **Ship: WebRTC Insertable Streams**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/XFO4OXrdSRA
     - Mozilla / Safari は、鍵の交換を JS で行うべきではなく、プラットフォームにそこが統合されるべきで、それまでこの API を推奨する予定はない、もしくはそれまでの移行パスとしてこれを使うべきというスタンス。
     - Web / Framework developers のリンクが非常に充実している
   - Ship: Document-Policy: force-load-at-top (opt-out for text-fragment)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/h6my3rcC628
-  - *Ship: Imperative Shadow DOM Distribution API*
+  - **Ship: Imperative Shadow DOM Distribution API**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/Jdw3VWbKvLY/
     - 1 v0 と比べて v1 は明示的に slot を指定しないといけない
     - 2 condition を明示して slot を切り替えることができなかった
     - これに対応するため、`attachShadow({ mode: 'open', slotAssignment: 'manual' })` することで auto な slotAssign を止め、 `slot.assign()` で命令的にできるように。
   - Ship: Intl.Segmenter
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/MJ1OpvkcA8s
-  - *Ship: Native File System*
+  - **Ship: Native File System**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/9Fcpl2KVfbk
   - Ship: Streams API: transferable streams
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/1LStSgBt6AM
@@ -95,11 +95,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/b204isLEEyc/m/ySpOdyfzBwAJ
   - Ship: CSS flow-relative shorthand and offset properties
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/E7f_WZOcTgQ
-  - *Prototype: First-party sets*
+  - **Prototype: First-party sets**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/0EMGi-xbI-8
     - Firefox は Harmful だが Safari は Positive らしい
     - https://github.com/privacycg/proposals/issues/17
-  - *Prototype: Permissions-Policy header*
+  - **Prototype: Permissions-Policy header**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/As1ABvc2QdA/m/yZSpPXY4CAAJ
   - Prototype: Raw Sockets API
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/ARtkaw4e9T4/m/npjeMssPCAAJ
@@ -111,10 +111,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/XcGGi4jAwfE
   - Prototype: Progressive Web Apps as URL Handlers
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/2Sv3fCWEi_Q
-  - *Prototype: Customizable `<select>` Element*
+  - **Prototype: Customizable `<select>` Element**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/9TcfjaOs5zg
     - https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/ControlUICustomization/explainer.md
-  - *Implement and Ship: Cookies with SameSite by default*
+  - **Implement and Ship: Cookies with SameSite by default**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/AknSSyQTGYs/m/SSB1rTEkBgAJ
     - Finch だった SameSite のロールアウトが 8/11 に 100% になった
     - 3D セキュアなど壊れたサイトも報告されている
@@ -145,14 +145,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/p1D2Fj8WTe0
   - Deprecate and remove: -webkit-font-size-delta
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/Gr37S4GPg4U/m/T0vGQyLzBwAJ
-  - *PSA: intent-to-experiment needs a draft spec*
+  - **PSA: intent-to-experiment needs a draft spec**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/R3cI6ro5Dls
     - Experiment するには Draft を用意するようにとのこと
     - Explainer だけではだめということ
-  - *PSA: Chromestatus Guide UX*
+  - **PSA: Chromestatus Guide UX**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/D3n0dEcb8Eg
     - Chromestatus への Launch Process の UI が改善した
-  - *PSA on Running WPT on Android*
+  - **PSA on Running WPT on Android**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/WTpgeXYqymE
   - PSA: Installing service workers will throttle network requests.
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/KlgQ-j0Wx0U
@@ -166,7 +166,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://webmasters.googleblog.com/2020/08/join-our-first-virtual-webmaster.html
   - Official Google Webmaster Central Blog: Identify and fix AMP Signed Exchange errors in Search Console
     - https://webmasters.googleblog.com/2020/08/identify-and-fix-amp-signed-exchange.html
-  - *Q2 2020 Summary from Chrome Security*
+  - **Q2 2020 Summary from Chrome Security**
     - https://groups.google.com/a/chromium.org/g/security-dev/c/tRgTmKbA0Vo/m/2WADAmPTCAAJ
 
 
@@ -181,7 +181,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - export \* as namespace
   - Firefox 80 Site Compatibility
     - https://www.fxsitecompat.dev/en-CA/releases/80/
-  - *Changing World, Changing Mozilla - The Mozilla Blog*
+  - **Changing World, Changing Mozilla - The Mozilla Blog**
     - https://blog.mozilla.org/blog/2020/08/11/changing-world-changing-mozilla/
     - Mozilla が大量の Layoff
     - MDN, Servo, XR, WASM などのチームから人が大幅に減った
@@ -191,14 +191,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Updates
   - These Weeks in Firefox: Issue 77
     - https://blog.nightly.mozilla.org/2020/08/07/these-weeks-in-firefox-issue-77/
-  - *An Update on MDN Web Docs*
+  - **An Update on MDN Web Docs**
     - https://hacks.mozilla.org/2020/08/an-update-on-mdn-web-docs/
     - MDN は存続するが、 Mozilla Hacks などは休止
-  - *Fast, personalized and private by design on all platforms: introducing a new Firefox for Android experience*
+  - **Fast, personalized and private by design on all platforms: introducing a new Firefox for Android experience**
     - https://blog.mozilla.org/blog/2020/08/25/introducing-a-new-firefox-for-android-experience/
   - SpiderMonkey Newsletter #6
     - https://groups.google.com/g/mozilla.dev.platform/c/VsgU2nNoXSs
-  - *Plans for new ECDSA root and new intermediates from Let's Encrypt*
+  - **Plans for new ECDSA root and new intermediates from Let's Encrypt**
     - https://groups.google.com/g/mozilla.dev.security.policy/c/BAK9eFalSd4
     - Let's Encrypt の新しい証明書は RSA じゃなく ECDSA
     - バイト数省略のため lencr.org というドメインも用意している
@@ -207,18 +207,18 @@ guest: [@myakura](https://twitter.com/myakura)
 - Intents
   - Ship: selectionchange for input/textarea
     - https://groups.google.com/g/mozilla.dev.platform/c/zS9vCw9GMsg/m/Zd3_STiTAgAJ
-  - *Ship: accept spaces and tabs in unquoted values (of e.g. "filename") used in Content-Disposition parameterized header pairs to to align with other browsers*
+  - **Ship: accept spaces and tabs in unquoted values (of e.g. "filename") used in Content-Disposition parameterized header pairs to to align with other browsers**
     - https://groups.google.com/g/mozilla.dev.platform/c/-Z72qTjto9I
-  - *Prototype: WebXR Layers*
+  - **Prototype: WebXR Layers**
     - https://groups.google.com/g/mozilla.dev.platform/c/O0CmHS8meNw
   - Prototype: ETP strict mode shims for content-blocked resources
     - https://groups.google.com/g/mozilla.dev.platform/c/28eWGe4s5a8
   - Unship: Recursive call of Document.execCommand()
     - https://groups.google.com/g/mozilla.dev.platform/c/QDvYvcx5CAo
 - Other
-  - *A look at password security, Part IV: WebAuthn - The Mozilla Blog*
+  - **A look at password security, Part IV: WebAuthn - The Mozilla Blog**
     - https://blog.mozilla.org/blog/2020/08/20/password-security-part-iv-webauthn/
-  - *Update on Mozilla Mixed Reality*
+  - **Update on Mozilla Mixed Reality**
     - https://blog.mozvr.com/update-on-mozilla-mixed-reality-2/
 
 
@@ -226,7 +226,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 13.1.2
 - Updates
-  - *Release Notes for Safari Technology Preview 112*
+  - **Release Notes for Safari Technology Preview 112**
     - https://webkit.org/blog/11183/release-notes-for-safari-technology-preview-112/
     - Extensions
       - Added support for replacing a Safari App Extension with a Safari Web Extension by specifying the SFSafariAppExtensionBundleIdentifiersToReplace key in the NSExtension element in your Safari Web Extension Info.plist file. The value for the key should be an array of strings, each of which is the bundle identifier on a Safari App Extension you want to replace.
@@ -237,7 +237,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Media
       - Added behaviors for YouTube to offer HDR variants to devices which support HDR (r265167)
       - Adopted AVPlayer.videoRangeOverride (r264710)
-      - *Added HDR decode support in software-decoded VP9 (r265073)*
+      - **Added HDR decode support in software-decoded VP9 (r265073)**
     - WebRTC
       - Added OfflineAudioContext constructor (r264657)
     - Web API
@@ -289,7 +289,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Release ChakraCore v1.11.21 · microsoft/ChakraCore
     - https://github.com/microsoft/ChakraCore/releases/tag/v1.11.21
 - Other
-  - *Microsoft 365 apps say farewell to Internet Explorer 11 and Windows 10 sunsets Microsoft Edge Legacy - Microsoft Tech Community - 1591666*
+  - **Microsoft 365 apps say farewell to Internet Explorer 11 and Windows 10 sunsets Microsoft Edge Legacy - Microsoft Tech Community - 1591666**
     - https://techcommunity.microsoft.com/t5/microsoft-365-blog/microsoft-365-apps-say-farewell-to-internet-explorer-11-and/ba-p/1591666
     - Microsoft 365 で Edge Legacy と IE11 のサポート終了予告
     - Edge Legacy は 2021 年 3 月に EOL
@@ -297,10 +297,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - 他の Microsoft 365 アプリも 2021 年 8 月 17 日で IE11 のサポートを終了
   - Announcing a new way to paste URLs, Link format! - Microsoft Tech Community - 1600094
     - https://techcommunity.microsoft.com/t5/articles/announcing-a-new-way-to-paste-urls-link-format/m-p/1600094#M3152
-  - *Beating Private Mode Blockers with an Ephemeral Profile - text/plain*
+  - **Beating Private Mode Blockers with an Ephemeral Profile - text/plain**
     - https://textslashplain.com/2020/08/11/beating-private-mode-blockers-with-an-ephemeral-profile/
     - Private Browse Blocker なサイトを見るために、専用別アカウントを用意するという話
-  - *Seamless Single Sign-On - text/plain*
+  - **Seamless Single Sign-On - text/plain**
     - https://textslashplain.com/2020/08/17/seamless-single-sign-on/
     - 401 での認証のプロンプトは、セキュリティの都合上 3rd Party の画像に対しては出ないようになっている
     - それを利用して、画像を読み込んで成功すればトークンが残ってる、失敗すれば認証フローに行けば良い、という切り分けをプロンプトを出すことなくできる。
@@ -318,7 +318,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Proposed Recommendation
 - Candidate Recommendation
 - Working Draft
-  - *For Wide Review: WCAG 2.2*
+  - **For Wide Review: WCAG 2.2**
     - https://www.w3.org/blog/news/archives/8659
     - WCAG 2.2 の新しい Working Draft が公開
     - 新しく 9 つの達成基準が追加
@@ -371,9 +371,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-irtf-cfrg-aead-limits-00
   - The CONNECT-UDP HTTP Method
     - https://tools.ietf.org/html/draft-ietf-masque-connect-udp-00
-  - *Hypertext Transfer Protocol Version 2 (HTTP/2)*
+  - **Hypertext Transfer Protocol Version 2 (HTTP/2)**
     - https://tools.ietf.org/html/draft-thomson-httpbis-http2bis-00
-  - *Client Hint Reliability*
+  - **Client Hint Reliability**
     - https://tools.ietf.org/html/draft-davidben-http-client-hint-reliability-01
   - Supporting Redirection for DNS Queries over HTTPS (DoH)
     - https://tools.ietf.org/html/draft-btw-dprive-rfc8484-clarification-00
@@ -391,7 +391,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Why bigger isn't always better when it comes to TLS key size*
+- **Why bigger isn't always better when it comes to TLS key size**
   - https://www.fastly.com/blog/key-size-for-tls
 - Why "by developers, for developers" matters now more than ever
   - https://www.fastly.com/blog/why-by-developers-for-developers-matters-more-than-ever
@@ -399,7 +399,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/fastly-intent-to-acquire-signal-sciences
 - Announcing wrangler dev - the Edge on localhost
   - https://blog.cloudflare.com/announcing-wrangler-dev-the-edge-on-localhost/
-- *Cloudflare and Human Rights: Joining the Global Network Initiative (GNI)*
+- **Cloudflare and Human Rights: Joining the Global Network Initiative (GNI)**
   - https://blog.cloudflare.com/cloudflare-and-human-rights-joining-the-global-network-initiative-gni/
 - How Argo Tunnel engineering uses Argo Tunnel
   - https://blog.cloudflare.com/how-argo-tunnel-engineering-uses-argo-tunnel/

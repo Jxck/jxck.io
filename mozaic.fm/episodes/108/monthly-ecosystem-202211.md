@@ -16,7 +16,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 ## Show Note
 
-- *Next.js 13*
+- **Next.js 13**
   - Blog - Next.js 13 | Next.js
     - https://nextjs.org/blog/next-13
     - app Directory (beta):
@@ -40,7 +40,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
       - `<link>` の下に `<a>` がいらなくなった
   - https://beta.nextjs.org/docs/getting-started
     - このドキュメントに色々と詳細がある
-- *Turbopack*
+- **Turbopack**
   - Introducing Turbopack: Rust-based successor to Webpack - Vercel
     - https://vercel.com/blog/turbopack
     - Rust に置き換えてさまざまなツールが早くなった
@@ -76,7 +76,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://shopify.engineering/remix-joins-shopify
 - Hydrogen: Shopify's opinionated framework for building headless e-commerce
   - https://hydrogen.shopify.dev/roadmap/
-- *Announcing TypeScript 4.9 RC - TypeScript*
+- **Announcing TypeScript 4.9 RC - TypeScript**
   - https://devblogs.microsoft.com/typescript/announcing-typescript-4-9-rc/
   - The satisfies Operator
     - 型をつけるのではなく、推論を活かしつつ特定の型を満たすか検証だけする演算子
@@ -101,7 +101,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
     - JavaScript Emit No Longer Elides Imports
     - exports is Prioritized Over typesVersions
   - substitute Replaced With constraint on SubstitutionTypes
-- *TypeScript 5.0 Iteration Plan · Issue #51362 · microsoft/TypeScript*
+- **TypeScript 5.0 Iteration Plan · Issue #51362 · microsoft/TypeScript**
   - https://github.com/microsoft/TypeScript/issues/51362
   - Language and Compiler Features
     - ECMAScript Decorators
@@ -157,7 +157,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - ライブラリに依存しない Router
   - https://react-location.tanstack.com/ と作者は同じ
   - 上記のライブラリに依存しない版になると思われる
-- *Announcing Rome v10*
+- **Announcing Rome v10**
   - https://rome.tools/blog/2022/11/08/rome-10/
   - サイトもリニューアル
     - https://rome.tools/

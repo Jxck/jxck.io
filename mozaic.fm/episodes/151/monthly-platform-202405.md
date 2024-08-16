@@ -22,14 +22,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Release notes | Chrome for Developers*
+- **Release notes | Chrome for Developers**
   - https://developer.chrome.com/release-notes/125
   - HTML and DOM
     - Declarative shadow DOM serialization
   - CSS
     - CSS Anchor Positioning
     - CSS stepped value functions-`round()`, `mod()`, and `rem()`
-  - *New syntax for CSS custom `:state()`*
+  - **New syntax for CSS custom `:state()`**
   - Remove discontinuity for Oklab and Oklch colors with lightness of nearly 100% or 0
   - Used color scheme root scrollbars
   - view-transitions class
@@ -56,12 +56,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Removal of Enterprise policy: NewBaseUrlInheritanceBehaviorAllowed
   - Removal of prefixed HTMLVideoElement Fullscreen properties and methods
   - Further reading
-- *New in Chrome 125*
+- **New in Chrome 125**
   - https://developer.chrome.com/blog/new-in-chrome-125
   - CSS Anchor Positioning.
   - Compute Pressure API.
   - Storage Access API (SAA) extended to non-cookie storage.
-- *What's new in DevTools, Chrome 125*
+- **What's new in DevTools, Chrome 125**
   - https://developer.chrome.com/blog/new-in-devtools-125
   - Understand errors and warnings in the Console better with Gemini
   - @position-try rules support in Elements > Styles
@@ -73,15 +73,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - Inspect Early Hints headers
     - Hide the Waterfall column
   - Performance panel improvements
-    - *Capture CSS selector statistics*
+    - **Capture CSS selector statistics**
   - Change order and hide tracks
   - Ignore retainers in the Memory panel
   - Lighthouse 11.7.1
   - Miscellaneous highlights
-- *Chrome 126 beta*
+- **Chrome 126 beta**
   - https://developer.chrome.com/blog/chrome-126-beta
   - CSS
-    - *Cross-document view transitions for same-origin navigations*
+    - **Cross-document view transitions for same-origin navigations**
   - Web APIs
     - Gamepad API trigger-rumble extension
     - OpusEncoderConfig signal and application parameters
@@ -92,7 +92,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - WebGLObject Web IDL superinterface
     - WebRTC encoded transform: Modify Metadata functions
     - SVG support for the Async Clipboard API
-    - *Re-enabling the CloseWatcher API and close requests for \<dialog> and popover=""*
+    - **Re-enabling the CloseWatcher API and close requests for \<dialog> and popover=""**
     - Support for the UI Automation Accessibility Framework on Windows
   - New origin trials
     - FedCM as a trust signal for the Storage Access API
@@ -101,7 +101,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Keyboard focusable scroll containers deprecation trial
   - Deprecations and removals
     - Mutation events will be removed from Chrome
-- *Google I/O*
+- **Google I/O**
   - Google Keynote
     - https://io.google/2024/explore/a6eb8619-5c2e-4671-84cb-b938c27103be
   - Get ready for Google I/O: Program lineup revealed - Google Developers Blog
@@ -110,7 +110,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/blog/web-at-io24
   - I/O 2024 Web AI wrap up: New models, tools, and APIs for your next web app
     - https://developer.chrome.com/blog/io24-web-ai-wrapup
-  - *The state of CSS and Web UI*
+  - **The state of CSS and Web UI**
     - https://io.google/2024/explore/83764202-1ca2-4491-a731-c4d3701624d4/
   - Chrome DevTools: From friction to flow
     - https://io.google/2024/explore/5c49e4fb-0b93-4905-9dfa-115bcd4ffc62/
@@ -132,7 +132,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://io.google/2024/explore/3ba88258-12ca-49c0-b482-5ca0c212b807/
   - New field insights for debugging INP
     - https://io.google/2024/explore/ba446093-0036-410b-ba1e-f9016ec21899/
-  - *Multi-page application View Transitions are here*
+  - **Multi-page application View Transitions are here**
     - https://io.google/2024/explore/8ae18b72-028e-4722-9a05-4a480048e629/
   - No buzz, just build: Practical on-device AI for web developers
     - https://io.google/2024/explore/47fc6e98-8359-4be0-b9b9-4bc7b28bd063/
@@ -150,9 +150,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ZdZXN1D-MtI
 - Ship: Support Video Chapter in MediaMetadata
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2c3BP_yN0v8
-- *Ship: Tabbed web apps*
+- **Ship: Tabbed web apps**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/L6AfXU0-GOc
-- *Ship: View Transitions Same-Origin Navigation*
+- **Ship: View Transitions Same-Origin Navigation**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LsA567xpe7k
   - View Transition が MPA でもできるように
   - 3 行 CSS 足すだけでヌルッと遷移するようになる。
@@ -164,7 +164,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/PaUVwmNkfWc
 - Ship: Protected Audience ads reporting - allow cross-origin subframes to send reportEvent() beacons
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CrUxPVSscW0
-- *Ship: Stop modifying author-defined selection colors*
+- **Ship: Stop modifying author-defined selection colors**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/olhqI_F8SWE
   - `::selection { color: cyan, background: cyan }` と設定されている場合
   - chrome はこれを無視して背景を反転して red にする
@@ -173,15 +173,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/G1f_Y6Kl5b4
 - Ship: Attribution Reporting Feature: Referrer Policy for Attributionsrc Requests
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/7UQR2lPn5KE
-- *Ship: CSS font-size-adjust with the two-value syntax*
+- **Ship: CSS font-size-adjust with the two-value syntax**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/l2CiHZ8BArs
   - interop 2024 focus
-- *Ship: Deprecate Mutation Events*
+- **Ship: Deprecate Mutation Events**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jBEISy1p1XU
   - MutationObserver に移行していく
   - Stat は多いので大変そう
   - Gecko: Positive "very strong positive position"
-- *Ship: Third-party Cookie Grace Period Opt-Out*
+- **Ship: Third-party Cookie Grace Period Opt-Out**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/seEsJTZPnz8
   - 1% の deprecation は始まっており、opt-out する Reverse OT はすでに始まっている
   - しかし、ローカルで検出されなかったテストが 100% でローンチされるのはリスクが高い
@@ -190,14 +190,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - `{ "ThirdPartyOptOutPercentage": 50 }` と書ける
 - Ship: Dispatch selectionchange event per element
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/d8r15E2j73E
-- *Ship: Importmap integrity*
+- **Ship: Importmap integrity**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/mn0sRHwK7Dc
   - importmap で sunresource integrity を追加できるように
   - PCI-DSS v4 で認証 + integrity が要件に入り、その実現に必要らしい
     - https://www.shopify.com/in/partners/blog/checkout-compliance
 - Ship: Unrestricted WebUSB (available only to Isolated Web Apps)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hXgwRCYta-k
-- *Ship: CSS Anchor Positioning: anchor-scope*
+- **Ship: CSS Anchor Positioning: anchor-scope**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/D2-NxrsMKe4
   - anchor のスコープを指定する
   - 同じコンポーネントがページ上に複数ある場合に干渉を防ぐ
@@ -205,7 +205,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1HxS284iKCE
 - Implement and Ship: Conversion to RGB in `VideoFrame.copyTo()`
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4ZyzUn4meaY
-- *Prototype and Ship: Align navigator.cookieEnabled with spec*
+- **Prototype and Ship: Align navigator.cookieEnabled with spec**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xU3gTW4aTfg
   - `navigator.cookieEnabled` は Cookie が有効かを返す
   - Chrome が 3PCD すると、 unpartitioned cookie にアクセスできない場合 false を返すことになる
@@ -213,12 +213,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - なので `hasStorageAccess` に任せて、 `cookieEnabled` は元の挙動に戻す
 - Prototype: Document picture-in-picture: add option to ignore window bounds cache
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/a9nH5pdlgAc
-- *Prototype: Find-in-page highlight pseudos*
+- **Prototype: Find-in-page highlight pseudos**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5FS_4mVQBLc
   - ページ内検索された場所につく擬似要素 (`::search-text`)
   - ハイライトのスタイルを変更できる
   - デフォルトのハイライトだとコントラストが下がってしまう時などに上書き
-- *Prototype: Multi-argument alt text in CSS Generated Content*
+- **Prototype: Multi-argument alt text in CSS Generated Content**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/uCOrwnFuqNA
   - CSS の content で画像などを指定する際に、 alt を指定する記法はサポートされてた
   - `content: url("cat.jpg") / "A cute cat"`
@@ -227,7 +227,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Prototype: Link rel=payment to support push payments
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dCMLWWdgMgY
   - ページでの支払いに Google Pay を起動するかをユーザに尋ねる
-- *Prototype: Trusted Types spec alignment*
+- **Prototype: Trusted Types spec alignment**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KFbpAOttF5U
   - monkey patch として Chrome に実装されたが、他ブラウザも興味を持った
   - そこでこれを HTML に統合することにした
@@ -236,22 +236,22 @@ guest: [@myakura](https://twitter.com/myakura)
   - チェックの実行タイミングなどが変わるため後方互換性への影響もある
 - Prototype: AudioContext.onerror
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tADbkn88F5Y
-- *Prototype: No-Vary-Search Hint for Prerender Speculation Rules*
+- **Prototype: No-Vary-Search Hint for Prerender Speculation Rules**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/wMTc-74B9Ic
-- *Prototype: Partitioned Popins*
+- **Prototype: Partitioned Popins**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ApU_zUmpQ2g/
 - Prototype: Timing information for ServiceWorker Static routing API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/_967Rs7QJRo
 - Experiment: FedCM as a trust signal for the Storage Access API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LwgSKPBivuM
-- *Experiment: Keyboard-focusable scroll containers Opt Out*
+- **Experiment: Keyboard-focusable scroll containers Opt Out**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2qwzMaEGWTk
-- *Experiment: Origin Trial for Third Party Cookie Deprecation*
+- **Experiment: Origin Trial for Third Party Cookie Deprecation**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3B5dIm_XXLE
   - 3PCD を強制するための OT
 - Experiment: Page Embedded Permission Control
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/9dANzlI1YgQ
-- *Implement and Experiment: Skip Ad in Picture-in-Picture window*
+- **Implement and Experiment: Skip Ad in Picture-in-Picture window**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/l6sW0G4jzhE
   - 4 年前に提案されてそのままになっている機能の再掲
   - ChromeOS チームがこの機能(SkipAd action)を再利用する予定があるので
@@ -263,7 +263,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LkeOaFI5xVc
 - Request for Deprecation Trial: Media Previews opt-out
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1BSxI6Udblw
-- *Request for Deprecation Trial: Unpartitioned 3rd party Storage, Service Workers, and Communication APIs*
+- **Request for Deprecation Trial: Unpartitioned 3rd party Storage, Service Workers, and Communication APIs**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/FNi-nNC8fiw
   - Partition を進める関連作業をまとめて DT したい?
 - PSA: ComputePressure API: Rename of attribute supportedSources to knownSources.
@@ -274,7 +274,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/aVpeVRO1Sy4
 - Web-Facing Change PSA: Corrected timing for low-lead-time prefetches
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/_HyH7xC9Lo4
-- *Web-Facing Change PSA: text-size-adjust improvements*
+- **Web-Facing Change PSA: text-size-adjust improvements**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LBs6mlOrHJo
   - text-size-adjust プロパティのおかしな挙動を直す
   - meta viewport 指定のないページでテキストを拡大する挙動の制御をするプロパティ
@@ -288,14 +288,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - web.dev
   - https://web.dev/
   - blog
-    - *What's new in the web*
+    - **What's new in the web**
       - https://web.dev/blog/new-in-the-web-io2024
     - New to the web platform in April
       - https://web.dev/blog/web-platform-04-2024
     - Popover API lands in Baseline
       - https://web.dev/blog/popover-api
       - Popover が Baseline 2024 の一部に
-    - *Announcing the Web Platform Dashboard*
+    - **Announcing the Web Platform Dashboard**
       - https://web.dev/blog/web-platform-dashboard
     - Baseline integration with RUM Archive and RUMvision
       - https://web.dev/blog/baseline-rum
@@ -317,7 +317,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developers-jp.googleblog.com/
 - chrome developer blog
   - https://developer.chrome.com/blog/
-  - *An alternative proposal for CSS masonry*
+  - **An alternative proposal for CSS masonry**
     - https://developer.chrome.com/blog/masonry
     - Chrome チームによる display: masonry の提案
     - Grid の亜流ではなく独自のレイアウトにすることで、不必要なレイアウトの計算を避けられたり、メイソンリーのために導入されるが Grid では意味のない記述で悩むことなどがないと主張
@@ -331,7 +331,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/blog/devtools-tips-34
   - Implement testing in your enterprise with Chrome
     - https://developer.chrome.com/blog/implement-testing-in-your-enterprise
-  - *Introducing UIA support on Windows*
+  - **Introducing UIA support on Windows**
     - https://developer.chrome.com/blog/windows-uia-support
   - Introducing the CSS anchor positioning API
     - https://developer.chrome.com/blog/anchor-positioning-api
@@ -350,13 +350,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - What's new in JavaScript Frameworks (May 2024)
     - https://developer.chrome.com/blog/frameworks-may-2024
 - chromium blog
-  - *Chromium Blog: How Machine Learning improved the Chrome address bar on Windows, Mac and ChromeOS*
+  - **Chromium Blog: How Machine Learning improved the Chrome address bar on Windows, Mac and ChromeOS**
     - https://blog.chromium.org/2024/04/how-machine-learning-improved-chrome.html
     - M124 から omnibox でスコアリング関数の代わりに AI が動くようになる
     - 毎日何十億回も使われる機能であるため、変更は難しかった
     - よくソフトウェア開発は「飛行機をそれが飛んでる間に組み立てる」と言われる
     - これは「世界中の飛行機の座席を飛んでる間に交換する」みたいな変更だった
-  - *Chromium Blog: Advancing Our Amazing Bet on Asymmetric Cryptography*
+  - **Chromium Blog: Advancing Our Amazing Bet on Asymmetric Cryptography**
     - https://blog.chromium.org/2024/05/advancing-our-amazing-bet-on-asymmetric.html
     - 耐量子暗号への移行を進めており、 Kyber を導入したが問題も多数発生している
     - X25519 鍵交換は 30 倍の鍵サイズで、 ClientHello は分割、ハンドシェイクは 4% 増加
@@ -385,12 +385,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Firefox 126.0, See All New Features, Updates and Fixes*
+- **Firefox 126.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/126.0/releasenotes/
   - リンクの右クリックに Copy Without Site Tracking オプションが追加
   - M3 Mac で AV1 のハードウェアデコードアクセラレーションをサポート
   - NVIDIA RTX Video Super Resolution と NVIDIA RTX Video HDR のサポート
-- *Firefox 126 for developers - Mozilla | MDN*
+- **Firefox 126 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/126
   - CSS zoom / element.currentCSSZoom
   - CustomStateSet
@@ -405,31 +405,31 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: `navigator.clipboard.read()` and `navigator.clipboard.write()`*
+- **Ship: `navigator.clipboard.read()` and `navigator.clipboard.write()`**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/lNXj_A-Lllk
   - ずっと flag だったが 127 からデフォルト有効に
-- *Ship: New Set Methods*
+- **Ship: New Set Methods**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/MvkV6MI6dMs
   - 127 でデフォルト有効に
 - Ship: Mixed Content: upgrading of passive mixed content to HTTPS
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/a8xO7nUIPbk
-- *Ship: Resolving HTTPS records using platform DNS APIs*
+- **Ship: Resolving HTTPS records using platform DNS APIs**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/oh_Tk0iLT9A/m/k7XztM6hBgAJ
   - DoH じゃなくても HTTPS レコードを解決するようになる
 - Ship: Resizable and Growable ArrayBuffers
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/bYpVoogstBA
 - Ship: setCodecPreferences
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/nhKKb7obWU8
-- *Prototype: CSS Anchor Positioning*
+- **Prototype: CSS Anchor Positioning**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/4cbytMKbHtg
   - WebKit はまだ position が未定だが、Editor をつとめている
     - 大規模な変更が入ったばかりでレビューが足りていない状態として Chromium の ship に反対していた
       - https://groups.google.com/a/chromium.org/g/blink-dev/c/jGTYNuidPRs
-- *Prototype: Bounce Tracking Mitigations*
+- **Prototype: Bounce Tracking Mitigations**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/M6erM0SjPTM
   - これまでは Tracker List ベースだった
   - ヒューリスティックベースのプロトタイプをする
-- *Prototype: CHIPS(Cookies Having Independent Partitioned State)*
+- **Prototype: CHIPS(Cookies Having Independent Partitioned State)**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/7p3DC__Wgos
   - Partitioned 属性を実装する
   - WebKit も position は support
@@ -474,10 +474,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - IntersectionObserver V2: Detecting occlusion and visual effects
     - https://github.com/mozilla/standards-positions/issues/109
 - Negative
-  - *Digital Credentials*
+  - **Digital Credentials**
     - https://github.com/mozilla/standards-positions/issues/1003
 - Defer
-  - *Partitioned Popins*
+  - **Partitioned Popins**
     - https://github.com/mozilla/standards-positions/issues/1023
 
 
@@ -505,7 +505,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/en/internet-culture/webbys-red-carpet-event-2024/
 - Mozilla Firefox Adds AI-Powered RTX Video | NVIDIA Blog
   - https://blogs.nvidia.com/blog/ai-decoded-rtxvideo-firefox/
-- *Here's what we're working on in Firefox - Mozilla Connect*
+- **Here's what we're working on in Firefox - Mozilla Connect**
   - https://connect.mozilla.org/t5/discussions/here-s-what-we-re-working-on-in-firefox/td-p/57694
   - 縦タブなど UI の強化やパフォーマンス向上などに取り組んでいくらしい
   - > We're looking at how we can use local, on-device AI models -- i.e., more private -- to enhance your browsing experience further. One feature we're starting with next quarter is AI-generated alt-text for images inserted into PDFs, which makes it more accessible to visually impaired users and people with learning disabilities. The alt text is then processed on your device and saved locally instead of cloud services, ensuring that enhancements like these are done with your privacy in mind.
@@ -523,7 +523,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Release Notes for Safari Technology Preview 194
   - https://webkit.org/blog/15406/release-notes-for-safari-technology-preview-194/
   - バグ修正がメイン
-- *WebKit Features in Safari 17.5*
+- **WebKit Features in Safari 17.5**
   - https://webkit.org/blog/15383/webkit-features-in-safari-17-5/
   - CSS
     - Text wrap balance
@@ -531,7 +531,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Dark mode and the light-dark() color function
     - Starting style
     - Features queries for importing CSS
-      - *@import "nested-styles.css" supports(selector(&));*
+      - **@import "nested-styles.css" supports(selector(&));**
   - WebCodecs
   - WebGL
   - WKWebView
@@ -561,24 +561,24 @@ guest: [@myakura](https://twitter.com/myakura)
 - Support
   - Allow converting VideoFrame to RGB pixel formats by calling VideoFrame.copyTo()
     - https://github.com/WebKit/standards-positions/issues/341
-  - *Importmap integrity*
+  - **Importmap integrity**
     - https://github.com/WebKit/standards-positions/issues/335
-  - *ReadableStream async iteration*
+  - **ReadableStream async iteration**
     - https://github.com/WebKit/standards-positions/issues/319
-  - *Implement supports() for @import*
+  - **Implement supports() for @import**
     - https://github.com/WebKit/standards-positions/issues/279
-  - *ServiceWorker static routing API*
+  - **ServiceWorker static routing API**
     - https://github.com/WebKit/standards-positions/issues/206
   - WebRTC Codec selection API
     - https://github.com/WebKit/standards-positions/issues/179
-  - *Compression Dictionary Transport*
+  - **Compression Dictionary Transport**
     - https://github.com/WebKit/standards-positions/issues/160
-  - *Opaque Response Blocking (ORB, aka CORB++)*
+  - **Opaque Response Blocking (ORB, aka CORB++)**
     - https://github.com/WebKit/standards-positions/issues/64
   - Gamepad API Trigger-Rumble Haptics Extension
     - https://github.com/WebKit/standards-positions/issues/1
 - Oppose
-  - *Gyroscope, Accelerometer, Magnetometer, Motion, Orientation*
+  - **Gyroscope, Accelerometer, Magnetometer, Motion, Orientation**
     - https://github.com/WebKit/standards-positions/issues/347
     - 長文のお気持ちとともに反対
 - Neutral
@@ -642,7 +642,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - HTML Ruby Markup Extensions Working Draft Published
     - https://www.w3.org/news/2024/working-draft-html-ruby-markup-extensions/
     - WHATWG HTML では不十分なルビの要件を満たす拡張
-  - *The WCAG 3 Working Draft update is ready for your review*
+  - **The WCAG 3 Working Draft update is ready for your review**
     - https://www.w3.org/blog/2024/the-wcag-3-working-draft-update-is-ready-for-your-review/
   - WCAG 3 Introduction | Web Accessibility Initiative (WAI) | W3C
     - https://www.w3.org/WAI/standards-guidelines/wcag/wcag3-intro/
@@ -654,22 +654,22 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Open/UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
-- *CSS WG Blog - Minutes OpenUI-WHATWG/HTML-CSSWG Meeting 2024-05-08*
+- **CSS WG Blog - Minutes OpenUI-WHATWG/HTML-CSSWG Meeting 2024-05-08**
   - https://www.w3.org/blog/CSS/2024/05/18/minutes-openui-whatwg-html-csswg-meeting-2024-05-08/
   - stylable select や appearance: base の話
 
 
 #### Other
 
-- *W3C opens Advisory Board (AB) election*
+- **W3C opens Advisory Board (AB) election**
   - https://www.w3.org/news/2024/w3c-opens-advisory-board-ab-election/
   - Nominations and Statements for W3C Advisory Board 2024 Election
     - https://www.w3.org/2024/04/ab-nominations
     - Hiroshi Ota (LY Corporation)
-- *Remote (externally-managed) Crypto Keys · Issue #151 · WICG/proposals*
+- **Remote (externally-managed) Crypto Keys · Issue #151 · WICG/proposals**
   - https://github.com/WICG/proposals/issues/151
   - > ​​This proposal advocates for the development of a web standard for externally-managed cryptographic keys, specifically designed to facilitate end-to-end encryption in web applications.
-- *Cryptographic Message Syntax (CMS) API · Issue #152 · WICG/proposals*
+- **Cryptographic Message Syntax (CMS) API · Issue #152 · WICG/proposals**
   - https://github.com/WICG/proposals/issues/152
   - > This proposal advocates for the development of a web standard for the Cryptographic Message Syntax (CMS) API, specifically tailored to enhance the security of email communications through S/MIME. CMS, as described in RFC 5652, is fundamental for signing, encrypting, decrypting, and verifying email messages, facilitating end-to-end secure email communication.
 
@@ -734,9 +734,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - RFC
 - Work
-  - *Working Group Last Call: RFC6265bis (Cookies)*
+  - **Working Group Last Call: RFC6265bis (Cookies)**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024AprJun/0024.html
-  - *Protocol Action: 'Structured Field Values for HTTP' to Proposed Standard*
+  - **Protocol Action: 'Structured Field Values for HTTP' to Proposed Standard**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024AprJun/0035.html
   - Compression Dictionaries draft 04
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024AprJun/0037.html
@@ -747,12 +747,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *これからの HTTP - 拡大するセマンティクスと、さらなる高速化 - Google Slides*
+- **これからの HTTP - 拡大するセマンティクスと、さらなる高速化 - Google Slides**
   - https://docs.google.com/presentation/d/e/2PACX-1vSg22HuQjGIKjav5A351tPqS3RWpi7VwygeZybM8BadyMvboYmxXzAlqxMSBPNOBZtxJp9OaE_mlq9M/pub
-- *『招待講演 3／Ruby で作る最強ゲーミングルータ』奥一穂 - The 30th Anniversary of Ruby*
+- **『招待講演 3／Ruby で作る最強ゲーミングルータ』奥一穂 - The 30th Anniversary of Ruby**
   - https://www.youtube.com/live/cmd5NdMjHkI?si=ve-3iGDVVpHr1zYI&t=12699
   - (Rubykaigi じゃなかった)
-- *Consensus in Internet Standards*
+- **Consensus in Internet Standards**
   - https://www.mnot.net/blog/2024/05/24/consensus
   - 「コンセンサス」とは何か?についてと、その優位性や問題点などについて
 
@@ -763,7 +763,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - 2024 年第 1 四半期インターネットの障害のまとめ
   - https://blog.cloudflare.com/ja-jp/q1-2024-internet-disruption-summary-ja-jp/
-- *Using Fortran on Cloudflare Workers*
+- **Using Fortran on Cloudflare Workers**
   - https://blog.cloudflare.com/using-fortran-on-cloudflare-workers/
 
 
@@ -783,7 +783,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *Google Chrome's new post-quantum cryptography may break TLS connections*
+- **Google Chrome's new post-quantum cryptography may break TLS connections**
   - https://www.bleepingcomputer.com/news/security/google-chromes-new-post-quantum-cryptography-may-break-tls-connections/
   - Chrome 124 から Post Quantum な TLS が有効になった
   - X25519Kyber768 なので鍵の長さが 35 倍くらいデカくなる
@@ -792,7 +792,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6xfaov3Z4yo
   - https://medium.com/asecuritysite-when-bob-met-alice/having-your-crypto-handshaking-cake-and-eating-it-x25519-or-kyber-why-not-have-both-18b90f90dbbd
   - https://blog.chromium.org/2023/08/protecting-chrome-traffic-with-hybrid.html
-- *【重要】EV 証明書における再発行、ならびに入れ替え手順のご案内*
+- **【重要】EV 証明書における再発行、ならびに入れ替え手順のご案内**
   - https://knowledge.digicert.com/ja/jp/alerts/ALERT2847
   - 証明書の Business Category フィールドの大文字小文字を間違えたので再発行する
   - "Private Organization" を "Private organization"
@@ -800,14 +800,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *State of HTML 2023*
+- **State of HTML 2023**
   - https://2023.stateofhtml.com/en-US/
   - インタラクティブな UI 要素とカスタマイズ性が強く求められている
-- *No One Should Have That Much Power*
+- **No One Should Have That Much Power**
   - https://www.mnot.net/blog/2024/04/29/power
-- *Modularity: Enabling Interoperability and Competition*
+- **Modularity: Enabling Interoperability and Competition**
   - https://www.mnot.net/blog/2024/05/10/design-rules-vol-one
-- *The Web Conf 2024, Singapore: Trip report*
+- **The Web Conf 2024, Singapore: Trip report**
   - https://blog.tomayac.com/2024/05/22/the-web-conf-2024-singapore-trip-report/
 - Behind the scenes of Threads for web - Engineering at Meta
   - https://engineering.fb.com/2024/05/14/web/threads-for-web-behind-the-scenes/
@@ -815,15 +815,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://engineering.fb.com/2024/05/22/security/post-quantum-readiness-tls-pqr-meta/
 - Composable data management at Meta - Engineering at Meta
   - https://engineering.fb.com/2024/05/22/data-infrastructure/composable-data-management-at-meta/
-- *HTML attributes vs DOM properties - JakeArchibald.com*
+- **HTML attributes vs DOM properties - JakeArchibald.com**
   - https://jakearchibald.com/2024/attributes-vs-properties/
   - HTML の属性と DOM 要素のプロパティの違い
   - シリアライズ、大文字小文字の処理、reflection など
   - > In my opinion, attributes should be for configuration, whereas properties can contain state.
-- *142001 - innerHTML in XML (XHTML) not supported*
+- **142001 - innerHTML in XML (XHTML) not supported**
   - https://bugs.kde.org/show_bug.cgi?id=142001#c8
   - Apple がフォークし WebKit の元になった KDE のレンダリングエンジン KHTML がなくなった
-- *「twitter .com」から「x .com」へのリダイレクト開始 ～「Firefox」などではトラブルも - 窓の杜*
+- **「twitter .com」から「x .com」へのリダイレクト開始 ～「Firefox」などではトラブルも - 窓の杜**
   - https://forest.watch.impress.co.jp/docs/news/1592486.html
   - twitter.com -> x.com へのリダイレクトが始まった
   - Firefox や Edge のトラッキング防止機能を Strict にしていると一時見られなくなっていた

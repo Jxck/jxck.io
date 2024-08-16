@@ -23,7 +23,7 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Updates
 
 - web.dev
-  - *Requesting performance isolation with the Origin-Agent-Cluster header*
+  - **Requesting performance isolation with the Origin-Agent-Cluster header**
     - https://web.dev/origin-agent-cluster/
     - Origin-Isolation として始まったもの
     - デフォルトではリソースの分離を完全に行うのは難しく特に Same Site では混ざっていた
@@ -31,7 +31,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Origin-Agent-Cluster はこれを Origin Keyed に変えるためのヒント
     - ヒントであって確実ではない、これにより確実にリソース消費が改善するとも限らない
     - また、 Site Isolation の機能と違い、セキュリティ対策のヘッダではない(rename の理由の一つ)
-  - *New aspect-ratio CSS property supported in Chromium, Safari Technology Preview, and Firefox Nightly*
+  - **New aspect-ratio CSS property supported in Chromium, Safari Technology Preview, and Firefox Nightly**
     - https://web.dev/aspect-ratio/
     - `aspect-ratio` プロパティによる img 領域の確保方法やユースケース
     - padding-top を用いたハックが不要になり、 width だけで height が計算される
@@ -39,7 +39,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - width / height を設定した場合は、そのサイズ正確でなくても `width: 100%` なら比率は反映される
   - Accessing hardware devices on the web
     - https://web.dev/devices-introduction/
-  - *Building a Tabs component*
+  - **Building a Tabs component**
     - https://web.dev/building-a-tabs-component/
     - GUI を実装してみたシリーズのタブ版
     - Scroll Snap や a 要素などプラットフォームの機能をなるべく使う
@@ -47,10 +47,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - タブの現在地表示のアニメーションなどに Scroll Timeline
   - Streams - The definitive guide
     - https://web.dev/streams/
-  - *Tabbed application mode for PWAs*
+  - **Tabbed application mode for PWAs**
     - https://web.dev/tabbed-application-mode/
     - `{ "display": "tabbed" }` でタブが使える PWA に
-  - *Preparing for the display modes of tomorrow*
+  - **Preparing for the display modes of tomorrow**
     - https://web.dev/display-override/
     - `{ "display_override": ["window-control-overlay", "minimal-ui"] }`
   - CSS-in-JS support in DevTools
@@ -73,11 +73,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Chromium Blog: Heads Up: Restriction on SharedArrayBuffers are coming in M91
     - https://blog.chromium.org/2021/02/restriction-on-sharedarraybuffers.html
 - Chrome Developers
-  - *Improving Progressive Web App offline support detection - Chrome Developers*
+  - **Improving Progressive Web App offline support detection - Chrome Developers**
     - https://developer.chrome.com/blog/improved-pwa-offline-detection/
     - intent to ship 参照
 - blog.google
-  - *Focusing on Stadia's future as a platform, and winding down SG&E*
+  - **Focusing on Stadia's future as a platform, and winding down SG&E**
     - https://blog.google/products/stadia/focusing-on-stadias-future-as-a-platform-and-winding-down-sge/
     - https://jp.techcrunch.com/2021/02/02/2021-02-01-google-shuts-down-its-internal-stadia-game-studios/
     - Google が Stadia ゲームの開発を行う Stadia Games & Entertainment がゲームを一本もリリースしないうちに閉鎖
@@ -87,7 +87,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: More accurate offline capability detection for PWA sites before showing install prompt*
+- **Ship: More accurate offline capability detection for PWA sites before showing install prompt**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xwjawsTVlCU/m/kDRU46kdBAAJ
   - PWA で install prompt を出す前に fake fetch を発行し 200 が返るかどうか調べるように
   - 空の onfetch ハンドラがあればよいわけでは無くなった
@@ -95,7 +95,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 実施は 93 以降
 - Ship: Stricter mixed content check for blob and filesystem URLs
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/nrpl_ewkmaQ/m/aVI8C8NeAwAJ
-- *Ship: Use :focus-visible in the default UA style sheet*
+- **Ship: Use :focus-visible in the default UA style sheet**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/gv69rSngHDY/m/B_p8K21kAgAJ
   - `:focus` の outline を消す CSS が多く `:focus-visible` ができた
   - `:focus-visible` を UA のデフォルトにすることで `:focus` の outline を消す必要が無くなる
@@ -105,15 +105,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5j573KRkets/m/tRJHmNXFAQAJ
 - Ship: Clipboard: files support
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/MRDuNaR4Zd0/m/n7J2g6qNAQAJ
-- *Ship: User Agent string: cap macOS version number to 10_15_7*
+- **Ship: User Agent string: cap macOS version number to 10_15_7**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hAI4QoX6rEo/m/qQNPThr0AAAJ
   - UA を `Mac OS X 11_0_0` にするとバグるコンテンツがあるので `10_15_7` にする
 - Ship: Generated CSSStyleDeclaration Attributes
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/MfR5PmnS77U/m/rFpewtnuAgAJ
-- *Ship: Support specifying width/height on `<source>` elements for `<picture>`*
+- **Ship: Support specifying width/height on `<source>` elements for `<picture>`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/GEjjJE0LCnM/m/0p8CJ48hAgAJ
   - `<source>` 側にも w/h が指定でき、ロード前に領域が確保されるように
-- *Ship: Declarative Shadow DOM*
+- **Ship: Declarative Shadow DOM**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/7sZ52cP8HMg/m/ciep5kv-AwAJ
 - Ship: WebXR Depth API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/v4fneq7tgDA/m/utkwOcjuAwAJ
@@ -138,16 +138,16 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4Btz5xQ-gXc/m/iPDxYSEgAgAJ
 - Implement and Ship: URL protocol setter: New restrictions for file URLs
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RmpP1GKY5tc/m/laytuveQAwAJ
-- *Implement and Ship: Rich PWA installation dialogs*
+- **Implement and Ship: Rich PWA installation dialogs**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/neoNUFbEZ8Y/m/7bzJmCWVAQAJ
-- *Prototype: Multicast Receive API*
+- **Prototype: Multicast Receive API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8sNTXCoggcQ/m/sFr7FOteBAAJ
   - Browser - Server 間の 1:1 通信では大規模な配信は限界がある
   - IP multicast をブラウザが受け取れれば、 CDN の大規模配信にも対応できる
   - ワールドカップを 4k 配信して 500m 人が見るなどを考えると必須の機能になる
   - OS のアップデート配信も無視できない
   - なおトラフィックの記録は 2020/4 に Akamai が記録した 167tbps
-- *Prototype: accent-color CSS property*
+- **Prototype: accent-color CSS property**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/q9zf-frdewo/m/zxw2HuzGAQAJ
   - form control のデフォルトアクセントカラーを変更するプロパティ
   - `<input type=checkbox>` で `accent-color: red` するとチェックマークの周りが青から赤になる
@@ -155,14 +155,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/DOtU6R4TuAY/m/kPbID-LAAQAJ\
   - `Cross-Origin-Embedder-Policy: credentialless` にすると no-cors なリクエストが credential less になる
   - `require-corp` 同様 Isolation も実施される
-- *Prototype: Custom Highlight API*
+- **Prototype: Custom Highlight API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Ix2u8NHG5Po/m/sNguLXOsAQAJ
   - range で作った範囲をハイライトできる API
   - editor などを作る時の selection や find-on-page などが簡単に実装できる
-- *Prototype: 103 Early Hints for Navigation*
+- **Prototype: 103 Early Hints for Navigation**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/DAgWIczGtG0/m/gSXvjYn-AwAJ
   - サンプルは少ないが数百ミリ秒の改善があったため実装
-- *Prototype: Speculation Rules*
+- **Prototype: Speculation Rules**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1q7Fp3zpjgQ/m/5jbNkmRfAwAJ
   - 投機的な取得が可能な候補を JSON で表現する方法
   - これを解析しつつヒューリスティクスを加味してブラウザがどうするか判断するヒント
@@ -177,7 +177,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/q6ivDcvAJwQ/m/UWFuY2E9BAAJ
 - Experiment: Storage Foundation API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Jhirhnq3WbY/m/GnhrTQAnAQAJ
-- *Experiment: First-Party Sets and 'SameParty' cookie attribute*
+- **Experiment: First-Party Sets and 'SameParty' cookie attribute**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/XkWbQKrBzMg/m/dIQckPbZAAAJ
 - Experiment: Reverse Origin Trial for WebRTC's Plan B SDP semantics
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/35NFPYdumMs/m/sB_Mu_zSAwAJ
@@ -189,7 +189,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/YD_fiUqNggo/m/LyyvJWTFAAAJ
 - Ready for Trial: Read Chrome device attributes
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1r53FNKspwE/m/kU51UooJAAAJ
-- *Ready for Trial: Element Reflection*
+- **Ready for Trial: Element Reflection**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/yecxBLmRVQI/m/d7YOe_nYAgAJ
 - Ready for Trial: GravitySensor API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2-9kw9iQFfo/m/DF850nQWAQAJ
@@ -200,7 +200,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### V8
 
-- *V8 release v8.9 · V8*
+- **V8 release v8.9 · V8**
   - https://v8.dev/blog/v8-release-89
   - Top-Level await
 - Faster JavaScript calls · V8
@@ -222,17 +222,17 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *A Fabulous February Firefox - 86! - Mozilla Hacks - the Web developer blog*
+- **A Fabulous February Firefox - 86! - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/02/a-fabulous-february-firefox-86/
   - Nightly に image-set() 実装中
-- *Firefox 86 for developers*
+- **Firefox 86 for developers**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/86
   - :autofill
   - Intl.DisplayNames
-- *Introducing State Partitioning - Mozilla Hacks - the Web developer blog*
+- **Introducing State Partitioning - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/02/introducing-state-partitioning/
   - ETP Strict Mode in Firefox 86 で Total Cookie Protection
-- *Firefox 86 Introduces Total Cookie Protection - Mozilla Security Blog*
+- **Firefox 86 Introduces Total Cookie Protection - Mozilla Security Blog**
   - https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/
   - ETP に組み込まれた新しいクッキー保護の仕組み
   - これまで Tracker 判定に基づくアクセス制御だったが、完全に Isolate する
@@ -252,17 +252,17 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/g/mozilla.dev.platform/c/VJhM6SSQd-4/m/x3B45oatCAAJ
 - Prototype and ship: Make `<link>` elements not traversable
   - https://groups.google.com/g/mozilla.dev.platform/c/JOkma1Q8EvI/m/LU7rU-ZTAwAJ
-- *Prototype and ship: :user-valid and :user-invalid pseudo-classes.*
+- **Prototype and ship: :user-valid and :user-invalid pseudo-classes.**
   - https://groups.google.com/g/mozilla.dev.platform/c/rEYMl79krS8/m/UI_kwzatCAAJ
   - `<form>` の valid / invalid は `input` の state しかみてなかった
   - ユーザのインタラクションに応じた結果で valid/invalid を判定することができる
   - ページを開いた瞬間にエラー扱いになるなどがなくなる
 - Prototype: make outlines follow border-radius automatically
   - https://groups.google.com/g/mozilla.dev.platform/c/4Tzs6hF4heA/m/3Bw57D9TAwAJ
-- *Prototype: CSS color-mix() function.*
+- **Prototype: CSS color-mix() function.**
   - https://groups.google.com/g/mozilla.dev.platform/c/1MdyhPwaInw/m/2Fi4vWGXAQAJ
   - `color-mix(red  40%, blue)` で 赤: 青 = 40: 60 の混色に
-  - *Unship: Exposure of 11.x macOS versions in the User-Agent string*
+  - **Unship: Exposure of 11.x macOS versions in the User-Agent string**
   - https://groups.google.com/g/mozilla.dev.platform/c/yaYW2xo5Kik/m/zZlPf1JwAgAJ
   - UA 文字列の macOS のバージョンを 10_15_7 に
 - Unship: Application Cache API
@@ -282,10 +282,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2021/02/26/these-weeks-in-firefox-issue-88/
 - What WebRTC means for you - The Mozilla Blog
   - https://blog.mozilla.org/blog/2021/02/04/what-webrtc-means-for-you/
-- *Latest Firefox release includes Multiple Picture-in-Picture and Total Cookie Protection - The Mozilla Blog*
+- **Latest Firefox release includes Multiple Picture-in-Picture and Total Cookie Protection - The Mozilla Blog**
   - https://blog.mozilla.org/blog/2021/02/23/latest-firefox-release-includes-multiple-picture-in-picture-and-total-cookie-protection/
   - 複数 PinP に対応
-- *MDN localization update, February 2021 - Mozilla Hacks - the Web developer blog*
+- **MDN localization update, February 2021 - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/02/mdn-localization-update-february-2021/
   - https://www.mitsue.co.jp/knowledge/blog/frontend/202102/26_0905.html
   - MDN のコンテンツの多言語版についてアップデート
@@ -294,12 +294,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Tier 1(現在は fr, ja, zh-CN, zh-TW)以外の言語版は非表示にしたいとも
 - Browser fuzzing at Mozilla - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2021/02/browser-fuzzing-at-mozilla/
-- *Remain Calm: the fox is still in the Firefox logo | The Firefox Frontier*
+- **Remain Calm: the fox is still in the Firefox logo | The Firefox Frontier**
   - https://blog.mozilla.org/firefox/the-fox-is-still-in-the-firefox-logo/
   - ブラウザ以外にも Firefox という名前を関すいくつかの製品(VPN やパスワード管理の Lockwise)があり、そのブランドのロゴが 2019 年にできた
   - そのブランドロゴが Firefox の新しいロゴと勘違いされミーム化
   - ブラウザのロゴは変わらないというのをあらためて表明
-- *Here's what's happening with the Firefox Nightly logo - Mozilla Hacks - the Web developer blog*
+- **Here's what's happening with the Firefox Nightly logo - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/02/heres-whats-happening-with-the-firefox-nightly-logo/
   - Firefox のロゴのミーム(上参照)を受けて Nightly のロゴがミームのものを使用
 - Firefox Security Newsletter - Q4 2020
@@ -319,24 +319,24 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Introducing Private Click Measurement, PCM*
+- **Introducing Private Click Measurement, PCM**
   - https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/
   - Conversion Measurement とは送れるデータ量や、 1st Party only などが違う
   - App-To-Web
-- *Updates to the Storage Access API*
+- **Updates to the Storage Access API**
   - https://webkit.org/blog/11545/updates-to-the-storage-access-api/
-- *Release Notes for Safari Technology Preview 120*
+- **Release Notes for Safari Technology Preview 120**
   - https://webkit.org/blog/11548/release-notes-for-safari-technology-preview-120/
   - Implemented logical border-radius (r271447)
   - Implemented aria-braillelabel and aria-brailleroledescription (r271416)
-- *Release Notes for Safari Technology Preview 121*
+- **Release Notes for Safari Technology Preview 121**
   - https://webkit.org/blog/11555/release-notes-for-safari-technology-preview-121/
   - CSS
     - Added support for aspect-ratio on grid items (r272307)
     - Added support for logical variants of scroll-padding and scroll-margin (r272035)
-    - *Added support for `color(a98-rgb ...)`, `color(prophoto-rgb ...)`, `color(rec2020 ...)`, `color(xyz ...)`, `hwb()` as part of CSS Color 4 (r271992, r272125, r272123, r272311, r272344)*
-    - *Added support for percentages when parsing color(srgb ...) and color(display-p3 ...) per-spec (r271866)*
-    - *Implemented scroll-snap-stop for scroll snapping (r272610)*
+    - **Added support for `color(a98-rgb ...)`, `color(prophoto-rgb ...)`, `color(rec2020 ...)`, `color(xyz ...)`, `hwb()` as part of CSS Color 4 (r271992, r272125, r272123, r272311, r272344)**
+    - **Added support for percentages when parsing color(srgb ...) and color(display-p3 ...) per-spec (r271866)**
+    - **Implemented scroll-snap-stop for scroll snapping (r272610)**
   - Media
     - Added intermediate volume icon states between "mute" and "max" (r272375)
   - JavaScript
@@ -344,7 +344,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added Atomics support for BigInt64Array and BigUint64Array behind a runtime flag (JSC_useSharedArrayBuffer=1) (r272341)
     - Adjusted properties order of host JS functions (r272099)
     - Implemented BigInt64Array and BigUint64Array (r272170, r272215)
-    - *Implemented private methods behind flag (JSC_usePrivateMethods=1)(r272580)*
+    - **Implemented private methods behind flag (JSC_usePrivateMethods=1)(r272580)**
     - Made JSON.parse faster by using table for fast string parsing (r272570)
   - WASM
     - Implemented WebAssembly.instantiateStreaming and WebAssembly.compileStreaming (r271993)
@@ -368,7 +368,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - [webkit-dev] Request for position: WebAssembly SIMD
   - https://lists.webkit.org/pipermail/webkit-dev/2021-February/031696.html
   - positive
-- *[webkit-dev] Position on emerging standard: Declarative Shadow DOM*
+- **[webkit-dev] Position on emerging standard: Declarative Shadow DOM**
   - https://lists.webkit.org/pipermail/webkit-dev/2021-February/031698.html
   - rniwa さんとのやり取りあり、以前指摘した問題のいくつかは解決しているが、 getInnerHTML などのセマンティクスに問題ありと指摘
 - [webkit-dev] Request for position: CSS custom counter style
@@ -376,7 +376,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - generally supportive
 - [webkit-dev] Request for position: CSS @font-face descriptor advance-override
   - https://lists.webkit.org/pipermail/webkit-dev/2021-February/031706.html
-- *[webkit-dev] Request for position: CSS scrollbar-gutter*
+- **[webkit-dev] Request for position: CSS scrollbar-gutter**
   - https://lists.webkit.org/pipermail/webkit-dev/2021-February/031707.html
   - Igalia からのリクエスト、スレッドには Mozilla も参加
   - WebKit 的にはこの仕様のままでは won't support らしい
@@ -392,7 +392,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New Microsoft Edge to replace Microsoft Edge Legacy with April's Windows 10 Update Tuesday release - Microsoft Tech Community*
+- **New Microsoft Edge to replace Microsoft Edge Legacy with April's Windows 10 Update Tuesday release - Microsoft Tech Community**
   - https://techcommunity.microsoft.com/t5/microsoft-365-blog/new-microsoft-edge-to-replace-microsoft-edge-legacy-with-april-s/ba-p/2114224
   - 2021 年 4 月 13 日リリースの Windows のアップデートで、 Edge Legacy が削除される
 - Introducing the new downloads experience - Microsoft Tech Community
@@ -415,7 +415,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://techcommunity.microsoft.com/t5/articles/turn-off-f12-opening-devtools-with-new-edge-setting/m-p/2034433
 - What you need to know about kiosk mode when support for Microsoft Edge Legacy ends
   - https://blogs.windows.com/msedgedev/2021/02/05/what-you-need-to-know-about-kiosk-mode-when-support-for-microsoft-edge-legacy-ends/
-- *Introducing adaptive notification requests in Microsoft Edge*
+- **Introducing adaptive notification requests in Microsoft Edge**
   - https://blogs.windows.com/msedgedev/2021/02/16/introducing-adaptive-notification-requests-in-microsoft-edge/
   - 84 で導入された Quieter Notification Prompts によって Push を悪いことに使ってないサイトのエンゲージメントが下がった
   - ユーザーの反応もとに重みづけをして、スコアの高いサイトではまたポップアップを出すように再度変更した
@@ -423,7 +423,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2021/02/23/six-time-saving-tips-edge-devtools-console/
 - Making Service Workers easier to debug for Progressive Web Applications and more
   - https://blogs.windows.com/msedgedev/2021/02/22/service-worker-tools-network-application-sources/
-- *What to know before you accept that cookie | Windows Experience Blog*
+- **What to know before you accept that cookie | Windows Experience Blog**
   - https://blogs.windows.com/windowsexperience/2021/02/23/what-to-know-before-you-accept-that-cookie/
   - https://www.microsoft.com/en-us/windows/remote-resource-center/manage-web-cookies
   - ユーザリテラシー教育的な話
@@ -444,7 +444,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://techcommunity.microsoft.com/t5/articles/partner-center-improvements-related-to-microsoft-edge-extensions/m-p/2118981#M4722
 - Edge App shortcuts being removed from desktop - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/articles/edge-app-shortcuts-being-removed-from-desktop/m-p/2091021#M4668
-- *IE サポート終了の流れ*
+- **IE サポート終了の流れ**
   - 【重要】「ABEMA」 Internet Explorer 11 サポート終了のお知らせ - ABEMA ヘルプ
     - https://help.abema.tv/hc/ja/articles/360055647611
   - Internet Explorer への対応終了のお知らせ | SmartHR
@@ -523,7 +523,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JanMar/0249.html
   - [bcp56bis] Using TLS in HTTP API specification
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JanMar/0247.html
-  - *Interim 02/21*
+  - **Interim 02/21**
     - https://github.com/httpwg/wg-materials/blob/gh-pages/interim-21-02/minutes.md
     - bcp56bis の WGLC をやり直す
     - CDN-Cache-Control は WG to call for adoption
@@ -548,9 +548,9 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Spec
 
 - RFC
-  - *RFC 8941 on Structured Field Values for HTTP*
+  - **RFC 8941 on Structured Field Values for HTTP**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JanMar/0211.html
-  - *RFC 8942 on HTTP Client Hints*
+  - **RFC 8942 on HTTP Client Hints**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JanMar/0212.html
 - IETF Last Call
 - WG Last Call
@@ -585,7 +585,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Google の考案する新たな「Cookie レスの仕組み」に独占禁止法違反の目が向けられている - GIGAZINE
   - https://gigazine.net/news/20210204-google-replacing-cookie-antitrust/
-- *Preparing to Issue 200 Million Certificates in 24 Hours - Let's Encrypt - Free SSL/TLS Certificates*
+- **Preparing to Issue 200 Million Certificates in 24 Hours - Let's Encrypt - Free SSL/TLS Certificates**
   - https://letsencrypt.org/2021/02/10/200m-certs-24hrs.html
   - 2020/2 に、 300 万(全体の 2.6%)の証明書を置き換えるべき状況があった
   - もしこれが 100% になる最悪のケースがあっても実施できるインフラに改善した

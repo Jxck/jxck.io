@@ -19,9 +19,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 70.0.3538.110
 - Chrome Dev Summit
-  - *Chrome Dev Summit 2018: Building a Faster, Smoother, Capable Web*
+  - **Chrome Dev Summit 2018: Building a Faster, Smoother, Capable Web**
     - https://blog.chromium.org/2018/11/chrome-dev-summit-2018-building-faster.html
-  - *Chrome Dev Summit 2018 Day 2: Ready for the next movement*
+  - **Chrome Dev Summit 2018 Day 2: Ready for the next movement**
     - https://blog.chromium.org/2018/11/chrome-dev-summit-2018-day-2-ready-for.html
   - From Low Friction to Zero Friction with Web Packaging and Portals
     - https://youtu.be/Ai4aZ9Jbsys
@@ -38,14 +38,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - Chrome Dev Summit 2018  - Day 1 - Sabarinathan Masilamani - Medium
     - https://medium.com/@nathan5x/https-medium-com-nathan5x-chrome-dev-summit-2018-day-1-e7a68ea4321a
 - Updates
-  - *Signed HTTP Exchanges*
+  - **Signed HTTP Exchanges**
     - https://developers.google.com/web/updates/2018/11/signed-exchanges
     - [blog](https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html)
-  - *The Writable Files API: Simplifying local file access*
+  - **The Writable Files API: Simplifying local file access**
     - https://developers.google.com/web/updates/2018/11/writable-files
-  - *Our commitment to a more capable web*
+  - **Our commitment to a more capable web**
     - https://blog.chromium.org/2018/11/our-commitment-to-more-capable-web.html
-  - *Web Audio, Autoplay Policy and Games*
+  - **Web Audio, Autoplay Policy and Games**
     - https://developers.google.com/web/updates/2018/11/web-audio-autoplay
     - Chrome 71 から、音声の自動再生ポリシーが変わる件の詳細
     - ロード時に勝手に再生されるうざい Autoplay を止める
@@ -60,13 +60,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - Copy the JS path to a DOM node from the DOM Tree.
     - Audits panel updates, including a new audit that detects JS libraries and new keywords for accessing the Audits panel from the Command Menu.
 - Intents
-  - *Ship: CSS Properties and Values API Level 1*
+  - **Ship: CSS Properties and Values API Level 1**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QjcyhPZ_sNI/SuB-GuNPDAAJ
     - `CSS.registerProperty({name: "--my-font-size", syntax: "<length>", initialValue: "0px"})`
     - カスタムプロパティをアニメーションしたりできるようになる。
   - Ship: IndexedDB database info enumeration function
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xSf7B0aVxnI/0E05ZEB6DAAJ
-  - *Ship: Intl.ListFormat*
+  - **Ship: Intl.ListFormat**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_TllF9146H0/PgI3cqEMBAAJ
     - `new ListFormat("en").format(["Alice", "Bob"]); // "Alice and Bob"`
     - `new ListFormat("zh").format(["譚永鋒", "劉新宇"]); // "譚永鋒和劉新宇"`
@@ -75,7 +75,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Ship: Change default style of `<area>` to [display: none]
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-dmig28jgAo/zPP4gPlnBwAJ
     - 今は display: inline なので、仕様に合わせる
-  - *Ship: First Input Timing*
+  - **Ship: First Input Timing**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LN92hkaKCzw/Y-ryVxu5AgAJ
     - PerformanceObserver で First Input Timing が取れるように
     - これにより First Input Delay が計算できる
@@ -98,13 +98,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bVNynDp9PHo/4D96etzMAAAJ
   - Implement: FetchEvent Worker Timing
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WS17dXHV6xQ/rOnUbU4CCgAJ
-  - *Implement: Contacts API*
+  - **Implement: Contacts API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/brKChSa9_d0/GmzVbvYcAAAJ
     - コンタクト情報を取得する API
     - https://github.com/beverloo/contact-api
   - Implement: Feature policy control over `document.domain`.
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ff6Ywg5vnh4/VbDH4X6wBQAJ
-  - *Implement: Form-associated custom elements*
+  - **Implement: Form-associated custom elements**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HW8j_JLLiPo/V_SmVZkwBgAJ
   - Implement: Additional encodings.networkPriority field in RtpSender[Get|Set]Parameters
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7SRh6Pl4iMA/MXPbE3FpBgAJ
@@ -118,10 +118,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NN6zKiULN4U/DaCDtRq9BAAJ
   - Experiment: Configurable WebRTC jitter buffer max size
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hE2B1iItPDk/d182qqdwAAAJ
-  - *(Reverse) Origin Trial for old Web Components*
+  - **(Reverse) Origin Trial for old Web Components**
     - https://groups.google.com/a/chromium.org/forum/#!topic/experimentation-dev/lrmxlU-Ddxk
     - Web Components の deprecate を Origin Trials で延命しながら行う件
-  - *Experiment: HrefTranslate HTMLAnchor attribute*
+  - **Experiment: HrefTranslate HTMLAnchor attribute**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4DZIDt9o1ME/L4878LGOBwAJ
     - hrefTranslate でリンク先のコンテンツの言語を指定できる
     - サーバ側で翻訳機を通しているコンテンツの UX がよくなるらしい
@@ -132,12 +132,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Remove:
   - Deprecate and Remove: Rendering FTP resources.
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/eopgOoY1QLs/e1tIefOxAAAJ
-  - *Undeprecate: webkitURL on Window*
+  - **Undeprecate: webkitURL on Window**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EEo3kba4h2g/V7UbFAuoBQAJ
     - deprecation がうまくいかなかった
     - https://github.com/whatwg/url/issues/135
     - https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/EsJE9wb321I
-  - *Out of Renderer CORS (Cross-Origin Resource Sharing) is now on 50:50 canary/dev finch*
+  - **Out of Renderer CORS (Cross-Origin Resource Sharing) is now on 50:50 canary/dev finch**
     - https://groups.google.com/a/chromium.org/forum/#!topic/network-service-dev/VdU2lGH_Mag
     - fetch は renderer process から browser process に依頼される
     - CORS チェックは renderer 側でやっていた
@@ -157,12 +157,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://amphtml.wordpress.com/2018/11/05/streaming-in-the-shadow-reader/
   - PageSpeed Insights, now powered by Lighthouse
     - https://webmasters.googleblog.com/2018/11/pagespeed-insights-now-powered-by.html
-  - *Developer Preview of better AMP URLs in Google Search*
+  - **Developer Preview of better AMP URLs in Google Search**
     - https://amphtml.wordpress.com/2018/11/13/developer-preview-of-better-amp-urls-in-google-search/
     - AMP の Signed HTTP Exchange 対応の話
     - https://g.co/webpackagedemo
     - 検索のデモも公開されている
-  - *web.dev 公開*
+  - **web.dev 公開**
     - https://web.dev/
     - Web のプラクティスを学ぶ新しいサイト
     - ログインすると Lighthouse の結果を保存できる
@@ -176,7 +176,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://medium.com/dev-channel/web-dev-status-update-14th-nov-2018-18708787f239
   - web.dev status update, 29th Nov 2018
     - https://medium.com/dev-channel/web-dev-status-update-29th-nov-2018-8904b90bcdd2
-  - *Squoosh*
+  - **Squoosh**
     - https://squoosh.app/
     - https://github.com/GoogleChromeLabs/squoosh
     - WebP なども対応した画像圧縮ツール
@@ -197,14 +197,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 63.0.3
 - Updates
-  - *Encrypted SNI Comes to Firefox Nightly* (取りこぼし)
+  - **Encrypted SNI Comes to Firefox Nightly** (取りこぼし)
     - https://blog.mozilla.org/security/2018/10/18/encrypted-sni-comes-to-firefox-nightly/
     - ClientHello に含まれる SNI は平文なので、どこに接続しようとしてるかは漏れる
     - これも暗号化したいので DNS で公開鍵を送って DH する
     - それだけだと結局 DNS 見れば接続先はわかる
     - そこで DoH ですよという話
     - 提案は Kazuho さんたち
-  - *Next Steps in DNS-over-HTTPS Testing - Future Releases*
+  - **Next Steps in DNS-over-HTTPS Testing - Future Releases**
     - https://blog.mozilla.org/futurereleases/2018/11/27/next-steps-in-dns-over-https-testing/
     - DoH (Cloudflare) を使うと一定の改善は見込めた
     - CDN は一番近い Edge を DNS で解決するが、 DoH だとそれがうまくいかない
@@ -218,7 +218,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/E8DyIJBhu1g/dggFj14MBQAJ
   - Ship: dispatching "keydown" and "keyup" events during IME composition
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/DrYa0gDxI5Q/5odWBZcLBQAJ
-  - *Implement and Ship: CSS environment variables*
+  - **Implement and Ship: CSS environment variables**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/EVKyR1B87T0/_l-_qK8SAAAJ
   - Implement and Ship: Unprefix -moz-user-select, unship mozilla-specific values.
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/XfKl9Jt7ZQ8/2-wcUBEzBwAJ
@@ -230,9 +230,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/eeyxS9WDCOs/M1dLpEFfDAAJ
   - Implement: css-scroll-anchoring
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/4TxLKumAOiE/Feuvlg9jAAAJ
-  - *Implement: Reporting API*
+  - **Implement: Reporting API**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/B9VPjyia7wA/_qhevcK0BwAJ
-  - *Implement: implicit rel=noopener for target=_blank on anchor and area elements*
+  - **Implement: implicit rel=noopener for target=_blank on anchor and area elements**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/d4R7WIHSOMY/KqovfoeFCQAJ
     - [blog](https://blog.jxck.io/entries/2016-06-12/noopener.html)
   - (re-)enable new keyCode/charCode values of keypress events in Nightly
@@ -244,7 +244,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Unship xml:base
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/goHxC7z3D7Q/4_hYwsP7BAAJ
 - Site Compat
-  - *WebP image support has been added*
+  - **WebP image support has been added**
     - https://www.fxsitecompat.com/en-CA/docs/2018/webp-image-support-has-been-added/
     - img への Accept ヘッダが `image/webp,*/*` になる
   - Third-party tracking cookies are now blocked by default (Affecting)
@@ -252,9 +252,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Non-standard text event will no longer be fired during IME composition
     - https://www.fxsitecompat.com/en-CA/docs/2018/non-standard-text-event-will-no-longer-be-fired-during-ime-composition/
 - Other
-  - *The Power of Web Components*
+  - **The Power of Web Components**
     - https://hacks.mozilla.org/2018/11/the-power-of-web-components/
-  - *New & Experimental Web Design Tools: Feedback Requested*
+  - **New & Experimental Web Design Tools: Feedback Requested**
     - https://hacks.mozilla.org/2018/11/new-experimental-web-design-tools-feedback-requested/
   - Firefox Monitor Launches in 26 Languages and Adds New Desktop Browser Feature
     - https://blog.mozilla.org/blog/2018/11/14/firefox-monitor-launches-in-26-languages-and-adds-new-desktop-browser-feature/
@@ -274,7 +274,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Handled zero-area intersections
   - Implemented `MerchantValidationEvent.methodName`
   - Implemented `PaymentResponse.retry()`
-- *Release Notes for Safari Technology Preview 70*
+- **Release Notes for Safari Technology Preview 70**
   - https://webkit.org/blog/8496/release-notes-for-safari-technology-preview-70/
   - Implemented getTiming() and updateTiming()
   - Implemented Animation.updatePlaybackRate()
@@ -284,9 +284,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Added support for sender and receiver getCapabilities
   - Added onremovetrack support for RTCPeerConnection removed tracks
   - Added a storage limit for IndexedDB
-  - *Added a warning in the Smart Search field when loading non-secure pages*
+  - **Added a warning in the Smart Search field when loading non-secure pages**
 - Other
-  - *Web High Level Shading Language*
+  - **Web High Level Shading Language**
     - https://webkit.org/blog/8482/web-high-level-shading-language/
     - Web High Level Shading Language = WHLSL (ホイッスル)
     - WebGPU Community Group が作業中
@@ -369,7 +369,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - `/.well-known/change-password` でパスワード更新を discover できるように
   - [CSSWG][selectors-4] Updated WD of Selectors L4
     - https://lists.w3.org/Archives/Public/www-style/2018Nov/0023.html
-  - *Change Response's statusText's default by `""` annevk · Pull Request #836*
+  - **Change Response's statusText's default by `""` annevk · Pull Request #836**
     - https://github.com/whatwg/fetch/pull/836
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/URFbbfpXiPA/zaMD1BjqCQAJ
     - fetch の仕様で、 res.statusText のデフォルトが "OK" から "" になる
@@ -445,18 +445,18 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-cdni-interfaces-https-delegation-00
   - The Updated IETF-ISOC Relationship
     - https://tools.ietf.org/html/draft-ietf-iasa2-rfc2031bis-00
-  - *User Agent Client Hints*
+  - **User Agent Client Hints**
     - https://tools.ietf.org/html/draft-west-ua-client-hints-00
     - User-Agent はもう固定にして Client Hints で代替しよう
     - デフォルトでは `Sec-CH-UA: "Chrome 74"` だけ送る
     - `Accept-CH: UA, UA-Platform, UA-Arch` などすると追加が受け取れる
     - GREASE 的なこともするらしい
-  - *The 'Lang' Client Hint*
+  - **The 'Lang' Client Hint**
     - https://tools.ietf.org/html/draft-west-lang-client-hint-00
     - q で重み付けしても、結局使ってない
     - 情報量が増えて fingerprint しやすくなるだけ
     - 単に言語を優先順に並べるだけにしよう
-  - *HTTP-client suggested Push Preference*
+  - **HTTP-client suggested Push Preference**
     - https://tools.ietf.org/html/draft-pot-prefer-push-00
     - Client が Push して欲しいリソースを乗せる HTTP Header
 - Other
@@ -466,7 +466,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *The Holy Hand Grenade of Antioch - OpenSSL Blog*
+- **The Holy Hand Grenade of Antioch - OpenSSL Blog**
   - https://www.openssl.org/blog/blog/2018/11/28/version/
   - OpenSSL のバージョンフォーマットが変わる
   - 旧: MAJOR.MINOR.FIX[PATCH]
@@ -480,11 +480,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - A Netflix Web Performance Case Study
   - https://medium.com/dev-channel/a-netflix-web-performance-case-study-c0bcde26a9d9
-- *National Center for Supercomputing Applications (NCSA) at the University of Illinois*
+- **National Center for Supercomputing Applications (NCSA) at the University of Illinois**
   - https://twitter.com/MIT_CSAIL/status/1061637673536770048
   - http://www.ncsa.illinois.edu/enabling/mosaic/versions
   - NCSA Mosaic 25 周年
-- *Cloud Computing without Containers*
+- **Cloud Computing without Containers**
   - https://blog.cloudflare.com/cloud-computing-without-containers/
   - Cloudflare Workers の仕組みについて解説
   - Container や VM を使わず V8 の isolate を使う
@@ -492,11 +492,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - フットプリントが小さく、コンテキストスイッチコストも小さい
   - 任意の言語は実行できない代わりに WASM 対応
   - 今後のクラウドのあり方になるだろう、としている
-- *Testing new ideas with Fastly Fiddle*
+- **Testing new ideas with Fastly Fiddle**
   - https://www.fastly.com/blog/testing-new-ideas-fastly-fiddle
 - google/j2cl: Java to Closure JavaScript transpiler
   - https://github.com/google/j2cl
-- *The State of JavaScript 2018: Introduction*
+- **The State of JavaScript 2018: Introduction**
   - https://2018.stateofjs.com/introduction
   - Highest Satisfaction
     1. Jest
@@ -522,7 +522,7 @@ guest: [@myakura](https://twitter.com/myakura)
     1. VS Code
     2. Storybook
     3. Next.js
-- *The 100 greatest innovations of 2018*
+- **The 100 greatest innovations of 2018**
   - https://www.popsci.com/best-of-whats-new-2018
   - 2018 年のイノベーション 100 選
   - ここに WebAuthn (Web Authentication) by FIDO Alliance & W3C が入ってる

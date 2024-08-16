@@ -22,7 +22,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 93 - Chrome Developers*
+- **New in Chrome 93 - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-chrome-93/
   - CSS Module Scripts
   - Multi-Screen Window Placement API
@@ -31,11 +31,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - URL handlers for PWAs
     - Window controls overlay
   - PWA Summit
-- *Deprecations and removals in Chrome 94 - Chrome Developers*
+- **Deprecations and removals in Chrome 94 - Chrome Developers**
   - https://developer.chrome.com/en/blog/deps-rems-94/
   - Deprecate and Remove WebSQL in Third-Party Contexts
   - Restrict Private Network Requests for Subresources to Secure Contexts
-- *Chromium Blog: Chrome 94 Beta: WebCodecs, WebGPU, Scheduling, and More*
+- **Chromium Blog: Chrome 94 Beta: WebCodecs, WebGPU, Scheduling, and More**
   - https://blog.chromium.org/2021/08/chrome-94-beta-webcodecs-webgpu.html
   - WebCodecs
   - WebGPU
@@ -58,15 +58,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - Deprecations, and Removals
     - Deprecate and Remove WebSQL in Third-Party Contexts
     - Restrict Private Network Requests for Subresources to Secure Contexts
-- *What's New In DevTools (Chrome 94) - Chrome Developers*
+- **What's New In DevTools (Chrome 94) - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-devtools-94/
-  - *Use DevTools in your preferred language*
+  - **Use DevTools in your preferred language**
   - New Nest Hub devices in the Device list
   - Origin trials in the Frame details view
-  - *New CSS container queries badge*
+  - **New CSS container queries badge**
   - New checkbox to invert the network filters
   - Upcoming deprecation of the Console sidebar
-  - *Display raw Set-Cookie headers in the Issues tab and Network panel*
+  - **Display raw Set-Cookie headers in the Issues tab and Network panel**
   - Consistent display native accessors as own properties in the Console
   - Proper error stack traces for inline scripts with #sourceURL
   - Change color format in the Computed pane
@@ -79,27 +79,27 @@ guest: [@myakura](https://twitter.com/myakura)
   - WebGPU
   - PWA Summit
   - And more!
-- *What's New In DevTools (Chrome 95) - Chrome Developers*
+- **What's New In DevTools (Chrome 95) - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-devtools-95/
-  - *New CSS length authoring tools*
+  - **New CSS length authoring tools**
   - Hide issues in the Issues tab
   - Improved the display of properties
-  - *Lighthouse 8.4 in the Lighthouse panel*
+  - **Lighthouse 8.4 in the Lighthouse panel**
   - Sort snippets in the Sources panel
   - New links to translated release notes and report a translation bug
   - Improved UI for DevTools command menu
-- *Deprecations and removals in Chrome 95 - Chrome Developers*
+- **Deprecations and removals in Chrome 95 - Chrome Developers**
   - https://developer.chrome.com/en/blog/deps-rems-95/
   - FTP support removed
   - Support for URLs with non-IPv4 hostnames ending in numbers
   - WebAssembly cross-origin module sharing
-  - *Deprecate U2F API (Cryptotoken)*
-- *Chromium Blog: Chrome 95 Beta: Secure Payment Confirmation, WebAssembly Exception Handling and More*
+  - **Deprecate U2F API (Cryptotoken)**
+- **Chromium Blog: Chrome 95 Beta: Secure Payment Confirmation, WebAssembly Exception Handling and More**
   - https://blog.chromium.org/2021/09/chrome-95-beta-secure-payment.html
   - Origin Trials
     - New Origin Trials
       - Access Handles for the File System Access API
-      - *Reduce User Agent String Information*
+      - **Reduce User Agent String Information**
     - Completed Origin Trials
       - Secure Payment Confirmation
       - WebAssembly Exception Handling
@@ -107,7 +107,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Adding droppedEntriesCount to PerformanceObserver Callback
     - EyeDropper API
     - New UA platform Version Source on Windows for User Agent Client Hints
-    - *self.reportError()*
+    - **self.reportError()**
     - URLPattern
   - Deprecations, and Removals
     - FTP Support Removed
@@ -134,14 +134,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/N91z_zgZ6OY
 - Ship: WebAssembly Reference Types
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/R5r4-TF6at8
-- *Ship: self.reportError()*
+- **Ship: self.reportError()**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/QzoPDXSwq4s
   - 例えば Listener を複数呼び出す必要があるライブラリで、 1 つのリスナが例外を投げると後続が全部止まる問題がある。
   - 例外を伝えたいがリスナは全部実行してからにしたい場合にどう例外をブラウザに伝えるか
   - そこで「例外をブラウザに伝えるための API をいれる」という 提案
   - Safari も実装着手済み
   - Node でどうするかは議論中
-- *Ship: `HTMLScriptElement.supports(type)` method*
+- **Ship: `HTMLScriptElement.supports(type)` method**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kMoS8_2ND1g/m/hg0LrM4uAQAJ
   - import map や webbundle などのサポートが進むと Feature detection したくなる
   - そのための API
@@ -153,7 +153,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LYuQvgjLhe0/m/ruaL9hX_AAAJ
 - Ship: Content-Security-Policy delivery via response headers for dedicated workers.
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/sH75Nkx_OZ0
-- *Ship: WebTransport*
+- **Ship: WebTransport**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kwC5wES3I4c
   - h3 ベースで実装されたもののコア部分を Ship
   - 以下は除外
@@ -163,10 +163,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - WebTransport over HTTP/2
 - Ship: WebAssembly Content Security Policy
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5U_SgZ3r8QI/m/pnOzK2S3BAAJ
-- *Ship: HTTP->HTTPS redirect for HTTPS DNS records*
+- **Ship: HTTP->HTTPS redirect for HTTPS DNS records**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/_wp024Ixvfk
   - DNS に HTTPS record があると HSTS が有効になる
-- *Prototype and Ship: Control character handling in cookies*
+- **Prototype and Ship: Control character handling in cookies**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xWVtdGDLz_Q
 - Prototype: Add FileSystemHandle::move() and FileSystemHandle::rename() methods
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/oxALHQ4pUbk
@@ -188,7 +188,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/lbuqOGx07xY/m/kumHViBKAQAJ
 - Prototype: CSS font-synthesis property
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/T8Qogsm3sV8
-- *Prototype: renderpriority attribute*
+- **Prototype: renderpriority attribute**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/_GBtwrWbgaQ
   - レンダリングをヒューリスティクスによって遅延する機能がある
   - 意図しない場合は優先度を上げたい
@@ -208,7 +208,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-FVIvFovd3g
 - Experiment: Conditional Focus
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/I4RE2pbocTg/m/8Jp9xAVMAQAJ
-- *Experiment: Priority Hints*
+- **Experiment: Priority Hints**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CkRq2zY-t6c/m/sN6_MpnpAAAJ
 - Experiment: App history API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ki__L-IiR0Q
@@ -236,7 +236,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Z_tKJ7hnwh0
 - WebCodecs Shipping in Chrome 94: Breaking changes and new features
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6knQoJRpje4
-- *Save the date for BlinkOn 15!*
+- **Save the date for BlinkOn 15!**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/w1ChUGMhO58/m/_6mgHrfgAwAJ
   - What: Combination of live and recorded sessions, including keynotes, lightning talks, breakout talks, and social events
   - When: November 16-18, 2021 PT
@@ -258,7 +258,7 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Other
 
 - web.dev
-  - *JavaScript Eventing Deep Dive*
+  - **JavaScript Eventing Deep Dive**
     - https://web.dev/eventing-deepdive/
     - イベントのフェーズとコントロールの説明
     - そもそも Netscape が Capturing で IE が Bubbling だったから両方になった
@@ -276,7 +276,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/vitals-spa-faq/
   - How Swappie increased mobile revenue by 42% by focusing on Core Web Vitals
     - https://web.dev/swappie/
-  - *Bringing instant page-loads to the browser through speculative prerendering*
+  - **Bringing instant page-loads to the browser through speculative prerendering**
     - https://web.dev/speculative-prerendering/
 - google developer blog
   - https://developers.googleblog.com/
@@ -293,7 +293,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google Developers Japan: Chrome の User-Agent 文字列削減のオリジン トライアルと今後の計画について
     - https://developers-jp.googleblog.com/2021/09/chrome-user-agent.html
 - chrome developer blog
-  - *User-Agent Reduction origin trial - Chrome Developers*
+  - **User-Agent Reduction origin trial - Chrome Developers**
     - https://developer.chrome.com/en/blog/user-agent-reduction-origin-trial/
   - Modernising CSS infrastructure in DevTools - Chrome Developers
     - https://developer.chrome.com/en/blog/modernising-css-infra-in-devtools/
@@ -311,18 +311,18 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/pwa-manifest-id/
   - Deep-dive: VideoNG - Chrome Developers
     - https://developer.chrome.com/en/blog/videong/
-  - *Chrome user device characteristics report - Chrome Developers*
+  - **Chrome user device characteristics report - Chrome Developers**
     - https://developer.chrome.com/en/blog/device-characteristics/
     - https://docs.google.com/document/d/1BPz0UnQGotX0dACmJbHbbXFJa38jxmKhhNQ2RLj5Gms/edit
     - 米国、ブラジル、日本などでどのようなデバイスが使われているか
     - コア数、メモリ数、ネットワークタイプなどの統計が公開されている
-  - *The transition of Chrome extensions to Manifest V3 - Chrome Developers*
+  - **The transition of Chrome extensions to Manifest V3 - Chrome Developers**
     - https://developer.chrome.com/en/blog/mv2-transition/
     - 2022 年 1 月で Chrome Web Store で Manifest V2 拡張の受付終了
     - 2023 年 1 月に Manifest V2 拡張の実行が不可に
 - chromium blog
   - https://blog.chromium.org/
-  - *Chromium Blog: User-Agent Reduction Origin Trial and Dates*
+  - **Chromium Blog: User-Agent Reduction Origin Trial and Dates**
     - https://blog.chromium.org/2021/09/user-agent-reduction-origin-trial-and-dates.html
     - Reduction Preparation
       - Phase 1: Since Chrome 92 (July 20, 2021)
@@ -344,7 +344,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
 - search central
-  - *ウェブページのタイトルの生成方法に関する最新情報*
+  - **ウェブページのタイトルの生成方法に関する最新情報**
     - https://developers.google.com/search/blog/2021/08/update-to-generating-page-titles
     - 検索結果のタイトルを `<title>` だけでなく `<h1>` なども考慮するように
     - 理由(引用)
@@ -371,13 +371,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - accent-color
   - size-adjust
   - Object.hasOwn
-- *Firefox 92.0, See All New Features, Updates and Fixes*
+- **Firefox 92.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/92.0/releasenotes/
   - More secure connections: Firefox can now automatically upgrade to HTTPS using HTTPS RR as Alt-Svc headers.
   - Full-range color levels are now supported for video playback on many systems.
   - Mac users can now access the macOS share options from the Firefox File menu.
   - Support for images containing ICC v4 profiles is enabled on macOS.
-- *Firefox 92 for developers - Mozilla | MDN*
+- **Firefox 92 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/92
     - accent-color
     - font-family: system-ui
@@ -392,19 +392,19 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ayz0lLotyyU
 - Ship: enterkeyhint attribute
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/dZSP-vTbbuM
-- *Prototype: CSS cascade layers (@layer at-rule)*
+- **Prototype: CSS cascade layers (@layer at-rule)**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/n4NQ959ngYw
 - Prototype: CSS page-size
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/5tBS9nOC4Kk
-- *Prototype: scroll-linked animations*
+- **Prototype: scroll-linked animations**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/d8k74ywuFNQ
 - Prototype: WebAssembly 64-bit memory model ("memory64")
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/jqE-A3T5d8s
 - Prototype and Ship : onslotchange event handler IDL attribute
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/tHIn-Ce1DSE
-- *Prototype and Ship: SelectedItem and SelectedItemText system colors*
+- **Prototype and Ship: SelectedItem and SelectedItemText system colors**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/G4W8X9ZHR3A
-- *Prototype and Ship: image-rendering: smooth and image-rendering: pixelated*
+- **Prototype and Ship: image-rendering: smooth and image-rendering: pixelated**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/9lZnL3f6wGs
 - Prototype and Ship: `<input type=datetime-local>` on desktop.
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/YcXpHAJrj_I
@@ -420,7 +420,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - SpiderMonkey Newsletter (Firefox 92-93)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/AP-CGmj7CQk
-- *Heads up: "Firefox 100" webcompat experiment*
+- **Heads up: "Firefox 100" webcompat experiment**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/hbSiu0A83nA
   - Firefox Nightly は 2022 年 3 月 に 100 になる
   - その中で壊れるサイトがあったら報告してほしい
@@ -431,9 +431,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2021/09/21/these-weeks-in-firefox-issue-100/
 - Necko Newsletter (2021-09-27)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/_hYnRM1DvRg
-- *Why are hyperlinks blue?*
+- **Why are hyperlinks blue?**
   - https://blog.mozilla.org/en/internet-culture/deep-dives/why-are-hyperlinks-blue/
-- *UA Client Hints is less than harmful by martinthomson · Pull Request #579 · mozilla/standards-positions*
+- **UA Client Hints is less than harmful by martinthomson · Pull Request #579 · mozilla/standards-positions**
   - https://github.com/mozilla/standards-positions/pull/579
 
 
@@ -455,28 +455,28 @@ guest: [@myakura](https://twitter.com/myakura)
       - Passkeys are WebAuth credentials intended to replace passwords for website and apps with device sync and backup.
       - To Enable the technology preview, in Safari choose Develop > Enable Syncing Platform Authenticator.
   - CSS
-    - *Added support for aspect-ratio for box elements*
-    - *Added support for lab(), lch(), hwb() color syntaxes*
+    - **Added support for aspect-ratio for box elements**
+    - **Added support for lab(), lch(), hwb() color syntaxes**
     - Added support for predefined color spaces using the color() syntax: srgb, display-p3, a98-rgb, prophoto-rgb, rec2020, xyz.
-    - *Adjusted environment variable calculations where appropriate to adjust for the safe area of the new iOS design*
+    - **Adjusted environment variable calculations where appropriate to adjust for the safe area of the new iOS design**
   - HTML
     - Redesigned form controls in iOS.
-    - *Added support for the theme-color meta tag to change the tab bar background and over-scroll area in macOS and iPadOS, and the status bar in iOS*
+    - **Added support for the theme-color meta tag to change the tab bar background and over-scroll area in macOS and iPadOS, and the status bar in iOS**
     - Added support for the media attribute to specify theme-color meta tags for Dark Mode and light appearance.
   - JS
-    - *Added top-level await*
-    - *Added support for ES6 Modules in Workers and ServiceWorkers*
-    - *Added support for Error.cause*
-    - *Added support for private class methods and accessors (Safari 14.1 added support for private data member syntax)*
-    - *Added support for BigInt64Array and BigUint64Array*
+    - **Added top-level await**
+    - **Added support for ES6 Modules in Workers and ServiceWorkers**
+    - **Added support for Error.cause**
+    - **Added support for private class methods and accessors (Safari 14.1 added support for private data member syntax)**
+    - **Added support for BigInt64Array and BigUint64Array**
   - Media
     - Added support for the MediaSession API to enable SharePlay experiences.
     - Added Playback Speed and Chapters menus to built-in media controls.
-    - *Added hardware accelerated VP9 and WebM in MSE on all iPads that support iPadOS 15*
+    - **Added hardware accelerated VP9 and WebM in MSE on all iPads that support iPadOS 15**
     - Added support for the Opus audio codec in WebM containers.
   - Security & Privacy
-    - *Added support for automatic HTTPS upgrades*
-    - *Added IP address hiding from known trackers which users can enable in Safari Preferences*
+    - **Added support for automatic HTTPS upgrades**
+    - **Added IP address hiding from known trackers which users can enable in Safari Preferences**
     - Private Click Measurement enhancements for privacy-preserving ad click attribution:
     - Updated attribution reporting to also send reports to the click destination.
     - Added click fraud prevention with un-linkable tokens.
@@ -492,12 +492,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for reference types.
     - Added support for non-trapping conversions from float to int.
   - Web APIs
-    - *Added support for WebGL 2. The implementation of WebGL runs on top of Metal for better performance*
-    - *Added support for Web Share level 2 enhancements to Web Share that enable sharing files from a web page to an app. See Web Share API for more information*
+    - **Added support for WebGL 2. The implementation of WebGL runs on top of Metal for better performance**
+    - **Added support for Web Share level 2 enhancements to Web Share that enable sharing files from a web page to an app. See Web Share API for more information**
     - User gestures now propagate through requestAnimationFrame with a one second time limit.
   - Web Extensions
-    - *Added support for Safari Web Extensions in iOS and iPadOS*
-    - *Added support for declarativeNetRequest in Safari Web Extensions*
+    - **Added support for Safari Web Extensions in iOS and iPadOS**
+    - **Added support for declarativeNetRequest in Safari Web Extensions**
   - Web Inspector
     - Added an inspected page overlay for visualizing and debugging CSS grid contexts.
 - Release Notes for Safari Technology Preview 131
@@ -507,11 +507,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - Fixed aspect ratio for replaced elements (r280471)
     - Implemented the clip value for overflow (r280509)
   - Web API
-    - *Added initial support for Cross-Origin-Embedder-Policy (COEP) (r280953)*
-    - *Added initial support for Cross-Origin-Opener-Policy (COOP) (r280504, r280881, r280582)*
-    - *Implemented support for `<dialog>` element cancel event (r280703)*
+    - **Added initial support for Cross-Origin-Embedder-Policy (COEP) (r280953)**
+    - **Added initial support for Cross-Origin-Opener-Policy (COOP) (r280504, r280881, r280582)**
+    - **Implemented support for `<dialog>` element cancel event (r280703)**
   - JavaScript
-    - *Renamed Temporal.now to Temporal.Now (r280506)*
+    - **Renamed Temporal.now to Temporal.Now (r280506)**
   - Web Audio
     - Added WebM container support for Vorbis and Opus (r280573, r280416)
   - WebRTC
@@ -526,14 +526,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://webkit.org/blog/11971/release-notes-for-safari-technology-preview-132/
   - JavaScript
     - Added Intl Enumeration APIs (r281513)
-    - *Enabled Array#findLast method (r281369)*
-    - *Enabled String#at and TypedArray#at (r281370)*
+    - **Enabled Array#findLast method (r281369)**
+    - **Enabled String#at and TypedArray#at (r281370)**
     - Implemented Temporal.Calendar behind the flag (--useTemporal) (r281788)
     - Implemented Intl Locale Info extension (r281374)
     - Implemented Intl.DisplayNames V2 (r281375)
   - Web API
-    - *Implemented Crypto.randomUUID() (r281206, r281284)*
-    - *Implemented self.reportError() (r281756)*
+    - **Implemented Crypto.randomUUID() (r281206, r281284)**
+    - **Implemented self.reportError() (r281756)**
 
 
 #### Position
@@ -542,11 +542,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://lists.webkit.org/pipermail/webkit-dev/2021-August/031935.html
 - [webkit-dev] Position on font-family: emoji (and -webkit-pictograph)
   - https://lists.webkit.org/pipermail/webkit-dev/2021-August/031938.html
-- *[webkit-dev] Network Information API reboot: request for early feedback*
+- **[webkit-dev] Network Information API reboot: request for early feedback**
   - https://lists.webkit.org/pipermail/webkit-dev/2021-August/031950.html
 - [webkit-dev] Request for Position on Exception Handling in WebAssembly
   - https://lists.webkit.org/pipermail/webkit-dev/2021-August/031958.html
-- *[webkit-dev] Request for position on self.reportError()*
+- **[webkit-dev] Request for position on self.reportError()**
   - https://lists.webkit.org/pipermail/webkit-dev/2021-August/031960.html
 - [webkit-dev] Request for position: Cryptographically secure random UUIDs
   - https://lists.webkit.org/pipermail/webkit-dev/2021-August/031962.html
@@ -554,13 +554,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *iOS Engine Choice In Depth - Infrequently Noted*
+- **iOS Engine Choice In Depth - Infrequently Noted**
   - https://infrequently.org/2021/08/webkit-ios-deep-dive/
-- *ドコモとソフトバンク、 iOS 15 の「プライベートリレー」で注意呼びかけ - ケータイ Watch*
+- **ドコモとソフトバンク、 iOS 15 の「プライベートリレー」で注意呼びかけ - ケータイ Watch**
   - https://k-tai.watch.impress.co.jp/docs/news/1351917.html
   - iCloud Private Relay で影響がでるキャリアのサービス
   - フィルタリングやカウントフリー系に影響が出る
-- *Important Information about macOS Safari 15 | PlayCanvas*
+- **Important Information about macOS Safari 15 | PlayCanvas**
   - https://blog.playcanvas.com/important-information-about-safari-15/
   - WebGL のライブラリやゲームエンジンが Safari 15 でクラッシュしているらしい
 
@@ -574,7 +574,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Make Microsoft Edge DevTools your own
   - https://blogs.windows.com/msedgedev/2021/09/14/edge-devtools-93-personalization/
-- *Microsoft announces passwordless future - available across Microsoft Edge and Microsoft 365 apps | Windows Experience Blog*
+- **Microsoft announces passwordless future - available across Microsoft Edge and Microsoft 365 apps | Windows Experience Blog**
   - https://blogs.windows.com/windowsexperience/2021/09/15/microsoft-announces-passwordless-future-available-across-microsoft-edge-and-microsoft-365-apps/
 
 
@@ -614,7 +614,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/9243
   - First Public Working Drafts: WebXR Depth Sensing, Hit Test, DOM Overlays Modules
     - https://www.w3.org/blog/news/archives/9238
-  - *First Public Working Draft: CSS Nesting Module*
+  - **First Public Working Draft: CSS Nesting Module**
     - https://www.w3.org/blog/news/archives/9236
     - https://www.w3.org/TR/2021/WD-css-nesting-1-20210831/
     - スタイルブロックやメディアクエリーをネストさせられる提案
@@ -680,21 +680,21 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### New Proposals
 
-- *guybedford/proposal-is-usv-string*
+- **guybedford/proposal-is-usv-string**
   - DOMString はサロゲートペアのどっちかが落ちてても問題ない
   - USVString はそれを許容しない
   - JS の String は DOMString だが WASM は USVString になったので検証メソッドが欲しい
   - https://github.com/guybedford/proposal-is-usv-string
-- *tc39/proposal-array-from-async*
+- **tc39/proposal-array-from-async**
   - https://github.com/tc39/proposal-array-from-async
   - Async Iterator から Array を生成する
-- *tc39/proposal-bigint-math*
+- **tc39/proposal-bigint-math**
   - https://github.com/tc39/proposal-bigint-math
   - Bigint 用の Math
-- *ljharb/proposal-get-intrinsic*
+- **ljharb/proposal-get-intrinsic**
   - https://github.com/ljharb/proposal-get-intrinsic
   - ネイティブの実装が上書きされていてもネイティブの実装を取り出す方法
-- *syg/proposal-structs*
+- **syg/proposal-structs**
   - https://github.com/syg/proposal-structs/
   - メモリ上に確保したらその後レイアウトが変わらない構造体
   - シリアライズしてやり取りしたりする際に便利。
@@ -782,11 +782,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Cloudflare
 
-- *From AMP to Signed Exchanges, Or How Innovation Happens at Cloudflare*
+- **From AMP to Signed Exchanges, Or How Innovation Happens at Cloudflare**
   - https://blog.cloudflare.com/from-amp-to-signed-exchanges-or-how-innovation-happens-at-cloudflare/
-- *Improve site load times and SEO with one-click support for Signed Exchanges on Google Search*
+- **Improve site load times and SEO with one-click support for Signed Exchanges on Google Search**
   - https://blog.cloudflare.com/automatic-signed-exchanges/
-- *Early Hints: How Cloudflare Can Improve Website Load Times by 30%*
+- **Early Hints: How Cloudflare Can Improve Website Load Times by 30%**
   - https://blog.cloudflare.com/early-hints/
 - Benchmarking Edge Network Performance: Akamai, Cloudflare, Amazon CloudFront, Fastly, and Google
   - https://blog.cloudflare.com/benchmarking-edge-network-performance/
@@ -802,7 +802,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *SecWeb*
+- **SecWeb**
   - https://secweb.work/
   - Adopting Trusted Types in Production Web Frameworks to Prevent DOM-Based Cross-Site Scripting: A Case Study
     - https://storage.googleapis.com/pub-tools-public-publication-data/pdf/9c56e856f0ea76454f01cabec9959f7c5b31b285.pdf
@@ -816,9 +816,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *開発終了の国産 Web ブラウザー「Kinza」、ソースコードが公開 - 窓の杜*
+- **開発終了の国産 Web ブラウザー「Kinza」、ソースコードが公開 - 窓の杜**
   - https://forest.watch.impress.co.jp/docs/news/1347974.html
-- *Testing Chrome version 100 for fun and profit (but mostly fun I guess)*
+- **Testing Chrome version 100 for fun and profit (but mostly fun I guess)**
   - https://miketaylr.com/posts/2021/09/chrome-version-100-testing.html
   - Chrome Canary に UA 文字列のメジャーバージョンを 100 に変更するフラグが入った
 

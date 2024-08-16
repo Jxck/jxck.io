@@ -39,7 +39,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - And more!
     - `resizeBy()` and `resizeTo()` in DPinP
     - `<select>` `showPicker()`
-    - *scope_extensions OT*
+    - **scope_extensions OT**
 - Chrome 122 beta
   - https://developer.chrome.com/blog/chrome-122-beta
   - CSS
@@ -51,11 +51,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - Do not delete File kind objects in dataTransfer.clearData()
     - FedCM: disconnect
     - Interoperable mousedown event cancellation in iframe
-    - *Iterator helpers*
+    - **Iterator helpers**
     - MessagePort.onclose
     - RTCRtpSender setParameters() extensions for requesting the generation of a key frame
-    - *Set methods*
-    - *Storage Buckets API*
+    - **Set methods**
+    - **Storage Buckets API**
     - URLPattern: hasRegExpGroups
     - WebGL drawingBufferStorage
     - X25519Kyber768 key encapsulation for TLS
@@ -75,7 +75,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Failure reason in the Status column
     - Improved Copy submenu
   - Performance improvements
-    - *Breadcrumbs in the Timeline*
+    - **Breadcrumbs in the Timeline**
     - Event initiators in the Main track
     - JavaScript VM instance selector menu for Node.js DevTools
   - Elements improvements
@@ -93,39 +93,39 @@ guest: [@myakura](https://twitter.com/myakura)
 - Chrome 123 beta
   - https://developer.chrome.com/blog/chrome-123-beta
   - CSS
-    - *CSS light-dark() color function*
+    - **CSS light-dark() color function**
     - CSS picture-in-picture display mode
-    - *align-content CSS property for blocks*
+    - **align-content CSS property for blocks**
     - The field-sizing CSS property
-    - *The CSS text-spacing-trim property*
+    - **The CSS text-spacing-trim property**
   - Web APIs
     - Allow for WebAuthn credential creation in a cross-origin iframe
     - Attribution reporting feature bundle
     - Cross App and Web Attribution Measurement
     - blocking=render on inline module scripts
     - Document picture-in-picture: allow the focus() API to focus the opener
-    - *Import attributes with syntax*
+    - **Import attributes with syntax**
     - jitterBufferTarget
     - Long Animation Frame Timing
-  - *NavigationActivation*
+  - **NavigationActivation**
   - pagereveal event
   - PointerEvent.deviceId for Multi-Pen Inking
   - Private network access checks for navigation requests: warning-only mode
   - Private Network Access permission to relax mixed content
-  - *Sec-CH-UA-Form-Factor client hint*
-  - *Service Worker Static Routing API*
+  - **Sec-CH-UA-Form-Factor client hint**
+  - **Service Worker Static Routing API**
   - Shared Storage update
-  - *zstd Content-Encoding*
+  - **zstd Content-Encoding**
   - New origin trials
-    - *WebAssembly JavaScript promise integration*
+    - **WebAssembly JavaScript promise integration**
   - Removals
     - The window-placement alias for permission and permission policy window-management
 - What's happening in Chrome Extensions?
   - https://developer.chrome.com/blog/extension-news-january-2024
   - User Scripts API
   - Reading List API
-  - *Declarative Net Request API safe rules*
-    - *静的ルールが 50->10 個に*
+  - **Declarative Net Request API safe rules**
+    - **静的ルールが 50->10 個に**
   - Other API launches
     - Cookies API
     - File Handling API
@@ -136,7 +136,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Upcoming guides
     - New video: exploring the platform evolution with Simeon
     - More updates
-- *The deprecation trial for SharedArrayBuffer on desktop Chrome is extended to Chrome 124*
+- **The deprecation trial for SharedArrayBuffer on desktop Chrome is extended to Chrome 124**
   - https://developer.chrome.com/blog/shared-array-buffer-origin-trial-extension-124
 
 
@@ -144,13 +144,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Ship: 'pagereveal' event
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/S67zJ1AYW2U
-- *Ship: CJK punctuation kerning: the CSS `text-spacing-trim` property*
+- **Ship: CJK punctuation kerning: the CSS `text-spacing-trim` property**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jVUR2ebE3e0
-- *Ship: CSS light-dark() Color Function*
+- **Ship: CSS light-dark() Color Function**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/IsXAWrFLUHE
-- *Ship: Element Reflection*
+- **Ship: Element Reflection**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/j8nZWueWc1s
-- *Ship: NavigationActivation*
+- **Ship: NavigationActivation**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/7dVHYZ-t79I
 - Ship: Private Network Access permission to relax mixed content
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LHwLhTlyamM
@@ -162,9 +162,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-eflVqNCtDY
 - Ship: Remove "window-placement" alias for permission and permission policy "window-management"
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/gSOZcL0o3oI
-- *Ship: ServiceWorker static routing API*
+- **Ship: ServiceWorker static routing API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-SEMMttEqz4
-- *Ship: WebSocketStream*
+- **Ship: WebSocketStream**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/wRRCnNLCZs0
   - Origin Trial に参加したパートナーはいないらしい
 - Ship: Attribution Reporting API Features (Trigger Data Customization and Aggregatable Value Filters)
@@ -177,13 +177,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bReU8otUmdk
 - Ship: RTCIceCandidate url and relayProtocol attributes
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/soL53ANRXpw
-- *Ship: Zstd Content-Encoding*
+- **Ship: Zstd Content-Encoding**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/GFFOLCF12a4
-- *Ship: setHTMLUnsafe and parseHTMLUnsafe*
+- **Ship: setHTMLUnsafe and parseHTMLUnsafe**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6D8RO9F6I04
 - Ship: Shadow root clonable attribute
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/u2BMTagIHf4
-- *Ship: 'priority' HTTP request header*
+- **Ship: 'priority' HTTP request header**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/U-XvxP0ZQJ0
 - Ship: CSSImportRule.styleSheet
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ku3YsLTllY4
@@ -191,28 +191,28 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/OzgkJXjxpGs
 - Ship: Form Controls Support Vertical Writing Mode Direction Support
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1CpLARiU1LE
-- *Ship: MP4 container support for MediaRecorder*
+- **Ship: MP4 container support for MediaRecorder**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/p1OMVj1FrMI
 - Ship: Protected Audience: Downsampled forDebugOnly & Increase number of component ads
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3RUQk0GCC9Q
-- *Ship: Sec-CH-UA-Form-Factor client hint*
+- **Ship: Sec-CH-UA-Form-Factor client hint**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CVOCZ26iqMY
 - Prototype and Ship: Private network access checks for navigation requests: warning-only mode
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UybqE4On0yo
-- *Prototype and Ship: Standardized CSS zoom*
+- **Prototype and Ship: Standardized CSS zoom**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/W8j6RKDeRoM
 - Implement and Ship: WebAuthn WebDriver backup flags settings
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/p6fqbxRQkxY
-- *Prototype and Ship: Streams API: ReadableStream async iteration*
+- **Prototype and Ship: Streams API: ReadableStream async iteration**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/EseAQMDRppM
-- *Prototype: CSS functions*
+- **Prototype: CSS functions**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/b-BTxKD-Ldc
-- *Prototype: 'writingsuggestions' attribute*
+- **Prototype: 'writingsuggestions' attribute**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/rHyRCx-hJhE
   - on/off のみ
 - Prototype: Automatic Fullscreen Content Setting
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CuIqA2v3cvs
-- *Prototype: CSS text-box-trim and text-box-edge*
+- **Prototype: CSS text-box-trim and text-box-edge**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Sn8TF5KHrRU
 - Prototype: Call stacks in crash reports from unresponsive web pages
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jKk5OV0FIsY
@@ -226,21 +226,21 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/OanB0PaEeCM
 - Prototype: Used color scheme root scrollbars
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/9gZGGB38LvI
-- *Prototype: :open and :closed pseudo-classes*
+- **Prototype: :open and :closed pseudo-classes**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jESpcXVA8ns
 - Prototype: 'pageconceal' event
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/skVFFnZgVlY
-- *Prototype: CSS line-clamp property*
+- **Prototype: CSS line-clamp property**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CWP5rb--Gyk
-- *Prototype: CSS picture-in-picture display mode*
+- **Prototype: CSS picture-in-picture display mode**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/OE1rXYv126c
-- *Prototype: Web Monetization*
+- **Prototype: Web Monetization**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4Rqw4SbjO88
-- *Prototype: Accessibility and Display: the CSS `reading-order-items` property*
+- **Prototype: Accessibility and Display: the CSS `reading-order-items` property**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/d9jIhcVw8zQ
 - Prototype: CSSImportRule.styleSheet
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1i7nqFaNrEo
-- *Prototype: Interest Invokers*
+- **Prototype: Interest Invokers**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UO30brSlWhs
 - Experiment: Add JavaScript timer wake up alignment for unimportant cross-origin frames
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/z3A3J3OZRvQ
@@ -270,7 +270,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/eu57SCNltls
 - 2 days until Chromium's migration to the new issue tracker begins (Feb 2)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/iuK8nF97IHA
-- *Chromium Issue Tracker migration begins in less than 24 hours!*
+- **Chromium Issue Tracker migration begins in less than 24 hours!**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/X1cOhpxdESc
 - Chromium's migration to the new issue tracker begins Feb 2
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/fG-7CGoAaZ0
@@ -293,7 +293,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - blog
     - New to the web platform in January
       - https://web.dev/blog/web-platform-01-2024
-    - *Celebrate a more interoperable web with Interop 2023*
+    - **Celebrate a more interoperable web with Interop 2023**
       - https://web.dev/blog/interop-2023-wrapup
     - Introducing Learn Performance
       - https://web.dev/blog/introducing-learn-performance
@@ -303,9 +303,9 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://web.dev/blog/web-platform-01-2024
     - Introducing Learn Testing
       - https://web.dev/blog/introducing-learn-testing
-    - *Interaction to Next Paint becomes a Core Web Vital on March 12*
+    - **Interaction to Next Paint becomes a Core Web Vital on March 12**
       - https://web.dev/blog/inp-cwv-march-12
-    - *Interop 2024*
+    - **Interop 2024**
       - https://web.dev/blog/interop-2024
       - Accessibility
       - CSS Nesting
@@ -330,7 +330,7 @@ guest: [@myakura](https://twitter.com/myakura)
         - Running WebAssembly Spec Tests in WPT
     - Immutable array updates with Array.prototype.with
       - https://web.dev/blog/array-with
-    - *Announcing web.dev for China*
+    - **Announcing web.dev for China**
       - https://web.dev/blog/web-dev-for-china
       - web.dev for China at web.developers.google.cn.
   - articles
@@ -344,7 +344,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://web.dev/articles/vitals
     - Cumulative Layout Shift (CLS)
       - https://web.dev/articles/cls
-    - *Loading Third-Party JavaScript*
+    - **Loading Third-Party JavaScript**
       - https://web.dev/articles/optimizing-content-efficiency-loading-third-party-javascript
 - google for developers
   - The SEO Starter Guide got a makeover
@@ -360,20 +360,20 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.chrome.com/blog/
   - DevTools Tips: Debugging speculative navigations for faster page loads
     - https://developer.chrome.com/blog/devtools-tips-31
-  - *Introducing a new way to build custom web editing experiences using the EditContext API*
+  - **Introducing a new way to build custom web editing experiences using the EditContext API**
     - https://developer.chrome.com/blog/introducing-editcontext-api
   - Chromium Issue Tracker migration beginning Feb 2, 2024 at 5pm PST
     - https://developer.chrome.com/blog/chromium-issue-tracker-migration-2024
   - Chromium Issue Tracker migration is complete
     - https://developer.chrome.com/blog/chromium-issue-tracker-migration-complete
-  - *A 400% faster Performance panel through perf-ception*
+  - **A 400% faster Performance panel through perf-ception**
     - https://developer.chrome.com/blog/perf-panel-4x-faster
-  - *Changes to CSS ::backdrop inheritance*
+  - **Changes to CSS ::backdrop inheritance**
     - https://developer.chrome.com/blog/css-backdrop-inheritance
   - Announcing Chrome for Developers in China
     - https://developer.chrome.com/blog/chrome-for-developers-china
     - developer.chrome.google.cn
-  - *Support for align-content in block and table layouts*
+  - **Support for align-content in block and table layouts**
     - https://developer.chrome.com/blog/align-content
   - Changes to BFCache behavior with extension message ports
     - https://developer.chrome.com/blog/bfcache-extension-messaging-changes
@@ -382,7 +382,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.chromium.org/2024/02/chromium-issue-tracker-migration.html
   - Chromium Blog: Chromium Issue Tracker migration is complete
     - https://blog.chromium.org/2024/02/chromium-issue-tracker-migration-is.html
-  - *Chromium Blog: Optimizing Safe Browsing checks in Chrome*
+  - **Chromium Blog: Optimizing Safe Browsing checks in Chrome**
     - https://blog.chromium.org/2024/02/optimizing-safe-browsing-checks-in.html
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
@@ -394,11 +394,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://security.googleblog.com/2024/01/scaling-security-with-ai-from-detection.html
   - Google Online Security Blog: UN Cybercrime Treaty Could Endanger Web Security
     - https://security.googleblog.com/2024/02/un-cybercrime-treaty-could-endanger-web.html
-  - *Q4 2023 Summary from Chrome Security*
+  - **Q4 2023 Summary from Chrome Security**
     - https://groups.google.com/a/chromium.org/g/security-dev/c/XCJXKNc2Auk
   - Google Online Security Blog: Improving Interoperability Between Rust and C++
     - https://security.googleblog.com/2024/02/improving-interoperability-between-rust-and-c.html
-  - *Federated Credential Management (FedCM) Migration for Google Identity Services - Google for Developers*
+  - **Federated Credential Management (FedCM) Migration for Google Identity Services - Google for Developers**
     - https://developers.googleblog.com/2024/02/federated-credential-management-migration-for-google-identity-services.html
 - search blog
   - https://developers.google.com/search/
@@ -406,7 +406,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Static Roots: Objects with Compile-Time Constant Addresses · V8
     - https://v8.dev/blog/static-roots
 - Other
-  - *Google がついに検索結果ページでのキャッシュ提供を終了 - GIGAZINE*
+  - **Google がついに検索結果ページでのキャッシュ提供を終了 - GIGAZINE**
     - https://gigazine.net/news/20240205-google-search-kills-off-cached/
     - https://twitter.com/searchliaison/status/1753156161509916873
     - ページ読み込みに失敗してた時代にアクセスできるようにする最古の機能の一つ
@@ -424,7 +424,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Firefox 123.0, See All New Features, Updates and Fixes
   - https://www.mozilla.org/en-US/firefox/123.0/releasenotes/
-- *Firefox 123 for developers - Mozilla | MDN*
+- **Firefox 123 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/123
     - Declarative Shadow DOM
     - Early Hints preload
@@ -448,15 +448,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/wl66hiVSWj0
 - Ship: Early Hints Preload and Modulepreload for Fx123
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/DgmxpzaZyhQ
-- *Ship: Gamepad API outside SecureContext*
+- **Ship: Gamepad API outside SecureContext**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/RFiv1oCsAvY
   - Secure Context に限定していた Gamepad API を非 Secure Context にも解放
   - HTTPS が普及したことで限定する必要も無くなったこと、 Chrome との互換性のため
-- *Prototype: Float16Array*
+- **Prototype: Float16Array**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Qept1eJ3A9s
-- *Prototype: Observable*
+- **Prototype: Observable**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/wlikxjO2EbY
-- *Prototype: user-find CSS property*
+- **Prototype: user-find CSS property**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/XGxT2duSlW8
   - 要素をページ内検索 UI の対象から外すためのプロパティを提案
 - Prototype: Post-quantum key agreement for TLS using X25519Kyber768
@@ -479,7 +479,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://fxdx.dev/firefox-webdriver-newsletter-122/
 - Firefox DevTools Newsletter - 122 - Firefox Developer Experience
   - https://fxdx.dev/firefox-devtools-newsletter-122/
-- *SpiderMonkey Newsletter (Firefox 122-123) | SpiderMonkey JavaScript/WebAssembly Engine*
+- **SpiderMonkey Newsletter (Firefox 122-123) | SpiderMonkey JavaScript/WebAssembly Engine**
   - https://spidermonkey.dev/blog/2024/01/30/newsletter-firefox-122-123.html
 - L10n Report: February 2024 Edition | Mozilla L10N
   - https://blog.mozilla.org/l10n/2024/02/02/l10n-report-february-2024-edition/
@@ -489,13 +489,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### MDN / Open Web Docs
 
-- *Using Web IDL for better web docs*
+- **Using Web IDL for better web docs**
   - https://openwebdocs.org/content/posts/securecontext-webidl/
 - Option Soup: the subtle pitfalls of combining compiler flags - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2024/01/option-soup-the-subtle-pitfalls-of-combining-compiler-flags/
 - Announcing Interop 2024 - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2024/02/announcing-interop-2024/
-- *interop/2024/README.md at main · web-platform-tests/interop*
+- **interop/2024/README.md at main · web-platform-tests/interop**
   - https://github.com/web-platform-tests/interop/blob/main/2024/README.md
   - Focus areas
     - Accessibility
@@ -556,7 +556,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Negative
   - Add Locale Extensions (negative)
     - https://github.com/mozilla/standards-positions/pull/985
-  - *Page Embedded Permission Control*
+  - **Page Embedded Permission Control**
     - https://github.com/mozilla/standards-positions/issues/908
   - Locale Extensions
     - https://github.com/mozilla/standards-positions/issues/844
@@ -564,7 +564,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Introducing Mozilla Monitor Plus, a new tool to automatically remove your personal information from data broker sites*
+- **Introducing Mozilla Monitor Plus, a new tool to automatically remove your personal information from data broker sites**
   - https://blog.mozilla.org/en/mozilla/introducing-mozilla-monitor-plus-a-new-tool-to-automatically-remove-your-personal-information-from-data-broker-sites/
   - Have I been pownd みたいなサービスを Firefox Monitor としてやっていた
   - それをリブランディング
@@ -572,12 +572,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - Retirement Announcement & Thank You!
   - https://www.mail-archive.com/dev-security-policy@mozilla.org/msg01510.html
   - 2008 年から 16 年 Moziila の Root Store を運営していた Kathleen Wilson が定年退職
-- *Next steps for Mozilla and Trustworthy AI*
+- **Next steps for Mozilla and Trustworthy AI**
   - https://blog.mozilla.org/en/mozilla/ai/next-steps-for-mozilla-and-trustworthy-ai/
 - A New Chapter For Mozilla
   - https://blog.mozilla.org/en/mozilla/a-new-chapter-for-mozilla-laura-chambers-expanded-role/
   - Mozilla CEO の Mitchell Baker が退任
-- *Daniel Holbert on X: "@luke_warlow @ryanflorence I chatted with some folks on Firefox's DOM team - it's on their roadmap for this year, regardless of interop-2024 (not-)inclusion." / X*
+- **Daniel Holbert on X: "@luke_warlow @ryanflorence I chatted with some folks on Firefox's DOM team - it's on their roadmap for this year, regardless of interop-2024 (not-)inclusion." / X**
   - https://twitter.com/CodingExon/status/1754553898126520572
   - Interop 2024 のスコープにはないので一部でがっかりされた Navigation API だが、 Mozilla の今年のロードマップにはあるらしい
 - Can browser choice screens be effective? - Over-the-Edge-Report-January-2024.pdf
@@ -594,14 +594,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Apple announces changes to iOS, Safari, and the App Store in the European Union - Apple*
+- **Apple announces changes to iOS, Safari, and the App Store in the European Union - Apple**
   - https://www.apple.com/newsroom/2024/01/apple-announces-changes-to-ios-safari-and-the-app-store-in-the-european-union/
   - https://blog.jxck.io/entries/2024-01-28/apple-sideloading.html
   - Apple によるサイドローディングの緩和が EU 限定で実施される発表
 - Mozilla says Apple's new browser rules are 'as painful as possible' for Firefox - The Verge
   - https://www.theverge.com/2024/1/26/24052067/mozilla-apple-ios-browser-rules-firefox
   - WebKit / Gecko 版 Firefox の 2 種類を同時に維持しなければならないため Mozilla は不満
-- *Why don't users in the EU have access to Home Screen web apps?*
+- **Why don't users in the EU have access to Home Screen web apps?**
   - https://developer.apple.com/support/dma-and-apps-in-the-eu#8
   - iOS 17.4 で EU のみ PWA (Home Screen web apps) のサポートがオフになる
   - これまで WebKit と iOS が密に結合していることで、権限取得やストレージ分離などが機能していたから提供できた
@@ -615,23 +615,23 @@ guest: [@myakura](https://twitter.com/myakura)
 - Release Notes for Safari Technology Preview 187
   - https://webkit.org/blog/14931/release-notes-for-safari-technology-preview-187/
   - Bugfix 少し
-- *Release Notes for Safari Technology Preview 188*
+- **Release Notes for Safari Technology Preview 188**
   - https://webkit.org/blog/15026/release-notes-for-safari-technology-preview-188/
-  - *Added support for the new CSS content alternative text syntax. (272455@main) (26942023)*
+  - **Added support for the new CSS content alternative text syntax. (272455@main) (26942023)**
   - Added supports() syntax for @import rules. (273591@main) (109060734)
-  - *Made -apple- prefixed pseudo-elements no longer valid. (272538@main) (120268884)*
-  - *Removed support for AppCache. (273297@main) (113343269)*
+  - **Made -apple- prefixed pseudo-elements no longer valid. (272538@main) (120268884)**
+  - **Removed support for AppCache. (273297@main) (113343269)**
   - Added support for CustomStateSet in custom elements and :state() pseudo-class. (272474@main) (120072599)
-- *How to use Media Source Extensions with AirPlay | WebKit*
+- **How to use Media Source Extensions with AirPlay | WebKit**
   - https://webkit.org/blog/15036/how-to-use-media-source-extensions-with-airplay/
   - AirPlay で MSE を使う方法
 - Release Notes for Safari Technology Preview 189 | WebKit
   - https://webkit.org/blog/15050/release-notes-for-safari-technology-preview-189/
-  - *Added support for light-dark() function for color values. (273634@main) (117033939)*
-  - *Added support for @starting-style. (273740@main) (121918611)*
+  - **Added support for light-dark() function for color values. (273634@main) (117033939)**
+  - **Added support for @starting-style. (273740@main) (121918611)**
   - Added a Media details panel to Web Inspector when selecting a video or audio element in the Elements tab. (273777@main) (118865793)
   - Added support for missing WebRTC stats. (273643@main) (121594743)
-- *Safari 17.4 Beta Release Notes | Apple Developer Documentation*
+- **Safari 17.4 Beta Release Notes | Apple Developer Documentation**
   - https://developer.apple.com/documentation/safari-release-notes/safari-17_4-release-notes
   - Accessibility
     - Added support for the new CSS content alternative text syntax. (26942023)
@@ -726,7 +726,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2024/02/02/edge-is-faster-than-ever-before-on-macs-with-m2/
 - Dev Channel update to 123.0.2400.1 is live. - Microsoft Community Hub
   - https://techcommunity.microsoft.com/t5/articles/dev-channel-update-to-123-0-2400-1-is-live/m-p/4058807
-- *A new way to build custom web editing experiences with EditContext - Microsoft Edge Blog*
+- **A new way to build custom web editing experiences with EditContext - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2024/02/13/custom-web-editing-experiences-with-editcontext/
 
 
@@ -772,11 +772,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
   - 気になるのがあったときだけ
-- *Open UI Telecon: February 15, 2024*
+- **Open UI Telecon: February 15, 2024**
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2024-02-15.md
   - Discussion regarding `popup=hint` and WHATWG meeting
   - https://github.com/openui/open-ui/issues/532
-- *Stylable `<select>` element · Issue #9799 · whatwg/html*
+- **Stylable `<select>` element · Issue #9799 · whatwg/html**
   - https://github.com/whatwg/html/issues/9799#issuecomment-1922200654
   - カスタマイズできる select にするときには属性をつけると Open UI で決定するも WHATWG は納得せず
 
@@ -785,15 +785,15 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Old spec under [https://www.w3.org/html/wg/spec/\*](https://www.w3.org/html/wg/spec/*) from Jeffrey Yasskin
   - https://lists.w3.org/Archives/Public/public-html/2024Feb/0002.html
-- *Internationalization (I18N) leadership change and goals for the future | 2024 | Blog | W3C*
+- **Internationalization (I18N) leadership change and goals for the future | 2024 | Blog | W3C**
   - https://www.w3.org/blog/2024/internationalization-i18n-leadership-change-and-goals-for-the-future/
-- *ARIA Automation Launch - Bocoup*
+- **ARIA Automation Launch - Bocoup**
   - https://bocoup.com/blog/aria-automation-launch
-- *`<callout>` element for callouts/alerts/admonitions · Issue #10100 · whatwg/html*
+- **`<callout>` element for callouts/alerts/admonitions · Issue #10100 · whatwg/html**
   - https://github.com/whatwg/html/issues/10100
   - 注釈や警告を囲む要素はどうという思いつきの提案
   - ARIA WG でも話され、特に必要ないという話になっている
-- *Meeting Planning Pages [CSS Working Group Wiki]*
+- **Meeting Planning Pages [CSS Working Group Wiki]**
   - https://wiki.csswg.org/planning#section2025
   - 2025 年の TPAC は神戸らしい
 
@@ -812,12 +812,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/mozaicfm/status/1754489329991450756
   - TC39 Minutes を読む
     - https://docs.google.com/document/d/1qXUf4QRTbexUj0fg2sgYTxWwOT2v_q7lmjR282BOWLU/edit#heading=h.bwmy7hyqh5e6
-  - *Array Grouping for Stage 4*
+  - **Array Grouping for Stage 4**
     - Stage 4 なった
-  - *Promise.withResolvers for Stage 4*
+  - **Promise.withResolvers for Stage 4**
     - https://docs.google.com/presentation/d/1UvJSnt5B6tsXs-5A0zgg01cdFCtk6X2rAok6Z4Wp4Mo/edit#slide=id.p
     - Stage 4 になった
-  - *ShadowRealm Stage 2 update*
+  - **ShadowRealm Stage 2 update**
     - https://docs.google.com/presentation/d/17esbBbAlKe1nZzWx47ItpVP1XovIupxKEAL1PgUDFrk/edit#slide=id.g26255f6e788_0_0
     - https://github.com/tc39/proposal-shadowrealm/issues/393 にて API を議論中
     - `[Exposed=Window,Worker]` だったのが `[Exposed=*]` と変更されたものが入る
@@ -828,19 +828,19 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://docs.google.com/presentation/d/1MRItYS_b1hwKstlqlfoD8mgbecS2OkTSiPFVWHs3Y_8/edit#slide=id.p
     - eval に限らず、文字列リテラルを渡す時に、そのハッシュを CSP で制御したい
     - ユースケースがほしい
-  - *Base64 Uint8Arrays discussion*
+  - **Base64 Uint8Arrays discussion**
     - https://docs.google.com/presentation/d/1kq4AyZquZAObuG4Z4099FZo7emYUi7JnR07SZ4sue6k/edit#slide=id.g106f4536d9_0_109
     - Stream 対応のために、 Base64 できたやつと、残りのチャンクを返す API の提案
     - Variation どれがいい?
   - Decimal Stage 1 Update & Request for feedback
     - https://docs.google.com/presentation/d/1ecK7CzrgSO5t8-gYQnNWUSHcnWltJKWqTolgJsAIwqI/edit#slide=id.p
     - Stage 1 Keep
-  - *Temporal normative PR #2718 & general update*
+  - **Temporal normative PR #2718 & general update**
     - https://ptomato.name/talks/tc39-2023-11/
     - Igalia in partnership with Bloomberg
     - IETF の標準化問題は解消
     - あとは実装するだけ
-  - *Math.sum*
+  - **Math.sum**
     - https://github.com/tc39/proposal-math-sum
     - 誤差をいい感じにしたアルゴリズムで足したい
   - Iterator helpers web compat continuation
@@ -854,13 +854,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - ​​ https://docs.google.com/presentation/d/1wMUfikXIIz7woLN-5MbYbW8an40c8ZPrN1ehzWVf4zw/edit#slide=id.p
     - こっちはまだ API が決まってない
     - Stage1 keep
-  - *Withdrawing Operator Overloading*
+  - **Withdrawing Operator Overloading**
     - https://docs.google.com/presentation/d/1mT2VmZlC3YmhDsqdxrCxQ5GpLFHFntsb3XCM762eDvg/edit#slide=id.p
     - https://www.docswell.com/s/jxck/57V8J1-operator-overloading-is-hard
     - コストとベネフィットのトレードオフが明確でない
     - SpiderMonkey と V8 がやりたくない
     - withdrawn した
-  - *JSON.tryParse*
+  - **JSON.tryParse**
     - canParse をやめて、パースしたら値返せばよくね?
     - それなら try-catch でよくね?
     - 却下された
@@ -869,7 +869,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 依存の中に async がなければ同期で読める
     - っていう assert をしたい
     - Stage 1
-  - *Slice notation stage 1 update and `[^a]`*
+  - **Slice notation stage 1 update and `[^a]`**
     - https://johnhax.net/2023/slice/slide#0
     - https://github.com/hax/proposal-index-from-end
     - Speaker's Summary of Key Points
@@ -885,7 +885,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://docs.google.com/presentation/d/1AFzFeVtbUCpPcMXTER0Zzb5l5c5oPdXCF4Yi_9B1EEM/edit#slide=id.g106f4536d9_0_109
     - 今後勝手に型変換しないようにしよう、の part 3
     - bool じゃない primitive を受けるところに object / function 渡したら例外
-  - *continuation of the new stage discussion*
+  - **continuation of the new stage discussion**
     - https://docs.google.com/presentation/d/1vdps2Ga2eHYhCSDN6pmYYWtPKfAsgP_i88sLlqEq-Xo/edit#slide=id.p
     - https://blog.jxck.io/entries/2024-02-06/tc39-stage-2.7.html
     - 2.7 ができた
@@ -921,7 +921,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Meeting
 
-- *2024-02-01*
+- **2024-02-01**
   - https://github.com/wintercg/admin/issues/61
   - ECMA に WinterTC を設立するための書類を出したらしい
 
@@ -933,9 +933,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - RFC
   - RFC 9532 on HTTP Proxy-Status Parameter for Next-Hop Aliases
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JanMar/0053.html
-  - *RFC 9530 on Digest Fields*
+  - **RFC 9530 on Digest Fields**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JanMar/0074.html
-  - *RFC 9421 on HTTP Message Signatures*
+  - **RFC 9421 on HTTP Message Signatures**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JanMar/0073.html
   - [httpapi] RFC 9512 on YAML Media Type
     - https://mailarchive.ietf.org/arch/msg/httpapi/sp-wLsBgcJRzOb5D0jNFoIeUVuw/
@@ -964,7 +964,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JanMar/0100.html
   - Secdir last call review of draft-ietf-httpbis-sfbis-05
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JanMar/0069.html
-  - *Proposal for Creating Reverse Tunnels, for HTTP and TCP*
+  - **Proposal for Creating Reverse Tunnels, for HTTP and TCP**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JanMar/0105.html
     - https://www.ietf.org/archive/id/draft-kazuho-httpbis-reverse-tunnel-00.html
     - kazuho さんの新作
@@ -1005,17 +1005,17 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *apernet/OpenGFW: OpenGFW is a flexible, easy-to-use, open source implementation of GFW (Great Firewall of China) on Linux*
+- **apernet/OpenGFW: OpenGFW is a flexible, easy-to-use, open source implementation of GFW (Great Firewall of China) on Linux**
   - https://github.com/apernet/OpenGFW
-- *polyfill.io サービスが売却された*
+- **polyfill.io サービスが売却された**
   - https://twitter.com/triblondon/status/1761852117579427975
   - Andrew Betts が作ったライブラリ
   - 別に、それを配信するドメインを持ってる人がいた
   - そのドメインが売却された
   - 依存している場合は取り除くことが推奨された
-- *E2EE on the web: is the web really that bad? | Emily M. Stark*
+- **E2EE on the web: is the web really that bad? | Emily M. Stark**
   - https://emilymstark.com/2024/02/09/e2ee-on-the-web-is-the-web-really-that-bad.html
-- *「Avast」がブラウザの閲覧データを販売したとして約 25 億円の罰金を科される - GIGAZINE*
+- **「Avast」がブラウザの閲覧データを販売したとして約 25 億円の罰金を科される - GIGAZINE**
   - https://gigazine.net/news/20240226-ftc-ban-avast-selling-browsing-data/
 
 
@@ -1033,13 +1033,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://vivaldi.com/blog/technology/vivaldi-browser-choices-a-tale-of-two-gatekeepers/
 - JavaScript Bloat in 2024 @ tonsky.me
   - https://tonsky.me/blog/js-bloat/
-- *awslabs/llrt: LLRT (Low Latency Runtime) is an experimental, lightweight JavaScript runtime designed to address the growing demand for fast and efficient Serverless applications.*
+- **awslabs/llrt: LLRT (Low Latency Runtime) is an experimental, lightweight JavaScript runtime designed to address the growing demand for fast and efficient Serverless applications.**
   - https://github.com/awslabs/llrt
 
 
 ### Cookie 動向
 
-- *nintendo.co.jp が nintendo.com/jp にリダイレクト*
+- **nintendo.co.jp が nintendo.com/jp にリダイレクト**
   - https://twitter.com/nintendo/status/1761632118533415020
   - Nintendo の認証が壊れるという話もあったので、そのためではないか
   - https://issuetracker.google.com/issues/268390722?pli=1

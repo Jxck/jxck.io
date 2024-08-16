@@ -18,7 +18,7 @@ guest: [@shqld](https://twitter.com/shqld)
 ### Chrome 動向
 
 - Stable: 84
-- *Web.Dev Live*
+- **Web.Dev Live**
   - https://web.dev/live/
   - 3 日間時間をずらして実施
   - 全部録画
@@ -38,7 +38,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - Where: Virtual - given that BlinkOn 13 was supposed to be held in Google Kirkland and that, historically, the majority of our attendees have been from the AMER region, this event will be hosted in the Pacific Time Zone
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zNDLekIrSQE/
 - Updates
-  - *New in Chrome 84*
+  - **New in Chrome 84**
     - https://developers.google.com/web/updates/2020/07/nic84
     - Users can start common tasks within your app, with App Icon Shortcuts.
     - The Web Animations API adds support for a slew of previously unsupported features.
@@ -49,14 +49,14 @@ guest: [@shqld](https://twitter.com/shqld)
     - Origin Trials
       - Idle detection
       - Web Assembly SIMD
-  - *Chromium Blog: Chrome 85: Upload Streaming, Human Interface Devices, Custom Properties with Inheritance and More*
+  - **Chromium Blog: Chrome 85: Upload Streaming, Human Interface Devices, Custom Properties with Inheritance and More**
     - https://blog.chromium.org/2020/07/chrome-85-upload-streaming-human.html
     - Fetch Upload Streaming
     - WebHID API
     - Windows Support for getInstalledRelatedApps()
     - @property
     - Origin Trials
-      - *Declarative Shadow DOM*
+      - **Declarative Shadow DOM**
       - RTCRtpEncodingParameters.adaptivePtime Property
       - Portals
     - App Shortcuts
@@ -65,41 +65,41 @@ guest: [@shqld](https://twitter.com/shqld)
     - Changes to Persistent Storage for Installed Web Apps
     - CSS
       - Color Adjust: Remove 'only' and Support 'dark' or 'light' for color-scheme"
-      - *content-visibility Property*
+      - **content-visibility Property**
         - https://web.dev/content-visibility/
       - counter-set
     - Event Timing API
     - Expose Picture-in-Picture Window in leavepictureinpicture event
     - Named pages with page-orientation
-    - *Referrer Policy: Default to strict-origin-when-cross-origin*
+    - **Referrer Policy: Default to strict-origin-when-cross-origin**
     - Update Fallback Content's Behavior for ImageInputType and HTMLImageElement
     - Update the Behavior of the "disabled" Attribute for HTMLLinkElement
     - Web Bluetooth writeValueWithResponse() and writeValueWithoutResponse()
     - WebAssembly BigInt Integration
     - WebAuthn getPublicKey(), getPublicKeyAlgorithm() and getAuthenticatorData()
     - JavaScript
-      - *JavaScript Logical Assignment Operators*
-      - *Promise.any() and AggregateError*
-      - *String.prototype.replaceAll()*
+      - **JavaScript Logical Assignment Operators**
+      - **Promise.any() and AggregateError**
+      - **String.prototype.replaceAll()**
     - Deprecations, and Removals
-      - *AppCache Removal Begins*
-      - *Reject insecure SameSite=None cookies*
-  - *Deprecations and removals in Chrome 85*
+      - **AppCache Removal Begins**
+      - **Reject insecure SameSite=None cookies**
+  - **Deprecations and removals in Chrome 85**
     - https://developers.google.com/web/updates/2020/07/chrome-85-deps-rems
     - AppCache Removal Begins
     - Reject insecure SameSite=None cookies
-    - *`-webkit-box` quirks from `-webkit-line-clamp`*
+    - **`-webkit-box` quirks from `-webkit-line-clamp`**
   - A new default Referrer-Policy for Chrome: strict-origin-when-cross-origin
     - https://developers.google.com/web/updates/2020/07/referrer-policy-new-chrome-default
     - referrer のデフォルトが no-referrer-when-downgrade から strict-origin-when-cross-origin に変わる
     - cross-origin へは URL ではなく Origin のみが送られるように
-  - *Chromium Blog: More secure and convenient Autofill coming to Chrome*
+  - **Chromium Blog: More secure and convenient Autofill coming to Chrome**
     - https://blog.chromium.org/2020/07/more-secure-and-convenient-autofill.html
   - Chromium Blog: Using Chrome to generate more accessible PDFs
     - https://blog.chromium.org/2020/07/using-chrome-to-generate-more.html
   - Ten modern layouts in one line of CSS
     - https://web.dev/one-line-layouts/
-  - *Pixel-perfect rendering with devicePixelContentBox*
+  - **Pixel-perfect rendering with devicePixelContentBox**
     - https://web.dev/device-pixel-content-box/
   - Official Google Webmaster Central Blog: The Rich Results Test is out of beta
     - https://webmasters.googleblog.com/2020/07/rich-results-test-out-of-beta.html
@@ -115,7 +115,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://web.dev/at-property/
   - Relating site speed and business metrics
     - https://web.dev/site-speed-and-business-metrics/
-  - *Service worker caching and HTTP caching*
+  - **Service worker caching and HTTP caching**
     - https://web.dev/service-worker-caching-and-http-caching/
   - Handling navigation requests
     - https://web.dev/handling-navigation-requests/
@@ -127,22 +127,22 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://web.dev/keyboard-lock/
   - Building a PWA at Google, part 1
     - https://web.dev/building-a-pwa-at-google-part-1/
-  - *Referer and Referrer-Policy best practices*
+  - **Referer and Referrer-Policy best practices**
     - https://web.dev/referrer-best-practices/
     - https://github.com/w3c/webappsec-referrer-policy/issues/138
   - Web on Android
     - https://web.dev/web-on-android/
-  - *content-visibility: the new CSS property that boosts your rendering performance*
+  - **content-visibility: the new CSS property that boosts your rendering performance**
     - https://web.dev/content-visibility/
 - Intents
-  - *Ship: Document-Policy header*
+  - **Ship: Document-Policy header**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/Za159T1QOek/
     - Feature Policy のドキュメント固有の機能を切り出したもの
     - sync xhr, image size, document size などのコントロール
     - これを切り出してから Feature Policy は Permission Policy になった
   - Ship: Altitude/Azimuth for PointerEvents
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/ZRI-7X_4GwM
-  - *Ship: Cross-site back-forward cache on Android*
+  - **Ship: Cross-site back-forward cache on Android**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/S9qRFx4ozXk/
     - 短期:
       - M86 で cross-origin ナビゲーションをサポート
@@ -153,7 +153,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - Android Chrome のみ、 Web View もなし
     - DevTools を介してページがバックフォワードキャッシュから復元されなかった理由を公開し、 Web 開発者が Web サイトを最適化する方法に関する情報を提供することも計画しています。
     - Cache-Control:no-store で bfcache を無効にできる
-    - *JS-based なオプトアウト API も策定?中*
+    - **JS-based なオプトアウト API も策定?中**
       - https://github.com/whatwg/html/issues/5744
   - Ship: EME persistent-usage-record session
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/7aTue7FPEuU/
@@ -169,19 +169,19 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/VEVXgm83UXk/m/ouDkllvbAQAJ
   - Ship: percent-encode U+0020 SPACE when in URLs computed by custom protocol handlers
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/osabCTBhDSs/m/UsJrNREEAgAJ
-  - *Ship: New referrer policy default of strict-origin-when-cross-origin*
+  - **Ship: New referrer policy default of strict-origin-when-cross-origin**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/lqFuqwZDDR8/m/nKPRTc7DAQAJ
   - Ship: Add support for encoding CBR audio files with `MediaRecorder`.
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/ewJTgBMTxGg/m/mcrdFnZ3AQAJ
-  - *Prototype and Ship: FetchEvent.handled*
+  - **Prototype and Ship: FetchEvent.handled**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/P0dGbK3ThT0/H84DQKPZBQAJ
   - Implement and Ship: ParentNode#replaceChildren API
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PwIp0J5FJBY/LvWWFrSFBQAJ
   - Prototype and Ship: toJSON() for MediaSettingsRange
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/AqKdWOB7O8c/
-  - *Prototype: Re-Enable SharedArrayBuffer (SAB) on Android gated behind COOP/COEP*
+  - **Prototype: Re-Enable SharedArrayBuffer (SAB) on Android gated behind COOP/COEP**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/xtyi6D52DkM/m/xU7r3sPoAQAJ
-  - *Implement and Ship: Pause HTML parser while loading stylesheets in `<head>`*
+  - **Implement and Ship: Pause HTML parser while loading stylesheets in `<head>`**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/TPkgQj2gmiI/m/OYUydbL-AgAJ
   - Implement and Ship: percent-encode the delete character when parsing URLs
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/en6buycTcKQ/m/S5iK-0YAAgAJ
@@ -189,12 +189,12 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/QI8BS5bL5CQ/m/rWSJ4QiSAQAJ
   - Prototype: Secure payment confirmation
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/myUR5gyd5Js/m/iELL67NQAgAJ
-  - *Prototype: jxl Content-Encoding*
+  - **Prototype: jxl Content-Encoding**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/4hFGYxBRIBU/m/dUgy9SUVAgAJ
     - JPEG  XL
   - Implement: Web Share API (Windows & Chrome OS)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/PZkIB8wBTwQ/m/qfX1At8UAgAJ
-  - *Prototype: Storage Pressure Event*
+  - **Prototype: Storage Pressure Event**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MMba4E0bAeo/IwWQV1bIBQAJ
   - Prototype: Make system color keywords compute to themselves
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NxaDT4SbZso/82zuvMzGBQAJ
@@ -206,15 +206,15 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/0rW4Q_NtL20/
   - prototype: various features of WebAuthn level two and CTAP2.1
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/t_9QdJ7hcls
-  - *Experiment: Declarative Shadow DOM*
+  - **Experiment: Declarative Shadow DOM**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/DuvhXyYo7Pc
     - Shadow DOM の宣言的記法
-  - *Extend Origin Trial: ForceLoadAtTop*
+  - **Extend Origin Trial: ForceLoadAtTop**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/yG0JzbEUoX4/
     - document policy で scroll to text fragment の無効化
   - Deprecate and Remove: Comma separator in iframe allow attribute
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/43EhaSQWm6M/
-  - *Deprecate and Remove: `<meta name=referrer content=list,of,policies>`*
+  - **Deprecate and Remove: `<meta name=referrer content=list,of,policies>`**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/q3qNbv8eTG0/
   - Intent stage "Evaluate readiness to ship": web-share permission policy
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/fgme9KOd8CU
@@ -234,7 +234,7 @@ guest: [@shqld](https://twitter.com/shqld)
 - Other
   - Contributions to Web Platform Interoperability (First Half of 2020) - The AMP Blog
     - https://blog.amp.dev/2020/07/06/contributions-to-web-platform-interoperability-first-half-of-2020/
-  - *Official Google Webmaster Central Blog: Prepare for mobile-first indexing (with a little extra time)*
+  - **Official Google Webmaster Central Blog: Prepare for mobile-first indexing (with a little extra time)**
     - https://webmasters.googleblog.com/2020/07/prepare-for-mobile-first-indexing-with.html
 
 
@@ -249,23 +249,23 @@ guest: [@shqld](https://twitter.com/shqld)
   - Firefox Security Newsletter - Q2 2020
     - https://groups.google.com/g/mozilla.dev.platform/c/1Vx5lcsqjq4
 - Intents
-  - *Ship: Javascript `export * as ns from "mod";` syntax*
+  - **Ship: Javascript `export * as ns from "mod";` syntax**
     - https://groups.google.com/g/mozilla.dev.platform/c/NSzWY92Ut0o/
   - Ship: unprefixed appearance property
     - https://groups.google.com/g/mozilla.dev.platform/c/x8njjxKySKY/
   - Ship: Animation composite modes
     - https://groups.google.com/g/mozilla.dev.platform/c/WilU9G_vzxA/
-  - *Ship: Redirect Tracking Protection (formerly ETP Cookie Purging)*
+  - **Ship: Redirect Tracking Protection (formerly ETP Cookie Purging)**
     - https://groups.google.com/g/mozilla.dev.platform/c/KUVVAroUv_Y/m/vKULscO_CQAJ
     - 1% のみのロールアウトで finch のようなテストをしている
   - Ship: CSS overflow:clip
     - https://groups.google.com/g/mozilla.dev.platform/c/7oQm8PC0aU0
-  - *Prototype: Sanitizer API*
+  - **Prototype: Sanitizer API**
     - https://groups.google.com/g/mozilla.dev.platform/c/C4EHeQlaMbU/
-  - *Prototype: cross-fade*
+  - **Prototype: cross-fade**
     - https://groups.google.com/g/mozilla.dev.platform/c/uJfdlv1qKtQ
     - 画像にフィルターなどをクロスフェードでかける関数
-  - *Prototype: prefers-contrast*
+  - **Prototype: prefers-contrast**
     - https://groups.google.com/g/mozilla.dev.platform/c/bTEmQxffGvA/
   - Prototype: Payment Handler API
     - https://groups.google.com/g/mozilla.dev.platform/c/gBQp1URD1lE/
@@ -280,15 +280,15 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blog.mozilla.org/blog/2020/07/15/mozilla-puts-its-trusted-stamp-on-vpn/
   - Sustainability needs culture change. Introducing Environmental Champions.
     - https://blog.mozilla.org/blog/2020/07/13/sustainability-needs-culture-change-introducing-environmental-champions/
-  - *A look at password security, Part I: history and background*
+  - **A look at password security, Part I: history and background**
     - https://blog.mozilla.org/blog/2020/07/08/password-security-part-i/
-  - *A look at password security, Part II: Web Sites*
+  - **A look at password security, Part II: Web Sites**
     - https://blog.mozilla.org/blog/2020/07/13/password-security-part-ii/
-  - *A look at password security, Part III: More secure login protocols*
+  - **A look at password security, Part III: More secure login protocols**
     - https://blog.mozilla.org/blog/2020/07/20/a-look-at-password-security-part-iii-more-secure-login-protocols/
-  - *Firefox 79 includes protections against redirect tracking - Mozilla Security Blog*
+  - **Firefox 79 includes protections against redirect tracking - Mozilla Security Blog**
     - https://blog.mozilla.org/security/2020/08/04/firefox-79-includes-protections-against-redirect-tracking/
-  - *Latest Firefox rolls out Enhanced Tracking Protection 2.0; blocking redirect trackers by default - The Mozilla Blog*
+  - **Latest Firefox rolls out Enhanced Tracking Protection 2.0; blocking redirect trackers by default - The Mozilla Blog**
     - https://blog.mozilla.org/blog/2020/08/04/latest-firefox-rolls-out-enhanced-tracking-protection-2-0-blocking-redirect-trackers-by-default/
   - MDN Web Docs: 15 years young - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/07/mdn-web-docs-15-years-young/
@@ -298,12 +298,12 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://hacks.mozilla.org/2020/07/testing-firefox-more-efficiently-with-machine-learning/
   - Adding prefers-contrast to Firefox - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/07/adding-prefers-contrast-to-firefox/
-  - *Changes to SameSite Cookie Behavior - A Call to Action for Web Developers - Mozilla Hacks - the Web developer blog*
+  - **Changes to SameSite Cookie Behavior - A Call to Action for Web Developers - Mozilla Hacks - the Web developer blog**
     - https://hacks.mozilla.org/2020/08/changes-to-samesite-cookie-behavior/
     - Lax by default の話
   - Firefox 79: The safe return of shared memory, new tooling, and platform updates - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/07/firefox-79/
-  - *Reducing TLS Certificate Lifespans to 398 Days - Mozilla Security Blog*
+  - **Reducing TLS Certificate Lifespans to 398 Days - Mozilla Security Blog**
     - https://blog.mozilla.org/security/2020/07/09/reducing-tls-certificate-lifespans-to-398-days/
     - 証明書の期限を 825 日から 398 日に短くする 3 つの理由
       1. 長いとインシデントがあっても対応が遅れる。証明書が  5 年だったころ見つかった MD5 の問題を無くすのに 5 年かかり、最大 3 年だった SHA1  を無くすのに 3 年かかった。
@@ -333,9 +333,9 @@ guest: [@shqld](https://twitter.com/shqld)
     - Enabled VTB required low latency code path (r263931)
     - Improved UI for PIN entry for security keys
     - Keyframe animation with infinite iteration count doesn't show up in the Animations timeline (r263400)
-    - *Changed to require a `<form>` to be connected before it can be submitted (r263624)*
+    - **Changed to require a `<form>` to be connected before it can be submitted (r263624)**
       - connect できてないサーバへの submit はしないという仕様に準拠
-    - *Added referrerpolicy attribute support for `<link>` (r263356, r263442)*
+    - **Added referrerpolicy attribute support for `<link>` (r263356, r263442)**
     - Allow setting empty host/hostname on URLs if they use file scheme (r263971)
     - Allow the async clipboard API to write data when copying via menu action or key binding (r263480)
     - Changed to check for mode="showing" to consider a text track as selected in the tracks panel (r263802)
@@ -344,7 +344,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - Added the capability to call the Storage Access API as a quirk, on behalf of websites that should be doing it themselves (r263383)
     - Updated text manipulation to exclude text rendered using icon-only fonts (r263527)
     - Added a new text manipulation heuristic to decide paragraph boundary (r263958)
-    - *Enabled referrer policy attribute support by default (r263274)*
+    - **Enabled referrer policy attribute support by default (r263274)**
     - Added a tooltip to the icon of resources replaced by a local override explaining what happened (r263429)
     - Allow selecting text of Response (DOM Tree) in Network tab (r263872)
     - Adjusted the height of title area when Web Inspector is undocked to match macOS Big Sur (r263377, r263402)
@@ -353,7 +353,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - Added an error message if unable to fetch shader source in the Canvas tab (r264045)
     - Added the capability to open a popup and get user interaction so we can call the Storage Access API as a quirk, on behalf of websites that should be doing it themselves (r263992)
     - Implemented user action specifications for Escape action (r264000)
-  - *Speculation in JavaScriptCore*
+  - **Speculation in JavaScriptCore**
     - https://webkit.org/blog/10308/speculation-in-javascriptcore/
     - v8 とは異なって、 JIT の最適化を Profiling と Speculation のフェーズに分けて説明してる
       - Speculation といいつつ殆んど JIT の話
@@ -374,7 +374,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - Request for position on MediaRecorder constant bitrate audio encoding
     - https://lists.webkit.org/pipermail/webkit-dev/2020-July/031317.html
 - Other
-  - *Big updates in Safari 14 with Ronak Shah and Beth Dakin (The Changelog #400) - Changelog*
+  - **Big updates in Safari 14 with Ronak Shah and Beth Dakin (The Changelog #400) - Changelog**
     - https://changelog.com/podcast/400
     - Safari の人が Podcast で Safari14 の話をしている
 
@@ -389,13 +389,13 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blogs.windows.com/msedgedev/2020/07/08/introducing-storage-access-api/
 - Chakra
 - Other
-  - *Revealing Passwords - text/plain*
+  - **Revealing Passwords - text/plain**
     - https://textslashplain.com/2020/07/29/revealing-passwords/
   - Web Proxy Auto Discovery - text/plain
     - https://textslashplain.com/2020/07/14/web-proxy-auto-discovery/
   - Introducing the Microsoft Edge enterprise roadmap and release schedule
     - https://blogs.windows.com/msedgedev/2020/07/23/introducing-enterprise-roadmap-release-schedule/
-  - *Reducing distractions with quiet notification requests*
+  - **Reducing distractions with quiet notification requests**
     - https://blogs.windows.com/msedgedev/2020/07/23/reducing-distractions-quiet-notification-requests/
   - Multitasking improvements in Windows 10 and Microsoft Edge
     - https://blogs.windows.com/msedgedev/2020/07/22/multitasking-improvements-windows-10-microsoft-edge/
@@ -441,9 +441,9 @@ guest: [@shqld](https://twitter.com/shqld)
   - https://tc39.github.io/beta/
 - https://github.com/tc39/proposal-bind-operator
   - 0->1
-    - *await operations*
+    - **await operations**
     - ResizableArrayBuffer and GrowableSharedArrayBuffer
-    - Import Attributes -> Import Conditions (-> *import assertions*)
+    - Import Attributes -> Import Conditions (-> **import assertions**)
   - 1->2
     - Intl.NumberFormat v3
     - .item
@@ -471,12 +471,12 @@ guest: [@shqld](https://twitter.com/shqld)
   - httpwg
     - https://github.com/httpwg/wg-materials/
     - no meeting
-  - *quicwg*
+  - **quicwg**
     - https://github.com/quicwg/wg-materials
     - agenda:  https://github.com/quicwg/wg-materials/blob/master/ietf108/agenda.md
     - minutes: https://codimd.ietf.org/notes-ietf-108-quic
     - video:   https://www.youtube.com/watch?v=Qr9sZlF4SbI
-  - *webtrans*
+  - **webtrans**
     - https://github.com/DavidSchinazi/webtrans-wg-materials
     - agenda:  https://www.ietf.org/proceedings/108/agenda/agenda-108-webtrans-01
     - minutes: https://codimd.ietf.org/notes-ietf-108-webtrans
@@ -486,7 +486,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - agenda:  https://www.ietf.org/proceedings/108/agenda/agenda-108-tls-03
     - minutes: https://codimd.ietf.org/notes-ietf-108-tls
     - video:   https://www.youtube.com/watch?v=LF1Kc5PHAng
-  - *wpack*
+  - **wpack**
     - agenda:  https://www.ietf.org/proceedings/108/agenda/agenda-108-wpack-01
     - minutes: https://codimd.ietf.org/notes-ietf-108-wpack
     - video:   https://www.youtube.com/watch?v=Hezs0oifBbc
@@ -514,12 +514,12 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://tools.ietf.org/html/draft-herbert-6man-eh-attrib-01
   - Enabling application policy-awareness in Multipath QUIC
     - https://tools.ietf.org/html/draft-an-multipath-quic-application-policy-00
-  - *Greasing HTTP*
+  - **Greasing HTTP**
     - https://tools.ietf.org/html/draft-nottingham-http-grease-00
     - Grease を HTTP でするガイドラインと、 Header/Cache Directive での GREASE 方法の定義
   - A Proposed Model for RFC Editing and Publication
     - https://tools.ietf.org/html/draft-thomson-rfced-model-00
-  - *Using TLS Application-Layer Protocol Settings (ALPS) in HTTP*
+  - **Using TLS Application-Layer Protocol Settings (ALPS) in HTTP**
     - https://tools.ietf.org/html/draft-vvv-httpbis-alps-00
     - TLS ハンドシェイク後にアプリレイヤレベルのネゴシエーションパラメータを送ることがある
     - それを TLS の拡張で一緒に送ってしまうという提案
@@ -529,7 +529,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://tools.ietf.org/html/draft-hardt-gnap-jose-01
   - Packed CBOR
     - https://tools.ietf.org/html/draft-bormann-cbor-packed-01
-  - *Client Hint Reliability*
+  - **Client Hint Reliability**
     - https://tools.ietf.org/html/draft-davidben-http-client-hint-reliability-00
     - CH の追加には 1RTT 必要
     - CH を付けて再試行させる Critical-CH
@@ -546,7 +546,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://tools.ietf.org/html/draft-mattsson-cose-cbor-cert-compress-01
   - TCP ACK Rate Request Option
     - https://tools.ietf.org/html/draft-gomez-tcpm-ack-rate-request-00
-  - *Author Header Field*
+  - **Author Header Field**
     - https://tools.ietf.org/html/draft-crocker-dmarc-author-00
   - Transport Layer Security (TLS) Resumption across Server Names
     - https://tools.ietf.org/html/draft-vvv-tls-cross-sni-resumption-00
@@ -558,7 +558,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://tools.ietf.org/html/draft-duke-shmoo-remote-meetings-00
   - Impact of TLS 1.3 to Operational Network Security Practices
     - https://tools.ietf.org/html/draft-ietf-opsec-ns-impact-01
-  - *Use Cases and Requirements for Web Packages*
+  - **Use Cases and Requirements for Web Packages**
     - https://tools.ietf.org/html/draft-yasskin-wpack-use-cases-01
 - Other
   - HTTP/3 logo | daniel.haxx.se
@@ -578,7 +578,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - https://blog.cloudflare.com/cve-2020-5902-helping-to-protect-against-the-f5-tmui-rce-vulnerability/
 - ウェブ エコシステムの根本的なセキュリティ保護に向けて
   - https://developers-jp.googleblog.com/2020/08/blog-post.html
-- *China is now blocking all encrypted HTTPS traffic that uses TLS 1.3 and ESNI*
+- **China is now blocking all encrypted HTTPS traffic that uses TLS 1.3 and ESNI**
   - https://www.zdnet.com/article/china-is-now-blocking-all-encrypted-https-traffic-using-tls-1-3-and-esni/
   - https://mailarchive.ietf.org/arch/msg/tls/YzT5LjLJ_6WWhdnU2wVsKNKR6_I/
   - https://www.iyouport.org/%e6%8a%a5%e5%91%8a%ef%bc%9a%e4%b8%ad%e5%9b%bd%e7%9a%84%e9%98%b2%e7%81%ab%e9%95%bf%e5%9f%8e%e5%b7%b2%e7%bb%8f%e5%b0%81%e9%94%81%e5%8a%a0%e5%af%86%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%90%8d%e7%a7%b0%e6%8c%87/
@@ -591,13 +591,13 @@ guest: [@shqld](https://twitter.com/shqld)
 
 ### 周辺動向
 
-- *Chrome もダメ、 Edge もダメ... マイナポイント予約、 PC は「IE11」のみ対応です: J-CAST ニュース*
+- **Chrome もダメ、 Edge もダメ... マイナポイント予約、 PC は「IE11」のみ対応です: J-CAST ニュース**
   - https://www.j-cast.com/2020/07/05389466.html?p=all
   - なぜこうなったのか、中の人の書き残し
   - https://comemo.nikkei.com/n/n1c9103c81c79
 - Why Browser Security UI Isn't Specified - Infrequently Noted
   - https://infrequently.org/2020/07/why-ui-isnt-specified/
-- *Cache-Control in the wild*
+- **Cache-Control in the wild**
   - https://www.fastly.com/blog/cache-control-wild
   - May 2020 のヘッダを収集し Cache-Control の利用実態を調査
   - 74% は明示的な C-C ヘッダを付与し、ヒューリスティックキャッシュは使ってない
@@ -614,7 +614,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - https://blog.cloudflare.com/cloudflare-network-interconnect/
 - Cloudflare Network Interconnection Partnerships Launch
   - https://blog.cloudflare.com/cloudflare-network-interconnect-partner-program/
-- *Mitigating Spectre and Other Security Threats: The Cloudflare Workers Security Model*
+- **Mitigating Spectre and Other Security Threats: The Cloudflare Workers Security Model**
   - https://blog.cloudflare.com/mitigating-spectre-and-other-security-threats-the-cloudflare-workers-security-model/
 - The Edge Computing Opportunity: It's Not What You Think
   - https://blog.cloudflare.com/cloudflare-workers-serverless-week/
@@ -626,7 +626,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - https://blog.cloudflare.com/announcing-flowtrackd/
 - Mitigating a 754 Million PPS DDoS Attack Automatically
   - https://blog.cloudflare.com/mitigating-a-754-million-pps-ddos-attack-automatically/
-- *Introducing Rome*
+- **Introducing Rome**
   - https://romefrontend.dev/blog/2020/08/08/introducing-rome.html
 
 

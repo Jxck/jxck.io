@@ -22,17 +22,17 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 102 - Chrome Developers*
+- **New in Chrome 102 - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-chrome-102/
   - File Handling API
   - The inert property
   - Navigation API
-- *New in Chrome 103 - Chrome Developers*
+- **New in Chrome 103 - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-chrome-103/
   - HTTP 103 status code 103 - early hints
   - Local Font Access API
   - Easier Timeouts with `AbortSignal.timeout()`
-- *What's New In DevTools (Chrome 103) - Chrome Developers*
+- **What's New In DevTools (Chrome 103) - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-devtools-103/
   - Capture double-click and right-click events in the Recorder panel
   - New timespan and snapshot mode in the Lighthouse panel
@@ -45,9 +45,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Support large blobs for virtual authenticators
   - New keyboard shortcuts in the Sources panel
   - Sourcemaps improvements
-- *New syntax for range media queries in Chrome 104 - Chrome Developers*
+- **New syntax for range media queries in Chrome 104 - Chrome Developers**
   - https://developer.chrome.com/en/blog/media-query-range-syntax/
-- *Chromium Blog: Chrome 104 Beta: New Media Query Syntax, Region Capture, and More*
+- **Chromium Blog: Chrome 104 Beta: New Media Query Syntax, Region Capture, and More**
   - https://blog.chromium.org/2022/06/chrome-104-beta-new-media-query-syntax.html
   - Origin Trials
     - New Origin Trials
@@ -84,7 +84,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Ship: DisplayMediaStreamConstraints.surfaceSwitching
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/YJ0FmnFCKY0
-- *Ship: `navigateEvent.intercept()`*
+- **Ship: `navigateEvent.intercept()`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jyWqjAEv5LU
 - Ship: Picture-in-Picture (Android)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jXkQiIVpxr8
@@ -94,7 +94,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/pxgVrAzMfyk
 - Ship: MathML
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/n4zf_3FWmAA
-- *Ship: `import.meta.resolve()`*
+- **Ship: `import.meta.resolve()`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ZVODFsnIf74
   - 相対パスを渡すとコンテキストに応じて絶対パスに解決する
 - Ship: Viewport-height client hint
@@ -107,14 +107,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2wBykF4dgz8
 - Prototype: CSS Color Level 4
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tr4efbeV4PM
-- *Prototype: CSS :lang pseudo class level 4*
+- **Prototype: CSS :lang pseudo class level 4**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/EPvTLPs2yws
-- *Prototype: Background Blur API.*
+- **Prototype: Background Blur API.**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3ke9hgaREwM
   - ビデオ会議などで映像の人物の背景をぼかす API
 - Prototype: CSS Overflow for replaced elements
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/iCbr1QLRLPw
-- *Prototype: CSS Trigonometric functions*
+- **Prototype: CSS Trigonometric functions**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-c9p-Sq_gWg
   - CSS で三角関数
 - Prototype: Gamepad API Trigger-Rumble Extension
@@ -125,7 +125,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/U1B81QRAQ34
 - Prototype: Gamepad API vibration on Android 12+
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/wU9y_UEN3NI
-- *Prototype: Private Network Access permission to relax mixed content*
+- **Prototype: Private Network Access permission to relax mixed content**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6MczoSFGiHo
   - TLS で暗号化できない、ドメインのないローカルサーバで mixed contents を緩和したい
   - 明示的に要件を緩和する API の追加
@@ -143,12 +143,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/PhLkO3KITyw
 - Extend Experiment: Web app launch handler
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/BzwopwOFzFw
-- *WebView Origin Trials enabled on 103 beta*
+- **WebView Origin Trials enabled on 103 beta**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/pb-UsysjHME
   - OT が WebView でも使えるようになる
 - Change:
 - Unship:
-- *Deprecate and Remote: `navigateEvent.transitionWhile()`*
+- **Deprecate and Remote: `navigateEvent.transitionWhile()`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/W7fivudG21c
 - Deprecate and Remove: Gesture Scroll DOM events
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dJ939dfV234
@@ -160,7 +160,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2JNZauywllM
 - PSA: Adding 'Set-Cookie' header to Fetch's forbidden header names
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/SyHAsPfO004
-- *PSA: change to process for WebKit signals*
+- **PSA: change to process for WebKit signals**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/qO38-AfQ2AE/
   - Webkit 版の Standard Position 公開
   - http://bit.ly/blink-signals
@@ -169,7 +169,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### V8
 
-- *Discontinuing release blog posts · V8*
+- **Discontinuing release blog posts · V8**
   - https://v8.dev/blog/discontinuing-release-posts
 - Retrofitting Temporal Memory Safety on C++ · V8
   - https://v8.dev/blog/retrofitting-temporal-memory-safety-on-c++
@@ -178,11 +178,11 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Other
 
 - web.dev
-  - *First-party cookie recipes*
+  - **First-party cookie recipes**
     - https://web.dev/first-party-cookie-recipes/
   - New to the web platform in June
     - https://web.dev/web-platform-06-2022/
-  - *Farewell to HTML5Rocks*
+  - **Farewell to HTML5Rocks**
     - https://web.dev/farewell-html5rocks/
   - TransformStream is now supported cross-browser
     - https://web.dev/transformstream/
@@ -193,7 +193,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.googleblog.com/2022/06/Using-research-to-make-code-review-more-equitable.html
   - アイテムの分類を更新して Search Console レポートを簡素化  |  Google 検索セントラル ブログ  |  Google Developers
     - https://developers.google.com/search/blog/2022/06/search-console-item-classification
-  - *Googlebot and the 15 MB thing  |  Google Search Central Blog  |  Google Developers*
+  - **Googlebot and the 15 MB thing  |  Google Search Central Blog  |  Google Developers**
     - https://developers.google.com/search/blog/2022/06/googlebot-15mb
     - Bot が HTML を 15MB しかみてない話
 - google developer japan blog
@@ -202,7 +202,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - chrome developer blog
   - Attribution Reporting updates in June 2022 - Chrome Developers
     - https://developer.chrome.com/en/blog/attribution-reporting-updates-june-2022/
-  - *Faster page loads using server think-time with Early Hints - Chrome Developers*
+  - **Faster page loads using server think-time with Early Hints - Chrome Developers**
     - https://developer.chrome.com/en/blog/early-hints/
   - Generate summary reports with the aggregation service - Chrome Developers
     - https://developer.chrome.com/en/blog/generate-summary-reports/
@@ -221,16 +221,16 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Firefox 102.0, See All New Features, Updates and Fixes*
+- **Firefox 102.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/102.0/releasenotes/
   - ETP Strict モードでトラッキング用のクエリーを削除
-- *Firefox 102 for developers - Mozilla | MDN*
+- **Firefox 102 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/102
   - TransformStream
   - Readable byte streams
 - These Weeks In Firefox: Issue 119 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/06/30/these-weeks-in-firefox-issue-119/
-- *SpiderMonkey Newsletter (Firefox 102-103) | SpiderMonkey JavaScript/WebAssembly Engine*
+- **SpiderMonkey Newsletter (Firefox 102-103) | SpiderMonkey JavaScript/WebAssembly Engine**
   - https://spidermonkey.dev/blog/2022/06/30/newsletter-firefox-102-103.html
   - 👷🏽‍♀️ New features
     - We've implemented the array findLast/findLastIndex proposal (disabled by default).
@@ -253,30 +253,30 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: Transferable streams*
+- **Ship: Transferable streams**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/a18PTC0vumI
-- *Ship: scroll-snap-stop*
+- **Ship: scroll-snap-stop**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Ot7a8Xgtxrg
 - Ship: disabled property on SVGStyleElement
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/qMoKScceGac
-- *Ship: `Array.{findLast,findLastIndex}`*
+- **Ship: `Array.{findLast,findLastIndex}`**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/aHdalM9Dveo
-- *Prototype: `linear()` easing function*
+- **Prototype: `linear()` easing function**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/vaniCZs9oBo
-- *Prototype: Atomics.waitAsync*
+- **Prototype: Atomics.waitAsync**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Z5TPivxh1Xs
 - Experiment:
 - Change:
 - Remove:
 - Firefox Security & Privacy Newsletter - 2022 Q1
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/_cDmbksiJu4
-- *Make `<embed>` and `<object>` behave more like `<iframe>` for image loading.*
+- **Make `<embed>` and `<object>` behave more like `<iframe>` for image loading.**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/UwO49Fu-F2s
 
 
 #### Other
 
-- *The JavaScript Specification has a New License - Mozilla Hacks - the Web developer blog*
+- **The JavaScript Specification has a New License - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2022/06/the-specification-for-javascript-has-a-new-license/
   - ECMA-262/402 のライセンスを変更することに
   - ECMA は W3C とライセンスが違い、法的レビューのオーバーヘッドがあった
@@ -293,9 +293,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Web technology sessions at WWDC22
   - https://webkit.org/blog/12840/web-platform-and-web-extensions-features-highlighted-at-wwdc22/
   - Tuesday, June 7
-    - *What's new in Safari and WebKit*
-    - *Meet Web Push for Safari*
-    - *Meet Passkeys*
+    - **What's new in Safari and WebKit**
+    - **Meet Web Push for Safari**
+    - **Meet Passkeys**
       - https://support.apple.com/en-us/HT213305
   - Wednesday, June 8
     - What's new in Safari Web Extensions
@@ -307,7 +307,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Friday, June 10
     - What's new in WKWebView
     - Improve DNS security for apps and servers
-- *News from WWDC22: WebKit Features in Safari 16 Beta*
+- **News from WWDC22: WebKit Features in Safari 16 Beta**
   - https://webkit.org/blog/12824/news-from-wwdc-webkit-features-in-safari-16-beta/
   - Web Inspector Extensions
   - Container Queries
@@ -318,12 +318,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Animation Improvements
   - Overscroll Behavior
   - Shared Worker
-- *Meet Web Push*
+- **Meet Web Push**
   - https://webkit.org/blog/12945/meet-web-push/
   - 2023 年の iOS / iPadOS で WebPush が有効に
   - 他と同様 `userVisibleOnly` のみ
   - webpushd というデーモンが push を受け取る
-- *Release Notes for Safari Technology Preview 147 with Safari 16 Features*
+- **Release Notes for Safari Technology Preview 147 with Safari 16 Features**
   - https://webkit.org/blog/12960/release-notes-for-safari-technology-preview-147-with-safari-16-features/
   - Live Text
   - Web technologies
@@ -332,13 +332,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - Improved Safari Web Extensions
   - Web Inspector Extensions
   - Flexbox Inspector
-- *Release Notes for Safari Technology Preview 148*
+- **Release Notes for Safari Technology Preview 148**
   - https://webkit.org/blog/12992/release-notes-for-safari-technology-preview-148/
   - Web Inspector
   - `:has()` pseudo-class
     - Added support for invalidating :target pseudo-class
     - Added partial support for invalidating :in-range and :out-of-range
-  - *CSS Container Queries*
+  - **CSS Container Queries**
   - CSS
     - Added support for each-line keyword in text-indent
     - Implemented `:modal` pseudo-class
@@ -352,7 +352,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web API
   - Media
   - Security
-    - *Added support for Link nonces*
+    - **Added support for Link nonces**
   - Loading
   - WebDriver
 
@@ -364,10 +364,10 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *[webkit-dev] WebKit is now on GitHub*
+- **[webkit-dev] WebKit is now on GitHub**
   - https://lists.webkit.org/pipermail/webkit-dev/2022-June/032312.html
   - WebKit のレポジトリが GitHub に移行
-- *[webkit-dev] new standards-positions repo*
+- **[webkit-dev] new standards-positions repo**
   - https://lists.webkit.org/pipermail/webkit-dev/2022-June/032319.html
   - standards position も GitHub に移動
   - https://github.com/WebKit/standards-positions
@@ -380,9 +380,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Internet Explorer 11 has retired and is officially out of support -what you need to know | Windows Experience Blog*
+- **Internet Explorer 11 has retired and is officially out of support -what you need to know | Windows Experience Blog**
   - https://blogs.windows.com/windowsexperience/2022/06/15/internet-explorer-11-has-retired-and-is-officially-out-of-support-what-you-need-to-know/
-- *Internet Explorer 11 はサポートを終了しました。長年のご愛顧ありがとうございました。 - Windows Blog for Japan*
+- **Internet Explorer 11 はサポートを終了しました。長年のご愛顧ありがとうございました。 - Windows Blog for Japan**
   - https://blogs.windows.com/japan/2022/06/15/internet-explorer-11-is-no-longer-supported/
 - IE モードのよくあるご質問 | Japan Developer Support Internet Team Blog
   - https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/ie-mode-faq/
@@ -456,23 +456,23 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *W3C Media Advisory: W3C to become a public-interest non-profit organization*
+- **W3C Media Advisory: W3C to become a public-interest non-profit organization**
   - https://www.w3.org/2022/06/pressrelease-w3c-le.html.en
   - https://www.w3.org/blog/news/archives/9594
   - W3C が NPO になる
 - W3C overrules Google, Mozilla's objections to identifiers • The Register
   - https://www.theregister.com/2022/07/01/w3c_overrules_objections/
-- *W3C Advisory Committee Elects Advisory Board*
+- **W3C Advisory Committee Elects Advisory Board**
   - https://www.w3.org/blog/news/archives/9568
 - W3C Invites Implementations of CSS Custom Properties for Cascading Variables Module Level 1
   - https://www.w3.org/blog/news/archives/9580
-- *W3C joins leading standards organizations and companies to coordinate interoperability standards for an open and inclusive metaverse*
+- **W3C joins leading standards organizations and companies to coordinate interoperability standards for an open and inclusive metaverse**
   - https://www.w3.org/blog/news/archives/9584
   - Metaverse Standards Forum に Join
   - https://metaverse-standards.org/
 - Page Visibility Level 2 Published as a Discontinued Draft
   - https://www.w3.org/blog/news/archives/9589
-- *Replace the outline algorithm with one based on heading levels · whatwg/html@6682bde*
+- **Replace the outline algorithm with one based on heading levels · whatwg/html@6682bde**
   - https://github.com/whatwg/html/commit/6682bdeee6fb08f5972bea92064fe250f1b4ec9c
   - Outline algorithm がなくなる
   - セクションの入れ子ではなく見出しでアウトラインができる
@@ -509,7 +509,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### New Proposals
 
-- *FrankYFTang/proposal-intl-temporal*
+- **FrankYFTang/proposal-intl-temporal**
   - https://github.com/FrankYFTang/proposal-intl-temporal
   - temporal と intl の間を埋める提案
 
@@ -548,35 +548,35 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022AprJun/0161.html
   - IETF 114: Call for topics
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022AprJun/0154.html
-  - *RFC 9110: HTTP Semantics*
+  - **RFC 9110: HTTP Semantics**
     - https://rfc-editor.org/rfc/rfc9110
-  - *RFC 9111: HTTP Caching*
+  - **RFC 9111: HTTP Caching**
     - https://rfc-editor.org/rfc/rfc9111
-  - *RFC 9112: HTTP/1.1*
+  - **RFC 9112: HTTP/1.1**
     - https://rfc-editor.org/rfc/rfc9112
-  - *RFC 9113: HTTP/2*
+  - **RFC 9113: HTTP/2**
     - https://rfc-editor.org/rfc/rfc9113
-  - *RFC 9114: HTTP/3*
+  - **RFC 9114: HTTP/3**
     - https://rfc-editor.org/rfc/rfc9114
-  - *RFC 9163: Expect-CT Extension for HTTP*
+  - **RFC 9163: Expect-CT Extension for HTTP**
     - https://rfc-editor.org/rfc/rfc9163
-  - *RFC 9204: QPACK: Field Compression for HTTP/3*
+  - **RFC 9204: QPACK: Field Compression for HTTP/3**
     - https://rfc-editor.org/rfc/rfc9204
-  - *RFC 9205: Building Protocols with HTTP*
+  - **RFC 9205: Building Protocols with HTTP**
     - https://rfc-editor.org/rfc/rfc9205
-  - *RFC 9209: The Proxy-Status HTTP Response Header Field*
+  - **RFC 9209: The Proxy-Status HTTP Response Header Field**
     - https://rfc-editor.org/rfc/rfc9209
-  - *RFC 9211: The Cache-Status HTTP Response Header Field*
+  - **RFC 9211: The Cache-Status HTTP Response Header Field**
     - https://rfc-editor.org/rfc/rfc9211
-  - *RFC 9213: Targeted HTTP Cache Control*
+  - **RFC 9213: Targeted HTTP Cache Control**
     - https://rfc-editor.org/rfc/rfc9213
-  - *RFC 9218: Extensible Prioritization Scheme for HTTP*
+  - **RFC 9218: Extensible Prioritization Scheme for HTTP**
     - https://rfc-editor.org/rfc/rfc9218
-  - *RFC 9220: Bootstrapping WebSockets with HTTP/3*
+  - **RFC 9220: Bootstrapping WebSockets with HTTP/3**
     - https://rfc-editor.org/rfc/rfc9220
-  - *RFC 9230: Oblivious DNS over HTTPS*
+  - **RFC 9230: Oblivious DNS over HTTPS**
     - https://rfc-editor.org/rfc/rfc9230
-  - *Please review HTTP performance aspects of Incremental Font Transfer*
+  - **Please review HTTP performance aspects of Incremental Font Transfer**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2022AprJun/0274.html
     - W3C でやってる Incremental Font Transfer (IFT) のレビュー依頼
     - https://w3c.github.io/IFT/Overview.html
@@ -612,7 +612,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Cloudflare
 
-- *Internet Explorer, we hardly knew ye*
+- **Internet Explorer, we hardly knew ye**
   - https://blog.cloudflare.com/internet-explorer-retired/
 - Network performance update: Cloudflare One Week June 2022
   - https://blog.cloudflare.com/network-performance-update-cloudflare-one-week-june-2022/
@@ -622,7 +622,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/how-cloudflare-security-does-zero-trust/
 - HTTP/3 inspection on Cloudflare Gateway
   - https://blog.cloudflare.com/cloudflare-gateway-http3-inspection/
-- *Early Hints update: How Cloudflare, Google, and Shopify are working together to build a faster Internet for everyone*
+- **Early Hints update: How Cloudflare, Google, and Shopify are working together to build a faster Internet for everyone**
   - https://blog.cloudflare.com/early-hints-performance/
 - Using Cloudflare Tunnel and Access with Postgres
   - https://blog.cloudflare.com/cloudflare-tunnel-for-postgres/
@@ -640,21 +640,21 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/cloudflare-one-week-2022/
 - Cloudflare mitigates 26 million request per second DDoS attack
   - https://blog.cloudflare.com/26m-rps-ddos/
-- *Private Access Tokens: eliminating CAPTCHAs on iPhones and Macs with open standards*
+- **Private Access Tokens: eliminating CAPTCHAs on iPhones and Macs with open standards**
   - https://blog.cloudflare.com/eliminating-captchas-on-iphones-and-macs-using-new-standard/
-- *HTTP RFCs have evolved: A Cloudflare view of HTTP usage trends*
+- **HTTP RFCs have evolved: A Cloudflare view of HTTP usage trends**
   - https://blog.cloudflare.com/cloudflare-view-http3-usage/
 - Cloudflare observations of Confluence zero day (CVE-2022-26134)
   - https://blog.cloudflare.com/cloudflare-observations-of-confluence-zero-day-cve-2022-26134/
 - In Ukraine and beyond, what it takes to keep vulnerable groups online
   - https://blog.cloudflare.com/in-ukraine-and-beyond-what-it-takes-to-keep-vulnerable-groups-online/
-- *Cloudflare outage on June 21, 2022*
+- **Cloudflare outage on June 21, 2022**
   - https://blog.cloudflare.com/cloudflare-outage-on-june-21-2022/
 
 
 #### Fastly
 
-- *Private Access Tokens: stepping into the privacy-respecting, CAPTCHA-less future we were promised | Fastly*
+- **Private Access Tokens: stepping into the privacy-respecting, CAPTCHA-less future we were promised | Fastly**
   - https://www.fastly.com/blog/private-access-tokens-stepping-into-the-privacy-respecting-captcha-less
 - OpenTelemetry Part 1: Making the Edge less distant | Fastly
   - https://www.fastly.com/blog/opentelemetry-part-1-making-the-edge-less-distant
@@ -665,9 +665,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *クレジットカード番号等取扱業者に対する行政処分を行いました(メタップス)*
+- **クレジットカード番号等取扱業者に対する行政処分を行いました(メタップス)**
   - https://www.meti.go.jp/press/2022/06/20220630007/20220630007.html
-- *個人情報を含む USB メモリーの紛失事案について|尼崎市公式ホームページ*
+- **個人情報を含む USB メモリーの紛失事案について|尼崎市公式ホームページ**
   - https://www.city.amagasaki.hyogo.jp/kurashi/seikatusien/1027475/1030947.html
 
 
@@ -681,13 +681,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.igalia.com/2022/06/22/Intent-to-Ship-MathML.html
 - ISP シェア 2022 | www.kosho.org
   - https://www.kosho.org/blog/net/isp-share-2022/
-- *Leaving Mozilla - Anne's Blog*
+- **Leaving Mozilla - Anne's Blog**
   - https://annevankesteren.nl/2022/06/leaving-mozilla
-- *After Mozilla - Anne's Blog*
+- **After Mozilla - Anne's Blog**
   - https://annevankesteren.nl/2022/06/after-mozilla
 - The cost of convenience - surma.dev
   - https://surma.dev/things/cost-of-convenience/
-- *What ~will~would a Chromium-only Web look like?*
+- **What ~will~would a Chromium-only Web look like?**
   - https://www.mnot.net/blog/2022/06/22/chromium-only
 - Yet More New HTTP Specs
   - https://www.mnot.net/blog/2022/06/08/http-extensions
@@ -697,9 +697,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://infrequently.org/2022/06/apple-is-not-defending-browser-engine-choice/
 - Web Engines Hackfest 2022 notes - HackMD
   - https://hackmd.io/@tchevalier/HyoJsT4K5
-- *「モバイル・エコシステムに関する競争評価 中間報告」及び「新たな顧客接点(ボイスアシスタント及びウェアラブル)に関する競争評価 中間報告」に対する意見募集について|e-Gov パブリック・コメント*
+- **「モバイル・エコシステムに関する競争評価 中間報告」及び「新たな顧客接点(ボイスアシスタント及びウェアラブル)に関する競争評価 中間報告」に対する意見募集について|e-Gov パブリック・コメント**
   - https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=060220427&Mode=0
-- *行政におけるデザインシステムのあり方に関する調査研究 | AIS | 一般社団法人 行政情報システム研究所*
+- **行政におけるデザインシステムのあり方に関する調査研究 | AIS | 一般社団法人 行政情報システム研究所**
   - https://www.iais.or.jp/reports/labreport/20220601/design2021/
 
 

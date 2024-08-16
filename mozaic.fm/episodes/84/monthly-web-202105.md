@@ -22,7 +22,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 91*
+- **New in Chrome 91**
   - https://developer.chrome.com/blog/new-in-chrome-91/
   - Suggested names for File System Access API
   - Reading files from the clipboard
@@ -41,13 +41,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://docs.google.com/presentation/d/1y7oEoygH7X7pO1get4ZFCifBcukpp9aNWCHRR4qGOTw
   - History of the Web
     - https://drive.google.com/file/d/1zOcIKvyU8KOZikioRPVoH7B_t7_xmaof/view
-  - *Fenced Frames Architecture*
+  - **Fenced Frames Architecture**
     - https://docs.google.com/presentation/d/18b6jH8HZFjGJh-SU_pxWs4XeTbiqre0kaAgw0rK_654
   - WebTransports
     - https://docs.google.com/presentation/d/1sXofJ8oHRu0IstC6sy6C5uYUsK_4aa3a7vwjHkHfdaI
-  - *Prerendering Design*
+  - **Prerendering Design**
     - https://docs.google.com/presentation/d/1Rpi-R0wo4r7tgFTfGAMVAqZfiOmqJqEW7kDM-KY6Q-s/edit
-  - *WebID*
+  - **WebID**
     - https://docs.google.com/presentation/d/1H1DsncQ_vUvnTwkf2m2GUr1o1tCtxj91H6-yk0C8aaY
   - WebCodecs: Design & Process
     - https://docs.google.com/presentation/d/1LKsv4kr7SSUQHtMTCcQMwAC6-G4IFG9eohIs0_zsUWo
@@ -64,11 +64,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://events.google.com/io/session/af611a1c-b490-4514-8e0d-0b64200409f4?lng=ja
   - コンポーネント駆動型環境における新しいレスポンシブ ウェブデザイン
     - https://events.google.com/io/session/a1760fa3-879a-4e98-a616-994ca8d3aab5?lng=ja
-  - *読み込み後のパフォーマンス*
+  - **読み込み後のパフォーマンス**
     - https://events.google.com/io/session/61a0f83e-1d64-4bdc-b5d9-04360db925ec?lng=ja
-  - *ページ エクスペリエンス ランキングに向けた準備*
+  - **ページ エクスペリエンス ランキングに向けた準備**
     - https://events.google.com/io/session/165a213a-d593-4ad0-9bee-18615a4757e8?lng=ja
-  - *検索の最新情報*
+  - **検索の最新情報**
     - https://events.google.com/io/session/6da5bb28-ad54-4cf0-8dc5-4eacb73a660a?lng=ja
 
 
@@ -78,7 +78,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1PVr94hZHjU/m/J0xT8-rlAQAJ
 - Ship: droppedEntriesCount in PerformanceObserver callback
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/nNOU--_vWyI/m/drtfbxihAgAJ
-- *Ship: EXIF-based intrinsic image sizing*
+- **Ship: EXIF-based intrinsic image sizing**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RqDYSPYE4lI/m/sxXCWw5dAgAJ
   - 密度をもとに x2 を x1 で表示して崩れるなどを防ぐ
 - Ship: `crypto.randomUUID()`
@@ -87,14 +87,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/qJIix3x5xY8/m/mpvmBnvUAQAJ
 - Implement and Ship: Add "matrix" to registerProtocolHandler safelisted schemes
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/DGt2Iz5qidU/m/28s_1ZqUBQAJ
-- *Prototype and Ship: User-Agent Client Hints API Updates*
+- **Prototype and Ship: User-Agent Client Hints API Updates**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dafizBGwWMw/m/72l-1zm6AAAJ
   - see chromium blog
 - Prototype and Ship: Web Bluetooth manufacturer data filter
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5Id2LANtFko/m/5SIig7ktAgAJ
 - Prototype and Ship: noplaybackrate in HTMLMediaElement.controlsList
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/u9jsiarDEOg/m/lpPUQH9VAgAJ
-- *Prototype: Fenced Frames for Ads*
+- **Prototype: Fenced Frames for Ads**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Ko9UXQYPgUE/m/URRsB-qvAAAJ
   - postMessage, script access, window.top などが使えない frame
   - FLEDGE などで使う予定
@@ -104,24 +104,24 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/OtjnvZstpLE/m/27NbikirAgAJ
 - Prototype: MediaCapabilities API for WebRTC
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/lE1qySPAEMs/m/29OgzgyoAgAJ
-- *Prototype: `:has()` pseudo class*
+- **Prototype: `:has()` pseudo class**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hqkcKdDrhXE/m/qzEVzxbfAwAJ
 - Prototype: Pickling for Async Clipboard API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Lo7WBM_v_LY/m/LncCKkXeAwAJ
 - Prototype: Capture handle
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/yLTykllpNmI/m/bnzA4mASBAAJ
-- *Prototype: Sec-CH-Prefers-Color-Scheme client hint header*
+- **Prototype: Sec-CH-Prefers-Color-Scheme client hint header**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ejTbFoJF3sQ/m/wRAxkc54AQAJ
-- *Prototype: Anonymous iframes*
+- **Prototype: Anonymous iframes**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CjrLTguZuO4/m/kEO65RvCAAAJ
   - COEP が無くても読み込める iframe ?
-- *Implement: Secure DNS Enhanced Bootstrap*
+- **Implement: Secure DNS Enhanced Bootstrap**
   - https://groups.google.com/a/chromium.org/g/net-dev/c/hfozKnhgGfU/m/HaORnLZ0BAAJ
 - Experiment: Back-forward cache for desktop
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/GJsdwulsGiI/m/7OauT6SjBQAJ
 - Experiment: WebGPU
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/K4_egTNAvTs/m/ApS804L_AQAJ
-- *Experiment: Shared Element Transitions*
+- **Experiment: Shared Element Transitions**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UgZAAElUWzU/m/sBc82Fb2AgAJ
 - Experiment: Compute Pressure API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/HzVV-sM97T0/m/yHcpZWRQAgAJ
@@ -129,7 +129,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RKONugfoGwM/m/ZInY8UtXBAAJ
 - Experiment: `aria-touchpassthrough`
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/w6OKsf4e9-Y/m/OUhROQ9JAAAJ
-- *Experiment: 103 Early Hints preload during Navigation*
+- **Experiment: 103 Early Hints preload during Navigation**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xb_NHDS3twY/m/Ha1c7Ly9AQAJ
 - Continue Experimenting: First-Party Sets and 'SameParty' cookie attribute
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/nNdY-qOScBc/m/A5H3mcf5BQAJ
@@ -145,20 +145,20 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bw7Nh5bfsYE/m/ArLjJ1D7AwAJ
 - Experiment: Speculation Rules (Prefetch)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Cw-hOjT47qI/m/EObn9-4MAgAJ
-- *Remove: 3DES in TLS*
+- **Remove: 3DES in TLS**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RShdgyaDoX4/m/JikQYHPuBQAJ
 - Ready for Trial: Intl Locale Info in ECMA402
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5spmAncbooE/m/NdwZGjLpAgAJ
-- *Update on User-Agent Reduction plans*
+- **Update on User-Agent Reduction plans**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/e3pZJu96g6c/m/X9HcrSkVAgAJ
   - see chromium blog
 - PSA: New implementations of IDL union types
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/YBh8dD9FBb0/m/By7uOTbXAQAJ
-- *Starting the journey to standardizing Window Controls Overlay*
+- **Starting the journey to standardizing Window Controls Overlay**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8cIRiv-dIms/m/GjF52KmJAQAJ
-- *PSA: A clarification on "gapless" origin trials*
+- **PSA: A clarification on "gapless" origin trials**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/A5fRrs5nZkc/m/f9O7-UUeAgAJ
-- *Increased Origin Trial Limits for Upcoming Privacy APIs*
+- **Increased Origin Trial Limits for Upcoming Privacy APIs**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/c4noVavt-uM/m/OhB3cd0EAgAJ
 - Request for Conversion Measurement OT page load limit exception
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/HSg5vO9R4jI/m/mc6bILjSBAAJ
@@ -172,7 +172,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://v8.dev/blog/v8-release-91
 - Short builtin calls · V8
   - https://v8.dev/blog/short-builtin-calls
-- *Sparkplug - a non-optimizing JavaScript compiler · V8*
+- **Sparkplug - a non-optimizing JavaScript compiler · V8**
   - https://v8.dev/blog/sparkplug
   - v8 は Interpreter の Ignition と Compiler の TurboFan で成り立っている
   - Interpreter の最適化が限界に来ている
@@ -199,7 +199,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/es-modules-in-sw/
   - The new responsive: Web design in a component-driven world
     - https://web.dev/new-responsive/
-  - *Migrate to User-Agent Client Hints*
+  - **Migrate to User-Agent Client Hints**
     - https://web.dev/migrate-to-ua-ch/
   - Choose how in-scope links open your PWA with Declarative Link Capturing
     - https://web.dev/declarative-link-capturing/
@@ -211,7 +211,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/vitals-ga4/
   - Excalidraw and Fugu: Improving Core User Journeys
     - https://web.dev/excalidraw-and-fugu/
-  - *Security headers quick reference*
+  - **Security headers quick reference**
     - https://web.dev/security-headers/
   - Recognize your users' handwriting
     - https://web.dev/handwriting-recognition/
@@ -228,7 +228,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.googleblog.com/2021/05/tech-camp-introduces-georgia-high.html
   - Google Developers Blog: Behind the scenes: How the Google I/O photo booth was made
     - https://developers.googleblog.com/2021/05/behind-scenes-how-google-io-photo-booth-was-made.html
-  - *Search at Google I/O 2021  |  Google Search Central Blog*
+  - **Search at Google I/O 2021  |  Google Search Central Blog**
     - https://developers.google.com/search/blog/2021/05/search-io-2021
   - Prevent portions of your site from being abused by spam
     - https://developers.google.com/search/blog/2021/05/prevent-portions-of-site-from-spam
@@ -254,13 +254,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google Developers Japan: 2021 年 5 月 12 日以降、 SEARCH QUERY PERFORMANCE REPORT の AdFormat が UNKNOWN に
     - https://developers-jp.googleblog.com/2021/05/2021-5-12-search-query-performance.html
 - chromium blog
-  - *Chromium Blog: Adjusted timeline for SharedArrayBuffers*
+  - **Chromium Blog: Adjusted timeline for SharedArrayBuffers**
     - https://blog.chromium.org/2021/05/adjusted-timeline-for-sharedarraybuffers.html
     - M91 から M92 に延期した
-  - *Chromium Blog: An experiment in helping users and web publishers create deeper connections on Chrome*
+  - **Chromium Blog: An experiment in helping users and web publishers create deeper connections on Chrome**
     - https://blog.chromium.org/2021/05/an-experiment-in-helping-users-and-web.html
     - Web のフォローボタンが RSS を使う
-  - *Chromium Blog: Update on User-Agent String Reduction in Chrome*
+  - **Chromium Blog: Update on User-Agent String Reduction in Chrome**
     - https://blog.chromium.org/2021/05/update-on-user-agent-string-reduction.html
     - M89 で UA-CH がリリース済み
     - Phase1: M92 から devtools で `navigator.[userAgent|appVersion|platform]` の利用に警告
@@ -274,7 +274,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Chromium Blog: Chrome is up to 23% faster in M91 and saves over 17 years of CPU time daily
     - https://blog.chromium.org/2021/05/chrome-is-faster-in-m91.html
 - google workspace updates
-  - *Google Docs will now use canvas based rendering: this may impact some Chrome extensions*
+  - **Google Docs will now use canvas based rendering: this may impact some Chrome extensions**
     - https://workspaceupdates.googleblog.com/2021/05/Google-Docs-Canvas-Based-Rendering-Update.html
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
@@ -294,21 +294,21 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Improving Firefox stability on Linux - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2021/05/improving-firefox-stability-on-linux/
-- *Introducing Firefox's new Site Isolation Security Architecture - Mozilla Hacks - the Web developer blog*
+- **Introducing Firefox's new Site Isolation Security Architecture - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/05/introducing-firefox-new-site-isolation-security-architecture/
 - Updates to Firefox's Breach Alert Policy - Mozilla Security Blog
   - https://blog.mozilla.org/security/2021/05/25/updates-to-firefoxs-breach-alert-policy/
-- *Introducing Site Isolation in Firefox - Mozilla Security Blog*
+- **Introducing Site Isolation in Firefox - Mozilla Security Blog**
   - https://blog.mozilla.org/security/2021/05/18/introducing-site-isolation-in-firefox/
 
 
 #### Intents
 
-- *ship: Fetch Metadata Request Headers*
+- **ship: Fetch Metadata Request Headers**
   - https://groups.google.com/g/mozilla.dev.platform/c/MO64cIV43ts/m/SPzPLa1TAQAJ
 - ship: allow pages with \*unload event listeners to enter bfcache on Android
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/3pQRLPZnQgQ
-- *ship: `at()` relative indexing*
+- **ship: `at()` relative indexing**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/YJv7laP5-8c
 - ship: -webkit-image-set() alias to image-set()
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/l74dqVGg6cs
@@ -316,31 +316,31 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/xQYtpdiBFHk
 - ship: Changing cache re-validation on a soft reload
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/IiuvO7eHBME
-- *ship: Ergonomic Brand Checks*
+- **ship: Ergonomic Brand Checks**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/vtjtuSjxzuY
 - ship: WheelEvent.wheelDelta{,X,Y}
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/u4BaOxspzvw
 - ship: visual viewport on desktop platforms
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ThYEXTiQc9g
-- *ship: EXIF image density correction*
+- **ship: EXIF image density correction**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/w-KLmQ2PQOM
 - prototype: JPEG XL decoding
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/wdB1v7sKcdo
-- *prototype: Implement path() on d property on SVG path element*
+- **prototype: Implement path() on d property on SVG path element**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/BTXw4pOfnR4
 
 
 #### Other
 
-- *Growing the Bytecode Alliance - The Mozilla Blog*
+- **Growing the Bytecode Alliance - The Mozilla Blog**
   - https://blog.mozilla.org/blog/2021/04/28/growing-the-bytecode-alliance/
 - These Weeks in Firefox: Issue 92 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/04/26/these-weeks-in-firefox-issue-92/
 - These Weeks in Firefox: Issue 93 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/05/14/these-weeks-in-firefox-issue-93/
-- *These Weeks in Firefox: Issue 94 - Firefox Nightly News*
+- **These Weeks in Firefox: Issue 94 - Firefox Nightly News**
   - https://blog.nightly.mozilla.org/2021/05/21/these-weeks-in-firefox-issue-94/
-- *Manifest v3 update | Mozilla Add-ons Blog*
+- **Manifest v3 update | Mozilla Add-ons Blog**
   - https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/
 
 
@@ -353,24 +353,24 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - New WebKit Features in Safari 14.1
   - https://webkit.org/blog/11648/new-webkit-features-in-safari-14-1/
-  - *Flexbox Gap Support*
-  - *Date & Time Inputs on macOS*
+  - **Flexbox Gap Support**
+  - **Date & Time Inputs on macOS**
   - CSS Individual Transform Properties
   - Paint Timing API
   - Web Speech API
   - Web Audio API
   - Interoperability Improvements
   - MediaRecorder API
-  - *WebM Support*
+  - **WebM Support**
   - JavaScript Improvements
-    - *Class Fields*
+    - **Class Fields**
     - Internationalization API
     - WeakRef and FinalizationRegistry
   - WebAssembly
     - Threading
     - WebAssembly Sign Extension Operator
     - JavaScript BigInt Integration
-  - *Private Click Measurement*
+  - **Private Click Measurement**
   - Storage Access API Updates
   - Web Inspector Updates
   - Availability
@@ -380,8 +380,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - CSS
   - JavaScript
   - Web API
-    - *Enabled the ability to prevent scrolling in Element.focus() (r274812)*
-    - *Implemented AbortSignal.abort() (r274773)*
+    - **Enabled the ability to prevent scrolling in Element.focus() (r274812)**
+    - **Implemented AbortSignal.abort() (r274773)**
   - Rendering
   - Wheel Events
   - Web Driver
@@ -394,13 +394,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://webkit.org/blog/11680/release-notes-for-safari-technology-preview-125/
   - Web Inspector
   - CSS
-    - *Added parsing for @counter-style descriptors (r276488)*
-    - *Added support for CSS display 2-value syntax (e.g. display: inline flex ) (r276293)*
-    - *Added support for inline-{start/end} values to float & clear CSS properties (r276216)*
+    - **Added parsing for @counter-style descriptors (r276488)**
+    - **Added support for CSS display 2-value syntax (e.g. display: inline flex ) (r276293)**
+    - **Added support for inline-{start/end} values to float & clear CSS properties (r276216)**
   - Web Animations
-    - *Added discrete animation support for border-image-repeat (r276465)*
+    - **Added discrete animation support for border-image-repeat (r276465)**
   - WebAssembly
-    - *Added call_ref instruction (r276896)*
+    - **Added call_ref instruction (r276896)**
   - Storage
   - Web API
     - Implemented `<form>.requestSubmit()` (r277257)
@@ -450,7 +450,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.apple.com/newsroom/2021/04/ios-14-5-offers-unlock-iphone-with-apple-watch-diverse-siri-voices-and-more/
   - Unlock iPhone with Apple Watch
   - Siri Enhancements
-  - *More Privacy Controls*
+  - **More Privacy Controls**
   - New Emoji
   - Report an Incident in Apple Maps
   - Additional iOS 14.5 Features
@@ -479,7 +479,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *The future of Internet Explorer on Windows 10 is in Microsoft Edge*
+- **The future of Internet Explorer on Windows 10 is in Microsoft Edge**
   - https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge/
   - 「Internet Explorer 11 デスクトップ アプリケーションは 2022 年 6 月 15 日をもってサポートを終了いたします」
   - 2021/05/19: Internet Explorer デスクトップアプリ提供終了発表
@@ -488,7 +488,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Microsoft Edge 組み込みのサイト リスト マネージャーについて
   - https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/edge-ie-mode-site-list-manager/
   - 互換モードに追加する方法
-- *Internet Explorer から Microsoft Edge への移行ガイドライン*
+- **Internet Explorer から Microsoft Edge への移行ガイドライン**
   - https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/guidelines-for-migrating-from-ie-to-microsoft-edge/
   - ステージ 1. IE を既定のブラウザーとして運用している
     - 1-1. IE に依存しているサイトの洗い出し
@@ -500,7 +500,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 2-2. サイト一覧へのサイトの追加
   - ステージ 3. IE モードを部分的に利用しているが IE デスクトップ アプリはもう使っていない
   - ステージ 4. Edge に完全に移行できており、 IE モード含めて完全に必要ない
-- *Internet Explorer 11 デスクトップ アプリのサポート終了へ! IE モードへの移行を進めましょう!*
+- **Internet Explorer 11 デスクトップ アプリのサポート終了へ! IE モードへの移行を進めましょう!**
   - https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/internet-explorer-app-end-of-support/
   - サポート範囲などの日本語での補足
 - IE で開いていたページが Microsoft Edge にリダイレクトされる動作について
@@ -530,7 +530,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2021/05/19/download-blocking-by-file-type/
 - Offline NetLog Viewing - text/plain
   - https://textslashplain.com/2021/05/25/offline-netlog-viewing/
-- *Internet Explorer: A Brief History - Ben Slivka*
+- **Internet Explorer: A Brief History - Ben Slivka**
   - https://benslivka.com/2021/05/27/internet-explorer-a-brief-history/
   - IE の歴史
 
@@ -556,7 +556,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/9043
   - First Public Working Draft of Geolocation API
     - https://www.w3.org/blog/news/archives/9079
-  - *First Public Working Draft: Specification for Spoken Presentation in HTML*
+  - **First Public Working Draft: Specification for Spoken Presentation in HTML**
     - https://www.w3.org/blog/news/archives/9062
     - SSML なんてあるのね
   - First Public Working Drafts: WebGPU and WebGPU Shading Language
@@ -566,7 +566,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/public-new-work/2021May/0006.html
   - HTML Working Group Charter extended until 1 September 2021
     - https://lists.w3.org/Archives/Public/public-new-work/2021May/0004.html
-  - *Advance Notice: Working in progress on a Portable Network Graphics (PNG) Working Group*
+  - **Advance Notice: Working in progress on a Portable Network Graphics (PNG) Working Group**
     - https://lists.w3.org/Archives/Public/public-new-work/2021May/0002.html
 
 
@@ -574,7 +574,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Working Group Note: Making Content Usable for People with Cognitive and Learning Disabilities
   - https://www.w3.org/blog/news/archives/9035
-- *W3C opens Advisory Board (AB) election*
+- **W3C opens Advisory Board (AB) election**
   - https://www.w3.org/blog/news/archives/9041
 - W3C Strategic Highlights, April 2021
   - https://www.w3.org/blog/news/archives/9029
@@ -593,7 +593,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/notes/tree/master/meetings/2021-04
   - TC39 meeting, April 19-21 2021
     - https://spidermonkey.dev/blog/2021/05/10/tc39.html
-- *2021-05*
+- **2021-05**
   - https://github.com/tc39/agendas/blob/master/2021/05.md
 
 
@@ -613,8 +613,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - Accessible Object.prototype.hasOwnProperty()
   - Realms
 - 3->4
-  - *RegExp Match Indices*
-  - *Top Level await*
+  - **RegExp Match Indices**
+  - **Top Level await**
 
 
 #### New Proposals
@@ -645,25 +645,25 @@ guest: [@myakura](https://twitter.com/myakura)
   - WG Virtual Meeting
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0107.html
     - 2021-06-17 from 21:00 to 23:00 GMT (21:00 to 23:00 UTC).
-  - *I-D Action: draft-ietf-httpbis-bcp56bis-12.txt*
+  - **I-D Action: draft-ietf-httpbis-bcp56bis-12.txt**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0080.html
-  - *Publication has been requested for draft-ietf-httpbis-bcp56bis-12*
+  - **Publication has been requested for draft-ietf-httpbis-bcp56bis-12**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0102.html
     - BCP56 の RFC 発行がリクエストされた
   - draft-ietf-httpbis-proxy-status-05.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0079.html
   - HTTP Signatures Updates
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0075.html
-  - *Proposal for new `Partitioned` cookie attribute*
+  - **Proposal for new `Partitioned` cookie attribute**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0099.html
     - CHIPS を httpbis に持ち込む話
   - Permitted characters in HTTP/2 fields
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0070.html
-  - *Results from adopting HTTP/3 priority*
+  - **Results from adopting HTTP/3 priority**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0068.html
     - Instagram では H3 の Priority を試したところうまく動いたという話。
     - H2 よりもシンプルになってよかった。
-  - *HTTP Working Group Interim Meeting Agenda - June 15, 17 2021*
+  - **HTTP Working Group Interim Meeting Agenda - June 15, 17 2021**
     - https://httpwg.org/wg-materials/interim-21-06/agenda.html
     - 15 min - Client Cert Header
     - 15 min - Safe method with body
@@ -680,11 +680,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0150.html
   - I-D Action: draft-ietf-httpbis-cache-16.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0151.html
-  - *Last Call: (HTTP Caching) to Proposed Standard from The IESG*
+  - **Last Call: (HTTP Caching) to Proposed Standard from The IESG**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0152.html
-  - *Last Call: (HTTP/1.1) to Proposed Standard from The IESG*
+  - **Last Call: (HTTP/1.1) to Proposed Standard from The IESG**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0153.html
-  - *Last Call: (HTTP Semantics) to Proposed Standard from The IESG*
+  - **Last Call: (HTTP Semantics) to Proposed Standard from The IESG**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0154.html
 - quicwg
   - https://mailarchive.ietf.org/arch/browse/quic/
@@ -693,7 +693,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.rfc-editor.org/rfc/rfc8999.html
     - QUIC では version negotiation が許可されている
     - 新しいバージョンの QUIC が出てきても共通するべき部分などについて
-  - *RFC 9000: QUIC: A UDP-Based Multiplexed and Secure Transport*
+  - **RFC 9000: QUIC: A UDP-Based Multiplexed and Secure Transport**
     - https://www.rfc-editor.org/rfc/rfc9000.html
     - UDP 上の新しいトランスポートプロトコル
   - RFC 9001: Using TLS to Secure QUIC
@@ -724,21 +724,21 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Cloudflare
 
-- *Humanity wastes about 500 years per day on CAPTCHAs. It's time to end this madness*
+- **Humanity wastes about 500 years per day on CAPTCHAs. It's time to end this madness**
   - https://blog.cloudflare.com/introducing-cryptographic-attestation-of-personhood/
   - CAPTCHA をなくすために Privacy Pass の発行に WebAuthn を使う
-  - *Why Cloudflare's CAPTCHA replacement with FIDO2/WebAuthn is a really bad idea*
+  - **Why Cloudflare's CAPTCHA replacement with FIDO2/WebAuthn is a really bad idea**
     - https://herrjemand.medium.com/why-cloudflares-captcha-replacement-with-fido2-webauthn-is-a-really-bad-idea-d5487f6c7566
     - FIDO から見ると bad idea らしい
-- *CDN-Cache-Control: Precision Control for your CDN(s)*
+- **CDN-Cache-Control: Precision Control for your CDN(s)**
   - https://blog.cloudflare.com/cdn-cache-control/
-- *QUIC Version 1 is live on Cloudflare*
+- **QUIC Version 1 is live on Cloudflare**
   - https://blog.cloudflare.com/quic-version-1-is-live-on-cloudflare/
 
 
 #### Fastly
 
-- *QUIC is now RFC 9000*
+- **QUIC is now RFC 9000**
   - https://www.fastly.com/blog/quic-is-now-rfc-9000
   - Google の最初の実験から 5 年
   - 26 回の Interim, 1749 の Issue, 何千もの Mail を経て標準化
@@ -756,7 +756,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *Publicly Trusted TLS Certificates: Changes - Blog | GlobalSign*
+- **Publicly Trusted TLS Certificates: Changes - Blog | GlobalSign**
   - https://www.globalsign.com/en/blog/upcoming-changes-publicly-trusted-tls-certificates
   - ドメインと IP の検証結果の再利用を最長 398 日に
   - HTTP domain validation は Subdomain と Wildcard では禁止に
@@ -769,7 +769,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *How we use Web Components at GitHub*
+- **How we use Web Components at GitHub**
   - https://github.blog/2021-05-04-how-we-use-web-components-at-github/
 
 

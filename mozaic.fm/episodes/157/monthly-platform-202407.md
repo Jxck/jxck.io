@@ -22,12 +22,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 127*
+- **New in Chrome 127**
   - https://developer.chrome.com/blog/new-in-chrome-127
   - CSS font-size-adjust
   - Document picture-in-picture: propagate user activation
   - Keyboard focusable scroll containers.
-- *What's new in DevTools, Chrome 127*
+- **What's new in DevTools, Chrome 127**
   - [https://developer.chrome.com/blog/new-in-devtools-127](https://developer.chrome.com/blog/new-in-devtools-127?hl=en)
   - Inspect CSS anchor positioning in the Elements panel
   - Sources panel improvements
@@ -39,7 +39,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Send and receive WebSocket events in the Performance panel
 - What's New in WebGPU (Chrome 127)
   - https://developer.chrome.com/blog/new-in-webgpu-127
-- *Chrome 128 beta*
+- **Chrome 128 beta**
   - https://developer.chrome.com/blog/chrome-128-beta
   - CSS
     - CSS ruby-align property
@@ -72,18 +72,18 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: CSS Anchor Positioning: Unwrapped inset-area()*
+- **Ship: CSS Anchor Positioning: Unwrapped inset-area()**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/svDZprJ-LjE
   - `position-try-fallbacks:inset-area(top)` を `position-try-fallbacks:top` って書ける
-- *Ship: Intl.DurationFormat*
+- **Ship: Intl.DurationFormat**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Ft8-RWx0e2Q
 - Ship: Promise.try
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1cxpRmqIY44
 - Ship: Private Aggregation API: filtering IDs
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/_04scQwbWhk
-- *Ship: Rename inset-area to position-area*
+- **Ship: Rename inset-area to position-area**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/D-vUkcOSHEg
-- *Ship: Rename position-try-options to position-try-fallbacks*
+- **Ship: Rename position-try-options to position-try-fallbacks**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kJwhHYXupWk
 - Ship: Attribution Reporting Feature: Changes to source-destination-limit logic
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/qlsv7fn0zRE
@@ -91,19 +91,19 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/VKGn41wMYlg
 - Ship: AudioContext.onerror
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/B0t-BZzs8s4
-- *Ship: CSS interpolate-size property and calc-size() function*
+- **Ship: CSS interpolate-size property and calc-size() function**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/FjyMSSaSPEg
-- *Ship: Isolated Web Apps*
+- **Ship: Isolated Web Apps**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/iMfYonTs414
 - Ship: Web Authentication API: JSON serialization methods
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ZUbw6XzeJEU
-- *Ship: Coalesce selectionchange events*
+- **Ship: Coalesce selectionchange events**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/H-X3bbS8Ag4
 - Ship: Protected Audience: cross-origin trusted signals fetches
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5nvBAjmoO2g
 - Ship: Remove PointerEvent.getCoalescedEvents() from insecure contexts
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/eQ5cQA-Fz30
-- *Ship: Web Permissions API on WebView*
+- **Ship: Web Permissions API on WebView**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/aB_5aOGtaGI
 - Ship: WebGPU extended range (HDR) support
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/rBQIRHUEAe8
@@ -111,26 +111,26 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LZXocaeCwDw
 - Prototype: Pause media playback on not-rendered iframes
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/D0j1igiVHR8
-- *Prototype: Selection API across Shadow DOM and Selection.getComposedRanges*
+- **Prototype: Selection API across Shadow DOM and Selection.getComposedRanges**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/HwQQqrbEfvc
-- *Prototype: Support currentcolor in Relative Color Syntax*
+- **Prototype: Support currentcolor in Relative Color Syntax**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bdtHZOUvGTI
-- *Prototype: Add bugfix version number to User-Agent string on Bling*
+- **Prototype: Add bugfix version number to User-Agent string on Bling**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/I5r9cxliL-0
   - iOS 版 Chrome の UA 文字列の OS バージョン部分にパッチバージョンを追加 (`_1` の部分)
   - `Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X)...`
   - `Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X)...`
 - Prototype: Nested view transitions
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/iG4WDZOOzxY
-- *Prototype: Sanitizer API*
+- **Prototype: Sanitizer API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/DTyARSjGP4g
-- *Prototype: Shared Storage API enhancement (allow cross-origin script in addModule & align createWorklet)*
+- **Prototype: Shared Storage API enhancement (allow cross-origin script in addModule & align createWorklet)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/YZ4XGewKVuk
 - Prototype: Transferable RTCDataChannel to workers
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/64yIg0Ya3No
 - Prototype: Update the syntax of `text-wrap` to match the new spec
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dDCIG2rQs7Q
-- *Prototype: HTML handwriting attribute*
+- **Prototype: HTML handwriting attribute**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0r_tV6k0NyA
   - `<textarea handwriting></textarea>`
 - Deprecate and Remove: Deprecation of CSS Anchor Positioning property `inset-area`
@@ -149,7 +149,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Xgpz_MnjL4k
 - Extend Experiment: Explicit Compile Hints with Magic Comments
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/mwZYYTBJ12g
-- *Ready for Developer Testing: Intl.DurationFormat*
+- **Ready for Developer Testing: Intl.DurationFormat**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/TTdMixrlxfk
 - Web-Facing Change PSA: Rename position-try-options to position-try-fallbacks
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zuwwttisa9E
@@ -176,9 +176,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - web.dev
   - blog
-    - *How to use container queries now*
+    - **How to use container queries now**
       - [https://web.dev/blog/how-to-use-container-queries-now](https://web.dev/blog/how-to-use-container-queries-now?hl=en)
-    - *Interop 2024 mid-year update*
+    - **Interop 2024 mid-year update**
       - [https://web.dev/blog/interop-2024-midyear](https://web.dev/blog/interop-2024-midyear?hl=en)
     - New to the web platform in June
       - [https://web.dev/blog/web-platform-06-2024](https://web.dev/blog/web-platform-06-2024?hl=en)
@@ -191,7 +191,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - google for developers
   - Bringing the I/O magic to Berlin - Google Developers Blog
     - https://developers.googleblog.com/en/bringing-the-io-magic-to-berlin/
-  - *Google URL Shortener links will no longer be available - Google Developers Blog*
+  - **Google URL Shortener links will no longer be available - Google Developers Blog**
     - https://developers.googleblog.com/en/google-url-shortener-links-will-no-longer-be-available/
 - google developer japan blog
   - Google Developers Japan: Google Ads API v17 のお知らせ
@@ -203,24 +203,24 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/blog/extension-news-july-2024
   - Chrome Extensions: Important policy updates
     - https://developer.chrome.com/blog/cws-policy-updates-2024
-  - *Misconceptions about view transitions*
+  - **Misconceptions about view transitions**
     - https://developer.chrome.com/blog/view-transitions-misconceptions
-  - *How Chrome helps users install the apps they value*
+  - **How Chrome helps users install the apps they value**
     - https://developer.chrome.com/blog/how_chrome_helps_users_install_the_apps_they_value
-  - *Line-breakable `<ruby>` and CSS ruby-align property*
+  - **Line-breakable `<ruby>` and CSS ruby-align property**
     - https://developer.chrome.com/blog/line-breakable-ruby
-  - *Request for developer feedback on reading-flow and elements with display: contents*
+  - **Request for developer feedback on reading-flow and elements with display: contents**
     - https://developer.chrome.com/blog/reading-flow-display-contents
 - chromium blog
   - https://blog.chromium.org/
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
 - google security blog
-  - *Google Online Security Blog: Sustaining Digital Certificate Security - Entrust Certificate Distrust*
+  - **Google Online Security Blog: Sustaining Digital Certificate Security - Entrust Certificate Distrust**
     - https://security.googleblog.com/2024/06/sustaining-digital-certificate-security.html
   - Q2 2024 Summary from Chrome Security
     - https://groups.google.com/a/chromium.org/g/security-dev/c/lqwmgK-jlKY
-  - *Google Online Security Blog: Building security into the redesigned Chrome downloads experience*
+  - **Google Online Security Blog: Building security into the redesigned Chrome downloads experience**
     - https://security.googleblog.com/2024/07/building-security-into-redesigned.html
 - search blog
   - Configure your shipping and returns directly in Search Console
@@ -229,10 +229,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://googleprojectzero.blogspot.com/2024/06/the-windows-registry-adventure-3.html
 - v8
   - https://v8.dev/
-- *`*.google.com` だけ CPU/GPU/Memory usage をフルで取れる API が Chrome にある話*
+- **`*.google.com` だけ CPU/GPU/Memory usage をフルで取れる API が Chrome にある話**
   - https://x.com/lcasdev/status/1810696257137959018
   - https://x.com/simonw/status/1810731216796324080
-- *Google Workspace Updates: Import and export Markdown in Google Docs*
+- **Google Workspace Updates: Import and export Markdown in Google Docs**
   - https://workspaceupdates.googleblog.com/2024/07/import-and-export-markdown-in-google-docs.html
   - Docs の Markdown のエクスポートが可能に
   - mozaic.fm 的には待望の神機能
@@ -267,12 +267,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Ship: screen and viewport options for vector-effect
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/D-7LtjA-kUw
-- *Ship: Iterator Helpers*
+- **Ship: Iterator Helpers**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Y7aNEjKLel4
 - Prototype:
 - Implement: HTMLVideoElement's requestVideoFrameCallback
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/HcC0OHvYgHc
-- *Prototype: CSS 'stretch' sizing keyword (with '-webkit-fill-available' as an alias)*
+- **Prototype: CSS 'stretch' sizing keyword (with '-webkit-fill-available' as an alias)**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/-pMSV-kgUjA
 - Change:
 - Remove:
@@ -328,7 +328,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/en/products/firefox/picture-in-picture/
 - Privacy-Preserving Attribution | Firefox Help
   - https://support.mozilla.org/en-US/kb/privacy-preserving-attribution
-- *A Word About Private Attribution in Firefox : r/firefox*
+- **A Word About Private Attribution in Firefox : r/firefox**
   - https://www.reddit.com/r/firefox/comments/1e43w7v/a_word_about_private_attribution_in_firefox/
   - Firefox 128 で PPA の実験を開始したところ炎上したことに対し CTO が Reddit で PPA の仕組みを説明
 
@@ -346,7 +346,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Release Notes for Safari Technology Preview 199 | WebKit
   - https://webkit.org/blog/15735/release-notes-for-safari-technology-preview-199/
   - Added support for Uint8Array.prototype.toBase64 and Uint8Array.prototype.toHex.
-- *Private Browsing 2.0 | WebKit*
+- **Private Browsing 2.0 | WebKit**
   - https://webkit.org/blog/15697/private-browsing-2-0/
   - Safari が強化してきたプライバシー保護のまとめ
     - Link Tracking Protection
@@ -358,7 +358,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ついでに Topics API を批判
 - WebKit Features in Safari 17.6 | WebKit
   - https://webkit.org/blog/15739/webkit-features-in-safari-17-6/
-  - *Safe alignment in Flexbox*
+  - **Safe alignment in Flexbox**
 
 
 #### Standard Positions
@@ -489,11 +489,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Third Party Cookies Must Be Removed*
+- **Third Party Cookies Must Be Removed**
   - https://www.w3.org/2001/tag/doc/web-without-3p-cookies/
-- *Third-party cookies have got to go*
+- **Third-party cookies have got to go**
   - https://www.w3.org/blog/2024/third-party-cookies-have-got-to-go/
-- *W3C Team appointments to the TAG ratified*
+- **W3C Team appointments to the TAG ratified**
   - https://www.w3.org/news/2024/w3c-team-appointments-to-the-tag-ratified/
 - W3C offers an Inclusion Fund for TPAC 2024
   - https://www.w3.org/news/2024/w3c-offers-an-inclusion-fund-for-tpac-2024/
@@ -512,7 +512,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - assert の unship が終わって with (attributes) がくれば stage 4 になる
   - Float16Array
     - みんな実装中
-  - *Decorators and Decorator Metadata*
+  - **Decorators and Decorator Metadata**
     - 仕様も Stage3 で test262 もほぼでき
     - 実装があつまるようなら 2.7 に戻す必要も特にない
     - 実装待ち
@@ -523,12 +523,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Explicit Resource Management
     - 実装中
     - テストも作成中
-  - *Promise.try for Stage 3*
+  - **Promise.try for Stage 3**
     - Test262 完成
     - Stage 3 へ
-  - *RegExp Escaping*
+  - **RegExp Escaping**
     - 2.7 へ
-  - *ShadowRealm Update*
+  - **ShadowRealm Update**
     - HTML integration が進んでる
     - more feedback を求めてる
     - "confidentiality" でもめてる
@@ -540,7 +540,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 2.7 へ
     - Demo
     - https://tc39.es/proposal-joint-iteration/demo/
-  - *Temporal Stage 3 update and scope reduction*
+  - **Temporal Stage 3 update and scope reduction**
     - Temporal.Calendar, Temporal.TimeZone などの仕様を削って範囲を狭める
     - substract()/since() は削除されない
     - Stage 3 キープ
@@ -635,7 +635,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024AprJun/0124.html
   - Publication has been requested for draft-ietf-httpbis-compression-dictionary-05
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0006.html
-  - *Possible ambiguity in RFC 6265bis*
+  - **Possible ambiguity in RFC 6265bis**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0125.html
 - Meeting
 
@@ -644,7 +644,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Openness in Internet Standards: Necessary, but Insufficient
   - https://www.mnot.net/blog/2024/07/05/open_internet_standards
-- *Are Internet Standards Competitive or Collaborative?*
+- **Are Internet Standards Competitive or Collaborative?**
   - https://www.mnot.net/blog/2024/07/16/collaborative_standards
 
 
@@ -682,16 +682,16 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *Persistent npm Campaign Shipping Trojanized jQuery*
+- **Persistent npm Campaign Shipping Trojanized jQuery**
   - https://blog.phylum.io/persistent-npm-campaign-shipping-trojanized-jquery/
   - jQuery に悪意のあるコードを含んで、同梱配布しているパッケージがみつかった
-- *Security Alert: Update to the Authy Android (v25.1.0) and iOS App (v26.1.0) | Twilio*
+- **Security Alert: Update to the Authy Android (v25.1.0) and iOS App (v26.1.0) | Twilio**
   - [\*\*https://www.twilio.com/en-us/changelog/Security_Alert_Authy_App_Android_iOS\*\*](https://www.twilio.com/en-us/changelog/Security_Alert_Authy_App_Android_iOS)
   - Authy ハッキングで 3,300 万件の電話番号流出
-- *Unlawful Access of Customer Data - AT&T Bill & account Customer Support*
+- **Unlawful Access of Customer Data - AT&T Bill & account Customer Support**
   - https://www.att.com/support/article/my-account/000102979
   - AT&T の電話番号がほぼ全て(1.1 億人)流出発覚
-- *Intent to End OCSP Service - Let's Encrypt*
+- **Intent to End OCSP Service - Let's Encrypt**
   - https://letsencrypt.org/2024/07/23/replacing-ocsp-with-crls.html
   - OCSP の提供をやめ CRL に移行する
   - もともと CRL の改善のために提案されたのが OCSP だった
@@ -702,50 +702,50 @@ guest: [@myakura](https://twitter.com/myakura)
   - CAB でも OCSP はオプショナルとして合意された
   - MS だけが反対してるが、おそらくそのうち変わるだろう
   - OCSP はほぼフェイルオープンな扱いなので影響は少ないが、使ってるアプリは確認が必要
-- *Windows resiliency: Best practices and the path forward - Microsoft Community Hub*
+- **Windows resiliency: Best practices and the path forward - Microsoft Community Hub**
   - https://techcommunity.microsoft.com/t5/windows-it-pro-blog/windows-resiliency-best-practices-and-the-path-forward/ba-p/4201550
-- *Windows Security best practices for integrating and managing security tools | Microsoft Security Blog*
+- **Windows Security best practices for integrating and managing security tools | Microsoft Security Blog**
   - https://www.microsoft.com/en-us/security/blog/2024/07/27/windows-security-best-practices-for-integrating-and-managing-security-tools/
-- *How Windows 3.1 is saving Southwest's butt | Digital Trends*
+- **How Windows 3.1 is saving Southwest's butt | Digital Trends**
   - https://www.digitaltrends.com/computing/southwest-cloudstrike-windows-3-1/
-- *Apple、信頼できる企業や人物を装いユーザーの機密データを入手しようとする「ソーシャルエンジニアリング攻撃」に対して注意勧告。*
+- **Apple、信頼できる企業や人物を装いユーザーの機密データを入手しようとする「ソーシャルエンジニアリング攻撃」に対して注意勧告。**
   - https://applech2.com/archives/20240704-apple-social-engineering-attackers.html
-- *ランサムウェア攻撃による情報漏洩に関する さらなる犯行声明および当社グループの対応状況について | 株式会社ドワンゴ*
+- **ランサムウェア攻撃による情報漏洩に関する さらなる犯行声明および当社グループの対応状況について | 株式会社ドワンゴ**
   - https://dwango.co.jp/news/5129602523463680/
-- *～ニコニコ動画が 8/5 に再開、新バージョンに～ ニコニコの復旧状況およびサービス停止に伴う補償について|ニコニコインフォ*
+- **～ニコニコ動画が 8/5 に再開、新バージョンに～ ニコニコの復旧状況およびサービス停止に伴う補償について|ニコニコインフォ**
   - https://blog.nicovideo.jp/niconews/225330.html
 
 
 ### 周辺動向
 
-- *Open Internet Governance*
+- **Open Internet Governance**
   - https://open-internet-governance.org/
   - An Open Letter to the United Nations
   - https://open-internet-governance.org/letter
   - Press Release
   - https://open-internet-governance.org/press-release
   - 国連の Global Digital Compact のプロセスにオープンな標準化の団体が関われておらず、内容にもオープンとずれてるとこがあると懸念があっての公開書簡
-- *Announcing the Ladybird Browser Initiative*
+- **Announcing the Ladybird Browser Initiative**
   - https://ladybird.org/announcement.html
   - Serenity OS (90 年代の OS を再現したようなやつ)の HTML Viewer から始まった
   - 他のブラウザからはコードを借りずにゼロから実装する
   - すでに GitHub の Issue や PR は動いてる
   - Ladybird Browser Initiative で寄付ベースで開発をすすめる
   - 企業との取引などによる収益化はしない
-- *Why we need Ladybird - Chris Wanstrath*
+- **Why we need Ladybird - Chris Wanstrath**
   - https://ladybird.org/why-ladybird.html
   - Safari / Firefox は、デフォルト検索エンジンを Google にするために年間数億ドルを受け取ってる
   - 新しいブラウザを作るのは不可能で、 Chrome の座は奪えないという人はたくさんいる
   - 完全にゼロから、寄付のみで運用されるブラウザを作ることが非常に重要
 - Igalians Celebrated with Prestigious Awards | Igalia
   - https://www.igalia.com/2024/07/10/Igalians-Celebrated-with-Prestigious-Awards.html
-- *Marc Andreessen on Building Netscape & the Birth of the Browser - YouTube*
+- **Marc Andreessen on Building Netscape & the Birth of the Browser - YouTube**
   - https://www.youtube.com/watch?v=8aTjA_bGZO4
   - Netscape ができたころの話
-- *Mac OSX support · Issue #1314 · MicrosoftEdge/WebView2Feedback*
+- **Mac OSX support · Issue #1314 · MicrosoftEdge/WebView2Feedback**
   - https://github.com/MicrosoftEdge/WebView2Feedback/issues/1314#issuecomment-2211683486
   - WebView2 の Mac/Linux 展開をやめることに
-- *Misfire - Infrequently Noted*
+- **Misfire - Infrequently Noted**
   - https://infrequently.org/2024/07/misfire/
   - 3rd Party Cookie に関する一連の流れについて、の TAG に対する批判
   - 「TAG がやるべきこと」という視点でまとめられている
@@ -755,18 +755,18 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - How Chromium's cookies get evicted
   - https://blog.yoav.ws/posts/how_chromium_cookies_get_evicted/
-- *A new path for Privacy Sandbox on the web*
+- **A new path for Privacy Sandbox on the web**
   - https://privacysandbox.com/news/privacy-sandbox-update/
   - オンラインプライバシーの問題を解決するため Privacy Sandbox などに取り組んできた。
   - その活動は CMA や ICO その他各機関や業界からフィードバックを得てきた。
   - 検証の結果、効果は出ているが、それでも業界の移行に時間がかかりすぎており、影響も大きい。
   - そこで、 3rd Party Cookie の廃止をやめて、ユーザが「informed choice」できるように方針を変更していくことにする。
   - それでも Privacy Sandbox は重要なので投資は続ける。またユーザのプライバシーのために、プライベートモードに IP Protection を入れる。
-- *Investigation into Google's 'Privacy Sandbox' browser changes - GOV.UK*
+- **Investigation into Google's 'Privacy Sandbox' browser changes - GOV.UK**
   - https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes
-- *Learnings from Privacy Sandbox Testing*
+- **Learnings from Privacy Sandbox Testing**
   - https://privacysandbox.com/news/learnings-from-privacy-sandbox-testing/
-- *Results from Privacy Sandbox APIs testing*
+- **Results from Privacy Sandbox APIs testing**
   - https://support.google.com/admanager/answer/15189422
 
 

@@ -19,15 +19,15 @@ guest: [@shqld](https://twitter.com/shqld)
 
 - Stable: 76
 - Updates
-  - *Chromium Blog: Chrome 77 Beta: New performance metrics, new form capabilities, capabilities in origin trials and more*
+  - **Chromium Blog: Chrome 77 Beta: New performance metrics, new form capabilities, capabilities in origin trials and more**
     - https://blog.chromium.org/2019/08/chrome-77-beta-new-performance-metrics.html
-    - *Largest Contentful Paint*
-    - *First Input Timing*
-    - *formdata event*
-    - *Contact Picker API*
+    - **Largest Contentful Paint**
+    - **First Input Timing**
+    - **formdata event**
+    - **Contact Picker API**
     - Enter Key Hint
-    - *Feature Policy Control over Document.domain*
-    - *Layout Instability Monitoring*
+    - **Feature Policy Control over Document.domain**
+    - **Layout Instability Monitoring**
     - Limit the "referer" Header's Length to 4kB
     - Limit registerProtocolHandler() url Argument to http/https
     - New Features for Intl.NumberFormat
@@ -36,7 +36,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - RTCPeerConnection.onicecandidateerror
     - RTCPeerConnection.restartIce()
     - Preserve Request Priorities through Service Worker
-    - *Service Workers Support Basic HTTP Authentication*
+    - **Service Workers Support Basic HTTP Authentication**
     - Stop Action for Media Sessions
     - Web Payments: Throw a TypeError on Invalid "basic-card" Data
     - Support Step Timing Functions jump-start|end|both|none
@@ -49,13 +49,13 @@ guest: [@shqld](https://twitter.com/shqld)
     - Card issuer networks as payment method names
     - Deprecate Web MIDI use on insecure origins
     - Deprecate WebVR 1.1 API
-  - *Experimenting with Periodic Background Sync*
+  - **Experimenting with Periodic Background Sync**
     - https://developers.google.com/web/updates/2019/08/periodic-background-sync
   - A Contact Picker for the Web
     - https://developers.google.com/web/updates/2019/08/contact-picker
     - 連絡先にアクセスし、 name/tel/mail などを取得できる API
     - フラグで有効化可能
-  - *The Native File System API: Simplifying access to local files*
+  - **The Native File System API: Simplifying access to local files**
     - https://developers.google.com/web/updates/2019/08/native-file-system
     - 全ての API が実装されているわけではなく、 Flag で有効にできる
     - File の読み書き、ディレクトリ内の列挙などが可能な API
@@ -75,7 +75,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/jOa27iZPJtg/2ArNlXIBBAAJ
   - Implement and Ship: Inline WebVTT Styling
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rebS5clSnIg/U0Nze97LAQAJ
-  - *Implement: Partition the HTTP Cache*
+  - **Implement: Partition the HTTP Cache**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6KKXv1PqPZ0/3_1nYzrBBAAJ
     - https://www.bleepingcomputer.com/news/security/chrome-to-add-http-cache-partitioning-to-block-attacks-tracking/
     - キャッシュがあることをチェックするタイプの攻撃への耐性
@@ -87,13 +87,13 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/b-cGz9c67pM/0zvBzjhrAAAJ
   - Implement: WebXR Anchors
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EAj0HR-jIWI/wiZx2NmqBwAJ
-  - *Implement: Top Level Await*
+  - **Implement: Top Level Await**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1_CyZvzZikM/C3wuu7hTAAAJ
-  - *Implement: JavaScript Optional Chaining*
+  - **Implement: JavaScript Optional Chaining**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/M8-Qp_LydJc/bOl5uQ8RAAAJ
     - null/undefined の property access を undefined にできる記法
     - [blog](https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html)
-  - *Implement: Document Policy*
+  - **Implement: Document Policy**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Biu2XfAls5A/tJFlkdE0AgAJ
     - Feature Policy の中で Permission Delegation にならないものを対象とする
     - 設定や機能制限に関する機能をまとめる
@@ -112,7 +112,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - Fingerprint の懸念についてはまだ作業中っぽい(permission ベース)
   - Implement: Font Enumeration
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XfkSdpMWNik/IX67fOTLAQAJ
-  - *Implement: Element Reflection*
+  - **Implement: Element Reflection**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pWxNRxNcxFE/cjjqFse5AQAJ
     - ARIA のステート属性のうち、 ID で参照するものの API
     - id 属性値ではなく、 Element を代入する `ariaDescribedByElements = element`
@@ -122,9 +122,9 @@ guest: [@shqld](https://twitter.com/shqld)
   - Implement: CompressionStream
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9gaUKa3QmmE/z_Ef9Xr_DQAJ
     - データを pipe すると gzip されて出てくる TransferStream
-  - *Experiment: Periodic Background Sync*
+  - **Experiment: Periodic Background Sync**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aHdERJoKYh8/o3IysK5PFQAJ
-  - *Extend Origin Trial: Web Components v0 Deprecation*
+  - **Extend Origin Trial: Web Components v0 Deprecation**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PoC7ShITSJI/-mrg7qQRBQAJ
     - M73 で Remove 、 M80 で Expire Reverse Origin Trial の予定だった
     - M73 の現在、まだ 2% が使ってるので無理だった
@@ -144,7 +144,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - Remove: Deprecate FTP support
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/e1hkwUL4p3w/11sdjpuMAgAJ
     - ブラウザでほぼ使われてないし、 SFTP もサポートしてないので段階的に消していく
-  - *Upcoming Change to Chrome's Identity Indicators*
+  - **Upcoming Change to Chrome's Identity Indicators**
     - https://groups.google.com/a/chromium.org/forum/#!topic/security-dev/h1bTcoTpfeI
     - https://chromium.googlesource.com/chromium/src/+/HEAD/docs/security/ev-to-page-info.md
     - EV バッジを Omnibox から消して、 Site Info に移す話
@@ -163,7 +163,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blog.amp.dev/2019/08/05/amp-advisory-committee-midterm-election/
   - AMP Roadshow: It's Everywhere! - The AMP Blog
     - https://blog.amp.dev/2019/08/05/amp-roadshow-everywhere/
-  - *amp-script: AMP loves JS - The AMP Blog*
+  - **amp-script: AMP loves JS - The AMP Blog**
     - https://blog.amp.dev/2019/08/21/amp-script-amp-heart-js/
     - `<amp-script>` が正式リリース
 - v8
@@ -172,7 +172,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - The story of a V8 performance cliff in React · V8
     - https://v8.dev/blog/react-cliff
 - Other
-  - *Largest Contentful Paint*
+  - **Largest Contentful Paint**
     - https://web.dev/largest-contentful-paint/
     - 対象要素
       - `<img>`, `<svg>` の `<images>`, `<video>` の poster
@@ -184,7 +184,7 @@ guest: [@shqld](https://twitter.com/shqld)
       - 本質的ではないスタイルは無視
       - 複合的な要素の判別は難しいが、少なくとも各 TextNode の直近の親は Block のみ
     - LCP が重要でない場合は ElementTiming で計測
-  - *Native lazy-loading for the web*
+  - **Native lazy-loading for the web**
     - https://web.dev/native-lazy-loading/
     - loading 属性がだいぶ改善された
     - Partial Request は無し
@@ -202,10 +202,10 @@ guest: [@shqld](https://twitter.com/shqld)
       - https://medium.com/bbc-design-engineering/native-lazy-loading-has-arrived-c37a165d70a5
       - BBC では fast network で load time 50% 削減
       - ページあたり 0.5~1.0s 短く、 40 リクエスト削減
-  - *Progressive Web Apps in multi-origin sites*
+  - **Progressive Web Apps in multi-origin sites**
     - https://web.dev/multi-origin-pwas/
     - PWA にする時 Origin 別れてると色々面倒だから一緒にしたほうが良いという話
-  - *Chromium Blog: Potential uses for the Privacy Sandbox*
+  - **Chromium Blog: Potential uses for the Privacy Sandbox**
     - https://blog.chromium.org/2019/08/potential-uses-for-privacy-sandbox.html
     - https://www.blog.google/products/chrome/building-a-more-private-web/
     - https://www.chromium.org/Home/chromium-privacy/privacy-sandbox
@@ -258,12 +258,12 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/eu2WCpjpRQA/v1Ww22aiAAAJ
   - Ship New Certificate Viewer
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/ouc3XNoYqb8/BZxIl5VgDgAJ
-  - *Implement Double-keyed HTTP cache*
+  - **Implement Double-keyed HTTP cache**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/eFx-93iBPpU/Hs4jUZRgDgAJ
     - Firefox でも HTTP キャッシュのパーティショニングを検討中
-  - *Prototype: text-decoration-skip-ink*
+  - **Prototype: text-decoration-skip-ink**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Xsts-2ORpRY/j96vHsIRAAAJ
-  - *Prototype: re-enabling SharedArrayBuffer*
+  - **Prototype: re-enabling SharedArrayBuffer**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/IHkBZlHETpA/dwsMNchWEQAJ
     - Spectre 対策で無効にした SharedArrayBuffer を再び有効にする試み
     - `postMessage()` はデフォルトで無効にし、 COOP や COEP の設定で使えるようにするといった緩和策を検討中
@@ -287,7 +287,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/yEMdIOo4i-0/34QRrl2jDQAJ
   - Intend to deprecate: XLink attributes on MathML elements
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/70NFnet82cU/01y_qMY0DwAJ
-  - *Fission Newsletter #2*
+  - **Fission Newsletter #2**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/sevpJDQwDfg/qlFrsS7uAAAJ
     - Fission (Firefox 版の Site Isolation) が Nightly に入った
     - `--enable-fission`
@@ -306,7 +306,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - https://groups.google.com/forum/#!msg/mozilla.dev.platform/sevpJDQwDfg/qlFrsS7uAAAJ
   - Web Authentication in Firefox for Android - Mozilla Security Blog
     - https://blog.mozilla.org/security/2019/08/05/web-authentication-in-firefox-for-android/
-  - *DNS-over-HTTPS (DoH) Update - Detecting Managed Networks and User Choice - Future Releases*
+  - **DNS-over-HTTPS (DoH) Update - Detecting Managed Networks and User Choice - Future Releases**
     - https://blog.mozilla.org/futurereleases/2019/07/31/dns-over-https-doh-update-detecting-managed-networks-and-user-choice/
     - DoH について新たな実験をするとの告知
     - ペアレンタルコントロール、セーフサーチ、企業内の split-horizon など、 DNS によるフィルタリングが DoH によって機能しなくなるという懸念に対して行う模様
@@ -325,23 +325,23 @@ guest: [@shqld](https://twitter.com/shqld)
 - Updates
   - Release Notes for Safari Technology Preview 89
     - https://webkit.org/blog/9497/release-notes-for-safari-technology-preview-89/
-    - *Implemented nullish coalescing with the ?? operator for ESNext (r247819)*
-    - *Added referrerpolicy attribute support for `<script>` elements (r247509)*
+    - **Implemented nullish coalescing with the ?? operator for ESNext (r247819)**
+    - **Added referrerpolicy attribute support for `<script>` elements (r247509)**
     - Made storing cross-origin top-level prefetches in HTTP cache optional (r247860)
     - Exposed the aria-label attribute for `<video>` elements (r247891)
     - Enabled a WebRTC debug mode without encryption (r247438)
-    - *Added support for console.screenshot with detached (not in main DOM tree) `<img>` and `<picture>` elements (r247814)*
-    - *Added support for console.screenshot with ImageData and ImageBitmap (r247812)*
+    - **Added support for console.screenshot with detached (not in main DOM tree) `<img>` and `<picture>` elements (r247814)**
+    - **Added support for console.screenshot with ImageData and ImageBitmap (r247812)**
     - Added an indicator/separator around items in the Images collection in the Resources tab (r248019)
     - Add special case for about:blank resources to show "Resource has no content" message (r247747)
   - Release Notes for Safari Technology Preview 90
     - https://webkit.org/blog/9515/release-notes-for-safari-technology-preview-90/
     - 細かいのが多い
-  - *Announcing the WebKit Tracking Prevention Policy*
+  - **Announcing the WebKit Tracking Prevention Policy**
     - https://webkit.org/blog/9507/announcing-the-webkit-tracking-prevention-policy/
     - WebKit の Tracking Prevention について、トラッキングの定義やブロック対象をまとめたドキュメントを公開。 Mozilla の Anti Tracking Policy を参考にしたとも。
     - https://webkit.org/tracking-prevention-policy/
-  - *How Web Content Can Affect Power Usage*
+  - **How Web Content Can Affect Power Usage**
     - https://webkit.org/blog/8970/how-web-content-can-affect-power-usage/
     - バッテリーを長持ちさせるためのガイドライン
     - マシンリソースのハイパワーな状態の時間を減らしできるだけアイドルにする
@@ -349,7 +349,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - アクティブにインタラクションしている
     - ページは最前面に出ているがインタラクションしていない
     - ページが最前面ではない
-    - User Interaction のための *fast paths* をあけておく
+    - User Interaction のための **fast paths** をあけておく
       - FP/ロードの最適化は、電力消費にも効果的
       - 初期ロード後は、 JS をすばやくアイドルにすることが重要
       - OS で可能な操作(スクロール etc) は JS でやらずに OS に任せるほうが効率的。
@@ -378,7 +378,7 @@ guest: [@shqld](https://twitter.com/shqld)
 - Stable:
   - Edge Beta 78
 - Updates
-  - *Introducing Microsoft Edge Beta: Be one of the first to try it now*
+  - **Introducing Microsoft Edge Beta: Be one of the first to try it now**
     - https://blogs.windows.com/windowsexperience/2019/08/20/introducing-microsoft-edge-beta-be-one-of-the-first-to-try-it-now/
 - EdgeHTML
 - Build Changelog
@@ -388,7 +388,7 @@ guest: [@shqld](https://twitter.com/shqld)
 - Other
   - Livin' on the Edge: Dude Where's My Fix?!? (Redux) - text/plain
     - https://textslashplain.com/2019/08/08/livin-on-the-edge-dude-wheres-my-fix-redux/
-  - *An update on disabling VBScript in Internet Explorer 11 - Microsoft Edge Blog*
+  - **An update on disabling VBScript in Internet Explorer 11 - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2019/08/02/update-disabling-vbscript-internet-explorer-windows-7-8/#AQoMz1kXuFvK6M6J.97
     - VB Script 無効化のアナウンス
     - Windows 10 の IE11 では 7 月のアップデートですでに無効になった
@@ -398,7 +398,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - 2019 MS Build でアナウンスされた Collections という機能が Beta に
     - Web サイトをまとめられる Evernote や Google Keep 的なもの
     - Excel にエクスポートもでき、商品の比較など様々な用途に使える
-  - *Reddit MS Edge Team AMA*
+  - **Reddit MS Edge Team AMA**
     - https://www.reddit.com/r/IAmA/comments/c094uf/hi_reddit_were_the_team_behind_microsoft_edge_and/
     - Chrome の Adblock 対応について
     - https://www.reddit.com/r/IAmA/comments/c094uf/hi_reddit_were_the_team_behind_microsoft_edge_and/er34xbw/?context=8&depth=9
@@ -419,7 +419,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - First Public Working Draft: Publication Manifest
     - https://www.w3.org/blog/news/archives/7906
 - Chartering
-  - *Wide review request: DOM Standard Review Draft*
+  - **Wide review request: DOM Standard Review Draft**
     - https://lists.w3.org/Archives/Public/public-html/2019Aug/0001.html
   - Web Audio Working Group Charter Extended until 31 December 2019
     - https://lists.w3.org/Archives/Public/public-new-work/2019Aug/0005.html
@@ -469,7 +469,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://github.com/rricard/proposal-const-value-types
     - constant/immutable な JS の Object
     - Record と Tuple
-  - *Agoric/proposal-infix-bang*
+  - **Agoric/proposal-infix-bang**
     - https://github.com/Agoric/proposal-infix-bang
     - Promise をチェインする演算子
     - `Promise.resolve(x).get(i)` を `x!i` って書ける
@@ -491,12 +491,12 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://tools.ietf.org/html/draft-ietf-cbor-sequence-00
   - A Flags Extension for TLS 1.3
     - https://tools.ietf.org/html/draft-ietf-tls-tlsflags-00
-  - *JSON Schema Language (JSL)*
+  - **JSON Schema Language (JSL)**
     - https://tools.ietf.org/html/draft-ucarion-json-schema-language-01
     - JSON Scheme から code generation するための言語らしい
   - Asynchronous Management Architecture
     - https://tools.ietf.org/html/draft-ietf-dtn-ama-00
-  - *URI Design and Ownership*
+  - **URI Design and Ownership**
     - https://tools.ietf.org/html/draft-nottingham-rfc7320bis-00
     - URI の仕様では、その構造は Scheme ごとに決めて良いとされている
     - そこに勝手に構造を定義すべきではない
@@ -507,7 +507,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://tools.ietf.org/html/draft-irtf-pearg-numeric-ids-generation-00
   - A Survey of Worldwide Censorship Techniques
     - https://tools.ietf.org/html/draft-irtf-pearg-censorship-00
-  - *The Internet is for End Users*
+  - **The Internet is for End Users**
     - https://tools.ietf.org/html/draft-iab-for-the-users-00
     - IETF と IAB がエンドユーザを最優先に考えるべき理由とその方法
     - 先月の An Internet for Users Again に似てる
@@ -515,11 +515,11 @@ guest: [@shqld](https://twitter.com/shqld)
   - OAuth 2.0 Client Intermediary Metadata
     - https://tools.ietf.org/html/draft-parecki-oauth-client-intermediary-metadata-00
 - Other
-  - *TLS 1.3*
+  - **TLS 1.3**
     - https://davidwong.fr/tls13/
     - RFC の実装に必要な部分だけを抜粋したもの
     - Errata も含まれていて実装する人には助かる
-  - *[rtcweb] The late, great RTCWEB*
+  - **[rtcweb] The late, great RTCWEB**
     - https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA
     - rtcweb wg が close
 
@@ -531,7 +531,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - Cloudflare が CT Monitoring の提供開始
 - ImperialViolet - Username (and password) free login with security keys
   - https://www.imperialviolet.org/2019/08/10/ctap2features.html
-- *VU#605641 - HTTP/2 implementations do not robustly handle abnormal traffic and resource exhaustion*
+- **VU#605641 - HTTP/2 implementations do not robustly handle abnormal traffic and resource exhaustion**
   - https://www.kb.cert.org/vuls/id/605641/
   - https://jvn.jp/vu/JVNVU98433488/
   - H2 は H1 よりもリソースを必要とする。
@@ -546,7 +546,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - https://speakerdeck.com/filedescriptor/the-cookie-monster-in-your-browsers
 - GitHub supports Web Authentication (WebAuthn) for security keys - The GitHub Blog
   - https://github.blog/2019-08-21-github-supports-webauthn-for-security-keys/
-- *カザフスタンの証明書ブロック*
+- **カザフスタンの証明書ブロック**
   - Mozilla takes action to protect users in Kazakhstan - The Mozilla Blog
     - https://blog.mozilla.org/blog/2019/08/21/mozilla-takes-action-to-protect-users-in-kazakhstan/
   - Protecting our Users in Kazakhstan - Mozilla Security Blog

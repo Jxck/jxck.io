@@ -19,12 +19,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 71
 - Updates
-  - *New in Chrome 71*
+  - **New in Chrome 71**
     - https://developers.google.com/web/updates/2018/12/nic71
     - Displaying relative times with Intl
     - vertical underline
     - Requiring user activation for speech synthesis API.
-  - *Chromium Blog: Chrome 72 Beta: Public class fields, user activation and more*
+  - **Chromium Blog: Chrome 72 Beta: Public class fields, user activation and more**
     - https://blog.chromium.org/2018/12/chrome-72-beta-public-class-fields-user.html
   - Introducing Background Fetch
     - https://developers.google.com/web/updates/2018/12/background-fetch
@@ -43,21 +43,21 @@ guest: [@myakura](https://twitter.com/myakura)
   - BlinkOn 10 save-the-date
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5K4WbTlD9rI/8Um3FirABAAJ
 - Intents
-  - *Ship: Stale While Revalidate*
+  - **Ship: Stale While Revalidate**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rspPrQHfFkI/rrhGyO4DBwAJ
     - [blog](https://blog.jxck.io/entries/2016-04-16/stale-while-revalidate.html)
   - Ship: Spec compliant serialization for 'animation' shorthand property
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KUelGRZP73Y/kMZcuYv7BgAJ
-  - *Ship: CSS shadow parts*
+  - **Ship: CSS shadow parts**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/DAmfw08GGis/-0OyBbTmBgAJ
     - `part="foo"` と `::part(for)` で ShowTree の中身を外に出す
-  - *Ship: Object.fromEntries()*
+  - **Ship: Object.fromEntries()**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TT5_9N2r5ow/AXnk-VPXBQAJ
   - Ship: touched attribute on GamepadButton
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pc5Jx9qcEJo/JyFBJTbXBQAJ
   - Ship: Transform list interpolation
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/26p_kUZNLj0/rzWN-m-yBQAJ
-  - *Ship: Constructable Stylesheet Objects*
+  - **Ship: Constructable Stylesheet Objects**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gL2EVBzO5og/YfId9-vqBAAJ
   - Ship: Treat Document Level Wheel/Mousewheel Event Listeners as Passive
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PJZbHO7621s/PDkYsushCAAJ
@@ -67,18 +67,18 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XZU_DhQ9ZGs/whPNC357BQAJ
   - Implement and Ship: RTCConfiguration.offerExtmapAllowMixed
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7z3uvp0-ZAc/8Z7qpp71BgAJ
-  - *Implement and Ship: UIAutomation Provider Mappings*
+  - **Implement and Ship: UIAutomation Provider Mappings**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h4HTt4M5dWo/3P2jNGIwBgAJ
     - Microsoft UI Automation (UIA) をマッピングし、 Assistive Technology (AT) などができることを増やす
   - Implement and Ship: CSS: Use the response URL for base URL and response type for security decisions
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7OSy00oxVpk/siufiQVBBwAJ
   - Implement and Ship: Feature Policy JS Introspection API
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qwLRSNFsfUQ/ZhxYYusjCAAJ
-  - *Implement: Scroll Timeline for Web Animations (JS only)*
+  - **Implement: Scroll Timeline for Web Animations (JS only)**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8V4ixKVmNY4/vJQdo9GCBgAJ
   - Implement: Web Bluetooth Scanning
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aVxGkVQ2xRk/iYw0yIB4CQAJ
-  - *Implement: Media Queries: prefers-color-scheme feature*
+  - **Implement: Media Queries: prefers-color-scheme feature**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ
     - [blog](https://blog.jxck.io/entries/2018-11-10/dark-mode-via-prefers-color-scheme.html)
   - Experiment:
@@ -91,7 +91,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Remove:
   - Deprecated and Remove: XMLHttpRequest for FTP resources
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/evZbY6LFq_s/Jrpqwi_dAQAJ
-  - *Deprecate and Remove: Atomics.wake*
+  - **Deprecate and Remove: Atomics.wake**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_zPuM7ETNSE/9Iu-r-XWDwAJ
     - ECMAScript の仕様上 Atomics.notify に rename されている
     - Spectre 関連で SharedArrayBuffer と Atomics が Unship されてる間の変更なので、リスクは少ないとのこと
@@ -102,7 +102,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gwocKqRuXvw/aEXJORBvDAAJ
   - Extend Origin Trial: lowLatency canvas contexts
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9yCtIXtw_Qw/PA2bXNQOBwAJ
-  - *Extend Origin Trial: Signed HTTP Exchanges*
+  - **Extend Origin Trial: Signed HTTP Exchanges**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gJB_mlA6joQ/XUIPLvryBgAJ
   - Extend Origin Trial RTCPeerConnection.id
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OXIHwnuVJRc/k2bBnEbBBAAJ
@@ -122,16 +122,16 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - The Official AMP Plugin for WordPress
     - https://amphtml.wordpress.com/2018/12/07/the-official-amp-plugin-for-wordpress/
-  - *Contributing to WebKit for a more predictable web platform*
+  - **Contributing to WebKit for a more predictable web platform**
     - https://amphtml.wordpress.com/2018/12/06/contributing-to-webkit-for-a-more-predictable-web-platform/
     - AMP チームが Igalia と組んで、 iOS の WebKit を改善してきた記録
   - Why AddThis chose to integrate with AMP
     - https://amphtml.wordpress.com/2018/12/13/why-addthis-chose-to-integrate-with-amp/
-  - *Experimenting with the Wake Lock API*
+  - **Experimenting with the Wake Lock API**
     - https://medium.com/dev-channel/experimenting-with-the-wake-lock-api-b6f42e0a089f
-    - *Project Fugu の一環*
+    - **Project Fugu の一環**
     - https://bugs.chromium.org/p/chromium/issues/list?q=label:Proj-Fugu
-  - *Origin Trials*
+  - **Origin Trials**
     - https://developers.chrome.com/origintrials/
     - (取りこぼし) Origin Trials の一覧
     - 実施中のものから終わったもの、自分が参加したものも見られる
@@ -154,15 +154,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - Intents
   - Ship: InputEvent.inputType (with Input Events Level 1)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/qqPRzzvkAE0/28u0Nl-2CAAJ
-  - *Ship: Storage Access API*
+  - **Ship: Storage Access API**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/BZ36ZDV0Fik/i5ZtGyN8CgAJ
-  - *Implement and Ship: UTF-8 autodetection for HTML and plain text loaded from file: URLs*
+  - **Implement and Ship: UTF-8 autodetection for HTML and plain text loaded from file: URLs**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/jXpEKnsUCuU/vHyoxhOZBgAJ
   - Implement and Ship: break-before, break-after, break-inside CSS properties
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/pZBNiEwBhyA/KMjTYg6zBQAJ
   - Implement and Ship: forced case-sensitive attribute selector matching
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/NMpix5gqXlY/dbvk94zuBgAJ
-  - *Implement and Ship: Overflow media queries*
+  - **Implement and Ship: Overflow media queries**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/0XQjow3t5vY/tmgRdojAAgAJ
   - Implement: TextEncoder.encodeInto() - UTF-8 encode into caller-provided buffer
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/gyzIVfQD_PA/XI3Cb934CQAJ
@@ -197,14 +197,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://medium.com/dev-channel/why-build-progressive-web-apps-if-its-just-a-bookmark-it-s-not-a-pwa-video-write-up-7ccca1c58034
   - MDN Changelog for November 2018 - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2018/12/mdn-changelog-for-november-2018/
-  - *MOSS 2018 Year in Review*
+  - **MOSS 2018 Year in Review**
     - https://blog.mozilla.org/blog/2019/01/03/moss-2018-year-in-review/
     - 2018 年は 40 を超える OSS プロジェクトに $970,000 を出資(寄付)した
-  - *Mozilla Announces Deal to Bring Firefox Reality to HTC VIVE Devices*
+  - **Mozilla Announces Deal to Bring Firefox Reality to HTC VIVE Devices**
     - https://blog.mozilla.org/blog/2019/01/08/mozilla-announces-deal-to-bring-firefox-reality-to-htc-vive-devices/
     - Firefox Reality = immersive コンテンツに特化した browser
     - これを HTC Vive と手を組んでやってくことに
-  - *Mozilla Hacks' 10 most-read posts of 2018*
+  - **Mozilla Hacks' 10 most-read posts of 2018**
     - https://hacks.mozilla.org/2018/12/mozilla-hacks-10-most-read-posts-of-2018/
     - もっとも読まれた記事
     - cartoons はやっぱり強かった
@@ -238,7 +238,7 @@ guest: [@myakura](https://twitter.com/myakura)
 ### Edge 動向
 
 - Stable: 44.17 / 18
-- *Microsoft Edge and Chromium Open Source: Our Intent*
+- **Microsoft Edge and Chromium Open Source: Our Intent**
   - Microsoft Edge: Making the web better through more open source collaboration
     - https://blogs.windows.com/windowsexperience/2018/12/06/microsoft-edge-making-the-web-better-through-more-open-source-collaboration/
     - https://blogs.windows.com/msedgedev/2018/12/07/recapping-open-source-announcements/
@@ -282,7 +282,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Candidate Recommendation
   - W3C Invites Implementations of Geometry Interfaces Module Level 1; CSS Fragmentation Module Level 3
     - https://www.w3.org/blog/news/archives/7421
-  - *W3C Invites Implementations of Pointer Events 2*
+  - **W3C Invites Implementations of Pointer Events 2**
     - https://www.w3.org/blog/news/archives/7435
 - Working Draft
 - First Public Working Draft
@@ -322,7 +322,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Patents and Standards Interest Group (PSIG) Charter Extended until 31 March 2019
     - https://lists.w3.org/Archives/Public/public-new-work/2018Dec/0013.html
 - Other
-  - *Result of call for adoption - WEBRTC-QUIC*
+  - **Result of call for adoption - WEBRTC-QUIC**
     - https://lists.w3.org/Archives/Public/public-webrtc/2018Dec/0013.html
     - とりあえず QUIC 用の API を出すには早い
     - プロトコルの要求ではなく、ユーザの要望に答えるべき
@@ -331,11 +331,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - sec-metadata を細かく分離する
   - DRAFT 2017 Web Application Security Working Group
     - https://w3c.github.io/webappsec/admin/webappsec-charter-2019.html
-  - *Alice Boxhall for W3C TAG - Infrequently Noted*
+  - **Alice Boxhall for W3C TAG - Infrequently Noted**
     - https://infrequently.org/2018/12/alice-boxhall-for-w3c-tag/
     - Alex Russell が 6 年務めた TAG を去る
     - 次の Election で Alice Boxhall (@sundress) を推薦
-  - *W3C Advisory Committee Elects Technical Architecture Group*
+  - **W3C Advisory Committee Elects Technical Architecture Group**
     - https://www.w3.org/blog/news/archives/7480
     - TAG の election が終わった
     - 当選
@@ -349,8 +349,8 @@ guest: [@myakura](https://twitter.com/myakura)
       - Peter Linss (W3C Invited Expert; co-Chair)
       - Lukasz Olejnik (W3C Invited Expert)
     - 任期終了
-      - *Travis Leithead (Microsoft)*
-      - *Alex Russell (Google)*
+      - **Travis Leithead (Microsoft)**
+      - **Alex Russell (Google)**
   - New version of the Roadmap of Web Applications on Mobile
     - https://www.w3.org/blog/news/archives/7475
 
@@ -382,17 +382,17 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-park-tcpm-intentional-syn-drop-option-00
   - Authenticated Handshake for QUIC
     - https://tools.ietf.org/html/draft-kazuho-quic-authenticated-handshake-00
-  - *The PRELOAD Frame Extension*
+  - **The PRELOAD Frame Extension**
     - https://tools.ietf.org/html/draft-goto-httpbis-preload-frame-00
-  - *Request Header Originated With*
+  - **Request Header Originated With**
     - https://tools.ietf.org/html/draft-request-header-originated-with-00
     - どこからかを表示
     - Sec-Metadata と被ってる感じ
-  - *Cryptographic Hyperlinks*
+  - **Cryptographic Hyperlinks**
     - https://tools.ietf.org/html/draft-sporny-hashlink-00
     - URL にコンテンツのハッシュを `?hl=` で含む
     - ファイルのハッシュを別に書いておくよくある場面を想定
-  - *The Multibase Data Format*
+  - **The Multibase Data Format**
     - https://tools.ietf.org/html/draft-multiformats-multibase-00
     - base encoding は base32, base58, base64 など色々ある
     - 結果だけ見てもどれでエンコードしたかわからないので見分ける仕組みを
@@ -401,13 +401,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *J-STAGE が Firefox でのアクセスを遮断、日本の電子ジャーナルが世界から不可視となった日*
+- **J-STAGE が Firefox でのアクセスを遮断、日本の電子ジャーナルが世界から不可視となった日**
   - https://note.mu/note_s/n/n517ff243e083
   - TLS1.2 対応と 1.0/1.1 の削除をセキュリティのために行った
   - しかし必須の暗号スイートに対応してないためネゴシエーションできない
   - まるでブラウザの方が悪いかのような言い方をしていた
   - 一旦ロールバックし復旧
-- *DNS over TLS: Encrypting DNS end-to-end - Facebook Code*
+- **DNS over TLS: Encrypting DNS end-to-end - Facebook Code**
   - https://code.fb.com/security/dns-over-tls/
   - Cloudflare と組んで検証
   - 良い結果が得られた
@@ -417,7 +417,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Hummingbird: Building Flutter for the Web - Flutter*
+- **Hummingbird: Building Flutter for the Web - Flutter**
   - https://medium.com/flutter-io/hummingbird-building-flutter-for-the-web-e687c2a023a8
   - https://developers.googleblog.com/2018/12/flutter-10-googles-portable-ui-toolkit.html
 - What's on the NativeScript Roadmap for 2019?
@@ -429,7 +429,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/edge-programming-rust-web-assembly
 - What happens when packages go bad? - JakeArchibald.com
   - https://jakearchibald.com/2018/when-packages-go-bad/
-- *Basilisk web browser*
+- **Basilisk web browser**
   - https://www.basilisk-browser.org/
   - A XUL-based web-browser demonstrating the Unified XUL Platform (UXP).
   - This browser is a close twin to pre-Servo Firefox in how it operates.

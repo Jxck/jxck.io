@@ -25,16 +25,16 @@ guest: [@myakura](https://twitter.com/myakura)
     - Page Lifecycle API
     - Payment Handler API
     - etc
-  - *A milestone for Chrome security: marking HTTP as "not secure"*
+  - **A milestone for Chrome security: marking HTTP as "not secure"**
     - https://www.blog.google/products/chrome/milestone-chrome-security-marking-http-not-secure/
     - Not Secure for `http://`
 - Intents
-  - *Ship: Intervention Reports*
+  - **Ship: Intervention Reports**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sQrAZpTA8WI/EWC7W6GOCwAJ
     - Reporting Observer で取得できる
   - Ship: WebUSB on Dedicated Workers
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dKj0z6n6n5s/ywA3DNEMBgAJ
-  - *Ship: WebSockets over HTTP/2*
+  - **Ship: WebSockets over HTTP/2**
     - https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/pDXxVVx7hUs/Yt7utjS-CgAJ
     - https://docs.google.com/document/d/1ZxaHz4j2BDMa1aI5CQHMjtFI3UxGT459pjYv4To9rFY/edit
   - Implement and Ship: 'left' and 'right' values for 'text-underline-position'
@@ -45,7 +45,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ls3wQSoHOUY/zIyEeFOqBgAJ
   - Implement and Ship: ImageCapture support for focusDistance constrainable property
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oNxzXaFY9c8/WVYXPB-qBgAJ
-  - *Implement and Ship: queueMicrotask*
+  - **Implement and Ship: queueMicrotask**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/-CYu9jVflMw/-_IVvtODBQAJ
   - Implement and Ship: Update behavior of CSS Grid Layout percentage row tracks and gutters
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CJgcT4hR7Rk/58WfZNbWBQAJ
@@ -57,13 +57,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xACYBou4f9A/Ft0-QlFMAQAJ
   - Implement: PaymentResponse.prototype.retry()
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/wayZGnuBkrI/SCLOTxCACwAJ
-  - *Implement: Feature policy to disable parser-blocking script execution*
+  - **Implement: Feature policy to disable parser-blocking script execution**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/b7f_K30MBYo/T9iXfP4fBgAJ
     - `sync-script`
-  - *Implement: Portals*
+  - **Implement: Portals**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SgsbpO08AeI/ZyDL6r5FBgAJ
     - `<portal>` Tag により、 embed content とシームレスに遷移
-  - *Implement: Feature Policy control over sandbox features*
+  - **Implement: Feature Policy control over sandbox features**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WLuXgLp2WWY/WvzMRIjdAgAJ
     - "forms"
     - "modals"
@@ -76,13 +76,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - "top-navigation"
   - Implement: WebSocket: permit connection reuse for auth
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KHSDQyr1ggA/f5kLDYPeAwAJ
-  - *Implement: Shadow DOM imperative distributed API*
+  - **Implement: Shadow DOM imperative distributed API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IVjeSC9tk64/u1kIxBFiBQAJ
     - TODO
   - Experiment:
   - Change:
   - Remove:
-  - *Deprecate & Remove: Android build number in user-agent identification*
+  - **Deprecate & Remove: Android build number in user-agent identification**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nJ7Izi0QNAQ/5F8ELQuOAQAJ
     - Android の build number を UA から削除する
     - Firefox: doesn't include OS build numbers.
@@ -90,9 +90,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - Edge: doesn't include the Windows build number.
   - Deprecate and Remove: PPAPI (Pepper) WebSocket
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3NYHaxhRs14/XOdUJBvHAwAJ
-  - *Deprecate and Remove: Shadow DOM V0, Custom Elements V0, HTML Imports*
+  - **Deprecate and Remove: Shadow DOM V0, Custom Elements V0, HTML Imports**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h-JwMiPUnuU/sl79aLoLBQAJ
-    - 2019Q1 で deprecate 、ただし *Origin Trials での延命* を許可
+    - 2019Q1 で deprecate 、ただし **Origin Trials での延命** を許可
     - 2020Q1 で Origin Trials の受付を終了
     - 2020Q2 で Origin Trials も終了
   - Extend Origin Trial: Web Locks API
@@ -102,7 +102,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 前回 implement だった
     - implement の議論は結構伸びた
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/P8bZxeA84Z4/gGWF1_4JBAAJ
-  - *Experiment: Feature Policy JavaScript API*
+  - **Experiment: Feature Policy JavaScript API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pQZopKWaQIk/Z-XD1hvwBQAJ
     - `document.policy`
 - Team Weekly Snippet
@@ -125,15 +125,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - blink 内での描画 (layout - paint - composition) の流れを解説
   - We are planning on deprecate and remove Shadow DOM v0 and Custom Elements v0 from Blink.
     - https://twitter.com/shadow_hayato/status/1016911248863080448
-    - They are only available on Google Chrome. NOT *Web*
-  - *Cross-Origin Read Blocking for Web Developers*
+    - They are only available on Google Chrome. NOT **Web**
+  - **Cross-Origin Read Blocking for Web Developers**
     - https://www.chromium.org/Home/chromium-security/corb-for-developers
   - Track development with the new AMP Roadmap
     - https://amphtml.wordpress.com/2018/07/19/track-development-with-the-new-amp-roadmap/
-  - *Chrome の左上に謎のスイッチ*
+  - **Chrome の左上に謎のスイッチ**
     - https://togetter.com/li/1248313
     - https://bugs.chromium.org/p/chromium/issues/detail?id=865253
-  - *Introduction to Feature Policy*
+  - **Introduction to Feature Policy**
     - https://developers.google.com/web/updates/2018/06/feature-policy
     - [blog](https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html)
   - More native echo cancellation!
@@ -147,13 +147,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.google.com/web/updates/2018/07/pwacompat
   - Introducing NoState Prefetch
     - https://developers.google.com/web/updates/2018/07/nostate-prefetch
-  - *Page Lifecycle API*
+  - **Page Lifecycle API**
     - https://developers.google.com/web/updates/2018/07/page-lifecycle-api
   - Speed is now a landing page factor for Google Search and Ads
     - https://developers.google.com/web/updates/2018/07/search-ads-speed
-  - *Site Isolation for web developers*
+  - **Site Isolation for web developers**
     - https://developers.google.com/web/updates/2018/07/site-isolation
-  - *Site Isolation*
+  - **Site Isolation**
     - 6 年越しの大プロジェクトが Chrome 67 でローンチ
     - バウンティーの賞金も高い
     - https://twitter.com/justinschuh/status/1017090324592652288
@@ -183,21 +183,21 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/d_tiOkSyH_M/LEVu3V_7CQAJ
   - Ship: Web Animations core interfaces
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/fcFctnUjs7A/mWv9pLMbBgAJ
-  - *Ship: Clear-Site-Data header*
+  - **Ship: Clear-Site-Data header**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/YzuvitvaFbY/CsIPdgDXBgAJ
     - [blog](https://blog.jxck.io/entries/2018-07-24/clear-site-data.html)
     - 63 からデフォルト有効
   - Ship: Change the effect of noopener window feature on other window features in window.open
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/6cTk_b1l6LE/CmAZKu8cCAAJ
-  - *Implement and Ship: Image decoding attribute*
+  - **Implement and Ship: Image decoding attribute**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/bxyc26iatiQ/7FurvkSfCAAJ
-  - *Implement and Ship: CSS prefers-reduced-motion media feature for Windows and MacOSX*
+  - **Implement and Ship: CSS prefers-reduced-motion media feature for Windows and MacOSX**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/faQvST2piv4/prtBa7rCBwAJ
   - Implement and Ship: HTMLMediaElement.allowedToPlay
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/BPZHwDp_Ciw/Blo-G1tqCQAJ
-  - *Implement and Ship: WebXR Device API in Firefox Nightly*
+  - **Implement and Ship: WebXR Device API in Firefox Nightly**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/K-i_WXuZ_bY/1-XAkm6wCQAJ
-  - *Implement: Visual Viewport API*
+  - **Implement: Visual Viewport API**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/gchNtWfv_bk/kQEfdc0LBgAJ
   - Implement: Scrollbar color properties
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/X_tv4aH4NxQ/w497k6J7CQAJ
@@ -220,7 +220,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2018/07/dark-theme-darkening-better-theming-for-firefox-quantum/
   - Introducing Firefox's First Mobile Test Pilot Experiments: Lockbox and Notes
     - https://blog.mozilla.org/blog/2018/07/10/introducing-firefoxs-first-mobile-test-pilot-experiments-lockbox-and-notes/
-  - *Progressive Web Apps in the HTTP Archive*
+  - **Progressive Web Apps in the HTTP Archive**
     - https://medium.com/dev-channel/progressive-web-apps-in-the-http-archive-614d4bcf81fe
     - HTTP Archive が PWA 対応したのかと思ったら違った
     - HTTP Archive から PWA 対応サイトのデータを取り出す Big Query の解説
@@ -235,11 +235,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2018/07/360-images-on-the-web-the-easy-way/
   - Firefox Performance Update #10
     - https://mikeconley.ca/blog/2018/07/24/firefox-performance-update-10/
-  - *Developer Outreach - Web Platform Research and Recommendations*
+  - **Developer Outreach - Web Platform Research and Recommendations**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/snwaIh0VxUo/2lBj3iBjCAAJ
-  - *Web Replay landed in Firefox nightly*
+  - **Web Replay landed in Firefox nightly**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/0C2ZgpP1JTQ/5x3V-CBqCQAJ
-  - *mozilla-central: changeset 429458:647fdd384a5e - Bug 1461465 - Implement async Clipboard APIs, r=nika,r=enndeakin*
+  - **mozilla-central: changeset 429458:647fdd384a5e - Bug 1461465 - Implement async Clipboard APIs, r=nika,r=enndeakin**
     - https://hg.mozilla.org/mozilla-central/rev/647fdd384a5e
   - mozilla-inbound: changeset 427436:7d8ce14346a3 - Bug 1476853 - Enable block autoplay on Nightly only on desktop. r=jya
     - https://hg.mozilla.org/integration/mozilla-inbound/rev/7d8ce14346a3
@@ -249,10 +249,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - mozilla-inbound: changeset 427926:bc2538dade14 - Bug 1365045 - Introduce keywords for prefers-reduced-motion. r=heycam
     - https://hg.mozilla.org/integration/mozilla-inbound/rev/bc2538dade14
     - Media Queries Lv5 の prefers-reduced-motion
-  - *Evolving the Firefox Brand - Mozilla Open Design*
+  - **Evolving the Firefox Brand - Mozilla Open Design**
     - https://blog.mozilla.org/opendesign/evolving-the-firefox-brand/
     - ロゴ検討中(1,2 比較案)
-  - *Update on the Distrust of Symantec TLS Certificates*
+  - **Update on the Distrust of Symantec TLS Certificates**
     - https://blog.mozilla.org/security/2018/07/30/update-on-the-distrust-of-symantec-tls-certificates/
     - https://support.apple.com/en-us/HT208860
     - Beta - September 5
@@ -265,7 +265,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Safari Technology Preview 60
   - https://webkit.org/blog/8361/release-notes-for-safari-technology-preview-60/
   - こまかめ
-- *Safari Technology Preview 61*
+- **Safari Technology Preview 61**
   - https://webkit.org/blog/8365/release-notes-for-safari-technology-preview-61/
   - Enabled Link Preload by default in the Experimental Features menu (r233263)
   - Implemented support for Element.toggleAttribute (r233475) [blog](https://blog.jxck.io/entries/2018-07-20/toggle-attribute.html)
@@ -283,7 +283,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Build Changelog
   - Announcing Windows 10 Insider Preview Build 17723 and Build 18204
     - https://blogs.windows.com/windowsexperience/2018/07/25/announcing-windows-10-insider-preview-build-17723-and-build-18204/
-    - *XSS Filter が終了する*
+    - **XSS Filter が終了する**
     - Filter のせいで XSS が発生したりと潜在的な危険性もあった
     - 作った人が Google に行っちゃったり、メンテできる人も少なそう
     - 更新されてないし、 CSP もあるから消されたっぽい
@@ -301,15 +301,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blogs.windows.com/msedgedev/2018/07/11/indexeddb-inspection-in-the-microsoft-edge-devtools/
   - 2018 年 7 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました
     - https://blogs.technet.microsoft.com/jpieblog/2018/07/11/securityupdate201807/
-  - *Internet Explorer の今後について*
+  - **Internet Explorer の今後について**
     - https://blogs.technet.microsoft.com/jpieblog/2018/07/18/internet-explorer-support/
-  - *Introducing Web Authentication in Microsoft Edge*
+  - **Introducing Web Authentication in Microsoft Edge**
     - https://blogs.windows.com/msedgedev/2018/07/30/introducing-web-authentication-microsoft-edge
 
 
 ### WHATWG/W3C 動向
 
-- *TAG Meeting*
+- **TAG Meeting**
   - https://github.com/w3ctag/meetings/tree/gh-pages/2018/07-seattle
 - Recommendation
 - Proposed Recommendation
@@ -361,10 +361,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - PSA: RTCRtpTransceiver shipping in M69 behind sdpSemantics:'unified-plan'
     - https://groups.google.com/forum/#!msg/discuss-webrtc/zMB1aL6eZ1Q/gVVQ_4rSBAAJ
     - Chrome の Unified Plan 対応の続報
-  - *W3C Workshop on Permissions and User Consent*
+  - **W3C Workshop on Permissions and User Consent**
     - https://www.w3.org/Privacy/permissions-ws-2018/cfp.html
     - 面白そうなワークショップ
-  - *[css-nesting] request to pick up the css-nesting proposal*
+  - **[css-nesting] request to pick up the css-nesting proposal**
     - https://github.com/w3c/csswg-drafts/issues/2701#issuecomment-402392212
     - Sass みたいなブロックのネストをする nesting プロポーザルがなぜか突如 ED になることに
 
@@ -399,13 +399,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - Promise.allSettled
     - https://github.com/jasonwilliams/proposal-promise-allSettled
     - resolve/reject どっちでもいいから全部終わったら結果を配列で返す
-  - *msaboff/JavaScript-Standard-Library*
+  - **msaboff/JavaScript-Standard-Library**
     - https://github.com/msaboff/JavaScript-Standard-Library
     - std:xxxx で標準ライブラリを定義する
 - Other
-  - *npm Joins ECMA International and TC39*
+  - **npm Joins ECMA International and TC39**
     - https://blog.npmjs.org/post/175722319045/npm-joins-ecma-international-and-tc39
-  - *The Future of JS*
+  - **The Future of JS**
     - https://docs.google.com/presentation/d/179v41LMaEXDxaD-piSgYVi6btFJoNoeYVncXe0172GM/edit#slide=id.p
     - 現状の ES Proposals 全部を実装したらどうなるかというまとめ
     - 提案は簡単だが実装は大変だ、という話
@@ -509,7 +509,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-secevent-subject-identifiers-00
   - Human Rights as a Service (HRaaS)
     - https://tools.ietf.org/html/draft-rutkowski-hrpc-hraas-00
-  - *Encrypted Server Name Indication for TLS 1.3*
+  - **Encrypted Server Name Indication for TLS 1.3**
     - https://tools.ietf.org/html/draft-rescorla-tls-esni-00
   - TLS 1.3 Extension for Certificate-based Authentication with an External Pre-Shared Key
     - https://tools.ietf.org/html/draft-housley-tls-tls13-cert-with-extern-psk-00
@@ -519,7 +519,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - everyRFC
     - https://everyrfc.org/
     - RFC の検索サービス
-  - *mnot's blog: How to Read an RFC*
+  - **mnot's blog: How to Read an RFC**
     - https://www.mnot.net/blog/2018/07/31/read_rfc
     - RFC の読み方
     - RFC というフォーマットをどう読み解くかなどが書かれている
@@ -557,7 +557,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Feature Policy Kitchen Sink
   - https://feature-policy-demos.appspot.com/
   - Feature Policy のデモページ
-- *How to drop 10 million packets per second*
+- **How to drop 10 million packets per second**
   - https://blog.cloudflare.com/how-to-drop-10-million-packets/
   - Cloudflare による、 DDoS 対策にパケットを落とす方法
 - Web Architecture 101 - VideoBlocks Product & Engineering
@@ -565,18 +565,18 @@ guest: [@myakura](https://twitter.com/myakura)
 - The CSS Paint API
   - https://css-tricks.com/the-css-paint-api/
   - Paint API の解説
-- *EFF to Japan: Reject Website Blocking*
+- **EFF to Japan: Reject Website Blocking**
   - https://www.eff.org/deeplinks/2018/07/eff-japan-reject-website-blocking
   - 電子フロンティア財団からブロッキングの取り下げるべきという声明
-- *YouTube が Chrome 以外で遅い問題* (tweet by Chris Peterson)
+- **YouTube が Chrome 以外で遅い問題** (tweet by Chris Peterson)
   - https://twitter.com/cpeterso/status/1021626510296285185
   - Chrome 以外は Shadow DOM v0 がないから Polyfill が使われるのが原因
   - Progressive Enhancement ではあるが、影響が大きすぎた
   - とはいえ v1 が出た今から他のブラウザが v0 実装する必要はない
   - YouTube の Polymer も 1 系だったし YouTube の方針転換もちょっと微妙だったかも
-- *Web には 9K 近くの API がある。* (そのうち 76% が MDN に載ってる)
+- **Web には 9K 近くの API がある。** (そのうち 76% が MDN に載ってる)
   - https://twitter.com/dietrich/status/998978915912663040
-- *Removing Babel's Stage Presets*
+- **Removing Babel's Stage Presets**
   - https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets
   - ES のプロポーザルのステージごとに用意された Babel プラグインのプリセットを廃止
   - Stage 0 などの早すぎるプロポーザルのプラグインへの危惧("BabelScript"化)や、 Stage 3 から 4 になる際にプラグインを抜く関係で breaking change が起こるなど、メンテナンスの問題も

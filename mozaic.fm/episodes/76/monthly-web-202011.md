@@ -19,26 +19,26 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 87
 - Updates
-  - *Chromium Blog: Chrome 88: Digital Goods, Lighting Estimation in Augmented Reality, and More*
+  - **Chromium Blog: Chrome 88: Digital Goods, Lighting Estimation in Augmented Reality, and More**
     - https://blog.chromium.org/2020/12/chrome-88-digital-goods-lighting.html
-    - *Digital Goods API*
+    - **Digital Goods API**
     - Origin Trials
       - New Origin Trials
         - WebXR: AR Lighting Estimation
       - Completed Origin Trials
         - PointerLock unadjustedMovement
     - Other features in this release
-      - *Anchor `target=_blank` implies `rel=noopener` by Default*
+      - **Anchor `target=_blank` implies `rel=noopener` by Default**
       - Dark Mode Form Controls and Scrollbars
-      - *AbortSignal in `addEventListener()`*
-      - *CSS aspect-ratio Property*
+      - **AbortSignal in `addEventListener()`**
+      - **CSS aspect-ratio Property**
       - CSS Selectors 4: Complex `:not()`
       - Don't Clear adoptedStyleSheets on Adoption to/from `<template>`
       - ElementInternals.shadowRoot Attribute
       - Make Type Optional in `WakeLock.request()`
-      - *Origin Isolation*
+      - **Origin Isolation**
       - `path()` Support in clip-path CSS Property
-      - *Permissions-Policy Header*
+      - **Permissions-Policy Header**
       - `RTCRtpTransceiver.stop()`
       - JavaScript
         - Shared Array Buffers, Atomics, and Futex APIs
@@ -46,7 +46,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - Don't Allow Popups During Page Unload (Enterprises)
       - FTP Support Removed
       - Web Components v0 Removed
-  - *What's New In DevTools (Chrome 88)*
+  - **What's New In DevTools (Chrome 88)**
     - https://developers.google.com/web/updates/2020/11/devtools
     - Faster DevTools startup
     - New CSS angle visualization tools
@@ -70,7 +70,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Experimental features
       - CSS Flexbox debugging tools
       - Customize chords keyboard shortcuts
-  - *Puppetaria: accessibility-first Puppeteer scripts*
+  - **Puppetaria: accessibility-first Puppeteer scripts**
     - https://developers.google.com/web/updates/2020/11/puppetaria
     - CSS Selector ではなく a11y tree のクエリでテストを記述する
     - DOM 構造への依存を減らせるのでメンテナンスコストが下がる
@@ -80,7 +80,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Camera pan, tilt, zoom
     - Range requests and service workers
     - Origin Trial: Font access API
-  - *Simulating color vision deficiencies in the Blink Renderer*
+  - **Simulating color vision deficiencies in the Blink Renderer**
     - https://developers.google.com/web/updates/2020/11/cvd
     - 色覚障害のシミュレーションや、コントラスト不足などを検証する方法
   - Chromium Blog: Tab throttling and more performance improvements in Chrome M87
@@ -106,14 +106,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/building-a-stories-component/
     - Instagram の Story みたいな表現を CSS で行う解説
     - Grid/scroll-snap-align/scroll-snap-stop などを組み合わせる
-  - *Schemeful Same-Site*
+  - **Schemeful Same-Site**
     - https://web.dev/schemeful-samesite/
     - SameSite はこれまで Schemeless だった
     - Schemefull がデフォルトになり https:// と http:// は Cross Site になる
   - Browser-level lazy-loading for CMSs
     - https://web.dev/browser-level-lazy-loading-for-cmss/
     - loading lazy を CMS につける場合の考慮事項まとめ
-  - *Better JS scheduling with `isInputPending()`*
+  - **Better JS scheduling with `isInputPending()`**
     - https://web.dev/isinputpending/
     - isInputPending を用いたユーザ操作をブロックしないタスクの書き方
   - Back/forward cache
@@ -122,7 +122,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - CrossSite は Finch release 済み
     - SameSite への OT を実施中
     - pageshow/pagehide の扱い、 no-store でのオプトアウトなど
-  - *BlinkOn13 Youtube Playlist*
+  - **BlinkOn13 Youtube Playlist**
     - https://www.youtube.com/playlist?list=PL9ioqAuyl6UJ_1hPrSWD1LpaIAeF9aaJi
     - 動画の前半がセッション、後半は QA な録画
     - History of the Web
@@ -140,7 +140,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - The Intent of Intents - Chromium and Standards
       - https://www.youtube.com/watch?v=hgEyQsy1D7w
       - Intents の仕組みがどう回ってるのかの話
-  - *Schedule: Chromium University 2020*
+  - **Schedule: Chromium University 2020**
     - https://docs.google.com/document/d/e/2PACX-1vRcPxu7DPsFNZHGDaeaM00meaHybMsEUrsCZOhYJIO-umT3Ouh-uDYQtWnhiQRxYR15HKqabbWQyh-0/pub
     - 2019 年まで Chrome University だったものが Chromium University に
 - Intents
@@ -150,12 +150,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/6J0yfRuMmSU
   - Ship: Change click, auxclick and contextmenu event types to PointerEvent
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/bta50W_Hg24
-  - *Ship: Schemeful Same-Site*
+  - **Ship: Schemeful Same-Site**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/aiXFdnA5tsk
     - SameSite Cookie が SchemeLess だったのを SchemeFul に変える
     - http:// と https:// が Cross Site になるので安全性向上
     - M88 から Finch して影響を調査
-  - *Ship: Restrict "private network requests" for subresources to secure contexts.*
+  - **Ship: Restrict "private network requests" for subresources to secure contexts.**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/cPiRNjFoCag
     - CORS-RFC1918 の第一歩
     - public な攻撃サイトからの subresorce request で local/private に攻撃できる場合がある
@@ -170,17 +170,17 @@ guest: [@myakura](https://twitter.com/myakura)
   - Ship: CSS ::target-text pseudo-element
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/yN2lrq67a1c
     - scroll to text で遷移する先を取る疑似要素
-  - *Ship: Relative indexing method for Array, String, and TypedArrays*
+  - **Ship: Relative indexing method for Array, String, and TypedArrays**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/I8S78w7aFmE/m/qLHAcjhRCQAJ
     - String, Array, TypedArray の引数で index を指定する `at()`
     - 負の数だと後ろから
   - Ship: Add support for CSS properties "overflow: clip" and "overflow-clip-margin"
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/xGofL-IMAb4/m/t03fbbg3CQAJ
-  - *Ship: 'display: list-item' by default for `<summary>`*
+  - **Ship: 'display: list-item' by default for `<summary>`**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/ihZFdCHuiTA/m/e1SEN6IQCQAJ
     - summary の開閉の三角を別のものに書き換えるとき `::-webkit-details-marker` の `::before` content 経由だった
     - list-item になり list-style-type でコンテントを、 `::marker` でスタイルを定義できるように
-  - *Ship: 'disclosure-open' and 'disclosure-closed' keywords for CSS list-style-type property*
+  - **Ship: 'disclosure-open' and 'disclosure-closed' keywords for CSS list-style-type property**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/Czc_36BS2dA/m/_yHDeFwQCQAJ
     - list-style-type に `disclosure-open`/`closed` を追加(`<summary>` の開閉の三角)
   - Ship: WebHID (Human Interface Device)
@@ -202,7 +202,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - StaticRange と Range に共通メソッドがあるので AbstractRange を抽出
   - Implement and Ship: Limit characters allowed in extensions in File System Access API file pickers
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/bFUbINgQNgk
-  - *Prototype: AbortSignal in addEventListener*
+  - **Prototype: AbortSignal in addEventListener**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/9396JedBBOM
     - signal でキャンセルすると listener が削除される
   - Prototype: MediaStreamTrack Insertable Streams (a.k.a. Breakout Box)
@@ -213,11 +213,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Prototype: Media Source Extensions for WebCodecs
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/bejy1nmoWmU
     - WebCodecs を用いて MSE をもっと効率よくできるようにする提案
-  - *Prototype: Handwriting Recognition API*
+  - **Prototype: Handwriting Recognition API**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/VXUq1UY4m7Y
     - 手書き認識の API
     - OS の IME では対応があるのに Web にはないというギャップを埋めたいらしい
-  - *Prototype: display-capture feature policy*
+  - **Prototype: display-capture feature policy**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/gBpWuawy-Ms
     - getDisplayMedia に対する feature policy
     - もう permission policy じゃね? -> つっこみ入ってた
@@ -231,7 +231,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - DEMO: https://www.youtube.com/watch?v=yDFyLEN6aKk
   - Extend Origin Trial: WebAssembly SIMD
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/bw_RgyH4Xss
-  - *Extend Experiment: Beforematch event and hidden-matchable*
+  - **Extend Experiment: Beforematch event and hidden-matchable**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/a76WF3Dfl3E
     - `content-visibility: hidden-matchable` すると非表示だが検索ができる
     - Beforematch event はそのページ内検索や scoll to text したときに発火するイベント
@@ -247,7 +247,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/T1ad0wJQ9qQ
 - Change:
 - Unship:
-- *Remove: HTTP/2 and gQUIC server push*
+- **Remove: HTTP/2 and gQUIC server push**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/K3rYLvmQUBY
 - PSA: TAG Reviews Are Required
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/naqmDmy1iM8/m/czBpBRFYAQAJ
@@ -257,7 +257,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/cors-rfc1918-feedback/
   - Q3 Summary from Chrome Security
     - https://groups.google.com/a/chromium.org/g/security-dev/c/oBj6NlMnWKw
-  - *Announcing the Chrome Root Program*
+  - **Announcing the Chrome Root Program**
     - https://groups.google.com/g/mozilla.dev.security.policy/c/3Q36J4flnQs
     - https://www.chromium.org/Home/chromium-security/root-ca-policy
     - Chrome も Firefox みたいに証明書ストアを自分で持つようになるらしい
@@ -267,37 +267,37 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 83.0
 - Updates
-  - *Warp: Improved JS performance in Firefox 83*
+  - **Warp: Improved JS performance in Firefox 83**
     - https://hacks.mozilla.org/2020/11/warp-improved-js-performance-in-firefox-83/
   - These Weeks in Firefox: Issue 83
     - https://blog.nightly.mozilla.org/2020/11/19/these-weeks-in-firefox-issue-83/
   - Measuring Middlebox Interference with DNS Records - Mozilla Security Blog
     - https://blog.mozilla.org/security/2020/11/17/measuring-middlebox-interference-with-dns-records/
     - DNS のパフォーマンスへの影響を Cloudflare と調査
-  - *Firefox 83 introduces HTTPS-Only Mode*
+  - **Firefox 83 introduces HTTPS-Only Mode**
     - https://blog.mozilla.org/security/2020/11/17/firefox-83-introduces-https-only-mode/
     - HTTPS でしか接続せず、 HTTP で接続しようとすると許可を求めるモードの導入
   - Foundations for the Future - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/11/foundations-for-the-future/
     - Servo が Linux Foundation に移管されたことを受けての今後の話
-  - *Firefox 83 is upon us*
+  - **Firefox 83 is upon us**
     - https://hacks.mozilla.org/2020/11/firefox-83-is-upon-us/
     - Conic gradients
     - WebRender comes to more platforms
       - ページを 60fps で表示する WebRender のトライアル開始
     - Pinch to zoom on desktop
 - Intents
-  - *Ship: :focus-visible pseudo-class*
+  - **Ship: :focus-visible pseudo-class**
     - https://groups.google.com/g/mozilla.dev.platform/c/yA2rL_2keTE
   - Ship: CSS overflow:clip
     - https://groups.google.com/g/mozilla.dev.platform/c/7oQm8PC0aU0
     - `-moz-hidden-unscrollable` の標準バージョン
-  - *Ship: PerformancePaintTiming API*
+  - **Ship: PerformancePaintTiming API**
     - https://groups.google.com/g/mozilla.dev.platform/c/qPB1OLaQWsw
     - First Contentful Paint
   - Implement and ship: CSS property touch-action:pinch-zoom
     - https://groups.google.com/g/mozilla.dev.platform/c/DYc-4vO0D5Q/m/VJHGCUFhAQAJ
-  - *Prototype and ship: signal property on AddEventListenerOptions*
+  - **Prototype and ship: signal property on AddEventListenerOptions**
     - https://groups.google.com/g/mozilla.dev.platform/c/KdR8-eJplCs/m/a0pVUNiTBAAJ
     - AbortSignal を渡すための signal property
   - Unship: Large-Allocation header
@@ -306,21 +306,21 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/g/mozilla.dev.platform/c/NsdReYslBU4/m/b9FwjVAbBAAJ
   - Accessibility review process
     - https://groups.google.com/g/mozilla.dev.platform/c/6W6vxvVivLk
-  - *Enabled CRLite in Nightly*
+  - **Enabled CRLite in Nightly**
     - https://groups.google.com/g/mozilla.dev.platform/c/mbYKUEGE5oQ/m/JsSBV-RRAAAJ
   - HTTP/3 ready for testing
     - https://groups.google.com/g/mozilla.dev.platform/c/6CZs8Jartu0
 - Other
   - Firefox Security Newsletter - Q3 2020
     - https://groups.google.com/g/mozilla.dev.platform/c/k_jNJXOMXYw
-  - *Design of the CRLite Infrastructure - Mozilla Security Blog*
+  - **Design of the CRLite Infrastructure - Mozilla Security Blog**
     - https://blog.mozilla.org/security/2020/12/01/crlite-part-4-infrastructure-design/
     - CRLite をどういうインフラで提供しているか
   - Fission Newsletter #9
     - https://groups.google.com/g/mozilla.dev.platform/c/F-68NBe2K_8
-  - *Preloading Intermediate CA Certificates into Firefox*
+  - **Preloading Intermediate CA Certificates into Firefox**
     - https://blog.mozilla.org/security/2020/11/13/preloading-intermediate-ca-certificates-into-firefox/
-  - *Igalia joins MDN Product Advisory Board | Igalia*
+  - **Igalia joins MDN Product Advisory Board | Igalia**
     - https://www.igalia.com/2020/12/02/Igalia-joins-MDN-Product-Advisory-Board.html
     - Igalia (Daniel Ehrenberg) が MDN の PAB に参加
 
@@ -331,7 +331,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Updates
   - New WebKit Features in Safari 14
     - https://webkit.org/blog/11340/new-webkit-features-in-safari-14/
-    - *Webpage Translation*
+    - **Webpage Translation**
       - ただし日本語は対象外?
       - translate(="yes") or translate="no"
     - Performance Improvements
@@ -341,29 +341,29 @@ guest: [@myakura](https://twitter.com/myakura)
       - support for incrementally loading PDF files and now renders the first page up to 60 x faster.
     - Improved Compatibility
       - Service Workers, SVG, CSS, XHR+Fetch などで 14 万個のテストに追加でパス
-    - *Privacy Updates*
+    - **Privacy Updates**
       - ITP 更新
       - CNAME Cloaking block
     - Touch ID and Face ID for the Web
-    - *WebP Support*
+    - **WebP Support**
     - Reserving Layout Space for Images
       - width/height でアスペクト比割り出し領域予約
     - New CSS Features
-      - *画像の向きが EXIF ベースになり、 image-orientation で上書き*
+      - **画像の向きが EXIF ベースになり、 image-orientation で上書き**
       - is:(), :matches(), :where()
       - line-break: anywhere
     - Media Enhancements
       - dynamic-range: high
-    - *JavaScript Improvements*
+    - **JavaScript Improvements**
       - BigInt
       - optional chaining
     - Web Inspector Updates
-  - *Release Notes for Safari Technology Preview 116*
+  - **Release Notes for Safari Technology Preview 116**
     - https://webkit.org/blog/11348/release-notes-for-safari-technology-preview-116/
-    - *Enabled AudioWorklet API by default (r268459)*
+    - **Enabled AudioWorklet API by default (r268459)**
     - Added implementation for AudioWorkletGlobalScope.registerProcessor() (r268103)
     - Added implementation for AudioWorkletGlobalScope's currentFrame, currentTime, and sampleRate attributes (r268076)
-    - *Enabled video capture by default on macOS (r268052)*
+    - **Enabled video capture by default on macOS (r268052)**
     - Added support for MediaRecorder bitrate getters (r268363)
     - Added support for MediaRecorder pause and resume (r268130)
     - Added support for respecting enabled and muted tracks (r267987)
@@ -379,7 +379,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Enabled per-page storage access scope (r267973)
   - MediaRecorder API
     - https://webkit.org/blog/11353/mediarecorder-api/
-  - *CNAME Cloaking and Bounce Tracking Defense*
+  - **CNAME Cloaking and Bounce Tracking Defense**
     - https://webkit.org/blog/11338/cname-cloaking-and-bounce-tracking-defense/
 - Request for Position
   - Element Timing
@@ -409,11 +409,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://techcommunity.microsoft.com/t5/articles/introducing-shopping-with-microsoft-edge/m-p/1870080
   - Announcing General Availability of Microsoft Edge WebView2 for .NET and Fixed Version distribution mode - Microsoft Edge Blog
     - https://blogs.windows.com/msedgedev/2020/11/20/announcing-general-availability-of-microsoft-edge-webview2-for-net-and-fixed-version-distribution-mode/
-  - *Improving notifications and badging in Microsoft Edge - Microsoft Edge Blog*
+  - **Improving notifications and badging in Microsoft Edge - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2020/11/16/improving-notifications-badging-microsoft-edge/
     - Edge ってブラウザ閉じてる時の push notification 無かったらしい
     - これを戻した
-  - *Improvements to history in Microsoft Edge - Microsoft Tech Community*
+  - **Improvements to history in Microsoft Edge - Microsoft Tech Community**
     - https://techcommunity.microsoft.com/t5/articles/improvements-to-history-in-microsoft-edge/m-p/1896552#M3896
     - 履歴と表示タブをブラウザで共有する話
   - Outlook REST API beta and Outlook REST API v2.0 Deprecation Notice - Microsoft Tech Community
@@ -436,11 +436,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/public-new-work/2020Nov/0005.html
   - https://www.w3.org/blog/news
 - Other
-  - *Web Platform Design Principles*
+  - **Web Platform Design Principles**
     - https://www.w3.org/TR/2020/NOTE-design-principles-20201110/
     - Web に新しい機能を追加する際に検討すること
     - TAG review での経験をもとに文書化
-  - *Remove AppCache · whatwg/html@e4330d5*
+  - **Remove AppCache · whatwg/html@e4330d5**
     - https://github.com/whatwg/html/commit/e4330d510a1d05e1f5f84707c9d6dcec97db94b8
     - HTML 仕様から AppCache が削除
 
@@ -464,22 +464,22 @@ guest: [@myakura](https://twitter.com/myakura)
     - `.item()` to `.at()`
   - 3->4
 - New Proposals
-  - *Module Blocks*
+  - **Module Blocks**
     - https://github.com/tc39/proposal-js-module-blocks
     - module をインラインで定義できる構文
     - worker のコードなどを別ファイルで読み込まなくて良い
-  - *Extensions*
+  - **Extensions**
     - https://github.com/hax/proposal-extensions
     - Bind Operator をさらに更新してモジュールとして拡張を自作できるようにする
   - eraDisplay option for Intl.DateTimeFormat
   - Intl.bestAvailableLocale
   - Extend TimeZoneName Option Proposal
 - Other
-  - *2021 の meeting*
+  - **2021 の meeting**
     - 8 回を予定
     - 半分は物理で計画
     - 7 月は Tokyo (4 days) -> のちに remote に変更(たぶん Olympic)
-  - *TC39 も MDN に協力してこう*
+  - **TC39 も MDN に協力してこう**
     - MDN staffing to document TC39's work
 
 
@@ -510,13 +510,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - 451 Unavailable For Legal Reasons 更新については interest が少なくてやらない
 - I-D Action
 - Draft
-  - *The CDN-Cache-Control HTTP Response Header Field*
+  - **The CDN-Cache-Control HTTP Response Header Field**
     - https://tools.ietf.org/html/draft-cdn-control-header-00
     - CDN にのみ向けた Cache-Control となるヘッダ
     - Fastly でいう Surrogate-Control の標準化
   - JWS Clear Text JSON Signature Option (JWS/CT)
     - https://tools.ietf.org/html/draft-jordan-jws-ct-00
-  - *The Idempotency HTTP Header Field*
+  - **The Idempotency HTTP Header Field**
     - https://tools.ietf.org/html/draft-idempotency-header-01
     - 冪等性の無い POST をリトライできるように id をつけるためのヘッダ
 - Other
@@ -539,7 +539,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.cloudflare.com/announcing-spectrum-ddos-analytics-and-ddos-insights-trends/
   - The Internet is Getting Safer: Fall 2020 RPKI Update
     - https://blog.cloudflare.com/rpki-2020-fall-update/
-- *Improving Performance and Search Rankings with Cloudflare for Fun and Profit*
+- **Improving Performance and Search Rankings with Cloudflare for Fun and Profit**
   - https://blog.cloudflare.com/improving-performance-and-search-rankings-with-cloudflare-for-fun-and-profit/
   - Google が search rank に perf を入れるアナウンスをした ->
   - cloudflare 入れると perf が上がる ->
@@ -547,9 +547,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Brotli compression using a reduced dictionary
 - Brotli compression using a reduced dictionary
   - https://blog.cloudflare.com/brotli-compression-using-a-reduced-dictionary/
-- *The State of CSS 2020*
+- **The State of CSS 2020**
   - https://2020.stateofcss.com/
-- *Advent Calendar*
+- **Advent Calendar**
   - PWAdvent
     - https://pwadvent.dev/
   - Web Performance Calendar >> 2020

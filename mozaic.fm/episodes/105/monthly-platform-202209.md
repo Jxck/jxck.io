@@ -22,12 +22,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 106*
+- **New in Chrome 106**
   - https://developer.chrome.com/en/blog/new-in-chrome-106/
   - New Intl APIs
   - Pop-up API
   - New css features
-- *What's New In DevTools (Chrome 106)*
+- **What's New In DevTools (Chrome 106)**
   - https://developer.chrome.com/en/blog/new-in-devtools-106/
   - Group files by Authored / Deployed in the Sources panel
   - Improved stack traces
@@ -40,7 +40,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - LCP timings breakdown in the Performance Insights panel
   - Auto-generate default name for recordings in the Recorder panel
   - Miscellaneous highlights
-- *Chrome 107 beta*
+- **Chrome 107 beta**
   - https://developer.chrome.com/en/blog/chrome-107-beta/
   - CSS grid-template properties interpolation
   - Privacy preserving screen sharing controls
@@ -71,31 +71,31 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: Android OSK resizes visual viewport by default + `<meta>` opt-out*
+- **Ship: Android OSK resizes visual viewport by default + `<meta>` opt-out**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ge7xTu-VhJ0
   - OSK = On Screen Keyboard
   - Android ではオンスクリーンキーボード表示時に layout viewport が変化していた
   - これを iOS の挙動に合わせて、 visual viewport のみ変わるように変更する
   - これまでの挙動に戻すための `<meta name="viewport" content="interactive-widgets=resize-layout">` を定義する
-- *Ship: Array grouping*
+- **Ship: Array grouping**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hSnGUOXTXPE
   - `Array.group()`, `Array.groupToMap()`
-- *Ship: CSS @supports : Always non-forgiving parsing*
+- **Ship: CSS @supports : Always non-forgiving parsing**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RJrIxJA9LYw
   - `CSS.supports(selector())` でセレクタをパーズできるかのチェックができる
   - `:is()` や `:has()` は forgiving なパーズなので、セレクタをサポートしているかのチェックに使いにくい
   - なので `supports(selector())` に渡されたセレクタは unforgiving に処理する変更が行われる
   - jQuery で `:has()` が壊れる問題の一部解決にも使われる
-- *Ship: CSS Values and Units Module Level 4: Small/Large/Dynamic/Logical viewport units*
+- **Ship: CSS Values and Units Module Level 4: Small/Large/Dynamic/Logical viewport units**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Qw2XTr0et_U
   - モバイルでブラウザの UI を含む/除いた時の viewport の長さ
 - Ship: Deprecate and remove window.defaultStatus and window.defaultstatus
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/7kCLSmq_bDc
-- *Ship: Origin Private File System (OPFS) on Android*
+- **Ship: Origin Private File System (OPFS) on Android**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/GyxqF8ZDK5Q
 - Ship: Sync methods for FileSystemSyncAccessHandle in File System Access API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UzGXhVEFpwU
-- *Ship: URLPattern ignoreCase*
+- **Ship: URLPattern ignoreCase**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KgAdo3kB1wc
   - case insensitive にするオプション
 - Ship: Variable COLRv1
@@ -116,23 +116,23 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0uq_S5p6uZg
 - Prototype: Bounce Tracking Mitigations
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/vwQ2x1lByqc
-- *Prototype: CSS 'lh' Length Unit*
+- **Prototype: CSS 'lh' Length Unit**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KPCRWkJ9n1k
   - 行の高さの単位
 - Prototype: `FileSystemHandle::remove()` method
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/sudi1AzZO2s
 - Prototype: Intl.DurationFormat
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KwmaQ7LqxKY
-- *Prototype: Last Baseline Item Alignment*
+- **Prototype: Last Baseline Item Alignment**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/PnQdSBOxDUc
   - `align-items` などで揃えるベースラインを最後の行のベースラインにする
   - `last baseline` という値はパースしていたがレイアウトのサポートができていなかった
-- *Prototype: Same-site cross-origin prerendering triggered by the speculation rules API*
+- **Prototype: Same-site cross-origin prerendering triggered by the speculation rules API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4E_UNp8mV_Y
   - Prerender をサブドメインでも使えるように
 - Prototype: SoftNavigation performance entry
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/MK01W5X_x6E
-- *Prototype: Web Smart Card API*
+- **Prototype: Web Smart Card API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/BmmWnreaEII
   - Smart Card (PC/SC) の実装やカードリーダーを使った読み込みに対応する
 - Prototype: Curve25519 in Web Cryptography
@@ -157,7 +157,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/VenSGqBIoKI
 - PSA: Custom Handlers testing automation in ChromeDriver
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/VVW1t8xeXXc
-- *PSA: Enforce CORS for favicons*
+- **PSA: Enforce CORS for favicons**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/YMlAU7fukYA
   - crossorigin 属性のついた `<meta icon>` で no-cors になっていたのを修正
 - PSA: runtime_enabled_features.json5 improvements
@@ -172,19 +172,19 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Other
 
 - web.dev
-  - *Building the main navigation for a website*
+  - **Building the main navigation for a website**
     - https://web.dev/website-navigation/
     - navigation 実装上の注意や読み上げ対応
-  - *Submit your proposals for Interop 2023*
+  - **Submit your proposals for Interop 2023**
     - https://web.dev/submit-your-proposals-for-interop-2023/
     - Interop で取り組んで欲しい互換性問題を収集している
   - Speedy CSS Tip! Animated Loader
     - https://web.dev/speedy-css-tip-animated-loader/
   - Testing Web Design Color Contrast
     - https://web.dev/testing-web-design-color-contrast/
-  - *Introducing Learn HTML*
+  - **Introducing Learn HTML**
     - https://web.dev/introducing-learn-html/
-  - *Introducing Learn Accessibility*
+  - **Introducing Learn Accessibility**
     - https://web.dev/introducing-learn-accessibility/
   - Optimize long tasks
     - https://web.dev/optimize-long-tasks/
@@ -193,7 +193,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - google developer blog
   - Google Developers Blog: New Features Available in the Google Identity Services (GIS) Library
     - https://developers.googleblog.com/2022/09/new-features-available-in-google-identity-services-library.html
-  - *Google Developers Blog: Updates to Emoji: New Characters, New Animation, New Color Customization, and More!*
+  - **Google Developers Blog: Updates to Emoji: New Characters, New Animation, New Color Customization, and More!**
     - Noto Emoji の新機能(Animation, Color Theme)
     - https://developers.googleblog.com/2022/09/updates-to-emoji-new-characters-animation-colors-and-more.html
     - MS も Fluent Emoji を公開してる
@@ -207,19 +207,19 @@ guest: [@myakura](https://twitter.com/myakura)
 - chrome developer blog
   - Extending the Memory Inspector for C/C++ debugging
     - https://developer.chrome.com/en/blog/memory-inspector-extended-cpp/
-  - *Pop-ups: They're making a resurgence!*
+  - **Pop-ups: They're making a resurgence!**
     - https://developer.chrome.com/en/blog/pop-ups-theyre-making-a-resurgence/
     - Pop-up API のでもを交えた説明
   - Container queries begin to land in stable browsers while the polyfill gets a big update
     - https://developer.chrome.com/en/blog/cq-polyfill/
-  - *How Chrome prepares updates for billions of users*
+  - **How Chrome prepares updates for billions of users**
     - https://developer.chrome.com/en/blog/chrome-updates/
     - Chrome のリリースチームにインタビュー
   - More details on the transition to Manifest V3
     - https://developer.chrome.com/en/blog/more-mv2-transition/
   - Avoiding oversharing when screen sharing
     - https://developer.chrome.com/en/blog/avoiding-oversharing-when-screen-sharing/
-  - *Meeting you where you are*
+  - **Meeting you where you are**
     - https://developer.chrome.com/en/blog/cds-22-update/
       - Chrome Dev Summit 2022 は開催しない
       - 代わりに Googler がいろんなカンファレンスに行く
@@ -230,7 +230,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Payment Handler API will require CSP `connect-src`
     - https://developer.chrome.com/en/blog/payment-handler-csp-connect-src/
 - chromium blog
-  - *Chromium Blog: Announcing the Launch of the Chrome Root Program*
+  - **Chromium Blog: Announcing the Launch of the Chrome Root Program**
     - https://blog.chromium.org/2022/09/announcing-launch-of-chrome-root-program.html
     - Chrome 内に Root CA の証明書リストを持つ変更
     - 105 から徐々にロールアウトする
@@ -249,10 +249,10 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Firefox 105.0, See All New Features, Updates and Fixes*
+- **Firefox 105.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/105.0/releasenotes/
     - Windows トラックパッドの 2 本指スワイプで戻る/進むが可能に
-- *Firefox 105 for developers - Mozilla | MDN*
+- **Firefox 105 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/105
   - `Intl.DateTimeFormat`, `Intl.NumberFormat` などの range restriction が緩和
   - `TextEncoderStream`, `TextDecoderStream`
@@ -261,11 +261,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: enhanced color font (COLRv1) support*
+- **Ship: enhanced color font (COLRv1) support**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Xs0_dixyT9Q
-- *Ship: CSS contain-intrinsic-size and longhands*
+- **Ship: CSS contain-intrinsic-size and longhands**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/QtMpDO5ZHk8
-- *Prototype: Default Accessibility Semantics for Custom Elements*
+- **Prototype: Default Accessibility Semantics for Custom Elements**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/wB3YLDD0Xuk
   - Cunstom Elements で ElementInternals support
 - Prototype: Synchronous initial about:blank
@@ -282,7 +282,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *1788684 - Access to router.asus.com broken as of version 104*
+- **1788684 - Access to router.asus.com broken as of version 104**
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1788684
   - ASUS のルーターでうまく接続できないという問題が報告された
   - HSTS preload list に asus.com が追加されたが、ルーターが接続する `http://router.asus.com` もアップグレードされてしまい繋がらない
@@ -290,10 +290,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - HSTS preload list 側も 9 月下旬に対応
     - chromium/src - 808aa94f75 - [HSTS] Individually remove asus.com from the preload list.
       - https://chromium.googlesource.com/chromium/src/+/808aa94f75f065a6ec2aee48d240c006258fc5df
-- *Mozilla_Five-Walled-Gardens.pdf*
+- **Mozilla_Five-Walled-Gardens.pdf**
   - https://research.mozilla.org/files/2022/09/Mozilla_Five-Walled-Gardens.pdf
   - OS のデフォルトブラウザやその変更のしにくさとか
-- *The 100% Markdown Expedition - Mozilla Hacks - the Web developer blog*
+- **The 100% Markdown Expedition - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2022/09/the-100-percent-markdown-expedition/
   - Markdown 以降が終わった、どうやったかの話。
 - These Weeks In Firefox: Issue 122 - Firefox Nightly News
@@ -311,7 +311,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Safari 16 Release Notes | Apple Developer Documentation*
+- **Safari 16 Release Notes | Apple Developer Documentation**
   - https://developer.apple.com/documentation/safari-release-notes/safari-16-release-notes
     - CSS
       - Container Queries
@@ -331,7 +331,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Web API
       - Shared Workers
       - Shadow Realms
-- *Safari 16.1 Beta Release Notes*
+- **Safari 16.1 Beta Release Notes**
   - https://developer.apple.com/documentation/safari-release-notes/safari-16_1-release-notes
   - Authentication
     - passkeys on macOS Big Sur, Monterey, Ventura, iPadOS 16
@@ -340,7 +340,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web API
     - Web Push Notifications on Ventura
     - Scroll to Text Fragment
-- *WebKit Features in Safari 16.0*
+- **WebKit Features in Safari 16.0**
   - https://webkit.org/blog/13152/webkit-features-in-safari-16-0/
   - Passkeys
   - Apple Pay
@@ -361,7 +361,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Web Inspector
     - Web Driver
     - Safari Web Extensions
-- *Release Notes for Safari Technology Preview 153*
+- **Release Notes for Safari Technology Preview 153**
   - https://webkit.org/blog/13148/release-notes-for-safari-technology-preview-153/
   - CSS
     - Implemented forced-colors media query (253290@main)
@@ -377,7 +377,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added box-sizing: border-box to table in the User-Agent stylesheet
   - Accessibility
     - Added support for the ARIA 1.3 property aria-description
-- *Release Notes for Safari Technology Preview 154*
+- **Release Notes for Safari Technology Preview 154**
   - https://webkit.org/blog/13207/release-notes-for-safari-technology-preview-154/
   - CSS
     - Enabled :dir by default
@@ -397,9 +397,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *[JSC] Disable ShadowRealm by Constellation*
+- **[JSC] Disable ShadowRealm by Constellation**
   - https://github.com/WebKit/WebKit/pull/4338
-- *Prototype declarative shadow DOM by rniwa*
+- **Prototype declarative shadow DOM by rniwa**
   - https://github.com/WebKit/WebKit/pull/4693
 - Introducing JetStream 2.1
   - https://webkit.org/blog/13146/introducing-jetstream-2-1/
@@ -423,7 +423,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - WebView2 is now Generally Available for WinUI 2 (UWP) apps
   - https://blogs.windows.com/msedgedev/2022/09/13/webview2-generally-available-winui-2-uwp/
-- *Closing a 30 pixel gap between native and web*
+- **Closing a 30 pixel gap between native and web**
   - https://blogs.windows.com/msedgedev/2022/09/27/closing-pixel-gap-native-web-window-controls-overlay/
   - Window Controls Overlay で領域が広がる話
 - More reliable web defense
@@ -441,14 +441,14 @@ guest: [@myakura](https://twitter.com/myakura)
 #### TPAC
 
 - Breakout
-  - *File System*
+  - **File System**
     - https://docs.google.com/presentation/d/12jqBnFuTxnTCrmKsUIZJxQyxAsf0yc6Uz7nKF15JzPw/edit?resourcekey=0-3xJaumMcgsko818iftYRcA
     - File 周り現状まとめ
-  - *Open UI TPAC Update 2022*
+  - **Open UI TPAC Update 2022**
     - https://onedrive.live.com/view.aspx?resid=5ACBE28A578FB511!3079257&ithint=file%2cpptx&authkey=!AH8NhgDiDmD1j-M
     - selectmenu や popup attr の振り返り
     - Panelset と Tabs に今取り組んでいる
-  - *Project Fugu*
+  - **Project Fugu**
     - https://docs.google.com/presentation/d/1Uv7WfCXDLYAb9fbDG4iVZeBSp4aMYSqwYctrJaXLhnU/edit
     - 最後の New capabilities が野心的
       - Multiple screens
@@ -457,7 +457,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - Better advanced storage
       - File system access
       - Low-latency audio
-  - *TPAC 2022 - CSS Anchoring*
+  - **TPAC 2022 - CSS Anchoring**
     - https://jhey-presents.netlify.app/tpac-2022/
     - ポップアップなどの配置は難しい
     - 絶対配置が使われるが、ある要素にそって配置するのは力技でやっているのが現状
@@ -465,18 +465,18 @@ guest: [@myakura](https://twitter.com/myakura)
     - 画面外にはみ出した場合の位置についても指定方法を検討している
 - WebPerf
   - https://docs.google.com/document/d/1RbszCu4NG-fcRRoL1TsP6SvjohIuz-uxv5NZm_6iA4U/edit#
-  - *Element Timing and Shadow DOM.pptx*
+  - **Element Timing and Shadow DOM.pptx**
     - https://onedrive.live.com/view.aspx?resid=A115415BEE319427!1873134&ithint=file%2cpptx&authkey=!AK4Vf4IcS2Q6K_g
     - Shadow DOM の要素が Element Timing で監視できない
-    - *MSN.com が React から WebComponents に移行した時それで困った*
-  - *nav-speculation/no-vary-query.md*
+    - **MSN.com が React から WebComponents に移行した時それで困った**
+  - **nav-speculation/no-vary-query.md**
     - https://github.com/WICG/nav-speculation/blob/no-vary-query/no-vary-query.md
     - この query は Vary に寄与しないと指定するヘッダ
-  - *Even earlier hints for connections*
+  - **Even earlier hints for connections**
     - https://docs.google.com/presentation/d/1sBAE3Er3tpDhMNB8e0Jrsg51v0_ghJd3aZQGer1xzb0/edit
     - Super Early Hints
     - Early Hints を HTTPS/SVCB record で送る
-  - *2022-09-15 TPAC: Shopify Early Hints Retro*
+  - **2022-09-15 TPAC: Shopify Early Hints Retro**
     - https://docs.google.com/presentation/d/182x_lQdf8ML5k1bLlne-z1pGb76oiJujFzxqAEcuMsE/edit
 - WebAppSec
   - https://docs.google.com/document/d/1gXvLPz1Fd3i51diHnFtYYRTszTQFpjYPlbncpXlnlLA/preview
@@ -525,19 +525,19 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *[selectors] The forgiving nature of :has breaks jQuery when used with a complex :has selector · Issue #7676 - w3c/csswg-drafts*
+- **[selectors] The forgiving nature of :has breaks jQuery when used with a complex :has selector · Issue #7676 - w3c/csswg-drafts**
   - https://github.com/w3c/csswg-drafts/issues/7676
     - F2F で jQuery と `:has()` の問題が取り上げられた
     - Chrome は WebKit の挙動(バグ)に合わせたが、完全には解決しない
     - 壊れる範囲がまだどれくらいか分からない
     - もし影響が大きい場合、`:has()` の引数を unforgiving に変えるかも
     - 注視していきたい、みたいな感じで終わってしまった
-- *Permissions workshop 2022 - Issue #348 - w3c/strategy*
+- **Permissions workshop 2022 - Issue #348 - w3c/strategy**
   - https://github.com/w3c/strategy/issues/348
     - 2018 年にやった Permissions and User Consent ワークショップの 2 回目を検討しているらしい
-- *W3C TPAC 2022 Sustainability Community Group Meeting - Tantek*
+- **W3C TPAC 2022 Sustainability Community Group Meeting - Tantek**
   - https://tantek.com/2022/267/b1/w3c-tpac-sustainability-cg-meeting
-- *TPAC 2022 - Rego's Everyday Life*
+- **TPAC 2022 - Rego's Everyday Life**
   - https://blogs.igalia.com/mrego/2022/09/28/tpac-2022/
   - igalia の TPAC 参加記
   - "You should hire Igalia to implement that" という声が何度もあった
@@ -571,14 +571,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### New Proposals
 
-- *tc39/proposal-extractors*
+- **tc39/proposal-extractors**
   - https://github.com/tc39/proposal-extractors
   - Symbol.matcher で destructuring 時に同時にロジックを挟む提案
 
 
 #### Other
 
-- *The Unicode Blog: Announcing ICU4X 1.0*
+- **The Unicode Blog: Announcing ICU4X 1.0**
   - https://blog.unicode.org/2022/09/announcing-icu4x-10.html
   - ICU の Rust 実装が 1.0 に
   - Mozilla での Intl.Segmenter の実装が進むかも
@@ -630,20 +630,20 @@ guest: [@myakura](https://twitter.com/myakura)
 - Security
 - Developers
 - Deep Dive
-- *Blocking Kiwifarms*
+- **Blocking Kiwifarms**
   - https://blog.cloudflare.com/kiwifarms-blocked/
   - 海外版 5ch のような過激な掲示板をブロックした話
-- *How to enable Private Access Tokens in iOS 16 and stop seeing CAPTCHAs*
+- **How to enable Private Access Tokens in iOS 16 and stop seeing CAPTCHAs**
   - https://blog.cloudflare.com/how-to-enable-private-access-tokens-in-ios-16-and-stop-seeing-captchas/
 - The (hardware) key to making phishing defense seamless with Cloudflare Zero Trust and Yubico
   - https://blog.cloudflare.com/making-phishing-defense-seamless-cloudflare-yubico/
-- *Announcing Turnstile, a user-friendly, privacy-preserving alternative to CAPTCHA*
+- **Announcing Turnstile, a user-friendly, privacy-preserving alternative to CAPTCHA**
   - https://blog.cloudflare.com/turnstile-private-captcha-alternative/
 
 
 #### Fastly
 
-- *A QUIC Chat, With Jana Iyengar | Fastly*
+- **A QUIC Chat, With Jana Iyengar | Fastly**
   - https://www.fastly.com/blog/a-quic-chat-with-jana-iyengar-rebuilding-fundamental-standards-of-the-web
 - Video Cache Prefetch with Compute@Edge | Fastly
   - https://www.fastly.com/blog/video-cache-prefetch-with-compute-edge
@@ -651,7 +651,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/no-origin-static-websites-at-the-edge
 - Node.js-style HTTP interfaces for Compute@Edge | Fastly
   - https://www.fastly.com/blog/node-js-style-http-interfaces-for-compute-edge
-- *Private Access Tokens and the Future of Anti-Fraud | Fastly*
+- **Private Access Tokens and the Future of Anti-Fraud | Fastly**
   - https://www.fastly.com/blog/private-access-tokens-and-the-future-of-anti-fraud
 
 
@@ -670,25 +670,25 @@ guest: [@myakura](https://twitter.com/myakura)
   - Uber も MFA Fatigue の被害を受けた
 - Passkeys | ImperialViolet
   - https://www.imperialviolet.org/2022/09/22/passkeys.html
-- *No More EV Certificate Overhead in Chrome 106 - WebPageTest Blog*
+- **No More EV Certificate Overhead in Chrome 106 - WebPageTest Blog**
   - https://blog.webpagetest.org/posts/eliminating-ev-certificate-performance-overhead/
 
 
 ### 周辺動向
 
-- *Apple joins the Open Web Docs Steering Committee - Open Collective*
+- **Apple joins the Open Web Docs Steering Committee - Open Collective**
   - https://opencollective.com/open-web-docs/updates/apple-joins-the-open-web-docs-steering-committee
-- *Dear Oracle, Please Release the JavaScript Trademark*
+- **Dear Oracle, Please Release the JavaScript Trademark**
   - https://tinyclouds.org/trademark
   - "JavaScript の商標を手放してくれ" という ry から Oracle へのメッセージ
-- *Honoring Peter Eckersley, Who Made the Internet a Safer Place for Everyone | Electronic Frontier Foundation*
+- **Honoring Peter Eckersley, Who Made the Internet a Safer Place for Everyone | Electronic Frontier Foundation**
   - https://www.eff.org/deeplinks/2022/09/honoring-peter-eckersley-who-made-internet-safer-place-everyone
   - Let's Encrypt の立ち上げなどに貢献した Peter Eckersley が亡くなった
-- *Adobe Buys Figma: What Does this Mean for Web Standards? - The New Stack*
+- **Adobe Buys Figma: What Does this Mean for Web Standards? - The New Stack**
   - https://thenewstack.io/adobe-buys-figma-what-does-this-mean-for-web-standards/
-- *The 2022 Web Almanac*
+- **The 2022 Web Almanac**
   - https://almanac.httparchive.org/en/2022/
-- *A message about Stadia and our long term streaming strategy*
+- **A message about Stadia and our long term streaming strategy**
   - https://blog.google/products/stadia/message-on-stadia-streaming-strategy/
   - Stadia が終了
 - A Safer, More Centralised Australian Internet

@@ -158,24 +158,24 @@ guest: [@koba04](https://twitter.com/koba04)
 
 ### 2 月
 
-- *Rome からもう一人やめる*
+- **Rome からもう一人やめる**
   - https://twitter.com/MichaReiser/status/1613474278808162304
-- *Blazor United prototype - YouTube*
+- **Blazor United prototype - YouTube**
   - https://www.youtube.com/watch?v=48G_CEGXZZM
   - C#/.NET で作る Web 開発プラットフォーム Blazor の紹介
   - SSR と CSR を切り替えられるフレームワークが Blazor United
-- *The Future (and the Past) of the Web is Server Side Rendering*
+- **The Future (and the Past) of the Web is Server Side Rendering**
   - https://deno.com/blog/the-future-and-past-is-server-side-rendering
   - SSR + Hydration だと重いので SSR してこうという話
   - そこで Isomorphic な JS が活きてくる
   - これが Deno + Fresh で実現できるという話
 - Electron ライクな新フレームワーク「Gluon」登場。 Chromium 内蔵せず Web ブラウザを利用、 Node.js だけでなく Deno と Bun にも対応 - Publickey
   - https://www.publickey1.jp/blog/23/electrongluonchromiumwebnodejsdenobun.html
-- *RFC: React DOM for Native*
+- **RFC: React DOM for Native**
   - https://github.com/necolas/discussions-and-proposals/blob/reduce-fragmentation/proposals/0000-reduce-fragmentation.md
   - React Native の API を可能な限り Web API に近づけようという RFC
   - ブラウザ上でのオーバーヘッドを考えた機能的な部分と開発者がクロスプラットフォームで開発するために学ぶことが減るという DX の両面があるよう
-- *React 周辺動向*
+- **React 周辺動向**
   - React Core Team から Vercel へ
     - https://twitter.com/acdlite/status/1623353741750546439
   - Replace Create React App recommendation with Vite
@@ -184,14 +184,14 @@ guest: [@koba04](https://twitter.com/koba04)
     - そこに React Core Team の Dan 氏から CRA の歴史的経緯、いまの React の思想、フレームワークとの関係の説明があった
     - 先日ツイッター上でも似たような話が React Core Team からあったところ
       - https://twitter.com/acdlite/status/1617611126514266112
-- *Next.js 周辺動向*
+- **Next.js 周辺動向**
   - SEO サポートが入るらしい
     - https://twitter.com/leeerob/status/1619743437577912321
   - Next Router に型が入るらしい
     - https://twitter.com/shuding_/status/1620137501192253440
   - Turbopack で webpack loader の読み込みができるようになるらしい
     - https://twitter.com/jaredpalmer/status/1619071988181651456
-- *Bun v0.5 | Bun Blog*
+- **Bun v0.5 | Bun Blog**
   - https://bun.sh/blog/bun-v0.5.0
   - Bun が WebSocket 標準から外れた API をいれたり
   - JSX 拡張して TS にも入れてって言ってたり
@@ -205,25 +205,25 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://styled-components.com/releases
 - Release v29.4.0 · facebook/jest
   - https://github.com/facebook/jest/releases/tag/v29.4.0
-- *Storybook Component Story Format 3 is here*
+- **Storybook Component Story Format 3 is here**
   - https://storybook.js.org/blog/storybook-csf3-is-here/
   - CSF 3 はいまでも使えるけど、 Storybook 7 で正式に入るにあたって色々と追加要素の説明がある
-- *Improved type safety in Storybook 7*
+- **Improved type safety in Storybook 7**
   - https://storybook.js.org/blog/improved-type-safety-in-storybook-7/
   - Storybook の story ファイルに型をつける説明
   - satisfies を使った事例がある
-- *Gatsby*
+- **Gatsby**
   - https://www.gatsbyjs.com/blog/gatsby-is-joining-netlify/
   - gatsby が netlify に買収された
   - build system 、さまざまなコンテンツ ソースからの Webhook 、 deploy 、 edge runtime などを結び付ける composable architectures と呼ばれる Web UI レイヤーを構築していく
   - https://thenewstack.io/netlify-acquires-gatsby-its-struggling-jamstack-competitor/
   - server components
     - https://github.com/gatsbyjs/gatsby/pull/36485
-- *Astro*
+- **Astro**
   - https://astro.build/blog/astro-2/
   - content collections
   - hybrid rendering
-- *Node*
+- **Node**
   - https://nodejs.org/en/blog/release/v19.6.0/
   - loader chain
   - npm isolated mode が追加されたバージョンが内包
@@ -234,7 +234,7 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://deno.com/blog/v1.30
 - elysiajs/elysia: Fast, and friendly Bun web framework
   - https://github.com/elysiajs/elysia
-- *DanielXMoore/Civet: The modern way to write TypeScript*
+- **DanielXMoore/Civet: The modern way to write TypeScript**
   - https://github.com/DanielXMoore/Civet
   - CoffeeScript の TS 版みたいなもの
   - 今年どうなるか注目

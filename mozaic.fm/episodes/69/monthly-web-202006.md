@@ -19,7 +19,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 
 - Stable: 83
 - Updates
-  - *What's New In DevTools (Chrome 85)*
+  - **What's New In DevTools (Chrome 85)**
     - https://developers.google.com/web/updates/2020/06/devtools
     - Style editing for CSS-in-JS frameworks
     - Lighthouse 6 in the Lighthouse panel
@@ -27,8 +27,8 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - Optional Chaining
     - Private Fields
     - Nullish coalescing
-    - *New app shortcut warnings in the Manifest pane*
-    - *Service worker respondWith events in the Timing tab*
+    - **New app shortcut warnings in the Manifest pane**
+    - **Service worker respondWith events in the Timing tab**
     - Consistent display of the Computed pane
     - Bytecode offsets for WebAssembly files
     - Line-wise copy and cut in Sources Panel
@@ -36,12 +36,12 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - Persisting Selected context only settings
     - JavaScript compilation cache information in Performance panel
     - Navigation timing alignment in the Performance panel
-    - *New icons for breakpoints, conditional breakpoints, and logpoints*
+    - **New icons for breakpoints, conditional breakpoints, and logpoints**
   - Experimenting with QuicTransport
     - https://web.dev/quictransport/
   - Protect your resources from web attacks with Fetch Metadata
     - https://web.dev/fetch-metadata/
-  - *How to file a good browser bug*
+  - **How to file a good browser bug**
     - https://web.dev/how-to-file-a-good-bug/
   - Boldly link where no one has linked before: Text Fragments
     - https://web.dev/text-fragments/
@@ -49,7 +49,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://web.dev/chrome-ux-report-data-studio-dashboard/
   - Getting started with Chrome's origin trials
     - https://web.dev/origin-trials/
-  - *Using the Chrome UX Report API*
+  - **Using the Chrome UX Report API**
     - https://web.dev/chrome-ux-report-api/
     - CrUX に REST API が
   - Web developer tools for debugging JavaScript issues in Google Search
@@ -85,17 +85,17 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - Improving user privacy and developer experience with User-Agent Client Hints
     - https://web.dev/user-agent-client-hints/
 - Intents
-  - *Ship: CSS content-visibility property*
+  - **Ship: CSS content-visibility property**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uElH0-Ys8Cs/bJXV-Ky5BAAJ
     - 隠れている要素の処理を無くし高速化できる
-  - *Ship: Named pages with page-orientation*
+  - **Ship: Named pages with page-orientation**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lExIv0Fh8fs/APsgi1auAQAJ
     - `@page foobar { height: 10rem; } .foobar{ page: foobar; }` のように page property の値に指定する alias のようなものを作れる
   - Ship: JavaScript BigInt to WebAssembly i64 integration
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/g4QKRUQV1-0/jdWjD1uZAAAJ
   - Ship: WebXR Anchors
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ay1bG_e9m00/kpJVUINhBQAJ
-  - *Ship: Non-Blocking Overscroll*
+  - **Ship: Non-Blocking Overscroll**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MKshWSE9BzM/4LrO5VjiAgAJ
     - TouchMove イベントはのタッチストリームは一度非ブロッキングになるとキャンセルできない
     - Chromium はページの最上/下部に達したときにタッチストリームをブロッキングに戻す
@@ -107,14 +107,14 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/lqCQ63CTKEQ/cYTNFETPAwAJ
   - Ship: AVIF Decode
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MlTJyKGGtks/rTfshC2SBAAJ
-  - *Ship: Media Feeds*
+  - **Ship: Media Feeds**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/OXZLwImwdbc/ai77f5puBAAJ
     - ユーザに対して他のおすすめコンテンツを提供できる機能
     - ブラウザの UI で行うための宣言的な API
     - (どういう UI になるのか?)
   - Implement and Ship: Update fallback content's behavior for ImageInputType and HTMLImageElement
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xPWNM6g0mOs/asoj4aCkAQAJ
-  - *Implement and Ship: CSS counter-set*
+  - **Implement and Ship: CSS counter-set**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/LpHjBZZSPB0/QpafCJheBQAJ
     - CSS で連番を制御する API
     - `counter-set`, `counter-increment`, `counter-reset`
@@ -122,15 +122,15 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ragu5Is6vCw/bsrP_5O6BAAJ
   - Implement and Ship: Intensive throttling of Javascript timer wake ups
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8En_5DqV_fU/fKD_sQRiAwAJ
-  - *Implement and Ship: HTMLMediaElement.preservesPitch*
+  - **Implement and Ship: HTMLMediaElement.preservesPitch**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XVCt0EXVplQ/sDyHmylZAgAJ
     - 音声の速度を変えたとき、音が高くなるか、変わらないか、選べる API
     - 既にピッチを変えないように実装されているが DJ や音声効果など、変えられる方が良い場合もあるので入る
   - Implement and Ship: Expose pictureInPictureWindow in leavepictureinpicture event
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gwaEnJjtfKw/rEf_uw92AgAJ
-  - *Prototype and Ship: Feature Policy integration for Clipboard API*
+  - **Prototype and Ship: Feature Policy integration for Clipboard API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IDAapW6w4to/iSH1MXRFCgAJ
-  - *Prototype: cross-origin isolation*
+  - **Prototype: cross-origin isolation**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/U51-KZ51vNY/gdA2ZYt6AQAJ
     - site ではなく origin で完全に分離する
   - Prototype: CSS Overflow scrollbar-gutter
@@ -139,11 +139,11 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uASqamKZILY/DYm_UuokBQAJ
   - Prototype: display-override
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WvIeZT8uSzw/al7sVZjVBAAJ
-  - *Prototype: HTMLMediaElement.preservesPitch*
+  - **Prototype: HTMLMediaElement.preservesPitch**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bD4dZdquUZ8/cGYGla9UAgAJ
   - Prototype: WebXR Raw Camera Access
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4kMGCyCUIao/5vjPk4tuAQAJ
-  - *Prototype and chromestatus feature entries*
+  - **Prototype and chromestatus feature entries**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/GnV0dxxOR2I/3nsJ-iV8AwAJ
     - chromestatus にエントリがないのに intents が送られているケースがある
     - 基本は chromestatus にエントリを作るのが最初で、そこから連携して送るようにという通達
@@ -151,7 +151,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/vI9AhAzxlWE/zQOmT824AgAJ
   - Prototype: Cross-origin opener policy reporting API
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h5s3SMpF8QI/TkukMVyTAgAJ
-  - *Prototype: Sanitizer API*
+  - **Prototype: Sanitizer API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MJxVZs1H5SY/6q0QxEFtBAAJ
     - 文字列から HTML 要素を除く API
     - DOMPurify を参考にしている
@@ -176,7 +176,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - V8 release v8.4 - V8
     - https://v8.dev/blog/v8-release-84
 - Other
-  - *Chromium Blog: Improving Chromium's browser compatibility in 2020*
+  - **Chromium Blog: Improving Chromium's browser compatibility in 2020**
     - https://blog.chromium.org/2020/06/improving-chromiums-browser.html
     - 2019 に Mozilla の実施した DNA(Developer Needs Assessment) の結果、最も求められているのは互換性だった
     - これを受け Chrome は Scroll/Flexbox/Form などで改善を行った
@@ -190,7 +190,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 
 - Stable: 78
 - Updates
-  - *New in Firefox 77: DevTool improvements and web platform updates*
+  - **New in Firefox 77: DevTool improvements and web platform updates**
     - https://hacks.mozilla.org/2020/06/new-in-firefox-77-devtool-improvements-and-web-platform-updates/
     - DevTool Improvements
       - Faster, leaner JavaScript debugging
@@ -203,7 +203,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
       - String#replaceAll
       - IndexedDB cursor requests
     - Extensions in Firefox 77: Fewer permission requests and more
-  - *New in Firefox 78: DevTools improvements, new regex engine, and abundant web platform updates*
+  - **New in Firefox 78: DevTools improvements, new regex engine, and abundant web platform updates**
     - https://hacks.mozilla.org/2020/06/new-in-firefox-78/
     - Developer tool improvements
       - Source-mapped variables, now also in Logpoints
@@ -212,8 +212,8 @@ guest: [@araya](https://twitter.com/arayaryoma)
       - Quality improvements
       - Early-access DevTools features in Developer Edition
     - Web platform updates
-      - *New CSS selectors :is and :where*
-      - *Styling forms with CSS :read-only and :read-write*
+      - **New CSS selectors :is and :where**
+      - **Styling forms with CSS :read-only and :read-write**
       - New regex engine
       - ECMAScript Intl API updates
       - ParentNode.replaceChildren
@@ -222,12 +222,12 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - WebExtensions
     - TLS 1.0 and 1.1 removal
     - Firefox 78 is an ESR release
-  - *Welcoming Safari to the WebExtensions Community*
+  - **Welcoming Safari to the WebExtensions Community**
     - https://hacks.mozilla.org/2020/06/welcoming-safari-to-the-webextensions-community/
     - WWDC での Safari の拡張対応のアナウンスを受けて
   - Update on Firefox Support for macOS 10.9, 10.10 and 10.11
     - https://blog.mozilla.org/futurereleases/2020/06/23/update-on-firefox-support-for-macos-10-9-10-10-and-10-11/
-  - *A New RegExp Engine in SpiderMonkey*
+  - **A New RegExp Engine in SpiderMonkey**
     - https://hacks.mozilla.org/2020/06/a-new-regexp-engine-in-spidermonkey/
     - 正規表現エンジンの刷新
   - Let's meet online: Virtual All Hands 2020
@@ -239,24 +239,24 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/FhtlL0tmz5M/_hOl81QRAwAJ
   - Ship: WebAssembly bulk-memory-operations and reference-types proposals
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/crebIMmTEWg/-Z93I6dxAwAJ
-  - *Ship : HTML5 `<dialog>` element (Nightly Only)*
+  - **Ship : HTML5 `<dialog>` element (Nightly Only)**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/gqi4MDQDwX8/eXCcIZNWAwAJ
     - Nightly でだけ `<dialog>` 要素を有効に
     - Layout 実装が仮なのと、 Inert(後述) が無いため、まだ改善が必要
-  - *Ship: returning shared memory to the web*
+  - **Ship: returning shared memory to the web**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/-hYWoob95LI/k160l4k7AwAJ
     - COOP + COEP による crossOriginIsolated が true なら SharedArrayBuffer を有効に
-  - *Prototype: enterkeyhint attribute*
+  - **Prototype: enterkeyhint attribute**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/T97NRJWS8Qs/YhTfpSS_AQAJ
     - モバイルのキーボードの Enter 部分を装飾する
-  - *Prototype HTML:inert*
+  - **Prototype HTML:inert**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/DS9qGnqc_3Q/BbSSogcEAwAJ
     - 非活性にするオプション
     - dialog 表示時の後ろ側など
-  - *Prototype: unprefixed appearance property*
+  - **Prototype: unprefixed appearance property**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/nlun5QV63Bo/xUXCmySGAgAJ
     - `-moz-appearance` の Prefix を削除
-  - *Unship: JavaScript BinAST prototype implementation*
+  - **Unship: JavaScript BinAST prototype implementation**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/B3sVl2hCJCE/KLoMRrXFAwAJ
     - 実装が一応入っていたが、完成には程遠いので、 CI 負荷などを下げるため一旦下ろす
     - 次やる場合は、新しい JS パーサのデザインに合わせてやりなおす
@@ -264,11 +264,11 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/PxkHBfdorRo/a-fswdp0AwAJ
   - Deprecate: stretching MathML operators with STIXGeneral fonts
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/ufT7Oc42MEc/xiOlQxIECQAJ
-  - *More volunteers needed for nightly crash triage rotation*
+  - **More volunteers needed for nightly crash triage rotation**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/IwOsqYduKF4/CoHRMYnEAwAJ
     - クラッシュレポートのトリアージをする人が足りないのでボランティア募集
 - Other
-  - *Compiler Compiler: A Twitch series about working on a JavaScript engine*
+  - **Compiler Compiler: A Twitch series about working on a JavaScript engine**
     - https://hacks.mozilla.org/2020/06/compiler-compiler-working-on-a-javascript-engine/
   - Introducing the MDN Web Docs Front-end developer learning pathway
     - https://hacks.mozilla.org/2020/06/introducing-the-mdn-web-docs-front-end-developer-learning-pathway/
@@ -288,14 +288,14 @@ guest: [@araya](https://twitter.com/arayaryoma)
 
 - Stable: 13.1.1
 - Updates
-  - *WWDC*
+  - **WWDC**
     - WWDC20 - Apple Developer
       - https://developer.apple.com/wwdc20/
-  - *Safari 14 Beta Release Notes*
+  - **Safari 14 Beta Release Notes**
     - https://developer.apple.com/documentation/safari-release-notes/safari-14-beta-release-notes
-    - *WebExtension for macOS*
+    - **WebExtension for macOS**
     - Webpage Translation
-    - *Support for HTTP/3*
+    - **Support for HTTP/3**
     - Improved web platform tests pass rate
     - https://developer.apple.com/videos/play/wwdc2020/10663/
       - Performance improvements
@@ -310,17 +310,17 @@ guest: [@araya](https://twitter.com/arayaryoma)
         - for-of loops Up to 5x faster
         - JavaScript Promises Up to 2x faster
         - JavaScript delete operations Up to 12x faster
-      - *WebP のサポート*
+      - **WebP のサポート**
       - HDR のサポート `@media only screen (dynamic-range: high)`
       - Picture-in-picture API
       - など
   - Release Notes for Safari Technology Preview 108
     - https://webkit.org/blog/10840/release-notes-for-safari-technology-preview-108/
-    - *Implemented ParentNode.prototype.replaceChildren (r262381)*
+    - **Implemented ParentNode.prototype.replaceChildren (r262381)**
     - Added support for reading "image/png" on ClipboardItem (r262209)
-  - *Release Notes for Safari Technology Preview 109 with Safari 14 Features*
+  - **Release Notes for Safari Technology Preview 109 with Safari 14 Features**
     - https://webkit.org/blog/10875/release-notes-for-safari-technology-preview-109-with-safari-14-features/
-    - *Safari Web Extension*
+    - **Safari Web Extension**
       - https://developer.apple.com/videos/play/wwdc2020/10665/
       - Xcode で、署名、ビルドして AppStore で配布
       - Chrome/Firefox の extension から convert するツールも提供
@@ -329,13 +329,13 @@ guest: [@araya](https://twitter.com/arayaryoma)
       - inactive なタブを hover するとページのプレビューが出るようになった
     - Website icons in tabs
       - タブに favicon が表示されるようになった
-    - *Password breach notifications*
+    - **Password breach notifications**
       - iCloud Keychain に保存されているパスワードの漏洩があったら通達する
       - well-known URL (.well-known/change-password)にユーザーをアクセスさせる
-    - *Domain-bound codes*
+    - **Domain-bound codes**
       - https://wicg.github.io/sms-one-time-codes/
       - SMS で受け取ったワンタイムトークンのオートフィル
-    - *Web Authentication*
+    - **Web Authentication**
       - https://developer.apple.com/videos/play/wwdc2020/10670/
       - WebAuthn に Face ID/Touch ID を使用できる
       - FIDO2 外部キーのサポート
@@ -371,7 +371,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - Back-forward Cache
       - Stopped allowing pages served over HTTPS with Cache-Control: no-store into the back-forward cache (r262978)
     - JavaScript
-      - *Added support for private class fields (r262613)*
+      - **Added support for private class fields (r262613)**
       - Added "el" (Greek) to our maintained available locales list (r262992)
       - Changed Logical Assignment to perform NamedEvaluation of anonymous functions (r262638)
       - Changed JSON.stringify to throw stack overflow error (r262727)
@@ -408,15 +408,15 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - [webkit-dev] Request for position on Media Feeds
     - https://lists.webkit.org/pipermail/webkit-dev/2020-June/031234.html
 - Other
-  - *Apple declined to implement 16 Web APIs in Safari due to privacy concerns*
+  - **Apple declined to implement 16 Web APIs in Safari due to privacy concerns**
     - https://gigazine.net/news/20200629-apple-web-api-decline/
     - https://www.zdnet.com/article/apple-declined-to-implement-16-web-apis-in-safari-due-to-privacy-concerns/
     - Tracking Prevention in WebKit
       - https://webkit.org/tracking-prevention/#anti-fingerprinting
       - これがソースと思われる。
-      - > Here are some examples of features we have decided to not implement *in part* due to fingerprinting concerns:
+      - > Here are some examples of features we have decided to not implement **in part** due to fingerprinting concerns:
       - タイトルと比べるとニュアンスはだいぶ違う
-  - *App-Bound Domains*
+  - **App-Bound Domains**
     - https://webkit.org/blog/10882/app-bound-domains/
       - WKWebView で App 内 WebView を使うときに、 Web サイトのトラッキングスクリプトをブロックする方法を提供
         - info.plist の WebAppBoundDomains に allow list を指定する(最大 10 個)
@@ -435,7 +435,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - Added a New Tab Page Search Box management policy.  Administrative Template updates to come later.
     - Added support for the Auto Open Allowed For URLs management policy from upstream Chromium.
     - Added support for the Auto Open File Types management policy from upstream Chromium.
-  - *Improving Memory Usage in Microsoft Edge*
+  - **Improving Memory Usage in Microsoft Edge**
     - https://blogs.windows.com/msedgedev/2020/06/17/improving-memory-usage/
     - Windows のヒープを改善
     - Edge での閲覧時に最大 27% メモリ消費を削減
@@ -446,21 +446,21 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - Release ChakraCore v1.11.20
     - https://github.com/microsoft/ChakraCore/releases/tag/v1.11.20
 - Other
-  - *Get started with Progressive Web Apps (Chromium) - Microsoft Edge Development*
+  - **Get started with Progressive Web Apps (Chromium) - Microsoft Edge Development**
     - https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/get-started
-  - *Microsoft Edge extends tools for the PDF reader - Microsoft Tech Community - 1303243*
+  - **Microsoft Edge extends tools for the PDF reader - Microsoft Tech Community - 1303243**
     - https://techcommunity.microsoft.com/t5/articles/microsoft-edge-extends-tools-for-the-pdf-reader/m-p/1303243
-  - *Microsoft Edge Read aloud: Now with PDF support - Microsoft Tech Community - 1418076*
+  - **Microsoft Edge Read aloud: Now with PDF support - Microsoft Tech Community - 1418076**
     - https://techcommunity.microsoft.com/t5/articles/microsoft-edge-read-aloud-now-with-pdf-support/m-p/1418076
   - Known Issue - Microsoft Edge Launching on Startup - Microsoft Tech Community - 1457853
     - https://techcommunity.microsoft.com/t5/articles/known-issue-microsoft-edge-launching-on-startup/m-p/1457853
-  - *Roadmap for PDF reader in Microsoft Edge - Microsoft Tech Community - 1467667*
+  - **Roadmap for PDF reader in Microsoft Edge - Microsoft Tech Community - 1467667**
     - https://techcommunity.microsoft.com/t5/articles/roadmap-for-pdf-reader-in-microsoft-edge/m-p/1467667
   - The all-new Microsoft Edge Add-ons website is now live - Microsoft Tech Community - 1467980
     - https://techcommunity.microsoft.com/t5/articles/the-all-new-microsoft-edge-add-ons-website-is-now-live/m-p/1467980
   - Known Issue - Adblock causing errors on YouTube - Microsoft Tech Community - 1486882
     - https://techcommunity.microsoft.com/t5/articles/known-issue-adblock-causing-errors-on-youtube/m-p/1486882
-  - *Password Monitor is now available in Microsoft Edge preview builds - Microsoft Tech Community - 1499656*
+  - **Password Monitor is now available in Microsoft Edge preview builds - Microsoft Tech Community - 1499656**
     - https://techcommunity.microsoft.com/t5/articles/password-monitor-is-now-available-in-microsoft-edge-preview/m-p/1499656
     - パスワードの再利用や漏洩を発見する
     - haveIbeenpound 的な機能
@@ -476,9 +476,9 @@ guest: [@araya](https://twitter.com/arayaryoma)
 - Recommendation
 - Proposed Recommendation
 - Candidate Recommendation
-  - *Notice of CFC: Publish the January 2020 HTML Standard Review Draft as W3C Candidate Recommendation*
+  - **Notice of CFC: Publish the January 2020 HTML Standard Review Draft as W3C Candidate Recommendation**
     - https://lists.w3.org/Archives/Public/public-html/2020May/0017.html
-  - *HTML Review Draft 29 January 2020 Endorsed as a W3C Candidate Recommendation*
+  - **HTML Review Draft 29 January 2020 Endorsed as a W3C Candidate Recommendation**
     - https://www.w3.org/blog/news/archives/8609
   - Updated Candidate Recommendation: Web Audio API
     - https://www.w3.org/blog/news/archives/8598
@@ -487,14 +487,14 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - First Public Working Draft: Rules for Simple Placement of Japanese Ruby
     - https://www.w3.org/blog/news/archives/8593
 - Chartering
-  - *Proposed W3C Charter: WebTransport Working Group*
+  - **Proposed W3C Charter: WebTransport Working Group**
     - https://lists.w3.org/Archives/Public/public-new-work/2020Jun/0004.html
   - Web Performance Working Group Charter Extended
     - https://lists.w3.org/Archives/Public/public-new-work/2020Jun/0000.html
   - Service Workers Working Group Charter Extended
     - https://lists.w3.org/Archives/Public/public-new-work/2020Jun/0007.html
 - Other
-  - *W3C Advisory Committee Elects Advisory Board*
+  - **W3C Advisory Committee Elects Advisory Board**
     - https://www.w3.org/blog/news/archives/8569
 
 
@@ -504,7 +504,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - 2020-01
     - https://github.com/tc39/agendas
     - https://github.com/tc39/notes
-  - *ES2020 Released*
+  - **ES2020 Released**
     - https://www.ecma-international.org/news/index.html
     - ECMA-262 11th edition - ECMAScript 2020 Language Specification
       - https://github.com/tc39/String.prototype.matchAll
@@ -532,10 +532,10 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - 3->4
     - String.prototype.replaceAll
 - New Proposals
-  - *tabatkins/proposal-item-method: A TC39 proposal to add a .item() method to all the basic indexable classes (Array, String, TypedArray)*
+  - **tabatkins/proposal-item-method: A TC39 proposal to add a .item() method to all the basic indexable classes (Array, String, TypedArray)**
     - https://github.com/tabatkins/proposal-item-method
     - 負の数で Array から取得したりできる
-  - *tc39/proposal-import-attributes: Proposal for syntax to import ES modules with attributes*
+  - **tc39/proposal-import-attributes: Proposal for syntax to import ES modules with attributes**
     - https://github.com/tc39/proposal-import-attributes
   - legendecas/proposal-async-context
     - https://github.com/legendecas/proposal-async-context
@@ -568,7 +568,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 - RFC
 - IETF Last Call
 - WG Last Call
-  - *Working Group Last Call: QUIC protocol drafts*
+  - **Working Group Last Call: QUIC protocol drafts**
     - https://mailarchive.ietf.org/arch/msg/quic/F7wvKGnA1FJasmaE35XIxsc2Tno/
 - Call for Adoption
 - I-D Action
@@ -581,15 +581,15 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://tools.ietf.org/html/draft-yiakoumis-network-tokens-01
   - Describing QUIC's Protocol Data Units with Augmented Packet Header Diagrams
     - https://tools.ietf.org/html/draft-mcquistin-quic-augmented-diagrams-01
-  - *TLS Application-Layer Protocol Settings Extension*
+  - **TLS Application-Layer Protocol Settings Extension**
     - https://tools.ietf.org/html/draft-vvv-tls-alps-00
-  - *Greasing the QUIC Bit*
+  - **Greasing the QUIC Bit**
     - https://tools.ietf.org/html/draft-thomson-quic-bit-grease-00
   - Trusted Path Routing
     - https://tools.ietf.org/html/draft-voit-rats-trustworthy-path-routing-00
   - Identity Module for TLS Version 1.3
     - https://tools.ietf.org/html/draft-urien-tls-im-00
-  - *GREASE for HTTP/2*
+  - **GREASE for HTTP/2**
     - https://tools.ietf.org/html/draft-bishop-httpbis-grease-01
     - ランダムな SETTINGS や Frame Type を送って GREASE をする
   - Impact of TLS 1.3 to Operational Network Security Practices
@@ -599,17 +599,17 @@ guest: [@araya](https://twitter.com/arayaryoma)
 - Other
   - Minutes of the June 4, 2020 Virtual Interim Meeting of the WEBRTC WG 2020)
     - https://lists.w3.org/Archives/Public/public-webrtc/2020Jun/0011.html
-  - *One last Structured Fields issue*
+  - **One last Structured Fields issue**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0227.html
     - Structured Field がもうすぐ IESG に
-  - *Structured request headers deployment issues*
+  - **Structured request headers deployment issues**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0277.html
     - UA-CH が Structured Header のせいで落ちる
 
 
 ### セキュリティ動向
 
-- *インド政府が中国製のアプリ 59 個を禁止にした*
+- **インド政府が中国製のアプリ 59 個を禁止にした**
   - https://pib.gov.in/PressReleasePage.aspx?PRID=1635206
   - TicTok, WeChat, Weibo etc
 - How to proceed with the Trusted Types mitigation for WebUI
@@ -622,7 +622,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 
 ### 周辺動向
 
-- *Black Lives Matter*
+- **Black Lives Matter**
   - アメリカのデモの影響で OSS 系のサイトもメッセージを掲げる
   - https://babeljs.io/
   - https://reactjs.org/
@@ -637,7 +637,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - etc
 - A Faster Blog, Faster - Infrequently Noted
   - https://infrequently.org/2020/06/faster-faster/
-- *Improving HTTP with structured header fields*
+- **Improving HTTP with structured header fields**
   - https://www.fastly.com/blog/improve-http-structured-headers
 - Network error logging: collecting failure conditions from end users
   - https://www.fastly.com/blog/network-error-logging
@@ -651,11 +651,11 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://www.fastly.com/blog/prevent-application-network-instability-serve-stale-content
 - Google's Core Web Vitals: ensuring your site is ready for Google's next major update
   - https://www.fastly.com/blog/ensure-ready-google-core-web-vitals
-- *Black Lives Matter: We are taking a stand*
+- **Black Lives Matter: We are taking a stand**
   - https://www.fastly.com/blog/black-lives-matter-we-are-taking-a-stand
 - How Fastly and the developer community are investing in the WebAssembly ecosystem
   - https://www.fastly.com/blog/how-fastly-and-developer-community-invest-in-webassembly-ecosystem
-- *TLS 1.3 is faster, more robust, and now available*
+- **TLS 1.3 is faster, more robust, and now available**
   - https://www.fastly.com/blog/tls13-available
 - Performance matters: why Compute@Edge does not yet support JavaScript
   - https://www.fastly.com/blog/why-edge-compute-does-not-yet-support-javascript
@@ -667,9 +667,9 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://blog.cloudflare.com/high-availability-load-balancers-with-maglev/
 - Making the WAF 40% faster
   - https://blog.cloudflare.com/making-the-waf-40-faster/
-- *How to test HTTP/3 and QUIC with Firefox Nightly*
+- **How to test HTTP/3 and QUIC with Firefox Nightly**
   - https://blog.cloudflare.com/how-to-test-http-3-and-quic-with-firefox-nightly/
-- *Platform Adjacency Theory - Infrequently Noted*
+- **Platform Adjacency Theory - Infrequently Noted**
   - https://infrequently.org/2020/06/platform-adjacency-theory/
 - QUIC with wolfSSL | daniel.haxx.se
   - https://daniel.haxx.se/blog/2020/06/18/quic-with-wolfssl/

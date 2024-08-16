@@ -16,14 +16,14 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 ## Show Note
 
-- *Astro 1.4.0/1.5.0 Release | Astro*
+- **Astro 1.4.0/1.5.0 Release | Astro**
   - https://astro.build/blog/astro-140/
   - https://astro.build/blog/astro-150/
   - node/standalone が追加され、 express とかのコード書かなくて良くなった + SSR の preview ができるようになった
   - tailwind/tsconfig の HMR 対応
   - cookie のライブラリ buit-in
   - `:where` で css が出力されるようになった
-- *RFC: First class support for promises and async/await*
+- **RFC: First class support for promises and async/await**
   - https://github.com/reactjs/rfcs/pull/229
   - `use` Hook と Server Components での async/await のサポートについて
   - Suspense で Promise を解決するもの
@@ -35,41 +35,41 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
     - https://github.com/facebook/react/blob/main/packages/react-pg/src/ReactPostgres.js
   - wg
     - https://github.com/reactwg/server-components/discussions/2
-- *Substack が Github のアカウント削除*
+- **Substack が Github のアカウント削除**
   - https://web.archive.org/web/20220709104641/https://twitter.com/substack/status/1545720920735551489
   - Substack が Github から消えて npm のモジュールがヤバいことになってる
   - どうやら消した理由は npm/github の 2FA 必須に反対しているかららしい
   - https://twitter.com/ljharb/status/1579610392414007299
   - パッケージのサルベージも始まっている
-- *rollup@3.0.0*
+- **rollup@3.0.0**
   - https://github.com/rollup/rollup/releases/tag/v3.0.0
   - `node:` prefix が使えるようになった
-- *Add no-nested-components ESLint rule*
+- **Add no-nested-components ESLint rule**
   - https://github.com/facebook/react/pull/25360
   - コンポーネントのネストを防ぐ ESLint ルール
-- *Introducing OG Image Generation: Fast, dynamic social card images at the Edge - Vercel*
+- **Introducing OG Image Generation: Fast, dynamic social card images at the Edge - Vercel**
   - https://vercel.com/blog/introducing-vercel-og-image-generation-fast-dynamic-social-card-images
   - OG の Image を SVG で動的に作るライブラリ
   - HTML + CSS を Satori というエンジンで SVG に変換している
   - Satori はさらに Yoga というレイアウトエンジンの WASM ビルドを使っている
   - Next.js Conf のチケットとかがそれを使っている
-- *Fastly で Next.js アプリケーションを実行 | Fastly*
+- **Fastly で Next.js アプリケーションを実行 | Fastly**
   - https://www.fastly.com/jp/blog/run-your-next-js-app-on-fastly
-- *vanilla-extract が vanilla-extract-css として SEEK 社から org として独立*
+- **vanilla-extract が vanilla-extract-css として SEEK 社から org として独立**
   - https://github.com/vanilla-extract-css
   - https://twitter.com/mattcompiles/status/1575729572783394816?s=20&t=Sk7MUukc5Fhu6GBiIMiEMg
     - メインメンテナーの人が SEEK 社を退職したからぽい
     - https://twitter.com/mattcompiles/status/1577440099939164160?s=20&t=Sk7MUukc5Fhu6GBiIMiEMg
       - アトラシアンでも引き続き vanilla-extract をやってるぽい
-- *V8 の人が meta に転職して React Core Team に入ったらしい*
+- **V8 の人が meta に転職して React Core Team に入ったらしい**
   - https://twitter.com/_gsathya/status/1578816177371250688?s=20&t=2zEEpVl0jaChMvXpBnYqbw
   - ツイート内容的にコンパイル周りとか色々するっぽい?
-- *Release v1.0.0 · axios/axios*
+- **Release v1.0.0 · axios/axios**
   - https://github.com/axios/axios/releases/tag/v1.0.0
-- *lost-pixel/lost-pixel: Holistic visual testing for your Frontend 🖼 First class integration with Storybook, Ladle & other frontend libraries.*
+- **lost-pixel/lost-pixel: Holistic visual testing for your Frontend 🖼 First class integration with Storybook, Ladle & other frontend libraries.**
   - https://github.com/lost-pixel/lost-pixel
   - Storybook / Ladle の上で VRT を実現するツール
-- *First-class Vite support in Storybook*
+- **First-class Vite support in Storybook**
   - https://storybook.js.org/blog/first-class-vite-support-in-storybook/
 - RFC: File System-Based Native Routing with Expo and React Native | by Evan Bacon | Sep, 2022 | Exposition
   - https://blog.expo.dev/rfc-file-system-based-routing-in-react-native-7a35474722a

@@ -43,25 +43,25 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
       - Single `<compound-selector>` for `:host()` and `:host-context()`
     - Form Controls Visual Refresh on Android
     - GravitySensor Interface
-    - *SharedArrayBuffers on Desktop Platforms Restricted to Cross-Origin Isolated Environments*
+    - **SharedArrayBuffers on Desktop Platforms Restricted to Cross-Origin Isolated Environments**
     - Suggested file name and location for the File System Access API
     - WebOTP API: cross-origin iframe support
-    - *WebSockets over HTTP/2*
-    - *Credentials sharing for sites affiliated with Digital Asset Links*
+    - **WebSockets over HTTP/2**
+    - **Credentials sharing for sites affiliated with Digital Asset Links**
   - JavaScript
-    - *ES Modules for service workers ('module' type option)*
-    - *Checks for Private Fields*
+    - **ES Modules for service workers ('module' type option)**
+    - **Checks for Private Fields**
 
 
 #### Intents
 
 - Ship: Add dayPeriod option for Intl.DateTimeFormat
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/7zqShg05D3c/m/P7oL2E7FAQAJ
-- *Ship: ALPS and ACCEPT_CH HTTP/2 and HTTP/3 frames*
+- **Ship: ALPS and ACCEPT_CH HTTP/2 and HTTP/3 frames**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6EoEnqxqhsk/m/WC4kkMCAAQAJ
 - Ship: `navigator.webdriver === false` when automation is not enabled.
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/h-5nQQLs2QU/m/iRVKU4LhAgAJ
-- *Ship: Cookie Store API on local secure contexts*
+- **Ship: Cookie Store API on local secure contexts**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ekdeaj09c0w/m/gK9lu568AgAJ
   - Cookie Store API が secure context に限定され、 localhost などにも公開されてなかった
   - HTTPS サーバが無くても試せるよう localhost などにも公開する
@@ -73,13 +73,13 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CNpLNXx2wf0/m/Ehi3cx1YAQAJ
 - Implement and ship: Media Session API: Video conferencing actions
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/sXhlwO_R9To/m/q7QuMyc_AQAJ
-- *Implement and Ship: Implement :playing, :paused pseudo-classes*
+- **Implement and Ship: Implement :playing, :paused pseudo-classes**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kz3w-yOMDks/m/Ue71o4xYAAAJ
   - audio/video が再生中かどうかなどを取得する擬似クラス
-- *Prototype: auto keyword for contain-intrinsic-size*
+- **Prototype: auto keyword for contain-intrinsic-size**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/loqGn7N9hzU/m/mRDdLA_cAgAJ
   - `content-visibility: auto` との組み合わせでページの大きさががたがた変わってしまうのを防ぐために、`contain-intrinsic-size` に新しく auto というキーワードを追加する
-- *Prototype: Service Worker subresource filter*
+- **Prototype: Service Worker subresource filter**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/uEcgVgTJ5qA/m/bemJBwikBAAJ
   - 全 Request が onfetch にヒットするとオーバーヘッドが大きい
   - 必要なもののみ onfetch にヒットするように `Service-Worker-Subresource-Filter` のみにする
@@ -87,11 +87,11 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/V5jFCsw8J2M/m/VBg0oh2_AwAJ
 - Experiment: WebTransport over HTTP/3
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/aaLFxzw5zL4/m/H3V_l-qlAgAJ
-- *Experiment: Network State Partitioning*
+- **Experiment: Network State Partitioning**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/sLC_W6B8big/m/5sk787RQBAAJ
   - side channel を防ぐために、グローバルで共有されるネットワーク状態も分離する
   - connection (H1,2,3, websocket), DNS cache, ALPN/H2 data, TLS/H3 resumption, Reporting/NEL, Expect-CT etc.
-- *Experiment: New Canvas 2D API*
+- **Experiment: New Canvas 2D API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bEgFQrTsDso/m/9wD9tqxQBAAJ
 - Extend Origin Trial: Trust Token API (Take 2)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-W90wVkS0Ks/m/HyICZtuuBAAJ
@@ -114,31 +114,31 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - web.dev
   - Evolving the CLS metric
     - https://web.dev/evolving-cls/
-  - *Take the 2021 scroll survey to help improve scrolling on the web*
+  - **Take the 2021 scroll survey to help improve scrolling on the web**
     - https://web.dev/2021-scroll-survey/
     - scroll 関連 API や実装に関するアンケート
   - Fill OTP forms within cross-origin iframes with WebOTP API
     - https://web.dev/web-otp-iframe/
   - Building split text animations
     - https://web.dev/building-split-text-animations/
-  - *Customize the window controls overlay of your PWA's title bar*
+  - **Customize the window controls overlay of your PWA's title bar**
     - https://web.dev/window-controls-overlay/
     - Title Bar にコンテンツを埋め込む方法
   - Keeping third-party scripts under control
     - https://web.dev/controlling-third-party-scripts/
   - Mainline Menswear implements PWA and sees a 55% conversion rate uplift
     - https://web.dev/mainline-mensware/
-  - *Breaking down barriers using the DataTransfer API*
+  - **Breaking down barriers using the DataTransfer API**
     - https://web.dev/datatransfer/
     - drag and drop などの UI で Window 間でデータをやりとりする API
 - google developer blog
   - Announcing the Sustainable Monetized Websites video series
     - https://developers.google.com/search/blog/2021/04/sustainable-monetized-websites
-  - *Get started with signed exchanges on Google Search*
+  - **Get started with signed exchanges on Google Search**
     - https://developers.google.com/search/docs/advanced/experience/signed-exchange
     - Google 検索結果でこれまで AMP のみ SXG による Prefetch が対応されていた
     - これが AMP 以外のサイトでも Prefetch されるようになった
-  - *More time, tools, and details on the page experience update*
+  - **More time, tools, and details on the page experience update**
     - https://developers.google.com/search/blog/2021/04/more-details-page-experience?hl=ja
     - Page Experience Update の続報
     - 5 月とアナウンスされていたが 6 月中旬ロールアウト開始に
@@ -156,7 +156,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - Chromium Blog: Help users log in across affiliated sites on Chrome
     - https://blog.chromium.org/2021/04/help-users-log-in-across-affiliated.html
 - amp
-  - *Privacy-preserving instant loading for all web content*
+  - **Privacy-preserving instant loading for all web content**
     - https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
@@ -171,7 +171,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 - Firefox 88.0, See All New Features, Updates and Fixes
   - https://www.mozilla.org/en-US/firefox/88.0/releasenotes/
-- *Firefox 88 for developers - Mozilla*
+- **Firefox 88 for developers - Mozilla**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/88
   - :user-valid, :user-invalid
   - image-set()
@@ -181,7 +181,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - https://v8.dev/features/regexp-match-indices
 - Never too late for Firefox 88 - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2021/04/never-too-late-for-firefox-88/
-- *Firefox 88 combats window.name privacy abuses - Mozilla Security Blog*
+- **Firefox 88 combats window.name privacy abuses - Mozilla Security Blog**
   - https://blog.mozilla.org/security/2021/04/19/firefox-88-combats-window-name-privacy-abuses/
   - window.name プロパティはその性質からナビゲーションをまたいで保持されていた
   - クロスオリジンのナビゲーションでも保持されるので、トラッキングに使われていた
@@ -192,10 +192,10 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 #### Updates
 
-- *QUIC and HTTP/3 Support now in Firefox Nightly and Beta - Mozilla Hacks - the Web developer blog*
+- **QUIC and HTTP/3 Support now in Firefox Nightly and Beta - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/04/quic-and-http-3-support-now-in-firefox-nightly-and-beta/
   - Firefox 88 から Stable でも段階的ロールアウト開始予定、 5 月末までにはデフォルトで有効になる
-- *SpiderMonkey Newsletter 10 (Firefox 88-89)*
+- **SpiderMonkey Newsletter 10 (Firefox 88-89)**
   - https://spidermonkey.dev/blog/2021/04/22/newsletter-10.html
 
 
@@ -207,7 +207,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/90hVJF-X9c4
 - Ship: @font-face metrics override descriptors
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/eeo02Z1x7NU
-- *Implement and Ship: Block HTTP port 10080*
+- **Implement and Ship: Block HTTP port 10080**
   - https://groups.google.com/a/chromium.org/g/net-dev/c/bhYOhj4WJC8/m/B1qpE040CAAJ
 - Prototype: WebAssembly extended constants
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/trMP9CP0_go
@@ -219,7 +219,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 #### Other
 
-- *TC39 Proposal Temporal · Issue #498 - mozilla/standards-positions*
+- **TC39 Proposal Temporal · Issue #498 - mozilla/standards-positions**
   - https://github.com/mozilla/standards-positions/issues/498#issuecomment-817512705
   - 先月話した件、 Anne 的には "that is fine" とのこと
   - 以下の 3 つがわかった
@@ -228,7 +228,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - temporal は worth prototyping
 - These Weeks in Firefox: Issue 91 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/04/12/these-weeks-in-firefox-issue-91/
-- *Notes on Implementing Vaccine Passports - The Mozilla Blog*
+- **Notes on Implementing Vaccine Passports - The Mozilla Blog**
   - https://blog.mozilla.org/blog/2021/04/22/notes-on-implementing-vaccine-passports/
   - ワクチン接種証明の仕組みについて
   - Unforgeability, Information minimization, Untraceability が必要
@@ -298,11 +298,11 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - https://blogs.windows.com/windowsexperience/2021/04/15/introducing-microsoft-edge-kids-mode-a-safer-space-for-your-child-to-discover-the-web/
 - Keeping your family safer online with Microsoft Edge and celebrating 1 year of Give with Bing
   - https://blogs.windows.com/windowsexperience/2021/04/15/keeping-your-family-safer-online-with-microsoft-edge-and-celebrating-1-year-of-give-with-bing/
-- *Feature differences between Microsoft Edge and WebView2 - Microsoft Edge Development*
+- **Feature differences between Microsoft Edge and WebView2 - Microsoft Edge Development**
   - https://docs.microsoft.com/en-us/microsoft-edge/webview2/concepts/browserfeatures
 - Microsoft Edge - Internet Explorer mode and compatibility - YouTube
   - https://www.youtube.com/watch?v=BlbuMbs6bKA
-- *5/25-27 Microsoft Build 2021*
+- **5/25-27 Microsoft Build 2021**
   - https://japan.zdnet.com/article/35168829/
   - 詳細はまだ
 
@@ -415,13 +415,13 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - httpwg
   - https://lists.w3.org/Archives/Public/ietf-http-wg/
   - https://github.com/httpwg/wg-materials/
-  - *WGLC for Proxy Status*
+  - **WGLC for Proxy Status**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0024.html
   - I-D Action: draft-ietf-httpbis-message-signatures-03.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0021.html
   - I-D Action: draft-ietf-httpbis-digest-headers-05.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0029.html
-  - *I-D Action: draft-ietf-httpbis-cache-header-08.txt*
+  - **I-D Action: draft-ietf-httpbis-cache-header-08.txt**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0046.html
   - I-D Action: draft-ietf-httpbis-message-signatures-04.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0053.html
@@ -433,12 +433,12 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0033.html
   - Publication has been requested for draft-ietf-httpbis-cache-header-08
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0050.html
-  - *BCP56bis - remaining work*
+  - **BCP56bis - remaining work**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0048.html
-  - *ANN: Scheduling our next Interim Meeting*
+  - **ANN: Scheduling our next Interim Meeting**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0045.html
     - Currently, we're looking at June 15 and 17, at 21:00 UTC:
-  - *Removals from HTTP/2*
+  - **Removals from HTTP/2**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021AprJun/0055.html
     - Upgrade と Priority を H2 から削除する最終確認
 - quicwg
@@ -446,7 +446,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - https://github.com/quicwg/wg-materials
   - QUIC 2021-04-21 Interim Meeting Minutes
     - https://github.com/quicwg/wg-materials/blob/main/interim-21-04/minutes.md
-  - *QUIC Version 2*
+  - **QUIC Version 2**
     - https://www.ietf.org/archive/id/draft-duke-quic-v2-00.html
     - F5 の人がバージョンネゴシエーションを試すために考えたもの
 - webtrans
@@ -476,7 +476,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 #### Other
 
-- *DCtheTall/CHIPS: A proposal for a cookie attribute to partition cross-site cookies by top-level site*
+- **DCtheTall/CHIPS: A proposal for a cookie attribute to partition cross-site cookies by top-level site**
   - https://github.com/DCtheTall/CHIPS
   - `SameSite=None; Secure; HttpOnly; Path=/; Partitioned;` と Partitioned 属性をつける
   - 3rd Party Cookie が 1st Party に紐づけて保存されその組み合わせだけで送られるようになる
@@ -529,7 +529,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 ### セキュリティ動向
 
-- *Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 | Facebook Business ヘルプセンター*
+- **Apple の iOS 14 リリースが広告やレポートに及ぼしうる影響 | Facebook Business ヘルプセンター**
   - https://www.facebook.com/business/help/331612538028890?id=428636648170202
   - AppTrackingTransparency に基づく Facebook Pixel ユーザへの注意喚起とガイドラインが FB から公開された
     - https://developer.apple.com/jp/app-store/user-privacy-and-data-use/

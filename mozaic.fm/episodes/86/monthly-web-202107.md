@@ -22,13 +22,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 91 - Chrome Developers*
+- **New in Chrome 91 - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-chrome-91/
   - New in Chrome 91
     - Suggested names for File System Access API
     - Reading files from the clipboard
-    - *Share credentials on affiliated sites*
-- *What's New In DevTools (Chrome 92) - Chrome Developers*
+    - **Share credentials on affiliated sites**
+- **What's New In DevTools (Chrome 92) - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-devtools-92/
   - What's New In DevTools (Chrome 92)
     - CSS grid editor
@@ -45,40 +45,40 @@ guest: [@myakura](https://twitter.com/myakura)
     - Lighthouse 7.5 in the Lighthouse panel
     - Deprecated "Restart frame" context menu in the call stack
     - [Experimental] Protocol monitor
-    - *[Experimental] Puppeteer Recorder*
-- *Chromium Blog: Chrome 93: Multi-Screen Window Placement, PWAs as URL Handlers, and More*
+    - **[Experimental] Puppeteer Recorder**
+- **Chromium Blog: Chrome 93: Multi-Screen Window Placement, PWAs as URL Handlers, and More**
   - https://blog.chromium.org/2021/07/chrome-93-multi-screen-window-placement.html
   - Origin Trials
     - New Origin Trials
-      - *Cross-Origin-Embedder-Policy: credentialless*
+      - **Cross-Origin-Embedder-Policy: credentialless**
       - Multi-Screen Window Placement
       - Window Controls Overlay for Installed Desktop Web Apps
       - PWAs as URL Handlers
     - Completed Origin Trials
-      - *Subresource loading with Web Bundles*
+      - **Subresource loading with Web Bundles**
       - WebXR Plane Detection API
   - Other features in this release
-    - *AbortSignal.abort() Static Method*
+    - **AbortSignal.abort() Static Method**
     - CSS Flexbox: Support Alignment Keywords start, end, self-start, self-end, left, right
-    - *Error.cause Property*
+    - **Error.cause Property**
     - Honor Media HTML Attribute for meta name=theme-color
     - noplaybackrate in HTMLMediaElement.controlsList
     - Sec-CH-Prefers-Color-Scheme Client Hint Header
-    - *User-Agent Client Hints API Updates*
-    - *WebOTP API: Cross-Device Support*
+    - **User-Agent Client Hints API Updates**
+    - **WebOTP API: Cross-Device Support**
   - JavaScript
-    - *Object.hasOwn*
+    - **Object.hasOwn**
   - Deprecations, and Removals
-    - *Block ports 989 and 990*
+    - **Block ports 989 and 990**
     - Remove 3DES in TLS
     - WebAssembly Cross-Origin Module Sharing
-- *What's New In DevTools (Chrome 93) - Chrome Developers*
+- **What's New In DevTools (Chrome 93) - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-devtools-93/
-  - *Editable CSS container queries in the Styles pane*
-  - *Web bundle preview in the Network panel*
+  - **Editable CSS container queries in the Styles pane**
+  - **Web bundle preview in the Network panel**
   - Attribution Reporting API debugging
   - Better string handling in the Console
-  - *Improved CORS debugging*
+  - **Improved CORS debugging**
   - Lighthouse 8.1
   - Display new note URL in the Manifest pane
   - Fixed CSS matching selectors
@@ -97,25 +97,25 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/EF9fJTfqoGI/m/K2-QWCNxAgAJ
 - Ship: CSS @counter-style rules in shadow trees
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ruFLLkjvzwg/m/9aGteUUlAgAJ
-- *Ship: preferCurrentTab*
+- **Ship: preferCurrentTab**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/YoefXLTQsw0/m/NVoV6NcIAgAJ
   - `getDisplayMedia()` でユーザに Tab, Window, Display を選ばせる際に、 Tab を推奨するための属性を追加
   - 別途 `getViewportMedia()` も提案されているがまだ策定初期段階なので属性を追加するもの
   - `getDisplayMedia()` の仕様では「ソースの選択を制限するような実装をしてはいけない」という制約があるので、 Moziila は `harmful`
-- *Ship: Feature Policy: `diplay-capture`*
+- **Ship: Feature Policy: `diplay-capture`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/pNPotQY92UY/m/thZ3h-zQAQAJ
   - `getDisplayMedia()` のための Policy
   - Safari/Firefox は実装済み
-- *Ship: CSS Overflow `scrollbar-gutter`*
+- **Ship: CSS Overflow `scrollbar-gutter`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/71vtc_Xv7jk/m/EezoVS9dBQAJ
   - Scroll Bar が表示されることで表示領域が狭まり Layout Shift が発生することがある
   - Scroll Bar のための領域をコントロールする属性
   - stable だと常に表示、 both-edges だと両方に表示
-- *Ship: Note taking new note URL*
+- **Ship: Note taking new note URL**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tZqSbhmxiGM/m/5iL3gWvpBAAJ
 - Ship: MediaStreamTrack Insertable Streams (a.k.a. Breakout Box)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/oo6MQoRbDXk/m/7Kjjfe9NAwAJ
-- *Ship: Align transform-style: preserve-3d and perspective property with the spec*
+- **Ship: Align transform-style: preserve-3d and perspective property with the spec**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4LWMf_tZwtw
   - `preserve-3d` を指定したときの重なりが DOM ではなくコンテナブロックになっていた
   - 仕様が変わったので修正する
@@ -125,22 +125,22 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ZmHHfrR_jak
 - Ship: JS Self-Profiling API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/7K7Qt7aRJ8s
-- *Prototype and Ship: flex-basis property honors keywords 'content' and 'min/max/fit-content'*
+- **Prototype and Ship: flex-basis property honors keywords 'content' and 'min/max/fit-content'**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/lzcWR4Q97ik/m/GvFidwZtEwAJ
   - CSS の幅や高さには px や em 以外にも `min-content` や `max-content` といったキーワードの値を指定できる
   - `flex-basis` でそのキーワードを解釈するようにする
-- *Prototype and Ship: New UA platform version source on Windows for User-Agent Client Hints*
+- **Prototype and Ship: New UA platform version source on Windows for User-Agent Client Hints**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/r0kcHYoK79U/m/uMoD0H8bBQAJ
   - UA-CH における windows の version を細かくする
-- *Prototype and Ship: Cookie size limits*
+- **Prototype and Ship: Cookie size limits**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0N5BePVCPVo
   - 全 name, value 合計で 4096, 各 value を 1024 に制限する RFC6265bis でのスペックに準拠
   - Chrome もすでに制限はあったが、ブラウザ間で差異があったのを修正する目的
-- *Prototype: CORS non-wildcard request-header*
+- **Prototype: CORS non-wildcard request-header**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jEV2VMVjMt8/m/rogFnr6xAgAJ
   - `access-control-request-header: *` などで使われる `*` は `Authorization` を含まないという仕様がある
   - これに準拠してなかったものを準拠するように変える
-- *Prototype: Cookies Having Independent Partitioned State (CHIPS)*
+- **Prototype: Cookies Having Independent Partitioned State (CHIPS)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hvMJ33kqHRo/m/3diUOI0uAQAJ
   - Cross Site Tracking ではない 3rd Party Cookie をカバーする Partitioned Cookie の実装
 - Prototype: Shared Storage API
@@ -153,7 +153,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dJQgwZ_1jk0/m/2juPoFDcEwAJ
 - Experiment: MSE-in-Workers
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/XZMyanniH9E/m/6LvB0k70AAAJ
-- *Experiment: Cross-Origin-Embedder-Policy: credentialless*
+- **Experiment: Cross-Origin-Embedder-Policy: credentialless**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Sdc0G1bvKr0/m/YHR8RuWyAAAJ
   - これまで `require-corp` で明示的に CORP で許可されたものだけにしてたが制限がきつかった
   - パーソナライズされてないページであれば盗めるものはないので許しても良いはず
@@ -164,7 +164,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RGlyGO-3Az8/m/u7oN4N7xAwAJ
 - Experiment: User Agent Reduction Origin Trial
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/R0xKm1B7qoQ/m/gw-5JltZAwAJ
-- *Experiment: Service Worker subresource filter*
+- **Experiment: Service Worker subresource filter**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/GtR3POPyefM
   - SW をすべてのリクエストが通るとオーバーヘッドが大きい
   - そのパスをコントロールする API が欲しいが、その前に有用かどうかテストしたい
@@ -178,7 +178,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8j_2oRpPttA/m/gCeoummbAwAJ
 - Extend Origin Trial: AppCache
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hQ1zGoPthBU
-- *Ready for Trial: URLPattern*
+- **Ready for Trial: URLPattern**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/WitVII_BzyU/m/mI8lZY4NAgAJ
   - URL のパターンを表現するオブジェクトで Path のルーティングに使える
   - SW での利用が主目的だが、フレームワークにも使えそう
@@ -196,7 +196,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/TM6YDx1Hh08/m/FxebaDQKAgAJ
 - Origin Trial for Early Hints preload
   - https://groups.google.com/a/chromium.org/g/experimentation-dev/c/tN3vke3CQa4
-- *Feature: Remove alert(), confirm(), and prompt for cross origin iframes*
+- **Feature: Remove alert(), confirm(), and prompt for cross origin iframes**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/apvWcKHXBmE
   - Cross Origin iframe 内のダイアログが防がれようとしてるが、問題が報告されている
   - https://trailblazer.salesforce.com/issues_view?id=a1p4V000002BRMXQA4
@@ -228,7 +228,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - web.dev
   - Find your way with field data in the Web Vitals extension update
     - https://web.dev/field-data-in-the-web-vitals-extension/
-  - *Compat 2021 mid-year update: Flex gap everywhere*
+  - **Compat 2021 mid-year update: Flex gap everywhere**
     - https://web.dev/compat2021-midyear/
     - Compat 2021 の経過報告
     - どのブラウザでも互換性が向上している
@@ -242,7 +242,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/urlpattern/
   - How committing to Core Web Vitals increased Netzwelt's advertising revenues by 18%
     - https://web.dev/netzwelt/
-  - *The performance effects of too much lazy-loading*
+  - **The performance effects of too much lazy-loading**
     - https://web.dev/lcp-lazy-loading/
     - Lazyloading によってバイト数は減ってるが LCP が下がってるページがある
     - WordPress が ATF も Lazyload しており、それをやめると LCP も上がる
@@ -259,10 +259,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - google developer japan blog
   - https://developers-jp.googleblog.com/
 - chrome developer blog
-  - *WebDriver BiDi - The future of cross-browser automation - Chrome Developers*
+  - **WebDriver BiDi - The future of cross-browser automation - Chrome Developers**
     - https://developer.chrome.com/en/blog/webdriver-bidi/
     - ブラウザオートメーションの標準プロトコル
-  - *Load cross-origin resources without CORP headers using `COEP: credentialless` - Chrome Developers*
+  - **Load cross-origin resources without CORP headers using `COEP: credentialless` - Chrome Developers**
     - https://developer.chrome.com/en/blog/coep-credentialless-origin-trial/
   - Restricting Wasm module sharing to same-origin - Chrome Developers
     - https://developer.chrome.com/en/blog/wasm-module-sharing-restricted-to-same-origin/
@@ -270,20 +270,20 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/chromium-chronicle-23/
   - Verify a phone number on desktop using WebOTP API - Chrome Developers
     - https://developer.chrome.com/en/blog/cross-device-webotp/
-  - *RenderingNG - Chrome Developers*
+  - **RenderingNG - Chrome Developers**
     - https://developer.chrome.com/en/blog/renderingng/
     - レンダリングのアーキテクチャを整理するプロジェクト
     - 8 年前に開始し今年殆どをリリースする予定
     - 信頼性、パフォーマンス、拡張性を向上
     - HTML, CSS, 2D Canvas, 3D canvas, images, video, and fonts 全てを最適化
     - デバイスの能力を最大限活かす(GPU 、 解像度、リフレッシュレート etc)
-  - *Overview of the RenderingNG architecture - Chrome Developers*
+  - **Overview of the RenderingNG architecture - Chrome Developers**
     - https://developer.chrome.com/en/blog/renderingng-architecture/
   - The Chromium Chronicle #22: Know Thy (Depot) Tools - Chrome Developers
     - https://developer.chrome.com/en/blog/chromium-chronicle-22/
   - Extension actions in Manifest V3 - Chrome Developers
     - https://developer.chrome.com/en/blog/mv3-actions/
-  - *TablesNG Resolves 72 Chromium Bugs for Better Interoperability - Chrome Developers*
+  - **TablesNG Resolves 72 Chromium Bugs for Better Interoperability - Chrome Developers**
     - https://developer.chrome.com/en/blog/tablesng/
     - Table が持つ負債を払い、互換性を向上するプロジェクト
     - row position: sticky, border/background painting, Sub-pixel geometry etc
@@ -292,17 +292,17 @@ guest: [@myakura](https://twitter.com/myakura)
   - How to set browser flags in Chromium - Chrome Developers
     - https://developer.chrome.com/en/blog/browser-flags/
 - chromium blog
-  - *Chromium Blog: Faster and more efficient phishing detection in M92*
+  - **Chromium Blog: Faster and more efficient phishing detection in M92**
     - https://blog.chromium.org/2021/07/m92-faster-and-more-efficient-phishing-detection.html
     - サイトのカラープロファイルを取得し比較することでフィッシングサイトを割り出す
     - プロファイルの取得アルゴリズムを改善し 50 パーセンタイルで最大 50 倍、 99 パーセンタイルで 2.5 倍に
-  - *Chromium Blog: Increasing HTTPS adoption*
+  - **Chromium Blog: Increasing HTTPS adoption**
     - https://blog.chromium.org/2021/07/increasing-https-adoption.html
     - HTTPS First モードを M94 から導入し HSTS がデフォルトな状態に
     - Lock icon をやめてよりニュートラルなアイコンに
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
-- *Deprecation of Internet Explorer Support - The AMP Blog*
+- **Deprecation of Internet Explorer Support - The AMP Blog**
   - https://blog.amp.dev/2021/07/20/deprecation-of-internet-explorer-support/
 
 
@@ -315,11 +315,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stopping FTP support in Firefox 90 - Mozilla Security Blog
   - https://blog.mozilla.org/security/2021/07/20/stopping-ftp-support-in-firefox-90/
-- *Firefox 90 introduces SmartBlock 2.0 for Private Browsing - Mozilla Security Blog*
+- **Firefox 90 introduces SmartBlock 2.0 for Private Browsing - Mozilla Security Blog**
   - https://blog.mozilla.org/security/2021/07/13/smartblock-v2/
   - クロスサイトトラッカーをブロックする機能が FB のログインをブロックする
   - 2.0 はブロックはそのままに明示的にログインする UI を提供する
-- *Firefox 90 supports Fetch Metadata Request Headers - Mozilla Security Blog*
+- **Firefox 90 supports Fetch Metadata Request Headers - Mozilla Security Blog**
   - https://blog.mozilla.org/security/2021/07/12/firefox-90-supports-fetch-metadata-request-headers/
   - Fetch Metadata をサポートした話
 - Firefox 90 for developers - Mozilla
@@ -332,11 +332,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/j9lGyixLhpU/m/9QdyTZAtAgAJ
 - Ship: Imperative Slotting API
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/u1DpLJyYbSw/m/6WCkr0QAAgAJ
-- *Ship: `size-adjust` descriptor, extended `font-size-adjust` syntax*
+- **Ship: `size-adjust` descriptor, extended `font-size-adjust` syntax**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/RLqcyCotcdo/m/KRrrCfQGDQAJ
 - Prototype and Ship: accent-color CSS property
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/wMKRWjyXGfU/m/biUon_ttAgAJ
-- *Implement: Use fdlibm for Math.cos, Math.sin, and Math.tan to prevent math-based fingerprinting*
+- **Implement: Use fdlibm for Math.cos, Math.sin, and Math.tan to prevent math-based fingerprinting**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/0dxAO-JsoXI/m/eEhjM9VsAgAJ
 - Experiment:
 - Change:
@@ -345,11 +345,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Spring Cleaning MDN: Part 1 - Mozilla Hacks*
+- **Spring Cleaning MDN: Part 1 - Mozilla Hacks**
   - https://hacks.mozilla.org/2021/07/spring-cleaning-mdn-part-1/
   - MDN wiki の更新に使ってたアカウントが無効になる
   - 今後は Github アカウントで Github からコントリビュート
-- *Getting lively with Firefox 90 - Mozilla Hacks - the Web developer blog*
+- **Getting lively with Firefox 90 - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/07/getting-lively-with-firefox-90/
   - Classes go private
   - JavaScript `at()` method
@@ -371,12 +371,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/NXWRhd5NrrU/m/DKlYPqIKDQAJ
 - Making Client Certificates Available By Default in Firefox 90 - Mozilla Security Blog
   - https://blog.mozilla.org/security/2021/07/28/making-client-certificates-available-by-default-in-firefox-90/
-- *2021: The year privacy went mainstream*
+- **2021: The year privacy went mainstream**
   - https://blog.mozilla.org/en/internet-culture/deep-dives/2021-the-year-privacy-went-mainstream/
   - タイトルの通りプライバシーが重要トピックの一つになっていった流れのまとめ
 - Mozilla responds to the UK CMA consultation on Google's commitments on the Chrome Privacy Sandbox
   - https://blog.mozilla.org/en/mozilla/uk-cma-google-commitments-chrome-privacy-sandbox/
-- *Firefox extends privacy and security of Canadian internet users with by-default DNS-over-HTTPS rollout in Canada*
+- **Firefox extends privacy and security of Canadian internet users with by-default DNS-over-HTTPS rollout in Canada**
   - https://blog.mozilla.org/en/mozilla/news/firefox-by-default-dns-over-https-rollout-in-canada/
   - CIRA(Canadian Internet Registration Authority) が DoH のプロバイダになった
   - これによりカナダの FF ユーザに徐々に DoH をロールアウトしていく
@@ -390,25 +390,25 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Release Notes for Safari Technology Preview 127*
+- **Release Notes for Safari Technology Preview 127**
   - https://webkit.org/blog/11736/release-notes-for-safari-technology-preview-127/
   - Added discrete animation support for grid-template-columns and grid-template-rows (r278173)
-  - *Added support for `calc()` on components inside relative color syntax colors (r278261, r278304)*
-  - *Added support for "relative color syntax" for `color()` (r278364)*
+  - **Added support for `calc()` on components inside relative color syntax colors (r278261, r278304)**
+  - **Added support for "relative color syntax" for `color()` (r278364)**
   - Added additional target luminance keywords for color-contrast() (r278262)
-  - *Added support for Ergonomic Brand Checks proposal (e.g. #x in object) behind the--usePrivateIn flag (r277926)*
+  - **Added support for Ergonomic Brand Checks proposal (e.g. #x in object) behind the--usePrivateIn flag (r277926)**
   - Added MediaSession.callActionHandler (r278222)
   - Added support for creating, accessing, and setting non-sRGB ImageData via canvas (r277569)
   - Added support for dispatching wheel events with ctrlKey on pinch gestures, which is commonly used for zooming embedded maps (r277772)
-  - *Enabled `<summary>` to be a flex container (r278280)*
-- *Release Notes for Safari Technology Preview 128*
+  - **Enabled `<summary>` to be a flex container (r278280)**
+- **Release Notes for Safari Technology Preview 128**
   - https://webkit.org/blog/11925/release-notes-for-safari-technology-preview-128/
   - Added support for 12 CSS list-style-type values along with other list style fixes (r279165)
   - Added a mechanism to regenerate text in an image element when it changes dimensions (r278747)
   - Implemented performance.timeOrigin (r278665)
-  - *Adjusted fetch port blocking for ports 990, 989 (r279099)*
-  - *Implemented width and height attributes on source elements of `<picture>` (r279108)*
-- *PCM: Click Fraud Prevention and Attribution Sent to Advertiser*
+  - **Adjusted fetch port blocking for ports 990, 989 (r279099)**
+  - **Implemented width and height attributes on source elements of `<picture>` (r279108)**
+- **PCM: Click Fraud Prevention and Attribution Sent to Advertiser**
   - https://webkit.org/blog/11940/pcm-click-fraud-prevention-and-attribution-sent-to-advertiser/
 - Optimizing JavaScript Standard Library Functions in JSC
   - https://webkit.org/blog/11934/optimizing-javascript-standard-library-functions-in-jsc/
@@ -432,7 +432,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Easier browser debugging with Developer Tools integration in Visual Studio Code*
+- **Easier browser debugging with Developer Tools integration in Visual Studio Code**
   - https://blogs.windows.com/msedgedev/2021/07/16/easier-debugging-developer-tools-in-visual-studio-code/
 - How to opt-in to the Extended Stable release cycle option beginning with Microsoft Edge 94
   - https://blogs.windows.com/msedgedev/2021/07/15/opt-in-extended-stable-release-cycle/
@@ -447,7 +447,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2021/07/16/easier-debugging-developer-tools-in-visual-studio-code/
 - How to opt-in to the Extended Stable release cycle option beginning with Microsoft Edge 94
   - https://blogs.windows.com/msedgedev/2021/07/15/opt-in-extended-stable-release-cycle/
-- *WebView2 and Electron | Electron Blog*
+- **WebView2 and Electron | Electron Blog**
   - https://www.electronjs.org/blog/webview2
   - Chromium を使う WebView2 と Electron はどう違うのかを紹介
   - Electron は Chromium をバンドルするが、 WebView2 ではランタイムも選択できる
@@ -461,13 +461,13 @@ guest: [@myakura](https://twitter.com/myakura)
 - Recommendation
 - Proposed Recommendation
 - Candidate Recommendation
-  - *Updated Candidate Recommendation: CSS Counter Styles Level 3*
+  - **Updated Candidate Recommendation: CSS Counter Styles Level 3**
     - https://www.w3.org/blog/news/archives/9169
   - W3C Invites Implementations of ARIA in HTML
     - https://www.w3.org/blog/news/archives/9144
 - Working Draft
 - First Public Working Draft
-  - *CfC to adopt the Sanitizer API, and publish a FPWD*
+  - **CfC to adopt the Sanitizer API, and publish a FPWD**
     - https://lists.w3.org/Archives/Public/public-webappsec/2021Jul/0008.html
   - First Public Working Draft: Internationalization Glossary
     - https://www.w3.org/blog/news/archives/9151
@@ -482,13 +482,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/public-new-work/2021Jul/0005.html
   - Internationalization Working Group and Interest Group Charters extended until 30 September 2021
     - https://lists.w3.org/Archives/Public/public-new-work/2021Jul/0003.html
-  - *Federated Identity Community Group created*
+  - **Federated Identity Community Group created**
     - https://lists.w3.org/Archives/Public/public-new-work/2021Jul/0002.html
 
 
 #### Other
 
-- *Trusted Types*
+- **Trusted Types**
   - Special mtg on Trusted Types: send timing preferences
     - https://lists.w3.org/Archives/Public/public-webappsec/2021Jul/0006.html
     - Trusted Types をこのまま WebAppSec で続けるかと言う議論
@@ -507,9 +507,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.w3.org/blog/news/archives/9146
 - Accessibility accommodations now part of all W3C workshops
   - https://www.w3.org/blog/news/archives/9142
-- *Re-add JSON module scripts · whatwg/html@d554d6d*
+- **Re-add JSON module scripts · whatwg/html@d554d6d**
   - https://github.com/whatwg/html/commit/d554d6de43f6a366d0062c443ec1c7d7b4a310a3
-- *Introduce CSS module scripts · whatwg/html@3d45584*
+- **Introduce CSS module scripts · whatwg/html@3d45584**
   - https://github.com/whatwg/html/commit/3d45584d286e9455cc24ebae1f3aca3db120dc9d
 
 
@@ -539,11 +539,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### New Proposals
 
-- *Proposal to add argument for .trim(), .trimStart() and .trimEnd() to allow strip the specified characters from strings.*
+- **Proposal to add argument for .trim(), .trimStart() and .trimEnd() to allow strip the specified characters from strings.**
   - https://github.com/Kingwl/proposal-string-trim-characters
-- *TC39 proposal for ArrayBuffer\<->base64 string functions*
+- **TC39 proposal for ArrayBuffer\<->base64 string functions**
   - https://github.com/tc39/proposal-arraybuffer-base64
-- *A proposal to make grouping of array items easier*
+- **A proposal to make grouping of array items easier**
   - https://github.com/tc39/proposal-array-grouping
 
 
@@ -563,13 +563,13 @@ guest: [@myakura](https://twitter.com/myakura)
 - httpwg
   - https://lists.w3.org/Archives/Public/ietf-http-wg/
   - https://github.com/httpwg/wg-materials/
-  - *Revised HTTP core specifications submitted (drafts 17)*
+  - **Revised HTTP core specifications submitted (drafts 17)**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0114.html
-  - *Working Group Last Call: HTTP/2 revision*
+  - **Working Group Last Call: HTTP/2 revision**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0091.html
   - I-D Action: draft-ietf-httpbis-targeted-cache-control-00.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0115.html
-  - *Last Call: (The Proxy-Status HTTP Response Header Field) to Proposed Standard*
+  - **Last Call: (The Proxy-Status HTTP Response Header Field) to Proposed Standard**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0089.html
   - #904: Content on GET requirement strength
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0065.html
@@ -581,7 +581,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0041.html
   - I-D Action: draft-ietf-httpbis-priority-04.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0040.html
-  - *Last Call: (Building Protocols with HTTP) to Best Current Practice from The IESG*
+  - **Last Call: (Building Protocols with HTTP) to Best Current Practice from The IESG**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0037.html
   - I-D Action: draft-ietf-httpbis-cache-header-09.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0030.html
@@ -613,7 +613,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Fastly
 
-- *Compute@Edge: the JavaScript support you demanded without cold starts or increased security risks | Fastly*
+- **Compute@Edge: the JavaScript support you demanded without cold starts or increased security risks | Fastly**
   - https://www.fastly.com/blog/compute-edge-now-supports-javascript
   - https://www.publickey1.jp/blog/21/fastlyjavascriptwebassemblycdncomputeedge.html
   - Fastly 上の WASM 実行環境で JS がサポートされた
@@ -623,19 +623,19 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *一時的なサービス障害の概要について(ステータス:解決済) - Akamai Japan Blog*
+- **一時的なサービス障害の概要について(ステータス:解決済) - Akamai Japan Blog**
   - https://blogs.akamai.com/jp/2021/07/post-24.html
 
 
 ### セキュリティ動向
 
-- *2021.06.08 Certificate Lifetime Incident (valid for an extra one second) - Incidents - Let's Encrypt Community Support*
+- **2021.06.08 Certificate Lifetime Incident (valid for an extra one second) - Incidents - Let's Encrypt Community Support**
   - https://community.letsencrypt.org/t/2021-06-08-certificate-lifetime-incident-valid-for-an-extra-one-second/153426
   - Let's Encrypt の証明書が 90 日ではなく 90 日 + 1 秒になっていて修正
   - 有効期間は "not before" と "not after" で定義するが、 "not after" はその時間を含むため
   - 1s 減らした修正を発覚から 8h でデプロイした
   - 1.8 億の証明書に影響するが仕様違反なわけではないため失効はしない
-  - *Yeti 2022 not furnishing entries for STH 65569149*
+  - **Yeti 2022 not furnishing entries for STH 65569149**
   - https://groups.google.com/a/chromium.org/g/ct-policy/c/PCkKU357M2Q/m/xbxgEXWbAQAJ
   - CT Log の一つが計算の結果エラーになることが発覚
   - オペレーションのエラーではなくハードウェアエラーで 1bit 反転したのが原因の模様
@@ -645,7 +645,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-  - *WorldWideWeb のソースコードの NFT が約 6 億円で落札*
+  - **WorldWideWeb のソースコードの NFT が約 6 億円で落札**
   - https://www.gizmodo.jp/2021/07/worldwideweb-nft.html
   - https://www.sothebys.com/en/buy/auction/2021/this-changed-everything-source-code-for-www-x-tim-berners-lee-an-nft/source-code-for-the-www
   - 1990/10/3 に書かれた Sir TBL の www のコードが NFT で出品される
@@ -653,17 +653,17 @@ guest: [@myakura](https://twitter.com/myakura)
   - サザビーズで 543 万ドルで落札(6 万円/行)され、収益はチャリティへ
   - 動画の中の `<>` が何故か `&lt; &gt;` にエンコードされて表示されていた
   - https://github.com/cynthia/WorldWideWeb
-  - *Chrome 100 - Does it break user agent checking?*
+  - **Chrome 100 - Does it break user agent checking?**
   - https://paul.kinlan.me/chrome-100/
   - Chrome の version が 100 を超えたら UA は壊れるか?
   - M10 のときは "Chrome 10" で始まるかを確認してるサイトがあったらしい
   - HTTP Archive で調べたがそこでは結果は少なかった
-  - *Encoding data for POST requests - JakeArchibald.com*
+  - **Encoding data for POST requests - JakeArchibald.com**
   - https://jakearchibald.com/2021/encoding-data-for-post-requests/
   - URLSearchParams / FormData の話
-  - *The Core Web Platform Loop - Infrequently Noted*
+  - **The Core Web Platform Loop - Infrequently Noted**
   - https://infrequently.org/2021/07/the-core-web-loop/
-  - *Hobson's Browser - Infrequently Noted*
+  - **Hobson's Browser - Infrequently Noted**
   - https://infrequently.org/2021/07/hobsons-browser/
 
 

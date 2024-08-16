@@ -42,7 +42,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Media Source Extensions now use PTS for buffered ranges and duration values.
     - Android Go users can open downloaded audio, video and images in Chrome.
     - Stalled events for media elements using MSE are removed.
-  - *Chromium Blog: Chrome 69 Beta: CSS tricks, and more*
+  - **Chromium Blog: Chrome 69 Beta: CSS tricks, and more**
     - https://blog.chromium.org/2018/08/chrome-69-beta-av1-video-decoder-css.html
     - Conic gradients: linear(線形)/radial(放射)に次ぐ円錐グラデーション
     - margin/padding/border に logical properties
@@ -71,24 +71,24 @@ guest: [@myakura](https://twitter.com/myakura)
   - Ship: Unprefixed Fullscreen API with FullscreenOptions
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ODzbWn-xRrQ/dhkJzD8-CgAJ
     - どのエンジンでも接頭辞がついていた Fullscreen API がついに接頭辞無しで ship の予定
-  - *Ship: Permission Delegation in M71*
+  - **Ship: Permission Delegation in M71**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PPuewynNpaE/4rP9YAMPCgAJ
   - Ship: [Intervention] Freezing task queues in background on mobile
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/NKtuFxLsKgo/brL3bfS5CAAJ
   - Ship: TextMetrics API in Canvas
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/suv1i1dKtFw/h_R43KFiEAAJ
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/KQW4thKogkk/6fFtjZWvAwAJ
-  - *Ship: globalThis*
+  - **Ship: globalThis**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6fxzDrO-9Oc/Pm4cGt8qBAAJ
     - 環境により window, self, this, frames, global だったりするので、共通して globalThis にするのを検討中
     - global だと互換性の問題があったらしい
-  - *Implement and Ship: TLS 1.3*
+  - **Implement and Ship: TLS 1.3**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HgDaX3qW0IY/AYg6t_oaDwAJ
     - https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/RHXZc63mPNY/-hWSzUO3AgAJ
     - RFC が出たので早速実装
   - Implement and Ship: PostMessageOptions and WindowPostMessageOptions dictionary for postMessage methods
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HSfL38bAexE/n9QuIIILDwAJ
-  - *Implement and Ship: 'name' attribute for dedicated workers*
+  - **Implement and Ship: 'name' attribute for dedicated workers**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aZ804HggENE/WwWgDrz4DgAJ
     - chrome tokyo チームのインターン [d0iasm](https://twitter.com/d0iasm) さんの成果
     - `const worker = new Worker('worker.js', { name: 'worker-name' });`
@@ -97,7 +97,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ce2j1tA_xdU/T9C6sxpTDQAJ
   - Implement and Ship: Displaying a dialog will cause pages to lose fullscreen
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/gkVmdI7oYLI/_yXsyw5WDQAJ
-  - *Implement and Ship: "persistent-storage" support for Permission API's query() method*
+  - **Implement and Ship: "persistent-storage" support for Permission API's query() method**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FRAmGlAoDTY/dzAMnCmuAwAJ
   - Implement and Ship: Additional safelisted schemes for "registerProtocolHandler"
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/29sFh4tTdcs/K4XroilVBAAJ
@@ -109,7 +109,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/53q-wRk5QkA/qSp0SXxjDgAJ
   - Implement: hreftranslate attribute
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hmASm1yhi5s/7vqmt7CwDgAJ
-  - *Implement: Feature Policy Violation Reporting*
+  - **Implement: Feature Policy Violation Reporting**
     - Feature Policy によるブロックを Reporting で送る
     - 以前 GitHub で提案したものが通った模様
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5-3woY4Y1Qg/xHDTmUFAEAAJ
@@ -121,18 +121,18 @@ guest: [@myakura](https://twitter.com/myakura)
     - データを DOM として layout/paint しないでメモリに持ちたい
     - しかし、検索できなくなるので、これを検索できるようにする
     - まだアイデア段階で仕様も途中
-  - *Implement: Writable Files*
+  - **Implement: Writable Files**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/U4rXcm5CE4Y/3XmVtoAPDwAJ
     - 画像処理やテキストエディタ作る上で、ファイル保存したい
     - まだ仕様がはっきりしてない API
     - Chrome の既存の Filesystem API をラップして実現する模様
     - まだ、どのようなセキュリティモデルで実装するかも決まってない
-  - *Implement: Feature Policy 'lazyload'*
+  - **Implement: Feature Policy 'lazyload'**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/yCGhf7EA1Zs/70_NL0AEDwAJ
     - `<img>`, `<iframe>` への lazyload 属性を有効にする Feature Policy
     - default が auto でクライアントの決定に依存するものとなる
     - つまり将来的にクライアントのデフォルトを lazyload にできる可能性があるということか
-  - *Implement: Feature Policy: animations*
+  - **Implement: Feature Policy: animations**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nRNPNwlRS6E/iLB-b5H6DAAJ
     - うざいアニメーションがパフォーマンスを阻害しないように off にする目的
     - `<iframe>` のデフォルトは allow
@@ -158,7 +158,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/a6P-niHWgF4/CtJEHCnKDwAJ
     - nhiroki さんによる解説 "Service Worker 上での未インストールスクリプトに対する importScripts()"
     - https://nhiroki.jp/2018/08/15/service-worker-import-scripts-after-installation
-  - *Deprecate: AppCache*
+  - **Deprecate: AppCache**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/FvM-qo7BfkI/0daqyD8kCQAJ
     - intent が出た段階では期間未定
     - AppCache を Service Worker にする polyfill などを整備して、その成功例が出るといいよねという話も
@@ -166,12 +166,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/net-dev/8QD01FloF1o/en8BzJwRBgAJ
     - Ship できてない機能をメンテし続けるコストやセキュリティ上のうまみの少なさもあって削除の intent
     - 業界の人がベットしてるから消すなというコメントを書いている
-  - *Remove: Budget API*
+  - **Remove: Budget API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/18r3whCBv0I/b8qrtFTsDAAJ
     - [blog](https://blog.jxck.io/entries/2017-06-12/web-budget-api.html)
     - mozilla standard position で無くなっていたことに気づいた
     - 対案も出ているが保留 https://discourse.wicg.io/t/proposal-budget-api/1717/7
-  - *Experiment: WebAssembly Threads*
+  - **Experiment: WebAssembly Threads**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/41XDSl0-QIU/SuiUjCs4CwAJ
     - pthreads-style shared memory: shared memory between threads, atomics and mutexes.
     - Start: M70 Beta / End: ~M73 Stable
@@ -198,11 +198,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ZYyGCGJeNmo/uCIFqib8CgAJ
   - Custom site performance reports with the CrUX Dashboard
     - https://developers.google.com/web/updates/2018/08/chrome-ux-report-dashboard
-  - *How Blink works*
+  - **How Blink works**
     - https://docs.google.com/document/d/1aitSOucL0VHZa9Z2vbRJSyAIsAz24kX8LFByQ5xQnUg/edit
   - Web Payments, Payment Request API and Google Pay
     - https://medium.com/dev-channel/web-payments-payment-request-api-and-google-pay-a1073e405235
-  - *Service Worker Caching Strategies Based on Request Types*
+  - **Service Worker Caching Strategies Based on Request Types**
     - https://medium.com/dev-channel/service-worker-caching-strategies-based-on-request-types-57411dd7652c
     - URL ベースのキャッシュではなく Request.destination ベースにすると良いという話
     - "image", "font", "script" etc
@@ -212,7 +212,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Chrome 拡張の Developer Advocate 募集中らしい
   - Custom site performance reports with the CrUX Dashboard
     - https://developers.google.com/web/updates/2018/08/chrome-ux-report-dashboard
-  - *OffscreenCanvas - Speed up Your Canvas Operations with a Web Worker*
+  - **OffscreenCanvas - Speed up Your Canvas Operations with a Web Worker**
     - https://developers.google.com/web/updates/2018/08/offscreen-canvas
     - canvas の off the main thread
   - Web Performance Made Easy: Google I/O 2018 edition
@@ -226,7 +226,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Chromium Blog: Charting Browser Interoperability
     - https://blog.chromium.org/2018/08/charting-browser-interoperability.html
     - API の実装状況を機械的に調べチャートにするプロジェクト
-  - *Google Online Security Blog: Google Public DNS turns 8.8.8.8 years old*
+  - **Google Online Security Blog: Google Public DNS turns 8.8.8.8 years old**
     - https://security.googleblog.com/2018/08/google-public-dns-turns-8888-years-old.html
     - https://blog.apnic.net/2018/08/14/passive-observations-of-a-large-dns-service/
     - 2009 年以来運用している最大の Public DNS 8.8.8.8 に関する知見
@@ -252,12 +252,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Ship '-webkit-appearance' and changes to '-moz-appearance' values
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Fq6OH5SWeRo/lxHDXFnwCQAJ
     - `-webkit-appearance` しか指定しないサイトが多いので、 -moz-appearance のエイリアスにする
-  - *Ship: Enable `navigator.clipboard.*` APIs by default*
+  - **Ship: Enable `navigator.clipboard.*` APIs by default**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/ef7O7PrmNh0/qy8k9HDjCQAJ
     - Async Clipboard API が有効に
     - readText() は残念ながら拡張でしか使えない
     - Permission API との連携がされてないのが一因か
-  - *Ship: Shadow DOM and Custom Elements*
+  - **Ship: Shadow DOM and Custom Elements**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/RcanREo7hU0/TCS3Un6aBwAJ
     - 63 からベータで入る
   - Implement and Ship: flow-relative values for resize property
@@ -331,7 +331,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/blog/2018/08/20/av1-and-the-video-wars-of-2027/
   - Dweb: Social Feeds with Secure Scuttlebutt
     - https://hacks.mozilla.org/2018/08/dweb-social-feeds-with-secure-scuttlebutt/
-  - *Symantec Distrust in Firefox Nightly 63 - Firefox Nightly News*
+  - **Symantec Distrust in Firefox Nightly 63 - Firefox Nightly News**
     - https://blog.nightly.mozilla.org/2018/08/14/symantec-distrust-in-firefox-nightly-63/
     - Firefox 63
   - MDN Changelog for July 2018: CDN tests, Goodbye Zones, and BCD - Mozilla Hacks - the Web developer blog
@@ -345,19 +345,19 @@ guest: [@myakura](https://twitter.com/myakura)
     - `about:` という URL ができた経緯
     - NN 時代にジョークで入れたものが継承され使われている
     - `about:blank` あたりから重要な機能が入っていく
-  - *ungleich Blog - Mozilla's new DNS resolution is dangerous*
+  - **ungleich Blog - Mozilla's new DNS resolution is dangerous**
     - https://blog.ungleich.ch/en-us/cms/blog/2018/08/04/mozillas-new-dns-resolution-is-dangerous/
     - Firefox が実験中の DoH で、 TRR (Trusted Recursive Resolver) に(広く使われている) Cloudflare を使うのは SPOF になるよねという批判
     - システムの DNS 設定も上書きするのでデフォルトにするのはよくないとも
-  - *Firefox Nightly Secure DNS Experimental Results*
+  - **Firefox Nightly Secure DNS Experimental Results**
     - https://blog.nightly.mozilla.org/2018/08/28/firefox-nightly-secure-dns-experimental-results/
     - query は 6ms くらい遅くなる
     - もともと速い DNS はそのまま
     - 遅い 20% の DNS は速くなる
-  - *1484006 - Sites getting MOZILLA_PKIX_ERROR_ADDITIONAL_POLICY_CONSTRAINT_FAILED errors in Firefox 63 due to Symantec distrust enforcement*
+  - **1484006 - Sites getting MOZILLA_PKIX_ERROR_ADDITIONAL_POLICY_CONSTRAINT_FAILED errors in Firefox 63 due to Symantec distrust enforcement**
     - https://bugzilla.mozilla.org/show_bug.cgi?id=1484006
     - Symantec distrust で見られなくなっているサイトを報告する場所
-  - *Changing Our Approach to Anti-tracking - Future Releases*
+  - **Changing Our Approach to Anti-tracking - Future Releases**
     - https://blog.mozilla.org/futurereleases/2018/08/30/changing-our-approach-to-anti-tracking/
     - 遅いトラッキングスクリプト、サードパーティのトラッキングスクリプト、クリプトマイナーなどをデフォルトでブロックする方針に
     - 試験中。早ければ遅いトラッキングスクリプトのブロックが Firefox 63 、サードパーティのトラッキングスクリプトのブロックが Firefox 65 から
@@ -368,7 +368,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Bug 1471947, bug 1471948 - Enable Shadow DOM and Custom Elements in release builds, r=ehsan, emilio
     - https://hg.mozilla.org/integration/mozilla-inbound/rev/16daef3a89a2
     - Shadow DOM と Custom Elements が Firefox 63 で ship
-  - *Bug 1469019 - Object.fromEntries. r=evilpie, r=peterv*
+  - **Bug 1469019 - Object.fromEntries. r=evilpie, r=peterv**
     - https://hg.mozilla.org/integration/mozilla-inbound/rev/ed3c662bb21d
   - Password managers: Please make sure AutoFill is secure!
     - https://palant.de/2018/08/29/password-managers-please-make-sure-autofill-is-secure
@@ -386,7 +386,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - A user gesture, such as a mouse click, is now required to request the user's permission to send Safari Push Notifications
     - ページを表示しただけじゃ Safari Push Notification の Permission が出ない
     - Safari Push Notifications は Web Push ではない macOS だけのプッシュ通知システム
-  - *Allowed videos served from youtube-nocookie.com to display and play in Safari Reader*
+  - **Allowed videos served from youtube-nocookie.com to display and play in Safari Reader**
     - 本家のやってる cookie なし埋め込み用のドメイン
 - Release Notes for Safari Technology Preview 63
   - https://webkit.org/blog/8403/release-notes-for-safari-technology-preview-63/
@@ -394,7 +394,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - xlink-less href on SVG elements
 - Release Notes for Safari Technology Preview 62
   - https://webkit.org/blog/8384/release-notes-for-safari-technology-preview-62/
-  - *Added an experimental ITP Debug Mode*
+  - **Added an experimental ITP Debug Mode**
   - Added support for calc() in CSS Grid gutter properties
   - etc
 - Other
@@ -406,7 +406,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Changeset 235589 - WebKit - Implement Object.fromEntries
     - https://trac.webkit.org/changeset/235589/webkit
     - Stage 3 になった Object.fromEntries() を実装
-  - *Chrome の人が Intersection Observer を実装中*
+  - **Chrome の人が Intersection Observer を実装中**
     - https://trac.webkit.org/changeset/235459/webkit ほか
     - https://lists.webkit.org/pipermail/webkit-dev/2018-July/030060.html にて実装したい旨を表明していた
 
@@ -453,12 +453,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Call for Review: CSS Fonts Module Level 3
     - https://www.w3.org/blog/news/archives/7241
 - Candidate Recommendation
-  - *Scalable Vector Graphics (SVG) 2*
+  - **Scalable Vector Graphics (SVG) 2**
     - https://www.w3.org/blog/news/archives/7225
     - https://www.w3.org/TR/2018/CR-SVG2-20180807/
-  - *Web Authentication: An API for accessing Public Key Credentials Level 1*
+  - **Web Authentication: An API for accessing Public Key Credentials Level 1**
     - https://www.w3.org/blog/news/archives/7223
-  - *CSS Painting API Level 1*
+  - **CSS Painting API Level 1**
     - https://www.w3.org/blog/news/archives/7234
     - https://www.w3.org/TR/2018/CR-css-paint-api-1-20180809/
   - Timed Text Markup Language 1 (TTML1) (Third Edition)
@@ -501,9 +501,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Positive Workforce Environment Community Group created
     - https://lists.w3.org/Archives/Public/public-new-work/2018Aug/0010.html
 - Other
-  - *New version of the Roadmap of Web Applications on Mobile*
+  - **New version of the Roadmap of Web Applications on Mobile**
     - https://www.w3.org/blog/news/archives/7227
-  - *How to define APIs only for custom element authors · Issue #758 · w3c/webcomponents*
+  - **How to define APIs only for custom element authors · Issue #758 · w3c/webcomponents**
     - https://github.com/w3c/webcomponents/issues/758
   - CSS Modules · Issue #759 · w3c/webcomponents
     - https://github.com/w3c/webcomponents/issues/759
@@ -513,7 +513,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Setting up constants via proxies
     - http://2ality.com/2018/08/enums-via-proxies.html
     - Proxy API で const (enum) を実現する方法
-  - *Cookie controls? from Yoav Weiss*
+  - **Cookie controls? from Yoav Weiss**
     - https://lists.w3.org/Archives/Public/public-webappsec/2018Aug/0015.html
     - また Cookie の話
   - Anne van Kesteren on Twitter: "Apparently there's quite a bit of demand for a more ergonomic way to set a URL's query with fetch(). Appreciate feedback on naming, replacing or appending to the existing query, etc."
@@ -561,11 +561,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/rfc8447
   - RFC 8449 - Record Size Limit Extension for TLS
     - https://tools.ietf.org/html/rfc8449
-  - *TLS 1.3 Published: in Firefox Today*
+  - **TLS 1.3 Published: in Firefox Today**
     - https://blog.mozilla.org/security/2018/08/13/tls-1-3-published-in-firefox-today/
   - A Detailed Look at RFC 8446 (a.k.a. TLS 1.3)
     - https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/
-  - *Deploying TLS 1.3 at scale with Fizz, a performant open source TLS library - Facebook Code*
+  - **Deploying TLS 1.3 at scale with Fizz, a performant open source TLS library - Facebook Code**
     - https://code.fb.com/networking-traffic/deploying-tls-1-3-at-scale-with-fizz-a-performant-open-source-tls-library/
     - Facebook 製 TLS ライブラリ Fizz がオープンソースに
     - モバイルアプリですでに使用中、 50% 以上のトラフィックが TLS 1.3
@@ -595,7 +595,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - CDN Loop Prevention
     - https://tools.ietf.org/html/draft-ietf-httpbis-cdn-loop-00
     - httpbis の WG ドラフトに
-  - *The secret-token URI Scheme*
+  - **The secret-token URI Scheme**
     - https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00
     - Cookie を再設計したい
   - Client Application Layer Encryption
@@ -605,12 +605,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - CBOR Object Signing and Encryption (COSE) - Structures and Process
     - https://tools.ietf.org/html/draft-schaad-cose-rfc8152bis-struct-00
 - Other
-  - *Incrementally better HTTP state management.*
+  - **Incrementally better HTTP state management.**
     - Cookie の代替の草案
     - Origin と別のスコープであることの改善など
     - https://github.com/mikewest/http-state-tokens
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0184.html
-  - *In defense of PUSH*
+  - **In defense of PUSH**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0294.html
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0291.html
     - HTTP2 Push みんな使ってないしいらないんじゃね?って話が出てる
@@ -660,7 +660,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - WebAssembly: How and why - LogRocket
   - https://blog.logrocket.com/webassembly-how-and-why-559b7f96cd71
   - WASM のガイド
-- *WorkerDOM: Concurrency for JavaScript programming with the DOM - Accelerated Mobile Pages Project*
+- **WorkerDOM: Concurrency for JavaScript programming with the DOM - Accelerated Mobile Pages Project**
   - https://amphtml.wordpress.com/2018/08/21/workerdom/
   - https://github.com/ampproject/worker-dom
 - 24-core CPU and I can't type an email (part one) | Random ASCII
@@ -668,7 +668,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://gigazine.net/news/20180825-google-engineer-fix-chrome-hang/
   - Gmail で Chrome がフリーズした現象のデバッグ記録
   - SW が起動停止を繰り返す際に解放されないメモリが溜まった模様
-- *Useless CSP*
+- **Useless CSP**
   - https://uselesscsp.com/
   - メジャーなサイトのダメな CSP を紹介
 - Are you leaving revenue on the table with AMP? - Accelerated Mobile Pages Project

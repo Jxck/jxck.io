@@ -75,15 +75,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/qBQCKhzbIRc/RsfZQmf3AQAJ
   - Ship: WebXR DOM Overlay
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Q0D5Lz6HwMU/7vBD4fM5AAAJ
-  - *Ship Cross-Origin-Opener-Policy*
+  - **Ship Cross-Origin-Opener-Policy**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cJ5dXIcQCsc/eGgi0gkcAAAJ
-  - *Ship: Cross-Origin-Embedder-Policy (COEP)*
+  - **Ship: Cross-Origin-Embedder-Policy (COEP)**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XBKAGb2_7uA/TDg_AkQbAAAJ
   - Ship: JavaScript private methods and accessors
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HLpO-HC8aKc/TT32fUNPBAAJ
-  - *Ship: WebOTP API*
+  - **Ship: WebOTP API**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/4QercWhVKP8/FnM5NkpnCgAJ
-  - *Ship: 'revert' keyword*
+  - **Ship: 'revert' keyword**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/tOHolEkBeY8/jX0jvQqkBAAJ
   - Implement and Ship: RTCRtpSendParameters.degradationPreference
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WPvxi5nUK2E/Xd0ZzPwxAwAJ
@@ -97,9 +97,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pb8sjXyFFg4/oH_XpCMxAQAJ
   - Prototype: CIE LAB color functions for CSS
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/iwsT-jkCQcI/Rpt_hBFUBQAJ
-  - *Prototype: Named pages with page-orientation*
+  - **Prototype: Named pages with page-orientation**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ByWuVBk1lFE/vAfiloyPBAAJ
-  - *Prototype: CSS aspect-ratio property*
+  - **Prototype: CSS aspect-ratio property**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pD4UW52y8Uk/CPWozoVmBAAJ
   - Experiment: performance.measureMemory
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/zxCKzulX424/Ac3zzMqqAQAJ
@@ -117,7 +117,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xrGJs7JZbPc/26OtzaGGBAAJ
   - Remove: -webkit-box quirks from -webkit-line-clamp
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SVD5wSqVwKU/eY28UiNkAwAJ
-  - *Remove: Cross origin subframe JS Dialogs*
+  - **Remove: Cross origin subframe JS Dialogs**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hTOXiBj3D6A/JtkdpDd1BAAJ
   - Chrome University Summer 2019: Videos Published
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IU2q_z1fYGg/qUU-F60kAQAJ
@@ -125,7 +125,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WA23wUp5mBg/ws8zopFeAgAJ
   - [blink-dev] Important Update on COVID-19 and BlinkOn
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Us1LhilhG6k/v4pitfMkAQAJ
-  - *Enabling QUIC in tip-of-tree*
+  - **Enabling QUIC in tip-of-tree**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/x-cVaiYHpPk/in7VB3ccAQAJ
   - [PSA] Extensions to origin trials impacted by changes to Chrome release schedule
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XXqiE1usLH4/qh0QHcNcAwAJ
@@ -147,7 +147,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - How Google improved ads performance with stale-while-revalidate
     - https://web.dev/ads-case-study-stale-while-revalidate/
     - Ad を Stale-While-Revalidate で最適化しようとしてる
-  - *Google Developers Blog: Join us for the digital Google for Games Developer Summit*
+  - **Google Developers Blog: Join us for the digital Google for Games Developer Summit**
     - https://developers.googleblog.com/2020/03/join-us-for-digital-google-for-games.html
     - Game Developers カンファレンス
   - Google Developers Blog: Update on Google at GDC 2020
@@ -164,7 +164,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 74.0
 - Updates
-  - *Firefox 74.0, See All New Features, Updates and Fixes*
+  - **Firefox 74.0, See All New Features, Updates and Fixes**
     - https://www.mozilla.org/en-US/firefox/74.0/releasenotes/
     - Optional Chaining operator のサポート
     - TLS 1.0/1.1 がリリース時は無効にされたが、 COVID-19 による影響で復帰
@@ -172,7 +172,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://www.mozilla.org/en-US/firefox/74.0/releasenotes/#note-788289
   - Firefox 74 for developers
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/74
-  - *Security means more with Firefox 74*
+  - **Security means more with Firefox 74**
     - https://hacks.mozilla.org/2020/03/security-means-more-with-firefox-74-2/
     - Feature Policy, Cross-Origin-Resource-Policy も有効になった
   - Future-proofing Firefox's JavaScript Debugger Implementation
@@ -186,7 +186,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/_3aWsRQ8Tfs/XwP0iVbbAwAJ
   - Ship: Intermediate CA Preloading
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/BHWxTOsmNeU/RVog7fSrAAAJ
-  - *Ship: JavaScript public static fields*
+  - **Ship: JavaScript public static fields**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/mumdrb5OUqk/Mz62vPOrAAAJ
   - Ship: JavaScript Intl.Locale
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/XKz_JSBCN4k/-r07q_OrAAAJ
@@ -208,12 +208,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/zjm88YlPbjE/tiG8RILyGQAJ
   - Implement and ship: Ignore navigation to unknown protocol
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/AaXUQ_t51D4/KMY7I0UiBgAJ
-  - *Prototype and ship: Make `<script defer>` wait for stylesheet loads*
+  - **Prototype and ship: Make `<script defer>` wait for stylesheet loads**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/VXlDBa3SvWA/q7BZjj5iBAAJ
-  - *Unship: FTP protocol implementation*
+  - **Unship: FTP protocol implementation**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/FqCZUT9ay_o/jt4DLRDjAwAJ
 - Other
-  - *Getting Closer on Dot Org? - The Mozilla Blog*
+  - **Getting Closer on Dot Org? - The Mozilla Blog**
     - https://blog.mozilla.org/blog/2020/03/06/getting-closer-on-dot-org/
     - org ドメインの話
   - Engineering Effectiveness Newsletter #1
@@ -223,19 +223,19 @@ guest: [@myakura](https://twitter.com/myakura)
     - バグに `[wfh]` タグが
   - Learn web technology at "sofa school"
     - https://hacks.mozilla.org/2020/03/learn-web-technology-at-sofa-school/
-  - *Innovating on Web Monetization: Coil and Firefox Reality*
+  - **Innovating on Web Monetization: Coil and Firefox Reality**
     - https://hacks.mozilla.org/2020/03/web-monetization-coil-and-firefox-reality/
     - Coil という新しい Web 収益化の方法をテストするらしい
-  - *Try our latest Test Pilot, Firefox for a Better Web, offering privacy and faster access to great content*
+  - **Try our latest Test Pilot, Firefox for a Better Web, offering privacy and faster access to great content**
     - https://blog.mozilla.org/blog/2020/03/24/try-our-latest-test-pilot-firefox-for-a-better-web-offering-privacy-and-faster-access-to-great-content/
     - Scroll というサービスと組んで Better Web という試験サービスを米国でリリース
     - 月 2.5 ドルを払えば、 Scroll とパートナーシップを結んだパブリッシャーのサイトでは広告がでない
     - 昨年のテストでは、広告を表示するよりも 40% より多い額がパブリッシャーに渡った
-  - *KaiOS Technologies and Mozilla partner to enable a healthy mobile internet for everyone*
+  - **KaiOS Technologies and Mozilla partner to enable a healthy mobile internet for everyone**
     - https://www.kaiostech.com/press/kaios-technologies-and-mozilla-partner-to-enable-a-healthy-mobile-internet-for-everyone/
     - Firefox OS をフォークしたフィーチャーフォン用の OS な KaiOS が Mozilla と提携
     - TLS 1.3 や新しめのフォーマット(WASM, WebP, etc.)への対応、古い Gecko の更新なども検討中らしい
-  - *Opening data to understand social distancing*
+  - **Opening data to understand social distancing**
     - https://blog.mozilla.org/data/2020/03/30/opening-data-to-understand-social-distancing/
     - フランスで Firefox の DAU(Daily Active Usage) が 3 月中旬から増加している
     - Social distancing の影響かはちゃんと検証しないとわからないとは前置きした上で、一部データを公開
@@ -245,12 +245,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 13.1
 - Updates
-  - *Release Notes for Safari Technology Preview 102*
+  - **Release Notes for Safari Technology Preview 102**
     - https://webkit.org/blog/10067/release-notes-for-safari-technology-preview-102/
     - Changed the disk cache policy to allow resources larger than 10MB to be cached (r257041)
     - Fixed value sanitization for input[type=text] to not truncate the value at a control character (r257132)
     - Fixed new FontFace() to not throw when failing to parse arguments (r256659)
-    - *Implemented EventTarget constructor (r256716)*
+    - **Implemented EventTarget constructor (r256716)**
     - Set User-Agent in preconnect requests (r256912)
     - Improved the speed of index cursor iteration when there are a lot of index records from different object stores (r256738)
     - Added support for Apple Pay buttons with custom corner radii (r256648)
@@ -260,15 +260,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://webkit.org/blog/10243/release-notes-for-safari-technology-preview-103/
     - Supported expanding and collapsing details sections with the spacebar or "enter" key (r258058)
     - Supported cycling through scope bar items by pressing tab (r258057)
-    - *Implemented wildcard behavior for Cross-Origin-Expose-Headers (r258330)*
+    - **Implemented wildcard behavior for Cross-Origin-Expose-Headers (r258330)**
       - Access-Control-Expose-Header の typo ?
-  - *Wide Gamut Color in CSS with Display-P3*
+  - **Wide Gamut Color in CSS with Display-P3**
     - https://webkit.org/blog/10042/wide-gamut-color-in-css-with-display-p3/
     - これまでの RGB よりもより鮮やかな色が含まれる色空間に拡張される
     - 現状の RGB は Display-P3 のサブセット
     - 緑, 赤, 青の順で表現領域が拡張される
     - `color: color(display-p3 1 1 1)`
-  - *Full Third-Party Cookie Blocking and More*
+  - **Full Third-Party Cookie Blocking and More**
     - https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/
     - Safari が 3rd Party Cookie を完全にブロックする初めてのブラウザに
     - 「他のブラウザがそれをするための道を切り開く」というモチベーション
@@ -288,7 +288,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Update on Stable channel releases for Microsoft Edge
     - https://blogs.windows.com/msedgedev/2020/03/20/update-stable-channel-releases/
     - Chromium のリリースに追従する
-  - *Plan for change: TLS 1.0 and TLS 1.1 soon to be disabled by default*
+  - **Plan for change: TLS 1.0 and TLS 1.1 soon to be disabled by default**
     - https://blogs.windows.com/msedgedev/2020/03/31/tls-1-0-tls-1-1-schedule-update-edge-ie11/
     - 現状を鑑みて、 2020 前半に予定されていた 1.0/1.1 の無効化を延期
     - Edge は 2020/7 の 84
@@ -298,7 +298,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blogs.windows.com/windowsexperience/2020/03/30/the-top-10-reasons-to-switch-to-the-new-microsoft-edge/
     - Edge に追加する予定の機能紹介
     - 縦タブ、コレクション、スマートコピーなど
-  - *新しい Microsoft Edge へのアップグレード - Windows Blog for Japan*
+  - **新しい Microsoft Edge へのアップグレード - Windows Blog for Japan**
     - https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/
     - 2020/4/16 まで確定申告が延期
     - 2020/4/17 以降に延期
@@ -316,33 +316,33 @@ guest: [@myakura](https://twitter.com/myakura)
 - Recommendation
 - Proposed Recommendation
 - Candidate Recommendation
-  - *DOM Review Draft 18 June 2019 Endorsed as a W3C Candidate Recommendation*
+  - **DOM Review Draft 18 June 2019 Endorsed as a W3C Candidate Recommendation**
     - https://www.w3.org/blog/news/archives/8398
     - https://lists.w3.org/Archives/Public/public-html/2020Mar/0003.html
     - WHATWG DOM の仕様を Review Draft として W3C から公開
 - Working Draft
 - First Public Working Draft
 - Chartering
-  - *CoVid-19 Remote Meet, Work, Class Community Group created*
+  - **CoVid-19 Remote Meet, Work, Class Community Group created**
     - https://lists.w3.org/Archives/Public/public-new-work/2020Mar/0008.html
-  - *Work in progress on a WebTransport Working Group charter*
+  - **Work in progress on a WebTransport Working Group charter**
     - https://lists.w3.org/Archives/Public/public-new-work/2020Apr/0001.html
     - WebTransport WG ができる
-  - *Web Real-Time Communications Working Group Charter Extended until 30 September 2020*
+  - **Web Real-Time Communications Working Group Charter Extended until 30 September 2020**
     - https://lists.w3.org/Archives/Public/public-new-work/2020Mar/0014.html
     - WebRTC WG は 9/30 で閉じる
     - 主な作業者が WebTransport に移る
 - Other
-  - *Join us in celebrating the 31st birthday of the World Wide Web*
+  - **Join us in celebrating the 31st birthday of the World Wide Web**
     - https://www.w3.org/blog/news/archives/8378
     - Web 31 歳
-  - *'CSS X' | W3C Blog*
+  - **'CSS X' | W3C Blog**
     - https://www.w3.org/blog/2020/03/css-x/
     - CSS にレベルがない理由
-  - *Why Are We Talking About CSS4? - Smashing Magazine*
+  - **Why Are We Talking About CSS4? - Smashing Magazine**
     - https://www.smashingmagazine.com/2020/03/css4-pros-cons-discussion/
     - CSS4 についてどういう議論をしているか
-  - *pickhardt/js_reference_monitors: A proposed JavaScript API to allow reference monitors in modern web applications*
+  - **pickhardt/js_reference_monitors: A proposed JavaScript API to allow reference monitors in modern web applications**
     - https://github.com/pickhardt/js_reference_monitors
     - TC39 じゃなく DOM 側での提案?
     - Electron での情報漏えいなどをうけ Reference Monitor を入れる提案
@@ -378,7 +378,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - younies/proposal-intl-duration-format
     - https://github.com/younies/proposal-intl-duration-format
 - Other
-  - *JavaScript: The First 20 Years*
+  - **JavaScript: The First 20 Years**
     - http://www.wirfs-brock.com/allen/posts/866
     - https://zenodo.org/record/3707008
     - JS の歴史についての論文
@@ -396,12 +396,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - agenda
       - https://github.com/httpwg/wg-materials/blob/gh-pages/ietf107/agenda.md
     - minutes
-  - *quicwg*
+  - **quicwg**
     - https://github.com/quicwg/wg-materials/tree/master/ietf107
     - agenda
       - https://github.com/quicwg/wg-materials/blob/master/ietf107/agenda.md
     - minutes
-  - *webtrans*
+  - **webtrans**
     - https://github.com/DavidSchinazi/webtrans-wg-materials
     - agenda
       - https://datatracker.ietf.org/meeting/107/materials/agenda-107-webtrans-00
@@ -410,7 +410,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - slides
       - Chair slide
         - https://datatracker.ietf.org/meeting/107/materials/slides-107-webtrans-ietf-107-webtrans-wg-slides-01
-  - *wpack*
+  - **wpack**
     - agenda
       - https://datatracker.ietf.org/meeting/107/materials/agenda-107-wpack-01
     - minutes
@@ -422,31 +422,31 @@ guest: [@myakura](https://twitter.com/myakura)
         - https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-use-cases-00
       - slides-107-wpack-web-bundles-00
         - https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-web-bundles-00
-      - *slides-107-wpack-signer-origins-00*
+      - **slides-107-wpack-signer-origins-00**
         - https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-signer-origins-00
-      - *slides-107-wpack-draft-thomson-wpack-content-origin-01*
+      - **slides-107-wpack-draft-thomson-wpack-content-origin-01**
         - https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-draft-thomson-wpack-content-origin-01
-      - *slides-107-wpack-comparing-content-origins-and-signer-origins-00*
+      - **slides-107-wpack-comparing-content-origins-and-signer-origins-00**
         - https://datatracker.ietf.org/meeting/107/materials/slides-107-wpack-comparing-content-origins-and-signer-origins-00
   - tlswg
     - https://github.com/tlswg/wg-materials
     - 無し
-  - *privacypass*
+  - **privacypass**
     - agenda
       - https://datatracker.ietf.org/meeting/107/materials/agenda-107-privacypass-04
     - minutes
       - no minutes
     - slides
-      - *slides-107-privacypass-chair-slides-00*
+      - **slides-107-privacypass-chair-slides-00**
         - https://datatracker.ietf.org/meeting/107/materials/slides-107-privacypass-chair-slides-00
-      - *slides-107-privacypass-privacy-pass-use-cases-02*
+      - **slides-107-privacypass-privacy-pass-use-cases-02**
         - https://datatracker.ietf.org/meeting/107/materials/slides-107-privacypass-privacy-pass-use-cases-02
-      - *slides-107-privacypass-privacy-pass-ecosystem-00*
+      - **slides-107-privacypass-privacy-pass-ecosystem-00**
         - https://datatracker.ietf.org/meeting/107/materials/slides-107-privacypass-privacy-pass-ecosystem-00
-      - *slides-107-privacypass-privacy-pass-charter-01*
+      - **slides-107-privacypass-privacy-pass-charter-01**
         - https://datatracker.ietf.org/meeting/107/materials/slides-107-privacypass-privacy-pass-charter-01
-  - *dispatch*
-    - *HTTP Link HInts*
+  - **dispatch**
+    - **HTTP Link HInts**
       - https://www.ietf.org/archive/id/draft-nottingham-link-hint-02.txt
     - SRT Protocol Overview
       - https://datatracker.ietf.org/meeting/107/materials/slides-107-dispatch-srt-overview-01
@@ -463,7 +463,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Call for Adoption
 - I-D Action
 - Draft
-  - *Advisory Content-Length for HTTP*
+  - **Advisory Content-Length for HTTP**
     - https://tools.ietf.org/html/draft-nottingham-bikeshed-length-00
   - JSON Type Definition
     - https://tools.ietf.org/html/draft-ucarion-json-type-definition-00
@@ -477,11 +477,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-mboned-cbacc-00
   - 5G transport network benchmarking
     - https://tools.ietf.org/html/draft-contreras-bmwg-5g-01
-  - *CBOR Certificate Algorithm for TLS Certificate Compression*
+  - **CBOR Certificate Algorithm for TLS Certificate Compression**
     - https://tools.ietf.org/html/draft-mattsson-tls-cbor-cert-compress-00
-  - *CBOR Object Signing and Encryption (COSE): Headers for Carrying CBOR Compressed Certificates*
+  - **CBOR Object Signing and Encryption (COSE): Headers for Carrying CBOR Compressed Certificates**
     - https://tools.ietf.org/html/draft-mattsson-cose-cbor-cert-compress-00
-  - *A CBOR Tag for Unprotected CWT Claims Sets*
+  - **A CBOR Tag for Unprotected CWT Claims Sets**
     - https://tools.ietf.org/html/draft-birkholz-rats-uccs-00
   - Concise Binary Object Representation (CBOR) Tag for Date
     - https://tools.ietf.org/html/draft-jones-cbor-date-tag-00
@@ -489,22 +489,22 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-selander-lake-edhoc-01
   - BCP72 - A Problem Statement
     - https://tools.ietf.org/html/draft-mcfadden-smart-threat-changes-00
-  - *Retry-Scope header field*
+  - **Retry-Scope header field**
     - https://tools.ietf.org/html/draft-polli-retry-scope-00
-  - *Privacy Pass: Architectural Framework*
+  - **Privacy Pass: Architectural Framework**
     - https://tools.ietf.org/html/draft-davidson-pp-architecture-00
-  - *Privacy Pass: HTTP API*
+  - **Privacy Pass: HTTP API**
     - https://tools.ietf.org/html/draft-svaldez-pp-http-api-00
-  - *Privacy Pass: The Protocol*
+  - **Privacy Pass: The Protocol**
     - https://tools.ietf.org/html/draft-davidson-pp-protocol-00
-  - *Content-Based Origins for the Web*
+  - **Content-Based Origins for the Web**
     - https://tools.ietf.org/html/draft-thomson-wpack-content-origin-00
     - SXG の代替として提案
   - Use Cases for RATS
     - https://tools.ietf.org/html/draft-chen-rats-usecase-00
   - Simple Registration Reporting
     - https://tools.ietf.org/html/draft-yee-regext-simple-registration-reporting-00
-  - *Conditional HTTP Requests Using Digests*
+  - **Conditional HTTP Requests Using Digests**
     - https://tools.ietf.org/html/draft-thomson-http-if-digest-00
     - If-Digest という条件付きリクエストヘッダの提案
     - digest algorithm を明示するところが Etag / If-None-Match との違い
@@ -532,15 +532,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-jmap-quotas-01
   - Impact of TLS 1.3 to Operational Network Security Practices
     - https://tools.ietf.org/html/draft-camwinget-tls-ns-impact-00
-  - *The Transport-Info HTTP Header*
+  - **The Transport-Info HTTP Header**
     - https://tools.ietf.org/html/draft-ohanlon-transport-info-header-01
     - 経由されたネットワーク上の RTT や経路情報を載せるヘッダ
   - Domain Name System Uniform Resource Identifiers for DNS over HTTPS and DNS over TLS
     - https://tools.ietf.org/html/draft-mglt-dprive-dns-uri-00
-  - *Extensible Prioritization Scheme for HTTP*
+  - **Extensible Prioritization Scheme for HTTP**
     - https://tools.ietf.org/html/draft-ietf-httpbis-priority-00
     - kazuho さんの draft が httpbis の wg draft に
-  - *User Defined Resource Error HTTP Status Code*
+  - **User Defined Resource Error HTTP Status Code**
     - https://tools.ietf.org/html/draft-divilly-status-555-00
     - Status Code 555 でサーバ独自のエラーを作りたい
     - Oracle の提案
@@ -564,7 +564,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Cookie Status :: Current Status Of Browser Tracking Prevention
   - https://www.cookiestatus.com/
   - ブラウザごとの Cookie の扱いのまとめ
-- *Cliqz - Secure browser with built-in quick search*
+- **Cliqz - Secure browser with built-in quick search**
   - https://cliqz.com/en/
   - Cookie Status にあったプライバシー重視なブラウザ
   - 2015 年からあるらしい
@@ -577,7 +577,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - HTTPS は世界 58% 米 64% だったのが、世界 81% 米 91%
   - LE は 4600 万サイト 11 人で 261 万ドル予算から始まり、 1.92 億を 13 人で 335 万ドルで
   - LE 自体もそうだが ACME(2019)や Certbot が大きい
-- *2020.02.29 CAA Rechecking Bug - Incidents - Let's Encrypt Community Support*
+- **2020.02.29 CAA Rechecking Bug - Incidents - Let's Encrypt Community Support**
   - https://community.letsencrypt.org/t/2020-02-29-caa-rechecking-bug/114591/4
   - LE は domain control と CAA のチェックを行う
   - domain control は 30 日有効とみなす
@@ -595,22 +595,22 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Enigma Conference 2020 - Browser Privacy Panel*
+- **Enigma Conference 2020 - Browser Privacy Panel**
   - https://textslashplain.com/2020/03/11/enigma-conference-2020-browser-privacy-panel/
   - 1 月の Enigma Conference で、ブラウザベンダ各位の Privacy に関する発表が有った
   - Brave/Firefox/Chrome/Edge
   - 録画が公開されている
 - npm is joining GitHub - The GitHub Blog
   - https://github.blog/2020-03-16-npm-is-joining-github/
-- *The History of the URL*
+- **The History of the URL**
   - https://blog.cloudflare.com/the-history-of-the-url/
   - URL の歴史
-- *新型コロナウイルス感染症 2019(COVID-19)に関する更新 - YouTube ヘルプ*
+- **新型コロナウイルス感染症 2019(COVID-19)に関する更新 - YouTube ヘルプ**
   - 画質を下げてインフラを保護
     - https://support.google.com/youtube/answer/9777243
   - Netflix, Prime Video なども実施
     - https://www.itmedia.co.jp/news/articles/2003/25/news078.html
-- *COVID-19 impacts on Internet traffic: Seattle, Northern Italy and South Korea*
+- **COVID-19 impacts on Internet traffic: Seattle, Northern Italy and South Korea**
   - https://blog.cloudflare.com/covid-19-impacts-on-internet-traffic-seattle-italy-and-south-korea/
 
 

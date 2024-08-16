@@ -22,7 +22,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Chromium Blog: Chrome 99: CSS Cascade Layers, a New Picker for Input Elements, and More*
+- **Chromium Blog: Chrome 99: CSS Cascade Layers, a New Picker for Input Elements, and More**
   - https://blog.chromium.org/2022/02/chrome-99-css-cascade-layers-new-picker.html
   - Preparing for Chrome 100
   - CSS Cascade Layers
@@ -45,20 +45,20 @@ guest: [@myakura](https://twitter.com/myakura)
     - Remove font-family -webkit-standard
     - Remove GamepadList
     - Update WebCodecs to Match Spec
-- *Deprecations and removals in Chrome 99 - Chrome Developers*
+- **Deprecations and removals in Chrome 99 - Chrome Developers**
   - https://developer.chrome.com/en/blog/deps-rems-99/
   - Remove Battery Status API on insecure origins
   - Remove font-family -webkit-standard
   - Remove GamepadList
   - Update WebCodecs to match the specification
-- *New in Chrome 98 - Chrome Developers*
+- **New in Chrome 98 - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-chrome-98/
   - Opting out of auto-dark themes on Android
   - COLRv1 font support
   - Emulate Chrome 100 in the UA string
 - Google Developers Japan: Chrome 98 ベータ版: カラー グラデーション ベクター フォント、リージョン キャプチャのオリジン トライアルなど
   - https://developers-jp.googleblog.com/2022/01/chrome-98-beta.html
-- *Chrome and Firefox soon to reach major version 100*
+- **Chrome and Firefox soon to reach major version 100**
   - https://web.dev/chrome-firefox-100/
   - Chrome: 2022 年 3 月 29 日
     - backup に Major を 99 に固定する flag をリリース
@@ -72,12 +72,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Ship: Multi-Screen Window Placement
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/i6Zoc7jU0dM/m/W5g_ze2WAgAJ
-- *Ship: Autofill in ShadowDOM*
+- **Ship: Autofill in ShadowDOM**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RY9leYMu5hI/m/hXkUj8J6AgAJ
   - これまで ShadowDOM 内の input は Autofill 対象外だった
 - Ship: Omnibox Prerendering
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ogegRwcRlcs/m/abCQpUFpAQAJ
-- *Ship: AbortSignal.prototype.throwIfAborted*
+- **Ship: AbortSignal.prototype.throwIfAborted**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bpiezft1AIc/m/62I9XS5UAQAJ
   - signal が abort されたら reason を含む AbortError を Throw する
   - Safari も Mozilla も Ship 予定
@@ -85,7 +85,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/7SKzObJ9IBI/m/ytS_fS6jBgAJ
 - Ship: HIDDevice `forget()`
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Fk-IJF63UWc/m/4yuIF66cBgAJ
-- *Ship: Network State Partitioning*
+- **Ship: Network State Partitioning**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tJa6uzXu_IA/m/IN6UhwKtAwAJ
 - Ship: Digital Goods API v2.0
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2pjQ3O2GzDA/m/BqQ7UL6gAwAJ
@@ -97,31 +97,31 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/IYWGbLV-1hU/m/Uvh4XvBfAQAJ
 - Prototype and Ship: SerialPort integration with WritableStream controller AbortSignal
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/R0av-FJ0hog/m/dYS7KhJMAQAJ
-- *Prototype and Ship: User-Agent Reduction Phase 4 (minor version reduction)*
+- **Prototype and Ship: User-Agent Reduction Phase 4 (minor version reduction)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dcTStiBZVoQ/m/KyomPLOnAwAJ
-- *Prototype and Ship: Sec-CH-UA-WoW64 Client Hint*
+- **Prototype and Ship: Sec-CH-UA-WoW64 Client Hint**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/i5_4MveUsjs/m/KClXu8woAQAJ
-- *Prototype + PSA: making Back/Forward Cache work despite Cache-control: no-store*
+- **Prototype + PSA: making Back/Forward Cache work despite Cache-control: no-store**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/mcOiteClYSo/m/rElGuT2IAAAJ
 - Prototype: Confirmation of Action API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JBpUXKsJ5qg/m/MRK2dbSHAgAJ
-- *Prototype: `AbortSignal.timeout()` Static Method*
+- **Prototype: `AbortSignal.timeout()` Static Method**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/9Y290P1WimY/m/bru989iAAgAJ
 - Implement: Fluent Scrollbars.
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/SomQdLx6aEk/m/uwK_pqZ4AgAJ
 - Prototype: Digital Goods API v2.1
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JaNDPCUr1ws/m/JFt-E7ePAQAJ
-- *Prototype: Document picture-in-picture*
+- **Prototype: Document picture-in-picture**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jr2fQUh6xEI/m/Oqge6pPtAAAJ
-- *Prototype: AbortSignal.prototype.throwIfAborted*
+- **Prototype: AbortSignal.prototype.throwIfAborted**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/I1pn9OIe8-A/m/C7lzzd7qAAAJ
-- *Experiment: Cookies Having Independent Partitioned State (CHIPS)*
+- **Experiment: Cookies Having Independent Partitioned State (CHIPS)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/_dJFNJpf91U/m/OXzFi_6wAwAJ
 - Experiment: User-Agent Client Hints GREASE Update
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/G-ouYoNY9Hs/m/5dZQWvqRAQAJ
 - Extend Origin Trial: MSE in Workers
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/WETrrUYLrTM/m/BUSbStwoAwAJ
-- *Ready for Trial: Federated Credentials Management API (was WebID)*
+- **Ready for Trial: Federated Credentials Management API (was WebID)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jlV_1m7uUAg/m/fPC4mLjJAgAJ
 - Continue Experimenting: Speculation Rules (Prefetch)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/XlAW8MDdHbg/m/XBIJYgvgAAAJ
@@ -152,7 +152,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/http-cache-security/
   - Drawing to canvas in Emscripten
     - https://web.dev/drawing-to-canvas-in-emscripten/
-  - *New to the web platform in January*
+  - **New to the web platform in January**
     - https://web.dev/web-platform-01-2022/
   - Porting USB applications to the web. Part 2: gPhoto2
     - https://web.dev/porting-gphoto2-to-the-web/
@@ -166,19 +166,19 @@ guest: [@myakura](https://twitter.com/myakura)
 - chrome developer blog
   - The Chromium Chronicle #28: Getting started with Chrome on iOS - Chrome Developers
     - https://developer.chrome.com/en/blog/chromium-chronicle-28/
-  - *Permissions request chip - Chrome Developers*
+  - **Permissions request chip - Chrome Developers**
     - https://developer.chrome.com/en/blog/permissions-chip/
     - Allow: 6.69%
     - Block: 9.20%
     - Dismiss: 35.76%
     - Ignore: 47.19%
-  - *Cascade layers are coming to your browser - Chrome Developers*
+  - **Cascade layers are coming to your browser - Chrome Developers**
     - https://developer.chrome.com/en/blog/cascade-layers/
   - Show a browser picker for date, time, color, and files - Chrome Developers
     - https://developer.chrome.com/en/blog/show-picker/
-  - *FLEDGE API developer guide - Chrome Developers*
+  - **FLEDGE API developer guide - Chrome Developers**
     - https://developer.chrome.com/en/blog/fledge-api/
-  - *Topics API - Chrome Developers*
+  - **Topics API - Chrome Developers**
     - https://developer.chrome.com/ja/docs/privacy-sandbox/topics/
 - chromium blog
   - Project Zero: A walk through Project Zero metrics
@@ -202,10 +202,10 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Firefox 97.0, See All New Features, Updates and Fixes*
+- **Firefox 97.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/97.0/releasenotes/
   - Windows 11 のオーバーレイスクロールバーに対応
-- *Firefox 97 for developers*
+- **Firefox 97 for developers**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/97
   - CSS `cap` and `ic` unit
   - Cascade Layers
@@ -213,18 +213,18 @@ guest: [@myakura](https://twitter.com/myakura)
   - CSS `d` プロパティ
   - `AbortSignal.reason`
   - `AbortSignal.throwIfAborted()`
-- *These Weeks in Firefox: Issue 109*
+- **These Weeks in Firefox: Issue 109**
   - https://blog.nightly.mozilla.org/2022/02/10/these-weeks-in-firefox-issue-109/
     - Firefox 98 で新しい Performance パネルが有効に
     - 拡張の Event Page の実装スタート
-- *These Weeks in Firefox: Issue 108*
+- **These Weeks in Firefox: Issue 108**
   - https://blog.nightly.mozilla.org/2022/01/28/these-weeks-in-firefox-issue-108/
     - DevTools の Compatibility パネル
 
 
 #### Intents
 
-- *Ship: OffscreenCanvas on limited domains*
+- **Ship: OffscreenCanvas on limited domains**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/kp9SZL-0wW0
   - 現状は WebGL のみを OffscreenCanvas でサポートしており、 Canvas2D はこれから
   - 部分的な実装を Nightly で有効にしてみたら壊れるサイトが出たのでバックアウト
@@ -232,7 +232,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Firefox 99 で Zoom にのみ有効にする
 - (re-)Ship: Readable Streams
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/5JS0Kbs41-Q
-- *Ship: Changing cache re-validation on a soft reload*
+- **Ship: Changing cache re-validation on a soft reload**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/PMla_a7HYKY
 - Ship: CSS property `hyphenate-character`
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/jFUODfQPhTw
@@ -244,17 +244,17 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Retrospective and Technical Details on the recent Firefox Outage*
+- **Retrospective and Technical Details on the recent Firefox Outage**
   - https://hacks.mozilla.org/2022/02/retrospective-and-technical-details-on-the-recent-firefox-outage/
   - H3 に対応したところテレメトリ収集部分に `Content-Length` の大文字小文字の差が吸収できないバグがあり障害につながった
 - Improving the Storage Access API in Firefox
   - https://hacks.mozilla.org/2022/02/improving-the-storage-access-api-in-firefox/
 - Version 100 in Chrome and Firefox
   - https://hacks.mozilla.org/2022/02/version-100-in-chrome-and-firefox/
-- *1751465 - [Experiment] Staged Rollout: Disable cookie sameSite=lax and sameSite noneRequiresSecure in Firefox 96 Fx 96.0 to 96.0 Release*
+- **1751465 - [Experiment] Staged Rollout: Disable cookie sameSite=lax and sameSite noneRequiresSecure in Firefox 96 Fx 96.0 to 96.0 Release**
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1751465
   - Schemeful SameSite に続き SameSite=Lax デフォルト化もバックアウト
-- *Privacy Preserving Attribution for Advertising*
+- **Privacy Preserving Attribution for Advertising**
   - https://blog.mozilla.org/en/mozilla/privacy-preserving-attribution-for-advertising/
 
 
@@ -275,7 +275,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Safari 15.4 Beta Release Notes | Apple Developer Documentation*
+- **Safari 15.4 Beta Release Notes | Apple Developer Documentation**
   - https://developer.apple.com/documentation/safari-release-notes/safari-15_4-release-notes
     - CSS
       - Containment contain property
@@ -305,7 +305,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - Intl enhancements
     - Security
       - CSP3 improvements
-- *Release Notes for Safari Technology Preview 139 | WebKit*
+- **Release Notes for Safari Technology Preview 139 | WebKit**
   - https://webkit.org/blog/12193/release-notes-for-safari-technology-preview-139/
   - Web Inspector
   - CSS
@@ -331,11 +331,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web Extensions
     - Added support for the redirect rule type in declarativeNetRequest, which requires host permissions to be granted for the host of the URL being redirected
     - Added support for declarativeNetRequest.getMatchedRules, which requires host permissions to be granted to view the URLs of blocked resources
-- *Release Notes for Safari Technology Preview 140 | WebKit*
+- **Release Notes for Safari Technology Preview 140 | WebKit**
   - https://webkit.org/blog/12255/release-notes-for-safari-technology-preview-140/
   - Web Inspector
   - :has() Pseudo-Class
-    - *Added support for :has(:not(foo)) (r288303)*
+    - **Added support for :has(:not(foo)) (r288303)**
     - Avoided complex style invalidation with repeated DOM mutations (r288012, r287973)
   - CSS
     - Added support for intrinsic sizes in flex-basis (r288113)
@@ -345,7 +345,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for preloading of layered @import rules (r288099)
   - Web API
     - Added support for FetchEvent.handled API for Service Workers (r287915)
-    - *Enabled form.requestSubmit() (r288179)*
+    - **Enabled form.requestSubmit() (r288179)**
   - Web Animations
     - Added support for animation-composition CSS property (r288433)
   - JavaScript
@@ -357,7 +357,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - WebAuthn
     - Allowed single use of WebAuthn without user gesture for all relying parties (r287957)
   - Accessibility
-    - *Exposed toggle buttons using role="button" as form controls (r288100)*
+    - **Exposed toggle buttons using role="button" as form controls (r288100)**
     - Improved support for aria-owns in ARIA trees (r288117)
   - Content Security Policy
     - Improved handling of multiple policies (r288132)
@@ -366,11 +366,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - SVG
   - Scrolling
   - Web Extensions
-- *The File System Access API with Origin Private File System | WebKit*
+- **The File System Access API with Origin Private File System | WebKit**
   - https://webkit.org/blog/12257/the-file-system-access-api-with-origin-private-file-system/
-- *Introducing the Dialog Element | WebKit*
+- **Introducing the Dialog Element | WebKit**
   - https://webkit.org/blog/12209/introducing-the-dialog-element/
-- *The Focus-Indicated Pseudo-class :focus-visible | WebKit*
+- **The Focus-Indicated Pseudo-class :focus-visible | WebKit**
   - https://webkit.org/blog/12179/the-focus-indicated-pseudo-class-focus-visible/
 
 
@@ -381,7 +381,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *No, Apple Did Not Crowdfund :focus-visible in Safari - Eric's Archived Thoughts*
+- **No, Apple Did Not Crowdfund :focus-visible in Safari - Eric's Archived Thoughts**
   - https://meyerweb.com/eric/thoughts/2022/01/24/no-apple-did-not-crowdfund-focus-visible-in-safari/
   - Safari TP で `:focus-visible` が有効になったことを Apple の人がツイート
   - Igalia の貢献とクラウドファンディングについて言及したところ、 Apple が自分で実装せずにクラウドファンディングに頼ったと見られちょっと炎上
@@ -395,13 +395,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Introducing Enhanced Security for Microsoft Edge | Microsoft Browser Vulnerability Research*
+- **Introducing Enhanced Security for Microsoft Edge | Microsoft Browser Vulnerability Research**
   - https://microsoftedge.github.io/edgevr/posts/Introducing-Enhanced-Security-for-Microsoft-Edge/
 - Memory tooling improvements in DevTools for Retainers - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2022/02/16/memory-tooling-improvements-retainers/
 - Unminifying function names in DevTools performance profiles - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2022/02/03/unminifying-function-names-in-devtools-performance-profiles/
-- *Test IE mode in Microsoft Edge with Internet Explorer Driver - Microsoft Edge Blog*
+- **Test IE mode in Microsoft Edge with Internet Explorer Driver - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2022/02/01/test-ie-mode-in-microsoft-edge-internet-explorer-driver/
 
 
@@ -487,7 +487,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - httpwg
   - https://lists.w3.org/Archives/Public/ietf-http-wg/
   - https://github.com/httpwg/wg-materials/
-  - *Interim Minutes*
+  - **Interim Minutes**
     - https://github.com/httpwg/wg-materials/blob/gh-pages/interim-22-02/minutes.md
     - The Geohash HTTP Client Hint
       - https://httpwg.org/wg-materials/interim-22-02/geohash.pdf
@@ -536,7 +536,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *AUTH48 status page for C430 > RFC Editor*
+- **AUTH48 status page for C430 > RFC Editor**
   - https://www.rfc-editor.org/auth48/C430
     - HTTP/3 と QPACK に割り当てられていた RFC 番号が変更
       - HTTP3: 9113 -> 9114
@@ -574,7 +574,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *Welcome to Wolvic*
+- **Welcome to Wolvic**
   - https://wolvic.com/
   - Igalia が Mozilla Reality を fork したブラウザ実装
   - WebXR にフォーカスしている
@@ -586,9 +586,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://infrequently.org/2022/02/minimum-standards/
 - A Week to Define the Web for Decades - Infrequently Noted
   - https://infrequently.org/2022/01/carpe-diem/
-- *Server-Sent Events, WebSockets, and HTTP*
+- **Server-Sent Events, WebSockets, and HTTP**
   - https://www.mnot.net/blog/2022/02/20/websockets
-- *ヤフーの IE11 サポート終了の進め方 - Yahoo! JAPAN Tech Blog*
+- **ヤフーの IE11 サポート終了の進め方 - Yahoo! JAPAN Tech Blog**
   - https://techblog.yahoo.co.jp/entry/2022021630265506/
 
 

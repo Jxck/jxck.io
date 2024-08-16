@@ -22,7 +22,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 117*
+- **New in Chrome 117**
   - https://developer.chrome.com/en/blog/new-in-chrome-117/
   - New CSS features for entry and exit animations.
   - Array grouping
@@ -31,7 +31,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - The much anticipated subgrid value for grid-template-columns and grid-template-rows is now implemented in Chrome.
     - There is a WebSQL deprecation trial and a developer trial for the unload event deprecation.
     - The notRestoredReasons API for bfcache, mentioned in the video for Chrome 116, should be launching in this version.
-- *Chrome 118 beta*
+- **Chrome 118 beta**
   - https://developer.chrome.com/en/blog/chrome-118-beta/
   - CSS
     - Scoped styles
@@ -58,7 +58,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Deprecations and removals
     - Removal of some non-standard appearance keywords
   - Background
-- *What's New in DevTools (Chrome 118) - Chrome for Developers*
+- **What's New in DevTools (Chrome 118) - Chrome for Developers**
   - https://developer.chrome.com/en/blog/new-in-devtools-118/
   - New section for custom properties in Elements > Styles
   - More local overrides improvements
@@ -74,7 +74,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: :user-valid and :user-invalid CSS pseudo-classes*
+- **Ship: :user-valid and :user-invalid CSS pseudo-classes**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UpB_u-wvNeA
 - Ship: Attribution Reporting features (change registration limit, remove 1hr delay)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Mh-mJiyJZFk
@@ -90,9 +90,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/J-nlzLKZvA0
 - Ship: Fenced Frames - Functionality Updates
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2FKlwNZ0J4Q
-- *Ship: HTML search element*
+- **Ship: HTML search element**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5CHw-SXYKGc
-- *Ship: Japanese Phrase Line Breaking*
+- **Ship: Japanese Phrase Line Breaking**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/96q7WtXtWXc
 - Ship: Media Queries: scripting feature
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jiCB_twBqnk
@@ -102,7 +102,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JpWOdoPi5Wo
 - Ship: Sec-CH-Prefers-Reduced-Transparency User Preference Media Features Client Hints Header
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KgSc7mn6pws
-- *Ship: TLS Encrypted Client Hello (ECH)*
+- **Ship: TLS Encrypted Client Hello (ECH)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CmlXjQeNWDI
 - Ship: view-timeline shorthand sets view-timeline-inset
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/yjfaImiMaXE
@@ -112,15 +112,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Hq3r7dB6yoc
 - Ship: DTLS ClientHello extension permutation (WebRTC)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1CIKec0W1fg
-- *Ship: Deprecate TLS SHA-1 server signatures*
+- **Ship: Deprecate TLS SHA-1 server signatures**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/aFBsv39UqGE
-- *Ship: Horizontal rules inside select elements*
+- **Ship: Horizontal rules inside select elements**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/fklS2qR8Wm4
 - Ship: Partitioning Storage, Service Workers, and Communication APIs
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/24hK6DKJnqY
 - Ship: Private Network Access restrictions for automotive
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/fCz5k9OPFAA
-- *Ship: Promise.withResolvers*
+- **Ship: Promise.withResolvers**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JL4uXtfrCdU
 - Ship: Protected Audiences Negative Targeting
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xzrWfs-BwFk
@@ -130,9 +130,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Ax8rTBusZ4s
 - Ship: Private Aggregation API bundled enhancements
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/cNK_uuCaNMs
-- *Ship: Unprefix -webkit-background-clip for "text" and make it an alias*
+- **Ship: Unprefix -webkit-background-clip for "text" and make it an alias**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/szcfsqyaFsg
-- *Ship: Close requests for CloseWatcher, `<dialog>`, and popover=""*
+- **Ship: Close requests for CloseWatcher, `<dialog>`, and popover=""**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jM5au7yYzHM
 - Ship: Shared Storage API Enhancements
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/QWC8SnyOdzI
@@ -156,7 +156,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/B2jT8PG8Lww
 - Implement and Ship: Feature detection for supported clipboard formats
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/pjpN9Lwv5Tk
-- *Prototype: CJK punctuation kerning: the CSS `text-spacing-trim` property*
+- **Prototype: CJK punctuation kerning: the CSS `text-spacing-trim` property**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/NCUfiS4K32E
 - Prototype: CSS Sticky State Container Queries
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/C1D321h3OnA
@@ -166,11 +166,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ew98DDMuD9U
 - Prototype: Media Queries: scripting feature
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/nf3I6lAuHqo
-- *Prototype: Page-Embedded Permission Control*
+- **Prototype: Page-Embedded Permission Control**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/TGsrhP4ref0
 - Prototype: Private Network Access restrictions for automotive
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/MO2HmKaFe8c
-- *Prototype: Sec-CH-UA-Form-Factor client hint*
+- **Prototype: Sec-CH-UA-Form-Factor client hint**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RL7nmVio2PM
 - Prototype: Third-Party Cookie Phaseout
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8mlWTOcEzcA
@@ -178,29 +178,29 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UNfjkjHAPOM
 - Prototype: WebDriver commands for triggering Bounce Tracking Mitigations
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/VMTLpimgZTo
-- *Prototype: form-sizing CSS property*
+- **Prototype: form-sizing CSS property**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/cA-cmgrA_QE
 - Prototype: Snapchanged Events
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/AGsZy1WSIS0
-- *Prototype: CSS dynamic-range-limit property*
+- **Prototype: CSS dynamic-range-limit property**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jzSeH70To2s
 - Prototype: ExportID for cross ShadowRoot ARIA
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/CEdbbQXPIRk
-- *Prototype: HTMLSelectElement showPicker()*
+- **Prototype: HTMLSelectElement showPicker()**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6MUAqY2r3Hg
 - Prototype: Intersection Observer Scroll Margin
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/oyarD9dGSUk
 - Prototype: Face-Framing API.
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LyQu9L_Iv58
-- *Prototype: Mesh2D Canvas API*
+- **Prototype: Mesh2D Canvas API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bqKJhWf6Lgk
 - Prototype: NavigateEvent sourceElement
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/fJhFQV-2v38
-- *Prototype: Observable API*
+- **Prototype: Observable API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kPoFF2SREq8
-- *Prototype: 'firstrender' event*
+- **Prototype: 'firstrender' event**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Ujfh4GwHn4E
-- *Prototype: Device Bound Session Credentials (DBSC)*
+- **Prototype: Device Bound Session Credentials (DBSC)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xvZJPpXNS8Y
 - Prototype: Third-party cookie deprecation exemption heuristics
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Eeh2pE0DRaE
@@ -240,7 +240,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/DP55Uadw7-o
 - PSA: CSS Counters rework
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/a76jqhavMno
-- *PSA: Fire beforeinput event before compositionupdate event during IME composition.*
+- **PSA: Fire beforeinput event before compositionupdate event during IME composition.**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/spwtbdODC3Q
 - PSA: Enabling partitioned 3rd party storage when "Block 3rd Party Cookies" setting is enabled
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/uppiYp7lIpY
@@ -263,15 +263,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - web.dev
   - Four common types of code coverage
     - https://web.dev/ta-code-coverage/
-  - *Submit your proposals for Interop 2024*
+  - **Submit your proposals for Interop 2024**
     - https://web.dev/interop-2024-proposals/
-  - *CSS Subgrid*
+  - **CSS Subgrid**
     - https://web.dev/css-subgrid/
 - google developer blog
   - Celebrating 25 years of Google Search: developer trends and history - Google for Developers Blog - News about Web, Mobile, AI and Cloud
     - https://developers.googleblog.com/2023/09/25-years-google-search-developer-trends.html
 - google developer japan blog
-  - *Google Developers Japan: BudouX: 読みやすい改行のための軽量な分かち書き器*
+  - **Google Developers Japan: BudouX: 読みやすい改行のための軽量な分かち書き器**
     - https://developers-jp.googleblog.com/2023/09/budoux-adobe.html
 - chrome developer blog
   - https://developer.chrome.com/blog/
@@ -281,9 +281,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/new-in-webgpu-117/
   - From WebGL to WebGPU - Chrome for Developers
     - https://developer.chrome.com/en/blog/from-webgl-to-webgpu/
-  - *We are Chrome for Developers - Chrome for Developers*
+  - **We are Chrome for Developers - Chrome for Developers**
     - https://developer.chrome.com/en/blog/we-are-chrome-for-developers/
-  - *Seamless navigation made possible with view transitions - Chrome for Developers*
+  - **Seamless navigation made possible with view transitions - Chrome for Developers**
     - https://developer.chrome.com/en/blog/view-transitions-case-studies/
 - chromium blog
   - Chromium Blog: Unveiling the Chrome Web Store's Redesign
@@ -293,14 +293,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - google security blog
   - Google Online Security Blog: Capslock: What is your code really capable of?
     - https://security.googleblog.com/2023/09/capslock-what-is-your-code-really.html
-  - *Google Online Security Blog: Scaling Rust Adoption Through Training*
+  - **Google Online Security Blog: Scaling Rust Adoption Through Training**
     - https://security.googleblog.com/2023/09/scaling-rust-adoption-through-training.html
   - Google Online Security Blog: SMS Security & Privacy Gaps Make It Clear Users Need a Messaging Upgrade
     - https://security.googleblog.com/2023/09/sms-security-privacy-gaps-make-it-clear.html
 - v8
   - https://v8.dev/
 - other
-  - *ブラウザで Gmail の最新バージョンを使用する - Gmail ヘルプ*
+  - **ブラウザで Gmail の最新バージョンを使用する - Gmail ヘルプ**
     - https://support.google.com/mail/answer/15049?hl=ja
     - > 重要: 2024 年 1 月までは、簡易 HTML 形式を使用してブラウザで Gmail を表示できます。この日を過ぎると、 Gmail は自動的に標準 HTML 形式に変更されます。
     - TenFourFox Development: Google ending Basic HTML support for Gmail in 2024
@@ -325,45 +325,45 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: ARIA reflection (non-IDREF) and default Accessibility Semantics for Custom Elements*
+- **Ship: ARIA reflection (non-IDREF) and default Accessibility Semantics for Custom Elements**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/1IvZq_uK9Ho
   - `element.ariaSelected` など `aria-*` 属性に対応するプロパティ
-- *Ship: Well-Formed Unicode Strings*
+- **Ship: Well-Formed Unicode Strings**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/vkTeclv4uL8
 - Ship: fdlibm Math in Nightly/Early Beta
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/wBpkmbmyzqw
-- *Ship: COEP: credentialless*
+- **Ship: COEP: credentialless**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/NyzahidY5bw
-- *Ship: Javascript Array grouping proposal*
+- **Ship: Javascript Array grouping proposal**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/1pnEwgLPxtQ
-- *Ship: WebAssembly GC*
+- **Ship: WebAssembly GC**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Rk_c6X1oj24
-- *Prototype: CSS text-wrap:balance*
+- **Prototype: CSS text-wrap:balance**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/O0U9UuhK90o
-- *Prototype: start transitions on discrete animation types*
+- **Prototype: start transitions on discrete animation types**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/jVSRE6JommI
-- *Prototype: Text fragments*
+- **Prototype: Text fragments**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/1F1vsI0Q1dI
 - Prototype: Origin-keyed Agent Clusters
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/UmfbTsiFl_g
-- *Prototype: Early Hints*
+- **Prototype: Early Hints**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/GNp44ffmGGs
 - Prototype: Screen Wake Lock API
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/tWuBjgtfItA
 - Prototype: Symbols as WeakMap keys (ECMA 262)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/NNpke-yy9uQ
-- *Prototype: CSS zoom*
+- **Prototype: CSS zoom**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/n2qHmrAdta4
   - IE 独自拡張で WebKit/Blink にも実装された `zoom` プロパティ
   - 仕様もないので互換性に問題が出ている
   - フォールバックとして使われる `-moz-transform` の削除を含めなんとか実装できないか検討中
 - Prototype and Ship: CSS `attr()` fallback
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/SsXXqvp8O3s
-- *Prototype and Ship: Make ::backdrop inherit from its originating element.*
+- **Prototype and Ship: Make ::backdrop inherit from its originating element.**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/_MTabf8-omg
 - Unship: `-moz-image-rect()`
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/zNzYpD2UcRE
-- *Change: HTML editor respects CSS display property to consider inline vs. block*
+- **Change: HTML editor respects CSS display property to consider inline vs. block**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/YsAgwshXXms
 - Change:
 - Remove:
@@ -397,13 +397,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - CSS Values 5: attr() fallback #885
   - CaptureStartFocusBehavior enum value "focus-capturing-application" #888
   - MediaStreamTrack Statistics #895
-  - *URLPattern API (positive) #893*
-  - *Service Worker Static Routing API #894*
+  - **URLPattern API (positive) #893**
+  - **Service Worker Static Routing API #894**
 
 
 #### Other
 
-- *Faster Vue.js Execution in Firefox - Mozilla Hacks - the Web developer blog*
+- **Faster Vue.js Execution in Firefox - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2023/09/faster-vue-js-execution-in-firefox/
   - ベンチマークの Vue.js が v3 になってスコアが下がった
   - Vue 3 では Proxy を使っていて、そのパフォーマンスがよくなかった
@@ -429,26 +429,26 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Release Notes for Safari Technology Preview 178*
+- **Release Notes for Safari Technology Preview 178**
   - https://webkit.org/blog/14435/release-notes-for-safari-technology-preview-178/
   - CSS
     - Implemented counter-set property (267137@main)
   - JavaScript
-    - *Enabled import attributes (266957@main)*
+    - **Enabled import attributes (266957@main)**
     - Added support for Intl.NumberFormat's FormatApproximately operation (266645@main)
     - Changed Intl.DurationFormat digital's default from narrow to short (266891@main)
   - Web API
-    - *Enabled Fetch Priority by default (267196@main)*
-    - *Enabled requestIdleCallback (267023@main, 266750@main)*
+    - **Enabled Fetch Priority by default (267196@main)**
+    - **Enabled requestIdleCallback (267023@main, 266750@main)**
     - Enabled responsive images in `<link rel=preload>` (266787@main)
-    - *Added the change event for the Cookie Store API (266850@main)*
+    - **Added the change event for the Cookie Store API (266850@main)**
     - Added more restrictions for top-frame navigations by a third-party iframe (266666@main)
     - Added support for from-image to ImageBitmapOptions (266893@main)
     - Added the support for key pair checks for Ed25519 in WebCrypto (267184@main)
 - WebKit Features in Safari 17.0
   - https://webkit.org/blog/14445/webkit-features-in-safari-17-0/
   - see release note
-- *Safari 17 Release Notes | Apple Developer Documentation*
+- **Safari 17 Release Notes | Apple Developer Documentation**
   - https://developer.apple.com/documentation/safari-release-notes/safari-17-release-notes
   - Accessibility
     - Added support for code ARIA role. (106621574)
@@ -458,13 +458,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - Authentication
     - Added support for largeBlob extension for the local authenticator. (105237759)
   - CSS
-    - *Added support for `@counter-style`. (30318695)*
+    - **Added support for `@counter-style`. (30318695)**
     - Added support for the update Media Query. (35799713)
     - Added support for optional resolution and type arguments in image-set(). (77598590)
-    - *Added support for `contain-intrinsic-size`. (89358231)*
+    - **Added support for `contain-intrinsic-size`. (89358231)**
     - Added support for full-width and full-size-kana values for text-transform. (100310853)
     - Added support for multiple text-transform values. (105381249)
-    - *Added support for `@supports font-tech()` and `@font-face { src: tech() }`. (105665900)*
+    - **Added support for `@supports font-tech()` and `@font-face { src: tech() }`. (105665900)**
     - Added support for the @font-face size-adjust descriptor. (106349717)
     - Added support for containerName and containerQuery and updated conditionText to be "containerName containerQuery". (106505281)
     - Added support for overflow-block and overflow-inline media query features. (106511968)
@@ -472,7 +472,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for @supports font-format(). (107381176)
     - Added support for the from-font value for font-size-adjust. (107735982)
     - Added nowrap white-space to the User-Agent Stylesheet for the option element. (110019702)
-    - *Added support for the scripting media query. (110949545)*
+    - **Added support for the scripting media query. (110949545)**
     - Added support for word-break: auto. (111507205)
     - Added support for contain-intrinsic-size: auto none. (111510558)
     - Added support for contain-intrinsic-size: inherit. (112409855)
@@ -484,25 +484,25 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added a new appearance for marked text. (101869724)
     - Added support for the caret color to match the accent color of the system on macOS. (102450017)
   - Forms
-    - *Added support for `<hr>` inside `<select>`. On macOS this is rendered as a separator. (107656886)*
-    - *Fixed `<input pattern>` to use the regular expression v flag rather than u. (105268069)*
+    - **Added support for `<hr>` inside `<select>`. On macOS this is rendered as a separator. (107656886)**
+    - **Fixed `<input pattern>` to use the regular expression v flag rather than u. (105268069)**
   - HTML
-    - *Added experimental support for the `<model>` element. (100595523)*
-    - *Added support for the `popover` attribute. (104204093)*
-    - *Added support for the `<search>` element. (107175819)*
+    - **Added experimental support for the `<model>` element. (100595523)**
+    - **Added support for the `popover` attribute. (104204093)**
+    - **Added support for the `<search>` element. (107175819)**
   - HTTP
-    - *Added support for preconnect via HTTP early hints. (106055702)*
+    - **Added support for preconnect via HTTP early hints. (106055702)**
     - Fixed respecting Content-Type header for MIME type determination. (73343155)
     - Fixed a bug with empty header values in Headers objects with "request-no-cors" guard. (105207779)
     - Fixed Cross-Origin-Embedder-Policy incorrectly blocking an iframe on a cache hit. (107002434)
     - Fixed vary header behavior for opaque responses. (107769146)
   - Images
-    - *Added support for HEIC/HEIF images. (99517108)*
-    - *Added support for JPEG XL. (100641584)*
+    - **Added support for HEIC/HEIF images. (99517108)**
+    - **Added support for JPEG XL. (100641584)**
   - JavaScript
-    - *Added support for RegExp duplicate named capture groups. (100335581)*
-    - *Added support for the RegExp v flag. (100337109)*
-    - *Added support for new Set.prototype methods. (105190165)*
+    - **Added support for RegExp duplicate named capture groups. (100335581)**
+    - **Added support for the RegExp v flag. (100337109)**
+    - **Added support for new Set.prototype methods. (105190165)**
     - Updated Intl.Locale to replace info getters with individual get... methods. (105570888)
     - Added support for `Set.prototype.difference`. (106031487)
   - Lockdown Mode
@@ -516,40 +516,40 @@ guest: [@myakura](https://twitter.com/myakura)
     - Disabled the WebLocks API. (103316423)
   - Private Browsing
     - Added blocking for known trackers and fingerprinting. (99360202)
-    - *Added support for mitigating trackers that map subdomains to third-party IP addresses. (99360259)*
-    - *Added blocking for known tracking query parameters in links in Private Browsing. (99360362)*
+    - **Added support for mitigating trackers that map subdomains to third-party IP addresses. (99360259)**
+    - **Added blocking for known tracking query parameters in links in Private Browsing. (99360362)**
     - Added noise to fingerprintable web APIs. (99360413)
     - Added console log messages when blocking requests to known trackers. (100523322)
-    - *Added support for blocking trackers that use third-party CNAME cloaking. (101612742)*
+    - **Added support for blocking trackers that use third-party CNAME cloaking. (101612742)**
     - Added support for Private Click Measurement. (106245330)
   - Profiles
-    - *Added support for enabling Safari Extensions per-profile. (99399845)*
-    - *Added support for Web Push subscriptions per profile. (100194363)*
+    - **Added support for enabling Safari Extensions per-profile. (99399845)**
+    - **Added support for Web Push subscriptions per profile. (100194363)**
   - Storage
-    - *Added complete support for the Storage API. (84280909)*
+    - **Added complete support for the Storage API. (84280909)**
     - Added support for overwriting the move method for FileSystemHandle. (105858983)
     - Added support for `StorageManager.estimate()`. (106169267)
     - Added support for calculating quota based on disk space. (107711361)
   - Web API
-    - *Added support for 3D OffscreenCanvas WebGL support. (39882956)*
+    - **Added support for 3D OffscreenCanvas WebGL support. (39882956)**
     - Added canvas.drawImage support for SVGImageElement as an image source. (79555760)
-    - *Added support for `<link rel="modulepreload">`. (88670991)*
+    - **Added support for `<link rel="modulepreload">`. (88670991)**
     - Added support for the focus fixup rule. (89902824)
     - Added support for using relative URLs in the WebSocket constructor and HTTP(S) schemes. (101929623)
     - Added support for Ed25519 cryptography. (105264767)
-    - *Added support for `URL.canParse()`. (106934916)*
+    - **Added support for `URL.canParse()`. (106934916)**
     - Added support for customElements.getName method. (108411398)
     - Added support for two-parameter delete() and has() on URLSearchParams. (108949109)
     - Added experimental support for priority to CSS Highlight API. (110125853)
   - Web apps
-    - *Added support for web apps on macOS Sonoma. Add any website to the Dock from the File menu or Share Sheet to get to them even faster. Web apps open in their own window, and integrate with system features like Stage Manager, Screen Time, Notifications, and Focus. (68606770)*
-- *Release Notes for Safari Technology Preview 179*
+    - **Added support for web apps on macOS Sonoma. Add any website to the Dock from the File menu or Share Sheet to get to them even faster. Web apps open in their own window, and integrate with system features like Stage Manager, Screen Time, Notifications, and Focus. (68606770)**
+- **Release Notes for Safari Technology Preview 179**
   - https://webkit.org/blog/14532/release-notes-for-safari-technology-preview-179/
   - CSS
     - Added support for mask-border properties. (267460@main)
-    - *Added support for the cap unit. (267315@main)*
+    - **Added support for the cap unit. (267315@main)**
     - Added support for the position parameter in ray(). (267459@main)
-    - *Added new relaxed parsing behavior for CSS Nesting. (267549@main)*
+    - **Added new relaxed parsing behavior for CSS Nesting. (267549@main)**
     - Added support for xywh() shape. (267789@main)
     - Added support for offset-position: normal for CSS Motion Path. (267657@main)
     - Added support for the rcap, rex, ric, and rch units. (267321@main)
@@ -557,11 +557,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for the coord-box parameter in ray(). (267566@main)
     - Added offset-position support for circle() and ellipse(). (267810@main)
   - HTML
-    - *Added support for the name attribute in the \<details> element. (267756@main)*
+    - **Added support for the name attribute in the \<details> element. (267756@main)**
 - Safari 17.1 Beta Release Notes | Apple Developer Documentation
   - https://developer.apple.com/documentation/safari-release-notes/safari-17_1-release-notes
     - バグ修正
-- *CSS Nesting and the Cascade*
+- **CSS Nesting and the Cascade**
   - https://webkit.org/blog/14571/css-nesting-and-the-cascade/
   - `&` がいらなくなった
   - ネストされたブロックの後に宣言がある場合どうするか poll
@@ -574,18 +574,18 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2023-09-01+
   - Support
     - SVGImageElement.crossOrigin attribute. #241
-    - *css-ui form-sizing property #231*
+    - **css-ui form-sizing property #231**
     - Re-introduction of Media Queries (and srcset/sizes) in Source Elements #190
     - Motion Path #187
-    - *Scroll-driven animations #152*
+    - **Scroll-driven animations #152**
     - scrollend event #150
-    - *text-wrap: balance CSS property #143*
-    - *scrollbar-color CSS property #134*
-    - *Sanitizer API #86*
+    - **text-wrap: balance CSS property #143**
+    - **scrollbar-color CSS property #134**
+    - **Sanitizer API #86**
     - Style Container Queries (for custom properties) #57
     - ContentVisibilityAutoStateChanged event #33
   - Withdrawn
-    - *Request for position: dialogmodaltarget attribute #213*
+    - **Request for position: dialogmodaltarget attribute #213**
     - MathML colspan attribute for the mtd element #126
 
 
@@ -616,41 +616,41 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### TPAC
 
-- *"Unique" Origins @ webappsec*
+- **"Unique" Origins @ webappsec**
   - https://github.com/w3c/webappsec/blob/main/meetings/2023/2023-09-14-TPAC-minutes.md#unique-origins-explainer
   - メールに添付されたファイルの展開などで、スクリプトが実行されてもいいように
   - サンドボックスドメインを分けたりするが、それは面倒。
   - 他にも、ドメインないで 3rd Party のコンテンツを展開したい場合にもつかえる。
   - Sandbox されつつ Origin が独立する iframe
-- *Source Code Transparency proposal @ webappsec*
+- **Source Code Transparency proposal @ webappsec**
   - CT みたいな仕組みで、全てのコンテンツのハッシュを検証できるようにしたい
   - https://github.com/w3c/webappsec/issues/627#issuecomment-1673637611
     - source-code-transparency/explainer.md at main · twiss/source-code-transparency · GitHub
     - https://github.com/twiss/source-code-transparency/blob/main/explainer.md
-- *Page Embedded Permission Control @ webappsec*
+- **Page Embedded Permission Control @ webappsec**
   - https://github.com/w3c/webappsec/blob/main/meetings/2023/2023-09-15-TPAC-minutes.md#page-embedded-permission-control-explainer
   - Permission Prompt を出す `<permission>` タグが欲しい
-- *Compression Dictionaries @ webperf*
+- **Compression Dictionaries @ webperf**
   - https://docs.google.com/presentation/d/1QiONfo4rnrGrZYGKfpkFvo6oDxPa_ualDCmf5a6bHw8/edit
   - 内容紹介。ベンチマークがすごい。
-- *Soft Navigation @ webperf*
+- **Soft Navigation @ webperf**
   - https://docs.google.com/presentation/d/1p3fmHy1tai7WabGt3S7bOj_rr1HXdmwdw3nx8mTnncw/edit
   - CSS だけで soft nav してるっぽいページがある
   - それを踏まえて soft nav とは何か?どう定義するか?という議論
-- *WebComponents*
+- **WebComponents**
   - https://twitter.com/EisenbergEffect/status/1701978860143673474
   - Firefox が Declarative Shadow DOM をもうすぐ Ship
   - Scoped Custom Element Registries の未解決問題が片付いて MS が Chromium に実装中
   - Google は DOM Parts のプロトタイプを flag で実施中
   - HTML に custom attributes/behaviors/enhancements/mixins を持ち込む議論が盛り上がっている
   - Cross Root ARIA の提案が洗練されてきてる
-- *TPAC Web Components Community Group Breakout Takeaways · Issue #1026 · WICG/webcomponents*
+- **TPAC Web Components Community Group Breakout Takeaways · Issue #1026 · WICG/webcomponents**
   - https://github.com/WICG/webcomponents/issues/1026
-- *Consider adding a headinglevelstart attribute · Issue #5033 · whatwg/html*
+- **Consider adding a headinglevelstart attribute · Issue #5033 · whatwg/html**
   - https://github.com/whatwg/html/issues/5033#issuecomment-1721308852
   - 見出しレベルのスコープを変える属性の提案
   - https://github.com/whatwg/html/issues/5033#issuecomment-1738394747
-- *explainers/DeclarativeWebPush at main · WebKit/explainers*
+- **explainers/DeclarativeWebPush at main · WebKit/explainers**
   - https://github.com/WebKit/explainers/tree/main/DeclarativeWebPush
   - Service Worker を使わないプッシュ通知
 
@@ -695,11 +695,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Specification Acceptance Stages · Issue #290 · whatwg/meta*
+- **Specification Acceptance Stages · Issue #290 · whatwg/meta**
   - https://github.com/whatwg/meta/issues/290
-- *W3C Technical Plenary and Advisory Committee (TPAC) Meetings 2023 - Tantek*
+- **W3C Technical Plenary and Advisory Committee (TPAC) Meetings 2023 - Tantek**
   - https://tantek.com/2023/262/b1/w3c-technical-plenary-tpac
-- *W3C TPAC 2023 Trip Report*
+- **W3C TPAC 2023 Trip Report**
   - https://blog.tomayac.com/2023/09/25/w3c-tpac-2023-trip-report/
 - Interop 2024 Call For Proposals - Bocoup
   - https://bocoup.com/blog/interop-2024-call-for-proposals
@@ -754,7 +754,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2023JulSep/0157.html
   - I-D Action: draft-ietf-httpbis-compression-dictionary-00.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2023JulSep/0176.html
-  - *New Internet Draft: The qpack_static_table_version TLS extension*
+  - **New Internet Draft: The qpack_static_table_version TLS extension**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2023JulSep/0206.html
 - quicwg
   - https://mailarchive.ietf.org/arch/browse/quic/
@@ -788,11 +788,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/i4n0rKJPHHsMDRQw_XfadAE6Phw/
 - RFC 9459 on CBOR Object Signing and Encryption (COSE): AES-CTR and AES-CBC
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/Fo98MA4muKvkbi76qCTif13GYIU/
-- *RFC 9476 on The .alt Special-Use Top-Level Domain*
+- **RFC 9476 on The .alt Special-Use Top-Level Domain**
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/hw988PUREYeqjP5-7WphO6tBuV4/
 - Second Last Call: draft-uberti-rtcweb-rfc8829bis-04.txt (JavaScript Session Establishment Protocol (JSEP)) to Proposed Standard
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/UiLoUkDwDMC9vmaM5j3ZbBwSlnk/
-- *Stepping down as IETF Chair in March 2024*
+- **Stepping down as IETF Chair in March 2024**
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/XQYoVIiC9XEg3XzGC_kY7s67dQg/
 - Protocol Action: 'DNS Terminology' to Best Current Practice (draft-ietf-dnsop-rfc8499bis-10.txt)
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/oXYwOBwJMTg0aIH9w1UTv-GM920/
@@ -810,21 +810,21 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Cloudflare
 
-- *Cloudflare Fonts: enhancing website font privacy and speed*
+- **Cloudflare Fonts: enhancing website font privacy and speed**
   - https://blog.cloudflare.com/cloudflare-fonts-enhancing-website-privacy-speed/
 - You can now use WebGPU in Cloudflare Workers
   - https://blog.cloudflare.com/webgpu-in-workers/
-- *Post-quantum cryptography goes GA*
+- **Post-quantum cryptography goes GA**
   - https://blog.cloudflare.com/post-quantum-cryptography-ga/
 - Cloudflare now uses post-quantum cryptography to talk to your origin server
   - https://blog.cloudflare.com/post-quantum-to-origins/
-- *Encrypted Client Hello - the last puzzle piece to privacy*
+- **Encrypted Client Hello - the last puzzle piece to privacy**
   - https://blog.cloudflare.com/announcing-encrypted-client-hello/
 
 
 #### Fastly
 
-- *Announcing Certainly: Fastly's own TLS Certification Authority | Fastly*
+- **Announcing Certainly: Fastly's own TLS Certification Authority | Fastly**
   - https://www.fastly.com/blog/announcing-certainly-fastlys-own-tls-certification-authority
 - How we built a better TLS certification authority | Fastly
   - https://www.fastly.com/blog/how-we-built-a-better-tls-certification-authority
@@ -844,17 +844,17 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://gigazine.net/news/20230925-lastpass-master-password-iterations/
 - Critical WebP bug: many apps, not just browsers, under threat
   - https://stackdiary.com/critical-vulnerability-in-webp-codec-cve-2023-4863/
-- *Save and Sign In with Passkeys Using 1Password on the Web and iOS | 1Password*
+- **Save and Sign In with Passkeys Using 1Password on the Web and iOS | 1Password**
   - https://blog.1password.com/save-use-passkeys-web-ios/
-- *Passkeys are generally available - The GitHub Blog*
+- **Passkeys are generally available - The GitHub Blog**
   - https://github.blog/2023-09-21-passkeys-are-generally-available/
-- *d アカウントの認証、かんたんログインやスマホ認証を廃止し「パスキー」に統一 - ケータイ Watch*
+- **d アカウントの認証、かんたんログインやスマホ認証を廃止し「パスキー」に統一 - ケータイ Watch**
   - https://k-tai.watch.impress.co.jp/docs/news/1529344.html
-- *パスキー|ニンテンドーアカウント サポート|Nintendo*
+- **パスキー|ニンテンドーアカウント サポート|Nintendo**
   - https://www.nintendo.co.jp/support/nintendo_account/passkey/index.html
-- *The most personal Windows 11 experience begins rolling out today | Windows Experience Blog*
+- **The most personal Windows 11 experience begins rolling out today | Windows Experience Blog**
   - https://blogs.windows.com/windowsexperience/2023/09/26/the-most-personal-windows-11-experience-begins-rolling-out-today/
-- *Google Online Security Blog: SMS Security & Privacy Gaps Make It Clear Users Need a Messaging Upgrade*
+- **Google Online Security Blog: SMS Security & Privacy Gaps Make It Clear Users Need a Messaging Upgrade**
   - https://security.googleblog.com/2023/09/sms-security-privacy-gaps-make-it-clear.html
 - 「ドコモ口座」のドメインが第三者から購入可能な状態に 「本当にヤバい」「悪用される」と話題に - ITmedia NEWS
   - https://www.itmedia.co.jp/news/articles/2309/25/news118.html
@@ -864,9 +864,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *State of HTML*
+- **State of HTML**
   - https://stateofhtml.com/en-US
-- *Tucson's Molly Holzschlag, known as 'the fairy godmother of the web,' dead at 60 | Obituary*
+- **Tucson's Molly Holzschlag, known as 'the fairy godmother of the web,' dead at 60 | Obituary**
   - https://www.tucsonsentinel.com/local/report/090523_molly_holzschlag/tucsons-molly-holzschlag-known-as-the-fairy-godmother-web-dead-60/
   - Molly を偲んで | 覚え書き | @kazuhito
     - https://kidachi.kazuhi.to/blog/archives/042166.html

@@ -22,7 +22,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 114 - Chrome Developers*
+- **New in Chrome 114 - Chrome Developers**
   - https://developer.chrome.com/en/blog/new-in-chrome-114/
   - text-wrap:balance.
   - CHIPS: Cookies Having Independent Partitioned State.
@@ -31,18 +31,18 @@ guest: [@myakura](https://twitter.com/myakura)
     - DevTools lets you pause and debug C and C++ code in WebAssembly apps with DWARF support.
     - The exclusionFilters option in `navigator.bluetooth.requestDevice()` allows web developers to exclude some devices from the browser picker..
     - There is an origin trial for Background Blur.
-- *Chrome 115 beta - Chrome Developers*
+- **Chrome 115 beta - Chrome Developers**
   - https://developer.chrome.com/en/blog/chrome-115-beta/
   - CSS
     - Multiple values of the display property
     - Boolean context style container queries
-    - *Scroll-driven animations*
+    - **Scroll-driven animations**
     - Fix to regression where elements with display: contents were no longer shown in the accessibility tree
   - Web APIs
     - Increasing the maximum size of a `WebAssembly.Module()` on the main thread to 8 MB
     - FedCM: Support credential management mediation requirements for auto re-authentication
-    - *HTTPS upgrades*
-    - *Partitioning the Storage, Service Worker, and Communication APIs*
+    - **HTTPS upgrades**
+    - **Partitioning the Storage, Service Worker, and Communication APIs**
     - Resource Timing: Expose interim response times
     - Update of "xml" prefix handling in `lookupNamespaceURI()` and `createNSResolver()`
     - VisibilityStateEntry
@@ -51,63 +51,63 @@ guest: [@myakura](https://twitter.com/myakura)
   - Origin trials in progress
     - Compute Pressure
     - Explicit compile hints with magic comments
-    - *Long Animation Frames API*
-    - *Storage Buckets API*
+    - **Long Animation Frames API**
+    - **Storage Buckets API**
   - Deprecations and removals
-    - *Deprecate the document.domain setter*
+    - **Deprecate the document.domain setter**
     - Deprecate mutation events
 - What's New in DevTools (Chrome 115) - Chrome Developers
   - https://developer.chrome.com/en/blog/new-in-devtools-115/
   - Elements improvements
-    - *New CSS subgrid badge*
-    - *Selector specificity in tooltips*
-    - *Values of custom CSS properties in tooltips*
+    - **New CSS subgrid badge**
+    - **Selector specificity in tooltips**
+    - **Values of custom CSS properties in tooltips**
   - Sources improvements
     - CSS syntax highlighting
     - Shortcut to set conditional breakpoints
-  - *Application > Bounce Tracking Mitigations*
+  - **Application > Bounce Tracking Mitigations**
   - Lighthouse 10.2.0
-  - *Ignore content scripts by default*
-  - *Network > Response pretty-printing by default*
+  - **Ignore content scripts by default**
+  - **Network > Response pretty-printing by default**
   - Miscellaneous highlights
 
 ###Intents
 
-- *Ship: @scope*
+- **Ship: @scope**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/OEfGbd74QnQ
-- *Ship: CSS Subgrid*
+- **Ship: CSS Subgrid**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/qvfOyAVePfs
 - Ship: CustomElementsGetName
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/vOadD_Up5B0
-- *Ship: Document picture-in-picture*
+- **Ship: Document picture-in-picture**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JTPl7fM64Lc
 - Ship: FedCM Improvements: LoginHint, UserInfo, and Context
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/nKGUbzcVXt8
-- *Ship: Iterator helpers*
+- **Ship: Iterator helpers**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UyzwOm9QrxI
 - Ship: WebGPU WebCodecs integration
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/QLCfazM8XLQ
 - Ship: deliveryType (Resource Timing)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kL8RZwq1h4g
-- *Ship: Protected Audience*
+- **Ship: Protected Audience**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/igFixT5n7Bs
 - Ship: Allow Navigator.registerProtocolHandler to register "ftp"
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ABhlioapE0E
-- *Ship: Attribution Reporting API*
+- **Ship: Attribution Reporting API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/2Rmj5V6FSaY
-- *Ship: CSS @starting-style Rule*
+- **Ship: CSS @starting-style Rule**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/nHEvqrT5wvM
-- *Ship: CSS text-wrap: pretty*
+- **Ship: CSS text-wrap: pretty**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/rwBWqqOB_ag
-- *Ship: Fenced Frames*
+- **Ship: Fenced Frames**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tpw8wW0VenQ
-- *Ship: Private Aggregation API*
+- **Ship: Private Aggregation API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8cKaLstq2QQ
 - Ship: RFC 7616 Digest auth: Support SHA-256, SHA-512-256 and user hashing
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/cJH3JJY_tTY
 - Ship: Shared Storage API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dZ0NRwh7cvs
-- *Ship: Topics API*
+- **Ship: Topics API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/PN_aE-X-f9U
 - Ship: WebRTC RTP header extension control
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KRfPpAB56yk
@@ -119,19 +119,19 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/gfgY6doLHsE
 - Implement and Ship: WebUSB exclusionFilters option in `requestDevice()`
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/e1mgO-m8zvQ
-- *Prototype: Auto Sizes for Lazy Loaded Images with Srcset*
+- **Prototype: Auto Sizes for Lazy Loaded Images with Srcset**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/AYoqvNluyeA
   - Lazyload の場合は Sizes 以外の方法で読み込み前にサイズを決める方法が他にもある
   - なので、そちらに任せる方法がほしい
-- *Prototype: Conservative page freezing on desktop*
+- **Prototype: Conservative page freezing on desktop**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/NOhYFW0rifw
 - Prototype: CustomElementsGetName
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/EVt2oqzxWH0
-- *Prototype: DOM Parts*
+- **Prototype: DOM Parts**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/wIADRnljZDA
 - Prototype: Media Session API: `enterpictureinpicture` action
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UJYc0PoARDg
-- *Prototype: ServiceWorker static routing API*
+- **Prototype: ServiceWorker static routing API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/fyvsde2ay2A
 - Prototype: Web Serial support for Bluetooth RFCOMM services
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kOOZ3RIh0Ik
@@ -141,13 +141,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Q8XQvA3nC4w
 - Prototype: FileSystemObserver
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/P77D6ohrwwg
-- *Prototype: Zstd Content-Encoding*
+- **Prototype: Zstd Content-Encoding**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/GDsI0Hw-jYk
 - Experiment: COOP: restrict-properties
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JBTWXSHE8M0
 - Experiment: Capture all screens
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6TRT0XsVOE4
-- *Experiment: EditContext API*
+- **Experiment: EditContext API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/QZQrESwcK3o
 - Experiment: FedCM Sign-in Status API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/y-eie2d-1iU
@@ -188,15 +188,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/how-construct3-uses-the-file-system-access-api/
   - Announcing the second Compute Pressure origin trial - Chrome Developers
     - https://developer.chrome.com/en/blog/compute-pressure-origin-trial-2/
-  - *Chrome disables modifying `document.domain` - Chrome Developers*
+  - **Chrome disables modifying `document.domain` - Chrome Developers**
     - https://developer.chrome.com/en/blog/document-domain-setter-deprecation/
-  - *Help test bounce tracking mitigations - Chrome Developers*
+  - **Help test bounce tracking mitigations - Chrome Developers**
     - https://developer.chrome.com/en/blog/bounce-tracking-mitigations-dev-trial/
   - Design a superior user experience with the new Side Panel API - Chrome Developers
     - https://developer.chrome.com/en/blog/extension-side-panel-launch/
   - What's New in WebGPU (Chrome 114) - Chrome Developers
     - https://developer.chrome.com/en/blog/new-in-webgpu-114/
-  - *Mutation events will be removed from Chrome - Chrome Developers*
+  - **Mutation events will be removed from Chrome - Chrome Developers**
     - https://developer.chrome.com/en/blog/mutation-events-deprecation/
   - How Photoshop solved working with files larger than can fit into memory - Chrome Developers
     - https://developer.chrome.com/en/blog/how-photoshop-solved-working-with-files-larger-than-can-fit-into-memory/
@@ -204,7 +204,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/fedcm-auto-reauthn/
   - Storage partitioning deprecation trial extended - Chrome Developers
     - https://developer.chrome.com/en/blog/storage-partitioning-deprecation-trial-extended/
-  - *Chrome for Testing: reliable downloads for browser automation - Chrome Developers*
+  - **Chrome for Testing: reliable downloads for browser automation - Chrome Developers**
     - https://developer.chrome.com/en/blog/chrome-for-testing/
   - Enhancements to the Topics API - Chrome Developers
     - https://developer.chrome.com/en/blog/topics-enhancements/
@@ -219,7 +219,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.chromium.org/getting-involved/dev-channel
 - v8
   - https://v8.dev/
-- *1451587 - Some sites are reporting compat issues with popover - chromium*
+- **1451587 - Some sites are reporting compat issues with popover - chromium**
   - https://bugs.chromium.org/p/chromium/issues/detail?id=1451587
   - Popover が Stable に入り壊れるサイトが報告され始めた
   - 一時的に無効にできるフラグを追加
@@ -233,7 +233,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://security.googleblog.com/2023/06/bringing-transparency-to-confidential.html
 - Google Online Security Blog: Protect and manage browser extensions using Chrome Browser Cloud Management
   - https://security.googleblog.com/2023/06/protect-and-manage-browser-extensions.html
-- *Understand passkeys in 4 minutes - YouTube*
+- **Understand passkeys in 4 minutes - YouTube**
   - https://www.youtube.com/watch?v=2xdV-xut7EQ
   - Google Chrome Developers チャンネルのパスキー解説動画
 
@@ -249,10 +249,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/114
   - CSS
     - The `:lang()` pseudo-class now uses string-matching semantics (including `*` wildcards) for matching language codes rather than prefix-matching semantics. Additionally, comma-separated lists of languages are now supported for matching multiple languages (Firefox bug 1121792).
-    - *The `-webkit-text-security` property that lets you replace characters with shapes is now supported. You can now control the rendering of text security using this property (Firefox bug 1826629).*
+    - **The `-webkit-text-security` property that lets you replace characters with shapes is now supported. You can now control the rendering of text security using this property (Firefox bug 1826629).**
     - The infinity and NaN constants are now supported inside the `calc()` function (Firefox bug 1830759).
   - JavaScript
-    - *Workers now support loading ECMAScript modules. You can load modules into workers by specifying the `{type: "module"}` option in the Worker and SharedWorker constructors. Worker scripts can also statically or dynamically import modules using `import` and `import()`, respectively (Firefox bug 1812591).*
+    - **Workers now support loading ECMAScript modules. You can load modules into workers by specifying the `{type: "module"}` option in the Worker and SharedWorker constructors. Worker scripts can also statically or dynamically import modules using `import` and `import()`, respectively (Firefox bug 1812591).**
     - Worklets can now use import to statically import ECMAscript/JavaScript modules (Firefox bug 1812591).
   - SVG
     - The crossorigin attribute is now supported in image and feImage elements (Firefox bug 1240357).
@@ -270,11 +270,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - Fixed an issue where the command `WebDriver:GetComputedRole` didn't properly return the WAI-ARIA roles (Firefox bug 1822112).
     - Fixed an issue where modifier keys were not reset when they were used again within the same WebDriver:ElementSendKeys command (Firefox bug 1776190).
     - The deprecated and non-standard mozImageSmoothingEnabled property is permanently removed. See the imageSmoothingEnabled property for smoothing in scaled images (Firefox bug 1228850).
-- *Firefox Translations and Other Innovations - These Weeks in Firefox: Issue 139 - Firefox Nightly News*
+- **Firefox Translations and Other Innovations - These Weeks in Firefox: Issue 139 - Firefox Nightly News**
   - https://blog.nightly.mozilla.org/2023/06/01/firefox-translations-and-other-innovations-these-weeks-in-firefox-issue-139/
 - Brief and Blissful - These Weeks in Firefox: Issue 140 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2023/06/20/brief-and-blissful-these-weeks-in-firefox-issue-140/
-- *SpiderMonkey Newsletter (Firefox 114-115) | SpiderMonkey JavaScript/WebAssembly Engine*
+- **SpiderMonkey Newsletter (Firefox 114-115) | SpiderMonkey JavaScript/WebAssembly Engine**
   - https://spidermonkey.dev/blog/2023/06/09/newsletter-firefox-114-115.html
   - Firefox 114 で Module Worker が ship
   - Firefox 115 で `Array.fromAsync()` と Change Array by Copy が ship
@@ -294,21 +294,21 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ysU5Q-uVhlk
 - Ship: RegExp /v flag with set notation
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/bQrQC96pl_c
-- *Implement: Web Codecs*
+- **Implement: Web Codecs**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/3g0fnn6682A
 - Prototype and Ship: CSP support for external hashes (SRI)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/hiYxsfzFuXs
-- *Prototype and Ship: Improved CSS Nesting*
+- **Prototype and Ship: Improved CSS Nesting**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/2oBSRgIRf80
   - CSS Nesting のサポート
   - `&` の省略も可能になった新しい仕様を実装
-- *Prototype and Ship: `URL.canParse()`*
+- **Prototype and Ship: `URL.canParse()`**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/BWLpi4dqZOE
 - Prototype: Canvas Randomization in private browsing windows in Nightly
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/hPspMnBssEE
-- *Prototype: Federated Credential Management (FedCM)*
+- **Prototype: Federated Credential Management (FedCM)**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ncmUwK1uO98
-- *Allow pages with beforeunload listener to enter BFCache for desktop*
+- **Allow pages with beforeunload listener to enter BFCache for desktop**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/eu44XlVzcXU
 - Deprecating the chrome and resource protocols
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/v5qmEviHAhI
@@ -322,13 +322,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - MDN doc updates: CSS selectors & media queries, WebGPU & WebTransport APIs, Progressive web apps | MDN Blog
   - https://developer.mozilla.org/en-US/blog/mdn-docs-june-2023/
-- *Introducing the MDN Playground: Bring your code to life! | MDN Blog*
+- **Introducing the MDN Playground: Bring your code to life! | MDN Blog**
   - https://developer.mozilla.org/en-US/blog/introducing-the-mdn-playground/
 
 
 #### Other
 
-- *Eric Rescorla (EKR) 先生 Mozilla をやめる*
+- **Eric Rescorla (EKR) 先生 Mozilla をやめる**
   - https://twitter.com/ekr____/status/1664804869121912832
   - そして CDC (Centers for Disease Control) の CFA (Forecasting and Outbreak Analytics) の Chief Technologist に就任
   - https://www.linkedin.com/feed/update/urn:li:activity:7073037304184909824/
@@ -348,7 +348,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Safari 16.6 Beta Release Notes | Apple Developer Documentation
   - https://developer.apple.com/documentation/safari-release-notes/safari-16_6-release-notes
   - バグ修正
-- *Safari 17 Beta Release Notes | Apple Developer Documentation*
+- **Safari 17 Beta Release Notes | Apple Developer Documentation**
   - https://developer.apple.com/documentation/safari-release-notes/safari-17-release-notes
   - Apple Pay
     - Added support for Apple Pay in cross-origin iframes with the allow="payment" attribute. (88969594)
@@ -361,12 +361,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for `full-width` and `full-size-kana` values for `text-transform`. (100310853)
     - Added support for `:has()` invalidation for the :buffering and :stalled pseudo-classes. (105163364)
     - Added support for multiple text-transform values. (105381249)
-    - *Added support for `@supports font-tech()` and `@font-face src tech()`. (105665900)*
+    - **Added support for `@supports font-tech()` and `@font-face src tech()`. (105665900)**
     - Added support for the `@font-face size-adjust` descriptor. (106349717)
     - Added support for containerName and containerQuery and updated conditionText to be "containerName containerQuery". (106505281)
     - Added support for `overflow-block` and `overflow-inline` media query features. (106511968)
     - Added support for the two-value syntax of `font-size-adjust`. (107290850)
-    - *Added support for `@supports font-format()`. (107381176)*
+    - **Added support for `@supports font-format()`. (107381176)**
     - Added support for the `from-font` value for `font-size-adjust`. (107735982)
     - Added support for `:has()` invalidation with the `:defined` pseudo-class. (109896689)
   - Developer Tools
@@ -380,15 +380,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added a new appearance for marked text. (101869724)
     - Added support for the caret color to match the accent color of the system on macOS. (102450017)
   - Forms
-    - *Added support for `<hr>` inside `<select>`. On macOS this is rendered as a separator. (107656886)*
+    - **Added support for `<hr>` inside `<select>`. On macOS this is rendered as a separator. (107656886)**
   - HTML
-    - *Added experimental support for the `<model>` element. (100595523)*
-    - *Added support for the popover attribute. (104204093)*
+    - **Added experimental support for the `<model>` element. (100595523)**
+    - **Added support for the popover attribute. (104204093)**
   - HTTP
     - Added support for preconnect via HTTP early hints. (106055702)
   - Images
-    - *Added support for HEIC/HEIF images. (99517108)*
-    - *Added support for JPEG XL. (100641584)*
+    - **Added support for HEIC/HEIF images. (99517108)**
+    - **Added support for JPEG XL. (100641584)**
   - JavaScript
     - Added support for RegExp duplicate named capture groups. (100335581)
     - Added support for the RegExp v flag. (100337109)
@@ -484,7 +484,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Web technology sessions at WWDC23 | WebKit*
+- **Web technology sessions at WWDC23 | WebKit**
   - https://webkit.org/blog/14203/web-technology-sessions-at-wwdc23/
   - Tuesday, June 6
     - Meet Safari for spatial computing
@@ -497,7 +497,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Friday, June 9
     - What's new in Web Inspector
     - What's new in Safari extensions
-- *News from WWDC23: WebKit Features in Safari 17 beta | WebKit*
+- **News from WWDC23: WebKit Features in Safari 17 beta | WebKit**
   - https://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/
   - Web Apps
     - Add to Home Screen from Safari View Controller
@@ -571,9 +571,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Improving the Microsoft Defender Browser Protection Extension - text/plain
   - https://textslashplain.com/2023/05/31/improving-the-microsoft-defender-browser-protection-extension/
-- *Browser SSO / Automatic Signin - text/plain*
+- **Browser SSO / Automatic Signin - text/plain**
   - https://textslashplain.com/2023/06/22/browser-sso-automatic-signin/
-- *Announcing Windows 11 Insider Preview Build 23486 | Windows Insider Blog*
+- **Announcing Windows 11 Insider Preview Build 23486 | Windows Insider Blog**
   - https://blogs.windows.com/windows-insider/2023/06/22/announcing-windows-11-insider-preview-build-23486/
   - Windows Hello でパスキーのサポート
 
@@ -583,9 +583,9 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Draft
 
 - Recommendation
-  - *Accessible Rich Internet Applications (WAI-ARIA) 1.2 is a W3C Recommendation*
+  - **Accessible Rich Internet Applications (WAI-ARIA) 1.2 is a W3C Recommendation**
     - https://www.w3.org/news/2023/accessible-rich-internet-applications-wai-aria-1-2-is-a-w3c-recommendation/
-  - *Web Share API is a W3C Recommendation*
+  - **Web Share API is a W3C Recommendation**
     - https://www.w3.org/news/2023/web-share-api-is-a-w3c-recommendation/
 - Proposed Recommendation
 - Candidate Recommendation
@@ -598,12 +598,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *W3C updates its Process Document | W3C News*
+- **W3C updates its Process Document | W3C News**
   - https://www.w3.org/blog/news/archives/9959
   - https://www.w3.org/news/2023/w3c-updates-its-process-document/
   - 数年前から行われていた Director からの権限移行を実施
   - Founding Director の TimBL は名誉職に
-- *New W3C website deployed*
+- **New W3C website deployed**
   - https://www.w3.org/news/2023/new-w3c-website-deployed/
 - Planning new W3C website deployment
   - https://www.w3.org/news/2023/new-w3c-website-deployment/
@@ -623,28 +623,28 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/notes/tree/main/meetings/2023-05
   - https://twitter.com/mozaicfm/status/1668242601869459457
   - https://docs.google.com/document/d/1qXUf4QRTbexUj0fg2sgYTxWwOT2v_q7lmjR282BOWLU
-- *Well-Formed Unicode Strings for Stage 4*
+- **Well-Formed Unicode Strings for Stage 4**
   - Stage 4 へ
   - ES2024 入り
-- *Atomics.waitAsync for Stage 4*
+- **Atomics.waitAsync for Stage 4**
   - Stage 4 へ
   - ES2024 入り
-- *Base64 for Uint8Array for Stage 2*
+- **Base64 for Uint8Array for Stage 2**
   - Base64, Hex の Uint8Array = String したい
   - Stage 2 に(割とサポーティブな人が多そう)
-- *Module Harmony: interaction semantics of the different proposals*
+- **Module Harmony: interaction semantics of the different proposals**
   - module 関連の仕様が乱立してるし依存も複雑
   - これらを整理して依存を減らし、独立して進められるようにしたい
   - "Module Harmony Epic" という Repo を作って、懸念などをまとめたい
-- *RegExp v flag for Stage 4*
+- **RegExp v flag for Stage 4**
   - Test262, Chrome/Safari, HTML の `<input pattern=>` など進んでる
   - Implementation in SpiderMonkey has started.
   - Stage 4 へ
-- *Add Implementation status to proposal pages*
+- **Add Implementation status to proposal pages**
   - Array.grouping みたいなこともあるので Implementation Status や
   - 実装者に Do Not Ship などを伝えられるようにしたい
   - そのための Proposal Template Update を行う
-- *Array.prototype.group rename for web compatibility*
+- **Array.prototype.group rename for web compatibility**
   - 名前がヤバくなった
   - 元 Google で Vercel に行った Justine が忙しくなった
   - 名前決まってないし、なにもすすんでない
@@ -656,7 +656,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Source maps: Should TC39 standardize and improve them?
   - Source Map の作業はどこでやるのが適切か?
   - TC39 に TG4 というタスクグループを作りそこでやることに
-- *Source Phase Imports for Stage 3*
+- **Source Phase Imports for Stage 3**
   - was import-reflection
   - module harmony で source phase に rename
   - スコープが広いし、まだ不明瞭な点も多い
@@ -674,7 +674,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 1->2
   - Time Zone Canonicalization
   - Promise.withResolvers
-  - *Array.grouping*
+  - **Array.grouping**
 - 2->3
   - Float16Array
   - Decorator Metadata
@@ -694,7 +694,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Meeting
 
-- *2023-06-01 Meeting Notes · Issue #51 · wintercg/admin*
+- **2023-06-01 Meeting Notes · Issue #51 · wintercg/admin**
   - https://github.com/wintercg/admin/issues/51
   - Raise the discussion about formal support of wintercg by Node.js (@jasnell)
   - Sockets spec w/ list of testable assertions (@jasnell)
@@ -724,11 +724,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - Early Hints にも Client Hints みたいに Accept-EH 的なものがあった方がいいのではという議論
     - おそらくこの辺の議論
       - https://twitter.com/patmeenan/status/1667141142016663553
-  - *HTTP Resumable Uploads on Apple Platforms*
+  - **HTTP Resumable Uploads on Apple Platforms**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2023AprJun/0240.html
     - WWDC での Resumable Upload のデモについて
     - https://developer.apple.com/documentation/foundation/urlsession/building_a_resumable_upload_server_with_swiftnio
-  - *Request-Off-The-Record Mode header*
+  - **Request-Off-The-Record Mode header**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2023AprJun/0237.html
     - Brave は `Request-OTR: 1` が Response されると、そのサイトについて何も保存しない。
     - Incognito / Private Mode のようなものをサービス側が設定できる
@@ -777,7 +777,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Reflections on Ten Years Past The Snowden Revelations*
+- **Reflections on Ten Years Past The Snowden Revelations**
   - https://www.ietf.org/archive/id/draft-farrell-tenyearsafter-05.html
   - スノーデン事件から 10 年のまとめ
 
@@ -786,13 +786,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Cloudflare
 
-- *Introducing HTTP/3 Prioritization*
+- **Introducing HTTP/3 Prioritization**
   - https://blog.cloudflare.com/better-http-3-prioritization-for-a-faster-web/
-- *Examining HTTP/3 usage one year on*
+- **Examining HTTP/3 usage one year on**
   - https://blog.cloudflare.com/http3-usage-one-year-on/
 - A step-by-step guide to transferring domains to Cloudflare
   - https://blog.cloudflare.com/a-step-by-step-guide-to-transferring-domains-to-cloudflare/
-- *INP. Get ready for the new Core Web Vital*
+- **INP. Get ready for the new Core Web Vital**
   - https://blog.cloudflare.com/inp-get-ready-for-the-new-core-web-vital/
 - Introducing Low-Latency HLS Support for Cloudflare Stream
   - https://blog.cloudflare.com/low-latency-hls-support-for-cloudflare-stream/
@@ -805,15 +805,15 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Deliver Fast, Reliable, and Secure Web Experiences with HTTP/3 | Akamai
   - https://www.akamai.com/blog/performance/deliver-fast-reliable-secure-web-experiences-http3
-- *OWASP Top 10 API Security Risks: The 2023 Edition Is Finally Here | Akamai*
+- **OWASP Top 10 API Security Risks: The 2023 Edition Is Finally Here | Akamai**
   - https://www.akamai.com/blog/security/owasp-top-10-api-security-risks-2023-edition
 
 
 ### セキュリティ動向
 
-- *Passkeys, iOS 17, and 1Password: A Sneak Peek at What's Coming | 1Password*
+- **Passkeys, iOS 17, and 1Password: A Sneak Peek at What's Coming | 1Password**
   - https://blog.1password.com/apple-passkey-api-wwdc/
-- *「通信の秘密の保護」に制限検討 サイバー攻撃への対処、政府が強化 [岸田政権]:朝日新聞デジタル*
+- **「通信の秘密の保護」に制限検討 サイバー攻撃への対処、政府が強化 [岸田政権]:朝日新聞デジタル**
   - https://www.asahi.com/articles/ASR6R6W9YR6QUTFK016.html
 - 総務省|報道資料|電気通信事業法の一部改正(卸協議の適正性の確保に係る制度整備関係)に係る関係ガイドラインの改定
   - https://www.soumu.go.jp/menu_news/s-news/01kiban03_02000859.html
@@ -825,7 +825,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://forest.watch.impress.co.jp/docs/special/1506834.html
 - DuckDuckGo's Windows browser now available in public beta
   - https://spreadprivacy.com/windows-browser-open-beta/
-- *About the Squarespace purchase of Google Domains registrations*
+- **About the Squarespace purchase of Google Domains registrations**
   - https://support.google.com/domains/answer/13689670
   - Google Domains が Squarespace に事業譲渡
   - TLD ポリシー | Cloudflare
@@ -834,13 +834,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.squarespace.com/press-releases/2023/6/15/squarespace-enters-definitive-agreement-to-acquire-google-domains-assets
 - Conference News for June 2023 | Igalia
   - https://www.igalia.com/2023/05/31/Conference-News-for-June-2023.html
-- *Web Engines Hackfest 2023 Starts Monday | Igalia*
+- **Web Engines Hackfest 2023 Starts Monday | Igalia**
   - https://www.igalia.com/2023/webengineshackfest.html
 - Web Apps on macOS Sonoma 14 Beta
   - https://blog.tomayac.com/2023/06/07/web-apps-on-macos-sonoma-14-beta/
 - Secure Curves in the Web Cryptography API - make everything intensely
   - https://blogs.igalia.com/jfernandez/2023/06/20/secure-curves-in-the-web-cryptography-api/
-- *モバイル・エコシステムに関する競争評価 最終報告(案)*
+- **モバイル・エコシステムに関する競争評価 最終報告(案)**
   - https://www.kantei.go.jp/jp/singi/digitalmarket/kyosokaigi/dai7/siryou1s.pdf
   - https://www.kantei.go.jp/jp/singi/digitalmarket/kyosokaigi/dai7/siryou2s.pdf
 

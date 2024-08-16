@@ -22,14 +22,14 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *New in Chrome 110*
+- **New in Chrome 110**
   - https://developer.chrome.com/en/blog/new-in-chrome-110/
   - :picture-in-picture pseudo class
   - launch_handler manifest member.
   - credentialless iframes.
-- *What's New In DevTools (Chrome 110)*
+- **What's New In DevTools (Chrome 110)**
   - https://developer.chrome.com/en/blog/new-in-devtools-110/
-  - *Clearing Performance Panel on reload*
+  - **Clearing Performance Panel on reload**
   - Recorder updates
     - View and highlight the code of your user flow in the Recorder
     - Customize selector types of a recording
@@ -38,7 +38,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Better syntax highlight and inline preview for Vue, SCSS and more
   - Ergonomic and consistent Autocomplete in the Console
   - Miscellaneous highlights
-- *Chrome 111 beta*
+- **Chrome 111 beta**
   - https://developer.chrome.com/en/blog/chrome-111-beta/
   - CSS
     - New CSS color types and spaces
@@ -46,25 +46,25 @@ guest: [@myakura](https://twitter.com/myakura)
     - CSS Selectors 4 Pseudo-Class :nth-child(an + b of S)
     - CSS root font units
     - CSS trigonometric functions
-    - *Style Container Queries for CSS Custom Properties*
+    - **Style Container Queries for CSS Custom Properties**
     - The baseline-source property
   - Web APIs
     - The window-management permission and permission policy string
     - Media Session API: Presenting slides actions
     - Resizable ArrayBuffer and growable SharedArrayBuffer
     - Speculation rules: referrer policy key
-    - *Streaming declarative shadow DOM*
-    - *View Transitions API*
+    - **Streaming declarative shadow DOM**
+    - **View Transitions API**
     - WebRTC Scalable Video Coding extensions
     - WebXR enabledFeatures attribute
   - Origin trials in progress
     - Deprecation trial for removal of the connect-src CSP bypass in Web Payment API
-    - *Document Picture-in-Picture*
+    - **Document Picture-in-Picture**
   - Deprecations and removals
     - Remove PaymentInstruments
     - Remove connect-src CSP bypass in Web Payment API
     - Merchant identity in canmakepayment event
-- *What's New in DevTools (Chrome 111)*
+- **What's New in DevTools (Chrome 111)**
   - https://developer.chrome.com/en/blog/new-in-devtools-111/
   - Debugging HD color with the Styles pane
   - Enhanced breakpoint UX
@@ -76,19 +76,19 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: CSS "overflow" media features*
+- **Ship: CSS "overflow" media features**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RbaW9X_hML4
-- *Ship: CSS "update" media feature*
+- **Ship: CSS "update" media feature**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/HxqAcgnTs8o
 - Ship: CSS font-variant-position property
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/wQ_8T-AXLFA
-- *Ship: CSS headline balancing*
+- **Ship: CSS headline balancing**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/f5eLz6PIXaI
-- *Ship: Change beforeunload handler dialog condition*
+- **Ship: Change beforeunload handler dialog condition**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/yi3GzzB6AtI
   - beforeunload で preventDefault を呼ぶと確認ダイアログが出るように
   - 以前は何も出ずに遷移しなかった
-- *Ship: Fetch: Headers.getSetCookie()*
+- **Ship: Fetch: Headers.getSetCookie()**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5cDEf6LjReg
   - Set-Cookie は複数現れてもそれらを結合してはいけないという歴史的な事情がある
   - しかし Headers は他と同様 Set-Cookie も結合していた
@@ -97,10 +97,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Q7fjvM9Mn0c
 - Ship: Port overflow check in URL setters
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/xsITedSTDnM
-- *Ship: Remove Authorization header upon cross-origin redirect*
+- **Ship: Remove Authorization header upon cross-origin redirect**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3Zt4UHbynYA
   - Authorization header が cross origin redirect にもついてしまうのを修正
-- *Ship: Resource Hint "Least Restrictive" CSP*
+- **Ship: Resource Hint "Least Restrictive" CSP**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/lJhBa8-eo30
   - prefetch-src の提案がうまくいかず削除された
   - 代わりに他のなんらかのルールで許可されたリソースは prefetch/preconnect できるようにする
@@ -124,11 +124,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/s3dqBLX6gVo
 - Prototype: CSS headline balancing (`text-wrap: balance`)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/yEwHDXaRIF8
-- *Prototype: CSS top-layer property*
+- **Prototype: CSS top-layer property**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/nx2P-B8Rhx4
 - Prototype: Linear easing function
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/eEb9q68xysU
-- *Prototype: Long Animation Frame Timing (LoAF)*
+- **Prototype: Long Animation Frame Timing (LoAF)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/XoLIn3elXqM
 - Prototype: No-Vary-Search Hint for Prefetch Speculation Rules
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/HX2iHMBjg7s
@@ -136,7 +136,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0aoNC-8n2ic
 - Prototype: mdoc presentation API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/O9A9fq-0IdI
-- *Prototype: Interoperable Private Attribution*
+- **Prototype: Interoperable Private Attribution**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4gke9xmv45w/
   - Meta と Mozilla が提案しているアトリビューション API
 - Prototype: Local Network Access allowing same-origin fetches to potentially trustworthy origins
@@ -153,19 +153,19 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/O73ihkXRa6Q
 - Extend Origin Trial: Popover API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/r3IwTXB8MG8
-- *Deprecate and Remove: Block-all-mixed-content CSP directive*
+- **Deprecate and Remove: Block-all-mixed-content CSP directive**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3VB5aDx6hBQ
 - Deprecate and Remove: Legacy callback-based RTCPeerConnection.getStats() API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/PxQQtEM7za0
 - Deprecate and Remove: webkitConvertPointFromPageToNode() and webkitConvertPointFromNodeToPage()
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KS5GAM7JXtg
-- *Deprecate and remove: CSP prefetch-src directive*
+- **Deprecate and remove: CSP prefetch-src directive**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/9r2SuJQuWBM
-- *Deprecate: non-standard `shadowroot` attribute for declarative shadow DOM*
+- **Deprecate: non-standard `shadowroot` attribute for declarative shadow DOM**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1n0MLr8G5NQ
 - Remove: KeyboardEvent.prototype.keyLocation
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/lqknEaUYCJM
-- *Remove: prefetch-src*
+- **Remove: prefetch-src**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/WZkLdXd2ISA
 - PSA: A Blink runtime feature generates a base::Feature by default
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4TFsHs56tOs
@@ -173,7 +173,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/VKP3HLT0e1Y
 - PSA: WebHID in Extension Service Workers
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/BVeLvYX7oEY
-- *PSA: re Iframe Render Throttling*
+- **PSA: re Iframe Render Throttling**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/op-z7fMMmWY
 
 
@@ -187,7 +187,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/learn-images/
   - New to the web platform in January
     - https://web.dev/web-platform-01-2023/
-  - *Interop 2023: continuing to improve the web for developers*
+  - **Interop 2023: continuing to improve the web for developers**
     - https://web.dev/interop-2023/
     - Border Image in CSS
     - Color Spaces and Functions in CSS
@@ -229,13 +229,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - Chrome 111 ベータ版 : 新しい CSS カラータイプとカラースペース、 CSS 三角関数、 View Transitions API
     - https://developers-jp.googleblog.com/2023/02/chrome-111-beta.html
 - google developer japan blog
-  - *デジタル証明書のセキュリティを保つ - TrustCor の証明書の削除について*
+  - **デジタル証明書のセキュリティを保つ - TrustCor の証明書の削除について**
     - https://developers-jp.googleblog.com/2023/02/sustaining-digital-certificate-security13.html
     - TrustCor が証明書が信頼できないものとして削除されることに
     - このエントリには詳細が書かれてないが別のニュースに詳細がある
     - ルート認証局がスパイウェアの開発元? 「Google Chrome」が「TrustCor」を削除へ - 窓の杜
       - https://forest.watch.impress.co.jp/docs/news/1470651.html
-  - *Chromium プロジェクトが Rust の利用をサポート*
+  - **Chromium プロジェクトが Rust の利用をサポート**
     - https://developers-jp.googleblog.com/2023/02/supporting-use-of-rust-in-chromium.html
 - chrome developer blog
   - FLEDGE Bidding and Auction services availability
@@ -244,17 +244,17 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/talking-to-the-stadia-controller-with-webhid/
   - New requirements for the Web Share API in third-party iframes
     - https://developer.chrome.com/en/blog/web-share-api-in-third-party-iframes/
-  - *The Chromium Chronicle #32: Mind the patch gap*
+  - **The Chromium Chronicle #32: Mind the patch gap**
     - https://developer.chrome.com/en/blog/chromium-chronicle-32/
-  - *The future of Picture-in-Picture*
+  - **The future of Picture-in-Picture**
     - https://developer.chrome.com/en/blog/the-future-of-picture-in-picture/
   - DevTools Tips: Debugging PWA
     - https://developer.chrome.com/en/blog/devtools-tips-18/
-  - *Experimenting with measuring soft navigations*
+  - **Experimenting with measuring soft navigations**
     - https://developer.chrome.com/en/blog/soft-navigations-experiment/
   - Meet the new CSS color spaces
     - https://developer.chrome.com/en/blog/meet-the-new-css-color-spaces/
-  - *Introducing historical web performance data via the CrUX History API*
+  - **Introducing historical web performance data via the CrUX History API**
     - https://developer.chrome.com/en/blog/chrome-ux-report-history-api/
   - Private Network Access update: Announce extension of the Deprecation Trial
     - https://developer.chrome.com/en/blog/private-network-access-update-2023-02-02/
@@ -262,42 +262,42 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/en/blog/font-fallbacks/
   - DevTools Tips: Discover CSS issues
     - https://developer.chrome.com/en/blog/devtools-tips-20/
-  - *Getting Started with Style Queries*
+  - **Getting Started with Style Queries**
     - https://developer.chrome.com/en/blog/style-queries/
   - Framework tools for font fallbacks
     - https://developer.chrome.com/en/blog/framework-tools-font-fallback/
-  - *Prepare for Chrome's user ‑ agent reduction*
+  - **Prepare for Chrome's user ‑ agent reduction**
     - https://developer.chrome.com/en/blog/user-agent-reduction-android-model-and-version/
   - Improving standards of behavior in standards discussions
     - https://developer.chrome.com/en/blog/standards-behavior/
   - Working with the industry to evolve CHIPS
     - https://developer.chrome.com/en/blog/working-with-the-industry-to-evolve-chips/
-  - *Tether elements to each other with CSS anchor positioning*
+  - **Tether elements to each other with CSS anchor positioning**
     - https://developer.chrome.com/en/blog/tether-elements-to-each-other-with-css-anchor-positioning/
   - Privacy win! Users now share their screens more wisely
     - https://developer.chrome.com/en/blog/media-picker-reorder/
-  - *What's new in Lighthouse 10*
+  - **What's new in Lighthouse 10**
     - https://developer.chrome.com/en/blog/lighthouse-10-0/
     - スコアの指標から TTI が削除
     - その分 CLS のウエイトが上乗せされる
 - chromium blog
-  - *Chromium Blog: Do more with Chrome on a single charge on MacBooks*
+  - **Chromium Blog: Do more with Chrome on a single charge on MacBooks**
     - https://blog.chromium.org/2023/02/do-more-with-chrome-on-single-charge-on.html
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
 - v8
   - https://v8.dev/
 - other
-  - *Chromium Flag Updates (@ChromiumFlags) / Twitter*
+  - **Chromium Flag Updates (@ChromiumFlags) / Twitter**
     - https://twitter.com/ChromiumFlags
     - Chromium の flags の変更を伝えるボット(非公式)
     - 2021 年から存在するらしい
-  - *Add a warning to web-bundles article by irori · Pull Request #9579 · GoogleChrome/web.dev*
+  - **Add a warning to web-bundles article by irori · Pull Request #9579 · GoogleChrome/web.dev**
     - https://github.com/GoogleChrome/web.dev/pull/9579
     - Web Bundles へのナビゲーション機能を削除する
     - フォーカスが subresource と Isolated Web Apps に移ったからとのこと
     - https://bugs.chromium.org/p/chromium/issues/detail?id=994700#c8
-  - *Moving Forward, Together*
+  - **Moving Forward, Together**
     - https://www.chromium.org/Home/chromium-security/root-ca-policy/moving-forward-together/
     - Chrome の Root Program Policy が更新される
     - Root CA 証明書は、 30 年信頼されるべきとされていたが、 7 年にする
@@ -323,7 +323,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Firefox 110.0, See All New Features, Updates and Fixes
   - https://www.mozilla.org/en-US/firefox/110.0/releasenotes/
-- *Firefox 110 for developers - Mozilla | MDN*
+- **Firefox 110 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/110
   - Container Queries (size)
   - `color-gamut` media feature
@@ -338,11 +338,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: Forced color adjust*
+- **Ship: Forced color adjust**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/HCTHp4XMCKk
 - Ship: Windows Native Notifications
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Hr1u9GQ10e8
-- *Ship: `linear()` Easing Function*
+- **Ship: `linear()` Easing Function**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/BxEIDf22HmM
 - Prototype: screen.orientation.lock() is turned on Nightly
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/9FkNumU5X44
@@ -352,18 +352,18 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Interop 2022: Outcomes - Mozilla Hacks - the Web developer blog*
+- **Interop 2022: Outcomes - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2023/01/interop-2022-outcomes/
-- *Announcing Interop 2023 - Mozilla Hacks - the Web developer blog*
+- **Announcing Interop 2023 - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2023/02/announcing-interop-2023/
   - Interop プロジェクト自体の説明が詳しい
-- *JavaScript Import maps, Part 1: Introduction*
+- **JavaScript Import maps, Part 1: Introduction**
   - https://spidermonkey.dev/blog/2023/02/23/javascript-import-maps-part-1-introduction.html
-- *JavaScript Import maps, Part 2: In-Depth Exploration*
+- **JavaScript Import maps, Part 2: In-Depth Exploration**
   - https://spidermonkey.dev/blog/2023/03/02/javascript-import-maps-part-2-in-depth-exploration.html
-- *Open Web Docs meetup with Mozilla's MDN team*
+- **Open Web Docs meetup with Mozilla's MDN team**
   - https://openwebdocs.org/content/posts/london-meetup/
-- *project/index.md at main · openwebdocs/project · GitHub*
+- **project/index.md at main · openwebdocs/project · GitHub**
   - https://github.com/openwebdocs/project/blob/main/steering-committee/meetups/london-2023/index.md
   - OWD と MDN のミーティング議事録
 
@@ -375,70 +375,70 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Release Notes for Safari Technology Preview 163*
+- **Release Notes for Safari Technology Preview 163**
   - https://webkit.org/blog/13839/release-notes-for-safari-technology-preview-163/
   - Masonry Layout
-    - *Enabled Masonry layout by default (258694@main, 259308@main)*
+    - **Enabled Masonry layout by default (258694@main, 259308@main)**
   - :has() pseudo-class
-    - *Made `:has()` require valid selectors for all selectors in the selector list (258712@main)*
+    - **Made `:has()` require valid selectors for all selectors in the selector list (258712@main)**
   - CSS
-    - *Added support for `leading-trim` (258766@main)*
+    - **Added support for `leading-trim` (258766@main)**
   - Web API
-    - *Enabled default ARIA for custom elements (258743@main)*
+    - **Enabled default ARIA for custom elements (258743@main)**
     - Implemented `StorageManager.estimate()` (258610@main)
     - Added support for Ed25519 keys to Web Crypto (259277@main, 259489@main)
     - Updated Content Security Policy when the header is sent as part of a 304 response (258931@main)
-- *Release Notes for Safari Technology Preview 164*
+- **Release Notes for Safari Technology Preview 164**
   - https://webkit.org/blog/13902/release-notes-for-safari-technology-preview-164/
   - JavaScript
-    - *Disabled import-assertion based on TC39's stage-2 downgrade (259795@main)*
+    - **Disabled import-assertion based on TC39's stage-2 downgrade (259795@main)**
   - HTTP
-    - *Enabled `Clear-Site-Data` HTTP header support (259970@main)*
-    - *Added support for `Clear-Site-Data: "executionContext"` (259940@main)*
-- *Safari 16.4 Beta Release Notes | Apple Developer Documentation*
+    - **Enabled `Clear-Site-Data` HTTP header support (259970@main)**
+    - **Added support for `Clear-Site-Data: "executionContext"` (259940@main)**
+- **Safari 16.4 Beta Release Notes | Apple Developer Documentation**
   - https://developer.apple.com/documentation/safari-release-notes/safari-16_4-release-notes
   - CSS
-    - *Added support for `:user-invalid` and `:user-valid` pseudo-classes.*
+    - **Added support for `:user-invalid` and `:user-valid` pseudo-classes.**
     - Added support for `currentColor` with `color-mix()`.
-    - *Added support for `margin-trim`.*
-    - *Added support for `outline` following the curve of `border-radius`.*
-    - *Added support for CSS Properties and Values API with support for `@property`.*
+    - **Added support for `margin-trim`.**
+    - **Added support for `outline` following the curve of `border-radius`.**
+    - **Added support for CSS Properties and Values API with support for `@property`.**
     - Added support for CSS relative color syntax.
     - Added support for new named colors to match CSS Color Level 4.
     - Added support for the `:dir()` pseudo-class.
-    - *Added support for the `:modal` pseudo-class to match fullscreen elements.*
-    - *Added support for the `lh` and `rlh` units.*
-    - *Added support for the range syntax from Media Queries level 4.*
+    - **Added support for the `:modal` pseudo-class to match fullscreen elements.**
+    - **Added support for the `lh` and `rlh` units.**
+    - **Added support for the range syntax from Media Queries level 4.**
     - Added support for the unprefixed `:fullscreen` pseudo-class.
     - Added support for the unprefixed absolute size keyword `xxx-large`.
   - CSS API
-    - *Added support for CSS Typed OM.*
+    - **Added support for CSS Typed OM.**
     - Added support for constructible and adoptable CSSStyleSheet objects.
     - Added support for input validation for `CSSColorValues` as part of CSS Typed OM.
   - Custom Elements
-    - *Added support for Declarative Shadow DOM.*
-    - *Added support for ElementInternals.*
-    - *Added support for form-associated custom elements.*
-    - *Added support for Imperative Slot API.*
+    - **Added support for Declarative Shadow DOM.**
+    - **Added support for ElementInternals.**
+    - **Added support for form-associated custom elements.**
+    - **Added support for Imperative Slot API.**
   - JavaScript
-    - *Added support for RegExp lookbehind assertions.*
-    - *Added support for `Array.fromAsync`.*
-    - *Added support for `Array#group` and `Array#groupToMap`.*
+    - **Added support for RegExp lookbehind assertions.**
+    - **Added support for `Array.fromAsync`.**
+    - **Added support for `Array#group` and `Array#groupToMap`.**
     - Added support for `Atomics.waitAsync` .
-    - *Added support for `import.meta.resolve()`.*
+    - **Added support for `import.meta.resolve()`.**
     - Added support for `Intl.DurationFormat`.
-    - *Added support for `String#isWellFormed` and `String#toWellFormed`.*
+    - **Added support for `String#isWellFormed` and `String#toWellFormed`.**
     - Added support for class static initialization blocks.
     - Added support for growable SharedArrayBuffer.
-    - *Added support for Import Maps.*
+    - **Added support for Import Maps.**
     - Added support for resizable ArrayBuffer.
-    - *Added support for using `Symbols` in `WeakMap` and `WeakSet`.*
+    - **Added support for using `Symbols` in `WeakMap` and `WeakSet`.**
   - HTML
-    - *Added support for lazy loading iframes.*
+    - **Added support for lazy loading iframes.**
   - HTTP
-    - *Added support for the `Clear-Site-Data` HTTP header.*
+    - **Added support for the `Clear-Site-Data` HTTP header.**
   - Images
-    - *Added support for AVIF on macOS Monterey and macOS Big Sur.*
+    - **Added support for AVIF on macOS Monterey and macOS Big Sur.**
   - Lockdown Mode
     - Disabled binary fonts in the CSS Font Loading API.
     - Disabled Cache API.
@@ -460,14 +460,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - Text
     - Added support for `font-size-adjust`.
   - WebAssembly
-    - *Added support for WASM SIMD.*
+    - **Added support for WASM SIMD.**
   - Web Animations
     - Added animation support for `align-tracks` and `justify-tracks`.
     - Added support for `KeyframeEffect.iterationComposite`.
     - Added support for animating custom properties.
     - Added support for blending of mismatched filter lists.
   - Web API
-    - *Added support for 2D-only OffscreenCanvas.*
+    - **Added support for 2D-only OffscreenCanvas.**
     - Added support for `gamepad.vibrationActuator`.
     - Added support for a submitter parameter in the FormData constructor.
     - Added support for COEP violation reporting.
@@ -478,25 +478,25 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for loading scripts for nested workers.
     - Added support for non-autofill credential type for the `autocomplete` attribute.
     - Added support for revoking Blob URLs across same-origin contexts.
-    - *Added support for Scroll to Text Fragment*
+    - **Added support for Scroll to Text Fragment**
     - Added support for Service Workers and Shared Workers to the Permissions API.
     - Added support for the `isComposing` attribute on InputEvent.
-    - *Added support for the Compression Streams API.*
+    - **Added support for the Compression Streams API.**
     - Added support for the Notification API in dedicated workers.
-    - *Added support for the Reporting API.*
+    - **Added support for the Reporting API.**
     - Added support for the Screen Orientation API.
     - Added support for the Screen Wake Lock API.
     - Added support for the termination of nested workers.
     - Added support for the unprefixed Fullscreen API on macOS and iPadOS.
-    - *Added support for the UserActivation API.*
+    - **Added support for the UserActivation API.**
     - Added support for transfer size metrics for first parties in `ServerTiming` and `PerformanceResourceTiming`.
   - Added support to the Permissions API for dedicated workers.
   - Web Apps
-    - *Added support for Web Push in web apps saved to the home screen on iOS.*
+    - **Added support for Web Push in web apps saved to the home screen on iOS.**
     - Added support for the `"id"` member in Web App Manifest files.
-    - *Added support for the Badging API.*
+    - **Added support for the Badging API.**
     - Added support for third-party browsers to offer Add to Home Screen from the Share menu.
-- *Web Push for Web Apps on iOS and iPadOS*
+- **Web Push for Web Apps on iOS and iPadOS**
   - https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/
   - iOS 16.4 で追加される Web Push について
   - ホームスクリーンに追加された状態で使える
@@ -504,20 +504,20 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://webkit.org/blog/13711/elementinternals-and-form-associated-custom-elements/
 - Allowing Web Share on Third-Party Sites
   - https://webkit.org/blog/13708/allowing-web-share-on-third-party-sites/
-- *Pushing Interop Forward in 2023*
+- **Pushing Interop Forward in 2023**
   - https://webkit.org/blog/13706/interop-2023/
   - 各機能を詳しく取り上げている
-- *Try out CSS Nesting today*
+- **Try out CSS Nesting today**
   - https://webkit.org/blog/13813/try-css-nesting-today-in-safari-technology-preview/
-- *Declarative Shadow DOM*
+- **Declarative Shadow DOM**
   - https://webkit.org/blog/13851/declarative-shadow-dom/
-- *The User Activation API*
+- **The User Activation API**
   - https://webkit.org/blog/13862/the-user-activation-api/
 
 
 #### Other
 
-- *Safari 16.4 Is An Admission - Infrequently Noted*
+- **Safari 16.4 Is An Admission - Infrequently Noted**
   - https://infrequently.org/2023/02/safari-16-4-is-an-admission/
 
 
@@ -528,11 +528,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Reinventing search with a new AI-powered Microsoft Bing and Edge, your copilot for the web - The Official Microsoft Blog*
+- **Reinventing search with a new AI-powered Microsoft Bing and Edge, your copilot for the web - The Official Microsoft Blog**
   - https://blogs.microsoft.com/blog/2023/02/07/reinventing-search-with-a-new-ai-powered-microsoft-bing-and-edge-your-copilot-for-the-web/
   - Edge のサイドバーに AI 搭載 Bing チャットを組み込む
   - UI もリデザイン
-- *Microsoft Edge and Interop 2023 - Microsoft Edge Blog*
+- **Microsoft Edge and Interop 2023 - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2023/02/01/microsoft-edge-and-interop-2023/
 - Adobe and Microsoft Bring Industry-Leading Acrobat PDF Experience to 1.4 Billion Windows Users through Microsoft Edge - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2023/02/08/adobe-acrobat-microsoft-edge-pdf/
@@ -545,7 +545,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Behind the Scenes: How we are securing our new PDF stack | Microsoft Browser Vulnerability Research
   - https://microsoftedge.github.io/edgevr/posts/How-we-are-securing-our-new-PDF-stack/
-- *Eric Lawrence on Twitter: "Recently, the TLD "office" was added to the HSTS preload list, meaning that everything in that namespace (e.g. www.office, example.office, blah.office) now must use HTTPS to load in a browser. This has a surprising consequence for anyone who..."*
+- **Eric Lawrence on Twitter: "Recently, the TLD "office" was added to the HSTS preload list, meaning that everything in that namespace (e.g. www.office, example.office, blah.office) now must use HTTPS to load in a browser. This has a surprising consequence for anyone who..."**
   - https://twitter.com/ericlaw/status/1631383581980229632
   - .office という TLD が最近 HSTS Preload List に追加され、それがイントラのサイトに影響したらしい
 - Adobe and Microsoft Bring Industry-Leading Acrobat PDF Experience to 1.4 Billion Windows Users through Microsoft Edge
@@ -556,7 +556,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2023/02/10/q-remember-this-device-doesnt/
 - Attack Techniques: Blended Attacks via Phone - text/plain
   - https://textslashplain.com/2023/02/09/attack-techniques-blended-attacks-via-phone/
-- *A New Era: PM -> SWE - text/plain*
+- **A New Era: PM -> SWE - text/plain**
   - https://textslashplain.com/2023/02/06/a-new-era-pm-swe/
 - A Year of Intention - text/plain
   - https://textslashplain.com/2023/02/04/a-year-of-intention/
@@ -568,7 +568,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Recommendation
 - Proposed Recommendation
-  - *CSS Box Model Module Level 3*
+  - **CSS Box Model Module Level 3**
     - https://www.w3.org/TR/2023/PR-css-box-3-20230216/
 - Candidate Recommendation
 - Working Draft
@@ -585,7 +585,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - W3C re-launched as a public-interest non-profit organization - W3C
   - https://beta.w3.org/news/2023/w3c-re-launched-as-a-public-interest-non-profit-organization/
-- *W3C の新しいサイトのベータ版が公開*
+- **W3C の新しいサイトのベータ版が公開**
   - W3C launches beta of its new website | W3C Blog
     - https://www.w3.org/blog/2023/02/w3c-launches-beta-of-its-new-website/
   - W3C welcomes feedback on the beta of its new website - W3C
@@ -594,7 +594,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://beta.w3.org/
 - W3C sun-setting online unified validator; community may fork Unicorn - W3C
   - https://beta.w3.org/news/2023/w3c-sun-setting-online-unified-validator-community-may-fork-unicorn/
-- *W3C Workshop on Permissions*
+- **W3C Workshop on Permissions**
   - https://www.w3.org/Privacy/permissions-ws-2022/report
     - Permissions のワークショップレポート
     - Artifacts
@@ -619,7 +619,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - How to involve UX more in standards processes?
       - Useful attestations / promises / policies; Operationalising 'Contextual Integrity'
       - Use case driven spec work / Updating specs
-- *2023 年 01 月 W3C 活動概要 | w3ckeio.github.io*
+- **2023 年 01 月 W3C 活動概要 | w3ckeio.github.io**
   - https://w3ckeio.github.io/monthly-summary/202301.html
     - > Ministry of Digital Affairs, Taiwan
     - 台湾のデジタル発展部が W3C に入った
@@ -639,7 +639,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - TC39 Minutes を読む
   - https://docs.google.com/document/d/1qXUf4QRTbexUj0fg2sgYTxWwOT2v_q7lmjR282BOWLU/edit
   - https://twitter.com/mozaicfm/status/1629104591261564928
-- *Problems with import assertions for module types and a possible general solution + downgrade to Stage 2*
+- **Problems with import assertions for module types and a possible general solution + downgrade to Stage 2**
   - import assertions で assert { type: "css" } とかしても実際は script として読み込まれる
   - すると CSP の script-src が適用されるが、それでいいのか?
   - という HTML の issue から始まった
@@ -647,7 +647,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - これをどうするか
   - with とか as とかで色々構文を直す? 構文は同じで semantics だけ変える?
   - Stage 3 -> 2 に落として、構文(assert)は考え直すことに
-- *Prototype pollution mitigation / Symbol.proto*
+- **Prototype pollution mitigation / Symbol.proto**
   - https://github.com/tc39/proposal-symbol-proto
   - Prototype 汚染攻撃を防ぎたい
   - Prototype に文字列でアクセスできなくするモードを用意する
@@ -657,7 +657,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 2. "use secure-mode" か Object.enableSecureMode()
     - 3. 一回でも Symbol.proto/constructor を呼んだら
   - Stage 1
-- *A procedure for multiple active supporters in committee to achieve consensus*
+- **A procedure for multiple active supporters in committee to achieve consensus**
   - コンセンサスのとり方を変えよう
   - 現状は強い反対意見のあるものだけが表面化しがち
   - だれも反対してないものもあるが、それが興味がないだけか、賛成なのかはっきりしない
@@ -732,7 +732,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/one-year-of-war-in-ukraine/
 - A look at Internet traffic trends during Super Bowl LVII
   - https://blog.cloudflare.com/super-bowl-lvii/
-- *Welcome to Wildebeest: the Fediverse on Cloudflare*
+- **Welcome to Wildebeest: the Fediverse on Cloudflare**
   - https://blog.cloudflare.com/welcome-to-wildebeest-the-fediverse-on-cloudflare/
 - Manage and control the use of dedicated egress IPs with Cloudflare Zero Trust
   - https://blog.cloudflare.com/gateway-egress-policies/
@@ -744,7 +744,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/cloudflare-mitigates-record-breaking-71-million-request-per-second-ddos-attack/
 - The Chief Zero Trust Officer: a new role for a new era of cybersecurity
   - https://blog.cloudflare.com/chief-zero-trust-officer/
-- *How Rust and Wasm power Cloudflare's 1.1.1.1*
+- **How Rust and Wasm power Cloudflare's 1.1.1.1**
   - https://blog.cloudflare.com/big-pineapple-intro/
 - Oxy is Cloudflare's Rust-based next generation proxy framework
   - https://blog.cloudflare.com/introducing-oxy/
@@ -754,7 +754,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Fastly
 
-- *Fastly と Fediverse の未来 : パート 1 | Fastly*
+- **Fastly と Fediverse の未来 : パート 1 | Fastly**
   - https://www.fastly.com/jp/blog/fastly-and-the-fediverse-pt-1
 - Chrome の TLS ClientHello のランダム順列機能をご紹介 | Fastly
   - https://www.fastly.com/jp/blog/a-first-look-at-chromes-tls-clienthello-permutation-in-the-wild
@@ -766,7 +766,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/jp/blog/delivering-super-bowl-for-more-than-a-decade-and-breaking-records-in-the
 - Brotli is great at making things small (and no, we aren't talking about the Swiss bread!) | Fastly
   - https://www.fastly.com/blog/brotli-is-great-at-making-things-small-and-no-we-arent-talking-about-the
-- *Announcing Certainly: Fastly's own TLS Certification Authority | Fastly*
+- **Announcing Certainly: Fastly's own TLS Certification Authority | Fastly**
   - https://www.fastly.com/blog/announcing-certainly-fastlys-own-tls-certification-authority
   - Fastly も CA に参加
   - ECDSA などももちろんサポート
@@ -801,17 +801,17 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *当サイトへの不正アクセスによる個人情報漏えいに関するお詫びとお知らせ|ソースネクスト*
+- **当サイトへの不正アクセスによる個人情報漏えいに関するお詫びとお知らせ|ソースネクスト**
   - https://www.sourcenext.com/support/i/2023/0214_info/
   - > 原因
   - > 弊社が運営するサイトのシステムの一部の脆弱性を利用した第三者の不正アクセスにより、ペイメントアプリケーションの改ざんが行なわれたため。
-- *ペイメントアプリケーションの改ざん(Web スキミング)に関する概説と対策手法について - セキュリティ研究センターブログ*
+- **ペイメントアプリケーションの改ざん(Web スキミング)に関する概説と対策手法について - セキュリティ研究センターブログ**
   - https://security.macnica.co.jp/blog/2023/02/web-1.html
 
 
 ### 周辺動向
 
-- *Towards a modern Web stack (PUBLICLY SHARED)*
+- **Towards a modern Web stack (PUBLICLY SHARED)**
   - https://docs.google.com/document/d/1peUSMsvFGvqD5yKh3GprskLC3KVdAlLGOsK6gFoEOD0/preview
   - Ian Hickson (Hixie) による新しい Web スタックの提案
   - WebAssembly
@@ -819,7 +819,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ARIA
   - WebHID
   - の 4 つを用いて、既存の Web 技術スタックから離れて開発する
-- *How Shadow DOM and accessibility are in conflict*
+- **How Shadow DOM and accessibility are in conflict**
   - https://alice.pages.igalia.com/blog/how-shadow-dom-and-accessibility-are-in-conflict/
   - 支援技術が必要とする情報が Shadow DOM の中に隠蔽されたり、 Shadow DOM 間で断絶したりする
   - すると支援技術が正しく DOM の構造を認識でない可能性がある
@@ -830,7 +830,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Twitter restricted in Turkey in aftermath of earthquake - NetBlocks
   - https://netblocks.org/reports/twitter-restricted-in-turkey-in-aftermath-of-earthquake-oy9LJ9B3
   - トルコの地震後にトルコ国内で Twitter がブロックされているらしい
-- *HTTPS by Default | Brave Browser*
+- **HTTPS by Default | Brave Browser**
   - https://brave.com/privacy-updates/22-https-by-default/
   - Brave に入る HTTPS by Default 機能について
   - リクエストした URL がアップグレードに失敗するサイトのリストになければ HTTPS でのアップグレードを試し、エラーが返ってこなかったら HTTPS のページを読み込む
@@ -840,7 +840,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - > スマートフォンなどを使用している際に表示される"位置情報の利用"や"Cookie の利用"など、さまざまな許可を求めるポップアップ通知について、通知の意味や気を付けるべき点を Q&A 形式でわかりやすく解説し、自分自身の個人情報の扱いに関する疑問や不安を解消するコンテンツ
 - 許可しちゃって、だいじょうぶ? とつぜん通知解決ガイド - Yahoo! JAPAN
   - https://events.yahoo.co.jp/noticeguide/
-- *WWW-Talk Jan-Mar 1993: proposed new tag: IMG*
+- **WWW-Talk Jan-Mar 1993: proposed new tag: IMG**
   - http://1997.webhistory.org/www.lists/www-talk.1993q1/0182.html
     - Marc Andreessen による img 要素の提案から 2 月 25 日で 30 年経った
   - Dive Into HTML5
@@ -850,7 +850,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://myakura.github.io/dih5ja/past.html
 - How Meta brought AV1 to Reels - Engineering at Meta
   - https://engineering.fb.com/2023/02/21/video-engineering/av1-codec-facebook-instagram-reels/
-- *How we Build Platforms*
+- **How we Build Platforms**
   - https://www.mnot.net/blog/2023/02/19/platforms
   - FB がメタバースプラットフォームを作ろうとしてることに対して
   - そんなに簡単じゃないという話を書いてる

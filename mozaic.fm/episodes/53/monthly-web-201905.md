@@ -29,9 +29,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 74
 - Google I/O
-  - *Web at Google I/O 2019 - YouTube PlayList*
+  - **Web at Google I/O 2019 - YouTube PlayList**
     - https://www.youtube.com/playlist?list=PLNYkxOF6rcIATmAmz7HcCzongGvQEtx8i
-  - *I/O Web Updates - Slide*
+  - **I/O Web Updates - Slide**
     - https://docs.google.com/presentation/d/1ogXPs8U3Uxs5sNaXzK3HX6SquP8ZPJCSW6DGBsjUoQw/
     - LazyLoading [blog](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
     - Portals
@@ -46,7 +46,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Google Fonts Support CSS font-display
     - Trusted Web Activities(TWA)
     - etc, etc, etc
-  - *Chromium Blog: Google I/O 2019: What's new with Chrome and the Web*
+  - **Chromium Blog: Google I/O 2019: What's new with Chrome and the Web**
     - https://blog.chromium.org/2019/05/google-io-2019-whats-new-with-chrome.html
 - Updates
   - Share files with Web Share
@@ -59,11 +59,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.chromium.org/2019/05/chrome-75-beta-low-latency-canvas.html
   - AMP as your web framework
     - https://blog.amp.dev/2019/05/01/amp-as-your-web-framework/
-  - *Paint Holding - reducing the flash of white on same-origin navigations*
+  - **Paint Holding - reducing the flash of white on same-origin navigations**
     - https://developers.google.com/web/updates/2019/05/paint-holding
     - ページ遷移のときに一度白でペイントしていたのをやめて前の画面を残す
     - FCP まで compositor commit を送られせるなど
-  - *Chromium Blog: Improving privacy and security on the web*
+  - **Chromium Blog: Improving privacy and security on the web**
     - https://blog.chromium.org/2019/05/improving-privacy-and-security-on-web.html
     - SameSiteCookie や Fingerprint 対策など、プライバシー保護を強化していく
   - Official Google Webmaster Central Blog: The new evergreen Googlebot
@@ -77,7 +77,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - The Chromium Chronicle: Fighting Test Flakiness
     - https://developers.google.com/web/updates/2019/05/chromium-chronicle-2
 - Intents
-  - *Ship: Media Queries: prefers-color-scheme feature*
+  - **Ship: Media Queries: prefers-color-scheme feature**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/sLK1cLgvieg/8bvIdznFAAAJ
   - Ship: IndexedDB transaction explicit commit API call
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_-WBHYZ-rBk/yltzslk4DQAJ
@@ -89,13 +89,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rNSlkbO5utU/dOQJLHxUAwAJ
   - Ship: PaymentResponse.retry() and payerdetailchange event
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/JwSN1yEVvnk/9EDQpTZ4BAAJ
-  - *Ship: Form-associated custom elements*
+  - **Ship: Form-associated custom elements**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0w_Z-9_kSNs/QV6ChIapAwAJ
-  - *Ship: 'formdata' event*
+  - **Ship: 'formdata' event**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ONvzLM5fPvk/FZDswIOpAwAJ
   - Ship: Adding ImageBitmapRenderingContext to OffscreenCanvas
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ufFQ4OvtqxQ/Ib0n6M5nAwAJ
-  - *Ship: Feature Policy 'focus-without-user-activation'*
+  - **Ship: Feature Policy 'focus-without-user-activation'**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pnUiTrLHHmw/CDN1s3F1BQAJ
     - JS で `focus()` するのを防ぐ FP
   - Implement and Ship: IDBCursor request
@@ -116,7 +116,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/phMAiUN3nco/-6rsfDv8AgAJ
   - Implement and Ship: Enter Key Hint
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Hfe5xktjSV8/Re-SMF3wAwAJ
-  - *Implement and Ship: form.requestSubmit()*
+  - **Implement and Ship: form.requestSubmit()**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CxelaeahNho/aC6Zp8KvAwAJ
     - `<form>` の `submit()` と `<button type=submit>` を `click()` したのでは挙動が違う
     - interactive validation, submit events etc
@@ -127,16 +127,16 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/0UWEnR_rV9E/SOM8xOgfBQAJ
   - Implement: IFrame execution/freezing feature policy
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/VytOh5dHdDo/THj8cgZeDQAJ
-  - *Implement: Periodic Background Sync*
+  - **Implement: Periodic Background Sync**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/61yC4_xbZRA/mpB5rMBTDwAJ
     - Background Sync を定期実行するための API
     - 時間設定が厳守されるわけではなく、ネットワーク状況などに応じて
   - Implement: JS Self-Profiling API
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/cl_WCx9OEcg/9b-6_7DPDAAJ
-  - *Implement: Picture-in-Picture for arbitrary content*
+  - **Implement: Picture-in-Picture for arbitrary content**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/uK0hyACy_fg/XXFsm_4kDAAJ
     - PinP で Video 以外に任意のコンテンツを再生できるように
-  - *Implement (meta): Bundled HTTP Exchanges*
+  - **Implement (meta): Bundled HTTP Exchanges**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hVszlf4l2_E/1K_ZgQ4lBQAJ
     - Chrome Tokyo チームから
   - Implement: High-risk insecure download blocking in secure contexts
@@ -174,7 +174,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AJCkCrsauAk/sUpNU8ylAQAJ
   - PSA: blink::UseCounter changes
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/j7007MhubK4/c1Wm-5Z3AwAJ
-  - *PSA: Turning on LayoutNG*
+  - **PSA: Turning on LayoutNG**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/88RzfOIZFi8/sB8BmhblBQAJ
     - LayoutNG が Chrome 76 から有効に
     - Float, Writing Mode, RTL, Text Layout など様々が更新される
@@ -196,10 +196,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.amp.dev/2019/05/21/contributing-back-lessons-learned-part-1/
   - Privacy-preserving instant loading for all web content
     - https://blog.amp.dev/2019/05/22/privacy-preserving-instant-loading-for-all-web-content/
-  - *OOR-CORS is enabled by default on HEAD*
+  - **OOR-CORS is enabled by default on HEAD**
     - https://groups.google.com/a/chromium.org/forum/#!msg/network-service-dev/tM2Yba-G8nU/I7PUAnU5AgAJ
     - Out Of Renderer CORS がデフォルトに
-  - *Google Developers Blog: Flutter: a Portable UI Framework for Mobile, Web, Embedded, and Desktop*
+  - **Google Developers Blog: Flutter: a Portable UI Framework for Mobile, Web, Embedded, and Desktop**
     - https://developers.googleblog.com/2019/05/Flutter-io19.html
     - Flutter for web
 
@@ -210,7 +210,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Updates
   - Firefox 67.0, See All New Features, Updates and Fixes
     - https://www.mozilla.org/en-US/firefox/67.0/releasenotes/
-  - *Latest Firefox Release is Faster than Ever*
+  - **Latest Firefox Release is Faster than Ever**
     - https://blog.mozilla.org/blog/2019/05/21/latest-firefox-release-is-faster-than-ever/
     - `setTimeout()` のプライオリティ調整など
     - cryptomining, fingerprinting のブロックが設定画面に追加
@@ -220,7 +220,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/firefox/block-cryptominers-with-firefox/
   - Firefox 67: Dark Mode CSS, WebRender, and more
     - https://hacks.mozilla.org/2019/05/firefox-67-dark-mode-css-webrender/
-  - *Firefox 67 for developers*
+  - **Firefox 67 for developers**
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/67
     - prefers-color-scheme
     - String.matchAll()
@@ -233,11 +233,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - These Weeks in Firefox: Issue 59
     - https://blog.nightly.mozilla.org/2019/05/22/these-weeks-in-firefox-issue-59/
     - 通知プロンプトの自動ブロックが Beta にも展開されたとの情報
-  - *TLS 1.0 and 1.1 Removal Update*
+  - **TLS 1.0 and 1.1 Removal Update**
     - https://hacks.mozilla.org/2019/05/tls-1-0-and-1-1-removal-update/
     - Firefox 68 からコンソールに警告がでる
     - 10 月には Nightly で無効にする予定
-  - *Faster smarter JavaScript debugging in Firefox DevTools*
+  - **Faster smarter JavaScript debugging in Firefox DevTools**
     - https://hacks.mozilla.org/2019/05/faster-smarter-javascript-debugging-in-firefox/
     - Firefox 67 の Firefox DevTools の機能向上について
     - 高速化、オーバーヘッド削減、ソースマップのサポート向上
@@ -248,7 +248,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Firefox 67 で Windows 10 + NVIDIA なデスクトップで WebRender が有効に
   - Password Manager Improvements in Firefox 67
     - https://matthew.noorenberghe.com/blog/2019/05/password-manager-improvements-firefox-67
-  - *Firefox 67: Dark Mode CSS, WebRender, and more*
+  - **Firefox 67: Dark Mode CSS, WebRender, and more**
     - https://hacks.mozilla.org/2019/05/firefox-67-dark-mode-css-webrender/
     - prefers-color-scheme
     - Enhanced Privacy Controls
@@ -292,21 +292,21 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - What we do when things go wrong
     - https://blog.mozilla.org/blog/2019/05/09/what-we-do-when-things-go-wrong/
-  - *Technical Details on the Recent Firefox Add-on Outage*
+  - **Technical Details on the Recent Firefox Add-on Outage**
     - https://hacks.mozilla.org/2019/05/technical-details-on-the-recent-firefox-add-on-outage/
     - 拡張の中間証明書が失効したため拡張が一時使えない状況に
     - 2019 年 5 月 4 日前後から発生している Firefox のアドオン無効化問題の詳細な解説 - ククログ(2019-05-07)
     - https://www.clear-code.com/blog/2019/5/7.html
-  - *Owning it: browser compatibility data and open source governance*
+  - **Owning it: browser compatibility data and open source governance**
     - https://hacks.mozilla.org/2019/05/browser-compatibility-data-and-open-source-governance/
     - BCD のこれまで
     - ガバナンス体制を強化した
     - 2019 年はデータを完全なものにしたいという野望も持っていると
-  - *Remove browser and OS architecture from Firefox's User-Agent string?*
+  - **Remove browser and OS architecture from Firefox's User-Agent string?**
     - https://groups.google.com/d/topic/mozilla.dev.platform/vEMIqgnMxRw/discussion
     - UA 文字列から OS のアーキテクチャなど(`WOW64` とか)を削ろうという提案
     - ソフトウェアのダウンロードページなどに影響が出ないかなどの疑問が出ている
-  - *Become A Beta Testing BugHunter*
+  - **Become A Beta Testing BugHunter**
     - https://events.mozilla.org/becomeabetatestingbughunter
     - Fenix の β テスト
 
@@ -315,12 +315,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Stable: 12.1
 - Updates
-  - *Release Notes for Safari Technology Preview 81*
+  - **Release Notes for Safari Technology Preview 81**
     - https://webkit.org/blog/8834/release-notes-for-safari-technology-preview-81/
     - `supported-color-scheme` が `color-scheme` に
     - `requestAnimationFrame()` が次のフレームの前に実行されるように
     - Ad Click Attribution(後述)
-  - *Release Notes for Safari Technology Preview 82*
+  - **Release Notes for Safari Technology Preview 82**
     - https://webkit.org/blog/8921/release-notes-for-safari-technology-preview-82/
     - Fetch API の keep-alive が有効に
 - Other
@@ -330,7 +330,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://webkit.org/blog/8892/dark-mode-in-web-inspector/
   - Debugging Media in Web Inspector
     - https://webkit.org/blog/8923/debugging-media-in-web-inspector/
-  - *Privacy Preserving Ad Click Attribution For the Web*
+  - **Privacy Preserving Ad Click Attribution For the Web**
     - https://webkit.org/blog/8943/privacy-preserving-ad-click-attribution-for-the-web/
     - 広告のコンバージョンを測る Cookie を無効にしたい
     - かわりに `adcampaignid` と `addestination` 属性を a 要素に追加
@@ -342,7 +342,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### Edge 動向
 
-- *MS Build*
+- **MS Build**
   - https://www.microsoft.com/en-us/build
   - Microsoft Edge with Internet Explorer Mode
     - https://mybuild.techcommunity.microsoft.com/sessions/77794
@@ -405,16 +405,16 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web & Networks Interest Group Charter Approved; Call for Participation
     - https://lists.w3.org/Archives/Public/public-new-work/2019May/0003.html
 - Other
-  - *Privacy Preserving Ad Click Attribution*
+  - **Privacy Preserving Ad Click Attribution**
     - https://wicg.github.io/ad-click-attribution/index.html
     - fingerprinting 避けつつ、クリック元を伝えるためのしくみ
     - 現時点の提案は `adcampaignid` と `addestination` 属性を a 要素に追加する
-  - *JSON module support*
+  - **JSON module support**
     - https://github.com/whatwg/html/commit/db03474b8b87aab3454ff7d5c1f4a5f044b4395c
     - `import` 文で JSON を読み込めるように
   - Introduce form-associated custom elements
     - https://github.com/whatwg/html/commit/ab7344318eed117b94f094b1c564e60527d2257f
-  - *Add form.requestSubmit()*
+  - **Add form.requestSubmit()**
     - https://github.com/whatwg/html/commit/e0742f8fdf3b119fdabdcad01d2ebfef1d7a2262
     - submit ボタンを押した時の挙動(バリデーション、 `submit` イベント発火)と同様のメソッド
   - Define button layout
@@ -444,17 +444,17 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - IETF
 - RFC
-  - *RFC 8594 - The Sunset HTTP Header Field*
+  - **RFC 8594 - The Sunset HTTP Header Field**
     - https://tools.ietf.org/html/rfc8594
     - サービスが落ちる時間を前もって知らせるヘッダ
-  - *RFC 8615 - Well-Known Uniform Resource Identifiers (URIs)*
+  - **RFC 8615 - Well-Known Uniform Resource Identifiers (URIs)**
     - https://tools.ietf.org/html/rfc8615
     - "/.well-known/" のこと
     - https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml
-  - *RFC 8547 - TCP-ENO: Encryption Negotiation Option*
+  - **RFC 8547 - TCP-ENO: Encryption Negotiation Option**
     - https://tools.ietf.org/html/rfc8547
     - TCP のネゴシエーションのなかで暗号化ハンドシェークする手法?
-  - *RFC 8548 - Cryptographic Protection of TCP Streams (tcpcrypt)*
+  - **RFC 8548 - Cryptographic Protection of TCP Streams (tcpcrypt)**
     - https://tools.ietf.org/html/rfc8548
     - TCP-ENO と組み合わせる暗号化手法?
 - IETF Last Call
@@ -462,7 +462,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Call for Adoption
 - I-D Action
 - Draft
-  - *The WebTransport Protocol Framework*
+  - **The WebTransport Protocol Framework**
     - https://tools.ietf.org/html/draft-vvv-webtransport-overview-00
     - WS っぽい API で通信できるようにしたい
     - 多重化、再送なしなども含む
@@ -498,10 +498,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-jones-6man-historic-rfc2675-00
   - Process for Handling Non-Major Revisions to Existing RFCs
     - https://tools.ietf.org/html/draft-roach-bis-documents-00
-  - *Incrementally Better Cookies*
+  - **Incrementally Better Cookies**
     - https://tools.ietf.org/html/draft-west-cookie-incrementalism-00
     - other 参照
-  - *First-Party Sets and SameSite Cookies*
+  - **First-Party Sets and SameSite Cookies**
     - https://tools.ietf.org/html/draft-west-cookie-samesite-firstparty-01
   - Importing External PSKs for TLS
     - https://tools.ietf.org/html/draft-ietf-tls-external-psk-importer-00
@@ -520,7 +520,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Updated Recall Procedures for IETF Leadership
     - https://tools.ietf.org/html/draft-rescorla-istar-recall-00
 - Other
-  - *Incremental improvements to cookies. from Mike West*
+  - **Incremental improvements to cookies. from Mike West**
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2019AprJun/0125.html
     - https://mikewest.github.io/cookie-incrementalism/draft-west-cookie-incrementalism.html
     - [blog](https://blog.jxck.io/entries/2018-10-26/same-site-cookie.html)
@@ -533,12 +533,12 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *日本ハッカー協会セミナー「不正指令電磁的記録罪の傾向と対策」*
+- **日本ハッカー協会セミナー「不正指令電磁的記録罪の傾向と対策」**
   - https://www.youtube.com/watch?v=umYIqISRIbg
   - https://www.hacker.or.jp/regist/
   - 先月紹介した勉強会のビデオ
   - ポスト「意図しない逮捕」時代に Web エンジニアが見ておきたい話
-- *Google Online Security Blog: New research: How effective is basic account hygiene at preventing hijacking*
+- **Google Online Security Blog: New research: How effective is basic account hygiene at preventing hijacking**
   - https://security.googleblog.com/2019/05/new-research-how-effective-is-basic.html
   - 2FA の各手法ががアカウント乗っ取りにどれくらい有効なのかリサーチ
   - セキュリティキーやオンスクリーンプロンプトはかなりブロックできる
@@ -547,7 +547,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://daniel.haxx.se/blog/2019/05/22/report-from-the-curl-bounty-program/
   - curl が Hackerone で脆弱性を集めている
   - すでに 2 件来ている
-- *Abusing jQuery for CSS powered timing attacks*
+- **Abusing jQuery for CSS powered timing attacks**
   - https://portswigger.net/blog/abusing-jquery-for-css-powered-timing-attacks
   - CSS selector で Timing Attack
 
@@ -562,15 +562,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - その URL で押された文字を判定しそれを入れた HTML の chunk をまた返す
   - 返された chunk でそこまでに表示されたメッセージを display: none する
   - JS はいらないがサーバで頑張ってる
-- *AV1 リアルタイムハードウェアエンコーダを開発しました - dwango on GitHub*
+- **AV1 リアルタイムハードウェアエンコーダを開発しました - dwango on GitHub**
   - https://dwango.github.io/articles/av1hwencoder/
-- *Fastly CTO に聞く、同社が WebAssembly 実行環境の「Lucet」をエッジコンピューティング環境として開発している理由とは? - Publickey*
+- **Fastly CTO に聞く、同社が WebAssembly 実行環境の「Lucet」をエッジコンピューティング環境として開発している理由とは? - Publickey**
   - https://www.publickey1.jp/blog/19/fastly_ctowebassemblylucet.html
 - WASI の標準化: WebAssembly をウェブの外で使うためのシステムインターフェース (翻訳)
   - https://inzkyk.github.io/mozilla_hacks/wasi/
 - Lucet's performance and lifecycle
   - https://www.fastly.com/blog/lucet-performance-and-lifecycle
-- *A Conspiracy To Kill IE6*
+- **A Conspiracy To Kill IE6**
   - https://blog.chriszacharias.com/a-conspiracy-to-kill-ie6
   - 元 YouTube エンジニアによる YouTube が IE6 サポートを打ち切るための策略についての回顧録
   - IE6 のサポートを段階的に打ち切るバナーを表示
@@ -580,7 +580,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/nginx-structural-enhancements-for-http-2-performance/
 - Faster script loading with BinaryAST?
   - https://blog.cloudflare.com/binary-ast/
-- *Better HTTP/2 Prioritization for a Faster Web*
+- **Better HTTP/2 Prioritization for a Faster Web**
   - https://blog.cloudflare.com/better-http-2-prioritization-for-a-faster-web/
 - WebAssembly at eBay: A Real-World Use Case
   - https://www.ebayinc.com/stories/blogs/tech/webassembly-at-ebay-a-real-world-use-case/

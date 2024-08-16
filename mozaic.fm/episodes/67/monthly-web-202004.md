@@ -145,11 +145,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/TyapRjOlf-w/lqD33jeyBAAJ
   - PSA: Making WTF::String and WTF::AtomicString thread-safe
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/urPFr3-qeRg/1no3MRP-AwAJ
-  - *PSA: Reducing web compatibility risk.*
+  - **PSA: Reducing web compatibility risk.**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kMhb8lIYAVE/p-w5_kBOAQAJ
     - deprecation/removal などの互換性リスクのある intents には慎重になる
     - すでに approve された intent も、それぞれ機能ごとに改めて判断する
-  - *Deprecate and Freeze: The User-Agent string*
+  - **Deprecate and Freeze: The User-Agent string**
     - https://groups.google.com/a/chromium.org/d/msg/blink-dev/-2JIRNMWJ7s/u-YzXjZ8BAAJ
     - UA 文字列のエントロピー減らす試みのうち、 UA 文字列の半固定化を少なくとも 2021 年まで
     - CH-UA ヘッダは  Chrome 84 で ship 予定
@@ -179,7 +179,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.amp.dev/2020/04/16/cumulative-layout-shift-in-amp/
   - Adobe Experience Cloud Extends AMP Support - The AMP Blog
     - https://blog.amp.dev/2020/04/10/adobe-experience-cloud-extends-amp-support/
-  - *Introducing the fastest and most user-friendly content encryption - The AMP Blog*
+  - **Introducing the fastest and most user-friendly content encryption - The AMP Blog**
     - https://blog.amp.dev/2020/04/27/introducing-the-fastest-and-most-user-friendly-content-encryption/
     - 暗号化した結果をクライアントに送り、ログインしている場合だけ復号して表示する
     - Paywall をなくすための仕組み
@@ -399,19 +399,19 @@ guest: [@myakura](https://twitter.com/myakura)
 - Draft
   - QUIC Version Aliasing
     - https://tools.ietf.org/html/draft-ietf-quic-version-aliasing-00
-  - *The Vulcain Protocol*
+  - **The Vulcain Protocol**
     - https://tools.ietf.org/html/draft-dunglas-vulcain-00
     - Graph QL を REST に載せたような OSS 実装の draft 化
     - Preload/Field header を使って関連リソースの Preload をする
     - Cache-Digest や Early Hints などが応用されている
   - Supporting Redirect Responses in DNS Queries over HTTPS (DoH)
     - https://tools.ietf.org/html/draft-btw-add-rfc8484-clarification-00
-  - *Virtual Hum Application: Requirements*
+  - **Virtual Hum Application: Requirements**
     - https://tools.ietf.org/html/draft-sheffer-hum-app-req-00
     - IETF の文化である hum を Virtual でやる上での要件の整理
   - Specification of DNS over Dedicated QUIC Connections
     - https://tools.ietf.org/html/draft-ietf-dprive-dnsoquic-00
-  - *Compact TLS 1.3*
+  - **Compact TLS 1.3**
     - https://tools.ietf.org/html/draft-ietf-tls-ctls-00
     - 互換性のために入れていた値などを取り除いて小さくした仕様
   - Upgrading Communication from Stub Resolvers to DoT or DoH
@@ -426,12 +426,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-webtrans-overview-00
   - Hybrid key exchange in TLS 1.3
     - https://tools.ietf.org/html/draft-ietf-tls-hybrid-design-00
-  - *Signing HTTP Messages*
+  - **Signing HTTP Messages**
     - https://tools.ietf.org/html/draft-ietf-httpbis-message-signatures-00
     - その名の通り HTTP に署名する仕様
     - Signature ヘッダを追加
     - メッセージの正規化方法も定義
-  - *Best practices for password hashing and storage*
+  - **Best practices for password hashing and storage**
     - https://tools.ietf.org/html/draft-whited-kitten-password-storage-01
 - Other
 

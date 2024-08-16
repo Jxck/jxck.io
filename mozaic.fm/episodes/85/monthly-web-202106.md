@@ -22,7 +22,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Chromium Blog: Chrome 92: Web Apps as File Handlers, New JavaScript Features, and More*
+- **Chromium Blog: Chrome 92: Web Apps as File Handlers, New JavaScript Features, and More**
   - https://blog.chromium.org/2021/06/chrome-92-web-apps-as-file-handlers-new.html
   - File Handling API
   - Origin Trials
@@ -47,11 +47,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Intents
 
-- *Ship: Delegated Ink Trails*
+- **Ship: Delegated Ink Trails**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ZtqwKR_HIAE/m/t61vWodBBQAJ
 - Ship: WebCodecs
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/7UlTzFMbTFs/m/Rib4ca4-BQAJ
-- *Ship: CSS module scripts*
+- **Ship: CSS module scripts**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/iT0bQjzD04k/m/VkHPoOFLBAAJ
   - CSSStyleSheet を返す
 - Ship: Intl BestFitMatcher by using ICU LocaleMatcher
@@ -62,7 +62,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/epSTNPYkLIs/m/xamWYETxAgAJ
 - Ship: Sec-CH-Prefers-Color-Scheme client hint header
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tEZ4RVsP1ms/m/9h-yQpmJAgAJ
-- *Ship: Object.hasOwn*
+- **Ship: Object.hasOwn**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/di9BL9d1CKI/m/G2OM5JG4AQAJ
   - hasOwnProperty の static method 版
 - Ship: Re-add 'style' to contain:strict and contain:content CSS properties
@@ -71,16 +71,16 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Yy86jN-TjOE/m/tuZim9iCAAAJ
 - Ship: supports for the @font-face src: descriptor
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/bCA9H3eaO3s/m/gDrJ0Mx-AAAJ
-- *Prototype and Ship: `AbortSignal.abort()` static method*
+- **Prototype and Ship: `AbortSignal.abort()` static method**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/OpiUjfRR4WQ/m/jKdB_mxpAQAJ
   - abort 済みの signal を取得するショートハンド
   - fetch に渡すと何もせずに終わらせることができる
 - Prototype and Ship: CSS Flexbox: support alignment keywords start, end, self-start, self-end, left, right
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/j0eVgJCDVBY/m/IIHIJfv8AgAJ
-- *Implement and Ship: `:autofill` pseudo-class*
+- **Implement and Ship: `:autofill` pseudo-class**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/saobtpGibyA/m/eDN52Gj9BQAJ
   - autofill した要素だけ反応、ユーザが手入力すると外れる
-- *Prototype and ship: Honor media HTML attribute for meta name=theme-color*
+- **Prototype and ship: Honor media HTML attribute for meta name=theme-color**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6I-I3lZWy5k/m/kjqDF1ARBQAJ
   - theme-color を media query で切り替えられる
   - `<meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">`
@@ -92,16 +92,16 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kLrp8eA8ajA/m/mtG3ywzfBQAJ
 - Prototype: PWA manifest unique id - desktop
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/hlxPHfg9GRc/m/M1jbEffUBQAJ
-- *Implement and Ship: Block ports 989 and 990*
+- **Implement and Ship: Block ports 989 and 990**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3XftxnFhAyI/m/RGNlVV8_AAAJ
   - ALPACA Attack の対策として FTP ポートを落とす
 
-- *Prototype: COOP same-origin-allow-popups-plus-coep*
+- **Prototype: COOP same-origin-allow-popups-plus-coep**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/cC4T4LGdRws/m/IHxDNQ0mAAAJ
   - crossOriginIsolated でありながら popup だけにはアクセスできる
   - SAB 使いたくて isolate すると Auth や Payment の popup が壊れる
   - WebID や WebPayment なら popup がいらなくなるがまだきてないので緩和策
-- *Prototype: Temporal in ECMA262*
+- **Prototype: Temporal in ECMA262**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/1NNKDVv1Itc/m/tyDOXvhaAgAJ
 - Experiment: URL Protocol Handler Registration for PWAs
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/AuKUdqTkUAs/m/qZ3V4_YEBAAJ
@@ -125,7 +125,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/FmY3E3-KaYI/m/QPJFiZAkAAAJ
 - PSA: New implementations of IDL dictionary types
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/82EfG12unuM/m/sNkVyN6CBAAJ
-- *Origin trial timelines with Chrome 4 week releases*
+- **Origin trial timelines with Chrome 4 week releases**
   - https://groups.google.com/a/chromium.org/g/experimentation-dev/c/u4lbxEEnq-Y
   - Chrome が 4 週リリースになることで OT の期間をどうするかの案
   - 1OT: 4 milestone 16 week
@@ -158,20 +158,20 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/css-size-adjust/
   - Using AVIF to compress images on your site
     - https://web.dev/compress-images-avif/
-  - *Building a color scheme*
+  - **Building a color scheme**
     - https://web.dev/building-a-color-scheme/
   - Improving Cumulative Layout Shift at Telegraph Media Group
     - https://web.dev/telegraph/
-  - *Introducing Aurora*
+  - **Introducing Aurora**
     - https://web.dev/introducing-aurora/
     - フレームワークやツールとの協業プロジェクト
     - これまで React/Angular/Next/Nuxt などに協力してきた
-  - *Conformance for Frameworks*
+  - **Conformance for Frameworks**
     - https://web.dev/conformance/
     - strong defaults と actionable rules によってレビューじゃなくてもスケールするように
   - Blibli's PWA generates 10x more revenue per user than their previous mobile website
     - https://web.dev/blibli/
-  - *High performance storage for your app: the Storage Foundation API*
+  - **High performance storage for your app: the Storage Foundation API**
     - https://web.dev/storage-foundation/
     - File System Access API よりも権限がゆるいシンプルな API
     - Blob の扱いや DB の構築などもできるように
@@ -188,18 +188,18 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers-jp.googleblog.com/2021/06/chrome-m91-23-17-cpu.html
   - Google Developers Japan: Chrome 92 ベータ: ファイル ハンドラとしてのウェブアプリ、新しい JavaScript 機能など
     - https://developers-jp.googleblog.com/2021/06/chrome-92-javascript.html
-  - *Google Developers Japan: Chrome の User-Agent 文字列削減に関する最新情報*
+  - **Google Developers Japan: Chrome の User-Agent 文字列削減に関する最新情報**
     - https://developers-jp.googleblog.com/2021/06/chrome-user-agent.html
   - Google Developers Japan: Google 公式ウェブ開発者向けリソースのご紹介
     - https://developers-jp.googleblog.com/2021/06/google.html
 - chromium blog
   - Chromium Blog: Changes to Chrome OS's release cycle
     - https://blog.chromium.org/2021/06/changes-to-chrome-oss-release-cycle.html
-- *Our commitments for the Privacy Sandbox*
+- **Our commitments for the Privacy Sandbox**
   - https://blog.google/around-the-globe/google-europe/our-commitments-privacy-sandbox/
   - Ad の最適化に Sync されたデータを使わない
   - Privacy Sandbox を Google だけが有利になるようなものにしない
-- *An updated timeline for Privacy Sandbox milestones*
+- **An updated timeline for Privacy Sandbox milestones**
   - https://blog.google/products/chrome/updated-timeline-privacy-sandbox-milestones/
   - サードパーティ Cookie 廃止のタイムラインを更新
   - API 実装が late 2022 、サードパーティ Cookie 廃止を late 2023
@@ -216,7 +216,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Firefox 89 blocks cross-site cookie tracking by default in private browsing - Mozilla Security Blog*
+- **Firefox 89 blocks cross-site cookie tracking by default in private browsing - Mozilla Security Blog**
   - https://blog.mozilla.org/security/2021/06/01/total-cookie-protection-in-private-browsing/
   - Private Browse の安全性を強固にした話
   - Total Cookie Protection
@@ -225,9 +225,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Trackers are blocked
   - Many fingerprinting scripts are blocked
   - SmartBlock
-- *Implementing Private Fields for JavaScript - Mozilla Hacks - the Web developer blog*
+- **Implementing Private Fields for JavaScript - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/
-- *Looking fine with Firefox 89 - Mozilla Hacks - the Web developer blog*
+- **Looking fine with Firefox 89 - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/06/looking-fine-with-firefox-89/
   - forced-colors media feature
   - Better control for displayed fonts
@@ -253,7 +253,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Other
 
-- *Privacy analysis of FLoC*
+- **Privacy analysis of FLoC**
   - https://blog.mozilla.org/en/privacy-security/privacy-analysis-of-floc/
   - EKR による FLoC の調査
   - Fingerprint の精度を上げてしまう可能性などの指摘
@@ -265,7 +265,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/en/products/firefox/feel-at-home-on-your-iphone-and-ipad-with-firefox/
 - Screenshots made easy with the Firefox screenshot feature
   - https://blog.mozilla.org/en/products/firefox/how-to-capture-screenshots-with-firefox/
-- *A fresh new Firefox is here*
+- **A fresh new Firefox is here**
   - https://blog.mozilla.org/en/products/firefox/fresh-new-look-for-firefox/
 - Modern, clean new Firefox clears the way to all you need online
   - https://blog.mozilla.org/en/mozilla/news/modern-clean-new-firefox-clears-the-way-to-all-you-need-online/
@@ -279,17 +279,17 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Updates
 
 - WWDC
-  - *Apple's privacy pillars in focus - WWDC 2021 - Videos - Apple Developer*
+  - **Apple's privacy pillars in focus - WWDC 2021 - Videos - Apple Developer**
     - https://developer.apple.com/videos/play/wwdc2021/10085
     - Hide My Email
     - Private Relay
     - etc
   - Platforms State of the Union - WWDC 2021 - Videos - Apple Developer
     - https://developer.apple.com/videos/play/wwdc2021/102
-  - *Move beyond passwords - WWDC 2021 - Videos - Apple Developer*
+  - **Move beyond passwords - WWDC 2021 - Videos - Apple Developer**
     - https://developer.apple.com/videos/play/wwdc2021/10106
     - Passkeys in iCloud Keychain
-  - *Meet privacy-preserving ad attribution - WWDC 2021 - Videos - Apple Developer*
+  - **Meet privacy-preserving ad attribution - WWDC 2021 - Videos - Apple Developer**
     - https://developer.apple.com/videos/play/wwdc2021/10033
     - Private Click Measurement
     - SK Ad Networks
@@ -299,7 +299,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.apple.com/videos/play/wwdc2021/10103/
   - Design for Safari 15 - WWDC21 - Videos - Apple Developer
     - https://developer.apple.com/videos/play/wwdc2021/10029/
-- *WebKit Features in Safari at WWDC21*
+- **WebKit Features in Safari at WWDC21**
   - https://webkit.org/blog/11700/webkit-features-in-safari-at-wwdc21/
   - Tuesday, June 8
     - Meet Safari Web Extensions on iOS
@@ -315,7 +315,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Friday, June 11
     - Design for Safari 15
     - Coordinate media playback in Safari with Group Activities
-- *Release Notes for Safari Technology Preview 126 with Safari 15 Features*
+- **Release Notes for Safari Technology Preview 126 with Safari 15 Features**
   - https://webkit.org/blog/11727/release-notes-for-safari-technology-preview-126-with-safari-15-features/
   - Streamlined tab bar
   - Live Text
@@ -323,7 +323,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Quick Notes
   - WebGL 2
   - Web technologies
-- *Safari 15 Beta Release Notes | Apple Developer Documentation*
+- **Safari 15 Beta Release Notes | Apple Developer Documentation**
   - https://developer.apple.com/documentation/Safari-Release-Notes/safari-15-beta-release-notes
 
 
@@ -358,17 +358,17 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Updates
 
-- *Dark Mode for HTML Form Controls*
+- **Dark Mode for HTML Form Controls**
   - https://blogs.windows.com/msedgedev/2021/06/16/dark-mode-html-form-controls/
   - form の default controller に dark mode を導入する
-- *Improving contrast in Microsoft Edge DevTools: A bugfix case study*
+- **Improving contrast in Microsoft Edge DevTools: A bugfix case study**
   - https://blogs.windows.com/msedgedev/2021/06/15/improving-contrast-in-microsoft-edge-devtools-a-bugfix-case-study/
   - DevTools でコントラストが低い UI パーツがあったため、カラーパレットを更新した話
-- *Available for preview: Automatic HTTPS helps keep your browsing more secure*
+- **Available for preview: Automatic HTTPS helps keep your browsing more secure**
   - https://blogs.windows.com/msedgedev/2021/06/01/available-for-preview-automatic-https-helps-keep-your-browsing-more-secure/
   - 事前にリストした HTTPS 対応済みサイトの場合は HTTP から自動でリダイレクトする機能
   - Preload HSTS にないサイトで MS が集めた情報を元に対応する
-- *Improving font rendering in Microsoft Edge*
+- **Improving font rendering in Microsoft Edge**
   - https://blogs.windows.com/msedgedev/2021/06/02/improving-font-rendering-in-microsoft-edge/
   - コントラスト強化とガンマ補正の修正
 
@@ -394,9 +394,9 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Draft
 
 - Recommendation
-  - *Call for Exclusions: DOM*
+  - **Call for Exclusions: DOM**
     - https://lists.w3.org/Archives/Public/public-html/2021Jun/0001.html
-  - *Web Audio API is a W3C Recommendation*
+  - **Web Audio API is a W3C Recommendation**
     - https://www.w3.org/blog/news/archives/9093
 - Proposed Recommendation
 - Candidate Recommendation
@@ -407,7 +407,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web Neural Network API
     - https://www.w3.org/blog/news/archives/9110
 - Chartering
-  - *WebExtensions Community Group created*
+  - **WebExtensions Community Group created**
     - https://lists.w3.org/Archives/Public/public-new-work/2021Jun/0002.html
   - Multicast Community Group created
     - https://lists.w3.org/Archives/Public/public-new-work/2021Jun/0009.html
@@ -427,7 +427,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://news.ycombinator.com/item?id=27363813
   - expires 6/2 9:00 (JST)
   - すぐに復帰
-- *W3C Advisory Committee Elects Advisory Board*
+- **W3C Advisory Committee Elects Advisory Board**
   - https://www.w3.org/blog/news/archives/9082
   - Heejin Chung (Samsung Electronics)
   - Avneesh Singh (DAISY Consortium)
@@ -586,7 +586,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Cloudflare
 
-- *Syria's exam-related Internet shutdowns*
+- **Syria's exam-related Internet shutdowns**
   - https://blog.cloudflare.com/syria-exam-related-internet-shutdowns/
 - Interconnect Anywhere - Reach Cloudflare's network from 1,600+ locations
   - https://blog.cloudflare.com/interconnect-anywhere/
@@ -598,7 +598,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Minimizing ossification risk is everyone's responsibility
   - https://www.fastly.com/blog/minimizing-ossification-risk-is-everyones-responsibility
-- *Summary of June 8 outage*
+- **Summary of June 8 outage**
   - https://www.fastly.com/blog/summary-of-june-8-outage
   - 特定の構成でバグになるソフトをデプロイし 85% がダウン
   - Amazon, 楽天, GitHub など様々なサービスに影響
@@ -621,7 +621,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### セキュリティ動向
 
-- *Investigation into Google's 'Privacy Sandbox' browser changes - GOV.UK*
+- **Investigation into Google's 'Privacy Sandbox' browser changes - GOV.UK**
   - https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes
   - イギリスの公正取引委員会の調査
   - これに対する Google からの声明が blog.google のもの
@@ -631,17 +631,17 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ### 周辺動向
 
-- *The startups reinventing the web browser - Protocol - The people, power and politics of tech*
+- **The startups reinventing the web browser - Protocol - The people, power and politics of tech**
   - https://www.protocol.com/browser-company
   - The Browser Company の話
-- *The Browser Company*
+- **The Browser Company**
   - https://thebrowser.company/
   - ブラウザを新しく作ってる会社?
-- *mnot's blog: How the Next Layer of the Internet is Going to be Standardised*
+- **mnot's blog: How the Next Layer of the Internet is Going to be Standardised**
   - https://www.mnot.net/blog/2021/06/21/standards-competition-governance
 - Making JavaScript run fast on WebAssembly
   - https://bytecodealliance.org/articles/making-javascript-run-fast-on-webassembly
-- *Antitrust: Commission opens investigation into possible anticompetitive conduct by Google in the online advertising technology sector*
+- **Antitrust: Commission opens investigation into possible anticompetitive conduct by Google in the online advertising technology sector**
   - https://ec.europa.eu/commission/presscorner/detail/en/ip_21_3143
   - EU もオンライン広告に関して Google を訴える
 
