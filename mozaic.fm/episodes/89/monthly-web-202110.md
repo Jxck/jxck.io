@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 89 回のテーマは 2021 年 10 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 95
-
 
 #### Updates
 
@@ -59,7 +57,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Picking colors with the Eye Dropper API
   - PWA Summit
   - User-agent reduction origin trial
-
 
 #### Intents
 
@@ -163,12 +160,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://bit.ly/blinkintents
   - https://groups.google.com/a/chromium.org/forum/#!forum/blink-dev
 
-
 #### V8
 
 - V8 release v9.6 - V8
   - https://v8.dev/blog/v8-release-96
-
 
 #### Other
 
@@ -184,7 +179,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Migrate to Reporting API v1**
     - https://web.dev/reporting-api-migration/
     - `Report-To` (v0) から `Reporting-Endpoints` (v1) に移行する話
-    - その前は  report-uri 属性だった
+    - その前は report-uri 属性だった
   - Building a multi-select component
     - https://web.dev/building-a-multi-select-component/
   - How Renault improved its bounce and conversion rates by measuring and optimizing Largest Contentful Paint
@@ -255,11 +250,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - PWA Summit, October 6-7
   - https://pwasummit.org/
 
-
 ### Firefox 動向
 
 #### Stable: 93
-
 
 #### Updates
 
@@ -282,7 +275,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2021/09/30/these-weeks-in-firefox-issue-101/
 - These Weeks in Firefox: Issue 102 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/10/21/these-weeks-in-firefox-issue-102/
-
 
 #### Intents
 
@@ -316,7 +308,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Soft code freeze for Firefox 94 starts September 30
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/-T1zpAhVZOk
 
-
 #### Other
 
 - Hacked! Unravelling a data breach - The Mozilla Blog
@@ -330,11 +321,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Superhero passwords may be your kryptonite wherever you go online
   - https://blog.mozilla.org/en/mozilla/news/superhero-passwords-may-be-your-kryptonite-wherever-you-go-online/
 
-
 ### Safari 動向
 
 #### Stable: 15.0
-
 
 #### Updates
 
@@ -382,12 +371,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - Added the extension's icon to extension URL tabs for both app and web extensions
   - Added the extension name as the title of tabs when an app extension page and does not specify a title
 
-
 #### Position
 
 - **[webkit-dev] Request for position: WEBRTC-SVC**
   - https://lists.webkit.org/pipermail/webkit-dev/2021-October/032007.html
-
 
 #### Other
 
@@ -395,11 +382,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://trac.webkit.org/changeset/283438/webkit
   - Service Worker の push イベント実装
 
-
 ### Edge 動向
 
 #### Stable: 95
-
 
 #### Updates
 
@@ -412,9 +397,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Save time by automatically filling your addresses and credit cards with Microsoft Autofill | Windows Experience Blog**
   - https://blogs.windows.com/windowsexperience/2021/10/18/save-time-by-automatically-filling-your-addresses-and-credit-cards-with-microsoft-autofill/
 
-
 #### Chakra
-
 
 #### Other
 
@@ -433,7 +416,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2021/10/01/practical-time-machines/
 - **vscode.dev**
   - https://code.visualstudio.com/blogs/2021/10/20/vscode-dev
-
 
 ### WHATWG/W3C 動向
 
@@ -476,7 +458,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Call for Participation: Internationalization Working Group and Interest Group Charters Approved; Join i18n Groups
     - https://lists.w3.org/Archives/Public/public-new-work/2021Sep/0009.html
 
-
 #### Other
 
 - **TPAC privacy and security related meetings (fwd)**
@@ -491,7 +472,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://twitter.com/domenic/status/1444103114072727553?s=20
   - https://github.com/Jxck/html2json/pull/44
 
-
 ### TC39 動向
 
 #### Meeting
@@ -499,7 +479,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2021-10
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
-
 
 #### Proposals Diff
 
@@ -510,12 +489,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
-
 #### New Proposals
 
-
 #### Other
-
 
 ### IETF 動向
 
@@ -600,12 +576,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
-
 #### Other
 
 - **Secure Credential Transfer**
   - https://www.ietf.org/archive/id/draft-secure-credential-transfer-01.html
-
 
 ### CDN 動向
 
@@ -632,12 +606,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - A Better Internet with UN Global Compact
   - https://blog.cloudflare.com/cloudflare-and-un-global-compact/
 
-
 #### Fastly
 
-
 #### Other
-
 
 ### セキュリティ動向
 
@@ -649,7 +620,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://netflixtechblog.com/revisiting-bettertls-certificate-path-building-4c978b79843f
 - **WIP: master QUIC support by tmshort - Pull Request #8797 - openssl/openssl**
   - https://github.com/openssl/openssl/pull/8797
-
 
 ### 周辺動向
 
@@ -677,7 +647,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **The State of CSS 2021 Survey is Now Open**
   - https://dev.to/sachagreif/the-state-of-css-2021-survey-is-now-open-167n
 
-
 ### イベント
 
 - 11 月
@@ -690,7 +659,6 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://docs.google.com/spreadsheets/d/1FzxhGtmfaEP_yO8ePmWoYuvFS0qk44hQA5Mui06E9Rk/edit#gid=0
   - 25-28: TC39 86th
     - https://github.com/tc39/agendas/blob/master/2021/10.md
-
 
 ### Wrap Up
 

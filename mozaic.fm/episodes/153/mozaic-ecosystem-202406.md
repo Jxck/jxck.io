@@ -15,7 +15,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 
 (冒頭で間違えて 5 月って言ってた。)
 
-
 ## Show Note
 
 - React Conf 2024 Recap
@@ -113,7 +112,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - https://deno.com/blog/stabilize-std
   - Deno std が v1.0 にしていく
   - パッケージごとにリリースタイミングは違う
-
 
 ## Events
 

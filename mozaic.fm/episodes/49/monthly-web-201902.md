@@ -12,7 +12,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
 
 第 49 回のテーマは 2019 年 02 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -176,7 +175,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
   - **What's new in AMP, Q1 2019: Improvements to consent, videos, forms and lists**
     - https://amphtml.wordpress.com/2019/02/27/whats-new-in-amp-q1-2019-improvements-consent-videos-forms-and-lists/
 
-
 ### Firefox 動向
 
 - Stable: 65
@@ -236,7 +234,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - パフォーマンスの為に始めたがセキュリティ向上の副産物が
     - これまで 69 個の脆弱性があったが、最初から Rust で書いてたら 51 個は発生しなかった
 
-
 ### Safari 動向
 
 - Stable: 12.0.3
@@ -251,7 +248,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
       - Updated Password AutoFill to sign in automatically to websites after filling in the credentials.
     - Security and Privacy
       - **Removed support for the expired Do Not Track standard to prevent potential use as a fingerprinting variable.**
-      - **Updated the link behavior for "target=_blank" to include rel="noopener" implicitly.**
+      - **Updated the link behavior for `"target=_blank"` to include rel="noopener" implicitly.**
     - Intelligent Tracking Prevention
       - Removed support for partitioned cookies for domains with cross-site tracking capabilities. The Storage Access API now provides third-party access to cookies.
       - Improved Intelligent Tracking Prevention to limit long-term tracking based on client-side first-party cookies and to verify partitioned cache entries.
@@ -299,7 +296,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
   - IntersectionObserver in WebKit
     - https://webkit.org/blog/8582/intersectionobserver-in-webkit/
 
-
 ### Edge 動向
 
 - Stable:
@@ -340,7 +336,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - https://github.com/MicrosoftEdge/wptest
     - https://wptest.center/#/new
     - より簡単に WPTest を書くための仕組み
-
 
 ### WHATWG/W3C 動向
 
@@ -411,7 +406,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - WG メンバ外からの Contribution についての新しいライセンスを追加
     - 不明瞭な部分を明瞭に
 
-
 ### TC39 動向
 
 - **Announcing a New Management Structure for Ecma TC39**
@@ -421,7 +415,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
   - この構成を今年から試していく。(もしかしたら meeting を増やすのかも)
   - before
     - Chair: Rex Jaeschke (Bocoup)
-    - Vice Chair:  Leo Balter (Bocoup), Dan Ehrenberg (Igalia)
+    - Vice Chair: Leo Balter (Bocoup), Dan Ehrenberg (Igalia)
   - after
     - Chair: Aki Braun (PayPal)
     - Chair: Brian Terlson (Microsoft)
@@ -480,7 +474,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - 言語や地名などの翻訳を提供する API
     - Firefox が既に独自実装を持っている
     - https://firefox-source-docs.mozilla.org/intl/dataintl.html#mozintl-getlanguagedisplaynames-locales-langcodes
-
 
 ### IETF 動向
 
@@ -563,7 +556,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - https://tools.ietf.org/html/draft-andersson-mpls-spl-terminology-01
 - Other
 
-
 ### セキュリティ動向
 
 - 韓国で SNI Blocking
@@ -583,7 +575,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
   - ただし SW の仕様をよくわかってない、かつ間違いがある論文のように見える
   - おそらく Chrome チームが調査しているのでは無いか?
 
-
 ### 周辺動向
 
 - **1991: A SERVER-SIDE WEB FRAMEWORK WRITTEN IN FORTH**
@@ -599,7 +590,6 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
   - https://addyosmani.com/blog/script-priorities/
   - https://medium.com/dev-channel/javascript-loading-priorities-in-chrome-57c54cfa6672
   - Priority Hints 以前の preload や async/defer の priority の話
-
 
 ### イベント
 

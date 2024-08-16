@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 106 回のテーマは 2022 年 10 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - **Astro 1.4.0/1.5.0 Release | Astro**

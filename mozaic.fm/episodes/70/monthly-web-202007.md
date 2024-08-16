@@ -12,7 +12,6 @@ guest: [@shqld](https://twitter.com/shqld)
 
 第 70 回のテーマは 2020 年 7 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -191,7 +190,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/myUR5gyd5Js/m/iELL67NQAgAJ
   - **Prototype: jxl Content-Encoding**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/4hFGYxBRIBU/m/dUgy9SUVAgAJ
-    - JPEG  XL
+    - JPEG XL
   - Implement: Web Share API (Windows & Chrome OS)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/PZkIB8wBTwQ/m/qfX1At8UAgAJ
   - **Prototype: Storage Pressure Event**
@@ -236,7 +235,6 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blog.amp.dev/2020/07/06/contributions-to-web-platform-interoperability-first-half-of-2020/
   - **Official Google Webmaster Central Blog: Prepare for mobile-first indexing (with a little extra time)**
     - https://webmasters.googleblog.com/2020/07/prepare-for-mobile-first-indexing-with.html
-
 
 ### Firefox 動向
 
@@ -306,7 +304,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - **Reducing TLS Certificate Lifespans to 398 Days - Mozilla Security Blog**
     - https://blog.mozilla.org/security/2020/07/09/reducing-tls-certificate-lifespans-to-398-days/
     - 証明書の期限を 825 日から 398 日に短くする 3 つの理由
-      1. 長いとインシデントがあっても対応が遅れる。証明書が  5 年だったころ見つかった MD5 の問題を無くすのに 5 年かかり、最大 3 年だった SHA1  を無くすのに 3 年かかった。
+      1. 長いとインシデントがあっても対応が遅れる。証明書が 5 年だったころ見つかった MD5 の問題を無くすのに 5 年かかり、最大 3 年だった SHA1 を無くすのに 3 年かかった。
       2. 期限が長いと、侵害されたときに、 MITM できる期間が長くなる。
       3. ドメインを手放しても証明書を保持できる。ドメインオーナーが変わっても前のオーナーが持っていた証明書は切れるまで有効なので MITM できる。また SAN に自分が所有してないドメインがある証明書があった場合、それを失効すると全てのドメインに影響が出るため DoS に使える。
     - mozilla のルートストアポリシーを更新してこれを適用し、 2020/9/1 には適用する計画らしい。
@@ -318,7 +316,6 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blog.mozilla.org/addons/2020/07/24/extensions-in-firefox-79/
   - Call for Participants - W3C/OGC workshop series on Maps for the Web
     - https://groups.google.com/g/mozilla.dev.platform/c/dM5MQY8H9Co
-
 
 ### Safari 動向
 
@@ -378,7 +375,6 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://changelog.com/podcast/400
     - Safari の人が Podcast で Safari14 の話をしている
 
-
 ### Edge 動向
 
 - Stable:
@@ -401,7 +397,6 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blogs.windows.com/msedgedev/2020/07/22/multitasking-improvements-windows-10-microsoft-edge/
   - What's new in Microsoft Edge - July 2020 / Microsoft Inspire Edition
     - https://blogs.windows.com/windowsexperience/2020/07/21/whats-new-in-microsoft-edge-july-2020-microsoft-inspire-edition/
-
 
 ### WHATWG/W3C 動向
 
@@ -428,7 +423,6 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://bocoup.com/blog/introducing-the-web-platform-contribution-guide
     - W3C/WHATWG への貢献のしかたガイド
     - 5 月の取りこぼし
-
 
 ### TC39 動向
 
@@ -462,7 +456,6 @@ guest: [@shqld](https://twitter.com/shqld)
   - https://github.com/tc39/proposal-await.ops
 - Other
 
-
 ### IETF 動向
 
 - IETF108
@@ -473,35 +466,35 @@ guest: [@shqld](https://twitter.com/shqld)
     - no meeting
   - **quicwg**
     - https://github.com/quicwg/wg-materials
-    - agenda:  https://github.com/quicwg/wg-materials/blob/master/ietf108/agenda.md
+    - agenda: https://github.com/quicwg/wg-materials/blob/master/ietf108/agenda.md
     - minutes: https://codimd.ietf.org/notes-ietf-108-quic
-    - video:   https://www.youtube.com/watch?v=Qr9sZlF4SbI
+    - video: https://www.youtube.com/watch?v=Qr9sZlF4SbI
   - **webtrans**
     - https://github.com/DavidSchinazi/webtrans-wg-materials
-    - agenda:  https://www.ietf.org/proceedings/108/agenda/agenda-108-webtrans-01
+    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-webtrans-01
     - minutes: https://codimd.ietf.org/notes-ietf-108-webtrans
-    - video:   https://www.youtube.com/watch?v=1mhsaxGk_VI&t=336s
+    - video: https://www.youtube.com/watch?v=1mhsaxGk_VI&t=336s
   - tlswg
     - https://github.com/tlswg/wg-materials
-    - agenda:  https://www.ietf.org/proceedings/108/agenda/agenda-108-tls-03
+    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-tls-03
     - minutes: https://codimd.ietf.org/notes-ietf-108-tls
-    - video:   https://www.youtube.com/watch?v=LF1Kc5PHAng
+    - video: https://www.youtube.com/watch?v=LF1Kc5PHAng
   - **wpack**
-    - agenda:  https://www.ietf.org/proceedings/108/agenda/agenda-108-wpack-01
+    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-wpack-01
     - minutes: https://codimd.ietf.org/notes-ietf-108-wpack
-    - video:   https://www.youtube.com/watch?v=Hezs0oifBbc
+    - video: https://www.youtube.com/watch?v=Hezs0oifBbc
   - privacypass
-    - agenda:  https://www.ietf.org/proceedings/108/agenda/agenda-108-privacypass-03
+    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-privacypass-03
     - minutes: https://codimd.ietf.org/notes-ietf-108-privacypass
-    - video:   https://www.youtube.com/watch?v=U5CZ62RmXJA
+    - video: https://www.youtube.com/watch?v=U5CZ62RmXJA
   - dispatch
-    - agenda:  https://www.ietf.org/proceedings/108/agenda/agenda-108-dispatch-02
+    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-dispatch-02
     - minutes: https://codimd.ietf.org/notes-ietf-108-dispatch
-    - video:   https://www.youtube.com/watch?v=KDN7SamlAn0
+    - video: https://www.youtube.com/watch?v=KDN7SamlAn0
   - secdispatch
-    - agenda:  https://www.ietf.org/proceedings/108/agenda/agenda-108-secdispatch-02
+    - agenda: https://www.ietf.org/proceedings/108/agenda/agenda-108-secdispatch-02
     - minutes: https://codimd.ietf.org/notes-ietf-108-secdispatch
-    - video:   https://www.youtube.com/watch?v=V2C3v21m7nU
+    - video: https://www.youtube.com/watch?v=V2C3v21m7nU
 - RFC
 - IETF Last Call
 - WG Last Call
@@ -564,7 +557,6 @@ guest: [@shqld](https://twitter.com/shqld)
   - HTTP/3 logo | daniel.haxx.se
     - https://daniel.haxx.se/blog/2020/08/01/http-3-logo/
 
-
 ### セキュリティ動向
 
 - SSL サーバ証明書の有効期間を短縮するという決定に関する続報 | グローバルサインブログ
@@ -587,7 +579,6 @@ guest: [@shqld](https://twitter.com/shqld)
     - TCP handshake の完了後
     - 全ポート
     - 最初のブロック後 120~180 秒間くらい続く
-
 
 ### 周辺動向
 
@@ -629,7 +620,6 @@ guest: [@shqld](https://twitter.com/shqld)
 - **Introducing Rome**
   - https://romefrontend.dev/blog/2020/08/08/introducing-rome.html
 
-
 ### イベント
 
 - 7 月
@@ -651,7 +641,6 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://www.ietf.org/how/meetings/109/
   - 17-19: BlinkOn
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/zNDLekIrSQE
-
 
 ### Wrap Up
 

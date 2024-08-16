@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 150 回のテーマは 2024 年 5 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - React 19 Beta - React
@@ -234,7 +233,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://svelte.dev/blog/svelte-5-release-candidate
 - Introducing TypeSpec: A New Language for API-Centric Development | TypeSpec
   - https://typespec.io/blog/2024-04-25-introducing
-
 
 ## Events
 

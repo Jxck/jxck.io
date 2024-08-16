@@ -18,7 +18,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 Session 2 は、会場限定のコンテンツのため、本編には含まれていません。
 
-
 ## Show Note
 
 - Session 1: state of mozaic.fm

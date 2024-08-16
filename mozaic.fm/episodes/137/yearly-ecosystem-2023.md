@@ -15,7 +15,6 @@ guest: [@koba04](https://twitter.com/koba04)
 
 第 137 回のテーマは 2023 年を振り返る Yearly Ecosystem です。
 
-
 ## Show Note
 
 ### 今年のキーワード
@@ -67,7 +66,6 @@ guest: [@koba04](https://twitter.com/koba04)
   - State Management
   - Byte Dance をよく見るように
 
-
 ### 来年のキーワード
 
 - Vite の覇権を Turbopack, RSPack が奪えるか?
@@ -81,7 +79,6 @@ guest: [@koba04](https://twitter.com/koba04)
 - ESLint to flat config or Biome
 - AI driven FE Development
 - CSS の新しい方法論
-
 
 ### 1 月
 
@@ -118,7 +115,7 @@ guest: [@koba04](https://twitter.com/koba04)
     - https://turbo.build/pack/docs/roadmap
 - Rome に関わってたエンジニアがやめたらしい
   - https://twitter.com/MichaReiser/status/1613474278808162304
-  - これにより?  Rome の開発が遅れ気味な雰囲気
+  - これにより? Rome の開発が遅れ気味な雰囲気
 - Runtime Keys
   - https://runtime-keys.proposal.wintercg.org/
   - さまざまな Runtime 環境を表す key を定める仕様
@@ -154,7 +151,6 @@ guest: [@koba04](https://twitter.com/koba04)
 - Rename experimental useEvent to useEffectEvent by sebmarkbage · Pull Request #25881 · facebook/react
   - https://github.com/facebook/react/pull/25881
   - useEvent は useEffectEvent に名前が変わる
-
 
 ### 2 月
 
@@ -239,7 +235,6 @@ guest: [@koba04](https://twitter.com/koba04)
   - CoffeeScript の TS 版みたいなもの
   - 今年どうなるか注目
 
-
 ### 3 月
 
 - rspack
@@ -299,7 +294,6 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://openai.com/research/gpt-4
   - https://www.bing.com/search?toWww=1&redig=62629AE8D1064E45AC7AF348327DDDDB&q=Bing+AI&showconv=1
   - https://twitter.com/towernter/status/1635950636935049219
-
 
 ### 4 月
 
@@ -405,7 +399,6 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://twitter.com/vercel/status/1643270051049660417
   - 謎告知
 
-
 ### 5 月
 
 - Vercel のイベントで Vercel や Next.js のアップデート情報が出た
@@ -489,7 +482,6 @@ guest: [@koba04](https://twitter.com/koba04)
 - Redwood v5
   - https://community.redwoodjs.com/t/redwood-v5-0-0-is-now-available/4830/1
   - React 18 対応など
-
 
 ### 6 月
 
@@ -604,7 +596,6 @@ guest: [@koba04](https://twitter.com/koba04)
       - Should the connection limit be applied to this request? (i.e. is the domain listed in --ignore-connections-limit)?
       - Should access to file: be allowed? (We do some hacks here to allow service workers to be loaded in file:// domains; arguably we should not do this)
 
-
 ### 7 月
 
 - Agenda | Config 2023
@@ -667,7 +658,6 @@ guest: [@koba04](https://twitter.com/koba04)
   - Symbols as WeakMap keys
 - Announcing typescript-eslint v6
   - https://typescript-eslint.io/blog/announcing-typescript-eslint-v6/
-
 
 ### 8 月
 
@@ -737,7 +727,6 @@ guest: [@koba04](https://twitter.com/koba04)
 - How Turborepo is porting from Go to Rust - Vercel
   - https://vercel.com/blog/how-turborepo-is-porting-from-go-to-rust
 
-
 ### 9 月
 
 - biomejs
@@ -787,7 +776,6 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://github.com/electron/electron/issues/21457
 - マイクロソフト、 Web アプリテストの自動化サービス「Microsoft Playwright Testing」プレビューを開始
   - https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing.html
-
 
 ### 10 月
 
@@ -858,7 +846,6 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://github.com/aidenybai/pattycake
 - Announcing Deno Queues
   - https://deno.com/blog/queues
-
 
 ### 11 月
 

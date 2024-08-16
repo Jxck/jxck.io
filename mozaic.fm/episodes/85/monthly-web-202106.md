@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 85 回のテーマは 2021 年 6 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 91
-
 
 #### Updates
 
@@ -43,7 +41,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Web Bluetooth Manufacturer Data Filter
   - Deprecations and Removals
     - Payment Handlers for Standardized Payment Method Identifiers
-
 
 #### Intents
 
@@ -95,7 +92,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Implement and Ship: Block ports 989 and 990**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3XftxnFhAyI/m/RGNlVV8_AAAJ
   - ALPACA Attack の対策として FTP ポートを落とす
-
 - **Prototype: COOP same-origin-allow-popups-plus-coep**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/cC4T4LGdRws/m/IHxDNQ0mAAAJ
   - crossOriginIsolated でありながら popup だけにはアクセスできる
@@ -131,9 +127,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 1OT: 4 milestone 16 week
   - CAP: 9 milestone 36 week
 
-
 #### V8
-
 
 #### Other
 
@@ -208,11 +202,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
 
-
 ### Firefox 動向
 
 #### Stable: 89
-
 
 #### Updates
 
@@ -238,7 +230,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - These Weeks in Firefox: Issue 96 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/06/23/these-weeks-in-firefox-issue-96/
 
-
 #### Intents
 
 - Ship: CSS `tab-size` property
@@ -249,7 +240,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/oWc1K4Uur2Y
 - Ship: CSS 'font-synthesis: small-caps'
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/qNG2YLxbmFs
-
 
 #### Other
 
@@ -270,11 +260,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Modern, clean new Firefox clears the way to all you need online
   - https://blog.mozilla.org/en/mozilla/news/modern-clean-new-firefox-clears-the-way-to-all-you-need-online/
 
-
 ### Safari 動向
 
 #### Stable: 14.1
-
 
 #### Updates
 
@@ -326,7 +314,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Safari 15 Beta Release Notes | Apple Developer Documentation**
   - https://developer.apple.com/documentation/Safari-Release-Notes/safari-15-beta-release-notes
 
-
 #### Position
 
 - [webkit-dev] Request for position: EME MediaKeySession Closed Reason
@@ -340,7 +327,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - [webkit-dev] Request For Position on CSS containment
   - https://lists.webkit.org/pipermail/webkit-dev/2021-June/031913.html
 
-
 #### Other
 
 - Apple advances its privacy leadership with iOS 15, iPadOS 15, macOS Monterey, and watchOS 8 - Apple
@@ -350,11 +336,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - MotionMark 1.2
   - https://webkit.org/blog/11685/motionmark-1-2/
 
-
 ### Edge 動向
 
 #### Stable: 91
-
 
 #### Updates
 
@@ -372,9 +356,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2021/06/02/improving-font-rendering-in-microsoft-edge/
   - コントラスト強化とガンマ補正の修正
 
-
 #### Chakra
-
 
 #### Other
 
@@ -387,7 +369,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Windows 11 の仕様 - Microsoft
   - https://www.microsoft.com/ja-jp/windows/windows-11-specifications
   - IE11 は Windows 11 ではデフォルト無効に
-
 
 ### WHATWG/W3C 動向
 
@@ -420,7 +401,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Proposed W3C Charter: Devices and Sensors Working Group
     - https://lists.w3.org/Archives/Public/public-new-work/2021Jun/0016.html
 
-
 #### Other
 
 - 証明書有効期限切れで w3.org が落ちる
@@ -442,7 +422,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Tzviya Siegman (Wiley)
   - David Singer (Apple).
 
-
 ### TC39 動向
 
 #### ES2021
@@ -450,14 +429,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - ECMAScript 2021
   - https://www.ecma-international.org/publications-and-standards/standards/ecma-262/
 
-
 #### Meeting
 
 - 2021-05
   - https://github.com/tc39/agendas/blob/master/2021/05.md
   - https://github.com/tc39/notes/tree/master/meetings/2021-05
   - https://spidermonkey.dev/blog/2021/06/15/tc39.html
-
 
 #### Proposals Diff
 
@@ -468,9 +445,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
-
 #### New Proposals
-
 
 #### Other
 
@@ -478,7 +453,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://tc39er.us/posts/episode-12-daniel-ehrenberg/
 - stream: implement WHATWG streams by jasnell · Pull Request #39062 · nodejs/node
   - https://github.com/nodejs/node/pull/39062
-
 
 ### IETF 動向
 
@@ -578,9 +552,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -592,7 +564,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/interconnect-anywhere/
 - Introducing Zero Trust Private Networking
   - https://blog.cloudflare.com/private-networking/
-
 
 #### Fastly
 
@@ -606,7 +577,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - How we vetted Cranelift for secure sandboxing in Compute@Edge
   - https://www.fastly.com/blog/how-we-vetted-cranelift-for-secure-sandboxing-in-compute-edge
 
-
 #### Other
 
 - AKAMAI の PROLEXIC DDOS サービスにおける影響に関する最新情報 (ステータス: 解決済) - Akamai Japan Blog
@@ -618,7 +588,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - (直前の Fastly もふまえ)
   - > 問題が相次いだことで、経済活動で必要不可欠なオンラインプラットフォームの安定性や、ほぼ無名の少数の企業がインターネットの機能維持に重要な役割を担っている実態が露呈し、注目が集まっている。
 
-
 ### セキュリティ動向
 
 - **Investigation into Google's 'Privacy Sandbox' browser changes - GOV.UK**
@@ -627,7 +596,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - これに対する Google からの声明が blog.google のもの
 - Hack Patch!: Trusted Types の概念と背景
   - https://shhnjk.blogspot.com/2021/06/concept-and-background-of-trusted-types.html
-
 
 ### 周辺動向
 
@@ -645,7 +613,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://ec.europa.eu/commission/presscorner/detail/en/ip_21_3143
   - EU もオンライン広告に関して Google を訴える
 
-
 ### イベント
 
 - 7 月
@@ -662,7 +629,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - 10/18-22 October: Breakout sessions
     - 10/25-29 October: Groups and Joint Meetings
     - https://lists.w3.org/Archives/Public/public-webrtc/2021Apr/0027.html
-
 
 ### Wrap Up
 

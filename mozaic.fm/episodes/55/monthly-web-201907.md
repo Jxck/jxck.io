@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 55 回のテーマは 2019 年 7 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -164,7 +163,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - draft-rep-wg-topic-00 - Robots Exclusion Protocol
     - https://tools.ietf.org/html/draft-rep-wg-topic-00
 
-
 ### Firefox 動向
 
 - Stable: 68.0.1
@@ -290,7 +288,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Firefox Reality for Oculus Quest
     - https://blog.mozvr.com/firefox-reality-for-oculus-quest/
 
-
 ### Safari 動向
 
 - Stable: 12.1
@@ -315,7 +312,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **WebDriver is Coming to Safari in iOS 13**
     - https://webkit.org/blog/9395/webdriver-is-coming-to-safari-in-ios-13/
 - Other
-
 
 ### Edge 動向
 
@@ -343,7 +339,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Livin' on the Edge: Dude Where's My Fix?!? | text/plain**
     - https://textslashplain.com/2019/07/17/finding-where-fixes-landed-in-chrome-edge-chromium/
     - OmahaProxy
-
 
 ### WHATWG/W3C 動向
 
@@ -382,7 +377,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Call for Exclusions: WebAssembly JavaScript Interface
     - https://lists.w3.org/Archives/Public/public-webassembly/2019Jul/0001.html
 
-
 ### TC39 動向
 
 - Meeting 2019/6
@@ -419,11 +413,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - Facebook 製の JS エンジン
     - ReactNative on Android を効率よく実行することに特化している
     - 省メモリ、省バンドルサイズ、 TTI の削減
-    - 特に TTI とメモリを重視するために、  JIT をやめ AOT を導入
+    - 特に TTI とメモリを重視するために、 JIT をやめ AOT を導入
       - JIT を入れると高速化でききるが起動時に WormUP が必要になり TTI が低下する
       - AOT によりビルドプロセスで最適化可能
       - ベンチマークによっては遅くなるが、目的に特化して計測するとこの方が改善した
-
 
 ### IETF 動向
 
@@ -510,7 +503,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-kuehlewind-update-tag-00
 - Other
 
-
 ### セキュリティ動向
 
 - 7pay の不正利用についてまとめてみた - piyolog
@@ -585,7 +577,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - DarkMatter は UAE で盗聴目的のスパイウェアを作っているという黒い噂の耐えない会社
   - 証明書を発行しているが、その発行履歴自体はグリーン
   - これを Mozilla が信用するかどうかで議論していた
-  - 「Mozilla  ユーザにとってリスクが高いので信用しない」という方向に
+  - 「Mozilla ユーザにとってリスクが高いので信用しない」という方向に
 - Found certificate that violated CA/B Forum BR issued by Korea Government GPKI
   - https://groups.google.com/a/chromium.org/forum/#!topic/security-dev/jhFzTokfpLM
   - 韓国の GPKI が、不正な証明書を発行している
@@ -611,7 +603,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Android - Cloudflare Resolver
     - https://developers.cloudflare.com/1.1.1.1/setting-up-1.1.1.1/android/
 
-
 ### 周辺動向
 
 - **Chrome's privacy changes are a humbling reminder for subscription publishers - Digiday**
@@ -635,7 +626,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Object の深さ、要素数を変えた時の postMessage への影響について
   - シリアライズと転送のコストは、要素の大きさと相関している
   - Spector/Meltdown で `performance.now()` が制限されてるブラウザではうまく測れない
-
 
 ### イベント
 

@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 132 回のテーマは 2023 年 9 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 117
-
 
 #### Updates
 
@@ -70,7 +68,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Emulate prefers-reduced-transparency media feature
   - Lighthouse 11
   - Accessibility improvements
-
 
 #### Intents
 
@@ -257,7 +254,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - We've opened up more space for Lightning Talks
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/V8B18YjODy8
 
-
 #### Other
 
 - web.dev
@@ -306,11 +302,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - TenFourFox Development: Google ending Basic HTML support for Gmail in 2024
       - https://tenfourfox.blogspot.com/2023/09/google-ending-basic-html-support-for.html
 
-
 ### Firefox 動向
 
 #### Stable: 118.0
-
 
 #### Updates
 
@@ -321,7 +315,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - `<search>`
   - CSS `abs()`, `sign()`, `round()`, `mod()`, `rem()`, `pow()`, `sqrt()`, `hypot()`, `log()`, `exp()`
   - ORB
-
 
 #### Intents
 
@@ -368,7 +361,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
-
 #### Newsletter
 
 - Engineering Effectiveness Newsletter (Summer 2023 Edition)
@@ -378,12 +370,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - Firefox WebDriver Newsletter - 118 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-118/
 
-
 #### MDN / Open Web Docs
 
 - OWD at TPAC Sevilla
   - https://openwebdocs.org/content/posts/tpac-sevilla/
-
 
 #### Standard Position
 
@@ -399,7 +389,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - MediaStreamTrack Statistics #895
   - **URLPattern API (positive) #893**
   - **Service Worker Static Routing API #894**
-
 
 #### Other
 
@@ -421,11 +410,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Heads-up: unshipping plugin-container in Firefox 119 (Linux/Unix but not Mac or Windows)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/yOb2valM9Po
 
-
 ### Safari 動向
 
 #### Stable: 17.0
-
 
 #### Updates
 
@@ -567,7 +554,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - ネストされたブロックの後に宣言がある場合どうするか poll
     - ネストされたブロック後の宣言を hoist するかしないか
 
-
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -588,17 +574,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - **Request for position: dialogmodaltarget attribute #213**
     - MathML colspan attribute for the mtd element #126
 
-
 #### Other
-
 
 ### Edge 動向
 
 #### Stable: 117
 
-
 #### Updates
-
 
 #### Other
 
@@ -610,7 +592,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2023/09/15/security-tradeoffs/
 - A new wave of innovation with Edge, your AI-powered browser | Windows Experience Blog
   - https://blogs.windows.com/windowsexperience/2023/09/22/a-new-wave-of-innovation-with-edge-your-ai-powered-browser/
-
 
 ### WHATWG/W3C 動向
 
@@ -654,7 +635,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/WebKit/explainers/tree/main/DeclarativeWebPush
   - Service Worker を使わないプッシュ通知
 
-
 #### Draft
 
 - Recommendation
@@ -692,7 +672,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Observable incubation from Chris Wilson
     - https://lists.w3.org/Archives/Public/public-new-work/2023Sep/0013.html
 
-
 #### Other
 
 - **Specification Acceptance Stages · Issue #290 · whatwg/meta**
@@ -704,36 +683,29 @@ guest: [@myakura](https://twitter.com/myakura)
 - Interop 2024 Call For Proposals - Bocoup
   - https://bocoup.com/blog/interop-2024-call-for-proposals
 
-
 ### TC39 動向
 
 #### Meeting
 
 - Meeting Note が公開された時だけやる、それ以外はやらない。
 
-
 #### Proposals Diff
 
-
 #### New Proposals
-
 
 #### Other
 
 - Web incompatibility discovered in theathletic.com · Issue #286 · tc39/proposal-iterator-helpers
   - https://github.com/tc39/proposal-iterator-helpers/issues/286
 
-
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
-
 
 #### Meeting
 
 - 2023-09-07 Meeting
   - https://github.com/wintercg/admin/issues/55
-
 
 ### IETF 動向
 
@@ -775,7 +747,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
-
 #### Other
 
 - Last Call: draft-ietf-alto-oam-yang-12.txt (YANG Data Models for the Application-Layer Traffic Optimization (ALTO) Protocol) to Proposed Standard
@@ -805,7 +776,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Protocol Action: 'X.509 Certificate Extended Key Usage (EKU) for 5G Network Functions' to Proposed Standard (draft-ietf-lamps-nf-eku-05.txt)
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/paF-Xlez5yZKfSq6iiA9un-3zpY/
 
-
 ### CDN 動向
 
 #### Cloudflare
@@ -821,7 +791,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Encrypted Client Hello - the last puzzle piece to privacy**
   - https://blog.cloudflare.com/announcing-encrypted-client-hello/
 
-
 #### Fastly
 
 - **Announcing Certainly: Fastly's own TLS Certification Authority | Fastly**
@@ -829,12 +798,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - How we built a better TLS certification authority | Fastly
   - https://www.fastly.com/blog/how-we-built-a-better-tls-certification-authority
 
-
 #### Other
 
 - A QUIC Shutdown: DoS Vulnerability in Windows Servers Running SMB over QUIC | Akamai
   - https://www.akamai.com/blog/security-research/2023/sep/smb-over-quic-dos-windows-servers
-
 
 ### セキュリティ動向
 
@@ -861,7 +828,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 「ドコモ口座」のドメイン、ドコモが取り戻す 出品の経緯を GMO 含め聞いた(1/2 ページ) - ITmedia NEWS
   - https://www.itmedia.co.jp/news/articles/2309/26/news117.html
 
-
 ### 周辺動向
 
 - **State of HTML**
@@ -872,7 +838,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://kidachi.kazuhi.to/blog/archives/042166.html
 - The Servo project is joining Linux Foundation Europe | Igalia
   - https://www.igalia.com/2023/09/07/The-Servo-project-is-joining-Linux-Foundation-Europe.html
-
 
 ### イベント
 
@@ -894,7 +859,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 27-30: TC39 meeting SF (remote)
 - 12 月
   - 16: TBD
-
 
 ### Wrap Up
 

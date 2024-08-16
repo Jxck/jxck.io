@@ -13,7 +13,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 
 第 118 回のテーマは 2023 年 4 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Next.js
@@ -115,7 +114,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - Vercel
   - https://twitter.com/vercel/status/1643270051049660417
   - 謎告知
-
 
 ## Events
 

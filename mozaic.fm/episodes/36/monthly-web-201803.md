@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 36 回のテーマは 2018 年 3 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -185,7 +184,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Chrome も ITP をやるべきではないかという提案
     - 提案したのは Robin Berjon(W3C で SVG やデバイス API や HTML5 をやってた人)
 
-
 ### Firefox 動向
 
 - Stable: 59
@@ -275,7 +273,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://twitter.com/ehsanakhgari/status/972224912634064896
     - ページ内ポップアップのブロックをできないか検討していて、サンプルになるようなサイトを募集中
 
-
 ### Safari 動向
 
 - Stable: 11.1
@@ -319,7 +316,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Intelligent Tracking Prevention 1.1**
     - https://webkit.org/blog/8142/intelligent-tracking-prevention-1-1/
     - double keying された Cookie が永続されなくなった
-    - purge 待ちの Cookie がある場合は、新しい Cookie が付与できず、 Request  にも乗らなくなった
+    - purge 待ちの Cookie がある場合は、新しい Cookie が付与できず、 Request にも乗らなくなった
       - 付与した Cookie がすぐ消えるとサーバが混乱するから
   - **Protecting Against HSTS Abuse**
     - https://webkit.org/blog/8146/protecting-against-hsts-abuse/
@@ -331,7 +328,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://webkit.org/blog/8170/clipboard-api-improvements/
     - DataTransfer の互換性向上や、ディレクトリアップロードなども対応
     - Safari 11.1 で ship
-
 
 ### Edge 動向
 
@@ -373,7 +369,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/
     - https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/0.1/
     - Chrome DevTools Protocol のサポート開始
-
 
 ### WHATWG/W3C 動向
 
@@ -439,7 +434,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - オートコレクト機能を制御するための属性
     - iOS の独自実装を標準化したい模様
 
-
 ### TC39 動向
 
 - Proposals Diff
@@ -500,7 +494,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - domenic/package-name-maps
     - https://github.com/domenic/package-name-maps
     - `import foo from "bar"` と書いたときに参照するものを package name maps に定義し、それを読み込むための仕組みを定義
-
 
 ### IETF 動向
 
@@ -579,14 +572,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/0212.html
     - https://docs.google.com/presentation/d/15VxWQuh_7keJfeRYkwHhXawI11pv7rIT8CJ09jEmsPo/
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JanMar/att-0212/HTTP_Signed_Exchange_side_meeting_notes.txt
-    - 1) Bundles: IETF でデザインの議論をする ML を作る
-    - 2) Same-origin signatures like for SRI: やる人がでるまでとりあえず作業予定はなし
-    - 3) Cross-origin trust: IAB+W3C TAG(+WHATWG?) と publishers で議論する Workshop
+    - 1. Bundles: IETF でデザインの議論をする ML を作る
+    - 2. Same-origin signatures like for SRI: やる人がでるまでとりあえず作業予定はなし
+    - 3. Cross-origin trust: IAB+W3C TAG(+WHATWG?) と publishers で議論する Workshop
     - Mozilla は Signed HTTP Exchanges については **harmful** となっている
     - **AMP チームがアナウンスしたことが WebPackaging ではできない可能性が出て来た**
   - Updates on TCP Fast Open deployment
     - https://datatracker.ietf.org/meeting/101/materials/slides-101-tcpm-updates-on-tcp-fast-open-deployments-01
-
 
 ### 周辺動向
 
@@ -640,7 +632,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - ESM の最適化はこれからという話
 - **The Alliance for Open Media Kickstarts Video Innovation Era with "AV1" Release**
   - https://aomedia.org/the-alliance-for-open-media-kickstarts-video-innovation-era-with-av1-release/
-
 
 ### イベント
 

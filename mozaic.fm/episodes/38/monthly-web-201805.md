@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 38 回のテーマは 2018 年 5 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -261,7 +260,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - [blog](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html) この話が canary に入った
     - https://twitter.com/yoavweiss/status/1001533462971650048
 
-
 ### Firefox 動向
 
 - Stable: 60
@@ -396,7 +394,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/FirefoxNightly/status/1001104178146611202
     - Shadow DOM が NIghtly で有効に
 
-
 ### Safari 動向
 
 - Stable: 11.1
@@ -426,7 +423,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://trac.webkit.org/changeset/232226/webkit
     - Changeset 232404 in webkit - [JSC] Add Symbol.prototype.description getter
     - https://trac.webkit.org/changeset/232404/webkit
-
 
 ### Edge 動向
 
@@ -508,7 +504,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Part 3: Turning Off TLS 1.0/1.1 - You Had Me At EHLO ...
       - https://blogs.technet.microsoft.com/exchange/2018/05/23/exchange-server-tls-guidance-part-3-turning-off-tls-1-01-1/
 
-
 ### WHATWG/W3C 動向
 
 - Recommendation
@@ -574,7 +569,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Judy Zhu (Alibaba).
     - 退任: Tantek Ç elik (Mozilla) and Chris Wilson (Google)
 
-
 ### TC39 動向
 
 - agendas/05.md at master · tc39/agendas
@@ -634,7 +628,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tc39/proposals/commit/3e2539404469c2db2bdfa9b28200d922f6e17639
     - https://twitter.com/mathias/status/999101901697363969
 
-
 ### IETF 動向
 
 - RFC
@@ -685,7 +678,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-housley-suit-cose-hash-sig-00
 - Other
 
-
 ### セキュリティ動向
 
 - SSL/TLS 暗号設定ガイドライン 第 2.0 版の公開
@@ -708,7 +700,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - サイバーセキュリティに関するグローバル動向四半期レポート(2018 年 1 月〜 3 月)を公開 | NTT データ
   - https://www.nttdata.com/jp/ja/news/information/2018/2018050701.html
   - 17 年度 Q4 のサマリ
-
 
 ### 周辺動向
 
@@ -739,7 +730,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Apple のセキュリティエンジニアが`<ad>`要素はどうかなあとツイート
   - `<ad src="https://ad.example" type="image" size="..." audience="fashion, vegan, comics" impression-report-src="https://ad.example/impression"></ad>`
   - クレデンシャルとリファラは送られず、レポートに origin だけ送られる
-
 
 ### イベント
 

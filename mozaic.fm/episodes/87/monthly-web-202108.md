@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 87 回のテーマは 2021 年 8 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 92
-
 
 #### Updates
 
@@ -33,7 +31,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Remove 3DES in TLS
   - WebAssembly cross-origin module sharing
     - same-site も cross-origin として扱うように
-
 
 #### Intents
 
@@ -121,7 +118,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Remove: `-internal-autofill-previewed` and `-internal-autofill-selected`
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/rCq-89BfJs0
 
-
 #### V8
 
 - **V8 release v9.3 · V8**
@@ -131,7 +127,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Error cause
   - Untrusted code mitigations disabled on Android
   - V8 API
-
 
 #### Other
 
@@ -190,11 +185,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - http://ppl.jssst.or.jp/index.php?ss2021
   - PPL サマースクール 2021 「JavaScript 処理系と Chrome ブラウザの実装技術」
 
-
 ### Firefox 動向
 
 #### Stable: 91.0.1
-
 
 #### Updates
 
@@ -218,7 +211,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.mozilla.org/en-US/security/advisories/mfsa2021-37/
   - Firefox 91.0.1 で入ったセキュリティ修正
   - HTTP/3 でヘッダ内の改行がヘッダを分割してしまうバグがあった
-
 
 #### Intents
 
@@ -244,7 +236,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Unship: KeyboardEvent.initKeyEvent
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/NL-dqM621JM
 
-
 #### Other
 
 - An update from Firefox
@@ -260,11 +251,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Spring cleaning MDN: Part 2 - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/08/spring-cleaning-mdn-part-2/
 
-
 ### Safari 動向
 
 #### Stable: 14.1.2
-
 
 #### Updates
 
@@ -292,7 +281,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - New Features in iOS & iPadOS 15 beta 6
   - > The bottom tab bar has been redesigned to appear below page content. An option to show the address bar at the top is also available. (81118141)
 
-
 #### Position
 
 - Request for position: supports(`<font-technology>`) extended syntax for @font-face
@@ -302,23 +290,18 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://lists.webkit.org/pipermail/webkit-dev/2021-August/031936.html
   - positive
 
-
 #### Other
 
 - 2021 WebKit Contributors Meeting - Save the Date (9/27, 28)
   - https://lists.webkit.org/pipermail/webkit-dev/2021-August/031933.html
 
-
 ### Edge 動向
 
 #### Stable: 92
 
-
 #### Updates
 
-
 #### Chakra
-
 
 #### Other
 
@@ -330,7 +313,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2021/08/18/enhancing-inking-on-the-web/
 - CSS module scripts: `import` stylesheets like JavaScript modules
   - https://blogs.windows.com/msedgedev/2021/08/17/css-module-scripts-import-stylesheets-like-javascript-modules/
-
 
 ### WHATWG/W3C 動向
 
@@ -359,9 +341,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Call for Participation: Accessible Platform Architectures Working Group Charter Approved; Join APA WG
     - https://lists.w3.org/Archives/Public/public-new-work/2021Aug/0004.html
 
-
 #### Other
-
 
 ### TC39 動向
 
@@ -370,7 +350,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2021-07
   - https://github.com/tc39/agendas/blob/master/2021/07.md
   - https://github.com/tc39/notes/tree/master/meetings/2021-07
-
 
 #### Proposals Diff
 
@@ -381,15 +360,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
-
 #### New Proposals
-
 
 #### Other
 
 - JavaScript needs more helper functions for iteration (map, filter, etc.)
   - https://2ality.com/2021/08/iteration-helpers.html
-
 
 ### IETF 動向
 
@@ -568,20 +544,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - WiSH
   - Gnap
 
-
 #### Other
-
 
 ### CDN 動向
 
 #### Cloudflare
 
-
 #### Fastly
 
-
 #### Other
-
 
 ### セキュリティ動向
 
@@ -591,7 +562,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.facebook.com/business/news/building-for-the-future
 - **Dutch government to stop issuing TLS certs because of ever-complicated standards - The Record by Recorded Future**
   - https://therecord.media/dutch-government-to-stop-issuing-tls-certs-because-of-ever-complicated-standards/
-
 
 ### 周辺動向
 
@@ -616,7 +586,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Safari isn't protecting the web, it's killing it | HTTP Toolkit
     - https://httptoolkit.tech/blog/safari-is-killing-the-web/
 
-
 ### イベント
 
 - 9 月
@@ -634,7 +603,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 11 月
   - 6-12: IETF112 Online
     - https://www.ietf.org/how/meetings/112/
-
 
 ### Wrap Up
 

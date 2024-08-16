@@ -16,7 +16,6 @@ guest: [@flano_yuki](https://twitter.com/flano_yuki)
 
 そして、 IETF における標準化動向の追いかけ方や、標準化への参加方法をはじめとする「**IETF の歩き方**」について議論しました。
 
-
 ## Show Note
 
 - IETF

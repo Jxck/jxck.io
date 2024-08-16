@@ -14,7 +14,6 @@ guest: [@Constellation](https://twitter.com/Constellation)
 
 今回は [@Constellation](https://twitter.com/Constellation) さんをお迎えして、先日公開された ES6 をふまえ、次の仕様として議論が始まった ES7 について、 ブラウザのエンジンを実装する立場から見た、現状や懸念点などについて話を聞きながら、これから ECMAScript はどうなっていくのか、どうなっていくべきなのかについて議論しました。
 
-
 ## Show Note
 
 - [Lv.5](https://github.com/Constellation/iv/tree/master/iv/lv5%23iv--lv5)

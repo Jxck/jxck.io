@@ -10,8 +10,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Theme
 
-第 122  回のテーマは 2023 年 5 月の Monthly Platform です。
-
+第 122 回のテーマは 2023 年 5 月の Monthly Platform です。
 
 ## Show Note
 
@@ -19,9 +18,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Stable: 113
 
-
 #### Updates
-
 
 #### Intents
 
@@ -69,9 +66,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - PSA: Improvements to metrics UI on chromestatus.com
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/yISyD9cbugA
 
-
 #### V8
-
 
 #### Other
 
@@ -117,11 +112,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://security.googleblog.com/2023/05/how-chrome-root-program-keeps-users-safe.html
   - Chrome が開始した Root Program の運用などについて
 
-
 ### Firefox 動向
 
 #### Stable: 113.0.2
-
 
 #### Updates
 
@@ -129,7 +122,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2023/05/19/a-bountiful-blend-of-browser-betterments-these-weeks-in-firefox-issue-138/
 - **declarativeNetRequest available in Firefox | Mozilla Add-ons Community Blog**
   - https://blog.mozilla.org/addons/2023/05/17/declarativenetrequest-available-in-firefox/
-
 
 #### Intents
 
@@ -155,7 +147,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
-
 #### Other
 
 - New reference pages on MDN for JavaScript regular expressions | MDN Blog
@@ -174,11 +165,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - > Fabrice Desr é: "It's now accessible only to Mozilla employees, but this is the meta-bug tracking the iOS port of Gecko:" - Fosstodon
     - https://fosstodon.org/@fabrice/110430510005379961
 
-
 ### Safari 動向
 
 #### Stable: 16.5
-
 
 #### Updates
 
@@ -198,7 +187,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.apple.com/documentation/safari-release-notes/safari-16_6-release-notes
   - バグフィクス
 
-
 #### Standard Positions
 
 - newly filed
@@ -209,14 +197,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Explicit compile hints · Issue #172 · WebKit/standards-positions**
     - https://github.com/WebKit/standards-positions/issues/172
 
-
 #### Other
-
 
 ### Edge 動向
 
 #### Stable: 113
-
 
 #### Updates
 
@@ -227,9 +212,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web の話は特になし
   - Edge Copilot, Edge for Business, Edge Workspaces, Sidebar App など
 
-
 #### Chakra
-
 
 #### Other
 
@@ -243,7 +226,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2023/05/15/detecting-when-the-user-is-offline/
 - How do Random Credentials Mysteriously Appear? - text/plain
   - https://textslashplain.com/2023/05/16/how-do-random-credentials-mysteriously-appear/
-
 
 ### WHATWG/W3C 動向
 
@@ -266,7 +248,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Proposed W3C Charter: Accessible Platform Architectures Working Group**
     - https://lists.w3.org/Archives/Public/public-new-work/2023May/0008.html
 
-
 #### Other
 
 - **W3C WAI Updates for GAAD 2023 | W3C Blog**
@@ -279,13 +260,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - test change proposals
   - Interop 2024 process
 
-
 ### TC39 動向
 
 #### Meeting
 
 - なし
-
 
 #### Proposals Diff
 
@@ -296,19 +275,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
-
 #### New Proposals
 
-
 #### Other
-
 
 ### WinterCG 動向
 
 #### Meeting
 
 - なし
-
 
 ### IETF 動向
 
@@ -354,13 +329,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mailarchive.ietf.org/arch/msg/ietf-announce/X7r4GcJyC7Zin61HRW_Qxyvupos/
     - application/yaml
 
-
 #### Other
 
 - **Martin Thomson appointed as IETF Nomcom chair 2023-2024**
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/xlarRS4km-8a79MIEjnIB4QVvFs/
   - https://www.ietf.org/about/groups/nomcom/
-
 
 ### CDN 動向
 
@@ -377,9 +350,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - More Node.js APIs in Cloudflare Workers - Streams, Path, StringDecoder
   - https://blog.cloudflare.com/workers-node-js-apis-stream-path/
 
-
 #### Fastly
-
 
 #### Other
 
@@ -388,9 +359,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - What's New for Developers: May 2023 | Akamai
   - https://www.akamai.com/blog/developers/whats-new-for-developers-may-2023
 
-
 ### セキュリティ動向
-
 
 ### 周辺動向
 
@@ -402,7 +371,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Cookie 規制とは【後編】|日本ではいつから始まる?9 つの対策について解説 - ミニナレ [web 制作会社シスコム]
     - https://www.gohp.jp/blog/website-operation/2870/
   - 「通知、同意、拒否」などの対応が必要
-
 
 ### イベント
 
@@ -417,7 +385,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 9 月
   - 11-15: TPAC 2023
     - https://www.w3.org/2023/09/TPAC/
-
 
 ### Wrap Up
 

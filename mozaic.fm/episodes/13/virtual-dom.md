@@ -14,7 +14,6 @@ guest: [@mizchi](https://twitter.com/mizchi)
 
 今回は [@mizchi](https://twitter.com/mizchi/) さんをお迎えして、 Virtual DOM というアイデアの本質、それが可能にした Flux というアーキテクチャ、そして各種の実装と今後の期待について、「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
 
-
 ## Show Note
 
 ### Virtual DOM
@@ -32,7 +31,6 @@ guest: [@mizchi](https://twitter.com/mizchi)
 - [virtual-dom](https://github.com/Matt-Esch/virtual-dom)
 - [ractive.js](http://www.ractivejs.org/)
 - [React's diff algorith](http://calendar.perfplanet.com/2013/diff/)
-
 
 ### Flux
 

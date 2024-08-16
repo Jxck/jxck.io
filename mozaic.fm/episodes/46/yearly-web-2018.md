@@ -16,7 +16,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 また、収録直前に公表された Microsoft EdgeHTML の開発中止と Edge の Chromium ベースへの移行についても冒頭で話しています。
 
-
 ## Show Note
 
 ### Microsoft Edge が Chromium ベースに
@@ -37,7 +36,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Hummingbird: Building Flutter for the Web - Flutter
   - https://medium.com/flutter-io/hummingbird-building-flutter-for-the-web-e687c2a023a8
 
-
 ### 2018 年のキーワード
 
 #### Jxck
@@ -56,7 +54,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - first input delay
 - coinhive
 
-
 #### myakura
 
 - deprecation (+ removals)
@@ -69,7 +66,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - whatwg+w3c
 - symantec distrust
 - compatibility
-
 
 ### 1 月
 
@@ -112,7 +108,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - ACMEv2 で Let's Encrypt が WildCard サポート
   - Apple が AV1 にジョイン
 
-
 ### 2 月
 
 - Chrome
@@ -129,7 +124,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - IETF
 - 周辺動向
   - 3rd Party CSS でキーロガーができる話
-
 
 ### 3 月
 
@@ -165,13 +159,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Trustico が 23000 の証明書を意図的に DigiCert に送りつけ無効化させる
     - Trustico は Symantec の再販をしていた
     - Symantec は DigiCert に売却した
-    - Trustico は DigiCert  とは取引せず Comodo の再販を始めた
+    - Trustico は DigiCert とは取引せず Comodo の再販を始めた
     - 既存顧客の Symantec 証明書は無効にして Comodo に移って欲しかった
     - そこで意図的に漏洩して無効化させようとしたらしいとされている
   - 総務省のセキュリティガイドラインでパスワード定期変更不要となった
   - ACME v2 で Wildcard サポート
   - Cloudflare が SW サポート
-
 
 ### 4 月
 
@@ -194,7 +187,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 1.1.1.1 アナウンス
   - 漫画村とブロッキングに対する声明
   - Yahoo! Japan TLS 1.0/1.1 切る発表
-
 
 ### 5 月
 
@@ -232,7 +224,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - Github Pages でカスタムドメイン HTTPS
 
-
 ### 6 月
 
 - Chrome
@@ -269,7 +260,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺
   - 5G 策定完了
 
-
 ### 7 月
 
 - Chrome
@@ -296,7 +286,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - EFF からブロッキングに対する声明
 
-
 ### 8 月
 
 - Chrome
@@ -316,7 +305,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - セキュリティ動向
   - Let's Encrypt Root Trusted By All Major Root Programs
 - 周辺動向
-
 
 ### 9 月
 
@@ -338,7 +326,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - YouTube や Netflix が AV1 のテスト
 
-
 ### 10 月
 
 - Chrome
@@ -352,7 +339,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Symantec Distrust を年末まで延期(後に Firefox 64 で有効に)
 - Safari
   - WebKit Contributors Meeting
-
 
 ### 11 月
 

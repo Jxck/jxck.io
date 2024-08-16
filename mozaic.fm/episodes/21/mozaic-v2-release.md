@@ -15,7 +15,6 @@ mozaic.fm の v2 をリリースしました。 breaking change があるので�
 
 http://feed.mozaic.fm
 
-
 ## Change Log
 
 少し時間がかかってしまいましたが、全体的に作り直しました。
@@ -29,7 +28,6 @@ http://feed.mozaic.fm
   - 古い URL の feed は、このエピソード以降更新されません。
   - itunes の場合は自動で更新されると思います。
   - うまくいかない場合は登録のやり直しをお願いします。
-
 - サイトを作り直しました。
   - tumblr をやめたかったので、自分で作りました。
   - 基本 https ですが、 feed などは非対応アプリがあるので http も配っています。
@@ -41,10 +39,9 @@ http://feed.mozaic.fm
 
 - [mozaic.fm の v2 のリリースと Podcast の実装と移行](https://blog.jxck.io/entries/2016-06-20/mozaicfm-v2.html)
 
-不具合などがあった場合は、 [@jxck_](https://twitter.com/jxck_) までおしらせください。
+不具合などがあった場合は、 [@jxck\_](https://twitter.com/jxck_) までおしらせください。
 
 mozaic.fm を引き続きよろしくお願いいたします。
-
 
 ## Show Note
 

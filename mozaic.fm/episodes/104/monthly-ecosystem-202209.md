@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 104 回のテーマは 2022 年 9 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - **Blog - Next.js 12.3 | Next.js**

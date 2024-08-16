@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 154 回のテーマは 2024 年 6 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 126
-
 
 #### Updates
 
@@ -94,7 +92,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - **PWA の項目が削除**
 - What's New in WebGPU (Chrome 126)
   - https://developer.chrome.com/blog/new-in-webgpu-126
-
 
 #### Intents
 
@@ -192,7 +189,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Save the date for BlinkOn 19!**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/W4qzV8JDLoE
   - 2024/10/8 ~ 10 まで、 Mountain View で開催
-
 
 #### Other
 
@@ -310,14 +306,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - other
   - **How Chromium's cookies get evicted**
     - https://blog.yoav.ws/posts/how_chromium_cookies_get_evicted/
-  - **「Chrome Tech Talk Night #16 〜 パスキー」まとめ - @_Nat Zone**
+  - **「Chrome Tech Talk Night #16 〜 パスキー」まとめ - @\_Nat Zone**
     - https://www.sakimura.org/2024/06/5901/
-
 
 ### Firefox 動向
 
 #### Stable: 127.0
-
 
 #### Updates
 
@@ -343,7 +337,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Experimenting with AI services in Nightly - Firefox Nightly News**
   - https://blog.nightly.mozilla.org/2024/06/24/experimenting-with-ai-services-in-nightly/
   - 選択したテキストを AI で要約しサイドバーに表示する機能を Nightly に追加
-
 
 #### Intents
 
@@ -405,7 +398,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Searchfox Update: WebIDL indexing and some more
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ZK380LTLbTQ
 
-
 #### Newsletter
 
 - Deprecating CDP Support in Firefox: Embracing the Future with WebDriver BiDi - Firefox Developer Experience
@@ -417,14 +409,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - Firefox DevTools Newsletter - 127 - Firefox Developer Experience
   - https://fxdx.dev/firefox-devtools-newsletter-127/
 
-
 #### MDN / Open Web Docs
 
 - A year of publishing the MDN Blog
   - https://developer.mozilla.org/en-US/blog/mdn-blog-one-year-on/
 - New JavaScript Set methods | MDN Blog
   - https://developer.mozilla.org/en-US/blog/javascript-set-methods/
-
 
 #### Standard Position
 
@@ -447,7 +437,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Request for Position: Fullscreen Popup Windows · Issue #714
       - https://github.com/mozilla/standards-positions/issues/714
       - ただ close された
-
 
 #### Other
 
@@ -485,11 +474,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - D. OCSP and CRL Issues
     - E. Issues in Recent History
 
-
 ### Safari 動向
 
 #### Stable: 17.5
-
 
 #### Updates
 
@@ -579,7 +566,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://webkit.org/blog/15687/release-notes-for-safari-technology-preview-197/
   - Fix only
 
-
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -595,7 +581,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Fullscreen Popup Windows · Issue #101
       - https://github.com/WebKit/standards-positions/issues/101
 
-
 #### Other
 
 - Blog - Private Cloud Compute: A new frontier for AI privacy in the cloud - Apple Security Research
@@ -603,11 +588,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Apple Intelligence でクラウドで行う処理
   - RSA Blind Signatures や OHTTP relay を使用
 
-
 ### Edge 動向
 
 #### Stable:
-
 
 #### Updates
 
@@ -615,7 +598,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2024/05/28/an-even-faster-microsoft-edge/
   - React で作られていた Edge の UI をウェブコンポーネントに置き換え
   - 低メモリな環境で大きくパフォーマンスが向上
-
 
 #### Other
 
@@ -628,7 +610,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - IE の XSS Filter をはじめマイクロソフトのウェブセキュリティに尽力した David Ross が亡くなったことを受け、この数年で亡くなった知人を偲ぶ
 - Mitigating RIDL Side-Channel Attack in Microsoft Edge on Windows | Microsoft Browser Vulnerability Research
   - https://microsoftedge.github.io/edgevr/posts/Mitigating-RIDL-Side-Channel-Attack-in-Microsoft-Edge-on-Windows/
-
 
 ### WHATWG/W3C 動向
 
@@ -654,7 +635,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Group Note: EPUB Fixed Layout Accessibility
     - https://www.w3.org/news/2024/group-note-epub-fixed-layout-accessibility/
 
-
 #### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -679,7 +659,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **W3C Advisory Committee Elects Advisory Board**
   - https://www.w3.org/news/2024/w3c-advisory-committee-elects-advisory-board/
 
-
 ### TC39 動向
 
 #### Meeting
@@ -688,7 +667,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/agendas/blob/main/2024/06.md
   - https://github.com/tc39/notes
     - まだ
-
 
 #### Proposals Diff
 
@@ -700,9 +678,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2.7->3
 - 3->4
 
-
 #### New Proposals
-
 
 #### Other
 
@@ -715,7 +691,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - String.prototype.isWellFormed
   - String.prototype.toWellFormed
 
-
 ### WinterCG
 
 #### Meeting
@@ -723,7 +698,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2024-06
   - https://github.com/wintercg/admin/issues
   - 5, 6 月は meeting なし
-
 
 ### IETF 動向
 
@@ -747,9 +721,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mailarchive.ietf.org/arch/msg/httpapi/US5958XkHNG-Aq6dvSFvFhdujFE/
 - Meeting
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -761,7 +733,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/cloudflare-incident-on-june-20-2024/
 - **Automatically replacing polyfill.io links with Cloudflare's mirror for a safer Internet**
   - https://blog.cloudflare.com/automatically-replacing-polyfill-io-links-with-cloudflares-mirror-for-a-safer-internet/
-
 
 #### Fastly
 
@@ -788,9 +759,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 開発者向けの無料アカウント開始
   - CDN, DDoS mitigation, Compute, WebSocket, Push Notification, Storage, Logging, Image Optimize, etc
 
-
 #### Other
-
 
 ### セキュリティ動向
 
@@ -818,7 +787,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 迷惑メールは「meiwaku@dekyo.or.jp」に転送しちゃうといいぞ! - やじうまの杜 - 窓の杜
     - https://forest.watch.impress.co.jp/docs/serial/yajiuma/1603696.html
 
-
 ### 周辺動向
 
 - **Masonry and reading order - Rachel Andrew**
@@ -844,9 +812,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ブラウザを作るにも、セキュリティやパフォーマンスの要件が厳しいよと
   - Site Isolation 、メインスレッドでの JavaScript 実行、ページ読み込み、スクロールなど様々な課題がある
 
-
 ### Cookie 動向
-
 
 ### イベント
 
@@ -866,7 +832,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://fortee.jp/web-dev-conf-2024/proposal/all
   - 23-27: TPAC 2024 Anaheim
     - https://www.w3.org/2024/09/TPAC/
-
 
 ### Wrap Up
 

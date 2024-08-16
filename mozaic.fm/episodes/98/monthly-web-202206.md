@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 98 回のテーマは 2022 年 6 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 103
-
 
 #### Updates
 
@@ -78,7 +76,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Block third-party contexts navigating to filesystem URLs
   - Remove non-standard client hint mode
   - Remove U2F API (cryptotoken)
-
 
 #### Intents
 
@@ -166,14 +163,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - http://bit.ly/blink-signals
   - https://github.com/WebKit/standards-positions/
 
-
 #### V8
 
 - **Discontinuing release blog posts · V8**
   - https://v8.dev/blog/discontinuing-release-posts
 - Retrofitting Temporal Memory Safety on C++ · V8
   - https://v8.dev/blog/retrofitting-temporal-memory-safety-on-c++
-
 
 #### Other
 
@@ -191,9 +186,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.googleblog.com/2022/06/gdg-jennifer-bailey.html
   - Google Developers Blog: Using research to make code review more equitable
     - https://developers.googleblog.com/2022/06/Using-research-to-make-code-review-more-equitable.html
-  - アイテムの分類を更新して Search Console レポートを簡素化  |  Google 検索セントラル ブログ  |  Google Developers
+  - アイテムの分類を更新して Search Console レポートを簡素化 | Google 検索セントラル ブログ | Google Developers
     - https://developers.google.com/search/blog/2022/06/search-console-item-classification
-  - **Googlebot and the 15 MB thing  |  Google Search Central Blog  |  Google Developers**
+  - **Googlebot and the 15 MB thing | Google Search Central Blog | Google Developers**
     - https://developers.google.com/search/blog/2022/06/googlebot-15mb
     - Bot が HTML を 15MB しかみてない話
 - google developer japan blog
@@ -213,11 +208,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
 
-
 ### Firefox 動向
 
 #### Stable: 102
-
 
 #### Updates
 
@@ -250,7 +243,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 🏎️ WebAssembly Performance
   - 📚 Miscellaneous
 
-
 #### Intents
 
 - **Ship: Transferable streams**
@@ -273,7 +265,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Make `<embed>` and `<object>` behave more like `<iframe>` for image loading.**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/UwO49Fu-F2s
 
-
 #### Other
 
 - **The JavaScript Specification has a New License - Mozilla Hacks - the Web developer blog**
@@ -282,11 +273,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - ECMA は W3C とライセンスが違い、法的レビューのオーバーヘッドがあった
   - また二次的著作物作成に一部制限があった
 
-
 ### Safari 動向
 
 #### Stable: 15.5
-
 
 #### Updates
 
@@ -356,11 +345,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Loading
   - WebDriver
 
-
 #### Position
 
 - 来月からここはなし。 Standard Position の Repo から拾う。
-
 
 #### Other
 
@@ -372,11 +359,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - standards position も GitHub に移動
   - https://github.com/WebKit/standards-positions
 
-
 ### Edge 動向
 
 #### Stable: 103
-
 
 #### Updates
 
@@ -399,9 +384,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 「Internet Explorer」サポート終了も「IE モード」で"ゾンビ化" 本当の混乱は 7 年後? - ITmedia ビジネスオンライン
   - https://www.itmedia.co.jp/business/articles/2206/16/news102.html
 
-
 #### Chakra
-
 
 #### Other
 
@@ -420,7 +403,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2022/06/15/chromium-startup/
 - Microsoft Edge Tips and Tricks - text/plain
   - https://textslashplain.com/2022/06/03/microsoft-edge-tips-and-tricks/
-
 
 ### WHATWG/W3C 動向
 
@@ -453,7 +435,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Call for Participation: Verifiable Credentials Working Group Charter Approved
     - https://lists.w3.org/Archives/Public/public-new-work/2022Jun/0006.html
 
-
 #### Other
 
 - **W3C Media Advisory: W3C to become a public-interest non-profit organization**
@@ -479,7 +460,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - hgroup のアルゴリズムが変わる
     - `<p>` が sub-headding
 
-
 ### TC39 動向
 
 #### Meeting
@@ -489,7 +469,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tc39/agendas/blob/main/2022/06.md
   - Note
     - note が出たら来月やる
-
 
 #### Proposals Diff
 
@@ -506,20 +485,17 @@ guest: [@myakura](https://twitter.com/myakura)
 - 3->4
   - Array.findFromLast
 
-
 #### New Proposals
 
 - **FrankYFTang/proposal-intl-temporal**
   - https://github.com/FrankYFTang/proposal-intl-temporal
   - temporal と intl の間を埋める提案
 
-
 #### Other
 
 - Ecma International approves new standards - Ecma International
   - https://www.ecma-international.org/news/ecma-international-approves-new-standards-6/
   - ECMAScript 2022 正式リリース
-
 
 ### IETF 動向
 
@@ -604,9 +580,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -651,7 +625,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Cloudflare outage on June 21, 2022**
   - https://blog.cloudflare.com/cloudflare-outage-on-june-21-2022/
 
-
 #### Fastly
 
 - **Private Access Tokens: stepping into the privacy-respecting, CAPTCHA-less future we were promised | Fastly**
@@ -659,9 +632,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - OpenTelemetry Part 1: Making the Edge less distant | Fastly
   - https://www.fastly.com/blog/opentelemetry-part-1-making-the-edge-less-distant
 
-
 #### Other
-
 
 ### セキュリティ動向
 
@@ -669,7 +640,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.meti.go.jp/press/2022/06/20220630007/20220630007.html
 - **個人情報を含む USB メモリーの紛失事案について|尼崎市公式ホームページ**
   - https://www.city.amagasaki.hyogo.jp/kurashi/seikatusien/1027475/1030947.html
-
 
 ### 周辺動向
 
@@ -702,7 +672,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **行政におけるデザインシステムのあり方に関する調査研究 | AIS | 一般社団法人 行政情報システム研究所**
   - https://www.iais.or.jp/reports/labreport/20220601/design2021/
 
-
 ### イベント
 
 - 7 月
@@ -712,7 +681,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 9 月
   - 12-16: TPAC 2022 Vancouver
     - https://www.w3.org/wiki/TPAC/2022
-
 
 ### Wrap Up
 

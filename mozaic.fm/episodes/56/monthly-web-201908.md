@@ -12,7 +12,6 @@ guest: [@shqld](https://twitter.com/shqld)
 
 第 56 回のテーマは 2019 年 8 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -220,7 +219,6 @@ guest: [@shqld](https://twitter.com/shqld)
   - The Chromium Chronicle: Coding Outside the Sandbox
     - https://developers.google.com/web/updates/2019/08/chromium-chronicle-5
 
-
 ### Firefox 動向
 
 - Stable: 68
@@ -318,7 +316,6 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blog.mozilla.org/blog/2019/08/29/thank-you-chris/
     - Mozilla Corp の CEO である Chris Beard が 2019 末で辞任
 
-
 ### Safari 動向
 
 - Stable: 12.1.2
@@ -372,7 +369,6 @@ guest: [@shqld](https://twitter.com/shqld)
         - fucus されてない場合に発生する blur event
 - Other
 
-
 ### Edge 動向
 
 - Stable:
@@ -407,7 +403,6 @@ guest: [@shqld](https://twitter.com/shqld)
   - 新しい BugBounty Program
     - https://www.microsoft.com/en-us/msrc/bounty-new-edge
     - https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja
-
 
 ### WHATWG/W3C 動向
 
@@ -451,7 +446,6 @@ guest: [@shqld](https://twitter.com/shqld)
       - Double-keyed (or more) caches
       - Protecting/sandboxing `<iframe>` sites (history.length, caches, window)
 
-
 ### TC39 動向
 
 - Meeting
@@ -474,7 +468,6 @@ guest: [@shqld](https://twitter.com/shqld)
     - Promise をチェインする演算子
     - `Promise.resolve(x).get(i)` を `x!i` って書ける
 - Other
-
 
 ### IETF 動向
 
@@ -523,7 +516,6 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA
     - rtcweb wg が close
 
-
 ### セキュリティ動向
 
 - Introducing Certificate Transparency Monitoring
@@ -557,7 +549,6 @@ guest: [@shqld](https://twitter.com/shqld)
   - すでに国内 ISP の MITM も確認されている
   - これを Chrome/Firefox がブロック
 
-
 ### 周辺動向
 
 - First HTTP/3 with curl - daniel.haxx.se
@@ -570,7 +561,6 @@ guest: [@shqld](https://twitter.com/shqld)
   - 2012 年"NO-TAGS" でも同じことがあった
 - Web-to-App Communication: App Protocols
   - https://textslashplain.com/2019/08/29/web-to-app-communication-app-protocols/
-
 
 ### イベント
 

@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 76 回のテーマは 2020 年 11 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -262,7 +261,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.chromium.org/Home/chromium-security/root-ca-policy
     - Chrome も Firefox みたいに証明書ストアを自分で持つようになるらしい
 
-
 ### Firefox 動向
 
 - Stable: 83.0
@@ -323,7 +321,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Igalia joins MDN Product Advisory Board | Igalia**
     - https://www.igalia.com/2020/12/02/Igalia-joins-MDN-Product-Advisory-Board.html
     - Igalia (Daniel Ehrenberg) が MDN の PAB に参加
-
 
 ### Safari 動向
 
@@ -394,7 +391,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.webkit.org/pipermail/webkit-dev/2020-November/031622.html
 - Other
 
-
 ### Edge 動向
 
 - Stable: 87
@@ -419,7 +415,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Outlook REST API beta and Outlook REST API v2.0 Deprecation Notice - Microsoft Tech Community
     - https://techcommunity.microsoft.com/t5/exchange-team-blog/outlook-rest-api-beta-and-outlook-rest-api-v2-0-deprecation/ba-p/1898162
 
-
 ### WHATWG/W3C 動向
 
 - Recommendation
@@ -443,7 +438,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Remove AppCache · whatwg/html@e4330d5**
     - https://github.com/whatwg/html/commit/e4330d510a1d05e1f5f84707c9d6dcec97db94b8
     - HTML 仕様から AppCache が削除
-
 
 ### TC39 動向
 
@@ -481,7 +475,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - 7 月は Tokyo (4 days) -> のちに remote に変更(たぶん Olympic)
   - **TC39 も MDN に協力してこう**
     - MDN staffing to document TC39's work
-
 
 ### IETF 動向
 
@@ -521,12 +514,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - 冪等性の無い POST をリトライできるように id をつけるためのヘッダ
 - Other
 
-
 ### セキュリティ動向
 
 - Standing on Our Own Two Feet - Let's Encrypt - Free SSL/TLS Certificates
   - https://letsencrypt.org/2020/11/06/own-two-feet.html
-
 
 ### 周辺動向
 
@@ -556,7 +547,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://calendar.perfplanet.com/2020/
     - https://calendar.perfplanet.com/contribute/
 
-
 ### イベント
 
 - 12 月
@@ -564,7 +554,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/devsummit/
 - 1 月
 - 2 月
-
 
 ### Wrap Up
 

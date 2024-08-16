@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 129 回のテーマは 2023 年 8 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 116
-
 
 #### Updates
 
@@ -83,7 +81,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - New experimental features
   - New rendering emulation: prefers-reduced-transparency
   - Enhanced Protocol monitor
-
 
 #### Intents
 
@@ -208,7 +205,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - FYI that new Topics Taxonomy (v2) is starting to roll out to Stable soon
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/v5Cl0tecNW4
 
-
 #### Other
 
 - web.dev
@@ -290,11 +286,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Q2 2023 Summary from Chrome Security**
   - https://groups.google.com/a/chromium.org/g/security-dev/c/Ew1r4mHozwg
 
-
 ### Firefox 動向
 
 #### Stable: 117
-
 
 #### Updates
 
@@ -314,7 +308,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2023/08/10/a-view-to-a-better-faster-web-these-weeks-in-firefox-issue-143/
 - Unboxing More DevTools Powers, and Reusable Delights - These Weeks in Firefox: Issue 144
   - https://blog.nightly.mozilla.org/2023/08/10/unboxing-more-devtools-powers-and-reusable-delights-these-weeks-in-firefox-issue-144/
-
 
 #### Intents
 
@@ -347,7 +340,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Soft code freeze for Firefox 118 starts on August 24
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/q-yldubgQZU
 
-
 #### Newsletter
 
 - SpiderMonkey Newsletter (Firefox 116-117)
@@ -356,7 +348,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://fxdx.dev/firefox-devtools-newsletter-117/
 - Firefox WebDriver Newsletter
   - https://fxdx.dev/firefox-webdriver-newsletter-117/
-
 
 #### MDN / Open Web Docs
 
@@ -367,7 +358,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Micro benevolences
   - https://openwebdocs.org/content/posts/micro-benevolences/
 
-
 #### Standard Position
 
 - 今月 Close されたものをみる
@@ -375,7 +365,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **X25519Kyber768 key encapsulation for TLS · Issue #874 · mozilla/standards-positions**
   - https://github.com/mozilla/standards-positions/issues/874
   - Positive
-
 
 #### Other
 
@@ -394,11 +383,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Private Access Tokens, also not great**
   - https://educatedguesswork.org/posts/private-access-tokens/
 
-
 ### Safari 動向
 
 #### Stable: 16.6
-
 
 #### Updates
 
@@ -447,7 +434,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://webkit.org/blog/14423/building-profiles-with-new-webkit-api/
   - Webkit ではあるがブラウザの話ではない
 
-
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -477,17 +463,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/WebKit/standards-positions/issues/48
   - Support
 
-
 #### Other
 
 - **Blog - 2024 Apple Security Research Device Program now accepting applications - Apple Security Research**
   - https://security.apple.com/blog/security-research-device-program-2024/
 
-
 ### Edge 動向
 
 #### Stable: 116
-
 
 #### Updates
 
@@ -501,7 +484,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Announcing support for HSTS on Exchange Server 2016 and 2019 - Microsoft Community Hub**
   - https://techcommunity.microsoft.com/t5/exchange-team-blog/announcing-support-for-hsts-on-exchange-server-2016-and-2019/ba-p/3912740
 
-
 #### Other
 
 - **Edge のよくあるご質問 | Japan Developer Support Internet Team Blog**
@@ -512,7 +494,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2023/08/18/attack-techniques-qr-codes/
 - SmartScreen Application Reputation, In Pictures - text/plain
   - https://textslashplain.com/2023/08/23/smartscreen-application-reputation-in-pictures/
-
 
 ### WHATWG/W3C 動向
 
@@ -551,7 +532,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web Performance Working Group Charter Extended
     - https://lists.w3.org/Archives/Public/public-new-work/2023Aug/0022.html
 
-
 #### Other
 
 - **Web Environment Integrity has no standing at W3C; understanding new W3C work**
@@ -566,7 +546,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Agenda for Aug 31st, 2023 · Issue #400 · web-platform-tests/interop**
   - https://github.com/web-platform-tests/interop/issues/400
   - 2023 年 9 月 14 日からプロポーザルを募集
-
 
 ### TC39 動向
 
@@ -583,7 +562,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tc39/agendas/blob/main/2023/07.md
 - **Stage 3 update of Intl Locale Info API**
   - https://github.com/tc39/proposal-intl-locale-info/pull/70 PR これ?
-  - Date: Number: 0..6  (1 = Monday, 0 = Sunday)
+  - Date: Number: 0..6 (1 = Monday, 0 = Sunday)
   - Temporal: Number: 1..7 (1= Monday, 7 = Sunday)
   - Intl.Locale: String (three letters): ("mon"... "sun")
   - 3 つとも曜日を表す方法がバラバラ
@@ -626,7 +605,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Duplicate Named Capture groups: Safari が Ship 予定、 Mozilla は実装中
   - Shadow Realm: HTML のインテグレーションでブロックされてる、要確認。
 
-
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2023-01-01}...main@{2023-02-01}
@@ -643,7 +621,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Source phase imports
 - 3->4
 
-
 #### New Proposals
 
 - **tc39/proposal-optional-chaining-assignment**
@@ -656,14 +633,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - A proposal for introducing a way to defer evaluate of a module
   - https://github.com/tc39/proposal-defer-import-eval
 
-
 #### Other
-
 
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
-
 
 #### Meeting
 
@@ -675,7 +649,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - key には runtime-keys を使う
   - という方向で進める
 
-
 ### IETF 動向
 
 #### IETF117
@@ -683,7 +656,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - IETF117 復習
   - https://twitter.com/mozaicfm/status/1687086573723209729
   - https://docs.google.com/document/d/1Y6VrvIVXCJFWEgmF5hBmXDwYA2yVn3ocm-Ys6MjvNCE/edit#heading=h.xzmznf1v1i1u
-
 
 #### WG
 
@@ -754,12 +726,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - I-D Action: draft-ietf-ohai-ohttp-10.txt
     - https://mailarchive.ietf.org/arch/msg/ohai/Wy0iU6cv3akI5Wt5goMjGpNrbbw/
 
-
 #### Other
 
 - **RFC Numbers for Testing and Example Use**
   - https://www.ietf.org/archive/id/draft-eastlake-test-rfc-numbers-00.html
-
 
 ### CDN 動向
 
@@ -776,7 +746,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Cloudflare Radar's 2023 overview of new tools and insights
   - https://blog.cloudflare.com/cloudflare-radars-2023-overview-of-new-tools-and-insights/
 
-
 #### Fastly
 
 - Join Fastly at Black Hat 2023 | Fastly
@@ -787,7 +756,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/back-to-basics-directory-traversal
 - Fastly Participates in the EU-US Data Privacy Framework | Fastly
   - https://www.fastly.com/blog/fastly-participates-in-the-eu-us-data-privacy-framework
-
 
 #### Other
 
@@ -802,7 +770,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - DDoS Attacks Surge Against Vulnerable Assets: Are You Prepared? | Akamai
   - https://www.akamai.com/blog/security/ddos-attacks-surge-against-vulnerable-assets
 
-
 ### セキュリティ動向
 
 - **Using short-lived certificates to protect TLS secrets - Engineering at Meta**
@@ -810,12 +777,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - **How Meta is improving password security and preserving privacy - Engineering at Meta**
   - https://engineering.fb.com/2023/08/08/security/how-meta-is-improving-password-security-and-preserving-privacy/
 
-
 ### 周辺動向
 
 - **Celebrating Ten Years of Encrypting the Web with Let's Encrypt | Electronic Frontier Foundation**
   - https://www.eff.org/deeplinks/2023/08/celebrating-ten-years-encrypting-web-lets-encrypt
-
 
 ### イベント
 
@@ -837,7 +802,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 10 月
   - 17-19: BlinkOn18
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/19KSuM7ywhs
-
 
 ### Wrap Up
 

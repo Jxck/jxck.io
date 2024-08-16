@@ -14,7 +14,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 今年行った Monthly Web を振り返ります。
 
-
 ## Show Note
 
 ### 2019 年キーワード
@@ -30,7 +29,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Portal
 - DoH
 
-
 #### myakura
 
 - doh
@@ -40,7 +38,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - aspectratio
 - apple/mozilla -> google
 - chromium への不安
-
 
 ### 1 月
 
@@ -84,7 +81,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - `<pinch-zoom>` のデモ
   - twitter の .well-known/change-password サポート
 
-
 ### 2 月
 
 - Chrome
@@ -126,7 +122,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 韓国で SNI Blocking
   - ESNI と ESNI Block と Fake SNI
 - Other
-
 
 ### 3 月
 
@@ -180,7 +175,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - NGINX to Join F5: Proud to Finish One Chapter and Excited to Start the Next - NGINX
     - https://www.nginx.com/blog/nginx-joins-f5/
     - https://www.publickey1.jp/blog/19/nginxf5f5nginx.html
-
 
 ### 4 月
 
@@ -263,7 +257,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - WAPM
     - https://wapm.io/
     - WASM のパッケージマネージャー/リポジトリ
-
 
 ### 5 月
 
@@ -360,41 +353,33 @@ guest: [@myakura](https://twitter.com/myakura)
     - 元 YouTube エンジニアによる YouTube が IE6 サポートを打ち切るための策略についての回顧録
     - 買収前の古い YouTube 社員によって作られた "OldTuber" という、 Google のインフラチェックをバイパスする権限を悪用しバナーを表示
 
-
 ### 6 月
 
 - TODO
-
 
 ### 7 月
 
 - TODO
 
-
 ### 8 月
 
 - TODO
-
 
 ### 9 月
 
 - TODO
 
-
 ### 10 月
 
 - TODO
-
 
 ### 11 月
 
 - TODO
 
-
 ### 12 月
 
 - TODO
-
 
 ### Similar Yearly
 

@@ -17,7 +17,6 @@ guest: [@jovi0608](https://twitter.com/jovi0608)
 
 OSS 奨励賞受賞の裏話や、 http2 や spdylay が今後どうなるのか、 [tatsuhiro_t](https://twitter.com/tatsuhiro_t) さんの今後の活動についてなど、こぼれ話をまとめた 15 分です。
 
-
 ## Show Note
 
 - [第九回 日本 OSS 奨励賞](http://ossforum.jp/ossaward9th2)

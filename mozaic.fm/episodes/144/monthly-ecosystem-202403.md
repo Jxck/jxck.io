@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 143 回のテーマは 2024 年 3 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - JSR (JavaScript Registry)
@@ -73,7 +72,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://github.com/electric-sql/pglite
 - Redwood v7.0.0 is now available!
   - https://community.redwoodjs.com/t/redwood-v7-0-0-is-now-available/5777
-
 
 ## Events
 

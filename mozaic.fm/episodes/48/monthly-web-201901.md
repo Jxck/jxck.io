@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 48 回のテーマは 2019 年 01 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -205,7 +204,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/ecbos_/status/1090726938925297665
     - Photos を直す代わりに Blink の挙動を仕様に則さないようにしていたらしい
 
-
 ### Firefox 動向
 
 - Stable: 65
@@ -267,7 +265,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Dynamic import がフラグ付きで実装、 Firefox 67 で有効に
   - thank u, next
     - https://words.steveklabnik.com/thank-u-next
-    - rust  の人が抜ける
+    - rust の人が抜ける
   - Leaving Mozilla and (most of) the Rust project
     - https://www.ncameron.org/blog/leaving-mozilla-and-most-of-the-rust-project/
     - rust の人が抜ける
@@ -279,7 +277,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **The Legacy of Firefox OS - Ben Francis - Medium**
     - https://medium.com/@bfrancis/the-legacy-of-firefox-os-c58ec32d94f0
     - Firefox OS 終了前後にうまれた KaiOS などのフォークなどについて
-
 
 ### Safari 動向
 
@@ -309,7 +306,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/rmondello/status/1088456470356668417
     - Safari TP 73 までの機能が Safari 12.1 に入る模様
 
-
 ### Edge 動向
 
 - Stable: EdgeHTML18
@@ -323,7 +319,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Build Changelog
 - Chakra
 - Other
-
 
 ### WHATWG/W3C 動向
 
@@ -367,7 +362,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/othermaciej/status/1088871541629116416
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/g-pdQdSR0HI/vXSne9aCDAAJ
       - 個人の explainer ではなくちゃんとグループのレポジトリに追加しようね、など
-
 
 ### TC39 動向
 
@@ -429,7 +423,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Justin Fagnani on Twitter: "JavaScript class fields are so, so, very broken"**
     - https://twitter.com/justinfagnani/status/1090732607615029248
     - class fields の設計がうれしくないという指摘
-
 
 ### IETF 動向
 
@@ -518,7 +511,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/andydavies/http2-prioritization-issues#cdns--cloud-hosting-services
     - CDN で H2 Priority を実装できているかのテスト結果
 
-
 ### セキュリティ動向
 
 - **TLS 1.3 rollout on GitHub.com | The GitHub Blog**
@@ -535,7 +527,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - CT を監視して似た名前で取ってるフィッシングサイトを見つけ出す話
 - Introduction to WebAuthn API
   - https://medium.com/@herrjemand/introduction-to-webauthn-api-5fd1fb46c285
-
 
 ### 周辺動向
 
@@ -554,7 +545,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/WICG/change-password-url
   - https://twitter.com/rmondello/status/1090702498220961793
   - https://www.youtube.com/watch?v=-0dwX2kf6Oc
-
 
 ### イベント
 

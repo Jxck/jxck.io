@@ -18,7 +18,6 @@ guest: [@shhnjk](https://twitter.com/shhnjk)
 
 Origin を守るための Web の戦いと、そこから見える Web や Browser のアーキテクチャの今後について議論します。
 
-
 ## Show Note
 
 - Spectre
@@ -78,7 +77,6 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
 - CORP+COEP+COOP を組み合わせる
   - ページを展開した際に Isolation された Process に展開できる
   - サブリソースも読み込みが許可されたものだけであることが保証できる
-
 - Fetch Metadata (was Sec-Site/Sec-metadata)
   - リクエストに 4 つのデフォルトヘッダが追加される
   - Fetch Metadata Request Headers - Issue #88 - mozilla/standards-positions

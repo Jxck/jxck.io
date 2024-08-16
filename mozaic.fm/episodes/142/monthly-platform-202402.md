@@ -10,15 +10,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ## Theme
 
-第 142  回のテーマは 2024 年 2 月の Monthly Platform です。
-
+第 142 回のテーマは 2024 年 2 月の Monthly Platform です。
 
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 122
-
 
 #### Updates
 
@@ -138,7 +136,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - More updates
 - **The deprecation trial for SharedArrayBuffer on desktop Chrome is extended to Chrome 124**
   - https://developer.chrome.com/blog/shared-array-buffer-origin-trial-extension-124
-
 
 #### Intents
 
@@ -286,7 +283,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Unship:
 - Remove:
 
-
 #### Other
 
 - web.dev
@@ -349,9 +345,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - google for developers
   - The SEO Starter Guide got a makeover
     - https://developers.google.com/search/blog/2024/02/ssg-gets-a-makeover
-  - EEA で提供される新しい検索エクスペリエンス: リッチリザルト、アグリゲータ ユニット、絞り込みチップ  |  Google 検索セントラル ブログ
+  - EEA で提供される新しい検索エクスペリエンス: リッチリザルト、アグリゲータ ユニット、絞り込みチップ | Google 検索セントラル ブログ
     - https://developers.google.com/search/blog/2024/02/search-experiences-in-eea
-  - バリエーション商品の構造化データのサポート追加  |  Google 検索セントラル ブログ
+  - バリエーション商品の構造化データのサポート追加 | Google 検索セントラル ブログ
     - https://developers.google.com/search/blog/2024/02/product-variants
 - google developer japan blog
   - Google Developers Japan: P-MAX: Google Ads API による検索テーマ(ベータ版)の作成について
@@ -412,11 +408,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - ページ読み込みに失敗してた時代にアクセスできるようにする最古の機能の一つ
     - 今後は Internet Archive へのリンクを考えている
     - これで Google から Internet Archive に資金援助とかあれば、財政難が解決するのでは?
-  - Rick Byers on X: "@Rich_Harris @dummdidumm_ Lots of us on Chrome have been really interested in that idea too. It's partly where feature policy came from. Maybe we just didn't try hard enough, but I think there's some fundamental differences with web we'd have to account for:" / X
+  - Rick Byers on X: "@Rich*Harris @dummdidumm* Lots of us on Chrome have been really interested in that idea too. It's partly where feature policy came from. Maybe we just didn't try hard enough, but I think there's some fundamental differences with web we'd have to account for:" / X
     - https://twitter.com/RickByers/status/1756368036901056812
     - ウェブにバージョニングがあればいいのにという開発者のポストに Rick Byers が反応
     - Chrome でも検討したことがあり、それが Feature Policy に繋がった
-
 
 ### Firefox 動向
 
@@ -429,7 +424,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Declarative Shadow DOM
     - Early Hints preload
 
-
 #### Updates
 
 - A Preview of Tab Previews - These Weeks in Firefox: Issue 153 - Firefox Nightly News
@@ -440,7 +434,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://fxdx.dev/rules-view-enter-key/#2024-02-03-update
   - 122.0 で CSS の rules view で Enter を押した時の挙動が変わったが 122.0.1 で取りやめ
   - 元の挙動に慣れていた人の体験を損ねたから
-
 
 #### Intents
 
@@ -470,7 +463,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
-
 #### Newsletter
 
 - Engineering Effectiveness Newsletter (December & January 2023-2024 Edition)
@@ -485,7 +477,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/l10n/2024/02/02/l10n-report-february-2024-edition/
 - Firefox WebDriver Newsletter - 123 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-123/
-
 
 #### MDN / Open Web Docs
 
@@ -521,7 +512,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - WebAssembly Testing
 - Creating effective technical documentation
   - https://developer.mozilla.org/en-US/blog/technical-writing/
-
 
 #### Standard Position
 
@@ -561,7 +551,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Locale Extensions
     - https://github.com/mozilla/standards-positions/issues/844
 
-
 #### Other
 
 - **Introducing Mozilla Monitor Plus, a new tool to automatically remove your personal information from data broker sites**
@@ -586,11 +575,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Mozilla downsizes as it refocuses on Firefox and AI: Read the memo | TechCrunch
   - https://techcrunch-com.cdn.ampproject.org/c/s/techcrunch.com/2024/02/13/mozilla-downsizes-as-it-refocuses-on-firefox-and-ai-read-the-memo/amp/
 
-
 ### Safari 動向
 
 #### Stable: 17.3
-
 
 #### Updates
 
@@ -695,7 +682,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - EXT_polygon_offset_clamp
     - WEBGL_polygon_mode (118110035)
 
-
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -709,14 +695,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Deprecation of prefixed HTMLVideoElement-specific Fullscreen APIs
     - https://github.com/WebKit/standards-positions/issues/306
 
-
 #### Other
-
 
 ### Edge 動向
 
 #### Stable: 122
-
 
 #### Updates
 
@@ -729,7 +712,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **A new way to build custom web editing experiences with EditContext - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2024/02/13/custom-web-editing-experiences-with-editcontext/
 
-
 #### Other
 
 - How Downloads Work - text/plain
@@ -738,7 +720,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2024/02/20/cloaking-detonation-and-client-side-phishing-detection/
 - The Importance of Feedback Loops - text/plain
   - https://textslashplain.com/2024/02/22/the-importance-of-feedback-loops/
-
 
 ### WHATWG/W3C 動向
 
@@ -767,7 +748,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Advance notice: Work in progress on Web Authentication Working Group Charter
     - https://lists.w3.org/Archives/Public/public-new-work/2024Feb/0007.html
 
-
 #### OpenUI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -779,7 +759,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Stylable `<select>` element · Issue #9799 · whatwg/html**
   - https://github.com/whatwg/html/issues/9799#issuecomment-1922200654
   - カスタマイズできる select にするときには属性をつけると Open UI で決定するも WHATWG は納得せず
-
 
 #### Other
 
@@ -796,7 +775,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Meeting Planning Pages [CSS Working Group Wiki]**
   - https://wiki.csswg.org/planning#section2025
   - 2025 年の TPAC は神戸らしい
-
 
 ### TC39 動向
 
@@ -891,7 +869,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - 2.7 ができた
     - decorator metadata とか 2.7 に戻す
 
-
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2023-11-01}...main@{2023-12-01}
@@ -907,15 +884,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Array Grouping
   - Promise.withResolvers
 
-
 #### New Proposals
-
 
 #### Other
 
 - Operator Overloading withdrawn
 - JSON.tryParse rejected
-
 
 ### WinterCG 動向
 
@@ -924,7 +898,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **2024-02-01**
   - https://github.com/wintercg/admin/issues/61
   - ECMA に WinterTC を設立するための書類を出したらしい
-
 
 ### IETF 動向
 
@@ -970,9 +943,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - kazuho さんの新作
 - Meeting
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -991,9 +962,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - connect() - why are you so slow?
   - https://blog.cloudflare.com/linux-transport-protocol-port-selection-performance/
 
-
 #### Fastly
-
 
 #### Other
 
@@ -1001,7 +970,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.akamai.com/blog/security/2024/feb/the-web-scraping-problem-part-2
 - The Web Scraping Problem, Part 3: Protecting Against Botnets | Akamai
   - https://www.akamai.com/blog/security/2024/feb/the-web-scraping-problem-part-three-protecting-against-botnets
-
 
 ### セキュリティ動向
 
@@ -1017,7 +985,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://emilymstark.com/2024/02/09/e2ee-on-the-web-is-the-web-really-that-bad.html
 - **「Avast」がブラウザの閲覧データを販売したとして約 25 億円の罰金を科される - GIGAZINE**
   - https://gigazine.net/news/20240226-ftc-ban-avast-selling-browsing-data/
-
 
 ### 周辺動向
 
@@ -1036,14 +1003,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - **awslabs/llrt: LLRT (Low Latency Runtime) is an experimental, lightweight JavaScript runtime designed to address the growing demand for fast and efficient Serverless applications.**
   - https://github.com/awslabs/llrt
 
-
 ### Cookie 動向
 
 - **nintendo.co.jp が nintendo.com/jp にリダイレクト**
   - https://twitter.com/nintendo/status/1761632118533415020
   - Nintendo の認証が壊れるという話もあったので、そのためではないか
   - https://issuetracker.google.com/issues/268390722?pli=1
-
 
 ### イベント
 
@@ -1055,7 +1020,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 19-22: IETF | IETF 119 Brisbane
     - https://www.ietf.org/how/meetings/119/
 - 4 月
-
 
 ### Wrap Up
 
@@ -1170,7 +1134,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Draft
   - Open/UI
     - popup=hint の議論
-    - Stylable `<select>` には属性をつける OpenUI の提案が  WHATWG で納得されず
+    - Stylable `<select>` には属性をつける OpenUI の提案が WHATWG で納得されず
   - Other
     - Internationalization (I18N) leadership change
     - ARIA Automation Launch - Bocoup

@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 124 回のテーマは 2023 年 6 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Turborepo 1.10 - Turbo
@@ -121,7 +120,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
     - API のインターフェースは Node の fetch と同様
     - Chromium が内部で URL ロードの様々な異なるモード(navigation, subresouce, worker)を区別している
     - electron ではそれらを気にすることが多く、コードが散らばってしまい一元化したいのでこのモジュールを追加
-
 
 ## Events
 

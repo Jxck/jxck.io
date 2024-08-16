@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 96 回のテーマは 2022 年 4 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 101
-
 
 #### Updates
 
@@ -81,7 +79,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Deprecations, and Removals
     - Deprecate PaymentRequest.show() without User Activation
     - Remove SDP Plan B
-
 
 #### Intents
 
@@ -166,7 +163,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/9xWJK3IgJb4
 - Experiment: Deprecate and remove merchant identity in "canmakepayment"
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/AM2bwKxXacQ
-
 - Extend Experiment (2nd): Same-origin prerendering triggered by the speculation rules API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Kpp6uJJRrqI/m/GTo_aF0qEQAJ
 - Extend Experiment: User-Agent Reduction
@@ -188,12 +184,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - **some tweaks to the Intent process**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/zXspYC0DFco
 
-
 #### V8
 
 - Faster initialization of instances with new class features · V8
   - https://v8.dev/blog/faster-class-features
-
 
 #### Other
 
@@ -248,11 +242,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
 
-
 ### Firefox 動向
 
 #### Stable: 99.0.1
-
 
 #### Updates
 
@@ -273,7 +265,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://hacks.mozilla.org/2022/04/mozilla-partners-with-the-center-for-humane-technology/
 - Common Voice dataset tops 20,000 hours - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2022/04/common-voice-dataset-tops-20000-hours/
-
 
 #### Intents
 
@@ -300,7 +291,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Experiment:
 - Change:
 - Remove:
-
 
 #### Other
 
@@ -336,11 +326,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Platform/2022PlannedWork - MozillaWiki**
   - https://wiki.mozilla.org/Platform/2022PlannedWork
 
-
 ### Safari 動向
 
 #### Stable: 15.4
-
 
 #### Updates
 
@@ -425,7 +413,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.apple.com/documentation/safari-release-notes/safari-15_5-release-notes
     - inert
 
-
 #### Position
 
 - **[webkit-dev] ChangeLog Deprecation Plans**
@@ -443,7 +430,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://lists.webkit.org/pipermail/webkit-dev/2022-April/032175.html
   - negative
 
-
 #### Other
 
 - Private Click Measurement: Conversion Fraud Prevention and Replacement For Tracking Pixels
@@ -451,11 +437,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Non-interactive Elements with the inert attribute**
   - https://webkit.org/blog/12578/non-interactive-elements-with-the-inert-attribute/
 
-
 ### Edge 動向
 
 #### Stable: 101
-
 
 #### Updates
 
@@ -466,9 +450,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Sleeping tabs in Microsoft Edge: Save even more resources with recent updates
   - https://blogs.windows.com/msedgedev/2022/04/07/sleeping-tabs-edge-100-improvements/
 
-
 #### Chakra
-
 
 #### Other
 
@@ -476,7 +458,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2022/03/31/chromiums-dns-cache/
 - The "Magical" Back Button - text/plain
   - https://textslashplain.com/2022/03/31/the-magical-back-button/
-
 
 ### WHATWG/W3C 動向
 
@@ -508,7 +489,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - HTML Working Group Charter Extended until 30 June 2022
     - https://lists.w3.org/Archives/Public/public-html/2022Apr/0002.html
 
-
 #### Other
 
 - **W3C TPAC 2022 will be a hybrid meeting**
@@ -517,7 +497,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - 中国にハブを設けてそこで少しセッションもやる
 - **replace current outline algorithm with one based on heading levels**
   - https://github.com/whatwg/html/pull/7829
-
 
 ### TC39 動向
 
@@ -528,7 +507,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tc39/agendas/blob/main/2022/03.md
   - notes/meetings/2022-03 at main · tc39/notes
     - https://github.com/tc39/notes/tree/main/meetings/2022-03
-
 
 #### Proposals Diff
 
@@ -543,12 +521,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Change Array by Copy
 - 3->4
 
-
 #### New Proposals
 
-
 #### Other
-
 
 ### IETF 動向
 
@@ -586,7 +561,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
-
 #### Other
 
 - **http-core spec publication soonish from Julian Reschke**
@@ -597,19 +571,18 @@ guest: [@myakura](https://twitter.com/myakura)
   - RFC9111 AUTH48-DONE\*R draft-ietf-httpbis-cache-19.txt
   - RFC9112 AUTH48-DONE\*R draft-ietf-httpbis-messaging-19.txt
   - RFC9113 AUTH48-DONE\*R draft-ietf-httpbis-http2bis-07.txt
-  - RFC9114 AUTH48\*R      draft-ietf-quic-http-34.txt
+  - RFC9114 AUTH48\*R draft-ietf-quic-http-34.txt
   - RFC9163 AUTH48-DONE\*R draft-ietf-httpbis-expect-ct-08.txt
-  - RFC9180 PUB            draft-irtf-cfrg-hpke-12.txt
+  - RFC9180 PUB draft-irtf-cfrg-hpke-12.txt
   - RFC9193 AUTH48-DONE\*R draft-ietf-core-senml-data-ct-07.txt
-  - RFC9204 AUTH48\*R      draft-ietf-quic-qpack-21.txt
+  - RFC9204 AUTH48\*R draft-ietf-quic-qpack-21.txt
   - RFC9205 AUTH48-DONE\*R draft-ietf-httpbis-bcp56bis-15.txt
-  - RFC9209 AUTH48\*R      draft-ietf-httpbis-proxy-status-08.txt
+  - RFC9209 AUTH48\*R draft-ietf-httpbis-proxy-status-08.txt
   - RFC9211 AUTH48-DONE\*R draft-ietf-httpbis-cache-header-10.txt
   - RFC9213 AUTH48-DONE\*R draft-ietf-httpbis-targeted-cache-control-04.txt
-  - RFC9218 AUTH48\*R      draft-ietf-httpbis-priority-12.txt
+  - RFC9218 AUTH48\*R draft-ietf-httpbis-priority-12.txt
   - RFC9220 AUTH48-DONE\*R draft-ietf-httpbis-h3-websockets-04.txt
   - RFC9230 AUTH48-DONE\*R draft-pauly-dprive-oblivious-doh-11.txt
-
 
 ### CDN 動向
 
@@ -621,7 +594,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 記録的な規模の攻撃でこれを自動で防いだ
   - 世界中の bot net を使った攻撃で多くはインドネシアから
 
-
 #### Fastly
 
 - **Trusted services for a privacy-preserving internet: iCloud Private Relay and what it means for customers | Fastly**
@@ -629,12 +601,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - iCloud の Private Relay の Egress に Fastly が使われていることの記事
   - 先月の Akamai / Cloudflare に続いて 3 つ目の記事
 
-
 #### Other
 
-
 ### セキュリティ動向
-
 
 ### 周辺動向
 
@@ -645,7 +614,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.digitalocean.com/blog/css-tricks-joins-digitalocean
 - **ロシア情勢が Web / Internet / Tech に与えた影響の記録 2022 年 4 月**
   - https://zenn.dev/jxck/scraps/bccc75a5d7fbd1
-
 
 ### イベント
 
@@ -665,7 +633,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 7 月
   - 23-29: 114 Philadelphia
     - https://www.ietf.org/how/meetings/114/
-
 
 ### Wrap Up
 

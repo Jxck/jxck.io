@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 148 回のテーマは 2024 年 4 月の mozaic.fm renewal project です。
 
-
 ## 進捗
 
 - jxck
@@ -25,7 +24,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - hiroppy
   - pnpm への以降
   - インフラ周りの構築
-
 
 ## タスク
 
@@ -58,12 +56,10 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - Review
     - https://github.com/Jxck/mozaic.fm/pull/14
 
-
 ## Done
 
 - Git Repo
 - Figma + Storybook + Chromatic
-
 
 ## スタック
 
@@ -91,7 +87,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - Component
   - 全部自作
   - aria とかも全部自分で考える
-
 
 ## スケジュール
 

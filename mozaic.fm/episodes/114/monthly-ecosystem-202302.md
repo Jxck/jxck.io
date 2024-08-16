@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 114 回のテーマは 2023 年 2 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - **Rome からもう一人やめる**
@@ -94,7 +93,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://github.com/DanielXMoore/Civet
   - CoffeeScript の TS 版みたいなもの
   - 今年どうなるか注目
-
 
 ## Events
 

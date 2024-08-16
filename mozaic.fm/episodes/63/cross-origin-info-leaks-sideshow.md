@@ -14,7 +14,6 @@ guest: [@shhnjk](https://twitter.com/shhnjk)
 
 [@shhnjk](https://twitter.com/shhnjk) さんと、 ブラウザにおける Privacy の今後や、 new Edge の話をしました。
 
-
 ## Show Note
 
 - privacy sandbox

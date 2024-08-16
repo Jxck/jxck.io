@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 156 回のテーマは 2024 年 7 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - [React 19] Disabling prerendering siblings of suspended components breaking common pattern
@@ -93,7 +92,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - 堅牢な型があり、パフォーマンスの最適化を行っている utility ライブラリ
 - State of JavaScript 2023
   - https://2023.stateofjs.com/en-US/
-
 
 ## Events
 

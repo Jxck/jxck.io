@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 135 回のテーマは 2023 年 11 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Building the most ambitious sites on the Web with Vercel and Next.js 14 - Vercel
@@ -68,7 +67,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - Redux tool kit v2
   - リリースが近いらしい
   - https://blog.isquaredsoftware.com/presentations/2023-11-rtk-2.0-new/?slideIndex=0&stepIndex=0
-
 
 ## Events
 

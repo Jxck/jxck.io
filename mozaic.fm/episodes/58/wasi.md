@@ -16,7 +16,6 @@ guest: [@chikoski](https://twitter.com/chikoski)
 
 2015-08-05 にやった [WASM](https://mozaic.fm/episodes/19/es7-sideshow.html) の回から WASM が辿った 4 年を振り返りつつ、今何が起こっているのか、これからどうなっていくのかを議論しました。
 
-
 ## Show Note
 
 - WASI resources.md by @Chikoski - GitHub

@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 52 回のテーマは 2019 年 4 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -237,7 +236,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.blog.google/around-the-globe/google-europe/presenting-search-app-and-browser-options-android-users-europe/
     - ヨーロッパで展開する Android 端末で表示される、ブラウザと検索エンジンの選択・インストール画面について
 
-
 ### Firefox 動向
 
 - Stable: 66
@@ -305,7 +303,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/blog/2019/03/26/firefox-lockbox-now-on-android-keeping-your-passwords-safe/
   - DNS-over-HTTPS Policy Requirements for Resolvers
     - https://blog.mozilla.org/security/2019/04/09/dns-over-https-policy-requirements-for-resolvers/
-
 
 ### Safari 動向
 
@@ -390,7 +387,6 @@ guest: [@myakura](https://twitter.com/myakura)
       - 代替手段があるのに、標準機能の無効を可能にすると誤った方向に導いてしまう
       - 代わりに ITP や Content Blocker がある。
 
-
 ### Edge 動向
 
 - Stable: Edge 44/EdgeHTML 18
@@ -435,7 +431,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Edge チームが配信はじめたらしい
   - **Microsoft Edge での EV 証明書の信頼 (EV Trust Badge) 表示について**
     - https://social.msdn.microsoft.com/Forums/ja-JP/bfe59a95-e0fb-403a-9041-02ae3bbbc4a1/microsoft-edge-1239112398-ev-353882612626360123982044938972-ev-trust-badge?forum=edgeiesupportteamja
-
 
 ### WHATWG/W3C 動向
 
@@ -506,7 +501,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - W3C Strategic Highlights, Spring 2019
     - https://www.w3.org/blog/news/archives/7724
 
-
 ### TC39 動向
 
 - TC39
@@ -555,7 +549,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - eval の仕様を変えずに XSS リスクを減らす
 - Other
 
-
 ### IETF 動向
 
 - IETF
@@ -580,7 +573,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/HTTPWorkshop/workshop2019/blob/master/talks/Thomson-hx.pdf
     - なんかまたすごそうなの出てきた
 - RFC
-  - (Joke)  RFC 8565 - Hypertext Jeopardy Protocol
+  - (Joke) RFC 8565 - Hypertext Jeopardy Protocol
     - https://tools.ietf.org/html/rfc8565
   - RFC 8586 - Loop Detection in Content Delivery Networks (CDNs)
     - https://tools.ietf.org/html/rfc8586
@@ -636,7 +629,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Formalizing the HTTP State Tokens proposal.
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2019JanMar/0249.html
 
-
 ### セキュリティ動向
 
 - Heartbleed からちょうど 5 年(4/8)
@@ -662,8 +654,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 60% の XSS は CSP でブロックできている
   - Whitelist 形式はバイパスが可能なので Level 3 の nonce ベースに移行している
   - 緩和策を講じながら最終的に nonce only に移行していく
-  - 7 割くらい CSP をデプロイし、 nonce only は 1  割程度までデプロイ済み
-
+  - 7 割くらい CSP をデプロイし、 nonce only は 1 割程度までデプロイ済み
 
 ### 周辺動向
 
@@ -710,7 +701,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://component.kitchen/blog/posts/a-history-of-the-html-slot-element
   - Shadow DOM v1 の slot について、そうなった歴史
 
-
 ### イベント
 
 - 4 月
@@ -719,7 +709,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 3min LT 大会が復活したらしい
   - 17-18: AMP Conf 2019: Tokyo
     - https://amphtml.wordpress.com/2019/01/08/announcing-amp-conf-2019-tokyo/
-  - 25-26:  Web Components F2F
+  - 25-26: Web Components F2F
     - https://github.com/w3c/webcomponents/issues/802
 - 5 月
   - 6-8: MS Build

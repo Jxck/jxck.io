@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 136 回のテーマは 2023 年 11 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 119
-
 
 #### Updates
 
@@ -96,7 +94,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Lighthouse 11.2.0
   - Accessibility improvements
   - Miscellaneous highlights
-
 
 #### Intents
 
@@ -205,24 +202,23 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Request for Deprecation Trial: Deprecate Third-Party Cookies**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/yGUdvW_t_y0
 
-
 #### Other
 
 - web.dev
   - https://web.dev/
-  - **How Yahoo! JAPAN increased passkeys adoption to 11% and reduced SMS OTP costs  |  web.dev**
+  - **How Yahoo! JAPAN increased passkeys adoption to 11% and reduced SMS OTP costs | web.dev**
     - https://web.dev/case-studies/yahoo-japan-passkeys?hl=en
-  - How the Kiwix PWA allows users to store Gigabytes of data from the Internet for offline use  |  web.dev
+  - How the Kiwix PWA allows users to store Gigabytes of data from the Internet for offline use | web.dev
     - https://web.dev/case-studies/kiwix?hl=en
-  - **Join us online from 23-27 October for Passkeys Week  |  web.dev**
+  - **Join us online from 23-27 October for Passkeys Week | web.dev**
     - https://web.dev/blog/join-us-for-passkeys-week?hl=en
-  - Interop 2023 October update  |  web.dev
+  - Interop 2023 October update | web.dev
     - https://web.dev/blog/interop2023-update?hl=en
-  - New to the web platform in October  |  web.dev
+  - New to the web platform in October | web.dev
     - https://web.dev/blog/web-platform-10-2023?hl=en
-  - Introducing Learn Performance  |  Articles  |  web.dev
+  - Introducing Learn Performance | Articles | web.dev
     - https://web.dev/blog/introducing-learn-performance?hl=en
-  - Compression Streams are now supported on all browsers  |  web.dev
+  - Compression Streams are now supported on all browsers | web.dev
     - https://web.dev/blog/compressionstreams?hl=en
 - google for developers
   - https://developers.googleblog.com/
@@ -293,20 +289,18 @@ guest: [@myakura](https://twitter.com/myakura)
   - A new way to bring garbage collected programming languages efficiently to WebAssembly · V8
     - https://v8.dev/blog/wasm-gc-porting
 - search blog
-  - モバイルファースト インデックスが実現 - ご協力に感謝します  |  Google 検索セントラル ブログ  |  Google for Developers
+  - モバイルファースト インデックスが実現 - ご協力に感謝します | Google 検索セントラル ブログ | Google for Developers
     - https://developers.google.com/search/blog/2023/10/mobile-first-is-here?hl=ja
-  - A Q&A on Google Search updates  |  Google Search Central Blog  |  Google for Developers
+  - A Q&A on Google Search updates | Google Search Central Blog | Google for Developers
     - https://developers.google.com/search/blog/2023/11/q-and-a-on-search-updates
-  - 検索品質評価者向けガイドラインの更新  |  Google 検索セントラル ブログ  |  Google for Developers
+  - 検索品質評価者向けガイドラインの更新 | Google 検索セントラル ブログ | Google for Developers
     - https://developers.google.com/search/blog/2023/11/search-quality-rater-guidelines-update?hl=ja
-  - Upcoming deprecation of Crawl Rate Limiter Tool in Search Console  |  Google Search Central Blog  |  Google for Developers
+  - Upcoming deprecation of Crawl Rate Limiter Tool in Search Console | Google Search Central Blog | Google for Developers
     - https://developers.google.com/search/blog/2023/11/sc-crawl-limiter-byebye
-
 
 ### Firefox 動向
 
 #### Stable: 120
-
 
 #### Updates
 
@@ -331,7 +325,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Global Privacy Control Empowers Individuals to Limit Privacy-Invasive Tracking - Open Policy & Advocacy**
   - https://blog.mozilla.org/netpolicy/2023/11/21/global-privacy-control-empowers-individuals-to-limit-privacy-invasive-tracking/
   - `Sec-GPC: 1` が送れるように
-
 
 #### Intents
 
@@ -361,7 +354,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - GitHub でホストするが、バグトラッカーやレビューツールは既存のものを使う
   - 移行時期は検討中
 
-
 #### Newsletter
 
 - Firefox WebDriver Newsletter - 120 - Firefox Developer Experience
@@ -379,12 +371,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - Unicode Strings をサポート
   - Array grouping をサポート
 
-
 #### MDN / Open Web Docs
 
 - Getting started with CSS container queries | MDN Blog
   - https://developer.mozilla.org/en-US/blog/getting-started-with-css-container-queries/
-
 
 #### Standard Position
 
@@ -398,7 +388,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Negative
     - Element Capture · Issue #857 · mozilla/standards-positions
       - https://github.com/mozilla/standards-positions/issues/857
-
 
 #### Other
 
@@ -415,11 +404,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/en/products/quick-as-a-fox-firefox-keeps-getting-faster/
   - 2023 年 1 月以降、 Firefox の Speedometer のスコアは 50% 向上
 
-
 ### Safari 動向
 
 #### Stable: 17.1
-
 
 #### Updates
 
@@ -454,7 +441,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Added support for the allow-downloads directive for frames. (109414664)
   - **Added support for ArrayBuffer.prototype.transfer. (269674@main) (117337535)**
   - Aligned the implementation of the internal function IntlMathematicalValue (used in Number.prototype.toLocaleString, and Intl.NumberFormat) with its current specification. (269825@main) (117535507)
-
 
 #### Standard Positions
 
@@ -501,20 +487,16 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web Environment Integrity API
     - https://github.com/WebKit/standards-positions/issues/234
 
-
 #### Other
-
 
 ### Edge 動向
 
 #### Stable: 119
 
-
 #### Updates
 
 - Microsoft Edge WebView2 now available for Xbox apps
   - https://blogs.windows.com/msedgedev/2023/11/01/webview2-for-xbox-announcement/
-
 
 #### Other
 
@@ -530,7 +512,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2023/11/15/ignite-2023-latest-innovations-microsoft-edge/
 - Microsoft Defender の報奨金プログラムの紹介 | MSRC Blog | Microsoft Security Response Center
   - https://msrc.microsoft.com/blog/2023/11/introducing-the-microsoft-defender-bounty-program-ja/
-
 
 ### WHATWG/W3C 動向
 
@@ -563,7 +544,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Spatial Data on the Web Working Group Charter extended until 4 April 2024
     - https://lists.w3.org/Archives/Public/public-new-work/2023Nov/0011.html
 
-
 #### Other
 
 - **Define the privacy-policy link type · whatwg/html@1fc1a14**
@@ -585,7 +565,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.w3.org/news/2023/w3c-invites-implementations-of-rdf-dataset-canonicalization/
 - W3C Invites Implementations of VC Data Integrity, Data Integrity EdDSA and ECDSA Cryptosuites, and VC JSON Schema | 2023 | News | W3C
   - https://www.w3.org/news/2023/w3c-invites-implementations-of-vc-data-integrity-data-integrity-eddsa-and-ecdsa-cryptosuites-and-vc-json-schema/
-
 
 ### TC39 動向
 
@@ -657,7 +636,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Stage 2 と 3 の間が欲しい話
     - 増やすことに決定。番号にするが名前は未定。既存の番号はそのまま。
 
-
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2023-09-01}...main@{2023-11-01}
@@ -678,7 +656,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Promise.thenable
   - cleanupSome
 
-
 #### New Proposals
 
 - Iterator Sequencing
@@ -692,21 +669,17 @@ guest: [@myakura](https://twitter.com/myakura)
 - Locale Extensions
   - https://github.com/ben-allen/locale-extensions
 
-
 #### Other
-
 
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
-
 
 #### Meeting
 
 - 2023-11-02 Meeting
   - https://github.com/wintercg/admin/issues/57
   - 特になし
-
 
 ### IETF 動向
 
@@ -782,7 +755,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
-
 #### Other
 
 - **Technical Standards Bodies are Regulators**
@@ -792,7 +764,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Introducing httpbisGPT**
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2023OctDec/0163.html
   - httpbisGPT を作ったよという人
-
 
 ### CDN 動向
 
@@ -805,12 +776,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2024, the year of elections
   - https://blog.cloudflare.com/2024-the-year-of-elections/
 
-
 #### Fastly
 
 - Fastly 、基幹イベント「Yamagoya 2023」を開催 | Fastly
   - https://www.fastly.com/jp/press/press-releases/yamagoya-2023
-
 
 #### Other
 
@@ -819,12 +788,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - InfectedSlurs Botnet Spreads Mirai via Zero-Days | Akamai
   - https://www.akamai.com/blog/security-research/2023/nov/new-rce-botnet-spreads-mirai-via-zero-days
 
-
 ### セキュリティ動向
 
 - LINE ヤフー 個人情報 40 万件流出か - Yahoo!ニュース
   - https://news.yahoo.co.jp/pickup/6483067
-
 
 ### 周辺動向
 
@@ -844,7 +811,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **State of JavaScript 2023**
   - https://survey.devographics.com/ja-JP/survey/state-of-js/2023
 
-
 ### イベント
 
 - 11 月
@@ -859,7 +825,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2 月
 - 3 月
   - 8: 空けといて
-
 
 ### Wrap Up
 

@@ -14,7 +14,6 @@ guest: [@moro_is](https://twitter.com/moro_is)
 
 Coinhive 事件で起訴され、最高裁で無罪を勝ち取ったモロさんをお呼びし、エンジニアが抱えているリスクや、そこに対する自衛、またエンジニアとしてモロさんは何をしようとしていたのかといった点を議論しました。
 
-
 ## Show Note
 
 - 仮想通貨マイニング(Coinhive)で家宅捜索を受けた話 - ドークツ
@@ -27,7 +26,6 @@ Coinhive 事件で起訴され、最高裁で無罪を勝ち取ったモロさ�
   - https://qiita.com/moroi/items/e9db57db2bcdbc089ca1
 - 一般社団法人日本ハッカー協会
   - https://www.hacker.or.jp/
-
 - mozaic.fm で Coinhive に言及していた部分
   - ep32 Yearly Web 2017 | mozaic.fm
     - https://mozaic.fm/episodes/32/yearly-web-2017.html

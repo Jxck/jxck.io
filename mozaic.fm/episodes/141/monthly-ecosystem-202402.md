@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 141 回のテーマは 2024 年 2 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - React Labs: What We've Been Working On - February 2024
@@ -109,7 +108,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://lottiefiles.com/blog/working-with-lottie-animations/lottie-creator-a-powerful-web-based-lottie-animation-tool
 - Rome 作った Sebmac が X で復活
   - https://twitter.com/sebmck/status/1755739441103097958?s=20
-
 
 ## Events
 

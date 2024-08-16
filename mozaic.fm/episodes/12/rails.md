@@ -16,7 +16,6 @@ guest: [@a_matsuda](https://twitter.com/a_matsuda)
 
 プロジェクトオーナーである DHH が最初の Rails をリリースしてから 10 年たった今、この 10 年を見てきた [@a_matsuda](https://twitter.com/a_matsuda/) さんとともに、 10 年前と比べて様変わりしたフロントエンド開発との兼ね合いや、 Microservices に対する感触などについて議論しました。
 
-
 ## Show Note
 
 - [Ruby on Rails](http://rubyonrails.org/)

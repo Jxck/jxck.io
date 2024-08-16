@@ -14,7 +14,6 @@ guest: [@_masaka](https://twitter.com/_masaka)
 
 今回は [セマンティック・ウェブのための RDF/OWL 入門](https://www.amazon.co.jp/dp/4627829310) や [セマンティック HTML/XHTML](https://www.amazon.co.jp/dp/483993195X) の著者であり、 [ジャパンサーチ](https://jpsearch.go.jp/) などを手掛ける Semantic Web の専門家、 [神崎正英](https://www.kanzaki.com/) 先生をお迎えし Web におけるセマンティクスの歴史や RDF の変遷、ジャパンサーチで行われている作業から見た Semantic Web の現状などについてお聞きしつつ、これからの Web のセマンティクスなどについて議論させていただきました。
 
-
 ## Show Note
 
 - FOAF(Friend of a Friend)

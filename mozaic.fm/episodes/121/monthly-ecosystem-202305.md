@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 121 回のテーマは 2023 年 5 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Vercel のイベントで Vercel や Next.js のアップデート情報が出た
@@ -97,7 +96,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - Redwood v5
   - https://community.redwoodjs.com/t/redwood-v5-0-0-is-now-available/4830/1
   - React 18 対応など
-
 
 ## Events
 
