@@ -10,7 +10,7 @@ guest: [@moro_is](https://twitter.com/moro_is)
 
 ## Theme
 
-第 123 回のテーマは **Engineering Risk** です。
+第 123 回のテーマは *Engineering Risk* です。
 
 Coinhive 事件で起訴され、最高裁で無罪を勝ち取ったモロさんをお呼びし、エンジニアが抱えているリスクや、そこに対する自衛、またエンジニアとしてモロさんは何をしようとしていたのかといった点を議論しました。
 

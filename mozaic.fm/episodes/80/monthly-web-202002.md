@@ -585,7 +585,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - Google の考案する新たな「Cookie レスの仕組み」に独占禁止法違反の目が向けられている - GIGAZINE
   - https://gigazine.net/news/20210204-google-replacing-cookie-antitrust/
-- **Preparing to Issue 200 Million Certificates in 24 Hours - Let's Encrypt - Free SSL/TLS Certificates**
+- *Preparing to Issue 200 Million Certificates in 24 Hours - Let's Encrypt - Free SSL/TLS Certificates*
   - https://letsencrypt.org/2021/02/10/200m-certs-24hrs.html
   - 2020/2 に、 300 万(全体の 2.6%)の証明書を置き換えるべき状況があった
   - もしこれが 100% になる最悪のケースがあっても実施できるインフラに改善した
