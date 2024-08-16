@@ -5,6 +5,7 @@
 NODE := $(HOME)/.local/share/mise/installs/node/latest/bin/node
 
 build:
+	make fmt
 	cd .src && $(NODE) build.js build
 	make comp
 
@@ -20,6 +21,7 @@ draft:
 
 fmt:
 	.src/markdown/formatter.js blog.jxck.io/entries/**/*.md
+	.src/markdown/formatter.js mozaic.fm/episodes/**/*.md
 
 install:
 	npm install
