@@ -607,7 +607,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://nlnet.nl/project/Verso/
 - Verso Browser - Versotile
   - https://versotile.org/verso/
-- **Andreas Kling on X: "We've been evaluating a number of C++ successor languages for @ladybirdbrowser, and the one best suited to our needs appears to be @SwiftLang 🪶 Over the last few months, I've asked a bunch of folks to pick some little part of our project and try rewriting it in the different" / X**
+- **Ladybird を C++ から Swift に移行**
   - https://x.com/awesomekling/status/1822236888188498031
   - Ladybird が Swift を採用していく
 - **Chrome's secretly installed extensions - Off The Main Thread**
@@ -621,7 +621,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://infrequently.org/2024/08/caprock/
 - Reckoning: Part 4 - The Way Out - Infrequently Noted
   - https://infrequently.org/2024/08/the-way-out/
--
 - The European Union must keep funding free software | Igalia
   - https://www.igalia.com/2024/08/05/The-European-Union-must-keep-funding-free-software.html
 - **Improving language negotiation**
