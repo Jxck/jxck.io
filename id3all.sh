@@ -2159,3 +2159,16 @@ eyeD3 --title "ep158 Monthly Ecosystem 202408" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep159.mp3
+
+eyeD3 --title "ep159 Monthly Platform 202408" \
+      --track 167 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep159.mp3
+
+
+
