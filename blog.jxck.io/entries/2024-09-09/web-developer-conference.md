@@ -56,6 +56,8 @@
 
 時計は止めず、人が時計に合わせる方式で、 58 秒経過時点でホーンを鳴らしてぶった斬る方式だ。スライドはこちらでめくり、スピーカーはマイクの横に列をなす形で進めた。
 
+![LT](lt.jpeg#256x192)
+
 - 1 分 de Web 標準 - Google スライド
   - https://docs.google.com/presentation/d/1kJsCkMwyUu6nkgjYSPxTn1_AAXvaP6NWa_nchE9rGWM
 
