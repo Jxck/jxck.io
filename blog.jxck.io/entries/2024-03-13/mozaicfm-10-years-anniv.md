@@ -1,4 +1,4 @@
-# mozaic.fm 10 周年記念イベント開催後記
+# [mozaic.fm] mozaic.fm 10 周年記念イベント開催後記
 
 ## Intro
 
