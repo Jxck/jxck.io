@@ -202,41 +202,36 @@ Modal はキーボード操作で閉じたりできるのが基本で、例え�
 
 ## <dialog>
 
-さて、以上の仕様を組み合わせて実現したのが dialog 要素だ。
+さて、以上の仕様を組み合わせて実現したのが `<dialog>` 要素だ。
 
 この要素は
 
 - ネイティブで Modal / non-Modal な Dialog を開くことができる
-
 - Modal を開くと自動で背景が inert になる
-
-- Focust の管理や、活性管理などが自動で行われる
-
+- Focus の管理や、活性管理などが自動で行われる
 - :modal / :backdrop をスタイルできる
-
 - Close Watcher で OS に合わせたキーボード操作(ESC で閉じる)なども自動で対応される
 
 などといった、これまでエンジニアが無理やり実装してきた Modal への要件を、一挙に解決してくれているのだ。
 
-そのうえで role=dialog であるものを開くことができるわけなので、支援技術に対しても「dialog が開いたぞ」ってことが伝わるわけ。　そして、 showModal で開かれていれば aria-modal=true 扱いにもなる。
+そのうえで `role=dialog` であるものを開くことができ、支援技術に対しても「Dialog が開いた」ということが伝わる。また `showModal()` で開かれていれば `aria-modal=true` 扱いにもなる。
 
-もしそれが alert (警告)の意味をもっているなら、 role=alertdialog で上書きする必要はあるけど、そうでない場合は単に <dialog> を使って実装しているだけで、十分なセマンティクスが提供できるのはやっぱりでかいよね。
+もしそれが Alert (警告)の意味をもっているなら、 `role=alertdialog` で上書きする必要はあるが、そうでない場合は単に `<dialog>` を使って実装しているだけで、十分なセマンティクスが提供できる。
 
 ## open/close ? show/hide ? show/close ?
 
 仕様にも書かれてるんだけど、一般的に
 
-open <=> close
+- open / close
+- show / hide
 
-show <=> hide
+なのだが、 Dialog については
 
-なんだけど、 Dialog については
+- show / close
 
-show <=> close
+という操作体系になっており、メソッド名もそうなっている。
 
-っていう操作になるんだよね。メソッドもそうなってる。
-
-この理由はちょっと面白くて、仕様ではこうかかれている。
+この理由は少し面白くて、仕様ではこうかかれている。
 
 > We use show/close as the verbs for dialog elements, as opposed to verb pairs that are more commonly thought of as antonyms such as show/hide or open/close, due to the following constraints:
 >
@@ -262,8 +257,8 @@ show <=> close
 >
 > まとめると、ある種の動詞の意味合いや技術的な文脈での使われ方によって、 dialog の show と close のような対になる動作は、必ずしも反対語として表現できるとは限らないということがわかります。
 >
-> [HTML Standard (whatwg.org)](https://html.spec.whatwg.org/multipage/interactive-elements.html#note-dialog-method-names "https://html.spec.whatwg.org/multipage/interactive-elements.html#note-dialog-method-names")
+> --- https://html.spec.whatwg.org/multipage/interactive-elements.html#note-dialog-method-names
 
-なので、もし自分がもっている実装を標準 <dialog> に移行するのであれば、この辺の語彙のすり合わせもやった方がいいかもね。
+したがって、もし自前の実装を標準の `<dialog>` に移行するのであれば、この辺の語彙のすり合わせもやった方がいいだろう。
 
 次回はもう少し実際のコードで、 Modal の使い方を確認していこう。
