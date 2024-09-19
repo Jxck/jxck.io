@@ -8,6 +8,7 @@
 
 そういった場面では、ライブラリなどを用いて実装するが、 Modal を実装するのは、実際にはそんな簡単ではない。
 
+
 ## Modal, Dialog, Modal Dialog
 
 そもそも、この 3 つの違いを少し整理しておこう。
@@ -32,6 +33,7 @@ Modal Dialog は、だいたい以下のような感じでユーザをブロッ�
 
 以降 Modal とは、「Modal で開いた Dialog」つまり「Modal Dialog」のことを指すことにする。
 
+
 ## Modal 実装の難しさ
 
 Modal ってのはだいたいこんなイメージだよね
@@ -49,21 +51,21 @@ TODO: 図
 
 例えば、よくある失敗実装はフォーカスの管理が難しい。
 
-1.  Modal を開いてるのに、フォーカスは下のままで、キーボードでそうしたいユーザが Modal に Tab で辿り着けない
-2.  Modal を開いてて、フォーカスも Modal に乗ってるのに、Tab を押すと Modal から落ちて下に移動してしまう
-3.  Modal を開いてフォーカスを Modal に載せたはいいが、Modal を閉じても、以前いた場所にフォーカスが戻らない
-4.  Modal 上で Tab を押して、Modal の一番下に行ったら、Modal の上に戻って欲しいけど、どっか行ってしまう
+1. Modal を開いてるのに、フォーカスは下のままで、キーボードでそうしたいユーザが Modal に Tab で辿り着けない
+2. Modal を開いてて、フォーカスも Modal に乗ってるのに、Tab を押すと Modal から落ちて下に移動してしまう
+3. Modal を開いてフォーカスを Modal に載せたはいいが、Modal を閉じても、以前いた場所にフォーカスが戻らない
+4. Modal 上で Tab を押して、Modal の一番下に行ったら、Modal の上に戻って欲しいけど、どっか行ってしまう
 
 他にも、モダールにできて欲しいことができない
 
-1.  フォーカスを移動したり、 Modal 外をクリックしたりスクロールしたり、 Modal じゃない部分が操作できてしまう
-2.  Modal 外を操作しようとしたら Modal を閉じて欲しいのに、閉じてくれない
-3.  Esc 押したら閉じて欲しいのに、閉じてくれない
-4.  Modal 以外を暗くするのに失敗して、 Modal も暗くなっちゃってる。もしくは変なところだけ暗い/明るい
-5.  二個目の Modal を開けてしまう。しかも前の Modal も残る
-6.  Modal が開いてること、 Modal 上に移動したこと、 Modal を閉じたことなどが、支援機能に伝わらないので、何が起こったかわからないユーザがいる
-7.  Modal が開いて、後ろが非活性なのに、そのことが支援技術に伝わらずに、操作できない箇所に引っかかって操作が進められないユーザがいる
-8.  etc etc etc
+1. フォーカスを移動したり、 Modal 外をクリックしたりスクロールしたり、 Modal じゃない部分が操作できてしまう
+2. Modal 外を操作しようとしたら Modal を閉じて欲しいのに、閉じてくれない
+3. Esc 押したら閉じて欲しいのに、閉じてくれない
+4. Modal 以外を暗くするのに失敗して、 Modal も暗くなっちゃってる。もしくは変なところだけ暗い/明るい
+5. 二個目の Modal を開けてしまう。しかも前の Modal も残る
+6. Modal が開いてること、 Modal 上に移動したこと、 Modal を閉じたことなどが、支援機能に伝わらないので、何が起こったかわからないユーザがいる
+7. Modal が開いて、後ろが非活性なのに、そのことが支援技術に伝わらずに、操作できない箇所に引っかかって操作が進められないユーザがいる
+8. etc etc etc
 
 実装パターンは APG にもまとめられてるが、これを自前でやるのも簡単ではない。
 
@@ -73,6 +75,7 @@ TODO: 図
 色々な UI ライブラリが Modal Dialog 相当の機能を提供していたが、やはり理想的な実装は難しい。
 
 しかし、みなこのような UI を必要としており、これをネイティブで標準化しようということになる。
+
 
 ## 標準 Dialog
 
@@ -139,6 +142,7 @@ Top Layer はあくまでブラウザが内部的に生成しているため、 
 
 これで Modal Dialog を表示する場所ができた。
 
+
 ## inert
 
 `<dialog>` の標準化の過程で生み出されたのが、 `inert` という属性がある。
@@ -153,9 +157,10 @@ Top Layer はあくまでブラウザが内部的に生成しているため、 
 
 たとえば「読み込み中の何かを、読み込むまで非活性にする」といったこともできるが、注意点はこれまで `disabled` で無効にしてたコントロール系はこれまで通り `disabled` を使うべきだ。
 
+
 ## `::backdrop`
 
-Modal Dialog を開いた時に、後ろ側を `inert` にすることができるようになったが、 `inert` はあくまで非活性なだけで、特にスタイルが当たるわけではない。しあkし、非活性だった場合大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
+Modal Dialog を開いた時に、後ろ側を `inert` にすることができるようになったが、 `inert` はあくまで非活性なだけで、特にスタイルが当たるわけではない。しあ k し、非活性だった場合大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
 
 この場合 `inert` 部分にスタイルを当てることもできる。
 
@@ -173,12 +178,12 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 }
 ```
 
+
 ## ::modal
 
 `::backdrop` が「Top Layer 以外」だったのと対照的に、 `::modal` は 「Top Layer だけ」にスタイルを当てるための擬似クラスになっている。
 
 `::modal` は `showModal` した `<dialog>`はもちろん、さっき言ったように、同じく Top Layer に載せることができる Fullscreen API もやはり `::modal` でスタイルができる。(`:fullscreen` もある)。
-
 
 ```css
 ::modal {
@@ -187,6 +192,7 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 ```
 
 一方、 `show()` した Modal ではない `<dialog>` は対象外だ。
+
 
 ## Close Watcher
 
@@ -200,7 +206,8 @@ Modal はキーボード操作で閉じたりできるのが基本で、例え�
 
 もし、ネイティブの `<dialog>` 以外の要素に対して、自前でそのような挙動を実現したいなら、 Close Watcher を自前で使うことになるだろう。
 
-## <dialog>
+
+## `<dialog>`
 
 さて、以上の仕様を組み合わせて実現したのが `<dialog>` 要素だ。
 
@@ -217,6 +224,7 @@ Modal はキーボード操作で閉じたりできるのが基本で、例え�
 そのうえで `role=dialog` であるものを開くことができ、支援技術に対しても「Dialog が開いた」ということが伝わる。また `showModal()` で開かれていれば `aria-modal=true` 扱いにもなる。
 
 もしそれが Alert (警告)の意味をもっているなら、 `role=alertdialog` で上書きする必要はあるが、そうでない場合は単に `<dialog>` を使って実装しているだけで、十分なセマンティクスが提供できる。
+
 
 ## open/close ? show/hide ? show/close ?
 
@@ -235,7 +243,7 @@ Modal はキーボード操作で閉じたりできるのが基本で、例え�
 
 > We use show/close as the verbs for dialog elements, as opposed to verb pairs that are more commonly thought of as antonyms such as show/hide or open/close, due to the following constraints:
 >
-> dialog の動詞として、show/hide や open/close のような反対語として一般的に考えられている動詞ペアとは対照的に、以下の制約から show/close を使用します：
+> dialog の動詞として、show/hide や open/close のような反対語として一般的に考えられている動詞ペアとは対照的に、以下の制約から show/close を使用します:
 >
 > Hiding a dialog is different from closing one. Closing a dialog gives it a return value, fires an event, unblocks the page for other dialogs, and so on. Whereas hiding a dialog is a purely visual property, and is something you can already do with the hidden attribute or by removing the open attribute. (See also the note above about removing the open attribute, and how hiding the dialog in that way is generally not desired.)
 >
@@ -243,7 +251,7 @@ Modal はキーボード操作で閉じたりできるのが基本で、例え�
 >
 > Showing a dialog is different from opening one. Opening a dialog consists of creating and showing that dialog (similar to how window.open() both creates and shows a new window). Whereas showing the dialog is the process of taking a dialog element that is already in the DOM, and making it interactive and visible to the user.
 >
-> dialog を show することは、dialog を open することとは異なります。dialog を open することは、dialog を create & show することです（window.open() が新しいウィンドウを作成し表示するのと同様です）。一方、dialog を show することは、すでに DOM にある <dialog> 要素を、インタラクティブに、ユーザーに見えるようにすることです。
+> dialog を show することは、dialog を open することとは異なります。dialog を open することは、dialog を create & show することです(window.open() が新しいウィンドウを作成し表示するのと同様です)。一方、dialog を show することは、すでに DOM にある dialog 要素を、インタラクティブに、ユーザーに見えるようにすることです。
 >
 > If we were to have a dialog.open() method despite the above, it would conflict with the dialog.open property.
 >
@@ -251,7 +259,7 @@ Modal はキーボード操作で閉じたりできるのが基本で、例え�
 >
 > Furthermore, a survey of many other UI frameworks contemporary to the original design of the dialog element made it clear that the show/close verb pair was reasonably common.
 >
-> さらに、dialog 要素のオリジナルの設計と同時代の他の多くのUIフレームワークを調査した結果、show/close 動詞のペアが合理的に一般的であることが明らかになりました。
+> さらに、dialog 要素のオリジナルの設計と同時代の他の多くの UI フレームワークを調査した結果、show/close 動詞のペアが合理的に一般的であることが明らかになりました。
 >
 > In summary, it turns out that the implications of certain verbs, and how they are used in technology contexts, mean that paired actions such as showing and closing a dialog are not always expressible as antonyms.
 >
