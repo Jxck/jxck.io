@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 160 回のテーマは 2024 年 9 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - What we got wrong about HTTP imports
@@ -151,7 +150,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - OpenAI が Remix にしたはなし
 - node-fetch-server
   - https://github.com/mjackson/remix-the-web/tree/main/packages/node-fetch-server
-
 
 ## Events
 
