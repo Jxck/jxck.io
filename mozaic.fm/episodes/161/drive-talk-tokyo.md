@@ -12,7 +12,6 @@ guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 
 第 161 回のテーマは、 Node.js ユーザグループ会長である [@yosuke_furukawa](https://twitter.com/yosuke_furukawa) の愛車での Drive Talk です。
 
-
 ## Show Note
 
 - Web エコシステムの人文社会学的解釈 by Jxck | プロポーザル | Web Developer Conference 2024 - fortee.jp

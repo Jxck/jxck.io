@@ -2185,3 +2185,16 @@ eyeD3 --title "ep160 Monthly Ecosystem 202409" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep161.mp3
+
+eyeD3 --title "ep161 Drive Talk: Tokyo" \
+      --track 169 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep161.mp3
+
+
+
