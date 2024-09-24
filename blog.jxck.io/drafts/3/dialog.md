@@ -34,21 +34,21 @@
 </dialog>
 ```
 
-このように `<form method=dialog>` を `<dialog>` の中に書くと、その submit は dialog を submit したことになるので、 dialog を閉じることになる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースで利用できる。
+このように `<form method=dialog>` を `<dialog>` の中に書くと、その submit は Dialog を submit したことになるので、 Dialog を閉じることになる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースを実装できる。
 
-インタラクションの結果を取得する場合は JS が必要だ。その場合も `<dialog>` を JS から動的に作るよりは、先に `<dialog>` を open 属性なしに HTML 上に配置しておき、その `show()/close()` を JS で操作するのが基本になる。
+インタラクションの結果を取得する場合は JS が必要だ。その場合も `<dialog>` を JS から動的に作るよりは、先に `<dialog>` を open 属性なしに HTML 上に配置しておき、その `show()/close()` を JS で呼ぶのが基本になる。
 
-閉じるだけではなく、開く方も JS なしでできるが、それについては後述する。
+閉じるだけではなく、開く方も JS 無しでできるが、それについては話がかなり広がるので別の回で解説する。
 
 
 ## aria-label / aria-labelledby
 
-WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` を使ってアクセシブルな名前を入れることが推奨されている。
+WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` を使ってアクセシブルな名前を割り当てることが推奨されている。
 
 - Accessible Rich Internet Applications (WAI-ARIA) 1.3
   - https://w3c.github.io/aria/#dialog
 
-`<h1>` を参照する場合は以下のようになる。
+Dialog の `<h1>` がラベルに相当する情報を持っている場合は、以下のような実装が考えられる。
 
 ```html
 <dialog aria-labelledby="dialog_name">
@@ -64,7 +64,7 @@ WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` �
 
 ## show()/showModal()
 
-とりあえず開くとこう。
+次に、 JS を用いた実装について見ていく。
 
 ```html
 <dialog aria-labelledby="dialog_name">
@@ -90,31 +90,29 @@ WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` �
 </script>
 ```
 
-まず `show()` で開くとさっきと同じ、 `<dialog open>` した状態になって Dialog が開く。
+まず `show()` を呼ぶと、先ほどで言う `<dialog open>` した状態になり Dialog が開く。
 
-TODO: `show()` で dialog を開く画像
+![show() で dialog を開く画像](2.show.png)
 
-これは単に non-Modal な Dialog が open してるだけなので、後にあるテキストの選択や、ボタンクリックができる。また、この時別の `<dialog>` を show しても同時に表示できる。これは、全く排他的な操作をしてないことを意味する。
+これは単に non-Modal な Dialog が open してるだけなので、後にあるテキストの選択や、ボタンクリックといった操作は引き続き可能だ。また、この時別の `<dialog>` を `show()` しても同時に表示できる。これは、全く排他的な操作がされてないことを意味する。
 
 Accessibility Tree を確認すると Role が `dialog` になっていることが確認できるだろう。
 
-TODO: role: dialog, modal: false になっている画像
+![Accessibility Tree 上は role: dialog, modal: false になっている](3.a11y-tree.png)
 
-これを、 `showModal()` で開いたらこうなる。
+これを、 `showModal()` で開くとこうなる。
 
-TODO: showModal() で Modal Dialog を開く
+![showModal() で Modal Dialog を開く](4.showModal.png)
 
-背景が薄くグレーになるのは、 `:backdrop` のデフォルト CSS があたってるからだ。
+背景が薄くグレーになるのは、 `::backdrop` のデフォルト CSS があたってるからだ。
 
-TODO: chrome の backdrop スタイルの図
-
-かつ、後ろには `inert` が適用されているため、背景のボタンクリックや、テキスト選択はできない。ちなみに、 body に inert つけると dialog も inert になるからどうするのかなと思ったら、 inert 属性が body に付くとかそういうわけではないっぽいね。(仕様上は document を "blocked by the modal dialog" にすると書いてある。)
+![chrome の backdrop デフォルトスタイル](5.default-style.png)
 
 non-Modal と異なり Modal は同時に一つしか開けない。
 
 Accessibility Tree もこうなる。
 
-TODO: role: dialog, modal: true になっている
+![Accessibility Tree 上は role: dialog, modal: true になっている](6.a11y-tree.png)
 
 
 ## フォーカスの確認
@@ -125,23 +123,25 @@ TODO: role: dialog, modal: true になっている
 
 共通してるのは以下だ。
 
-- focus した button を Enter で開いたら、 focus が dialog 内の button に移る。
-- dialog の button で close したら、その前のボタンに focus が戻る。
+- フォーカスした `<button>` を Enter で開いたら、フォーカスが `<dialog>` 内の `<button>` に移る。
+- `<dialog>` の `<button>` で閉じたら、開いた時の `<button>` にフォーカスが戻る。
 
-これにより、 Dialog を開いてもフォーカスが残るとか、閉じたらフォーカスが迷子になるみいたなことはなくなっている。
+これにより、 `<dialog>` を開いてもフォーカスが移らないとか、閉じたらフォーカスが迷子になるといった事態を避けられる。
 
 相違点は
 
-- non-Modal: Modal の外にも focus が移動できる
-- Modal: Modal 以外には focus が出ない。(ブラウザ UI 側には出られる)
+- non-Modal: Modal の外にもフォーカスが移動できる
+- Modal: Modal の外にはフォーカスが出ない。(ブラウザ UI 側には出られる)
 
-これにより、 Modal を開いた状態で、余計なところに focus がいくみたいなことがなくなる。
+これにより、 Modal を開いた状態で、 DOM 上の余計なところにフォーカスが行き、想定してない操作を行えてしまうといったことはなくなる。
 
-なお、今回は `<dialog>` に `<button>` が一個しかないから、ここに自動で focus が移るが、特に Modal dialog はデフォルトでどこにフォーカスを移すのかは非常に重要で、仕様でどうするかも結構揉めた。
+しかし、ブラウザ UI 側には出ていくことができる(できないと、行き詰まる可能性がある)ため、その点は慣れが必要かもしれない。
 
-そして、仕様では「どこにフォーカスすべきかを autofocus で指定するのが推奨」となった。
+なお、今回は `<dialog>` に `<button>` が一個しかないため、ここに自動でフォーカスが移るが、特に Modal dialog はデフォルトでどこにフォーカスを移すのかは非常に重要で、前回解説したように仕様でどうするかも結構揉めた。
 
-結果 `showModal()` は `autofocus` を尊重するので、基本は `autofocus` を指定する方が良いだろう。今回の場合は `<button>` だろう。
+そして、仕様ではデフォルトの挙動を整理しつつも、前提として「どこにフォーカスすべきかを `autofocus` で指定するのが推奨」となった。
+
+結果 `showModal()` は `autofocus` を尊重するので、基本は `autofocus` を指定する方が良いだろう。
 
 ```html
 <dialog>
@@ -153,6 +153,101 @@ TODO: role: dialog, modal: true になっている
   </div>
 </dialog>
 ```
+
+## スクロールとフォーカス
+
+Dialog のユースケースの 1 つとして、「規約への同意」を求める UI がある。
+
+規約は基本的に長文になるため、そのまま `<dialog>` にレンダリングすると、 `<dialog>` 自体がスクロール可能になってしまう。
+
+```html
+<dialog style="height: 80vh;">
+  <div>
+    <p>めっちゃ</p>
+    <p>長い</p>
+    <p>規約</p>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+  </div>
+  <form method="dialog">
+    <button type="submit" value="agree">Agree</button>
+    <button type="submit" value="disagree">Disagree</button>
+  </form>
+</dialog>
+```
+
+しかし、 `<dialog>` 自体がスクロール可能になることは、下部にあるコントローラーまでの到達を困難にするなど、様々な不便があるため、仕様では「`<dialog>` 自体を Scrollable にするのは避けるべき」と明示されている。
+
+代わりに、規約を別ページにしリンクを貼る、 PDF でダウンロードさせるなども考えられるが、最も簡単なのは規約のみを Scrollable なコンテナに入れる方法だ。以下の場合は、最初の `<div>` が Scrollable になっている。
+
+```html
+<dialog style="height: 80vh;">
+  <div style="overflow: auto; height: 60vh;" autofocus>
+    <p>めっちゃ</p>
+    <p>長い</p>
+    <p>規約</p>
+  </div>
+  <form method="dialog">
+    <button type="submit" value="agree">Agree</button>
+    <button type="submit" value="disagree">Disagree</button>
+  </form>
+</dialog>
+```
+
+注意点として、もしこのスクロールする `<div>` の手前に別のコントローラーがあった場合を考えよう。
+
+```html
+<dialog style="height: 80vh;">
+  <!-- snip -->
+  <button autofocus>Controller 1</button>
+
+  <div style="overflow: auto; height: 60vh;">
+    <p>めっちゃ</p>
+    <p>長い</p>
+    <p>規約</p>
+  </div>
+
+  <button>Controller 2</button>
+  <!-- snip -->
+</dialog>
+```
+
+この場合、従来は "Controller 1" で Tab 移動すると "Controller 2" にフォーカスが移り、キーボードだけで規約を読むことができなっかったため、明示的に `tabindex=0` を付与する必要があった。
+
+しかし、このような場面での不便を解消するために、「スクロール可能な要素は、デフォルトでフォーカス可能にする」という仕様が標準化され、実装が進められていた。
+
+- Keyboard focusable scrollers  |  Blog  |  Chrome for Developers
+  - https://developer.chrome.com/blog/keyboard-focusable-scrollers
+
+既に Chrome と Firefox は実装済みだが、 Safari は実装上の困難さとパフォーマンスを理由にネガティブな態度を表明している。
+
+- 190870 – Make scrollable element focusable
+  - https://bugs.webkit.org/show_bug.cgi?id=190870
+
+したがって、しばらくは `tabindex=0` を明示的に付与した実装をすべきだろう。
+
+
+```html
+<dialog style="height: 80vh;">
+  <!-- snip -->
+  <button autofocus>Controller 1</button>
+
+  <div style="overflow: auto; height: 60vh;" tabindex="0">
+    <p>めっちゃ</p>
+    <p>長い</p>
+    <p>規約</p>
+  </div>
+
+  <button>Controller 2</button>
+  <!-- snip -->
+</dialog>
+```
+
+より詳細なガイダンスは、以下が参考になるだろう。
+
+- dialog initial focus, a proposal · whatwg/html Wiki
+  - https://github.com/whatwg/html/wiki/dialog--initial-focus,-a-proposal
 
 
 ## Close と returnValue
@@ -166,7 +261,7 @@ $dialog.close("accept")
 $dialog.returnValue // "accept"
 ```
 
-これは、 `<form>` を使った場合に submit された結果も取得できる。
+`<form>` を使った場合に submit された結果もここから取得できる。
 
 
 ## backdrop をクリックしたら閉じる
@@ -254,30 +349,6 @@ $('dialog').on('click', (e) => {
 これ以外、例えば何かを `<input>` させたり、 `<select>` させる場合、その結果は JS で集めて `close()` に渡すことになる。
 
 
-## dialog は scroll させない
-
-仕様に明示されている点として、多くのテキストを表示し、 `<dialog>` 自体がスクロール可能になることは望ましくないという推奨がある。
-
-例えば、規約のような長いテキストは、別ページにリンクするか、小要素に表示してスクロールさせる方が良いということだ。
-
-```html
-<dialog style="height: 80vh;">
-  <div style="overflow: auto; height: 60vh;" autofocus>
-    <p>めっちゃ</p>
-    <p>長い</p>
-    <p>規約</p>
-  </div>
-  <form method="dialog">
-    <button type="submit" value="agree">Agree</button>
-    <button type="submit" value="disagree">Disagree</button>
-  </form>
-</dialog>
-```
-
-TODO: ここでスクロールがフォーカスされるようになった
-
-あと、この場合デフォルトでは scroll する `<div>` にフォーカスがあたるようになった。ただ、推奨に則れば focus は明示的に `autofocus` をつけるべきだろう。
-
 
 ## キーボード操作
 
@@ -313,7 +384,7 @@ non-Modal は他が操作できるからキーボードには反応しないが�
 
 - そもそも Dialog が開いてることに気づけない
 - Dialog が開いて、他の操作ができなくなったが、何が起こったのかわからない
-- 操作できないはずのところに focus が飛んで想定外の操作をしてしまう
+- 操作できないはずのところにフォーカスが飛んで想定外の操作をしてしまう
 - ESC が奪われて、意図していた操作ができなくなる
 - 開いて閉じたらフォーカスが迷子になる
 
