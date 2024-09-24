@@ -6,8 +6,9 @@
 
 今回は `<dialog>` の API としての使い方について、具体的に解説していく。
 
+## 各要素の使用
 
-## `open` 属性
+### `open` 属性
 
 `<dialog>` は、デフォルトでは不可視な要素となっている。これを表示するには `open` 属性を用いる。
 
@@ -41,7 +42,7 @@
 閉じるだけではなく、開く方も JS 無しでできるが、それについては話がかなり広がるので別の回で解説する。
 
 
-## aria-label / aria-labelledby
+### aria-label / aria-labelledby
 
 WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` を使ってアクセシブルな名前を割り当てることが推奨されている。
 
@@ -62,7 +63,7 @@ Dialog の `<h1>` がラベルに相当する情報を持っている場合は�
 ```
 
 
-## show()/showModal()
+### show()/showModal()
 
 次に、 JS を用いた実装について見ていく。
 
@@ -115,7 +116,7 @@ Accessibility Tree もこうなる。
 ![Accessibility Tree 上は role: dialog, modal: true になっている](6.a11y-tree.png)
 
 
-## フォーカスの確認
+### フォーカスの確認
 
 次は、それぞれのフォーカスの挙動を確認する。
 
@@ -154,7 +155,7 @@ Accessibility Tree もこうなる。
 </dialog>
 ```
 
-## スクロールとフォーカス
+### スクロールとフォーカス
 
 Dialog のユースケースの 1 つとして、「規約への同意」を求める UI がある。
 
@@ -250,7 +251,7 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
   - https://github.com/whatwg/html/wiki/dialog--initial-focus,-a-proposal
 
 
-## Close と returnValue
+### Close と returnValue
 
 Dialog を閉じる場合、先のように `<form>` を使わず JS で `close()` を呼んで閉じることもできる。なお「`open` 属性を消す」では、 Modal は「消える(hidden)」が「閉じる(close)」の意味にはならない(`close` イベントも発火しない)ので、 JS の場合必ず `close()` を使って閉じるべきだ。
 
@@ -264,7 +265,7 @@ $dialog.returnValue // "accept"
 `<form>` を使った場合に submit された結果もここから取得できる。
 
 
-## backdrop をクリックしたら閉じる
+### backdrop をクリックしたら閉じる
 
 Dialog の要件としてよくある「背景(backdrop)をクリックしたら閉じる(キャンセル)」というユースケースの実装を考える。
 
@@ -277,9 +278,9 @@ dialog.on('click', (e) => {
 })
 ```
 
-TODO: Modal は画面のどこをクリックしても `<dialog>` で発火する
+![Modal は画面のどこをクリックしても dialog 要素で発火する](7.backdrop-click.drawio.svg)
 
-そこで、 `<dialog>` を `padding: 0` にし、直下の `<div>` が `<dialog>` の内側いっぱいに表示されている状態にしよう。(わかりやすく `<div>` は色をつけてる)
+そこで、 `<dialog>` を `padding: 0` にし、直下の `<div>` が `<dialog>` の内側いっぱいに表示されている状態にする。以下では、赤い `<div>` が `<dialog>` いっぱいに被さっている形だ。
 
 ```html
 <style>
@@ -302,7 +303,7 @@ TODO: Modal は画面のどこをクリックしても `<dialog>` で発火す�
 </dialog>
 ```
 
-この状態で `showModal()` したあとは、 Dialog の領域をクリックしても `<dialog>` の前に `<div>` がクリックされたことになる。
+この状態で `showModal()` した場合、 Dialog の領域をクリックしても `<dialog>` より先に `<div>` で Click Event が発火する。
 
 TODO: dialog 領域のクリックが div で発生する
 
@@ -311,8 +312,8 @@ TODO: dialog 領域のクリックが div で発生する
 ```js
 $('dialog').on('click', (e) => {
   // dialog 背景含めて全体がフック対象
-  const {target, currentTarget} = e
-  console.log({target, currentTarget})
+  const { target, currentTarget } = e
+  console.log({ target, currentTarget })
   if (e.target === e.currentTarget) {
       // 両方 dialog 自身なのは backdrop のみになる
     $('dialog').close()
@@ -320,10 +321,14 @@ $('dialog').on('click', (e) => {
 })
 ```
 
+これは実装の頻出パターンになるだろう。
 
-## cancel/close イベント
 
-例えば、先ほどの `<form method=dialog>` を submit した時の値が欲しいなら、 `button[value]` を使って以下のように取れる。ちなみに `cancel()` はないから、 cancel も `button[type=cancel]` で行えるよ。
+### cancel/close イベント
+
+JS で `close()` を呼ぶ際は、その引数に渡した値を `returnValue` 経由で取得することができると解説した。
+
+`<form method=dialog>` を `<button>` で submit した場合は、 `value` 属性の値が `returnValue` の結果となる。
 
 ```html
 <dialog>
@@ -331,14 +336,14 @@ $('dialog').on('click', (e) => {
     <h1>Hello Dialog</h1>
     <form method="dialog">
       <button autofocus type="submit" value="confirm">Confirm</button>
-      <button type="cancel" value="cancel">cancel</button>
+      <button type="cancel" value="cancel">Cancel</button>
     </form>
   </div>
 </dialog>
 <script>
   // ...
   $('dialog').on('close', (e) => {
-    console.log(e.target.returnValue) // close
+    console.log(e.target.returnValue) // confirm
   })
   $('dialog').on('cancel', (e) => {
     console.log(e.target.returnValue) // cancel
@@ -346,17 +351,18 @@ $('dialog').on('click', (e) => {
 </script>
 ```
 
-これ以外、例えば何かを `<input>` させたり、 `<select>` させる場合、その結果は JS で集めて `close()` に渡すことになる。
+TODO: demo で `<input>` や `hidden` を確認
 
 
+### キーボード操作
 
-## キーボード操作
+`<button>` を置く以外に、キーボード操作の対応もネイティブで行われている。これは、そういう Cancel や Close を意味する操作を自動でフックする CloseWatcher を内部で使うことで実現している。
 
-`<button>` を置く以外に、キーボード操作の対応もネイティブで行われている。これは、そういう Cancel や Close を意味する操作を自動でフックする CloseWatcher が使われているんだね。
+non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、 Modal Dialog は CloseWatcher が効いてるため、 ESC で閉じたりができる。
 
-non-Modal は他が操作できるからキーボードには反応しないが、他を止める Modal な Dialog は CloseWatcher が効いてるので、 ESC で閉じたりができる。 Android の場合はこれを背面タップで閉じる(持ってないため未検証)といったように、デバイス固有の UI とも紐づける役割を果たしている。
+Android の場合はこれを背面タップで閉じる(持ってないため未検証)といった、デバイス固有の操作とも紐づける役割を果たしている。
 
-`showModal()` の方で ESC 押すと、 `cancel` -> `close` の順でイベントが発火する。
+なお `showModal()` の方で ESC 押すと、 `cancel` -> `close` の順でイベントが発火する。
 
 
 ## dialog の使い所
