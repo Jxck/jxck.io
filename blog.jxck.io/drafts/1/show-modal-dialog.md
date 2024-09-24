@@ -61,11 +61,11 @@ window.returnValue = "returnedValue"
 
 確かに、 Modal は「同意の取得」などでよく使うため、ユーザの操作をブロックしつつ、値をやり取りできる API である必要があった。
 
-また、 `window.dialogArguments` を触れると言うことは、Modal 上でも JS は動いていることを意味する。つまり、 Window で止まってるイベントループとは別に、 Modal 上でもイベントループがもう一つ走ることになる。そして、その上で `window.open` したり form を `submit` したり、追加で `showModalDialog()` することも可能だ。
+また、 `window.dialogArguments` を触れるということは、Modal 上でも JS は動いていることを意味する。つまり、 Window で止まっているイベントループとは別に、 Modal 上でもイベントループがもう一つ走ることになる。そして、その上で `window.open` したり form を `submit` したり、追加で `showModalDialog()` することも可能だ。
 
 今と違って IE4 の頃はタブブラウザですらなく、 1 Process 1 Window な時代だった(つまり、URL を別で開くと、Window がもう 1 つ立ち上がる)。これが、 1 Tab 1 Process なマルチタブブラウザになった場合、「ブロックする」といっても「何をどこまで止めるのか」を定義し直すのも難しかった。
 
-かなり初期の API で、ろくに議論されないまま独自実装として始まったこの API を、互換性のために他のブラウザもしかたなく実装し、 HTML にも渋々現状を仕様として起こした、そんな API だ。この API のヒドさについて Hixie はこう説明してる。
+かなり初期の API で、ろくに議論されないまま独自実装として始まったこの API を、互換性のために他のブラウザも仕方なく実装し、 HTML にも渋々現状を仕様として起こした、そんな API だ。この API のヒドさについて Hixie はこう説明している。
 
 > This API single-handedly makes completely unrelated parts of the platform significantly more complicated to implement, which leads to more bugs, which makes everything worse for everyone.
 > And to top it all off, it's not even a particuarly good UI. We have much better solutions in the works, too, like dialog.
@@ -75,7 +75,7 @@ window.returnValue = "returnedValue"
 >
 > --- https://groups.google.com/a/chromium.org/g/blink-dev/c/xh9fPX0ijqk/m/8oPryGUsGPMJ
 
-これを実装すると、今度出てくる新しい API (Promise や Mutation Observer etc) の実装をさらに複雑にし、複雑さが脆弱性につながってしまう懸念もあった。
+これを実装すると、今度出てくる新しい API(Promise や Mutation Observer etc) の実装をさらに複雑にし、複雑さが脆弱性につながってしまう懸念もあった。
 
 そして、そこまで人気な API でもないため利用者も多くはなく、 UI も UX も別段良くなかった。端的に言えば、技術的負債だったわけだ。
 
