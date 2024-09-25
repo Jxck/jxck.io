@@ -11,19 +11,20 @@
 
 ## Modal, Dialog, Modal Dialog
 
-そもそも、この 3 つの違いを少し整理しておこう。
+最初に、用語を少し整理しておこう。
 
 - Modal
 - Dialog
 - Modal Dialog
+- non-Modal Dialog
 
-Dialog とは、そもそも「対話」という意味であり、 UI の文脈では入力や選択を求める「対話的な UI」のことを指す。
+*Dialog* とは、そもそも「対話」という意味であり、 UI の文脈では入力や選択を求める「対話的な UI」のことを指す。
 
 既に実装されている `alert()`, `confirm()`, `prompt()` なども広く言えば Dialog にあたり、同意を求めたり、設定を確認させたり、更新があるから再読み込みさせたりといった用途で使う。
 
-その中で Modal とは一般的に、「それを処理しない限り先に進めない/他の操作ができない」ようなブロックを伴う UI のことを指す。つまり、 Dialog には 「Modal で出す」か「non-Modal で出すか」という 2 種類があるということだ。
+その中で *Modal* とは一般的には「特定のタスクを行うためのモード」といったニュアンスがあるが、この文脈では「それを処理しない限り先に進めない/他の操作ができない」ようなブロックを伴う UI のことを指す。つまり、 Dialog には 「Modal で出す」か「non-Modal で出すか」という 2 種類があるということだ。(modeless という表現をする場合もあるが、 Open UI では non-Modal という表現が使われている。)
 
-Modal Dialog は Web 以外にも多くのプラットフォームで提供されていることがあり、コモンケースとして以下のように実装されることが多い。
+Modal Dialog は Web 以外にも多くのプラットフォームで提供され、コモンケースとして以下のように実装されることが多い。
 
 - Dialog 以外を非活性にし操作(focus, click, scroll)できなくする
 - 非活性部分が薄暗くなる
@@ -31,52 +32,55 @@ Modal Dialog は Web 以外にも多くのプラットフォームで提供さ�
 
 逆に non-Modal な Dialog は、開くだけで他を非活性にしない。
 
-以降 Modal とは、「Modal で開いた Dialog」つまり「Modal Dialog」のことを指すことにする。
+以降単に Modal と言った場合、「Modal で開いた Dialog」つまり「Modal Dialog」のことを指すことにする。
 
 
 ## Modal 実装の難しさ
 
-Modal の実装を自前で行うとすれば、以下のような要件を満たすことになるだろう。
+Modal の実装を自前で行うとすれば、見た目としては以下のような要件を満たすことになるだろう。
 
-- 他を差し置いて一番手前に表示される
-- そこを処理しない限り次に進めない
-- 表示している裏は薄暗くなる
+- 他を差し置いて一番手前(上)に表示される
+- そこを処理しない限り次に進めない(他の処理ができない)
+- 表示している後ろ(裏)は薄暗くなる
 - etc
 
 ![Modal が開き、閉じないと先に進めない](1.modal.drawio.svg)
 
 この UI を実装する CSS を考えると、「画面いっぱいに、広げた `<div>` を被せ Opacity でフィルターかけて、 Modal 用に `z-index` を最大にした `<div>` をセンタリグし、、」などと想像できるかもしれない。
 
-しかし、「頑張ればできそう」なだけで、実際には「使いにくい Modal」が世の中に大量に生み出されてしまったの実際だ。
+しかし、「頑張ればできそう」なだけで、実際には「使いにくい Modal」が世の中に大量に生み出されてしまった。
 
 例えばよくあるのは、フォーカス管理の欠如だ。
 
 1. Modal を開いてるのに、フォーカスは Modal 外のままで、キーボードで操作したいユーザが Modal に Tab で辿り着けない
 2. Modal を開いてて、フォーカスも Modal に乗ってるのに、Tab を押すと Modal から落ちて外に移動してしまう
-3. Modal を開いてフォーカスを Modal に乗せたはいいが、Modal を閉じても以前いた場所にフォーカスが戻らない
+3. Modal を閉じた際に、以前いた場所とは別の場所にフォーカスが移り迷子になる
 4. Modal 上で Tab 移動し、Modal の一番下まで行ったら、次は Modal の上に戻って欲しいが、そのまま外に出て行ってしまう
 
 他にも、モダールにできて欲しいことができない実装も多い。
 
-1. Modal を開いてる時も、 Modal 外をクリックしたりスクロールしたり操作できてしまう
-2. Modal 外をクリックしたら Modal を閉じて欲しいのに、閉じてくれない
-3. Esc 押したら閉じて欲しいのに、閉じてくれない
-4. Modal 以外を暗くするのに失敗して、 Modal も暗くなってる。もしくは変なところだけ暗い/明るい。
-5. 最初の Modal を残したまま、同じレベルの 2 個目の Modal を開けてしまう。
-6. Modal が開いてること、 Modal 上に移動したこと、 Modal を閉じたことなどが、支援機能に伝わらないので、何が起こったか伝わらないユーザがいる。
-7. Modal が開いて、後ろが非活性なのに、そのことが支援技術に伝わらずに、操作できない箇所に引っかかって操作が進められないユーザがいる。
-8. etc etc etc etc etc etc
+1. z-index 戦争に負けて Modal の上に別の何かが表示されている
+2. Modal を開いてる時も、 Modal 外をクリックしたりスクロールしたり操作できてしまう
+3. Modal 外をクリックしたら Modal を閉じて欲しいのに、閉じてくれない
+4. Esc を押したら閉じて欲しいのに、閉じてくれない
+5. Modal 以外を暗くするのに失敗して、 Modal も暗くなってる。もしくは変なところだけ暗い/明るい。
+6. 最初の Modal を残したまま、同じレベルの 2 個目の Modal を開けてしまう。
+7. Modal が開いてること、 Modal 上に移動したこと、 Modal を閉じたことなどが、支援機能に伝わらないので、何が起こったか伝わらないユーザがいる。
+8. Modal が開いて、後ろが非活性なのに、そのことが支援技術に伝わらずに、操作できない箇所に引っかかって操作が進められないユーザがいる。
+9. etc etc etc etc etc etc
+
+実世界には、こうした細かい挙動を実装できてない、「ただ真ん中に表示されただけの DOM」でしかない Modal モドキも少なくない。
 
 実装パターンは APG にもまとめられてるが、これを自前でやるのも簡単ではない。
 
 - Dialog (Modal) Pattern | APG | WAI | W3C ​
   - https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
-色々な UI ライブラリが Modal Dialog 相当の機能を提供していたが、やはり理想的な実装は難しい。
+様々な UI ライブラリが Modal Dialog 相当の機能を、 APG を元に提供しているが、それでもやはり理想的な実装は難しい。
 
-というか、残念なことに、どんなに JS や CSS を捏ね回してツギハギしても、ネイティブの支援なしに理想的な実装を実現することは、できないと言って良い。
+というか、残念なことに、どんなに JS や CSS を捏ね回してツギハギしても、ネイティブの支援を得た実装と比較すると、劣化版しか作れないのが実際だ。
 
-そこで、これを標準化しネイティブの実装を提供しようということになった。
+だからこそ、この要件を標準化し、ブラウザがネイティブの実装を提供しようということになった。
 
 
 ## 標準 Dialog
@@ -114,7 +118,9 @@ MDN が Developer Survey という大規模調査で、開発者が何に困っ�
 - Introducing the Dialog Element | WebKit
   - https://webkit.org/blog/12209/introducing-the-dialog-element/
 
-こうして、無事全てのブラウザで使えるようになったが、それぞれのブラウザで微妙に異なる挙動や、足らないプリミティブもあったため、関連する様々な仕様も整理された。
+こうして、無事全てのブラウザで使えるようになった。
+
+合わせて、ブラウザ間で微妙に異なる挙動のすり合わせや、足らないプリミティブの整理と仕様化も行われた。
 
 
 ## 関連仕様
@@ -148,17 +154,27 @@ Top Layer はあくまでブラウザが内部的に生成しているため、�
 
 ### inert
 
-`inert` は、指定した DOM を「非活性」にするための属性だ。要するに Modal Dialog を開いた時の「後ろ側」の世界を、正しく非活性にするために定義された。
+`inert` は、指定した DOM を「非活性」にするための属性だ。要するに Modal Dialog を開いた時の「後ろ側」の世界を、操作不能にするために定義された。
 
-これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、 Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばして他は `tabindex=-1` する、といったことをして、なんとか Modal の外の正解を塗りつぶしてた。
+これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、 Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばし、後ろは `tabindex=-1` する、といったことをして、なんとか Modal の外の正解を塗りつぶしてた。
 
 しかし、そのように実装しきるのは流石に無理があるので、標準仕様として `inert` を定義することで、ブラウザが全て無効にしてくれるようになったのだ。
+
+```html
+<div inert>
+  <p>not selectable</p>
+  <button>not clickable</button>
+</div>
+```
 
 `<dialog>` は暗黙的に `inert` を使っているため明示的に指定する必要はない。むしろ、自分で特定要素「以外」を `inert` にするのは割と面倒で、例えば `body` につければ Dialog 含めて非活性になる。つまり Dialog 以外全てに `inert` をつける必要があるのだが、 `<dialog>` はこれを内部で行なっている(仕様上は document を "blocked by the modal dialog" にすると書いてある)。
 
 また `inert` は `<dialog>` と一緒に使わないといけないわけではなく、単独で使うこともできる。たとえば「読み込み中の何かを、読み込むまで非活性にする」、「カルーセルのまだ表示されてない部分を非活性にする」といったことも想定されているようだ。
 
 ただし、これまで `disabled` で無効にしてたコントロール系は、これまで通り `disabled` を使うべきだという点に注意したい。
+
+- inert attribute - Chrome Platform Status
+  - https://chromestatus.com/feature/5703266176335872
 
 
 ### `::backdrop`
@@ -177,11 +193,14 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 
 ```css
 ::backdrop {
-  background-color: rgba(200,200,200,0.50);
+  background-color: rgba(200, 200, 200, 0.50);
 }
 ```
 
-`inert` が単独でも特定の要素に適用できることを考えると、 `inert` を暗くすることと、 Top Layer の裏側である `::backdrop` を暗くすることは、意味的に異なる点に注意したい。
+`<dialog>` を用いる場合は、 `inert` ではなく `::backdrop` にスタイルを当てるのが良いだろう。
+
+- CSS Pseudo Element ::backdrop inheriting from Originating Element - Chrome Platform Status
+  - https://chromestatus.com/feature/4875749691752448
 
 
 ### :modal
@@ -196,35 +215,55 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 }
 ```
 
-一方、 `show()` した Modal ではない `<dialog>` は対象外だ。
+もちろん `show()` した Modal ではない `<dialog>` は対象外だ。
+
+- CSS :modal Pseudo Class - Chrome Platform Status
+  - https://chromestatus.com/feature/5192833009975296
 
 
 ### Close Watcher
 
-プラットフォームが提供する Modal は、キーボード操作で閉じたりできるのが基本で、例えば Android の場合は背面タップで閉じられるのが実装マナーとなっている。
+プラットフォームが提供する Modal は、 ESC や、範囲外のクリックによって閉じることができる。 Android の場合は背面タップでも閉じられる(持ってないので未検証)。
 
-そのような「Modal を閉じるための操作」を、キーボードイベントをフックして実装しようとすると、例えば「戻る」を変にいじって history を壊したりする可能性がある。
+このように、プラットフォームが提供する「Modal を閉じるための操作」を、 Light Dismiss と言う。
 
-そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できる Close Watcher だ。
+Light Dismiss をキーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊した、ネイティブの他の機能に影響したりする可能性がある。
 
-例えば Modal Dialog は ESC や「戻る」で閉じることができるが、これは内部的に Close Watcher によって実現されている。つまり、基本的に直接使う機会はないだろう。
+そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案されたのが Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し Close Watcher として定義された。
+
+```js
+const watcher = new CloseWatcher();
+
+watcher.addEventListener("cancel", () => {
+  console.log("cancel")
+});
+watcher.addEventListener("close", () => {
+  console.log("close")
+});
+```
+
+Modal Dialog が ESC などで閉じられるのは、 Light Dismiss が内部的に Close Watcher によって実現されているからだ。
+
+- Close requests for CloseWatcher, `<dialog>`, and `popover=""` - Chrome Platform Status
+  - https://chromestatus.com/feature/4722261258928128
 
 
 ## `<dialog>`
 
 さて、以上の仕様を組み合わせて実現したのが `<dialog>` 要素だ。
 
-この要素は、以下のような、これまでエンジニアが無理やり実装してきた Modal への要件を、一挙に解決してくれているのだ。
+`role=dialog` の要素であり、以下のような、これまでエンジニアが無理やり実装してきた Modal への要件を、一挙に解決してくれているのだ。
 
 - ネイティブで Modal / non-Modal な Dialog を開くことができる
 - Modal を開くと自動で背景が inert になる
 - フォーカスの管理や、活性管理などが自動で行われる
 - `:modal` / `::backdrop` をスタイルできる
-- Close Watcher でプラットフォームに合わせたキーボード操作(ESC で閉じる)なども自動で対応される
+- Close Watcher で Light Dismiss が実装されている
+- `aria-modal=true` であり、支援技術に伝わる
 
-そのうえで `role=dialog` であるため、支援技術に対しても「Dialog が開いた」ということが伝わる。また `showModal()` で開かれていれば `aria-modal=true` 扱いにもなる。
+つまり、支援技術に対しても「Modal Dialog が開いた」ということが伝わる。
 
-もしそれが ARIA で言う Alert (警告)の意味をもっているなら、 `role=alertdialog` で上書きする必要はあるが、そうでない場合は単に `<dialog>` を使って実装しているだけで、十分なセマンティクスが提供できる。
+もしそれが ARIA で言う Alert (警告)の意味をもっているなら、 `role=alertdialog` で上書きする必要はあるが、そうでない場合は単に `<dialog>` を使って実装しているだけで、十分なセマンティクスが提供できるのだ。
 
 
 ## open/close ? show/hide ? show/close ?
@@ -277,4 +316,4 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 
 現状 Modal / Dialog 相当を自前やライブラリを用いて実装しているのであれば、基本的には全て `<dialog>` に置き換えるべきだと言って良い。
 
-次回はもう少し実際のコードで、 Modal の使い方を解説していく。
+次回はもう少し実際のコードで、 `<dialog>` の使い方および、 Modal / non-Modal の使い分けを解説していく。
