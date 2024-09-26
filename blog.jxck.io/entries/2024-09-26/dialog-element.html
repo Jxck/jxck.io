@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-09-26/dialog-element.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="showModalDialog() は今から考えれば、確かにひどい API だった。しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、 Cookie バ...">
+  <meta name=keywords            content="dialog,popover">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-09-26/dialog-element.html>
+  <meta property=og:title        content="Dialog と Popover #2 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="showModalDialog() は今から考えれば、確かにひどい API だった。しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、 Cookie バ...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Dialog と Popover #2 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-09-26T08:00:00+08:00",
+    "dateModified": "2024-09-26T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "showModalDialog() は今から考えれば、確かにひどい API だった。しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、 Cookie バ..."
+  }
+  </script>
+
+  <title>Dialog と Popover #2 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-26>2024-09-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-09-26>2024-09-26</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#dialog">dialog</a>
+              <li><a href="/tags#popover">popover</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#modal-dialog-modal-dialog">Modal, Dialog, Modal Dialog</a>
+              <li><a href="#modal-実装の難しさ">Modal 実装の難しさ</a>
+              <li><a href="#標準-dialog">標準 Dialog</a>
+              <li><a href="#関連仕様">関連仕様</a>
+              <ol>
+                <li><a href="#初期フォーカス管理">初期フォーカス管理</a>
+                <li><a href="#top-layer">Top Layer</a>
+                <li><a href="#inert">inert</a>
+                <li><a href="#backdrop"><code translate=no>::backdrop</code></a>
+                <li><a href="#modal">:modal</a>
+                <li><a href="#close-watcher">Close Watcher</a>
+              </ol>
+              <li><a href="#dialog"><code translate=no>&lt;dialog&gt;</code></a>
+              <li><a href="#openclose--showhide--showclose-">open/close ? show/hide ? show/close ?</a>
+              <li><a href="#demo">Demo</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Dialog と Popover #2</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p><code translate=no>showModalDialog()</code> は今から考えれば、確かにひどい API だった。
+        <p>しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、 Cookie バナー、ログインなど多々ある。
+        <p>そういった場面では、ライブラリなどを用いて実装する必要があったが、 Modal を実装するのは実際にはそんなに簡単ではなかった。
+      </section>
+      <section>
+        <h2 id="modal-dialog-modal-dialog"><a href="#modal-dialog-modal-dialog">Modal, Dialog, Modal Dialog</a></h2>
+        <p>最初に、用語を少し整理しておこう。
+        <ul>
+          <li>Modal
+          <li>Dialog
+          <li>Modal Dialog
+          <li>non-Modal Dialog
+        </ul>
+        <p><em>Dialog</em> とは、そもそも「対話」という意味であり、 UI の文脈では入力や選択を求める「対話的な UI」のことを指す。
+        <p>既に実装されている <code translate=no>alert()</code>, <code translate=no>confirm()</code>, <code translate=no>prompt()</code> なども広く言えば Dialog にあたり、同意を求めたり、設定を確認させたり、更新があるから再読み込みさせたりといった用途で使う。
+        <p>その中で <em>Modal</em> とは一般的には「特定のタスクを行うためのモード」といったニュアンスがあるが、この文脈では「それを処理しない限り先に進めない/他の操作ができない」ようなブロックを伴う UI のことを指す。つまり、 Dialog には 「Modal で出す」か「non-Modal で出すか」という 2 種類があるということだ。(modeless という表現をする場合もあるが、 Open UI では non-Modal という表現が使われている。)
+        <p>Modal Dialog は Web 以外にも多くのプラットフォームで提供され、コモンケースとして以下のように実装されることが多い。
+        <ul>
+          <li>Dialog 以外を非活性にし操作(focus, click, scroll)できなくする
+          <li>非活性部分が薄暗くなる
+          <li>Dialog を閉じたら、結果の値が呼び出し側に返り、元の処理を再開する
+        </ul>
+        <p>逆に non-Modal な Dialog は、開くだけで他を非活性にしない。
+        <p>以降単に Modal と言った場合、「Modal で開いた Dialog」つまり「Modal Dialog」のことを指すことにする。
+      </section>
+      <section>
+        <h2 id="modal-実装の難しさ"><a href="#modal-実装の難しさ">Modal 実装の難しさ</a></h2>
+        <p>Modal の実装を自前で行うとすれば、見た目としては以下のような要件を満たすことになるだろう。
+        <ul>
+          <li>他を差し置いて一番手前(上)に表示される
+          <li>そこを処理しない限り次に進めない(他の処理ができない)
+          <li>表示している後ろ(裏)は薄暗くなる
+          <li>etc
+        </ul>
+        <p>
+          <img loading=lazy decoding=async src=1.modal.drawio.svg?240926_175727 alt="Modal が開き、閉じないと先に進めない" width=500 height=256>
+        </p>
+        <p>この UI を実装する CSS を考えると、「画面いっぱいに、広げた <code translate=no>&lt;div&gt;</code> を被せ Opacity でフィルターかけて、 Modal 用に <code translate=no>z-index</code> を最大にした <code translate=no>&lt;div&gt;</code> をセンタリグし、、」などと想像できるかもしれない。
+        <p>しかし、「頑張ればできそう」なだけで、実際には「使いにくい Modal」が世の中に大量に生み出されてしまった。
+        <p>例えばよくあるのは、フォーカス管理の欠如だ。
+        <ol>
+          <li>Modal を開いてるのに、フォーカスは Modal 外のままで、キーボードで操作したいユーザが Modal に Tab で辿り着けない
+          <li>Modal を開いてて、フォーカスも Modal に乗ってるのに、Tab を押すと Modal から落ちて外に移動してしまう
+          <li>Modal を閉じた際に、以前いた場所とは別の場所にフォーカスが移り迷子になる
+          <li>Modal 上で Tab 移動し、Modal の一番下まで行ったら、次は Modal の上に戻って欲しいが、そのまま外に出て行ってしまう
+        </ol>
+        <p>こうした制御はフォーカストラップと呼ばれ、実装が難しい代表例だ。
+        <p>他にも、モダールにできて欲しいことができない実装も多い。
+        <ol>
+          <li>z-index 戦争に負けて Modal の上に別の何かが表示されている
+          <li>Modal を開いてる時も、 Modal 外をクリックしたりスクロールしたり操作できてしまう
+          <li>Modal 外をクリックしたら Modal を閉じて欲しいのに、閉じてくれない
+          <li>Esc を押したら閉じて欲しいのに、閉じてくれない
+          <li>Modal 以外を暗くするのに失敗して、 Modal も暗くなってる。もしくは変なところだけ暗い/明るい。
+          <li>最初の Modal を残したまま、同じレベルの 2 個目の Modal を開けてしまう。
+          <li>Modal が開いてること、 Modal 上に移動したこと、 Modal を閉じたことなどが、支援機能に伝わらないので、何が起こったか伝わらないユーザがいる。
+          <li>Modal が開いて、後ろが非活性なのに、そのことが支援技術に伝わらずに、操作できない箇所に引っかかって操作が進められないユーザがいる。
+          <li>etc etc etc etc etc etc
+        </ol>
+        <p>実世界には、こうした細かい挙動を実装できてない、「ただ真ん中に表示されただけの DOM」でしかない Modal モドキも少なくない。
+        <p>実装パターンは APG にもまとめられてるが、これを自前でやるのも簡単ではない。
+        <ul>
+          <li>
+            Dialog (Modal) Pattern | APG | WAI | W3C ​
+            <ul>
+              <li><a href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/" target=_blank>https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>様々な UI ライブラリが Modal Dialog 相当の機能を、 APG を元に提供しているが、それでもやはり理想的な実装は難しい。
+        <p>というか、残念なことに、どんなに JS や CSS を捏ね回してツギハギしても、ネイティブの支援を得た実装と比較すると、劣化版しか作れないのが実際だ。
+        <p>だからこそ、この要件を標準化し、ブラウザがネイティブの実装を提供しようということになった。
+      </section>
+      <section>
+        <h2 id="標準-dialog"><a href="#標準-dialog">標準 Dialog</a></h2>
+        <p><code translate=no>showModalDialog()</code> が問題になったのは 2014 年ごろで、実に 10 年前の話だったが、実はこの頃すでに <code translate=no>&lt;dialog&gt;</code> の仕様自体はあった。
+        <p>とはいえ Chrome が少し実装し、 Opera も先に実装を進め flag の裏に持っていた。 Safari / Firefox は長らく実装していなかった。
+        <p>HTML5.2 で W3C の方の仕様では消されそうになったこともあるくらい、影の薄い仕様だった。
+        <ul>
+          <li>
+            CfC: HTML 5.2 to Candidate Recommendation
+            <ul>
+              <li><a href="https://github.com/w3c/html/issues/969" target=_blank>https://github.com/w3c/html/issues/969</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ところが、 2016 年ごろ Firefox で再度議論が進み、再度標準化を進めようという話になった。
+        <ul>
+          <li>
+            Re: Proposal to retain dialog in HTML5.2
+            <ul>
+              <li><a href="https://lists.w3.org/Archives/Public/public-html/2017Sep/0005.html" target=_blank>https://lists.w3.org/Archives/Public/public-html/2017Sep/0005.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Firefox は内部でも <code translate=no>&lt;dialog&gt;</code> を使いたいユースケースがあったという話もあり、実装が進んで 2020 年に Ship されている。
+        <ul>
+          <li>
+            Intent to implement: HTML5 <code translate=no>&lt;dialog&gt;</code> element
+            <ul>
+              <li><a href="https://groups.google.com/g/mozilla.dev.platform/c/vTPGW1aJq24/m/JnEnoH3BEAAJ" target=_blank>https://groups.google.com/g/mozilla.dev.platform/c/vTPGW1aJq24/m/JnEnoH3BEAAJ</a>
+            </ul>
+          </li>
+          <li>
+            Intent to Ship : HTML5 <code translate=no>&lt;dialog&gt;</code> element (Nightly Only)
+            <ul>
+              <li><a href="https://groups.google.com/g/mozilla.dev.platform/c/gqi4MDQDwX8" target=_blank>https://groups.google.com/g/mozilla.dev.platform/c/gqi4MDQDwX8</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Firefox が Ship を進めるのと同時期くらいに、これを現在のように「ぜひ使うべき機能」まで大きく進めたきっかけが Interop だった。
+        <p>MDN が Developer Survey という大規模調査で、開発者が何に困っているのかを調査し、その結果をブラウザベンダに共有して互換性問題を改善しようということで始まったのが Compat 2021 だが、それが 2022 年に Interop と名前を変えた時に、 Focus Area として <code translate=no>&lt;dialog&gt;</code> が採用されたのだ。
+        <ul>
+          <li>
+            dialog &amp; ::backdrop · Issue #12 · web-platform-tests/interop
+            <ul>
+              <li><a href="https://github.com/web-platform-tests/interop/issues/12" target=_blank>https://github.com/web-platform-tests/interop/issues/12</a>
+            </ul>
+          </li>
+        </ul>
+        <p>それを受け、 Safari が実装することになる。 Igalia の協力もあったらしい。
+        <ul>
+          <li>
+            Introducing the Dialog Element | WebKit
+            <ul>
+              <li><a href="https://webkit.org/blog/12209/introducing-the-dialog-element/" target=_blank>https://webkit.org/blog/12209/introducing-the-dialog-element/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>こうして、無事全てのブラウザで使えるようになった。
+        <p>合わせて、ブラウザ間で微妙に異なる挙動のすり合わせや、足らないプリミティブの整理と仕様化も行われた。
+      </section>
+      <section>
+        <h2 id="関連仕様"><a href="#関連仕様">関連仕様</a></h2>
+        <section>
+          <h3 id="初期フォーカス管理"><a href="#初期フォーカス管理">初期フォーカス管理</a></h3>
+          <p>ブラウザごとの主張が異なった代表が「フォーカスの初期位置」だった。
+          <p>最初に <code translate=no>&lt;dialog&gt;</code> を開いた時、 <code translate=no>&lt;dialog&gt;</code> 自体にフォーカスするのか、中のフォーカスできる最初の要素にフォーカスするのかといった部分の議論だ。
+          <ul>
+            <li>
+              Implement dialog initial focus proposal by josepharhar · Pull Request #8199 · whatwg/html
+              <ul>
+                <li><a href="https://github.com/whatwg/html/pull/8199" target=_blank>https://github.com/whatwg/html/pull/8199</a>
+              </ul>
+            </li>
+          </ul>
+          <p>最終的には、「<em>フォーカスすべき要素を開発者が選び、明示的に <code translate=no>autofocus</code> を指定すべき</em>」が推奨になっているため、<code translate=no>&lt;dialog&gt;</code> を実装する場合は、必ず何かしらのコントローラーに <code translate=no>autofocus</code> の付与を検討すべきということになる。
+        </section>
+        <section>
+          <h3 id="top-layer"><a href="#top-layer">Top Layer</a></h3>
+          <p>要素の重なり合いは、 <code translate=no>z-index</code> で制御するのが従来の CSS の常識だった。
+          <p>他の要素よりも手前に表示したい場合は、 <code translate=no>z-index</code> の値を大きくするのだが、 Modal Dialog のような UI は、今何が表示されているかにかかわらず、問答無用で最前面に来てくれないと困ることになる。
+          <p>そこで、全てのレイヤーの最上位に位置し、ブラウザが管理する、 &quot;<em>Top Layer</em>&quot; という概念を作り、 Modal Dialog はそこに表示することになった。
+          <p>Top Layer はあくまでブラウザが内部的に生成しているため、どんなに <code translate=no>z-index</code> が大きい要素があっても、 Top Layer より前に来ることはない。
+          <p>また、ここに表示できるものは Modal Dialog や Fullscreen といった、特別な UI のみに限られる。
+          <p>これで Modal Dialog を表示する場所が標準化できた。
+        </section>
+        <section>
+          <h3 id="inert"><a href="#inert">inert</a></h3>
+          <p><code translate=no>inert</code> は、指定した DOM を「非活性」にするための属性だ。要するに Modal Dialog を開いた時の「後ろ側」の世界を、操作不能にするために定義された。
+          <p>これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、 Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばし、後ろは <code translate=no>tabindex=-1</code> する、といったことをして、なんとか Modal の外の正解を塗りつぶしてた。
+          <p>しかし、そのように実装しきるのは流石に無理があるので、標準仕様として <code translate=no>inert</code> を定義することで、ブラウザが全て無効にしてくれるようになったのだ。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;div inert&gt;
+  &lt;p&gt;not selectable&lt;/p&gt;
+  &lt;button&gt;not clickable&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          <p><code translate=no>&lt;dialog&gt;</code> は暗黙的に <code translate=no>inert</code> を使っているため明示的に指定する必要はない。むしろ、自分で特定要素「以外」を <code translate=no>inert</code> にするのは割と面倒で、例えば <code translate=no>body</code> につければ Dialog 含めて非活性になる。つまり Dialog 以外全てに <code translate=no>inert</code> をつける必要があるのだが、 <code translate=no>&lt;dialog&gt;</code> はこれを内部で行なっている(仕様上は document を &quot;blocked by the modal dialog&quot; にすると書いてある)。
+          <p>また <code translate=no>inert</code> は <code translate=no>&lt;dialog&gt;</code> と一緒に使わないといけないわけではなく、単独で使うこともできる。たとえば「読み込み中の何かを、読み込むまで非活性にする」、「カルーセルのまだ表示されてない部分を非活性にする」といったことも想定されているようだ。
+          <p>ただし、これまで <code translate=no>disabled</code> で無効にしてたコントロール系は、これまで通り <code translate=no>disabled</code> を使うべきだという点に注意したい。
+          <ul>
+            <li>
+              inert attribute - Chrome Platform Status
+              <ul>
+                <li><a href="https://chromestatus.com/feature/5703266176335872" target=_blank>https://chromestatus.com/feature/5703266176335872</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="backdrop"><a href="#backdrop"><code translate=no>::backdrop</code></a></h3>
+          <p>Modal Dialog を開いた時に、後ろ側を <code translate=no>inert</code> にすることができるようになったが、 <code translate=no>inert</code> はあくまで非活性なだけで、特にスタイルが当たるわけではない。しかし、非活性だった場合大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
+          <p>この場合 <code translate=no>inert</code> であることを利用し、以下のようにスタイルを当てることもできる。
+          <pre class=css data-code=css><code translate=no class=language-css>[inert] {
+  background-color: rgba(200,200,200,0.50);
+}</code></pre>
+          <p>しかし、 Top Layer に要素を表示している時は、「Top Layer 以外」を暗くしたい。これを実現するために定義されたのが <code translate=no>::backdrop</code> だ。
+          <pre class=css data-code=css><code translate=no class=language-css>::backdrop {
+  background-color: rgba(200, 200, 200, 0.50);
+}</code></pre>
+          <p><code translate=no>&lt;dialog&gt;</code> を用いる場合は、 <code translate=no>inert</code> ではなく <code translate=no>::backdrop</code> にスタイルを当てるのが良いだろう。
+          <ul>
+            <li>
+              CSS Pseudo Element ::backdrop inheriting from Originating Element - Chrome Platform Status
+              <ul>
+                <li><a href="https://chromestatus.com/feature/4875749691752448" target=_blank>https://chromestatus.com/feature/4875749691752448</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="modal"><a href="#modal">:modal</a></h3>
+          <p><code translate=no>::backdrop</code> が「Top Layer 以外」だったのと対照的に、 <code translate=no>:modal</code> は 「Top Layer だけ」にスタイルを当てるための仕様だ。
+          <p><code translate=no>:modal</code> は <code translate=no>showModal</code> した <code translate=no>&lt;dialog&gt;</code> はもちろん、さっき言ったように、同じく Top Layer に載せることができる Fullscreen API もやはり <code translate=no>:modal</code> でスタイルができる。(<code translate=no>:fullscreen</code> もある)。
+          <pre class=css data-code=css><code translate=no class=language-css>:modal {
+  /* xxx */
+}</code></pre>
+          <p>もちろん <code translate=no>show()</code> した Modal ではない <code translate=no>&lt;dialog&gt;</code> は対象外だ。
+          <ul>
+            <li>
+              CSS :modal Pseudo Class - Chrome Platform Status
+              <ul>
+                <li><a href="https://chromestatus.com/feature/5192833009975296" target=_blank>https://chromestatus.com/feature/5192833009975296</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="close-watcher"><a href="#close-watcher">Close Watcher</a></h3>
+          <p>プラットフォームが提供する Modal は、 ESC や、範囲外のクリックによって閉じることができる。 Android の場合は背面タップでも閉じられる(持ってないので未検証)。
+          <p>このように、プラットフォームが提供する「Modal を閉じるための操作」を、 Light Dismiss と言う。
+          <p>Light Dismiss をキーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊した、ネイティブの他の機能に影響したりする可能性がある。
+          <p>そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案されたのが Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し Close Watcher として定義された。
+          <pre class=js data-code=js><code translate=no class=language-js>const watcher = new CloseWatcher();
+
+watcher.addEventListener(&quot;cancel&quot;, () =&gt; {
+  console.log(&quot;cancel&quot;)
+});
+watcher.addEventListener(&quot;close&quot;, () =&gt; {
+  console.log(&quot;close&quot;)
+});</code></pre>
+          <p>Modal Dialog が ESC などで閉じられるのは、 Light Dismiss が内部的に Close Watcher によって実現されているからだ。
+          <ul>
+            <li>
+              Close requests for CloseWatcher, <code translate=no>&lt;dialog&gt;</code>, and <code translate=no>popover=&quot;&quot;</code> - Chrome Platform Status
+              <ul>
+                <li><a href="https://chromestatus.com/feature/4722261258928128" target=_blank>https://chromestatus.com/feature/4722261258928128</a>
+              </ul>
+            </li>
+          </ul>
+          <p>ただし、 Close Watcher は「<code translate=no>&lt;dialog&gt;</code> の範囲外をクリックしたら閉じる」という部分はフックしてないため、別途実装が必要だ。それについては次回解説する。
+        </section>
+      </section>
+      <section>
+        <h2 id="dialog"><a href="#dialog"><code translate=no>&lt;dialog&gt;</code></a></h2>
+        <p>さて、以上の仕様を組み合わせて実現したのが <code translate=no>&lt;dialog&gt;</code> 要素だ。
+        <p><code translate=no>role=dialog</code> の要素であり、以下のような、これまでエンジニアが無理やり実装してきた Modal への要件を、一挙に解決してくれているのだ。
+        <ul>
+          <li>ネイティブで Modal / non-Modal な Dialog を開くことができる
+          <li>Modal を開くと自動で背景が inert になる
+          <li>フォーカスの管理や、活性管理などが自動で行われる
+          <li><code translate=no>:modal</code> / <code translate=no>::backdrop</code> をスタイルできる
+          <li>Close Watcher で Light Dismiss が実装されている
+          <li><code translate=no>aria-modal=true</code> であり、支援技術に伝わる
+        </ul>
+        <p>つまり、支援技術に対しても「Modal Dialog が開いた」ということが伝わる。
+        <p>もしそれが ARIA で言う Alert (警告)の意味をもっているなら、 <code translate=no>role=alertdialog</code> で上書きする必要はあるが、そうでない場合は単に <code translate=no>&lt;dialog&gt;</code> を使って実装しているだけで、十分なセマンティクスが提供できるのだ。
+      </section>
+      <section>
+        <h2 id="openclose--showhide--showclose-"><a href="#openclose--showhide--showclose-">open/close ? show/hide ? show/close ?</a></h2>
+        <p>仕様にも書かれてるが、一般的に
+        <ul>
+          <li>open / close
+          <li>show / hide
+        </ul>
+        <p>という対称性を持たせた操作に命名するのが一般的なのだが、 <code translate=no>&lt;dialog&gt;</code> については
+        <ul>
+          <li>show / close
+        </ul>
+        <p>という操作体系になっており、メソッド名もそうなっている。
+        <p>この理由は少し面白くて、仕様ではこうかかれている。
+        <blockquote cite="https://html.spec.whatwg.org/multipage/interactive-elements.html#note-dialog-method-names">
+          <p>We use show/close as the verbs for dialog elements, as opposed to verb pairs that are more commonly thought of as antonyms such as show/hide or open/close, due to the following constraints:
+          <p>
+          </p>
+          <p>dialog の動詞として、show/hide や open/close のような反対語として一般的に考えられている動詞ペアとは対照的に、以下の制約から show/close を使用する:
+          <p>
+          </p>
+          <p>Hiding a dialog is different from closing one. Closing a dialog gives it a return value, fires an event, unblocks the page for other dialogs, and so on. Whereas hiding a dialog is a purely visual property, and is something you can already do with the hidden attribute or by removing the open attribute. (See also the note above about removing the open attribute, and how hiding the dialog in that way is generally not desired.)
+          <p>
+          </p>
+          <p>dialog を hide すことと close することは異なる。 dialog を close することは、その dialog に戻り値を与えたり、イベントを発生させたり、他の dialog のためにページのブロックを解除したりする。一方、 dialog の hide は純粋に視覚的な特性であり、hidden 属性や open 属性の削除で既にできることだ(open 属性の削除と、その方法による dialog の非表示が一般的に望まれていないことについては、上の注釈も参照)。
+          <p>
+          </p>
+          <p>Showing a dialog is different from opening one. Opening a dialog consists of creating and showing that dialog (similar to how window.open() both creates and shows a new window). Whereas showing the dialog is the process of taking a dialog element that is already in the DOM, and making it interactive and visible to the user.
+          <p>
+          </p>
+          <p>dialog を show することは、dialog を open することとは異なる。dialog を open することは、dialog を create &amp; show することだ(window.open() が新しいウィンドウを作成し表示するのと同様)。一方、dialog を show することは、すでに DOM にある dialog 要素を、インタラクティブにユーザーに見えるようにすることだ。
+          <p>
+          </p>
+          <p>If we were to have a dialog.open() method despite the above, it would conflict with the dialog.open property.
+          <p>
+          </p>
+          <p>にもかかわらず dialog.open() メソッドを用意すると、dialog.open プロパティと衝突してしまう。
+          <p>
+          </p>
+          <p>Furthermore, a survey of many other UI frameworks contemporary to the original design of the dialog element made it clear that the show/close verb pair was reasonably common.
+          <p>
+          </p>
+          <p>さらに、dialog 要素のオリジナルの設計と同時代の他の多くの UI フレームワークを調査した結果、show/close 動詞のペアが合理的に一般的であることが明らかになった。
+          <p>
+          </p>
+          <p>In summary, it turns out that the implications of certain verbs, and how they are used in technology contexts, mean that paired actions such as showing and closing a dialog are not always expressible as antonyms.
+          <p>
+          </p>
+          <p>まとめると、ある種の動詞の意味合いや技術的な文脈での使われ方によって、 dialog の show と close のような対になる動作は、必ずしも反対語として表現できるとは限らないということがわかるのだ。
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/interactive-elements.html#note-dialog-method-names" target=_blank>https://html.spec.whatwg.org/multipage/interactive-elements.html#note-dialog-method-names</a></cite>
+        </blockquote>
+        <p>したがって、もし自前の実装を標準の <code translate=no>&lt;dialog&gt;</code> に移行するのであれば、この辺の語彙のすり合わせもやった方がいいだろう。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">Demo</a></h2>
+        <p>動作する DEMO を以下に作成した。
+        <ul>
+          <li>
+            Dialog Labs | labs.jxck.io
+            <ul>
+              <li><a href="https://labs.jxck.io/dialog/" target=_blank>https://labs.jxck.io/dialog/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>以上のように、これまで JS/CSS を駆使して実装されていた Dialog の、あらゆる既知の問題を踏まえて、 <code translate=no>&lt;dialog&gt;</code> の標準仕様が作られ、 Interop により全てのブラウザが実装し、ほぼほぼ動く状態にあるのだ。
+        <p>現状 Modal / Dialog 相当を自前やライブラリを用いて実装しているのであれば、基本的には全て <code translate=no>&lt;dialog&gt;</code> に置き換えるべきだと言って良い。
+        <p>次回はもう少し実際のコードで、 <code translate=no>&lt;dialog&gt;</code> の使い方および、 Modal / non-Modal の使い分けを解説していく。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
