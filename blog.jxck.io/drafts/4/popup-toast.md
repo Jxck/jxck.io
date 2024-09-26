@@ -154,7 +154,7 @@ ESC で閉じるのは Modal Dialog でも同じだった。しかしそれ以�
 
 ## `<popup>` の問題
 
-dialog の議論と実装がブラウザ間でゴリゴリと進んだちょっとあとくらい 2022/3 にさっきの `<popup>` の Intents (長らく止まってたスレッド)に突然こんなメッセージが投稿される。
+`<dialog>` の議論と実装が進んだ少しした 2022/3 に、先ほどの `<popup>` の Intents (長らく止まってたスレッド)に以下のメッセージが投稿される。
 
 > I'm sending a PSA/update to this (old!) intent to prototype thread. Based on some conversations that we've been having in OpenUI about the shape of the popup API, we've decided to modify the approach.
 >
@@ -176,23 +176,21 @@ dialog の議論と実装がブラウザ間でゴリゴリと進んだちょっ�
 >
 > `<selectmenu>` を新しい API に移行したら、古い `<popup>` 要素の実装を削除します。
 
-なんと、 `<popup>` には問題があったんだね。で、ここで `popup` 属性に変えられたと。(まだ `popover` じゃないよ!)
+`<popup>` という要素自体にあった問題を解決するため、要素から `popup` 属性に変えられたという内容だ。(まだ `popover` ではない)
 
-OpenUI の議論ってどんなだったんだろうというと、ここだね。
+OpenUI の議論は以下だ。
 
 - New Approach for Popup - Issue #455 - openui/open-ui (github.com)
   - https://github.com/openui/open-ui/issues/455#issuecomment-1050172067
 
-ここは議論のまとめって感じの issue だけど、そこにリンクされている最も大きいものの一つが、 Domenic があげた「`<popup>` の role は何か?」というものだ。
+ここは議論のまとめという感じの Issue だが、ここにリンクされている最も大きいものの一つが、 Domenic があげた「`<popup>` の `role` は何か?」というものだ。
 
 - HTMLPopupElement · Issue #680 · w3ctag/design-reviews
 	- https://github.com/w3ctag/design-reviews/issues/680#issuecomment-943472331
 
-もともと、 `<popup>` には「select menu を出す」とか、「ティーチング UI」とか、浮かび上がる系の UI をカバーするという目的で考えられてたけど、それってセマンティクスはなんなんだろう? "select menu" と "teaching ui" が同じってことはなくね?それとも、それぞれの目的ごとに HTML 要素作るつもり??
+もともと、 `<popup>` には「select menu を出す」、「Teaching UI」など、浮かび上がる系の UI をカバーするという目的で考えられていたが、そのセマンティクスはなんなんだろう? というものだ。"select menu" と "teaching ui" が同じということはないだろう、しかし、それぞれの目的ごとに HTML 要素作り続けるのだろうか?といったものだ。
 
-みたいなもの。そう、 popup ってのは「動き」のことであって、その中にあるコンテンツの「意味」とは別だよねってことだったんだ。これは、責任も分離されてないので、そこをきちんと分離するためには、「意味」は既存の HTML / role に任せて、その任意の HTML を Top Layer に表示したり Light Dismiss するための機能として popup を属性としてなんにでも使えるように変えることになったんだ。
-
-ということで、 `<popup>` がダメだった理由がそんな感じに仕様にもまとめられてるよ。
+つまり "popup" っというのは「動き」のことであり、その中にあるコンテンツの「意味(semantics)」とは別だということだ。 ここをきちんと分離するためには、「意味」は既存の HTML / Role に任せ、その任意の HTML を Top Layer に表示したり Light Dismiss するための機能として "popup" するための属性にし、様々なユースケースに使える方が妥当という判断だ。
 
 - Popup API Alternatives | Open UI
 	- https://open-ui.org/components/popup.proposal.alternatives/#alternative-dedicated-popup-element
@@ -200,49 +198,44 @@ OpenUI の議論ってどんなだったんだろうというと、ここだね�
 
 ## popup 属性
 
-ということで `<popup>` 要素から、 popup 属性に進化した新しいプロポーサルができまして。
+以上のように `<popup>` 要素から popup 属性に変更した、新しいプロポーサルができた。
 
 - mfreed7/popup: Alternative popup proposal
   - https://github.com/mfreed7/popup
 
-で、今こんな感じになった。
+現状は以下のようなものだ。
 
 ```html
 <div popup=popup>I'm rendered on top!</div>
 ```
 
-おお、だいぶ今俺らが知ってる popover に近づいてきたぞ!
-
 そして、この要素には三つの値が定義されている。
 
 1. popup=popup
   1. 他の popup / hint を閉じる
-  2. light dismiss する
+  2. Light Dismiss する
 2. popup=hint
   1. 他の hint は閉じるが popup は残す
-  2. light dismiss に加えて時間が経つと勝手に消える
+  2. Light Dismiss に加えて時間が経つと勝手に消える
 3. popup=async
   1. 他を閉じない
-  2. light dismiss もしない
+  2. Light Dismiss もしない
 
-で、ここで初めて trigger という概念も一緒に入るんだ。 JS がなくても button を使ってこの popup を popup できるようにしようってこと
+ここで初めて trigger という概念が入る。 JS がなくても button を使ってこの `popup` を Popup できるようにするものだ。
 
 ```html
 <button triggerpopup=mypopup>Click me</button>
 <div id=mypopup popup=popup>Popup content</div>
 ```
 
-で、 Chrome も早速 2022/8 に Intents を出すよ。
+これをうけ、 Chrome も早速 2022/8 に Intents を出し、ブログを公開する。
 
 - Intent to Experiment: The Pop-Up API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Sp5UI7RaaGg
-
-これを使うブログも公開
-
 - Pop-ups: They're making a resurgence!  |  Blog  |  Chrome for Developers
   - https://developer.chrome.com/blog/pop-ups-theyre-making-a-resurgence
 
-2022/9 には TPAC があって、そこでも popup の現状が議論されてるよ。この時点でももうすでに属性値とか色々変わってることがわかる。
+2022/9 には TPAC があり、そこでも popup の現状が議論された。この時点で、もうすでに属性値とか色々変わってることがわかる。
 
 TODO: popup の属性は auto/hint/manual がある
 
@@ -250,37 +243,37 @@ TODO: popup の属性は auto/hint/manual がある
 
 TODO: popup を操作するための 3 つの属性
 
-そして、 この TPAC では、 Anchor Positioning についても紹介されるんだ。
+そして、 この TPAC では、 Anchor Positioning についても紹介される。
 
 - TPAC 2022 - CSS Anchoring
   - https://jhey-presents.netlify.app/tpac-2022/
 
-popup した要素は、 Top Layer に表示されちゃうから、例えば button をクリックして開いた時に、 button の近くに表示するってことができない。(なぜなら、 button は Top Layer にないから)
+Popup した要素は、 Top Layer に表示されちゃうから、例えば `<button>` をクリックして開いた時に、 `<button>` の近くに表示するってことができない。(なぜなら、 `<button>` は Top Layer にないから)
 
-これを解決するために、 button を popup の anchor として指定すると、そこからの相対位置で表示できるよってもの。しかも、 popup が画面をはみ出さないように、  viewport に合わせて位置を変えてくれるような機能ももうすでに考えられていたことがわかるね。
+これを解決するために、 `<button>` を `popup` の Anchor として指定すると、そこからの相対位置で表示できるものだ。さらに、 `popup` が画面をはみ出さないように、 Viewport に合わせて位置を変えてくれるような機能も、ここですでに考えられていたことがわかるね。
 
 TODO: anchor で viewport が縮まった時に自動で位置を修正する
 
-今の popover に通じる考え方が、もうすでにだいぶ揃ってるね。
+今の `popover` に通じる考え方が、もうすでにだいぶ揃っている。
 
 
 ## popup という名前
 
-ところで、 popup って言葉は、今までも Web で使われてたんだよねぇ。。
+"popup" という言葉は、今までも Web で使われてた。
 
-例えば、 `window.open()` で開く window を popup って言ってきたし、それらを踏まえた上ですでに Web には `allow-popups` みたいな用語が Permission とかで使われてたりしてたんだ。
+例えば、 `window.open()` で開く Window を Popup と読んできたし、それらを踏まえた上ですでに Web には `allow-popups` などの用語が Permission などで使われている。
 
-それを Top Layer に表示するみたいな、全く別の機能に使っていいのか?っていう指摘が、また Domenic から入る。
+これを Top Layer に表示するといった、全く別の機能に使っていいのか? という指摘が、また Domenic から入る。
 
 - New feature proposal: Popover API · Issue #7785 · whatwg/html
   - https://github.com/whatwg/html/issues/7785#issuecomment-1284656230
 
-確かにそうだよねぇってことで、再度名前どうするかって議論が再開するんだ。
+ここで、再度名前を変更する議論が再開した。
 
 - [popup] Should we rename popup due to potential developer confusion? · Issue #627 · openui/open-ui
   - https://github.com/openui/open-ui/issues/627
 
-候補はこんな感じだったみたい。
+候補は以下のようなものが見て取れる。
 
 - float
 - floatable
@@ -289,10 +282,8 @@ TODO: anchor で viewport が縮まった時に自動で位置を修正する
 - overlay
 - popout
 - popper
-- (Domenic は toplayer って提案してた)
+- (Domenic は toplayer と提案していた)
 
-で、議論(bikeshed ?)した結果 2022/10 くらいに、ついに popover に決まったわけだ!
+議論(bikeshed)した結果 2022/10 くらいに、名前が "popover" に決まった。
 
-あー popover までいけなかったーーー
-
-いよいよ次回は、このような紆余曲折を経てたどり着いた popover について!
+いよいよ次回は、このような紆余曲折を経てたどり着いた popover の仕様について解説する。
