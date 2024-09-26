@@ -79,7 +79,7 @@ Explainer は以下。
 
 そして、この Intents の時点では `<dialog>` との違いについて以下のように説明されている。
 
-> This new element is similar to `<dialog>`, but has several important differences, including light-dismiss behavior, anchoring, and the lack of a "modal" mode.
+> This new element is similar to `<dialog>`, but has several important differences, including Light Dismiss behavior, anchoring, and the lack of a "modal" mode.
 >
 > `<dialog>` との大きな違いは、 Light Dismiss で anchoring があって、 Modal mode がないこと。
 
@@ -130,7 +130,7 @@ ESC で閉じるのは Modal Dialog でも同じだった。しかしそれ以�
 
 だから、 Android の戻るが「画面を戻る」ことも「Modal を閉じる」ことも、 OS が用意した体験がちゃんとできるように、 Modal を Close するようなイベントを監視する Watcher が欲しいってことでできたもの。
 
-そう、これこそ dialog でやった CloseWatcher の原型なんだんよね。これが light-dismiss の実現にも大きく寄与していくし、結果的に dialog にも使われることになる。
+そう、これこそ dialog でやった CloseWatcher の原型なんだんよね。これが Light Dismiss の実現にも大きく寄与していくし、結果的に dialog にも使われることになる。
 
 後の Close Watcher の Explainer の方を確認していおこう。
 
