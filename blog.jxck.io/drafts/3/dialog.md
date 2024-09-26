@@ -183,8 +183,6 @@ Dialog の `<h1>` がラベルに相当する情報を持っている場合は�
 
 そして、仕様ではデフォルトの挙動を整理しつつも、前提として「どこにフォーカスすべきかを `autofocus` で指定するのが推奨」となった。
 
-結果 `showModal()` は `autofocus` を尊重するので、基本は `autofocus` を指定するべきだ。
-
 ```html
 <dialog>
   <div>
@@ -196,6 +194,10 @@ Dialog の `<h1>` がラベルに相当する情報を持っている場合は�
 </dialog>
 ```
 
+現状では、 `<dialog>` 自身がフォーカスを得るかどうかなどについて実装に差異があるので、明示的な指定を忘れると、フォーカスの回数などによって操作を覚えているユーザにとっては不便となり得る。
+
+ただし、最初のコントローラに `autofocus` を置くと、その手前のテキストがスキップされるため、必ず最初のコントローラに `autofocus` すれば良いとは限らない点には注意したい。
+
 
 ### スクロールとフォーカス
 
@@ -204,7 +206,7 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 規約は基本的に長文になるため、そのまま `<dialog>` にレンダリングすると、 `<dialog>` 自体がスクロール可能になってしまう。
 
 ```html
-<dialog style="height: 80vh;">
+<dialog style="height: 100px;">
   <div>
     <p>めっちゃ</p>
     <p>長い</p>
@@ -225,8 +227,8 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 代わりに、規約を別ページにしリンクを貼る、 PDF でダウンロードさせるなども考えられるが、最も簡単なのは規約のみを Scrollable なコンテナに入れる方法だ。以下の場合は、最初の `<div>` が Scrollable になっている。
 
 ```html
-<dialog style="height: 80vh;">
-  <div style="overflow: auto; height: 60vh;" autofocus>
+<dialog style="height: 100px;">
+  <div style="overflow: auto; height: 60px;" autofocus>
     <p>めっちゃ</p>
     <p>長い</p>
     <p>規約</p>
@@ -263,7 +265,7 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 - Keyboard focusable scrollers  |  Blog  |  Chrome for Developers
   - https://developer.chrome.com/blog/keyboard-focusable-scrollers
 
-既に Chrome と Firefox は実装済みだが、 Safari は実装上の困難さとパフォーマンスを理由にネガティブな態度を表明している。
+既に Chrome は M130 から、 Firefox は実装済みだが、 Safari は実装上の困難さとパフォーマンスを理由にネガティブな態度を表明している。
 
 - 190870 - Make scrollable element focusable
   - https://bugs.webkit.org/show_bug.cgi?id=190870
@@ -365,45 +367,15 @@ $('dialog').on('click', (e) => {
 これは実装の頻出パターンになるだろう。
 
 
-### cancel/close イベント
-
-JS で `close()` を呼ぶ際は、その引数に渡した値を `returnValue` 経由で取得することができると解説した。
-
-`<form method=dialog>` を `<button>` で submit した場合は、 `value` 属性の値が `returnValue` の結果となる。
-
-```html
-<dialog>
-  <div>
-    <h1>Hello Dialog</h1>
-    <form method="dialog">
-      <button autofocus type="submit" value="confirm">Confirm</button>
-      <button type="cancel" value="cancel">Cancel</button>
-    </form>
-  </div>
-</dialog>
-<script>
-  // ...
-  $('dialog').on('close', (e) => {
-    console.log(e.target.returnValue) // confirm
-  })
-  $('dialog').on('cancel', (e) => {
-    console.log(e.target.returnValue) // cancel
-  })
-</script>
-```
-
-TODO: demo で `<input>` や `hidden` を確認
-
-
 ### キーボード操作
 
-`<button>` を置く以外に、キーボード操作の対応もネイティブで行われている。これは、そういう Cancel や Close を意味する操作を自動でフックする CloseWatcher を内部で使うことで実現している。
+`<button>` を置く以外に、キーボード操作の対応もネイティブで行われている。これは、そういう Cancel や Close を意味する操作を自動でフックする Close Watcher を内部で使うことで実現している。
 
-non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、 Modal Dialog は CloseWatcher が効いてるため、 ESC で閉じたりができる。
+non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、 Modal Dialog は Close Watcher が効いてるため、 ESC で閉じたりができる。
 
 Android の場合はこれを背面タップで閉じる(持ってないため未検証)といった、デバイス固有の操作とも紐づける役割を果たしている。
 
-なお `showModal()` の方で ESC 押すと、 `cancel` -> `close` の順でイベントが発火する。
+なお Modal Dialog を ESC で閉じると、 `cancel` -> `close` の順でイベントが発火する。
 
 
 ## `<dialog>` の使い所
@@ -421,27 +393,27 @@ Android の場合はこれを背面タップで閉じる(持ってないため�
 
 でも Cookie への同意バナーを画面の右下に出すのであれば、 non-Modal になるだろう。
 
-このように、インタラクションを求めるのが `<dialog>` だ。 `<dialog>` が `role=dialog` の要素だということが非常に重要。これは「ユーザに対して何かインタラクションを求めている」そして、「そのインタラクションが終わったら閉じる」のが基本だ。
+このように、インタラクションを求めるのが `role=dialog` である `<dialog>` の用途だ。「ユーザに対して何かインタラクションを求めている」そして、「そのインタラクションが終わったら閉じる」のが基本だ。
 
 逆に「ユーザにインタラクションを求める Modal Dialog UI」を `<dialog>` を使わずに実装するのも、今後は望ましくないと言えるだろう。フォーカス管理も、 `inert` も、CloseWatcher も、ユーザランドで完璧に実装するのが難しい機能で、わかりやすく言えばアクセシビリティ面での問題などにつながる。
 
 特に、支援技術の利用者を想定するならば以下のようなものだ。
 
 - そもそも Dialog が開いてることに気づけない
-- Dialog が開いて、他の操作ができなくなったが、何が起こったのかわからない
+- Modal が開いて、他の操作ができなくなったが、何が起こったのかわからない
 - 操作できないはずのところにフォーカスが飛んで想定外の操作をしてしまう
 - ESC が奪われて、意図していた操作ができなくなる
 - 開いて閉じたらフォーカスが迷子になる
 
-これらは `<dialog>` を適切に使えば、支援技術には `role=dialog` なものが開いたことが適切に伝わり、プラットフォームの支援を受けた快適な操作が実現できる。
+これらは `<dialog>` を適切に使えば、支援技術には `role=dialog` や `aria-modal=true` なものが開いたことが適切に伝わり、プラットフォームの支援を受けた快適な操作が実現できる。
 
 多くのサイトがライブラリなどを用いて自前で実装しており、そうしたライブラリを剥がすのには時間がかかることを考えると、移行を視野に入れた計画を立てる良いタイミングだと言えそうだ。
 
 
 ## `<dialog>` ではないケース
 
-もし単に「変更が保存されました」や、「わからなかったら下のヘルプへ」といった通知を目的とするのであれば、それは `<dialog>` で実装するべきものではないだろう。 Top Layer に表示できるからといって、浮かび上がる系の UI 全てに `<dialog>` を使うのは適切ではない。その点で `<dialog>` の用途は限られていると言えるだろう。
+もし単に「変更が保存されました」や、「わからなかったら下のヘルプへ」といった通知を目的とするのであれば、それは `<dialog>` で実装するべきものではないだろう。 Top Layer に表示できるからといって、「浮かび上がる系の UI」 全てに `<dialog>` を使うのは適切ではない。その点で `<dialog>` の用途は限られていると言えるだろう。
 
-せっかく Top Layer, CloseWatcher, inert, backdrop などのプリミティブを整備したのに、これを狭い用途のみに限定するのは勿体無い。
+とはいえ、せっかく Top Layer, CloseWatcher, inert, backdrop などのプリミティブを整備したのに、これを狭い用途のみに限定するのは勿体無い。
 
 そこで、こうしたインフラを共有し、より汎用的な UI を実現するために並行して策定されたのが、 Popover だ。
