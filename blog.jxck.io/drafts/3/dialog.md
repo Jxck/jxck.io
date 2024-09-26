@@ -11,7 +11,7 @@
 
 ### `open` 属性
 
-`<dialog>` は、デフォルトでは不可視な要素となっている。これを表示するには `open` 属性を用いる。
+`<dialog>` は、デフォルトでは不可視(`display: none`)な要素となっている。 `open` 属性が付くと表示される。
 
 ```html
 <dialog open>
@@ -23,73 +23,19 @@
 
 ![dialog を open 属性で開く](1.open.drawio.svg)
 
-閉じる UI は、 JS を書かなくても HTML だけで実装可能だ。
 
-```html
-<dialog open>
-  <div>
-    <h1>Hello Dialog</h1>
-    <form method="dialog">
-      <button type="submit">Confirm</button>
-    </form>
-  </div>
-</dialog>
-```
+### `show()`/`showModal()`
 
-このように `<form method=dialog>` を `<dialog>` の中に書くと、その submit は Dialog を submit したことになるので、 Dialog を閉じることになる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースを実装できる。
+しかし、基本的に `<dialog>` は動的に出てくるため JS で開くことになるだろう。しかし、 `open` 属性を動的に付けるのではなく、 `show()`/`showModal()` を用いるのが基本だ。
 
-インタラクションの結果を取得する場合は JS が必要だ。その場合も `<dialog>` を JS から動的に作るよりは、先に `<dialog>` を open 属性なしに HTML 上に配置しておき、その `show()/close()` を JS で呼ぶのが基本になる。
+```js
+$("button.show").on("click", (e) => {
+  $("dialog").show()
+})
 
-閉じるだけではなく、開く方も JS 無しでできるが、それについては話がかなり広がるので別の回で解説する。
-
-
-### aria-label / aria-labelledby
-
-WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` を使ってアクセシブルな名前を割り当てることが推奨されている。
-
-- Accessible Rich Internet Applications (WAI-ARIA) 1.3
-  - https://w3c.github.io/aria/#dialog
-
-Dialog の `<h1>` がラベルに相当する情報を持っている場合は、以下のような実装が考えられる。
-
-```html
-<dialog aria-labelledby="dialog_name">
-  <div>
-    <h1 id="dialog_name">Hello Dialog</h1>
-    <form method="dialog">
-      <button type="submit">Confirm</button>
-    </form>
-  </div>
-</dialog>
-```
-
-
-### show()/showModal()
-
-次に、 JS を用いた実装について見ていく。
-
-```html
-<dialog aria-labelledby="dialog_name">
-  <div>
-   <h1 id="dialog_name">Hello Dialog</h1>
-   <form method="dialog">
-      <button type="submit">Confirm</button>
-    </form>
-  </div>
-</dialog>
-<button id=show>dialog.show()</button>
-<button id=showModal>dialog.showModal()</button>
-<script>
-  const $ = document.querySelector.bind(document)
-  const $$ = document.querySelectorAll.bind(document)
-  EventTarget.prototype.on = EventTarget.prototype.addEventListener
-  $('#show').on('click', (e) => {
-    $('dialog').show()
-  })
-  $('#showModal').on('click', (e) => {
-    $('dialog').showModal()
-  })
-</script>
+$("button.showModal").on("click", (e) => {
+  $("dialog").showModal()
+})
 ```
 
 まず `show()` を呼ぶと、先ほどで言う `<dialog open>` した状態になり Dialog が開く。
@@ -117,33 +63,127 @@ Accessibility Tree もこうなる。
 ![Accessibility Tree 上は role: dialog, modal: true になっている](6.a11y-tree.png)
 
 
+### Submit
+
+閉じる UI は、 JS を書かなくても HTML だけで実装可能だ。
+
+```html
+<dialog open>
+  <div>
+    <h1>Hello Dialog</h1>
+    <form method="dialog">
+      <button type="submit">Accept</button>
+      <button type="cancel">Deny</button>
+    </form>
+  </div>
+</dialog>
+```
+
+このように `<form method=dialog>` を `<dialog>` の中に書くと、その submit/cancel は Dialog を完了したことになり、 Dialog を閉じる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースを実装できる。
+
+この時、 `<button name>` の値は、 JS から `returnValue` で取れるため、ボタンによる分岐が可能になる。
+
+```html
+<dialog open>
+  <div>
+    <h1>Hello Dialog</h1>
+    <form method="dialog">
+      <button type="submit" value="accept">Accept</button>
+      <button type="cancel" value="deny">Deny</button>
+    </form>
+  </div>
+</dialog>
+<script>
+$("dialog").on("close", (e) => {
+  console.log(e.target.returnValue) // "accept" / "deny"
+})
+
+$("dialog").on("cancel", (e) => {
+  console.log(e.target.returnValue) // こちらではない
+})
+</script>
+```
+
+注意点は、 `type=cancel` をクリックしても、発生するのは `"close"` イベントである点だ。`"cancel"` イベントは、 Modal Dialog を ESC で閉じると言った操作で、 `"cancel"` -> `"close"` の順で発火する。
+
+
+### `close()` と `returnValue`
+
+この `<form>` に `<input>` を置いても、その `value` は `returnValue` には渡らない。任意の値を渡す場合は、 `close()` の引数に明示的に渡す必要がある。
+
+```html
+<dialog>
+  <div>
+    <h1>Hello Dialog</h1>
+    <form method="dialog">
+      <input type="text" name="text" value="text" autofocus>
+      <input type="hidden" name="hidden" value="hidden">
+      <button type="submit" value="accept">Accept</button>
+      <button type="close" value="deny">Deny</button>
+    </form>
+  </div>
+</dialog>
+<script>
+$("form").on("submit", (e) => {
+  e.preventDefault()
+  const data = new FormData(e.target)
+  // 文字列しか渡せないのでシリアライズ
+  const params = new URLSearchParams(formdata)
+  $("dialog").close(params)
+})
+
+$("dialog").on("close", (e) => {
+  console.log(e.type, e.target.returnValue) // text=text&hidden=hidden
+})
+</script>
+```
+
+閉じるだけではなく、開く方も JS 無しでできるが、それについては話がかなり広がるので別の回で解説する。
+
+
+### aria-label / aria-labelledby
+
+WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` を使ってアクセシブルな名前を割り当てることが推奨されている。
+
+- Accessible Rich Internet Applications (WAI-ARIA) 1.3
+  - https://w3c.github.io/aria/#dialog
+
+Dialog の `<h1>` がラベルに相当する情報を持っている場合は、以下のような実装が考えられる。
+
+```html
+<dialog aria-labelledby="dialog_name">
+  <div>
+    <h1 id="dialog_name">Hello Dialog</h1>
+    <form method="dialog">
+      <button type="submit">Confirm</button>
+    </form>
+  </div>
+</dialog>
+```
+
+
 ### フォーカスの確認
 
-次は、それぞれのフォーカスの挙動を確認する。
+次は、それぞれのフォーカスの挙動を確認しよう。non-Modal では、フォーカストラップされないので、 Modal に注目する。
 
-開いてたボタンにフォーカスを移し、キーボードで開くと違いがわかる。
+開くボタンにフォーカスを移し、キーボードで Modal を開くと違いがわかりやすい。
 
 共通してるのは以下だ。
 
-- フォーカスした `<button>` を Enter で開いたら、フォーカスが `<dialog>` 内の `<button>` に移る。
+- 開くための `<button>` にフォーカスし Enter で開いたら、フォーカスが `<dialog>` 内の要素に移る。
 - `<dialog>` の `<button>` で閉じたら、開いた時の `<button>` にフォーカスが戻る。
 
-これにより、 `<dialog>` を開いてもフォーカスが移らないとか、閉じたらフォーカスが迷子になるといった事態を避けられる。
+これにより、 `<dialog>` を開いてもフォーカスが移らなかったり、閉じたらフォーカスが迷子になるといった事態を避けられる。
 
-相違点は
-
-- non-Modal: Modal の外にもフォーカスが移動できる
-- Modal: Modal の外にはフォーカスが出ない。(ブラウザ UI 側には出られる)
-
-これにより、 Modal を開いた状態で、 DOM 上の余計なところにフォーカスが行き、想定してない操作を行えてしまうといったことはなくなる。
+また、 Modal の場合は Modal 以外の DOM にフォーカスが移動することはない。これにより、 Modal を開いた状態で、想定してない別操作を行えてしまうといったことはなくなる。
 
 しかし、ブラウザ UI 側には出ていくことができる(できないと、行き詰まる可能性がある)ため、その点は慣れが必要かもしれない。
 
-なお、今回は `<dialog>` に `<button>` が一個しかないため、ここに自動でフォーカスが移るが、特に Modal dialog はデフォルトでどこにフォーカスを移すのかは非常に重要で、前回解説したように仕様でどうするかも結構揉めた。
+なお、 `<dialog>` 内に `autofocus` な要素があればそこにフォーカスが移るが、これがない場合、デフォルトでどこにフォーカスを移すのかは非常に重要で、前回解説したように仕様でどうするかも結構揉めた。
 
 そして、仕様ではデフォルトの挙動を整理しつつも、前提として「どこにフォーカスすべきかを `autofocus` で指定するのが推奨」となった。
 
-結果 `showModal()` は `autofocus` を尊重するので、基本は `autofocus` を指定する方が良いだろう。
+結果 `showModal()` は `autofocus` を尊重するので、基本は `autofocus` を指定するべきだ。
 
 ```html
 <dialog>

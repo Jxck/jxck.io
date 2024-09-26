@@ -57,6 +57,8 @@ Modal の実装を自前で行うとすれば、見た目としては以下の�
 3. Modal を閉じた際に、以前いた場所とは別の場所にフォーカスが移り迷子になる
 4. Modal 上で Tab 移動し、Modal の一番下まで行ったら、次は Modal の上に戻って欲しいが、そのまま外に出て行ってしまう
 
+こうした制御はフォーカストラップと呼ばれ、実装が難しい代表例だ。
+
 他にも、モダールにできて欲しいことができない実装も多い。
 
 1. z-index 戦争に負けて Modal の上に別の何かが表示されている
@@ -246,6 +248,8 @@ Modal Dialog が ESC などで閉じられるのは、 Light Dismiss が内部�
 
 - Close requests for CloseWatcher, `<dialog>`, and `popover=""` - Chrome Platform Status
   - https://chromestatus.com/feature/4722261258928128
+
+ただし、 Close Watcher は「`<dialog>` の範囲外をクリックしたら閉じる」という部分はフックしてないため、別途実装が必要だ。それについては次回解説する。
 
 
 ## `<dialog>`
