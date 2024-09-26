@@ -382,8 +382,7 @@
         <section>
           <h3 id="close-watcher"><a href="#close-watcher">Close Watcher</a></h3>
           <p>プラットフォームが提供する Modal は、 ESC や、範囲外のクリックによって閉じることができる。 Android の場合は背面タップでも閉じられる(持ってないので未検証)。
-          <p>このように、プラットフォームが提供する「Modal を閉じるための操作」を、 Light Dismiss と言う。
-          <p>Light Dismiss をキーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊した、ネイティブの他の機能に影響したりする可能性がある。
+          <p>このように、プラットフォームが提供する「Modal を閉じるための操作」を、キーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊した、ネイティブの他の機能に影響したりする可能性がある。
           <p>そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案されたのが Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し Close Watcher として定義された。
           <pre class=js data-code=js><code translate=no class=language-js>const watcher = new CloseWatcher();
 
@@ -393,7 +392,7 @@ watcher.addEventListener(&quot;cancel&quot;, () =&gt; {
 watcher.addEventListener(&quot;close&quot;, () =&gt; {
   console.log(&quot;close&quot;)
 });</code></pre>
-          <p>Modal Dialog が ESC などで閉じられるのは、 Light Dismiss が内部的に Close Watcher によって実現されているからだ。
+          <p>Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher によって実現されているからだ。
           <ul>
             <li>
               Close requests for CloseWatcher, <code translate=no>&lt;dialog&gt;</code>, and <code translate=no>popover=&quot;&quot;</code> - Chrome Platform Status
@@ -414,7 +413,7 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
           <li>Modal を開くと自動で背景が inert になる
           <li>フォーカスの管理や、活性管理などが自動で行われる
           <li><code translate=no>:modal</code> / <code translate=no>::backdrop</code> をスタイルできる
-          <li>Close Watcher で Light Dismiss が実装されている
+          <li>Close Watcher が実装されている
           <li><code translate=no>aria-modal=true</code> であり、支援技術に伝わる
         </ul>
         <p>つまり、支援技術に対しても「Modal Dialog が開いた」ということが伝わる。
