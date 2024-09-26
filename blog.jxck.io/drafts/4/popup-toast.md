@@ -23,22 +23,22 @@
 
 Toast UI とは、画面の右下などに、焼けたトーストのようにひょこっと通知が飛び出し、しばらくしたら消えるような UI を指す。
 
-TODO: Confluence の Toast ? 要素
+![Toast UI](./1.toast.drawio.svg#400x150)
 
-元々は iOS 文化圏の表現らしくて、Android では Snackbar なんていうこともあるらしく、英語圏でもそこまで馴染みのある言葉ではないっぽかったんだよね。なんで Toast なの？みたいな質問もあるくらいの感じだった。(焼けたら飛び出すトースターって、最近あまり見ない気がするけど、今でも使われてるんだろうか？)
+Toast は元々 iOS 文化圏の表現らしく、Android では Snackbar とも言うらしい。いずれも、英語圏ですらそこまで馴染みのある言葉ではないらしく。「なぜ Toast なのか？」は FAQ だったようだ。
 
-単なるメッセージの表示的な意味合いが強いんだ。別にユーザにインタラクションを求めたりもしないし、ユーザが何も操作しなくても時間が経てば消える。
+Toast 自体は、通知の意味合いが強く、特にユーザにインタラクションを求めなかったり、操作しなくても時間が経てば消えるといったケースが多い。名前に差はあれど、様々な UI ライブラリが提供しており、これも HTML に欲しいということで、 `<toast>` や `<std-toast>` といった提案がなされた。
 
-名前はまちまちだけど、いろんな UI ライブラリが共通して実装してるから、そういうのもやっぱり、 HTML に欲しいよねって提案が `<toast>` や `<std-toast>` と呼ばれていたものだ。
-
-ちなみに、いろんな UI の調査(共通する仕様や、できることできないこと)が以下にまとまってるよ。
+ちなみに、様々な実装の調査(共通する仕様、できることできないこと)が以下にまとまっている。
 
 - std-toast/study-group at master - jackbsteinberg/std-toast
   - https://github.com/jackbsteinberg/std-toast/tree/master/study-group
 
-この中の表を見るとわかるように、よく使われるパターンでありながら、実装は割とばらつきがあり、かつ、これを適切に実装できないと、使いにくくなってしまうと言う問題があった。
+この調査を見てもわかるように、頻出パターンでありながらばらつきはかなりある。そして、決して使いやすい実装ばかりでもない。
 
-調査の結果、 Toast を提供する上で望ましい機能は、以下のようにまとめられている。
+もちろん、少し古い記事を探せば "How to build a Toast component" といったノウハウ記事はたくさん出てくるように、自前での実装も多々なされてきた。しかし、使いにくいものばかりではないのは `<dialog>` と同様だ。
+
+調査の結果、 Toast UI を提供する上で望ましい機能が、以下のようにまとめられた。
 
 - タイトルがつけられる
 - 本文が書ける
@@ -46,55 +46,58 @@ TODO: Confluence の Toast ? 要素
 - タイムアウトができる
   - タイムアウトまでのプログレスバーも出せる
 - Close Button がある
-- Toast 上にも Button がおける
+- Toast 上にも Button が置ける
 - Dismiss する方法がある
 - 状態に応じた Event が発火し Callback が書ける
 
-少し古い記事を探せば "How to build a Toast component" みたいな、注意点がたくさん書かれた記事がたくさん出てくる。で、それを標準化しちゃえば、みんな間違いのない実装ができるよねってこと。
-
-ところが、この提案を実装する上で Intent to Implement は批判も多く
-
-「Chrome が勝手に思いつきで標準を実装するな」といったような意見が出てきた。
+ところが、この提案を実装する上で "Intent to Implement" には、「Chrome が勝手に思いつきで標準を実装するな」といったような意見が出てきた。
 
 - Intent to Implement: Toast UI element
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Gl7FIKM5IFw/m/tA70X9ZIBQAJ
 
-これは、「試しに実装してみるよ」の Intents が Intent to Implement という名前であり、その次は Intent to Ship っていう流れだったのもある。これはあくまでプロトタイプなんだということを強調するために、この後 Intent to Implement はなくなり、代わりに Intent to Prototype というステップに名前が変えられた。
+これは、「試しに実装してみるよ」の Intents が "Intent to Implement" という名前であり、その次は "Intent to Ship" という流れだったのもある。これはあくまでプロトタイプなんだということを強調するために、この後 "Intent to Implement" はなくなり、代わりに "Intent to Prototype" というステップに名前が変えられた。
 
-これはまだ 2019 年ごろの話で、当時は Layered API という、頻出するパターンは共通する基盤を整備して、その上に実装できるようにしようといったコンセプトが一時的に流行っていたんだ。
+これはまだ 2019 年ごろの話で、当時は Layered API という、頻出するパターンは共通する基盤を整備して、その上に実装できるようにしようといったコンセプトが一時的に流行っていた。(fetch, URL, FormData, Encoder... の頃)
 
-`<std-toast>` があれば、飛び出して他の要素の上に被さる系の UI は、全部その応用で作れるよね、というイメージで、それを std- をつけることでブラウザの標準コンポーネントみたいにする、という流れを汲んだ最初で最後の HTML 提案だった。
+`<std-toast>` があれば、飛び出して他の要素の上に被さる系の UI は、全てその応用で実装可能というイメージで、それを `std-` をつけることで、カスタムコンポーネントのブラウザネイティブライブラリのような位置付けで実装する、という取り組みの流れを汲んだ最初で最後の HTML 提案だった。
 
-ちなみに、 Intent to Prototype は 2019 年なんだけど、 Firefox が dialog をリリースするのは 2020 年なんだよね。だから、 toast の議論時期的には dialog の実装がまだ Chrome くらいしかないころに、並行して行われてたんだよね。で、一旦 dialog が進んでくあいだに、一旦影をひそめて、その後再度議論が盛り上がるんだ。
+ちなみに、この "Intent to Prototype" は 2019 年で、 Firefox が `<dialog>` をリリースするのは 2020 年だ。つまり、 `<toast>` の議論時期的は `<dialog>` の実装がまだ Chrome くらいしかない頃から、並行して行われていたことがわかる。先に `<dialog>` の作業を進める間一旦影をひそめ、ひと段落してから再度議論が盛り上がっていく。
 
 ## `<popup>` 要素
 
-2020 年に `<dialog>` が、ゴリっと進んだ翌年、 2021 年のはじめに `<popup>` っていう要素の Intents が出るんだよね。
+2020 年に `<dialog>` が躍進した翌年、 2021 年のはじめに `<popup>` の Intents が出される。
 
 - Intent to Prototype: HTMLPopupElement - `<popup>`
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/9y-Thg9UCxY
 
-Explainer はこちら。
+Explainer は以下。
 
 - MSEdgeExplainers/Popup/explainer.md at main - MicrosoftEdge/MSEdgeExplainers
   - https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/Popup/explainer.md
 
-つまり、 OpenUI 側で議論した結果 `<toast>` じゃなくて `<popup>` の方がいいねってことで、リネームされて再度出された提案なんだ。
+つまり、 OpenUI 側で議論した結果 `<toast>` ではなく `<popup>` の方が良いということで、リネームされたものだ。
 
-そして、 Intents では dialog の違いについてこの時点でこう説明されている
+そして、この Intents の時点では `<dialog>` との違いについて以下のように説明されている。
 
 > This new element is similar to `<dialog>`, but has several important differences, including light-dismiss behavior, anchoring, and the lack of a "modal" mode.
 >
-> `<dialog>` との大きな違いは、 light-dismiss で anchoring があって、 modal mode がないこと。
+> `<dialog>` との大きな違いは、 Light Dismiss で anchoring があって、 Modal mode がないこと。
 
-ここで言ってる light-dismiss ってのは、 popover において結構大事な概念なんだけど、要するに「割と簡単に閉じられる」みたいな意味だ。この時点の仕様では以下のように書かれてるよ。
+ここで言ってる Light Dismiss は、前回解説したものだ。初期は `<popover>` において大事な概念とされ、要するに「割と簡単に閉じられる」といった意味だった。この時点の仕様では以下のように書かれている。
 
-- 以下の場合に light-dismiss になって暗黙的に閉じる
+- 以下の場合に Light Dismiss になって暗黙的に閉じる
   - ESC を押す
-  - layout が変わる
-  - focus が popup の外に行く
+  - Layout が変わる
+  - Focus が `<popup>` の外に行く
 
-ESC で閉じるのは dialog の showModal でも同じだったね。でもそれ以外にも、閉じるのが楽っていうのは、 Modal とは真逆の概念で、ライトに表示させてライトに閉じられることを重視してることがわかる。
+ESC で閉じるのは Modal Dialog でも同じだった。しかしそれ以外にもフックがあり、ライトに表示させてライトに閉じられることを重視してることがわかる。
+
+実際には Light Dismiss の概念が `<popup>` で議論され、それを逆輸入する形で `<dialog>` に部分的に持っていくことになったのだ。
+
+- Support disabling CloseWatcher integration in `<dialog>` · Issue #10592 · whatwg/html
+  - https://github.com/whatwg/html/issues/10592
+
+これを持って `<dialog>` は Light Dismiss を部分的に持っているが、(最終形態の) Popover ほど Light Dismiss ではないという状態になっており、その意味では Modal Dialog は Light Dismiss ではないと言ってもいいのかもしれない。この点については、後ほど「`<dialog>` を `popover` する」という方法を解説する。
 
 そして、 `<toast>` みたいな特定の用途じゃなくて「なんでも載せられる」ってのを重要視してるよ。ただこの時点では、なんでも載せられるから意味的には希薄で、意味が強くあるもの(その最たる例は dialog)みたいなものは、個別に定義するみたいなスタンスだったりする。
 
