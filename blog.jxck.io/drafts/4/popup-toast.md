@@ -17,6 +17,7 @@
 
 そこで、これらの資産を活用し、より汎用的な UI を標準化しようと言う話が、 `<dialog>` の標準化の裏で並行して行われた。
 
+
 ## Toast
 
 最初の目立った提案は、 `<toast>` だった。
@@ -25,7 +26,7 @@ Toast UI とは、画面の右下などに、焼けたトーストのように�
 
 ![Toast UI](./1.toast.drawio.svg#400x150)
 
-Toast は元々 iOS 文化圏の表現らしく、Android では Snackbar とも言うらしい。いずれも、英語圏ですらそこまで馴染みのある言葉ではないらしく。「なぜ Toast なのか？」は FAQ だったようだ。
+Toast は元々 iOS 文化圏の表現らしく、Android では Snackbar とも言うらしい。いずれも、英語圏ですらそこまで馴染みのある言葉ではないらしく。「なぜ Toast なのか?」は FAQ だったようだ。
 
 Toast 自体は、通知の意味合いが強く、特にユーザにインタラクションを求めなかったり、操作しなくても時間が経てば消えるといったケースが多い。名前に差はあれど、様々な UI ライブラリが提供しており、これも HTML に欲しいということで、 `<toast>` や `<std-toast>` といった提案がなされた。
 
@@ -62,6 +63,7 @@ Toast 自体は、通知の意味合いが強く、特にユーザにインタ�
 `<std-toast>` があれば、飛び出して他の要素の上に被さる系の UI は、全てその応用で実装可能というイメージで、それを `std-` をつけることで、カスタムコンポーネントのブラウザネイティブライブラリのような位置付けで実装する、という取り組みの流れを汲んだ最初で最後の HTML 提案だった。
 
 ちなみに、この "Intent to Prototype" は 2019 年で、 Firefox が `<dialog>` をリリースするのは 2020 年だ。つまり、 `<toast>` の議論時期的は `<dialog>` の実装がまだ Chrome くらいしかない頃から、並行して行われていたことがわかる。先に `<dialog>` の作業を進める間一旦影をひそめ、ひと段落してから再度議論が盛り上がっていく。
+
 
 ## `<popup>` 要素
 
@@ -107,6 +109,7 @@ ESC で閉じるのは Modal Dialog でも同じだった。しかしそれ以�
 
 それが ModalCloseWatcher だ。
 
+
 ## ModalCloseWatcher
 
 `<popup>` の Intents とほぼ同時に、もう一個 Intents が出る。
@@ -119,18 +122,18 @@ ESC で閉じるのは Modal Dialog でも同じだった。しかしそれ以�
 - history_api/history_and_modals.md at master - slightlyoff/history_api
   - https://github.com/slightlyoff/history_api/blob/master/history_and_modals.md
 
-もともとは history_api にあったことがわかる。
+もともとは History API にあったことがわかる。
 
-そう。これこそ Android の戻るボタン問題で、 Android では「戻る」でも modal を閉じることができたんだ。それを実現するために変に「戻る」をフックするために keyup とか history で実装しがちだから、新しく history API の整理上ですげー邪魔だったんだよね。って話を Domenic がしてる。
+そう。これこそ Android の戻るボタン問題で、 Android では「戻る」でも modal を閉じることができたん。それを実現するために変に「戻る」をフックするために `keyup` や History をいじって実装しがちだが、新しく History API を整理する上で問題になった。という話を Domenic がしている。
 
 - Domenic Denicola on Twitter / X
   - https://x.com/Domenic/status/1339675541083971586
 
-たぶん history API の改善版ともいえる、 Navigation API をちょうどこのころやってたから何だろうなぁって感じ。
+おそらく Iistory API の改善版ともいえる、 Navigation API に丁度この頃取り組んでいたからだろう。
 
-だから、 Android の戻るが「画面を戻る」ことも「Modal を閉じる」ことも、 OS が用意した体験がちゃんとできるように、 Modal を Close するようなイベントを監視する Watcher が欲しいってことでできたもの。
+これを解決するタメ、Android の戻るが「画面を戻る」ことも「Modal を閉じる」ことも、 OS が用意した体験がちゃんとできるように、 Modal を Close するようなイベントを監視する Watcher が欲しいということでできたものだ。
 
-そう、これこそ dialog でやった CloseWatcher の原型なんだんよね。これが Light Dismiss の実現にも大きく寄与していくし、結果的に dialog にも使われることになる。
+これこそ `<dialog>` で解説した Close Watcher の原型だ。これが Light Dismiss の実現にも大きく寄与していくし、結果的に `<dialog>` にも使われることになる。
 
 後の Close Watcher の Explainer の方を確認していおこう。
 
@@ -146,19 +149,8 @@ ESC で閉じるのは Modal Dialog でも同じだった。しかしそれ以�
 > - a custom context menu;
 > - fullscreen mode.
 
-あと、 OS が用意している Modal Close な操作が他にも書かれてるんだけど、 iOS の VoiceOver には "z" ジェスチャーってのがあるとか、他にも将来的に何かあたらしいデバイスが出ても吸収できるってされてて、そうだよねーって感じ。
+他にも OS が用意している Modal Close な操作が書かれており、 iOS VoiceOver にある "z" ジェスチャーや、他にも将来的に何か新しいデバイスが出た際も、ここで吸収できる。
 
-ちなみに、単体で使うとこう。とはいっても、単体で使うことはあまりないと思うけどね。
-
-(仕様として整備して、 API は Export してるけど、大抵は dialog や popover を使うべき)
-
-```js
-const watcher = new CloseWatcher();
-
-watcher.onclose = () => {
-  myModal.close();
-};
-```
 
 ## `<popup>` の問題
 
@@ -170,7 +162,7 @@ dialog の議論と実装がブラウザ間でゴリゴリと進んだちょっ�
 >
 > The prior I2P described a new `<popup>` element. I've updated the chromestatus entry and re-wrote the explainer to describe a `popup` content attribute.
 >
-> 以前の I2P では、新しい `<popup>` 要素について説明しました。私は chromestatus のエントリを更新し、`popup`属性を記述するように Explainerを書き直しました。
+> 以前の I2P では、新しい `<popup>` 要素について説明しました。私は chromestatus のエントリを更新し、`popup`属性を記述するように Explainer を書き直しました。
 >
 > This new idea avoids some serious accessibility issues with `<popup>`, and also enables a more powerful API that can be used for more applications.
 >
@@ -182,21 +174,21 @@ dialog の議論と実装がブラウザ間でゴリゴリと進んだちょっ�
 >
 > Once I've migrated `<selectmenu>` to the new API, I'll remove the old `<popup>` element implementation.
 >
-> `<selectmenu>` を新しいAPIに移行したら、古い `<popup>` 要素の実装を削除します。
+> `<selectmenu>` を新しい API に移行したら、古い `<popup>` 要素の実装を削除します。
 
-なんと、 `<popup>` には問題があったんだね。で、ここで `popup` 属性に変えられたと。(まだ `popover` じゃないよ！)
+なんと、 `<popup>` には問題があったんだね。で、ここで `popup` 属性に変えられたと。(まだ `popover` じゃないよ!)
 
 OpenUI の議論ってどんなだったんだろうというと、ここだね。
 
 - New Approach for Popup - Issue #455 - openui/open-ui (github.com)
   - https://github.com/openui/open-ui/issues/455#issuecomment-1050172067
 
-ここは議論のまとめって感じの issue だけど、そこにリンクされている最も大きいものの一つが、 Domenic があげた「`<popup>` の role は何か？」というものだ。
+ここは議論のまとめって感じの issue だけど、そこにリンクされている最も大きいものの一つが、 Domenic があげた「`<popup>` の role は何か?」というものだ。
 
 - HTMLPopupElement · Issue #680 · w3ctag/design-reviews
 	- https://github.com/w3ctag/design-reviews/issues/680#issuecomment-943472331
 
-もともと、 `<popup>` には「select menu を出す」とか、「ティーチング UI」とか、浮かび上がる系の UI をカバーするという目的で考えられてたけど、それってセマンティクスはなんなんだろう？ "select menu" と "teaching ui" が同じってことはなくね？それとも、それぞれの目的ごとに HTML 要素作るつもり？？
+もともと、 `<popup>` には「select menu を出す」とか、「ティーチング UI」とか、浮かび上がる系の UI をカバーするという目的で考えられてたけど、それってセマンティクスはなんなんだろう? "select menu" と "teaching ui" が同じってことはなくね?それとも、それぞれの目的ごとに HTML 要素作るつもり??
 
 みたいなもの。そう、 popup ってのは「動き」のことであって、その中にあるコンテンツの「意味」とは別だよねってことだったんだ。これは、責任も分離されてないので、そこをきちんと分離するためには、「意味」は既存の HTML / role に任せて、その任意の HTML を Top Layer に表示したり Light Dismiss するための機能として popup を属性としてなんにでも使えるように変えることになったんだ。
 
@@ -219,19 +211,19 @@ OpenUI の議論ってどんなだったんだろうというと、ここだね�
 <div popup=popup>I'm rendered on top!</div>
 ```
 
-おお、だいぶ今俺らが知ってる popover に近づいてきたぞ！
+おお、だいぶ今俺らが知ってる popover に近づいてきたぞ!
 
 そして、この要素には三つの値が定義されている。
 
-1.  popup=popup
-    1.  他の popup / hint を閉じる
-    2.  light dismiss する
-2.  popup=hint
-    1.  他の hint は閉じるが popup は残す
-    2.  light dismiss に加えて時間が経つと勝手に消える
-3.  popup=async
-    1.  他を閉じない
-    2.  light dismiss もしない
+1. popup=popup
+  1. 他の popup / hint を閉じる
+  2. light dismiss する
+2. popup=hint
+  1. 他の hint は閉じるが popup は残す
+  2. light dismiss に加えて時間が経つと勝手に消える
+3. popup=async
+  1. 他を閉じない
+  2. light dismiss もしない
 
 で、ここで初めて trigger という概念も一緒に入るんだ。 JS がなくても button を使ってこの popup を popup できるようにしようってこと
 
@@ -250,7 +242,6 @@ OpenUI の議論ってどんなだったんだろうというと、ここだね�
 - Pop-ups: They're making a resurgence!  |  Blog  |  Chrome for Developers
   - https://developer.chrome.com/blog/pop-ups-theyre-making-a-resurgence
 
-
 2022/9 には TPAC があって、そこでも popup の現状が議論されてるよ。この時点でももうすでに属性値とか色々変わってることがわかる。
 
 TODO: popup の属性は auto/hint/manual がある
@@ -266,11 +257,12 @@ TODO: popup を操作するための 3 つの属性
 
 popup した要素は、 Top Layer に表示されちゃうから、例えば button をクリックして開いた時に、 button の近くに表示するってことができない。(なぜなら、 button は Top Layer にないから)
 
-これを解決するために、 button を popup の anchor として指定すると、そこからの相対位置で表示できるよってもの。しかも、 popup が画面をはみ出さないように、　 viewport に合わせて位置を変えてくれるような機能ももうすでに考えられていたことがわかるね。
+これを解決するために、 button を popup の anchor として指定すると、そこからの相対位置で表示できるよってもの。しかも、 popup が画面をはみ出さないように、  viewport に合わせて位置を変えてくれるような機能ももうすでに考えられていたことがわかるね。
 
 TODO: anchor で viewport が縮まった時に自動で位置を修正する
 
 今の popover に通じる考え方が、もうすでにだいぶ揃ってるね。
+
 
 ## popup という名前
 
@@ -278,7 +270,7 @@ TODO: anchor で viewport が縮まった時に自動で位置を修正する
 
 例えば、 `window.open()` で開く window を popup って言ってきたし、それらを踏まえた上ですでに Web には `allow-popups` みたいな用語が Permission とかで使われてたりしてたんだ。
 
-それを Top Layer に表示するみたいな、全く別の機能に使っていいのか？っていう指摘が、また Domenic から入る。
+それを Top Layer に表示するみたいな、全く別の機能に使っていいのか?っていう指摘が、また Domenic から入る。
 
 - New feature proposal: Popover API · Issue #7785 · whatwg/html
   - https://github.com/whatwg/html/issues/7785#issuecomment-1284656230
@@ -299,8 +291,8 @@ TODO: anchor で viewport が縮まった時に自動で位置を修正する
 - popper
 - (Domenic は toplayer って提案してた)
 
-で、議論(bikeshed ?)した結果 2022/10 くらいに、ついに popover に決まったわけだ！
+で、議論(bikeshed ?)した結果 2022/10 くらいに、ついに popover に決まったわけだ!
 
 あー popover までいけなかったーーー
 
-いよいよ次回は、このような紆余曲折を経てたどり着いた popover について！
+いよいよ次回は、このような紆余曲折を経てたどり着いた popover について!
