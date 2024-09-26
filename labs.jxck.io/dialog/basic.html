@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>Show Modal Dialog DEMO | labs.jxck.io</title>
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dialog DEMO | labs.jxck.io</title>
 
-<h1>Show Modal Dialog DEMO</h1>
+<h1>Dialog DEMO</h1>
 
 <style>
   dialog {
@@ -18,42 +18,54 @@
   <div>
     <h1>Hello Dialog</h1>
     <form method="dialog">
-      <button autofocus type="submit" value="confirm">Confirm</button>
-      <button type="cancel" value="cancel">Cancel</button>
+      <input type="text" name="text" value="text" autofocus>
+      <input type="hidden" name="hidden" value="hidden">
+      <button type="submit" value="accept">Accept</button>
+      <button type="close" value="deny">Deny</button>
     </form>
   </div>
 </dialog>
 
-<button id=show>dialog.show()</button>
-<button id=showModal>dialog.showModal()</button>
+<button id="show">dialog.show()</button>
+<button id="showModal">dialog.showModal()</button>
 <script>
   const $ = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  $('#show').on('click', (e) => {
-    $('dialog').show()
+  $("#show").on("click", (e) => {
+    $("dialog").show()
   })
 
-  $('#showModal').on('click', (e) => {
-    $('dialog').showModal()
+  $("#showModal").on("click", (e) => {
+    $("dialog").showModal()
   })
 
-  $('dialog').on('close', (e) => {
-    console.log(e.type)
-    console.log(e.target.returnValue)
+  $("form").on("submit", (e) => {
+    e.preventDefault()
+    const data = new FormData(e.target)
+    console.log(new Map(data))
+    const params = new URLSearchParams(data)
+    $("dialog").close(params)
   })
-  $('dialog').on('cancel', (e) => {
-    console.log(e.type)
-    console.log(e.target.returnValue)
+
+  $("dialog").on("close", (e) => {
+    console.log(e)
+    console.log(e.type, e.target.returnValue)
   })
-  $('dialog').on('click', (e) => {
+
+  $("dialog").on("cancel", (e) => {
+    console.log(e)
+    console.log(e.type, e.target.returnValue)
+  })
+
+  $("dialog").on("click", (e) => {
     // dialog 背景含めて全体がフック対象
-    const {target, currentTarget} = e
-    console.log({target, currentTarget})
+    const { target, currentTarget } = e
+    console.log({ target, currentTarget })
     if (e.target === e.currentTarget) {
        // 両方 dialog 自身なのは backdrop のみになる
-      $('dialog').close()
+      $("dialog").close()
     }
   })
 </script>
