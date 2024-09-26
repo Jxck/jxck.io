@@ -314,6 +314,14 @@ Modal Dialog が ESC などで閉じられるのは、 Light Dismiss が内部�
 したがって、もし自前の実装を標準の `<dialog>` に移行するのであれば、この辺の語彙のすり合わせもやった方がいいだろう。
 
 
+## Demo
+
+動作する DEMO を以下に作成した。
+
+- Dialog Labs | labs.jxck.io
+  - https://labs.jxck.io/dialog/
+
+
 ## Outro
 
 以上のように、これまで JS/CSS を駆使して実装されていた Dialog の、あらゆる既知の問題を踏まえて、 `<dialog>` の標準仕様が作られ、 Interop により全てのブラウザが実装し、ほぼほぼ動く状態にあるのだ。
