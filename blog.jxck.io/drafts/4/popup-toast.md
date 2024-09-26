@@ -97,17 +97,13 @@ ESC で閉じるのは Modal Dialog でも同じだった。しかしそれ以�
 - Support disabling CloseWatcher integration in `<dialog>` · Issue #10592 · whatwg/html
   - https://github.com/whatwg/html/issues/10592
 
-これを持って `<dialog>` は Light Dismiss を部分的に持っているが、(最終形態の) Popover ほど Light Dismiss ではないという状態になっており、その意味では Modal Dialog は Light Dismiss ではないと言ってもいいのかもしれない。この点については、後ほど「`<dialog>` を `popover` する」という方法を解説する。
+しかし `<dialog>` は Popover ほどは Light Dismiss ではなく、 ESC で閉じたりはできるが、背面クリックなどは自分で実装する必要がある。もし `<dialog>` をより Light Dismiss にしたい場合については、後ほど「`<dialog>` を `popover` する」という方法を解説する。
 
-そして、 `<toast>` みたいな特定の用途じゃなくて「なんでも載せられる」ってのを重要視してるよ。ただこの時点では、なんでも載せられるから意味的には希薄で、意味が強くあるもの(その最たる例は dialog)みたいなものは、個別に定義するみたいなスタンスだったりする。
+次に大きいのが Anchoring だ。 Anchoring も次回詳細を解説するが `<popup>` を開いた対象と、相対的なポジショニングができるように紐づけると言ったものだ。これも `<popup>` の時点で言及がある。
 
-次に大きいのが Anchoring。 Anchoring はあとでまたちゃんと説明するけど、要するにその `<popup>` を誰が開いたかみたいな意味。開いた親。これを id で紐づけると、例えばボタンをクリックしたら `<popup>` を自動で開くみたいなことができたり、その `<button>` からの相対位置で配置したりできる Anchor Positioning についてもここですでに言及があるよ。
+個人的なツボは、前回解説したメソッド名の対称性だ。「`<dialog>` は show/close を選んだが、それはあんま良くない。 `<popup>` は show/hide を選ぶし、 `<dialog>` は仕様なおした方が良い」といったことを書いている。
 
-個人的なツボは、「dialog は show/close を選んだけど、それはあんま良くないよね。 popup は show/hide だぜ、 dialog は仕様なおした方がいいな」みたいなことを書いてるw
-
-並行して提案があって、あんまり足並みがそろってなかったっぽいことがわかるね。
-
-で、この light-dismiss なあたりから派生して出てきた仕様が 2021 年に公開される。
+この Light Dismiss から派生して出てきた仕様が 2021 年に公開される。
 
 それが ModalCloseWatcher だ。
 
