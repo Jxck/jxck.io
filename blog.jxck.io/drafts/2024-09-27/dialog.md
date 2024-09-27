@@ -52,13 +52,13 @@ Accessibility Tree を確認すると Role が `dialog` になっていること
 
 背景が薄くグレーになるのは、 `::backdrop` のデフォルト CSS があたっているからだ。
 
-![chrome の backdrop デフォルトスタイル](5.default-style.png)
+![chrome の backdrop デフォルトスタイル](4.default-style.png)
 
 non-Modal と異なり、Modal は同時に 1 つしか開けない。
 
 Accessibility Tree もこうなる。
 
-![Accessibility Tree 上は role: dialog, modal: true になっている](6.a11y-tree.png)
+![Accessibility Tree 上は role: dialog, modal: true になっている](5.a11y-tree.png)
 
 
 ### Submit
@@ -317,7 +317,7 @@ dialog.addEventListener('click', (e) => {
 })
 ```
 
-![Modal は画面のどこをクリックしても dialog 要素で発火する](7.backdrop-click.drawio.svg)
+![Modal は画面のどこをクリックしても dialog 要素で発火する](6.backdrop-click.drawio.svg)
 
 そこで、 `<dialog>` を `padding: 0` にし、直下の `<div>` が `<dialog>` の内側いっぱいに表示されている状態にする。以下では、赤い `<div>` が `<dialog>` いっぱいに被さっている形だ。
 
