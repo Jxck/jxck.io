@@ -21,7 +21,7 @@
 </dialog>
 ```
 
-![dialog を open 属性で開く](1.show.drawio.svg)
+![dialog を open 属性で開く](1.show.drawio.svg#451x231)
 
 
 ### `show()`/`showModal()`
@@ -44,21 +44,21 @@ document.querySelector("button.showModal").addEventListener("click", (e) => {
 
 Accessibility Tree を確認すると Role が `dialog` になっていることが確認できるだろう。
 
-![Accessibility Tree 上は role: dialog, modal: false になっている](2.a11y-tree.png)
+![Accessibility Tree 上は role: dialog, modal: false になっている](2.a11y-tree.png#538x514)
 
 これを、 `showModal()` で開くとこうなる。
 
-![showModal() で Modal Dialog を開く](3.showModal.drawio.svg)
+![showModal() で Modal Dialog を開く](3.showModal.drawio.svg#451x231)
 
 背景が薄くグレーになるのは、 `::backdrop` のデフォルト CSS があたっているからだ。
 
-![chrome の backdrop デフォルトスタイル](4.default-style.png)
+![chrome の backdrop デフォルトスタイル](4.default-style.png#920x186)
 
 non-Modal と異なり、Modal は同時に 1 つしか開けない。
 
 Accessibility Tree を確認すれば、 `aria-modal: true` になっていることがわかる。
 
-![Accessibility Tree 上は role: dialog, modal: true になっている](5.a11y-tree.png)
+![Accessibility Tree 上は role: dialog, modal: true になっている](5.a11y-tree.png#548x522)
 
 
 ### Submit
@@ -236,7 +236,7 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 </dialog>
 ```
 
-![scrollable section](6.scrollable-section.png)
+![scrollable section](6.scrollable-section.png#797x494)
 
 注意点として、もしこのスクロールする `<section>` の手前に別のコントローラーがあった場合を考えよう。
 
@@ -317,7 +317,7 @@ dialog.addEventListener('click', (e) => {
 })
 ```
 
-![Modal は画面のどこをクリックしても dialog 要素で発火する](7.backdrop-click.drawio.svg)
+![Modal は画面のどこをクリックしても dialog 要素で発火する](7.backdrop-click.drawio.svg#451x231)
 
 そこで、 `<dialog>` を `padding: 0` にし、直下の `<div>` が `<dialog>` の内側いっぱいに表示されている状態にする。以下では、赤い `<div>` が `<dialog>` いっぱいに被さっている形だ。
 

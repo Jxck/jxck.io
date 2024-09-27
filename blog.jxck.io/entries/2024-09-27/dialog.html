@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-09-27/dialog.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="前回までは &lt;dialog&gt; が標準化されるまでの経緯と、 API の概要や関連仕様を解説した。今回は &lt;dialog&gt; の API としての使い方について、具体的に解説していく。">
+  <meta name=keywords            content="dialog,popover">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-09-27/dialog.html>
+  <meta property=og:title        content="Dialog と Popover #3 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="前回までは &lt;dialog&gt; が標準化されるまでの経緯と、 API の概要や関連仕様を解説した。今回は &lt;dialog&gt; の API としての使い方について、具体的に解説していく。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Dialog と Popover #3 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-09-27T08:00:00+08:00",
+    "dateModified": "2024-09-28T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "前回までは &lt;dialog&gt; が標準化されるまでの経緯と、 API の概要や関連仕様を解説した。今回は &lt;dialog&gt; の API としての使い方について、具体的に解説していく。"
+  }
+  </script>
+
+  <title>Dialog と Popover #3 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-27>2024-09-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-09-28>2024-09-28</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#dialog">dialog</a>
+              <li><a href="/tags#popover">popover</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#各要素の使用">各要素の使用</a>
+              <ol>
+                <li><a href="#open-属性"><code translate=no>open</code> 属性</a>
+                <li><a href="#showshowmodal"><code translate=no>show()</code>/<code translate=no>showModal()</code></a>
+                <li><a href="#submit">Submit</a>
+                <li><a href="#close-と-returnvalue"><code translate=no>close()</code> と <code translate=no>returnValue</code></a>
+                <li><a href="#aria-label--aria-labelledby">aria-label / aria-labelledby</a>
+                <li><a href="#フォーカスの確認">フォーカスの確認</a>
+                <li><a href="#scrollable">Scrollable</a>
+                <li><a href="#close-と-returnvalue_1">Close と returnValue</a>
+                <li><a href="#backdrop-をクリックしたら閉じる">backdrop をクリックしたら閉じる</a>
+                <li><a href="#キーボード操作">キーボード操作</a>
+              </ol>
+              <li><a href="#dialog-の使い所"><code translate=no>&lt;dialog&gt;</code> の使い所</a>
+              <li><a href="#dialog-ではないケース"><code translate=no>&lt;dialog&gt;</code> ではないケース</a>
+              <li><a href="#demo">DEMO</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Dialog と Popover #3</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>前回までは <code translate=no>&lt;dialog&gt;</code> が標準化されるまでの経緯と、 API の概要や関連仕様を解説した。
+        <p>今回は <code translate=no>&lt;dialog&gt;</code> の API としての使い方について、具体的に解説していく。
+      </section>
+      <section>
+        <h2 id="各要素の使用"><a href="#各要素の使用">各要素の使用</a></h2>
+        <section>
+          <h3 id="open-属性"><a href="#open-属性"><code translate=no>open</code> 属性</a></h3>
+          <p><code translate=no>&lt;dialog&gt;</code> は、デフォルトでは不可視(<code translate=no>display: none</code>)な要素となっている。 <code translate=no>open</code> 属性が付くと表示される。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog open&gt;
+  &lt;div&gt;
+    &lt;h1&gt;Hello Dialog&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+          <p>
+            <img loading=lazy decoding=async src=1.show.drawio.svg?240927_193639 alt="dialog を open 属性で開く" width=451 height=231>
+          </p>
+        </section>
+        <section>
+          <h3 id="showshowmodal"><a href="#showshowmodal"><code translate=no>show()</code>/<code translate=no>showModal()</code></a></h3>
+          <p>しかし、基本的に <code translate=no>&lt;dialog&gt;</code> は動的に出てくるため、JS で開くことになるだろう。しかし、 <code translate=no>open</code> 属性を動的に付けるのではなく、 <code translate=no>show()</code>/<code translate=no>showModal()</code> を用いるのが基本だ。
+          <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&quot;button.show&quot;).addEventListener(&quot;click&quot;, (e) =&gt; {
+  document.querySelector(&quot;dialog&quot;).show()
+})
+
+document.querySelector(&quot;button.showModal&quot;).addEventListener(&quot;click&quot;, (e) =&gt; {
+  document.querySelector(&quot;dialog&quot;).showModal()
+})</code></pre>
+          <p>まず <code translate=no>show()</code> を呼ぶと、先ほどで言う <code translate=no>&lt;dialog open&gt;</code> した状態になり Dialog が開く。
+          <p>これは単に non-Modal な Dialog が open しているだけなので、後にあるテキストの選択や、ボタンクリックといった操作は引き続き可能だ。また、この時別の <code translate=no>&lt;dialog&gt;</code> を <code translate=no>show()</code> しても同時に表示できる。これは、全く排他的な操作がされていないことを意味する。
+          <p>Accessibility Tree を確認すると Role が <code translate=no>dialog</code> になっていることが確認できるだろう。
+          <p>
+            <picture>
+              <source type=image/avif srcset=2.a11y-tree.avif?240927_190504>
+              <source type=image/webp srcset=2.a11y-tree.webp?240927_190504>
+              <img loading=lazy decoding=async src=2.a11y-tree.png?240927_190504 alt="Accessibility Tree 上は role: dialog, modal: false になっている" width=538 height=514>
+            </picture>
+          </p>
+          <p>これを、 <code translate=no>showModal()</code> で開くとこうなる。
+          <p>
+            <img loading=lazy decoding=async src=3.showModal.drawio.svg?240927_193445 alt="showModal() で Modal Dialog を開く" width=451 height=231>
+          </p>
+          <p>背景が薄くグレーになるのは、 <code translate=no>::backdrop</code> のデフォルト CSS があたっているからだ。
+          <p>
+            <picture>
+              <source type=image/avif srcset=4.default-style.avif?240927_190504>
+              <source type=image/webp srcset=4.default-style.webp?240927_190504>
+              <img loading=lazy decoding=async src=4.default-style.png?240927_190504 alt="chrome の backdrop デフォルトスタイル" width=920 height=186>
+            </picture>
+          </p>
+          <p>non-Modal と異なり、Modal は同時に 1 つしか開けない。
+          <p>Accessibility Tree を確認すれば、 <code translate=no>aria-modal: true</code> になっていることがわかる。
+          <p>
+            <picture>
+              <source type=image/avif srcset=5.a11y-tree.avif?240927_190504>
+              <source type=image/webp srcset=5.a11y-tree.webp?240927_190504>
+              <img loading=lazy decoding=async src=5.a11y-tree.png?240927_190504 alt="Accessibility Tree 上は role: dialog, modal: true になっている" width=548 height=522>
+            </picture>
+          </p>
+        </section>
+        <section>
+          <h3 id="submit"><a href="#submit">Submit</a></h3>
+          <p>閉じるための UI は、 JS を書かなくても HTML だけで実装可能だ。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog open&gt;
+  &lt;div&gt;
+    &lt;h1&gt;Hello Dialog&lt;/h1&gt;
+    &lt;form method=&quot;dialog&quot;&gt;
+      &lt;button type=&quot;submit&quot;&gt;Accept&lt;/button&gt;
+      &lt;button type=&quot;cancel&quot;&gt;Deny&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+          <p>このように <code translate=no>&lt;form method=dialog&gt;</code> を <code translate=no>&lt;dialog&gt;</code> の中に書くと、その submit/cancel は Dialog を完了したことになり、 Dialog を閉じる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースを実装できる。
+          <p>この時、 <code translate=no>&lt;button value&gt;</code> の値は、 JS から <code translate=no>returnValue</code> で取れるため、ボタンによる分岐が可能になる。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog open&gt;
+  &lt;div&gt;
+    &lt;h1&gt;Hello Dialog&lt;/h1&gt;
+    &lt;form method=&quot;dialog&quot;&gt;
+      &lt;button type=&quot;submit&quot; value=&quot;accept&quot;&gt;Accept&lt;/button&gt;
+      &lt;button type=&quot;cancel&quot; value=&quot;deny&quot;&gt;Deny&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;
+&lt;script&gt;
+document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (e) =&gt; {
+  console.log(e.target.returnValue) // &quot;accept&quot; / &quot;deny&quot;
+})
+
+document.querySelector(&quot;dialog&quot;).addEventListener(&quot;cancel&quot;, (e) =&gt; {
+  console.log(e.target.returnValue) // こちらではない
+})
+&lt;/script&gt;</code></pre>
+          <p>注意点は、 <code translate=no>type=cancel</code> をクリックしても、発生するのは <code translate=no>&quot;close&quot;</code> イベントである点だ。<code translate=no>&quot;cancel&quot;</code> イベントは、 Modal Dialog を ESC で閉じるといった操作で、 <code translate=no>&quot;cancel&quot;</code> -&gt; <code translate=no>&quot;close&quot;</code> の順で発火する。
+        </section>
+        <section>
+          <h3 id="close-と-returnvalue"><a href="#close-と-returnvalue"><code translate=no>close()</code> と <code translate=no>returnValue</code></a></h3>
+          <p>この <code translate=no>&lt;form&gt;</code> に <code translate=no>&lt;input&gt;</code> などを置いても、その <code translate=no>value</code> は <code translate=no>returnValue</code> には渡らない。任意の値を渡す場合は、 <code translate=no>close()</code> の引数に明示的に渡す必要がある。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog&gt;
+  &lt;div&gt;
+    &lt;h1&gt;Hello Dialog&lt;/h1&gt;
+    &lt;form method=&quot;dialog&quot;&gt;
+      &lt;input type=&quot;text&quot; name=&quot;text&quot; value=&quot;text&quot; autofocus&gt;
+      &lt;input type=&quot;hidden&quot; name=&quot;hidden&quot; value=&quot;hidden&quot;&gt;
+      &lt;button type=&quot;submit&quot; value=&quot;accept&quot;&gt;Accept&lt;/button&gt;
+      &lt;button type=&quot;close&quot; value=&quot;deny&quot;&gt;Deny&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;
+&lt;script&gt;
+document.querySelector(&quot;form&quot;).addEventListener(&quot;submit&quot;, (e) =&gt; {
+  e.preventDefault()
+  const data = new FormData(e.target)
+  // 文字列しか渡せないのでシリアライズ
+  const params = new URLSearchParams(formdata)
+  document.querySelector(&quot;dialog&quot;).close(params)
+})
+
+document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (e) =&gt; {
+  console.log(e.type, e.target.returnValue) // text=text&amp;hidden=hidden
+})
+&lt;/script&gt;</code></pre>
+          <p>「閉じる」だけではなく「開く」方も JS 無しでできるが、それについては話がかなり広がるので別の回で解説する。
+        </section>
+        <section>
+          <h3 id="aria-label--aria-labelledby"><a href="#aria-label--aria-labelledby">aria-label / aria-labelledby</a></h3>
+          <p>WAI-ARIA では <code translate=no>role=modal</code> に対して、 <code translate=no>aria-label</code> / <code translate=no>aria-labelledby</code> を使ってアクセシブルな名前を割り当てることが推奨されている。
+          <ul>
+            <li>
+              Accessible Rich Internet Applications (WAI-ARIA) 1.3
+              <ul>
+                <li><a href="https://w3c.github.io/aria/#dialog" target=_blank>https://w3c.github.io/aria/#dialog</a>
+              </ul>
+            </li>
+          </ul>
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog aria-labelledby=&quot;dialog_name&quot;&gt;
+  &lt;div&gt;
+    &lt;h1 id=&quot;dialog_name&quot;&gt;Hello Dialog&lt;/h1&gt;
+    &lt;form method=&quot;dialog&quot;&gt;
+      &lt;button type=&quot;submit&quot;&gt;Confirm&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+        </section>
+        <section>
+          <h3 id="フォーカスの確認"><a href="#フォーカスの確認">フォーカスの確認</a></h3>
+          <p>次は、それぞれのフォーカスの挙動を確認しよう。non-Modal ではフォーカストラップされないので、 Modal に注目する。
+          <p>開くボタンにフォーカスを移し、キーボードで Modal を開くと違いがわかりやすい。
+          <p>共通しているのは以下だ。
+          <ul>
+            <li>開くための <code translate=no>&lt;button&gt;</code> にフォーカスし Enter で開いたら、フォーカスが <code translate=no>&lt;dialog&gt;</code> 内の要素に移る。
+            <li><code translate=no>&lt;dialog&gt;</code> の <code translate=no>&lt;button&gt;</code> で閉じたら、開いた時の <code translate=no>&lt;button&gt;</code> にフォーカスが戻る。
+          </ul>
+          <p>これにより、 <code translate=no>&lt;dialog&gt;</code> を開いてもフォーカスが移らなかったり、閉じたらフォーカスが迷子になるといった事態を避けられる。
+          <p>また、 Modal の場合は Modal 以外の DOM にフォーカスが移動することはない。これにより、 Modal を開いた状態で、想定していない別操作を行えてしまうといったことはなくなる。
+          <p>しかし、ブラウザ UI (URL Bar や Bookmark など)側には出ていくことができる(できないと、行き詰まる可能性がある)ため、その点は慣れが必要かもしれない。
+          <p>なお、 <code translate=no>&lt;dialog&gt;</code> 内に <code translate=no>autofocus</code> な要素があればそこにフォーカスが移るが、これがない場合、デフォルトでどこにフォーカスを移すのかは非常に重要で、前回解説したように仕様でどうするかも結構揉めた。
+          <p>そして、仕様ではデフォルトの挙動を整理しつつも、前提として「どこにフォーカスすべきかを <code translate=no>autofocus</code> で指定するのが推奨」となった。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog&gt;
+  &lt;div&gt;
+    &lt;h1&gt;Hello Dialog&lt;/h1&gt;
+    &lt;form method=&quot;dialog&quot;&gt;
+      &lt;button autofocus type=&quot;submit&quot;&gt;Confirm&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+          <p>現状では、 <code translate=no>&lt;dialog&gt;</code> 自身がフォーカスを得るかどうかなどについて実装に差異があるので、明示的な指定を忘れると、フォーカス移動の回数などによって操作を覚えているユーザにとっては不便となり得る。
+          <p>ただし、最初のコントローラに <code translate=no>autofocus</code> を置くと、その手前のテキストがスキップされるため、必ず最初のコントローラに <code translate=no>autofocus</code> すれば良いとは限らない点には注意したい。
+        </section>
+        <section>
+          <h3 id="scrollable"><a href="#scrollable">Scrollable</a></h3>
+          <p>Dialog のユースケースの 1 つとして、「規約への同意」を求める UI がある。
+          <p>規約は基本的に長文になるため、そのまま <code translate=no>&lt;dialog&gt;</code> にレンダリングすると、 <code translate=no>&lt;dialog&gt;</code> 自体がスクロール可能になってしまう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog style=&quot;height: 100px;&quot;&gt;
+  &lt;section&gt;
+    &lt;p&gt;めっちゃ&lt;/p&gt;
+    &lt;p&gt;長い&lt;/p&gt;
+    &lt;p&gt;規約&lt;/p&gt;
+    &lt;p&gt;...&lt;/p&gt;
+    &lt;p&gt;...&lt;/p&gt;
+    &lt;p&gt;...&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;form method=&quot;dialog&quot;&gt;
+    &lt;button type=&quot;submit&quot; value=&quot;agree&quot;&gt;Agree&lt;/button&gt;
+    &lt;button type=&quot;submit&quot; value=&quot;disagree&quot;&gt;Disagree&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/dialog&gt;</code></pre>
+          <p>しかし、 <code translate=no>&lt;dialog&gt;</code> 自体がスクロール可能になることは、下部にあるコントローラーまでの到達を困難にするなど、様々な不便があるため、仕様では「<code translate=no>&lt;dialog&gt;</code> 自体を Scrollable にするのは避けるべき」とされている。
+          <p>代わりに、規約を別ページにしリンクを貼る、 PDF でダウンロードさせるなども考えられるが、最も簡単なのは規約のみを Scrollable なコンテナに入れる方法だ。以下の場合は、 <code translate=no>&lt;section&gt;</code> が Scrollable になっている。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog style=&quot;height: 100px;&quot;&gt;
+  &lt;section style=&quot;overflow: auto; height: 60px;&quot; autofocus&gt;
+    &lt;p&gt;めっちゃ&lt;/p&gt;
+    &lt;p&gt;長い&lt;/p&gt;
+    &lt;p&gt;規約&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;form method=&quot;dialog&quot;&gt;
+    &lt;button type=&quot;submit&quot; value=&quot;agree&quot;&gt;Agree&lt;/button&gt;
+    &lt;button type=&quot;submit&quot; value=&quot;disagree&quot;&gt;Disagree&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/dialog&gt;</code></pre>
+          <p>
+            <picture>
+              <source type=image/avif srcset=6.scrollable-section.avif?240928_041042>
+              <source type=image/webp srcset=6.scrollable-section.webp?240928_041042>
+              <img loading=lazy decoding=async src=6.scrollable-section.png?240928_041042 alt="scrollable section" width=797 height=494>
+            </picture>
+          </p>
+          <p>注意点として、もしこのスクロールする <code translate=no>&lt;section&gt;</code> の手前に別のコントローラーがあった場合を考えよう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog style=&quot;height: 80vh;&quot;&gt;
+  &lt;!-- snip --&gt;
+  &lt;button autofocus&gt;Controller 1&lt;/button&gt;
+
+  &lt;section style=&quot;overflow: auto; height: 60vh;&quot;&gt;
+    &lt;p&gt;めっちゃ&lt;/p&gt;
+    &lt;p&gt;長い&lt;/p&gt;
+    &lt;p&gt;規約&lt;/p&gt;
+  &lt;/section&gt;
+
+  &lt;button&gt;Controller 2&lt;/button&gt;
+  &lt;!-- snip --&gt;
+&lt;/dialog&gt;</code></pre>
+          <p>この場合、従来は &quot;Controller 1&quot; で Tab 移動すると &quot;Controller 2&quot; にフォーカスが移り、キーボードだけで規約を読むことができなかったため、明示的に <code translate=no>tabindex=0</code> を付与する必要があった。
+          <p>しかし、このような場面での不便を解消するために、「スクロール可能な要素は、デフォルトでフォーカス可能にする」という仕様が標準化され、実装が進められていた。
+          <ul>
+            <li>
+              Keyboard focusable scrollers  |  Blog  |  Chrome for Developers
+              <ul>
+                <li><a href="https://developer.chrome.com/blog/keyboard-focusable-scrollers" target=_blank>https://developer.chrome.com/blog/keyboard-focusable-scrollers</a>
+              </ul>
+            </li>
+          </ul>
+          <p>既に Firefox は実装済みで、 Chrome は M130 から Ship される。しかし、 Safari は実装上の困難さとパフォーマンスを理由にネガティブな態度を表明している。
+          <ul>
+            <li>
+              190870 - Make scrollable element focusable
+              <ul>
+                <li><a href="https://bugs.webkit.org/show_bug.cgi?id=190870" target=_blank>https://bugs.webkit.org/show_bug.cgi?id=190870</a>
+              </ul>
+            </li>
+          </ul>
+          <p>したがって、しばらくは <code translate=no>tabindex=0</code> を明示的に付与した実装をすべきだろう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog style=&quot;height: 80vh;&quot;&gt;
+  &lt;!-- snip --&gt;
+  &lt;button autofocus&gt;Controller 1&lt;/button&gt;
+
+  &lt;div style=&quot;overflow: auto; height: 60vh;&quot; tabindex=&quot;0&quot;&gt;
+    &lt;p&gt;めっちゃ&lt;/p&gt;
+    &lt;p&gt;長い&lt;/p&gt;
+    &lt;p&gt;規約&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;button&gt;Controller 2&lt;/button&gt;
+  &lt;!-- snip --&gt;
+&lt;/dialog&gt;</code></pre>
+          <ul>
+            <li>
+              dialog initial focus, a proposal · whatwg/html Wiki
+              <ul>
+                <li><a href="https://github.com/whatwg/html/wiki/dialog--initial-focus,-a-proposal" target=_blank>https://github.com/whatwg/html/wiki/dialog--initial-focus,-a-proposal</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="close-と-returnvalue_1"><a href="#close-と-returnvalue_1">Close と returnValue</a></h3>
+          <p>Dialog を閉じる場合、先のように <code translate=no>&lt;form&gt;</code> を使わず JS で <code translate=no>close()</code> を呼んで閉じることもできる。なお「<code translate=no>open</code> 属性を消す」では、 Modal は「消える(hidden)」が「閉じる(close)」の意味にはならない(<code translate=no>close</code> イベントも発火しない)ので、 JS の場合必ず <code translate=no>close()</code> を使って閉じるべきだ。
+          <p>Dialog を閉じるとき、ユーザが何かしらのインタラクションを行った結果(同意結果や選択結果)は、 <code translate=no>dialog.close()</code> に渡した文字列がそのまま取得できる。
+          <pre class=js data-code=js><code translate=no class=language-js>dialog.close(&quot;accept&quot;)
+dialog.returnValue // &quot;accept&quot;</code></pre>
+          <p><code translate=no>&lt;form&gt;</code> を使った場合に submit された結果もここから取得できる。
+        </section>
+        <section>
+          <h3 id="backdrop-をクリックしたら閉じる"><a href="#backdrop-をクリックしたら閉じる">backdrop をクリックしたら閉じる</a></h3>
+          <p>Dialog の要件としてよくある「背景(backdrop)をクリックしたら閉じる(キャンセル)」というユースケースの実装を考える。
+          <p>まず前提として、 Modal の場合は「backdrop 含め、どこをクリックしても <code translate=no>&lt;dialog&gt;</code> がクリックされたことになる」という性質がある。
+          <pre class=js data-code=js><code translate=no class=language-js>dialog.addEventListener(&apos;click&apos;, (e) =&gt; {
+  // 画面のどこをクリックしても発火
+  console.log(e.target) // dialog
+})</code></pre>
+          <p>
+            <img loading=lazy decoding=async src=7.backdrop-click.drawio.svg?240927_190504 alt="Modal は画面のどこをクリックしても dialog 要素で発火する" width=451 height=231>
+          </p>
+          <p>そこで、 <code translate=no>&lt;dialog&gt;</code> を <code translate=no>padding: 0</code> にし、直下の <code translate=no>&lt;div&gt;</code> が <code translate=no>&lt;dialog&gt;</code> の内側いっぱいに表示されている状態にする。以下では、赤い <code translate=no>&lt;div&gt;</code> が <code translate=no>&lt;dialog&gt;</code> いっぱいに被さっている形だ。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
+  dialog {
+    padding: 0;
+    div {
+      padding: 1rem;
+      background-color: red;
+    }
+  }
+&lt;/style&gt;
+&lt;dialog&gt;
+  &lt;div&gt;
+    &lt;h1&gt;Hello Dialog&lt;/h1&gt;
+    &lt;form method=&quot;dialog&quot;&gt;
+      &lt;button autofocus type=&quot;submit&quot; value=&quot;confirm&quot;&gt;Confirm&lt;/button&gt;
+      &lt;button type=&quot;cancel&quot; value=&quot;cancel&quot;&gt;Cancel&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+          <p>この状態で <code translate=no>showModal()</code> した場合、 Dialog の領域をクリックしても <code translate=no>&lt;dialog&gt;</code> より先に <code translate=no>&lt;div&gt;</code> で Click Event が発火する。
+          <p>これを利用すると、 backdrop 領域をクリックしたら <code translate=no>target</code>/<code translate=no>currentTarget</code> が <code translate=no>&lt;dialog&gt;</code> だが、 Dialog の中をクリックした場合は <code translate=no>target</code> が <code translate=no>&lt;div&gt;</code> になるため、これで分岐が可能になる。
+          <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&apos;dialog&apos;).addEventListener(&apos;click&apos;, (e) =&gt; {
+  // dialog 背景含めて全体がフック対象
+  const { target, currentTarget } = e
+  if (target === currentTarget) {
+    // 両方 dialog 自身なのは backdrop のみになる
+    document.querySelector(&apos;dialog&apos;).close()
+  }
+})</code></pre>
+          <p>この要件だけでなく、Popover 相当の Light Dismiss 相当を必要とする場合は、 <code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> することも可能だ。それについては後述する。
+        </section>
+        <section>
+          <h3 id="キーボード操作"><a href="#キーボード操作">キーボード操作</a></h3>
+          <p><code translate=no>&lt;button&gt;</code> を置く以外に、キーボード操作の対応もネイティブで行われている。これは、 Cancel や Close を意味する操作を自動でフックする Close Watcher を内部で使うことで実現している。
+          <p>non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、 Modal Dialog は Close Watcher が効いているため、ESC で閉じたりができる。
+          <p>Android の場合はこれを背面タップで閉じる(持っていないため未検証)といった、デバイス固有の操作とも紐づける役割を果たしている。
+          <p>なお、Modal Dialog を ESC で閉じると、 <code translate=no>cancel</code> -&gt; <code translate=no>close</code> の順でイベントが発火する。
+        </section>
+      </section>
+      <section>
+        <h2 id="dialog-の使い所"><a href="#dialog-の使い所"><code translate=no>&lt;dialog&gt;</code> の使い所</a></h2>
+        <p>さて、一通り確認したところで使い方を確認していこう。
+        <p>例えば、規約を表示してそこへの同意を取得するなどだ。閉じる際にその結果を <code translate=no>returnValue</code> で取得して処理を分岐することになるだろう。
+        <p>使い分けは以下のようになる。
+        <ul>
+          <li>ユーザをブロックして、処理が終わらない限り先には進めない =&gt; Modal Dialog
+          <li>ユーザをブロックはしない、しかし、どこかで処理は求めたい =&gt; non-Modal Dialog
+        </ul>
+        <p>例えば、ログインしないと先に進めないなら、 Modal Dialog にログインフォームが入るかもしれない。
+        <p>でも Cookie への同意バナーを画面の右下に出すのであれば、 non-Modal になるだろう。
+        <p>このように、インタラクションを求めるのが <code translate=no>role=dialog</code> である <code translate=no>&lt;dialog&gt;</code> の用途だ。「ユーザに対して何かインタラクションを求めている」ことが伝わり、「そのインタラクションが終わったら閉じる」。
+        <p>逆に「ユーザにインタラクションを求める Modal Dialog UI」を <code translate=no>&lt;dialog&gt;</code> を使わずに実装するのも、今後は望ましくないと言えるだろう。フォーカス管理も、 <code translate=no>inert</code> も、CloseWatcher も、ユーザランドで完璧に実装するのが難しい機能で、下手に JS を捏ねてそれっぽい挙動をでっちあげても、どこかに歪みが出て、全体では不具合を多く生む。
+        <p>特に、支援技術の利用者を想定するならば以下のようなものだ。
+        <ul>
+          <li>そもそも Dialog が開いていることに気づけない
+          <li>Modal が開いて、他の操作ができなくなったが、何が起こったのかわからない
+          <li>操作できないはずのところにフォーカスが飛んで想定外の操作をしてしまう
+          <li>ESC が奪われて、意図していた操作ができなくなる
+          <li>開いて閉じたらフォーカスが迷子になる
+        </ul>
+        <p>これらは <code translate=no>&lt;dialog&gt;</code> を適切に使えば、支援技術には <code translate=no>role=dialog</code> や <code translate=no>aria-modal=true</code> なものが開いたことが適切に伝わり、プラットフォームの支援を受けた快適な操作が実現できる。
+        <p>多くのサイトがライブラリなどを用いて自前で実装しており、そうしたライブラリを剥がすのには時間がかかることを考えると、移行を視野に入れた計画を立てる良いタイミングだと言えそうだ。
+      </section>
+      <section>
+        <h2 id="dialog-ではないケース"><a href="#dialog-ではないケース"><code translate=no>&lt;dialog&gt;</code> ではないケース</a></h2>
+        <p>もし単に「変更が保存されました」や、「お知らせが来ています」といった通知を目的とするのであれば、それは <code translate=no>&lt;dialog&gt;</code> で実装するべきものではないだろう。 Top Layer に表示できるからといって、「浮かび上がる系の UI」全てに <code translate=no>&lt;dialog&gt;</code> を使うのは適切ではない。その点で <code translate=no>&lt;dialog&gt;</code> の用途は限られていると言える。
+        <p>とはいえ、せっかく Top Layer, CloseWatcher, inert, backdrop などのプリミティブを整備したのに、これを狭い用途のみに限定するのは勿体ない。
+        <p>そこで、こうしたインフラを共有し、より汎用的な UI を実現するために並行して策定されたのが、 Popover だ。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作するデモを以下に用意した。
+        <ul>
+          <li>
+            Dialog Labs | labs.jxck.io
+            <ul>
+              <li><a href="https://labs.jxck.io/dialog/" target=_blank>https://labs.jxck.io/dialog/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
