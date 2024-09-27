@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-26T08:00:00+08:00",
-    "dateModified": "2024-09-26T08:00:00+08:00",
+    "dateModified": "2024-09-27T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-26>2024-09-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-09-26>2024-09-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-09-27>2024-09-27</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -199,33 +199,33 @@
         <p>
           <img loading=lazy decoding=async src=1.modal.drawio.svg?240926_175727 alt="Modal が開き、閉じないと先に進めない" width=500 height=256>
         </p>
-        <p>この UI を実装する CSS を考えると、「画面いっぱいに、広げた <code translate=no>&lt;div&gt;</code> を被せ Opacity でフィルターかけて、 Modal 用に <code translate=no>z-index</code> を最大にした <code translate=no>&lt;div&gt;</code> をセンタリグし、、」などと想像できるかもしれない。
+        <p>この UI を実装する CSS を考えると、「画面いっぱいに、広げた <code translate=no>&lt;div&gt;</code> を被せ、Opacity でフィルターをかけて、 Modal 用に <code translate=no>z-index</code> を最大にした <code translate=no>&lt;div&gt;</code> をセンタリングし、、」などと想像できるかもしれない。
         <p>しかし、「頑張ればできそう」なだけで、実際には「使いにくい Modal」が世の中に大量に生み出されてしまった。
         <p>例えばよくあるのは、フォーカス管理の欠如だ。
         <ol>
-          <li>Modal を開いてるのに、フォーカスは Modal 外のままで、キーボードで操作したいユーザが Modal に Tab で辿り着けない
-          <li>Modal を開いてて、フォーカスも Modal に乗ってるのに、Tab を押すと Modal から落ちて外に移動してしまう
+          <li>Modal を開いているのに、フォーカスは Modal 外のままで、キーボードで操作したいユーザが Modal に Tab で辿り着けない
+          <li>Modal を開いてて、フォーカスも Modal に乗っているのに、Tab を押すと Modal から落ちて外に移動してしまう
           <li>Modal を閉じた際に、以前いた場所とは別の場所にフォーカスが移り迷子になる
           <li>Modal 上で Tab 移動し、Modal の一番下まで行ったら、次は Modal の上に戻って欲しいが、そのまま外に出て行ってしまう
         </ol>
         <p>こうした制御はフォーカストラップと呼ばれ、実装が難しい代表例だ。
-        <p>他にも、モダールにできて欲しいことができない実装も多い。
+        <p>他にも、Modal にできて欲しいことができない実装も多い。
         <ol>
           <li>z-index 戦争に負けて Modal の上に別の何かが表示されている
-          <li>Modal を開いてる時も、 Modal 外をクリックしたりスクロールしたり操作できてしまう
+          <li>Modal を開いている時も、Modal 外をクリックしたりスクロールしたり操作できてしまう
           <li>Modal 外をクリックしたら Modal を閉じて欲しいのに、閉じてくれない
           <li>Esc を押したら閉じて欲しいのに、閉じてくれない
-          <li>Modal 以外を暗くするのに失敗して、 Modal も暗くなってる。もしくは変なところだけ暗い/明るい。
+          <li>Modal 以外を暗くするのに失敗して、Modal も暗くなっている。もしくは変なところだけ暗い/明るい。
           <li>最初の Modal を残したまま、同じレベルの 2 個目の Modal を開けてしまう。
-          <li>Modal が開いてること、 Modal 上に移動したこと、 Modal を閉じたことなどが、支援機能に伝わらないので、何が起こったか伝わらないユーザがいる。
+          <li>Modal が開いていること、Modal 上に移動したこと、Modal を閉じたことなどが、支援機能に伝わらないので、何が起こったか伝わらないユーザがいる。
           <li>Modal が開いて、後ろが非活性なのに、そのことが支援技術に伝わらずに、操作できない箇所に引っかかって操作が進められないユーザがいる。
           <li>etc etc etc etc etc etc
         </ol>
-        <p>実世界には、こうした細かい挙動を実装できてない、「ただ真ん中に表示されただけの DOM」でしかない Modal モドキも少なくない。
-        <p>実装パターンは APG にもまとめられてるが、これを自前でやるのも簡単ではない。
+        <p>実世界には、こうした細かい挙動を実装できていない、「ただ真ん中に表示されただけの DOM」でしかない Modal モドキも少なくない。
+        <p>実装パターンは APG にもまとめられているが、これを自前でやるのも簡単ではない。
         <ul>
           <li>
-            Dialog (Modal) Pattern | APG | WAI | W3C ​
+            Dialog (Modal) Pattern | APG | WAI | W3C
             <ul>
               <li><a href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/" target=_blank>https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/</a>
             </ul>
@@ -266,7 +266,7 @@
             </ul>
           </li>
           <li>
-            Intent to Ship : HTML5 <code translate=no>&lt;dialog&gt;</code> element (Nightly Only)
+            Intent to Ship: HTML5 <code translate=no>&lt;dialog&gt;</code> element (Nightly Only)
             <ul>
               <li><a href="https://groups.google.com/g/mozilla.dev.platform/c/gqi4MDQDwX8" target=_blank>https://groups.google.com/g/mozilla.dev.platform/c/gqi4MDQDwX8</a>
             </ul>
@@ -321,17 +321,17 @@
         </section>
         <section>
           <h3 id="inert"><a href="#inert">inert</a></h3>
-          <p><code translate=no>inert</code> は、指定した DOM を「非活性」にするための属性だ。要するに Modal Dialog を開いた時の「後ろ側」の世界を、操作不能にするために定義された。
-          <p>これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、 Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばし、後ろは <code translate=no>tabindex=-1</code> する、といったことをして、なんとか Modal の外の正解を塗りつぶしてた。
+          <p><code translate=no>inert</code> は、指定した DOM を「非活性」にするための属性だ。要するに、Modal Dialog を開いた時の「後ろ側」の世界を操作不能にするために定義された。
+          <p>これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、 Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばし、後ろは <code translate=no>tabindex=-1</code> する、といったことをして、なんとか Modal の外の世界を塗りつぶしていた。
           <p>しかし、そのように実装しきるのは流石に無理があるので、標準仕様として <code translate=no>inert</code> を定義することで、ブラウザが全て無効にしてくれるようになったのだ。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;div inert&gt;
   &lt;p&gt;not selectable&lt;/p&gt;
   &lt;button&gt;not clickable&lt;/button&gt;
 &lt;/div&gt;</code></pre>
-          <p><code translate=no>&lt;dialog&gt;</code> は暗黙的に <code translate=no>inert</code> を使っているため明示的に指定する必要はない。むしろ、自分で特定要素「以外」を <code translate=no>inert</code> にするのは割と面倒で、例えば <code translate=no>body</code> につければ Dialog 含めて非活性になる。つまり Dialog 以外全てに <code translate=no>inert</code> をつける必要があるのだが、 <code translate=no>&lt;dialog&gt;</code> はこれを内部で行なっている(仕様上は document を &quot;blocked by the modal dialog&quot; にすると書いてある)。
-          <p>また <code translate=no>inert</code> は <code translate=no>&lt;dialog&gt;</code> と一緒に使わないといけないわけではなく、単独で使うこともできる。たとえば「読み込み中の何かを、読み込むまで非活性にする」、「カルーセルのまだ表示されてない部分を非活性にする」といったことも想定されているようだ。
-          <p>ただし、これまで <code translate=no>disabled</code> で無効にしてたコントロール系は、これまで通り <code translate=no>disabled</code> を使うべきだという点に注意したい。
+          <p><code translate=no>&lt;dialog&gt;</code> は暗黙的に <code translate=no>inert</code> を使っているため、明示的に指定する必要はない。むしろ、自分で特定要素「以外」を <code translate=no>inert</code> にするのは割と面倒で、例えば <code translate=no>body</code> につければ Dialog 含めて非活性になる。つまり、Dialog 以外全てに <code translate=no>inert</code> をつける必要があるのだが、<code translate=no>&lt;dialog&gt;</code> はこれを内部で行なっている(仕様上は document を &quot;blocked by the modal dialog&quot; にすると書いてある)。
+          <p>また、<code translate=no>inert</code> は <code translate=no>&lt;dialog&gt;</code> と一緒に使わないといけないわけではなく、単独で使うこともできる。たとえば「読み込み中の何かを、読み込むまで非活性にする」、「カルーセルのまだ表示されていない部分を非活性にする」といったことも想定されている。
+          <p>ただし、これまで <code translate=no>disabled</code> で無効にしていたコントロール系は、これまで通り <code translate=no>disabled</code> を使うべきだという点に注意したい。
           <ul>
             <li>
               inert attribute - Chrome Platform Status
@@ -346,7 +346,7 @@
           <p>Modal Dialog を開いた時に、後ろ側を <code translate=no>inert</code> にすることができるようになったが、 <code translate=no>inert</code> はあくまで非活性なだけで、特にスタイルが当たるわけではない。しかし、非活性だった場合大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
           <p>この場合 <code translate=no>inert</code> であることを利用し、以下のようにスタイルを当てることもできる。
           <pre class=css data-code=css><code translate=no class=language-css>[inert] {
-  background-color: rgba(200,200,200,0.50);
+  background-color: rgba(200, 200, 200, 0.50);
 }</code></pre>
           <p>しかし、 Top Layer に要素を表示している時は、「Top Layer 以外」を暗くしたい。これを実現するために定義されたのが <code translate=no>::backdrop</code> だ。
           <pre class=css data-code=css><code translate=no class=language-css>::backdrop {
@@ -364,7 +364,7 @@
         </section>
         <section>
           <h3 id="modal"><a href="#modal">:modal</a></h3>
-          <p><code translate=no>::backdrop</code> が「Top Layer 以外」だったのと対照的に、 <code translate=no>:modal</code> は 「Top Layer だけ」にスタイルを当てるための仕様だ。
+          <p><code translate=no>::backdrop</code> が「Top Layer 以外」だったのと対照的に、 <code translate=no>:modal</code> は「Top Layer だけ」にスタイルを当てるための仕様だ。
           <p><code translate=no>:modal</code> は <code translate=no>showModal</code> した <code translate=no>&lt;dialog&gt;</code> はもちろん、さっき言ったように、同じく Top Layer に載せることができる Fullscreen API もやはり <code translate=no>:modal</code> でスタイルができる。(<code translate=no>:fullscreen</code> もある)。
           <pre class=css data-code=css><code translate=no class=language-css>:modal {
   /* xxx */
@@ -381,9 +381,9 @@
         </section>
         <section>
           <h3 id="close-watcher"><a href="#close-watcher">Close Watcher</a></h3>
-          <p>プラットフォームが提供する Modal は、 ESC や、範囲外のクリックによって閉じることができる。 Android の場合は背面タップでも閉じられる(持ってないので未検証)。
-          <p>このように、プラットフォームが提供する「Modal を閉じるための操作」を、キーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊した、ネイティブの他の機能に影響したりする可能性がある。
-          <p>そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案されたのが Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し Close Watcher として定義された。
+          <p>プラットフォームが提供する Modal は、 ESC や範囲外のクリックによって閉じることができる。Android の場合は背面タップでも閉じられる(持っていないので未検証)。
+          <p>このように、プラットフォームが提供する「Modal を閉じるための操作」を、キーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊したり、ネイティブの他の機能に影響したりする可能性がある。
+          <p>そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し Close Watcher として定義された。
           <pre class=js data-code=js><code translate=no class=language-js>const watcher = new CloseWatcher();
 
 watcher.addEventListener(&quot;cancel&quot;, () =&gt; {
@@ -401,7 +401,7 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
               </ul>
             </li>
           </ul>
-          <p>ただし、 Close Watcher は「<code translate=no>&lt;dialog&gt;</code> の範囲外をクリックしたら閉じる」という部分はフックしてないため、別途実装が必要だ。それについては次回解説する。
+          <p>ただし、 Close Watcher は「<code translate=no>&lt;dialog&gt;</code> の範囲外をクリックしたら閉じる」という部分はフックしていないため、別途実装が必要だ。それについては次回解説する。
         </section>
       </section>
       <section>
@@ -417,11 +417,11 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
           <li><code translate=no>aria-modal=true</code> であり、支援技術に伝わる
         </ul>
         <p>つまり、支援技術に対しても「Modal Dialog が開いた」ということが伝わる。
-        <p>もしそれが ARIA で言う Alert (警告)の意味をもっているなら、 <code translate=no>role=alertdialog</code> で上書きする必要はあるが、そうでない場合は単に <code translate=no>&lt;dialog&gt;</code> を使って実装しているだけで、十分なセマンティクスが提供できるのだ。
+        <p>もしそれが ARIA で言う Alert (警告)の意味を持っているなら、 <code translate=no>role=alertdialog</code> で上書きする必要はあるが、そうでない場合は単に <code translate=no>&lt;dialog&gt;</code> を使って実装しているだけで、十分なセマンティクスが提供できるのだ。
       </section>
       <section>
         <h2 id="openclose--showhide--showclose-"><a href="#openclose--showhide--showclose-">open/close ? show/hide ? show/close ?</a></h2>
-        <p>仕様にも書かれてるが、一般的に
+        <p>仕様にも書かれているが、一般的に
         <ul>
           <li>open / close
           <li>show / hide
@@ -431,7 +431,7 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
           <li>show / close
         </ul>
         <p>という操作体系になっており、メソッド名もそうなっている。
-        <p>この理由は少し面白くて、仕様ではこうかかれている。
+        <p>この理由は少し面白くて、仕様ではこう書かれている。
         <blockquote cite="https://html.spec.whatwg.org/multipage/interactive-elements.html#note-dialog-method-names">
           <p>We use show/close as the verbs for dialog elements, as opposed to verb pairs that are more commonly thought of as antonyms such as show/hide or open/close, due to the following constraints:
           <p>
@@ -442,13 +442,13 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
           <p>Hiding a dialog is different from closing one. Closing a dialog gives it a return value, fires an event, unblocks the page for other dialogs, and so on. Whereas hiding a dialog is a purely visual property, and is something you can already do with the hidden attribute or by removing the open attribute. (See also the note above about removing the open attribute, and how hiding the dialog in that way is generally not desired.)
           <p>
           </p>
-          <p>dialog を hide すことと close することは異なる。 dialog を close することは、その dialog に戻り値を与えたり、イベントを発生させたり、他の dialog のためにページのブロックを解除したりする。一方、 dialog の hide は純粋に視覚的な特性であり、hidden 属性や open 属性の削除で既にできることだ(open 属性の削除と、その方法による dialog の非表示が一般的に望まれていないことについては、上の注釈も参照)。
+          <p>dialog を hide することと close することは異なる。 dialog を close することは、その dialog に戻り値を与えたり、イベントを発生させたり、他の dialog のためにページのブロックを解除したりする。一方、 dialog の hide は純粋に視覚的な特性であり、hidden 属性や open 属性の削除で既にできることだ(open 属性の削除と、その方法による dialog の非表示が一般的に望まれていないことについては、上の注釈も参照)。
           <p>
           </p>
           <p>Showing a dialog is different from opening one. Opening a dialog consists of creating and showing that dialog (similar to how window.open() both creates and shows a new window). Whereas showing the dialog is the process of taking a dialog element that is already in the DOM, and making it interactive and visible to the user.
           <p>
           </p>
-          <p>dialog を show することは、dialog を open することとは異なる。dialog を open することは、dialog を create &amp; show することだ(window.open() が新しいウィンドウを作成し表示するのと同様)。一方、dialog を show することは、すでに DOM にある dialog 要素を、インタラクティブにユーザーに見えるようにすることだ。
+          <p>dialog を show することは、dialog を open することとは異なる。dialog を open することは、dialog を create &amp; show することだ(window.open() が新しいウィンドウを作成し表示するのと同様)。一方、dialog を show することは、すでに DOM にある dialog 要素を、インタラクティブにユーザに見えるようにすることだ。
           <p>
           </p>
           <p>If we were to have a dialog.open() method despite the above, it would conflict with the dialog.open property.
