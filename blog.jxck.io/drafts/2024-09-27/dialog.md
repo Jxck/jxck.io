@@ -56,14 +56,14 @@ Accessibility Tree を確認すると Role が `dialog` になっていること
 
 non-Modal と異なり、Modal は同時に 1 つしか開けない。
 
-Accessibility Tree もこうなる。
+Accessibility Tree を確認すれば、 `aria-modal: true` になっていることがわかる。
 
 ![Accessibility Tree 上は role: dialog, modal: true になっている](5.a11y-tree.png)
 
 
 ### Submit
 
-閉じる UI は、 JS を書かなくても HTML だけで実装可能だ。
+閉じるための UI は、 JS を書かなくても HTML だけで実装可能だ。
 
 ```html
 <dialog open>
@@ -107,7 +107,7 @@ document.querySelector("dialog").addEventListener("cancel", (e) => {
 
 ### `close()` と `returnValue`
 
-この `<form>` に `<input>` を置いても、その `value` は `returnValue` には渡らない。任意の値を渡す場合は、 `close()` の引数に明示的に渡す必要がある。
+この `<form>` に `<input>` などを置いても、その `value` は `returnValue` には渡らない。任意の値を渡す場合は、 `close()` の引数に明示的に渡す必要がある。
 
 ```html
 <dialog>
@@ -136,7 +136,7 @@ document.querySelector("dialog").addEventListener("close", (e) => {
 </script>
 ```
 
-閉じるだけではなく、開く方も JS 無しでできるが、それについては話がかなり広がるので別の回で解説する。
+「閉じる」だけではなく「開く」方も JS 無しでできるが、それについては話がかなり広がるので別の回で解説する。
 
 
 ### aria-label / aria-labelledby
@@ -145,8 +145,6 @@ WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` �
 
 - Accessible Rich Internet Applications (WAI-ARIA) 1.3
   - https://w3c.github.io/aria/#dialog
-
-Dialog の `<h1>` がラベルに相当する情報を持っている場合は、以下のような実装が考えられる。
 
 ```html
 <dialog aria-labelledby="dialog_name">
@@ -197,7 +195,7 @@ Dialog の `<h1>` がラベルに相当する情報を持っている場合は�
 ただし、最初のコントローラに `autofocus` を置くと、その手前のテキストがスキップされるため、必ず最初のコントローラに `autofocus` すれば良いとは限らない点には注意したい。
 
 
-### スクロールとフォーカス
+### Scrollable
 
 Dialog のユースケースの 1 つとして、「規約への同意」を求める UI がある。
 
@@ -205,14 +203,14 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 
 ```html
 <dialog style="height: 100px;">
-  <div>
+  <section>
     <p>めっちゃ</p>
     <p>長い</p>
     <p>規約</p>
     <p>...</p>
     <p>...</p>
     <p>...</p>
-  </div>
+  </section>
   <form method="dialog">
     <button type="submit" value="agree">Agree</button>
     <button type="submit" value="disagree">Disagree</button>
@@ -220,17 +218,17 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 </dialog>
 ```
 
-しかし、 `<dialog>` 自体がスクロール可能になることは、下部にあるコントローラーまでの到達を困難にするなど、様々な不便があるため、仕様では「`<dialog>` 自体を Scrollable にするのは避けるべき」と明示されている。
+しかし、 `<dialog>` 自体がスクロール可能になることは、下部にあるコントローラーまでの到達を困難にするなど、様々な不便があるため、仕様では「`<dialog>` 自体を Scrollable にするのは避けるべき」とされている。
 
-代わりに、規約を別ページにしリンクを貼る、 PDF でダウンロードさせるなども考えられるが、最も簡単なのは規約のみを Scrollable なコンテナに入れる方法だ。以下の場合は、最初の `<div>` が Scrollable になっている。
+代わりに、規約を別ページにしリンクを貼る、 PDF でダウンロードさせるなども考えられるが、最も簡単なのは規約のみを Scrollable なコンテナに入れる方法だ。以下の場合は、 `<section>` が Scrollable になっている。
 
 ```html
 <dialog style="height: 100px;">
-  <div style="overflow: auto; height: 60px;" autofocus>
+  <section style="overflow: auto; height: 60px;" autofocus>
     <p>めっちゃ</p>
     <p>長い</p>
     <p>規約</p>
-  </div>
+  </section>
   <form method="dialog">
     <button type="submit" value="agree">Agree</button>
     <button type="submit" value="disagree">Disagree</button>
@@ -238,18 +236,20 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 </dialog>
 ```
 
-注意点として、もしこのスクロールする `<div>` の手前に別のコントローラーがあった場合を考えよう。
+![scrollable section](6.scrollable-section.png)
+
+注意点として、もしこのスクロールする `<section>` の手前に別のコントローラーがあった場合を考えよう。
 
 ```html
 <dialog style="height: 80vh;">
   <!-- snip -->
   <button autofocus>Controller 1</button>
 
-  <div style="overflow: auto; height: 60vh;">
+  <section style="overflow: auto; height: 60vh;">
     <p>めっちゃ</p>
     <p>長い</p>
     <p>規約</p>
-  </div>
+  </section>
 
   <button>Controller 2</button>
   <!-- snip -->
@@ -263,7 +263,7 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 - Keyboard focusable scrollers  |  Blog  |  Chrome for Developers
   - https://developer.chrome.com/blog/keyboard-focusable-scrollers
 
-既に Chrome は M130 から、 Firefox は実装済みだが、 Safari は実装上の困難さとパフォーマンスを理由にネガティブな態度を表明している。
+既に Firefox は実装済みで、 Chrome は M130 から Ship される。しかし、 Safari は実装上の困難さとパフォーマンスを理由にネガティブな態度を表明している。
 
 - 190870 - Make scrollable element focusable
   - https://bugs.webkit.org/show_bug.cgi?id=190870
@@ -317,7 +317,7 @@ dialog.addEventListener('click', (e) => {
 })
 ```
 
-![Modal は画面のどこをクリックしても dialog 要素で発火する](6.backdrop-click.drawio.svg)
+![Modal は画面のどこをクリックしても dialog 要素で発火する](7.backdrop-click.drawio.svg)
 
 そこで、 `<dialog>` を `padding: 0` にし、直下の `<div>` が `<dialog>` の内側いっぱいに表示されている状態にする。以下では、赤い `<div>` が `<dialog>` いっぱいに被さっている形だ。
 
@@ -343,8 +343,6 @@ dialog.addEventListener('click', (e) => {
 ```
 
 この状態で `showModal()` した場合、 Dialog の領域をクリックしても `<dialog>` より先に `<div>` で Click Event が発火する。
-
-TODO: dialog 領域のクリックが div で発生する
 
 これを利用すると、 backdrop 領域をクリックしたら `target`/`currentTarget` が `<dialog>` だが、 Dialog の中をクリックした場合は `target` が `<div>` になるため、これで分岐が可能になる。
 
