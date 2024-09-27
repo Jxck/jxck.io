@@ -54,7 +54,7 @@ Accessibility Tree を確認すると Role が `dialog` になっていること
 
 ![chrome の backdrop デフォルトスタイル](5.default-style.png)
 
-non-Modal と異なり Modal は同時に一つしか開けない。
+non-Modal と異なり Modal は同時に 1 つしか開けない。
 
 Accessibility Tree もこうなる。
 
