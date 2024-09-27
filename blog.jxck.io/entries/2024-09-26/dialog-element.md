@@ -46,36 +46,36 @@ Modal の実装を自前で行うとすれば、見た目としては以下の�
 
 ![Modal が開き、閉じないと先に進めない](1.modal.drawio.svg#500x256)
 
-この UI を実装する CSS を考えると、「画面いっぱいに、広げた `<div>` を被せ Opacity でフィルターかけて、 Modal 用に `z-index` を最大にした `<div>` をセンタリグし、、」などと想像できるかもしれない。
+この UI を実装する CSS を考えると、「画面いっぱいに、広げた `<div>` を被せ、Opacity でフィルターをかけて、 Modal 用に `z-index` を最大にした `<div>` をセンタリングし、、」などと想像できるかもしれない。
 
 しかし、「頑張ればできそう」なだけで、実際には「使いにくい Modal」が世の中に大量に生み出されてしまった。
 
 例えばよくあるのは、フォーカス管理の欠如だ。
 
-1. Modal を開いてるのに、フォーカスは Modal 外のままで、キーボードで操作したいユーザが Modal に Tab で辿り着けない
-2. Modal を開いてて、フォーカスも Modal に乗ってるのに、Tab を押すと Modal から落ちて外に移動してしまう
+1. Modal を開いているのに、フォーカスは Modal 外のままで、キーボードで操作したいユーザが Modal に Tab で辿り着けない
+2. Modal を開いてて、フォーカスも Modal に乗っているのに、Tab を押すと Modal から落ちて外に移動してしまう
 3. Modal を閉じた際に、以前いた場所とは別の場所にフォーカスが移り迷子になる
 4. Modal 上で Tab 移動し、Modal の一番下まで行ったら、次は Modal の上に戻って欲しいが、そのまま外に出て行ってしまう
 
 こうした制御はフォーカストラップと呼ばれ、実装が難しい代表例だ。
 
-他にも、モダールにできて欲しいことができない実装も多い。
+他にも、Modal にできて欲しいことができない実装も多い。
 
 1. z-index 戦争に負けて Modal の上に別の何かが表示されている
-2. Modal を開いてる時も、 Modal 外をクリックしたりスクロールしたり操作できてしまう
+2. Modal を開いている時も、Modal 外をクリックしたりスクロールしたり操作できてしまう
 3. Modal 外をクリックしたら Modal を閉じて欲しいのに、閉じてくれない
 4. Esc を押したら閉じて欲しいのに、閉じてくれない
-5. Modal 以外を暗くするのに失敗して、 Modal も暗くなってる。もしくは変なところだけ暗い/明るい。
+5. Modal 以外を暗くするのに失敗して、Modal も暗くなっている。もしくは変なところだけ暗い/明るい。
 6. 最初の Modal を残したまま、同じレベルの 2 個目の Modal を開けてしまう。
-7. Modal が開いてること、 Modal 上に移動したこと、 Modal を閉じたことなどが、支援機能に伝わらないので、何が起こったか伝わらないユーザがいる。
+7. Modal が開いていること、Modal 上に移動したこと、Modal を閉じたことなどが、支援機能に伝わらないので、何が起こったか伝わらないユーザがいる。
 8. Modal が開いて、後ろが非活性なのに、そのことが支援技術に伝わらずに、操作できない箇所に引っかかって操作が進められないユーザがいる。
 9. etc etc etc etc etc etc
 
-実世界には、こうした細かい挙動を実装できてない、「ただ真ん中に表示されただけの DOM」でしかない Modal モドキも少なくない。
+実世界には、こうした細かい挙動を実装できていない、「ただ真ん中に表示されただけの DOM」でしかない Modal モドキも少なくない。
 
-実装パターンは APG にもまとめられてるが、これを自前でやるのも簡単ではない。
+実装パターンは APG にもまとめられているが、これを自前でやるのも簡単ではない。
 
-- Dialog (Modal) Pattern | APG | WAI | W3C ​
+- Dialog (Modal) Pattern | APG | WAI | W3C
   - https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 様々な UI ライブラリが Modal Dialog 相当の機能を、 APG を元に提供しているが、それでもやはり理想的な実装は難しい。
@@ -105,7 +105,7 @@ Firefox は内部でも `<dialog>` を使いたいユースケースがあった
 
 - Intent to implement: HTML5 `<dialog>` element
   - https://groups.google.com/g/mozilla.dev.platform/c/vTPGW1aJq24/m/JnEnoH3BEAAJ
-- Intent to Ship : HTML5 `<dialog>` element (Nightly Only)
+- Intent to Ship: HTML5 `<dialog>` element (Nightly Only)
   - https://groups.google.com/g/mozilla.dev.platform/c/gqi4MDQDwX8
 
 Firefox が Ship を進めるのと同時期くらいに、これを現在のように「ぜひ使うべき機能」まで大きく進めたきっかけが Interop だった。
@@ -156,9 +156,9 @@ Top Layer はあくまでブラウザが内部的に生成しているため、�
 
 ### inert
 
-`inert` は、指定した DOM を「非活性」にするための属性だ。要するに Modal Dialog を開いた時の「後ろ側」の世界を、操作不能にするために定義された。
+`inert` は、指定した DOM を「非活性」にするための属性だ。要するに、Modal Dialog を開いた時の「後ろ側」の世界を操作不能にするために定義された。
 
-これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、 Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばし、後ろは `tabindex=-1` する、といったことをして、なんとか Modal の外の正解を塗りつぶしてた。
+これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、 Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばし、後ろは `tabindex=-1` する、といったことをして、なんとか Modal の外の世界を塗りつぶしていた。
 
 しかし、そのように実装しきるのは流石に無理があるので、標準仕様として `inert` を定義することで、ブラウザが全て無効にしてくれるようになったのだ。
 
@@ -169,11 +169,11 @@ Top Layer はあくまでブラウザが内部的に生成しているため、�
 </div>
 ```
 
-`<dialog>` は暗黙的に `inert` を使っているため明示的に指定する必要はない。むしろ、自分で特定要素「以外」を `inert` にするのは割と面倒で、例えば `body` につければ Dialog 含めて非活性になる。つまり Dialog 以外全てに `inert` をつける必要があるのだが、 `<dialog>` はこれを内部で行なっている(仕様上は document を "blocked by the modal dialog" にすると書いてある)。
+`<dialog>` は暗黙的に `inert` を使っているため、明示的に指定する必要はない。むしろ、自分で特定要素「以外」を `inert` にするのは割と面倒で、例えば `body` につければ Dialog 含めて非活性になる。つまり、Dialog 以外全てに `inert` をつける必要があるのだが、`<dialog>` はこれを内部で行なっている(仕様上は document を "blocked by the modal dialog" にすると書いてある)。
 
-また `inert` は `<dialog>` と一緒に使わないといけないわけではなく、単独で使うこともできる。たとえば「読み込み中の何かを、読み込むまで非活性にする」、「カルーセルのまだ表示されてない部分を非活性にする」といったことも想定されているようだ。
+また、`inert` は `<dialog>` と一緒に使わないといけないわけではなく、単独で使うこともできる。たとえば「読み込み中の何かを、読み込むまで非活性にする」、「カルーセルのまだ表示されていない部分を非活性にする」といったことも想定されている。
 
-ただし、これまで `disabled` で無効にしてたコントロール系は、これまで通り `disabled` を使うべきだという点に注意したい。
+ただし、これまで `disabled` で無効にしていたコントロール系は、これまで通り `disabled` を使うべきだという点に注意したい。
 
 - inert attribute - Chrome Platform Status
   - https://chromestatus.com/feature/5703266176335872
@@ -187,7 +187,7 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 
 ```css
 [inert] {
-  background-color: rgba(200,200,200,0.50);
+  background-color: rgba(200, 200, 200, 0.50);
 }
 ```
 
@@ -207,7 +207,7 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 
 ### :modal
 
-`::backdrop` が「Top Layer 以外」だったのと対照的に、 `:modal` は 「Top Layer だけ」にスタイルを当てるための仕様だ。
+`::backdrop` が「Top Layer 以外」だったのと対照的に、 `:modal` は「Top Layer だけ」にスタイルを当てるための仕様だ。
 
 `:modal` は `showModal` した `<dialog>` はもちろん、さっき言ったように、同じく Top Layer に載せることができる Fullscreen API もやはり `:modal` でスタイルができる。(`:fullscreen` もある)。
 
@@ -225,11 +225,11 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 
 ### Close Watcher
 
-プラットフォームが提供する Modal は、 ESC や、範囲外のクリックによって閉じることができる。 Android の場合は背面タップでも閉じられる(持ってないので未検証)。
+プラットフォームが提供する Modal は、 ESC や範囲外のクリックによって閉じることができる。Android の場合は背面タップでも閉じられる(持っていないので未検証)。
 
-このように、プラットフォームが提供する「Modal を閉じるための操作」を、キーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊した、ネイティブの他の機能に影響したりする可能性がある。
+このように、プラットフォームが提供する「Modal を閉じるための操作」を、キーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊したり、ネイティブの他の機能に影響したりする可能性がある。
 
-そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案されたのが Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し Close Watcher として定義された。
+そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し Close Watcher として定義された。
 
 ```js
 const watcher = new CloseWatcher();
@@ -247,7 +247,7 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
 - Close requests for CloseWatcher, `<dialog>`, and `popover=""` - Chrome Platform Status
   - https://chromestatus.com/feature/4722261258928128
 
-ただし、 Close Watcher は「`<dialog>` の範囲外をクリックしたら閉じる」という部分はフックしてないため、別途実装が必要だ。それについては次回解説する。
+ただし、 Close Watcher は「`<dialog>` の範囲外をクリックしたら閉じる」という部分はフックしていないため、別途実装が必要だ。それについては次回解説する。
 
 
 ## `<dialog>`
@@ -265,12 +265,12 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
 
 つまり、支援技術に対しても「Modal Dialog が開いた」ということが伝わる。
 
-もしそれが ARIA で言う Alert (警告)の意味をもっているなら、 `role=alertdialog` で上書きする必要はあるが、そうでない場合は単に `<dialog>` を使って実装しているだけで、十分なセマンティクスが提供できるのだ。
+もしそれが ARIA で言う Alert (警告)の意味を持っているなら、 `role=alertdialog` で上書きする必要はあるが、そうでない場合は単に `<dialog>` を使って実装しているだけで、十分なセマンティクスが提供できるのだ。
 
 
 ## open/close ? show/hide ? show/close ?
 
-仕様にも書かれてるが、一般的に
+仕様にも書かれているが、一般的に
 
 - open / close
 - show / hide
@@ -281,7 +281,7 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
 
 という操作体系になっており、メソッド名もそうなっている。
 
-この理由は少し面白くて、仕様ではこうかかれている。
+この理由は少し面白くて、仕様ではこう書かれている。
 
 > We use show/close as the verbs for dialog elements, as opposed to verb pairs that are more commonly thought of as antonyms such as show/hide or open/close, due to the following constraints:
 >
@@ -289,11 +289,11 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
 >
 > Hiding a dialog is different from closing one. Closing a dialog gives it a return value, fires an event, unblocks the page for other dialogs, and so on. Whereas hiding a dialog is a purely visual property, and is something you can already do with the hidden attribute or by removing the open attribute. (See also the note above about removing the open attribute, and how hiding the dialog in that way is generally not desired.)
 >
-> dialog を hide すことと close することは異なる。 dialog を close することは、その dialog に戻り値を与えたり、イベントを発生させたり、他の dialog のためにページのブロックを解除したりする。一方、 dialog の hide は純粋に視覚的な特性であり、hidden 属性や open 属性の削除で既にできることだ(open 属性の削除と、その方法による dialog の非表示が一般的に望まれていないことについては、上の注釈も参照)。
+> dialog を hide することと close することは異なる。 dialog を close することは、その dialog に戻り値を与えたり、イベントを発生させたり、他の dialog のためにページのブロックを解除したりする。一方、 dialog の hide は純粋に視覚的な特性であり、hidden 属性や open 属性の削除で既にできることだ(open 属性の削除と、その方法による dialog の非表示が一般的に望まれていないことについては、上の注釈も参照)。
 >
 > Showing a dialog is different from opening one. Opening a dialog consists of creating and showing that dialog (similar to how window.open() both creates and shows a new window). Whereas showing the dialog is the process of taking a dialog element that is already in the DOM, and making it interactive and visible to the user.
 >
-> dialog を show することは、dialog を open することとは異なる。dialog を open することは、dialog を create & show することだ(window.open() が新しいウィンドウを作成し表示するのと同様)。一方、dialog を show することは、すでに DOM にある dialog 要素を、インタラクティブにユーザーに見えるようにすることだ。
+> dialog を show することは、dialog を open することとは異なる。dialog を open することは、dialog を create & show することだ(window.open() が新しいウィンドウを作成し表示するのと同様)。一方、dialog を show することは、すでに DOM にある dialog 要素を、インタラクティブにユーザに見えるようにすることだ。
 >
 > If we were to have a dialog.open() method despite the above, it would conflict with the dialog.open property.
 >
