@@ -21,7 +21,7 @@
 </dialog>
 ```
 
-![dialog を open 属性で開く](1.open.drawio.svg)
+![dialog を open 属性で開く](1.show.drawio.svg)
 
 
 ### `show()`/`showModal()`
@@ -40,17 +40,15 @@ $("button.showModal").on("click", (e) => {
 
 まず `show()` を呼ぶと、先ほどで言う `<dialog open>` した状態になり Dialog が開く。
 
-![show() で dialog を開く画像](2.show.png)
-
 これは単に non-Modal な Dialog が open してるだけなので、後にあるテキストの選択や、ボタンクリックといった操作は引き続き可能だ。また、この時別の `<dialog>` を `show()` しても同時に表示できる。これは、全く排他的な操作がされてないことを意味する。
 
 Accessibility Tree を確認すると Role が `dialog` になっていることが確認できるだろう。
 
-![Accessibility Tree 上は role: dialog, modal: false になっている](3.a11y-tree.png)
+![Accessibility Tree 上は role: dialog, modal: false になっている](2.a11y-tree.png)
 
 これを、 `showModal()` で開くとこうなる。
 
-![showModal() で Modal Dialog を開く](4.showModal.png)
+![showModal() で Modal Dialog を開く](3.showModal.drawio.svg)
 
 背景が薄くグレーになるのは、 `::backdrop` のデフォルト CSS があたってるからだ。
 
