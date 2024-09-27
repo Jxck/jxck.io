@@ -410,3 +410,11 @@ Android の場合はこれを背面タップで閉じる(持っていないた�
 とはいえ、せっかく Top Layer, CloseWatcher, inert, backdrop などのプリミティブを整備したのに、これを狭い用途のみに限定するのは勿体ない。
 
 そこで、こうしたインフラを共有し、より汎用的な UI を実現するために並行して策定されたのが、 Popover だ。
+
+
+## DEMO
+
+動作するデモを以下に用意した。
+
+- Dialog Labs | labs.jxck.io
+  - https://labs.jxck.io/dialog/
