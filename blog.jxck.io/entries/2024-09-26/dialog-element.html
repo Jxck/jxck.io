@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-26T08:00:00+08:00",
-    "dateModified": "2024-09-27T08:00:00+08:00",
+    "dateModified": "2024-09-29T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-26>2024-09-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-09-27>2024-09-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-09-29>2024-09-29</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -381,7 +381,7 @@
         </section>
         <section>
           <h3 id="close-watcher"><a href="#close-watcher">Close Watcher</a></h3>
-          <p>プラットフォームが提供する Modal は、 ESC や範囲外のクリックによって閉じることができる。Android の場合は背面タップでも閉じられる(持っていないので未検証)。
+          <p>プラットフォームが提供する Modal は、 ESC や範囲外のクリックによって閉じることができる。端末固有の操作などと紐づけると言った役割も果たしている。
           <p>このように、プラットフォームが提供する「Modal を閉じるための操作」を、キーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊したり、ネイティブの他の機能に影響したりする可能性がある。
           <p>そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し Close Watcher として定義された。
           <pre class=js data-code=js><code translate=no class=language-js>const watcher = new CloseWatcher();

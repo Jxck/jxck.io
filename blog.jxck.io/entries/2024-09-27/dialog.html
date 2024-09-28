@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-27T08:00:00+08:00",
-    "dateModified": "2024-09-28T08:00:00+08:00",
+    "dateModified": "2024-09-29T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-27>2024-09-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-09-28>2024-09-28</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-09-29>2024-09-29</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -477,8 +477,7 @@ dialog.returnValue // &quot;accept&quot;</code></pre>
         <section>
           <h3 id="キーボード操作"><a href="#キーボード操作">キーボード操作</a></h3>
           <p><code translate=no>&lt;button&gt;</code> を置く以外に、キーボード操作の対応もネイティブで行われている。これは、 Cancel や Close を意味する操作を自動でフックする Close Watcher を内部で使うことで実現している。
-          <p>non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、 Modal Dialog は Close Watcher が効いているため、ESC で閉じたりができる。
-          <p>Android の場合はこれを背面タップで閉じる(持っていないため未検証)といった、デバイス固有の操作とも紐づける役割を果たしている。
+          <p>non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、 Modal Dialog は Close Watcher が効いているため、ESC や端末固有の操作を紐づけて閉じたりができる。
           <p>なお、Modal Dialog を ESC で閉じると、 <code translate=no>cancel</code> -&gt; <code translate=no>close</code> の順でイベントが発火する。
         </section>
       </section>
