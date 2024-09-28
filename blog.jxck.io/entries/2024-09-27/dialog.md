@@ -364,9 +364,7 @@ document.querySelector('dialog').addEventListener('click', (e) => {
 
 `<button>` を置く以外に、キーボード操作の対応もネイティブで行われている。これは、 Cancel や Close を意味する操作を自動でフックする Close Watcher を内部で使うことで実現している。
 
-non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、 Modal Dialog は Close Watcher が効いているため、ESC で閉じたりができる。
-
-Android の場合はこれを背面タップで閉じる(持っていないため未検証)といった、デバイス固有の操作とも紐づける役割を果たしている。
+non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、 Modal Dialog は Close Watcher が効いているため、ESC や端末固有の操作を紐づけて閉じたりができる。
 
 なお、Modal Dialog を ESC で閉じると、 `cancel` -> `close` の順でイベントが発火する。
 
