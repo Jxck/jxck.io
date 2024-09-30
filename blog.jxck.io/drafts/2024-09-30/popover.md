@@ -1,142 +1,101 @@
-# Popover
+# [dialog][popover] Dialog と Popover #5
 
-さて、いよいよ Popover の属性そのものについてみていくよ。
+## Intro
 
+`popup` が紆余曲折を経て `popover` 属性になり、 2023/3 に Safari が TP166 で実装した。そのまま Safari 17 に入ることを 2023/6 の WWDC で発表したあたりから、 `popover` の実装は各ブラウザで一気に話が進む。
 
-## popover 属性
+そして、 2024/4 ごろに発表された Baseline 2024 に `popover` がエントリしたことで、 2024 年は全ブラウザで互換性を高めていくことに合意し、作業を進めていくことになる。俗に言う「元年」というやつと言えるだろう。
 
-popup が紆余曲折を経て popover 属性になることで、popup が要素だったところから、紆余曲折を経て属性になり、そして popover 属性にったところまで話したけど、これは 2023/3 に Safari が TP166 で実装して、 Safari 17 に入ることを 2023/6 の WWDC で発表したあたりから一気に話が進むんだ。
-
-そして、 2024/4 ごろに発表された Baseline 2024 に popover がエントリしたことで、今年は全ブラウザがこの仕様を実装し、互換性を高めていくことに合意したんだ。
-
-つまり、今から取り組み始めたら、やっているうちにブラウザには入って使えるようになるくらいってこと。
-
-さて、じゃあこいつで何ができるのかみていこう。
+今回は、この `popover` で何ができるのかを解説していく。
 
 
 ## Popover 属性の完成
 
-popover になり、属性として HTML に書くことで、任意の要素を Popover できるようになった。
+`popover` は属性になり、任意の要素を Popover できるようになった。
 
-しかし、現実世界では、すでに popover という属性を独自に使っているサイトもいくつかあったので、ブラウザに実装してみると壊れるサイトも報告されたんだ。
+しかし、現実世界では、すでに `popover` という属性を独自に使っているサイトもいくつかあったので、ブラウザに実装したところ壊れるサイトも報告された。
 
 - popover attribute may not be web compatible · Issue #9042 · whatwg/html
   - https://github.com/whatwg/html/issues/9042
 
-具体的には Angular UI が popover 属性を独自に使ってたんだけど、これが標準になって popover は開くまでは display: none がデフォルトでつくから、その要素が消えちゃうっていう問題。
+具体的には Angular UI が `popover` 属性を独自に使ってたのだが、標準の `popover` は開くまでは `display: none` がデフォルトであるため、ブラウザが対応した瞬間、当該要素が消えてしまうという問題だ。
 
 - Some sites are reporting compat issues with popover [40270593] - Chromium
   - https://issues.chromium.org/issues/40270593
 
-他にも、 Chrome が Stable にしたあたりから、同じように壊れるサイトがちらほら報告されるんだよね。
+他にも、 Chrome の Stable リリースに伴い、同じように壊れるサイトがいくつか報告される。
 
-ここで、「もしかしたらまた名前変わるかもな」って感じもあったけど、今回は壊れたサイトが少なかったので、サイトを直して close する方が選ばれたんだ。これはちょっと本来の互換性の考え方からは強引ではあるけど、「独自の属性は data- をつけるのがルールで、それを守ってないサイトまでカバーできない」って感じで押し切った。まあ、確かにそれを擁護すると、どんな名前にしてもどこかしらのサイトは壊れることになるからねぇ。
+ここで筆者は、「もしかしたらまた名前変わるかもしれない」と思ったりもしたが、今回は壊れたサイトが少なかったため、サイト側を直して close する方が選ばれた。本来の互換性の考え方からは強引と言えるが「独自の属性は `data-` をつけるのがルールであり、それを守っていないサイトまでカバーできない」という理由で切り捨てる形になった。確かにそれを擁護すると、たとえどんな名前に変えても、どこかしらのサイトは壊れることになるため、落とし所だったのかもしれない。
 
-そんなこんなで、ブラウザの実装も着々と進み、今では全ブラウザが一応 ship している状態になっている。
-
-TODO: Chrome, Edge は 114. Firefox 125, Safari 17 でサポート済み
-
-そして、 Baseline 2024 では、 Newly Available に登録されたよ。
+そうした作業を経て、ブラウザの実装も着々と進み、今では全ブラウザが一応 Ship している状態で、 Baseline 2024 では Newly Available に登録された。
 
 - Popover API lands in Baseline  |  Blog  |  web.dev
   - https://web.dev/blog/popover-api
 
-主に Safari のサポート範囲さえ合っていれば、すぐに使っていける状態にはあるってことだね。
-
 
 ## Dialog と Popover の違い
 
-ここは、結構それぞれの要素を理解していないと分かりにくいところかもしれない。
+まずは、前半で解説した `<dialog>` 要素と `popover` 属性の違いについて、整理しておく。
 
-どっちも、要素を Top Layer に並べる「ポコっ」て出てくる UI を作ることができるんだけど、それぞれは用途がかなり違うんだ。
+どちらも、 Top Layer に「ポコッ」と浮かび上がる UI を作ることができる点では類似しているが、それぞれは用途がかなり違なる。
 
 もっとも注目すべき点は **Role** だ。
 
 
 ### role=dialog
 
-Aria には dialog role っていうのが以前から定義されていて、もし dialog を作るのであれば `<div role=dialog>` のように指定することで「これは dialog だよ」ってことを明示する必要があったんだ。
-
-Dialog っていうのはつまり「ユーザに対して何かを問いかけている」ような状態なので、許可ボタンを表示して許諾を求めたり、チェックボックスを出して確認したり、 form を出して値を入力させたり。
-
-そういうのはそもそも全部 `role=dialog` をつけるのが、これまでのプラクティスだったんだ。
-
-雑に言うとこういうこと。
+Aria には Dialog という Role が以前から定義されており、もし(概念上の) Dialog を自前で実装するのであれば `<div role="dialog">` のように指定することで「これは Dialog だ」ということを明示し、 UA に伝える必要があった。
 
 ```html
 <div role=dialog>
   <form>
-    <label>このまま続けていいですか?</label>
-    <button type=submit>OK</button>
+    <label>Are you sure to continue ?</label>
+    <button type="submit">OK</button>
   </form>
 </div>
 ```
 
-
-### `<dialog>`
-
-HTML の dialog 要素は、もちろん `role=dialog` なので、基本的にこれまで `<div role=dialog>` していたものは、おおよそ `<dialog>` を用いて書き直すことができるんだ。少なくともセマンティクス的には等価になる。
-
-その上で、 `<dialog>` には普通に開く `show()`だけじゃなく、 `showModal()` があることで「Dialog 要素を Modal として開く」ことが可能になるというおまけ付きなんだ。これは要素を TopLayer に表示し、背景を `inert`にし、 Focus を管理し、、っていう自分でやると面倒で不完全になりやすい実装をネイティブでやってくれるから、実装する上で便利っていう利点はある。
-
-でも一番大事なのは「`<dialog>` は `role=dialog` をネイティブで実装している」っていう、セマンティクス上の変化なんだ。
+動きとしては、ここまで散々解説してきたような、 `inert`, `::backdrop`, フォーカス管理, Top Layer などをネイティブで対応した `showModal` などの利点はもちろんあるが、セマンティクスの面で言えば、「`<dialog>` は `role=dialog` に対応するネイティブの要素」という点も重要だ。
 
 
 ## popover
 
-では、 popover は何かというと、これは任意の要素を popover にすることになる。
+一方、 `popover` は属性であり、それゆえに任意の要素を Popover することができる。
 
 ```html
 <div popover>Hello Popover</div>
 ```
 
-popover 属性それ自体は、何もセマンティクスを提供しないんだ。正確に言うと、 Role のようなものを付与しないから、元の要素が持っている Role なりが、そのまま使用される。それを TopLayer に表示し、 Light Dismiss できて、 JS だけでなく popovertarget でも開いたり閉じたりできる。みたいな。
+`popover` 属性それ自体は、 Role に関するセマンティクスを提供せず、付与した要素が持っている Role なりが、そのまま使用される。それを TopLayer に表示し、 Light Dismiss できて、 JS だけでなく `popovertarget` で操作でき、 Anchor Positioning で配置できる。
 
-これは、 popover する要素のセマンティクスは別途対応しないといけない、逆を言えば、どんなセマンティクスを付与された要素も、それを popover できるというメリットがあるんだ。
+`popover` する要素のセマンティクスは別途考えないといけないわけだが、逆を言えば、どんなセマンティクスを付与された要素も、それを `popover` できるというメリットがある。今後「ポコっと浮かび上がる `<selectmenu>` のような要素の標準化」を考える時が来ても、「ポコっと浮かび上がる」の部分は丸っと Popover に移譲できるため、 Open UI が考えている様々な提案仕様にも、応用して仕様を整理できることが期待される。
 
-極端な例なら、例えば `<nav>` を popover すれば、それは `role=navigation` をそのまま popover したことになる。みたいな。
+「動きを与えるだけ」といえばそれまでだが、それでも Declarative に「この要素は Popover できる」ことを宣言でき、その API が標準化されることで、ブラウザは「今なにかが Popover した」といった事実を知ることができる。
 
-```html
-<nav popover>...</nav>
-```
-
-「動きを与えるだけ」っていえばそれまでだけど、それでも declarative に「この要素は popover できる」ってことと、その API が標準化されることで、ブラウザは「あ、今なんか Popover したな」みたいなことを知ることができるので、例えば支援技術を経由してユーザにそれを伝えることもできる。
-
-これは、単に div の z-index を 9999 とかにして実装していた popup 系の component と比べれば格段に質の良い実装ができるってこと。
+これは、単に `<div>` を `z-index: 9999` などとしていた従来の実装と比べれば、格段に高い精度で UA に伝わり、ユーザにとっても UX の向上になると期待できるのだ。
 
 
-## light-dismiss
+## Light Dismiss
 
-popover のもう一つ重要な違いは、 light dismiss の存在だ。
+`<dialog>` と `popover` のもう 1 つ重要な違いは、 Light Dismiss の存在だ。
 
-Dialog は基本的にユーザが明示的に操作しない限り閉じない。 Modal は ESC で閉じれたりはするけど、これも一応ユーザが閉じるための「明示的な操作」を行なったと捉えている。
+特に Modal Dialog は、基本的にユーザをブロックすることに重きを置いているが、反対に `popover` は極力ユーザの邪魔にならないような挙動を求められる。そのため、`<dialog>` 同様の ESC などはもちろん、「戻る」ボタンや、 Backdrop のクリック、他の Popover が開いた時など、よりカジュアルに閉じるような実装が可能になっている。
 
-一方、 popover はもっとカジュアルに閉じることができるんだ。これは ESC とか Back ボタンで閉じる Close Watcher に加えて、「popover 外をクリックしたら閉じる」というのも加えられている。
-
-これにより、ユーザは明示的な閉じるボタンじゃなくても、手軽に Popover を閉じることができるんだ。
+ここで使われているのが Close Watcher だ。
 
 
-## dialog を popover する
+## `<dialog>` を `popover` する
 
-dialog は role=dialog であることが重要だという話をしたよね。
+`<dialog>` は `role="dialog"` であることが重要だという話をした。
 
-それを踏まえて
+そこに対して、 `show()`/`showModal()` で Modal として出すかどうかという使い分けをするのだが、実際には「 `role=dialog` を Popover で出したい」というユースケースもある。
 
-- `show()` は基本 dialog が出てくるだけ
-- `showModal()` は、 TopLayer に表示され、backdrop が inert になる
-
-showModal() は、「全てを止めての対話」なんだけど、 `show()` するだけの `<dialog>` はそこまでではない。そして、そこまでではない `<dialog>` って結構あるんだよね。
-
-ところが、やっぱり TopLayer には表示したいし、 Light Dismiss で閉じたい。みたいな場合に、
-
-「dialog を popover する」という合わせ技がちょうどよくなる場合があるんだ。
-
-つまり、こんな感じ。
+この場合は「`<dialog>` を `popover` する」という合わせ技がちょうどよくなる場合がある。
 
 ```html
 <dialog popover>
   <!-- ... -->
-  <p>なにかお困りだったらなんでも質問してください</p>
+  <p>Ask me anything if you need help</p>
   <input type=text></input>
   <button>ask</button>
   <!-- ... -->
@@ -144,11 +103,9 @@ showModal() は、「全てを止めての対話」なんだけど、 `show()` �
 </dialog>
 ```
 
-`role=dialog` な要素を、 Modal ではないが popover として表示するということができる。
+これにより、特に Light Dismiss の恩恵で、カジュアルに閉じることができる `<dialog>` が出せるため、特に non-Modal Dialog を出したい場合は、この構成が適する場合が多いだろう。
 
-Modal じゃない dialog のほとんどは、この構成がちょうどいいことが多いので覚えておこう。
-
-ただ、重要なのは、 popover するってことは backdrop は inert でもなんでもないので、フォーカスは外に出ていくこともできる。なので、 light dismiss したいがために showModal みたいな `<dialog>` を popover するのはいいことじゃないよ。
+一方で、 Modal Dialog を Light Dismiss したいがために、 `popover` で実装し、 `::backdrop` を暗くすることで Modal っぽく実装するというのは、あまり良い実装ではないとされている。
 
 ```html
 <button popovertarget=foo>Click me</button>
@@ -160,26 +117,31 @@ dialog[popover]::backdrop {
 </style>
 ```
 
-これは `::backdrop` を薄くして、 dialog を modal っぽくしているが popover で実装しているっていうあまり良くない例だね。
-
-ちなみに、 `showModal` したものも light-dismiss したいっていうユースケースを `<dialog>` 側でサポートできないかは、以下で議論中だよ。
+ちなみに、 `showModal` したものも Light Dismiss したいというユースケースを `<dialog>` 側でサポートすべきかという議論はまだ進行中だ。
 
 - Add light dismiss functionality to `<dialog>` · Issue #9373 · whatwg/html
   - https://github.com/whatwg/html/issues/9373
 
+逆に、 Close Watcher を無効にし、一切 Light Dismiss 的な挙動をしない `<dialog>` の提案についても、進行中だ。
 
-## Popover without JS
+- Support disabling CloseWatcher integration in `<dialog>` · Issue #10592 · whatwg/html
+  - https://github.com/whatwg/html/issues/10592
 
-popover を開いたり閉じたりは
+このあたりは、議論がある程度まとまったら追記したいと思う。
+
+
+## Popover Target
+
+JS には `popover` を開閉する API が用意されている。
 
 - `showPopover()`
 - `hidePopover()`
 - `togglePopover()`
 
-とメソッドが用意されているけど、これは HTML だけで宣言的に記述できるようになってるよ。
+そして、これは HTML だけで宣言的に記述できるようになっている。
 
-- `popovertarget` で id を紐づけて
-- `popovertargetaction` で挙動を指定するよ
+- `popovertarget`
+- `popovertargetaction`
 
 ```html
 <button popovertarget="foo" popovertargetaction="show">
@@ -191,16 +153,21 @@ popover を開いたり閉じたりは
 </article>
 ```
 
-基本的には、明示的に閉じれるようにするのがプラクティスなので、 ❌ みたいなアイコンを button として popover の右上とかに入れて、それが action=hide になってるのが頻出になるだろうね。
+基本的に Popover は明示的に閉じられるようにするのがプラクティスなので、 `x` アイコンを button として `popover` の右上に表示し、それを `action=hide` にするのがプラクティスだろう。
 
-ちなみに、この popovertarget(action) と同じように、明示的な開く閉じるを `<dialog>` でも指定できるようにしたいって話があって、まあ `<dialog popover>` するとできるけど、そうじゃない `show()`/ `showModal()` してもできるように新しい仕組みが提案されているよ。
 
-ついこの間までこれは invoker と呼ばれてたんだけど、今は command って呼ばれるように名前がかわったばかりなので、そのうち決まったらまた解説するよ。
+## Invoker
+
+この `popovertarget` と同じように、開く閉じるの宣言的な実装を `<dialog>` でも実現したいという要望が出た。
+
+これも `<dialog popover>` によってカバーできるが、そうじゃない `show()`/ `showModal()` でもできるように提案されたのが Invoker だ。
+
+最初は属性名も Invoker だったが、今は `command` という属性名になっている。
 
 - [invokers] bikeshed the attribute names. · Issue #998 · openui/open-ui
   - https://github.com/openui/open-ui/issues/998
 
-とりあえず今の提案だとこうなるかな。
+ややこしいが、仕様(概念)名は Invoker で、属性名が Command という解釈だ。
 
 ```html
 <button commandfor="foo" command="show">
@@ -212,26 +179,124 @@ popover を開いたり閉じたりは
 </dialog>
 ```
 
-さっきとほぼ同じだね。で、多分これが popovertarget(action) も上書きするから、どっちも同じように書けるようになりそう。
+この仕様は `popover` にも逆輸入され、現在は `popover` も `command` で開けるようにしていく方針になっている。(であれば、いずれ `popovertarge` は消えるかもしれないので、これから実装する場合は最新の議論に注意したい)
+
+```html
+<button commandfor="foo" command="show">
+  Show Popover
+</button>
+<div id="foo" popover>
+  This is a Popover
+  <button commandfor="foo" command="hide">Close</button>
+</div>
+```
 
 
 ## Anchor Positioning
 
-これが popover を使う上でゲームチェンジングな機能なんだよね。
+これが `popover` と同時に策定されていた、今後かなり重要になる仕様の 1 つだ。
 
-まず、 popover が表示されるのは Top Layer なので、そこは他に要素がなくだだっぴろい window の領域にポツンと DOM があるような状態になる。
+まず、先ほどの例を考えてみる。
 
-で、そこで場所を指定すると、基本的には position: fixed で座標指定するような、四隅やど真ん中みたいなわかりやすい表示しか指定できないんだよね。
+```html
+<button commandfor="foo" command="show">
+  Show Popover
+</button>
+<div id="foo" popover>
+  This is a Popover
+  <button commandfor="foo" command="hide">Close</button>
+</div>
+```
+
+このとき Popover した `<div>` を、ボタンの右下に表示したいとしよう。
+
+通常の DOM であれば、 `<button>` と `<div>` を相対的に配置すれば良いが、今 `<div popover>` は Top Layer に、 `<button>` はその backdrop に表示されているため、二つを相対的に配置することができないのだ。
+
+`<div popover>` が表示されている Top Layer には、他の DOM が何も無い状態なので、なんらかの方法で `<div popover>` の座標などを渡されない限りは、「画面の真ん中」や「四隅」といった、絶対値指定できる場所くらいしか、配置のしようがない。
 
 TODO: 図
 
-popover で出す頻出 UI として、 tooltip とか menu 系の UI は、起動したボタンどかと近い方が嬉しい。でも、その DOM は Top Layer にはないので、相対位置を指定することができない。
-
-そこで、 Anchor という概念を入れて、「この Popover は button が Anchor で、そこの相対位置で表示する」っていう指定ができるようにしたんだ。これが Anchor Positioning 。これを使うとこうできる。
+そこで、 Anchor という概念を導入し、開いた `<button>` が Anchor で、開かれ側はその Anchor の右下に表示する、といった指定ができるようにした。これが Anchor Positioning だ。
 
 TODO: 図(間違ってる?)
 
-指定の仕方はこんな感じ。
+
+### Ancor Attributes
+
+当初 Anchor は HTML 属性で指定する提案がされていた。
+
+```html
+<button id="button" commandfor="foo" command="show">
+  Show Popover
+</button>
+<div id="foo" anchor="button" popover>
+  This is a Popover
+  <button commandfor="foo" command="hide">Close</button>
+</div>
+<style>
+[popover] {
+  top: anchor(bottom);
+  left: anchor(center);
+}
+</style>
+```
+
+この場合、 `<div popover>` の Anchor を `<button>` とし、 `<button>` が自分に対して左上になるように CSS を指定している。
+
+つまり、以下のように `<button>` の右下に `<div popover>` が表示されることになる、というものだった。
+
+TODO: 図
+
+そして、なによりもこの Anchor 属性が独立していることで、 Popover ではない要素でも Anchor 関係を指定し、配置することが可能なのだ。これは、従来の Flex, Grid などに並んで、新しい CSS の設計に影響する、重要な要素であると筆者は考えている。
+
+
+## Anchor Position の fallback
+
+先の例で、`<div popover>` を表示するための余白が `<button>` の右下に無かった場合、 Popover がはみ出して表示されることになる。
+
+TODO: 図
+
+これをさけるために、フォールバックという仕組みを導入し、「はみ出る場合は、別のスタイルに切り替える」という指定ができるようになった。
+
+例えば、 flip-inline を指定すれば Inline 方向(つまり左右)を逆にし、 flip-block を指定すれば Block 方向(つまり上下)を逆にするようフォールバックできる。
+
+```css
+[popover] {
+  top: anchor(end);
+  left: anchor(self-end);
+  position-try-options: flip-inline, flip-block;
+}
+```
+
+TODO: 図
+
+もっと細かくスタイルを指定したい場合は、フォールバックの先を `@position-try` に複数指定し、それを並べて順順に試行させることができる。複数適用できる場合の優先順位も、 `position-try-order` で指定できる。
+
+```css
+[popover] {
+  ...
+  position-try-fallbacks: --first, --second, flip-inline, flip-block;
+  position-try-order: most-height;
+}
+@position-try --first {
+  top: anchor(end);
+  right: anchor(self-start);
+}
+@position-try --end {
+  /* .... */
+}
+```
+
+これで、どんな要素に Invoke されても、 Top Layer 上に表示されつつ、さらに画面内にしっかりと収まるような `popover` が定義できるのだ。特に Menu 系で縦長になりがちな UI を適切に表示する上で重宝する。
+
+
+### CSS Anchor Name
+
+このように、要素の配置に革新をもたらすであろう Anchor だが、 HTML 属性であるにも関わらず、明らかにスタイルマターなユースケースであるために、「セマンティクスは何か」という議論がされることになった。
+
+そこで、 HTML の Anchor 属性は一旦保留し、同様の機能を CSS 側で定義したのが、 `anchor-name` と `position-anchor` だ。
+
+指定は以下のように、 HTML で定義していた関係を CSS Variable で定義した名前を用いて紐づける仕様になっている。
 
 ```html
 <style>
@@ -250,51 +315,89 @@ button {
 </div>
 ```
 
-まず button 側では CSS variable のような指定で anchor-name をつけ、 popover 側は position-anchor でその名前を指定する。
+まず `<button>` 側で `anchor-name` に CSS Variable で名前をつけ、 `popover` 側は `position-anchor` でその名前を指定し、 `anchor()` で相対位置を指定する。
 
-`anchor()` っていう関数を使うと、相対位置を指定できるから、これをさらにちょっと離したいとかだったら、 translate とかでさらに位置をずらすのが基本。
+ここから、さらに余白を広げたいといった場合は、 `translate` などで位置を調整することになるだろう。
 
 
-## Anchor Position の fallback
+## Invoker Relationship
 
-最初から同じ DOM 上でスタイルしてる場合と違って、 popover を toplayer に anchor positioning で出すと、例えば tooltip を右下に出そうとしたのに、右側に意外とスペースがなかった時、そのままはみ出しちゃったりすることになるんだよね。
+スタイルマターであるがために、 Anchor を指定するのに CSS でいちいち名前をつけて紐づけるというのは、実装上は不便な場合が多い。
 
-TODO: 図
+Invoker と Popover の関連を HTML だけで完結できず、同時に CSS でも関連づけないと不整合が起こるからだ。特に動的に関連付けを変更したいような場合には、 `<div style="position-anchor: --anchor">` などと HTML 側でいじる必要などが出るため、あまり使いやすい API では無かった。
 
-これをさけるために、フォールバックという仕組みがあって、「これがはみ出るなら、別のスタイルに切り替えて」っていう指定ができるんだ。
+議論を進めた結果、「少なくとも Invoker と Popover の間には、暗黙的な Anchor の関係を見出しても良いだろう」ということになり、先のように `<button commadfor>` で開いた `<div popover>` との間には、暗黙的に Anchor の関係がある、ということになったのだ。これを Invoker Relationship と呼ぶ。
 
-一番簡単なのは、 inline (つまり左右)方向を入れ替える flip-inline をかませば
+つまり、以下の例は HTML の anchor 属性も、 CSS の `anchor-name` も無いが、 `anchor()` を使った配置ができていることに注目したい。
 
-```css
+```html
+<button id="button" commandfor="foo" command="show">
+  Show Popover
+</button>
+<div id="foo" popover>
+  This is a Popover
+  <button commandfor="foo" command="hide">Close</button>
+</div>
+<style>
+[popover] {
+  top: anchor(bottom);
+  left: anchor(center);
+}
+</style>
+```
+
+
+## HTML Anchor Attributes の今後?
+
+Invoker Relationship の場合は Anchor 名を明示する必要がなくなったが、それでもなお、動的に `<popover>` を作り、 JS で開くような場合は不便がある。
+
+例えば、 GitHub のリンクをマウスオーバーした場合、 Issue なら概要、 User ならプロフィールが Popover されるだろう。このような Popover は、 `<div popover>` を 1 つ用意し、その DOM を書き換えながら再利用する実装が考えられる。
+
+つまり、 Popover 側は変わらないが、 Anchor 側が動的に変わっていくわけだが、 HTML の `command` で開いているわけではなく `onmouseover` をフックして JS で開くため、暗黙的な Invoker Relationship も生成されない。
+
+この場合は、 `<div popover>` 側に `position-anchor: --anchor` を指定しておいたとすると。
+
+```html
+<style>
 [popover] {
   position-anchor: --anchor;
-  top: anchor(end);
-  left: anchor(self-end);
-  position-try-options: flip-inline, flip-block;
+  top: anchor(bottom);
+  left: anchor(center);
 }
+</style>
 ```
 
-TODO: 図
+JS で mouseover された要素を、動的に `anchor-name: --anchor` に変えていく必要がある。以下のようなイメージだ。
 
-同様に縦方向を入れ替える flip-block を指定することで、下に余白がなくても出せるようになるよ。それでも足らなければ flip-block も適用されて、左上に出ることになる。
+```js
+document.querySelectorAll("main > a").forEach((a) => {
+  a.on("mouseover", (e) => {
+    e.target.style.anchorName = "--anchor"
+  })
+  // 終わったら消す
+})
+```
 
-もっと細かくスタイルを指定したい場合は、こんな感じでフォールバックの先を指定し、それを並べて順順に試させることができるよ。複数適用できたらどれを使いたいかは、 position-try-order で指定できる。
+対象のイベントで、動的に `anchor-name` を変更し、終わったら `anchor-name` を消す必要がある。消し忘れると、被って意図しない場所に表示される可能性もある。名前を変えても良いが、その管理も面倒だろう。
 
-```css
+もし HTML で Anchor 要素が使えるのであれば、 `<a>` が持つ ID を指定して、 `<div popover>` 側を変えればよくなる。
+
+TODO:
+
+```js
+<style>
 [popover] {
-  ...
-  position-try-fallbacks: --first, --second, flip-inline, flip-block;
-  position-try-order: most-height;
+  position-anchor: --anchor;
+  top: anchor(bottom);
+  left: anchor(center);
 }
-@position-try --first {
-  top: anchor(end);
-  right: anchor(self-start);
-}
-@position-try --end {
-  /* .... */
-}
+</style>
+
+<script>
+$popover.anchor = $a.id
+</script>
 ```
 
-これで、どんな場所に表示されても Top Layer 上で他の上に表示されつつ、さらに画面内にしっかりと収まるような popover が定義できるよ。
+すでにある HTML に、 Popover を後から追加する上でも、この方が実装は容易であり、管理しやすいため、筆者としてはこの機能が戻ってくることを心待ちにしている。
 
-さて、次回はいよいよ、 popover のリアルな実例を見ていこう。
+次回はいよいよ Popover の実装について触れるが、 Anchor については未確定の部分が多いため、そこは省く。 Anchor 周りが確定したら、最後の記事として追加で出すことにする。
