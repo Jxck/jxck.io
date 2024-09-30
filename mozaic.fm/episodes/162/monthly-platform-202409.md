@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 162 回のテーマは 2024 年 9 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 129
-
 
 #### Updates
 
@@ -68,7 +66,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Deprecations and removals
     - Remove expectedImprovement in DelegatedInkTrailPresenter
     - Deprecate non-standard GPUAdapter requestAdapterInfo() method
-
 
 #### Intents
 
@@ -156,7 +153,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JmDqNNWGm20
 - Ready for Developer Testing: Deprecate getters of Intl Locale Info
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/JE2ZUxqmsvM
-
 
 #### Other
 
@@ -270,11 +266,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://toot.cafe/@RickByers/113147935000806939
     - Chromium へのコントリビューターの推移
 
-
 ### Firefox 動向
 
 #### Stable: 130.0
-
 
 #### Updates
 
@@ -306,7 +300,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Firefox hacks for everyone: From cozy gamers to minimalists and beyond
   - Browsers, cookies and surfing the web: The quirky history of internet lingo
     - Keep up with all things Firefox
-
 
 #### Intents
 
@@ -362,14 +355,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - Anti-Fingerprinting Telemetry
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/K5ycPJ6ngrw
 
-
 #### Newsletter
 
 - Firefox WebDriver Newsletter 130 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-130/
 - Firefox DevTools Newsletter 130 - Firefox Developer Experience
   - https://fxdx.dev/firefox-devtools-newsletter-130/
-
 
 #### MDN / Open Web Docs
 
@@ -379,7 +370,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.mozilla.org/en-US/blog/efficient-data-handling-with-the-streams-api/
 - Get back to school! Supercharge your learning with MDN and Scrimba
   - https://developer.mozilla.org/en-US/blog/mdn-scrimba-back2school/
-
 
 #### Standard Position
 
@@ -404,7 +394,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - JPEG XL の実装を再検討する
     - Google の JPEG XL のチームが Rust によるデコーダーの実装を提案したため
 
-
 #### Other
 
 - **1.3 Million Subtests**
@@ -412,11 +401,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Servo が WPT 73% を突破
   - 他と異なり Gecko / KHTML 由来ではないエンジンとして急成長中
 
-
 ### Safari 動向
 
 #### Stable: 18.0
-
 
 #### Updates
 
@@ -542,7 +529,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Get Ready for Interop 2025: Your Chance to Shape the Web | WebKit
   - https://webkit.org/blog/15942/get-ready-for-interop-2025-your-chance-to-shape-the-web/
 
-
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -553,18 +539,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - CSS Shape function
     - https://github.com/WebKit/standards-positions/issues/377
 
-
 #### Other
 
 - **iPhone 16 Pro Supports JPEG-XL Format - MacRumors**
   - https://www.macrumors.com/2024/09/09/iphone-16-pro-supports-jpeg-xl-format/
   - iPhone 16 Pro シリーズでは ProRaw フォーマットで JPEG XL が使えるようになった
 
-
 ### Edge 動向
 
 #### Stable: 129
-
 
 #### Updates
 
@@ -581,13 +564,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Tame your workday with Microsoft Edge for Business - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2024/09/25/tame-your-workday-with-microsoft-edge-for-business/
 
-
 #### Other
 
 - **Welcome to Fall, I guess? - text/plain**
   - https://textslashplain.com/2024/09/16/welcome-to-fall-i-guess/
   - > Two months without a blog post? Sheesh. A lot has happened in two months, although perhaps nothing especially interesting.
-
 
 ### WHATWG/W3C 動向
 
@@ -602,7 +583,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/news/2024/first-public-working-draft-css-grid-layout-module-level-3/
   - CSS Values and Units Module
     - https://www.w3.org/news/2024/first-public-working-draft-css-values-and-units-module-level-5/
-
 
 #### Open UI
 
@@ -627,7 +607,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/whatwg/html/issues/10582
   - Stylable form control
 
-
 #### WHATNOT meeting
 
 - https://github.com/whatwg/html/issues?q=is%3Aissue+is%3Aopen+WHATNOT+meeting
@@ -646,7 +625,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/whatwg/meta/issues/326
   - 来月 minutes を見る
 
-
 #### Other
 
 - Consortium Members elect Board of Directors
@@ -657,13 +635,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://lists.w3.org/Archives/Public/www-style/2024Sep/0023.html
   - ローカルフォントを読まないと表示できない言語などについてのレポート
 
-
 ### TC39 動向
 
 #### Meeting
 
 - Meeting Note が公開された時だけやる、それ以外はやらない。
-
 
 #### Proposals Diff
 
@@ -673,9 +649,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2.7->3
 - 3->4
 
-
 #### New Proposals
-
 
 #### WinterCG
 
@@ -684,7 +658,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/wintercg/admin/issues/72
 - 2024-09-05 meeting · Issue #67 · wintercg/admin
   - https://github.com/wintercg/admin/issues/67
-
 
 #### Other
 
@@ -697,7 +670,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Summary of the July-August 2024 TC39 plenary
   - https://blogs.igalia.com/compilers/2024/09/11/summary-of-the-july-august-2024-tc39-plenary/
 
-
 ### IETF 動向
 
 #### WG
@@ -709,9 +681,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0226.html
 - Meeting
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -723,15 +693,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/introducing-speed-brain/
   - Speculation Rules
 
-
 #### Fastly
 
 - **A Look at Global CDN Performance in China | Fastly**
   - https://www.fastly.com/blog/a-look-at-global-cdn-performance-in-china
 
-
 #### Other
-
 
 ### セキュリティ動向
 
@@ -740,7 +707,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Arc の脆弱性
   - CVE-2024-45489 Response - Arc
   - https://arc.net/blog/CVE-2024-45489-incident-response
-
 
 ### 周辺動向
 
@@ -777,13 +743,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://meyerweb.com/eric/thoughts/2024/09/23/announcing-bcd-watch/
 - **Rauchg が Ladybird に 5 万ドルを寄付**
   - https://x.com/ladybirdbrowser/status/1839620997680431336
-- **\[作って学ぶ\] ブラウザのしくみ──HTTP、HTML、CSS、JavaScript の裏側
+- \*\*[作って学ぶ] ブラウザのしくみ──HTTP、HTML、CSS、JavaScript の裏側
   - https://www.amazon.co.jp/dp/4297145464
   - https://x.com/d0iasm/status/1840376364832289040
 
-
 ### Cookie 動向
-
 
 ### イベント
 
@@ -801,7 +765,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 11 月
   - 02-08: IETF 121 Dublin
     - https://www.ietf.org/meeting/121/
-
 
 ### Wrap Up
 
