@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-09-30/toast-popup.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="ここまでで &lt;dialog&gt; 要素が標準化され、 Modal/non-Modal な Dialog がネイティブで出せるようになった。今まで自前で実装していた z-index の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様が...">
+  <meta name=keywords            content="dialog,popover">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-09-30/toast-popup.html>
+  <meta property=og:title        content="Dialog と Popover #4 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="ここまでで &lt;dialog&gt; 要素が標準化され、 Modal/non-Modal な Dialog がネイティブで出せるようになった。今まで自前で実装していた z-index の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様が...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Dialog と Popover #4 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-09-30T08:00:00+08:00",
+    "dateModified": "2024-09-30T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "ここまでで &lt;dialog&gt; 要素が標準化され、 Modal/non-Modal な Dialog がネイティブで出せるようになった。今まで自前で実装していた z-index の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様が..."
+  }
+  </script>
+
+  <title>Dialog と Popover #4 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-30>2024-09-30</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-09-30>2024-09-30</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#dialog">dialog</a>
+              <li><a href="/tags#popover">popover</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#toast">Toast</a>
+              <li><a href="#popup-要素"><code translate=no>&lt;popup&gt;</code> 要素</a>
+              <li><a href="#modalclosewatcher">ModalCloseWatcher</a>
+              <li><a href="#popup-の問題"><code translate=no>&lt;popup&gt;</code> の問題</a>
+              <li><a href="#popup-属性">popup 属性</a>
+              <li><a href="#popup-という名前">popup という名前</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Dialog と Popover #4</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>ここまでで <code translate=no>&lt;dialog&gt;</code> 要素が標準化され、 Modal/non-Modal な Dialog がネイティブで出せるようになった。
+        <p>今まで自前で実装していた <code translate=no>z-index</code> の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様がほぼ標準によってカバーされた。
+        <ul>
+          <li>Top Layer
+          <li>inert
+          <li>:modal / ::backdrop
+          <li>CloseWatcher
+          <li>Focusable Scrollers
+          <li>etc
+        </ul>
+        <p>しかし、 <code translate=no>&lt;dialog&gt;</code> はあくまで「ユーザのインタラクションを求める」という用途で使うものであり、 <code translate=no>role=dialog</code> ではない、例えばちょっとしたメッセージの通知などに使うものではない。
+        <p>そこで、これらの資産を活用し、より汎用的な UI を標準化しようという話が、 <code translate=no>&lt;dialog&gt;</code> の標準化の裏で並行して行われた。
+      </section>
+      <section>
+        <h2 id="toast"><a href="#toast">Toast</a></h2>
+        <p>最初の目立った提案は <code translate=no>&lt;toast&gt;</code> だった。
+        <p>Toast UI とは、画面の右下などに、焼けたトーストのようにひょこっと通知が飛び出し、しばらくしたら消えるような UI を指す。
+        <p>
+          <img loading=lazy decoding=async src=./1.toast.drawio.svg?240930_155256 alt="Toast UI" width=400 height=150>
+        </p>
+        <p>Toast は元々 iOS 文化圏の表現らしく、Android では Snackbar とも言うらしい。いずれも、英語圏でそこまで馴染みのある言葉ではないらしく「なぜ Toast なのか?」は FAQ だったようだ。
+        <p>Toast 自体は、通知の意味合いが強く、特にユーザにインタラクションを求めなかったり、操作しなくても時間が経てば消えるといったケースが多い。名前に差はあれど、様々な UI ライブラリが提供しており、これも HTML に欲しいということで、 <code translate=no>&lt;toast&gt;</code> や <code translate=no>&lt;std-toast&gt;</code> といった提案がなされた。
+        <p>ちなみに、様々な実装の調査(共通する仕様、できることできないこと)が以下にまとまっている。
+        <ul>
+          <li>
+            std-toast/study-group at master - jackbsteinberg/std-toast
+            <ul>
+              <li><a href="https://github.com/jackbsteinberg/std-toast/tree/master/study-group" target=_blank>https://github.com/jackbsteinberg/std-toast/tree/master/study-group</a>
+            </ul>
+          </li>
+        </ul>
+        <p>この調査を見てもわかるように、頻出パターンでありながらばらつきはかなりある。そして、決して使いやすい実装ばかりでもない。
+        <p>もちろん、 Dialog と同様 &quot;How to build a Toast component&quot; といったノウハウ記事はたくさん出てくるように、自前での実装も多々なされてきた。しかし、使いにくいものばかりなのも Dialog と同様だ。
+        <p>調査の結果、 Toast UI を提供する上で望ましい機能が、以下のようにまとめられた。
+        <ul>
+          <li>タイトルがつけられる
+          <li>本文が書ける
+          <li>アイコンがつけられる
+          <li>
+            タイムアウトができる
+            <ul>
+              <li>タイムアウトまでのプログレスバーも出せる
+            </ul>
+          </li>
+          <li>Close Button がある
+          <li>Toast 上にも Button が置ける
+          <li>Dismiss する方法がある
+          <li>状態に応じた Event が発火し Callback が書ける
+        </ul>
+        <p>ところが、この提案を実装する上で &quot;Intent to Implement&quot; には、 <code translate=no>&lt;toast&gt;</code> もセマンティクスではなくスタイルの問題である点を指摘しつつ「Chrome がマーケット支配力を利用して、勝手に実装を標準にするな」といったような意見が出てきた。
+        <ul>
+          <li>
+            Intent to Implement: Toast UI element
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/Gl7FIKM5IFw/m/tA70X9ZIBQAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/Gl7FIKM5IFw/m/tA70X9ZIBQAJ</a>
+            </ul>
+          </li>
+        </ul>
+        <p>これは、「試しに実装してみるよ」の Intents が &quot;Intent to Implement&quot; という名前であり、その次は &quot;Intent to Ship&quot; という流れだったのもある。これはあくまでプロトタイプなんだということを強調するために、この後 &quot;Intent to Implement&quot; はなくなり、代わりに &quot;Intent to Prototype&quot; というステップに名前が変えられた。
+        <p>この議論をしている 2019 年ごろは、 Layered API という、頻出するパターンは共通する基盤を整備して、その上に実装できるようにしようといったコンセプトが一時的に流行っていた。(fetch, URL, FormData, Encoder... の頃)
+        <p>その流れから、 <code translate=no>&lt;std-toast&gt;</code> があれば、飛び出して他の要素の上に被さる系の UI は、全てその応用で実装可能というイメージで、それを <code translate=no>std-</code> をつけることで、カスタムコンポーネントのブラウザネイティブライブラリのような位置付けで実装する、という取り組みの流れを汲んだ最初で最後の HTML 提案だった。
+        <p>ちなみに、この &quot;Intent to Prototype&quot; は 2019 年で、 Firefox が <code translate=no>&lt;dialog&gt;</code> をリリースするのは 2020 年だ。つまり、 <code translate=no>&lt;toast&gt;</code> の議論時期的には <code translate=no>&lt;dialog&gt;</code> の実装がまだ Chrome くらいしかない頃から、並行して行われていたことがわかる。先に <code translate=no>&lt;dialog&gt;</code> の作業を進める間一旦影をひそめ、ひと段落してから再度議論が盛り上がっていく。
+      </section>
+      <section>
+        <h2 id="popup-要素"><a href="#popup-要素"><code translate=no>&lt;popup&gt;</code> 要素</a></h2>
+        <p>2020 年に <code translate=no>&lt;dialog&gt;</code> が躍進した翌年、 2021 年のはじめに <code translate=no>&lt;popup&gt;</code> の Intents が出される。
+        <ul>
+          <li>
+            Intent to Prototype: HTMLPopupElement - <code translate=no>&lt;popup&gt;</code>
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/9y-Thg9UCxY" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/9y-Thg9UCxY</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Explainer は以下。
+        <ul>
+          <li>
+            MSEdgeExplainers/Popup/explainer.md at main - MicrosoftEdge/MSEdgeExplainers
+            <ul>
+              <li><a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/Popup/explainer.md" target=_blank>https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/Popup/explainer.md</a>
+            </ul>
+          </li>
+        </ul>
+        <p>つまり、 OpenUI 側で議論した結果 <code translate=no>&lt;toast&gt;</code> ではなく <code translate=no>&lt;popup&gt;</code> の方が良いということで、リネームされたものだ。
+        <p>そして、この Intents の時点では <code translate=no>&lt;dialog&gt;</code> との違いについて以下のように説明されている。
+        <blockquote>
+          <p>This new element is similar to <code translate=no>&lt;dialog&gt;</code>, but has several important differences, including Light Dismiss behavior, anchoring, and the lack of a &quot;modal&quot; mode.
+          <p>
+          </p>
+          <p><code translate=no>&lt;dialog&gt;</code> との大きな違いは、 Light Dismiss で anchoring があって、 Modal mode がないこと。
+        </blockquote>
+        <p>ここで言ってる Light Dismiss は、前回解説したものだ。初期は <code translate=no>&lt;popover&gt;</code> において大事な概念とされ、要するに「割と簡単に閉じられる」といった意味だった。この時点の仕様では以下のように書かれている。
+        <ul>
+          <li>
+            以下の場合に Light Dismiss になって暗黙的に閉じる
+            <ul>
+              <li>ESC を押す
+              <li>Layout が変わる
+              <li>他の <code translate=no>&lt;popup&gt;</code> が開く
+              <li>Focus が <code translate=no>&lt;popup&gt;</code> の外に行く
+            </ul>
+          </li>
+        </ul>
+        <p>ESC で閉じるのは Modal Dialog でも同じだった。しかしそれ以外にもフックがあり、ライトに表示させてライトに閉じられることを重視していることがわかる。
+        <p>実際には Light Dismiss の概念が <code translate=no>&lt;popup&gt;</code> で議論され、それを逆輸入する形で <code translate=no>&lt;dialog&gt;</code> に部分的に持っていくことになったのだ。
+        <ul>
+          <li>
+            Support disabling CloseWatcher integration in <code translate=no>&lt;dialog&gt;</code> · Issue #10592 · whatwg/html
+            <ul>
+              <li><a href="https://github.com/whatwg/html/issues/10592" target=_blank>https://github.com/whatwg/html/issues/10592</a>
+            </ul>
+          </li>
+        </ul>
+        <p>しかし <code translate=no>&lt;dialog&gt;</code> は Popover ほどは Light Dismiss ではなく、 ESC で閉じたりはできるが、 backdrop クリックなどは自分で実装する必要がある。もし <code translate=no>&lt;dialog&gt;</code> をより Light Dismiss にしたい場合については、後ほど「<code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> する」という方法を解説する。
+        <p>次に大きいのが Anchoring だ。 Anchoring も次回詳細を解説するが <code translate=no>&lt;popup&gt;</code> を開いた対象と、相対的なポジショニングができるように紐づけるといったものだ。これも <code translate=no>&lt;popup&gt;</code> の時点で言及がある。
+        <p>個人的なツボは、前回解説したメソッド名の対称性だ。「<code translate=no>&lt;dialog&gt;</code> は show/close を選んだが、それはあんま良くない。 <code translate=no>&lt;popup&gt;</code> は show/hide を選ぶし、 <code translate=no>&lt;dialog&gt;</code> は仕様を直した方が良い」といったことを書いている。
+        <p>この Light Dismiss から派生して出てきた仕様が 2021 年に公開される。
+        <p>それが ModalCloseWatcher だ。
+      </section>
+      <section>
+        <h2 id="modalclosewatcher"><a href="#modalclosewatcher">ModalCloseWatcher</a></h2>
+        <p><code translate=no>&lt;popup&gt;</code> の Intents とほぼ同時に、もう一つ Intents が出る。
+        <ul>
+          <li>
+            Intent to Prototype: ModalCloseWatcher
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/NA5NC16OmsU" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/NA5NC16OmsU</a>
+            </ul>
+          </li>
+        </ul>
+        <p>で、 Explainer はというと
+        <ul>
+          <li>
+            history_api/history_and_modals.md at master - slightlyoff/history_api
+            <ul>
+              <li><a href="https://github.com/slightlyoff/history_api/blob/master/history_and_modals.md" target=_blank>https://github.com/slightlyoff/history_api/blob/master/history_and_modals.md</a>
+            </ul>
+          </li>
+        </ul>
+        <p>もともとは History API にあったことがわかる。
+        <p>そう。これこそ Android の戻るボタン問題で、 Android では「戻る」でも modal を閉じることができた。それを実現するために変に「戻る」をフックするために <code translate=no>keyup</code> や History をいじって実装しがちだが、新しく History API を整理する上で問題になった。という話を Domenic がしている。
+        <ul>
+          <li>
+            Domenic Denicola on Twitter / X
+            <ul>
+              <li><a href="https://x.com/Domenic/status/1339675541083971586" target=_blank>https://x.com/Domenic/status/1339675541083971586</a>
+            </ul>
+          </li>
+        </ul>
+        <p>おそらく History API の改善版ともいえる、 Navigation API に丁度この頃取り組んでいたからだろう。
+        <p>これを解決するため、Android の戻るが「画面を戻る」ことも「Modal を閉じる」ことも、 OS が用意した体験がちゃんとできるように、 Modal を Close するようなイベントを監視する Watcher が欲しいということでできたものだ。
+        <p>これこそ <code translate=no>&lt;dialog&gt;</code> で解説した Close Watcher の原型だ。これが Light Dismiss の実現にも大きく寄与していくし、結果的に <code translate=no>&lt;dialog&gt;</code> にも使われることになる。
+        <p>後の Close Watcher の Explainer の方を確認しておこう。
+        <ul>
+          <li>
+            close-watcher/README.md at main - WICG/close-watcher
+            <ul>
+              <li><a href="https://github.com/WICG/close-watcher/blob/main/README.md" target=_blank>https://github.com/WICG/close-watcher/blob/main/README.md</a>
+            </ul>
+          </li>
+        </ul>
+        <blockquote>
+          <p>Various UI components have a &quot;modal&quot; or &quot;popup&quot; behavior. For example:
+          <p>
+          </p>
+          <p>- a <code translate=no>&lt;dialog&gt;</code> element, especially the <code translate=no>showModal()</code> API;
+          <p>- a sidebar menu;
+          <p>- a lightbox;
+          <p>- a custom picker input (e.g. date picker);
+          <p>- a custom context menu;
+          <p>- fullscreen mode.
+        </blockquote>
+        <p>他にも OS が用意している Modal Close な操作が書かれており、 iOS VoiceOver にある &quot;z&quot; ジェスチャーや、他にも将来的に何か新しいデバイスが出た際も、ここで吸収できる。
+      </section>
+      <section>
+        <h2 id="popup-の問題"><a href="#popup-の問題"><code translate=no>&lt;popup&gt;</code> の問題</a></h2>
+        <p><code translate=no>&lt;dialog&gt;</code> の議論と実装が進んだ少し後の 2022/3 に、先ほどの <code translate=no>&lt;popup&gt;</code> の Intents (長らく止まっていたスレッド)に以下のメッセージが投稿される。
+        <blockquote>
+          <p>I&apos;m sending a PSA/update to this (old!) intent to prototype thread. Based on some conversations that we&apos;ve been having in OpenUI about the shape of the popup API, we&apos;ve decided to modify the approach.
+          <p>The prior I2P described a new <code translate=no>&lt;popup&gt;</code> element. I&apos;ve updated the chromestatus entry and re-wrote the explainer to describe a <code translate=no>popup</code> content attribute.
+          <p>This new idea avoids some serious accessibility issues with <code translate=no>&lt;popup&gt;</code>, and also enables a more powerful API that can be used for more applications.
+          <p>I plan to implement the new API under a new flag, leaving the HTMLPopupElement flag around in the meantime, because the <code translate=no>&lt;selectmenu&gt;</code> prototype depends on that implementation.
+          <p>Once I&apos;ve migrated <code translate=no>&lt;selectmenu&gt;</code> to the new API, I&apos;ll remove the old <code translate=no>&lt;popup&gt;</code> element implementation.
+          <p>
+          </p>
+          <p>この (old!) intent to prototype スレッドに PSA/update を送ります。popup API について OpenUI で交わされたいくつかの議論に基づき、アプローチを変更することにしました。
+          <p>以前の I2P では、新しい <code translate=no>&lt;popup&gt;</code> 要素について説明しました。私は chromestatus のエントリを更新し、<code translate=no>popup</code> 属性を記述するように Explainer を書き直しました。
+          <p>この新しいアイデアによって、 <code translate=no>&lt;popup&gt;</code> のアクセシビリティに関するいくつかの深刻な問題を回避することができ、また、より多くのアプリケーションに使用できる、より強力な API を実現することができます。
+          <p><code translate=no>&lt;selectmenu&gt;</code> プロトタイプはこの実装に依存しているので、その間に HTMLPopupElement フラグを残しておきます。
+          <p><code translate=no>&lt;selectmenu&gt;</code> を新しい API に移行したら、古い <code translate=no>&lt;popup&gt;</code> 要素の実装を削除します。
+        </blockquote>
+        <p><code translate=no>&lt;popup&gt;</code> という要素自体にあった問題を解決するため、要素から <code translate=no>popup</code> 属性に変えられたという内容だ。(まだ <code translate=no>popover</code> ではない)
+        <p>OpenUI の議論は以下だ。
+        <ul>
+          <li>
+            New Approach for Popup - Issue #455 - openui/open-ui (github.com)
+            <ul>
+              <li><a href="https://github.com/openui/open-ui/issues/455#issuecomment-1050172067" target=_blank>https://github.com/openui/open-ui/issues/455#issuecomment-1050172067</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ここは議論のまとめという感じの Issue だが、ここにリンクされている最も大きいものの一つが、 Domenic があげた「<code translate=no>&lt;popup&gt;</code> の <code translate=no>role</code> は何か?」というものだ。
+        <ul>
+          <li>
+            HTMLPopupElement · Issue #680 · w3ctag/design-reviews
+            <ul>
+              <li><a href="https://github.com/w3ctag/design-reviews/issues/680#issuecomment-943472331" target=_blank>https://github.com/w3ctag/design-reviews/issues/680#issuecomment-943472331</a>
+            </ul>
+          </li>
+        </ul>
+        <p>もともと、 <code translate=no>&lt;popup&gt;</code> には「select menu を出す」、「Teaching UI」など、浮かび上がる系の UI をカバーするという目的で考えられていたが、そのセマンティクスはなんなんだろう? というものだ。&quot;select menu&quot; と &quot;teaching ui&quot; が同じということはないだろう、しかし、それぞれの目的ごとに HTML 要素を作り続けるのだろうか?といったものだ。 Intent to Implement を出した時の指摘も同じだ。
+        <p>つまり &quot;popup&quot; というのは「動き」のことであり、その中にあるコンテンツの「意味(semantics)」とは別だということだ。ここをきちんと分離するためには、「意味」は既存の HTML / Role に任せ、その任意の HTML を Top Layer に表示したり Light Dismiss するための機能として &quot;popup&quot; するための属性にし、様々なユースケースに使える方が妥当という判断だ。
+        <ul>
+          <li>
+            Popup API Alternatives | Open UI
+            <ul>
+              <li><a href="https://open-ui.org/components/popup.proposal.alternatives/#alternative-dedicated-popup-element" target=_blank>https://open-ui.org/components/popup.proposal.alternatives/#alternative-dedicated-popup-element</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="popup-属性"><a href="#popup-属性">popup 属性</a></h2>
+        <p>以上のように <code translate=no>&lt;popup&gt;</code> 要素から popup 属性に変更した、新しいプロポーサルができた。
+        <ul>
+          <li>
+            mfreed7/popup: Alternative popup proposal
+            <ul>
+              <li><a href="https://github.com/mfreed7/popup" target=_blank>https://github.com/mfreed7/popup</a>
+            </ul>
+          </li>
+        </ul>
+        <p>現状は以下のようなものだ。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;div popup=&quot;popup&quot;&gt;I&apos;m rendered on top!&lt;/div&gt;</code></pre>
+        <p>そして、この要素には 3 つの値が定義されている。
+        <ul>
+          <li>
+            popup=&quot;popup&quot;
+            <ul>
+              <li>他の popup / hint を閉じる
+              <li>Light Dismiss する
+            </ul>
+          </li>
+          <li>
+            popup=&quot;hint&quot;
+            <ul>
+              <li>他の hint は閉じるが popup は残す
+              <li>Light Dismiss に加えて時間が経つと勝手に消える
+            </ul>
+          </li>
+          <li>
+            popup=&quot;async&quot;
+            <ul>
+              <li>他を閉じない
+              <li>Light Dismiss もしない
+            </ul>
+          </li>
+        </ul>
+        <p>ここで初めて trigger という概念が入る。 JS がなくても button を使ってこの <code translate=no>popup</code> を Popup できるようにするものだ。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;button triggerpopup=&quot;mypopup&quot;&gt;Click me&lt;/button&gt;
+&lt;div id=&quot;mypopup&quot; popup=&quot;popup&quot;&gt;Popup content&lt;/div&gt;</code></pre>
+        <p>これを受け、Chrome も早速 2022/8 に Intents を出し、ブログを公開する。
+        <ul>
+          <li>
+            Intent to Experiment: The Pop-Up API
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/Sp5UI7RaaGg" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/Sp5UI7RaaGg</a>
+            </ul>
+          </li>
+          <li>
+            Pop-ups: They&apos;re making a resurgence!  |  Blog  |  Chrome for Developers
+            <ul>
+              <li><a href="https://developer.chrome.com/blog/pop-ups-theyre-making-a-resurgence" target=_blank>https://developer.chrome.com/blog/pop-ups-theyre-making-a-resurgence</a>
+            </ul>
+          </li>
+        </ul>
+        <p>2022/9 には TPAC があり、そこでも popup の現状が議論された。この時点で、もうすでに属性値とか色々変わってることがわかる。
+        <ul>
+          <li>
+            Open UI TPAC Update 2022.pptx - Microsoft PowerPoint Online
+            <ul>
+              <li><a href="https://onedrive.live.com/view.aspx?resid=5ACBE28A578FB511!3079257&ithint=file%2cpptx&authkey=!AH8NhgDiDmD1j-M" target=_blank>https://onedrive.live.com/view.aspx?resid=5ACBE28A578FB511!3079257&amp;ithint=file%2cpptx&amp;authkey=!AH8NhgDiDmD1j-M</a>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            auto
+            <ul>
+              <li>menu や control に最適
+            </ul>
+          </li>
+          <li>
+            hint
+            <ul>
+              <li>tooltip に最適
+            </ul>
+          </li>
+          <li>
+            manual
+            <ul>
+              <li>notification, toast, alert に最適
+            </ul>
+          </li>
+        </ul>
+        <p>さらに、 HTML からの操作のための属性も増えている。
+        <ul>
+          <li>popupshowtarget
+          <li>popuphidetarget
+          <li>popuptoggletarget
+        </ul>
+        <p>そして、この TPAC では、 Anchor Positioning についても紹介される。
+        <ul>
+          <li>
+            TPAC 2022 - CSS Anchoring
+            <ul>
+              <li><a href="https://jhey-presents.netlify.app/tpac-2022/" target=_blank>https://jhey-presents.netlify.app/tpac-2022/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Popup した要素は、 Top Layer に表示されるため、例えば <code translate=no>&lt;button&gt;</code> をクリックして開いた時に、 <code translate=no>&lt;button&gt;</code> の近くに表示することができない。(なぜなら、 <code translate=no>&lt;button&gt;</code> は Top Layer にないから)
+        <p>これを解決するために、 <code translate=no>&lt;button&gt;</code> を <code translate=no>popup</code> の Anchor として指定すると、そこからの相対位置で表示できるものだ。さらに、 <code translate=no>popup</code> が画面をはみ出さないように、 Viewport の大きさに合わせて自動で配置を変える、Anchoring のデモで必ず出てくる機能も、ここですでに考えられていたことがわかる。
+        <p>今の <code translate=no>popover</code> に通じる考え方が、もうすでにだいぶ揃っている。
+      </section>
+      <section>
+        <h2 id="popup-という名前"><a href="#popup-という名前">popup という名前</a></h2>
+        <p>&quot;popup&quot; という言葉は、今までも Web で使われてきた。
+        <p>例えば、 <code translate=no>window.open()</code> で開く Widnwo を Popup と呼んできたし、それらを踏まえた上で、すでに Web には <code translate=no>allow-popups</code> などの用語が Permission などで使われている。
+        <p>これを Top Layer に表示するといった、全く別の機能に使っていいのか? という指摘が、また Domenic から入る。
+        <ul>
+          <li>
+            New feature proposal: Popover API · Issue #7785 · whatwg/html
+            <ul>
+              <li><a href="https://github.com/whatwg/html/issues/7785#issuecomment-1284656230" target=_blank>https://github.com/whatwg/html/issues/7785#issuecomment-1284656230</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ここで、再度名前を変更する議論が再開した。
+        <ul>
+          <li>
+            [popup] Should we rename popup due to potential developer confusion? · Issue #627 · openui/open-ui
+            <ul>
+              <li><a href="https://github.com/openui/open-ui/issues/627" target=_blank>https://github.com/openui/open-ui/issues/627</a>
+            </ul>
+          </li>
+        </ul>
+        <p>候補は以下のようなものが見て取れる。
+        <ul>
+          <li>float
+          <li>floatable
+          <li>popover
+          <li>positioned
+          <li>overlay
+          <li>popout
+          <li>popper
+          <li>(Domenic は toplayer と提案していた)
+        </ul>
+        <p>議論(bikeshed)の結果、2022/10 くらいに名前が &quot;popover&quot; に決まった。
+        <p>いよいよ次回は、このような紆余曲折を経てたどり着いた Popover の仕様について解説する。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
