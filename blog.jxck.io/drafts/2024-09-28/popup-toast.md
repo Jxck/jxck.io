@@ -204,15 +204,15 @@ OpenUI の議論は以下だ。
 
 そして、この要素には 3 つの値が定義されている。
 
-1. popup="popup"
-  1. 他の popup / hint を閉じる
-  2. Light Dismiss する
-2. popup="hint"
-  1. 他の hint は閉じるが popup は残す
-  2. Light Dismiss に加えて時間が経つと勝手に消える
-3. popup="async"
-  1. 他を閉じない
-  2. Light Dismiss もしない
+- popup="popup"
+  - 他の popup / hint を閉じる
+  - Light Dismiss する
+- popup="hint"
+  - 他の hint は閉じるが popup は残す
+  - Light Dismiss に加えて時間が経つと勝手に消える
+- popup="async"
+  - 他を閉じない
+  - Light Dismiss もしない
 
 ここで初めて trigger という概念が入る。 JS がなくても button を使ってこの `popup` を Popup できるようにするものだ。
 
@@ -230,11 +230,21 @@ OpenUI の議論は以下だ。
 
 2022/9 には TPAC があり、そこでも popup の現状が議論された。この時点で、もうすでに属性値とか色々変わってることがわかる。
 
-TODO: popup の属性は auto/hint/manual がある
+- Open UI TPAC Update 2022.pptx - Microsoft PowerPoint Online
+  - https://onedrive.live.com/view.aspx?resid=5ACBE28A578FB511!3079257&ithint=file%2cpptx&authkey=!AH8NhgDiDmD1j-M
+
+- auto
+  - menu や control に最適
+- hint
+  - tooltip に最適
+- manual
+  - notification, toast, alert に最適
 
 さらに、 HTML からの操作のための属性も増えている。
 
-TODO: popup を操作するための 3 つの属性
+- popupshowtarget
+- popuphidetarget
+- popuptoggletarget
 
 そして、この TPAC では、 Anchor Positioning についても紹介される。
 
@@ -243,9 +253,7 @@ TODO: popup を操作するための 3 つの属性
 
 Popup した要素は、 Top Layer に表示されるため、例えば `<button>` をクリックして開いた時に、 `<button>` の近くに表示することができない。(なぜなら、 `<button>` は Top Layer にないから)
 
-これを解決するために、 `<button>` を `popup` の Anchor として指定すると、そこからの相対位置で表示できるものだ。さらに、 `popup` が画面をはみ出さないように、 Viewport に合わせて位置を変えてくれるような機能も、ここですでに考えられていたことがわかるね。
-
-TODO: anchor で viewport が縮まった時に自動で位置を修正する
+これを解決するために、 `<button>` を `popup` の Anchor として指定すると、そこからの相対位置で表示できるものだ。さらに、 `popup` が画面をはみ出さないように、 Viewport の大きさに合わせて自動で配置を変える、Anchoring のデモで必ず出てくる機能も、ここですでに考えられていたことがわかる。
 
 今の `popover` に通じる考え方が、もうすでにだいぶ揃っている。
 
