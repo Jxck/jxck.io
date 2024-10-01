@@ -4,9 +4,17 @@
 
 `popup` が紆余曲折を経て `popover` 属性になり、 2023/3 に Safari が TP166 で実装した。そのまま Safari 17 に入ることを 2023/6 の WWDC で発表したあたりから、 `popover` の実装は各ブラウザで一気に話が進む。
 
+- Release Notes for Safari Technology Preview 166
+  - https://webkit.org/blog/13964/release-notes-for-safari-technology-preview-166/
+- News from WWDC23: WebKit Features in Safari 17 beta
+  - https://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/
+
 そして、 2024/4 ごろに発表された Baseline 2024 に `popover` がエントリしたことで、 2024 年は全ブラウザで互換性を高めていくことに合意し、作業を進めていくことになる。俗に言う「元年」というやつと言えるだろう。
 
-今回は、この `popover` で何ができるのかを解説していく。
+- Popover API lands in Baseline
+  - https://web.dev/blog/popover-api
+
+今回は、この `popover` の議論と、仕様が完成していくまでをまとめる。
 
 
 ## Popover 属性の完成
@@ -27,10 +35,10 @@
 
 ここで筆者は、「もしかしたらまた名前変わるかもしれない」と思ったりもしたが、今回は壊れたサイトが少なかったため、サイト側を直して close する方が選ばれた。本来の互換性の考え方からは強引と言えるが「独自の属性は `data-` をつけるのがルールであり、それを守っていないサイトまでカバーできない」という理由で切り捨てる形になった。確かにそれを擁護すると、たとえどんな名前に変えても、どこかしらのサイトは壊れることになるため、落とし所だったのかもしれない。
 
-そうした作業を経て、ブラウザの実装も着々と進み、今では全ブラウザが一応 Ship している状態で、 Baseline 2024 では Newly Available に登録された。
+そうした作業を経て、ブラウザの実装も着々と進み、今では全ブラウザが一応 Ship している状態になり、 Baseline の Newly Available に登録された。
 
-- Popover API lands in Baseline  |  Blog  |  web.dev
-  - https://web.dev/blog/popover-api
+- Baseline Newly Available
+  - https://web.dev/series/baseline-newly-available
 
 
 ## Dialog と Popover の違い
@@ -39,7 +47,7 @@
 
 どちらも、 Top Layer に「ポコッ」と浮かび上がる UI を作ることができる点では類似しているが、それぞれは用途がかなり違なる。
 
-もっとも注目すべき点は **Role** だ。
+もっとも注目すべき点は *Role* だ。
 
 
 ### role=dialog
@@ -66,7 +74,7 @@ Aria には Dialog という Role が以前から定義されており、もし(
 <div popover>Hello Popover</div>
 ```
 
-`popover` 属性それ自体は、 Role に関するセマンティクスを提供せず、付与した要素が持っている Role なりが、そのまま使用される。それを TopLayer に表示し、 Light Dismiss できて、 JS だけでなく `popovertarget` で操作でき、 Anchor Positioning で配置できる。
+`popover` 属性それ自体は、 Role に関するセマンティクスを提供せず、付与した要素が持っている Role なりが、そのまま使用される。それを Top Layer に表示し、 Light Dismiss できて、 JS だけでなく `popovertarget` で操作でき、 Anchor Positioning で配置できる。
 
 `popover` する要素のセマンティクスは別途考えないといけないわけだが、逆を言えば、どんなセマンティクスを付与された要素も、それを `popover` できるというメリットがある。今後「ポコっと浮かび上がる `<selectmenu>` のような要素の標準化」を考える時が来ても、「ポコっと浮かび上がる」の部分は丸っと Popover に移譲できるため、 Open UI が考えている様々な提案仕様にも、応用して仕様を整理できることが期待される。
 
@@ -81,7 +89,7 @@ Aria には Dialog という Role が以前から定義されており、もし(
 
 特に Modal Dialog は、基本的にユーザをブロックすることに重きを置いているが、反対に `popover` は極力ユーザの邪魔にならないような挙動を求められる。そのため、`<dialog>` 同様の ESC などはもちろん、「戻る」ボタンや、 Backdrop のクリック、他の Popover が開いた時など、よりカジュアルに閉じるような実装が可能になっている。
 
-ここで使われているのが Close Watcher だ。
+ここで使われているのが、 #3 で解説した Close Watcher であり、必ずしも Modal だけがターゲットではない点が、 "Modal Close Watcher" ではなく "Close Watcher" になった理由の 1 つでもある。
 
 
 ## `<dialog>` を `popover` する
@@ -90,7 +98,7 @@ Aria には Dialog という Role が以前から定義されており、もし(
 
 そこに対して、 `show()`/`showModal()` で Modal として出すかどうかという使い分けをするのだが、実際には「 `role=dialog` を Popover で出したい」というユースケースもある。
 
-この場合は「`<dialog>` を `popover` する」という合わせ技がちょうどよくなる場合がある。
+この場合は「`<dialog>` を `popover` する」という合わせ技も使える。
 
 ```html
 <dialog popover>
@@ -103,7 +111,7 @@ Aria には Dialog という Role が以前から定義されており、もし(
 </dialog>
 ```
 
-これにより、特に Light Dismiss の恩恵で、カジュアルに閉じることができる `<dialog>` が出せるため、特に non-Modal Dialog を出したい場合は、この構成が適する場合が多いだろう。
+これにより、特に Light Dismiss の恩恵で、カジュアルに閉じる `<dialog>` が出せるため、 non-Modal Dialog で応用できる。
 
 一方で、 Modal Dialog を Light Dismiss したいがために、 `popover` で実装し、 `::backdrop` を暗くすることで Modal っぽく実装するというのは、あまり良い実装ではないとされている。
 
@@ -122,7 +130,7 @@ dialog[popover]::backdrop {
 - Add light dismiss functionality to `<dialog>` · Issue #9373 · whatwg/html
   - https://github.com/whatwg/html/issues/9373
 
-逆に、 Close Watcher を無効にし、一切 Light Dismiss 的な挙動をしない `<dialog>` の提案についても、進行中だ。
+逆に、 Close Watcher を無効にし、一切 Light Dismiss 的な挙動をしない `<dialog>` の提案についても議論はある。
 
 - Support disabling CloseWatcher integration in `<dialog>` · Issue #10592 · whatwg/html
   - https://github.com/whatwg/html/issues/10592
@@ -132,13 +140,13 @@ dialog[popover]::backdrop {
 
 ## Popover Target
 
-JS には `popover` を開閉する API が用意されている。
+JS には `popover` を開閉する API が用意された。
 
 - `showPopover()`
 - `hidePopover()`
 - `togglePopover()`
 
-そして、これは HTML だけで宣言的に記述できるようになっている。
+そして、これは HTML だけで宣言的に記述できるようにもなっていた。
 
 - `popovertarget`
 - `popovertargetaction`
@@ -160,7 +168,7 @@ JS には `popover` を開閉する API が用意されている。
 
 この `popovertarget` と同じように、開く閉じるの宣言的な実装を `<dialog>` でも実現したいという要望が出た。
 
-これも `<dialog popover>` によってカバーできるが、そうじゃない `show()`/ `showModal()` でもできるように提案されたのが Invoker だ。
+これも `<dialog popover>` によってカバーできるが、そうではない `show()`/ `showModal()` でもできるように提案されたのが Invoker だ。
 
 最初は属性名も Invoker だったが、今は `command` という属性名になっている。
 
@@ -179,7 +187,7 @@ JS には `popover` を開閉する API が用意されている。
 </dialog>
 ```
 
-この仕様は `popover` にも逆輸入され、現在は `popover` も `command` で開けるようにしていく方針になっている。(であれば、いずれ `popovertarge` は消えるかもしれないので、これから実装する場合は最新の議論に注意したい)
+この仕様は `popover` にも逆輸入され、現在は `popover` も `command` で開けるようにしていく方針になっている。(つまり、いずれ `popovertarge` は消えるかもしれないので、これから実装する場合は最新の議論に注意したい)
 
 ```html
 <button commandfor="foo" command="show">
@@ -194,7 +202,7 @@ JS には `popover` を開閉する API が用意されている。
 
 ## Anchor Positioning
 
-これが `popover` と同時に策定されていた、今後かなり重要になる仕様の 1 つだ。
+Anchoring は `popover` と同時に策定されていた、今後かなり重要になる仕様の 1 つだ。
 
 まず、先ほどの例を考えてみる。
 
@@ -210,13 +218,13 @@ JS には `popover` を開閉する API が用意されている。
 
 このとき Popover した `<div>` を、ボタンの右下に表示したいとしよう。
 
-通常の DOM であれば、 `<button>` と `<div>` を相対的に配置すれば良いが、今 `<div popover>` は Top Layer に、 `<button>` はその backdrop に表示されているため、二つを相対的に配置することができないのだ。
+通常の DOM であれば、 `<button>` を基準にし、 `<div>` を相対的に配置すれば良いが、今 `<div popover>` は Top Layer に、 `<button>` はその backdrop に表示されているため、 2 つを相対的に配置することができないのだ。
 
 `<div popover>` が表示されている Top Layer には、他の DOM が何も無い状態なので、なんらかの方法で `<div popover>` の座標などを渡されない限りは、「画面の真ん中」や「四隅」といった、絶対値指定できる場所くらいしか、配置のしようがない。
 
 TODO: 図
 
-そこで、 Anchor という概念を導入し、開いた `<button>` が Anchor で、開かれ側はその Anchor の右下に表示する、といった指定ができるようにした。これが Anchor Positioning だ。
+そこで、 Anchor という概念を導入し、「開いた `<button>` を Anchor として、開かれ側はその Anchor の右下に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
 
 TODO: 図(間違ってる?)
 
