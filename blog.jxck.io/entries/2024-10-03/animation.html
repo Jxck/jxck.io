@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-10-03/animation.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、 popup でやっていた Origin Tria...">
+  <meta name=keywords            content="dialog,popover">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-10-03/animation.html>
+  <meta property=og:title        content="Dialog と Popover #6 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、 popup でやっていた Origin Tria...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Dialog と Popover #6 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-10-03T08:00:00+08:00",
+    "dateModified": "2024-10-03T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、 popup でやっていた Origin Tria..."
+  }
+  </script>
+
+  <title>Dialog と Popover #6 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-03>2024-10-03</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-03>2024-10-03</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#dialog">dialog</a>
+              <li><a href="/tags#popover">popover</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#display-and-content-visibility-animations">Display and content-visibility animations</a>
+              <li><a href="#@starting-style"><code translate=no>@starting-style</code></a>
+              <li><a href="#prefer-reduced-motion">Prefer Reduced Motion</a>
+              <li><a href="#outro">Outro</a>
+              <li><a href="#demo">DEMO</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Dialog と Popover #6</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>ついに <code translate=no>&lt;toast&gt;</code> -&gt; <code translate=no>&lt;popup&gt;</code> -&gt; <code translate=no>popup</code> -&gt; <code translate=no>popover</code> として、要素から属性になり名前も決まった。
+        <p>とはいえ実装は <code translate=no>popup</code> とそんなに変わらないので、 <code translate=no>popup</code> でやっていた Origin Trials を継続しながら、徐々に実装を進めていくフェーズが 2022/12 くらいの話だ。
+        <ul>
+          <li>
+            Intent to extend Origin Trial: Popover API
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/kZXexHhH7EA/m/UmQYwGW3DAAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/kZXexHhH7EA/m/UmQYwGW3DAAJ</a>
+            </ul>
+          </li>
+        </ul>
+        <p>しかし、 <code translate=no>popover</code> を実用するには足りてない議論があった、それが Animation だ。
+      </section>
+      <section>
+        <h2 id="display-and-content-visibility-animations"><a href="#display-and-content-visibility-animations">Display and content-visibility animations</a></h2>
+        <p><code translate=no>&lt;dialog&gt;</code> や <code translate=no>popover</code> された要素は、基本的には現れたり消えるするので、それをアニメーションするには、 <code translate=no>display</code> / <code translate=no>content-visibility</code> の属性をアニメーションする必要がある。
+        <p>まずは消す方を以下のように <code translate=no>transition</code> でやってみよう。 <code translate=no>opacity</code> を徐々に薄くし、最後に <code translate=no>display: none</code> する実装は以下のようになる。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=css data-code=css><code translate=no class=language-css>div {
+  opacity: 1;
+  display: block;
+}
+/* transition で実装 */
+.fade-out {
+  opacity: 0;
+  display: none;
+  transition: opacity 2s, display 2s;
+}
+/*アニメーションで実装 */
+.fade-out  {
+  animation: fade-out 0.5s forwards;
+}
+
+@keyframes fade-out {
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}</code></pre>
+        <p>この <code translate=no>.face-out</code> class を追加したら、要素がゆっくり消える想定だが、実際には追加した瞬間に消えてしまう。これは <code translate=no>display</code> がもともと not animatable だったからだ。
+        <p>CSS のアニメーションでは、属性に対して 4 つの Animation Type が決まってる。
+        <ul>
+          <li>not animatable
+          <li>discrete
+          <li>by computed value
+          <li>repeatable list
+        </ul>
+        <p>not animatable は「アニメーションすると複雑すぎるため <code translate=no>transition</code> や <code translate=no>keyframe</code> に指定されても無視する」というものだ。
+        <p>つまり、要素をふわっと消したい場合は、代わりに <code translate=no>visibility</code> を用いる、 <code translate=no>height: 0</code> にして潰す、 <code translate=no>left: -1000px</code> などで画面外に飛ばす、アニメーションが終わったら JS で消す、といった実装が必要だった。
+        <p>ところが、 <code translate=no>&lt;dialog&gt;</code> や <code translate=no>popover</code> は、その表示非表示を <code translate=no>display</code> の変更で行っているため、アニメーションが複雑になる。そこで、 <code translate=no>display</code> も animatable にしようという議論が始まったのだ。
+        <ul>
+          <li>
+            Intent to Ship: Display and content-visibility animations
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/UV9POKsNZA8/m/WCj2GZGXAAAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/UV9POKsNZA8/m/WCj2GZGXAAAJ</a>
+            </ul>
+          </li>
+          <li>
+            [css-display] Why is display listed as not animatable instead of animation type: discrete? · Issue #6429 · w3c/csswg-drafts
+            <ul>
+              <li><a href="https://github.com/w3c/csswg-drafts/issues/6429#issuecomment-1318933547" target=_blank>https://github.com/w3c/csswg-drafts/issues/6429#issuecomment-1318933547</a>
+            </ul>
+          </li>
+          <li>
+            rendering/entry-exit-animations.md at master · chrishtr/rendering
+            <ul>
+              <li><a href="https://github.com/chrishtr/rendering/blob/master/entry-exit-animations.md" target=_blank>https://github.com/chrishtr/rendering/blob/master/entry-exit-animations.md</a>
+            </ul>
+          </li>
+        </ul>
+        <p>これによって、CSS Display Module Level 4 から <code translate=no>display</code> の Animation Type は not animatable ではなく discrete に近いたが、少し特別扱いされる値となった。
+        <ul>
+          <li>
+            rendering/entry-exit-animations.md at master · chrishtr/rendering
+            <ul>
+              <li><a href="https://github.com/chrishtr/rendering/blob/master/entry-exit-animations.md" target=_blank>https://github.com/chrishtr/rendering/blob/master/entry-exit-animations.md</a>
+            </ul>
+          </li>
+        </ul>
+        <p>例えば <code translate=no>opacity</code> の Animation Type は by computed value で、 0 から 1 の間をスライダーを動かすように連続した変化をさせる。一方、 true/false, enable/disable といった値は discrete (離散値) というカテゴリになる。
+        <p>discrete な値を <code translate=no>transition</code> する場合は、真ん中(50%)で値が切り替わる挙動になるため、 <code translate=no>opacity</code> が 0.5 まで減ったところで、 <code translate=no>display: none</code> になって要素がぱつっと消えてしまうことになる。
+        <p>
+          <img loading=lazy decoding=async src=./transition-display.drawio.svg?241003_001028 alt="display が途中で変わり要素が消える" width=442 height=182>
+        </p>
+        <p>しかし、実際に欲しいのは <code translate=no>opacity: 0</code> になった後に、 <code translate=no>display: none</code> / <code translate=no>content-visibility: hidden</code> に変化し消える挙動だ。
+        <p>
+          <img loading=lazy decoding=async src=./transition-display-finally.drawio.svg?241003_001232 alt="display が最後に変更する" width=442 height=182>
+        </p>
+        <p>この変更を利用するためには、 <code translate=no>keyframe</code> をそのままに、<code translate=no>transition</code> の対象プロパティに <code translate=no>allow-discrete</code> をつける。
+        <pre class=css data-code=css><code translate=no class=language-css>div {
+  opacity: 1;
+  display: block;
+}
+
+/* transition で実装 */
+.fade-out {
+  opacity: 0;
+  display: none;
+  transition: opacity 2s, display 2s allow-discrete;
+}
+
+/* animation で実装 */
+.fade-out  {
+  animation: fade-out 0.5s forwards;
+}
+
+@keyframes fade-out {
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}</code></pre>
+        <p>fade-in させる時は少し考えることが増える。
+        <p>単純に、 <code translate=no>display: none</code> を <code translate=no>block</code> にしてから, <code translate=no>opacity: 0</code> を <code translate=no>1</code> に遷移させればよさそうだ。
+        <pre class=css data-code=css><code translate=no class=language-css>div {
+  opacity: 0;
+  display: none;
+}
+
+/* transition で実装 */
+.fade-in {
+  opacity: 1;
+  display: block;
+  transition: opacity 2s, display 2s allow-discrete;
+}
+
+/* animation で実装 */
+.fade-out  {
+  animation: fade-out 0.5s forwards;
+}</code></pre>
+        <p>ところが、これでは <code translate=no>display</code> が変わった瞬間に要素が <code translate=no>opacity</code> を持つため、それが「0 である」という初期値が計算される前に、 <code translate=no>opacity</code> が 1 になってしまうため、想定した挙動にならない。
+        <p>ここでは、 <code translate=no>display</code> が切り替わる時は、アニメーションする値の初期値を要素に反映し、その上で変化をさせる必要がある。以前はこれを「一旦 <code translate=no>display: block</code> に変えたら、 <code translate=no>requestAnimationFrame()</code> で <code translate=no>opacity: 0</code> が計算されるのを待ってから、 <code translate=no>opacity: 1</code> に遷移させる」や「<code translate=no>getBoundingClientRect()</code> で値の計算を確定させる処理を一旦呼んでから遷移させる」といった実装が必要だった。
+        <p>ところが <code translate=no>&lt;display&gt;</code> や <code translate=no>popover</code> も、出現時に <code translate=no>display</code> が変わっているため、同じ問題が起こってしまう。せっかく Declarative に定義したのに、そのアニメーションに JS が必須となるのは不便だ。
+      </section>
+      <section>
+        <h2 id="@starting-style"><a href="#@starting-style"><code translate=no>@starting-style</code></a></h2>
+        <p>この問題を解決するため、「初期値を定義するための仕様」が提案された。
+        <ul>
+          <li>
+            [selectors-4] Add syntax to establish before-change style for css-transitions on new elements. · Issue #8174 · w3c/csswg-drafts
+            <ul>
+              <li><a href="https://github.com/w3c/csswg-drafts/issues/8174" target=_blank>https://github.com/w3c/csswg-drafts/issues/8174</a>
+            </ul>
+          </li>
+        </ul>
+        <p>名前は紆余曲折を経て <code translate=no>@starting-style</code> というプロパティで書くことになった。
+        <pre class=css data-code=css><code translate=no class=language-css>div {
+  display: none;
+  opacity: 0;
+}
+
+/* transition で実装 */
+.fade-in {
+  opacity: 1;
+  display: block;
+  transition: opacity 2s, display 2s allow-discrete;
+  @starting-style {
+    /* display が切り替わった時点での初期値を指定 */
+    opacity: 0;
+  }
+}
+
+/* animation で実装 */
+.fade-in {
+  animation: fade-in 0.5s forwards;
+  display: block;
+  @starting-style {
+    /* display が切り替わった時点での初期値を指定 */
+    opacity: 0;
+  }
+}
+@keyframes fade-in {
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}</code></pre>
+        <p>これで、要素のスタイルが計算される前の値を、明示的に示すことができるようになった。
+      </section>
+      <section>
+        <h2 id="prefer-reduced-motion"><a href="#prefer-reduced-motion">Prefer Reduced Motion</a></h2>
+        <p><code translate=no>&lt;dialog&gt;</code> / <code translate=no>popover</code> とは直接関係ないが、 <code translate=no>prefer-reduced-motion</code> が指定されていたら、アニメーションは無効にしたい。
+        <pre class=css data-code=css><code translate=no class=language-css>@media(prefers-reduced-motion: no-preference) {
+  .fade-in, .fade-out {
+    transition: none;
+  }
+}</code></pre>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>次回は、前回軽く触れた Anchor Positoning のスタイルについて解説する。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作する DEMO を以下に用意した。
+        <ul>
+          <li>
+            Dialog Animation DEMO | labs.jxck.io
+            <ul>
+              <li><a href="https://labs.jxck.io/dialog/animation.html" target=_blank>https://labs.jxck.io/dialog/animation.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
