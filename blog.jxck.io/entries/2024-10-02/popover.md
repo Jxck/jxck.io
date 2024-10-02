@@ -269,15 +269,15 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 
 ![anchor で右下に表示した popover がはみ出す](anchor-over.drawio.svg#411x331)
 
-これをさけるために、フォールバックという仕組みを導入し、「はみ出る場合は、別のスタイルに切り替える」という指定ができるようになった。
+これを避けるために、フォールバックという仕組みを導入し、「はみ出る場合は、別のスタイルに切り替える」という指定をするための `position-try-options` が提案された。
 
-例えば、 `flip-inline` を指定すれば Inline 方向(つまり左右)を逆にするようフォールバックできる。
+これは後に `position-try-fallbacks` と名前を変え、例えば `flip-inline` を指定すれば Inline 方向(つまり左右)を逆にするようフォールバックできる。
 
 ```css
 [popover] {
   top: anchor(end);
   left: anchor(right);
-  position-try-options: flip-inline;
+  position-try-fallbacks: flip-inline;
 }
 ```
 
