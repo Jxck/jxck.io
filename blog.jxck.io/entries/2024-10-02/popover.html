@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-02T08:00:00+08:00",
-    "dateModified": "2024-10-02T08:00:00+08:00",
+    "dateModified": "2024-10-03T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-02>2024-10-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-02>2024-10-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-03>2024-10-03</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -149,6 +149,7 @@
               <ol>
                 <li><a href="#ancor-attributes">Ancor Attributes</a>
               </ol>
+              <li><a href="#position-area-grid">Position Area Grid</a>
               <li><a href="#anchor-position-の-fallback">Anchor Position の fallback</a>
               <ol>
                 <li><a href="#css-anchor-name">CSS Anchor Name</a>
@@ -407,17 +408,31 @@ dialog[popover]::backdrop {
         </section>
       </section>
       <section>
+        <h2 id="position-area-grid"><a href="#position-area-grid">Position Area Grid</a></h2>
+        <p>Anchor に対して相対配置する場合は、 Anchor となる要素の周囲のどこかに配置することになるため、先ほどの「左上」や「右下」などの指定は頻出することになる。
+        <p>このケースに対して、 <code translate=no>anchor()</code> を用いて指定する代わりに「Anchor の周囲のどこに配置するか」を指定できるように導入されたのが Position Area Grid だ。
+        <p>
+          <img loading=lazy decoding=async src=position-area-grid.drawio.svg?241003_012409 alt="Anchor を中心に 9 個に分割したグリッド" width=300 height=300>
+        </p>
+        <p><code translate=no>position-anchor</code> を指定した要素に <code translate=no>position-area</code> で、表示したい位置を指定する。
+        <p>先ほどの「右下」を <code translate=no>position-anchor</code> を使い、ロジカルプロパティで指定するなら、以下のようになる。
+        <pre class=css data-code=css><code translate=no class=language-css>[popover] {
+  position-anchor: --anchor;
+  position-area: inline-end block-end;
+}</code></pre>
+      </section>
+      <section>
         <h2 id="anchor-position-の-fallback"><a href="#anchor-position-の-fallback">Anchor Position の fallback</a></h2>
         <p>先の例で、<code translate=no>&lt;div popover&gt;</code> を表示するための余白が <code translate=no>&lt;button&gt;</code> の右下に無かった場合、 Popover がはみ出して表示されることになる。
         <p>
           <img loading=lazy decoding=async src=anchor-over.drawio.svg?241002_152835 alt="anchor で右下に表示した popover がはみ出す" width=411 height=331>
         </p>
-        <p>これをさけるために、フォールバックという仕組みを導入し、「はみ出る場合は、別のスタイルに切り替える」という指定ができるようになった。
-        <p>例えば、 <code translate=no>flip-inline</code> を指定すれば Inline 方向(つまり左右)を逆にするようフォールバックできる。
+        <p>これを避けるために、フォールバックという仕組みを導入し、「はみ出る場合は、別のスタイルに切り替える」という指定をするための <code translate=no>position-try-options</code> が提案された。
+        <p>これは後に <code translate=no>position-try-fallbacks</code> と名前を変え、例えば <code translate=no>flip-inline</code> を指定すれば Inline 方向(つまり左右)を逆にするようフォールバックできる。
         <pre class=css data-code=css><code translate=no class=language-css>[popover] {
   top: anchor(end);
   left: anchor(right);
-  position-try-options: flip-inline;
+  position-try-fallbacks: flip-inline;
 }</code></pre>
         <p>
           <img loading=lazy decoding=async src=./anchor-fallback.drawio.svg?241002_153013 alt="左でははみ出す popover を anchor の右にフォールバック表示" width=411 height=331>

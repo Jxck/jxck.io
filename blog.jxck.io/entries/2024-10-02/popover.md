@@ -263,6 +263,26 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 そして、なによりもこの Anchor 属性が独立していることで、 Popover ではない要素でも Anchor 関係を指定し、配置することが可能なのだ。これは、従来の Flex, Grid などに並んで、新しい CSS の設計に影響する、重要な要素であると筆者は考えている。
 
 
+## Position Area Grid
+
+Anchor に対して相対配置する場合は、 Anchor となる要素の周囲のどこかに配置することになるため、先ほどの「左上」や「右下」などの指定は頻出することになる。
+
+このケースに対して、 `anchor()` を用いて指定する代わりに「Anchor の周囲のどこに配置するか」を指定できるように導入されたのが Position Area Grid だ。
+
+![Anchor を中心に 9 個に分割したグリッド](position-area-grid.drawio.svg#300x300)
+
+`position-anchor` を指定した要素に `position-area` で、表示したい位置を指定する。
+
+先ほどの「右下」を `position-anchor` を使い、ロジカルプロパティで指定するなら、以下のようになる。
+
+```css
+[popover] {
+  position-anchor: --anchor;
+  position-area: inline-end block-end;
+}
+```
+
+
 ## Anchor Position の fallback
 
 先の例で、`<div popover>` を表示するための余白が `<button>` の右下に無かった場合、 Popover がはみ出して表示されることになる。
