@@ -426,3 +426,11 @@ document.querySelectorAll("img.icon").forEach((img) => {
 すでにある HTML に、 Popover を後から追加する上でも、この方が実装は容易であり、管理しやすいため、筆者としてはこの機能が戻ってくることを心待ちにしている。
 
 次回は Popover や Dialog につきものの、アニメーション関連の仕様について触れる。
+
+
+## DEMO
+
+動作するデモを以下に用意した。執筆時点では Chrome Canary 131 を元に確認している。
+
+- Popover Labs | labs.jxck.io
+  - https://labs.jxck.io/popover/
