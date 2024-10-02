@@ -271,7 +271,7 @@ Anchor に対して相対配置する場合は、 Anchor となる要素の周�
 
 ![Anchor を中心に 9 個に分割したグリッド](position-area-grid.drawio.svg#300x300)
 
-`position-anchor` を指定した要素に `position-area` で、表示したい位置を指定する。
+`position-anchor` を指定した要素に `position-area` で、表示したい位置を指定する。(もともとは `inset-area` という名前だったが、指定する側からすれば Position なのでこの名前に変更された。)
 
 先ほどの「右下」を `position-anchor` を使い、ロジカルプロパティで指定するなら、以下のようになる。
 
