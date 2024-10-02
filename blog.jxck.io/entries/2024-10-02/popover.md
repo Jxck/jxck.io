@@ -400,7 +400,7 @@ document.querySelectorAll("img.icon").forEach((img) => {
 
 もし HTML で Anchor 要素が使えるのであれば、 `<a>` が持つ ID を指定して、 `<div popover>` 側を変えればよくなる。
 
-```js
+```html
 <style>
 [popover] {
   position-anchor: --anchor;
