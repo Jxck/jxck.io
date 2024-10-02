@@ -2,6 +2,8 @@
 
 ## Intro
 
+**このあたりから、まだ議論中の話が多いため、今後変わる可能性が高い点に注意。**
+
 `popup` が紆余曲折を経て `popover` 属性になり、 2023/3 に Safari が TP166 で実装した。そのまま Safari 17 に入ることを 2023/6 の WWDC で発表したあたりから、 `popover` の実装は各ブラウザで一気に話が進む。
 
 - Release Notes for Safari Technology Preview 166
@@ -47,7 +49,7 @@
 
 どちらも、 Top Layer に「ポコッ」と浮かび上がる UI を作ることができる点では類似しているが、それぞれは用途がかなり違なる。
 
-もっとも注目すべき点は _Role_ だ。
+もっとも注目すべき点は *Role* だ。
 
 
 ### role=dialog
@@ -266,19 +268,21 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 
 これをさけるために、フォールバックという仕組みを導入し、「はみ出る場合は、別のスタイルに切り替える」という指定ができるようになった。
 
-例えば、 flip-inline を指定すれば Inline 方向(つまり左右)を逆にし、 flip-block を指定すれば Block 方向(つまり上下)を逆にするようフォールバックできる。
+例えば、 `flip-inline` を指定すれば Inline 方向(つまり左右)を逆にするようフォールバックできる。
 
 ```css
 [popover] {
   top: anchor(end);
   left: anchor(self-end);
-  position-try-options: flip-inline, flip-block;
+  position-try-options: flip-inline;
 }
 ```
 
 ![左でははみ出す popover を anchor の右にフォールバック表示](./anchor-fallback.drawio.svg)
 
-もっと細かくスタイルを指定したい場合は、フォールバックの先を `@position-try` に複数指定し、それを並べて順順に試行させることができる。複数適用できる場合の優先順位も、 `position-try-order` で指定できる。
+Block 方向(つまり上下)であれば `flip-block` でフォールバックできる。
+
+より細かくスタイルを指定したい場合は、フォールバックの先を `@position-try` に複数指定し、それを並べて順順に試行させることができる。複数適用できる場合の優先順位は `position-try-order` に指定可能だ。
 
 ```css
 [popover] {
@@ -295,7 +299,9 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 }
 ```
 
-これで、どんな要素に Invoke されても、 Top Layer 上に表示されつつ、さらに画面内にしっかりと収まるような `popover` が定義できるのだ。特に Menu 系で縦長になりがちな UI を適切に表示する上で重宝する。
+これで、どんな要素に Invoke されても、 Top Layer 上に表示されつつ、さらに画面内にしっかりと収まるような `popover` が表示できるのだ。
+
+特に縦長になりがちな Menu 系の UI を、適切に表示する上で重宝する。
 
 
 ### CSS Anchor Name
@@ -330,15 +336,21 @@ button {
 
 ## Invoker Relationship
 
-スタイルマターであるがために、 Anchor を指定するのに CSS でいちいち名前をつけて紐づけるというのは、実装上は不便な場合が多い。
+スタイルマターであるとはいえ、 Anchor を指定するのに CSS でいちいち名前をつけて紐づけるというのは、Invoker と Popover の関連が HTML だけで完結できず、同時に CSS でも関連づけないと不整合が起こる点で不便だ。
 
-Invoker と Popover の関連を HTML だけで完結できず、同時に CSS でも関連づけないと不整合が起こるからだ。特に動的に関連付けを変更したいような場合には、 `<div style="position-anchor: --anchor">` などと HTML 側でいじる必要などが出るため、あまり使いやすい API では無かった。
+特に動的に関連付けを変更したいような場合には、 `<div style="position-anchor: --anchor">` などと HTML 側でいじる必要などが出るため、あまり使いやすい API では無い。
 
 議論を進めた結果、「少なくとも Invoker と Popover の間には、暗黙的な Anchor の関係を見出しても良いだろう」ということになり、先のように `<button commadfor>` で開いた `<div popover>` との間には、暗黙的に Anchor の関係がある、ということになったのだ。これを Invoker Relationship と呼ぶ。
 
-つまり、以下の例は HTML の anchor 属性も、 CSS の `anchor-name` も無いが、 `anchor()` を使った配置ができていることに注目したい。
+つまり、以下の例は HTML の `anchor` 属性も、 CSS の `anchor-name` も無いが、 `anchor()` を使った配置ができていることに注目したい。
 
 ```html
+<style>
+[popover] {
+  top: anchor(bottom);
+  left: anchor(center);
+}
+</style>
 <button id="button" commandfor="foo" command="show">
   Show Popover
 </button>
@@ -346,51 +358,47 @@ Invoker と Popover の関連を HTML だけで完結できず、同時に CSS �
   This is a Popover
   <button commandfor="foo" command="hide">Close</button>
 </div>
-<style>
-[popover] {
-  top: anchor(bottom);
-  left: anchor(center);
-}
-</style>
 ```
 
 
 ## HTML Anchor Attributes の今後?
 
-Invoker Relationship の場合は Anchor 名を明示する必要がなくなったが、それでもなお、動的に `<popover>` を作り、 JS で開くような場合は不便がある。
+Invoker Relationship が暗黙的に作られる場合は、 Anchor 名を明示する必要がなくなった。それでもなお、動的に `<popover>` を作り、 JS で開くような場合は不便がある。
 
-例えば、 GitHub のリンクをマウスオーバーした場合、 Issue なら概要、 User ならプロフィールが Popover されるだろう。このような Popover は、 `<div popover>` を 1 つ用意し、その DOM を書き換えながら再利用する実装が考えられる。
+例えば、 GitHub のリンクをマウスオーバーした場合、 Issue なら概要、 User ならプロフィールが Popover されるだろう。プロフィールの場合は、アイコンが Anchor になる。
 
-つまり、 Popover 側は変わらないが、 Anchor 側が動的に変わっていくわけだが、 HTML の `command` で開いているわけではなく `onmouseover` をフックして JS で開くため、暗黙的な Invoker Relationship も生成されない。
+![GitHub のアカウントをマウスオーバーすると開くプロフィールのポップオーバー](github-profile-popover.png)
 
-この場合は、 `<div popover>` 側に `position-anchor: --anchor` を指定しておいたとすると。
+このような Popover は、画面中のすべてのアカウントごとに `<div popover>` を作っておくのではなく、 1 つ用意してその内容を書き換えながら再利用する実装が多い。
+
+つまり、 Popover (プロフィール)側は変わらないが、 Anchor (アイコン)側が動的に変わっていくわけだが、 HTML の `command` で開いているわけではなく `onmouseover` などをフックして JS で開くため、暗黙的な Invoker Relationship も生成されない。
+
+この実装として、 `<div popover>` 側に `position-anchor: --user-icon` を指定しておいたとすると。
 
 ```html
 <style>
 [popover] {
-  position-anchor: --anchor;
-  top: anchor(bottom);
-  left: anchor(center);
+  position-anchor: --user-icon;
+  bottom: anchor(top);
+  left: anchor(right);
 }
 </style>
 ```
 
-JS で mouseover された要素を、動的に `anchor-name: --anchor` に変えていく必要がある。以下のようなイメージだ。
+JS で `mouseover` された要素を、動的に `anchor-name: --user-icon` に変えていく必要がある。以下のようなイメージだ。
 
 ```js
-document.querySelectorAll("main > a").forEach((a) => {
-  a.on("mouseover", (e) => {
-    e.target.style.anchorName = "--anchor"
+document.querySelectorAll("img.icon").forEach((img) => {
+  img.addEventListener("mouseover", (e) => {
+    e.target.style.anchorName = "--user-icon"
+    // 終わったら消す
   })
-  // 終わったら消す
 })
 ```
 
-対象のイベントで、動的に `anchor-name` を変更し、終わったら `anchor-name` を消す必要がある。消し忘れると、被って意図しない場所に表示される可能性もある。名前を変えても良いが、その管理も面倒だろう。
+対象のイベントで、動的に `anchor-name` を変更し、終わったら `anchor-name` を消す必要がある。消し忘れると、他とかぶって意図しない場所に表示される可能性もある。名前を変えても良いが、その場合は Popover 側の管理も必要になる。
 
 もし HTML で Anchor 要素が使えるのであれば、 `<a>` が持つ ID を指定して、 `<div popover>` 側を変えればよくなる。
-
-TODO:
 
 ```js
 <style>
@@ -400,12 +408,15 @@ TODO:
   left: anchor(center);
 }
 </style>
-
 <script>
-$popover.anchor = $a.id
+document.querySelectorAll("img.icon").forEach((img) => {
+  img.addEventListener("mouseover", (e) => {
+    $popover.anchor = e.target.id
+  })
+})
 </script>
 ```
 
 すでにある HTML に、 Popover を後から追加する上でも、この方が実装は容易であり、管理しやすいため、筆者としてはこの機能が戻ってくることを心待ちにしている。
 
-次回はいよいよ Popover の実装について触れるが、 Anchor については未確定の部分が多いため、そこは省く。 Anchor 周りが確定したら、最後の記事として追加で出すことにする。
+次回は Popover や Dialog につきものの、アニメーション関連の仕様について触れる。
