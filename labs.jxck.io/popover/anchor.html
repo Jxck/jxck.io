@@ -7,10 +7,17 @@
 <meta http-equiv="origin-trial" content="">
 
 <style>
+/* [popover] {
+  top: anchor(end);
+  left: anchor(start);
+} */
 </style>
 
 <h1>Anchor DEMO</h1>
 
-<div id="anchor">anchor</div>
-<div id="popover" popover anchor="anchor">popover</div>
-<button popovertarget="popover">button</button>
+<button id="button" popovertarget="foo">
+  Show Popover
+</button>
+<div id="foo" popover>
+  This is a Popover
+</div>

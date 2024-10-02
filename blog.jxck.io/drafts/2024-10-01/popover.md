@@ -47,7 +47,7 @@
 
 どちらも、 Top Layer に「ポコッ」と浮かび上がる UI を作ることができる点では類似しているが、それぞれは用途がかなり違なる。
 
-もっとも注目すべき点は *Role* だ。
+もっとも注目すべき点は _Role_ だ。
 
 
 ### role=dialog
@@ -104,10 +104,10 @@ Aria には Dialog という Role が以前から定義されており、もし(
 <dialog popover>
   <!-- ... -->
   <p>Ask me anything if you need help</p>
-  <input type=text></input>
-  <button>ask</button>
+  <input type="text">
+  <button id="ask">ask</button>
   <!-- ... -->
-  <button id=close>x</button>
+  <button id="close">x</button>
 </dialog>
 ```
 
@@ -222,11 +222,11 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 
 `<div popover>` が表示されている Top Layer には、他の DOM が何も無い状態なので、なんらかの方法で `<div popover>` の座標などを渡されない限りは、「画面の真ん中」や「四隅」といった、絶対値指定できる場所くらいしか、配置のしようがない。
 
-TODO: 図
+![Top Layer の真ん中に表示された Popover](top-layer.drawio.svg)
 
 そこで、 Anchor という概念を導入し、「開いた `<button>` を Anchor として、開かれ側はその Anchor の右下に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
 
-TODO: 図(間違ってる?)
+![button を anchor としその右上に Popover を表示](top-layer-anchor.drawio.svg)
 
 
 ### Ancor Attributes
@@ -253,7 +253,7 @@ TODO: 図(間違ってる?)
 
 つまり、以下のように `<button>` の右下に `<div popover>` が表示されることになる、というものだった。
 
-TODO: 図
+![button を anchor として右下に popover を表示する](anchor.drawio.svg)
 
 そして、なによりもこの Anchor 属性が独立していることで、 Popover ではない要素でも Anchor 関係を指定し、配置することが可能なのだ。これは、従来の Flex, Grid などに並んで、新しい CSS の設計に影響する、重要な要素であると筆者は考えている。
 
@@ -262,7 +262,7 @@ TODO: 図
 
 先の例で、`<div popover>` を表示するための余白が `<button>` の右下に無かった場合、 Popover がはみ出して表示されることになる。
 
-TODO: 図
+![anchor で右下に表示した popover がはみ出す](anchor-over.drawio.svg)
 
 これをさけるために、フォールバックという仕組みを導入し、「はみ出る場合は、別のスタイルに切り替える」という指定ができるようになった。
 
@@ -276,7 +276,7 @@ TODO: 図
 }
 ```
 
-TODO: 図
+![左でははみ出す popover を anchor の右にフォールバック表示](./anchor-fallback.drawio.svg)
 
 もっと細かくスタイルを指定したい場合は、フォールバックの先を `@position-try` に複数指定し、それを並べて順順に試行させることができる。複数適用できる場合の優先順位も、 `position-try-order` で指定できる。
 
