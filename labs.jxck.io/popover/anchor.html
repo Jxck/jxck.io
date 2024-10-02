@@ -7,17 +7,30 @@
 <meta http-equiv="origin-trial" content="">
 
 <style>
-/* [popover] {
-  top: anchor(end);
-  left: anchor(start);
-} */
+button {
+  anchor-name: --anchor-el;
+}
+
+div {
+  position-anchor: --anchor-el;
+  position: absolute;
+  inset-block-start: anchor(bottom);
+  inset-inline-start: anchor(right);
+  background-color: #ccc;
+
+  padding: 10px;
+  p {
+    margin: 0;
+  }
+}
 </style>
 
 <h1>Anchor Fallback DEMO</h1>
 
-<button id="button" popovertarget="foo">
-  Show Popover
+<button>
+  Anchor
 </button>
-<div id="foo" popover>
-  This is a Popover
+<div>
+  <p>left: anchor(right);</p>
+  <p>top: anchor(bottom);</p>
 </div>
