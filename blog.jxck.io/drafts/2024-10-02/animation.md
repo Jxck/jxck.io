@@ -14,7 +14,7 @@
 
 ## Display and content-visibility animations
 
-`<dialog>` や `popover` された要素は、基本的には現れたり消えるするので、それをアニメーションするには、 `display` / `content-visibility` の属性をアニメーションできる必要がある。
+`<dialog>` や `popover` された要素は、基本的には現れたり消えるするので、それをアニメーションするには、 `display` / `content-visibility` の属性をアニメーションする必要がある。
 
 まずは消す方を以下のように `transition` でやってみよう。 `opacity` を徐々に薄くし、最後に `display: none` する実装は以下のようになる。
 
@@ -73,11 +73,11 @@ not animatable は「アニメーションすると複雑すぎるため `transi
 
 discrete な値を `transition` する場合は、真ん中(50%)で値が切り替わる挙動になるため、 `opacity` が 0.5 まで減ったところで、 `display: none` になって要素がぱつっと消えてしまうことになる。
 
-TODO: 図
+![display が途中で変わり要素が消える](./transition-display.drawio.svg)
 
 しかし、実際に欲しいのは `opacity: 0` になった後に、 `display: none` / `content-visibility: hidden` に変化し消える挙動だ。
 
-TODO: 図
+![display が最後に変更する](./transition-display-finally.drawio.svg)
 
 この変更を利用するためには、 `keyframe` をそのままに、`transition` の対象プロパティに `allow-discrete` をつける。
 
@@ -185,7 +185,7 @@ div {
 
 ## Prefer Reduced Motion
 
-`<dialog>` / `popover` とは直接関係ないが、 `prefer-reduced-motion` が指定されていたら、アニメーションは無効すべきだ。
+`<dialog>` / `popover` とは直接関係ないが、 `prefer-reduced-motion` が指定されていたら、アニメーションは無効にしたい。
 
 ```css
 @media(prefers-reduced-motion: no-preference) {
@@ -198,8 +198,12 @@ div {
 
 ## Outro
 
-ここまでで `popover` を実装する上での仕様はおおよそ揃った。
+次回は、前回軽く触れた Anchor Positoning のスタイルについて解説する。
 
-最後は、いよいよ実践的な実装を解説する。
 
-デモがまだ書けてないので、少し開けて公開する。
+## DEMO
+
+動作する DEMO を以下に用意した。
+
+- Dialog Animation DEMO | labs.jxck.io
+  - https://labs.jxck.io/dialog/animation.html
