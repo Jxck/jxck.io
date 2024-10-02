@@ -73,11 +73,11 @@ not animatable は「アニメーションすると複雑すぎるため `transi
 
 discrete な値を `transition` する場合は、真ん中(50%)で値が切り替わる挙動になるため、 `opacity` が 0.5 まで減ったところで、 `display: none` になって要素がぱつっと消えてしまうことになる。
 
-![display が途中で変わり要素が消える](./transition-display.drawio.svg)
+![display が途中で変わり要素が消える](./transition-display.drawio.svg#442x182)
 
 しかし、実際に欲しいのは `opacity: 0` になった後に、 `display: none` / `content-visibility: hidden` に変化し消える挙動だ。
 
-![display が最後に変更する](./transition-display-finally.drawio.svg)
+![display が最後に変更する](./transition-display-finally.drawio.svg#442x182)
 
 この変更を利用するためには、 `keyframe` をそのままに、`transition` の対象プロパティに `allow-discrete` をつける。
 
