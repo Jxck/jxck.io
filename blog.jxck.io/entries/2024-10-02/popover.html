@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-10-02/popover.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このあたりから、まだ議論中の話が多いため、今後変わる可能性が高い点に注意。popup が紆余曲折を経て popover 属性になり、 2023/3 に Safari が TP166 で実装した。そのまま Safari 17 に入ることを 2023/6 の WWDC で発表し...">
+  <meta name=keywords            content="dialog,popover">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-10-02/popover.html>
+  <meta property=og:title        content="Dialog と Popover #5 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このあたりから、まだ議論中の話が多いため、今後変わる可能性が高い点に注意。popup が紆余曲折を経て popover 属性になり、 2023/3 に Safari が TP166 で実装した。そのまま Safari 17 に入ることを 2023/6 の WWDC で発表し...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Dialog と Popover #5 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-10-02T08:00:00+08:00",
+    "dateModified": "2024-10-02T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このあたりから、まだ議論中の話が多いため、今後変わる可能性が高い点に注意。popup が紆余曲折を経て popover 属性になり、 2023/3 に Safari が TP166 で実装した。そのまま Safari 17 に入ることを 2023/6 の WWDC で発表し..."
+  }
+  </script>
+
+  <title>Dialog と Popover #5 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-02>2024-10-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-02>2024-10-02</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#dialog">dialog</a>
+              <li><a href="/tags#popover">popover</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#popover-属性の完成">Popover 属性の完成</a>
+              <li><a href="#dialog-と-popover-の違い">Dialog と Popover の違い</a>
+              <ol>
+                <li><a href="#roledialog">role=dialog</a>
+              </ol>
+              <li><a href="#popover">popover</a>
+              <li><a href="#light-dismiss">Light Dismiss</a>
+              <li><a href="#dialog-を-popover-する"><code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> する</a>
+              <li><a href="#popover-target">Popover Target</a>
+              <li><a href="#invoker">Invoker</a>
+              <li><a href="#anchor-positioning">Anchor Positioning</a>
+              <ol>
+                <li><a href="#ancor-attributes">Ancor Attributes</a>
+              </ol>
+              <li><a href="#anchor-position-の-fallback">Anchor Position の fallback</a>
+              <ol>
+                <li><a href="#css-anchor-name">CSS Anchor Name</a>
+              </ol>
+              <li><a href="#invoker-relationship">Invoker Relationship</a>
+              <li><a href="#html-anchor-attributes-の今後">HTML Anchor Attributes の今後?</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Dialog と Popover #5</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p><strong>このあたりから、まだ議論中の話が多いため、今後変わる可能性が高い点に注意。</strong>
+        <p><code translate=no>popup</code> が紆余曲折を経て <code translate=no>popover</code> 属性になり、 2023/3 に Safari が TP166 で実装した。そのまま Safari 17 に入ることを 2023/6 の WWDC で発表したあたりから、 <code translate=no>popover</code> の実装は各ブラウザで一気に話が進む。
+        <ul>
+          <li>
+            Release Notes for Safari Technology Preview 166
+            <ul>
+              <li><a href="https://webkit.org/blog/13964/release-notes-for-safari-technology-preview-166/" target=_blank>https://webkit.org/blog/13964/release-notes-for-safari-technology-preview-166/</a>
+            </ul>
+          </li>
+          <li>
+            News from WWDC23: WebKit Features in Safari 17 beta
+            <ul>
+              <li><a href="https://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/" target=_blank>https://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>そして、 2024/4 ごろに発表された Baseline 2024 に <code translate=no>popover</code> がエントリしたことで、 2024 年は全ブラウザで互換性を高めていくことに合意し、作業を進めていくことになる。俗に言う「元年」というやつと言えるだろう。
+        <ul>
+          <li>
+            Popover API lands in Baseline
+            <ul>
+              <li><a href="https://web.dev/blog/popover-api" target=_blank>https://web.dev/blog/popover-api</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今回は、この <code translate=no>popover</code> の議論と、仕様が完成していくまでをまとめる。
+      </section>
+      <section>
+        <h2 id="popover-属性の完成"><a href="#popover-属性の完成">Popover 属性の完成</a></h2>
+        <p><code translate=no>popover</code> は属性になり、任意の要素を Popover できるようになった。
+        <p>しかし、現実世界では、すでに <code translate=no>popover</code> という属性を独自に使っているサイトもいくつかあったので、ブラウザに実装したところ壊れるサイトも報告された。
+        <ul>
+          <li>
+            popover attribute may not be web compatible · Issue #9042 · whatwg/html
+            <ul>
+              <li><a href="https://github.com/whatwg/html/issues/9042" target=_blank>https://github.com/whatwg/html/issues/9042</a>
+            </ul>
+          </li>
+        </ul>
+        <p>具体的には Angular UI が <code translate=no>popover</code> 属性を独自に使ってたのだが、標準の <code translate=no>popover</code> は開くまでは <code translate=no>display: none</code> がデフォルトであるため、ブラウザが対応した瞬間、当該要素が消えてしまうという問題だ。
+        <ul>
+          <li>
+            Some sites are reporting compat issues with popover [40270593] - Chromium
+            <ul>
+              <li><a href="https://issues.chromium.org/issues/40270593" target=_blank>https://issues.chromium.org/issues/40270593</a>
+            </ul>
+          </li>
+        </ul>
+        <p>他にも、 Chrome の Stable リリースに伴い、同じように壊れるサイトがいくつか報告される。
+        <p>ここで筆者は、「もしかしたらまた名前変わるかもしれない」と思ったりもしたが、今回は壊れたサイトが少なかったため、サイト側を直して close する方が選ばれた。本来の互換性の考え方からは強引と言えるが「独自の属性は <code translate=no>data-</code> をつけるのがルールであり、それを守っていないサイトまでカバーできない」という理由で切り捨てる形になった。確かにそれを擁護すると、たとえどんな名前に変えても、どこかしらのサイトは壊れることになるため、落とし所だったのかもしれない。
+        <p>そうした作業を経て、ブラウザの実装も着々と進み、今では全ブラウザが一応 Ship している状態になり、 Baseline の Newly Available に登録された。
+        <ul>
+          <li>
+            Baseline Newly Available
+            <ul>
+              <li><a href="https://web.dev/series/baseline-newly-available" target=_blank>https://web.dev/series/baseline-newly-available</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="dialog-と-popover-の違い"><a href="#dialog-と-popover-の違い">Dialog と Popover の違い</a></h2>
+        <p>まずは、前半で解説した <code translate=no>&lt;dialog&gt;</code> 要素と <code translate=no>popover</code> 属性の違いについて、整理しておく。
+        <p>どちらも、 Top Layer に「ポコッ」と浮かび上がる UI を作ることができる点では類似しているが、それぞれは用途がかなり違なる。
+        <p>もっとも注目すべき点は <em>Role</em> だ。
+        <section>
+          <h3 id="roledialog"><a href="#roledialog">role=dialog</a></h3>
+          <p>Aria には Dialog という Role が以前から定義されており、もし(概念上の) Dialog を自前で実装するのであれば <code translate=no>&lt;div role=&quot;dialog&quot;&gt;</code> のように指定することで「これは Dialog だ」ということを明示し、 UA に伝える必要があった。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;div role=dialog&gt;
+  &lt;form&gt;
+    &lt;label&gt;Are you sure to continue ?&lt;/label&gt;
+    &lt;button type=&quot;submit&quot;&gt;OK&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+          <p>動きとしては、ここまで散々解説してきたような、 <code translate=no>inert</code>, <code translate=no>::backdrop</code>, フォーカス管理, Top Layer などをネイティブで対応した <code translate=no>showModal</code> などの利点はもちろんあるが、セマンティクスの面で言えば、「<code translate=no>&lt;dialog&gt;</code> は <code translate=no>role=dialog</code> に対応するネイティブの要素」という点も重要だ。
+        </section>
+      </section>
+      <section>
+        <h2 id="popover"><a href="#popover">popover</a></h2>
+        <p>一方、 <code translate=no>popover</code> は属性であり、それゆえに任意の要素を Popover することができる。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;div popover&gt;Hello Popover&lt;/div&gt;</code></pre>
+        <p><code translate=no>popover</code> 属性それ自体は、 Role に関するセマンティクスを提供せず、付与した要素が持っている Role なりが、そのまま使用される。それを Top Layer に表示し、 Light Dismiss できて、 JS だけでなく <code translate=no>popovertarget</code> で操作でき、 Anchor Positioning で配置できる。
+        <p><code translate=no>popover</code> する要素のセマンティクスは別途考えないといけないわけだが、逆を言えば、どんなセマンティクスを付与された要素も、それを <code translate=no>popover</code> できるというメリットがある。今後「ポコっと浮かび上がる <code translate=no>&lt;selectmenu&gt;</code> のような要素の標準化」を考える時が来ても、「ポコっと浮かび上がる」の部分は丸っと Popover に移譲できるため、 Open UI が考えている様々な提案仕様にも、応用して仕様を整理できることが期待される。
+        <p>「動きを与えるだけ」といえばそれまでだが、それでも Declarative に「この要素は Popover できる」ことを宣言でき、その API が標準化されることで、ブラウザは「今なにかが Popover した」といった事実を知ることができる。
+        <p>これは、単に <code translate=no>&lt;div&gt;</code> を <code translate=no>z-index: 9999</code> などとしていた従来の実装と比べれば、格段に高い精度で UA に伝わり、ユーザにとっても UX の向上になると期待できるのだ。
+      </section>
+      <section>
+        <h2 id="light-dismiss"><a href="#light-dismiss">Light Dismiss</a></h2>
+        <p><code translate=no>&lt;dialog&gt;</code> と <code translate=no>popover</code> のもう 1 つ重要な違いは、 Light Dismiss の存在だ。
+        <p>特に Modal Dialog は、基本的にユーザをブロックすることに重きを置いているが、反対に <code translate=no>popover</code> は極力ユーザの邪魔にならないような挙動を求められる。そのため、<code translate=no>&lt;dialog&gt;</code> 同様の ESC などはもちろん、「戻る」ボタンや、 Backdrop のクリック、他の Popover が開いた時など、よりカジュアルに閉じるような実装が可能になっている。
+        <p>ここで使われているのが、 #3 で解説した Close Watcher であり、必ずしも Modal だけがターゲットではない点が、 &quot;Modal Close Watcher&quot; ではなく &quot;Close Watcher&quot; になった理由の 1 つでもある。
+      </section>
+      <section>
+        <h2 id="dialog-を-popover-する"><a href="#dialog-を-popover-する"><code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> する</a></h2>
+        <p><code translate=no>&lt;dialog&gt;</code> は <code translate=no>role=&quot;dialog&quot;</code> であることが重要だという話をした。
+        <p>そこに対して、 <code translate=no>show()</code>/<code translate=no>showModal()</code> で Modal として出すかどうかという使い分けをするのだが、実際には「 <code translate=no>role=dialog</code> を Popover で出したい」というユースケースもある。
+        <p>この場合は「<code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> する」という合わせ技も使える。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog popover&gt;
+  &lt;!-- ... --&gt;
+  &lt;p&gt;Ask me anything if you need help&lt;/p&gt;
+  &lt;input type=&quot;text&quot;&gt;
+  &lt;button id=&quot;ask&quot;&gt;ask&lt;/button&gt;
+  &lt;!-- ... --&gt;
+  &lt;button id=&quot;close&quot;&gt;x&lt;/button&gt;
+&lt;/dialog&gt;</code></pre>
+        <p>これにより、特に Light Dismiss の恩恵で、カジュアルに閉じる <code translate=no>&lt;dialog&gt;</code> が出せるため、 non-Modal Dialog で応用できる。
+        <p>一方で、 Modal Dialog を Light Dismiss したいがために、 <code translate=no>popover</code> で実装し、 <code translate=no>::backdrop</code> を暗くすることで Modal っぽく実装するというのは、あまり良い実装ではないとされている。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=foo&gt;Click me&lt;/button&gt;
+&lt;dialog popover id=foo&gt;I&apos;m a dialog!&lt;/dialog&gt;
+&lt;style&gt;
+dialog[popover]::backdrop {
+  background-color: black;
+}
+&lt;/style&gt;</code></pre>
+        <p>ちなみに、 <code translate=no>showModal</code> したものも Light Dismiss したいというユースケースを <code translate=no>&lt;dialog&gt;</code> 側でサポートすべきかという議論はまだ進行中だ。
+        <ul>
+          <li>
+            Add light dismiss functionality to <code translate=no>&lt;dialog&gt;</code> · Issue #9373 · whatwg/html
+            <ul>
+              <li><a href="https://github.com/whatwg/html/issues/9373" target=_blank>https://github.com/whatwg/html/issues/9373</a>
+            </ul>
+          </li>
+        </ul>
+        <p>逆に、 Close Watcher を無効にし、一切 Light Dismiss 的な挙動をしない <code translate=no>&lt;dialog&gt;</code> の提案についても議論はある。
+        <ul>
+          <li>
+            Support disabling CloseWatcher integration in <code translate=no>&lt;dialog&gt;</code> · Issue #10592 · whatwg/html
+            <ul>
+              <li><a href="https://github.com/whatwg/html/issues/10592" target=_blank>https://github.com/whatwg/html/issues/10592</a>
+            </ul>
+          </li>
+        </ul>
+        <p>このあたりは、議論がある程度まとまったら追記したいと思う。
+      </section>
+      <section>
+        <h2 id="popover-target"><a href="#popover-target">Popover Target</a></h2>
+        <p>JS には <code translate=no>popover</code> を開閉する API が用意された。
+        <ul>
+          <li><code translate=no>showPopover()</code>
+          <li><code translate=no>hidePopover()</code>
+          <li><code translate=no>togglePopover()</code>
+        </ul>
+        <p>そして、これは HTML だけで宣言的に記述できるようにもなっていた。
+        <ul>
+          <li><code translate=no>popovertarget</code>
+          <li><code translate=no>popovertargetaction</code>
+        </ul>
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=&quot;foo&quot; popovertargetaction=&quot;show&quot;&gt;
+  Show a popover
+&lt;/button&gt;
+&lt;article popover=&quot;auto&quot; id=&quot;foo&quot;&gt;
+  This is a popover article!
+  &lt;button popovertarget=&quot;foo&quot; popovertargetaction=&quot;hide&quot;&gt;Close&lt;/button&gt;
+&lt;/article&gt;</code></pre>
+        <p>基本的に Popover は明示的に閉じられるようにするのがプラクティスなので、 <code translate=no>x</code> アイコンを button として <code translate=no>popover</code> の右上に表示し、それを <code translate=no>action=hide</code> にするのがプラクティスだろう。
+      </section>
+      <section>
+        <h2 id="invoker"><a href="#invoker">Invoker</a></h2>
+        <p>この <code translate=no>popovertarget</code> と同じように、開く閉じるの宣言的な実装を <code translate=no>&lt;dialog&gt;</code> でも実現したいという要望が出た。
+        <p>これも <code translate=no>&lt;dialog popover&gt;</code> によってカバーできるが、そうではない <code translate=no>show()</code>/ <code translate=no>showModal()</code> でもできるように提案されたのが Invoker だ。
+        <p>最初は属性名も Invoker だったが、今は <code translate=no>command</code> という属性名になっている。
+        <ul>
+          <li>
+            [invokers] bikeshed the attribute names. · Issue #998 · openui/open-ui
+            <ul>
+              <li><a href="https://github.com/openui/open-ui/issues/998" target=_blank>https://github.com/openui/open-ui/issues/998</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ややこしいが、仕様(概念)名は Invoker で、属性名が Command という解釈だ。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;button commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
+  Show dialog
+&lt;/button&gt;
+&lt;dialog id=&quot;foo&quot;&gt;
+  This is a dialog
+  &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
+&lt;/dialog&gt;</code></pre>
+        <p>この仕様は <code translate=no>popover</code> にも逆輸入され、現在は <code translate=no>popover</code> も <code translate=no>command</code> で開けるようにしていく方針になっている。(つまり、いずれ <code translate=no>popovertarge</code> は消えるかもしれないので、これから実装する場合は最新の議論に注意したい)
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;button commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
+  Show Popover
+&lt;/button&gt;
+&lt;div id=&quot;foo&quot; popover&gt;
+  This is a Popover
+  &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      </section>
+      <section>
+        <h2 id="anchor-positioning"><a href="#anchor-positioning">Anchor Positioning</a></h2>
+        <p>Anchoring は <code translate=no>popover</code> と同時に策定されていた、今後かなり重要になる仕様の 1 つだ。
+        <p>まず、先ほどの例を考えてみる。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;button commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
+  Show Popover
+&lt;/button&gt;
+&lt;div id=&quot;foo&quot; popover&gt;
+  This is a Popover
+  &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        <p>このとき Popover した <code translate=no>&lt;div&gt;</code> を、ボタンの右下に表示したいとしよう。
+        <p>通常の DOM であれば、 <code translate=no>&lt;button&gt;</code> を基準にし、 <code translate=no>&lt;div&gt;</code> を相対的に配置すれば良いが、今 <code translate=no>&lt;div popover&gt;</code> は Top Layer に、 <code translate=no>&lt;button&gt;</code> はその backdrop に表示されているため、 2 つを相対的に配置することができないのだ。
+        <p><code translate=no>&lt;div popover&gt;</code> が表示されている Top Layer には、他の DOM が何も無い状態なので、なんらかの方法で <code translate=no>&lt;div popover&gt;</code> の座標などを渡されない限りは、「画面の真ん中」や「四隅」といった、絶対値指定できる場所くらいしか、配置のしようがない。
+        <p>
+          <img loading=lazy decoding=async src=top-layer.drawio.svg?241002_152445 alt="Top Layer の真ん中に表示された Popover" width=524 height=154>
+        </p>
+        <p>そこで、 Anchor という概念を導入し、「開いた <code translate=no>&lt;button&gt;</code> を Anchor として、開かれ側はその Anchor の右下に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
+        <p>
+          <img loading=lazy decoding=async src=top-layer-anchor.drawio.svg?241002_152454 alt="button を anchor としその右上に Popover を表示" width=524 height=154>
+        </p>
+        <section>
+          <h3 id="ancor-attributes"><a href="#ancor-attributes">Ancor Attributes</a></h3>
+          <p>当初 Anchor は HTML 属性で指定する提案がされていた。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;button id=&quot;button&quot; commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
+  Show Popover
+&lt;/button&gt;
+&lt;div id=&quot;foo&quot; anchor=&quot;button&quot; popover&gt;
+  This is a Popover
+  &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
+&lt;/div&gt;
+&lt;style&gt;
+[popover] {
+  top: anchor(bottom);
+  left: anchor(center);
+}
+&lt;/style&gt;</code></pre>
+          <p>この場合、 <code translate=no>&lt;div popover&gt;</code> の Anchor を <code translate=no>&lt;button&gt;</code> とし、 <code translate=no>&lt;button&gt;</code> が自分に対して左上になるように CSS を指定している。
+          <p>つまり、以下のように <code translate=no>&lt;button&gt;</code> の右下に <code translate=no>&lt;div popover&gt;</code> が表示されることになる、というものだった。
+          <p>
+            <img loading=lazy decoding=async src=anchor.drawio.svg?241002_152559 alt="button を anchor として右下に popover を表示する" width=241 height=141>
+          </p>
+          <p>そして、なによりもこの Anchor 属性が独立していることで、 Popover ではない要素でも Anchor 関係を指定し、配置することが可能なのだ。これは、従来の Flex, Grid などに並んで、新しい CSS の設計に影響する、重要な要素であると筆者は考えている。
+        </section>
+      </section>
+      <section>
+        <h2 id="anchor-position-の-fallback"><a href="#anchor-position-の-fallback">Anchor Position の fallback</a></h2>
+        <p>先の例で、<code translate=no>&lt;div popover&gt;</code> を表示するための余白が <code translate=no>&lt;button&gt;</code> の右下に無かった場合、 Popover がはみ出して表示されることになる。
+        <p>
+          <img loading=lazy decoding=async src=anchor-over.drawio.svg?241002_152835 alt="anchor で右下に表示した popover がはみ出す" width=411 height=331>
+        </p>
+        <p>これをさけるために、フォールバックという仕組みを導入し、「はみ出る場合は、別のスタイルに切り替える」という指定ができるようになった。
+        <p>例えば、 <code translate=no>flip-inline</code> を指定すれば Inline 方向(つまり左右)を逆にするようフォールバックできる。
+        <pre class=css data-code=css><code translate=no class=language-css>[popover] {
+  top: anchor(end);
+  left: anchor(self-end);
+  position-try-options: flip-inline;
+}</code></pre>
+        <p>
+          <img loading=lazy decoding=async src=./anchor-fallback.drawio.svg?241002_153013 alt="左でははみ出す popover を anchor の右にフォールバック表示" width=411 height=331>
+        </p>
+        <p>Block 方向(つまり上下)であれば <code translate=no>flip-block</code> でフォールバックできる。
+        <p>より細かくスタイルを指定したい場合は、フォールバックの先を <code translate=no>@position-try</code> に複数指定し、それを並べて順順に試行させることができる。複数適用できる場合の優先順位は <code translate=no>position-try-order</code> に指定可能だ。
+        <pre class=css data-code=css><code translate=no class=language-css>[popover] {
+  ...
+  position-try-fallbacks: --first, --second, flip-inline, flip-block;
+  position-try-order: most-height;
+}
+@position-try --first {
+  top: anchor(end);
+  right: anchor(self-start);
+}
+@position-try --end {
+  /* .... */
+}</code></pre>
+        <p>これで、どんな要素に Invoke されても、 Top Layer 上に表示されつつ、さらに画面内にしっかりと収まるような <code translate=no>popover</code> が表示できるのだ。
+        <p>特に縦長になりがちな Menu 系の UI を、適切に表示する上で重宝する。
+        <section>
+          <h3 id="css-anchor-name"><a href="#css-anchor-name">CSS Anchor Name</a></h3>
+          <p>このように、要素の配置に革新をもたらすであろう Anchor だが、 HTML 属性であるにも関わらず、明らかにスタイルマターなユースケースであるために、「セマンティクスは何か」という議論がされることになった。
+          <p>そこで、 HTML の Anchor 属性は一旦保留し、同様の機能を CSS 側で定義したのが、 <code translate=no>anchor-name</code> と <code translate=no>position-anchor</code> だ。
+          <p>指定は以下のように、 HTML で定義していた関係を CSS Variable で定義した名前を用いて紐づける仕様になっている。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
+button {
+  anchor-name: --anchor;
+}
+[popover] {
+  position-anchor: --anchor;
+  top: anchor(bottom);
+  left: anchor(center);
+}
+&lt;/style&gt;
+&lt;button&gt;button&lt;/button&gt;
+&lt;div id=&quot;message&quot; popover&gt;
+  popover
+&lt;/div&gt;</code></pre>
+          <p>まず <code translate=no>&lt;button&gt;</code> 側で <code translate=no>anchor-name</code> に CSS Variable で名前をつけ、 <code translate=no>popover</code> 側は <code translate=no>position-anchor</code> でその名前を指定し、 <code translate=no>anchor()</code> で相対位置を指定する。
+          <p>ここから、さらに余白を広げたいといった場合は、 <code translate=no>translate</code> などで位置を調整することになるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="invoker-relationship"><a href="#invoker-relationship">Invoker Relationship</a></h2>
+        <p>スタイルマターであるとはいえ、 Anchor を指定するのに CSS でいちいち名前をつけて紐づけるというのは、Invoker と Popover の関連が HTML だけで完結できず、同時に CSS でも関連づけないと不整合が起こる点で不便だ。
+        <p>特に動的に関連付けを変更したいような場合には、 <code translate=no>&lt;div style=&quot;position-anchor: --anchor&quot;&gt;</code> などと HTML 側でいじる必要などが出るため、あまり使いやすい API では無い。
+        <p>議論を進めた結果、「少なくとも Invoker と Popover の間には、暗黙的な Anchor の関係を見出しても良いだろう」ということになり、先のように <code translate=no>&lt;button commadfor&gt;</code> で開いた <code translate=no>&lt;div popover&gt;</code> との間には、暗黙的に Anchor の関係がある、ということになったのだ。これを Invoker Relationship と呼ぶ。
+        <p>つまり、以下の例は HTML の <code translate=no>anchor</code> 属性も、 CSS の <code translate=no>anchor-name</code> も無いが、 <code translate=no>anchor()</code> を使った配置ができていることに注目したい。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
+[popover] {
+  top: anchor(bottom);
+  left: anchor(center);
+}
+&lt;/style&gt;
+&lt;button id=&quot;button&quot; commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
+  Show Popover
+&lt;/button&gt;
+&lt;div id=&quot;foo&quot; popover&gt;
+  This is a Popover
+  &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      </section>
+      <section>
+        <h2 id="html-anchor-attributes-の今後"><a href="#html-anchor-attributes-の今後">HTML Anchor Attributes の今後?</a></h2>
+        <p>Invoker Relationship が暗黙的に作られる場合は、 Anchor 名を明示する必要がなくなった。それでもなお、動的に <code translate=no>&lt;popover&gt;</code> を作り、 JS で開くような場合は不便がある。
+        <p>例えば、 GitHub のリンクをマウスオーバーした場合、 Issue なら概要、 User ならプロフィールが Popover されるだろう。プロフィールの場合は、アイコンが Anchor になる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=github-profile-popover.avif?241002_222319>
+            <source type=image/webp srcset=github-profile-popover.webp?241002_222319>
+            <img loading=lazy decoding=async src=github-profile-popover.png?241002_222319 alt="GitHub のアカウントをマウスオーバーすると開くプロフィールのポップオーバー" width=844 height=662>
+          </picture>
+        </p>
+        <p>このような Popover は、画面中のすべてのアカウントごとに <code translate=no>&lt;div popover&gt;</code> を作っておくのではなく、 1 つ用意してその内容を書き換えながら再利用する実装が多い。
+        <p>つまり、 Popover (プロフィール)側は変わらないが、 Anchor (アイコン)側が動的に変わっていくわけだが、 HTML の <code translate=no>command</code> で開いているわけではなく <code translate=no>onmouseover</code> などをフックして JS で開くため、暗黙的な Invoker Relationship も生成されない。
+        <p>この実装として、 <code translate=no>&lt;div popover&gt;</code> 側に <code translate=no>position-anchor: --user-icon</code> を指定しておいたとすると。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
+[popover] {
+  position-anchor: --user-icon;
+  bottom: anchor(top);
+  left: anchor(right);
+}
+&lt;/style&gt;</code></pre>
+        <p>JS で <code translate=no>mouseover</code> された要素を、動的に <code translate=no>anchor-name: --user-icon</code> に変えていく必要がある。以下のようなイメージだ。
+        <pre class=js data-code=js><code translate=no class=language-js>document.querySelectorAll(&quot;img.icon&quot;).forEach((img) =&gt; {
+  img.addEventListener(&quot;mouseover&quot;, (e) =&gt; {
+    e.target.style.anchorName = &quot;--user-icon&quot;
+    // 終わったら消す
+  })
+})</code></pre>
+        <p>対象のイベントで、動的に <code translate=no>anchor-name</code> を変更し、終わったら <code translate=no>anchor-name</code> を消す必要がある。消し忘れると、他とかぶって意図しない場所に表示される可能性もある。名前を変えても良いが、その場合は Popover 側の管理も必要になる。
+        <p>もし HTML で Anchor 要素が使えるのであれば、 <code translate=no>&lt;a&gt;</code> が持つ ID を指定して、 <code translate=no>&lt;div popover&gt;</code> 側を変えればよくなる。
+        <pre class=js data-code=js><code translate=no class=language-js>&lt;style&gt;
+[popover] {
+  position-anchor: --anchor;
+  top: anchor(bottom);
+  left: anchor(center);
+}
+&lt;/style&gt;
+&lt;script&gt;
+document.querySelectorAll(&quot;img.icon&quot;).forEach((img) =&gt; {
+  img.addEventListener(&quot;mouseover&quot;, (e) =&gt; {
+    $popover.anchor = e.target.id
+  })
+})
+&lt;/script&gt;</code></pre>
+        <p>すでにある HTML に、 Popover を後から追加する上でも、この方が実装は容易であり、管理しやすいため、筆者としてはこの機能が戻ってくることを心待ちにしている。
+        <p>次回は Popover や Dialog につきものの、アニメーション関連の仕様について触れる。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
