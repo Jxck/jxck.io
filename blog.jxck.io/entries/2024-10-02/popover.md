@@ -152,6 +152,9 @@ JS には `popover` を開閉する API が用意された。
 
 - `popovertarget`
 - `popovertargetaction`
+  - `show`
+  - `hide`
+  - `toggle`
 
 ```html
 <button popovertarget="foo" popovertargetaction="show">
@@ -246,14 +249,14 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 <style>
 [popover] {
   top: anchor(bottom);
-  left: anchor(center);
+  left: anchor(right);
 }
 </style>
 ```
 
-この場合、 `<div popover>` の Anchor を `<button>` とし、 `<button>` が自分に対して左上になるように CSS を指定している。
+この場合、 `<div popover>` の Anchor を `<button>` としている。
 
-つまり、以下のように `<button>` の右下に `<div popover>` が表示されることになる、というものだった。
+`top: anchor(bottom)` は、自分の上端が Anchor の下端になるという指定だ。`left: anchor(right)` は自身の左端を Anchor の右端にしているため、結果、 `<button>` に対して右下に表示されるというものだ。
 
 ![button を anchor として右下に popover を表示する](anchor.drawio.svg#241x141)
 
@@ -273,7 +276,7 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 ```css
 [popover] {
   top: anchor(end);
-  left: anchor(self-end);
+  left: anchor(right);
   position-try-options: flip-inline;
 }
 ```
@@ -319,6 +322,7 @@ button {
 }
 [popover] {
   position-anchor: --anchor;
+  position: absolute;
   top: anchor(bottom);
   left: anchor(center);
 }
@@ -379,6 +383,7 @@ Invoker Relationship が暗黙的に作られる場合は、 Anchor 名を明示
 <style>
 [popover] {
   position-anchor: --user-icon;
+  position: absolute;
   bottom: anchor(top);
   left: anchor(right);
 }
@@ -404,6 +409,7 @@ document.querySelectorAll("img.icon").forEach((img) => {
 <style>
 [popover] {
   position-anchor: --anchor;
+  position: absolute;
   top: anchor(bottom);
   left: anchor(center);
 }

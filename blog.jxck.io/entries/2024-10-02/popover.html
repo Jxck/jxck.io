@@ -312,7 +312,14 @@ dialog[popover]::backdrop {
         <p>そして、これは HTML だけで宣言的に記述できるようにもなっていた。
         <ul>
           <li><code translate=no>popovertarget</code>
-          <li><code translate=no>popovertargetaction</code>
+          <li>
+            <code translate=no>popovertargetaction</code>
+            <ul>
+              <li><code translate=no>show</code>
+              <li><code translate=no>hide</code>
+              <li><code translate=no>toggle</code>
+            </ul>
+          </li>
         </ul>
         <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=&quot;foo&quot; popovertargetaction=&quot;show&quot;&gt;
   Show a popover
@@ -387,11 +394,11 @@ dialog[popover]::backdrop {
 &lt;style&gt;
 [popover] {
   top: anchor(bottom);
-  left: anchor(center);
+  left: anchor(right);
 }
 &lt;/style&gt;</code></pre>
-          <p>この場合、 <code translate=no>&lt;div popover&gt;</code> の Anchor を <code translate=no>&lt;button&gt;</code> とし、 <code translate=no>&lt;button&gt;</code> が自分に対して左上になるように CSS を指定している。
-          <p>つまり、以下のように <code translate=no>&lt;button&gt;</code> の右下に <code translate=no>&lt;div popover&gt;</code> が表示されることになる、というものだった。
+          <p>この場合、 <code translate=no>&lt;div popover&gt;</code> の Anchor を <code translate=no>&lt;button&gt;</code> としている。
+          <p><code translate=no>top: anchor(bottom)</code> は、自分の上端が Anchor の下端になるという指定だ。<code translate=no>left: anchor(right)</code> は自身の左端を Anchor の右端にしているため、結果、 <code translate=no>&lt;button&gt;</code> に対して右下に表示されるというものだ。
           <p>
             <img loading=lazy decoding=async src=anchor.drawio.svg?241002_152559 alt="button を anchor として右下に popover を表示する" width=241 height=141>
           </p>
@@ -408,7 +415,7 @@ dialog[popover]::backdrop {
         <p>例えば、 <code translate=no>flip-inline</code> を指定すれば Inline 方向(つまり左右)を逆にするようフォールバックできる。
         <pre class=css data-code=css><code translate=no class=language-css>[popover] {
   top: anchor(end);
-  left: anchor(self-end);
+  left: anchor(right);
   position-try-options: flip-inline;
 }</code></pre>
         <p>
@@ -441,6 +448,7 @@ button {
 }
 [popover] {
   position-anchor: --anchor;
+  position: absolute;
   top: anchor(bottom);
   left: anchor(center);
 }
@@ -490,6 +498,7 @@ button {
         <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
 [popover] {
   position-anchor: --user-icon;
+  position: absolute;
   bottom: anchor(top);
   left: anchor(right);
 }
@@ -503,9 +512,10 @@ button {
 })</code></pre>
         <p>対象のイベントで、動的に <code translate=no>anchor-name</code> を変更し、終わったら <code translate=no>anchor-name</code> を消す必要がある。消し忘れると、他とかぶって意図しない場所に表示される可能性もある。名前を変えても良いが、その場合は Popover 側の管理も必要になる。
         <p>もし HTML で Anchor 要素が使えるのであれば、 <code translate=no>&lt;a&gt;</code> が持つ ID を指定して、 <code translate=no>&lt;div popover&gt;</code> 側を変えればよくなる。
-        <pre class=js data-code=js><code translate=no class=language-js>&lt;style&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
 [popover] {
   position-anchor: --anchor;
+  position: absolute;
   top: anchor(bottom);
   left: anchor(center);
 }

@@ -29,7 +29,7 @@ div {
   display: none;
   transition: opacity 2s, display 2s;
 }
-/* animation で実装 */
+/*アニメーションで実装 */
 .fade-out  {
   animation: fade-out 0.5s forwards;
 }
@@ -44,7 +44,7 @@ div {
 
 この `.face-out` class を追加したら、要素がゆっくり消える想定だが、実際には追加した瞬間に消えてしまう。これは `display` がもともと not animatable だったからだ。
 
-CSS の Animation では、属性に対して 4 つの Animation Type が決まってる。
+CSS のアニメーションでは、属性に対して 4 つの Animation Type が決まってる。
 
 - not animatable
 - discrete
