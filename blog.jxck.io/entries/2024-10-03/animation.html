@@ -161,11 +161,11 @@
             </ul>
           </li>
         </ul>
-        <p>しかし、 <code translate=no>popover</code> を実用するには足りてない議論があった、それが Animation だ。
+        <p>しかし、 <code translate=no>popover</code> を実用するには足りていない議論があった、それが Animation だ。
       </section>
       <section>
         <h2 id="display-and-content-visibility-animations"><a href="#display-and-content-visibility-animations">Display and content-visibility animations</a></h2>
-        <p><code translate=no>&lt;dialog&gt;</code> や <code translate=no>popover</code> された要素は、基本的には現れたり消えるするので、それをアニメーションするには、 <code translate=no>display</code> / <code translate=no>content-visibility</code> の属性をアニメーションする必要がある。
+        <p><code translate=no>&lt;dialog&gt;</code> や <code translate=no>popover</code> された要素は、基本的には現れたり消えたりするので、それをアニメーションするには、 <code translate=no>display</code> / <code translate=no>content-visibility</code> の属性をアニメーションする必要がある。
         <p>まずは消す方を以下のように <code translate=no>transition</code> でやってみよう。 <code translate=no>opacity</code> を徐々に薄くし、最後に <code translate=no>display: none</code> する実装は以下のようになる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=css data-code=css><code translate=no class=language-css>div {
@@ -189,8 +189,8 @@
     display: none;
   }
 }</code></pre>
-        <p>この <code translate=no>.face-out</code> class を追加したら、要素がゆっくり消える想定だが、実際には追加した瞬間に消えてしまう。これは <code translate=no>display</code> がもともと not animatable だったからだ。
-        <p>CSS のアニメーションでは、属性に対して 4 つの Animation Type が決まってる。
+        <p>この <code translate=no>.fade-out</code> class を追加したら、要素がゆっくり消える想定だが、実際には追加した瞬間に消えてしまう。これは <code translate=no>display</code> がもともと not animatable だったからだ。
+        <p>CSS のアニメーションでは、属性に対して 4 つの Animation Type が決まっている。
         <ul>
           <li>not animatable
           <li>discrete
@@ -220,7 +220,7 @@
             </ul>
           </li>
         </ul>
-        <p>これによって、CSS Display Module Level 4 から <code translate=no>display</code> の Animation Type は not animatable ではなく discrete に近いたが、少し特別扱いされる値となった。
+        <p>これによって、CSS Display Module Level 4 から <code translate=no>display</code> の Animation Type は not animatable ではなく discrete に近いが、少し特別扱いされる値となった。
         <ul>
           <li>
             rendering/entry-exit-animations.md at master · chrishtr/rendering
@@ -230,7 +230,7 @@
           </li>
         </ul>
         <p>例えば <code translate=no>opacity</code> の Animation Type は by computed value で、 0 から 1 の間をスライダーを動かすように連続した変化をさせる。一方、 true/false, enable/disable といった値は discrete (離散値) というカテゴリになる。
-        <p>discrete な値を <code translate=no>transition</code> する場合は、真ん中(50%)で値が切り替わる挙動になるため、 <code translate=no>opacity</code> が 0.5 まで減ったところで、 <code translate=no>display: none</code> になって要素がぱつっと消えてしまうことになる。
+        <p>discrete な値を <code translate=no>transition</code> する場合は、真ん中(50%)で値が切り替わる挙動になるため、 <code translate=no>opacity</code> が 0.5 まで減ったところで、 <code translate=no>display: none</code> になって要素がぱっと消えてしまうことになる。
         <p>
           <img loading=lazy decoding=async src=./transition-display.drawio.svg?241003_001028 alt="display が途中で変わり要素が消える" width=442 height=182>
         </p>
@@ -282,7 +282,7 @@
 }</code></pre>
         <p>ところが、これでは <code translate=no>display</code> が変わった瞬間に要素が <code translate=no>opacity</code> を持つため、それが「0 である」という初期値が計算される前に、 <code translate=no>opacity</code> が 1 になってしまうため、想定した挙動にならない。
         <p>ここでは、 <code translate=no>display</code> が切り替わる時は、アニメーションする値の初期値を要素に反映し、その上で変化をさせる必要がある。以前はこれを「一旦 <code translate=no>display: block</code> に変えたら、 <code translate=no>requestAnimationFrame()</code> で <code translate=no>opacity: 0</code> が計算されるのを待ってから、 <code translate=no>opacity: 1</code> に遷移させる」や「<code translate=no>getBoundingClientRect()</code> で値の計算を確定させる処理を一旦呼んでから遷移させる」といった実装が必要だった。
-        <p>ところが <code translate=no>&lt;display&gt;</code> や <code translate=no>popover</code> も、出現時に <code translate=no>display</code> が変わっているため、同じ問題が起こってしまう。せっかく Declarative に定義したのに、そのアニメーションに JS が必須となるのは不便だ。
+        <p>ところが <code translate=no>&lt;dialog&gt;</code> や <code translate=no>popover</code> も、出現時に <code translate=no>display</code> が変わっているため、同じ問題が起こってしまう。せっかく Declarative に定義したのに、そのアニメーションに JS が必須となるのは不便だ。
       </section>
       <section>
         <h2 id="@starting-style"><a href="#@starting-style"><code translate=no>@starting-style</code></a></h2>
@@ -341,7 +341,7 @@
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>これで、 Dialog / Popover をアニメーションさせるためのプリミティブが揃った。
-        <p>以降はより実践的な実装方について解説していく。
+        <p>以降はより実践的な実装方法について解説していく。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>

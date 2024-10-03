@@ -147,7 +147,7 @@
               <li><a href="#invoker">Invoker</a>
               <li><a href="#anchor-positioning">Anchor Positioning</a>
               <ol>
-                <li><a href="#ancor-attributes">Ancor Attributes</a>
+                <li><a href="#anchor-attributes">Anchor Attributes</a>
               </ol>
               <li><a href="#position-area-grid">Position Area Grid</a>
               <li><a href="#anchor-position-の-fallback">Anchor Position の fallback</a>
@@ -155,7 +155,7 @@
                 <li><a href="#css-anchor-name">CSS Anchor Name</a>
               </ol>
               <li><a href="#invoker-relationship">Invoker Relationship</a>
-              <li><a href="#html-anchor-attributes-の今後">HTML Anchor Attributes の今後?</a>
+              <li><a href="#html-anchor-attributes-の今後">HTML Anchor Attributes の今後</a>
               <li><a href="#demo">DEMO</a>
             </ol>
           </nav>
@@ -207,7 +207,7 @@
             </ul>
           </li>
         </ul>
-        <p>具体的には Angular UI が <code translate=no>popover</code> 属性を独自に使ってたのだが、標準の <code translate=no>popover</code> は開くまでは <code translate=no>display: none</code> がデフォルトであるため、ブラウザが対応した瞬間、当該要素が消えてしまうという問題だ。
+        <p>具体的には Angular UI が <code translate=no>popover</code> 属性を独自に使っていたのだが、標準の <code translate=no>popover</code> は開くまでは <code translate=no>display: none</code> がデフォルトであるため、ブラウザが対応した瞬間、当該要素が消えてしまうという問題だ。
         <ul>
           <li>
             Some sites are reporting compat issues with popover [40270593] - Chromium
@@ -217,7 +217,7 @@
           </li>
         </ul>
         <p>他にも、 Chrome の Stable リリースに伴い、同じように壊れるサイトがいくつか報告される。
-        <p>ここで筆者は、「もしかしたらまた名前変わるかもしれない」と思ったりもしたが、今回は壊れたサイトが少なかったため、サイト側を直して close する方が選ばれた。本来の互換性の考え方からは強引と言えるが「独自の属性は <code translate=no>data-</code> をつけるのがルールであり、それを守っていないサイトまでカバーできない」という理由で切り捨てる形になった。確かにそれを擁護すると、たとえどんな名前に変えても、どこかしらのサイトは壊れることになるため、落とし所だったのかもしれない。
+        <p>ここで筆者は、「もしかしたらまた名前が変わるかもしれない」と思ったりもしたが、今回は壊れたサイトが少なかったため、サイト側を直して close する方が選ばれた。本来の互換性の考え方からは強引と言えるが「独自の属性は <code translate=no>data-</code> をつけるのがルールであり、それを守っていないサイトまでカバーできない」という理由で切り捨てる形になった。確かにそれを擁護すると、たとえどんな名前に変えても、どこかしらのサイトは壊れることになるため、落とし所だったのかもしれない。
         <p>そうした作業を経て、ブラウザの実装も着々と進み、今では全ブラウザが一応 Ship している状態になり、 Baseline の Newly Available に登録された。
         <ul>
           <li>
@@ -231,13 +231,13 @@
       <section>
         <h2 id="dialog-と-popover-の違い"><a href="#dialog-と-popover-の違い">Dialog と Popover の違い</a></h2>
         <p>まずは、前半で解説した <code translate=no>&lt;dialog&gt;</code> 要素と <code translate=no>popover</code> 属性の違いについて、整理しておく。
-        <p>どちらも、 Top Layer に「ポコッ」と浮かび上がる UI を作ることができる点では類似しているが、それぞれは用途がかなり違なる。
+        <p>どちらも、 Top Layer に「ポコッ」と浮かび上がる UI を作ることができる点では類似しているが、それぞれの用途はかなり異なる。
         <p>もっとも注目すべき点は <em>Role</em> だ。
         <section>
           <h3 id="roledialog"><a href="#roledialog">role=dialog</a></h3>
           <p>Aria には Dialog という Role が以前から定義されており、もし(概念上の) Dialog を自前で実装するのであれば <code translate=no>&lt;div role=&quot;dialog&quot;&gt;</code> のように指定することで「これは Dialog だ」ということを明示し、 UA に伝える必要があった。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;div role=dialog&gt;
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;div role=&quot;dialog&quot;&gt;
   &lt;form&gt;
     &lt;label&gt;Are you sure to continue ?&lt;/label&gt;
     &lt;button type=&quot;submit&quot;&gt;OK&lt;/button&gt;
@@ -276,8 +276,8 @@
 &lt;/dialog&gt;</code></pre>
         <p>これにより、特に Light Dismiss の恩恵で、カジュアルに閉じる <code translate=no>&lt;dialog&gt;</code> が出せるため、 non-Modal Dialog で応用できる。
         <p>一方で、 Modal Dialog を Light Dismiss したいがために、 <code translate=no>popover</code> で実装し、 <code translate=no>::backdrop</code> を暗くすることで Modal っぽく実装するというのは、あまり良い実装ではないとされている。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=foo&gt;Click me&lt;/button&gt;
-&lt;dialog popover id=foo&gt;I&apos;m a dialog!&lt;/dialog&gt;
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=&quot;foo&quot;&gt;Click me&lt;/button&gt;
+&lt;dialog popover id=&quot;foo&quot;&gt;I&apos;m a dialog!&lt;/dialog&gt;
 &lt;style&gt;
 dialog[popover]::backdrop {
   background-color: black;
@@ -353,7 +353,7 @@ dialog[popover]::backdrop {
   This is a dialog
   &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
 &lt;/dialog&gt;</code></pre>
-        <p>この仕様は <code translate=no>popover</code> にも逆輸入され、現在は <code translate=no>popover</code> も <code translate=no>command</code> で開けるようにしていく方針になっている。(つまり、いずれ <code translate=no>popovertarge</code> は消えるかもしれないので、これから実装する場合は最新の議論に注意したい)
+        <p>この仕様は <code translate=no>popover</code> にも逆輸入され、現在は <code translate=no>popover</code> も <code translate=no>command</code> で開けるようにしていく方針になっている。(つまり、いずれ <code translate=no>popovertarget</code> は消えるかもしれないので、これから実装する場合は最新の議論に注意したい)
         <pre class=html data-code=html><code translate=no class=language-html>&lt;button commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
   Show Popover
 &lt;/button&gt;
@@ -379,13 +379,13 @@ dialog[popover]::backdrop {
         <p>
           <img loading=lazy decoding=async src=top-layer.drawio.svg?241002_152445 alt="Top Layer の真ん中に表示された Popover" width=524 height=154>
         </p>
-        <p>そこで、 Anchor という概念を導入し、「開いた <code translate=no>&lt;button&gt;</code> を Anchor として、開かれ側はその Anchor の右下に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
+        <p>そこで、 Anchor という概念を導入し、「開いた <code translate=no>&lt;button&gt;</code> を Anchor として、開かれ側はその Anchor の右上に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
         <p>
-          <img loading=lazy decoding=async src=top-layer-anchor.drawio.svg?241002_152454 alt="button を anchor としその右上に Popover を表示" width=524 height=154>
+          <img loading=lazy decoding=async src=top-layer-anchor.drawio.svg?241002_152454 alt="button を anchor としその右下に Popover を表示" width=524 height=154>
         </p>
         <section>
-          <h3 id="ancor-attributes"><a href="#ancor-attributes">Ancor Attributes</a></h3>
-          <p>当初 Anchor は HTML 属性で指定する提案がされていた。
+          <h3 id="anchor-attributes"><a href="#anchor-attributes">Anchor Attributes</a></h3>
+          <p>当初、 Anchor は HTML 属性で指定する提案がされていた。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;button id=&quot;button&quot; commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
   Show Popover
 &lt;/button&gt;
@@ -480,9 +480,9 @@ button {
       <section>
         <h2 id="invoker-relationship"><a href="#invoker-relationship">Invoker Relationship</a></h2>
         <p>スタイルマターであるとはいえ、 Anchor を指定するのに CSS でいちいち名前をつけて紐づけるというのは、Invoker と Popover の関連が HTML だけで完結できず、同時に CSS でも関連づけないと不整合が起こる点で不便だ。
-        <p>特に動的に関連付けを変更したいような場合には、 <code translate=no>&lt;div style=&quot;position-anchor: --anchor&quot;&gt;</code> などと HTML 側でいじる必要などが出るため、あまり使いやすい API では無い。
-        <p>議論を進めた結果、「少なくとも Invoker と Popover の間には、暗黙的な Anchor の関係を見出しても良いだろう」ということになり、先のように <code translate=no>&lt;button commadfor&gt;</code> で開いた <code translate=no>&lt;div popover&gt;</code> との間には、暗黙的に Anchor の関係がある、ということになったのだ。これを Invoker Relationship と呼ぶ。
-        <p>つまり、以下の例は HTML の <code translate=no>anchor</code> 属性も、 CSS の <code translate=no>anchor-name</code> も無いが、 <code translate=no>anchor()</code> を使った配置ができていることに注目したい。
+        <p>特に動的に関連付けを変更したいような場合には、 <code translate=no>&lt;div style=&quot;position-anchor: --anchor&quot;&gt;</code> などと HTML 側でいじる必要が出るため、あまり使いやすい API ではない。
+        <p>議論を進めた結果、「少なくとも Invoker と Popover の間には、暗黙的な Anchor の関係を見出しても良いだろう」ということになり、先のように <code translate=no>&lt;button commandfor&gt;</code> で開いた <code translate=no>&lt;div popover&gt;</code> との間には、暗黙的に Anchor の関係がある、ということになったのだ。これを Invoker Relationship と呼ぶ。
+        <p>つまり、以下の例は HTML の <code translate=no>anchor</code> 属性も、 CSS の <code translate=no>anchor-name</code> もないが、 <code translate=no>anchor()</code> を使った配置ができていることに注目したい。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
 [popover] {
   top: anchor(bottom);
@@ -498,7 +498,7 @@ button {
 &lt;/div&gt;</code></pre>
       </section>
       <section>
-        <h2 id="html-anchor-attributes-の今後"><a href="#html-anchor-attributes-の今後">HTML Anchor Attributes の今後?</a></h2>
+        <h2 id="html-anchor-attributes-の今後"><a href="#html-anchor-attributes-の今後">HTML Anchor Attributes の今後</a></h2>
         <p>Invoker Relationship が暗黙的に作られる場合は、 Anchor 名を明示する必要がなくなった。それでもなお、動的に <code translate=no>&lt;popover&gt;</code> を作り、 JS で開くような場合は不便がある。
         <p>例えば、 GitHub のリンクをマウスオーバーした場合、 Issue なら概要、 User ならプロフィールが Popover されるだろう。プロフィールの場合は、アイコンが Anchor になる。
         <p>
