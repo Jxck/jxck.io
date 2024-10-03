@@ -28,14 +28,14 @@
 - popover attribute may not be web compatible · Issue #9042 · whatwg/html
   - https://github.com/whatwg/html/issues/9042
 
-具体的には Angular UI が `popover` 属性を独自に使ってたのだが、標準の `popover` は開くまでは `display: none` がデフォルトであるため、ブラウザが対応した瞬間、当該要素が消えてしまうという問題だ。
+具体的には Angular UI が `popover` 属性を独自に使っていたのだが、標準の `popover` は開くまでは `display: none` がデフォルトであるため、ブラウザが対応した瞬間、当該要素が消えてしまうという問題だ。
 
 - Some sites are reporting compat issues with popover [40270593] - Chromium
   - https://issues.chromium.org/issues/40270593
 
 他にも、 Chrome の Stable リリースに伴い、同じように壊れるサイトがいくつか報告される。
 
-ここで筆者は、「もしかしたらまた名前変わるかもしれない」と思ったりもしたが、今回は壊れたサイトが少なかったため、サイト側を直して close する方が選ばれた。本来の互換性の考え方からは強引と言えるが「独自の属性は `data-` をつけるのがルールであり、それを守っていないサイトまでカバーできない」という理由で切り捨てる形になった。確かにそれを擁護すると、たとえどんな名前に変えても、どこかしらのサイトは壊れることになるため、落とし所だったのかもしれない。
+ここで筆者は、「もしかしたらまた名前が変わるかもしれない」と思ったりもしたが、今回は壊れたサイトが少なかったため、サイト側を直して close する方が選ばれた。本来の互換性の考え方からは強引と言えるが「独自の属性は `data-` をつけるのがルールであり、それを守っていないサイトまでカバーできない」という理由で切り捨てる形になった。確かにそれを擁護すると、たとえどんな名前に変えても、どこかしらのサイトは壊れることになるため、落とし所だったのかもしれない。
 
 そうした作業を経て、ブラウザの実装も着々と進み、今では全ブラウザが一応 Ship している状態になり、 Baseline の Newly Available に登録された。
 
@@ -47,7 +47,7 @@
 
 まずは、前半で解説した `<dialog>` 要素と `popover` 属性の違いについて、整理しておく。
 
-どちらも、 Top Layer に「ポコッ」と浮かび上がる UI を作ることができる点では類似しているが、それぞれは用途がかなり違なる。
+どちらも、 Top Layer に「ポコッ」と浮かび上がる UI を作ることができる点では類似しているが、それぞれの用途はかなり異なる。
 
 もっとも注目すべき点は *Role* だ。
 
@@ -57,7 +57,7 @@
 Aria には Dialog という Role が以前から定義されており、もし(概念上の) Dialog を自前で実装するのであれば `<div role="dialog">` のように指定することで「これは Dialog だ」ということを明示し、 UA に伝える必要があった。
 
 ```html
-<div role=dialog>
+<div role="dialog">
   <form>
     <label>Are you sure to continue ?</label>
     <button type="submit">OK</button>
@@ -118,8 +118,8 @@ Aria には Dialog という Role が以前から定義されており、もし(
 一方で、 Modal Dialog を Light Dismiss したいがために、 `popover` で実装し、 `::backdrop` を暗くすることで Modal っぽく実装するというのは、あまり良い実装ではないとされている。
 
 ```html
-<button popovertarget=foo>Click me</button>
-<dialog popover id=foo>I'm a dialog!</dialog>
+<button popovertarget="foo">Click me</button>
+<dialog popover id="foo">I'm a dialog!</dialog>
 <style>
 dialog[popover]::backdrop {
   background-color: black;
@@ -192,7 +192,7 @@ JS には `popover` を開閉する API が用意された。
 </dialog>
 ```
 
-この仕様は `popover` にも逆輸入され、現在は `popover` も `command` で開けるようにしていく方針になっている。(つまり、いずれ `popovertarge` は消えるかもしれないので、これから実装する場合は最新の議論に注意したい)
+この仕様は `popover` にも逆輸入され、現在は `popover` も `command` で開けるようにしていく方針になっている。(つまり、いずれ `popovertarget` は消えるかもしれないので、これから実装する場合は最新の議論に注意したい)
 
 ```html
 <button commandfor="foo" command="show">
@@ -229,14 +229,14 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 
 ![Top Layer の真ん中に表示された Popover](top-layer.drawio.svg#524x154)
 
-そこで、 Anchor という概念を導入し、「開いた `<button>` を Anchor として、開かれ側はその Anchor の右下に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
+そこで、 Anchor という概念を導入し、「開いた `<button>` を Anchor として、開かれ側はその Anchor の右上に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
 
-![button を anchor としその右上に Popover を表示](top-layer-anchor.drawio.svg#524x154)
+![button を anchor としその右下に Popover を表示](top-layer-anchor.drawio.svg#524x154)
 
 
-### Ancor Attributes
+### Anchor Attributes
 
-当初 Anchor は HTML 属性で指定する提案がされていた。
+当初、 Anchor は HTML 属性で指定する提案がされていた。
 
 ```html
 <button id="button" commandfor="foo" command="show">
@@ -362,11 +362,11 @@ button {
 
 スタイルマターであるとはいえ、 Anchor を指定するのに CSS でいちいち名前をつけて紐づけるというのは、Invoker と Popover の関連が HTML だけで完結できず、同時に CSS でも関連づけないと不整合が起こる点で不便だ。
 
-特に動的に関連付けを変更したいような場合には、 `<div style="position-anchor: --anchor">` などと HTML 側でいじる必要などが出るため、あまり使いやすい API では無い。
+特に動的に関連付けを変更したいような場合には、 `<div style="position-anchor: --anchor">` などと HTML 側でいじる必要が出るため、あまり使いやすい API ではない。
 
-議論を進めた結果、「少なくとも Invoker と Popover の間には、暗黙的な Anchor の関係を見出しても良いだろう」ということになり、先のように `<button commadfor>` で開いた `<div popover>` との間には、暗黙的に Anchor の関係がある、ということになったのだ。これを Invoker Relationship と呼ぶ。
+議論を進めた結果、「少なくとも Invoker と Popover の間には、暗黙的な Anchor の関係を見出しても良いだろう」ということになり、先のように `<button commandfor>` で開いた `<div popover>` との間には、暗黙的に Anchor の関係がある、ということになったのだ。これを Invoker Relationship と呼ぶ。
 
-つまり、以下の例は HTML の `anchor` 属性も、 CSS の `anchor-name` も無いが、 `anchor()` を使った配置ができていることに注目したい。
+つまり、以下の例は HTML の `anchor` 属性も、 CSS の `anchor-name` もないが、 `anchor()` を使った配置ができていることに注目したい。
 
 ```html
 <style>
@@ -385,7 +385,7 @@ button {
 ```
 
 
-## HTML Anchor Attributes の今後?
+## HTML Anchor Attributes の今後
 
 Invoker Relationship が暗黙的に作られる場合は、 Anchor 名を明示する必要がなくなった。それでもなお、動的に `<popover>` を作り、 JS で開くような場合は不便がある。
 

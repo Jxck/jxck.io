@@ -9,12 +9,12 @@
 - Intent to extend Origin Trial: Popover API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kZXexHhH7EA/m/UmQYwGW3DAAJ
 
-しかし、 `popover` を実用するには足りてない議論があった、それが Animation だ。
+しかし、 `popover` を実用するには足りていない議論があった、それが Animation だ。
 
 
 ## Display and content-visibility animations
 
-`<dialog>` や `popover` された要素は、基本的には現れたり消えるするので、それをアニメーションするには、 `display` / `content-visibility` の属性をアニメーションする必要がある。
+`<dialog>` や `popover` された要素は、基本的には現れたり消えたりするので、それをアニメーションするには、 `display` / `content-visibility` の属性をアニメーションする必要がある。
 
 まずは消す方を以下のように `transition` でやってみよう。 `opacity` を徐々に薄くし、最後に `display: none` する実装は以下のようになる。
 
@@ -42,9 +42,9 @@ div {
 }
 ```
 
-この `.face-out` class を追加したら、要素がゆっくり消える想定だが、実際には追加した瞬間に消えてしまう。これは `display` がもともと not animatable だったからだ。
+この `.fade-out` class を追加したら、要素がゆっくり消える想定だが、実際には追加した瞬間に消えてしまう。これは `display` がもともと not animatable だったからだ。
 
-CSS のアニメーションでは、属性に対して 4 つの Animation Type が決まってる。
+CSS のアニメーションでは、属性に対して 4 つの Animation Type が決まっている。
 
 - not animatable
 - discrete
@@ -64,14 +64,14 @@ not animatable は「アニメーションすると複雑すぎるため `transi
 - rendering/entry-exit-animations.md at master · chrishtr/rendering
   - https://github.com/chrishtr/rendering/blob/master/entry-exit-animations.md
 
-これによって、CSS Display Module Level 4 から `display` の Animation Type は not animatable ではなく discrete に近いたが、少し特別扱いされる値となった。
+これによって、CSS Display Module Level 4 から `display` の Animation Type は not animatable ではなく discrete に近いが、少し特別扱いされる値となった。
 
 - rendering/entry-exit-animations.md at master · chrishtr/rendering
   - https://github.com/chrishtr/rendering/blob/master/entry-exit-animations.md
 
 例えば `opacity` の Animation Type は by computed value で、 0 から 1 の間をスライダーを動かすように連続した変化をさせる。一方、 true/false, enable/disable といった値は discrete (離散値) というカテゴリになる。
 
-discrete な値を `transition` する場合は、真ん中(50%)で値が切り替わる挙動になるため、 `opacity` が 0.5 まで減ったところで、 `display: none` になって要素がぱつっと消えてしまうことになる。
+discrete な値を `transition` する場合は、真ん中(50%)で値が切り替わる挙動になるため、 `opacity` が 0.5 まで減ったところで、 `display: none` になって要素がぱっと消えてしまうことになる。
 
 ![display が途中で変わり要素が消える](./transition-display.drawio.svg#442x182)
 
@@ -134,7 +134,7 @@ div {
 
 ここでは、 `display` が切り替わる時は、アニメーションする値の初期値を要素に反映し、その上で変化をさせる必要がある。以前はこれを「一旦 `display: block` に変えたら、 `requestAnimationFrame()` で `opacity: 0` が計算されるのを待ってから、 `opacity: 1` に遷移させる」や「`getBoundingClientRect()` で値の計算を確定させる処理を一旦呼んでから遷移させる」といった実装が必要だった。
 
-ところが `<display>` や `popover` も、出現時に `display` が変わっているため、同じ問題が起こってしまう。せっかく Declarative に定義したのに、そのアニメーションに JS が必須となるのは不便だ。
+ところが `<dialog>` や `popover` も、出現時に `display` が変わっているため、同じ問題が起こってしまう。せっかく Declarative に定義したのに、そのアニメーションに JS が必須となるのは不便だ。
 
 
 ## `@starting-style`
@@ -200,7 +200,7 @@ div {
 
 これで、 Dialog / Popover をアニメーションさせるためのプリミティブが揃った。
 
-以降はより実践的な実装方について解説していく。
+以降はより実践的な実装方法について解説していく。
 
 
 ## DEMO
