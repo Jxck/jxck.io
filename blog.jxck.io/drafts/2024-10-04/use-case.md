@@ -26,15 +26,17 @@
 
 ```html
 <dialog>
-  <h1>利用規約への同意</h1>
   <section>
-    <p>長い長い</p>
-    <p>利用規約</p>
-    <p>スクロールあり</p>
+    <h1>利用規約への同意</h1>
+    <section>
+      <p>長い長い</p>
+      <p>利用規約</p>
+      <p>スクロールあり</p>
+    </section>
+    <a>規約のダウンロード(PDF)</a>
+    <p>同意する</p>
+    <button>確認</button>
   </section>
-  <a>規約のダウンロード(PDF)</a>
-  <p>同意する</p>
-  <button>確認</button>
 </dialog>
 ```
 
@@ -42,7 +44,9 @@
 
 ```html
 <dialog aria-labelledby="dialog-label">
-  <h1 id="dialog-label">利用規約への同意</h1>
+  <section>
+    <h1 id="dialog-label">利用規約への同意</h1>
+  </section>
 </dialog>
 ```
 
@@ -54,6 +58,9 @@
 
 ```html
 <section autofocus>
+  <p>長い長い</p>
+  <p>利用規約</p>
+  <p>スクロールあり</p>
 </section>
 ```
 
@@ -67,10 +74,10 @@
 
 
 
-最後に、この Dialog を閉じるには、単なる `<button>` の口リンクをフックして JS で `close()` するのではなく、明示的に `<form method="dialog">` を Submit することで閉じる。
+最後に、この Dialog を閉じるには、単なる `<button>` のリンクをフックして JS で `close()` するのではなく、明示的に `<form method="dialog">` を Submit することで閉じる。
 
 ```html
-<form action="dialog">
+<form method="dialog">
   <input type="checkbox" id="agree">
   <label for="agree">同意する</label>
   <button type="submit">確認</button>
@@ -88,7 +95,7 @@
     <p>スクロールあり</p>
   </section>
   <a>規約のダウンロード(PDF)</a>
-  <form action="dialog">
+  <form method="dialog">
     <input type="checkbox" id="agree">
     <label for="agree">同意する</label>
     <button type="submit">確認</button>

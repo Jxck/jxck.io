@@ -6,65 +6,81 @@
 <h1>Term Dialog DEMO</h1>
 
 <style>
+  :root {
+    font-family: sans-serif;
+  }
+
   dialog {
-    padding: 0;
-    div {
-      padding: 1rem;
-      background-color: cyan;
-      width: 20rem;
+    width: 30vw;
+    padding: 2rem;
+
+    border: solid 1px #ccc;
+    border-radius: 2%;
+
+    section {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 2rem;
 
       h1 {
         margin: 0;
       }
-      section {
-        height: 4rem;
-        overflow: scroll;
-        background-color: white;
+
+      article {
+        height: 10rem;
+        overflow-y: scroll;
         border: solid 1px #333;
-        padding: 4px;
-        p {
-          padding: 0;
+        padding: 0.8rem;
+        h2, p {
           margin: 0;
         }
+      }
+
+      form[method=dialog] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
       }
     }
   }
 </style>
-<dialog aria-labelledby="term">
-  <div>
-    <h1 id="term">Term of Service</h1>
-    <section>
+<dialog aria-labelledby="dialog-label">
+  <section>
+    <h1 id="dialog-label">Term of Service</h1>
+    <article autofocus tabindex="0">
+      <h2>First</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </section>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </article>
     <form method="dialog">
-      <input type="text" name="text" value="text" />
-      <input type="hidden" name="hidden" value="hidden" />
-      <button type="submit" value="accept">Accept</button>
-      <button type="close" value="deny">Deny</button>
+      <label for="agree">
+        <input id="agree" type="checkbox" name="agree" required>
+        <span>I agree that I read</span>
+      </label>
+      <button type="close">OK</button>
     </form>
-  </div>
+  </section>
 </dialog>
 
-<button id="show">dialog.show()</button>
 <button id="showModal">dialog.showModal()</button>
 <script>
   const $ = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
   $("dialog").showModal()
-
-  $("#show").on("click", (e) => {
-    $("dialog").show()
-  })
-
   $("#showModal").on("click", (e) => {
-    $("dialog").showModal()
   })
 
   $("form").on("submit", (e) => {
@@ -83,15 +99,5 @@
   $("dialog").on("cancel", (e) => {
     console.log(e)
     console.log(e.type, e.target.returnValue)
-  })
-
-  $("dialog").on("click", (e) => {
-    // dialog 背景含めて全体がフック対象
-    const { target, currentTarget } = e
-    console.log({ target, currentTarget })
-    if (e.target === e.currentTarget) {
-       // 両方 dialog 自身なのは backdrop のみになる
-      $("dialog").close()
-    }
   })
 </script>
