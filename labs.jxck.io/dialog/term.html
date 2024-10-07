@@ -13,9 +13,30 @@
   dialog {
     width: 30vw;
     padding: 2rem;
-
     border: solid 1px #ccc;
     border-radius: 2%;
+
+    /** open animation */
+    &[open] {
+      opacity: 1;
+      display: block;
+      transition: opacity 0.2s, display 0.2s allow-discrete;
+
+      @starting-style {
+        opacity: 0;
+      }
+    }
+
+    /** close animation */
+    &:not([open]) {
+      opacity: 0;
+      display: none;
+      transition: opacity 0.2s, display 0.2s allow-discrete;
+    }
+
+    &::backdrop {
+      background-color: rgba(0, 0, 0, 0.5)
+    }
 
     section {
       display: flex;
@@ -31,7 +52,9 @@
         overflow-y: scroll;
         border: solid 1px #333;
         padding: 0.8rem;
-        h2, p {
+
+        h2,
+        p {
           margin: 0;
         }
       }
@@ -47,20 +70,34 @@
 </style>
 <dialog aria-labelledby="dialog-label">
   <section>
+
     <h1 id="dialog-label">Term of Service</h1>
     <article autofocus tabindex="0">
+
       <h2>First</h2>
+
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
       <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
       <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
       <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
       <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
       <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
       <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </article>
     <form method="dialog">
@@ -72,15 +109,17 @@
     </form>
   </section>
 </dialog>
-
 <button id="showModal">dialog.showModal()</button>
+
 <script>
   const $ = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
   $("dialog").showModal()
+
   $("#showModal").on("click", (e) => {
+    $("dialog").showModal()
   })
 
   $("form").on("submit", (e) => {
