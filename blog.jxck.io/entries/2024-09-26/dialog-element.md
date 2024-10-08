@@ -320,6 +320,12 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
   - https://labs.jxck.io/dialog/
 
 
+## Links
+
+- Non-interactive Elements with the inert attribute | WebKit
+  - https://webkit.org/blog/12578/non-interactive-elements-with-the-inert-attribute/
+
+
 ## Outro
 
 以上のように、これまで JS/CSS を駆使して実装されていた Dialog の、あらゆる既知の問題を踏まえて、 `<dialog>` の標準仕様が作られ、 Interop により全てのブラウザが実装し、ほぼほぼ動く状態にあるのだ。

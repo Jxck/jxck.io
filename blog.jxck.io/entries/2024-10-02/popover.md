@@ -454,3 +454,21 @@ document.querySelectorAll("img.icon").forEach((img) => {
 
 - Popover Labs | labs.jxck.io
   - https://labs.jxck.io/popover/
+
+
+## Links
+
+- Popover API (Explainer) | Open UI
+  - https://open-ui.org/components/popover.research.explainer/
+- Popover=hint (Explainer) | Open UI
+  - https://open-ui.org/components/popover-hint.research.explainer/
+- Invoker Commands (Explainer) | Open UI
+  - https://open-ui.org/components/invokers.explainer/
+- Dialogs and popovers seem similar. How are they different? | hidde.blog
+  - https://hidde.blog/dialog-modal-popover-differences/
+- Semantics and the popover attribute: which role to use when? | hidde.blog
+  - https://hidde.blog/popover-semantics/
+- Positioning anchored popovers | hidde.blog
+  - https://hidde.blog/positioning-anchored-popovers/
+- On popover accessibility: what the browser does and doesn't do | hidde.blog
+  - https://hidde.blog/popover-accessibility/
