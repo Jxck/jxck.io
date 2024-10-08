@@ -5,20 +5,15 @@
 
 <h1>Cookie Dialog DEMO</h1>
 
-<div>right bottom</div>
 <style>
   :root {
     font-family: sans-serif;
   }
-  body {
-    position: relative;
-    height: 100vh;
-  }
 
   dialog {
-    width: 30vw;
+    width: 20vw;
     position: absolute;
-    top: auto;
+    inset-: auto;
     right: 1%;
     bottom: 1%;
     left: auto;
@@ -53,28 +48,15 @@
     section {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1rem;
 
-      h1 {
+      h1, p {
         margin: 0;
-      }
-
-      article {
-        height: 10rem;
-        overflow-y: scroll;
-        border: solid 1px #333;
-        padding: 0.8rem;
-
-        h2,
-        p {
-          margin: 0;
-        }
       }
 
       form[method=dialog] {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        justify-content: flex-end;
         gap: 1rem;
       }
     }
@@ -82,14 +64,13 @@
 </style>
 <dialog aria-labelledby="dialog-label">
   <section>
-
     <h1 id="dialog-label">Cookie Notice</h1>
     <p>We use some essential cookies to make this website work.</p>
     <p>We'd like to bra bra bra bra bra bra bra bra bra bra bra bra bra.</p>
     <p>We also use cookies set by other sites to help us bra bra bra bra bra bra bra bra bra bra bra bra bra bra.</p>
     <form method="dialog">
+      <button type="close" autofocus>Reject Cookies</button>
       <button type="submit">Accpet Cookies</button>
-      <button type="close">Reject Cookies</button>
     </form>
   </section>
 </dialog>
@@ -122,5 +103,6 @@
   $("dialog").on("cancel", (e) => {
     console.log(e)
     console.log(e.type, e.target.returnValue)
-  })
+  });
+
 </script>

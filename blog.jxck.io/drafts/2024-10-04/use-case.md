@@ -209,3 +209,26 @@ $("form").on("submit", (e) => {
   $("dialog").close(returnValue)
 })
 ```
+
+## Cookie への同意
+
+利用規約とほぼ同じだが、 Cookie への同意ダイアログは、 Dialog でありながら Modal としては表示せず、画面の端に表示し続け明示的な操作を伴って消える実装が多いだろう。かつ、他を操作することで自動で消えるわけでもないため、 Light Dismiss も要求されない。
+
+この場合は `show()` で non-Modal な `<dialog>` として実装する方法が考えられそうだ。
+
+
+
+
+基本的な実装は、前述の利用規約とそこまで変わらない。
+
+画面の右下に固定で出す場合は、 `position: absolute` で配置することになる。 `<dialog>` には UA のスタイルが当たっているため、4方向全てする方が良いだろう。
+
+```css
+dialog {
+  position: absolute;
+  top: auto;
+  right: 1%;
+  bottom: 1%;
+  left: auto;
+}
+```
