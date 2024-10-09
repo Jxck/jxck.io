@@ -183,6 +183,38 @@ div {
 これで、要素のスタイルが計算される前の値を、明示的に示すことができるようになった。
 
 
+## Overlay
+
+ここまでで、 `<dialog>` を表示する際の `opacity` と `display` はアニメーションすることができた。しかし、これでは「要素がいつ Top Layer から消えるのか」は特に制御していない。
+
+では、前述のアニメーションのなかで Top Layer にいつ表示されているのかを見てみると、以下のようになる。
+
+- Show: Top Layer に追加され、同時にトランジションが行われ徐々に表示される。
+- Close: Top Layer から除去され、同時にトランジションが行われ徐々に非表示される。
+
+これは内部的に「Top Layer に表示されている」という状態があり、それが先ほどの display のように、離散値としてアニメーションしているからだ。ところが、特に Close する際のアニメーションは、 `opacity` のトランジションが終わってから Top Layer から消えて欲しい場合が多い。
+
+そこで、同じように `allow-discrete` を設定したいわけだが、そもそも「Top Layer に表示されるかどうか」を制御する CSS のプロパティ自体は存在しない。そこで策定されたのが `overlay` だ。
+
+`overlay` は Top Layer に表示されている場合を示す `auto` と、そうではない `none` がある。しかし、この値は CSS で明示的に指定できるわけでは無く、ブラウザが内部的に設定しており、 `show()` などの裏で自動的に設定されるのだ。
+
+しかし、このプロパティを `transition` に指定することは可能だ。 `allow-discrete` を合わせて指定すれば、ブラウザが内部でこの離散値のトグルをするタイミングを制御できる。
+
+```css
+.fade-out {
+  opacity: 0;
+  display: none;
+  transition: opacity 1s,
+              overlay 1s allow-discrete,
+              display 1s allow-discrete;
+}
+```
+
+これにより「トランジションが終わってから Top Layer から消える」というアニメーションを書くことができるようになるのだ。
+
+`overlay` はあくまで、ブラウザが管理し内部に隠していたプロパティを、 `transition` に指定できるように条件付きでエクスポートしたような格好になっている。
+
+
 ## Prefer Reduced Motion
 
 `<dialog>` / `popover` とは直接関係ないが、 `prefer-reduced-motion` が指定されていたら、アニメーションは無効にしたい。
