@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-03T08:00:00+08:00",
-    "dateModified": "2024-10-03T08:00:00+08:00",
+    "dateModified": "2024-10-09T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-03>2024-10-03</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-03>2024-10-03</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-09>2024-10-09</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -137,6 +137,7 @@
               <li><a href="#intro">Intro</a>
               <li><a href="#display-and-content-visibility-animations">Display and content-visibility animations</a>
               <li><a href="#@starting-style"><code translate=no>@starting-style</code></a>
+              <li><a href="#overlay">Overlay</a>
               <li><a href="#prefer-reduced-motion">Prefer Reduced Motion</a>
               <li><a href="#outro">Outro</a>
               <li><a href="#demo">DEMO</a>
@@ -328,6 +329,28 @@
   }
 }</code></pre>
         <p>これで、要素のスタイルが計算される前の値を、明示的に示すことができるようになった。
+      </section>
+      <section>
+        <h2 id="overlay"><a href="#overlay">Overlay</a></h2>
+        <p>ここまでで、 <code translate=no>&lt;dialog&gt;</code> を表示する際の <code translate=no>opacity</code> と <code translate=no>display</code> はアニメーションすることができた。しかし、これでは「要素がいつ Top Layer から消えるのか」は特に制御していない。
+        <p>では、前述のアニメーションのなかで Top Layer にいつ表示されているのかを見てみると、以下のようになる。
+        <ul>
+          <li>Show: Top Layer に追加され、同時にトランジションが行われ徐々に表示される。
+          <li>Close: Top Layer から除去され、同時にトランジションが行われ徐々に非表示される。
+        </ul>
+        <p>これは内部的に「Top Layer に表示されている」という状態があり、それが先ほどの display のように、離散値としてアニメーションしているからだ。ところが、特に Close する際のアニメーションは、 <code translate=no>opacity</code> のトランジションが終わってから Top Layer から消えて欲しい場合が多い。
+        <p>そこで、同じように <code translate=no>allow-discrete</code> を設定したいわけだが、そもそも「Top Layer に表示されるかどうか」を制御する CSS のプロパティ自体は存在しない。そこで策定されたのが <code translate=no>overlay</code> だ。
+        <p><code translate=no>overlay</code> は Top Layer に表示されている場合を示す <code translate=no>auto</code> と、そうではない <code translate=no>none</code> がある。しかし、この値は CSS で明示的に指定できるわけでは無く、ブラウザが内部的に設定しており、 <code translate=no>show()</code> などの裏で自動的に設定されるのだ。
+        <p>しかし、このプロパティを <code translate=no>transition</code> に指定することは可能だ。 <code translate=no>allow-discrete</code> を合わせて指定すれば、ブラウザが内部でこの離散値のトグルをするタイミングを制御できる。
+        <pre class=css data-code=css><code translate=no class=language-css>.fade-out {
+  opacity: 0;
+  display: none;
+  transition: opacity 1s,
+              overlay 1s allow-discrete,
+              display 1s allow-discrete;
+}</code></pre>
+        <p>これにより「トランジションが終わってから Top Layer から消える」というアニメーションを書くことができるようになるのだ。
+        <p><code translate=no>overlay</code> はあくまで、ブラウザが管理し内部に隠していたプロパティを、 <code translate=no>transition</code> に指定できるように条件付きでエクスポートしたような格好になっている。
       </section>
       <section>
         <h2 id="prefer-reduced-motion"><a href="#prefer-reduced-motion">Prefer Reduced Motion</a></h2>

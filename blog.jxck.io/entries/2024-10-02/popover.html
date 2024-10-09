@@ -335,8 +335,24 @@ dialog[popover]::backdrop {
       </section>
       <section>
         <h2 id="invoker"><a href="#invoker">Invoker</a></h2>
-        <p>この <code translate=no>popovertarget</code> と同じように、開く閉じるの宣言的な実装を <code translate=no>&lt;dialog&gt;</code> でも実現したいという要望が出た。
-        <p>これも <code translate=no>&lt;dialog popover&gt;</code> によってカバーできるが、そうではない <code translate=no>show()</code>/ <code translate=no>showModal()</code> でもできるように提案されたのが Invoker だ。
+        <p>この <code translate=no>popovertarget</code> と同じように、開く閉じるの宣言的な実装を <code translate=no>&lt;dialog&gt;</code> でも実現したいという要望が出た。最初はやはり <code translate=no>dialogmodaltarget</code> だ。
+        <ul>
+          <li>
+            <code translate=no>dialogmodaltarget</code> attribute · Issue #834 · mozilla/standards-positions
+            <ul>
+              <li><a href="https://github.com/mozilla/standards-positions/issues/834" target=_blank>https://github.com/mozilla/standards-positions/issues/834</a>
+            </ul>
+          </li>
+        </ul>
+        <p>しかし、このように追加していくとキリがないため、よりジェネリックな方向に進めるために提案されたのが Invoker だ。
+        <ul>
+          <li>
+            Intent to Prototype: Invokers
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/tDanwUCp2cg" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/tDanwUCp2cg</a>
+            </ul>
+          </li>
+        </ul>
         <p>最初は属性名も Invoker だったが、今は <code translate=no>command</code> という属性名になっている。
         <ul>
           <li>
