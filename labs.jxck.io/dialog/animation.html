@@ -6,7 +6,7 @@
 <h1>Dialog Animation DEMO</h1>
 
 <style>
-  div {
+  dialog {
     padding: 1rem;
     border: solid 4px red;
     background-color: pink;
@@ -22,7 +22,9 @@
   .fade-in-transition {
     opacity: 1;
     display: block;
-    transition: opacity 1s, display 1s allow-discrete;
+    transition: opacity 1s,
+                overlay 1s allow-discrete,
+                display 1s allow-discrete;
 
     @starting-style {
       opacity: 0;
@@ -32,7 +34,9 @@
   .fade-out-transition {
     opacity: 0;
     display: none;
-    transition: opacity 1s, display 1s allow-discrete;
+    transition: opacity 1s,
+                overlay 1s allow-discrete,
+                display 1s allow-discrete;
   }
 
 
@@ -65,36 +69,45 @@
     }
   }
 </style>
-<button id="fade-in-transition">fade-in-transition</button>
-<button id="fade-out-transition">fade-out-transition</button>
-<button id="fade-in-animation">fade-in-animation</button>
-<button id="fade-out-animation">fade-out-animation</button>
 
-<main></main>
+<button id="fade-in-transition">fade-in-transition</button>
+<dialog class="transition">
+  <p>Transition</p>
+  <button id="fade-out-transition">fade-out-transition</button>
+</dialog>
+
+<button id="fade-in-animation">fade-in-animation</button>
+<dialog class="animation">
+  <p>Animation</p>
+  <button id="fade-out-animation">fade-out-animation</button>
+</dialog>
 
 <script>
   const $ = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  const $div = document.createElement("div")
-  $div.textContent = "hello dialog"
-  $("main").appendChild($div)
+  const $transition = $("dialog.transition")
   $("#fade-in-transition").on("click", () => {
-    $div.classList.remove("fade-out-transition")
-    $div.classList.add("fade-in-transition")
+    $transition.classList.remove("fade-out-transition")
+    $transition.classList.add("fade-in-transition")
+    $transition.showModal()
   })
-  $("#fade-out-transition").on("click", () => {
-    $div.classList.remove("fade-in-transition")
-    $div.classList.add("fade-out-transition")
+  $("#fade-out-transition").on("click", (e) => {
+    $transition.classList.remove("fade-in-transition")
+    $transition.classList.add("fade-out-transition")
+    $transition.close()
   })
 
+  const $animation = $("dialog.animation")
   $("#fade-in-animation").on("click", () => {
-    $div.classList.remove("fade-out-animation")
-    $div.classList.add("fade-in-animation")
+    $animation.classList.remove("fade-out-animation")
+    $animation.classList.add("fade-in-animation")
+    $animation.showModal()
   })
   $("#fade-out-animation").on("click", () => {
-    $div.classList.remove("fade-in-animation")
-    $div.classList.add("fade-out-animation")
+    $animation.classList.remove("fade-in-animation")
+    $animation.classList.add("fade-out-animation")
+    $animation.close()
   })
 </script>
