@@ -171,9 +171,15 @@ JS には `popover` を開閉する API が用意された。
 
 ## Invoker
 
-この `popovertarget` と同じように、開く閉じるの宣言的な実装を `<dialog>` でも実現したいという要望が出た。
+この `popovertarget` と同じように、開く閉じるの宣言的な実装を `<dialog>` でも実現したいという要望が出た。最初はやはり `dialogmodaltarget` だ。
 
-これも `<dialog popover>` によってカバーできるが、そうではない `show()`/ `showModal()` でもできるように提案されたのが Invoker だ。
+- `*dialogmodaltarget` attribute · Issue #834 · mozilla/standards-positions*
+    - https://github.com/mozilla/standards-positions/issues/834
+
+しかし、このように追加していくとキリがないため、よりジェネリックな方向に進めるために提案されたのが Invoker だ。
+
+- Intent to Prototype: Invokers
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/tDanwUCp2cg
 
 最初は属性名も Invoker だったが、今は `command` という属性名になっている。
 
