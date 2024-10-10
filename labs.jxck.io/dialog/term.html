@@ -7,7 +7,7 @@
 
 <style>
   :root {
-    --duration: 2s;
+    --duration: 0.4s;
   }
 
   body {
@@ -57,7 +57,7 @@
 
   /* general style */
   dialog {
-    width: 20vw;
+    width: 500px;
     color: #333;
     padding: 2rem;
     border: solid 1px #ccc;
@@ -103,12 +103,12 @@
   }
 </style>
 
-<button id="showModal">dialog.showModal()</button>
+<button id=showModal>dialog.showModal()</button>
 
 <dialog aria-labelledby="dialog-label">
   <section>
     <h1 id="dialog-label">Term of Service</h1>
-    <article autofocus tabindex="0">
+    <article autofocus tabindex=0>
       <h2>First</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -123,13 +123,13 @@
       <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </article>
-    <form method="dialog">
-      <label for="agree">
-        <input id="agree" type="checkbox" name="agree">
+    <form method=dialog>
+      <label for=agree>
+        <input id=agree type=checkbox name=agree>
         <span>I agree that I read</span>
       </label>
-      <button type="submit" name="submit" value="ok">OK</button>
-      <button type="submit" name="submit" value="cancel">Cancel</button>
+      <button type=submit name=submit value=ok>OK</button>
+      <button type=submit name=submit value=cancel>Cancel</button>
     </form>
   </section>
 </dialog>
@@ -147,12 +147,16 @@
 
   $("form").on("submit", (e) => {
     e.preventDefault()
-    console.log(e)
-    const formData = new FormData(e.target)
-    console.log(formData)
-    const data = Object.fromEntries(formData.entries())
-    console.log(data)
-    $("dialog").close(JSON.stringify(data))
+    const { name, value } = e.submitter
+    console.log({ name, value })
+    if (value === "cancel") {
+      return $("dialog").close(JSON.stringify({ cancel: true }))
+    }
+    if (value === "ok") {
+      const formData = new FormData(e.target)
+      const data = Object.fromEntries(formData.entries())
+      $("dialog").close(JSON.stringify(data))
+    }
   })
 
   $("dialog").on("close", (e) => {

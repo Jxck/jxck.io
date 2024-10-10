@@ -89,7 +89,6 @@
 
 しかし、このフォームでは同意以外の道がないため、キャンセルボタンを用意しよう。
 
-
 ```html
 <form method="post" action="term.html">
   <button type="submit">確認</button>
@@ -241,53 +240,61 @@ dialog {
     <input id="agree" type="checkbox" name="agree">
     <span>同意する</span>
   </label>
-  <button type="submit">確認</button>
-  <button type="submit">キャンセル</button>
+  <button type="submit" name="submit" value="ok">確認</button>
+  <button type="submit" name="submit" value="cancel">キャンセル</button>
 </form>
 ```
 
-
-現状は `form[method="dialog"]` を `button[type="submit"]` で閉じているため、。しかし、「同意するボタン」があり、この明示的なチェックが求められているため、まずはチェックするまではボタンを無効にしておこう。
-
-確認ボタンによって `<form>` が submit されれば、そのまま `<dialog>` は閉じる。その結果は `returnValue` で取得できる。
+この場合、どちらのボタンで submit されたかを確認する必要がある。これは普通の Form と同じく `submitter` での分岐になる。
 
 ```js
-$("form").on("submit", (e) => {
-  e.target.retunValue
+document.querySelector("form").addEventListener("submit", (e) => {
+  e.preventDefault()
+  const { name, value } = e.submitter
+
+  if (value === "ok") {
+    // 確認
+  }
+  if (value === "cancel") {
+    // キャンセル
+  }
 })
 ```
 
-もし、何かしら値として渡したいものがある場合は、 submit をフックして自分で `close()` を呼ぶことで、実装が可能だ。結果は文字列でしか渡せないため、 JSON などのシリアライズが必要だろう。
+確認ボタンによって `<form>` が submit された場合、そのまま `<dialog>` は閉じる。
 
 ```js
-$("form").on("submit", (e) => {
+document.querySelector("form").addEventListener("submit", (e) => {
+  document.querySelector("dialog").close()
+})
+```
+
+ここで、値として渡したいものがある場合は、 `close()` に値をシリアライズして渡す。
+
+```js
+document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDafault()
   const returnValue = JSON.stringify({
     agree: true
   })
-  $("dialog").close(returnValue)
+  document.querySelector("dialog").close(returnValue)
 })
 ```
 
-## Cookie への同意
+`close()` で渡した結果は `onclose` で取得できる。
 
-利用規約とほぼ同じだが、 Cookie への同意ダイアログは、 Dialog でありながら Modal としては表示せず、画面の端に表示し続け明示的な操作を伴って消える実装が多いだろう。かつ、他を操作することで自動で消えるわけでもないため、 Light Dismiss も要求されない。
-
-この場合は `show()` で non-Modal な `<dialog>` として実装する方法が考えられそうだ。
-
-
-
-
-基本的な実装は、前述の利用規約とそこまで変わらない。
-
-画面の右下に固定で出す場合は、 `position: absolute` で配置することになる。 `<dialog>` には UA のスタイルが当たっているため、4方向全てする方が良いだろう。
-
-```css
-dialog {
-  position: absolute;
-  top: auto;
-  right: 1%;
-  bottom: 1%;
-  left: auto;
-}
+```js
+document.querySelector("dialog").addEventListener("close", (e) => {
+  console.log(e.target.returnValue) // { agree: true }
+})
 ```
+
+あとは、バリデーションや API コールを必要に応じて実装すれば良いだろう。
+
+
+## DEMO
+
+動作する DEMO を以下に用意した。
+
+- Term Dialog DEMO | labs.jxck.io
+  - https://labs.jxck.io/dialog/term.html
