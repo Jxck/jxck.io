@@ -71,13 +71,13 @@ Accessibility Tree を確認すれば、 `aria-modal: true` になっている�
     <h1>Hello Dialog</h1>
     <form method="dialog">
       <button type="submit">Accept</button>
-      <button type="cancel">Deny</button>
+      <button type="submit">Deny</button>
     </form>
   </div>
 </dialog>
 ```
 
-このように `<form method=dialog>` を `<dialog>` の中に書くと、その submit/cancel は Dialog を完了したことになり、 Dialog を閉じる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースを実装できる。
+このように `<form method=dialog>` を `<dialog>` の中に書くと、その submit は Dialog を完了したことになり、 Dialog を閉じる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースを実装できる。
 
 この時、 `<button value>` の値は、 JS から `returnValue` で取れるため、ボタンによる分岐が可能になる。
 
@@ -87,7 +87,7 @@ Accessibility Tree を確認すれば、 `aria-modal: true` になっている�
     <h1>Hello Dialog</h1>
     <form method="dialog">
       <button type="submit" value="accept">Accept</button>
-      <button type="cancel" value="deny">Deny</button>
+      <button type="submit" value="deny">Deny</button>
     </form>
   </div>
 </dialog>
@@ -97,12 +97,12 @@ document.querySelector("dialog").addEventListener("close", (e) => {
 })
 
 document.querySelector("dialog").addEventListener("cancel", (e) => {
-  console.log(e.target.returnValue) // こちらではない
+  console.log(e.target.returnValue) // ESC などで閉じた場合
 })
 </script>
 ```
 
-注意点は、 `type=cancel` をクリックしても、発生するのは `"close"` イベントである点だ。`"cancel"` イベントは、 Modal Dialog を ESC で閉じるといった操作で、 `"cancel"` -> `"close"` の順で発火する。
+`"cancel"` イベントは、 Modal Dialog を ESC で閉じるといった操作で、 `"cancel"` -> `"close"` の順で発火する。
 
 
 ### `close()` と `returnValue`
@@ -137,6 +137,30 @@ document.querySelector("dialog").addEventListener("close", (e) => {
 ```
 
 「閉じる」だけではなく「開く」方も JS 無しでできるが、それについては話がかなり広がるので別の回で解説する。
+
+
+### formmethod=dialog
+
+例えば Modal で Login Form などを出す場合を考えてみよう。
+
+```html
+<dialog>
+  <form method="POST" action="/sessions/new">
+    <label for=username>username:</label>
+    <input id=username type=text name=username>
+    <label for=password>password:</label>
+    <input id=password type=password name=password>
+    <button type=submit>Login</button>
+    <button value="cancel" formmethod="dialog">Cancel</button>
+  </form>
+<dialog>
+```
+
+この Form は、アカウントを入力し Login ボタンを押せば、そのまま Form を submit して POST でリクエストが飛び、画面を遷移することになる。
+
+しかし、 Cancel ボタンの方は `formmethod` 属性を用いて `form[method]` を `POST` から `dialog` に上書きしている。つまり、このボタンを押した場合は、 `<dialog>` が普通に閉じて、 `returnValue` に `"cancel"` が返るのだ。
+
+このように、「キャンセル時は `<dialog>` を閉じるだけ」という分岐を実装することも可能だ。
 
 
 ### aria-label / aria-labelledby
