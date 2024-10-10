@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-10-10/user-consent-dialog.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意">
+  <meta name=keywords            content="dialog,popover">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-10-10/user-consent-dialog.html>
+  <meta property=og:title        content="Dialog と Popover #7 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Dialog と Popover #7 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-10-10T08:00:00+08:00",
+    "dateModified": "2024-10-11T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意"
+  }
+  </script>
+
+  <title>Dialog と Popover #7 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-10>2024-10-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-11>2024-10-11</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#dialog">dialog</a>
+              <li><a href="/tags#popover">popover</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#規約への同意">規約への同意</a>
+              <ol>
+                <li><a href="#html">HTML</a>
+                <li><a href="#css">CSS</a>
+                <li><a href="#js">JS</a>
+              </ol>
+              <li><a href="#demo">DEMO</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Dialog と Popover #7</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。
+        <p>あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。
+        <p><strong>また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意</strong>
+      </section>
+      <section>
+        <h2 id="規約への同意"><a href="#規約への同意">規約への同意</a></h2>
+        <p>まずは、「規約への同意」の UI について考えてみる。想定するのは以下のようなものだ。
+        <p>
+          <img loading=lazy decoding=async src=./user-consent-dialog.drawio.svg?241004_035751 alt="規約が表示され、同意ボタンのある UI" width=600 height=600>
+        </p>
+        <p>見ての通り、この規約に同意しないと先に進むことができない、ブロックを伴う UI であるため Modal Dialog として実装するのが妥当だろう。
+        <p>どのようなきっかけで表示されるかはわからないため、 JS から <code translate=no>showModal()</code> する前提で実装を考えていく。
+        <section>
+          <h3 id="html"><a href="#html">HTML</a></h3>
+          <p>まず、基本的な HTML 要素を並べてみよう。(<code translate=no>&lt;dialog&gt;</code> と関係ない部分は簡略化)
+          <p>要件はいろいろあるだろうが、最低限以下の 2 つを必須とする。
+          <ul>
+            <li>規約そのもの
+            <li>同意のためのボタン
+          </ul>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog&gt;
+  &lt;section&gt;
+    &lt;h1&gt;利用規約への同意&lt;/h1&gt;
+    &lt;article&gt;
+      &lt;h2&gt;規約&lt;/h2&gt;
+      &lt;p&gt;長い長い&lt;/p&gt;
+      &lt;p&gt;利用規約&lt;/p&gt;
+      &lt;p&gt;スクロールあり&lt;/p&gt;
+    &lt;/article&gt;
+    &lt;p&gt;同意する&lt;/p&gt;
+    &lt;button&gt;確認&lt;/button&gt;
+  &lt;/section&gt;
+&lt;/dialog&gt;</code></pre>
+          <p>全体が <code translate=no>&lt;dialog&gt;</code> であることで <code translate=no>role=dialog</code> な要素自体は定義できている。<code translate=no>role=dialog</code> には <code translate=no>aria-description</code> による説明があることが求められているため、ここでは <code translate=no>&lt;h1&gt;</code> をそのまま適用できるだろう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog aria-labelledby=&quot;dialog-label&quot;&gt;
+  &lt;section&gt;
+    &lt;h1 id=&quot;dialog-label&quot;&gt;利用規約への同意&lt;/h1&gt;
+  &lt;/section&gt;
+&lt;/dialog&gt;</code></pre>
+          <p>利用規約本文は通常非常に長いため、このままでは <code translate=no>&lt;dialog&gt;</code> 全体が縦長になり、スクロールすることになる。
+          <p>しかし、 <code translate=no>&lt;dialog&gt;</code> そのものがスクロールするのは推奨されてないため、ここでは <code translate=no>&lt;section&gt;</code> の高さを固定し、規約部分のみをスクロールさせるようなスタイルを定義する。
+          <p>そして、 <code translate=no>&lt;dialog&gt;</code> が開いた際に、デフォルトでフォーカスするべき要素は、 <code translate=no>autofocus</code> で明示的な指定が推奨されている。最初に出てくるコントローラは <code translate=no>&lt;input checkbox&gt;</code> だが、「利用規約を確認してから同意」という前提であれば、規約自体の <code translate=no>&lt;section&gt;</code> にフォーカスが当たるのが良さそうだ。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;article autofocus&gt;
+&lt;/section&gt;</code></pre>
+          <p>もし、これより手前に <code translate=no>autofocus</code> すべきコントローラがある場合は、 <code translate=no>&lt;section&gt;</code> には <code translate=no>autofocus</code> をつけないだろう。しかし、ただの <code translate=no>&lt;section&gt;</code> はフォーカスができないため、キーボードでの操作などが不便になる。この実装を修正し、スクロールする要素をフォーカス可能にする流れがあるが、全ブラウザは対応してないため、現状は <code translate=no>tabindex=0</code> を指定しておくのが良いだろう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;article autofocus tabindex=&quot;0&quot;&gt;
+&lt;/article&gt;</code></pre>
+          <p>同意の結果は JS で取ればいいと言えばそれで終わりなので、あえてそのまま <code translate=no>&lt;form&gt;</code> から同意結果を POST する作りにしてみよう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;form method=&quot;post&quot; action=&quot;/term&quot;&gt;
+  &lt;label for=&quot;agree&quot;&gt;
+    &lt;input id=&quot;agree&quot; type=&quot;checkbox&quot; name=&quot;agree&quot; required&gt;
+    &lt;span&gt;同意する&lt;/span&gt;
+  &lt;/label&gt;
+  &lt;button type=&quot;submit&quot;&gt;確認&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          <p>見ての通り普通のフォームで、同意すればその結果をそのままサーバに POST する。画面遷移をするため、 Dialog を閉じる方は考えなくて良い。
+          <p>しかし、このフォームでは同意以外の道がないため、キャンセルボタンを用意しよう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;form method=&quot;post&quot; action=&quot;term.html&quot;&gt;
+  &lt;button type=&quot;submit&quot;&gt;確認&lt;/button&gt;
+  &lt;button formmethod=&quot;dialog&quot; value=&quot;cancel&quot;&gt;キャンセル&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          <p>キャンセルボタンの方は、 <code translate=no>form[method]</code> を <code translate=no>dialog</code> に上書きしているため、 <code translate=no>&lt;dialog&gt;</code> が Close して終わる。 <code translate=no>returnValue</code> には <code translate=no>button[value]</code> の <code translate=no>&quot;cancel&quot;</code> という文字列が渡る。(こちらも Form は submit するので <code translate=no>input[type=checkbox]</code> に <code translate=no>required</code> をつけるとキャンセルできなくなるため、バリデーションは別途行う必要がある。)
+          <p>まとめると HTML は以下だ。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog aria-labelledby=&quot;dialog-label&quot;&gt;
+  &lt;section&gt;
+    &lt;h1 id=&quot;dialog-label&quot;&gt;利用規約への同意&lt;/h1&gt;
+    &lt;article autofocus tabindex=&quot;0&quot;&gt;
+      &lt;p&gt;長い長い&lt;/p&gt;
+      &lt;p&gt;利用規約&lt;/p&gt;
+      &lt;p&gt;スクロールあり&lt;/p&gt;
+    &lt;/section&gt;
+    &lt;form method=&quot;post&quot; action=&quot;/term&quot;&gt;
+      &lt;label for=&quot;agree&quot;&gt;
+        &lt;input id=&quot;agree&quot; type=&quot;checkbox&quot; name=&quot;agree&quot;&gt;
+        &lt;span&gt;同意する&lt;/span&gt;
+      &lt;/label&gt;
+      &lt;button type=&quot;submit&quot;&gt;確認&lt;/button&gt;
+      &lt;button formmethod=&quot;dialog&quot; type=&quot;submit&quot; value=&quot;cancel&quot;&gt;キャンセル&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/section&gt;
+&lt;/dialog&gt;</code></pre>
+          <p><code translate=no>&lt;dialog&gt;</code> は普通に閉じて、 JS でリクエストする場合は、シンプルに <code translate=no>form[method=dialog]</code> にして、 JS で分岐で良いだろう。
+        </section>
+        <section>
+          <h3 id="css"><a href="#css">CSS</a></h3>
+          <p>次に CSS を考える。(<code translate=no>&lt;dialog&gt;</code> と関係ない部分は省略)
+          <p>まず <code translate=no>&lt;dialog&gt;</code> 内で注意が必要なのは、前述のとおり規約の高さを指定し、スクロールさせることだ。
+          <pre class=css data-code=css><code translate=no class=language-css>dialog {
+  section {
+    article {
+      height: 10em;
+      overflow: scroll;
+    }
+  }
+}</code></pre>
+          <p><code translate=no>::backdrop</code> は Modal Dialog が開いていることによって「背面は操作ができない(inert)」ということを伝える目的がある。基本的には RGBa でアルファをかけた色にすることで、背面を見せながらも暗くする指定が、ブラウザデフォルトに入っている。これに任せても良いが、色の変化がわかりにくい場合、暗さのためのアルファを調整したり、 <code translate=no>backdrop-filter</code> をかけるといった方法もあるだろう。
+          <pre class=css data-code=css><code translate=no class=language-css>::background {
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+}</code></pre>
+          <p>単なる <code translate=no>&lt;div&gt;</code> が真ん中に表示された感を減らすために、 <code translate=no>&lt;dialog&gt;</code> 側に <code translate=no>box-shadow</code> を表示すると、よりモーダル感が強まるかもしれない。
+          <pre class=css data-code=css><code translate=no class=language-css>dialog {
+  border: solid 1px #ccc;
+  border-radius: 2%;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.5);
+}</code></pre>
+          <p>位置に関しては、このユースケースでは画面の真ん中に表示が基本だろう。その場合、 Top Layer の真ん中に表示されるのがデフォルトであるため、そのままで良さそうだ。
+          <p>表示に関しては、デフォルトでは「パッ」と開いて「パッ」と閉じるだけだ。ここにアニメーションを加えてフェードさせる場合は、いくつか注意が必要だ。
+          <p>まず、表示された状態のスタイルで、アニメーションしたい要素を以下のように <code translate=no>[open]</code> のスタイルとして分離する。
+          <pre class=css data-code=css><code translate=no class=language-css>/* show */
+[open] {
+  opacity: 1;
+}
+[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  opacity: 1;
+}</code></pre>
+          <p>この表示状態に向かってアニメーションするように、 <code translate=no>transition</code> を以下のように定義する。注意点は、離散値である <code translate=no>display</code> と <code translate=no>overlay</code> に <code translate=no>allow-discrete</code> を指定する点だ。
+          <pre class=css data-code=css><code translate=no class=language-css>:root {
+  --duration: 2s;
+}
+
+/* transition style */
+dialog {
+  opacity: 0;
+  transition: 
+    display var(--duration) allow-discrete, 
+    overlay var(--duration) allow-discrete, 
+    opacity var(--duration);
+}
+::backdrop {
+  opacity: 0;
+  background-color: transparent;
+  backdrop-filter: none;
+  transition: 
+    display var(--duration) allow-discrete, 
+    overlay var(--duration) allow-discrete, 
+    background-color var(--duration),
+    backdrop-filter var(--duration),
+    opacity var(--duration);
+}</code></pre>
+          <p>ただし、これでは「非表示」の方はアニメーションはできても、「表示」の方はアニメーションが効かない。理由は、 <code translate=no>display</code> が <code translate=no>none</code> から <code translate=no>block</code> に変化して DOM が表示されるまで、他のプロパティ値が計算されないためアニメーションできないからだ。(「非表示」にする際は、すでに DOM が表示され計算されたプロパティがあるため可能)
+          <p>そこで、 <code translate=no>display: none</code> の状態で DOM が無くとも初期値がわかるように、 <code translate=no>@starting-style</code> に初期値を明示しておく。
+          <pre class=css data-code=css><code translate=no class=language-css>@starting-style {
+  [open] {
+    opacity: 0;
+  }
+  [open]::backdrop {
+    background-color: transparent;
+    backdrop-filter: none;
+    opacity: 0;
+  }
+}</code></pre>
+          <p>これで、表示/非表示両方のアニメーションが可能になる。
+        </section>
+        <section>
+          <h3 id="js"><a href="#js">JS</a></h3>
+          <p>最後は JS だ。
+          <p>この <code translate=no>&lt;dialog&gt;</code> は Modal であるため、必要なタイミングで <code translate=no>showModal()</code> する必要がある。 <code translate=no>showModal()</code> さえ呼べば、従来自前の実装が必要だった面倒なことはほとんど実装してくれるため、気にすべきは閉じる部分くらいだろう。
+          <p>今回は、同意の取得時にそのまま form を submit しているため、特に JS でやることはなくなっている。そこであえて、同意を全て JS 側で処理する方法で考えておく。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;form method=&quot;dialog&quot;&gt;
+  &lt;label for=&quot;agree&quot;&gt;
+    &lt;input id=&quot;agree&quot; type=&quot;checkbox&quot; name=&quot;agree&quot;&gt;
+    &lt;span&gt;同意する&lt;/span&gt;
+  &lt;/label&gt;
+  &lt;button type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;ok&quot;&gt;確認&lt;/button&gt;
+  &lt;button type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;cancel&quot;&gt;キャンセル&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          <p>この場合、どちらのボタンで submit されたかを確認する必要がある。これは普通の Form と同じく <code translate=no>submitter</code> での分岐になる。
+          <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&quot;form&quot;).addEventListener(&quot;submit&quot;, (e) =&gt; {
+  e.preventDefault()
+  const { name, value } = e.submitter
+
+  if (value === &quot;ok&quot;) {
+    // 確認
+  }
+  if (value === &quot;cancel&quot;) {
+    // キャンセル
+  }
+})</code></pre>
+          <p>確認ボタンによって <code translate=no>&lt;form&gt;</code> が submit された場合、そのまま <code translate=no>&lt;dialog&gt;</code> は閉じる。
+          <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&quot;form&quot;).addEventListener(&quot;submit&quot;, (e) =&gt; {
+  document.querySelector(&quot;dialog&quot;).close()
+})</code></pre>
+          <p>ここで、値として渡したいものがある場合は、 <code translate=no>close()</code> に値をシリアライズして渡す。
+          <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&quot;form&quot;).addEventListener(&quot;submit&quot;, (e) =&gt; {
+  e.preventDafault()
+  const returnValue = JSON.stringify({
+    agree: true
+  })
+  document.querySelector(&quot;dialog&quot;).close(returnValue)
+})</code></pre>
+          <p><code translate=no>close()</code> で渡した結果は <code translate=no>onclose</code> で取得できる。
+          <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (e) =&gt; {
+  console.log(e.target.returnValue) // { agree: true }
+})</code></pre>
+          <p>あとは、バリデーションや API コールを必要に応じて実装すれば良いだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作する DEMO を以下に用意した。
+        <ul>
+          <li>
+            Term Dialog DEMO | labs.jxck.io
+            <ul>
+              <li><a href="https://labs.jxck.io/dialog/term.html" target=_blank>https://labs.jxck.io/dialog/term.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>

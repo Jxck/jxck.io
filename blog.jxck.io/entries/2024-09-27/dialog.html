@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-27T08:00:00+08:00",
-    "dateModified": "2024-10-08T08:00:00+08:00",
+    "dateModified": "2024-10-11T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-27>2024-09-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-08>2024-10-08</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-11>2024-10-11</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -141,6 +141,7 @@
                 <li><a href="#showshowmodal"><code translate=no>show()</code>/<code translate=no>showModal()</code></a>
                 <li><a href="#submit">Submit</a>
                 <li><a href="#close-と-returnvalue"><code translate=no>close()</code> と <code translate=no>returnValue</code></a>
+                <li><a href="#formmethoddialog">formmethod=dialog</a>
                 <li><a href="#aria-label--aria-labelledby">aria-label / aria-labelledby</a>
                 <li><a href="#フォーカスの確認">フォーカスの確認</a>
                 <li><a href="#scrollable">Scrollable</a>
@@ -231,18 +232,18 @@ document.querySelector(&quot;button.showModal&quot;).addEventListener(&quot;clic
     &lt;h1&gt;Hello Dialog&lt;/h1&gt;
     &lt;form method=&quot;dialog&quot;&gt;
       &lt;button type=&quot;submit&quot;&gt;Accept&lt;/button&gt;
-      &lt;button type=&quot;cancel&quot;&gt;Deny&lt;/button&gt;
+      &lt;button type=&quot;submit&quot;&gt;Deny&lt;/button&gt;
     &lt;/form&gt;
   &lt;/div&gt;
 &lt;/dialog&gt;</code></pre>
-          <p>このように <code translate=no>&lt;form method=dialog&gt;</code> を <code translate=no>&lt;dialog&gt;</code> の中に書くと、その submit/cancel は Dialog を完了したことになり、 Dialog を閉じる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースを実装できる。
+          <p>このように <code translate=no>&lt;form method=dialog&gt;</code> を <code translate=no>&lt;dialog&gt;</code> の中に書くと、その submit は Dialog を完了したことになり、 Dialog を閉じる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースを実装できる。
           <p>この時、 <code translate=no>&lt;button value&gt;</code> の値は、 JS から <code translate=no>returnValue</code> で取れるため、ボタンによる分岐が可能になる。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog open&gt;
   &lt;div&gt;
     &lt;h1&gt;Hello Dialog&lt;/h1&gt;
     &lt;form method=&quot;dialog&quot;&gt;
       &lt;button type=&quot;submit&quot; value=&quot;accept&quot;&gt;Accept&lt;/button&gt;
-      &lt;button type=&quot;cancel&quot; value=&quot;deny&quot;&gt;Deny&lt;/button&gt;
+      &lt;button type=&quot;submit&quot; value=&quot;deny&quot;&gt;Deny&lt;/button&gt;
     &lt;/form&gt;
   &lt;/div&gt;
 &lt;/dialog&gt;
@@ -252,10 +253,10 @@ document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (
 })
 
 document.querySelector(&quot;dialog&quot;).addEventListener(&quot;cancel&quot;, (e) =&gt; {
-  console.log(e.target.returnValue) // こちらではない
+  console.log(e.target.returnValue) // ESC などで閉じた場合
 })
 &lt;/script&gt;</code></pre>
-          <p>注意点は、 <code translate=no>type=cancel</code> をクリックしても、発生するのは <code translate=no>&quot;close&quot;</code> イベントである点だ。<code translate=no>&quot;cancel&quot;</code> イベントは、 Modal Dialog を ESC で閉じるといった操作で、 <code translate=no>&quot;cancel&quot;</code> -&gt; <code translate=no>&quot;close&quot;</code> の順で発火する。
+          <p><code translate=no>&quot;cancel&quot;</code> イベントは、 Modal Dialog を ESC で閉じるといった操作で、 <code translate=no>&quot;cancel&quot;</code> -&gt; <code translate=no>&quot;close&quot;</code> の順で発火する。
         </section>
         <section>
           <h3 id="close-と-returnvalue"><a href="#close-と-returnvalue"><code translate=no>close()</code> と <code translate=no>returnValue</code></a></h3>
@@ -285,6 +286,23 @@ document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (
 })
 &lt;/script&gt;</code></pre>
           <p>「閉じる」だけではなく「開く」方も JS 無しでできるが、それについては話がかなり広がるので別の回で解説する。
+        </section>
+        <section>
+          <h3 id="formmethoddialog"><a href="#formmethoddialog">formmethod=dialog</a></h3>
+          <p>例えば Modal で Login Form などを出す場合を考えてみよう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog&gt;
+  &lt;form method=&quot;POST&quot; action=&quot;/sessions/new&quot;&gt;
+    &lt;label for=username&gt;username:&lt;/label&gt;
+    &lt;input id=username type=text name=username&gt;
+    &lt;label for=password&gt;password:&lt;/label&gt;
+    &lt;input id=password type=password name=password&gt;
+    &lt;button type=submit&gt;Login&lt;/button&gt;
+    &lt;button value=&quot;cancel&quot; formmethod=&quot;dialog&quot;&gt;Cancel&lt;/button&gt;
+  &lt;/form&gt;
+&lt;dialog&gt;</code></pre>
+          <p>この Form は、アカウントを入力し Login ボタンを押せば、そのまま Form を submit して POST でリクエストが飛び、画面を遷移することになる。
+          <p>しかし、 Cancel ボタンの方は <code translate=no>formmethod</code> 属性を用いて <code translate=no>form[method]</code> を <code translate=no>POST</code> から <code translate=no>dialog</code> に上書きしている。つまり、このボタンを押した場合は、 <code translate=no>&lt;dialog&gt;</code> が普通に閉じて、 <code translate=no>returnValue</code> に <code translate=no>&quot;cancel&quot;</code> が返るのだ。
+          <p>このように、「キャンセル時は <code translate=no>&lt;dialog&gt;</code> を閉じるだけ」という分岐を実装することも可能だ。
         </section>
         <section>
           <h3 id="aria-label--aria-labelledby"><a href="#aria-label--aria-labelledby">aria-label / aria-labelledby</a></h3>
