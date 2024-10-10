@@ -7,36 +7,64 @@
 
 <style>
   :root {
-    font-family: sans-serif;
+    --duration: 2s;
   }
 
+  body {
+    font-family: sans-serif;
+    color: #333;
+  }
+
+  /* enable transitions */
   dialog {
-    width: 30vw;
+    opacity: 0;
+    transition: 
+      display var(--duration) allow-discrete, 
+      overlay var(--duration) allow-discrete, 
+      opacity var(--duration);
+  }
+  ::backdrop {
+    opacity: 0;
+    background-color: transparent;
+    backdrop-filter: none;
+    transition: 
+      display var(--duration) allow-discrete, 
+      overlay var(--duration) allow-discrete, 
+      background-color var(--duration),
+      backdrop-filter var(--duration),
+      opacity var(--duration);
+  }
+
+  /* show */
+  [open] {
+    opacity: 1;
+  }
+  [open]::backdrop {
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    opacity: 1;
+  }
+
+  /* close   */
+  @starting-style {
+    [open] {
+      opacity: 0;
+    }
+    [open]::backdrop {
+      background-color: transparent;
+      backdrop-filter: none;
+      opacity: 0;
+    }
+  }
+
+
+  dialog {
+    width: 20vw;
+    color: #333;
     padding: 2rem;
     border: solid 1px #ccc;
     border-radius: 2%;
-
-    /** open animation */
-    &[open] {
-      opacity: 1;
-      display: block;
-      transition: opacity 0.2s, display 0.2s allow-discrete;
-
-      @starting-style {
-        opacity: 0;
-      }
-    }
-
-    /** close animation */
-    &:not([open]) {
-      opacity: 0;
-      display: none;
-      transition: opacity 0.2s, display 0.2s allow-discrete;
-    }
-
-    &::backdrop {
-      background-color: rgba(0, 0, 0, 0.5)
-    }
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.5);
 
     section {
       display: flex;
@@ -50,7 +78,7 @@
       article {
         height: 10rem;
         overflow-y: scroll;
-        border: solid 1px #333;
+        border: solid 1px #ccc;
         padding: 0.8rem;
 
         h2,
@@ -64,6 +92,14 @@
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+
+        button {
+          border: none;
+          background-color: #007FFF;
+          color: white;
+          padding: 0.4rem 2rem;
+          border-radius: 4px;
+        }
       }
     }
   }
@@ -103,7 +139,7 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  $("dialog").showModal()
+  // $("dialog").showModal()
 
   $("#showModal").on("click", (e) => {
     $("dialog").showModal()

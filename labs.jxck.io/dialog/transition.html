@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dialog Animation DEMO | labs.jxck.io</title>
+
+<h1>Dialog Animation DEMO</h1>
+
+<style>
+  /* enable transitions */
+  dialog {
+    opacity: 0;
+    transition: 
+      display 1s allow-discrete, 
+      overlay 1s allow-discrete, 
+      opacity 1s;
+  }
+  ::backdrop {
+    opacity: 0;
+    background-color: transparent;
+    transition: 
+      display 1s allow-discrete, 
+      overlay 1s allow-discrete, 
+      background-color 1s,
+      opacity 1s;
+  }
+
+  /* IN */
+  [open] {
+    opacity: 1;
+  }
+  [open]::backdrop {
+    background-color: red;
+    opacity: 1;
+  }
+
+  /* OUT */
+  @starting-style {
+    [open] {
+      opacity: 0;
+    }
+    [open]::backdrop {
+      background-color: transparent;
+      opacity: 0;
+    }
+  }
+</style>
+
+<button onclick="dialog.showModal()">show</button>
+<dialog id="dialog">
+  <p>dialog</p>
+  <form method="dialog">
+    <button>close</button>
+  </form>
+</dialog>
