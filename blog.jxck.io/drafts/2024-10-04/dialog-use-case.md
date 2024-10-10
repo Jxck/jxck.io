@@ -2,11 +2,11 @@
 
 ## Intro
 
-ここまで解説した仕様を踏まえ、いくつかのユースケースの実装について考えてみる。
+ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。
 
 あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。
 
-**なお、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意**
+**また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意**
 
 
 ## 規約への同意
@@ -17,23 +17,28 @@
 
 見ての通り、この規約に同意しないと先に進むことができない、ブロックを伴う UI であるため Modal Dialog として実装するのが妥当だろう。
 
-どのようなきっかけで表示されるかはわからないため、 JS から `showModal()` する前提で実装を考えていこう。
+どのようなきっかけで表示されるかはわからないため、 JS から `showModal()` する前提で実装を考えていく。
 
 
 ### HTML
 
 まず、基本的な HTML 要素を並べてみよう。(`<dialog>` と関係ない部分は簡略化)
 
+要件はいろいろあるだろうが、最低限以下の 2 つを必須とする。
+
+- 規約そのもの
+- 同意のためのボタン
+
 ```html
 <dialog>
   <section>
     <h1>利用規約への同意</h1>
-    <section>
+    <article>
+      <h2>規約</h2>
       <p>長い長い</p>
       <p>利用規約</p>
       <p>スクロールあり</p>
-    </section>
-    <a>規約のダウンロード(PDF)</a>
+    </article>
     <p>同意する</p>
     <button>確認</button>
   </section>
@@ -50,128 +55,176 @@
 </dialog>
 ```
 
-次に利用規約本文だが、基本的には非常に長くなるため、このままでは `<dialog>` 全体が縦長になり、スクロールが出ることになる。
+利用規約本文は通常非常に長いため、このままでは `<dialog>` 全体が縦長になり、スクロールすることになる。
 
-しかし、 `<dialog>` そのものがスクロールするのは推奨されておらず、この場合は `<section>` の高さを固定し、スクロールさせるような CSS を定義する。
+しかし、 `<dialog>` そのものがスクロールするのは推奨されてないため、ここでは `<section>` の高さを固定し、規約部分のみをスクロールさせるようなスタイルを定義する。
 
-そして、 `<dialog>` が開いた際に、デフォルトでフォーカスするべき要素は、 `autofocus` で明示的に指定するべきという仕様になっている。最初に出てくるコントローラは `<input checkbox>` だが、「利用規約を確認してから同意」という前提であれば、規約自体の `<section>` にフォーカスが当たるのが良さそうだ。
+そして、 `<dialog>` が開いた際に、デフォルトでフォーカスするべき要素は、 `autofocus` で明示的な指定が推奨されている。最初に出てくるコントローラは `<input checkbox>` だが、「利用規約を確認してから同意」という前提であれば、規約自体の `<section>` にフォーカスが当たるのが良さそうだ。
 
 ```html
-<section autofocus>
-  <p>長い長い</p>
-  <p>利用規約</p>
-  <p>スクロールあり</p>
+<article autofocus>
 </section>
 ```
 
-
-もし、より手前に `autofocus` すべきコントローラがある場合は、 `<section>` には `autofocus` をつけないだろう。しかし、ただの `<section>` はフォーカスができないため、キーボードでの操作などが不便になる。この実装を修正し、スクロールする要素をフォーカス可能にする流れがあるが、全ブラウザは対応してないため、 `tabindex=0` を指定しておくのが良いだろう。
+もし、これより手前に `autofocus` すべきコントローラがある場合は、 `<section>` には `autofocus` をつけないだろう。しかし、ただの `<section>` はフォーカスができないため、キーボードでの操作などが不便になる。この実装を修正し、スクロールする要素をフォーカス可能にする流れがあるが、全ブラウザは対応してないため、現状は `tabindex=0` を指定しておくのが良いだろう。
 
 ```html
-<section tabindex="0">
-</section>
+<article autofocus tabindex="0">
+</article>
 ```
 
-
-
-最後に、この Dialog を閉じるには、単なる `<button>` のリンクをフックして JS で `close()` するのではなく、明示的に `<form method="dialog">` を Submit することで閉じる。
+同意の結果は JS で取ればいいと言えばそれで終わりなので、あえてそのまま `<form>` から同意結果を POST する作りにしてみよう。
 
 ```html
-<form method="dialog">
-  <input type="checkbox" id="agree">
-  <label for="agree">同意する</label>
+<form method="post" action="/term">
+  <label for="agree">
+    <input id="agree" type="checkbox" name="agree" required>
+    <span>同意する</span>
+  </label>
   <button type="submit">確認</button>
 </form>
 ```
 
-まとめると以下だ。
+見ての通り普通のフォームで、同意すればその結果をそのままサーバに POST する。画面遷移をするため、 Dialog を閉じる方は考えなくて良い。
+
+しかし、このフォームでは同意以外の道がないため、キャンセルボタンを用意しよう。
+
+
+```html
+<form method="post" action="term.html">
+  <button type="submit">確認</button>
+  <button formmethod="dialog" value="cancel">キャンセル</button>
+</form>
+```
+
+キャンセルボタンの方は、 `form[method]` を `dialog` に上書きしているため、 `<dialog>` が Close して終わる。 `returnValue` には `button[value]` の `"cancel"` という文字列が渡る。(こちらも Form は submit するので `input[type=checkbox]` に `required` をつけるとキャンセルできなくなるため、バリデーションは別途行う必要がある。)
+
+まとめると HTML は以下だ。
 
 ```html
 <dialog aria-labelledby="dialog-label">
-  <h1 id="dialog-label">利用規約への同意</h1>
-  <section autofocus>
-    <p>長い長い</p>
-    <p>利用規約</p>
-    <p>スクロールあり</p>
+  <section>
+    <h1 id="dialog-label">利用規約への同意</h1>
+    <article autofocus tabindex="0">
+      <p>長い長い</p>
+      <p>利用規約</p>
+      <p>スクロールあり</p>
+    </section>
+    <form method="post" action="/term">
+      <label for="agree">
+        <input id="agree" type="checkbox" name="agree">
+        <span>同意する</span>
+      </label>
+      <button type="submit">確認</button>
+      <button formmethod="dialog" type="submit" value="cancel">キャンセル</button>
+    </form>
   </section>
-  <a>規約のダウンロード(PDF)</a>
-  <form method="dialog">
-    <input type="checkbox" id="agree">
-    <label for="agree">同意する</label>
-    <button type="submit">確認</button>
-  </form>
 </dialog>
 ```
+
+`<dialog>` は普通に閉じて、 JS でリクエストする場合は、シンプルに `form[method=dialog]` にして、 JS で分岐で良いだろう。
+
 
 ### CSS
 
 次に CSS を考える。(`<dialog>` と関係ない部分は省略)
 
-`<dialog>` 自体の CSS で考えるべきは、大きく以下の 2 つのセレクタだろう。
+まず `<dialog>` 内で注意が必要なのは、前述のとおり規約の高さを指定し、スクロールさせることだ。
 
 ```css
 dialog {
-  /* dialog 自体のスタイル */
+  section {
+    article {
+      height: 10em;
+      overflow: scroll;
+    }
+  }
+}
+```
+
+`::backdrop` は Modal Dialog が開いていることによって「背面は操作ができない(inert)」ということを伝える目的がある。基本的には RGBa でアルファをかけた色にすることで、背面を見せながらも暗くする指定が、ブラウザデフォルトに入っている。これに任せても良いが、色の変化がわかりにくい場合、暗さのためのアルファを調整したり、 `backdrop-filter` をかけるといった方法もあるだろう。
+
+```css
+::background {
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+}
+```
+
+単なる `<div>` が真ん中に表示された感を減らすために、 `<dialog>` 側に `box-shadow` を表示すると、よりモーダル感が強まるかもしれない。
+
+```css
+dialog {
+  border: solid 1px #ccc;
+  border-radius: 2%;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.5);
+}
+```
+
+位置に関しては、このユースケースでは画面の真ん中に表示が基本だろう。その場合、 Top Layer の真ん中に表示されるのがデフォルトであるため、そのままで良さそうだ。
+
+表示に関しては、デフォルトでは「パッ」と開いて「パッ」と閉じるだけだ。ここにアニメーションを加えてフェードさせる場合は、いくつか注意が必要だ。
+
+まず、表示された状態のスタイルで、アニメーションしたい要素を以下のように `[open]` のスタイルとして分離する。
+
+```css
+/* show */
+[open] {
+  opacity: 1;
+}
+[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  opacity: 1;
+}
+```
+
+この表示状態に向かってアニメーションするように、 `transition` を以下のように定義する。注意点は、離散値である `display` と `overlay` に `allow-discrete` を指定する点だ。
+
+```css
+:root {
+  --duration: 2s;
 }
 
+/* transition style */
+dialog {
+  opacity: 0;
+  transition: 
+    display var(--duration) allow-discrete, 
+    overlay var(--duration) allow-discrete, 
+    opacity var(--duration);
+}
 ::backdrop {
-  /* 背面部分のスタイル */
+  opacity: 0;
+  background-color: transparent;
+  backdrop-filter: none;
+  transition: 
+    display var(--duration) allow-discrete, 
+    overlay var(--duration) allow-discrete, 
+    background-color var(--duration),
+    backdrop-filter var(--duration),
+    opacity var(--duration);
 }
 ```
 
-`<dialog>` 内で注意が必要なのは、前述のとおり規約の高さを指定し、スクロールさせることだ。
+ただし、これでは「非表示」の方はアニメーションはできても、「表示」の方はアニメーションが効かない。理由は、 `display` が `none` から `block` に変化して DOM が表示されるまで、他のプロパティ値が計算されないためアニメーションできないからだ。(「非表示」にする際は、すでに DOM が表示され計算されたプロパティがあるため可能)
+
+そこで、 `display: none` の状態で DOM が無くとも初期値がわかるように、 `@starting-style` に初期値を明示しておく。
 
 ```css
-dialog {
-  section {
-    height: 10em;
-    overflow: scroll;
+@starting-style {
+  [open] {
+    opacity: 0;
+  }
+  [open]::backdrop {
+    background-color: transparent;
+    backdrop-filter: none;
+    opacity: 0;
   }
 }
 ```
 
-`::backdrop` は Modal Dialog が開いていることによって「背面は操作ができない(inert)」ということを伝える目的がある。基本的には Opacity をかけることで、背面を見せながらも暗くするというのが基本だ(ブラウザデフォルトに任せても良い)。
-
-```css
-::background {
-  background: rgba(0, 0, 0, 0.4);
-}
-```
-
-位置に関しては、このユースケースでは画面の真ん中に表示が基本だろう。その場合、 Top Layer の真ん中に表示されるのがデフォルトであるため、デフォルトで良さそうだ。
-
-表示に関しては、デフォルトでは「パッ」と開いて「パッ」と閉じるだけだ。ここにアニメーションを加えてフェードさせたい場合を考える。
-
-
-TODO: 開く
-
-```css
-
-
-
-```
-
-TODO: 閉じる
-
-
-
-
-あとは、 `<dialog>` 内部をいつも通りスタイルすればいい。
-
-まとめると以下だ。
-
-```css
-dialog {
-  section {
-    height: 10em;
-    overflow: scroll;
-  }
-}
-
-::background {
-  background: rgba(0, 0, 0, 0.4);
-}
-```
+これで、表示/非表示両方のアニメーションが可能になる。
 
 
 ### JS
@@ -180,15 +233,21 @@ dialog {
 
 この `<dialog>` は Modal であるため、必要なタイミングで `showModal()` する必要がある。 `showModal()` さえ呼べば、従来自前の実装が必要だった面倒なことはほとんど実装してくれるため、気にすべきは閉じる部分くらいだろう。
 
-現状は `<form method="dialog">` を `<button type="submit">` で閉じているため、それだけで結果は取得できる。しかし、「同意するボタン」があり、この明示的なチェックが求められているため、まずはチェックするまではボタンを無効にしておこう。
+今回は、同意の取得時にそのまま form を submit しているため、特に JS でやることはなくなっている。そこであえて、同意を全て JS 側で処理する方法で考えておく。
 
-
-```js
-document.querySelector("#agree").addEventListener("checked", (e) => {
-  // チェックされたらボタンを有効にする
-  document.querySelector("button[type=submit]").disabled = false
-})
+```html
+<form method="dialog">
+  <label for="agree">
+    <input id="agree" type="checkbox" name="agree">
+    <span>同意する</span>
+  </label>
+  <button type="submit">確認</button>
+  <button type="submit">キャンセル</button>
+</form>
 ```
+
+
+現状は `form[method="dialog"]` を `button[type="submit"]` で閉じているため、。しかし、「同意するボタン」があり、この明示的なチェックが求められているため、まずはチェックするまではボタンを無効にしておこう。
 
 確認ボタンによって `<form>` が submit されれば、そのまま `<dialog>` は閉じる。その結果は `returnValue` で取得できる。
 

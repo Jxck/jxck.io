@@ -15,7 +15,7 @@
     color: #333;
   }
 
-  /* enable transitions */
+  /* transition style */
   dialog {
     opacity: 0;
     transition: 
@@ -35,7 +35,6 @@
       opacity var(--duration);
   }
 
-  /* show */
   [open] {
     opacity: 1;
   }
@@ -45,7 +44,6 @@
     opacity: 1;
   }
 
-  /* close   */
   @starting-style {
     [open] {
       opacity: 0;
@@ -57,7 +55,7 @@
     }
   }
 
-
+  /* general style */
   dialog {
     width: 20vw;
     color: #333;
@@ -104,9 +102,11 @@
     }
   }
 </style>
+
+<button id="showModal">dialog.showModal()</button>
+
 <dialog aria-labelledby="dialog-label">
   <section>
-
     <h1 id="dialog-label">Term of Service</h1>
     <article autofocus tabindex="0">
       <h2>First</h2>
@@ -125,14 +125,14 @@
     </article>
     <form method="dialog">
       <label for="agree">
-        <input id="agree" type="checkbox" name="agree" required>
+        <input id="agree" type="checkbox" name="agree">
         <span>I agree that I read</span>
       </label>
-      <button type="close">OK</button>
+      <button type="submit" name="submit" value="ok">OK</button>
+      <button type="submit" name="submit" value="cancel">Cancel</button>
     </form>
   </section>
 </dialog>
-<button id="showModal">dialog.showModal()</button>
 
 <script>
   const $ = document.querySelector.bind(document)
@@ -147,10 +147,12 @@
 
   $("form").on("submit", (e) => {
     e.preventDefault()
-    const data = new FormData(e.target)
-    console.log(new Map(data))
-    const params = new URLSearchParams(data)
-    $("dialog").close(params)
+    console.log(e)
+    const formData = new FormData(e.target)
+    console.log(formData)
+    const data = Object.fromEntries(formData.entries())
+    console.log(data)
+    $("dialog").close(JSON.stringify(data))
   })
 
   $("dialog").on("close", (e) => {
