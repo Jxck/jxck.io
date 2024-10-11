@@ -3,15 +3,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Popover Toast DEMO</title>
 
-
 <h1>Popover Toast DEMO</h1>
 <div id="toast" popover>
   <div>
-    <svg class="info" height="20" width="20" viewBox="0 0 100 100" aria-label="info">
-      <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-size="65" font-weight="bold" font-family="Noto Serif">i</text>
+    <svg height="20" width="20" viewBox="0 0 100 100">
+      <text class="icon-text" x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-size="65" font-weight="bold" font-family="Noto Serif"></text>
       <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="8" />
     </svg>
-    <output>Update Available</output>
+    <output></output>
     <button popovertarget="toast" popovertargetaction="hide">
       <svg class="close" height="100" width="100" viewBox="0 0 100 100" aria-label="close">
         <path stroke="white" stroke-width="14" fill="none" stroke-linecap="round" d="
@@ -25,11 +24,23 @@
   </div>
 </div>
 
-<button popovertarget="toast" popovertargetaction="show">show</button>
+<button data-icon="i" data-level="info"  data-message="Update Available">info</button>
+<button data-icon="!" data-level="error" data-message="Critical Error">alert</button>
+
 <script>
   const $ = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  $$("button").forEach(($button) => {
+    $button.on("click", (e) => {
+      const {icon, level, message} = e.target.dataset
+      $("[popover]").classList.add(level)
+      $("[popover] output").textContent = message
+      $("[popover] svg .icon-text").textContent = icon
+      $("[popover]").showPopover()
+    })
+  })
 </script>
 
 <style>
@@ -37,21 +48,30 @@
     font-family: sans-serif;
     color: #333;
     --duration: 0.4s;
+    interpolate-size: allow-keywords;
+  }
+
+  [popover].info {
+    background-color: #007FFF;
+  }
+  [popover].error {
+    background-color: #FF007F;
   }
 
   [popover] {
+    position: absolute;
+    top: auto;
+    right: 10px;
+    bottom: 10px;
+    left: auto;
+    overflow: hidden;
+
     border: none;
     width: 250px;
     padding: 20px;
     border-radius: 6px;
     border: solid 1px #ccc;
     color: white;
-    background-color: #007FFF;
-    position: absolute;
-    top: auto;
-    right: 10%;
-    bottom: 10%;
-    left: auto;
 
     div {
       display: flex;
@@ -84,19 +104,19 @@
   /* enable transitions */
   [popover] {
     transition:
-      display 1s allow-discrete,
-      overlay 1s allow-discrete,
-      opacity 1s;
-    opacity: 0;
+      display var(--duration) allow-discrete,
+      overlay var(--duration) allow-discrete,
+      height var(--duration);
   }
 
   :popover-open {
-    opacity: 1;
+    height: auto;
+    /* height: calc-size(auto, size); */
   }
 
   @starting-style {
     :popover-open {
-      opacity: 0;
+      height: 0;
     }
   }
 </style>
