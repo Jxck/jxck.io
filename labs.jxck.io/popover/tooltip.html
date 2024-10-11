@@ -30,8 +30,10 @@
     width: fit-content;
     max-width: 500px;
 
+    position: absolute;
     top: anchor(end);
     left: anchor(start);
+    /* position-try-fallbacks: flip-block flip-inline; */
     translate: 2% 4%;
 
     margin: 0;
@@ -44,12 +46,38 @@
 </style>
 
 <h1>Tooltip DEMO</h1>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
 
 <ul>
-  <li><a data-anchor-name="--com" href="https://example.com">https://example.com</a></li>
-  <li><a data-anchor-name="--jp" href="https://example.co.jp">https://example.co.jp</a></li>
-  <li><a data-anchor-name="--net" href="https://example.net">https://example.net</a></li>
+  <li><a id="com" href="https://example.com">https://example.com</a></li>
+  <li><a id="jp" href="https://example.co.jp">https://example.co.jp</a></li>
+  <li><a id="net" href="https://example.net">https://example.net</a></li>
 </ul>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
+<p>fooooooooooooo</p>
 
 <div id="tooltip" popover>
   <h2><output></output></h2>
@@ -67,19 +95,17 @@
 
   const $popover = $('div[popover]')
   $$('a').forEach(($a) => {
-    $a.style.anchorName = $a.dataset.anchorName
+    $a.style.anchorName = `--${$a.id}`
     $a.on('mouseover', async (e) => {
-      const href = e.target.href
-      $popover.querySelector('output').textContent = href
-      setTimeout(() => {
-        const anchorName = e.target.dataset.anchorName
-        $popover.style.positionAnchor = anchorName
+      $popover.style.positionAnchor = `--${e.target.id}`
+      setTimeout(() => { // emulate async fetch
+        const href = e.target.href
+        $popover.querySelector('output').textContent = href
         $popover.showPopover()
       }, 250)
       $popover.on('mouseleave', (e) => {
         $popover.hidePopover()
       }, {once: true})
-
     })
   })
   $popover.on("beforetoggle", (e) => {
