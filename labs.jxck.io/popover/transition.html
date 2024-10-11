@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>Popover Transition DEMO</title>
+
+<style>
+  /* enable transitions */
+  [popover] {
+    transition: 
+      display 1s allow-discrete,
+      overlay 1s allow-discrete,
+      opacity 1s;
+    opacity: 0;
+  }
+  [popover]::backdrop {
+    transition: 
+      display 1s allow-discrete,
+      overlay 1s allow-discrete,
+      background-color 1s,
+      opacity 1s;
+    opacity: 0;
+  }
+
+  :popover-open {
+    opacity: 1;
+  }
+  :popover-open::backdrop {
+    opacity: 1;
+    background-color: #0005;
+  }
+
+  @starting-style {
+    :popover-open {
+      opacity: 0;
+    }
+    :popover-open::backdrop {
+      opacity: 0;
+      background-color: transparent;
+    }
+  }
+</style>
+
+<h1>Popover Transition DEMO</h1>
+
+<button popovertarget="popover">Show</button>
+
+<p id="popover" popover>
+  popover
+  <button popovertarget="popover" popovertargetaction="hide">x</button>
+</p>
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+
+  document.on('DOMContentLoaded', async (e) => {
+    console.log(e)
+
+
+
+  })
+</script>

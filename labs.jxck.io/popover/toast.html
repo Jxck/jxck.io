@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>" />
+<title>Popover Toast DEMO</title>
+
+<meta http-equiv="origin-trial" content="" />
+
+<h1>Popover Toast DEMO</h1>
+
+<div id="toast" popover>
+  <output>Update Available</output>
+  <button popovertarget="toast" popovertargetaction="hide">
+    <!-- <svg
+      height="20"
+      width="20"
+      viewBox="0 0 100 100"
+      aria-label="close"
+    >
+      <path stroke="white" stroke-width="8" fill="none" stroke-linecap="round" d="
+      M 36 36
+      L 64 64
+      M 64 36
+      L 36 64
+      "
+      />
+      <circle cx="50" cy="50" r="48" fill="none" stroke="white" stroke-width="4"  />
+    </svg> -->
+    x
+  </button>
+
+</div>
+
+<script>
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  $("#toast").showPopover()
+</script>
+<style>
+  :root {
+    font-family: sans-serif;
+    color: #333;
+    --duration: 0.4s;
+  }
+
+  [popover] {
+    /* display: flex;
+    justify-content: space-between; */
+    border: none;
+    width: 250px;
+    padding: 20px;
+    border-radius: 6px;
+    border: solid 1px #ccc;
+    color: white;
+    background-color: #007FFF;
+
+    button {
+      border: none;
+      background-color: transparent;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+</style>
