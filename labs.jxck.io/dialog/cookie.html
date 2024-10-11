@@ -9,41 +9,23 @@
   :root {
     font-family: sans-serif;
     color: #333;
+    --duration: 0.4s;
   }
 
   dialog {
-    width: 20vw;
+    width: 300px;
     position: absolute;
+    top: auto;
     right: 1%;
     bottom: 1%;
     left: auto;
 
     margin: 0;
     padding: 2rem;
-
+    
     border: solid 1px #ccc;
     border-radius: 2%;
-  
-    /** open animation */
-    &[open] {
-      opacity: 1;
-      display: block;
-      transition: opacity 0.2s, display 0.2s allow-discrete;
-      @starting-style {
-        opacity: 0;
-      }
-    }
-
-    /** close animation */
-    &:not([open]) {
-      opacity: 0;
-      display: none;
-      transition: opacity 0.2s, display 0.2s allow-discrete;
-    }
-
-    &::backdrop {
-      background-color: rgba(0, 0, 0, 0.5)
-    }
+    color: #333;
 
     section {
       display: flex;
@@ -58,41 +40,58 @@
         display: flex;
         justify-content: flex-end;
         gap: 1rem;
+
+        button {
+          border: none;
+          padding: 0.4rem 2rem;
+          border-radius: 4px;
+          border: solid 1px #ccc;
+          color: white;
+        }
+
+        button[value=accept] {
+          background-color: #007FFF;
+        }
+
+        button[value=reject] {
+          background-color: #666;
+        }
       }
+    }
+
+    /* transition style */
+    dialog:not([open]) {
+      opacity: 0;
+      transition: 
+        display var(--duration) allow-discrete, 
+        overlay var(--duration) allow-discrete, 
+        opacity var(--duration);
     }
   }
 </style>
-<dialog aria-labelledby="dialog-label">
+
+<button id="showModal">dialog.showModal()</button>
+
+<dialog aria-labelledby="dialog-label" open>
   <section>
     <h1 id="dialog-label">Cookie Notice</h1>
     <p>We use some essential cookies to make this website work.</p>
     <p>We'd like to bra bra bra bra bra bra bra bra bra bra bra bra bra.</p>
     <p>We also use cookies set by other sites to help us bra bra bra bra bra bra bra bra bra bra bra bra bra bra.</p>
     <form method="dialog">
-      <button type="submit" autofocus>Reject Cookies</button>
-      <button type="submit">Accpet Cookies</button>
+      <button type="submit" value="reject">Reject Cookies</button>
+      <button type="submit" value="accept">Accpet Cookies</button>
     </form>
   </section>
 </dialog>
-<button id="showModal">dialog.showModal()</button>
 
 <script>
   const $ = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  $("dialog").show()
-
   $("#showModal").on("click", (e) => {
     $("dialog").show()
-  })
-
-  $("form").on("submit", (e) => {
-    e.preventDefault()
-    const data = new FormData(e.target)
-    console.log(new Map(data))
-    const params = new URLSearchParams(data)
-    $("dialog").close(params)
   })
 
   $("dialog").on("close", (e) => {
@@ -104,5 +103,4 @@
     console.log(e)
     console.log(e.type, e.target.returnValue)
   });
-
 </script>
