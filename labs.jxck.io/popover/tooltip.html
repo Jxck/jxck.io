@@ -6,6 +6,11 @@
 <meta http-equiv="origin-trial" content="" />
 
 <style>
+  :root {
+    font-family: sans-serif;
+    color: #333;
+  }
+  
   ul {
     li {
       margin: 4px 2px;
@@ -16,44 +21,25 @@
     }
   }
 
-  /* なぜか invalid property
-  [data-anchor-name] {
+  /* これができると楽だが invalid-property */
+  /* [data-anchor-name] {
     anchor-name: attr(data-anchor-name);
   } */
 
   [popover] {
+    width: fit-content;
+    max-width: 500px;
+
     top: anchor(end);
     left: anchor(start);
-    width: fit-content;
     translate: 2% 4%;
+
     margin: 0;
+    padding: 1rem;
 
-    &:popover-open {
-      /** open animation */
-      @starting-style {
-        opacity: 0;
-      }
-      opacity: 1;
+    h2 {
+      margin: 0;
     }
-    /** close animation */
-    opacity: 0;
-    transition: opacity 0.5s, display 0.5s;
-    transition-behavior: allow-discrete;
-
-    /*
-    &.fade-in {
-      opacity: 1;
-      display: block;
-      transition: opacity 0.4s, display 0.4s allow-discrete;
-      @starting-style {
-        opacity: 0;
-      }
-    }
-    &.fade-out {
-      opacity: 0;
-      display: none;
-      transition: opacity 0.2s, display 0.2s allow-discrete;
-    } */
   }
 </style>
 
@@ -66,9 +52,11 @@
 </ul>
 
 <div id="tooltip" popover>
-  <h1></h1>
-  <p>This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.</p>
-  <p>More information...</p>
+  <h2><output></output></h2>
+  <article>
+    <p>This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.</p>
+    <p>More information...</p>
+  </article>
 </div>
 
 <script>
@@ -77,29 +65,27 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-  document.on('DOMContentLoaded', async (e) => {
-    const $popover = $('div[popover]')
-    $$('a').forEach(($a) => {
-      $a.style.anchorName = $a.dataset.anchorName
-      $a.on('mouseover', async (e) => {
-        const href = e.target.href
-        $popover.querySelector('h1').textContent = href
-        setTimeout(() => {
-          const anchorName = e.target.dataset.anchorName
-          console.log(anchorName)
-          $popover.style.positionAnchor = anchorName
-          $popover.showPopover()
-        }, 250)
-      })
-      $a.on('mouseleave', (e) => {
+  const $popover = $('div[popover]')
+  $$('a').forEach(($a) => {
+    $a.style.anchorName = $a.dataset.anchorName
+    $a.on('mouseover', async (e) => {
+      const href = e.target.href
+      $popover.querySelector('output').textContent = href
+      setTimeout(() => {
+        const anchorName = e.target.dataset.anchorName
+        $popover.style.positionAnchor = anchorName
+        $popover.showPopover()
+      }, 250)
+      $popover.on('mouseleave', (e) => {
         $popover.hidePopover()
-      })
+      }, {once: true})
+
     })
-    $popover.on("beforetoggle", (e) => {
-      console.log(e)
-    })
-    $popover.on("toggle", (e) => {
-      console.log(e)
-    })
-})
+  })
+  $popover.on("beforetoggle", (e) => {
+    console.log(e)
+  })
+  $popover.on("toggle", (e) => {
+    console.log(e)
+  })
 </script>
