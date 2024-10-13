@@ -15,7 +15,7 @@
 
 ![画面の右下に表示される　Toast UI](./toast.drawio.svg#400x400)
 
-色やアイコンを変えることで、メッセージの性質を変えたりといった用途が一般的であり、同時に複数表示が可能だとする。
+色やアイコンを変えることで、メッセージの性質を変えたりといった用途が一般的だ。
 
 
 ### HTML
@@ -27,40 +27,50 @@
 </div>
 ```
 
-これにより、明示的な処理がないと Close されなくなるため、`popovertarget` に ID を指定し `popovertargetaction=hide` で閉じる UI を提供しよう。
-
-```html
-<div id="toast" popover>
-  <button popovertarget="toast" popovertargetaction="hide">x</button>
-</div>
-```
-
 もし内容のレイアウトで Flex や Grid を使いたい場合、 `<div popover>` 自体の `display` を変えると扱いが少し面倒になるため、もう 1 つ Wrapper の `<div>` を用意しておくと良いだろう。
 
 ```html
-<div id="toast" popover>
+<div id="toast" popover="manual">
   <div style="display:flex">
-    <button popovertarget="toast" popovertargetaction="hide">x</button>
   </div>
 </div>
 ```
 
-この用途の Popover は、以上をテンプレートとして保持しておき、内容(message, icon, style etc)を変更しながら、使い回してさまざまなメッセージを表示することになるだろう。
+`manual` である以上、明示的な処理がないと Close されなくなるため、`popovertarget` に ID を指定し `popovertargetaction=hide` で閉じる UI を提供する。アイコンなどを用いた方が良いが、簡易化のために `x` で代用する。
 
-スタイルは動的に Class (`.info`, `.warn`, `.error` etc)を付与し、メッセージを表示する場所として `<output>` を用意する。
+```html
+<div id="toast" popover="manual">
+  <div>
+    <button popovertarget="toast" popovertargetaction="hide" aria-label="close">x</button>
+  </div>
+</div>
+```
+
+メッセージは共通ではなく、状況に応じて変更されるだろう。そこで、メッセージを表示する場所を用意する。まずはこれを `<p>` としてみよう。
 
 ```html
 <template>
   <div id="toast" popover="manual">
-    <output></output>
+    <p></p>
     <div style="display:flex">
-      <button popovertarget="toast" popovertargetaction="hide">x</button>
+      <button popovertarget="toast" popovertargetaction="hide" aria-label="close">x</button>
     </div>
   </div>
 </template>
 ```
 
-これが基本の構造となる。
+これを HTML のテンプレートとして保持し、内容(message, icon, style etc)を変更しながら、使い回してさまざまなメッセージを表示することになるだろう。
+
+注意点として `popover` は `dialog` と異なり対象の Role を変えないため、これは単にテキストとボタンを持った `<div>` が Top Layer に表示されただけの状態になる。この情報がなんであるか、ユーザにとってどのような重要度を持つ情報なのかについては、別途補完していく必要がある。
+
+この点に対しては、従来の「`popover` を使わずに実装されていた Toast コンポーネント」の実装についても参考にできる。通知の用途として、 `role=status` か `role=alert` を用いるのが一般的だろう。
+
+多くの「ユーザに通知があったことを伝えるが、作業を中断するほどでない」ケースでは、`aria-live=polite` だる `role=status` を用いる。また、もし他の `role` に切り替える予定がないのであれば、同じく `aria-live=polite` である `<ouput>` を用いる方法も考えられる。
+
+逆に「ユーザにとって重要な通知」であれば、 `role=alert` を用いる。`aria-live=assertive` であり、 UA を通じてユーザには直ちに内容が伝わる。逆を言えば、これは多用すべきではないため、最小限に止めるべきだろう。また、即座に通知はするが、こちらもフォーカスを奪い、操作をすることは求めない。
+
+フォーカスを奪ってユーザの明示的な操作を求める場合は、内容の重要度に応じて `role=dialog` / `role=alertdialog` を使うことになるが、この場合は `<dialog>` の利用も視野に入ってくるため、今回はスコープ外となる。
+
 
 
 ### CSS
@@ -150,12 +160,8 @@
 }
 ```
 
-あとは、メッセージの内容に合わせて class などを切り替えて適切なスタイルを当てる。
-
-TODO: aria
-
 ### JS
 
 以上の `<template>` を、メッセージの発生ごとに動的にクローンし、 `showPopover()` で表示することになる。
 
-
+TODO:
