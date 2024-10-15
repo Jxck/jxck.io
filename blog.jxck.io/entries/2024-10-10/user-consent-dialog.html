@@ -236,6 +236,7 @@
   &lt;/section&gt;
 &lt;/dialog&gt;</code></pre>
           <p><code translate=no>&lt;dialog&gt;</code> は普通に閉じて、 JS でリクエストする場合は、シンプルに <code translate=no>form[method=dialog]</code> にして、 JS で分岐で良いだろう。
+          <p>ここではあくまで同意取得だが、よりクリティカルな同意、例えば「このまま遷移すると保存されてない内容は消えます」といったアラートの性質を持たせたい場合は、デフォルトの <code translate=no>role=dialog</code> を <code translate=no>role=alertdialog</code> に上書きするといった応用ができる。
         </section>
         <section>
           <h3 id="css"><a href="#css">CSS</a></h3>

@@ -13,7 +13,6 @@ guest: [@yoshiko](https://x.com/yoshiko_pg)
 
 第 163 回のテーマは 2024 年 10 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - VoidZero | Next Generation Tooling for the Web
@@ -91,7 +90,6 @@ guest: [@yoshiko](https://x.com/yoshiko_pg)
   - Next を Vercel 以外でもホストしたい
   - AWS, Cloudflare の OSS アダプタを作る
   - 全機能をサポートを目指す
-
 
 ## Events
 
