@@ -15,6 +15,26 @@
 
 <hr />
 
+<div id="one" popover="manual">One</div>
+<div id="two" popover="manual">Two</div>
+<button popovertarget="one" popovertargetaction="show">one</button>
+<button popovertarget="two" popovertargetaction="show">two</button>
+
+<style>
+  #one {
+    position: absolute;
+    left: 40vw;
+    right: auto;
+  }
+  #two {
+    position: absolute;
+    left: auto;
+    right: 40vw;
+  }
+</style>
+
+<hr />
+
 <button id="load">load (1s)</button>
 <div id="message" popover>
   <output></output>
