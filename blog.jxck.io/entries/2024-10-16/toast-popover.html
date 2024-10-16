@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意">
+  <meta name=description         content="ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意">
   <meta name=keywords            content="dialog,popover">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-10-16/toast-popover.html>
   <meta property=og:title        content="Dialog と Popover #9 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意">
+  <meta property=og:description  content="ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意"
+    "description": "ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意"
   }
   </script>
 
@@ -155,7 +155,7 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。
         <p>あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。
-        <p><strong>また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意</strong>
+        <p><strong>また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意</strong>
       </section>
       <section>
         <h2 id="toast"><a href="#toast">Toast</a></h2>
@@ -194,7 +194,7 @@
           <p>注意点として <code translate=no>popover</code> は <code translate=no>dialog</code> と異なり対象の Role には影響を与えないため、これは単にテキストとボタンを持った <code translate=no>&lt;div&gt;</code> が Top Layer に表示されただけの状態になる。この情報がなんであるか、ユーザにとってどのような重要度を持つ情報なのかについては、別途補完していく必要がある。この点に対しては、従来の「<code translate=no>popover</code> を使わずに実装されていた Toast コンポーネント」も参考にできる。
           <p>通知の用途を考えると、 <code translate=no>role=status</code> か <code translate=no>role=alert</code> を用いるのが一般的だろう。多くの「<em>ユーザに通知があったことを伝えるが、作業を中断するほどでない</em>」ケースでは、<code translate=no>aria-live=polite</code> たる <code translate=no>role=status</code> を用いる。また、もし他の <code translate=no>role</code> に切り替える予定がないのであれば、同じく <code translate=no>aria-live=polite</code> である <code translate=no>&lt;ouput&gt;</code> を用いる方法も考えられる。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;template&gt;
-  &lt;div id=&quot;toast&quot; role=&quot;polite&quot; popover=&quot;manual&quot;&gt;
+  &lt;div id=&quot;toast&quot; role=&quot;status&quot; popover=&quot;manual&quot;&gt;
   &lt;/div&gt;
 &lt;/template&gt;</code></pre>
           <p>逆に「<em>ユーザにとって重要な通知</em>」であれば、 <code translate=no>role=alert</code> を用いる。<code translate=no>aria-live=assertive</code> であり、 UA を通じてユーザには直ちに内容が伝わる。逆を言えば、これは多用すべきではないため、最小限に止めるべきだろう。
@@ -283,7 +283,7 @@ document.querySelector(&apos;[popover]&apos;).showPopover()</code></pre>
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
-        <p>動作するデモをいかに用意した。
+        <p>動作するデモを以下に用意した。
         <ul>
           <li>
             Popover Toast DEMO
