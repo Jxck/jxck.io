@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-10-16/toast-popover.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意">
+  <meta name=keywords            content="dialog,popover">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-10-16/toast-popover.html>
+  <meta property=og:title        content="Dialog と Popover #9 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Dialog と Popover #9 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-10-16T08:00:00+08:00",
+    "dateModified": "2024-10-16T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意"
+  }
+  </script>
+
+  <title>Dialog と Popover #9 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-16>2024-10-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-16>2024-10-16</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#dialog">dialog</a>
+              <li><a href="/tags#popover">popover</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#toast">Toast</a>
+              <ol>
+                <li><a href="#html">HTML</a>
+                <li><a href="#css">CSS</a>
+                <li><a href="#js">JS</a>
+              </ol>
+              <li><a href="#demo">DEMO</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Dialog と Popover #9</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。
+        <p>あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。
+        <p><strong>また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃ってないものがある点に注意</strong>
+      </section>
+      <section>
+        <h2 id="toast"><a href="#toast">Toast</a></h2>
+        <p>次は、 Popover の源流にもなった、画面端にメッセージを表示するいわゆる Toast UI について考えてみる。想定するのは以下のようなものだ。
+        <p>
+          <img loading=lazy decoding=async src=./toast.drawio.svg?241016_102310 alt="画面の右下に表示されるToast UI" width=400 height=400>
+        </p>
+        <p>メッセージの性質によって、色やアイコンのスタイルを変えられ、同時に複数積み上げて表示できるといった仕様が一般的だ。
+        <section>
+          <h3 id="html"><a href="#html">HTML</a></h3>
+          <p>基本は <code translate=no>&lt;div popover&gt;</code> となる。また、複数のメッセージがあった場合に、他のが表示されても消えないよう、 <code translate=no>manual</code> を指定する。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;div popover=&quot;manual&quot;&gt;
+&lt;/div&gt;</code></pre>
+          <p>もし内容のレイアウトで Flex や Grid を使いたい場合、 <code translate=no>&lt;div popover&gt;</code> 自体の <code translate=no>display</code> を変えると扱いが少し面倒になるため、もう 1 つ Wrapper の <code translate=no>&lt;div&gt;</code> を用意しておくと良いだろう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;div id=&quot;toast&quot; popover=&quot;manual&quot;&gt;
+  &lt;div style=&quot;display:flex&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <p><code translate=no>manual</code> である以上、明示的な処理がないと Close されなくなるため、<code translate=no>popovertarget</code> に ID を指定し <code translate=no>popovertargetaction=hide</code> で閉じる UI を提供する。アイコンなどを用いた方が良いが、簡易化のために <code translate=no>x</code> で代用する。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;div id=&quot;toast&quot; popover=&quot;manual&quot;&gt;
+  &lt;div&gt;
+    &lt;button popovertarget=&quot;toast&quot; popovertargetaction=&quot;hide&quot; aria-label=&quot;close&quot;&gt;x&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <p>メッセージは共通ではなく、状況に応じて変更されるだろう。そこで、メッセージを表示する場所を用意する。まずはこれを <code translate=no>&lt;p&gt;</code> としてみよう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;template&gt;
+  &lt;div id=&quot;toast&quot; popover=&quot;manual&quot;&gt;
+    &lt;p&gt;&lt;/p&gt;
+    &lt;div style=&quot;display:flex&quot;&gt;
+      &lt;button popovertarget=&quot;toast&quot; popovertargetaction=&quot;hide&quot; aria-label=&quot;close&quot;&gt;x&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+          <p>これを HTML のテンプレートとして保持し、内容(message, icon, style etc)を変更しながら、使い回してさまざまなメッセージを表示することになるだろう。
+          <p>注意点として <code translate=no>popover</code> は <code translate=no>dialog</code> と異なり対象の Role には影響を与えないため、これは単にテキストとボタンを持った <code translate=no>&lt;div&gt;</code> が Top Layer に表示されただけの状態になる。この情報がなんであるか、ユーザにとってどのような重要度を持つ情報なのかについては、別途補完していく必要がある。この点に対しては、従来の「<code translate=no>popover</code> を使わずに実装されていた Toast コンポーネント」も参考にできる。
+          <p>通知の用途を考えると、 <code translate=no>role=status</code> か <code translate=no>role=alert</code> を用いるのが一般的だろう。多くの「<em>ユーザに通知があったことを伝えるが、作業を中断するほどでない</em>」ケースでは、<code translate=no>aria-live=polite</code> たる <code translate=no>role=status</code> を用いる。また、もし他の <code translate=no>role</code> に切り替える予定がないのであれば、同じく <code translate=no>aria-live=polite</code> である <code translate=no>&lt;ouput&gt;</code> を用いる方法も考えられる。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;template&gt;
+  &lt;div id=&quot;toast&quot; role=&quot;polite&quot; popover=&quot;manual&quot;&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+          <p>逆に「<em>ユーザにとって重要な通知</em>」であれば、 <code translate=no>role=alert</code> を用いる。<code translate=no>aria-live=assertive</code> であり、 UA を通じてユーザには直ちに内容が伝わる。逆を言えば、これは多用すべきではないため、最小限に止めるべきだろう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;template&gt;
+  &lt;div id=&quot;toast&quot; role=&quot;alert&quot; popover=&quot;manual&quot;&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+          <p>今回は、一度表示した Popover の中身を動的に変えるケースは考えない。
+          <p>また、即座に通知はするが、フォーカスを奪い、操作をすることは求めない。フォーカスを奪ってユーザの明示的な操作を求める場合は、内容の重要度に応じて <code translate=no>role=dialog</code> / <code translate=no>role=alertdialog</code> を使うことになるが、この場合は <code translate=no>&lt;dialog&gt;</code> の利用も視野に入ってくるため、今回はスコープ外とする。
+        </section>
+        <section>
+          <h3 id="css"><a href="#css">CSS</a></h3>
+          <p>配置を右下にする場合は、 <code translate=no>&lt;dialog&gt;</code> で行ったのと同じように <code translate=no>position: absolute</code> を指定する。
+          <pre class=css data-code=css><code translate=no class=language-css>[popover] {
+  position: absolute;
+  top: auto;
+  right: 10px;
+  bottom: 10px;
+  left: auto;
+}</code></pre>
+          <p>積み上げて複数表示する場合は、この <code translate=no>bottom</code> を追加していくことになるだろう。
+          <p>次にアニメーションを考える。
+          <p>もともと Toast という名前であるように、下から飛び出すような実装が多いだろう。この場合は、 <code translate=no>opacity</code> をトランジションするより、 <code translate=no>height</code> をトランジションすることで、下からニョキっと伸びるような表現ができる。
+          <pre class=css data-code=css><code translate=no class=language-css>/* enable transitions */
+[popover] {
+  transition:
+    display var(--duration) allow-discrete,
+    overlay var(--duration) allow-discrete,
+    height var(--duration);
+}
+
+:popover-open {
+  height: auto;
+}
+
+@starting-style {
+  :popover-open {
+    height: 0;
+  }
+}</code></pre>
+          <p>注意点として、 <code translate=no>transition</code> で <code translate=no>height</code> を指定しても、最終的な <code translate=no>height</code> が <code translate=no>auto</code> であると、従来はトランジションできなかった。
+          <p>これは、 <code translate=no>auto</code>, <code translate=no>min-content</code>, <code translate=no>max-content</code> のようなキーワードで指定され、内部のコンテンツを基準に値が決まる <code translate=no>intrinsic-size</code> については、トランジションに指定できないという制限があったからだ。
+          <p>そこで <code translate=no>auto</code> の代わりに具体的な値を指定するといった必要があったが、それではカバーできないケースがあるため、 <code translate=no>intrinsic-size</code> へのアニメーションが可能になるように策定されたのが <code translate=no>interpolate-size</code> だ。値に <code translate=no>allow-keywords</code> を指定することで、キーワード指定のサイズを用いたトランジションが可能になる。
+          <pre class=css data-code=css><code translate=no class=language-css>:root {
+  interpolate-size: allow-keywords;
+}</code></pre>
+          <p>さらに <code translate=no>calc-size()</code> を用いると、 <code translate=no>intrinsic-size</code> を基準とした <code translate=no>calc()</code> も可能になる。
+          <pre class=css data-code=css><code translate=no class=language-css>:popover-open {
+  /* auto の計算結果が size 変数に入り、第二引数で計算した結果が反映される */
+  height: calc-size(auto, size + 1rem);
+}</code></pre>
+          <p>今回は <code translate=no>auto</code> にすればよいだろう。非表示に関しては特にアニメーションせず、パッと消えれば良いとすれば、以下のようになる。
+          <pre class=css data-code=css><code translate=no class=language-css>:root {
+  interpolate-size: allow-keywords;
+}
+
+/* enable transitions */
+[popover] {
+  transition:
+    display var(--duration) allow-discrete,
+    overlay var(--duration) allow-discrete,
+    height var(--duration);
+}
+
+:popover-open {
+  height: auto;
+  /* height: calc-size(auto, size); */
+}
+
+@starting-style {
+  :popover-open {
+    height: 0;
+  }
+}</code></pre>
+        </section>
+        <section>
+          <h3 id="js"><a href="#js">JS</a></h3>
+          <p>以上の <code translate=no>&lt;template&gt;</code> を、メッセージの発生ごとに動的にクローンし、 <code translate=no>showPopover()</code> するコードを書いていくだけだ。
+          <pre class=js data-code=js><code translate=no class=language-js>const clone = template.content.cloneNode(true)
+// id, role, message などを埋め込む
+document.body.appendChild(clone)
+// 表示
+document.querySelector(&apos;[popover]&apos;).showPopover()</code></pre>
+          <p>各 Popover を表示するたびに、付与する ID や <code translate=no>bottom</code> の値などを変更しながら積み上げていくことになるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作するデモをいかに用意した。
+        <ul>
+          <li>
+            Popover Toast DEMO
+            <ul>
+              <li><a href="https://labs.jxck.io/popover/toast.html" target=_blank>https://labs.jxck.io/popover/toast.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
