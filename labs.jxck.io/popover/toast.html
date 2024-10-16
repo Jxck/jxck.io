@@ -22,7 +22,7 @@
         <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="8" />
       </svg>
       <p class="message"></p>
-      <button popovertarget="toast" popovertargetaction="hide">
+      <button popovertarget="" popovertargetaction="hide">
         <svg class="close" height="100" width="100" viewBox="0 0 100 100" aria-label="close">
           <path stroke="white" stroke-width="14" fill="none" stroke-linecap="round" d="
           M   0   0
@@ -45,20 +45,26 @@
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
   const $template = $("template")
+  let bottom = 10
   $$("button").forEach(($button) => {
     $button.on("click", (e) => {
       const { icon, level, message } = e.target.dataset
+      const id = btoa(Math.random()).replace(/=/g, "")
       const $clone = $template.content.cloneNode(true)
       $clone.querySelector("p.message").textContent = message
       $clone.querySelector("svg .icon-text").textContent = icon
       $clone.querySelector("[popover]").role = level
+      $clone.querySelector("[popover]").id = id
+      $clone.querySelector("[popover]").style.bottom = `${bottom}px`
+      $clone.querySelector("button").setAttribute("popovertarget", id)
       document.body.appendChild($clone)
-      $("[popover]").addEventListener("toggle", (e) => {
+      $(`#${id}`).addEventListener("toggle", (e) => {
         if (e.newState === "closed") {
           e.target.remove()
         }
       })
-      $("[popover]").showPopover()
+      $(`#${id}`).showPopover()
+      bottom += 70
     })
   })
 </script>
@@ -71,18 +77,11 @@
     interpolate-size: allow-keywords;
   }
 
-  [popover][role=polite] {
-    background-color: #007FFF;
-  }
-  [popover][role=alert] {
-    background-color: #FF007F;
-  }
-
   [popover] {
     position: absolute;
     top: auto;
     right: 10px;
-    bottom: 10px;
+    /* bottom: 10px; */
     left: auto;
     overflow: hidden;
 
@@ -118,6 +117,13 @@
     }
   }
 
+  [popover][role=polite] {
+    background-color: #007FFF;
+  }
+  [popover][role=alert] {
+    background-color: #FF007F;
+  }
+
   /* enable transitions */
   [popover] {
     transition:
@@ -128,7 +134,6 @@
 
   :popover-open {
     height: auto;
-    /* height: calc-size(auto, size); */
   }
 
   @starting-style {
