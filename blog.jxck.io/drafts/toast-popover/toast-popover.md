@@ -13,9 +13,9 @@
 
 次は、 Popover の源流にもなった、画面端にメッセージを表示するいわゆる Toast UI について考えてみる。想定するのは以下のようなものだ。
 
-![画面の右下に表示される　Toast UI](./toast.drawio.svg#400x400)
+![画面の右下に表示されるToast UI](./toast.drawio.svg#400x400)
 
-色やアイコンを変えることで、メッセージの性質を変えたりといった用途が一般的だ。
+メッセージの性質によって、色やアイコンのスタイルを変えられ、同時に複数積み上げて表示できるといった仕様が一般的だ。
 
 
 ### HTML
@@ -61,16 +61,29 @@
 
 これを HTML のテンプレートとして保持し、内容(message, icon, style etc)を変更しながら、使い回してさまざまなメッセージを表示することになるだろう。
 
-注意点として `popover` は `dialog` と異なり対象の Role を変えないため、これは単にテキストとボタンを持った `<div>` が Top Layer に表示されただけの状態になる。この情報がなんであるか、ユーザにとってどのような重要度を持つ情報なのかについては、別途補完していく必要がある。
+注意点として `popover` は `dialog` と異なり対象の Role には影響を与えないため、これは単にテキストとボタンを持った `<div>` が Top Layer に表示されただけの状態になる。この情報がなんであるか、ユーザにとってどのような重要度を持つ情報なのかについては、別途補完していく必要がある。この点に対しては、従来の「`popover` を使わずに実装されていた Toast コンポーネント」も参考にできる。
 
-この点に対しては、従来の「`popover` を使わずに実装されていた Toast コンポーネント」の実装についても参考にできる。通知の用途として、 `role=status` か `role=alert` を用いるのが一般的だろう。
+通知の用途を考えると、 `role=status` か `role=alert` を用いるのが一般的だろう。多くの「*ユーザに通知があったことを伝えるが、作業を中断するほどでない*」ケースでは、`aria-live=polite` たる `role=status` を用いる。また、もし他の `role` に切り替える予定がないのであれば、同じく `aria-live=polite` である `<ouput>` を用いる方法も考えられる。
 
-多くの「ユーザに通知があったことを伝えるが、作業を中断するほどでない」ケースでは、`aria-live=polite` だる `role=status` を用いる。また、もし他の `role` に切り替える予定がないのであれば、同じく `aria-live=polite` である `<ouput>` を用いる方法も考えられる。
+```html
+<template>
+  <div id="toast" role="polite" popover="manual">
+  </div>
+</template>
+```
 
-逆に「ユーザにとって重要な通知」であれば、 `role=alert` を用いる。`aria-live=assertive` であり、 UA を通じてユーザには直ちに内容が伝わる。逆を言えば、これは多用すべきではないため、最小限に止めるべきだろう。また、即座に通知はするが、こちらもフォーカスを奪い、操作をすることは求めない。
+逆に「*ユーザにとって重要な通知*」であれば、 `role=alert` を用いる。`aria-live=assertive` であり、 UA を通じてユーザには直ちに内容が伝わる。逆を言えば、これは多用すべきではないため、最小限に止めるべきだろう。
 
-フォーカスを奪ってユーザの明示的な操作を求める場合は、内容の重要度に応じて `role=dialog` / `role=alertdialog` を使うことになるが、この場合は `<dialog>` の利用も視野に入ってくるため、今回はスコープ外となる。
+```html
+<template>
+  <div id="toast" role="alert" popover="manual">
+  </div>
+</template>
+```
 
+今回は、一度表示した Popover の中身を動的に変えるケースは考えない。
+
+また、即座に通知はするが、フォーカスを奪い、操作をすることは求めない。フォーカスを奪ってユーザの明示的な操作を求める場合は、内容の重要度に応じて `role=dialog` / `role=alertdialog` を使うことになるが、この場合は `<dialog>` の利用も視野に入ってくるため、今回はスコープ外とする。
 
 
 ### CSS
@@ -86,6 +99,8 @@
   left: auto;
 }
 ```
+
+積み上げて複数表示する場合は、この `bottom` を追加していくことになるだろう。
 
 次にアニメーションを考える。
 
@@ -111,11 +126,11 @@
 }
 ```
 
-ここで注意点は、 `transition` で `height` を指定しても、最終的な `height` が `auto` であると、従来はトランジションできなかった。
+注意点として、 `transition` で `height` を指定しても、最終的な `height` が `auto` であると、従来はトランジションできなかった。
 
 これは、 `auto`, `min-content`, `max-content` のようなキーワードで指定され、内部のコンテンツを基準に値が決まる `intrinsic-size` については、トランジションに指定できないという制限があったからだ。
 
-そこで、 `auto` の代わりに具体的な値を指定するといった必要があったが、それではカバーできない場合があるため、 `intrinsic-size` へのアニメーションが可能になるように策定されたのが `interpolate-size` だ。値に `allow-keywords` を指定することで、キーワード指定のサイズを用いたトランジションが可能になる。
+そこで `auto` の代わりに具体的な値を指定するといった必要があったが、それではカバーできないケースがあるため、 `intrinsic-size` へのアニメーションが可能になるように策定されたのが `interpolate-size` だ。値に `allow-keywords` を指定することで、キーワード指定のサイズを用いたトランジションが可能になる。
 
 ```css
 :root {
@@ -124,7 +139,6 @@
 ```
 
 さらに `calc-size()` を用いると、 `intrinsic-size` を基準とした `calc()` も可能になる。
-
 
 ```css
 :popover-open {
@@ -160,8 +174,25 @@
 }
 ```
 
+
 ### JS
 
 以上の `<template>` を、メッセージの発生ごとに動的にクローンし、 `showPopover()` するコードを書いていくだけだ。
 
-TODO
+```js
+const clone = template.content.cloneNode(true)
+// id, role, message などを埋め込む
+document.body.appendChild(clone)
+// 表示
+document.querySelector('[popover]').showPopover()
+```
+
+各 Popover を表示するたびに、付与する ID や `bottom` の値などを変更しながら積み上げていくことになるだろう。
+
+
+## DEMO
+
+動作するデモをいかに用意した。
+
+- Popover Toast DEMO
+  - https://labs.jxck.io/popover/toast.html
