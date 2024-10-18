@@ -10,7 +10,7 @@
     font-family: sans-serif;
     color: #333;
   }
-  
+
   ul {
     li {
       margin: 4px 2px;
@@ -25,17 +25,14 @@
   /* [data-anchor-name] {
     anchor-name: attr(data-anchor-name);
   } */
-
   [popover] {
     width: fit-content;
     max-width: 500px;
-
     position: absolute;
     top: anchor(end);
     left: anchor(start);
     /* position-try-fallbacks: flip-block flip-inline; */
     translate: 2% 4%;
-
     margin: 0;
     padding: 1rem;
 
@@ -46,18 +43,31 @@
 </style>
 
 <h1>Tooltip DEMO</h1>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
 
 <ul>
@@ -65,24 +75,39 @@
   <li><a id="jp" href="https://example.co.jp">https://example.co.jp</a></li>
   <li><a id="net" href="https://example.net">https://example.net</a></li>
 </ul>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
-<p>fooooooooooooo</p>
+
 <p>fooooooooooooo</p>
 
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
+
+<p>fooooooooooooo</p>
 <div id="tooltip" popover>
+
   <h2><output></output></h2>
   <article>
+
     <p>This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.</p>
+
     <p>More information...</p>
   </article>
 </div>
@@ -93,25 +118,55 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
+  function sleep(n) {
+    const { promise, resolve } = Promise.withResolvers()
+    const signal = AbortSignal.timeout(n)
+    signal.addEventListener("abort", resolve)
+    return promise
+  }
+
   const $popover = $('div[popover]')
   $$('a').forEach(($a) => {
     $a.style.anchorName = `--${$a.id}`
+
+    // add position-anchor to all <a>
     $a.on('mouseover', async (e) => {
+
+      await sleep(250)
+
+      // emulate async fetch
+      const id = btoa(Math.random()).replaceAll("=", "")
+      $popover.id = id
       $popover.style.positionAnchor = `--${e.target.id}`
-      setTimeout(() => { // emulate async fetch
-        const href = e.target.href
-        $popover.querySelector('output').textContent = href
-        $popover.showPopover()
-      }, 250)
-      $popover.on('mouseleave', (e) => {
-        $popover.hidePopover()
-      }, {once: true})
+      $popover.querySelector('output').textContent = e.target.href
+      $popover.showPopover()
+
+      const controller = new AbortController()
+      const signal = controller.signal
+      $a.on('mouseleave', async (e) => {
+        console.log(e.target, e.relatedTarget)
+
+        await sleep(500)
+        if (signal.aborted) return
+        $(`#${id}`)?.hidePopover()
+      }, { once: true, signal })
+
+      $(`#${id}`)?.on("mouseover", (e) => {
+        controller.abort()
+        $(`#${id}`)?.on("mouseleave", async (e) => {
+          console.log(e.target, e.relatedTarget)
+
+          await sleep(250)
+          $(`#${id}`)?.hidePopover()
+        }, { once: true })
+      }, { once: true })
+
     })
   })
-  $popover.on("beforetoggle", (e) => {
-    console.log(e)
-  })
-  $popover.on("toggle", (e) => {
-    console.log(e)
-  })
+  // $popover.on("beforetoggle", (e) => {
+  //   console.log(e)
+  // })
+  // $popover.on("toggle", (e) => {
+  //   console.log(e)
+  // })
 </script>
