@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CodePen - Popover demo</title>
+</head>
+<body>
+  <button id="popover-trigger" popovertarget="popover">More information</button>
+  <div id="popover" popover="">
+    Popover: this can be fallback.
+  </div>
+
+  <script id="rendered-js">
+    const popover = document.querySelector("[popover]");
+    const trigger = document.querySelector("[popovertarget]");
+    popover.showPopover();
+  </script>
+</body>
+
+<style>
+  :root {
+    --margin: 8px;
+  }
+
+  #popover-trigger {
+    anchor-name: --popover-trigger;
+  }
+
+  #popover {
+    position-anchor: --popover-trigger;
+    inset-area: right;
+
+    margin: var(--margin);
+    position: absolute;
+    width: 450px;
+    height: 300px;
+    position-try: --bottom;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @position-try --bottom {
+    inset-area: bottom;
+    margin: var(--margin);
+  }
+</style>
+</html>
