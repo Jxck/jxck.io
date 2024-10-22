@@ -169,6 +169,23 @@ ul#submenu {
 }
 ```
 
+また、これが横に広がることで画面に収まらない可能性を考慮して、 fallback を指定する。
+
+```css
+ul#submenu {
+  position-anchor: --submenu;
+  position-area: right span-bottom;
+  translate: 14px;
+  position-try-fallbacks: --bottom;
+}
+
+@position-try --bottom {
+  position-area: bottom span-right;
+}
+```
+
+これによって右に余白がなければ、下に表示をフォールバックすることが可能だ。
+
 
 ## DEMO
 
