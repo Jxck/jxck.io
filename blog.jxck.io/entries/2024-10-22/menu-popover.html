@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-10-22/menu-popover.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意">
+  <meta name=keywords            content="dialog,popover">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-10-22/menu-popover.html>
+  <meta property=og:title        content="Dialog と Popover #10 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Dialog と Popover #10 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-10-22T08:00:00+08:00",
+    "dateModified": "2024-10-22T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意"
+  }
+  </script>
+
+  <title>Dialog と Popover #10 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-22>2024-10-22</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-22>2024-10-22</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#dialog">dialog</a>
+              <li><a href="/tags#popover">popover</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#tooltip">Tooltip</a>
+              <ol>
+                <li><a href="#html">HTML</a>
+                <li><a href="#css">CSS</a>
+                <li><a href="#js">JS</a>
+              </ol>
+              <li><a href="#demo">DEMO</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Dialog と Popover #10</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。
+        <p>あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。
+        <p><strong>また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意</strong>
+      </section>
+      <section>
+        <h2 id="tooltip"><a href="#tooltip">Tooltip</a></h2>
+        <p>今回は、 Menu の実装を考えてみる。 GitHub でいうとこの部分だ。
+        <p>
+          <picture>
+            <source type=image/avif srcset=./github-menu.avif?241022_125104>
+            <source type=image/webp srcset=./github-menu.webp?241022_125104>
+            <img loading=lazy decoding=async src=./github-menu.png?241022_125104 alt="GitHub のリポジトリ作成などのメニューが表示される Popover" width=574 height=536>
+          </picture>
+        </p>
+        <p>元となるボタンによって表示され、このボタンからの相対位置で調整されるため Anchor Positioning を活用することになる。非常に良くある実装パターンだ。
+        <p>HTML の仕様にも、類似の実装が Example として掲載されている。
+        <ul>
+          <li>
+            6.12 The popover attribute
+            <ul>
+              <li><a href="https://html.spec.whatwg.org/multipage/popover.html#the-popover-attribute" target=_blank>https://html.spec.whatwg.org/multipage/popover.html#the-popover-attribute</a>
+            </ul>
+          </li>
+        </ul>
+        <p>APG としては、 Menu Button パターンにあたるだろう。
+        <ul>
+          <li>
+            Menu Button Pattern | APG | WAI | W3C
+            <ul>
+              <li><a href="https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/" target=_blank>https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>GitHub のこの実装はまだ Popover ではないため、現状を参考にどのように Popover で実装できるかを考えてみる。
+        <section>
+          <h3 id="html"><a href="#html">HTML</a></h3>
+          <p>よくあるメニューとして、以下のような HTML をベースに考える。
+          <p>開くためのボタンが Invoker となり、 Popover としてメニューのアイテムが開く実装が考えられるだろう。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=menu&gt;Actions&lt;/button&gt;
+&lt;ul id=menu popover&gt;
+  &lt;li&gt;&lt;button&gt;Edit&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button&gt;Hide&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button&gt;Delete&lt;/button&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+          <p>ここでも Popover はセマンティクスに影響を与えないため、単に <code translate=no>&lt;ul&gt;</code> が開いただけになる。この場合、外側は <code translate=no>role=menu</code> とし、各アクションが <code translate=no>role=menuitem</code> とすることで、開いているものがメニューであると言うことを宣言できるだろう。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=menu&gt;Actions&lt;/button&gt;
+&lt;ul id=menu role=menu popover&gt;
+  &lt;li role=menuitem&gt;&lt;button&gt;Edit&lt;/button&gt;&lt;/li&gt;
+  &lt;li role=menuitem&gt;&lt;button&gt;Hide&lt;/button&gt;&lt;/li&gt;
+  &lt;li role=menuitem&gt;&lt;button&gt;Delete&lt;/button&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+          <p>最初のコントローラには明示的に <code translate=no>autofocus</code> を付与し、各操作実行後には Popover を閉じるために <code translate=no>popovertargetaction=close</code> も担わせることができる。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=menu&gt;Actions&lt;/button&gt;
+&lt;ul id=menu role=menu popover&gt;
+  &lt;li&gt;&lt;button role=menuitempopovertarget=menu popovertargetaction=close autofocus&gt;Edit&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button role=menuitempopovertarget=menu popovertargetaction=close&gt;Hide&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button role=menuitempopovertarget=menu popovertargetaction=close&gt;Delete&lt;/button&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+          <p>APG などにも書かれているように、従来このような実装を行う際は、 <code translate=no>&lt;button popovertarget&gt;</code> をクリックしたことで <code translate=no>&lt;ul role=menu&gt;</code> が開いたと言う事実を UA に伝えるために、 <code translate=no>aria-haspopup=menu</code> を付与し、メニューが開いている間は <code translate=no>aria-expanded=true</code> にするといった実装が行われていた。
+          <p>しかし、 Popover が Invoker Relationship を持っている場合、 <code translate=no>&lt;button popovertarget&gt;</code> が <code translate=no>&lt;ul role=menu&gt;</code> を開いたことを UA は認識しているため、このような実装は Popover API を用いる限りは不要となる。これも Popover がネイティブの API になったことのメリットの 1 つだ。
+          <ul>
+            <li>
+              Popover invoker example shouldn&apos;t have <code translate=no>aria-haspopup</code> · Issue #9153 · whatwg/html
+              <ul>
+                <li><a href="https://github.com/whatwg/html/issues/9153" target=_blank>https://github.com/whatwg/html/issues/9153</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これが基本の構造となる。
+        </section>
+        <section>
+          <h3 id="css"><a href="#css">CSS</a></h3>
+          <p>今回はとりあえずパッと表示されて、終わったら消えればよいということで、アニメーションは割愛する。
+          <p>問題は表示位置だ。
+          <p>基本的には、開く側のボタンに対して相対的に表示するため、ボタンをアンカーとして指定する。
+          <pre class=css data-code=css><code translate=no class=language-css>button[popovertarget] {
+  anchor-name: --menu;
+}
+
+ul[popover] {
+  position-anchor: --menu;
+}</code></pre>
+          <p>あとは、 <code translate=no>[popovertarget]</code> に合わせて位置を指定し、必要に応じて <code translate=no>translate</code> で調整することで実装ができるだろう。
+          <pre class=css data-code=css><code translate=no class=language-css>[popover] {
+  top: anchor(end);
+  left: anchor(center);
+  translate: 2% 4%;
+}</code></pre>
+          <p>あとは、通常通り必要なスタイルを当ててやれば良い。
+        </section>
+        <section>
+          <h3 id="js"><a href="#js">JS</a></h3>
+          <p>Popover の開閉という点に関しては、特に JS 無しに挙動が実現できているため、特に必要は無い。
+          <p>あとは、普通にメニューの機能そのものを実装すれば良いだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作するデモを以下に用意した。
+        <ul>
+          <li>
+            Menu Popover DEMO
+            <ul>
+              <li><a href="https://labs.jxck.io/popover/menu.html" target=_blank>https://labs.jxck.io/popover/menu.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
