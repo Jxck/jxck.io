@@ -105,6 +105,14 @@ ul[popover] {
 }
 ```
 
+`position-area` を用いて指定する場合は、以下のようにも指定可能だ。
+
+```css
+[popover] {
+  position-area: bottom span-right;
+}
+```
+
 あとは、通常通り必要なスタイルを当ててやれば良い。
 
 
