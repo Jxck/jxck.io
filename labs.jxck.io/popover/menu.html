@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>" />
+<title>Menu Popover DEMO</title>
+<meta http-equiv="origin-trial" content="" />
+
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  ul {
+    li {
+      list-style: none;
+    }
+  }
+  header {
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    margin: 0;
+    background-color: #333;
+    box-sizing: border-box;
+  }
+
+  header nav {
+    width: var(--width);
+    max-width: var(--max-width);
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+  }
+
+  header nav ul {
+    width: 100%;
+    display: flex;
+    margin: 0;
+  }
+
+  header nav li {
+    width: fit-content;
+    padding: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: var(--grid);
+    margin-inline-end: 0;
+  }
+
+  header nav ul li a,
+  header nav ul li button {
+    width: fit-content;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+
+  header nav svg {
+    fill: var(--background-color);
+  }
+
+  header nav ul li::before {
+    content: none;
+  }
+
+  header nav ul li:first-child {
+    flex-grow: 1;
+    margin-inline-start: 0;
+  }
+
+  header nav .logo {
+    border: 1px solid #fff;
+    box-sizing: border-box;
+  }
+</style>
+<header>
+  <nav>
+    <ul>
+      <li>
+        <button>...</button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  'use strict';
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+</script>
