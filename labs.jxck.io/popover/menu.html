@@ -6,16 +6,15 @@
 <meta http-equiv="origin-trial" content="" />
 
 <style>
-  body {
+  * {
     padding: 0;
     margin: 0;
   }
 
-  ul {
-    li {
-      list-style: none;
-    }
+  li {
+    list-style: none;
   }
+
   header {
     z-index: 1;
     position: sticky;
@@ -23,64 +22,55 @@
     margin: 0;
     background-color: #333;
     box-sizing: border-box;
+
+    button {
+      background-color: transparent;
+      border: none;
+    }
   }
 
-  header nav {
-    width: var(--width);
-    max-width: var(--max-width);
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
+  button[popovertarget] {
+    anchor-name: --menu;
   }
 
-  header nav ul {
-    width: 100%;
-    display: flex;
-    margin: 0;
-  }
-
-  header nav li {
+  ul[popover] {
     width: fit-content;
-    padding: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: var(--grid);
-    margin-inline-end: 0;
-  }
-
-  header nav ul li a,
-  header nav ul li button {
-    width: fit-content;
-    display: block;
-    padding: 0;
-    margin: 0;
+    position-anchor: --menu;
+    top: anchor(bottom);
+    left: anchor(center);
+    border-radius: 4px;
     border: none;
-  }
+    box-shadow: rgba(200, 200, 200, 0.5) 0px 0px 0px 1px;
 
-  header nav svg {
-    fill: var(--background-color);
-  }
+    li[role=menuitem] {
+      padding: 4px;
 
-  header nav ul li::before {
-    content: none;
-  }
-
-  header nav ul li:first-child {
-    flex-grow: 1;
-    margin-inline-start: 0;
-  }
-
-  header nav .logo {
-    border: 1px solid #fff;
-    box-sizing: border-box;
+      button {
+        padding-left: 0.5rem;
+        width: 80px;
+        height: 25px;
+        background-color: #eee;
+        border-radius: 4px;
+        text-align: left;
+      }
+      button:hover {
+        background-color: #ccc;
+      }
+    }
   }
 </style>
 <header>
   <nav>
     <ul>
       <li>
-        <button>...</button>
+        <button popovertarget=menu>
+          <img width="50" height="50" loading="eager" src="https://www.jxck.io/assets/img/menu.svg" title="menu" alt="menu" aria-label="menu"></a>
+        </button>
+        <ul id=menu role=menu popover>
+          <li role=menuitem><button popovertarget=menu popovertargetaction=close autofocus>Edit</button></li>
+          <li role=menuitem><button popovertarget=menu popovertargetaction=close>Hide</button></li>
+          <li role=menuitem><button popovertarget=menu popovertargetaction=close>Delete</button></li>
+        </ul>
       </li>
     </ul>
   </nav>
@@ -91,4 +81,5 @@
   const $ = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
+  $("[popover]").showPopover()
 </script>
