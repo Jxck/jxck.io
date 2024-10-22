@@ -123,6 +123,53 @@ Popover の開閉という点に関しては、特に JS 無しに挙動が実�
 あとは、普通にメニューの機能そのものを実装すれば良いだろう。
 
 
+## Nesting
+
+メニューの項目が、さらにサブメニューを開く実装もある。
+
+この場合、ネストした項目をさらに Popover として開くことで実装できる。
+
+```html
+<ul>
+  <li>
+    <button popovertarget=menu>Actions</button>
+    <ul id=menu role=menu popover>
+      <li role=menuitem><button popovertarget=menu popovertargetaction=close autofocus>Save</button></li>
+      <li role=menuitem>
+        <button popovertarget=submenu popovertargetaction=show>Edit</button>
+        <ul id=submenu role=menu popover>
+          <li role=menuitem><button popovertarget=menu popovertargetaction=close autofocus>Cut</button></li>
+          <li role=menuitem><button popovertarget=menu popovertargetaction=close>Copy</button></li>
+          <li role=menuitem><button popovertarget=menu popovertargetaction=close>Paste</button></li>
+        </ul>
+      </li>
+      <li role=menuitem><button popovertarget=menu popovertargetaction=close>Close</button></li>
+    </ul>
+  </li>
+</ul>
+```
+
+CSS も、 Anchor をサブメニューに対して付与していけば良い。
+
+```css
+button[popovertarget=menu] {
+  anchor-name: --menu;
+}
+ul#menu {
+  position-anchor: --menu;
+  position-area: bottom span-right;
+}
+
+[popovertarget=submenu] {
+  anchor-name: --submenu;
+}
+ul#submenu {
+  position-anchor: --submenu;
+  position-area: right span-bottom;
+}
+```
+
+
 ## DEMO
 
 動作するデモを以下に用意した。
