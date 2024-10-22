@@ -18,15 +18,14 @@
 元となるボタンによって表示され、このボタンからの相対位置で調整されるため Anchor Positioning を活用することになる。非常に良くある実装パターンだ。
 
 HTML の仕様にも、類似の実装が Example として掲載されている。
+
 - 6.12 The popover attribute
   - https://html.spec.whatwg.org/multipage/popover.html#the-popover-attribute
-
 
 APG としては、 Menu Button パターンにあたるだろう。
 
 - Menu Button Pattern | APG | WAI | W3C
   - https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
-
 
 GitHub のこの実装はまだ Popover ではないため、現状を参考にどのように Popover で実装できるかを考えてみる。
 
@@ -36,7 +35,6 @@ GitHub のこの実装はまだ Popover ではないため、現状を参考に�
 よくあるメニューとして、以下のような HTML をベースに考える。
 
 開くためのボタンが Invoker となり、 Popover としてメニューのアイテムが開く実装が考えられるだろう。
-
 
 ```html
 <button popovertarget=menu>Actions</button>
@@ -52,20 +50,20 @@ GitHub のこの実装はまだ Popover ではないため、現状を参考に�
 ```html
 <button popovertarget=menu>Actions</button>
 <ul id=menu role=menu popover>
-  <li><button role=menuitem>Edit</button></li>
-  <li><button role=menuitem>Hide</button></li>
-  <li><button role=menuitem>Delete</button></li>
+  <li role=menuitem><button>Edit</button></li>
+  <li role=menuitem><button>Hide</button></li>
+  <li role=menuitem><button>Delete</button></li>
 </ul>
 ```
 
-最初のコントローラには明示的に `autofocus` を付与する。
+最初のコントローラには明示的に `autofocus` を付与し、各操作実行後には Popover を閉じるために `popovertargetaction=close` も担わせることができる。
 
 ```html
 <button popovertarget=menu>Actions</button>
 <ul id=menu role=menu popover>
-  <li><button role=menuitem autofocus>Edit</button></li>
-  <li><button role=menuitem>Hide</button></li>
-  <li><button role=menuitem>Delete</button></li>
+  <li><button role=menuitempopovertarget=menu popovertargetaction=close autofocus>Edit</button></li>
+  <li><button role=menuitempopovertarget=menu popovertargetaction=close>Hide</button></li>
+  <li><button role=menuitempopovertarget=menu popovertargetaction=close>Delete</button></li>
 </ul>
 ```
 
@@ -75,7 +73,6 @@ APG などにも書かれているように、従来このような実装を行�
 
 - Popover invoker example shouldn't have `aria-haspopup` · Issue #9153 · whatwg/html
   - https://github.com/whatwg/html/issues/9153
-
 
 これが基本の構造となる。
 
@@ -98,92 +95,29 @@ ul[popover] {
 }
 ```
 
-
-
-
-これではピッタリとくっつきすぎるため、 `translate` で少し余白を設定するする。
+あとは、 `[popovertarget]` に合わせて位置を指定し、必要に応じて `translate` で調整することで実装ができるだろう。
 
 ```css
 [popover] {
   top: anchor(end);
-  left: anchor(start);
+  left: anchor(center);
   translate: 2% 4%;
 }
 ```
 
-このとき、表示のための領域が足らなければ上、左とフォールバックするように指定する。
+あとは、通常通り必要なスタイルを当ててやれば良い。
 
-```css
-
-
-```
-
-TODO: aria
 
 ### JS
 
-以上の `<div popover>` を、リンクごとに動的に内容を取得して表示することになる。
+Popover の開閉という点に関しては、特に JS 無しに挙動が実現できているため、特に必要は無い。
 
-Anchor の対応関係の表現は、現状 CSS でしか行えない。
+あとは、普通にメニューの機能そのものを実装すれば良いだろう。
 
-```css
-a {
-  anchor-name: --anchor;
-}
 
-[popover] {
-  position-anchor: --anchor;
-}
-```
+## DEMO
 
-これを 1 つの `[popover]` と複数の `<a>` の間で行う必要があるため、基本的には `<a>` 側に一意の値を割り振り、それを各々の `anchor-name` として採用する。そして表示したい `<a>` に合わせて `[popover]` の `position-anchor` を変えるという方針を採用する。
+動作するデモを以下に用意した。
 
-今回の場合は、 `<a>` には ID が付与されている前提とする。
-
-```html
-<ul>
-  <li><a id=one>one</a>
-  <li><a id=two>two</a>
-  <li><a id=three>three</a>
-</ul>
-```
-
-最初に id に `--` をつけたものを、全ての `<a>` の `anchor-name` にしてしまう。
-
-```js
-document.querySelectorAll('a').forEach(($a) => {
-  $a.style.anchorName = `--${$a.id}` // --one など
-})
-```
-
-次に、 `<a>` が `mouseover` されたら、 `[popover]` の `position-anchor` を、 `<a>` の ID を元に紐づけてから、 `showPopover()` すれば、 `<a>` を Anchor として表示することができる。
-
-```js
-document.querySelectorAll('a').forEach(($a) => {
-  $a.style.anchorName = `--${$a.id}` // --one など
-  $a.on('mouseover', async (e) => {
-    $popover.style.positionAnchor = `--${e.target.id}`
-    // fetch & dom update
-    $popover.showPopover()
-  })
-})
-```
-
-ここで、 `showPopover()` の前に、必要な情報を取得して DOM に反映すれば良い。
-
-そして `[popover]` の mouseleave で消す。このイベントリスナーは `mouseover` ごとに追加されてメモリーリークするので `{ once: true }` が必須だ。
-
-```js
-$$('a').forEach(($a) => {
-  $a.style.anchorName = `--${$a.id}`
-  $a.on('mouseover', async (e) => {
-    $popover.style.positionAnchor = `--${e.target.id}`
-    $popover.showPopover()
-    $popover.on('mouseleave', (e) => {
-      $popover.hidePopover()
-    }, { once: true })
-  })
-})
-```
-
-この場合、 Popover 内に一回もマウスが入らなければ消えないが、 Light Dismiss なので、他の場所のクリックや、他の Popover のオープンなどで簡単に消えるため、残り続けることは少ないだろう。ちゃんとやるのであれば、同時に `<a>` からの `mouseleave` も合わせて見るなどの実装が必要だ。
+- Menu Popover DEMO
+  - https://labs.jxck.io/popover/menu.html
