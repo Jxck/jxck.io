@@ -103,7 +103,7 @@
 <p>fooooooooooooo</p>
 <div id="tooltip" popover>
 
-  <h2><output></output></h2>
+  <h2></h2>
   <article>
 
     <p>This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.</p>
@@ -138,7 +138,7 @@
       const id = btoa(Math.random()).replaceAll("=", "")
       $popover.id = id
       $popover.style.positionAnchor = `--${e.target.id}`
-      $popover.querySelector('output').textContent = e.target.href
+      $popover.querySelector('h2').textContent = e.target.href
       $popover.showPopover()
 
       const controller = new AbortController()

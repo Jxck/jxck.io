@@ -67,7 +67,7 @@
 
 ```html
 <template>
-  <div id="toast" role="status" popover="manual">
+  <div id="toast" role="status[" popover="manual">
   </div>
 </template>
 ```

@@ -13,9 +13,9 @@
 
 今回は、 Tooltip の実装を考えてみる。身近な例では、 GitHub の Issue や User アイコンをマウスでホバーすると、 Issue の詳細や User Profile が表示されるアレだ。
 
-TODO: 図
+![リンクを hover すると Tooltip でリンク先の詳細がカード表示される](./tooltip-popover.drawio.svg#300x300)
 
-基本的に、画面上同時に 1 つしか存在せず、マウスを外せばすぐ消える。全ての要素に対して、あらかじめ `[popover]` を作っておいて、表示/非表示を切り替えるのは現実的ではないため、 1 つの Popover 使い回し、内容と位置を変えながら表示していく実装方法が考えられる。
+基本的に、画面上同時に 1 つしか存在せず、マウスを外せばすぐ消える。全ての要素に対して、あらかじめ `[poposver]` を作っておいて、表示/非表示を切り替えるのは現実的ではないため、 1 つの Popover 使い回し、内容と位置を変えながら表示していく実装方法が考えられる。
 
 表示位置は、どの場所にあるリンクをホバーしても、そのリンクに紐づいて表示されるように、 Anchor Positioning を活用することになる。
 
@@ -24,12 +24,36 @@ TODO: 図
 
 ### HTML
 
-基本は `<div popover>` となり、同時に 1 つしか表示されないため、 `popover=auto` を指定する。デフォルトなので、明示的に書く必要はない。
+基本は `<div popover>` となる。同時に 1 つしか表示されないため、 `popover=auto` を指定するが、デフォルトなので明示的に書く必要はない。
 
 ```html
 <div popover>
 </div>
 ```
+
+この要素のロールの選択には、いくつかの設計方針がある。
+
+`role=tooltip` というそのままの名前のものもあるが、このロールは特にデフォルトで規定(`aria-live` や `aria-atomic` の値など)されているものが無い。そのため、たとえば `title` 属性を付与した時にブラウザが出す、デフォルトの Tooltip のように、補助的なプレーンテキストが表示されるといったものであれば使われるが、インタラクティブコンテンツなどを含む場合は、別のロールが使われることが多い。
+
+たとえば、 GitHub で Icon や Issue を hover した時に出る Tooltip は `role=region` を用いており、 Slack の場合は `role=presentation` を用いている。
+
+```html
+<div role=tooltip popover>
+</div>
+```
+
+しかし、 `role=tooltip` は前回 Toast に使用した `role=status` や `role=alert` と異なり、`aria-live` や `aria-atomic` はデフォルトでは指定されない点には注意が必要だ。
+
+今回は、あくまで補助的な情報を表示している点から `aria-live=polite`、かつ同じ DOM を使い回している点から `aria-atomic=true` で全変更を通知する実装が考えられるだろう。
+
+```html
+<div role=tooltip aria-live=polite aria-atomic=true popover>
+</div>
+```
+
+
+
+
 
 マウスオーバー時に表示し、マウスが外れれば消えるため、明示的な非表示 UI は不要だろう。必要なのはメッセージの表示領域だ。
 
