@@ -29,17 +29,26 @@
     }
   }
 
-  button[popovertarget] {
+  button[popovertarget=menu] {
     anchor-name: --menu;
   }
-
-  ul[popover] {
-    width: fit-content;
+  ul#menu {
     position-anchor: --menu;
     /* top: anchor(bottom);
     left: anchor(center);*/
     position-area: bottom span-right;
-    
+    translate: 10px;
+  }
+  [popovertarget=submenu] {
+    anchor-name: --submenu;
+  }
+  ul#submenu {
+    position-anchor: --submenu;
+    position-area: right span-bottom;
+    translate: 14px;
+  }
+
+  ul {
     border-radius: 4px;
     border: none;
     box-shadow: rgba(200, 200, 200, 0.5) 0px 0px 0px 1px;
@@ -69,9 +78,16 @@
           <img width="50" height="50" loading="eager" src="https://www.jxck.io/assets/img/menu.svg" title="menu" alt="menu" aria-label="menu"></a>
         </button>
         <ul id=menu role=menu popover>
-          <li role=menuitem><button popovertarget=menu popovertargetaction=close autofocus>Edit</button></li>
-          <li role=menuitem><button popovertarget=menu popovertargetaction=close>Hide</button></li>
-          <li role=menuitem><button popovertarget=menu popovertargetaction=close>Delete</button></li>
+          <li role=menuitem><button popovertarget=menu popovertargetaction=close autofocus>Save</button></li>
+          <li role=menuitem>
+            <button popovertarget=submenu popovertargetaction=show>Edit</button>
+            <ul id=submenu role=menu popover>
+              <li role=menuitem><button popovertarget=menu popovertargetaction=close autofocus>Cut</button></li>
+              <li role=menuitem><button popovertarget=menu popovertargetaction=close>Copy</button></li>
+              <li role=menuitem><button popovertarget=menu popovertargetaction=close>Paste</button></li>
+            </ul>
+          </li>
+          <li role=menuitem><button popovertarget=menu popovertargetaction=close>Close</button></li>
         </ul>
       </li>
     </ul>
