@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-22T08:00:00+08:00",
-    "dateModified": "2024-10-22T08:00:00+08:00",
+    "dateModified": "2024-10-23T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-22>2024-10-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-22>2024-10-22</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-23>2024-10-23</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -141,6 +141,7 @@
                 <li><a href="#css">CSS</a>
                 <li><a href="#js">JS</a>
               </ol>
+              <li><a href="#nesting">Nesting</a>
               <li><a href="#demo">DEMO</a>
             </ol>
           </nav>
@@ -242,6 +243,10 @@ ul[popover] {
   left: anchor(center);
   translate: 2% 4%;
 }</code></pre>
+          <p><code translate=no>position-area</code> を用いて指定する場合は、以下のようにも指定可能だ。
+          <pre class=css data-code=css><code translate=no class=language-css>[popover] {
+  position-area: bottom span-right;
+}</code></pre>
           <p>あとは、通常通り必要なスタイルを当ててやれば良い。
         </section>
         <section>
@@ -249,6 +254,56 @@ ul[popover] {
           <p>Popover の開閉という点に関しては、特に JS 無しに挙動が実現できているため、特に必要は無い。
           <p>あとは、普通にメニューの機能そのものを実装すれば良いだろう。
         </section>
+      </section>
+      <section>
+        <h2 id="nesting"><a href="#nesting">Nesting</a></h2>
+        <p>メニューの項目が、さらにサブメニューを開く実装もある。
+        <p>この場合、ネストした項目をさらに Popover として開くことで実装できる。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;ul&gt;
+  &lt;li&gt;
+    &lt;button popovertarget=menu&gt;Actions&lt;/button&gt;
+    &lt;ul id=menu role=menu popover&gt;
+      &lt;li role=menuitem&gt;&lt;button popovertarget=menu popovertargetaction=close autofocus&gt;Save&lt;/button&gt;&lt;/li&gt;
+      &lt;li role=menuitem&gt;
+        &lt;button popovertarget=submenu popovertargetaction=show&gt;Edit&lt;/button&gt;
+        &lt;ul id=submenu role=menu popover&gt;
+          &lt;li role=menuitem&gt;&lt;button popovertarget=menu popovertargetaction=close autofocus&gt;Cut&lt;/button&gt;&lt;/li&gt;
+          &lt;li role=menuitem&gt;&lt;button popovertarget=menu popovertargetaction=close&gt;Copy&lt;/button&gt;&lt;/li&gt;
+          &lt;li role=menuitem&gt;&lt;button popovertarget=menu popovertargetaction=close&gt;Paste&lt;/button&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li role=menuitem&gt;&lt;button popovertarget=menu popovertargetaction=close&gt;Close&lt;/button&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        <p>CSS も、 Anchor をサブメニューに対して付与していけば良い。
+        <pre class=css data-code=css><code translate=no class=language-css>button[popovertarget=menu] {
+  anchor-name: --menu;
+}
+ul#menu {
+  position-anchor: --menu;
+  position-area: bottom span-right;
+}
+
+[popovertarget=submenu] {
+  anchor-name: --submenu;
+}
+ul#submenu {
+  position-anchor: --submenu;
+  position-area: right span-bottom;
+}</code></pre>
+        <p>また、これが横に広がることで画面に収まらない可能性を考慮して、 fallback を指定する。
+        <pre class=css data-code=css><code translate=no class=language-css>ul#submenu {
+  position-anchor: --submenu;
+  position-area: right span-bottom;
+  translate: 14px;
+  position-try-fallbacks: --bottom;
+}
+
+@position-try --bottom {
+  position-area: bottom span-right;
+}</code></pre>
+        <p>これによって右に余白がなければ、下に表示をフォールバックすることが可能だ。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
