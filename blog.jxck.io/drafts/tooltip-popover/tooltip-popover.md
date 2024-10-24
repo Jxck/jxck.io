@@ -2,24 +2,143 @@
 
 ## Intro
 
-ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。
+今回は、この連載の最終回となる予定だ。
 
-あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。
-
-**また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意**
-
-
-## Tooltip
-
-今回は、 Tooltip の実装を考えてみる。身近な例では、 GitHub の Issue や User アイコンをマウスでホバーすると、 Issue の詳細や User Profile が表示されるアレだ。
+今回考えたいのは、　GitHub の Issue や User アイコンをマウスでホバーすると、 Issue の詳細や User Profile が表示されるアレだ。
 
 ![リンクを hover すると Tooltip でリンク先の詳細がカード表示される](./tooltip-popover.drawio.svg#300x300)
+
+挙動としては想像通り、対象要素に Anchoring した `<div popover>` を表示して、中に好きなようにコンテンツを入れれば良い。しかし、この UI のセマンティクスに関しては、複数の議論が行われている。
+
+今回は、それらを整理つつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。
+
+
+## Native Tooltip
+
+まず、この UI の名前だが、例えば UI コンポーネントライブラリを見ても、このようなコンポーネントは様々な名前で提供されている。
+
+そもそも Popover という名前で提供している場合もあれば、 Tooltip や Toggletip といった名前がつくこともあるようだ。
+
+しかし、 HTML において Tooltip というと、 `title` 属性を付与した際に、マウスオーバーでブラウザが出す、この UI もそう呼ばれる。
+
+![画像の title 属性の文字列をブラウザが小さいポップアップで表示している](native-tooltip.png)
+
+紛らわしいので、ここではこれを "native tooltip" と呼ぶことにする。
+
+native tooltip は、古くからブラウザが実装しているが、実装にいくつかの問題が度々指摘されている。(e.g. ブラウザによってはキーボードのフォーカスだけでは出せない)
+
+スタイルについては、 CSS を当てられるようにする提案自体はある。
+
+- Consider providing a way for authors to style the title attribute's tooltip · Issue #730 · openui/open-ui
+  - https://github.com/openui/open-ui/issues/730
+- [css-ui] Standardize tooltip styling and expose as `::tooltip` · Issue #8930 · w3c/csswg-drafts
+  - https://github.com/w3c/csswg-drafts/issues/8930
+
+しかし、まだ議論がまとまっておらず、どうなるかわからない。そして、いじれてもスタイルだけなので、 `title` 属性に頼らず、別途 Tooltip コンポーネントを自作する場面は今後も多いだろう。
+
+## Tooltip/Toggletip
+
+"native tooltip" は `title` 属性を出しているだけなので、内容はテキスト(presentation contents)のみだ。ここにコントローラー(interactive content)つまりリンクなどが入ってくると話は少し変わる。
+
+そこで、「テキストのみ」を表示するコンポーネントは Tooltip、対して「コントローラ」を含むものを Toggletip と呼び分ける場合がある。便利なので、本文でもそれを採用することにする。
+
+どちらも、 対象要素に Anchoring した `<div popover>` で実装することが可能だろう。問題は、どのようなセマンティクスを提供するかだ。
+
+```html
+<div popover>
+</div>
+```
+
+
+### Tooltip
+
+Tooltip の場合、`role=tooltip` があるため、そのまま使えば良いだろう。あくまで内容はテキストのみだ。
+
+```html
+<div role=tooltip popover>
+  <output>Hello Tooltip</output>
+</div>
+```
+
+`role=tooltip` については以下に仕様がある。
+
+- Accessible Rich Internet Applications (WAI-ARIA) 1.3
+  - https://w3c.github.io/aria/#tooltip
+
+`role=state` などと違い、 `aria-live` や `aria-atomic` について規定がないため、特に UA にとって何か特別な挙動がないことも知られているが、その点は Popover を用いている時点で解決できる部分もなくはない。
+
+そして、 APG にも Tooltip についてのパターンがある。
+
+- Tooltip Pattern | APG | WAI | W3C
+  - https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+
+最初に書かれている通り、このパターンはまだ議論が終わっておらず、完成しているとは言えない。 Issue は 2016 年に立ったもので、今でもまだ結論が出ていない。
+
+- Develop example of tooltip design pattern · Issue #127 · w3c/aria-practices
+  - https://github.com/w3c/aria-practices/issues/127
+- Draft tooltip design pattern · Issue #128 · w3c/aria-practices
+  - https://github.com/w3c/aria-practices/issues/128
+
+時を経て去年、この議論は ARIA 側にも持ち込まれた。
+
+- Definitive tooltip design pattern · Issue #2002 · w3c/aria
+  - https://github.com/w3c/aria/issues/2002
+
+この中で、「そもそも `role=tooltip` 自体が微妙なのでは？」ということで、そちらの議論にも派生した。
+
+- Clarify the use of role=tooltip · Issue #979 · w3c/aria
+  - https://github.com/w3c/aria/issues/979
+
+これを議論するために TPAC では 2 枠のディスカッションが用意されたが、明確な結論には至ってない。
+
+- ARIA WG F2F (TPAC) – 11 September 2023
+  - https://www.w3.org/2023/09/11-aria-minutes
+- (MEETING TITLE) – 15 September 2023
+  - https://www.w3.org/2023/09/15-aria-minutes.html
+
+## Text or Interactive Content
+
+まず、ここに入れる内容が native tooltip のようにテキストだけであれば、なんら問題はない。
+
+```html
+<div role=tooltip popover>
+  <output>Hello Tooltip</output>
+</div>
+```
+
+
+
+
+その UI の中に「テキストのみ」が表示されるのかコントローラなどの「インタラクティブコンテンツ」も含めて表示されるのかで、話は結構変わってくる。
+
+そこで、前者を Tooltip、 後者を Toggletip と呼び分ける場合がある。本文ではこの呼び分けを採用することにする。
+
+## APG
+
+
+
+
 
 基本的に、画面上同時に 1 つしか存在せず、マウスを外せばすぐ消える。全ての要素に対して、あらかじめ `[poposver]` を作っておいて、表示/非表示を切り替えるのは現実的ではないため、 1 つの Popover 使い回し、内容と位置を変えながら表示していく実装方法が考えられる。
 
 表示位置は、どの場所にあるリンクをホバーしても、そのリンクに紐づいて表示されるように、 Anchor Positioning を活用することになる。
 
 今回は、 `<a>` をホバーした際に、リンク先のタイトルを取得して表示するような UI を考えてみる。
+
+
+
+## role=tooltip の議論
+ 
+- Clarify the use of role=tooltip · Issue #979 · w3c/aria
+  - https://github.com/w3c/aria/issues/979
+- Tooltip should not use role and aria-describedby · Issue #3242 · ariakit/ariakit
+  - https://github.com/ariakit/ariakit/issues/3242
+
+
+- Semantics and the popover attribute: which role to use when? | hidde.blog
+  - https://hidde.blog/popover-semantics/
+
+
 
 
 ### HTML
