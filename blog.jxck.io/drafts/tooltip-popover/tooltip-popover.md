@@ -2,30 +2,28 @@
 
 ## Intro
 
-今回は、この連載の最終回となる予定だ。
-
-今回考えたいのは、　GitHub の Issue や User アイコンをマウスでホバーすると、 Issue の詳細や User Profile が表示されるアレだ。
+今回考えたいのは、 GitHub の Issue や User アイコンをマウスでホバーすると、 Issue の詳細や User Profile が表示されるアレだ。
 
 ![リンクを hover すると Tooltip でリンク先の詳細がカード表示される](./tooltip-popover.drawio.svg#300x300)
 
-挙動としては想像通り、対象要素に Anchoring した `<div popover>` を表示して、中に好きなようにコンテンツを入れれば良い。しかし、この UI のセマンティクスに関しては、複数の議論が行われている。
+挙動としては想像通り、対象要素に Anchoring した `<div popover>` を表示し、中に好きなようにコンテンツを入れれば良い。ただし UI のセマンティクスに関しては、複数の議論が行われており、方針もいくつか考えられる。
 
-今回は、それらを整理つつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。
+今回は、それらの現状を整理つつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。
 
 
 ## Native Tooltip
 
-まず、この UI の名前だが、例えば UI コンポーネントライブラリを見ても、このようなコンポーネントは様々な名前で提供されている。
+まず、この UI の名前だが、 UI ライブラリを見ても、このようなコンポーネントは様々な名前で提供されている。
 
-そもそも Popover という名前で提供している場合もあれば、 Tooltip や Toggletip といった名前がつくこともあるようだ。
+そもそも Popover という名前で提供している場合もあれば、 Tooltip / Toggletip / Popup といった名前がつくこともある。
 
-しかし、 HTML において Tooltip というと、 `title` 属性を付与した際に、マウスオーバーでブラウザが出す、この UI もそう呼ばれる。
+しかし、 HTML において Tooltip というと、 `title` 属性を付与した際に、マウスオーバーでブラウザが出す、この UI がそう呼ばれる。
 
 ![画像の title 属性の文字列をブラウザが小さいポップアップで表示している](native-tooltip.png)
 
-紛らわしいので、ここではこれを "native tooltip" と呼ぶことにする。
+紛らわしいので、ここではこれを Native Tooltip" と呼ぶことにする。
 
-native tooltip は、古くからブラウザが実装しているが、実装にいくつかの問題が度々指摘されている。(e.g. ブラウザによってはキーボードのフォーカスだけでは出せない)
+Native Tooltip は、古くからブラウザに実装されているが、ブラウザによってはキーボードのフォーカスだけでは出せない、スタイルが指定できないなど、いくつかの問題が度々指摘されている。
 
 スタイルについては、 CSS を当てられるようにする提案自体はある。
 
@@ -34,13 +32,14 @@ native tooltip は、古くからブラウザが実装しているが、実装�
 - [css-ui] Standardize tooltip styling and expose as `::tooltip` · Issue #8930 · w3c/csswg-drafts
   - https://github.com/w3c/csswg-drafts/issues/8930
 
-しかし、まだ議論がまとまっておらず、どうなるかわからない。そして、いじれてもスタイルだけなので、 `title` 属性に頼らず、別途 Tooltip コンポーネントを自作する場面は今後も多いだろう。
+しかし、まだ議論がまとまっておらず、どうなるかわからない。そして、触れてもスタイルだけなので、 `title` 属性に頼らず、別途 Tooltip コンポーネントを自作する場面は無くならないだろう。
+
 
 ## Tooltip/Toggletip
 
-"native tooltip" は `title` 属性を出しているだけなので、内容はテキスト(presentation contents)のみだ。ここにコントローラー(interactive content)つまりリンクなどが入ってくると話は少し変わる。
+Native Tooltip は `title` 属性を出しているだけなので、内容はテキスト(presentation contents)のみだ。ここにコントローラー(interactive content)つまりリンクなどが入ってくると話は少し変わる。
 
-そこで、「テキストのみ」を表示するコンポーネントは Tooltip、対して「コントローラ」を含むものを Toggletip と呼び分ける場合がある。便利なので、本文でもそれを採用することにする。
+そこで、「テキストのみ」を表示するコンポーネントは Tooltip、対して「コントローラ」を含むものを Toggletip と呼び分ける場合がある(例えば OpenUI)。便利なので、本文でもそれを採用することにする。
 
 どちらも、 対象要素に Anchoring した `<div popover>` で実装することが可能だろう。問題は、どのようなセマンティクスを提供するかだ。
 
@@ -56,7 +55,7 @@ Tooltip の場合、`role=tooltip` があるため、そのまま使えば良い
 
 ```html
 <div role=tooltip popover>
-  <output>Hello Tooltip</output>
+  Hello Tooltip
 </div>
 ```
 
@@ -65,14 +64,41 @@ Tooltip の場合、`role=tooltip` があるため、そのまま使えば良い
 - Accessible Rich Internet Applications (WAI-ARIA) 1.3
   - https://w3c.github.io/aria/#tooltip
 
-`role=state` などと違い、 `aria-live` や `aria-atomic` について規定がないため、特に UA にとって何か特別な挙動がないことも知られているが、その点は Popover を用いている時点で解決できる部分もなくはない。
+`role=state` などと違い、 `aria-live` や `aria-atomic` についてデフォルトがないため、特に UA にとって何か特別な挙動がないことも知られている。
 
-そして、 APG にも Tooltip についてのパターンがある。
+ユーザに情報の緊急性を知らせる意味でも、 `aria-live=polite` や `<output>` を用いる方法が考えられる。
+
+```html
+<div role=tooltip popover>
+  <output>Hello Tooltip</output>
+</div>
+```
+
+また、従来はこうした DOM を表出させる場合は `aria-haspopup` が Invoker 相当側に必要だったが、 Popover の場合はそれは不要だ。
+
+- Popover invoker example shouldn't have `aria-haspopup` · Issue #9153 · whatwg/html
+  - https://github.com/whatwg/html/issues/9153
+
+このあたりまでは、まあ概ね共通して考えられるだろう。
+
+しかし、ここから先にいくにあたって話が少し割れてくる。
+
+主な焦点は以下の二つだ
+
+- Tooltip における `aria-describedby`
+- テキスト以外を含む場合
+
+
+## APG
+
+APG にも Tooltip についてのパターンがある。
 
 - Tooltip Pattern | APG | WAI | W3C
   - https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
-最初に書かれている通り、このパターンはまだ議論が終わっておらず、完成しているとは言えない。 Issue は 2016 年に立ったもので、今でもまだ結論が出ていない。
+この中では `aria-describedby` の付与が推奨されている。
+
+しかし、最初に書かれている通り、このパターンはまだ議論が終わっておらず、完成しているとは言えない。 Issue は 2016 年に立ったもので、今でもまだ結論が出ていない。
 
 - Develop example of tooltip design pattern · Issue #127 · w3c/aria-practices
   - https://github.com/w3c/aria-practices/issues/127
@@ -84,7 +110,13 @@ Tooltip の場合、`role=tooltip` があるため、そのまま使えば良い
 - Definitive tooltip design pattern · Issue #2002 · w3c/aria
   - https://github.com/w3c/aria/issues/2002
 
-この中で、「そもそも `role=tooltip` 自体が微妙なのでは？」ということで、そちらの議論にも派生した。
+この中で、二つの議論が発生している。
+
+- そもそも `role=tooltip` 自体が微妙なのでは？
+- Tooltip の実装に `aria-describedby` は必須なのか？
+
+
+### role=tooltip の微妙さ
 
 - Clarify the use of role=tooltip · Issue #979 · w3c/aria
   - https://github.com/w3c/aria/issues/979
@@ -98,7 +130,7 @@ Tooltip の場合、`role=tooltip` があるため、そのまま使えば良い
 
 ## Text or Interactive Content
 
-まず、ここに入れる内容が native tooltip のようにテキストだけであれば、なんら問題はない。
+まず、ここに入れる内容が Native Tooltip のようにテキストだけであれば、なんら問題はない。
 
 ```html
 <div role=tooltip popover>
@@ -106,7 +138,10 @@ Tooltip の場合、`role=tooltip` があるため、そのまま使えば良い
 </div>
 ```
 
+実装次第で、中身を選択してコピーさせることも可能であり、スタイルもアニメーションも自由だ。 `<output>` に頼らずに 
 
+
+しかし、 GitHub の UI では、内部に
 
 
 その UI の中に「テキストのみ」が表示されるのかコントローラなどの「インタラクティブコンテンツ」も含めて表示されるのかで、話は結構変わってくる。
