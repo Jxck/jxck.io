@@ -10,8 +10,9 @@
 
 今回は、それらの現状を整理つつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。
 
+## Tooltip Component
 
-## Native Tooltip
+### Native Tooltip
 
 まず、この UI の名前だが、 UI ライブラリを見ても、このようなコンポーネントは様々な名前で提供されている。
 
@@ -21,9 +22,9 @@
 
 ![画像の title 属性の文字列をブラウザが小さいポップアップで表示している](native-tooltip.png)
 
-紛らわしいので、ここではこれを Native Tooltip" と呼ぶことにする。
+紛らわしいので、ここではこれを Native Tooltip と呼ぶことにする。
 
-Native Tooltip は、古くからブラウザに実装されているが、ブラウザによってはキーボードのフォーカスだけでは出せない、スタイルが指定できないなど、いくつかの問題が度々指摘されている。
+Native Tooltip は、古くからブラウザに実装されているが、ブラウザによってはキーボードのフォーカスだけでは出せない、テキストを選択できない、スタイルが指定できないなど、いくつかの問題が度々指摘されている。
 
 スタイルについては、 CSS を当てられるようにする提案自体はある。
 
@@ -32,26 +33,68 @@ Native Tooltip は、古くからブラウザに実装されているが、ブ�
 - [css-ui] Standardize tooltip styling and expose as `::tooltip` · Issue #8930 · w3c/csswg-drafts
   - https://github.com/w3c/csswg-drafts/issues/8930
 
-しかし、まだ議論がまとまっておらず、どうなるかわからない。そして、触れてもスタイルだけなので、 `title` 属性に頼らず、別途 Tooltip コンポーネントを自作する場面は無くならないだろう。
+しかし、まだ議論がまとまっておらず、どうなるかわからない。
+
+また、依然としてフォーカス移動だけで内容を知りたい場合や、選択してコピーしたい場合のために、 `title` 属性に頼らず独自のコンポーネントを実装する機会はあるだろう。
 
 
-## Tooltip/Toggletip
+### Tooltip/Toggletip
 
-Native Tooltip は `title` 属性を出しているだけなので、内容はテキスト(presentation contents)のみだ。ここにコントローラー(interactive content)つまりリンクなどが入ってくると話は少し変わる。
+Native Tooltip は `title` 属性を出しているだけなので、内容はテキスト(presentation contents)のみだ。ここにコントローラー(interactive content)、つまりリンクやボタンなどが入ってくると話は少し変わる。
 
-そこで、「テキストのみ」を表示するコンポーネントは Tooltip、対して「コントローラ」を含むものを Toggletip と呼び分ける場合がある(例えば OpenUI)。便利なので、本文でもそれを採用することにする。
+OpenUI をはじめとしたいくつかの場所では、「テキストのみ」を表示するコンポーネントは **Tooltip**、対して「コントローラ」を含むものを **Toggletip** と呼び分けている。便利なので、本文でもそれを採用することにする。
 
-どちらも、 対象要素に Anchoring した `<div popover>` で実装することが可能だろう。問題は、どのようなセマンティクスを提供するかだ。
+どちらも、 対象要素に Anchoring した `<div popover>` で実装することが可能だろう。
 
 ```html
+<a href=/users/jxck>Jxck</a>
 <div popover>
+  Hello Tooltip
 </div>
 ```
 
+今回はクリック時ではなくホバー時に開く実装だが、その場合でも `popovertarget` で両者の Invoker Relationship を定義することは可能だ。
 
-### Tooltip
+```html
+<a popovertarget=tooltip href=/users/jxck>Jxck</a>
+<div id=tooltip popover>
+  Hello Tooltip
+</div>
+```
 
-Tooltip の場合、`role=tooltip` があるため、そのまま使えば良いだろう。あくまで内容はテキストのみだ。
+ここまでは、通常の Popover の使い方と同じだ。また、この時点で JS/CSS の実装自体はこれまで通りの方法で可能だろう。
+
+問題は、どのような/にセマンティクスを提供するかだ。
+
+## APG
+
+APG にも Tooltip についてのパターンがある。
+
+- Tooltip Pattern | APG | WAI | W3C
+  - https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+
+この中では `role=tooltip` および `aria-describedby` の付与が推奨されている。
+
+しかし、最初に書かれている通り、このパターンはまだ議論が終わっておらず、完成しているとは言えない。 Issue は 2016 年に立ったもので、今でもまだ結論が出ていない。
+
+- Develop example of tooltip design pattern · Issue #127 · w3c/aria-practices
+  - https://github.com/w3c/aria-practices/issues/127
+- Draft tooltip design pattern · Issue #128 · w3c/aria-practices
+  - https://github.com/w3c/aria-practices/issues/128
+
+時を経て去年、この議論は ARIA 側にも持ち込まれた。
+
+- Definitive tooltip design pattern · Issue #2002 · w3c/aria
+  - https://github.com/w3c/aria/issues/2002
+
+したがって、ここに書かれているものにそのまま準拠すれば良いかというと、それは非常に微妙だ。
+
+そこで、何が議論になっているのかを見ていこう。
+
+
+### role=tooltip
+
+この UI を Tooltip と呼ぶ場合、 `role=tooltip` があるため、そのまま使うのが自然に思える。
 
 ```html
 <div role=tooltip popover>
@@ -66,7 +109,7 @@ Tooltip の場合、`role=tooltip` があるため、そのまま使えば良い
 
 `role=state` などと違い、 `aria-live` や `aria-atomic` についてデフォルトがないため、特に UA にとって何か特別な挙動がないことも知られている。
 
-ユーザに情報の緊急性を知らせる意味でも、 `aria-live=polite` や `<output>` を用いる方法が考えられる。
+したがって、ユーザに情報の緊急性を知らせる意味でも、 `aria-live=polite` や `<output>` を併用する方法が考えられる。
 
 ```html
 <div role=tooltip popover>
@@ -74,7 +117,7 @@ Tooltip の場合、`role=tooltip` があるため、そのまま使えば良い
 </div>
 ```
 
-また、従来はこうした DOM を表出させる場合は `aria-haspopup` が Invoker 相当側に必要だったが、 Popover の場合はそれは不要だ。
+また、従来はこうした DOM を表出させる場合は `aria-haspopup` が Invoker 相当側に付与されることが多いが、 Popover を用いる場合、 UA は Popover が開いていることを知ることができるため、不要とされている。 
 
 - Popover invoker example shouldn't have `aria-haspopup` · Issue #9153 · whatwg/html
   - https://github.com/whatwg/html/issues/9153
@@ -83,54 +126,44 @@ Tooltip の場合、`role=tooltip` があるため、そのまま使えば良い
 
 しかし、ここから先にいくにあたって話が少し割れてくる。
 
-主な焦点は以下の二つだ
 
-- Tooltip における `aria-describedby`
-- テキスト以外を含む場合
+### role=tooltip の曖昧さと微妙さ
 
-
-## APG
-
-APG にも Tooltip についてのパターンがある。
-
-- Tooltip Pattern | APG | WAI | W3C
-  - https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
-
-この中では `aria-describedby` の付与が推奨されている。
-
-しかし、最初に書かれている通り、このパターンはまだ議論が終わっておらず、完成しているとは言えない。 Issue は 2016 年に立ったもので、今でもまだ結論が出ていない。
-
-- Develop example of tooltip design pattern · Issue #127 · w3c/aria-practices
-  - https://github.com/w3c/aria-practices/issues/127
-- Draft tooltip design pattern · Issue #128 · w3c/aria-practices
-  - https://github.com/w3c/aria-practices/issues/128
-
-時を経て去年、この議論は ARIA 側にも持ち込まれた。
-
-- Definitive tooltip design pattern · Issue #2002 · w3c/aria
-  - https://github.com/w3c/aria/issues/2002
-
-この中で、二つの議論が発生している。
-
-- そもそも `role=tooltip` 自体が微妙なのでは？
-- Tooltip の実装に `aria-describedby` は必須なのか？
-
-
-### role=tooltip の微妙さ
+そもそも、 UA に対して特段の挙動を求めない上に、用途が狭い `role=tooltip` 自体が、曖昧かつ端的に言えば微妙なのではという議論が、 Popover などの策定が進んでいく 2019 年ごろ出た。
 
 - Clarify the use of role=tooltip · Issue #979 · w3c/aria
   - https://github.com/w3c/aria/issues/979
 
-これを議論するために TPAC では 2 枠のディスカッションが用意されたが、明確な結論には至ってない。
+議論は長引いており、 TPAC 2023 では 2 枠のディスカッションが用意されたが、それでも明確な結論には至ってない。
 
 - ARIA WG F2F (TPAC) – 11 September 2023
   - https://www.w3.org/2023/09/11-aria-minutes
 - (MEETING TITLE) – 15 September 2023
   - https://www.w3.org/2023/09/15-aria-minutes.html
 
-## Text or Interactive Content
+また、現状の APG の不完全さを、そのまま採用することで問題となっている実装もある。
 
-まず、ここに入れる内容が Native Tooltip のようにテキストだけであれば、なんら問題はない。
+- Tooltip should not use role and aria-describedby · Issue #3242 · ariakit/ariakit
+  - https://github.com/ariakit/ariakit/issues/3242#issuecomment-1867610708
+- Color picker: CopyButton is unlabeled and has buggy description and tooltip · Issue #57157 · WordPress/gutenberg
+  - https://github.com/WordPress/gutenberg/issues/57157#issuecomment-1865981198
+
+`role=tooltip` の曖昧さが、 APG の Tooltip 実装の推奨をはっきりさせられない要因にもなっている。
+
+
+
+- Tooltip role should allow referencing by aria-labelledby · Issue #987 · w3c/aria
+  - https://github.com/w3c/aria/issues/987
+- Tooltip pattern should allow for aria-labelledby · Issue #1034 · w3c/aria-practices
+  - https://github.com/w3c/aria-practices/issues/1034
+
+## Tooltip の実装
+
+という前提を踏まえた上で、現状の考えうる実装について見ていこう。
+
+### Text or Interactive Content
+
+まず、内容が Native Tooltip のようにテキストだけのケースは、既出の通りこれがベースとなり得そうだ。
 
 ```html
 <div role=tooltip popover>
@@ -138,20 +171,65 @@ APG にも Tooltip についてのパターンがある。
 </div>
 ```
 
-実装次第で、中身を選択してコピーさせることも可能であり、スタイルもアニメーションも自由だ。 `<output>` に頼らずに 
-
-
-しかし、 GitHub の UI では、内部に
-
-
-その UI の中に「テキストのみ」が表示されるのかコントローラなどの「インタラクティブコンテンツ」も含めて表示されるのかで、話は結構変わってくる。
-
-そこで、前者を Tooltip、 後者を Toggletip と呼び分ける場合がある。本文ではこの呼び分けを採用することにする。
-
-## APG
 
 
 
+
+
+しかし、 GitHub の UI では、内部にリンクを含んだインタラクティブコンテントが入っている。つまり、これは先の語彙でいう Tooltip ではなく Toggletip なのだ。
+
+```html
+<div popover>
+  <a href="/users/jxck">Jxck</a>
+</div>
+```
+
+さて、この場合 `role=tooltip` を用いていいのだろうか？
+
+実は、もともとの `role=tooltip` が追加された当初は、コントローラを含められる目的だった
+
+> Back when we added role=tooltip, the assumption was that role=tooltip could allow interactive content.
+> --- https://github.com/w3c/aria/issues/979#issuecomment-1131900402
+
+しかし、今の Tooltip の文脈はそうはなってない。
+
+実際、 GitHub の実装は `role=region` を用いており、 Slack は `role=presentation` 用いているなど、かなりブレもある。
+
+## role=dialog
+
+一方、このようにインタラクティブな要素を含む Toggletip の場合は、 `role=dialog` を用いるべきという話もある。 APG もこの点に触れている。(何度も言うが APG の Tooltip は確定ではない点に留意)
+
+> Tooltip widgets do not receive focus. A hover that contains focusable elements can be made using a non-modal dialog.
+> --- https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+
+コントローラがあるということは、フォーカスについて考慮する必要がある。現状の `role=tooltip` はその点について不十分として、 non-modal dialog としての実装が推奨されるのだ。そして、 non-modal dialog な Toggletip のパターンは APG では(ややこしいことに) Tooltip Dialog というパターンでまとめるという Issue が立ってはいるが、立てっぱなしで話が進んでない状況だ。
+
+- Draft tooltip dialog design pattern · Issue #85 · w3c/aria-practices
+  - https://github.com/w3c/aria-practices/issues/85
+
+なお、 Confluence は `role=dialog` で実装している。
+
+
+## non-Modal Toggletip
+
+`<dialog>` は散々解説したように、特に Modal のケースはユーザに対して操作を要求する性質が強い。しかし、 Modal で出さなければ `role=dialog` の実装要素という側面を享受できる。
+
+また、このケースは Light Dismiss が求められることを考えると、 `<dialog popover>` での実装が考えられる。
+
+```html
+<dialog popover>
+  <a href="/users/jxck">Jxck</a>
+</dialog>
+```
+
+
+
+
+
+
+これを `showPopover()` すれば、目的は達成できそうだ。
+
+Modal Dialog の場合はフォーカスを移すが、今回の場合は popover なので `autofocus` はむしろいらないだろう。
 
 
 基本的に、画面上同時に 1 つしか存在せず、マウスを外せばすぐ消える。全ての要素に対して、あらかじめ `[poposver]` を作っておいて、表示/非表示を切り替えるのは現実的ではないため、 1 つの Popover 使い回し、内容と位置を変えながら表示していく実装方法が考えられる。
@@ -318,3 +396,13 @@ $$('a').forEach(($a) => {
 ```
 
 この場合、 Popover 内に一回もマウスが入らなければ消えないが、 Light Dismiss なので、他の場所のクリックや、他の Popover のオープンなどで簡単に消えるため、残り続けることは少ないだろう。ちゃんとやるのであれば、同時に `<a>` からの `mouseleave` も合わせて見るなどの実装が必要だ。
+
+
+
+
+
+
+# TODO
+
+- APG Tooltips
+  - https://zoebijl.github.io/apg-tooltip/
