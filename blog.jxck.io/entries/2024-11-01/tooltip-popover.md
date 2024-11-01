@@ -1,4 +1,4 @@
-# [dialog][popover] Dialog と Popover #10
+# [dialog][popover] Dialog と Popover #11
 
 ## Intro
 
@@ -21,7 +21,7 @@
 
 しかし、 HTML において Tooltip というと、 `title` 属性を付与した際に、マウスオーバーでブラウザが出す、この UI がそう呼ばれる。
 
-![画像の title 属性の文字列をブラウザが小さいポップアップで表示している](native-tooltip.png)
+![画像の title 属性の文字列をブラウザが小さいポップアップで表示している](native-tooltip.png#180x156)
 
 紛らわしいので、ここではこれを Native Tooltip と呼ぶことにする。
 
