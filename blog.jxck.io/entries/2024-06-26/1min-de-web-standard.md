@@ -1,5 +1,13 @@
 # [wdc][web]「1 分 de Web 標準」のやり方 at Web Developer Conference 2024 #wdc2024
 
+## Update
+
+無事開催し、想定した通りの LT を実施できました。
+
+- Web Developer Conference 2024 開催後記 #wdc2024 | blog.jxck.io
+  - https://blog.jxck.io/entries/2024-09-09/web-developer-conference.html#lt
+
+
 ## Intro
 
 9/7 開催予定の Web Developer Conference 2024 では、 「1 分 de Web 標準」という LT 大会を予定しています。
