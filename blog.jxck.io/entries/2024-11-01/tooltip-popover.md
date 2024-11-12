@@ -176,7 +176,7 @@ APG にも Tooltip についてのパターンがある。
 > Tooltip widgets do not receive focus. A hover that contains focusable elements can be made using a non-modal dialog.
 > --- https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
-コントローラがあるということは、フォーカスについて考慮する必要がある。現状の `role=tooltip` はその点について不十分として、non-modal dialog としての実装が推奨されるのだ。そして、non-modal dialog な Toggletip のパターンは APG では(ややこしいことに)Tooltip Dialog というパターンでまとめるという Issue が立ってはいるが、立てっぱなしで話が進んでいない状況だ。
+コントローラがあるということは、フォーカスについて考慮する必要がある。現状の `role=tooltip` はその点について不十分として、non-Modal Dialog としての実装が推奨されるのだ。そして、non-Modal Dialog な Toggletip のパターンは APG では(ややこしいことに)Tooltip Dialog というパターンでまとめるという Issue が立ってはいるが、立てっぱなしで話が進んでいない状況だ。
 
 - Draft tooltip dialog design pattern · Issue #85 · w3c/aria-practices
   - https://github.com/w3c/aria-practices/issues/85
