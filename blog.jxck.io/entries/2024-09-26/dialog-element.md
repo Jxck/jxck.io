@@ -18,11 +18,11 @@
 - Modal Dialog
 - non-Modal Dialog
 
-*Dialog* とは、そもそも「対話」という意味であり、 UI の文脈では入力や選択を求める「対話的な UI」のことを指す。
+*Dialog* とは、そもそも「対話」という意味であり、UI の文脈では入力や選択を求める「対話的な UI」のことを指す。
 
 既に実装されている `alert()`, `confirm()`, `prompt()` なども広く言えば Dialog にあたり、同意を求めたり、設定を確認させたり、更新があるから再読み込みさせたりといった用途で使う。
 
-その中で *Modal* とは一般的には「特定のタスクを行うためのモード」といったニュアンスがあるが、この文脈では「それを処理しない限り先に進めない/他の操作ができない」ようなブロックを伴う UI のことを指す。つまり、 Dialog には 「Modal で出す」か「non-Modal で出すか」という 2 種類があるということだ。(modeless という表現をする場合もあるが、 Open UI では non-Modal という表現が使われている。)
+その中で *Modal* とは一般的には「特定のタスクを行うためのモード」といったニュアンスがあるが、この文脈では「それを処理しない限り先に進めない/他の操作ができない」ようなブロックを伴う UI のことを指す。つまり、Dialog には「Modal で出す」か「Non-Modal で出すか」という 2 種類があるということだ。(modeless という表現をする場合もあるが、Open UI では Non-Modal という表現が使われている。)
 
 Modal Dialog は Web 以外にも多くのプラットフォームで提供され、コモンケースとして以下のように実装されることが多い。
 
@@ -53,7 +53,7 @@ Modal の実装を自前で行うとすれば、見た目としては以下の�
 例えばよくあるのは、フォーカス管理の欠如だ。
 
 1. Modal を開いているのに、フォーカスは Modal 外のままで、キーボードで操作したいユーザが Modal に Tab で辿り着けない
-2. Modal を開いてて、フォーカスも Modal に乗っているのに、Tab を押すと Modal から落ちて外に移動してしまう
+2. Modal を開いていて、フォーカスも Modal に乗っているのに、Tab を押すと Modal から落ちて外に移動してしまう
 3. Modal を閉じた際に、以前いた場所とは別の場所にフォーカスが移り迷子になる
 4. Modal 上で Tab 移動し、Modal の一番下まで行ったら、次は Modal の上に戻って欲しいが、そのまま外に出て行ってしまう
 
@@ -78,7 +78,7 @@ Modal の実装を自前で行うとすれば、見た目としては以下の�
 - Dialog (Modal) Pattern | APG | WAI | W3C
   - https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
-様々な UI ライブラリが Modal Dialog 相当の機能を、 APG を元に提供しているが、それでもやはり理想的な実装は難しい。
+様々な UI ライブラリが Modal Dialog 相当の機能を、APG を元に提供しているが、それでもやはり理想的な実装は難しい。
 
 というか、残念なことに、どんなに JS や CSS を捏ね回してツギハギしても、ネイティブの支援を得た実装と比較すると、劣化版しか作れないのが実際だ。
 
@@ -89,14 +89,14 @@ Modal の実装を自前で行うとすれば、見た目としては以下の�
 
 `showModalDialog()` が問題になったのは 2014 年ごろで、実に 10 年前の話だったが、実はこの頃すでに `<dialog>` の仕様自体はあった。
 
-とはいえ Chrome が少し実装し、 Opera も先に実装を進め flag の裏に持っていた。 Safari / Firefox は長らく実装していなかった。
+とはいえ、Chrome が少し実装し、Opera も先に実装を進め、flag の裏に持っていた。Safari / Firefox は長らく実装していなかった。
 
 HTML5.2 で W3C の方の仕様では消されそうになったこともあるくらい、影の薄い仕様だった。
 
 - CfC: HTML 5.2 to Candidate Recommendation
   - https://github.com/w3c/html/issues/969
 
-ところが、 2016 年ごろ Firefox で再度議論が進み、再度標準化を進めようという話になった。
+ところが、2016 年ごろ Firefox で再度議論が進み、再度標準化を進めようという話になった。
 
 - Re: Proposal to retain dialog in HTML5.2
   - https://lists.w3.org/Archives/Public/public-html/2017Sep/0005.html
@@ -110,19 +110,19 @@ Firefox は内部でも `<dialog>` を使いたいユースケースがあった
 
 Firefox が Ship を進めるのと同時期くらいに、これを現在のように「ぜひ使うべき機能」まで大きく進めたきっかけが Interop だった。
 
-MDN が Developer Survey という大規模調査で、開発者が何に困っているのかを調査し、その結果をブラウザベンダに共有して互換性問題を改善しようということで始まったのが Compat 2021 だが、それが 2022 年に Interop と名前を変えた時に、 Focus Area として `<dialog>` が採用されたのだ。
+MDN が Developer Survey という大規模調査で、開発者が何に困っているのかを調査し、その結果をブラウザベンダに共有して互換性問題を改善しようということで始まったのが Compat 2021 だが、それが 2022 年に Interop と名前を変えた時に、Focus Area として `<dialog>` が採用されたのだ。
 
 - dialog & ::backdrop · Issue #12 · web-platform-tests/interop
   - https://github.com/web-platform-tests/interop/issues/12
 
-それを受け、 Safari が実装することになる。 Igalia の協力もあったらしい。
+それを受け、Safari が実装することになる。Igalia の協力もあったらしい。
 
 - Introducing the Dialog Element | WebKit
   - https://webkit.org/blog/12209/introducing-the-dialog-element/
 
 こうして、無事全てのブラウザで使えるようになった。
 
-合わせて、ブラウザ間で微妙に異なる挙動のすり合わせや、足らないプリミティブの整理と仕様化も行われた。
+合わせて、ブラウザ間で微妙に異なる挙動のすり合わせや、足りないプリミティブの整理と仕様化も行われた。
 
 
 ## 関連仕様
@@ -136,18 +136,18 @@ MDN が Developer Survey という大規模調査で、開発者が何に困っ�
 - Implement dialog initial focus proposal by josepharhar · Pull Request #8199 · whatwg/html
   - https://github.com/whatwg/html/pull/8199
 
-最終的には、「*フォーカスすべき要素を開発者が選び、明示的に `autofocus` を指定すべき*」が推奨になっているため、`<dialog>` を実装する場合は、必ず何かしらのコントローラーに `autofocus` の付与を検討すべきということになる。
+最終的には、「*フォーカスすべき要素を開発者が選び、明示的に `autofocus` を指定すべき*」が推奨になっているため、`<dialog>` を実装する場合は、必ず何かしらのコントローラに `autofocus` の付与を検討すべきということになる。
 
 
 ### Top Layer
 
-要素の重なり合いは、 `z-index` で制御するのが従来の CSS の常識だった。
+要素の重なり合いは、`z-index` で制御するのが従来の CSS の常識だった。
 
-他の要素よりも手前に表示したい場合は、 `z-index` の値を大きくするのだが、 Modal Dialog のような UI は、今何が表示されているかにかかわらず、問答無用で最前面に来てくれないと困ることになる。
+他の要素よりも手前に表示したい場合は、`z-index` の値を大きくするのだが、Modal Dialog のような UI は、今何が表示されているかにかかわらず、問答無用で最前面に来てくれないと困ることになる。
 
-そこで、全てのレイヤーの最上位に位置し、ブラウザが管理する、 "*Top Layer*" という概念を作り、 Modal Dialog はそこに表示することになった。
+そこで、すべてのレイヤーの最上位に位置し、ブラウザが管理する、"*Top Layer*" という概念を作り、Modal Dialog はそこに表示することになった。
 
-Top Layer はあくまでブラウザが内部的に生成しているため、どんなに `z-index` が大きい要素があっても、 Top Layer より前に来ることはない。
+Top Layer はあくまでブラウザが内部的に生成しているため、どんなに `z-index` が大きい要素があっても、Top Layer より前に来ることはない。
 
 また、ここに表示できるものは Modal Dialog や Fullscreen といった、特別な UI のみに限られる。
 
@@ -158,7 +158,7 @@ Top Layer はあくまでブラウザが内部的に生成しているため、�
 
 `inert` は、指定した DOM を「非活性」にするための属性だ。要するに、Modal Dialog を開いた時の「後ろ側」の世界を操作不能にするために定義された。
 
-これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、 Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばし、後ろは `tabindex=-1` する、といったことをして、なんとか Modal の外の世界を塗りつぶしていた。
+これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばし、後ろは `tabindex=-1` する、といったことをして、なんとか Modal の外の世界を塗りつぶしていた。
 
 しかし、そのように実装しきるのは流石に無理があるので、標準仕様として `inert` を定義することで、ブラウザが全て無効にしてくれるようになったのだ。
 
@@ -181,9 +181,9 @@ Top Layer はあくまでブラウザが内部的に生成しているため、�
 
 ### `::backdrop`
 
-Modal Dialog を開いた時に、後ろ側を `inert` にすることができるようになったが、 `inert` はあくまで非活性なだけで、特にスタイルが当たるわけではない。しかし、非活性だった場合大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
+Modal Dialog を開いた時に、後ろ側を `inert` にすることができるようになったが、 `inert` はあくまで非活性なだけで、特にスタイルが当たるわけではない。しかし、非活性だった場合、大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
 
-この場合 `inert` であることを利用し、以下のようにスタイルを当てることもできる。
+この場合、 `inert` であることを利用し、以下のようにスタイルを当てることもできる。
 
 ```css
 [inert] {
@@ -207,7 +207,7 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 
 ### :modal
 
-`::backdrop` が「Top Layer 以外」だったのと対照的に、 `:modal` は「Top Layer だけ」にスタイルを当てるための仕様だ。
+`::backdrop` が「Top Layer 以外」だったのと対照的に、`:modal` は「Top Layer だけ」にスタイルを当てるための仕様だ。
 
 `:modal` は `showModal` した `<dialog>` はもちろん、さっき言ったように、同じく Top Layer に載せることができる Fullscreen API もやはり `:modal` でスタイルができる。(`:fullscreen` もある)。
 
@@ -225,11 +225,11 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 
 ### Close Watcher
 
-プラットフォームが提供する Modal は、 ESC や範囲外のクリックによって閉じることができる。端末固有の操作などと紐づけると言った役割も果たしている。
+プラットフォームが提供する Modal は、 ESC や範囲外のクリックによって閉じることができる。端末固有の操作などと紐づけるといった役割も果たしている。
 
 このように、プラットフォームが提供する「Modal を閉じるための操作」を、キーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊したり、ネイティブの他の機能に影響したりする可能性がある。
 
-そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し Close Watcher として定義された。
+そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し、 Close Watcher として定義された。
 
 ```js
 const watcher = new CloseWatcher();
@@ -247,7 +247,7 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
 - Close requests for CloseWatcher, `<dialog>`, and `popover=""` - Chrome Platform Status
   - https://chromestatus.com/feature/4722261258928128
 
-ただし、 Close Watcher は「`<dialog>` の範囲外をクリックしたら閉じる」という部分はフックしていないため、別途実装が必要だ。それについては次回解説する。
+ただし、Close Watcher は「`<dialog>` の範囲外をクリックしたら閉じる」という部分はフックしていないため、別途実装が必要だ。それについては次回解説する。
 
 
 ## `<dialog>`
@@ -328,8 +328,8 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
 
 ## Outro
 
-以上のように、これまで JS/CSS を駆使して実装されていた Dialog の、あらゆる既知の問題を踏まえて、 `<dialog>` の標準仕様が作られ、 Interop により全てのブラウザが実装し、ほぼほぼ動く状態にあるのだ。
+以上のように、これまで JS/CSS を駆使して実装されていた Dialog の、あらゆる既知の問題を踏まえて、`<dialog>` の標準仕様が作られ、Interop により全てのブラウザが実装し、ほぼ動く状態にあるのだ。
 
-現状 Modal / Dialog 相当を自前やライブラリを用いて実装しているのであれば、基本的には全て `<dialog>` に置き換えるべきだと言って良い。
+現状、Modal/Dialog 相当を自前やライブラリを用いて実装しているのであれば、基本的には全て `<dialog>` に置き換えるべきだと言って良い。
 
-次回はもう少し実際のコードで、 `<dialog>` の使い方および、 Modal / non-Modal の使い分けを解説していく。
+次回はもう少し実際のコードで、`<dialog>` の使い方および、Modal/non-Modal の使い分けを解説していく。
