@@ -20,14 +20,14 @@
 
 ### HTML
 
-基本は `<div popover>` となる。また、複数のメッセージがあった場合に、他のが表示されても消えないよう、 `manual` を指定する。
+基本は `<div popover>` となる。また、複数のメッセージがあった場合に、他のが表示されても消えないよう、`manual` を指定する。
 
 ```html
 <div popover="manual">
 </div>
 ```
 
-もし内容のレイアウトで Flex や Grid を使いたい場合、 `<div popover>` 自体の `display` を変えると扱いが少し面倒になるため、もう 1 つ Wrapper の `<div>` を用意しておくと良いだろう。
+もし内容のレイアウトで Flex や Grid を使いたい場合、`<div popover>` 自体の `display` を変えると扱いが少し面倒になるため、もう 1 つ Wrapper の `<div>` を用意しておくと良いだろう。
 
 ```html
 <div id="toast" popover="manual">
@@ -63,16 +63,16 @@
 
 注意点として `popover` は `dialog` と異なり対象の Role には影響を与えないため、これは単にテキストとボタンを持った `<div>` が Top Layer に表示されただけの状態になる。この情報がなんであるか、ユーザにとってどのような重要度を持つ情報なのかについては、別途補完していく必要がある。この点に対しては、従来の「`popover` を使わずに実装されていた Toast コンポーネント」も参考にできる。
 
-通知の用途を考えると、 `role=status` か `role=alert` を用いるのが一般的だろう。多くの「*ユーザに通知があったことを伝えるが、作業を中断するほどでない*」ケースでは、`aria-live=polite` たる `role=status` を用いる。また、もし他の `role` に切り替える予定がないのであれば、同じく `aria-live=polite` である `<ouput>` を用いる方法も考えられる。
+通知の用途を考えると、 `role=status` か `role=alert` を用いるのが一般的だろう。多くの「*ユーザに通知があったことを伝えるが、作業を中断するほどでない*」ケースでは、`aria-live=polite` たる `role=status` を用いる。また、もし他の `role` に切り替える予定がないのであれば、同じく `aria-live=polite` である `<output>` を用いる方法も考えられる。
 
 ```html
 <template>
-  <div id="toast" role="status[" popover="manual">
+  <div id="toast" role="status" popover="manual">
   </div>
 </template>
 ```
 
-逆に「*ユーザにとって重要な通知*」であれば、 `role=alert` を用いる。`aria-live=assertive` であり、 UA を通じてユーザには直ちに内容が伝わる。逆を言えば、これは多用すべきではないため、最小限に止めるべきだろう。
+逆に「*ユーザにとって重要な通知*」であれば、 `role=alert` を用いる。`aria-live=assertive` であり、UA を通じてユーザには直ちに内容が伝わる。逆を言えば、これは多用すべきではないため、最小限に止めるべきだろう。
 
 ```html
 <template>
