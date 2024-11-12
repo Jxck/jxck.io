@@ -262,7 +262,7 @@ Popup した要素は、Top Layer に表示されるため、例えば `<button>
 
 "popup" という言葉は、これまでも Web で使われてきた。
 
-例えば、`window.open()` で開く Widnwo を Popup と呼んできたし、それらを踏まえた上で、すでに Web には `allow-popups` などの用語が Permission などで使われている。
+例えば、`window.open()` で開く Window を Popup と呼んできたし、それらを踏まえた上で、すでに Web には `allow-popups` などの用語が Permission などで使われている。
 
 これを「Top Layer に表示するといった、全く別の機能に使っていいのか?」という指摘が、また Domenic から入る。
 
