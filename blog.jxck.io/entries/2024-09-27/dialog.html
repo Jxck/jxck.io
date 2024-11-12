@@ -496,8 +496,8 @@ dialog.returnValue // &quot;accept&quot;</code></pre>
         <section>
           <h3 id="キーボード操作"><a href="#キーボード操作">キーボード操作</a></h3>
           <p><code translate=no>&lt;button&gt;</code> を置く以外に、キーボード操作の対応もネイティブで行われている。これは、Cancel や Close を意味する操作を自動でフックする Close Watcher を内部で使うことで実現している。
-          <p>non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、modal dialog は Close Watcher が効いているため、ESC や端末固有の操作を紐づけて閉じたりができる。
-          <p>なお、modal dialog を ESC で閉じると、<code translate=no>cancel</code> -&gt; <code translate=no>close</code> の順でイベントが発火する。
+          <p>non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、Modal Dialog は Close Watcher が効いているため、ESC や端末固有の操作を紐づけて閉じたりができる。
+          <p>なお、Modal Dialog を ESC で閉じると、<code translate=no>cancel</code> -&gt; <code translate=no>close</code> の順でイベントが発火する。
         </section>
       </section>
       <section>
