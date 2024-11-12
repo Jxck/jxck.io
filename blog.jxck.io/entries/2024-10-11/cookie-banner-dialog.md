@@ -11,27 +11,27 @@
 
 ## Cookie バナー
 
-次は、「Cookie 利用への同意」いわゆる Cookie バナーの UI について考えてみる。想定するのは以下のようなものだ。
+次は、「Cookie 利用への同意」、いわゆる Cookie バナーの UI について考えてみる。想定するのは以下のようなものだ。
 
 ![画面の右下に表示される Cookie への同意 UI](./cookie-banner-dialog.drawio.svg#600x600)
 
 前回の規約への同意と異なり、このバナーは画面表示時から右下に表示され、同意か拒否を選択するまで表示し続ける。つまり、表示中は他の操作をブロックしたりはしない。
 
-つまり Dialog ではあるが Modal ではないため、 `show()` する前提で実装を考えていく。
+つまり Dialog ではあるが Modal ではないため、`show()` する前提で実装を考えていく。
 
 
 ### HTML
 
 HTML の注意点は、前回の規約と大きくは変わらない。
 
-まず、最初から表示しておくため `open` 属性を付与しておく。
+まず、最初から表示しておくために `open` 属性を付与しておく。
 
 ```html
 <dialog open>
 </dialog>
 ```
 
-コントローラとしてはボタンが 2 つあり、ここに Value を設定しておく。
+コントローラとしてはボタンが 2 つあり、ここに value を設定しておく。
 
 ```html
 <form method="dialog">
@@ -80,7 +80,7 @@ dialog:not([open]) {
 同意の取得時にそのまま form を submit し、結果は `<button value>` の値として、`"close"` イベントのなかで取得できる。
 
 ```js
-docuemnt.querySelector("dialog").addEventListener("close", (e) => {
+document.querySelector("dialog").addEventListener("close", (e) => {
   const returnValue = e.target.returnValue
   if (returnValue === "reject") {
   }
