@@ -2,7 +2,7 @@
 
 ## Intro
 
-前回までは `<dialog>` が標準化されるまでの経緯と、 API の概要や関連仕様を解説した。
+前回までは `<dialog>` が標準化されるまでの経緯と、API の概要や関連仕様を解説した。
 
 今回は `<dialog>` の API としての使い方について、具体的に解説していく。
 
@@ -11,7 +11,7 @@
 
 ### `open` 属性
 
-`<dialog>` は、デフォルトでは不可視(`display: none`)な要素となっている。 `open` 属性が付くと表示される。
+`<dialog>` は、デフォルトでは不可視 (`display: none`) な要素となっている。`open` 属性が付くと表示される。
 
 ```html
 <dialog open>
@@ -26,7 +26,7 @@
 
 ### `show()`/`showModal()`
 
-しかし、基本的に `<dialog>` は動的に出てくるため、JS で開くことになるだろう。しかし、 `open` 属性を動的に付けるのではなく、 `show()`/`showModal()` を用いるのが基本だ。
+基本的に `<dialog>` は動的に表示されるため、JS で開くことになるだろう。しかし、 `open` 属性を動的に付けるのではなく、 `show()`/`showModal()` を用いるのが基本だ。
 
 ```js
 document.querySelector("button.show").addEventListener("click", (e) => {
@@ -38,9 +38,9 @@ document.querySelector("button.showModal").addEventListener("click", (e) => {
 })
 ```
 
-まず `show()` を呼ぶと、先ほどで言う `<dialog open>` した状態になり Dialog が開く。
+まず `show()` を呼ぶと、先ほど述べた `<dialog open>` の状態になり、Dialog が開く。
 
-これは単に non-Modal な Dialog が open しているだけなので、後にあるテキストの選択や、ボタンクリックといった操作は引き続き可能だ。また、この時別の `<dialog>` を `show()` しても同時に表示できる。これは、全く排他的な操作がされていないことを意味する。
+これは単に non-Modal な Dialog が open しているだけなので、後ろにあるテキストの選択や、ボタンクリックといった操作は引き続き可能だ。また、この時別の `<dialog>` を `show()` しても同時に表示できる。これは、全く排他的な操作がされていないことを意味する。
 
 Accessibility Tree を確認すると Role が `dialog` になっていることが確認できるだろう。
 
@@ -50,9 +50,9 @@ Accessibility Tree を確認すると Role が `dialog` になっていること
 
 ![showModal() で Modal Dialog を開く](3.showModal.drawio.svg#451x231)
 
-背景が薄くグレーになるのは、 `::backdrop` のデフォルト CSS があたっているからだ。
+背景が薄くグレーになるのは、 `::backdrop` のデフォルト CSS が当たっているからだ。
 
-![chrome の backdrop デフォルトスタイル](4.default-style.png#920x186)
+![Chrome の backdrop デフォルトスタイル](4.default-style.png#920x186)
 
 non-Modal と異なり、Modal は同時に 1 つしか開けない。
 
@@ -63,7 +63,7 @@ Accessibility Tree を確認すれば、 `aria-modal: true` になっている�
 
 ### Submit
 
-閉じるための UI は、 JS を書かなくても HTML だけで実装可能だ。
+閉じるための UI は、JS を書かなくても HTML だけで実装可能だ。
 
 ```html
 <dialog open>
@@ -77,9 +77,9 @@ Accessibility Tree を確認すれば、 `aria-modal: true` になっている�
 </dialog>
 ```
 
-このように `<form method=dialog>` を `<dialog>` の中に書くと、その submit は Dialog を完了したことになり、 Dialog を閉じる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースを実装できる。
+このように `<form method=dialog>` を `<dialog>` の中に書くと、その submit は Dialog を完了したことになり、Dialog を閉じる。これにより、ユーザに何かを確認させ、インタラクションを求めるユースケースを実装できる。
 
-この時、 `<button value>` の値は、 JS から `returnValue` で取れるため、ボタンによる分岐が可能になる。
+この時、`<button value>` の値は、JS から `returnValue` で取れるため、ボタンによる分岐が可能になる。
 
 ```html
 <dialog open>
@@ -102,7 +102,7 @@ document.querySelector("dialog").addEventListener("cancel", (e) => {
 </script>
 ```
 
-`"cancel"` イベントは、 Modal Dialog を ESC で閉じるといった操作で、 `"cancel"` -> `"close"` の順で発火する。
+`"cancel"` イベントは、 Modal Dialog を ESC で閉じるといった操作で、`"cancel"` -> `"close"` の順で発火する。
 
 
 ### `close()` と `returnValue`
@@ -117,7 +117,7 @@ document.querySelector("dialog").addEventListener("cancel", (e) => {
       <input type="text" name="text" value="text" autofocus>
       <input type="hidden" name="hidden" value="hidden">
       <button type="submit" value="accept">Accept</button>
-      <button type="close" value="deny">Deny</button>
+      <button type="button" value="deny">Deny</button>
     </form>
   </div>
 </dialog>
@@ -126,7 +126,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault()
   const data = new FormData(e.target)
   // 文字列しか渡せないのでシリアライズ
-  const params = new URLSearchParams(formdata)
+  const params = new URLSearchParams(data)
   document.querySelector("dialog").close(params)
 })
 
@@ -153,19 +153,19 @@ document.querySelector("dialog").addEventListener("close", (e) => {
     <button type=submit>Login</button>
     <button value="cancel" formmethod="dialog">Cancel</button>
   </form>
-<dialog>
+</dialog>
 ```
 
 この Form は、アカウントを入力し Login ボタンを押せば、そのまま Form を submit して POST でリクエストが飛び、画面を遷移することになる。
 
-しかし、 Cancel ボタンの方は `formmethod` 属性を用いて `form[method]` を `POST` から `dialog` に上書きしている。つまり、このボタンを押した場合は、 `<dialog>` が普通に閉じて、 `returnValue` に `"cancel"` が返るのだ。
+しかし、Cancel ボタンの方は `formmethod` 属性を用いて `form[method]` を `POST` から `dialog` に上書きしている。つまり、このボタンを押した場合は、 `<dialog>` が普通に閉じて、 `returnValue` に `"cancel"` が返るのだ。
 
 このように、「キャンセル時は `<dialog>` を閉じるだけ」という分岐を実装することも可能だ。
 
 
 ### aria-label / aria-labelledby
 
-WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` を使ってアクセシブルな名前を割り当てることが推奨されている。
+WAI-ARIA では `role=dialog` に対して、 `aria-label` / `aria-labelledby` を使ってアクセシブルな名前を割り当てることが推奨されている。
 
 - Accessible Rich Internet Applications (WAI-ARIA) 1.3
   - https://w3c.github.io/aria/#dialog
@@ -184,7 +184,7 @@ WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` �
 
 ### フォーカスの確認
 
-次は、それぞれのフォーカスの挙動を確認しよう。non-Modal ではフォーカストラップされないので、 Modal に注目する。
+次は、それぞれのフォーカスの挙動を確認しよう。non-Modal ではフォーカストラップされないので、Modal に注目する。
 
 開くボタンにフォーカスを移し、キーボードで Modal を開くと違いがわかりやすい。
 
@@ -193,13 +193,13 @@ WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` �
 - 開くための `<button>` にフォーカスし Enter で開いたら、フォーカスが `<dialog>` 内の要素に移る。
 - `<dialog>` の `<button>` で閉じたら、開いた時の `<button>` にフォーカスが戻る。
 
-これにより、 `<dialog>` を開いてもフォーカスが移らなかったり、閉じたらフォーカスが迷子になるといった事態を避けられる。
+これにより、`<dialog>` を開いてもフォーカスが移らなかったり、閉じたらフォーカスが迷子になるといった事態を避けられる。
 
-また、 Modal の場合は Modal 以外の DOM にフォーカスが移動することはない。これにより、 Modal を開いた状態で、想定していない別操作を行えてしまうといったことはなくなる。
+また、Modal の場合は Modal 以外の DOM にフォーカスが移動することはない。これにより、Modal を開いた状態で、想定していない別操作を行えてしまうといったことはなくなる。
 
 しかし、ブラウザ UI (URL Bar や Bookmark など)側には出ていくことができる(できないと、行き詰まる可能性がある)ため、その点は慣れが必要かもしれない。
 
-なお、 `<dialog>` 内に `autofocus` な要素があればそこにフォーカスが移るが、これがない場合、デフォルトでどこにフォーカスを移すのかは非常に重要で、前回解説したように仕様でどうするかも結構揉めた。
+なお、`<dialog>` 内に `autofocus` な要素があればそこにフォーカスが移るが、これがない場合、デフォルトでどこにフォーカスを移すのかは非常に重要で、前回解説したように仕様でどうするかも結構揉めた。
 
 そして、仕様ではデフォルトの挙動を整理しつつも、前提として「どこにフォーカスすべきかを `autofocus` で指定するのが推奨」となった。
 
@@ -214,7 +214,7 @@ WAI-ARIA では `role=modal` に対して、 `aria-label` / `aria-labelledby` �
 </dialog>
 ```
 
-現状では、 `<dialog>` 自身がフォーカスを得るかどうかなどについて実装に差異があるので、明示的な指定を忘れると、フォーカス移動の回数などによって操作を覚えているユーザにとっては不便となり得る。
+現状では、`<dialog>` 自身がフォーカスを得るかどうかなどについて実装に差異があるので、明示的な指定を忘れると、フォーカス移動の回数などによって操作を覚えているユーザにとっては不便となり得る。
 
 ただし、最初のコントローラに `autofocus` を置くと、その手前のテキストがスキップされるため、必ず最初のコントローラに `autofocus` すれば良いとは限らない点には注意したい。
 
@@ -242,7 +242,7 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 </dialog>
 ```
 
-しかし、 `<dialog>` 自体がスクロール可能になることは、下部にあるコントローラーまでの到達を困難にするなど、様々な不便があるため、仕様では「`<dialog>` 自体を Scrollable にするのは避けるべき」とされている。
+しかし、 `<dialog>` 自体がスクロール可能になることは、下部にあるコントローラまでの到達を困難にするなど、様々な不便があるため、仕様では「`<dialog>` 自体を Scrollable にするのは避けるべき」とされている。
 
 代わりに、規約を別ページにしリンクを貼る、 PDF でダウンロードさせるなども考えられるが、最も簡単なのは規約のみを Scrollable なコンテナに入れる方法だ。以下の場合は、 `<section>` が Scrollable になっている。
 
@@ -262,7 +262,7 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 
 ![scrollable section](6.scrollable-section.png#797x494)
 
-注意点として、もしこのスクロールする `<section>` の手前に別のコントローラーがあった場合を考えよう。
+注意点として、もしこのスクロールする `<section>` の手前に別のコントローラがあった場合を考えよう。
 
 ```html
 <dialog style="height: 80vh;">
@@ -316,9 +316,9 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 
 ### Close と returnValue
 
-Dialog を閉じる場合、先のように `<form>` を使わず JS で `close()` を呼んで閉じることもできる。なお「`open` 属性を消す」では、 Modal は「消える(hidden)」が「閉じる(close)」の意味にはならない(`close` イベントも発火しない)ので、 JS の場合必ず `close()` を使って閉じるべきだ。
+Dialog を閉じる場合、先のように `<form>` を使わずに JS で `close()` を呼んで閉じることもできる。なお「`open` 属性を消す」では、Modal は「消える(hidden)」が「閉じる(close)」の意味にはならない(`close` イベントも発火しない)ので、JS の場合は必ず `close()` を使って閉じるべきだ。
 
-Dialog を閉じるとき、ユーザが何かしらのインタラクションを行った結果(同意結果や選択結果)は、 `dialog.close()` に渡した文字列がそのまま取得できる。
+Dialog を閉じるとき、ユーザが何かしらのインタラクションを行った結果(同意結果や選択結果)は、`dialog.close()` に渡した文字列がそのまま取得できる。
 
 ```js
 dialog.close("accept")
@@ -386,11 +386,11 @@ document.querySelector('dialog').addEventListener('click', (e) => {
 
 ### キーボード操作
 
-`<button>` を置く以外に、キーボード操作の対応もネイティブで行われている。これは、 Cancel や Close を意味する操作を自動でフックする Close Watcher を内部で使うことで実現している。
+`<button>` を置く以外に、キーボード操作の対応もネイティブで行われている。これは、Cancel や Close を意味する操作を自動でフックする Close Watcher を内部で使うことで実現している。
 
-non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、 Modal Dialog は Close Watcher が効いているため、ESC や端末固有の操作を紐づけて閉じたりができる。
+non-modal dialog の場合は、他の要素が操作できるためキーボードには反応しないが、modal dialog は Close Watcher が効いているため、ESC や端末固有の操作を紐づけて閉じたりができる。
 
-なお、Modal Dialog を ESC で閉じると、 `cancel` -> `close` の順でイベントが発火する。
+なお、modal dialog を ESC で閉じると、`cancel` -> `close` の順でイベントが発火する。
 
 
 ## `<dialog>` の使い所
@@ -404,13 +404,13 @@ non-Modal Dialog の場合は、他の要素が操作できるためキーボー
 - ユーザをブロックして、処理が終わらない限り先には進めない => Modal Dialog
 - ユーザをブロックはしない、しかし、どこかで処理は求めたい => non-Modal Dialog
 
-例えば、ログインしないと先に進めないなら、 Modal Dialog にログインフォームが入るかもしれない。
+例えば、ログインしないと先に進めないなら、Modal Dialog にログインフォームが入るかもしれない。
 
-でも Cookie への同意バナーを画面の右下に出すのであれば、 non-Modal になるだろう。
+でも Cookie への同意バナーを画面の右下に出すのであれば、non-Modal になるだろう。
 
 このように、インタラクションを求めるのが `role=dialog` である `<dialog>` の用途だ。「ユーザに対して何かインタラクションを求めている」ことが伝わり、「そのインタラクションが終わったら閉じる」。
 
-逆に「ユーザにインタラクションを求める Modal Dialog UI」を `<dialog>` を使わずに実装するのも、今後は望ましくないと言えるだろう。フォーカス管理も、 `inert` も、CloseWatcher も、ユーザランドで完璧に実装するのが難しい機能で、下手に JS を捏ねてそれっぽい挙動をでっちあげても、どこかに歪みが出て、全体では不具合を多く生む。
+逆に「ユーザにインタラクションを求める Modal Dialog UI」を `<dialog>` を使わずに実装するのも、今後は望ましくないと言えるだろう。フォーカス管理も、`inert` も、CloseWatcher も、ユーザランドで完璧に実装するのが難しい機能で、下手に JS を捏ねてそれっぽい挙動をでっちあげても、どこかに歪みが出て、全体では不具合を多く生む。
 
 特に、支援技術の利用者を想定するならば以下のようなものだ。
 
@@ -427,11 +427,11 @@ non-Modal Dialog の場合は、他の要素が操作できるためキーボー
 
 ## `<dialog>` ではないケース
 
-もし単に「変更が保存されました」や、「お知らせが来ています」といった通知を目的とするのであれば、それは `<dialog>` で実装するべきものではないだろう。 Top Layer に表示できるからといって、「浮かび上がる系の UI」全てに `<dialog>` を使うのは適切ではない。その点で `<dialog>` の用途は限られていると言える。
+もし単に「変更が保存されました」や、「お知らせが来ています」といった通知を目的とするのであれば、それは `<dialog>` で実装するべきものではないだろう。Top Layer に表示できるからといって、「浮かび上がる系の UI」全てに `<dialog>` を使うのは適切ではない。その点で `<dialog>` の用途は限られていると言える。
 
 とはいえ、せっかく Top Layer, CloseWatcher, inert, backdrop などのプリミティブを整備したのに、これを狭い用途のみに限定するのは勿体ない。
 
-そこで、こうしたインフラを共有し、より汎用的な UI を実現するために並行して策定されたのが、 Popover だ。
+そこで、こうしたインフラを共有し、より汎用的な UI を実現するために並行して策定されたのが、Popover だ。
 
 
 ## DEMO
