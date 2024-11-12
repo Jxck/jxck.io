@@ -11,18 +11,18 @@
 
 ## Tooltip
 
-今回は、 Menu の実装を考えてみる。 GitHub でいうとこの部分だ。
+今回は、Menu の実装を考えてみる。GitHub でいうとこの部分だ。
 
 ![GitHub のリポジトリ作成などのメニューが表示される Popover](./github-menu.png#574x536)
 
-元となるボタンによって表示され、このボタンからの相対位置で調整されるため Anchor Positioning を活用することになる。非常に良くある実装パターンだ。
+元となるボタンによって表示され、このボタンからの相対位置で調整されるため、Anchor Positioning を活用することになる。非常によくある実装パターンだ。
 
 HTML の仕様にも、類似の実装が Example として掲載されている。
 
 - 6.12 The popover attribute
   - https://html.spec.whatwg.org/multipage/popover.html#the-popover-attribute
 
-APG としては、 Menu Button パターンにあたるだろう。
+APG としては、Menu Button パターンにあたるだろう。
 
 - Menu Button Pattern | APG | WAI | W3C
   - https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
@@ -118,7 +118,7 @@ ul[popover] {
 
 ### JS
 
-Popover の開閉という点に関しては、特に JS 無しに挙動が実現できているため、特に必要は無い。
+Popover の開閉に関しては、特に JS なしで挙動が実現できているため、特に必要はない。
 
 あとは、普通にメニューの機能そのものを実装すれば良いだろう。
 
@@ -149,7 +149,7 @@ Popover の開閉という点に関しては、特に JS 無しに挙動が実�
 </ul>
 ```
 
-CSS も、 Anchor をサブメニューに対して付与していけば良い。
+CSS も、Anchor をサブメニューに対して付与していけば良い。
 
 ```css
 button[popovertarget=menu] {
@@ -169,7 +169,7 @@ ul#submenu {
 }
 ```
 
-また、これが横に広がることで画面に収まらない可能性を考慮して、 fallback を指定する。
+また、これが横に広がることで画面に収まらない可能性を考慮して、fallback を指定する。
 
 ```css
 ul#submenu {
