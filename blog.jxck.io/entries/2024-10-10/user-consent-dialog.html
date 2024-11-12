@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-10T08:00:00+08:00",
-    "dateModified": "2024-10-16T08:00:00+08:00",
+    "dateModified": "2024-11-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-10>2024-10-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-16>2024-10-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -163,7 +163,7 @@
         <p>
           <img loading=lazy decoding=async src=./user-consent-dialog.drawio.svg?241004_035751 alt="規約が表示され、同意ボタンのある UI" width=600 height=600>
         </p>
-        <p>見ての通り、この規約に同意しないと先に進むことができない、ブロックを伴う UI であるため Modal Dialog として実装するのが妥当だろう。
+        <p>見ての通り、この規約に同意しないと先に進むことができない、ブロックを伴う UI であるため、 Modal Dialog として実装するのが妥当だろう。
         <p>どのようなきっかけで表示されるかはわからないため、 JS から <code translate=no>showModal()</code> する前提で実装を考えていく。
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
@@ -198,7 +198,7 @@
           <p>そして、 <code translate=no>&lt;dialog&gt;</code> が開いた際に、デフォルトでフォーカスするべき要素は、 <code translate=no>autofocus</code> で明示的な指定が推奨されている。最初に出てくるコントローラは <code translate=no>&lt;input checkbox&gt;</code> だが、「利用規約を確認してから同意」という前提であれば、規約自体の <code translate=no>&lt;section&gt;</code> にフォーカスが当たるのが良さそうだ。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;article autofocus&gt;
 &lt;/section&gt;</code></pre>
-          <p>もし、これより手前に <code translate=no>autofocus</code> すべきコントローラがある場合は、 <code translate=no>&lt;section&gt;</code> には <code translate=no>autofocus</code> をつけないだろう。しかし、ただの <code translate=no>&lt;section&gt;</code> はフォーカスができないため、キーボードでの操作などが不便になる。この実装を修正し、スクロールする要素をフォーカス可能にする流れがあるが、全ブラウザは対応してないため、現状は <code translate=no>tabindex=0</code> を指定しておくのが良いだろう。
+          <p>もし、これより手前に <code translate=no>autofocus</code> すべきコントローラがある場合は、 <code translate=no>&lt;section&gt;</code> には <code translate=no>autofocus</code> をつけないだろう。しかし、ただの <code translate=no>&lt;section&gt;</code> はフォーカスができないため、キーボードでの操作などが不便になる。この実装を修正し、スクロールする要素をフォーカス可能にする流れがあるが、全ブラウザは対応していないため、現状は <code translate=no>tabindex=0</code> を指定しておくのが良いだろう。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;article autofocus tabindex=&quot;0&quot;&gt;
 &lt;/article&gt;</code></pre>
           <p>同意の結果は JS で取ればいいと言えばそれで終わりなので、あえてそのまま <code translate=no>&lt;form&gt;</code> から同意結果を POST する作りにしてみよう。
@@ -251,7 +251,7 @@
   }
 }</code></pre>
           <p><code translate=no>::backdrop</code> は Modal Dialog が開いていることによって「背面は操作ができない(inert)」ということを伝える目的がある。基本的には RGBa でアルファをかけた色にすることで、背面を見せながらも暗くする指定が、ブラウザデフォルトに入っている。これに任せても良いが、色の変化がわかりにくい場合、暗さのためのアルファを調整したり、 <code translate=no>backdrop-filter</code> をかけるといった方法もあるだろう。
-          <pre class=css data-code=css><code translate=no class=language-css>::background {
+          <pre class=css data-code=css><code translate=no class=language-css>::backdrop {
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(4px);
 }</code></pre>

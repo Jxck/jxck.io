@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-03T08:00:00+08:00",
-    "dateModified": "2024-10-09T08:00:00+08:00",
+    "dateModified": "2024-11-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-03>2024-10-03</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-09>2024-10-09</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -162,7 +162,7 @@
             </ul>
           </li>
         </ul>
-        <p>しかし、 <code translate=no>popover</code> を実用するには足りていない議論があった、それが Animation だ。
+        <p>しかし、 <code translate=no>popover</code> を実用するには足りていない議論があった。それが Animation だ。
       </section>
       <section>
         <h2 id="display-and-content-visibility-animations"><a href="#display-and-content-visibility-animations">Display and content-visibility animations</a></h2>
@@ -332,16 +332,16 @@
       </section>
       <section>
         <h2 id="overlay"><a href="#overlay">Overlay</a></h2>
-        <p>ここまでで、 <code translate=no>&lt;dialog&gt;</code> を表示する際の <code translate=no>opacity</code> と <code translate=no>display</code> はアニメーションすることができた。しかし、これでは「要素がいつ Top Layer から消えるのか」は特に制御していない。
-        <p>では、前述のアニメーションのなかで Top Layer にいつ表示されているのかを見てみると、以下のようになる。
+        <p>ここまでで、<code translate=no>&lt;dialog&gt;</code> を表示する際の <code translate=no>opacity</code> と <code translate=no>display</code> はアニメーションすることができた。しかし、これでは「要素がいつ Top Layer から消えるのか」は特に制御してない。
+        <p>では、前述のアニメーションの中で Top Layer にいつ表示されているのかを見てみると、以下のようになる。
         <ul>
           <li>Show: Top Layer に追加され、同時にトランジションが行われ徐々に表示される。
           <li>Close: Top Layer から除去され、同時にトランジションが行われ徐々に非表示される。
         </ul>
-        <p>これは内部的に「Top Layer に表示されている」という状態があり、それが先ほどの display のように、離散値としてアニメーションしているからだ。ところが、特に Close する際のアニメーションは、 <code translate=no>opacity</code> のトランジションが終わってから Top Layer から消えて欲しい場合が多い。
+        <p>これは内部的に「Top Layer に表示されている」という状態があり、それが先ほどの display のように、離散値としてアニメーションしているからだ。ところが、特に Close する際のアニメーションは、<code translate=no>opacity</code> のトランジションが終わってから Top Layer から消えて欲しい場合が多い。
         <p>そこで、同じように <code translate=no>allow-discrete</code> を設定したいわけだが、そもそも「Top Layer に表示されるかどうか」を制御する CSS のプロパティ自体は存在しない。そこで策定されたのが <code translate=no>overlay</code> だ。
-        <p><code translate=no>overlay</code> は Top Layer に表示されている場合を示す <code translate=no>auto</code> と、そうではない <code translate=no>none</code> がある。しかし、この値は CSS で明示的に指定できるわけでは無く、ブラウザが内部的に設定しており、 <code translate=no>show()</code> などの裏で自動的に設定されるのだ。
-        <p>しかし、このプロパティを <code translate=no>transition</code> に指定することは可能だ。 <code translate=no>allow-discrete</code> を合わせて指定すれば、ブラウザが内部でこの離散値のトグルをするタイミングを制御できる。
+        <p><code translate=no>overlay</code> は Top Layer に表示されている場合を示す <code translate=no>auto</code> と、そうではない <code translate=no>none</code> がある。しかし、この値は CSS で明示的に指定できるわけではなく、ブラウザが内部的に設定しており、<code translate=no>show()</code> などの裏で自動的に設定されるのだ。
+        <p>しかし、このプロパティを <code translate=no>transition</code> に指定することは可能だ。<code translate=no>allow-discrete</code> を合わせて指定すれば、ブラウザが内部でこの離散値のトグルをするタイミングを制御できる。
         <pre class=css data-code=css><code translate=no class=language-css>.fade-out {
   opacity: 0;
   display: none;
@@ -350,7 +350,7 @@
               display 1s allow-discrete;
 }</code></pre>
         <p>これにより「トランジションが終わってから Top Layer から消える」というアニメーションを書くことができるようになるのだ。
-        <p><code translate=no>overlay</code> はあくまで、ブラウザが管理し内部に隠していたプロパティを、 <code translate=no>transition</code> に指定できるように条件付きでエクスポートしたような格好になっている。
+        <p><code translate=no>overlay</code> はあくまで、ブラウザが管理し内部に隠していたプロパティを、<code translate=no>transition</code> に指定できるように条件付きでエクスポートしたような格好になっている。
       </section>
       <section>
         <h2 id="prefer-reduced-motion"><a href="#prefer-reduced-motion">Prefer Reduced Motion</a></h2>
@@ -363,8 +363,8 @@
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>これで、 Dialog / Popover をアニメーションさせるためのプリミティブが揃った。
-        <p>以降はより実践的な実装方法について解説していく。
+        <p>これで、Dialog / Popover をアニメーションさせるためのプリミティブが揃った。
+        <p>以降は、より実践的な実装方法について解説していく。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>

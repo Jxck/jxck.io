@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="HTML の &lt;dialog&gt; 要素と、 popover 属性、および関連する様々な仕様が標準化され、実装が進められている。Open UI を中心に進められているこれらの改善は、多くのサイトで共通したユースケースがありながら、長らくミッシングピースとなっていた重...">
+  <meta name=description         content="HTML の &lt;dialog&gt; 要素と、popover 属性、および関連する様々な仕様が標準化され、実装が進められている。Open UI を中心に進められているこれらの改善は、多くのサイトで共通したユースケースがありながら、長らくミッシングピースとなっていた重要...">
   <meta name=keywords            content="dialog,popover">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-09-25/show-modal-dialog.html>
   <meta property=og:title        content="Dialog と Popover #1 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="HTML の &lt;dialog&gt; 要素と、 popover 属性、および関連する様々な仕様が標準化され、実装が進められている。Open UI を中心に進められているこれらの改善は、多くのサイトで共通したユースケースがありながら、長らくミッシングピースとなっていた重...">
+  <meta property=og:description  content="HTML の &lt;dialog&gt; 要素と、popover 属性、および関連する様々な仕様が標準化され、実装が進められている。Open UI を中心に進められているこれらの改善は、多くのサイトで共通したユースケースがありながら、長らくミッシングピースとなっていた重要...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-25T08:00:00+08:00",
-    "dateModified": "2024-09-26T08:00:00+08:00",
+    "dateModified": "2024-11-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "HTML の &lt;dialog&gt; 要素と、 popover 属性、および関連する様々な仕様が標準化され、実装が進められている。Open UI を中心に進められているこれらの改善は、多くのサイトで共通したユースケースがありながら、長らくミッシングピースとなっていた重..."
+    "description": "HTML の &lt;dialog&gt; 要素と、popover 属性、および関連する様々な仕様が標準化され、実装が進められている。Open UI を中心に進められているこれらの改善は、多くのサイトで共通したユースケースがありながら、長らくミッシングピースとなっていた重要..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-25>2024-09-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-09-26>2024-09-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -148,7 +148,7 @@
       <h1><a href="">Dialog と Popover #1</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>HTML の <code translate=no>&lt;dialog&gt;</code> 要素と、 <code translate=no>popover</code> 属性、および関連する様々な仕様が標準化され、実装が進められている。
+        <p>HTML の <code translate=no>&lt;dialog&gt;</code> 要素と、<code translate=no>popover</code> 属性、および関連する様々な仕様が標準化され、実装が進められている。
         <p>Open UI を中心に進められているこれらの改善は、多くのサイトで共通したユースケースがありながら、長らくミッシングピースとなっていた重要な機能だ。
         <p>もし今、同等のユースケースを自前で実装しているのであれば、適切な仕様を用いた実装に刷新することで、従来はほぼ不可能だった UX を提供できるようになる。
         <p>今回から、数回の連載形式で、これらの仕様がどのように標準化され、我々開発者はこれをどのように使っていくべきなのかについて解説する。
@@ -156,7 +156,7 @@
       <section>
         <h2 id="showmodaldialog"><a href="#showmodaldialog">showModalDialog</a></h2>
         <p>Modal や Dialog と言われる UI の歴史は Web においても古く、ブラウザでは IE4 くらいのころに独自実装された <code translate=no>window.showModalDialog()</code> が最初にあった。
-        <p>後に仕様を起こして標準化し、互換のために他のブラウザも実装をしていた時期があるが、例えば Chrome は M35 (2014 年)で deprecate している。
+        <p>後に仕様を起こして標準化し、互換のために他のブラウザも実装をしていた時期があるが、例えば Chrome は M35 (2014 年)で deprecated となっている。
         <ul>
           <li>
             Intent to Remove: window.showModalDialog()
@@ -171,7 +171,7 @@
             </ul>
           </li>
         </ul>
-        <p>deprecate された理由は、以下に書かれている。
+        <p>deprecated にされた理由は、以下に書かれている。
         <ul>
           <li>
             Disabling showModalDialog
@@ -208,10 +208,10 @@ window.returnValue = &quot;returnedValue&quot;</code></pre>
       </section>
       <section>
         <h2 id="同期-api-という技術的負債"><a href="#同期-api-という技術的負債">同期 API という技術的負債</a></h2>
-        <p>確かに、 Modal は「同意の取得」などでよく使うため、ユーザの操作をブロックしつつ、値をやり取りできる API である必要があった。
-        <p>また、 <code translate=no>window.dialogArguments</code> を触れるということは、Modal 上でも JS は動いていることを意味する。つまり、 Window で止まっているイベントループとは別に、 Modal 上でもイベントループがもう一つ走ることになる。そして、その上で <code translate=no>window.open</code> したり form を <code translate=no>submit</code> したり、追加で <code translate=no>showModalDialog()</code> することも可能だ。
-        <p>今と違って IE4 の頃はタブブラウザですらなく、 1 Process 1 Window な時代だった(つまり、URL を別で開くと、Window がもう 1 つ立ち上がる)。これが、 1 Tab 1 Process なマルチタブブラウザになった場合、「ブロックする」といっても「何をどこまで止めるのか」を定義し直すのも難しかった。
-        <p>かなり初期の API で、ろくに議論されないまま独自実装として始まったこの API を、互換性のために他のブラウザも仕方なく実装し、 HTML にも渋々現状を仕様として起こした、そんな API だ。この API のヒドさについて Hixie はこう説明している。
+        <p>確かに、Modal は「同意の取得」などでよく使うため、ユーザの操作をブロックしつつ、値をやり取りできる API である必要があった。
+        <p>また、 <code translate=no>window.dialogArguments</code> を触れるということは、Modal 上でも JS は動いていることを意味する。つまり、Window で止まっているイベントループとは別に、Modal 上でもイベントループがもう一つ走ることになる。そして、その上で <code translate=no>window.open</code> したり form を <code translate=no>submit</code> したり、追加で <code translate=no>showModalDialog()</code> することも可能だ。
+        <p>今と違って IE4 の頃はタブブラウザですらなく、1 Process 1 Window な時代だった(つまり、URL を別で開くと、Window がもう 1 つ立ち上がる)。これが、1 Tab 1 Process なマルチタブブラウザになった場合、「ブロックする」といっても「何をどこまで止めるのか」を定義し直すのも難しかった。
+        <p>かなり初期の API で、ろくに議論されないまま独自実装として始まったこの API を、互換性のために他のブラウザも仕方なく実装し、HTML にも渋々現状を仕様として起こした、そんな API だ。この API のヒドさについて Hixie はこう説明している。
         <blockquote cite="https://groups.google.com/a/chromium.org/g/blink-dev/c/xh9fPX0ijqk/m/8oPryGUsGPMJ">
           <p>This API single-handedly makes completely unrelated parts of the platform significantly more complicated to implement, which leads to more bugs, which makes everything worse for everyone.
           <p>And to top it all off, it&apos;s not even a particuarly good UI. We have much better solutions in the works, too, like dialog.
@@ -224,7 +224,7 @@ window.returnValue = &quot;returnedValue&quot;</code></pre>
           <p>&mdash; <cite><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/xh9fPX0ijqk/m/8oPryGUsGPMJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/xh9fPX0ijqk/m/8oPryGUsGPMJ</a></cite>
         </blockquote>
         <p>これを実装すると、今度出てくる新しい API(Promise や Mutation Observer etc) の実装をさらに複雑にし、複雑さが脆弱性につながってしまう懸念もあった。
-        <p>そして、そこまで人気な API でもないため利用者も多くはなく、 UI も UX も別段良くなかった。端的に言えば、技術的負債だったわけだ。
+        <p>そして、そこまで人気な API でもないため利用者も多くはなく、UI も UX も別段良くなかった。端的に言えば、技術的負債だったわけだ。
         <p>ブラウザ実装者からの不満も爆発し、この API を長いこと抱えているより、より良い API を定義してユーザの移行を促しつつ、 <code translate=no>showModalDialog</code> は deprecate していく。
         <p>その合意のもと進めていく先が、 <code translate=no>&lt;dialog&gt;</code> だったのだ。
       </section>

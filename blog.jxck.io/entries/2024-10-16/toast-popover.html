@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-16T08:00:00+08:00",
-    "dateModified": "2024-10-21T08:00:00+08:00",
+    "dateModified": "2024-11-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-16>2024-10-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-21>2024-10-21</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -166,11 +166,11 @@
         <p>メッセージの性質によって、色やアイコンのスタイルを変えられ、同時に複数積み上げて表示できるといった仕様が一般的だ。
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
-          <p>基本は <code translate=no>&lt;div popover&gt;</code> となる。また、複数のメッセージがあった場合に、他のが表示されても消えないよう、 <code translate=no>manual</code> を指定する。
+          <p>基本は <code translate=no>&lt;div popover&gt;</code> となる。また、複数のメッセージがあった場合に、他のが表示されても消えないよう、<code translate=no>manual</code> を指定する。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;div popover=&quot;manual&quot;&gt;
 &lt;/div&gt;</code></pre>
-          <p>もし内容のレイアウトで Flex や Grid を使いたい場合、 <code translate=no>&lt;div popover&gt;</code> 自体の <code translate=no>display</code> を変えると扱いが少し面倒になるため、もう 1 つ Wrapper の <code translate=no>&lt;div&gt;</code> を用意しておくと良いだろう。
+          <p>もし内容のレイアウトで Flex や Grid を使いたい場合、<code translate=no>&lt;div popover&gt;</code> 自体の <code translate=no>display</code> を変えると扱いが少し面倒になるため、もう 1 つ Wrapper の <code translate=no>&lt;div&gt;</code> を用意しておくと良いだろう。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;div id=&quot;toast&quot; popover=&quot;manual&quot;&gt;
   &lt;div style=&quot;display:flex&quot;&gt;
   &lt;/div&gt;
@@ -192,12 +192,12 @@
 &lt;/template&gt;</code></pre>
           <p>これを HTML のテンプレートとして保持し、内容(message, icon, style etc)を変更しながら、使い回してさまざまなメッセージを表示することになるだろう。
           <p>注意点として <code translate=no>popover</code> は <code translate=no>dialog</code> と異なり対象の Role には影響を与えないため、これは単にテキストとボタンを持った <code translate=no>&lt;div&gt;</code> が Top Layer に表示されただけの状態になる。この情報がなんであるか、ユーザにとってどのような重要度を持つ情報なのかについては、別途補完していく必要がある。この点に対しては、従来の「<code translate=no>popover</code> を使わずに実装されていた Toast コンポーネント」も参考にできる。
-          <p>通知の用途を考えると、 <code translate=no>role=status</code> か <code translate=no>role=alert</code> を用いるのが一般的だろう。多くの「<em>ユーザに通知があったことを伝えるが、作業を中断するほどでない</em>」ケースでは、<code translate=no>aria-live=polite</code> たる <code translate=no>role=status</code> を用いる。また、もし他の <code translate=no>role</code> に切り替える予定がないのであれば、同じく <code translate=no>aria-live=polite</code> である <code translate=no>&lt;ouput&gt;</code> を用いる方法も考えられる。
+          <p>通知の用途を考えると、 <code translate=no>role=status</code> か <code translate=no>role=alert</code> を用いるのが一般的だろう。多くの「<em>ユーザに通知があったことを伝えるが、作業を中断するほどでない</em>」ケースでは、<code translate=no>aria-live=polite</code> たる <code translate=no>role=status</code> を用いる。また、もし他の <code translate=no>role</code> に切り替える予定がないのであれば、同じく <code translate=no>aria-live=polite</code> である <code translate=no>&lt;output&gt;</code> を用いる方法も考えられる。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;template&gt;
-  &lt;div id=&quot;toast&quot; role=&quot;status[&quot; popover=&quot;manual&quot;&gt;
+  &lt;div id=&quot;toast&quot; role=&quot;status&quot; popover=&quot;manual&quot;&gt;
   &lt;/div&gt;
 &lt;/template&gt;</code></pre>
-          <p>逆に「<em>ユーザにとって重要な通知</em>」であれば、 <code translate=no>role=alert</code> を用いる。<code translate=no>aria-live=assertive</code> であり、 UA を通じてユーザには直ちに内容が伝わる。逆を言えば、これは多用すべきではないため、最小限に止めるべきだろう。
+          <p>逆に「<em>ユーザにとって重要な通知</em>」であれば、 <code translate=no>role=alert</code> を用いる。<code translate=no>aria-live=assertive</code> であり、UA を通じてユーザには直ちに内容が伝わる。逆を言えば、これは多用すべきではないため、最小限に止めるべきだろう。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;template&gt;
   &lt;div id=&quot;toast&quot; role=&quot;alert&quot; popover=&quot;manual&quot;&gt;
   &lt;/div&gt;

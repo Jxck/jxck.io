@@ -12,7 +12,7 @@
    <link href="https://blog.jxck.io/entries/2024-11-01/tooltip-popover.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-11-01</id>
    <updated>2024-11-01T00:00:00Z</updated>
-   <summary>今回考えたいのは、 GitHub の Issue や User アイコンをマウスでホバーすると、 Issue の詳細や User Profile が表示されるアレだ。挙動としては想像通り、対象要素に Anchoring した &lt;div popover&gt; を表示し、中に好きなようにコンテンツを入れれば良い。ただし UI のセマンティクスに関しては、複数の議論が行われており、方針もいくつか考えられる。今回は、それらの現状を整理つつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。</summary>
+   <summary>今回考えたいのは、GitHub の Issue や User アイコンをマウスでホバーすると、Issue の詳細や User Profile が表示されるアレだ。挙動としては想像通り、対象要素に Anchoring した &lt;div popover&gt; を表示し、中に好きなようにコンテンツを入れれば良い。ただし UI のセマンティクスに関しては、複数の議論が行われており、方針もいくつか考えられる。今回は、それらの現状を整理しつつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。</summary>
   </entry>
 
   <entry>
@@ -52,7 +52,7 @@
    <link href="https://blog.jxck.io/entries/2024-10-03/animation.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-10-03</id>
    <updated>2024-10-03T00:00:00Z</updated>
-   <summary>ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、 popup でやっていた Origin Trials を継続しながら、徐々に実装を進めていくフェーズが 2022/12 くらいの話だ。Intent to extend Origin Trial: Popover APIhttps://groups.google.com/a/chromium.org/g/blink-dev/c/kZXexHhH7EA/m/UmQYwGW3DAAJしかし、 popover を実用するには足りていない議論があった、それが Animation だ。</summary>
+   <summary>ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、 popup でやっていた Origin Trials を継続しながら、徐々に実装を進めていくフェーズが 2022/12 くらいの話だ。Intent to extend Origin Trial: Popover APIhttps://groups.google.com/a/chromium.org/g/blink-dev/c/kZXexHhH7EA/m/UmQYwGW3DAAJしかし、 popover を実用するには足りていない議論があった。それが Animation だ。</summary>
   </entry>
 
   <entry>
@@ -60,7 +60,7 @@
    <link href="https://blog.jxck.io/entries/2024-10-02/popover.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-10-02</id>
    <updated>2024-10-02T00:00:00Z</updated>
-   <summary>このあたりから、まだ議論中の話が多いため、今後変わる可能性が高い点に注意。popup が紆余曲折を経て popover 属性になり、 2023/3 に Safari が TP166 で実装した。そのまま Safari 17 に入ることを 2023/6 の WWDC で発表したあたりから、 popover の実装は各ブラウザで一気に話が進む。Release Notes for Safari Technology Preview 166https://webkit.org/blog/13964/release-notes-for-safari-technology-preview-166/News from WWDC23: WebKit Features in Safari 17 betahttps://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/そして、 2024/4 ごろに発表された Baseline 2024 に popover がエントリしたことで、 2024 年は全ブラウザで互換性を高めていくことに合意し、作業を進めていくことになる。俗に言う「元年」というやつと言えるだろう。Popover API lands in Baselinehttps://web.dev/blog/popover-api今回は、この popover の議論と、仕様が完成していくまでをまとめる。</summary>
+   <summary>このあたりから、まだ議論中の話が多いため、今後変わる可能性が高い点に注意。popup が紆余曲折を経て popover 属性になり、2023/3 に Safari が TP166 で実装した。そのまま Safari 17 に入ることを 2023/6 の WWDC で発表したあたりから、popover の実装は各ブラウザで一気に話が進む。Release Notes for Safari Technology Preview 166https://webkit.org/blog/13964/release-notes-for-safari-technology-preview-166/News from WWDC23: WebKit Features in Safari 17 betahttps://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/そして、2024/4 ごろに発表された Baseline 2024 に popover がエントリーしたことで、2024 年は全ブラウザで互換性を高めていくことに合意し、作業を進めていくことになる。俗に言う「元年」というやつと言えるだろう。Popover API lands in Baselinehttps://web.dev/blog/popover-api今回は、この popover の議論と、仕様が完成していくまでをまとめる。</summary>
   </entry>
 
   <entry>
@@ -76,7 +76,7 @@
    <link href="https://blog.jxck.io/entries/2024-09-27/dialog.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-09-27</id>
    <updated>2024-09-27T00:00:00Z</updated>
-   <summary>前回までは &lt;dialog&gt; が標準化されるまでの経緯と、 API の概要や関連仕様を解説した。今回は &lt;dialog&gt; の API としての使い方について、具体的に解説していく。</summary>
+   <summary>前回までは &lt;dialog&gt; が標準化されるまでの経緯と、API の概要や関連仕様を解説した。今回は &lt;dialog&gt; の API としての使い方について、具体的に解説していく。</summary>
   </entry>
 
   <entry>
@@ -92,7 +92,7 @@
    <link href="https://blog.jxck.io/entries/2024-09-25/show-modal-dialog.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-09-25</id>
    <updated>2024-09-25T00:00:00Z</updated>
-   <summary>HTML の &lt;dialog&gt; 要素と、 popover 属性、および関連する様々な仕様が標準化され、実装が進められている。Open UI を中心に進められているこれらの改善は、多くのサイトで共通したユースケースがありながら、長らくミッシングピースとなっていた重要な機能だ。もし今、同等のユースケースを自前で実装しているのであれば、適切な仕様を用いた実装に刷新することで、従来はほぼ不可能だった UX を提供できるようになる。今回から、数回の連載形式で、これらの仕様がどのように標準化され、我々開発者はこれをどのように使っていくべきなのかについて解説する。</summary>
+   <summary>HTML の &lt;dialog&gt; 要素と、popover 属性、および関連する様々な仕様が標準化され、実装が進められている。Open UI を中心に進められているこれらの改善は、多くのサイトで共通したユースケースがありながら、長らくミッシングピースとなっていた重要な機能だ。もし今、同等のユースケースを自前で実装しているのであれば、適切な仕様を用いた実装に刷新することで、従来はほぼ不可能だった UX を提供できるようになる。今回から、数回の連載形式で、これらの仕様がどのように標準化され、我々開発者はこれをどのように使っていくべきなのかについて解説する。</summary>
   </entry>
 
   <entry>

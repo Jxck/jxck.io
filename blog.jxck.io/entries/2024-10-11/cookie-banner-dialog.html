@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-11T08:00:00+08:00",
-    "dateModified": "2024-10-16T08:00:00+08:00",
+    "dateModified": "2024-11-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-11>2024-10-11</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-16>2024-10-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -159,20 +159,20 @@
       </section>
       <section>
         <h2 id="cookie-バナー"><a href="#cookie-バナー">Cookie バナー</a></h2>
-        <p>次は、「Cookie 利用への同意」いわゆる Cookie バナーの UI について考えてみる。想定するのは以下のようなものだ。
+        <p>次は、「Cookie 利用への同意」、いわゆる Cookie バナーの UI について考えてみる。想定するのは以下のようなものだ。
         <p>
           <img loading=lazy decoding=async src=./cookie-banner-dialog.drawio.svg?241011_154458 alt="画面の右下に表示される Cookie への同意 UI" width=600 height=600>
         </p>
         <p>前回の規約への同意と異なり、このバナーは画面表示時から右下に表示され、同意か拒否を選択するまで表示し続ける。つまり、表示中は他の操作をブロックしたりはしない。
-        <p>つまり Dialog ではあるが Modal ではないため、 <code translate=no>show()</code> する前提で実装を考えていく。
+        <p>つまり Dialog ではあるが Modal ではないため、<code translate=no>show()</code> する前提で実装を考えていく。
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
           <p>HTML の注意点は、前回の規約と大きくは変わらない。
-          <p>まず、最初から表示しておくため <code translate=no>open</code> 属性を付与しておく。
+          <p>まず、最初から表示しておくために <code translate=no>open</code> 属性を付与しておく。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog open&gt;
 &lt;/dialog&gt;</code></pre>
-          <p>コントローラとしてはボタンが 2 つあり、ここに Value を設定しておく。
+          <p>コントローラとしてはボタンが 2 つあり、ここに value を設定しておく。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;form method=&quot;dialog&quot;&gt;
   &lt;button type=&quot;submit&quot; value=&quot;reject&quot;&gt;拒否する&lt;/button&gt;
   &lt;button type=&quot;submit&quot; value=&quot;accept&quot;&gt;同意する&lt;/button&gt;
@@ -204,7 +204,7 @@ dialog:not([open]) {
           <h3 id="js"><a href="#js">JS</a></h3>
           <p>最後は JS だ。
           <p>同意の取得時にそのまま form を submit し、結果は <code translate=no>&lt;button value&gt;</code> の値として、<code translate=no>&quot;close&quot;</code> イベントのなかで取得できる。
-          <pre class=js data-code=js><code translate=no class=language-js>docuemnt.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (e) =&gt; {
+          <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (e) =&gt; {
   const returnValue = e.target.returnValue
   if (returnValue === &quot;reject&quot;) {
   }

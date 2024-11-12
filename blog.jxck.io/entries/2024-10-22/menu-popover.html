@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-22T08:00:00+08:00",
-    "dateModified": "2024-10-23T08:00:00+08:00",
+    "dateModified": "2024-11-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-22>2024-10-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-23>2024-10-23</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -160,7 +160,7 @@
       </section>
       <section>
         <h2 id="tooltip"><a href="#tooltip">Tooltip</a></h2>
-        <p>今回は、 Menu の実装を考えてみる。 GitHub でいうとこの部分だ。
+        <p>今回は、Menu の実装を考えてみる。GitHub でいうとこの部分だ。
         <p>
           <picture>
             <source type=image/avif srcset=./github-menu.avif?241022_125104>
@@ -168,7 +168,7 @@
             <img loading=lazy decoding=async src=./github-menu.png?241022_125104 alt="GitHub のリポジトリ作成などのメニューが表示される Popover" width=574 height=536>
           </picture>
         </p>
-        <p>元となるボタンによって表示され、このボタンからの相対位置で調整されるため Anchor Positioning を活用することになる。非常に良くある実装パターンだ。
+        <p>元となるボタンによって表示され、このボタンからの相対位置で調整されるため、Anchor Positioning を活用することになる。非常によくある実装パターンだ。
         <p>HTML の仕様にも、類似の実装が Example として掲載されている。
         <ul>
           <li>
@@ -178,7 +178,7 @@
             </ul>
           </li>
         </ul>
-        <p>APG としては、 Menu Button パターンにあたるだろう。
+        <p>APG としては、Menu Button パターンにあたるだろう。
         <ul>
           <li>
             Menu Button Pattern | APG | WAI | W3C
@@ -251,7 +251,7 @@ ul[popover] {
         </section>
         <section>
           <h3 id="js"><a href="#js">JS</a></h3>
-          <p>Popover の開閉という点に関しては、特に JS 無しに挙動が実現できているため、特に必要は無い。
+          <p>Popover の開閉に関しては、特に JS なしで挙動が実現できているため、特に必要はない。
           <p>あとは、普通にメニューの機能そのものを実装すれば良いだろう。
         </section>
       </section>
@@ -276,7 +276,7 @@ ul[popover] {
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;</code></pre>
-        <p>CSS も、 Anchor をサブメニューに対して付与していけば良い。
+        <p>CSS も、Anchor をサブメニューに対して付与していけば良い。
         <pre class=css data-code=css><code translate=no class=language-css>button[popovertarget=menu] {
   anchor-name: --menu;
 }
@@ -292,7 +292,7 @@ ul#submenu {
   position-anchor: --submenu;
   position-area: right span-bottom;
 }</code></pre>
-        <p>また、これが横に広がることで画面に収まらない可能性を考慮して、 fallback を指定する。
+        <p>また、これが横に広がることで画面に収まらない可能性を考慮して、fallback を指定する。
         <pre class=css data-code=css><code translate=no class=language-css>ul#submenu {
   position-anchor: --submenu;
   position-area: right span-bottom;

@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-26T08:00:00+08:00",
-    "dateModified": "2024-10-09T08:00:00+08:00",
+    "dateModified": "2024-11-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-26>2024-09-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-10-09>2024-10-09</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -176,9 +176,9 @@
           <li>Modal Dialog
           <li>non-Modal Dialog
         </ul>
-        <p><em>Dialog</em> とは、そもそも「対話」という意味であり、 UI の文脈では入力や選択を求める「対話的な UI」のことを指す。
+        <p><em>Dialog</em> とは、そもそも「対話」という意味であり、UI の文脈では入力や選択を求める「対話的な UI」のことを指す。
         <p>既に実装されている <code translate=no>alert()</code>, <code translate=no>confirm()</code>, <code translate=no>prompt()</code> なども広く言えば Dialog にあたり、同意を求めたり、設定を確認させたり、更新があるから再読み込みさせたりといった用途で使う。
-        <p>その中で <em>Modal</em> とは一般的には「特定のタスクを行うためのモード」といったニュアンスがあるが、この文脈では「それを処理しない限り先に進めない/他の操作ができない」ようなブロックを伴う UI のことを指す。つまり、 Dialog には 「Modal で出す」か「non-Modal で出すか」という 2 種類があるということだ。(modeless という表現をする場合もあるが、 Open UI では non-Modal という表現が使われている。)
+        <p>その中で <em>Modal</em> とは一般的には「特定のタスクを行うためのモード」といったニュアンスがあるが、この文脈では「それを処理しない限り先に進めない/他の操作ができない」ようなブロックを伴う UI のことを指す。つまり、Dialog には「Modal で出す」か「non-Modal で出すか」という 2 種類があるということだ。(modeless という表現をする場合もあるが、Open UI では non-Modal という表現が使われている。)
         <p>Modal Dialog は Web 以外にも多くのプラットフォームで提供され、コモンケースとして以下のように実装されることが多い。
         <ul>
           <li>Dialog 以外を非活性にし操作(focus, click, scroll)できなくする
@@ -205,7 +205,7 @@
         <p>例えばよくあるのは、フォーカス管理の欠如だ。
         <ol>
           <li>Modal を開いているのに、フォーカスは Modal 外のままで、キーボードで操作したいユーザが Modal に Tab で辿り着けない
-          <li>Modal を開いてて、フォーカスも Modal に乗っているのに、Tab を押すと Modal から落ちて外に移動してしまう
+          <li>Modal を開いていて、フォーカスも Modal に乗っているのに、Tab を押すと Modal から落ちて外に移動してしまう
           <li>Modal を閉じた際に、以前いた場所とは別の場所にフォーカスが移り迷子になる
           <li>Modal 上で Tab 移動し、Modal の一番下まで行ったら、次は Modal の上に戻って欲しいが、そのまま外に出て行ってしまう
         </ol>
@@ -232,14 +232,14 @@
             </ul>
           </li>
         </ul>
-        <p>様々な UI ライブラリが Modal Dialog 相当の機能を、 APG を元に提供しているが、それでもやはり理想的な実装は難しい。
+        <p>様々な UI ライブラリが Modal Dialog 相当の機能を、APG を元に提供しているが、それでもやはり理想的な実装は難しい。
         <p>というか、残念なことに、どんなに JS や CSS を捏ね回してツギハギしても、ネイティブの支援を得た実装と比較すると、劣化版しか作れないのが実際だ。
         <p>だからこそ、この要件を標準化し、ブラウザがネイティブの実装を提供しようということになった。
       </section>
       <section>
         <h2 id="標準-dialog"><a href="#標準-dialog">標準 Dialog</a></h2>
         <p><code translate=no>showModalDialog()</code> が問題になったのは 2014 年ごろで、実に 10 年前の話だったが、実はこの頃すでに <code translate=no>&lt;dialog&gt;</code> の仕様自体はあった。
-        <p>とはいえ Chrome が少し実装し、 Opera も先に実装を進め flag の裏に持っていた。 Safari / Firefox は長らく実装していなかった。
+        <p>とはいえ、Chrome が少し実装し、Opera も先に実装を進め、flag の裏に持っていた。Safari / Firefox は長らく実装していなかった。
         <p>HTML5.2 で W3C の方の仕様では消されそうになったこともあるくらい、影の薄い仕様だった。
         <ul>
           <li>
@@ -249,7 +249,7 @@
             </ul>
           </li>
         </ul>
-        <p>ところが、 2016 年ごろ Firefox で再度議論が進み、再度標準化を進めようという話になった。
+        <p>ところが、2016 年ごろ Firefox で再度議論が進み、再度標準化を進めようという話になった。
         <ul>
           <li>
             Re: Proposal to retain dialog in HTML5.2
@@ -274,7 +274,7 @@
           </li>
         </ul>
         <p>Firefox が Ship を進めるのと同時期くらいに、これを現在のように「ぜひ使うべき機能」まで大きく進めたきっかけが Interop だった。
-        <p>MDN が Developer Survey という大規模調査で、開発者が何に困っているのかを調査し、その結果をブラウザベンダに共有して互換性問題を改善しようということで始まったのが Compat 2021 だが、それが 2022 年に Interop と名前を変えた時に、 Focus Area として <code translate=no>&lt;dialog&gt;</code> が採用されたのだ。
+        <p>MDN が Developer Survey という大規模調査で、開発者が何に困っているのかを調査し、その結果をブラウザベンダに共有して互換性問題を改善しようということで始まったのが Compat 2021 だが、それが 2022 年に Interop と名前を変えた時に、Focus Area として <code translate=no>&lt;dialog&gt;</code> が採用されたのだ。
         <ul>
           <li>
             dialog &amp; ::backdrop · Issue #12 · web-platform-tests/interop
@@ -283,7 +283,7 @@
             </ul>
           </li>
         </ul>
-        <p>それを受け、 Safari が実装することになる。 Igalia の協力もあったらしい。
+        <p>それを受け、Safari が実装することになる。Igalia の協力もあったらしい。
         <ul>
           <li>
             Introducing the Dialog Element | WebKit
@@ -293,7 +293,7 @@
           </li>
         </ul>
         <p>こうして、無事全てのブラウザで使えるようになった。
-        <p>合わせて、ブラウザ間で微妙に異なる挙動のすり合わせや、足らないプリミティブの整理と仕様化も行われた。
+        <p>合わせて、ブラウザ間で微妙に異なる挙動のすり合わせや、足りないプリミティブの整理と仕様化も行われた。
       </section>
       <section>
         <h2 id="関連仕様"><a href="#関連仕様">関連仕様</a></h2>
@@ -309,21 +309,21 @@
               </ul>
             </li>
           </ul>
-          <p>最終的には、「<em>フォーカスすべき要素を開発者が選び、明示的に <code translate=no>autofocus</code> を指定すべき</em>」が推奨になっているため、<code translate=no>&lt;dialog&gt;</code> を実装する場合は、必ず何かしらのコントローラーに <code translate=no>autofocus</code> の付与を検討すべきということになる。
+          <p>最終的には、「<em>フォーカスすべき要素を開発者が選び、明示的に <code translate=no>autofocus</code> を指定すべき</em>」が推奨になっているため、<code translate=no>&lt;dialog&gt;</code> を実装する場合は、必ず何かしらのコントローラに <code translate=no>autofocus</code> の付与を検討すべきということになる。
         </section>
         <section>
           <h3 id="top-layer"><a href="#top-layer">Top Layer</a></h3>
-          <p>要素の重なり合いは、 <code translate=no>z-index</code> で制御するのが従来の CSS の常識だった。
-          <p>他の要素よりも手前に表示したい場合は、 <code translate=no>z-index</code> の値を大きくするのだが、 Modal Dialog のような UI は、今何が表示されているかにかかわらず、問答無用で最前面に来てくれないと困ることになる。
-          <p>そこで、全てのレイヤーの最上位に位置し、ブラウザが管理する、 &quot;<em>Top Layer</em>&quot; という概念を作り、 Modal Dialog はそこに表示することになった。
-          <p>Top Layer はあくまでブラウザが内部的に生成しているため、どんなに <code translate=no>z-index</code> が大きい要素があっても、 Top Layer より前に来ることはない。
+          <p>要素の重なり合いは、<code translate=no>z-index</code> で制御するのが従来の CSS の常識だった。
+          <p>他の要素よりも手前に表示したい場合は、<code translate=no>z-index</code> の値を大きくするのだが、Modal Dialog のような UI は、今何が表示されているかにかかわらず、問答無用で最前面に来てくれないと困ることになる。
+          <p>そこで、すべてのレイヤーの最上位に位置し、ブラウザが管理する、&quot;<em>Top Layer</em>&quot; という概念を作り、Modal Dialog はそこに表示することになった。
+          <p>Top Layer はあくまでブラウザが内部的に生成しているため、どんなに <code translate=no>z-index</code> が大きい要素があっても、Top Layer より前に来ることはない。
           <p>また、ここに表示できるものは Modal Dialog や Fullscreen といった、特別な UI のみに限られる。
           <p>これで Modal Dialog を表示する場所が標準化できた。
         </section>
         <section>
           <h3 id="inert"><a href="#inert">inert</a></h3>
           <p><code translate=no>inert</code> は、指定した DOM を「非活性」にするための属性だ。要するに、Modal Dialog を開いた時の「後ろ側」の世界を操作不能にするために定義された。
-          <p>これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、 Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばし、後ろは <code translate=no>tabindex=-1</code> する、といったことをして、なんとか Modal の外の世界を塗りつぶしていた。
+          <p>これが無い頃は、キーボードやマウス操作を無効にするためにイベントをフックして prevent したり、Focus Trap のために Tab が Modal を出て行かないように、一番下まで来たら次は Modal 内の一番上に飛ばし、後ろは <code translate=no>tabindex=-1</code> する、といったことをして、なんとか Modal の外の世界を塗りつぶしていた。
           <p>しかし、そのように実装しきるのは流石に無理があるので、標準仕様として <code translate=no>inert</code> を定義することで、ブラウザが全て無効にしてくれるようになったのだ。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;div inert&gt;
@@ -344,8 +344,8 @@
         </section>
         <section>
           <h3 id="backdrop"><a href="#backdrop"><code translate=no>::backdrop</code></a></h3>
-          <p>Modal Dialog を開いた時に、後ろ側を <code translate=no>inert</code> にすることができるようになったが、 <code translate=no>inert</code> はあくまで非活性なだけで、特にスタイルが当たるわけではない。しかし、非活性だった場合大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
-          <p>この場合 <code translate=no>inert</code> であることを利用し、以下のようにスタイルを当てることもできる。
+          <p>Modal Dialog を開いた時に、後ろ側を <code translate=no>inert</code> にすることができるようになったが、 <code translate=no>inert</code> はあくまで非活性なだけで、特にスタイルが当たるわけではない。しかし、非活性だった場合、大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
+          <p>この場合、 <code translate=no>inert</code> であることを利用し、以下のようにスタイルを当てることもできる。
           <pre class=css data-code=css><code translate=no class=language-css>[inert] {
   background-color: rgba(200, 200, 200, 0.50);
 }</code></pre>
@@ -365,7 +365,7 @@
         </section>
         <section>
           <h3 id="modal"><a href="#modal">:modal</a></h3>
-          <p><code translate=no>::backdrop</code> が「Top Layer 以外」だったのと対照的に、 <code translate=no>:modal</code> は「Top Layer だけ」にスタイルを当てるための仕様だ。
+          <p><code translate=no>::backdrop</code> が「Top Layer 以外」だったのと対照的に、<code translate=no>:modal</code> は「Top Layer だけ」にスタイルを当てるための仕様だ。
           <p><code translate=no>:modal</code> は <code translate=no>showModal</code> した <code translate=no>&lt;dialog&gt;</code> はもちろん、さっき言ったように、同じく Top Layer に載せることができる Fullscreen API もやはり <code translate=no>:modal</code> でスタイルができる。(<code translate=no>:fullscreen</code> もある)。
           <pre class=css data-code=css><code translate=no class=language-css>:modal {
   /* xxx */
@@ -382,9 +382,9 @@
         </section>
         <section>
           <h3 id="close-watcher"><a href="#close-watcher">Close Watcher</a></h3>
-          <p>プラットフォームが提供する Modal は、 ESC や範囲外のクリックによって閉じることができる。端末固有の操作などと紐づけると言った役割も果たしている。
+          <p>プラットフォームが提供する Modal は、 ESC や範囲外のクリックによって閉じることができる。端末固有の操作などと紐づけるといった役割も果たしている。
           <p>このように、プラットフォームが提供する「Modal を閉じるための操作」を、キーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊したり、ネイティブの他の機能に影響したりする可能性がある。
-          <p>そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し Close Watcher として定義された。
+          <p>そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し、 Close Watcher として定義された。
           <pre class=js data-code=js><code translate=no class=language-js>const watcher = new CloseWatcher();
 
 watcher.addEventListener(&quot;cancel&quot;, () =&gt; {
@@ -402,7 +402,7 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
               </ul>
             </li>
           </ul>
-          <p>ただし、 Close Watcher は「<code translate=no>&lt;dialog&gt;</code> の範囲外をクリックしたら閉じる」という部分はフックしていないため、別途実装が必要だ。それについては次回解説する。
+          <p>ただし、Close Watcher は「<code translate=no>&lt;dialog&gt;</code> の範囲外をクリックしたら閉じる」という部分はフックしていないため、別途実装が必要だ。それについては次回解説する。
         </section>
       </section>
       <section>
@@ -499,9 +499,9 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>以上のように、これまで JS/CSS を駆使して実装されていた Dialog の、あらゆる既知の問題を踏まえて、 <code translate=no>&lt;dialog&gt;</code> の標準仕様が作られ、 Interop により全てのブラウザが実装し、ほぼほぼ動く状態にあるのだ。
-        <p>現状 Modal / Dialog 相当を自前やライブラリを用いて実装しているのであれば、基本的には全て <code translate=no>&lt;dialog&gt;</code> に置き換えるべきだと言って良い。
-        <p>次回はもう少し実際のコードで、 <code translate=no>&lt;dialog&gt;</code> の使い方および、 Modal / non-Modal の使い分けを解説していく。
+        <p>以上のように、これまで JS/CSS を駆使して実装されていた Dialog の、あらゆる既知の問題を踏まえて、<code translate=no>&lt;dialog&gt;</code> の標準仕様が作られ、Interop により全てのブラウザが実装し、ほぼ動く状態にあるのだ。
+        <p>現状、Modal/Dialog 相当を自前やライブラリを用いて実装しているのであれば、基本的には全て <code translate=no>&lt;dialog&gt;</code> に置き換えるべきだと言って良い。
+        <p>次回はもう少し実際のコードで、<code translate=no>&lt;dialog&gt;</code> の使い方および、Modal/non-Modal の使い分けを解説していく。
       </section>
     </article>
   </main>

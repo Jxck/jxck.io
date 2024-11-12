@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="今回考えたいのは、 GitHub の Issue や User アイコンをマウスでホバーすると、 Issue の詳細や User Profile が表示されるアレだ。挙動としては想像通り、対象要素に Anchoring した &lt;div popover&gt; を表示し...">
+  <meta name=description         content="今回考えたいのは、GitHub の Issue や User アイコンをマウスでホバーすると、Issue の詳細や User Profile が表示されるアレだ。挙動としては想像通り、対象要素に Anchoring した &lt;div popover&gt; を表示し、中...">
   <meta name=keywords            content="dialog,popover">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-11-01/tooltip-popover.html>
   <meta property=og:title        content="Dialog と Popover #11 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="今回考えたいのは、 GitHub の Issue や User アイコンをマウスでホバーすると、 Issue の詳細や User Profile が表示されるアレだ。挙動としては想像通り、対象要素に Anchoring した &lt;div popover&gt; を表示し...">
+  <meta property=og:description  content="今回考えたいのは、GitHub の Issue や User アイコンをマウスでホバーすると、Issue の詳細や User Profile が表示されるアレだ。挙動としては想像通り、対象要素に Anchoring した &lt;div popover&gt; を表示し、中...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-11-01T08:00:00+08:00",
-    "dateModified": "2024-11-01T08:00:00+08:00",
+    "dateModified": "2024-11-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "今回考えたいのは、 GitHub の Issue や User アイコンをマウスでホバーすると、 Issue の詳細や User Profile が表示されるアレだ。挙動としては想像通り、対象要素に Anchoring した &lt;div popover&gt; を表示し..."
+    "description": "今回考えたいのは、GitHub の Issue や User アイコンをマウスでホバーすると、Issue の詳細や User Profile が表示されるアレだ。挙動としては想像通り、対象要素に Anchoring した &lt;div popover&gt; を表示し、中..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-11-01>2024-11-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-01>2024-11-01</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -160,20 +160,20 @@
       <h1><a href="">Dialog と Popover #11</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>今回考えたいのは、 GitHub の Issue や User アイコンをマウスでホバーすると、 Issue の詳細や User Profile が表示されるアレだ。
+        <p>今回考えたいのは、GitHub の Issue や User アイコンをマウスでホバーすると、Issue の詳細や User Profile が表示されるアレだ。
         <p>
           <img loading=lazy decoding=async src=./tooltip-popover.drawio.svg?241101_195247 alt="リンクを hover すると Tooltip でリンク先の詳細がカード表示される" width=300 height=300>
         </p>
         <p>挙動としては想像通り、対象要素に Anchoring した <code translate=no>&lt;div popover&gt;</code> を表示し、中に好きなようにコンテンツを入れれば良い。ただし UI のセマンティクスに関しては、複数の議論が行われており、方針もいくつか考えられる。
-        <p>今回は、それらの現状を整理つつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。
+        <p>今回は、それらの現状を整理しつつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。
       </section>
       <section>
         <h2 id="tooltip-component"><a href="#tooltip-component">Tooltip Component</a></h2>
         <section>
           <h3 id="native-tooltip"><a href="#native-tooltip">Native Tooltip</a></h3>
-          <p>まず、この UI の名前だが、 UI ライブラリを見ても、このようなコンポーネントは様々な名前で提供されている。
-          <p>そもそも Popover という名前で提供している場合もあれば、 Tooltip / Toggletip / Popup といった名前がつくこともある。
-          <p>しかし、 HTML において Tooltip というと、 <code translate=no>title</code> 属性を付与した際に、マウスオーバーでブラウザが出す、この UI がそう呼ばれる。
+          <p>まず、この UI の名前だが、UI ライブラリを見ても、このようなコンポーネントは様々な名前で提供されている。
+          <p>そもそも Popover という名前で提供している場合もあれば、Tooltip / Toggletip / Popup といった名前がつくこともある。
+          <p>しかし、HTML において Tooltip というと、<code translate=no>title</code> 属性を付与した際に、マウスオーバーでブラウザが出す、この UI がそう呼ばれる。
           <p>
             <picture>
               <source type=image/avif srcset=native-tooltip.avif?241101_195247>
@@ -183,7 +183,7 @@
           </p>
           <p>紛らわしいので、ここではこれを Native Tooltip と呼ぶことにする。
           <p>Native Tooltip は、古くからブラウザに実装されているが、ブラウザによってはキーボードのフォーカスだけでは出せない、テキストを選択できない、スタイルが指定できないなど、いくつかの問題が度々指摘されている。
-          <p>スタイルについては、 CSS を当てられるようにする提案自体はある。
+          <p>スタイルについては、CSS を当てられるようにする提案自体はある。
           <ul>
             <li>
               Consider providing a way for authors to style the title attribute&apos;s tooltip · Issue #730 · openui/open-ui
@@ -199,13 +199,13 @@
             </li>
           </ul>
           <p>しかし、まだ議論がまとまっておらず、どうなるかわからない。
-          <p>また、依然としてフォーカス移動だけで内容を知りたい場合や、選択してコピーしたい場合のために、 <code translate=no>title</code> 属性に頼らず独自のコンポーネントを実装する機会はあるだろう。
+          <p>また、依然としてフォーカス移動だけで内容を知りたい場合や、選択してコピーしたい場合のために、<code translate=no>title</code> 属性に頼らず独自のコンポーネントを実装する機会はあるだろう。
         </section>
         <section>
           <h3 id="tooltiptoggletip"><a href="#tooltiptoggletip">Tooltip/Toggletip</a></h3>
-          <p>Native Tooltip は <code translate=no>title</code> 属性を出しているだけなので、内容はテキスト(presentation contents)のみだ。ここにコントローラー(interactive content)、つまりリンクやボタンなどが入ってくると話は少し変わる。
+          <p>Native Tooltip は <code translate=no>title</code> 属性を出しているだけなので、内容はテキスト(presentation contents)のみだ。ここにコントローラ(interactive content)、つまりリンクやボタンなどが入ってくると話は少し変わる。
           <p>OpenUI をはじめとしたいくつかの場所では、「テキストのみ」を表示するコンポーネントは <strong>Tooltip</strong>、対して「コントローラ」を含むものを <strong>Toggletip</strong> と呼び分けている。便利なので、本文でもそれを採用することにする。
-          <p>どちらも、 対象要素に Anchoring した <code translate=no>&lt;div popover&gt;</code> で実装することが可能だろう。
+          <p>どちらも、対象要素に Anchoring した <code translate=no>&lt;div popover&gt;</code> で実装することが可能だろう。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=/users/jxck&gt;Jxck&lt;/a&gt;
 &lt;div popover&gt;
@@ -232,7 +232,7 @@
           </li>
         </ul>
         <p>この中では <code translate=no>role=tooltip</code> および <code translate=no>aria-describedby</code> の付与が推奨されている。
-        <p>また、従来はこうした DOM を表出させる場合は <code translate=no>aria-haspopup</code> が Invoker 相当側に付与されることが多いが、 Popover を用いる場合、 UA は Popover が開いていることを知ることができるため、不要とされている。
+        <p>また、従来はこうした DOM を表出させる場合は <code translate=no>aria-haspopup</code> が Invoker 相当側に付与されることが多いが、Popover を用いる場合、UA は Popover が開いていることを知ることができるため、不要とされている。
         <ul>
           <li>
             Popover invoker example shouldn&apos;t have <code translate=no>aria-haspopup</code> · Issue #9153 · whatwg/html
@@ -246,7 +246,7 @@
 &lt;div role=tooltip id=tooltip popover&gt;
   Jxck: Web developer in Japan
 &lt;/div&gt;</code></pre>
-        <p>しかし、最初に書かれている通り、このパターンはまだ議論が終わっておらず、完成しているとは言えない。 Issue は 2016 年に立ったもので、今でもまだ結論が出ていない。
+        <p>しかし、最初に書かれている通り、このパターンはまだ議論が終わっておらず、完成しているとは言えない。Issue は 2016 年に立ったもので、今でもまだ結論が出ていない。
         <ul>
           <li>
             Develop example of tooltip design pattern · Issue #127 · w3c/aria-practices
@@ -284,7 +284,7 @@
             </li>
           </ul>
           <p><code translate=no>role=state</code> などと違い、 <code translate=no>aria-live</code> や <code translate=no>aria-atomic</code> についてデフォルトがないため、特に UA にとって何か特別な挙動がないことも知られている。
-          <p>このように、用途が狭い <code translate=no>role=tooltip</code> 自体が、曖昧かつ端的に言えば微妙なのではという議論が、 Popover などの策定が進んでいく 2019 年ごろ出た。
+          <p>このように、用途が狭い <code translate=no>role=tooltip</code> 自体が、曖昧かつ端的に言えば微妙なのではという議論が、 Popover などの策定が進んでいく 2019 年ごろに出た。
           <ul>
             <li>
               Clarify the use of role=tooltip · Issue #979 · w3c/aria
@@ -343,7 +343,7 @@
       <section>
         <h2 id="toggletip"><a href="#toggletip">Toggletip</a></h2>
         <p>また、内容が Native Tooltip のようにテキストだけでなく、インタラクティブなコンテンツを含む場合はさらに話が変わる。
-        <p>例えば、 GitHub の UI では、内部にリンクを含を含む。つまり、これは先の語彙でいう Tooltip ではなく Toggletip なのだ。
+        <p>例えば、GitHub の UI では、内部にリンクを含む。つまり、これは先の語彙でいう Tooltip ではなく Toggletip なのだ。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;a popovertarget=tooltip aria-describedby=tooltip href=/users/jxck&gt;Jxck&lt;/a&gt;
 &lt;div role=tooltip id=tooltip popover&gt;
   &lt;a href=/users/jxck&gt;Jxck&lt;/a&gt;: Web developer in Japan
@@ -354,17 +354,17 @@
           <p>Back when we added role=tooltip, the assumption was that role=tooltip could allow interactive content.
           <p>&mdash; <cite><a href="https://github.com/w3c/aria/issues/979#issuecomment-1131900402" target=_blank>https://github.com/w3c/aria/issues/979#issuecomment-1131900402</a></cite>
         </blockquote>
-        <p>しかし、今の Tooltip の文脈はそうはなってない。
-        <p>実際、 GitHub の実装は <code translate=no>role=region</code> を用いており、 Slack は <code translate=no>role=presentation</code> 用いているなど、かなりブレもある。
+        <p>しかし、今の Tooltip の文脈はそうはなっていない。
+        <p>実際、GitHub の実装は <code translate=no>role=region</code> を用いており、Slack は <code translate=no>role=presentation</code> を用いているなど、かなりブレもある。
       </section>
       <section>
         <h2 id="roledialog"><a href="#roledialog">role=dialog</a></h2>
-        <p>一方、このようにインタラクティブな要素を含む Toggletip の場合は、 <code translate=no>role=dialog</code> を用いるべきという話もある。 APG もこの点に触れている。(何度も言うが APG の Tooltip は確定ではない点に留意)
+        <p>一方、このようにインタラクティブな要素を含む Toggletip の場合は、<code translate=no>role=dialog</code> を用いるべきという話もある。APG もこの点に触れている。(何度も言うが、APG の Tooltip は確定ではない点に留意)
         <blockquote cite="https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/">
           <p>Tooltip widgets do not receive focus. A hover that contains focusable elements can be made using a non-modal dialog.
           <p>&mdash; <cite><a href="https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/" target=_blank>https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/</a></cite>
         </blockquote>
-        <p>コントローラがあるということは、フォーカスについて考慮する必要がある。現状の <code translate=no>role=tooltip</code> はその点について不十分として、 non-modal dialog としての実装が推奨されるのだ。そして、 non-modal dialog な Toggletip のパターンは APG では(ややこしいことに) Tooltip Dialog というパターンでまとめるという Issue が立ってはいるが、立てっぱなしで話が進んでない状況だ。
+        <p>コントローラがあるということは、フォーカスについて考慮する必要がある。現状の <code translate=no>role=tooltip</code> はその点について不十分として、non-Modal Dialog としての実装が推奨されるのだ。そして、non-Modal Dialog な Toggletip のパターンは APG では(ややこしいことに)Tooltip Dialog というパターンでまとめるという Issue が立ってはいるが、立てっぱなしで話が進んでいない状況だ。
         <ul>
           <li>
             Draft tooltip dialog design pattern · Issue #85 · w3c/aria-practices
@@ -379,23 +379,23 @@
             </ul>
           </li>
         </ul>
-        <p>なお、 Confluence は <code translate=no>role=dialog</code> で実装している。
+        <p>なお、Confluence は <code translate=no>role=dialog</code> で実装している。
       </section>
       <section>
         <h2 id="non-modal-toggletip"><a href="#non-modal-toggletip">non-Modal Toggletip</a></h2>
-        <p><code translate=no>&lt;dialog&gt;</code> は散々解説したように、特に Modal のケースはユーザに対して操作を要求する性質が強い。しかし、 Modal で出さなければ <code translate=no>role=dialog</code> の実装要素という側面を享受できる。
-        <p>また、このケースは Light Dismiss が求められることを考えると、 <code translate=no>&lt;dialog popover&gt;</code> での実装が考えられる。
+        <p><code translate=no>&lt;dialog&gt;</code> は散々解説したように、特に Modal のケースはユーザに対して操作を要求する性質が強い。しかし、Modal で出さなければ <code translate=no>role=dialog</code> の実装要素という側面を享受できる。
+        <p>また、このケースは Light Dismiss が求められることを考えると、<code translate=no>&lt;dialog popover&gt;</code> での実装が考えられる。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;a popovertarget=tooltip aria-describedby=tooltip href=/users/jxck&gt;Jxck&lt;/a&gt;
 &lt;dialog role=tooltip id=tooltip popover&gt;
   &lt;a href=/users/jxck&gt;Jxck&lt;/a&gt;: Web developer in Japan
 &lt;/dialog&gt;</code></pre>
         <p>これを <code translate=no>showPopover()</code> すれば、目的は達成できそうだ。
         <p>Modal Dialog の場合はフォーカスを移すが、今回の場合は popover なので <code translate=no>autofocus</code> はいらないだろう。
-        <p>基本的に、画面上同時に 1 つしか存在せず、マウスを外せばすぐ消える。全ての <code translate=no>&lt;a&gt;</code> 要素に対して、あらかじめすべての <code translate=no>&lt;dialog popover&gt;</code> を作っておくのは現実的ではないため、 1 つの <code translate=no>&lt;dialog popover&gt;</code> を使い回し、 Anchor を変えながら再利用することになるだろう。
+        <p>基本的に、画面上同時に 1 つしか存在せず、マウスを外せばすぐ消える。すべての <code translate=no>&lt;a&gt;</code> 要素に対して、あらかじめすべての <code translate=no>&lt;dialog popover&gt;</code> を作っておくのは現実的ではないため、1 つの <code translate=no>&lt;dialog popover&gt;</code> を使い回し、Anchor を変えながら再利用することになるだろう。
       </section>
       <section>
         <h2 id="light-dismiss-dialog"><a href="#light-dismiss-dialog">Light Dismiss Dialog</a></h2>
-        <p>今回は Light Dismiss non-Modal Dialog を実現するために <code translate=no>&lt;dialog popover&gt;</code> を用いたが、ちょうどこれを書いてる中で、 <code translate=no>&lt;dialog&gt;</code> 自体に Light Dismiss 機能を付与する提案の Intents が Chromium から出された。
+        <p>今回は Light Dismiss non-Modal Dialog を実現するために <code translate=no>&lt;dialog popover&gt;</code> を用いたが、ちょうどこれを書いている中で、 <code translate=no>&lt;dialog&gt;</code> 自体に Light Dismiss 機能を付与する提案の Intents が 2Chromium から出された。
         <ul>
           <li>
             Intent to Prototype: Dialog light dismiss
@@ -408,13 +408,13 @@
       </section>
       <section>
         <h2 id="議論途上の仕様と推奨"><a href="#議論途上の仕様と推奨">議論途上の仕様と推奨</a></h2>
-        <p>今回は Tooltip/Toggletip に関する実装の方針を、もう少し具体的に示すつもりで始めたが、特にセマンティクスの付与の仕方については、さまざまな議論があり、結論が出てないのが現状だ。
+        <p>今回は Tooltip/Toggletip に関する実装の方針を、もう少し具体的に示すつもりで始めたが、特にセマンティクスの付与の仕方については、さまざまな議論があり、結論が出ていないのが現状だ。
         <p>もし仮に APG に該当の推奨があれば大いに参考にできるのだが、長いこと議論が止まっており、現在公開されているものも、合意の結果の推奨とは言えないものだ。
-        <p>そして、 APG にパターンを記載するために必要な <code translate=no>role=tooltip</code> などの議論は、 ARIA/HTMLWG/CSSWG/OpenUI と多岐に渡っているため、追うのもなかなか難しい。
+        <p>そして、 APG にパターンを記載するために必要な <code translate=no>role=tooltip</code> などの議論は、 ARIA/HTMLWG/CSSWG/OpenUI と多岐にわたっているため、追うのもなかなか難しい。
         <p>今回、この記事を書くにあたって、議論がどのように依存しているのかを把握する必要があり、グラフにまとめたものが以下だ。
         <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/zvYhQly2JFR6A7fhDyTJCj/Tooltip-Discussion-Dependencies?node-id=0-1&embed-host=share" allowfullscreen></iframe>
         <p>議論は続いているというよりは停滞しており、みんなすでに飽きて <code translate=no>&lt;select&gt;</code> などの次の議論が盛り上がっているように思える。
-        <p>Popover / Dialog 自体も、まだまだ固まってない仕様や提案が残っているため、それらがある程度まとまってから、よりはっきりとした実装手法を示すために、この記事の更新版を出すことにする。よって、今回の DEMO コードは公開しないでおく。
+        <p>Popover / Dialog 自体も、まだまだ固まっていない仕様や提案が残っているため、それらがある程度まとまってから、よりはっきりとした実装手法を示すために、この記事の更新版を出すことにする。よって、今回の DEMO コードは公開しないでおく。
       </section>
     </article>
   </main>
