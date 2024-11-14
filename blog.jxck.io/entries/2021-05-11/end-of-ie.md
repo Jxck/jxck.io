@@ -224,7 +224,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - IE が終了することで使えるようになる API 一覧
 - 2021/06/15: 当社製品・サービスでの Internet Explorer 11 サポート終了について | サイボウズからのお知らせ
   - https://cs.cybozu.co.jp/2021/007430.html
-- 2021/06/15: 2022 年 6 月「Internet Explorer」サポートが終了へ ～ サポートが継続する他のブラウザへの切り替えを ～ IPA 独立行政法人 情報処理推進機構
+- 2021/06/15: 2022 年 6 月「Internet Explorer」サポートが終了へ 〜 サポートが継続する他のブラウザへの切り替えを 〜 IPA 独立行政法人 情報処理推進機構
   - https://www.ipa.go.jp/security/anshin/mgdayori20210615.html
 - 2021/06/23: Internet Explorer サポート終了のお知らせ - Chatwork
   - https://help.chatwork.com/hc/ja/articles/900007012223
