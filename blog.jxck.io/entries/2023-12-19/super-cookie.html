@@ -165,13 +165,13 @@
         <p>まず前提として、ブラウザのどこかに情報を保存でき、それがある程度の期間永続化され、かつ自動的に取得できるようなものであれば、トラッキングに応用が効く。
         <p>そこで目がつけられたのが HSTS (HTTP Strict Transport Security)だ。
         <p>HSTS は、サイトが HTTPS に対応していることをブラウザに知らせ、次からは <code translate=no>http://</code> なリンクで遷移しても自動で <code translate=no>https://</code> にアップグレードさせるものだ。つまりこれは Origin ごとに 1bit の情報を保存しているとみなすことができる。
-        <p>そこで <code translate=no>example.com</code> の下に <code translate=no>sc00.example.com</code> から <code translate=no>sc16.example.com</code> まで 16 個のサブドメインを用意したとする。
+        <p>そこで <code translate=no>example.com</code> の下に <code translate=no>sc00.example.com</code> から <code translate=no>sc15.example.com</code> まで 16 個のサブドメインを用意したとする。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre><code translate=no>sc00.example.com
 sc01.example.com
 sc02.example.com
 ...
-sc16.example.com</code></pre>
+sc15.example.com</code></pre>
         <p>まず、最初にアクセスしたユーザは、この 16 個のドメインを知らないため、全部に <code translate=no>http://</code> で <code translate=no>fetch()</code> しても、どれもアップグレードしない。
         <pre class=js data-code=js><code translate=no class=language-js>domains.forEach(async (domain) =&gt; {
   const res = await fetch(`http://${domain}`)
@@ -189,7 +189,7 @@ Strict-Transport-Security: max-age=31536000</code></pre>
         <p>その問題に対処するのが、前述した Network (State) Partitioning だ。ブラウザの実装によるところはあるが、すでに Partition しているものもある。
         <p>その場合は、あるサイトで HSTS を設定していても、別のサイトでは HSTS 情報が共有されないため、クロスサイトのトラッキングには使用できない。
         <p>また、HSTS はそもそも HTTPS by Default というゴールに向けた過渡的な技術だ。
-        <p>世界中のサイトが HTTPS をデプロイを進めていくため、今後は HTTP に接続すること自体を防いでいくフェーズに入りつつある。
+        <p>世界中のサイトが HTTPS のデプロイを進めていくため、今後は HTTP に接続すること自体を防いでいくフェーズに入りつつある。
         <p>例えば、Chrome は既に <code translate=no>http://</code> なリンクでも、最初から HTTPS で接続する方向に移行しつつある。
         <p>つまり HSTS がブラウザでデフォルトになっていき、HTTP に対応していないサイトに接続する場合は、ユーザにリスクを認識させるために、何らかの操作負荷を加えていくことになるだろう。
       </section>

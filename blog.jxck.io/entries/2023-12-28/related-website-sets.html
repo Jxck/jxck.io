@@ -171,14 +171,14 @@
           <li>google.fr
           <li>etc
         </ul>
-        <p>他にも、例えば用途毎にドメインを分ける運用も一般的だろう。
+        <p>他にも、例えば用途ごとにドメインを分ける運用も一般的だろう。
         <ul>
           <li>google.com
           <li>googleusercontent.com
           <li>fonts.gstatic.com
           <li>etc
         </ul>
-        <p>また、ドメインは全く別だが、同一組織の運営する別ブランドの場合もあるだろう。
+        <p>また、ドメインは全く別だが、同一組織が運営する別ブランドの場合もあるだろう。
         <ul>
           <li>office.com
           <li>live.com
@@ -202,7 +202,7 @@
         </ul>
         <p>これは、「このドメインは、これらのドメインと関連している」という情報を JSON で定義するものである。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
-        <pre class=js data-code=js><code translate=no class=language-js>{
+        <pre class=json data-code=json><code translate=no class=language-json>{
   &quot;primary&quot;: &quot;https://primary.com&quot;,
   &quot;associatedSites&quot;: [&quot;https://associate1.com&quot;, &quot;https://associate2.com&quot;, &quot;https://associate3.com&quot;]
 }</code></pre>
@@ -217,7 +217,7 @@
         </ul>
         <p>Chrome はこれを読み込んで、ドメインの関連を認識するのだ。
         <p>一般に公開されることで、他の実装も使えること、そして衆目に晒すことで監視になることを目的としている。
-        <p>ちょっと前は 2,3 個しかなかったが、流石に少し登録が増えてきたようだ。
+        <p>ちょっと前は 2,3 個しかなかったが、さすがに少し登録が増えてきたようだ。
         <p>もちろん、無尽蔵に登録できるわけではなく、様々な制限はあるが、それでも全く無いよりは良いため、登録が増えているのだろう。
         <p>
           <picture>
@@ -229,9 +229,9 @@
       </section>
       <section>
         <h2 id="storage-access-api"><a href="#storage-access-api">Storage Access API</a></h2>
-        <p>認識されると無制限で Cookie が読めるというわけでは無い(First Party Sets のころはそうだった気がする)。
+        <p>認識されると無制限で Cookie が読めるというわけではない(First Party Sets のころはそうだった気がする)。
         <p>RWS ではどうなるかというと、Storage Access API で prompt が出ずに Cookie を取得できるようになる。
-        <p>もし RWS に対応してないブラウザでも、SAA に対応していれば prompt を経て Cookie が取得できる点で、互換性がある設計とは言えるだろう。
+        <p>もし RWS に対応していないブラウザでも、SAA に対応していれば prompt を経て Cookie が取得できる点で、互換性がある設計とは言えるだろう。
         <p>これで、例えば認証連携のような場合は <code translate=no>&lt;iframe&gt;</code> から SAA を呼ぶことで、ユースケースの継続ができる可能性が増える。
         <p>一方、CDN から画像などを取得するケースでは、SAA が呼べない。そこで、Top Level Window 側で CDN のための SAA を取得するための拡張 API が追加されている。
         <pre class=js data-code=js><code translate=no class=language-js>document.requestStorageAccessFor(&quot;https://cdn.example.com&quot;)</code></pre>

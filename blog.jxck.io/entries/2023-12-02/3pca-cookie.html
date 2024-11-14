@@ -171,7 +171,7 @@ Set-Cookie: deadbeef
 &lt;!doctype html&gt;
 
 ...</code></pre>
-        <p>ブラウザは次に <a href="https://example.com" target=_blank>https://example.com</a> にアクセスするときは、必ずこの <code translate=no>Set-Cookie</code> の値を <code translate=no>Cookie</code> に載せて返す。
+        <p>ブラウザは次に <a href="https://example.com" target=_blank>https://example.com</a> にアクセスするとき、必ずこの <code translate=no>Set-Cookie</code> の値を <code translate=no>Cookie</code> に載せて送信する。
         <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
 Host: example.com
 Accept: text/html
@@ -198,12 +198,12 @@ Host: example.com
 Accept: text/html
 Cookie: 31d4d96e407aad42 # 付与された ID を送ってくる</code></pre>
         <p>これをアクセスしてくるユーザそれぞれに行えば、それぞれを ID で <em>区別</em> することが可能だ。
-        <p>本来 HTTP とは、こうした識別子のようなものを持っておらず、デフォルトでは全員がまったく <em>区別</em> のつかないリクエストを送ってくるような作りになっている。もちろん、誰がアクセスしてきても同じコンテンツを返せばよい &quot;ブログ&quot; や &quot;WiKi&quot; のようなサービスなら良いが、これだけでは実現できないユースケースがある。
-        <p>例えばショッピングカートだ。「商品をカゴに追加する」というリクエストがきても、それをどのカゴに追加したら分からなければ、実装ができない。
+        <p>本来 HTTP とは、こうした識別子のようなものを持っておらず、デフォルトでは全員がまったく <em>区別</em> のつかないリクエストを送ってくるような作りになっている。もちろん、誰がアクセスしてきても同じコンテンツを返せばよい &quot;ブログ&quot; や &quot;Wiki&quot; のようなサービスなら良いが、これだけでは実現できないユースケースがある。
+        <p>例えばショッピングカートだ。「商品をカゴに追加する」というリクエストが来ても、それをどのカゴに追加したらよいかわからなければ、実装ができない。
       </section>
       <section>
         <h2 id="区別と識別"><a href="#区別と識別">区別と識別</a></h2>
-        <p>一意な値を Cookie として付与すれば、ユーザが <em>区別</em> できるが、この時点では <em>識別</em> はしてない。
+        <p>一意な値を Cookie として付与すれば、ユーザが <em>区別</em> できるが、この時点では <em>識別</em> はしていない。
         <p>つまり、誰だかはわからないが ID として <code translate=no>31d4d96e407aad42</code> をとりあえず振っている状態だ。そして「<code translate=no>31d4d96e407aad42</code> は何者なのか?」を知るために行うのが「認証」、つまり「ログイン」となる。
         <p>例えば <code translate=no>31d4d96e407aad42</code> を付与された筆者がログインすることで、<code translate=no>31d4d96e407aad42</code> は Jxck だとわかる。このことから、「ログイン」とは「区別していた ID に対してアカウントを紐づける行為」と言える。
         <p>もちろん、ログインするまで Cookie を付与せず、認証と同時に Cookie を付与することもできるが、それではログインするまでショッピングカートが使えない。最近の EC サービスは、ログインしていなくてもショッピングカートに追加でき、決済直前で認証を挟む実装が多いが、これは先にカートのための <em>区別</em> を行い、あとから <em>識別</em> していることになる。

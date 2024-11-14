@@ -167,7 +167,7 @@
       <section>
         <h2 id="cloaking"><a href="#cloaking">Cloaking</a></h2>
         <p>これが今、トラッカーが最も期待している 3rd Party Cookie の迂回技術だろう。
-        <p>例えば、広告やアナリティクスなどなんらかのトラッカーを 3rd Party として利用している場合は、今後 3rd Party Cookie での連携ができなくなる。
+        <p>例えば、広告やアナリティクスなど何らかのトラッカーを 3rd Party として利用している場合は、今後 3rd Party Cookie での連携ができなくなる。
         <p>そこで、そのトラッカーサービス自体を自分のサブドメインで運用してしまえば、eTLD+1 が同じになり、1st Party で連携できる。つまり <code translate=no>example.com</code> に対して <code translate=no>analytics.example.com</code> にトラッカーをデプロイしてしまえば、両者は SameSite になるといった手法だ。
         <p>しかし、自分でトラッカーになるサービスをデプロイ/メンテするのは負荷が高いため、ドメインを業者に預け、そこにデプロイしてもらう方が運用する側は楽だ。
         <p>ここで用いられるのが Cloaking だ。方法はいくつかある。
@@ -177,7 +177,7 @@
           <p>例えば、ads.example が提供しているトラッカーを、<code translate=no>analytics.example.com</code> にデプロイし、<code translate=no>example.com</code> と SameSite にしたい場合、DNS を以下のように設定する。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre><code translate=no>analytics.example.com.    IN    CNAME    deadbeef.ads.example.</code></pre>
-          <p>CNAME で事業者のレコードを参照すれば、そのサブドメインを事業者が運用できるのだ。このように CNAME を預ける方法を CNAME Cloaking (コート預けるクロークのこと)と言う。
+          <p>CNAME で事業者のレコードを参照すれば、そのサブドメインを事業者が運用できるのだ。このように CNAME を預ける方法を CNAME Cloaking (コートを預けるクロークのこと)と言う。
           <p>これは ITP 迂回の筆頭として問題になったので、Safari ではもちろん対策がされている。CNAME の先を辿って、最終的に 3rd Party だったら付与された Cookie を短命にするといったものだ。
         </section>
         <section>
@@ -200,9 +200,9 @@
       <section>
         <h2 id="cloaking-のリスク"><a href="#cloaking-のリスク">Cloaking のリスク</a></h2>
         <p>ドメインオーナーにとっては、一部であれ自分のドメインの管理を外部に移譲することになる。
-        <p>もし悪質な業者であれば、自社のドメインの上に何か悪質なコンテンツを公開したり、<code translate=no>Domain</code> 属性が指定された正規の Cookie を盗むといったことも、不可能ではない。
+        <p>もし悪質な業者であれば、自社のドメインの上に何か悪質なコンテンツを公開したり、<code translate=no>Domain</code> 属性が指定された正規の Cookie を盗むといったことも不可能ではない。
         <p>Web だけでなく、例えばメールなども含めて、もしそのドメインが悪質なものと判定されれば、そのリスクはサービス全体に及ぶだろう。
-        <p>事業者にドメインを乗っ取られたり、ドメインの価値が毀損されれば、それは 3rd Party Cookie を使えなくなることよりも、大きな損失を生むかもしれない。
+        <p>事業者にドメインを乗っ取られたり、ドメインの価値が毀損されれば、それは 3rd Party Cookie を使えなくなることよりも大きな損失を生むかもしれない。
         <p>いずれにせよ、安易に選ぶべき方法ではないだろう。
       </section>
     </article>

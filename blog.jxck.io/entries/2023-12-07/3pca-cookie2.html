@@ -158,11 +158,11 @@
           </li>
         </ul>
         <p>ここからは第二幕、人類と 3rd Party Cookie の闘いの歴史を見ていく。
-        <p>「歴史の話はいらない、早くコードを見せろ」と思っている読者の気持ちもわかるが、残念ながら背景がわかってないとまともな闘いはできないだろう。
+        <p>「歴史の話はいらない、早くコードを見せろ」と思っている読者の気持ちもわかるが、残念ながら背景がわかっていないとまともな闘いはできないだろう。
       </section>
       <section>
         <h2 id="cookie2"><a href="#cookie2">Cookie2</a></h2>
-        <p>この話は、すでに別のエントリで詳細に書いたが、このアドベントカレンダーに併せて要点のみを抜粋する。
+        <p>この話は、すでに別のエントリで詳細に書いたが、このアドベントカレンダーに合わせて要点のみを抜粋する。
         <ul>
           <li>
             Cookie2 とは何か | blog.jxck.io
@@ -172,21 +172,21 @@
           </li>
         </ul>
         <p>最初に Cookie の仕様が作られたのは実に 1990 年代に遡るが、それを 1997 年に RFC 化したのが RFC 2109 という仕様だった。
-        <p>その頃、つまり 1996 年頃には、Double Click などによるトラッキングの問題が既に上がっており、特にプライバシーについて敏感である EU 圏からのフィードバックは標準化にも影響していた。
+        <p>その頃、つまり 1996 年頃には、DoubleClick などによるトラッキングの問題が既に上がっており、特にプライバシーについて敏感である EU 圏からのフィードバックは標準化にも影響していた。
         <p>今でいう 3rd Party Cookie によるトラッキングは、仕様では &quot;Unverifiable Transaction&quot; (ユーザに認識されていないやり取り)と呼ばれ、ここに「インフォームドコンセント(きちんと説明をし同意をとる)」が要求されていたのだ。
-        <p>それを反映し RFC2109 では「<em>デフォルトで 3rd Party Cookie の送信を禁止</em>」し、ユーザに検証(Verify)する方法を提供するように求めているのだ。
+        <p>それを反映し RFC 2109 では「<em>デフォルトで 3rd Party Cookie の送信を禁止</em>」し、ユーザに検証(Verify)する方法を提供するように求めているのだ。
         <p>加えてこれを実現する仕様として <code translate=no>Comment</code> という属性が導入された。これはブラウザが「この Cookie の用途はこうだ」という UI を表示するような目的があった。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: id=31d4d96e407aad42; Comment=&quot;このクッキーは広告の改善などに用います&quot;</code></pre>
         <p>ここまで読めばわかると思うが、これは今まさしく行われている「Cookie バナーでの同意取得」と全く同じコンセプトだ。今回のテーマである 3rd Party Cookie Deprecation 後に求められている世界が、20 年以上前に既に仕様に盛り込まれていたことがわかる。
         <p>しかし、既存の Cookie ヘッダとの互換性の問題があったため、RFC 2965 では、これらの変更は既存の Cookie と分離して Cookie2 になった。
         <p>ところが、<code translate=no>Set-Cookie2</code> と <code translate=no>Cookie2</code> という新しい仕様をデプロイするインセンティブが、サービスにはなかった。あくまで RFC の仕様だけであり、これを強制する法律がなかったからだ。また、広まるまでは <code translate=no>Set-Cookie</code> / <code translate=no>Cookie</code> も両方サポートする必要があり、旧仕様も動くのなら新仕様に移行するメリットがない。という悪循環で、結局誰にも使われなかった。
-        <p>標準化にブラウザベンダが関わっていなかったことも問題の一つで、その後ブラウザベンダが主導した改訂では、まるっと仕様から消された。今では知っている人もほとんどない。
+        <p>標準化にブラウザベンダが関わっていなかったことも問題の一つで、その後ブラウザベンダが主導した改訂では、まるっと仕様から消された。今では知っている人もほとんどいない。
         <p>また、3rd Party Cookie のブロックも、仕様の中で行われたが、実際のブラウザでは行われなかった。ここには「広告業界からの反発が多くあった」という話もあれば「Web が壊れるからだ」という話もある。立場によって見え方が違うのはいつものことだ。単に「両方とも事実だ」というだけなんだろう。
       </section>
       <section>
         <h2 id="1990-年代からの問題"><a href="#1990-年代からの問題">1990 年代からの問題</a></h2>
-        <p>大事なのは <em>トラッキングの問題は今に始まったことでない</em> ということだ。具体的には 1990 年代まで遡れること、そして、人類はずっと無策で、最近になって大慌てで取り組み出したわけではないことがわかるだろう。
+        <p>大事なのは <em>トラッキングの問題は今に始まったことではない</em> ということだ。具体的には 1990 年代まで遡れること、そして、人類はずっと無策で、最近になって大慌てで取り組み出したわけではないことがわかるだろう。
         <p>また、当時 Cookie2 の仕様策定に従事し、最終的に 3rd Party Cookie を残すという重要な決断をした Lou Montulli は、以下のように書いている。
         <blockquote cite="https://montulli.blogspot.com/2013/05/the-reasoning-behind-web-cookies.html">
           <p>Any company that had the ability to track users across a large section of the web would need to be a large publicly visible company.

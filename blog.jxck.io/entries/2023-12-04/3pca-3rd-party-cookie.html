@@ -198,13 +198,13 @@
 ...
 &lt;title&gt;Shopping Site&lt;/title&gt;
 &lt;script src=&quot;https://ads.example/advertiser.js?interest=water&quot;&gt;&lt;/script&gt;</code></pre>
-        <p>このとき「このユーザは水をみている」といった情報を付与してリクエストすることで、広告ネットワークは「このユーザが誰かは不明だが、水を探している」という事実を把握できる。
+        <p>このとき「このユーザは水を見ている」といった情報を付与してリクエストすることで、広告ネットワークは「このユーザが誰かは不明だが、水を探している」という事実を把握できる。
         <pre class=http data-code=http><code translate=no class=language-http>GET /advertiser.js?interest=water HTTP/1.1
 Host: ads.example</code></pre>
         <p>このレスポンスに「区別するための Cookie」を 3rd Party Cookie として付与する。
         <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
 Content-Type: text/javascript
-Set-Cookie: 31d4d96e407aad42</code></pre>
+Set-Cookie: id=31d4d96e407aad42</code></pre>
         <p>媒体主のページも同様に、広告ネットワークのスクリプトを埋め込んでいる。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;!doctype html&gt;
 ...

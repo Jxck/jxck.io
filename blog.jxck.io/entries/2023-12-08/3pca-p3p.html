@@ -181,44 +181,44 @@ Content-Type: text/html
 Content-Length: 1024
 ...</code></pre>
         <p>そのレスポンスは以下のようなものになる。
-        <pre class=xml data-code=xml><code translate=no class=language-xml> &lt;POLICY name=&quot;sample&quot;
-   discuri=&quot;http://www.example.com/cookiepolicy.html&quot;
-   opturi=&quot;http://www.example.com/opt.html&quot;&gt;
-   &lt;ENTITY&gt;
-     &lt;DATA-GROUP&gt;
-       &lt;DATA ref=&quot;#business.name&quot;&gt;Example, Corp.&lt;/DATA&gt;
-       &lt;DATA ref=&quot;#business.contact-info.online.email&quot;&gt;privacy@example.com&lt;/DATA&gt;
-     &lt;/DATA-GROUP&gt;
-   &lt;/ENTITY&gt;
-   &lt;ACCESS&gt;&lt;none/&gt;&lt;/ACCESS&gt;
-   &lt;DISPUTES-GROUP&gt;
-     &lt;DISPUTES resolution-type=&quot;service&quot;
-      service=&quot;http://www.example.com/privacy.html&quot;
-      short-description=&quot;Please contact our customer service desk with
-                         privacy concerns by emailing privacy@example.com&quot;/&gt;
-   &lt;/DISPUTES-GROUP&gt;
-   &lt;STATEMENT&gt;
-     &lt;PURPOSE&gt;&lt;admin/&gt;&lt;develop/&gt;&lt;pseudo-decision/&gt;&lt;/PURPOSE&gt;
-     &lt;RECIPIENT&gt;&lt;ours/&gt;&lt;/RECIPIENT&gt;
-     &lt;RETENTION&gt;&lt;indefinitely/&gt;&lt;/RETENTION&gt;
-     &lt;DATA-GROUP&gt;
-       &lt;DATA ref=&quot;#dynamic.cookies&quot;&gt;
-         &lt;CATEGORIES&gt;&lt;preference/&gt;&lt;navigation/&gt;&lt;/CATEGORIES&gt;
-       &lt;/DATA&gt;
-     &lt;/DATA-GROUP&gt;
-   &lt;/STATEMENT&gt;
-   &lt;STATEMENT&gt;
-     &lt;PURPOSE&gt;&lt;individual-decision required=&quot;opt-out&quot;/&gt;&lt;/PURPOSE&gt;
-     &lt;RECIPIENT&gt;&lt;ours/&gt;&lt;/RECIPIENT&gt;
-     &lt;RETENTION&gt;&lt;stated-purpose/&gt;&lt;/RETENTION&gt;
-     &lt;DATA-GROUP&gt;
-       &lt;DATA ref=&quot;#user.name.given&quot;/&gt;
-       &lt;DATA ref=&quot;#dynamic.cookies&quot;&gt;
-         &lt;CATEGORIES&gt;&lt;preference/&gt;&lt;uniqueid/&gt;&lt;/CATEGORIES&gt;
-       &lt;/DATA&gt;
-     &lt;/DATA-GROUP&gt;
-   &lt;/STATEMENT&gt;
- &lt;/POLICY&gt;</code></pre>
+        <pre class=xml data-code=xml><code translate=no class=language-xml>&lt;POLICY name=&quot;sample&quot;
+  discuri=&quot;http://www.example.com/cookiepolicy.html&quot;
+  opturi=&quot;http://www.example.com/opt.html&quot;&gt;
+  &lt;ENTITY&gt;
+    &lt;DATA-GROUP&gt;
+      &lt;DATA ref=&quot;#business.name&quot;&gt;Example, Corp.&lt;/DATA&gt;
+      &lt;DATA ref=&quot;#business.contact-info.online.email&quot;&gt;privacy@example.com&lt;/DATA&gt;
+    &lt;/DATA-GROUP&gt;
+  &lt;/ENTITY&gt;
+  &lt;ACCESS&gt;&lt;none/&gt;&lt;/ACCESS&gt;
+  &lt;DISPUTES-GROUP&gt;
+    &lt;DISPUTES resolution-type=&quot;service&quot;
+    service=&quot;http://www.example.com/privacy.html&quot;
+    short-description=&quot;Please contact our customer service desk with
+                        privacy concerns by emailing privacy@example.com&quot;/&gt;
+  &lt;/DISPUTES-GROUP&gt;
+  &lt;STATEMENT&gt;
+    &lt;PURPOSE&gt;&lt;admin/&gt;&lt;develop/&gt;&lt;pseudo-decision/&gt;&lt;/PURPOSE&gt;
+    &lt;RECIPIENT&gt;&lt;ours/&gt;&lt;/RECIPIENT&gt;
+    &lt;RETENTION&gt;&lt;indefinitely/&gt;&lt;/RETENTION&gt;
+    &lt;DATA-GROUP&gt;
+      &lt;DATA ref=&quot;#dynamic.cookies&quot;&gt;
+        &lt;CATEGORIES&gt;&lt;preference/&gt;&lt;navigation/&gt;&lt;/CATEGORIES&gt;
+      &lt;/DATA&gt;
+    &lt;/DATA-GROUP&gt;
+  &lt;/STATEMENT&gt;
+  &lt;STATEMENT&gt;
+    &lt;PURPOSE&gt;&lt;individual-decision required=&quot;opt-out&quot;/&gt;&lt;/PURPOSE&gt;
+    &lt;RECIPIENT&gt;&lt;ours/&gt;&lt;/RECIPIENT&gt;
+    &lt;RETENTION&gt;&lt;stated-purpose/&gt;&lt;/RETENTION&gt;
+    &lt;DATA-GROUP&gt;
+      &lt;DATA ref=&quot;#user.name.given&quot;/&gt;
+      &lt;DATA ref=&quot;#dynamic.cookies&quot;&gt;
+        &lt;CATEGORIES&gt;&lt;preference/&gt;&lt;uniqueid/&gt;&lt;/CATEGORIES&gt;
+      &lt;/DATA&gt;
+    &lt;/DATA-GROUP&gt;
+  &lt;/STATEMENT&gt;
+&lt;/POLICY&gt;</code></pre>
         <p>結果からは、以下のような情報を取得できる。
         <ul>
           <li>
@@ -241,8 +241,8 @@ Content-Length: 1024
           </li>
         </ul>
         <p>そして、これを受け取ったクライアントは、ユーザがあらかじめ細かく設定しておいたポリシーと照らし合わせ、満たされていればそのまま閲覧し、満たされなければ警告を出すというものだ。
-        <p>もちろん、非常に難解かつ長大なので、人間が直接やりとりすることは想定されてない。しかし、このままでは使いづらいので短縮記法が用意されている。
-        <p>短縮記法は Compact Policy (CP)と呼ばれ、短いため直接 HTTP ヘッダに記述できる。前述の例であれば以下だ。
+        <p>もちろん、非常に難解かつ長大なので、人間が直接やりとりすることは想定されていない。しかし、このままでは使いづらいので短縮記法が用意されている。
+        <p>短縮記法は Compact Policy (CP) と呼ばれ、短いため直接 HTTP ヘッダに記述できる。前述の例であれば以下だ。
         <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
 P3P: CP=&quot;NON DSP ADM DEV PSD IVDo OUR IND STP PHY PRE NAV UNI&quot;
 Content-Type: text/html
@@ -252,8 +252,8 @@ Content-Length: 1024
       </section>
       <section>
         <h2 id="ie-での実装"><a href="#ie-での実装">IE での実装</a></h2>
-        <p>そして、この夢のような仕様は実際に IE で実装されて、IE6 はブラウザの設定からこの P3P について、ユーザ側の指定をするための項目があった。
-        <p>これはもう再現方法がないのため、以下のサイトに残っている画像を引用させてもらう。筆者もうっすらしか覚えていない。
+        <p>そして、この夢のような仕様は実際に IE で実装されて、IE6 にはブラウザの設定からこの P3P について、ユーザ側の指定をするための項目があった。
+        <p>これはもう再現方法がないため、以下のサイトに残っている画像を引用させてもらう。筆者もうっすらしか覚えていない。
         <ul>
           <li>
             IE 6 のプライバシー管理機能(1/12) - ＠IT
@@ -291,7 +291,7 @@ Content-Length: 1024
           <picture>
             <source type=image/avif srcset=ie6privacy030.avif?240212_235833>
             <source type=image/webp srcset=ie6privacy030.webp?240313_215035>
-            <img loading=lazy decoding=async src=ie6privacy030.png?240212_235833 alt="プライバシ管理機能により、Cookieが制限されたときに表示されるダイアログ" width=444 height=181>
+            <img loading=lazy decoding=async src=ie6privacy030.png?240212_235833 alt="プライバシー管理機能により、Cookieが制限されたときに表示されるダイアログ" width=444 height=181>
           </picture>
         </p>
         <p>思わずインターネット古参会歓喜な内容になってしまった。こうした記事もきちんと維持してくれている @IT には感謝したい。
@@ -299,8 +299,8 @@ Content-Length: 1024
       <section>
         <h2 id="p3p-の実態"><a href="#p3p-の実態">P3P の実態</a></h2>
         <p>結論から言えば、P3P も全くと言って良いほど普及しなかった。
-        <p>まず、仕様が難しいためデプロイが困難なのは言うまでもない。しかし、なによりユーザが理解するのも難しかった。そして、「これによって本当にどれだけ意図したプライバシーの保護が実現するのか」と多くの人が懐疑的だった。その上、やはり当時はまだこれをサポートさせるための法律も特になかったため、積極的に手を出す企業も少なかった。
-        <p>ところが IE は、「P3P を返してなかったら、ポリシーが確認できないため、どう使われてるかわからないから 3rd Party Cookie は全部無効にする」という強力な制限をデフォルトにしていた。
+        <p>まず、仕様が難しいためデプロイが困難なのは言うまでもない。しかし、何よりユーザが理解するのも難しかった。そして、「これによって本当にどれだけ意図したプライバシーの保護が実現するのか」と多くの人が懐疑的だった。その上、やはり当時はまだこれをサポートさせるための法律も特になかったため、積極的に手を出す企業も少なかった。
+        <p>ところが IE は、「P3P を返していなかったら、ポリシーが確認できないため、どう使われているかわからないから 3rd Party Cookie は全部無効にする」という強力な制限をデフォルトにしていた。
         <p>これは 2000 年初頭の時点で、3rd Party Cookie をデフォルトで無効にしているブラウザが既にあったことを意味する。
         <p>今からは想像できないかもしれないが、当時の IE といえばトップシェアだ。無視することなどできない。それでも P3P が普及しなかったのは、IE が CP を解釈できなかった場合に、フォールバックとして 3rd Party Cookie の許可側に倒していた点が大きい。
         <p>要するに、何かしら CP を送っておけば、3rd Party Cookie は使えたのだ。「P3P というコンセプト」は普及しなかったが、「形骸化した P3P ヘッダ」は、3rd Party Cookie を IE でも使いたいサービスには、広く普及していた。
@@ -320,7 +320,7 @@ Content-Length: 1024
             </ul>
           </li>
         </ul>
-        <p>後に、MS は「Google が P3P をきちんと守ってない」と非難したところ、Google からは「P3P をいまだにやろうとしているのは MS だけだ」と反撃するといった一幕もあった。
+        <p>後に、MS は「Google が P3P をきちんと守っていない」と非難したところ、Google からは「P3P をいまだにやろうとしているのは MS だけだ」と反撃するといった一幕もあった。
         <ul>
           <li>
             今度は Google がマイクロソフトに反論「P3P は時代遅れ」 | RBB TODAY
@@ -338,7 +338,7 @@ Content-Length: 1024
             </ul>
           </li>
         </ul>
-        <p>XML 全盛の時代とはいえ、少し見ただけでも普及は難しそうな仕様だということがわかるだろう。では、もっと簡単な仕様だったら上手くいっただろうか?
+        <p>XML 全盛の時代とはいえ、少し見ただけでも普及は難しそうな仕様だということがわかるだろう。では、もっと簡単な仕様だったらうまくいっただろうか?
         <p>ここまで言えば、感のいい人は気づくかもしれない。そう、次回はそのヘッダの話をする。
       </section>
     </article>

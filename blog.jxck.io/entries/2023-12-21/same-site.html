@@ -204,11 +204,11 @@ Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
           <p>たとえば <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> で以下のような Set-Cookie を返した場合、この Cookie は厳密(Strict)に SameSite に制限される。つまり <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> とそのサブドメインにしか送られないという指定になるのだ。
           <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; SameSite=Strict</code></pre>
           <p>逆を言うと、別サイト、つまり 3rd Party には送られないため、この属性がついていることは、「この Cookie は 3rd Party Cookie ではない」というラベルにもなる。
-          <p>この <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> がどこか別のサイト(つまり Cross Site)に <code translate=no>&lt;iframe&gt;</code> で埋め込まれた場合、この Cookie は <a href="https://example.co.jp/" target=_blank>https://example.co.jp/</a> には送られないということだ。
+          <p>この <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> がどこか別のサイト(つまり Cross Site)に <code translate=no>&lt;iframe&gt;</code> で埋め込まれた場合、この Cookie は <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> には送られないということだ。
         </section>
         <section>
           <h3 id="samesitelax"><a href="#samesitelax">SameSite=Lax</a></h3>
-          <p>ところが、これはあまりにも厳密であり、この Cookie は例えば <a href="https://example.com/" target=_blank>https://example.com/</a> という Cross Site からの「画面遷移」でも送られない。もし <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> にログイン済みでも、<a href="https://example.com/" target=_blank>https://example.com/</a> 上のリンクをクリックして遷移してたら、Cookie が送られないためログイン済みにならない。といったことが起こってしまうのだ。
+          <p>ところが、これはあまりにも厳密であり、この Cookie は例えば <a href="https://example.com/" target=_blank>https://example.com/</a> という Cross Site からの「画面遷移」でも送られない。もし <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> にログイン済みでも、<a href="https://example.com/" target=_blank>https://example.com/</a> 上のリンクをクリックして遷移していたら、Cookie が送られないためログイン済みにならない、といったことが起こってしまうのだ。
           <p>これは流石に制限が強すぎるため、緩和策として画面遷移(Top Level Navigation)だけは、例外的に Cookie を送るようにするための緩和仕様が <code translate=no>Lax</code> だ。
           <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; SameSite=Lax</code></pre>
           <p>これで、<code translate=no>&lt;iframe&gt;</code> などの埋め込みでは送られないが、画面遷移の場合は送られ、認証済みの状態が維持できるようになる。
@@ -217,14 +217,14 @@ Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
           <h3 id="samesitenone"><a href="#samesitenone">SameSite=None</a></h3>
           <p>逆に、これらの制限を外し、Cross Site にも送れるようにする属性が <code translate=no>None</code> だ。
           <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; SameSite=None</code></pre>
-          <p>Cross Site にも送ると言うことは、これは 3rd Party Cookie として使えるということだ。
+          <p>Cross Site にも送るということは、これは 3rd Party Cookie として使えるということだ。
           <p>つまり、<code translate=no>SameSite=None</code> は「<em>これは 3rd Party Cookie だと明示的に示すマーカー</em>」とみなすことができる。
         </section>
       </section>
       <section>
         <h2 id="lax-by-default"><a href="#lax-by-default">Lax by Default</a></h2>
         <p>Chrome は、3rd Party Cookie Deprecation の計画を発表した時に、まず Cookie のデフォルトを <code translate=no>Lax</code> にするという変更を行った。
-        <p>画面遷移では送られるため、ログインセッションは維持できる。しかし、3rd Party Cookie としては送られない。という非常に重要な破壊的変更だ。
+        <p>画面遷移では送られるため、ログインセッションは維持できる。しかし、3rd Party Cookie としては送られない、という非常に重要な破壊的変更だ。
         <p>この変更により 3rd Party Cookie がブロックされ、さまざまなユースケースが壊れる。ワークアラウンドとして、3rd Party Cookie に依存している場合は、明示的に <code translate=no>SameSite=None</code> を付与する必要が出たのだ。
         <p>結果、世界中の広告プラットフォームや、認証連携や、SNS のボタンなどで用いられるあらゆる 3rd Party Cookie には、<code translate=no>SameSite=None</code> が付けられた。(対応が難しい場合は、サービスで使っている Cookie を全てにとりあえず <code translate=no>SameSite=None</code> を付与するといった対応もあった。)
         <p>しかし、いずれにせよこの作業を経て「<em>世界中の 3rd Party Cookie が可視化された</em>」ことになる。
@@ -235,7 +235,7 @@ Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
         <h2 id="csrf-の緩和"><a href="#csrf-の緩和">CSRF の緩和</a></h2>
         <p><code translate=no>SameSite=Lax</code> がデフォルトになるメリットは、3rd Party Cookie の可視化だけではない。
         <p>CSRF 攻撃は、もともと Cross Site に Cookie が送られることを利用していたため、これも <code translate=no>SameSite=Lax</code> がデフォルトになることで、かなりのケースで攻撃が成立しなくなる。
-        <p>しかしこれを理由に、従来の対策方法だった CSRF token ベースの防御が不要になるかと言うと、セキュリティ専門家は懐疑的であるか否定している。OWASP にはその理由が書いてある。
+        <p>しかし、これを理由に従来の対策方法だった CSRF token ベースの防御が不要になるかというと、セキュリティ専門家は懐疑的であるか否定している。OWASP にはその理由が書いてある。
         <blockquote cite="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html">
           <p>SameSite Cookie Attribute can be used for session cookies but be careful to NOT set a cookie specifically for a domain.
           <p>This action introduces a security vulnerability because all subdomains of that domain will share the cookie,
@@ -262,24 +262,25 @@ Set-Cookie: __Host-session_write=facefeed; Secure; HttpOnly; Path=/; SameSite=St
   if ([&quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;].includes(method)) {
     const cookie = req.cookies[&quot;session_write&quot;]
     // 無ければエラー
-    if (cookie === null) return res.send(400)
+    if (cookie === null) return res.sendStatus(400)
     // あれば値を Storage に確認
     if (checkCookie(cookie)) return next()
     // 値がおかしければエラー
-    return res.send(400)
+    return res.sendStatus(400)
   }
 
   // GET は Read Cookie を要求
   if (method === &quot;GET&quot;) {
+    const cookie = req.cookies[&quot;session_read&quot;];
     // 無ければエラー
-    if (cookie === null) return res.send(400)
+    if (cookie === null) return res.sendStatus(400)
     // あれば値を Storage に確認
     if (checkCookie(cookie)) return next()
     // 値がおかしければエラー
-    return res.send(400)
+    return res.sendStatus(400)
   }
 
-  return res.send(405)
+  return res.sendStatus(405)
 })</code></pre>
         <p>リファクタリングとしては多少難易度が高いが、この分離が可能であれば、ついでに Cookie Prefix の付与や、ミドルウェアでの Sec-Fetch 系のチェックなども入れられると、より堅牢な実装ができるだろう。
         <p>Read/Write 分離の運用は、GitHub が既に行っているため参考になる。

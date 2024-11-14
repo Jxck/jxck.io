@@ -184,7 +184,7 @@
               </ul>
             </li>
           </ul>
-          <p>簡単に言えばブラウザに対して IDP に対するログインの処理を委譲できる。もしログイン済みでなければ IDP のログイン画面を表示し、そこからログインができる。(画像は Google のドキュメントから引用)
+          <p>簡単に言えば、ブラウザに対して IDP に対するログインの処理を委譲できる。もしログイン済みでなければ、IDP のログイン画面を表示し、そこからログインができる。(画像は Google のドキュメントから引用)
           <p>
             <picture>
               <source type=image/avif srcset=fedcm-login-popup.avif?240212_235833>
@@ -218,7 +218,7 @@ const { token } = credential
 console.log({ token })</code></pre>
           <p>この API を呼び出すと、ブラウザは裏で IDP にリクエストを送信し、必要な情報を収集する。そのため、IDP 側は FedCM のための <code translate=no>/.well-known</code> エンドポイントなどを追加する必要がある。
           <p>既存の実装の上に FedCM とのダンスのための口を追加するような対応が必要になるだろう。
-          <p>まだ <code translate=no>chrome://fedcm-internals</code> が無いため、ブラウザが裏側で行なっている処理が見えにくく、エラーでハマるとデバッグが面倒だ。
+          <p>まだ <code translate=no>chrome://fedcm-internals</code> が無いため、ブラウザが裏側で行っている処理が見えにくく、エラーでハマるとデバッグが面倒だ。
         </section>
         <section>
           <h3 id="iframe-からの呼び出し"><a href="#iframe-からの呼び出し">iframe からの呼び出し</a></h3>
@@ -226,13 +226,13 @@ console.log({ token })</code></pre>
           <pre class=html data-code=html><code translate=no class=language-html>&lt;iframe src=&quot;https://embedded.example&quot; allow=&quot;identity-credentials-get&quot;&gt;&lt;/iframe&gt;</code></pre>
           <p>これは、例えば YouTube を埋め込んでいるがログイン済みにならず、課金しているのに広告が出てしまうといったケースをカバーできる可能性がある。
           <p>つまり、認証を繋ぐだけであれば、SAA や CHIPS に頼らずともユースケースを実現できる可能性がありそうだ。
-          <p>ただ、これがどこまでどういった制限をもっているのかは、正直まだ筆者にもあまりわかっておらず、実際に使っているケースもまだ見てないため、今後検証したい。
+          <p>ただ、これがどこまでどういった制限を持っているのかは、正直まだ筆者にもあまりわかっておらず、実際に使っているケースもまだ見ていないため、今後検証したい。
         </section>
       </section>
       <section>
         <h2 id="standard-position"><a href="#standard-position">Standard Position</a></h2>
         <p>認証連携というユースケースがポジティブに捉えられているため、各ブラウザのポジションも悪くない。
-        <p>まず Mozilla は Positive だ。
+        <p>まず、Mozilla は Positive だ。
         <ul>
           <li>
             Mozilla: Positive
@@ -242,10 +242,10 @@ console.log({ token })</code></pre>
           </li>
         </ul>
         <p>コメントは珍しく長いので引用は割愛する。
-        <p>次に Webkit だが、まだポジションは決まっていない。FedCM に関する複数のポジションリクエストはあるが、態度を保留している。
+        <p>次に WebKit だが、まだポジションは決まっていない。FedCM に関する複数のポジションリクエストはあるが、態度を保留している。
         <ul>
           <li>
-            Webkit: N/A
+            WebKit: N/A
             <ul>
               <li><a href="https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+fedcm" target=_blank>https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+fedcm</a>
             </ul>

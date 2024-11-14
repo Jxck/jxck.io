@@ -164,14 +164,14 @@
       </section>
       <section>
         <h2 id="bounce-tracking"><a href="#bounce-tracking">Bounce Tracking</a></h2>
-        <p>例として、X でポスト中のリンクをクリックすると、<code translate=no>t.co</code> というドメインに一旦遷移し、そこでリダイレクトしてから目的の URL に遷移する作りになってる。
+        <p>例として、X でポスト中のリンクをクリックすると、<code translate=no>t.co</code> というドメインに一旦遷移し、そこでリダイレクトしてから目的の URL に遷移する作りになっている。
         <p>このように、「一旦リダイレクトを挟む」のは、X からすれば、<code translate=no>t.co</code> のログを見ることで、誰がどのポストを見て、どのサイトに離脱していったかを知ることができるというのは、なんとなくわかるだろう。
-        <p>ところで、一瞬であっても <code translate=no>t.co</code> に遷移していれば、それが Top Level Domain になる。つまり、そこで保存/取得する Cookie は 1st Party Cookie だ。たとえそのリンクをクリックしたユーザが X にログインしてなかったとしても、<code translate=no>t.co</code> の Cookie でトラッキングが可能ということになる。
+        <p>ところで、一瞬であっても <code translate=no>t.co</code> に遷移していれば、それが Top Level Domain になる。つまり、そこで保存/取得する Cookie は 1st Party Cookie だ。たとえそのリンクをクリックしたユーザが X にログインしていなかったとしても、<code translate=no>t.co</code> の Cookie でトラッキングが可能ということになる。
         <p>例えば、X 上に投稿された <code translate=no>https://example.com</code> が、<code translate=no>https://t.co/deadbeef</code> に置き換えられていたとしよう。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- X 上のポストのリンク --&gt;
 &lt;a href=&quot;https://t.co/deadbeef&quot;&gt;example.com&lt;/a&gt;</code></pre>
-        <p>この t.co へのリクエストは t.co の Cookie が付与される。つまり、過去に同様に t.co を経由していれば、その Cookie が送られるのだ。実際の挙動をみてみると以下のような Cookie が付与されている。
+        <p>この t.co へのリクエストは t.co の Cookie が付与される。つまり、過去に同様に t.co を経由していれば、その Cookie が送られるのだ。実際の挙動を見てみると以下のような Cookie が付与されている。
         <pre class=http data-code=http><code translate=no class=language-http>GET /deadbeef HTTP/1.1
 Cookie: muc=54832623-...; muc_ads=548045683-...</code></pre>
         <p>このレスポンスで Cookie を更新しつつリダイレクトしている。
@@ -216,8 +216,8 @@ Set-Cookie: muc_ads=9f928101-...; Path=/; Domain=t.co; Secure; SameSite=None ...
       </section>
       <section>
         <h2 id="link-decoration"><a href="#link-decoration">Link Decoration</a></h2>
-        <p>Facebook 内のリンクで外のサイトにいくと、遷移した先の URL に <code translate=no>fbclid=xxxxxxxxxxxxx...</code> というクエリが URL に付与されていることに気づくだろう。
-        <p>このように、プラットフォームからの遷移に URL クエリを付与することによって、その先に対応してる JS (Facebook のボタンなど) があれば、クエリを取得しサイトの 1st Party Cookie として保存することで、トラッキングに使うという手法だ。
+        <p>Facebook 内のリンクで外のサイトに行くと、遷移した先の URL に <code translate=no>fbclid=xxxxxxxxxxxxx...</code> というクエリが URL に付与されていることに気づくだろう。
+        <p>このように、プラットフォームからの遷移に URL クエリを付与することによって、その先に対応している JS (Facebook のボタンなど) があれば、クエリを取得しサイトの 1st Party Cookie として保存することで、トラッキングに使うという手法だ。
         <pre class=js data-code=js><code translate=no class=language-js>// 遷移先の JS
 const url = new URL(location.href)
 const fbclid = url.searchParams.get(&quot;fbclid&quot;)
@@ -228,14 +228,14 @@ if (fbclid) {
         <p>この手法を <em>Link Decoration</em> と言う。
         <p>Google なら gclid、Yahoo なら yclid といった名前でこうした ID を付与することが多く、Google や Yahoo の提供するスクリプトを埋め込んでいるサイトが多ければ多いほど、この ID が広く共有されることになる。
         <p>Link Decoration は Bounce Tracking と組み合わせて使われることも多い。
-        <p>例えば、複数のトラッカーでタライ回しのようにリダイレクトを繰り返しながら、各トラッカーが 1st Party Cookie を元にそのユーザについて知っている属性情報を集約しながらクエリに追加していく。
+        <p>例えば、複数のトラッカーでたらい回しのようにリダイレクトを繰り返しながら、各トラッカーが 1st Party Cookie を元にそのユーザについて知っている属性情報を集約しながらクエリに追加していく。
         <p>最後に、その結果を集約した ID を JS で Cookie に保存すれば、トラッキングの精度を寄ってたかって高めることができるのだ。
-        <p>瞬時にリダイレクトをたくさん繰り返すようなサービスは、こうしたことを裏で行なっている場合が多い。
+        <p>瞬時にリダイレクトをたくさん繰り返すようなサービスは、こうしたことを裏で行っている場合が多い。
       </section>
       <section>
         <h2 id="link-decoration-の制限"><a href="#link-decoration-の制限">Link Decoration の制限</a></h2>
         <p>ITP では「JS (document.cookie) で保存された Cookie は 1st Party であっても短期間で消える」という変更を入れたことで、すでに塞がれている。
-        <p>また、Decoration に使われるクエリの ID は既知のものが多いため、トラッカー判定されている ID は、送ってること自体がトラッカーの判定に使われたり、ブラウザによって削除してしまうといった話もある。(このあたりは現状どうなのか把握してない)
+        <p>また、Decoration に使われるクエリの ID は既知のものが多いため、トラッカー判定されている ID は、送っていること自体がトラッカーの判定に使われたり、ブラウザによって削除されてしまうといった話もある。(このあたりは現状どうなのか把握していない)
       </section>
       <section>
         <h2 id="制限の問題"><a href="#制限の問題">制限の問題</a></h2>
@@ -245,7 +245,7 @@ if (fbclid) {
         <p>実際どのくらい壊れるのかは、ブラウザの課している制限によって変わるが、もし壊れていることがわかったら、気にすべき点は以下だ。
         <p>まず、IDP のページをリダイレクトで通り過ぎるのではなく、ユーザに表示する。そこに「このアカウントで続行する」といったボタンなどの UI を置いて、それをユーザにクリックさせることで IDP 上でジェスチャーを発生させるといった対応が考えられる。
         <p>次に、IDP -&gt; RP への遷移でも、Token を JS ではなくサーバで受け取り、サーバからの <code translate=no>Set-Cookie</code> で認証情報を保存する(もしくは、Session に紐づける)といった実装にする。
-        <p>そして、認証連携などのユースケースを持つドメインは、ドメイン自体がトラッカー判定されないように、同じドメインの他の部分でトラッキングをしてないかに注意しておくといいだろう。
+        <p>そして、認証連携などのユースケースを持つドメインは、ドメイン自体がトラッカー判定されないように、同じドメインの他の部分でトラッキングをしていないかに注意しておくといいだろう。
       </section>
     </article>
   </main>
