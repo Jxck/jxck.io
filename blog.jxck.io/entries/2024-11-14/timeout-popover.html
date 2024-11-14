@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-11-14/timeout-popover.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?今回 Popover の一連を調べる中であった、これが WCAG 違反だという議論を紹介する。">
+  <meta name=keywords            content="dialog,popover">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-11-14/timeout-popover.html>
+  <meta property=og:title        content="Dialog と Popover #12 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?今回 Popover の一連を調べる中であった、これが WCAG 違反だという議論を紹介する。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Dialog と Popover #12 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-11-14T08:00:00+08:00",
+    "dateModified": "2024-11-14T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?今回 Popover の一連を調べる中であった、これが WCAG 違反だという議論を紹介する。"
+  }
+  </script>
+
+  <title>Dialog と Popover #12 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-11-14>2024-11-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-14>2024-11-14</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#dialog">dialog</a>
+              <li><a href="/tags#popover">popover</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#toast-の-timeout">Toast の Timeout</a>
+              <li><a href="#timeout-と-wcag">Timeout と WCAG</a>
+              <li><a href="#実世界の-toast-実装">実世界の <code translate=no>&lt;toast&gt;</code> 実装</a>
+              <li><a href="#ドキュメントの更新">ドキュメントの更新</a>
+              <li><a href="#toast-を実装する場合"><code translate=no>&lt;toast&gt;</code> を実装する場合</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">Dialog と Popover #12</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?
+        <p>今回 Popover の一連を調べる中であった、これが WCAG 違反だという議論を紹介する。
+      </section>
+      <section>
+        <h2 id="toast-の-timeout"><a href="#toast-の-timeout">Toast の Timeout</a></h2>
+        <p>そもそも Toast といえば、「時間が経てば勝手に消える」というのを込みにしたイメージがないだろうか?
+        <p>Popover の仕様の源流ともなった OpenUI による <code translate=no>&lt;toast&gt;</code> の提案でも、調査の結果多くの実装がそうなっているという点が挙げられている。
+        <blockquote cite="https://open-ui.org/components/toast.research/">
+          <p>Toasts are often displayed in the corner of app UI, and often disappear on a timeout.
+          <p>
+          </p>
+          <p>Toast とは通常、画面の端に表示され、通常時間が経つと勝手に消える。
+          <p>&mdash; <cite><a href="https://open-ui.org/components/toast.research/" target=_blank>https://open-ui.org/components/toast.research/</a></cite>
+        </blockquote>
+        <p>筆者も、 Toast とはそういうもので、 Popover で Toast を実装する際も <code translate=no>setTimeout()</code> で <code translate=no>hidePopover()</code> する実装が普通に行われるだろうと思っていた。
+        <p>なんなら、 HTML の Popover の仕様にも、 <code translate=no>setTimeout()</code> で <code translate=no>hidePopover()</code> するサンプルコードが載っていた。
+        <ul>
+          <li>
+            6.12 The popover attribute
+            <ul>
+              <li><a href="https://html.spec.whatwg.org/multipage/popover.html#the-popover-attribute" target=_blank>https://html.spec.whatwg.org/multipage/popover.html#the-popover-attribute</a>
+            </ul>
+          </li>
+        </ul>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;button id=submit&gt;Submit&lt;/button&gt;
+&lt;p&gt;&lt;output&gt;&lt;span popover=manual&gt;&lt;/span&gt;&lt;/output&gt;&lt;/p&gt;
+
+&lt;script&gt;
+ const sBtn = document.getElementById(&quot;submit&quot;);
+ const outSpan = document.querySelector(&quot;output [popover=manual]&quot;);
+ let successMessage;
+ let errorMessage;
+
+ /* define logic for determining success of action
+  and determining the appropriate success or error
+  messages to use */
+
+ sBtn.addEventListener(&quot;click&quot;, ()=&gt; {
+  if ( success ) {
+   outSpan.textContent = successMessage;
+  }
+  else {
+   outSpan.textContent = errorMessage;
+  }
+  outSpan.showPopover();
+
+  setTimeout(function () {
+   outSpan.hidePopover();
+  }, 10000);
+ });
+&lt;/script&gt;</code></pre>
+        <p>Popover の API を見ているなかで、これを明示的に行う API について議論していた際に、「そもそもタイムアウトすべきではない」という Toast の Explainer を真っ向から否定する意見にあった。
+        <ul>
+          <li>
+            Add AbortSignal for popover.showPopover() for initialize internal CloseWatcher · Issue #10428 · whatwg/html
+            <ul>
+              <li><a href="https://github.com/whatwg/html/issues/10428" target=_blank>https://github.com/whatwg/html/issues/10428</a>
+            </ul>
+          </li>
+        </ul>
+        <p>問題は、そこでコメントされた興味深い解釈だ。
+      </section>
+      <section>
+        <h2 id="timeout-と-wcag"><a href="#timeout-と-wcag">Timeout と WCAG</a></h2>
+        <p>このスレッドの中で、「そもそも時間が経ったら消える UI は WCAG 違反だ」というコメントを、Keith Cirkel から受けた。
+        <ul>
+          <li>
+            Add AbortSignal for popover.showPopover() for initialize internal CloseWatcher · Issue #10428 · whatwg/html
+            <ul>
+              <li><a href="https://github.com/whatwg/html/issues/10428#issuecomment-2186642041" target=_blank>https://github.com/whatwg/html/issues/10428#issuecomment-2186642041</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Keith が、引用しているのは以下だ。
+        <ul>
+          <li>
+            G5: Allowing users to complete an activity without any time limit | WAI | W3C
+            <ul>
+              <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G5.html" target=_blank>https://www.w3.org/WAI/WCAG22/Techniques/general/G5.html</a>
+            </ul>
+          </li>
+        </ul>
+        <blockquote cite="https://www.w3.org/WAI/WCAG22/Techniques/general/G5.html">
+          <p>The objective of this technique is to provide users with all the time they need to complete an activity.
+          <p>This technique involves providing a specified activity which does not require timed interaction.
+          <p>Users are allowed as much time as they need to interact with the activity.
+          <p>&mdash; <cite><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G5.html" target=_blank>https://www.w3.org/WAI/WCAG22/Techniques/general/G5.html</a></cite>
+        </blockquote>
+        <p>WCAG のこの推奨は「ユーザにアクティビティを求めるような UI は、タスクの完了までに制限時間を設けるべきではない」といった趣旨のものだ。例に上がっているのは、 Web での「試験」や「ゲーム」や「オークション」といったものに対して、タスクの完了に時間がかかるようなユーザでも、タスクを完了できるようにという意図を含んでいる。
+        <p>今回の連載の文脈で言えば、例えば <code translate=no>&lt;dialog&gt;</code> はそもそもユーザに何か操作を求めるためにあるため、その <code translate=no>close()</code> を <code translate=no>setTimeout()</code> で呼ぶといった実装は避けるべきで、仮に素早くタスクを進められない状態のユーザでも、十分にタスクを完了できるように配慮すべきといった趣旨のものだ。
+        <p>一方、勝手に消える <code translate=no>&lt;toast&gt;</code> が多いのは、必ずしもユーザに「アクティビティを求めてない」という暗黙の性質があり、 OpenUI の調査の結果でも実世界の <code translate=no>&lt;toast&gt;</code> はそのように使われることが多く、そのため時間が経ったら消える実装が多用されていると考えられる。それどころか、明示的な「閉じる」 UI を持たない <code translate=no>&lt;toast&gt;</code> ものもあるのではないだろうか? 主に通知に使われる <code translate=no>&lt;toast&gt;</code> が溜まって積み上がっていくのを防ぐ理由もあるだろう。別に数秒とかではなく、分単位のタイムアウトなどによる配慮をもった実装もあるように思う。
+        <p>もちろん、 OS の通知などもデフォルトでは時間と共に消え、明示的に消すまでは残すようなオプションを設定するといったものもあるだろう。
+        <p>しかし、 Keith の指摘ではタイムアウトする <code translate=no>&lt;toast&gt;</code> はこの推奨に違反するという判断らしい。
+        <blockquote cite="https://github.com/whatwg/html/issues/10428#issuecomment-2186785118">
+          <p>Any interaction that is timed fails the criterion. A <code translate=no>&lt;toast&gt;</code> which pops up a temporal message fails the criterion.
+          <p>&mdash; <cite><a href="https://github.com/whatwg/html/issues/10428#issuecomment-2186785118" target=_blank>https://github.com/whatwg/html/issues/10428#issuecomment-2186785118</a></cite>
+        </blockquote>
+        <p>じゃあそもそも OpenUI の Explainer はなんだったんだ? という気持ちもするが、それはあくまでリアルワールドの実装を踏まえた Draft であり、議論を経たものではないため、一旦置いておこう。
+        <p>Keith の解釈は、推奨の言う「activity」は、表示されたコンポーネントがボタンクリックやフォームの入力等、明示的な操作を要求してない場合、つまりメッセージの表示だけであっても適用されるということになる。
+        <p>「確認」も「Activity」だという解釈はわからなくもないが、実世界の <code translate=no>&lt;toast&gt;</code> 実装はそうなってないところを考えると、 Keith 独自の解釈なのか一般的に適用すべき解釈なのか判断が難しくもある。
+        <p>「閉じた通知を確認できる UI」を提供する方が、「明示的に閉じてない通知」が溜まっていくよりも良い場合もあるだろうし、通知を残すかどうかをいちいちユーザに設定させるにしても、デフォルトは考えないといけないだろう。
+      </section>
+      <section>
+        <h2 id="実世界の-toast-実装"><a href="#実世界の-toast-実装">実世界の <code translate=no>&lt;toast&gt;</code> 実装</a></h2>
+        <p>UI Component Library 系で <code translate=no>&lt;toast&gt;</code> 的な Component を提供している実装が、どのようなデフォルトになっているかを調べてみた。
+        <ul>
+          <li><a href="https://ant.design/components/notification" target=_blank>Ant Design</a>: 4.5s で消える
+          <li><a href="https://boosted.orange.com/docs/5.3/components/toasts/#methods" target=_blank>Boosted</a>: 5s で消える
+          <li><a href="https://getbootstrap.com/docs/5.3/components/toasts/#options" target=_blank>Bootstrap</a>: 5s で消える
+          <li><a href="https://carbondesignsystem.com/components/notification/usage/" target=_blank>Carbon</a>: 消えない
+          <li><a href="https://spectrum.adobe.com/page/toast/" target=_blank>Spectrum</a>: 消えない
+          <li><a href="https://react-spectrum.adobe.com/react-aria/useToast.html" target=_blank>React Aria</a>: 消えない
+        </ul>
+        <p>なお、デフォルトでは消えないものも、自動で消える(auto-dismiss)機能を提供しているものがほとんどだ。
+      </section>
+      <section>
+        <h2 id="ドキュメントの更新"><a href="#ドキュメントの更新">ドキュメントの更新</a></h2>
+        <p>彼の指摘がありながら、 HTML や MDN には <code translate=no>setTimeout()</code> で <code translate=no>hidePopover()</code> するサンプルコードが当たり前のように書かれている。
+        <p>とりあえずこれを消す PR を出した。
+        <ul>
+          <li>
+            remove usecases of popover with timeout by Jxck · Pull Request #34795 · mdn/content
+            <ul>
+              <li><a href="https://github.com/mdn/content/pull/34795" target=_blank>https://github.com/mdn/content/pull/34795</a>
+            </ul>
+          </li>
+          <li>
+            hidePopover with button click not timeout by Jxck · Pull Request #10469 · whatwg/html
+            <ul>
+              <li><a href="https://github.com/whatwg/html/pull/10469" target=_blank>https://github.com/whatwg/html/pull/10469</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今のところ、 PR に対して意見や議論はない。
+      </section>
+      <section>
+        <h2 id="toast-を実装する場合"><a href="#toast-を実装する場合"><code translate=no>&lt;toast&gt;</code> を実装する場合</a></h2>
+        <p>単に「タイムアウトをなくす」で済めば良いが、実際にはそう簡単とも限らない。
+        <p>明示的に消す必要があるということは、消さない限りは積み上がり続ける。発生の頻度が高ければ画面が埋まっていく。 OS のようにそれを集約して小さくしたり、その中身をさらに個々に確認できる様な UI が必要になるが、単なる <code translate=no>&lt;toast&gt;</code> コンポーネントが、そこまでの機能を持っている場合は多くないだろう。
+        <p>これまで自動で消えていたものに対して、特に問題を感じていなかったユーザにとっては、「勝手に消えてくれなくなった」と思うかもしれない。すると、自動で消えるようなオプションを提供するべきか、という話になり、その実装は設定画面などにも及ぶだろう。
+        <p>数秒は短いということを意識し、数分などの比較的長い時間を設定している実装はどうするべきか。
+        <p>時間ではなく、他のイベントをフックして消える場合、それが短時間だったらどうするべきか。イベントが発生しても最低 N 秒は残すべき、とする場合、適切な N はいくつか。
+        <p>考えることは多くある。
+        <p>あくまで今回議論する中で一人から得たフィードバックではあるが、現状 Popover や Dialog を利用して <code translate=no>&lt;toast&gt;</code> 相当を実装したり、すでに実装を持っている場合は、この議論を参考にしてみて欲しい。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
