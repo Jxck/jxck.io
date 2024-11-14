@@ -71,12 +71,12 @@ Set-Cookie: session_id=deadbeef; SameSite=Strict
 
 逆を言うと、別サイト、つまり 3rd Party には送られないため、この属性がついていることは、「この Cookie は 3rd Party Cookie ではない」というラベルにもなる。
 
-この https://example.co.jp がどこか別のサイト(つまり Cross Site)に `<iframe>` で埋め込まれた場合、この Cookie は https://example.co.jp/ には送られないということだ。
+この https://example.co.jp がどこか別のサイト(つまり Cross Site)に `<iframe>` で埋め込まれた場合、この Cookie は https://example.co.jp には送られないということだ。
 
 
 ### SameSite=Lax
 
-ところが、これはあまりにも厳密であり、この Cookie は例えば https://example.com/ という Cross Site からの「画面遷移」でも送られない。もし https://example.co.jp にログイン済みでも、https://example.com/ 上のリンクをクリックして遷移してたら、Cookie が送られないためログイン済みにならない。といったことが起こってしまうのだ。
+ところが、これはあまりにも厳密であり、この Cookie は例えば https://example.com/ という Cross Site からの「画面遷移」でも送られない。もし https://example.co.jp にログイン済みでも、https://example.com/ 上のリンクをクリックして遷移していたら、Cookie が送られないためログイン済みにならない、といったことが起こってしまうのだ。
 
 これは流石に制限が強すぎるため、緩和策として画面遷移(Top Level Navigation)だけは、例外的に Cookie を送るようにするための緩和仕様が `Lax` だ。
 
@@ -95,7 +95,7 @@ Set-Cookie: session_id=deadbeef; SameSite=Lax
 Set-Cookie: session_id=deadbeef; SameSite=None
 ```
 
-Cross Site にも送ると言うことは、これは 3rd Party Cookie として使えるということだ。
+Cross Site にも送るということは、これは 3rd Party Cookie として使えるということだ。
 
 つまり、`SameSite=None` は「*これは 3rd Party Cookie だと明示的に示すマーカー*」とみなすことができる。
 
@@ -104,7 +104,7 @@ Cross Site にも送ると言うことは、これは 3rd Party Cookie として
 
 Chrome は、3rd Party Cookie Deprecation の計画を発表した時に、まず Cookie のデフォルトを `Lax` にするという変更を行った。
 
-画面遷移では送られるため、ログインセッションは維持できる。しかし、3rd Party Cookie としては送られない。という非常に重要な破壊的変更だ。
+画面遷移では送られるため、ログインセッションは維持できる。しかし、3rd Party Cookie としては送られない、という非常に重要な破壊的変更だ。
 
 この変更により 3rd Party Cookie がブロックされ、さまざまなユースケースが壊れる。ワークアラウンドとして、3rd Party Cookie に依存している場合は、明示的に `SameSite=None` を付与する必要が出たのだ。
 
@@ -123,7 +123,7 @@ Chrome は、3rd Party Cookie Deprecation の計画を発表した時に、ま�
 
 CSRF 攻撃は、もともと Cross Site に Cookie が送られることを利用していたため、これも `SameSite=Lax` がデフォルトになることで、かなりのケースで攻撃が成立しなくなる。
 
-しかしこれを理由に、従来の対策方法だった CSRF token ベースの防御が不要になるかと言うと、セキュリティ専門家は懐疑的であるか否定している。OWASP にはその理由が書いてある。
+しかし、これを理由に従来の対策方法だった CSRF token ベースの防御が不要になるかというと、セキュリティ専門家は懐疑的であるか否定している。OWASP にはその理由が書いてある。
 
 > SameSite Cookie Attribute can be used for session cookies but be careful to NOT set a cookie specifically for a domain.
 > This action introduces a security vulnerability because all subdomains of that domain will share the cookie,
@@ -162,24 +162,25 @@ app.use((req, res, next) => {
   if (["POST", "PUT", "DELETE"].includes(method)) {
     const cookie = req.cookies["session_write"]
     // 無ければエラー
-    if (cookie === null) return res.send(400)
+    if (cookie === null) return res.sendStatus(400)
     // あれば値を Storage に確認
     if (checkCookie(cookie)) return next()
     // 値がおかしければエラー
-    return res.send(400)
+    return res.sendStatus(400)
   }
 
   // GET は Read Cookie を要求
   if (method === "GET") {
+    const cookie = req.cookies["session_read"];
     // 無ければエラー
-    if (cookie === null) return res.send(400)
+    if (cookie === null) return res.sendStatus(400)
     // あれば値を Storage に確認
     if (checkCookie(cookie)) return next()
     // 値がおかしければエラー
-    return res.send(400)
+    return res.sendStatus(400)
   }
 
-  return res.send(405)
+  return res.sendStatus(405)
 })
 ```
 

@@ -43,14 +43,14 @@ Host: shop.example
 Cookie: id=31d4d96e407aad42
 ```
 
-これを毎回自動で行うため、しばらくアクセスしてなくても、またアクセスすればログイン済み状態になっている。
+これを毎回自動で行うため、しばらくアクセスしていなくても、またアクセスすればログイン済み状態になっている。
 
 これは、サービス側が付与した Cookie を削除するか、ブラウザから Cookie が消えるまで、基本的には続く。
 
 
-## 直接アクセスしてなくても送る
+## 直接アクセスしていなくても送る
 
-さて、先ほど shop.example で Cookie を取得したブラウザが、EC サイトとはまったく関係ない筆者のブログにアクセスしたところを考えてみよう。
+さて、先ほど shop.example で Cookie を取得したブラウザが、EC サイトとはまったく関係ない筆者のブログにアクセスした場合を考えてみよう。
 
 URL は https://blog.jxck.io とする。
 
@@ -88,8 +88,8 @@ Cookie: id=31d4d96e407aad42 # NOTICE!
 
 ```html
 <script src=https://shop.example/js/script.js></script>
-<link rel=stylesheet href=https://shop.example/css/style.css />
-<img src=https://shop.example/img/image.png></img>
+<link rel=stylesheet href=https://shop.example/css/style.css>
+<img src=https://shop.example/img/image.png>
 <iframe src=https://shop.example/iframe/frame.html></iframe>
 ```
 

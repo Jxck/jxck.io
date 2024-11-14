@@ -40,7 +40,7 @@ Accept-Encoding: gz, br
 
 そこで、HTTP/1.1 の仕様に一緒くたになっていた「送りたい情報」を HTTP/1.1 特有の「送るフォーマット」から引き剥がし、独立させたのが RFC 9110 HTTP Semantics だ。
 
-HTTP/1.1, HTTP/2, HTTP/3 の各仕様は、HTTP Semantics を参照し、それぞれの「送るフォーマット」だけを定義することになった。これが RFC9112, 9113, 9114 だ。
+HTTP/1.1, HTTP/2, HTTP/3 の各仕様は、HTTP Semantics を参照し、それぞれの「送るフォーマット」だけを定義することになった。これが RFC 9112, 9113, 9114 だ。
 
 その過程で、1 つの大きなトピックで括れる Caching をさらに Semantics から引き剥がしたのが RFC 9111 となる。
 

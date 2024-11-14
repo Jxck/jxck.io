@@ -42,11 +42,11 @@ Caption: 複合主キーの Cookie Storage
 
 例えば、LocalStorage や IndexedDB などのストレージも同様に、`<iframe>` 間で共有されるとトラッキングに使用される可能性がある。
 
-また HTTP の Cache もそうだ。Cache がヒットするということは、一度訪れたことがあるという事実を 1bit の情報で示すため、この微小な情報を集積することでトラッキング制度を高めることもできてしまう。
+また、HTTP の Cache もそうだ。Cache がヒットするということは、一度訪れたことがあるという事実を 1bit の情報で示すため、この微小な情報を集積することでトラッキング精度を高めることもできてしまう。
 
 したがって、基本的にはあらゆる Storage (情報を保存できる場所)は Partitioning されるべきであり、最近ではブラウザのさまざまな場面で Partitioning に関する議論が進んでいる。
 
-HTTP Cache の Partitioning は *Network State Partitioning* や *Cache Partitioning* などと呼ばれ、だいたいのブラウザが似たような実装を進めてる。
+HTTP Cache の Partitioning は *Network State Partitioning* や *Cache Partitioning* などと呼ばれ、だいたいのブラウザが似たような実装を進めている。
 
 Cookie 含めた LocalStorage や IndexedDB その他もろもろは、*Storage Partitioning* と呼ばれ、この辺はブラウザによって微妙に異なる実装になっている。
 
@@ -55,7 +55,7 @@ Cookie 含めた LocalStorage や IndexedDB その他もろもろは、*Storage 
 
 様々な場所で Partitioning が行われているが、特に Cookie の Partitioning は他よりも難しい。
 
-例えば、SSO の IDP でログインし RP のサイトに遷移した場合、key が変わるため認証が切れてしまい、再度ログインする必要がでてしまう。Cache が分かれていても壊れるわけではないが、SSO の仕組みによっては IDP から RP に戻った時に Cookie が切れ、再度 IDP に飛ばされるといったループに入り、最悪ログインできない状態が続く可能性もある。
+例えば、SSO の IDP でログインし RP のサイトに遷移した場合、Key が変わるため認証が切れてしまい、再度ログインする必要が出てしまう。Cache が分かれていても壊れるわけではないが、SSO の仕組みによっては IDP から RP に戻った時に Cookie が切れ、再度 IDP に飛ばされるといったループに入り、最悪ログインできない状態が続く可能性もある。
 
 Safari は ITP の初期バージョンで、トラッカーと判定されたサイトの Cookie を Partitioning する方式を採用していた。しかし、壊れてしまうサイトが多かったため、諦めて元に戻した経緯がある。
 
@@ -91,7 +91,7 @@ async function storage_access() {
 
 1 つ目は、Safari が ITP の最初でやっていたように「ユーザインタラクション」があるかを調べる方法だ。
 
-トラッキングを目的として、隠し `<iframe>` などに埋め込まれたリソースには、一般的にユーザは何も操作をしない。しかし、もしそれが埋め込まれたログインページ、動画、SNS ボタンなどであれば、ユーザはクリックやスクロールなど、なんらかの操作をするだろう。
+トラッキングを目的として、隠し `<iframe>` などに埋め込まれたリソースには、一般的にユーザは何も操作をしない。しかし、もしそれが埋め込まれたログインページ、動画、SNS ボタンなどであれば、ユーザはクリックやスクロールなど、何らかの操作をするだろう。
 
 こうした操作を「ユーザジェスチャ」と呼び、ジェスチャがある状態は「ユーザインタラクションがある」とみなされる。この場合は、対象はトラッカーではなく正規のユースケースとして Cookie を必要としているため、ブラウザはアクセスを許可できるわけだ。
 
@@ -129,7 +129,7 @@ Set-Cookie: session_id=deadbeef; Secure; SameSite=None; Partitioned;
 
 `SameSite=None` がついているから、そもそもこれは 3rd Party Cookie だということがわかる。つまり、これは今後デフォルトでブロックされる。
 
-ここに合わせて `Partitioned` を付与すると、Partition された 3rd Party Cookie にアクセスできるように制限を弱めることができるのだ。
+ここに合わせて `Partitioned` を付与すると、Partitioning された 3rd Party Cookie にアクセスできるように制限を弱めることができるのだ。
 
 暗黙的に分割して壊れるよりも、明示的にオプトインする方が、開発者としては対応がしやすく、移行パスも明確になる。この仕様は Firefox も Safari も概ね同意しており、おそらくどちらも最終的には暗黙的な Partitioning をやめ、デフォルトブロック + CHIPS or SAA になると思われる。
 

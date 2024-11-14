@@ -31,7 +31,7 @@
 
 ### Private Click Measurement
 
-最初に提案したのは Safari だ。これは ITP の途中で「トラッキングはいいとしても、計測できないのはこまる」という前述したようなフィードバックをもとに出された。
+最初に提案したのは Safari だ。これは ITP の途中で「トラッキングはいいとしても、計測できないのは困る」という前述したようなフィードバックをもとに出された。
 
 最初は Ad Click Attribution という名前で、後に Private Click Measurement という名前に変わっている。
 
@@ -43,7 +43,7 @@
 
 この API は、「広告のクリックと、それによってつながった購買を、ブラウザ上で紐づける」というものだ。
 
-紐づいた結果はレポートとしてサーバに送られるが、すぐに送るとサーバ側でタイミングをみて紐付けができてしまうため、結果をブラウザ上に溜めて、24h ~ 48h の間でランダムにレポートされる。
+紐づいた結果はレポートとしてサーバに送られるが、すぐに送るとサーバ側でタイミングを見て紐付けができてしまうため、結果をブラウザ上に溜めて、24h ~ 48h の間でランダムにレポートされる。
 
 しかし、この API はプライバシーに強く配慮した結果、広告側が 8bit で購買側が 4bit しか情報を紐づけられない。
 
@@ -53,7 +53,7 @@
 
 結果、かなり狭いケースしかサポートできない API であるため、広告プロバイダは CNAME Cloaking などを使って 1st Party Cookie で行う方法を ITP 対策として出しているのが現実のようだ。
 
-確かにプライバシーに敏感で ITP をやるような Safari だからこそ、制限がきついのはうなづける。しかし、筆者にとって意外だったのは「**それでも計測ユースケースには別の API を出した**」という点だ。
+確かにプライバシーに敏感で ITP をやるような Safari だからこそ、制限がきついのはうなずける。しかし、筆者にとって意外だったのは「**それでも計測ユースケースには別の API を出した**」という点だ。
 
 それだけ「計測」はポジティブなユースケースであるとみなされており、3rd Party Cookie なき後も必要性を認めているということだろう。
 
@@ -67,7 +67,7 @@ Privacy Sandbox Family の一環として Google が発表したのが Conversio
 - WICG/attribution-reporting-api: Attribution Reporting API
   - https://github.com/WICG/attribution-reporting-api/tree/main
 
-Safari との違いは、広告のクリック(Click Through Conversion)だけでなく表示(View Through Conversion)もサポートしている点だ。
+Safari との違いは、広告のクリック (Click Through Conversion) だけでなく表示 (View Through Conversion) もサポートしている点だ。
 
 Click は `<a>` に、View は `<img>` に属性を仕込むことになる。
 
@@ -83,7 +83,7 @@ ID も 64bit とかなり大きく、広告一つ一つを識別できるため�
 
 表示やクリックの情報がブラウザに溜まり、遅延をかけて送られるのは Safari と同じだ。ただし、送り先は 3rd Party も指定できる。
 
-また、より詳細なデータを集計結果として必要とするユースケースのために、Private Aggregation API (Summary Report とも言われる)という追加の仕様も提案されている。
+また、より詳細なデータを集計結果として必要とするユースケースのために、Private Aggregation API (Summary Report とも言われる) という追加の仕様も提案されている。
 
 集計は広告プロバイダに依頼するために、ブラウザから情報が送られるが、暗号化され広告プロバイダには中身が読めない。
 
@@ -94,25 +94,25 @@ Safari に比べればかなり色々とできる API であることはわか�
 
 ### Interoperable Private Attribution
 
-最後が Meta が Mozilla と組んで取り組んでいると発表した Interoperable Private Attribution だ。
+最後に、Meta が Mozilla と組んで取り組んでいると発表した Interoperable Private Attribution についてだ。
 
 - ipa/IPA-End-to-End.md at main · patcg-individual-drafts/ipa
   - https://github.com/patcg-individual-drafts/ipa/blob/main/IPA-End-to-End.md
 
-特徴はサーバ側での計算に、複数サーバが分散で処理する MPC (Multi Party Computation) モデルを用いてる点だ。複数の参加者がセグメントに分割したデータを暗号化して共有し、特定の組織がユーザのトラッキングをできないようにするものだ。
+特徴は、サーバ側での計算に複数サーバが分散で処理する MPC (Multi-Party Computation) モデルを用いている点だ。複数の参加者がセグメントに分割したデータを暗号化して共有し、特定の組織がユーザのトラッキングをできないようにするものだ。
 
-これがホストされている GitHub の PATCG とは W3C の Private Advertising Technology Community Group のことで、その名の通りプライバシーに配慮した広告 API を策定するためのグループだ。
+これがホストされている GitHub の PATCG とは、W3C の Private Advertising Technology Community Group のことで、その名の通りプライバシーに配慮した広告 API を策定するためのグループだ。
 
 ここでは近年、TEE よりも MPC を利用する流れがあるように感じる。
 
-これは Chrome の提案するような TEE を GCP にデプロイして Google が Aggregation を利用したとして、信用できるのか? という問題へのアンチテーゼなんだろうというのが筆者の理解だ。
+これは、Chrome が提案するような TEE を GCP にデプロイして Google が Aggregation を利用したとして、信用できるのか? という問題へのアンチテーゼなのだろうというのが筆者の理解だ。
 
 
 ### Private Ad Measurement
 
-今年 Safari が、追加で提案してきた仕様だ。
+今年、Safari が追加で提案してきた仕様だ。
 
-Private Click Measurement にはなかった、Aggrigation Report 相当のものを追加する仕様だ。
+Private Click Measurement にはなかった、Aggregation Report 相当のものを追加する仕様だ。
 
 これも TEE ではなく MPC を用いている。
 
@@ -126,12 +126,12 @@ Private Click Measurement にはなかった、Aggrigation Report 相当のも�
 
 Standard Position で言えば、もちろんそれぞれが API を提案しているため、ポジションとしては「自分が提案している API 以外は Negative」というのが回答になるだろう。
 
-しかし、どのベンダーも「広告の効果測定」というユースケース自体には、ポジティブであるという一定の合意があることが、見て取れると思う。
+しかし、どのベンダも「広告の効果測定」というユースケース自体には、ポジティブであるという一定の合意があることが、見て取れると思う。
 
-とはいえ、それぞれの仕様がバラバラであるため、全てのブラウザの違いを吸収した製品を出すといったことは、広告プロバイダにとってはかなり難しい課題になりそうだ。
+とはいえ、それぞれの仕様がバラバラであるため、すべてのブラウザの違いを吸収した製品を出すといったことは、広告プロバイダにとってはかなり難しい課題になりそうだ。
 
 どの程度これらの API が使われるのか、それによって既存の広告ビジネスの要件がどの程度満たされるのかは、現時点ではよくわからない。
 
 本来広告はトラッキングが前提ではないはずだ。コンテキスト/純広告を出すために、コンテンツの質に注力するメディアが存続するためにも、この分野の発展は重要だろう。
 
-どこに行ってもコンプレックス広告が出たり、とにかく全画面で出してクリックを誘ったり、全てのメディアが課金前提になって検索しても何も辿り着けない Web になることを避けるためにも、測定だけはうまく着地してほしいとは思う。
+どこに行ってもコンプレックス広告が出たり、とにかく全画面で出してクリックを誘ったり、すべてのメディアが課金前提になって検索しても何も辿り着けない Web になることを避けるためにも、測定だけはうまく着地してほしいとは思う。

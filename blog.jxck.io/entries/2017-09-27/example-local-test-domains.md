@@ -55,10 +55,10 @@ HTTPS が前提の昨今、こうして先手を打って HSTS を TLD 以下に
 
 以上のことを踏まえれば、将来に渡って取得されないことが保証され、こうした用途に使えるメインがあるのが望ましい。
 
-そこで RFC6761 (was RFC2606) には、*予約済みドメイン* としていくつかのドメインとその用途が記されている。
+そこで RFC 6761 (was RFC 2606) には、*予約済みドメイン* としていくつかのドメインとその用途が記されている。
 
-- [RFC6761 Special-Use Domain Names](https://tools.ietf.org/html/rfc6761)
-- [RFC2606 Reserved Top Level DNS Names](https://tools.ietf.org/html/rfc2606)
+- [RFC 6761 Special-Use Domain Names](https://tools.ietf.org/html/rfc6761)
+- [RFC 2606 Reserved Top Level DNS Names](https://tools.ietf.org/html/rfc2606)
 
 用途を守れば、そのドメインを所有していなくても、安心して使うことができるのだ。
 
@@ -142,7 +142,7 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 
 ## その他テスト用ドメイン
 
-RFC6761 の他にもこうした用途のドメインはいくつかある。
+RFC 6761 の他にもこうした用途のドメインはいくつかある。
 
 中でも `.テスト` や `ドメイン名例.jp` などは、ASCII だけでなく日本語ドメイン(punycode)も検証対象としたい場合などに使えるだろう。
 

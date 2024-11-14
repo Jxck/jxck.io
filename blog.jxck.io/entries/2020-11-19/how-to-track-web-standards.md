@@ -185,7 +185,7 @@ IETF, W3C/WHATWG, TC39 それぞれの見方の概要について解説してい
 
 ### RFC
 
-例えば WebSocket の場合で見てみよう。WebSocket は既に RFC になっており RFC6455 がそれにあたる。
+例えば WebSocket の場合で見てみよう。WebSocket は既に RFC になっており RFC 6455 がそれにあたる。
 
 - https://tools.ietf.org/html/rfc6455
 
@@ -201,17 +201,17 @@ RFC が出ていればそれを読めば良い。が、読み始める前にか�
   - 基本は最新版を見ればよい。
 - Updated by
   - Obsolete ではないが、部分的に改定したものや、拡張の RFC があることを示す。
-  - RFC6455 WebSocket の場合は、RFC8443 Bootstrapping WebSockets with HTTP/2 などが Update している。
+  - RFC 6455 WebSocket の場合は、RFC 8443 Bootstrapping WebSockets with HTTP/2 などが Update している。
   - 必ずしも Update 先を見るとは限らない。
 
-![RFC6455](RFC6455.png#748x324 "RFC6455")
+![RFC 6455](RFC6455.png#748x324 "RFC 6455")
 
 また、ヘッダ部分 `[draft-...]` のリンクをクリックすると過去のドラフトを見ることができる。新しい技術を調査するのであれば、まだ RFC は出ていないと思われるため、ドラフトの見方も確認しておこう。
 
 
 ### WG Draft
 
-RFC6455 の 1 つ前のドラフトは以下だ。
+RFC 6455 の 1 つ前のドラフトは以下だ。
 
 ![draft-ietf-hybi-thewebsocketprotocol-17](hybi-thewebsocketprotocol.png#748x379 "draft-ietf-hybi-thewebsocketprotocol-17")
 

@@ -11,7 +11,7 @@ IETF が策定する HTTP の仕様が更新されようとしている。
 
 ## Cache と Status Code
 
-RFC7234 では、新しいステータスコードを策定する際に、キャッシュに関して以下のように書かれている。
+RFC 7234 では、新しいステータスコードを策定する際に、キャッシュに関して以下のように書かれている。
 
 > The definition of a new status code ought to specify whether or not it is cacheable.
 > Note that all status codes can be cached if the response they occur in has explicit freshness information;

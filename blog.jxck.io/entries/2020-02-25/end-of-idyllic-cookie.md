@@ -63,7 +63,7 @@ HTTPS Everywhere が必要なことも、HttpOnly や Secure 属性が必要な�
 
 ### SSO
 
-実装は色々あるが典型例としては、あるサイト a.example.com と b.example.jp で Single Sign On を実現したい場合、共通の認証基盤として auth.example を用意する。全て違うドメインだ。
+実装は色々あるが典型例としては、あるサイト a.example.com と b.example.jp で Single Sign-On を実現したい場合、共通の認証基盤として auth.example を用意する。全て違うドメインだ。
 
 a.example.com にアクセスした場合、一度 auth.example にリダイレクトすることで、ログインフォームでログインさせ Cookie を付与する。さらにワンタイムトークンなどをクエリストリングに付けてリダイレクトバックしてやれば、a.example.com は auth.example に裏で確認することでログイン済みとみなすことができる。
 
@@ -239,7 +239,7 @@ Cookie の挙動を制限すると言っても、どの Cookie がどういっ�
 
 そこで、「その Cookie が何のユースケースで使われているかわからないなら、機械学習で推測して、トラッキングに使われていそうなやつだけブロックすれば、より正確にユーザを守ることができるのでは」という発想で実装されたのが Safari の [ITP(Intelligent Tracking Prevention)](https://webkit.org/blog/7675/intelligent-tracking-prevention/) だ。
 
-実際にどういった機械学習が行われているかはブラックボックスであり、そのために Single Sign On が壊れたりといったこともあるが、ある意味「ユースケースをターゲットにしてブロックする」仕様であると言える。
+実際にどういった機械学習が行われているかはブラックボックスであり、そのために Single Sign-On が壊れたりといったこともあるが、ある意味「ユースケースをターゲットにしてブロックする」仕様であると言える。
 
 これに追従するようにして、Firefox は [Enhanced Tracking Prevention](https://support.mozilla.org/ja/kb/enhanced-tracking-protection-firefox-desktop) を、new Edge は、[Tracking Prevention](https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/) がデフォルトで有効になっており、それぞれやり方は多少違うかもしれないが、3rdPC がブロックされている。ITP のような機械学習というよりは、ブロックリストなどを中心とした実装になっているようだ。
 

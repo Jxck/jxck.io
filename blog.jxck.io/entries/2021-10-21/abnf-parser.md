@@ -276,7 +276,7 @@ const list_member = alt([
 
 代表例としては URL の仕様は、IETF の RFC と WHATWG それぞれに仕様がある。
 
-- [RFC3986 - IETF](https://datatracker.ietf.org/doc/html/rfc3986)
+- [RFC 3986 - IETF](https://datatracker.ietf.org/doc/html/rfc3986)
 - [URL Standard - WHATWG](https://url.spec.whatwg.org/)
 
 RFC の方は URL のフォーマットが ABNF で書かれているが、WHATWG はパースのアルゴリズムが書かれている。前者は、実装方法に制限が無いが、WHATWG は実装のアルゴリズムが基本的にはどの言語でも同じになる。

@@ -20,14 +20,14 @@ Super Cookie は、最初筆者も非常に驚いた、トラッカーの執念�
 
 HSTS は、サイトが HTTPS に対応していることをブラウザに知らせ、次からは `http://` なリンクで遷移しても自動で `https://` にアップグレードさせるものだ。つまりこれは Origin ごとに 1bit の情報を保存しているとみなすことができる。
 
-そこで `example.com` の下に `sc00.example.com` から `sc16.example.com` まで 16 個のサブドメインを用意したとする。
+そこで `example.com` の下に `sc00.example.com` から `sc15.example.com` まで 16 個のサブドメインを用意したとする。
 
 ```
 sc00.example.com
 sc01.example.com
 sc02.example.com
 ...
-sc16.example.com
+sc15.example.com
 ```
 
 まず、最初にアクセスしたユーザは、この 16 個のドメインを知らないため、全部に `http://` で `fetch()` しても、どれもアップグレードしない。
@@ -61,7 +61,7 @@ Super Cookie の利点は、HSTS 情報がブラウザにグローバルに保�
 
 また、HSTS はそもそも HTTPS by Default というゴールに向けた過渡的な技術だ。
 
-世界中のサイトが HTTPS をデプロイを進めていくため、今後は HTTP に接続すること自体を防いでいくフェーズに入りつつある。
+世界中のサイトが HTTPS のデプロイを進めていくため、今後は HTTP に接続すること自体を防いでいくフェーズに入りつつある。
 
 例えば、Chrome は既に `http://` なリンクでも、最初から HTTPS で接続する方向に移行しつつある。
 

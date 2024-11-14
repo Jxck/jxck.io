@@ -30,7 +30,7 @@
 - fedidcg/FedCM: A privacy preserving identity exchange Web API
   - https://github.com/fedidcg/FedCM
 
-簡単に言えばブラウザに対して IDP に対するログインの処理を委譲できる。もしログイン済みでなければ IDP のログイン画面を表示し、そこからログインができる。(画像は Google のドキュメントから引用)
+簡単に言えば、ブラウザに対して IDP に対するログインの処理を委譲できる。もしログイン済みでなければ、IDP のログイン画面を表示し、そこからログインができる。(画像は Google のドキュメントから引用)
 
 ![fedcm-login-popup](fedcm-login-popup.png#650x419)
 
@@ -61,7 +61,7 @@ console.log({ token })
 
 既存の実装の上に FedCM とのダンスのための口を追加するような対応が必要になるだろう。
 
-まだ `chrome://fedcm-internals` が無いため、ブラウザが裏側で行なっている処理が見えにくく、エラーでハマるとデバッグが面倒だ。
+まだ `chrome://fedcm-internals` が無いため、ブラウザが裏側で行っている処理が見えにくく、エラーでハマるとデバッグが面倒だ。
 
 
 ### iframe からの呼び出し
@@ -76,23 +76,23 @@ FedCM は `<iframe>` の中からも呼び出すことができる。
 
 つまり、認証を繋ぐだけであれば、SAA や CHIPS に頼らずともユースケースを実現できる可能性がありそうだ。
 
-ただ、これがどこまでどういった制限をもっているのかは、正直まだ筆者にもあまりわかっておらず、実際に使っているケースもまだ見てないため、今後検証したい。
+ただ、これがどこまでどういった制限を持っているのかは、正直まだ筆者にもあまりわかっておらず、実際に使っているケースもまだ見ていないため、今後検証したい。
 
 
 ## Standard Position
 
 認証連携というユースケースがポジティブに捉えられているため、各ブラウザのポジションも悪くない。
 
-まず Mozilla は Positive だ。
+まず、Mozilla は Positive だ。
 
 - Mozilla: Positive
   - https://mozilla.github.io/standards-positions/#fedcm
 
 コメントは珍しく長いので引用は割愛する。
 
-次に Webkit だが、まだポジションは決まっていない。FedCM に関する複数のポジションリクエストはあるが、態度を保留している。
+次に WebKit だが、まだポジションは決まっていない。FedCM に関する複数のポジションリクエストはあるが、態度を保留している。
 
-- Webkit: N/A
+- WebKit: N/A
   - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+fedcm
 
 ただ、Standard Position が webkit-dev で問い合わせられていた頃は、Positive な返事があった。

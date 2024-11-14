@@ -48,7 +48,7 @@ WHATWG では、MIME Sniffing の仕様にこのリストがある。
 - https://mimesniff.spec.whatwg.org/#javascript-mime-type
 
 
-## RFC4329  Scripting Media Types
+## RFC 4329  Scripting Media Types
 
 このような乱立を踏まえ、2006 年に ECMAScript / JavaScript の MIME Type に対する Informational な RFC が公開された。
 

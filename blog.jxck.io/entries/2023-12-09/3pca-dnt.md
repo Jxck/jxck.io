@@ -7,7 +7,7 @@
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
 
-今回は、P3P の後に提案され、非常に似たコンセプトかつ最近まで使われていた DNT について解説する。
+今回は、P3P の後に提案され、非常に似たコンセプトで、かつ最近まで使われていた DNT について解説する。
 
 
 ## Do Not Track List
@@ -16,25 +16,25 @@
 
 1. オプトアウトを示す Cookie を保存し、それを送られた広告ネットワークはトラッキングしない
 2. トラッキングしている業者のリストを作り、それをブラウザなどに読み込んで設定する
-3. ユーザの意図をなんらかの方法で表明する(ブラウザからオプトアウトを示す HTTP ヘッダーなどを送るか、ダイアログで同意をとるなど)。
+3. ユーザの意図を何らかの方法で表明する(ブラウザからオプトアウトを示す HTTP ヘッダなどを送るか、ダイアログで同意を取るなど)。
 
 実際に行われていたのが 1 だったが、ユーザは納得していなかった。
 
-そんな中怒ったユーザは、アメリカの FTC (連邦取引委員会) に「*Do Not Track リストの作成*」を要求する苦情を出したのだ。
+そんな中、怒ったユーザは、アメリカの FTC (連邦取引委員会) に「*Do Not Track リストの作成*」を要求する苦情を出したのだ。
 
 もともと、アメリカでは電話セールスをする業者は番号を届ける必要があり、その番号リストを電話だかに設定すると電話セールスを全てお断りできるという仕組みがあった。これは "Do Not Call リスト" と呼ばれていた。"Do Not Track リスト" は、そのドメイン版を作るように求めているのだ。つまり 2 番の方式だ。
 
-とはいえ、いきなり全トラッキング業者をリストにするのは難しいため、FTC からは「ポリシーの整備」を要求するようなパブコメを出すに一旦は止まり、それに合わせて各社が Privacy Policy を整理した。これを受けて FTC が 2009 年に最終レポートを出したあたりで、この Do Not Track リストの話は下火になった。
+とはいえ、いきなり全トラッキング業者をリストにするのは難しいため、FTC からは「ポリシーの整備」を要求するようなパブコメを出すに一旦はとどまり、それに合わせて各社が Privacy Policy を整理した。これを受けて FTC が 2009 年に最終レポートを出したあたりで、この Do Not Track リストの話は下火になった。
 
 
 ## オプトアウト拡張
 
-2009 年に Google は DoubleClick のオプトアウト Cookie を永続化する "Google's Advertising Cookie Opt Out Plugin" という拡張をリリースした。
+2009 年に Google は、DoubleClick のオプトアウト Cookie を永続化する「Google's Advertising Cookie Opt Out Plugin」という拡張をリリースした。
 
 - Google Analytics Opt-out Browser Add-on Download Page
   - https://tools.google.com/dlpage/gaoptout?hl=en
 
-これに触発されたセキュリティエンジニアの Christopher Soghoian は、他の広告事業者のオプトアウト Cookie を追加した拡張機能を TACO(Targeted Advertising Cookie Opt-Out project)としてリリースした。
+これに触発されたセキュリティエンジニアの Christopher Soghoian は、他の広告事業者のオプトアウト Cookie を追加した拡張機能を TACO (Targeted Advertising Cookie Opt-Out project) としてリリースした。
 
 - slight paranoia: The History of the Do Not Track Header
   - http://paranoia.dubfire.net/2011/01/history-of-do-not-track-header.html
@@ -85,7 +85,7 @@ X-Do-Not-Track: 1
 - Microsoft to Add 'Tracking Protection' to Web Browser
   - https://www.wsj.com/articles/SB10001424052748703296604576005542201534546
 
- FTC は MS を賞賛したが、デフォルトはオフで、リストは自分でどこかからとってくる必要があるため、利用の敷居は低くはなかった。
+FTC は MS を賞賛したが、デフォルトはオフで、リストは自分でどこかから取ってくる必要があるため、利用の敷居は低くはなかった。
 
 
 ## Do Not Track Header
@@ -100,7 +100,7 @@ P3P はサービスがレスポンスするものだったが、DNT はクライ
 
 また、その値も `1` だと "拒否"、`0` だと "許可" という非常にシンプルな仕様だ。
 
-(TACO と関わりをもっていたためだろう)最初に Mozilla が 2011 年 1 月に実装したのをきっかけに、IE, Safari, Chrome, Opera と、次々と実装していくことになる。
+(TACO と関わりを持っていたためだろう)最初に Mozilla が 2011 年 1 月に実装したのをきっかけに、IE, Safari, Chrome, Opera と、次々と実装していくことになる。
 
 - Firefox Web Tool to Deter Tracking - WSJ (2011/01/24)
   - https://www.wsj.com/articles/SB10001424052748704213404576100441609997236#U4017830322951v
@@ -137,7 +137,7 @@ Yahoo は 2014 年にポリシーを更新している。
 
 また、IE が一部のユーザに DNT をデフォルトで有効にしたことがあり、そのせいで「ユーザの意図の反映とは言えない」という批判があった。
 
-一方 DAA (Digital Advertising Alliance) は、DNT を Web の標準とすることについて、W3C が本分を超えて政策にまで関与していると批判した。
+一方、DAA (Digital Advertising Alliance) は、DNT を Web の標準とすることについて、W3C が本分を超えて政策にまで関与していると批判した。
 
 結果、広告側の言い分は以下のようになる。
 
@@ -151,7 +151,7 @@ Yahoo は 2014 年にポリシーを更新している。
 
 ## DNT as Fingerprint Vector
 
-DNT が受信側によってまったく考慮されていないのにも関わらず、ただただ送っているだけの状態になって久しい。最近のでは、DNT の存在が逆にプライバシー問題になるところまで発展した。
+DNT が受信側によってまったく考慮されていないのにもかかわらず、ただただ送っているだけの状態になって久しい。最近では、DNT の存在が逆にプライバシー問題になるところまで発展した。
 
 例えば、DNT を送っていない大半の人のリクエストが以下だったとする。
 
@@ -176,11 +176,11 @@ DNT: 1
 
 3rd Party Cookie が使えない場合に、代替として Fingerprint を行う際に、他のユーザと "区別" する上で非常に有用なシグナルとなる。つまり、エントロピーの高い Fingerprinting Vector になってしまうのだ。
 
-結果 2019 年に Safari は「DNT は Fingerprinting に使われる以外に用途がなくなったので削除する」と発表した。
+結果、2019 年に Safari は「DNT は Fingerprinting に使われる以外に用途がなくなったので削除する」と発表した。
 
 - Safari 12.1 Release Notes | Apple Developer Documentation
   - https://developer.apple.com/documentation/safari-release-notes/safari-12_1-release-notes
 
-Chrome, Firefox, Edge は、未だに DNT を送るためのオプションがある。例え形骸化しているとはいえ、DNT を削除すること自体が「ユーザにとっての選択肢を減らしている」という心情を与えるため、簡単には消せないという問題もあるだろう。
+Chrome, Firefox, Edge は、未だに DNT を送るためのオプションがある。たとえ形骸化しているとはいえ、DNT を削除すること自体が「ユーザにとっての選択肢を減らしている」という心情を与えるため、簡単には消せないという問題もあるだろう。
 
 しかし、Fingerprinting Vector であることもさることながら、代替の方法が提案されているため、いずれはなくなるのではないかと考えられる。それについては後ほど解説する。

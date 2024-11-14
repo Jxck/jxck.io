@@ -32,44 +32,44 @@ Content-Length: 1024
 そのレスポンスは以下のようなものになる。
 
 ```xml
- <POLICY name="sample"
-   discuri="http://www.example.com/cookiepolicy.html"
-   opturi="http://www.example.com/opt.html">
-   <ENTITY>
-     <DATA-GROUP>
-       <DATA ref="#business.name">Example, Corp.</DATA>
-       <DATA ref="#business.contact-info.online.email">privacy@example.com</DATA>
-     </DATA-GROUP>
-   </ENTITY>
-   <ACCESS><none/></ACCESS>
-   <DISPUTES-GROUP>
-     <DISPUTES resolution-type="service"
-      service="http://www.example.com/privacy.html"
-      short-description="Please contact our customer service desk with
-                         privacy concerns by emailing privacy@example.com"/>
-   </DISPUTES-GROUP>
-   <STATEMENT>
-     <PURPOSE><admin/><develop/><pseudo-decision/></PURPOSE>
-     <RECIPIENT><ours/></RECIPIENT>
-     <RETENTION><indefinitely/></RETENTION>
-     <DATA-GROUP>
-       <DATA ref="#dynamic.cookies">
-         <CATEGORIES><preference/><navigation/></CATEGORIES>
-       </DATA>
-     </DATA-GROUP>
-   </STATEMENT>
-   <STATEMENT>
-     <PURPOSE><individual-decision required="opt-out"/></PURPOSE>
-     <RECIPIENT><ours/></RECIPIENT>
-     <RETENTION><stated-purpose/></RETENTION>
-     <DATA-GROUP>
-       <DATA ref="#user.name.given"/>
-       <DATA ref="#dynamic.cookies">
-         <CATEGORIES><preference/><uniqueid/></CATEGORIES>
-       </DATA>
-     </DATA-GROUP>
-   </STATEMENT>
- </POLICY>
+<POLICY name="sample"
+  discuri="http://www.example.com/cookiepolicy.html"
+  opturi="http://www.example.com/opt.html">
+  <ENTITY>
+    <DATA-GROUP>
+      <DATA ref="#business.name">Example, Corp.</DATA>
+      <DATA ref="#business.contact-info.online.email">privacy@example.com</DATA>
+    </DATA-GROUP>
+  </ENTITY>
+  <ACCESS><none/></ACCESS>
+  <DISPUTES-GROUP>
+    <DISPUTES resolution-type="service"
+    service="http://www.example.com/privacy.html"
+    short-description="Please contact our customer service desk with
+                        privacy concerns by emailing privacy@example.com"/>
+  </DISPUTES-GROUP>
+  <STATEMENT>
+    <PURPOSE><admin/><develop/><pseudo-decision/></PURPOSE>
+    <RECIPIENT><ours/></RECIPIENT>
+    <RETENTION><indefinitely/></RETENTION>
+    <DATA-GROUP>
+      <DATA ref="#dynamic.cookies">
+        <CATEGORIES><preference/><navigation/></CATEGORIES>
+      </DATA>
+    </DATA-GROUP>
+  </STATEMENT>
+  <STATEMENT>
+    <PURPOSE><individual-decision required="opt-out"/></PURPOSE>
+    <RECIPIENT><ours/></RECIPIENT>
+    <RETENTION><stated-purpose/></RETENTION>
+    <DATA-GROUP>
+      <DATA ref="#user.name.given"/>
+      <DATA ref="#dynamic.cookies">
+        <CATEGORIES><preference/><uniqueid/></CATEGORIES>
+      </DATA>
+    </DATA-GROUP>
+  </STATEMENT>
+</POLICY>
 ```
 
 結果からは、以下のような情報を取得できる。
@@ -83,9 +83,9 @@ Content-Length: 1024
 
 そして、これを受け取ったクライアントは、ユーザがあらかじめ細かく設定しておいたポリシーと照らし合わせ、満たされていればそのまま閲覧し、満たされなければ警告を出すというものだ。
 
-もちろん、非常に難解かつ長大なので、人間が直接やりとりすることは想定されてない。しかし、このままでは使いづらいので短縮記法が用意されている。
+もちろん、非常に難解かつ長大なので、人間が直接やりとりすることは想定されていない。しかし、このままでは使いづらいので短縮記法が用意されている。
 
-短縮記法は Compact Policy (CP)と呼ばれ、短いため直接 HTTP ヘッダに記述できる。前述の例であれば以下だ。
+短縮記法は Compact Policy (CP) と呼ばれ、短いため直接 HTTP ヘッダに記述できる。前述の例であれば以下だ。
 
 ```http
 HTTP/1.1 200 OK
@@ -100,9 +100,9 @@ SOAP をはじめとした XML 全盛時代の、機械可読で自動ネゴシ�
 
 ## IE での実装
 
-そして、この夢のような仕様は実際に IE で実装されて、IE6 はブラウザの設定からこの P3P について、ユーザ側の指定をするための項目があった。
+そして、この夢のような仕様は実際に IE で実装されて、IE6 にはブラウザの設定からこの P3P について、ユーザ側の指定をするための項目があった。
 
-これはもう再現方法がないのため、以下のサイトに残っている画像を引用させてもらう。筆者もうっすらしか覚えていない。
+これはもう再現方法がないため、以下のサイトに残っている画像を引用させてもらう。筆者もうっすらしか覚えていない。
 
 - IE 6 のプライバシー管理機能(1/12) - ＠IT
   - https://atmarkit.itmedia.co.jp/fwin2k/experiments/ie6privacy/ie6privacy_01.html
@@ -121,7 +121,7 @@ SOAP をはじめとした XML 全盛時代の、機械可読で自動ネゴシ�
 
 ブロックされた場合は以下のような警告が出る。(アレってそういう意味だったのか!)
 
-![プライバシ管理機能により、Cookieが制限されたときに表示されるダイアログ](ie6privacy030.png#444x181)
+![プライバシー管理機能により、Cookieが制限されたときに表示されるダイアログ](ie6privacy030.png#444x181)
 
 思わずインターネット古参会歓喜な内容になってしまった。こうした記事もきちんと維持してくれている @IT には感謝したい。
 
@@ -130,9 +130,9 @@ SOAP をはじめとした XML 全盛時代の、機械可読で自動ネゴシ�
 
 結論から言えば、P3P も全くと言って良いほど普及しなかった。
 
-まず、仕様が難しいためデプロイが困難なのは言うまでもない。しかし、なによりユーザが理解するのも難しかった。そして、「これによって本当にどれだけ意図したプライバシーの保護が実現するのか」と多くの人が懐疑的だった。その上、やはり当時はまだこれをサポートさせるための法律も特になかったため、積極的に手を出す企業も少なかった。
+まず、仕様が難しいためデプロイが困難なのは言うまでもない。しかし、何よりユーザが理解するのも難しかった。そして、「これによって本当にどれだけ意図したプライバシーの保護が実現するのか」と多くの人が懐疑的だった。その上、やはり当時はまだこれをサポートさせるための法律も特になかったため、積極的に手を出す企業も少なかった。
 
-ところが IE は、「P3P を返してなかったら、ポリシーが確認できないため、どう使われてるかわからないから 3rd Party Cookie は全部無効にする」という強力な制限をデフォルトにしていた。
+ところが IE は、「P3P を返していなかったら、ポリシーが確認できないため、どう使われているかわからないから 3rd Party Cookie は全部無効にする」という強力な制限をデフォルトにしていた。
 
 これは 2000 年初頭の時点で、3rd Party Cookie をデフォルトで無効にしているブラウザが既にあったことを意味する。
 
@@ -158,7 +158,7 @@ IE 以外にも Netscape と Firefox が少し実装したようだが、それ�
 - WWW における P3P コンパクトポリシーの利用状況に関する調査
   - https://db-event.jpn.org/deim2010/proceedings/files/D8-5.pdf
 
-後に、MS は「Google が P3P をきちんと守ってない」と非難したところ、Google からは「P3P をいまだにやろうとしているのは MS だけだ」と反撃するといった一幕もあった。
+後に、MS は「Google が P3P をきちんと守っていない」と非難したところ、Google からは「P3P をいまだにやろうとしているのは MS だけだ」と反撃するといった一幕もあった。
 
 - 今度は Google がマイクロソフトに反論「P3P は時代遅れ」 | RBB TODAY
   - https://www.rbbtoday.com/article/2012/02/21/86533.html
@@ -168,6 +168,6 @@ IE 以外にも Netscape と Firefox が少し実装したようだが、それ�
 - P3P is no longer supported (Windows) | Microsoft Learn
   - https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/mt146424(v=vs.85)
 
-XML 全盛の時代とはいえ、少し見ただけでも普及は難しそうな仕様だということがわかるだろう。では、もっと簡単な仕様だったら上手くいっただろうか?
+XML 全盛の時代とはいえ、少し見ただけでも普及は難しそうな仕様だということがわかるだろう。では、もっと簡単な仕様だったらうまくいっただろうか?
 
 ここまで言えば、感のいい人は気づくかもしれない。そう、次回はそのヘッダの話をする。

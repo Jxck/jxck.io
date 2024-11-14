@@ -48,7 +48,7 @@
 <script src="https://ads.example/advertiser.js?interest=water"></script>
 ```
 
-このとき「このユーザは水をみている」といった情報を付与してリクエストすることで、広告ネットワークは「このユーザが誰かは不明だが、水を探している」という事実を把握できる。
+このとき「このユーザは水を見ている」といった情報を付与してリクエストすることで、広告ネットワークは「このユーザが誰かは不明だが、水を探している」という事実を把握できる。
 
 ```http
 GET /advertiser.js?interest=water HTTP/1.1
@@ -60,7 +60,7 @@ Host: ads.example
 ```http
 HTTP/1.1 200 OK
 Content-Type: text/javascript
-Set-Cookie: 31d4d96e407aad42
+Set-Cookie: id=31d4d96e407aad42
 ```
 
 媒体主のページも同様に、広告ネットワークのスクリプトを埋め込んでいる。
