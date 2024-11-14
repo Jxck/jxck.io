@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-06-01T08:00:00+08:00",
-    "dateModified": "2024-05-14T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-06-01>2023-06-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -164,7 +164,7 @@
       </section>
       <section>
         <h2 id="abort-後のリソース解放"><a href="#abort-後のリソース解放">Abort 後のリソース解放</a></h2>
-        <p>AbortSignal によって、非同期処理のキャンセルが可能になった。例として、 Server 上での Fetch のタイムアウトの例を考えよう。
+        <p>AbortSignal によって、非同期処理のキャンセルが可能になった。例として、Server 上での Fetch のタイムアウトの例を考えよう。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=js data-code=js><code translate=no class=language-js>app.get(&quot;/entries&quot;, async (req, res) =&gt; {
   const perRequestController = new AbortController()
@@ -182,7 +182,7 @@
 
   res.send(/*response*/)
 })</code></pre>
-        <p>ここで <code translate=no>perRequestController</code> はあくまで Request のハンドラに閉じているため、 Response を返したら全て消える。
+        <p>ここで <code translate=no>perRequestController</code> はあくまで Request のハンドラに閉じているため、Response を返したら全て消える。
         <p>次に、この Server プロセスが <code translate=no>SIGINT</code> 時に、連動して実行中の Fetch を止めたい場合を考えてみよう。
         <pre class=js data-code=js><code translate=no class=language-js>const rootController = new AbortController()
 const rootSignal = rootController.signal
@@ -215,7 +215,7 @@ app.get(&quot;/entries&quot;, async (req, res) =&gt; {
         <p>Request の処理が終わっても <code translate=no>rootController</code> のハンドラはクリーンアップされないため、このコードでは Request ごとにハンドラが追加され続けることになる。そこに <code translate=no>perRequestController</code> の参照も残り続けるため、メモリーリークが発生する。
         <p><code translate=no>rootController.once()</code> にしても <code translate=no>SIGINT</code> が発火しない限り残るので意味はない。正しくは Response が正常に返された後に <code translate=no>rootController</code> (と、本来なら <code translate=no>setTimeout</code>) のハンドラを削除する必要がある。
         <p>しかし、このミスは非常に頻繁に発生し、特に <code translate=no>AbortSignal</code> を連携する場面では、親が子の参照を保持することによるメモリーリークは珍しいことではないようだ。
-        <p>実際、 Node.js でも<code translate=no>timer</code> の中でこの問題が発生しており、これを修正すると同時に、このようなバグを防ぐために <code translate=no>maxListeners</code> というスレッショルドを実装するという Issue が、 Microsoft の Benjamin によって立てられた。
+        <p>実際、Node.js でも<code translate=no>timer</code> の中でこの問題が発生しており、これを修正すると同時に、このようなバグを防ぐために <code translate=no>maxListeners</code> というスレッショルドを実装するという Issue が、Microsoft の Benjamin によって立てられた。
         <ul>
           <li>
             Warn on EventTarget maxListeners &gt; THRESHOLD · Issue #35990 · nodejs/node
@@ -264,8 +264,8 @@ app.get(&quot;/entries&quot;, async (req, res) =&gt; {
     rootSignal.removeEventListener(&quot;abort&quot;, onAbort)
   })
 }</code></pre>
-        <p>書いてみればそのままだが、徹底するのは難しいタイプのコードだ。 API として提供する価値はあるだろう。
-        <p>このころは、 <code translate=no>AbortController.prototype.follow(signal)</code> という名前が付けられていた。
+        <p>書いてみればそのままだが、徹底するのは難しいタイプのコードだ。API として提供する価値はあるだろう。
+        <p>このころは、<code translate=no>AbortController.prototype.follow(signal)</code> という名前が付けられていた。
       </section>
       <section>
         <h2 id="abortsignal-in-addeventlistener"><a href="#abortsignal-in-addeventlistener">AbortSignal in addEventListener</a></h2>
@@ -278,14 +278,14 @@ app.get(&quot;/entries&quot;, async (req, res) =&gt; {
             </ul>
           </li>
         </ul>
-        <p>読んだ通り <code translate=no>AbortSignal</code> が <code translate=no>abort</code> したら、 EventListener を削除するという提案だ。
+        <p>読んだ通り <code translate=no>AbortSignal</code> が <code translate=no>abort</code> したら、EventListener を削除するという提案だ。
         <pre class=js data-code=js><code translate=no class=language-js>const controller = new AbortController()
 const signal = controller.signal
 
 eventTarget.addEventListener(&quot;foo&quot;, (e) =&gt; {
   // signal が abort したらこのハンドラは削除される
 }, { signal })</code></pre>
-        <p>この提案は有用と認められ、 Node で試しながら DOM にバックポートされた。
+        <p>この提案は有用と認められ、Node で試しながら DOM にバックポートされた。
         <ul>
           <li>
             add signal to addEventListener by benjamingr · Pull Request #919 · whatwg/dom
@@ -294,7 +294,7 @@ eventTarget.addEventListener(&quot;foo&quot;, (e) =&gt; {
             </ul>
           </li>
         </ul>
-        <p>結果、 EventEmitter でも EventTarget でも使える API になり、 Node および全メジャーブラウザで実装されている。
+        <p>結果、EventEmitter でも EventTarget でも使える API になり、Node および全メジャーブラウザで実装されている。
         <p>これを使うと、先ほどの <code translate=no>follow</code> は以下のように書き直せる。
         <pre class=js data-code=js><code translate=no class=language-js>function follow(perRequestController, rootSignal) {
   // 1. 子がすでに Abort してたらリターン
@@ -312,15 +312,15 @@ eventTarget.addEventListener(&quot;foo&quot;, (e) =&gt; {
   rootSignal.addEventListener(&quot;abort&quot;, () =&gt; {
     perRequestController.abort()
   }, {
-    // once にすることで、 Abort 時は自動でハンドラを削除
+    // once にすることで、Abort 時は自動でハンドラを削除
     once: true
     // 子が Abort したら親からハンドラを削除
     signal: perRequestController.signal
   })
 }</code></pre>
         <p>さて、これで良さそうだが、これも実は問題を半分しか解決してない。
-        <p>このコードでは、親か子のどちらかが Abort する場合はクリーンアップできるが、全てがうまくいってしまった場合(最初の例で言えば、 Timeout も SIGINT もない場合)はクリーンアップされない。
-        <p>正常処理時のクリーンアップは、 Signal だけをみても不可能なので、結局ユーザランドで気をつけて実装するしかない。もし <code translate=no>follow()</code> 側でやるなら、 <code translate=no>rootSignal.addEventListener()</code> が Weak な参照を持つでもない限り不可能なのだ。
+        <p>このコードでは、親か子のどちらかが Abort する場合はクリーンアップできるが、全てがうまくいってしまった場合(最初の例で言えば、Timeout も SIGINT もない場合)はクリーンアップされない。
+        <p>正常処理時のクリーンアップは、Signal だけをみても不可能なので、結局ユーザランドで気をつけて実装するしかない。もし <code translate=no>follow()</code> 側でやるなら、<code translate=no>rootSignal.addEventListener()</code> が Weak な参照を持つでもない限り不可能なのだ。
         <p>そこで、「本当に必要なものは何か」を整理した結果、ユーザランドでは難しい「Signal の連結」を行う API の必要性が浮き彫りになった。
         <p>しかし、このあたりで一旦議論が止まり、並行して別の議論が進むことになる。
       </section>
@@ -344,7 +344,7 @@ eventTarget.addEventListener(&quot;foo&quot;, (e) =&gt; {
   res.send(/*response*/)
 })</code></pre>
         <p>この <code translate=no>fetch()</code> のタイムアウトは、かなり頻出処理でありながら、毎回書くのは非常に面倒だ。本来なら <code translate=no>fetch(url, {timeout: 1000})</code> などと書きたいところで、そのような要望は定期的にあった。
-        <p>しかし、 <code translate=no>fetch()</code> だけタイムアウトできても汎用的にはならないため(というか、それもあって <code translate=no>fetch()</code> 策定中に <code translate=no>AbortSignal</code> が生まれた)、より汎用的なのはタイムアウト用の <code translate=no>AbortSignal</code> を生成することだ。
+        <p>しかし、<code translate=no>fetch()</code> だけタイムアウトできても汎用的にはならないため(というか、それもあって <code translate=no>fetch()</code> 策定中に <code translate=no>AbortSignal</code> が生まれた)、より汎用的なのはタイムアウト用の <code translate=no>AbortSignal</code> を生成することだ。
         <p>そこで提案されたのが <code translate=no>AbortSignal.timeout()</code> だ。
         <ul>
           <li>
@@ -370,7 +370,7 @@ eventTarget.addEventListener(&quot;foo&quot;, (e) =&gt; {
 rootController.on(&quot;abort&quot;, () =&gt; {
   perRequestController.abort()
 })</code></pre>
-        <p>直接 <code translate=no>timeoutSignal</code> を作っているため、<code translate=no>perRequestController</code> 相当のものがなくなっている。これでは、 <code translate=no>SIGINT</code> とタイムアウトが連携できない。
+        <p>直接 <code translate=no>timeoutSignal</code> を作っているため、<code translate=no>perRequestController</code> 相当のものがなくなっている。これでは、<code translate=no>SIGINT</code> とタイムアウトが連携できない。
         <p>実は、この <code translate=no>AbortSignal.timeout()</code> の策定の時点で、前述の「Signal の連結」を行う API の構想が進みつつあったのだ。
       </section>
       <section>
@@ -385,7 +385,7 @@ rootController.on(&quot;abort&quot;, () =&gt; {
             </ul>
           </li>
         </ul>
-        <p>これは、 Signal の配列を渡すと、連結された Signal が返る API であるため、先のサンプルは以下のように書き換えられる。
+        <p>これは、Signal の配列を渡すと、連結された Signal が返る API であるため、先のサンプルは以下のように書き換えられる。
         <pre class=js data-code=js><code translate=no class=language-js>const rootController = new AbortController()
 const rootSignal = rootController.signal
 
@@ -413,7 +413,7 @@ app.get(&quot;/entries&quot;, (req, res) =&gt; {
   res.send(/*response*/)
 })</code></pre>
         <p><code translate=no>combinedSignal</code> は、<code translate=no>SIGINT</code> とタイムアウトどちらが発生しても <code translate=no>fetch()</code> を Abort できる。
-        <p>しかし、 Request のハンドラから <code translate=no>rootController</code> の参照が消え、ハンドラのクリーンアップについて気にする必要がなくなった。
+        <p>しかし、Request のハンドラから <code translate=no>rootController</code> の参照が消え、ハンドラのクリーンアップについて気にする必要がなくなった。
         <p>そして、これを <code translate=no>AbortSignal.timeout()</code> にするとこうなる。
         <pre class=js data-code=js><code translate=no class=language-js>const rootController = new AbortController()
 const rootSignal = rootController.signal
@@ -478,7 +478,7 @@ app.get(&quot;/entries&quot;, (req, res) =&gt; {
           <li><code translate=no>AbortSignal.any()</code>
           <li><code translate=no>AbortSignal.throwIfAborted()</code>
         </ul>
-        <p>まず基本的な使い方として、 Signal を安全に連結する方法が手に入ったため、 <code translate=no>AbortSignal.timeout()</code> のように、<code translate=no>AbortSignal</code> を返す API を実装するのは、非常に理にかなったものになる。例えば、先ほどの SIGINT の処理を、以下のように提供するイメージだ。
+        <p>まず基本的な使い方として、Signal を安全に連結する方法が手に入ったため、<code translate=no>AbortSignal.timeout()</code> のように、<code translate=no>AbortSignal</code> を返す API を実装するのは、非常に理にかなったものになる。例えば、先ほどの SIGINT の処理を、以下のように提供するイメージだ。
         <pre class=js data-code=js><code translate=no class=language-js>function processSIGINT() {
   const controller = new AbortController()
   const signal = controller.signal
@@ -516,7 +516,7 @@ async function main() {
       </section>
       <section>
         <h2 id="例外処理"><a href="#例外処理">例外処理</a></h2>
-        <p>本来は <code translate=no>AbortSignal.Timeout()</code> は <code translate=no>AbortError</code> ではなく <code translate=no>TimeoutError</code> になることを踏まえた、 <code translate=no>fetch()</code> 中断時の例外処理周りの話もしようと思ったが、 Chrome と Safari が仕様に反して <code translate=no>AbortError</code> を上げるバグがあるため、それについては今回割愛する。
+        <p>本来は <code translate=no>AbortSignal.Timeout()</code> は <code translate=no>AbortError</code> ではなく <code translate=no>TimeoutError</code> になることを踏まえた、<code translate=no>fetch()</code> 中断時の例外処理周りの話もしようと思ったが、Chrome と Safari が仕様に反して <code translate=no>AbortError</code> を上げるバグがあるため、それについては今回割愛する。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>

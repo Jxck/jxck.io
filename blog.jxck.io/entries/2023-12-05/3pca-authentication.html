@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 5 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 5 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calenda...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-05/3pca-authentication.html>
   <meta property=og:title        content="3PCA 5 日目: 認証の連携 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 5 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 5 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calenda...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-05T08:00:00+08:00",
-    "dateModified": "2023-12-07T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 5 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 5 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calenda..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-05>2023-12-05</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-07>2023-12-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -148,7 +148,7 @@
       <h1><a href="">3PCA 5 日目: 認証の連携</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 5 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 5 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -157,14 +157,14 @@
             </ul>
           </li>
         </ul>
-        <p>前回は、 3rd Party Cookie を使った広告のリターゲティングの仕組みを解説した。
+        <p>前回は、3rd Party Cookie を使った広告のリターゲティングの仕組みを解説した。
         <p>「あの気持ち悪い広告の正体は 3rd Party Cookie だったのか」と思った人もいるかもしれない。
         <p>そんな諸悪の根源である 3rd Party Cookie など「さっさと無効にしてしまえばいいのでは?」と思うかもしれないが、それは簡単なことではない。なぜなら、3rd Party Cookie のユースケースは、ネガティブなものだけではないからだ。
         <p>その一例として、今回は認証連携のユースケースを解説する。
       </section>
       <section>
         <h2 id="認証の連携"><a href="#認証の連携">認証の連携</a></h2>
-        <p>認証は自前で実装する負荷が高いため、 3rd Party の認証サービスを導入することがある。ここでは &quot;Auth1&quot; という架空の認証プロバイダーを考えてみよう。
+        <p>認証は自前で実装する負荷が高いため、3rd Party の認証サービスを導入することがある。ここでは &quot;Auth1&quot; という架空の認証プロバイダーを考えてみよう。
         <p>Auth1 は、以下のような UI を提供し、ログイン画面をサイトに埋め込むことができるとする。
         <p>
           <img loading=lazy decoding=async src=embedded-login.drawio.svg?231204_213033 alt="iframe で埋め込まれた認証" width=380 height=400>
@@ -176,7 +176,7 @@
 
 &lt;iframe src=&quot;https://auth1.com/login&quot;&gt;&lt;/iframe&gt;</code></pre>
         <p>初回のアクセス時、このログイン画面から Auth1 にログインする。
-        <p>裏ではログインが成功した後に、 JS を使って <code translate=no>&lt;iframe&gt;</code> から埋め込んでいる側のサイトに「ログインが完了した」という情報を渡す。このやりとりは通常、プロバイダが提供する SDK を用いてメッセージングする JS を書くことなどで行う。
+        <p>裏ではログインが成功した後に、JS を使って <code translate=no>&lt;iframe&gt;</code> から埋め込んでいる側のサイトに「ログインが完了した」という情報を渡す。このやりとりは通常、プロバイダが提供する SDK を用いてメッセージングする JS を書くことなどで行う。
         <p>さて、二回目の訪問の時はどうなるか。
         <p>ユーザはこのページを開いたら、ブラウザが <code translate=no>&lt;iframe&gt;</code> の中身を Auth1 に取りに行く。このときリクエストには、最初の認証の時にブラウザに保存された Auth1 の Cookie が自動で送られる。
         <pre class=http data-code=http><code translate=no class=language-http>GET /login HTTP/1.1
@@ -188,7 +188,7 @@ Cookie: id=${Auth1 の cookie}</code></pre>
         </p>
         <p>同時に認証が終わっていることを示す情報を、外側の HTML に JS で渡せば、ユーザにとっては自動的にログインが終わっていることになる。
         <p>この方式のメリットは、それだけではない。
-        <p>これは同じサイトで、「ログイン済みなら再認証する必要はない」という話だが、これが同じく Auth1 を導入した全く別のサイトの場合でも、 <code translate=no>iframe</code> を読み込むドメインが同じであれば、ユーザの持っている Cookie は送られる。
+        <p>これは同じサイトで、「ログイン済みなら再認証する必要はない」という話だが、これが同じく Auth1 を導入した全く別のサイトの場合でも、<code translate=no>iframe</code> を読み込むドメインが同じであれば、ユーザの持っている Cookie は送られる。
         <p>これを利用して、「他で既にログイン済みなことを利用し、このサイトもログイン済みにできる」のだ。これは Single Sign On の実装方法の一つと言える。
       </section>
       <section>

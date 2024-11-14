@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 26 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 26 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-28/related-website-sets.html>
   <meta property=og:title        content="3PCA 26 日目: Related Website Sets | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 26 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 26 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-28T08:00:00+08:00",
-    "dateModified": "2024-05-14T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 26 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 26 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-28>2023-12-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -150,7 +150,7 @@
       <h1><a href="">3PCA 26 日目: Related Website Sets</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 26 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 26 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -159,7 +159,7 @@
             </ul>
           </li>
         </ul>
-        <p>今日からは、 Privacy Sandbox の「広告」以外の API を解説していく。
+        <p>今日からは、Privacy Sandbox の「広告」以外の API を解説していく。
       </section>
       <section>
         <h2 id="同一組織の別ドメイン"><a href="#同一組織の別ドメイン">同一組織の別ドメイン</a></h2>
@@ -187,7 +187,7 @@
         </ul>
         <p>これらは全て Cross Site だ。
         <p>同じ運営母体(Party)でありながら、その全てが 3rd Party Cookie で連携しており、それが塞がれると全てが連携できなくなる。
-        <p>この制限を緩和するために提案されたのが、 Related Website Sets だ。
+        <p>この制限を緩和するために提案されたのが、Related Website Sets だ。
       </section>
       <section>
         <h2 id="related-website-sets"><a href="#related-website-sets">Related Website Sets</a></h2>
@@ -230,10 +230,10 @@
       <section>
         <h2 id="storage-access-api"><a href="#storage-access-api">Storage Access API</a></h2>
         <p>認識されると無制限で Cookie が読めるというわけでは無い(First Party Sets のころはそうだった気がする)。
-        <p>RWS ではどうなるかというと、 Storage Access API で prompt が出ずに Cookie を取得できるようになる。
-        <p>もし RWS に対応してないブラウザでも、 SAA に対応していれば prompt を経て Cookie が取得できる点で、互換性がある設計とは言えるだろう。
+        <p>RWS ではどうなるかというと、Storage Access API で prompt が出ずに Cookie を取得できるようになる。
+        <p>もし RWS に対応してないブラウザでも、SAA に対応していれば prompt を経て Cookie が取得できる点で、互換性がある設計とは言えるだろう。
         <p>これで、例えば認証連携のような場合は <code translate=no>&lt;iframe&gt;</code> から SAA を呼ぶことで、ユースケースの継続ができる可能性が増える。
-        <p>一方、 CDN から画像などを取得するケースでは、 SAA が呼べない。そこで、 Top Level Window 側で CDN のための SAA を取得するための拡張 API が追加されている。
+        <p>一方、CDN から画像などを取得するケースでは、SAA が呼べない。そこで、Top Level Window 側で CDN のための SAA を取得するための拡張 API が追加されている。
         <pre class=js data-code=js><code translate=no class=language-js>document.requestStorageAccessFor(&quot;https://cdn.example.com&quot;)</code></pre>
       </section>
       <section>

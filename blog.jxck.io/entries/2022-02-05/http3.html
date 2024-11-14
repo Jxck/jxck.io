@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-02-05T08:00:00+08:00",
-    "dateModified": "2023-04-10T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-02-05>2022-02-05</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-10>2023-04-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -175,7 +175,7 @@
           <ul>
             <li><a href="https://github.com/h2o/h2o/blob/master/examples/h2o/h2o.conf#L14" target=_blank>https://github.com/h2o/h2o/blob/master/examples/h2o/h2o.conf#L14</a>
           </ul>
-          <p>まず、 <code translate=no>listen</code> directive の中で <code translate=no>type: quic</code> を指定するとそれだけで QUIC が有効になり、HTTP3 が動くようだ。そして、そのとおり実際に動く。
+          <p>まず、<code translate=no>listen</code> directive の中で <code translate=no>type: quic</code> を指定するとそれだけで QUIC が有効になり、HTTP3 が動くようだ。そして、そのとおり実際に動く。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=yaml data-code=yaml><code translate=no class=language-yaml># The following three lines enable HTTP3
 listen:
@@ -366,7 +366,7 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
         type: quic
         ...</code></pre>
           <p>しかし、これでは動かない。
-          <p>どうやら Chrome は特権 Port からの <code translate=no>Alt-Svc</code> は特権ポートでないと許可しないようだ。つまり <code translate=no>8080</code> -&gt; <code translate=no>4433</code> はできるが <code translate=no>443</code> -&gt; <code translate=no>4433</code> はできない。 <code translate=no>8080</code> -&gt; <code translate=no>443</code> もできない。
+          <p>どうやら Chrome は特権 Port からの <code translate=no>Alt-Svc</code> は特権ポートでないと許可しないようだ。つまり <code translate=no>8080</code> -&gt; <code translate=no>4433</code> はできるが <code translate=no>443</code> -&gt; <code translate=no>4433</code> はできない。<code translate=no>8080</code> -&gt; <code translate=no>443</code> もできない。
           <p>結果 UDP-QUIC と TCP+TLS は、実質どちらも <code translate=no>443</code> を使う必要があるため、前述のような構成になった。
           <p>これにより、HTTP2 で接続し、そこで <code translate=no>Alt-Svc</code> を受信したら、次のリクエストからは HTTP3 になる挙動を Chrome で確認した。
         </section>
@@ -425,7 +425,7 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
         <section>
           <h3 id="firefox-での-http-rr"><a href="#firefox-での-http-rr">Firefox での HTTP RR</a></h3>
           <p>代わりに Firefox は既に HTTP RR による HTTP3 に対応している。ところがこちらもデフォルトの設定のままではクエリが飛ばない。
-          <p>これは、 <em>HTTP RR は DoH に対応している必要がある</em> というルールがあり、これが仕様なのか実装なのかは未確認だが、DoH に対応した DNS にクエリする場合のみ取得される。また、その設定も OS の DNS 設定を 1.1.1.1 などにするだけではなく、Firefox の設定画面から DoH を有効にする必要がある。DoH 有効時にプロバイダを選ばされ、ここでは Cloudflare を選択した。この時点で OS の DNS 設定は無視されているかもしれない。
+          <p>これは、<em>HTTP RR は DoH に対応している必要がある</em> というルールがあり、これが仕様なのか実装なのかは未確認だが、DoH に対応した DNS にクエリする場合のみ取得される。また、その設定も OS の DNS 設定を 1.1.1.1 などにするだけではなく、Firefox の設定画面から DoH を有効にする必要がある。DoH 有効時にプロバイダを選ばされ、ここでは Cloudflare を選択した。この時点で OS の DNS 設定は無視されているかもしれない。
           <p>
             <picture>
               <source type=image/avif srcset=enable-firefox-doh.avif?231116_154951>
@@ -465,7 +465,7 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>念願の HTTP3 対応を実現することができた。
-        <p>HTTP3 はずっと検証したかったがドキュメントが更新されなかったため使い方がわからず、たまにドキュメントやリポジトリを &quot;http3&quot; で検索していたが、 &quot;http/3&quot; で検索すればもっと早く気付けていたと思うと残念だ。
+        <p>HTTP3 はずっと検証したかったがドキュメントが更新されなかったため使い方がわからず、たまにドキュメントやリポジトリを &quot;http3&quot; で検索していたが、&quot;http/3&quot; で検索すればもっと早く気付けていたと思うと残念だ。
         <p>そろそろ h2o をやめて Nginx に引っ越して、そちらで検証するかと考えていたところなので、Issue で教えてくれた <a href="https://github.com/h2o/h2o/issues/2906#issuecomment-1026107729" target=_blank>inductor</a> には感謝しか無い。
         <p>今後は HTTP RR Record 含め、より細かく挙動などを検証していきたい。
       </section>

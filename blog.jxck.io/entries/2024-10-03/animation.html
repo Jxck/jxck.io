@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、 popup でやっていた Origin Tria...">
+  <meta name=description         content="ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、popup でやっていた Origin Trial...">
   <meta name=keywords            content="dialog,popover">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-10-03/animation.html>
   <meta property=og:title        content="Dialog と Popover #6 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、 popup でやっていた Origin Tria...">
+  <meta property=og:description  content="ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、popup でやっていた Origin Trial...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-03T08:00:00+08:00",
-    "dateModified": "2024-11-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、 popup でやっていた Origin Tria..."
+    "description": "ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、popup でやっていた Origin Trial..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-03>2024-10-03</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -153,7 +153,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>ついに <code translate=no>&lt;toast&gt;</code> -&gt; <code translate=no>&lt;popup&gt;</code> -&gt; <code translate=no>popup</code> -&gt; <code translate=no>popover</code> として、要素から属性になり名前も決まった。
-        <p>とはいえ実装は <code translate=no>popup</code> とそんなに変わらないので、 <code translate=no>popup</code> でやっていた Origin Trials を継続しながら、徐々に実装を進めていくフェーズが 2022/12 くらいの話だ。
+        <p>とはいえ実装は <code translate=no>popup</code> とそんなに変わらないので、<code translate=no>popup</code> でやっていた Origin Trials を継続しながら、徐々に実装を進めていくフェーズが 2022/12 くらいの話だ。
         <ul>
           <li>
             Intent to extend Origin Trial: Popover API
@@ -162,12 +162,12 @@
             </ul>
           </li>
         </ul>
-        <p>しかし、 <code translate=no>popover</code> を実用するには足りていない議論があった。それが Animation だ。
+        <p>しかし、<code translate=no>popover</code> を実用するには足りていない議論があった。それが Animation だ。
       </section>
       <section>
         <h2 id="display-and-content-visibility-animations"><a href="#display-and-content-visibility-animations">Display and content-visibility animations</a></h2>
-        <p><code translate=no>&lt;dialog&gt;</code> や <code translate=no>popover</code> された要素は、基本的には現れたり消えたりするので、それをアニメーションするには、 <code translate=no>display</code> / <code translate=no>content-visibility</code> の属性をアニメーションする必要がある。
-        <p>まずは消す方を以下のように <code translate=no>transition</code> でやってみよう。 <code translate=no>opacity</code> を徐々に薄くし、最後に <code translate=no>display: none</code> する実装は以下のようになる。
+        <p><code translate=no>&lt;dialog&gt;</code> や <code translate=no>popover</code> された要素は、基本的には現れたり消えたりするので、それをアニメーションするには、<code translate=no>display</code> / <code translate=no>content-visibility</code> の属性をアニメーションする必要がある。
+        <p>まずは消す方を以下のように <code translate=no>transition</code> でやってみよう。<code translate=no>opacity</code> を徐々に薄くし、最後に <code translate=no>display: none</code> する実装は以下のようになる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=css data-code=css><code translate=no class=language-css>div {
   opacity: 1;
@@ -199,8 +199,8 @@
           <li>repeatable list
         </ul>
         <p>not animatable は「アニメーションすると複雑すぎるため <code translate=no>transition</code> や <code translate=no>keyframe</code> に指定されても無視する」というものだ。
-        <p>つまり、要素をふわっと消したい場合は、代わりに <code translate=no>visibility</code> を用いる、 <code translate=no>height: 0</code> にして潰す、 <code translate=no>left: -1000px</code> などで画面外に飛ばす、アニメーションが終わったら JS で消す、といった実装が必要だった。
-        <p>ところが、 <code translate=no>&lt;dialog&gt;</code> や <code translate=no>popover</code> は、その表示非表示を <code translate=no>display</code> の変更で行っているため、アニメーションが複雑になる。そこで、 <code translate=no>display</code> も animatable にしようという議論が始まったのだ。
+        <p>つまり、要素をふわっと消したい場合は、代わりに <code translate=no>visibility</code> を用いる、<code translate=no>height: 0</code> にして潰す、<code translate=no>left: -1000px</code> などで画面外に飛ばす、アニメーションが終わったら JS で消す、といった実装が必要だった。
+        <p>ところが、<code translate=no>&lt;dialog&gt;</code> や <code translate=no>popover</code> は、その表示非表示を <code translate=no>display</code> の変更で行っているため、アニメーションが複雑になる。そこで、<code translate=no>display</code> も animatable にしようという議論が始まったのだ。
         <ul>
           <li>
             Intent to Ship: Display and content-visibility animations
@@ -230,16 +230,16 @@
             </ul>
           </li>
         </ul>
-        <p>例えば <code translate=no>opacity</code> の Animation Type は by computed value で、 0 から 1 の間をスライダーを動かすように連続した変化をさせる。一方、 true/false, enable/disable といった値は discrete (離散値) というカテゴリになる。
-        <p>discrete な値を <code translate=no>transition</code> する場合は、真ん中(50%)で値が切り替わる挙動になるため、 <code translate=no>opacity</code> が 0.5 まで減ったところで、 <code translate=no>display: none</code> になって要素がぱっと消えてしまうことになる。
+        <p>例えば <code translate=no>opacity</code> の Animation Type は by computed value で、0 から 1 の間をスライダーを動かすように連続した変化をさせる。一方、true/false, enable/disable といった値は discrete (離散値) というカテゴリになる。
+        <p>discrete な値を <code translate=no>transition</code> する場合は、真ん中(50%)で値が切り替わる挙動になるため、<code translate=no>opacity</code> が 0.5 まで減ったところで、<code translate=no>display: none</code> になって要素がぱっと消えてしまうことになる。
         <p>
           <img loading=lazy decoding=async src=./transition-display.drawio.svg?241003_001028 alt="display が途中で変わり要素が消える" width=442 height=182>
         </p>
-        <p>しかし、実際に欲しいのは <code translate=no>opacity: 0</code> になった後に、 <code translate=no>display: none</code> / <code translate=no>content-visibility: hidden</code> に変化し消える挙動だ。
+        <p>しかし、実際に欲しいのは <code translate=no>opacity: 0</code> になった後に、<code translate=no>display: none</code> / <code translate=no>content-visibility: hidden</code> に変化し消える挙動だ。
         <p>
           <img loading=lazy decoding=async src=./transition-display-finally.drawio.svg?241003_001232 alt="display が最後に変更する" width=442 height=182>
         </p>
-        <p>この変更を利用するためには、 <code translate=no>keyframe</code> をそのままに、<code translate=no>transition</code> の対象プロパティに <code translate=no>allow-discrete</code> をつける。
+        <p>この変更を利用するためには、<code translate=no>keyframe</code> をそのままに、<code translate=no>transition</code> の対象プロパティに <code translate=no>allow-discrete</code> をつける。
         <pre class=css data-code=css><code translate=no class=language-css>div {
   opacity: 1;
   display: block;
@@ -264,7 +264,7 @@
   }
 }</code></pre>
         <p>fade-in させる時は少し考えることが増える。
-        <p>単純に、 <code translate=no>display: none</code> を <code translate=no>block</code> にしてから, <code translate=no>opacity: 0</code> を <code translate=no>1</code> に遷移させればよさそうだ。
+        <p>単純に、<code translate=no>display: none</code> を <code translate=no>block</code> にしてから, <code translate=no>opacity: 0</code> を <code translate=no>1</code> に遷移させればよさそうだ。
         <pre class=css data-code=css><code translate=no class=language-css>div {
   opacity: 0;
   display: none;
@@ -281,8 +281,8 @@
 .fade-out  {
   animation: fade-out 0.5s forwards;
 }</code></pre>
-        <p>ところが、これでは <code translate=no>display</code> が変わった瞬間に要素が <code translate=no>opacity</code> を持つため、それが「0 である」という初期値が計算される前に、 <code translate=no>opacity</code> が 1 になってしまうため、想定した挙動にならない。
-        <p>ここでは、 <code translate=no>display</code> が切り替わる時は、アニメーションする値の初期値を要素に反映し、その上で変化をさせる必要がある。以前はこれを「一旦 <code translate=no>display: block</code> に変えたら、 <code translate=no>requestAnimationFrame()</code> で <code translate=no>opacity: 0</code> が計算されるのを待ってから、 <code translate=no>opacity: 1</code> に遷移させる」や「<code translate=no>getBoundingClientRect()</code> で値の計算を確定させる処理を一旦呼んでから遷移させる」といった実装が必要だった。
+        <p>ところが、これでは <code translate=no>display</code> が変わった瞬間に要素が <code translate=no>opacity</code> を持つため、それが「0 である」という初期値が計算される前に、<code translate=no>opacity</code> が 1 になってしまうため、想定した挙動にならない。
+        <p>ここでは、<code translate=no>display</code> が切り替わる時は、アニメーションする値の初期値を要素に反映し、その上で変化をさせる必要がある。以前はこれを「一旦 <code translate=no>display: block</code> に変えたら、<code translate=no>requestAnimationFrame()</code> で <code translate=no>opacity: 0</code> が計算されるのを待ってから、<code translate=no>opacity: 1</code> に遷移させる」や「<code translate=no>getBoundingClientRect()</code> で値の計算を確定させる処理を一旦呼んでから遷移させる」といった実装が必要だった。
         <p>ところが <code translate=no>&lt;dialog&gt;</code> や <code translate=no>popover</code> も、出現時に <code translate=no>display</code> が変わっているため、同じ問題が起こってしまう。せっかく Declarative に定義したのに、そのアニメーションに JS が必須となるのは不便だ。
       </section>
       <section>
@@ -354,7 +354,7 @@
       </section>
       <section>
         <h2 id="prefer-reduced-motion"><a href="#prefer-reduced-motion">Prefer Reduced Motion</a></h2>
-        <p><code translate=no>&lt;dialog&gt;</code> / <code translate=no>popover</code> とは直接関係ないが、 <code translate=no>prefer-reduced-motion</code> が指定されていたら、アニメーションは無効にしたい。
+        <p><code translate=no>&lt;dialog&gt;</code> / <code translate=no>popover</code> とは直接関係ないが、<code translate=no>prefer-reduced-motion</code> が指定されていたら、アニメーションは無効にしたい。
         <pre class=css data-code=css><code translate=no class=language-css>@media(prefers-reduced-motion: no-preference) {
   .fade-in, .fade-out {
     transition: none;

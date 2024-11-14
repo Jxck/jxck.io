@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-06-18T08:00:00+08:00",
-    "dateModified": "2023-11-30T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-06-18>2023-06-18</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-11-30>2023-11-30</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -182,10 +182,10 @@ console.log(document.cookie) // a=b</code></pre>
         <p>まず、この API の問題を振り返る。
         <section>
           <h3 id="同期-api"><a href="#同期-api">同期 API</a></h3>
-          <p>最も深刻なのは、 I/O を伴いながら、同期 API として定義されているところだ。
+          <p>最も深刻なのは、I/O を伴いながら、同期 API として定義されているところだ。
           <p>この API は古くから実装されているため、I/O は非同期 API として実装するという現在の大前提に反していながらも、互換性維持のためにそのままになっている。
-          <p>しかし、後発の Service Worker は、その中で同期の I/O API の提供を許可しない。 document.cookie や LocalStorage が使えないのはそのためだ。
-          <p>LocalStorage は IndexedDB で代替できるが、 Cookie へのアクセスは代替がない。しかし、 SW からも Cookie にアクセスしたい要求があった。
+          <p>しかし、後発の Service Worker は、その中で同期の I/O API の提供を許可しない。document.cookie や LocalStorage が使えないのはそのためだ。
+          <p>LocalStorage は IndexedDB で代替できるが、Cookie へのアクセスは代替がない。しかし、SW からも Cookie にアクセスしたい要求があった。
           <ul>
             <li>
               Add cookie accessor/setter methods? · Issue #707 · w3c/ServiceWorker
@@ -217,13 +217,13 @@ console.log(document.cookie) // a=b</code></pre>
         </section>
         <section>
           <h3 id="cookie-の削除"><a href="#cookie-の削除">Cookie の削除</a></h3>
-          <p>Cookie を明示的に削除する API は存在せず、 <code translate=no>Expires</code> を過去にするか <code translate=no>Max-Age=0</code> にするといった方法が必要になる。これは、 <code translate=no>Set-Cookie</code> ヘッダでも同様だ。
+          <p>Cookie を明示的に削除する API は存在せず、<code translate=no>Expires</code> を過去にするか <code translate=no>Max-Age=0</code> にするといった方法が必要になる。これは、<code translate=no>Set-Cookie</code> ヘッダでも同様だ。
           <p><code translate=no>Clear-Site-Data</code> を用いればスコープ内の Cookie 全てを消すことは可能だが、こちらは特定の値を狙って消すことはできない。
         </section>
       </section>
       <section>
         <h2 id="cookie-store-api"><a href="#cookie-store-api">Cookie Store API</a></h2>
-        <p>そこで、 Cookie にアクセス可能な非同期 API として <em>Async Cookie API</em> の策定が始まり、そこに様々な負債を解消するためのプリミティブが詰め込まれ、 <em>Cookie Store API</em> と名前を変えて今に至る。
+        <p>そこで、Cookie にアクセス可能な非同期 API として <em>Async Cookie API</em> の策定が始まり、そこに様々な負債を解消するためのプリミティブが詰め込まれ、<em>Cookie Store API</em> と名前を変えて今に至る。
         <ul>
           <li>
             WICG/cookie-store: Asynchronous access to cookies from JavaScript
@@ -258,9 +258,9 @@ console.log(document.cookie) // a=b</code></pre>
 //   secure: true,
 //   sameSite: &quot;lax&quot;
 // }</code></pre>
-          <p>同一名で複数の Cookie が付与されている場合は、 <code translate=no>getAll</code> で全て取得できる。
+          <p>同一名で複数の Cookie が付与されている場合は、<code translate=no>getAll</code> で全て取得できる。
           <pre class=js data-code=js><code translate=no class=language-js>await cookieStore.getAll(&quot;__Host-session_id&quot;)</code></pre>
-          <p>また、 Cookie が <code translate=no>Path</code> のスコープであるため、 URL ベースでクエリすることもできるようになっている。
+          <p>また、Cookie が <code translate=no>Path</code> のスコープであるため、URL ベースでクエリすることもできるようになっている。
           <pre class=js data-code=js><code translate=no class=language-js>await cookieStore.getAll({ url: &quot;/admin&quot; })</code></pre>
         </section>
         <section>
@@ -268,7 +268,7 @@ console.log(document.cookie) // a=b</code></pre>
           <p>Cookie には HTTP にも <code translate=no>document.cookie</code> にも「削除」の API はなく、過去の日付で上書きするといった方法が取られていた。
           <p>この仕様には、明示的な <code translate=no>delete()</code> が定義されている。
           <pre class=js data-code=js><code translate=no class=language-js>await cookieStore.delete(&quot;__Host-session_id&quot;)</code></pre>
-          <p>名前以外に、 <code translate=no>domain</code> / <code translate=no>path</code> でもできる。
+          <p>名前以外に、<code translate=no>domain</code> / <code translate=no>path</code> でもできる。
           <pre class=js data-code=js><code translate=no class=language-js>await cookieStore.delete({ path: &quot;/admin&quot; })</code></pre>
         </section>
         <section>
@@ -300,7 +300,7 @@ self.addEventListener(&quot;cookiechange&quot;, (event) =&gt; {
       </section>
       <section>
         <h2 id="仕様の論点"><a href="#仕様の論点">仕様の論点</a></h2>
-        <p>現在 Chrome は Ship 済みだが、 Firefox / Safari は実装しておらず、 Position も blocked になっている。
+        <p>現在 Chrome は Ship 済みだが、Firefox / Safari は実装しておらず、Position も blocked になっている。
         <ul>
           <li>
             Cookie-Store API · Issue #94 · mozilla/standards-positions
@@ -320,8 +320,8 @@ self.addEventListener(&quot;cookiechange&quot;, (event) =&gt; {
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>そもそも、 Storage 系の API が整備されており他にも選択肢があるため、 Cookie は <code translate=no>HttpOnly</code> を付与するのが基本で、 JS からアクセスする機会はかなり減っている。
-        <p>そして、 <code translate=no>HttpOnly</code> な Cookie は <code translate=no>document.cookie</code> 同様 Set はできても Get/Subscribe できないため、ユースケースはかなり絞られたものになるだろう。
+        <p>そもそも、Storage 系の API が整備されており他にも選択肢があるため、Cookie は <code translate=no>HttpOnly</code> を付与するのが基本で、JS からアクセスする機会はかなり減っている。
+        <p>そして、<code translate=no>HttpOnly</code> な Cookie は <code translate=no>document.cookie</code> 同様 Set はできても Get/Subscribe できないため、ユースケースはかなり絞られたものになるだろう。
         <p>Cookie 周りのプリミティブが整理され、ぽっかり空いていた穴が埋められている点に一定の価値はあるが、他のブラウザの実装は進んでおらず、議論もしばらく止まっているようなので、今後どうなるのかは不明だ。
       </section>
       <section>

@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、 Layout Shift が発生してしまう。これを防ぐ方法として...">
+  <meta name=description         content="WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。これを防ぐ方法として、...">
   <meta name=keywords            content="font metrics,web font">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2021-02-25/font-metrics-override.html>
   <meta property=og:title        content="Web Font のメトリクス上書きによる CLS の改善 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、 Layout Shift が発生してしまう。これを防ぐ方法として...">
+  <meta property=og:description  content="WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。これを防ぐ方法として、...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-02-25T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、 Layout Shift が発生してしまう。これを防ぐ方法として..."
+    "description": "WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。これを防ぐ方法として、..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-02-25>2021-02-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -155,8 +155,8 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。
-        <p>このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、 Layout Shift が発生してしまう。
-        <p>これを防ぐ方法として、 CSS からフォントメトリクスの上書きを行う仕様の提案が行われているため、本サイトへの適用を目指し検証を行った。
+        <p>このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。
+        <p>これを防ぐ方法として、CSS からフォントメトリクスの上書きを行う仕様の提案が行われているため、本サイトへの適用を目指し検証を行った。
         <p>なお、この仕様は Layout Shift ではなく、単純にテキストレイアウトスタイル用途での利用も考えられるが、そこはスコープ外としている。
       </section>
       <section>
@@ -189,7 +189,7 @@
   line-gap-override: normal;
   advance-override: 0;
 }</code></pre>
-        <p>実際に行単位、文章単位で調整する際は、 <code translate=no>line-height</code>, <code translate=no>word-spacing</code>, <code translate=no>letter-spacing</code> なども合わせて設定することになるだろう。
+        <p>実際に行単位、文章単位で調整する際は、<code translate=no>line-height</code>, <code translate=no>word-spacing</code>, <code translate=no>letter-spacing</code> なども合わせて設定することになるだろう。
       </section>
       <section>
         <h2 id="フォールバックフォントとのすり合わせ"><a href="#フォールバックフォントとのすり合わせ">フォールバックフォントとのすり合わせ</a></h2>
@@ -201,7 +201,7 @@
             <img loading=lazy decoding=async src=before.png?210518_024051 alt="Osaka と Noso Sans をデフォルトで表示した場合、高さに差がでてしまう" title="before" width=1610 height=1134>
           </picture>
         </p>
-        <p>ここで、 Webfont 側に以下のようなスタイルを当てると、ある程度レイアウトの差分を減らすことができるとわかった。
+        <p>ここで、Webfont 側に以下のようなスタイルを当てると、ある程度レイアウトの差分を減らすことができるとわかった。
         <pre class=css data-code=css><code translate=no class=language-css>:root {
   --line-height: 23px;
   --letter-spacing: 0.2px;
@@ -230,7 +230,7 @@
       </section>
       <section>
         <h2 id="プラットフォームごとのフォールバックフォントへのすり合わせ"><a href="#プラットフォームごとのフォールバックフォントへのすり合わせ">プラットフォームごとのフォールバックフォントへのすり合わせ</a></h2>
-        <p>前述の方法は、先にフォールバックフォントとして Osaka が表示されることを前提とし、 Noto Sans 側のスタイルをすり合わせた。
+        <p>前述の方法は、先にフォールバックフォントとして Osaka が表示されることを前提とし、Noto Sans 側のスタイルをすり合わせた。
         <p>しかし、プラットフォームごとにフォールバックフォントは違うため、この方法では環境ごとに Noto Sans 側のスタイルを出し分ける必要が出てしまう。
         <p>恐らく、実運用を考えるのであれば、プラットフォームごとのフォールバックフォント側のスタイルを上書きしておくことになると思われる。
         <p>例えば、以下のように WebFont である Noto Sans を優先しつつ、フォールバックとして 2 つのフォントを定義する場合を考える。
@@ -259,7 +259,7 @@
   line-gap-override: xx%;
   advance-override: xx;
 }</code></pre>
-        <p><code translate=no>line-height</code> などの値は共通に固定し、 font-metrics で微調整する感じになるだろうか。
+        <p><code translate=no>line-height</code> などの値は共通に固定し、font-metrics で微調整する感じになるだろうか。
       </section>
       <section>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
@@ -277,10 +277,10 @@
       </section>
       <section>
         <h2 id="追加懸念"><a href="#追加懸念">追加懸念</a></h2>
-        <p>作業中に感じた別の懸念も記しておく。 Webfont の読み込みに失敗しフォールバックのままになった場合だ。
+        <p>作業中に感じた別の懸念も記しておく。Webfont の読み込みに失敗しフォールバックのままになった場合だ。
         <p>今回は WebFont とすり合わせるために、フォールバックフォントが本来持っている設定を無視して設定を上書きしている。無事 Web Font が読み込まれれば良いが、もし何らかの問題で Web Font の読み込みに失敗した場合は、その上書きした設定のまま読者はコンテンツを読むことになる。
         <p>すると、「上書きした状態がフォールバックフォントにとって読みやすい設定なのか?」という疑問が生まれる。
-        <p>筆者は専門ではないが、こにこだわりを持つ場合は、単にフォールバックフォントを Noto に近づけるのではなく、両者の間を取った値を設計し、 Noto とフォールバックフォント両方をそれに近づけるように上書きするのが望ましいと考えられる。
+        <p>筆者は専門ではないが、こにこだわりを持つ場合は、単にフォールバックフォントを Noto に近づけるのではなく、両者の間を取った値を設計し、Noto とフォールバックフォント両方をそれに近づけるように上書きするのが望ましいと考えられる。
         <p>フォールバックフォントをどこまで想定するかにもよるが、ページ間でのずれを合わせることすらできなかったにもかかわらず、さらにバリエーションが必要になるのかもしれない。
       </section>
       <section>
@@ -288,7 +288,7 @@
         <p>今回は、読み込んだフォントの差による Layout Shift を防ぐという観点で Font Metrics Override を調査した。
         <p>筆者は Typography についての知識、経験が少ないため、仕様でうたわれているような理想的な運用まで持っていくことができなかった。
         <p>英数字のみや、短文やロゴだけといった限定した対象であれば可能性はありそうだが、本サイトのような構成では現実的な落とし所を見つけることができなかった。
-        <p>もしこれを適切に運用し、 Web Font 読み込み完了時に Layout Shift が減らせる設定を、妥当な環境のフォールバックフォントに対して設計できるようなノウハウがあればぜひ知りたい。
+        <p>もしこれを適切に運用し、Web Font 読み込み完了時に Layout Shift が減らせる設定を、妥当な環境のフォールバックフォントに対して設計できるようなノウハウがあればぜひ知りたい。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>

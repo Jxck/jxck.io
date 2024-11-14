@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 27 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 27 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-29/fedcm.html>
   <meta property=og:title        content="3PCA 27 日目: FedCM | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 27 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 27 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-29T08:00:00+08:00",
-    "dateModified": "2024-05-14T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 27 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 27 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-29>2023-12-29</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -153,7 +153,7 @@
       <h1><a href="">3PCA 27 日目: FedCM</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 27 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 27 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -169,9 +169,9 @@
         <section>
           <h3 id="認証連携"><a href="#認証連携">認証連携</a></h3>
           <p>あるサイト(RP)の認証を別のサイト(IDP)の認証で行いたい場合、両者の連携は 3rd Party Cookie で行われてきた。
-          <p>例えば、 RP に IDP を <code translate=no>&lt;iframe&gt;</code> で埋め込み、 IDP に対するログイン済みの Cookie があれば、その情報を JS で RP に渡して認証済みにするといった構成だ。
-          <p>これは、 <code translate=no>&lt;iframe&gt;</code> の中が Partition されているため、 SAA などを使わない限りアクセスできなくなった。 SAA が入る前の ITP 対策としてよく行われていたのは、一旦 IDP のページに遷移し、そこでジェスチャを発生させ、認証結果をクエリに付けて RP にリダイレクトバックする方法だった。詳細は過去の記事で解説している。
-          <p>これは SSO などでも使われており、 3rd Party Cookie を用いたユースケースとしてはかなりポジティブなものとして捉えられている。
+          <p>例えば、RP に IDP を <code translate=no>&lt;iframe&gt;</code> で埋め込み、IDP に対するログイン済みの Cookie があれば、その情報を JS で RP に渡して認証済みにするといった構成だ。
+          <p>これは、<code translate=no>&lt;iframe&gt;</code> の中が Partition されているため、SAA などを使わない限りアクセスできなくなった。SAA が入る前の ITP 対策としてよく行われていたのは、一旦 IDP のページに遷移し、そこでジェスチャを発生させ、認証結果をクエリに付けて RP にリダイレクトバックする方法だった。詳細は過去の記事で解説している。
+          <p>これは SSO などでも使われており、3rd Party Cookie を用いたユースケースとしてはかなりポジティブなものとして捉えられている。
         </section>
         <section>
           <h3 id="fedcm-api"><a href="#fedcm-api">FedCM API</a></h3>
@@ -200,7 +200,7 @@
               <img loading=lazy decoding=async src=fedcm-account-chooser.png?240212_235833 alt="FedCM Account Chooser" width=974 height=488>
             </picture>
           </p>
-          <p>これを RP 側で呼び出すには、基本的には JS を多少呼び出せば対応できるため、 RP 側のコストはそこまで高くはないだろう。 API は Credential Management API の拡張として定義されている。
+          <p>これを RP 側で呼び出すには、基本的には JS を多少呼び出せば対応できるため、RP 側のコストはそこまで高くはないだろう。API は Credential Management API の拡張として定義されている。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=js data-code=js><code translate=no class=language-js>const credential = await navigator.credentials.get({
   identity: {
@@ -225,7 +225,7 @@ console.log({ token })</code></pre>
           <p>FedCM は <code translate=no>&lt;iframe&gt;</code> の中からも呼び出すことができる。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;iframe src=&quot;https://embedded.example&quot; allow=&quot;identity-credentials-get&quot;&gt;&lt;/iframe&gt;</code></pre>
           <p>これは、例えば YouTube を埋め込んでいるがログイン済みにならず、課金しているのに広告が出てしまうといったケースをカバーできる可能性がある。
-          <p>つまり、認証を繋ぐだけであれば、 SAA や CHIPS に頼らずともユースケースを実現できる可能性がありそうだ。
+          <p>つまり、認証を繋ぐだけであれば、SAA や CHIPS に頼らずともユースケースを実現できる可能性がありそうだ。
           <p>ただ、これがどこまでどういった制限をもっているのかは、正直まだ筆者にもあまりわかっておらず、実際に使っているケースもまだ見てないため、今後検証したい。
         </section>
       </section>
@@ -242,7 +242,7 @@ console.log({ token })</code></pre>
           </li>
         </ul>
         <p>コメントは珍しく長いので引用は割愛する。
-        <p>次に Webkit だが、まだポジションは決まっていない。 FedCM に関する複数のポジションリクエストはあるが、態度を保留している。
+        <p>次に Webkit だが、まだポジションは決まっていない。FedCM に関する複数のポジションリクエストはあるが、態度を保留している。
         <ul>
           <li>
             Webkit: N/A
@@ -251,7 +251,7 @@ console.log({ token })</code></pre>
             </ul>
           </li>
         </ul>
-        <p>ただ、 Standard Position が webkit-dev で問い合わせられていた頃は、 Positive な返事があった。
+        <p>ただ、Standard Position が webkit-dev で問い合わせられていた頃は、Positive な返事があった。
         <ul>
           <li>
             [webkit-dev] Request for position on FedCM (was WebID)

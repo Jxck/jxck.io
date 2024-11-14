@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 21 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 21 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-21/same-site.html>
   <meta property=og:title        content="3PCA 21 日目: SameSite Cookie | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 21 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 21 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-21T08:00:00+08:00",
-    "dateModified": "2024-05-14T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 21 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 21 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-21>2023-12-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,7 +156,7 @@
       <h1><a href="">3PCA 21 日目: SameSite Cookie</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 21 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 21 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -174,7 +174,7 @@
         <p>例として example.com ドメインを持ち、そこに以下のような Cookie を付与するところを考える。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; Domain=example.com</code></pre>
-        <p>これは、この Cookie が <a href="https://example.com" target=_blank>https://example.com</a> とそのサブドメイン全体に送られるように設定するものだ。この Domain 属性をつけなければ、 <a href="https://example.com/" target=_blank>https://example.com/</a> にしか送られない。
+        <p>これは、この Cookie が <a href="https://example.com" target=_blank>https://example.com</a> とそのサブドメイン全体に送られるように設定するものだ。この Domain 属性をつけなければ、<a href="https://example.com/" target=_blank>https://example.com/</a> にしか送られない。
         <p>ここで、以下を考える。
         <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; Domain=com</code></pre>
         <p>これでもし、この Cookie が <code translate=no>.com</code> のあらゆるサブドメインに送られるようになると問題だ。
@@ -182,16 +182,16 @@
         <p>では、次はどうだろう?
         <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; Domain=example.co.jp
 Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
-        <p><a href="https://example.co.jp" target=_blank>https://example.co.jp</a> を持っているなら、 <code translate=no>*.example.co.jp</code> に送られるのは問題ない。しかし <code translate=no>Domain=co.jp</code> を指定できてしまうと、その Cookie があらゆる <code translate=no>*.co.jp</code> サイトに送られるため問題になる。
+        <p><a href="https://example.co.jp" target=_blank>https://example.co.jp</a> を持っているなら、<code translate=no>*.example.co.jp</code> に送られるのは問題ない。しかし <code translate=no>Domain=co.jp</code> を指定できてしまうと、その Cookie があらゆる <code translate=no>*.co.jp</code> サイトに送られるため問題になる。
         <p>この場合 TLD は <code translate=no>.jp</code> であるが「Domain に TLD は指定できない」ではルールが緩すぎるのだ。
-        <p><code translate=no>.jp</code> のサブドメインでありながら、 <a href="https://co.jp/" target=_blank>https://co.jp/</a> や <a href="https://ne.jp/" target=_blank>https://ne.jp/</a> はドメインレジストラでは取得できない。 <code translate=no>co.jp</code> や <code translate=no>ne.jp</code> は TLD ではないが TLD のように振る舞う。これを Effective Top Level Domain (eTLD) という。
-        <p>ドメインレジストラで購入できるドメインは、 eTLD の左に 1 単語以上を繋いだ eTLD+1 (co.jp + example) になる。これが eTLD+1 の正体だ。
-        <p>eTLD である組み合わせは、 Public Suffix List という巨大なテキストファイルで管理されている。
+        <p><code translate=no>.jp</code> のサブドメインでありながら、<a href="https://co.jp/" target=_blank>https://co.jp/</a> や <a href="https://ne.jp/" target=_blank>https://ne.jp/</a> はドメインレジストラでは取得できない。<code translate=no>co.jp</code> や <code translate=no>ne.jp</code> は TLD ではないが TLD のように振る舞う。これを Effective Top Level Domain (eTLD) という。
+        <p>ドメインレジストラで購入できるドメインは、eTLD の左に 1 単語以上を繋いだ eTLD+1 (co.jp + example) になる。これが eTLD+1 の正体だ。
+        <p>eTLD である組み合わせは、Public Suffix List という巨大なテキストファイルで管理されている。
       </section>
       <section>
         <h2 id="same-site-とは"><a href="#same-site-とは">Same Site とは</a></h2>
         <p><a href="https://example.co.jp" target=_blank>https://example.co.jp</a> とそのサブドメインである <a href="https://admin.example.co.jp" target=_blank>https://admin.example.co.jp</a> は、通常同じ管理者が運用しているだろうと考えられる。つまり、eTLD+1 (<a href="https://example.co.jp/" target=_blank>https://example.co.jp/</a>)までが同じであれば、そのサブドメインも同じサイトだと考えることができる。
-        <p>これを Same Site と言い、 Same Site Cookie とは「eTLD+1 が同じである Same Site にしか送らない Cookie」を意味する。対して Cross Site Cookie は、まさしく 3rd Party Cookie を意味することになるのだ。
+        <p>これを Same Site と言い、Same Site Cookie とは「eTLD+1 が同じである Same Site にしか送らない Cookie」を意味する。対して Cross Site Cookie は、まさしく 3rd Party Cookie を意味することになるのだ。
         <p>
           <picture>
             <source type=image/avif srcset=domain-relation.avif?240106_024903>
@@ -208,17 +208,17 @@ Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
         </section>
         <section>
           <h3 id="samesitelax"><a href="#samesitelax">SameSite=Lax</a></h3>
-          <p>ところが、これはあまりにも厳密であり、この Cookie は例えば <a href="https://example.com/" target=_blank>https://example.com/</a> という Cross Site からの「画面遷移」でも送られない。もし <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> にログイン済みでも、 <a href="https://example.com/" target=_blank>https://example.com/</a> 上のリンクをクリックして遷移してたら、 Cookie が送られないためログイン済みにならない。といったことが起こってしまうのだ。
+          <p>ところが、これはあまりにも厳密であり、この Cookie は例えば <a href="https://example.com/" target=_blank>https://example.com/</a> という Cross Site からの「画面遷移」でも送られない。もし <a href="https://example.co.jp" target=_blank>https://example.co.jp</a> にログイン済みでも、<a href="https://example.com/" target=_blank>https://example.com/</a> 上のリンクをクリックして遷移してたら、Cookie が送られないためログイン済みにならない。といったことが起こってしまうのだ。
           <p>これは流石に制限が強すぎるため、緩和策として画面遷移(Top Level Navigation)だけは、例外的に Cookie を送るようにするための緩和仕様が <code translate=no>Lax</code> だ。
           <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; SameSite=Lax</code></pre>
-          <p>これで、 <code translate=no>&lt;iframe&gt;</code> などの埋め込みでは送られないが、画面遷移の場合は送られ、認証済みの状態が維持できるようになる。
+          <p>これで、<code translate=no>&lt;iframe&gt;</code> などの埋め込みでは送られないが、画面遷移の場合は送られ、認証済みの状態が維持できるようになる。
         </section>
         <section>
           <h3 id="samesitenone"><a href="#samesitenone">SameSite=None</a></h3>
-          <p>逆に、これらの制限を外し、 Cross Site にも送れるようにする属性が <code translate=no>None</code> だ。
+          <p>逆に、これらの制限を外し、Cross Site にも送れるようにする属性が <code translate=no>None</code> だ。
           <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; SameSite=None</code></pre>
           <p>Cross Site にも送ると言うことは、これは 3rd Party Cookie として使えるということだ。
-          <p>つまり、 <code translate=no>SameSite=None</code> は「<em>これは 3rd Party Cookie だと明示的に示すマーカー</em>」とみなすことができる。
+          <p>つまり、<code translate=no>SameSite=None</code> は「<em>これは 3rd Party Cookie だと明示的に示すマーカー</em>」とみなすことができる。
         </section>
       </section>
       <section>
@@ -226,14 +226,14 @@ Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
         <p>Chrome は、3rd Party Cookie Deprecation の計画を発表した時に、まず Cookie のデフォルトを <code translate=no>Lax</code> にするという変更を行った。
         <p>画面遷移では送られるため、ログインセッションは維持できる。しかし、3rd Party Cookie としては送られない。という非常に重要な破壊的変更だ。
         <p>この変更により 3rd Party Cookie がブロックされ、さまざまなユースケースが壊れる。ワークアラウンドとして、3rd Party Cookie に依存している場合は、明示的に <code translate=no>SameSite=None</code> を付与する必要が出たのだ。
-        <p>結果、世界中の広告プラットフォームや、認証連携や、 SNS のボタンなどで用いられるあらゆる 3rd Party Cookie には、 <code translate=no>SameSite=None</code> が付けられた。(対応が難しい場合は、サービスで使っている Cookie を全てにとりあえず <code translate=no>SameSite=None</code> を付与するといった対応もあった。)
+        <p>結果、世界中の広告プラットフォームや、認証連携や、SNS のボタンなどで用いられるあらゆる 3rd Party Cookie には、<code translate=no>SameSite=None</code> が付けられた。(対応が難しい場合は、サービスで使っている Cookie を全てにとりあえず <code translate=no>SameSite=None</code> を付与するといった対応もあった。)
         <p>しかし、いずれにせよこの作業を経て「<em>世界中の 3rd Party Cookie が可視化された</em>」ことになる。
         <p>ブラウザが <code translate=no>SameSite=None</code> の使用量をメトリクスで監視すれば、世界でどのくらい 3rd Party Cookie が使われているのかを把握でき、事業者は自分たちのコードベースに <code translate=no>SameSite=None</code> がどのくらい残っているのかを把握することで、どの程度 3rd Party Cookie への対応ができているのかを知ることができるのだ。
-        <p>そして、 3rd Party Cookie を無くしていく作業は、この <code translate=no>SameSite=None</code> とマークされている Cookie を無くしていく作業ということになる。つまり、 Chrome が最後に「<code translate=no>SameSite=None</code> を無視する」という変更をブラウザに入れることが 3rd Party Cookie Deprecation のゴールになるわけだ。
+        <p>そして、3rd Party Cookie を無くしていく作業は、この <code translate=no>SameSite=None</code> とマークされている Cookie を無くしていく作業ということになる。つまり、Chrome が最後に「<code translate=no>SameSite=None</code> を無視する」という変更をブラウザに入れることが 3rd Party Cookie Deprecation のゴールになるわけだ。
       </section>
       <section>
         <h2 id="csrf-の緩和"><a href="#csrf-の緩和">CSRF の緩和</a></h2>
-        <p><code translate=no>SameSite=Lax</code> がデフォルトになるメリットは、 3rd Party Cookie の可視化だけではない。
+        <p><code translate=no>SameSite=Lax</code> がデフォルトになるメリットは、3rd Party Cookie の可視化だけではない。
         <p>CSRF 攻撃は、もともと Cross Site に Cookie が送られることを利用していたため、これも <code translate=no>SameSite=Lax</code> がデフォルトになることで、かなりのケースで攻撃が成立しなくなる。
         <p>しかしこれを理由に、従来の対策方法だった CSRF token ベースの防御が不要になるかと言うと、セキュリティ専門家は懐疑的であるか否定している。OWASP にはその理由が書いてある。
         <blockquote cite="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html">
@@ -243,12 +243,12 @@ Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
           <p>&mdash; <cite><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html" target=_blank>https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html</a></cite>
         </blockquote>
         <p>タラレバな部分もあるような気がするが、万全の対策には従来の手法を最終層に置いた、多層防御が必要となる。
-        <p>しかし、 <code translate=no>SameSite=Lax</code> によって大半が落とされ、さらに <code translate=no>Sec-Fetch-Dest</code>/<code translate=no>Sec-Fetch-Mode</code>/<code translate=no>Sec-Fetch-Site</code>/<code translate=no>Sec-Fetch-User</code> あたりをチェックすれば、ミドルウェアで攻撃リクエストを落とすことができ、 CSRF Token を格納している Redis などの Cookie Storage への I/O の削減に繋がるだろう。
+        <p>しかし、<code translate=no>SameSite=Lax</code> によって大半が落とされ、さらに <code translate=no>Sec-Fetch-Dest</code>/<code translate=no>Sec-Fetch-Mode</code>/<code translate=no>Sec-Fetch-Site</code>/<code translate=no>Sec-Fetch-User</code> あたりをチェックすれば、ミドルウェアで攻撃リクエストを落とすことができ、CSRF Token を格納している Redis などの Cookie Storage への I/O の削減に繋がるだろう。
       </section>
       <section>
         <h2 id="理想の-cookie"><a href="#理想の-cookie">理想の Cookie</a></h2>
-        <p>ちなみに 3rd Party Cookie とは離れるが、 Same Site Cookie を最大限使いこなすには read/write を分離するのがベストプラクティスとされている。
-        <p>これはつまり、 API への Read 権限を <code translate=no>Lax</code> にし、 Write 権限を <code translate=no>Strict</code> にするというものだ。
+        <p>ちなみに 3rd Party Cookie とは離れるが、Same Site Cookie を最大限使いこなすには read/write を分離するのがベストプラクティスとされている。
+        <p>これはつまり、API への Read 権限を <code translate=no>Lax</code> にし、Write 権限を <code translate=no>Strict</code> にするというものだ。
         <p>従来の 1st Party Session Cookie は、それ単体で Read も Write も担っていた。これを 2 つに分けて Read つまり GET で画面を遷移するのには <code translate=no>Lax</code> を使い、その Cookie だけでは POST/PUT/DELETE はできなくする。
         <p>代わりに POST/PUT/DELETE 用に <code translate=no>Strict</code> な Cookie が付与されるようにするというものだ。
         <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: __Host-session_read=deadbeef;  Secure; HttpOnly; Path=/; SameSite=Lax
@@ -282,7 +282,7 @@ Set-Cookie: __Host-session_write=facefeed; Secure; HttpOnly; Path=/; SameSite=St
   return res.send(405)
 })</code></pre>
         <p>リファクタリングとしては多少難易度が高いが、この分離が可能であれば、ついでに Cookie Prefix の付与や、ミドルウェアでの Sec-Fetch 系のチェックなども入れられると、より堅牢な実装ができるだろう。
-        <p>Read/Write 分離の運用は、 GitHub が既に行っているため参考になる。
+        <p>Read/Write 分離の運用は、GitHub が既に行っているため参考になる。
       </section>
     </article>
   </main>

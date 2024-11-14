@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-05-10T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-05-10>2017-05-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -157,7 +157,7 @@
         <h2 id="web-share"><a href="#web-share">Web Share</a></h2>
         <p>ブラウザで開いている Web コンテンツを、他のサービスやアプリと連携するための方法は、以前から検討されていた。
         <p>主だったものとしては、すでに策定は止まっているが Android の Intent を参考にした <a href="https://www.w3.org/TR/web-intents/" target=_blank>Web Intents</a> が挙げられる。
-        <p>Web Share API は、 Web コンテンツと SNS やメールなどとの連携を主目的とした、より簡素で軽量な API となっている。
+        <p>Web Share API は、Web コンテンツと SNS やメールなどとの連携を主目的とした、より簡素で軽量な API となっている。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>
@@ -170,7 +170,7 @@
       <section>
         <h2 id="api"><a href="#api">API</a></h2>
         <p>API は非常に簡素だ。
-        <p>現状設定可能なパラメータは、 <code translate=no>title</code>, <code translate=no>text</code>, <code translate=no>url</code> のみである。
+        <p>現状設定可能なパラメータは、<code translate=no>title</code>, <code translate=no>text</code>, <code translate=no>url</code> のみである。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=js data-code=js><code translate=no class=language-js>if (navigator.share !== undefined) {
   document.getElementById(&quot;support&quot;).textContent = &quot;supported&quot;;
@@ -185,9 +185,9 @@ navigator
   })
   .then(console.log.bind(console))
   .catch(console.log.bind(console));</code></pre>
-        <p>こうした API であるため、 <code translate=no>navigator.share</code> を見ることで、サポートの有無を判別できる。
-        <p>結果は Promise を返し、 Share の成功可否によって変わる。
-        <p>また、 Web Share は Share の発信だけで無く、受信についても視野に入れいている。
+        <p>こうした API であるため、<code translate=no>navigator.share</code> を見ることで、サポートの有無を判別できる。
+        <p>結果は Promise を返し、Share の成功可否によって変わる。
+        <p>また、Web Share は Share の発信だけで無く、受信についても視野に入れいている。
         <p>現状その API は議論中だが、同様に navigator を基本に拡張されていくと思われる。
         <p>簡素な Share の送信だけであれば、以下のような URI Scheme の策定も可能かもしれない。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=&quot;share:?title=Example%20Page&amp;amp;url=https://example.com/page&quot;&gt;Share this&lt;/a&gt;</code></pre>

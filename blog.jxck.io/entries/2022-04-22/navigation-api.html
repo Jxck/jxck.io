@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="従来の History API を改善する Navigation API の仕様策定と実装が進んでいる。これは、 History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、 SPA が抱える多くの問題だ...">
+  <meta name=description         content="従来の History API を改善する Navigation API の仕様策定と実装が進んでいる。これは、History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、SPA が抱える多くの問題だけで...">
   <meta name=keywords            content="history,navigation,spa">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2022-04-22/navigation-api.html>
   <meta property=og:title        content="Navigation API による「JS での画面遷移」と SPA の改善 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="従来の History API を改善する Navigation API の仕様策定と実装が進んでいる。これは、 History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、 SPA が抱える多くの問題だ...">
+  <meta property=og:description  content="従来の History API を改善する Navigation API の仕様策定と実装が進んでいる。これは、History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、SPA が抱える多くの問題だけで...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-04-22T08:00:00+08:00",
-    "dateModified": "2024-02-07T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "従来の History API を改善する Navigation API の仕様策定と実装が進んでいる。これは、 History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、 SPA が抱える多くの問題だ..."
+    "description": "従来の History API を改善する Navigation API の仕様策定と実装が進んでいる。これは、History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、SPA が抱える多くの問題だけで..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-04-22>2022-04-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-02-07>2024-02-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -177,27 +177,27 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>従来の History API を改善する Navigation API の仕様策定と実装が進んでいる。
-        <p>これは、 History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、 SPA が抱える多くの問題だけでなく MPA すら改善する可能性がある。
+        <p>これは、History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、SPA が抱える多くの問題だけでなく MPA すら改善する可能性がある。
         <p>この API の目的と仕様を解説しつつ、実装のメモを残す。
       </section>
       <section>
         <h2 id="画面遷移と-spa-の軌跡"><a href="#画面遷移と-spa-の軌跡">画面遷移と SPA の軌跡</a></h2>
         <p>Web は HTML の取得と描画を繰り返す、画面遷移(Navigation)を前提としたアーキテクチャ(のちに SPA からの逆算で MPA と呼ばれる)が基本であり、ブラウザなどの実装もそれに最適化されている。
         <p>一方「アプリケーション」の設計手法をそのまま Web に持ち込んだ SPA は、この Navigation によってもたらされる UX の低下を防ぐ部分がある一方、既存の Web のアーキテクチャからすると必ずしも相性が良いとは言えなかった。
-        <p>特に、表示されている状況を完全に把握し対応できる健常者には使いやすくとも、 JS に閉じて UA に伝わらない状態の変化が多々あるため、支援技術を用いてアクセスしているユーザにはしばしば問題となる。
+        <p>特に、表示されている状況を完全に把握し対応できる健常者には使いやすくとも、JS に閉じて UA に伝わらない状態の変化が多々あるため、支援技術を用いてアクセスしているユーザにはしばしば問題となる。
         <p>また、究極的には単一の URL 上で擬似的な画面遷移を全て完結することができる SPA には、特定の状態に URL が振られないため Linkability を損ねていた。こちらは SEO の問題として捉えられることも多い。
         <p>まずは、これまで開発者が歩んできた SPA 開発手法の軌跡を簡単に振り返る。
         <section>
           <h3 id="spa-第原始期-単一-path-での実装"><a href="#spa-第原始期-単一-path-での実装">SPA 第原始期: 単一 Path での実装</a></h3>
           <p>2005 年に Ajax が発見されてからは、表示されている画面をそのまま JS で更新し、疑似的に画面の遷移を演出することができるようになった。
-          <p>それが Web2.0 と相まって世界をガラッと変えたのは事実だが、実際にはルートパス上で見た目が変わっているだけで、 SPA というよりも Single Path App だった。
+          <p>それが Web2.0 と相まって世界をガラッと変えたのは事実だが、実際にはルートパス上で見た目が変わっているだけで、SPA というよりも Single Path App だった。
           <p>これでは、状態を変化させたことをアプリで管理することも難しく、リロードへの耐性すらも怪しい。この原始的な SPA から、どのように状態とパスを紐づけるかというのが SPA の辿る歴史となる。
         </section>
         <section>
           <h3 id="spa-第一期-fragment-による実装"><a href="#spa-第一期-fragment-による実装">SPA 第一期: fragment による実装</a></h3>
           <p>URL の fragment 部 (<code translate=no>https://example.com#foo</code> の <code translate=no>#foo</code>)は、サーバには送られない、クライアントでのみ使われる URL Component だ。
-          <p>基本は <code translate=no>&lt;pre id=&quot;sample_code&quot;&gt;</code> のようにした場合 <code translate=no>https://example.com#sample_code</code> でサンプルコードまでスクロールするといったユースケースで用いられる。そこで、サーバにリクエストをせずにクライアントの状態を変えるという部分だけに着目し、 SPA のルーティングを fragment にエンコードするという実装が考えられた。
-          <p>クライアントの状態であるため、直接アクセスしてもその状態を復元できるのはブラウザのみだ。したがって、当時はそのような構成のサイトが正しく検索できないという問題があった。そこで、 Google Bot は <code translate=no>#!</code> で始まるフラグメントの利用を推奨し、 <code translate=no>https://example.com#!foo</code> を発見した場合はサーバに対して <code translate=no>https://example.com/_escaped_fragment_=foo</code> を代わりにリクエストすることで、サーバは <code translate=no>#!foo</code> で表示されるべき画面を SSR して返すように求めるというサポートを行っていた。
+          <p>基本は <code translate=no>&lt;pre id=&quot;sample_code&quot;&gt;</code> のようにした場合 <code translate=no>https://example.com#sample_code</code> でサンプルコードまでスクロールするといったユースケースで用いられる。そこで、サーバにリクエストをせずにクライアントの状態を変えるという部分だけに着目し、SPA のルーティングを fragment にエンコードするという実装が考えられた。
+          <p>クライアントの状態であるため、直接アクセスしてもその状態を復元できるのはブラウザのみだ。したがって、当時はそのような構成のサイトが正しく検索できないという問題があった。そこで、Google Bot は <code translate=no>#!</code> で始まるフラグメントの利用を推奨し、<code translate=no>https://example.com#!foo</code> を発見した場合はサーバに対して <code translate=no>https://example.com/_escaped_fragment_=foo</code> を代わりにリクエストすることで、サーバは <code translate=no>#!foo</code> で表示されるべき画面を SSR して返すように求めるというサポートを行っていた。
           <ul>
             <li>
               A proposal for making AJAX crawlable  |  Google Search Central Blog  |  Google Developers
@@ -206,8 +206,8 @@
               </ul>
             </li>
           </ul>
-          <p>今見ると(当時見ても)なかなか強引なワークアラウンドだが、 2009 年といえばまだフロントエンドという言葉自体が黎明期で、 SPA ではなく Ajax という名で呼ばれていたような時代だ。
-          <p>このサポートが deprecate になったのが 2015 年であるため、 2008 ~ 2015 くらいが <em>第一期: SPA(fragment)</em> の時代と言えるだろう。
+          <p>今見ると(当時見ても)なかなか強引なワークアラウンドだが、2009 年といえばまだフロントエンドという言葉自体が黎明期で、SPA ではなく Ajax という名で呼ばれていたような時代だ。
+          <p>このサポートが deprecate になったのが 2015 年であるため、2008 ~ 2015 くらいが <em>第一期: SPA(fragment)</em> の時代と言えるだろう。
           <ul>
             <li>
               Deprecating our AJAX crawling scheme  |  Google Search Central Blog  |  Google Developers
@@ -219,8 +219,8 @@
         </section>
         <section>
           <h3 id="spa-第二期-history-api-による-pjax"><a href="#spa-第二期-history-api-による-pjax">SPA 第二期: History API による Pjax</a></h3>
-          <p>実際にリンクのクリックや Form の Submit を全て <code translate=no>preventDefault</code> して fragment に状態をエンコードする実装は、 Navigation が発生せずブラウザに History が積まれない。そこで JS から実際に Navigation をせずに URL を History に積むために作られたのが History API だ。
-          <p>実際には、擬似遷移に URL を付与し、その遷移を復元するための状態を紐づけて <code translate=no>history.pushState</code> で保存するというものだ。画面が遷移した場合は、 <code translate=no>popstate</code> イベントでその状態が取得できるため、それを画面に反映することで遷移が再現される。
+          <p>実際にリンクのクリックや Form の Submit を全て <code translate=no>preventDefault</code> して fragment に状態をエンコードする実装は、Navigation が発生せずブラウザに History が積まれない。そこで JS から実際に Navigation をせずに URL を History に積むために作られたのが History API だ。
+          <p>実際には、擬似遷移に URL を付与し、その遷移を復元するための状態を紐づけて <code translate=no>history.pushState</code> で保存するというものだ。画面が遷移した場合は、<code translate=no>popstate</code> イベントでその状態が取得できるため、それを画面に反映することで遷移が再現される。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=js data-code=js><code translate=no class=language-js>// 画面表示に必要な状態を state として保存
 history.pushState(state, null, &quot;foo.html&quot;)
@@ -233,7 +233,7 @@ window.on(&apos;popstate&apos;, (e) =&gt; {
           <pre class=js data-code=js><code translate=no class=language-js>history.back() // 戻る
 history.forward() // 進む
 history.go(-2) // ページを引数で指定し遷移</code></pre>
-          <p>大きなところでは、 Twitter が 2012 年に対応をアナウンスしている。これはそれなりに早い方の移行だったと思う。
+          <p>大きなところでは、Twitter が 2012 年に対応をアナウンスしている。これはそれなりに早い方の移行だったと思う。
           <ul>
             <li>
               Improving performance on twitter.com
@@ -248,7 +248,7 @@ history.go(-2) // ページを引数で指定し遷移</code></pre>
               </ul>
             </li>
           </ul>
-          <p>History API により、 URL fragment ではなく path を変えることができるようになった。
+          <p>History API により、URL fragment ではなく path を変えることができるようになった。
           <pre><code translate=no>before
 - https://example.com#!login
 - https://example.com#!main
@@ -258,7 +258,7 @@ after
 - https://example.com/login
 - https://example.com/main
 - https://example.com/config</code></pre>
-          <p>これにより、 Google は 2015 年に先ほどの <code translate=no>#!</code> サポートを終了した。これは、標準の方法が普及したことだけでなく、 Google Bot 自体が JS や CSS をある程度読めるようになり、ブラウザの挙動の再現率があがりはじめたこともあったと思う。
+          <p>これにより、Google は 2015 年に先ほどの <code translate=no>#!</code> サポートを終了した。これは、標準の方法が普及したことだけでなく、Google Bot 自体が JS や CSS をある程度読めるようになり、ブラウザの挙動の再現率があがりはじめたこともあったと思う。
           <ul>
             <li>
               Building Indexable Progressive Web Apps  |  Google Search Central Blog  |  Google Developers
@@ -268,12 +268,12 @@ after
             </li>
           </ul>
           <p>ちなみに、この頃は今で言う「React をサーバでレンダリングする SSR」とは違い、元々 MPA で作られたものを、クライアントルーティングもできるというような作りでクローラをサポートしていた。
-          <p><code translate=no>&lt;a&gt;</code> の click をキャンセルして HTML 取得し、 <code translate=no>&lt;body&gt;</code> と <code translate=no>&lt;title&gt;</code> を取り出して現在の DOM に差し込むといった実装は、特に Rails 界隈では Pjax などと呼ばれていた。
+          <p><code translate=no>&lt;a&gt;</code> の click をキャンセルして HTML 取得し、<code translate=no>&lt;body&gt;</code> と <code translate=no>&lt;title&gt;</code> を取り出して現在の DOM に差し込むといった実装は、特に Rails 界隈では Pjax などと呼ばれていた。
           <p>この 2011~2015 年前後が <em>第二期: SPA(Pjax)</em> だったといえるだろう。
         </section>
         <section>
           <h3 id="spa-第三期-router-library-と-ssr"><a href="#spa-第三期-router-library-と-ssr">SPA 第三期: Router Library と SSR</a></h3>
-          <p>しかし、 History API には多くの問題があったことは、この API と向き合った開発者なら一度は感じたことがあるだろう。
+          <p>しかし、History API には多くの問題があったことは、この API と向き合った開発者なら一度は感じたことがあるだろう。
           <p>この API の問題点は以下にまとまっている。
           <ul>
             <li>
@@ -285,14 +285,14 @@ after
           </ul>
           <p>要約すると以下だ。
           <ul>
-            <li>History は <code translate=no>iframe</code> の中の遷移も含むため、 Top Level Frame での履歴を管理したい場合に、意図せず履歴が壊れる場合がある。
+            <li>History は <code translate=no>iframe</code> の中の遷移も含むため、Top Level Frame での履歴を管理したい場合に、意図せず履歴が壊れる場合がある。
             <li>ページ上で発生する Navigation をフックする方法がないため、全てのリンクのクリックを監視するといったことをしないといけない。それでも完璧にはインタラプトしきれない。
             <li>遷移をインデックス(<code translate=no>history.go(-2)</code>)で管理するために、どのインデックスがどの状態か、別途マッピングを管理する必要がある。
             <li>History API とブラウザの履歴との連携は、ブラウザによって差異がある。
             <li><code translate=no>pushState</code> で保存する state には制限が多く、かつ壊れやすい。
           </ul>
           <p>したがって、とても生で使えるものではなかった。多くのワークアラウンドが知見として集まり、それが現在に続く Router 系ライブラリとして進化していくことになる。
-          <p>後に Backbone などを踏み台に React/Vue/Angular が台頭したのち、 JS による画面構築をそのままサーバ側で再現する現代の SSR につながり、俗に言う SEO 問題の解決手段自体は用意された。
+          <p>後に Backbone などを踏み台に React/Vue/Angular が台頭したのち、JS による画面構築をそのままサーバ側で再現する現代の SSR につながり、俗に言う SEO 問題の解決手段自体は用意された。
           <p>この 2014~現在までを <em>第三期: SPA(SSR)</em> としよう。
           <p>ここまででフロントエンドの文脈で得られたのは以下だ。
           <ul>
@@ -302,14 +302,14 @@ after
           <p>しかし、それで SPA の構造上の問題が解決したわけではない。
           <p>例えば、ブラウザは <code translate=no>pushState</code> によって「擬似的な遷移が行われたらしい」ことはわかっても、その画面構築を行うのは全てフロントエンドの JS だ。そこから「戻る」時に、どこに focus を戻し、どこに scroll を戻すのが正しいのか、画面の構築に関わってないブラウザには「開発者が何をしたいのか」が伝わらない部分が多い。
           <p>SPA として質の高い UX を実装したと思っている開発者を尻目に、支援技術を通じてアクセスしているユーザには、使いにくい実装が多々ある。これは、ある一定の「課題の解決」はしたが、「問題の解決」には至ってない典型例といえる。
-          <p>この根本的な問題は、 SPA を表示する際にブラウザが知るべき情報を、ブラウザに提供するためのセマンティクスが不足していたことにある。ここをカバーするために提案されたのが Navigation API だ。
+          <p>この根本的な問題は、SPA を表示する際にブラウザが知るべき情報を、ブラウザに提供するためのセマンティクスが不足していたことにある。ここをカバーするために提案されたのが Navigation API だ。
         </section>
       </section>
       <section>
         <h2 id="navigation-を用いた-spa"><a href="#navigation-を用いた-spa">Navigation を用いた SPA</a></h2>
         <section>
           <h3 id="navigationhistoryentry"><a href="#navigationhistoryentry">NavigationHistoryEntry</a></h3>
-          <p>まず、これまで History API の中に隠されていた履歴に関する情報が、 NavigationHistoryEntry として Interface 化されたことが、この API の有意な点の 1 つだろう。
+          <p>まず、これまで History API の中に隠されていた履歴に関する情報が、NavigationHistoryEntry として Interface 化されたことが、この API の有意な点の 1 つだろう。
           <p>これは、履歴内での Index や URL の他に、ブラウザが生成する Key と ID という 2 つの UUID を持つ。
           <pre class=js data-code=js><code translate=no class=language-js>console.log(navigation.currentEntry)
 // id: &quot;bb1bfee7-be94-45e7-9c0f-bc4b3be15901&quot;
@@ -318,30 +318,30 @@ after
 // ondispose: null
 // sameDocument: true
 // url: &quot;https://labs.jxck.io/navigation/2.html&quot;</code></pre>
-          <p><code translate=no>id</code> はエントリの内容が更新されると変更するが、 <code translate=no>key</code> は変更しない。
-          <p>History API にはこうした値がなく、複雑な状態の同期は URL か Index で行うしかなかった。しかし、 URL が同じでも状態が同じとは限らず、 Index はキーにするほど安定してない。 <code translate=no>id</code> か <code translate=no>key</code> を用途に応じて選択すれば、複雑な状態をシリアライズし Storage に保存するような場面でキーとして使うことができる。
+          <p><code translate=no>id</code> はエントリの内容が更新されると変更するが、<code translate=no>key</code> は変更しない。
+          <p>History API にはこうした値がなく、複雑な状態の同期は URL か Index で行うしかなかった。しかし、URL が同じでも状態が同じとは限らず、Index はキーにするほど安定してない。<code translate=no>id</code> か <code translate=no>key</code> を用途に応じて選択すれば、複雑な状態をシリアライズし Storage に保存するような場面でキーとして使うことができる。
           <p>この Entry が、以降の API を用いる上での基準となる。
         </section>
         <section>
           <h3 id="navigation.entries"><a href="#navigation.entries">navigation.entries()</a></h3>
           <p>History API では、履歴は <code translate=no>iframe</code> の中での遷移も含めた Joint Session になっており、かつプライバシーの理由から履歴そのものにはアクセスできない。見られるのは <code translate=no>history.length</code> 程度で、その情報だけから <code translate=no>history.go()</code> などをしないといけなかった。
-          <p>Navigation API では、 Entry List を取得することができる。内容は Current Origin に制限されるためプライバシーの問題はなく、 <code translate=no>iframe</code> 内での遷移に影響されないため、アプリケーションで管理しやすい。
+          <p>Navigation API では、Entry List を取得することができる。内容は Current Origin に制限されるためプライバシーの問題はなく、<code translate=no>iframe</code> 内での遷移に影響されないため、アプリケーションで管理しやすい。
           <pre class=js data-code=js><code translate=no class=language-js>navigation.entries()</code></pre>
           <p>これを用いれば、いわゆる「戻る」「進む」的な UI を DOM 上に作ることもできる。その場合、選択した Entry への遷移も、後述の API を使って行うことが可能だ。
         </section>
         <section>
           <h3 id="navigation.navigate"><a href="#navigation.navigate">navigation.navigate()</a></h3>
-          <p>History API でいう <code translate=no>history.pushState()</code> に相当するのが <code translate=no>navigation.navigate()</code> だ。 URL に紐づけて State を保存し、 Entry List を操作する。
+          <p>History API でいう <code translate=no>history.pushState()</code> に相当するのが <code translate=no>navigation.navigate()</code> だ。URL に紐づけて State を保存し、Entry List を操作する。
           <pre class=js data-code=js><code translate=no class=language-js>await navigation.navigate(&quot;/foo&quot;, { state: {count: 1}, info: &quot;shortcut&quot;, history: &quot;push&quot; }).finish</code></pre>
-          <p><code translate=no>state</code> は any だが、シリアライズ可能なものに限る。 <code translate=no>history</code> は <code translate=no>&quot;push&quot;</code> なら追記、 <code translate=no>&quot;replace&quot;</code> なら現在の Entry を置き換える。その遷移だけで用いるエフェメラルな値は <code translate=no>info</code> で送ることができる。
-          <p>戻り値は <code translate=no>{ committed, finished }</code> という 2 つの Promise だ。 <code translate=no>committed</code> は <code translate=no>navigate()</code> 開始と共に即座に Resolve し、 <code translate=no>finished</code> は <code translate=no>navigate()</code> が完了したら Resolve する。
+          <p><code translate=no>state</code> は any だが、シリアライズ可能なものに限る。<code translate=no>history</code> は <code translate=no>&quot;push&quot;</code> なら追記、<code translate=no>&quot;replace&quot;</code> なら現在の Entry を置き換える。その遷移だけで用いるエフェメラルな値は <code translate=no>info</code> で送ることができる。
+          <p>戻り値は <code translate=no>{ committed, finished }</code> という 2 つの Promise だ。<code translate=no>committed</code> は <code translate=no>navigate()</code> 開始と共に即座に Resolve し、<code translate=no>finished</code> は <code translate=no>navigate()</code> が完了したら Resolve する。
         </section>
         <section>
           <h3 id="currententry.getstate"><a href="#currententry.getstate">currentEntry.getState()</a></h3>
           <p><code translate=no>navigation.navigate()</code> で Entry に保存した State は <code translate=no>entry.getState()</code> で取得できる。
           <pre class=js data-code=js><code translate=no class=language-js>navigation.currentEntry.getState() // {count: 1}</code></pre>
           <p><code translate=no>entry.getState()</code> は <code translate=no>history.state</code> と類似するが、既存の問題をいくつか解決している。
-          <p>まず、 <code translate=no>history.state</code> はセッション上ではプロパティアクセスにより更新できたように見えるが、永続化はされていないため誤解を招くような挙動に見える。
+          <p>まず、<code translate=no>history.state</code> はセッション上ではプロパティアクセスにより更新できたように見えるが、永続化はされていないため誤解を招くような挙動に見える。
           <pre class=js data-code=js><code translate=no class=language-js>// https://github.com/WICG/navigation-api/issues/36
 
 history.pushState({ count: 2 }, null, &apos;&apos;);
@@ -364,14 +364,14 @@ console.assert(navigation.currentEntry.getState().count === 2);</code></pre>
         </section>
         <section>
           <h3 id="navigation.traversetokey"><a href="#navigation.traversetokey">navigation.traverseTo(key)</a></h3>
-          <p>History API では、任意の履歴への遷移は <code translate=no>history.go()</code> にインデックスを指定する方法しかなった。遷移したい先の Index がなんであるかを把握し、 <code translate=no>iframe</code> 内での履歴変更などがあっても Index が履歴リストの変更と同期していることを保証する必要がある。
-          <p>Navigation API では、 Entry List から選んだ特定の Entry への遷移は、 Entry が生成されてから変わらない <code translate=no>entry.key</code> で行う。
+          <p>History API では、任意の履歴への遷移は <code translate=no>history.go()</code> にインデックスを指定する方法しかなった。遷移したい先の Index がなんであるかを把握し、<code translate=no>iframe</code> 内での履歴変更などがあっても Index が履歴リストの変更と同期していることを保証する必要がある。
+          <p>Navigation API では、Entry List から選んだ特定の Entry への遷移は、Entry が生成されてから変わらない <code translate=no>entry.key</code> で行う。
           <pre class=js data-code=js><code translate=no class=language-js>await navigation.traverseTo(key).finished;</code></pre>
         </section>
         <section>
           <h3 id="backforwardreload"><a href="#backforwardreload">back()/forward()/reload()</a></h3>
           <p><code translate=no>history.back()</code> / <code translate=no>history.forward()</code> / <code translate=no>location.reload()</code> 相当のメソッドもある。
-          <p><code translate=no>navigation.back()</code> / <code translate=no>navigation.forward()</code> は <code translate=no>info</code> を渡すことができ、 back/forward が可能かどうかを知るためのフラグが <code translate=no>navigation.canGoBack</code> および <code translate=no>navigation.canGoForward</code> で提供されている。
+          <p><code translate=no>navigation.back()</code> / <code translate=no>navigation.forward()</code> は <code translate=no>info</code> を渡すことができ、back/forward が可能かどうかを知るためのフラグが <code translate=no>navigation.canGoBack</code> および <code translate=no>navigation.canGoForward</code> で提供されている。
           <pre class=js data-code=js><code translate=no class=language-js>if (navigation.canGoBack) {
   await navigation.back({info: &quot;click-prev&quot;}).finished
 }
@@ -458,24 +458,24 @@ window?.navigation?.on(&quot;navigateerror&quot;, (e) =&gt; {
         </section>
         <section>
           <h3 id="遷移の開始と完了"><a href="#遷移の開始と完了">遷移の「開始」と「完了」</a></h3>
-          <p>まず、 <code translate=no>transitionWhile()</code> は、呼び出した瞬間が「<em>遷移の開始</em>」で、全て終わったら「<em>遷移の完了</em>」であることがわかる。ここが <code translate=no>await</code> なので、 <code translate=no>transitionWhile()</code> は渡された Promise が Resolve されるまでを「遷移」と定義していることになる。
+          <p>まず、<code translate=no>transitionWhile()</code> は、呼び出した瞬間が「<em>遷移の開始</em>」で、全て終わったら「<em>遷移の完了</em>」であることがわかる。ここが <code translate=no>await</code> なので、<code translate=no>transitionWhile()</code> は渡された Promise が Resolve されるまでを「遷移」と定義していることになる。
           <p>この遷移(navigation event)が <code translate=no>navigation.navigate()</code> によって発火していた場合は、「開始」と「完了」が先ほどの <code translate=no>{ committed, finished }</code> Promise に対応することになる。
           <pre class=js data-code=js><code translate=no class=language-js>// transitionWhile() による画面遷移が終わるのを待つ
 await navigation.navigate(url, state).finished</code></pre>
-          <p>この「開始」と「完了」というセマンティクスは、 JS 上だけではなくブラウザ、支援技術、計測ツール、開発者ツールなど、あらゆる実装に対して有益な情報だ。
-          <p>例えば、支援技術は MPA の画面が遷移したことを利用者に伝えることができるが、 SPA の場合はそこをヒューリスティクスに頼らざるをえない部分があった。しかし、 Navigation API によって明示的に知ることができるため、これを監視すれば SPA でも「今遷移が起こったこと」を伝えるといった応用が可能だ。
-          <p>そして、「開始」と「完了」の間は「遷移中」なので、それを知ったブラウザはローディングインジケータ(DOM に開発者が表示するものではなく、タブに表示されるネイティブのもの)の表示に使えるし、「遷移中」にバツボタンに変わったそれをユーザがクリックしたら、渡されてきた AbortSignal を abort することで、 <code translate=no>transitionWhile()</code> 内に中断処理を実現できる。
+          <p>この「開始」と「完了」というセマンティクスは、JS 上だけではなくブラウザ、支援技術、計測ツール、開発者ツールなど、あらゆる実装に対して有益な情報だ。
+          <p>例えば、支援技術は MPA の画面が遷移したことを利用者に伝えることができるが、SPA の場合はそこをヒューリスティクスに頼らざるをえない部分があった。しかし、Navigation API によって明示的に知ることができるため、これを監視すれば SPA でも「今遷移が起こったこと」を伝えるといった応用が可能だ。
+          <p>そして、「開始」と「完了」の間は「遷移中」なので、それを知ったブラウザはローディングインジケータ(DOM に開発者が表示するものではなく、タブに表示されるネイティブのもの)の表示に使えるし、「遷移中」にバツボタンに変わったそれをユーザがクリックしたら、渡されてきた AbortSignal を abort することで、<code translate=no>transitionWhile()</code> 内に中断処理を実現できる。
           <p>これについては、以下に仕様作者のデモがあるので見るとわかりやすいだろう。
           <ul>
             <li><a href="https://twitter.com/domenic/status/1471604621470846979" target=_blank>https://twitter.com/domenic/status/1471604621470846979</a>
           </ul>
-          <p>他にも、 Core Web Vitals に代表される計測指標やツールは、「ページが表示されるまでの時間」に注目して設計されているため、 SPA の途中の遷移におけるパフォーマンスを計測するのは難しかった。これも、「開始」「完了」が分かれば改善が期待できる。
+          <p>他にも、Core Web Vitals に代表される計測指標やツールは、「ページが表示されるまでの時間」に注目して設計されているため、SPA の途中の遷移におけるパフォーマンスを計測するのは難しかった。これも、「開始」「完了」が分かれば改善が期待できる。
         </section>
       </section>
       <section>
         <h2 id="フォーカスの管理"><a href="#フォーカスの管理">フォーカスの管理</a></h2>
         <p>SPA におけるフォーカスやスクロールの管理は、軽視されがちなポイントの 1 つだ。
-        <p>例えばボタンクリックによって擬似的な遷移が発生し画面が更新されても、ボタンの DOM 自体が残った場合、フォーカスもそこに残る。これは、画面が遷移したらフォーカスがページの先頭(<code translate=no>&lt;body&gt;</code>)や、 <code translate=no>autofocus</code> 属性のある要素へリセットされる MPA と比べて直感的ではない場合がある。
+        <p>例えばボタンクリックによって擬似的な遷移が発生し画面が更新されても、ボタンの DOM 自体が残った場合、フォーカスもそこに残る。これは、画面が遷移したらフォーカスがページの先頭(<code translate=no>&lt;body&gt;</code>)や、<code translate=no>autofocus</code> 属性のある要素へリセットされる MPA と比べて直感的ではない場合がある。
         <p>これも <code translate=no>transitionWhile()</code> で遷移された場合は、ブラウザは「完了」を知ることによって、そのタイミングでフォーカスを <code translate=no>&lt;body&gt;</code> や <code translate=no>autofocus</code> にリセットすることができる。もし、特定の要素がフォーカス中だったページに「戻る」「進む」した場合に、その位置が復元されてほしいのであれば、<code translate=no>focusReset: &quot;manual&quot;</code> にしてリセットを無効化し、Entry に保存しておいた状態を <code translate=no>&quot;traverse&quot;</code> 時に復元すればよい。
         <pre class=js data-code=js><code translate=no class=language-js>navigation.addEventListener(&quot;navigate&quot;, e =&gt; {
   // 現在の focus を保存
@@ -497,9 +497,9 @@ navigation.addEventListener(&quot;navigatesuccess&quot;, () =&gt; {
       </section>
       <section>
         <h2 id="スクロールの管理"><a href="#スクロールの管理">スクロールの管理</a></h2>
-        <p>MPA では、「戻る」「進む」の場合に元いたスクロール位置が復元される。これはブラウザが自動で行っているが、 SPA ではうまくいくとは限らない。
-        <p>SPA でもブラウザはスクロール位置を復元しようとするが、そもそもいつ戻った画面が表示し終わったのかがわからないため、画面構築中にスクロールしてしまったりということが起こる。また、スクロールしようとしても、戻った時に該当の DOM がある保証もない。制御する方法も、 History API では <code translate=no>history.scrollRestoration</code> に <code translate=no>&quot;auto&quot;</code> を指定してブラウザに任せるか、 <code translate=no>&quot;manual&quot;</code> を指定して Opt-Out するしかなかった。
-        <p>こちらも、 <code translate=no>transitionWhile()</code> によって「完了」がわかるため、ブラウザはそのタイミングでスクロールの復元を試みる。もし、全ての Promise を待つ必要がない場合は、 <code translate=no>scrollRestoration</code> を <code translate=no>&quot;manual&quot;</code> で Opt-Out しつつ、任意のタイミングで <code translate=no>e.restoreScroll()</code> を呼べば、そのタイミングで復元が行われる。
+        <p>MPA では、「戻る」「進む」の場合に元いたスクロール位置が復元される。これはブラウザが自動で行っているが、SPA ではうまくいくとは限らない。
+        <p>SPA でもブラウザはスクロール位置を復元しようとするが、そもそもいつ戻った画面が表示し終わったのかがわからないため、画面構築中にスクロールしてしまったりということが起こる。また、スクロールしようとしても、戻った時に該当の DOM がある保証もない。制御する方法も、History API では <code translate=no>history.scrollRestoration</code> に <code translate=no>&quot;auto&quot;</code> を指定してブラウザに任せるか、<code translate=no>&quot;manual&quot;</code> を指定して Opt-Out するしかなかった。
+        <p>こちらも、<code translate=no>transitionWhile()</code> によって「完了」がわかるため、ブラウザはそのタイミングでスクロールの復元を試みる。もし、全ての Promise を待つ必要がない場合は、<code translate=no>scrollRestoration</code> を <code translate=no>&quot;manual&quot;</code> で Opt-Out しつつ、任意のタイミングで <code translate=no>e.restoreScroll()</code> を呼べば、そのタイミングで復元が行われる。
         <pre class=js data-code=js><code translate=no class=language-js>navigation.addEventListener(&quot;navigate&quot;, e =&gt; {
   e.transitionWhile((async () =&gt; {
     const data = await fetchData()
@@ -510,15 +510,15 @@ navigation.addEventListener(&quot;navigatesuccess&quot;, () =&gt; {
     await sendReporting()
   })(), { focusReset: &quot;manual&quot; })
 })</code></pre>
-        <p>もちろん、 <code translate=no>e.restoreScroll()</code> を呼ばずに、自分で State に保存した要素に <code translate=no>window.scrollTo()</code> しても良い。
+        <p>もちろん、<code translate=no>e.restoreScroll()</code> を呼ばずに、自分で State に保存した要素に <code translate=no>window.scrollTo()</code> しても良い。
       </section>
       <section>
         <h2 id="mpa-の改善"><a href="#mpa-の改善">MPA の改善</a></h2>
-        <p>Navigation API を用いると、 MPA でも改善できるケースがありそうだ。
+        <p>Navigation API を用いると、MPA でも改善できるケースがありそうだ。
         <section>
           <h3 id="prg-パターンの改善"><a href="#prg-パターンの改善">PRG パターンの改善</a></h3>
-          <p>SPA を MPA に寄せるようなパターンの話が多かったが、 MPA での実装を改善する方向にも可能性がある。例えば MPA で実装された Form の PRG パターンを考えよう。
-          <p>POST の response をリロードした場合の「フォームを再送信しますか?」が出ることを避けるために、 GET にリダイレクトするのが PRG の目的だが、 History 上は戻れば戻れてしまう問題があり、「フォームを再送信しますか?」の挙動もブラウザごとに違うため、問題が多い。
+          <p>SPA を MPA に寄せるようなパターンの話が多かったが、MPA での実装を改善する方向にも可能性がある。例えば MPA で実装された Form の PRG パターンを考えよう。
+          <p>POST の response をリロードした場合の「フォームを再送信しますか?」が出ることを避けるために、GET にリダイレクトするのが PRG の目的だが、History 上は戻れば戻れてしまう問題があり、「フォームを再送信しますか?」の挙動もブラウザごとに違うため、問題が多い。
           <ul>
             <li>
               How to handle reloading pages created with POST · Issue #6600 · whatwg/html
@@ -527,7 +527,7 @@ navigation.addEventListener(&quot;navigatesuccess&quot;, () =&gt; {
               </ul>
             </li>
           </ul>
-          <p>以下のように、 POST の Entry を GET で <code translate=no>&quot;replace&quot;</code> してしまえば、 POST の Entry は消えるため、「戻る」による問題がなくなる。この実装も、 Navigation API がないブラウザでは通常の MPA として遷移するだけなので、 Progressive な導入が可能だ。
+          <p>以下のように、POST の Entry を GET で <code translate=no>&quot;replace&quot;</code> してしまえば、POST の Entry は消えるため、「戻る」による問題がなくなる。この実装も、Navigation API がないブラウザでは通常の MPA として遷移するだけなので、Progressive な導入が可能だ。
           <pre class=js data-code=js><code translate=no class=language-js>window?.navigation?.on(&quot;navigate&quot;, async (e) =&gt; {
   console.log(e.type, e)
   const pathname = new URL(e.destination.url).pathname
@@ -561,8 +561,8 @@ navigation.addEventListener(&quot;navigatesuccess&quot;, () =&gt; {
           <h3 id="メディアの再生"><a href="#メディアの再生">メディアの再生</a></h3>
           <p>そもそも SPA にする必要があるのかという問題もある。サイトが十分に高速なら MPA として作った方が、作る側も使う側も利がありそうな「とりあえずの SPA」もよく見るように思う。
           <p>逆に SPA でないとならないケースとして筆者が考えるのが「メディアの再生」だ。音楽を聴きながら、ビデオを見ながら、テレビ会議をしながら、という UI では、画面を遷移させることができない。
-          <p>「本当は MPA でも足りているが、特定の理由のためだけに SPA にせざるをえない場面」は一定数あり、そんな既存の MPA を最小限のコストでカジュアルに SPA (Pjax)化をする上でも、 Navigation API は使えるかもしれない。
-          <p>例として、筆者の Podcast は MPA というか事前ビルドの HTML だけで作ってあるが、 SPA であれば再生しながら他の Episode の Show Note を見たりできるだろう。これを Navigation API で実装したら 35 行程度で済んだ。
+          <p>「本当は MPA でも足りているが、特定の理由のためだけに SPA にせざるをえない場面」は一定数あり、そんな既存の MPA を最小限のコストでカジュアルに SPA (Pjax)化をする上でも、Navigation API は使えるかもしれない。
+          <p>例として、筆者の Podcast は MPA というか事前ビルドの HTML だけで作ってあるが、SPA であれば再生しながら他の Episode の Show Note を見たりできるだろう。これを Navigation API で実装したら 35 行程度で済んだ。
           <ul>
             <li><a href="https://github.com/Jxck/jxck.io/blob/main/www.jxck.io/assets/js/mozaic.js#L261-L296" target=_blank>https://github.com/Jxck/jxck.io/blob/main/www.jxck.io/assets/js/mozaic.js#L261-L296</a>
           </ul>
@@ -576,10 +576,10 @@ navigation.addEventListener(&quot;navigatesuccess&quot;, () =&gt; {
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>以上のように Navigation API は、単に使いにくかった History API を改善するだけでなく、 SPA を標準の API で作りやすくするだけでもなく、 SPA 全盛となった現在の Web において真の意味で「JS で画面を遷移する API」を提供するものといえる。
+        <p>以上のように Navigation API は、単に使いにくかった History API を改善するだけでなく、SPA を標準の API で作りやすくするだけでもなく、SPA 全盛となった現在の Web において真の意味で「JS で画面を遷移する API」を提供するものといえる。
         <p>これにより、Navigation を前提とした Web のあらゆるエコシステムに対して、適切な情報を提供することができると期待できるのだ。
-        <p>Navigation API は Chrome にて Intent to Ship が出ているものの、 Mozilla / Safari からのリアクションがまだない状態だ。
-        <p>筆者としては、この API が広く SPA 関連のライブラリに使用され、多くの人にとって MPA のように使いやすい SPA が実装可能な時代が、 <em>第四期: SPA(Navigation)</em> として到来することに期待したい。
+        <p>Navigation API は Chrome にて Intent to Ship が出ているものの、Mozilla / Safari からのリアクションがまだない状態だ。
+        <p>筆者としては、この API が広く SPA 関連のライブラリに使用され、多くの人にとって MPA のように使いやすい SPA が実装可能な時代が、<em>第四期: SPA(Navigation)</em> として到来することに期待したい。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>

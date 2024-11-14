@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-06-14T08:00:00+08:00",
-    "dateModified": "2024-06-17T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-06-14>2024-06-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-06-17>2024-06-17</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -168,7 +168,7 @@
         <pre class=js data-code=js><code translate=no class=language-js>if (URL.canParse(str)) { // 1 回目のパース
   return new URL(str) // 2 回目のパース
 }</code></pre>
-        <p>そこで、失敗したら null にし、成功したら URL を返せば良いという発想が、 <code translate=no>URL.parse()</code> だ。
+        <p>そこで、失敗したら null にし、成功したら URL を返せば良いという発想が、<code translate=no>URL.parse()</code> だ。
         <p>そもそも、リアルワールドでは以下のように例外を握りつぶすコードがよく使われていることも知られていたため、賛同が多かった。
         <pre class=js data-code=js><code translate=no class=language-js>function URLparse(str) {
   try {
@@ -206,7 +206,7 @@
         </ul>
         <p>使い方もそのままだ。
         <pre class=js data-code=js><code translate=no class=language-js>URL.parse(str) // null or URL</code></pre>
-        <p>機能としては小さく、 Firefox や Safari は比較的早く実装を進めていた。
+        <p>機能としては小さく、Firefox や Safari は比較的早く実装を進めていた。
         <ul>
           <li>
             Firefox
@@ -237,7 +237,7 @@
             </ul>
           </li>
         </ul>
-        <p>Firefox と Safari が実装したので、そろそろこの機能を使おうと思ったところ、 Chrome が未実装だったことに気づいた。
+        <p>Firefox と Safari が実装したので、そろそろこの機能を使おうと思ったところ、Chrome が未実装だったことに気づいた。
       </section>
       <section>
         <h2 id="implementor-assign"><a href="#implementor-assign">Implementor Assign</a></h2>
@@ -251,7 +251,7 @@
           </li>
         </ul>
         <p>仕様が小さいことも、ほぼ <code translate=no>URL.canParse()</code> と同じように実装できることがわかっていたので、自分で手を挙げたところアサインしてもらうことになり、実装に着手した。
-        <p>小さいパッチは投げたことはあっても、単体の機能を実装するのは初めてだった。また、 crrev などはちょっと使わないとすぐにわからなくなるので、中の人にはかなり手取り足取り教えてもらいながら進めることになった。
+        <p>小さいパッチは投げたことはあっても、単体の機能を実装するのは初めてだった。また、crrev などはちょっと使わないとすぐにわからなくなるので、中の人にはかなり手取り足取り教えてもらいながら進めることになった。
         <p>一度教えてもらったことを何度も聞かないで済むよう、この作業中に教わったことは全て以下にまとめている。
         <ul>
           <li>
@@ -309,12 +309,12 @@
         <p>Chromium の中には、ありとあらゆるリアルワールド URL をパースしてきた歴戦(Battle Tested)の URL パーサーである KURL という実装がある。
         <p>これに、後から標準化された JS の URL API のために、ガワを被せて外に出す作りになっているため、実際は KRUL を呼んだら終わりだ。
         <p>DOMURL のコンストラクタがそもそも例外を投げる実装になっているため、一旦 KURL でパースして IsValid() が ture ならその KURL を元に DOMURL を生成できるコンストラクタを追加しただけだ。
-        <p>つまり、全く難しくない。 C++ 書いたことがなくても、見ればわかるくらいの変更だ。
+        <p>つまり、全く難しくない。C++ 書いたことがなくても、見ればわかるくらいの変更だ。
       </section>
       <section>
         <h2 id="wpt"><a href="#wpt">WPT</a></h2>
         <p>この API は先に Firefox で実装されたので、そのときに WPT のテストが追加されていた。WPT はブラウザが共有しているテストスイートなので基本的にこれを通せばよい。
-        <p>Chromium が WPT を内部で流していながら、 WPT にある URL.parse のテストでこれまで落ちなかったのは、 Chromium が持つ expected ファイルによるものだ。
+        <p>Chromium が WPT を内部で流していながら、WPT にある URL.parse のテストでこれまで落ちなかったのは、Chromium が持つ expected ファイルによるものだ。
         <ul>
           <li>
             url-statics-parse.any-expected.txt · Gerrit Code Review
@@ -323,10 +323,10 @@
             </ul>
           </li>
         </ul>
-        <p>これは、 WPT の実行結果をそのまま保存したファイルになっており、「その結果が変わらないことをテストする」という仕組みになっている。つまり、実装前は「落ちることを期待する」というテストだった。
+        <p>これは、WPT の実行結果をそのまま保存したファイルになっており、「その結果が変わらないことをテストする」という仕組みになっている。つまり、実装前は「落ちることを期待する」というテストだった。
         <p>今回、実装して WPT が通るようになったことで、この expected ファイルは削除し今後は WPT の結果を直接見るようになる。
         <p>このような expected テストはいたることろにあるため、自分で一個一個探して書き直すのではなく、テストを流す時に <code translate=no>--reset-result</code> をつけて上書きし、その diff をチェックするのが基本らしい。それを知らずに、手作業でやっていたため、ここでかなり時間がかかった。
-        <p>また、 <code translate=no>--reset-result</code> する対象は、 CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
+        <p>また、<code translate=no>--reset-result</code> する対象は、CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
         <p>
           <picture>
             <source type=image/avif srcset=cq-dry-run-result.avif?240617_153447>
@@ -334,7 +334,7 @@
             <img loading=lazy decoding=async src=cq-dry-run-result.png?240614_060554 alt="CQ DRY RUN の結果" width=2804 height=1646>
           </picture>
         </p>
-        <p>しかし、 CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら <code translate=no>--reset-result</code> したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
+        <p>しかし、CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら <code translate=no>--reset-result</code> したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
       </section>
       <section>
         <h2 id="api-review"><a href="#api-review">API Review</a></h2>
@@ -368,7 +368,7 @@
       </section>
       <section>
         <h2 id="intent-to-ship"><a href="#intent-to-ship">Intent to Ship</a></h2>
-        <p>今回もっとも良い経験になったのは、 Intents を初めて出したことだろう。
+        <p>今回もっとも良い経験になったのは、Intents を初めて出したことだろう。
         <ul>
           <li>
             Intent to Ship: URL.parse()
@@ -404,12 +404,12 @@
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>Chromium のコードはちょくちょくいじってはいるが、機能を Ship するのは基本的に敷居が高いため、良い経験になった。
-        <p>ここまで面倒を見てくれた <a href="https://x.com/horo" target=_blank>@horo</a> さん、 <a href="https://x.com/hayatoito" target=_blank>@hayatoito</a> さん、 <a href="https://x.com/toyoshim" target=_blank>@toyoshim</a> さんには非常に感謝しています。ありがとうございました。今後もコントリビュートは続けたいので、引き続きよろしくお願いします。
+        <p>ここまで面倒を見てくれた <a href="https://x.com/horo" target=_blank>@horo</a> さん、<a href="https://x.com/hayatoito" target=_blank>@hayatoito</a> さん、<a href="https://x.com/toyoshim" target=_blank>@toyoshim</a> さんには非常に感謝しています。ありがとうございました。今後もコントリビュートは続けたいので、引き続きよろしくお願いします。
       </section>
       <section>
         <h2 id="blink-api-owners-gift"><a href="#blink-api-owners-gift">Blink API Owners Gift</a></h2>
         <p>コードがマージされたあと、中の人(API Owner)からメールをもらった。機能の Ship までを行った人には、お祝いとしてギフトを贈るというものだった。
-        <p>後日忘れた頃に国際郵便で届いたのは、 Chromium の LGTM ステッカーだった。
+        <p>後日忘れた頃に国際郵便で届いたのは、Chromium の LGTM ステッカーだった。
         <p>
           <picture>
             <source type=image/avif srcset=blink-api-owners-gift.avif?240614_053051>

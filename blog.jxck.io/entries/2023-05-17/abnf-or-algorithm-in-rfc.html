@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="HTTPBis では、 RFC 8941: Structured Field Values (以下 SFV) の更新作業が行われている。RFC 8941: Structured Field Values for HTTPhttps://www.rfc-editor.org/...">
+  <meta name=description         content="HTTPBis では、RFC 8941: Structured Field Values (以下 SFV) の更新作業が行われている。RFC 8941: Structured Field Values for HTTPhttps://www.rfc-editor.org/r...">
   <meta name=keywords            content="bnf,sfv,http,ietf">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-05-17/abnf-or-algorithm-in-rfc.html>
   <meta property=og:title        content="IETF RFC における ABNF と Parsing Algorithm の関係 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="HTTPBis では、 RFC 8941: Structured Field Values (以下 SFV) の更新作業が行われている。RFC 8941: Structured Field Values for HTTPhttps://www.rfc-editor.org/...">
+  <meta property=og:description  content="HTTPBis では、RFC 8941: Structured Field Values (以下 SFV) の更新作業が行われている。RFC 8941: Structured Field Values for HTTPhttps://www.rfc-editor.org/r...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-05-17T08:00:00+08:00",
-    "dateModified": "2023-05-17T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "HTTPBis では、 RFC 8941: Structured Field Values (以下 SFV) の更新作業が行われている。RFC 8941: Structured Field Values for HTTPhttps://www.rfc-editor.org/..."
+    "description": "HTTPBis では、RFC 8941: Structured Field Values (以下 SFV) の更新作業が行われている。RFC 8941: Structured Field Values for HTTPhttps://www.rfc-editor.org/r..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-05-17>2023-05-17</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-05-17>2023-05-17</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -158,7 +158,7 @@
       <h1><a href="">IETF RFC における ABNF と Parsing Algorithm の関係</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>HTTPBis では、 RFC 8941: Structured Field Values (以下 SFV) の更新作業が行われている。
+        <p>HTTPBis では、RFC 8941: Structured Field Values (以下 SFV) の更新作業が行われている。
         <ul>
           <li>
             RFC 8941: Structured Field Values for HTTP
@@ -172,9 +172,9 @@
       </section>
       <section>
         <h2 id="abnf-と-parsing-algorithm"><a href="#abnf-と-parsing-algorithm">ABNF と Parsing Algorithm</a></h2>
-        <p>SFV は、簡単に言えば HTTP Field Value のための構造化フォーマットで、 JSON がそのまま使えなかったことに対する代替仕様だ。よって、基本的には目的となる構造体と文字列フォーマット間の Encode / Decode が定義されている。
-        <p>文字列フォーマットの解析といえば、 ABNF による仕様定義がよく知られており、 IETF の RFC では古くから利用されている。HTTP/1.1 のプロトコルも、 JSON も、 URL も、全部 ABNF が仕様の中にあり、それをパースするためのノウハウもよく知られている。
-        <p>そして、 SFV にも ABNF による定義が書かれている。
+        <p>SFV は、簡単に言えば HTTP Field Value のための構造化フォーマットで、JSON がそのまま使えなかったことに対する代替仕様だ。よって、基本的には目的となる構造体と文字列フォーマット間の Encode / Decode が定義されている。
+        <p>文字列フォーマットの解析といえば、ABNF による仕様定義がよく知られており、IETF の RFC では古くから利用されている。HTTP/1.1 のプロトコルも、JSON も、URL も、全部 ABNF が仕様の中にあり、それをパースするためのノウハウもよく知られている。
+        <p>そして、SFV にも ABNF による定義が書かれている。
         <ul>
           <li><a href="https://www.rfc-editor.org/rfc/rfc8941.html#section-3" target=_blank>https://www.rfc-editor.org/rfc/rfc8941.html#section-3</a>
         </ul>
@@ -188,8 +188,8 @@
           <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc8941.html#section-1.2-3" target=_blank>https://www.rfc-editor.org/rfc/rfc8941.html#section-1.2-3</a></cite>
         </blockquote>
         <p>ABNF がもたらす実装方法の幅は、互換性の問題を生じやすいのは事実だ。特に Web においては、その実装差がブラウザの挙動として現れるのを極力避けたい。
-        <p>わかりやすい例では、 URL の仕様は IETF と WHATWG で別々に存在する。
-        <p>IETF の RFC 3986 は &quot;インターネット&quot; で広く利用される仕様であり、 ABNF ベースで記されている。
+        <p>わかりやすい例では、URL の仕様は IETF と WHATWG で別々に存在する。
+        <p>IETF の RFC 3986 は &quot;インターネット&quot; で広く利用される仕様であり、ABNF ベースで記されている。
         <ul>
           <li>
             RFC 3986: Uniform Resource Identifier (URI): Generic Syntax
@@ -198,7 +198,7 @@
             </ul>
           </li>
         </ul>
-        <p>一方 WHATWG は、 &quot;ブラウザ&quot; が実装することを目的とした仕様であるため、 Parsing Algorithm が細かく書かれている。
+        <p>一方 WHATWG は、&quot;ブラウザ&quot; が実装することを目的とした仕様であるため、Parsing Algorithm が細かく書かれている。
         <ul>
           <li>
             URL Standard
@@ -207,13 +207,13 @@
             </ul>
           </li>
         </ul>
-        <p>もともと WHATWG URL は、 RFC ベースだったことによるブラウザ間の実装差異を無くし、互換性を高めるための基盤として書かれたものであるため、同じ &quot;URL&quot; に 2 つの別の仕様があるのは、目的の違いだと言える。
-        <p>(なお、実際ここで整理された仕様と、 WPT によってよって浮き彫りになった URL の実装差を埋める作業は、 Interop 2023 のテーマとして採択されている)
+        <p>もともと WHATWG URL は、RFC ベースだったことによるブラウザ間の実装差異を無くし、互換性を高めるための基盤として書かれたものであるため、同じ &quot;URL&quot; に 2 つの別の仕様があるのは、目的の違いだと言える。
+        <p>(なお、実際ここで整理された仕様と、WPT によってよって浮き彫りになった URL の実装差を埋める作業は、Interop 2023 のテーマとして採択されている)
       </section>
       <section>
         <h2 id="abnf-は載せるべきか"><a href="#abnf-は載せるべきか">ABNF は載せるべきか</a></h2>
         <p>SFV 仕様を策定している段階から、この ABNF の扱いについては度々議論になった。
-        <p>例えば、 RFC になるための IESG の Ben による最終レビューでは、以下のようなコメントがつけられている。
+        <p>例えば、RFC になるための IESG の Ben による最終レビューでは、以下のようなコメントがつけられている。
         <blockquote cite="https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0168.html">
           <p>Most notably, there is the inherent risk of skew when both prose algorithms and ABNF constructions are provided for the same structures.
           <p>While Section 1.2 is careful to disclaim that the prose algorithm takes precedence over the ABNF for parsing, to my reading the coverage in the following paragraph of serialization procedures imply that it is the ABNF that is authoritative.
@@ -228,14 +228,14 @@
           <li>生成と消費で手順が異なることは、相互互換性に影響する可能性がある。(実際に empty list の処理で見つかったように)
         </ul>
         <p>この指摘は、個人的には全くその通りだと感じている。
-        <p>実際、筆者は SFV を実装する際に、 Parsing Algorithm と ABNF 両方で実装し、 ABNF 側の間違いを発見して Issue を立てたこともある(その Issue が RFC 化目前だったため、みんなで慌てて直したりした)。
+        <p>実際、筆者は SFV を実装する際に、Parsing Algorithm と ABNF 両方で実装し、ABNF 側の間違いを発見して Issue を立てたこともある(その Issue が RFC 化目前だったため、みんなで慌てて直したりした)。
         <p>SFV に限らず、割と色々な RFC の ABNF を実装してきたが、残念ながら ABNF は大抵間違っている。間違っているという表現が正しいかは難しいので正確に言うと、「そのまま機械的にパーサを生成すると、矛盾を生じる」ものがほとんどだ。そして、同様に壁に当たった先人の Errata がファイルされていても、何年も放置されている。
-        <p>例えば IPv6 アドレスの ABNF なんかも矛盾があるが、それでも世の中回っているのだから、実装側もわざわざ ABNF から実装を起こしたりしてないことが伺える。 ABNF から愚直に起こした実装なんて速いわけがないので、当たり前ではある。機械的にパースはできなくても生成は大抵できるので、 ABNF から生成したテストケースをパスし、あとは相互接続して動けばそれはデプロイされるというのが実態だ。インターネットの実装は、基本そうやって動いてると思う。
-        <p>なんでそんなことになるかというと、おそらく多くの ABNF はおそらく勘で書かれている。実際にその ABNF からパーサを生成してテストしたりはされていない。 ML やリポジトリや議事録を探っても、そういう検証をした記録や実装が出てきたのをほとんど見ない。だいたい、 WG がリポジトリを持つようになったのも比較的最近だし、そこに実装者向けのテストケースを追加するようになったのも、ここ数年の話だ。
-        <p>筆者があえて、あまり実用的ではない ABNF からの愚直実装を作るのは、 RFC 前にそれをやれば、 ABNF を検証して直せるかもしれないという、それ自体が目的だからだ。
+        <p>例えば IPv6 アドレスの ABNF なんかも矛盾があるが、それでも世の中回っているのだから、実装側もわざわざ ABNF から実装を起こしたりしてないことが伺える。ABNF から愚直に起こした実装なんて速いわけがないので、当たり前ではある。機械的にパースはできなくても生成は大抵できるので、ABNF から生成したテストケースをパスし、あとは相互接続して動けばそれはデプロイされるというのが実態だ。インターネットの実装は、基本そうやって動いてると思う。
+        <p>なんでそんなことになるかというと、おそらく多くの ABNF はおそらく勘で書かれている。実際にその ABNF からパーサを生成してテストしたりはされていない。ML やリポジトリや議事録を探っても、そういう検証をした記録や実装が出てきたのをほとんど見ない。だいたい、WG がリポジトリを持つようになったのも比較的最近だし、そこに実装者向けのテストケースを追加するようになったのも、ここ数年の話だ。
+        <p>筆者があえて、あまり実用的ではない ABNF からの愚直実装を作るのは、RFC 前にそれをやれば、ABNF を検証して直せるかもしれないという、それ自体が目的だからだ。
         <section>
           <h3 id="abnf-を消すかどうか"><a href="#abnf-を消すかどうか">ABNF を消すかどうか</a></h3>
-          <p>先のコメントに対し、 Chair である mnot の返信はこうだった。
+          <p>先のコメントに対し、Chair である mnot の返信はこうだった。
           <blockquote cite="https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0175.html">
             <p>As has been said many times, the ABNF in the specification is not normative; it&apos;s illustrative.
             <p>The proposed edit clarifies that.
@@ -243,7 +243,7 @@
             <p>I&apos;m happy to do that if the IESG wishes so.
             <p>&mdash; <cite><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0175.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0175.html</a></cite>
           </blockquote>
-          <p>確かに、 Parsing Algorithm が正であり、そこに ABNF があることで問題が生じるのであれば、 ABNF を消してしまうのは理に叶っているように思う。
+          <p>確かに、Parsing Algorithm が正であり、そこに ABNF があることで問題が生じるのであれば、ABNF を消してしまうのは理に叶っているように思う。
           <blockquote>
             <p>Julian, you&apos;ve had many opportunities to bring this up before (having participated in the original issue about empty lists).
             <p>It would have been much more helpful if you&apos;d expressed your concerns earlier -- even during WGLC -- instead of after IETF LC.
@@ -259,16 +259,16 @@
             <p>I do agree with Julian that making the (minor!) change to the ABNF to remove that axis of skew seems worthwhile, though I do not think I can make that a Discuss point (given that I, like him, would prefer to keep the ABNF as-is over removing it entirely as you propose).
             <p>&mdash; <cite><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0178.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0178.html</a></cite>
           </blockquote>
-          <p>どっちも、 ABNF は残すべきだという意見だった。
-          <p>Julian の言うように、 Algorithm だけになってしまうと、実装しないとフォーマットの全体像が掴めないという点は確かにある。むしろ、 ABNF は実際のところ、その目的の方が大きい。そこから正確なパーサを生成するというよりも、「結果がこのような形になる」というシリアライザのソースとしての側面は、どの ABNF も大抵は担保されている。まあ、くっ付ける方が数段楽なので、シリアライズなら慣れれば勘でも正確に書ける。そして、多くの ABNF は、そう運用されてきただろう。
-          <p>問題は、 ABNF にパースの役割を担わせた点、そしてその上位互換として Algorithm が併記されていることで起こっている。
+          <p>どっちも、ABNF は残すべきだという意見だった。
+          <p>Julian の言うように、Algorithm だけになってしまうと、実装しないとフォーマットの全体像が掴めないという点は確かにある。むしろ、ABNF は実際のところ、その目的の方が大きい。そこから正確なパーサを生成するというよりも、「結果がこのような形になる」というシリアライザのソースとしての側面は、どの ABNF も大抵は担保されている。まあ、くっ付ける方が数段楽なので、シリアライズなら慣れれば勘でも正確に書ける。そして、多くの ABNF は、そう運用されてきただろう。
+          <p>問題は、ABNF にパースの役割を担わせた点、そしてその上位互換として Algorithm が併記されていることで起こっている。
           <p>で、これはどうなるんだろう。と思っていた。
         </section>
       </section>
       <section>
         <h2 id="rfc-と-bis"><a href="#rfc-と-bis">RFC と Bis</a></h2>
-        <p>結局 RFC 8941 は ABNF + Parsing Algorithm のまま、 ABNF を修正して公開された。流石にあそこから大きく書き直すのは、難しかったというのもあると思う。
-        <p>そして、 RFC が出てすぐくらいに次の作業が始まった。Retrofit と Bis だ。Bis は改訂作業につく Suffix で、ラテン語で繰り返すという意味だ。(イタリアでは「アンコール」の際に &quot;bis! bis!&quot; と叫ぶらしい)
+        <p>結局 RFC 8941 は ABNF + Parsing Algorithm のまま、ABNF を修正して公開された。流石にあそこから大きく書き直すのは、難しかったというのもあると思う。
+        <p>そして、RFC が出てすぐくらいに次の作業が始まった。Retrofit と Bis だ。Bis は改訂作業につく Suffix で、ラテン語で繰り返すという意味だ。(イタリアでは「アンコール」の際に &quot;bis! bis!&quot; と叫ぶらしい)
         <ul>
           <li>Retrofit: 既存の HTTP Header の値をどうにか SFV にできないかという別作業
           <li>Bis: Retrofit で必要になった Date を RFC 8941 に追加する改訂作業
@@ -281,7 +281,7 @@
           <p>- Minor and purely editorial work (e.g., improving wording, explanations, correcting typos if found)
           <p>&mdash; <cite><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2022OctDec/0013.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2022OctDec/0013.html</a></cite>
         </blockquote>
-        <p>ここで改めて、 ABNF をどうするかという話があがっている。(やっぱり mnot は ABNF 消したいんだなという感じも伺える)
+        <p>ここで改めて、ABNF をどうするかという話があがっている。(やっぱり mnot は ABNF 消したいんだなという感じも伺える)
         <p>この議論は GitHub に Issue が立ち、そこで続きを行うことになった。
         <ul>
           <li>
@@ -291,19 +291,19 @@
             </ul>
           </li>
         </ul>
-        <p>その議論の結果、折衷案として「ABNF は残すが Appendix に移す」となり、本文(Appendix 以前)の全ての項目から ABNF が消えて Parsing Algorithm のみが残ることになった。(mnot が押し切って、 Julian はあまり納得してない感じがするが)
+        <p>その議論の結果、折衷案として「ABNF は残すが Appendix に移す」となり、本文(Appendix 以前)の全ての項目から ABNF が消えて Parsing Algorithm のみが残ることになった。(mnot が押し切って、Julian はあまり納得してない感じがするが)
         <p>少なくとも「実装をする開発者」にとって、ブレのない実装が行われることの期待と、「実装を持たない開発者」が SFV の姿を ABNF から想起するという二点は満たされているため、落とし所としては妥当なのかと思う。
         <section>
           <h3 id="sfv-の参照"><a href="#sfv-の参照">SFV の参照</a></h3>
-          <p>この変更は、 SFV を参照する側にも多少の影響が出る。
+          <p>この変更は、SFV を参照する側にも多少の影響が出る。
           <ul>
             <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2022JanMar/0147.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2022JanMar/0147.html</a>
           </ul>
-          <p>要するに、 SFV を参照する仕様は以下のように ABNF の仕様を参照するものがあるという点だ。
+          <p>要するに、SFV を参照する仕様は以下のように ABNF の仕様を参照するものがあるという点だ。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=http data-code=http><code translate=no class=language-http>Foo: sf-list</code></pre>
-          <p>これは、 ABNF ではなく SFV で定義されているデータ型(この場合 &quot;List&quot;)で書く方が望ましいことになる。
-          <p>HTTPWG では、新しく定義する Header Field は基本的に SFV を使うべきことが、 Style Guide で定義されている。今回の変更も Style Guide に明記され、その基づいて先の例を書き直すと以下のようになる。
+          <p>これは、ABNF ではなく SFV で定義されているデータ型(この場合 &quot;List&quot;)で書く方が望ましいことになる。
+          <p>HTTPWG では、新しく定義する Header Field は基本的に SFV を使うべきことが、Style Guide で定義されている。今回の変更も Style Guide に明記され、その基づいて先の例を書き直すと以下のようになる。
           <blockquote>
             <p>The Foo header field&apos;s value is a List of Integers.
             <p>- <a href="https://httpwg.org/admin/editors/style-guide#structured-fields" target=_blank>https://httpwg.org/admin/editors/style-guide#structured-fields</a>
@@ -313,18 +313,18 @@
             <li><a href="https://github.com/httpwg/http-extensions/issues/1974" target=_blank>https://github.com/httpwg/http-extensions/issues/1974</a>
             <li><a href="https://github.com/httpwg/http-extensions/pull/1977" target=_blank>https://github.com/httpwg/http-extensions/pull/1977</a>
           </ul>
-          <p>この変更を見るとわかるが、 ABNF を参照しなくなったことで、自然と参照元からも ABNF が消えている。
+          <p>この変更を見るとわかるが、ABNF を参照しなくなったことで、自然と参照元からも ABNF が消えている。
           <p>つまり、少なくとも HTTPWG の範囲では、その仕様自体が ABNF を必要としなければ ABNF が書かれる機会は減り、書かれるとしても同じように Appendix になっていくのだろう。
         </section>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>この流れは、 IETF でも、少なくとも HTTPWG の仕様については、 WHATWG の定義の仕方と近くなっていることを意味する。
-        <p>HTTPWG の仕様はブラウザで実装されることが多いため、ブラウザの互換性を防ぐ意味でも自然な流れと言えるが、 IETF/WHATWG 両方の仕様を実装してきた筆者からすると、なかなか興味深い流れに感じる。
-        <p>今回の話だけで、「本当に ABNF は必要なのか」という議論事態に決着がついたわけではない。 Julian の言うように、 ABNF があることで仕様が読みやすくなる人は一定いるのも事実だろう。 SFV くらい複雑になると、全てを Example で書き下すよりは、ワイヤーフォーマットを想起する方法として妥当ではあると思う。
+        <p>この流れは、IETF でも、少なくとも HTTPWG の仕様については、WHATWG の定義の仕方と近くなっていることを意味する。
+        <p>HTTPWG の仕様はブラウザで実装されることが多いため、ブラウザの互換性を防ぐ意味でも自然な流れと言えるが、IETF/WHATWG 両方の仕様を実装してきた筆者からすると、なかなか興味深い流れに感じる。
+        <p>今回の話だけで、「本当に ABNF は必要なのか」という議論事態に決着がついたわけではない。Julian の言うように、ABNF があることで仕様が読みやすくなる人は一定いるのも事実だろう。SFV くらい複雑になると、全てを Example で書き下すよりは、ワイヤーフォーマットを想起する方法として妥当ではあると思う。
         <p>問題はやはり「パースするための仕様」として ABNF を扱う部分だろう。実装してる身としても、「エラーにする」「無視する」などの細かい例外処理の表現については、どうしても ABNF よりも Parsing Algorithm に分があると感じる。
         <p>実装者は少なくとも &quot;仕様に明記されている通り&quot; Parsing Algorithm に基づいて実装を行うべきだろう。
-        <p>一方で、 Appendix にある non-normative だからといって、 ABNF が勘で適当に書かれた、明らかに間違っているものになっていて良いとも思えない。
+        <p>一方で、Appendix にある non-normative だからといって、ABNF が勘で適当に書かれた、明らかに間違っているものになっていて良いとも思えない。
         <p>なお、今回の SFVbis Draft-02 については実装し、挙動を確認した。
         <ul>
           <li><a href="https://github.com/Jxck/structured-field-values" target=_blank>https://github.com/Jxck/structured-field-values</a>

@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-02-08T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-02-08>2016-02-08</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -166,25 +166,25 @@
       <section>
         <h2 id="証明書"><a href="#証明書">証明書</a></h2>
         <p>実は <em>.jxck.io</em> に対するワイルドカード証明書を買っている。
-        <p>したがって、 Let&apos;s Encrypt は使ってない。
+        <p>したがって、Let&apos;s Encrypt は使ってない。
         <p>これは Podcast のドメインのほうでやっていこうと思っている。
       </section>
       <section>
         <h2 id="ドメイン"><a href="#ドメイン">ドメイン</a></h2>
         <p>今までは <a href="https://jxck.io" target=_blank>jxck.io</a> だけで使っていたけど、これを複数ドメインにわけて運用する。
-        <p>ワイルドカードがあり、同一 IP でデプロイされていると、 http2 でコネクションを束ねられる。
+        <p>ワイルドカードがあり、同一 IP でデプロイされていると、http2 でコネクションを束ねられる。
       </section>
       <section>
         <h2 id="ssl-lab"><a href="#ssl-lab">SSL LAB</a></h2>
         <p>TLS の設定を SSL LABS で調べて A+ を取るのがトレンドみたいになっている。このサイトの結果は A になっている。
         <p><a href="https://www.ssllabs.com/ssltest/analyze.html?d=jxck.io&latest" target=_blank>SSL Report: jxck.io</a>
-        <p>これは、せっかくなので <em>TLS1.2</em> 以下を切ったり、 <em>暗号スイート</em> を強めに制限したりしているため、古い Android への対応できてないからである。
+        <p>これは、せっかくなので <em>TLS1.2</em> 以下を切ったり、<em>暗号スイート</em> を強めに制限したりしているため、古い Android への対応できてないからである。
         <p>積極的に切って行くスタイル。
       </section>
       <section>
         <h2 id="静的ファイルへのマッピング"><a href="#静的ファイルへのマッピング">静的ファイルへのマッピング</a></h2>
         <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
-        <p>例えば、 <code translate=no>favicon.ico</code> だとか <code translate=no>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
+        <p>例えば、<code translate=no>favicon.ico</code> だとか <code translate=no>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
         <p>これがこう書けると嬉しい。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=yaml data-code=yaml><code translate=no class=language-yaml>paths:
@@ -194,7 +194,7 @@
      file.dir: /path/to/doc-root</code></pre>
         <p>しかし、実際は paths へはディレクトリしか紐づけられない。
         <p>やるなら mruby.handler を使うしかない。
-        <p>(399 は、 fallthrough の独自ルールになっているらしい)
+        <p>(399 は、fallthrough の独自ルールになっているらしい)
         <pre class=yaml data-code=yaml><code translate=no class=language-yaml>&quot;/&quot;:
   mruby.handler: |
     Proc.new do |env|
@@ -206,11 +206,11 @@
     end
   file.dir: /path/to/dir</code></pre>
         <p>しかしこれを毎回書くのはちょっと面倒。
-        <p>kazuho さんとは、ファイルを割り当てられるようにするか、もはや h2o.conf を自動生成するか、 ruby で書けるようにしたらいいか、みたいな話をした。
+        <p>kazuho さんとは、ファイルを割り当てられるようにするか、もはや h2o.conf を自動生成するか、ruby で書けるようにしたらいいか、みたいな話をした。
       </section>
       <section>
         <h2 id="hsts"><a href="#hsts">HSTS</a></h2>
-        <p>http -&gt; https へのリダイレクトは入れているが、 HSTS ヘッダはまだ吐いてない。
+        <p>http -&gt; https へのリダイレクトは入れているが、HSTS ヘッダはまだ吐いてない。
         <p>これ吐いてしまうと、ブラウザに忘れさせない限り http では繋がらなくなり、デバッグがちょっと面倒になる場合がある。
         <p>一通り開発が落ち着いたら吐く。
       </section>

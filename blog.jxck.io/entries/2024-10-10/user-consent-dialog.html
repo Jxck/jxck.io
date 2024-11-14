@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-10T08:00:00+08:00",
-    "dateModified": "2024-11-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-10>2024-10-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -163,8 +163,8 @@
         <p>
           <img loading=lazy decoding=async src=./user-consent-dialog.drawio.svg?241004_035751 alt="規約が表示され、同意ボタンのある UI" width=600 height=600>
         </p>
-        <p>見ての通り、この規約に同意しないと先に進むことができない、ブロックを伴う UI であるため、 Modal Dialog として実装するのが妥当だろう。
-        <p>どのようなきっかけで表示されるかはわからないため、 JS から <code translate=no>showModal()</code> する前提で実装を考えていく。
+        <p>見ての通り、この規約に同意しないと先に進むことができない、ブロックを伴う UI であるため、Modal Dialog として実装するのが妥当だろう。
+        <p>どのようなきっかけで表示されるかはわからないため、JS から <code translate=no>showModal()</code> する前提で実装を考えていく。
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
           <p>まず、基本的な HTML 要素を並べてみよう。(<code translate=no>&lt;dialog&gt;</code> と関係ない部分は簡略化)
@@ -194,11 +194,11 @@
   &lt;/section&gt;
 &lt;/dialog&gt;</code></pre>
           <p>利用規約本文は通常非常に長いため、このままでは <code translate=no>&lt;dialog&gt;</code> 全体が縦長になり、スクロールすることになる。
-          <p>しかし、 <code translate=no>&lt;dialog&gt;</code> そのものがスクロールするのは推奨されてないため、ここでは <code translate=no>&lt;section&gt;</code> の高さを固定し、規約部分のみをスクロールさせるようなスタイルを定義する。
-          <p>そして、 <code translate=no>&lt;dialog&gt;</code> が開いた際に、デフォルトでフォーカスするべき要素は、 <code translate=no>autofocus</code> で明示的な指定が推奨されている。最初に出てくるコントローラは <code translate=no>&lt;input checkbox&gt;</code> だが、「利用規約を確認してから同意」という前提であれば、規約自体の <code translate=no>&lt;section&gt;</code> にフォーカスが当たるのが良さそうだ。
+          <p>しかし、<code translate=no>&lt;dialog&gt;</code> そのものがスクロールするのは推奨されてないため、ここでは <code translate=no>&lt;section&gt;</code> の高さを固定し、規約部分のみをスクロールさせるようなスタイルを定義する。
+          <p>そして、<code translate=no>&lt;dialog&gt;</code> が開いた際に、デフォルトでフォーカスするべき要素は、<code translate=no>autofocus</code> で明示的な指定が推奨されている。最初に出てくるコントローラは <code translate=no>&lt;input checkbox&gt;</code> だが、「利用規約を確認してから同意」という前提であれば、規約自体の <code translate=no>&lt;section&gt;</code> にフォーカスが当たるのが良さそうだ。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;article autofocus&gt;
 &lt;/section&gt;</code></pre>
-          <p>もし、これより手前に <code translate=no>autofocus</code> すべきコントローラがある場合は、 <code translate=no>&lt;section&gt;</code> には <code translate=no>autofocus</code> をつけないだろう。しかし、ただの <code translate=no>&lt;section&gt;</code> はフォーカスができないため、キーボードでの操作などが不便になる。この実装を修正し、スクロールする要素をフォーカス可能にする流れがあるが、全ブラウザは対応していないため、現状は <code translate=no>tabindex=0</code> を指定しておくのが良いだろう。
+          <p>もし、これより手前に <code translate=no>autofocus</code> すべきコントローラがある場合は、<code translate=no>&lt;section&gt;</code> には <code translate=no>autofocus</code> をつけないだろう。しかし、ただの <code translate=no>&lt;section&gt;</code> はフォーカスができないため、キーボードでの操作などが不便になる。この実装を修正し、スクロールする要素をフォーカス可能にする流れがあるが、全ブラウザは対応していないため、現状は <code translate=no>tabindex=0</code> を指定しておくのが良いだろう。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;article autofocus tabindex=&quot;0&quot;&gt;
 &lt;/article&gt;</code></pre>
           <p>同意の結果は JS で取ればいいと言えばそれで終わりなので、あえてそのまま <code translate=no>&lt;form&gt;</code> から同意結果を POST する作りにしてみよう。
@@ -209,13 +209,13 @@
   &lt;/label&gt;
   &lt;button type=&quot;submit&quot;&gt;確認&lt;/button&gt;
 &lt;/form&gt;</code></pre>
-          <p>見ての通り普通のフォームで、同意すればその結果をそのままサーバに POST する。画面遷移をするため、 Dialog を閉じる方は考えなくて良い。
+          <p>見ての通り普通のフォームで、同意すればその結果をそのままサーバに POST する。画面遷移をするため、Dialog を閉じる方は考えなくて良い。
           <p>しかし、このフォームでは同意以外の道がないため、キャンセルボタンを用意しよう。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;form method=&quot;post&quot; action=&quot;term.html&quot;&gt;
   &lt;button type=&quot;submit&quot;&gt;確認&lt;/button&gt;
   &lt;button formmethod=&quot;dialog&quot; value=&quot;cancel&quot;&gt;キャンセル&lt;/button&gt;
 &lt;/form&gt;</code></pre>
-          <p>キャンセルボタンの方は、 <code translate=no>form[method]</code> を <code translate=no>dialog</code> に上書きしているため、 <code translate=no>&lt;dialog&gt;</code> が Close して終わる。 <code translate=no>returnValue</code> には <code translate=no>button[value]</code> の <code translate=no>&quot;cancel&quot;</code> という文字列が渡る。(こちらも Form は submit するので <code translate=no>input[type=checkbox]</code> に <code translate=no>required</code> をつけるとキャンセルできなくなるため、バリデーションは別途行う必要がある。)
+          <p>キャンセルボタンの方は、<code translate=no>form[method]</code> を <code translate=no>dialog</code> に上書きしているため、<code translate=no>&lt;dialog&gt;</code> が Close して終わる。<code translate=no>returnValue</code> には <code translate=no>button[value]</code> の <code translate=no>&quot;cancel&quot;</code> という文字列が渡る。(こちらも Form は submit するので <code translate=no>input[type=checkbox]</code> に <code translate=no>required</code> をつけるとキャンセルできなくなるため、バリデーションは別途行う必要がある。)
           <p>まとめると HTML は以下だ。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog aria-labelledby=&quot;dialog-label&quot;&gt;
   &lt;section&gt;
@@ -235,7 +235,7 @@
     &lt;/form&gt;
   &lt;/section&gt;
 &lt;/dialog&gt;</code></pre>
-          <p><code translate=no>&lt;dialog&gt;</code> は普通に閉じて、 JS でリクエストする場合は、シンプルに <code translate=no>form[method=dialog]</code> にして、 JS で分岐で良いだろう。
+          <p><code translate=no>&lt;dialog&gt;</code> は普通に閉じて、JS でリクエストする場合は、シンプルに <code translate=no>form[method=dialog]</code> にして、JS で分岐で良いだろう。
           <p>ここではあくまで同意取得だが、よりクリティカルな同意、例えば「このまま遷移すると保存されてない内容は消えます」といったアラートの性質を持たせたい場合は、デフォルトの <code translate=no>role=dialog</code> を <code translate=no>role=alertdialog</code> に上書きするといった応用ができる。
         </section>
         <section>
@@ -250,18 +250,18 @@
     }
   }
 }</code></pre>
-          <p><code translate=no>::backdrop</code> は Modal Dialog が開いていることによって「背面は操作ができない(inert)」ということを伝える目的がある。基本的には RGBa でアルファをかけた色にすることで、背面を見せながらも暗くする指定が、ブラウザデフォルトに入っている。これに任せても良いが、色の変化がわかりにくい場合、暗さのためのアルファを調整したり、 <code translate=no>backdrop-filter</code> をかけるといった方法もあるだろう。
+          <p><code translate=no>::backdrop</code> は Modal Dialog が開いていることによって「背面は操作ができない(inert)」ということを伝える目的がある。基本的には RGBa でアルファをかけた色にすることで、背面を見せながらも暗くする指定が、ブラウザデフォルトに入っている。これに任せても良いが、色の変化がわかりにくい場合、暗さのためのアルファを調整したり、<code translate=no>backdrop-filter</code> をかけるといった方法もあるだろう。
           <pre class=css data-code=css><code translate=no class=language-css>::backdrop {
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(4px);
 }</code></pre>
-          <p>単なる <code translate=no>&lt;div&gt;</code> が真ん中に表示された感を減らすために、 <code translate=no>&lt;dialog&gt;</code> 側に <code translate=no>box-shadow</code> を表示すると、よりモーダル感が強まるかもしれない。
+          <p>単なる <code translate=no>&lt;div&gt;</code> が真ん中に表示された感を減らすために、<code translate=no>&lt;dialog&gt;</code> 側に <code translate=no>box-shadow</code> を表示すると、よりモーダル感が強まるかもしれない。
           <pre class=css data-code=css><code translate=no class=language-css>dialog {
   border: solid 1px #ccc;
   border-radius: 2%;
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.5);
 }</code></pre>
-          <p>位置に関しては、このユースケースでは画面の真ん中に表示が基本だろう。その場合、 Top Layer の真ん中に表示されるのがデフォルトであるため、そのままで良さそうだ。
+          <p>位置に関しては、このユースケースでは画面の真ん中に表示が基本だろう。その場合、Top Layer の真ん中に表示されるのがデフォルトであるため、そのままで良さそうだ。
           <p>表示に関しては、デフォルトでは「パッ」と開いて「パッ」と閉じるだけだ。ここにアニメーションを加えてフェードさせる場合は、いくつか注意が必要だ。
           <p>まず、表示された状態のスタイルで、アニメーションしたい要素を以下のように <code translate=no>[open]</code> のスタイルとして分離する。
           <pre class=css data-code=css><code translate=no class=language-css>/* show */
@@ -273,7 +273,7 @@
   backdrop-filter: blur(4px);
   opacity: 1;
 }</code></pre>
-          <p>この表示状態に向かってアニメーションするように、 <code translate=no>transition</code> を以下のように定義する。注意点は、離散値である <code translate=no>display</code> と <code translate=no>overlay</code> に <code translate=no>allow-discrete</code> を指定する点だ。
+          <p>この表示状態に向かってアニメーションするように、<code translate=no>transition</code> を以下のように定義する。注意点は、離散値である <code translate=no>display</code> と <code translate=no>overlay</code> に <code translate=no>allow-discrete</code> を指定する点だ。
           <pre class=css data-code=css><code translate=no class=language-css>:root {
   --duration: 2s;
 }
@@ -297,8 +297,8 @@ dialog {
     backdrop-filter var(--duration),
     opacity var(--duration);
 }</code></pre>
-          <p>ただし、これでは「非表示」の方はアニメーションはできても、「表示」の方はアニメーションが効かない。理由は、 <code translate=no>display</code> が <code translate=no>none</code> から <code translate=no>block</code> に変化して DOM が表示されるまで、他のプロパティ値が計算されないためアニメーションできないからだ。(「非表示」にする際は、すでに DOM が表示され計算されたプロパティがあるため可能)
-          <p>そこで、 <code translate=no>display: none</code> の状態で DOM が無くとも初期値がわかるように、 <code translate=no>@starting-style</code> に初期値を明示しておく。
+          <p>ただし、これでは「非表示」の方はアニメーションはできても、「表示」の方はアニメーションが効かない。理由は、<code translate=no>display</code> が <code translate=no>none</code> から <code translate=no>block</code> に変化して DOM が表示されるまで、他のプロパティ値が計算されないためアニメーションできないからだ。(「非表示」にする際は、すでに DOM が表示され計算されたプロパティがあるため可能)
+          <p>そこで、<code translate=no>display: none</code> の状態で DOM が無くとも初期値がわかるように、<code translate=no>@starting-style</code> に初期値を明示しておく。
           <pre class=css data-code=css><code translate=no class=language-css>@starting-style {
   [open] {
     opacity: 0;
@@ -314,7 +314,7 @@ dialog {
         <section>
           <h3 id="js"><a href="#js">JS</a></h3>
           <p>最後は JS だ。
-          <p>この <code translate=no>&lt;dialog&gt;</code> は Modal であるため、必要なタイミングで <code translate=no>showModal()</code> する必要がある。 <code translate=no>showModal()</code> さえ呼べば、従来自前の実装が必要だった面倒なことはほとんど実装してくれるため、気にすべきは閉じる部分くらいだろう。
+          <p>この <code translate=no>&lt;dialog&gt;</code> は Modal であるため、必要なタイミングで <code translate=no>showModal()</code> する必要がある。<code translate=no>showModal()</code> さえ呼べば、従来自前の実装が必要だった面倒なことはほとんど実装してくれるため、気にすべきは閉じる部分くらいだろう。
           <p>今回は、同意の取得時にそのまま form を submit しているため、特に JS でやることはなくなっている。そこであえて、同意を全て JS 側で処理する方法で考えておく。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;form method=&quot;dialog&quot;&gt;
   &lt;label for=&quot;agree&quot;&gt;
@@ -340,7 +340,7 @@ dialog {
           <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&quot;form&quot;).addEventListener(&quot;submit&quot;, (e) =&gt; {
   document.querySelector(&quot;dialog&quot;).close()
 })</code></pre>
-          <p>ここで、値として渡したいものがある場合は、 <code translate=no>close()</code> に値をシリアライズして渡す。
+          <p>ここで、値として渡したいものがある場合は、<code translate=no>close()</code> に値をシリアライズして渡す。
           <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&quot;form&quot;).addEventListener(&quot;submit&quot;, (e) =&gt; {
   e.preventDafault()
   const returnValue = JSON.stringify({

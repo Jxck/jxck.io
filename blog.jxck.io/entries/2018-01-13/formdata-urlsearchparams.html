@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="&lt;form&gt; の onsubmit をフックして、入力された値を &lt;input&gt; から集めて送るといった処理はよくある。このとき、 submit されたデータの収拾方法はいくつかある。submit に限らず、そのイベントに付随する情報は、基本的にイベ...">
+  <meta name=description         content="&lt;form&gt; の onsubmit をフックして、入力された値を &lt;input&gt; から集めて送るといった処理はよくある。このとき、submit されたデータの収拾方法はいくつかある。submit に限らず、そのイベントに付随する情報は、基本的にイベン...">
   <meta name=keywords            content="urlsearchparams,formdata,form">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2018-01-13/formdata-urlsearchparams.html>
   <meta property=og:title        content="Form で submit されたデータの収集と FormData &amp; URLSearchParams | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="&lt;form&gt; の onsubmit をフックして、入力された値を &lt;input&gt; から集めて送るといった処理はよくある。このとき、 submit されたデータの収拾方法はいくつかある。submit に限らず、そのイベントに付随する情報は、基本的にイベ...">
+  <meta property=og:description  content="&lt;form&gt; の onsubmit をフックして、入力された値を &lt;input&gt; から集めて送るといった処理はよくある。このとき、submit されたデータの収拾方法はいくつかある。submit に限らず、そのイベントに付随する情報は、基本的にイベン...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-01-13T08:00:00+08:00",
-    "dateModified": "2024-04-19T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "&lt;form&gt; の onsubmit をフックして、入力された値を &lt;input&gt; から集めて送るといった処理はよくある。このとき、 submit されたデータの収拾方法はいくつかある。submit に限らず、そのイベントに付随する情報は、基本的にイベ..."
+    "description": "&lt;form&gt; の onsubmit をフックして、入力された値を &lt;input&gt; から集めて送るといった処理はよくある。このとき、submit されたデータの収拾方法はいくつかある。submit に限らず、そのイベントに付随する情報は、基本的にイベン..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-01-13>2018-01-13</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-19>2024-04-19</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,7 +156,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p><code translate=no>&lt;form&gt;</code> の onsubmit をフックして、入力された値を <code translate=no>&lt;input&gt;</code> から集めて送るといった処理はよくある。
-        <p>このとき、 submit されたデータの収拾方法はいくつかある。
+        <p>このとき、submit されたデータの収拾方法はいくつかある。
         <p>submit に限らず、そのイベントに付随する情報は、基本的にイベントオブジェクトに内包されている。
         <p>Form を例に、イベントオブジェクトを意識したコーディングについて解説する。
       </section>
@@ -187,7 +187,7 @@
       </section>
       <section>
         <h2 id="e.target"><a href="#e.target">e.target</a></h2>
-        <p>最も簡単な改善は、 document からのクエリをやめることだ。
+        <p>最も簡単な改善は、document からのクエリをやめることだ。
         <p><code translate=no>e.target</code> には、対象の DOM 、ここでは <code translate=no>&lt;form&gt;</code> が入っている。
         <p><code translate=no>&lt;input&gt;</code> はその子要素なので、わざわざ <code translate=no>document</code> を起点にする必要はない。
         <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
@@ -199,12 +199,12 @@
       </section>
       <section>
         <h2 id="formdata"><a href="#formdata">FormData</a></h2>
-        <p>Form で Submit されたデータは、 FormData を経由して取得することができる。
-        <p>つまり、 FormData に変換しさえすれば、 submit 対象のデータは全て手に入っている。
+        <p>Form で Submit されたデータは、FormData を経由して取得することができる。
+        <p>つまり、FormData に変換しさえすれば、submit 対象のデータは全て手に入っている。
         <ul>
           <li><a href="https://xhr.spec.whatwg.org/#formdata" target=_blank>https://xhr.spec.whatwg.org/#formdata</a>
         </ul>
-        <p>このオブジェクトは、 <code translate=no>get()</code>、 <code translate=no>set()</code> など Map のようなインタフェースを持つ。
+        <p>このオブジェクトは、<code translate=no>get()</code>、<code translate=no>set()</code> など Map のようなインタフェースを持つ。
         <p>(なお <code translate=no>new Map(form_data)</code> すれば、実際の Map にもなる)
         <p>また、そのまま XHR や fetch を使ってそのまま POST することができる。
         <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
@@ -232,13 +232,13 @@ Content-Disposition: form-data; name=&quot;password&quot;
 examplepassword
 ------WebKitFormBoundaryPfqUKvtarA1EFkbV--</code></pre>
         <p>大抵のサーバは、これでも問題なく処理できるだろう。
-        <p>しかし、 File でもない限り HTML Form からは <code translate=no>application/form-url-encoded</code> で送られてくるという前提で実装されたものもあるだろう。
+        <p>しかし、File でもない限り HTML Form からは <code translate=no>application/form-url-encoded</code> で送られてくるという前提で実装されたものもあるだろう。
       </section>
       <section>
         <h2 id="urlsearchparams"><a href="#urlsearchparams">URLSearchParams</a></h2>
-        <p>URLSearchParams は、 URL の標準化の際に QueryString 部分をサポートするために導入された。
+        <p>URLSearchParams は、URL の標準化の際に QueryString 部分をサポートするために導入された。
         <p>しかし、これは FormData を引数にインスタンスを生成することができる。
-        <p>また、そのまま POST の Body にすれば、 <code translate=no>application/form-url-encoded</code> として送ることができる。
+        <p>また、そのまま POST の Body にすれば、<code translate=no>application/form-url-encoded</code> として送ることができる。
         <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const form_data = new FormData(e.target)
@@ -287,7 +287,7 @@ username=jxck&amp;password=thisismypassword</code></pre>
       }
   }
 });</code></pre>
-        <p>進捗は微妙だが、もし実装されると、 JSON で Post したい場合に、 Fetch を使わずにフォーマットの変換だけでよくなるのかもしれない。
+        <p>進捗は微妙だが、もし実装されると、JSON で Post したい場合に、Fetch を使わずにフォーマットの変換だけでよくなるのかもしれない。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>

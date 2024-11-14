@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 18 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 18 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-18/cloaking.html>
   <meta property=og:title        content="3PCA 18 日目: Cloaking | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 18 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 18 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-18T08:00:00+08:00",
-    "dateModified": "2024-05-16T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 18 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 18 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-18>2023-12-18</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-16>2024-05-16</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -153,7 +153,7 @@
       <h1><a href="">3PCA 18 日目: Cloaking</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 18 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 18 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -162,31 +162,31 @@
             </ul>
           </li>
         </ul>
-        <p>今日は、 ITP の迂回で注目された Cloaking について解説する。
+        <p>今日は、ITP の迂回で注目された Cloaking について解説する。
       </section>
       <section>
         <h2 id="cloaking"><a href="#cloaking">Cloaking</a></h2>
         <p>これが今、トラッカーが最も期待している 3rd Party Cookie の迂回技術だろう。
         <p>例えば、広告やアナリティクスなどなんらかのトラッカーを 3rd Party として利用している場合は、今後 3rd Party Cookie での連携ができなくなる。
-        <p>そこで、そのトラッカーサービス自体を自分のサブドメインで運用してしまえば、 eTLD+1 が同じになり、 1st Party で連携できる。つまり <code translate=no>example.com</code> に対して <code translate=no>analytics.example.com</code> にトラッカーをデプロイしてしまえば、両者は SameSite になるといった手法だ。
+        <p>そこで、そのトラッカーサービス自体を自分のサブドメインで運用してしまえば、eTLD+1 が同じになり、1st Party で連携できる。つまり <code translate=no>example.com</code> に対して <code translate=no>analytics.example.com</code> にトラッカーをデプロイしてしまえば、両者は SameSite になるといった手法だ。
         <p>しかし、自分でトラッカーになるサービスをデプロイ/メンテするのは負荷が高いため、ドメインを業者に預け、そこにデプロイしてもらう方が運用する側は楽だ。
         <p>ここで用いられるのが Cloaking だ。方法はいくつかある。
         <section>
           <h3 id="cname-cloaking"><a href="#cname-cloaking">CNAME Cloaking</a></h3>
           <p>まず最初に用いられたのは、CNAME を用いる方法だ。
-          <p>例えば、 ads.example が提供しているトラッカーを、 <code translate=no>analytics.example.com</code> にデプロイし、 <code translate=no>example.com</code> と SameSite にしたい場合、 DNS を以下のように設定する。
+          <p>例えば、ads.example が提供しているトラッカーを、<code translate=no>analytics.example.com</code> にデプロイし、<code translate=no>example.com</code> と SameSite にしたい場合、DNS を以下のように設定する。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre><code translate=no>analytics.example.com.    IN    CNAME    deadbeef.ads.example.</code></pre>
           <p>CNAME で事業者のレコードを参照すれば、そのサブドメインを事業者が運用できるのだ。このように CNAME を預ける方法を CNAME Cloaking (コート預けるクロークのこと)と言う。
-          <p>これは ITP 迂回の筆頭として問題になったので、 Safari ではもちろん対策がされている。CNAME の先を辿って、最終的に 3rd Party だったら付与された Cookie を短命にするといったものだ。
+          <p>これは ITP 迂回の筆頭として問題になったので、Safari ではもちろん対策がされている。CNAME の先を辿って、最終的に 3rd Party だったら付与された Cookie を短命にするといったものだ。
         </section>
         <section>
           <h3 id="ip-cloaking"><a href="#ip-cloaking">IP Cloaking</a></h3>
           <p>CNAME では Safari にバレてしまうため、次にトラッカーが考えたのがこれを IP にしてしまう IP Cloaking だ。
           <p>単純に、トラッカーのサービスの IP を設定するというものだ。
           <pre><code translate=no>analytics.example.com.    IN    A    203.0.113.10</code></pre>
-          <p>大手のトラッカーであれば、 IP がバレるとトラッカー判定されるかもしれないが、事業者が小さければこの方法は判定が難しい。
-          <p>しかし、トラッカー側にとっては、 IP を変えることができないといった運用上の制限が発生する。
+          <p>大手のトラッカーであれば、IP がバレるとトラッカー判定されるかもしれないが、事業者が小さければこの方法は判定が難しい。
+          <p>しかし、トラッカー側にとっては、IP を変えることができないといった運用上の制限が発生する。
         </section>
         <section>
           <h3 id="ns-cloaking"><a href="#ns-cloaking">NS Cloaking</a></h3>
@@ -200,7 +200,7 @@
       <section>
         <h2 id="cloaking-のリスク"><a href="#cloaking-のリスク">Cloaking のリスク</a></h2>
         <p>ドメインオーナーにとっては、一部であれ自分のドメインの管理を外部に移譲することになる。
-        <p>もし悪質な業者であれば、自社のドメインの上に何か悪質なコンテンツを公開したり、 <code translate=no>Domain</code> 属性が指定された正規の Cookie を盗むといったことも、不可能ではない。
+        <p>もし悪質な業者であれば、自社のドメインの上に何か悪質なコンテンツを公開したり、<code translate=no>Domain</code> 属性が指定された正規の Cookie を盗むといったことも、不可能ではない。
         <p>Web だけでなく、例えばメールなども含めて、もしそのドメインが悪質なものと判定されれば、そのリスクはサービス全体に及ぶだろう。
         <p>事業者にドメインを乗っ取られたり、ドメインの価値が毀損されれば、それは 3rd Party Cookie を使えなくなることよりも、大きな損失を生むかもしれない。
         <p>いずれにせよ、安易に選ぶべき方法ではないだろう。

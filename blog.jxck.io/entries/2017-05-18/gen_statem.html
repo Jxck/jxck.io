@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。gen_statem APIgen_statem Beha...">
+  <meta name=description         content="Erlang/OTP 19 から、gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。gen_statem APIgen_statem Behav...">
   <meta name=keywords            content="erlang,gen_statem,gen_fsm">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2017-05-18/gen_statem.html>
   <meta property=og:title        content="gen_fsm から gen_statem へ | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。gen_statem APIgen_statem Beha...">
+  <meta property=og:description  content="Erlang/OTP 19 から、gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。gen_statem APIgen_statem Behav...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-05-18T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。gen_statem APIgen_statem Beha..."
+    "description": "Erlang/OTP 19 から、gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。gen_statem APIgen_statem Behav..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-05-18>2017-05-18</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -168,7 +168,7 @@
       <h1><a href="">gen_fsm から gen_statem へ</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。
+        <p>Erlang/OTP 19 から、gen_fsm の後継として gen_statem が導入された。
         <p>OTP の内部でも ssl などはすでに gen_statem に移行している。
         <p>このビヘイビアの概要について記す。
         <section>
@@ -250,15 +250,15 @@ erlang:&apos;!&apos;                        -----&gt; Module:StateName/3
 
 -                                 -----&gt; Module:code_change/4</code></pre>
         <p>コールバックは減っていることがわかる。
-        <p>大きいところとして、 gen_statem では、同期/非同期の使い分けが、 call/cast になっている。
-        <p>そして、 Module:StateName/3 は引数の最初に Event Type を取り、ここで call/cast どちらで来たのかなどを受け取るようになった。 info の場合もここで分岐する。
+        <p>大きいところとして、gen_statem では、同期/非同期の使い分けが、call/cast になっている。
+        <p>そして、Module:StateName/3 は引数の最初に Event Type を取り、ここで call/cast どちらで来たのかなどを受け取るようになった。info の場合もここで分岐する。
         <pre class=erlang data-code=erlang><code translate=no class=language-erlang>% Module:StateName(EventType, EventContent, Data) -&gt; StateFunctionResult
 hello({call, From}, eventname, Data) -&gt; ...; % From は返答先
 hello(cast, eventname, Data) -&gt; ...;
 hello(info, eventname, Data) -&gt; ...;</code></pre>
         <p>EventType は後述するものも含めて 6 種類ある。
-        <p>これにより、 Module:StateName/3 へのハンドラの統合がされている。
-        <p>ハンドラの戻り値はいくつかの種類があるが、 gen_fsm で <code translate=no>Timeout</code>, <code translate=no>hibernate</code> などとしていたタプルの 4 番目がアクションとして整理された。
+        <p>これにより、Module:StateName/3 へのハンドラの統合がされている。
+        <p>ハンドラの戻り値はいくつかの種類があるが、gen_fsm で <code translate=no>Timeout</code>, <code translate=no>hibernate</code> などとしていたタプルの 4 番目がアクションとして整理された。
         <pre class=erlang data-code=erlang><code translate=no class=language-erlang>{next_state, NextStateName, NewStateData}
 {next_state, NextStateName, NewStateData, hibernate}
 {next_state, NextStateName, NewStateData, Timeout}</code></pre>
@@ -270,7 +270,7 @@ hello(info, eventname, Data) -&gt; ...;</code></pre>
       </section>
       <section>
         <h2 id="keep_state"><a href="#keep_state">keep_state</a></h2>
-        <p>ハンドラの最後でステートを遷移しない場合、 gen_fsm では自身と同じステート名を明示的に指定していた。
+        <p>ハンドラの最後でステートを遷移しない場合、gen_fsm では自身と同じステート名を明示的に指定していた。
         <pre class=erlang data-code=erlang><code translate=no class=language-erlang>% hello から遷移しない
 hello(Event, Data) -&gt;
     {next_state, hello, Data}.</code></pre>
@@ -282,7 +282,7 @@ hello(cast, Event, Data) -&gt;
         <pre class=erlang data-code=erlang><code translate=no class=language-erlang>% hello から遷移しない
 hello(cast, Event, Data) -&gt;
     keep_state_and_data.</code></pre>
-        <p>これは後述する、 timeout などのアクションを使う際に、アクションは実行したいがステートは遷移したくないという場合に使える。
+        <p>これは後述する、timeout などのアクションを使う際に、アクションは実行したいがステートは遷移したくないという場合に使える。
         <pre class=erlang data-code=erlang><code translate=no class=language-erlang>% hello から遷移しない
 hello(cast, Event, Data) -&gt;
     {keep_state_and_data, [{timeout, 1000, world}]}.</code></pre>
@@ -290,7 +290,7 @@ hello(cast, Event, Data) -&gt;
       <section>
         <h2 id="callback_mode"><a href="#callback_mode">callback_mode</a></h2>
         <p>gen_statem では callback_mode/0 というビヘイビアが追加された。
-        <p>これは、コールバックの実装方法を指定するもので、 gen_fsm のように atom でステートに名前をつけ、対応する関数を実装するスタイルは <code translate=no>state_functions</code> になる。
+        <p>これは、コールバックの実装方法を指定するもので、gen_fsm のように atom でステートに名前をつけ、対応する関数を実装するスタイルは <code translate=no>state_functions</code> になる。
         <pre class=erlang data-code=erlang><code translate=no class=language-erlang>callback_mode() -&gt; state_functions.</code></pre>
       </section>
       <section>
@@ -314,14 +314,14 @@ StateName(enter, OldState, Data) -&gt;
 StateName(cast, OldState, Data) -&gt;
     {next_state, SomeState, Data}.</code></pre>
         <p>このモードが有効な場合は、すべてのイベントで enter のハンドラ実装が必要になる。
-        <p>また、 State Enter Call 内では <code translate=no>keep_state</code> に似た <code translate=no>repeat_state</code> を呼び出すことで、同じ State Enter Call を繰り返し実行することもできる。
+        <p>また、State Enter Call 内では <code translate=no>keep_state</code> に似た <code translate=no>repeat_state</code> を呼び出すことで、同じ State Enter Call を繰り返し実行することもできる。
         <p>State Enter Call 以外で呼びだした <code translate=no>repeat_state</code> は <code translate=no>keep_state</code> と等価。
       </section>
       <section>
         <h2 id="timeout"><a href="#timeout">Timeout</a></h2>
         <p>gen_statem の中でのタイムアウトは主に 3 つの方法がある。
         <p>サーバ実装などにおいては、相手からの応答のタイムアウトや、トークンの期限など、タイムアウトのモデルは非常に重要だ。
-        <p>gen_fsm よりも強化されており、 gen_statem を使う大きなモチベーションの 1 つと感じる。
+        <p>gen_fsm よりも強化されており、gen_statem を使う大きなモチベーションの 1 つと感じる。
         <section>
           <h3 id="timeout-event"><a href="#timeout-event">Timeout Event</a></h3>
           <p>以下のようなアクションを返すと、イベントタイムアウトが開始される。
@@ -361,19 +361,19 @@ StateName(cast, OldState, Data) -&gt;
         <p>gen_fsm では、イベントは gen_statem を用いて発行する以外になかったが、コールバック処理の結果別のイベントを発生したい場合がある。
         <p>gen_statem では、以下のような <code translate=no>next_event</code> アクションを返すことで、内部からイベントを発行できる。
         <pre class=erlang data-code=erlang><code translate=no class=language-erlang>{keep_state, Data, [{reply, From, ok}, {next_event, cast, Arg}]};</code></pre>
-        <p>call, info などすべての EventType は、 <code translate=no>next_event</code> で送ることができ、外部からのイベントと同じように扱うことができる。
+        <p>call, info などすべての EventType は、<code translate=no>next_event</code> で送ることができ、外部からのイベントと同じように扱うことができる。
       </section>
       <section>
         <h2 id="internal-event"><a href="#internal-event">internal event</a></h2>
         <p><code translate=no>internal</code> という EventType があり、これは <code translate=no>next_event</code> でしか送ることができないようになっている。
         <pre class=erlang data-code=erlang><code translate=no class=language-erlang>{keep_state, Data, [{reply, From, ok}, {next_event, internal, Arg}]};</code></pre>
-        <p>逆をいえば、 <code translate=no>internal</code> は外部から送られてくることが無いため、内部で発生した Self Generated イベントであることが保証できる。
+        <p>逆をいえば、<code translate=no>internal</code> は外部から送られてくることが無いため、内部で発生した Self Generated イベントであることが保証できる。
         <p>他の EventType は <code translate=no>next_event</code> で来たものか、外から来たものか区別ができないため、イベントを内部に閉じたい場合に利用することができる。
       </section>
       <section>
         <h2 id="moduleformat_status2"><a href="#moduleformat_status2">Module:format_status/2</a></h2>
         <p>sys:get_status/1,2 や terminate 時のダンプなどで出力される State の値を、事前に加工できるフックが導入された。
-        <p>オプションなので、 Export されていなくても良い。
+        <p>オプションなので、Export されていなくても良い。
         <p>状態が大きい場合に重要な情報だけに絞る、もしくは機密情報が出力されるのを防ぐ目的などで使われる。
       </section>
     </article>

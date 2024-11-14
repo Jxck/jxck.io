@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Promise.allSettled() と Promise.any() の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。Promise.allSettled は Stage 4 であり、 Chrome や Safari TP には実装もさ...">
+  <meta name=description         content="Promise.allSettled() と Promise.any() の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。Promise.allSettled は Stage 4 であり、Chrome や Safari TP には実装もされ...">
   <meta name=keywords            content="promise,tc39,javascript">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2019-08-20/promise-allsettled-any.html>
   <meta property=og:title        content="Promise.allSettled と Promise.any | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Promise.allSettled() と Promise.any() の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。Promise.allSettled は Stage 4 であり、 Chrome や Safari TP には実装もさ...">
+  <meta property=og:description  content="Promise.allSettled() と Promise.any() の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。Promise.allSettled は Stage 4 であり、Chrome や Safari TP には実装もされ...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-08-20T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "Promise.allSettled() と Promise.any() の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。Promise.allSettled は Stage 4 であり、 Chrome や Safari TP には実装もさ..."
+    "description": "Promise.allSettled() と Promise.any() の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。Promise.allSettled は Stage 4 であり、Chrome や Safari TP には実装もされ..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-08-20>2019-08-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -159,7 +159,7 @@
         <p><code translate=no>Promise.allSettled()</code> と <code translate=no>Promise.any()</code> の仕様策定が進んでいる。
         <p>両者は近いレイヤの仕様では有るが、作業の進捗には差がある。
         <ul>
-          <li><a href="https://github.com/tc39/proposal-promise-allSettled" target=_blank>Promise.allSettled</a> は Stage 4 であり、 Chrome や Safari TP には実装もされている
+          <li><a href="https://github.com/tc39/proposal-promise-allSettled" target=_blank>Promise.allSettled</a> は Stage 4 であり、Chrome や Safari TP には実装もされている
           <li><a href="https://github.com/tc39/proposal-promise-any" target=_blank>Promise.any</a> は Stage 2 であり、実装はまだない
         </ul>
         <p>ここでは、これらがあると何が嬉しいのかを <code translate=no>Promise.all()</code>, <code translate=no>Promise.race()</code> の特徴を踏まえて解説する。
@@ -167,7 +167,7 @@
       <section>
         <h2 id="promise.allrace"><a href="#promise.allrace">Promise.all()/race()</a></h2>
         <p><code translate=no>Promise.all()</code>, <code translate=no>Promise.race()</code> は、いずれも複数の Promise をまとめて処理する Utility Method のようなものである。
-        <p>all は全ての Promise が Resolve したら Resolve し、 race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
+        <p>all は全ての Promise が Resolve したら Resolve し、race はどれか 1 つでも Resolve したら Resolve する Promise をそれぞれ返す。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=js data-code=js><code translate=no class=language-js>const fetches = [
   fetch(&apos;./page1.html&apos;),
@@ -211,7 +211,7 @@ await Promise.race(fetched)</code></pre>
       </section>
       <section>
         <h2 id="allsettled"><a href="#allsettled">allSettled</a></h2>
-        <p>allSettled は、 all とは違い、個々が Resolve/Reject どちらになっても、最後までとにかく全て実行する。
+        <p>allSettled は、all とは違い、個々が Resolve/Reject どちらになっても、最後までとにかく全て実行する。
         <p>実行した結果を配列として Resolve するため、基本的に allSettled 自体は Reject しない。
         <pre class=js data-code=js><code translate=no class=language-js>const fetches = [
   fetch(&apos;./page1.html&apos;),
@@ -234,7 +234,7 @@ try {
   // 基本的に reject はしない
   console.error(err)
 }</code></pre>
-        <p>したがって、 <code translate=no>status: &apos;rejected&apos;</code> な結果だけをリトライすれば良い。
+        <p>したがって、<code translate=no>status: &apos;rejected&apos;</code> な結果だけをリトライすれば良い。
         <p>完了したものを無駄にせず、効率よく簡単に実装することができるだろう。
       </section>
       <section>
@@ -259,7 +259,7 @@ try {
       </section>
       <section>
         <h2 id="any"><a href="#any">any</a></h2>
-        <p>any は race とは違い、 Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
+        <p>any は race とは違い、Resolve する前に Reject する Promise があっても無視し、最初にいずれかが Resolve するまで待つ。
         <p>そして、全ての Promise が Reject した場合にのみ全体を Reject する。
         <pre class=js data-code=js><code translate=no class=language-js>const fetches = [
   fetch(&apos;./page1.html&apos;),
@@ -276,17 +276,17 @@ try {
 } catch(err) {
   console.error(err) // 全部 reject した場合
 }</code></pre>
-        <p>従って、「<em>最初に Resolve する Promise を待ちたい</em>」という要件を満たす場合は、 any を使えばそれだけで良い。
+        <p>従って、「<em>最初に Resolve する Promise を待ちたい</em>」という要件を満たす場合は、any を使えばそれだけで良い。
       </section>
       <section>
         <h2 id="補足"><a href="#補足">補足</a></h2>
         <p>Promise が Resolve した状態を Fulfilled, Reject した状態を Rejected と言う。
         <p>Fulfilled か Rejected どちらかになった状態、つまり成功失敗に関わらず「処理が終わった状態」を <em>Settled</em> と言う。
-        <p>そして、 Promise の配列を取る API で、まだ処理中の Promise がいても、中断して全体を Settled にすることを Short-Circuit と言う。
+        <p>そして、Promise の配列を取る API で、まだ処理中の Promise がいても、中断して全体を Settled にすることを Short-Circuit と言う。
         <p>これを踏まえて分類すると、以下のようになる。
         <ul>
-          <li>Promise.all:        全部 Fulfilled になるまで続け、 1 つでも Rejected になると Short-Circuit する
-          <li>Promise.allSettled: 全部 Settled になるまで続け、 Short-Circuit しない
+          <li>Promise.all:        全部 Fulfilled になるまで続け、1 つでも Rejected になると Short-Circuit する
+          <li>Promise.allSettled: 全部 Settled になるまで続け、Short-Circuit しない
           <li>Promise.any:        1 つでも Fulfilled になると Short-Circuit する
           <li>Promise.race:       1 つでも Settled になると Short-Circuit する
         </ul>

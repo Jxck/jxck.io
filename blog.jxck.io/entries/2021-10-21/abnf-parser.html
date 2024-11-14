@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-10-21T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-10-21>2021-10-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -169,17 +169,17 @@
         <p>これを ABNF で表現するとこうなる。
         <pre class=abnf data-code=abnf><code translate=no class=language-abnf>sf-list       = list-member *( OWS &quot;,&quot; OWS list-member )
 list-member   = sf-item / inner-list</code></pre>
-        <p><code translate=no>inner-list</code> を無視すると、これは <code translate=no>sf-item</code> がスペース(OWS)と <code translate=no>,</code> で区切られて複数あることになるといった具合だ。 <code translate=no>sf-item</code> はさらに別で定義されている。
+        <p><code translate=no>inner-list</code> を無視すると、これは <code translate=no>sf-item</code> がスペース(OWS)と <code translate=no>,</code> で区切られて複数あることになるといった具合だ。<code translate=no>sf-item</code> はさらに別で定義されている。
         <p><code translate=no>ALPHA</code> や <code translate=no>DIGIT</code> のように仕様をまたいで共通する定義は <a href="https://www.rfc-editor.org/rfc/rfc5234.html" target=_blank>ABNF</a> の RFC としてまとめられ、各仕様が参照している。
-        <p>ABNF は、実装方法を規定せずに、汎用的に「この形式であるべき」を定義する目的で使われているため、この形式でやりとりができるのであれば、 Parse/Serialize ともにどう実装されていても良い。
-        <p>BNF から機械的にパーサを生成する手法などは知られているが、 RFC は実装にそれを強制するものではないため、メモリ効率や速度を重視してそうした手法を採用しないことが一般的だろう。
-        <p>しかし、 ABNF に忠実な実装ができると、それは逆に <em>ABNF が意味的に正しいか</em> を検証する手段にもなる。
-        <p>経験的に RFC の ABNF は、厳密に見ると意味的に間違っていることが多い。これは、仕様策定の段階で、機械的な検証などがされてないことが多いからだ。そこで、そうした検証の意味も含め、筆者はパフォーマンスやメモリ効率よりも、 ABNF に対する厳密性を重視して実装することが多い。
+        <p>ABNF は、実装方法を規定せずに、汎用的に「この形式であるべき」を定義する目的で使われているため、この形式でやりとりができるのであれば、Parse/Serialize ともにどう実装されていても良い。
+        <p>BNF から機械的にパーサを生成する手法などは知られているが、RFC は実装にそれを強制するものではないため、メモリ効率や速度を重視してそうした手法を採用しないことが一般的だろう。
+        <p>しかし、ABNF に忠実な実装ができると、それは逆に <em>ABNF が意味的に正しいか</em> を検証する手段にもなる。
+        <p>経験的に RFC の ABNF は、厳密に見ると意味的に間違っていることが多い。これは、仕様策定の段階で、機械的な検証などがされてないことが多いからだ。そこで、そうした検証の意味も含め、筆者はパフォーマンスやメモリ効率よりも、ABNF に対する厳密性を重視して実装することが多い。
         <p>実装にあたっては、特にツールなどを利用するわけではなく、以下のように愚直に ABNF を関数に起こして組み合わせていくだけだ。
       </section>
       <section>
         <h2 id="js-での実装"><a href="#js-での実装">JS での実装</a></h2>
-        <p>もともとは Erlang のパターンマッチを使って書いていたものだが、 JS だとそれができないので、最小限の正規表現に置き換えている。
+        <p>もともとは Erlang のパターンマッチを使って書いていたものだが、JS だとそれができないので、最小限の正規表現に置き換えている。
         <p>基本の形は、各 ABFN の定義ごとに、「文字列を受け取ると結果を返す関数」を返す高階関数を作り、それを組み合わせていくという方式だ。
         <section>
           <h3 id="token"><a href="#token">token</a></h3>
@@ -270,7 +270,7 @@ crlf(&quot;\r\n&quot;)
             <li><code translate=no>1*</code> は 1 回以上
             <li><code translate=no>1*10</code> は 1 回以上 10 回未満
           </ul>
-          <p>といった具合だ。これを 0 回以上 1 回未満とみなせば、 Optional も手に入る。
+          <p>といった具合だ。これを 0 回以上 1 回未満とみなせば、Optional も手に入る。
           <p>実装は以下のようになる。
           <pre class=js data-code=js><code translate=no class=language-js>// *(a b) =&gt; repeat(0, Infinity, list([a(), b()]))
 export function repeat(min, max, fn) {
@@ -326,7 +326,7 @@ const list_member = alt([
   inner_list
 ])</code></pre>
           <p>これを書き下していきながら、一番下層の <code translate=no>token()</code> まで実装しきれば、パース自体はできあがる(実際には下から書くが)。
-          <p>あとはパースしながら、例えば数字を <code translate=no>parseInt()</code> したり、 Dict を Map や Object に詰めたり、多少の最適化(<code translate=no>CRLF = CR / LF</code> を <code translate=no>token(/\r\n/)</code> にする)などを適宜入れる、などの処理を間にはさみながら組み上げれば良い。
+          <p>あとはパースしながら、例えば数字を <code translate=no>parseInt()</code> したり、Dict を Map や Object に詰めたり、多少の最適化(<code translate=no>CRLF = CR / LF</code> を <code translate=no>token(/\r\n/)</code> にする)などを適宜入れる、などの処理を間にはさみながら組み上げれば良い。
           <p>組み上げた結果は、以下のようになる。
           <ul>
             <li>
@@ -343,17 +343,17 @@ const list_member = alt([
       <section>
         <h2 id="ietf-と-whatwg-での違い"><a href="#ietf-と-whatwg-での違い">IETF と WHATWG での違い</a></h2>
         <p>おそらく、実際のプロトコル実装は、ここで紹介したような実装を採用しているものは少ないと思われる。
-        <p>この実装は、 ABNF に忠実な実装ができるかもしれないが、それがパフォーマンスやメモリ効率の視点から最適とは限らないからだ。
+        <p>この実装は、ABNF に忠実な実装ができるかもしれないが、それがパフォーマンスやメモリ効率の視点から最適とは限らないからだ。
         <p>したがって、各実装者が ABNF のルールに基づいて、それを再現できる実装を起こす。その過程で、見落とされる ABNF 上の曖昧な点があっても、実装同士を通信させてそれが動いていればそれで良いのだ。
         <p>一方で WHATWG は、主にブラウザの API を対象としているため、ブラウザ同士の厳密な互換性を維持することを考えると ABNF のような定義を採用するのは難しい。
-        <p>代表例としては URL の仕様は、 IETF の RFC と WHATWG それぞれに仕様がある。
+        <p>代表例としては URL の仕様は、IETF の RFC と WHATWG それぞれに仕様がある。
         <ul>
           <li><a href="https://datatracker.ietf.org/doc/html/rfc3986" target=_blank>RFC3986 - IETF</a>
           <li><a href="https://url.spec.whatwg.org/" target=_blank>URL Standard - WHATWG</a>
         </ul>
-        <p>RFC の方は URL のフォーマットが ABNF で書かれているが、 WHATWG はパースのアルゴリズムが書かれている。前者は、実装方法に制限が無いが、 WHATWG は実装のアルゴリズムが基本的にはどの言語でも同じになる。
-        <p>もちろん、 WHATWG の方はブラウザ特有の様々な要件が含まれているため、 RFC のような汎用的な URL の定義とは担っている範囲が違うとはいえ、それぞれの仕様におけるフォーマットの扱いが垣間見えておもしろい。
-        <p>IETF の方は昔書いて公開せずどこかに言ってしまったが、 WHATWG の方は <a href="https://github.com/Jxck/URL/blob/master/url.ts" target=_blank>公開</a> しているので、参考まで。
+        <p>RFC の方は URL のフォーマットが ABNF で書かれているが、WHATWG はパースのアルゴリズムが書かれている。前者は、実装方法に制限が無いが、WHATWG は実装のアルゴリズムが基本的にはどの言語でも同じになる。
+        <p>もちろん、WHATWG の方はブラウザ特有の様々な要件が含まれているため、RFC のような汎用的な URL の定義とは担っている範囲が違うとはいえ、それぞれの仕様におけるフォーマットの扱いが垣間見えておもしろい。
+        <p>IETF の方は昔書いて公開せずどこかに言ってしまったが、WHATWG の方は <a href="https://github.com/Jxck/URL/blob/master/url.ts" target=_blank>公開</a> しているので、参考まで。
       </section>
     </article>
   </main>

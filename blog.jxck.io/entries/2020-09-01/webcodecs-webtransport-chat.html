@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-09-01T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-09-01>2020-09-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -170,13 +170,13 @@
       </section>
       <section>
         <h2 id="webrtc"><a href="#webrtc">WebRTC</a></h2>
-        <p>WebRTC は UDP 上に DTLS で交換した鍵を用いて、 RTP を SRTP で流し、そのシグナリングに SDP を、ホールパンチに ICE(STUN/TURN) を用いることで、 P2P ビデオチャットといったユースケースを可能にした API だ。
-        <p>しかし、最初から「P2P ビデオチャット」というユースケースに寄せていることもあり、従来使われていたプロトコルスタックを応用して実現しており、 P2P ならではの問題を解決するために、全体は割と複雑な構成になっていた。(真面目にフルで実装すると 3 桁近い RFC が絡んでくる)
-        <p>ところが、実際 WebRTC を用いたサービスを提供する際には、 P2P でクライアント同士を会話させるなどということはあまりなく、サービス側で持ったサーバ(SFU/MCU)で、ルーティングや QoS の調整といった様々なサービスを提供することになることが多い。
+        <p>WebRTC は UDP 上に DTLS で交換した鍵を用いて、RTP を SRTP で流し、そのシグナリングに SDP を、ホールパンチに ICE(STUN/TURN) を用いることで、P2P ビデオチャットといったユースケースを可能にした API だ。
+        <p>しかし、最初から「P2P ビデオチャット」というユースケースに寄せていることもあり、従来使われていたプロトコルスタックを応用して実現しており、P2P ならではの問題を解決するために、全体は割と複雑な構成になっていた。(真面目にフルで実装すると 3 桁近い RFC が絡んでくる)
+        <p>ところが、実際 WebRTC を用いたサービスを提供する際には、P2P でクライアント同士を会話させるなどということはあまりなく、サービス側で持ったサーバ(SFU/MCU)で、ルーティングや QoS の調整といった様々なサービスを提供することになることが多い。
         <p>また、ブラウザ API の抽象度も高く、内部で行われる動作の機微をコントロールするには、新しい API が必要になり、クロスブラウザの切り分けが難しい場合もある。
         <p>特にコーデック周りの制御も容易ではなく、実際の映像バイナリを一切触ることなく、その中身を制御するための命令を行うといった雰囲気の実装になる。
         <p>これは、チュートリアルにあるような典型的ビデオチャットを提供するだけならうまく動くが、少し特別な実装を入れたり、その UDP トランスポートを使って別のメディア(ゲームなど)を流そうとすると、途端に扱いにくい部分が目立ってくる。
-        <p>もし P2P ではなく、 Server/Client 型のデプロイを前提とし、コーデックもブラウザが持っている実装を直接触るような API があり、データは生のバイナリでやり取りできれば、その方が柔軟性が高く多くのユースケースへ応用できる。そうした発想から生まれたのが WebTransport と WebCodecs だ。
+        <p>もし P2P ではなく、Server/Client 型のデプロイを前提とし、コーデックもブラウザが持っている実装を直接触るような API があり、データは生のバイナリでやり取りできれば、その方が柔軟性が高く多くのユースケースへ応用できる。そうした発想から生まれたのが WebTransport と WebCodecs だ。
         <p>そのあたりのモチベーションは以前にも書いている。
         <ul>
           <li><a href="https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html">WebTransport と WebCodecs そして Web はどこまで &quot;ゲーム化&quot; するか</a>
@@ -208,7 +208,7 @@ stream.getTracks().forEach((track) =&gt; {
 })</code></pre>
         <p>この流れを見てもわかるように、従来の <code translate=no>getUserMedia()</code> で取得した MediaStream は、そこから直接カメラの映像をバイナリで取得できるような作りにはなってない。
         <p><code translate=no>&lt;video&gt;</code> や RTCPeerConnection などの対応した API に繋ぐことで、あとは中で <em>やってくれる/やってしまう</em> 、ため、外からそこに手を加えることができないのだ。
-        <p>もし手を加えたい場合は、一旦 Canvas に描画する、 Insertable Stream で横取りするなどのワークアラウンドが必要だった。
+        <p>もし手を加えたい場合は、一旦 Canvas に描画する、Insertable Stream で横取りするなどのワークアラウンドが必要だった。
         <p>カメラから取得したデータを、ブラウザが内部で持っている VP8 や H.264 などのコーデック実装でエンコード/デコードを行い、その結果をバイナリで取得できれば様々なユースケースに応用できる。
         <p>これが WebCodecs のモチベーションだ。
         <section>
@@ -296,12 +296,12 @@ videoDecoder.decode(chunk)</code></pre>
   readonly attribute unsigned long long? duration;  // microseconds
   readonly attribute ArrayBuffer data;
 };</code></pre>
-          <p>したがって、 <code translate=no>{type, timestamp, duration, data}</code> のようなオブジェクトをシリアライズして送り、復元する必要がある。
+          <p>したがって、<code translate=no>{type, timestamp, duration, data}</code> のようなオブジェクトをシリアライズして送り、復元する必要がある。
           <p>転送は基本的に Uint8Array 単位で行うため、今回は CBOR を採用した。しかし後述のサイズの問題があるため、少し工夫している。
         </section>
         <section>
           <h3 id="転送制御"><a href="#転送制御">転送制御</a></h3>
-          <p>QUIC はパケットサイズに上限があるため、 QuicTransport でも大きいバイナリが送れず、分割される。
+          <p>QUIC はパケットサイズに上限があるため、QuicTransport でも大きいバイナリが送れず、分割される。
           <ul>
             <li>IPv6 = 1280(v6 MTU) - 40 (v6 header) - 8 (udp header) = 1232byte
             <li>IPv4 = 1280(v4 MTU) - 20 (v4 header) - 8 (udp header) = 1252byt
@@ -326,7 +326,7 @@ videoDecoder.decode(chunk)</code></pre>
         </section>
         <section>
           <h3 id="表示制御"><a href="#表示制御">表示制御</a></h3>
-          <p>これまでは <code translate=no>&lt;video&gt;</code> に表示するのが基本だったが、 <code translate=no>&lt;video&gt;</code> は表示をイジるのに多少の面倒臭さがあった。
+          <p>これまでは <code translate=no>&lt;video&gt;</code> に表示するのが基本だったが、<code translate=no>&lt;video&gt;</code> は表示をイジるのに多少の面倒臭さがあった。
           <p>一方 <code translate=no>&lt;canvas&gt;</code> は周知の通り、表示に関する操作の方法が多く知られており、フィルタ適用、物体/顔検出、合成、傾き etc 手法やライブラリも潤沢にある。
           <p>そうした目的からあえて <code translate=no>&lt;video&gt;</code> ではなく <code translate=no>&lt;canvas&gt;</code> を選ぶサービスがもあったくらいなので、このメリットはデカイだろう。
           <p>並行している SIMD+WASM は、そうした画像処理に必要な計算を高速化することが可能なため、今回は触れなかったが、今後はそちらも試しておきたい。
@@ -334,20 +334,20 @@ videoDecoder.decode(chunk)</code></pre>
         <section>
           <h3 id="webcodecs-と-webtransport-の繋ぎ"><a href="#webcodecs-と-webtransport-の繋ぎ">WebCodecs と WebTransport の繋ぎ</a></h3>
           <p>WebCodecs の出力バイナリは、従来の WebRTC でいえば RTC 内の body 部分のみにあたる。
-          <p>WebTransport の転送は、 WebRTC でいうと DTLS-SRTP の部分のみだ。
+          <p>WebTransport の転送は、WebRTC でいうと DTLS-SRTP の部分のみだ。
           <p>WebRTC よりも軽いスタックでビデオ会議が実現可能になったが、逆を言えば前述のようなメディアの転送制御に関わる部分は別途自分で用意する必要がある。
-          <p>「自分で用意する必要がある」は、ちょっと遊んでみたい素人にとっては負荷かもしれないが、 WebRTC で困っていたサービス提供者にとっては「自分で提供することができる」と取れる場合もある。
+          <p>「自分で用意する必要がある」は、ちょっと遊んでみたい素人にとっては負荷かもしれないが、WebRTC で困っていたサービス提供者にとっては「自分で提供することができる」と取れる場合もある。
           <p>バイナリさえあればソースがカメラである必要も、出力先が Canvas である必要もないため、その間には無限のユースケースがある。
           <p>ユースケースに応じて適切な中間ロジックを選定でき、なければ自分で JS や WASM で書くこともできるという点は、自由度をかなり上げている。
           <p>単純なビデオ会議を実現する程度なら、軽量なフレームワークをサクッと作ることは可能だし、おそらくそうしたものは多く出てくるだろう。どうしても足りない部分はまた別途標準かもあるかもしれない。
-          <p>それを除けば、 WebCodecs / WebTransport の 2 つさえ実装されたブラウザでは、残りを自分たちの要件に合わせて実装していけるのは、開発者としてもサービスに個性を出しやすく、実装に多様性が生まれると期待している。
+          <p>それを除けば、WebCodecs / WebTransport の 2 つさえ実装されたブラウザでは、残りを自分たちの要件に合わせて実装していけるのは、開発者としてもサービスに個性を出しやすく、実装に多様性が生まれると期待している。
         </section>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>WebCodecs と WebTransport を用いて WebRTC のようなビデオ会議が、よりシンプルなスタックで可能になった。
-        <p>バイナリをエンコードし、それを送る、その間に必要なロジックは、標準ではなく要件に合わせて開発者が用意するという世界観は、 Extensible Web Manifest 以来進められてきた API の低レイヤ化の流れを組んでいるといえる。
-        <p>そうして、ユースケースに特化し膨らんだ WebRTC の解体は、ブラウザが内側にもつスタックを、 ArrayBuffer を取り回すという低レベル API として開発者に提供したことによって、可能性を広げたと考えられる。
+        <p>バイナリをエンコードし、それを送る、その間に必要なロジックは、標準ではなく要件に合わせて開発者が用意するという世界観は、Extensible Web Manifest 以来進められてきた API の低レイヤ化の流れを組んでいるといえる。
+        <p>そうして、ユースケースに特化し膨らんだ WebRTC の解体は、ブラウザが内側にもつスタックを、ArrayBuffer を取り回すという低レベル API として開発者に提供したことによって、可能性を広げたと考えられる。
         <p>本ブログでは、ビデオ会議の側面から API を比較するため、全体の一部しか触れてないが、並行して進められている SIMD+WASM は ArrayBuffer の加工に最適なため、今後はそちらも含めて色々と試しつつ、フィードバックにつなげていきたい。
       </section>
       <section>

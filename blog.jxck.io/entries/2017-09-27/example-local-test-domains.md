@@ -4,7 +4,7 @@
 
 特別なドメインとして予約され、特定の用途で使用可能なドメインとして、`.example` `.localhost` `.test` などがある。
 
-`localhost` の Draft や、 gTLD である `.dev` が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。
+`localhost` の Draft や、gTLD である `.dev` が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。
 
 
 ## ドメインを利用する上での注意

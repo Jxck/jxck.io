@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="textarea などに入力された文字数を、 JS で数えたい場合がある。ここで .length を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。それ自体は枯れた話題ではある...">
+  <meta name=description         content="textarea などに入力された文字数を、JS で数えたい場合がある。ここで .length を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。それ自体は枯れた話題ではあるが...">
   <meta name=keywords            content="utf-16,unicode,javascript">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html>
   <meta property=og:title        content="JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="textarea などに入力された文字数を、 JS で数えたい場合がある。ここで .length を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。それ自体は枯れた話題ではある...">
+  <meta property=og:description  content="textarea などに入力された文字数を、JS で数えたい場合がある。ここで .length を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。それ自体は枯れた話題ではあるが...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-03-02T08:00:00+08:00",
-    "dateModified": "2024-04-08T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "textarea などに入力された文字数を、 JS で数えたい場合がある。ここで .length を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。それ自体は枯れた話題ではある..."
+    "description": "textarea などに入力された文字数を、JS で数えたい場合がある。ここで .length を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。それ自体は枯れた話題ではあるが..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-03-02>2017-03-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-08>2024-04-08</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -174,11 +174,11 @@
       <h1><a href="">JavaScript における文字コードと「文字数」の数え方</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>textarea などに入力された文字数を、 JS で数えたい場合がある。
+        <p>textarea などに入力された文字数を、JS で数えたい場合がある。
         <p>ここで <code translate=no>.length</code> を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。
         <p>多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。
         <p>それ自体は枯れた話題ではあるが、近年 ECMAScript に追加された機能などを交えて解説する。
-        <p>なお、文字コードの仕組みを詳解すること自体が目的では無いため、 BOM, UCS-2, Endian, 歴史的経緯など、この手の話題につき物な話の一部は省くこととする。
+        <p>なお、文字コードの仕組みを詳解すること自体が目的では無いため、BOM, UCS-2, Endian, 歴史的経緯など、この手の話題につき物な話の一部は省くこととする。
       </section>
       <section>
         <h2 id="1-文字とは何か"><a href="#1-文字とは何か">1 文字とは何か</a></h2>
@@ -219,36 +219,36 @@
           <pre class=js data-code=js><code translate=no class=language-js>[0x00, 0x01, 0xF6, 0x2D] // 😭
 // 0x1F62D を二進数にし 32 bit になるまで先頭に 0 を追加してから 8 bit づつ区切った配列</code></pre>
           <p>受け取った側は、データを 32bit づつ Code Point とみなして文字に置き換えていけば良いし、受け取ったバイト数を 4 で割れば文字の数もわかる。
-          <p>このように 1 Code Point を 32bit データとして表すという発想が、 UTF-32 と呼ばれる方式の中核である。
+          <p>このように 1 Code Point を 32bit データとして表すという発想が、UTF-32 と呼ばれる方式の中核である。
         </section>
         <section>
           <h3 id="utf-16"><a href="#utf-16">UTF-16</a></h3>
           <p>UTF-32 なら Code Point がそのまま入ってるので非常にシンプルだが、よく使う文字はそこまで大きな Code Point が振られてないため、ほとんどが 0 になる。
-          <p>先の文字列では「野」や「で」という文字は Code Point が <code translate=no>0x91CE</code>、 <code translate=no>0x3067</code> なので、 32 bit だと先頭 2byte が 0 になる。
+          <p>先の文字列では「野」や「で」という文字は Code Point が <code translate=no>0x91CE</code>、<code translate=no>0x3067</code> なので、32 bit だと先頭 2byte が 0 になる。
           <pre class=js data-code=js><code translate=no class=language-js>[0x00, 0x00, 0x91, 0xCE] // 野
 [0x00, 0x00, 0x30, 0x67] // で</code></pre>
-          <p>そこで、 Code Point を 32bit ではなく、半分の 16bit で表せば、半分のサイズで送ることができる。
+          <p>そこで、Code Point を 32bit ではなく、半分の 16bit で表せば、半分のサイズで送ることができる。
           <pre class=js data-code=js><code translate=no class=language-js>[0x91, 0xCE] // 野
 [0x30, 0x67] // で</code></pre>
-          <p>このように 1 Code Point を 16bit データとして表すという発想が、 UTF-16 と呼ばれる方式の中核である。
-          <p>ところが、 <code translate=no>𠮷</code> (0x20BB7), <code translate=no>𩸽</code> (0x29E3D), <code translate=no>𠮟</code> (0x20B9F), <code translate=no>😭</code> (0x1F62D) の 4 文字は 2byte では収まらない。
-          <p>そこで、 UTF-16 では、こうした 2byte では収まらない文字について、倍の 32bit で表す。
+          <p>このように 1 Code Point を 16bit データとして表すという発想が、UTF-16 と呼ばれる方式の中核である。
+          <p>ところが、<code translate=no>𠮷</code> (0x20BB7), <code translate=no>𩸽</code> (0x29E3D), <code translate=no>𠮟</code> (0x20B9F), <code translate=no>😭</code> (0x1F62D) の 4 文字は 2byte では収まらない。
+          <p>そこで、UTF-16 では、こうした 2byte では収まらない文字について、倍の 32bit で表す。
           <p>この 16bit x2 で表される文字を <em>サロゲートペア</em> と呼ぶ。
           <pre class=js data-code=js><code translate=no class=language-js>[0xD8, 0x67, 0xDE, 0x3D] // 𠮷
 [0xD8, 0x42, 0xDF, 0xB7] // 𩸽
 [0xD8, 0x42, 0xDF, 0x9F] // 𠮟
 [0xD8, 0x3D, 0xDE, 0x2D] // 😭</code></pre>
-          <p>逆を言えば、サロゲートペアになるのは Code Point が大きい、 Unicode に後から追加された文字が多い。
-          <p><code translate=no>𩸽</code> は後から追加された文字であり、 <code translate=no>𠮷</code> は <code translate=no>吉</code> の、 <code translate=no>𠮟</code> は <code translate=no>𠮟</code> の <em>異体字</em> と呼ばれるものだ。絵文字も最近追加されたため Code Point が大きい。
-          <p>こうして、サロゲートペアが導入されたことにより、 UTF-16 のデータは可変長、つまり、文字数がバイト列の長さだけではわからなくなってしまったのである。
+          <p>逆を言えば、サロゲートペアになるのは Code Point が大きい、Unicode に後から追加された文字が多い。
+          <p><code translate=no>𩸽</code> は後から追加された文字であり、<code translate=no>𠮷</code> は <code translate=no>吉</code> の、<code translate=no>𠮟</code> は <code translate=no>𠮟</code> の <em>異体字</em> と呼ばれるものだ。絵文字も最近追加されたため Code Point が大きい。
+          <p>こうして、サロゲートペアが導入されたことにより、UTF-16 のデータは可変長、つまり、文字数がバイト列の長さだけではわからなくなってしまったのである。
           <p>もし、幸運にも文字列の中にサロゲートペアが 1 つも入っていなければ、バイト列を単純に 2 で割れば文字数が出る。しかし 1 つでもサロゲートペアがあると、単純な割り算では本来よりも多くの文字数があるように見えてしまうのだ。
         </section>
         <section>
           <h3 id="utf-8"><a href="#utf-8">UTF-8</a></h3>
-          <p>英数字(a-zA-Z0-9) など、いわゆるアスキー文字と呼ばれるものは、 Code Point の中でも小さい値が割り当てられている。
-          <p>これら Code Point は 8bit の範囲に収まっているので、 16 bit で表すと無駄が出てくる。
+          <p>英数字(a-zA-Z0-9) など、いわゆるアスキー文字と呼ばれるものは、Code Point の中でも小さい値が割り当てられている。
+          <p>これら Code Point は 8bit の範囲に収まっているので、16 bit で表すと無駄が出てくる。
           <pre class=js data-code=js><code translate=no class=language-js>[0x00, 0x61] // a</code></pre>
-          <p>そこで、 8bit で表せる Code Point は 8bit で、足らないものは 16bit で、さらに足らないものは 24bit で、、と「小さい Code Point はより小さく」表せば、英語のみのテキストなどはさらに小さく表すことができる。
+          <p>そこで、8bit で表せる Code Point は 8bit で、足らないものは 16bit で、さらに足らないものは 24bit で、、と「小さい Code Point はより小さく」表せば、英語のみのテキストなどはさらに小さく表すことができる。
           <pre class=js data-code=js><code translate=no class=language-js>[0x61]                   // a
 [0xC2, 0xA9]             // ©
 [0xE3, 0x81, 0x82]       // あ
@@ -258,19 +258,19 @@
       </section>
       <section>
         <h2 id="js-の内部表現"><a href="#js-の内部表現">JS の内部表現</a></h2>
-        <p>さて、 JS で以下の処理を実行した場合、代入した文字列データがメモリ上に保存されるわけだが、このデータは Code Point がそのまま保存されているわけではない。
+        <p>さて、JS で以下の処理を実行した場合、代入した文字列データがメモリ上に保存されるわけだが、このデータは Code Point がそのまま保存されているわけではない。
         <pre class=js data-code=js><code translate=no class=language-js>char = &quot;😭&quot;</code></pre>
         <p>JS の内部表現は UTF-16 であるため、メモリに保存された値は絵文字 <code translate=no>😭</code> の Code Point である <code translate=no>0x1F62D</code> ではなく、それを UTF-16 にした <code translate=no>[0xD8, 0x3D, 0xDE, 0x2D]</code> だ。
-        <p>ここで注意したいのは、ここで UTF-16 が選ばれるのは JS の仕様であって、 JS ファイルのエンコーディングとは関係ない点だ。
+        <p>ここで注意したいのは、ここで UTF-16 が選ばれるのは JS の仕様であって、JS ファイルのエンコーディングとは関係ない点だ。
         <p>HTML/CSS/JS ファイルは UTF-8 を使うのがデファクトとなっているが、それによって JS の内部の表現が UTF-8 になったりはしない。
-        <p>イメージとしては、ブラウザは JS ファイルのレスポンスを受けた際、 Content-Encoding ヘッダなどによってファイルを解釈し、そこから Code Point を割り出す。代入された値が <code translate=no>😭</code> であることを知ったら、それをメモリ上に UTF-16 で保存する。 JS ファイルが Shift-JIS であっても同じだ。
-        <p>これを聞くと JS が UTF-16 であれば、その変換オーバーヘッドが無いのでは? と思うかもしれないが、レガシーシステムとの連携などを考えなければ、 UTF-8 以外を使う必要は基本的にないので気にしないで良い。
-        <p><em>JS が内部で持つ値は Code Point ではなく UTF-16 の値だ</em> という点を踏まえた上で、 JS のプログラム上で文字列を数える処理について見ていく。
+        <p>イメージとしては、ブラウザは JS ファイルのレスポンスを受けた際、Content-Encoding ヘッダなどによってファイルを解釈し、そこから Code Point を割り出す。代入された値が <code translate=no>😭</code> であることを知ったら、それをメモリ上に UTF-16 で保存する。JS ファイルが Shift-JIS であっても同じだ。
+        <p>これを聞くと JS が UTF-16 であれば、その変換オーバーヘッドが無いのでは? と思うかもしれないが、レガシーシステムとの連携などを考えなければ、UTF-8 以外を使う必要は基本的にないので気にしないで良い。
+        <p><em>JS が内部で持つ値は Code Point ではなく UTF-16 の値だ</em> という点を踏まえた上で、JS のプログラム上で文字列を数える処理について見ていく。
       </section>
       <section>
         <h2 id="length"><a href="#length">length</a></h2>
         <p>length は文字数ではなく、単にこの UTF-16 配列の長さだ。
-        <p>だから、 1 文字に 16bit が 2 つ必要なサロゲートペアは length が 2 となってしまう。
+        <p>だから、1 文字に 16bit が 2 つ必要なサロゲートペアは length が 2 となってしまう。
         <p>つまり、内部で保持されているデータはこうなっている。
         <pre class=js data-code=js><code translate=no class=language-js>str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
 [
@@ -288,13 +288,13 @@
   0x308B         // る
   0xD83D, 0xDE2D // 😭
 ]</code></pre>
-        <p>この文字列は 13 文字と考えられるが、 <code translate=no>length</code> はこの配列の長さである 17 を返す。
+        <p>この文字列は 13 文字と考えられるが、<code translate=no>length</code> はこの配列の長さである 17 を返す。
         <pre class=js data-code=js><code translate=no class=language-js>str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
 str.length // =&gt; 17</code></pre>
         <p>これが、文字数を数える処理に length が使えない場合があることの原因だ。
-        <p>(逆を言えば、 16bit で収まる文字の範囲のみであると <em>保証</em> できるならば length を使うこともできなくはない)
-        <p>そもそも、 Code Point の数を数えたいのに、内部で保持している UTF-16 の配列を操作しているから問題なのだ。
-        <p>つまり、 JS が内部で保持している UTF-16 の配列を、元の Unicode の Code Point の配列に戻せば良さそうだ。
+        <p>(逆を言えば、16bit で収まる文字の範囲のみであると <em>保証</em> できるならば length を使うこともできなくはない)
+        <p>そもそも、Code Point の数を数えたいのに、内部で保持している UTF-16 の配列を操作しているから問題なのだ。
+        <p>つまり、JS が内部で保持している UTF-16 の配列を、元の Unicode の Code Point の配列に戻せば良さそうだ。
         <p>もちろん、この方法は知られている。
         <p>特に、ブラウザがこれをどう行うべきかというアルゴリズムは WHATWG の仕様に書かれているため、これを実装すれば Code Point の配列が手に入る。
         <ul>
@@ -325,14 +325,14 @@ codePoints.length // =&gt; 13</code></pre>
       </section>
       <section>
         <h2 id="charcodecodepoint"><a href="#charcodecodepoint">charCode/codePoint</a></h2>
-        <p><code translate=no>charCodeAt()</code> は文字コードを取り、 <code translate=no>fromCharCode()</code> はその逆を行う。
+        <p><code translate=no>charCodeAt()</code> は文字コードを取り、<code translate=no>fromCharCode()</code> はその逆を行う。
         <p><code translate=no>𩸽</code> の方は前半のバイトしかないため、元に戻らない。
         <pre class=js data-code=js><code translate=no class=language-js>&quot;鯖定食&quot;.charCodeAt(0) === 0x9BD6
 &quot;𩸽定食&quot;.charCodeAt(0) === 0xD867
 
 String.fromCharCode(&quot;鯖&quot;.charCodeAt(0)) //&quot;鯖&quot;
 String.fromCharCode(&quot;𩸽&quot;.charCodeAt(0)) // &quot;�&quot;</code></pre>
-        <p>一方、 <code translate=no>codePointAt()</code> と <code translate=no>fromCodePoint()</code> は、その名の通り Code Point に対応している。
+        <p>一方、<code translate=no>codePointAt()</code> と <code translate=no>fromCodePoint()</code> は、その名の通り Code Point に対応している。
         <p>これならサロゲートペアもうまく扱う事ができる。
         <pre class=js data-code=js><code translate=no class=language-js>&quot;𩸽定食&quot;.codePointAt(0) // 0x29E3D
 &quot;鯖定食&quot;.codePointAt(0) // 0x9BD6
@@ -342,14 +342,14 @@ String.fromCodePoint(&quot;𩸽&quot;.codePointAt(0)) // &quot;𩸽&quot;</code>
       </section>
       <section>
         <h2 id="正規表現"><a href="#正規表現">正規表現</a></h2>
-        <p>正規表現における <code translate=no>.</code> も 1 文字ではなく、 UTF-16 の 16bit データ 1 つを意味する。
+        <p>正規表現における <code translate=no>.</code> も 1 文字ではなく、UTF-16 の 16bit データ 1 つを意味する。
         <p>したがって、サロゲートペアがあると 1 文字にマッチせず、途中で切れる。
         <pre class=js data-code=js><code translate=no class=language-js>&quot;吉野家&quot;.match(/./) // [&quot;吉&quot;]
 &quot;𠮷野家&quot;.match(/./) // [&quot;�&quot;]
 
 &quot;吉野家&quot;.match(/.{3}/) // [&quot;吉野家&quot;]
 &quot;𠮷野家&quot;.match(/.{3}/) // [&quot;𠮷野&quot;] 変なところで切れる</code></pre>
-        <p>そこで、 ES2015 では Unicode Flag というフラグが入った。これで Code Point の単位でマッチさせることができるようになる。
+        <p>そこで、ES2015 では Unicode Flag というフラグが入った。これで Code Point の単位でマッチさせることができるようになる。
         <pre class=js data-code=js><code translate=no class=language-js>&quot;吉野家&quot;.match(/./u) // [&quot;吉&quot;]
 &quot;𠮷野家&quot;.match(/./u) // [&quot;𠮷&quot;]
 
@@ -358,13 +358,13 @@ String.fromCodePoint(&quot;𩸽&quot;.codePointAt(0)) // &quot;𩸽&quot;</code>
         <p>文字列を文字の配列に分解するのに使われる <code translate=no>split(&quot;&quot;)</code> も、サロゲートペアがあると崩れてしまう。
         <pre class=js data-code=js><code translate=no class=language-js>&quot;叱られる&quot;.split(&quot;&quot;) // [&quot;叱&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]
 &quot;𠮟られる&quot;.split(&quot;&quot;) // [&quot;�&quot;, &quot;�&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]</code></pre>
-        <p>代わりに、 Unicode フラグを使った正規表現を使うと、正しく文字の配列に分解できる。
+        <p>代わりに、Unicode フラグを使った正規表現を使うと、正しく文字の配列に分解できる。
         <pre class=js data-code=js><code translate=no class=language-js>&quot;叱られる&quot;.match(/./ug) // [&quot;叱&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]
 &quot;𠮟られる&quot;.match(/./ug) // [&quot;𠮟&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]</code></pre>
       </section>
       <section>
         <h2 id="string-iterator"><a href="#string-iterator">String Iterator</a></h2>
-        <p>繰り返し処理も注意が必要だ。特に文字列に対する添え字アクセスは、 UTF-16 配列に対するアクセスだとイメージするとわかりやすい。(ちなみに <code translate=no>charAt()</code> も同じだ)
+        <p>繰り返し処理も注意が必要だ。特に文字列に対する添え字アクセスは、UTF-16 配列に対するアクセスだとイメージするとわかりやすい。(ちなみに <code translate=no>charAt()</code> も同じだ)
         <pre class=js data-code=js><code translate=no class=language-js>&quot;鯖定食&quot;[0] === &quot;鯖&quot;
 &quot;鯖定食&quot;.charAt(0) === &quot;鯖&quot;
 
@@ -385,11 +385,11 @@ for (const i in str) console.log(str[i])
 // 食</code></pre>
         <p><code translate=no>for (i = 0; i &lt; str.length; i ++)</code> と書いても同じだ。
         <p>しかし String は <em>Iterator</em> に対応した Iterable Object であり、その処理は Code Point をベースとしている。
-        <p>(正確に言うと、 String はネイティブに実装している Symbol.Iterator の処理が Code Point ベースで反復処理するようになっている)
+        <p>(正確に言うと、String はネイティブに実装している Symbol.Iterator の処理が Code Point ベースで反復処理するようになっている)
         <p>つまり Iterator を扱う API を用いれば、自然と Code Point を意識した処理が可能だ。
         <section>
           <h3 id="for-of"><a href="#for-of">for of</a></h3>
-          <p>例えば ES2015 で追加された <code translate=no>for of</code> は Iterator に対応しているため、 Code Point 単位の繰り返し処理が可能だ。
+          <p>例えば ES2015 で追加された <code translate=no>for of</code> は Iterator に対応しているため、Code Point 単位の繰り返し処理が可能だ。
           <pre class=js data-code=js><code translate=no class=language-js>for (let c of &quot;𩸽定食&quot;) console.log(c)
 // 𩸽
 // 定
@@ -419,7 +419,7 @@ c // &quot;食&quot;</code></pre>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>文字には Code Point が割り当てられており、「<em>文字数を数える</em>」を「<em>Code Point を数える</em>」とするならば、単に文字列の length や添え字での処理では正確な値が出ない場合がある。
-        <p>これは、 JavaScript は文字列データを Code Point の配列ではなく UTF-16 の配列として持っているからだ。
+        <p>これは、JavaScript は文字列データを Code Point の配列ではなく UTF-16 の配列として持っているからだ。
         <p>JavaScript で Code Point を意識した処理をしたい場合は、以下が使えるだろう。
         <ul>
           <li><code translate=no>codePointAt()</code> や <code translate=no>fromCodePoint()</code>
@@ -456,7 +456,7 @@ str = &quot;葛󠄀城市&quot;
           <p>これは、もし異体字セレクタで選択したフォントが入ってなかった場合、セレクタ抜きのフォントを選ぶというフォールバックが可能となる。
           <p>この異体字セレクタは、絵文字でも利用される。
           <p>例えば <code translate=no>👍</code> という絵文字は <code translate=no>👍🏻 👍🏼 👍🏽 👍🏾 👍🏿</code> のように肌の色を変えることができる。
-          <p>これは、元となる絵文字に対して、 Emoji Modifier Sequence という変更を加えるための異体字セレクタを組みわせている。
+          <p>これは、元となる絵文字に対して、Emoji Modifier Sequence という変更を加えるための異体字セレクタを組みわせている。
           <p>肌の色を変える skin tone は 5 種類定義されており、これを直後に置くことで表示上肌の色を変えられるのである。
           <pre class=js data-code=js><code translate=no class=language-js>Array.from(&quot;👍🏻👍🏼👍🏽👍🏾👍🏿&quot;)
 [
@@ -477,7 +477,7 @@ str = &quot;葛󠄀城市&quot;
 [&quot;パ&quot;]
 Array.from(&quot;パ&quot;) // 0x30cf, 0x309a
 [&quot;ハ&quot;, &quot;゚&quot;]</code></pre>
-          <p>このように、見た目上どちらも 1 文字だが、前者は 1 つの CodePoint 、後者は 「ハ」と「半濁点」の 2 つの CodePoint から成り立っている。
+          <p>このように、見た目上どちらも 1 文字だが、前者は 1 つの CodePoint 、後者は「ハ」と「半濁点」の 2 つの CodePoint から成り立っている。
           <p>ウムラウトやマクロンのような記号でも同じことがおこる。以下の文字は 3 つの方法で表すことができる。
           <pre class=js data-code=js><code translate=no class=language-js>Array.from(&quot;ǖ&quot;) // 0x1d6
 [&quot;ǖ&quot;]
@@ -488,7 +488,7 @@ Array.from(&quot;ǖ&quot;) // 0x75, 0x308, 0x304
           <p>濁点やウムラウトのような、前にある文字(基底文字)に結合される図形文字を結合文字という。
           <p>結合して表せる文字そのものに CodePoint が割り当てられているために、複数の表現方法が可能になる。
           <p>CodePoint の数が変わるため、文字数も表現方法によって結果がブレてしまう。
-          <p>そこで、 Unicode ではこれらを「なるべく単一の CodePoint で表す」か「なるべく結合で表す」のどちらかに変換する方法が知られている。
+          <p>そこで、Unicode ではこれらを「なるべく単一の CodePoint で表す」か「なるべく結合で表す」のどちらかに変換する方法が知られている。
           <p>これが <em>正規化</em> と呼ばれるものであり、前者を <em>NFC</em> 後者を <em>NFD</em> という。
           <dl>
             <div>
@@ -500,13 +500,13 @@ Array.from(&quot;ǖ&quot;) // 0x75, 0x308, 0x304
               <dd>なるべく結合で表す
             </div>
           </dl>
-          <p>JavaScript では、 <code translate=no>String.prototype.normalize()</code> を用いるとこれを変換することが可能だ。
+          <p>JavaScript では、<code translate=no>String.prototype.normalize()</code> を用いるとこれを変換することが可能だ。
           <pre class=js data-code=js><code translate=no class=language-js>Array.from(&quot;パ&quot;.normalize(&quot;NFC&quot;))
 [&quot;パ&quot;]
 Array.from(&quot;パ&quot;.normalize(&quot;NFD&quot;))
 [&quot;ハ&quot;, &quot;゚&quot; ]</code></pre>
           <p>NFC, NFD は単純に結合かどうかを変更するが、この派生として NFKC, NFKD もある。
-          <p>K は Compatibility のことであり、 C だと Composition と被るのであえて K で表している。これは「互換等価」であるものへの変換も同時に行うオプションだ。
+          <p>K は Compatibility のことであり、C だと Composition と被るのであえて K で表している。これは「互換等価」であるものへの変換も同時に行うオプションだ。
           <p>「互換等価」とは、要するに「意味的に同じ」ということであり、例を見るとわかりやすいだろう。
           <pre class=js data-code=js><code translate=no class=language-js>&quot;Ａ１&quot;.normalize(&quot;NFKC&quot;)
 // &quot;A1&quot; (全角英数を半角に)
@@ -517,7 +517,7 @@ Array.from(&quot;パ&quot;.normalize(&quot;NFD&quot;))
 &quot;㌶&quot;.normalize(&quot;NFKC&quot;)
 // &quot;ヘクタール&quot; (互換用文字をカタカナに)</code></pre>
           <p>特に全角半角文字の正規化は、入力文字列のクレンジングなどにも使うことができる。
-          <p>CodePoint によって文字数を数える観点からは、 NFC または文脈によっては NFKC によって最小の CodePoint を数える方が一般的だろう。
+          <p>CodePoint によって文字数を数える観点からは、NFC または文脈によっては NFKC によって最小の CodePoint を数える方が一般的だろう。
           <p>しかし、注意点もあり、例えば <code translate=no>Ⅲ</code> (ローマ数字 3)は <code translate=no>III</code> (I が三つ)になったりなどが、入力者によって意図しない変換である場合もあるため、安易な変換には注意が必要だ。
         </section>
         <section>
@@ -539,17 +539,17 @@ Array.from(&quot;パ&quot;.normalize(&quot;NFD&quot;))
           <p>他にも <code translate=no>👨‍👩‍👧‍👦</code> も合字を利用している。
           <pre class=js data-code=js><code translate=no class=language-js>Array.from(&quot;👨‍👩‍👧‍👦&quot;)
 [&quot;👨&quot;, &quot;‍&quot;, &quot;👩&quot;, &quot;‍&quot;, &quot;👧&quot;, &quot;‍&quot;, &quot;👦&quot;]</code></pre>
-          <p>この絵文字は &quot;family with mother father son daughter&quot; という名前の文字で、 4 つの絵文字が合成されてできている。
+          <p>この絵文字は &quot;family with mother father son daughter&quot; という名前の文字で、4 つの絵文字が合成されてできている。
           <p>家族は多様なので別の組み合わせもある。
           <p>いずれにせよ、先ほどの方法で分解すると、個々の顔の間に空の文字が見える。
-          <p>これは、 <code translate=no>👨‍👩‍👧‍👦</code> という絵文字自体が、<code translate=no>👨</code>, <code translate=no>👩</code>, <code translate=no>👧</code>, <code translate=no>👦</code> という 4 つの絵文字とそれを結合する制御文字でできているからである。
-          <p>この制御文字を <em>ZWJ</em>(ZERO WIDTH JOINER) といい、 ZWJ の Code Point は <code translate=no>0x200D</code> だ。
-          <p>先ほどのように「<em>文字の数を数える == Code Point の数を数える</em>」としてしまえば、 <code translate=no>👍🏻</code> は 2 文字で <code translate=no>👨‍👩‍👧‍👦</code> は 7 文字ということになる。しかし、おそらく多くの人がこれらを 1 文字と捉えるだろう。
+          <p>これは、<code translate=no>👨‍👩‍👧‍👦</code> という絵文字自体が、<code translate=no>👨</code>, <code translate=no>👩</code>, <code translate=no>👧</code>, <code translate=no>👦</code> という 4 つの絵文字とそれを結合する制御文字でできているからである。
+          <p>この制御文字を <em>ZWJ</em>(ZERO WIDTH JOINER) といい、ZWJ の Code Point は <code translate=no>0x200D</code> だ。
+          <p>先ほどのように「<em>文字の数を数える == Code Point の数を数える</em>」としてしまえば、<code translate=no>👍🏻</code> は 2 文字で <code translate=no>👨‍👩‍👧‍👦</code> は 7 文字ということになる。しかし、おそらく多くの人がこれらを 1 文字と捉えるだろう。
         </section>
         <section>
           <h3 id="unicode-text-segmentation"><a href="#unicode-text-segmentation">Unicode Text Segmentation</a></h3>
-          <p>1 文字を <em>カーソルが 1 つ移動する分</em> と捉えているとなると、 Code Point の数を数えるだけではなく、合字も 1 文字と捉える必要が出てくる。
-          <p>この <em>カーソルが 1 つ移動する分</em> を Grapheme と言い、 Code Point の列の中から、書記素クラスタの区切りを判別する方法は Unicode の中に定義されている。
+          <p>1 文字を <em>カーソルが 1 つ移動する分</em> と捉えているとなると、Code Point の数を数えるだけではなく、合字も 1 文字と捉える必要が出てくる。
+          <p>この <em>カーソルが 1 つ移動する分</em> を Grapheme と言い、Code Point の列の中から、書記素クラスタの区切りを判別する方法は Unicode の中に定義されている。
           <ul>
             <li>
               UAX #29: Unicode Text Segmentation
@@ -560,7 +560,7 @@ Array.from(&quot;パ&quot;.normalize(&quot;NFD&quot;))
           </ul>
           <p>この処理はそれなりに難しいものであるため、取り入れる際はライブラリを利用する方が良いだろう。
           <p>(どのライブラリが枯れているかは知らないため、ここでは紹介しないが、実装自体は探せばいくつかある。)
-          <p>なお、 JavaScript に関しては、 TC39 にこれを標準で入れるというプロポーサルが上がっており、執筆時は Stage 3 である。
+          <p>なお、JavaScript に関しては、TC39 にこれを標準で入れるというプロポーサルが上がっており、執筆時は Stage 3 である。
           <ul>
             <li>
               tc39/proposal-intl-segmenter: Unicode text segmentation for ECMAScript

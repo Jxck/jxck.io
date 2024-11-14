@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分...">
+  <meta name=description         content="Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分か...">
   <meta name=keywords            content="service worker,tutorial">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html>
   <meta property=og:title        content="中級者向け Service Worker Tutorial | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分...">
+  <meta property=og:description  content="Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分か...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-04-24T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分..."
+    "description": "Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分か..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-04-24>2016-04-24</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -161,9 +161,9 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
-        <p>しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
+        <p>しかし、Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
         <p>そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。
-        <p>なお、 Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。
+        <p>なお、Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。
         <p>思いつきで撮ったので色々ミスも有ります、また Chrome Dev Tools の UI はどうせ変わるのでそのつもりで見てください。
         <p>TODO になっている動画は、そのうち撮って追加します。
       </section>
@@ -188,7 +188,7 @@
       </section>
       <section>
         <h2 id="claim"><a href="#claim">claim</a></h2>
-        <p>controller とは何か、いつ controller になるか、 <code translate=no>claim()</code> で何が起こるのかなどについて。
+        <p>controller とは何か、いつ controller になるか、<code translate=no>claim()</code> で何が起こるのかなどについて。
         <iframe src="https://www.youtube.com/embed/m6qBg4M3RTA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=html data-code=html data-path=claim.html><code translate=no class=language-html>&lt;!DOCTYPE html&gt;
@@ -274,7 +274,7 @@ self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
       </section>
       <section>
         <h2 id="updatefound"><a href="#updatefound">updatefound</a></h2>
-        <p>Service Worker が更新される際の動きと、 <code translate=no>skipWaiting()</code> が何をスキップするのか?
+        <p>Service Worker が更新される際の動きと、<code translate=no>skipWaiting()</code> が何をスキップするのか?
         <p><code translate=no>install</code>, <code translate=no>activate</code> イベントの用途。
         <iframe src="https://www.youtube.com/embed/AMbQ7d9rjao" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
         <pre class=js data-code=js data-path=updatefound-master.js><code translate=no class=language-js>console.log(&apos;master&apos;);

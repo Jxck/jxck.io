@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 24 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 24 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-26/retargeting.html>
   <meta property=og:title        content="3PCA 24 日目: Retargeting | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 24 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 24 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-26T08:00:00+08:00",
-    "dateModified": "2024-05-14T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 24 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 24 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-26>2023-12-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -155,7 +155,7 @@
       <h1><a href="">3PCA 24 日目: Retargeting</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 24 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 24 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -188,7 +188,7 @@
         <section>
           <h3 id="protected-audience-api"><a href="#protected-audience-api">Protected Audience API</a></h3>
           <p>まず、ユーザが商品を見ると、その商品を見たという情報を保存する必要がある。
-          <p>これを &quot;Interest Group&quot; といい、 JS に後に必要になる広告クリエイティブなどの情報を渡して、ブラウザに保存する形で行われる。
+          <p>これを &quot;Interest Group&quot; といい、JS に後に必要になる広告クリエイティブなどの情報を渡して、ブラウザに保存する形で行われる。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=js data-code=js><code translate=no class=language-js>await navigator.joinAdInterestGroup(interestGroup)</code></pre>
           <p>ユーザが商品を探している間に、この Interest Group が登録されていくわけだ。
@@ -207,7 +207,7 @@
         <section>
           <h3 id="fenced-frame"><a href="#fenced-frame">Fenced Frame</a></h3>
           <p>入札の結果、表示すべきクリエイティブが決まり、それを <code translate=no>&lt;iframe&gt;</code> に表示するのが通常の広告だ。
-          <p>しかし、 <code translate=no>&lt;iframe&gt;</code> に表示すると、 Top Level Window (つまり媒体主) は <code translate=no>&lt;iframe&gt;</code> とやりとりすることで、「どんな広告が表示されたか」などの情報を知ることができてしまう。
+          <p>しかし、<code translate=no>&lt;iframe&gt;</code> に表示すると、Top Level Window (つまり媒体主) は <code translate=no>&lt;iframe&gt;</code> とやりとりすることで、「どんな広告が表示されたか」などの情報を知ることができてしまう。
           <p>そこで、広告は <code translate=no>&lt;iframe&gt;</code> ではなく <code translate=no>&lt;fencedframe&gt;</code> と呼ばれる、特殊なフレームに表示する。
           <p><code translate=no>&lt;fencedframe&gt;</code> は <code translate=no>&lt;iframe&gt;</code> でできるあらゆることが禁止された特殊な HTML だ。
           <ul>
@@ -218,14 +218,14 @@
             <li>lifecycle events
             <li>etc, etc
           </ul>
-          <p>通常使える JS API が使えないどころか、 Window 側が共通してアクセスできるサイズまで制限されているのは、全てそこを使って境界を跨いだ情報共有ができないようにするためだ。
-          <p>そして、 <code translate=no>&lt;iframe&gt;</code> ではなく <code translate=no>&lt;fencedframe&gt;</code> の利用を強制するために、 <code translate=no>runAdAuction</code> の結果は URL ではなく URN を返す。これで <code translate=no>&lt;fencedframe&gt;</code> を使わなければ表示ができなくしているのだ。
+          <p>通常使える JS API が使えないどころか、Window 側が共通してアクセスできるサイズまで制限されているのは、全てそこを使って境界を跨いだ情報共有ができないようにするためだ。
+          <p>そして、<code translate=no>&lt;iframe&gt;</code> ではなく <code translate=no>&lt;fencedframe&gt;</code> の利用を強制するために、<code translate=no>runAdAuction</code> の結果は URL ではなく URN を返す。これで <code translate=no>&lt;fencedframe&gt;</code> を使わなければ表示ができなくしているのだ。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;fencedframe src=&quot;urn:uuid:c36973b5-e5d9-de59-e4c4-364f137b3c7a&quot; mode=&quot;opaque-ads&quot;&gt;&lt;/fencedframe&gt;</code></pre>
-          <p><code translate=no>&lt;fencedframe&gt;</code> は、 <code translate=no>&lt;iframe&gt;</code> の Sandboxed などと異なり、新しい HTML として定義されているのは、もはや目的が <code translate=no>&lt;iframe&gt;</code> のような汎用埋め込みとは異なるからだ。
+          <p><code translate=no>&lt;fencedframe&gt;</code> は、<code translate=no>&lt;iframe&gt;</code> の Sandboxed などと異なり、新しい HTML として定義されているのは、もはや目的が <code translate=no>&lt;iframe&gt;</code> のような汎用埋め込みとは異なるからだ。
         </section>
         <section>
           <h3 id="trusted-execution-environment-tee"><a href="#trusted-execution-environment-tee">Trusted Execution Environment (TEE)</a></h3>
-          <p>デバイス上でオークションを走らせるのはいいとしても、そこで提供できる入札に必要な情報が、 <code translate=no>joinAdInterestGroup()</code> でしか渡せないと、入札はかなり難しくなる。
+          <p>デバイス上でオークションを走らせるのはいいとしても、そこで提供できる入札に必要な情報が、<code translate=no>joinAdInterestGroup()</code> でしか渡せないと、入札はかなり難しくなる。
           <p>例えば、広告主が予算を在庫として設定し、それが尽きるまでは表示したいといった、リアルタイムな情報が提供できなくなるのだ。
           <p>そこで、サーバ側でリアルタイムにその情報を提供できるようにするのだが、ここで使われるのが TEE だ。
           <p>TEE はざっくり言うと、事前に定義した処理が、確実に動いており、誰もそれを誤魔化したり、情報を抜いたりできない環境だ。
@@ -235,16 +235,16 @@
       </section>
       <section>
         <h2 id="なぜリタゲの-api-があるのか"><a href="#なぜリタゲの-api-があるのか">なぜリタゲの API があるのか</a></h2>
-        <p>そもそも「トラッキング」が問題で 3rd Party Cookie をなくすのに、その代表格だったリタゲのための API がなぜあるのかは、 Privacy Sandbox ができた背景のところで説明した通りだ。
-        <p>無くなるユースケースはとりあえずカバーしないと、 Chrome は 3rd Party Cookie を Deprecate できない。
+        <p>そもそも「トラッキング」が問題で 3rd Party Cookie をなくすのに、その代表格だったリタゲのための API がなぜあるのかは、Privacy Sandbox ができた背景のところで説明した通りだ。
+        <p>無くなるユースケースはとりあえずカバーしないと、Chrome は 3rd Party Cookie を Deprecate できない。
         <p>そこで、リタゲをプライバシーに配慮して行うという、無理難題を形にしたのがこの API だ。非常に複雑かつ、新たな仕組みが色々と入ってるのもそのためだ。
         <p>正直複雑すぎて、どのくらいこの API が普及するのか、どの程度使いこなせるのかはよくわからない。
-        <p>また、普及してブラウザ上のオークションが頻繁に走るようになった時に、 UX 的にどうなるのかなども現時点ではよくわからない。
+        <p>また、普及してブラウザ上のオークションが頻繁に走るようになった時に、UX 的にどうなるのかなども現時点ではよくわからない。
         <p>そして、この API もまだ決まってない部分がいくつかあり、今後どうなっていくのかも、わからない部分が多い。
       </section>
       <section>
         <h2 id="standard-position"><a href="#standard-position">Standard Position</a></h2>
-        <p>Mozilla も Safari も、 Position は出していないようだ。
+        <p>Mozilla も Safari も、Position は出していないようだ。
         <p>が、目的がリターゲティングである以上、問い合わせるまでもないだろうとは思う。
       </section>
     </article>

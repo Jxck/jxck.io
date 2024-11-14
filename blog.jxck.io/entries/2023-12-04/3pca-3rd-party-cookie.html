@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 4 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 4 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calenda...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-04/3pca-3rd-party-cookie.html>
   <meta property=og:title        content="3PCA 4 日目: 3rd Party Cookie の正体 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 4 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 4 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calenda...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-04T08:00:00+08:00",
-    "dateModified": "2023-12-11T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 4 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 4 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calenda..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-04>2023-12-04</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-11>2023-12-11</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -149,7 +149,7 @@
       <h1><a href="">3PCA 4 日目: 3rd Party Cookie の正体</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 4 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 4 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -163,7 +163,7 @@
       </section>
       <section>
         <h2 id="さっき見てた商品が出るのからくり"><a href="#さっき見てた商品が出るのからくり">「さっき見てた商品が出る」のからくり</a></h2>
-        <p>例えば、 EC サイトで色々な商品を探した後に、全然関係のないサイトで、なぜかさっきまで見ていた商品がそのサイト内でおすすめされている、という経験があるだろう。
+        <p>例えば、EC サイトで色々な商品を探した後に、全然関係のないサイトで、なぜかさっきまで見ていた商品がそのサイト内でおすすめされている、という経験があるだろう。
         <p>今回はリアルワールドの例として、楽天の実装を引用する。
         <p>まず、楽天市場のサイトでミネラルウォーターを物色する。
         <p>
@@ -173,7 +173,7 @@
             <img loading=lazy decoding=async src=rakuten.jpeg?240313_215035 alt="楽天市場のサイトでミネラルウォーターを物色している様子" width=5120 height=2880>
           </picture>
         </p>
-        <p>その後、 Yahoo! Japan のトップページにアクセスすると、楽天からミネラルウォーターの広告が表示される。
+        <p>その後、Yahoo! Japan のトップページにアクセスすると、楽天からミネラルウォーターの広告が表示される。
         <p>
           <picture>
             <source type=image/avif srcset=yahoo.avif?240313_215035>
@@ -186,7 +186,7 @@
       <section>
         <h2 id="広告での-cookie"><a href="#広告での-cookie">広告での Cookie</a></h2>
         <p>実際の広告配信の構造は非常に複雑なので、ここからは実際とは異なる簡素化した仮想的な実装例で考えていく。
-        <p>通常、 Web における広告は以下の 3 つのロールがある。
+        <p>通常、Web における広告は以下の 3 つのロールがある。
         <ul>
           <li>媒体主(publisher.example): サイト内の広告枠を売りたい(上の例では Yahoo)
           <li>広告主(advertiser.example): 広告枠を買い、広告を表示したい(上の例では楽天)
@@ -223,7 +223,7 @@ Cookie: id=31d4d96e407aad42
         <p>このとき、ユーザ自身は広告主(ex. 楽天)や媒体主(ex. Yahoo)にアクセスしているため、広告主や媒体主の Cookie を付与されても特に不思議なことではない。しかし裏では「直接アクセスしていない広告ネットワークにも Cookie が送られている」ことになり、こちらはユーザが意図したものとは言えないだろう。
         <p>ここで「広告主」と「媒体主」が 1st Party で、第三者である「広告ネットワーク」が 3rd Party となり、付与される Cookie がそれぞれ 1st Party Cookie と 3rd Party Cookie になるのだ。こう考えれば「2nd Party Cookie」と呼ばれるものは存在しないことがわかるだろう。
         <p>また、「先ほど興味がありそうだったけど購買に繋がらなかった広告を、別のサイトでもリコメンドする」というこの方式を、「リターゲティング」などと呼ぶ。リターゲティングは、広告における 3rd Party Cookie の代表的なユースケースの 1 つだ。
-        <p>そして、もちろんこのような仕組みになっていることを知らない一般ユーザの中には、「他のサイトで水を見ていたら、別のサイトでも水の広告が出た」という事実を、単純に「気持ち悪い」と感じるユーザもいる。これが、 3rd Party Cookie が問題視される原因の一つでもあるのだが、それについては追って解説する。
+        <p>そして、もちろんこのような仕組みになっていることを知らない一般ユーザの中には、「他のサイトで水を見ていたら、別のサイトでも水の広告が出た」という事実を、単純に「気持ち悪い」と感じるユーザもいる。これが、3rd Party Cookie が問題視される原因の一つでもあるのだが、それについては追って解説する。
       </section>
     </article>
   </main>

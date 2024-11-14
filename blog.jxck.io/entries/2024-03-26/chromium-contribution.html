@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-26T08:00:00+08:00",
-    "dateModified": "2024-04-30T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-04-30>2024-04-30</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -293,8 +293,8 @@
             </li>
           </ul>
           <p>基本的に Chromium はマルチプロセスになっている。
-          <p>親プロセスとして browser process があり、各タブを開くごとに独立した rendering process が開かれる。 rendering process と browser process は IPC しかできない。
-          <p>これによって rendering process がサンドボックス化されている。つまり、インターネットの有象無象なコードを落として実行し、仮に rendering process が攻撃されても、そこから browser process は守られているため、 OS から情報を抜いたりはできない。
+          <p>親プロセスとして browser process があり、各タブを開くごとに独立した rendering process が開かれる。rendering process と browser process は IPC しかできない。
+          <p>これによって rendering process がサンドボックス化されている。つまり、インターネットの有象無象なコードを落として実行し、仮に rendering process が攻撃されても、そこから browser process は守られているため、OS から情報を抜いたりはできない。
           <p>
             <picture>
               <source type=image/avif srcset=chrome-process-architecture.avif?240326_010150>
@@ -331,7 +331,7 @@
 Blink&gt;PerformanceAPIs&gt;ResourceTiming
 ...</code></pre>
           <p>また、関連する複数のバグは Hotlist というものでまとめられる。
-          <p>例えば、 Hotlist-GoodFirstBug とか。
+          <p>例えば、Hotlist-GoodFirstBug とか。
           <ul>
             <li>
               Hotlist-GoodFirstBug
@@ -424,7 +424,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             </picture>
           </p>
           <p>Rebase は UI 上からできるが、全部のコメントを一旦終えてから Rebase するのがマナーらしい。
-          <p>Rebase が終わったら、 &quot;CQ DRY RUN&quot; する。これが CI でビルドと全テストを流すボタン。ただし、権限のある人にしかできないので、 Reviewer にやってもらうことになる。
+          <p>Rebase が終わったら、&quot;CQ DRY RUN&quot; する。これが CI でビルドと全テストを流すボタン。ただし、権限のある人にしかできないので、Reviewer にやってもらうことになる。
           <p>
             <picture>
               <source type=image/avif srcset=rebase-dry-run.avif?240326_010227>
@@ -432,7 +432,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
               <img loading=lazy decoding=async src=rebase-dry-run.png?240326_005751 alt="rebase-dry-run" width=688 height=80>
             </picture>
           </p>
-          <p>全部終わると、 Code-Review +1 がもらえる。これがないとマージされない。
+          <p>全部終わると、Code-Review +1 がもらえる。これがないとマージされない。
           <p>
             <picture>
               <source type=image/avif srcset=lgtm.avif?240326_010226>
@@ -440,7 +440,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
               <img loading=lazy decoding=async src=lgtm.png?240326_005751 alt="lgtm" width=1204 height=360>
             </picture>
           </p>
-          <p>テストが通り Code-Review +2 がもらえると、ついに Ready to submit になり、 &quot;SUBMIT TO CQ&quot; ボタンが出る。
+          <p>テストが通り Code-Review +2 がもらえると、ついに Ready to submit になり、&quot;SUBMIT TO CQ&quot; ボタンが出る。
           <p>
             <picture>
               <source type=image/avif srcset=ready-to-submit.avif?240426_182718>
@@ -536,7 +536,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             </li>
           </ul>
           <p>基本は書かれている通りやるだけ。
-          <p>ビルドは、基本的に Linux が一番早い(ファイルシステムやプロセス生成の影響がでかい)らしいので、 OS 依存でない限りは Mac より Linux を用意する方が良さそう。
+          <p>ビルドは、基本的に Linux が一番早い(ファイルシステムやプロセス生成の影響がでかい)らしいので、OS 依存でない限りは Mac より Linux を用意する方が良さそう。
           <p>ちなみに Mac(2020 Core i7/32GB) だと。
           <ul>
             <li>ネットワークによるが最初の sync だけで 4,5 時間
@@ -666,7 +666,7 @@ $ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker
               </ul>
             </li>
           </ul>
-          <p>よく見るのは、 renderer/platform のもの。
+          <p>よく見るのは、renderer/platform のもの。
           <ul>
             <li>
               runtime_enabled_features.json5 - Chromium Code Search
@@ -724,9 +724,9 @@ interface URL {
   origin_trial_allows_third_party: true,
   public: true,
 },</code></pre>
-          <p>このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく場合がある。これを Finch という。
+          <p>このフラグが外れる前は、A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく場合がある。これを Finch という。
           <p>runtime_enabled_features.json5 に登録した名前がそのまま Finch の名前になり、その名前がコントロールする範囲に対して Kill Switch がある状態だ。
-          <p>もし、ロールアウトして問題があったりした場合に、 Chrome のリリースを伴わずに機能をリモートから無効にすることができる。
+          <p>もし、ロールアウトして問題があったりした場合に、Chrome のリリースを伴わずに機能をリモートから無効にすることができる。
           <p>別で Finch のコントロールを定義する場合は <code translate=no>base::Feature</code> のインスタンスを作る必要があるが、その辺は Finch のシステムにアクセスできない外部コントリビューターがやることはあまりないだろう。
           <p>Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
           <pre><code translate=no>chrome://version/?show-variations-cmd</code></pre>
@@ -808,7 +808,7 @@ $ git cl upload</code></pre>
               <img loading=lazy decoding=async src=clangd-error.png?240403_162721 alt="clangd-error" width=1386 height=1140>
             </picture>
           </p>
-          <p>これは、 clangd 用のデータベースがなく、自動では作られないかららしい。
+          <p>これは、clangd 用のデータベースがなく、自動では作られないかららしい。
           <ul>
             <li>
               Chromium Docs - Clangd
@@ -817,7 +817,7 @@ $ git cl upload</code></pre>
               </ul>
             </li>
           </ul>
-          <p>これを作るコマンドがあるので、 <code translate=no>src/compile_commands.json</code> を作ってから、起動しなおしたりすると治る。
+          <p>これを作るコマンドがあるので、<code translate=no>src/compile_commands.json</code> を作ってから、起動しなおしたりすると治る。
           <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ tools/clang/scripts/generate_compdb.py -p out/Default &gt; compile_commands.json</code></pre>
         </section>
       </section>
@@ -876,8 +876,8 @@ sqlite&gt; select * from table</code></pre>
       <section>
         <h2 id="wpt"><a href="#wpt">WPT</a></h2>
         <p>Web Platform Tests は、各ブラウザが共通して実行する Web の単体テスト群のようなもの。
-        <p>最近でいうと、 Interop は WPT の達成度合いを上げていこうという取り組みだったりする。
-        <p>Chromium は WPT をリポジトリの中に入れており、 Web 標準の機能を実装する際はそのテストを直接 WPT にも追加してレビューに投げる。マージされたらそのテストは WPT 本体にもアップロードされるようになっている。
+        <p>最近でいうと、Interop は WPT の達成度合いを上げていこうという取り組みだったりする。
+        <p>Chromium は WPT をリポジトリの中に入れており、Web 標準の機能を実装する際はそのテストを直接 WPT にも追加してレビューに投げる。マージされたらそのテストは WPT 本体にもアップロードされるようになっている。
         <p>WPT の実行の仕方とテストの書き方も慣れが必要。
         <section>
           <h3 id="実行_1"><a href="#実行_1">実行</a></h3>
@@ -910,7 +910,7 @@ Server running on wss://localhost:9444
 WebTransportH3 server running on https://localhost:11000</code></pre>
           <p>とりあえず 8001 ポートにアクセスすれば試せる。
           <p>テスト用のドメインとしては <code translate=no>web-platform.test</code> などのドメインが使われる。
-          <p>これを解決できないと実行できないテストがある場合は、 <code translate=no>/etc/hosts</code> に追加する必要があるが、その自動構成スクリプトは以下にある。
+          <p>これを解決できないと実行できないテストがある場合は、<code translate=no>/etc/hosts</code> に追加する必要があるが、その自動構成スクリプトは以下にある。
           <ul>
             <li>
               Command-Line Arguments - web-platform-tests documentation
@@ -922,8 +922,8 @@ WebTransportH3 server running on https://localhost:11000</code></pre>
         </section>
         <section>
           <h3 id="expected--actual-file"><a href="#expected--actual-file">expected / actual file</a></h3>
-          <p>WPT は網羅的にテストがあるが、 Chromium は全部を通せるわけじゃない。(それを通るようにするのが Interop の目的)
-          <p>これは、 WPT のテストケースに対して、通らないものは「落ちる結果」を expected ファイルに書いて、実行結果が生成する actual ファイルと一致するかどうかを見るような仕組みになっている。
+          <p>WPT は網羅的にテストがあるが、Chromium は全部を通せるわけじゃない。(それを通るようにするのが Interop の目的)
+          <p>これは、WPT のテストケースに対して、通らないものは「落ちる結果」を expected ファイルに書いて、実行結果が生成する actual ファイルと一致するかどうかを見るような仕組みになっている。
           <p>つまり、「意図した通りに落ちるか」をテストしているような感じだ。
           <ul>
             <li>
@@ -954,7 +954,7 @@ content_shell took too long to startup.
         </section>
         <section>
           <h3 id="テストサーバ"><a href="#テストサーバ">テストサーバ</a></h3>
-          <p>fetch などでサーバを叩いたりするテストのために、 mock server を書く方法がいくつかある。
+          <p>fetch などでサーバを叩いたりするテストのために、mock server を書く方法がいくつかある。
           <ul>
             <li>
               Server Features - web-platform-tests documentation
@@ -964,7 +964,7 @@ content_shell took too long to startup.
             </li>
           </ul>
           <p>まず、普通にファイル (<code translate=no>/example/text.html</code>) を置けば、それは静的ファイルとしてアクセスできる。
-          <p>これにヘッダをつけたい場合は、 .headers ファイルを作る(<code translate=no>/example/test.html.headers</code>)
+          <p>これにヘッダをつけたい場合は、.headers ファイルを作る(<code translate=no>/example/test.html.headers</code>)
           <pre class=http data-code=http><code translate=no class=language-http>Access-Control-Allow-Origin: *</code></pre>
           <p>.asis ファイルを作ると、その中に書いたレスポンスがまるっとそのまま返る。(Apache As-Is という仕様らしい)
           <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
@@ -981,14 +981,14 @@ hello</code></pre>
         </section>
         <section>
           <h3 id="https"><a href="#https">HTTPS</a></h3>
-          <p>注意点として、もしそのファイルに HTTPS でアクセスしたい場合は、 <code translate=no>${name}.https.${ext}</code> のように、ファイル名に https を入れる必要があります。
-          <p>特に、 HTTPS でしか動かない機能のテストはこれを忘れると落ちるので注意。
+          <p>注意点として、もしそのファイルに HTTPS でアクセスしたい場合は、<code translate=no>${name}.https.${ext}</code> のように、ファイル名に https を入れる必要があります。
+          <p>特に、HTTPS でしか動かない機能のテストはこれを忘れると落ちるので注意。
           <p>その上で HTTP/2 が必要なら <code translate=no>${name}.h2.${ext}</code> とするなど、他のフラグもある。
         </section>
       </section>
       <section>
         <h2 id="launch-process"><a href="#launch-process">Launch Process</a></h2>
-        <p>新機能の追加など Web Facing な変更については、 Launch Process というプロセスを踏んで進める必要がある。
+        <p>新機能の追加など Web Facing な変更については、Launch Process というプロセスを踏んで進める必要がある。
         <ul>
           <li>
             Launching Features
@@ -1022,7 +1022,7 @@ hello</code></pre>
             <img loading=lazy decoding=async src=development-stages.jpeg?240410_172256 alt="Development Stages" width=894 height=308>
           </picture>
         </p>
-        <p>以下のボタンから各種レビュー(Privacy, Security, Enterprise, Debuggability, Testing) をリクエストできる。 Intent to Ship の前にこのレビューが終わらせる必要があるが、レビューには割と時間がかるっぽい。
+        <p>以下のボタンから各種レビュー(Privacy, Security, Enterprise, Debuggability, Testing) をリクエストできる。Intent to Ship の前にこのレビューが終わらせる必要があるが、レビューには割と時間がかるっぽい。
         <p>
           <picture>
             <source type=image/avif srcset=review-request.avif?240423_144012>

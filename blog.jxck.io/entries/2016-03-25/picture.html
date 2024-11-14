@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 &lt;picture&gt; 要素を適用した。画像最適化シリーズ第 2 回目のエントリである。画像最適化戦略 PNG/JPE...">
+  <meta name=description         content="本サイトで使用している PNG/JPEG 画像を、対応デバイスと、Device Pixel Ratio に対して最適なサイズで出し分けるために、&lt;picture&gt; 要素を適用した。画像最適化シリーズ第 2 回目のエントリである。画像最適化戦略 PNG/JPEG ...">
   <meta name=keywords            content="picture,image,performance">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-03-25/picture.html>
   <meta property=og:title        content="画像最適化戦略 Picture 編 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 &lt;picture&gt; 要素を適用した。画像最適化シリーズ第 2 回目のエントリである。画像最適化戦略 PNG/JPE...">
+  <meta property=og:description  content="本サイトで使用している PNG/JPEG 画像を、対応デバイスと、Device Pixel Ratio に対して最適なサイズで出し分けるために、&lt;picture&gt; 要素を適用した。画像最適化シリーズ第 2 回目のエントリである。画像最適化戦略 PNG/JPEG ...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-03-25T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 &lt;picture&gt; 要素を適用した。画像最適化シリーズ第 2 回目のエントリである。画像最適化戦略 PNG/JPE..."
+    "description": "本サイトで使用している PNG/JPEG 画像を、対応デバイスと、Device Pixel Ratio に対して最適なサイズで出し分けるために、&lt;picture&gt; 要素を適用した。画像最適化シリーズ第 2 回目のエントリである。画像最適化戦略 PNG/JPEG ..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-25>2016-03-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -161,7 +161,7 @@
       <h1><a href="">画像最適化戦略 Picture 編</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>本サイトで使用している PNG/JPEG 画像を、対応デバイスと、 Device Pixel Ratio に対して最適なサイズで出し分けるために、 <code translate=no>&lt;picture&gt;</code> 要素を適用した。
+        <p>本サイトで使用している PNG/JPEG 画像を、対応デバイスと、Device Pixel Ratio に対して最適なサイズで出し分けるために、<code translate=no>&lt;picture&gt;</code> 要素を適用した。
         <p>画像最適化シリーズ第 2 回目のエントリである。
         <ol>
           <li><a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JPEG 編</a>
@@ -174,7 +174,7 @@
       <section>
         <h2 id="画像の出し分け"><a href="#画像の出し分け">画像の出し分け</a></h2>
         <p>本サイトでは、それぞれの画像のサイズを、適切にリサイズしている。
-        <p>しかし、例えば Device Pixel Ratio が大きい Retina 対応端末などには、 大きいサイズのファイルを提供しなければ、拡大表示による画像の荒れが発生してしまう。
+        <p>しかし、例えば Device Pixel Ratio が大きい Retina 対応端末などには、大きいサイズのファイルを提供しなければ、拡大表示による画像の荒れが発生してしまう。
         <p>そこで、同一画像でいくつかのファイルサイズを用意し、ブラウザの DPR などに応じて出し分けるのが望ましい。
       </section>
       <section>
@@ -188,25 +188,25 @@
         <section>
           <h3 id="サイズ最適化"><a href="#サイズ最適化">サイズ最適化</a></h3>
           <p>PNG/JPEG などのラスタ形式画像において、サイズとは基本的に縦横に敷き詰められた正方形の数を指す。
-          <p>100x100 個の正方形でなる画像は、 100x100 で表示すれば基本的には問題ない。
-          <p>しかし、 200x200 で表示すれば、同じ正方形を縦横二つ並べて大きくしないといけないため、鮮明さが落ちる。
-          <p>ところがこれは、 CSS などで <code translate=no>width=100</code> <code translate=no>height=100</code> をきっちり指定すれば済むという問題ではない。
-          <p>これは、 <em>Device Pixel</em> と <em>CSS Pixel</em> のサイズが必ずしも同じとは限らないからである。
+          <p>100x100 個の正方形でなる画像は、100x100 で表示すれば基本的には問題ない。
+          <p>しかし、200x200 で表示すれば、同じ正方形を縦横二つ並べて大きくしないといけないため、鮮明さが落ちる。
+          <p>ところがこれは、CSS などで <code translate=no>width=100</code> <code translate=no>height=100</code> をきっちり指定すれば済むという問題ではない。
+          <p>これは、<em>Device Pixel</em> と <em>CSS Pixel</em> のサイズが必ずしも同じとは限らないからである。
         </section>
         <section>
           <h3 id="devicecss-pixel-size"><a href="#devicecss-pixel-size">Device/CSS Pixel Size</a></h3>
           <p>Retina ディスプレイは、通常のスクリーンよりも、スクリーン上に並ぶ正方形が小さいサイズになっている。
           <p>スクリーンが持つ 1x1 を描画するための四角は <em>Device Pixel</em> といい、これが小ほど <em>画面密度(Device Pixel Ratio)</em> が高いと表現する。
           <p>もし Device Pixel Size が通常の半分の Retina ディスプレイで 100x100 の画像を素直に表示すると、同じスクリーンサイズの非 Retina で表示した時の 50x50 の見た目、つまり小さくなってしまう。
-          <p>よって、 Retina 端末は、実際に自分が持っている <em>Device Pixel</em> と、 CSS で指定する <em>CSS Pixel</em> を分けることにした。
-          <p>つまり、 CSS で 100x100 (CSS Pixel)で表示するように指定された画像は、勝手に 200x200 (Device Pixel)に拡大して表示することで、製作者が想定する <em>描画サイズ(見た目の大きさ)</em> になるようにしている。
-          <p><code translate=no>x2</code> と表される解像度は、 Device Pixel Size が CSS Pixel Size の二倍であることを意味する。
+          <p>よって、Retina 端末は、実際に自分が持っている <em>Device Pixel</em> と、CSS で指定する <em>CSS Pixel</em> を分けることにした。
+          <p>つまり、CSS で 100x100 (CSS Pixel)で表示するように指定された画像は、勝手に 200x200 (Device Pixel)に拡大して表示することで、製作者が想定する <em>描画サイズ(見た目の大きさ)</em> になるようにしている。
+          <p><code translate=no>x2</code> と表される解像度は、Device Pixel Size が CSS Pixel Size の二倍であることを意味する。
           <p>ところが、見た目の大きさのために拡大しているので、画像は当然荒くなる。
-          <p>そのため、 Retina 対応するためには、あらかじめ 200x200 で作った画像も用意し、出し分ける必要がある。
-          <p>今では <code translate=no>x3</code> の端末もあるため、 300x300 の画像も必要になる。将来的にこれが増えていく可能性もゼロではないだろう。
+          <p>そのため、Retina 対応するためには、あらかじめ 200x200 で作った画像も用意し、出し分ける必要がある。
+          <p>今では <code translate=no>x3</code> の端末もあるため、300x300 の画像も必要になる。将来的にこれが増えていく可能性もゼロではないだろう。
           <p>逆に、大きいサイズの画像を小さく表示する分には、見た目上の問題は通常無い。
-          <p>したがって、 300x300 を用意しておき、相手がだれであろうとそれを送って、 200x200 なり 100x100 なり都合の良いサイズで表示してもらえば、 <em>見た目の問題</em> は解決する。
-          <p>しかし、 100x100 のデータが必要な端末に 300x300 の画像を送るのは単純に無駄だ。単純計算で、本来必要なデータの 9 倍近いデータを送ることになる。
+          <p>したがって、300x300 を用意しておき、相手がだれであろうとそれを送って、200x200 なり 100x100 なり都合の良いサイズで表示してもらえば、<em>見た目の問題</em> は解決する。
+          <p>しかし、100x100 のデータが必要な端末に 300x300 の画像を送るのは単純に無駄だ。単純計算で、本来必要なデータの 9 倍近いデータを送ることになる。
           <p>最適な画像を出し分けるのは、大事な一方、実は非常に複雑なのだ。
         </section>
       </section>
@@ -214,7 +214,7 @@
         <h2 id="picture-による対応"><a href="#picture-による対応"><code translate=no>&lt;picture&gt;</code> による対応</a></h2>
         <p>今回は、デバイスのサイズや解像度などに応じて、適切なサイズの画像を出し分けられるようにする設定を考える。
         <p>そこで <code translate=no>&lt;picture&gt;</code> の <code translate=no>&lt;srcset&gt;</code> と <code translate=no>sizes</code> で DPR が大きい端末のための、大きいサイズの画像を指定することにした。
-        <p>基本的に Width-Height は変更しない前提であれば、 DPI が x2, x3... と増える場合にサイズが x2, x3... となる画像を提供することになる。
+        <p>基本的に Width-Height は変更しない前提であれば、DPI が x2, x3... と増える場合にサイズが x2, x3... となる画像を提供することになる。
         <p>この指定方法はいくつか考えられる。
         <section>
           <h3 id="media-query-の指定"><a href="#media-query-の指定">Media Query の指定</a></h3>
@@ -260,7 +260,7 @@
           <p>もし、将来より大きい DPI や、今とは違う表示サイズや、表示形式から根本的に違うディスプレイが出て来た場合、後者はブラウザ自身がそれを考慮して適切な画像を選べるが、前者はクエリに手を入れて対応していく必要がある。
           <p>ブラウザに考える余地を与えるメリットは他にもある。
           <p>例えば、将来的にモバイル端末自身が
-          <p>「ネットワーク環境が悪いため、 DPI は x3 だがあえて 100w の画像を取得しよう」
+          <p>「ネットワーク環境が悪いため、DPI は x3 だがあえて 100w の画像を取得しよう」
           <p>といったこともできる可能性がある。
           <p>ブラウザや置かれた状況によって取得される画像が変わるというのは、コンテンツの種類によっては問題になるかもしれない。
           <p>しかし、本サイトでは、同じ画像の中から必要十分なサイズの画像をリクエストして欲しいだけなので、問題はない。

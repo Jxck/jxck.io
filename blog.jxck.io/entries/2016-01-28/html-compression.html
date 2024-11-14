@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="本サイト blog.jxck.io 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた HTML の最適化 を実施することにした。しかし、 md-&gt;html 変換時にそれをできるツールが見当たらないため...">
+  <meta name=description         content="本サイト blog.jxck.io 以下については、Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた HTML の最適化 を実施することにした。しかし、md-&gt;html 変換時にそれをできるツールが見当たらないため、M...">
   <meta name=keywords            content="html,performance">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-01-28/html-compression.html>
   <meta property=og:title        content="HTML の省略によるサイズ最適化 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="本サイト blog.jxck.io 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた HTML の最適化 を実施することにした。しかし、 md-&gt;html 変換時にそれをできるツールが見当たらないため...">
+  <meta property=og:description  content="本サイト blog.jxck.io 以下については、Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた HTML の最適化 を実施することにした。しかし、md-&gt;html 変換時にそれをできるツールが見当たらないため、M...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-01-28T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "本サイト blog.jxck.io 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた HTML の最適化 を実施することにした。しかし、 md-&gt;html 変換時にそれをできるツールが見当たらないため..."
+    "description": "本サイト blog.jxck.io 以下については、Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた HTML の最適化 を実施することにした。しかし、md-&gt;html 変換時にそれをできるツールが見当たらないため、M..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-01-28>2016-01-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -161,9 +161,9 @@
       <h1><a href="">HTML の省略によるサイズ最適化</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>本サイト <a href="https://blog.jxck.io">blog.jxck.io</a> 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。
+        <p>本サイト <a href="https://blog.jxck.io">blog.jxck.io</a> 以下については、Markdown から静的ファイルを生成するスタイルで作成している。
         <p>この変換時に以前から思っていた <em>HTML の最適化</em> を実施することにした。
-        <p>しかし、 md-&gt;html 変換時にそれをできるツールが見当たらないため、 Markdown の AST から HTML を構築する過程で、省略を施すスクリプトを自作した。
+        <p>しかし、md-&gt;html 変換時にそれをできるツールが見当たらないため、Markdown の AST から HTML を構築する過程で、省略を施すスクリプトを自作した。
         <p>ただし、ソースはあくまで観賞用なので、インデントやコメントは残している。
         <p>チューニングではなく単なる実験としてサイト全体にこれを適用し、その結果を記す。
       </section>
@@ -177,19 +177,19 @@
           <li>js や css から不要なスペースや改行を消すことで、コンテンツサイズを減らす
         </ul>
         <p>いずれも王道であり、ツールなどが充実しているため、特に導入は難しくないと思う。
-        <p>ここで最後の最適化の一環として、 HTML を最適化したことはあるだろうか?
+        <p>ここで最後の最適化の一環として、HTML を最適化したことはあるだろうか?
         <p>あるとしても、それはスペース削除だけではないだろうか?
       </section>
       <section>
         <h2 id="html-の省略記法"><a href="#html-の省略記法">HTML の省略記法</a></h2>
         <section>
           <h3 id="タグそのもの"><a href="#タグそのもの">タグそのもの</a></h3>
-          <p><code translate=no>&lt;html&gt;</code>、 <code translate=no>&lt;head&gt;</code>、 <code translate=no>&lt;body&gt;</code> は、タグ自体を書かなくても良い場合があり、仕様に定義がある。
+          <p><code translate=no>&lt;html&gt;</code>、<code translate=no>&lt;head&gt;</code>、<code translate=no>&lt;body&gt;</code> は、タグ自体を書かなくても良い場合があり、仕様に定義がある。
           <blockquote cite="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">
             <p>An html element&apos;s end tag may be omitted if the html element is not immediately followed by a comment.
             <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission" target=_blank>https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a></cite>
           </blockquote>
-          <p>すぐ次がコメントでないなら、 <code translate=no>&lt;html&gt;</code> は省略しても良い。 <code translate=no>&lt;head&gt;</code> や <code translate=no>&lt;body&gt;</code> も同様だ。
+          <p>すぐ次がコメントでないなら、<code translate=no>&lt;html&gt;</code> は省略しても良い。<code translate=no>&lt;head&gt;</code> や <code translate=no>&lt;body&gt;</code> も同様だ。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- before --&gt;
 &lt;!DOCTYPE html&gt;
@@ -206,12 +206,12 @@
   &lt;title&gt;Hello&lt;/title&gt;
   &lt;p&gt;Welcome to this example.&lt;/p&gt;
 &lt;/html&gt;</code></pre>
-          <p>これは、 <code translate=no>&lt;html ng-app&gt;</code> みたいに、タグの要素によって何かを指定する必要があると消せないため、消せない/消しにくいことは多い。
+          <p>これは、<code translate=no>&lt;html ng-app&gt;</code> みたいに、タグの要素によって何かを指定する必要があると消せないため、消せない/消しにくいことは多い。
         </section>
         <section>
           <h3 id="閉じタグ"><a href="#閉じタグ">閉じタグ</a></h3>
           <p>HTML には閉じタグの省略が許されているものがいくつかあり、仕様に定義がある。
-          <p>例えば、 <code translate=no>&lt;/li&gt;</code> は以下の条件なら省略が可能だ。
+          <p>例えば、<code translate=no>&lt;/li&gt;</code> は以下の条件なら省略が可能だ。
           <blockquote cite="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission">
             <p>An li element&apos;s end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.
             <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission" target=_blank>https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission</a></cite>
@@ -256,15 +256,15 @@
         <h2 id="その最適化は現実的か"><a href="#その最適化は現実的か">その最適化は現実的か?</a></h2>
         <section>
           <h3 id="好き嫌い"><a href="#好き嫌い">好き嫌い</a></h3>
-          <p>まず、こうした省略によって、例えば 「XML として崩れている」みたいなことを言う人もいる。
+          <p>まず、こうした省略によって、例えば「XML として崩れている」みたいなことを言う人もいる。
           <p>気持ちは分かるが、そもそもこの程度を省略しなかったところで XML などではない。
-          <p>あくまで書いているのは HTML であり、 Markdown からの変換過程で最適化しているので、昨今のフロントのビルドタスクを見れば特段特別なことでもない。
+          <p>あくまで書いているのは HTML であり、Markdown からの変換過程で最適化しているので、昨今のフロントのビルドタスクを見れば特段特別なことでもない。
         </section>
         <section>
           <h3 id="影響"><a href="#影響">影響</a></h3>
           <p>生成した結果は <a href="https://validator.w3.org/nu/" target=_blank>HTML Validator</a> で確認しているが問題は無い。
-          <p>HTML として問題が無いのであれば、 HTML に対応したツールでは扱えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
-          <p>まあ、そもそも HTML というのは、 XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、完全に扱いきれないツールがあっても多少は仕方がない。
+          <p>HTML として問題が無いのであれば、HTML に対応したツールでは扱えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
+          <p>まあ、そもそも HTML というのは、XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、完全に扱いきれないツールがあっても多少は仕方がない。
           <p>特に片手間な正規表現で HTML を処理している場合(スクレイピング、エディタのシンタックスハイライト etc)は、影響が皆無ともいえないが、現状自分の環境で、特に困った場面はいまのところない。
           <p>それも、強気に言えば「そのライブラリ etc が正しく HTML を扱えてないだけだ」と言うこともできなくはない。
           <p>結局 HTML をパースしたければ、正しくパースできるライブラリを使うしかないという話になる。
@@ -278,7 +278,7 @@
  131     408    9158 html-compression.html
 $ wc html-no-compression.html
  141     417    9417 html-no-compression.html</code></pre>
-          <p>また Chrome の devtools で二つのファイルをレンダリングし、 Timeline から <em>Parse HTML</em> の時間を確認した。
+          <p>また Chrome の devtools で二つのファイルをレンダリングし、Timeline から <em>Parse HTML</em> の時間を確認した。
           <p>10 回平均した結果がこうだ。
           <dl>
             <div>
@@ -292,7 +292,7 @@ $ wc html-no-compression.html
           </dl>
           <p>また、何回かやると 有 が 100ms を超える場合や 無 が 70ms を切るような場合もあった。
           <p>この程度の速度差であれば体感は難しいので、もはや誤差といえる。
-          <p>しかし、これは逆に、 <em>省略がパースを著しく遅くする、といった影響はない</em> と言えるだろう。
+          <p>しかし、これは逆に、<em>省略がパースを著しく遅くする、といった影響はない</em> と言えるだろう。
           <p>これなら、ペイロードが小さくなることによる、ネットワーク効率としてのメリットを重視するリスクはなさそうだ。
           <p>(もちろんサイズが大きくなれば変わるかもしれないが、このエントリはこのサイトの平均的なものなので問題ない)
           <p>同様の検証が他にもあったので貼っておく。結論はほぼ同じだった。
@@ -300,7 +300,7 @@ $ wc html-no-compression.html
         </section>
         <section>
           <h3 id="方法"><a href="#方法">方法</a></h3>
-          <p>普通の Web アプリでも、 haml のように抽象度が高いフォーマットであれば、生成時に同様のオプションがあっても良さそうだが、 haml ではずっと <a href="https://github.com/haml/haml/blob/master/TODO#L19" target=_blank>TODO</a> のままのようだ。
+          <p>普通の Web アプリでも、haml のように抽象度が高いフォーマットであれば、生成時に同様のオプションがあっても良さそうだが、haml ではずっと <a href="https://github.com/haml/haml/blob/master/TODO#L19" target=_blank>TODO</a> のままのようだ。
           <p>Google の PageSpeed でも、こうした最適化は <a href="https://developers.google.com/speed/pagespeed/service/OptimizeHtml" target=_blank>サポートされていた</a>。
           <p>ただ、一般にあまり普及した方法とはいえない気がする。
         </section>

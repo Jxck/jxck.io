@@ -78,7 +78,7 @@ CSP は JS の実行をブロックする場合があるので、その Report �
 ```http:./2.http
 ```
 
-一方、他にも取得したい情報は増え、Policy Header + Report-To よりも、JS でハンドリングするほうが望ましいケースも現れ、 JS API も Export することになった。
+一方、他にも取得したい情報は増え、Policy Header + Report-To よりも、JS でハンドリングするほうが望ましいケースも現れ、JS API も Export することになった。
 
 互換性の面でも、セマンティクスの面でも、Report は Error ではないため、Error を throw するようなモデルは使えない。代わりに Interface は昨今の流れに則り Observer で提供され、opt-in で取得する設計が採用された。
 
@@ -281,7 +281,7 @@ Intervention とは、ブラウザが特定の挙動を変更するような介�
 
 Feature Policy も violation が発生した場合にその事実が知りたいが、仕様には含まれていなかった。
 
-[提案](https://github.com/w3c/webappsec-feature-policy/issues/142)したところ、 Reporting への[対応](https://github.com/WICG/feature-policy/blob/master/reporting.md)が入ることになり、Chrome は Intents が出ている。
+[提案](https://github.com/w3c/webappsec-feature-policy/issues/142)したところ、Reporting への[対応](https://github.com/WICG/feature-policy/blob/master/reporting.md)が入ることになり、Chrome は Intents が出ている。
 
 - [Intent to Implement: Feature Policy Violation Reporting](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/5-3woY4Y1Qg/xHDTmUFAEAAJ)
 

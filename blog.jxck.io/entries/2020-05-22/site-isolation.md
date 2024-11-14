@@ -4,7 +4,7 @@
 
 Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。
 
-しかし、Spectre の発覚以降、 Communication に関する制限だけではなく Isolation によるメモリレベルでのアクセス制御が必要となった。
+しかし、Spectre の発覚以降、Communication に関する制限だけではなく Isolation によるメモリレベルでのアクセス制御が必要となった。
 
 そこで現在作業されているのが、CORB, CORP, COEP, COOP といった仕様群であり、これは Web におけるセキュリティモデルの更新作業と見ることができる。
 

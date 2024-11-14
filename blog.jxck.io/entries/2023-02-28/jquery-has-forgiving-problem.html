@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-02-28T08:00:00+08:00",
-    "dateModified": "2023-03-24T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-02-28>2023-02-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-03-24>2023-03-24</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -161,8 +161,8 @@
       <section>
         <h2 id="jquery-と-has"><a href="#jquery-と-has">jQuery と :has()</a></h2>
         <p><code translate=no>:has()</code> は、従来の CSS Selector の常識を変え、子の状態を元に親をクエリすることが可能となった。親から子を見る場合と比べて探索範囲が爆発的に増えるため、非常に実装が難しいとされていた。
-        <p>Igalia の詳細な調査によって目処が立ち、いよいよ実装できそうとなると、そこからは早かった。実装が進むのも、開発者が騒ぐのも、 Ship されるのもだ。
-        <p>問題が見つかったのは 2022 年の 9 月。 Chrome や Safari の開発者ブログに革新的な機能として紹介記事があがったのは 2022 年 8 月であることから、「いまさら見つかってしまった」感がわかるだろう。
+        <p>Igalia の詳細な調査によって目処が立ち、いよいよ実装できそうとなると、そこからは早かった。実装が進むのも、開発者が騒ぐのも、Ship されるのもだ。
+        <p>問題が見つかったのは 2022 年の 9 月。Chrome や Safari の開発者ブログに革新的な機能として紹介記事があがったのは 2022 年 8 月であることから、「いまさら見つかってしまった」感がわかるだろう。
         <ul>
           <li>
             [selectors] The forgiving nature of :has breaks jQuery when used with a complex :has selector · Issue #7676 · w3c/csswg-drafts
@@ -171,9 +171,9 @@
             </ul>
           </li>
         </ul>
-        <p>ギュッとすると jQuery との互換性に関する問題だ。 jQuery は元々カスタムセレクタとして <code translate=no>:has()</code> や <code translate=no>:contains()</code> などを実装していた。そうしたセレクタを <code translate=no>$()</code> に渡した場合、一旦 <code translate=no>querySelectorAll()</code> に渡し、ブラウザがパースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで、 CSS の機能を上書きする実装になっていた。
+        <p>ギュッとすると jQuery との互換性に関する問題だ。jQuery は元々カスタムセレクタとして <code translate=no>:has()</code> や <code translate=no>:contains()</code> などを実装していた。そうしたセレクタを <code translate=no>$()</code> に渡した場合、一旦 <code translate=no>querySelectorAll()</code> に渡し、ブラウザがパースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで、CSS の機能を上書きする実装になっていた。
         <p>ブラウザに <code translate=no>:has()</code> が実装されることは、これまでエラーを挙げていた <code translate=no>querySelectorAll()</code> が結果を返すことで、単に Sizzle にフォールバックしなくなるだけという想定は、当時 Progressive Enhancement などと呼ばれていたマナーに則っていると言える。
-        <p>問題は、 <code translate=no>:has(:contains(div))</code> のような場合だ。 <code translate=no>:has()</code> が実装されても <code translate=no>:contains()</code> は実装されてないため、 jQuery の想定では qSA が例外をあげて Sizzle に移れば問題ないはずだが、実際には例外が上がらなかった。
+        <p>問題は、<code translate=no>:has(:contains(div))</code> のような場合だ。<code translate=no>:has()</code> が実装されても <code translate=no>:contains()</code> は実装されてないため、jQuery の想定では qSA が例外をあげて Sizzle に移れば問題ないはずだが、実際には例外が上がらなかった。
       </section>
       <section>
         <h2 id="forgiving-selector-list"><a href="#forgiving-selector-list">Forgiving Selector List</a></h2>
@@ -183,7 +183,7 @@
         <pre class=css data-code=css><code translate=no class=language-css>form:has(input:user-valid, input:-moz-ui-valid, input.user-valid) {
 }</code></pre>
         <p><code translate=no>:user-valid</code> は CSS Selectors Level 4 にある提案で、かつて独自実装として <code translate=no>:-moz-ui-valid</code> を実装していた Firefox だけが対応している。
-        <p>こうした新しい機能に対応してないブラウザが上記のセレクタを解釈した場合、 <code translate=no>:user-valid</code> が存在しないことを理由に全体をパースエラーとしてしまうのは、新しい機能や UA 固有の機能を展開していく上でいささか窮屈だ。
+        <p>こうした新しい機能に対応してないブラウザが上記のセレクタを解釈した場合、<code translate=no>:user-valid</code> が存在しないことを理由に全体をパースエラーとしてしまうのは、新しい機能や UA 固有の機能を展開していく上でいささか窮屈だ。
         <p>そこで <code translate=no>:has()</code> は、「渡されたセレクタリストのうち、失敗したものは無視する」という仕様として定義された。これは、仕様上 <em>forgiving-selector-list</em> と呼ばれている。
         <ul>
           <li>
@@ -205,24 +205,24 @@
       </section>
       <section>
         <h2 id="forgiving-vs-unforgiving"><a href="#forgiving-vs-unforgiving">Forgiving vs Unforgiving</a></h2>
-        <p><code translate=no>:has(:contains(div))</code> のようなセレクタがエラーにならないのは、まさしく Forgiving な評価によって、実装されてない <code translate=no>:contains()</code> が無視されて、 qSA が空の結果を返し、 Sizzle にフォールバックしないことが原因だった。
-        <p>発生条件としては、 jQuery を使い、 <code translate=no>:has()</code> の中でブラウザが対応してないセレクタを用いることで、 Sizzle にフォールバックすることを想定したクエリを書いているケースだ。
+        <p><code translate=no>:has(:contains(div))</code> のようなセレクタがエラーにならないのは、まさしく Forgiving な評価によって、実装されてない <code translate=no>:contains()</code> が無視されて、qSA が空の結果を返し、Sizzle にフォールバックしないことが原因だった。
+        <p>発生条件としては、jQuery を使い、<code translate=no>:has()</code> の中でブラウザが対応してないセレクタを用いることで、Sizzle にフォールバックすることを想定したクエリを書いているケースだ。
         <p>そんな使い方がどのくらいされているのか、と思うかもしれないが、実際に Chrome に <code translate=no>:has()</code> が Ship されてから、この挙動によって壊れるサイトが見つかり、冒頭の Issue が立てられることになる。
         <p>(実際には jQuery では許可されるが、標準では許可されてない <code translate=no>:has()</code> の入れ子のパースで発覚した)
         <p>多くのバージョンの jQuery で起こるため、様々なサイトが影響を受ける可能性がある。それを無視して現状の <code translate=no>:has()</code> を押し通すことはできない。
         <p>さまざまな議論を経て、仕様では <code translate=no>:has()</code> を Unforgiving な挙動に修正し、もし当初想定していた挙動を用いたい場合は、依然として Forgiving な <code translate=no>:is()</code> や <code translate=no>:where()</code> を併用することになった。
         <pre class=css data-code=css><code translate=no class=language-css>form:has(:is(input:user-valid, input:-moz-ui-valid, input.user-valid)) {
 }</code></pre>
-        <p>この挙動に実装が修正されることで、 <code translate=no>:has(:contains(div))</code> のような CSS は、無事に Sizzle に処理が渡るようになり、晴れて互換性が維持されることになるだろう。
+        <p>この挙動に実装が修正されることで、<code translate=no>:has(:contains(div))</code> のような CSS は、無事に Sizzle に処理が渡るようになり、晴れて互換性が維持されることになるだろう。
         <p>とはいえ、この対応は非常にギリギリのところだったと言える。
-        <p>もし、 jQuery のカスタムセレクタの中に <code translate=no>:is()</code> や <code translate=no>:where()</code> があれば、このワークアラウンドは実現しなかった。それどころか、 <code translate=no>:is()</code> や <code translate=no>:where()</code> にも潜在的に同じ問題があることになる。
-        <p><code translate=no>:has()</code> は既にその有用性が広く宣伝され、 Interop で世界中が取り組み、そのリリースが待ち望まれていた機能であるため、気の早い開発者なら十分に <code translate=no>:has()</code> をデプロイしていた可能性もある。
-        <p>既に <code translate=no>:has()</code> が Forgiving であることに依存したコードが広くデプロイされていたら、 <code translate=no>:has()</code> の挙動を修正すること自体が互換性に甚大な影響をもたらし、文字通り詰んでいた可能性も考えられる。
+        <p>もし、jQuery のカスタムセレクタの中に <code translate=no>:is()</code> や <code translate=no>:where()</code> があれば、このワークアラウンドは実現しなかった。それどころか、<code translate=no>:is()</code> や <code translate=no>:where()</code> にも潜在的に同じ問題があることになる。
+        <p><code translate=no>:has()</code> は既にその有用性が広く宣伝され、Interop で世界中が取り組み、そのリリースが待ち望まれていた機能であるため、気の早い開発者なら十分に <code translate=no>:has()</code> をデプロイしていた可能性もある。
+        <p>既に <code translate=no>:has()</code> が Forgiving であることに依存したコードが広くデプロイされていたら、<code translate=no>:has()</code> の挙動を修正すること自体が互換性に甚大な影響をもたらし、文字通り詰んでいた可能性も考えられる。
         <p>まさしく針に糸を通すようにギリギリなんとかなったが、次はそうもいかないかもしれない。
       </section>
       <section>
         <h2 id="誰が問題を見つけるか"><a href="#誰が問題を見つけるか">誰が問題を見つけるか</a></h2>
-        <p>もちろん、 <code translate=no>:has()</code> が実装されたことで壊れるサイトには、なんの罪もない。
+        <p>もちろん、<code translate=no>:has()</code> が実装されたことで壊れるサイトには、なんの罪もない。
         <p>jQuery にも罪はない。Forgiving な仕様がない時代における実装方法としての妥当性から、きちんと一定の作法に則った仕様だ。そして jQuery こそが <code translate=no>:has()</code> の有用性証明の一端を担っていたため、それがなければ標準化されることもなかったかもしれない。
         <p>jQuery を修正しろなどという意見がつき物だが、したところで全てのサイトが更新されることは望めず、そうした更新されないサイトに文句を言う筋合いもない。そうしたサイトこそが、これまでの Web を繋いできたからこそ、今がある。
         <p>Web とはそういうもので、それを前提に過去の蓄積に対し互換性という敬意を払いながら先に進むことは、標準化の大前提だからだ。
@@ -235,7 +235,7 @@
         <p>単に新しい機能が Stable に落ちてくるまで手をこまねいているだけでなく、普段使うブラウザにちょっと手を加え、それを日常的に使うことを開発者が心がけていれば、世界で誰か一人くらいは Ship 前にこの問題に気づけたかもしれない。
         <p>そうした振る舞いは、仕様策定の議論や、実装へのパッチ提供のような直接的なものでないながらも、全ての開発者ができるであろう、最も手軽かつ重要な Web へのコントリビューションの一つだと思う。
         <p>こうした問題を見つけるにはエコシステムというスケールメリットが必要不可欠であり、その価値が最もわかりやすく発揮されるときだ。問題を発見する難しさと比べれば、それを反映するコードを書くこと自体は、全く大した問題ではない。
-        <p>Web もかなり長い歴史を積み上げて今があり、一方で先進的な提案は日々なされていく。今後も、 30 年近いランニングコードとの互換を保ちながら進歩するうえで、こうした問題は度々起きており、今後も何度も起きるだろう。
+        <p>Web もかなり長い歴史を積み上げて今があり、一方で先進的な提案は日々なされていく。今後も、30 年近いランニングコードとの互換を保ちながら進歩するうえで、こうした問題は度々起きており、今後も何度も起きるだろう。
         <p>現存する古いコードや、古い実装が積み上げた歴史の延長に今があることを意識せず、「jQuery のせいだ」「古い実装が足を引っ張ってる」「仕様策定者は何をしてるんだ」などと吐き捨てるのは簡単だが、「(開発者の一端として)自分のせいだ」と思えるリテラシーをどのくらいの開発者が持てるのかは、今後の Web の進化がどのくらいスムーズに進むのかに与える Unforgiving な変数なのかもしれない。
       </section>
       <section>

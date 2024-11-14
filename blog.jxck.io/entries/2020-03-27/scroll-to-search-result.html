@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-03-27T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-03-27>2020-03-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,13 +156,13 @@
       </section>
       <section>
         <h2 id="scroll-to-text-fragment"><a href="#scroll-to-text-fragment">Scroll to Text Fragment</a></h2>
-        <p>Scroll to Text Fragment(以下 S2TF) は Chrome 80 で Ship され、 Finch で展開されている。
-        <p>まだ降りてきてない場合は、 Flag による有効化が必要だ。
+        <p>Scroll to Text Fragment(以下 S2TF) は Chrome 80 で Ship され、Finch で展開されている。
+        <p>まだ降りてきてない場合は、Flag による有効化が必要だ。
         <p>詳細は以前このブログでも書いている。
         <ul>
           <li><a href="https://blog.jxck.io/entries/2019-10-16/scroll-to-text-fragment.html<F29>">Scroll To Text Fragment と :~:text | blog.jxck.io</a>
         </ul>
-        <p>この機能の使い道の一つとして、検索結果の Deep Link への適用があると考え、 PoC として実装した。
+        <p>この機能の使い道の一つとして、検索結果の Deep Link への適用があると考え、PoC として実装した。
       </section>
       <section>
         <h2 id="検索結果への適用"><a href="#検索結果への適用">検索結果への適用</a></h2>
@@ -171,7 +171,7 @@
         <blockquote>
           <p>Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。
         </blockquote>
-        <p>これをヒットしたキーワードの前後で分割し、 Prefix / Suffix として指定すれば以下のような fragment ができる。
+        <p>これをヒットしたキーワードの前後で分割し、Prefix / Suffix として指定すれば以下のような fragment ができる。
         <p>(<code translate=no>#:~:text=Prefix-,Keyword,-Suffix</code> の順)
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre><code translate=no>#:~:text=Feature Policy のモチベーションおよび適用方法について、類似する-,CSP,-や</code></pre>
@@ -204,7 +204,7 @@
         <p>本来は、この検索結果を横に並べた Portal に表示し、そこで Preview する UI を考えていた。
         <p>イメージとしては以下だ。
         <iframe width="560" height="315" src="https://www.youtube.com/embed/oCH9wcrb0sU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <p>しかし、現状 Chrome の Portal や iframe 内は、 ID に対する Scroll はされるが、 Text Fragment に対する Scroll はしないようだ。
+        <p>しかし、現状 Chrome の Portal や iframe 内は、ID に対する Scroll はされるが、Text Fragment に対する Scroll はしないようだ。
         <p>(上のデモは HTML 中の ID へのスクロールを行っている)
         <p>Portal/iframe と S2TF を組み合わせると、サイト内に任意の文字があるかを Side Channel で取得できる可能性が指摘されたため、今は実装されてないのだろう。
         <p>そこで、今回は機能としては入れず、今後何かアップデートがあったら実装し検証するつもりでいる。
@@ -212,19 +212,19 @@
       <section>
         <h2 id="セキュリティ的観点"><a href="#セキュリティ的観点">セキュリティ的観点</a></h2>
         <p>余談だが、本サイトで初めて <code translate=no>&lt;form&gt;</code> を設置したため、それなりにセキュリティ的な対策を行う必要が出た。
-        <p>今回は、独立した検索ページを用意し、 Portal との連携をやめたため JS を無くすことができたことから、検索ページからは 3rd Party 含め一切の JS を無くすことにした。
+        <p>今回は、独立した検索ページを用意し、Portal との連携をやめたため JS を無くすことができたことから、検索ページからは 3rd Party 含め一切の JS を無くすことにした。
         <p>結果、出力のエスケープを注意すれば典型的な攻撃はかなり防げると考える。
         <p>エスケープは、「正規表現」「HTML」「URL Fragment」とそれぞれのコンテキストに応じて実施する必要があるが、そこさえ間違えなければ問題はなさそうだ。
-        <p>そして、多重防御として他のページとは別運用にし、 CSP などのヘッダをガチガチに固め、 Report-Only も外している。
+        <p>そして、多重防御として他のページとは別運用にし、CSP などのヘッダをガチガチに固め、Report-Only も外している。
         <p>最近では Frame Work に任せるような部分をあえて自分で実装してみると、いろいろ試せる上に適度な緊張感があって良い。
       </section>
       <section>
         <h2 id="考察"><a href="#考察">考察</a></h2>
         <p>こう使うとそれなりに利便性を感じるかと思う。
         <p>一方で、やはり任意のサイトでこうした Deep Link が生成できてしまうことには、一定の懸念もある。
-        <p>今回のように、コンテンツ提供側が Deep Link を提供したいために S2TF を使用するなら、 Feature-Policy で Opt-In すれば良いだろう。
+        <p>今回のように、コンテンツ提供側が Deep Link を提供したいために S2TF を使用するなら、Feature-Policy で Opt-In すれば良いだろう。
         <p>しかし、仕様の策定はどちらかというと、更新されず HTML に ID もふられてないサイトでも、閲覧者側が利用したいというモチベーションの方が強そうだ。
-        <p>その場合、 Opt-In では使われないだけなので、デフォルトということになる。その場合は少なくとも Opt-Out する手段があった方が良いようにも思う。
+        <p>その場合、Opt-In では使われないだけなので、デフォルトということになる。その場合は少なくとも Opt-Out する手段があった方が良いようにも思う。
         <p>今後、今回の検証の結果を踏まえ、フィードバックに繋げていきたい。
       </section>
     </article>

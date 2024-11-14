@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-07-29T08:00:00+08:00",
-    "dateModified": "2023-08-19T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-07-29>2023-07-29</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-08-19>2023-08-19</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -191,7 +191,7 @@ to:   ababcd2</code></pre>
         <p>圧縮ツールでクオリティのようなものが指定できる場合、ざっくりいえばこの「同じ値」をどこまでの範囲で探すかを指定している場合が多い。丁寧に探せば圧縮率は向上するが時間がかかり、時間を重視すると圧縮率が下がる。
         <p>ところが、これは中身がどんな情報かを気にしない、汎用的なデータに対する手法だ。中身がどんなタイプのデータかがわかっている場合は、その情報を辞書として用意しておくことで「どんなデータ列がよく出てくるか」ということを、圧縮アルゴリズムにヒントとして提供することができる。
         <p>例えば、中身が HTML だとわかっていた場合 <code translate=no>&lt;!doctype html&gt;</code> が辞書にあれば、その一致で効率よく圧縮箇所を見つけられるというものだ。
-        <p>ちなみに、 brotli は最初から「Web 上でやりとりする値」にフォーカスしているため、実際に Web 上でやり取りされている情報を大量に集め、そこから辞書を生成し、仕様の中に Static Dictionary として直書きしている。
+        <p>ちなみに、brotli は最初から「Web 上でやりとりする値」にフォーカスしているため、実際に Web 上でやり取りされている情報を大量に集め、そこから辞書を生成し、仕様の中に Static Dictionary として直書きしている。
         <p>以下の長い Hex がそれに当たる。
         <ul>
           <li>
@@ -230,10 +230,10 @@ body, tr, input, textmeta name=&quot;robots&quot; conmethod=&quot;post&quot; act
       </section>
       <section>
         <h2 id="web-における辞書共有"><a href="#web-における辞書共有">Web における辞書共有</a></h2>
-        <p>もし自分がデプロイしているサービスにおいて、そこでどんなコンテンツが使われているのかを元に独自の辞書を生成し、 brotli にヒントを与えることができれば、より圧縮率が高くなるだろうことは容易に想像できる。
-        <p>前述の辞書は仕様にベタ書きされた共有のものなので、 brotli 実装なら等しく持っているが、独自の辞書を作る場合、問題はその辞書をどうやって送信元/送信先で共有するかになる。
-        <p>実は過去にも「サーバとクライアントで辞書を共有し圧縮率を上げる」というこの目的のために作られた SDCH (Shared Dictionary Compression for HTTP) という仕様が存在し、 Chrome にも実装されていた。
-        <p>しかし、この仕様は提案時期が 2008 年頃とかなり古く、仕様も複雑だった。当時はまだ CORS なども普及する前であるため、安全性の問題もあり、全くと言ってよいほど普及せず、 2016 年には Chrome からも削除された。
+        <p>もし自分がデプロイしているサービスにおいて、そこでどんなコンテンツが使われているのかを元に独自の辞書を生成し、brotli にヒントを与えることができれば、より圧縮率が高くなるだろうことは容易に想像できる。
+        <p>前述の辞書は仕様にベタ書きされた共有のものなので、brotli 実装なら等しく持っているが、独自の辞書を作る場合、問題はその辞書をどうやって送信元/送信先で共有するかになる。
+        <p>実は過去にも「サーバとクライアントで辞書を共有し圧縮率を上げる」というこの目的のために作られた SDCH (Shared Dictionary Compression for HTTP) という仕様が存在し、Chrome にも実装されていた。
+        <p>しかし、この仕様は提案時期が 2008 年頃とかなり古く、仕様も複雑だった。当時はまだ CORS なども普及する前であるため、安全性の問題もあり、全くと言ってよいほど普及せず、2016 年には Chrome からも削除された。
         <ul>
           <li>
             Shared_Dictionary_Compression_over_HTTP.pdf
@@ -242,7 +242,7 @@ body, tr, input, textmeta name=&quot;robots&quot; conmethod=&quot;post&quot; act
             </ul>
           </li>
         </ul>
-        <p>過去の失敗を踏まえて仕様をシンプルに絞り、 CORS を前提とする昨今のセキュリティマナーに則った形で、この辞書共有を再定義し、より高度に圧縮することを目的として始まったのが &quot;Shared brotli&quot; だ。
+        <p>過去の失敗を踏まえて仕様をシンプルに絞り、CORS を前提とする昨今のセキュリティマナーに則った形で、この辞書共有を再定義し、より高度に圧縮することを目的として始まったのが &quot;Shared brotli&quot; だ。
         <p>あとから「brotli 以外の圧縮(例えば zstd)でも使える方法なはずだ」ということで、名前をより汎用的な &quot;Compression Dictionary Transport (CDT)&quot; にリネームして現在の提案に至っている。
       </section>
       <section>
@@ -269,16 +269,16 @@ body, tr, input, textmeta name=&quot;robots&quot; conmethod=&quot;post&quot; act
           <p>そこで、テンプレートエンジンを元に辞書を作成し、事前にブラウザに取得させれば、そのテンプレートを使ったページは圧縮率を上げられるといったものだ。
           <p>Shared Dictionary の場合は、辞書の元にしたいサンプルを指定し、そこから辞書を生成する。
           <pre class=sh data-code=sh><code translate=no class=language-sh>$ ./dictionary_generator ./shared.dict ./*.template.html</code></pre>
-          <p>この <code translate=no>shared.dict</code> をサーバにデプロイし、 HTML に <code translate=no>&lt;link&gt;</code> で指定する。
+          <p>この <code translate=no>shared.dict</code> をサーバにデプロイし、HTML に <code translate=no>&lt;link&gt;</code> で指定する。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;dictionary&quot; href=&quot;/shared.dict&quot;&gt;</code></pre>
           <p>この HTML を表示した際に、ブラウザは辞書の存在に気づき、それをダウンロードすることで、以降のコンテンツの圧縮に利用できる。つまり Prefetch 方式であるため、例えばメインページのための辞書をログインページで落としておくといった、投機的な提供を行う必要がある。
           <p><code translate=no>/shared.dict</code> のレスポンスヘッダには、辞書が対象とするパスを以下のように指定する。
           <pre class=http data-code=http><code translate=no class=language-http>Use-As-Dictionary: match=&quot;/path/to/target/*&quot;</code></pre>
-          <p>クライアントが <code translate=no>Use-As-Dictionary</code> に指定されたパスに遷移した際は、 Brotli での CDT に対応していること(<code translate=no>sbr</code>)、そこで適用可能な辞書を持っていることを以下のようにリクエストヘッダに付与する。
+          <p>クライアントが <code translate=no>Use-As-Dictionary</code> に指定されたパスに遷移した際は、Brotli での CDT に対応していること(<code translate=no>sbr</code>)、そこで適用可能な辞書を持っていることを以下のようにリクエストヘッダに付与する。
           <pre class=http data-code=http><code translate=no class=language-http>Accept-Encoding: sbr
 Sec-Available-Dictionary: &lt;SHA-256 of Dictionary&gt;</code></pre>
           <p>サーバは、クライアントが指定してきた辞書を使用し、コンテンツを圧縮して返すことができる。
-          <p>辞書を用いた圧縮を行った場合は、レスポンスは以下のようになる。辞書によって同一コンテンツのエンコーディング結果が変わるため、 Cache のキーに辞書のハッシュを追加するように、 <code translate=no>Sec-Available-Dictionary</code> を <code translate=no>Vary</code> に追加する。
+          <p>辞書を用いた圧縮を行った場合は、レスポンスは以下のようになる。辞書によって同一コンテンツのエンコーディング結果が変わるため、Cache のキーに辞書のハッシュを追加するように、<code translate=no>Sec-Available-Dictionary</code> を <code translate=no>Vary</code> に追加する。
           <pre class=http data-code=http><code translate=no class=language-http>Content-Encoding: sbr
 Vary: Accept-Encoding, Sec-Available-Dictionary</code></pre>
           <p>辞書を事前に生成する方式であるため、静的サイトジェネレータなどと相性の良い方式と言えるだろう。
@@ -292,7 +292,7 @@ Vary: Accept-Encoding, Sec-Available-Dictionary</code></pre>
         <p>この設定で、まず <code translate=no>a.js</code> を取得したブラウザは、次に <code translate=no>b.js</code> を取得する際に以下のようにリクエストを行う。
         <pre class=http data-code=http><code translate=no class=language-http>Accept-Encoding: sbr
 Sec-Available-Dictionary: &lt;SHA-256 of a.js&gt;</code></pre>
-        <p>提示されたハッシュから、クライアントが <code translate=no>a.js</code> を辞書として持っていることを知ったサーバは、次に返す <code translate=no>b.js</code> を <code translate=no>a.js</code> で圧縮して返すことで、差分圧縮が可能になる。 Diff だけ送っているようなイメージだ。
+        <p>提示されたハッシュから、クライアントが <code translate=no>a.js</code> を辞書として持っていることを知ったサーバは、次に返す <code translate=no>b.js</code> を <code translate=no>a.js</code> で圧縮して返すことで、差分圧縮が可能になる。Diff だけ送っているようなイメージだ。
         <p>辞書は特別なフォーマットではなく、どんなコンテンツでも利用することができることがわかるだろう。ほとんど同じでちょっとだけ異なる画像などであっても、同様に辞書として差分圧縮ができる。
         <p>以降の <code translate=no>b.js</code> にも <code translate=no>Use-As-Dictionary</code> を付与することで、それを更に <code translate=no>c.js</code> を圧縮する辞書として使うことができる。
         <p>Delta Compression の場合は、基本的には送られてきた hash を元に辞書を特定し、それを用いて動的に圧縮することになる。数が少なければ、全ての (辞書, コンテンツ) の組から事前に生成することも可能かもしれないが、一般的には非現実的だろう。
@@ -331,14 +331,14 @@ Sec-Available-Dictionary: &lt;SHA-256 of a.js&gt;</code></pre>
         <section>
           <h3 id="構成"><a href="#構成">構成</a></h3>
           <p>本サイトは、静的なブログだけであり、テンプレートエンジンに HTML 化した Markdown を流し込んで、事前に生成した静的ファイルを h2o で配信している。
-          <p>静的ファイルは、ビルド時に brotli で事前圧縮しているので、 Delta Compression を行うために追加で brotli のプロセスを動的に立ち上げるオーバーヘッドはペイしないだろう。
+          <p>静的ファイルは、ビルド時に brotli で事前圧縮しているので、Delta Compression を行うために追加で brotli のプロセスを動的に立ち上げるオーバーヘッドはペイしないだろう。
           <p>そこで、本サイトでは、記事ページ(<code translate=no>/entries/*</code>)のテンプレートから生成した Shared Dictionary を事前生成し、全ての記事を事前に圧縮しておき、辞書を記事一覧ページ(<code translate=no>/index.html</code>)で配布する構成をとることにした。
           <p>おそらく、静的サイトでの典型的な利用例と思われる。
         </section>
       </section>
       <section>
         <h2 id="install"><a href="#install">Install</a></h2>
-        <p>Shared brotli に用いる dictionary を生成するためのツールは、 brotli のリポジトリに入っている。
+        <p>Shared brotli に用いる dictionary を生成するためのツールは、brotli のリポジトリに入っている。
         <ul>
           <li>
             brotli/research/dictionary_generator.cc at master · google/brotli
@@ -382,12 +382,12 @@ WARNING: &apos;distill&apos; and &apos;purify&apos; will overwrite original samp
 Unrecognized option &apos;-h&apos;</code></pre>
         <p>これを用いてソースとなるファイルから辞書を生成する。
         <pre class=sh data-code=sh><code translate=no class=language-sh>$ dictionary_generator ./shared.dict ./template/*.ejs</code></pre>
-        <p>基本的に静的ファイルは Cache Busting しておきたいので、 <code translate=no>Sec-Available-Dictionary</code> に利用される SHA256 の値でファイルをリネームしておく。
+        <p>基本的に静的ファイルは Cache Busting しておきたいので、<code translate=no>Sec-Available-Dictionary</code> に利用される SHA256 の値でファイルをリネームしておく。
         <pre class=sh data-code=sh><code translate=no class=language-sh>$ sha256sum ./shared.dict
 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2
 $ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict</code></pre>
         <p>この辞書をデプロイする。なお、この辞書のための MIME は定義されておらず、辞書に用いたコンテンツに応じて任意のものを使ってよいとされている。
-        <p>つまり、 HTML をソースにしたら辞書も <code translate=no>text/html</code> となるということだが、今回は EJS をソースにしており HTML そのものではないので、一応 <code translate=no>text/plain</code> としておく。(HTML, JS, CSS などを混ぜて辞書を作ったら、どういう値にするのがよいのだろうか?)
+        <p>つまり、HTML をソースにしたら辞書も <code translate=no>text/html</code> となるということだが、今回は EJS をソースにしており HTML そのものではないので、一応 <code translate=no>text/plain</code> としておく。(HTML, JS, CSS などを混ぜて辞書を作ったら、どういう値にするのがよいのだろうか?)
         <p>この辞書を index.html の HTML でアドバタイズする。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;dictionary&quot; href=&quot;/91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict&quot;&gt;</code></pre>
         <p>次に、先程ビルドした brotli リポジトリのバイナリを使って、テンプレートを使って生成した各 HTML を、辞書を使って圧縮する。
@@ -400,9 +400,9 @@ $ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f
       </section>
       <section>
         <h2 id="h2o-のパッチ"><a href="#h2o-のパッチ">H2O のパッチ</a></h2>
-        <p>本サイトは h2o でサーブしているが、 h2o はまだ <code translate=no>.sbr</code> に対応していないのでパッチを当ててビルドした。
+        <p>本サイトは h2o でサーブしているが、h2o はまだ <code translate=no>.sbr</code> に対応していないのでパッチを当ててビルドした。
         <p><code translate=no>send-compression</code> を有効にしたときに、拡張子付きのファイルを探してくれる部分をいじったが、拡張子が 2 文字前提の実装になっていたので、とりいそぎ手を抜いて <code translate=no>.sbr</code> を <code translate=no>.sb</code> にしてデプロイしている。
-        <p>また、 <code translate=no>.sb</code> を返す際に <code translate=no>Sec-Available-Dictionary</code> のハッシュを検証したり、 <code translate=no>Vary</code> を付与するためには、 conf で mruby を呼ぶか、同じくパッチを当てるしか無い。そのオーバーヘッドは検証に影響するため、ここも省略して辞書の <code translate=no>expire</code> を短くしておくにとどめた。
+        <p>また、<code translate=no>.sb</code> を返す際に <code translate=no>Sec-Available-Dictionary</code> のハッシュを検証したり、<code translate=no>Vary</code> を付与するためには、conf で mruby を呼ぶか、同じくパッチを当てるしか無い。そのオーバーヘッドは検証に影響するため、ここも省略して辞書の <code translate=no>expire</code> を短くしておくにとどめた。
       </section>
       <section>
         <h2 id="検証"><a href="#検証">検証</a></h2>
@@ -458,18 +458,18 @@ $ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f
             </tbody>
           </table>
         </figure>
-        <p>この結果では 3 point 圧縮率が向上している。全ファイルを同様に計算したが、平均で 4 point の向上だった。また、 1 つだけ、結果が -1 point (br の方が sbr より 1byte 少ない)という結果もあった。
+        <p>この結果では 3 point 圧縮率が向上している。全ファイルを同様に計算したが、平均で 4 point の向上だった。また、1 つだけ、結果が -1 point (br の方が sbr より 1byte 少ない)という結果もあった。
         <p>今回使った辞書のサイズは 7245 byte で、これを通常の br 圧縮して 1557 byte だったが、事前にバックグラウンドで取得することを考えると、辞書はもう少し大きくても問題はないだろう。
-        <p>今回はテンプレートをただくっつけただけの辞書だったため、本文の内容の圧縮には寄与してない。 brotli のデフォルト辞書がそもそも HTML を考慮していることを考えると、むしろそこに出てこない日本語部分で、頻出単語を並べるといった方法で辞書を作った方が、圧縮率は向上したかもしれない。
+        <p>今回はテンプレートをただくっつけただけの辞書だったため、本文の内容の圧縮には寄与してない。brotli のデフォルト辞書がそもそも HTML を考慮していることを考えると、むしろそこに出てこない日本語部分で、頻出単語を並べるといった方法で辞書を作った方が、圧縮率は向上したかもしれない。
         <p>いずれにせよ、辞書の作り方が非常に重要になることがよくわかる。
-        <p>そして、このサイトではほとんど使ってない JS/CSS の圧縮は今回対象外だったが、 SPA ではそうしたアセットの圧縮こそ本仕様の本領が発揮される部分だと思われる。
+        <p>そして、このサイトではほとんど使ってない JS/CSS の圧縮は今回対象外だったが、SPA ではそうしたアセットの圧縮こそ本仕様の本領が発揮される部分だと思われる。
         <p>そのあたりは今後の課題としたい。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>Shared Compression Dictionary の検証のため、本サイトの HTML を事前辞書で圧縮し、検証を行った。
         <p>今後この仕様が進めば、ほぼ同じだがちょっと違うため毎回取得し直さないといけないため、キャッシュも 304 もしにくい Webpack に代表されるバンドル結果の転送なども、差分だけならかなり小さくなり、より効率的にできる可能性がある。
-        <p>Mozilla も Positive であり、 Cloudflare も <a href="https://blog.cloudflare.com/this-is-brotli-from-origin/#the-future-of-web-compression" target=_blank>ブログ</a>で興味を示している。引き続き、フロントエンドエコシステムや CDN などを巻き込んで策定が進めば、将来的にはよりシームレスに採用していけるかもしれない。
+        <p>Mozilla も Positive であり、Cloudflare も <a href="https://blog.cloudflare.com/this-is-brotli-from-origin/#the-future-of-web-compression" target=_blank>ブログ</a>で興味を示している。引き続き、フロントエンドエコシステムや CDN などを巻き込んで策定が進めば、将来的にはよりシームレスに採用していけるかもしれない。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>

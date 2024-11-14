@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="ここまでで &lt;dialog&gt; 要素が標準化され、 Modal/non-Modal な Dialog がネイティブで出せるようになった。今まで自前で実装していた z-index の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様が...">
+  <meta name=description         content="ここまでで &lt;dialog&gt; 要素が標準化され、Modal/non-Modal な Dialog がネイティブで出せるようになった。今まで自前で実装していた z-index の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様がほ...">
   <meta name=keywords            content="dialog,popover">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-09-30/toast-popup.html>
   <meta property=og:title        content="Dialog と Popover #4 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="ここまでで &lt;dialog&gt; 要素が標準化され、 Modal/non-Modal な Dialog がネイティブで出せるようになった。今まで自前で実装していた z-index の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様が...">
+  <meta property=og:description  content="ここまでで &lt;dialog&gt; 要素が標準化され、Modal/non-Modal な Dialog がネイティブで出せるようになった。今まで自前で実装していた z-index の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様がほ...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-30T08:00:00+08:00",
-    "dateModified": "2024-11-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "ここまでで &lt;dialog&gt; 要素が標準化され、 Modal/non-Modal な Dialog がネイティブで出せるようになった。今まで自前で実装していた z-index の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様が..."
+    "description": "ここまでで &lt;dialog&gt; 要素が標準化され、Modal/non-Modal な Dialog がネイティブで出せるようになった。今まで自前で実装していた z-index の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様がほ..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-30>2024-09-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -152,7 +152,7 @@
       <h1><a href="">Dialog と Popover #4</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>ここまでで <code translate=no>&lt;dialog&gt;</code> 要素が標準化され、 Modal/non-Modal な Dialog がネイティブで出せるようになった。
+        <p>ここまでで <code translate=no>&lt;dialog&gt;</code> 要素が標準化され、Modal/non-Modal な Dialog がネイティブで出せるようになった。
         <p>今まで自前で実装していた <code translate=no>z-index</code> の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様がほぼ標準によってカバーされた。
         <ul>
           <li>Top Layer
@@ -162,8 +162,8 @@
           <li>Focusable Scrollers
           <li>etc
         </ul>
-        <p>しかし、 <code translate=no>&lt;dialog&gt;</code> はあくまで「ユーザのインタラクションを求める」という用途で使うものであり、 <code translate=no>role=dialog</code> ではない、例えばちょっとしたメッセージの通知などに使うものではない。
-        <p>そこで、これらの資産を活用し、より汎用的な UI を標準化しようという話が、 <code translate=no>&lt;dialog&gt;</code> の標準化の裏で並行して行われた。
+        <p>しかし、<code translate=no>&lt;dialog&gt;</code> はあくまで「ユーザのインタラクションを求める」という用途で使うものであり、<code translate=no>role=dialog</code> ではない、例えばちょっとしたメッセージの通知などに使うものではない。
+        <p>そこで、これらの資産を活用し、より汎用的な UI を標準化しようという話が、<code translate=no>&lt;dialog&gt;</code> の標準化の裏で並行して行われた。
       </section>
       <section>
         <h2 id="toast"><a href="#toast">Toast</a></h2>
@@ -173,7 +173,7 @@
           <img loading=lazy decoding=async src=./1.toast.drawio.svg?240930_155256 alt="Toast UI" width=400 height=150>
         </p>
         <p>Toast は元々 iOS 文化圏の表現らしく、Android では Snackbar とも言うらしい。いずれも、英語圏でそこまで馴染みのある言葉ではないらしく「なぜ Toast なのか?」は FAQ だったようだ。
-        <p>Toast 自体は、通知の意味合いが強く、特にユーザにインタラクションを求めなかったり、操作しなくても時間が経てば消えるといったケースが多い。名前に差はあれど、様々な UI ライブラリが提供しており、これも HTML に欲しいということで、 <code translate=no>&lt;toast&gt;</code> や <code translate=no>&lt;std-toast&gt;</code> といった提案がなされた。
+        <p>Toast 自体は、通知の意味合いが強く、特にユーザにインタラクションを求めなかったり、操作しなくても時間が経てば消えるといったケースが多い。名前に差はあれど、様々な UI ライブラリが提供しており、これも HTML に欲しいということで、<code translate=no>&lt;toast&gt;</code> や <code translate=no>&lt;std-toast&gt;</code> といった提案がなされた。
         <p>ちなみに、様々な実装の調査(共通する仕様、できることできないこと)が以下にまとまっている。
         <ul>
           <li>
@@ -201,7 +201,7 @@
           <li>Dismiss する方法がある
           <li>状態に応じた Event が発火し Callback が書ける
         </ul>
-        <p>ところが、この提案を実装する上で &quot;Intent to Implement&quot; には、 <code translate=no>&lt;toast&gt;</code> もセマンティクスではなくスタイルの問題である点を指摘しつつ「Chrome がマーケット支配力を利用して、勝手に実装を標準にするな」といったような意見が出てきた。
+        <p>ところが、この提案を実装する上で &quot;Intent to Implement&quot; には、<code translate=no>&lt;toast&gt;</code> もセマンティクスではなくスタイルの問題である点を指摘しつつ「Chrome がマーケット支配力を利用して、勝手に実装を標準にするな」といったような意見が出てきた。
         <ul>
           <li>
             Intent to Implement: Toast UI element
@@ -212,8 +212,8 @@
         </ul>
         <p>これは、「試しに実装してみるよ」の Intents が &quot;Intent to Implement&quot; という名前であり、その次は &quot;Intent to Ship&quot; という流れだったのもある。これはあくまでプロトタイプなんだということを強調するために、この後 &quot;Intent to Implement&quot; はなくなり、代わりに &quot;Intent to Prototype&quot; というステップに名前が変えられた。
         <p>この議論をしている 2019 年ごろは、Layered API という、頻出するパターンは共通する基盤を整備して、その上に実装できるようにしようといったコンセプトが一時的に流行っていた。(fetch, URL, FormData, Encoder... の頃)
-        <p>その流れから、 <code translate=no>&lt;std-toast&gt;</code> があれば、飛び出して他の要素の上に被さる系の UI は、全てその応用で実装可能というイメージで、それを <code translate=no>std-</code> をつけることで、カスタムコンポーネントのブラウザネイティブライブラリのような位置付けで実装する、という取り組みの流れを汲んだ最初で最後の HTML 提案だった。
-        <p>ちなみに、この &quot;Intent to Prototype&quot; は 2019 年で、Firefox が <code translate=no>&lt;dialog&gt;</code> をリリースするのは 2020 年だ。つまり、 <code translate=no>&lt;toast&gt;</code> の議論時期的には <code translate=no>&lt;dialog&gt;</code> の実装がまだ Chrome くらいしかない頃から、並行して行われていたことがわかる。先に <code translate=no>&lt;dialog&gt;</code> の作業を進める間一旦影をひそめ、ひと段落してから再度議論が盛り上がっていく。
+        <p>その流れから、<code translate=no>&lt;std-toast&gt;</code> があれば、飛び出して他の要素の上に被さる系の UI は、全てその応用で実装可能というイメージで、それを <code translate=no>std-</code> をつけることで、カスタムコンポーネントのブラウザネイティブライブラリのような位置付けで実装する、という取り組みの流れを汲んだ最初で最後の HTML 提案だった。
+        <p>ちなみに、この &quot;Intent to Prototype&quot; は 2019 年で、Firefox が <code translate=no>&lt;dialog&gt;</code> をリリースするのは 2020 年だ。つまり、<code translate=no>&lt;toast&gt;</code> の議論時期的には <code translate=no>&lt;dialog&gt;</code> の実装がまだ Chrome くらいしかない頃から、並行して行われていたことがわかる。先に <code translate=no>&lt;dialog&gt;</code> の作業を進める間一旦影をひそめ、ひと段落してから再度議論が盛り上がっていく。
       </section>
       <section>
         <h2 id="popup-要素"><a href="#popup-要素"><code translate=no>&lt;popup&gt;</code> 要素</a></h2>
@@ -282,7 +282,7 @@
             </ul>
           </li>
         </ul>
-        <p>で、 Explainer はというと
+        <p>で、Explainer はというと
         <ul>
           <li>
             history_api/history_and_modals.md at master - slightlyoff/history_api
@@ -339,7 +339,7 @@
           </p>
           <p>この (old!) intent to prototype スレッドに PSA/update を送ります。popup API について OpenUI で交わされたいくつかの議論に基づき、アプローチを変更することにしました。
           <p>以前の I2P では、新しい <code translate=no>&lt;popup&gt;</code> 要素について説明しました。私は chromestatus のエントリを更新し、<code translate=no>popup</code> 属性を記述するように Explainer を書き直しました。
-          <p>この新しいアイデアによって、 <code translate=no>&lt;popup&gt;</code> のアクセシビリティに関するいくつかの深刻な問題を回避することができ、また、より多くのアプリケーションに使用できる、より強力な API を実現することができます。
+          <p>この新しいアイデアによって、<code translate=no>&lt;popup&gt;</code> のアクセシビリティに関するいくつかの深刻な問題を回避することができ、また、より多くのアプリケーションに使用できる、より強力な API を実現することができます。
           <p><code translate=no>&lt;selectmenu&gt;</code> プロトタイプはこの実装に依存しているので、その間に HTMLPopupElement フラグを残しておきます。
           <p><code translate=no>&lt;selectmenu&gt;</code> を新しい API に移行したら、古い <code translate=no>&lt;popup&gt;</code> 要素の実装を削除します。
         </blockquote>
@@ -362,7 +362,7 @@
             </ul>
           </li>
         </ul>
-        <p>もともと、 <code translate=no>&lt;popup&gt;</code> には「select menu を出す」、「Teaching UI」など、浮かび上がる系の UI をカバーするという目的で考えられていたが、そのセマンティクスはなんなんだろう? というものだ。&quot;select menu&quot; と &quot;teaching ui&quot; が同じということはないだろう、しかし、それぞれの目的ごとに HTML 要素を作り続けるのだろうか?といったものだ。Intent to Implement を出した時の指摘も同じだ。
+        <p>もともと、<code translate=no>&lt;popup&gt;</code> には「select menu を出す」、「Teaching UI」など、浮かび上がる系の UI をカバーするという目的で考えられていたが、そのセマンティクスはなんなんだろう? というものだ。&quot;select menu&quot; と &quot;teaching ui&quot; が同じということはないだろう、しかし、それぞれの目的ごとに HTML 要素を作り続けるのだろうか?といったものだ。Intent to Implement を出した時の指摘も同じだ。
         <p>つまり &quot;popup&quot; というのは「動き」のことであり、その中にあるコンテンツの「意味(semantics)」とは別だということだ。ここをきちんと分離するためには、「意味」は既存の HTML / Role に任せ、その任意の HTML を Top Layer に表示したり Light Dismiss するための機能として &quot;popup&quot; するための属性にし、様々なユースケースに使える方が妥当という判断だ。
         <ul>
           <li>

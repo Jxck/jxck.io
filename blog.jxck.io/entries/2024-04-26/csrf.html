@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-04-26T08:00:00+08:00",
-    "dateModified": "2024-05-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-04-26>2024-04-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-13>2024-05-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -171,7 +171,7 @@
   &lt;button type=submit&gt;いますぐここをクリック&lt;/button&gt;
 &lt;/form&gt;</code></pre>
         <p>この form は、どのサイトに埋め込まれていても、ボタンをクリックすることで form の submit によるリクエストが対象のドメインに飛ぶ。
-        <p>もしこのボタンをクリックしたユーザが、 sns.example のユーザであり、ログイン済みの Cookie を持っていた場合、発生するリクエストが以下のようになったとする。
+        <p>もしこのボタンをクリックしたユーザが、sns.example のユーザであり、ログイン済みの Cookie を持っていた場合、発生するリクエストが以下のようになったとする。
         <pre class=http data-code=http><code translate=no class=language-http>POST /post HTTP/1.1
 Host: sns.example
 Content-Type: application/x-www-form-urlencoded
@@ -180,8 +180,8 @@ Cookie: deadbeef
 body=こんにちはこんにちは</code></pre>
         <p>このリクエストが sns.example の持つ投稿の API に準拠している場合、ログイン済みの Cookie が付与されたことを理由に投稿が受理されれば、そのユーザのアカウントで body が投稿される。
         <p>無作為な攻撃なら誰かしらにボタンをクリックさせるのは容易であり、狙いすまして攻撃する場合も JS などを組み合わせて方法はいくらでもある。
-        <p>この攻撃の手軽さと影響の大きさによって、 CSRF 攻撃は XSS や SQL Injection などと並ぶ有名な攻撃手法として認知されるまでになった。
-        <p>対策としては、 sns.example そのものが設置する投稿のフォームに One Time Token (以下 CSRF Token)を仕込み、その Token の一致によって投稿を受理することで、「それ以外の form からの投稿を無視する」という方法が一般的だった。
+        <p>この攻撃の手軽さと影響の大きさによって、CSRF 攻撃は XSS や SQL Injection などと並ぶ有名な攻撃手法として認知されるまでになった。
+        <p>対策としては、sns.example そのものが設置する投稿のフォームに One Time Token (以下 CSRF Token)を仕込み、その Token の一致によって投稿を受理することで、「それ以外の form からの投稿を無視する」という方法が一般的だった。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;form method=post action=https://sns.example/post&gt;
   &lt;textarea name=body&gt;&lt;/textarea&gt;
   &lt;input type=hidden name=csrf_token value=facefeedbadcoffee&gt;
@@ -196,9 +196,9 @@ body=こんにちはこんにちは</code></pre>
   await createPost(req.body)
   // ...
 })</code></pre>
-        <p>この実装では、 Cookie による Session がミドルウェアで実現され、 Cookie を持ったユーザのアカウントで body を投稿に採用している。
+        <p>この実装では、Cookie による Session がミドルウェアで実現され、Cookie を持ったユーザのアカウントで body を投稿に採用している。
         <p>つまり、攻撃者が用意した別の form からの投稿が成立するのは、「攻撃者の form からのリクエストにも SNS の Cookie が付与されるから」という点を問題とみなすことができる。
-        <p>すると、 SameSite Cookie という概念を導入し、「別の Site からのリクエストには Cookie が付与されないようにする」という変更は、対策として成立していると考えられるだろう。
+        <p>すると、SameSite Cookie という概念を導入し、「別の Site からのリクエストには Cookie が付与されないようにする」という変更は、対策として成立していると考えられるだろう。
         <p>ところが、この問題の対策として CSRF Token が機能していたという事実は、「このリクエストはどこから来たものなのか」が分かれば対策できるという証拠でもある。
         <p>つまり、「<em>リクエストの出自がわからない</em>」ということの方が、本来注目すべき欠落であるはずなのだ。
       </section>
@@ -213,14 +213,14 @@ Origin: attack.example
 Cookie: deadbeef
 
 body=こんにちはこんにちは</code></pre>
-        <p>Origin ヘッダの値に着目すれば、これが少なくとも sns.example からではないことは容易に判別できる。つまり、 Cookie があろうとなかろうと、 sns.example は以下のような実装によって「意図しない Origin からのリクエスト」を弾くことができるのだ。
+        <p>Origin ヘッダの値に着目すれば、これが少なくとも sns.example からではないことは容易に判別できる。つまり、Cookie があろうとなかろうと、sns.example は以下のような実装によって「意図しない Origin からのリクエスト」を弾くことができるのだ。
         <pre class=js data-code=js><code translate=no class=language-js>app.post(&quot;/post&quot;, session(), (req, res) =&gt; {
   if (req.headers.origin !== &quot;https://sns.example&quot;) {
     return res.sendStatus(400);
   }
   // ...
 })</code></pre>
-        <p>このヘッダの必要性は少なくとも 16 年前くらいから言われており、 7 年前に Firefox が実装することで、全てのブラウザが form からの submit に Origin ヘッダを付与するようになっている。
+        <p>このヘッダの必要性は少なくとも 16 年前くらいから言われており、7 年前に Firefox が実装することで、全てのブラウザが form からの submit に Origin ヘッダを付与するようになっている。
         <ul>
           <li>
             446344 - Implement Origin header CSRF mitigation
@@ -235,13 +235,13 @@ body=こんにちはこんにちは</code></pre>
             </ul>
           </li>
         </ul>
-        <p>つまり、 SameSite Cookie が導入されるずっと以前から、「リクエストの出自を知る」ことはでき、それを用いて攻撃リクエストを弾くことはできたのだ。
-        <p>もちろん、そもそも form を使わずに <code translate=no>fetch()</code> を用いた実装にし、 Origin を確認しながら適切な <code translate=no>Access-Control-Allow-Origin</code> を返しているならば、「どこから来たかわからないリクエスト」を弾くことはずっと可能であった。
+        <p>つまり、SameSite Cookie が導入されるずっと以前から、「リクエストの出自を知る」ことはでき、それを用いて攻撃リクエストを弾くことはできたのだ。
+        <p>もちろん、そもそも form を使わずに <code translate=no>fetch()</code> を用いた実装にし、Origin を確認しながら適切な <code translate=no>Access-Control-Allow-Origin</code> を返しているならば、「どこから来たかわからないリクエスト」を弾くことはずっと可能であった。
         <section>
           <h3 id="samesite-cookie-の登場"><a href="#samesite-cookie-の登場">SameSite Cookie の登場</a></h3>
-          <p>SameSite Cookie が登場したことで、上記のような Active な対策をしてこなかったサービスも、 Passive な変更によって保護される結果になった。
+          <p>SameSite Cookie が登場したことで、上記のような Active な対策をしてこなかったサービスも、Passive な変更によって保護される結果になった。
           <p>しかし、これはかなり副次的な効果だったと言って良い。
-          <p>そもそも SameSite Cookie が出たのは、 3rd Party Cookie をマークする目的が大きい。インターネットを飛び交う <code translate=no>SameSite=None</code> Cookie の数が、未対策の 3rd Party Cookie であり、 3rd Party Cookie Deprecate の終着地点は <code translate=no>SameSite=None</code> Cookie が送られないようにすることだからだ。それがたまたま 3rd Party Cookie を攻撃に使っている CSRF の対策にも繋がっているだけだ。
+          <p>そもそも SameSite Cookie が出たのは、3rd Party Cookie をマークする目的が大きい。インターネットを飛び交う <code translate=no>SameSite=None</code> Cookie の数が、未対策の 3rd Party Cookie であり、3rd Party Cookie Deprecate の終着地点は <code translate=no>SameSite=None</code> Cookie が送られないようにすることだからだ。それがたまたま 3rd Party Cookie を攻撃に使っている CSRF の対策にも繋がっているだけだ。
           <ul>
             <li>
               3PCA 21 日目: SameSite Cookie | blog.jxck.io
@@ -250,8 +250,8 @@ body=こんにちはこんにちは</code></pre>
               </ul>
             </li>
           </ul>
-          <p>別途 3rd Party Cookie が今のように問題になる前の Web においては、 Cookie は「Cross Site でも送られる」ことに依存して、比較的自由な連携が行われており、それによって成立する認証連携などのポジティブなユースケースで広く使われていた。
-          <p>CSRF の方が遥かに古くから問題だったのに、最近まで「どの form からも Cookie が付与されるのはよくない」という方針での対策が出なかったのは、「サイトを跨いだ Cookie が送られること」よりも「リクエストの出自がわからないこと」の方が、 CSRF に対してプラットフォームが対策すべき問題であるとされていたからだ。
+          <p>別途 3rd Party Cookie が今のように問題になる前の Web においては、Cookie は「Cross Site でも送られる」ことに依存して、比較的自由な連携が行われており、それによって成立する認証連携などのポジティブなユースケースで広く使われていた。
+          <p>CSRF の方が遥かに古くから問題だったのに、最近まで「どの form からも Cookie が付与されるのはよくない」という方針での対策が出なかったのは、「サイトを跨いだ Cookie が送られること」よりも「リクエストの出自がわからないこと」の方が、CSRF に対してプラットフォームが対策すべき問題であるとされていたからだ。
           <p>今 SameSite Lax が default になったのを理由に、「Origin のチェック」を怠った実装をしているのであれば、それは本質的な対策を怠った片手落ちの実装で、たまたま助かっているだけだと言えるだろう。
         </section>
         <section>
@@ -265,7 +265,7 @@ body=こんにちはこんにちは</code></pre>
               </ul>
             </li>
           </ul>
-          <p>たまに更新されるが、そのベースは変わらず、かつ、 &quot;そうでないといけない理由&quot; は不明瞭な部分が多い。
+          <p>たまに更新されるが、そのベースは変わらず、かつ、&quot;そうでないといけない理由&quot; は不明瞭な部分が多い。
           <ul>
             <li>
               CSRF 対策はいまだに Token が必須なのか?
@@ -281,17 +281,17 @@ body=こんにちはこんにちは</code></pre>
             <li>GET で API があると成立する攻撃
             <li>サブドメインが乗っ取られる攻撃
           </ul>
-          <p>まずわかりやすいのは、 XSS などで sns.example 自体に偽装の form をつくられたら、 Origin ヘッダを見ても偽装されたリクエストの判別ができないことへの指摘だ。しかし、基本的に XSS などがあるならそれは XSS の問題であり、 XSS を対策すべきという話でしか無い。その XSS によって、 DOM に展開された CSRF Token を盗めない道理はないため、 CSRF Token なら優位である根拠も希薄だ。
-          <p>また、 CSRF Token はランダムな値を毎回用いることに対して、 Origin ヘッダは固定値であることを理由に、任意のヘッダが Inject できる脆弱性があった場合に効果がないといった指摘もある。これはかつてブラウザの拡張などの脆弱性で、任意のヘッダが付与できた事件があったことなどを根拠にされるものだ。これも、仮に拡張やブラウザ自体に脆弱性があったら、どんなにサービスが対策をしてもいくらでもバイパスできるという点で、サービス提供者が想定するべき対策として視点がずれている。ブラウザや拡張に問題があれば、それはブラウザベンダ側が対策する以外にサービスができることは基本的にない。また、ユーザ設定や Proxy が意図的に Origin ヘッダを落としたり改変するような環境があるという話を持ち出す人もいるが、「サービスを安全に提供する」という観点で言えば、相手がルールを守ってないならこちらがそれをサポートする道理はない。むしろ、そういう環境をサービス側が許容してしまうとの方が、ルールを守っているクライアントにインシデントをもたらしかねないため、積極的に落とすべきだろう。
+          <p>まずわかりやすいのは、XSS などで sns.example 自体に偽装の form をつくられたら、Origin ヘッダを見ても偽装されたリクエストの判別ができないことへの指摘だ。しかし、基本的に XSS などがあるならそれは XSS の問題であり、XSS を対策すべきという話でしか無い。その XSS によって、DOM に展開された CSRF Token を盗めない道理はないため、CSRF Token なら優位である根拠も希薄だ。
+          <p>また、CSRF Token はランダムな値を毎回用いることに対して、Origin ヘッダは固定値であることを理由に、任意のヘッダが Inject できる脆弱性があった場合に効果がないといった指摘もある。これはかつてブラウザの拡張などの脆弱性で、任意のヘッダが付与できた事件があったことなどを根拠にされるものだ。これも、仮に拡張やブラウザ自体に脆弱性があったら、どんなにサービスが対策をしてもいくらでもバイパスできるという点で、サービス提供者が想定するべき対策として視点がずれている。ブラウザや拡張に問題があれば、それはブラウザベンダ側が対策する以外にサービスができることは基本的にない。また、ユーザ設定や Proxy が意図的に Origin ヘッダを落としたり改変するような環境があるという話を持ち出す人もいるが、「サービスを安全に提供する」という観点で言えば、相手がルールを守ってないならこちらがそれをサポートする道理はない。むしろ、そういう環境をサービス側が許容してしまうとの方が、ルールを守っているクライアントにインシデントをもたらしかねないため、積極的に落とすべきだろう。
           <p>特に SameSite や Origin が対策にならない理由として、様々な条件(prerender, iframe etc etc)によってそれらが機能しないリクエストを生成できるという指摘もある(OWASP はこの側面を強調しているように思う)。ただし、これらの条件はその裏に「API が GET だった場合に攻撃が成立する」という条件に収束することがほとんどだ。そもそも、副作用のある API を GET で提供している実装に救いはないので、セキュリティのプラクティスを語る上でバッドプラクティスを前提にしているというズレが生じている。
           <p>SameSite Cookie だけに依存した対策は、サブドメインが SameSite であることを理由に攻撃が可能であるという指摘は真っ当だ、だからこそ一次防御は「Cookie が Lax であること」ではなく「リクエストの Origin のチェックすること」である必要があるのだ。
-          <p>一方で、 CSRF Token を付与する実装はだいぶこなれており、堅牢であることも確かだ。フレームワークなどもデフォルトで提供することが多く、開発者の間でも認知が広がっている。導入するコストもかなり低くなっていため、少なくとも現状入っているなら「積極的に外す理由」とまではいかないだろう。筆者も「そんな実装古いから外してしまえ」というつもりはない。
-          <p>ところが、防御の一層目として認識されていたこの手法も、今となっては多層防御の二層目だという認識を持つべきだ。つまり Token を出していたとしても「リクエストの出自を確認する」という実装は一層目にあるべきだし、それはもはや CSRF 対策にとどまらない。 CSRF 対策のリスクがあるから Origin を見るのではなく、全ての場所で Origin を確認するのがプラクティスだと考えて良い。
+          <p>一方で、CSRF Token を付与する実装はだいぶこなれており、堅牢であることも確かだ。フレームワークなどもデフォルトで提供することが多く、開発者の間でも認知が広がっている。導入するコストもかなり低くなっていため、少なくとも現状入っているなら「積極的に外す理由」とまではいかないだろう。筆者も「そんな実装古いから外してしまえ」というつもりはない。
+          <p>ところが、防御の一層目として認識されていたこの手法も、今となっては多層防御の二層目だという認識を持つべきだ。つまり Token を出していたとしても「リクエストの出自を確認する」という実装は一層目にあるべきだし、それはもはや CSRF 対策にとどまらない。CSRF 対策のリスクがあるから Origin を見るのではなく、全ての場所で Origin を確認するのがプラクティスだと考えて良い。
         </section>
         <section>
           <h3 id="令和時代の対策"><a href="#令和時代の対策">令和時代の対策</a></h3>
-          <p>本来なら、 GET も含めた全てのリクエストに Origin をつければ良いのだが、「Origin ヘッダのあるリクエストは XHR からのものだ」という前提の実装が世に蔓延った後なので、そこまでドラスティックな変更ができずにいた。
-          <p>そこで、 Origin ヘッダとは別に定義されたのが Fetch Metadata だ。今のブラウザで先ほどのリクエストを見れば、実際にはこうなっているだろう。
+          <p>本来なら、GET も含めた全てのリクエストに Origin をつければ良いのだが、「Origin ヘッダのあるリクエストは XHR からのものだ」という前提の実装が世に蔓延った後なので、そこまでドラスティックな変更ができずにいた。
+          <p>そこで、Origin ヘッダとは別に定義されたのが Fetch Metadata だ。今のブラウザで先ほどのリクエストを見れば、実際にはこうなっているだろう。
           <pre class=http data-code=http><code translate=no class=language-http>POST /post HTTP/1.1
 Host: sns.example
 Content-Type: application/x-www-form-urlencoded
@@ -311,7 +311,7 @@ body=こんにちはこんにちは</code></pre>
             <li>SameSite Lax/Strict を明示する
             <li>Fetch Metadata も確認する
           </ol>
-          <p>もし Fetch Metadata のサポートに不安がある場合「存在したら値をチェックする」という実装でも良いだろう。 <code translate=no>Sec-</code> は JS から弄れないヘッダであるため、値がある場合だけのチェックでも意味がある。
+          <p>もし Fetch Metadata のサポートに不安がある場合「存在したら値をチェックする」という実装でも良いだろう。<code translate=no>Sec-</code> は JS から弄れないヘッダであるため、値がある場合だけのチェックでも意味がある。
           <p>実装に落とすとミドルウェアとエンドポイントは、以下のようなものになる。
           <pre class=js data-code=js><code translate=no class=language-js>app.use((req, res, next) =&gt; {
   // post である場合は origin と sec-fetch-site をチェック
@@ -337,9 +337,9 @@ app.post(&quot;/post&quot;, async (req, res) =&gt; {
   await createPost(req.body)
   // ...
 })</code></pre>
-          <p>実際のところこれは「CSRF 対策のベストプラクティス」というよりは、今アプリを実装する上でのベースであるべき実装だ。 7 年前からそうで、今は令和 6 年なので、ちょうど令和のプラクティスと言って良いだろう。
+          <p>実際のところこれは「CSRF 対策のベストプラクティス」というよりは、今アプリを実装する上でのベースであるべき実装だ。7 年前からそうで、今は令和 6 年なので、ちょうど令和のプラクティスと言って良いだろう。
           <p>追加のストレージコストなども不要で、コードだけで実装できるためレイテンシーも最小だ。もし今からフレームワークを実装するなら、これがそのレールの基盤として存在するのが望ましい。
-          <p>そして、これを逸脱するコードが必要になって初めて、そこに「自分は今のプラットフォームが推奨するレールから外れている」ということを認識した上で、 CORS などの適切な対策をしながら拡張していくのが、サイト間の連携をしていく正しいあり方と言えるだろう。
+          <p>そして、これを逸脱するコードが必要になって初めて、そこに「自分は今のプラットフォームが推奨するレールから外れている」ということを認識した上で、CORS などの適切な対策をしながら拡張していくのが、サイト間の連携をしていく正しいあり方と言えるだろう。
           <p>これを踏まえた上で、「やっぱり Token がないと不安だ」というのであれば、それを止めることはしない。が、このベースを伴わずに Token を載せても片手落ちだということは、念を押しておきたい。
           <p>むしろ、この実装をベースにしても Token が無いと防げない CSRF が可能であるならば、そのケースはおそらくプラットフォームにおけるバグの可能性があり、プラットフォームで対処すべき問題である可能性が高い。見つけたら、ぜひ W3C の WebAppSec などで議論すべき題材だろう。
         </section>

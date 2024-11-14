@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="IETF の httpbis で、 Reverse HTTP Transport という仕様が提案されている。Reverse HTTP Transporthttps://www.ietf.org/archive/id/draft-bt-httpbis-reverse-htt...">
+  <meta name=description         content="IETF の httpbis で、Reverse HTTP Transport という仕様が提案されている。Reverse HTTP Transporthttps://www.ietf.org/archive/id/draft-bt-httpbis-reverse-http...">
   <meta name=keywords            content="reverse http,http">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-05-10/reverse-http-transport.html>
   <meta property=og:title        content="Reverse HTTP Transport が描く新しい Web サービスデプロイ構成 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="IETF の httpbis で、 Reverse HTTP Transport という仕様が提案されている。Reverse HTTP Transporthttps://www.ietf.org/archive/id/draft-bt-httpbis-reverse-htt...">
+  <meta property=og:description  content="IETF の httpbis で、Reverse HTTP Transport という仕様が提案されている。Reverse HTTP Transporthttps://www.ietf.org/archive/id/draft-bt-httpbis-reverse-http...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-05-10T08:00:00+08:00",
-    "dateModified": "2024-05-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "IETF の httpbis で、 Reverse HTTP Transport という仕様が提案されている。Reverse HTTP Transporthttps://www.ietf.org/archive/id/draft-bt-httpbis-reverse-htt..."
+    "description": "IETF の httpbis で、Reverse HTTP Transport という仕様が提案されている。Reverse HTTP Transporthttps://www.ietf.org/archive/id/draft-bt-httpbis-reverse-http..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-05-10>2024-05-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-13>2024-05-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -161,7 +161,7 @@
       <h1><a href="">Reverse HTTP Transport が描く新しい Web サービスデプロイ構成</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>IETF の httpbis で、 Reverse HTTP Transport という仕様が提案されている。
+        <p>IETF の httpbis で、Reverse HTTP Transport という仕様が提案されている。
         <ul>
           <li>
             Reverse HTTP Transport
@@ -170,17 +170,17 @@
             </ul>
           </li>
         </ul>
-        <p>この仕様は、 Origin サーバの前に何かしら Intermediaries (Loadbalancer, Reverse Proxy, CDN etc)があるのが一般的な現代の Web サービス構成において、非常に革新的なアイデアを取り入れたプロトコルと言える。
+        <p>この仕様は、Origin サーバの前に何かしら Intermediaries (Loadbalancer, Reverse Proxy, CDN etc)があるのが一般的な現代の Web サービス構成において、非常に革新的なアイデアを取り入れたプロトコルと言える。
         <p>まだ v01 という初期段階ではあるが、発想が非常に面白かったので、読書メモを残す。
       </section>
       <section>
         <h2 id="登場人物"><a href="#登場人物">登場人物</a></h2>
         <p>ベースとして HTTP の話にはなるが、登場人物が多いため Client/Server という「相対的な役割」で話をすると、紛らわしくなる。
-        <p>そこで、まず現代の一般的な用途を表すために、 Browser と Origin という構成から話をスタートしよう。
-        <p>この場合、 Browser がリクエストをし、コンテンツを返すのが Origin だ。
+        <p>そこで、まず現代の一般的な用途を表すために、Browser と Origin という構成から話をスタートしよう。
+        <p>この場合、Browser がリクエストをし、コンテンツを返すのが Origin だ。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre><code translate=no>Browser ----&gt; Origin</code></pre>
-        <p>しかし、実際にはその間にさまざまな Intermedialies (Middle Box とも呼ぶ) が挟まり、 HTTP を中継している。
+        <p>しかし、実際にはその間にさまざまな Intermedialies (Middle Box とも呼ぶ) が挟まり、HTTP を中継している。
         <pre><code translate=no>Browser ---&gt; Intermedialies ---&gt; Origin</code></pre>
         <p>Intermedialies で代表的なのは、以下のようなものだ。
         <ul>
@@ -196,7 +196,7 @@
           <li>Origin をインターネットから隠匿
           <li>後続の Origin クラスタへの負荷分散
           <li>DDoS をはじめとする攻撃の検出と排除
-          <li>コンテンツのキャッシュをし、 Origin への負荷軽減
+          <li>コンテンツのキャッシュをし、Origin への負荷軽減
           <li>A/B Testing や Blue-Green Deploy のサポート
           <li>Client IP の隠蔽(OHTTP)
           <li>etc etc etc
@@ -216,13 +216,13 @@
       </section>
       <section>
         <h2 id="reverse-http"><a href="#reverse-http">Reverse HTTP</a></h2>
-        <p>通常 HTTP で通信する場合は、 CDN が Browser からのリクエストを Origin に転送することになる。
+        <p>通常 HTTP で通信する場合は、CDN が Browser からのリクエストを Origin に転送することになる。
         <pre><code translate=no>Browser ---[http]---&gt; CDN -[http]-&gt; Origin</code></pre>
-        <p>Reverse HTTP は、 Origin が CDN に対して接続を行うのだ。
+        <p>Reverse HTTP は、Origin が CDN に対して接続を行うのだ。
         <p>正確にはこうなる。
         <ol>
           <li>Origin が CDN に対して HTTP/2 or HTTP/3 のハンドシェイクを行う
-          <li>CDN はその接続を使って、 Browser からの HTTP を Origin に転送する
+          <li>CDN はその接続を使って、Browser からの HTTP を Origin に転送する
         </ol>
         <p>シーケンスでみるとこんな感じだ。
         <pre><code translate=no>+---------+                  +---------+                +----------+
@@ -253,23 +253,23 @@
      |                            |                           |     
      |                            |                           |     </code></pre>
         <p>Origin デプロイした瞬間に CDN に事前にコネクションを確立しておく。そして CDN はそのコネクションを逆に使って HTTP を転送するのだ。
-        <p>その接続を逆に使い、かつそこに複数のリクエスト/レスポンスを多重化するため、 HTTP/2, 3 が前提となり HTTP/1.1 は使えない。
+        <p>その接続を逆に使い、かつそこに複数のリクエスト/レスポンスを多重化するため、HTTP/2, 3 が前提となり HTTP/1.1 は使えない。
         <p>この方式に、いったいどういうメリットがあるだろうか?
       </section>
       <section>
         <h2 id="reverse-http-のメリット"><a href="#reverse-http-のメリット">Reverse HTTP のメリット</a></h2>
         <section>
           <h3 id="origin-の隠蔽"><a href="#origin-の隠蔽">Origin の隠蔽</a></h3>
-          <p>本来 CDN には、転送先である Origin の IP を教えておく必要がある。 CDN が別事業者の場合は、 Origin を固定 IP にし、それを CDN に登録するといった運用になるだろう。
-          <p>クラウド的な構成なら、例えば AWS で EC2 に立てた Origin は専用のネットワーク内に閉じ込め、 ELB だけが EC2 にアクセスするよくある構成になるが、この場合は Origin が固定 IP でインターネットに出ている必要がある。
+          <p>本来 CDN には、転送先である Origin の IP を教えておく必要がある。CDN が別事業者の場合は、Origin を固定 IP にし、それを CDN に登録するといった運用になるだろう。
+          <p>クラウド的な構成なら、例えば AWS で EC2 に立てた Origin は専用のネットワーク内に閉じ込め、ELB だけが EC2 にアクセスするよくある構成になるが、この場合は Origin が固定 IP でインターネットに出ている必要がある。
           <p>つまり、ネットワークが別れない構成では、この固定 IP が漏れると直接 DDoS は可能となるのだ。
-          <p>しかし、 Reverse HTTP では、 CDN はあくまで確立したコネクションに転送していくだけなので、「Origin が CDN のエンドポイントを知っている」だけでよいのだ。おそらく固定 IP である必要もないだろう。そして、ネットワーク的にも、あくまで Origin が CDN に接続できさえすれば良いので、 Origin の隠蔽は従来よりも柔軟に行うことができそうだ。
+          <p>しかし、Reverse HTTP では、CDN はあくまで確立したコネクションに転送していくだけなので、「Origin が CDN のエンドポイントを知っている」だけでよいのだ。おそらく固定 IP である必要もないだろう。そして、ネットワーク的にも、あくまで Origin が CDN に接続できさえすれば良いので、Origin の隠蔽は従来よりも柔軟に行うことができそうだ。
         </section>
         <section>
           <h3 id="origin-構成の自由度"><a href="#origin-構成の自由度">Origin 構成の自由度</a></h3>
-          <p>もし Origin が複数に分散していた場合、 CDN が負荷分散するためには、個々の Origin の IP をすべて CDN に教える必要があった。
-          <p>しかし、 Reverse HTTP なら、 Origin は起動したたびに CDN に繋ぎにいくだけで良いので、 CDN は常に「張られている接続」に対して負荷分散を行えば良い。
-          <p>負荷が増えれば Origin を増やし、減ったら Origin を減らすだけで、 CDN 側にクラスタの現状を知らせる必要すらなくなる。
+          <p>もし Origin が複数に分散していた場合、CDN が負荷分散するためには、個々の Origin の IP をすべて CDN に教える必要があった。
+          <p>しかし、Reverse HTTP なら、Origin は起動したたびに CDN に繋ぎにいくだけで良いので、CDN は常に「張られている接続」に対して負荷分散を行えば良い。
+          <p>負荷が増えれば Origin を増やし、減ったら Origin を減らすだけで、CDN 側にクラスタの現状を知らせる必要すらなくなる。
         </section>
       </section>
       <section>
@@ -277,7 +277,7 @@
         <p>便利そうな方式ではあるが、従来の運用との大きな変更もある。
         <section>
           <h3 id="クライアント証明書"><a href="#クライアント証明書">クライアント証明書</a></h3>
-          <p>CDN が接続してきた Origin を信用するために、 Origin にはクライアント証明書の提供が求められる。
+          <p>CDN が接続してきた Origin を信用するために、Origin にはクライアント証明書の提供が求められる。
           <p>つまり、これまで「サーバにはサーバ証明書を置く」のが一般的だったが、この構成では「サーバにクライアント証明書を置く」という運用になる。
           <p>このクライアント証明書を誰がどう発行するのか、どのようにデプロイするのかは、正直なところまだよくわかってないが、おそらく Reverse HTTP に対応した CDN が Origin に対して発行することになるだろう。
           <p>ここの管理の変更は、従来の運用に対するインパクトが大きそうに思う。また、このクライアント証明書に何が書かれるのかよくわかってない。
@@ -285,21 +285,21 @@
         <section>
           <h3 id="ip-アドレス"><a href="#ip-アドレス">IP アドレス</a></h3>
           <p>固定 IP である必要は無くなったが、逆に IP の Leak を防ぐために「Origin の IP は定期的に変更する」ことが SHOULD として求められている。
-          <p>これは、 CDN と Origin がネットワーク的に別れている構成だと面倒な気がする。
-          <p>やはり、従来のクラウドでのやり方のように、 Origin が Private Network に並んでて CDN がその境界にいる構成の方が組みやすい気がするが、その場合は (EC2 - ELB/ALB みたいに) Reverse する旨みがあまりない気がするが、どうなんだろうか。
+          <p>これは、CDN と Origin がネットワーク的に別れている構成だと面倒な気がする。
+          <p>やはり、従来のクラウドでのやり方のように、Origin が Private Network に並んでて CDN がその境界にいる構成の方が組みやすい気がするが、その場合は (EC2 - ELB/ALB みたいに) Reverse する旨みがあまりない気がするが、どうなんだろうか。
         </section>
         <section>
           <h3 id="逆方向のトラフィック"><a href="#逆方向のトラフィック">逆方向のトラフィック</a></h3>
           <p>最も気になるのは「このパケットは通るのか?」という点だ。
-          <p>HTTP のレイヤはすべて暗号化されるので、 Origin から CDN への TLS Handshake が通るかが肝になるだろう。
+          <p>HTTP のレイヤはすべて暗号化されるので、Origin から CDN への TLS Handshake が通るかが肝になるだろう。
           <p>通常 Origin 側から外に ClientHello が飛ぶことや、ましてそこにクライアント証明書が出ていくことなどは、あまり想定されてないように思う。
-          <p>とはいえ、 CDN-Origin のネットワークはサービス提供側の管理下になることが多いだろうため、心配する範囲は狭いのかもしれない。
+          <p>とはいえ、CDN-Origin のネットワークはサービス提供側の管理下になることが多いだろうため、心配する範囲は狭いのかもしれない。
         </section>
       </section>
       <section>
         <h2 id="client-selected-inermediaries"><a href="#client-selected-inermediaries">Client Selected Inermediaries</a></h2>
         <p>ここまでの話は、サービスプロバイダが Origin の前に立てる Intermediaries を例に話した。
-        <p>しかし、この仕様のスコープには、 Browser 側に立つ Intermediaries も含まれている。例えば以下だ。
+        <p>しかし、この仕様のスコープには、Browser 側に立つ Intermediaries も含まれている。例えば以下だ。
         <ul>
           <li>企業のネットワークに立ってる社内 Proxy
           <li>Private Realy のような OHTTP Proxy
@@ -312,7 +312,7 @@
           <p>&mdash; <cite><a href="https://www.ietf.org/archive/id/draft-bt-httpbis-reverse-http-01.html#section-3.2" target=_blank>https://www.ietf.org/archive/id/draft-bt-httpbis-reverse-http-01.html#section-3.2</a></cite>
         </blockquote>
         <p>つまり、リクエストの <code translate=no>Via</code> ヘッダによって Proxy などが発覚した場合、その Proxy に対して Origin 側から Reverse HTTP を試して良いらしい。
-        <p>野良の Proxy がクライアント証明書を受け付けるとも思えないため、よく使われる Proxy つまり現代では Private Relay で接続してきた iPhone がいたら、 Origin は Private Relay に Reverse HTTP を確立しておけるということだろうか。
+        <p>野良の Proxy がクライアント証明書を受け付けるとも思えないため、よく使われる Proxy つまり現代では Private Relay で接続してきた iPhone がいたら、Origin は Private Relay に Reverse HTTP を確立しておけるということだろうか。
         <p>Private Relay だけでもトラフィックは少し複雑になっているが、その上でさらに Reverse HTTP をすると、もはやこれまでの HTTP とはだいぶ違ったシーケンスになる。
       </section>
       <section>

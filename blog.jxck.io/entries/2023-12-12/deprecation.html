@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 12 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 12 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-12/deprecation.html>
   <meta property=og:title        content="3PCA 12 日目: 終わりの始まり | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 12 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 12 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-12T08:00:00+08:00",
-    "dateModified": "2023-12-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 12 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 12 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-12>2023-12-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-13>2023-12-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -154,7 +154,7 @@
       <h1><a href="">3PCA 12 日目: 終わりの始まり</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 12 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 12 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -178,7 +178,7 @@
           <li>Cookie Banner による同意取得/通知などが行われる。
         </ul>
         <p>法制度によって、事業者はトラッキングに際する同意の取得や、通知について実施することになる。
-        <p>逆を言えば、適法な同意取得や通知義務を満たしていれば、 3rd Party Cookie を使うことは問題なく、堂々と使うことができるのだ。
+        <p>逆を言えば、適法な同意取得や通知義務を満たしていれば、3rd Party Cookie を使うことは問題なく、堂々と使うことができるのだ。
         <p>が、それではこの話が終わらなかった。
         <p>ここからが第二章、なぜそれでも「3rd Party Cookie はブロックされていくのか」を見ていく。
       </section>
@@ -202,12 +202,12 @@
         <section>
           <h3 id="safari"><a href="#safari">Safari</a></h3>
           <p>Safari も 2016 年の時点で、デフォルトでブロックしていたとされる。
-          <p>しかし、正確には 3rd Party Context での保存はブロックする。つまり、 <code translate=no>&lt;iframe&gt;</code> で受信したレスポンスの <code translate=no>Set-Cookie</code> は無視するというものだ。
-          <p>一度そのサイトにアクセスして保存した Cookie は、 3rd Party Cookie としての「送信はされる」という制限だったのだ。
+          <p>しかし、正確には 3rd Party Context での保存はブロックする。つまり、<code translate=no>&lt;iframe&gt;</code> で受信したレスポンスの <code translate=no>Set-Cookie</code> は無視するというものだ。
+          <p>一度そのサイトにアクセスして保存した Cookie は、3rd Party Cookie としての「送信はされる」という制限だったのだ。
           <p>これは要するに、一度 Facebook や YouTube にログインしていれば、埋め込まれた「いいねボタン」は自分のアカウントでできるし、課金していれば埋め込み YouTube も広告が出ないということだ。
           <p>「トラッカーのサイトは直接アクセスされることはない」という点で、デフォルトでブロックしつつ、壊れる機能を極力減らすという、かなりバランスが取れた設計ではあったと筆者は感じる。
           <p>埋め込んだログインフォームからログインし、そのまま認証に繋げるような認証連携などは壊れる場合はあったが、その場合はログインフォーム自体を認証プロバイダで出し、一度そこに遷移するといった実装によって解決された。
-          <p>また、後述するが、一旦ひっそりとトラッカーにリダイレクトし、 Tracking Cookie を 1st Party Cookie として保存してから当初の目的地にリダイレクトするという、この仕様の秘孔をついた「バウンストラッキング」という手法も多用された。 Twitter でリンクをクリックすると、一度 <code translate=no>t.co</code> に飛ばされてから目的地にいくのも、こうした理由がある。
+          <p>また、後述するが、一旦ひっそりとトラッカーにリダイレクトし、Tracking Cookie を 1st Party Cookie として保存してから当初の目的地にリダイレクトするという、この仕様の秘孔をついた「バウンストラッキング」という手法も多用された。Twitter でリンクをクリックすると、一度 <code translate=no>t.co</code> に飛ばされてから目的地にいくのも、こうした理由がある。
         </section>
       </section>
       <section>
@@ -216,7 +216,7 @@
         <p>「ユースケース」側については、法律に従った合意取得/通知が広まり、違反者への罰金が実施されるようなところまで普及してきたところだ。
         <p>完全とは言えないまでも、取り組みは進んでおり、現実的な着地点がおおよそ見えてきたかのように思われた。
         <p>しかし、それでもプライバシーに関する問題は後をたたなかった。
-        <p>そして 2017 年、 Safari が ITP をリリースすることで、事態は新たな局面に突入していく。
+        <p>そして 2017 年、Safari が ITP をリリースすることで、事態は新たな局面に突入していく。
       </section>
     </article>
   </main>

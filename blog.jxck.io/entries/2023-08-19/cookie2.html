@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-08-19T08:00:00+08:00",
-    "dateModified": "2024-02-07T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-08-19>2023-08-19</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-02-07>2024-02-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -157,7 +157,7 @@
       <section>
         <h2 id="cookie-history"><a href="#cookie-history">Cookie History</a></h2>
         <p>2000 年に発行された Cookie の仕様である RFC 2965 では、仕様中に <code translate=no>Set-Cookie2</code>/<code translate=no>Cookie2</code> (以下 Cookie2) という 2 つのヘッダが定義されている。しかし 2011 年に改定された現行の RFC 6265 ではそれらヘッダは deprecate されており、実際の Web でこれらのヘッダが交換される場面を、少なくとも筆者は見たことがない。存在すら知らない開発者も多いだろう。
-        <p>筆者はずっと、この仕様がどのように出てきて、どうして消えていったのかが気になっていた。 Web 上にも情報が少なく、「歴史上の理由で」とか分かったようなことを言ってる人がたまにいるくらいだ。四半世紀前のことなので経緯を知っている人は少なくなりつつあるだろう。
+        <p>筆者はずっと、この仕様がどのように出てきて、どうして消えていったのかが気になっていた。Web 上にも情報が少なく、「歴史上の理由で」とか分かったようなことを言ってる人がたまにいるくらいだ。四半世紀前のことなので経緯を知っている人は少なくなりつつあるだろう。
         <p>そんな中、以下のドキュメントを教えてもらった。
         <ul>
           <li>
@@ -169,14 +169,14 @@
             </ul>
           </li>
         </ul>
-        <p>この資料は、当時 RFC 2109 および RFC 2965 を策定した David Kristol が、 2008 年に「そろそろ過去の議論の経緯がわからない人も WG に増えたので」と、そこまでの Cookie の策定経緯をまとめたものだ。 RFC を出して終わりな人が多い中、標準化における過去の議論の経緯をまとめることの重要性を意識した、非常に尊い仕事だと言える。
-        <p>内容は 1994 年頃に HTTP/1.0 策定が始まったころから、Cookie そのものが標準化されるに至った経緯と、第二版にあたる RFC 2965 が出る 2000 年までの議論の記録を振り返ったものだ。 Cookie2 の話は後半まで出てこないが、そこまでの背景と時代状況などがわかることで、より深く理解することができる。単なる昔話ではなく、今話題になっている Cookie を取り巻く様々な議論の解像度を上げる意味でも、非常に有用な文書と言える。
+        <p>この資料は、当時 RFC 2109 および RFC 2965 を策定した David Kristol が、2008 年に「そろそろ過去の議論の経緯がわからない人も WG に増えたので」と、そこまでの Cookie の策定経緯をまとめたものだ。RFC を出して終わりな人が多い中、標準化における過去の議論の経緯をまとめることの重要性を意識した、非常に尊い仕事だと言える。
+        <p>内容は 1994 年頃に HTTP/1.0 策定が始まったころから、Cookie そのものが標準化されるに至った経緯と、第二版にあたる RFC 2965 が出る 2000 年までの議論の記録を振り返ったものだ。Cookie2 の話は後半まで出てこないが、そこまでの背景と時代状況などがわかることで、より深く理解することができる。単なる昔話ではなく、今話題になっている Cookie を取り巻く様々な議論の解像度を上げる意味でも、非常に有用な文書と言える。
         <p>古文書を発掘した気持ちで、夏休みの自由研究として考古学に勤しむことにした。
       </section>
       <section>
         <h2 id="netscape-の仕様"><a href="#netscape-の仕様">Netscape の仕様</a></h2>
-        <p>Stateless なプロトコルとして設計されていた、TBL オリジナルの HTTP (いわゆる HTTP/0.9) の時代から、 State Management を持ち込みたいユースケースは多くあった。わかりやすいところでは、 EC のショッピングカート実装だ。
-        <p>そこで、 Netscape が独自に実装したのが Cookie の始まりだ。 Netscape で Cookie が作られた経緯は Cookie の作者本人である Lou Montulli が以下に書いている。
+        <p>Stateless なプロトコルとして設計されていた、TBL オリジナルの HTTP (いわゆる HTTP/0.9) の時代から、State Management を持ち込みたいユースケースは多くあった。わかりやすいところでは、EC のショッピングカート実装だ。
+        <p>そこで、Netscape が独自に実装したのが Cookie の始まりだ。Netscape で Cookie が作られた経緯は Cookie の作者本人である Lou Montulli が以下に書いている。
         <ul>
           <li>
             The irregular musings of Lou Montulli: The reasoning behind Web Cookies
@@ -186,7 +186,7 @@
           </li>
         </ul>
         <p>これを見ると、当時 Netscape でも EC にカートを実装する要件があり、彼が「端末固有番号」のような仕様を避けるために Cookie を思いついたこと、名前の由来は OS の &quot;magic cookie&quot; だったことなどがわかる。
-        <p>Netscape が公開していた仕様は以下だ。今の仕様と比べれば非常に短い、 README 程度のこの仕様から全ては始まった。
+        <p>Netscape が公開していた仕様は以下だ。今の仕様と比べれば非常に短い、README 程度のこの仕様から全ては始まった。
         <ul>
           <li>
             PERSISTENT CLIENT STATE HTTP COOKIES Preliminary Specification
@@ -195,8 +195,8 @@
             </ul>
           </li>
         </ul>
-        <p>あくまで Netscape の独自仕様であり、最初は IETF RFC ではなかった。しかし、その利用が広がり「State Management の標準仕様が必要だ」という流れから、 1995 年 IETF に &quot;State Management Subgroup&quot; が作られ、そこで議論が開始される。
-        <p>このとき、それこそ Server が割り振るのではなく Client が割り振る &quot;Session-ID&quot; なる対案もあったようだ。今で言う HTTP State Token と同じ発想が、 Cookie の初期 RFC 策定段階にあったことは興味深い。
+        <p>あくまで Netscape の独自仕様であり、最初は IETF RFC ではなかった。しかし、その利用が広がり「State Management の標準仕様が必要だ」という流れから、1995 年 IETF に &quot;State Management Subgroup&quot; が作られ、そこで議論が開始される。
+        <p>このとき、それこそ Server が割り振るのではなく Client が割り振る &quot;Session-ID&quot; なる対案もあったようだ。今で言う HTTP State Token と同じ発想が、Cookie の初期 RFC 策定段階にあったことは興味深い。
         <ul>
           <li>
             Explainer: Tightening HTTP State Management
@@ -206,7 +206,7 @@
           </li>
         </ul>
         <p>また、余談だがこの時点から Privacy に関する議論、特にヨーロッパ圏からのフィードバックが多くあり、来年(2024 年)に予定されている 3rd Party Cookie Deprecation の実に 30 年前、なんなら仕様ができる前から、プライバシーをめぐる議論は始まっていたこともわかる。
-        <p>Subgroup では、いくつかある提案から Netscape の Cookie をベースに作業を開始することが決まった。既存デプロイとの互換性を考えても、新しい機構を生み出すより Running Code をとるのが理にかなっているのは IETF のあり方だ。 Netscape の薄っぺらい仕様の曖昧な部分(構文定義、属性値、ドメイン判定など)を厳格にするところから着手することになり、追加で以下のような議論がされた。
+        <p>Subgroup では、いくつかある提案から Netscape の Cookie をベースに作業を開始することが決まった。既存デプロイとの互換性を考えても、新しい機構を生み出すより Running Code をとるのが理にかなっているのは IETF のあり方だ。Netscape の薄っぺらい仕様の曖昧な部分(構文定義、属性値、ドメイン判定など)を厳格にするところから着手することになり、追加で以下のような議論がされた。
         <ul>
           <li>Cookie が送られるドメインの判定
           <li>プライバシーの考慮
@@ -223,7 +223,7 @@
           <li>&quot;.mil&quot;
           <li>&quot;.int&quot;
         </ul>
-        <p>これは、 DNS が階層的に管理され、サブドメインの管理者は同じであること、ドメインの末尾は文字数で見分けられること、などに依存した仕組みであり、実際に問題が引き起こされていた。今でもよく問題になる <code translate=no>Domain</code> 属性についての議論も、当初からあったことがわかる。
+        <p>これは、DNS が階層的に管理され、サブドメインの管理者は同じであること、ドメインの末尾は文字数で見分けられること、などに依存した仕組みであり、実際に問題が引き起こされていた。今でもよく問題になる <code translate=no>Domain</code> 属性についての議論も、当初からあったことがわかる。
         <p>同時に Port の分離も議論されている。結局、同一ドメイン上の別ポートにも共有されることになったが、この頃は今と違って Web ですら 80/443 以外にデプロイされることがあったのだろう。このとき Port が分離されたら、もっと言えば先に CORS があったなら、その後起こる様々な脆弱性が緩和できていたかもしれないが、タラレバでしかない。
         <p>プライバシーについての問題は、ユーザが意図しない Cookie の共有、今で言う 3rd Party Cookie の問題そのものだが、当時は &quot;Unverifiable Transactions&quot; つまり、「ユーザが認識/検証できないやり取り」というトピックで議論されていた。
         <p>自分が直接アクセスしてないサイトの Cookie が保存されるのは、ユーザにとって直感的ではない。当時は、ユーザがローカルの Cookie ファイルを調べ、知らないドメインのものが保存されているのを見て「侵入された」と騒ぐようなニュースがあったらしい。
@@ -231,12 +231,12 @@
       </section>
       <section>
         <h2 id="rfc-2109"><a href="#rfc-2109">RFC 2109</a></h2>
-        <p>RFC 2109 は、 Netscape の仕様をブラッシュアップすると同時に、いくつか新しい機能を追加していた。例えば、 <code translate=no>Set-Cookie</code> に指定できる属性には、 <code translate=no>Max-Age</code>, <code translate=no>Comment</code>, <code translate=no>Version</code> が追加されている。
+        <p>RFC 2109 は、Netscape の仕様をブラッシュアップすると同時に、いくつか新しい機能を追加していた。例えば、<code translate=no>Set-Cookie</code> に指定できる属性には、<code translate=no>Max-Age</code>, <code translate=no>Comment</code>, <code translate=no>Version</code> が追加されている。
         <p><code translate=no>Max-Age</code> は現在も使われているが、もとの <code translate=no>Expires</code> による絶対日付指定が持っていたパース困難性によるバグや、クロックずらしによる偽装などに対応するため、相対時間指定ができるようにしたものだ。
         <p><code translate=no>Comment</code> は、その Cookie の用途をユーザにアドバタイズするためのものだ。同時にこの RFC では 3rd Party Cookie (Unverifiable Transaction) の送信をデフォルトで禁止し、ユーザに検証(Verify)する方法を提供するように求めている。資料の中では「インフォームドコンセント」が EU を中心に要求されていた経緯が書かれており、この属性はそのオプトインを実現するため、今で言う Cookie バナーをブラウザが提供する際に使われる意図があったようだ。
-        <p><code translate=no>Version</code> は対応する Cookie (State Management Mechanism) のバージョンを示すためのものだ。すでに Netscape の古い仕様との互換性も考える必要があるため、この段階で Versioning をし、先々の更新に耐えうるようにしたかったのだろう。 Web で何度か繰り返される代表的な失敗の 1 つだ。
-        <p>ところが、この RFC が出てすぐに、ブラウザの互換性問題が指摘されることになる。当時は Netscape と IE が二大巨頭であり、どちらもこの時点では RFC 2109 の &quot;新仕様&quot; には対応しておらず、 Netscape の &quot;旧仕様&quot; を採用していた。
-        <p>Subgroup は、 HTTP/1.1 に準拠したクライアントは新仕様を理解し、そうでない HTTP/1.0 では新仕様部分を無視して旧仕様が使われるという想定だった。しかし実際にはそうではなかった。
+        <p><code translate=no>Version</code> は対応する Cookie (State Management Mechanism) のバージョンを示すためのものだ。すでに Netscape の古い仕様との互換性も考える必要があるため、この段階で Versioning をし、先々の更新に耐えうるようにしたかったのだろう。Web で何度か繰り返される代表的な失敗の 1 つだ。
+        <p>ところが、この RFC が出てすぐに、ブラウザの互換性問題が指摘されることになる。当時は Netscape と IE が二大巨頭であり、どちらもこの時点では RFC 2109 の &quot;新仕様&quot; には対応しておらず、Netscape の &quot;旧仕様&quot; を採用していた。
+        <p>Subgroup は、HTTP/1.1 に準拠したクライアントは新仕様を理解し、そうでない HTTP/1.0 では新仕様部分を無視して旧仕様が使われるという想定だった。しかし実際にはそうではなかった。
         <p>以下のような <code translate=no>Set-Cookie</code> を考えてみよう。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=iPmVILn7dxCO4n;
@@ -245,7 +245,7 @@
   Max-Age=31536000;
   Path=/;
   Expires=Tue Feb 22 2022 22:22:22 GMT</code></pre>
-        <p>仕様策定者は、最初の属性を Name/Value と扱うと想定していた。実際 Netscape はそうだったが、 IE は最後の認識できない属性を Name/Value ペアとして採用する実装だった。当時 IE のシェアは 20~30% で、無視できない問題だった。
+        <p>仕様策定者は、最初の属性を Name/Value と扱うと想定していた。実際 Netscape はそうだったが、IE は最後の認識できない属性を Name/Value ペアとして採用する実装だった。当時 IE のシェアは 20~30% で、無視できない問題だった。
         <p>こうして、発行されてすぐの RFC 2109 は改定に向けて議論を始めた。
       </section>
       <section>
@@ -264,10 +264,10 @@
       <section>
         <h2 id="rfc-6265"><a href="#rfc-6265">RFC 6265</a></h2>
         <p>結論から言うと <code translate=no>Set-Cookie2</code>/<code translate=no>Cookie2</code> は、その後全くと言ってよいほど使われなかった。
-        <p><code translate=no>Set-Cookie</code> をデプロイしているサービスにとって、 <code translate=no>Set-Cookie2</code> に移行する強力なインセンティブがなければ、わざわざ重複する 2 つのヘッダを送る移行期を経てまで、刷新するモチベーションがない。旧仕様をサポートしたクライアントも、サーバが両方送る以上旧仕様のままでも困らないので、サポートを広げるインセンティブがない。新仕様デプロイにおける典型的な鶏/卵問題だ。
+        <p><code translate=no>Set-Cookie</code> をデプロイしているサービスにとって、<code translate=no>Set-Cookie2</code> に移行する強力なインセンティブがなければ、わざわざ重複する 2 つのヘッダを送る移行期を経てまで、刷新するモチベーションがない。旧仕様をサポートしたクライアントも、サーバが両方送る以上旧仕様のままでも困らないので、サポートを広げるインセンティブがない。新仕様デプロイにおける典型的な鶏/卵問題だ。
         <p>RFC 2965 の議論の段階から指摘されていた問題は、そもそもこの仕様の策定にブラウザベンダが関わってないこと、そして仕様の策定が「理想の追求」であり「現実世界の反映」ではなかったことだった。
-        <p>IETF の理念として RFC 策定の目的は <em>De-jure</em> ではなく <em>De-facto</em> 、つまり実世界にはどのようなランニングコードがあるのかを調査し、それらが互換性を保てるように仕様を策定することが求められる。 RFC 2965 は De-jure 策定側に寄ってしまい、結果「<em>理想的で誰も使わない仕様</em>」ができてしまった。
-        <p>そこから 10 年ほど経った 2009 年頃、 Cookie の改定を行うため WG が再始動した。作業を開始するにあたって示される Charter には、以下のように記されている。
+        <p>IETF の理念として RFC 策定の目的は <em>De-jure</em> ではなく <em>De-facto</em> 、つまり実世界にはどのようなランニングコードがあるのかを調査し、それらが互換性を保てるように仕様を策定することが求められる。RFC 2965 は De-jure 策定側に寄ってしまい、結果「<em>理想的で誰も使わない仕様</em>」ができてしまった。
+        <p>そこから 10 年ほど経った 2009 年頃、Cookie の改定を行うため WG が再始動した。作業を開始するにあたって示される Charter には、以下のように記されている。
         <ul>
           <li>
             http-state charter
@@ -282,7 +282,7 @@
           <p>The HTTP State Management Mechanism (aka Cookies) was originally created by Netscape Communications in their informal Netscape cookie specification (&quot;cookie_spec.html&quot;), from which formal specifications RFC 2109 and RFC 2965 evolved. The formal specifications, however, were never fully implemented in practice; RFC 2109, in addition to cookie_spec.html, more closely resemble real-world implementations than RFC 2965, even though RFC 2965 officially obsoletes the former. Compounding the problem are undocumented features (such as HTTPOnly), and varying behaviors among real-world implementations.
           <p>
           </p>
-          <p>Netscape の独自仕様を RFC 2109、 RFC 2965 と仕様化してきたが、全くと言っていいほど使われなかった。 RFC 2109 は RFC 2965 に Obsolete されたにもかかわらず、リアルワールドは RFC 2109 の方が体現してる。そのうえで、 HTTPOnly のように仕様化されてないけど、使われており、実装によって動作が違うものもある。
+          <p>Netscape の独自仕様を RFC 2109、RFC 2965 と仕様化してきたが、全くと言っていいほど使われなかった。RFC 2109 は RFC 2965 に Obsolete されたにもかかわらず、リアルワールドは RFC 2109 の方が体現してる。そのうえで、HTTPOnly のように仕様化されてないけど、使われており、実装によって動作が違うものもある。
           <p>&mdash; <cite><a href="https://datatracker.ietf.org/doc/charter-ietf-httpstate/" target=_blank>https://datatracker.ietf.org/doc/charter-ietf-httpstate/</a></cite>
         </blockquote>
         <blockquote cite="https://datatracker.ietf.org/doc/charter-ietf-httpstate/">
@@ -312,14 +312,14 @@
             </ul>
           </li>
         </ul>
-        <p>結果、誰も使ってない <code translate=no>Set-Cookie2</code>/<code translate=no>Cookie2</code> は最初のドラフトの時点から削除され、 <code translate=no>Comment</code> / <code translate=no>Version</code> 属性も同様に削除された。新規ではあったが、実装が広まり互換が保たれていた <code translate=no>Max-Age</code> については仕様に残り、仕様には無かったが実際に使われていた <code translate=no>HttpOnly</code> が追加されることになる。
+        <p>結果、誰も使ってない <code translate=no>Set-Cookie2</code>/<code translate=no>Cookie2</code> は最初のドラフトの時点から削除され、<code translate=no>Comment</code> / <code translate=no>Version</code> 属性も同様に削除された。新規ではあったが、実装が広まり互換が保たれていた <code translate=no>Max-Age</code> については仕様に残り、仕様には無かったが実際に使われていた <code translate=no>HttpOnly</code> が追加されることになる。
         <p>&quot;Unverifiable Transaction&quot; が &quot;3rd Party Cookie&quot; に変わるのもここからだ。内容もガラッと変わっている。
-        <p>Lou のブログの方では、 1996 年ごろから Double Click などが行っていた 3rd Party Cookie による広告のトラッキングが、すでに問題になっていたことが触れられている。ここで Lou は 3rd Party Cookie をブロックするかどうかの決断を委ねられ、数週間悩んだ結果、以下の理由で残すことにしたとしてる。(意訳)
+        <p>Lou のブログの方では、1996 年ごろから Double Click などが行っていた 3rd Party Cookie による広告のトラッキングが、すでに問題になっていたことが触れられている。ここで Lou は 3rd Party Cookie をブロックするかどうかの決断を委ねられ、数週間悩んだ結果、以下の理由で残すことにしたとしてる。(意訳)
         <ol>
           <li>追跡は可能でも、追跡していることを隠すことはできない。一般市民はそれを実施する企業自身、および規制を作り実施する政府双方に圧力をかける、自然なフィードバックメカニズムが機能する。
           <li>もし 3rd Party Cookie を無効にしても、広告会社は別の方法でトラッキングを実現するだけであり問題の先送りにしかならない。また、その方法は Cookie 以上に観測/無効化が難しいものである可能性がある。
         </ol>
-        <p>また、3rd Party Cookie 全体を無効にすることで、トラッキング以外のユースケースも壊れるという現実もあり、現時点に続く 3rd Party Cookie のある Web という世界線にシフトした。その現実を反映するため、 RFC 2965 に書かれていた理想的な 3rd Party Cookie のあり方も、現実に即して書き直されている。
+        <p>また、3rd Party Cookie 全体を無効にすることで、トラッキング以外のユースケースも壊れるという現実もあり、現時点に続く 3rd Party Cookie のある Web という世界線にシフトした。その現実を反映するため、RFC 2965 に書かれていた理想的な 3rd Party Cookie のあり方も、現実に即して書き直されている。
         <p>(今世界が直面し、総出で作業を進めている課題を、たった一人で決断しなくてはならなかった当時の Lou の心中は、察するに余りある。)
         <p>こうして、現在の Cookie の礎となる「ちゃんとした仕様」が RFC 6265 としてまとめられ、その過程で Cookie2 は消えていった。
       </section>
@@ -327,10 +327,10 @@
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>脱線も多かったが、以上が Cookie という超メジャーな仕様に 10 年以上定義されていたヘッダでありながら、全くと言って良いほど使われなかった Cookie2 という仕様が、どうやって出てきてどうして消えていったかの経緯だ。
         <p>この資料からは、本当に定義すべき仕様のありかた、そして実世界を無視した策定の盛大なしくじり、有り体に言えば「<em>Web における仕様策定の難しさ</em>」を学ぶことができる。今標準化の文脈で「IETF はどのようなフィロソフィーで仕様を策定するのか」というベストプラクティスはよく語られるが、そうなった背景にこうした失敗があったことを知ると、より深く理解できるだろう。
-        <p>この RFC 6265 からも 10 年ほど経過し、 Web を取り巻く状況や、そこに求められる基準も大きく変わった今、 Cookie の仕様は RFC 6265bis (&quot;bis&quot; は &quot;もう一回&quot; の意味) として、改定作業が進められている。当時からまたブラウザの顔ぶれは代わり、加えて新たに CDN からのメンバーも目立つようになった。
-        <p>当時と違い、テストは WPT を中心に拡充され、互換性を上げるために Interop の取り組みも徐々に成果を出している。そして基盤の整備や、エコシステムによる研究の成果もあり、単なる共通部分の合意だけではなく、 SameSite や Cookie Prefix といった新しい仕様の追加も進んでいる。そして、世界はまた 3rd Party Cookie について見直しを強く求め、「壊れるからそのまま」とも言ってられなくなり、 30 年来の Deprecation 実現に向けて、標準化団体、実装者、ユーザ、政府などが、一丸となって作業を進めている。
+        <p>この RFC 6265 からも 10 年ほど経過し、Web を取り巻く状況や、そこに求められる基準も大きく変わった今、Cookie の仕様は RFC 6265bis (&quot;bis&quot; は &quot;もう一回&quot; の意味) として、改定作業が進められている。当時からまたブラウザの顔ぶれは代わり、加えて新たに CDN からのメンバーも目立つようになった。
+        <p>当時と違い、テストは WPT を中心に拡充され、互換性を上げるために Interop の取り組みも徐々に成果を出している。そして基盤の整備や、エコシステムによる研究の成果もあり、単なる共通部分の合意だけではなく、SameSite や Cookie Prefix といった新しい仕様の追加も進んでいる。そして、世界はまた 3rd Party Cookie について見直しを強く求め、「壊れるからそのまま」とも言ってられなくなり、30 年来の Deprecation 実現に向けて、標準化団体、実装者、ユーザ、政府などが、一丸となって作業を進めている。
         <p>今また大きな転換期を迎えている Cookie だが、この荒波の中で Cookie2 のような過ちを繰り返すことなく、今の時代が求める新たな Cookie のあり方に着地してくれることを願いたい。
-        <p>以上をもって、 2023 年夏休みの自由研究とする。
+        <p>以上をもって、2023 年夏休みの自由研究とする。
       </section>
       <section>
         <h2 id="resources"><a href="#resources">Resources</a></h2>

@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 23 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 23 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-25/interest-based-advertising.html>
   <meta property=og:title        content="3PCA 23 日目: Interest Based Advertising | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 23 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 23 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-25T08:00:00+08:00",
-    "dateModified": "2024-05-14T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 23 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 23 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-25>2023-12-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-14>2024-05-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,7 +156,7 @@
       <h1><a href="">3PCA 23 日目: Interest Based Advertising</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 23 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 23 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -165,7 +165,7 @@
             </ul>
           </li>
         </ul>
-        <p>今回からは、 Privacy Sandbox の API を、ジャンルごとに分けて概要を解説していく。
+        <p>今回からは、Privacy Sandbox の API を、ジャンルごとに分けて概要を解説していく。
         <p>個々の API は非常に複雑であり、また今後も細かい点が変わっていくだろう。
         <p>どうせガッツリ使うのであれば、仕様を読む必要があるため、ここでは「何がしたいのか」「何ができるのか」に絞って解説する。
       </section>
@@ -187,12 +187,12 @@
           <p>これは、基本的に「ブラウザの閲覧履歴」をソースとして、ハッシュ値を生成するようなイメージだ。このハッシュ値 SimHash と呼ばれ「閲覧履歴が似ている人は同じ値になる」という特徴がある。似たインタレストのユーザを「コホート(群)」に分類し、そこに値を付与するアルゴリズムをブラウザが持つのだ。
           <p>Cohort の値はわかるが、別にそこから「この人はどういうサイトを見ている人か」がわかるわけではない(K-anonimity)。
           <p>もし First Party で大量の顧客情報を持っていれば、「同じコホート値の人々の属性情報」を持ち、そこから共通部分を割り出すといった分析も可能かもしれない。
-          <p>しかし、それがない一般的な用途としては、例えば「このコホート値の人にこの広告を表示したら効果があった、であればこっちの人にも同じものを表示してみよう」程度の使い方しかできないだろう。 3rd Party Cookie と比べると、非常に精度の低い情報、むしろ役に立てられるかも正直よくわからない。
+          <p>しかし、それがない一般的な用途としては、例えば「このコホート値の人にこの広告を表示したら効果があった、であればこっちの人にも同じものを表示してみよう」程度の使い方しかできないだろう。3rd Party Cookie と比べると、非常に精度の低い情報、むしろ役に立てられるかも正直よくわからない。
           <p>その点では、必ずしも平等と言えるかは微妙だというのが、筆者の印象だった。
           <p>結果としてこの API は提案段階で大炎上するのだが、それはこの不平等さ云々以前に「Google が閲覧履歴を吸い取ろうとしている」という心象的な原因によって起こった。
-          <p>直近でアクセスした URL のドメイン(eTLD+1)部分しか使わず、その値から URL リストを逆算することもできず、 Google の管理している「センシティブな情報」の URL は除外し、一週間程度で再生成されるが、それでも「気持ち悪い」という心象は拭えなかったようだ。
+          <p>直近でアクセスした URL のドメイン(eTLD+1)部分しか使わず、その値から URL リストを逆算することもできず、Google の管理している「センシティブな情報」の URL は除外し、一週間程度で再生成されるが、それでも「気持ち悪い」という心象は拭えなかったようだ。
           <p>「我々は最初からこの API をオプトアウトします」といった表明をするサービスが出て、批判するニュースが飛び交った。
-          <p>そして、 Mozilla からは「この値が Fingerprint ベクターになる」というレポートが出たのもあり、結局この API は取り下げられることになった。
+          <p>そして、Mozilla からは「この値が Fingerprint ベクターになる」というレポートが出たのもあり、結局この API は取り下げられることになった。
         </section>
         <section>
           <h3 id="topics"><a href="#topics">Topics</a></h3>

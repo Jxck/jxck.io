@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="IETF が策定する HTTP の仕様が更新されようとしている。ここには、 Cache の仕様も含まれており、そのなかで must-understand という Cache-Control のディレクティブが追加されている。このディレクティブが追加された経緯と仕様について解...">
+  <meta name=description         content="IETF が策定する HTTP の仕様が更新されようとしている。ここには、Cache の仕様も含まれており、そのなかで must-understand という Cache-Control のディレクティブが追加されている。このディレクティブが追加された経緯と仕様について解説する。">
   <meta name=keywords            content="cache,http,ietf">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html>
   <meta property=og:title        content="Cache-Control: must-understand ディレクティブとは何か | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="IETF が策定する HTTP の仕様が更新されようとしている。ここには、 Cache の仕様も含まれており、そのなかで must-understand という Cache-Control のディレクティブが追加されている。このディレクティブが追加された経緯と仕様について解...">
+  <meta property=og:description  content="IETF が策定する HTTP の仕様が更新されようとしている。ここには、Cache の仕様も含まれており、そのなかで must-understand という Cache-Control のディレクティブが追加されている。このディレクティブが追加された経緯と仕様について解説する。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-02-12T08:00:00+08:00",
-    "dateModified": "2023-04-11T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "IETF が策定する HTTP の仕様が更新されようとしている。ここには、 Cache の仕様も含まれており、そのなかで must-understand という Cache-Control のディレクティブが追加されている。このディレクティブが追加された経緯と仕様について解..."
+    "description": "IETF が策定する HTTP の仕様が更新されようとしている。ここには、Cache の仕様も含まれており、そのなかで must-understand という Cache-Control のディレクティブが追加されている。このディレクティブが追加された経緯と仕様について解説する。"
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-02-12>2021-02-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-11>2023-04-11</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -157,7 +157,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>IETF が策定する HTTP の仕様が更新されようとしている。
-        <p>ここには、 <a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html" target=_blank>Cache</a> の仕様も含まれており、そのなかで <code translate=no>must-understand</code> という <code translate=no>Cache-Control</code> のディレクティブが追加されている。
+        <p>ここには、<a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-14.html" target=_blank>Cache</a> の仕様も含まれており、そのなかで <code translate=no>must-understand</code> という <code translate=no>Cache-Control</code> のディレクティブが追加されている。
         <p>このディレクティブが追加された経緯と仕様について解説する。
       </section>
       <section>
@@ -171,7 +171,7 @@
           <p>Likewise, the definition of a status code can place constraints upon cache behavior...
           <p>&mdash; <cite><a href="https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2" target=_blank>https://httpwg.org/specs/rfc7231.html#rfc.section.8.2.2</a></cite>
         </blockquote>
-        <p>つまり、その新しいステータスコードは、 <code translate=no>max-age</code> などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache が可能かどうかなどを定義できるのだ。
+        <p>つまり、その新しいステータスコードは、<code translate=no>max-age</code> などを伴えばその指定通りキャッシュが可能であり、さらにそうした明示的なコントロールがない場合に Heuristic Cache が可能かどうかなどを定義できるのだ。
         <p>一方、キャッシュを保存する要件として以下があった。
         <blockquote cite="https://httpwg.org/specs/rfc7234.html#response.cacheability">
           <p>A cache MUST NOT store a response to any request, unless:
@@ -179,7 +179,7 @@
           <p>the response status code is understood by the cache, and...
           <p>&mdash; <cite><a href="https://httpwg.org/specs/rfc7234.html#response.cacheability" target=_blank>https://httpwg.org/specs/rfc7234.html#response.cacheability</a></cite>
         </blockquote>
-        <p>問題は、 3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
+        <p>問題は、3 行目にある「キャッシュを行う実装は、ステータスコードを理解する必要がある」という条件だ。
         <p>新しいステータスコードが標準化された場合に、そのステータスコードが未実装な場合はキャッシュできないように読めてしまう。実装者は、サポートしているステータスコードをリストとして埋め込み、突き合わせてキャッシュの制御を行うことになるだろう。
         <p>この点は、先程の要件と矛盾があり、例えば <code translate=no>max-age</code> を伴う新しいステータスコードのレスポンスを受信した実装が、そのステータスコードを実装してない場合に、どうすべきかということになる。
         <p>実装に対する制限は後者なので、安全側に倒すと「キャッシュしない」方を選ぶことになり、すると実装が普及するまではキャッシュが効かないことになる。
@@ -201,10 +201,10 @@ Content-Type: text/html
 Content-Length: 256
 Cache-Control: max-age=3600, must-understand, no-store</code></pre>
         <p><code translate=no>must-understand</code> は、その status code の要件として定義されたキャッシュに関する挙動をサポートしない限りは、そのレスポンスをキャッシュしてはならないという意味になる。
-        <p>上の例では、実装が <code translate=no>999</code> に定義された要件を実装してない、平たく言うと <code translate=no>999</code> をサポートしてない場合は、このレスポンスがキャッシュできないが、 <code translate=no>999</code> をサポートしているのであれば後ろの <code translate=no>no-store</code> を無視してキャッシュすることができる。
+        <p>上の例では、実装が <code translate=no>999</code> に定義された要件を実装してない、平たく言うと <code translate=no>999</code> をサポートしてない場合は、このレスポンスがキャッシュできないが、<code translate=no>999</code> をサポートしているのであれば後ろの <code translate=no>no-store</code> を無視してキャッシュすることができる。
         <p>もし <code translate=no>999</code> に特に何か特別な要件がなければ <code translate=no>max-age</code> に準じた挙動になるだろうし、何か <code translate=no>max-age</code> を上書きするような条件があればそれに従うことになるだろう。
-        <p>通常、キャッシュの実装はサポートしてないディレクティブを無視するため、 <code translate=no>must-understand</code> に対応してない場合は、後ろの <code translate=no>no-store</code> が適応され、これは <code translate=no>max-age</code> よりも優先されるためにこのレスポンスはキャッシュされない。
-        <p>結果、 <code translate=no>must-understand</code> が <code translate=no>no-store</code> とともに付与された場合のレスポンスは、ステータスコードを理解してない実装によって意図しない保存をされることがなくなることが期待される。
+        <p>通常、キャッシュの実装はサポートしてないディレクティブを無視するため、<code translate=no>must-understand</code> に対応してない場合は、後ろの <code translate=no>no-store</code> が適応され、これは <code translate=no>max-age</code> よりも優先されるためにこのレスポンスはキャッシュされない。
+        <p>結果、<code translate=no>must-understand</code> が <code translate=no>no-store</code> とともに付与された場合のレスポンスは、ステータスコードを理解してない実装によって意図しない保存をされることがなくなることが期待される。
         <section>
           <h3 id="改訂仕様"><a href="#改訂仕様">改訂仕様</a></h3>
           <p><code translate=no>must-understand</code> の追加によって、改訂ドラフトで前述の仕様は以下のようになった。
@@ -227,7 +227,7 @@ Cache-Control: max-age=3600, must-understand, no-store</code></pre>
           <p>このディレクティブは、どちらかというと前述のような仕様の解釈のブレによって、将来、特にキャッシュ周りに特定の条件を伴うような新しいステータスコードを追加する場合に、その普及が順調に進むように投機的に仕様化されたという性質が強い。
           <p>近年でも <code translate=no>103 Early Hints</code>, <code translate=no>425 Too Early</code>, <code translate=no>451 Unavailable For Legal Reasons</code> など、それほど多い頻度ではないが、ステータスコードが追加されることはあり、そこで互換性を壊さずに「実装がそうした新しい仕様を実装しているのか」を担保した上で使用できる仕組みなのだ。
           <p>もちろん、十分に実装が普及したステータスコードに <code translate=no>must-understand</code> を併用する必要はなく、それはむしろ <code translate=no>must-understand</code> を理解しない実装によって <code translate=no>no-store</code> と扱われるだけなので、デメリットの方が強いだろう。
-          <p>かといって、特に今 <code translate=no>must-understand</code> が無いと普及が難しいステータスコードが議論されているという話も聞かないため、主に httbis によるキャッシュ仕様の更新に合わせて、 mnot が空いた穴を埋めたという認識でいる。
+          <p>かといって、特に今 <code translate=no>must-understand</code> が無いと普及が難しいステータスコードが議論されているという話も聞かないため、主に httbis によるキャッシュ仕様の更新に合わせて、mnot が空いた穴を埋めたという認識でいる。
         </section>
       </section>
       <section>

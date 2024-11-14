@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-04-26T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-04-26>2019-04-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -188,7 +188,7 @@ PING</code></pre>
         <p>したがって ping リクエストを収集することにより、ユーザが「<em>どのページからどのページに遷移したか</em>」を取得することができるのだ。
         <p>従来も HTTP の Referer ヘッダを見れば「そのユーザがどこから遷移して来たか」を取ることができた。
         <p>ping 属性はこれに加え「どこに遷移して行ったか」を標準仕様だけで取ることを可能にし、より精度の高いユーザの行動解析を可能にするものだ。
-        <p>身近な ping の導入事例としては、 Google の検索結果がある。 ping を実装したブラウザでリンクを踏むともれなく ping が飛んでいることだろう。
+        <p>身近な ping の導入事例としては、Google の検索結果がある。ping を実装したブラウザでリンクを踏むともれなく ping が飛んでいることだろう。
       </section>
       <section>
         <h2 id="ping-と-privacy"><a href="#ping-と-privacy">Ping と Privacy</a></h2>
@@ -202,7 +202,7 @@ PING</code></pre>
         <p>結果として「<em>気持ち悪い機能だから標準から削除された方が良い</em>」と言いたくなる気持ちもわかる。
         <p>しかし、本当にそれが気持ち悪さの根本にある問題を解決しているのかというと、そうとは言い切れないし、かなり長い間議論されているが実際には消えていないという現状がある。
         <p>ましてや、標準仕様でありながら「ユーザの意図しない挙動」であると捉えられ、新たな悲劇が起こるといったことも、笑い話ではないご時世だ。
-        <p>そこで、この仕様について交わされてきた議論の経緯を踏まえることで、 Web はこのユーザの持つ「気持ち悪さ」にどうアプローチし、ユーザをどう守るのか、なぜ今この仕様が消えていないのかについて解説する。
+        <p>そこで、この仕様について交わされてきた議論の経緯を踏まえることで、Web はこのユーザの持つ「気持ち悪さ」にどうアプローチし、ユーザをどう守るのか、なぜ今この仕様が消えていないのかについて解説する。
       </section>
       <section>
         <h2 id="hyperlink-auditing"><a href="#hyperlink-auditing">Hyperlink Auditing</a></h2>
@@ -233,7 +233,7 @@ PING</code></pre>
         <h2 id="流出先の収集"><a href="#流出先の収集">流出先の収集</a></h2>
         <section>
           <h3 id="js"><a href="#js">JS</a></h3>
-          <p>最も想像しやすい手法は、 JS を用いた実装だろう。
+          <p>最も想像しやすい手法は、JS を用いた実装だろう。
           <p><code translate=no>onclick</code>, <code translate=no>onunload</code>, などをフックし、遷移の前に必要な情報を載せたリクエストをサーバに飛ばす方法だ。
           <p>XHR で飛ばすこともできるが、非同期だと送り終わる前にページが遷移してしまうなどの理由により、あえて同期の XHR でリクエストを投げ、終わるまで処理を止めてるという場合もある。
           <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&apos;unload&apos;, (e) =&gt; {
@@ -254,10 +254,10 @@ PING</code></pre>
         <section>
           <h3 id="リダイレクト"><a href="#リダイレクト">リダイレクト</a></h3>
           <p>もう一つ、広く採用されている方法にリダイレクトがある。
-          <p>例えば SNS や Chat などで URL を共有すると、以下のように URL が表示されるが、 href は別の URL に差し替えられている、という場合がある。
+          <p>例えば SNS や Chat などで URL を共有すると、以下のように URL が表示されるが、href は別の URL に差し替えられている、という場合がある。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=https://redirect.example?to=https://hello.example.com/world.html&gt;https://hello.example.com/world.html&lt;/a&gt;</code></pre>
           <p>この場合、実際の遷移先のパラメータを入れておくことで、リダイレクト先で流出先を収集し、その後すぐリダイレクトをかけるというものだ。
-          <p>Referer をとるか、 from をクエリに追加すれば、 <code translate=no>Ping-From</code>, <code translate=no>Ping-To</code> 同等の情報が得られる。
+          <p>Referer をとるか、from をクエリに追加すれば、<code translate=no>Ping-From</code>, <code translate=no>Ping-To</code> 同等の情報が得られる。
         </section>
       </section>
       <section>
@@ -275,20 +275,20 @@ PING</code></pre>
           <p>もし、サービスが標準の ping 属性を用いていれば、追加の JS を実行することも、同期 XHR でレンダリングをブロックすることもない。
           <p>Beacon や Keep-Alive Fetch を投げるための JS を追加で取得する必要も、複数のリダイレクトを繰り返され、真っ白な画面を待つ必要もない。
           <p>ユーザは、リンクをクリックしたら画面が遷移する、という普通のことをオーバーヘッドほとんどなしで行うことができる。
-          <p>API が使われれば使われるほど、ブラウザの最適化も進み、パフォーマンス、セキュリティ、 a11y などの非機能要件が改善するサイクルも期待できる。
-          <p>つまり、 UX を損ねることなく同等の要件が達成できる。
+          <p>API が使われれば使われるほど、ブラウザの最適化も進み、パフォーマンス、セキュリティ、a11y などの非機能要件が改善するサイクルも期待できる。
+          <p>つまり、UX を損ねることなく同等の要件が達成できる。
         </section>
         <section>
           <h3 id="privacy-の担保"><a href="#privacy-の担保">Privacy の担保</a></h3>
           <p>標準化された API であるということは、送られる情報も仕様に定義されているため、把握することができる。
-          <p>今の仕様では、 Referer は付与さず、 Ping-To に遷移先 URL 、 Ping-From に遷移元が載るのが基本だ。
-          <p>(ただし、 ping を送る URL が Origin をまたぐ場合や HTTPS でない場合は Ping-From は削除される)
+          <p>今の仕様では、Referer は付与さず、Ping-To に遷移先 URL 、Ping-From に遷移元が載るのが基本だ。
+          <p>(ただし、ping を送る URL が Origin をまたぐ場合や HTTPS でない場合は Ping-From は削除される)
           <p>現在の仕様では ping に情報を追加する API は無いため、ブラウザが独自拡張をしない限り「何が送られるのか」を把握することができる。
         </section>
         <section>
           <h3 id="opt-outableuser-visible"><a href="#opt-outableuser-visible">Opt-Outable/User-Visible</a></h3>
           <p>前述の 2 つにも増して最も強調したいのは、ブラウザの設定により「ユーザがコントロールできる余地が生まれる」ことだ。
-          <p>まず、 ping の仕様には以下が記述されている。
+          <p>まず、ping の仕様には以下が記述されている。
           <blockquote cite="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing">
             <p>User agents should allow the user to adjust this behavior, for example in conjunction with a setting that disables the sending of HTTP <code translate=no>Referer</code> (sic) headers. Based on the user&apos;s preferences, UAs may either ignore the ping attribute altogether, or selectively ignore URLs in the list (e.g. ignoring any third-party URLs); this is explicitly accounted for in the steps above.
             <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing" target=_blank>HTML Standard</a></cite>
@@ -305,7 +305,7 @@ PING</code></pre>
           <p>各サービスが情報収集を行なっている場合、規約などに書かれているかもしれないが、実際に何がいつ送られたかまではユーザは知らされない。
           <p>あくまで JS が裏で走っているか、リダイレクトを繰り返しているだけであり、タイミングも画面遷移が伴っていることもあって、ここを indicate しているサービスを筆者は見たことがない。
           <p>しかし、ブラウザに実装された機能を使うならば、ブラウザはなんらかの方法で UI 上に通知することも不可能ではない。
-          <p>実際にそれを行っているブラウザはまだないが、 ping 属性がなければ、ユーザはいつまでも選択肢を得ることすらできなかったのだ。
+          <p>実際にそれを行っているブラウザはまだないが、ping 属性がなければ、ユーザはいつまでも選択肢を得ることすらできなかったのだ。
         </section>
       </section>
       <section>
@@ -313,7 +313,7 @@ PING</code></pre>
         <p>「意図しない動作」かどうかは個人の主観だというのが筆者の意見だ。
         <p>遷移先の収集を「意図しない動作」だと思うも、別に気にしないのも、サービス改善のために積極的に提供したいと思うのも自由だ。
         <p>しかし、現状はサービスに対して自身の選択を反映させることができないという問題がある。あってもサービスを使わないといった極端なものだ。
-        <p>ping を標準化し、 User-Agent が実装し、サービスが独自の実装を捨ててそちらに移行することは、標準を通じてユーザが「自身の閲覧環境は自身が選択する」というもっとも根本的な権利を取り戻すことに繋がる。
+        <p>ping を標準化し、User-Agent が実装し、サービスが独自の実装を捨ててそちらに移行することは、標準を通じてユーザが「自身の閲覧環境は自身が選択する」というもっとも根本的な権利を取り戻すことに繋がる。
         <p>仮に ping が一般に認知され「サービスは ping を使い、ユーザは設定でその挙動をコントロールできる」という合意が形成されたとしよう。
         <p>するとユーザは、そのコントロールの有無によって、使用するブラウザを選択したり、拡張などによるカスタマイズを行うことができる。
         <p>ping 属性を無視し独自実装を続けるサービスは、ユーザから非難されたり、専門家が啓蒙するいったフェーズに移る。
@@ -321,17 +321,17 @@ PING</code></pre>
       </section>
       <section>
         <h2 id="合意とエコシステム"><a href="#合意とエコシステム">合意とエコシステム</a></h2>
-        <p>ping に限った話ではなく、 Cookie, Referer, Permission, Pop-Up Blocker, ITP, Private Mode なども、個々に性質や結果は違えど、同じような経緯を辿り今に至っていると言っていいだろう。
+        <p>ping に限った話ではなく、Cookie, Referer, Permission, Pop-Up Blocker, ITP, Private Mode なども、個々に性質や結果は違えど、同じような経緯を辿り今に至っていると言っていいだろう。
         <p>今問題になっているマイニングも、こういうプロセスを経ることで、より健全な形で運用することも、本来はできたはずである。
         <p>例えば、無尽蔵にリソースを消費されるのが問題ならば、ユーザがマイナーとネゴシエーションし、その制限を付与するといった選択肢が考えられる。
         <p>それが Permission API や QuotaManagement API の延長に標準化され、ブラウザはその CPU 利用などを UI 上で表示したり、一切を無効にする設定を加えることも不可能では無いだろう。
-        <p>サービスは、ユーザの明示的な許可を得てそれを行い、 ViewPort を埋め込み広告で汚すことなくマネタイズ手段を確保するという選択肢を得られたかもしれないし、ユーザはマイニングを拒否することも、広告の代わりにマイニングを選択することもできたはずだ。
+        <p>サービスは、ユーザの明示的な許可を得てそれを行い、ViewPort を埋め込み広告で汚すことなくマネタイズ手段を確保するという選択肢を得られたかもしれないし、ユーザはマイニングを拒否することも、広告の代わりにマイニングを選択することもできたはずだ。
         <p>そこまで合意が形成されれば、そのエコシステムを完全に無視して、無尽蔵なマイニングを行うスクリプトを走らせたサービスを「意図しない挙動だ」と言って非難することに、違和感は無いだろう。
         <p>しかし、日本では早い段階でこのプロセスにその仕組みを理解しないコンテキストからの権力が介入し、勝手に「意図しない挙動を」定義してしまった。
         <p>これは、「広告が表示されるくらいならマイニングされる方が良い」というユーザの選択肢や、「広告以外の方法でマネタイズができるかもしれない」というコンテンツの可能性を奪うだけでなく、あまつさえ「その合意形成のプロセスに積極的に参加する」ことすらを罪としてしまった。
         <p>罪の根拠としてプロセスの参加者が誰も納得しない別の合意が提示されたようだが、本来それが妥当かどうかを検証するプロセスが毀損されているのだから、それ自体が矛盾しているとしか筆者には見えない。
         <p>もちろん、合意の形成はゆるやかに行われるものだ、その間にユーザが危険にされされる可能性もあるだろう。
-        <p>ちょうど先月、 Firefox の safe browsing の <a href="https://github.com/mozilla-services/shavar-prod-lists/blob/7eaadac98bc9dcc95ce917eff7bbb21cb71484ec/disconnect-blacklist.json" target=_blank>black list</a> が更新され、マイニングの URL が追加された。
+        <p>ちょうど先月、Firefox の safe browsing の <a href="https://github.com/mozilla-services/shavar-prod-lists/blob/7eaadac98bc9dcc95ce917eff7bbb21cb71484ec/disconnect-blacklist.json" target=_blank>black list</a> が更新され、マイニングの URL が追加された。
         <p>これは、ようやくプロセス自体が周り始める兆しだったと見ることもできただろう。
         <p>他のブラウザの動き、マイニングサービスからのフィードバック、サービスの検証、ユーザの反応、標準化への提案。
         <p>その結果、完全悪になることもあるかもしれない、より建設的ななにかにたどり着くかもしれない。
@@ -340,7 +340,7 @@ PING</code></pre>
       </section>
       <section>
         <h2 id="ping-の実装の現状"><a href="#ping-の実装の現状">ping の実装の現状</a></h2>
-        <p>話を戻すと、 ping はまだこうした合意形成の途中と言える。
+        <p>話を戻すと、ping はまだこうした合意形成の途中と言える。
         <p>いまだに Privacy を懸念する声があがることもあり、<a href="https://github.com/w3c/html/issues/369" target=_blank>情報を追加するための API</a> を求める声もある。
         <p>実装についても、現時点ではまだ各ブラウザで差がある。
         <ul>
@@ -351,8 +351,8 @@ PING</code></pre>
           <li>IE: 未実装
         </ul>
         <p><a href="https://caniuse.com/#feat=ping" target=_blank>Can I use - ping</a>
-        <p>ユーザコントロールについては、 Chrome は無効にすることが可能になっている。
-        <p>しかし、いわゆるメニュー画面ではなく、 chrome://flags であるため、開発者向けの色合いが強い。
+        <p>ユーザコントロールについては、Chrome は無効にすることが可能になっている。
+        <p>しかし、いわゆるメニュー画面ではなく、chrome://flags であるため、開発者向けの色合いが強い。
         <p>Safari は、最近この件について態度を表明した。
         <p>メニューからは無効にできないが、トラッキングから Opt-Out する手段として Content-Blocker を提供するというものだ。
         <p>あまりに簡単に Opt-Out できると結局サービスが ping を使わなくなるため、デフォルトで 1st Party での収集を許可し ITP 同様 3rd Party の収集を厳しくする方針だ。
@@ -366,7 +366,7 @@ PING</code></pre>
           <li><a href="https://github.com/w3c/html/issues/1456" target=_blank>Privacy concern with ping attribute - Issue #1456 - w3c/html</a>
           <li><a href="https://github.com/whatwg/html/issues/3718" target=_blank>Privacy concern with ping attribute - Issue #3718 - whatwg/html</a>
         </ul>
-        <p>この先どのような合意が形成されるかは未知だが、 Safari がブログで態度を表明したことは、この流れに少なからず影響するだろう。
+        <p>この先どのような合意が形成されるかは未知だが、Safari がブログで態度を表明したことは、この流れに少なからず影響するだろう。
         <p>次の Edge も Chromium が実装済みの ping を継承しているため、その UI をどうするかという議論には参加することになるだろう。
         <p>平成で決着がつかなかったが、令和元年は何かしら進展のある年になりそうなので、主にブラウザの UI 周りの動きを注視していくつもりだ。
         <p>そしてなによりも、「Web のエコシステムによる合意形成プロセス」がこれ以上毀損されないことを願いたい。

@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="mozaic.fm をリニューアルし、 v2 としてリリースした。今回の更新のモチベーションは大きく分けて 2 つある。tumblr を捨てたかったfeedburner を捨てたかったこれによる breaking change 含む変更の内容と、実装のメモを記す。">
+  <meta name=description         content="mozaic.fm をリニューアルし、v2 としてリリースした。今回の更新のモチベーションは大きく分けて 2 つある。tumblr を捨てたかったfeedburner を捨てたかったこれによる breaking change 含む変更の内容と、実装のメモを記す。">
   <meta name=keywords            content="mozaic.fm,rss,podcast">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-06-20/mozaicfm-v2.html>
   <meta property=og:title        content="mozaic.fm の v2 のリリースと Podcast の実装と移行 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="mozaic.fm をリニューアルし、 v2 としてリリースした。今回の更新のモチベーションは大きく分けて 2 つある。tumblr を捨てたかったfeedburner を捨てたかったこれによる breaking change 含む変更の内容と、実装のメモを記す。">
+  <meta property=og:description  content="mozaic.fm をリニューアルし、v2 としてリリースした。今回の更新のモチベーションは大きく分けて 2 つある。tumblr を捨てたかったfeedburner を捨てたかったこれによる breaking change 含む変更の内容と、実装のメモを記す。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-06-20T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "mozaic.fm をリニューアルし、 v2 としてリリースした。今回の更新のモチベーションは大きく分けて 2 つある。tumblr を捨てたかったfeedburner を捨てたかったこれによる breaking change 含む変更の内容と、実装のメモを記す。"
+    "description": "mozaic.fm をリニューアルし、v2 としてリリースした。今回の更新のモチベーションは大きく分けて 2 つある。tumblr を捨てたかったfeedburner を捨てたかったこれによる breaking change 含む変更の内容と、実装のメモを記す。"
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-06-20>2016-06-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -154,7 +154,7 @@
       <h1><a href="">mozaic.fm の v2 のリリースと Podcast の実装と移行</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p><a href="https://mozaic.fm" target=_blank>mozaic.fm</a> をリニューアルし、 v2 としてリリースした。
+        <p><a href="https://mozaic.fm" target=_blank>mozaic.fm</a> をリニューアルし、v2 としてリリースした。
         <p>今回の更新のモチベーションは大きく分けて 2 つある。
         <ul>
           <li>tumblr を捨てたかった
@@ -167,15 +167,15 @@
         <p>そもそも Podcast の実体は、単なる RSS である。
         <p>音声やアイコンなどのリソース URL が適切にマークアップされた RSS 形式の XML を配布するだけで実装できる。
         <p>Podcast アプリは、このフィードを購読し、音声などを取得し、再生する feed reader の一種といえる。
-        <p>旧 mozaic.fm は、 tumblr 上に作ったサイトに、音声をリンクしたエントリを上げることで更新していた。
+        <p>旧 mozaic.fm は、tumblr 上に作ったサイトに、音声をリンクしたエントリを上げることで更新していた。
         <p>feed は tumblr に feedburner というサービスを連携して提供していた。
-        <p>サイト上でも音声は再生できるが、 Podcast 自体はアプリで聴くことが多いため、 RSS さえ生成すればサイト自体は必須では無い。
+        <p>サイト上でも音声は再生できるが、Podcast 自体はアプリで聴くことが多いため、RSS さえ生成すればサイト自体は必須では無い。
       </section>
       <section>
         <h2 id="旧-mozaic.fm-の問題点"><a href="#旧-mozaic.fm-の問題点">旧 mozaic.fm の問題点</a></h2>
-        <p>mozaic.fm は、  Web の技術について「<em>今何がおこっているか</em>」と「<em>これからどうなっていくか</em>」を議論する Podcast である。
+        <p>mozaic.fm は、Web の技術について「<em>今何がおこっているか</em>」と「<em>これからどうなっていくか</em>」を議論する Podcast である。
         <p>必然的に、最新の Web の技術や、セキュリティ/パフォーマンスなどの周辺技術についても触れることが多い。
-        <p>最近では特に HTTPS 化についての議論も多くあるが、 Tumblr はダッシュボード(編集画面)以外を暗号化することができない。
+        <p>最近では特に HTTPS 化についての議論も多くあるが、Tumblr はダッシュボード(編集画面)以外を暗号化することができない。
         <p>HTTPS 化をしていないために、使うことができない API も最近は多い。
         <p>そもそも Tumblr であるため、最新の技術の適用も難しい。
         <p>Feed さえ適切に配布できていれば、基本的にバグがあっても大した問題にならないという利点があり、
@@ -194,12 +194,12 @@
       <section>
         <h2 id="rss-実装"><a href="#rss-実装">RSS 実装</a></h2>
         <p>RSS の仕様には、主に RSS1.0, RSS2.0, Atom の三つがある。
-        <p>本サイト blog.jxck.io では最新である Atom を採用したが、 Podcast の RSS は <em>RSS2.0</em> を用いる必要があった。
+        <p>本サイト blog.jxck.io では最新である Atom を採用したが、Podcast の RSS は <em>RSS2.0</em> を用いる必要があった。
         <p>RSS2.0 の仕様は以下にある。
         <ul>
           <li><a href="http://cyber.law.harvard.edu/rss/rss.html" target=_blank>http://cyber.law.harvard.edu/rss/rss.html</a>
         </ul>
-        <p>また、 Apple は Podcast 向けの拡張ボキャブラリを追加しているため、それらも対応している。
+        <p>また、Apple は Podcast 向けの拡張ボキャブラリを追加しているため、それらも対応している。
         <ul>
           <li><a href="https://help.apple.com/itc/podcasts_connect/#/itc1723472cb" target=_blank>https://help.apple.com/itc/podcasts_connect/#/itc1723472cb</a>
           <li><a href="https://help.apple.com/itc/podcasts_connect/#/itca5b22233a" target=_blank>https://help.apple.com/itc/podcasts_connect/#/itca5b22233a</a>
@@ -214,31 +214,31 @@
           <li><code translate=no>&lt;itunes:summary&gt;</code> 無ければ <code translate=no>&lt;description&gt;</code> に詳細、メディアフォーマット、スケジュールなど詳細を記す
           <li><code translate=no>&lt;itunes:category&gt;</code> にサブカテゴリーを定義できる
           <li><code translate=no>&lt;itunes:summary&gt;&lt;![CDATA[&lt;a href=&quot;http://www.apple.com&quot;&gt;Apple&lt;/a&gt;]]&gt;&lt;/itunes:summary&gt;</code> とコメント化し display issue を防ぐ
-          <li><code translate=no>&lt;item&gt;</code> を追加して行く、順番は <code translate=no>&lt;pubDate&gt;</code> で判断される。 24h 以内なら <code translate=no>&lt;itunes:order&gt;</code> で上書きもできる
+          <li><code translate=no>&lt;item&gt;</code> を追加して行く、順番は <code translate=no>&lt;pubDate&gt;</code> で判断される。24h 以内なら <code translate=no>&lt;itunes:order&gt;</code> で上書きもできる
         </ul>
         <p>音声の配信は、通常の HTTP サーバから行うことができる。
-        <p>ただし、 Podcast は長い音声を再生するため、途中からの再生が可能なように HTTP の byte-range ヘッダをサポートする必要がある。
+        <p>ただし、Podcast は長い音声を再生するため、途中からの再生が可能なように HTTP の byte-range ヘッダをサポートする必要がある。
         <p>音声ファイルは HTTPS で配信することが可能だ。
-        <p>しかし、 RSS 自体は HTTPS で配信すると iPhone の Podcast アプリでは読めないようであったため、 HTTP での提供も行っている。
+        <p>しかし、RSS 自体は HTTPS で配信すると iPhone の Podcast アプリでは読めないようであったため、HTTP での提供も行っている。
         <p>また RSS2.0 的には <code translate=no>&lt;enclosure&gt;</code> の url は http じゃないとだめらしい。
       </section>
       <section>
         <h2 id="podcast-connect"><a href="#podcast-connect">podcast connect</a></h2>
-        <p>itunes は podcast connect という場所がわかりにくい画面から、 feed url を変えられる。
+        <p>itunes は podcast connect という場所がわかりにくい画面から、feed url を変えられる。
         <ul>
           <li><a href="https://podcastsconnect.apple.com/" target=_blank>https://podcastsconnect.apple.com/</a>
         </ul>
       </section>
       <section>
         <h2 id="移行作業"><a href="#移行作業">移行作業</a></h2>
-        <p>tumblr に mozaic.fm ドメインを貼り、 feedburner と連携してフィードを配信しているため、移行には以下の作業を行った。
+        <p>tumblr に mozaic.fm ドメインを貼り、feedburner と連携してフィードを配信しているため、移行には以下の作業を行った。
         <ol>
           <li>先に新しいサイトと feed を作る
           <li>feed をサブドメインとして先に運用する
-          <li>tumblr 上で最後のエピソードを更新し、 feedburner のフィードに反映させる
-          <li>DNS を変更し、 mozaic.fm を tumblr から新サイトへ向ける
+          <li>tumblr 上で最後のエピソードを更新し、feedburner のフィードに反映させる
+          <li>DNS を変更し、mozaic.fm を tumblr から新サイトへ向ける
           <li>feedburner が新サイトを見ないように、独自ドメインを剥がした tumblr に向ける
-          <li>mozaic.fm が自サーバを向いたので、 let&apos;s encrypt の certbot を走らせ <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> を有効にする
+          <li>mozaic.fm が自サーバを向いたので、let&apos;s encrypt の certbot を走らせ <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> を有効にする
           <li><a href="http://mozaic.fm" target=_blank>http://mozaic.fm</a> を全て <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> にリダイレクト
           <li>旧エピソードの tumblr 自体の URL を、新 URL にリダイレクトする
           <li>itunes の podcast connect から itunes に登録された mozaic.fm の feed を新しいものにする
@@ -257,7 +257,7 @@
           <li>オフライン再生
           <li>再生中の他エピソード閲覧 (SPA)
         </ul>
-        <p>blog.jxck.io は静的なコンテンツサイトであり、現状はそのコピーであるが、今後はこれをベースに、この土台を維持することでサーバサイドレンダリングが不要な状態で、 SPA な実装へシフトしていく。
+        <p>blog.jxck.io は静的なコンテンツサイトであり、現状はそのコピーであるが、今後はこれをベースに、この土台を維持することでサーバサイドレンダリングが不要な状態で、SPA な実装へシフトしていく。
         <p>少しずつ機能を追加し、どこかのタイミングで v3 をアナウンスするかもしれない。
       </section>
     </article>

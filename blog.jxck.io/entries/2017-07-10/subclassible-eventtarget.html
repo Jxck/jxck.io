@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-07-10T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-07-10>2017-07-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -158,7 +158,7 @@
       </section>
       <section>
         <h2 id="update"><a href="#update">Update</a></h2>
-        <p>Chrome Canary 64 で実装が確認できたため、 DEMO を追加した。
+        <p>Chrome Canary 64 で実装が確認できたため、DEMO を追加した。
       </section>
       <section>
         <h2 id="eventtarget"><a href="#eventtarget">EventTarget</a></h2>
@@ -171,7 +171,7 @@ $div.addEventListener(&apos;foo&apos;, callback)
 $div.dispatchEvent(new CustomEvent(&apos;foo&apos;, {detail:&apos;bar&apos;}))
 // CustomEvent {type: &quot;foo&quot;, detail: &apos;bar&apos;...
 $div.removeEventListener(&apos;foo&apos;, callback)</code></pre>
-        <p>この場合、 <code translate=no>$div</code> は <code translate=no>Element &lt; Node &lt; EventTarget</code> と、祖先に EventTarget を持っている。
+        <p>この場合、<code translate=no>$div</code> は <code translate=no>Element &lt; Node &lt; EventTarget</code> と、祖先に EventTarget を持っている。
         <p>同様に EventTarget を祖先に持つ要素では、このパターンのハンドリングが可能であるが、任意のクラスを EventTarget にすることができなかった。
       </section>
       <section>
@@ -183,7 +183,7 @@ process.on(&apos;foo&apos;, callback)
 process.emit(&apos;foo&apos;, &apos;bar&apos;)
 // bar
 process.removeListener(&apos;foo&apos;, callback)</code></pre>
-        <p>大きな違いは、 EventEmitter が任意のクラスで継承できる点だ。
+        <p>大きな違いは、EventEmitter が任意のクラスで継承できる点だ。
         <p>したがって、非同期処理をクラスに閉じ込め、加工したイベントとして外に公開するといった設計が可能になる。
         <p>以下は <code translate=no>setInterval</code> を抽象化したタイマの例だ。
         <pre class=js data-code=js data-path=timer-ee.js><code translate=no class=language-js>EventEmitter = require(&apos;events&apos;)
@@ -203,9 +203,9 @@ timer.on(&apos;tick&apos;, console.log.bind(console))</code></pre>
       <section>
         <h2 id="eventemitter-porting"><a href="#eventemitter-porting">EventEmitter porting</a></h2>
         <p>これまでは、ブラウザ上で任意の class を EventTarget にすることができなかった。
-        <p>そこで、 Node における EventEmitter を用いた設計と同等のことを行うためには、 EventEmitter のポーティングなどが利用されていた。
+        <p>そこで、Node における EventEmitter を用いた設計と同等のことを行うためには、EventEmitter のポーティングなどが利用されていた。
         <p>例えば browserify は <a href="https://github.com/Gozala/events" target=_blank>https://github.com/Gozala/events</a> を使っており、筆者も <a href="https://github.com/jxck/events" target=_blank>同じようなこと</a> をしたことがある。
-        <p>しかし、こうした汎用的な処理をより効率よく実現するために、 EventTarget が継承可能となる仕様が追加された。
+        <p>しかし、こうした汎用的な処理をより効率よく実現するために、EventTarget が継承可能となる仕様が追加された。
         <ul>
           <li><a href="https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586" target=_blank>Allow constructing and subclassing EventTarget</a>
           <li><a href="https://github.com/whatwg/dom/issues/441" target=_blank>Make EventTarget subclassable #441</a>
@@ -254,9 +254,9 @@ EventTarget.prototype.emit = function(name, detail) {
         <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&apos;button&apos;).on(&apos;click&apos;, (e) =&gt; {
   console.log(&apos;click&apos;)
 })</code></pre>
-        <p>ただし、 EventEmitter は EventTarget よりも機能が多く、例えば <code translate=no>listeners()</code> や <code translate=no>eventNames()</code> などは、 EventTarget への移譲だけでは実装できない。
-        <p>それらが必要な場合は、別途イベントとリスナの管理が必要になるだろう。こうした機能が必要な場合は、要するに EventEmitter そのものを必要としてるということなので、 porting は依然必要になる。
-        <p>しかし、 EventTarget 相当を実現するためだけに EventEmitter を導入していた場合は、 EventTarget が継承できるだけで十分な場合も少なくはないだろう。
+        <p>ただし、EventEmitter は EventTarget よりも機能が多く、例えば <code translate=no>listeners()</code> や <code translate=no>eventNames()</code> などは、EventTarget への移譲だけでは実装できない。
+        <p>それらが必要な場合は、別途イベントとリスナの管理が必要になるだろう。こうした機能が必要な場合は、要するに EventEmitter そのものを必要としてるということなので、porting は依然必要になる。
+        <p>しかし、EventTarget 相当を実現するためだけに EventEmitter を導入していた場合は、EventTarget が継承できるだけで十分な場合も少なくはないだろう。
         <p>その場合はネイティブの実装だけで足りるようになるため、実装が進むことに期待したい。
       </section>
       <section>

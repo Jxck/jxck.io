@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-05-07T08:00:00+08:00",
-    "dateModified": "2024-05-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-05-07>2024-05-07</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-13>2024-05-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -176,13 +176,13 @@
 Host: example.com
 Content-Type: text/html
 Referer: https://blog.example/entries/2099-12-12/referer.html</code></pre>
-        <p>この情報によって、 example.com はユーザが blog.example の記事から遷移してきたことがわかる。
-        <p>これが検索エンジンの URL であれば、検索からの流入であることがわかり、 SNS であれば拡散されたポストからであることもわかる。
+        <p>この情報によって、example.com はユーザが blog.example の記事から遷移してきたことがわかる。
+        <p>これが検索エンジンの URL であれば、検索からの流入であることがわかり、SNS であれば拡散されたポストからであることもわかる。
         <p>従って、多くの場合 Referer はマーケティング用途が想像されやすく、実際アナリティクスなどはこの情報を重要視している。
       </section>
       <section>
         <h2 id="referer-による情報漏洩"><a href="#referer-による情報漏洩">Referer による情報漏洩</a></h2>
-        <p>例えば、ユーザが VPN などでアクセスする社内サイトから遷移した場合も、ブラウザは自分が VPN 下にいることなど知らないため、 Referer に社内サイトの URL が付与されることになる。
+        <p>例えば、ユーザが VPN などでアクセスする社内サイトから遷移した場合も、ブラウザは自分が VPN 下にいることなど知らないため、Referer に社内サイトの URL が付与されることになる。
         <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
 Host: example.com
 Content-Type: text/html
@@ -193,24 +193,24 @@ Referer: https://wiki.company.example/secret/new-product.html</code></pre>
 Host: blog.jxck.io
 Content-Type: text/html
 Referer: https://issues.company.example/bugs/csrf-reported-on-admin-page.html</code></pre>
-        <p>社外からの接続をきっちりブロックしていても、 Referer は社員のブラウザを経由して送られていくため、意図しない漏洩に繋がる可能性があるのだ。
+        <p>社外からの接続をきっちりブロックしていても、Referer は社員のブラウザを経由して送られていくため、意図しない漏洩に繋がる可能性があるのだ。
         <p>また、「URL を知っている人のみ見られる」系のアクセス制御も、その URL のフルパスが Referer で飛んでしまうと、意図した制御として使えないことにもなる。
       </section>
       <section>
         <h2 id="referer-によるプライバシーのリスク"><a href="#referer-によるプライバシーのリスク">Referer によるプライバシーのリスク</a></h2>
-        <p>例えば、 EC サイトに書かれたレビューのリンクから、ログイン済みの SNS に遷移したとしよう。
+        <p>例えば、EC サイトに書かれたレビューのリンクから、ログイン済みの SNS に遷移したとしよう。
         <pre><code translate=no>GET / HTTP/1.1
 Host: sns.example
 Content-Type: text/html
 Referer: https://ec.example/product/0230596283
 Cookie: ${login-cookie}</code></pre>
-        <p>この場合、 SNS サイトはユーザの情報を持っているため、追加でユーザが何に興味を持っているのかを知ることができる。
+        <p>この場合、SNS サイトはユーザの情報を持っているため、追加でユーザが何に興味を持っているのかを知ることができる。
         <p>この構造は、送信元/送信先サイトの組み合わせによってリスクが多様化する。趣味趣向、政治宗教感、疾病障害などのセンシティブな情報の漏洩リスクもゼロではない。
         <p>このため、個人のレベルでも Referer を送らないような設定を行うユーザもおり、特にブラウザに Private Mode が搭載されるようになる前は、プライバシーリテラシーが高いユーザは拡張などで Referer を落としていた。
       </section>
       <section>
         <h2 id="referrer-policy"><a href="#referrer-policy">Referrer-Policy</a></h2>
-        <p>デフォルトであった Referer の送信を制御するために、 Referrer-Policy が整備された。
+        <p>デフォルトであった Referer の送信を制御するために、Referrer-Policy が整備された。
         <p>ポリシーの観点は「送信対象」と「情報の粒度」だ。基本的には 3 つの観点がある。
         <ul>
           <li>送る情報は Full Path か Origin か
@@ -227,7 +227,7 @@ Cookie: ${login-cookie}</code></pre>
       <section>
         <h2 id="no-referrer-の副作用"><a href="#no-referrer-の副作用">no-referrer の副作用</a></h2>
         <p><code translate=no>Referrer-Policy: no-referrer</code> は、それを付与することでブラウザが一切の Referer を送らなくなる。つまり、遷移先に対して遷移元の URL が何であったかは、全て送られなくなるのだ。それが Same Origin、つまり今アクセスしているサイトであってもだ。
-        <p>従って、社内システムなどにはこれを付与し、 URL の情報が外に漏れないように設定している人もいるだろう。
+        <p>従って、社内システムなどにはこれを付与し、URL の情報が外に漏れないように設定している人もいるだろう。
         <p>しかし、このディレクティブには副作用がある。
         <pre><code translate=no>To append a request `Origin` header, given a request request, run these steps:
 
@@ -245,8 +245,8 @@ Cookie: ${login-cookie}</code></pre>
 Note: A request&apos;s Referer policy is taken into account for all fetches where the fetcher did not explicitly opt into sharing their origin with the server, e.g., via using the CORS protocol.
 
 --- https://fetch.spec.whatwg.org/#append-a-request-origin-header</code></pre>
-        <p>つまり、 CORS のように明示的に Origin を確認させる場合はそちらを優先するが、「CORS ではない」かつ「GET/HEAD でない」場合は、 <code translate=no>Referrer-Policy: no-referrer</code> を受けていた場合、 <code translate=no>Origin: null</code> になってしまう。これは、 「Referer を送らない」と設定しているのに、同等の情報が Origin ヘッダで送られては意味がないからだ。
-        <p>これは、いわゆる別サイトに出ていくリクエストだけでなく、同じサイト内でも送られなくなるため、 form の POST ようなケースで Origin ヘッダが <code translate=no>null</code> になってしまい、同じサイトからのリクエストなのにその事実をサービスが確認できなくなるのだ。
+        <p>つまり、CORS のように明示的に Origin を確認させる場合はそちらを優先するが、「CORS ではない」かつ「GET/HEAD でない」場合は、<code translate=no>Referrer-Policy: no-referrer</code> を受けていた場合、<code translate=no>Origin: null</code> になってしまう。これは、「Referer を送らない」と設定しているのに、同等の情報が Origin ヘッダで送られては意味がないからだ。
+        <p>これは、いわゆる別サイトに出ていくリクエストだけでなく、同じサイト内でも送られなくなるため、form の POST ようなケースで Origin ヘッダが <code translate=no>null</code> になってしまい、同じサイトからのリクエストなのにその事実をサービスが確認できなくなるのだ。
         <pre class=http data-code=http><code translate=no class=language-http>POST /post HTTP/1.1
 Host: example.com
 Origin: null
@@ -254,13 +254,13 @@ Content-Type: application/x-www-form-urlencoded
 # Referer 無し
 
 body=こんにちはこんにちは</code></pre>
-        <p>近年は <code translate=no>fetch()</code> でのリクエストが一般的で、それ以外のリクエストは減ってきてはいる。であれば、 <code translate=no>Origin: null</code> も含めて全部落としてしまえばどちらにせよ安全である、と思うかもしれない。
-        <p>一方で、 Progressive Enhancement として生の form によるリクエスト「も」使えるようにする場合もある。そうでなくても、例えばレガシーなアプリを Origin を検査する簡単なミドルウェアや WAF/CDN 相当のレイヤを追加するだけで格段に安全にできるはずのものを、「Referer は送らない方が安全」によって毀損する結果になるのだ。
+        <p>近年は <code translate=no>fetch()</code> でのリクエストが一般的で、それ以外のリクエストは減ってきてはいる。であれば、<code translate=no>Origin: null</code> も含めて全部落としてしまえばどちらにせよ安全である、と思うかもしれない。
+        <p>一方で、Progressive Enhancement として生の form によるリクエスト「も」使えるようにする場合もある。そうでなくても、例えばレガシーなアプリを Origin を検査する簡単なミドルウェアや WAF/CDN 相当のレイヤを追加するだけで格段に安全にできるはずのものを、「Referer は送らない方が安全」によって毀損する結果になるのだ。
       </section>
       <section>
         <h2 id="rfc-7231-における-referer-の扱い"><a href="#rfc-7231-における-referer-の扱い">RFC 7231 における Referer の扱い</a></h2>
         <p>そもそも、「<em>送らない方が安全</em>」というのは「<em>どこに対して</em>」だろうか?
-        <p>HTTP/1.1 の RFC が更新された際に、 Referer の節には以下のような注意書きが追加された。
+        <p>HTTP/1.1 の RFC が更新された際に、Referer の節には以下のような注意書きが追加された。
         <blockquote cite="https://www.rfc-editor.org/rfc/rfc7231.html#section-5.5.2">
           <p>Some intermediaries have been known to indiscriminately remove Referer header fields from outgoing requests.
           <p>This has the unfortunate side effect of interfering with protection against CSRF attacks, which can be far more harmful to their users.
@@ -271,18 +271,18 @@ body=こんにちはこんにちは</code></pre>
           </p>
           <p>一部の中継者は、外向けのリクエストから Referer ヘッダを無差別に除去することが知られている。
           <p>これは CSRF 攻撃に対する保護に干渉するような望ましくない副作用を及ぼし、それは、ユーザにとってはるかに有害となる。
-          <p>Referer 内への情報開示を制限したい中継者/UA 拡張はそれらの変更を、内部ドメイン名を匿名化したり、 query や path を切り落とすなどの、特定の編集に制約するべきである。
-          <p>中継者は、ヘッダがリクエストターゲットと同じ scheme / host であれば、 Referer ヘッダを改変したり削除するべきでない。
+          <p>Referer 内への情報開示を制限したい中継者/UA 拡張はそれらの変更を、内部ドメイン名を匿名化したり、query や path を切り落とすなどの、特定の編集に制約するべきである。
+          <p>中継者は、ヘッダがリクエストターゲットと同じ scheme / host であれば、Referer ヘッダを改変したり削除するべきでない。
           <p>
           </p>
           <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc7231.html#section-5.5.2" target=_blank>https://www.rfc-editor.org/rfc/rfc7231.html#section-5.5.2</a></cite>
         </blockquote>
         <p>なんでもかんでも「消せばいい」とは限らないということが、この文章からもわかるだろう。
-        <p>近年は HTTPS が普及したため、 Proxy がヘッダを落とすということは構成的にレアになった。従って消すとすればクライアントの設定や拡張、サービスごとの <code translate=no>Referrer-Policy</code> のデプロイくらいしかない。この記述を無視した拡張やサービスを実装することは、自身が「行儀の良い実装」から逸脱していることを意味すると言っても良いだろう。
+        <p>近年は HTTPS が普及したため、Proxy がヘッダを落とすということは構成的にレアになった。従って消すとすればクライアントの設定や拡張、サービスごとの <code translate=no>Referrer-Policy</code> のデプロイくらいしかない。この記述を無視した拡張やサービスを実装することは、自身が「行儀の良い実装」から逸脱していることを意味すると言っても良いだろう。
         <p>補足しておくと、本エントリは「CSRF 対策のために Referer を受け取り確認すべきだ」と言っているわけではない。前述の通り、既に Referer を送らないクライアントは多いため、受信側がセキュリティ対策のために依存するうえで的確なヘッダとは言えないからだ。
-        <p>しかし、特に最後の一行にあるように、 Same Origin でのリクエストであれば、サーバは Referer が無くてもユーザがどのページからどのページに遷移しているかを知るのは容易だ。つまり、わざわざ Referer を落とすことのメリットはない。外部に送るリスクはわかるが、同一サイトで送ることにリスクを感じるのは、見積もり方として間違っていると言える。
-        <p>従って、 <code translate=no>no-referrer</code> にすることで <code translate=no>Referer</code> ヘッダを Same Origin にすら送らず、あまつさえ、セキュリティ対策のために Web プラットフォームがが時間をかけて手に入れた <code translate=no>Origin</code> ヘッダを <code translate=no>null</code> にしてしまい、「リクエストの出自が検証できなくなる == 外からの工作されたリクエストではないと検査できない」という状態になるのは、セキュリティの面から見ると必ずしもプラスとは言えないのだ。
-        <p>では、 <code translate=no>Referrer-Policy</code> は何を選べばいいのだろうか?
+        <p>しかし、特に最後の一行にあるように、Same Origin でのリクエストであれば、サーバは Referer が無くてもユーザがどのページからどのページに遷移しているかを知るのは容易だ。つまり、わざわざ Referer を落とすことのメリットはない。外部に送るリスクはわかるが、同一サイトで送ることにリスクを感じるのは、見積もり方として間違っていると言える。
+        <p>従って、<code translate=no>no-referrer</code> にすることで <code translate=no>Referer</code> ヘッダを Same Origin にすら送らず、あまつさえ、セキュリティ対策のために Web プラットフォームがが時間をかけて手に入れた <code translate=no>Origin</code> ヘッダを <code translate=no>null</code> にしてしまい、「リクエストの出自が検証できなくなる == 外からの工作されたリクエストではないと検査できない」という状態になるのは、セキュリティの面から見ると必ずしもプラスとは言えないのだ。
+        <p>では、<code translate=no>Referrer-Policy</code> は何を選べばいいのだろうか?
       </section>
       <section>
         <h2 id="referrer-policy-値の選定"><a href="#referrer-policy-値の選定">Referrer-Policy 値の選定</a></h2>
@@ -309,7 +309,7 @@ body=こんにちはこんにちは</code></pre>
           <li>Same Origin なら Path が送られても問題はない
           <li>平文 HTTP では送るべきではない
         </ul>
-        <p>その上で 「<em>Cross Origin への送信</em>」をどうするかだけを比較すると、候補は以下に絞られる。
+        <p>その上で「<em>Cross Origin への送信</em>」をどうするかだけを比較すると、候補は以下に絞られる。
         <ul>
           <li>
             no-referrer
@@ -340,7 +340,7 @@ body=こんにちはこんにちは</code></pre>
             </ul>
           </li>
         </ul>
-        <p>従来、ブラウザのデフォルトは <code translate=no>no-referrer-when-downgrade</code> だった。しかし、 Cross Origin にも Full Path を送るのはエントロピーが高くトラッキングベクタにもなり得る。一方で、完全に送らなければ、出自チェックに使えなくなる。そこで、従来の Web における「外部への情報提供」と「自サイト内での出自検証」を両立しつつ、前者には Origin だけ、後者には Full Path を送るという最もバランスが取れた設定として、 <code translate=no>strict-origin-when-cross-origin</code> を新しくブラウザのデフォルトにする流れがあった。 2018 年ごろからはじまり、 2020 年ごろにはだいたいデフォルトの移行が終わっている。
+        <p>従来、ブラウザのデフォルトは <code translate=no>no-referrer-when-downgrade</code> だった。しかし、Cross Origin にも Full Path を送るのはエントロピーが高くトラッキングベクタにもなり得る。一方で、完全に送らなければ、出自チェックに使えなくなる。そこで、従来の Web における「外部への情報提供」と「自サイト内での出自検証」を両立しつつ、前者には Origin だけ、後者には Full Path を送るという最もバランスが取れた設定として、<code translate=no>strict-origin-when-cross-origin</code> を新しくブラウザのデフォルトにする流れがあった。2018 年ごろからはじまり、2020 年ごろにはだいたいデフォルトの移行が終わっている。
         <ul>
           <li>
             A new default Referrer-Policy for Chrome - strict-origin-when-cross-origin  |  Blog  |  Chrome for Developers
@@ -350,21 +350,21 @@ body=こんにちはこんにちは</code></pre>
           </li>
         </ul>
         <p>したがって、多くのサイトにとっては、このデフォルトの値が十分にバランスが取れ、互換性の面でも問題を起こしにくい値となっていることがわかる。
-        <p>その上で、もし「Origin であっても外部に漏洩させたくない」という、企業内サイトなどであれば、選択すべきは <code translate=no>no-referrer</code> ではなく <code translate=no>same-origin</code> と考えるべきだろう。これであれば、外に情報は出ず、内部でのリクエストはきっちりと出自の確認ができる。 Origin も <code translate=no>null</code> にはならない。
-        <p>まとめると、 2 択だ。
+        <p>その上で、もし「Origin であっても外部に漏洩させたくない」という、企業内サイトなどであれば、選択すべきは <code translate=no>no-referrer</code> ではなく <code translate=no>same-origin</code> と考えるべきだろう。これであれば、外に情報は出ず、内部でのリクエストはきっちりと出自の確認ができる。Origin も <code translate=no>null</code> にはならない。
+        <p>まとめると、2 択だ。
         <ol>
           <li>外部に Origin が送られるのは許容するなら <code translate=no>strict-origin-when-cross-origin</code>
           <li>外部に Origin が送られるのも許容できないなら <code translate=no>same-origin</code>
         </ol>
         <p>他のディレクティブは互換性などのために仕様に起こされているだけで、「Referer が Path ごと送られることに依存し、それをチェックする実装」でも残ってない限り、特に明示する理由はないだろう。
-        <p>また、 1 はモダンブラウザでならデフォルトだ。 Private Gist や Google Docs など「URL を知っている人のみアクセス可能」のアクセス制御も、多くは <code translate=no>strict-origin-when-cross-origin</code> を使っている。
-        <p>デフォルトではないブラウザが意識されるケースのために、明示するプラクティスもまだ残っているが、 IE はどちらにせよ <code translate=no>Referrer-Policy</code> 自体に対応していない。 <code translate=no>Referrer-Policy</code> に対応したモダンブラウザでかつ、デフォルトが <code translate=no>no-referrer-when-downgrade</code> だったくらい古いバージョンのために明示したところで、そうしたブラウザの利用自体がリスクであるため、今日において <code translate=no>strict-origin-when-cross-origin</code> の明示が必須だとは筆者は考えてない。
-        <p>(なお、 QPACK の static table にも無いので、 QUIC でもそのまま 48byte の追加データになる)
+        <p>また、1 はモダンブラウザでならデフォルトだ。Private Gist や Google Docs など「URL を知っている人のみアクセス可能」のアクセス制御も、多くは <code translate=no>strict-origin-when-cross-origin</code> を使っている。
+        <p>デフォルトではないブラウザが意識されるケースのために、明示するプラクティスもまだ残っているが、IE はどちらにせよ <code translate=no>Referrer-Policy</code> 自体に対応していない。<code translate=no>Referrer-Policy</code> に対応したモダンブラウザでかつ、デフォルトが <code translate=no>no-referrer-when-downgrade</code> だったくらい古いバージョンのために明示したところで、そうしたブラウザの利用自体がリスクであるため、今日において <code translate=no>strict-origin-when-cross-origin</code> の明示が必須だとは筆者は考えてない。
+        <p>(なお、QPACK の static table にも無いので、QUIC でもそのまま 48byte の追加データになる)
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>Referer や Origin は、その歴史的な経緯も、重要度も、時代に応じたセキュリティやプライバシーの扱いも含め、 Web プラットフォームにとって非常に重要な要素だ。
-        <p>だからこそ、 Web プラットフォームは長い時間をかけて、互換性、実装差異、リアルワールドでの使われ方、最新のプラクティスなどを踏まえ、仕様を整備し、それを「ブラウザのデフォルト」にし、適切な追加仕様を策定してきた。
+        <p>Referer や Origin は、その歴史的な経緯も、重要度も、時代に応じたセキュリティやプライバシーの扱いも含め、Web プラットフォームにとって非常に重要な要素だ。
+        <p>だからこそ、Web プラットフォームは長い時間をかけて、互換性、実装差異、リアルワールドでの使われ方、最新のプラクティスなどを踏まえ、仕様を整備し、それを「ブラウザのデフォルト」にし、適切な追加仕様を策定してきた。
         <p>そこをすっ飛ばして「とにかく Referer は送らないのが安全だから、<code translate=no>no-referrer</code> がベストプラクティスだ」と考えるのは、こうした背景が分かっていない典型的な勘違いであると筆者は考えている。
         <p>しかし、セキュリティ専門家による記事の推奨を見ると、おそらく今回のような内容と違い「<code translate=no>no-referrer</code> を設定すべき」と書かれているものも多いだろう。
         <p>筆者はセキュリティ専門家ではないので、判断は各自に委ねたい。

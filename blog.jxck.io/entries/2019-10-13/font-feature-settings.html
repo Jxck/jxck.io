@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。">
+  <meta name=description         content="Noto Sans のサブセット生成を見なおし、Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。">
   <meta name=keywords            content="font-feature-settings,noto sans,web font">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2019-10-13/font-feature-settings.html>
   <meta property=og:title        content="Noto Sans Hinted と font-feature-settings: &apos;palt&apos; | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。">
+  <meta property=og:description  content="Noto Sans のサブセット生成を見なおし、Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-10-13T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。"
+    "description": "Noto Sans のサブセット生成を見なおし、Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。"
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-10-13>2019-10-13</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -154,7 +154,7 @@
       <h1><a href="">Noto Sans Hinted と font-feature-settings: &apos;palt&apos;</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。
+        <p>Noto Sans のサブセット生成を見なおし、Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。
         <p>作業と検証の記録を兼ねて、実施結果を記す。
       </section>
       <section>
@@ -164,7 +164,7 @@
           <li><a href="https://opentype.jp/subsetfontmk.htm" target=_blank>サブセットフォントメーカー</a>
           <li><a href="https://opentype.jp/woffconv.htm" target=_blank>WOFF コンバータ</a>
         </ul>
-        <p>しかし、 macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
+        <p>しかし、macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
         <p>これまで GUI で行なっていたが、せっかくなので自動化するために、代替コマンドを探し、プロセスを組んだ。
         <p>いくつかツールがあるが、今回は fonttools に同梱された pyftsubset を採用することとした。
         <ul>
@@ -183,7 +183,7 @@
         <p>通常、記事中に結合文字、絵文字、サロゲートペアなどは基本的に使わないが、それ自体を解説するこの 2 つのエントリはそれが含まれてしまう。
         <p>フォントに含まれない文字は、スタイルが変わってしまい違和感があるため、これまでは見つけ次第含むように更新していた。
         <p>しかし、そういった文字はほぼサンプルコードとしてコードブロック(<code translate=no>&lt;code&gt;</code>)に含まれており、かつそこには MONO font が当たっている。
-        <p>そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、 HTML から <code translate=no>&lt;code&gt;</code> を全て除いた文字群をサブセットの対象とした。
+        <p>そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、HTML から <code translate=no>&lt;code&gt;</code> を全て除いた文字群をサブセットの対象とした。
         <p>対象を subset.txt に保存し、変換は以下のようにした。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features=&apos;*&apos; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
@@ -197,17 +197,17 @@
         </ul>
         <p>コマンドヘルプを見ながら適当につけた以下のオプションが問題である。
         <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>--layout-features=&apos;*&apos;</code></pre>
-        <p>この layout features は、 Open Type のフォントが含む、ヒント情報を含めるという指定だ。
+        <p>この layout features は、Open Type のフォントが含む、ヒント情報を含めるという指定だ。
         <p>Open Type がいくつかの情報を持っていることは薄々知っていたが、以下の理由から特に考えずにきた。
         <ul>
           <li>従来使用していたツールは、この情報を全て削除していた。
           <li>昔の Noto Sans はこの情報を含まなかった気がする
         </ul>
         <blockquote cite="https://opentype.jp/subsetfontmk.htm">
-          <p>フォントが、ヒント(OpenType フォントの場合)、カーニング情報、ビットマップデータ、 OpenType 機能を持っている場合、それらは削除されます。
+          <p>フォントが、ヒント(OpenType フォントの場合)、カーニング情報、ビットマップデータ、OpenType 機能を持っている場合、それらは削除されます。
           <p>&mdash; <cite><a href="https://opentype.jp/subsetfontmk.htm" target=_blank>サブセットフォントメーカー</a></cite>
         </blockquote>
-        <p>今は、 NotoSansCJKjp-hinted.zip を元にすれば、ヒント情報を含むサブセットが作れるため、 CSS の font-feature-settings が指定できる。
+        <p>今は、NotoSansCJKjp-hinted.zip を元にすれば、ヒント情報を含むサブセットが作れるため、CSS の font-feature-settings が指定できる。
         <p>全て削れば従来通りだが、せっかくなので指定を検証することにした。
       </section>
       <section>
@@ -218,7 +218,7 @@
           <li>CSS で指定可能なプロパティ
         </ul>
         <p>ところが、前者についてはリポジトリを見てもそれらしい情報にたどり着くことができなかった。
-        <p>後者は、 <a href="https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES" target=_blank>font-feature-settings の CSS の仕様</a>から、 MS にある Registered Features という一覧がリンクされていた。
+        <p>後者は、<a href="https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES" target=_blank>font-feature-settings の CSS の仕様</a>から、MS にある Registered Features という一覧がリンクされていた。
         <ul>
           <li><a href="https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist" target=_blank>Registered features - Typography | Microsoft Docs</a>
         </ul>
@@ -260,7 +260,7 @@
           <li>293.9K: <code translate=no>layout-feature=&apos;palt&apos;</code>
         </ul>
         <p>サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前より小さくなっている。
-        <p>またこのヒントを有効にするため、 CSS に以下を追加した。
+        <p>またこのヒントを有効にするため、CSS に以下を追加した。
         <pre class=css data-code=css><code translate=no class=language-css>body {
   font-feature-settings: &quot;palt&quot;
 }</code></pre>
@@ -284,7 +284,7 @@
           <li>css に font-feature-settings を追加
         </ul>
         <p>正直フォントについては素人であり、色々と雰囲気でやっているところもあるが、新しい機能を採用するという点ではよい改修ができた。
-        <p>今後も、おもしろい font-feature-settings があれば採用し、 Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
+        <p>今後も、おもしろい font-feature-settings があれば採用し、Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
       </section>
       <section>
         <h2 id="related"><a href="#related">Related</a></h2>

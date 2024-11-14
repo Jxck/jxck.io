@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="showModalDialog() は今から考えれば、確かにひどい API だった。しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、 Cookie バ...">
+  <meta name=description         content="showModalDialog() は今から考えれば、確かにひどい API だった。しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、Cookie バナ...">
   <meta name=keywords            content="dialog,popover">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-09-26/dialog-element.html>
   <meta property=og:title        content="Dialog と Popover #2 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="showModalDialog() は今から考えれば、確かにひどい API だった。しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、 Cookie バ...">
+  <meta property=og:description  content="showModalDialog() は今から考えれば、確かにひどい API だった。しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、Cookie バナ...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-26T08:00:00+08:00",
-    "dateModified": "2024-11-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "showModalDialog() は今から考えれば、確かにひどい API だった。しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、 Cookie バ..."
+    "description": "showModalDialog() は今から考えれば、確かにひどい API だった。しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、Cookie バナ..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-26>2024-09-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -164,8 +164,8 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p><code translate=no>showModalDialog()</code> は今から考えれば、確かにひどい API だった。
-        <p>しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、 Cookie バナー、ログインなど多々ある。
-        <p>そういった場面では、ライブラリなどを用いて実装する必要があったが、 Modal を実装するのは実際にはそんなに簡単ではなかった。
+        <p>しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、Cookie バナー、ログインなど多々ある。
+        <p>そういった場面では、ライブラリなどを用いて実装する必要があったが、Modal を実装するのは実際にはそんなに簡単ではなかった。
       </section>
       <section>
         <h2 id="modal-dialog-modal-dialog"><a href="#modal-dialog-modal-dialog">Modal, Dialog, Modal Dialog</a></h2>
@@ -200,7 +200,7 @@
         <p>
           <img loading=lazy decoding=async src=1.modal.drawio.svg?240926_175727 alt="Modal が開き、閉じないと先に進めない" width=500 height=256>
         </p>
-        <p>この UI を実装する CSS を考えると、「画面いっぱいに、広げた <code translate=no>&lt;div&gt;</code> を被せ、Opacity でフィルターをかけて、 Modal 用に <code translate=no>z-index</code> を最大にした <code translate=no>&lt;div&gt;</code> をセンタリングし、、」などと想像できるかもしれない。
+        <p>この UI を実装する CSS を考えると、「画面いっぱいに、広げた <code translate=no>&lt;div&gt;</code> を被せ、Opacity でフィルターをかけて、Modal 用に <code translate=no>z-index</code> を最大にした <code translate=no>&lt;div&gt;</code> をセンタリングし、、」などと想像できるかもしれない。
         <p>しかし、「頑張ればできそう」なだけで、実際には「使いにくい Modal」が世の中に大量に生み出されてしまった。
         <p>例えばよくあるのは、フォーカス管理の欠如だ。
         <ol>
@@ -300,7 +300,7 @@
         <section>
           <h3 id="初期フォーカス管理"><a href="#初期フォーカス管理">初期フォーカス管理</a></h3>
           <p>ブラウザごとの主張が異なった代表が「フォーカスの初期位置」だった。
-          <p>最初に <code translate=no>&lt;dialog&gt;</code> を開いた時、 <code translate=no>&lt;dialog&gt;</code> 自体にフォーカスするのか、中のフォーカスできる最初の要素にフォーカスするのかといった部分の議論だ。
+          <p>最初に <code translate=no>&lt;dialog&gt;</code> を開いた時、<code translate=no>&lt;dialog&gt;</code> 自体にフォーカスするのか、中のフォーカスできる最初の要素にフォーカスするのかといった部分の議論だ。
           <ul>
             <li>
               Implement dialog initial focus proposal by josepharhar · Pull Request #8199 · whatwg/html
@@ -344,16 +344,16 @@
         </section>
         <section>
           <h3 id="backdrop"><a href="#backdrop"><code translate=no>::backdrop</code></a></h3>
-          <p>Modal Dialog を開いた時に、後ろ側を <code translate=no>inert</code> にすることができるようになったが、 <code translate=no>inert</code> はあくまで非活性なだけで、特にスタイルが当たるわけではない。しかし、非活性だった場合、大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
-          <p>この場合、 <code translate=no>inert</code> であることを利用し、以下のようにスタイルを当てることもできる。
+          <p>Modal Dialog を開いた時に、後ろ側を <code translate=no>inert</code> にすることができるようになったが、<code translate=no>inert</code> はあくまで非活性なだけで、特にスタイルが当たるわけではない。しかし、非活性だった場合、大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
+          <p>この場合、<code translate=no>inert</code> であることを利用し、以下のようにスタイルを当てることもできる。
           <pre class=css data-code=css><code translate=no class=language-css>[inert] {
   background-color: rgba(200, 200, 200, 0.50);
 }</code></pre>
-          <p>しかし、 Top Layer に要素を表示している時は、「Top Layer 以外」を暗くしたい。これを実現するために定義されたのが <code translate=no>::backdrop</code> だ。
+          <p>しかし、Top Layer に要素を表示している時は、「Top Layer 以外」を暗くしたい。これを実現するために定義されたのが <code translate=no>::backdrop</code> だ。
           <pre class=css data-code=css><code translate=no class=language-css>::backdrop {
   background-color: rgba(200, 200, 200, 0.50);
 }</code></pre>
-          <p><code translate=no>&lt;dialog&gt;</code> を用いる場合は、 <code translate=no>inert</code> ではなく <code translate=no>::backdrop</code> にスタイルを当てるのが良いだろう。
+          <p><code translate=no>&lt;dialog&gt;</code> を用いる場合は、<code translate=no>inert</code> ではなく <code translate=no>::backdrop</code> にスタイルを当てるのが良いだろう。
           <ul>
             <li>
               CSS Pseudo Element ::backdrop inheriting from Originating Element - Chrome Platform Status
@@ -382,9 +382,9 @@
         </section>
         <section>
           <h3 id="close-watcher"><a href="#close-watcher">Close Watcher</a></h3>
-          <p>プラットフォームが提供する Modal は、 ESC や範囲外のクリックによって閉じることができる。端末固有の操作などと紐づけるといった役割も果たしている。
+          <p>プラットフォームが提供する Modal は、ESC や範囲外のクリックによって閉じることができる。端末固有の操作などと紐づけるといった役割も果たしている。
           <p>このように、プラットフォームが提供する「Modal を閉じるための操作」を、キーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊したり、ネイティブの他の機能に影響したりする可能性がある。
-          <p>そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し、 Close Watcher として定義された。
+          <p>そこで定義されたのが、Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し、Close Watcher として定義された。
           <pre class=js data-code=js><code translate=no class=language-js>const watcher = new CloseWatcher();
 
 watcher.addEventListener(&quot;cancel&quot;, () =&gt; {
@@ -418,7 +418,7 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
           <li><code translate=no>aria-modal=true</code> であり、支援技術に伝わる
         </ul>
         <p>つまり、支援技術に対しても「Modal Dialog が開いた」ということが伝わる。
-        <p>もしそれが ARIA で言う Alert (警告)の意味を持っているなら、 <code translate=no>role=alertdialog</code> で上書きする必要はあるが、そうでない場合は単に <code translate=no>&lt;dialog&gt;</code> を使って実装しているだけで、十分なセマンティクスが提供できるのだ。
+        <p>もしそれが ARIA で言う Alert (警告)の意味を持っているなら、<code translate=no>role=alertdialog</code> で上書きする必要はあるが、そうでない場合は単に <code translate=no>&lt;dialog&gt;</code> を使って実装しているだけで、十分なセマンティクスが提供できるのだ。
       </section>
       <section>
         <h2 id="openclose--showhide--showclose-"><a href="#openclose--showhide--showclose-">open/close ? show/hide ? show/close ?</a></h2>
@@ -427,7 +427,7 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
           <li>open / close
           <li>show / hide
         </ul>
-        <p>という対称性を持たせた操作に命名するのが一般的なのだが、 <code translate=no>&lt;dialog&gt;</code> については
+        <p>という対称性を持たせた操作に命名するのが一般的なのだが、<code translate=no>&lt;dialog&gt;</code> については
         <ul>
           <li>show / close
         </ul>
@@ -443,7 +443,7 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
           <p>Hiding a dialog is different from closing one. Closing a dialog gives it a return value, fires an event, unblocks the page for other dialogs, and so on. Whereas hiding a dialog is a purely visual property, and is something you can already do with the hidden attribute or by removing the open attribute. (See also the note above about removing the open attribute, and how hiding the dialog in that way is generally not desired.)
           <p>
           </p>
-          <p>dialog を hide することと close することは異なる。 dialog を close することは、その dialog に戻り値を与えたり、イベントを発生させたり、他の dialog のためにページのブロックを解除したりする。一方、 dialog の hide は純粋に視覚的な特性であり、hidden 属性や open 属性の削除で既にできることだ(open 属性の削除と、その方法による dialog の非表示が一般的に望まれていないことについては、上の注釈も参照)。
+          <p>dialog を hide することと close することは異なる。dialog を close することは、その dialog に戻り値を与えたり、イベントを発生させたり、他の dialog のためにページのブロックを解除したりする。一方、dialog の hide は純粋に視覚的な特性であり、hidden 属性や open 属性の削除で既にできることだ(open 属性の削除と、その方法による dialog の非表示が一般的に望まれていないことについては、上の注釈も参照)。
           <p>
           </p>
           <p>Showing a dialog is different from opening one. Opening a dialog consists of creating and showing that dialog (similar to how window.open() both creates and shows a new window). Whereas showing the dialog is the process of taking a dialog element that is already in the DOM, and making it interactive and visible to the user.
@@ -467,7 +467,7 @@ watcher.addEventListener(&quot;close&quot;, () =&gt; {
           <p>In summary, it turns out that the implications of certain verbs, and how they are used in technology contexts, mean that paired actions such as showing and closing a dialog are not always expressible as antonyms.
           <p>
           </p>
-          <p>まとめると、ある種の動詞の意味合いや技術的な文脈での使われ方によって、 dialog の show と close のような対になる動作は、必ずしも反対語として表現できるとは限らないということがわかるのだ。
+          <p>まとめると、ある種の動詞の意味合いや技術的な文脈での使われ方によって、dialog の show と close のような対になる動作は、必ずしも反対語として表現できるとは限らないということがわかるのだ。
           <p>
           </p>
           <p>&mdash; <cite><a href="https://html.spec.whatwg.org/multipage/interactive-elements.html#note-dialog-method-names" target=_blank>https://html.spec.whatwg.org/multipage/interactive-elements.html#note-dialog-method-names</a></cite>

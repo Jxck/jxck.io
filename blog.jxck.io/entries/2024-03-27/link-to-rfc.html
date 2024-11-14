@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-27T08:00:00+08:00",
-    "dateModified": "2024-05-24T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-27>2024-03-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-24>2024-05-24</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -180,7 +180,7 @@
         <p>まずは、これらの違いを簡単に解説する。
         <section>
           <h3 id="tools.ietf.org"><a href="#tools.ietf.org">tools.ietf.org</a></h3>
-          <p>IETF がホストする RFC は、 tools.ietf.org だった。
+          <p>IETF がホストする RFC は、tools.ietf.org だった。
           <ul>
             <li>
               RFC 2616: Hypertext Transfer Protocol -- HTTP/1.1
@@ -196,7 +196,7 @@
               <img loading=lazy decoding=async src=tools.ietf.org.png?240327_185226 alt="tools.ietf.org" width=1500 height=1802>
             </picture>
           </p>
-          <p>しかし、 2021 年 tools と xml2rfc/bibxml をメンテしていた Henrik 氏が引退し、それを機に刷新が行われることになった。
+          <p>しかし、2021 年 tools と xml2rfc/bibxml をメンテしていた Henrik 氏が引退し、それを機に刷新が行われることになった。
           <ul>
             <li>
               Clarifying the state of and the transition plan for tools.ietf.org
@@ -205,7 +205,7 @@
               </ul>
             </li>
           </ul>
-          <p>既存のページはマイグレーションされて、 URL は datatracker.ietf.org にリダイレクトされている。
+          <p>既存のページはマイグレーションされて、URL は datatracker.ietf.org にリダイレクトされている。
           <ul>
             <li>
               Reminder: tools.ietf.org is shutting down before IETF 113
@@ -306,13 +306,13 @@
           </ul>
           <p>HTTPWG は、策定活動に GitHub をかなり多用する WG であり、仕様も全て GitHub のリポジトリで管理されている。
           <p>そのリソースを、策定段階から独自の読みやすいスタイル(CSS)で出してくれているものだ。
-          <p>つまり、 IETF 公式といえるかというと微妙だ。
+          <p>つまり、IETF 公式といえるかというと微妙だ。
         </section>
       </section>
       <section>
         <h2 id="rfc-の読みにくさ"><a href="#rfc-の読みにくさ">RFC の読みにくさ</a></h2>
-        <p>tools から datatracker に移行するのと同時期くらいに、 RFC 自体のフォーマットをなんとかしようという動きがあった。
-        <p>以前の RFC は、本文が ASCII 固定文字数で折り返し、 HTML では全体が <code translate=no>&lt;pre&gt;</code> というフォーマットだった。
+        <p>tools から datatracker に移行するのと同時期くらいに、RFC 自体のフォーマットをなんとかしようという動きがあった。
+        <p>以前の RFC は、本文が ASCII 固定文字数で折り返し、HTML では全体が <code translate=no>&lt;pre&gt;</code> というフォーマットだった。
         <p>
           <picture>
             <source type=image/avif srcset=old-rfc.avif?240327_185321>
@@ -324,7 +324,7 @@
         <p>文の途中でも固定長で折り返しているため、例えば読み上げも途切れるし、自動翻訳も意味がつながらずうまく動かない。左寄せでセンタリングもされてない。
         <p>ディスプレイが小さかったころに、安定したテキストフォーマットとしては良かったかもしれないが、全くアクセシブルでないこのフォーマットには筆者も不信感があった。
         <p>HTTPWG が独自に HTML を生成してホストしていたのも、このあたりの理由から読みやすいものを独自に公開していたように思う。
-        <p>その後 RFC 8650 あたりから、 RFC を生成するツールも刷新され、それを用いて現在のモダンな HTML が吐かれるようになった。
+        <p>その後 RFC 8650 あたりから、RFC を生成するツールも刷新され、それを用いて現在のモダンな HTML が吐かれるようになった。
         <p>
           <picture>
             <source type=image/avif srcset=new-rfc.avif?240327_185316>
@@ -332,7 +332,7 @@
             <img loading=lazy decoding=async src=new-rfc.png?240327_185226 alt="RFC の新しいスタイル" width=1192 height=1466>
           </picture>
         </p>
-        <p>先ほど言った、新しい/古いフォーマットどちらかは、ドメインによるものではない。例えば以下の二つは見た目が違うように見えるが、 HTML のソース自体は同じだ。
+        <p>先ほど言った、新しい/古いフォーマットどちらかは、ドメインによるものではない。例えば以下の二つは見た目が違うように見えるが、HTML のソース自体は同じだ。
         <ul>
           <li><a href="https://datatracker.ietf.org/doc/html/rfc7932" target=_blank>https://datatracker.ietf.org/doc/html/rfc7932</a>
           <li><a href="https://www.rfc-editor.org/rfc/rfc7932.html" target=_blank>https://www.rfc-editor.org/rfc/rfc7932.html</a>
@@ -341,7 +341,7 @@
       </section>
       <section>
         <h2 id="どれを使うべきかの議論"><a href="#どれを使うべきかの議論">どれを使うべきかの議論</a></h2>
-        <p>以下に、 Stack Exchange で不具合があった際に IETF 担当者とやりとりしたログが残っている。
+        <p>以下に、Stack Exchange で不具合があった際に IETF 担当者とやりとりしたログが残っている。
         <ul>
           <li>
             Links to HTML versions of RFC&apos;s need to move from &quot;tools&quot; to &quot;datatracker&quot; - Meta Stack Exchange
@@ -377,7 +377,7 @@
       <section>
         <h2 id="聞いてみた"><a href="#聞いてみた">聞いてみた。</a></h2>
         <p>公式見解を探そうにも、そもそも <code translate=no>datatracker</code> や <code translate=no>rfc-editor</code> での検索が RFC 自体に引っかかりまくるので、検索が困難だった。
-        <p>そこで、 IETF の discussion で聞いてみた。
+        <p>そこで、IETF の discussion で聞いてみた。
         <ul>
           <li>
             What is the difference between datatracker.ietf.org &amp; www.rfc-editor.org and which is Official URL for RFC ? · ietf-tools/datatracker · Discussion #7259
@@ -404,7 +404,7 @@
         <pre><code translate=no>10.17487/RFC9110</code></pre>
         <p>これを DOI を解するサービスを経由すれば、リダイレクトされる。
         <pre><code translate=no>https://doi.org/10.17487/RFC9110</code></pre>
-        <p>これにより、 IETF がドメインを変えたり構成が変わっても、リダイレクト先を登録しなおせば参照が切れないという仕組みだ。
+        <p>これにより、IETF がドメインを変えたり構成が変わっても、リダイレクト先を登録しなおせば参照が切れないという仕組みだ。
         <p>そして、その DOI に登録されている(つまりリダイレクトされる先)は以下だ。
         <pre><code translate=no>https://www.rfc-editor.org/info/rfc9110</code></pre>
         <p>
@@ -415,7 +415,7 @@
           </picture>
         </p>
         <p>本文ではなく、メタデータ部分のページであり、複数のリンクから好きなフォーマットで見ることができる。
-        <p>そして、 RFC の引用ルールではこのページを貼るように指定されているのだ。
+        <p>そして、RFC の引用ルールではこのページを貼るように指定されているのだ。
         <p>ここにコンテンツを含まないでいいのかは、IETF の中でも議論があるようだ。
         <p>ただし、これはあくまで「RFC を書く場合」のルールであり、RFC へのリンクを外部から貼る人にも求められる要件とは読めなさそうだ。
       </section>
@@ -459,15 +459,15 @@
             </li>
           </ul>
           <p>とはいえ、これは「RFC を書く人」が守るべきルールなので、他の文書もそうであるべきかは文書側のルールになるだろう。
-          <p>しかし、 RFC を書く場合にスペースを入れるのが &quot;<em>proper</em>&quot; とされているのは、注目したい。
+          <p>しかし、RFC を書く場合にスペースを入れるのが &quot;<em>proper</em>&quot; とされているのは、注目したい。
         </section>
         <section>
           <h3 id="draft"><a href="#draft">Draft</a></h3>
-          <p>rfc-editor は RFC はホストしているが、 RFC になる前の draft については datatracker にしかない。
+          <p>rfc-editor は RFC はホストしているが、RFC になる前の draft については datatracker にしかない。
           <ul>
             <li><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-p6-cache-26" target=_blank>https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-p6-cache-26</a>
           </ul>
-          <p>したがって、 RFC と Draft が並ぶ場合は、統一のために datatracker に寄せるのもありかもしれない。
+          <p>したがって、RFC と Draft が並ぶ場合は、統一のために datatracker に寄せるのもありかもしれない。
         </section>
         <section>
           <h3 id="inline-errata"><a href="#inline-errata">Inline Errata</a></h3>
@@ -481,7 +481,7 @@
             </li>
           </ul>
           <p>Errata があったとしても、一度発行した RFC は内容を変えることができないため、マージするには改訂を行い新たな RFC を出す必要がある。
-          <p>しかし、 RFC を出すのは一定の労力がかかるため、 Errata が存在するままの RFC は多く存在する。実装時などに「なにかがおかしい?」と思ったら実は Errata があったということはよく起こるため、最初に Errata の存在を確認するのは重要だった。
+          <p>しかし、RFC を出すのは一定の労力がかかるため、Errata が存在するままの RFC は多く存在する。実装時などに「なにかがおかしい?」と思ったら実は Errata があったということはよく起こるため、最初に Errata の存在を確認するのは重要だった。
           <p>RFC では、ひっそりと Errata Exsists と書かれたリンクから見ることができる。
           <p>
             <picture>
@@ -513,8 +513,8 @@
       <section>
         <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
         <p>RFC へのリンクを貼る場合、公式の、統一された、安定的な URL を求めるのであれば、ドメインは <em>rfc-editor</em> を用いるのが良いだろう。
-        <p>そして RFC を書く場合や、論文や出版で DOI を意識したのであれば、 <code translate=no>/info</code> を貼る必要がある。
-        <p>しかし、一般的な文書や書籍では、 <code translate=no>/info</code> である必要はないだろうし、必要なら DOI そのものを併記すれば良い場合がほとんどと思われる。
+        <p>そして RFC を書く場合や、論文や出版で DOI を意識したのであれば、<code translate=no>/info</code> を貼る必要がある。
+        <p>しかし、一般的な文書や書籍では、<code translate=no>/info</code> である必要はないだろうし、必要なら DOI そのものを併記すれば良い場合がほとんどと思われる。
         <p>従って、以下を用いるのが良いだろう。
         <ul>
           <li><a href="https://www.rfc-editor.org/rfc/rfc9110.html" target=_blank>https://www.rfc-editor.org/rfc/rfc9110.html</a>

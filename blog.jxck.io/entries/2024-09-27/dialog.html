@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-27T08:00:00+08:00",
-    "dateModified": "2024-11-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-27>2024-09-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -184,7 +184,7 @@
         </section>
         <section>
           <h3 id="showshowmodal"><a href="#showshowmodal"><code translate=no>show()</code>/<code translate=no>showModal()</code></a></h3>
-          <p>基本的に <code translate=no>&lt;dialog&gt;</code> は動的に表示されるため、JS で開くことになるだろう。しかし、 <code translate=no>open</code> 属性を動的に付けるのではなく、 <code translate=no>show()</code>/<code translate=no>showModal()</code> を用いるのが基本だ。
+          <p>基本的に <code translate=no>&lt;dialog&gt;</code> は動的に表示されるため、JS で開くことになるだろう。しかし、<code translate=no>open</code> 属性を動的に付けるのではなく、<code translate=no>show()</code>/<code translate=no>showModal()</code> を用いるのが基本だ。
           <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&quot;button.show&quot;).addEventListener(&quot;click&quot;, (e) =&gt; {
   document.querySelector(&quot;dialog&quot;).show()
 })
@@ -202,11 +202,11 @@ document.querySelector(&quot;button.showModal&quot;).addEventListener(&quot;clic
               <img loading=lazy decoding=async src=2.a11y-tree.png?240927_190504 alt="Accessibility Tree 上は role: dialog, modal: false になっている" width=538 height=514>
             </picture>
           </p>
-          <p>これを、 <code translate=no>showModal()</code> で開くとこうなる。
+          <p>これを、<code translate=no>showModal()</code> で開くとこうなる。
           <p>
             <img loading=lazy decoding=async src=3.showModal.drawio.svg?240927_193445 alt="showModal() で Modal Dialog を開く" width=451 height=231>
           </p>
-          <p>背景が薄くグレーになるのは、 <code translate=no>::backdrop</code> のデフォルト CSS が当たっているからだ。
+          <p>背景が薄くグレーになるのは、<code translate=no>::backdrop</code> のデフォルト CSS が当たっているからだ。
           <p>
             <picture>
               <source type=image/avif srcset=4.default-style.avif?240927_190504>
@@ -215,7 +215,7 @@ document.querySelector(&quot;button.showModal&quot;).addEventListener(&quot;clic
             </picture>
           </p>
           <p>non-Modal と異なり、Modal は同時に 1 つしか開けない。
-          <p>Accessibility Tree を確認すれば、 <code translate=no>aria-modal: true</code> になっていることがわかる。
+          <p>Accessibility Tree を確認すれば、<code translate=no>aria-modal: true</code> になっていることがわかる。
           <p>
             <picture>
               <source type=image/avif srcset=5.a11y-tree.avif?240927_190504>
@@ -256,11 +256,11 @@ document.querySelector(&quot;dialog&quot;).addEventListener(&quot;cancel&quot;, 
   console.log(e.target.returnValue) // ESC などで閉じた場合
 })
 &lt;/script&gt;</code></pre>
-          <p><code translate=no>&quot;cancel&quot;</code> イベントは、 Modal Dialog を ESC で閉じるといった操作で、<code translate=no>&quot;cancel&quot;</code> -&gt; <code translate=no>&quot;close&quot;</code> の順で発火する。
+          <p><code translate=no>&quot;cancel&quot;</code> イベントは、Modal Dialog を ESC で閉じるといった操作で、<code translate=no>&quot;cancel&quot;</code> -&gt; <code translate=no>&quot;close&quot;</code> の順で発火する。
         </section>
         <section>
           <h3 id="close-と-returnvalue"><a href="#close-と-returnvalue"><code translate=no>close()</code> と <code translate=no>returnValue</code></a></h3>
-          <p>この <code translate=no>&lt;form&gt;</code> に <code translate=no>&lt;input&gt;</code> などを置いても、その <code translate=no>value</code> は <code translate=no>returnValue</code> には渡らない。任意の値を渡す場合は、 <code translate=no>close()</code> の引数に明示的に渡す必要がある。
+          <p>この <code translate=no>&lt;form&gt;</code> に <code translate=no>&lt;input&gt;</code> などを置いても、その <code translate=no>value</code> は <code translate=no>returnValue</code> には渡らない。任意の値を渡す場合は、<code translate=no>close()</code> の引数に明示的に渡す必要がある。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog&gt;
   &lt;div&gt;
     &lt;h1&gt;Hello Dialog&lt;/h1&gt;
@@ -301,12 +301,12 @@ document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (
   &lt;/form&gt;
 &lt;/dialog&gt;</code></pre>
           <p>この Form は、アカウントを入力し Login ボタンを押せば、そのまま Form を submit して POST でリクエストが飛び、画面を遷移することになる。
-          <p>しかし、Cancel ボタンの方は <code translate=no>formmethod</code> 属性を用いて <code translate=no>form[method]</code> を <code translate=no>POST</code> から <code translate=no>dialog</code> に上書きしている。つまり、このボタンを押した場合は、 <code translate=no>&lt;dialog&gt;</code> が普通に閉じて、 <code translate=no>returnValue</code> に <code translate=no>&quot;cancel&quot;</code> が返るのだ。
+          <p>しかし、Cancel ボタンの方は <code translate=no>formmethod</code> 属性を用いて <code translate=no>form[method]</code> を <code translate=no>POST</code> から <code translate=no>dialog</code> に上書きしている。つまり、このボタンを押した場合は、<code translate=no>&lt;dialog&gt;</code> が普通に閉じて、<code translate=no>returnValue</code> に <code translate=no>&quot;cancel&quot;</code> が返るのだ。
           <p>このように、「キャンセル時は <code translate=no>&lt;dialog&gt;</code> を閉じるだけ」という分岐を実装することも可能だ。
         </section>
         <section>
           <h3 id="aria-label--aria-labelledby"><a href="#aria-label--aria-labelledby">aria-label / aria-labelledby</a></h3>
-          <p>WAI-ARIA では <code translate=no>role=dialog</code> に対して、 <code translate=no>aria-label</code> / <code translate=no>aria-labelledby</code> を使ってアクセシブルな名前を割り当てることが推奨されている。
+          <p>WAI-ARIA では <code translate=no>role=dialog</code> に対して、<code translate=no>aria-label</code> / <code translate=no>aria-labelledby</code> を使ってアクセシブルな名前を割り当てることが推奨されている。
           <ul>
             <li>
               Accessible Rich Internet Applications (WAI-ARIA) 1.3
@@ -352,7 +352,7 @@ document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (
         <section>
           <h3 id="scrollable"><a href="#scrollable">Scrollable</a></h3>
           <p>Dialog のユースケースの 1 つとして、「規約への同意」を求める UI がある。
-          <p>規約は基本的に長文になるため、そのまま <code translate=no>&lt;dialog&gt;</code> にレンダリングすると、 <code translate=no>&lt;dialog&gt;</code> 自体がスクロール可能になってしまう。
+          <p>規約は基本的に長文になるため、そのまま <code translate=no>&lt;dialog&gt;</code> にレンダリングすると、<code translate=no>&lt;dialog&gt;</code> 自体がスクロール可能になってしまう。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog style=&quot;height: 100px;&quot;&gt;
   &lt;section&gt;
     &lt;p&gt;めっちゃ&lt;/p&gt;
@@ -367,8 +367,8 @@ document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (
     &lt;button type=&quot;submit&quot; value=&quot;disagree&quot;&gt;Disagree&lt;/button&gt;
   &lt;/form&gt;
 &lt;/dialog&gt;</code></pre>
-          <p>しかし、 <code translate=no>&lt;dialog&gt;</code> 自体がスクロール可能になることは、下部にあるコントローラまでの到達を困難にするなど、様々な不便があるため、仕様では「<code translate=no>&lt;dialog&gt;</code> 自体を Scrollable にするのは避けるべき」とされている。
-          <p>代わりに、規約を別ページにしリンクを貼る、 PDF でダウンロードさせるなども考えられるが、最も簡単なのは規約のみを Scrollable なコンテナに入れる方法だ。以下の場合は、 <code translate=no>&lt;section&gt;</code> が Scrollable になっている。
+          <p>しかし、<code translate=no>&lt;dialog&gt;</code> 自体がスクロール可能になることは、下部にあるコントローラまでの到達を困難にするなど、様々な不便があるため、仕様では「<code translate=no>&lt;dialog&gt;</code> 自体を Scrollable にするのは避けるべき」とされている。
+          <p>代わりに、規約を別ページにしリンクを貼る、PDF でダウンロードさせるなども考えられるが、最も簡単なのは規約のみを Scrollable なコンテナに入れる方法だ。以下の場合は、<code translate=no>&lt;section&gt;</code> が Scrollable になっている。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog style=&quot;height: 100px;&quot;&gt;
   &lt;section style=&quot;overflow: auto; height: 60px;&quot; autofocus&gt;
     &lt;p&gt;めっちゃ&lt;/p&gt;
@@ -411,7 +411,7 @@ document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (
               </ul>
             </li>
           </ul>
-          <p>既に Firefox は実装済みで、 Chrome は M130 から Ship される。しかし、 Safari は実装上の困難さとパフォーマンスを理由にネガティブな態度を表明している。
+          <p>既に Firefox は実装済みで、Chrome は M130 から Ship される。しかし、Safari は実装上の困難さとパフォーマンスを理由にネガティブな態度を表明している。
           <ul>
             <li>
               190870 - Make scrollable element focusable
@@ -454,7 +454,7 @@ dialog.returnValue // &quot;accept&quot;</code></pre>
         <section>
           <h3 id="backdrop-をクリックしたら閉じる"><a href="#backdrop-をクリックしたら閉じる">backdrop をクリックしたら閉じる</a></h3>
           <p>Dialog の要件としてよくある「背景(backdrop)をクリックしたら閉じる(キャンセル)」というユースケースの実装を考える。
-          <p>まず前提として、 Modal の場合は「backdrop 含め、どこをクリックしても <code translate=no>&lt;dialog&gt;</code> がクリックされたことになる」という性質がある。
+          <p>まず前提として、Modal の場合は「backdrop 含め、どこをクリックしても <code translate=no>&lt;dialog&gt;</code> がクリックされたことになる」という性質がある。
           <pre class=js data-code=js><code translate=no class=language-js>dialog.addEventListener(&apos;click&apos;, (e) =&gt; {
   // 画面のどこをクリックしても発火
   console.log(e.target) // dialog
@@ -462,7 +462,7 @@ dialog.returnValue // &quot;accept&quot;</code></pre>
           <p>
             <img loading=lazy decoding=async src=7.backdrop-click.drawio.svg?240927_190504 alt="Modal は画面のどこをクリックしても dialog 要素で発火する" width=451 height=231>
           </p>
-          <p>そこで、 <code translate=no>&lt;dialog&gt;</code> を <code translate=no>padding: 0</code> にし、直下の <code translate=no>&lt;div&gt;</code> が <code translate=no>&lt;dialog&gt;</code> の内側いっぱいに表示されている状態にする。以下では、赤い <code translate=no>&lt;div&gt;</code> が <code translate=no>&lt;dialog&gt;</code> いっぱいに被さっている形だ。
+          <p>そこで、<code translate=no>&lt;dialog&gt;</code> を <code translate=no>padding: 0</code> にし、直下の <code translate=no>&lt;div&gt;</code> が <code translate=no>&lt;dialog&gt;</code> の内側いっぱいに表示されている状態にする。以下では、赤い <code translate=no>&lt;div&gt;</code> が <code translate=no>&lt;dialog&gt;</code> いっぱいに被さっている形だ。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
   dialog {
     padding: 0;
@@ -481,8 +481,8 @@ dialog.returnValue // &quot;accept&quot;</code></pre>
     &lt;/form&gt;
   &lt;/div&gt;
 &lt;/dialog&gt;</code></pre>
-          <p>この状態で <code translate=no>showModal()</code> した場合、 Dialog の領域をクリックしても <code translate=no>&lt;dialog&gt;</code> より先に <code translate=no>&lt;div&gt;</code> で Click Event が発火する。
-          <p>これを利用すると、 backdrop 領域をクリックしたら <code translate=no>target</code>/<code translate=no>currentTarget</code> が <code translate=no>&lt;dialog&gt;</code> だが、 Dialog の中をクリックした場合は <code translate=no>target</code> が <code translate=no>&lt;div&gt;</code> になるため、これで分岐が可能になる。
+          <p>この状態で <code translate=no>showModal()</code> した場合、Dialog の領域をクリックしても <code translate=no>&lt;dialog&gt;</code> より先に <code translate=no>&lt;div&gt;</code> で Click Event が発火する。
+          <p>これを利用すると、backdrop 領域をクリックしたら <code translate=no>target</code>/<code translate=no>currentTarget</code> が <code translate=no>&lt;dialog&gt;</code> だが、Dialog の中をクリックした場合は <code translate=no>target</code> が <code translate=no>&lt;div&gt;</code> になるため、これで分岐が可能になる。
           <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&apos;dialog&apos;).addEventListener(&apos;click&apos;, (e) =&gt; {
   // dialog 背景含めて全体がフック対象
   const { target, currentTarget } = e
@@ -491,7 +491,7 @@ dialog.returnValue // &quot;accept&quot;</code></pre>
     document.querySelector(&apos;dialog&apos;).close()
   }
 })</code></pre>
-          <p>この要件だけでなく、Popover 相当の Light Dismiss 相当を必要とする場合は、 <code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> することも可能だ。それについては後述する。
+          <p>この要件だけでなく、Popover 相当の Light Dismiss 相当を必要とする場合は、<code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> することも可能だ。それについては後述する。
         </section>
         <section>
           <h3 id="キーボード操作"><a href="#キーボード操作">キーボード操作</a></h3>

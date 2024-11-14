@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-01-07T08:00:00+08:00",
-    "dateModified": "2024-02-07T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-01-07>2022-01-07</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-02-07>2024-02-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -172,15 +172,15 @@
       </section>
       <section>
         <h2 id="avif"><a href="#avif">AVIF</a></h2>
-        <p>AVIF は、ロイヤリティフリーなコーデックを目指して AOMedia が開発した AV1 を、画像に転用したものだ。 AV1 Image File Format の略とされ、 AV1 の I フレームを静止画として表示するイメージだ。
+        <p>AVIF は、ロイヤリティフリーなコーデックを目指して AOMedia が開発した AV1 を、画像に転用したものだ。AV1 Image File Format の略とされ、AV1 の I フレームを静止画として表示するイメージだ。
         <p>Chrome 85, Firefox 93 あたりから対応が始まり、いまはデフォルトで有効になっている。
         <p>Edge はなぜか AVIF を取得しないようだが、理由はわかってない。
-        <p>Safari は、 AOM には参加しているようだが WebP の対応も割と最近なので、気長に待ちたい。
+        <p>Safari は、AOM には参加しているようだが WebP の対応も割と最近なので、気長に待ちたい。
       </section>
       <section>
         <h2 id="avif-への変換"><a href="#avif-への変換">AVIF への変換</a></h2>
         <p>本サイトでは、基本的に PNG/JPEG/GIF がソースとして存在し、それを WebP に変換している。これと同様に AVIF への事前変換を行う。
-        <p>変換ツールはいくつかあるが、 Go が Node あたりが使いやすそうだった。
+        <p>変換ツールはいくつかあるが、Go が Node あたりが使いやすそうだった。
         <ul>
           <li>
             Kagami/go-avif
@@ -262,8 +262,8 @@ Options:
             <li>color animation
           </ul>
           <p>実際、ブログ本体で使われている画像では、そこまでクオリティが高いものを求めているわけではない。
-          <p>そして、ブログ全体の WebP は、 cwebp コマンドで言う <code translate=no>-q 40</code> を使っており、これが avif コマンドの quality と同じ尺度で考えてよいのかを比較したが、大差はなかったため同じく <code translate=no>40</code> を採用することにした。
-          <p>かわりに、本サイトの画像は全て事前エンコードであり、変換に時間がかかっても問題はないため、 <code translate=no>--speed 0</code> で限界まで圧縮率を高めることにした。
+          <p>そして、ブログ全体の WebP は、cwebp コマンドで言う <code translate=no>-q 40</code> を使っており、これが avif コマンドの quality と同じ尺度で考えてよいのかを比較したが、大差はなかったため同じく <code translate=no>40</code> を採用することにした。
+          <p>かわりに、本サイトの画像は全て事前エンコードであり、変換に時間がかかっても問題はないため、<code translate=no>--speed 0</code> で限界まで圧縮率を高めることにした。
         </section>
         <section>
           <h3 id="size"><a href="#size">Size</a></h3>
@@ -280,7 +280,7 @@ Options:
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>雑に変換しただけでも画質を損ねることなく、かなりファイルを圧縮できそうなことがわかった。
         <p>特に時間をかけてエンコードすればかなりの圧縮率になるため、事前に圧縮可能な場合はより効果を発揮しそうだ。
-        <p>あとは、 APNG をどうするかはおいおい考えていきたい。
+        <p>あとは、APNG をどうするかはおいおい考えていきたい。
       </section>
       <section>
         <h2 id="demo_1"><a href="#demo_1">DEMO</a></h2>

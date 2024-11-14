@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-06-12T08:00:00+08:00",
-    "dateModified": "2024-05-28T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-06-12>2016-06-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-28>2024-05-28</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -186,12 +186,12 @@
             <img loading=lazy decoding=async src=window-opener.gif?240313_215401 alt="Opener によって別タブで開いた画面が元の画面を遷移させている" title="window opener demo" width=150 height=150>
           </picture>
         </p>
-        <p>このデモでは、 <a href="https://labs.jxck.io/noopener/" target=_blank>https://labs.jxck.io/noopener/</a> から開いた <a href="https://labs.jxck.io/noopener/opener-change.html" target=_blank>https://labs.jxck.io/noopener/opener-change.html</a> のページが別タブで開いた後、最初に開いたタブが勝手に <a href="http://example.com" target=_blank>http://example.com</a> に遷移しているというものである。
+        <p>このデモでは、<a href="https://labs.jxck.io/noopener/" target=_blank>https://labs.jxck.io/noopener/</a> から開いた <a href="https://labs.jxck.io/noopener/opener-change.html" target=_blank>https://labs.jxck.io/noopener/opener-change.html</a> のページが別タブで開いた後、最初に開いたタブが勝手に <a href="http://example.com" target=_blank>http://example.com</a> に遷移しているというものである。
         <p>最初のページを Parent 、開いたタブを Child とする。
-        <p>Child 側では以下のような JS が書かれており、 Parent 側の location を変えて、任意の URL に遷移させることが可能である。
+        <p>Child 側では以下のような JS が書かれており、Parent 側の location を変えて、任意の URL に遷移させることが可能である。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=js data-code=js><code translate=no class=language-js>window.opener.location = http://example.com</code></pre>
-        <p>多くのブラウザでは、 child が <code translate=no>target=blank_</code> により別タブで開いた場合に、そちらが手前に表示され、 parent は裏に回る。
+        <p>多くのブラウザでは、child が <code translate=no>target=blank_</code> により別タブで開いた場合に、そちらが手前に表示され、parent は裏に回る。
         <p>child で上記の JS が動くと、裏で勝手に parent が画面遷移している状態となる。
         <p>これは、オリジンが違っても可能であるため、リンクをたどってきたユーザを任意のサイトに誘導することが可能というわけである。
         <ul>
@@ -201,7 +201,7 @@
       <section>
         <h2 id="open-link-in-new-tab"><a href="#open-link-in-new-tab">open link in new tab</a></h2>
         <p><code translate=no>target=_blank</code> が無いリンクを、別タブとして開いても、この攻撃は再現しないようである。
-        <p>しかし、 <code translate=no>target=_blank</code> がついたリンクを、さらに「別タブとして開く」機能を用いて開いた場合の挙動は、ブラウザによって異なる。
+        <p>しかし、<code translate=no>target=_blank</code> がついたリンクを、さらに「別タブとして開く」機能を用いて開いた場合の挙動は、ブラウザによって異なる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?220306_111358">
         <figure>
           <figcaption>ブラウザごとのリンククリック時の挙動</figcaption>
@@ -270,7 +270,7 @@
           <ul>
             <li>見た目がごく普通のサイト <code translate=no>https://happy.example.jp</code> を用意する
             <li>このサイトに <code translate=no>window.opener.location = &quot;https://cgn.example.com/login&quot;</code> を仕込む
-            <li>(この JS が動くなら、 XSS でこのスクリプトを別サービスに仕込んでも代替できる)
+            <li>(この JS が動くなら、XSS でこのスクリプトを別サービスに仕込んでも代替できる)
           </ul>
         </section>
         <section>
@@ -318,15 +318,15 @@
       </section>
       <section>
         <h2 id="noopener"><a href="#noopener">noopener</a></h2>
-        <p>parent 側のリンクタグに <code translate=no>rel=noopener</code> を追加することで、 child が parent を <code translate=no>window.opener</code> 経由で参照できなくなるため、 parent の location の変更などを抑止することが可能である。
+        <p>parent 側のリンクタグに <code translate=no>rel=noopener</code> を追加することで、child が parent を <code translate=no>window.opener</code> 経由で参照できなくなるため、parent の location の変更などを抑止することが可能である。
         <p><a href="https://html.spec.whatwg.org/multipage/semantics.html#link-type-noopener" target=_blank>4.6.6.11 Link type &quot;noopener&quot; | WHATWG Spec</a>
-        <p>ただし、 Chrome, Opera 以外は現時点で <code translate=no>noopener</code> に対応していない。
+        <p>ただし、Chrome, Opera 以外は現時点で <code translate=no>noopener</code> に対応していない。
         <p><a href="http://caniuse.com/#feat=rel-noopener" target=_blank>rel=noopener | Can I use</a>
         <p>代替として <code translate=no>noreferrer</code> を指定することで同じ挙動が実現できる。
         <p>したがって、以下のようにすることで目的が達成できる。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=&quot;http://example.com&quot; target=_blank rel=&quot;noopener noreferrer&quot;&gt;</code></pre>
         <p>ただし <code translate=no>noreferrer</code> はその名の通り Referrer を抑止する属性であるため、副作用には注意が必要である。
-        <p><code translate=no>rel</code> の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
+        <p><code translate=no>rel</code> の有無により、child から parent ページの遷移の動作を試すデモも以下に用意した。
         <ul>
           <li><a href="https://labs.jxck.io/noopener/" target=_blank>https://labs.jxck.io/noopener/</a>
         </ul>

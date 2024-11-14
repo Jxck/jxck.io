@@ -118,7 +118,7 @@ $ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -ou
 
 ## report-uri.io
 
-ブラウザは、 Pin に一致しない証明書を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
+ブラウザは、Pin に一致しない証明書を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
 
 HPKP の違反レポートは以下のような JSON データである。
 

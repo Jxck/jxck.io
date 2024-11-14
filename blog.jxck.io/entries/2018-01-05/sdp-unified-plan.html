@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="新年早々、 Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。Intent to Implement: WebRTC Unified Plan SDPSDP の互換性についてインパクトの大きいこの変更に...">
+  <meta name=description         content="新年早々、Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。Intent to Implement: WebRTC Unified Plan SDPSDP の互換性についてインパクトの大きいこの変更につ...">
   <meta name=keywords            content="webrtc,sdp">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2018-01-05/sdp-unified-plan.html>
   <meta property=og:title        content="SDP の Unified Plan と Plan B | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="新年早々、 Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。Intent to Implement: WebRTC Unified Plan SDPSDP の互換性についてインパクトの大きいこの変更に...">
+  <meta property=og:description  content="新年早々、Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。Intent to Implement: WebRTC Unified Plan SDPSDP の互換性についてインパクトの大きいこの変更につ...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-01-05T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "新年早々、 Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。Intent to Implement: WebRTC Unified Plan SDPSDP の互換性についてインパクトの大きいこの変更に..."
+    "description": "新年早々、Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。Intent to Implement: WebRTC Unified Plan SDPSDP の互換性についてインパクトの大きいこの変更につ..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-01-05>2018-01-05</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -152,7 +152,7 @@
       <h1><a href="">SDP の Unified Plan と Plan B</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>新年早々、 Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。
+        <p>新年早々、Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。
         <p><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Qgwfl-nD0Zs/u45qUqRHBwAJ" target=_blank>Intent to Implement: WebRTC Unified Plan SDP</a>
         <p>SDP の互換性についてインパクトの大きいこの変更について簡単に解説する。
       </section>
@@ -168,23 +168,23 @@
       </section>
       <section>
         <h2 id="sdp-compatibility"><a href="#sdp-compatibility">SDP Compatibility</a></h2>
-        <p>SDP は、 WebRTC の通信開始前に、シグナリングで交換するデータである。
+        <p>SDP は、WebRTC の通信開始前に、シグナリングで交換するデータである。
         <p>内容は、これから交換する映像/音声のコーデック他、セッションを確立するための様々な情報が含まれる。
         <p>もし WebRTC のセッションにおいて、複数の Audio/Video Stream を交換する場合は、各ストリームの情報を SDP に含める必要がある。
-        <p>この <em>複数ストリーム情報の記述形式</em> を巡っては、 2 つの Plan があった。
+        <p>この <em>複数ストリーム情報の記述形式</em> を巡っては、2 つの Plan があった。
         <p>それが <em>Plan A</em> と <em>Plan B</em> であり、結論としては <em>標準は Plan A を採用</em> し、それを <em>Unified Plan</em> と呼ぶことにした。
-        <p>Firefox は Unified Plan に対応しているのだが、 Chrome/Safari/Edge は Plan B に対応し今に至る。
-        <p>つまり、互換性の問題があり、最終的には Plan B は撲滅し、 Unified Plan に対応することが望まれていた。
+        <p>Firefox は Unified Plan に対応しているのだが、Chrome/Safari/Edge は Plan B に対応し今に至る。
+        <p>つまり、互換性の問題があり、最終的には Plan B は撲滅し、Unified Plan に対応することが望まれていた。
         <p>Chrome がそこに対して Intent to Implement を出したことは、業界としては嬉しい知らせである。
       </section>
       <section>
         <h2 id="plan-b"><a href="#plan-b">Plan B</a></h2>
         <p><a href="https://tools.ietf.org/html/draft-uberti-rtcweb-plan-00" target=_blank>Plan B: a proposal for signaling multiple media sources in WebRTC</a>
-        <p>例えば、複数のマイクからの音声を送る場合、 &quot;m=&quot; line をマイクごとに記述にする。
+        <p>例えば、複数のマイクからの音声を送る場合、&quot;m=&quot; line をマイクごとに記述にする。
         <p>しかし、各 &quot;m=&quot; line 対して別トランスポートを割り当てたいとは限らない。
         <p>多重化する場合は、トランスポートは 1 つで良い。
         <p>そこで、トランスポートに対して &quot;m=&quot; line は 1 つにし、それを &quot;envelope&quot; とする。
-        <p>その中に、マイクごとの定義を、 &quot;a=ssrc&quot; で記述する。
+        <p>その中に、マイクごとの定義を、&quot;a=ssrc&quot; で記述する。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=sdp data-code=sdp><code translate=no class=language-sdp>m=audio 49170 RTP/AVP 101
 a=ssrc:1 msid:left-mic
@@ -194,7 +194,7 @@ a=ssrc:3 msid:right-mic</code></pre>
       <section>
         <h2 id="plan-a---unified-plan"><a href="#plan-a---unified-plan">Plan A - Unified Plan</a></h2>
         <p><a href="https://tools.ietf.org/html/draft-roach-mmusic-unified-plan-00" target=_blank>A Unified Plan for Using SDP with Large Numbers of Media Flows</a>
-        <p>Plan A は、 &quot;m=&quot; line をメディアごとに書くというシンプルな方法である。
+        <p>Plan A は、&quot;m=&quot; line をメディアごとに書くというシンプルな方法である。
         <p>もし多重化したい場合は、対象の &quot;m=&quot; line に対して BUNDLE を指定する。
         <p>この方式が WebRTC の標準として合意され、現在は Unified Plan として策定が進んでいる。
         <pre class=sdp data-code=sdp><code translate=no class=language-sdp>...
@@ -216,18 +216,18 @@ a=mid:m3
       <section>
         <h2 id="sdpsemantics"><a href="#sdpsemantics">SdpSemantics</a></h2>
         <p>Chrome は、まず WebRTCUnifiedPlan というフラグを用意するとしている。
-        <p>このフラグを有効にすると、 RTCConfiguration に <code translate=no>&quot;sdpSemantics&quot;</code> という独自プロパティを定義される。
+        <p>このフラグを有効にすると、RTCConfiguration に <code translate=no>&quot;sdpSemantics&quot;</code> という独自プロパティを定義される。
         <p>デフォルトは <code translate=no>&quot;plan-b&quot;</code> であり、明示的に <code translate=no>&quot;unified-plan&quot;</code> を指定すれば切り替えられる。
-        <p>後にデフォルトを &quot;unified-plan&quot; に変更し、 <code translate=no>&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
+        <p>後にデフォルトを &quot;unified-plan&quot; に変更し、<code translate=no>&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
         <pre class=js data-code=js><code translate=no class=language-js>new RTCPeerConnection({sdpSemantics: &quot;unified-plan&quot;})</code></pre>
       </section>
       <section>
         <h2 id="影響"><a href="#影響">影響</a></h2>
         <p>今はまだ Intent to Implement なので Ship まで行くのはまだ先だ。
-        <p>しかし、フラグが無くなり、デフォルトで SDP が Unified Plan になると、古い Chrome のように Unified Plan をパースできないクライアントや、 Plan B を前提に作られたシステムでは、シグナリングに失敗しセッションが確立できなくなる。
-        <p>また、 Safari/Edge も明確なサポートプランを出していないため、引き続き Plan 間のすり合わせが何かしら必要になるだろう。
+        <p>しかし、フラグが無くなり、デフォルトで SDP が Unified Plan になると、古い Chrome のように Unified Plan をパースできないクライアントや、Plan B を前提に作られたシステムでは、シグナリングに失敗しセッションが確立できなくなる。
+        <p>また、Safari/Edge も明確なサポートプランを出していないため、引き続き Plan 間のすり合わせが何かしら必要になるだろう。
         <p><a href="https://github.com/jitsi/sdp-interop" target=_blank>jitsi/sdp-interop: An npm module that converts a Unified Plan SDP to Plan B and vice versa.</a>
-        <p>今後 WebRTC を用いたシステムを作る際は、 Unified-Plan を中心としたシステムを作り、他のブラウザとの interop を KITE などで注視しながら、 Plan B を補完する構成で作るべきと言えるだろう。
+        <p>今後 WebRTC を用いたシステムを作る際は、Unified-Plan を中心としたシステムを作り、他のブラウザとの interop を KITE などで注視しながら、Plan B を補完する構成で作るべきと言えるだろう。
       </section>
     </article>
   </main>

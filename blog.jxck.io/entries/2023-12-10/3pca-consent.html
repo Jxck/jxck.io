@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 10 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 10 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-10/3pca-consent.html>
   <meta property=og:title        content="3PCA 10 日目: なぜ Cookie には同意が必要なのか? | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 10 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 10 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-10T08:00:00+08:00",
-    "dateModified": "2023-12-10T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 10 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 10 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-10>2023-12-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-10>2023-12-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -150,7 +150,7 @@
       <h1><a href="">3PCA 10 日目: なぜ Cookie には同意が必要なのか?</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 10 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 10 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -169,9 +169,9 @@
         <p>その後 2002 年に「<em>ePrivacy 指令</em>」ができ、ここで初めて具体的に Cookie を規制する内容が盛り込まれた。ここではまだ 3rd Party Cookie 云々の話はなく、「きちんと説明し同意をとること」といった言及がされている。この「同意(consent)」がなんなのかはそこまではっきりしておらず、これもまた「指令(Directive)」であるため、詳細は各国の法令に任せる立ち位置だ。これは 2009 年に改定され、ここで Cookie の同意取得の義務付けなどが入り、規制が強化された。
         <p>で、2016 年に誰もが一度は聞いたことあるだろう「<em>GDPR</em>」ができる。位置付けとしては「EU データ保護指令」の改訂版だ。この最後は「規則(Regulation)」となっており、「指令(Directive)」よりも強いものだ。これ自体がもう拘束力を持つため、EU 全体がこれに従う必要がある。違反すれば罰金もある。(ePrivacy も Directive ではなく Regulation 版を出すと言われて結構経つがまだ出てない)。
         <p>GDPR は個人情報保護周り全般について触れており、ePrivacy はその電子通信部分を補完しているという関係だ。従って GDPR に従うためには、Cookie の利用に対して合意を取る必要が出る。これが Cookie Banner, Cookie Notice Cookie Consent などと言われる、合意のポップアップをよく見るようになった現代の Web に繋がっていく。
-        <p>EU 以外は無関係かというと、そんなことはない。GDPR は「EU に拠点を置く企業」はもとより「EU にサービスを提供している他国の企業」も対象となっているためだ。従って、英語で作られていたり、 i18n で英語も提供しているようなサービスは、対象になる可能性がある。したがって、日本であっても無視はできないのだ。
-        <p>2016 年に出てから 2018 年の適用までに、 2 年間の準備期間があった。しかし、多くのサービスは動き出しが遅れ、 2018 年直前になって大急ぎで対応をすることになる。「Cookie のポップアップを出すだけなら、そんなに大変ではないのでは?」と思うかもしれないが、前述のように GDPR は Cookie だけを規制する目的ではないため、プライバシーポリシーの整備や、データの管理責任者設置など、様々なことを見直す必要がある。 Cookie バナーはその氷山の一角でしかないのだ。
-        <p>対応が追いつかない会社は、思い切って EU 圏からのアクセスを IP ベースでシャットアウトしたため、「GDPR のせいで、インターネットが分断する」と騒ぐ人もいた。 Yahoo が欧州圏へのサービス提供を停止した理由も、こうした法規制への対応だったとされている。
+        <p>EU 以外は無関係かというと、そんなことはない。GDPR は「EU に拠点を置く企業」はもとより「EU にサービスを提供している他国の企業」も対象となっているためだ。従って、英語で作られていたり、i18n で英語も提供しているようなサービスは、対象になる可能性がある。したがって、日本であっても無視はできないのだ。
+        <p>2016 年に出てから 2018 年の適用までに、2 年間の準備期間があった。しかし、多くのサービスは動き出しが遅れ、2018 年直前になって大急ぎで対応をすることになる。「Cookie のポップアップを出すだけなら、そんなに大変ではないのでは?」と思うかもしれないが、前述のように GDPR は Cookie だけを規制する目的ではないため、プライバシーポリシーの整備や、データの管理責任者設置など、様々なことを見直す必要がある。Cookie バナーはその氷山の一角でしかないのだ。
+        <p>対応が追いつかない会社は、思い切って EU 圏からのアクセスを IP ベースでシャットアウトしたため、「GDPR のせいで、インターネットが分断する」と騒ぐ人もいた。Yahoo が欧州圏へのサービス提供を停止した理由も、こうした法規制への対応だったとされている。
         <ul>
           <li>
             【重要】欧州などからご利用のお客様へ - Yahoo! JAPAN
@@ -185,12 +185,12 @@
         <h2 id="ccpa-california-consumer-privacy-act"><a href="#ccpa-california-consumer-privacy-act">CCPA (California Consumer Privacy Act)</a></h2>
         <p>もう 1 つ、この分野で押さえておくべきものが、CCPA (カリフォルニア州消費者プライバシー法)だ。
         <p>カリフォルニア州のかつてシリコンバレーと呼ばれたエリアには、こうした法律の対象になるテック系企業の本社が多くあるため、州が独自でルールを色々と持っている。CCPA は 2020 年に作られたもので、カリフォルニアに拠点がある企業だけでなく、カリフォルニア州の住民の個人情報を扱うサイトで一定の条件を満たした企業に適用されるため、これもやはり世界中に影響のある法律と言える。
-        <p>GDPR と似てはいるが、実際は少し趣が違う。まず「個人情報」の定義が変わるが、より分かりやすいところとしては、 GDPR は「オプトイン」を重要視しているが、 CCPA はどちらかというと「オプトアウト」を重要視している。 GDPR のように許可なく収集することを制限しないが、集められた情報の「削除を求める」や「転売を拒否する」といった権利を重要視しているのだ。したがって、 Cookie バナーそのものが必須というわけではないとされ、代わりに &quot;Do Not Sell My Personal Information&quot; といったリンクがサイト下部やプライバリーポリシーによく見られるようになった。
+        <p>GDPR と似てはいるが、実際は少し趣が違う。まず「個人情報」の定義が変わるが、より分かりやすいところとしては、GDPR は「オプトイン」を重要視しているが、CCPA はどちらかというと「オプトアウト」を重要視している。GDPR のように許可なく収集することを制限しないが、集められた情報の「削除を求める」や「転売を拒否する」といった権利を重要視しているのだ。したがって、Cookie バナーそのものが必須というわけではないとされ、代わりに &quot;Do Not Sell My Personal Information&quot; といったリンクがサイト下部やプライバリーポリシーによく見られるようになった。
       </section>
       <section>
         <h2 id="個人情報保護法と電気通信事業者法"><a href="#個人情報保護法と電気通信事業者法">個人情報保護法と電気通信事業者法</a></h2>
         <p>日本における個人情報関連の立法は、欧米のこうした制度を手本にしているため、GDPR と ePrivacy の関係が、そのまま個人情報保護法と電気通信事業者法の関係と類似している。個人情報保護法は 2022 年 4 月に改正され、電気通信事業者法は 2023 年 6 月に改正されている。
-        <p>ただし、GDPR は「Cookie も個人情報だ」としているのに対し、改正個人情報保護法は「Cookie 自体は個人情報ではなく、個人関連情報(個人情報と紐づく場合は同意が必要)」といった微妙な違いがあり、日本では業務改善命令が先に課されるといった違いがあるため、 GDPR と比べればいくらか緩い規制と捉えられている。
+        <p>ただし、GDPR は「Cookie も個人情報だ」としているのに対し、改正個人情報保護法は「Cookie 自体は個人情報ではなく、個人関連情報(個人情報と紐づく場合は同意が必要)」といった微妙な違いがあり、日本では業務改善命令が先に課されるといった違いがあるため、GDPR と比べればいくらか緩い規制と捉えられている。
         <p>重要なのは、電気通信事業者法にある「外部送信規律」とよばれるものだ。これが、いわゆる 3rd Party Cookie の送信などによる連携に関わるもので、基本的にその事実を「通知」か「公表」することが義務化された。「通知」はポップアップ、「公表」は Privacy Policy ページに相当するものだ。明示的に外部送信規律に対応する場合「外部送信ポリシー」などの表記になる場合もある。
         <p>しかし、個人情報保護法上の個人情報に当たらない Cookie の取得については、合意取得は求められてないため、日本の二つの法律に対応する上では Cookie バナーは合意取得ではなく通知目的になる。そのため、いわゆる&quot;Accept&quot;, &quot;Reject&quot; 形式ではない実装になることが多い。逆に GDPR の「合意取得」や CCPA の「オプトアウト」への対応をすでに行なっている場合は、「通知」と「公表」をそれで代替できる場合もある。
       </section>

@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-04-11T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-04-11>2016-04-11</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,26 +156,26 @@
       </section>
       <section>
         <h2 id="hsts"><a href="#hsts">HSTS</a></h2>
-        <p>本サイト (<a href="https://blog.jxck.io">blog.jxck.io</a>) では、フル HTTPS 化が完了しており、 HTTP へのリクエストは全て HTTPS へリダイレクトしている。
+        <p>本サイト (<a href="https://blog.jxck.io">blog.jxck.io</a>) では、フル HTTPS 化が完了しており、HTTP へのリクエストは全て HTTPS へリダイレクトしている。
         <p>特に本サイトのタイトル自体が <code translate=no>blog.jxck.io</code> であり、ドメイン名と同じになっているため、これが Twitter などで <code translate=no>http://blog.jxck.io</code> へのリンクと解釈される場合が多く、そこからの HTTP アクセスも少なくはない。
-        <p>しかし、 MITM の脅威への対策が可能な HTTPS でも、最初のリクエストが HTTP であると、そこに付け入る隙ができてしまう。
-        <p>そこで、 「<code translate=no>blog.jxck.io</code> にアクセスするときは必ず HTTPS を用いる」ことをブラウザに覚えさせ、 <code translate=no>http://blog.jxck.io</code> のリンクを踏んでも、ブラウザが自動的に <code translate=no>https://blog.jxck.io</code> に置き換えてアクセスさせる仕組みが HSTS である。
+        <p>しかし、MITM の脅威への対策が可能な HTTPS でも、最初のリクエストが HTTP であると、そこに付け入る隙ができてしまう。
+        <p>そこで、「<code translate=no>blog.jxck.io</code> にアクセスするときは必ず HTTPS を用いる」ことをブラウザに覚えさせ、<code translate=no>http://blog.jxck.io</code> のリンクを踏んでも、ブラウザが自動的に <code translate=no>https://blog.jxck.io</code> に置き換えてアクセスさせる仕組みが HSTS である。
         <ul>
           <li><a href="https://tools.ietf.org/html/rfc6797" target=_blank>RFC 6797 - HTTP Strict Transport Security (HSTS)</a>
         </ul>
       </section>
       <section>
         <h2 id="strict-transport-security-ヘッダ"><a href="#strict-transport-security-ヘッダ">Strict-Transport-Security ヘッダ</a></h2>
-        <p>以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
+        <p>以下のような HTTP ヘッダを追加することで、HSTS を有効にすることができる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=http data-code=http><code translate=no class=language-http>Strict-Transport-Security: max-age=7776000</code></pre>
-        <p>このヘッダは、 HTTP ではなく HTTPS のレスポンスに付与する。
+        <p>このヘッダは、HTTP ではなく HTTPS のレスポンスに付与する。
         <p>このヘッダを受け取ったブラウザは 7776000 秒(90 日) のあいだは、そのドメインに <code translate=no>http://~</code> で始まるリクエストを送信する際に、自動的にこれを <code translate=no>https://~</code> に置き換える。
         <p>これによって、例えば既にどこかのページに張られたリンクが <code translate=no>http://~</code> であったとしても、リダイレクトではなく最初から HTTPS を強制することができる。
       </section>
       <section>
         <h2 id="preload"><a href="#preload">preload</a></h2>
-        <p>ただし、 HSTS はレスポンスヘッダで指定された値を、ブラウザが保存したあと有効になる仕組みのため、少なくとも一番最初にアクセスするドメインでは、際は http -&gt; https のリダイレクトを避けられない。
+        <p>ただし、HSTS はレスポンスヘッダで指定された値を、ブラウザが保存したあと有効になる仕組みのため、少なくとも一番最初にアクセスするドメインでは、際は http -&gt; https のリダイレクトを避けられない。
         <p>この性質は <a href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html">HPKP</a> 同様 <em>TOFU</em> (Trust of First Use) と呼ばれる。
         <p>そこで、ブラウザに HSTS 対象ドメインのリストをあらかじめ含んでおくことで、ユーザがまだアクセスしたことがないドメインについても、初回アクセス時から HTTPS アクセスを強制する仕組みが HSTS Preload である。
         <p>Chrome の場合は、以下からドメインを申請すると、審査が実施され、条件を満たすものは Chrome のソースコード中にある preload hsts のリストに追加される。
@@ -185,10 +185,10 @@
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
         <p>本来はトップドメインに <code translate=no>includeSubDomains</code> を付与した指定をすることで <code translate=no>*.jxck.io</code> つまりサブドメイン含めた全体に対して、設定を有効にするのが望ましい。
         <p>しかし、本ドメインには <a href="https://labs.jxck.io" target=_blank>labs.jxck.io</a> という実験用のサブドメインがある。
-        <p>ここでは、平文 HTTP との比較や、 Mixed Contents の挙動のテストなど、様々な実験を行うために、 HTTP もリダイレクトせずサーブしている。
+        <p>ここでは、平文 HTTP との比較や、Mixed Contents の挙動のテストなど、様々な実験を行うために、HTTP もリダイレクトせずサーブしている。
         <p>ここを HSTS に含んでしてしまうと、実験ができなくなってしまうため、除外する必要がある。
         <p>結果として、本ドメインでは <em><code translate=no>includeSubDomains</code> の指定はせず</em>、ドメインごとに個別に指定することとした。
-        <p>また、 Chrome の Preload 登録の条件には、 <code translate=no>includeSubDomains</code> の適用が含まれている。
+        <p>また、Chrome の Preload 登録の条件には、<code translate=no>includeSubDomains</code> の適用が含まれている。
         <p>したがって同様の理由から、止むを得ず <em>preload 登録は見送る</em> こととした。
         <p>結果、現時点では <a href="https://jxck.io" target=_blank>jxck.io</a> 及び <a href="https://blog.jxck.io">blog.jxck.io</a> に対して、以下のヘッダを付与した。
         <pre class=http data-code=http><code translate=no class=language-http>Strict-Transport-Security: max-age=31536000</code></pre>

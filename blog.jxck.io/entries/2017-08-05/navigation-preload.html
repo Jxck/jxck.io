@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload に...">
+  <meta name=description         content="Service Worker で Fetch を Proxy する場合、Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload につ...">
   <meta name=keywords            content="navigation preload,service worker,performance">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2017-08-05/navigation-preload.html>
   <meta property=og:title        content="Service Worker の Navigation Preload による表示遅延回避 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload に...">
+  <meta property=og:description  content="Service Worker で Fetch を Proxy する場合、Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload につ...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-08-05T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload に..."
+    "description": "Service Worker で Fetch を Proxy する場合、Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload につ..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-08-05>2017-08-05</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -157,25 +157,25 @@
       <h1><a href="">Service Worker の Navigation Preload による表示遅延回避</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。
+        <p>Service Worker で Fetch を Proxy する場合、Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。
         <p>そして、この SW の起動には無視できない時間がかかる場合があった。
         <p>これを改善する Navigation Preload について解説する。
       </section>
       <section>
         <h2 id="sw-bootup"><a href="#sw-bootup">SW Bootup</a></h2>
         <p>SW が <code translate=no>onfetch</code> をハンドルし、キャッシュから Response を返す場合は、ネットワーク I/O をせずに画面をレンダリングできる。
-        <p>しかし、 SW が <code translate=no>onfetch</code> をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
-        <p>この場合、もしページのコントローラとなっている SW が起動していない場合は、 <code translate=no>onfetch</code> ハンドラを実行するために、 SW の起動を待つ必要が出てくる。
-        <p>SW の起動には、もちろん実行環境によるところが大きいが、 <a href="https://developers.google.com/web/updates/2017/02/navigation-preload" target=_blank>50~500ms</a> 程度の時間がかかるとされている。
-        <p>つまり、せっかく表示を最適化しても、 SW を追加することでそれを台無しにしてしまうケースがあるということだ。
+        <p>しかし、SW が <code translate=no>onfetch</code> をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
+        <p>この場合、もしページのコントローラとなっている SW が起動していない場合は、<code translate=no>onfetch</code> ハンドラを実行するために、SW の起動を待つ必要が出てくる。
+        <p>SW の起動には、もちろん実行環境によるところが大きいが、<a href="https://developers.google.com/web/updates/2017/02/navigation-preload" target=_blank>50~500ms</a> 程度の時間がかかるとされている。
+        <p>つまり、せっかく表示を最適化しても、SW を追加することでそれを台無しにしてしまうケースがあるということだ。
         <p>これを解決するのが Navigation Preload である。
       </section>
       <section>
         <h2 id="navigation-preload"><a href="#navigation-preload">Navigation Preload</a></h2>
-        <p>Navigation Preload を有効にすると、 SW が起動してない状態で発生したリクエストを、 SW をバイパスしてネットワーク側に送ることができる。
-        <p>つまり、実際の Fetch の実施と、 SW の起動を並行して行うということだ。
-        <p>しかし、それだけでは、 <code translate=no>onfetch</code> のハンドラ内でキャッシュ処理などを実行することができない。
-        <p>そこで、 SW が起動した後に、並行して行った Fetch の結果に触ることができるため、後からキャッシュに詰める/ヘッダを追加するといったことが可能になる。
+        <p>Navigation Preload を有効にすると、SW が起動してない状態で発生したリクエストを、SW をバイパスしてネットワーク側に送ることができる。
+        <p>つまり、実際の Fetch の実施と、SW の起動を並行して行うということだ。
+        <p>しかし、それだけでは、<code translate=no>onfetch</code> のハンドラ内でキャッシュ処理などを実行することができない。
+        <p>そこで、SW が起動した後に、並行して行った Fetch の結果に触ることができるため、後からキャッシュに詰める/ヘッダを追加するといったことが可能になる。
         <p>ただし、基本的に問題になるのは、しばらくアクセスしてなかったページに遷移して、最初のページを表示する部分になる。
         <p>ここで発生するリクエストは Navigation Request と呼ばれ、ブラウザが生成するものであり、ページ構築中/後に JS から発行される XHR などは含まれていない。
       </section>
@@ -183,7 +183,7 @@
         <h2 id="api"><a href="#api">API</a></h2>
         <section>
           <h3 id="navigationpreload.enable"><a href="#navigationpreload.enable">navigationPreload.enable()</a></h3>
-          <p><code translate=no>onfetch</code> に先立って有効化されている必要があるため、 <code translate=no>onactivate</code> で有効にする。
+          <p><code translate=no>onfetch</code> に先立って有効化されている必要があるため、<code translate=no>onactivate</code> で有効にする。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=js data-code=js><code translate=no class=language-js>self.addEventListener(&apos;activate&apos;, (e) =&gt; {
   if (!self.registration.navigationPreload) {
@@ -196,7 +196,7 @@
         </section>
         <section>
           <h3 id="preloadresponse"><a href="#preloadresponse">preloadResponse</a></h3>
-          <p>サーバが返したレスポンスは、 SW 起動後に <code translate=no>onfetch</code> ハンドラ内で取得できる。
+          <p>サーバが返したレスポンスは、SW 起動後に <code translate=no>onfetch</code> ハンドラ内で取得できる。
           <p>Preload がある場合はそれを返し、なければ実際に fetch を走らせるコードは以下のようになる。
           <pre class=js data-code=js><code translate=no class=language-js>self.addEventListener(&apos;fetch&apos;, (e) =&gt; {
   console.log(&apos;url&apos;, e.request.url)
@@ -227,7 +227,7 @@
       </section>
       <section>
         <h2 id="getstate"><a href="#getstate">getState()</a></h2>
-        <p>もし Navigation Preload を有効にした状態で、 preloadResponse を確認せずに fetch を実行した場合は、同じリクエストを重複して投げてしまう可能性があるため注意が必要である。
+        <p>もし Navigation Preload を有効にした状態で、preloadResponse を確認せずに fetch を実行した場合は、同じリクエストを重複して投げてしまう可能性があるため注意が必要である。
         <p>Navigation Preload が有効になっているかは、以下のように取得することができる。
         <p>また、同時に前述のヘッダに付与される値も取得が可能だ。
         <pre class=js data-code=js><code translate=no class=language-js>navigator.serviceWorker.register(&apos;worker.js&apos;)

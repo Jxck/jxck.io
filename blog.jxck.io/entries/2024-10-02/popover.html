@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-02T08:00:00+08:00",
-    "dateModified": "2024-11-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-02>2024-10-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -244,7 +244,7 @@
     &lt;button type=&quot;submit&quot;&gt;OK&lt;/button&gt;
   &lt;/form&gt;
 &lt;/div&gt;</code></pre>
-          <p>動きとしては、ここまで散々解説してきたような、 <code translate=no>inert</code>, <code translate=no>::backdrop</code>, フォーカス管理, Top Layer などをネイティブで対応した <code translate=no>showModal</code> などの利点はもちろんあるが、セマンティクスの面で言えば、「<code translate=no>&lt;dialog&gt;</code> は <code translate=no>role=dialog</code> に対応するネイティブの要素」という点も重要だ。
+          <p>動きとしては、ここまで散々解説してきたような、<code translate=no>inert</code>, <code translate=no>::backdrop</code>, フォーカス管理, Top Layer などをネイティブで対応した <code translate=no>showModal</code> などの利点はもちろんあるが、セマンティクスの面で言えば、「<code translate=no>&lt;dialog&gt;</code> は <code translate=no>role=dialog</code> に対応するネイティブの要素」という点も重要だ。
         </section>
       </section>
       <section>
@@ -265,7 +265,7 @@
       <section>
         <h2 id="dialog-を-popover-する"><a href="#dialog-を-popover-する"><code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> する</a></h2>
         <p><code translate=no>&lt;dialog&gt;</code> は <code translate=no>role=&quot;dialog&quot;</code> であることが重要だという話をした。
-        <p>そこに対して、 <code translate=no>show()</code>/<code translate=no>showModal()</code> で Modal として出すかどうかという使い分けをするのだが、実際には「 <code translate=no>role=dialog</code> を Popover で出したい」というユースケースもある。
+        <p>そこに対して、<code translate=no>show()</code>/<code translate=no>showModal()</code> で Modal として出すかどうかという使い分けをするのだが、実際には「 <code translate=no>role=dialog</code> を Popover で出したい」というユースケースもある。
         <p>この場合は「<code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> する」という合わせ技も使える。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog popover&gt;
   &lt;!-- ... --&gt;
@@ -275,8 +275,8 @@
   &lt;!-- ... --&gt;
   &lt;button id=&quot;close&quot;&gt;x&lt;/button&gt;
 &lt;/dialog&gt;</code></pre>
-        <p>これにより、特に Light Dismiss の恩恵で、カジュアルに閉じる <code translate=no>&lt;dialog&gt;</code> が出せるため、 non-Modal Dialog で応用できる。
-        <p>一方で、 Modal Dialog を Light Dismiss したいがために、 <code translate=no>popover</code> で実装し、 <code translate=no>::backdrop</code> を暗くすることで Modal っぽく実装するというのは、あまり良い実装ではないとされている。
+        <p>これにより、特に Light Dismiss の恩恵で、カジュアルに閉じる <code translate=no>&lt;dialog&gt;</code> が出せるため、non-Modal Dialog で応用できる。
+        <p>一方で、Modal Dialog を Light Dismiss したいがために、<code translate=no>popover</code> で実装し、<code translate=no>::backdrop</code> を暗くすることで Modal っぽく実装するというのは、あまり良い実装ではないとされている。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=&quot;foo&quot;&gt;Click me&lt;/button&gt;
 &lt;dialog popover id=&quot;foo&quot;&gt;I&apos;m a dialog!&lt;/dialog&gt;
 &lt;style&gt;
@@ -284,7 +284,7 @@ dialog[popover]::backdrop {
   background-color: black;
 }
 &lt;/style&gt;</code></pre>
-        <p>ちなみに、 <code translate=no>showModal</code> したものも Light Dismiss したいというユースケースを <code translate=no>&lt;dialog&gt;</code> 側でサポートすべきかという議論はまだ進行中だ。
+        <p>ちなみに、<code translate=no>showModal</code> したものも Light Dismiss したいというユースケースを <code translate=no>&lt;dialog&gt;</code> 側でサポートすべきかという議論はまだ進行中だ。
         <ul>
           <li>
             Add light dismiss functionality to <code translate=no>&lt;dialog&gt;</code> · Issue #9373 · whatwg/html
@@ -293,7 +293,7 @@ dialog[popover]::backdrop {
             </ul>
           </li>
         </ul>
-        <p>逆に、 Close Watcher を無効にし、一切 Light Dismiss 的な挙動をしない <code translate=no>&lt;dialog&gt;</code> の提案についても議論はある。
+        <p>逆に、Close Watcher を無効にし、一切 Light Dismiss 的な挙動をしない <code translate=no>&lt;dialog&gt;</code> の提案についても議論はある。
         <ul>
           <li>
             Support disabling CloseWatcher integration in <code translate=no>&lt;dialog&gt;</code> · Issue #10592 · whatwg/html
@@ -391,7 +391,7 @@ dialog[popover]::backdrop {
   &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
 &lt;/div&gt;</code></pre>
         <p>このとき、Popover した <code translate=no>&lt;div&gt;</code> を <code translate=no>&lt;button&gt;</code> の右下に表示したいとしよう。
-        <p>通常の DOM であれば、 <code translate=no>&lt;button&gt;</code> を基準にし、 <code translate=no>&lt;div&gt;</code> を相対的に配置すれば良いが、今 <code translate=no>&lt;div popover&gt;</code> は Top Layer に、 <code translate=no>&lt;button&gt;</code> はその backdrop に表示されているため、 2 つを相対的に配置することができないのだ。
+        <p>通常の DOM であれば、<code translate=no>&lt;button&gt;</code> を基準にし、<code translate=no>&lt;div&gt;</code> を相対的に配置すれば良いが、今 <code translate=no>&lt;div popover&gt;</code> は Top Layer に、<code translate=no>&lt;button&gt;</code> はその backdrop に表示されているため、2 つを相対的に配置することができないのだ。
         <p><code translate=no>&lt;div popover&gt;</code> が表示されている Top Layer には、他の DOM が何もない状態なので、何らかの方法で <code translate=no>&lt;div popover&gt;</code> の座標などを渡されない限りは、「画面の真ん中」や「四隅」といった、絶対値指定できる場所くらいしか、配置のしようがない。
         <p>
           <img loading=lazy decoding=async src=top-layer.drawio.svg?241002_152445 alt="Top Layer の真ん中に表示された Popover" width=524 height=154>
@@ -417,7 +417,7 @@ dialog[popover]::backdrop {
 }
 &lt;/style&gt;</code></pre>
           <p>この場合、<code translate=no>&lt;div popover&gt;</code> の Anchor を <code translate=no>&lt;button&gt;</code> としている。
-          <p><code translate=no>top: anchor(bottom)</code> は、自分の上端が Anchor の下端になるという指定だ。<code translate=no>left: anchor(right)</code> は自身の左端を Anchor の右端にしているため、結果、 <code translate=no>&lt;button&gt;</code> に対して右下に表示されるというものだ。
+          <p><code translate=no>top: anchor(bottom)</code> は、自分の上端が Anchor の下端になるという指定だ。<code translate=no>left: anchor(right)</code> は自身の左端を Anchor の右端にしているため、結果、<code translate=no>&lt;button&gt;</code> に対して右下に表示されるというものだ。
           <p>
             <img loading=lazy decoding=async src=anchor.drawio.svg?241002_152559 alt="button を anchor として右下に popover を表示する" width=241 height=141>
           </p>
@@ -440,7 +440,7 @@ dialog[popover]::backdrop {
       </section>
       <section>
         <h2 id="anchor-position-の-fallback"><a href="#anchor-position-の-fallback">Anchor Position の fallback</a></h2>
-        <p>先の例で、<code translate=no>&lt;div popover&gt;</code> を表示するための余白が <code translate=no>&lt;button&gt;</code> の右下に無かった場合、 Popover がはみ出して表示されることになる。
+        <p>先の例で、<code translate=no>&lt;div popover&gt;</code> を表示するための余白が <code translate=no>&lt;button&gt;</code> の右下に無かった場合、Popover がはみ出して表示されることになる。
         <p>
           <img loading=lazy decoding=async src=anchor-over.drawio.svg?241002_152835 alt="anchor で右下に表示した popover がはみ出す" width=411 height=331>
         </p>
@@ -468,7 +468,7 @@ dialog[popover]::backdrop {
 @position-try --end {
   /* .... */
 }</code></pre>
-        <p>これで、どんな要素に Invoke されても、 Top Layer 上に表示されつつ、さらに画面内にしっかりと収まるような <code translate=no>popover</code> が表示できるのだ。
+        <p>これで、どんな要素に Invoke されても、Top Layer 上に表示されつつ、さらに画面内にしっかりと収まるような <code translate=no>popover</code> が表示できるのだ。
         <p>特に縦長になりがちな Menu 系の UI を、適切に表示する上で重宝する。
         <section>
           <h3 id="css-anchor-name"><a href="#css-anchor-name">CSS Anchor Name</a></h3>

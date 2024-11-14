@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-03-24T08:00:00+08:00",
-    "dateModified": "2023-03-24T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-03-24>2023-03-24</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-03-24>2023-03-24</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -162,13 +162,13 @@
         <p>英語のスペルチェックはかなり進んでいるが、日本語においてはそこまで革新的なものが見当たらない。あらゆるツールを試したが、結局満足のいく精度が出る誤字脱字検出は「Word の校正機能」しかなかった。
         <p>そこで筆者は、書籍執筆などは Markdown で原稿を書き、ある程度まとまったら HTML でレンダリングしたものを Word に流し込んで校正していたが、これはあまりにも面倒くさい。
         <p>Word の校正機能だけ CLI にならないかと何度も夢みたが、それが叶うはずもなく。「紙に印刷して読んだ方が見つけられる」「音声読み上げしたら気づける」などのワークアラウンドでなんとか見つけだし、それを次の修正で誤字脱字だらけに戻しながら、たまに Word を行き来して今に至る。
-        <p>こんなに執筆エコシステムが発達しているのに、 VSCode での執筆フローの中で効率よく誤字脱字を検出し修正する方法には、巡り会えないままでいた。
+        <p>こんなに執筆エコシステムが発達しているのに、VSCode での執筆フローの中で効率よく誤字脱字を検出し修正する方法には、巡り会えないままでいた。
       </section>
       <section>
         <h2 id="chatgpt-での校正"><a href="#chatgpt-での校正">ChatGPT での校正</a></h2>
         <p>ChatGPT の Proofreading プロンプトは、頻出ユースケースの一つだ。そして、これは日本語でも動作する。
         <p>筆者が求めているのは、ヒントから文章を書き上げて欲しいわけでも、丸っと書き直して欲しいわけでもなく、「誤字脱字だけ見つけて直してほしい」だけなので、指令はごくシンプルだ。
-        <p>むしろ、細かく条件を加えた方が、 ChatGPT が余計なことをしだすので、さまざまなプロンプトを試しながら、結局このシンプルなものに戻ってきた。
+        <p>むしろ、細かく条件を加えた方が、ChatGPT が余計なことをしだすので、さまざまなプロンプトを試しながら、結局このシンプルなものに戻ってきた。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=diff data-code=diff><code translate=no class=language-diff>次の文章の誤字、脱字、スペルミスを修正してください。
 
@@ -187,7 +187,7 @@
       <section>
         <h2 id="vscode-plugin"><a href="#vscode-plugin">VSCode Plugin</a></h2>
         <p>もともと筆者は、執筆などに必要な全く汎用性の無い機能を雑に詰め込んだ自分用プラグインを持っており、ちょっとした機能を都度追加して使っている。今回もそこに追加実装した。
-        <p>内容は、選択したテキストを OpenAI API に渡し、前述の処理を行った結果を上書きする簡単なものだ。 Git で管理していれば、見比べて気に食わなければ簡単に Revert できるため、精度はあまり気にする必要がない。
+        <p>内容は、選択したテキストを OpenAI API に渡し、前述の処理を行った結果を上書きする簡単なものだ。Git で管理していれば、見比べて気に食わなければ簡単に Revert できるため、精度はあまり気にする必要がない。
         <p>筆者はまだ GPT-4 API の利用が許可されてない(Waiting List にだいぶ並んでるがいつ落ちてくるんだろうか...)ので 3.5 ベースだが、とにかく呼び出すべきは Edits API だ。
         <ul>
           <li><a href="https://platform.openai.com/docs/api-reference/edits" target=_blank>https://platform.openai.com/docs/api-reference/edits</a>
@@ -216,7 +216,7 @@
   const result = await res.json()
   console.log(result)
 }</code></pre>
-        <p>あとは、選択範囲を取得したり、 API Key を Config から取ったり、 <code translate=no>fetch()</code> を HTTP Module で書き直したりなどをすれば、拡張自体を作るのは難しくない。
+        <p>あとは、選択範囲を取得したり、API Key を Config から取ったり、<code translate=no>fetch()</code> を HTTP Module で書き直したりなどをすれば、拡張自体を作るのは難しくない。
         <p>長いと落ちるが、行ごとだと API コールが増えるので、セクションごとくらいで呼び出しつつ、意図しない修正は Git で revert していく運用を想定している。
       </section>
       <section>

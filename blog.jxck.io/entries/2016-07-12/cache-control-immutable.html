@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="ブラウザはリロード時に、 max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。Cache-Control Extension として提案されている Immutable 拡張...">
+  <meta name=description         content="ブラウザはリロード時に、max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。Cache-Control Extension として提案されている Immutable 拡張は...">
   <meta name=keywords            content="cache,http,performance">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html>
   <meta property=og:title        content="Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="ブラウザはリロード時に、 max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。Cache-Control Extension として提案されている Immutable 拡張...">
+  <meta property=og:description  content="ブラウザはリロード時に、max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。Cache-Control Extension として提案されている Immutable 拡張は...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-07-12T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "ブラウザはリロード時に、 max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。Cache-Control Extension として提案されている Immutable 拡張..."
+    "description": "ブラウザはリロード時に、max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。Cache-Control Extension として提案されている Immutable 拡張は..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-07-12>2016-07-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -155,20 +155,20 @@
       <h1><a href="">Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>ブラウザはリロード時に、 max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。
+        <p>ブラウザはリロード時に、max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。
         <p>Cache-Control Extension として提案されている Immutable 拡張は、キャッシュが max-age 内であればリロード時もキャッシュヒットさせる拡張である。
         <p>このヘッダの効果と、本サイトへの適用について記す。
       </section>
       <section>
         <h2 id="cache-control"><a href="#cache-control">Cache-Control</a></h2>
         <p>Cache-Control に max-age を指定することで、ブラウザにリソースをキャッシュさせることができる。
-        <p>このキャッシュは max-age の期間内は fresh とみなされ、 fresh であればサーバへの問い合わせなく再利用される。
+        <p>このキャッシュは max-age の期間内は fresh とみなされ、fresh であればサーバへの問い合わせなく再利用される。
         <p>サーバへの問い合わせ(RTT)が無いため、事実上最速のリソース取得となる。
       </section>
       <section>
         <h2 id="reload"><a href="#reload">Reload</a></h2>
         <p>しかし、現在のブラウザでは fresh なキャッシュがそのままヒットするのは、ナビゲート(遷移)時のみである。
-        <p>リロードやスーパーリロードの場合は、 max-age 内のキャッシュであっても、扱いが変わる。
+        <p>リロードやスーパーリロードの場合は、max-age 内のキャッシュであっても、扱いが変わる。
         <dl>
           <div>
             <dt>ナビゲート(link, redirect)
@@ -176,18 +176,18 @@
           </div>
           <div>
             <dt>リロード(F5, cmd+r etc)
-            <dd>fresh であっても無視し、 Conditional GET を行う
+            <dd>fresh であっても無視し、Conditional GET を行う
           </div>
           <div>
             <dt>スーパーリロード(shift + reload etc)
-            <dd>fresh あっても無視し、 GET を行う。
+            <dd>fresh あっても無視し、GET を行う。
           </div>
         </dl>
       </section>
       <section>
         <h2 id="不必要な-conditional-get"><a href="#不必要な-conditional-get">不必要な Conditional GET</a></h2>
         <p>ブラウザの実装上の理由で不必要(とみなされやすい) Conditional GET が発生することもある。
-        <p>特にブラウザ間の実装差異のため、 Chrome では他のブラウザよりも多くの Validation が行われ、多数の無駄な Conditional GET が発生していたことが Facebook により報告されていた。
+        <p>特にブラウザ間の実装差異のため、Chrome では他のブラウザよりも多くの Validation が行われ、多数の無駄な Conditional GET が発生していたことが Facebook により報告されていた。
         <ul>
           <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=505048" target=_blank>Issue 505048 - chromium - Chrome makes more conditional re-validation requests than other browsers - Monorail</a>
         </ul>
@@ -196,18 +196,18 @@
         <ul>
           <li><a href="https://docs.google.com/document/d/1vwx8WiUASKyC2I-j2smNhaJaQQhcWREh7PC3HiIAQCo/edit" target=_blank>Reload, reloaded</a>
         </ul>
-        <p>無駄な Conditional GET 、つまり不必要な Validation の発生は、 304 レスポンスを返すだけのものであり、無駄な RTT であると言える。
-        <p>したがって、キャッシュの設計がきちんとなされている場合は、ブラウザの実装に依存せずにリロード時にも Cache HIT させたいという要望から提案されたのが、 Immutable Extension である。
+        <p>無駄な Conditional GET 、つまり不必要な Validation の発生は、304 レスポンスを返すだけのものであり、無駄な RTT であると言える。
+        <p>したがって、キャッシュの設計がきちんとなされている場合は、ブラウザの実装に依存せずにリロード時にも Cache HIT させたいという要望から提案されたのが、Immutable Extension である。
       </section>
       <section>
         <h2 id="immutable-extension"><a href="#immutable-extension">Immutable Extension</a></h2>
-        <p>Cache-Control Immutable Extension は、 Cache-Control の拡張の一つである。
+        <p>Cache-Control Immutable Extension は、Cache-Control の拡張の一つである。
         <p>以下のように指定することで、キャッシュを Immutable と指定することができ、ブラウザはキャッシュが fresh であればリロード時でもヒットさせるようになる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=10000, immutable</code></pre>
         <p>これによって、なんらかの原因でユーザがリロードを行う場面においても、無駄なリクエストを防ぐことができる。
-        <p>特に、画像、動画、フォントといったサイズが大きくも表示において重要なリソースについては、キャッシュの再利用がサーバの負荷という面でも、 UX の面でも有利に働く。
-        <p>執筆時点では、 Firefox Nightly(version 50.0a1) が https 通信限定で、この拡張をサポートしている。
+        <p>特に、画像、動画、フォントといったサイズが大きくも表示において重要なリソースについては、キャッシュの再利用がサーバの負荷という面でも、UX の面でも有利に働く。
+        <p>執筆時点では、Firefox Nightly(version 50.0a1) が https 通信限定で、この拡張をサポートしている。
         <ul>
           <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1267474" target=_blank>1267474 - Cache-Control: immutable</a>
           <li><a href="https://bitsup.blogspot.jp/2016/05/cache-control-immutable.html" target=_blank>Bits Up!: Cache-Control: immutable</a>
@@ -243,9 +243,9 @@
         </ul>
         <p>更新通知は自動/半自動含め実装方法は増えているし、表示が崩れるのは明らかにバグである。ましてユーザにリロードを行わせる設計は間違っていると言える。
         <p>本来ユーザが明示的にリロードを発生させること自体が、サイトの作りとして問題をはらんでいる場合が多いと考えている。
-        <p>それでもネットワークのプロキシやブラウザ拡張、その他のユーザサイドの問題で、ユーザがリロードを行う場合はあるだろう。 この場合ユーザがリロードを行うのは、リソースの状態をサーバに問い合わせて fresh に保ちたいという意図が考えられる。
+        <p>それでもネットワークのプロキシやブラウザ拡張、その他のユーザサイドの問題で、ユーザがリロードを行う場合はあるだろう。この場合ユーザがリロードを行うのは、リソースの状態をサーバに問い合わせて fresh に保ちたいという意図が考えられる。
         <p>もしリクエストが発生しないからと、無作為にリソースを Immutable に指定すると、ユーザが慣習によって期待していたリロードの挙動を著しく損ねる可能性もある。
-        <p>したがって、例え max-age が付与できる設計であるとしても、 Immutable の指定には慎重であるべきと考える。
+        <p>したがって、例え max-age が付与できる設計であるとしても、Immutable の指定には慎重であるべきと考える。
       </section>
       <section>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
@@ -283,15 +283,15 @@
  1478 /entries/2016-06-09/passive-event-listeners.html
  1462 /assets/img/twitter.svg</code></pre>
         <p>RSS はブラウザのリロードとは関係がなく、また <code translate=no>/</code> (root)へのアクセスは更新頻度が高いため対象外とした。
-        <p>以降はアセット系が続くが、 JS や CSS についてはまだ更新の可能性が高く、 SVG についても手書きのものが多数含まれるため、今後も最適化のための描き直しをする可能性がある。
+        <p>以降はアセット系が続くが、JS や CSS についてはまだ更新の可能性が高く、SVG についても手書きのものが多数含まれるため、今後も最適化のための描き直しをする可能性がある。
         <p>したがって、最も変更の可能性が低い <code translate=no>/assets/img/jxck.png</code> のみ実験的に対応することとした。
       </section>
       <section>
         <h2 id="web-font-への効果"><a href="#web-font-への効果">Web Font への効果</a></h2>
-        <p>実は検証を開始する前に一番期待していたのは、 Web Font への効果であった。
+        <p>実は検証を開始する前に一番期待していたのは、Web Font への効果であった。
         <p>本サイトは <a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">自分でカスタマイズした Noto Sans CJK</a> を配布しており、その内容は変更頻度が非常に低い。
         <p>また、表示時に Web Font の問い合わせが発生してしまうと、画面の表示が一瞬システムフォントになるか、フォントが表示されない状態に見える可能性がある。
-        <p>302 が返ってくるとしても、 1RTT 発生してしまうことに変わりは無い。
+        <p>302 が返ってくるとしても、1RTT 発生してしまうことに変わりは無い。
         <p>したがって、リロード時だとしてもそのままローカルキャッシュがヒットし、表示に利用される方が望ましい。
         <p>そこで Web Font への適用が一番効果があるだろうと考えたのだが、現時点では Firefox はリロード時に Web Font を問い合わせない実装になっているようで、効果が確認できなかった。
         <p>これが Firefox だけの実装であるかは、他のブラウザが実装するまで確認ができない。

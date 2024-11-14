@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、 report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめ...">
+  <meta name=description         content="本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる...">
   <meta name=keywords            content="hpkp,security">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html>
   <meta property=og:title        content="Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、 report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめ...">
+  <meta property=og:description  content="本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-04-09T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、 report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめ..."
+    "description": "本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-04-09>2016-04-09</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -170,7 +170,7 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>本サイトにて Public Key Pinning for HTTP を有効化した。
         <p><a href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html">CSP</a> 同様、まずは Report-Only を設定し、
-        <p>HPKP Report についても、 <a href="https://report-uri.io" target=_blank>report-uri.io</a> を用いて収集することにした。
+        <p>HPKP Report についても、<a href="https://report-uri.io" target=_blank>report-uri.io</a> を用いて収集することにした。
         <p>導入に必要な設定や、注意点についてまとめる。
         <p>なお、本サイトへの導入はあくまで <em>実験</em> である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。
         <p>また、本来は HSTS と併用することが推奨されている。(必須ではない)
@@ -209,7 +209,7 @@
         </section>
         <section>
           <h3 id="preload-public-key-pinning"><a href="#preload-public-key-pinning">Preload Public Key Pinning</a></h3>
-          <p>HTTP レスポンスヘッダでハッシュを提示する方法では、 最初のアクセス時から偽の証明書が使われていた場合は無力である。
+          <p>HTTP レスポンスヘッダでハッシュを提示する方法では、最初のアクセス時から偽の証明書が使われていた場合は無力である。
           <p>あくまで、再訪問時への偽造にしか効果がなく、これを <em>Trust on First Use (TOFU)</em> という。
           <p>そこで、ブラウザにあらかじめ証明書のハッシュを登録する Preload Public Key Pinning もある。
           <p>ただし、これは非常に重要なドメインにのみ提供されており、現状一般に向けた登録フローは公開されていない。
@@ -218,14 +218,14 @@
             <li><a href="https://src.chromium.org/viewvc/chrome/trunk/src/net/http/transport_security_state_static.json" target=_blank>[chrome] Contents of /trunk/src/net/http/transport_security_state_static.json</a>
             <li><a href="https://mxr.mozilla.org/mozilla-central/source/security/manager/tools/PreloadedHPKPins.json" target=_blank>mozilla-central mozilla/security/manager/tools/PreloadedHPKPins.json</a>
           </ul>
-          <p>したがって本サイトでは、 HTTP ヘッダでの対応を実施する。
+          <p>したがって本サイトでは、HTTP ヘッダでの対応を実施する。
         </section>
       </section>
       <section>
         <h2 id="hpkp-の設定"><a href="#hpkp-の設定">HPKP の設定</a></h2>
         <section>
           <h3 id="public-key-pins-ヘッダ"><a href="#public-key-pins-ヘッダ">Public-Key-Pins ヘッダ</a></h3>
-          <p>HPKP を有効化するには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
+          <p>HPKP を有効化するには、Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=http data-code=http><code translate=no class=language-http>Public-Key-Pins: pin-sha256=&quot;base64==&quot;; max-age=expireTime [; includeSubdomains][; report-uri=&quot;reportURI&quot;]</code></pre>
           <p>設定については、以下が参考になる。
@@ -238,14 +238,14 @@
         <section>
           <h3 id="subject-public-key-information-spki"><a href="#subject-public-key-information-spki">Subject Public Key Information (SPKI)</a></h3>
           <p>Pin の値は openssl コマンドを用いれば、公開鍵から SPKI の Base64 エンコードまで一括で行える。
-          <p>手元に、 Key, CSR, CRT のいずれかがあればそれを用いることができ、 Web 経由で取得した公開鍵からも生成できる。
+          <p>手元に、Key, CSR, CRT のいずれかがあればそれを用いることができ、Web 経由で取得した公開鍵からも生成できる。
           <p>管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうと考える。
           <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64</code></pre>
         </section>
       </section>
       <section>
         <h2 id="report-uri.io"><a href="#report-uri.io">report-uri.io</a></h2>
-        <p>ブラウザは、  Pin に一致しない証明書を検出した場合、違反レポートを生成し <code translate=no>report-uri</code> に指定した URI に対して自動的に送信する。
+        <p>ブラウザは、Pin に一致しない証明書を検出した場合、違反レポートを生成し <code translate=no>report-uri</code> に指定した URI に対して自動的に送信する。
         <p>HPKP の違反レポートは以下のような JSON データである。
         <pre class=json data-code=json><code translate=no class=language-json>{
     &quot;date-time&quot;: &quot;2014-04-06T13:00:50Z&quot;,
@@ -286,19 +286,19 @@
           <p>HPKP の運用での一番の懸念は、証明書の更新だろう。
           <p>例えば今回は、現行の Pin(Pin1 とする)に加えてバックアップ Pin(Pin2 とする) を一つ登録したため、このバックアップ Pin2 にあたる証明書への更新までは問題ないだろう。
           <p>しかし、問題はそのあとどうするかである。(その後更新する新しい証明書の Pin を Pin3, 4... とする)
-          <p>ブラウザが <code translate=no>[Pin1, Pin2]</code> を保存した状態なら、 Pin2 の証明書に更新されてもバックアップが効いているため問題はない。
+          <p>ブラウザが <code translate=no>[Pin1, Pin2]</code> を保存した状態なら、Pin2 の証明書に更新されてもバックアップが効いているため問題はない。
           <p>次に証明書を Pin3 のものへ更新した時がポイントとなるだろう。
-          <p>これは <code translate=no>[Pin1, Pin2]</code> を保存したまま、その後しばらく訪れず、 Pin3 の証明書に更新されてから訪れたら、持っている Pin と証明書がマッチせず接続できなくなるためである。
-          <p>つまり、 Pin3 を運用する際には、必ず <code translate=no>[Pin1, Pin2]</code> の組はブラウザから Expire されている必要がある。
-          <p>しかし、それを恐れて Pin の Max-Age を短くしすぎると、アクセスするたびに Pin が無効にな状態となり、 TOFU であるこのプロトコルを生かしきれない。
+          <p>これは <code translate=no>[Pin1, Pin2]</code> を保存したまま、その後しばらく訪れず、Pin3 の証明書に更新されてから訪れたら、持っている Pin と証明書がマッチせず接続できなくなるためである。
+          <p>つまり、Pin3 を運用する際には、必ず <code translate=no>[Pin1, Pin2]</code> の組はブラウザから Expire されている必要がある。
+          <p>しかし、それを恐れて Pin の Max-Age を短くしすぎると、アクセスするたびに Pin が無効にな状態となり、TOFU であるこのプロトコルを生かしきれない。
           <p>Report-Only でない運用では、接続ができないという状態になるため、サービスへの影響も大きくなる。
           <p>それを踏まえてか、以下のような中間証明書を Pin 留めするという運用もあるようなので、紹介する。
         </section>
         <section>
           <h3 id="中間証明書の-pin"><a href="#中間証明書の-pin">中間証明書の Pin</a></h3>
-          <p>GitHub は現在 HPKP を運用しているため、 Pin の値を調べてみた。
-          <p>GitHub では、 Leaf (<code translate=no>github.com</code> 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
-          <p>OpenSSL の <code translate=no>-showcerts</code> コマンドを用いて、 GitHub の証明書を取得し Pin を計算してみる。
+          <p>GitHub は現在 HPKP を運用しているため、Pin の値を調べてみた。
+          <p>GitHub では、Leaf (<code translate=no>github.com</code> 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
+          <p>OpenSSL の <code translate=no>-showcerts</code> コマンドを用いて、GitHub の証明書を取得し Pin を計算してみる。
           <p>(証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
           <pre class=shell data-code=shell><code translate=no class=language-shell># github.com pins Intermediate Certificate
 # so add `-showcerts` option for first openssl
@@ -325,15 +325,15 @@ curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &apos;puts $_.gsu
         <section>
           <h3 id="pin"><a href="#pin">Pin</a></h3>
           <p>まず現在の証明書から、現行の Pin を生成しそれを指定する。
-          <p>本サイトでは、 2 年ごとに更新するワイルドカード証明書を購入して使用している。
+          <p>本サイトでは、2 年ごとに更新するワイルドカード証明書を購入して使用している。
           <p>つまり、全サブドメインで証明書は一つであり、期限も長いので、運用はそこまで難しくないだろうと考えている。
           <p>バックアップ Pin としては、未来の(次の更新で使用する)証明書用の鍵を先に一つ用意しておき、そこからバックアップ用 Pin を生成することにした。
           <p><code translate=no>report-uri</code> には CSP 同様 <a href="https://report-uri.io" target=_blank>report-uri.io</a> を設定する。
           <p>そしてこれを <a href="https://jxck.io" target=_blank>jxck.io</a> と <a href="https://blog.jxck.io">blog.jxck.io</a> に設定した。
-          <p>今回はあくまで実験であるため、 CSP 同様に Report-Only での運用とする。
-          <p>デモとして、 Report-Only 無しのヘッダを指定したページを以下に用意した。
+          <p>今回はあくまで実験であるため、CSP 同様に Report-Only での運用とする。
+          <p>デモとして、Report-Only 無しのヘッダを指定したページを以下に用意した。
           <p><a href="https://labs.jxck.io/public-key-pinning/" target=_blank>Public Key Pinning DEMO | labs.jxck.io</a>
-          <p>HPKP が有効になっていることは、 <a href="chrome://net-internals/#hsts" target=_blank>chrome://net-internals/#hsts</a> で確認できる。しかし Report-Only ではここに上がらないようである。
+          <p>HPKP が有効になっていることは、<a href="chrome://net-internals/#hsts" target=_blank>chrome://net-internals/#hsts</a> で確認できる。しかし Report-Only ではここに上がらないようである。
         </section>
         <section>
           <h3 id="結果"><a href="#結果">結果</a></h3>
@@ -344,7 +344,7 @@ curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &apos;puts $_.gsu
   pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
   pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;
   report-uri=&quot;https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/enforce&quot;</code></pre>
-          <p>Report-Only は、 <code translate=no>max-age</code> が不要になる。また report-uri.io では、 Report-Only 用に URI が変わるので、それを設定している。
+          <p>Report-Only は、<code translate=no>max-age</code> が不要になる。また report-uri.io では、Report-Only 用に URI が変わるので、それを設定している。
           <pre class=http data-code=http><code translate=no class=language-http>Public-Key-Pins-Report-Only:
   pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
   pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;

@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="本サイトを (Non AMP) SXG に対応した。これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。...">
+  <meta name=description         content="本サイトを (Non AMP) SXG に対応した。これにより、Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、アドレスバーにも本サイトのものとして表示される。この...">
   <meta name=keywords            content="prefetch,amp,signed-http-exchange,webpackaging">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html>
   <meta property=og:title        content="Non AMP SXG による Prefetch 対応と AMP 提供の停止 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="本サイトを (Non AMP) SXG に対応した。これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。...">
+  <meta property=og:description  content="本サイトを (Non AMP) SXG に対応した。これにより、Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、アドレスバーにも本サイトのものとして表示される。この...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-05-28T08:00:00+08:00",
-    "dateModified": "2024-02-07T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "本サイトを (Non AMP) SXG に対応した。これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。..."
+    "description": "本サイトを (Non AMP) SXG に対応した。これにより、Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、アドレスバーにも本サイトのものとして表示される。この..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-05-28>2021-05-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-02-07>2024-02-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -171,8 +171,8 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>本サイトを (Non AMP) SXG に対応した。
-        <p>これにより、 Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、 アドレスバーにも本サイトのものとして表示される。
-        <p>この、 Non AMP SXG 対応にあたって、本サイトの AMP の提供も停止することになった。
+        <p>これにより、Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、アドレスバーにも本サイトのものとして表示される。
+        <p>この、Non AMP SXG 対応にあたって、本サイトの AMP の提供も停止することになった。
         <p>移行の作業ログと、関連する流れについて記す。
       </section>
       <section>
@@ -181,18 +181,18 @@
         <ul>
           <li><a href="https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html">WebPackaging の Signed HTTP Exchanges</a>
         </ul>
-        <p>本サイトでは AMP SXG に対応しており、 Google Search からの AMP ページへの遷移には SXG が取得され、本サイトのドメインが表示される。
+        <p>本サイトでは AMP SXG に対応しており、Google Search からの AMP ページへの遷移には SXG が取得され、本サイトのドメインが表示される。
         <ul>
           <li><a href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html">AMP SXG 対応</a>
         </ul>
-        <p>今年の 4 月に、 AMP だけでなく通常のコンテンツであっても SXG を配信すれば Google Bot がそれを取得し、 Google Search のモバイル検索結果で Prefetch が行われるようになった。
+        <p>今年の 4 月に、AMP だけでなく通常のコンテンツであっても SXG を配信すれば Google Bot がそれを取得し、Google Search のモバイル検索結果で Prefetch が行われるようになった。
         <p>これにより、モバイル検索結果を表示した時点で SXG がブラウザに読み込まれ、結果をクリックしたら、リクエストを投げる代わりにキャッシュから HTML を表示するだけで済むため、検索流入のユーザに対して、初期表示のパフォーマンス向上が期待される。
         <p>Google はこれを AMP SXG と対比して <a href="https://developers.google.com/search/docs/advanced/experience/signed-exchange#:~:text=non-,amp,-results" target=_blank>Non AMP SXG</a> と称しており、本サイトでもその使い分けを採用するが、実態はまさしく SXG そのものだ。
       </section>
       <section>
         <h2 id="sxg-の配信"><a href="#sxg-の配信">SXG の配信</a></h2>
-        <p>SXG の配信は、コンテンツを SXG に変換するだけではなく、 Content Negotiation の対応や Validity URL の提供など、いくつか対応が必要となる。
-        <p>また、 SXG はファイル自体に期限があるため、 <a href="https://github.com/WICG/webpackage/tree/main/go/signedexchange/cmd/gen-signedexchange" target=_blank>gen-signedexchange</a> といったツールで静的に作る場合は更新が必要となる。
+        <p>SXG の配信は、コンテンツを SXG に変換するだけではなく、Content Negotiation の対応や Validity URL の提供など、いくつか対応が必要となる。
+        <p>また、SXG はファイル自体に期限があるため、<a href="https://github.com/WICG/webpackage/tree/main/go/signedexchange/cmd/gen-signedexchange" target=_blank>gen-signedexchange</a> といったツールで静的に作る場合は更新が必要となる。
         <p>今回はこうした処理を全て肩代わりしてくれる Web Packager Server を用いることにした。
         <ul>
           <li><a href="https://github.com/google/webpackager/tree/master/cmd/webpkgserver" target=_blank>Web Packager Server - google/webpackager</a>
@@ -204,7 +204,7 @@
         <p>このコマンドはサーバを起動し、リクエストに応じて SXG を生成して返すため、フロントサーバから Proxy するように構成する。
         <section>
           <h3 id="webpkgserver"><a href="#webpkgserver">webpkgserver</a></h3>
-          <p>webpkgserver は <code translate=no>go get</code> ではうまく動かなかったため、 README にある通りソースからビルドした。
+          <p>webpkgserver は <code translate=no>go get</code> ではうまく動かなかったため、README にある通りソースからビルドした。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=shell data-code=shell><code translate=no class=language-shell>git clone --depth 1 https://github.com/google/webpackager
 cd webpackager/cmd/webpkgserver
@@ -216,7 +216,7 @@ go build .</code></pre>
         <section>
           <h3 id="webpkgserver.toml"><a href="#webpkgserver.toml">webpkgserver.toml</a></h3>
           <p>設定ファイルは、同梱されている <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/webpkgserver.example.toml" target=_blank>webpkgserver.example.toml</a> を修正する。
-          <p>ほとんどデフォルトが使えるため、 Port と SXG 用の証明書、 Domain あたりを気をつければ良いだろう。
+          <p>ほとんどデフォルトが使えるため、Port と SXG 用の証明書、Domain あたりを気をつければ良いだろう。
           <pre class=yaml data-code=yaml><code translate=no class=language-yaml>[Listen]
   Port = 11000
 
@@ -252,8 +252,8 @@ dump-signedexchange -i dump.sxg</code></pre>
       </section>
       <section>
         <h2 id="content-negotiation"><a href="#content-negotiation">Content Negotiation</a></h2>
-        <p>基本的にはリクエストヘッダに <code translate=no>Accpet: application/signed-exchange;v=b3</code> が付与されている場合、 Web Package Server に転送すれば良い。
-        <p>しかし、 Google の Bot だけでなく、 Chrome も現状このヘッダをデフォルトで付与しているため、単にこのヘッダの有無だけを見てルーティングすると、ブラウザからのリクエストにも SXG を返すことになる。
+        <p>基本的にはリクエストヘッダに <code translate=no>Accpet: application/signed-exchange;v=b3</code> が付与されている場合、Web Package Server に転送すれば良い。
+        <p>しかし、Google の Bot だけでなく、Chrome も現状このヘッダをデフォルトで付与しているため、単にこのヘッダの有無だけを見てルーティングすると、ブラウザからのリクエストにも SXG を返すことになる。
         <p>これについては Q value を参照するように <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/README.md#content-negotiation" target=_blank>ドキュメント</a> に書かれている。
         <p>具体的には Chrome と Google Bot の付与する Accept は以下のように異なる。
         <pre class=http data-code=http><code translate=no class=language-http># Google Bot
@@ -261,8 +261,8 @@ Accept: text/html,application/xhtml+xml,application/signed-exchange;v=b3,applica
 
 # Chrome 90
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</code></pre>
-        <p>SXG に注目すると Chrome は Q value を HTML などよりも下げているが、 Google Bot は Q value を下げずに HTML と同等にしていることがわかる。
-        <p>ドキュメントでは、 Google Bot は Q value を付与しないことで優先度を下げないため、 Q value の有無が判断材料になると書かれており、それを Nginx で実現する正規表現の例が書かれている。
+        <p>SXG に注目すると Chrome は Q value を HTML などよりも下げているが、Google Bot は Q value を下げずに HTML と同等にしていることがわかる。
+        <p>ドキュメントでは、Google Bot は Q value を付与しないことで優先度を下げないため、Q value の有無が判断材料になると書かれており、それを Nginx で実現する正規表現の例が書かれている。
         <p>しかしドキュメントの正規表現が気に入らず、また本サイトでは h2o の mruby handler で対応するため、以下のように否定先読みで実現することとした。
         <pre class=ruby data-code=ruby><code translate=no class=language-ruby>if /application\/signed-exchange;v=b3(?!;q=)/.match(env[&quot;HTTP_ACCEPT&quot;])
   # reproxy to backend wepkgserver
@@ -292,9 +292,9 @@ dump-certurl -i cert.cbor</code></pre>
         <section>
           <h3 id="debug"><a href="#debug">Debug</a></h3>
           <p>curl でテストしても良いが、デプロイした後ならば Chrome でアクセスして Devtools で確認すると詳細がデバッグできる。
-          <p>しかし、今回の設定では Chrome のデフォルトの Q value がついた <code translate=no>Accept</code> ヘッダでは SXG が取得できないため、 <a href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj" target=_blank>ModHeader</a> などを用いて Q value を無くすよう上書きする必要がある。
+          <p>しかし、今回の設定では Chrome のデフォルトの Q value がついた <code translate=no>Accept</code> ヘッダでは SXG が取得できないため、<a href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj" target=_blank>ModHeader</a> などを用いて Q value を無くすよう上書きする必要がある。
           <p>その状態でアクセスし、成功すれば以下のように SXG が確認できる。
-          <p>まず、 Network の Timeline 上は SXG のレスポンスと CBOR リクエストが続き、 SXG から取り出された HTML が取得されている。
+          <p>まず、Network の Timeline 上は SXG のレスポンスと CBOR リクエストが続き、SXG から取り出された HTML が取得されている。
           <p>
             <picture>
               <source type=image/avif srcset=sxg-timeline.avif?231116_154951>
@@ -302,7 +302,7 @@ dump-certurl -i cert.cbor</code></pre>
               <img loading=lazy decoding=async src=sxg-timeline.png?230731_162900 alt="SXG レスポンス、 CBOR レスポンス、 SXG から取り出された HTML の順に取得されている Devtools Timeline の図" width=2390 height=300>
             </picture>
           </p>
-          <p>SXG の Preview タブを見ると、 Signature や Certificate も正しく解釈されていることが確認できる。
+          <p>SXG の Preview タブを見ると、Signature や Certificate も正しく解釈されていることが確認できる。
           <p>
             <picture>
               <source type=image/avif srcset=sxg-response.avif?231116_154951>
@@ -313,7 +313,7 @@ dump-certurl -i cert.cbor</code></pre>
         </section>
         <section>
           <h3 id="google-bot"><a href="#google-bot">Google Bot</a></h3>
-          <p>この状態で放置しておくと GoogleBot がクロールしに来た際に、 SXG の Content Negotiation に成功して SXG をクロールしていく。
+          <p>この状態で放置しておくと GoogleBot がクロールしに来た際に、SXG の Content Negotiation に成功して SXG をクロールしていく。
           <p>SXG が Google の Cache に乗ったかは、以下のような規則で生成したキャッシュ URL に直接アクセスすれば確認できる。
           <ul>
             <li>(before): <a href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html</a>
@@ -322,8 +322,8 @@ dump-certurl -i cert.cbor</code></pre>
         </section>
         <section>
           <h3 id="amp-sxg-と-non-amp-sxg"><a href="#amp-sxg-と-non-amp-sxg">AMP SXG と Non AMP SXG</a></h3>
-          <p>本来はこれで Google Search Result に反映されて、 Prefetch が埋め込まれるはずだった。
-          <p>しかし、本サイトは既に <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> と <a href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html">AMP SXG</a> に対応しているため、モバイルの検索結果では AMP がヒットし、 AMP SXG がリンクされている。
+          <p>本来はこれで Google Search Result に反映されて、Prefetch が埋め込まれるはずだった。
+          <p>しかし、本サイトは既に <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> と <a href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html">AMP SXG</a> に対応しているため、モバイルの検索結果では AMP がヒットし、AMP SXG がリンクされている。
           <p>
             <picture>
               <source type=image/avif srcset=gsrp-amp.avif?240313_215035>
@@ -333,7 +333,7 @@ dump-certurl -i cert.cbor</code></pre>
           </p>
           <p>どうやら Non AMP SXG がクロールされても、同時に AMP および AMP SXG に対応している場合は、現状 AMP 側が優先されるようだ。
           <p>おそらく両方に対応しているサイト自体が他に無いため、ここをコントロールする情報は無く、今後 Non AMP SXG の方が優先されたりする可能性も無くはないが、まったく未定な状態となりいつまでたっても動作検証ができない。
-          <p>CWV や SXG 、さらにこれから展開される予定の Prerender2 などを見据えれば、 AMP 自体は特別扱いされなくなっていくと理解しているため、そもそも AMP はどこかでやめるつもりでいた。
+          <p>CWV や SXG 、さらにこれから展開される予定の Prerender2 などを見据えれば、AMP 自体は特別扱いされなくなっていくと理解しているため、そもそも AMP はどこかでやめるつもりでいた。
           <p>Bento AMP が気にるので、念のためにコンテンツは残すが、これを機に AMP の提供を停止することにした。
         </section>
         <section>
@@ -370,7 +370,7 @@ dump-certurl -i cert.cbor</code></pre>
               <img loading=lazy decoding=async src=sxg-prefetch.png?230731_162900 alt="検索結果を表示した時点で HTML は Google の SXG Cache から取得されている" width=3030 height=742>
             </picture>
           </p>
-          <p>実際に検索結果に遷移すると、 HTTP Request は筆者のサーバには発生せず、 Prefetch された HTML から展開されていることがわかる。
+          <p>実際に検索結果に遷移すると、HTTP Request は筆者のサーバには発生せず、Prefetch された HTML から展開されていることがわかる。
           <p>
             <picture>
               <source type=image/avif srcset=sxg-navigate.avif?231116_154951>
@@ -378,12 +378,12 @@ dump-certurl -i cert.cbor</code></pre>
               <img loading=lazy decoding=async src=sxg-navigate.png?230731_162900 alt="検索結果に遷移すると Prefetch した HMTL が展開されている" width=3044 height=736>
             </picture>
           </p>
-          <p>このとき(スクショでは切れているが)、アドレスバーには SXG Cache の URL である <code translate=no>https://blog-jxck-io.webpkgcache.com/</code> ではなく、 SXG を検証した結果として <code translate=no>https://blog.jxck.io</code> が表示されている。
+          <p>このとき(スクショでは切れているが)、アドレスバーには SXG Cache の URL である <code translate=no>https://blog-jxck-io.webpkgcache.com/</code> ではなく、SXG を検証した結果として <code translate=no>https://blog.jxck.io</code> が表示されている。
         </section>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>本サイトを Non AMP SXG に対応し、 Google のモバイル検索結果で Prefetch されることを確認した。
+        <p>本サイトを Non AMP SXG に対応し、Google のモバイル検索結果で Prefetch されることを確認した。
         <p>本来、そこで発生したパフォーマンスの改善を CWV を指標として測るべきでもあるが、ローカルの Lighthouse はリロードベースでの測定しかできず、本サイトのアクセス数では Field Data が得られないため Page Speed Insight などでの変化も見ることができない。
         <p>各 API で色々工夫すれば測れるかもしれないが、本サイトは Origin が十分に速いため、有意な数値差も期待できず、検証はここまでとした。
         <p>また、今回ここで AMP をやめることは本来意図してなかったが、ここで不要になったように SXG も AMP の遺産の 1 つとも言え、すでに AMP はある程度の役目を終えつつあるだろう。

@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Promise.withResolvers() は、 Stage 4 であり ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、その活用方法を解説する。">
+  <meta name=description         content="Promise.withResolvers() は、Stage 4 であり ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、その活用方法を解説する。">
   <meta name=keywords            content="promise,tc39">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-02-10/promise.withresolvers.html>
   <meta property=og:title        content="Promise.withResolvers によるイベントの Promise 化 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Promise.withResolvers() は、 Stage 4 であり ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、その活用方法を解説する。">
+  <meta property=og:description  content="Promise.withResolvers() は、Stage 4 であり ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、その活用方法を解説する。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-02-10T08:00:00+08:00",
-    "dateModified": "2024-05-20T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "Promise.withResolvers() は、 Stage 4 であり ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、その活用方法を解説する。"
+    "description": "Promise.withResolvers() は、Stage 4 であり ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、その活用方法を解説する。"
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-02-10>2024-02-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-20>2024-05-20</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -152,13 +152,13 @@
       <h1><a href="">Promise.withResolvers によるイベントの Promise 化</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p><code translate=no>Promise.withResolvers()</code> は、 Stage 4 であり ES2024 の候補となった。
+        <p><code translate=no>Promise.withResolvers()</code> は、Stage 4 であり ES2024 の候補となった。
         <p>すでにブラウザでの実装も進んでいるため、その活用方法を解説する。
       </section>
       <section>
         <h2 id="イベントの-promise-化"><a href="#イベントの-promise-化">イベントの Promise 化</a></h2>
         <p>JS では、非同期処理 API は長らくイベントリスナベースで定義され、それを組み合わせるフロー制御で処理されてきた。
-        <p>しかし、 Promise が定義されて以降は、標準 API も Promise を返すようになり、 <code translate=no>async</code>/<code translate=no>await</code> によって処理されるのが一般的になってきた。
+        <p>しかし、Promise が定義されて以降は、標準 API も Promise を返すようになり、<code translate=no>async</code>/<code translate=no>await</code> によって処理されるのが一般的になってきた。
         <p>結果、イベントリスナベースの API を Promise 化するような場面も増えた。
         <p>例えば以下のようなものだ。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
@@ -233,7 +233,7 @@
   })
   return promise
 }</code></pre>
-        <p>例えば以下のように使えば、 EventTarget を継承した API の Promise 化もできる。
+        <p>例えば以下のように使えば、EventTarget を継承した API の Promise 化もできる。
         <pre class=js data-code=js><code translate=no class=language-js>async function readFile(file: File) {
   const { promise, resolve, reject } = Promise.withResolvers()
   const reader = new FileReader()
@@ -244,7 +244,7 @@
   return promise
 }</code></pre>
         <p>既にブラウザへの実装も進んでいる。
-        <p>なお、 Firefox は内部で <code translate=no>PromiseUtils.defer()</code> という名前で実装していたが、現在は <code translate=no>Promise.withResolvers()</code> に置き換えられている。
+        <p>なお、Firefox は内部で <code translate=no>PromiseUtils.defer()</code> という名前で実装していたが、現在は <code translate=no>Promise.withResolvers()</code> に置き換えられている。
         <ul>
           <li>
             PSA: PromiseUtils.defer() has been replaced by Promise.withResolvers()

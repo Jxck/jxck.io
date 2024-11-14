@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-02-06T08:00:00+08:00",
-    "dateModified": "2024-05-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-02-06>2024-02-06</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-05-13>2024-05-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,8 +156,8 @@
       </section>
       <section>
         <h2 id="tc39-stages"><a href="#tc39-stages">TC39 Stages</a></h2>
-        <p>TC39 は、 ECMAScript (つまりまあ JS) の新機能を議論する Task Group だ。
-        <p>ここでは、比較的自由に新機能の提案がなされ、定期的に行われるミーティングでの議論や、実装からのフィードバックを経て、 Stage が上がっていく仕組みをとっている。
+        <p>TC39 は、ECMAScript (つまりまあ JS) の新機能を議論する Task Group だ。
+        <p>ここでは、比較的自由に新機能の提案がなされ、定期的に行われるミーティングでの議論や、実装からのフィードバックを経て、Stage が上がっていく仕組みをとっている。
         <p>旧来の Stage は 0~4 まであった。ざっくり言うと以下のようなものだ。
         <dl>
           <div>
@@ -178,7 +178,7 @@
           </div>
           <div>
             <dt>Stage 4
-            <dd>最低二つの実装があり、 Issue も全て解決し、承認された状態。次の ECMA 262 に取り込まれるのを待つだけ。
+            <dd>最低二つの実装があり、Issue も全て解決し、承認された状態。次の ECMA 262 に取り込まれるのを待つだけ。
           </div>
         </dl>
         <p>細かな条件や基準は、以下のドキュメントにまとめられている。
@@ -193,7 +193,7 @@
       </section>
       <section>
         <h2 id="communication-while-working-towards-stage-4"><a href="#communication-while-working-towards-stage-4">Communication while working towards Stage 4</a></h2>
-        <p>最初の提案は、 2023 年 5 月の TC39 meeting で提案された以下から始まる。
+        <p>最初の提案は、2023 年 5 月の TC39 meeting で提案された以下から始まる。
         <ul>
           <li>
             Stage 3 Proposals and Implementors - Communication while working towards Stage 4
@@ -202,9 +202,9 @@
             </ul>
           </li>
         </ul>
-        <p>ここでは、 Array Grouping の作業が二転三転した経緯から振り返っている。
-        <p>簡単にまとめると、 Array Grouping は 2021/12 に Stage 3 になったが、そこから数回メソッド名が変更された。さらには互換性の問題で Prototype から Static メソッドに変えるため一度 Stage 3 から Stage 2 に Down Stage もしている。
-        <p>他の例では、現在作業中の Temporal は、 Stage 2 の段階でおおよその目的や API が決まっているにも関わらず、数年に渡って Normative Changes が継続的に発生し、その度に実装側にも修正が入ることになる。
+        <p>ここでは、Array Grouping の作業が二転三転した経緯から振り返っている。
+        <p>簡単にまとめると、Array Grouping は 2021/12 に Stage 3 になったが、そこから数回メソッド名が変更された。さらには互換性の問題で Prototype から Static メソッドに変えるため一度 Stage 3 から Stage 2 に Down Stage もしている。
+        <p>他の例では、現在作業中の Temporal は、Stage 2 の段階でおおよその目的や API が決まっているにも関わらず、数年に渡って Normative Changes が継続的に発生し、その度に実装側にも修正が入ることになる。
         <p>一方、この機能を各エンジンは実装し、リリースのスケジュールを組んだり、実際に Ship を予定したりもするのだ。
         <p>実装があっての Stage 4 であるため、実装者は Stage 3 の仕様を実装する方向で進めるが、実際には Stage 3 だからといって「今すぐリリースしても大丈夫とは限らない」という微妙な仕様も存在するのが現状だ。そして、実装者はそこまで細かく自体を把握できずに、現状の仕様で Ship してしまう場合もある。
         <p>そこで、各 Stage 3 の仕様に、メタ情報として「Ship しても大丈夫か?」というステータスを表示しようと言うのが、最初の提案だった。
@@ -222,22 +222,22 @@
         </ul>
         <p>この提案は、別の人でありながら、先の提案と解決したい問題は同じだ。
         <p>ここでは Stage 2 と 3 の間の行き来によるオーバーヘッドを減らすことにフォーカスしている。
-        <p>そもそも、 Stage 3 になった時点では Test262 は求められてないため、実装する人が一緒に Test262 を書きながら実装するというのが、現在の標準的なフローになっている。しかし、仕様に手戻りがあれば、実装および Test262 の修正など、実装側に大きな手戻りを発生させることになっている。
-        <p>そこで、 Stage 2 と 3 の間に、もう一つ以下のようなステージを用意してはどうか? というのがこの提案だ。
+        <p>そもそも、Stage 3 になった時点では Test262 は求められてないため、実装する人が一緒に Test262 を書きながら実装するというのが、現在の標準的なフローになっている。しかし、仕様に手戻りがあれば、実装および Test262 の修正など、実装側に大きな手戻りを発生させることになっている。
+        <p>そこで、Stage 2 と 3 の間に、もう一つ以下のようなステージを用意してはどうか? というのがこの提案だ。
         <dl>
           <div>
             <dt>New Stage
             <dd>test262 などを整備する状態。簡単な Polyfill などはあってもいいが、エンジンへの本格実装のタイミングでは無い。
           </div>
         </dl>
-        <p>このステージで、スペックの整備と実装の開始の間を埋め、 Test262 の知見から Normative Changes をできる限り潰してから実装に入れるように吸収する。そして、 Test262 も最初の実装者に丸投げするのではなく、(完璧では無いにせよ) Champion が行うべきでは? という点も付け加えられている。
+        <p>このステージで、スペックの整備と実装の開始の間を埋め、Test262 の知見から Normative Changes をできる限り潰してから実装に入れるように吸収する。そして、Test262 も最初の実装者に丸投げするのではなく、(完璧では無いにせよ) Champion が行うべきでは? という点も付け加えられている。
         <p>この発想は、色々と議論があったが、概ね支持された。問題は Stage の名前だ。
         <p>この時点では仮に Stage 2¾ と呼ばれていた。
       </section>
       <section>
         <h2 id="bikeshed"><a href="#bikeshed">Bikeshed</a></h2>
         <p>あとは想像通り Bikeshed だ。
-        <p>既存のステージに対する解釈の齟齬を防ぐためにも、 Stage を一個ずらして 0 ~ 5 にするといったことはできない。つまり、 2 と 3 の間にどういう名前にするかという自由闊達な議論が 11 月に行われた。
+        <p>既存のステージに対する解釈の齟齬を防ぐためにも、Stage を一個ずらして 0 ~ 5 にするといったことはできない。つまり、2 と 3 の間にどういう名前にするかという自由闊達な議論が 11 月に行われた。
         <p>議事録から出てきた案を拾ってまとめてみる。
         <ul>
           <li>Stage 2¾
@@ -250,11 +250,11 @@
           <li>Stage 2.7
           <li>Stage 2.9
         </ul>
-        <p>そしてこの中で Temperature Check (投票) を行なったが、議事録を見る限り、 TC39 は投票に慣れてないために色々とごたついてたようだが、それでも一応 2.7 に落ち着いた。
+        <p>そしてこの中で Temperature Check (投票) を行なったが、議事録を見る限り、TC39 は投票に慣れてないために色々とごたついてたようだが、それでも一応 2.7 に落ち着いた。
       </section>
       <section>
         <h2 id="new-stage-2.7"><a href="#new-stage-2.7">New Stage 2.7</a></h2>
-        <p>結果、最初に貼った Process Document は既に更新されており、 Stage 2.7 が追加されている。
+        <p>結果、最初に貼った Process Document は既に更新されており、Stage 2.7 が追加されている。
         <ul>
           <li>
             The TC39 Process
@@ -287,10 +287,10 @@
           </div>
           <div>
             <dt>Stage 4
-            <dd>最低二つの実装があり、 Issue も全て解決し、承認された状態。次の ECMA 262 に取り込まれるのを待つだけ。
+            <dd>最低二つの実装があり、Issue も全て解決し、承認された状態。次の ECMA 262 に取り込まれるのを待つだけ。
           </div>
         </dl>
-        <p>なお、既存の提案では、 Stage 3 で少しグダついている Decorator Metadata の仕様が、 2.7 に戻されることになった。
+        <p>なお、既存の提案では、Stage 3 で少しグダついている Decorator Metadata の仕様が、2.7 に戻されることになった。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>

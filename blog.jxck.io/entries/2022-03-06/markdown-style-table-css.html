@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、 CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &apos;##&apo...">
+  <meta name=description         content="本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &apos;##&apos...">
   <meta name=keywords            content="markdown,css">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2022-03-06/markdown-style-table-css.html>
   <meta property=og:title        content="Markdown の Table 記法を CSS で実現する | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、 CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &apos;##&apo...">
+  <meta property=og:description  content="本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &apos;##&apos...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-03-06T08:00:00+08:00",
-    "dateModified": "2023-04-10T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、 CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &apos;##&apo..."
+    "description": "本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &apos;##&apos..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-03-06>2022-03-06</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-04-10>2023-04-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -168,7 +168,7 @@
       <h1><a href="">Markdown の Table 記法を CSS で実現する</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、 CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように <code translate=no>h2::before</code> に <code translate=no>content: &apos;##&apos;</code> を指定するといった具合だ。
+        <p>本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように <code translate=no>h2::before</code> に <code translate=no>content: &apos;##&apos;</code> を指定するといった具合だ。
         <p>しかし、これまで <code translate=no>&lt;table&gt;</code> だけはうまく Markdown 記法を再現する CSS が書けないでいた。
         <p>そこで、周りの CSS 強者に実現できないか聞いてみたところ、<a href="https://twitter.com/shqld" target=_blank>@shqld</a>, <a href="https://twitter.com/arayaryoma" target=_blank>@araya</a>, <a href="https://twitter.com/yoshiko_pg" target=_blank>@yoshiko</a> 達の協力を得て、かなりの完成度にすることができた。実現方法を記録する。
       </section>
@@ -181,7 +181,7 @@
 | .webp     | 9474 |  100% |
 | .webp.gz  | 2609 |   28% |
 | .webp.br  | 2544 |   27% |</code></pre>
-        <p>特に <code translate=no>&lt;thead&gt;</code>, <code translate=no>&lt;tbody&gt;</code> の間に入るセパレータ (<code translate=no>|:---|---:|---:|</code>) の部分の長さを内容に合わせるためには <code translate=no>&lt;td&gt;</code> 内の文字数を CSS 内で取得する必要がある。これは JS 無しには難しそうだった。 JS は使いたくないし、もし使うしかないなら Houdini の Paint API などで実装したい。しかし、 Paint API も当時は Text Rendering がサポートされてなかったため、それも諦めていた。
+        <p>特に <code translate=no>&lt;thead&gt;</code>, <code translate=no>&lt;tbody&gt;</code> の間に入るセパレータ (<code translate=no>|:---|---:|---:|</code>) の部分の長さを内容に合わせるためには <code translate=no>&lt;td&gt;</code> 内の文字数を CSS 内で取得する必要がある。これは JS 無しには難しそうだった。JS は使いたくないし、もし使うしかないなら Houdini の Paint API などで実装したい。しかし、Paint API も当時は Text Rendering がサポートされてなかったため、それも諦めていた。
         <p>などと考えている間に飽きて、適当に border を dash にしただけのお粗末な実装で誤魔化していた。
         <p>
           <picture>
@@ -193,7 +193,7 @@
       </section>
       <section>
         <h2 id="call-for-implementation"><a href="#call-for-implementation">Call for Implementation</a></h2>
-        <p><a href="https://blog.jxck.io/entries/2021-11-30/blog-v2-release.html">Markdown のパーサを書きなおした</a> 際にこの作業を思い出し、誰か実現できる人がいたりしないか CSS に強そうなエンジニア何人かに聞いてみたところ、いくつかアドバイスをもらえたり、 PoC を返してもらえた。 URL のあるものだけ貼っておく。
+        <p><a href="https://blog.jxck.io/entries/2021-11-30/blog-v2-release.html">Markdown のパーサを書きなおした</a> 際にこの作業を思い出し、誰か実現できる人がいたりしないか CSS に強そうなエンジニア何人かに聞いてみたところ、いくつかアドバイスをもらえたり、PoC を返してもらえた。URL のあるものだけ貼っておく。
         <ul>
           <li>araya: <a href="https://codepen.io/arayaryoma/pen/XWzgVwx" target=_blank>https://codepen.io/arayaryoma/pen/XWzgVwx</a>
           <li>yoshiko: <a href="http://jsfiddle.net/j4fm9scg/" target=_blank>http://jsfiddle.net/j4fm9scg/</a>
@@ -204,7 +204,7 @@
         <h2 id="実装方針"><a href="#実装方針">実装方針</a></h2>
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
-          <p>まず、自作のパーサでは以下のような HTML が生成される。 Align は HTML の <code translate=no>align</code> 要素が <a href="https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align" target=_blank>Deprecated</a> だったため、 <code translate=no>class</code> で実装している。
+          <p>まず、自作のパーサでは以下のような HTML が生成される。Align は HTML の <code translate=no>align</code> 要素が <a href="https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align" target=_blank>Deprecated</a> だったため、<code translate=no>class</code> で実装している。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
@@ -237,7 +237,7 @@
           <p><code translate=no>|</code> は <code translate=no>&lt;th&gt;</code>, <code translate=no>&lt;td&gt;</code> の <code translate=no>::before</code> / <code translate=no>::after</code> の <code translate=no>content</code> でだいたい想像通りの実装を行う。
           <p>問題は <code translate=no>&lt;thead&gt;</code> / <code translate=no>&lt;tbody&gt;</code> の間の線だ。ここの実装は以下のように行っている。
           <ul>
-            <li>th の <code translate=no>::after</code> に <code translate=no>-----------</code> を長めに用意し、 overflow hidden で切る
+            <li>th の <code translate=no>::after</code> に <code translate=no>-----------</code> を長めに用意し、overflow hidden で切る
             <li>align が left なら <code translate=no>:--------</code> にする
             <li>align が right なら direction を RTL にし <code translate=no>----------:</code> にする
             <li>top と translateY で縦位置調整
@@ -255,8 +255,8 @@
       </section>
       <section>
         <h2 id="generated-content-model"><a href="#generated-content-model">Generated Content Model</a></h2>
-        <p>デザインとしてのスタイル指定で、 <code translate=no>content</code> に装飾用の文字を大量に指定した。本来はスタイルとして認識され、特に Crawler や Assistive Technology には無視されることが望ましい。
-        <p>しかし、 <a href="https://www.w3.org/TR/css-content-3/#accessibility" target=_blank>CSS Generated Content Module Level 3</a> の仕様では、以下のように定義されている。
+        <p>デザインとしてのスタイル指定で、<code translate=no>content</code> に装飾用の文字を大量に指定した。本来はスタイルとして認識され、特に Crawler や Assistive Technology には無視されることが望ましい。
+        <p>しかし、<a href="https://www.w3.org/TR/css-content-3/#accessibility" target=_blank>CSS Generated Content Module Level 3</a> の仕様では、以下のように定義されている。
         <blockquote>
           <p>Generated content should be searchable, selectable, and available to assistive technologies.
           <p>The &apos;content&apos; property applies to speech and generated content must be rendered for speech output. [CSS3-SPEECH]
@@ -271,11 +271,11 @@ td::before {
   content: &quot;|&quot; / &quot;&quot;; /* 読み上げ等に対しては空文字として認識させる */
   float: left;
 }</code></pre>
-          <p>これで Chrome などのブラウザでは、 Voice Over での読み上げにスタイル部分が無視されるようになった。
+          <p>これで Chrome などのブラウザでは、Voice Over での読み上げにスタイル部分が無視されるようになった。
         </section>
         <section>
           <h3 id="fallback"><a href="#fallback">Fallback</a></h3>
-          <p>しかし、 Safari や Firefox は <code translate=no>content</code> の Alternative Text に対応してないため、このままでは <code translate=no>content</code> そのものが無視される。
+          <p>しかし、Safari や Firefox は <code translate=no>content</code> の Alternative Text に対応してないため、このままでは <code translate=no>content</code> そのものが無視される。
           <p>通常、フォールバックとして Alternative Text 無しのものを先に指定することで見た目上は回避できる。
           <pre class=css data-code=css><code translate=no class=language-css>th::before,
 td::before {
@@ -283,13 +283,13 @@ td::before {
   content: &quot;|&quot; / &quot;&quot;; /* 読み上げ等に対しては空文字として認識させる */
   float: left;
 }</code></pre>
-          <p>しかし、これでは Safari/Firefox を Voice Over で読み上げるような場合に、 <code translate=no>content</code> 部分が認識される。もし先頭に 1 文字つく程度ならまだ許容できるかもしれないが、今回は文字が多いため、煩わしさは他の記法とも異なるだろう。
-          <p>せっかく表としてマークアップしているのに、スタイルのために読みにくい状況になるのは不本意なため、 Fallback の指定は辞め、 Alternative Text 未対応のブラウザには Table の Markdown Style を適用するのをやめることにした。
+          <p>しかし、これでは Safari/Firefox を Voice Over で読み上げるような場合に、<code translate=no>content</code> 部分が認識される。もし先頭に 1 文字つく程度ならまだ許容できるかもしれないが、今回は文字が多いため、煩わしさは他の記法とも異なるだろう。
+          <p>せっかく表としてマークアップしているのに、スタイルのために読みにくい状況になるのは不本意なため、Fallback の指定は辞め、Alternative Text 未対応のブラウザには Table の Markdown Style を適用するのをやめることにした。
         </section>
         <section>
           <h3 id="support-query"><a href="#support-query">Support query</a></h3>
-          <p>Markdown Style を Table に提供しない場合は、 <code translate=no>|</code> や <code translate=no>-</code> がなくなって罫線の無い Table になることを避けるため、以前自分が実装した border での実装をベースに提供することにした。
-          <p>そして、 <code translate=no>@supports</code> を用いて、以下のように Alternative Text に対応している場合のみ、 Markdown Style CSS を適用している。
+          <p>Markdown Style を Table に提供しない場合は、<code translate=no>|</code> や <code translate=no>-</code> がなくなって罫線の無い Table になることを避けるため、以前自分が実装した border での実装をベースに提供することにした。
+          <p>そして、<code translate=no>@supports</code> を用いて、以下のように Alternative Text に対応している場合のみ、Markdown Style CSS を適用している。
           <pre class=css data-code=css><code translate=no class=language-css>/** default implementation */
 
 @supports (content: &quot;a&quot; / &quot;b&quot;) {
@@ -299,12 +299,12 @@ td::before {
       </section>
       <section>
         <h2 id="figure--figcaption"><a href="#figure--figcaption">figure / figcaption</a></h2>
-        <p><code translate=no>&lt;table&gt;</code> 自体が横に長い場合があるため、 <code translate=no>overflow</code> を指定する必要がある。しかし、 <code translate=no>overflow</code> を指定するためだけの親要素として <code translate=no>&lt;div&gt;</code> を追加するのがなんとなく気に食わなかったため、以前から TODO だった表のキャプションを導入することにした。
-        <p><code translate=no>&lt;table&gt;</code> の場合は <code translate=no>&lt;caption&gt;</code> を使うのが一般的ではあるが、より汎用的な仕様である <code translate=no>&lt;figure&gt;</code> と <code translate=no>&lt;figcaption&gt;</code> を用いることも仕様上可能だ(ただし両方の併用は不可)。そこで、 <code translate=no>&lt;table&gt;</code> 全体を <code translate=no>&lt;figure&gt;</code> で囲み、そこに <code translate=no>overflow</code> を指定しつつ、 <code translate=no>&lt;figcaption&gt;</code> を入れれば、全てが一度に解決するためこの方法を取ることにした。
+        <p><code translate=no>&lt;table&gt;</code> 自体が横に長い場合があるため、<code translate=no>overflow</code> を指定する必要がある。しかし、<code translate=no>overflow</code> を指定するためだけの親要素として <code translate=no>&lt;div&gt;</code> を追加するのがなんとなく気に食わなかったため、以前から TODO だった表のキャプションを導入することにした。
+        <p><code translate=no>&lt;table&gt;</code> の場合は <code translate=no>&lt;caption&gt;</code> を使うのが一般的ではあるが、より汎用的な仕様である <code translate=no>&lt;figure&gt;</code> と <code translate=no>&lt;figcaption&gt;</code> を用いることも仕様上可能だ(ただし両方の併用は不可)。そこで、<code translate=no>&lt;table&gt;</code> 全体を <code translate=no>&lt;figure&gt;</code> で囲み、そこに <code translate=no>overflow</code> を指定しつつ、<code translate=no>&lt;figcaption&gt;</code> を入れれば、全てが一度に解決するためこの方法を取ることにした。
         <section>
           <h3 id="caption-記法"><a href="#caption-記法">Caption 記法</a></h3>
-          <p>パーサとジェネレータは自作しているため、 <code translate=no>&lt;figure&gt;</code> で囲むのは簡単だが、問題は <code translate=no>&lt;figcaption&gt;</code> の内容を Markdown 上どう表現するかだ。
-          <p>Markdown は Caption の記法を標準で持たないため、様々な実装が独自の拡張として実装している。 <code translate=no>[caption]</code> のように括弧で囲うタイプのものが多いが、 <code translate=no>[]</code> に独自の意味を持つ実装は割と多いため、未対応の場合は単なる <code translate=no>&lt;p&gt;</code> として扱われるよう、 <code translate=no>Caption: caption</code> という記法で Table の直前に置くことにした。
+          <p>パーサとジェネレータは自作しているため、<code translate=no>&lt;figure&gt;</code> で囲むのは簡単だが、問題は <code translate=no>&lt;figcaption&gt;</code> の内容を Markdown 上どう表現するかだ。
+          <p>Markdown は Caption の記法を標準で持たないため、様々な実装が独自の拡張として実装している。<code translate=no>[caption]</code> のように括弧で囲うタイプのものが多いが、<code translate=no>[]</code> に独自の意味を持つ実装は割と多いため、未対応の場合は単なる <code translate=no>&lt;p&gt;</code> として扱われるよう、<code translate=no>Caption: caption</code> という記法で Table の直前に置くことにした。
           <pre class=md data-code=md><code translate=no class=language-md>Caption: Webp を gz/br 圧縮した結果
 | file type | size | ratio |
 |:----------|-----:|------:|
@@ -323,7 +323,7 @@ td::before {
       </section>
       <section>
         <h2 id="after"><a href="#after">After</a></h2>
-        <p>以上を踏まえて実装した表が以下だ。 Chrome などでは Markdown Style で表示され、 Safari / Firefox などでは従来の border style で表示される。
+        <p>以上を踏まえて実装した表が以下だ。Chrome などでは Markdown Style で表示され、Safari / Firefox などでは従来の border style で表示される。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?220306_111358">
         <figure>
           <figcaption>Webp を gz/br 圧縮した結果</figcaption>
@@ -358,7 +358,7 @@ td::before {
       <section>
         <h2 id="todo"><a href="#todo">TODO</a></h2>
         <p>今回は <code translate=no>text-overflow</code> を <code translate=no>clip</code> にしているため、長さによっては横線の <code translate=no>-</code> が途中で切れる場合がある。
-        <p>対策として <code translate=no>text-overflow</code> に <code translate=no>&quot;-&quot;</code> や <code translate=no>&quot;:&quot;</code> などを指定できると終端を綺麗に処理できそうだが、 Firefox しかサポートしておらず、 Firefox は上述の Alternative Text に対応してないため実現できなかった。
+        <p>対策として <code translate=no>text-overflow</code> に <code translate=no>&quot;-&quot;</code> や <code translate=no>&quot;:&quot;</code> などを指定できると終端を綺麗に処理できそうだが、Firefox しかサポートしておらず、Firefox は上述の Alternative Text に対応してないため実現できなかった。
         <p><code translate=no>text-overflow</code> と Alternative Text の compat が上がったら再検証したい。
       </section>
       <section>

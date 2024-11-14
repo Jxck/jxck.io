@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-22T08:00:00+08:00",
-    "dateModified": "2024-11-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-22>2024-10-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-13>2024-11-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -191,7 +191,7 @@
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
           <p>よくあるメニューとして、以下のような HTML をベースに考える。
-          <p>開くためのボタンが Invoker となり、 Popover としてメニューのアイテムが開く実装が考えられるだろう。
+          <p>開くためのボタンが Invoker となり、Popover としてメニューのアイテムが開く実装が考えられるだろう。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=menu&gt;Actions&lt;/button&gt;
 &lt;ul id=menu popover&gt;
@@ -213,8 +213,8 @@
   &lt;li&gt;&lt;button role=menuitempopovertarget=menu popovertargetaction=close&gt;Hide&lt;/button&gt;&lt;/li&gt;
   &lt;li&gt;&lt;button role=menuitempopovertarget=menu popovertargetaction=close&gt;Delete&lt;/button&gt;&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
-          <p>APG などにも書かれているように、従来このような実装を行う際は、 <code translate=no>&lt;button popovertarget&gt;</code> をクリックしたことで <code translate=no>&lt;ul role=menu&gt;</code> が開いたと言う事実を UA に伝えるために、 <code translate=no>aria-haspopup=menu</code> を付与し、メニューが開いている間は <code translate=no>aria-expanded=true</code> にするといった実装が行われていた。
-          <p>しかし、 Popover が Invoker Relationship を持っている場合、 <code translate=no>&lt;button popovertarget&gt;</code> が <code translate=no>&lt;ul role=menu&gt;</code> を開いたことを UA は認識しているため、このような実装は Popover API を用いる限りは不要となる。これも Popover がネイティブの API になったことのメリットの 1 つだ。
+          <p>APG などにも書かれているように、従来このような実装を行う際は、<code translate=no>&lt;button popovertarget&gt;</code> をクリックしたことで <code translate=no>&lt;ul role=menu&gt;</code> が開いたと言う事実を UA に伝えるために、<code translate=no>aria-haspopup=menu</code> を付与し、メニューが開いている間は <code translate=no>aria-expanded=true</code> にするといった実装が行われていた。
+          <p>しかし、Popover が Invoker Relationship を持っている場合、<code translate=no>&lt;button popovertarget&gt;</code> が <code translate=no>&lt;ul role=menu&gt;</code> を開いたことを UA は認識しているため、このような実装は Popover API を用いる限りは不要となる。これも Popover がネイティブの API になったことのメリットの 1 つだ。
           <ul>
             <li>
               Popover invoker example shouldn&apos;t have <code translate=no>aria-haspopup</code> · Issue #9153 · whatwg/html
@@ -237,7 +237,7 @@
 ul[popover] {
   position-anchor: --menu;
 }</code></pre>
-          <p>あとは、 <code translate=no>[popovertarget]</code> に合わせて位置を指定し、必要に応じて <code translate=no>translate</code> で調整することで実装ができるだろう。
+          <p>あとは、<code translate=no>[popovertarget]</code> に合わせて位置を指定し、必要に応じて <code translate=no>translate</code> で調整することで実装ができるだろう。
           <pre class=css data-code=css><code translate=no class=language-css>[popover] {
   top: anchor(end);
   left: anchor(center);

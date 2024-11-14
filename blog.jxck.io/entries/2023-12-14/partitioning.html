@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、 3rd Party Cookie Advent Calendar の 14 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta name=description         content="このエントリは、3rd Party Cookie Advent Calendar の 14 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-14/partitioning.html>
   <meta property=og:title        content="3PCA 14 日目: Partitioning | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、 3rd Party Cookie Advent Calendar の 14 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen...">
+  <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 14 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-14T08:00:00+08:00",
-    "dateModified": "2023-12-13T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、 3rd Party Cookie Advent Calendar の 14 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calen..."
+    "description": "このエントリは、3rd Party Cookie Advent Calendar の 14 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calend..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-14>2023-12-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2023-12-13>2023-12-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -153,7 +153,7 @@
       <h1><a href="">3PCA 14 日目: Partitioning</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、 3rd Party Cookie Advent Calendar の 14 日目である。
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 14 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -162,13 +162,13 @@
             </ul>
           </li>
         </ul>
-        <p>今日は Safari, Firefox で導入され、その後 Chrome によって標準化されつつある、 Partitioning という概念を解説する。
+        <p>今日は Safari, Firefox で導入され、その後 Chrome によって標準化されつつある、Partitioning という概念を解説する。
       </section>
       <section>
         <h2 id="partitioning"><a href="#partitioning">Partitioning</a></h2>
         <p>3rd Party Cookie を塞ぐ上で、「消す」以外にもう 1 つ「分割する」という手法がある。
-        <p>たとえば、 ads.example の広告を a.example と b.example が <code translate=no>&lt;iframe&gt;</code> で埋め込む時、 ads.example の 3rd Party Cookie により、埋め込んだ両サイトで同じ Cookie が送られることでトラッキングできるという仕組みだった。
-        <p>これを、 Top Level Site ごとに分けてしまおうというのが、 Partitioning の発想だ。
+        <p>たとえば、ads.example の広告を a.example と b.example が <code translate=no>&lt;iframe&gt;</code> で埋め込む時、ads.example の 3rd Party Cookie により、埋め込んだ両サイトで同じ Cookie が送られることでトラッキングできるという仕組みだった。
+        <p>これを、Top Level Site ごとに分けてしまおうというのが、Partitioning の発想だ。
         <p>つまり、これまでは Cookie を保存したドメインの単一主キーで Cookie が保存されていたとする。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?220306_111358">
         <figure>
@@ -218,15 +218,15 @@
       <section>
         <h2 id="様々な-partitioning"><a href="#様々な-partitioning">様々な Partitioning</a></h2>
         <p>プライバシーを考慮すると、Partitioning した方がいいのは Cookie だけではない。
-        <p>例えば、LocalStorage や IndexedDB などのストレージも同様に、 <code translate=no>&lt;iframe&gt;</code> 間で共有されるとトラッキングに使用される可能性がある。
-        <p>また HTTP の Cache もそうだ。 Cache がヒットするということは、一度訪れたことがあるという事実を 1bit の情報で示すため、この微小な情報を集積することでトラッキング制度を高めることもできてしまう。
+        <p>例えば、LocalStorage や IndexedDB などのストレージも同様に、<code translate=no>&lt;iframe&gt;</code> 間で共有されるとトラッキングに使用される可能性がある。
+        <p>また HTTP の Cache もそうだ。Cache がヒットするということは、一度訪れたことがあるという事実を 1bit の情報で示すため、この微小な情報を集積することでトラッキング制度を高めることもできてしまう。
         <p>したがって、基本的にはあらゆる Storage (情報を保存できる場所)は Partitioning されるべきであり、最近ではブラウザのさまざまな場面で Partitioning に関する議論が進んでいる。
         <p>HTTP Cache の Partitioning は <em>Network State Partitioning</em> や <em>Cache Partitioning</em> などと呼ばれ、だいたいのブラウザが似たような実装を進めてる。
-        <p>Cookie 含めた LocalStorage や IndexedDB その他もろもろは、 <em>Storage Partitioning</em> と呼ばれ、この辺はブラウザによって微妙に異なる実装になっている。
+        <p>Cookie 含めた LocalStorage や IndexedDB その他もろもろは、<em>Storage Partitioning</em> と呼ばれ、この辺はブラウザによって微妙に異なる実装になっている。
         <section>
           <h3 id="cookie-partitioning"><a href="#cookie-partitioning">Cookie Partitioning</a></h3>
           <p>様々な場所で Partitioning が行われているが、特に Cookie の Partitioning は他よりも難しい。
-          <p>例えば、SSO の IDP でログインし RP のサイトに遷移した場合、 key が変わるため認証が切れてしまい、再度ログインする必要がでてしまう。 Cache が分かれていても壊れるわけではないが、SSO の仕組みによっては IDP から RP に戻った時に Cookie が切れ、再度 IDP に飛ばされるといったループに入り、最悪ログインできない状態が続く可能性もある。
+          <p>例えば、SSO の IDP でログインし RP のサイトに遷移した場合、key が変わるため認証が切れてしまい、再度ログインする必要がでてしまう。Cache が分かれていても壊れるわけではないが、SSO の仕組みによっては IDP から RP に戻った時に Cookie が切れ、再度 IDP に飛ばされるといったループに入り、最悪ログインできない状態が続く可能性もある。
           <p>Safari は ITP の初期バージョンで、トラッカーと判定されたサイトの Cookie を Partitioning する方式を採用していた。しかし、壊れてしまうサイトが多かったため、諦めて元に戻した経緯がある。
           <p>一方、Firefox は ETP(Enhanced Tracking Protection)で Cookie の Partitioning を行い、壊れそうなサイトをヒューリスティクス判定で除外するなどの対策を行っている。しかし、これもやはり除外が難しく、壊れるサイトが出ているようだ。
         </section>
@@ -249,23 +249,23 @@
     return false
   }
 }</code></pre>
-          <p>例えば認証連携の場合は、 <code translate=no>&lt;iframe&gt;</code> に埋め込まれた IDP がこれを呼ぶことで、 IDP のログイン済み Cookie にアクセスでき、 SSO を継続できるといった使い方をする。
+          <p>例えば認証連携の場合は、<code translate=no>&lt;iframe&gt;</code> に埋め込まれた IDP がこれを呼ぶことで、IDP のログイン済み Cookie にアクセスでき、SSO を継続できるといった使い方をする。
           <p>この時 <code translate=no>document.requestStorageAccess()</code> で何が起こるのかは実装次第だが、大きくは 2 つある。
-          <p>1 つ目は、 Safari が ITP の最初でやっていたように「ユーザインタラクション」があるかを調べる方法だ。
+          <p>1 つ目は、Safari が ITP の最初でやっていたように「ユーザインタラクション」があるかを調べる方法だ。
           <p>トラッキングを目的として、隠し <code translate=no>&lt;iframe&gt;</code> などに埋め込まれたリソースには、一般的にユーザは何も操作をしない。しかし、もしそれが埋め込まれたログインページ、動画、SNS ボタンなどであれば、ユーザはクリックやスクロールなど、なんらかの操作をするだろう。
           <p>こうした操作を「ユーザジェスチャ」と呼び、ジェスチャがある状態は「ユーザインタラクションがある」とみなされる。この場合は、対象はトラッカーではなく正規のユースケースとして Cookie を必要としているため、ブラウザはアクセスを許可できるわけだ。
           <p>2 つ目は、もっと単純に「この <code translate=no>&lt;iframe&gt;</code> は Cookie へのアクセスを求めている」という許可の Prompt を出すというものだ。Push Notification と同じような、ブラウザが出すポップアップだ。そもそも通知の意味が一般ユーザに伝わるか怪しく、多くのユーザは反射的に Deny してしまうかもしれないため、扱いが難しいと思われる。
           <p>よって、ブラウザはこの辺りを組み合わせながら、あまり簡単に取得できすぎず、しかし適切にユーザの意図を反映し、負荷がある程度低いところを常に探っている。今の実装は、まだ過渡期の可能性を踏まえておいた方が良いだろう。
-          <p>こうして、Safari は最終的に Partition をやめ、 3rd Party Cookie をデフォルトでブロックしつつ、SAA でユーザが許可していたらアクセス可能、という方向に ITP の舵を切り直した。
+          <p>こうして、Safari は最終的に Partition をやめ、3rd Party Cookie をデフォルトでブロックしつつ、SAA でユーザが許可していたらアクセス可能、という方向に ITP の舵を切り直した。
           <p>今では他のブラウザも実装しており、Firefox はこの時 Resolve されれば、Cookie だけでなく全 Storage API への許可が同時に手に入るといった細かい違いがある。
         </section>
         <section>
           <h3 id="chips"><a href="#chips">CHIPS</a></h3>
           <p>SAA は、パーティションをやめて、3rd Party Cookie へのアクセスを求めるために、場合によっては Prompt を出すことにした。
-          <p>しかし、許可を求めて Deny されるより、 Partitioning でいいから許可を得ずに使いたいという場面もある。
+          <p>しかし、許可を求めて Deny されるより、Partitioning でいいから許可を得ずに使いたいという場面もある。
           <p>例えば、サイトの右下に 3rd Party のサポートチャットを埋め込んでいるような場合を考えよう。もし 3rd Party Cookie がブロックされると、毎回新規の会話になってしまう。しかし、過去の会話の履歴はなんとか残したい。この場合は、同じサポートチャットを埋め込んでいる別のサービス間で、同じ履歴を共有したいわけではない。
-          <p>この場合は、 SAA で 3rd Party Cookie を使うよりも、 Top Level ごとに異なる Partitioned Cookie で良いのだ。
-          <p>確かに、「デフォルトで全ての 3rd Party Cookie を Partitioning する」は失敗したが、「デフォルトで 3rd Party をブロックするが、 Opt-In で Partitioning された Cookie へのアクセスを許可する」っていう方式が、 SAA の代替としてあっても良いだろうということになった。
+          <p>この場合は、SAA で 3rd Party Cookie を使うよりも、Top Level ごとに異なる Partitioned Cookie で良いのだ。
+          <p>確かに、「デフォルトで全ての 3rd Party Cookie を Partitioning する」は失敗したが、「デフォルトで 3rd Party をブロックするが、Opt-In で Partitioning された Cookie へのアクセスを許可する」っていう方式が、SAA の代替としてあっても良いだろうということになった。
           <p>ここで、それぞれが独自かつ暗黙的にやっていたことを、明示的かつオプトインな API として標準化するために Chrome が提案したのが CHIPS (Cookie Having Independent Partitioned State) だ。
           <ul>
             <li>
@@ -278,9 +278,9 @@
           <p>CHIPS は Cookie に <code translate=no>Partitioned</code> 属性を付与することで使用できる。
           <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: session_id=deadbeef; Secure; SameSite=None; Partitioned;</code></pre>
           <p><code translate=no>SameSite=None</code> がついているから、そもそもこれは 3rd Party Cookie だということがわかる。つまり、これは今後デフォルトでブロックされる。
-          <p>ここに合わせて <code translate=no>Partitioned</code> を付与すると、 Partition された 3rd Party Cookie にアクセスできるように制限を弱めることができるのだ。
+          <p>ここに合わせて <code translate=no>Partitioned</code> を付与すると、Partition された 3rd Party Cookie にアクセスできるように制限を弱めることができるのだ。
           <p>暗黙的に分割して壊れるよりも、明示的にオプトインする方が、開発者としては対応がしやすく、移行パスも明確になる。この仕様は Firefox も Safari も概ね同意しており、おそらくどちらも最終的には暗黙的な Partitioning をやめ、デフォルトブロック + CHIPS or SAA になると思われる。
-          <p>しかし、こうした変更は特に埋め込みのウィジェットを提供しているようなサービスには影響が大きい。例えば、オンラインホワイトボードを提供する Miro は、 Miro の Cookie を 3rd Party でも送ることで、 <code translate=no>&lt;iframe&gt;</code> 内にユーザのボードを表示することができた。しかし 3rd Party Cookie Deprecation によって影響を受け、どうするかという内容がまとまっている。
+          <p>しかし、こうした変更は特に埋め込みのウィジェットを提供しているようなサービスには影響が大きい。例えば、オンラインホワイトボードを提供する Miro は、Miro の Cookie を 3rd Party でも送ることで、<code translate=no>&lt;iframe&gt;</code> 内にユーザのボードを表示することができた。しかし 3rd Party Cookie Deprecation によって影響を受け、どうするかという内容がまとまっている。
           <ul>
             <li>
               The end of third-party cookies and its impact on Miro apps and integrations | by Darren | Miro Engineering | Nov, 2023 | Medium
@@ -289,7 +289,7 @@
               </ul>
             </li>
           </ul>
-          <p>CHIPS では埋め込みごとに Miro にログインする必要があり、 SAA では Prompt が出るという難しさがあるが、現状その方法しかないため、実装を修正し将来のアップデートに合わせて改善していくという内容が書かれている。
+          <p>CHIPS では埋め込みごとに Miro にログインする必要があり、SAA では Prompt が出るという難しさがあるが、現状その方法しかないため、実装を修正し将来のアップデートに合わせて改善していくという内容が書かれている。
           <p>まさしく埋め込みユースケースを持つサービスには、参考になるだろう。
         </section>
       </section>

@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-05-01T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-05-01>2018-05-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -156,8 +156,8 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p><a href="https://extensiblewebmanifesto.org/" target=_blank>Extensible Web Manifest</a> 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。
         <p>そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。
-        <p>基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。
-        <p>合わせて ES Modules の Import を用いて、 polyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
+        <p>基本は、Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。
+        <p>合わせて ES Modules の Import を用いて、polyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
         <p>本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。
         <p>また、同等の話を <a href="https://nodejs.connpass.com/event/83639/" target=_blank>東京 Node 学園 #tng30</a> で行った資料は以下である。
         <p><a href="https://speakerdeck.com/jxck/web-over-layered-apis" target=_blank>Web over Layered APIs</a>
@@ -176,20 +176,20 @@
           <li><a href="https://fetch.spec.whatwg.org/" target=_blank>Fetch Standard</a>
           <li>etc
         </ul>
-        <p>また、 CustomElement など、ユーザが任意の拡張を行うことができる仕様も、こうした動きを加速させている。
+        <p>また、CustomElement など、ユーザが任意の拡張を行うことができる仕様も、こうした動きを加速させている。
         <p>しかし、実際にアプリケーションを開発する上では、その Low Level API の上に被せたライブラリや、それを束ねるフレームワークのコードが増える一方だった。
         <p>ブラウザが読み込むコードの総量は増え、ネットワークコストやブラウザでの実行コストも無視できないものとなる。
         <p>ブラウザがネイティブに実装していれば、そうしたコストの大部分は削減されるため、当然のように High Level API も標準化要求は増える。
-        <p>こうした High Level API の要求を、 Low Level API にこそ注力すべきだと無視し続けることもできない。
-        <p>Low Level API の整備が軌道に乗った今こそ、 High Level API に対して標準化の側面からどういう態度を取るか、を考える時期でもある。
+        <p>こうした High Level API の要求を、Low Level API にこそ注力すべきだと無視し続けることもできない。
+        <p>Low Level API の整備が軌道に乗った今こそ、High Level API に対して標準化の側面からどういう態度を取るか、を考える時期でもある。
       </section>
       <section>
         <h2 id="standardize-high-level-api"><a href="#standardize-high-level-api">Standardize High Level API</a></h2>
         <p>High Level API を標準化するといっても、闇雲に採用し実装するわけにもいかない。
         <p>新しい実装によるバグ、セキュリティホール、オーバーヘッド、技術的負債の発生を、いかに防ぐかを考える必要がある。
-        <p>また、策定しても実装されるまでの間は、 Polyfill を利用するだろう。これが安全に行われなければ、 Ever Green な Web を作るのは難しい。
+        <p>また、策定しても実装されるまでの間は、Polyfill を利用するだろう。これが安全に行われなければ、Ever Green な Web を作るのは難しい。
         <p>global namespace に追加される何かは、それがなんであれメンテし続けるか、絶大な努力と慎重なプロセスと膨大な時間を用いて deprecate していくことになる。いずれも望ましいことではない。
-        <p>そこで、 Polyfill によるユーザランドの実装を積極的に許容し、標準化プロセスからブラウザへの実装と相互にフィードバックさせ、緩やかにネイティブ実装へと移行していくパスを用意する。
+        <p>そこで、Polyfill によるユーザランドの実装を積極的に許容し、標準化プロセスからブラウザへの実装と相互にフィードバックさせ、緩やかにネイティブ実装へと移行していくパスを用意する。
         <p>これを目指すのが Layered API の基本的なモチベーションと言って良いだろう。
         <ul>
           <li><a href="https://docs.google.com/document/d/1VbU4z7xtU_kzuLAcj38KKL5qoOr2UYNUJW8vZB2AcWc" target=_blank>Layered Web APIs Design Doc</a>
@@ -218,18 +218,18 @@
 }
 
 window.AsyncLocalStorage // native or polyfill</code></pre>
-        <p>この例では、あらかじめ polyfill のコードを読み込んでおき、 Global における関数の有無を用いてどちらの実装を使うかを切り分けている。
+        <p>この例では、あらかじめ polyfill のコードを読み込んでおき、Global における関数の有無を用いてどちらの実装を使うかを切り分けている。
         <p>この場合、もしブラウザが API を実装していても、使われない Polyfill のコードは依然として読み込まれることになる。
         <p>また、新しい API を global に追加していくことは、影響もメンテナンスコストも大きい。
-        <p>そこで、 ES Module の API を用いて、以下のように読み込む構文拡張が提案されている。
+        <p>そこで、ES Module の API を用いて、以下のように読み込む構文拡張が提案されている。
         <pre class=js data-code=js><code translate=no class=language-js>import { storage } from &quot;std:async-local-storage&quot;;</code></pre>
         <p>現行の仕様では <code translate=no>from</code> の後ろには module への URL が書かれるが、ここに <code translate=no>std:</code> で始まるラベルを書くと、ブラウザの実装する標準 API を読み込むことができる。
-        <p>これは Opt-In で読み込むことになるため、 Global を汚染せずに新しい API を Ship できるというメリットがある。
+        <p>これは Opt-In で読み込むことになるため、Global を汚染せずに新しい API を Ship できるというメリットがある。
         <p>また以下のように書くと、もしブラウザが実装していなかった場合に、後半に書いた polyfill へフォールバックすることができる。
         <pre class=js data-code=js><code translate=no class=language-js>import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
-        <p>これにより、もしブラウザに実装があれば、 polyfill のコードは読み込む必要がなくなり、ネットワークコストが削減される。
+        <p>これにより、もしブラウザに実装があれば、polyfill のコードは読み込む必要がなくなり、ネットワークコストが削減される。
         <p>また、最初からこの形で書いておけば、ブラウザの実装の差を低いコストで埋め、そのまま放置されてもネイティブのコードで置き換わるため、移行コストを低く抑えることができる。
-        <p>同じことは、 HTML Element の実装においても利用が想定されている。
+        <p>同じことは、HTML Element の実装においても利用が想定されている。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=module src=&quot;std:infinite-list|https://some.cdn.com/infinite-list.js&quot;&gt;&lt;/script&gt;
 &lt;infinite-list&gt;&lt;/infinite-list&gt;</code></pre>
         <p>いずれも、まだ提案段階の仕様である。
@@ -265,7 +265,7 @@ window.AsyncLocalStorage // native or polyfill</code></pre>
       </section>
       <section>
         <h2 id="premature-polyfill"><a href="#premature-polyfill">premature-polyfill</a></h2>
-        <p>まだまだ始まったばかりの提案ではあるが、 Polyfill の効果的な使い方に注力するこの仕様は、現状の Polyfill の問題をそのまま引きずる。
+        <p>まだまだ始まったばかりの提案ではあるが、Polyfill の効果的な使い方に注力するこの仕様は、現状の Polyfill の問題をそのまま引きずる。
         <p>Polyfill のあり方については、過去に TAG によってプラクティスがまとめられており、本ブログでも解説している。
         <ul>
           <li><a href="https://w3ctag.github.io/polyfills/" target=_blank>Polyfills and the evolution of the Web</a>
@@ -275,9 +275,9 @@ window.AsyncLocalStorage // native or polyfill</code></pre>
         <pre class=js data-code=js><code translate=no class=language-js>import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
         <p>もし十分に API が議論される前に「先走った Polyfill」が作られるとその問題は必ず起こる。
         <p>また、経験上 <code translate=no>std:xxx</code> のタグは取り合いになるだろう。同じタグを記述するサイトでも、全然別の API を元に作られている状態も容易に想像できる。
-        <p>現時点でおこなわれている polyfilling でも同じことは起こっているため、何も変わってないと言えば変わってないし、 Module を使うことでマシにはなっている。
+        <p>現時点でおこなわれている polyfilling でも同じことは起こっているため、何も変わってないと言えば変わってないし、Module を使うことでマシにはなっている。
         <p>一方、そうした Polyfill の存在が、標準側で API を変更する際に足を引っ張ることは目に見えているわけだが、この問題へのアドレスは一切ない。
-        <p>なにより、 Layered API は Polyfill が先に作られることをこそ是としているため、こうした問題に対する何らかの事前策が無くて良いのかとも思う。
+        <p>なにより、Layered API は Polyfill が先に作られることをこそ是としているため、こうした問題に対する何らかの事前策が無くて良いのかとも思う。
         <ul>
           <li><a href="https://github.com/drufball/layered-apis/issues/12" target=_blank>Risks of premature polyfilling #12</a>
         </ul>
@@ -285,7 +285,7 @@ window.AsyncLocalStorage // native or polyfill</code></pre>
         <ul>
           <li><a href="https://github.com/w3ctag/design-reviews/issues/276" target=_blank>Layered APIs Issue #276 w3ctag/design-reviews</a>
         </ul>
-        <p>一方、 Chrome では、すでに Layered API の import 周りの実装について Intents が出されている。
+        <p>一方、Chrome では、すでに Layered API の import 周りの実装について Intents が出されている。
         <ul>
           <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MFbJuzA5tH4/t6Q-LZHpAgAJ" target=_blank>Intent to implement: Layered API infrastructure</a>
         </ul>

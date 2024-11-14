@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、 .mjs という拡張子が採択された。この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。合わせてエコシステムが対...">
+  <meta name=description         content="長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、.mjs という拡張子が採択された。この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。合わせてエコシステムが対応...">
   <meta name=keywords            content="es modules,tc39,javascript">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html>
   <meta property=og:title        content=".mjs とは何か、またはモジュールベース JS とエコシステムの今後 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、 .mjs という拡張子が採択された。この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。合わせてエコシステムが対...">
+  <meta property=og:description  content="長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、.mjs という拡張子が採択された。この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。合わせてエコシステムが対応...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-08-15T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、 .mjs という拡張子が採択された。この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。合わせてエコシステムが対..."
+    "description": "長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、.mjs という拡張子が採択された。この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。合わせてエコシステムが対応..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-08-15>2017-08-15</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -162,7 +162,7 @@
       <h1><a href="">.mjs とは何か、またはモジュールベース JS とエコシステムの今後</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、 <code translate=no>.mjs</code> という拡張子が採択された。
+        <p>長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、<code translate=no>.mjs</code> という拡張子が採択された。
         <p>この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。
         <p>合わせてエコシステムが対応していくことで、長年の夢だった JS のモジュール化を進めていくことができるだろう。
       </section>
@@ -196,8 +196,8 @@ module.exports = { message: &quot;hello world&quot; }
 // ex modules
 import foo from &quot;./foo&quot;
 export default { message: &quot;hello world&quot; }</code></pre>
-        <p>CJS は ESM 以前の JS の範囲で実装されていたため、 <code translate=no>require</code> 関数や <code translate=no>modules</code> オブジェクトへの操作を特別扱いすることで実現していた。
-        <p>しかし、この方式では例えば以下のように書くことも、 JS の範囲である以上正しくなってしまう。
+        <p>CJS は ESM 以前の JS の範囲で実装されていたため、<code translate=no>require</code> 関数や <code translate=no>modules</code> オブジェクトへの操作を特別扱いすることで実現していた。
+        <p>しかし、この方式では例えば以下のように書くことも、JS の範囲である以上正しくなってしまう。
         <pre class=js data-code=js><code translate=no class=language-js>// commonjs
 
 let version
@@ -207,7 +207,7 @@ if (Math.random() &lt; 0.5) {
   version = 2
 }
 const foo = require(`./foo.v${version}`);</code></pre>
-        <p>これでは、実行してからでないと、 <code translate=no>foo.v1</code>, <code translate=no>foo.v2</code> どちらで依存解決すべきかわからない。
+        <p>これでは、実行してからでないと、<code translate=no>foo.v1</code>, <code translate=no>foo.v2</code> どちらで依存解決すべきかわからない。
         <p>したがって browserify などは、こうした書き方はしないという前提でビルドを行なっていた。
         <p>ESM は、関数やオブジェクトではなく、新しく「構文(syntax)」を用意することによって、この問題を解決している。
         <pre class=js data-code=js><code translate=no class=language-js>// ex modules
@@ -215,18 +215,18 @@ import foo from &quot;./foo&quot;
 export default { message: &quot;hello world&quot; }</code></pre>
         <p>構文を定義することで、パースを行なった時点で曖昧な書かれ方をしている部分を Syntax Error として弾くことができる。
         <p>また、パースが通るということは、正しく依存関係を把握できているということになり、実行する前に依存解決が可能であることも意味する。
-        <p>この実行しないでも良いという構文の利点は、静的解析ツールなどとも相性が良く、 CJS を置き換える非常に良い仕様となった。
+        <p>この実行しないでも良いという構文の利点は、静的解析ツールなどとも相性が良く、CJS を置き換える非常に良い仕様となった。
       </section>
       <section>
         <h2 id="実行環境における-esm-の扱い"><a href="#実行環境における-esm-の扱い">実行環境における ESM の扱い</a></h2>
-        <p>TC39 の責任範囲は、 JS ファイル内に書かれる構文が中心であり、そのファイルが実際にどう扱われるかは、実行環境の責務となる。
-        <p>特に実行環境がどう扱うかについて、もっとも重要なのが、 <em>そもそもそのファイルが CJS か ESM か</em> の判別である。
+        <p>TC39 の責任範囲は、JS ファイル内に書かれる構文が中心であり、そのファイルが実際にどう扱われるかは、実行環境の責務となる。
+        <p>特に実行環境がどう扱うかについて、もっとも重要なのが、<em>そもそもそのファイルが CJS か ESM か</em> の判別である。
         <p>判別が正しく行えなければ、先述のデフォルト strict mode や、トップレベルの <code translate=no>this</code> を <code translate=no>undefined</code> と扱うと行った処理ができなくなるからである。
-        <p>(ここでの CJS は、 <code translate=no>require()</code> や <code translate=no>module</code> を使っているかというよりも、単に ESM ではないという意味が強い)
+        <p>(ここでの CJS は、<code translate=no>require()</code> や <code translate=no>module</code> を使っているかというよりも、単に ESM ではないという意味が強い)
         <section>
           <h3 id="modules-on-browser"><a href="#modules-on-browser">Modules on Browser</a></h3>
-          <p>ブラウザにおける Module の扱いは、 HTML の範囲での仕様策定を伴う。
-          <p>具体的には、 <code translate=no>&lt;script&gt;</code> タグの <code translate=no>type</code> 属性を用いて Script であるか Module であるかを判別することが可能だ。
+          <p>ブラウザにおける Module の扱いは、HTML の範囲での仕様策定を伴う。
+          <p>具体的には、<code translate=no>&lt;script&gt;</code> タグの <code translate=no>type</code> 属性を用いて Script であるか Module であるかを判別することが可能だ。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=module src=module.js&gt;&lt;/script&gt;
 &lt;script type=text/javascript src=analytics.js&gt;&lt;/script&gt;</code></pre>
           <p>また、ここに加えて <code translate=no>nomodule</code> 属性を用いて「ブラウザが modules を実装しているかどうか」の判別も可能となっている。
@@ -268,7 +268,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
         <h2 id=".mjs-for-esm"><a href="#.mjs-for-esm">.mjs for ESM</a></h2>
         <p>結論として Node では <code translate=no>.mjs</code> という拡張子を採用することとなった。
         <p><a href="https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#32-determining-if-source-is-an-es-module" target=_blank>3.2. Determining if source is an ES Module</a>
-        <p>これにより、 <code translate=no>.js</code> を維持したまま先に進むことができ、二回パースといったオーバーヘッドもなく、 TC39 の仕様外の独自拡張を Node が勝手に持ち込むことも防ぐことができる。
+        <p>これにより、<code translate=no>.js</code> を維持したまま先に進むことができ、二回パースといったオーバーヘッドもなく、TC39 の仕様外の独自拡張を Node が勝手に持ち込むことも防ぐことができる。
         <p>また、先述の通りブラウザは拡張子に頼った判別をしていないため、正しくマークアップをしていれば <code translate=no>.mjs</code> をブラウザ用に提供することも可能だ。
         <p>議論の中でもあったデメリットとして、これまでの多くのツール、ライブラリ、ミドルウェアなどの対応は懸念される。
         <section>
@@ -281,17 +281,17 @@ export default { message: &quot;hello world&quot; }</code></pre>
         </section>
         <section>
           <h3 id="ライブラリ"><a href="#ライブラリ">ライブラリ</a></h3>
-          <p>CJS で書かれた多くのライブラリは、 <code translate=no>.js</code> として作られているだろう。
+          <p>CJS で書かれた多くのライブラリは、<code translate=no>.js</code> として作られているだろう。
           <p>しかし、これらを単に <code translate=no>.mjs</code> にリネームしたとしても <code translate=no>export</code> , <code translate=no>import</code> といった構文で修正しなければ使えない。
-          <p>したがって、従来の CJS ライブラリの多くは、 ESM への移行が必要となる。
+          <p>したがって、従来の CJS ライブラリの多くは、ESM への移行が必要となる。
           <p>とはいえ、すぐに移行できないものや、メンテされてないものも多い。
           <p>使う側も、移行が落ち着くまではこれまでの Browserify や WebPack などを用いたビルドによる Bundle 作業が必要となるだろう。
         </section>
         <section>
           <h3 id="ミドルウェア"><a href="#ミドルウェア">ミドルウェア</a></h3>
           <p>Web サーバなどにおいては、ファイルを配信する際に拡張子をベースに Content-Type や、配信方法の最適化などを判断しているだろう。
-          <p>ここで <code translate=no>.mjs</code> という拡張子を知らないサーバは、 <code translate=no>octet-stream</code> などで配信するのが一般的である。
-          <p>ESM のための MIME タイプについても、 <code translate=no>text/javascript+module</code> などといった新しいものの追加が検討されたが、現在は以下のようになっている。
+          <p>ここで <code translate=no>.mjs</code> という拡張子を知らないサーバは、<code translate=no>octet-stream</code> などで配信するのが一般的である。
+          <p>ESM のための MIME タイプについても、<code translate=no>text/javascript+module</code> などといった新しいものの追加が検討されたが、現在は以下のようになっている。
           <p><a href="https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#321-mime-of-mjs-files" target=_blank>3.2.1 MIME of .mjs files</a>
           <p>要するに、「これまでの JS と同じ MIME タイプを使う」ということになっている。
           <p><a href="https://html.spec.whatwg.org/multipage/scripting.html#javascript-mime-type" target=_blank>JavaScript MIME type</a>
@@ -300,7 +300,7 @@ export default { message: &quot;hello world&quot; }</code></pre>
             <li>text/javascript
             <li>application/javascript
           </ul>
-          <p>したがって、 Web サーバにおいては <code translate=no>.mjs</code> を従来の JS と同じように扱えるように対応すれば良いことになる。
+          <p>したがって、Web サーバにおいては <code translate=no>.mjs</code> を従来の JS と同じように扱えるように対応すれば良いことになる。
         </section>
       </section>
       <section>
@@ -308,17 +308,17 @@ export default { message: &quot;hello world&quot; }</code></pre>
         <p>仕様策定側も、最終的にはモジュールベースの ESM が基本となっている正解を想定している。
         <p>特にブラウザが、複数の JS を同一スコープで連結するといった挙動も、黎明期の JS ではまだしも、十分発展した現在の JS においえては不要となりつつある。
         <p>よって、今後開発される JS は基本的に ESM を基本としていくべきである。
-        <p>この時、前述の通りブラウザは拡張子ではなく <code translate=no>&lt;script type=module&gt;</code> で判断しているため、 <code translate=no>.mjs</code> である必要はない。
-        <p>しかし、そのモジュールが Universal JS であるならば、 <code translate=no>.mjs</code> にしておけば、少なくともブラウザと Node どちらでもモジュールとして解釈可能だ。
+        <p>この時、前述の通りブラウザは拡張子ではなく <code translate=no>&lt;script type=module&gt;</code> で判断しているため、<code translate=no>.mjs</code> である必要はない。
+        <p>しかし、そのモジュールが Universal JS であるならば、<code translate=no>.mjs</code> にしておけば、少なくともブラウザと Node どちらでもモジュールとして解釈可能だ。
         <p>また、今後 Node 以外で ESM に対応した実行環境が出た場合、サーバから Fetch しても <code translate=no>Content-Type</code> では判断できない以上、この拡張子を手がかりにする実装になることが予想される。
-        <p>結果、 <code translate=no>.mjs</code> で書いておくことは、前方互換性にも寄与する可能性がある。
-        <p>また、これまで CJS をバンドルしていたビルドプロセスが不要になることで、 <code translate=no>.mjs</code> をそのままサーブするデプロイが進むだろう。
+        <p>結果、<code translate=no>.mjs</code> で書いておくことは、前方互換性にも寄与する可能性がある。
+        <p>また、これまで CJS をバンドルしていたビルドプロセスが不要になることで、<code translate=no>.mjs</code> をそのままサーブするデプロイが進むだろう。
         <p>この場合、キャッシュなどの設定はこれまでの <code translate=no>bundle.js</code> ファイル一つの設定とは別の最適化が行われていくだろう。
-        <p>こうした最適化のためにも、 <code translate=no>.js</code> と明示的に分離するための <code translate=no>.mjs</code> を使っていく方がメリットが享受しやすくなると思われる。
+        <p>こうした最適化のためにも、<code translate=no>.js</code> と明示的に分離するための <code translate=no>.mjs</code> を使っていく方がメリットが享受しやすくなると思われる。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>これからの JS は、 ESM を <code translate=no>.mjs</code> に書くことになり、それを前提としたエコシステムが構築されていくことが望ましいだろう。
+        <p>これからの JS は、ESM を <code translate=no>.mjs</code> に書くことになり、それを前提としたエコシステムが構築されていくことが望ましいだろう。
       </section>
     </article>
   </main>

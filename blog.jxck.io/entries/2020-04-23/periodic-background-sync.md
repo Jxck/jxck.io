@@ -58,7 +58,7 @@ self.addEventListener('periodicsync', (e) => {
 
 まず、定期的に SW を起動できるため、そこで Crypt Mining などのリソース消費が可能になる。
 
-また、 PBS で Server に対して Fetch を行えば、Server は Client の IP を定期的に知ることができる。
+また、PBS で Server に対して Fetch を行えば、Server は Client の IP を定期的に知ることができる。
 
 一度 SW が登録されたら、ユーザがアプリを開いてないところでも、ユーザが認識できない形でトラッキングが可能ということになってしまう。
 

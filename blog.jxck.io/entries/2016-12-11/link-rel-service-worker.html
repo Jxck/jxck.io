@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo...">
+  <meta name=description         content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、HTML を持たない API にも Service Work...">
   <meta name=keywords            content="origin trials,service worker,offline">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html>
   <meta property=og:title        content="Link rel=serviceworker ヘッダによる API やアセットの Offline 対応 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo...">
+  <meta property=og:description  content="Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、HTML を持たない API にも Service Work...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-12-11T08:00:00+08:00",
-    "dateModified": "2022-11-26T08:00:00+08:00",
+    "dateModified": "2024-11-15T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Wo..."
+    "description": "Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、HTML を持たない API にも Service Work..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-12-11>2016-12-11</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-11-26>2022-11-26</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -153,8 +153,8 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Service Worker を登録する方法は現状 3 つある。
-        <p>HTML meta タグでの追加ならば、 Service Worker を追加するためだけの JS であれば不要になる。
-        <p>HTTP ヘッダでの追加ならば、 HTML を持たない API にも Service Worker を追加した対応が可能である。
+        <p>HTML meta タグでの追加ならば、Service Worker を追加するためだけの JS であれば不要になる。
+        <p>HTTP ヘッダでの追加ならば、HTML を持たない API にも Service Worker を追加した対応が可能である。
         <p>次の記事で foreign fetch について解説する予定であるため、その前提知識として本機能を分離し紹介する。
       </section>
       <section>
@@ -165,25 +165,25 @@
 navigator.serviceworker.register(&quot;/sw.js&quot;, { scope: &quot;/&quot; });</code></pre>
         <p>Service Worker は、その処理(ここでいう <code translate=no>sw.js</code> の中身)をインラインで登録することはできず、必ず別のファイルに分けて Registration 処理の中で読み込む必要がある。
         <p>これは、たとえそのページが <code translate=no>sw.js</code> の登録以外に JS を一切利用しないような場合でも、この 1 行のためだけにページ上で動く <code translate=no>main.js</code> を読み込ませる必要があることを意味する。
-        <p>もし他の JS があったとしても、そのファイルへの変更が難しい場合や、 Service Worker の登録ロジックを分離するためにファイルを分けたい場合などもある。
+        <p>もし他の JS があったとしても、そのファイルへの変更が難しい場合や、Service Worker の登録ロジックを分離するためにファイルを分けたい場合などもある。
       </section>
       <section>
         <h2 id="html-link-tag-での登録"><a href="#html-link-tag-での登録">HTML link tag での登録</a></h2>
-        <p><code translate=no>sw.js</code> を登録するだけであれば、 HTML のメタタグを用いて行うことができる。
-        <p>(<code translate=no>register()</code> の引数相当は、 HTML attributes で表現する)
+        <p><code translate=no>sw.js</code> を登録するだけであれば、HTML のメタタグを用いて行うことができる。
+        <p>(<code translate=no>register()</code> の引数相当は、HTML attributes で表現する)
         <pre class=js data-code=js><code translate=no class=language-js>&lt;link rel=&quot;serviceworker&quot; href=&quot;sw.js&quot; scope=&quot;/&quot;&gt;</code></pre>
         <p>これによって登録のためだけの <code translate=no>main.js</code> を読み込むオーバーヘッドがなくなる。
         <p>もしくは、別の JS から登録の処理を分離できるため、ページ(URL)単位でのハンドリングで有利な場合もあるだろう。
-        <p>(なお、 <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> では現在 <code translate=no>&lt;link&gt;</code> の <code translate=no>rel</code> には <code translate=no>serviceworker</code> が許容されていないため、この方法は使えない。
-        <p>代わりに <a href="https://www.ampproject.org/docs/reference/components/amp-install-serviceworker" target=_blank>amp-install-serviceworker</a> が提供されているが、 <code translate=no>&lt;link&gt;</code> がサポートされていればこれは不要と考えているので <a href="https://github.com/ampproject/amphtml/issues/6601" target=_blank>issue</a> を登録しておいた。)
+        <p>(なお、<a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> では現在 <code translate=no>&lt;link&gt;</code> の <code translate=no>rel</code> には <code translate=no>serviceworker</code> が許容されていないため、この方法は使えない。
+        <p>代わりに <a href="https://www.ampproject.org/docs/reference/components/amp-install-serviceworker" target=_blank>amp-install-serviceworker</a> が提供されているが、<code translate=no>&lt;link&gt;</code> がサポートされていればこれは不要と考えているので <a href="https://github.com/ampproject/amphtml/issues/6601" target=_blank>issue</a> を登録しておいた。)
       </section>
       <section>
         <h2 id="http-link-header-での登録"><a href="#http-link-header-での登録">HTTP Link Header での登録</a></h2>
         <p>同じことを HTTP のレスポンスだけで行うこともできる。
-        <p>(<code translate=no>register()</code> の引数相当は、 HTTP Header の attribute で表現する)
+        <p>(<code translate=no>register()</code> の引数相当は、HTTP Header の attribute で表現する)
         <pre class=http data-code=http><code translate=no class=language-http>Link: &lt;sw.js&gt;; rel=&quot;serviceworker&quot;; scope=&quot;/&quot;</code></pre>
         <p>このヘッダをレスポンスに付与すれば Service Worker を登録することができる。
-        <p>これによって、コンテンツを一切いじらずにサーバの設定だけで、 Service Worker の登録が可能になる。
+        <p>これによって、コンテンツを一切いじらずにサーバの設定だけで、Service Worker の登録が可能になる。
         <p>(ちなみに、この方法は AMP でも使える)
         <p>それだけに留まらず、そもそも Service Worker の登録に Web ページが不要になることをも意味する。
       </section>
@@ -193,16 +193,16 @@ navigator.serviceworker.register(&quot;/sw.js&quot;, { scope: &quot;/&quot; });<
         <ul>
           <li><a href="https://labs.jxck.io/service-worker/link-rel-service-worker/" target=_blank>https://labs.jxck.io/service-worker/link-rel-service-worker/</a>
         </ul>
-        <p>基本は次回の記事で解説する foreign-fetch と合わせた利用が主なユースケースになるため、 「Link ヘッダで Service Worker を登録する」という一点に絞ったデモを用意した。
-        <p>ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの <code translate=no>./random</code> を fetch する。 <code translate=no>./random</code> はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。
+        <p>基本は次回の記事で解説する foreign-fetch と合わせた利用が主なユースケースになるため、「Link ヘッダで Service Worker を登録する」という一点に絞ったデモを用意した。
+        <p>ボタンが 1 つあるページに遷移し、ボタンをクリックすると、同じオリジンの <code translate=no>./random</code> を fetch する。<code translate=no>./random</code> はランダムな数字を返すと同時に Service Worker を Link ヘッダで提供する。
         <p>この Service Worker を登録した後は、ページをオフラインにしても Service Worker にフォールバックして引き続き乱数を取得できることに注目したい。
         <p>ただし、ページそのものはオフライン対応してないため、リロードはできない点に注意。
-        <p>これは、 1 つのページの controller になれる Service Worker は同時に 1 つという制限があるためである。
+        <p>これは、1 つのページの controller になれる Service Worker は同時に 1 つという制限があるためである。
       </section>
       <section>
         <h2 id="そして-foreign-fetch-へ"><a href="#そして-foreign-fetch-へ">そして foreign fetch へ</a></h2>
         <p>Link ヘッダや、タグを用いた Service Worker の登録が可能になったことについて解説した。
-        <p>しかし、ここでは、 <code translate=no>./index.html</code> も <code translate=no>./random</code> も同じドメインであったため、ページと <code translate=no>./random</code> の API を両方オフライン対応するためには、両方を 1 つの Service Worker で処理する。
+        <p>しかし、ここでは、<code translate=no>./index.html</code> も <code translate=no>./random</code> も同じドメインであったため、ページと <code translate=no>./random</code> の API を両方オフライン対応するためには、両方を 1 つの Service Worker で処理する。
         <p>ところが、もし <code translate=no>./random</code> のような API が 3rd Party API つまり 別のオリジンだった場合はどうだろうか。
         <p>そこで出て来るのが、次に解説する <a href="https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html">foreign fetch</a> である。
       </section>
