@@ -2,7 +2,7 @@
 
 ## Intro
 
-このエントリは、 3rd Party Cookie Advent Calendar の 11 日目である。
+このエントリは、3rd Party Cookie Advent Calendar の 11 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
@@ -45,7 +45,7 @@
 
 こうした Cookie は「必須の Cookie」とみなされ、合意取得の対象外と解釈されるのが一般的だ。
 
-例として、 GitHub は 2022 年に全ての Cookie バナーを削除すると発表した。これは、必須 Cookie のみの利用にとどめたという意味だ。
+例として、GitHub は 2022 年に全ての Cookie バナーを削除すると発表した。これは、必須 Cookie のみの利用にとどめたという意味だ。
 
 - No cookie for you - The GitHub Blog
   - https://github.blog/2020-12-17-no-cookie-for-you/
@@ -54,7 +54,7 @@
 
 前述した通り、「問題は機能ではなくユースケース」だ。各法律の目的は「3rd Party Cookie の利用を規制」することではなく、「ユーザのプライバシーを守る」ことが目的であり、例え 1st Party Cookie でも、それを用いて 3rd Party と連携し、何かしらのトラッキングを実現しているような場合は、合意取得の対象となるだろう。
 
-法律の目的が、実装方法の規制ではないという点は、再度認識しておきたい点だ。そこを取り違えると、「3rd Party Cookie が使えなくなったのなら、 1st Party Cookie でやればいい」といった解釈に走りがちだ。 1st Party Cookie であっても、やっていることが「トラッキングである」という認識がある場合は、法的な規制の範疇となる可能性はある。それが Fingerprinting や CNAME Cloaking など、 Cookie を用いない手法であってもだ。
+法律の目的が、実装方法の規制ではないという点は、再度認識しておきたい点だ。そこを取り違えると、「3rd Party Cookie が使えなくなったのなら、1st Party Cookie でやればいい」といった解釈に走りがちだ。1st Party Cookie であっても、やっていることが「トラッキングである」という認識がある場合は、法的な規制の範疇となる可能性はある。それが Fingerprinting や CNAME Cloaking など、Cookie を用いない手法であってもだ。
 
 
 ## GDPR
@@ -85,14 +85,14 @@ GDPR は「同意についてのガイドライン」を公開しており、個
   - 本人の明確で積極的な意思表示によって得た同意が必要
   - 「デフォルトで同意になっておりあとで無効にできる」ではなく「自分で同意ボタンをクリックする」である必要がある
 
-実装方法に特段指定はなく、強いて言えば「ここで同意を取得して初めて Cookie を利用できる」ことになるため、 `HttpOnly` ではなく JS から保存することになるだろう。
+実装方法に特段指定はなく、強いて言えば「ここで同意を取得して初めて Cookie を利用できる」ことになるため、`HttpOnly` ではなく JS から保存することになるだろう。
 
 では実例を見ていこう。
 
 
 ### 欧州委員会
 
-最初は EU の政策執行機関である欧州委員会のサイト。 GDPR のお膝元という意味で、ある種のお手本と捉えられるだろう。
+最初は EU の政策執行機関である欧州委員会のサイト。GDPR のお膝元という意味で、ある種のお手本と捉えられるだろう。
 
 - European Commission, official website (europa.eu)
   - https://commission.europa.eu/index_en
@@ -109,7 +109,7 @@ GDPR は「同意についてのガイドライン」を公開しており、個
 
 そして、ボタンとしては `"Accept all cookies"` と `"Accept only essential cookies"` の二択となっている。後者が「必須 Cookie だけ許可する」にあたる。ここを "essential" じゃなくて "necessary" と表しているサイトもある。
 
-このボタンを明示的に自分でクリックすることが、先ほど挙げたような条件を満たしてるわけだ。ここで "Deny" だけあって "Deny" しなかった場合に同意とみなす実装や、あらかじめチェックボックスをチェックしておくような実装、 "Accept" だけ表示して "Deny" はリンク先に隠すといった実装は、ガイドラインに違反してると判断されかねないだろう。
+このボタンを明示的に自分でクリックすることが、先ほど挙げたような条件を満たしてるわけだ。ここで "Deny" だけあって "Deny" しなかった場合に同意とみなす実装や、あらかじめチェックボックスをチェックしておくような実装、"Accept" だけ表示して "Deny" はリンク先に隠すといった実装は、ガイドラインに違反してると判断されかねないだろう。
 
 "how we use cookies" のリンク先は以下のページだ。
 
@@ -122,9 +122,9 @@ GDPR は「同意についてのガイドライン」を公開しており、個
 
 ![Cookie の名前や用途のテーブル](europa.eu.cookie-table.png#1644x2058)
 
-サイトで利用する全 Cookie の "Cookie 名" と、 "目的" 、そして "保存期間(Max-Age)" までがリストになってる。メンテナンスを考えると、ここのテーブルを実装と同期するのは大変そうだ。
+サイトで利用する全 Cookie の "Cookie 名" と、"目的" 、そして "保存期間(Max-Age)" までがリストになってる。メンテナンスを考えると、ここのテーブルを実装と同期するのは大変そうだ。
 
-これだけ数があるからか、 "Cookie ごとの設定" の実装はされてないようだ。これは 3rd Party Cookie 視点で言えば "All" or "Noting" に振っているわけだが、 "Noting" があるため、個別指定の UI は省いても良さそうなことが見て取れる(実際、ここまで多いと個別に指定できるユーザは皆無だろう)。
+これだけ数があるからか、"Cookie ごとの設定" の実装はされてないようだ。これは 3rd Party Cookie 視点で言えば "All" or "Noting" に振っているわけだが、"Noting" があるため、個別指定の UI は省いても良さそうなことが見て取れる(実際、ここまで多いと個別に指定できるユーザは皆無だろう)。
 
 
 ### ドイツ連邦政府
@@ -138,7 +138,7 @@ GDPR は「同意についてのガイドライン」を公開しており、個
 
 ![ドイツ連邦政府の Cookie Banner](bundesregierung.de.png#2348x1000)
 
-今回は少し複雑で、必須 Cookie だけあらかじめチェックが入ってる。そして、追加で Statistics を選ぶことができる作りだ。 "Select all" すると "Statistics" も選ばれるが、おそらくもっと多くの用途で Cookie があっても、選択肢が増やせる使える作りにあらかじめ実装されているのだろう。
+今回は少し複雑で、必須 Cookie だけあらかじめチェックが入ってる。そして、追加で Statistics を選ぶことができる作りだ。"Select all" すると "Statistics" も選ばれるが、おそらくもっと多くの用途で Cookie があっても、選択肢が増やせる使える作りにあらかじめ実装されているのだろう。
 
 "Confirm selection" するとバナーが消え、選択結果が JS で Cookie に保存される。
 
@@ -198,13 +198,13 @@ GDPR に準拠していることや、使っている Cookie の値も書かれ�
 
 割と大きめに表示し、かつ背景をブラーしている。これはどちらか選ばないと先に進めないという作りだ。
 
-ここで、同意しないと先に進めない場合は完全に "Cookie Wall" になるが、この場合は選択肢に Deny があったとしてもコンテンツに進めない実装なので、 "freely given" が満たせているのかは筆者には判断しかねる。 Guardian が "Ask your lawyer" した結果この判断になったのだろう。
+ここで、同意しないと先に進めない場合は完全に "Cookie Wall" になるが、この場合は選択肢に Deny があったとしてもコンテンツに進めない実装なので、"freely given" が満たせているのかは筆者には判断しかねる。Guardian が "Ask your lawyer" した結果この判断になったのだろう。
 
 Manage or reject を選ぶと、以下のポップアップが出てくる。
 
 ![Guardian の Cookie Settings](guardian.settings.png#1128x2360)
 
-かなり複雑に思えるが、細かく説明がなされており、用途ごとの合意が実装されている。上には "Accept All" と "Reject All" があり、 "Reject All" は要するに必須 Cookie 以外の Reject にあたる。
+かなり複雑に思えるが、細かく説明がなされており、用途ごとの合意が実装されている。上には "Accept All" と "Reject All" があり、"Reject All" は要するに必須 Cookie 以外の Reject にあたる。
 
 このバナーも、サイト下部の "Privacy Setting" リンクからいつでも出せる。いつでも簡単にオプトアウトできる GDPR の条件を満たしているといえるだろう。
 
@@ -218,7 +218,7 @@ CCPA のガイドラインにあたるものは以下にある。
 - California Consumer Privacy Act (CCPA) | State of California - Department of Justice - Office of the Attorney General
   - https://oag.ca.gov/privacy/ccpa
 
-特に注意すべきは、 CCPA が認めている 6 つの権利だろう。
+特に注意すべきは、CCPA が認めている 6 つの権利だろう。
 
 - The right to know (何が集められているかを知る)
 - The right to delete (それを削除させる)
@@ -229,7 +229,7 @@ CCPA のガイドラインにあたるものは以下にある。
 
 また、オプトアウトのために "Do not sell (share) my informantion" リンクを含む必要があるとされているため、この文言に類似したリンクを footer にもつサイトが多くある。
 
-実例を見ていきたいが、法律の適用範囲上、 CCPA に対応してて GDPR には対応してないサイトを見つけるのが難しい。ある程度の規模のサイトは、やはり両方に対応しているようだ。
+実例を見ていきたいが、法律の適用範囲上、CCPA に対応してて GDPR には対応してないサイトを見つけるのが難しい。ある程度の規模のサイトは、やはり両方に対応しているようだ。
 
 
 ### Financial Times
@@ -249,7 +249,7 @@ CCPA のガイドラインにあたるものは以下にある。
 
 "Manage cookies" のリンクも footer にある。
 
-Privacy Policy をみると、 GDPR だけでなく CCPA にも対応していることが言及されている。
+Privacy Policy をみると、GDPR だけでなく CCPA にも対応していることが言及されている。
 
 - Privacy policy | Help Centre
   - https://help.ft.com/legal-privacy/privacy-policy/
@@ -272,7 +272,7 @@ Privacy Policy をみると、 GDPR だけでなく CCPA にも対応してい�
 
 ![Disqus のオプトアウト](disqus-optout.png#2584x360)
 
-どちらかというと、 Disqus を導入している他のサイト上で表示された Privacy Policy などから、 Disqus にオプトアウト目的で訪れた人がたどり着くべきページとして用意されていると考えられる。
+どちらかというと、Disqus を導入している他のサイト上で表示された Privacy Policy などから、Disqus にオプトアウト目的で訪れた人がたどり着くべきページとして用意されていると考えられる。
 
 
 ## 電気通信事業者法
@@ -306,7 +306,7 @@ Privacy Policy をみると、 GDPR だけでなく CCPA にも対応してい�
 
 この場合、プライバシーポリシーが「外部送信規律」の「公表」に当たるのだろう。ここでカバーしているため「通知」にあたるバナーのような実装は不要となっている。
 
-なお、 User Insight を提供しているユーザローカルのページがリンクされている。
+なお、User Insight を提供しているユーザローカルのページがリンクされている。
 
 ![リンクされているユーザローカルのページ](userlocal.jp.policy.png#2140x1622)
 

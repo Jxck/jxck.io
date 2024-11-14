@@ -7,15 +7,15 @@ Scroll to Text Fragment のユースケースとして、本サイトにサイ�
 
 ## Scroll to Text Fragment
 
-Scroll to Text Fragment(以下 S2TF) は Chrome 80 で Ship され、 Finch で展開されている。
+Scroll to Text Fragment(以下 S2TF) は Chrome 80 で Ship され、Finch で展開されている。
 
-まだ降りてきてない場合は、 Flag による有効化が必要だ。
+まだ降りてきてない場合は、Flag による有効化が必要だ。
 
 詳細は以前このブログでも書いている。
 
 - [Scroll To Text Fragment と :~:text | blog.jxck.io](https://blog.jxck.io/entries/2019-10-16/scroll-to-text-fragment.html<F29>)
 
-この機能の使い道の一つとして、検索結果の Deep Link への適用があると考え、 PoC として実装した。
+この機能の使い道の一つとして、検索結果の Deep Link への適用があると考え、PoC として実装した。
 
 
 ## 検索結果への適用
@@ -26,7 +26,7 @@ Scroll to Text Fragment(以下 S2TF) は Chrome 80 で Ship され、 Finch で�
 
 > Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。
 
-これをヒットしたキーワードの前後で分割し、 Prefix / Suffix として指定すれば以下のような fragment ができる。
+これをヒットしたキーワードの前後で分割し、Prefix / Suffix として指定すれば以下のような fragment ができる。
 
 (`#:~:text=Prefix-,Keyword,-Suffix` の順)
 
@@ -73,7 +73,7 @@ Scroll to Text Fragment(以下 S2TF) は Chrome 80 で Ship され、 Finch で�
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oCH9wcrb0sU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-しかし、現状 Chrome の Portal や iframe 内は、 ID に対する Scroll はされるが、 Text Fragment に対する Scroll はしないようだ。
+しかし、現状 Chrome の Portal や iframe 内は、ID に対する Scroll はされるが、Text Fragment に対する Scroll はしないようだ。
 
 (上のデモは HTML 中の ID へのスクロールを行っている)
 
@@ -86,13 +86,13 @@ Portal/iframe と S2TF を組み合わせると、サイト内に任意の文字
 
 余談だが、本サイトで初めて `<form>` を設置したため、それなりにセキュリティ的な対策を行う必要が出た。
 
-今回は、独立した検索ページを用意し、 Portal との連携をやめたため JS を無くすことができたことから、検索ページからは 3rd Party 含め一切の JS を無くすことにした。
+今回は、独立した検索ページを用意し、Portal との連携をやめたため JS を無くすことができたことから、検索ページからは 3rd Party 含め一切の JS を無くすことにした。
 
 結果、出力のエスケープを注意すれば典型的な攻撃はかなり防げると考える。
 
 エスケープは、「正規表現」「HTML」「URL Fragment」とそれぞれのコンテキストに応じて実施する必要があるが、そこさえ間違えなければ問題はなさそうだ。
 
-そして、多重防御として他のページとは別運用にし、 CSP などのヘッダをガチガチに固め、 Report-Only も外している。
+そして、多重防御として他のページとは別運用にし、CSP などのヘッダをガチガチに固め、Report-Only も外している。
 
 最近では Frame Work に任せるような部分をあえて自分で実装してみると、いろいろ試せる上に適度な緊張感があって良い。
 
@@ -103,10 +103,10 @@ Portal/iframe と S2TF を組み合わせると、サイト内に任意の文字
 
 一方で、やはり任意のサイトでこうした Deep Link が生成できてしまうことには、一定の懸念もある。
 
-今回のように、コンテンツ提供側が Deep Link を提供したいために S2TF を使用するなら、 Feature-Policy で Opt-In すれば良いだろう。
+今回のように、コンテンツ提供側が Deep Link を提供したいために S2TF を使用するなら、Feature-Policy で Opt-In すれば良いだろう。
 
 しかし、仕様の策定はどちらかというと、更新されず HTML に ID もふられてないサイトでも、閲覧者側が利用したいというモチベーションの方が強そうだ。
 
-その場合、 Opt-In では使われないだけなので、デフォルトということになる。その場合は少なくとも Opt-Out する手段があった方が良いようにも思う。
+その場合、Opt-In では使われないだけなので、デフォルトということになる。その場合は少なくとも Opt-Out する手段があった方が良いようにも思う。
 
 今後、今回の検証の結果を踏まえ、フィードバックに繋げていきたい。

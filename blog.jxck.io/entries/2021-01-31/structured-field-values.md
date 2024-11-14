@@ -11,7 +11,7 @@ HTTP Header の値を構造化する Structued Field Values の仕様が RFC に
 
 ## Update
 
-- 2021-02-09: SFV が [RFC 8941](https://www.rfc-editor.org/rfc/rfc8941.html) として公開されたため、 draft-19 へのリンクを RFC に置き換え。
+- 2021-02-09: SFV が [RFC 8941](https://www.rfc-editor.org/rfc/rfc8941.html) として公開されたため、draft-19 へのリンクを RFC に置き換え。
 
 
 ## 経緯
@@ -29,7 +29,7 @@ Permission-Policy: syncxhr 'none' report-to=default-endpoint
 
 HTTP の仕様では、この Header Name と Header Value をパースする部分が標準化されている。
 
-しかし、 Header Value の中身をどうパースするかは、それぞれのヘッダの仕様、ここでいう Cookie, CSP, Permission-Policy によって決められており、そのフォーマットはバラバラだ。
+しかし、Header Value の中身をどうパースするかは、それぞれのヘッダの仕様、ここでいう Cookie, CSP, Permission-Policy によって決められており、そのフォーマットはバラバラだ。
 
 それぞれのヘッダごとに仕様を定義するのも、それぞれパーサを書くのもあまりヘルシーではない。特にブラウザは新しいパーサを実装するとセキュリティ的なリスクがあるため、積極的には入れにくい。
 
@@ -38,17 +38,17 @@ HTTP の仕様では、この Header Name と Header Value をパースする部
 
 ### Headers から Field Values へ
 
-少し脱線するが、 httpbis では、別途並行して HTTP Semantics という仕様を策定している。(RFC 目前の仕様だ)
+少し脱線するが、httpbis では、別途並行して HTTP Semantics という仕様を策定している。(RFC 目前の仕様だ)
 
 - [draft-ietf-httpbis-semantics-14 - HTTP Semantics](https://tools.ietf.org/html/draft-ietf-httpbis-semantics-14)
 
-HTTP 1.x 系のプロトコルは、パケットのフォーマットとセマンティクスが密結合なところがあったが、 HTTP2 や 3 ではバイナリフォーマットが使われるようになった。
+HTTP 1.x 系のプロトコルは、パケットのフォーマットとセマンティクスが密結合なところがあったが、HTTP2 や 3 ではバイナリフォーマットが使われるようになった。
 
-そこで、 HTTP プロトコルが備えていたセマンティクス(意味)と転送方法をきちんと分離し、セマンティクスだけを取り出したのが HTTP Semantics の仕様となる。
+そこで、HTTP プロトコルが備えていたセマンティクス(意味)と転送方法をきちんと分離し、セマンティクスだけを取り出したのが HTTP Semantics の仕様となる。
 
-このなかで、これまで慣習的に *HTTP Header* などとと呼ばれていたプロトコル上のメタデータを表現するパートも、 *Field* と呼ばれるように更新された。
+このなかで、これまで慣習的に *HTTP Header* などとと呼ばれていたプロトコル上のメタデータを表現するパートも、*Field* と呼ばれるように更新された。
 
-いわゆるヘッダは、必ずしも Header (Body より上)にあるとは限らず、 Streaming などでは Trailer(Body より下)にある場合もあることから、上部にあれば Header Field 、下部にあれば Trailer Field で、共通して Field になる。
+いわゆるヘッダは、必ずしも Header (Body より上)にあるとは限らず、Streaming などでは Trailer(Body より下)にある場合もあることから、上部にあれば Header Field 、下部にあれば Trailer Field で、共通して Field になる。
 
 Field はさらに Field Name / Field Value から構成されるため、従来のように Header Name / Header Value という呼び方も更新されることになる。
 
@@ -79,19 +79,19 @@ Report-To: {
 
 しかし、これでは問題があることが指摘され、代替として提案されたのが Structured Field Values だ。
 
-なぜ JSON じゃだめなのかは、 Structured Field Values の中に書かれている。
+なぜ JSON じゃだめなのかは、Structured Field Values の中に書かれている。
 
 - [Structured Field Values for HTTP # Why Not JSON ?](https://www.rfc-editor.org/rfc/rfc8941.html#name-why-not-json)
 - [翻訳: なぜ JSON じゃない?](https://triple-underscore.github.io/http-header-structure-ja.html#why-not-json)
 
 詳細は原文にゆずるが、すでに汎用フォーマットとして使われている JSON をそのまま Field に応用はできないが、そこに制限を設けて注意喚起しても、実装も運用も追いつかないということだ。
 
-JSON っぽいフォーマットだと、どうしても既存の JSON 実装が流用されることが想定されるため、 Field の要件に準拠した新しいフォーマットを作り、新しい実装を作ることで要件を満たすことになった。
+JSON っぽいフォーマットだと、どうしても既存の JSON 実装が流用されることが想定されるため、Field の要件に準拠した新しいフォーマットを作り、新しい実装を作ることで要件を満たすことになった。
 
 
 ## Structured Field Values
 
-こうして、 Field の Value に Structured を持ち込むために提案された JSON ではない新しいフォーマットが Structured Field Values(以下 SFV) だ。
+こうして、Field の Value に Structured を持ち込むために提案された JSON ではない新しいフォーマットが Structured Field Values(以下 SFV) だ。
 
 SFV には大きく 3 つの構造が定義されており、それを利用して Field に必要な情報を構造化する。
 
@@ -160,7 +160,7 @@ Parameter は Item に付与できるメタデータだ。
 }
 ```
 
-これは、 Key/Value だけしかない JSON では表現しにくかった部分でもある。
+これは、Key/Value だけしかない JSON では表現しにくかった部分でもある。
 
 
 ### List
@@ -196,7 +196,7 @@ Key は Item ほど柔軟ではなく、文字列で使える文字種も限ら�
 
 ### Inner List
 
-List や Dict の値として配列を使いたい場合は、 Inner List を使う。(List そのものは Top Level でしか使えない)
+List や Dict の値として配列を使いたい場合は、Inner List を使う。(List そのものは Top Level でしか使えない)
 
 ```js
 // a="x", d=(1 2)
@@ -230,11 +230,11 @@ List や Dict の値として配列を使いたい場合は、 Inner List を使
 
 その Field が Item/List/Dict どれでエンコードされているかは事前の知識が必要だ。
 
-例えば SFV を採用している Client Hints の `Accept-CH` は、 List でエンコードすると仕様側で決まっている。
+例えば SFV を採用している Client Hints の `Accept-CH` は、List でエンコードすると仕様側で決まっている。
 
 従って `Accept-CH` を受け取ったら `decodeList(value)` でパースするといった処理を書くことになるだろう。
 
-これは、 Field 値を入れればなんかしらデコードされて出てくる `decode()` を定義することはできないことを意味する。
+これは、Field 値を入れればなんかしらデコードされて出てくる `decode()` を定義することはできないことを意味する。
 
 Dict としてパースしてエラーになったら List で、、などはできなくはないが、それは非効率だ。
 
@@ -372,14 +372,14 @@ Dict としてパースしてエラーになったら List で、、などはで
 
 - https://github.com/jxck/structured-field-values
 
-npm にも上げており、 ES Module で書いてあるため Browser でもそのまま使える。
+npm にも上げており、ES Module で書いてあるため Browser でもそのまま使える。
 
 - https://www.npmjs.com/package/structured-field-values
 
 
 ### 実装による検証
 
-この実装は、 SFV の実装を開発するというだけでなく、実装を開発することで仕様の不備を見つけることを目的として始めた。
+この実装は、SFV の実装を開発するというだけでなく、実装を開発することで仕様の不備を見つけることを目的として始めた。
 
 そのため、パフォーマンスやメンテナンスなどを考えず、仕様にある汎用的なアルゴリズムを変数名やループ処理含めて極力そのまま実装している。
 
@@ -389,7 +389,7 @@ npm にも上げており、 ES Module で書いてあるため Browser でも�
 
 - [Implementation based on spec ABNF](https://github.com/Jxck/structured-field-values/blob/54cfea375be670cfcb873b6c0c4c4fc57e642bc9/bnf.js)
 
-結果、 RFC Editor Queue に間に合わず取り込まれなかったものもあるが、ドキュメントの言い回しや BNF の不備などを報告している。
+結果、RFC Editor Queue に間に合わず取り込まれなかったものもあるが、ドキュメントの言い回しや BNF の不備などを報告している。
 
 RFC が出れば一旦の役目を終えるため、使い勝手やパフォーマンスの改善を行ってから 1.0.0 を公開する予定だ。
 

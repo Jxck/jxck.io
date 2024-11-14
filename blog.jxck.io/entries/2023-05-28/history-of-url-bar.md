@@ -2,9 +2,9 @@
 
 ## Intro
 
-ついに URL バーから EV 証明書の組織表示が消されるアナウンスが、 Chrome から発表された。
+ついに URL バーから EV 証明書の組織表示が消されるアナウンスが、Chrome から発表された。
 
-思えば、 URL バーの見た目も、だいぶ変わってきたように思う。
+思えば、URL バーの見た目も、だいぶ変わってきたように思う。
 
 URL バーの表示の変遷を一度まとめておく。
 
@@ -24,7 +24,7 @@ URL バーの表示の変遷を一度まとめておく。
 
 ![プレーンに URL 全体を表示した HTTP の URL バー](http-full-gray.svg#440x80)
 
-そして、 HTTPS が登場して以降ここに「安全である」という意味合いを追加する UI が付与される。一般的に Lock Icon (鍵アイコン) と呼ばれるものだ。
+そして、HTTPS が登場して以降ここに「安全である」という意味合いを追加する UI が付与される。一般的に Lock Icon (鍵アイコン) と呼ばれるものだ。
 
 ![先頭に緑のロックアイコンが追加された HTTP の URL バー](https-full-green-lock.svg#440x80)
 
@@ -34,18 +34,18 @@ URL バーの表示の変遷を一度まとめておく。
 
 Netscape や IE5.5, 6 とかのレベルになると、もっと異なる UI だった。そこから徐々に変わってここに至るので、一般にいつこのイメージが定着したのかというと、断定は難しい。
 
-推定すると、 Chrome は 2008 年にリリースされ、初期のころからこの UI だったように思う。ずっと経って 2016 年に Let's Encrypt が始まるが、その時点では少なくとも日本の HTTPS の普及率は決して高くなく(2,3 割)、逆に銀行などが EV を入れており、「鍵が出てると安全」「組織名の表示を確認を」といった啓蒙が、リテラシーの高い一般ユーザに対して行われていたと思う。
+推定すると、Chrome は 2008 年にリリースされ、初期のころからこの UI だったように思う。ずっと経って 2016 年に Let's Encrypt が始まるが、その時点では少なくとも日本の HTTPS の普及率は決して高くなく(2,3 割)、逆に銀行などが EV を入れており、「鍵が出てると安全」「組織名の表示を確認を」といった啓蒙が、リテラシーの高い一般ユーザに対して行われていたと思う。
 
 したがって、このイメージが一般に定着していったのは 2012~15 年あたりかと思う。IE でいうと 9,10 くらいか。
 
 
 ## HTTPS Everywhere
 
-HTTP が一般的である上で、 Advanced なものとして HTTPS が提供されていたために、それを「Secure」とラベル付するのは一定の納得感があった。
+HTTP が一般的である上で、Advanced なものとして HTTPS が提供されていたために、それを「Secure」とラベル付するのは一定の納得感があった。
 
-その後、社会インフラとしての Web に人々の依存度が上がるかたわらで、 AT&T が無料 WiFi で広告を差し込んだり、 DigiNotor が不正発行をやらかしたり、エドワードスノーデンが告発したり etc etc etc と様々な社会の変化が起こり、 HTTPS の重要性が増した。
+その後、社会インフラとしての Web に人々の依存度が上がるかたわらで、AT&T が無料 WiFi で広告を差し込んだり、DigiNotor が不正発行をやらかしたり、エドワードスノーデンが告発したり etc etc etc と様々な社会の変化が起こり、HTTPS の重要性が増した。
 
-プラットフォーム側ではこれに呼応するように、ブラウザに HTTPS Only な機能が増え、 IETF プロトコル策定に暗号化が必須となり、極めつけに Let's Encrypt が登場して一気に HTTPS 化が広まった。
+プラットフォーム側ではこれに呼応するように、ブラウザに HTTPS Only な機能が増え、IETF プロトコル策定に暗号化が必須となり、極めつけに Let's Encrypt が登場して一気に HTTPS 化が広まった。
 
 各位が HTTPS Everywhere に向かって進んでいたのは、だいたい Let's Encrypt 登場の直前 2015 年から 2020 年あたりの話と言えるだろう。
 
@@ -56,7 +56,7 @@ HTTP が一般的である上で、 Advanced なものとして HTTPS が提供�
 
 HTTPS のいう "Secure" はあくまで「*通信の安全*」であり、だれかが盗聴/改竄/なりすましをしてないことを保証するものだ。そのため、証明書の発行は基本的に「Issuer はそのドメインを本当に保持しているか」を基準に行われる。
 
-重要なのは、「そのサイトのコンテンツは安全であるか」などという保証は、たとえ EV であっても HTTPS にはない点だ。 HTTPS 化が遅れた銀行を偽装したフィッシングサイトが、 Let's Encrypt で HTTPS 化されてたなどという、皮肉な話もあったりした。
+重要なのは、「そのサイトのコンテンツは安全であるか」などという保証は、たとえ EV であっても HTTPS にはない点だ。HTTPS 化が遅れた銀行を偽装したフィッシングサイトが、Let's Encrypt で HTTPS 化されてたなどという、皮肉な話もあったりした。
 
 ここに "*Secure*" と "*Trustworthy*" の差がある。
 
@@ -65,11 +65,11 @@ HTTPS のいう "Secure" はあくまで「*通信の安全*」であり、だ�
 - Rethinking Connection Security Indicators | usenix
   - https://www.usenix.org/system/files/conference/soups2016/soups2016-paper-porter-felt.pdf
 
-そこで、 HTTPS が前提な世界においては「*HTTPS が Secure*」なのではなく「*HTTP が  Non Secure*」だという価値観にベースをシフトする必要があった。
+そこで、HTTPS が前提な世界においては「*HTTPS が Secure*」なのではなく「*HTTP が  Non Secure*」だという価値観にベースをシフトする必要があった。
 
 ![HTTP の more secure が HTTPS だったのが、 HTTPS の less secure が HTTP という価値観のシフト](baseline.svg#380x220)
 
-結果 HTTPS を控えめに表示し、 HTTP の場合のみ Not Secure であることを示するように表示が変わっていくことになる。
+結果 HTTPS を控えめに表示し、HTTP の場合のみ Not Secure であることを示するように表示が変わっていくことになる。
 
 ![先頭に Not Secure と表示した HTTP の URL バー](http-full-gray-notsecure.svg#440x80)
 
@@ -86,7 +86,7 @@ HTTPS のいう "Secure" はあくまで「*通信の安全*」であり、だ�
 - Firefox 70 Address Bar Gets New Security Indicators, Shames Insecure Sites
   - https://www.bleepingcomputer.com/news/security/firefox-70-address-bar-gets-new-security-indicators-shames-insecure-sites/
 
-最終的には、全ての HTTP を赤いエラー表示にするのが目指すところだが、現状はブラウザによってかなりばらけている(赤くするもの、赤くはしないもの、 Password フォームがあるときだけ赤くなるものなど)。
+最終的には、全ての HTTP を赤いエラー表示にするのが目指すところだが、現状はブラウザによってかなりばらけている(赤くするもの、赤くはしないもの、Password フォームがあるときだけ赤くなるものなど)。
 
 - Chromium Blog: Evolving Chrome's security indicators
   - https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html
@@ -100,9 +100,9 @@ HTTPS のいう "Secure" はあくまで「*通信の安全*」であり、だ�
 
 ## Removing EV Badge
 
-EV 証明書の発行は、 DV 同様のドメイン所持確認に加えて、組織の実在チェック(ペーパーカンパニーではないか)などを付加価値として追加している。逆を言えば、悪意をもったものでも要件を満たせば取得できる。
+EV 証明書の発行は、DV 同様のドメイン所持確認に加えて、組織の実在チェック(ペーパーカンパニーではないか)などを付加価値として追加している。逆を言えば、悪意をもったものでも要件を満たせば取得できる。
 
-PoC として有名なのは、 "Identity Verified" という会社を作って EV を取得することで、まるで安全であるかのように組織名を表示するという実証がある。
+PoC として有名なのは、"Identity Verified" という会社を作って EV を取得することで、まるで安全であるかのように組織名を表示するという実証がある。
 
 - First part of phishing with EV
   - https://web.archive.org/web/20170914040209/https://0.me.uk/ev-phishing/
@@ -115,12 +115,12 @@ PoC として有名なのは、 "Identity Verified" という会社を作って 
   - https://web.archive.org/web/20171212011746/https://stripe.ian.sh/
   - (オリジナルサイトは消えてるためアーカイブ)
 
-こうした研究から、 EV 証明書の組織名は、表示する方がむしろ良くないのではないかという論調が、特にセキュリティ研究者周りで強まった。 2017 年くらいのことだ。
+こうした研究から、EV 証明書の組織名は、表示する方がむしろ良くないのではないかという論調が、特にセキュリティ研究者周りで強まった。2017 年くらいのことだ。
 
 - On the value of EV
   - https://groups.google.com/g/mozilla.dev.security.policy/c/szD2KBHfwl8/m/kWLDMfPhBgAJ
 
-結果、 2018 年に Safari 12 から組織名の表示が消えた。
+結果、2018 年に Safari 12 から組織名の表示が消えた。
 
 - Safari on iOS 12 changes the look of the URL/Search bar
   - https://twitter.com/BasileBailey/status/1041787756697899008
@@ -156,7 +156,7 @@ PoC として有名なのは、 "Identity Verified" という会社を作って 
 - Measuring Identity Confusion with Uniform Resource Locators - Google Research
   - https://research.google/pubs/pub49166/
 
-そこで、 URL の中でとりわけ重要な、そのサイトのアイデンティティとも言える eTLD+1 のみを表示することで、ユーザにサイトをより明確に認識させるという方式が、特にモバイルで採用されるようになった。 Chrome では 2020 年に発表されている。
+そこで、URL の中でとりわけ重要な、そのサイトのアイデンティティとも言える eTLD+1 のみを表示することで、ユーザにサイトをより明確に認識させるという方式が、特にモバイルで採用されるようになった。Chrome では 2020 年に発表されている。
 
 - Chromium Blog: Helping people spot the spoofs: a URL experiment(2020/08: M86)
   - https://blog.chromium.org/2020/08/helping-people-spot-spoofs-url.html
@@ -170,13 +170,13 @@ PoC として有名なのは、 "Identity Verified" という会社を作って 
 
 HTTPS は、緑ではないにせよ Lock Icon 自体は表示されていた。
 
-しかし、 HTTP as Non Secure というベースシフトが起こったことに合わせ、 HTTPS を Secure とする UI からより Normal なものとしていくことになる。
+しかし、HTTP as Non Secure というベースシフトが起こったことに合わせ、HTTPS を Secure とする UI からより Normal なものとしていくことになる。
 
-結果、 Chrome は HTTPS から Lock Icon の削除をすると発表した。
+結果、Chrome は HTTPS から Lock Icon の削除をすると発表した。
 
 当初の計画では、単純に Lock Icon がなくなるような絵がかかれていたが、実際には今 Lock Icon は Permission や Cookie など、この間にブラウザに実装されたさまざまな設定へのエントリポイントを兼ねていた。
 
-そこで、Lock Icon を単純に消すのではなく、代わりに「このサイトが安全かどうかを示してそうに見えない」何か、ハンバーガーメニューや三点メニューのようなメニューアイコンに置き換える必要が出た。 2021 年の段階では下三角のよくあるアコーディオンのアイコンのデモがあった。
+そこで、Lock Icon を単純に消すのではなく、代わりに「このサイトが安全かどうかを示してそうに見えない」何か、ハンバーガーメニューや三点メニューのようなメニューアイコンに置き換える必要が出た。2021 年の段階では下三角のよくあるアコーディオンのアイコンのデモがあった。
 
 - Chromium Blog: Increasing HTTPS adoption(2021/07: M94)
   - https://blog.chromium.org/2021/07/increasing-https-adoption.html
@@ -186,7 +186,7 @@ HTTPS は、緑ではないにせよ Lock Icon 自体は表示されていた。
 - Chromium Blog: An Update on the Lock Icon
   - https://blog.chromium.org/2023/05/an-update-on-lock-icon.html
 
-他のブラウザがどうするのかは、発表を見てないように思う。 Chrome と同じ Tune アイコンではないだろうということで、擬似的に中立的なハンバーガーメニューで図を作っておく。
+他のブラウザがどうするのかは、発表を見てないように思う。Chrome と同じ Tune アイコンではないだろうということで、擬似的に中立的なハンバーガーメニューで図を作っておく。
 
 ![先頭に赤で Not Secure と追加したドメインのみ表示する URL バー](http-domain-red-notsecure.svg#440x80)
 
@@ -195,7 +195,7 @@ HTTPS は、緑ではないにせよ Lock Icon 自体は表示されていた。
 
 ## Outro
 
-少なくとも HTTPS に関する部分では、 URL Bar の表示は HTTP をいつどう赤くするか/しないかあたりを残し、おおよそ落ち着いたんじゃないかと思う。
+少なくとも HTTPS に関する部分では、URL Bar の表示は HTTP をいつどう赤くするか/しないかあたりを残し、おおよそ落ち着いたんじゃないかと思う。
 
 実際には、この過程で Mixed Contents をどう表示/処理するかといったサイドワークもあったが、まあそれは少しズレるので今回は省いた。
 

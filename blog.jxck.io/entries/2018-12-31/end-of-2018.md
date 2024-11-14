@@ -11,7 +11,7 @@
 
 去年よりも 10 エントリ少ないが、原稿のファイルサイズが去年よりも大きい。
 
-そう思って振り返ると、 WebAuthN, WebPackaging, CT など、重めのエントリが多かった気がする。
+そう思って振り返ると、WebAuthN, WebPackaging, CT など、重めのエントリが多かった気がする。
 
 このくらいのペースが丁度良いかなと思う。
 
@@ -24,13 +24,13 @@ Monthly Web を始めて 1 年経ったので、どういう形に収まった�
 
 [Monthly Web の作り方 2018 年版 | blog.jxck.io](https://blog.jxck.io/entries/2018-07-18/how-to-logging-monthly-web.html)
 
-また、 Monthly を 11 回やり、その振り返りとしての Yearly Web をやるというサイクルがやっと一周した。
+また、Monthly を 11 回やり、その振り返りとしての Yearly Web をやるというサイクルがやっと一周した。
 
 年末の事件も、流れの延長として捉えられた点で、当初の目的も達成できたと思う。
 
 [ep46 Yearly Web 2018](https://mozaic.fm/episodes/46/yearly-web-2018.html)
 
-通常回は 2 回。 Monthly のために時間的に難しかったのもあるが、来年のカンファレンスに回したネタもあるので、あまり積極的にはやろうとしなかったのもある。
+通常回は 2 回。Monthly のために時間的に難しかったのもあるが、来年のカンファレンスに回したネタもあるので、あまり積極的にはやろうとしなかったのもある。
 
 - [ep35 Security (Bug Bounty)](https://mozaic.fm/episodes/35/security-bugbounty.html)
 - [ep43 Permission](https://mozaic.fm/episodes/43/permission.html)
@@ -42,7 +42,7 @@ Monthly の流れがある程度確立したので、来年以降はもう少し
 
 細かいものも含め、スライドを作ったのは 8 回。
 
-builderscon は難産だったが、そのおかげでここまでの Web の整理に加え、今年のテーマの 1 つである Permission/User Consent について深掘りできたし、 [mozaic.fm ep43](https://mozaic.fm/episodes/43/permission.html) にも繋がったので得るものが多かった。
+builderscon は難産だったが、そのおかげでここまでの Web の整理に加え、今年のテーマの 1 つである Permission/User Consent について深掘りできたし、[mozaic.fm ep43](https://mozaic.fm/episodes/43/permission.html) にも繋がったので得るものが多かった。
 
 大きめの発表が続いたので、もう少し LT とかカジュアル目な発表も増やしたい気もする。
 
@@ -81,7 +81,7 @@ Erlang が遅すぎる部分の置き換えとして、また WASM のために 
 
 徐々に構文にも慣れてきたので、来年は Erlang で書いたテキストフォーマット系のパーサなど、ボトルネックになっている部分を徐々に置き換えていきたい。
 
-WASM に持っていければ良い時代になりつつあるから、とりあえず Rust で書いておけばという点でちょうど良いかなと思う。 Humming Bird も Rust で書けると嬉しいんだけどな。
+WASM に持っていければ良い時代になりつつあるから、とりあえず Rust で書いておけばという点でちょうど良いかなと思う。Humming Bird も Rust で書けると嬉しいんだけどな。
 
 
 ## Outro

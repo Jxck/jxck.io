@@ -4,7 +4,7 @@
 
 `<form>` の onsubmit をフックして、入力された値を `<input>` から集めて送るといった処理はよくある。
 
-このとき、 submit されたデータの収拾方法はいくつかある。
+このとき、submit されたデータの収拾方法はいくつかある。
 
 submit に限らず、そのイベントに付随する情報は、基本的にイベントオブジェクトに内包されている。
 
@@ -48,7 +48,7 @@ document.querySelector('#login').onsubmit = (e) => {
 
 ## e.target
 
-最も簡単な改善は、 document からのクエリをやめることだ。
+最も簡単な改善は、document からのクエリをやめることだ。
 
 `e.target` には、対象の DOM 、ここでは `<form>` が入っている。
 
@@ -66,13 +66,13 @@ document.querySelector('#login').onsubmit = (e) => {
 
 ## FormData
 
-Form で Submit されたデータは、 FormData を経由して取得することができる。
+Form で Submit されたデータは、FormData を経由して取得することができる。
 
-つまり、 FormData に変換しさえすれば、 submit 対象のデータは全て手に入っている。
+つまり、FormData に変換しさえすれば、submit 対象のデータは全て手に入っている。
 
 - https://xhr.spec.whatwg.org/#formdata
 
-このオブジェクトは、 `get()`、 `set()` など Map のようなインタフェースを持つ。
+このオブジェクトは、`get()`、`set()` など Map のようなインタフェースを持つ。
 
 (なお `new Map(form_data)` すれば、実際の Map にもなる)
 
@@ -112,16 +112,16 @@ examplepassword
 
 大抵のサーバは、これでも問題なく処理できるだろう。
 
-しかし、 File でもない限り HTML Form からは `application/form-url-encoded` で送られてくるという前提で実装されたものもあるだろう。
+しかし、File でもない限り HTML Form からは `application/form-url-encoded` で送られてくるという前提で実装されたものもあるだろう。
 
 
 ## URLSearchParams
 
-URLSearchParams は、 URL の標準化の際に QueryString 部分をサポートするために導入された。
+URLSearchParams は、URL の標準化の際に QueryString 部分をサポートするために導入された。
 
 しかし、これは FormData を引数にインスタンスを生成することができる。
 
-また、そのまま POST の Body にすれば、 `application/form-url-encoded` として送ることができる。
+また、そのまま POST の Body にすれば、`application/form-url-encoded` として送ることができる。
 
 ```js
 document.querySelector('#login').onsubmit = (e) => {
@@ -190,7 +190,7 @@ document.registerElement('input', {
 });
 ```
 
-進捗は微妙だが、もし実装されると、 JSON で Post したい場合に、 Fetch を使わずにフォーマットの変換だけでよくなるのかもしれない。
+進捗は微妙だが、もし実装されると、JSON で Post したい場合に、Fetch を使わずにフォーマットの変換だけでよくなるのかもしれない。
 
 
 ## DEMO

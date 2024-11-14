@@ -10,7 +10,7 @@
 
 本エントリでは、各仕様を Signing/Bundling/Loading と記す。
 
-現状、 Signing および Loading の仕様策定が進んでおり、 Chrome は Experimental な実装を行っている。
+現状、Signing および Loading の仕様策定が進んでおり、Chrome は Experimental な実装を行っている。
 
 全体的に仕様が大きく、今後も変更される可能性が高いため、今回は実装が進んでいる Signing に絞り、ユースケース、仕様、および本ブログへの適用を中心に解説する。
 
@@ -25,7 +25,7 @@ Signing は、簡単に言えば Web コンテンツに署名を行う仕様で�
 
 mozaic.fm の管理者は、保有する秘密鍵を用いて、このコンテンツの Request/Response に対して署名をする。
 
-単にファイルを署名するのではなく、 Request/Response が対象であるため、 Method/URL/Status/Header なども含まれる点が重要だ。
+単にファイルを署名するのではなく、Request/Response が対象であるため、Method/URL/Status/Header なども含まれる点が重要だ。
 
 署名した結果 `mozaicfm-index.sxg` というファイルを生成する。
 
@@ -53,9 +53,9 @@ Bundling は、もう少し仕様と実装が進んだら改めて解説した�
 
 - https://cdn.jxck.io/mozaicfm-index.sxg
 
-通常、この URL を fetch したブラウザは、 Origin を `https://cdn.jxck.io` として扱う。
+通常、この URL を fetch したブラウザは、Origin を `https://cdn.jxck.io` として扱う。
 
-仮に、このファイルがそのまま表示できるとすれば、 URL バーにはこのアドレスが表示されるだろう。
+仮に、このファイルがそのまま表示できるとすれば、URL バーにはこのアドレスが表示されるだろう。
 
 しかし、このファイルは Response URL 情報を含み、署名されている。
 
@@ -70,7 +70,7 @@ Signing で署名された sxg を読み込んだブラウザが、署名を確�
 
 ## Physical / Logical URL
 
-Signing(Signed HTTP Exchange) によって起こる大きな変化は、 Logical URL と Physical URL の分離である。
+Signing(Signed HTTP Exchange) によって起こる大きな変化は、Logical URL と Physical URL の分離である。
 
 (この名前は、最近では inner/outer URL と呼ばれてもいるようだが、その辺ははっきりしないので、本エントリでは Logical/Physical を採用する)
 
@@ -93,26 +93,26 @@ Signing(Signed HTTP Exchange) によって起こる大きな変化は、 Logical
 
 ### AMP Cache
 
-AMP は、 Origin サーバにある AMP Valid なコンテンツを  AMP Cache に置き、そこから代理で配信する構成になっている。
+AMP は、Origin サーバにある AMP Valid なコンテンツを  AMP Cache に置き、そこから代理で配信する構成になっている。
 
-構成はいわゆる CDN だが、あらゆるドメインを対象とするため、 Cache 自体は Google のドメインのままだ。したがってモバイルで Google 検索した結果 AMP コンテンツを取得した場合、 URL バーに表示されるのは Google の URL となる。
+構成はいわゆる CDN だが、あらゆるドメインを対象とするため、Cache 自体は Google のドメインのままだ。したがってモバイルで Google 検索した結果 AMP コンテンツを取得した場合、URL バーに表示されるのは Google の URL となる。
 
-例えばこの記事の AMP 対応 URL は以下だが、 AMP キャッシュの URL は以下になる。
+例えばこの記事の AMP 対応 URL は以下だが、AMP キャッシュの URL は以下になる。
 
 - https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.amp.html
 - https://www.google.co.jp/amp/s/blog.jxck.io/entries/2018-12-01/signed-http-exchanges.amp.html
 
-この挙動は、 AMP の仕組みを疑問視するユーザが指摘するポイントの 1 つだった。
+この挙動は、AMP の仕組みを疑問視するユーザが指摘するポイントの 1 つだった。
 
 - [AMP letter](http://ampletter.org/?lang=ja)
 
-ここで AMP が Signed HTTP Exchange に対応すると、 Google 検索の結果 AMP キャッシュからコンテンツを取得しても、元の URL を URL バーに表示できる。
+ここで AMP が Signed HTTP Exchange に対応すると、Google 検索の結果 AMP キャッシュからコンテンツを取得しても、元の URL を URL バーに表示できる。
 
 AMP チームはすでに WebPackaging への対応をかなり早い段階でアナウンスしている。
 
 - [Developer Preview of better AMP URLs in Google Search - Accelerated Mobile Pages Project](https://amphtml.wordpress.com/2018/11/13/developer-preview-of-better-amp-urls-in-google-search/)
 
-また、 Cloudflare は AMP Cache に対して sxg を提供する部分のサポートをアナウンスしている。
+また、Cloudflare は AMP Cache に対して sxg を提供する部分のサポートをアナウンスしている。
 
 - [Real URLs for AMP Cached Content Using Cloudflare Workers](https://blog.cloudflare.com/real-urls-for-amp-cached-content-using-cloudflare-workers/)
 
@@ -121,11 +121,11 @@ AMP チームはすでに WebPackaging への対応をかなり早い段階で�
 
 AMP キャッシュと同じことが、一般の CDN でも可能になる。
 
-これまで CDN を入れる場合は Edge を同じドメインにするのが一般的だったが、 Edge がどのドメインであっても問題ない場合もでるだろう。
+これまで CDN を入れる場合は Edge を同じドメインにするのが一般的だったが、Edge がどのドメインであっても問題ない場合もでるだろう。
 
 逆に考えると、自分のドメインから他ドメインのコンテンツを配信することも可能になる。
 
-例えば、 bundle が一般化した今はわからないが、かつて jquery は自分のドメインからではなく CDN から取得する構成が推奨された。
+例えば、bundle が一般化した今はわからないが、かつて jquery は自分のドメインからではなく CDN から取得する構成が推奨された。
 
 ```html
 <script src=https://code.jquery.com/jquery-3.3.1.js></script>
@@ -135,7 +135,7 @@ AMP キャッシュと同じことが、一般の CDN でも可能になる。
 
 多くのサービスが同じ URL を使えば使うほど、そのメリットは増える。
 
-もし jQuery が sxg を配布したら、そのファイルを自分のサーバから配布しつつ、 展開後の URL は同じになるため、キャッシュは同じになるということが可能になる。
+もし jQuery が sxg を配布したら、そのファイルを自分のサーバから配布しつつ、展開後の URL は同じになるため、キャッシュは同じになるということが可能になる。
 
 ただし sxg への URL を src に書くと、取得する際にキャッシュが有ってもヒットされることができない。
 
@@ -156,9 +156,9 @@ AMP キャッシュと同じことが、一般の CDN でも可能になる。
 
 ### Cross Origin Server Push
 
-例えば index.html のレスポンスより前に jquery.js を HTTP2 Push する場合は、 jquery.js は同じ Origin からである必要があった。
+例えば index.html のレスポンスより前に jquery.js を HTTP2 Push する場合は、jquery.js は同じ Origin からである必要があった。
 
-しかし、内容の検証を sxg が担うため、 sxg を Push すれば jquery.js を jquery.com からの CORS Push として送ることが可能になる。
+しかし、内容の検証を sxg が担うため、sxg を Push すれば jquery.js を jquery.com からの CORS Push として送ることが可能になる。
 
 - HTTP2 Push に対応してない 3rd Party Contents を代理で Push する
 - Origin が張った接続に 3rd Party コンテンツを相乗りする
@@ -166,9 +166,9 @@ AMP キャッシュと同じことが、一般の CDN でも可能になる。
 
 ### Subresource Integrity
 
-Subresource Integrity (SRI) とは、 Subresource が想定したものであることを確認し、改ざん等によって意図しないものに差し替えられることを防ぐ仕組みである。
+Subresource Integrity (SRI) とは、Subresource が想定したものであることを確認し、改ざん等によって意図しないものに差し替えられることを防ぐ仕組みである。
 
-以下は、 integrity 属性に jquery 全体の sha-256 ハッシュを含むことで、異なる jquery が実行されることを防ぐ。
+以下は、integrity 属性に jquery 全体の sha-256 ハッシュを含むことで、異なる jquery が実行されることを防ぐ。
 
 ```html
 <script src=https://code.jquery.com/jquery-3.3.1.js
@@ -181,7 +181,7 @@ WebAppSec はこの SRI に、単なるハッシュではなく、署名を取�
 
 これは、まさしく Signing がやっていることと類似している。
 
-同様に、 TLS のような経路の暗号化だけでは足らず、コンテンツの完全性について保証が欲しい仕様で応用が可能になるだろう。
+同様に、TLS のような経路の暗号化だけでは足らず、コンテンツの完全性について保証が欲しい仕様で応用が可能になるだろう。
 
 
 ### Web Archive
@@ -228,12 +228,12 @@ Signing には CanSignHttpExchanges 拡張を含む X.509 証明書が必要だ�
 現状これを試すための選択肢は 3 つある
 
 1. 現状 DigiCert のみが拡張に対応した証明書を発行するので、そこから購入する
-2. 通常の証明書を利用し、 Chrome の <chrome://flags/#allow-sxg-certs-without-extension> を有効にする
+2. 通常の証明書を利用し、Chrome の <chrome://flags/#allow-sxg-certs-without-extension> を有効にする
 3. 拡張を含む自己証明書を作成する
 
 今回は DEMO 用に 3 を採用する。
 
-まず、署名を行う mozaic.fm ドメイン用に、 CanSignHttpExchanges 拡張の入った自己証明書を以下のように作成する。
+まず、署名を行う mozaic.fm ドメイン用に、CanSignHttpExchanges 拡張の入った自己証明書を以下のように作成する。
 
 ```shell
 #! /bin/sh
@@ -257,7 +257,7 @@ openssl x509 -req -days 360 -in cert.csr -signkey priv.key -out cert.pem
 
 Signing の検証に必要な証明書チェーンを生成する。
 
-ファイルは CBOR 形式で、証明書チェーン、 OCSP 、 SCT を含む必要がある。
+ファイルは CBOR 形式で、証明書チェーン、OCSP 、SCT を含む必要がある。
 
 生成には、リファレンス実装の gen-certurl を使用する。
 
@@ -275,7 +275,7 @@ echo "ocsp" > tmp
 ./bin/gen-certurl -pem cert.pem -ocsp tmp > cert.cbor
 ```
 
-生成した cert.cbor は、 `Content-Type: application/cert-chain+cbor` で、 CDN から配布する必要がある。
+生成した cert.cbor は、`Content-Type: application/cert-chain+cbor` で、CDN から配布する必要がある。
 
 ここでは、以下の URL から配布することとする。
 
@@ -286,9 +286,9 @@ echo "ocsp" > tmp
 
 仕様上は、証明書の期限が切れていた場合に、証明書を再度取得し直すための Validity Data を生成し validity-url に置く必要がある。
 
-しかし、まだツールには実装されておらず、 Chrome もこの値を見ていないようだ。
+しかし、まだツールには実装されておらず、Chrome もこの値を見ていないようだ。
 
-したがって、今回は適当な validity-url だけ決めて、 validity data の生成は飛ばす。
+したがって、今回は適当な validity-url だけ決めて、validity data の生成は飛ばす。
 
 (ただし、ここの運用は色々考えて設計する必要がありそうに感じている)
 
@@ -318,19 +318,19 @@ go get -u github.com/WICG/webpackage/go/signedexchange/cmd/gen-signedexchange
   -o           mozaic.sxg # 成果物
 ```
 
-生成した mozaic.sxg は、 `Content-Type: application/signed-exchange;v=b2` で CDN から配布する。
+生成した mozaic.sxg は、`Content-Type: application/signed-exchange;v=b2` で CDN から配布する。
 
 
 ### Experimental Features
 
-現状 Chrome では、 sxg を表示するには 2 つの方法がある。
+現状 Chrome では、sxg を表示するには 2 つの方法がある。
 
 - Signed HTTP Exchange の Origin Trials に登録する
 - Chrome の chrome://flags/#enable-signed-http-exchange を有効にする
 
-つまり、 Origin Trials に登録し、正規の拡張付き証明書を使っていれば、 Chrome Canary などではそのまま表示できるだろう。
+つまり、Origin Trials に登録し、正規の拡張付き証明書を使っていれば、Chrome Canary などではそのまま表示できるだろう。
 
-自己署名証明書の場合には、 Chrome にその証明書に関するエラーを無視させる必要がある。
+自己署名証明書の場合には、Chrome にその証明書に関するエラーを無視させる必要がある。
 
 cert.pem を以下のように base64 形式に変換し、それを `--ignore-certificate-errors-spki-list` に指定する。
 
@@ -363,7 +363,7 @@ open -a Google\ Chrome\ Canary --args --ignore-certificate-errors-spki-list=$BAS
 
 - https://labs.jxck.io/webpackaging/signed-http-exchange-b2/mozaic.sxg
 
-このファイルに Origin-Trial Token を付与しており、 content-type は application/signed-exchange;v=b2 である。
+このファイルに Origin-Trial Token を付与しており、content-type は application/signed-exchange;v=b2 である。
 
 ![sxg のレスポンスヘッダ](2-sxg-response.png#748x457 "sxg response")
 
@@ -401,7 +401,7 @@ Signed HTTP Exchange のフォーマットについて解説する。
 
 Signing の対象は、単にファイルに署名するのではなく、そのファイルの Request/Response 全体に対して署名を行う。
 
-今回の場合は、 HTML の Body を含め以下の Request/Response が対象となる。
+今回の場合は、HTML の Body を含め以下の Request/Response が対象となる。
 
 ```http
 GET /index.html HTTP/1.1
@@ -427,7 +427,7 @@ Digest ヘッダは、コンテンツのダイジェストが含まれる。
 
 [draft-thomson-http-mice-03 - Merkle Integrity Content Encoding](https://tools.ietf.org/html/draft-thomson-http-mice-03)
 
-Digest のアルゴリズムは既にあるが、それらは基本的にコンテンツが全て揃わないと Digest を生成することができない。そこで、 Partial Fragment ごとに Digest が計算できるように Merkle Integrity を用いた方法として提案されているのがこの仕様だ。
+Digest のアルゴリズムは既にあるが、それらは基本的にコンテンツが全て揃わないと Digest を生成することができない。そこで、Partial Fragment ごとに Digest が計算できるように Merkle Integrity を用いた方法として提案されているのがこの仕様だ。
 
 
 ### Signature Header
@@ -464,9 +464,9 @@ cert-url の証明書が Expire した場合は、新たなる証明書を valid
 
 update は、新たなるコンテンツがある場合に、そのサイズを示している。
 
-もし signature が無く、 update しかない場合は、コンテンツを更新する必要がある。
+もし signature が無く、update しかない場合は、コンテンツを更新する必要がある。
 
-両方存在する場合は、 update の size などを考慮して、コンテンツを継続利用するか更新するかを選べる。
+両方存在する場合は、update の size などを考慮して、コンテンツを継続利用するか更新するかを選べる。
 
 ```
 {
@@ -495,14 +495,14 @@ SignedHTTPExchange はまだいくつかの課題がある。筆者が把握し�
 
 現時点では certURL と validateURL にアクセスし、署名を検証できなければいけない。
 
-つまり、 sxg 自体がオフラインで共有できても、署名検証が offline で実施できない。
+つまり、sxg 自体がオフラインで共有できても、署名検証が offline で実施できない。
 
 これについては、まだ作業中だと認識している。
 
 
 ### CanSignHttpExchanges
 
-Mozilla は少し前に Standard Position の中で、 Signed HTTP Exchange を considered harmful と表明した。
+Mozilla は少し前に Standard Position の中で、Signed HTTP Exchange を considered harmful と表明した。
 
 - https://mozilla.github.io/standards-positions/
 
@@ -510,7 +510,7 @@ Mozilla は少し前に Standard Position の中で、 Signed HTTP Exchange を 
 
 具体的には、サーバが利用する HTTPS 用の証明書をそのまま sxg の署名に使うといった、運用の変更の隙間に、漏洩の懸念が生まれるため、基本的には HTTPS とは別の証明書を用意させる方が安全だろうという議論になっている。
 
-結果、 sxg には「既存の証明書を利用させない」ために、新しい拡張を定義し、その拡張が入ったものでなければ利用できないように仕様を変更した。ここで X.509 の拡張として導入されたのが CanSignHttpExchanges である。
+結果、sxg には「既存の証明書を利用させない」ために、新しい拡張を定義し、その拡張が入ったものでなければ利用できないように仕様を変更した。ここで X.509 の拡張として導入されたのが CanSignHttpExchanges である。
 
 現時点で、この拡張に対応した証明書を発行する CA は、現時点では DigiCert のみだ。
 
@@ -524,7 +524,7 @@ Let's Encrypt や他の商用 CA がどの程度この拡張に対応するの�
 
 つまり Let's Encrypt で発行した証明書が拡張を含むと、利便性の観点から HTTPS / sxg 両方に使われると思うが、そのリスクは運用側ということになる。
 
-CanSignHttpExchanges がある証明書は、 HTTPS のために使えないようなサーバの実装が普及するのか、単に啓蒙として併用の抑止を訴えるのか、などといった流れは、まだ把握できてないので、普及フェーズに入ったら注視したい。
+CanSignHttpExchanges がある証明書は、HTTPS のために使えないようなサーバの実装が普及するのか、単に啓蒙として併用の抑止を訴えるのか、などといった流れは、まだ把握できてないので、普及フェーズに入ったら注視したい。
 
 
 ### Access Log
@@ -537,16 +537,16 @@ sxg を代理配信する CDN がログを提供するなら良いが、現状�
 
 したがって、野良 CDN や単純なファイル共有などで表示された場合は完全に収集することは出来ないだろう。
 
-署名を検証する際に、 cert_url や validity_url へのアクセスが発生するために、ここにパラメータを含むことで収集できそうな気もするが、オフライン対応やパフォーマンス改善のためにキャッシュの仕組みが入るだろうことを考えると難しそうだ。
+署名を検証する際に、cert_url や validity_url へのアクセスが発生するために、ここにパラメータを含むことで収集できそうな気もするが、オフライン対応やパフォーマンス改善のためにキャッシュの仕組みが入るだろうことを考えると難しそうだ。
 
 これは、従来の AMP でも発生していたことなので、同様にコンテンツ自体に Analytics を導入するか、自前で `<img>` や Beacon を用いた収集行われるかもしれない。
 
-筆者は、 [Navigation 時に Reporting で Ping を行うような仕様](https://discourse.wicg.io/t/proposal-html-ping-for-navigation/2839) があれば Opt-Out も可能な状態でアクセスログ収集ができるのではと思っている。
+筆者は、[Navigation 時に Reporting で Ping を行うような仕様](https://discourse.wicg.io/t/proposal-html-ping-for-navigation/2839) があれば Opt-Out も可能な状態でアクセスログ収集ができるのではと思っている。
 
 
 ### Validity URL の運用
 
-コンテンツが更新された場合に、キャッシュされた sxg を更新させるために、 Certificate に有効期限を設ける仕様になっている。
+コンテンツが更新された場合に、キャッシュされた sxg を更新させるために、Certificate に有効期限を設ける仕様になっている。
 
 そして、期限が切れた場合に Validity URL にアクセスすることで、新たな Certificate だけを取得してコンテンツは継続して使うか、コンテンツそのものを更新するかを選択させる。
 
@@ -556,16 +556,16 @@ sxg を代理配信する CDN がログを提供するなら良いが、現状�
 
 つまり、従来の時間ベースのキャッシュヘッダだけでなく、証明書も含めてコンテンツのフレッシュネスを管理する必要があるのだ。
 
-検証に失敗したら、実際にオリジンサーバにアクセスするだけなので、オンラインであったり、 AMP のように、静的な作りに限定するのであれば、まだ問題は少なそうだ。
+検証に失敗したら、実際にオリジンサーバにアクセスするだけなので、オンラインであったり、AMP のように、静的な作りに限定するのであれば、まだ問題は少なそうだ。
 
-しかし、 PWA のオフラインインストールのような用途で利用が始まると考えることが増えそうだ。
+しかし、PWA のオフラインインストールのような用途で利用が始まると考えることが増えそうだ。
 
 その辺は、まったく想像できてないので、今後考えていきたい。
 
 
 ## 本サイトへの適用
 
-この記事を書き始めた時は、 DigiCert で証明書を買って全ページの SXG を配布しようと考えていたが、以下の理由から見送った。
+この記事を書き始めた時は、DigiCert で証明書を買って全ページの SXG を配布しようと考えていたが、以下の理由から見送った。
 
 - 証明書がちょっと高い(一番の理由)
 - Validity URL をどうするのかよくわからない

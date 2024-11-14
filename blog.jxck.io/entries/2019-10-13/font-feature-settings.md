@@ -2,7 +2,7 @@
 
 ## Intro
 
-Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。
+Noto Sans のサブセット生成を見なおし、Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。
 
 作業と検証の記録を兼ねて、実施結果を記す。
 
@@ -14,7 +14,7 @@ Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyf
 - [サブセットフォントメーカー](https://opentype.jp/subsetfontmk.htm)
 - [WOFF コンバータ](https://opentype.jp/woffconv.htm)
 
-しかし、 macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
+しかし、macOS を Catalina にあげたところ、これらが起動できなくなり、フォントが生成できなくなった。
 
 これまで GUI で行なっていたが、せっかくなので自動化するために、代替コマンドを探し、プロセスを組んだ。
 
@@ -40,7 +40,7 @@ Noto Sans のサブセット生成を見なおし、 Noto Sans Hinted から pyf
 
 しかし、そういった文字はほぼサンプルコードとしてコードブロック(`<code>`)に含まれており、かつそこには MONO font が当たっている。
 
-そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、 HTML から `<code>` を全て除いた文字群をサブセットの対象とした。
+そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、HTML から `<code>` を全て除いた文字群をサブセットの対象とした。
 
 対象を subset.txt に保存し、変換は以下のようにした。
 
@@ -62,17 +62,17 @@ $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-featur
 --layout-features='*'
 ```
 
-この layout features は、 Open Type のフォントが含む、ヒント情報を含めるという指定だ。
+この layout features は、Open Type のフォントが含む、ヒント情報を含めるという指定だ。
 
 Open Type がいくつかの情報を持っていることは薄々知っていたが、以下の理由から特に考えずにきた。
 
 - 従来使用していたツールは、この情報を全て削除していた。
 - 昔の Noto Sans はこの情報を含まなかった気がする
 
-> フォントが、ヒント(OpenType フォントの場合)、カーニング情報、ビットマップデータ、 OpenType 機能を持っている場合、それらは削除されます。
+> フォントが、ヒント(OpenType フォントの場合)、カーニング情報、ビットマップデータ、OpenType 機能を持っている場合、それらは削除されます。
 > --- [サブセットフォントメーカー](https://opentype.jp/subsetfontmk.htm)
 
-今は、 NotoSansCJKjp-hinted.zip を元にすれば、ヒント情報を含むサブセットが作れるため、 CSS の font-feature-settings が指定できる。
+今は、NotoSansCJKjp-hinted.zip を元にすれば、ヒント情報を含むサブセットが作れるため、CSS の font-feature-settings が指定できる。
 
 全て削れば従来通りだが、せっかくなので指定を検証することにした。
 
@@ -86,7 +86,7 @@ Open Type がいくつかの情報を持っていることは薄々知ってい�
 
 ところが、前者についてはリポジトリを見てもそれらしい情報にたどり着くことができなかった。
 
-後者は、 [font-feature-settings の CSS の仕様](https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES)から、 MS にある Registered Features という一覧がリンクされていた。
+後者は、[font-feature-settings の CSS の仕様](https://drafts.csswg.org/css-fonts-3/#ref-OPENTYPE-FEATURES)から、MS にある Registered Features という一覧がリンクされていた。
 
 - [Registered features - Typography | Microsoft Docs](https://docs.microsoft.com/ja-jp/typography/opentype/spec/featurelist)
 
@@ -138,7 +138,7 @@ $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=
 
 サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前より小さくなっている。
 
-またこのヒントを有効にするため、 CSS に以下を追加した。
+またこのヒントを有効にするため、CSS に以下を追加した。
 
 ```css
 body {
@@ -163,7 +163,7 @@ before/after は以下のようになる。
 
 正直フォントについては素人であり、色々と雰囲気でやっているところもあるが、新しい機能を採用するという点ではよい改修ができた。
 
-今後も、おもしろい font-feature-settings があれば採用し、 Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
+今後も、おもしろい font-feature-settings があれば採用し、Noto Sans が対応していなければ、対応しているフォントへの変更も視野に入れて、検証していきたい。
 
 
 ## Related

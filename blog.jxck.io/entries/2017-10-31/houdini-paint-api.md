@@ -30,9 +30,9 @@ CSS Paint API は用意した領域に対し、画像ではなく Canvas API の
 ￣Y^Y^Y^Y^Y￣
 ```
 
-しかし、現時点では `strokeText()` など、 Canvas のテキスト系の API は仕様から落とされている。
+しかし、現時点では `strokeText()` など、Canvas のテキスト系の API は仕様から落とされている。
 
-これは、各ブラウザでフォントスタックがマルチスレッド対応されていないため、 Worklets 内での実行が難しいという理由かららしく、将来の仕様まで先送りされているとのこと。
+これは、各ブラウザでフォントスタックがマルチスレッド対応されていないため、Worklets 内での実行が難しいという理由かららしく、将来の仕様まで先送りされているとのこと。
 
 詳細は以下を参照。
 
@@ -47,7 +47,7 @@ CSS Paint API は用意した領域に対し、画像ではなく Canvas API の
 
 ## border-image
 
-まずは、 border を描画する `<div>` に対して、描画領域を用意する。
+まずは、border を描画する `<div>` に対して、描画領域を用意する。
 
 Paint API で実装したペイントは、最終的には `border-image-source` に対して指定することになる。
 
@@ -75,7 +75,7 @@ div {
 paint(border-double-custom, outer-color, outer-width, inner-color, inner-width, margin)
 ```
 
-また、開発をするに当たって debug フラグを渡せると便利なため、 CSS から debug フラグを渡せるようにもしてみる。
+また、開発をするに当たって debug フラグを渡せると便利なため、CSS から debug フラグを渡せるようにもしてみる。
 
 例えば
 
@@ -111,7 +111,7 @@ Paint を始め Layout や Animation などの処理は、メインスレッド�
 
 また、例えば今回のように border を引く対象が多く存在する場合は、複数処理を並行して走らせる必要もある。
 
-こうした用途では、 WebWorker などの Worker は用途として合わないため、 Houdini ではより限定した API で軽量な実行環境として Worklet という API が定義されている。
+こうした用途では、WebWorker などの Worker は用途として合わないため、Houdini ではより限定した API で軽量な実行環境として Worklet という API が定義されている。
 
 [Worklets Level 1](https://drafts.css-houdini.org/worklets/)
 
@@ -151,9 +151,9 @@ registerPaint('border-double-custom', class {
 
 ## inputArguments()
 
-まず、 CSS で指定した線の色と幅、間隔の値を取得する必要がある。
+まず、CSS で指定した線の色と幅、間隔の値を取得する必要がある。
 
-CSS で渡した値の型がなんであるかを指定するために、 `inputArguments()` に引数の順に型の配列を指定する。
+CSS で渡した値の型がなんであるかを指定するために、`inputArguments()` に引数の順に型の配列を指定する。
 
 ```js
 // paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
@@ -168,22 +168,22 @@ static get inputArguments() {
 }
 ```
 
-ここで指定する型は、 CSS Property and Values に定義された Syntax String である。
+ここで指定する型は、CSS Property and Values に定義された Syntax String である。
 
 [CSS Properties and Values API Level 1](https://drafts.css-houdini.org/css-properties-values-api/#supported-syntax-strings)
 
-これによって、 CSS で渡された引数が解析される。
+これによって、CSS で渡された引数が解析される。
 
 
 ### registerProperty()
 
-CSS で指定した debug フラグは、 `pain()` の引数ではなく、別のプロパティとして取得する。
+CSS で指定した debug フラグは、`pain()` の引数ではなく、別のプロパティとして取得する。
 
 このためには、まず Worklet がアクセス可能なプロパティとして `--debug` をメインスレッド側で `registerProperty()` を用いて登録する。
 
 [CSS Properties and Values API Level 1](https://drafts.css-houdini.org/css-properties-values-api/#registering-custom-properties)
 
-`--debug` は `true/false` を引数に取りたいが、 Property Values の定義する Syntax List には `<boolean>` は無いため、 `<custom-indent>` を利用し、文字列で代替することとした。
+`--debug` は `true/false` を引数に取りたいが、Property Values の定義する Syntax List には `<boolean>` は無いため、`<custom-indent>` を利用し、文字列で代替することとした。
 
 ```js
 CSS.registerProperty({
@@ -197,7 +197,7 @@ CSS.registerProperty({
 
 ### inputProperties()
 
-`registerProperty()` で登録された値は、 Worklet 側で `inputProperties()` に、セーフリストとして指定しておくことで、クラス内に取り込むことができる。
+`registerProperty()` で登録された値は、Worklet 側で `inputProperties()` に、セーフリストとして指定しておくことで、クラス内に取り込むことができる。
 
 ```js
 static get inputProperties() {
@@ -270,7 +270,7 @@ paint(ctx, size styleMap, arguments) {
 }
 ```
 
-(CSSColorValue がまだ無いため、 `<color>` が CSSKeywordValue になっている。[#159](https://github.com/w3c/css-houdini-drafts/issues/159))
+(CSSColorValue がまだ無いため、`<color>` が CSSKeywordValue になっている。[#159](https://github.com/w3c/css-houdini-drafts/issues/159))
 
 
 ### 例
@@ -287,7 +287,7 @@ paint(ctx, {width: w, height: h}, styleMap, [color]) {
 
 ### 完成形
 
-あとは、 `paint()` の中で要求を満たす二つの矩形を描画する処理を記述すれば良い。
+あとは、`paint()` の中で要求を満たす二つの矩形を描画する処理を記述すれば良い。
 
 ```html
 <style>

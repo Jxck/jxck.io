@@ -17,9 +17,9 @@
 
 これを実装するのに必要なのは、「 `<img>` 要素が出現しているかどうか」であるが、本質的には「画面外にあった `<img>` が viewport と交差したか」を取得することになる。
 
-つまり、 *要素出現の取得* は、 *要素同士の交差取得* として汎用化し、その一例と見ることができる。
+つまり、*要素出現の取得* は、*要素同士の交差取得* として汎用化し、その一例と見ることができる。
 
-新しく追加された、 Intersection Observe は「対象の親要素」と「対象の要素」が *交差(Intersect)したことを取得する API* である。
+新しく追加された、Intersection Observe は「対象の親要素」と「対象の要素」が *交差(Intersect)したことを取得する API* である。
 
 
 ## 従来の方法
@@ -44,7 +44,7 @@
 
 基本は `document.documentElement.scrollTop` だが、互換モードでは `document.body.scrollTop` を使う。
 
-しかし iPhone には `scrollTop` がないので、 `window.pageYOffset` を使うが、これは `window.scrollY` のエイリアスになっている。
+しかし iPhone には `scrollTop` がないので、`window.pageYOffset` を使うが、これは `window.scrollY` のエイリアスになっている。
 
 要するに 4 つある。
 
@@ -102,20 +102,20 @@ let rect = target.getBoundingClientRect();
 
 この三つの論理和が満たされれば、どこかが表示されている。
 
-もちろん、計算基準の親要素を変えれば、 viewport 以外の要素でのスクロールによる出現にも対応できる。
+もちろん、計算基準の親要素を変えれば、viewport 以外の要素でのスクロールによる出現にも対応できる。
 
 
 ### onscroll イベント
 
 上記の判定は、スクロールするたび、つまり onscroll イベントごとに計算すれば DOM の出現監視になる。
 
-ただし、 onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Junk を引き起こす可能性がある。
+ただし、onscroll は発生頻度が非常に多いため、愚直にコールバックに指定してしまうと、ボトルネックになり Scroll Junk を引き起こす可能性がある。
 
 対策としては、まずコールバックを実行するイベントを間引く throttling がある。
 
-例えば、 underscore.js の [throttle()](http://underscorejs.org/#throttle) 相当のものや、 Reactive Extension 系のライブラリを使うことで実現できる。
+例えば、underscore.js の [throttle()](http://underscorejs.org/#throttle) 相当のものや、Reactive Extension 系のライブラリを使うことで実現できる。
 
-また、計算処理のみでコールバックを抜けるのであれば、 `.preventDefault()` を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
+また、計算処理のみでコールバックを抜けるのであれば、`.preventDefault()` を呼ばないため、別エントリで解説した Passive Event Listener を利用できる。
 
 - [Passive Event Listeners によるスクロールの改善](https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html)
 
@@ -132,7 +132,7 @@ let rect = target.getBoundingClientRect();
 さて、ここまで見て来た方法には多くの問題があった。
 
 1. scroll event のハンドラが Scroll Junk を引き起こす可能性がある
-2. 全 scroll event での実施は回数が多いので、 throttling (まびき)を行う必要がある
+2. 全 scroll event での実施は回数が多いので、throttling (まびき)を行う必要がある
 3. サイズや位置を取得する API は Forced Synchronous Layout を発生させる
 4. API が分かりづらく、互換性も微妙で、単純に実装が面倒くさい
 
@@ -141,7 +141,7 @@ let rect = target.getBoundingClientRect();
 
 ### Forced Synchronous Layout
 
-ここまでに紹介した、 `scrollTop`, `offset`, `getBoundingClientRect()` などの呼び出しは、その時点での DOM の位置を取得するために Layout 計算を行う。
+ここまでに紹介した、`scrollTop`, `offset`, `getBoundingClientRect()` などの呼び出しは、その時点での DOM の位置を取得するために Layout 計算を行う。
 
 この計算は同期処理であり、つまりブロックが発生する。さらにそれを onscroll など頻度の高いイベントの中で行うのは、スムーズなスクロール表示のためのブラウザの最適化を阻害してしまう。
 
@@ -156,16 +156,16 @@ Intersection Observer は交点(Intersection) を監視し、指定した要素�
 
 逆を言えば、スクロール以外による交差の発生も一括して取得することが可能になる。
 
-これにより、 Scroll Junk の原因が除去され、効率良く実装することが可能となる。
+これにより、Scroll Junk の原因が除去され、効率良く実装することが可能となる。
 
 
 ## API
 
-コールバックとオプションを指定し、 Intersection Observer Class のインスタンスを生成する。
+コールバックとオプションを指定し、Intersection Observer Class のインスタンスを生成する。
 
 生成した Observer に対して、任意の DOM 要素を `observe()` メソッドで指定することにより、対象を監視する。
 
-複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、 observe を複数回呼ぶことができる。
+複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、observe を複数回呼ぶことができる。
 
 ```js
 let observer = new IntersectionObserver((changes) => {
@@ -213,7 +213,7 @@ observer.observe(target);
 
 ### root
 
-デフォルトでは、 viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
+デフォルトでは、viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
 
 root オプションを用いることで、任意の親要素内を指定できるため、例えば `overflow: scroll` になった div の中の交差を判定することができる。
 
@@ -224,11 +224,11 @@ root オプションを用いることで、任意の親要素内を指定でき
 
 ### threshold
 
-`change.intersectionRatio` によって、交差している領域の割合を取得できるが、コールバックが呼ばれるタイミングが交差のタイミングだけでは、 0% や 100% などあまり役に立たない値しか出ない。
+`change.intersectionRatio` によって、交差している領域の割合を取得できるが、コールバックが呼ばれるタイミングが交差のタイミングだけでは、0% や 100% などあまり役に立たない値しか出ない。
 
 これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
 
-イベント発生頻度を増やすには、 threshold オプションを使うことができる。
+イベント発生頻度を増やすには、threshold オプションを使うことができる。
 
 例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
 
@@ -241,11 +241,11 @@ root オプションを用いることで、任意の親要素内を指定でき
 
 ### rootMargin
 
-画像の遅延読み込みなどを実装したい場合は、 viewport を root として `<img>` を IntersectionObserver で監視するだろう。
+画像の遅延読み込みなどを実装したい場合は、viewport を root として `<img>` を IntersectionObserver で監視するだろう。
 
 viewport 上に `<img>` が出現したことを検出することで、そこで画像の取得を走らせることができる。
 
-しかし、 viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の `<img>` すら出さずに済む可能性がある。
+しかし、viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の `<img>` すら出さずに済む可能性がある。
 
 こうした場合は rootMargin オプションを指定することができる。
 
@@ -260,13 +260,13 @@ viewport 上に `<img>` が出現したことを検出することで、そこ�
 
 Intersection Observer を用いた、基本的なデモを用意した。
 
-threshold を 10% にし、 intersectionRatio を表示するように実装している。
+threshold を 10% にし、intersectionRatio を表示するように実装している。
 
 - [Intersection Observer DEMO](https://labs.jxck.io/intersection-observer/intersection.html)
 
 また以下に Intersection Observer と、それ以前の API で、要素出現の検出を比較する DEMO を用意した。
 
-こちらは、 `overflow: scroll` な div を親とする出現検出も含めてある。
+こちらは、`overflow: scroll` な div を親とする出現検出も含めてある。
 
 - [Visibility Change DEMO](https://labs.jxck.io/intersection-observer/visibility-change.html)
 

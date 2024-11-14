@@ -2,11 +2,11 @@
 
 ## Intro
 
-本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、 Markdown から静的ファイルを生成するスタイルで作成している。
+本サイト [blog.jxck.io](https://blog.jxck.io) 以下については、Markdown から静的ファイルを生成するスタイルで作成している。
 
 この変換時に以前から思っていた *HTML の最適化* を実施することにした。
 
-しかし、 md->html 変換時にそれをできるツールが見当たらないため、 Markdown の AST から HTML を構築する過程で、省略を施すスクリプトを自作した。
+しかし、md->html 変換時にそれをできるツールが見当たらないため、Markdown の AST から HTML を構築する過程で、省略を施すスクリプトを自作した。
 
 ただし、ソースはあくまで観賞用なので、インデントやコメントは残している。
 
@@ -25,7 +25,7 @@
 
 いずれも王道であり、ツールなどが充実しているため、特に導入は難しくないと思う。
 
-ここで最後の最適化の一環として、 HTML を最適化したことはあるだろうか?
+ここで最後の最適化の一環として、HTML を最適化したことはあるだろうか?
 
 あるとしても、それはスペース削除だけではないだろうか?
 
@@ -34,12 +34,12 @@
 
 ### タグそのもの
 
-`<html>`、 `<head>`、 `<body>` は、タグ自体を書かなくても良い場合があり、仕様に定義がある。
+`<html>`、`<head>`、`<body>` は、タグ自体を書かなくても良い場合があり、仕様に定義がある。
 
 > An html element's end tag may be omitted if the html element is not immediately followed by a comment.
 > --- https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission
 
-すぐ次がコメントでないなら、 `<html>` は省略しても良い。 `<head>` や `<body>` も同様だ。
+すぐ次がコメントでないなら、`<html>` は省略しても良い。`<head>` や `<body>` も同様だ。
 
 ```html
 <!-- before -->
@@ -59,14 +59,14 @@
 </html>
 ```
 
-これは、 `<html ng-app>` みたいに、タグの要素によって何かを指定する必要があると消せないため、消せない/消しにくいことは多い。
+これは、`<html ng-app>` みたいに、タグの要素によって何かを指定する必要があると消せないため、消せない/消しにくいことは多い。
 
 
 ### 閉じタグ
 
 HTML には閉じタグの省略が許されているものがいくつかあり、仕様に定義がある。
 
-例えば、 `</li>` は以下の条件なら省略が可能だ。
+例えば、`</li>` は以下の条件なら省略が可能だ。
 
 > An li element's end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element.
 > --- https://html.spec.whatwg.org/multipage/syntax.html#syntax-tag-omission
@@ -119,20 +119,20 @@ HTML には閉じタグの省略が許されているものがいくつかあり
 
 ### 好き嫌い
 
-まず、こうした省略によって、例えば 「XML として崩れている」みたいなことを言う人もいる。
+まず、こうした省略によって、例えば「XML として崩れている」みたいなことを言う人もいる。
 
 気持ちは分かるが、そもそもこの程度を省略しなかったところで XML などではない。
 
-あくまで書いているのは HTML であり、 Markdown からの変換過程で最適化しているので、昨今のフロントのビルドタスクを見れば特段特別なことでもない。
+あくまで書いているのは HTML であり、Markdown からの変換過程で最適化しているので、昨今のフロントのビルドタスクを見れば特段特別なことでもない。
 
 
 ### 影響
 
 生成した結果は [HTML Validator](https://validator.w3.org/nu/) で確認しているが問題は無い。
 
-HTML として問題が無いのであれば、 HTML に対応したツールでは扱えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
+HTML として問題が無いのであれば、HTML に対応したツールでは扱えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
 
-まあ、そもそも HTML というのは、 XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、完全に扱いきれないツールがあっても多少は仕方がない。
+まあ、そもそも HTML というのは、XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、完全に扱いきれないツールがあっても多少は仕方がない。
 
 特に片手間な正規表現で HTML を処理している場合(スクレイピング、エディタのシンタックスハイライト etc)は、影響が皆無ともいえないが、現状自分の環境で、特に困った場面はいまのところない。
 
@@ -156,7 +156,7 @@ $ wc html-no-compression.html
  141     417    9417 html-no-compression.html
 ```
 
-また Chrome の devtools で二つのファイルをレンダリングし、 Timeline から *Parse HTML* の時間を確認した。
+また Chrome の devtools で二つのファイルをレンダリングし、Timeline から *Parse HTML* の時間を確認した。
 
 10 回平均した結果がこうだ。
 
@@ -169,7 +169,7 @@ $ wc html-no-compression.html
 
 この程度の速度差であれば体感は難しいので、もはや誤差といえる。
 
-しかし、これは逆に、 *省略がパースを著しく遅くする、といった影響はない* と言えるだろう。
+しかし、これは逆に、*省略がパースを著しく遅くする、といった影響はない* と言えるだろう。
 
 これなら、ペイロードが小さくなることによる、ネットワーク効率としてのメリットを重視するリスクはなさそうだ。
 
@@ -182,7 +182,7 @@ $ wc html-no-compression.html
 
 ### 方法
 
-普通の Web アプリでも、 haml のように抽象度が高いフォーマットであれば、生成時に同様のオプションがあっても良さそうだが、 haml ではずっと [TODO](https://github.com/haml/haml/blob/master/TODO#L19) のままのようだ。
+普通の Web アプリでも、haml のように抽象度が高いフォーマットであれば、生成時に同様のオプションがあっても良さそうだが、haml ではずっと [TODO](https://github.com/haml/haml/blob/master/TODO#L19) のままのようだ。
 
 Google の PageSpeed でも、こうした最適化は [サポートされていた](https://developers.google.com/speed/pagespeed/service/OptimizeHtml)。
 

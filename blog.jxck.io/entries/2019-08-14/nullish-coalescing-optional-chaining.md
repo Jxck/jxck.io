@@ -50,7 +50,7 @@ param = param || 'default' // 'default'
 
 そこで提案されたのが `??` という Null Coalescing Operator だ。(日本語だと Null 結合演算子になるのだろうか?)
 
-これを使うと、 null/undefined であった場合のみ上書きができる。(名前に反して null だけではない点に注意)
+これを使うと、null/undefined であった場合のみ上書きができる。(名前に反して null だけではない点に注意)
 
 ```js
 var param;
@@ -74,7 +74,7 @@ param = ''
 param = param ?? 'default' // ''
 ```
 
-パラメータの初期化などで、 null/undefined 以外の falsy な値を尊重しつつデフォルトを決めるといったケースに使うことができる。
+パラメータの初期化などで、null/undefined 以外の falsy な値を尊重しつつデフォルトを決めるといったケースに使うことができる。
 
 ```js
 function main(option) {
@@ -134,7 +134,7 @@ a = null
 a?.b?.c() // a? で undefined になるが、後続の .b? がエラーになるわけではない
 ```
 
-これは `?.` の左側(left-hand side)が null/undefined と評価された時点で全体の評価が決定し、 `?.` の右側(right-hand side) は評価されていないからだ。
+これは `?.` の左側(left-hand side)が null/undefined と評価された時点で全体の評価が決定し、`?.` の右側(right-hand side) は評価されていないからだ。
 
 したがって、以下のように副作用のある処理も実行されない。
 
@@ -173,7 +173,7 @@ console.log(lang) // JS
 </script>
 ```
 
-このコードをそのままブラウザで走らせれば、 JS が期待している DOM が確実にあるため問題なく動くだろう。
+このコードをそのままブラウザで走らせれば、JS が期待している DOM が確実にあるため問題なく動くだろう。
 
 しかし、型を厳密に考えると `querySelector()` や `item()` は nullable であり、配列の範囲外の添字アクセスは `undefined` を返す。
 
@@ -204,7 +204,7 @@ if ($code) {
 
 なお、本来は全ての `if` に対し、前提が崩れていた際の `else` が必要であるが、ここでは省略している。
 
-大抵の DOM 操作はこの `else` 部分はもとより、 `if` 部分すら書かず、暗黙の前提を置いている場合も多い。
+大抵の DOM 操作はこの `else` 部分はもとより、`if` 部分すら書かず、暗黙の前提を置いている場合も多い。
 
 TypeScript を使うと、この `if` を通して `null` を剥がさないとエラーになるため、これを書く場合も増えてきた。
 
@@ -236,7 +236,7 @@ if (lang === undefined) {
 
 ここでの `undefined` の処理は、前述の `if` 版で省略されている `else` の処理にあたる。
 
-つまり、 Optional Chaining は、こうした `null` を考慮すべき処理の連続を、全て if-else で分岐しつつケアする代わりに、一連の処理をつなげ結果を期待した値 or `undefined` に丸め込んで結果を検証するといった書き方を可能とする。
+つまり、Optional Chaining は、こうした `null` を考慮すべき処理の連続を、全て if-else で分岐しつつケアする代わりに、一連の処理をつなげ結果を期待した値 or `undefined` に丸め込んで結果を検証するといった書き方を可能とする。
 
 もしこのケースで、存在しない場合の lang をデフォルトで `"TEXT"` にしたい場合は、前述の Nullish Coalescing と組み合わせると以下のように書ける。
 
@@ -281,7 +281,7 @@ Intents は出ているが現時点の Chrome Canary では動かなかった。
 
 - [Intent to Implement: JavaScript Optional Chaining](https://groups.google.com/a/chromium.org/d/msg/blink-dev/M8-Qp_LydJc/bOl5uQ8RAAAJ)
 
-Safari もパッチはあるが、 TP にも入っていない。
+Safari もパッチはあるが、TP にも入っていない。
 
 
 ## DEMO

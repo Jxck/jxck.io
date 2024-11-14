@@ -16,7 +16,7 @@
 
 ## Sink
 
-XSS などの原因となる DOM 操作として、 DOM に直接文字列を展開する処理がある。
+XSS などの原因となる DOM 操作として、DOM に直接文字列を展開する処理がある。
 
 - `element.innerHTML`
 - `location.href`
@@ -64,7 +64,7 @@ $script.src = 'https://attack.example.com/script.js'
 $('script').textContent = 'alert(0)'
 ```
 
-エラーを見るとわかるように、それぞれの処理は単なる文字列、 WebIDL でいう DOMString ではなく、それぞれ以下の型を要求していることがわかる。
+エラーを見るとわかるように、それぞれの処理は単なる文字列、WebIDL でいう DOMString ではなく、それぞれ以下の型を要求していることがわかる。
 
 - TrustedHTML
 - TrustedURL
@@ -98,7 +98,7 @@ const trustedHTML = escapePolicy.createHTML('<img src=/ onerror="alert(10)">')
 $('div').innerHTML = trustedHTML
 ```
 
-つまり、 `innerHTML` の前には HTML Special Chars のエスケープを必須としたいという場合は、 `createPolicy()` の引数に渡す関数にその処理を入れれば良い。
+つまり、`innerHTML` の前には HTML Special Chars のエスケープを必須としたいという場合は、`createPolicy()` の引数に渡す関数にその処理を入れれば良い。
 
 ```js
 const escapePolicy = TrustedTypes.createPolicy('application-policy', {
@@ -143,7 +143,7 @@ const trustedHTML = dummyPolicy.createHTML('<img src=/ onerror="alert(10)">')
 document.querySelector('div').innerHTML = trustedHTML
 ```
 
-ここで定義した Policy 名の `dummy` は、 CSP で指定されていないため使うことができない。
+ここで定義した Policy 名の `dummy` は、CSP で指定されていないため使うことができない。
 
 
 ## 名前空間
@@ -226,7 +226,7 @@ TrustedTypes.createPolicy('https://labs.jxck.io', {
 
 たとえば location.href への代入が型エラーになったら、代入を無視するということはできない。
 
-例えば `createURL()` で `null` や `undefined` を返しても、 `location.href` へ代入は行われてしまい、遷移がおこる。
+例えば `createURL()` で `null` や `undefined` を返しても、`location.href` へ代入は行われてしまい、遷移がおこる。
 
 エスケープのように強制的に変換できれば良いが、意図しない場合は明示的にエラーを投げるか、定義しないことでエラーを発生させるしか方法が無い。
 
@@ -256,7 +256,7 @@ TrustedTypePolicy createPolicy(DOMString policyName, TrustedTypeInnerPolicy poli
 
 同じことは [PassiveEventListener](https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html#feature-detection) でもあったため、基本的に最後のオプションはオブジェクトの方が良いだろう。
 
-これは、 [issue](https://github.com/WICG/trusted-types/issues/123) を上げておいた。
+これは、[issue](https://github.com/WICG/trusted-types/issues/123) を上げておいた。
 
 
 ### Performance
@@ -268,23 +268,23 @@ CSP で有効にした時点で、対象となる全ての処理にフックが�
 
 ### Reporting
 
-現時点では Reporting API の対応は入っていないようだが、 Intents を見ると under consideration であるようだ。
+現時点では Reporting API の対応は入っていないようだが、Intents を見ると under consideration であるようだ。
 
-対応すれば、 CSP Report Only でもデプロイできるようになることが想像されるため、導入の敷居は下がるだろう。
+対応すれば、CSP Report Only でもデプロイできるようになることが想像されるため、導入の敷居は下がるだろう。
 
 
 ### CSP 無効での利用
 
 CSP によって有効になるのは、型が違う場合にエラーをあげることだけだ。
 
-つまり Policy のメソッドを経由して DOMString を TrustedTypes に変換することは、 CSP で有効にしなくても可能だ。
+つまり Policy のメソッドを経由して DOMString を TrustedTypes に変換することは、CSP で有効にしなくても可能だ。
 
 これだけでも以下の二つのメリットが考えられる
 
-- 標準化された型があることにより、 WebIDL を参考に TypeScript などに導入し、型の検証に利用することができる。
+- 標準化された型があることにより、WebIDL を参考に TypeScript などに導入し、型の検証に利用することができる。
 - これまで設計に依存していたエスケープの所在が標準化され、フレームワークやライブラリとの間で、安全な設計を共有する共通言語ができる。
 
-エスケープを強制する規約を設けたり、そこに型を与えて静的に解析することで、 TrustedTypes と同等のことを自前でやっている場面は少なく無いだろう。
+エスケープを強制する規約を設けたり、そこに型を与えて静的に解析することで、TrustedTypes と同等のことを自前でやっている場面は少なく無いだろう。
 
 そこに共通の作法が生まれることは、現実的なメリットがあるように感じる。
 
@@ -314,7 +314,7 @@ CSP によって有効になるのは、型が違う場合にエラーをあげ�
 
 それを踏まえて、現状の設計を見直す際に、参考にするのは現状の適切な距離の取り方かもしれない。
 
-あとは、ビルド時の静的な型検査、ステージングなどでのランタイム検査の恩恵を受ければ、 CSP Report Only や off  でデプロイでも一定の効果は予想され、当面はそこが現実的な気もする。
+あとは、ビルド時の静的な型検査、ステージングなどでのランタイム検査の恩恵を受ければ、CSP Report Only や off  でデプロイでも一定の効果は予想され、当面はそこが現実的な気もする。
 
 実際に TrustedTypes を使うかどうかを別としても、「型によるランタイム検証」の方針は W3C では新しい試みなので、この波が今後の API 設計にどう影響していくかは興味がある。
 
@@ -336,9 +336,9 @@ CSP によって有効になるのは、型が違う場合にエラーをあげ�
 
 また、閲覧者の拡張による変更を許容したいため、適用はしない。
 
-しかし、 Reporting が対応した後の Report の中身には興味がある。
+しかし、Reporting が対応した後の Report の中身には興味がある。
 
-これを収集するため、 Policy 無しの trusted-types を Report-Only のディレクティブに追加し、レポートを収集して観測を行う。
+これを収集するため、Policy 無しの trusted-types を Report-Only のディレクティブに追加し、レポートを収集して観測を行う。
 
 
 ## Links

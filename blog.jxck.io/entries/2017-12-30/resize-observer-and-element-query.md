@@ -4,7 +4,7 @@
 
 ResizeObserver の ship が進みつつある。
 
-この仕様の解説および、 ElementQuery / ContainerQuery について解説する。
+この仕様の解説および、ElementQuery / ContainerQuery について解説する。
 
 [Resize Observer 1](https://wicg.github.io/ResizeObserver/)
 
@@ -42,11 +42,11 @@ resizeObserver.disconnect(element) // 解放
 
 ## onresize
 
-レスポンシブ要件を満たす上で、 window のサイズが変更されたことを取得するため、 `resize` イベントが使われた。
+レスポンシブ要件を満たす上で、window のサイズが変更されたことを取得するため、`resize` イベントが使われた。
 
 - DEMO: https://labs.jxck.io/resize-observer/onresize.html
 
-これは window のみに発火するため、 window は不変のまま子要素の変更だけを取ることができなかった。
+これは window のみに発火するため、window は不変のまま子要素の変更だけを取ることができなかった。
 
 そこで導入されたのが ResizeObserver であったわけだが、ではなぜ `resize` イベントを子要素に適用しなかったか。
 
@@ -54,7 +54,7 @@ resizeObserver.disconnect(element) // 解放
 
 [12.1. Resizing viewports | CSSOM View Module](https://drafts.csswg.org/cssom-view/#resizing-viewports)
 
-つまり、 resize された結果を取得するためには、 `target` を辿りサイズを取得する必要が出る。
+つまり、resize された結果を取得するためには、`target` を辿りサイズを取得する必要が出る。
 
 ```js
 window.addEventListener('resize', (e) => {
@@ -66,20 +66,20 @@ window.addEventListener('resize', (e) => {
 
 - DEMO: https://labs.jxck.io/resize-observer/onresize.html
 
-また、これを子要素で適用した場合は、 `scrollTop`, `offset`, `getBoundingClientRect()` などを用いることになるだろう。
+また、これを子要素で適用した場合は、`scrollTop`, `offset`, `getBoundingClientRect()` などを用いることになるだろう。
 
-これらは同期計算のため、 Forced Synchronous Layout を引き起こし、要素のリサイズ処理がガタつくことになってしまう。
+これらは同期計算のため、Forced Synchronous Layout を引き起こし、要素のリサイズ処理がガタつくことになってしまう。
 
 Observer を定義することにより、こうした処理を行わずに変更情報のセットを取得できるため、パフォーマンス上の問題を解決できる。
 
-こうしたコンセプトは、 IntersectionObserver が定義されたモチベーションと同じだと考えて良いだろう。
+こうしたコンセプトは、IntersectionObserver が定義されたモチベーションと同じだと考えて良いだろう。
 
 [Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io](https://blog.jxck.io/entries/2016-06-25/intersection-observer.html)
 
 
 ## resize event polyfill
 
-仮に、 Observer のインタフェースを Event 側に寄せたいというのであれば、以下のように CustomEvent を定義することもできるだろう。
+仮に、Observer のインタフェースを Event 側に寄せたいというのであれば、以下のように CustomEvent を定義することもできるだろう。
 
 必要に応じて [Passive Event Listener](https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html) を検討する必要がある。
 
@@ -105,7 +105,7 @@ $target.addEventListener('resize', ({detail: entries}) => {
 
 [ElementQuery](http://elementqueries.com/) は MediaQuery の要素版といったコンセプトで作られたライブラリである。
 
-例えば以下のように、 `min-width` を境に色を変えるといったことが可能になる。
+例えば以下のように、`min-width` を境に色を変えるといったことが可能になる。
 
 ```css
 @element .minwidthpixels and (min-width: 500px) {
@@ -119,7 +119,7 @@ $target.addEventListener('resize', ({detail: entries}) => {
 
 この程度単純な用途であれば ResizeObserver のハンドラ内で CSS の class を toggle するくらいでも実現できる。
 
-しかし、 EQ はあくまでスタイル定義を CSS 側で完結させるためのライブラリであるため、 Media Query に習い Custom at-rule (`@element`) を定義している。
+しかし、EQ はあくまでスタイル定義を CSS 側で完結させるためのライブラリであるため、Media Query に習い Custom at-rule (`@element`) を定義している。
 
 これを実現するため、実装は以下のようなことを行なっている。
 
@@ -127,16 +127,16 @@ $target.addEventListener('resize', ({detail: entries}) => {
 - CSS パース
 - 要素の変更検知
 
-最後の変更検知は、ライブラリ内では Throttling 付きの `setInterval()` で行なっているため、 ResizeObserver を用いた実装でかなり効率化できるだろう。
+最後の変更検知は、ライブラリ内では Throttling 付きの `setInterval()` で行なっているため、ResizeObserver を用いた実装でかなり効率化できるだろう。
 
-CSS に持ってくるには、 Houdini で策定中の [CSS Parser API](https://drafts.css-houdini.org/css-parser-api/) と [CSS Typed OM Level 1](https://drafts.css-houdini.org/css-typed-om/#normalize-var) あたりが実装されるとネイティブで `@lement` を Custom At-Rules として実装できるようになるだろう。
+CSS に持ってくるには、Houdini で策定中の [CSS Parser API](https://drafts.css-houdini.org/css-parser-api/) と [CSS Typed OM Level 1](https://drafts.css-houdini.org/css-typed-om/#normalize-var) あたりが実装されるとネイティブで `@lement` を Custom At-Rules として実装できるようになるだろう。
 
 
 ## Container Query
 
 [Container Query](https://au.si/css-container-element-queries) は Element Query と似ているが、文字通り対象を親要素に置いている。
 
-例えば、親要素のサイズに応じて子要素のレイアウトを変えたい場合は、 Element Query のスコープで以下のように定義ができる。
+例えば、親要素のサイズに応じて子要素のレイアウトを変えたい場合は、Element Query のスコープで以下のように定義ができる。
 
 ```css
 @element '#sidebar' and (max-width: 300px) {

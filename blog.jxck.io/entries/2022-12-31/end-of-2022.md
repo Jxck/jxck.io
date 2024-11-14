@@ -32,7 +32,7 @@
 
 8 月に ep100 を迎え、そこでこれまでの活動を振り返った。
 
-そこから、 **Monthly Web** を **Monthly Platform** と **Monthly Ecosystem** に分離し、今まで [@myakura](https://twitter.com/myakura) との Monthly では意識的に外していたエコシステム周りの動向を [@sakito](https://twitter.com/__sakito__) と [@hiroppy](https://twitter.com/about_hiroppy) と共に追っていく Monthly を別途始めた。
+そこから、**Monthly Web** を **Monthly Platform** と **Monthly Ecosystem** に分離し、今まで [@myakura](https://twitter.com/myakura) との Monthly では意識的に外していたエコシステム周りの動向を [@sakito](https://twitter.com/__sakito__) と [@hiroppy](https://twitter.com/about_hiroppy) と共に追っていく Monthly を別途始めた。
 
 ものすごくコストがかかってはいるが、逆にこれだけのキャッチアップがこの負荷でできるのであれば、十分やる価値はあると思う。
 

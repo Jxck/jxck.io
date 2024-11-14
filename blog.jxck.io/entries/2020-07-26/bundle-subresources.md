@@ -2,9 +2,9 @@
 
 ## Intro
 
-WebBundle を用いてサブリソースのみを Bundle する、 Subresource Bundle の策定と実装が進んでいる。
+WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。
 
-これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、 RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
+これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
 
 現時点での仕様と実装を解説する。
 
@@ -13,7 +13,7 @@ WebBundle を用いてサブリソースのみを Bundle する、 Subresource B
 
 ## Subresource Bundling
 
-WebBundle の初期の仕様は、 HTML を頂点としたページ全体をまとめる方向で始まった。
+WebBundle の初期の仕様は、HTML を頂点としたページ全体をまとめる方向で始まった。
 
 - [WebBundle によるコンテンツの結合と WebPackaging | blog.jxck.io](https://blog.jxck.io/entries/2019-11-12/webbundle.html)
 
@@ -38,11 +38,11 @@ $ ls subresource
   favicon.ico
 ```
 
-なお、 `a.js` は `b.js` を import し、 `c.css` は `d.css` を import している。
+なお、`a.js` は `b.js` を import し、`c.css` は `d.css` を import している。
 
 gen-bundle は `-dir` を指定するとディレクトリ以下をまるっと bundle してくれる。
 
-CLI の仕様上 `-primaryURL` (HTML を頂点とする Bundle での HTML の URL)が必須だが、 Subresource の場合は特定の Primary が存在しない。 Chrome の実装もこれを無視しているようなので、適当に指定している。
+CLI の仕様上 `-primaryURL` (HTML を頂点とする Bundle での HTML の URL)が必須だが、Subresource の場合は特定の Primary が存在しない。Chrome の実装もこれを無視しているようなので、適当に指定している。
 
 `-headerOverride` でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
 
@@ -142,9 +142,9 @@ img {
 
 この Bundle を読み込む HTML は以下のようになる。
 
-普通にサブリソースを読む HTML に加え、 `<link>` で web bundle の読み込みを指定する。
+普通にサブリソースを読む HTML に加え、`<link>` で web bundle の読み込みを指定する。
 
-この resources 属性に、 bundle 側で解決する URL を absolute URL で明示する必要がある。
+この resources 属性に、bundle 側で解決する URL を absolute URL で明示する必要がある。
 
 ```html
 <!DOCTYPE html>
@@ -189,7 +189,7 @@ HTML にアクセスすると、以下の様にサブリソースが bundle か�
 
 実際に実行されている fetch が HTML と Bundle だけになっていることがわかる。
 
-もし、ブラウザが Subresource Bundling に対応していなければ、 `<link rel=webbundle>` が無視され個別にリクエストが走ることになる。
+もし、ブラウザが Subresource Bundling に対応していなければ、`<link rel=webbundle>` が無視され個別にリクエストが走ることになる。
 
 ここでは wbn は no-store としているが、展開されたサブリソースは wbn 内で設定された Cache-Control が効いているため、個別にキャッシュが行われている。
 
@@ -223,16 +223,16 @@ html はこうなる。
 <img     src=https://example.com/webpackaging/subresource-webbundle/e.png width=100>
 ```
 
-つまり、 3rd Party のサブリソースを読み込む際に、その配信元が webbundle に対応していなくとも、 1st Party 側が Bundle を生成して配信することが可能ということになる。それで良いのかは仕様がきちんと出てから議論されるのではないだろうか。
+つまり、3rd Party のサブリソースを読み込む際に、その配信元が webbundle に対応していなくとも、1st Party 側が Bundle を生成して配信することが可能ということになる。それで良いのかは仕様がきちんと出てから議論されるのではないだろうか。
 
 
 ### Web Component Bundle
 
-JS だけではなくあらゆる Subresource を対象に bundle できるということは、 Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
+JS だけではなくあらゆる Subresource を対象に bundle できるということは、Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
 
 HTML, CSS, JS, Img などをまとめて、いわゆる WebComponent の単位で bundle を生成するといったことも可能だ。
 
-以下の DEMO は、 `<profile-card>` を Custom Element として実装し、そこに必要なリソースを bundle している。
+以下の DEMO は、`<profile-card>` を Custom Element として実装し、そこに必要なリソースを bundle している。
 
 ```sh-session
 $ ls profile-card
@@ -244,9 +244,9 @@ $ ls profile-card
 
 - DEMO: https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html
 
-今は、 JS 以外は `import` できないため、 CSS は `@import` で、 HTML は `fetch()` で解決しているが、 別途策定が進んでいる [Synthetic Modules](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md) (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て `import` で扱える可能性がある。
+今は、JS 以外は `import` できないため、CSS は `@import` で、HTML は `fetch()` で解決しているが、別途策定が進んでいる [Synthetic Modules](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/SyntheticModules/designDoc.md) (JSON, CSS, HTML などを ES Module のように扱う)が実装されれば、全て `import` で扱える可能性がある。
 
-これら関連仕様が進むと、 Synthetic Module ベースで構成された WebComponent の使い勝手がよくなり、 Bundle で fetch の数も気にせずに積極的に使えるようになるかもしれない。
+これら関連仕様が進むと、Synthetic Module ベースで構成された WebComponent の使い勝手がよくなり、Bundle で fetch の数も気にせずに積極的に使えるようになるかもしれない。
 
 
 ### Nested Bundling
@@ -264,7 +264,7 @@ $ ls profile-card
   - redux.wbn
 ```
 
-実際このような Nested Bundle も生成可能で、 Chrome もそれを最後まで展開するところが確認できた。
+実際このような Nested Bundle も生成可能で、Chrome もそれを最後まで展開するところが確認できた。
 
 - DEMO: https://labs.jxck.io/webpackaging/subresource-webbundle/nested-bundle/
 
@@ -285,13 +285,13 @@ $ ls profile-card
 
 この課題は すでに広く普及した webpack などのビルドツールにより解決されていたので、開発の現場ではあまり体感することはなかったかもしれない。
 
-結果、 ES Module の import はブラウザがランタイムで依存解決するためではなく、ビルドツールが変換に使うための placeholder として使われて、多くの依存を bundle.js にまとめ、その中の 1byte でも変わったらバンドルし直して再取得させる運用が通常となっている。
+結果、ES Module の import はブラウザがランタイムで依存解決するためではなく、ビルドツールが変換に使うための placeholder として使われて、多くの依存を bundle.js にまとめ、その中の 1byte でも変わったらバンドルし直して再取得させる運用が通常となっている。
 
 筆者としては「せっかく ES Module が手に入ったのにブラウザから見れば恩恵はほとんど得られていない」と言う点に煮えきらなさを感じていた。
 
 Bundle Subresource は、「ブラウザ上でも Module を分割して扱いながらも fetch は減らしたい」という 2 つの要求を繋ぐ仕様として期待することができる。
 
-WebPackaging の構想が出たときから期待していた仕様であり、 SXG よりもより多くの現場に影響を与える仕様になりえるのではないだろうか。
+WebPackaging の構想が出たときから期待していた仕様であり、SXG よりもより多くの現場に影響を与える仕様になりえるのではないだろうか。
 
 
 ### 動的な bundling
@@ -300,7 +300,7 @@ WebPackaging の構想が出たときから期待していた仕様であり、 
 
 一番の問題は、モジュールごとにキャッシュを設計しても、ブラウザが何をキャッシュしているのかをサーバが知る術が無いことだ。
 
-先の例で、別で取得したキャッシュがおおよそあり、 `e.png` だけが無い場合は、 `e.png` だけを送りたいが、それがわからないと全てを含んだ bundle を送ることになってしまう。それはやはり無駄だ。
+先の例で、別で取得したキャッシュがおおよそあり、`e.png` だけが無い場合は、`e.png` だけを送りたいが、それがわからないと全てを含んだ bundle を送ることになってしまう。それはやはり無駄だ。
 
 この問題は Server Push と同じで、そのときは Cache-Digest によってキャッシュ内容のヒントを送るという提案がなされた。
 
@@ -317,11 +317,11 @@ WebBundle の Explainer には、この問題に対する考慮が一応書い�
 
 ### resources
 
-bundle で fetch の数が解決して、 ES Module を積極利用するとなると、自動生成するとしても link タグの resources が少し肥大しすぎるあたりも気になる。
+bundle で fetch の数が解決して、ES Module を積極利用するとなると、自動生成するとしても link タグの resources が少し肥大しすぎるあたりも気になる。
 
 ぱっと思い浮かぶのは import map だが、そちらも最近どうなってるかよくわからない。
 
-今はナイーブに全部書く実装になっているとは言え、あくまで Explainer ベースであり、仕様もかっちり固まっているわけではなく、さらに Explainer でも別の案について書かれているため、 Experiment を進める中でもう少し良い代替案がでることを期待したい。
+今はナイーブに全部書く実装になっているとは言え、あくまで Explainer ベースであり、仕様もかっちり固まっているわけではなく、さらに Explainer でも別の案について書かれているため、Experiment を進める中でもう少し良い代替案がでることを期待したい。
 
 
 ## DEMO
@@ -333,7 +333,7 @@ bundle で fetch の数が解決して、 ES Module を積極利用するとな�
 
 ## Outro
 
-まだまだ実装が始まったばかりで、 Explainer と Design Doc から仮実装されたような状態であるため、仕様が固まっているとはいえないだろう。
+まだまだ実装が始まったばかりで、Explainer と Design Doc から仮実装されたような状態であるため、仕様が固まっているとはいえないだろう。
 
 その中でも、コアの部分についてはある程度動いており、いくつかのユースケースは実現できることが確認できた。
 

@@ -4,7 +4,7 @@
 
 昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。
 
-Safari による ITP や、 Chrome による Privacy Sandbox への移行など、技術的な変化も著しい。
+Safari による ITP や、Chrome による Privacy Sandbox への移行など、技術的な変化も著しい。
 
 こうした技術の変遷を観測し、調査検証を行うために、これまで避けていた Web 広告を本サイトに導入することにした。
 
@@ -18,7 +18,7 @@ Safari による ITP や、 Chrome による Privacy Sandbox への移行など�
 そのため、本サイトでは以下のように、別に必要はない機能やサービスをあえて導入している。
 
 - AMP
-  - AMP より Origin の方が速く、 SEO は特に気にしてないので本来は必要無い
+  - AMP より Origin の方が速く、SEO は特に気にしてないので本来は必要無い
   - AMP 自体の評価のために対応している
 - Google Analytics
   - Access Log や Reporting も手元にあるため、ダッシュボードを見ることはほぼない
@@ -48,7 +48,7 @@ Safari による ITP や、 Chrome による Privacy Sandbox への移行など�
 
 本サイトは、収益化を目的としてやってるわけではないし、広告があっても邪魔なだけなので、サイトの設立時から導入するつもりは一切なかった。
 
-ところが、昨今の Web において、 3rd Party Cookie の扱いやトラッキングの議論を考える上で、広告の存在は無視することができなくなっている。
+ところが、昨今の Web において、3rd Party Cookie の扱いやトラッキングの議論を考える上で、広告の存在は無視することができなくなっている。
 
 広告を設置してない状態では、広告があることによって起こると予想される様々な事象を見落としてる可能性が考えられるだろう。
 
@@ -131,7 +131,7 @@ AMP 対応は `<amp-ad>` を用いることになる。
 
 AdSense から ads.txt への記載内容が提供されたため、それを素直に転記した。
 
-AdSense は `blog.jxck.io` にしか掲載しないが、 ads.txt は `jxck.io` レベルで提供する必要があり、そこは気に食わないがおとなしく従うことにした。
+AdSense は `blog.jxck.io` にしか掲載しないが、ads.txt は `jxck.io` レベルで提供する必要があり、そこは気に食わないがおとなしく従うことにした。
 
 
 ### Privacy Policy 対応
@@ -162,7 +162,7 @@ blog.jxck.io
 
 v3 の nonce + strict-dynamic ベースにへの以降は前々から計画していたため、これを機に v3 に移行しつつ対応しようと考えた。
 
-しかし、 nonce + strict-dynamic にしても、 AdSense のスクリプトが生成するどこかの `<script>` タグが CSP に違反してしまい、うまく適用ができなかった。
+しかし、nonce + strict-dynamic にしても、AdSense のスクリプトが生成するどこかの `<script>` タグが CSP に違反してしまい、うまく適用ができなかった。
 
 strict-dynamic であれば動的生成の `<script>` も対応できるはずだったが、これが仕様や実装の問題なのか、適用方法の問題なのか検証しきれなかった。
 
@@ -173,6 +173,6 @@ strict-dynamic であれば動的生成の `<script>` も対応できるはず�
 
 ### Outro
 
-本サイトに、 Google AdSense を導入した。
+本サイトに、Google AdSense を導入した。
 
 ここを起点に、今後 3rd Party Cookie を取り巻く Web の変遷を観察し、調査/検証を行っていく。

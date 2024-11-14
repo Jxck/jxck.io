@@ -2,7 +2,7 @@
 
 ## Intro
 
-このエントリは、 3rd Party Cookie Advent Calendar の 15 日目である。
+このエントリは、3rd Party Cookie Advent Calendar の 15 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
@@ -12,7 +12,7 @@
 
 ## 制限をどう迂回するか
 
-ITP 以降、 3rd Party Cookie への制限が厳しくなると、従来トラッキングをしていた事業者たちは「トラッキングができる別の方法」を求めることになった。
+ITP 以降、3rd Party Cookie への制限が厳しくなると、従来トラッキングをしていた事業者たちは「トラッキングができる別の方法」を求めることになった。
 
 今まで動いていた機能が動かなくなれば、代替手段を探したくなる気持ちはわからなくはない。トラッキングができなくなることで、広告のための分析精度が落ちると、収益が下がってサービスの継続性に関わる場合もあるだろう。
 

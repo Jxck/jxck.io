@@ -21,17 +21,17 @@ Clear-Site-Data Header の実装が進んでいる。
 
 これらを、ログアウト処理の中で各 API を適切に呼び出し、全て確実に削除するのは簡単ではない。
 
-また、 httponly の Cookie や browser cache などは、 JS からの削除もできない。
+また、httponly の Cookie や browser cache などは、JS からの削除もできない。
 
 SPA のように実装されている場合は、その状態を含めて初期化しないと不整合が発生する場合もある。
 
-こうした問題に対して策定されたのが、 Clear-Site-Data Header である。
+こうした問題に対して策定されたのが、Clear-Site-Data Header である。
 
 - https://w3c.github.io/webappsec-clear-site-data/#http-headerdef-clear-site-data
 
-ブラウザにあるデータ削除機能が、 API として出たというイメージだ。
+ブラウザにあるデータ削除機能が、API として出たというイメージだ。
 
-ページを遷移しなくても、 `fetch()` などで受信したレスポンスヘッダに含まれれば、そのコンテキストで削除が実施される。
+ページを遷移しなくても、`fetch()` などで受信したレスポンスヘッダに含まれれば、そのコンテキストで削除が実施される。
 
 
 ## Clear-Site-Data Header
@@ -59,14 +59,14 @@ Type は現時点では以下が定義されている。
 
 httponly, secure の有無に関わらず、全ての Cookie が消える。
 
-(`document.cookie` や [Cookie Store API](https://wicg.github.io/cookie-store/explainer.html) も全て同じ Cookie を見ているため、 storage ではなく cookie である)
+(`document.cookie` や [Cookie Store API](https://wicg.github.io/cookie-store/explainer.html) も全て同じ Cookie を見ているため、storage ではなく cookie である)
 
-また Basic Auth の Authorization Header や TLS の Channel ID 、 Token Binding なども対象になっている。
+また Basic Auth の Authorization Header や TLS の Channel ID 、Token Binding なども対象になっている。
 
 
 ### cache
 
-ブラウザキャッシュのみであり、 Cache API は storage 扱いとなる。
+ブラウザキャッシュのみであり、Cache API は storage 扱いとなる。
 
 
 ### storage
@@ -136,7 +136,7 @@ executionContext は他の Tab を含めて対応するために
 navigator.storage.clear("cache")
 ```
 
-しかし、 `navigator.storage.clear("executionContexts")` を実行した場合、開いている全てのタブにおいて `location.reload()` 相当が実行されるという API の設計に疑問が出た。
+しかし、`navigator.storage.clear("executionContexts")` を実行した場合、開いている全てのタブにおいて `location.reload()` 相当が実行されるという API の設計に疑問が出た。
 
 - [storage.clear("executionContexts") ends up doing a reload across tabs - Issue #21 - w3c/webappsec-clear-site-data](https://github.com/w3c/webappsec-clear-site-data/issues/21)
 

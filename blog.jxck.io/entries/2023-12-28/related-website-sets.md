@@ -2,12 +2,12 @@
 
 ## Intro
 
-このエントリは、 3rd Party Cookie Advent Calendar の 26 日目である。
+このエントリは、3rd Party Cookie Advent Calendar の 26 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
 
-今日からは、 Privacy Sandbox の「広告」以外の API を解説していく。
+今日からは、Privacy Sandbox の「広告」以外の API を解説していく。
 
 
 ## 同一組織の別ドメイン
@@ -38,7 +38,7 @@
 
 同じ運営母体(Party)でありながら、その全てが 3rd Party Cookie で連携しており、それが塞がれると全てが連携できなくなる。
 
-この制限を緩和するために提案されたのが、 Related Website Sets だ。
+この制限を緩和するために提案されたのが、Related Website Sets だ。
 
 
 ## Related Website Sets
@@ -77,13 +77,13 @@ Chrome はこれを読み込んで、ドメインの関連を認識するのだ�
 
 認識されると無制限で Cookie が読めるというわけでは無い(First Party Sets のころはそうだった気がする)。
 
-RWS ではどうなるかというと、 Storage Access API で prompt が出ずに Cookie を取得できるようになる。
+RWS ではどうなるかというと、Storage Access API で prompt が出ずに Cookie を取得できるようになる。
 
-もし RWS に対応してないブラウザでも、 SAA に対応していれば prompt を経て Cookie が取得できる点で、互換性がある設計とは言えるだろう。
+もし RWS に対応してないブラウザでも、SAA に対応していれば prompt を経て Cookie が取得できる点で、互換性がある設計とは言えるだろう。
 
 これで、例えば認証連携のような場合は `<iframe>` から SAA を呼ぶことで、ユースケースの継続ができる可能性が増える。
 
-一方、 CDN から画像などを取得するケースでは、 SAA が呼べない。そこで、 Top Level Window 側で CDN のための SAA を取得するための拡張 API が追加されている。
+一方、CDN から画像などを取得するケースでは、SAA が呼べない。そこで、Top Level Window 側で CDN のための SAA を取得するための拡張 API が追加されている。
 
 ```js
 document.requestStorageAccessFor("https://cdn.example.com")

@@ -76,9 +76,9 @@ PWA が始まったときから Podcast を PWA でできないかと取り組�
 
 ## PWA 化
 
-従来の mozaic.fm にも Service Worker は入れていたが、 Install するところまでは想定した実装をしていなかった。
+従来の mozaic.fm にも Service Worker は入れていたが、Install するところまでは想定した実装をしていなかった。
 
-今回は、 Install 可能にしつつ以下の API を入れることで、いわゆる Native Podcast App に挙動を近づけることを目指した。
+今回は、Install 可能にしつつ以下の API を入れることで、いわゆる Native Podcast App に挙動を近づけることを目指した。
 
 - Before Install Prompt
 - Periodic Background Sync
@@ -93,9 +93,9 @@ Podcast アプリの実態は、音声が再生できる RSS リーダーであ�
 
 Service Worker は background sync が従来からあるが、これは「オフライン中に発生したリクエストを、オンライン復帰時に再送する」といったユースケースをカバーしている。
 
-サーバ側でフィードを更新したときに Push を送る方法もあるが、 Push は届くとは限らない上に、 Permission の問題もある。
+サーバ側でフィードを更新したときに Push を送る方法もあるが、Push は届くとは限らない上に、Permission の問題もある。
 
-そこで、 Silent Push を待っていたのだが、先に Periodic Background Sync(PBS) が提案された。
+そこで、Silent Push を待っていたのだが、先に Periodic Background Sync(PBS) が提案された。
 
 - [Periodic Background Sync 及び Web を Install するということ | blog.jxck.io](https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html)
 
@@ -115,7 +115,7 @@ PBS のために、性能をフルに発揮するにはインストールが必�
 
 Service Worker の Cache は Cache API で行うのが基本だ。
 
-しかし、 mozaic.fm の音声ファイルはサイズも大きいため、 Service Worker の Install 中に全て入れておくのは適切ではない。
+しかし、mozaic.fm の音声ファイルはサイズも大きいため、Service Worker の Install 中に全て入れておくのは適切ではない。
 
 また、音声は Range リクエストであるため、再生中に裏でキャッシュするのも適さない。
 
@@ -131,7 +131,7 @@ Service Worker の Cache は Cache API で行うのが基本だ。
 
 PBS + Bgfetch が鉄板の組み合わせだと思っていたので、ここは意外だった。詳細は詰めきれていないが理由などをもう少し調査しておきたい。
 
-なお、 Bgfetch は cors が必要だが、 `<audio>` のリクエストが no-cors なこと、そして SW を経由したときに Cross-Origin-Resource-Policy の設定を求められたあたりがハマった。
+なお、Bgfetch は cors が必要だが、`<audio>` のリクエストが no-cors なこと、そして SW を経由したときに Cross-Origin-Resource-Policy の設定を求められたあたりがハマった。
 
 
 ### Badging API
@@ -140,7 +140,7 @@ PBS + Bgfetch が鉄板の組み合わせだと思っていたので、ここは
 
 これも Badging API として提案されているため、導入した。
 
-具体的には PBS で更新があったときだけ、無印のバッジを表示し、 DOMContentLoaded でクリアしている。
+具体的には PBS で更新があったときだけ、無印のバッジを表示し、DOMContentLoaded でクリアしている。
 
 
 ### Content Indexing API
@@ -151,9 +151,9 @@ Badge のみでなく、更新されたコンテンツの概要をユーザに�
 
 現状 Android Chrome の実装では Download タブの中という、およそ誰も見なさそうな場所でしか表示されない。
 
-そして Install した PWA では、 Download タブは現状見れないため、あまり意味がない。
+そして Install した PWA では、Download タブは現状見れないため、あまり意味がない。
 
-しかし、これは標準化が進みユースケースが整理されれば、 UI が改善されより意味のある場所に表示されるだろう。
+しかし、これは標準化が進みユースケースが整理されれば、UI が改善されより意味のある場所に表示されるだろう。
 
 先行して登録するようにしている。
 
@@ -174,13 +174,13 @@ Badge のみでなく、更新されたコンテンツの概要をユーザに�
 
 かつては生の `<audio controls>` を入れていたが、「早送り」「巻き戻し」「再生速度変更」など、自分が Podcast アプリに欲しいと思っていた UI が無いため独自実装した。
 
-実装自体は `<mozaic-player>` という Custom Elements で実装し、 template の内容を Shadow DOM に展開する完全に Pure な WebComponents にしている。
+実装自体は `<mozaic-player>` という Custom Elements で実装し、template の内容を Shadow DOM に展開する完全に Pure な WebComponents にしている。
 
 Audio の API も生で操作し、フレームワークなどは一切利用してない。
 
-HTML Modules は実装されてないため、 fetch で代用しているが、 module は mjs を import している。
+HTML Modules は実装されてないため、fetch で代用しているが、module は mjs を import している。
 
-Player ではないが、 Bgfetch を行うためのダウンロードアイコンも、アイコン自体に Download 機能をもたせた WebComponents にしている。
+Player ではないが、Bgfetch を行うためのダウンロードアイコンも、アイコン自体に Download 機能をもたせた WebComponents にしている。
 
 これまでは Template をレンダリングした静的ページだったが、今後もこのように UI に機能を統合した WebComponents 群の組み合わせによる実装に移行していきたい。
 
@@ -193,9 +193,9 @@ ARIA 以前に、そもそもの audio の seek bar の role が progressbar か
 
 progressbar は進捗を表すが、本来値は readonly で D&D で seek できる UI に利用するのは妥当ではないように思う。
 
-slider としては `<input type=range>` があり、 D&D やネイティブのショートカットなども使える、しかしリアルタイムに value の変わる input はどうなのだろうかという疑問も残る。
+slider としては `<input type=range>` があり、D&D やネイティブのショートカットなども使える、しかしリアルタイムに value の変わる input はどうなのだろうかという疑問も残る。
 
-他の実装を参考にすると、 `<progress>` を使っているところや、 `<div role=slider>` で行っている実装が見つかったが、多くは `<div>` で実装しているようだ。 `<input>` な実装はなかった。
+他の実装を参考にすると、`<progress>` を使っているところや、`<div role=slider>` で行っている実装が見つかったが、多くは `<div>` で実装しているようだ。`<input>` な実装はなかった。
 
 折衷案として `<progress role=slider>` という実装に落ち着けて実装し終えたが、後から `<progress>` の role は仕様上変えられないことに気づいたため修正が必要な状態だ。
 
@@ -208,7 +208,7 @@ slider としては `<input type=range>` があり、 D&D やネイティブの�
 
 音声の再生をバックグラウンドにした場合、ロック画面などから共通の UI で操作ができるだろう。
 
-Web の場合も、 Media Session API を利用すると、再生や早送り巻き戻しなどを OS の UI から操作できる。
+Web の場合も、Media Session API を利用すると、再生や早送り巻き戻しなどを OS の UI から操作できる。
 
 自前で実装した Player の API を繋ぎこみ OS からも操作できるようにしている。
 
@@ -219,29 +219,29 @@ Media Session とは逆に、ロックがかからないようにする API が 
 
 動画があるわけではないため、ロックしたいモチベーションは音声にはあまりなさそうだが、一応再生時は Lock するようにした。
 
-とはいえ、ロックされても音声が止まるわけではなく、 Media Session でも操作できるため、あまりいらない気はしている。
+とはいえ、ロックされても音声が止まるわけではなく、Media Session でも操作できるため、あまりいらない気はしている。
 
 邪魔だったら消すつもりだ。
 
 
 ### Portal Preview
 
-エピソードごとに付与している Show Note には、 Podcast 内で言及した URL が多く載っている。
+エピソードごとに付与している Show Note には、Podcast 内で言及した URL が多く載っている。
 
 あまりに多いため、マウスオーバーによる Preview を Portal により実装している。
 
 実は Portal が出てすぐに入れた機能で、完全に忘れていたが今回の修正でみつかったものだ。
 
-UI が、特にモバイル対応周りが詰めきれてないが、 Portal もまだまだ過渡期なので、そのうちまた修正する。
+UI が、特にモバイル対応周りが詰めきれてないが、Portal もまだまだ過渡期なので、そのうちまた修正する。
 
-機能としては別になくてもいいため、 Portal がデフォルトになってきたら、無効化する UI を入れるか、消す。
+機能としては別になくてもいいため、Portal がデフォルトになってきたら、無効化する UI を入れるか、消す。
 
 
 ## Security
 
-blog.jxck.io の方に Analytics / Ad を入れたため、 3rd Party のコードが多く、 CSP の設定などもかなり複雑になった。
+blog.jxck.io の方に Analytics / Ad を入れたため、3rd Party のコードが多く、CSP の設定などもかなり複雑になった。
 
-代わりに、 mozaic.fm にはそうした 3rd Party のコードは一切なく、外部ライブラリなども一切使ってないため、ガチガチに固めることができる。
+代わりに、mozaic.fm にはそうした 3rd Party のコードは一切なく、外部ライブラリなども一切使ってないため、ガチガチに固めることができる。
 
 そこで以下を見直した。
 
@@ -256,19 +256,19 @@ blog.jxck.io の方に Analytics / Ad を入れたため、 3rd Party のコー�
 
 ### CSP v3
 
-Origin ベースの CSP をやめ、 nonce と integrity ベースの CSP v3 に移行することにした。
+Origin ベースの CSP をやめ、nonce と integrity ベースの CSP v3 に移行することにした。
 
 本来 nonce は毎回違う値が必要だが、これを実現するには静的な配信をやめてサーバ側で毎回生成する必要がある。
 
-しかし、アプリサーバをあまり持ちたくなかったため、 integrity ベースだけにしようと考えた。
+しかし、アプリサーバをあまり持ちたくなかったため、integrity ベースだけにしようと考えた。
 
-ところが、 integrity ベースだと CSP のレポート収集を検証する点であまりうれしくない。
+ところが、integrity ベースだと CSP のレポート収集を検証する点であまりうれしくない。
 
-そこで、 CSPv3 のアンチパターンである固定 nonce でとりあえず導入することにした、値は integrity と同じである。
+そこで、CSPv3 のアンチパターンである固定 nonce でとりあえず導入することにした、値は integrity と同じである。
 
 このサイト自体が CSP で防御するほど機能がないため、特に問題はないが、もし本番環境で導入する際は、必ず nonce を毎回ランダムに生成するようにするべきだ。
 
-Report については、 User Script や拡張などもあるかもしれないが、 Report-Only もそろそろ飽きたので外すことにした。
+Report については、User Script や拡張などもあるかもしれないが、Report-Only もそろそろ飽きたので外すことにした。
 
 何かあれば実際にブロックするため、レポートもより慎重に見ていきたい。
 
@@ -303,13 +303,13 @@ Site Isolation を固めることで、サイトをより強固に Origin に閉
 
 ### Referrer Policy
 
-Referrer Policy は `no-referrer-when-downgrade` が default とされており、 Cross Origin でも URL 全体が送られる。
+Referrer Policy は `no-referrer-when-downgrade` が default とされており、Cross Origin でも URL 全体が送られる。
 
-本来 Show Note から参照している外部のページには、 Referer を送っても良いため、この値でも問題はない。
+本来 Show Note から参照している外部のページには、Referer を送っても良いため、この値でも問題はない。
 
-しかし、認証を行いパーソナライズされたページなどでは、サイトの外に URL が漏れることを防ぐために、 `strict-origin-when-cross-origin` がより理想とされている。
+しかし、認証を行いパーソナライズされたページなどでは、サイトの外に URL が漏れることを防ぐために、`strict-origin-when-cross-origin` がより理想とされている。
 
-そこで、本サイトもパーソナライズは一切してないが、 `strict-origin-when-cross-origin` に変更してみることにした。
+そこで、本サイトもパーソナライズは一切してないが、`strict-origin-when-cross-origin` に変更してみることにした。
 
 - [Referrer-Policy によるリファラ制御 | blog.jxck.io](https://blog.jxck.io/entries/2018-10-08/referrer-policy.html)
 
@@ -327,11 +327,11 @@ blog にも入れた機能だが、よりインタラクティブな Form で実
 
 近年の Web 開発につきものなコードのトランスパイルを一切行っていない。
 
-ビルドは gz/br の生成ので、 WebPack や Babal のような変換が無く SSR もない。
+ビルドは gz/br の生成ので、WebPack や Babal のような変換が無く SSR もない。
 
-型の整合性チェックはテストと位置づけているため、 TypeScript ではなく Pure JS だが、 JSDoc に型を書きテストで tsc を叩いてる。
+型の整合性チェックはテストと位置づけているため、TypeScript ではなく Pure JS だが、JSDoc に型を書きテストで tsc を叩いてる。
 
-Dev Server も不要でリロードすれば反映され、 package.json, babelrc, webpack.config といったファイルのメンテという不毛なタスクが無いのは、開発体験が良い。
+Dev Server も不要でリロードすれば反映され、package.json, babelrc, webpack.config といったファイルのメンテという不毛なタスクが無いのは、開発体験が良い。
 
 
 ### Spotify
@@ -355,7 +355,7 @@ Spotify も Podcast のサポートを始めたため、登録した。
 
 ### HTML Modules
 
-話が進んだので入れられるかと思ったら、 Security Issue で止まってしまったのでペンディング。
+話が進んだので入れられるかと思ったら、Security Issue で止まってしまったのでペンディング。
 
 
 ### Document Policy
@@ -365,9 +365,9 @@ Spotify も Podcast のサポートを始めたため、登録した。
 
 ### Silent Push
 
-ただし条件は厳しいが、 User Visible ではない Push が使える場面があるように思う。
+ただし条件は厳しいが、User Visible ではない Push が使える場面があるように思う。
 
-ブラウザ依存かつ、 Unstable と思われるため調査が面倒で実施しなかった。
+ブラウザ依存かつ、Unstable と思われるため調査が面倒で実施しなかった。
 
 今後 Permission が Install に依存するようになると、ある程度現実味が出てきそうだ。
 
@@ -384,26 +384,26 @@ Rust で ID3 のパース自体は目処がたっていたのだが、そもそ�
 
 しかし、お作法として fetch 自体は `<audio>` に任せるべきだろうと考える。
 
-なのでこれを実現するためには、 `<audio>` が取得したバイナリを取得する API を標準化するとこからやないといけない。
+なのでこれを実現するためには、`<audio>` が取得したバイナリを取得する API を標準化するとこからやないといけない。
 
-ところが、 `<audio>` は Range なので取得と定義すのも難しい `onmetadataloaded` でも良さそうだが、それだけでは済まない。
+ところが、`<audio>` は Range なので取得と定義すのも難しい `onmetadataloaded` でも良さそうだが、それだけでは済まない。
 
 ということで諦めた。
 
 
 ### SXG
 
-HTML + JS + MP3 で固めた WebPackaging をやろうと考えていたが、 SXG Extension に対応した証明書が一箇所しか提供して無く地味に高い。
+HTML + JS + MP3 で固めた WebPackaging をやろうと考えていたが、SXG Extension に対応した証明書が一箇所しか提供して無く地味に高い。
 
 そのうち Let's Encrypt が提供してくれることを期待して保留している。
 
 
 ## Outro
 
-ほとんどの機能が Android Chrome でしか動かないが、 Emulator で実装したので実機で動くかはわからない。
+ほとんどの機能が Android Chrome でしか動かないが、Emulator で実装したので実機で動くかはわからない。
 
-そして、 PC 版 Chrome は実装がこなれてないのか、挙動が安定せずよく壊れる。
+そして、PC 版 Chrome は実装がこなれてないのか、挙動が安定せずよく壊れる。
 
-とにかく、壊れることが多々あるが、もし音声が聴けないレベルで壊れていたら、 Podcast アプリで聞いてほしい。
+とにかく、壊れることが多々あるが、もし音声が聴けないレベルで壊れていたら、Podcast アプリで聞いてほしい。
 
 今後も、新しい機能の検証のために、手軽に実装を追加して試すための土台として使っていきたい。

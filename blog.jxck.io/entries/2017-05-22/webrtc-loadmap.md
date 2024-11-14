@@ -2,7 +2,7 @@
 
 ## Intro
 
-Google の Product Manager である [Huib Kleinhout](https://jp.linkedin.com/in/huibkleinhout) が、 disscuss-webrtc の ML に以下のような投稿をした。
+Google の Product Manager である [Huib Kleinhout](https://jp.linkedin.com/in/huibkleinhout) が、disscuss-webrtc の ML に以下のような投稿をした。
 
 [Completing WebRTC 1.0](https://groups.google.com/d/msg/discuss-webrtc/f4Jg53Phgco/YfetnmoqBQAJ)
 
@@ -22,7 +22,7 @@ WebRTC 1.0 を年内に終わらせるためのロードマップ(Chrome の改�
 
 先に現時点の問題について整理する。
 
-WebRTC は主に、 [IETF が策定するプロトコル](https://datatracker.ietf.org/wg/rtcweb/documents/) と、 [W3C が策定する API](https://www.w3.org/TR/webrtc/) によってなりたち、ブラウザはその仕様に準拠した実装をおこなうことで相互接続が実現されるのが望ましい。
+WebRTC は主に、[IETF が策定するプロトコル](https://datatracker.ietf.org/wg/rtcweb/documents/) と、[W3C が策定する API](https://www.w3.org/TR/webrtc/) によってなりたち、ブラウザはその仕様に準拠した実装をおこなうことで相互接続が実現されるのが望ましい。
 
 しかし、そもそも複雑な問題を解決するために仕様は大きく、さらに SDP など既存実装との互換などの問題もあり、すり合わせる作業に時間がかかっていた。
 
@@ -30,14 +30,14 @@ WebRTC は主に、 [IETF が策定するプロトコル](https://datatracker.ie
 
 なによりも、最重要な問題の一つとなるマンダトリコーデック(実装必須となる共通コーデック)について、政治的な決着をつけきれずにいた期間も長い。
 
-結果、 Chrome と Firefox ですら、すり合わせができていない部分が残っている現状だった。
+結果、Chrome と Firefox ですら、すり合わせができていない部分が残っている現状だった。
 
 
 ## ロードマップ
 
 今回は、そんな WebRTC 1.0 の仕様に関しての展望と、それを相互接続性という観点で実現するために Chrome が行うタスクなどについて言及されている。
 
-- WebRTC 1.0 の仕様を、 W3C / IETF 双方で完成させる。
+- WebRTC 1.0 の仕様を、W3C / IETF 双方で完成させる。
   - それぞれのギャップを埋めて公開する。
 
 - Chrome 実装の標準とのギャップを解決する。

@@ -4,7 +4,7 @@
 
 Web Authentication(WebAuthN) API の策定と実装が進んでいる。
 
-これを用いると、 FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。
+これを用いると、FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。
 
 今回は YubiKey 認証の実装を通じて、ブラウザ API の呼び出しと、サーバ側で必要な処理について解説する。
 
@@ -32,24 +32,24 @@ YubiKey Login の動作イメージは以下。
 
 ## WebAuthentication API
 
-WebAuthentication API は、 Credential Management API の拡張になっている。
+WebAuthentication API は、Credential Management API の拡張になっている。
 
 - [Credential Management Level 1](https://w3c.github.io/webappsec-credential-management/)
 - [Web Authentication: An API for accessing Public Key Credentials - Level 1](https://w3c.github.io/webauthn/)
 
-JS API としては、 Credential Management API をそのまま使う。
+JS API としては、Credential Management API をそのまま使う。
 
-しかし、ユーザが入力する PasswordCredential ではなく、 FIDO U2F で生成する PublicKeyCredential を使う。
+しかし、ユーザが入力する PasswordCredential ではなく、FIDO U2F で生成する PublicKeyCredential を使う。
 
-従って、基本的には YubiKey に限らず、 FIDO U2F 対応の Authenticator であれば同じコードで動かすことができる。
+従って、基本的には YubiKey に限らず、FIDO U2F 対応の Authenticator であれば同じコードで動かすことができる。
 
 この時ブラウザから Authenticator を起動する API と、その結果をサーバで処理する方法がこの仕様に定義されている。
 
 サーバ/ブラウザ間でやり取りするバイナリは、なんらかの方法でシリアライズして送る。
 
-今回は、 Base64URL と JSON を用いるが、この範囲であれば別のフォーマットでも良さそうに思う。
+今回は、Base64URL と JSON を用いるが、この範囲であれば別のフォーマットでも良さそうに思う。
 
-また、 Authenticator が生成する情報は一部 [CBOR](https://tools.ietf.org/html/rfc7049) が利用されているが、その解説は省略する。
+また、Authenticator が生成する情報は一部 [CBOR](https://tools.ietf.org/html/rfc7049) が利用されているが、その解説は省略する。
 
 実際に仕様に基づき、コードの流れを解説する。サーバも JS に揃えるため Node で実装している。
 
@@ -58,7 +58,7 @@ JS API としては、 Credential Management API をそのまま使う。
 
 先に、ざっくりとした流れを解説する。
 
-ユーザはまず Registration フェーズとして、 YubiKey を用いて公開/秘密鍵のペアを生成しサービスに登録する。
+ユーザはまず Registration フェーズとして、YubiKey を用いて公開/秘密鍵のペアを生成しサービスに登録する。
 
 ログインは Authentication フェーズとして、サービスが生成した乱数(challenge)を秘密鍵で署名してサービスに送り返す。
 
@@ -83,7 +83,7 @@ const clientCredentialOption = {
     name: "labs.jxck.io",
   },
   user: {
-    id: crypto.randomBytes(32) // 一意な値、 username を元に生成しても良い
+    id: crypto.randomBytes(32) // 一意な値、username を元に生成しても良い
     name: username,
     displayName: username,
   },
@@ -121,7 +121,7 @@ const {attestationObject, clientDataJSON} = response
 
 type は `"public-key"` になっており、生成した鍵ペアの公開鍵が入っていることがわかる。
 
-response の中がそうした値になっており、 attestationObject は CBOR でエンコードされている。
+response の中がそうした値になっており、attestationObject は CBOR でエンコードされている。
 
 中身はサーバで解読するため、そちらで解説する。
 
@@ -151,7 +151,7 @@ response の中がそうした値になっており、 attestationObject は CBO
 } = attestationObject
 ```
 
-ここまで確認したら、 clientDataJSON (バイナリ) を元に SHA-256 を取得しておく。
+ここまで確認したら、clientDataJSON (バイナリ) を元に SHA-256 を取得しておく。
 
 ```js
 const clientDataHash = crypto.createHash("sha256").update(clientDataJSON).digest()
@@ -193,7 +193,7 @@ sigCount は署名をした回数で、認証時に利用するため、保存�
 
 #### authData
 
-flag の AttestedCredentialData が 1 なので、 sigCount より後ろを AttestedCredentialData としてパースする。
+flag の AttestedCredentialData が 1 なので、sigCount より後ろを AttestedCredentialData としてパースする。
 
 - aaguid (16byte)
 - credentialIdLength (2byte)
@@ -216,7 +216,7 @@ CBOR でパースすると以下のように数字がキーのオブジェクト
 }
 ```
 
-これにより、 YubiKey から受け取った PublicKey が、 EC2 で P-256 を使い認証は ES256 (ECDSA with SHA-256) であることがわかる。
+これにより、YubiKey から受け取った PublicKey が、EC2 で P-256 を使い認証は ES256 (ECDSA with SHA-256) であることがわかる。
 
 ExtensionDataIncluded は今回 0 なので拡張は無し。
 
@@ -255,7 +255,7 @@ sig は Attestation Signature の値だ。
 PublicKeyU2F = 0x04 || x || y
 ```
 
-これと、 rpidHash, clientDataHash, credentialId を連結し、先頭に 0x00 を加えると、署名対象のデータが得られる。
+これと、rpidHash, clientDataHash, credentialId を連結し、先頭に 0x00 を加えると、署名対象のデータが得られる。
 
 ```js
 verificationData = 0x00 || rpIdHash || clientDataHash || credentialId || publicKeyU2F
@@ -263,7 +263,7 @@ verificationData = 0x00 || rpIdHash || clientDataHash || credentialId || publicK
 
 これを x5c から取り出した attCert で署名した結果が sig と同じになるかを確認すれば良い。
 
-x5c は ANSI X9.62 Public Key Format というバイナリ形式で、 Node では PEM でないと扱いにくい。
+x5c は ANSI X9.62 Public Key Format というバイナリ形式で、Node では PEM でないと扱いにくい。
 
 これは base64 でシリアライズし 64 文字で改行し、ヘッダとフッタをつければ一応 PEM になる。
 
@@ -351,7 +351,7 @@ const { id, rawId, response } = credential // id は rawId の base64url
 const { type, authenticatorData, signature, userHandle, clientDataJSON } // type = "public-key"
 ```
 
-なお、 credential.rawId は credential.id の base64url なので、 id の方だけそのまま送れば良い。
+なお、credential.rawId は credential.id の base64url なので、id の方だけそのまま送れば良い。
 
 
 ### 3. サービスは中身を確認し、ユーザを認証する
@@ -383,9 +383,9 @@ userHandle は今回使わないので無視する。
 - attestedCredentialData (var)
 - extensions (var)
 
-rpidHash が、 Registration 時にサーバの提示した RPID の SHA-256 と同じことを確認する。
+rpidHash が、Registration 時にサーバの提示した RPID の SHA-256 と同じことを確認する。
 
-flag も同じだが、今回は AttestedCredentialData も無いため、 UserPresent 以外 0 となる。
+flag も同じだが、今回は AttestedCredentialData も無いため、UserPresent 以外 0 となる。
 
 次に ClientDataJSON の SHA-256 ハッシュを取得する。
 
@@ -393,9 +393,9 @@ flag も同じだが、今回は AttestedCredentialData も無いため、 UserP
 const hash = crypto.createHash("sha256").update(clientDataJSON).digest()
 ```
 
-これを、 authenticatorData と連結したものを署名したものが signature と一致するかを確認すれば良い。
+これを、authenticatorData と連結したものを署名したものが signature と一致するかを確認すれば良い。
 
-ここで使う PublicKey は、 Registration でユーザに紐付けて保存した PublicKey だが、これを PEM にする場合は少しいじる必要が有る。
+ここで使う PublicKey は、Registration でユーザに紐付けて保存した PublicKey だが、これを PEM にする場合は少しいじる必要が有る。
 
 結論から言うと、以下のようなメタデータを付与する必要があり、それ以外は先の方法と同じく base64 を 64bit ごとに折り返せば良い。
 
@@ -436,7 +436,7 @@ const verified = crypto
 
 ## Outro
 
-WebAuthentication API により、 FIDO U2F を用いた認証が Web 標準でも可能になった。
+WebAuthentication API により、FIDO U2F を用いた認証が Web 標準でも可能になった。
 
 色々と細かい処理はあれど、基本の流れは鍵ペアの生成と交換、その検証からなる流れということがわかる。
 

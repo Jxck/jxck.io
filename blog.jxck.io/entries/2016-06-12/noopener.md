@@ -20,17 +20,17 @@
 
 ![Opener によって別タブで開いた画面が元の画面を遷移させている](window-opener.gif#150x150 "window opener demo")
 
-このデモでは、 https://labs.jxck.io/noopener/ から開いた https://labs.jxck.io/noopener/opener-change.html のページが別タブで開いた後、最初に開いたタブが勝手に http://example.com に遷移しているというものである。
+このデモでは、https://labs.jxck.io/noopener/ から開いた https://labs.jxck.io/noopener/opener-change.html のページが別タブで開いた後、最初に開いたタブが勝手に http://example.com に遷移しているというものである。
 
 最初のページを Parent 、開いたタブを Child とする。
 
-Child 側では以下のような JS が書かれており、 Parent 側の location を変えて、任意の URL に遷移させることが可能である。
+Child 側では以下のような JS が書かれており、Parent 側の location を変えて、任意の URL に遷移させることが可能である。
 
 ```js
 window.opener.location = http://example.com
 ```
 
-多くのブラウザでは、 child が `target=blank_` により別タブで開いた場合に、そちらが手前に表示され、 parent は裏に回る。
+多くのブラウザでは、child が `target=blank_` により別タブで開いた場合に、そちらが手前に表示され、parent は裏に回る。
 
 child で上記の JS が動くと、裏で勝手に parent が画面遷移している状態となる。
 
@@ -43,7 +43,7 @@ child で上記の JS が動くと、裏で勝手に parent が画面遷移し�
 
 `target=_blank` が無いリンクを、別タブとして開いても、この攻撃は再現しないようである。
 
-しかし、 `target=_blank` がついたリンクを、さらに「別タブとして開く」機能を用いて開いた場合の挙動は、ブラウザによって異なる。
+しかし、`target=_blank` がついたリンクを、さらに「別タブとして開く」機能を用いて開いた場合の挙動は、ブラウザによって異なる。
 
 Caption: ブラウザごとのリンククリック時の挙動
 | Browser   | Click | Shift+click | Meta/Ctrl+click |
@@ -89,7 +89,7 @@ Caption: ブラウザごとのリンククリック時の挙動
 
 - 見た目がごく普通のサイト `https://happy.example.jp` を用意する
 - このサイトに `window.opener.location = "https://cgn.example.com/login"` を仕込む
-- (この JS が動くなら、 XSS でこのスクリプトを別サービスに仕込んでも代替できる)
+- (この JS が動くなら、XSS でこのスクリプトを別サービスに仕込んでも代替できる)
 
 
 ### 収集用サイト(左下)
@@ -144,11 +144,11 @@ Caption: ブラウザごとのリンククリック時の挙動
 
 ## noopener
 
-parent 側のリンクタグに `rel=noopener` を追加することで、 child が parent を `window.opener` 経由で参照できなくなるため、 parent の location の変更などを抑止することが可能である。
+parent 側のリンクタグに `rel=noopener` を追加することで、child が parent を `window.opener` 経由で参照できなくなるため、parent の location の変更などを抑止することが可能である。
 
 [4.6.6.11 Link type "noopener" | WHATWG Spec](https://html.spec.whatwg.org/multipage/semantics.html#link-type-noopener)
 
-ただし、 Chrome, Opera 以外は現時点で `noopener` に対応していない。
+ただし、Chrome, Opera 以外は現時点で `noopener` に対応していない。
 
 [rel=noopener | Can I use](http://caniuse.com/#feat=rel-noopener)
 
@@ -162,7 +162,7 @@ parent 側のリンクタグに `rel=noopener` を追加することで、 child
 
 ただし `noreferrer` はその名の通り Referrer を抑止する属性であるため、副作用には注意が必要である。
 
-`rel` の有無により、 child から parent ページの遷移の動作を試すデモも以下に用意した。
+`rel` の有無により、child から parent ページの遷移の動作を試すデモも以下に用意した。
 
 - https://labs.jxck.io/noopener/
 

@@ -15,9 +15,9 @@ WebTransport については [以前解説した](https://blog.jxck.io/entries/2
   - QuicTransport
   - Http3Transport
 
-今回入ったのは、 WebTransport の通信レイヤとして QUIC を用いた QuicTransport という位置づけになる。
+今回入ったのは、WebTransport の通信レイヤとして QUIC を用いた QuicTransport という位置づけになる。
 
-IETF で WebTransport over QUIC としてバインディングの仕様が策定され、 WICG でブラウザ API が策定されている。
+IETF で WebTransport over QUIC としてバインディングの仕様が策定され、WICG でブラウザ API が策定されている。
 
 - draft-vvv-webtransport-quic-00 - WebTransport over QUIC
   - https://tools.ietf.org/html/draft-vvv-webtransport-quic-01
@@ -27,7 +27,7 @@ IETF で WebTransport over QUIC としてバインディングの仕様が策定
 
 ## Server
 
-サーバの実装はまだ少ないが Chrome のリポジトリと、 WPT(WebPlatformTest) にサンプルの実装が入っている。
+サーバの実装はまだ少ないが Chrome のリポジトリと、WPT(WebPlatformTest) にサンプルの実装が入っている。
 
 - [net/tools/quic/quic_transport_simple_server_bin.cc - chromium/src](https://chromium.googlesource.com/chromium/src/+/master/net/tools/quic/quic_transport_simple_server_bin.cc)
 - [wpt/quic_transport_server.py](https://github.com/web-platform-tests/wpt/blob/master/tools/quic/quic_transport_server.py)
@@ -116,7 +116,7 @@ await transport.close()
 
 これは WebSocket のように文字列を渡しても送れないことを意味し、その場合は TextEncoder/Decoder を使うことになるだろう。
 
-`JSON.stringify()` で送っていたようなオブジェクトも、 CBOR などを用いたバイナリシリアライズが検討されるかもしれない。
+`JSON.stringify()` で送っていたようなオブジェクトも、CBOR などを用いたバイナリシリアライズが検討されるかもしれない。
 
 (`new TextEncoder().encode(JSON.stringify())` とかでもいいのかもしれない。)
 
@@ -125,17 +125,17 @@ await transport.close()
 
 サーバとの接続/切断を `ready`, `closed` という Promise を返すプロパティで表現している。
 
-これは、 Service Worker の `navigator.serviceWorker.ready` でも採用されている手法だ。
+これは、Service Worker の `navigator.serviceWorker.ready` でも採用されている手法だ。
 
 従来であれば、内部の State は `state` に持ち、その変更を `onstatechange` で表すために EventTarget を継承するのが基本だった。
 
-しかし、 `state` へのプロパティアクセスは同期処理であるため、 Promise で表現するほうが実装上のメリットがあるという議論がされている。
+しかし、`state` へのプロパティアクセスは同期処理であるため、Promise で表現するほうが実装上のメリットがあるという議論がされている。
 
 - [WebTransport.ready - Issue #92 - WICG/web-transport](https://github.com/WICG/web-transport/issues/92)
 
-メッセージについては、明示的な `read()` もしくはそれを行う Stream の Pipe でを行うため、 `onmessage` イベントもいらない。
+メッセージについては、明示的な `read()` もしくはそれを行う Stream の Pipe でを行うため、`onmessage` イベントもいらない。
 
-内部の状態は以下なので、これが増えたらどうするかという懸念もあるが、 WebSocket も同じ状態遷移で特に増えたことはないため、問題ないということだろう。
+内部の状態は以下なので、これが増えたらどうするかという懸念もあるが、WebSocket も同じ状態遷移で特に増えたことはないため、問題ないということだろう。
 
 ```
 connecting -> connected
@@ -144,7 +144,7 @@ connected -> closed
 connected -> failed
 ```
 
-この議論の結果によっては、 EventTarget にならなくなり、 developer experience としては今までと少し違う雰囲気の使用感になりそうだ。
+この議論の結果によっては、EventTarget にならなくなり、developer experience としては今までと少し違う雰囲気の使用感になりそうだ。
 
 もし、最近やっと Safari に入り Node でも入りそうな EventTarget を使ったほうが慣れているのであれば、以下のような感じで自分で Wrap することもできるだろう。
 
@@ -221,7 +221,7 @@ interface mixin BidirectionalStreamsTransport {
 
 Bidirectional Stream をクライアントから確立する場合は `createBidirectionalStream()` を、サーバから確立する場合は `receiveBidirectionalStreams()` を用いる。
 
-(Uni/Bi)Directional x (Client/Server)Initiated が全てサポートされて Stream が得られるので、エコシステム的に言えば、 Sink/Source を定義して Stream を用意しておけば、 QUIC のメリットを活かしつつアプリケーションを組むことができる。
+(Uni/Bi)Directional x (Client/Server)Initiated が全てサポートされて Stream が得られるので、エコシステム的に言えば、Sink/Source を定義して Stream を用意しておけば、QUIC のメリットを活かしつつアプリケーションを組むことができる。
 
 例として Bi-dir で `<textarea>` の入力を送り echo back で表示するサンプルを以下に作成した。
 
@@ -252,39 +252,39 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
 
 ### Media Stream
 
-まず、このブログでも以前紹介したように、 WebRTC を比較対象に上がるのであれば、メディアの転送がどうなのかという問題になる。
+まず、このブログでも以前紹介したように、WebRTC を比較対象に上がるのであれば、メディアの転送がどうなのかという問題になる。
 
-現状 QuicTransport の転送単位は Uint8Array を基本としているため、 getUserMedia の結果からバイナリを取得するなどができれば、ビデオ会議なども可能になるポテンシャルはあるだろう。
+現状 QuicTransport の転送単位は Uint8Array を基本としているため、getUserMedia の結果からバイナリを取得するなどができれば、ビデオ会議なども可能になるポテンシャルはあるだろう。
 
-しかし、現状 getUserMedia した MediaStream API は、前述した WHATWG Stream を指すのではなく、たんなるメディアの抽象化という意味で、 Pipe しても流れるわけではない。
+しかし、現状 getUserMedia した MediaStream API は、前述した WHATWG Stream を指すのではなく、たんなるメディアの抽象化という意味で、Pipe しても流れるわけではない。
 
-Canvas 経由で ImageBitmap を取る、 WASM でエンコードする、別の Peer とつないだ PeerConnection から InsertableStream で抜くなどの方法は無くはないが、正攻法でいうと WebCodecs を待つことになる。
+Canvas 経由で ImageBitmap を取る、WASM でエンコードする、別の Peer とつないだ PeerConnection から InsertableStream で抜くなどの方法は無くはないが、正攻法でいうと WebCodecs を待つことになる。
 
-WebCodecs は現在 Intent to Implement なので、 Experiment が始まったら改めて検証する。
+WebCodecs は現在 Intent to Implement なので、Experiment が始まったら改めて検証する。
 
 - [Intent to Implement WebCodecs](https://groups.google.com/a/chromium.org/g/blink-dev/c/3oVuczJ5Ty4/m/b8VLNNvyEAAJ)
 
 
 ### Unreliable Stream
 
-QUIC が作られた背景まで遡れば、 TCP での Head of Line Blocking への対策や、 Unreliable な通信を選択肢として持つという点が UDP によるメリットとしてあった。
+QUIC が作られた背景まで遡れば、TCP での Head of Line Blocking への対策や、Unreliable な通信を選択肢として持つという点が UDP によるメリットとしてあった。
 
 DatagramTransport を使えば out of order / unreliable な read/write が可能なので、現時点では個々が QuicTransport を使用するモチベーションの一つとして考えられるだろう。
 
-(逆にそうでない場合は、「WebSocket でいいのでは?」 となってしまう可能性がある)
+(逆にそうでない場合は、「WebSocket でいいのでは?」となってしまう可能性がある)
 
 例えば、ゲームのリアルタイムなコントロールは、ゲームの性質にもよるが、全ての入力が TCP レベルでの回復を伴いながら、順序を保って確実に送られる必要は必ずしもないかもしれない。
 
-また、 getUserMedia 以外の何らかのデバイスから、大量に入力し binary serialize したオブジェクトを送るケースも考えられるだろう。
+また、getUserMedia 以外の何らかのデバイスから、大量に入力し binary serialize したオブジェクトを送るケースも考えられるだろう。
 
 
 ## Outro
 
-- WebTransport の実装の 1 つとして、 QuicTransport の Origin Trials が始まった。
+- WebTransport の実装の 1 つとして、QuicTransport の Origin Trials が始まった。
 - Promise や Stream を用いた API で、モダンな API Interface となっている。
-- QUIC の持つ、 unreliable, uni/bi-directional などの性質を上手く API に反映させている
+- QUIC の持つ、unreliable, uni/bi-directional などの性質を上手く API に反映させている
 - QUIC の特徴をアプリレイヤで活かしたいユースケースでの活用が考えられる
-- WebCodecs と組み合わせたとき、 WebRTC のようなユースケースへの応用も期待できる
+- WebCodecs と組み合わせたとき、WebRTC のようなユースケースへの応用も期待できる
 
 WebCodecs の Experiment が始まったら、追加で検証したい。
 

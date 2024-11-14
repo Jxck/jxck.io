@@ -6,12 +6,12 @@
 
 ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。
 
-今回は、 Modules の対応/非対応を切り分けるための仕様である `nomodule` 属性を解説する。
+今回は、Modules の対応/非対応を切り分けるための仕様である `nomodule` 属性を解説する。
 
 
 ## script type module
 
-classic script (module ではない JS) は、 `<script>` で指定すると、取得解析しそのまま実行される。
+classic script (module ではない JS) は、`<script>` で指定すると、取得解析しそのまま実行される。
 
 type は省略されることが多いが、その場合 `text/javascript` と解釈されている。
 
@@ -19,15 +19,15 @@ type は省略されることが多いが、その場合 `text/javascript` と�
 <script type=text/javascript src=bundle.js></script>
 ```
 
-一方、 module script (module として実装された JS) は、 `import/export` の処理や依存の解決など、これまでと異なる扱いが必要となる。
+一方、module script (module として実装された JS) は、`import/export` の処理や依存の解決など、これまでと異なる扱いが必要となる。
 
-そこで、ブラウザにおいては同じ `<script>` で指定するが、新規に導入された `type=module` を指定し、 module script であることを明示することとなった。
+そこで、ブラウザにおいては同じ `<script>` で指定するが、新規に導入された `type=module` を指定し、module script であることを明示することとなった。
 
 ```html
 <script type=module src=module.js></script>
 ```
 
-しかし、 ES Modules に対応していないブラウザは `type=module` を知らないため、 `<script>` そのものを無視する。
+しかし、ES Modules に対応していないブラウザは `type=module` を知らないため、`<script>` そのものを無視する。
 
 結果、これだけでは何も実行されない。
 
@@ -44,7 +44,7 @@ type は省略されることが多いが、その場合 `text/javascript` と�
 
 もしブラウザが ES Modules に対応していれば module script を、そうでなければ classic script を取得実行する。
 
-これを実現するために提案されたのが、 `nomodule` 属性だ。
+これを実現するために提案されたのが、`nomodule` 属性だ。
 
 [nomodule attribute](https://html.spec.whatwg.org/multipage/scripting.html#attr-script-nomodule)
 
@@ -81,7 +81,7 @@ ES Modules を実装する場合は `nomodule` の解釈が必須とされてい
 
 したがって ES Modules に対応したとされた場合は `nomodule` が理解されているとみなす。
 
-この場合、 `type=module` と `nomodule` を解釈し、 module script を実行する代わりに `nomodule` が指定された classic script を無視する。
+この場合、`type=module` と `nomodule` を解釈し、module script を実行する代わりに `nomodule` が指定された classic script を無視する。
 
 結果、以下と同等に解釈される。
 
@@ -95,8 +95,8 @@ ES Modules を実装する場合は `nomodule` の解釈が必須とされてい
 
 現時点では ES Modules で実装したコードを WebPack などでビルドした classic script を提供する運用が多いと思われる。
 
-ここで `nomodule` の実装が行き渡れば、 ES Modules 対応ブラウザに対して、 module script のまま提供でき、本来の ES Modules のメリットを先行して享受することが可能となるだろう。
+ここで `nomodule` の実装が行き渡れば、ES Modules 対応ブラウザに対して、module script のまま提供でき、本来の ES Modules のメリットを先行して享受することが可能となるだろう。
 
 しばらくは並行運用となるだろうが、現時点で WebPack などのビルドラインを持っているなら、導入の敷居は低そうにも思える。
 
-後方互換への手段が固まることは、安心して先に進む準備が整うことを意味するため、 ES Modules へ移行する上での橋渡しとして活用できるだろう。
+後方互換への手段が固まることは、安心して先に進む準備が整うことを意味するため、ES Modules へ移行する上での橋渡しとして活用できるだろう。

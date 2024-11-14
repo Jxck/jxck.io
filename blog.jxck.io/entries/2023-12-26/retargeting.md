@@ -2,7 +2,7 @@
 
 ## Intro
 
-このエントリは、 3rd Party Cookie Advent Calendar の 24 日目である。
+このエントリは、3rd Party Cookie Advent Calendar の 24 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
@@ -32,7 +32,7 @@
 
 まず、ユーザが商品を見ると、その商品を見たという情報を保存する必要がある。
 
-これを "Interest Group" といい、 JS に後に必要になる広告クリエイティブなどの情報を渡して、ブラウザに保存する形で行われる。
+これを "Interest Group" といい、JS に後に必要になる広告クリエイティブなどの情報を渡して、ブラウザに保存する形で行われる。
 
 ```js
 await navigator.joinAdInterestGroup(interestGroup)
@@ -66,7 +66,7 @@ await navigator.runAdAuction(auctionConfig)
 
 入札の結果、表示すべきクリエイティブが決まり、それを `<iframe>` に表示するのが通常の広告だ。
 
-しかし、 `<iframe>` に表示すると、 Top Level Window (つまり媒体主) は `<iframe>` とやりとりすることで、「どんな広告が表示されたか」などの情報を知ることができてしまう。
+しかし、`<iframe>` に表示すると、Top Level Window (つまり媒体主) は `<iframe>` とやりとりすることで、「どんな広告が表示されたか」などの情報を知ることができてしまう。
 
 そこで、広告は `<iframe>` ではなく `<fencedframe>` と呼ばれる、特殊なフレームに表示する。
 
@@ -79,20 +79,20 @@ await navigator.runAdAuction(auctionConfig)
 - lifecycle events
 - etc, etc
 
-通常使える JS API が使えないどころか、 Window 側が共通してアクセスできるサイズまで制限されているのは、全てそこを使って境界を跨いだ情報共有ができないようにするためだ。
+通常使える JS API が使えないどころか、Window 側が共通してアクセスできるサイズまで制限されているのは、全てそこを使って境界を跨いだ情報共有ができないようにするためだ。
 
-そして、 `<iframe>` ではなく `<fencedframe>` の利用を強制するために、 `runAdAuction` の結果は URL ではなく URN を返す。これで `<fencedframe>` を使わなければ表示ができなくしているのだ。
+そして、`<iframe>` ではなく `<fencedframe>` の利用を強制するために、`runAdAuction` の結果は URL ではなく URN を返す。これで `<fencedframe>` を使わなければ表示ができなくしているのだ。
 
 ```html
 <fencedframe src="urn:uuid:c36973b5-e5d9-de59-e4c4-364f137b3c7a" mode="opaque-ads"></fencedframe>
 ```
 
-`<fencedframe>` は、 `<iframe>` の Sandboxed などと異なり、新しい HTML として定義されているのは、もはや目的が `<iframe>` のような汎用埋め込みとは異なるからだ。
+`<fencedframe>` は、`<iframe>` の Sandboxed などと異なり、新しい HTML として定義されているのは、もはや目的が `<iframe>` のような汎用埋め込みとは異なるからだ。
 
 
 ### Trusted Execution Environment (TEE)
 
-デバイス上でオークションを走らせるのはいいとしても、そこで提供できる入札に必要な情報が、 `joinAdInterestGroup()` でしか渡せないと、入札はかなり難しくなる。
+デバイス上でオークションを走らせるのはいいとしても、そこで提供できる入札に必要な情報が、`joinAdInterestGroup()` でしか渡せないと、入札はかなり難しくなる。
 
 例えば、広告主が予算を在庫として設定し、それが尽きるまでは表示したいといった、リアルタイムな情報が提供できなくなるのだ。
 
@@ -107,21 +107,21 @@ TEE はざっくり言うと、事前に定義した処理が、確実に動い�
 
 ## なぜリタゲの API があるのか
 
-そもそも「トラッキング」が問題で 3rd Party Cookie をなくすのに、その代表格だったリタゲのための API がなぜあるのかは、 Privacy Sandbox ができた背景のところで説明した通りだ。
+そもそも「トラッキング」が問題で 3rd Party Cookie をなくすのに、その代表格だったリタゲのための API がなぜあるのかは、Privacy Sandbox ができた背景のところで説明した通りだ。
 
-無くなるユースケースはとりあえずカバーしないと、 Chrome は 3rd Party Cookie を Deprecate できない。
+無くなるユースケースはとりあえずカバーしないと、Chrome は 3rd Party Cookie を Deprecate できない。
 
 そこで、リタゲをプライバシーに配慮して行うという、無理難題を形にしたのがこの API だ。非常に複雑かつ、新たな仕組みが色々と入ってるのもそのためだ。
 
 正直複雑すぎて、どのくらいこの API が普及するのか、どの程度使いこなせるのかはよくわからない。
 
-また、普及してブラウザ上のオークションが頻繁に走るようになった時に、 UX 的にどうなるのかなども現時点ではよくわからない。
+また、普及してブラウザ上のオークションが頻繁に走るようになった時に、UX 的にどうなるのかなども現時点ではよくわからない。
 
 そして、この API もまだ決まってない部分がいくつかあり、今後どうなっていくのかも、わからない部分が多い。
 
 
 ## Standard Position
 
-Mozilla も Safari も、 Position は出していないようだ。
+Mozilla も Safari も、Position は出していないようだ。
 
 が、目的がリターゲティングである以上、問い合わせるまでもないだろうとは思う。

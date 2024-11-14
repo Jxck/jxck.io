@@ -4,16 +4,16 @@
 
 「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言っていた。
 
-そんな時代にこそ、今更だれも解説しないであろう、 bookmarklet という技術についてもう一度書いておく。
+そんな時代にこそ、今更だれも解説しないであろう、bookmarklet という技術についてもう一度書いておく。
 
 
 ## Bookmarklet
 
-簡単に言えば、 JS を書き、それを Bookmark として登録すれば、クリックするだけで現在のページでそれが動くというものだ。
+簡単に言えば、JS を書き、それを Bookmark として登録すれば、クリックするだけで現在のページでそれが動くというものだ。
 
 ブラウザ上で何かを自動化したいと思うなら、最も簡単に実現できる便利な技術だろう。
 
-似たような手法ではブラウザの Extension などもあるが、 Bookmarklet の良いところは一切誰にも邪魔されないというところだ。
+似たような手法ではブラウザの Extension などもあるが、Bookmarklet の良いところは一切誰にも邪魔されないというところだ。
 
 開発者登録も、ストアへのアップロードも、難解なドキュメントを忖度して煩雑な設定ファイルを書く必要もない。
 
@@ -24,7 +24,7 @@
 
 1. 開発者ツールで、そのページに対して行いたい処理を書く(ここでは `alert("hello")` としておく)
 2. そのコードの最初に `javascript:` を付与する (`javascript:alert("hello")`)
-3. ブックマークを登録する処理を行い、 URL の欄にコードを追加する
+3. ブックマークを登録する処理を行い、URL の欄にコードを追加する
 
 ![screencast of adding bookmarklet to browser](bookmarklet.gif#832x539 "bookmarklet on firefox")
 
@@ -38,7 +38,7 @@
 
 ### github pdf
 
-その後輩は、 github の markdown を PDF にして協力会社に送る(!!?)のに、ページごとに開発者ツールから周りの DOM をポチポチ消して整形していた。
+その後輩は、github の markdown を PDF にして協力会社に送る(!!?)のに、ページごとに開発者ツールから周りの DOM をポチポチ消して整形していた。
 
 例えば、以下の README.md だった場合は、雑にやるとこんな感じでできそうだ。
 
@@ -81,7 +81,7 @@ javascript: (() => {
 
 ### Twitter Colored Link
 
-Twitter のリンクが色も Underline も付かなくなって以降、 URL がどこにあるのかパッとわかりにくくなった。
+Twitter のリンクが色も Underline も付かなくなって以降、URL がどこにあるのかパッとわかりにくくなった。
 
 そこで、対象の `<a>` に色をつける。
 
@@ -121,7 +121,7 @@ javascript:location.href += '&tbs=qdr:m3'
 javascript:location.href = document.querySelector('link[rel="canonical"]').href
 ```
 
-ところで、 Amazon の URL の canonical は以下のようになっている。
+ところで、Amazon の URL の canonical は以下のようになっている。
 
 ```url
 https://www.amazon.co.jp/商品名/dp/XXXXXXXX
@@ -159,7 +159,7 @@ javascript: function loop(n) {
 
 今の Safari は PinP に対応している。
 
-`<video>` タグで再生されていれば基本的に表示が可能だが、 UI がない場合は以下で再生中のビデオを PinP できる。
+`<video>` タグで再生されていれば基本的に表示が可能だが、UI がない場合は以下で再生中のビデオを PinP できる。
 
 ```js
 javascript: document.querySelector('video').webkitSetPresentationMode('picture-in-picture')
@@ -174,11 +174,11 @@ Bookmarklet は、表示時に自動実行するといったことはできな�
 
 かつて Chrome では User Script など、ブラウザそのものに仕込んで、指定したページで自動実行する技術もあったが、今はない。
 
-現在では、 Tampermonkey などを用いれば同等のことを行うことができる。
+現在では、Tampermonkey などを用いれば同等のことを行うことができる。
 
 頻繁に使うようなものであれば、それに特化したブラウザ拡張などの代替手段もあるだろう。
 
-逆に有用なものは、拡張にまとめて公開する、 Tampermonkey に公開するといった方法もある。
+逆に有用なものは、拡張にまとめて公開する、Tampermonkey に公開するといった方法もある。
 
 一方、拡張は入れれば入れるほどブラウザが重くなるので、筆者は拡張を減らすために bookmarklet に戻したものも多い。
 

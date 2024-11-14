@@ -7,11 +7,11 @@
 
 ## Web のスナップショットを取る
 
-これまでは、この blog にしても、 mozaic.fm や nextwebconf にしても
+これまでは、この blog にしても、mozaic.fm や nextwebconf にしても
 
 > Web でいま何が起こっていて、これからどうなっていくのか
 
-に対して、 1 つのテーマを深掘りするスタイルを中心に行なってきた。
+に対して、1 つのテーマを深掘りするスタイルを中心に行なってきた。
 
 しかし、そこからこぼれ落ちる、テーマ立てしにくい細かくも重要な議論を、うまく扱えないかをずっと考えていた。
 
@@ -46,7 +46,7 @@
 - [ep26 Monthly Web 201708](https://mozaic.fm/episodes/26/monthly-web-201708.html)
 - [ep25 Monthly Web 201707](https://mozaic.fm/episodes/25/monthly-web-201707.html)
 
-最初 Monthly Web をブログで試行したが、思ったことが実現できなかったため、 7 月から Podcast に移すことにした。
+最初 Monthly Web をブログで試行したが、思ったことが実現できなかったため、7 月から Podcast に移すことにした。
 
 今年は、それを軌道に載せるのに費やしたが、来年は溜まっている通常回との並走をうまく軌道に乗せたい。
 
@@ -75,7 +75,7 @@ Web の勉強会が欲しかったので作った。
 
 ## 発表
 
-振り返ると、 Web Study JP や、 Node 学園での AMA みたいに、スライドを作らないタイプの発表が多かった。
+振り返ると、Web Study JP や、Node 学園での AMA みたいに、スライドを作らないタイプの発表が多かった。
 
 - [Web over Service Worker](https://speakerdeck.com/jxck/web-over-serviceworker) @ [#inside_fe](http://inside-frontend.com/)
 - [CSP powerful security steroid](https://speakerdeck.com/jxck/csp-a-powerful-security-steroid) @ [#chromejp](https://developers-jp.googleblog.com/2017/01/chrome-tech-talk-night-9.html)
@@ -88,7 +88,7 @@ Web の勉強会が欲しかったので作った。
 
 だいぶ書き慣れたが、やっぱりネットワークプロトコルを実装する上では非常に良い言語だと感じる。
 
-構文含めて気に入っているので、 Elixir をやりたいとは一度も思わなかった。
+構文含めて気に入っているので、Elixir をやりたいとは一度も思わなかった。
 
 
 ## Outro

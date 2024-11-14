@@ -61,7 +61,7 @@ class Counter {
 
 JavaScript に Class 構文が導入されたのはかなり最近のことだ。
 
-しかし、初期の提案に全てを詰め込むことはせず、いくつかの機能(前述の class field/static/private etc)は、 Future Work になっていた。
+しかし、初期の提案に全てを詰め込むことはせず、いくつかの機能(前述の class field/static/private etc)は、Future Work になっていた。
 
 中でも Private フィールドについては、他のクラスベースオブジェクト指向の言語では標準であることが多く、これを入れるために議論が行われた。
 
@@ -106,7 +106,7 @@ console.log(c.#count) // SyntaxError
 
 [proposal-class-fields/PRIVATE_SYNTAX_FAQ.md](https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md)
 
-ここでは、 JS における Private がどう挙動すべきかを含めた議論の過程を見ていく。
+ここでは、JS における Private がどう挙動すべきかを含めた議論の過程を見ていく。
 
 
 ## なぜ Private にするのか
@@ -138,7 +138,7 @@ console.log(c._count)
 
 結果、例えばライブラリの中の意図しない部分が開発者によってアクセスされ、実装を変更すると互換性が壊れるといった問題がしばしば起こっていた。
 
-しかし、別の実装方法を用いると、 Private に近いことは実現が可能だ。
+しかし、別の実装方法を用いると、Private に近いことは実現が可能だ。
 
 
 ## Symbol を用いた Soft Private
@@ -173,7 +173,7 @@ console.log(c[Object.getOwnPropertySymbols(c).pop()])
 
 これは、通常の(パブリックな)プロパティと同等のアクセス手段は絶っただけで、そうしたプロパティが存在することを知ることが可能であり、かつアクセスする方法も残されている。
 
-手段は違えど、 Reflection などで Private にアクセスできる言語は他にもあり、それと似ている。
+手段は違えど、Reflection などで Private にアクセスできる言語は他にもあり、それと似ている。
 
 このような挙動を *Soft Private* と呼ぶ。
 
@@ -208,7 +208,7 @@ c.display()
 console.log(c.count) // undefined
 ```
 
-この場合、 WeakMap はクロージャの中にあるため、スコープの外からはアクセスできない。
+この場合、WeakMap はクロージャの中にあるため、スコープの外からはアクセスできない。
 
 また、外からは Counter オブジェクトが内部でどのような Private フィールドを持っているかを知ることができない。
 
@@ -225,11 +225,11 @@ ECMAScript が Private フィールドを定義する上で、目指すのは So
 
 例えばライブラリにおいて、作者が意図しないアクセスを完全に断つためには Hard Private が必要になる。
 
-一方、テストなどの用途に限ってアクセスする余地を残すために、 Soft Private を支持する意見もあった。
+一方、テストなどの用途に限ってアクセスする余地を残すために、Soft Private を支持する意見もあった。
 
-もし Soft Private で良いのであれば、 Symbol や [Decorator](https://github.com/tc39/proposal-private-fields/blob/master/DECORATORS.md) などである程度実現可能であり、構文を拡張してまでやる必要があまりない。
+もし Soft Private で良いのであれば、Symbol や [Decorator](https://github.com/tc39/proposal-private-fields/blob/master/DECORATORS.md) などである程度実現可能であり、構文を拡張してまでやる必要があまりない。
 
-結果としては、 WeakMap で実現したような挙動を、構文レベルでサポートすることにより、より手軽に Hard Private を実現することがこの仕様のゴールとなった。
+結果としては、WeakMap で実現したような挙動を、構文レベルでサポートすることにより、より手軽に Hard Private を実現することがこの仕様のゴールとなった。
 
 具体的に求められる挙動は [以下](https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#what-do-you-mean-by-encapsulation--hard-private) のようになる。
 
@@ -250,7 +250,7 @@ ECMAScript が Private フィールドを定義する上で、目指すのは So
 
 ## 構文と動的言語
 
-まず思いつくのが、 JS がこの時のために予約しており、多くの言語が採用している `private` キーワードである。
+まず思いつくのが、JS がこの時のために予約しており、多くの言語が採用している `private` キーワードである。
 
 ```js
 class Counter {
@@ -278,9 +278,9 @@ class Counter {
 }
 ```
 
-これは、 other がどの型であっても、必ず一度は確認処理が入ることを意味する。
+これは、other がどの型であっても、必ず一度は確認処理が入ることを意味する。
 
-すると、 Private を使ってない既存のコードを含めて、全体的にオーバーヘッドが増えそうなことが、想像に難くないだろう。
+すると、Private を使ってない既存のコードを含めて、全体的にオーバーヘッドが増えそうなことが、想像に難くないだろう。
 
 また、以下のように Private と同じ名前の public なフィールドが定義できてしまうことは、コード自体の誤認をおこしやすい。
 
@@ -334,30 +334,30 @@ console.log(c.equals(new Counter())) // false
 console.log(c.#count) // syntax error
 ```
 
-この構文の特徴は、 JS では最後の `c.#count` という記法が許可されず Syntax Error になるということだ。
+この構文の特徴は、JS では最後の `c.#count` という記法が許可されず Syntax Error になるということだ。
 
 これは、外から Private フィールドにアクセスする方法が構文レベルでエラーになるため、絶対にできないということを意味する。
 
-そして、クラス内部では `#count` と、必ず `#` をつけてフィールドを定義させることにより、 Public なフィールドと名前がかぶることがないため、 `c.count` が定義されてもなんの問題もなくなる。
+そして、クラス内部では `#count` と、必ず `#` をつけてフィールドを定義させることにより、Public なフィールドと名前がかぶることがないため、`c.count` が定義されてもなんの問題もなくなる。
 
 結果として、外から Private フィールドがあるかどうかを知ることは、ソースを構文解析でもしない限りできなくなる。
 
 また `this.#count` でアクセスすれば、少なくとも Private フィールドにアクセスしようとしていること自体は自明なため、オーバーヘッドも減らせる。
 
-まとめると、 *従来エラーだった構文を導入して Private の定義およびアクセスが自明になるように拡張した* 結果できたのがこの構文ということになる。
+まとめると、*従来エラーだった構文を導入して Private の定義およびアクセスが自明になるように拡張した* 結果できたのがこの構文ということになる。
 
 
 ## 記号の選定
 
 実際には、上述の条件が満たせれば、記号自体はなんでもよい。
 
-しかし、 UTF8 で任意の文字を許容するといったことをしなければ、 ASCII で残っている文字は少ない。
+しかし、UTF8 で任意の文字を許容するといったことをしなければ、ASCII で残っている文字は少ない。
 
 すでに使われている演算子を除いた候補の議論も FAQ にまとまっている。
 
 [Why was the sigil # chosen, among all the Unicode code points?](https://github.com/tc39/proposal-class-fields/blob/master/PRIVATE_SYNTAX_FAQ.md#why-was-the-sigil--chosen-among-all-the-unicode-code-points)
 
-- `@`: 一番良さそうだが Decorator が既に利用している。 Decorator との入れ替えも検討したが、トランスパイラで先走って使っているユーザも多く諦めた。
+- `@`: 一番良さそうだが Decorator が既に利用している。Decorator との入れ替えも検討したが、トランスパイラで先走って使っているユーザも多く諦めた。
 - `_`: 既に変数に付けられているコードが多い。
 - `%`: 使えそうで使えない。
 
@@ -377,7 +377,7 @@ class Counter {
 
 JS エンジンはセミコロンが省略された場合、それを補ってコードを解釈をする。これを ASI(Auto Semicolon Insertion) という。
 
-上の例は、セミコロンが `value()` の後ろに補われるように見えて、実際は `print()` の後だけに補われ、 `%x` の `%` は前の行との mod 演算と解釈される。
+上の例は、セミコロンが `value()` の後ろに補われるように見えて、実際は `print()` の後だけに補われ、`%x` の `%` は前の行との mod 演算と解釈される。
 
 今更セミコロンを必須にすることはできないので、この目的で `%` を使うことはできない。こうした問題を ASI Hazard と言う。
 
@@ -410,7 +410,7 @@ class Counter {
 }
 ```
 
-ちなみに、この余地を残すために却下された提案として、 `#` の前にドットを置かない記法もあった。
+ちなみに、この余地を残すために却下された提案として、`#` の前にドットを置かない記法もあった。
 
 [Why not use obj#prop instead obj.#prop ? #39](https://github.com/tc39/proposal-private-fields/issues/39)
 
@@ -438,7 +438,7 @@ class X {
 }
 ```
 
-もともと `w();this#y()` だったものが `w()#y()` になり、 `w()` の結果への Private Access になってしまい、これも ASI Hazard となる。
+もともと `w();this#y()` だったものが `w()#y()` になり、`w()` の結果への Private Access になってしまい、これも ASI Hazard となる。
 
 
 ## Dynamic Access
@@ -453,7 +453,7 @@ o["#x"] = 10
 o // {"#x": 10}
 ```
 
-これは既存のコードでもあり得るが、アクセス方法も `o["#x"]` しかなく、 `.#x` でアクセスするコードは既存にはないので両方を許さなければ競合はしない。
+これは既存のコードでもあり得るが、アクセス方法も `o["#x"]` しかなく、`.#x` でアクセスするコードは既存にはないので両方を許さなければ競合はしない。
 
 また、動的に Private にアクセスできるとうことは、以下のようなことができてしまうことを意味する。
 
@@ -519,9 +519,9 @@ console.log(p1.display())
 
 ## 今後の構文拡張
 
-ここまでの議論からもわかるように、 JavaScript を構文的に拡張する上で使える「記号」はほぼ枯渇している。
+ここまでの議論からもわかるように、JavaScript を構文的に拡張する上で使える「記号」はほぼ枯渇している。
 
-Pipeline Operator のように複数の記号を組み合わせていくか、 Unicode 全体まで範囲を広げるといった方向しかない。
+Pipeline Operator のように複数の記号を組み合わせていくか、Unicode 全体まで範囲を広げるといった方向しかない。
 
 そこで、今後の拡張は Decorator ベースでやっていくのが良いのではないかと言う提案が出ている。
 

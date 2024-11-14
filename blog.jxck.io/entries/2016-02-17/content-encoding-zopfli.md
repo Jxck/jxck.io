@@ -2,33 +2,33 @@
 
 ## Intro
 
-HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、 gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。
+HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーションにより、gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。
 
 
 ## Accept-Encoding
 
-クライアントが `Accept-Encoding: gzip` を指定して来た場合、サーバは `Content-Encoding: gzip` を付与し、 URI に指定されたコンテンツを gzip 圧縮して送信することができる。
+クライアントが `Accept-Encoding: gzip` を指定して来た場合、サーバは `Content-Encoding: gzip` を付与し、URI に指定されたコンテンツを gzip 圧縮して送信することができる。
 
 特にテキストベースの HTML, CSS, JS などは、この圧縮の効果が高く、ペイロードが小さくなるためパフォーマンスの向上が期待できる。
 
-逆に、 PNG, JPEG など圧縮形式の画像などについては、オーバーヘッドが発生しサイズが増える可能性もあるため、対象フォーマットの選択には注意が必要である。
+逆に、PNG, JPEG など圧縮形式の画像などについては、オーバーヘッドが発生しサイズが増える可能性もあるため、対象フォーマットの選択には注意が必要である。
 
 
 ## Transfer-Encoding
 
 HTTP には、似た仕組みとして `TE: gzip` と `Transfer-Encoding: gzip` による、経路圧縮がある。
 
-これは、前述の `Accept-Encoding` が End-To-End で圧縮したコンテンツを転送するのと違い、 Hop-by-Hop で経路上での圧縮を実施する点で、意味的に差異がある。
+これは、前述の `Accept-Encoding` が End-To-End で圧縮したコンテンツを転送するのと違い、Hop-by-Hop で経路上での圧縮を実施する点で、意味的に差異がある。
 
 例えば HTML で言えば、前者は「コンテンツ自体が gzip された html である」のに対し、後者は「コンテンツはあくまで html だが、経路上では圧縮されている」ということになる。
 
-本サイトは、あくまで HTML を配信したいので、転送量削減のために圧縮を施すのであれば、 `TE: gzip` と `Transfer-Encoding: gzip` を使うのが妥当と言えるだろう。
+本サイトは、あくまで HTML を配信したいので、転送量削減のために圧縮を施すのであれば、`TE: gzip` と `Transfer-Encoding: gzip` を使うのが妥当と言えるだろう。
 
 しかし `TE` はブラウザ実装の問題のためか、歴史的にもあまり使われておらず、送信してくるブラウザもほとんどない。(Opera は送信すると言われているが未確認)。
 
-そのため、 HTTP/1.1 対応のサーバでも `Transfer-Encoding: gzip` に対応したものは少なく、 h2o も対応していない。(`Transfer-Encoding: chunked` は対応している)
+そのため、HTTP/1.1 対応のサーバでも `Transfer-Encoding: gzip` に対応したものは少なく、h2o も対応していない。(`Transfer-Encoding: chunked` は対応している)
 
-また、このヘッダは *コネクションに対する設定* であるが、 HTTP2 ではこうしたコネクションに対する設定は、代わりに *SETTINGS Frame* を利用することになったため、こうしたヘッダは設定不可とされている。
+また、このヘッダは *コネクションに対する設定* であるが、HTTP2 ではこうしたコネクションに対する設定は、代わりに *SETTINGS Frame* を利用することになったため、こうしたヘッダは設定不可とされている。
 
 [8.1.2.2.  Connection-Specific Header Fields](https://tools.ietf.org/html/rfc7540#section-8.1.2.2)
 
@@ -41,12 +41,12 @@ HTTP には、似た仕組みとして `TE: gzip` と `Transfer-Encoding: gzip` 
 
 ## h2o の設定
 
-本サイトをデプロイしている h2o は、 `Content-Encoding: gzip` による転送を 2 つの方法でサポートしている。
+本サイトをデプロイしている h2o は、`Content-Encoding: gzip` による転送を 2 つの方法でサポートしている。
 
 
 ### gzip ディレクティブ
 
-以下を設定すると、 h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
+以下を設定すると、h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
 
 ```http
 gzip: ON
@@ -61,7 +61,7 @@ gzip: ON
 
 ### send-gzip ディレクティブ
 
-あらかじめコンテンツを gzip 圧縮した状態で `ファイル名.gz` で配置し、以下を設定すると、 h2o は自動的に圧縮済みファイルを転送してくれる。
+あらかじめコンテンツを gzip 圧縮した状態で `ファイル名.gz` で配置し、以下を設定すると、h2o は自動的に圧縮済みファイルを転送してくれる。
 
 ```http
 file.send-gzip: ON
@@ -99,7 +99,7 @@ zopfli は、探索を繰り返す回数を調節できるため、この回数�
 
 ### ベンチマーク
 
-以下のように、前回の記事に対して zopfli コマンドを実行し、 time コマンドで実行時間を計測した。
+以下のように、前回の記事に対して zopfli コマンドを実行し、time コマンドで実行時間を計測した。
 
 ```sh-session
 $ time zopfli --i10 -c loading-css-over-http2.html
@@ -107,7 +107,7 @@ $ time zopfli --i10 -c loading-css-over-http2.html
 
 `--i` が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
 
-デフォルトは `i = 15` であるため、 `10..100` まで増やしながら実行した。
+デフォルトは `i = 15` であるため、`10..100` まで増やしながら実行した。
 
 最初の段は、元のファイルサイズ、二段目は `gzip` コマンドの結果である。
 
@@ -131,7 +131,7 @@ Caption: ファイルサイズごとの gzip の実行結果
 
 ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 `i=30` くらいに落ち着いた。
 
-また、 [WebP](https://jxck.io/assets/img/jxck.webp) と [PNG](https://jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
+また、[WebP](https://jxck.io/assets/img/jxck.webp) と [PNG](https://jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
 
 Caption: 画像圧縮フォーマットとサイズの関係
 | file         | size |
@@ -156,13 +156,13 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 - `send-gzip: ON`
 - webp は対象外
 
-動作は、 HTTP ヘッダで確認できる。
+動作は、HTTP ヘッダで確認できる。
 
 ![圧縮が有効である場合、 content-encoding: gzip が追加されていることを確認](zopfli.png#656x463 "Content-Encoding Support Before/After")
 
-また、一部は h2o の mruby-handler で動的な生成をしているが、 `gzip` ディレクティブの効果は未検証なので設定していない。
+また、一部は h2o の mruby-handler で動的な生成をしているが、`gzip` ディレクティブの効果は未検証なので設定していない。
 
-本サイトの中で、 `.html`, `.css`, `.js` で終わるような URL は、 `.gz` を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
+本サイトの中で、`.html`, `.css`, `.js` で終わるような URL は、`.gz` を後ろに付けると zopfli 圧縮版が取得できるので、興味があれば試してみて欲しい。
 
 [この HTML の zopfli 圧縮版](https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html.gz)
 
@@ -171,13 +171,13 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 
 また Google は [brotli](https://github.com/google/brotli) という圧縮フォーマットも持っている。
 
-こちらは、 gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。
+こちらは、gzip などとの互換は無いため、クライアントも対応しないと使うことはできない。
 
-新しいフォーマットとして、 [IETF へのドラフトの提出](https://tools.ietf.org/html/draft-alakuijala-brotli-08) もなされている。
+新しいフォーマットとして、[IETF へのドラフトの提出](https://tools.ietf.org/html/draft-alakuijala-brotli-08) もなされている。
 
-現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) していおり、 Canary で <chrome://flags#brotli> を有効にすると、 `Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
+現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) していおり、Canary で <chrome://flags#brotli> を有効にすると、`Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
 
-ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、 H2O も対応していないため `Accept-Encoding` での判断を自分でハンドラに書く必要がある。
+ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、H2O も対応していないため `Accept-Encoding` での判断を自分でハンドラに書く必要がある。
 
 H2O には既に brotli への対応を求める issue が上がっているので、対応したらそこでまた検証しようと思う。
 

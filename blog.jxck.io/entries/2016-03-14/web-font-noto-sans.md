@@ -15,7 +15,7 @@ Noto font は、そもそも豆腐(フォントがなかった場合に代替表
 
 そのため Web Font として利用する場合は、全体だとサイズが大きすぎるため、言語毎に提供されるフォントセットの中から、必要なフォントのみを適用することになる。
 
-本サイトでは、 ASCII 、記号、日本語のフォントを用いる。
+本サイトでは、ASCII 、記号、日本語のフォントを用いる。
 
 しかし、特に網羅された漢字の中には、日常では使わない文字が多々ある。
 
@@ -28,16 +28,16 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 ## Noto Sans Fonts
 
-まず配布ページから、 Noto Sans CJK JP をダウンロードしてくる。
+まず配布ページから、Noto Sans CJK JP をダウンロードしてくる。
 
 [Noto Sans CJK JP](https://www.google.com/get/noto/#sans-jpan)
 
-ここに収録されている文字については、 [google fonts](https://www.google.com/fonts/earlyaccess#Noto+Sans+JP) の方に書かれていた。
+ここに収録されている文字については、[google fonts](https://www.google.com/fonts/earlyaccess#Noto+Sans+JP) の方に書かれていた。
 
 > Note: Noto Sans JP has been subsetted to 6,992 characters and contains most of the characters defined by JIS X 0208 and some additional characters from Shift_JIS.  The set includes 6,390 Kanji as well as 602 non Kanji characters such as Hiragana, Katakana (including half-width variants), ASCII and full-width and punctuations.
 > --- https://www.google.com/fonts/earlyaccess#Noto+Sans+JP
 
-このサブセットが含む JIS X 0208 とは、いわゆる JIS 漢字コード のことであり、 7000 字近い漢字がきっちり収録されている。
+このサブセットが含む JIS X 0208 とは、いわゆる JIS 漢字コード のことであり、7000 字近い漢字がきっちり収録されている。
 
 そして font-weight (太さ) が 100~900 まで 7 段階提供されており、それぞれサイズは以下となっている。(やはり太いとデカい)
 
@@ -54,11 +54,11 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 ## Font Weight
 
-本サイトでは、 Markdown から生成していることもあり、「通常の文字」と「*太文字*」しか基本的に使わない。
+本サイトでは、Markdown から生成していることもあり、「通常の文字」と「*太文字*」しか基本的に使わない。
 
 (CSS を別途当てて、調整するといったことをしていない)
 
-したがって、 Regular と Bold のみ使用する。
+したがって、Regular と Bold のみ使用する。
 
 この時点で 8.7MB ある。
 
@@ -70,9 +70,9 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 ## JISX0208 第一水準
 
-収録されている、 JIS X 0208 は以下のようになっている。
+収録されている、JIS X 0208 は以下のようになっている。
 
-> JIS (日本工業規格)で定められた漢字の規格で、 JISX0208 に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。 JIS 第 1 水準は 2965 字で、常用漢字 1945 字とその他の人名用漢字が含まれており、通常の文書であれば JIS 第 1 水準の文字だけで記述できるとされている。 JIS 第 2 水準は 3390 字で、 DTP で使用するフォントの多くは、 JIS 第 1 水準と JIS 第 2 水準を網羅している。 JIS 第 3 水準および JIS 第 4 水準は、業種によって必要になる特殊な記号などを集めたもので、 JISX0208 を拡張する別の規格である。
+> JIS (日本工業規格)で定められた漢字の規格で、JISX0208 に含まれる。日常で使用頻度の高い漢字を集め、コンピューターで利用するためにコード化したもの。JIS 第 1 水準は 2965 字で、常用漢字 1945 字とその他の人名用漢字が含まれており、通常の文書であれば JIS 第 1 水準の文字だけで記述できるとされている。JIS 第 2 水準は 3390 字で、DTP で使用するフォントの多くは、JIS 第 1 水準と JIS 第 2 水準を網羅している。JIS 第 3 水準および JIS 第 4 水準は、業種によって必要になる特殊な記号などを集めたもので、JISX0208 を拡張する別の規格である。
 > --- [http://yougo.ascii.jp/caltar/JIS 漢字水準](http://yougo.ascii.jp/caltar/JIS漢字水準)
 
 しかし、このブログは *技術ブログ* であり、使われる漢字は非常に限定的だ。
@@ -84,7 +84,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 いわゆる ASCII 文字。
 
-(ちなみに、 `pre > code` 内のサンプルコードは別のフォントを使うので、コード用という訳ではない)
+(ちなみに、`pre > code` 内のサンプルコードは別のフォントを使うので、コード用という訳ではない)
 
 [Unicode 基本ラテン文字 - Basic Latin -](http://homepage2.nifty.com/k_maeda/code/uni/uni000.html)
 
@@ -176,7 +176,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 これでもだいぶ減っているが、ざっと見ても使わなそうな漢字はかなり多い。
 
-先に引用した定義では、第一水準はざっくり 「常用漢字 + 人名用漢字」 となっている。
+先に引用した定義では、第一水準はざっくり「常用漢字 + 人名用漢字」となっている。
 
 このサイトでは、人名の引用は基本的に Twitter ID などになるだろう。というか書くのは自分なのでそう縛ればいい。
 
@@ -185,7 +185,7 @@ Noto Sans は [OFL ライセンス](http://scripts.sil.org/cms/scripts/page.php?
 
 ### 常用漢字
 
-常用漢字は文化庁が告示している。 2010 年に改定があった。
+常用漢字は文化庁が告示している。2010 年に改定があった。
 
 > 一般の社会生活において現代の国語を書き表すための漢字使用の目安を、次の表のように定める。
 > --- [常用漢字表(平成 22 年内閣告示第 2 号)](http://kokugo.bunka.go.jp/kokugo_nihongo/joho/kijun/naikaku/kanji/)
@@ -280,13 +280,13 @@ Caption: 文字範囲と文字数
 
 ### Woff 変換
 
-この OTF ファイルを、以下のツールを用い、 Woff 形式に変換する。
+この OTF ファイルを、以下のツールを用い、Woff 形式に変換する。
 
 [WOFF コンバータ](https://opentype.jp/woffconv.htm)
 
 メタデータは一切付与しない。
 
-また IE はどうでもいいので、 IE に対応させるための EOT ファイルも作成しない。
+また IE はどうでもいいので、IE に対応させるための EOT ファイルも作成しない。
 
 - NotoSansCJKjp-Jxck-Bold.woff    (379.7K)
 - NotoSansCJKjp-Jxck-Regular.woff (375.8K)
@@ -328,11 +328,11 @@ Caption: JISX0208 と削除後のサイズの比較
 
 まず woff ファイルを配布し、それを読み込ませる。
 
-ただし、 Android Marshmallow では Noto Sans がビルドインになったため、 Regular のみが全フォント入っている。
+ただし、Android Marshmallow では Noto Sans がビルドインになったため、Regular のみが全フォント入っている。
 
 他にも、このブログを見に来る人は、自分でローカルインストールしている人がいるだろう。
 
-そうした場合、 `local()` を用いてシステムフォントを優先すれば、ダウンロードが不要になる。
+そうした場合、`local()` を用いてシステムフォントを優先すれば、ダウンロードが不要になる。
 
 現在 NotoSans は "NotoSansCJKjp-Bold.otf" という名前で配布されている。
 
@@ -369,7 +369,7 @@ Google はガイドラインを公開している。
 
 システムにある場合は正式名称で、こちらで提供したフォントがダウンロードされた場合は、それが使われるようにする。
 
-基本的には、サイト全体に適用するため `body` へ指定し、 `pre > code` 内は別にしたいため、そこだけ上書きしている。
+基本的には、サイト全体に適用するため `body` へ指定し、`pre > code` 内は別にしたいため、そこだけ上書きしている。
 
 ```css
 body {
@@ -382,7 +382,7 @@ body {
 
 フォントは、基本的には変更が非常に少ないファイルであるため、積極的にキャッシュをしていきたい。
 
-ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新が皆無ではないため、 URL にバージョンを忘れずに入れる。(font-face の指定参照)
+ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新が皆無ではないため、URL にバージョンを忘れずに入れる。(font-face の指定参照)
 
 ```css
 url("/path-to-font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014") format("woff");
@@ -405,14 +405,14 @@ Cache-Control: max-age=31536000
 <link rel=preload as=font type=font/woff href="https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014" crossorigin>
 ```
 
-また、 AMP 対応ページでは `rel=preload` は許可されてないため指定するとエラーになったため、 AMP の方には指定していない。
+また、AMP 対応ページでは `rel=preload` は許可されてないため指定するとエラーになったため、AMP の方には指定していない。
 
 
 ## Outro
 
-Web Font もだいぶ一般的になってきたため、今後の Web 作成では、 Web Font の存在は前提となっていくだろうと感じている。
+Web Font もだいぶ一般的になってきたため、今後の Web 作成では、Web Font の存在は前提となっていくだろうと感じている。
 
-このサイトではパフォーマンスに関わる最適化手法を色々と試しているが、 Web Font も無しに表示の速さを語っても片手落ちだろうと思い、いわゆる鉄下駄として入れてみた。
+このサイトではパフォーマンスに関わる最適化手法を色々と試しているが、Web Font も無しに表示の速さを語っても片手落ちだろうと思い、いわゆる鉄下駄として入れてみた。
 
 こうした使いやすく優れたフォントが無料で提供されているのは、非常にありがたい。
 

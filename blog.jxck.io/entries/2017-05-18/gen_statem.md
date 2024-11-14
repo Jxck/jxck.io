@@ -2,7 +2,7 @@
 
 ## Intro
 
-Erlang/OTP 19 から、 gen_fsm の後継として gen_statem が導入された。
+Erlang/OTP 19 から、gen_fsm の後継として gen_statem が導入された。
 
 OTP の内部でも ssl などはすでに gen_statem に移行している。
 
@@ -104,9 +104,9 @@ erlang:'!'                        -----> Module:StateName/3
 
 コールバックは減っていることがわかる。
 
-大きいところとして、 gen_statem では、同期/非同期の使い分けが、 call/cast になっている。
+大きいところとして、gen_statem では、同期/非同期の使い分けが、call/cast になっている。
 
-そして、 Module:StateName/3 は引数の最初に Event Type を取り、ここで call/cast どちらで来たのかなどを受け取るようになった。 info の場合もここで分岐する。
+そして、Module:StateName/3 は引数の最初に Event Type を取り、ここで call/cast どちらで来たのかなどを受け取るようになった。info の場合もここで分岐する。
 
 ```erlang
 % Module:StateName(EventType, EventContent, Data) -> StateFunctionResult
@@ -117,9 +117,9 @@ hello(info, eventname, Data) -> ...;
 
 EventType は後述するものも含めて 6 種類ある。
 
-これにより、 Module:StateName/3 へのハンドラの統合がされている。
+これにより、Module:StateName/3 へのハンドラの統合がされている。
 
-ハンドラの戻り値はいくつかの種類があるが、 gen_fsm で `Timeout`, `hibernate` などとしていたタプルの 4 番目がアクションとして整理された。
+ハンドラの戻り値はいくつかの種類があるが、gen_fsm で `Timeout`, `hibernate` などとしていたタプルの 4 番目がアクションとして整理された。
 
 ```erlang
 {next_state, NextStateName, NewStateData}
@@ -140,7 +140,7 @@ gen_fsm のようにも書けるが、複数のアクション(tuple)を配列�
 
 ## keep_state
 
-ハンドラの最後でステートを遷移しない場合、 gen_fsm では自身と同じステート名を明示的に指定していた。
+ハンドラの最後でステートを遷移しない場合、gen_fsm では自身と同じステート名を明示的に指定していた。
 
 ```erlang
 % hello から遷移しない
@@ -164,7 +164,7 @@ hello(cast, Event, Data) ->
     keep_state_and_data.
 ```
 
-これは後述する、 timeout などのアクションを使う際に、アクションは実行したいがステートは遷移したくないという場合に使える。
+これは後述する、timeout などのアクションを使う際に、アクションは実行したいがステートは遷移したくないという場合に使える。
 
 ```erlang
 % hello から遷移しない
@@ -177,7 +177,7 @@ hello(cast, Event, Data) ->
 
 gen_statem では callback_mode/0 というビヘイビアが追加された。
 
-これは、コールバックの実装方法を指定するもので、 gen_fsm のように atom でステートに名前をつけ、対応する関数を実装するスタイルは `state_functions` になる。
+これは、コールバックの実装方法を指定するもので、gen_fsm のように atom でステートに名前をつけ、対応する関数を実装するスタイルは `state_functions` になる。
 
 ```erlang
 callback_mode() -> state_functions.
@@ -220,7 +220,7 @@ StateName(cast, OldState, Data) ->
 
 このモードが有効な場合は、すべてのイベントで enter のハンドラ実装が必要になる。
 
-また、 State Enter Call 内では `keep_state` に似た `repeat_state` を呼び出すことで、同じ State Enter Call を繰り返し実行することもできる。
+また、State Enter Call 内では `keep_state` に似た `repeat_state` を呼び出すことで、同じ State Enter Call を繰り返し実行することもできる。
 
 State Enter Call 以外で呼びだした `repeat_state` は `keep_state` と等価。
 
@@ -231,7 +231,7 @@ gen_statem の中でのタイムアウトは主に 3 つの方法がある。
 
 サーバ実装などにおいては、相手からの応答のタイムアウトや、トークンの期限など、タイムアウトのモデルは非常に重要だ。
 
-gen_fsm よりも強化されており、 gen_statem を使う大きなモチベーションの 1 つと感じる。
+gen_fsm よりも強化されており、gen_statem を使う大きなモチベーションの 1 つと感じる。
 
 
 ### Timeout Event
@@ -313,7 +313,7 @@ gen_statem では、以下のような `next_event` アクションを返すこ�
 {keep_state, Data, [{reply, From, ok}, {next_event, cast, Arg}]};
 ```
 
-call, info などすべての EventType は、 `next_event` で送ることができ、外部からのイベントと同じように扱うことができる。
+call, info などすべての EventType は、`next_event` で送ることができ、外部からのイベントと同じように扱うことができる。
 
 
 ## internal event
@@ -324,7 +324,7 @@ call, info などすべての EventType は、 `next_event` で送ることが�
 {keep_state, Data, [{reply, From, ok}, {next_event, internal, Arg}]};
 ```
 
-逆をいえば、 `internal` は外部から送られてくることが無いため、内部で発生した Self Generated イベントであることが保証できる。
+逆をいえば、`internal` は外部から送られてくることが無いため、内部で発生した Self Generated イベントであることが保証できる。
 
 他の EventType は `next_event` で来たものか、外から来たものか区別ができないため、イベントを内部に閉じたい場合に利用することができる。
 
@@ -333,6 +333,6 @@ call, info などすべての EventType は、 `next_event` で送ることが�
 
 sys:get_status/1,2 や terminate 時のダンプなどで出力される State の値を、事前に加工できるフックが導入された。
 
-オプションなので、 Export されていなくても良い。
+オプションなので、Export されていなくても良い。
 
 状態が大きい場合に重要な情報だけに絞る、もしくは機密情報が出力されるのを防ぐ目的などで使われる。

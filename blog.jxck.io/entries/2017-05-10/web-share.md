@@ -13,7 +13,7 @@
 
 主だったものとしては、すでに策定は止まっているが Android の Intent を参考にした [Web Intents](https://www.w3.org/TR/web-intents/) が挙げられる。
 
-Web Share API は、 Web コンテンツと SNS やメールなどとの連携を主目的とした、より簡素で軽量な API となっている。
+Web Share API は、Web コンテンツと SNS やメールなどとの連携を主目的とした、より簡素で軽量な API となっている。
 
 
 ## DEMO
@@ -29,7 +29,7 @@ Web Share API は、 Web コンテンツと SNS やメールなどとの連携�
 
 API は非常に簡素だ。
 
-現状設定可能なパラメータは、 `title`, `text`, `url` のみである。
+現状設定可能なパラメータは、`title`, `text`, `url` のみである。
 
 ```js
 if (navigator.share !== undefined) {
@@ -47,11 +47,11 @@ navigator
   .catch(console.log.bind(console));
 ```
 
-こうした API であるため、 `navigator.share` を見ることで、サポートの有無を判別できる。
+こうした API であるため、`navigator.share` を見ることで、サポートの有無を判別できる。
 
-結果は Promise を返し、 Share の成功可否によって変わる。
+結果は Promise を返し、Share の成功可否によって変わる。
 
-また、 Web Share は Share の発信だけで無く、受信についても視野に入れいている。
+また、Web Share は Share の発信だけで無く、受信についても視野に入れいている。
 
 現状その API は議論中だが、同様に navigator を基本に拡張されていくと思われる。
 

@@ -6,7 +6,7 @@ Podcast を PWA 対応するために、待望だった機能の 1 つが Backgr
 
 これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。
 
-この API と、 Service Worker およびブラウザにおける Range Request/Partial Response の扱いについて記す。
+この API と、Service Worker およびブラウザにおける Range Request/Partial Response の扱いについて記す。
 
 
 ## background fetch
@@ -49,7 +49,7 @@ Content-Range: bytes 54034432-101797887/101797888
 Content-Length: 47763456
 ```
 
-つまり、 1 つの音声ファイルを取得するリクエスト/レスポンスが、 1 つとは限らないというわけだ。
+つまり、1 つの音声ファイルを取得するリクエスト/レスポンスが、1 つとは限らないというわけだ。
 
 
 ## Service Worker での Range Request
@@ -67,13 +67,13 @@ self.addEventListener('fetch', (e) => {
 })
 ```
 
-最初は Service Worker が 206 を 200 に変えてしまうバグかと思ったが、 Content-Range もついてない。
+最初は Service Worker が 206 を 200 に変えてしまうバグかと思ったが、Content-Range もついてない。
 
 もしやと思い、サーバ側のログを見ると、そもそも Range ヘッダが送られていない。
 
-そもそも、 fetch を通すと Range Request が普通のリクエストとして送られているのだ。
+そもそも、fetch を通すと Range Request が普通のリクエストとして送られているのだ。
 
-最初に試したのが 4 年ほど前で、 Service Worker の初期の頃だったため、単に実装されてないだけろうと思い、実装されるのを待って漬けていた。
+最初に試したのが 4 年ほど前で、Service Worker の初期の頃だったため、単に実装されてないだけろうと思い、実装されるのを待って漬けていた。
 
 
 ## ブラウザにおける Range/Partial
@@ -92,9 +92,9 @@ self.addEventListener('fetch', (e) => {
 - `<audio>` / `<video>` などで Range を使うのはブラウザがそう実装してるだけ
 - Service Worker/Cache のような API でどうするかは決まってない
 
-つまり、 *Service Worker はそもそも Range/Partial には対応してない* というか標準化されてないと言って良いだろう。
+つまり、*Service Worker はそもそも Range/Partial には対応してない* というか標準化されてないと言って良いだろう。
 
-それでも、 200 では取得できるため、全体が得られればキャッシュは可能で、 Safari などには 206 に置き換えて返すこともできる。
+それでも、200 では取得できるため、全体が得られればキャッシュは可能で、Safari などには 206 に置き換えて返すこともできる。
 
 しかし、途中までしかキャッシュできてない状態でオフラインになると、途中で再生が止まるフラストレーションが溜まるだけだ。
 
@@ -151,13 +151,13 @@ task.addEventListener('progress', (e) => console.log(e.downloaded))
 
 ### abort()
 
-中断は API から可能であり、 `abort()` を呼べば task が終了する。
+中断は API から可能であり、`abort()` を呼べば task が終了する。
 
 ```js
 task.abort()
 ```
 
-ただし、 Pause/Resume は API がなく、[提案](https://github.com/WICG/background-fetch/issues/38) はされてるが、その UI は OS 側が提供するというスタンスだ。
+ただし、Pause/Resume は API がなく、[提案](https://github.com/WICG/background-fetch/issues/38) はされてるが、その UI は OS 側が提供するというスタンスだ。
 
 
 ## background event
@@ -257,7 +257,7 @@ self.addEventListener('fetch', (e) => {
 
 ## Next
 
-ところが、 Podcast アプリなら、ユーザが操作してないときに自動でダウンロードしておきたい。
+ところが、Podcast アプリなら、ユーザが操作してないときに自動でダウンロードしておきたい。
 
 ネットワークに繋がっている場合、定期的にサーバに RSS を問い合わせ、更新があれば fetch する。
 

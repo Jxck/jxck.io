@@ -45,7 +45,7 @@ HTML の注意点は、前回の規約と大きくは変わらない。
 
 次に CSS を考える。(`<dialog>` と関係ない部分は省略)
 
-まず、配置としては画面の右下に固定配置するため、 `position: absolute` で配置する。
+まず、配置としては画面の右下に固定配置するため、`position: absolute` で配置する。
 
 ```css
 dialog {
@@ -70,7 +70,7 @@ dialog:not([open]) {
 }
 ```
 
-表示する場合は `display: none` からのトランジションになり、 `@starting-style` が必要だが、今回は消すだけなので不要だ。
+表示する場合は `display: none` からのトランジションになり、`@starting-style` が必要だが、今回は消すだけなので不要だ。
 
 
 ### JS

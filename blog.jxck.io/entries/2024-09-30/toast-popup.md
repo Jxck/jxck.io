@@ -2,7 +2,7 @@
 
 ## Intro
 
-ここまでで `<dialog>` 要素が標準化され、 Modal/non-Modal な Dialog がネイティブで出せるようになった。
+ここまでで `<dialog>` 要素が標準化され、Modal/non-Modal な Dialog がネイティブで出せるようになった。
 
 今まで自前で実装していた `z-index` の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様がほぼ標準によってカバーされた。
 
@@ -13,9 +13,9 @@
 - Focusable Scrollers
 - etc
 
-しかし、 `<dialog>` はあくまで「ユーザのインタラクションを求める」という用途で使うものであり、 `role=dialog` ではない、例えばちょっとしたメッセージの通知などに使うものではない。
+しかし、`<dialog>` はあくまで「ユーザのインタラクションを求める」という用途で使うものであり、`role=dialog` ではない、例えばちょっとしたメッセージの通知などに使うものではない。
 
-そこで、これらの資産を活用し、より汎用的な UI を標準化しようという話が、 `<dialog>` の標準化の裏で並行して行われた。
+そこで、これらの資産を活用し、より汎用的な UI を標準化しようという話が、`<dialog>` の標準化の裏で並行して行われた。
 
 
 ## Toast
@@ -28,7 +28,7 @@ Toast UI とは、画面の右下などに、焼けたトーストのように�
 
 Toast は元々 iOS 文化圏の表現らしく、Android では Snackbar とも言うらしい。いずれも、英語圏でそこまで馴染みのある言葉ではないらしく「なぜ Toast なのか?」は FAQ だったようだ。
 
-Toast 自体は、通知の意味合いが強く、特にユーザにインタラクションを求めなかったり、操作しなくても時間が経てば消えるといったケースが多い。名前に差はあれど、様々な UI ライブラリが提供しており、これも HTML に欲しいということで、 `<toast>` や `<std-toast>` といった提案がなされた。
+Toast 自体は、通知の意味合いが強く、特にユーザにインタラクションを求めなかったり、操作しなくても時間が経てば消えるといったケースが多い。名前に差はあれど、様々な UI ライブラリが提供しており、これも HTML に欲しいということで、`<toast>` や `<std-toast>` といった提案がなされた。
 
 ちなみに、様々な実装の調査(共通する仕様、できることできないこと)が以下にまとまっている。
 
@@ -51,7 +51,7 @@ Toast 自体は、通知の意味合いが強く、特にユーザにインタ�
 - Dismiss する方法がある
 - 状態に応じた Event が発火し Callback が書ける
 
-ところが、この提案を実装する上で "Intent to Implement" には、 `<toast>` もセマンティクスではなくスタイルの問題である点を指摘しつつ「Chrome がマーケット支配力を利用して、勝手に実装を標準にするな」といったような意見が出てきた。
+ところが、この提案を実装する上で "Intent to Implement" には、`<toast>` もセマンティクスではなくスタイルの問題である点を指摘しつつ「Chrome がマーケット支配力を利用して、勝手に実装を標準にするな」といったような意見が出てきた。
 
 - Intent to Implement: Toast UI element
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Gl7FIKM5IFw/m/tA70X9ZIBQAJ
@@ -60,9 +60,9 @@ Toast 自体は、通知の意味合いが強く、特にユーザにインタ�
 
 この議論をしている 2019 年ごろは、Layered API という、頻出するパターンは共通する基盤を整備して、その上に実装できるようにしようといったコンセプトが一時的に流行っていた。(fetch, URL, FormData, Encoder... の頃)
 
-その流れから、 `<std-toast>` があれば、飛び出して他の要素の上に被さる系の UI は、全てその応用で実装可能というイメージで、それを `std-` をつけることで、カスタムコンポーネントのブラウザネイティブライブラリのような位置付けで実装する、という取り組みの流れを汲んだ最初で最後の HTML 提案だった。
+その流れから、`<std-toast>` があれば、飛び出して他の要素の上に被さる系の UI は、全てその応用で実装可能というイメージで、それを `std-` をつけることで、カスタムコンポーネントのブラウザネイティブライブラリのような位置付けで実装する、という取り組みの流れを汲んだ最初で最後の HTML 提案だった。
 
-ちなみに、この "Intent to Prototype" は 2019 年で、Firefox が `<dialog>` をリリースするのは 2020 年だ。つまり、 `<toast>` の議論時期的には `<dialog>` の実装がまだ Chrome くらいしかない頃から、並行して行われていたことがわかる。先に `<dialog>` の作業を進める間一旦影をひそめ、ひと段落してから再度議論が盛り上がっていく。
+ちなみに、この "Intent to Prototype" は 2019 年で、Firefox が `<dialog>` をリリースするのは 2020 年だ。つまり、`<toast>` の議論時期的には `<dialog>` の実装がまだ Chrome くらいしかない頃から、並行して行われていたことがわかる。先に `<dialog>` の作業を進める間一旦影をひそめ、ひと段落してから再度議論が盛り上がっていく。
 
 
 ## `<popup>` 要素
@@ -118,7 +118,7 @@ ESC で閉じるのは Modal Dialog でも同じだった。しかしそれ以�
 - Intent to Prototype: ModalCloseWatcher
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/NA5NC16OmsU
 
-で、 Explainer はというと
+で、Explainer はというと
 
 - history_api/history_and_modals.md at master - slightlyoff/history_api
   - https://github.com/slightlyoff/history_api/blob/master/history_and_modals.md
@@ -165,7 +165,7 @@ ESC で閉じるのは Modal Dialog でも同じだった。しかしそれ以�
 >
 > この (old!) intent to prototype スレッドに PSA/update を送ります。popup API について OpenUI で交わされたいくつかの議論に基づき、アプローチを変更することにしました。
 > 以前の I2P では、新しい `<popup>` 要素について説明しました。私は chromestatus のエントリを更新し、`popup` 属性を記述するように Explainer を書き直しました。
-> この新しいアイデアによって、 `<popup>` のアクセシビリティに関するいくつかの深刻な問題を回避することができ、また、より多くのアプリケーションに使用できる、より強力な API を実現することができます。
+> この新しいアイデアによって、`<popup>` のアクセシビリティに関するいくつかの深刻な問題を回避することができ、また、より多くのアプリケーションに使用できる、より強力な API を実現することができます。
 > `<selectmenu>` プロトタイプはこの実装に依存しているので、その間に HTMLPopupElement フラグを残しておきます。
 > `<selectmenu>` を新しい API に移行したら、古い `<popup>` 要素の実装を削除します。
 
@@ -181,7 +181,7 @@ OpenUI の議論は以下だ。
 - HTMLPopupElement · Issue #680 · w3ctag/design-reviews
   - https://github.com/w3ctag/design-reviews/issues/680#issuecomment-943472331
 
-もともと、 `<popup>` には「select menu を出す」、「Teaching UI」など、浮かび上がる系の UI をカバーするという目的で考えられていたが、そのセマンティクスはなんなんだろう? というものだ。"select menu" と "teaching ui" が同じということはないだろう、しかし、それぞれの目的ごとに HTML 要素を作り続けるのだろうか?といったものだ。Intent to Implement を出した時の指摘も同じだ。
+もともと、`<popup>` には「select menu を出す」、「Teaching UI」など、浮かび上がる系の UI をカバーするという目的で考えられていたが、そのセマンティクスはなんなんだろう? というものだ。"select menu" と "teaching ui" が同じということはないだろう、しかし、それぞれの目的ごとに HTML 要素を作り続けるのだろうか?といったものだ。Intent to Implement を出した時の指摘も同じだ。
 
 つまり "popup" というのは「動き」のことであり、その中にあるコンテンツの「意味(semantics)」とは別だということだ。ここをきちんと分離するためには、「意味」は既存の HTML / Role に任せ、その任意の HTML を Top Layer に表示したり Light Dismiss するための機能として "popup" するための属性にし、様々なユースケースに使える方が妥当という判断だ。
 

@@ -2,7 +2,7 @@
 
 ## Intro
 
-このエントリは、 3rd Party Cookie Advent Calendar の 19 日目である。
+このエントリは、3rd Party Cookie Advent Calendar の 19 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
@@ -53,16 +53,16 @@ Strict-Transport-Security: max-age=31536000
 
 ## Super Cookie 対策
 
-Super Cookie の利点は、 HSTS 情報がブラウザにグローバルに保存されるため、どのページから `fetch()` しても、同様の情報が取得できる点にあった。
+Super Cookie の利点は、HSTS 情報がブラウザにグローバルに保存されるため、どのページから `fetch()` しても、同様の情報が取得できる点にあった。
 
 その問題に対処するのが、前述した Network (State) Partitioning だ。ブラウザの実装によるところはあるが、すでに Partition しているものもある。
 
 その場合は、あるサイトで HSTS を設定していても、別のサイトでは HSTS 情報が共有されないため、クロスサイトのトラッキングには使用できない。
 
-また、 HSTS はそもそも HTTPS by Default というゴールに向けた過渡的な技術だ。
+また、HSTS はそもそも HTTPS by Default というゴールに向けた過渡的な技術だ。
 
 世界中のサイトが HTTPS をデプロイを進めていくため、今後は HTTP に接続すること自体を防いでいくフェーズに入りつつある。
 
-例えば、 Chrome は既に `http://` なリンクでも、最初から HTTPS で接続する方向に移行しつつある。
+例えば、Chrome は既に `http://` なリンクでも、最初から HTTPS で接続する方向に移行しつつある。
 
-つまり HSTS がブラウザでデフォルトになっていき、 HTTP に対応していないサイトに接続する場合は、ユーザにリスクを認識させるために、何らかの操作負荷を加えていくことになるだろう。
+つまり HSTS がブラウザでデフォルトになっていき、HTTP に対応していないサイトに接続する場合は、ユーザにリスクを認識させるために、何らかの操作負荷を加えていくことになるだろう。

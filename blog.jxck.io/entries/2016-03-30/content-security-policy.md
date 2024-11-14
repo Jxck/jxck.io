@@ -6,14 +6,14 @@
 
 まずは Report Only にて導入し、段階的にポリシーとコンテンツを修正していく方針をとる。
 
-CSP Report については、 [report-uri.io](https://report-uri.io) を用いて収集することにした。
+CSP Report については、[report-uri.io](https://report-uri.io) を用いて収集することにした。
 
 導入に必要な設定や、注意点についてまとめる。
 
 
 ## Content Security Policy
 
-Content Security Policy(CSP) とは、 Web におけるセキュリティを向上させる非常に強力な仕組みである。
+Content Security Policy(CSP) とは、Web におけるセキュリティを向上させる非常に強力な仕組みである。
 
 - [Content Security Policy Level 2](https://www.w3.org/TR/CSP/)
 - [draft-gondrom-websec-csp-header-00 - HTTP Header Content Security Policy](https://tools.ietf.org/html/draft-gondrom-websec-csp-header-00)
@@ -25,7 +25,7 @@ Content Security Policy(CSP) とは、 Web におけるセキュリティを向�
 
 ## CSP の設定
 
-CSP を有効にするには、 Content-Security-Policy ヘッダを付与し、その引数にポリシーを指定する。
+CSP を有効にするには、Content-Security-Policy ヘッダを付与し、その引数にポリシーを指定する。
 
 ポリシーは、コンテンツが読み込み可能なコンテンツについての制限であり、以下のような指定が可能である。
 
@@ -37,7 +37,7 @@ Content-Security-Policy: default-src 'self'
 
 [CSP におけるポリシーのディレクティブ - Web セキュリティ | MDN](https://developer.mozilla.org/ja/docs/Web/Security/CSP/CSP_policy_directives)
 
-基本的には、同一オリジン以外の外部スクリプトや、 `<script>` 内に直接記述するインラインスクリプトなどを全て除外し、そうしたスクリプトがあった場合も実行を阻止する。
+基本的には、同一オリジン以外の外部スクリプトや、`<script>` 内に直接記述するインラインスクリプトなどを全て除外し、そうしたスクリプトがあった場合も実行を阻止する。
 
 また、ポリシー違反があった事実を JSON 形式のレポートとして生成し、指定 URL に送信することが可能である。
 
@@ -54,15 +54,15 @@ Content-Security-Policy: default-src 'self'
 
 まず、この指定により、インラインスクリプトが全て無効になる。
 
-よくある例として、 Google Analytics のためページ下部に埋め込んだ `<script>` が全て動かなくなるため、アナリティクスが動かなくなる。
+よくある例として、Google Analytics のためページ下部に埋め込んだ `<script>` が全て動かなくなるため、アナリティクスが動かなくなる。
 
 他にも、例えば `cdn.jquery.com` などの Public CDN から取得しているスクリプトも軒並み動かなくなる。
 
-スクリプトだけでなく、 `<img>` や `<iframe>` なども注意が必要だ。
+スクリプトだけでなく、`<img>` や `<iframe>` なども注意が必要だ。
 
 特にアド(広告)を貼っている場合は、そのアドは表示されなくなる可能性が高い。
 
-同じオリジンから配布している JS でも、内部で `eval()` を実行している箇所や、 XHR, WebSocket で別オリジンに接続している箇所は、ポリシー違反になる場合もある。
+同じオリジンから配布している JS でも、内部で `eval()` を実行している箇所や、XHR, WebSocket で別オリジンに接続している箇所は、ポリシー違反になる場合もある。
 
 とにかく、ある程度外部のリソースへリンクしているコンテンツにとっては、前述の制約はかなり厳しいものである。
 
@@ -94,7 +94,7 @@ Content-Security-Policy-Report-Only: default-src 'self'; report-uri https://exam
 
 ## report-uri.io
 
-ブラウザは、 CSP に違反した実行を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
+ブラウザは、CSP に違反した実行を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
 
 CSP の違反レポートは以下のような JSON データである。
 
@@ -111,11 +111,11 @@ CSP の違反レポートは以下のような JSON データである。
 }
 ```
 
-このレポートは、 Google Analytics の実行がポリシーのセーフリストに含まれていないことによって発生している。
+このレポートは、Google Analytics の実行がポリシーのセーフリストに含まれていないことによって発生している。
 
 こうしたレポートにより、どのページの、どの実行が、どのポリシーに違反したかなどが取得できる。
 
-このレポートの収集と解析を行うサービスとして、 report-uri.io というサービスが最近登場した。
+このレポートの収集と解析を行うサービスとして、report-uri.io というサービスが最近登場した。
 
 [Welcome to report-uri.io](https://report-uri.io/)
 
@@ -141,7 +141,7 @@ CSP の違反レポートは以下のような JSON データである。
 
 ## 本サイトへの適用
 
-本サイトでも、まずは Report-Only をサイト全体に適用し、 report-uri.io にてレポートを収集することにした。
+本サイトでも、まずは Report-Only をサイト全体に適用し、report-uri.io にてレポートを収集することにした。
 
 一通りエラーを見て回ったところ、以下の点で修正が必要だった。
 
@@ -154,9 +154,9 @@ CSP の違反レポートは以下のような JSON データである。
 
 基本的には、必要なオリジンをセーフリストに追加し、インラインスタイル、インラインスクリプトは外部化した。
 
-しかし、 AMP のカスタムタグがインラインスタイルを使用している部分は、手を入れることができない。
+しかし、AMP のカスタムタグがインラインスタイルを使用している部分は、手を入れることができない。
 
-かといって、全体としてスタイルに `'unsafe-inline'` を許容するのもはばかられたため、 AMP ページのみスタイルの `'unsafe-inline'` を許可した。
+かといって、全体としてスタイルに `'unsafe-inline'` を許容するのもはばかられたため、AMP ページのみスタイルの `'unsafe-inline'` を許可した。
 
 よって、通常のページ(上)と AMP 対応ページ(下)では以下の出し分けをしている。
 

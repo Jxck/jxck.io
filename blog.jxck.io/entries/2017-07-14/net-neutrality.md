@@ -32,24 +32,24 @@ US では #NetNeutrality について話題になっている一方、日本で�
 
 FCC (Federal Communications Commission): アメリカ連邦通信委員会は、この Net Neutrality を廃止を提案している。
 
-そのロビー活動には、 Comcast, Verizon, Time Warner Cable, AT&T などの主要なキャリアが参加している。
+そのロビー活動には、Comcast, Verizon, Time Warner Cable, AT&T などの主要なキャリアが参加している。
 
 端末が普及しトラフィックが無尽蔵に増えていく現状で、土管に徹するプロバイダにとって、トラフィックコントロールを行いたいモチベーションは色々あるだろうとは思う。
 
-実際に何をどこまでやるかは別としても、 Net Neutrality を廃すれば、それが可能になる。
+実際に何をどこまでやるかは別としても、Net Neutrality を廃すれば、それが可能になる。
 
 
 ## Net Neutrality Day of Action
 
 この廃止案に対しての抗議活動は活発で、多くの企業も参加している。
 
-これ自体は本来、今始まった話ではないが、先日その一つの大きな抗議活動として、 2017/7/12 (執筆時で日本時間の昨日) に大きなデモが行われた。
+これ自体は本来、今始まった話ではないが、先日その一つの大きな抗議活動として、2017/7/12 (執筆時で日本時間の昨日) に大きなデモが行われた。
 
 [Join the Battle for Net Neutrality](https://www.battleforthenet.com/)
 
-[TechCrunch Japan の記事](http://jp.techcrunch.com/2017/07/14/20170713net-neutrality-day-of-action-spurs-millions-to-speak-out-for-online-freedoms/) によると、 200 万のコメントが FCC に送られたらしい。
+[TechCrunch Japan の記事](http://jp.techcrunch.com/2017/07/14/20170713net-neutrality-day-of-action-spurs-millions-to-speak-out-for-online-freedoms/) によると、200 万のコメントが FCC に送られたらしい。
 
-Sir Tim Berners-Lee も、 Youtube にメッセージを出している。
+Sir Tim Berners-Lee も、Youtube にメッセージを出している。
 
 <iframe src="https://www.youtube.com/embed/5Gh0NIQ3yd0" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
 

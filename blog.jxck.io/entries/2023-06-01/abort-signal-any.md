@@ -11,7 +11,7 @@
 
 ## Abort 後のリソース解放
 
-AbortSignal によって、非同期処理のキャンセルが可能になった。例として、 Server 上での Fetch のタイムアウトの例を考えよう。
+AbortSignal によって、非同期処理のキャンセルが可能になった。例として、Server 上での Fetch のタイムアウトの例を考えよう。
 
 ```js
 app.get("/entries", async (req, res) => {
@@ -32,7 +32,7 @@ app.get("/entries", async (req, res) => {
 })
 ```
 
-ここで `perRequestController` はあくまで Request のハンドラに閉じているため、 Response を返したら全て消える。
+ここで `perRequestController` はあくまで Request のハンドラに閉じているため、Response を返したら全て消える。
 
 次に、この Server プロセスが `SIGINT` 時に、連動して実行中の Fetch を止めたい場合を考えてみよう。
 
@@ -74,7 +74,7 @@ Request の処理が終わっても `rootController` のハンドラはクリー
 
 しかし、このミスは非常に頻繁に発生し、特に `AbortSignal` を連携する場面では、親が子の参照を保持することによるメモリーリークは珍しいことではないようだ。
 
-実際、 Node.js でも`timer` の中でこの問題が発生しており、これを修正すると同時に、このようなバグを防ぐために `maxListeners` というスレッショルドを実装するという Issue が、 Microsoft の Benjamin によって立てられた。
+実際、Node.js でも`timer` の中でこの問題が発生しており、これを修正すると同時に、このようなバグを防ぐために `maxListeners` というスレッショルドを実装するという Issue が、Microsoft の Benjamin によって立てられた。
 
 - Warn on EventTarget maxListeners > THRESHOLD · Issue #35990 · nodejs/node
   - https://github.com/nodejs/node/issues/35990
@@ -120,9 +120,9 @@ function follow(perRequestController, rootSignal) {
 }
 ```
 
-書いてみればそのままだが、徹底するのは難しいタイプのコードだ。 API として提供する価値はあるだろう。
+書いてみればそのままだが、徹底するのは難しいタイプのコードだ。API として提供する価値はあるだろう。
 
-このころは、 `AbortController.prototype.follow(signal)` という名前が付けられていた。
+このころは、`AbortController.prototype.follow(signal)` という名前が付けられていた。
 
 
 ## AbortSignal in addEventListener
@@ -132,7 +132,7 @@ function follow(perRequestController, rootSignal) {
 - Support `AbortSignal`s in `addEventListener`s options to unsubscribe from events? · Issue #911 · whatwg/dom
   - https://github.com/whatwg/dom/issues/911
 
-読んだ通り `AbortSignal` が `abort` したら、 EventListener を削除するという提案だ。
+読んだ通り `AbortSignal` が `abort` したら、EventListener を削除するという提案だ。
 
 ```js
 const controller = new AbortController()
@@ -143,12 +143,12 @@ eventTarget.addEventListener("foo", (e) => {
 }, { signal })
 ```
 
-この提案は有用と認められ、 Node で試しながら DOM にバックポートされた。
+この提案は有用と認められ、Node で試しながら DOM にバックポートされた。
 
 - add signal to addEventListener by benjamingr · Pull Request #919 · whatwg/dom
   - https://github.com/whatwg/dom/pull/919
 
-結果、 EventEmitter でも EventTarget でも使える API になり、 Node および全メジャーブラウザで実装されている。
+結果、EventEmitter でも EventTarget でも使える API になり、Node および全メジャーブラウザで実装されている。
 
 これを使うと、先ほどの `follow` は以下のように書き直せる。
 
@@ -169,7 +169,7 @@ function follow(perRequestController, rootSignal) {
   rootSignal.addEventListener("abort", () => {
     perRequestController.abort()
   }, {
-    // once にすることで、 Abort 時は自動でハンドラを削除
+    // once にすることで、Abort 時は自動でハンドラを削除
     once: true
     // 子が Abort したら親からハンドラを削除
     signal: perRequestController.signal
@@ -179,9 +179,9 @@ function follow(perRequestController, rootSignal) {
 
 さて、これで良さそうだが、これも実は問題を半分しか解決してない。
 
-このコードでは、親か子のどちらかが Abort する場合はクリーンアップできるが、全てがうまくいってしまった場合(最初の例で言えば、 Timeout も SIGINT もない場合)はクリーンアップされない。
+このコードでは、親か子のどちらかが Abort する場合はクリーンアップできるが、全てがうまくいってしまった場合(最初の例で言えば、Timeout も SIGINT もない場合)はクリーンアップされない。
 
-正常処理時のクリーンアップは、 Signal だけをみても不可能なので、結局ユーザランドで気をつけて実装するしかない。もし `follow()` 側でやるなら、 `rootSignal.addEventListener()` が Weak な参照を持つでもない限り不可能なのだ。
+正常処理時のクリーンアップは、Signal だけをみても不可能なので、結局ユーザランドで気をつけて実装するしかない。もし `follow()` 側でやるなら、`rootSignal.addEventListener()` が Weak な参照を持つでもない限り不可能なのだ。
 
 そこで、「本当に必要なものは何か」を整理した結果、ユーザランドでは難しい「Signal の連結」を行う API の必要性が浮き彫りになった。
 
@@ -213,7 +213,7 @@ app.get("/entries", (req, res) => {
 
 この `fetch()` のタイムアウトは、かなり頻出処理でありながら、毎回書くのは非常に面倒だ。本来なら `fetch(url, {timeout: 1000})` などと書きたいところで、そのような要望は定期的にあった。
 
-しかし、 `fetch()` だけタイムアウトできても汎用的にはならないため(というか、それもあって `fetch()` 策定中に `AbortSignal` が生まれた)、より汎用的なのはタイムアウト用の `AbortSignal` を生成することだ。
+しかし、`fetch()` だけタイムアウトできても汎用的にはならないため(というか、それもあって `fetch()` 策定中に `AbortSignal` が生まれた)、より汎用的なのはタイムアウト用の `AbortSignal` を生成することだ。
 
 そこで提案されたのが `AbortSignal.timeout()` だ。
 
@@ -244,7 +244,7 @@ rootController.on("abort", () => {
 })
 ```
 
-直接 `timeoutSignal` を作っているため、`perRequestController` 相当のものがなくなっている。これでは、 `SIGINT` とタイムアウトが連携できない。
+直接 `timeoutSignal` を作っているため、`perRequestController` 相当のものがなくなっている。これでは、`SIGINT` とタイムアウトが連携できない。
 
 実は、この `AbortSignal.timeout()` の策定の時点で、前述の「Signal の連結」を行う API の構想が進みつつあったのだ。
 
@@ -258,7 +258,7 @@ rootController.on("abort", () => {
 - abort-signal-any/README.md at main · shaseley/abort-signal-any · GitHub
   - https://github.com/shaseley/abort-signal-any/blob/main/README.md
 
-これは、 Signal の配列を渡すと、連結された Signal が返る API であるため、先のサンプルは以下のように書き換えられる。
+これは、Signal の配列を渡すと、連結された Signal が返る API であるため、先のサンプルは以下のように書き換えられる。
 
 ```js
 const rootController = new AbortController()
@@ -291,7 +291,7 @@ app.get("/entries", (req, res) => {
 
 `combinedSignal` は、`SIGINT` とタイムアウトどちらが発生しても `fetch()` を Abort できる。
 
-しかし、 Request のハンドラから `rootController` の参照が消え、ハンドラのクリーンアップについて気にする必要がなくなった。
+しかし、Request のハンドラから `rootController` の参照が消え、ハンドラのクリーンアップについて気にする必要がなくなった。
 
 そして、これを `AbortSignal.timeout()` にするとこうなる。
 
@@ -351,7 +351,7 @@ Firefox は Positive だが実装はまだのようだ。
 - `AbortSignal.any()`
 - `AbortSignal.throwIfAborted()`
 
-まず基本的な使い方として、 Signal を安全に連結する方法が手に入ったため、 `AbortSignal.timeout()` のように、`AbortSignal` を返す API を実装するのは、非常に理にかなったものになる。例えば、先ほどの SIGINT の処理を、以下のように提供するイメージだ。
+まず基本的な使い方として、Signal を安全に連結する方法が手に入ったため、`AbortSignal.timeout()` のように、`AbortSignal` を返す API を実装するのは、非常に理にかなったものになる。例えば、先ほどの SIGINT の処理を、以下のように提供するイメージだ。
 
 ```js
 function processSIGINT() {
@@ -397,7 +397,7 @@ async function main() {
 
 ## 例外処理
 
-本来は `AbortSignal.Timeout()` は `AbortError` ではなく `TimeoutError` になることを踏まえた、 `fetch()` 中断時の例外処理周りの話もしようと思ったが、 Chrome と Safari が仕様に反して `AbortError` を上げるバグがあるため、それについては今回割愛する。
+本来は `AbortSignal.Timeout()` は `AbortError` ではなく `TimeoutError` になることを踏まえた、`fetch()` 中断時の例外処理周りの話もしようと思ったが、Chrome と Safari が仕様に反して `AbortError` を上げるバグがあるため、それについては今回割愛する。
 
 
 ## Outro

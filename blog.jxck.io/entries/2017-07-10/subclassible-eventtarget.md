@@ -11,7 +11,7 @@
 
 ## Update
 
-Chrome Canary 64 で実装が確認できたため、 DEMO を追加した。
+Chrome Canary 64 で実装が確認できたため、DEMO を追加した。
 
 
 ## EventTarget
@@ -23,7 +23,7 @@ Chrome Canary 64 で実装が確認できたため、 DEMO を追加した。
 ```js:et.js
 ```
 
-この場合、 `$div` は `Element < Node < EventTarget` と、祖先に EventTarget を持っている。
+この場合、`$div` は `Element < Node < EventTarget` と、祖先に EventTarget を持っている。
 
 同様に EventTarget を祖先に持つ要素では、このパターンのハンドリングが可能であるが、任意のクラスを EventTarget にすることができなかった。
 
@@ -37,7 +37,7 @@ Node では EventEmitter が、メソッド名は違えど同等の役割を果�
 ```js:ee.js
 ```
 
-大きな違いは、 EventEmitter が任意のクラスで継承できる点だ。
+大きな違いは、EventEmitter が任意のクラスで継承できる点だ。
 
 したがって、非同期処理をクラスに閉じ込め、加工したイベントとして外に公開するといった設計が可能になる。
 
@@ -53,11 +53,11 @@ Node では EventEmitter が、メソッド名は違えど同等の役割を果�
 
 これまでは、ブラウザ上で任意の class を EventTarget にすることができなかった。
 
-そこで、 Node における EventEmitter を用いた設計と同等のことを行うためには、 EventEmitter のポーティングなどが利用されていた。
+そこで、Node における EventEmitter を用いた設計と同等のことを行うためには、EventEmitter のポーティングなどが利用されていた。
 
 例えば browserify は https://github.com/Gozala/events を使っており、筆者も [同じようなこと](https://github.com/jxck/events) をしたことがある。
 
-しかし、こうした汎用的な処理をより効率よく実現するために、 EventTarget が継承可能となる仕様が追加された。
+しかし、こうした汎用的な処理をより効率よく実現するために、EventTarget が継承可能となる仕様が追加された。
 
 - [Allow constructing and subclassing EventTarget](https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586)
 - [Make EventTarget subclassable #441](https://github.com/whatwg/dom/issues/441)
@@ -112,11 +112,11 @@ document.querySelector('button').on('click', (e) => {
 })
 ```
 
-ただし、 EventEmitter は EventTarget よりも機能が多く、例えば `listeners()` や `eventNames()` などは、 EventTarget への移譲だけでは実装できない。
+ただし、EventEmitter は EventTarget よりも機能が多く、例えば `listeners()` や `eventNames()` などは、EventTarget への移譲だけでは実装できない。
 
-それらが必要な場合は、別途イベントとリスナの管理が必要になるだろう。こうした機能が必要な場合は、要するに EventEmitter そのものを必要としてるということなので、 porting は依然必要になる。
+それらが必要な場合は、別途イベントとリスナの管理が必要になるだろう。こうした機能が必要な場合は、要するに EventEmitter そのものを必要としてるということなので、porting は依然必要になる。
 
-しかし、 EventTarget 相当を実現するためだけに EventEmitter を導入していた場合は、 EventTarget が継承できるだけで十分な場合も少なくはないだろう。
+しかし、EventTarget 相当を実現するためだけに EventEmitter を導入していた場合は、EventTarget が継承できるだけで十分な場合も少なくはないだろう。
 
 その場合はネイティブの実装だけで足りるようになるため、実装が進むことに期待したい。
 

@@ -2,7 +2,7 @@
 
 ## Intro
 
-Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。
+Service Worker で Fetch を Proxy する場合、Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。
 
 そして、この SW の起動には無視できない時間がかかる場合があった。
 
@@ -13,26 +13,26 @@ Service Worker で Fetch を Proxy する場合、 Fetch 発生時に SW が起�
 
 SW が `onfetch` をハンドルし、キャッシュから Response を返す場合は、ネットワーク I/O をせずに画面をレンダリングできる。
 
-しかし、 SW が `onfetch` をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
+しかし、SW が `onfetch` をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
 
-この場合、もしページのコントローラとなっている SW が起動していない場合は、 `onfetch` ハンドラを実行するために、 SW の起動を待つ必要が出てくる。
+この場合、もしページのコントローラとなっている SW が起動していない場合は、`onfetch` ハンドラを実行するために、SW の起動を待つ必要が出てくる。
 
-SW の起動には、もちろん実行環境によるところが大きいが、 [50~500ms](https://developers.google.com/web/updates/2017/02/navigation-preload) 程度の時間がかかるとされている。
+SW の起動には、もちろん実行環境によるところが大きいが、[50~500ms](https://developers.google.com/web/updates/2017/02/navigation-preload) 程度の時間がかかるとされている。
 
-つまり、せっかく表示を最適化しても、 SW を追加することでそれを台無しにしてしまうケースがあるということだ。
+つまり、せっかく表示を最適化しても、SW を追加することでそれを台無しにしてしまうケースがあるということだ。
 
 これを解決するのが Navigation Preload である。
 
 
 ## Navigation Preload
 
-Navigation Preload を有効にすると、 SW が起動してない状態で発生したリクエストを、 SW をバイパスしてネットワーク側に送ることができる。
+Navigation Preload を有効にすると、SW が起動してない状態で発生したリクエストを、SW をバイパスしてネットワーク側に送ることができる。
 
-つまり、実際の Fetch の実施と、 SW の起動を並行して行うということだ。
+つまり、実際の Fetch の実施と、SW の起動を並行して行うということだ。
 
-しかし、それだけでは、 `onfetch` のハンドラ内でキャッシュ処理などを実行することができない。
+しかし、それだけでは、`onfetch` のハンドラ内でキャッシュ処理などを実行することができない。
 
-そこで、 SW が起動した後に、並行して行った Fetch の結果に触ることができるため、後からキャッシュに詰める/ヘッダを追加するといったことが可能になる。
+そこで、SW が起動した後に、並行して行った Fetch の結果に触ることができるため、後からキャッシュに詰める/ヘッダを追加するといったことが可能になる。
 
 ただし、基本的に問題になるのは、しばらくアクセスしてなかったページに遷移して、最初のページを表示する部分になる。
 
@@ -43,7 +43,7 @@ Navigation Preload を有効にすると、 SW が起動してない状態で発
 
 ### navigationPreload.enable()
 
-`onfetch` に先立って有効化されている必要があるため、 `onactivate` で有効にする。
+`onfetch` に先立って有効化されている必要があるため、`onactivate` で有効にする。
 
 ```js
 self.addEventListener('activate', (e) => {
@@ -60,7 +60,7 @@ self.addEventListener('activate', (e) => {
 
 ### preloadResponse
 
-サーバが返したレスポンスは、 SW 起動後に `onfetch` ハンドラ内で取得できる。
+サーバが返したレスポンスは、SW 起動後に `onfetch` ハンドラ内で取得できる。
 
 Preload がある場合はそれを返し、なければ実際に fetch を走らせるコードは以下のようになる。
 
@@ -104,7 +104,7 @@ navigator.serviceWorker.register('worker.js')
 
 ## getState()
 
-もし Navigation Preload を有効にした状態で、 preloadResponse を確認せずに fetch を実行した場合は、同じリクエストを重複して投げてしまう可能性があるため注意が必要である。
+もし Navigation Preload を有効にした状態で、preloadResponse を確認せずに fetch を実行した場合は、同じリクエストを重複して投げてしまう可能性があるため注意が必要である。
 
 Navigation Preload が有効になっているかは、以下のように取得することができる。
 

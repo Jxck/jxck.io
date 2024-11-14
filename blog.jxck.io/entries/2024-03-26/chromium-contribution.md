@@ -78,9 +78,9 @@ content:fetch case:y f:third_party/blink/renderer/core/fetch f:.cc -test
 
 基本的に Chromium はマルチプロセスになっている。
 
-親プロセスとして browser process があり、各タブを開くごとに独立した rendering process が開かれる。 rendering process と browser process は IPC しかできない。
+親プロセスとして browser process があり、各タブを開くごとに独立した rendering process が開かれる。rendering process と browser process は IPC しかできない。
 
-これによって rendering process がサンドボックス化されている。つまり、インターネットの有象無象なコードを落として実行し、仮に rendering process が攻撃されても、そこから browser process は守られているため、 OS から情報を抜いたりはできない。
+これによって rendering process がサンドボックス化されている。つまり、インターネットの有象無象なコードを落として実行し、仮に rendering process が攻撃されても、そこから browser process は守られているため、OS から情報を抜いたりはできない。
 
 ![chrome process architecture](chrome-process-architecture.png#720x405)
 
@@ -114,7 +114,7 @@ Blink>PerformanceAPIs>ResourceTiming
 
 また、関連する複数のバグは Hotlist というものでまとめられる。
 
-例えば、 Hotlist-GoodFirstBug とか。
+例えば、Hotlist-GoodFirstBug とか。
 
 - Hotlist-GoodFirstBug
   - https://issues.chromium.org/issues?q=Hotlist-GoodFirstBug
@@ -175,15 +175,15 @@ Attention が自分のままだとレビューをしてもらえないので、�
 
 Rebase は UI 上からできるが、全部のコメントを一旦終えてから Rebase するのがマナーらしい。
 
-Rebase が終わったら、 "CQ DRY RUN" する。これが CI でビルドと全テストを流すボタン。ただし、権限のある人にしかできないので、 Reviewer にやってもらうことになる。
+Rebase が終わったら、"CQ DRY RUN" する。これが CI でビルドと全テストを流すボタン。ただし、権限のある人にしかできないので、Reviewer にやってもらうことになる。
 
 ![rebase-dry-run](rebase-dry-run.png#688x80)
 
-全部終わると、 Code-Review +1 がもらえる。これがないとマージされない。
+全部終わると、Code-Review +1 がもらえる。これがないとマージされない。
 
 ![lgtm](lgtm.png#1204x360)
 
-テストが通り Code-Review +2 がもらえると、ついに Ready to submit になり、 "SUBMIT TO CQ" ボタンが出る。
+テストが通り Code-Review +2 がもらえると、ついに Ready to submit になり、"SUBMIT TO CQ" ボタンが出る。
 
 ![ready to submit](ready-to-submit.jpeg#1896x606)
 
@@ -244,7 +244,7 @@ Chromium は、一部を開発するにも、基本は全てをチェックア�
 
 基本は書かれている通りやるだけ。
 
-ビルドは、基本的に Linux が一番早い(ファイルシステムやプロセス生成の影響がでかい)らしいので、 OS 依存でない限りは Mac より Linux を用意する方が良さそう。
+ビルドは、基本的に Linux が一番早い(ファイルシステムやプロセス生成の影響がでかい)らしいので、OS 依存でない限りは Mac より Linux を用意する方が良さそう。
 
 ちなみに Mac(2020 Core i7/32GB) だと。
 
@@ -370,7 +370,7 @@ $ chrome --enable-features=SubresourceWebBundle
 - file:features.json5 - Search
   - https://source.chromium.org/search?q=file:features.json5&ss=chromium
 
-よく見るのは、 renderer/platform のもの。
+よく見るのは、renderer/platform のもの。
 
 - runtime_enabled_features.json5 - Chromium Code Search
   - https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/runtime_enabled_features.json5
@@ -432,11 +432,11 @@ Experimental で Origin Trials が始まると、それも features.json5 で管
 },
 ```
 
-このフラグが外れる前は、 A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく場合がある。これを Finch という。
+このフラグが外れる前は、A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく場合がある。これを Finch という。
 
 runtime_enabled_features.json5 に登録した名前がそのまま Finch の名前になり、その名前がコントロールする範囲に対して Kill Switch がある状態だ。
 
-もし、ロールアウトして問題があったりした場合に、 Chrome のリリースを伴わずに機能をリモートから無効にすることができる。
+もし、ロールアウトして問題があったりした場合に、Chrome のリリースを伴わずに機能をリモートから無効にすることができる。
 
 別で Finch のコントロールを定義する場合は `base::Feature` のインスタンスを作る必要があるが、その辺は Finch のシステムにアクセスできない外部コントリビューターがやることはあまりないだろう。
 
@@ -516,12 +516,12 @@ C++ のシンボルやヘッダの参照が壊れて真っ赤になる時があ�
 
 ![clangd-error](clangd-error.png#1386x1140)
 
-これは、 clangd 用のデータベースがなく、自動では作られないかららしい。
+これは、clangd 用のデータベースがなく、自動では作られないかららしい。
 
 - Chromium Docs - Clangd
   - https://chromium.googlesource.com/chromium/src/+/master/docs/clangd.md
 
-これを作るコマンドがあるので、 `src/compile_commands.json` を作ってから、起動しなおしたりすると治る。
+これを作るコマンドがあるので、`src/compile_commands.json` を作ってから、起動しなおしたりすると治る。
 
 ```shell-session
 $ tools/clang/scripts/generate_compdb.py -p out/Default > compile_commands.json
@@ -590,9 +590,9 @@ sqlite> select * from table
 
 Web Platform Tests は、各ブラウザが共通して実行する Web の単体テスト群のようなもの。
 
-最近でいうと、 Interop は WPT の達成度合いを上げていこうという取り組みだったりする。
+最近でいうと、Interop は WPT の達成度合いを上げていこうという取り組みだったりする。
 
-Chromium は WPT をリポジトリの中に入れており、 Web 標準の機能を実装する際はそのテストを直接 WPT にも追加してレビューに投げる。マージされたらそのテストは WPT 本体にもアップロードされるようになっている。
+Chromium は WPT をリポジトリの中に入れており、Web 標準の機能を実装する際はそのテストを直接 WPT にも追加してレビューに投げる。マージされたらそのテストは WPT 本体にもアップロードされるようになっている。
 
 WPT の実行の仕方とテストの書き方も慣れが必要。
 
@@ -636,7 +636,7 @@ WebTransportH3 server running on https://localhost:11000
 
 テスト用のドメインとしては `web-platform.test` などのドメインが使われる。
 
-これを解決できないと実行できないテストがある場合は、 `/etc/hosts` に追加する必要があるが、その自動構成スクリプトは以下にある。
+これを解決できないと実行できないテストがある場合は、`/etc/hosts` に追加する必要があるが、その自動構成スクリプトは以下にある。
 
 - Command-Line Arguments - web-platform-tests documentation
   - https://web-platform-tests.org/running-tests/command-line-arguments.html#make-hosts-file
@@ -644,9 +644,9 @@ WebTransportH3 server running on https://localhost:11000
 
 ### expected / actual file
 
-WPT は網羅的にテストがあるが、 Chromium は全部を通せるわけじゃない。(それを通るようにするのが Interop の目的)
+WPT は網羅的にテストがあるが、Chromium は全部を通せるわけじゃない。(それを通るようにするのが Interop の目的)
 
-これは、 WPT のテストケースに対して、通らないものは「落ちる結果」を expected ファイルに書いて、実行結果が生成する actual ファイルと一致するかどうかを見るような仕組みになっている。
+これは、WPT のテストケースに対して、通らないものは「落ちる結果」を expected ファイルに書いて、実行結果が生成する actual ファイルと一致するかどうかを見るような仕組みになっている。
 
 つまり、「意図した通りに落ちるか」をテストしているような感じだ。
 
@@ -688,14 +688,14 @@ $ autoninja -C out/Default blink_tests all_blink content_shell
 
 ### テストサーバ
 
-fetch などでサーバを叩いたりするテストのために、 mock server を書く方法がいくつかある。
+fetch などでサーバを叩いたりするテストのために、mock server を書く方法がいくつかある。
 
 - Server Features - web-platform-tests documentation
   - https://web-platform-tests.org/writing-tests/server-features.html
 
 まず、普通にファイル (`/example/text.html`) を置けば、それは静的ファイルとしてアクセスできる。
 
-これにヘッダをつけたい場合は、 .headers ファイルを作る(`/example/test.html.headers`)
+これにヘッダをつけたい場合は、.headers ファイルを作る(`/example/test.html.headers`)
 
 ```http
 Access-Control-Allow-Origin: *
@@ -725,16 +725,16 @@ def main(request, response):
 
 ### HTTPS
 
-注意点として、もしそのファイルに HTTPS でアクセスしたい場合は、 `${name}.https.${ext}` のように、ファイル名に https を入れる必要があります。
+注意点として、もしそのファイルに HTTPS でアクセスしたい場合は、`${name}.https.${ext}` のように、ファイル名に https を入れる必要があります。
 
-特に、 HTTPS でしか動かない機能のテストはこれを忘れると落ちるので注意。
+特に、HTTPS でしか動かない機能のテストはこれを忘れると落ちるので注意。
 
 その上で HTTP/2 が必要なら `${name}.h2.${ext}` とするなど、他のフラグもある。
 
 
 ## Launch Process
 
-新機能の追加など Web Facing な変更については、 Launch Process というプロセスを踏んで進める必要がある。
+新機能の追加など Web Facing な変更については、Launch Process というプロセスを踏んで進める必要がある。
 
 - Launching Features
   - https://www.chromium.org/blink/launching-features/#process-existing-standard
@@ -752,7 +752,7 @@ def main(request, response):
 
 ![Development Stages](development-stages.jpeg#894x308)
 
-以下のボタンから各種レビュー(Privacy, Security, Enterprise, Debuggability, Testing) をリクエストできる。 Intent to Ship の前にこのレビューが終わらせる必要があるが、レビューには割と時間がかるっぽい。
+以下のボタンから各種レビュー(Privacy, Security, Enterprise, Debuggability, Testing) をリクエストできる。Intent to Ship の前にこのレビューが終わらせる必要があるが、レビューには割と時間がかるっぽい。
 
 ![Review Request](review-request.png#1256x248)
 

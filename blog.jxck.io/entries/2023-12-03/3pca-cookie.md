@@ -2,12 +2,12 @@
 
 ## Intro
 
-このエントリは、 3rd Party Cookie Advent Calendar の 3 日目である。
+このエントリは、3rd Party Cookie Advent Calendar の 3 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
 
-前回は 「Cookie は *区別* と *識別* の用途があり、 *区別* だけのユースケースもある」という解説をした。
+前回は「Cookie は *区別* と *識別* の用途があり、*区別* だけのユースケースもある」という解説をした。
 
 今回も、もう少し Cookie の性質を振り返っていく。
 
@@ -25,7 +25,7 @@ Host: shop.example
 username=jxck&password=******
 ```
 
-ここで認証した結果、 Jxck に対して ID を振る。
+ここで認証した結果、Jxck に対して ID を振る。
 
 ```http
 HTTP/1.1 200 OK
@@ -50,7 +50,7 @@ Cookie: id=31d4d96e407aad42
 
 ## 直接アクセスしてなくても送る
 
-さて、先ほど shop.example で Cookie を取得したブラウザが、 EC サイトとはまったく関係ない筆者のブログにアクセスしたところを考えてみよう。
+さて、先ほど shop.example で Cookie を取得したブラウザが、EC サイトとはまったく関係ない筆者のブログにアクセスしたところを考えてみよう。
 
 URL は https://blog.jxck.io とする。
 
@@ -84,7 +84,7 @@ Cookie: id=31d4d96e407aad42 # NOTICE!
 
 したがって、全く関係ない blog.jxck.io にアクセスしても、そこに埋め込まれた JS を EC サイトに取得しに行くリクエストには shop.example で付与された Cookie が送られる。
 
-この場合は JS だが、 JS 以外にも例えば CSS, Image, iframe などでも同じように送られる。
+この場合は JS だが、JS 以外にも例えば CSS, Image, iframe などでも同じように送られる。
 
 ```html
 <script src=https://shop.example/js/script.js></script>

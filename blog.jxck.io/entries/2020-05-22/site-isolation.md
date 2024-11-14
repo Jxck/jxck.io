@@ -4,9 +4,9 @@
 
 Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。
 
-しかし、 Spectre の発覚以降、  Communication に関する制限だけではなく Isolation によるメモリレベルでのアクセス制御が必要となった。
+しかし、Spectre の発覚以降、 Communication に関する制限だけではなく Isolation によるメモリレベルでのアクセス制御が必要となった。
 
-そこで現在作業されているのが、 CORB, CORP, COEP, COOP といった仕様群であり、これは Web におけるセキュリティモデルの更新作業と見ることができる。
+そこで現在作業されているのが、CORB, CORP, COEP, COOP といった仕様群であり、これは Web におけるセキュリティモデルの更新作業と見ることができる。
 
 概要と現状について解説する。
 
@@ -20,7 +20,7 @@ Origin は Web におけるセキュリティモデルの一つとして、コ�
 
 CORS は、平たく言えば、リソース提供元(サーバ)が、クライアントのリクエストに対し、その Origin に基づいてアクセスの許可を判断する、アクセス制御の仕組みである。
 
-この CORS が定義されたことにより、それまで SOP のみに限定されていたリソースの共有が、 JSONP といったハックを使わずに、明示的な Opt-In によって Cross Origin で可能になった。
+この CORS が定義されたことにより、それまで SOP のみに限定されていたリソースの共有が、JSONP といったハックを使わずに、明示的な Opt-In によって Cross Origin で可能になった。
 
 CORS が明示的であるとは、裏を返せば暗黙的に別 Origin のリソースを、提供者の許可なく読み出すことはできないことを意味し、それによって Web は成り立っていた。
 
@@ -29,22 +29,22 @@ CORS が明示的であるとは、裏を返せば暗黙的に別 Origin のリ�
 
 ## Spectre は何が問題だったのか
 
-Spectre の説明を CPU の脆弱性の話からするのは長くなるので、 Web Facing な部分だけを筆者の理解でかいつまむ。
+Spectre の説明を CPU の脆弱性の話からするのは長くなるので、Web Facing な部分だけを筆者の理解でかいつまむ。
 
-簡単に言えば、本来アクセスできないはずの「別プロセスにあるメモリ」を、 CPU の投機的実行という特性を利用してキャッシュに載せ、それを推測することでアクセスできるという脆弱性だ。
+簡単に言えば、本来アクセスできないはずの「別プロセスにあるメモリ」を、CPU の投機的実行という特性を利用してキャッシュに載せ、それを推測することでアクセスできるという脆弱性だ。
 
 それ自体は OS や CPU の対応が必須となり、「別プロセスのメモリ」にはアクセスできないように、一部(全部かどうかはよくわからない)は対策がされた。
 
 それでも、「同じプロセスにあるメモリ」で本来は読めないようになっているものは、工夫次第では読めてしまう可能性が残っている。
 
-そして、その攻撃が一番再現しやすいのが、 URL にアクセスするだけで様々なコードが実行できる Web だったというわけだ。
+そして、その攻撃が一番再現しやすいのが、URL にアクセスするだけで様々なコードが実行できる Web だったというわけだ。
 
 
 ## Spectre と Web
 
-典型例として、あるブラウザの設計が `<iframe>` に読み込まれた別 Origin のリソースを、 window と同じメモリ内に展開する作りになっていたとしよう。
+典型例として、あるブラウザの設計が `<iframe>` に読み込まれた別 Origin のリソースを、window と同じメモリ内に展開する作りになっていたとしよう。
 
-Cross Origin Iframe の中身は、 JS から直接触ることができない。しかし、ある CPU の投機的実行という特性を利用すると、キャッシュに載せることができる。
+Cross Origin Iframe の中身は、JS から直接触ることができない。しかし、ある CPU の投機的実行という特性を利用すると、キャッシュに載せることができる。
 
 アクセスを試みて、早ければキャッシュにあり、遅ければキャッシュにない、この時間を正確に計測して繰り返せば、徐々にキャッシュに載っている情報を推測できる。
 
@@ -71,9 +71,9 @@ Cross Origin Iframe の中身は、 JS から直接触ることができない�
 
 これを本質的に解決するには、ブラウザの作りを根本的に直すしか無いが、それは時間がかかる。
 
-しかし、 Web は URL にアクセスするだけで、全てのユーザがこの攻撃に晒される危険性があるため、なんとかしないといけない。
+しかし、Web は URL にアクセスするだけで、全てのユーザがこの攻撃に晒される危険性があるため、なんとかしないといけない。
 
-そこで、ブラウザベンダは対処療法として、攻撃者が推測に必要とする「高解像度で時間を測れる API」である `performance.now()` の精度を下げ、「工夫次第で同じく高解像度で時間が測れる」 `SharedArrayBuffer` を無効にすることにした。
+そこで、ブラウザベンダは対処療法として、攻撃者が推測に必要とする「高解像度で時間を測れる API」である `performance.now()` の精度を下げ、「工夫次第で同じく高解像度で時間が測定可能」な `SharedArrayBuffer` を無効にすることにした。
 
 これは、互換性を壊しているわけだが、ユーザの安全を守るためにはしかたない。とはいえそのままにしておくこともできない。
 
@@ -86,15 +86,15 @@ Cross Origin Iframe の中身は、 JS から直接触ることができない�
 
 Site Isolation は、メモリの分離のためにプロセスアーキテクチャをいじる必要があり、ブラウザにとっては大工事だ。
 
-ブラウザによってやり方が違うが、 Chrome の場合についてみておく。
+ブラウザによってやり方が違うが、Chrome の場合についてみておく。
 
 Chrome はそもそもマルチプロセスなアーキテクチャになっており、具体的には 1 tab が 1 process (renderer process) で分離されていた。
 
 プロセスが違えばメモリ空間が違うため、別のタブの内容を読み出すことは Spectre のようなサイドチャネルアタックはできない。
 
-しかし、 `<iframe>` を同じタブの中に展開する場合、読み込んでる Origin が違っても同じ Process 内で展開されるため、サイドチャネル攻撃が可能だった。
+しかし、`<iframe>` を同じタブの中に展開する場合、読み込んでる Origin が違っても同じ Process 内で展開されるため、サイドチャネル攻撃が可能だった。
 
-そこで、 `<iframe>` などもきちんとプロセスを分離するというのが Chrome における Site Isolation となる。
+そこで、`<iframe>` などもきちんとプロセスを分離するというのが Chrome における Site Isolation となる。
 
 Chrome はこれをマージするまでに 6 年近くかかったらしい。
 
@@ -106,14 +106,14 @@ Chrome はこれをマージするまでに 6 年近くかかったらしい。
 
 これにより Spectre の発生をかなり抑えることができる。
 
-同じことは Firefox なども取り組んでいるが、そもそも先発のブラウザは、シングルプロセスな作りから始まったものが多いため、対応が簡単とは限らないため、 Site Isolation をブラウザそのものがネイティブに対応し、全てのリソースを分離するのは難しい場合もある。
+同じことは Firefox なども取り組んでいるが、そもそも先発のブラウザは、シングルプロセスな作りから始まったものが多いため、対応が簡単とは限らないため、Site Isolation をブラウザそのものがネイティブに対応し、全てのリソースを分離するのは難しい場合もある。
 
 そこで、リソースごとに Opt-In で Site Isolation に対応するためのいくつかの仕様が提案されている。
 
 
 ## CORB
 
-`<iframe>` 以外にも、 Cross Origin なリソースを同じプロセスに展開する方法が知られている。
+`<iframe>` 以外にも、Cross Origin なリソースを同じプロセスに展開する方法が知られている。
 
 例えば、ユーザが Cookie を持っているときにのみ取得できる JSON や HTML があったとする。
 
@@ -165,12 +165,12 @@ CORB はこうしたコードで意図しないリソースがメモリに展開
 
 ブラウザが勝手に行う intervention であるため、特にヘッダなどを付けるわけではない。
 
-実際の条件はもう少し複雑で `X-C-T-O: no-sniff` がない場合は、 Sniffing を行わなければ壊れるサイトがある(html として img を配信してる etc)ため、色々と場合分けが必要なようだ。
+実際の条件はもう少し複雑で `X-C-T-O: no-sniff` がない場合は、Sniffing を行わなければ壊れるサイトがある(html として img を配信してる etc)ため、色々と場合分けが必要なようだ。
 
 - [Cross-Origin Read Blocking (CORB)](https://chromium.googlesource.com/chromium/src/+/master/services/network/cross_origin_read_blocking_explainer.md)
 - [Cross-Origin Read Blocking for Web Developers - The Chromium Projects](https://www.chromium.org/Home/chromium-security/corb-for-developers)
 
-また、これにより Prefix を付けてパースを抑制し XSSI を防ぐ場面も、 CORB のスコープに入っている。
+また、これにより Prefix を付けてパースを抑制し XSSI を防ぐ場面も、CORB のスコープに入っている。
 
 - [AngularJS: API: $http](https://docs.angularjs.org/api/ng/service/$http#json-vulnerability-protection)
 
@@ -179,11 +179,11 @@ CORB はこうしたコードで意図しないリソースがメモリに展開
 
 ## CORP
 
-CORB は既存のサイトを壊さない範囲で、 Intervention としてサイトが実施しているため、対象外が多く有る。
+CORB は既存のサイトを壊さない範囲で、Intervention としてサイトが実施しているため、対象外が多く有る。
 
-例えば、 `<script>` から JS へのリクエストであれば成功してしまう。
+例えば、`<script>` から JS へのリクエストであれば成功してしまう。
 
-そこで、 CORB と同等のことを Opt-In で行うのが Cross-Origin-Resource-Policy(CORP) だ。
+そこで、CORB と同等のことを Opt-In で行うのが Cross-Origin-Resource-Policy(CORP) だ。
 
 そのヘッダが付いたリソースが、どの Origin から読まれて良いかを決める。
 
@@ -211,11 +211,11 @@ Cross-Origin-Resource-Policy: cross-origin
 
 same-origin や same-site を指定すれば、ブラウザは secret.js のレスポンスヘッダを見た時点で、メモリへ展開してよいかどうかをブラウザが判断できる。
 
-どんなレスポンスにも使えるため、 CORB で守られないものも守ることができる。
+どんなレスポンスにも使えるため、CORB で守られないものも守ることができる。
 
 省略されているものは暗黙的に cross-origin になっている状態と言え、これまで通りどのページからも読み込める。
 
-しかし、今後後述する COEP のことを考えると、 CDN のようにどの Origin からも読み込めるリソースにも、明示的に cross-origin を指定することが望ましくなる。
+しかし、今後後述する COEP のことを考えると、CDN のようにどの Origin からも読み込めるリソースにも、明示的に cross-origin を指定することが望ましくなる。
 
 
 ## COEP
@@ -226,13 +226,13 @@ same-origin や same-site を指定すれば、ブラウザは secret.js のレ�
 Cross-Origin-Embedder-Policy: require-corp
 ```
 
-これをトップフレームの HTML レスポンスに指定すると、そのサブリソース全てが CORP を指定したものでないといけなくなる。つまり、 `<script>` に読む JS や、 `<img>` に読む画像、 `<iframe>` に埋め込む別のページも、全て CORP を明示している必要があるということだ。
+これをトップフレームの HTML レスポンスに指定すると、そのサブリソース全てが CORP を指定したものでないといけなくなる。つまり、`<script>` に読む JS や、`<img>` に読む画像、`<iframe>` に埋め込む別のページも、全て CORP を明示している必要があるということだ。
 
-全てのサブリソースの CORP の値が、読み込みページと正しく整合してないとブロックされるため、 CORP を強制するということは、全てのサブリソースがそのトップフレームで読み込まれることを許可している状態であることを意味する。
+全てのサブリソースの CORP の値が、読み込みページと正しく整合してないとブロックされるため、CORP を強制するということは、全てのサブリソースがそのトップフレームで読み込まれることを許可している状態であることを意味する。
 
 これにより、全てのリソースが意図した読み込みで構成されている状態になるため、同じプロセスで展開されても問題無いことが保証できる。
 
-ただし、 CORS に明示的に対応している場合はこの限りではない。
+ただし、CORS に明示的に対応している場合はこの限りではない。
 
 例えば `<script>` や `<img>` の場合は以下のように明示的に CORS mode でリクエストさせることができる。
 
@@ -243,22 +243,22 @@ Cross-Origin-Embedder-Policy: require-corp
 
 この場合、リクエストには Origin ヘッダが載り、サーバはそれを見て明示的に Access-Control-Allow-Origin を返すことになる。
 
-つまり、すでに明示的に読み込める Origin を制限しているため、 CORP をつけていなくても COEP の要件を満たす。
+つまり、すでに明示的に読み込める Origin を制限しているため、CORP をつけていなくても COEP の要件を満たす。
 
 Public CDN のようなサーバは、これまで CORP が暗黙的に `cross-origin` だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
 
-しかし、 COEP のデプロイが広まると、今のままではコンテンツを読み込めな書くなるため、 Public であっても `CORP: cross-origin` か `ACAO: *` に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
+しかし、COEP のデプロイが広まると、今のままではコンテンツを読み込めな書くなるため、Public であっても `CORP: cross-origin` か `ACAO: *` に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
 
-逆に言うと、 `CORP: cross-origin` を明示的に指定することが、そのリソースは public であることを表明するヘッダとして使われていくことになるだろう。
+逆に言うと、`CORP: cross-origin` を明示的に指定することが、そのリソースは public であることを表明するヘッダとして使われていくことになるだろう。
 
 
 ## COOP
 
 CORP + COEP があれば、ほぼ完璧に「意図したリソースだけが読み込まれたプロセス」が構築できそうだが、これだけでは missing point がある、それが Opener の存在だ。
 
-`window.open()` や `_blank` では、開いた側(opener)の Window に、 開かれたページ(openee)から `window.opener` を経由してアクセスできる。このため、 2 つのページは同じプロセスに展開されてしまう。
+`window.open()` や `_blank` では、開いた側(opener)の Window に、開かれたページ(openee)から `window.opener` を経由してアクセスできる。このため、2 つのページは同じプロセスに展開されてしまう。
 
-noopener は、 Opener が `window.opener` の削除を指定するが、 Openee はそれを拒否できない(そういう提案があった気もするが)。
+noopener は、Opener が `window.opener` の削除を指定するが、Openee はそれを拒否できない(そういう提案があった気もするが)。
 
 COOP は Opener / Openee 両方に指定し、その両方の値が整合しなければ `window.opener` が削除されるという仕様だ。
 
@@ -296,21 +296,21 @@ Caption: Opener と Openee の対応
 
 ある HTML を読んだとき、そのサブリソースは全て CORP が指定されており、さらに他の Origin との opener もないため、完全に独立したプロセスグループが展開できるのだ。
 
-Chrome のように、ブラウザ全体で Site Isolation が実装されてないブラウザでも、これらヘッダについてだけ明示的にプロセスを分ける実装ができれば、 Spectre の対策になる。
+Chrome のように、ブラウザ全体で Site Isolation が実装されてないブラウザでも、これらヘッダについてだけ明示的にプロセスを分ける実装ができれば、Spectre の対策になる。
 
 Spectre が緩和できたことは、それによって無効化されていた SharedArrayBuffer の再度有効化を可能にする。
 
-Chrome では COEP/COOP が有効になったサイトにのみ、 SharedArrayBuffer を有効にする予定を発表している。
+Chrome では COEP/COOP が有効になったサイトにのみ、SharedArrayBuffer を有効にする予定を発表している。
 
 - [Planning isolation requirements (COOP/COEP) for SharedArrayBuffer](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/_0MEXs6TJhg)
 
 そして、こうした理想的に分離された(Site Isolated)環境が手に入ったことは、今後より強力な API をブラウザに展開していく上での礎となる。
 
-例えば `performance.measureMemory()` や JS Self-Profiling API などもそうした候補になり、 Isolated されている環境でのみ利用できるようにしていく計画も有る。
+例えば `performance.measureMemory()` や JS Self-Profiling API などもそうした候補になり、Isolated されている環境でのみ利用できるようにしていく計画も有る。
 
-逆に新しい環境であることを利用し、 `document.domain` の変更を禁止するといった互換性のためにできなかった変更を持ち込むことも検討されている。
+逆に新しい環境であることを利用し、`document.domain` の変更を禁止するといった互換性のためにできなかった変更を持ち込むことも検討されている。
 
-これは、もはやこうしたヘッダを付与しコントロールしていくことは、 Spectre 対策だけの話ではなくなっていく可能性があることを意味する。
+これは、もはやこうしたヘッダを付与しコントロールしていくことは、Spectre 対策だけの話ではなくなっていく可能性があることを意味する。
 
 
 ## 関連仕様
@@ -319,7 +319,7 @@ Chrome では COEP/COOP が有効になったサイトにのみ、 SharedArrayBu
 
 Isolated な環境でしか利用できない API が存在するということは、分岐のために Isolated であるかどうかを知りたい場面がでてくる。
 
-そこで、 CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが `self.crossOriginIsolated` だ。
+そこで、CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが `self.crossOriginIsolated` だ。
 
 ```js
 if (self.crossOriginIsolated) {
@@ -336,11 +336,11 @@ Origin Isolation は、基本的には Site Isolation が Same Site なのに対
 
 これにより、サブドメイン側に影響があってもそれが伝搬しないで済むことになるだろう。
 
-ただし、単にそうするだけではなく、 Same Origin Isolation を実装する上で重要になる JS の Agent Cluster という仕様を更新することにモチベーションがあるようだ。
+ただし、単にそうするだけではなく、Same Origin Isolation を実装する上で重要になる JS の Agent Cluster という仕様を更新することにモチベーションがあるようだ。
 
-ここを更新できると、 Origin Isolation を実装する上で UA が取る戦略が多様になる。
+ここを更新できると、Origin Isolation を実装する上で UA が取る戦略が多様になる。
 
-また、 COOP + COEP の方向は良いにせよ、依存リソース全てが対応する必要があり対応負荷が高いこと、そして結果的に同じような結果になっても Origin Isolation をしたいという明示的なシグナルにはなってないことなどが指摘されている。
+また、COOP + COEP の方向は良いにせよ、依存リソース全てが対応する必要があり対応負荷が高いこと、そして結果的に同じような結果になっても Origin Isolation をしたいという明示的なシグナルにはなってないことなどが指摘されている。
 
 内部の実装へのケアが強いイメージがある提案で、完全には理解できてないが、策定が進んだら単体で解説したい。
 
@@ -379,11 +379,11 @@ CORP / COOP / COEP あたりは、最初の提案から名前が何度か変わ�
 
 しかし、広告を初めとする 3rd Party Resource を多用している場合は、依存先の対応が必要なため、しばらくは対応が難しいかも知れない。
 
-そうした理由で [広告](https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html) を入れている本サイトでは使用しなかったが、広告を外している [mozaic.fm](https://mozaic.fm) の方は、 [v3](https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html) で実装しデプロイ済みだ。
+そうした理由で [広告](https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html) を入れている本サイトでは使用しなかったが、広告を外している [mozaic.fm](https://mozaic.fm) の方は、[v3](https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html) で実装しデプロイ済みだ。
 
 今回は解説してないが、それぞれ Reporting API で Report が取れるため、デプロイしていく上で Reporting Endpoint の確保は必須となるだろう。(report はまだ観測してない)
 
-Origin-Isolation などの関連仕様の動向も気になるため、引き続き仕様の動向を追いつつ、 feedback につなげていきたい。
+Origin-Isolation などの関連仕様の動向も気になるため、引き続き仕様の動向を追いつつ、feedback につなげていきたい。
 
 
 ## Resources

@@ -2,16 +2,16 @@
 
 ## Intro
 
-tmux, screen, terminal のタブなど、 shell を複数起動する方法はいくつかある。
+tmux, screen, terminal のタブなど、shell を複数起動する方法はいくつかある。
 
-Linux では、 pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。
+Linux では、pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。
 
 これを応用すると、簡易ダッシュボードを作り色々便利に使うことができる。
 
 
 ## stdout/stderr
 
-代表例として、 tmux で pane を分割し、コマンドの出力を stdout/stderr で分けて pane ごとに表示するケースで解説する。
+代表例として、tmux で pane を分割し、コマンドの出力を stdout/stderr で分けて pane ごとに表示するケースで解説する。
 
 まず、以下のようにランダムにエラー出力を吐くプログラムを実行する。
 
@@ -54,7 +54,7 @@ $ tail -f error.log
 
 ## /dev/pts
 
-tmux で pane を開いた状態で、 `tty` コマンドで紐付いた pts を確認する。
+tmux で pane を開いた状態で、`tty` コマンドで紐付いた pts を確認する。
 
 (`ps` で確認することもできる)
 
@@ -90,13 +90,13 @@ $ cat /dev/pts/2
 $ # ここでの入力は奪われる
 ```
 
-つまり、 pts への書き込みは pane に表示され、 pane への入力は pts から読み出せる。
+つまり、pts への書き込みは pane に表示され、pane への入力は pts から読み出せる。
 
-pts は疑似端末であり、 tmux と shell に間に挟まった中継役のようなものだと思えば良い。
+pts は疑似端末であり、tmux と shell に間に挟まった中継役のようなものだと思えば良い。
 
-例えば、実行結果の stdout を pane1 に、 stderr を pane2 に分岐して出力したい場合。
+例えば、実行結果の stdout を pane1 に、stderr を pane2 に分岐して出力したい場合。
 
-もし pane1 が `/dev/pts2/` に、 pane2 が `/dev/pts5/` に紐づくとすると。
+もし pane1 が `/dev/pts2/` に、pane2 が `/dev/pts5/` に紐づくとすると。
 
 ```sh-session
 $ ./hello_world 1> /dev/pts2 2> /dev/pts5

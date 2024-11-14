@@ -34,7 +34,7 @@ GitHub のこの実装はまだ Popover ではないため、現状を参考に�
 
 よくあるメニューとして、以下のような HTML をベースに考える。
 
-開くためのボタンが Invoker となり、 Popover としてメニューのアイテムが開く実装が考えられるだろう。
+開くためのボタンが Invoker となり、Popover としてメニューのアイテムが開く実装が考えられるだろう。
 
 ```html
 <button popovertarget=menu>Actions</button>
@@ -67,9 +67,9 @@ GitHub のこの実装はまだ Popover ではないため、現状を参考に�
 </ul>
 ```
 
-APG などにも書かれているように、従来このような実装を行う際は、 `<button popovertarget>` をクリックしたことで `<ul role=menu>` が開いたと言う事実を UA に伝えるために、 `aria-haspopup=menu` を付与し、メニューが開いている間は `aria-expanded=true` にするといった実装が行われていた。
+APG などにも書かれているように、従来このような実装を行う際は、`<button popovertarget>` をクリックしたことで `<ul role=menu>` が開いたと言う事実を UA に伝えるために、`aria-haspopup=menu` を付与し、メニューが開いている間は `aria-expanded=true` にするといった実装が行われていた。
 
-しかし、 Popover が Invoker Relationship を持っている場合、 `<button popovertarget>` が `<ul role=menu>` を開いたことを UA は認識しているため、このような実装は Popover API を用いる限りは不要となる。これも Popover がネイティブの API になったことのメリットの 1 つだ。
+しかし、Popover が Invoker Relationship を持っている場合、`<button popovertarget>` が `<ul role=menu>` を開いたことを UA は認識しているため、このような実装は Popover API を用いる限りは不要となる。これも Popover がネイティブの API になったことのメリットの 1 つだ。
 
 - Popover invoker example shouldn't have `aria-haspopup` · Issue #9153 · whatwg/html
   - https://github.com/whatwg/html/issues/9153
@@ -95,7 +95,7 @@ ul[popover] {
 }
 ```
 
-あとは、 `[popovertarget]` に合わせて位置を指定し、必要に応じて `translate` で調整することで実装ができるだろう。
+あとは、`[popovertarget]` に合わせて位置を指定し、必要に応じて `translate` で調整することで実装ができるだろう。
 
 ```css
 [popover] {

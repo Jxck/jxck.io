@@ -11,9 +11,9 @@ Pinterest でおなじみの Masonry Layout を CSS の標準にする作業と�
 
 ![高さの違う画像が縦 3 列に敷き詰められたレイアウト](masonry-layout-demo.png#936x1898)
 
-上の例の場合は、 Height が不揃いの画像を並べる上で、左から敷き詰め、折り返したら既にある画像の高さに合わせて二列目が始まるというロジックになる。
+上の例の場合は、Height が不揃いの画像を並べる上で、左から敷き詰め、折り返したら既にある画像の高さに合わせて二列目が始まるというロジックになる。
 
-これを実現するには、割と複雑な CSS を書く必要があり、様々なサイトで CSS ライブラリや、 Grid などを用いて再現する方法が紹介されている。
+これを実現するには、割と複雑な CSS を書く必要があり、様々なサイトで CSS ライブラリや、Grid などを用いて再現する方法が紹介されている。
 
 これをそのまま CSS の標準にする作業が Layout API の文脈で行われており、既に一部が(主に Firefox で)実装されている。
 
@@ -27,7 +27,7 @@ Pinterest でおなじみの Masonry Layout を CSS の標準にする作業と�
 
 従来の CSS Grid は、縦横が揃った Grid を展開し、そこに対して要素を割り当てるのが基本だが、それでは縦が揃わないため Masonry は実現できない。
 
-そこで、 `grid-template-rows` / `grid-template-columns` へ `masonry` を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると `grid: masonry / ${column}` になるため、 column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。
+そこで、`grid-template-rows` / `grid-template-columns` へ `masonry` を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると `grid: masonry / ${column}` になるため、column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。
 
 3 列の Masonry Layout は以下だ。
 

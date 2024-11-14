@@ -6,9 +6,9 @@
 - 2018/4/16: Safari 11.1 の UA を追記
 - 2018/5/1 : OS のバージョンは固定されなくなった件を追記
 
-2 月に方針が変更され、 OS のバージョンは固定されなくなった。
+2 月に方針が変更され、OS のバージョンは固定されなくなった。
 
-このため、 iOS のバージョンアップにより発生するバグなどを回避する道は残されたことになる。
+このため、iOS のバージョンアップにより発生するバグなどを回避する道は残されたことになる。
 
 一方 Webkit のバージョンは(予定では `605.1.15` に)固定されることになりそうだ。詳細は、以下を参照。
 
@@ -24,7 +24,7 @@ Service Worker のアナウンスに目がそちらに盗まれている一方�
 > Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting
 > --- [Release Notes for Safari Technology Preview 46](https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/)
 
-すぐには無理だろうと思ったが、 TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。
+すぐには無理だろうと思ったが、TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。
 
 TP はあくまで Preview であり、これが *このままリリースされるとは限らない* 点に注意したい。
 
@@ -65,27 +65,27 @@ User-Agent 単体では大別しかできないが、そこに対して他の情
 
 「それが誰であるか」は特定できなくとも、それが「さっきと同じ人である」がわかれば、それだけで Tracking が可能だ。
 
-もし 3rd Party Cookie を付与できれば確実だが、 Cookie 付与前、 Cookie 削除後、 Private Browse などでもユーザを特定したいというニーズはある。
+もし 3rd Party Cookie を付与できれば確実だが、Cookie 付与前、Cookie 削除後、Private Browse などでもユーザを特定したいというニーズはある。
 
 
 ### Tracking by Fingerprint ?
 
-Apple が実施する *ITP*(Intelligent Tracking Prevention) によって、 3rd Party Cookie が絶たれるため、広告プロバイダは Finger Printing などの代替技術に救いを求めるのは想像に難くない。
+Apple が実施する *ITP*(Intelligent Tracking Prevention) によって、3rd Party Cookie が絶たれるため、広告プロバイダは Finger Printing などの代替技術に救いを求めるのは想像に難くない。
 
 特に広告関係では、ターゲットに対してパーソナライズするため、サービスをまたいでの識別、つまり追跡(Tracking)には、こうした固定情報が扱いやすい。
 
 Safari の今回の変更は、この Finger Printing の手段を断つのが目的と見ることができそうだ。
 
-(ちなみに、現在の Finger Printing はかなりの精度であるという話と、実際使って見るとそうでもないという話を両方聞く。パーソナライズの場合は、精度が低いと「自分へのおすすめが全く興味ないもので埋まる」といった結果になり得るため、 Finger Printing だけでの Tracking は厳しいらしい。)
+(ちなみに、現在の Finger Printing はかなりの精度であるという話と、実際使って見るとそうでもないという話を両方聞く。パーソナライズの場合は、精度が低いと「自分へのおすすめが全く興味ないもので埋まる」といった結果になり得るため、Finger Printing だけでの Tracking は厳しいらしい。)
 
 
 ## User Metrics
 
-サービスの Access Log や、 Analytics 系のツールでは、必ずと言って良いほど User Agent を収集しているだろう。
+サービスの Access Log や、Analytics 系のツールでは、必ずと言って良いほど User Agent を収集しているだろう。
 
 これは、ユーザの傾向や、サポートブラウザの決定などに使われる重要なメトリクスとなっている。
 
-今回のように User Agent が Freeze すると、 *PC* の *MacOS* の *Safari* であることまではわかるが、それ以降の細かいバージョンまではわからなくなる。
+今回のように User Agent が Freeze すると、*PC* の *MacOS* の *Safari* であることまではわかるが、それ以降の細かいバージョンまではわからなくなる。
 
 一方で Web の仕様が Living Standard になり、ブラウザの自動アップデートが普及しつつある現在では、細かいバージョンまでを見る用途も限定されてきている。
 
@@ -104,7 +104,7 @@ UA のもう 1 つの用途として、利用したい機能をそのブラウ�
 
 同一実装に対する不備の場合わけとは少し違い、有無そのものを調べる用途だ。
 
-古くは、 CSS の実装が壊滅的だった IE だけ別の CSS を返すといった用途のため、 UA を解析するといったものだ。
+古くは、CSS の実装が壊滅的だった IE だけ別の CSS を返すといった用途のため、UA を解析するといったものだ。
 
 もっと古くは、サービスそのものが *特定のブラウザしかサポートしない* といったことが、普通に行われていた。
 
@@ -122,13 +122,13 @@ if (UserAgent.match(/Mozilla.*/)) {
 
 そこで、やむをえず IE も UA を `Mozilla...` で始まる文字として実装をした。
 
-その後、いわゆる HTML5 期、 IE を外した Chrome や Safari のみに提供するサービス実装も登場したため、後発の Edge は UA に `Chrome` や `Safari` を含むこととなった。
+その後、いわゆる HTML5 期、IE を外した Chrome や Safari のみに提供するサービス実装も登場したため、後発の Edge は UA に `Chrome` や `Safari` を含むこととなった。
 
 現在、多くのブラウザが `Mozilla...` で始まり、他の実装名を含む、ぱっと見なんなのかわからない文字列となっているのは、こうした歴史的な経緯がある。
 
 つまり、「ブラウザを識別し処理を分岐したいサービス開発者」と「そうしたサービスと互換性を保持したいブラウザベンダ」のいたちごっこが原因と言える。
 
-こうしたことは、歴史が長いソフトウェアではよくある話だ、 Windows 9 が出なかった理由も同様の理由と言われている。
+こうしたことは、歴史が長いソフトウェアではよくある話だ、Windows 9 が出なかった理由も同様の理由と言われている。
 
 ブラウザが独自実装による差別化で戦争をしていた時代ならまだしも、今から処理の分岐条件に UA を用いるのは、あまり良い手ではない。
 
@@ -185,9 +185,9 @@ function supportsDynamicImport() {
 
 ### CSS
 
-CSS はいわゆるプログラミング言語ではないため、基本的には Detection をするよりも、 Progressive Enhancement で進めてきた。
+CSS はいわゆるプログラミング言語ではないため、基本的には Detection をするよりも、Progressive Enhancement で進めてきた。
 
-しかし、 CSS の API も複雑になってきたため最近では `@support` を用いた Detection がサポートされている。
+しかし、CSS の API も複雑になってきたため最近では `@support` を用いた Detection がサポートされている。
 
 ```css
 @supports (display: flex) {
@@ -209,23 +209,23 @@ CSS はいわゆるプログラミング言語ではないため、基本的に�
 
 #### Picture
 
-例えば、 `<picture>` は、サーバが対応可能なフォーマットやサイズに関する情報を全て列挙することで、クライアントがそこから選択できる。
+例えば、`<picture>` は、サーバが対応可能なフォーマットやサイズに関する情報を全て列挙することで、クライアントがそこから選択できる。
 
-また、 `<picture>` そのものに対応していなければ、 `<img>` にフォールバックできるため、 `<picture>` 対応を detection する必要もない。
+また、`<picture>` そのものに対応していなければ、`<img>` にフォールバックできるため、`<picture>` 対応を detection する必要もない。
 
 
 #### modules/nomodule
 
-同じように、 ES Modules も、 `<script type=modules>` によって、サーバ側に用意があることを伝え、 `<script nomodule>` でフォールバックが可能だ。
+同じように、ES Modules も、`<script type=modules>` によって、サーバ側に用意があることを伝え、`<script nomodule>` でフォールバックが可能だ。
 
-そもそも、 ES Modules は MIME Type が従来の JS と同じになったため、クライアントが Accept Header に何かを追加して対応を伝えることができない。
+そもそも、ES Modules は MIME Type が従来の JS と同じになったため、クライアントが Accept Header に何かを追加して対応を伝えることができない。
 
 
 ### Content Negotiation
 
 通信やフォーマットに関わるものは HTTP ヘッダによるネゴシエーションが基本である。
 
-例えば、 Brotli や WebP のサポートなどは以下のように明示される場合がある。
+例えば、Brotli や WebP のサポートなどは以下のように明示される場合がある。
 
 ```http
 Accept-Encoding: gzip, deflate, br
@@ -236,7 +236,7 @@ Accept: image/webp,image/apng,image/*,*/*;q=0.8
 
 Brotli 対応が `, br` という 4byte であったとしても、メジャーブラウザが Web のスケールで使われると、無視できる数字ではない。
 
-既に普及しきった PNG や JPEG は `*` の中に丸め込まれているが、 WebP が普及しきったあと `image/webp` を消して `*` に丸め込まれたら、壊れるサイトも少なくないだろう。
+既に普及しきった PNG や JPEG は `*` の中に丸め込まれているが、WebP が普及しきったあと `image/webp` を消して `*` に丸め込まれたら、壊れるサイトも少なくないだろう。
 
 従って、ブラウザベンダは、ヘッダの追加には非常に慎重である。
 
@@ -275,7 +275,7 @@ HTTP2 や TLS1.3, QUIC その他プロトコルの対応は、基本的にはプ
 
 現時点では、この変更に乗っかる別のブラウザは確認していないため、将来的に全てのブラウザのマイナーアップデートで UA が固定される世界が来るかは未知だ。
 
-しかし、 Feature Detection の方法は UA に頼らずともかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
+しかし、Feature Detection の方法は UA に頼らずともかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
 
 User-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、歴史的にも負債を残してきた。
 

@@ -23,7 +23,7 @@
 - [Cache-Control: must-understand ディレクティブとは何か](/entries/2021-02-12/cache-control-must-understand.html)
 - [Structured Field Values による Header Field の構造化](/entries/2021-01-31/structured-field-values.html)
 
-きっちり毎月ではないが、 1 ヶ月に 1 本ペースは継続している。
+きっちり毎月ではないが、1 ヶ月に 1 本ペースは継続している。
 
 また、本サイトの [Markdown パーサ](https://blog.jxck.io/entries/2021-11-30/blog-v2-release.html)を完全自作に切り替え、自分のユースケースを完全に満たせるようにカスタマイズした。ついでに色々と技術的な負債を払拭して v2 としてリリースした。
 
@@ -47,7 +47,7 @@
 - [ep90 Monthly Web 202111](https://mozaic.fm/episodes/90/monthly-web-202111.html)
 - [ep91 Yearly Web 2021](https://mozaic.fm/episodes/91/yearly-web-2021.html)
 
-blog の方で Markdown パーサを改善できたので、 mozaic.fm の方も改善し、できれば PWA 周りもアップデートして来年には v3 を出したい。
+blog の方で Markdown パーサを改善できたので、mozaic.fm の方も改善し、できれば PWA 周りもアップデートして来年には v3 を出したい。
 
 あと、このままいくと来年には ep100 を迎えそうだ。
 

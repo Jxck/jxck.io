@@ -26,7 +26,7 @@
 
 ### `show()`/`showModal()`
 
-基本的に `<dialog>` は動的に表示されるため、JS で開くことになるだろう。しかし、 `open` 属性を動的に付けるのではなく、 `show()`/`showModal()` を用いるのが基本だ。
+基本的に `<dialog>` は動的に表示されるため、JS で開くことになるだろう。しかし、`open` 属性を動的に付けるのではなく、`show()`/`showModal()` を用いるのが基本だ。
 
 ```js
 document.querySelector("button.show").addEventListener("click", (e) => {
@@ -46,17 +46,17 @@ Accessibility Tree を確認すると Role が `dialog` になっていること
 
 ![Accessibility Tree 上は role: dialog, modal: false になっている](2.a11y-tree.png#538x514)
 
-これを、 `showModal()` で開くとこうなる。
+これを、`showModal()` で開くとこうなる。
 
 ![showModal() で Modal Dialog を開く](3.showModal.drawio.svg#451x231)
 
-背景が薄くグレーになるのは、 `::backdrop` のデフォルト CSS が当たっているからだ。
+背景が薄くグレーになるのは、`::backdrop` のデフォルト CSS が当たっているからだ。
 
 ![Chrome の backdrop デフォルトスタイル](4.default-style.png#920x186)
 
 non-Modal と異なり、Modal は同時に 1 つしか開けない。
 
-Accessibility Tree を確認すれば、 `aria-modal: true` になっていることがわかる。
+Accessibility Tree を確認すれば、`aria-modal: true` になっていることがわかる。
 
 ![Accessibility Tree 上は role: dialog, modal: true になっている](5.a11y-tree.png#548x522)
 
@@ -102,12 +102,12 @@ document.querySelector("dialog").addEventListener("cancel", (e) => {
 </script>
 ```
 
-`"cancel"` イベントは、 Modal Dialog を ESC で閉じるといった操作で、`"cancel"` -> `"close"` の順で発火する。
+`"cancel"` イベントは、Modal Dialog を ESC で閉じるといった操作で、`"cancel"` -> `"close"` の順で発火する。
 
 
 ### `close()` と `returnValue`
 
-この `<form>` に `<input>` などを置いても、その `value` は `returnValue` には渡らない。任意の値を渡す場合は、 `close()` の引数に明示的に渡す必要がある。
+この `<form>` に `<input>` などを置いても、その `value` は `returnValue` には渡らない。任意の値を渡す場合は、`close()` の引数に明示的に渡す必要がある。
 
 ```html
 <dialog>
@@ -158,14 +158,14 @@ document.querySelector("dialog").addEventListener("close", (e) => {
 
 この Form は、アカウントを入力し Login ボタンを押せば、そのまま Form を submit して POST でリクエストが飛び、画面を遷移することになる。
 
-しかし、Cancel ボタンの方は `formmethod` 属性を用いて `form[method]` を `POST` から `dialog` に上書きしている。つまり、このボタンを押した場合は、 `<dialog>` が普通に閉じて、 `returnValue` に `"cancel"` が返るのだ。
+しかし、Cancel ボタンの方は `formmethod` 属性を用いて `form[method]` を `POST` から `dialog` に上書きしている。つまり、このボタンを押した場合は、`<dialog>` が普通に閉じて、`returnValue` に `"cancel"` が返るのだ。
 
 このように、「キャンセル時は `<dialog>` を閉じるだけ」という分岐を実装することも可能だ。
 
 
 ### aria-label / aria-labelledby
 
-WAI-ARIA では `role=dialog` に対して、 `aria-label` / `aria-labelledby` を使ってアクセシブルな名前を割り当てることが推奨されている。
+WAI-ARIA では `role=dialog` に対して、`aria-label` / `aria-labelledby` を使ってアクセシブルな名前を割り当てることが推奨されている。
 
 - Accessible Rich Internet Applications (WAI-ARIA) 1.3
   - https://w3c.github.io/aria/#dialog
@@ -223,7 +223,7 @@ WAI-ARIA では `role=dialog` に対して、 `aria-label` / `aria-labelledby` �
 
 Dialog のユースケースの 1 つとして、「規約への同意」を求める UI がある。
 
-規約は基本的に長文になるため、そのまま `<dialog>` にレンダリングすると、 `<dialog>` 自体がスクロール可能になってしまう。
+規約は基本的に長文になるため、そのまま `<dialog>` にレンダリングすると、`<dialog>` 自体がスクロール可能になってしまう。
 
 ```html
 <dialog style="height: 100px;">
@@ -242,9 +242,9 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 </dialog>
 ```
 
-しかし、 `<dialog>` 自体がスクロール可能になることは、下部にあるコントローラまでの到達を困難にするなど、様々な不便があるため、仕様では「`<dialog>` 自体を Scrollable にするのは避けるべき」とされている。
+しかし、`<dialog>` 自体がスクロール可能になることは、下部にあるコントローラまでの到達を困難にするなど、様々な不便があるため、仕様では「`<dialog>` 自体を Scrollable にするのは避けるべき」とされている。
 
-代わりに、規約を別ページにしリンクを貼る、 PDF でダウンロードさせるなども考えられるが、最も簡単なのは規約のみを Scrollable なコンテナに入れる方法だ。以下の場合は、 `<section>` が Scrollable になっている。
+代わりに、規約を別ページにしリンクを貼る、PDF でダウンロードさせるなども考えられるが、最も簡単なのは規約のみを Scrollable なコンテナに入れる方法だ。以下の場合は、`<section>` が Scrollable になっている。
 
 ```html
 <dialog style="height: 100px;">
@@ -287,7 +287,7 @@ Dialog のユースケースの 1 つとして、「規約への同意」を求�
 - Keyboard focusable scrollers  |  Blog  |  Chrome for Developers
   - https://developer.chrome.com/blog/keyboard-focusable-scrollers
 
-既に Firefox は実装済みで、 Chrome は M130 から Ship される。しかし、 Safari は実装上の困難さとパフォーマンスを理由にネガティブな態度を表明している。
+既に Firefox は実装済みで、Chrome は M130 から Ship される。しかし、Safari は実装上の困難さとパフォーマンスを理由にネガティブな態度を表明している。
 
 - 190870 - Make scrollable element focusable
   - https://bugs.webkit.org/show_bug.cgi?id=190870
@@ -332,7 +332,7 @@ dialog.returnValue // "accept"
 
 Dialog の要件としてよくある「背景(backdrop)をクリックしたら閉じる(キャンセル)」というユースケースの実装を考える。
 
-まず前提として、 Modal の場合は「backdrop 含め、どこをクリックしても `<dialog>` がクリックされたことになる」という性質がある。
+まず前提として、Modal の場合は「backdrop 含め、どこをクリックしても `<dialog>` がクリックされたことになる」という性質がある。
 
 ```js
 dialog.addEventListener('click', (e) => {
@@ -343,7 +343,7 @@ dialog.addEventListener('click', (e) => {
 
 ![Modal は画面のどこをクリックしても dialog 要素で発火する](7.backdrop-click.drawio.svg#451x231)
 
-そこで、 `<dialog>` を `padding: 0` にし、直下の `<div>` が `<dialog>` の内側いっぱいに表示されている状態にする。以下では、赤い `<div>` が `<dialog>` いっぱいに被さっている形だ。
+そこで、`<dialog>` を `padding: 0` にし、直下の `<div>` が `<dialog>` の内側いっぱいに表示されている状態にする。以下では、赤い `<div>` が `<dialog>` いっぱいに被さっている形だ。
 
 ```html
 <style>
@@ -366,9 +366,9 @@ dialog.addEventListener('click', (e) => {
 </dialog>
 ```
 
-この状態で `showModal()` した場合、 Dialog の領域をクリックしても `<dialog>` より先に `<div>` で Click Event が発火する。
+この状態で `showModal()` した場合、Dialog の領域をクリックしても `<dialog>` より先に `<div>` で Click Event が発火する。
 
-これを利用すると、 backdrop 領域をクリックしたら `target`/`currentTarget` が `<dialog>` だが、 Dialog の中をクリックした場合は `target` が `<div>` になるため、これで分岐が可能になる。
+これを利用すると、backdrop 領域をクリックしたら `target`/`currentTarget` が `<dialog>` だが、Dialog の中をクリックした場合は `target` が `<div>` になるため、これで分岐が可能になる。
 
 ```js
 document.querySelector('dialog').addEventListener('click', (e) => {
@@ -381,7 +381,7 @@ document.querySelector('dialog').addEventListener('click', (e) => {
 })
 ```
 
-この要件だけでなく、Popover 相当の Light Dismiss 相当を必要とする場合は、 `<dialog>` を `popover` することも可能だ。それについては後述する。
+この要件だけでなく、Popover 相当の Light Dismiss 相当を必要とする場合は、`<dialog>` を `popover` することも可能だ。それについては後述する。
 
 
 ### キーボード操作

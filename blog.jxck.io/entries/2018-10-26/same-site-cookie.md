@@ -4,7 +4,7 @@
 
 Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。
 
-この挙動によって Web におけるセッション管理が実現されている一方、これを悪用した攻撃方法として、 CSRF や Timing Attack などが数多く知られており、個別に対策がなされてきた。
+この挙動によって Web におけるセッション管理が実現されている一方、これを悪用した攻撃方法として、CSRF や Timing Attack などが数多く知られており、個別に対策がなされてきた。
 
 現在、提案実装されている SameSite Cookie は、そもそもの Cookie の挙動を変更し、こうした問題を根本的に解決すると期待されている。
 
@@ -13,13 +13,13 @@ Cookie の挙動とそれを用いた攻撃、そして Same Site Cookie につ�
 
 ## Cookie の挙動
 
-Cookie は、 Set-Cookie によって提供したドメインと紐づけてブラウザに保存され、同じドメインへのリクエストに自動的に付与される。
+Cookie は、Set-Cookie によって提供したドメインと紐づけてブラウザに保存され、同じドメインへのリクエストに自動的に付与される。
 
 最も使われる場面は、ユーザの識別子となるランダムな値を SessionID として付与し、その有無によってセッション(=ログイン状態)を維持するという用途だろう。
 
 もし SessionID が盗まれれば成りすましが可能となるため、セキュリティのコンテキストでは Cookie 自体が *Credential* として扱われることもある。
 
-そして今回注目するのは、 Cookie が「*ドメインをまたぐリクエストにも自動で付与される*」という挙動だ。
+そして今回注目するのは、Cookie が「*ドメインをまたぐリクエストにも自動で付与される*」という挙動だ。
 
 もし同じドメイン内でしか付与されなければ、例えば Site A から Site B に遷移した時に、必ず B のログイン画面が出てしまい、一旦リロード(B から B への遷移)するとログイン済みになるという挙動になってしまう。
 
@@ -30,7 +30,7 @@ Cookie は、 Set-Cookie によって提供したドメインと紐づけてブ�
 
 「自動的に付与される」という挙動を利用した攻撃方法はいくつか存在する。
 
-例として、 `https://sns.example.com` という SNS の Session Cookie がブラウザに保存されていたとする。
+例として、`https://sns.example.com` という SNS の Session Cookie がブラウザに保存されていたとする。
 
 ブラウザは `https://sns.example.com` へのリクエストには、その Cookie を自動で付与する。
 
@@ -60,7 +60,7 @@ Referer: https://sns.example.com/posts/new
 msg=hello
 ```
 
-サーバは、 Cookie の正当性を確認し、正ければ投稿を受け付ける。
+サーバは、Cookie の正当性を確認し、正ければ投稿を受け付ける。
 
 ここで、攻撃者は `https://darkside.jxck.io/csrf` に以下のような HTML を仕込んだ罠ページを用意する。
 
@@ -73,7 +73,7 @@ msg=hello
 
 Form の action に URL 全体を入れている点に注目したい。
 
-そして、 `https://sns.example.com` にログイン済みのユーザをこのページに誘導し、なんらかの方法で submit させる。もしくは Form を隠して JS で強制的に submit してもよい。
+そして、`https://sns.example.com` にログイン済みのユーザをこのページに誘導し、なんらかの方法で submit させる。もしくは Form を隠して JS で強制的に submit してもよい。
 
 ここで生成される HTTP Request は以下のようになるだろう。
 
@@ -95,13 +95,13 @@ msg=こんにちはこんにちは
 
 対策としては、まず Origin ヘッダや Referer ヘッダの確認が思いつく。
 
-ところが、 Referer を送らないように設定するユーザもいることが知られており、 Referer が無かったらリクエストを弾くという実装は現実的ではない。
+ところが、Referer を送らないように設定するユーザもいることが知られており、Referer が無かったらリクエストを弾くという実装は現実的ではない。
 
-罠サイトは Referrer Policy を用いることで、 Referer が送らないように設定できるため、 Referer をベースとした対策は万全とは言い難い。
+罠サイトは Referrer Policy を用いることで、Referer が送らないように設定できるため、Referer をベースとした対策は万全とは言い難い。
 
 Origin ヘッダは、そもそもが生成元の Origin を通知するためのものなので、この検証用途で使うには妥当と言える。
 
-しかし、 valid な値が推測可能なため、もしブラウザからのリクエストに *任意のヘッダを追加できる脆弱性* が別で存在した場合には、簡単に偽装できてしまう。
+しかし、valid な値が推測可能なため、もしブラウザからのリクエストに *任意のヘッダを追加できる脆弱性* が別で存在した場合には、簡単に偽装できてしまう。
 
 そして、残念ながら近年も [そうした脆弱性](https://insert-script.blogspot.jp/2018/05/adobe-reader-pdf-client-side-request.html) が見つかっているため、追加で別の対策が求められているのが現状だ。
 
@@ -142,7 +142,7 @@ Web のコンテキストで共通するのは、罠サイトから対象のサ�
 
 この時、実際にレスポンスを取得することができなくてもよく、リクエストにかかる時間を計測し、リクエストを変化させた時のレスポンスタイムの変化から機密情報を推測するというシナリオだ。
 
-例えば先の SNS でユーザのページへリクエストする場合、 block していなければプロフィールページが表示されるが、 block していれば定型文が返るためレスポンスが速いとする。
+例えば先の SNS でユーザのページへリクエストする場合、block していなければプロフィールページが表示されるが、block していれば定型文が返るためレスポンスが速いとする。
 
 ```js
 function timing_attack() {
@@ -167,20 +167,20 @@ function timing_attack() {
 
 [Protecting user identity against Silhouette](https://blog.twitter.com/engineering/en_us/topics/insights/2018/twitter_silhouette.html)
 
-こうした攻撃の推測精度を下げるため、 performance.now の精度を落とすという施策がブラウザベンダによってなされることもある。
+こうした攻撃の推測精度を下げるため、performance.now の精度を落とすという施策がブラウザベンダによってなされることもある。
 
 しかしこの場合も、罠サイトからのリクエストに Cookie 送信されなければ、毎回ログインページのレスポンスが返ることになり攻撃が成立しない。
 
 
 ### Side Channel Attack
 
-CRIME/BEAST/BREACH は、 TLS の暗号化や圧縮に関わるロジックを逆手に取り、ペイロードを推測していく Side Channel Attack の亜種である。
+CRIME/BEAST/BREACH は、TLS の暗号化や圧縮に関わるロジックを逆手に取り、ペイロードを推測していく Side Channel Attack の亜種である。
 
 こうした攻撃は TLS のプロトコルレベルでの解決(暗号方式の変更や圧縮の無効など)によって防ぐことが基本となるうえ、攻撃が成立した場合 Cookie 以外の情報も抜くことは可能である。
 
 しかし、代表的な攻撃シナリオはやはり、ターゲットを罠サイトなどに誘導し、微妙にペイロードを操作しながら連続でリクエストを発生し、自動で付与される Cookie を推測するというものが多い。
 
-例えば CRIME の場合は、 Cookie の値が一致すれば圧縮が効きパケットが小さくなることを観測するだけでよい、イメージとしては以下のような感じだ。
+例えば CRIME の場合は、Cookie の値が一致すれば圧縮が効きパケットが小さくなることを観測するだけでよい、イメージとしては以下のような感じだ。
 
 ```js
 for(...) {
@@ -198,16 +198,16 @@ for(...) {
 
 XSSI は JSONP のエンドポイントから取得できる情報を、罠サイトで横取りする脆弱性である。
 
-これも Cookie が自動で送られなければと言いたいところだ(そうした解説もある)が、 JSONP を使っていることの方が問題なので、解説は割愛する。
+これも Cookie が自動で送られなければと言いたいところだ(そうした解説もある)が、JSONP を使っていることの方が問題なので、解説は割愛する。
 
 
 ## Same Site Cookie
 
-そもそも「*他のドメインからのリクエストでも、 Cookie が自動で付与される*」という挙動を制御できれば、多くの脆弱性に有効な対策になることがわかっただろう。
+そもそも「*他のドメインからのリクエストでも、Cookie が自動で付与される*」という挙動を制御できれば、多くの脆弱性に有効な対策になることがわかっただろう。
 
 そこで、「この Cookie は他のサイトからのリクエストには *付与してはならない*」ということを明示的にブラウザに知らせるのが SameSite Cookie である。
 
-SameSite Cookie は、 Set-Cookie ヘッダに付与する新しい属性であり、現状 2 つの値を取る。
+SameSite Cookie は、Set-Cookie ヘッダに付与する新しい属性であり、現状 2 つの値を取る。
 
 ```http
 Set-Cookie: key=value; SameSite=Strict
@@ -230,17 +230,17 @@ SameSite 以外からの全てのリクエストで一切 Cookie を送らなく
 
 ### Lax
 
-CrossSite のリクエストでは、 Top Level Navigation 以外は Cookie を送らない。
+CrossSite のリクエストでは、Top Level Navigation 以外は Cookie を送らない。
 
 これにより、別サイトからの遷移でもログイン状態が維持できるため、既存の Session 管理にも導入しやすい。
 
 POST では Cookie が送られないため、後述する CSRF のような攻撃への耐性が高まる。
 
-また、 XHR/fetch() や `<img>` を用いて発生させる GET は Top Level Navigation ではないため Cookie がつかない。
+また、XHR/fetch() や `<img>` を用いて発生させる GET は Top Level Navigation ではないため Cookie がつかない。
 
-従って、 JS からリクエストを生成し、時間を測るタイプの攻撃への耐性もある。
+従って、JS からリクエストを生成し、時間を測るタイプの攻撃への耐性もある。
 
-しかし、 Popup Window や `<link rel=prerender>` などは Top Level Navigation となるため、いくつかの攻撃には依然として耐性が無い点に注意したい。
+しかし、Popup Window や `<link rel=prerender>` などは Top Level Navigation となるため、いくつかの攻撃には依然として耐性が無い点に注意したい。
 
 Lax で送られるかどうかをまとめると以下のようになる。
 
@@ -273,14 +273,14 @@ https://www.sjoerdlangkemper.nl/2016/04/14/preventing-csrf-with-samesite-cookie-
 
 これにより、典型的な POST での CSRF や一部の Timing Attack は防ぐことができる。
 
-しかし、 Top Level Navigation を用いた攻撃があった場合は効果がない。
+しかし、Top Level Navigation を用いた攻撃があった場合は効果がない。
 
 
 ### Read/Write Cookie の分離運用
 
 より根本的に安全性を高めるのであれば、副作用のある操作は全て Strict にするのが望ましい。
 
-そこで、 RFC では Cookie を Read Cookie と Write Cookie の 2 つにわける構成が言及されている。
+そこで、RFC では Cookie を Read Cookie と Write Cookie の 2 つにわける構成が言及されている。
 
 - https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5.2
 
@@ -289,9 +289,9 @@ Read Cookie
 Write Cookie
 : 書き込みを許可する Cookie 。例えばパスワードの変更や、投稿、購入、キャンセル、送金など、副作用を伴う操作の許可に使われる。
 
-この 2 つに Cookie を分離し、 Write Cookie に Strict を適用すれば、より堅牢な設計となる。
+この 2 つに Cookie を分離し、Write Cookie に Strict を適用すれば、より堅牢な設計となる。
 
-Read Cookie は、副作用を起こす能力がなくなっているのであれば、 Lax でも SameSite 無しでも良い。
+Read Cookie は、副作用を起こす能力がなくなっているのであれば、Lax でも SameSite 無しでも良い。
 
 ```http
 Set-Cookie: read=zxcv; Path=/; Secure; HttpOnly;
@@ -300,18 +300,18 @@ Set-Cookie: write=asdf; Path=/; Secure; HttpOnly; SameSite=Strict
 
 もし新規の開発や改修が可能であるならば、こうした構成も可能かもしれないが、既存のサービスのほとんどはここまで手を入れるのは難しだろう。
 
-また、 HTTP Method に関わらず、副作用を起こす操作を全て Strict にしているため、例えば前述の足跡や既読のように、別ドメインからの Top Level Navigation で遷移しただけで副作用を起こす設計では、この構成は難しい。
+また、HTTP Method に関わらず、副作用を起こす操作を全て Strict にしているため、例えば前述の足跡や既読のように、別ドメインからの Top Level Navigation で遷移しただけで副作用を起こす設計では、この構成は難しい。
 
 例えば、既読を write cookie にしか許さない場合、ユーザページのリンクを別のサイトで踏んで遷移してきたユーザの既読がつかない。
 
-Redirect を挟むのは Write Cookie を分けた意味がないため、一旦別のページを挟んでリンクを踏ませるなどし、 Same Site Request に誘導してやる必要がある。
+Redirect を挟むのは Write Cookie を分けた意味がないため、一旦別のページを挟んでリンクを踏ませるなどし、Same Site Request に誘導してやる必要がある。
 
-そもそも、副作用は POST/PUT/DELETE などでしか起こさないという設計になっているのであれば、 Lax で十分であるため、ここまでの設計は不要な場合が多そうだと筆者は考えている。
+そもそも、副作用は POST/PUT/DELETE などでしか起こさないという設計になっているのであれば、Lax で十分であるため、ここまでの設計は不要な場合が多そうだと筆者は考えている。
 
 
 ## Cookie の改善
 
-この Cookie の仕様に問題があるという認識は共通しており、 SameSite のような属性の付与では無く、根本的に設計し直そうという話もある。
+この Cookie の仕様に問題があるという認識は共通しており、SameSite のような属性の付与では無く、根本的に設計し直そうという話もある。
 
 [mikewest/http-state-tokens: Incrementally better HTTP state management](https://github.com/mikewest/http-state-tokens)
 
@@ -319,7 +319,7 @@ Redirect を挟むのは Write Cookie を分けた意味がないため、一旦
 
 [[CSP3] Suggestion for COOKIE directive](https://lists.w3.org/Archives/Public/public-webappsec/2018Oct/0029.html)
 
-他にも類似する問題(Cookie に限らず)は、 Cross Origin Info Leaks という文脈で議論されることが多いが、長くなるのでここではこれ以上言及しない。
+他にも類似する問題(Cookie に限らず)は、Cross Origin Info Leaks という文脈で議論されることが多いが、長くなるのでここではこれ以上言及しない。
 
 
 ## 本サイトへの適用

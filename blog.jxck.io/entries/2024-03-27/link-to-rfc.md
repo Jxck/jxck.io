@@ -23,19 +23,19 @@ IETF の RFC は、いくつかの場所で同じものが公開されている�
 
 ### tools.ietf.org
 
-IETF がホストする RFC は、 tools.ietf.org だった。
+IETF がホストする RFC は、tools.ietf.org だった。
 
 - RFC 2616: Hypertext Transfer Protocol -- HTTP/1.1
   - https://web.archive.org/web/20070301142401/https://tools.ietf.org/html/rfc2616
 
 ![tools.ietf.org](tools.ietf.org.png#1500x1802)
 
-しかし、 2021 年 tools と xml2rfc/bibxml をメンテしていた Henrik 氏が引退し、それを機に刷新が行われることになった。
+しかし、2021 年 tools と xml2rfc/bibxml をメンテしていた Henrik 氏が引退し、それを機に刷新が行われることになった。
 
 - Clarifying the state of and the transition plan for tools.ietf.org
   - https://mailarchive.ietf.org/arch/msg/ietf/0n-6EXEmkTp3Uv_vj-5Vnm3o0bo/
 
-既存のページはマイグレーションされて、 URL は datatracker.ietf.org にリダイレクトされている。
+既存のページはマイグレーションされて、URL は datatracker.ietf.org にリダイレクトされている。
 
 - Reminder: tools.ietf.org is shutting down before IETF 113
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/xKzJZIyanPCclTd7DU9PxBAbwhA/
@@ -102,14 +102,14 @@ HTTPWG は、策定活動に GitHub をかなり多用する WG であり、仕�
 
 そのリソースを、策定段階から独自の読みやすいスタイル(CSS)で出してくれているものだ。
 
-つまり、 IETF 公式といえるかというと微妙だ。
+つまり、IETF 公式といえるかというと微妙だ。
 
 
 ## RFC の読みにくさ
 
-tools から datatracker に移行するのと同時期くらいに、 RFC 自体のフォーマットをなんとかしようという動きがあった。
+tools から datatracker に移行するのと同時期くらいに、RFC 自体のフォーマットをなんとかしようという動きがあった。
 
-以前の RFC は、本文が ASCII 固定文字数で折り返し、 HTML では全体が `<pre>` というフォーマットだった。
+以前の RFC は、本文が ASCII 固定文字数で折り返し、HTML では全体が `<pre>` というフォーマットだった。
 
 ![RFC の古いスタイル](old-rfc.png#1226x2308)
 
@@ -121,11 +121,11 @@ tools から datatracker に移行するのと同時期くらいに、 RFC 自�
 
 HTTPWG が独自に HTML を生成してホストしていたのも、このあたりの理由から読みやすいものを独自に公開していたように思う。
 
-その後 RFC 8650 あたりから、 RFC を生成するツールも刷新され、それを用いて現在のモダンな HTML が吐かれるようになった。
+その後 RFC 8650 あたりから、RFC を生成するツールも刷新され、それを用いて現在のモダンな HTML が吐かれるようになった。
 
 ![RFC の新しいスタイル](new-rfc.png#1192x1466)
 
-先ほど言った、新しい/古いフォーマットどちらかは、ドメインによるものではない。例えば以下の二つは見た目が違うように見えるが、 HTML のソース自体は同じだ。
+先ほど言った、新しい/古いフォーマットどちらかは、ドメインによるものではない。例えば以下の二つは見た目が違うように見えるが、HTML のソース自体は同じだ。
 
 - https://datatracker.ietf.org/doc/html/rfc7932
 - https://www.rfc-editor.org/rfc/rfc7932.html
@@ -135,7 +135,7 @@ HTTPWG が独自に HTML を生成してホストしていたのも、このあ�
 
 ## どれを使うべきかの議論
 
-以下に、 Stack Exchange で不具合があった際に IETF 担当者とやりとりしたログが残っている。
+以下に、Stack Exchange で不具合があった際に IETF 担当者とやりとりしたログが残っている。
 
 - Links to HTML versions of RFC's need to move from "tools" to "datatracker" - Meta Stack Exchange
   - https://meta.stackexchange.com/questions/367881/links-to-html-versions-of-rfcs-need-to-move-from-tools-to-datatracker
@@ -164,7 +164,7 @@ HTTPWG が独自に HTML を生成してホストしていたのも、このあ�
 
 公式見解を探そうにも、そもそも `datatracker` や `rfc-editor` での検索が RFC 自体に引っかかりまくるので、検索が困難だった。
 
-そこで、 IETF の discussion で聞いてみた。
+そこで、IETF の discussion で聞いてみた。
 
 - What is the difference between datatracker.ietf.org & www.rfc-editor.org and which is Official URL for RFC ? · ietf-tools/datatracker · Discussion #7259
   - https://github.com/ietf-tools/datatracker/discussions/7259
@@ -195,7 +195,7 @@ Digital Object Identifier (DOI) は、その対象物に振られる一意な識
 https://doi.org/10.17487/RFC9110
 ```
 
-これにより、 IETF がドメインを変えたり構成が変わっても、リダイレクト先を登録しなおせば参照が切れないという仕組みだ。
+これにより、IETF がドメインを変えたり構成が変わっても、リダイレクト先を登録しなおせば参照が切れないという仕組みだ。
 
 そして、その DOI に登録されている(つまりリダイレクトされる先)は以下だ。
 
@@ -207,7 +207,7 @@ https://www.rfc-editor.org/info/rfc9110
 
 本文ではなく、メタデータ部分のページであり、複数のリンクから好きなフォーマットで見ることができる。
 
-そして、 RFC の引用ルールではこのページを貼るように指定されているのだ。
+そして、RFC の引用ルールではこのページを貼るように指定されているのだ。
 
 ここにコンテンツを含まないでいいのかは、IETF の中でも議論があるようだ。
 
@@ -240,16 +240,16 @@ RFC の表記について、以下のスタイルガイドに言及がある。
 
 とはいえ、これは「RFC を書く人」が守るべきルールなので、他の文書もそうであるべきかは文書側のルールになるだろう。
 
-しかし、 RFC を書く場合にスペースを入れるのが "*proper*" とされているのは、注目したい。
+しかし、RFC を書く場合にスペースを入れるのが "*proper*" とされているのは、注目したい。
 
 
 ### Draft
 
-rfc-editor は RFC はホストしているが、 RFC になる前の draft については datatracker にしかない。
+rfc-editor は RFC はホストしているが、RFC になる前の draft については datatracker にしかない。
 
 - https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-p6-cache-26
 
-したがって、 RFC と Draft が並ぶ場合は、統一のために datatracker に寄せるのもありかもしれない。
+したがって、RFC と Draft が並ぶ場合は、統一のために datatracker に寄せるのもありかもしれない。
 
 
 ### Inline Errata
@@ -261,7 +261,7 @@ RFC 発行後に報告された問題は Errata と呼ばれる。
 
 Errata があったとしても、一度発行した RFC は内容を変えることができないため、マージするには改訂を行い新たな RFC を出す必要がある。
 
-しかし、 RFC を出すのは一定の労力がかかるため、 Errata が存在するままの RFC は多く存在する。実装時などに「なにかがおかしい?」と思ったら実は Errata があったということはよく起こるため、最初に Errata の存在を確認するのは重要だった。
+しかし、RFC を出すのは一定の労力がかかるため、Errata が存在するままの RFC は多く存在する。実装時などに「なにかがおかしい?」と思ったら実は Errata があったということはよく起こるため、最初に Errata の存在を確認するのは重要だった。
 
 RFC では、ひっそりと Errata Exsists と書かれたリンクから見ることができる。
 
@@ -283,9 +283,9 @@ RFC では、ひっそりと Errata Exsists と書かれたリンクから見る
 
 RFC へのリンクを貼る場合、公式の、統一された、安定的な URL を求めるのであれば、ドメインは *rfc-editor* を用いるのが良いだろう。
 
-そして RFC を書く場合や、論文や出版で DOI を意識したのであれば、 `/info` を貼る必要がある。
+そして RFC を書く場合や、論文や出版で DOI を意識したのであれば、`/info` を貼る必要がある。
 
-しかし、一般的な文書や書籍では、 `/info` である必要はないだろうし、必要なら DOI そのものを併記すれば良い場合がほとんどと思われる。
+しかし、一般的な文書や書籍では、`/info` である必要はないだろうし、必要なら DOI そのものを併記すれば良い場合がほとんどと思われる。
 
 従って、以下を用いるのが良いだろう。
 

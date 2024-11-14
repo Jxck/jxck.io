@@ -4,19 +4,19 @@
 
 ついに `<toast>` -> `<popup>` -> `popup` -> `popover` として、要素から属性になり名前も決まった。
 
-とはいえ実装は `popup` とそんなに変わらないので、 `popup` でやっていた Origin Trials を継続しながら、徐々に実装を進めていくフェーズが 2022/12 くらいの話だ。
+とはいえ実装は `popup` とそんなに変わらないので、`popup` でやっていた Origin Trials を継続しながら、徐々に実装を進めていくフェーズが 2022/12 くらいの話だ。
 
 - Intent to extend Origin Trial: Popover API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kZXexHhH7EA/m/UmQYwGW3DAAJ
 
-しかし、 `popover` を実用するには足りていない議論があった。それが Animation だ。
+しかし、`popover` を実用するには足りていない議論があった。それが Animation だ。
 
 
 ## Display and content-visibility animations
 
-`<dialog>` や `popover` された要素は、基本的には現れたり消えたりするので、それをアニメーションするには、 `display` / `content-visibility` の属性をアニメーションする必要がある。
+`<dialog>` や `popover` された要素は、基本的には現れたり消えたりするので、それをアニメーションするには、`display` / `content-visibility` の属性をアニメーションする必要がある。
 
-まずは消す方を以下のように `transition` でやってみよう。 `opacity` を徐々に薄くし、最後に `display: none` する実装は以下のようになる。
+まずは消す方を以下のように `transition` でやってみよう。`opacity` を徐々に薄くし、最後に `display: none` する実装は以下のようになる。
 
 ```css
 div {
@@ -53,9 +53,9 @@ CSS のアニメーションでは、属性に対して 4 つの Animation Type 
 
 not animatable は「アニメーションすると複雑すぎるため `transition` や `keyframe` に指定されても無視する」というものだ。
 
-つまり、要素をふわっと消したい場合は、代わりに `visibility` を用いる、 `height: 0` にして潰す、 `left: -1000px` などで画面外に飛ばす、アニメーションが終わったら JS で消す、といった実装が必要だった。
+つまり、要素をふわっと消したい場合は、代わりに `visibility` を用いる、`height: 0` にして潰す、`left: -1000px` などで画面外に飛ばす、アニメーションが終わったら JS で消す、といった実装が必要だった。
 
-ところが、 `<dialog>` や `popover` は、その表示非表示を `display` の変更で行っているため、アニメーションが複雑になる。そこで、 `display` も animatable にしようという議論が始まったのだ。
+ところが、`<dialog>` や `popover` は、その表示非表示を `display` の変更で行っているため、アニメーションが複雑になる。そこで、`display` も animatable にしようという議論が始まったのだ。
 
 - Intent to Ship: Display and content-visibility animations
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UV9POKsNZA8/m/WCj2GZGXAAAJ
@@ -69,17 +69,17 @@ not animatable は「アニメーションすると複雑すぎるため `transi
 - rendering/entry-exit-animations.md at master · chrishtr/rendering
   - https://github.com/chrishtr/rendering/blob/master/entry-exit-animations.md
 
-例えば `opacity` の Animation Type は by computed value で、 0 から 1 の間をスライダーを動かすように連続した変化をさせる。一方、 true/false, enable/disable といった値は discrete (離散値) というカテゴリになる。
+例えば `opacity` の Animation Type は by computed value で、0 から 1 の間をスライダーを動かすように連続した変化をさせる。一方、true/false, enable/disable といった値は discrete (離散値) というカテゴリになる。
 
-discrete な値を `transition` する場合は、真ん中(50%)で値が切り替わる挙動になるため、 `opacity` が 0.5 まで減ったところで、 `display: none` になって要素がぱっと消えてしまうことになる。
+discrete な値を `transition` する場合は、真ん中(50%)で値が切り替わる挙動になるため、`opacity` が 0.5 まで減ったところで、`display: none` になって要素がぱっと消えてしまうことになる。
 
 ![display が途中で変わり要素が消える](./transition-display.drawio.svg#442x182)
 
-しかし、実際に欲しいのは `opacity: 0` になった後に、 `display: none` / `content-visibility: hidden` に変化し消える挙動だ。
+しかし、実際に欲しいのは `opacity: 0` になった後に、`display: none` / `content-visibility: hidden` に変化し消える挙動だ。
 
 ![display が最後に変更する](./transition-display-finally.drawio.svg#442x182)
 
-この変更を利用するためには、 `keyframe` をそのままに、`transition` の対象プロパティに `allow-discrete` をつける。
+この変更を利用するためには、`keyframe` をそのままに、`transition` の対象プロパティに `allow-discrete` をつける。
 
 ```css
 div {
@@ -109,7 +109,7 @@ div {
 
 fade-in させる時は少し考えることが増える。
 
-単純に、 `display: none` を `block` にしてから, `opacity: 0` を `1` に遷移させればよさそうだ。
+単純に、`display: none` を `block` にしてから, `opacity: 0` を `1` に遷移させればよさそうだ。
 
 ```css
 div {
@@ -130,9 +130,9 @@ div {
 }
 ```
 
-ところが、これでは `display` が変わった瞬間に要素が `opacity` を持つため、それが「0 である」という初期値が計算される前に、 `opacity` が 1 になってしまうため、想定した挙動にならない。
+ところが、これでは `display` が変わった瞬間に要素が `opacity` を持つため、それが「0 である」という初期値が計算される前に、`opacity` が 1 になってしまうため、想定した挙動にならない。
 
-ここでは、 `display` が切り替わる時は、アニメーションする値の初期値を要素に反映し、その上で変化をさせる必要がある。以前はこれを「一旦 `display: block` に変えたら、 `requestAnimationFrame()` で `opacity: 0` が計算されるのを待ってから、 `opacity: 1` に遷移させる」や「`getBoundingClientRect()` で値の計算を確定させる処理を一旦呼んでから遷移させる」といった実装が必要だった。
+ここでは、`display` が切り替わる時は、アニメーションする値の初期値を要素に反映し、その上で変化をさせる必要がある。以前はこれを「一旦 `display: block` に変えたら、`requestAnimationFrame()` で `opacity: 0` が計算されるのを待ってから、`opacity: 1` に遷移させる」や「`getBoundingClientRect()` で値の計算を確定させる処理を一旦呼んでから遷移させる」といった実装が必要だった。
 
 ところが `<dialog>` や `popover` も、出現時に `display` が変わっているため、同じ問題が起こってしまう。せっかく Declarative に定義したのに、そのアニメーションに JS が必須となるのは不便だ。
 
@@ -217,7 +217,7 @@ div {
 
 ## Prefer Reduced Motion
 
-`<dialog>` / `popover` とは直接関係ないが、 `prefer-reduced-motion` が指定されていたら、アニメーションは無効にしたい。
+`<dialog>` / `popover` とは直接関係ないが、`prefer-reduced-motion` が指定されていたら、アニメーションは無効にしたい。
 
 ```css
 @media(prefers-reduced-motion: no-preference) {

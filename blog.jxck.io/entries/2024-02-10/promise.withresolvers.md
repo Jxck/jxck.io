@@ -2,7 +2,7 @@
 
 ## Intro
 
-`Promise.withResolvers()` は、 Stage 4 であり ES2024 の候補となった。
+`Promise.withResolvers()` は、Stage 4 であり ES2024 の候補となった。
 
 すでにブラウザでの実装も進んでいるため、その活用方法を解説する。
 
@@ -11,7 +11,7 @@
 
 JS では、非同期処理 API は長らくイベントリスナベースで定義され、それを組み合わせるフロー制御で処理されてきた。
 
-しかし、 Promise が定義されて以降は、標準 API も Promise を返すようになり、 `async`/`await` によって処理されるのが一般的になってきた。
+しかし、Promise が定義されて以降は、標準 API も Promise を返すようになり、`async`/`await` によって処理されるのが一般的になってきた。
 
 結果、イベントリスナベースの API を Promise 化するような場面も増えた。
 
@@ -101,7 +101,7 @@ async function request() {
 }
 ```
 
-例えば以下のように使えば、 EventTarget を継承した API の Promise 化もできる。
+例えば以下のように使えば、EventTarget を継承した API の Promise 化もできる。
 
 ```js
 async function readFile(file: File) {
@@ -117,7 +117,7 @@ async function readFile(file: File) {
 
 既にブラウザへの実装も進んでいる。
 
-なお、 Firefox は内部で `PromiseUtils.defer()` という名前で実装していたが、現在は `Promise.withResolvers()` に置き換えられている。
+なお、Firefox は内部で `PromiseUtils.defer()` という名前で実装していたが、現在は `Promise.withResolvers()` に置き換えられている。
 
 - PSA: PromiseUtils.defer() has been replaced by Promise.withResolvers()
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/FqOnd1J4-YI

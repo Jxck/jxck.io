@@ -136,7 +136,7 @@ Finding っていう資料が二つ出た。
 
 - 1/27: [FB のフィードバックでブラウザのキャッシュが改善](https://code.facebook.com/posts/557147474482256)
   - [Chrome は Reload 時のキャッシュの扱いを見直した](https://blog.chromium.org/2017/01/reload-reloaded-faster-and-leaner-page_26.html)
-  - FF は挙動を変えることはせず、 Cache-Control: immutable を実装した
+  - FF は挙動を変えることはせず、Cache-Control: immutable を実装した
   - FB 規模だとベンダとの協力体制のあたり、割と影響力ある
 
 - 1/27: [Edge で WebRTC 1.0 がデフォルト](https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/desktop/15019/)
@@ -153,7 +153,7 @@ Finding っていう資料が二つ出た。
   - FF53: 64bit install default
 
 - 1/30: [Cookpad が HTTPS 移行だん](https://speakerdeck.com/kanny/cookpad-dot-com-quan-https-hua-falsegui-ji)
-  - CSP レポートは kibana とかの方がいいね、 report-uri.io はダメだ。
+  - CSP レポートは kibana とかの方がいいね、report-uri.io はダメだ。
 
 - 1/30: [テストドリブン Web 標準化](https://blog.whatwg.org/improving-interoperability)
   - WHATWG の標準化プロセスにおいて、テスト作成とブラウザへのバグ報告を推奨した。
@@ -171,10 +171,10 @@ Finding っていう資料が二つ出た。
   - [sample](https://googlechrome.github.io/samples/media-session)
 
 - 1/31: [Security and Frontend Performance](http://www.oreilly.com/webops-perf/free/security-and-frontend-performance.csp)
-  - Web のパフォーマンスとセキュリティをあえて一緒に扱う書籍。 CSP, HSTS, ResourceHints, SW など
+  - Web のパフォーマンスとセキュリティをあえて一緒に扱う書籍。CSP, HSTS, ResourceHints, SW など
 
 - 1/31: [Edge の WebRTC1.0 紹介](https://blogs.windows.com/msedgedev/2017/01/31/introducing-webrtc-microsoft-edge/)
-  - ORTC, WebRTC1.0 両サポート、 H.264/AVC は HW Enc/Dec だけど VP8 は Soft だからパフォーマンス注意。
+  - ORTC, WebRTC1.0 両サポート、H.264/AVC は HW Enc/Dec だけど VP8 は Soft だからパフォーマンス注意。
 
 - 2/1: [Indefensible: the W3C says companies should get to decide when and how security researchers reveal defects in browsers](https://www.eff.org/deeplinks/2017/02/indefensible-w3c-says-companies-should-get-decide-when-and-how-security)
   - 大事そうな話なのであとで読む

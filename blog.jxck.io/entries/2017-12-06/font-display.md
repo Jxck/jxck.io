@@ -2,7 +2,7 @@
 
 ## Update
 
-- この検証から 2 年程のちに、 First Paint/First Contentful Paint を重視するため、全ての display プロパティは swap に統一した。
+- この検証から 2 年程のちに、First Paint/First Contentful Paint を重視するため、全ての display プロパティは swap に統一した。
 - その他 WebFont に関連する検証は [web font](https://blog.jxck.io/tags/web%20font.html) タグにまとまっている。
 
 
@@ -10,9 +10,9 @@
 
 Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。
 
-フォントファイルサイズが大きい場合は、 FOIT/FOUT の問題が顕著になり、 JS を用いた回避策が利用されることも多かった。
+フォントファイルサイズが大きい場合は、FOIT/FOUT の問題が顕著になり、JS を用いた回避策が利用されることも多かった。
 
-これを解決するため、 CSS に `font-display` プロパティが作成され、実装が進んでいる。
+これを解決するため、CSS に `font-display` プロパティが作成され、実装が進んでいる。
 
 各プロパティの違いと挙動、そして本サイトへの適用について解説する。
 
@@ -25,7 +25,7 @@ Web Font は、特に日本語のように文字数が多い場合、ファイ�
 
 これまで、フォント読み込み中の挙動は、ブラウザのデフォルト実装に依存していた。
 
-これをコンテンツオーサが制御するために定義されたのが、 CSS の `font-display` プロパティである。
+これをコンテンツオーサが制御するために定義されたのが、CSS の `font-display` プロパティである。
 
 
 ## ブラウザデフォルト挙動
@@ -42,7 +42,7 @@ Web Font は、特に日本語のように文字数が多い場合、ファイ�
 
 まず、ブラウザはフォントの取得を開始したら *block period* の間はテキストを表示しない。
 
-(正確には、 "invisible-fallback font face" という、見えない文字でレンダリングする)
+(正確には、"invisible-fallback font face" という、見えない文字でレンダリングする)
 
 *swap period* に入ったら、代替フォントで表示を行う。
 
@@ -55,7 +55,7 @@ Web Font は、特に日本語のように文字数が多い場合、ファイ�
 
 ## FOIT/FOUT
 
-ブラウザのこうした挙動は、 UX を著しく損ねる場合がある。
+ブラウザのこうした挙動は、UX を著しく損ねる場合がある。
 
 特に、ネットワークが遅い場合や、フォントファイルサイズが大きい場合は、フォントの取得に時間がかかる。
 
@@ -66,7 +66,7 @@ FOIT (Flash of Invisible Text)
 FOUT (Flash of Unstyled Text)
 : 表示されているテキストのフォントが、(swap period 中)突然入れ替わる現象
 
-こうした現象を防ぐためには、 JavaScript でフォントの読み込み/表示を制御するのライブラリが使われることが多い。
+こうした現象を防ぐためには、JavaScript でフォントの読み込み/表示を制御するのライブラリが使われることが多い。
 
 - https://github.com/typekit/webfontloader
 - https://github.com/bramstein/fontfaceobserver
@@ -74,7 +74,7 @@ FOUT (Flash of Unstyled Text)
 
 ## font-display
 
-こうした挙動を、 CSS から明示的に指定できるように策定されたのが、 `font-display` プロパティである。
+こうした挙動を、CSS から明示的に指定できるように策定されたのが、`font-display` プロパティである。
 
 `font-display` は以下の 5 つの値をとる。
 
@@ -84,28 +84,28 @@ FOUT (Flash of Unstyled Text)
 - swap
 - optional
 
-各プロパティでは、 block/swap period の推奨時間が定義されており、ユースケースに応じて使い分けるための指針が示されている。
+各プロパティでは、block/swap period の推奨時間が定義されており、ユースケースに応じて使い分けるための指針が示されている。
 
-Web Font 読み込み系のライブラリは、 `swap` や `fallback` などによって代替できる場合が多い。
+Web Font 読み込み系のライブラリは、`swap` や `fallback` などによって代替できる場合が多い。
 
 
 ### auto
 
-未指定の場合と同じ、 User-Agent のデフォルトの挙動となる。
+未指定の場合と同じ、User-Agent のデフォルトの挙動となる。
 
 
 ### block
 
-block period を `3s` (推奨)、 swap period を `infinite` にする。
+block period を `3s` (推奨)、swap period を `infinite` にする。
 
-主に、代替のフォントでの表示を避けたい場合に利用されるが、 block period が `infinite` になるわけではない点に注意。
+主に、代替のフォントでの表示を避けたい場合に利用されるが、block period が `infinite` になるわけではない点に注意。
 
-例えば、 [FontAwesome](http://fontawesome.io/) のようにフォントファイルを UI Icon に利用しており、代替フォントでの表示が望ましくない場面で利用できる。
+例えば、[FontAwesome](http://fontawesome.io/) のようにフォントファイルを UI Icon に利用しており、代替フォントでの表示が望ましくない場面で利用できる。
 
 
 ### fallback
 
-block period を `100ms` (推奨)、 swap period を `3s` (推奨) にする。
+block period を `100ms` (推奨)、swap period を `3s` (推奨) にする。
 
 最初にテキストが表示されない状態(FOIT)を極力避けるため、早めにフォールバックフォントを表示しながらも、フォントの取得を試みる。
 
@@ -116,7 +116,7 @@ block period を `100ms` (推奨)、 swap period を `3s` (推奨) にする。
 
 ### swap
 
-block period を `0`、 swap period を `infinite` にする。
+block period を `0`、swap period を `infinite` にする。
 
 FOIT が実質無くなる代わりに、大きなフォントファイルでも最後まで取得を試みることができる。
 
@@ -125,15 +125,15 @@ FOIT が実質無くなる代わりに、大きなフォントファイルでも
 
 ### optional
 
-block period を `100ms` 以下(推奨)、 swap period を `0s` にする。
+block period を `100ms` 以下(推奨)、swap period を `0s` にする。
 
-FOIT を極力避けつつも、 swap period が無いため block period を過ぎると FOUT も起こらない。
+FOIT を極力避けつつも、swap period が無いため block period を過ぎると FOUT も起こらない。
 
 しかし、ファイルの取得を完全に断念するかは UA が決め、非常に低い priority で取得を継続する場合がある。
 
 これにより、次回以降のアクセスでフォントがキャッシュされていれば、初回含め FOIT/FOUT 共に解決する
 
-つまり、 `optional` は、最初に訪れたユーザには素早くレンダリングすることを優先し、フォントの取得は UA の判断を尊重する。
+つまり、`optional` は、最初に訪れたユーザには素早くレンダリングすることを優先し、フォントの取得は UA の判断を尊重する。
 
 スタイルよりも内容を重要視しつつ、次回以降のアクセスで付加価値として Web Font での表示を提供するという方針に使うことができる。
 
@@ -148,7 +148,7 @@ FOIT を極力避けつつも、 swap period が無いため block period を過
 
 しかし、やはり重要視したいのは内容であり、フォントによるスタイル自体の重要度は低く考えている。
 
-また、一旦取得されたフォントファイルには、 `immutable` キャッシュを指定しており、二回以降のアクセスでは Cache Hit が期待できる。
+また、一旦取得されたフォントファイルには、`immutable` キャッシュを指定しており、二回以降のアクセスでは Cache Hit が期待できる。
 
 [Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化](https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html)
 
@@ -163,7 +163,7 @@ FOIT を極力避けつつも、 swap period が無いため block period を過
 
 - https://labs.jxck.io/webfont/font-display.html
 
-本サイトとは別に、大きいフォントファイルを、 4 つのプロパティで表示するデモを以下に用意した。
+本サイトとは別に、大きいフォントファイルを、4 つのプロパティで表示するデモを以下に用意した。
 
 
 ## Link

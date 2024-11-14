@@ -57,7 +57,7 @@ target.setAttribute("disabled", false); // 無効になるわけではない
 
 結果的には以下のような API に落ち着いた。
 
-属性名を指定して toggleAttribute を呼べば、 true/false を切り替えられる。
+属性名を指定して toggleAttribute を呼べば、true/false を切り替えられる。
 
 (値は empty string が採用された)
 
@@ -104,7 +104,7 @@ Boolean 専用の setAttribute が欲しいというところから始まり、�
 
 その後 Anne が `needs implementer interest` というラベルをつけて、そこから一年間は反応がなかった。
 
-先月(2018/6)に入って、 Firefox, Chrome, Edge あたりが positive な反応を示し、同時に DOM の仕様への PR が作られる。
+先月(2018/6)に入って、Firefox, Chrome, Edge あたりが positive な反応を示し、同時に DOM の仕様への PR が作られる。
 
 [Add toggleAttribute to Element. by jonathanKingston - Pull Request #656 - whatwg/dom](https://github.com/whatwg/dom/pull/656)
 

@@ -4,7 +4,7 @@
 
 長らく議論されてきた `<img>` や `<iframe>` における Lazyload について、仕様と実装が動きを見せている。
 
-ここでは、特に画像 `<img>` に注目し、 Lazyloading の議論の変遷を踏まえた上で現状を解説する。
+ここでは、特に画像 `<img>` に注目し、Lazyloading の議論の変遷を踏まえた上で現状を解説する。
 
 画像最適化シリーズ第 5 回目のエントリである。
 
@@ -23,7 +23,7 @@
 
 このように、必要になるまで読み込まない方法は *Lazy Loading* と呼ばれ、従来は onscroll や IntersectionObserver で監視する JS で実装されることが多かった。
 
-この機能を、 HTML の仕様に取り込み、 `<img>` や `<iframe>` タグに属性を記述するだけで、ブラウザが遅延読み込みを実現してくれるのが LazyLoading の提案である。
+この機能を、HTML の仕様に取り込み、`<img>` や `<iframe>` タグに属性を記述するだけで、ブラウザが遅延読み込みを実現してくれるのが LazyLoading の提案である。
 
 アイデア自体は古くからあったが、紆余曲折を経て最近実装が進みつつある。
 
@@ -32,7 +32,7 @@
 
 ## spec history
 
-もともと、 IE は `lazyload` 属性を早い段階で実装しており、値は Integer `0`/`1` を指定し `1` の場合は *他よりも優先度を下げる* という仕様だった。
+もともと、IE は `lazyload` 属性を早い段階で実装しており、値は Integer `0`/`1` を指定し `1` の場合は *他よりも優先度を下げる* という仕様だった。
 
 ```html
 <img src="example.jpg" lazyload="1">
@@ -40,11 +40,11 @@
 
 - [lazyload attribute | lazyload property (Internet Explorer)](http://web.archive.org/web/20160313082908/https://msdn.microsoft.com/library/dn369270\(v=vs.85\).aspx)
 
-これを標準仕様に起こす作業が行われ、 Resource Priorities という形でまとめられた。
+これを標準仕様に起こす作業が行われ、Resource Priorities という形でまとめられた。
 
 - [Resource Priorities](http://web.archive.org/web/20170808155035/https://w3c.github.io/web-performance/specs/ResourcePriorities/Overview.html)
 
-この時点では、 lazyload 以外に postpone も定義されており、以下のような使い分けだった。
+この時点では、lazyload 以外に postpone も定義されており、以下のような使い分けだった。
 
 lazyload
 : ネットワーク専有の優先度を下げる(ネットワークが空けばロードはされる)
@@ -53,7 +53,7 @@ postpone
 
 なお、この時点では Boolean Attribute になっていたため、値を書くだけで有効になる。
 
-(この使い分けで言うと、今の loading=lazy の挙動は postpone に近く、 lazyload は別途提案されている importance 属性による priority hints の方が近そうだ)
+(この使い分けで言うと、今の loading=lazy の挙動は postpone に近く、lazyload は別途提案されている importance 属性による priority hints の方が近そうだ)
 
 ```html
 <img src="example.jpg" lazyload>
@@ -62,16 +62,16 @@ postpone
 
 Chrome がこの仕様の着手として Intent to Implement をアナウンスしたのは 2013 年だったため、かなり昔から話はあったということがわかるだろう。そしてこの時点でも、「まだ実装できるほど仕様が安定していない」というコメントが付いている。
 
-まだ、 postpone 属性を消すかどうかという時期だったようだ。
+まだ、postpone 属性を消すかどうかという時期だったようだ。
 
 - [Intent to Implement: lazyload attribute](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7ZBt9rQqjtM/3VdCW0c3bL0J)
 
-このころ、気の早いライブラリは、 Boolean の `lazyload` 属性を実装していたため、この仕様を何かしらで見たことがある人も多いかと思うが、結論から言うと最新の仕様は変更されたため注意が必要だ。
+このころ、気の早いライブラリは、Boolean の `lazyload` 属性を実装していたため、この仕様を何かしらで見たことがある人も多いかと思うが、結論から言うと最新の仕様は変更されたため注意が必要だ。
 
 
 ## loading=lazy
 
-[色々あり](https://github.com/whatwg/html/pull/3752#issuecomment-472181420) 、 lazyload 属性は [loading 属性](https://github.com/whatwg/html/pull/3752#issuecomment-478200976) に変わり、今の最新の仕様は以下にある。
+[色々あり](https://github.com/whatwg/html/pull/3752#issuecomment-472181420) 、lazyload 属性は [loading 属性](https://github.com/whatwg/html/pull/3752#issuecomment-478200976) に変わり、今の最新の仕様は以下にある。
 
 - [Blink LazyLoad Design Doc (public)](https://docs.google.com/document/d/1e8ZbVyUwgIkQMvJma3kKUDg8UUkLRRdANStqKuOIvHg/edit#)
 - [scott-little/lazyload](https://github.com/scott-little/lazyload)
@@ -95,7 +95,7 @@ auto
 
 またデフォルトが auto であることも重要だ。
 
-基本的には全ての画像はペイロードが大きいため、必要になったタイミングで取得されるのが望ましいと考えれば、 `<img>` はデフォルトで lazy であるのが理想だ。
+基本的には全ての画像はペイロードが大きいため、必要になったタイミングで取得されるのが望ましいと考えれば、`<img>` はデフォルトで lazy であるのが理想だ。
 
 ブラウザもそのような実装に向けて実験を繰り返していたが、壊れる既存コンテンツの存在もあり一筋縄ではいかない状況があるようだ。
 
@@ -112,7 +112,7 @@ auto
 
 - http://labs.jxck.io/lazyload/
 
-今回は、画像の Lazyload の挙動を、 Chrome 75 + Flag の実装を用いて確認してみる。
+今回は、画像の Lazyload の挙動を、Chrome 75 + Flag の実装を用いて確認してみる。
 
 デモとして、画像を 10 個並べたページを用意し `loading=lazy` の有無による挙動を比較する。
 
@@ -149,7 +149,7 @@ auto
 
 ### 現時点での挙動
 
-まだ Canary での検証であり、実装および最適化は今後進んでいくだろうと期待できるため、 *現時点の挙動に深く依存するのは推奨しない* 。
+まだ Canary での検証であり、実装および最適化は今後進んでいくだろうと期待できるため、*現時点の挙動に深く依存するのは推奨しない* 。
 
 Blink での実装については一部が以下に書かれている。
 
@@ -162,7 +162,7 @@ Blink での実装については一部が以下に書かれている。
 
 まず、全てのリクエストが Range + Full で 2 回発生しているため、特に最初は従来よりも RTT が増えることになる。
 
-これは Above / Blow 関係なく発生しているため、もし全ての画像が Above the Fold に収まっていた場合は、 Lazy をつけると無駄に RTT が増えるだけであるとを意味する。
+これは Above / Blow 関係なく発生しているため、もし全ての画像が Above the Fold に収まっていた場合は、Lazy をつけると無駄に RTT が増えるだけであるとを意味する。
 
 仮に、最初の Range で取得した 2.0KB のレスポンスに合成するために 2.0KB 以降から If-Range などで Conditional GET し、結合するという実装も考えられなくはないが、そうはなっていないようだ。
 
@@ -186,7 +186,7 @@ Below the Fold の画像は、キャッシュがヒットしている、とい�
 
 そこに加えて、スクロールした場合を考えて、直近の画像を読んでおくというのは妥当な選択と考えられる。
 
-しかし、 Below the Fold のために取得するリクエストが、筆者が思った以上には多く有る。
+しかし、Below the Fold のために取得するリクエストが、筆者が思った以上には多く有る。
 
 本サイトで検証したところ、かなり長いページを除き、画像がある多くのページは、遅延されず最初に読み込まれてしまっている。
 
@@ -199,9 +199,9 @@ Below the Fold の画像は、キャッシュがヒットしている、とい�
 
 [Design Doc: Image Replacement in Blink (public)](https://docs.google.com/document/d/1691W7yFDI1FJv69N2MEtaSzpnqO2EqkgGD3T0O-pQ08/)
 
-2.0KB 分、画像のヘッダを取得することにより、画像のサイズ情報が取得できるため、 `<img>` のサイズが決まるということだ。
+2.0KB 分、画像のヘッダを取得することにより、画像のサイズ情報が取得できるため、`<img>` のサイズが決まるということだ。
 
-ただし、 2.0KB は、決して小さくない。
+ただし、2.0KB は、決して小さくない。
 
 これをどこまで小さくできるは事前にはわからず、小さくしすぎて欲しい情報が入っていなければ、無駄足になる。
 
@@ -209,16 +209,16 @@ Below the Fold の画像は、キャッシュがヒットしている、とい�
 
 逆に width/height などから `<img>` のサイズが確定できれば、将来この Range リクエストは不要にできる可能性があると考えている。
 
-しかし、それでは HTML に手を入れられないコンテンツで lazyload をしたいと場合に、 2.0KB リクエストは防げないことになる。
+しかし、それでは HTML に手を入れられないコンテンツで lazyload をしたいと場合に、2.0KB リクエストは防げないことになる。
 
-素人考えだと、 HTTP HEAD リクエストを発行させる属性を `<img>` に追加し、 `Image-Size: 200x300` などのヘッダを返すといったこともできなく無い気がするがどうなのだろうか。
+素人考えだと、HTTP HEAD リクエストを発行させる属性を `<img>` に追加し、`Image-Size: 200x300` などのヘッダを返すといったこともできなく無い気がするがどうなのだろうか。
 
 この辺は、もう少し勉強してから、必要があれば issue などで議論したい。
 
 
 ### 考察
 
-以上のように、 *現時点での Chrome の Lazyload 実装* は、まだ荒削りであり、ページの Height が短い、 2.0KB 以下の画像が多く含まれている、といったページなどではオーバーヘッドが大きそうだ。
+以上のように、*現時点での Chrome の Lazyload 実装* は、まだ荒削りであり、ページの Height が短い、2.0KB 以下の画像が多く含まれている、といったページなどではオーバーヘッドが大きそうだ。
 
 しかし、この実装はあくまで現時点でのものであり、もちろん *改善は進むため* この挙動に深く依存する実装はすべきではないが、注意すべき課題も見えてくる。
 
@@ -232,13 +232,13 @@ Below the Fold の画像は、キャッシュがヒットしている、とい�
 
 ## Feature Policy
 
-HTML に手を入れずに HTTP Header で挙動を指定できるように、 Feature Policy も提案されている。
+HTML に手を入れずに HTTP Header で挙動を指定できるように、Feature Policy も提案されている。
 
 - [loading-image-default-eager](https://github.com/w3c/webappsec-feature-policy/blob/master/policies/loading-image-default-eager.md)
 - [loading-frame-default-eager](https://github.com/w3c/webappsec-feature-policy/blob/master/policies/loading-frame-default-eager.md)
 - [Feature Policy: lazyload - Issue #193](https://github.com/w3c/webappsec-feature-policy/issues/193)
 
-一括で挙動を変えると、 Analytics で動的に埋め込む `<img>` でリクエストが二回発生し、測定がずれるといった問題も想像される。
+一括で挙動を変えると、Analytics で動的に埋め込む `<img>` でリクエストが二回発生し、測定がずれるといった問題も想像される。
 
 Blink では、こうしたケースを [ヒューリスティックに解析し回避する](https://docs.google.com/document/d/1jF1eSOhqTEt0L1WBCccGwH9chxLd9d1Ez0zo11obj14/edit#heading=h.cx8y0v73akfi) といったことも書かれているが、結果は実装に依存するだろう。
 
@@ -249,9 +249,9 @@ Blink では、こうしたケースを [ヒューリスティックに解析し
 
 - [Priority Hints](https://wicg.github.io/priority-hints/)
 
-これは、 HTTP2 の Stream Priority の分配などに対してヒントを与える提案である。
+これは、HTTP2 の Stream Priority の分配などに対してヒントを与える提案である。
 
-実際に遅延を行うと onload の発火タイミングが変わるといった挙動の大きな変化が発生するが、 Priority Hints であれば、実装にもよるが、そうした変化が少ないことが期待される。
+実際に遅延を行うと onload の発火タイミングが変わるといった挙動の大きな変化が発生するが、Priority Hints であれば、実装にもよるが、そうした変化が少ないことが期待される。
 
 既存のコンテンツの性質や相性によっては、こちらの方が導入しやすい可能性もあり、合わせて検討できるだろう。
 
@@ -264,9 +264,9 @@ Blink では、こうしたケースを [ヒューリスティックに解析し
 
 今は lazy が最適なように感じられるが、将来より良い手法が何かしら確立し、仕様に盛り込まれた場合、明示的に lazy にしてしまっているものの挙動を、ブラウザは変えられないだろう。
 
-したがって、現時点での実装をベースに検討した結果、 1 つ 1 つの画像に lazy/eager を付けて回るといった改修は、筆者はあまり推奨しない。
+したがって、現時点での実装をベースに検討した結果、1 つ 1 つの画像に lazy/eager を付けて回るといった改修は、筆者はあまり推奨しない。
 
-現時点では、 Below the Fold の読み込みが明白なボトルネックになっている場合や、その解決のために JS による Lazyload を導入しているといった場合に、それを置き換えるのは妥当だ。しかし、それ以外は余計な指定をせず、ブラウザの実装に委ねることで、将来的な最適化の恩恵を素直に受けられるだろう。
+現時点では、Below the Fold の読み込みが明白なボトルネックになっている場合や、その解決のために JS による Lazyload を導入しているといった場合に、それを置き換えるのは妥当だ。しかし、それ以外は余計な指定をせず、ブラウザの実装に委ねることで、将来的な最適化の恩恵を素直に受けられるだろう。
 
 特に、現在の実装が素の `<img>` で特に問題になってない場合、急いで全てに lazy を付けて回るべきかと言うと、筆者はそうは考えていない。(Lighthouse はそうしろと言うかもしれないが)
 
@@ -281,7 +281,7 @@ loading 属性が仕様に入ったことは、ブラウザが従来の挙動に
 
 そこで、今回の更新を受けて、全ての `lazyload` 属性を `loading=lazy` に置換を実施した。
 
-また、 `<article>` 外で必ず Above the Fold に入る `<header>` に並んでいる画像については `lazyload` を付与していなかったが、今回の更新を受け全てに `loading=eager` を明示的に付与した。
+また、`<article>` 外で必ず Above the Fold に入る `<header>` に並んでいる画像については `lazyload` を付与していなかったが、今回の更新を受け全てに `loading=eager` を明示的に付与した。
 
 HTML を AMP 用に変換して運用しているが、ここは lazyload 時代から不要なものとされているため、無視してくれれば良いものをわざわざ削っている。
 

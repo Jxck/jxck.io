@@ -4,9 +4,9 @@
 
 Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。
 
-その対角線上にあるユースケースとして、 UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。
+その対角線上にあるユースケースとして、UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。
 
-WebSocket/MSE/WebRTC/WASM など、 Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。
+WebSocket/MSE/WebRTC/WASM など、Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。
 
 しかし、できることが増えればこそ、それぞれのパーツの不足する部分が浮き彫りになる。
 
@@ -97,9 +97,9 @@ Web の基本的な通信が、画面の遷移とサブリソースの取得だ�
 
 ### Protocol
 
-まずプロトコルとしては、 UDP 上にまた一からスタックを積む必要はなく、仕様策定や実装が進んでいるものが使える。
+まずプロトコルとしては、UDP 上にまた一からスタックを積む必要はなく、仕様策定や実装が進んでいるものが使える。
 
-すでに WebRTC は DTLS - SRTP/SCTP で実現しており、ブラウザはそれを積んでいるが、 WebRTC も TLS1.3 - QUIC の取り込みを議論しており、 HTTP/3 も進んでいるため、最初から QUIC/HTTP3 で進めるのが妥当だろう。
+すでに WebRTC は DTLS - SRTP/SCTP で実現しており、ブラウザはそれを積んでいるが、WebRTC も TLS1.3 - QUIC の取り込みを議論しており、HTTP/3 も進んでいるため、最初から QUIC/HTTP3 で進めるのが妥当だろう。
 
 もし将来より良いプロトコルが登場すれば、それを取り込める余地も残したい。
 
@@ -119,7 +119,7 @@ Overview では以下のような共通機能について定義されている�
 - Uni/Bi-directional Streams
 - Bandwidth Prediction
 
-加えて以下の 4 つがオプションとして用意されており、 2 つのプロトコルのサポートは以下のようになる。
+加えて以下の 4 つがオプションとして用意されており、2 つのプロトコルのサポートは以下のようになる。
 
 Caption: オプションごとのプロトコルサポート
 |                     | QUIC | HTTP3 |
@@ -132,13 +132,13 @@ Caption: オプションごとのプロトコルサポート
 
 ### Alternatives
 
-結局 WebSocket が TCP に縛られていなければ良いのではという点に注目すると、 WebSocket over HTTP/3 が実現できれば HoLB などの問題は解決しそうだ。
+結局 WebSocket が TCP に縛られていなければ良いのではという点に注目すると、WebSocket over HTTP/3 が実現できれば HoLB などの問題は解決しそうだ。
 
-しかし、仮にそこに複数のストリームを束ねようとしても、 WS の特徴上ストリームごとに 1RTT のハンドシェイクが必要となる。また、サーバから Stream を開始することができない(本当にそれが必要なのかは疑問だが)という問題があげられている。
+しかし、仮にそこに複数のストリームを束ねようとしても、WS の特徴上ストリームごとに 1RTT のハンドシェイクが必要となる。また、サーバから Stream を開始することができない(本当にそれが必要なのかは疑問だが)という問題があげられている。
 
-また、 WebRTC の文脈で進んでいる [RTCQuicTransport](https://w3c.github.io/webrtc-quic/) が、非常にというかあるケースではほぼ同じことを提供することになる点が指摘される。(策定者も同じ)
+また、WebRTC の文脈で進んでいる [RTCQuicTransport](https://w3c.github.io/webrtc-quic/) が、非常にというかあるケースではほぼ同じことを提供することになる点が指摘される。(策定者も同じ)
 
-これもやはり、 WebRTC が P2P 前提の仕様でスタートした点と Client-Server ユースケースとの乖離をベースに説明されており、すでに RTCQuicTransport の下のレイヤに WebTransport の仕様が参照される形で更新されている。
+これもやはり、WebRTC が P2P 前提の仕様でスタートした点と Client-Server ユースケースとの乖離をベースに説明されており、すでに RTCQuicTransport の下のレイヤに WebTransport の仕様が参照される形で更新されている。
 
 
 ### API
@@ -169,15 +169,15 @@ Caption: オプションごとのプロトコルサポート
   - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ
   - https://github.com/ricea/websocketstream-explainer/blob/master/README.md
 
-WebSocket の API は、 Promise や Stream が定義される前に策定されたため、それらに対応していない。
+WebSocket の API は、Promise や Stream が定義される前に策定されたため、それらに対応していない。
 
-特に、 Stream に対応すれば、 WebTransport の問題意識の一つである、 back pressure にも対応可能であるため、よりモダンな API に再設計出来れば、単にコードの見た目以上のメリットも出てくる。
+特に、Stream に対応すれば、WebTransport の問題意識の一つである、back pressure にも対応可能であるため、よりモダンな API に再設計出来れば、単にコードの見た目以上のメリットも出てくる。
 
-これを行うために、 WebSocket を Stream 対応する仕様策定と実装が WebSocketStream であり、現在 Chrome チームにより進められている。
+これを行うために、WebSocket を Stream 対応する仕様策定と実装が WebSocketStream であり、現在 Chrome チームにより進められている。
 
-プロトコルに手を入れる訳ではないため、 WebSocketStream が WebTransport のユースケースをカバーできる訳ではないが、 API 的には非常に近いため、先行して進む WebSocketStream の作業は WebTransport や今後出てくる API にも少なからず影響するだろう。
+プロトコルに手を入れる訳ではないため、WebSocketStream が WebTransport のユースケースをカバーできる訳ではないが、API 的には非常に近いため、先行して進む WebSocketStream の作業は WebTransport や今後出てくる API にも少なからず影響するだろう。
 
-せっかく新しく作るので、これらがうまく連携し、 ES が培った機能をうまく取り込んで洗練された API 設計に落ち着いて欲しい。
+せっかく新しく作るので、これらがうまく連携し、ES が培った機能をうまく取り込んで洗練された API 設計に落ち着いて欲しい。
 
 
 ## WebCodecs
@@ -205,9 +205,9 @@ WebSocket の API は、 Promise や Stream が定義される前に策定され
   - 映像/音声のストリーミング配信に特化している
   - それ以外の用途に柔軟性がない
 
-用途に合わない場合はバイナリまで落とし、 WASM でエンコードしたライブラリを導入するといった必要がある。
+用途に合わない場合はバイナリまで落とし、WASM でエンコードしたライブラリを導入するといった必要がある。
 
-SIMD や Worker Thread など、 WASM 自体の改善も進みつつあるが、せっかくブラウザがコーデック/コンテナの実装を積んでいるにも関わらず、追加で大きなライブラリをダウンロードするのは非効率だ。
+SIMD や Worker Thread など、WASM 自体の改善も進みつつあるが、せっかくブラウザがコーデック/コンテナの実装を積んでいるにも関わらず、追加で大きなライブラリをダウンロードするのは非効率だ。
 
 仮に導入しても、ブラウザ自体がネイティブで行うパフォーマンス最適化の恩恵などが受けられないのは、非常に勿体無い。
 
@@ -244,9 +244,9 @@ SIMD や Worker Thread など、 WASM 自体の改善も進みつつあるが、
 
 要素ごとに WHATWG Stream ベースの API とし、終端が MediaStreamTrack となることで、他の API(WebTransport, WebRTC, Audio/Video Element etc) と接続する。
 
-音声は AudioPackets 、映像は VideoFrames を最小単位とし、 Encoder/Decoder が TransferStream として提供される。
+音声は AudioPackets 、映像は VideoFrames を最小単位とし、Encoder/Decoder が TransferStream として提供される。
 
-MediaStreamTrack との繋ぎは、 TrackReader/Writer が提供され、 Stream を流していけば他と繋がるという設計だ。
+MediaStreamTrack との繋ぎは、TrackReader/Writer が提供され、Stream を流していけば他と繋がるという設計だ。
 
 例えば、映像の送受信は Camera -> Encode -> Transport -> Decode -> VideoElement となるため、以下のようになる。
 
@@ -289,7 +289,7 @@ const mediaStream = new MediaStream([videoTrackWriter.track]);
 videoElem.srcObject = mediaStream;
 ```
 
-最終的に MediaStreamTrack と繋がることで、 WebTransport 以外の用途にも応用できるため、 WebRTC や MSE などの既存の API を用いたアプリで手が届かなかったところの改善や、 Web Music や Web VJ といった Codec 要件のシビアなメディアアート系にも応用が効くだろう。
+最終的に MediaStreamTrack と繋がることで、WebTransport 以外の用途にも応用できるため、WebRTC や MSE などの既存の API を用いたアプリで手が届かなかったところの改善や、Web Music や Web VJ といった Codec 要件のシビアなメディアアート系にも応用が効くだろう。
 
 コーデックやコンテナの対応が Feature Detection できれば、実装がない場合だけ WASM にフォールバックするといった作りにすれば、ある程度の範囲をカバーしつつ WebCodecs の実装がある場合だけパフォーマンスメリットが得られる状況を作れそうだ。
 
@@ -300,7 +300,7 @@ videoElem.srcObject = mediaStream;
 
 ### WebRTC の次のフェーズとしての WebTransport
 
-ちょうど先日、 2011 年から WebRTC に関する作業を続けてきた Working Group である [RTCWEB が Close するアナウンス](https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA) が舞い込んだ。
+ちょうど先日、2011 年から WebRTC に関する作業を続けてきた Working Group である [RTCWEB が Close するアナウンス](https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA) が舞い込んだ。
 
 仕様を提案している 3 人は、いずれもこの RTCWEB で WebRTC や ORTC の仕様策定に関わってきた人達だ。
 
@@ -308,7 +308,7 @@ WebRTC の作業が終わったわけでは無いが、おそらく彼らは今�
 
 なかでも中心である Peter Thatcher は Googler で、彼の Explainer には Game を Cloud Gaming と書いている部分も多い。
 
-時期的にも「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、 6 月にあった [Web Games Workshop](https://www.w3.org/2018/12/games-workshop/report.html#webtransport) での [Peter のトーク](https://vimeo.com/350908362) を見た最初の感想だった。
+時期的にも「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、6 月にあった [Web Games Workshop](https://www.w3.org/2018/12/games-workshop/report.html#webtransport) での [Peter のトーク](https://vimeo.com/350908362) を見た最初の感想だった。
 
 確かに WebRTC は Web に UDP の API を初めてもたらしたが、その前提が P2P でのビデオチャットに寄りすぎており、ブラウザ持つコーデックで音声/映像が送れることを重視している。
 
@@ -316,7 +316,7 @@ DTLS - SRTP というツギハギな仕組みも、もう少しスッキリす�
 
 DataChannel で任意のバイナリをやりとりできるとしても、前提として Client-Server で提供したいという要求がある以上、インピーダンスミスマッチが産まれるのは想像に難くない。
 
-WebRTC の Peer をサーバに実装し Global IP を降れば、 Client-Server のようにデプロイすることも可能だが、やりたいことに対してやるべきことが複雑すぎる結果となる。
+WebRTC の Peer をサーバに実装し Global IP を降れば、Client-Server のようにデプロイすることも可能だが、やりたいことに対してやるべきことが複雑すぎる結果となる。
 
 かといって、直接 RawSocket を触りたいという TCP/UDP Socket API を入れたとしても、その上に必要なスタックは自前で実装することになる。せっかくアクティブにメンテされる枯れた実装がブラウザ内部あるのに、必要なプロトコルとコーデックを WASM でビルドすればいいと言われても、片手落ちだろう。
 
@@ -333,13 +333,13 @@ WebRTC の Peer をサーバに実装し Global IP を降れば、 Client-Server
 2. WASI の求める汎用 Socket API との関連
 3. Game ではない一般 Web 開発への影響
 
-1 つ目は、完全に独立した仕様ではなく、既存 API に対する Low Level API として参照できるかという点だ。これはすでに意識されているし、 TAG Review などで指摘されていくと期待される。
+1 つ目は、完全に独立した仕様ではなく、既存 API に対する Low Level API として参照できるかという点だ。これはすでに意識されているし、TAG Review などで指摘されていくと期待される。
 
 ここがうまくいけば、少なくとも現状その上位 API を使っている場面では、恩恵が受けられるはずだ。
 
-2 つ目は、 WASI が Networking を含めたシステム API の策定を始めている点との関わりだ。
+2 つ目は、WASI が Networking を含めたシステム API の策定を始めている点との関わりだ。
 
-WASI はブラウザ以外のプラットフォームを視野に入れているが、 API としてはどちらもネットワークを低めのレイヤで叩くため、ある程度ケースでは同じように使えることもあるだろう。
+WASI はブラウザ以外のプラットフォームを視野に入れているが、API としてはどちらもネットワークを低めのレイヤで叩くため、ある程度ケースでは同じように使えることもあるだろう。
 
 例えば、新規に WASI ベースでネットワーククライアントを作るとして、それが WebTransport 向けにビルドできれば、用途が広がると考えることは想像に難くない。
 
@@ -351,11 +351,11 @@ WASI もまだ始まったばかりで、かつより低いレイヤを視野に
 
 WebTransport の反省にもあるように WebRTC や MSE は映像を配信すること自体が目的でないと導入することは無いだろう。
 
-同様に、 WebTransport/WebCodecs が「ゲームを作るときにしか使わない」ものになるという、同じ轍を踏むかどうかという点は、そのエコシステムの成長に大きく影響すると考える。
+同様に、WebTransport/WebCodecs が「ゲームを作るときにしか使わない」ものになるという、同じ轍を踏むかどうかという点は、そのエコシステムの成長に大きく影響すると考える。
 
 逆にエコシステムが成長すれば、ゲーム以外の Web 開発へ影響することも十分ありえるだろう。
 
-例えば、既に Web はドキュメントの枠を超えてアプリ化した先で、 SPA でクライアントが状態を持つことが一般的になった。
+例えば、既に Web はドキュメントの枠を超えてアプリ化した先で、SPA でクライアントが状態を持つことが一般的になった。
 
 データもドキュメントの転送(REST 的な世界観)を捨てて POST/200 で土管化した fetch の上に GraphQL を流している。
 
@@ -372,7 +372,7 @@ WebTransport の反省にもあるように WebRTC や MSE は映像を配信す
 
 そうなるかどうかは、仕様策定者の意図だけで決まるものではない。色々な要素が絡んだ結果、有り体に言うなら偶然で、よく言えば時代のニーズというやつなのだろう。
 
-WebTransport や WebCodecs が、 Stadia を展開するために必要な穴を埋める何かで終わるか、今の Web 開発の前提を変えるナニカになるか、注目したい。
+WebTransport や WebCodecs が、Stadia を展開するために必要な穴を埋める何かで終わるか、今の Web 開発の前提を変えるナニカになるか、注目したい。
 
 
 ## links

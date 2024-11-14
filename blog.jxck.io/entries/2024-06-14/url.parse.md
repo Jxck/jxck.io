@@ -25,7 +25,7 @@ if (URL.canParse(str)) { // 1 回目のパース
 }
 ```
 
-そこで、失敗したら null にし、成功したら URL を返せば良いという発想が、 `URL.parse()` だ。
+そこで、失敗したら null にし、成功したら URL を返せば良いという発想が、`URL.parse()` だ。
 
 そもそも、リアルワールドでは以下のように例外を握りつぶすコードがよく使われていることも知られていたため、賛同が多かった。
 
@@ -60,7 +60,7 @@ URL.parse の提案は以下で議論された。
 URL.parse(str) // null or URL
 ```
 
-機能としては小さく、 Firefox や Safari は比較的早く実装を進めていた。
+機能としては小さく、Firefox や Safari は比較的早く実装を進めていた。
 
 - Firefox
   - 1887611 - Implement URL.parse()
@@ -71,7 +71,7 @@ URL.parse(str) // null or URL
   - Implement URL.parse() by annevk · Pull Request #26403 · WebKit/WebKit
     - https://github.com/WebKit/WebKit/pull/26403
 
-Firefox と Safari が実装したので、そろそろこの機能を使おうと思ったところ、 Chrome が未実装だったことに気づいた。
+Firefox と Safari が実装したので、そろそろこの機能を使おうと思ったところ、Chrome が未実装だったことに気づいた。
 
 
 ## Implementor Assign
@@ -83,7 +83,7 @@ Issue を調べると、その時点では Chrome だけまだアサインが浮
 
 仕様が小さいことも、ほぼ `URL.canParse()` と同じように実装できることがわかっていたので、自分で手を挙げたところアサインしてもらうことになり、実装に着手した。
 
-小さいパッチは投げたことはあっても、単体の機能を実装するのは初めてだった。また、 crrev などはちょっと使わないとすぐにわからなくなるので、中の人にはかなり手取り足取り教えてもらいながら進めることになった。
+小さいパッチは投げたことはあっても、単体の機能を実装するのは初めてだった。また、crrev などはちょっと使わないとすぐにわからなくなるので、中の人にはかなり手取り足取り教えてもらいながら進めることになった。
 
 一度教えてもらったことを何度も聞かないで済むよう、この作業中に教わったことは全て以下にまとめている。
 
@@ -120,29 +120,29 @@ Chromium の中には、ありとあらゆるリアルワールド URL をパー
 
 DOMURL のコンストラクタがそもそも例外を投げる実装になっているため、一旦 KURL でパースして IsValid() が ture ならその KURL を元に DOMURL を生成できるコンストラクタを追加しただけだ。
 
-つまり、全く難しくない。 C++ 書いたことがなくても、見ればわかるくらいの変更だ。
+つまり、全く難しくない。C++ 書いたことがなくても、見ればわかるくらいの変更だ。
 
 
 ## WPT
 
 この API は先に Firefox で実装されたので、そのときに WPT のテストが追加されていた。WPT はブラウザが共有しているテストスイートなので基本的にこれを通せばよい。
 
-Chromium が WPT を内部で流していながら、 WPT にある URL.parse のテストでこれまで落ちなかったのは、 Chromium が持つ expected ファイルによるものだ。
+Chromium が WPT を内部で流していながら、WPT にある URL.parse のテストでこれまで落ちなかったのは、Chromium が持つ expected ファイルによるものだ。
 
 - url-statics-parse.any-expected.txt · Gerrit Code Review
   - https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/web_tests/external/wpt/url/url-statics-parse.any-expected.txt
 
-これは、 WPT の実行結果をそのまま保存したファイルになっており、「その結果が変わらないことをテストする」という仕組みになっている。つまり、実装前は「落ちることを期待する」というテストだった。
+これは、WPT の実行結果をそのまま保存したファイルになっており、「その結果が変わらないことをテストする」という仕組みになっている。つまり、実装前は「落ちることを期待する」というテストだった。
 
 今回、実装して WPT が通るようになったことで、この expected ファイルは削除し今後は WPT の結果を直接見るようになる。
 
 このような expected テストはいたることろにあるため、自分で一個一個探して書き直すのではなく、テストを流す時に `--reset-result` をつけて上書きし、その diff をチェックするのが基本らしい。それを知らずに、手作業でやっていたため、ここでかなり時間がかかった。
 
-また、 `--reset-result` する対象は、 CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
+また、`--reset-result` する対象は、CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
 
 ![CQ DRY RUN の結果](cq-dry-run-result.png#2804x1646)
 
-しかし、 CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら `--reset-result` したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
+しかし、CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら `--reset-result` したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
 
 
 ## API Review
@@ -170,7 +170,7 @@ Chromium が WPT を内部で流していながら、 WPT にある URL.parse �
 
 ## Intent to Ship
 
-今回もっとも良い経験になったのは、 Intents を初めて出したことだろう。
+今回もっとも良い経験になったのは、Intents を初めて出したことだろう。
 
 - Intent to Ship: URL.parse()
   - https://groups.google.com/u/0/a/chromium.org/g/blink-dev/c/G070zUd0e4c
@@ -202,14 +202,14 @@ Stable が 124 の時にマージし、今週リリースされた Chrome M126 �
 
 Chromium のコードはちょくちょくいじってはいるが、機能を Ship するのは基本的に敷居が高いため、良い経験になった。
 
-ここまで面倒を見てくれた [@horo](https://x.com/horo) さん、 [@hayatoito](https://x.com/hayatoito) さん、 [@toyoshim](https://x.com/toyoshim) さんには非常に感謝しています。ありがとうございました。今後もコントリビュートは続けたいので、引き続きよろしくお願いします。
+ここまで面倒を見てくれた [@horo](https://x.com/horo) さん、[@hayatoito](https://x.com/hayatoito) さん、[@toyoshim](https://x.com/toyoshim) さんには非常に感謝しています。ありがとうございました。今後もコントリビュートは続けたいので、引き続きよろしくお願いします。
 
 
 ## Blink API Owners Gift
 
 コードがマージされたあと、中の人(API Owner)からメールをもらった。機能の Ship までを行った人には、お祝いとしてギフトを贈るというものだった。
 
-後日忘れた頃に国際郵便で届いたのは、 Chromium の LGTM ステッカーだった。
+後日忘れた頃に国際郵便で届いたのは、Chromium の LGTM ステッカーだった。
 
 ![Blink API Owners Gift](blink-api-owners-gift.png#4032x3024)
 

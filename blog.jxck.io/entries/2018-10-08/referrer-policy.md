@@ -6,12 +6,12 @@
 
 この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。
 
-この挙動を制御することができる、 Referrer-Policy ヘッダについて解説する。
+この挙動を制御することができる、Referrer-Policy ヘッダについて解説する。
 
 
 ## Referer or Referrer
 
-本来の英語としては *RefeRRer* が正しいが、 HTTP Header ではスペルミスした *RefeRer* が互換性を保つためそのまま使われている。
+本来の英語としては *RefeRRer* が正しいが、HTTP Header ではスペルミスした *RefeRer* が互換性を保つためそのまま使われている。
 
 しかし、新しく定義された Referrer-Policy は、正しいスペルが採用されている。
 
@@ -28,13 +28,13 @@ Host: blog.jxck.io
 Referer: https://example.com/index.html
 ```
 
-`blog.jxck.io` の管理者は、このリファラを見ることで、 `example.com` に自分のサイトへのリンクが貼られていることを知ることができる。
+`blog.jxck.io` の管理者は、このリファラを見ることで、`example.com` に自分のサイトへのリンクが貼られていることを知ることができる。
 
 その性質上、個人情報の観点からこれを好まないユーザもおり、ブラウザには古くから Referer の送信を行わない設定が実装されていることが多い。
 
 また、別途提供される拡張や、今回紹介する Referer Policy によっても、無効に設定することができる。
 
-したがって、 Application Logic の観点からは、 Referer はあくまで補助的な情報として使われること(無くても動く)が望ましい。
+したがって、Application Logic の観点からは、Referer はあくまで補助的な情報として使われること(無くても動く)が望ましい。
 
 用途によっては、別途定義されている Origin ヘッダを見る方が良い場合もある。
 
@@ -60,9 +60,9 @@ CSRF 対策の 1 つとして Referer を確認するという方法がある。
 
 しかし、この場合も前述の通り、あくまでも補助的な効果しか得られない場合もある。
 
-また、 Form からの POST を対象とする場合は Origin ヘッダの方が用途として適しているだろう。
+また、Form からの POST を対象とする場合は Origin ヘッダの方が用途として適しているだろう。
 
-ただし、 Origin ヘッダにしても Referer ヘッダにしても、値が予測可能なため、任意のヘッダを含むことが可能な脆弱性が Extension や Plugin で見つかるとバイパスが可能となる。
+ただし、Origin ヘッダにしても Referer ヘッダにしても、値が予測可能なため、任意のヘッダを含むことが可能な脆弱性が Extension や Plugin で見つかるとバイパスが可能となる。
 
 そうした脆弱性は、残念ながら [最近でも見つかっている](https://insert-script.blogspot.com/2018/05/adobe-reader-pdf-client-side-request.html) ため、いまだに Token ベースの制御が行われている。
 
@@ -73,11 +73,11 @@ CSRF 対策の 1 つとして Referer を確認するという方法がある。
 
 ### 盗用防止
 
-画像などのサブリソースが直リンクによって無断転載されることを防ぐために、 Referer が他のサイトからのものであればブロックするといった使われ方が存在する。
+画像などのサブリソースが直リンクによって無断転載されることを防ぐために、Referer が他のサイトからのものであればブロックするといった使われ方が存在する。
 
 確実に盗用を防ぐことはできず、あくまで補助的な効果となる。
 
-逆に、 Referer を必須にしてしまうと、 Referer を送らないユーザには、意図したページ上でも画像が表示されないことになるため注意が必要だ。
+逆に、Referer を必須にしてしまうと、Referer を送らないユーザには、意図したページ上でも画像が表示されないことになるため注意が必要だ。
 
 Origin ヘッダはサブリソースへの GET には [付与されない](https://wiki.mozilla.org/Security/Origin#When_Origin_is_served_.28and_when_it_is_.22null.22.29) ため、代替はできない。
 
@@ -94,11 +94,11 @@ URL が知られることを望まない例としては大きく以下がある�
 
 ### 限定共有 URL の漏洩
 
-身近な例として Private Gist のように、 URL さえ共有すればアクセスできるタイプのサービスがよくある。
+身近な例として Private Gist のように、URL さえ共有すればアクセスできるタイプのサービスがよくある。
 
 こうしたサービスは、検索エンジンのクローラなどに対しては robots.txt などで index を拒否している場合が多い。
 
-しかし、 Referer を制御しないと、リンク先に URL が送られ、意図しない人からアクセスされる可能性がある。
+しかし、Referer を制御しないと、リンク先に URL が送られ、意図しない人からアクセスされる可能性がある。
 
 
 ### イントラ情報の漏洩
@@ -128,7 +128,7 @@ https://ticket.orange.example.com/%7B%E7%A4%BE%E5%93%A1%E5%90%8D%7D/issue/xxxxxx
 https://intra.orange.example.com/search?q=Apache+CVExxxxx
 ```
 
-リンクされたブログの持ち主は、たとえそのリンクを辿ってアクセスができないとしても、 Example 社が Orange というプロジェクトをやっていることや、付随する情報が推測できる可能性がある。
+リンクされたブログの持ち主は、たとえそのリンクを辿ってアクセスができないとしても、Example 社が Orange というプロジェクトをやっていることや、付随する情報が推測できる可能性がある。
 
 よく設計された URL は情報量が多く、多弁だ。
 
@@ -140,7 +140,7 @@ https://intra.orange.example.com/search?q=Apache+CVExxxxx
 
 ### ブラウザ設定
 
-Firefox の about:config や、 Chrome のコマンドラインオプションなど、リファラの送信を制限するオプションを提供するブラウザもある。
+Firefox の about:config や、Chrome のコマンドラインオプションなど、リファラの送信を制限するオプションを提供するブラウザもある。
 
 また、それらを実現する拡張も存在する。
 
@@ -151,9 +151,9 @@ Firefox の about:config や、 Chrome のコマンドラインオプション�
 
 社内ネットワークに Proxy を立てている場合は、その Proxy で Referer ヘッダを落とす/書き換えるといった運用方法もある。
 
-この場合、 Referer に社内のドメインがある場合だけ落とすといった実装が可能なため、社外にあるサービスに対しての不具合は少ないだろう。
+この場合、Referer に社内のドメインがある場合だけ落とすといった実装が可能なため、社外にあるサービスに対しての不具合は少ないだろう。
 
-しかし、 HTTPS 化が進んでいる昨今、実質的に MITM を行なっているこの方法は限界と言える。
+しかし、HTTPS 化が進んでいる昨今、実質的に MITM を行なっているこの方法は限界と言える。
 
 証明書の運用次第では暗号化を解くこともできなくないかもしれないが、運用は難しだろう。
 
@@ -166,7 +166,7 @@ Firefox の about:config や、 Chrome のコマンドラインオプション�
 
 社内で HTTP サーバを立てる際に、このヘッダを適切に設定することで、意図しない漏洩のリスクを軽減できるだろう。
 
-また、 Origin を軸としたいくつかの設定が可能なため、単純に Referrer を一切無効にすることによる不具合などを防ぐこともできる。
+また、Origin を軸としたいくつかの設定が可能なため、単純に Referrer を一切無効にすることによる不具合などを防ぐこともできる。
 
 
 ## Referrer-Policy
@@ -195,7 +195,7 @@ Referrer-Policy は、ヘッダもしくは HTML の特定の要素に指定し�
 Referer: https://blog.jxck.io/entries/2018-10-08/referrer-policy.html
 ```
 
-ポリシーによっては、 URL 全体ではなく Origin のみを送るものがある。
+ポリシーによっては、URL 全体ではなく Origin のみを送るものがある。
 
 ```http
 Referer: https://blog.jxck.io/
@@ -203,7 +203,7 @@ Referer: https://blog.jxck.io/
 
 どのサイトから来たかはわかるが、それ以上の情報は載らないという状態になる。
 
-これは Origin ヘッダが付与する情報と同等であり、 *Origin ヘッダが送信される状況では Referer を禁止しても同等の情報が送信されている* ことは認識しておきたい。
+これは Origin ヘッダが付与する情報と同等であり、*Origin ヘッダが送信される状況では Referer を禁止しても同等の情報が送信されている* ことは認識しておきたい。
 
 以上を踏まえて、それぞれ解説していく。
 
@@ -215,11 +215,11 @@ Referer: https://blog.jxck.io/
 
 Referer ヘッダそのものが省かれるため、情報の漏洩の観点から言うと一番安全ではある。
 
-しかし、同じサイト内でも送られなくなるため、 Referer をベースとした検証がどこかに入っている場合は問題になる。
+しかし、同じサイト内でも送られなくなるため、Referer をベースとした検証がどこかに入っている場合は問題になる。
 
 社内ドメイン内の遷移でも送られなくなるので、内部での遷移についてもメトリクスを取りたい場合を考えると制限が強い。
 
-また、 Referer ヘッダは消えるが Origin ヘッダは残る点は意識しておきたい。
+また、Referer ヘッダは消えるが Origin ヘッダは残る点は意識しておきたい。
 
 
 ### unsafe-url
@@ -231,7 +231,7 @@ Referer ヘッダそのものが省かれるため、情報の漏洩の観点か
 
 Referer ヘッダに URL 全体を載せ、必ず送る。
 
-これを unsafe と言う理由は、 http -> http や https -> http(Downgrade) でも送られるところにある。
+これを unsafe と言う理由は、http -> http や https -> http(Downgrade) でも送られるところにある。
 
 平文通信の場合は、先ほどの Proxy のように MITM で削除したり、改ざんすることが可能であるためだ。
 
@@ -257,9 +257,9 @@ Path 以下の情報が送られない点で、漏洩の観点からは情報が
 
 Origin が一致した場合だけ URL 全体を送る。
 
-つまり Downgrade では送られないが、 Upgrade でも送られない。
+つまり Downgrade では送られないが、Upgrade でも送られない。
 
-さらに、 http -> http では送られるということになる。
+さらに、http -> http では送られるということになる。
 
 
 ### strict-origin
@@ -269,7 +269,7 @@ Origin が一致した場合だけ URL 全体を送る。
 送る値
 : Origin のみ
 
-`origin` と同じく Origin の情報のみを送るが、 Downgrade の場合だけ送らない。
+`origin` と同じく Origin の情報のみを送るが、Downgrade の場合だけ送らない。
 
 
 ### no-referrer-when-downgrade (default)
@@ -279,7 +279,7 @@ Origin が一致した場合だけ URL 全体を送る。
 送る値
 : URL 全体
 
-条件は strict-origin と同じだが、 URL 全体を送る。
+条件は strict-origin と同じだが、URL 全体を送る。
 
 これがブラウザのデフォルトの挙動とされている。
 
@@ -297,7 +297,7 @@ Origin が一致した場合だけ URL 全体を送る。
 
 内部遷移では URL 全体を送るが、外に出る場合は Origin のみを送る挙動になる。
 
-Down/Upgrade も Cross Origin 扱いになるため、 Origin のみ送られる。
+Down/Upgrade も Cross Origin 扱いになるため、Origin のみ送られる。
 
 
 ### strict-origin-when-cross-origin
@@ -328,7 +328,7 @@ Down/Upgrade も Cross Origin 扱いになるため、 Origin のみ送られる
 
 Policy を指定しないことを意味する。
 
-より上位の指定内容か、 User Agent のデフォルトが反映される。
+より上位の指定内容か、User Agent のデフォルトが反映される。
 
 
 ### Policy のまとめ
@@ -406,9 +406,9 @@ Policy を適用する方法は 4 つある。
 
 後述するページ全体への設定より優先されるため、特定のリンクだけ挙動を変えると言った使い方ができる。
 
-つまり、 markdown から html に変換する CMS などを使っている場合は、ビルド時に外部へのリンクだけ policy をつけると言った使い方ができる。
+つまり、markdown から html に変換する CMS などを使っている場合は、ビルド時に外部へのリンクだけ policy をつけると言った使い方ができる。
 
-`<a>` には必ずこの属性をつけるが、 Policy 自体はページ全体のものに準拠したいといった場合は、属性を `""` (空文字) にすれば良い。
+`<a>` には必ずこの属性をつけるが、Policy 自体はページ全体のものに準拠したいといった場合は、属性を `""` (空文字) にすれば良い。
 
 仕様: https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute
 
@@ -423,7 +423,7 @@ Policy を適用する方法は 4 つある。
 
 サーバ指定だと影響範囲が大きい場合に CMS のテンプレートに追加するといった適用が考えられる。
 
-なお、 `never` / `default` / `always` といった古い仕様が存在したため、対応表を元に新しい値を指定することが望ましい。
+なお、`never` / `default` / `always` といった古い仕様が存在したため、対応表を元に新しい値を指定することが望ましい。
 
 仕様: https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer
 
@@ -456,8 +456,8 @@ Referrer-Policy: no-referrer
 
 Cross Origin で URL 全体を送るのは `unsafe-url` か `no-referrer-when-downgrade` であり、その差は Downgrade の扱いになる。
 
-本サイトは HSTS 対応済みであるため、 `no-referrer-when-downgrade` では、 HTTP しか提供していないサイトに対しては Referrer が飛ばないことになる。
+本サイトは HSTS 対応済みであるため、`no-referrer-when-downgrade` では、HTTP しか提供していないサイトに対しては Referrer が飛ばないことになる。
 
-しかし、近年の動向からも、リンクする先が HTTPS に対応している方が本サイトとしても望ましいため、 `no-referrer-when-downgrade` を採用することにした。
+しかし、近年の動向からも、リンクする先が HTTPS に対応している方が本サイトとしても望ましいため、`no-referrer-when-downgrade` を採用することにした。
 
 この Policy はブラウザのデフォルトとされているため、明示的な Referrer-Policy Header の追加は行わないこととする。

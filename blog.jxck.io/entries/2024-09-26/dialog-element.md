@@ -4,9 +4,9 @@
 
 `showModalDialog()` は今から考えれば、確かにひどい API だった。
 
-しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、 Cookie バナー、ログインなど多々ある。
+しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、Cookie バナー、ログインなど多々ある。
 
-そういった場面では、ライブラリなどを用いて実装する必要があったが、 Modal を実装するのは実際にはそんなに簡単ではなかった。
+そういった場面では、ライブラリなどを用いて実装する必要があったが、Modal を実装するのは実際にはそんなに簡単ではなかった。
 
 
 ## Modal, Dialog, Modal Dialog
@@ -46,7 +46,7 @@ Modal の実装を自前で行うとすれば、見た目としては以下の�
 
 ![Modal が開き、閉じないと先に進めない](1.modal.drawio.svg#500x256)
 
-この UI を実装する CSS を考えると、「画面いっぱいに、広げた `<div>` を被せ、Opacity でフィルターをかけて、 Modal 用に `z-index` を最大にした `<div>` をセンタリングし、、」などと想像できるかもしれない。
+この UI を実装する CSS を考えると、「画面いっぱいに、広げた `<div>` を被せ、Opacity でフィルターをかけて、Modal 用に `z-index` を最大にした `<div>` をセンタリングし、、」などと想像できるかもしれない。
 
 しかし、「頑張ればできそう」なだけで、実際には「使いにくい Modal」が世の中に大量に生み出されてしまった。
 
@@ -131,7 +131,7 @@ MDN が Developer Survey という大規模調査で、開発者が何に困っ�
 
 ブラウザごとの主張が異なった代表が「フォーカスの初期位置」だった。
 
-最初に `<dialog>` を開いた時、 `<dialog>` 自体にフォーカスするのか、中のフォーカスできる最初の要素にフォーカスするのかといった部分の議論だ。
+最初に `<dialog>` を開いた時、`<dialog>` 自体にフォーカスするのか、中のフォーカスできる最初の要素にフォーカスするのかといった部分の議論だ。
 
 - Implement dialog initial focus proposal by josepharhar · Pull Request #8199 · whatwg/html
   - https://github.com/whatwg/html/pull/8199
@@ -181,9 +181,9 @@ Top Layer はあくまでブラウザが内部的に生成しているため、�
 
 ### `::backdrop`
 
-Modal Dialog を開いた時に、後ろ側を `inert` にすることができるようになったが、 `inert` はあくまで非活性なだけで、特にスタイルが当たるわけではない。しかし、非活性だった場合、大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
+Modal Dialog を開いた時に、後ろ側を `inert` にすることができるようになったが、`inert` はあくまで非活性なだけで、特にスタイルが当たるわけではない。しかし、非活性だった場合、大抵は色を薄暗くすることで「操作不能である」ことを示すだろう。
 
-この場合、 `inert` であることを利用し、以下のようにスタイルを当てることもできる。
+この場合、`inert` であることを利用し、以下のようにスタイルを当てることもできる。
 
 ```css
 [inert] {
@@ -191,7 +191,7 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 }
 ```
 
-しかし、 Top Layer に要素を表示している時は、「Top Layer 以外」を暗くしたい。これを実現するために定義されたのが `::backdrop` だ。
+しかし、Top Layer に要素を表示している時は、「Top Layer 以外」を暗くしたい。これを実現するために定義されたのが `::backdrop` だ。
 
 ```css
 ::backdrop {
@@ -199,7 +199,7 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 }
 ```
 
-`<dialog>` を用いる場合は、 `inert` ではなく `::backdrop` にスタイルを当てるのが良いだろう。
+`<dialog>` を用いる場合は、`inert` ではなく `::backdrop` にスタイルを当てるのが良いだろう。
 
 - CSS Pseudo Element ::backdrop inheriting from Originating Element - Chrome Platform Status
   - https://chromestatus.com/feature/4875749691752448
@@ -225,11 +225,11 @@ Modal Dialog を開いた時に、後ろ側を `inert` にすることができ�
 
 ### Close Watcher
 
-プラットフォームが提供する Modal は、 ESC や範囲外のクリックによって閉じることができる。端末固有の操作などと紐づけるといった役割も果たしている。
+プラットフォームが提供する Modal は、ESC や範囲外のクリックによって閉じることができる。端末固有の操作などと紐づけるといった役割も果たしている。
 
 このように、プラットフォームが提供する「Modal を閉じるための操作」を、キーボードイベントのフックなどで実装しようとすると、例えば「戻る」を変にいじって history を壊したり、ネイティブの他の機能に影響したりする可能性がある。
 
-そこで定義されたのが、 Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し、 Close Watcher として定義された。
+そこで定義されたのが、Dialog に対する必要な操作の発生を監視できるよう提案された Modal Close Watcher で、これを Modal 以外(popover)にも適用できるよう拡張し、Close Watcher として定義された。
 
 ```js
 const watcher = new CloseWatcher();
@@ -265,7 +265,7 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
 
 つまり、支援技術に対しても「Modal Dialog が開いた」ということが伝わる。
 
-もしそれが ARIA で言う Alert (警告)の意味を持っているなら、 `role=alertdialog` で上書きする必要はあるが、そうでない場合は単に `<dialog>` を使って実装しているだけで、十分なセマンティクスが提供できるのだ。
+もしそれが ARIA で言う Alert (警告)の意味を持っているなら、`role=alertdialog` で上書きする必要はあるが、そうでない場合は単に `<dialog>` を使って実装しているだけで、十分なセマンティクスが提供できるのだ。
 
 
 ## open/close ? show/hide ? show/close ?
@@ -275,7 +275,7 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
 - open / close
 - show / hide
 
-という対称性を持たせた操作に命名するのが一般的なのだが、 `<dialog>` については
+という対称性を持たせた操作に命名するのが一般的なのだが、`<dialog>` については
 
 - show / close
 
@@ -289,7 +289,7 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
 >
 > Hiding a dialog is different from closing one. Closing a dialog gives it a return value, fires an event, unblocks the page for other dialogs, and so on. Whereas hiding a dialog is a purely visual property, and is something you can already do with the hidden attribute or by removing the open attribute. (See also the note above about removing the open attribute, and how hiding the dialog in that way is generally not desired.)
 >
-> dialog を hide することと close することは異なる。 dialog を close することは、その dialog に戻り値を与えたり、イベントを発生させたり、他の dialog のためにページのブロックを解除したりする。一方、 dialog の hide は純粋に視覚的な特性であり、hidden 属性や open 属性の削除で既にできることだ(open 属性の削除と、その方法による dialog の非表示が一般的に望まれていないことについては、上の注釈も参照)。
+> dialog を hide することと close することは異なる。dialog を close することは、その dialog に戻り値を与えたり、イベントを発生させたり、他の dialog のためにページのブロックを解除したりする。一方、dialog の hide は純粋に視覚的な特性であり、hidden 属性や open 属性の削除で既にできることだ(open 属性の削除と、その方法による dialog の非表示が一般的に望まれていないことについては、上の注釈も参照)。
 >
 > Showing a dialog is different from opening one. Opening a dialog consists of creating and showing that dialog (similar to how window.open() both creates and shows a new window). Whereas showing the dialog is the process of taking a dialog element that is already in the DOM, and making it interactive and visible to the user.
 >
@@ -305,7 +305,7 @@ Modal Dialog が ESC などで閉じられるのは、内部的に Close Watcher
 >
 > In summary, it turns out that the implications of certain verbs, and how they are used in technology contexts, mean that paired actions such as showing and closing a dialog are not always expressible as antonyms.
 >
-> まとめると、ある種の動詞の意味合いや技術的な文脈での使われ方によって、 dialog の show と close のような対になる動作は、必ずしも反対語として表現できるとは限らないということがわかるのだ。
+> まとめると、ある種の動詞の意味合いや技術的な文脈での使われ方によって、dialog の show と close のような対になる動作は、必ずしも反対語として表現できるとは限らないということがわかるのだ。
 >
 > --- https://html.spec.whatwg.org/multipage/interactive-elements.html#note-dialog-method-names
 

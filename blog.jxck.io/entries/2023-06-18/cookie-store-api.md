@@ -24,13 +24,13 @@ console.log(document.cookie) // a=b
 
 ### 同期 API
 
-最も深刻なのは、 I/O を伴いながら、同期 API として定義されているところだ。
+最も深刻なのは、I/O を伴いながら、同期 API として定義されているところだ。
 
 この API は古くから実装されているため、I/O は非同期 API として実装するという現在の大前提に反していながらも、互換性維持のためにそのままになっている。
 
-しかし、後発の Service Worker は、その中で同期の I/O API の提供を許可しない。 document.cookie や LocalStorage が使えないのはそのためだ。
+しかし、後発の Service Worker は、その中で同期の I/O API の提供を許可しない。document.cookie や LocalStorage が使えないのはそのためだ。
 
-LocalStorage は IndexedDB で代替できるが、 Cookie へのアクセスは代替がない。しかし、 SW からも Cookie にアクセスしたい要求があった。
+LocalStorage は IndexedDB で代替できるが、Cookie へのアクセスは代替がない。しかし、SW からも Cookie にアクセスしたい要求があった。
 
 - Add cookie accessor/setter methods? · Issue #707 · w3c/ServiceWorker
   - https://github.com/w3c/ServiceWorker/issues/707
@@ -70,14 +70,14 @@ document.cookie = [
 
 ### Cookie の削除
 
-Cookie を明示的に削除する API は存在せず、 `Expires` を過去にするか `Max-Age=0` にするといった方法が必要になる。これは、 `Set-Cookie` ヘッダでも同様だ。
+Cookie を明示的に削除する API は存在せず、`Expires` を過去にするか `Max-Age=0` にするといった方法が必要になる。これは、`Set-Cookie` ヘッダでも同様だ。
 
 `Clear-Site-Data` を用いればスコープ内の Cookie 全てを消すことは可能だが、こちらは特定の値を狙って消すことはできない。
 
 
 ## Cookie Store API
 
-そこで、 Cookie にアクセス可能な非同期 API として *Async Cookie API* の策定が始まり、そこに様々な負債を解消するためのプリミティブが詰め込まれ、 *Cookie Store API* と名前を変えて今に至る。
+そこで、Cookie にアクセス可能な非同期 API として *Async Cookie API* の策定が始まり、そこに様々な負債を解消するためのプリミティブが詰め込まれ、*Cookie Store API* と名前を変えて今に至る。
 
 - WICG/cookie-store: Asynchronous access to cookies from JavaScript
   - https://github.com/WICG/cookie-store
@@ -122,13 +122,13 @@ await cookieStore.get("__Host-session_id")
 // }
 ```
 
-同一名で複数の Cookie が付与されている場合は、 `getAll` で全て取得できる。
+同一名で複数の Cookie が付与されている場合は、`getAll` で全て取得できる。
 
 ```js
 await cookieStore.getAll("__Host-session_id")
 ```
 
-また、 Cookie が `Path` のスコープであるため、 URL ベースでクエリすることもできるようになっている。
+また、Cookie が `Path` のスコープであるため、URL ベースでクエリすることもできるようになっている。
 
 ```js
 await cookieStore.getAll({ url: "/admin" })
@@ -145,7 +145,7 @@ Cookie には HTTP にも `document.cookie` にも「削除」の API はなく�
 await cookieStore.delete("__Host-session_id")
 ```
 
-名前以外に、 `domain` / `path` でもできる。
+名前以外に、`domain` / `path` でもできる。
 
 ```js
 await cookieStore.delete({ path: "/admin" })
@@ -189,7 +189,7 @@ self.addEventListener("cookiechange", (event) => {
 
 ## 仕様の論点
 
-現在 Chrome は Ship 済みだが、 Firefox / Safari は実装しておらず、 Position も blocked になっている。
+現在 Chrome は Ship 済みだが、Firefox / Safari は実装しておらず、Position も blocked になっている。
 
 - Cookie-Store API · Issue #94 · mozilla/standards-positions
   - https://github.com/mozilla/standards-positions/issues/94
@@ -203,9 +203,9 @@ self.addEventListener("cookiechange", (event) => {
 
 ## Outro
 
-そもそも、 Storage 系の API が整備されており他にも選択肢があるため、 Cookie は `HttpOnly` を付与するのが基本で、 JS からアクセスする機会はかなり減っている。
+そもそも、Storage 系の API が整備されており他にも選択肢があるため、Cookie は `HttpOnly` を付与するのが基本で、JS からアクセスする機会はかなり減っている。
 
-そして、 `HttpOnly` な Cookie は `document.cookie` 同様 Set はできても Get/Subscribe できないため、ユースケースはかなり絞られたものになるだろう。
+そして、`HttpOnly` な Cookie は `document.cookie` 同様 Set はできても Get/Subscribe できないため、ユースケースはかなり絞られたものになるだろう。
 
 Cookie 周りのプリミティブが整理され、ぽっかり空いていた穴が埋められている点に一定の価値はあるが、他のブラウザの実装は進んでおらず、議論もしばらく止まっているようなので、今後どうなるのかは不明だ。
 

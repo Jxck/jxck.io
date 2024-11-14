@@ -2,22 +2,22 @@
 
 ## Intro
 
-HTTPS 移行の問題点の一つに、 mixed contents への対応がある。
+HTTPS 移行の問題点の一つに、mixed contents への対応がある。
 
-逆に mixed contents の発生を恐れ、 HTTPS に移行できないサービスもあるだろう。
+逆に mixed contents の発生を恐れ、HTTPS に移行できないサービスもあるだろう。
 
-本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能性のある、 CSP の `Upgrade-Insecure-Request` および、 `Block-All-Mixed-Contents` を解説する。
+本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能性のある、CSP の `Upgrade-Insecure-Request` および、`Block-All-Mixed-Contents` を解説する。
 
 
 ## mixed contents
 
 HTTPS で配信されたコンテンツが、サブリソースとして HTTP のコンテンツを含む場合、これを *mixed contents* という。
 
-HTTPS は MITM に対する耐性があるが、 HTTP は MITM への耐性がないため、 mixed contents の状態ではサブリソースを起点にメインコンテンツへの改ざんが成立してしまう可能性がある。
+HTTPS は MITM に対する耐性があるが、HTTP は MITM への耐性がないため、mixed contents の状態ではサブリソースを起点にメインコンテンツへの改ざんが成立してしまう可能性がある。
 
-このため HTTPS で配信されていても、 mixed contents がある場合は完全に安全とは言えず、ブラウザは通常ユーザに安全ではないことを警告する。
+このため HTTPS で配信されていても、mixed contents がある場合は完全に安全とは言えず、ブラウザは通常ユーザに安全ではないことを警告する。
 
-近年の HTTPS 化の流れで、これまで HTTP で作られていたコンテンツを HTTPS に移行する際に、 mixed contents の問題が顕在化するのはよくある話だ。
+近年の HTTPS 化の流れで、これまで HTTP で作られていたコンテンツを HTTPS に移行する際に、mixed contents の問題が顕在化するのはよくある話だ。
 
 これは `http://` で書かれたサブリソースの URL を、全て `https://` に書き換えれば問題は解決する。従って全てのコンテンツを管理下におき、修正が可能であれば特に問題はない。
 
@@ -35,7 +35,7 @@ HTTPS は MITM に対する耐性があるが、 HTTP は MITM への耐性が�
 
 [Mixed Content](https://w3c.github.io/webappsec-mixed-content/)
 
-まず、 mixed contents 発生時のブラウザの挙動について再度確認する。
+まず、mixed contents 発生時のブラウザの挙動について再度確認する。
 
 mixed contents は URL バーが変化し、ユーザに注意を促す。
 
@@ -56,12 +56,12 @@ mixed contents が無ければ本来は以下のようになる。
 
 ![Mixed Contents が無いため URL バーがグリーンになっている](secure-url-bar.png#800x160 "url bar without mixed contents")
 
-証明書の設定が正しくとも、それが EV であろうとも、 URL バーが緑にならないことは、信頼が揺らいでいることを意味する。
+証明書の設定が正しくとも、それが EV であろうとも、URL バーが緑にならないことは、信頼が揺らいでいることを意味する。
 
 
 ### Mixed Active(Script) Contents
 
-以下のタグ、及びスクリプト等は、 *Mixed Active Contents* と呼ばれる。
+以下のタグ、及びスクリプト等は、*Mixed Active Contents* と呼ばれる。
 
 ```html
 <script src>
@@ -72,11 +72,11 @@ XHR
 CSS 内の URL (@font-face, background-image etc)
 ```
 
-これら Mixed Active Contents は、 HTTP で配信され MITM の攻撃によって改ざんされた場合、それを読み込む元コンテンツ自体を、 DOM へのアクセスなどを通じて書き換えることができてしまう。
+これら Mixed Active Contents は、HTTP で配信され MITM の攻撃によって改ざんされた場合、それを読み込む元コンテンツ自体を、DOM へのアクセスなどを通じて書き換えることができてしまう。
 
-このため、 Mixed Active Contents の読み込みはブラウザによりブロックされ、取得されずにエラーとなる。
+このため、Mixed Active Contents の読み込みはブラウザによりブロックされ、取得されずにエラーとなる。
 
-特に iframe を埋め込むタイプの広告の場合、 HTTP で配信される広告を HTTPS のページに埋め込むと、広告が表示されないことになる。
+特に iframe を埋め込むタイプの広告の場合、HTTP で配信される広告を HTTPS のページに埋め込むと、広告が表示されないことになる。
 
 アドプロバイダの HTTPS 対応は進んでいるとはいえ、広告が表示されないことは実益に影響する場合が多いため、これが原因で HTTPS 化ができないサービスも少なからずある。
 
@@ -94,13 +94,13 @@ CSS 内の URL (@font-face, background-image etc)
 <object>
 ```
 
-もし、 `<img>` で読まれるコンテンツが HTTP であり、 MITM によって改ざんされた場合、別の画像を表示することで元コンテンツを改ざんすることが可能だ。
+もし、`<img>` で読まれるコンテンツが HTTP であり、MITM によって改ざんされた場合、別の画像を表示することで元コンテンツを改ざんすることが可能だ。
 
 しかし、そこを経由して元コンテツの他の DOM に変更を及ぼすことはできない。
 
 そのため、これらコンテンツの読み込み自体は行われるが、ブラウザの URL バーは異常を検知したような表示になる。
 
-特に EV 証明書で、 URL バーに組織名を表示しているような場合は、たとえコンテンツが表示されていたとしても、無視できない問題となってくる。
+特に EV 証明書で、URL バーに組織名を表示しているような場合は、たとえコンテンツが表示されていたとしても、無視できない問題となってくる。
 
 - DEMO: https://labs.jxck.io/mixed/mixed.html#passive
 
@@ -114,17 +114,17 @@ Mixed Contents に対して、対策となりえる CSP のディレクティブ
 
 [Upgrade Insecure Requests](https://w3c.github.io/webappsec-upgrade-insecure-requests/)
 
-CSP の `Upgrade-Insecure-Request` を付与した場合、ブラウザは HTTPS コンテンツに埋め込まれた `http://` スキームのリンクを、 `https://` に読み替えて発行する。
+CSP の `Upgrade-Insecure-Request` を付与した場合、ブラウザは HTTPS コンテンツに埋め込まれた `http://` スキームのリンクを、`https://` に読み替えて発行する。
 
 コンテンツからは HTTP のリクエストが発生しないため、どんなコンテンツであっても URL バーは安全であるという表示になる。
 
-コンテンツが膨大すぎて URL の書き換えが困難なサイトや、 CGM でありユーザが作ったコンテンツを勝手に書き換えることができない場合に、ヘッダだけで対応を終えることができる。
+コンテンツが膨大すぎて URL の書き換えが困難なサイトや、CGM でありユーザが作ったコンテンツを勝手に書き換えることができない場合に、ヘッダだけで対応を終えることができる。
 
 サーバ側が同じコンテンツを https で配布していなければ 404 になる代わりに、絶対に mixed contents にならないのがこのヘッダの特徴である。
 
 しかし、対応していないブラウザでは問題が解決しないため、そのサーバが `Upgrade-Insecure-Request` に対応しているかを知りたい場合がある。
 
-仕様では、 feature-detection のために、対応するブラウザはリクエストに `Upgrade-Insecure-Request: 1` というヘッダをつけることになっているため、これを用いて分岐することは可能だ。
+仕様では、feature-detection のために、対応するブラウザはリクエストに `Upgrade-Insecure-Request: 1` というヘッダをつけることになっているため、これを用いて分岐することは可能だ。
 
 [3.2. Feature Detecting Clients Capable of Upgrading](https://w3c.github.io/webappsec-upgrade-insecure-requests/#feature-detect])
 
@@ -137,13 +137,13 @@ CSP の `Upgrade-Insecure-Request` を付与した場合、ブラウザは HTTPS
 
 [4. Strict Mixed Content Checking](https://w3c.github.io/webappsec-mixed-content/#strict-checking)
 
-たとえ Mixed Passive Contents であったとしても、 MITM により改ざんされることが多大な影響を及ぼす場合もあるだろう。
+たとえ Mixed Passive Contents であったとしても、MITM により改ざんされることが多大な影響を及ぼす場合もあるだろう。
 
-この場合は、 CSP の `Block-All-Mixed-Contents` を有効にすることで、 Passive でも Active 同様にブロックし、改ざんされたコンテンツが表示されることを防ぐことができる。
+この場合は、CSP の `Block-All-Mixed-Contents` を有効にすることで、Passive でも Active 同様にブロックし、改ざんされたコンテンツが表示されることを防ぐことができる。
 
-ユーザにとってコンテンツが壊れる(画像などが表示されない)ことより、 MITM によって改ざんされるリスクを重く見る場合の対応となる。
+ユーザにとってコンテンツが壊れる(画像などが表示されない)ことより、MITM によって改ざんされるリスクを重く見る場合の対応となる。
 
-また、 CSP の reporting に対応しているため、 block が発生した場合にそのことを指定した URI にレポートすることができる。
+また、CSP の reporting に対応しているため、block が発生した場合にそのことを指定した URI にレポートすることができる。
 
 - DEMO: https://labs.jxck.io/mixed/mixed.html?block-all-mixed-content
 
@@ -154,17 +154,17 @@ mixed contents は、発生したこと自体を把握しにくかったとい�
 
 把握できていない場所で mixed contents が発生するまま HTTPS に移行すると、広告が表示されないなどの問題が起こってしまう。
 
-特にコンテンツが多いサービスでは、実際にどこで mixed contents が発生しているのかを知ることができれば、コンテンツの修正を進めることができ、 HTTPS 化を進める上でも役に立つだろう。
+特にコンテンツが多いサービスでは、実際にどこで mixed contents が発生しているのかを知ることができれば、コンテンツの修正を進めることができ、HTTPS 化を進める上でも役に立つだろう。
 
-まず、 `Upgrade-Insecure-Request` は、 URL を書き換えることでサーバにリクエストを発行するため、もしサーバが対応していなければサーバ側に 404 のログを残すことができる。
+まず、`Upgrade-Insecure-Request` は、URL を書き換えることでサーバにリクエストを発行するため、もしサーバが対応していなければサーバ側に 404 のログを残すことができる。
 
 これにより、コンテンツサーバの中で HTTPS 化が済んでいない URL を発見することに役立つだろう。
 
-次に、 `Block-All-Mixed-Contents` は、 mixed contents が発生した場合にそれが Active/Passive どちらであれレポートを生成する。
+次に、`Block-All-Mixed-Contents` は、mixed contents が発生した場合にそれが Active/Passive どちらであれレポートを生成する。
 
-しかし、いきなり全てがブロックされては困るので、 `Block-All-Mixed-Contents-Report-Only` を用いることで、挙動を変えないままレポートだけを収集し可視化することができるだろう。
+しかし、いきなり全てがブロックされては困るので、`Block-All-Mixed-Contents-Report-Only` を用いることで、挙動を変えないままレポートだけを収集し可視化することができるだろう。
 
-こうしたヘッダの挙動を利用し、 Staging 環境で自動化した実ブラウザからアクセスしたり、限定的なユーザにサービスを提供することで、サービス内の mixed contents の状況を可視化する一助となるだろう。
+こうしたヘッダの挙動を利用し、Staging 環境で自動化した実ブラウザからアクセスしたり、限定的なユーザにサービスを提供することで、サービス内の mixed contents の状況を可視化する一助となるだろう。
 
 
 ## iframe の中の mixed contents
@@ -183,19 +183,19 @@ iframe 自体を https で読み込んでいても、ネストした iframe 内�
 
 - DEMO: https://labs.jxck.io/mixed/iframe.html
 
-もし大元のコンテンツに `Upgrade-Insecure-Request` をつければ、 iframe 内のサブリソースも全て https に読み替えられるため、サーバが対応していればそれで済む。
+もし大元のコンテンツに `Upgrade-Insecure-Request` をつければ、iframe 内のサブリソースも全て https に読み替えられるため、サーバが対応していればそれで済む。
 
 - DEMO: https://labs.jxck.io/mixed/iframe.html?upgrade-insecure-request
 
-また、 `Block-All-Mixed-Contents` をつければ、 iframe 内のサブリソースはブロックされるため、 mixed contents を回避することはできる。
+また、`Block-All-Mixed-Contents` をつければ、iframe 内のサブリソースはブロックされるため、mixed contents を回避することはできる。
 
-しかし、 *ネストした iframe 内の mixed contents をブロックしても report は発生しない*。
+しかし、*ネストした iframe 内の mixed contents をブロックしても report は発生しない*。
 
 もし iframe の内側の mixed contents まで report ができてしまうと、その内容を把握できる可能性などセキュリティ上問題があるからだ。
 
 - DEMO: https://labs.jxck.io/mixed/iframe.html?block-all-mixed-content
 
-つまり広告配信プラットフォームが提供する広告用の iframe 自体が https に対応していても、そこの入稿される広告コンテンツ本体のどこかに一つでも https 非対応なものがあれば、 mixed contents は避けられない。
+つまり広告配信プラットフォームが提供する広告用の iframe 自体が https に対応していても、そこの入稿される広告コンテンツ本体のどこかに一つでも https 非対応なものがあれば、mixed contents は避けられない。
 
 したがって、広告配信プラットフォームが `Upgrade-Insecure-Request` や `Block-All-Mixed-Contents` などに対応し、広告の入稿時点で mixed contents の発生を抑止するといった対応以外には、コンテンツ側での対応には限界がある。
 
@@ -204,7 +204,7 @@ iframe 自体を https で読み込んでいても、ネストした iframe 内�
 
 mixed contents は HTTPS 化する上での悩みのタネになることが多い。
 
-問題は、ハードコードされた URL の書き換えの可否と、 mixed contents の発生状況の把握が難しいという部分にあると考えられる。
+問題は、ハードコードされた URL の書き換えの可否と、mixed contents の発生状況の把握が難しいという部分にあると考えられる。
 
 CSP のいくつかは、こうした問題への対応や、状況を把握することによるリスクの分析を可能にする。
 

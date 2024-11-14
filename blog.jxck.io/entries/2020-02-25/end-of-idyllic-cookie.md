@@ -6,9 +6,9 @@ Cookie は、ブラウザに一度保存すれば、次からその値を自動�
 
 State Less が基本だった Web にセッションの概念をもたらし、今ではこれが無ければ実現できないユースケースの方が多い。
 
-冷静に考えればふざけてるとして思えないヘッダ名からもわかるように、当初はこのヘッダがこんなに重宝され、 Web のあり方を変えるかもしれないくらい重要な議論を巻き起こすことになるとは、最初の実装者も思ってなかっただろう。
+冷静に考えればふざけてるとして思えないヘッダ名からもわかるように、当初はこのヘッダがこんなに重宝され、Web のあり方を変えるかもしれないくらい重要な議論を巻き起こすことになるとは、最初の実装者も思ってなかっただろう。
 
-そんな Cookie が今どう使われ、 3rd Party Cookie (3rdPC) の何が問題になっているのかを踏まえ、これからどうなっていくのかについて考える。
+そんな Cookie が今どう使われ、3rd Party Cookie (3rdPC) の何が問題になっているのかを踏まえ、これからどうなっていくのかについて考える。
 
 
 ## Cookie のユースケース
@@ -19,7 +19,7 @@ Web にある API の中でも Cookie はいくつかの点で特異な挙動を
 - 現在の Origin と関係なくどこにでも送る (CORS 不要)
 - 長さ以外特に制限が無く任意のシリアライズされた値を入れられる
 
-結果、その緩い仕様がゆえに、 Cookie はあらゆるユースケースを背負い込むことになった。
+結果、その緩い仕様がゆえに、Cookie はあらゆるユースケースを背負い込むことになった。
 
 
 ### 設定値保存
@@ -31,9 +31,9 @@ Set-Cookie: theme=dark
 Cookie: theme=dark
 ```
 
-これにより、同じユーザでも違うブラウザであれば設定値を変えることができ、 JS を使わなくてもサービス側が CSS を切り替えてページを返すといった実装が可能だ。
+これにより、同じユーザでも違うブラウザであれば設定値を変えることができ、JS を使わなくてもサービス側が CSS を切り替えてページを返すといった実装が可能だ。
 
-毎回リクエストに乗るということを無視して JS API を用いれば、単なる KVS としても使えるため、 LocalStorage 以前は Cookie がその代替を担っていた。
+毎回リクエストに乗るということを無視して JS API を用いれば、単なる KVS としても使えるため、LocalStorage 以前は Cookie がその代替を担っていた。
 
 
 ### セッションの維持
@@ -52,20 +52,20 @@ Cookie: SID=q1w2e3r4t5y # 同じユーザであることがわかる
 
 単に個々のアノニマスユーザを識別するだけだった SID に対して、サーバ側でユーザアカウントを紐付ける行為がログイン認証だと言える。
 
-メールサービスが受信ボックスを見せるのも、 EC サイトが購入履歴を見せるのも、全てこの乱数がキーとなり、もしこのキーを盗み出せれば、そのユーザになりすますことができる。
+メールサービスが受信ボックスを見せるのも、EC サイトが購入履歴を見せるのも、全てこの乱数がキーとなり、もしこのキーを盗み出せれば、そのユーザになりすますことができる。
 
-一部の仕様の中で、 Cookie のことを *Credential* と呼ぶのはこのためだ。
+一部の仕様の中で、Cookie のことを *Credential* と呼ぶのはこのためだ。
 
-Web における攻撃の大半は、最終的にこの Cookie を盗む(ex. XSS, MITM etc)か、 Cookie の挙動を利用(ex, CSRF, Timing Attack etc)している。
+Web における攻撃の大半は、最終的にこの Cookie を盗む(ex. XSS, MITM etc)か、Cookie の挙動を利用(ex, CSRF, Timing Attack etc)している。
 
-HTTPS Everywhere が必要なことも、 HttpOnly や Secure 属性が必要なのも、 Credential としての Cookie が漏れることを防ぐために必要不可欠だからだ。
+HTTPS Everywhere が必要なことも、HttpOnly や Secure 属性が必要なのも、Credential としての Cookie が漏れることを防ぐために必要不可欠だからだ。
 
 
 ### SSO
 
 実装は色々あるが典型例としては、あるサイト a.example.com と b.example.jp で Single Sign On を実現したい場合、共通の認証基盤として auth.example を用意する。全て違うドメインだ。
 
-a.example.com にアクセスした場合、一度 auth.example にリダイレクトすることで、ログインフォームでログインさせ Cookie を付与する。さらにワンタイムトークンなどをクエリストリングに付けてリダイレクトバックしてやれば、 a.example.com は auth.example に裏で確認することでログイン済みとみなすことができる。
+a.example.com にアクセスした場合、一度 auth.example にリダイレクトすることで、ログインフォームでログインさせ Cookie を付与する。さらにワンタイムトークンなどをクエリストリングに付けてリダイレクトバックしてやれば、a.example.com は auth.example に裏で確認することでログイン済みとみなすことができる。
 
 ```http
 # auth.example からのレスポンス
@@ -76,15 +76,15 @@ Set-Cookie: SID=q1w2e3r4t5
 Location: http://a.example.com?token=q1w2e3r4t5y6u7i8o9p0
 ```
 
-次にユーザが b.example.jp にアクセスした際、 b.example.jp は auth.example にリダイレクトする。
+次にユーザが b.example.jp にアクセスした際、b.example.jp は auth.example にリダイレクトする。
 
-auth.example には Cookie が飛ぶため認証済みであることがわかり、そのまま Token を付与した URL で b.example.jp にリダイレクトバックすれば、 b.example.jp はトークンを auth.example に問い合わせるだけで認証を完了できる。
+auth.example には Cookie が飛ぶため認証済みであることがわかり、そのまま Token を付与した URL で b.example.jp にリダイレクトバックすれば、b.example.jp はトークンを auth.example に問い合わせるだけで認証を完了できる。
 
 ユーザからみれば、画面がぱぱっと何回か変わるだけで、フォームに入力する手間は省けるのだ。
 
-これは、リダイレクトする際にも、 auth.example への Cookie が勝手に送られることを利用している。
+これは、リダイレクトする際にも、auth.example への Cookie が勝手に送られることを利用している。
 
-そして、 a.example.com や b.example.jp にアクセスしたユーザにとっては、アクセスしたいサービスが 1st Party 自分を 2nd Party として、 auth.example は 3rd Party となるため、送られている Cookie は 3rd Party Cookie と呼ばれる。
+そして、a.example.com や b.example.jp にアクセスしたユーザにとっては、アクセスしたいサービスが 1st Party 自分を 2nd Party として、auth.example は 3rd Party となるため、送られている Cookie は 3rd Party Cookie と呼ばれる。
 
 
 ### Analytics
@@ -93,7 +93,7 @@ auth.example には Cookie が飛ぶため認証済みであることがわか�
 
 これも実装が色々あるが、よくあるのは `<img>` を使う方法だろう。
 
-a.example.com のアクセスを analytics.example というアナリティクスサービスで収集したい場合、 a.example.com に以下のような `<img>` を埋め込む。
+a.example.com のアクセスを analytics.example というアナリティクスサービスで収集したい場合、a.example.com に以下のような `<img>` を埋め込む。
 
 ```html
 <body>
@@ -102,7 +102,7 @@ a.example.com のアクセスを analytics.example というアナリティク�
 </body>
 ```
 
-`<img>` を使うのは、 CORS に違反せずに別 Origin へとリクエストを投げる簡単な方法だからだろう。
+`<img>` を使うのは、CORS に違反せずに別 Origin へとリクエストを投げる簡単な方法だからだろう。
 
 リクエストが飛べば、それだけでかなりの情報がわかる。
 
@@ -125,7 +125,7 @@ User-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Geck
 
 ### 広告
 
-あるユーザが、 a.example.com で見た商品に関するリコメンドを、 b.example.jp で表示したい場合も Cookie が応用できる。
+あるユーザが、a.example.com で見た商品に関するリコメンドを、b.example.jp で表示したい場合も Cookie が応用できる。
 
 これも実装が色々あるが、例えば ad.example という広告配信サービスを用意し、それを双方が iframe で埋め込んでいたとしよう。
 
@@ -140,7 +140,7 @@ PC 周辺機器
 </aside>
 ```
 
-このとき、 ad.example には、ページの持ち主が設定したページの情報がクエリによって付与され、レスポンスで ad.example の Cookie が付与される。
+このとき、ad.example には、ページの持ち主が設定したページの情報がクエリによって付与され、レスポンスで ad.example の Cookie が付与される。
 
 ```http
 # PC 周辺機器のページを見ていたことが伝わる
@@ -188,9 +188,9 @@ PC 周辺機器の広告
 </html>
 ```
 
-これも、 iframe であれ Cookie が送受信されることを利用している。
+これも、iframe であれ Cookie が送受信されることを利用している。
 
-もちろん、 ad.example への Cookie は 3rdPC だ。
+もちろん、ad.example への Cookie は 3rdPC だ。
 
 
 ## 問題の本質
@@ -199,11 +199,11 @@ Cookie は、単純に「保存した値を自動で送信する」という仕�
 
 問題はその仕様なのか、ユースケースなのかを考えれば、本来は後者だろう。
 
-昨今の議論の中で「3rd Party Cookie」が問題として取り扱われるが、 SSO は良くてターゲティング広告はだめなのであれば、本当の問題は Cookie そのものではなく、その後ろにある「トラッキング」というユースケースなはずだ。
+昨今の議論の中で「3rd Party Cookie」が問題として取り扱われるが、SSO は良くてターゲティング広告はだめなのであれば、本当の問題は Cookie そのものではなく、その後ろにある「トラッキング」というユースケースなはずだ。
 
 すると Cookie の挙動を変えるのではなく、そのユースケースを制限すれば良い。それが、かつて提案された *DNT* (Do Not Track) や *P3P* (Platform for Privacy Preferences) だった。
 
-性善説で考えれば、そうしたヘッダを受け取ったサービスは、その内容を遵守してトラッキングを外すといったことを行えば、問題は全て解決した。しかし、現状この仕様の存在すら知らない人が大半なように、全く遵守されず、全く普及しなかった。あまつさえ、 DNT を送ることが Fingerprinting のベクタになるとして [DNT の送信をやめたブラウザ](https://developer.apple.com/documentation/safari_release_notes/safari_12_1_release_notes)もある。
+性善説で考えれば、そうしたヘッダを受け取ったサービスは、その内容を遵守してトラッキングを外すといったことを行えば、問題は全て解決した。しかし、現状この仕様の存在すら知らない人が大半なように、全く遵守されず、全く普及しなかった。あまつさえ、DNT を送ることが Fingerprinting のベクタになるとして [DNT の送信をやめたブラウザ](https://developer.apple.com/documentation/safari_release_notes/safari_12_1_release_notes)もある。
 
 Cookie という挙動は維持したいが、そのユースケースの一部には問題がある、という現状を解決するための手段として、ユースケースの方を制限するという手法は、全く上手くいかなかった。
 
@@ -218,20 +218,20 @@ Cookie という挙動は維持したいが、そのユースケースの一部�
 
 *Web はユーザの安全を守るために、互換性を壊すことがある。*
 
-この安全の実態には「セキュリティ」がまず上がる、 Spectre 対策で行われた Shared Array Buffer の無効化などが良い例だろう。その機能があることでユーザが危険に晒されるなら、機能を無効にしたり、挙動を変えたりといったことは、互換を壊してでも行われる。 AppCache のように Deprecate される機能の中にも、そういったものが少なくない。
+この安全の実態には「セキュリティ」がまず上がる、Spectre 対策で行われた Shared Array Buffer の無効化などが良い例だろう。その機能があることでユーザが危険に晒されるなら、機能を無効にしたり、挙動を変えたりといったことは、互換を壊してでも行われる。AppCache のように Deprecate される機能の中にも、そういったものが少なくない。
 
 そして、この安全というカテゴリに「*セキュリティ*」だけでなく「*プライバシー*」も入ってきているという流れが、昨今の議論の前提背景としてあると筆者は考える。
 
-例えば、 3rdPC でのトラッキングは、一般的に「攻撃」とは見なされていなかった(でなければ世の中の大抵のサイトは有害サイトになる)。しかし、過去数年の特に個人情報漏洩や売買などに関わるインシデントがあとを経たず、一方でターゲティング広告がうざいという消費者の意見などから、徐々に「プライバシー」に対する考えが変わりはじめ、とうとうトラッキングにもメスが入るようになり、責任の所在はその時たまたまトラッキングの実装に使われていた 3rd Party Cookie に向かうことになった。
+例えば、3rdPC でのトラッキングは、一般的に「攻撃」とは見なされていなかった(でなければ世の中の大抵のサイトは有害サイトになる)。しかし、過去数年の特に個人情報漏洩や売買などに関わるインシデントがあとを経たず、一方でターゲティング広告がうざいという消費者の意見などから、徐々に「プライバシー」に対する考えが変わりはじめ、とうとうトラッキングにもメスが入るようになり、責任の所在はその時たまたまトラッキングの実装に使われていた 3rd Party Cookie に向かうことになった。
 
 
 ### Tracking Prevention
 
 Cookie の挙動を制限すると言っても、どの Cookie がどういったユースケースを担っているかなど、サービス提供者にしかわからない。
 
-しかし、 1stPC は大抵問題ないが、 3rdPC は何らかの「意図しない何か」をしているという前提から、 3rdPC をブロックするという方法は、かなり前から知られていた。
+しかし、1stPC は大抵問題ないが、3rdPC は何らかの「意図しない何か」をしているという前提から、3rdPC をブロックするという方法は、かなり前から知られていた。
 
-特に Firefox や Opera はそうした設定を持ち、有効にしている人も少なくないとされ、 Privacy 意識の高いユーザはそうしたブラウザを好んで使うという雰囲気があったように筆者は思う。
+特に Firefox や Opera はそうした設定を持ち、有効にしている人も少なくないとされ、Privacy 意識の高いユーザはそうしたブラウザを好んで使うという雰囲気があったように筆者は思う。
 
 これがあくまでもユーザの Opt-In なのは、サイトが崩れた場合などのために、オフにできないと困るという性質が少なからずあったためだろう。
 
@@ -241,22 +241,22 @@ Cookie の挙動を制限すると言っても、どの Cookie がどういっ�
 
 実際にどういった機械学習が行われているかはブラックボックスであり、そのために Single Sign On が壊れたりといったこともあるが、ある意味「ユースケースをターゲットにしてブロックする」仕様であると言える。
 
-これに追従するようにして、 Firefox は [Enhanced Tracking Prevention](https://support.mozilla.org/ja/kb/enhanced-tracking-protection-firefox-desktop) を、 new Edge は、 [Tracking Prevention](https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/) がデフォルトで有効になっており、それぞれやり方は多少違うかもしれないが、 3rdPC がブロックされている。 ITP のような機械学習というよりは、ブロックリストなどを中心とした実装になっているようだ。
+これに追従するようにして、Firefox は [Enhanced Tracking Prevention](https://support.mozilla.org/ja/kb/enhanced-tracking-protection-firefox-desktop) を、new Edge は、[Tracking Prevention](https://blogs.windows.com/msedgedev/2019/06/27/tracking-prevention-microsoft-edge-preview/) がデフォルトで有効になっており、それぞれやり方は多少違うかもしれないが、3rdPC がブロックされている。ITP のような機械学習というよりは、ブロックリストなどを中心とした実装になっているようだ。
 
-Chrome は 2 年後までに 3rdPC を無くしていくことをアナウンスしており、現状ではまず SameSite=Lax をデフォルトにすることで、 opt-in されたサービス以外は自動で 3rdPC が飛ぶことを制限している。
+Chrome は 2 年後までに 3rdPC を無くしていくことをアナウンスしており、現状ではまず SameSite=Lax をデフォルトにすることで、opt-in されたサービス以外は自動で 3rdPC が飛ぶことを制限している。
 
-いずれにせよ、 3rdPC から脱していくことは、ほぼすべてのブラウザで合意が取れており、こうした方法を使うと、結局 3rdPC 自体が、それがどういう使われ方をしているかに関わらずブロックされる。
+いずれにせよ、3rdPC から脱していくことは、ほぼすべてのブラウザで合意が取れており、こうした方法を使うと、結局 3rdPC 自体が、それがどういう使われ方をしているかに関わらずブロックされる。
 
 多少壊れるサイトがあれば、それは 3rdPC 以外の方法で修正するなどを行ったとして、トラッキングについてはだいたい防ぐことができるかもしれない。
 
-ただ、 3rdPC をブロックしただけで本当に問題は解決したと言えるのだろうか?
+ただ、3rdPC をブロックしただけで本当に問題は解決したと言えるのだろうか?
 
 
 ## 3rdPC Block という対処療法
 
-特に広告のためのトラッキングというユースケースは、それが実現できることが重要であり、 *3rdPC で実装されている必要があるわけではない*。
+特に広告のためのトラッキングというユースケースは、それが実現できることが重要であり、*3rdPC で実装されている必要があるわけではない*。
 
-つまり、 3rdPC がダメなら、広告会社は別の実装方法を探すだけだ。それが Finger Printing や [CNAME Cloaking](https://medium.com/nextdns/cname-cloaking-the-dangerous-disguise-of-third-party-trackers-195205dc522a) であり、どちらもまたいたちごっこのように塞がれていくだろう。
+つまり、3rdPC がダメなら、広告会社は別の実装方法を探すだけだ。それが Finger Printing や [CNAME Cloaking](https://medium.com/nextdns/cname-cloaking-the-dangerous-disguise-of-third-party-trackers-195205dc522a) であり、どちらもまたいたちごっこのように塞がれていくだろう。
 
 Web を見捨ててアプリにプラットフォームを移しても、今は IDFA などを用いたトラッキングがまだ可能かもしれないが、そこでも同じような議論がまたおこるだけだろう。
 
@@ -269,7 +269,7 @@ Web を見捨ててアプリにプラットフォームを移しても、今は 
 
 結局ユースケースの方が解決しなければ、どの仕様を塞いでも迂回され続けていく。そしてそういった仕様へのパッチは、通常の Web の利用にも影響が出てしまう可能性がある。
 
-であれば、 *ユースケースそのものを仕様化*し、そこに誘導した方がよっぽどヘルシーだという発想が、 [Privacy Sandbox](https://www.chromium.org/Home/chromium-privacy/privacy-sandbox) のアイデアだと筆者は捉えている。
+であれば、*ユースケースそのものを仕様化*し、そこに誘導した方がよっぽどヘルシーだという発想が、[Privacy Sandbox](https://www.chromium.org/Home/chromium-privacy/privacy-sandbox) のアイデアだと筆者は捉えている。
 
 例えば、サイトを跨いでコンバージョンを取りたいなら、「コンバージョンを取るための API」を、ターゲティングをしたいなら「ターゲティングをするための API」を定義する。
 
@@ -283,7 +283,7 @@ Web を見捨ててアプリにプラットフォームを移しても、今は 
 
 実際そうなるかは別として、単に「ブロックする」ことしかしてない各 Tracking Prevention に対して、「じゃあどうすれば良いのか」を模索する動きが Privacy Sandbox だと言えるだろう。
 
-これは Chrome が中心となって行っていることではあるが、その中心である [Conversion Management API](https://github.com/csharrison/conversion-measurement-api) は、先行して Safari が提案した [Ad Click Attribution](https://webkit.org/blog/8943/privacy-preserving-ad-click-attribution-for-the-web/) とかなり類似している。 [Storage Access API](https://webkit.org/blog/8124/introducing-storage-access-api/) 含め、 Safari は ITP を始めたことと並行して、 Privacy Sandbox の礎となるような作業を既に始めていたと言ってもいいだろう。
+これは Chrome が中心となって行っていることではあるが、その中心である [Conversion Management API](https://github.com/csharrison/conversion-measurement-api) は、先行して Safari が提案した [Ad Click Attribution](https://webkit.org/blog/8943/privacy-preserving-ad-click-attribution-for-the-web/) とかなり類似している。[Storage Access API](https://webkit.org/blog/8124/introducing-storage-access-api/) 含め、Safari は ITP を始めたことと並行して、Privacy Sandbox の礎となるような作業を既に始めていたと言ってもいいだろう。
 
 いずれにせよ、まだ議論が始まったばかりで、中身はほとんど揃ってないが、この動きがどうなるか、各 API がどこまで実現するかは、今後の Web の生態系に大きな影響を及ぼすと筆者は考える。
 
@@ -296,13 +296,13 @@ Web を見捨ててアプリにプラットフォームを移しても、今は 
 
 そうしたチームがユーザを守るために 3rdPC をブロックしたことを考えれば、実際に 3rd Party Cookie を殺したのは、その緩い仕様に甘んじてトラッキングなどに利用し続けた、どちらかといえば Web サービス開発者側に責任が有ると言える。
 
-そしてブラウザベンダにおいて、 3rdPC を脱していくことはこれからの Web を形作る上での合意事項となりつつあり、標準化や実装の現場は、既にその後の話をしている。
+そしてブラウザベンダにおいて、3rdPC を脱していくことはこれからの Web を形作る上での合意事項となりつつあり、標準化や実装の現場は、既にその後の話をしている。
 
-サービス開発者も、 「3rdPC が防がれたから別の精度の高い Tracking 方法を探す」のではなく、プライバシーの側面から自分たちが行うべきことを考え、必要となるユースケースに関しては Privacy Sandbox や各 API に対してフィードバックしていく方がよっぽど健全だろう。
+サービス開発者も、「3rdPC が防がれたから別の精度の高い Tracking 方法を探す」のではなく、プライバシーの側面から自分たちが行うべきことを考え、必要となるユースケースに関しては Privacy Sandbox や各 API に対してフィードバックしていく方がよっぽど健全だろう。
 
 Web におけるマネタイズの大半は広告なのが現状だ。特に代替としてのマイニングなどが出遅れた日本にとって、広告を無くすことはできない。しかし、広告がこのままで良いとはならない以上、ならどうしていけば良いのかを考えるしか無い。
 
-大手は、 Top Level Domain を SuperApp 的な構成にして、配下に並べたコンテンツ間を 1st Party Cookie でトラッキングするといった荒業もできるかもしれないが、そうではない小さなドメインにも価値があるものは多くあり、それらが広告によって成り立っていることは十分考えられる。(このドメインは [こういう理由](/entries/2020-01-31/ads-for-blog.html) で広告を貼っているだけなので、特に困りはしないが)
+大手は、Top Level Domain を SuperApp 的な構成にして、配下に並べたコンテンツ間を 1st Party Cookie でトラッキングするといった荒業もできるかもしれないが、そうではない小さなドメインにも価値があるものは多くあり、それらが広告によって成り立っていることは十分考えられる。(このドメインは [こういう理由](/entries/2020-01-31/ads-for-blog.html) で広告を貼っているだけなので、特に困りはしないが)
 
 そしてそもそも、巷にはトラッキングが無いと本当に広告の収益が下がるという報告もあれば、コンテキストの方が重要でターゲティングが無くても広告の価値は下がらないと報告も有る。つまり、自分の持つサービスにおいてどうなのかを計測せずに 3rdPC Block の影響を十把一絡げに語ること自体も怪しい。
 
@@ -311,11 +311,11 @@ Web におけるマネタイズの大半は広告なのが現状だ。特に代�
 
 ## 牧歌的 Cookie の終焉
 
-ゆるふわな仕様がゆえに、あらゆるユースケースを背負わされた Cookie は、 3rdPC Block の流れとともにトラッキングベクタの汚名を返上すると、 1stPC に集中することができるようになるだろう。
+ゆるふわな仕様がゆえに、あらゆるユースケースを背負わされた Cookie は、3rdPC Block の流れとともにトラッキングベクタの汚名を返上すると、1stPC に集中することができるようになるだろう。
 
-LocalStorage がある今、 Cookie を JS のための KVS として使う場面も減りつつあり、基本的には Credential としての Session ID を保持することに注力できる。
+LocalStorage がある今、Cookie を JS のための KVS として使う場面も減りつつあり、基本的には Credential としての Session ID を保持することに注力できる。
 
-また、 Web には Origin をまたぐ際に明示的な許可を必要とするセキュリティモデル、 Same Origin Policy があるが、 Cookie はその以前から存在し、逸脱した存在だったことも問題の一つだ。
+また、Web には Origin をまたぐ際に明示的な許可を必要とするセキュリティモデル、Same Origin Policy があるが、Cookie はその以前から存在し、逸脱した存在だったことも問題の一つだ。
 
 セッションの維持だけなら Same Origin で良く、それを Cookie 本来の仕様に合わせた概念が Same Site であり、既に Chrome はそれをデフォルトにし始めている。
 
@@ -325,7 +325,7 @@ LocalStorage がある今、 Cookie を JS のための KVS として使う場�
 Set-Cookie: __Host-SID=q1w2e3r4t5; HttpOnly; Secure; Path=/; SameSite=Lax;
 ```
 
-結果として、「なんでもできた牧歌的な Cookie」は終わり、 Credential としてのユースケースを実現したこの姿に収束しつつ、他のユースケースは徐々に Cookie を離れて、各々の API を探していくことになりそうだ。
+結果として、「なんでもできた牧歌的な Cookie」は終わり、Credential としてのユースケースを実現したこの姿に収束しつつ、他のユースケースは徐々に Cookie を離れて、各々の API を探していくことになりそうだ。
 
 この始まりの先に保証はない、結果としてみんなが各ベンダプラットフォームにロックインされてでもアプリに移ることを選べば、「完成した安全な仕様」と「誰も使わない Web」が残る可能性も有るだろう。
 

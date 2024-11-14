@@ -2,9 +2,9 @@
 
 ## Intro
 
-特別なドメインとして予約され、特定の用途で使用可能なドメインとして、 `.example` `.localhost` `.test` などがある。
+特別なドメインとして予約され、特定の用途で使用可能なドメインとして、`.example` `.localhost` `.test` などがある。
 
-`localhost` の Draft や、  gTLD である `.dev` が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。
+`localhost` の Draft や、 gTLD である `.dev` が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。
 
 
 ## ドメインを利用する上での注意
@@ -30,11 +30,11 @@
 
 仮に今は取得されていなかったとしても、今後取得される可能性もある。
 
-もっと言えば、 gTLD (global top level domain) ですら近年は色々と増えている。
+もっと言えば、gTLD (global top level domain) ですら近年は色々と増えている。
 
 例えば、社内のネットワークで当時存在しなかった `.dev` を、開発用ドメインとして割り当てられるような環境を作っていたとする。
 
-現在、 `.dev` は正式に gTLD として認定され、 [Google](https://www.iana.org/domains/root/db/dev.html) がそれを管理している。
+現在、`.dev` は正式に gTLD として認定され、[Google](https://www.iana.org/domains/root/db/dev.html) がそれを管理している。
 
 つまり、これまで社内のみと思われていた `.dev` のアドレスと、同じものが Google からリリースされる可能性もある。
 
@@ -44,18 +44,18 @@
 
 HTTPS が前提の昨今、こうして先手を打って HSTS を TLD 以下に強制するということだろう。
 
-もしくは、 `.dev` を社内で勝手に運用している環境を認識して、そうした環境にあっても Google の正規サービスであることを明示する目的もあるかもしれない。
+もしくは、`.dev` を社内で勝手に運用している環境を認識して、そうした環境にあっても Google の正規サービスであることを明示する目的もあるかもしれない。
 
 いずれにせよ、自前で `.dev` を運用しているユーザには影響があるだろう。
 
-他にも gTLD はどんどん増えているので、 `.dev` 以外にも注意が必要だ。
+他にも gTLD はどんどん増えているので、`.dev` 以外にも注意が必要だ。
 
 
 ## Reserved Top Level DNS Names
 
 以上のことを踏まえれば、将来に渡って取得されないことが保証され、こうした用途に使えるメインがあるのが望ましい。
 
-そこで RFC6761 (was RFC2606) には、 *予約済みドメイン* としていくつかのドメインとその用途が記されている。
+そこで RFC6761 (was RFC2606) には、*予約済みドメイン* としていくつかのドメインとその用途が記されている。
 
 - [RFC6761 Special-Use Domain Names](https://tools.ietf.org/html/rfc6761)
 - [RFC2606 Reserved Top Level DNS Names](https://tools.ietf.org/html/rfc2606)
@@ -98,7 +98,7 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 
 主に開発で自ホストに解決される用途で使われる。
 
-実際には、 OS が名前解決に使う hosts ファイルなどで、 `localhost` がループバックアドレスに指定されている。
+実際には、OS が名前解決に使う hosts ファイルなどで、`localhost` がループバックアドレスに指定されている。
 
 ```
 ##
@@ -113,13 +113,13 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 
 もしこの設定がなければ、他のアドレス同様 DNS に問い合わせを行い、もし DNS が別のアドレスを返せば `localhost` は "localhost" ではなくなってしまう。
 
-しかし、最近では HTTPS 必須のブラウザ機能が、 localhost だけは特別扱いするなどといった挙動になっている。
+しかし、最近では HTTPS 必須のブラウザ機能が、localhost だけは特別扱いするなどといった挙動になっている。
 
-そこで、 `localhost` がループバックアドレスであることを保証するべきというドラフトが上がっている。
+そこで、`localhost` がループバックアドレスであることを保証するべきというドラフトが上がっている。
 
 [Let 'localhost' be localhost. draft-west-let-localhost-be-localhost-06](https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-06)
 
-これが RFC になれば、 `.localhost` は明確にループバックアドレスとして使われることになるだろう。
+これが RFC になれば、`.localhost` は明確にループバックアドレスとして使われることになるだろう。
 
 先ほどの `.dev` 同様に `.localhost` を別のアドレスで解決する環境を作っていたりする場合は、やはり問題が出るかもしれない。
 
@@ -144,7 +144,7 @@ TLD としての `*.example` 以外に、以下の 3 つの STD も予約され�
 
 RFC6761 の他にもこうした用途のドメインはいくつかある。
 
-中でも `.テスト` や `ドメイン名例.jp` などは、 ASCII だけでなく日本語ドメイン(punycode)も検証対象としたい場合などに使えるだろう。
+中でも `.テスト` や `ドメイン名例.jp` などは、ASCII だけでなく日本語ドメイン(punycode)も検証対象としたい場合などに使えるだろう。
 
 一度にたくさんのドメインが欲しい場合は、連番が使える以下が便利だ。
 

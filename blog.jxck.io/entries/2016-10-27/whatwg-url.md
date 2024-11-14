@@ -4,12 +4,12 @@
 
 Node v7.0.0 が公開され、今回のリリースで WHATWG URL の実装が Experimental として入った。
 
-既に標準で含まれていた url module との違いや、 URL API などについて解説する。
+既に標準で含まれていた url module との違いや、URL API などについて解説する。
 
 
 ## WHATWG URL
 
-URL は非常によく使われる、 Web において重要なフォーマットの一つだ。
+URL は非常によく使われる、Web において重要なフォーマットの一つだ。
 
 ものによっては一見シンプルに見えるかもしれないが、その仕様はそれなりに大きい。
 
@@ -17,9 +17,9 @@ URL は非常によく使われる、 Web において重要なフォーマッ�
 
 同様に、動的生成されるクエリやハッシュなどを URL に含める場面でも、やはり文字列操作による構築が行われてきた。
 
-片手間な正規表現や文字列処理が、 URL が本来持つ仕様(username/password, escape, punycode etc)を正しく満たせるとは限らず、それ自体が様々な問題(セキュリティ etc)を引き起こす要因になることも少なくなかった。
+片手間な正規表現や文字列処理が、URL が本来持つ仕様(username/password, escape, punycode etc)を正しく満たせるとは限らず、それ自体が様々な問題(セキュリティ etc)を引き起こす要因になることも少なくなかった。
 
-ところが近年、 `fetch()` や `<input type=url>` など、 URL を扱う仕様も増えてきたため、 URL のフォーマット及び処理方法を整備する目的で URL Standard の仕様が策定された。
+ところが近年、`fetch()` や `<input type=url>` など、URL を扱う仕様も増えてきたため、URL のフォーマット及び処理方法を整備する目的で URL Standard の仕様が策定された。
 
 それが以下である。
 
@@ -27,7 +27,7 @@ URL は非常によく使われる、 Web において重要なフォーマッ�
 
 翻訳: https://triple-underscore.github.io/URL-ja.html
 
-これによって、既存/新規 DOM API は、 URL を扱う際に、基本的にはこの仕様を参照することができるようになった。
+これによって、既存/新規 DOM API は、URL を扱う際に、基本的にはこの仕様を参照することができるようになった。
 
 
 ## IETF URL
@@ -41,7 +41,7 @@ URL は非常によく使われる、 Web において重要なフォーマッ�
 > Align RFC 3986 and RFC 3987 with contemporary implementations and obsolete them in the process. (E.g., spaces, other "illegal" code points, query encoding, equality, canonicalization, are all concepts not entirely shared, or defined.) URL parsing needs to become as solid as HTML parsing. [RFC3986] [RFC3987]
 > --- [原文](https://url.spec.whatwg.org/#goals)
 
-> RFC 3986 と RFC 3987 を現今の実装に揃わせて、その過程の中でそれらを過去のものにする。 (例えば、空白類, 他の "合法でない" 符号位置, クエリの符号化方式, 同等性, 正準化, などの概念は、どれも完全には共有もしくは定義されていない。) URL の構文解析法は HTML の構文解析法と同程度に確定的になる必要がある。 [RFC3986] [RFC3987]
+> RFC 3986 と RFC 3987 を現今の実装に揃わせて、その過程の中でそれらを過去のものにする。(例えば、空白類, 他の "合法でない" 符号位置, クエリの符号化方式, 同等性, 正準化, などの概念は、どれも完全には共有もしくは定義されていない。) URL の構文解析法は HTML の構文解析法と同程度に確定的になる必要がある。[RFC3986] [RFC3987]
 > --- [翻訳](https://triple-underscore.github.io/URL-ja.html#goals)
 
 平たく言えば、不完全だったところを補完したという感じだろうか。
@@ -57,7 +57,7 @@ DOM や JS の API として Export されていなかっただけで、ブラ�
 
 - https://gist.github.com/jlong/2428561
 
-ところが、 WHATWG のドラフトでは、前述した仕様が定義されたと同時に、それを提供する API が定義された。
+ところが、WHATWG のドラフトでは、前述した仕様が定義されたと同時に、それを提供する API が定義された。
 
 それが URL オブジェクトであり、メジャーなブラウザは既に実装が進んでいる。
 
@@ -66,18 +66,18 @@ DOM や JS の API として Export されていなかっただけで、ブラ�
 
 Node は既に URL をパースするための `url` モジュールを標準でもっている。
 
-しかし、これが実装されたのは URL Standard が定義される前なので、 `url` モジュールが準拠するのはもちろん RFC である。(それ自体が問題になること自体はほとんどない。)
+しかし、これが実装されたのは URL Standard が定義される前なので、`url` モジュールが準拠するのはもちろん RFC である。(それ自体が問題になること自体はほとんどない。)
 
 しかし API についてみれば、先ほどの URLSearchParams も含めて WHATWG の定義とはかなり差異がある。
 
-同じ JS であるにも関わらず、ブラウザと Node で API が違うというのは、 isomorphic/universal 化が進む昨今では決して嬉しいことではない。
+同じ JS であるにも関わらず、ブラウザと Node で API が違うというのは、isomorphic/universal 化が進む昨今では決して嬉しいことではない。
 
 そこで筆者はこの URL オブジェクトを実装していた時期があった。だいぶ実装は進んだが後述する punycode と unicode 周りの対応が面倒で途中で止まっていた。
 
 - [URL](https://github.com/jxck/url)
 - [URLSearchParams](https://github.com/jxck/urlsearchparams)
 
-ところが今年に入ってやっと、 Node の本体の url module に、この WHATWG の URL オブジェクトを追加するという形で実装が始まったのが以下の issue である。
+ところが今年に入ってやっと、Node の本体の url module に、この WHATWG の URL オブジェクトを追加するという形で実装が始まったのが以下の issue である。
 
 [url: adding WHATWG URL support #7448](https://github.com/nodejs/node/pull/7448)
 
@@ -91,7 +91,7 @@ Node v7.0.0 で実装された API は以下のように使うことができる
 ```js:url.js
 ```
 
-この API を経由すれば、日本語ドメインの Punycode 化、 IPv6 アドレスの対応、 escape などもやってくれる。
+この API を経由すれば、日本語ドメインの Punycode 化、IPv6 アドレスの対応、escape などもやってくれる。
 
 (ここら辺が、正規表現での処理時に問題になりやすいあたりだ。)
 
@@ -105,14 +105,14 @@ Node v7.0.0 で実装された API は以下のように使うことができる
 
 ## URLSearchParams オブジェクト
 
-また、 query parameter を表現する URLSearchParams は別オブジェクトであるため、 query parameter の取得や生成もこのオブジェクトを利用できる。
+また、query parameter を表現する URLSearchParams は別オブジェクトであるため、query parameter の取得や生成もこのオブジェクトを利用できる。
 
 一応 Node v7.0.0 にもコードはあるようだが、正しく動いてないようなので、完成予定の Chrome の結果を代わりに貼っておく。
 
 ```js:searchparams.js
 ```
 
-ブラウザ上でも、おそらくこれまで `?` と `&` と `=` で `split()` したり、 `join()` してきたであろう query だが、 URLSearchParams 経由で解析/組み立てを行えば、おろそかにされがちだったエスケープなども正しく行われるため、積極的に使っていきたい。
+ブラウザ上でも、おそらくこれまで `?` と `&` と `=` で `split()` したり、`join()` してきたであろう query だが、URLSearchParams 経由で解析/組み立てを行えば、おろそかにされがちだったエスケープなども正しく行われるため、積極的に使っていきたい。
 
 こちらは caniuse があるので、貼っておく。
 
@@ -123,7 +123,7 @@ Node v7.0.0 で実装された API は以下のように使うことができる
 
 WHATWG URL を用いることで、ブラウザ上での URL の正しい処理が、標準 API のみで行えるようになった。
 
-さらにそれが Node にも実装されたことにより、 URL に対する処理が共通するコードで行えるようになった。
+さらにそれが Node にも実装されたことにより、URL に対する処理が共通するコードで行えるようになった。
 
 まだ Experimental ではあるが、おおよその実装自体は完了している。
 
@@ -131,4 +131,4 @@ Node では、すぐに従来の API がなくなるということは無いの�
 
 しかし、今後 URL を操作する場面ではこちらの API を使っておいた方が、様々な場面でメリットがあるだろう。
 
-今後も、これまで開発者がビルドで乗り切っていた isomorphic/universal な処理に、 Node の標準モジュールが歩み寄る流れが進むことを期待してる。
+今後も、これまで開発者がビルドで乗り切っていた isomorphic/universal な処理に、Node の標準モジュールが歩み寄る流れが進むことを期待してる。

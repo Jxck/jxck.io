@@ -37,7 +37,7 @@
 
 ### 3rd Party Cookie Advent Calendar
 
-アドベントカレンダーはそんなに参加しないできたが、年始から Chrome での Deprecation が始まることもあり、 3rd Party Cookie のアドベントカレンダーを実施した。
+アドベントカレンダーはそんなに参加しないできたが、年始から Chrome での Deprecation が始まることもあり、3rd Party Cookie のアドベントカレンダーを実施した。
 
 - 2023-12-01: [3PCA 1 日目: 3rd Party Cookie Advent Calendar Agenda](https://blog.jxck.io/entries/2023-12-01/3pca-agenda.html)
 - 2023-12-02: [3PCA 2 日目: Cookie による区別と識別](https://blog.jxck.io/entries/2023-12-02/3pca-cookie.html)
@@ -78,12 +78,12 @@
 
 ### 通常回
 
-通常回は 2 本。ワールドカップ配信における日本のインターネットの限界についての話と、 Coinhive 事件の裏側という、非常に興味深い 2 本になった。
+通常回は 2 本。ワールドカップ配信における日本のインターネットの限界についての話と、Coinhive 事件の裏側という、非常に興味深い 2 本になった。
 
 - [ep119 大規模ライブ配信 | mozaic.fm](https://mozaic.fm/episodes/119/live-streaming.html)
 - [ep123 Engineering Risk | mozaic.fm](https://mozaic.fm/episodes/123/engineering-risk.html)
 
-加えて、たまたま US で居合わせたので、ドライブしながらの録音もした。 mozaic.fm で初めての雑談回だった。意外と反響があった。
+加えて、たまたま US で居合わせたので、ドライブしながらの録音もした。mozaic.fm で初めての雑談回だった。意外と反響があった。
 
 - [ep131 Drive Talk: San Francisco | mozaic.fm](https://mozaic.fm/episodes/131/drive-talk-to-sf.html)
 
@@ -91,12 +91,12 @@
 
 通常回を撮るとそれだけで月 3 本撮りになるので、これをどうにか軌道に乗せたい。
 
-もしくは、 Ecosystem 側をもっとカジュアルにし、そこでゲストに呼んで Monthly しながら話を聞くといったやり方もありかもしれない。
+もしくは、Ecosystem 側をもっとカジュアルにし、そこでゲストに呼んで Monthly しながら話を聞くといったやり方もありかもしれない。
 
 
 ### Monthly
 
-去年 Monthly が Platform / Ecosystem の 2 本体制になってから 1 年経った。 12 月も Yearly を 2 本撮ったが、どちらも楽しかった。
+去年 Monthly が Platform / Ecosystem の 2 本体制になってから 1 年経った。12 月も Yearly を 2 本撮ったが、どちらも楽しかった。
 
 やりたい形が軌道に乗った年だった。
 
@@ -129,7 +129,7 @@ mozaic は来年で 10 年を迎える。
 
 今の目標は Web が終わったときに「何がきっかけでいつごろ始まったのか」をトラッキングできるログを残すことだ。
 
-来年は 3rd Party Cookie が終わり、 Web のエコシステムにはかなり大きな影響を与えるだろう。
+来年は 3rd Party Cookie が終わり、Web のエコシステムにはかなり大きな影響を与えるだろう。
 
 その意味でも、来年は moziac.fm をやるうえで、この変化を慎重に観察していきたいと思う。
 
@@ -150,7 +150,7 @@ mozaic は来年で 10 年を迎える。
 
 ### 次世代 Web カンファレンス
 
-そして、 4 年ぶり 3 度目の次世代 Web カンファレンスを開催した。
+そして、4 年ぶり 3 度目の次世代 Web カンファレンスを開催した。
 
 - 次世代 Web カンファレンス 2023 開催後記 | blog.jxck.io
   - https://blog.jxck.io/entries/2023-12-22/next-web-conf-2023.html

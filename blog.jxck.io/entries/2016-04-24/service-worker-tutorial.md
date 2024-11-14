@@ -4,11 +4,11 @@
 
 Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。
 
-しかし、 Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
+しかし、Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。
 
 そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。
 
-なお、 Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。
+なお、Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。
 
 思いつきで撮ったので色々ミスも有ります、また Chrome Dev Tools の UI はどうせ変わるのでそのつもりで見てください。
 
@@ -31,7 +31,7 @@ TODO になっている動画は、そのうち撮って追加します。
 
 ## claim
 
-controller とは何か、いつ controller になるか、 `claim()` で何が起こるのかなどについて。
+controller とは何か、いつ controller になるか、`claim()` で何が起こるのかなどについて。
 
 <iframe src="https://www.youtube.com/embed/m6qBg4M3RTA" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
 
@@ -64,7 +64,7 @@ register が終わった後、「新しく登録された controller が使え�
 
 ## updatefound
 
-Service Worker が更新される際の動きと、 `skipWaiting()` が何をスキップするのか?
+Service Worker が更新される際の動きと、`skipWaiting()` が何をスキップするのか?
 
 `install`, `activate` イベントの用途。
 

@@ -20,22 +20,22 @@ Web Font のサブセット化を Font Weight に応じて作り分けるとと�
 
 本サイトでは Font Weight として Regular(400) と Bold(700) を提供しているが、これまでは抽出した文字種を Bold/Regular 両方でビルドしていた。
 
-しかし、 Regular でしか使われてない文字が Bold にも入っており、 Bold 側のサイズをより削減できるという既知の問題があった。
+しかし、Regular でしか使われてない文字が Bold にも入っており、Bold 側のサイズをより削減できるという既知の問題があった。
 
-本サイトの HTML は markdown をパースし、独自のビルダで変換しているため、こうした処理は markdown の AST を元に生成する方針を取っていたが、 HTML への変換結果をみないと bold か regular かを判別できないため、実装が単純に面倒で後回しにしていた。
+本サイトの HTML は markdown をパースし、独自のビルダで変換しているため、こうした処理は markdown の AST を元に生成する方針を取っていたが、HTML への変換結果をみないと bold か regular かを判別できないため、実装が単純に面倒で後回しにしていた。
 
 
 ## Puppeteer による実装
 
-本サイトが全て静的に HTML 生成していることを利用し、 Puppeteer でローカルスクレイピングを行うことで、そこから必要な文字種類を取得することにした。
+本サイトが全て静的に HTML 生成していることを利用し、Puppeteer でローカルスクレイピングを行うことで、そこから必要な文字種類を取得することにした。
 
-単純に document 全体を対象要素のみに絞って、 textContent を取得しているだけだ。
+単純に document 全体を対象要素のみに絞って、textContent を取得しているだけだ。
 
 - [subset.mjs](https://github.com/Jxck/jxck.io/blob/master/www.jxck.io/assets/font/subset.mjs)
 
 これにより、これまで同じサイズだった Bold は必要最低限に減らすことができた。
 
-Regular は、 Bold にあって Regular には無い文字が減らせた一方、これまで取りこぼしていた文字を収録しきったためトータルでは多くなっている。
+Regular は、Bold にあって Regular には無い文字が減らせた一方、これまで取りこぼしていた文字を収録しきったためトータルでは多くなっている。
 
 Caption: フォント削除の効果
 | Type   | Regular | Bold    |

@@ -6,9 +6,9 @@
 
 そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。
 
-基本は、 Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。
+基本は、Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。
 
-合わせて ES Modules の Import を用いて、 polyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
+合わせて ES Modules の Import を用いて、polyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。
 
 本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。
 
@@ -35,7 +35,7 @@ Low Level API の整備は、関連する他の API との整合性にも良い�
 - [Fetch Standard](https://fetch.spec.whatwg.org/)
 - etc
 
-また、 CustomElement など、ユーザが任意の拡張を行うことができる仕様も、こうした動きを加速させている。
+また、CustomElement など、ユーザが任意の拡張を行うことができる仕様も、こうした動きを加速させている。
 
 しかし、実際にアプリケーションを開発する上では、その Low Level API の上に被せたライブラリや、それを束ねるフレームワークのコードが増える一方だった。
 
@@ -43,9 +43,9 @@ Low Level API の整備は、関連する他の API との整合性にも良い�
 
 ブラウザがネイティブに実装していれば、そうしたコストの大部分は削減されるため、当然のように High Level API も標準化要求は増える。
 
-こうした High Level API の要求を、 Low Level API にこそ注力すべきだと無視し続けることもできない。
+こうした High Level API の要求を、Low Level API にこそ注力すべきだと無視し続けることもできない。
 
-Low Level API の整備が軌道に乗った今こそ、 High Level API に対して標準化の側面からどういう態度を取るか、を考える時期でもある。
+Low Level API の整備が軌道に乗った今こそ、High Level API に対して標準化の側面からどういう態度を取るか、を考える時期でもある。
 
 
 ## Standardize High Level API
@@ -54,11 +54,11 @@ High Level API を標準化するといっても、闇雲に採用し実装す�
 
 新しい実装によるバグ、セキュリティホール、オーバーヘッド、技術的負債の発生を、いかに防ぐかを考える必要がある。
 
-また、策定しても実装されるまでの間は、 Polyfill を利用するだろう。これが安全に行われなければ、 Ever Green な Web を作るのは難しい。
+また、策定しても実装されるまでの間は、Polyfill を利用するだろう。これが安全に行われなければ、Ever Green な Web を作るのは難しい。
 
 global namespace に追加される何かは、それがなんであれメンテし続けるか、絶大な努力と慎重なプロセスと膨大な時間を用いて deprecate していくことになる。いずれも望ましいことではない。
 
-そこで、 Polyfill によるユーザランドの実装を積極的に許容し、標準化プロセスからブラウザへの実装と相互にフィードバックさせ、緩やかにネイティブ実装へと移行していくパスを用意する。
+そこで、Polyfill によるユーザランドの実装を積極的に許容し、標準化プロセスからブラウザへの実装と相互にフィードバックさせ、緩やかにネイティブ実装へと移行していくパスを用意する。
 
 これを目指すのが Layered API の基本的なモチベーションと言って良いだろう。
 
@@ -95,13 +95,13 @@ if (window.AsyncLocalStorage=== undefined) {
 window.AsyncLocalStorage // native or polyfill
 ```
 
-この例では、あらかじめ polyfill のコードを読み込んでおき、 Global における関数の有無を用いてどちらの実装を使うかを切り分けている。
+この例では、あらかじめ polyfill のコードを読み込んでおき、Global における関数の有無を用いてどちらの実装を使うかを切り分けている。
 
 この場合、もしブラウザが API を実装していても、使われない Polyfill のコードは依然として読み込まれることになる。
 
 また、新しい API を global に追加していくことは、影響もメンテナンスコストも大きい。
 
-そこで、 ES Module の API を用いて、以下のように読み込む構文拡張が提案されている。
+そこで、ES Module の API を用いて、以下のように読み込む構文拡張が提案されている。
 
 ```js
 import { storage } from "std:async-local-storage";
@@ -109,7 +109,7 @@ import { storage } from "std:async-local-storage";
 
 現行の仕様では `from` の後ろには module への URL が書かれるが、ここに `std:` で始まるラベルを書くと、ブラウザの実装する標準 API を読み込むことができる。
 
-これは Opt-In で読み込むことになるため、 Global を汚染せずに新しい API を Ship できるというメリットがある。
+これは Opt-In で読み込むことになるため、Global を汚染せずに新しい API を Ship できるというメリットがある。
 
 また以下のように書くと、もしブラウザが実装していなかった場合に、後半に書いた polyfill へフォールバックすることができる。
 
@@ -117,11 +117,11 @@ import { storage } from "std:async-local-storage";
 import { storage } from "std:async-local-storage|https://cdn.example.com/async-local-storage.js";
 ```
 
-これにより、もしブラウザに実装があれば、 polyfill のコードは読み込む必要がなくなり、ネットワークコストが削減される。
+これにより、もしブラウザに実装があれば、polyfill のコードは読み込む必要がなくなり、ネットワークコストが削減される。
 
 また、最初からこの形で書いておけば、ブラウザの実装の差を低いコストで埋め、そのまま放置されてもネイティブのコードで置き換わるため、移行コストを低く抑えることができる。
 
-同じことは、 HTML Element の実装においても利用が想定されている。
+同じことは、HTML Element の実装においても利用が想定されている。
 
 ```html
 <script type=module src="std:infinite-list|https://some.cdn.com/infinite-list.js"></script>
@@ -150,7 +150,7 @@ Layered API での仕様策定の候補として、以下の 3 つがある。
 
 ## premature-polyfill
 
-まだまだ始まったばかりの提案ではあるが、 Polyfill の効果的な使い方に注力するこの仕様は、現状の Polyfill の問題をそのまま引きずる。
+まだまだ始まったばかりの提案ではあるが、Polyfill の効果的な使い方に注力するこの仕様は、現状の Polyfill の問題をそのまま引きずる。
 
 Polyfill のあり方については、過去に TAG によってプラクティスがまとめられており、本ブログでも解説している。
 
@@ -167,11 +167,11 @@ import { storage } from "std:async-local-storage|https://cdn.example.com/async-l
 
 また、経験上 `std:xxx` のタグは取り合いになるだろう。同じタグを記述するサイトでも、全然別の API を元に作られている状態も容易に想像できる。
 
-現時点でおこなわれている polyfilling でも同じことは起こっているため、何も変わってないと言えば変わってないし、 Module を使うことでマシにはなっている。
+現時点でおこなわれている polyfilling でも同じことは起こっているため、何も変わってないと言えば変わってないし、Module を使うことでマシにはなっている。
 
 一方、そうした Polyfill の存在が、標準側で API を変更する際に足を引っ張ることは目に見えているわけだが、この問題へのアドレスは一切ない。
 
-なにより、 Layered API は Polyfill が先に作られることをこそ是としているため、こうした問題に対する何らかの事前策が無くて良いのかとも思う。
+なにより、Layered API は Polyfill が先に作られることをこそ是としているため、こうした問題に対する何らかの事前策が無くて良いのかとも思う。
 
 - [Risks of premature polyfilling #12](https://github.com/drufball/layered-apis/issues/12)
 
@@ -179,7 +179,7 @@ Layered API はすでに TAG の design review がリクエストされている
 
 - [Layered APIs Issue #276 w3ctag/design-reviews](https://github.com/w3ctag/design-reviews/issues/276)
 
-一方、 Chrome では、すでに Layered API の import 周りの実装について Intents が出されている。
+一方、Chrome では、すでに Layered API の import 周りの実装について Intents が出されている。
 
 - [Intent to implement: Layered API infrastructure](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/MFbJuzA5tH4/t6Q-LZHpAgAJ)
 

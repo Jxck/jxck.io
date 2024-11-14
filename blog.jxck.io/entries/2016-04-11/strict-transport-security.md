@@ -11,26 +11,26 @@
 
 ## HSTS
 
-本サイト ([blog.jxck.io](https://blog.jxck.io)) では、フル HTTPS 化が完了しており、 HTTP へのリクエストは全て HTTPS へリダイレクトしている。
+本サイト ([blog.jxck.io](https://blog.jxck.io)) では、フル HTTPS 化が完了しており、HTTP へのリクエストは全て HTTPS へリダイレクトしている。
 
 特に本サイトのタイトル自体が `blog.jxck.io` であり、ドメイン名と同じになっているため、これが Twitter などで `http://blog.jxck.io` へのリンクと解釈される場合が多く、そこからの HTTP アクセスも少なくはない。
 
-しかし、 MITM の脅威への対策が可能な HTTPS でも、最初のリクエストが HTTP であると、そこに付け入る隙ができてしまう。
+しかし、MITM の脅威への対策が可能な HTTPS でも、最初のリクエストが HTTP であると、そこに付け入る隙ができてしまう。
 
-そこで、 「`blog.jxck.io` にアクセスするときは必ず HTTPS を用いる」ことをブラウザに覚えさせ、 `http://blog.jxck.io` のリンクを踏んでも、ブラウザが自動的に `https://blog.jxck.io` に置き換えてアクセスさせる仕組みが HSTS である。
+そこで、「`blog.jxck.io` にアクセスするときは必ず HTTPS を用いる」ことをブラウザに覚えさせ、`http://blog.jxck.io` のリンクを踏んでも、ブラウザが自動的に `https://blog.jxck.io` に置き換えてアクセスさせる仕組みが HSTS である。
 
 - [RFC 6797 - HTTP Strict Transport Security (HSTS)](https://tools.ietf.org/html/rfc6797)
 
 
 ## Strict-Transport-Security ヘッダ
 
-以下のような HTTP ヘッダを追加することで、 HSTS を有効にすることができる。
+以下のような HTTP ヘッダを追加することで、HSTS を有効にすることができる。
 
 ```http
 Strict-Transport-Security: max-age=7776000
 ```
 
-このヘッダは、 HTTP ではなく HTTPS のレスポンスに付与する。
+このヘッダは、HTTP ではなく HTTPS のレスポンスに付与する。
 
 このヘッダを受け取ったブラウザは 7776000 秒(90 日) のあいだは、そのドメインに `http://~` で始まるリクエストを送信する際に、自動的にこれを `https://~` に置き換える。
 
@@ -39,7 +39,7 @@ Strict-Transport-Security: max-age=7776000
 
 ## preload
 
-ただし、 HSTS はレスポンスヘッダで指定された値を、ブラウザが保存したあと有効になる仕組みのため、少なくとも一番最初にアクセスするドメインでは、際は http -> https のリダイレクトを避けられない。
+ただし、HSTS はレスポンスヘッダで指定された値を、ブラウザが保存したあと有効になる仕組みのため、少なくとも一番最初にアクセスするドメインでは、際は http -> https のリダイレクトを避けられない。
 
 この性質は [HPKP](https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html) 同様 *TOFU* (Trust of First Use) と呼ばれる。
 
@@ -56,13 +56,13 @@ Chrome の場合は、以下からドメインを申請すると、審査が実�
 
 しかし、本ドメインには [labs.jxck.io](https://labs.jxck.io) という実験用のサブドメインがある。
 
-ここでは、平文 HTTP との比較や、 Mixed Contents の挙動のテストなど、様々な実験を行うために、 HTTP もリダイレクトせずサーブしている。
+ここでは、平文 HTTP との比較や、Mixed Contents の挙動のテストなど、様々な実験を行うために、HTTP もリダイレクトせずサーブしている。
 
 ここを HSTS に含んでしてしまうと、実験ができなくなってしまうため、除外する必要がある。
 
 結果として、本ドメインでは *`includeSubDomains` の指定はせず*、ドメインごとに個別に指定することとした。
 
-また、 Chrome の Preload 登録の条件には、 `includeSubDomains` の適用が含まれている。
+また、Chrome の Preload 登録の条件には、`includeSubDomains` の適用が含まれている。
 
 したがって同様の理由から、止むを得ず *preload 登録は見送る* こととした。
 

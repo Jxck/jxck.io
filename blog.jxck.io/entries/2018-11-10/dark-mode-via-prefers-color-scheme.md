@@ -4,7 +4,7 @@
 
 macOS Mojava は OS レベルで Dark Mode に対応した。
 
-しかし、 Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。
+しかし、Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。
 
 [Safari TP69](https://webkit.org/blog/8475/release-notes-for-safari-technology-preview-68/) では、これにメディアクエリで対応するための `prefers-color-scheme` が実装された。
 
@@ -26,16 +26,16 @@ macOS Mojava は OS レベルで Dark Mode に対応した。
 
 しかし、暗い場所での閲覧時に目への負荷を下げる目的で、背景を黒、文字を白に反転したデザインが用意され、ユーザが好みで切り替えられるようにしたアプリケーションも増えた。
 
-macOS Mojava からは、 OS レベルで Dark Mode を有効にできるようオプションが追加され、これによって多くのアプリケーションのデザインが切り替わるようになった。
+macOS Mojava からは、OS レベルで Dark Mode を有効にできるようオプションが追加され、これによって多くのアプリケーションのデザインが切り替わるようになった。
 
-筆者は黒背景のターミナル上に居る時間が長いため、ブラウザと切り替えた時の光の強さの変化がずっと気になっていたが、 OS 全体を Dark Mode にした結果より一層ブラウザが眩しく感じるようになった。
+筆者は黒背景のターミナル上に居る時間が長いため、ブラウザと切り替えた時の光の強さの変化がずっと気になっていたが、OS 全体を Dark Mode にした結果より一層ブラウザが眩しく感じるようになった。
 
-Safari は、 Mojava の Mode が Light/Dark どちらに設定されているかを取得する仕組みを検証しており、これを用いると OS の設定に合わせたデザインを提供できる。
+Safari は、Mojava の Mode が Light/Dark どちらに設定されているかを取得する仕組みを検証しており、これを用いると OS の設定に合わせたデザインを提供できる。
 
 
 ## prefers-color-scheme
 
-Safari TP 69 では、 `prefers-color-scheme` を用いて Media Query でテーマごとに分岐した CSS を記述できるようになった。
+Safari TP 69 では、`prefers-color-scheme` を用いて Media Query でテーマごとに分岐した CSS を記述できるようになった。
 
 ```css
 @media (prefers-color-scheme: light) {
@@ -111,13 +111,13 @@ Dark Mode 時の画像がどうあるべきかを考えると難しい。
 
 そもそも Mode があるのは、なんらかの理由で「見やすさ」を切り替える目的があると考える。
 
-Light Mode に対し Dark Mode があるのは、 Light Mode が「明るすぎる」「眩しい」という理由が挙げられるだろう。
+Light Mode に対し Dark Mode があるのは、Light Mode が「明るすぎる」「眩しい」という理由が挙げられるだろう。
 
-すると、 Dark Mode 時の画像は、 Light Mode に対して暗くなっているべきだと考えられる。
+すると、Dark Mode 時の画像は、Light Mode に対して暗くなっているべきだと考えられる。
 
 そこで `grayscale()` を適用し、暗くする方法を取ることにした。
 
-この `grayscale()` は引数を取り、 100% が完全な白黒になる。
+この `grayscale()` は引数を取り、100% が完全な白黒になる。
 
 注釈や赤線を引いたスクショもあるため、それらの色が認識でき、かつ明るさを抑えて先の dark mode の CSS デザインと混じる値を探す。
 
@@ -134,7 +134,7 @@ article img {
 
 ベクタは、基本白背景に対して黒の線や文字で作り、一部色を入れている。
 
-これは、 `invert()` で反転させることで黒背景にすることが可能なので、黒背景にした dark mode とも合う。
+これは、`invert()` で反転させることで黒背景にすることが可能なので、黒背景にした dark mode とも合う。
 
 しかし、そのままではやはり色が強くなりがちなので、ラスタと同じように `grayscale()` を適用することにした。
 
@@ -190,7 +190,7 @@ pre > code {
 
 主に、ユーザ自身が望ましい閲覧設定を、コンテンツ側が取得して、デザインのヒントに利用するためのものである。
 
-執筆時点では、 User Preference Media Features は以下の 4 が定義されている。
+執筆時点では、User Preference Media Features は以下の 4 が定義されている。
 
 - prefers-reduced-motion(reduce):       アニメーションなどの動きを減らす
 - prefers-reduced-transparency(reduce): 透過表現を減らす
@@ -206,7 +206,7 @@ pre > code {
 
 ## 本サイトへの適用
 
-本サイトも色関連を variables でまとめ、 dark mode のみ切り替えるように CSS を適用した。
+本サイトも色関連を variables でまとめ、dark mode のみ切り替えるように CSS を適用した。
 
 動作は Safari TP69 で確認している。
 

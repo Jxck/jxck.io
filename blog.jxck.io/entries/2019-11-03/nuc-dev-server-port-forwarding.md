@@ -19,7 +19,7 @@
 
 今は mini PC も色々出ており、選択肢も多く、比較的安価に、場所をとらないサーバが組めるようになった。
 
-これを期に、高い Mac の買い替え更新をやめ、 Air などの持ち運び用途に特化したものを選び、メインリソースとしてどこからもアクセスできる自宅サーバを組むことにした。
+これを期に、高い Mac の買い替え更新をやめ、Air などの持ち運び用途に特化したものを選び、メインリソースとしてどこからもアクセスできる自宅サーバを組むことにした。
 
 
 ## 要件
@@ -44,7 +44,7 @@
 
 Mac 以外の PC 事情はあまり詳しくないので、久々に家電量販店で詳しそうな店員に色々聞いてみる。
 
-Intel NUC でそれなりのスペックを選ぶと、 Core i7 で M.2 SSD などが選択可能だが、それらは電力消費が大きく、ということは発熱しやすいとのこと。
+Intel NUC でそれなりのスペックを選ぶと、Core i7 で M.2 SSD などが選択可能だが、それらは電力消費が大きく、ということは発熱しやすいとのこと。
 
 正直そこまで CPU をぶん回すような処理も、クラスタを組んでどうこうといったこともしないし、スペックが過剰である必要はない。
 
@@ -98,7 +98,7 @@ Ubuntu 19.10 eoan を入れたが、これもすんなり入った。
 
 このとき NUC から VPS には SSH できるが、逆は NUC に IP が無いためできない。
 
-そこで、 NUC と VPS の SSH を張りっぱなしにしておき、 laptop からの SSH をそこを通して NUC に届けるのが Port Forwarding だ。
+そこで、NUC と VPS の SSH を張りっぱなしにしておき、laptop からの SSH をそこを通して NUC に届けるのが Port Forwarding だ。
 
 まず NUC から VPS に -R で SSH をつなぐ。
 
@@ -116,23 +116,23 @@ $ ssh user@vps -NR 22222:localhost:22
 $ ssh user@vps
 ```
 
-最後に、入った VPS の上で、 localhost:22222 に対して SSH する
+最後に、入った VPS の上で、localhost:22222 に対して SSH する
 
 ```sh-session
 # vps に入ったあと vps から nuc
 $ ssh user@localhost -p 22222
 ```
 
-最初に VPS の 22222 ポートへの通信を、 NUC の 22 に転送するように SSH を貼っている。
+最初に VPS の 22222 ポートへの通信を、NUC の 22 に転送するように SSH を貼っている。
 
-NUC 上で sshd が動いていれば、 VPS 上で 22222 に対して SSH すると、 NUC に入れるという仕組みだ。
+NUC 上で sshd が動いていれば、VPS 上で 22222 に対して SSH すると、NUC に入れるという仕組みだ。
 
 これを、いつでも接続できるようにしておく。
 
 
 ### ~/.ssh/config
 
-まず、 SSH 接続を維持しやすい設定にするため、 config を以下のようにする。
+まず、SSH 接続を維持しやすい設定にするため、config を以下のようにする。
 
 ```config
 Host reverse-ssh
@@ -163,7 +163,7 @@ $ ssh reverse-ssh -NR 22222:localhost:22
 
 これは autossh というツールを使うと、簡単にできるらしいので入れてみる。
 
-autossh は ssh と同じコマンドで使うと、 ssh プロセスをフォークして監視し、 ssh が落ちたら再度フォークしてくれるツールだ。
+autossh は ssh と同じコマンドで使うと、ssh プロセスをフォークして監視し、ssh が落ちたら再度フォークしてくれるツールだ。
 
 ```sh-session
 $ autossh reverse-ssh -NR 22222:localhost:22
@@ -171,7 +171,7 @@ $ autossh reverse-ssh -NR 22222:localhost:22
 
 しかし autossh 自体が落ちてもだれも面倒を見てくれない。
 
-また、 PC を再起動した場合は、自分で実行しないといけない。
+また、PC を再起動した場合は、自分で実行しないといけない。
 
 そこで、これを systemd に登録する。
 
@@ -225,7 +225,7 @@ WantedBy=multi-user.target
 
 (しかし、これなら autossh 無くても systemd で ssh を監視するだけで良かった気もする)
 
-ところがこのままでは ssh が sudo で実行されるため、 `~/.ssh/config` は使われず reverse-ssh が解釈されない。
+ところがこのままでは ssh が sudo で実行されるため、`~/.ssh/config` は使われず reverse-ssh が解釈されない。
 
 面倒なので `~/.ssh/config` に書いた内容を `/etc/ssh/ssh_config` に書いてしまうことにした。
 
@@ -240,11 +240,11 @@ known_hosts には接続相手の履歴が残っている。
 
 初回はここにエントリを追加し、次からは既存のエントリが参照される。
 
-サーバの IP などが変わったりすると、 DNS が書き換えられていると判定されエラーになることがある。
+サーバの IP などが変わったりすると、DNS が書き換えられていると判定されエラーになることがある。
 
 systemd で起動した autossh は `/root/.ssh/known_hosts` にエントリを追加するため、もしエラーになったら一旦ここをクリアする。
 
-しかし、 systemd での起動ではエントリが足されないようなので、先に一旦手動で同等のコマンドを打っておくと良い。
+しかし、systemd での起動ではエントリが足されないようなので、先に一旦手動で同等のコマンドを打っておくと良い。
 
 ```sh-session
 # systemd に書いた ExecStart 相当
@@ -254,7 +254,7 @@ $ sudo /usr/bin/autossh reverse-ssh -NTR 22222:localhost:22
 
 ### sshd_config
 
-NUC には、 VPS からの key を用いた ssh のみを許可したい。
+NUC には、VPS からの key を用いた ssh のみを許可したい。
 
 まず `/etc/ssh/sshd_config` でパスワードによる接続を無効にする。
 
@@ -267,7 +267,7 @@ PasswordAuthentication no
 
 ### UFW
 
-ufw を使って、 NUC の 22 へのアクセスを VPS の IP に限定する。
+ufw を使って、NUC の 22 へのアクセスを VPS の IP に限定する。
 
 これにより、意図しないアクセスを防ぐことができる。
 
@@ -295,11 +295,11 @@ ufw status numbered
 
 ### authorized_keys
 
-authorized_keys の最初には、 SSH で接続してくる IP の制限が指定できる。
+authorized_keys の最初には、SSH で接続してくる IP の制限が指定できる。
 
-今回は、 VPS からの forwarding しか受け付けない設定にしたい。
+今回は、VPS からの forwarding しか受け付けない設定にしたい。
 
-この場合、 NUC には localhost からアクセスしていることになるため、 NUC の `~/.ssh/authorized_keys` で、該当行の先頭に以下を追加する。
+この場合、NUC には localhost からアクセスしていることになるため、NUC の `~/.ssh/authorized_keys` で、該当行の先頭に以下を追加する。
 
 ```
 from="127.0.0.1" ssh-xxx xxxxxxxxxxxxxxxxx
@@ -318,7 +318,7 @@ Host nuc
   ServerAliveInterval 60
 ```
 
-すると laptop 上では以下のように叩けば、 VPS を経由して NUC に自動的に入れる。
+すると laptop 上では以下のように叩けば、VPS を経由して NUC に自動的に入れる。
 
 ```sh-session
 $ ssh nuc

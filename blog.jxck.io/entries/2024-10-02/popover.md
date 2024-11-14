@@ -65,7 +65,7 @@ ARIA には Dialog という Role が以前から定義されており、もし(
 </div>
 ```
 
-動きとしては、ここまで散々解説してきたような、 `inert`, `::backdrop`, フォーカス管理, Top Layer などをネイティブで対応した `showModal` などの利点はもちろんあるが、セマンティクスの面で言えば、「`<dialog>` は `role=dialog` に対応するネイティブの要素」という点も重要だ。
+動きとしては、ここまで散々解説してきたような、`inert`, `::backdrop`, フォーカス管理, Top Layer などをネイティブで対応した `showModal` などの利点はもちろんあるが、セマンティクスの面で言えば、「`<dialog>` は `role=dialog` に対応するネイティブの要素」という点も重要だ。
 
 
 ## popover
@@ -98,7 +98,7 @@ ARIA には Dialog という Role が以前から定義されており、もし(
 
 `<dialog>` は `role="dialog"` であることが重要だという話をした。
 
-そこに対して、 `show()`/`showModal()` で Modal として出すかどうかという使い分けをするのだが、実際には「 `role=dialog` を Popover で出したい」というユースケースもある。
+そこに対して、`show()`/`showModal()` で Modal として出すかどうかという使い分けをするのだが、実際には「 `role=dialog` を Popover で出したい」というユースケースもある。
 
 この場合は「`<dialog>` を `popover` する」という合わせ技も使える。
 
@@ -113,9 +113,9 @@ ARIA には Dialog という Role が以前から定義されており、もし(
 </dialog>
 ```
 
-これにより、特に Light Dismiss の恩恵で、カジュアルに閉じる `<dialog>` が出せるため、 non-Modal Dialog で応用できる。
+これにより、特に Light Dismiss の恩恵で、カジュアルに閉じる `<dialog>` が出せるため、non-Modal Dialog で応用できる。
 
-一方で、 Modal Dialog を Light Dismiss したいがために、 `popover` で実装し、 `::backdrop` を暗くすることで Modal っぽく実装するというのは、あまり良い実装ではないとされている。
+一方で、Modal Dialog を Light Dismiss したいがために、`popover` で実装し、`::backdrop` を暗くすることで Modal っぽく実装するというのは、あまり良い実装ではないとされている。
 
 ```html
 <button popovertarget="foo">Click me</button>
@@ -127,12 +127,12 @@ dialog[popover]::backdrop {
 </style>
 ```
 
-ちなみに、 `showModal` したものも Light Dismiss したいというユースケースを `<dialog>` 側でサポートすべきかという議論はまだ進行中だ。
+ちなみに、`showModal` したものも Light Dismiss したいというユースケースを `<dialog>` 側でサポートすべきかという議論はまだ進行中だ。
 
 - Add light dismiss functionality to `<dialog>` · Issue #9373 · whatwg/html
   - https://github.com/whatwg/html/issues/9373
 
-逆に、 Close Watcher を無効にし、一切 Light Dismiss 的な挙動をしない `<dialog>` の提案についても議論はある。
+逆に、Close Watcher を無効にし、一切 Light Dismiss 的な挙動をしない `<dialog>` の提案についても議論はある。
 
 - Support disabling CloseWatcher integration in `<dialog>` · Issue #10592 · whatwg/html
   - https://github.com/whatwg/html/issues/10592
@@ -229,7 +229,7 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 
 このとき、Popover した `<div>` を `<button>` の右下に表示したいとしよう。
 
-通常の DOM であれば、 `<button>` を基準にし、 `<div>` を相対的に配置すれば良いが、今 `<div popover>` は Top Layer に、 `<button>` はその backdrop に表示されているため、 2 つを相対的に配置することができないのだ。
+通常の DOM であれば、`<button>` を基準にし、`<div>` を相対的に配置すれば良いが、今 `<div popover>` は Top Layer に、`<button>` はその backdrop に表示されているため、2 つを相対的に配置することができないのだ。
 
 `<div popover>` が表示されている Top Layer には、他の DOM が何もない状態なので、何らかの方法で `<div popover>` の座標などを渡されない限りは、「画面の真ん中」や「四隅」といった、絶対値指定できる場所くらいしか、配置のしようがない。
 
@@ -262,7 +262,7 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 
 この場合、`<div popover>` の Anchor を `<button>` としている。
 
-`top: anchor(bottom)` は、自分の上端が Anchor の下端になるという指定だ。`left: anchor(right)` は自身の左端を Anchor の右端にしているため、結果、 `<button>` に対して右下に表示されるというものだ。
+`top: anchor(bottom)` は、自分の上端が Anchor の下端になるという指定だ。`left: anchor(right)` は自身の左端を Anchor の右端にしているため、結果、`<button>` に対して右下に表示されるというものだ。
 
 ![button を anchor として右下に popover を表示する](anchor.drawio.svg#241x141)
 
@@ -291,7 +291,7 @@ Anchor に対して相対配置する場合は、Anchor となる要素の周囲
 
 ## Anchor Position の fallback
 
-先の例で、`<div popover>` を表示するための余白が `<button>` の右下に無かった場合、 Popover がはみ出して表示されることになる。
+先の例で、`<div popover>` を表示するための余白が `<button>` の右下に無かった場合、Popover がはみ出して表示されることになる。
 
 ![anchor で右下に表示した popover がはみ出す](anchor-over.drawio.svg#411x331)
 
@@ -328,7 +328,7 @@ Block 方向(つまり上下)であれば `flip-block` でフォールバック�
 }
 ```
 
-これで、どんな要素に Invoke されても、 Top Layer 上に表示されつつ、さらに画面内にしっかりと収まるような `popover` が表示できるのだ。
+これで、どんな要素に Invoke されても、Top Layer 上に表示されつつ、さらに画面内にしっかりと収まるような `popover` が表示できるのだ。
 
 特に縦長になりがちな Menu 系の UI を、適切に表示する上で重宝する。
 

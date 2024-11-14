@@ -35,7 +35,7 @@ WHATWG が定義する Fetch API は、出たばかりの仕様では、途中�
 
 ## Promise API
 
-まず、 `fetch()` は当初から Promise ベースの API となっている。
+まず、`fetch()` は当初から Promise ベースの API となっている。
 
 - [Promise](https://tc39.github.io/ecma262/#sec-promise-constructor)
 
@@ -55,7 +55,7 @@ fetch('foo.txt').then((res) => {
 
 この API では、以下の二つができない。
 
-- `foo.txt` が大きかった場合、 fetch を中断(キャンセル)する。
+- `foo.txt` が大きかった場合、fetch を中断(キャンセル)する。
 - `foo.txt` が大きかった場合、ダウンロードの進捗(プログレス)を得る。
 
 現在の Promise の仕様では、非同期処理に対してあくまで *fulfilled(完了した)* か *rejected(失敗した)* の二つの状態を返すことしかできない。
@@ -65,11 +65,11 @@ fetch('foo.txt').then((res) => {
 
 ## Stream API
 
-現在は `fetch()` が返す Response が、 WHATWG の Stream を返すように変更されている。
+現在は `fetch()` が返す Response が、WHATWG の Stream を返すように変更されている。
 
 - [Streams Spec](https://streams.spec.whatwg.org/)
 
-Stream は、 I/O 処理を chunk ごとに返し、非同期処理の *途中* に処理を挟むための仕様である。
+Stream は、I/O 処理を chunk ごとに返し、非同期処理の *途中* に処理を挟むための仕様である。
 
 先の例を Stream で取得する場合、以下のように書くことができる。
 
@@ -98,7 +98,7 @@ fetch('foo.txt').then((res) => {
 });
 ```
 
-コードを見れば分かるように、 WHATWG の Stream は Chunk を resolve する Promise を返す。
+コードを見れば分かるように、WHATWG の Stream は Chunk を resolve する Promise を返す。
 
 従って EventEmitter ベースである Node.js の Stream とは少々使い勝手が異なる。
 
@@ -117,11 +117,11 @@ fetch('foo.txt').then((res) => {
 });
 ```
 
-(クロスオリジンのリソースを CORS を使わずに取得する `mode: no-cors` の場合は、 Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、 body も取れないためプログレスを出す用途はないだろう)
+(クロスオリジンのリソースを CORS を使わずに取得する `mode: no-cors` の場合は、Opaque な Response となりヘッダは取れない。しかし基本的にキャッシュのために使うものであり、body も取れないためプログレスを出す用途はないだろう)
 
 これを用いれば、以下のように Progress を得ることができる。
 
-(進捗率の数値を使えば、 CSS でプログレスバーを表示することも可能だろう)
+(進捗率の数値を使えば、CSS でプログレスバーを表示することも可能だろう)
 
 ```js
 fetch('foo.txt').then((res) => {
@@ -191,13 +191,13 @@ fetch(url).then((res) => {
 
 ## Promise の cancel
 
-現在の仕様では、 Stream を経由せず Promise のレベルで fetch をキャンセルすることはできない。
+現在の仕様では、Stream を経由せず Promise のレベルで fetch をキャンセルすることはできない。
 
 これは Promise そのものにキャンセルという概念が含まれていないためである。
 
-もし Promise 自体にキャンセルの概念が入れば、 Stream の取得は不要となる。
+もし Promise 自体にキャンセルの概念が入れば、Stream の取得は不要となる。
 
-fetch を含めて Promise を返す API は増加しつつあるため、 Cancelable Promise の議論は現在も続いている。
+fetch を含めて Promise を返す API は増加しつつあるため、Cancelable Promise の議論は現在も続いている。
 
 - [cancelable promises slide](https://docs.google.com/presentation/d/1V4vmC54gJkwAss1nfEt9ywc-QOVOfleRxD5qtpMpc8U/preview?slide=id.gc6f9e470d_0_0)
 - [cancelable promises draft](https://domenic.github.io/cancelable-promise/) (現在は取り下げられている)

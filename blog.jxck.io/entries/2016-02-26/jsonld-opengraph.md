@@ -2,9 +2,9 @@
 
 ## Intro
 
-本サイトのメタ情報を整理するため、 HTML のメタタグの整理、 JSON-LD による schema.org 対応、 Facebook, Twitter を主とした Open Graph 対応を実施した。
+本サイトのメタ情報を整理するため、HTML のメタタグの整理、JSON-LD による schema.org 対応、Facebook, Twitter を主とした Open Graph 対応を実施した。
 
-これにより、既に AMP 対応していた本サイトが、 Google のモバイル検索でキャッシュの対象となる(クロール待ち)。
+これにより、既に AMP 対応していた本サイトが、Google のモバイル検索でキャッシュの対象となる(クロール待ち)。
 
 
 ## Meta Tag
@@ -13,7 +13,7 @@
 
 - https://dev.w3.org/html5/spec-preview/the-meta-element.html
 
-各要素は、テンプレート生成時に利用した値を埋め込んでいるため、 [本サイトの Atom RSS-feed](https://blog.jxck.io/entries/2016-02-09/atom-feed.html) などと同じ値である。
+各要素は、テンプレート生成時に利用した値を埋め込んでいるため、[本サイトの Atom RSS-feed](https://blog.jxck.io/entries/2016-02-09/atom-feed.html) などと同じ値である。
 
 ```html
 <meta name=author content=Jxck>
@@ -23,7 +23,7 @@
 <title>${this.title} | blog.jxck.io</title>
 ```
 
-これで、 [Google がサポートしているメタタグ](https://support.google.com/webmasters/answer/79812?hl=ja) についてもカバーされている。
+これで、[Google がサポートしているメタタグ](https://support.google.com/webmasters/answer/79812?hl=ja) についてもカバーされている。
 
 
 ## schema.org
@@ -32,7 +32,7 @@
 
 そのボキャブラリを、サイト内に表現する方法として RDFa, Microdata, JSON-LD の三種類がある。
 
-それぞれのフォーマットの詳細は割愛するが、基本的には Microdata で HTML の該当タグにボキャブラリを埋め込むか、 JSON-LD を用いて JSON 形式で一箇所に埋め込むかのいずれかが候補に挙がった。
+それぞれのフォーマットの詳細は割愛するが、基本的には Microdata で HTML の該当タグにボキャブラリを埋め込むか、JSON-LD を用いて JSON 形式で一箇所に埋め込むかのいずれかが候補に挙がった。
 
 結果として、本サイトでは以下を考慮し JSON-LD を採用した。
 
@@ -87,7 +87,7 @@
 
 [Structured Data Testing Tool](https://developers.google.com/structured-data/testing-tool/)
 
-悩んだ点として、 Google の Validator では `publisher` が必須なのだが、 `publisher` の `@type` は `Person` だと怒られる。
+悩んだ点として、Google の Validator では `publisher` が必須なのだが、`publisher` の `@type` は `Person` だと怒られる。
 
 実際には、本サイトは個人運営なのだが、しかたなく `Organization` を選択した。問題があったり、回避方法が見つかったら修正する。
 
@@ -98,14 +98,14 @@ JSON-LD と紛らわしいものに [LD-JSON (Line Delimitered JSON)](https://en
 
 それだけなら、実際全く関係ない仕様なのでまあ問題ない。
 
-しかし、 JSON-LD の HTML 内の記述は script type が *application/ld+json* なのが微妙に引っかかる。
+しかし、JSON-LD の HTML 内の記述は script type が *application/ld+json* なのが微妙に引っかかる。
 
 
 ## Open Graph
 
 Twitter と Facebook だけ、以下を参考に対応した。
 
-内容はほとんど重複なので、 JSON-LD に対応してくれれば、これらは消したいところだ。
+内容はほとんど重複なので、JSON-LD に対応してくれれば、これらは消したいところだ。
 
 いずれも、仕様と同時にバリデータが提供されているため、それで確認をしている。
 
@@ -142,10 +142,10 @@ Twitter と Facebook だけ、以下を参考に対応した。
 
 ## Outro
 
-そもそも schema.org と Open Graph で内容が重複している部分が多いため、 Twitter, Facebook が schema.org に対応してくれるとそれだけでもペイロードサイズがだいぶ削減されそうである。
+そもそも schema.org と Open Graph で内容が重複している部分が多いため、Twitter, Facebook が schema.org に対応してくれるとそれだけでもペイロードサイズがだいぶ削減されそうである。
 
-また、 schema.org も JSON-LD で記述することで、重複が発生し、サイズが増えてしまう。
+また、schema.org も JSON-LD で記述することで、重複が発生し、サイズが増えてしまう。
 
-これは Microdata などで行えば、 HTML 内に記述されている内容は、そのタグにプロパティを付けることで表現できるため、重複を避けることができる。
+これは Microdata などで行えば、HTML 内に記述されている内容は、そのタグにプロパティを付けることで表現できるため、重複を避けることができる。
 
-しかし、一方で本サイトが対応している [AMP HTML](https://blog.jxck.io/entries/2016-02-01/amp-html.html) は、 JSON-LD は許容しており、通常の HTML と AMP 用 HTML 両方を対応する上でも JSON-LD を使った方が楽だろうと判断し、 JSON-LD での記述とした。
+しかし、一方で本サイトが対応している [AMP HTML](https://blog.jxck.io/entries/2016-02-01/amp-html.html) は、JSON-LD は許容しており、通常の HTML と AMP 用 HTML 両方を対応する上でも JSON-LD を使った方が楽だろうと判断し、JSON-LD での記述とした。

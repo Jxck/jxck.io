@@ -6,7 +6,7 @@
 
 自分の [dotfiles](https://github.com/jxck/dotfiles) の中にある、便利コマンド集の中にある [selects](https://github.com/Jxck/dotfiles/blob/master/bin/selects) についてである。
 
-このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、 Ruby の動的言語として表現力を使って実装したものといえる。
+このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、Ruby の動的言語として表現力を使って実装したものといえる。
 
 その実装方法と実行例などについて記す。
 
@@ -33,7 +33,7 @@ $ selects mtime, size, basename from './entries/**/*' where extname '==' '.md' a
 
 そう思って確か三ヶ月くらい前から暇を見て書いてるが、まあ遊びのようなものなので、まだ dotfiles の便利コマンドディレクトリに入っている。
 
-依存ライブラリは無く、 1 ファイルで完結しているので、パスの通った所に置いてもらえればすぐ使える。
+依存ライブラリは無く、1 ファイルで完結しているので、パスの通った所に置いてもらえればすぐ使える。
 
 - https://github.com/Jxck/dotfiles/blob/master/bin/selects
 
@@ -163,11 +163,11 @@ File
 $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and directory? == true
 ```
 
-`select`, `where`, `order by` に使える属性なども、 ruby の File クラスのドキュメントを見てくれれば良い。
+`select`, `where`, `order by` に使える属性なども、ruby の File クラスのドキュメントを見てくれれば良い。
 
 - https://docs.ruby-lang.org/ja/2.3.0/class/File.html
 
-裏に Ruby が透けて見えるため、 Ruby を知ってると「こうすれば動きそう」がそのまま動く。
+裏に Ruby が透けて見えるため、Ruby を知ってると「こうすれば動きそう」がそのまま動く。
 
 これが Ruby にした理由だ。
 
@@ -180,9 +180,9 @@ $ selects atime, basename from './entries/**/*' where atime '>' 2016-08-01 and d
 
 特に、自分はシェル芸力が低いので、そういった場合は最初からスクリプトを書くだろう。ところがそのスクリプトも、結局は `glob` して `map` して `reduce` するよくあるものなので、それを DSL っぽくしたのがこのコマンドの正体だ。
 
-このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、 Ruby という表現力が高い動的言語のメリットを活かして実装した DSL と言える。
+このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、Ruby という表現力が高い動的言語のメリットを活かして実装した DSL と言える。
 
-だから Ruby を知ってて SQL が書ける人には、 *Ruby で書いた SQL っぽいメソッドチェインに見える* というメリットがある(と思う)。
+だから Ruby を知ってて SQL が書ける人には、*Ruby で書いた SQL っぽいメソッドチェインに見える* というメリットがある(と思う)。
 
 
 ## 細かいところ

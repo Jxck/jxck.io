@@ -4,7 +4,7 @@
 
 Preload を指定する `<link rel=preload>` の仕様が公開されており、現在 Chrome Canary に実装されている。
 
-この仕様のモチベーションについて、 Chrome 開発者の Yoav Weiss 氏のブログも公開された。
+この仕様のモチベーションについて、Chrome 開発者の Yoav Weiss 氏のブログも公開された。
 
 今回は、この仕様の特徴と用途を解説し、本サイトへの適用について検討する。
 
@@ -21,18 +21,18 @@ link 属性ファミリーで、最適化に用いられる値としては、以
 
 また、既に HTTP2 においてこの仕様の一部が使われており、最適化の意味合いとしてはかかわり合う部分もある。
 
-現在 Chrome Canary にのみ実装されており、 4 月には Chrome Stable にも入る予定である。他のブラウザの実装も進みつつある模様。
+現在 Chrome Canary にのみ実装されており、4 月には Chrome Stable にも入る予定である。他のブラウザの実装も進みつつある模様。
 
 
 ## Preload の特徴
 
-Resource Hints の例えば Prefetch との違いは、 Prefetch がナビゲーションの前に動作するのに対して、 Preload はナビゲーションが行われた後に動作することが上げられる。
+Resource Hints の例えば Prefetch との違いは、Prefetch がナビゲーションの前に動作するのに対して、Preload はナビゲーションが行われた後に動作することが上げられる。
 
 Prefetch は、画面を遷移する前に、次の遷移先で必要となるリソースについて、投機的な取得を指示していた。
 
 一方 Preload は現在表示しようとしているページに遷移した後、そのページ内でのリソース取得を最適化する。(Chrome が独自に実装している Subresource というのもあった、それに近い)
 
-また、 Preload は以下のような特徴を持ち、今までできなかったことができるようになる。
+また、Preload は以下のような特徴を持ち、今までできなかったことができるようになる。
 
 - 属性の指定によっていくつかのコントロールが可能である。
 - Content-Security-Policy を満たしているかを確認できる。
@@ -43,13 +43,13 @@ Prefetch は、画面を遷移する前に、次の遷移先で必要となる�
 
 ## クリティカルリソースの先行取得
 
-ナビゲーション終了後、レスポンスを取得したブラウザは、 HTML のパースを開始し、必要なサブリソースの取得(*Preload*)を開始する。
+ナビゲーション終了後、レスポンスを取得したブラウザは、HTML のパースを開始し、必要なサブリソースの取得(*Preload*)を開始する。
 
 しかし、必要なリソースが全て HTML に `<img>` や `<script>`, `<link>` などで書かれているとは限らず、取得した CSS や JS に記述されている場合がある。
 
-さらに CSS で指定されていて、 Preloader がそれを見つけていたとしても、実際にそのセレクタが使われるまでは、本当にそのイメージが必要かを判定することはできない。
+さらに CSS で指定されていて、Preloader がそれを見つけていたとしても、実際にそのセレクタが使われるまでは、本当にそのイメージが必要かを判定することはできない。
 
-例えば、 Above the Fold に表示される Hero Image が CSS の `div.hero { background-image: url("hero-image.png") }` で指定されていた場合は、実際の取得は HTML で `<div class=hero></div>` が出現してからになる。
+例えば、Above the Fold に表示される Hero Image が CSS の `div.hero { background-image: url("hero-image.png") }` で指定されていた場合は、実際の取得は HTML で `<div class=hero></div>` が出現してからになる。
 
 もっと酷い例として、後から取得された Web Font でテキストが全て置き換わった場合、これをなるべく早く(かつ高い優先度で)取得したいと思うのが自然だろう。
 
@@ -67,7 +67,7 @@ Web Font の場合はこうなる。
 <link rel=preload  as=font type=font/woff2 href=font.woff2 crossorigin>
 ```
 
-(Chrome は現状フォントの取得は暗黙的に CORS になるらしいため、 Same Origin からの取得でも `crossorigin` が必要らしい)
+(Chrome は現状フォントの取得は暗黙的に CORS になるらしいため、Same Origin からの取得でも `crossorigin` が必要らしい)
 
 `as` に指定可能な値は [fetch spec に一覧がある](https://fetch.spec.whatwg.org/#concept-request-destination)、省略すると XHR や fetch と同じ挙動になる。
 
@@ -78,9 +78,9 @@ Web Font の場合はこうなる。
 
 Preload を使うことで、「*取得しておきたいけど実行はしたくない*」というスクリプトの取得ができる。
 
-後から `<script>` を差し込むことで、 JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。
+後から `<script>` を差し込むことで、JS の「取得と実行」を遅延させることはこれまでもできたが、「取得」だけを先に行うことはできなかった。
 
-また、取得を XHR で行い保存しておいたものをあとで `eval` することもできるが、 Preload を使うことで実行を `<script>` で行え、ブラウザの Preloader に取得させるため、再利用が効く。
+また、取得を XHR で行い保存しておいたものをあとで `eval` することもできるが、Preload を使うことで実行を `<script>` で行え、ブラウザの Preloader に取得させるため、再利用が効く。
 
 まず「取得」を Preload で行う、これは HTML に書いておいても良いし、それ自体も遅延したければ好きなタイミングで以下のようにノードを作れば良い。
 
@@ -109,7 +109,7 @@ document.body.appendChild(script);
 
 `<link rel=preload>` は自身で `onload` を発火する。
 
-これを利用すると、 HTML と少しの JS で *非同期ローダ* を実現することができる。
+これを利用すると、HTML と少しの JS で *非同期ローダ* を実現することができる。
 
 例えば CSS の場合はこうなる。
 
@@ -167,7 +167,7 @@ HTTP Header にすることによって、マークアップと最適化を分�
 
 Preload をヒントとして使っていれば、サポートされてい無いブラウザにおいては従来通りのタイミングで取得が走るだけになる。
 
-しかし、 `onload` ハックなどを用いたより積極的な活用を行う上では、ブラウザのサポートの有無を知りたい場合もある。
+しかし、`onload` ハックなどを用いたより積極的な活用を行う上では、ブラウザのサポートの有無を知りたい場合もある。
 
 そこで、サポートされる `rel` の値を DOM から取れるような提案がなされている。
 
@@ -175,12 +175,12 @@ Preload をヒントとして使っていれば、サポートされてい無い
 document.createElement("link").relList.supports("preload"));
 ```
 
-これを使えば、 Preload が無効な場合に問題があるサイトでは、フォールバックすることも可能になる。
+これを使えば、Preload が無効な場合に問題があるサイトでは、フォールバックすることも可能になる。
 
 
 ## HTTP2
 
-HTTP2 において、 HTTP Link preload ヘッダは Push するリソースを指定する目的で使用している。
+HTTP2 において、HTTP Link preload ヘッダは Push するリソースを指定する目的で使用している。
 
 しかし、実際の動作として、サーバが行う HTTP2 の Push と、ブラウザが行う Preload は補完関係にある。
 
@@ -188,7 +188,7 @@ HTTP2 の Push ではリクエストより先にリソースを送ることが�
 
 レスポンスの HTML を取得した後、サブリソースを発見して Fetch するタイミングで、そのキャッシュがヒットするという仕組みである。
 
-一方で、 Push はブラウザが発呼する Fetch とは方向が逆であるため、ある程度の制限が出る。
+一方で、Push はブラウザが発呼する Fetch とは方向が逆であるため、ある程度の制限が出る。
 
 - Preload は任意のタイミングで発行し、完了を `onload` で知ることができる。
 - Preload は fetch であるため、コンテントネゴシエーションが実施できる。
@@ -197,7 +197,7 @@ HTTP2 の Push ではリクエストより先にリソースを送ることが�
 
 Push が既にブラウザにキャッシュされているリソースを考慮できないという問題は、別途 [提案](https://tools.ietf.org/html/draft-kazuho-h2-cache-digest) があるが、基本的に Push はクライアントの状況を踏まえることが難しい。
 
-もともと HTTP を基本とする Web がプルベースを前提としているため、 Fetch でリクエストを投げる際にクライアントの情報を載せ、サーバがそれをレスポンスに反映するモデルの方が、細かい調整がしやすいのは自明である。
+もともと HTTP を基本とする Web がプルベースを前提としているため、Fetch でリクエストを投げる際にクライアントの情報を載せ、サーバがそれをレスポンスに反映するモデルの方が、細かい調整がしやすいのは自明である。
 
 したがって、クライアントが置かれた状況を限定的に捉え、より積極的にリソースをキャッシュさせる用途で Push を。
 
@@ -205,7 +205,7 @@ Push が既にブラウザにキャッシュされているリソースを考慮
 
 という感じに、組み合わせて使うのが最も理想だと言えるだろう。
 
-なお、 HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、 `nopush` を付けることで Opt-Out することができる。
+なお、HTTP2 の Push はさせずブラウザに Fetch で Preload させたい場合は、`nopush` を付けることで Opt-Out することができる。
 
 ```http
 Link: </app/style.css>; rel=preload; as=style; nopush
@@ -230,9 +230,9 @@ Link: </app/style.css>; rel=preload; as=style; nopush
 
 そのため HTTP Header で Link rel=preload を指定すれば、必ず HTTP2 Push が発生する。
 
-まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、 [Cache Digest](https://tools.ietf.org/html/draft-kazuho-h2-cache-digest) を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
+まず、本サイトはまだ HTTP2 Push を持ちいた最適化は、キャッシュを有効に使えなくなるという理由から行っておらず、[Cache Digest](https://tools.ietf.org/html/draft-kazuho-h2-cache-digest) を Service Worker で管理する方式を採用する予定なので、そこまでは Link Header を付けるのは避けたい。
 
-そこで、ページで共通するサブリソースについて、 HTML のトップレベルへの `<link>` タグで指定することにした。
+そこで、ページで共通するサブリソースについて、HTML のトップレベルへの `<link>` タグで指定することにした。
 
 ```html
 <link rel=preload as=script src=/assets/js/highlight.min.js>
@@ -242,7 +242,7 @@ Link: </app/style.css>; rel=preload; as=style; nopush
 
 ### 検証
 
-本サイトの平均的な記事を対象として、 `<link>` の付与前後を Chrome Canary 51.0.2665.0 で検証した。
+本サイトの平均的な記事を対象として、`<link>` の付与前後を Chrome Canary 51.0.2665.0 で検証した。
 
 数回実行し、傾向を確認。平均的な結果のスクリーンショットを取得した。
 

@@ -4,7 +4,7 @@
 
 Apple が Alliance for Open Media に加盟したという報道があった。
 
-もし、このまま Safari が AV1 をサポートするまで至れば、 WebRTC のコーデック戦争に一旦の落ち着きが出ると思われる。
+もし、このまま Safari が AV1 をサポートするまで至れば、WebRTC のコーデック戦争に一旦の落ち着きが出ると思われる。
 
 [Apple joins alliance to shrink your online videos - CNET](https://www.cnet.com/news/apple-online-video-compression-av1/)
 
@@ -22,7 +22,7 @@ WebRTC によって、動画/音声をやり取りする際に、ブラウザは
 - ハードウェアエンコーダサポート
 - 普及率
 
-パフォーマンス要件は確かに無視できないが、 Web において最も重要なのはやはりパテントの問題である。
+パフォーマンス要件は確かに無視できないが、Web において最も重要なのはやはりパテントの問題である。
 
 そこで、パテントフリーを謳う新たなコーデックの開発も行われ、度々候補として提案されてきた。
 
@@ -33,7 +33,7 @@ WebRTC によって、動画/音声をやり取りする際に、ブラウザは
 - [RFC 7742 - WebRTC Video Processing and Codec Requirements](https://tools.ietf.org/html/rfc7742)
 - [RFC 7874 - WebRTC Audio Codec and Processing Requirements](https://tools.ietf.org/html/rfc7874)
 
-一方すでに、 H.265/VP9 が性能的にも更新しており、 H.264/VP8 だけをサポートして終わりともいかない。
+一方すでに、H.265/VP9 が性能的にも更新しており、H.264/VP8 だけをサポートして終わりともいかない。
 
 
 ## コーデックの選択
@@ -48,7 +48,7 @@ VP9 は、ロイヤリティフリーでありながら、特に Safari がサ�
 
 一方で、サポートする側がどのコーデックを詰むかも、コーデックの普及状況を鑑みる。
 
-WebRTC のように相互に通信をし、リアルタイムに処理をする必要がある場合、ライセンス的に安全で、ハードウェアエンコーダがサポートしており、ブラウザ実装が進んでいて、スペックパフォーマンスに難が無い、 *単一のコーデック* があるのが嬉しいのが本音だ。
+WebRTC のように相互に通信をし、リアルタイムに処理をする必要がある場合、ライセンス的に安全で、ハードウェアエンコーダがサポートしており、ブラウザ実装が進んでいて、スペックパフォーマンスに難が無い、*単一のコーデック* があるのが嬉しいのが本音だ。
 
 音声は Opus で良いとして、動画については H.264/H.265/VP8/VP9 という選択肢の幅は、多様性として受け入れるほど嬉しいと言い切れない現状がある。
 
@@ -57,17 +57,17 @@ WebRTC のように相互に通信をし、リアルタイムに処理をする�
 
 こうした問題を解決することを目標として AOM (Alliance for Open Media) により開発されているのが AV1 である。
 
-AV1 は、最初から H.265 や VP9 を置き換えることを目的としており、 Google も VP10 開発から舵を切りその成果を組み込んでいる。
+AV1 は、最初から H.265 や VP9 を置き換えることを目的としており、Google も VP10 開発から舵を切りその成果を組み込んでいる。
 
 もちろん、最初からロイヤリティフリーなコーデックであることを目指している。
 
 Alliance のメンバーには AMD, ARM, Intel, NVIDIA などが名を連ね、ハードウェアのサポートも期待ができそうだ。
 
-そして、 Google, Microsoft, Mozilla がいるため、 Chrome/Edge/Firefox については実装が期待される。
+そして、Google, Microsoft, Mozilla がいるため、Chrome/Edge/Firefox については実装が期待される。
 
 コンテンツも、既に Amazon Prim, Youtube, Netflix, Hulu などの指示も取り付けているようだ。
 
-つまり、 WebRTC 的に言えば「*あと Apple だけ*」だった。
+つまり、WebRTC 的に言えば「*あと Apple だけ*」だった。
 
 
 ## Apple joins AOM
@@ -76,7 +76,7 @@ Alliance のメンバーには AMD, ARM, Intel, NVIDIA などが名を連ね、�
 
 [Apple joins alliance to shrink your online videos - CNET](https://www.cnet.com/news/apple-online-video-compression-av1/)
 
-このニュースのソースは、 AOM の公式アナウンス等ではなく、 [AOM のページ](http://aomedia.org/about-us/) のメンバー欄に Apple が追加されたことを元にしているようだ。
+このニュースのソースは、AOM の公式アナウンス等ではなく、[AOM のページ](http://aomedia.org/about-us/) のメンバー欄に Apple が追加されたことを元にしているようだ。
 
 - [before](https://web.archive.org/web/20180104174428/http://aomedia.org/about-us/)
 - [after](https://web.archive.org/web/20171226184721/http://aomedia.org/about-us/)

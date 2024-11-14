@@ -2,7 +2,7 @@
 
 ## Intro
 
-IE11 が役目を終えていく流れを記録として残す。特に MS からのアナウンスや、それに準じた各サービスの反応、特に IE サポート終了アナウンスをまとめることで、 IE11 というブラウザがどのように終了していったのかのを記録することを目的とする。
+IE11 が役目を終えていく流れを記録として残す。特に MS からのアナウンスや、それに準じた各サービスの反応、特に IE サポート終了アナウンスをまとめることで、IE11 というブラウザがどのように終了していったのかのを記録することを目的とする。
 
 もともとは [Google Docs](https://docs.google.com/document/d/1XP58gVMyp_UCP4FFsf5ATpvRVwqi7v_EpEF3sl_Sobk/edit) にまとめていたものである。
 
@@ -26,9 +26,9 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 - **2018/07/18: Internet Explorer の今後について - Japan IE Support Team Blog**
   - https://social.msdn.microsoft.com/Forums/ja-JP/47290e24-fc66-4d3e-a2de-429643758d40/internet-explorer-12398201702446012395123881235612390?forum=edgeiesupportteamja&fbclid=IwAR3D0Yw4FEqGFAaOL4eYiTNSXloWKzJLqaOgTNMP3Jdk6WaY3s5oPEuLajo
   - http://web.archive.org/web/20180718022957/https://blogs.technet.microsoft.com/jpieblog/2018/07/18/internet-explorer-support/
-  - 「Windows 10 においては、 Microsoft Edge と Internet Explorer というふたつのブラウザーが搭載されていますが、弊社としましては、 Internet Explorer との後方互換性が必要な業務 Web システムには Internet Explorer を利用いただき、 Internet Explorer でなければならない場合以外は Microsoft Edge をご利用いただくことを提案してきました。」
+  - 「Windows 10 においては、Microsoft Edge と Internet Explorer というふたつのブラウザーが搭載されていますが、弊社としましては、Internet Explorer との後方互換性が必要な業務 Web システムには Internet Explorer を利用いただき、Internet Explorer でなければならない場合以外は Microsoft Edge をご利用いただくことを提案してきました。」
   - 「この考え方は今も基本的には変わりはありませんが、現在の Web アプリケーションが古いブラウザーである Internet Explorer 固有の機能に依存している状態であれば、そうした依存性を無くし、最新のブラウザーである Microsoft Edge で閲覧できるように見直していただくことを、今からご検討いただくようお伝えをしていくことが、私たちサポート チームの使命と考えています。」
-  - 「Internet Explorer はいつまでサポートが提供されるのか?など、将来の予定についてお問い合せをいただいたとしても、大変恐縮ですが回答することはできません。ただ、世の中の大きな流れとして、 Web ブラウザーという観点では相互運用性を保ちつつも、最新の Web 標準の技術を取り入れる方向性となっていることをご認識いただき、引き続き Legacy Web から Modern Web への移行を十分に余裕をもった計画で検討を進める必要があるということを、今回の記事をきかっけに改めて意識をしていただけますと幸いです。」
+  - 「Internet Explorer はいつまでサポートが提供されるのか?など、将来の予定についてお問い合せをいただいたとしても、大変恐縮ですが回答することはできません。ただ、世の中の大きな流れとして、Web ブラウザーという観点では相互運用性を保ちつつも、最新の Web 標準の技術を取り入れる方向性となっていることをご認識いただき、引き続き Legacy Web から Modern Web への移行を十分に余裕をもった計画で検討を進める必要があるということを、今回の記事をきかっけに改めて意識をしていただけますと幸いです。」
 - 2018/11/26: Internet Explorer 11 のサポート終了のお知らせ - Zendesk ヘルプ
   - [https://support.zendesk.com/hc/ja/articles/360002084367-Internet-Explorer-11 のサポート終了のお知らせ](https://support.zendesk.com/hc/ja/articles/4408822547098-Internet-Explorer-11%E3%81%AE%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B)
 
@@ -60,7 +60,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 - 2019/08/02: An update on disabling VBScript in Internet Explorer 11
   - https://blogs.windows.com/msedgedev/2019/08/02/update-disabling-vbscript-internet-explorer-windows-7-8/#AQoMz1kXuFvK6M6J.97
   - IE11 で VBScript 無効化のアナウンス
-- 2019/11/01: 今後 LIG が制作する Web サイトは、 Internet Explorer の対応をやめます。 | 株式会社 LIG
+- 2019/11/01: 今後 LIG が制作する Web サイトは、Internet Explorer の対応をやめます。| 株式会社 LIG
   - https://liginc.co.jp/481562
 
 
@@ -99,7 +99,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
   - https://blogja.gyazo.com/entry/2020/10/21/173000
 - 2020/10/29: さくらインターネット 全サービスにおける Internet Explorer サポート終了のお知らせ | さくらインターネット
   - https://www.sakura.ad.jp/information/announcements/2020/10/29/1968205310/
-- 2020/10/30: マガジン公式サイト Internet Explorer 非対応のお知らせ。 - 週マガ公式サイト
+- 2020/10/30: マガジン公式サイト Internet Explorer 非対応のお知らせ。- 週マガ公式サイト
   - https://shonenmagazine.com/info/entry/20201030oshirase
 - 2020/11/16: Internet Explorer のサポート終了とその後の BASE の進化 - BASE プロダクトチームブログ
   - https://devblog.thebase.in/entry/ie-forever
@@ -213,7 +213,7 @@ IE11 が役目を終えていく流れを記録として残す。特に MS か�
 
 - **mozaic.fm ep 83 IE**
   - https://mozaic.fm/episodes/83/ie.html
-  - Microsoft の Yusuke さんをお呼びして、 IE のたどってきた歴史を振り返り、これをどう Edge に置き換えていくのかという流れを踏まえながら、 IE が Web に与えた歴史や、 IE 以降の Web について議論した。
+  - Microsoft の Yusuke さんをお呼びして、IE のたどってきた歴史を振り返り、これをどう Edge に置き換えていくのかという流れを踏まえながら、IE が Web に与えた歴史や、IE 以降の Web について議論した。
   - IE サポートアナウンスの詳細や、開発者はこれから何に取り組んでいくべきなのかという点も議論している。
 
 

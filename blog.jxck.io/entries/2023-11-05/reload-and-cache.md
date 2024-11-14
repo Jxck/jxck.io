@@ -7,7 +7,7 @@
 
 ## 「ブラウザでキャッシュがヒットしない」
 
-以下は、 Web における Caching の FAQ だ。
+以下は、Web における Caching の FAQ だ。
 
 - サーバで `Cache-Control` を付与したのにキャッシュがヒットしない
 - サーバで `ETag` を付与したのに `If-None-Match` が送られない
@@ -52,9 +52,9 @@
 
 Navigation とは、要するにリンクをクリックした場合に発生する画面遷移のリクエストだ。
 
-このリクエストに対し、 Fresh なレスポンスが Store されていれば Reuse される(意訳: ブラウザにキャッシュがあればヒットする)。
+このリクエストに対し、Fresh なレスポンスが Store されていれば Reuse される(意訳: ブラウザにキャッシュがあればヒットする)。
 
-もし、 `ETag` や `Last-Modified` が付与されていた場合は、 Validation が発生する(意訳: `If-None-Match` や `If-Modified-Since` が付与されたリクエストが送られ、 304 が返ってくれば再利用される)。
+もし、`ETag` や `Last-Modified` が付与されていた場合は、Validation が発生する(意訳: `If-None-Match` や `If-Modified-Since` が付与されたリクエストが送られ、304 が返ってくれば再利用される)。
 
 ```http
 GET / HTTP/1.1
@@ -68,11 +68,11 @@ If-Modified-Since: Thu, 20 Feb 2020 20:20:20 GMT
 
 ### Reload
 
-Reload は、画面の更新だ。ブラウザの URL バーの隣にあるリロードボタンや、 CMD-r / F5 などで実行される。
+Reload は、画面の更新だ。ブラウザの URL バーの隣にあるリロードボタンや、CMD-r / F5 などで実行される。
 
 Reload はそもそも、何らかの理由で壊れた画面の修復や、最新情報への更新のために実装されている。したがって、「キャッシュが再利用されてほしくない」というのがユーザの要求であるため、当然のように、ブラウザが Fresh なレスポンスを Store していようがいまいが、バイパスして Origin にリクエストする。(意訳: サーバに最新の HTML を取りに行く)
 
-つまり、いくら `max-age` が切れてなくても、 Reload しながら DevTools でキャッシュがヒットする様子を見ることはできないのだ。
+つまり、いくら `max-age` が切れてなくても、Reload しながら DevTools でキャッシュがヒットする様子を見ることはできないのだ。
 
 なお、リクエストは以下のようになる。
 
@@ -86,14 +86,14 @@ If-Modified-Since: Thu, 20 Feb 2020 20:20:20 GMT
 
 Conditional Request は行われているため、厳密にはブラウザに Response が保存されているが、Validation を強制していることになる(意訳: 304 が返ることはある)。
 
-*普段、結果の表示を Reload でデバッグしている癖でやってしまいがちではあるが、「Reload の挙動は Navigation とは違う」という点は、 Cache 周りをいじっているなら念頭におきたい*。
+*普段、結果の表示を Reload でデバッグしている癖でやってしまいがちではあるが、「Reload の挙動は Navigation とは違う」という点は、Cache 周りをいじっているなら念頭におきたい*。
 
 `max-age=0` を使っている理由は後述する。
 
 
 ## Force Reload
 
-Force Reload は Super Reload などとも呼ばれ、 Shift + Reload や DevTools の "Disable Cache" 相当の機能を有効にすると発生するものだ。
+Force Reload は Super Reload などとも呼ばれ、Shift + Reload や DevTools の "Disable Cache" 相当の機能を有効にすると発生するものだ。
 
 したがって、一般ユーザによる実行ではなく、開発者が実行するという意図で実装されている。
 
@@ -105,15 +105,15 @@ Host: example.com
 Cache-Control: no-cache
 ```
 
-`no-cache` を用いているため、「Origin に Validation を強制」していることがわかるだろう。しかし、 `If-Modified-Since` や `Last-Modified` が消えていることから、 Conditional Request ではない。つまり、 Validation ではなく「Origin から最新の Response を取得する」という挙動になることがわかる。
+`no-cache` を用いているため、「Origin に Validation を強制」していることがわかるだろう。しかし、`If-Modified-Since` や `Last-Modified` が消えていることから、Conditional Request ではない。つまり、Validation ではなく「Origin から最新の Response を取得する」という挙動になることがわかる。
 
 意訳: ブラウザに `max-age` の切れていないキャッシュがあってもヒットしないし、サーバからは 304 が返ることもなく、必ず 200 が返る。
 
 これこそが、「画面を最新の情報にする挙動」だろう、実際仕様的にもこれが最もそれに相応しい Request と言える。
 
-では、なぜ Reload は `max-age=0` なのかというと、 `no-cache` が仕様化されたのは、ブラウザが登場してからかなり経ってからだからだ。それ以前は `max-age=0` が使われていたため、ブラウザのリロードの実装もそのころから `max-age=0` を使っていた。後に `no-cache` が登場したからといって Reload の実装を変えると、クライアントが `no-cache` を送ってくることを想定していないサービスにおいては、互換性が壊れる可能性があり、現状でもそのままの実装となっている。
+では、なぜ Reload は `max-age=0` なのかというと、`no-cache` が仕様化されたのは、ブラウザが登場してからかなり経ってからだからだ。それ以前は `max-age=0` が使われていたため、ブラウザのリロードの実装もそのころから `max-age=0` を使っていた。後に `no-cache` が登場したからといって Reload の実装を変えると、クライアントが `no-cache` を送ってくることを想定していないサービスにおいては、互換性が壊れる可能性があり、現状でもそのままの実装となっている。
 
-しかし、ブラウザが開発環境を兼ね、 Devtools のような機能が入り、より複雑な開発が行われるようになると、より厳密な Reload である `no-cache` の実装が求められた。そこで、開発者向けに別途 Force Reload として実装された。Devtools に Disable Cache があるのは、 Force Reload を強制するためだ。
+しかし、ブラウザが開発環境を兼ね、Devtools のような機能が入り、より複雑な開発が行われるようになると、より厳密な Reload である `no-cache` の実装が求められた。そこで、開発者向けに別途 Force Reload として実装された。Devtools に Disable Cache があるのは、Force Reload を強制するためだ。
 
 
 ## 正しい検証方法
@@ -135,13 +135,13 @@ If-Modified-Since: Sat, 11 Nov 2023 11:11:11 GMT
 ...
 ```
 
-このキャッシュがヒットするところが見たい場合は、以下のようなリンクをクリックし、そこに遷移すれば良い。もちろん、 "Disable Cache" は無効にする。
+このキャッシュがヒットするところが見たい場合は、以下のようなリンクをクリックし、そこに遷移すれば良い。もちろん、"Disable Cache" は無効にする。
 
 ```css
 <a href="/home.html">Home</a>
 ```
 
-もし、 100s 以内ならキャッシュがヒットするだろうし、 100s すぎたら以下のようなリクエストが飛ぶだろう。
+もし、100s 以内ならキャッシュがヒットするだろうし、100s すぎたら以下のようなリクエストが飛ぶだろう。
 
 ```http
 GET /home.html HTTP/1.1
@@ -170,14 +170,14 @@ If-Modified-Since: Sat, 11 Nov 2023 11:11:11 GMT
 
 Firefox と Safari はこれを実装している。しかし Chrome は実装をしてない。
 
-Chrome は独自の調査の結果、 `immutable`がなくても Reload 時にサブリソースを Validation する必要はないという結論に至った。そのため、Reload 時にはメインリソースのみを再取得し、サブリソースは`immutable` がデフォルトという実装に変更されている。
+Chrome は独自の調査の結果、`immutable`がなくても Reload 時にサブリソースを Validation する必要はないという結論に至った。そのため、Reload 時にはメインリソースのみを再取得し、サブリソースは`immutable` がデフォルトという実装に変更されている。
 
 この変更については、以下に詳細がある。
 
 - Chromium Blog: Reload, reloaded: faster and leaner page reloads
   - https://blog.chromium.org/2017/01/reload-reloaded-faster-and-leaner-page_26.html
 
-つまり、先ほどの「リロードしながらキャッシュの挙動を観察する」においては、 Chrome でサブリソースは常にキャッシュがヒットしている状態と考えることができる。この場合に出る以下のエラーメッセージが、かなり不親切なため、余計に混乱するかもしれないが、リクエストセクションの表示がないのはリクエストが発生すらしてないからだと思って良い。
+つまり、先ほどの「リロードしながらキャッシュの挙動を観察する」においては、Chrome でサブリソースは常にキャッシュがヒットしている状態と考えることができる。この場合に出る以下のエラーメッセージが、かなり不親切なため、余計に混乱するかもしれないが、リクエストセクションの表示がないのはリクエストが発生すらしてないからだと思って良い。
 
 ```
 Provisional headers are shown, Disable cache to see full headers.
@@ -188,11 +188,11 @@ Provisional headers are shown, Disable cache to see full headers.
 
 ## おまけ
 
-> `no-cache` という名前はキャッシュの仕様における最大の間違いだ、 "キャッシュしない" は `no-store` なのでそちらを使うべきだ
+> `no-cache` という名前はキャッシュの仕様における最大の間違いだ、"キャッシュしない" は `no-store` なのでそちらを使うべきだ
 
 や
 
-> 世の中には `no-store` を無視するブラウザがあるから、 `no-cache, no-store, max-age=0, must-revalidate, proxy-revalidate...` とすべきだ
+> 世の中には `no-store` を無視するブラウザがあるから、`no-cache, no-store, max-age=0, must-revalidate, proxy-revalidate...` とすべきだ
 
 といったこの話につきものの言説も、仕様を少しかじった人たちや、古い資料の知識から更新されてない人たちによって、決して正しいとは言えない解説とともに、いまだに更新されず流布している。
 

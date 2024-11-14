@@ -42,7 +42,7 @@ PING
 
 ping 属性はこれに加え「どこに遷移して行ったか」を標準仕様だけで取ることを可能にし、より精度の高いユーザの行動解析を可能にするものだ。
 
-身近な ping の導入事例としては、 Google の検索結果がある。 ping を実装したブラウザでリンクを踏むともれなく ping が飛んでいることだろう。
+身近な ping の導入事例としては、Google の検索結果がある。ping を実装したブラウザでリンクを踏むともれなく ping が飛んでいることだろう。
 
 
 ## Ping と Privacy
@@ -61,7 +61,7 @@ ping 属性はこれに加え「どこに遷移して行ったか」を標準仕
 
 ましてや、標準仕様でありながら「ユーザの意図しない挙動」であると捉えられ、新たな悲劇が起こるといったことも、笑い話ではないご時世だ。
 
-そこで、この仕様について交わされてきた議論の経緯を踏まえることで、 Web はこのユーザの持つ「気持ち悪さ」にどうアプローチし、ユーザをどう守るのか、なぜ今この仕様が消えていないのかについて解説する。
+そこで、この仕様について交わされてきた議論の経緯を踏まえることで、Web はこのユーザの持つ「気持ち悪さ」にどうアプローチし、ユーザをどう守るのか、なぜ今この仕様が消えていないのかについて解説する。
 
 
 ## Hyperlink Auditing
@@ -88,7 +88,7 @@ Web はハイパーリンクで繋がるモデルを採用し、それによっ�
 
 ### JS
 
-最も想像しやすい手法は、 JS を用いた実装だろう。
+最も想像しやすい手法は、JS を用いた実装だろう。
 
 `onclick`, `onunload`, などをフックし、遷移の前に必要な情報を載せたリクエストをサーバに飛ばす方法だ。
 
@@ -121,7 +121,7 @@ JS で行えば、収集する情報もタイミングも、柔軟に設定で�
 
 もう一つ、広く採用されている方法にリダイレクトがある。
 
-例えば SNS や Chat などで URL を共有すると、以下のように URL が表示されるが、 href は別の URL に差し替えられている、という場合がある。
+例えば SNS や Chat などで URL を共有すると、以下のように URL が表示されるが、href は別の URL に差し替えられている、という場合がある。
 
 ```html
 <a href=https://redirect.example?to=https://hello.example.com/world.html>https://hello.example.com/world.html</a>
@@ -129,7 +129,7 @@ JS で行えば、収集する情報もタイミングも、柔軟に設定で�
 
 この場合、実際の遷移先のパラメータを入れておくことで、リダイレクト先で流出先を収集し、その後すぐリダイレクトをかけるというものだ。
 
-Referer をとるか、 from をクエリに追加すれば、 `Ping-From`, `Ping-To` 同等の情報が得られる。
+Referer をとるか、from をクエリに追加すれば、`Ping-From`, `Ping-To` 同等の情報が得られる。
 
 
 ## 画面遷移の UX
@@ -156,18 +156,18 @@ Beacon や Keep-Alive Fetch を投げるための JS を追加で取得する必
 
 ユーザは、リンクをクリックしたら画面が遷移する、という普通のことをオーバーヘッドほとんどなしで行うことができる。
 
-API が使われれば使われるほど、ブラウザの最適化も進み、パフォーマンス、セキュリティ、 a11y などの非機能要件が改善するサイクルも期待できる。
+API が使われれば使われるほど、ブラウザの最適化も進み、パフォーマンス、セキュリティ、a11y などの非機能要件が改善するサイクルも期待できる。
 
-つまり、 UX を損ねることなく同等の要件が達成できる。
+つまり、UX を損ねることなく同等の要件が達成できる。
 
 
 ### Privacy の担保
 
 標準化された API であるということは、送られる情報も仕様に定義されているため、把握することができる。
 
-今の仕様では、 Referer は付与さず、 Ping-To に遷移先 URL 、 Ping-From に遷移元が載るのが基本だ。
+今の仕様では、Referer は付与さず、Ping-To に遷移先 URL 、Ping-From に遷移元が載るのが基本だ。
 
-(ただし、 ping を送る URL が Origin をまたぐ場合や HTTPS でない場合は Ping-From は削除される)
+(ただし、ping を送る URL が Origin をまたぐ場合や HTTPS でない場合は Ping-From は削除される)
 
 現在の仕様では ping に情報を追加する API は無いため、ブラウザが独自拡張をしない限り「何が送られるのか」を把握することができる。
 
@@ -176,7 +176,7 @@ API が使われれば使われるほど、ブラウザの最適化も進み、�
 
 前述の 2 つにも増して最も強調したいのは、ブラウザの設定により「ユーザがコントロールできる余地が生まれる」ことだ。
 
-まず、 ping の仕様には以下が記述されている。
+まず、ping の仕様には以下が記述されている。
 
 > User agents should allow the user to adjust this behavior, for example in conjunction with a setting that disables the sending of HTTP `Referer` (sic) headers. Based on the user's preferences, UAs may either ignore the ping attribute altogether, or selectively ignore URLs in the list (e.g. ignoring any third-party URLs); this is explicitly accounted for in the steps above.
 > --- [HTML Standard](https://html.spec.whatwg.org/multipage/links.html#hyperlink-auditing)
@@ -200,7 +200,7 @@ JS による収集は、究極的には JS を無効にしなければ Opt-Out �
 
 しかし、ブラウザに実装された機能を使うならば、ブラウザはなんらかの方法で UI 上に通知することも不可能ではない。
 
-実際にそれを行っているブラウザはまだないが、 ping 属性がなければ、ユーザはいつまでも選択肢を得ることすらできなかったのだ。
+実際にそれを行っているブラウザはまだないが、ping 属性がなければ、ユーザはいつまでも選択肢を得ることすらできなかったのだ。
 
 
 ## 標準と実装と合意形成
@@ -211,7 +211,7 @@ JS による収集は、究極的には JS を無効にしなければ Opt-Out �
 
 しかし、現状はサービスに対して自身の選択を反映させることができないという問題がある。あってもサービスを使わないといった極端なものだ。
 
-ping を標準化し、 User-Agent が実装し、サービスが独自の実装を捨ててそちらに移行することは、標準を通じてユーザが「自身の閲覧環境は自身が選択する」というもっとも根本的な権利を取り戻すことに繋がる。
+ping を標準化し、User-Agent が実装し、サービスが独自の実装を捨ててそちらに移行することは、標準を通じてユーザが「自身の閲覧環境は自身が選択する」というもっとも根本的な権利を取り戻すことに繋がる。
 
 仮に ping が一般に認知され「サービスは ping を使い、ユーザは設定でその挙動をコントロールできる」という合意が形成されたとしよう。
 
@@ -224,7 +224,7 @@ ping 属性を無視し独自実装を続けるサービスは、ユーザから
 
 ## 合意とエコシステム
 
-ping に限った話ではなく、 Cookie, Referer, Permission, Pop-Up Blocker, ITP, Private Mode なども、個々に性質や結果は違えど、同じような経緯を辿り今に至っていると言っていいだろう。
+ping に限った話ではなく、Cookie, Referer, Permission, Pop-Up Blocker, ITP, Private Mode なども、個々に性質や結果は違えど、同じような経緯を辿り今に至っていると言っていいだろう。
 
 今問題になっているマイニングも、こういうプロセスを経ることで、より健全な形で運用することも、本来はできたはずである。
 
@@ -232,7 +232,7 @@ ping に限った話ではなく、 Cookie, Referer, Permission, Pop-Up Blocker,
 
 それが Permission API や QuotaManagement API の延長に標準化され、ブラウザはその CPU 利用などを UI 上で表示したり、一切を無効にする設定を加えることも不可能では無いだろう。
 
-サービスは、ユーザの明示的な許可を得てそれを行い、 ViewPort を埋め込み広告で汚すことなくマネタイズ手段を確保するという選択肢を得られたかもしれないし、ユーザはマイニングを拒否することも、広告の代わりにマイニングを選択することもできたはずだ。
+サービスは、ユーザの明示的な許可を得てそれを行い、ViewPort を埋め込み広告で汚すことなくマネタイズ手段を確保するという選択肢を得られたかもしれないし、ユーザはマイニングを拒否することも、広告の代わりにマイニングを選択することもできたはずだ。
 
 そこまで合意が形成されれば、そのエコシステムを完全に無視して、無尽蔵なマイニングを行うスクリプトを走らせたサービスを「意図しない挙動だ」と言って非難することに、違和感は無いだろう。
 
@@ -244,7 +244,7 @@ ping に限った話ではなく、 Cookie, Referer, Permission, Pop-Up Blocker,
 
 もちろん、合意の形成はゆるやかに行われるものだ、その間にユーザが危険にされされる可能性もあるだろう。
 
-ちょうど先月、 Firefox の safe browsing の [black list](https://github.com/mozilla-services/shavar-prod-lists/blob/7eaadac98bc9dcc95ce917eff7bbb21cb71484ec/disconnect-blacklist.json) が更新され、マイニングの URL が追加された。
+ちょうど先月、Firefox の safe browsing の [black list](https://github.com/mozilla-services/shavar-prod-lists/blob/7eaadac98bc9dcc95ce917eff7bbb21cb71484ec/disconnect-blacklist.json) が更新され、マイニングの URL が追加された。
 
 これは、ようやくプロセス自体が周り始める兆しだったと見ることもできただろう。
 
@@ -259,7 +259,7 @@ ping に限った話ではなく、 Cookie, Referer, Permission, Pop-Up Blocker,
 
 ## ping の実装の現状
 
-話を戻すと、 ping はまだこうした合意形成の途中と言える。
+話を戻すと、ping はまだこうした合意形成の途中と言える。
 
 いまだに Privacy を懸念する声があがることもあり、[情報を追加するための API](https://github.com/w3c/html/issues/369) を求める声もある。
 
@@ -273,9 +273,9 @@ ping に限った話ではなく、 Cookie, Referer, Permission, Pop-Up Blocker,
 
 [Can I use - ping](https://caniuse.com/#feat=ping)
 
-ユーザコントロールについては、 Chrome は無効にすることが可能になっている。
+ユーザコントロールについては、Chrome は無効にすることが可能になっている。
 
-しかし、いわゆるメニュー画面ではなく、 chrome://flags であるため、開発者向けの色合いが強い。
+しかし、いわゆるメニュー画面ではなく、chrome://flags であるため、開発者向けの色合いが強い。
 
 Safari は、最近この件について態度を表明した。
 
@@ -297,7 +297,7 @@ Firefox は有効にするには `browser.send_pings` が必要だ。
 - [Privacy concern with ping attribute - Issue #1456 - w3c/html](https://github.com/w3c/html/issues/1456)
 - [Privacy concern with ping attribute - Issue #3718 - whatwg/html](https://github.com/whatwg/html/issues/3718)
 
-この先どのような合意が形成されるかは未知だが、 Safari がブログで態度を表明したことは、この流れに少なからず影響するだろう。
+この先どのような合意が形成されるかは未知だが、Safari がブログで態度を表明したことは、この流れに少なからず影響するだろう。
 
 次の Edge も Chromium が実装済みの ping を継承しているため、その UI をどうするかという議論には参加することになるだろう。
 

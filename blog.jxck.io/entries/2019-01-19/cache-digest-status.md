@@ -2,9 +2,9 @@
 
 ## Intro
 
-httpbis のチェアである mnot から、 Cache Digest についての現状確認が ML に投稿された。
+httpbis のチェアである mnot から、Cache Digest についての現状確認が ML に投稿された。
 
-もしこのまま反応がなければ、 Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。
+もしこのまま反応がなければ、Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。
 
 
 ## Update
@@ -15,15 +15,15 @@ httpbis のチェアである mnot から、 Cache Digest についての現状�
 
 ## HTTP2 Push
 
-HTTP2 の仕様策定時に盛り込まれた新機能として、 Server Push があった。
+HTTP2 の仕様策定時に盛り込まれた新機能として、Server Push があった。
 
 これは、例えば RPC 的な用途で双方向性のある通信を可能にした。
 
-Web においては、リクエストが来る前にレスポンスを返しキャッシュに入れ込むことで、 RTT を減らすという効果が期待されていた。
+Web においては、リクエストが来る前にレスポンスを返しキャッシュに入れ込むことで、RTT を減らすという効果が期待されていた。
 
 ところが、コンテントネゴシエーションをせずに、一方的にキャッシュを送り込むこの仕組みは、ブラウザが既にキャッシュをしている場合にはむしろ無駄な通信になる。
 
-そこで、なんとかして「ブラウザがなるべくキャッシュしてなさそうなものを Push する」ために [@kazuho](https://twitter.com/kazuho) さんが考案したのが、 Cache Digest である。
+そこで、なんとかして「ブラウザがなるべくキャッシュしてなさそうなものを Push する」ために [@kazuho](https://twitter.com/kazuho) さんが考案したのが、Cache Digest である。
 
 
 ## Cache Digest
@@ -34,9 +34,9 @@ Cache Digest は以下のドラフトであり、現状 -05 である。
 
 究極には、ブラウザが保存しているコンテンツのリストを送ってくれば、正確に Push が可能だが、その方法は問題しかない。
 
-現代の Web でそれをやるとサイズが大きすぎるし、 Fingerprint などの問題も懸念される。
+現代の Web でそれをやるとサイズが大きすぎるし、Fingerprint などの問題も懸念される。
 
-そこで、 Filtercuckoo Filter という Bloom Filter に似た確率的データ構造を用いるのがこの提案だ。
+そこで、Filtercuckoo Filter という Bloom Filter に似た確率的データ構造を用いるのがこの提案だ。
 
 「このコンテンツは絶対にキャッシュされてない」ことはわかるので、その場合は Push を行う。
 
@@ -44,7 +44,7 @@ Cache Digest は以下のドラフトであり、現状 -05 である。
 
 これにより、もし後者で実際にはキャッシュがなかった場合は、ブラウザが普段通り Fetch すればよいため、「無駄な Push は無くせる」という効果が期待された。
 
-つまりこれは Push という Server to Client なプロトコルを、 Client 起点のリクエストのセマンティクスに馴染ませるための橋渡しだったと言えるだろう。
+つまりこれは Push という Server to Client なプロトコルを、Client 起点のリクエストのセマンティクスに馴染ませるための橋渡しだったと言えるだろう。
 
 現実的には、「*これが無かったら対ブラウザの HTTP2 Push は正直使い物にならない*」というくらい重要なミッシングピースだったと筆者は考えており、使える日を心待ちにしていた。
 
@@ -80,16 +80,16 @@ Cache Digest は、どちらかというと実装待ちのフェーズだった�
 
 [HTTP の新しいステータスコード 103 Early Hints | blog.jxck.io](https://blog.jxck.io/entries/2016-12-16/103-early-hints.html)
 
-簡単に言えば、 Main Resource の Status Code が決定する前に、確定している Sub Resource を Status Code 103 として送るための仕組みだ。
+簡単に言えば、Main Resource の Status Code が決定する前に、確定している Sub Resource を Status Code 103 として送るための仕組みだ。
 
-これは、 Push を CDN に移譲したりといった一部のユースケースを満たすが、依然として Client が何を Cache しているかはわからない。
+これは、Push を CDN に移譲したりといった一部のユースケースを満たすが、依然として Client が何を Cache しているかはわからない。
 
 もう一つ、ちょうど先月提案されたのが Prefer-Push という仕組みだ。
 
 - [Prefer-Push, a HTTP extension](https://lists.w3.org/Archives/Public/ietf-http-wg/2018OctDec/0144.html)
 - [evert/push-please: A proposal for a HTTP-client suggested push by link-relation](https://github.com/evert/push-please/)
 
-これは、 Client 自身が Push してほしいリソースをヘッダで送るというものだ。
+これは、Client 自身が Push してほしいリソースをヘッダで送るというものだ。
 
 もし、サブリソースのリストがわかってればそれも可能だが、例えば前のページで次のページのそれがわかっている状況は prefetch などで代用できそうにも思う。
 
@@ -110,7 +110,7 @@ Cache Digest は、どちらかというと実装待ちのフェーズだった�
 
 現実的な用途が見出されず、利用も広まらないのであれば、このままブラウザがメンテを続ける必要も無くなるかもしれない。
 
-ただ、 Service Worker における Server Push や WebSocket など、内部での別の通信が Push を含めた HTTP2 Stack を使うことは十分にありえると思うので、すぐに Push ごとなくすということはなさそうに思う。
+ただ、Service Worker における Server Push や WebSocket など、内部での別の通信が Push を含めた HTTP2 Stack を使うことは十分にありえると思うので、すぐに Push ごとなくすということはなさそうに思う。
 
 
 ## Back to Client Initiate
@@ -119,7 +119,7 @@ Cache Digest は、どちらかというと実装待ちのフェーズだった�
 
 これをキャッシュのレイヤに落として、クライアントが持っているキャッシュを伝えることでサーバが不足を補うというユースケースが Cache Digest にはあった。
 
-つまりこれは Push という Server to Client なプロトコルを、 Client 起点のリクエストのセマンティクスに馴染ませるための橋渡しだったと言えるだろう。
+つまりこれは Push という Server to Client なプロトコルを、Client 起点のリクエストのセマンティクスに馴染ませるための橋渡しだったと言えるだろう。
 
 Cache Digest が無ければ、やはりサーバは選択肢を出して、クライアントが自分の保持するキャッシュと照らしあわせて取得することになる。
 
@@ -132,7 +132,7 @@ Cache Digest が実装されず、仕様が文字通り瀕死の状態だ。
 
 このまま実装が進まなければ、対ブラウザの Push は、かなり狭い範囲でしか使えない。実質使い物にならないだろうと筆者は考える。
 
-他のプロトコルなどのためのスタックとしての用途は残るかもしれないが、 h2 が最初にユースケースで上げていた話では使いにくくなる。
+他のプロトコルなどのためのスタックとしての用途は残るかもしれないが、h2 が最初にユースケースで上げていた話では使いにくくなる。
 
 Client Initiate な negotiation を経ずに Server が何かするということ自体がやはり限界で、対ブラウザの Push は夢のまま終わりそうだ。
 

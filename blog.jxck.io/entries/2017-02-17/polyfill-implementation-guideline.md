@@ -6,16 +6,16 @@ W3C の TAG から、主にブラウザ API の Polyfill に関するドキュ�
 
 [Polyfills and the evolution of the Web](https://w3ctag.github.io/polyfills/)
 
-Polyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避けるために、 Polyfill 実装者、利用者、仕様策定者などが、どう振る舞うべきかという趣旨である。
+Polyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避けるために、Polyfill 実装者、利用者、仕様策定者などが、どう振る舞うべきかという趣旨である。
 
-今回はこの内容を元に、 Web の進化と協調する Polyfill のあり方について、主に「実装者」がどうすべきかに着目し記す。
+今回はこの内容を元に、Web の進化と協調する Polyfill のあり方について、主に「実装者」がどうすべきかに着目し記す。
 
 
 ## Web における Breaking Change
 
 Breaking Change は、簡単に言えば *後方互換を失うことで既存のものが壊れる可能性がある変更* のことを表す。
 
-そして、 Web における Breaking Change (*Break the Web*)、具体的には Web の標準技術について、何か追加/変更を行なったことによって既存のコンテンツが壊れることは、基本的に許されない。
+そして、Web における Breaking Change (*Break the Web*)、具体的には Web の標準技術について、何か追加/変更を行なったことによって既存のコンテンツが壊れることは、基本的に許されない。
 
 また Web 上には、更新されないまま残るコンテンツも多くあるため、壊れたコンテンツ側が変更に追従すれば良いという前提を取るのが難しい。
 
@@ -37,7 +37,7 @@ Polyfill は W3C/WHATWG や ECMA などの策定によって、次々と登場�
 
 ## 仕様策定の速度
 
-Break The Web を避けるために、 Web に新しい API を追加する作業は慎重に行われ、時間がかかることもよくある。
+Break The Web を避けるために、Web に新しい API を追加する作業は慎重に行われ、時間がかかることもよくある。
 
 TAG のドキュメントでは、大まかな流れが以下のように紹介されている。
 
@@ -48,22 +48,22 @@ TAG のドキュメントでは、大まかな流れが以下のように紹介�
 5. Multiple interoperable implementations
 6. Universal support
 
-多くの場合、 5  と 6 の間は、実装が他よりも遅れるブラウザがあるために時間がかかる。
+多くの場合、5  と 6 の間は、実装が他よりも遅れるブラウザがあるために時間がかかる。
 
-その間にも、新しい機能を用いたコンテツが全てのブラウザで動くように導入するのが、 Polyfill の代表的なユースケースだ。
+その間にも、新しい機能を用いたコンテツが全てのブラウザで動くように導入するのが、Polyfill の代表的なユースケースだ。
 
-ただし、ここでは 4 が終わっているため、 Polyfill が実装する仕様は 6 の段階で各ブラウザが提供するものと同等であり、 6 の段階に至ったら「Polyfill 自体の読み込みをやめる」だけで、他のコードは一切変更せずにネイティブの API を呼び出して動くというのが理想的な流れだ。
+ただし、ここでは 4 が終わっているため、Polyfill が実装する仕様は 6 の段階で各ブラウザが提供するものと同等であり、6 の段階に至ったら「Polyfill 自体の読み込みをやめる」だけで、他のコードは一切変更せずにネイティブの API を呼び出して動くというのが理想的な流れだ。
 
 
 ## Speculative Polyfill
 
-問題を起こしやすいのは、 1 から 4 の段階、つまり仕様がきっちりと固まってない段階で、早まった API を実装した Polyfill を提供してしまうパターンだ。
+問題を起こしやすいのは、1 から 4 の段階、つまり仕様がきっちりと固まってない段階で、早まった API を実装した Polyfill を提供してしまうパターンだ。
 
 これは俗に Ponyfill/Prolyfill/Nottifill などと呼ばれて[分類](https://github.com/jonathantneal/document-promises/issues/4#issuecomment-256235909) されることもあるが、いずれも問題をはらむ可能性があるということから TAG のドキュメントではこれらを総じて *Speculative Polyfill* としている。文意としては "先走った Polyfill" といったところか。
 
 策定中の API は、クラス/メソッド名などが確定しておらず、議論や試験実装を経てそれらを変更する可能性がある。
 
-しかし、 "先走った Polyfill" の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
+しかし、"先走った Polyfill" の実装が、仕様が固まる前に広まってしまい、固まる前のクラス/メッソド名が多くのコンテンツで使われてしまうと、仕様側でそれを変更するのが難しくなってしまう場合がある。
 
 実際にこれが問題になった事例もいくつかある。
 
@@ -91,22 +91,22 @@ MooTools は早い段階から `contains()` を実装していたのだが、そ
 
 [Core.js#L269](https://github.com/mootools/mootools-core/blob/09b99e5886ca466480d4ae9acbb769e284f4acf1/Source/Core/Core.js#L269)
 
-しかし、 `contains()` の実装を追加する前に `Array.prototype.contains` の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の `contains()` も Polyfill の `contains()` もない Array が提供されたというバグである。
+しかし、`contains()` の実装を追加する前に `Array.prototype.contains` の存在をチェックし、存在したらスルーしていたため、そこにネイティブの実装が加わった時点で、最終的な独自の Array には、ネイティブ実装の `contains()` も Polyfill の `contains()` もない Array が提供されたというバグである。
 
 
 ### Shadow DOM
 
-TAG のドキュメントでは、 ShadowDOM の `createShadowRoot()` についても言及されている。
+TAG のドキュメントでは、ShadowDOM の `createShadowRoot()` についても言及されている。
 
 ShadowDOM の仕様は、これまでの DOM に新しい概念を持ち込むため仕様の策定が難しく、かなりの時間を要した。
 
 API 自体も途中で更新され、更新後を v1 としてそれまでが v0 として扱われることとなった。
 
-その API の一つであり、非常に重要な `createShadowRoot()` は、 v1 に上がる際に open/close を値として持つ `mode` という概念を持つこととなった。
+その API の一つであり、非常に重要な `createShadowRoot()` は、v1 に上がる際に open/close を値として持つ `mode` という概念を持つこととなった。
 
 この `mode` については、どちらをデフォルトとするのかという議論があったようだが、結果として `createShadowRoot({mode})` のように、引数を必須とすることで、省略時のデフォルトを定義しない方向で策定されることとなった。
 
-しかし、 `createShadowRoot()` は主に Google が先行して Chrome に実装しており、それがかなり広く普及してしまったため、途中から引数を必須にすることは実質不可能だった。ただし、 `mode` の概念を外すことはできないため、 `createShadowRoot()` は従来のままとし、代わりに「引数を必須とする別の名前のメソッド」を定義することでこの問題を回避することとなった。
+しかし、`createShadowRoot()` は主に Google が先行して Chrome に実装しており、それがかなり広く普及してしまったため、途中から引数を必須にすることは実質不可能だった。ただし、`mode` の概念を外すことはできないため、`createShadowRoot()` は従来のままとし、代わりに「引数を必須とする別の名前のメソッド」を定義することでこの問題を回避することとなった。
 
 これが v1 で引数必須として定義されている `attachShadow({mode})` である。
 
@@ -137,17 +137,17 @@ requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || 
 
 もしこのコードを書いた時、最初の二つがなかった時は `polyfillRequestAnimationFrame` が使われるため、その挙動に依存した実装がされるだろう。
 
-その後、 `window.webkitRequestAnimationFrame` がネイティブ実装されるとそちらが使われるが、それが `polyfillRequestAnimationFrame` の挙動と変わっていると、コンテンツが壊れてしまうことになる。また、ベンダプレフィックス付きの実装はあくまでも試験的な実装であるはずが、プレフィックスが取れた実装が提供された際に、そこで挙動が変わるとまたコンテンツが壊れる可能性が出る。
+その後、`window.webkitRequestAnimationFrame` がネイティブ実装されるとそちらが使われるが、それが `polyfillRequestAnimationFrame` の挙動と変わっていると、コンテンツが壊れてしまうことになる。また、ベンダプレフィックス付きの実装はあくまでも試験的な実装であるはずが、プレフィックスが取れた実装が提供された際に、そこで挙動が変わるとまたコンテンツが壊れる可能性が出る。
 
 つまり、このコードは最終的な `requestAnimationFrame` が取り得る選択肢を、非常に狭めてしまう結果となるのだ。
 
 本来ベンダプレフィックスは、先行実装であることを示すつもりで付けられていたが、こうした使われ方が広まった結果、本来の意図を果たすことができなかった。
 
-特に WebKit が先行し、他のブラウザはプレフィックス付き実装すらしていなかった機能については、 webkit プレフィックスをつけて実装され、そのまま放置されているものも少なくない。
+特に WebKit が先行し、他のブラウザはプレフィックス付き実装すらしていなかった機能については、webkit プレフィックスをつけて実装され、そのまま放置されているものも少なくない。
 
-そういったコンテンツを動作させられるよう、 [Firefox](https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo) や [Edge](https://msdn.microsoft.com/ja-jp/library/mt270097%28v=vs.85%29.aspx) が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
+そういったコンテンツを動作させられるよう、[Firefox](https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo) や [Edge](https://msdn.microsoft.com/ja-jp/library/mt270097%28v=vs.85%29.aspx) が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
 
-なお、 Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用さている。これについては以下を参照のこと。
+なお、Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用さている。これについては以下を参照のこと。
 
 [Web 標準化のフィードバックサイクルを円滑にする Origin Trials について](https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html)
 
@@ -172,18 +172,18 @@ requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || 
 
 一番重要なのは名前だ。特に global スコープやネイティブオブジェクトの prototype に、策定段階の名前を使った実装を行うことは非常にリスクが高い。
 
-ドキュメントでは、例えば仕様で `Foo` と定義されているものは、 `FooPolyfill` や `FutureFoo` などに変えて実装することが推奨されている。
+ドキュメントでは、例えば仕様で `Foo` と定義されているものは、`FooPolyfill` や `FutureFoo` などに変えて実装することが推奨されている。
 
 また `$`, `root`, `web` といった一般的で短い名前を利用することも、非推奨とされている。
 
 そして、もしブラウザが実装を持っていたら、その実装に移譲するようにコードを書くべきである。またブラウザの実装が全てを提供してないない場合は、不足分のみを補うようにする。
 
-例えば `URL` を提供するが、その内部で `URL#searchParams` が `URLSearchParams` を提供していなかった場合は、 `URL` 全体を Polyfill で置き換えるのでは無く、使える部分は `URL` を使い、 `URL#searchParams` だけ `URLSearchParams` を追加するように実装するのが望ましい。
+例えば `URL` を提供するが、その内部で `URL#searchParams` が `URLSearchParams` を提供していなかった場合は、`URL` 全体を Polyfill で置き換えるのでは無く、使える部分は `URL` を使い、`URL#searchParams` だけ `URLSearchParams` を追加するように実装するのが望ましい。
 
 他細かい点では以下があげられる。
 
-- module 機構を使い、 global スコープやネイティブオブジェクトのプロトタイプを直接汚染しない
-- ユーザが最新の実装に追従しやすいよう、 npm や CDN([cdnjs.com](https://cdnjs.com), [polyfill.io](https://polyfill.io)) などで提供する
+- module 機構を使い、global スコープやネイティブオブジェクトのプロトタイプを直接汚染しない
+- ユーザが最新の実装に追従しやすいよう、npm や CDN([cdnjs.com](https://cdnjs.com), [polyfill.io](https://polyfill.io)) などで提供する
 - Web Platform Test があったらパスすること
 - Polyfill の実装経験は貴重なので、気づいた点を仕様策定にフィードバックする
 - ネイティブ実装に移譲した場合はコンソールなどに Polyfill が不要であったことを知らせる
@@ -193,7 +193,7 @@ requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || 
 
 Polyfill を使う側にも注意すべき点はある。
 
-まず何よりも、 Polyfill の役割をきちんと理解し、そのコードが極力最新である状態を保つことが重要だ。
+まず何よりも、Polyfill の役割をきちんと理解し、そのコードが極力最新である状態を保つことが重要だ。
 
 また、その時点での標準化の状況を踏まえて、例えば API の変更やブラウザ実装の問題などを含めて最善な状態がどうであるかを見極めた上での利用が望ましい。
 

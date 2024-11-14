@@ -51,7 +51,7 @@ RSS の主な仕様は三つある
  <link href="https://blog.jxck.io/entries/2016-01-28/html-compression.html" rel="alternate" />
  <id>tag:blog.jxck.io,2016:entry://2016-01-28</id>
  <updated>2016-01-28T00:00:00Z</updated>
- <summary>とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に前から思っていた HTML の最適化をやってみようと思った。結局そういうことができるツールはなさそうなので、 Markdown のパーサだけ借りてきて、 AST から構築する過程で省略を施した。単なる実験としてその結果を書いておく。(なお、今はまだ CSS も圧縮していない)</summary>
+ <summary>とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に前から思っていた HTML の最適化をやってみようと思った。結局そういうことができるツールはなさそうなので、Markdown のパーサだけ借りてきて、AST から構築する過程で省略を施した。単なる実験としてその結果を書いておく。(なお、今はまだ CSS も圧縮していない)</summary>
 </entry>
 
 <entry>
@@ -74,17 +74,17 @@ RSS の主な仕様は三つある
 
 まず feed 自体の id と、エントリごとの id がある。
 
-feed の id は、 feed を生成し直すたびに振るのかと思ったが、そうではなく、この feed 自体に一度振ったら二度と変えないらしい。
+feed の id は、feed を生成し直すたびに振るのかと思ったが、そうではなく、この feed 自体に一度振ったら二度と変えないらしい。
 
 エントリの id は、エントリ自体に振る。エントリを更新しても振りなおしたりはしない。
 
-どちらも URI でいいのでは? という気がするが、例えばエントリの id は、 URI が変わっても同じものを使うらしい。そのため、エントリの URI を変える可能性を考え、別途振ることが多いとのこと。
+どちらも URI でいいのでは? という気がするが、例えばエントリの id は、URI が変わっても同じものを使うらしい。そのため、エントリの URI を変える可能性を考え、別途振ることが多いとのこと。
 
-そこで、 URI の一部や、 UUID などを織り交ぜ、 [The 'tag' URI Scheme](https://www.ietf.org/rfc/rfc4151.txt) というフォーマットを使うことが多い。
+そこで、URI の一部や、UUID などを織り交ぜ、[The 'tag' URI Scheme](https://www.ietf.org/rfc/rfc4151.txt) というフォーマットを使うことが多い。
 
 ということで、このサイトの feed も、その辺を参考に作ってみた。
 
-(もちろん URI は変わらない、というポリシーを貫ける場合は、 URI でも問題ない)
+(もちろん URI は変わらない、というポリシーを貫ける場合は、URI でも問題ない)
 
 
 ### validate
@@ -96,7 +96,7 @@ feed の id は、 feed を生成し直すたびに振るのかと思ったが�
 
 ### meta
 
-サイトの HTML に、 Feed を持つことを `<meta>` タグで記述した。
+サイトの HTML に、Feed を持つことを `<meta>` タグで記述した。
 
 ```html
 <link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml />

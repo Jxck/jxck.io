@@ -6,7 +6,7 @@
 
 [CSP](https://blog.jxck.io/entries/2016-03-30/content-security-policy.html) 同様、まずは Report-Only を設定し、
 
-HPKP Report についても、 [report-uri.io](https://report-uri.io) を用いて収集することにした。
+HPKP Report についても、[report-uri.io](https://report-uri.io) を用いて収集することにした。
 
 導入に必要な設定や、注意点についてまとめる。
 
@@ -64,7 +64,7 @@ Public Key Pinning for HTTP(HPKP) とは、証明書の信頼性を向上させ�
 
 ### Preload Public Key Pinning
 
-HTTP レスポンスヘッダでハッシュを提示する方法では、 最初のアクセス時から偽の証明書が使われていた場合は無力である。
+HTTP レスポンスヘッダでハッシュを提示する方法では、最初のアクセス時から偽の証明書が使われていた場合は無力である。
 
 あくまで、再訪問時への偽造にしか効果がなく、これを *Trust on First Use (TOFU)* という。
 
@@ -77,14 +77,14 @@ Chrome と Firefox への Preload Pins のリストは以下である。
 - [[chrome] Contents of /trunk/src/net/http/transport_security_state_static.json](https://src.chromium.org/viewvc/chrome/trunk/src/net/http/transport_security_state_static.json)
 - [mozilla-central mozilla/security/manager/tools/PreloadedHPKPins.json](https://mxr.mozilla.org/mozilla-central/source/security/manager/tools/PreloadedHPKPins.json)
 
-したがって本サイトでは、 HTTP ヘッダでの対応を実施する。
+したがって本サイトでは、HTTP ヘッダでの対応を実施する。
 
 
 ## HPKP の設定
 
 ### Public-Key-Pins ヘッダ
 
-HPKP を有効化するには、 Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
+HPKP を有効化するには、Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
 
 ```http
 Public-Key-Pins: pin-sha256="base64=="; max-age=expireTime [; includeSubdomains][; report-uri="reportURI"]
@@ -107,7 +107,7 @@ Pin を設定する際は、現在有効な Pin 以外に、バックアップ P
 
 Pin の値は openssl コマンドを用いれば、公開鍵から SPKI の Base64 エンコードまで一括で行える。
 
-手元に、 Key, CSR, CRT のいずれかがあればそれを用いることができ、 Web 経由で取得した公開鍵からも生成できる。
+手元に、Key, CSR, CRT のいずれかがあればそれを用いることができ、Web 経由で取得した公開鍵からも生成できる。
 
 管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうと考える。
 
@@ -118,7 +118,7 @@ $ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -ou
 
 ## report-uri.io
 
-ブラウザは、  Pin に一致しない証明書を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
+ブラウザは、 Pin に一致しない証明書を検出した場合、違反レポートを生成し `report-uri` に指定した URI に対して自動的に送信する。
 
 HPKP の違反レポートは以下のような JSON データである。
 
@@ -167,15 +167,15 @@ HPKP の運用での一番の懸念は、証明書の更新だろう。
 
 しかし、問題はそのあとどうするかである。(その後更新する新しい証明書の Pin を Pin3, 4... とする)
 
-ブラウザが `[Pin1, Pin2]` を保存した状態なら、 Pin2 の証明書に更新されてもバックアップが効いているため問題はない。
+ブラウザが `[Pin1, Pin2]` を保存した状態なら、Pin2 の証明書に更新されてもバックアップが効いているため問題はない。
 
 次に証明書を Pin3 のものへ更新した時がポイントとなるだろう。
 
-これは `[Pin1, Pin2]` を保存したまま、その後しばらく訪れず、 Pin3 の証明書に更新されてから訪れたら、持っている Pin と証明書がマッチせず接続できなくなるためである。
+これは `[Pin1, Pin2]` を保存したまま、その後しばらく訪れず、Pin3 の証明書に更新されてから訪れたら、持っている Pin と証明書がマッチせず接続できなくなるためである。
 
-つまり、 Pin3 を運用する際には、必ず `[Pin1, Pin2]` の組はブラウザから Expire されている必要がある。
+つまり、Pin3 を運用する際には、必ず `[Pin1, Pin2]` の組はブラウザから Expire されている必要がある。
 
-しかし、それを恐れて Pin の Max-Age を短くしすぎると、アクセスするたびに Pin が無効にな状態となり、 TOFU であるこのプロトコルを生かしきれない。
+しかし、それを恐れて Pin の Max-Age を短くしすぎると、アクセスするたびに Pin が無効にな状態となり、TOFU であるこのプロトコルを生かしきれない。
 
 Report-Only でない運用では、接続ができないという状態になるため、サービスへの影響も大きくなる。
 
@@ -184,11 +184,11 @@ Report-Only でない運用では、接続ができないという状態にな�
 
 ### 中間証明書の Pin
 
-GitHub は現在 HPKP を運用しているため、 Pin の値を調べてみた。
+GitHub は現在 HPKP を運用しているため、Pin の値を調べてみた。
 
-GitHub では、 Leaf (`github.com` 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
+GitHub では、Leaf (`github.com` 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
 
-OpenSSL の `-showcerts` コマンドを用いて、 GitHub の証明書を取得し Pin を計算してみる。
+OpenSSL の `-showcerts` コマンドを用いて、GitHub の証明書を取得し Pin を計算してみる。
 
 (証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
 
@@ -227,7 +227,7 @@ Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の�
 
 まず現在の証明書から、現行の Pin を生成しそれを指定する。
 
-本サイトでは、 2 年ごとに更新するワイルドカード証明書を購入して使用している。
+本サイトでは、2 年ごとに更新するワイルドカード証明書を購入して使用している。
 
 つまり、全サブドメインで証明書は一つであり、期限も長いので、運用はそこまで難しくないだろうと考えている。
 
@@ -237,13 +237,13 @@ Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の�
 
 そしてこれを [jxck.io](https://jxck.io) と [blog.jxck.io](https://blog.jxck.io) に設定した。
 
-今回はあくまで実験であるため、 CSP 同様に Report-Only での運用とする。
+今回はあくまで実験であるため、CSP 同様に Report-Only での運用とする。
 
-デモとして、 Report-Only 無しのヘッダを指定したページを以下に用意した。
+デモとして、Report-Only 無しのヘッダを指定したページを以下に用意した。
 
 [Public Key Pinning DEMO | labs.jxck.io](https://labs.jxck.io/public-key-pinning/)
 
-HPKP が有効になっていることは、 <chrome://net-internals/#hsts> で確認できる。しかし Report-Only ではここに上がらないようである。
+HPKP が有効になっていることは、<chrome://net-internals/#hsts> で確認できる。しかし Report-Only ではここに上がらないようである。
 
 
 ### 結果
@@ -260,7 +260,7 @@ Public-Key-Pins:
   report-uri="https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/enforce"
 ```
 
-Report-Only は、 `max-age` が不要になる。また report-uri.io では、 Report-Only 用に URI が変わるので、それを設定している。
+Report-Only は、`max-age` が不要になる。また report-uri.io では、Report-Only 用に URI が変わるので、それを設定している。
 
 ```http
 Public-Key-Pins-Report-Only:
