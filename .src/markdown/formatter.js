@@ -21,6 +21,7 @@ function spacer(text) {
     .replaceAll(HALF_FULL, (all, left, right) => {
       return `${left} ${right}`
     })
+    .replaceAll(/([、。]) /g, "$1")
 }
 
 /**
