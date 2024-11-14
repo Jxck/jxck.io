@@ -4,6 +4,8 @@
 
 無事開催し、想定した通りの LT を実施できました。
 
+当日の録画などは以下に掲載しています。
+
 - Web Developer Conference 2024 開催後記 #wdc2024 | blog.jxck.io
   - https://blog.jxck.io/entries/2024-09-09/web-developer-conference.html#lt
 
