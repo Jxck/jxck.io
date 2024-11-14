@@ -2,14 +2,16 @@
 
 ## Intro
 
-今回は、 Popover での実装を調査していた段階で判明した「Toast のタイムアウトは WCAG 違反」という話について触れる。
+Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?
+
+今回 Popover の一連を調べる中であった、これが WCAG 違反だという議論を紹介する。
 
 
 ## Toast の Timeout
 
-Toast といえば、時間が経てば勝手に消えるイメージがないだろうか?
+そもそも Toast といえば、「時間が経てば勝手に消える」というのを込みにしたイメージがないだろうか?
 
-Popover の仕様の源流ともなった `<toast>` の提案でも、調査の結果多くの実装がそうなっているという点が挙げられている。
+Popover の仕様の源流ともなった OpenUI による `<toast>` の提案でも、調査の結果多くの実装がそうなっているという点が挙げられている。
 
 > Toasts are often displayed in the corner of app UI, and often disappear on a timeout.
 >
@@ -53,12 +55,12 @@ Popover の仕様の源流ともなった `<toast>` の提案でも、調査の�
 </script>
 ```
 
-であれば `showPopover()` に AbortSignal が渡せれば、 `AbortSignal.timeout()` で閉じられるから便利ではないかという質問をしたところ、AbortSignal を渡すような UI にはなっておらず、筆者が WebIDL をみて勘違いしただけだった。
+Popover の API を見ているなかで、これを明示的に行う API について議論していた際に、「そもそもタイムアウトすべきではない」という Toast の Explainer を真っ向から否定する意見にあった。
 
 - Add AbortSignal for popover.showPopover() for initialize internal CloseWatcher · Issue #10428 · whatwg/html
   - https://github.com/whatwg/html/issues/10428
 
-なので、それは良い。問題は、そこでコメントされた興味深い解釈だ。
+問題は、そこでコメントされた興味深い解釈だ。
 
 
 ## Timeout と WCAG
@@ -68,7 +70,7 @@ Popover の仕様の源流ともなった `<toast>` の提案でも、調査の�
 - Add AbortSignal for popover.showPopover() for initialize internal CloseWatcher · Issue #10428 · whatwg/html
   - https://github.com/whatwg/html/issues/10428#issuecomment-2186642041
 
-keith が、引用しているのは以下だ。
+Keith が、引用しているのは以下だ。
 
 - G5: Allowing users to complete an activity without any time limit | WAI | W3C
   - https://www.w3.org/WAI/WCAG22/Techniques/general/G5.html
@@ -91,11 +93,11 @@ WCAG のこの推奨は「ユーザにアクティビティを求めるような
 > Any interaction that is timed fails the criterion. A `<toast>` which pops up a temporal message fails the criterion.
 > --- https://github.com/whatwg/html/issues/10428#issuecomment-2186785118
 
-じゃあそもそも OpenUI の Explainer はなんだったんだ、という気持ちもするが、それはあくまで Draft であり、議論を経たものではないため、一旦置いておこう。
+じゃあそもそも OpenUI の Explainer はなんだったんだ? という気持ちもするが、それはあくまでリアルワールドの実装を踏まえた Draft であり、議論を経たものではないため、一旦置いておこう。
 
 Keith の解釈は、推奨の言う「activity」は、表示されたコンポーネントがボタンクリックやフォームの入力等、明示的な操作を要求してない場合、つまりメッセージの表示だけであっても適用されるということになる。
 
-「確認」も「Activity」だという解釈はわからなくもないが、実世界の `<toast>` 実装はそうなってないところを考えると、独自の解釈なのか一般的に適用すべき解釈なのか判断が難しくもある。
+「確認」も「Activity」だという解釈はわからなくもないが、実世界の `<toast>` 実装はそうなってないところを考えると、 Keith 独自の解釈なのか一般的に適用すべき解釈なのか判断が難しくもある。
 
 「閉じた通知を確認できる UI」を提供する方が、「明示的に閉じてない通知」が溜まっていくよりも良い場合もあるだろうし、通知を残すかどうかをいちいちユーザに設定させるにしても、デフォルトは考えないといけないだろう。
 
@@ -130,4 +132,16 @@ UI Component Library 系で `<toast>` 的な Component を提供している実�
 
 ## `<toast>` を実装する場合
 
-もし Popover や Dialog を利用して `<toast>` 相当を実装したり、すでに実装を持っている場合は、参考にしてほしい。
+単に「タイムアウトをなくす」で済めば良いが、実際にはそう簡単とも限らない。
+
+明示的に消す必要があるということは、消さない限りは積み上がり続ける。発生の頻度が高ければ画面が埋まっていく。 OS のようにそれを集約して小さくしたり、その中身をさらに個々に確認できる様な UI が必要になるが、単なる `<toast>` コンポーネントが、そこまでの機能を持っている場合は多くないだろう。
+
+これまで自動で消えていたものに対して、特に問題を感じていなかったユーザにとっては、「勝手に消えてくれなくなった」と思うかもしれない。すると、自動で消えるようなオプションを提供するべきか、という話になり、その実装は設定画面などにも及ぶだろう。
+
+数秒は短いということを意識し、数分などの比較的長い時間を設定している実装はどうするべきか。
+
+時間ではなく、他のイベントをフックして消える場合、それが短時間だったらどうするべきか。イベントが発生しても最低 N 秒は残すべき、とする場合、適切な N はいくつか。
+
+考えることは多くある。
+
+あくまで今回議論する中で一人から得たフィードバックではあるが、現状 Popover や Dialog を利用して `<toast>` 相当を実装したり、すでに実装を持っている場合は、この議論を参考にしてみて欲しい。
