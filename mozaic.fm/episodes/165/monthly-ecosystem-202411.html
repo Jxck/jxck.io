@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/165/monthly-ecosystem-202411.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065828></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 165 回のテーマは 2024 年 11 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/165/monthly-ecosystem-202411.html>
+  <meta property=og:title        content="ep165 Monthly Ecosystem 202411 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 165 回のテーマは 2024 年 11 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep165 Monthly Ecosystem 202411 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/164/monthly-platform-202410.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?240701_012822>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?230926_134917>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?240713_033306>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?240816_214156>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/164/monthly-platform-202410.html>ep164 Monthly Platform 202410</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep165 Monthly Ecosystem 202411</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2024-11-16
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 165 回のテーマは 2024 年 11 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          Recap: Next.js Conf 2024 - Vercel
+          <ul>
+            <li><a href="https://vercel.com/blog/recap-next-js-conf-2024" target=_blank>https://vercel.com/blog/recap-next-js-conf-2024</a>
+          </ul>
+        </li>
+        <li>
+          Next.js
+          <ul>
+            <li>
+              Next.js 15
+              <ul>
+                <li><a href="https://nextjs.org/blog/next-15" target=_blank>https://nextjs.org/blog/next-15</a>
+              </ul>
+            </li>
+            <li>
+              Our Journey with Caching
+              <ul>
+                <li><a href="https://nextjs.org/blog/our-journey-with-caching" target=_blank>https://nextjs.org/blog/our-journey-with-caching</a>
+                <li>use cache
+              </ul>
+            </li>
+            <li>
+              Next.js org
+              <ul>
+                <li><a href="https://github.com/nextjs" target=_blank>https://github.com/nextjs</a>
+              </ul>
+            </li>
+            <li>
+              Add expireTag and expirePath APIs by ijjk · Pull Request #72485 · vercel/next.js
+              <ul>
+                <li><a href="https://github.com/vercel/next.js/pull/72485" target=_blank>https://github.com/vercel/next.js/pull/72485</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Turbo
+          <ul>
+            <li>
+              Turborepo 2.2
+              <ul>
+                <li><a href="https://turbo.build/blog/turbo-2-2-0" target=_blank>https://turbo.build/blog/turbo-2-2-0</a>
+              </ul>
+            </li>
+            <li>
+              Turbopack Dev is Now Stable
+              <ul>
+                <li><a href="https://nextjs.org/blog/turbopack-for-development-stable" target=_blank>https://nextjs.org/blog/turbopack-for-development-stable</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Node.js
+          <ul>
+            <li>
+              v23.0.0
+              <ul>
+                <li>
+                  <a href="https://nodejs.org/en/blog/release/v23.0.0" target=_blank>https://nodejs.org/en/blog/release/v23.0.0</a>
+                  <ul>
+                    <li>require(esm) is now enabled by default
+                    <li>Removing support for Windows 32-bit systems
+                    <li>Stabilizing the node --run command
+                    <li>Enhancements to the test runner, including glob pattern support for coverage files
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              v23.1.0
+              <ul>
+                <li>
+                  <a href="https://nodejs.org/en/blog/release/v23.1.0" target=_blank>https://nodejs.org/en/blog/release/v23.1.0</a>
+                  <ul>
+                    <li>Buffer now work with resizable ArrayBuffer
+                    <li>MockTimers test runner API is now stable
+                    <li>JSON modules and import attributes are now stable
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              v23.2.0
+              <ul>
+                <li>
+                  <a href="https://nodejs.org/en/blog/release/v23.2.0" target=_blank>https://nodejs.org/en/blog/release/v23.2.0</a>
+                  <ul>
+                    <li>Update root certificates to NSS 3.104
+                    <li>module: add findPackageJSON util
+                    <li>module: add module.stripTypeScriptTypes
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Node.js v22 Enters Long Term Support
+              <ul>
+                <li><a href="https://nodesource.com/blog/Node.js-v22-Long-Term-Support-LTS" target=_blank>https://nodesource.com/blog/Node.js-v22-Long-Term-Support-LTS</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          React Compiler Beta Release
+          <ul>
+            <li><a href="https://react.dev/blog/2024/10/21/react-compiler-beta-release" target=_blank>https://react.dev/blog/2024/10/21/react-compiler-beta-release</a>
+            <li>
+              Adopting the compiler in Sanity Studio · reactwg/react-compiler · Discussion #33
+              <ul>
+                <li><a href="https://github.com/reactwg/react-compiler/discussions/33" target=_blank>https://github.com/reactwg/react-compiler/discussions/33</a>
+                <li>compiler を有効化するとテストが落ちてバグが表面化したはなし
+              </ul>
+            </li>
+            <li>
+              Preview compile result in editor · reactwg/react-compiler · Discussion #26
+              <ul>
+                <li><a href="https://github.com/reactwg/react-compiler/discussions/26" target=_blank>https://github.com/reactwg/react-compiler/discussions/26</a>
+                <li>editor の拡張機能についてのはなし
+              </ul>
+            </li>
+            <li>
+              playground
+              <ul>
+                <li><a href="https://0xeac7-forget.vercel.app/" target=_blank>https://0xeac7-forget.vercel.app/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          React Router Brand Update
+          <ul>
+            <li><a href="https://remix.run/blog/react-router-brand-update" target=_blank>https://remix.run/blog/react-router-brand-update</a>
+          </ul>
+        </li>
+        <li>
+          react native New Architecture is here
+          <ul>
+            <li><a href="https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here" target=_blank>https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here</a>
+          </ul>
+        </li>
+        <li>
+          Beta: Universal React Server Components in Expo Router
+          <ul>
+            <li><a href="https://expo.dev/blog/universal-react-server-components-developer-preview" target=_blank>https://expo.dev/blog/universal-react-server-components-developer-preview</a>
+          </ul>
+        </li>
+        <li>
+          JS0/JSSugar
+          <ul>
+            <li><a href="https://docs.google.com/presentation/d/1ylROTu3N6MyHzNzWJXQAc7Bo1O0FHO3lNKfQMfPOA4o/edit?pli=1#slide=id.p" target=_blank>https://docs.google.com/presentation/d/1ylROTu3N6MyHzNzWJXQAc7Bo1O0FHO3lNKfQMfPOA4o/edit?pli=1#slide=id.p</a>
+            <li><a href="https://github.com/tc39/agendas/blob/main/2024/10.md" target=_blank>https://github.com/tc39/agendas/blob/main/2024/10.md</a> t
+            <li>JS エンジンへの機能追加が増えすぎ実装負荷が上がってる
+            <li>みんなツール使ってるし全部ネイティブでやらなくてもいいのでは?
+            <li>でも、標準化自体はしておきたい
+            <li>分離しよう
+            <li>JS0: エンジンが実装する標準
+            <li>JSSugar: ツールが実装する標準
+          </ul>
+        </li>
+        <li>
+          Announcing TypeScript 5.7 RC
+          <ul>
+            <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-7-rc/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-7-rc/</a>
+          </ul>
+        </li>
+        <li>
+          vlt
+          <ul>
+            <li><a href="https://www.vlt.sh/" target=_blank>https://www.vlt.sh/</a>
+            <li>
+              Introducing the vlt Package Manager &amp; Serverless Registry
+              <ul>
+                <li><a href="https://blog.vlt.sh/blog/introducing-vlt-and-vsr" target=_blank>https://blog.vlt.sh/blog/introducing-vlt-and-vsr</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          rolldown
+          <ul>
+            <li>
+              0.14.0
+              <ul>
+                <li><a href="https://github.com/rolldown/rolldown/releases/tag/v0.14.0" target=_blank>https://github.com/rolldown/rolldown/releases/tag/v0.14.0</a>
+              </ul>
+            </li>
+            <li>
+              feat: <code translate=no>new URL(..., import.meta.url)</code> support
+              <ul>
+                <li><a href="https://github.com/rolldown/rolldown/pull/2710" target=_blank>https://github.com/rolldown/rolldown/pull/2710</a>
+                <li><a href="https://github.com/rolldown/rolldown/issues/2745" target=_blank>https://github.com/rolldown/rolldown/issues/2745</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Announcement: Plugins are coming to Biome 2.0
+          <ul>
+            <li><a href="https://github.com/biomejs/biome/discussions/4428" target=_blank>https://github.com/biomejs/biome/discussions/4428</a>
+            <li>
+              ☂️ Road to Biome v2.0
+              <ul>
+                <li><a href="https://github.com/biomejs/biome/issues/3727" target=_blank>https://github.com/biomejs/biome/issues/3727</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Storybook 8.4
+          <ul>
+            <li><a href="https://storybook.js.org/blog/storybook-8-4/" target=_blank>https://storybook.js.org/blog/storybook-8-4/</a>
+            <li>
+              eslint-plugin-storybook の flat config 対応
+              <ul>
+                <li><a href="https://github.com/storybookjs/eslint-plugin-storybook/releases/tag/v0.10.0" target=_blank>https://github.com/storybookjs/eslint-plugin-storybook/releases/tag/v0.10.0</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Prisma Postgres®: Building a Modern PostgreSQL Service Using Unikernels &amp; MicroVMs
+          <ul>
+            <li><a href="https://www.prisma.io/blog/announcing-prisma-postgres-early-access" target=_blank>https://www.prisma.io/blog/announcing-prisma-postgres-early-access</a>
+          </ul>
+        </li>
+        <li>
+          How to convert CommonJS to ESM
+          <ul>
+            <li><a href="https://deno.com/blog/convert-cjs-to-esm" target=_blank>https://deno.com/blog/convert-cjs-to-esm</a>
+          </ul>
+        </li>
+        <li>
+          simplifying-islands-arch
+          <ul>
+            <li><a href="https://preactjs.com/blog/simplifying-islands-arch/" target=_blank>https://preactjs.com/blog/simplifying-islands-arch/</a>
+          </ul>
+        </li>
+        <li>
+          eslint/css
+          <ul>
+            <li><a href="https://github.com/eslint/css/pull/2" target=_blank>https://github.com/eslint/css/pull/2</a>
+          </ul>
+        </li>
+        <li>
+          chakra-ui Announcing v3
+          <ul>
+            <li><a href="https://www.chakra-ui.com/blog/00-announcing-v3" target=_blank>https://www.chakra-ui.com/blog/00-announcing-v3</a>
+          </ul>
+        </li>
+        <li>
+          msw v2.6.0
+          <ul>
+            <li><a href="https://github.com/mswjs/msw/releases/tag/v2.6.0" target=_blank>https://github.com/mswjs/msw/releases/tag/v2.6.0</a>
+            <li>support mocking WebSocket APIs
+          </ul>
+        </li>
+        <li>
+          Svelte 5 is alive
+          <ul>
+            <li><a href="https://svelte.dev/blog/svelte-5-is-alive" target=_blank>https://svelte.dev/blog/svelte-5-is-alive</a>
+          </ul>
+        </li>
+        <li>
+          tauri v2.0
+          <ul>
+            <li><a href="https://v2.tauri.app/blog/tauri-20/" target=_blank>https://v2.tauri.app/blog/tauri-20/</a>
+          </ul>
+        </li>
+        <li>
+          Ruby on Rails - Rails 8.0: No PaaS Required
+          <ul>
+            <li><a href="https://rubyonrails.org/2024/11/7/rails-8-no-paas-required" target=_blank>https://rubyonrails.org/2024/11/7/rails-8-no-paas-required</a>
+          </ul>
+        </li>
+        <li>
+          State of CSS 2024
+          <ul>
+            <li><a href="https://2024.stateofcss.com/en-US/awards/" target=_blank>https://2024.stateofcss.com/en-US/awards/</a>
+          </ul>
+        </li>
+        <li>
+          State of Frontend 2024
+          <ul>
+            <li><a href="https://tsh.io/state-of-frontend/" target=_blank>https://tsh.io/state-of-frontend/</a>
+          </ul>
+        </li>
+        <li>
+          State of JavaScript 2024
+          <ul>
+            <li><a href="https://survey.devographics.com/en-US/survey/state-of-js/2024" target=_blank>https://survey.devographics.com/en-US/survey/state-of-js/2024</a>
+            <li>募集開始
+          </ul>
+        </li>
+        <li>
+          State of React 2024
+          <ul>
+            <li><a href="https://survey.devographics.com/ja-JP/survey/state-of-react/2024" target=_blank>https://survey.devographics.com/ja-JP/survey/state-of-react/2024</a>
+            <li>募集開始
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          11 月
+          <ul>
+            <li>
+              16: tskaigi kansai
+              <ul>
+                <li><a href="https://kansai.tskaigi.org/" target=_blank>https://kansai.tskaigi.org/</a>
+              </ul>
+            </li>
+            <li>
+              23: JSConfJP
+              <ul>
+                <li><a href="https://jsconf.jp/2024/" target=_blank>https://jsconf.jp/2024/</a>
+              </ul>
+            </li>
+            <li>
+              19-22: React Summit in NY
+              <ul>
+                <li><a href="https://reactsummit.us/" target=_blank>https://reactsummit.us/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>12 月
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/164/monthly-platform-202410.html>ep164 Monthly Platform 202410</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep165.mp3
+    data-title="ep165 Monthly Ecosystem 202411"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
