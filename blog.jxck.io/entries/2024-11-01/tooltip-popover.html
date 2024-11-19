@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-11-01T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2024-11-20T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-11-01>2024-11-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-20>2024-11-20</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -164,7 +164,7 @@
         <p>
           <img loading=lazy decoding=async src=./tooltip-popover.drawio.svg?241101_195247 alt="リンクを hover すると Tooltip でリンク先の詳細がカード表示される" width=300 height=300>
         </p>
-        <p>挙動としては想像通り、対象要素に Anchoring した <code translate=no>&lt;div popover&gt;</code> を表示し、中に好きなようにコンテンツを入れれば良い。ただし UI のセマンティクスに関しては、複数の議論が行われており、方針もいくつか考えられる。
+        <p>挙動としては想像通り、対象要素に Anchoring した <code translate=no>&lt;div popover&gt;</code> を表示し、中に好きなようにコンテンツを入れれば良い。ただし、UI のセマンティクスに関しては、複数の議論が行われており、方針もいくつか考えられる。
         <p>今回は、それらの現状を整理しつつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。
       </section>
       <section>
@@ -349,7 +349,7 @@
   &lt;a href=/users/jxck&gt;Jxck&lt;/a&gt;: Web developer in Japan
 &lt;/div&gt;</code></pre>
         <p>さて、この場合 <code translate=no>role=tooltip</code> を用いていいのだろうか?
-        <p>実は、もともとの <code translate=no>role=tooltip</code> が追加された当初は、コントローラを含められる目的だった
+        <p>実は、もともとの <code translate=no>role=tooltip</code> が追加された当初は、コントローラを含められる目的だった。
         <blockquote cite="https://github.com/w3c/aria/issues/979#issuecomment-1131900402">
           <p>Back when we added role=tooltip, the assumption was that role=tooltip could allow interactive content.
           <p>&mdash; <cite><a href="https://github.com/w3c/aria/issues/979#issuecomment-1131900402" target=_blank>https://github.com/w3c/aria/issues/979#issuecomment-1131900402</a></cite>
@@ -395,7 +395,7 @@
       </section>
       <section>
         <h2 id="light-dismiss-dialog"><a href="#light-dismiss-dialog">Light Dismiss Dialog</a></h2>
-        <p>今回は Light Dismiss non-Modal Dialog を実現するために <code translate=no>&lt;dialog popover&gt;</code> を用いたが、ちょうどこれを書いている中で、<code translate=no>&lt;dialog&gt;</code> 自体に Light Dismiss 機能を付与する提案の Intents が 2Chromium から出された。
+        <p>今回は Light Dismiss non-Modal Dialog を実現するために <code translate=no>&lt;dialog popover&gt;</code> を用いたが、ちょうどこれを書いている中で、<code translate=no>&lt;dialog&gt;</code> 自体に Light Dismiss 機能を付与する提案の Intents が Chromium から出された。
         <ul>
           <li>
             Intent to Prototype: Dialog light dismiss

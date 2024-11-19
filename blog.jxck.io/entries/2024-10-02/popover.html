@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-02T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2024-11-20T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-02>2024-10-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-20>2024-11-20</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -185,7 +185,7 @@
             </ul>
           </li>
         </ul>
-        <p>そして、2024/4 ごろに発表された Baseline 2024 に <code translate=no>popover</code> がエントリーしたことで、2024 年は全ブラウザで互換性を高めていくことに合意し、作業を進めていくことになる。俗に言う「元年」というやつと言えるだろう。
+        <p>そして、2024/4 ごろに発表された Baseline 2024 に <code translate=no>popover</code> がエントリしたことで、2024 年は全ブラウザで互換性を高めていくことに合意し、作業を進めていくことになる。俗に言う「元年」というやつと言えるだろう。
         <ul>
           <li>
             Popover API lands in Baseline
@@ -236,7 +236,7 @@
         <p>もっとも注目すべき点は <em>Role</em> だ。
         <section>
           <h3 id="roledialog"><a href="#roledialog">role=dialog</a></h3>
-          <p>ARIA には Dialog という Role が以前から定義されており、もし(概念上の) Dialog を自前で実装するのであれば <code translate=no>&lt;div role=&quot;dialog&quot;&gt;</code> のように指定することで「これは Dialog だ」ということを明示し、UA に伝える必要があった。
+          <p>ARIA には Dialog という Role が以前から定義されており、もし(概念上の)Dialog を自前で実装するのであれば <code translate=no>&lt;div role=&quot;dialog&quot;&gt;</code> のように指定することで「これは Dialog だ」ということを明示し、UA に伝える必要があった。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;div role=&quot;dialog&quot;&gt;
   &lt;form&gt;
@@ -396,7 +396,7 @@ dialog[popover]::backdrop {
         <p>
           <img loading=lazy decoding=async src=top-layer.drawio.svg?241002_152445 alt="Top Layer の真ん中に表示された Popover" width=524 height=154>
         </p>
-        <p>そこで、Anchor という概念を導入し、「開いた <code translate=no>&lt;button&gt;</code> を Anchor として、開かれ側はその Anchor の右上に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
+        <p>そこで、Anchor という概念を導入し、「開いた <code translate=no>&lt;button&gt;</code> を Anchor として、開かれた側はその Anchor の右上に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
         <p>
           <img loading=lazy decoding=async src=top-layer-anchor.drawio.svg?241002_152454 alt="button を anchor としその右下に Popover を表示" width=524 height=154>
         </p>
