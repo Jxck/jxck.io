@@ -6,7 +6,7 @@
 
 ![リンクを hover すると Tooltip でリンク先の詳細がカード表示される](./tooltip-popover.drawio.svg#300x300)
 
-挙動としては想像通り、対象要素に Anchoring した `<div popover>` を表示し、中に好きなようにコンテンツを入れれば良い。ただし UI のセマンティクスに関しては、複数の議論が行われており、方針もいくつか考えられる。
+挙動としては想像通り、対象要素に Anchoring した `<div popover>` を表示し、中に好きなようにコンテンツを入れれば良い。ただし、UI のセマンティクスに関しては、複数の議論が行われており、方針もいくつか考えられる。
 
 今回は、それらの現状を整理しつつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。
 
@@ -159,7 +159,7 @@ APG にも Tooltip についてのパターンがある。
 
 さて、この場合 `role=tooltip` を用いていいのだろうか?
 
-実は、もともとの `role=tooltip` が追加された当初は、コントローラを含められる目的だった
+実は、もともとの `role=tooltip` が追加された当初は、コントローラを含められる目的だった。
 
 > Back when we added role=tooltip, the assumption was that role=tooltip could allow interactive content.
 > --- https://github.com/w3c/aria/issues/979#issuecomment-1131900402
@@ -208,7 +208,7 @@ Modal Dialog の場合はフォーカスを移すが、今回の場合は popove
 
 ## Light Dismiss Dialog
 
-今回は Light Dismiss non-Modal Dialog を実現するために `<dialog popover>` を用いたが、ちょうどこれを書いている中で、`<dialog>` 自体に Light Dismiss 機能を付与する提案の Intents が 2Chromium から出された。
+今回は Light Dismiss non-Modal Dialog を実現するために `<dialog popover>` を用いたが、ちょうどこれを書いている中で、`<dialog>` 自体に Light Dismiss 機能を付与する提案の Intents が Chromium から出された。
 
 - Intent to Prototype: Dialog light dismiss
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/eDXEmWB7Xo8
