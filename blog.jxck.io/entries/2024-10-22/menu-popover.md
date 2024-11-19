@@ -45,7 +45,7 @@ GitHub のこの実装はまだ Popover ではないため、現状を参考に�
 </ul>
 ```
 
-ここでも Popover はセマンティクスに影響を与えないため、単に `<ul>` が開いただけになる。この場合、外側は `role=menu` とし、各アクションが `role=menuitem` とすることで、開いているものがメニューであると言うことを宣言できるだろう。
+ここでも Popover はセマンティクスに影響を与えないため、単に `<ul>` が開いただけになる。この場合、外側は `role=menu` とし、各アクションが `role=menuitem` とすることで、開いているものがメニューであるということを宣言できるだろう。
 
 ```html
 <button popovertarget=menu>Actions</button>
