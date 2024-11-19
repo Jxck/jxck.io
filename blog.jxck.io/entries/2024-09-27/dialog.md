@@ -136,9 +136,7 @@ document.querySelector("dialog").addEventListener("close", (e) => {
 </script>
 ```
 
-「閉じる」だけではなく「開く」方も JS 無しでできるが、それについては話がかなり広がるので別の回で解説する。
-
-
+「閉じる」だけではなく「開く」方も JS なしでできるが、それについては話がかなり広がるので別の回で解説する。
 ### formmethod=dialog
 
 例えば Modal で Login Form などを出す場合を考えてみよう。

@@ -11,7 +11,7 @@
 - News from WWDC23: WebKit Features in Safari 17 beta
   - https://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/
 
-そして、2024/4 ごろに発表された Baseline 2024 に `popover` がエントリーしたことで、2024 年は全ブラウザで互換性を高めていくことに合意し、作業を進めていくことになる。俗に言う「元年」というやつと言えるだろう。
+そして、2024/4 ごろに発表された Baseline 2024 に `popover` がエントリしたことで、2024 年は全ブラウザで互換性を高めていくことに合意し、作業を進めていくことになる。俗に言う「元年」というやつと言えるだろう。
 
 - Popover API lands in Baseline
   - https://web.dev/blog/popover-api
@@ -54,7 +54,7 @@
 
 ### role=dialog
 
-ARIA には Dialog という Role が以前から定義されており、もし(概念上の) Dialog を自前で実装するのであれば `<div role="dialog">` のように指定することで「これは Dialog だ」ということを明示し、UA に伝える必要があった。
+ARIA には Dialog という Role が以前から定義されており、もし(概念上の)Dialog を自前で実装するのであれば `<div role="dialog">` のように指定することで「これは Dialog だ」ということを明示し、UA に伝える必要があった。
 
 ```html
 <div role="dialog">
@@ -235,7 +235,7 @@ Anchoring は `popover` と同時に策定されていた、今後かなり重�
 
 ![Top Layer の真ん中に表示された Popover](top-layer.drawio.svg#524x154)
 
-そこで、Anchor という概念を導入し、「開いた `<button>` を Anchor として、開かれ側はその Anchor の右上に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
+そこで、Anchor という概念を導入し、「開いた `<button>` を Anchor として、開かれた側はその Anchor の右上に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
 
 ![button を anchor としその右下に Popover を表示](top-layer-anchor.drawio.svg#524x154)
 
