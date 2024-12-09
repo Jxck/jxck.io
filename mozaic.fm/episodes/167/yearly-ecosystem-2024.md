@@ -1,0 +1,1296 @@
+---
+type: podcast
+tags: ["yearly ecosystem"]
+audio: https://files.mozaic.fm/mozaic-ep167.mp3
+published_at: 2023-12-10
+guest: [@sakito](https://twitter.com/__sakito__)
+guest: [@hiroppy](https://twitter.com/about_hiroppy)
+guest: [@yoshiko](https://twitter.com/yoshiko_pg)
+---
+
+# ep167 Yearly Ecosystem 2024
+
+## Theme
+
+第 167 回のテーマは 2024 年の Yearly Ecosystem です。
+
+
+## Show Note
+
+### 2024 年のチェックポイント
+
+- Vite の覇権を Turbopack, RSPack が奪えるか?
+- Storybook は覇権をとって、Chromatic もすごくなりそう
+- Next App Router が本当に広がるか
+- RSC 対応の Bundler が増えて Next 以外の解が見れそう
+- アプリケーションの Rust 化くるか?
+- React Forget
+- Figma Config 2024 の Adobe の影響
+- State Management どうなってく? (Context, Jotai, SWR, Signal)
+- ESLint to flat config or Biome
+- AI driven FE Development
+- CSS の新しい方法論
+
+
+### 今年のキーワード
+
+- Jxck
+  - App Router 移行問題
+  - void0
+  - rs family vs turbo family
+  - eslint flatconfig
+  - OSS のマネタイズ
+  - Figma の躍進
+  - ESM と CJS の互換性
+  - Bun やりたい放題
+  - Tanstack family どうなるか
+  - 価格改定
+  - CSS modules へ移行
+- Sakito
+  - 1 つのツールで複数のことができるのが求められてる?
+    - rolldown(oxc),biome,deno,...
+      - lint,format,bundle,parser
+    - Storybook
+      - test,ui 表示,ツール連携
+  - Web Components 元年 N 年目
+    - UI ライブラリの対応
+    - Open UI の Design System
+    - React の互換性の改善...
+  - デザイントークン
+    - Design Token を扱いやすい CSS ライブラリ
+    - Style Dictionary,Token Studio,Figma Variables
+  - Design&AI
+    - Figma AI,v0,DesignSystem がある価値
+- Hiroppy
+  - cache
+    - next.js
+  - registory
+    - jsr
+    - vlt
+  - bundler
+    - rspack の v1 リリース
+    - rolldown
+    - turbopack の dev 安定化
+  - nodejs
+    - typescript
+    - require(esm)
+    - corepack
+- Yoshiko
+  - 3rd party cookie
+  - microfrontend
+- Other
+  - mozaic.fm renewal
+
+
+### 2025 年のチェックポイント
+
+- React の WC 対応と Open UI により WC 元年がまたくるかも
+- SC で zero runtime じゃない CSS も動くようになりそうなので、より戻すか?
+  - CSS ライブラリのこの先はどこに落ち着くのか、css modules,tailwind,zero-runtime & AI & React の対応
+- next.js の cache が安定するか?
+- figma->実装のワークフローの進化(devmode, codeconnect)、AI 活用
+- next.js app router 移行先に post remix としての tanstack family
+  - remix 自体どうなる?
+- react compiler どうなるか
+- JS0 / JSSugar によるツールとエンジンの分離
+- OSS のマネタイズどうなる?
+- Bun の独走に対するエコシステムへの還元
+- jsr/vlt/npm の覇権争いと ESM 移行
+- tooling 系百花繚乱どうなるか
+
+
+### 1 月
+
+- 2023 JavaScript Rising Stars
+  - https://risingstars.js.org/2023/en
+- Future of Storybook in 2024
+  - https://storybook.js.org/blog/future-of-storybook-2024/
+- Hermae | AI Assistant For Enterprise Design Systems
+  - https://www.hermae.com/
+  - OpenAI で Storybook のドキュメントを対話形でサジェストしてくれるサービス
+- facebook/stylex: StyleX is the styling system for ambitious user interfaces.
+  - https://github.com/facebook/stylex
+  - Tailwind から Stylex への変換
+    - https://github.com/nmn/tw-to-stylex
+- React Server Components: the Good, the Bad, and the Ugly
+  - https://www.mayank.co/blog/react-server-components/
+  - 単なる UI レンダリング フレームワークではない
+  - good
+    - データ取得と UI レンダリングが同じ場所で行えるようになった
+    - form が強化され、js が不要になった
+  - bad
+    - アプリケーションが複雑になるにつれ use client が扱いづらくなる
+    - fetch 拡張
+    - 現実的にはバンドルサイズの肥大化
+- Kind of annoyed at React
+  - https://blog.cassidoo.co/post/annoyed-at-react/
+  - react を理解するのが難しくなった
+  - 2022 年 6 月以降リリースがない
+  - フレームワークを使わないといけない
+  - 多様性
+- server component の server とは。。
+  - https://twitter.com/dan_abramov2/status/1746152375046242422
+- Increasingly miffed about the state of React releases
+  - https://macwright.com/2024/01/03/miffed-about-react
+- React 19 coming soon.
+  - https://x.com/acdlite/status/1719474730363662473?s=20
+- Nextjs の Fetch の拡張の代わりに noStore()の追加
+  - https://x.com/leeerob/status/1733154383410684148?s=20
+  - https://nextjs.org/docs/app/api-reference/functions/unstable_noStore
+- Next.js の App Router のドキュメントの日本語翻訳
+  - https://ja.next-community-docs.dev/docs/app-router
+  - 野村総合研究所の方達がやったぽい
+- experimental_taintObjectReference と experimental_taintUniqueValue
+  - https://react.dev/reference/react/experimental_taintObjectReference
+  - https://react.dev/reference/react/experimental_taintUniqueValue
+- React Aria Components v1
+  - https://react-spectrum.adobe.com/react-aria/index.html
+- SPA Mode by brophdawg11 · Pull Request #8338 · remix-run/remix
+  - https://github.com/remix-run/remix/pull/8338
+  - https://remix.run/docs/en/main/guides/client-data
+- What's new in Astro - December 2023
+  - https://astro.build/blog/whats-new-december-2023/
+  - https://studio.astro.build/
+- Astro@4.1
+  - https://astro.build/blog/astro-410/
+- Multi-tenancy is what's hard about scaling web services
+  - https://world.hey.com/dhh/multi-tenancy-is-what-s-hard-about-scaling-web-services-dd1e0e81
+  - Service として買うのではなく、製品として購入して自分でデプロイする方式の提案
+  - 個別客なら SQLite でいけるという話
+  - 以前 AWS やめたという話の続きでもあるぽい
+- Introducing Catalyst: A modern UI kit for React - Tailwind CSS
+  - https://tailwindcss.com/blog/introducing-catalyst
+  - Tailwind 公式の UI Kit
+  - shadcn/ui と同じダウンロード方式
+- Dev Mode GA for admins - Figma Learn - Help Center
+  - https://help.figma.com/hc/en-us/articles/19813618057623
+  - Figma の Dev Mode が有料に...
+- Figma and Adobe are abandoning our proposed merger | Figma Blog
+  - https://www.figma.com/ja/blog/figma-adobe-abandon-proposed-merger/
+  - https://www.figma.com/blog/figma-adobe-abandon-proposed-merger/
+- Biome v1.5
+  - https://biomejs.dev/blog/biome-v1-5/
+- Roadmap 2024 | Biome
+  - https://biomejs.dev/blog/roadmap-2024/
+- Biome - YouTube
+  - https://www.youtube.com/channel/UC6ssscaFgCSlbv1Pb6krGVw
+- Release v1.0.0 · vitest-dev/vitest
+  - https://github.com/vitest-dev/vitest/releases/tag/v1.0.0
+- Lottielab - Figma to Lottie animation
+  - https://www.figma.com/community/plugin/1307008445393559148
+- Tutorials | Lottielab
+  - https://www.lottielab.com/tutorials
+- Rspack 0.5
+  - https://www.rspack.dev/blog/announcing-0.5.html
+- vue0
+  - https://www.vue0.dev/
+- InVision design collaboration services shutdown
+  - https://www.invisionapp.com/inside-design/invision-design-collaboration-services-shutdown/
+  - 2024 年末に InVision のサービスは終了
+
+
+### 2 月
+
+- React Labs: What We've Been Working On - February 2024
+  - https://react.dev/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024
+  - 2024 年に起きそうな変化
+    - https://x.com/acdlite/status/1758229889595977824?s=20
+    - useMemo, useCallback, memo => React Forget => React Compiler
+    - forwardRef => ref is a prop
+    - React.lazy => RSC, promise-as-child
+    - useContext => `use(Context)`
+    - throw promise => `use(promise)`
+    - `<Context.Provider>` => `<Context>`
+  - https://github.com/facebook/react/issues/11347#issuecomment-1899140345
+    - custom elements の対応も React 19 に入りそう
+    - 5 月の React Conf か?
+- Setup react-server-dom-parcel package by devongovett · Pull Request #28138 · facebook/react
+  - https://github.com/facebook/react/pull/28138
+  - parcel の RSC 対応
+  - まだ議論中マージはされてない
+- Introducing SafeTest: A Novel Approach to Front End Testing
+  - https://netflixtechblog.com/introducing-safetest-a-novel-approach-to-front-end-testing-37f9f88c152d
+  - Netflix 内で使ってる SafeTest というテストフレームワーク
+  - React Context を使用した値のオーバーライドや Playwright 上にマウントしたレポートリンクを出してくれる
+- Nx Conf で色々発表があったらしい
+  - https://www.youtube.com/watch?v=fy0K2Smyj5A
+  - Project Crystal
+    - https://blog.nrwl.io/what-if-nx-plugins-were-more-like-vscode-extensions-dcdad140ae09
+    -
+  - Nx Agents
+    - https://blog.nrwl.io/fast-effortless-ci-67812514ffb4
+    - https://2022.stateofjs.com/en-US/libraries/monorepo-tools/
+- Storybook 8 Beta
+  - https://storybook.js.org/blog/storybook-8-beta/
+  - Mobile サポート!
+  - VRT のアドオン
+    - https://storybook.js.org/blog/visual-tests-addon-beta/
+- Chromatic が MSW のオフィシャルパートナーに
+  - https://x.com/kettanaito/status/1747649802861457913?s=20
+  - ServiceWorker を使った XHR のモックテスト - Block Rockin' Codes
+    - https://jxck.hatenablog.com/entry/response-injection
+- JSX as markup language Community Group created
+  - https://lists.w3.org/Archives/Public/public-new-work/2024Jan/0003.html
+- Next.js 14.1
+  - https://nextjs.org/blog/next-14-1
+- Finishing Turborepo's migration from Go to Rust - Vercel
+  - https://vercel.com/blog/finishing-turborepos-migration-from-go-to-rust
+- Hono v4
+  - https://github.com/honojs/hono/releases/tag/v4.0.0
+  - https://speakerdeck.com/yusukebe/hono-v4
+- HonoX
+  - https://github.com/honojs/honox/tree/v0.1.2
+  - Hono と Vite でできたフレームワーク
+- Adobe has 'no plans' to invest in XD despite failed Figma buy
+  - https://www.theregister.com/2024/01/31/adobe_no_plans_to_invest/
+  - Adobe XD は復活しなさそう
+- Adobe Creative Cloud 製品の機能拡張の振り返りと価格変更について
+  - https://blog.adobe.com/jp/fpost/2024/creative-cloud-release-pricing-update
+- announcing freenginx.org
+  - https://freenginx.org/pipermail/nginx/2024-February/000000.html
+  - NGINX のコア開発者が親会社と決別、新たに「freenginx」という名前でフォーク版を作成開始
+    - https://gigazine.net/news/20240215-freenginx/
+- Atlassian から新しい DnD ライブラリー
+  - https://github.com/atlassian/pragmatic-drag-and-drop
+- Vite 5.1 is out!
+  - https://vitejs.dev/blog/announcing-vite5-1.html
+- Panda v1 Roadmap
+  - https://www.adebayosegun.com/blog/panda-v1-roadmap
+  - https://2023.stateofcss.com/en-US/css-in-js/
+- Mutative
+  - https://github.com/unadlib/mutative/releases/tag/v1.0.0
+  - Immer より早いってやつの v1
+- Astro 4.3
+  - https://astro.build/blog/astro-430
+- Astro 4.4
+  - https://astro.build/blog/astro-440/
+- LLRT
+  - https://github.com/awslabs/llrt
+- shiki 1.0
+  - https://github.com/shikijs/shiki
+- Deno in 2023
+  - https://deno.com/blog/deno-in-2023
+- jsr.io/waitlist
+  - https://jsr.io/waitlist
+  - I'm in! I published a typescript ESM module. no bundling, no config, no BS.
+  - https://twitter.com/wesbos/status/1757222738446393727
+  - https://www.kitsonkelly.com/posts/jsr-first-impressions
+- temporal in Deno
+  - https://deno.com/blog/v1.40
+- typespec
+  - https://typespec.io/
+- apple/pkl: A configuration as code language with rich validation and tooling.
+  - https://github.com/apple/pkl
+- Lottie Creator: A Powerful Web-Based Lottie Animation Tool
+  - https://lottiefiles.com/blog/working-with-lottie-animations/lottie-creator-a-powerful-web-based-lottie-animation-tool
+- Rome 作った Sebmac が X で復活
+  - https://twitter.com/sebmck/status/1755739441103097958?s=20
+
+
+### 3 月
+
+- JSR (JavaScript Registry)
+  - https://jsr.io/
+- polyfill.io
+  - polyfill.io ドメインが売却された
+    - https://twitter.com/triblondon/status/1761852117579427975
+  - cloudflare
+    - https://blog.cloudflare.com/polyfill-io-now-available-on-cdnjs-reduce-your-supply-chain-risk
+  - fastly
+    - https://polyfill-fastly.io/
+  - funnull
+    - https://funnull.com/Partner/
+- RollDown
+  - https://github.com/rolldown/rolldown
+- nodejs 21.7.0
+  - https://nodejs.org/en/blog/release/v21.7.0
+- module: support require()ing synchronous ESM graphs by joyeecheung · Pull Request #51977 · nodejs/node · GitHub
+  - https://github.com/nodejs/node/pull/51977
+- New Icon: Node.js Meet Rocket Turtle
+  - https://twitter.com/nodejs/status/1759953849849167878
+- WinterJS 1.0
+  - https://wasmer.io/posts/winterjs-v1
+- Add `React.useActionState` by rickhanlonii · Pull Request #28491 · facebook/react · GitHub
+  - https://github.com/facebook/react/pull/28491
+- storybook8
+  - https://storybook.js.org/blog/storybook-8/
+- typescript 5.4
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-4/
+- Astro DB
+  - https://astro.build/db/
+  - https://astro.build/blog/astro-db-deep-dive/?a
+  - https://astro.build/blog/goodbye-astro-studio/
+- The Astro Developer Portal
+  - https://astro.build/blog/dev-portal/
+- MistCSS
+  - https://typicode.github.io/mistcss/
+- Pigment CSS
+  - MUI が出した zero-runtime CSS-in-JS
+  - https://github.com/mui/material-ui/tree/master/packages/pigment-css-react
+- Open-sourcing our progress on Tailwind CSS v4.0
+  - https://tailwindcss.com/blog/tailwindcss-v4-alpha
+- Next.js PR: add experimental client router cache config
+  - https://github.com/vercel/next.js/pull/62856
+- react-strict-dom dev
+  - https://github.com/facebook/react-strict-dom/
+- feat: Introduce lightningcss-loader for webpack users
+  - https://github.com/vercel/next.js/pull/61327
+- Prisma ORM Support for Edge Functions is now in Preview
+  - https://www.prisma.io/blog/prisma-orm-support-for-edge-functions-is-now-in-preview
+- Prisma Pulse now available in GA
+  - https://www.prisma.io/blog/prisma-pulse-in-general-availability
+- Remix Vite is Now Stable
+  - https://remix.run/blog/remix-vite-stable
+- yoga3.0
+  - https://www.yogalayout.dev/blog/announcing-yoga-3.0
+- pglite
+  - https://github.com/electric-sql/pglite
+- Redwood v7.0.0 is now available!
+  - https://community.redwoodjs.com/t/redwood-v7-0-0-is-now-available/5777
+
+
+### 4 月
+
+- Next.js 14.2
+  - https://nextjs.org/blog/next-14-2
+    - この CSS の改善で、ずっとあった dev mode での定義順問題も直りそうっぽい
+      - https://github.com/vercel/next.js/issues/13092#issuecomment-2027344545
+- Angular and Wiz Are Better Together
+  - https://blog.angular.io/angular-and-wiz-are-better-together-91e633d8cd5a
+  - https://twitter.com/sarah_edo/status/1770478763253379488?s=20
+    - NG Conf 2024 で発表された
+  - 将来的に Angular と Google の Internal Framework である Wiz を merge していくという発表
+  - https://x.com/mgechev/status/1772685802511741409
+    - YouTtubeWiz が Polymer に取って変わるらしい
+- require(esm) in Node.js
+  - https://joyeecheung.github.io/blog/2024/03/18/require-esm-in-node-js/
+  - https://twitter.com/bradleymeck/status/1769722025952661664
+  - https://github.com/nodejs/node/pull/51977#issuecomment-1994837735
+  - https://github.com/nodejs/node/pull/30891#issuecomment-565604651
+- The Node.js Documentary
+  - https://www.youtube.com/watch?v=LB8KwiiUGy0
+- Node.js - Trip report: Node.js collaboration summit (2024 London)
+  - https://nodejs.org/en/blog/events/collab-summit-2024-london
+  - https://github.com/nodejs/standards-positions
+- Introducing our team, investors & more…
+  - https://blog.vlt.sh/blog/the-team
+- New Flow Language Features for React
+  - https://medium.com/flow-type/announcing-component-syntax-b6c5285660d0
+- React Server Components now in RedwoodJS
+  - https://redwoodjs.com/blog/rsc-now-in-redwoodjs
+  - https://redwoodjs.com/blog/whats-different-comparing-the-router-in-nextjs-app-api-nextjs-pages-api-remix-and-redwoodjs
+- ESLint v9.0.0 released
+  - https://eslint.org/blog/2024/04/eslint-v9.0.0-released/
+  - エコシステムの v9 (FlatConfig 対応は時間がまだかかりそう)
+    - [eslint v9 support #2961 airbnb/javascript](https://github.com/airbnb/javascript/issues/2961)
+- Bun 1.1
+  - https://bun.sh/blog/bun-v1.1
+- In the next version of Bun, Bun won't error when package.json has comments or trailing commas
+  - https://x.com/jarredsumner/status/1779997854075171184
+- Deno 1.4.2
+  - https://deno.com/blog/v1.42
+- How we built JSR
+  - https://deno.com/blog/how-we-built-jsr
+- pnpm v9
+  - https://github.com/pnpm/pnpm/releases/tag/v9.0.0
+- Astro Form Action
+  - https://github.com/withastro/roadmap/discussions/871
+- Proposal Signal
+  - https://github.com/proposal-signals/proposal-signals
+  - https://docs.google.com/presentation/d/1MJqndTS5RmTEwTbtLTPsEloc-a_MWR8daQINgDim2RA/
+  - プラットフォームのトピックかも
+- "Sebastian Silbermann joined Vercel"
+  - https://twitter.com/sebsilbermann/status/1772229730747490691
+- Fast JSX: Don't clone props object #28768
+  - https://github.com/facebook/react/pull/28768
+- Design Engineering at Vercel
+  - https://vercel.com/blog/design-engineering-at-vercel
+- Announcing VitePress 1.0
+  - https://blog.vuejs.org/posts/vitepress-1.0
+- Docusaurus 3.2
+  - https://docusaurus.io/blog/releases/3.2
+- Turborepo 1.13
+  - https://turbo.build/blog/turbo-1-13-0
+- feat(migrate): add migrate eslint #2103
+  - https://github.com/biomejs/biome/pull/2103
+
+
+### 5 月
+
+- React 19 Beta - React
+  - https://react.dev/blog/2024/04/25/react-19
+  - useActionSate の追加
+    - useFormState には isPending がなく、その場合は useFormStatus を利用する必要があるがあったがそれらを統合した汎用的 hook として用意された
+  - useFormStatus
+    - 親の form のステータスを読む hook
+  - useOptimistic
+    - 楽観的更新を行う hook
+    - 先にユーザーに結果を返してしまい裏で実際の実行が終わると実際の結果を反映させることができる
+  - use
+    - Promise や Context を実行する関数
+    - コンポーネントの top level 以外でも利用できる
+  - RSC
+    - バンドルする前に、クライアント アプリケーションまたは SSR サーバーとは別の環境でコンポーネントを事前にレンダリングできる新しいオプション
+    - ビルド時に作成したり、リクエスト事に実行もできる
+  - Server Actions
+    - 注意: server component 用の directive はなく、use server は server actions のもの
+    - フレームワークはサーバー関数への参照を自動的に作成し、その参照をクライアント コンポーネントに渡す。その関数がクライアントで呼び出されると、React はサーバーにリクエストを送信して関数を実行し、結果を返す
+  - forwardRef が不要に
+    - 今までは子供が fowardRef でラップされてないときには、ref は props として渡せなかったが、今後は渡せるようになった
+  - createContext で作られる Context が Provider として直接利用可能になり、Context.Provider が不要になった
+  - ref に useEffect と同じシンタックスのクリーンアップ関数が追加
+    - return () => {}
+  - useDeferredValue へ初期値を追加できるようなった
+  - metadata のサポート
+    - コンポーネントのどこにでも metadata を定義でき、react-helmet などを使わなくても title などの上書きが用意になった
+  - スタイルシートのサポート
+    - スタイルの優先度を考えて配置する必要があったが、コンポーネント内で定義できるようになり、挿入順序を明確にできるようになった
+  - 非同期スクリプトのサポート
+    - script async
+  - リソースのプリロードサポート
+    - native にある prefetchDNS, preconnect, preload, preinit を react 側でもサポート
+    - e.g. フォントなどの追加リソースの検出をスタイルシートの読み込みから移動することで、最初のページ読み込みを最適化
+  - Custom Elements のサポート
+    - https://custom-elements-everywhere.com/#react-beta のサイトを見ると対応の差がわかりやすい
+- React 19 Beta Upgrade Guide - React
+  - https://react.dev/blog/2024/04/25/react-19-upgrade-guide
+  - Note
+    - React 18.3 has also been published
+  - Installing
+    - Note
+      - New JSX Transform is now required
+  - Breaking changes
+    - Errors in render are not re-thrown
+    - Removed deprecated React APIs
+      - Removed: propTypes and defaultProps for functions
+      - Removed: Legacy Context using contextTypes and getChildContext
+      - Removed: string refs
+    - Note
+      - Removed: Module pattern factories
+      - Removed: React.createFactory
+      - Removed: react-test-renderer/shallow
+    - Note
+      - Please reconsider shallow rendering
+    - Removed deprecated React DOM APIs
+      - Removed: react-dom/test-utils
+      - Removed: ReactDOM.render
+      - Removed: ReactDOM.hydrate
+      - Removed: unmountComponentAtNode
+      - Removed: ReactDOM.findDOMNode
+  - New deprecations
+    - Deprecated: element.ref
+    - Deprecated: react-test-renderer
+  - Notable changes
+    - StrictMode changes
+    - UMD builds removed
+    - Libraries depending on React internals may block upgrades
+  - TypeScript changes
+    - Removed deprecated TypeScript types
+    - Note
+    - ref cleanups required
+    - useRef requires an argument
+    - Changes to the ReactElement TypeScript type
+    - The JSX namespace in TypeScript
+    - Better useReducer typings
+  - Changelog
+    - Other breaking changes
+    - Other notable changes
+- React DevTools のアップデートが入る
+  - https://github.com/facebook/react/pull/29022
+- Remove automatic fetch cache instrumentation
+  - https://github.com/facebook/react/pull/28896
+  - https://github.com/facebook/react/issues/25573#issuecomment-2074913216
+  - Request Memoization がなくなった
+    - next に実装されるのか? コミット消されたからわからない。。
+      - https://github.com/vercel/next.js/commit/1af74ecc4399b494984ec578fcab9e2aa5b77cb4
+- React で Date をパッチするかも
+  - https://twitter.com/acdlite/status/1785691330988986587
+  - SSR / Hydration でのミスマッチを防ぐため
+  - https://twitter.com/acdlite/status/1785757921676087604
+  - https://twitter.com/sebmarkbage/status/1785755094132068361
+- Figma からデザインとコードを結びつける Code Connect 機能が出た
+  - https://www.figma.com/blog/introducing-code-connect/
+  - Github
+    - https://github.com/figma/code-connect
+  - @figma/code-connect パッケージと CLI を使用し hoge.figma.tsx ファイルを作り、Figma にコードを連携させることで DevMode のコードが紐づく
+  - Readme に全部書いてある
+    - https://github.com/figma/code-connect/tree/main/react
+- JSR Is Not Another Package Manager
+  - https://deno.com/blog/jsr-is-not-another-package-manager
+  - npm はほぼ進歩してない
+  - かつて node で requre を採用し、のちに import ができたが、結局配布は複雑なまま
+  - JSR は ESM/TS ファーストで、設定要らずなシンプルなもの
+  - JSR は npm を補完する。JSR パッケージは npm に依存できる
+  - JSR 自体も npm としてアクセスできる(npm.jsr.io)
+  - private registries も使える
+  - OIDC token を GH Action と連携し、SALSA に準拠した署名を Sigsotre に保存する
+- Node.js - Node.js 22 is now available!
+  - https://nodejs.org/en/blog/announcements/v22-release-announce
+  - v8 が 12.4 で Array.fromAsync や Set Methods、Iterator Helpers が入った
+  - Maglev Compiler が入り短命な CLI 実行がはやくなった
+  - --experimental-require-module で reqire(esm)
+  - node --run task のサポート
+  - watch mode stable
+  - websocket client default
+  - glob/globSync default
+  - 2025/4 に Node 18 が EOL なので 20 (LTS) か 22 (もうすぐ TLS) に移行しよう
+- Bun v1.1.5 | Bun Blog
+  - https://bun.sh/blog/bun-v1.1.5
+  - --compile で実行ファイルをクロスコンパイル
+  - package.json で末尾カンマとコメントサポート
+  - 任意ファイルをテキストとしてインポート
+    - `import html from "./index.html" with type { type: "text" };`
+  - json, toml, file も type にサポート
+  - Bun,.serve が SNI に対応
+- Bun - proxy -
+  - https://twitter.com/bunjavascript/status/1785615815838175658
+  - 独自拡張
+- biome 1.7
+  - https://biomejs.dev/blog/biome-v1-7/
+  - migrate eslint が追加され、eslint config から biome config へ移植可能になった
+  - migrate prettier で overrides を利用した glob パターンの prettier の設定が、biome config へ移植可能になった
+  - check --staged が追加され、pre-commit としての実行が可能になった
+- Remix SaaS
+  - https://remix-saas.fly.dev/
+- Tini
+  - https://tinijs.dev/
+  - SPA や PWA などの構築をサポートするフレームワークでルーティング、バックエンド、UI も提供している
+  - 標準を拡張するフレームワークでドキュメントだと lit と一緒に使われている
+- Figma's journey to TypeScript | Figma Blog
+  - https://www.figma.com/ja-jp/blog/figmas-journey-to-typescript-compiling-away-our-custom-programming-language/
+  - Figma は multi platform のために skew という言語を作ってトランスパイルしてた
+  - しかし、社内で負債化していったため、全部 TS に移行した
+  - モバイルでも WASM が動くようになり Skew engine の C++ ほとんどは WASM にできたのもでかい
+  - 残りは Skew to TS のトランスパイラを作り、徐々に変換していった
+  - Skew のソースマップを吐いて、デバッグできるようにした
+  - etc etc etc
+  - https://www.figma.com/ja-jp/blog/how-we-built-the-figma-plugin-system/
+- Announcing TypeScript 5.5 Beta
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-5-beta/
+  - `Array.prototype.filter`で絞り込みに型がつくようになった
+  - `typeof obj[key] === "string"` みたいな固定できるパターンの条件が落ちなくなった
+  - 正規表現の構文チェックが行えるようになった
+  - isolatedDeclarations オプションの追加で、並列ビルドの高速化を行う
+- vercel がエッジレンダリングを Node.js へ戻した
+  - https://twitter.com/leeerob/status/1780705942734331983
+  - エッジからデータまでの距離が遠い
+  - Node.js で SSR + ストリーミングを実行した方が、エッジ レンダリングよりも高速だった
+    - Vercel Serverless Functions (aws lambda)へ戻す
+- Eslint compat
+  - https://eslint.org/blog/2024/05/eslint-compatibility-utilities/
+  - メジャーバージョンが上がったにも関わらず、主要なプラグインが追従できていない、例えば next.js も import など。なので 8 との互換性を持てるように変更する
+- Astro 4.8
+  - https://astro.build/blog/astro-480/
+  - 4.7 https://astro.build/blog/astro-470/
+  - Astro Actions の追加 (experimental.actions)
+    - server actions と同様の機能
+  - リクエストの切り替え (experimental.rewriting)
+    - ページ内リダイレクト等を行うため
+  - typescript の preset で allowJs を true へ
+    - 厳密すぎるらしく、緩めることができるように
+- Astro 初のオフラインイベント
+  - https://lu.ma/astro-together-meetup-2024
+- Playwright v1.44
+  - https://playwright.dev/docs/release-notes#version-144
+  - アクセシビリティに関するアサーションの追加
+  - --last-failed の追加
+    - 前回実行したときに落ちたテストだけ実行できるようになる
+- Style-Dictionary V4 release plans
+  - https://tokens.studio/blog/style-dictionary-v4-plan
+  - デザイントークンの json を変換する OSS ツールの Style-Dictionary v4 に関するリリース計画
+  - v3 が 2021 年に出てから長い間メジャーバージョンのリリースがなかった
+  - W3C Design Token Community Group の仕様に沿ったアップデート等を含む予定
+- React Aria の 5 月更新
+  - https://react-spectrum.adobe.com/releases/2024-05-01.html
+- Express 5.0 - last push!
+  - https://github.com/expressjs/discussions/issues/233
+  - 溜まっていたライブラリのアップデート対応
+  - 細かいバグ修正
+- HashiCorp joins IBM. (web???
+  - https://www.hashicorp.com/blog/hashicorp-joins-ibm
+- The Intl.Segmenter object is now part of Baseline
+  - https://web.dev/blog/intl-segmenter
+- Electron 30.0.0
+  - https://www.electronjs.org/blog/electron-30-0
+  - File API のサポート
+  - windows に ASAR 整合性のサポート
+    - Windows プラットフォーム上の整合性チェック機能がなかったが、それができるようになった。これによりアプリケーションのファイルとリソースの整合性を検証することで、意図しない変更や改ざんを防ぐことができるようになった
+  - BrowserView が非推奨になって、WebContentsView と BaseWindow が main プロセスに追加
+- rollup optimizes tree-shaking
+  - https://github.com/rollup/rollup/pull/5443
+  - 固定化されたパラメータをすべて根本まで追跡して、関数内で副作用の検出とツリーシェイクを実行できるようにする
+- Headless UI v2.0 for React
+  - https://tailwindcss.com/blog/headless-ui-v2
+- pnpm 9.0
+  - https://github.com/pnpm/pnpm/releases/tag/v9.0.0
+- Introducing Mdxts - MDXTS
+  - https://www.mdxts.dev/blog/introducing-mdxts
+- Percel のフル Rust 書き換え構想
+  - https://twitter.com/devongovett/status/1789796247483937045
+  - 20 倍早くなりそう
+- Gulp Survey
+  - https://www.surveyhero.com/c/ctrpnqkr
+- svelte5
+  - https://svelte.dev/blog/svelte-5-release-candidate
+- Introducing TypeSpec: A New Language for API-Centric Development | TypeSpec
+  - https://typespec.io/blog/2024-04-25-introducing
+
+
+### 6 月
+
+- React Conf 2024 Recap
+  - https://ja.react.dev/blog/2024/05/22/react-conf-2024-recap
+  - React 19
+    - https://ja.react.dev/blog/2024/04/25/react-19
+  - React Compiler
+    - https://ja.react.dev/learn/react-compiler
+    - eslint plugin https://www.npmjs.com/package/eslint-plugin-react-compiler
+  - Remix と React Router
+    - https://remix.run/blog/incremental-path-to-react-19
+    - RSC を含んだ新しい設計は Reverb という名前らしい
+  - React Native New Architecture
+    - https://github.com/reactwg/react-native-new-architecture/discussions/189
+    - Expo もこれに合わせて対応の話
+- React DOM: Add support for Popover API by eps1lon · Pull Request #27981 · facebook/react
+  - https://github.com/facebook/react/pull/27981
+  - React の Popover API サポート
+  - v19 のリリースか RC を使うか
+- Next.js 15 RC
+  - https://nextjs.org/blog/next-15-rc
+  - React 19 RC
+  - React Compiler
+  - fetch リクエスト、GET のルートハンドラー、Page コンポーネントの Client Router のキャッシュはデフォルトで無効化
+  - Partial Prerendering (PPR) (Experimental)
+  - next/after (Experimental)
+  - Next 15 GA で何かアナウンスがある?
+- Vercel Ship 2024 recap
+  - https://vercel.com/blog/vercel-ship-2024
+  - Improved platform and Next.js integrations for feature flags
+  - Log, block, and challenge malicious traffic with the Vercel Firewall
+  - New tools to improve iteration velocity in the Vercel Toolbar
+  - React 19 support, improved caching, and more in the Next.js 15 Release Candidate
+  - Further updates and improvements to v0 and the Vercel AI SDK
+- Announcing TypeScript 5.5 RC
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-5-rc/
+  - beta との主な差分
+    - Support for New ECMAScript Set Methods
+      - https://github.com/tc39/proposal-set-methods のサポート
+  - beta 発表時に取り上げてた内容
+    - `Array.prototype.filter`で絞り込みに型がつくようになった
+    - `typeof obj[key] === "string"` みたいな固定できるパターンの条件が落ちなくなった
+    - 正規表現の構文チェックが行えるようになった
+    - isolatedDeclarations オプションの追加で、並列ビルドの高速化を行う
+- Storybook 8.1
+  - https://storybook.js.org/blog/storybook-8-1/
+  - Interactive story generation
+    - https://storybook.js.org/blog/interactive-story-generation/
+    - Storybook の UI 上から Story 追加できるように
+  - Type-safe module mocking in Storybook
+    - https://storybook.js.org/blog/type-safe-module-mocking/
+    - Storybook で Subpath Imports を使った Mock を使うアプローチ
+    - Unit testing React Server Components
+    - Playwright Component Test で Story をテスト可能に
+      - https://storybook.js.org/blog/portable-stories-for-playwright-ct/
+- Turborepo 2.0
+  - https://turbo.build/blog/turbo-2-0
+  - New terminal UI
+  - Watch Mode
+  - All-new documentation
+  - Licensing and maintenance updates
+- Biome v1.8
+  - https://github.com/biomejs/biome/releases/tag/cli%2Fv1.8.0
+  - https://biomejs.dev/ja/internals/language-support/
+  - css の lint, format 周りのオプション追加
+- An even faster Microsoft Edge
+  - https://blogs.windows.com/msedgedev/2024/05/28/an-even-faster-microsoft-edge/
+  - Edge が React の使用をやめて新しい構成である WebUI 2.0 にした話。
+- Astro 4.9
+  - https://astro.build/blog/astro-490/
+- Ark UI v3
+  - https://ark-ui.com/react/docs/overview/changelog#300---2024-05-24
+- React Query の v19 サポート
+  - https://github.com/TanStack/query/releases/tag/v5.39.0
+  - https://x.com/tannerlinsley/status/1796081137007341851
+    - https://x.com/tannerlinsley/status/1796081138672468302
+- Vitest 2.0 でブラウザモードに機能追加
+  - https://github.com/vitest-dev/vitest/discussions/5828
+- ReScript
+  - https://rescript-lang.org/
+  - OCaml ベースの Alt JS
+- feat: Add support for TypeScript config files by aryaemami59 · Pull Request #117 · eslint/rfcs
+  - https://github.com/eslint/rfcs/pull/117
+  - ESLint config を TS で書けるようにする
+- デジタル庁デザインシステムのサンプルコンポーネント
+  - https://design.digital.go.jp/
+  - https://github.com/digital-go-jp/design-system-example-components
+- The Deno Standard Library is now available on JSR
+  - https://deno.com/blog/std-on-jsr
+  - Deno の標準ライブラリを JSR に
+  - deno.land/std はセキュリティパッチのみに
+  - パッケージごとにバージョニングしていく
+  - Deno の workspace を使うように
+- The stabilization process of the Standard Library has begun
+  - https://deno.com/blog/stabilize-std
+  - Deno std が v1.0 にしていく
+  - パッケージごとにリリースタイミングは違う
+
+
+### 7 月
+
+- [React 19] Disabling prerendering siblings of suspended components breaking common pattern
+  - https://github.com/facebook/react/issues/29898
+  - 今までは Suspense 内の複数の非同期コンポーネントで並列に処理していたが、v19 では直列に変更するようにした。これにより、ウォーターフォールの状態となるためレンダリングが長くなってしまう
+    - メリット: Suspense のフォールバックを早く表示でき、コンポーネントにおける無駄なレンダリングを避けることができる
+  - Render-as-You-Fetch パターン以外では影響があるため、strategy みたいなオプションを追加し、レンダリングを直列/並列に切り替えれるようにできるかの議論中
+  - https://tkdodo.eu/blog/react-19-and-suspense-a-drama-in-3-acts
+- Next.js のキャッシュの今後
+  - https://x.com/leeerob/status/1803824227704877236
+  - v15 以降のキャッシュはほとんどデフォルトでオフになる
+  - PPR は今後デフォルトになる
+  - fetch などを使うのは全て dynamic rendering にオプトインにする
+    - これまでは headers などだけだった
+- node: module: add --experimental-strip-types
+  - https://github.com/nodejs/node/pull/53725
+  - typescript のコードを node 上で実行する取り組み
+  - 型検査は行わず、あくまでもトランスパイルと実行のみ
+- node: lib,src,test,doc: add node:sqlite module
+  - https://github.com/nodejs/node/pull/53752
+  - node 上で sqlite を利用できるようにする
+  - もともと Web Storage API の実現で sqlite を使っていて node:sqlite を新しくネイティブモジュールとして追加
+- What's coming next for ESLint
+  - https://eslint.org/blog/2024/07/whats-coming-next-for-eslint/
+  - JS 以外の言語も対応する
+    - @eslint/js, @eslint/json, @eslint/markdown を最初に公式が提供
+  - 11 年経ち、負債が多いのでリポジトリを変えて書き直し
+    - ​​https://github.com/eslint/rewrite
+- Announcing Rspack v1.0 Alpha
+  - https://www.rspack.dev/blog/announcing-1-0-alpha
+  - concatenateModules(scope hoisting)がデフォルトで有効
+  - Lightning CSS がビルトイン
+  - css が webpack に合わせるためにデフォルトから実験的へ移動
+- e18e
+  - https://e18e.dev/
+  - 依存から JS のエコシステムで古いものやパフォーマンスの最適化を行うプロジェクト
+- Astro: Netlify: Our Official Deployment Partner
+  - https://astro.build/blog/netlify-official-deployment-partner/
+- Astro: 4.11
+  - https://astro.build/blog/astro-4110/
+  - 500.astro ファイルで error が受け取れるようになった
+  - Code コンポーネントに Shiki の transformer を渡せるようになった
+- Announcing TypeScript 5.5
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-5/
+- Fog of War
+  - https://remix.run/blog/fog-of-war
+  - Remix の Route Manifests に対する最適化。Shopify のような大規模サイトででも Remix が使えるようにするための改善
+  - React Router では unstable_patchRoutesOnMiss として expose されている
+- Nuxt 2 End-of-Life (EOL)
+  - https://nuxt.com/blog/nuxt2-eol
+- vitest2.0
+  - https://github.com/vitest-dev/vitest/releases/tag/v2.0.0
+  - Browser Mode
+    - https://vitest.dev/guide/browser/
+- Bun v1.1.18, v1.1.19
+  - https://bun.sh/blog/bun-v1.1.18
+  - https://bun.sh/blog/bun-v1.1.19
+  - Constant Folding によるパフォーマンスの最適化
+  - This release enables WebKit's FTL JIT (Faster Than Light Just In Time Compiler) on Windows
+- Deno 1.4.5
+  - https://deno.com/blog/v1.45
+- Figma AI
+  - https://www.figma.com/ja-jp/ai/
+- pnpm 9.5.0
+  - https://github.com/pnpm/pnpm/releases/tag/v9.5.0
+  - catalog:機能が追加され、ライブラリのグルーピングが行えるようになった
+    - https://pnpm.io/catalogs
+    - monorepo で同じライブラリのバージョンがいろいろな package.json に書かれるが、それを一箇所にまとめることによりコンフリクトやアップグレードを容易にする
+- Polyfill supply chain attack hits 100K+ sites
+  - https://sansec.io/research/polyfill-supply-chain-attack
+- Persistent npm Campaign Shipping Trojanized jQuery
+  - https://blog.phylum.io/persistent-npm-campaign-shipping-trojanized-jquery/
+  - 悪意のあるコードを含んだ jQuery を同梱したライブラリが配られていた
+  - jQuery 公式がポイゾニングされていたわけではない
+- es-toolkit
+  - https://github.com/toss/es-toolkit
+  - 堅牢な型があり、パフォーマンスの最適化を行っている utility ライブラリ
+- State of JavaScript 2023
+  - https://2023.stateofjs.com/en-US/
+
+
+### 8 月
+
+- Figma Config 2024
+  - サマリ
+    - https://www.figma.com/blog/config-2024-recap/
+    - Figma AI: Think bigger and build faster
+    - UI3: Figma, redesigned
+    - Figma Slides: Build, collaborate, and present
+    - Dev Mode updates: From design ready to dev complete
+    - Quality-of-life improvements: Auto Layout, UI Kits, and prototype viewer
+  - セッション一覧
+    - https://www.youtube.com/playlist?list=PLXDU_eVOJTx402DljIPagaDKLibF-qfF0
+- Node v22.5.0 (Current)
+  - https://nodejs.org/en/blog/release/v22.5.0
+  - node:http に websocket(undici 経由)を追加
+  - node:sqlite を追加
+  - node:path に正規表現が入力に一致するかを検証する `matchesGlob` を追加
+  - process.finalization の追加
+    - Node プロセスが終了するときに登録したオブジェクトを適切に破棄し、メモリリークを防ぐことができる
+  - node:worker_thread に `postMessageToThread` を追加
+- Node v22.6.0 (Current)
+  - https://nodejs.org/en/blog/release/v22.6.0
+  - strip types の追加(experimental)
+  - ネットワーク インスペクションの追加
+    - chrome 側の対応待ち
+    - https://issues.chromium.org/issues/353924015
+- module: add `--experimental-transform-types` flag
+  - https://github.com/nodejs/node/pull/54283
+  - 以前は対応してなかった TypeScript の独自構文である Enum や Namespace に対応
+- bun
+  - v1.1.23
+    - https://bun.sh/blog/bun-v1.1.23
+    - `TextEncoderStream`、`TextDecoderStream` の追加
+    - `console.log` が 50%速くなった
+  - v1.1.22
+    - https://bun.sh/blog/bun-v1.1.22
+    - Express が 3 倍速くなった
+    - `util.aborted()` の追加
+    - `events.getEventListeners()` の追加
+  - v1.1.21
+    - [https://bun.sh/blog/bun-v1.1.21](https://bun.sh/blog/bun-v1.1.21#new-fetch-preconnect-warms-up-a-connection-ahead-of-time)
+    - `--fetch-preconnect` の追加
+- Announcing TypeScript 5.6 Beta
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-6-beta/
+  - 構文的には動くが、実際は動かない真偽/null のコードを警告できるように
+    - eslint の `no-constant-binary-expression` ルールと同様
+  - map や filter などのイテレータヘルパーメソッドを追加
+    - tc39/iterator-helpers
+    - https://github.com/tc39/proposal-iterator-helpers
+  - `--noUncheckedSideEffectImports​`
+    - side effect import されたソースがない場合に TS は無視するが、無視せずに存在を検証するオプション
+  - `--noCheck​`
+    - すべての型チェックをスキップする
+    - これにより JS ファイルの生成と型チェックを分離することができる
+- Node Sass is end-of-life
+  - https://sass-lang.com/blog/node-sass-is-end-of-life/
+- Astro 4.12: Server Islands
+  - https://astro.build/blog/astro-4120/
+  - Server Islands の実験サポート
+    - 動的な部分は Next.js の Partial Pre Rendering と似た機能
+    - https://server-islands.com/
+  - Image へ `inferRemoteSize` の追加
+    - リモート画像の大きさを自動推測
+- Astro 4.13
+  - https://astro.build/blog/astro-4130/
+  - リクエストのリライト機能が安定へ
+  - content collection で JSON Schema の自動作成が安定へ
+- state of react
+  - https://2023.stateofreact.com/en-US/
+- mui: Migrating to v6
+  - https://next.mui.com/material-ui/migration/migrating-to-v6/
+- Tokens Studio 2.0
+  - https://feedback.tokens.studio/changelog/release-20
+  - W3C DTCG format
+  - A new variables experience
+  - Non-local variable references
+  - Variables in typography styles, shadows, border tokens and gradients
+  - Typography tokens
+  - Bitbucket support
+  - Tokens Studio (platform) support
+- Style Dictionary
+  - https://github.com/amzn/style-dictionary/releases/tag/v4.0.0
+  - ずっと止まっていたアップデートがやっと出た
+- Revolutionising Design Systems: The Future of UI Design using Graphs & Node-based Design
+  - https://tokens.studio/blog/revolutionising-design-systems-the-future-of-ui-design-using-graphs-node-based-design
+  - Token の依存グラフを視覚的に作成することができるツール
+- Software Sharing for Modern Companies | Fair.io
+  - https://fair.io/
+  - オープンソースとは違う新しい取り組み「Fair Source」登場。ビジネスの持続性とソースコード公開の両立を目指す
+    - https://www.publickey1.jp/blog/24/fair_source.html
+  - ビジネスを守るための最小限の制約をもつが、利用や再配布が可能で一定期間後オープンになる
+  - Sentry の提唱で、コードの公開とソフトウェアビジネスの両立のためのもの
+- ESLint v9.9.0 released
+  - https://eslint.org/blog/2024/08/eslint-v9.9.0-released/
+  - 実験的に設定ファイルの TS サポート
+- Announcing typescript-eslint v8
+  - https://typescript-eslint.io/blog/announcing-typescript-eslint-v8/
+  - eslint v9 のサポート
+  - いくつかのルールが変更される
+- NLnet; Servo improvements for Tauri
+  - https://nlnet.nl/project/Verso/
+  - Rust 製ブラウザエンジン「Servo」搭載、新たな Web ブラウザ「Verso」の開発プロジェクトが立ち上がる
+    - https://www.publickey1.jp/blog/24/rustservowebverso.html
+- What we got wrong about HTTP imports
+  - https://deno.com/blog/http-imports
+- Apollo Client 3.11
+  - Subscription API の改善
+  - React 19 サポート
+  - テストライブラリの変更。MSW を利用した graphql-testing-library へ
+  - Devtools オプションの追加
+    - 今まで 1 つしか対応できてなかった
+    - このオプションで複数の apollo client インスタンスに対応
+  - nextFetchPolicy の呼び出しタイミング変更
+- HonoHub
+  - https://honohub.dev/
+  - Hono ライクな OSS の Headless CMS ぽい?
+- Frontend AI
+  - 生成 AI のツール
+  - UI を生成したりコードも出してくれるぽい
+- Lottielab Interactivity
+  - Lottielab で作ってたエディターがアップデートして正式アプデぽい
+- Postgres Sandbox
+  - https://postgres.new/
+
+
+### 9 月
+
+- ESLint now officially supports linting of JSON and Markdown - ESLint - Pluggable JavaScript Linter
+  - https://eslint.org/blog/2024/10/eslint-json-markdown-support/
+- What we got wrong about HTTP imports
+  - https://deno.com/blog/http-imports
+  - module の http imports は分散管理で良さそうと思ってはじめた
+  - しかし依存の管理は結局うまくスケールしなかった
+  - semver に乗りつつ、集中管理できる JSR を作った
+  - import map と一緒にそっちに移行した方がいい
+  - Deno 2 の展望も
+- Node.js
+  - v22.7.0
+    - https://nodejs.org/en/blog/release/v22.7.0
+    - `--experimental-transform-types` が追加され、TypeScript の Enum や namespaces がコードに含まれていても実行可能になった
+    - `--experimental-detect-module` がデフォルトで有効になり、V8 を利用し、曖昧なファイル(.js または package.json に type が無い)に対して、中身に import/export/TLA などがあるかを見てモジュールが CJS か ESM かを判断するようになった
+  - v22.8.0
+    - https://nodejs.org/en/blog/release/v22.8.0
+    - `module.enableCompileCache` が追加され、ロードされたモジュールのオンディスクキャッシュを有効化し、ESM でのパフォーマンス改善を行えるようになった
+    - `vm.createContext` で `globalThis` を freeze させグローバルへのアクセス高速化を行えるようになった
+    - node:test でカバレッジの閾値を設定可能になった
+  - v22.9.0
+    - https://nodejs.org/en/blog/release/v22.9.0
+    - `util.getCallSite`で現在実行しているスタックトレースが取れるようになった
+    - V8 にある SSA ベースの JIT コンパイラである Maglev をデフォルトで無効化へ
+- Node.js Takes Steps Towards Removing Corepack
+  - https://socket.dev/blog/node-js-takes-steps-towards-removing-corepack
+  - Corepack が Node から削除される
+  - 過去、deps: add Yarn 1.22.5
+    - https://github.com/nodejs/node/pull/37277
+- Breaking News: JSConf is Back and Joining the OpenJS Foundation | OpenJS Foundation
+  - https://openjsf.org/blog/jsconf-brand-and-js-logo-and-wordmark-contributed
+  - JSConf が OpenJS に所属
+  - OpenJS World は JSConf にリブランド
+- Announcing Rspack 1.0
+  - https://rspack.dev/blog/announcing-1-0
+  - npm でダウンロードされている webpack plugins の上位 50 位の 80%以上を実行できるようになった
+  - chunks, tree shaking, scope hoisting, mangle exports などの最適化アルゴリズムのサポート
+  - Rspack Stackmodule federation v2 のサポート
+  - Rspack Stack: Rspack/Rsbuild/Rslib/Rspress/Rsdctor
+  - Import attributes の JSON/CSS Modules は対応済み
+  - webpack での css scripts
+    - https://github.com/webpack/webpack/pull/18721
+    - https://github.com/webpack/webpack/issues/14893
+    - https://github.com/webpack-contrib/css-loader/pull/1368
+- Announcing Rsbuild 1.0 - Rsbuild
+  - https://rsbuild.dev/community/releases/v1-0
+  - Rspack を使ったビルドツール
+  - webpack-cli との互換を維持しつつモダンな設計
+  - ByteDance が Vite の代わりに開発したもので、内部ではかなり使われている
+  - Rspress, Rslib, Modern.js (fullstack React Framework), Storybook Rsbuild も合わせて OSS 化
+  - 今後は Remix とも協力など、多くのフレームワークへの対応をすすめる予定
+  - feat: rsc plugin
+    - https://github.com/web-infra-dev/rspack/pull/5824
+- Evan You 「oxc + swc + Rolldown 使った Vue のビルドが 85 倍速くなった」
+  - https://x.com/youyuxi/status/1833492071862440070
+  - Linter Product Plan and Progress
+    - https://github.com/oxc-project/oxc/issues/481
+- Vite Environment API
+  - https://github.com/vitejs/vite/pull/16471
+  - client, ssr のように個別の環境を作成することができ、独立したモジュールグラフを作成することにより、混在しない状態が作れるようになった
+  - この API を使うことにより、RSC のような独立したモジュールグラフを持つ環境を構築することが可能となった
+- Biome v1.9 Anniversary Release | Biome
+  - https://biomejs.dev/blog/biome-v1-9/
+  - CSS/GraphQL の formatter/linter デフォルトサポート
+  - AST grep みたいな AST を検索できる search 機能
+    - プラグインを作る上で必要な機能を出したっぽい?
+  - editorconfig を見るように
+- Announcing TypedSQL: Make your raw SQL queries type-safe with Prisma ORM
+  - https://www.prisma.io/blog/announcing-typedsql-make-your-raw-sql-queries-type-safe-with-prisma-orm
+  - 生 SQL を型安全にしたライブラリ
+  - prisma ディレクトリに sql ファイルを配置し、`prisma generate --sql` を実行することにより、ts のコードを生成できる
+- Astro
+  - v5.0 Beta
+    - https://astro.build/blog/astro-5-beta/
+    - Content Layer が安定へ
+    - Server Islands が安定へ
+      - 動的コンテンツのレンダリングを最初のページ読み込み後まで延期できる
+    - astro:env が安定へ
+  - v4.15
+    - https://astro.build/blog/astro-4150/
+    - astro actions が安定へ
+    - i18n のルーティングでフォールバック結果の書き換えが可能になった
+    - astro db でリモートの libSQL サーバーインスタンスへ接続可能になった
+    - `client:idle` ディレクティブが追加され、コンポーネントのロードタイムアウトが設定可能になった
+- Version support policy and ESLint v8.x end of life
+  - https://eslint.org/blog/2024/09/eslint-v8-eol-version-support/
+  - 2024/10/5 で v8 が EOL へ
+  - HeroDevs への課金で延命可能
+- experimental typesafety phase 1
+  - https://github.com/remix-run/react-router/pull/12019
+  - React Router(remix)のルーティングの型化まわりを試している PR
+- Bun Compile and run C in JavaScript
+  - https://bun.sh/blog/compile-and-run-c-in-js
+  - JS のコード内で C をコンパイルし実行できるようになった
+- express@5.0.0
+  - https://github.com/expressjs/express/releases/tag/v5.0.0
+  - https://github.com/expressjs/express/releases/tag/5.0.0-alpha.1
+  - v5 alpha 1 から 10 年
+- Material UI v6 is out now
+  - https://mui.com/blog/material-ui-v6-is-out/
+  - CSS theme variables の追加された
+  - containerQueries の追加された
+  - Grid2 が安定になった
+  - emotion の代わりに Pigment CSS が実験的に統合できるようになった
+  - Getting started with Pigment CSS
+    - https://mui.com/material-ui/experimental-api/pigment-css/
+  - toolpad
+    - https://mui.com/toolpad/core/introduction/
+    - tailwind ui のように MUI のコンポーネントでダッシュボードデザインのテンプレを作れるコンポーネント集
+  - Toolpad Studio
+    - toolpad のコンポーネントを GUI で動かしてダッシュボード画面を作り、コードも生成してくれる
+- Announcing TypeScript 5.6
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-6/
+  - 8 月分参照
+- Component testing in Storybook
+  - https://storybook.js.org/blog/component-testing/
+  - Storybook と Chromatic を活用した component test と e2e について
+- Storybook 8.3
+  - https://github.com/storybookjs/storybook/blob/next/CHANGELOG.md#830
+  - First-class Vitest integration to run stories as component tests
+  - Next.js-Vite framework for Vitest compatibility and better DX
+  - Further reduced bundle size for a smaller install footprint
+  - Experimental Story globals to standardize stories for themes, viewports, and locales
+  - Hundreds more improvements
+- Support React 18 in Pages Router
+  - https://github.com/vercel/next.js/pull/69484
+  - Pages Router は React v19 落ち着くまで v18 にする PR
+    - マージしてリバートされた
+      - https://github.com/vercel/next.js/pull/69911
+      - つまり 19 がでそう?
+- v0.dev のアップデート
+  - https://v0.dev/chat
+  - v0.dev の日本語対応、UI 生成以外も対応
+- Why did OpenAI move from Next.js to Remix?
+  - https://www.youtube.com/watch?v=hHWgGfZpk00
+  - OpenAI が Remix にしたはなし
+- node-fetch-server
+  - https://github.com/mjackson/remix-the-web/tree/main/packages/node-fetch-server
+
+
+### 10 月
+
+- VoidZero | Next Generation Tooling for the Web
+  - https://voidzero.dev/
+  - https://voidzero.dev/posts/announcing-voidzero-inc
+  - Viteconf で発表
+  - Evan You が立ち上げた新会社
+  - JS のツールチェイン開発に注力する
+  - $4.6million のシードを調達
+  - Vite, Vitest, OXC, Rspack などをやっていく
+  - 当面は Rolldown を安定させる
+- Announcing Deno 2
+  - https://deno.com/blog/v2.0
+  - New Logo
+  - Backwards compatibility with Node.js and npm, allowing you to run existing Node applications seamlessly
+  - Native support for package.json and node_modules
+  - Package management with new deno install, deno add, and deno remove commands
+  - A stabilized standard library
+  - Support for private npm registries
+  - Workspaces and monorepo support
+  - Long Term Support (LTS) releases
+  - JSR: a modern registry for sharing JavaScript libraries across runtimes
+- React at Meta Connect 2024
+  - https://engineering.fb.com/2024/10/02/android/react-at-meta-connect-2024/
+  - Meta Quest 上のインスタアプリ等で React Native,StyleX,React Strict DOM を使ってる
+- [19] s/"Server Action"/"Server Function" by rickhanlonii · Pull Request #7180 · reactjs/react.dev
+  - https://github.com/reactjs/react.dev/pull/7180
+- Add `connection()` as a new dynamic API by gnoff · Pull Request #69949 · vercel/next.js
+  - https://github.com/vercel/next.js/pull/69949
+  - ESLint v9 サポート
+- React Router v7
+  - https://reactrouter.com/dev/guides
+- ReactCompiler が React v17,v18 も使えるように
+  - https://react.dev/learn/react-compiler#usage-with-babel
+- expo の'use dom'
+  - https://github.com/expo/expo/blob/main/docs/pages/guides/dom-components.mdx
+  - React Native で'use dom'を書くと、React component 動かせるように
+- TanStack Start Alpha
+  - https://tanstack.com/start/latest
+- Announcing TypeScript 5.7 Beta - TypeScript
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-7-beta/
+  - Checks for Never-Initialized Variables
+  - Path Rewriting for Relative Paths
+  - Support for --target es2024 and --lib es2024
+  - Searching Ancestor Configuration Files for Project Ownership
+  - Faster Project Ownership Checks in Editors for Composite Projects
+  - Support for V8 Compile Caching in Node.js
+  - Notable Behavioral Changes
+- Brisa
+  - https://brisa.build/
+  - 詳細
+    - https://brisa.build/blog/introducing-brisa
+    -
+  - V-DOM でルーティングなども込みの Framework
+  - Component は Web Component ベースで PandaCSS
+  - React を参考に、Server Actions や Server Components もある
+  - ビルドは Bun
+- ESLint now officially supports linting of JSON and Markdown - ESLint - Pluggable JavaScript Linter
+  - https://eslint.org/blog/2024/10/eslint-json-markdown-support/
+  - v8 EOL 過ぎた
+- Figma on Figma: Our approach to designing UI3
+  - https://www.figma.com/blog/our-approach-to-designing-ui3/
+- Building a better First Draft for designers
+  - https://www.figma.com/blog/figma-ai-first-draft/
+    - Figma AI を First Draft と称してβリリース将来的にはローカルライブラリも読み込めるようにしていくらしい
+- Bundling Past, Present, and Future
+  - https://www.youtube.com/watch?v=JUS6EPMbk0U
+- Qwik UI
+  - https://qwikui.com/
+  - Qwik Insight
+    - https://qwik.dev/docs/labs/insights/
+- OpenNext - OpenNext
+  - https://opennext.js.org/
+  - Next を Vercel 以外でもホストしたい
+  - AWS, Cloudflare の OSS アダプタを作る
+  - 全機能をサポートを目指す
+
+
+### 11 月
+
+- Recap: Next.js Conf 2024 - Vercel
+  - https://vercel.com/blog/recap-next-js-conf-2024
+- Next.js
+  - Next.js 15
+    - https://nextjs.org/blog/next-15
+  - Our Journey with Caching
+    - https://nextjs.org/blog/our-journey-with-caching
+    - use cache
+  - Next.js org
+    - https://github.com/nextjs
+  - Add expireTag and expirePath APIs by ijjk · Pull Request #72485 · vercel/next.js
+    - https://github.com/vercel/next.js/pull/72485
+- Turbo
+  - Turborepo 2.2
+    - https://turbo.build/blog/turbo-2-2-0
+  - Turbopack Dev is Now Stable
+    - https://nextjs.org/blog/turbopack-for-development-stable
+- Node.js
+  - v23.0.0
+    - https://nodejs.org/en/blog/release/v23.0.0
+      - require(esm) is now enabled by default
+      - Removing support for Windows 32-bit systems
+      - Stabilizing the node --run command
+      - Enhancements to the test runner, including glob pattern support for coverage files
+  - v23.1.0
+    - https://nodejs.org/en/blog/release/v23.1.0
+      - Buffer now work with resizable ArrayBuffer
+      - MockTimers test runner API is now stable
+      - JSON modules and import attributes are now stable
+  - v23.2.0
+    - https://nodejs.org/en/blog/release/v23.2.0
+      - Update root certificates to NSS 3.104
+      - module: add findPackageJSON util
+      - module: add module.stripTypeScriptTypes
+  - Node.js v22 Enters Long Term Support
+    - https://nodesource.com/blog/Node.js-v22-Long-Term-Support-LTS
+- React Compiler Beta Release
+  - https://react.dev/blog/2024/10/21/react-compiler-beta-release
+  - Adopting the compiler in Sanity Studio · reactwg/react-compiler · Discussion #33
+    - https://github.com/reactwg/react-compiler/discussions/33
+    - compiler を有効化するとテストが落ちてバグが表面化したはなし
+  - Preview compile result in editor · reactwg/react-compiler · Discussion #26
+    - https://github.com/reactwg/react-compiler/discussions/26
+    - editor の拡張機能についてのはなし
+  - playground
+    - https://0xeac7-forget.vercel.app/
+- React Router Brand Update
+  - https://remix.run/blog/react-router-brand-update
+- react native New Architecture is here
+  - https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here
+- Beta: Universal React Server Components in Expo Router
+  - https://expo.dev/blog/universal-react-server-components-developer-preview
+- JS0/JSSugar
+  - https://docs.google.com/presentation/d/1ylROTu3N6MyHzNzWJXQAc7Bo1O0FHO3lNKfQMfPOA4o/edit?pli=1#slide=id.p
+  - https://github.com/tc39/agendas/blob/main/2024/10.md
+  - JS エンジンへの機能追加が増えすぎ実装負荷が上がってる
+  - みんなツール使ってるし全部ネイティブでやらなくてもいいのでは?
+  - でも、標準化自体はしておきたい
+  - 分離しよう
+  - JS0: エンジンが実装する標準
+  - JSSugar: ツールが実装する標準
+- Announcing TypeScript 5.7 RC
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-7-rc/
+- vlt
+  - https://www.vlt.sh/
+  - Introducing the vlt Package Manager & Serverless Registry
+    - https://blog.vlt.sh/blog/introducing-vlt-and-vsr
+- rolldown
+  - 0.14.0
+    - https://github.com/rolldown/rolldown/releases/tag/v0.14.0
+  - feat: `new URL(..., import.meta.url)` support
+    - https://github.com/rolldown/rolldown/pull/2710
+    - https://github.com/rolldown/rolldown/issues/2745
+- Announcement: Plugins are coming to Biome 2.0
+  - https://github.com/biomejs/biome/discussions/4428
+  - ☂️ Road to Biome v2.0
+    - https://github.com/biomejs/biome/issues/3727
+- Storybook 8.4
+  - https://storybook.js.org/blog/storybook-8-4/
+  - eslint-plugin-storybook の flat config 対応
+    - https://github.com/storybookjs/eslint-plugin-storybook/releases/tag/v0.10.0
+- Prisma Postgres®: Building a Modern PostgreSQL Service Using Unikernels & MicroVMs
+  - https://www.prisma.io/blog/announcing-prisma-postgres-early-access
+- How to convert CommonJS to ESM
+  - https://deno.com/blog/convert-cjs-to-esm
+- simplifying-islands-arch
+  - https://preactjs.com/blog/simplifying-islands-arch/
+- eslint/css
+  - https://github.com/eslint/css/pull/2
+- chakra-ui Announcing v3
+  - https://www.chakra-ui.com/blog/00-announcing-v3
+- msw v2.6.0
+  - https://github.com/mswjs/msw/releases/tag/v2.6.0
+  - support mocking WebSocket APIs
+- Svelte 5 is alive
+  - https://svelte.dev/blog/svelte-5-is-alive
+- tauri v2.0
+  - https://v2.tauri.app/blog/tauri-20/
+- Ruby on Rails - Rails 8.0: No PaaS Required
+  - https://rubyonrails.org/2024/11/7/rails-8-no-paas-required
+- State of CSS 2024
+  - https://2024.stateofcss.com/en-US/awards/
+- State of Frontend 2024
+  - https://tsh.io/state-of-frontend/
+- State of JavaScript 2024
+  - https://survey.devographics.com/en-US/survey/state-of-js/2024
+  - 募集開始
+- State of React 2024
+  - https://survey.devographics.com/ja-JP/survey/state-of-react/2024
+  - 募集開始
+
+
+### 12 月
+
+- React v19 Release!
+  - https://react.dev/blog/2024/12/05/react-19
+- Astro 5.0
+  - https://astro.build/blog/astro-5/
+- Undici v7 is here
+  - https://blog.platformatic.dev/undici-v7-is-here
+- Vite 6.0 is out!
+  - https://vite.dev/blog/announcing-vite6.html
+- Tailwind CSS v4.0 Beta 1
+  - https://tailwindcss.com/blog/tailwindcss-v4-beta
+- Deno 2.1: Wasm Imports and other enhancements
+  - https://deno.com/blog/v2.1
+- rslib
+  - https://lib.rsbuild.dev/
+- prisma v6
+  - https://github.com/prisma/prisma/releases/tag/6.0.0
+- React Router v7
+  - https://remix.run/blog/react-router-v7
