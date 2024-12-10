@@ -14,7 +14,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 
 第 167 回のテーマは 2024 年の Yearly Ecosystem です。
 
-
 ## Show Note
 
 ### 2024 年のチェックポイント
@@ -30,7 +29,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - ESLint to flat config or Biome
 - AI driven FE Development
 - CSS の新しい方法論
-
 
 ### 今年のキーワード
 
@@ -81,7 +79,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - Other
   - mozaic.fm renewal
 
-
 ### 2025 年のチェックポイント
 
 - React の WC 対応と Open UI により WC 元年がまたくるかも
@@ -97,7 +94,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - Bun の独走に対するエコシステムへの還元
 - jsr/vlt/npm の覇権争いと ESM 移行
 - tooling 系百花繚乱どうなるか
-
 
 ### 1 月
 
@@ -187,7 +183,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - InVision design collaboration services shutdown
   - https://www.invisionapp.com/inside-design/invision-design-collaboration-services-shutdown/
   - 2024 年末に InVision のサービスは終了
-
 
 ### 2 月
 
@@ -286,7 +281,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - Rome 作った Sebmac が X で復活
   - https://twitter.com/sebmck/status/1755739441103097958?s=20
 
-
 ### 3 月
 
 - JSR (JavaScript Registry)
@@ -347,7 +341,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - https://github.com/electric-sql/pglite
 - Redwood v7.0.0 is now available!
   - https://community.redwoodjs.com/t/redwood-v7-0-0-is-now-available/5777
-
 
 ### 4 月
 
@@ -413,7 +406,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - https://turbo.build/blog/turbo-1-13-0
 - feat(migrate): add migrate eslint #2103
   - https://github.com/biomejs/biome/pull/2103
-
 
 ### 5 月
 
@@ -635,7 +627,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - Introducing TypeSpec: A New Language for API-Centric Development | TypeSpec
   - https://typespec.io/blog/2024-04-25-introducing
 
-
 ### 6 月
 
 - React Conf 2024 Recap
@@ -734,7 +725,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - Deno std が v1.0 にしていく
   - パッケージごとにリリースタイミングは違う
 
-
 ### 7 月
 
 - [React 19] Disabling prerendering siblings of suspended components breaking common pattern
@@ -814,7 +804,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - 堅牢な型があり、パフォーマンスの最適化を行っている utility ライブラリ
 - State of JavaScript 2023
   - https://2023.stateofjs.com/en-US/
-
 
 ### 8 月
 
@@ -939,7 +928,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - Lottielab で作ってたエディターがアップデートして正式アプデぽい
 - Postgres Sandbox
   - https://postgres.new/
-
 
 ### 9 月
 
@@ -1081,7 +1069,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - node-fetch-server
   - https://github.com/mjackson/remix-the-web/tree/main/packages/node-fetch-server
 
-
 ### 10 月
 
 - VoidZero | Next Generation Tooling for the Web
@@ -1158,7 +1145,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - Next を Vercel 以外でもホストしたい
   - AWS, Cloudflare の OSS アダプタを作る
   - 全機能をサポートを目指す
-
 
 ### 11 月
 
@@ -1272,7 +1258,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - State of React 2024
   - https://survey.devographics.com/ja-JP/survey/state-of-react/2024
   - 募集開始
-
 
 ### 12 月
 

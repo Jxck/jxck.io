@@ -2263,3 +2263,16 @@ eyeD3 --title "ep166 Monthly Platform 202411" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep167.mp3
+
+eyeD3 --title "ep167 Yearly Ecosystem 2024" \
+      --track 175 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep167.mp3
+
+
+
