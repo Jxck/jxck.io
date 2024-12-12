@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2024-12-12/state-of-3pc-2024.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?230728_230731>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?230728_230731></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 30 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adven...">
+  <meta name=keywords            content="">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2024-12-12/state-of-3pc-2024.html>
+  <meta property=og:title        content="3PCA 30 日目: 2024 年の 3rd Party Cookie まとめ | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 30 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adven...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 30 日目: 2024 年の 3rd Party Cookie まとめ | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2024-12-12T08:00:00+08:00",
+    "dateModified": "2024-12-13T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 30 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adven..."
+  }
+  </script>
+
+  <title>3PCA 30 日目: 2024 年の 3rd Party Cookie まとめ | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?240701_012822>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?230926_134917>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?220304_061221>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?201223_011131>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2024-12-12>2024-12-12</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-12-13>2024-12-13</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#2024-年の-recap">2024 年の Recap</a>
+              <ol>
+                <li><a href="#google-の発表への反発">Google の発表への反発</a>
+                <li><a href="#tag-の発表への反発">TAG の発表への反発</a>
+                <li><a href="#本当に反発すべきものは何か">本当に反発すべきものは何か?</a>
+              </ol>
+              <li><a href="#ユーザの選択-uiとは何か">「ユーザの選択 UI」とは何か?</a>
+              <li><a href="#cma-の報告">CMA の報告</a>
+              <li><a href="#cma-q2q3-report">CMA Q2/Q3 Report</a>
+              <ol>
+                <li><a href="#google-のコミットメント">Google のコミットメント</a>
+                <li><a href="#google-の報告書">Google の報告書</a>
+                <li><a href="#cma-の報告書">CMA の報告書</a>
+              </ol>
+              <li><a href="#まとめ">まとめ</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?220222_230717>
+    <article>
+      <h1><a href="">3PCA 30 日目: 2024 年の 3rd Party Cookie まとめ</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、<strong>2023 年</strong>の 3rd Party Cookie Advent Calendar の 30 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>このアドベントカレンダーを開始した 2023 年末の時点では、2024 年(つまり今年)の年始に Chrome による 1% Deprecate が始まり、2024 年をかけてその範囲を広げ、今頃は Post 3rd Party Cookie の世界が訪れている見通しだった。
+        <p>しかし、その予定は大きく変更され、これからどうなるのかも不透明だ。
+        <p>つまり、この話は 2025 年も継続することになってしまったため、2024 年の現状を一旦まとめておくこととする。
+      </section>
+      <section>
+        <h2 id="2024-年の-recap"><a href="#2024-年の-recap">2024 年の Recap</a></h2>
+        <p>まず、本当にざっくりとここまでの話を振り返ろう。正確性度外視の tl;dr というやつだ。
+        <ul>
+          <li>Google は 3rd Party Cookie を 2024 年に廃止するアナウンスをしていた
+          <li>独断で決めるのではなく、CMA (日本で言う公正取引委員会)と協議をして進めていた
+          <li>並行して Privacy Sandbox を進めていたが、業界の移行が進んだとは言い難い
+          <li>今 3rd Party Cookie を Deprecate するのは、影響が大きすぎる
+          <li>そこで 2024 年 7 月「Privacy Sandbox に関する方針転換」を Chrome が公表
+          <li>「Chrome は 3rd Party Cookie 廃止を辞めると言っている、けしからん」と一部業界は反発
+          <li>しかし内容は「Chrome がブロックするのではなく、ユーザが選択する UI を提供する」というもの
+        </ul>
+        <p>最後の行を無視して「3rd Party Cookie 廃止を辞める」だけをかいつまむと、「Google は 3rd Party Cookie を今後も使い続けられるようにするといっている、許すわけにはいかない」という話になる。実際、そこに対する反発が業界各団体や W3C からも出ている。
+        <section>
+          <h3 id="google-の発表への反発"><a href="#google-の発表への反発">Google の発表への反発</a></h3>
+          <p>W3C TAG は、2 年くらい前に &quot;Improving the web without third-party cookies&quot; という Finding を出している。これはタイトル通り「今後 3PC deprecation を進めていく」という趣旨の内容だったが、Google の発表を受けて、この内容が大幅に更新された。
+          <ul>
+            <li>
+              Third Party Cookies Must Be Removed
+              <ul>
+                <li><a href="https://www.w3.org/2001/tag/doc/web-without-3p-cookies/" target=_blank>https://www.w3.org/2001/tag/doc/web-without-3p-cookies/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>このアップデートについてのブログも出ている。
+          <ul>
+            <li>
+              Third-party cookies have got to go | 2024 | Blog | W3C
+              <ul>
+                <li><a href="https://www.w3.org/blog/2024/third-party-cookies-have-got-to-go/" target=_blank>https://www.w3.org/blog/2024/third-party-cookies-have-got-to-go/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>要するに以下のようなものだ
+          <ul>
+            <li>3rd Party Cookie は無くす方向で進めてきた
+            <li>Privacy Sandbox だって進めてきた
+            <li>それなのにあ話が違う、Google には失望した。
+            <li>Google は撤回を撤回すべきだ
+          </ul>
+        </section>
+        <section>
+          <h3 id="tag-の発表への反発"><a href="#tag-の発表への反発">TAG の発表への反発</a></h3>
+          <p>この TAG の発表に対して、元 Google, 現在 MS であり、自身も TAG のメンバーだった Alex Russell は、以下のブログを公開した。
+          <ul>
+            <li>
+              Misfire - Infrequently Noted
+              <ul>
+                <li><a href="https://infrequently.org/2024/07/misfire/" target=_blank>https://infrequently.org/2024/07/misfire/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>彼のブログはいつも長く、言い回しが独特で読むのが難しい。よって、内容は筆者もざっくりとしか把握できてないが、おおよそ以下のようなものだ。
+          <ul>
+            <li>TAG は Google を批判しているが、代替案を提示できているかというと、できてない。
+            <li>3PC の削除を主張するのは美徳かもしれないが、現実的な問題を踏まえた行動ができてない。
+            <li>そもそも消せば解決というわけでもなく、恐れていた 1st Party Cookie での追跡は始まってる。
+            <li>とくにメールアドレスの紐付けが行われ、簡単にはオプトアウトできなくなっている。
+            <li>唯一の解決手段は、プライバシー法を確立することで、それ以外は応急処置だ。
+            <li>また、ベンダに対して in-app browser をやめるように求めるべきだ。
+            <li>そういうことができてない、TAG は中途半端な仕事しかしていない。
+          </ul>
+          <p>この 3PCA でも散々述べてきた点もまとまっており、一部筆者の考えとの違いはあれど、概ね同意できる内容と思う。
+        </section>
+        <section>
+          <h3 id="本当に反発すべきものは何か"><a href="#本当に反発すべきものは何か">本当に反発すべきものは何か?</a></h3>
+          <p>重要なのは、Google の発表自体も CMA との連携の上で出されているという点だ。
+          <p>ここまで散々 Chrome を(事実上)監視していた CMA が、「Chrome が完全に 3PC のブロックを辞める」と言い出したとして、それをすんなり受け入れるかどうかは、ちょっと考えればわかるだろう。
+          <p>TAG の Finding は、まだ確定していない「方針の転換先がなんであるか」を決めつけて批判している点だと筆者は考える。
+          <p>仮に Chrome を批判するのであれば、「批判するにも値しない程度の情報しか、公開されてない」という点かもしれない。
+          <p>しかし、具体的に「方針の転換先」つまり「ユーザの選択 UI」がどんなものであるかも、おそらく本当に決まってないのだろう。
+          <p>中途半端な状態で公開などできない代物になってしまったため、Chrome が慎重にならざるおえないのもわかる。
+          <p>今我々ができるのは、Chrome が「ユーザ選択の UI」を出してきた時に、それをどのように評価すべきかと言う点を整理しておくことくらいだ。
+        </section>
+      </section>
+      <section>
+        <h2 id="ユーザの選択-uiとは何か"><a href="#ユーザの選択-uiとは何か">「ユーザの選択 UI」とは何か?</a></h2>
+        <p>以下でも書いたことだが、あらためてまとめておく。
+        <ul>
+          <li>
+            3PCA 29 日目: Privacy Sandbox の方針転換は何を意味するか | blog.jxck.io
+            <ul>
+              <li><a href="https://blog.jxck.io/entries/2024-07-31/deprecating-the-deprecation.html">https://blog.jxck.io/entries/2024-07-31/deprecating-the-deprecation.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>この方針転換で最も重要な「ユーザの選択 UI」は、プロンプトであるだろうことが発表されているため、であれば実装で注目すべき点は「出るタイミング」と「影響範囲」の二点だろう。
+        <p>「プロンプトが出るタイミング」としては、大きく以下の 2 つが考えられる。
+        <ul>
+          <li>3PC を使うたびに出る、かつての Push Notification Prompt のような実装なのか?
+          <li>ユーザが選択操作しないと出ない、従来の Settings の中にあった設定の配置換えなのか?
+        </ul>
+        <p>これによってだいぶ変わってくる。
+        <p>前者であれば、既に Push がほぼブロックされていた実績から、3PC も同等にブロックされることが予想できる。そうであれば、Chrome は Deprecate しなかったが、業界的にはほぼ制度が出ず Deprecate されたも同然。という状態があり得るため、あとは「サービスプロバイダ」と「サービスユーザ」という構図で、サポートをどうするかといった話に落とし込まれる。
+        <p>一方、後者であればほぼ今と変わらないため、「3PC の Deprecate はやめた」に近い状態が想像できる。しかし、それをそのまま CMA が受け入れるとは想像し難い(今までやってきたのは、なんだったのかとなる)。
+        <p>また、3rd Party が対象であるため、ページで出す UI 設定の影響スコープも難しい。
+        <ul>
+          <li>無効化の設定は、3PC のドメインに対して保存され、一度ブロックした 3PC はどのページに行ってもブロックされるのか?
+          <li>ブロックはページ単位(つまりブロックも Isolation される)であり、別ページでは有効になり、全ページでブロックが必要なのか?
+        </ul>
+        <p>前者なら、ブロックの広まりはかなり速く進む可能性がある。一方後者だと、ユーザがプロンプトを操作する機会が増えすぎるため、ユーザにとってはかなりマイナスな UX が提供されることになる可能性がある。
+        <p>
+          <img loading=lazy decoding=async src=./user-choice-prompt.svg?241213_033700 alt="User Choice Prompt の実装観点" width=800 height=400>
+        </p>
+        <p>さて、では Chrome はどんなプロンプトを出すのだろうか?
+      </section>
+      <section>
+        <h2 id="cma-の報告"><a href="#cma-の報告">CMA の報告</a></h2>
+        <p>Chrome が夏に方針転換をアナウンスした際に、CMA も小さくコメントを公開していた。
+        <p>今は消えているが、前回のエントリで引用していたものが残っているため、再度引用する。
+        <blockquote cite="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes">
+          <p>On 22 July 2024, Google announced that it is changing its approach to Privacy Sandbox.
+          <p>Instead of removing third-party cookies from Chrome, <strong>it will be introducing a user-choice prompt,</strong>
+          <p><strong>which will allow users to choose whether to retain third party cookies.</strong>
+          <p>The CMA will now work closely with the ICO to carefully consider Google&apos;s new approach to Privacy Sandbox.
+          <p>We welcome views on Google&apos;s revised approach, including possible implications for consumers and market outcomes.
+          <p>...
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes" target=_blank>https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes</a></cite>
+        </blockquote>
+        <p>つまり、CMA と Google の間では「user-choice prompt」を出す点で、合意が取れていたことが伺える。
+        <p>すると注目すべきは CMA の Quarterly Report だ。
+        <p>CMA は本件を Google と進める中で、Google がコミットメントに対してどのような振る舞いをしたか、それが妥当なものであったのかを四半期ごとに報告している。
+        <p>本来は 7 月に Q2 のレポートが出るはずだったのだが、Google の方針転換と被ったため、一旦先送りにし Q2/Q3 合同のレポートが出ることになったのだ。
+        <p>筆者は、何かアップデートがあるとしたらそこだろう、と思い、そのレポートの公開を待っていた。
+      </section>
+      <section>
+        <h2 id="cma-q2q3-report"><a href="#cma-q2q3-report">CMA Q2/Q3 Report</a></h2>
+        <p>Q2/Q3 レポートは 11 月に公開された。以下の 3 つから構成されている。
+        <ul>
+          <li>
+            Google のコミットメント(これをやる)の内容(P15)
+            <ul>
+              <li><a href="https://assets.publishing.service.gov.uk/media/62052c6a8fa8f510a204374a/100222_Appendix_1A_Google_s_final_commitments.pdf" target=_blank>https://assets.publishing.service.gov.uk/media/62052c6a8fa8f510a204374a/100222_Appendix_1A_Google_s_final_commitments.pdf</a>
+            </ul>
+          </li>
+          <li>
+            Google の報告書(P44)
+            <ul>
+              <li><a href="https://assets.publishing.service.gov.uk/media/62052c6a8fa8f510a204374a/100222_Appendix_1A_Google_s_final_commitments.pdf" target=_blank>https://assets.publishing.service.gov.uk/media/62052c6a8fa8f510a204374a/100222_Appendix_1A_Google_s_final_commitments.pdf</a>
+            </ul>
+          </li>
+          <li>
+            CMA の報告書(P115)
+            <ul>
+              <li><a href="https://assets.publishing.service.gov.uk/media/62052c6a8fa8f510a204374a/100222_Appendix_1A_Google_s_final_commitments.pdf" target=_blank>https://assets.publishing.service.gov.uk/media/62052c6a8fa8f510a204374a/100222_Appendix_1A_Google_s_final_commitments.pdf</a>
+            </ul>
+          </li>
+        </ul>
+        <p>非常に長いが、公開されてすぐに一通り目を通した。
+        <p>内容についてブログを書かなかったのは、残念ながらこのレポートで特に新しい情報がなかったからだ。
+        <p>一応メモは残っているので、ざっくりまとめておこう。
+        <section>
+          <h3 id="google-のコミットメント"><a href="#google-のコミットメント">Google のコミットメント</a></h3>
+          <p>要するに「Google はこういうことをする」といった、業界用語でいうと「CMA と Google の間の握り」にあたるもの。
+          <ul>
+            <li>Privacy Sandbox を進めている
+            <li>Google だけが有利にならないように配慮している
+            <li>CMA に逐一報告し、協力して進めている
+            <li>いざ削除が決まった場合の進め方も CMA と握っている
+            <li>etc. etc. etc.
+          </ul>
+          <p>プロンプトの件も触れられていない。
+        </section>
+        <section>
+          <h3 id="google-の報告書"><a href="#google-の報告書">Google の報告書</a></h3>
+          <p>Privacy Sandbox についての進捗の報告。
+          <ul>
+            <li>策定も啓蒙も進めており、CMA にも報告している。
+            <li>
+              2024/7 に方針の変更を発表した。
+              <ul>
+                <li>具体的なタイムラインなどは未定。
+                <li>これが与える影響を調査・検証するために Q2 の報告は延期した。
+              </ul>
+            </li>
+            <li>その他、いつも通りの進捗。
+            <li>
+              業界のフィードバックを募集中。
+              <ul>
+                <li>それについてここで回答する。
+              </ul>
+            </li>
+            <li>
+              「3PCD のプランは今どうなっているのか?」
+              <ul>
+                <li>ユーザが選択するアプローチに変える予定。
+                <li>それについて CMA と協議中。
+              </ul>
+            </li>
+            <li>
+              「User Choice がどんなものか?」
+              <ul>
+                <li>新しいアプローチがどうなるか、まだ詳細は言える状態ではない。
+                <li>ただし、Cookie のない通信が大幅に増えると予想している。
+                <li>だから Privacy Sandbox の必要性は変わらない。
+                <li>UI もどうなるか決まっていない。
+                <li>それでも今回の変更に関する決定は、早く伝える必要を感じ行った。
+              </ul>
+            </li>
+            <li>その他、Privacy Sandbox API に対するフィードバックと回答など。
+          </ul>
+          <p>少なくともここからは、「ユーザの大半が無視できて、今まで通り 3PC が使い続けられるようなプロンプトの出し方」にするつもりはなさそうに感じる。
+          <p>とはいえ、まだ何もわからない状態なのは変わらない。
+          <p>本当は年末ごろ、プロトタイプでも実装が見られれば、それを元に今年最後のまとめブログとしようとしたが、それもできなかった。
+        </section>
+        <section>
+          <h3 id="cma-の報告書"><a href="#cma-の報告書">CMA の報告書</a></h3>
+          <p>こちらが本丸だ。
+          <ul>
+            <li>冒頭の Summary に重要なことがいくつかある。
+            <li>コミットメントに基づいて現状や懸念をまとめる。
+            <li>
+              Q1 報告以降、Google は方針転換を発表した。
+              <ul>
+                <li>ユーザに選択させる方式になった。
+                <li>検討が必要なので Q2 の報告はスキップした。
+                <li>方針転換に対して意見募集を行ったので、それを載せる。
+                <li>コミットメントは修正が必要だ。
+                <li>その辺を含めて引き続き Google と協議している。
+              </ul>
+            </li>
+            <li>
+              とりあえずこれまでの Privacy Sandbox の進捗についてまとめる。
+              <ul>
+                <li>業界からのフィードバックと Google の回答をまとめる。
+                <li>現在ある問題については、おおよそ解決されてきている。
+              </ul>
+            </li>
+            <li>法律の話
+            <li>ICO の立場の話
+            <li>様々な検証を行ったが、Google はこの期間コミットメントを遵守していた。
+          </ul>
+          <p>つまり、ここまでの Google の取り組みについて、方針転換の部分を除いて Privacy Sandbox の作業を CMA はポジティブに捉えているように読めた。
+          <p>また、いくつか気になるのは「Engagement with market participants」のところだ。
+          <ul>
+            <li>94: PS の開発がオープンでグローバルになるように、業界各位と協力して進めている。
+            <li>95: W3C での議論や質疑にも Google は参加している。もしここにコミットしていなければ、CMA からもクレームする。
+            <li>96: Q2 以降のフィードバックも、Google と取り組んでいる。
+            <li>97: そのまとめは、おおよそこの報告書に書いた通りだ。
+            <li>98: 7 月に公開したアプローチにはいろいろな意見が届いた。業界各位はほぼ全員一致で「競争上の懸念は残っている(competition concerns remain)」としており、「CMA は引き続き Google をこの点でも監視すべき」という意見が上がっている。
+            <li>99: また、少ないだが主に個人から「Google はやはり 3PC を完全に廃止すべきだ」という意見もありた。これらも本件にとって重要だ。
+          </ul>
+          <p>Appendix 2 にも以下のようにある。
+          <ul>
+            <li>13: Google の新しいアプローチで 3PC が減ったトラフィックにおいても、ターゲティングや測定のために、Privacy Sandbox は引き続き重要になるため、引き続き取り組む必要がある。
+          </ul>
+          <p>このレポートで CMA は、少なくとも Google の方針変更を現時点で批判してはいない。これは、Google と CMA のやり取りの中でも「Google は完全に 3PC 無効化を諦め、今後の 3PC は今まで通り使えるから Privacy Sandbox もいらなくなった」などという極端な話には、なっていない証左になると言えそうだ。
+          <p>憶測で極端な批判をするには、現時点ではあまりにも材料が足らないことだけは、はっきりしていることがわかるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>以上のように、Q2/Q3 のレポートでは、あくまで「変更以前の活動」に対する報告と評価が中心だった。Q4 のレポートが出るのは年が明けてからになるため、これ以上特に情報は得られないだろう。
+        <p>一方、Chrome からも「ユーザ選択 UI」の続報はなく、試すことができる状態でもない。
+        <p>そこがはっきりしない限り、批判することもできない状況だ。
+        <p>まずは 2025 年に、Chrome からこの UI の方針や実装が出るところから、この話がどうなっていくのかが見えてくることになるだろう。
+        <p>2024 年には結論が出るだろうと思っていた本件だが、2025 年に持ち越しになった。
+        <p>2025 年に結論が出るのかも怪しいが、引き続き注視していきたい。というか、行かざるを得なくなってしまった。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?201223_011131>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
