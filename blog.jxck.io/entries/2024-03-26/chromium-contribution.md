@@ -502,6 +502,26 @@ $ git cl issue 123456
 $ git cl upload
 ```
 
+なお、差分のサイズが大きいと `git cl upload` を実行した際に下記のエラーが出ることがある。
+
+```shell-session
+$ git cl upload
+error: RPC failed; HTTP 500 curl 22 The requested URL returned error: 500
+send-pack: unexpected disconnect while reading sideband packet
+```
+
+これは、git クライアントのバッファサイズの設定に起因している場合がある。
+
+その際は、下記のようにして解消できる。ただし、この設定変更は git の公式ドキュメントで推奨されているわけではないようなので自己責任で行う。
+
+```shell-session
+# git クライアントのバッファサイズを変更する
+# https://git-scm.com/docs/git-config#Documentation/git-config.txt-httppostBuffer
+$ git config --global http.postBuffer 157286400
+# 再び実行する
+$ git cl upload
+```
+
 
 ### VSCode
 
