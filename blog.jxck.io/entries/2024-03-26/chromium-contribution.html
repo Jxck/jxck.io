@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-26T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2024-12-13T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-12-13>2024-12-13</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -786,6 +786,17 @@ $ git map
 $ git cl issue 123456
 
 # 書いたコードを gerrit にアップする
+$ git cl upload</code></pre>
+          <p>なお、差分のサイズが大きいと <code translate=no>git cl upload</code> を実行した際に下記のエラーが出ることがある。
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ git cl upload
+error: RPC failed; HTTP 500 curl 22 The requested URL returned error: 500
+send-pack: unexpected disconnect while reading sideband packet</code></pre>
+          <p>これは、git クライアントのバッファサイズの設定に起因している場合がある。
+          <p>その際は、下記のようにして解消できる。ただし、この設定変更は git の公式ドキュメントで推奨されているわけではないようなので自己責任で行う。
+          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session># git クライアントのバッファサイズを変更する
+# https://git-scm.com/docs/git-config#Documentation/git-config.txt-httppostBuffer
+$ git config --global http.postBuffer 157286400
+# 再び実行する
 $ git cl upload</code></pre>
         </section>
         <section>
