@@ -45,7 +45,7 @@ W3C TAG は、2 年くらい前に "Improving the web without third-party cookie
 
 - 3rd Party Cookie は無くす方向で進めてきた
 - Privacy Sandbox だって進めてきた
-- それなのにあ話が違う、Google には失望した。
+- それなのに話が違う、Google には失望した。
 - Google は撤回を撤回すべきだ
 
 
