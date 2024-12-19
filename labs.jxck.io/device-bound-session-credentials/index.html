@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+
+<title>Device Bound Session Credentials DEMO | labs.jxck.io</title>
+
+<form id=login action=/device-bound-session-credentials/login method=post>
+  <fieldset form=login>
+    <legend>Device Bound Session Credentials Login</legend>
+
+    <label for=username>Username <abbr title=required>*</abbr></label>
+    <input type=text
+           id=username
+           name=username
+           autocomplete=username
+           value=jxck
+           required
+           autofocus>
+
+    <label for=password>Password  <abbr title=required>*</abbr></label>
+    <input type=password
+           id=password
+           name=password
+           autocomplete=current-password
+           value=deadbeef
+           required>
+
+    <button type=submit>login</button>
+  </fieldset>
+</form>

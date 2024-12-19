@@ -75,19 +75,106 @@ Slack は、タイムスタンプなどの要素も追加することで、よ�
   - https://slack.engineering/catching-compromised-cookies/
 
 
-
-
-
-
-
-
-
 ## Cookie をどう守るか
 
 「盗まれないようにする」のと同じように、「盗まれても大丈夫にする」という対策も考えられている。
 
-そもそも、 Session Cookie が Bearer Token であることは、扱いを容易にする一方で、前述のような攻撃に対して本質的に脆弱だ。
+根本的には、「送信してきたのが正当な所有者である」ことを証明できればよく、ここでは公開鍵暗号の方式が応用できる。OAuth では、 DPoP や MTLS のような仕組みで Proof of Possession(PoP) を実現し、 Sender Constrained な Token にする対策がなされている。
+
+このような方式を取る場合、問題になるのは鍵の管理だ。クライアントに鍵を保持するなら、それが盗まれる可能性を考える必要があり、そこが安全性の下限になる。
+
+ちなみに、 JS で鍵を生成し IndexedDB に入れる実装としては、以下がある。
+
+- session-lock - Home
+  - https://session-lock.keyri.com/
+
+
+Web の場合、そもそも通信自体が TLS で鍵交換してるのだから、そこに紐づけて Token を管理できないかという発想で、 Token Binding という仕様が議論された時期もある。
+
+- RFC 8473 - Token Binding over HTTP
+  - https://datatracker.ietf.org/doc/html/rfc8473
+
+これを用いれば Cookie や OAuth の Token などに対して、ブラウザが管理している鍵(から Export された専用の鍵)を用いて、 PoP を提供できると期待されていた。
+
+しかし、TLS との連携をデプロイするのは必ずしも容易とはいえなかった。例えば、一般的な構成では TLS の終端はアプリケーションサーバとは別のマシンで行われることが多い。また、そもそもネットワーク的な意味でのレイヤを跨いでいるため、アプリケーション(フレームワーク)の既存の設計にも、馴染まない部分が多い。なにより、 TLS のライフサイクル(ハンドシェイク)と、アプリが管理するセッションのライフサイクル(ログイン~ログアウト)などが乖離しているため、例えばログアウトしたから Binding を切りたいといった要求に対して、微妙な歪みが生じたのだ。
+
+## TPM による管理
+
+通常、 TLS の鍵、特に CA の秘密鍵などは、漏洩を防ぐために厳重に管理する必要がある。そこで、鍵の生成は一般に行われる OpenSSL の genrsa のような方法ではなく、そもそも専用ハードウェアモジュールの中で行われる。
+
+このようなモジュールは HSM (Hardware Security Module) と呼ばれ、内部で生成された秘密鍵は、そもそも取り出すことができない。もし壊して取り出そうとすると、鍵そのものが失われる(耐タンパ性)。そして、例えば署名等の計算はモジュールに対してリクエストすると、中から計算結果が返ってくるといった仕組みだ。これなら、鍵の窃取に対して堅牢になる。
+
+しかし、こうしたモジュールは非常に高価で、扱うのも専門業者くらいだった。
+
+ところが、近年ではデバイスにおける TPM (Trusted Platform Module) の実装が広がっている。これは、基盤に埋め込まれ隔離されたハードウェアで、秘密鍵を管理できる、安価な HSM のようなものだ。
+
+現状は、全てのデバイスが TPM を持ってるとは限らないが、 Win11 からは TPM を持つことが必須になり、 Chrome の調査では Win ユーザの 60% 程度は TPM が利用できる状態にあると報告され、徐々に普及が進んでいる。
+
+もし TPM を持たないデバイスの場合は、ソフトウェアでエミュレートすることでフォールバックが可能だ。そちらは TPM ほど安全ではないにせよ、全体のセキュリティの底上げにはなる。
+
+また、 TPM に対して署名を依頼することは他のユーザも可能であり、攻撃を完全には防げないらしい。しかし、そのような悪意のあるアプリの動きは、マルウェアとして検知するのがある程度容易であるため、総合的には対策が可能とされている。
+
+少なくとも、この仕組みを Cookie に持ち込めれば、従来よりはかなり安全になる。
+
+## Device Bound Session Credentials
+
+つまり、 Cookie の PoP を TPM に保存した鍵ペアで提供するという方式が、 Device Bound Session Credentials (DBSC) の提案の中核だ。
+
+しかし、完全に Cookie とは別の仕組みを仕様にしても、デプロイ負荷が高いと広がらないため、 Cookie との互換も持たせるような設計にしてある。
+
+ここからは、実際に Chrome のフラグを有効にし、その挙動を確認しながら基本的な仕様を見ていく。
+
+### Sec-Session-Registration
+
+ここでいうセッションの開始は、ログインフローの最後に Authorized Session が開始する時点などを想定している。
+
+認証リクエストのレスポンスで `Sec-Session-Registration` を返すことで、クライアントに鍵ペアの生成をリクエストできる。
+
+```http
+HTTP/1.1 200 OK
+Sec-Session-Registration: (RS256 ES256);challenge="challenge_value";path="StartSession"
+```
+
+構造は SFV になっており、最初は暗号方式のリストから始まり、後で用いるチャレンジと、用いるパスが含まれている。
+
+### Sec-Session-Response
+
+TPM で鍵を生成したクライアントは、 JWT でそれらの情報をシリアライズし、 `Sec-Session-Response` に付与して、指定されたパスにリクエストを行う。
+
+```
+POST /securesession/startsession HTTP/1.1
+Host: auth.example.com
+Accept: application/json
+Cookie: whatever_cookies_apply_to_this_request=value;
+Sec-Session-Response: JWT Proof
+```
+
+JWT の形式は以下だ。
+
+```json
+// Header
+{
+  "alg": "Signature Algorithm",
+  "typ": "JWT",
+}
+// Payload
+{
+  "aud": "URL of this request",
+  "jti": "challenge_value",
+  "iat": "timestamp",
+  "key": {
+    "kty": "key type",
+    "<kty-specific parameters>": "<value>",
+  },
+  "authorization": "<authorization_value>", // optional, only if set in registration header
+}
+```
 
 
 
-そこで、 Cookie を「送ってきた人が誰か」を確認できる Sender Constraint 
+
+
+
+# DBSC(E)
+
+この仕組みを拡張し、 Enterprise 領域で発生する様々な要求をカバーできる可能性にも言及されている。
