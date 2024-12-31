@@ -48,6 +48,21 @@
 執筆時間を、ブログよりも書籍に多く割いたため、書けずに溜まっているネタが多くある。年始は少しこれを消化したい。
 
 
+## Chromium Contribute
+
+今年は、ブラウザへのコントリビュートの時間を増やした。
+
+- Chromium にコントリビュートするための周辺知識 | blog.jxck.io
+  - https://blog.jxck.io/entries/2024-03-26/chromium-contribution.html
+
+また、初めて Chrome で機能の Ship までを担当できた。
+
+- URL.parse を Chromium で Ship するまで | blog.jxck.io
+  - https://blog.jxck.io/entries/2024-06-14/url.parse.html
+
+来年は、Chromium 以外へのコントリビュートにも挑戦して行きたい。
+
+
 ## mozaic.fm
 
 過去最多の 29 本を公開した。
