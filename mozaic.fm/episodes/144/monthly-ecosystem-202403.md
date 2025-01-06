@@ -11,7 +11,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 ## Theme
 
-第 143 回のテーマは 2024 年 3 月の Monthly Ecosystem です。
+第 144 回のテーマは 2024 年 3 月の Monthly Ecosystem です。
 
 ## Show Note
 
