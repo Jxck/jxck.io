@@ -12,17 +12,29 @@ Chrome チームより提案された Device Bound Session Credentials の実装
 
 そこで攻撃者の注目をあつめているのが、 Cookie の窃取(Cookie Theft)だ。
 
-認証がいかに強固になっても、有効な Session Cookie を盗むことができれば、その値を `Cookie` Field に付与してリクエストするだけ、なりすましを成立されることができる。
+認証が如何に堅牢になっても、有効な Session Cookie を盗むことができれば、その値を `Cookie` Field に付与してリクエストするだけで、なりすましを成立されることができる。
 
-いわゆる Session Cookie は Proof of Authentication であるため、その有効期限内はユーザの持つ権限と同等の操作が可能になるが、 Bearer Token であるため誰が送ってもその効果を発揮してしまうためだ。
+いわゆる Session Cookie は Proof of Authentication として実装されていることがほとんどであり、その有効期限内はユーザの持つ権限と同等の操作が可能になる。そして Bearer Token であるため誰が送ってもその効果を発揮してしまうためだ。
 
-いかに Cookie を守るのかは、今後の Web セキュリティの 1 つの重要なトピックと言える。
+いかに Session Cookie を守るのかは、今後の Web セキュリティの 1 つの重要なトピックと言える。
 
-## Cookie をどう盗むか
 
-HTTPS が前提となり、通信が暗号化されているのだから、 Cookie を盗むのは難しいと考えるかもしれない。
+## Cookie Theft によるインシデント
 
-しかし、 Cookie Theft の攻撃ベクタは通信ではなく、マルウェアやフィッシングによるものとされている。
+HTTPS が前提となり、通信が暗号化されているため、 Cookie を盗むのは難しいと考えるかもしれない。
+
+しかし、 Cookie Theft の攻撃ベクタは、通信の Person in The Middle ではなく、マルウェアやフィッシングにトレンドを移している。
+
+ちょうど世間を騒がせた DMM のビットコイン流出事件も、この手法による Session Cookie の窃取が契機になっているようだ。
+
+- 北朝鮮を背景とするサイバー攻撃グループ TraderTraitor による暗号資産関連事業者を標的としたサイバー攻撃について - 令和６年 12 月 24 日 警察庁
+  - https://www.npa.go.jp/bureau/cyber/pdf/020241224_pa.pdf
+
+> ...同サイバー攻撃グループは、Ginco のウォレット管理システムへのアクセス権を保有する従業員に、GitHub 上に保管された採用前試験を装った悪意ある Python スクリプトへの URL を送付しました。被害者は、この Python コードを自身の GitHub ページにコピーし、その後、侵害されました。
+> ...侵害を受けた従業員になりすますためにセッションクッキーの情報を悪用し、Ginco の暗号化されていない通信システムへのアクセスに成功しました。
+
+つまり、攻撃者はリクルーターになりすまし、ウォレット管理者に採用試験を装って送った GitHub 上の Python スクリプトを実行させ、有効な Session Cookie を窃取。それを用いたなりすましで、ビットコインの漏洩を成立したとしている。
+
 
 ### マルウェア対策
 
@@ -30,13 +42,14 @@ Cookie はあくまでブラウザがローカルに保存している値であ�
 
 なお、昔のブラウザは、それこそ平文でファイルに保存されていたりもしたが、さすがに今はそこまで脆弱ではない。
 
-例えば Chrome は様々なデータをローカルの SQLite に保存することが多いが、Cookie に関しては Mac の Keychain, Linux の Kwallet
- など、アプリからしかアクセスできない安全な領域に保存している。
+例えば Chrome は様々なデータをローカルの SQLite に保存することが多いが、Cookie に関しては Mac の Keychain, Linux の Kwallet など、アプリからしかアクセスできない安全な領域に保存している。
 
 ところが Windows は、 DPAPI というログインユーザ権限で実行されたアプリからはアクセスできてしまう領域にあるため、これを App-Bound Encryption という機能で保護する変更が進んでいる。
 
 - Improving the security of Chrome cookies on Windows
   - https://security.googleblog.com/2024/07/improving-security-of-chrome-cookies-on.html
+
+時期を考えると、 DMM の件が契機だったのかもしれないと勘ぐってしまうが、実際のところどうなのだろうか？
 
 
 ### フィッシング対策
@@ -132,47 +145,90 @@ Web の場合、そもそも通信自体が TLS で鍵交換してるのだか�
 
 ```http
 HTTP/1.1 200 OK
-Sec-Session-Registration: (RS256 ES256);challenge="challenge_value";path="StartSession"
+Sec-Session-Registration: (RS256 ES256);challenge="challenge_value";path="session"
 ```
 
 構造は SFV になっており、最初は暗号方式のリストから始まり、後で用いるチャレンジと、用いるパスが含まれている。
 
 ### Sec-Session-Response
 
-TPM で鍵を生成したクライアントは、 JWT でそれらの情報をシリアライズし、 `Sec-Session-Response` に付与して、指定されたパスにリクエストを行う。
+レスポンスを受け取ったクライアントは、 TPM で生成した鍵を JWT でシリアライズし、 `Sec-Session-Response` に付与して、指定されたパスにリクエストする。
 
 ```
-POST /securesession/startsession HTTP/1.1
-Host: auth.example.com
+POST /session HTTP/1.1
+Host: example.com
 Accept: application/json
-Cookie: whatever_cookies_apply_to_this_request=value;
 Sec-Session-Response: JWT Proof
 ```
 
-JWT の形式は以下だ。
+JWT は以下のようなものだ。
 
 ```json
 // Header
 {
-  "alg": "Signature Algorithm",
   "typ": "JWT",
+  "alg": "RS256"
 }
 // Payload
 {
-  "aud": "URL of this request",
+  "aud": "https://example.com/session",
   "jti": "challenge_value",
-  "iat": "timestamp",
+  "iat": "1736267817",
   "key": {
-    "kty": "key type",
-    "<kty-specific parameters>": "<value>",
+    "e": "AQAB",
+    "kty": "RSA",
+    "n": "oPJngC..."
+  }
+  // optional, only if set in registration header
+  "authorization": "<authorization_value>",
+}
+// Signature
+"gkkfn2VDUQzJHv7..."
+```
+
+この鍵をサーバ側で保存する。
+
+## Session Registration instructions JSON
+
+最後にサーバは以下のような JSON を body で送る。
+
+```json
+{
+  "session_identifier": "session_id",
+  "refresh_url": "/refresh",
+  "scope": {
+    // Origin-scoped by default (i.e. https://example.com)
+    // Specifies to include https://*.example.com except excluded subdomains.
+    // This can only be true if the origin's host is the root eTLD+1.
+    "origin": "example.com",
+    "include_site": true,
+    "defer_requests": true, // optional and true by default
+    "scope_specification" : [
+      { "type": "include", "domain": "trusted.example.com", "path": "/only_trusted_path" },
+      { "type": "exclude", "domain": "untrusted.example.com", "path": "/" },
+      { "type": "exclude", "domain": "*.example.com", "path": "/static" }
+    ]
   },
-  "authorization": "<authorization_value>", // optional, only if set in registration header
+  "credentials": [{
+    "type": "cookie",
+    // This specifies the exact cookie that this config applies to.
+    // Attributes match the cookie attributes in RFC 6265bis
+    // and are parsed similarly to a normal Set-Cookie line,
+    // using the same default values.
+    // These SHOULD be equivalent to the Set-Cookie line accompanying this response.
+    "name": "auth_cookie",
+    "attributes": "Domain=example.com; Path=/; Secure; SameSite=None"
+    // Attributes Max-Age, Expires and HttpOnly are ignored
+  }]
 }
 ```
 
-
-
-
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Cache-Control: no-store
+Set-Cookie: __Host-session-id=deadbeef; Max-Age=600; Secure; HttpOnly;
+```
 
 
 # DBSC(E)
@@ -180,14 +236,3 @@ JWT の形式は以下だ。
 この仕組みを拡張し、 Enterprise 領域で発生する様々な要求をカバーできる可能性にも言及されている。
 
 
-
-# Cookie Theft によるインシデント
-
-- DMMビットコイン流出事件 Gincoの責任とセキュリティの穴 - coki
-  - https://coki.jp/article/column/43243/
-
-> Gincoの管理システムへのアクセス権限を持つインド人従業員が、この偽の入社試験を受け、Pythonコードをダウンロードして実行したことでPCが感染。
-> セッションクッキーを盗まれ、DMMのビットコインが盗まれたというのが事の経緯のようだ。
-
-
-実際に、マルウェアによって Session Cookie が盗まれた事例。
