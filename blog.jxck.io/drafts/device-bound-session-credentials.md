@@ -318,6 +318,13 @@ deadbeef
 - Issues
   - DBSC (Device Bound Session Credentials) · Issue #106 · WICG/proposals
     - https://github.com/WICG/proposals/issues/106
+  - Create DBSC in network service [41495201] - Chromium
+    - https://issues.chromium.org/issues/41495201
 - Other
   - MSEdgeExplainers/BindingContext/explainer.md at main · MicrosoftEdge/MSEdgeExplainers
     - https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/BindingContext/explainer.md
+  - DBSC public drive - Google ドライブ
+    - https://drive.google.com/drive/folders/1xL5GnXS6XtBlf96UROkW4gAbvsInB-Fd
+  - DBSC prototype
+    - https://dbsc-prototype-server.glitch.me/
+    - https://glitch.com/edit/#!/dbsc-prototype-server

@@ -21,9 +21,9 @@ begin
 
   body = JSON.generate({
     "session_identifier": "session_id",
-    "refresh_url": "/device-bound-session-credentials/refresh",
+    "refresh_url": "refresh",
     "scope": {
-      "origin": "labs.jxck.io",
+      "origin": "jxck.io",
       "include_site": true,
       "defer_requests": true
     },
@@ -32,7 +32,7 @@ begin
       # This specifies the exact cookie that this config applies to. Attributes match the cookie attributes in RFC 6265bis and are parsed similarly to a normal Set-Cookie line, using the same default values. These SHOULD be equivalent to the Set-Cookie line accompanying this response.
       # Attributes Max-Age, Expires and HttpOnly are ignored
       "name": "auth_cookie",
-      "attributes": "Domain=example.com; Path=/; Secure; SameSite=None"
+      "attributes": "Domain=jxck.io; Path=/; Secure; SameSite=None"
     }]
   })
 
@@ -42,7 +42,7 @@ begin
   STDOUT.print "Content-Length: #{body.size}\n"
   STDOUT.print "Content-Type: application/json\n"
   STDOUT.print "Cache-Control: no-cache\n"
-  STDOUT.print "Set-Cookie: auth_cookie=abcdef0123; Domain=example.com; Max-Age=10; Secure; HttpOnly;\n"
+  STDOUT.print "Set-Cookie: auth_cookie=abcdef0123; Domain=jxck.io; Max-Age=10; Secure; HttpOnly;\n"
   STDOUT.print "\n"
   STDOUT.print body
 rescue => err
