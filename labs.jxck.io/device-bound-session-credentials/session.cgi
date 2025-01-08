@@ -25,21 +25,14 @@ begin
     "scope": {
       "origin": "labs.jxck.io",
       "include_site": true,
-      "defer_requests": true,
-      "scope_specification": [
-        {
-          "type": "include",
-          "domain": "labs.jxck.io",
-          "path": "/"
-        }
-      ]
+      "defer_requests": true
     },
     "credentials": [{
       "type": "cookie",
       # This specifies the exact cookie that this config applies to. Attributes match the cookie attributes in RFC 6265bis and are parsed similarly to a normal Set-Cookie line, using the same default values. These SHOULD be equivalent to the Set-Cookie line accompanying this response.
       # Attributes Max-Age, Expires and HttpOnly are ignored
-      "name": "__Host-session_id",
-      "attributes": "Max-Age=10; Secure; HttpOnly; Path=/;"
+      "name": "auth_cookie",
+      "attributes": "Domain=example.com; Path=/; Secure; SameSite=None"
     }]
   })
 
@@ -48,7 +41,8 @@ begin
   STDOUT.print "Status: 200 OK\n"
   STDOUT.print "Content-Length: #{body.size}\n"
   STDOUT.print "Content-Type: application/json\n"
-  STDOUT.print "Set-Cookie: __Host-session_id=deadbeef; Max-Age=10; Secure; HttpOnly; Path=/;\n"
+  STDOUT.print "Cache-Control: no-cache\n"
+  STDOUT.print "Set-Cookie: auth_cookie=abcdef0123; Domain=example.com; Max-Age=10; Secure; HttpOnly;\n"
   STDOUT.print "\n"
   STDOUT.print body
 rescue => err
