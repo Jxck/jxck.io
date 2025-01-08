@@ -13,11 +13,11 @@ def dump(hash)
 end
 
 begin
-  STDERR.puts "xxxxxxxxxxxxxxx"
-  # header, payload, signature = ENV.to_h["HTTP_SEC_SESSION_RESPONSE"].split(".")
-  # dump JSON.parse(Base64.urlsafe_decode64(header))
-  # dump JSON.parse(Base64.urlsafe_decode64(payload))
-  # STDERR.puts signature
+  dump(ENV)
+  header, payload, signature = ENV.to_h["HTTP_SEC_SESSION_RESPONSE"].split(".")
+  dump JSON.parse(Base64.urlsafe_decode64(header))
+  dump JSON.parse(Base64.urlsafe_decode64(payload))
+  STDERR.puts signature
 
   body = JSON.generate({
     "session_identifier": "session_id",
