@@ -15,11 +15,12 @@ class Range {
     return { done: false, value: this.#from++ };
   }
 }
+// 10 ~ 20 までの連続値を生成
 for (const n of new Range(10, 20)) {
-  console.log(n);
+  // console.log(n);
 }
 
-class Fibonacci extends Iterator {
+class FibonacciIterator extends Iterator {
   #a;
   #b;
   constructor() {
@@ -32,14 +33,51 @@ class Fibonacci extends Iterator {
   }
   next() {
     const value = this.#a;
-    if (value > 1000) return { done: true };
     this.#a = this.#b;
     this.#b += value;
     return { done: false, value };
   }
 }
 
-const fibonacci = new Fibonacci().filter((n) => n < 10);
-for (const n of fibonacci) {
-  // console.log(n);
+function* FibonacciGenerator() {
+  let a = 0, b = 1
+  while (true) {
+    const value = a
+    yield value
+    a = b
+    b += value
+  }
 }
+
+const fib = FibonacciGenerator()
+for (const n of fib) {
+  // console.log(n)
+  break
+}
+
+
+
+
+const arr = [1, 2, 3]
+for (const n of arr) {
+  console.log(n)
+}
+const itr = arr[Symbol.iterator]()
+
+console.log(itr)
+
+console.log(itr.next())
+console.log(itr.next())
+console.log(itr.next())
+console.log(itr.next())
+
+console.log(FibonacciGenerator()[Symbol.iterator]())
+
+// 使用例
+const fib10 = FibonacciGenerator().take(10).toArray()
+// const fib10 = new FibonacciIterator().take(10).toArray()
+//console.log(fib10)
+// for (const n of fibGen) {
+//   console.log(n)
+// }
+
