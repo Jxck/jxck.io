@@ -227,52 +227,139 @@ JWT は以下のようなものだ。
 
 この鍵をサーバ側で保存する。
 
+---
+
+TODO: ここから下はまだ実装が終わってないため、挙動が確認できてない。
+
+現状は、仕様ベースで解説し、挙動が確認出来次第更新する。
+
 
 ### Session Registration instructions JSON
 
 このリクエストに対し、サーバは以下のような JSON を body で送る。
 
 ```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 65535
+Set-Cookie: __Host-session-id=deadbeef; Path=/; Secure; HttpOnly; Max-Age=604800
+
 {
-  "session_identifier": "session_id",
+  "session_identifier": "b434736b1daa31f7",
   "refresh_url": "/refresh",
   "scope": {
-    // Origin-scoped by default (i.e. https://example.com)
-    // Specifies to include https://*.example.com except excluded subdomains.
-    // This can only be true if the origin's host is the root eTLD+1.
     "origin": "example.com",
-    "include_site": true,
-    "defer_requests": true, // optional and true by default
-    "scope_specification" : [
-      { "type": "include", "domain": "trusted.example.com", "path": "/only_trusted_path" },
-      { "type": "exclude", "domain": "untrusted.example.com", "path": "/" },
-      { "type": "exclude", "domain": "*.example.com", "path": "/static" }
-    ]
   },
   "credentials": [{
     "type": "cookie",
-    // This specifies the exact cookie that this config applies to.
-    // Attributes match the cookie attributes in RFC 6265bis
-    // and are parsed similarly to a normal Set-Cookie line,
-    // using the same default values.
-    // These SHOULD be equivalent to the Set-Cookie line accompanying this response.
-    "name": "auth_cookie",
-    "attributes": "Domain=example.com; Path=/; Secure; SameSite=None"
-    // Attributes Max-Age, Expires and HttpOnly are ignored
+    "name": "__Host-session-id",
+    "attributes": "Path=/; Secure; HttpOnly; Max-Age=604800"
   }]
 }
 ```
 
+ここで `Set-Cookie` する Cookie は、従来の Cookie と同じだ。
+
+つまり、従来の Cookie のデプロイと互換性があり、セッション管理自体を新しいヘッダなどに移行する必要はない。
+
+
+### Refresh Request
+
+この Cookie の期限が切れたあと、Cookie を必要とするリクエストを実施する際に、ブラウザは DBSC の Refresh をサーバに対して実施することになる。
+
+つまり、`Max-Age` が経過した後に `/` にアクセスする場合は、そのアクセスを一旦保留して、裏側で先程指定された `refresh_url` である `/refresh` に以下のようなリクエストを行う。
+
+```http
+POST /refresh HTTP/1.1
+Host: example.com
+Sec-Session-Id: b434736b1daa31f7
+```
+
+これが、「割り当てられた Session の Credential の Refresh」を要求している。
+
+サーバはこれに対して、検証用の Challenge を返す。
+
+```http
+HTTP/1.1 401
+Sec-Session-Challenge: "challenge_value";id="b434736b1daa31f7"
+```
+
+クライアントは、秘密鍵を用いてこれに応答する。
+
+```
+POST /refresh HTTP/1.1
+Sec-Session-Response: JWT proof
+```
+
+検証に成功すれば、再度 `Set-Cookie` することで Cookie を更新することができる。
+
+レスポンスとして、設定時と全く同じ JSON を返すことで更新が可能だ。
+
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-Cache-Control: no-store
-Set-Cookie: __Host-session-id=deadbeef; Max-Age=600; Secure; HttpOnly;
+Content-Length: 65535
+Set-Cookie: __Host-session-id=deadbeef; Path=/; Secure; HttpOnly; Max-Age=604800
+
+{
+  "session_identifier": "b434736b1daa31f7",
+  "refresh_url": "/refresh",
+  "scope": {
+    "origin": "example.com",
+  },
+  "credentials": [{
+    "type": "cookie",
+    "name": "__Host-session-id",
+    "attributes": "Path=/; Secure; HttpOnly; Max-Age=604800"
+  }]
+}
 ```
 
-# DBSC(E)
+これを受け取ったクライアントは、保留していたリクエストをすべて送信することになる。
+
+
+## Session の終了
+
+もし (DBSC における) Session を終了する場合は、リフレッシュのレスポンスで以下のように返す。
+
+```http
+{
+  "session_identifier": "b434736b1daa31f7",
+  "continue": false
+ }
+```
+
+もしくは `Clear-Site-Data: storage` を用いることも可能だ。
+
+これにより、ブラウザは Session のために内部に保持したリソースを削除する。
+
+以降は、削除した Session に対する `Sec-Session-Response` をクライアントが送ってくることも、`Sec-Session-Challenge` に応答することもなくなる。
+
+
+## JS API
+
+Explainer では JS API の可能性についても触れられている。
+
+しかし、現状はあくまで構想だけであり、Chrome も初期の実装では JS API はスコープから外しているため、実装されたら検証する。
+
+
+## Device Bound Session Credentials for Enterprise
 
 この仕組みを拡張し、Enterprise 領域で発生する様々な要求をカバーできる可能性にも言及されている。
+
+- Device Bound Session Credentials for Enterprise - explainer
+  - https://github.com/drubery/dbsc/blob/main/DBSCE/Overview.md
+
+DBSC では、既にマルウェアに汚染されていた場合、Credential の生成部分が改ざんされる可能性があるとし、主に鍵の生成部分についてカスタマイズできる余地を入れるというのが、本旨になっているようだ。
+
+MS はこれまで、BindingContext という独自の仕様を提案していたが、今後は作業のフォーカスを DBSC(E) に移していくとしている。
+
+- MSEdgeExplainers/BindingContext/explainer.md at main · MicrosoftEdge/MSEdgeExplainers
+  - https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/BindingContext/explainer.md
+
+もちろん、DBSC が前提としてあるため、そちらがある程度進んでからになるだろう。
+
+よってここでは、紹介のみに留める。
 
 
 ## Outro
@@ -328,3 +415,6 @@ deadbeef
   - DBSC prototype
     - https://dbsc-prototype-server.glitch.me/
     - https://glitch.com/edit/#!/dbsc-prototype-server
+
+```
+```
