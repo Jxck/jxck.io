@@ -319,6 +319,10 @@ Set-Cookie: __Host-session-id=deadbeef; Path=/; Secure; HttpOnly; Max-Age=604800
 
 これを受け取ったクライアントは、保留していたリクエストをすべて送信することになる。
 
+また、このリクエストはクライアントが Refresh を要求してこなくても送信できるため、期限が切れる前に Credential を新しくしておくことで、リクエストの保留を避けることも可能だ。
+
+この Refresh の要求をサーバのタイミングでできることは、単なる更新だけでなく、最初に問題視した「Cookie を送ってきているのは想定したクライアントか?」を確認する手段に使うことができることを意味する。
+
 
 ## Session の終了
 
@@ -419,6 +423,3 @@ WIP: 動作するデモを以下に用意した。
   - DBSC prototype
     - https://dbsc-prototype-server.glitch.me/
     - https://glitch.com/edit/#!/dbsc-prototype-server
-
-```
-```
