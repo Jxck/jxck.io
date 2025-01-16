@@ -2289,3 +2289,16 @@ eyeD3 --title "ep168 Yearly Platform 2024" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep169.mp3
+
+eyeD3 --title "ep169 Monthly Ecosystem 202501" \
+      --track 177 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep169.mp3
+
+
+

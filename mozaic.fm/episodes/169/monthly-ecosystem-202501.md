@@ -2,7 +2,7 @@
 type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep169.mp3
-published_at: TODO
+published_at: 2025-01-16
 guest: [@sakito](https://twitter.com/__sakito__)
 guest: [@hiroppy](https://twitter.com/about_hiroppy)
 ---
@@ -12,7 +12,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 ## Theme
 
 第 169 回のテーマは 2025 年 1 月の Monthly Ecosystem です。
-
 
 ## Show Note
 
@@ -106,7 +105,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://nodejs.org/ja/blog/release/v23.5.0
 - Node v23.4.0
   - https://nodejs.org/ja/blog/release/v23.4.0
-
 
 ## Events
 

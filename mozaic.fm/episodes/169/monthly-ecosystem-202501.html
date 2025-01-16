@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/169/monthly-ecosystem-202501.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065828></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 169 回のテーマは 2025 年 1 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/169/monthly-ecosystem-202501.html>
+  <meta property=og:title        content="ep169 Monthly Ecosystem 202501 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 169 回のテーマは 2025 年 1 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep169 Monthly Ecosystem 202501 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/168/yearly-platform-2024.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?240701_012822>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?230926_134917>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?240713_033306>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?220222_230717>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?201223_011131>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?240816_214156>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/168/yearly-platform-2024.html>ep168 Yearly Platform 2024</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep169 Monthly Ecosystem 202501</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2025-01-16
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://twitter.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 169 回のテーマは 2025 年 1 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          React v19 Release!
+          <ul>
+            <li><a href="https://react.dev/blog/2024/12/05/react-19" target=_blank>https://react.dev/blog/2024/12/05/react-19</a>
+          </ul>
+        </li>
+        <li>
+          RFC: Context selectors
+          <ul>
+            <li><a href="https://github.com/reactjs/rfcs/pull/119" target=_blank>https://github.com/reactjs/rfcs/pull/119</a>
+          </ul>
+        </li>
+        <li>
+          Suspensey Fonts for View Transition
+          <ul>
+            <li><a href="https://github.com/facebook/react/pull/32031" target=_blank>https://github.com/facebook/react/pull/32031</a>
+          </ul>
+        </li>
+        <li>
+          Next.js 15.1
+          <ul>
+            <li><a href="https://nextjs.org/blog/next-15-1" target=_blank>https://nextjs.org/blog/next-15-1</a>
+          </ul>
+        </li>
+        <li>
+          Composable Caching with Next.js
+          <ul>
+            <li><a href="https://nextjs.org/blog/composable-caching" target=_blank>https://nextjs.org/blog/composable-caching</a>
+          </ul>
+        </li>
+        <li>
+          Single-Page Applications with Next.js
+          <ul>
+            <li><a href="https://nextjs.org/docs/app/building-your-application/upgrading/single-page-applications" target=_blank>https://nextjs.org/docs/app/building-your-application/upgrading/single-page-applications</a>
+          </ul>
+        </li>
+        <li>
+          Astro 5.1
+          <ul>
+            <li><a href="https://astro.build/blog/astro-510/" target=_blank>https://astro.build/blog/astro-510/</a>
+          </ul>
+        </li>
+        <li>
+          Astro 5.0
+          <ul>
+            <li><a href="https://astro.build/blog/astro-5/" target=_blank>https://astro.build/blog/astro-5/</a>
+          </ul>
+        </li>
+        <li>
+          Node v23.6.0
+          <ul>
+            <li><a href="https://nodejs.org/ja/blog/release/v23.6.0" target=_blank>https://nodejs.org/ja/blog/release/v23.6.0</a>
+          </ul>
+        </li>
+        <li>
+          Playwright に Aria snapshots 機能の追加
+          <ul>
+            <li><a href="https://playwright.dev/docs/release-notes#version-149" target=_blank>https://playwright.dev/docs/release-notes#version-149</a>
+          </ul>
+        </li>
+        <li>
+          Undici v7 is here
+          <ul>
+            <li><a href="https://blog.platformatic.dev/undici-v7-is-here" target=_blank>https://blog.platformatic.dev/undici-v7-is-here</a>
+          </ul>
+        </li>
+        <li>
+          Vite 6.0 is out!
+          <ul>
+            <li><a href="https://vite.dev/blog/announcing-vite6.html" target=_blank>https://vite.dev/blog/announcing-vite6.html</a>
+          </ul>
+        </li>
+        <li>
+          Rolldown 1.0.0-beta.1
+          <ul>
+            <li><a href="https://github.com/rolldown/rolldown/releases/tag/v1.0.0-beta.1" target=_blank>https://github.com/rolldown/rolldown/releases/tag/v1.0.0-beta.1</a>
+          </ul>
+        </li>
+        <li>
+          Base UI
+          <ul>
+            <li><a href="https://base-ui.com/" target=_blank>https://base-ui.com/</a>
+          </ul>
+        </li>
+        <li>
+          Recoil
+          <ul>
+            <li><a href="https://github.com/facebookexperimental/Recoil" target=_blank>https://github.com/facebookexperimental/Recoil</a>
+            <li><a href="https://x.com/mengdi_en/status/1875916781950468341" target=_blank>https://x.com/mengdi_en/status/1875916781950468341</a>
+          </ul>
+        </li>
+        <li>
+          Tailwind CSS v4.0 Beta 1
+          <ul>
+            <li><a href="https://tailwindcss.com/blog/tailwindcss-v4-beta" target=_blank>https://tailwindcss.com/blog/tailwindcss-v4-beta</a>
+          </ul>
+        </li>
+        <li>
+          Deno 2.1: Wasm Imports and other enhancements
+          <ul>
+            <li><a href="https://deno.com/blog/v2.1" target=_blank>https://deno.com/blog/v2.1</a>
+          </ul>
+        </li>
+        <li>
+          rslib
+          <ul>
+            <li><a href="https://lib.rsbuild.dev/" target=_blank>https://lib.rsbuild.dev/</a>
+          </ul>
+        </li>
+        <li>
+          rsdoctor v1.0.0-alpha.0
+          <ul>
+            <li><a href="https://github.com/web-infra-dev/rsdoctor/releases/tag/v1.0.0-alpha.0" target=_blank>https://github.com/web-infra-dev/rsdoctor/releases/tag/v1.0.0-alpha.0</a>
+          </ul>
+        </li>
+        <li>
+          RSpack のセキュリティ脆弱性
+          <ul>
+            <li><a href="https://github.com/web-infra-dev/rspack/releases/tag/v1.1.8" target=_blank>https://github.com/web-infra-dev/rspack/releases/tag/v1.1.8</a>
+            <li>
+              経緯
+              <ul>
+                <li><a href="https://github.com/web-infra-dev/rspack/issues/8767" target=_blank>https://github.com/web-infra-dev/rspack/issues/8767</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          pnpm 10
+          <ul>
+            <li><a href="https://github.com/pnpm/pnpm/releases/tag/v10.0.0" target=_blank>https://github.com/pnpm/pnpm/releases/tag/v10.0.0</a>
+            <li>
+              lifecycle scripts で rspack の話をここでもしてる
+              <ul>
+                <li><a href="https://github.com/pnpm/pnpm/pull/8897" target=_blank>https://github.com/pnpm/pnpm/pull/8897</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Bun&apos;s new text-based lockfile
+          <ul>
+            <li><a href="https://bun.sh/blog/bun-lock-text-lockfile" target=_blank>https://bun.sh/blog/bun-lock-text-lockfile</a>
+          </ul>
+        </li>
+        <li>
+          Bun supports S3
+          <ul>
+            <li><a href="https://x.com/bunjavascript/status/1873234802675204106" target=_blank>https://x.com/bunjavascript/status/1873234802675204106</a>
+          </ul>
+        </li>
+        <li>
+          Bun 1.1.43
+          <ul>
+            <li><a href="https://bun.sh/blog/bun-v1.1.43" target=_blank>https://bun.sh/blog/bun-v1.1.43</a>
+            <li>HTML Bundler
+            <li>bun install --filter
+          </ul>
+        </li>
+        <li>
+          Storybook v9 に来そうな変更
+          <ul>
+            <li><a href="https://x.com/storybookjs/status/1878939055582519432" target=_blank>https://x.com/storybookjs/status/1878939055582519432</a>
+            <li>
+              play function の api の見直し
+              <ul>
+                <li><a href="https://github.com/storybookjs/storybook/discussions/30119" target=_blank>https://github.com/storybookjs/storybook/discussions/30119</a>
+              </ul>
+            </li>
+            <li>
+              CSF をより typesafe に書けるように
+              <ul>
+                <li><a href="https://github.com/storybookjs/storybook/discussions/30112" target=_blank>https://github.com/storybookjs/storybook/discussions/30112</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Storybook Addon Test Codegen
+          <ul>
+            <li><a href="https://github.com/igrlk/storybook-addon-test-codegen" target=_blank>https://github.com/igrlk/storybook-addon-test-codegen</a>
+            <li>Storybook 上の画面操作で test を生成してくれる addon
+          </ul>
+        </li>
+        <li>
+          prisma v6
+          <ul>
+            <li><a href="https://github.com/prisma/prisma/releases/tag/6.0.0" target=_blank>https://github.com/prisma/prisma/releases/tag/6.0.0</a>
+          </ul>
+        </li>
+        <li>
+          React Router v7
+          <ul>
+            <li><a href="https://remix.run/blog/react-router-v7" target=_blank>https://remix.run/blog/react-router-v7</a>
+          </ul>
+        </li>
+        <li>
+          Nextra 4
+          <ul>
+            <li><a href="https://the-guild.dev/blog/nextra-4" target=_blank>https://the-guild.dev/blog/nextra-4</a>
+          </ul>
+        </li>
+        <li>
+          stylex
+          <ul>
+            <li><a href="https://stylexjs.com/blog/v0.10.0" target=_blank>https://stylexjs.com/blog/v0.10.0</a>
+          </ul>
+        </li>
+        <li>
+          TC39 に webpack のメンテナーが入っている
+          <ul>
+            <li><a href="https://x.com/evenstensberg/status/1860396114874142778" target=_blank>https://x.com/evenstensberg/status/1860396114874142778</a>
+            <li>
+              oxc の人も
+              <ul>
+                <li><a href="https://x.com/boshen_c/status/1854796717998457324" target=_blank>https://x.com/boshen_c/status/1854796717998457324</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Oracle から JS の商標取り下げるつもりはないと回答
+          <ul>
+            <li><a href="https://x.com/deno_land/status/1876728474666217739" target=_blank>https://x.com/deno_land/status/1876728474666217739</a>
+          </ul>
+        </li>
+        <li>
+          A standard interface for TypeScript schema validation libraries
+          <ul>
+            <li><a href="https://github.com/standard-schema/standard-schema" target=_blank>https://github.com/standard-schema/standard-schema</a>
+          </ul>
+        </li>
+        <li>
+          State of JavaScript 2024
+          <ul>
+            <li><a href="https://2024.stateofjs.com/en-US" target=_blank>https://2024.stateofjs.com/en-US</a>
+          </ul>
+        </li>
+        <li>
+          2024 JavaScript Rising Stars
+          <ul>
+            <li><a href="https://risingstars.js.org/2024/en" target=_blank>https://risingstars.js.org/2024/en</a>
+          </ul>
+        </li>
+        <li>
+          Figma to v0 to Code
+          <ul>
+            <li><a href="https://x.com/leeerob/status/1869040369901453385" target=_blank>https://x.com/leeerob/status/1869040369901453385</a>
+          </ul>
+        </li>
+        <li>
+          Node v23.5.0
+          <ul>
+            <li><a href="https://nodejs.org/ja/blog/release/v23.5.0" target=_blank>https://nodejs.org/ja/blog/release/v23.5.0</a>
+          </ul>
+        </li>
+        <li>
+          Node v23.4.0
+          <ul>
+            <li><a href="https://nodejs.org/ja/blog/release/v23.4.0" target=_blank>https://nodejs.org/ja/blog/release/v23.4.0</a>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>1 月
+        <li>2 月
+        <li>3 月
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/168/yearly-platform-2024.html>ep168 Yearly Platform 2024</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright><small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small> <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong></p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep169.mp3
+    data-title="ep169 Monthly Ecosystem 202501"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
