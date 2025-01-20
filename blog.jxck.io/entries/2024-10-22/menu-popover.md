@@ -61,9 +61,9 @@ GitHub のこの実装はまだ Popover ではないため、現状を参考に�
 ```html
 <button popovertarget=menu>Actions</button>
 <ul id=menu role=menu popover>
-  <li><button role=menuitempopovertarget=menu popovertargetaction=close autofocus>Edit</button></li>
-  <li><button role=menuitempopovertarget=menu popovertargetaction=close>Hide</button></li>
-  <li><button role=menuitempopovertarget=menu popovertargetaction=close>Delete</button></li>
+  <li><button role=menuitem popovertarget=menu popovertargetaction=close autofocus>Edit</button></li>
+  <li><button role=menuitem popovertarget=menu popovertargetaction=close>Hide</button></li>
+  <li><button role=menuitem popovertarget=menu popovertargetaction=close>Delete</button></li>
 </ul>
 ```
 
