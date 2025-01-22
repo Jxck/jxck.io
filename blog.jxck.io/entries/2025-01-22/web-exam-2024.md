@@ -174,7 +174,7 @@ CodePen での提出にし、挙動の確認をするという案もあったが
 
 Intl/Temporal とも迷ったが、難しくなりそうなので Iterator Helpers にした。
 
-といっても、実際 Iterator Helpers 自体は単なる便利メソッドで、問題にするほどでもないため、 Iterator 自体を主題とした。
+といっても、実際 Iterator Helpers 自体は単なる便利メソッドで、問題にするほどでもないため、Iterator 自体を主題とした。
 
 観点は以下だ。
 
