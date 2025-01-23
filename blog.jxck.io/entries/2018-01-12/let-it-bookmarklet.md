@@ -1,4 +1,4 @@
-# [boolmarklet] Bookmarklet という一番身近な自動化技術
+# [bookmarklet] Bookmarklet という一番身近な自動化技術
 
 ## Intro
 

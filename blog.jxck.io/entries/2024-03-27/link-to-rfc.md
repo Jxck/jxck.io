@@ -263,7 +263,7 @@ Errata があったとしても、一度発行した RFC は内容を変える�
 
 しかし、RFC を出すのは一定の労力がかかるため、Errata が存在するままの RFC は多く存在する。実装時などに「なにかがおかしい?」と思ったら実は Errata があったということはよく起こるため、最初に Errata の存在を確認するのは重要だった。
 
-RFC では、ひっそりと Errata Exsists と書かれたリンクから見ることができる。
+RFC では、ひっそりと Errata Exists と書かれたリンクから見ることができる。
 
 ![Errata exists](errata-exists.png#1552x984)
 

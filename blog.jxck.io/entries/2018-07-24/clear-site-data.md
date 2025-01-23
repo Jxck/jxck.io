@@ -21,7 +21,7 @@ Clear-Site-Data Header の実装が進んでいる。
 
 これらを、ログアウト処理の中で各 API を適切に呼び出し、全て確実に削除するのは簡単ではない。
 
-また、httponly の Cookie や browser cache などは、JS からの削除もできない。
+また、HttpOnly の Cookie や browser cache などは、JS からの削除もできない。
 
 SPA のように実装されている場合は、その状態を含めて初期化しないと不整合が発生する場合もある。
 
@@ -57,7 +57,7 @@ Type は現時点では以下が定義されている。
 
 ### cookies
 
-httponly, secure の有無に関わらず、全ての Cookie が消える。
+HttpOnly, Secure の有無に関わらず、全ての Cookie が消える。
 
 (`document.cookie` や [Cookie Store API](https://wicg.github.io/cookie-store/explainer.html) も全て同じ Cookie を見ているため、storage ではなく cookie である)
 

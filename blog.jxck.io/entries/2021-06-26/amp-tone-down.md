@@ -222,7 +222,7 @@ AMP に対応し、AMP SXG に対応し、Non AMP SXG へ移行したことで A
 ## Reference
 
 - [mozaic.fm ep22 AMP](https://mozaic.fm/episodes/22/amp.html)
-- [mozaic.mf ep25 0:56:50 MTHML から WebPackaging が Dispatch に上がった話](https://mozaic.fm/episodes/25/monthly-web-201707.html)
+- [mozaic.mf ep25 0:56:50 MHTML から WebPackaging が Dispatch に上がった話](https://mozaic.fm/episodes/25/monthly-web-201707.html)
 - [mozaic.fm ep26 1:28:30 webpackaging の draft の話](https://mozaic.fm/episodes/26/monthly-web-201708.html)
 - [mozaic.fm ep33 0:19:20 AMP letter と SXG 移行周り話](https://mozaic.fm/episodes/33/monthly-web-201801.html)
 - [mozaic.fm ep36 2:16:30 WebPackaging Side Meeting の話](https://mozaic.fm/episodes/36/monthly-web-201803.html)

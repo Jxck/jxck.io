@@ -94,7 +94,7 @@
 
 ### JSON-LD と LD-JSON
 
-JSON-LD と紛らわしいものに [LD-JSON (Line Delimitered JSON)](https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON) がある。
+JSON-LD と紛らわしいものに [LD-JSON (Line Delimited JSON)](https://en.wikipedia.org/wiki/JSON_Streaming#Line_delimited_JSON) がある。
 
 それだけなら、実際全く関係ない仕様なのでまあ問題ない。
 
@@ -128,7 +128,7 @@ Twitter と Facebook だけ、以下を参考に対応した。
 ### Facebook
 
 - [facebook open graph](https://developers.facebook.com/docs/sharing/webmasters)
-- [fecebook URL Debugger](https://developers.facebook.com/tools/debug/)
+- [facebook URL Debugger](https://developers.facebook.com/tools/debug/)
 
 ```html
 <meta property=og:type        content="article">

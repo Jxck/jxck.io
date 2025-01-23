@@ -190,18 +190,18 @@ dialog {
 /* transition style */
 dialog {
   opacity: 0;
-  transition: 
-    display var(--duration) allow-discrete, 
-    overlay var(--duration) allow-discrete, 
+  transition:
+    display var(--duration) allow-discrete,
+    overlay var(--duration) allow-discrete,
     opacity var(--duration);
 }
 ::backdrop {
   opacity: 0;
   background-color: transparent;
   backdrop-filter: none;
-  transition: 
-    display var(--duration) allow-discrete, 
-    overlay var(--duration) allow-discrete, 
+  transition:
+    display var(--duration) allow-discrete,
+    overlay var(--duration) allow-discrete,
     background-color var(--duration),
     backdrop-filter var(--duration),
     opacity var(--duration);
@@ -275,7 +275,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
 
 ```js
 document.querySelector("form").addEventListener("submit", (e) => {
-  e.preventDafault()
+  e.preventDefault()
   const returnValue = JSON.stringify({
     agree: true
   })

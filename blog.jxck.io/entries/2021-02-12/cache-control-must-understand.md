@@ -104,7 +104,7 @@ Cache-Control: max-age=3600, must-understand, no-store
 
 もちろん、十分に実装が普及したステータスコードに `must-understand` を併用する必要はなく、それはむしろ `must-understand` を理解しない実装によって `no-store` と扱われるだけなので、デメリットの方が強いだろう。
 
-かといって、特に今 `must-understand` が無いと普及が難しいステータスコードが議論されているという話も聞かないため、主に httbis によるキャッシュ仕様の更新に合わせて、mnot が空いた穴を埋めたという認識でいる。
+かといって、特に今 `must-understand` が無いと普及が難しいステータスコードが議論されているという話も聞かないため、主に httpbis によるキャッシュ仕様の更新に合わせて、mnot が空いた穴を埋めたという認識でいる。
 
 
 ## Outro

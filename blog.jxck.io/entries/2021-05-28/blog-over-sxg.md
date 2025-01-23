@@ -106,14 +106,14 @@ dump-signedexchange -i dump.sxg
 このサービスに対して行うべきルーティングは 3 つだ。
 
 - webpkgserver に直接アクセスできないようポートを閉じる
-- `/webpkg` を webpkserver に転送
+- `/webpkg` を webpkgserver に転送
 - Content Negotiation で SXG を返す場合は `/priv/doc` をつけて proxy
 - それ以外は proxy しない
 
 
 ## Content Negotiation
 
-基本的にはリクエストヘッダに `Accpet: application/signed-exchange;v=b3` が付与されている場合、Web Package Server に転送すれば良い。
+基本的にはリクエストヘッダに `Accept: application/signed-exchange;v=b3` が付与されている場合、Web Package Server に転送すれば良い。
 
 しかし、Google の Bot だけでなく、Chrome も現状このヘッダをデフォルトで付与しているため、単にこのヘッダの有無だけを見てルーティングすると、ブラウザからのリクエストにも SXG を返すことになる。
 
@@ -137,7 +137,7 @@ SXG に注目すると Chrome は Q value を HTML などよりも下げてい�
 
 ```ruby
 if /application\/signed-exchange;v=b3(?!;q=)/.match(env["HTTP_ACCEPT"])
-  # reproxy to backend wepkgserver
+  # reproxy to backend webpkgserver
   next [307, {"x-reproxy-url" => "http://127.0.0.1:11000/priv/doc/https://blog.jxck.io#{path}"}, []]
 else
   # fallthrough
@@ -252,7 +252,7 @@ AMP をやめる方法は基本は以下だ。
 
 実際に検索結果に遷移すると、HTTP Request は筆者のサーバには発生せず、Prefetch された HTML から展開されていることがわかる。
 
-![検索結果に遷移すると Prefetch した HMTL が展開されている](sxg-navigate.png#3044x736)
+![検索結果に遷移すると Prefetch した HTML が展開されている](sxg-navigate.png#3044x736)
 
 このとき(スクショでは切れているが)、アドレスバーには SXG Cache の URL である `https://blog-jxck-io.webpkgcache.com/` ではなく、SXG を検証した結果として `https://blog.jxck.io` が表示されている。
 

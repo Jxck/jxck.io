@@ -249,7 +249,7 @@ rootController.on("abort", () => {
 実は、この `AbortSignal.timeout()` の策定の時点で、前述の「Signal の連結」を行う API の構想が進みつつあったのだ。
 
 
-## AbortSginal.any()
+## AbortSignal.any()
 
 結局必要なのは、「Signal の連結」を行う API だったが、その API をどうデザインするかの段階で多少議論が止まっていた。
 
@@ -376,7 +376,7 @@ function cancelSignal($button, msec) {
   const userSignal = controller.signal
 
   // タイムアウトかボタンクリックでキャンセル
-  const combinedSignal = AbortSignal.any([ timoutSignal, userSignal ])
+  const combinedSignal = AbortSignal.any([ timeoutSignal, userSignal ])
 
   $button.addEventListener("click", () => {
     controller.abort()

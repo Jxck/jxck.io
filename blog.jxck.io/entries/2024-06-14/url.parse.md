@@ -116,9 +116,9 @@ Issue を調べると、その時点では Chrome だけまだアサインが浮
 
 Chromium の中には、ありとあらゆるリアルワールド URL をパースしてきた歴戦(Battle Tested)の URL パーサーである KURL という実装がある。
 
-これに、後から標準化された JS の URL API のために、ガワを被せて外に出す作りになっているため、実際は KRUL を呼んだら終わりだ。
+これに、後から標準化された JS の URL API のために、ガワを被せて外に出す作りになっているため、実際は KURL を呼んだら終わりだ。
 
-DOMURL のコンストラクタがそもそも例外を投げる実装になっているため、一旦 KURL でパースして IsValid() が ture ならその KURL を元に DOMURL を生成できるコンストラクタを追加しただけだ。
+DOMURL のコンストラクタがそもそも例外を投げる実装になっているため、一旦 KURL でパースして IsValid() が true ならその KURL を元に DOMURL を生成できるコンストラクタを追加しただけだ。
 
 つまり、全く難しくない。C++ 書いたことがなくても、見ればわかるくらいの変更だ。
 
@@ -158,9 +158,9 @@ Chromium が WPT を内部で流していながら、WPT にある URL.parse の
 - Testing
 - API Ownwers
 
-このレビューは Chrome Plaform Status からリクエストをする。いつも見ていた Platform Status にその機能があることはここで初めて知った。
+このレビューは Chrome Platform Status からリクエストをする。いつも見ていた Platform Status にその機能があることはここで初めて知った。
 
-![Chrome Plaform Status からのレビューリクエスト](prepare-to-ship.png#1752x348)
+![Chrome Platform Status からのレビューリクエスト](prepare-to-ship.png#1752x348)
 
 - URL.parse() - Chrome Platform Status
   - https://chromestatus.com/feature/6301071388704768?gate=4813144208965632

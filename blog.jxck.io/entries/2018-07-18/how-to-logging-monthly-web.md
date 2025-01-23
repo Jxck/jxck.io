@@ -561,7 +561,7 @@ Working Group は非常に多く、その全てを追うのは難しい。
 - [public-html](http://lists.w3.org/Archives/Public/public-html)
 - [public-ortc](http://lists.w3.org/Archives/Public/public-ortc)
 - [public-webappsec](http://lists.w3.org/Archives/Public/public-webappsec)
-- [public-webassemly](http://lists.w3.org/Archives/Public/public-webassemly)
+- [public-webassembly](http://lists.w3.org/Archives/Public/public-webassembly)
 - [public-webplatform](http://lists.w3.org/Archives/Public/public-webplatform)
 - [public-webrtc](http://lists.w3.org/Archives/Public/public-webrtc)
 - [public-houdini](http://lists.w3.org/Archives/Public/public-houdini)

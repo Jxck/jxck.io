@@ -103,7 +103,7 @@ Origin-Trial: Ai32KiE0NsOIRPR/NxvUwEpcM4hYyo6RPRvkG8liNEIX...
 
 `install` イベントで指定した origin (ここでは全オリジン) から、scope の範囲にあるリクエストをハンドルできる。
 
-先ほどの 1st Party Service Worker がキャッシュしていなかった乱数のリクエストを、実際に fetch した時、二段目としてこの 3rd Party Service Worker に渡ってくる。Origin と Scope が対象範囲であるこのリクエストは `foreginfetch` イベントを発火する。
+先ほどの 1st Party Service Worker がキャッシュしていなかった乱数のリクエストを、実際に fetch した時、二段目としてこの 3rd Party Service Worker に渡ってくる。Origin と Scope が対象範囲であるこのリクエストは `foreignfetch` イベントを発火する。
 
 実際に fetch を発行し、失敗した Service Worker は、フォールバックとして乱数を JS で生成しそれを返す。
 

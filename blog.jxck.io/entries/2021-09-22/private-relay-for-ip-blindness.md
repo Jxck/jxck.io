@@ -47,7 +47,7 @@ Fingerprinting は、クライアントから取得できるエントロピー�
 
 特にこうした取り組みを先導しているのが Apple で、ITP や Freezing User-Agent の作業を先んじて進め、他のブラウザもそれに追従しているのは周知の通りだ。
 
-IP Blindness についても、Google が [Willful IP Blidness](https://github.com/bslassey/ip-blindness) を提案したり、IETF では [Oblivious HTTP](https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html) として標準化に向けた議論が始まったばかりだった。そんな中、いつも通り Apple が先行して実施した、それが Private Relay だ。
+IP Blindness についても、Google が [Willful IP Blindness](https://github.com/bslassey/ip-blindness) を提案したり、IETF では [Oblivious HTTP](https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html) として標準化に向けた議論が始まったばかりだった。そんな中、いつも通り Apple が先行して実施した、それが Private Relay だ。
 
 独自の規格/仕様かつオープンな実装ではなく iCloud サービスの一環としてリリースするるという、よくも悪くも Apple らしいやり方なので、Apple が突然また過激なことを言い出したと思う人もいるかもしれないが、この流れがわかっていれば、順当以外の何者でもないとも言える。
 

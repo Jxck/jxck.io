@@ -24,13 +24,13 @@ IETF の httpbis で、Reverse HTTP Transport という仕様が提案されて�
 Browser ----> Origin
 ```
 
-しかし、実際にはその間にさまざまな Intermedialies (Middle Box とも呼ぶ) が挟まり、HTTP を中継している。
+しかし、実際にはその間にさまざまな Intermediaries (Middle Box とも呼ぶ) が挟まり、HTTP を中継している。
 
 ```
-Browser ---> Intermedialies ---> Origin
+Browser ---> Intermediaries ---> Origin
 ```
 
-Intermedialies で代表的なのは、以下のようなものだ。
+Intermediaries で代表的なのは、以下のようなものだ。
 
 - Reverse Proxy
 - Loadbalancer
@@ -59,7 +59,7 @@ Intermedialies で代表的なのは、以下のようなものだ。
 
 今回は、何をしているかはあまり関係なく、とにかく何かが立っていて、それを経由して Origin に接続するという構成がわかっていればいい。
 
-そして、この Intermedialies を、サービス開発者が Origin と一緒に管理していると、少し旨みがわかりにくくなる。
+そして、この Intermediaries を、サービス開発者が Origin と一緒に管理していると、少し旨みがわかりにくくなる。
 
 そこであえて今回は、何をやっているかは別として、外部の CDN ベンダが入っていると仮定して話を進める。
 
@@ -93,28 +93,28 @@ Reverse HTTP は、Origin が CDN に対して接続を行うのだ。
 | browser |                  |   CDN   |                |  Origin  |
 |         |                  |         |                |          |
 +----+----+                  +----+----+                +-----+----+
-     |                            |                           |     
-     |                            |       TLS Handshake       |     
-     |                            | <-------------------------+     
-     |                            +-------------------------> |     
-     |                            |                           |     
-     |      TLS Handshake         |                           |     
-     +--------------------------> |                           |     
-     | <--------------------------+                           |     
-     |                            |                           |     
-     |                            |                           |     
-     |         HTTP Req           |                           |     
-     +--------------------------> |                           |     
-     |                            |         HTTP Req          |     
-     |                            +-------------------------->|     
-     |                            |                           |     
-     |                            |         HTTP Res          |     
-     |                            | <-------------------------+     
-     |         HTTP Res           |                           |     
-     | <--------------------------+                           |     
-     |                            |                           |     
-     |                            |                           |     
-     |                            |                           |     
+     |                            |                           |
+     |                            |       TLS Handshake       |
+     |                            | <-------------------------+
+     |                            +-------------------------> |
+     |                            |                           |
+     |      TLS Handshake         |                           |
+     +--------------------------> |                           |
+     | <--------------------------+                           |
+     |                            |                           |
+     |                            |                           |
+     |         HTTP Req           |                           |
+     +--------------------------> |                           |
+     |                            |         HTTP Req          |
+     |                            +-------------------------->|
+     |                            |                           |
+     |                            |         HTTP Res          |
+     |                            | <-------------------------+
+     |         HTTP Res           |                           |
+     | <--------------------------+                           |
+     |                            |                           |
+     |                            |                           |
+     |                            |                           |
 ```
 
 Origin デプロイした瞬間に CDN に事前にコネクションを確立しておく。そして CDN はそのコネクションを逆に使って HTTP を転送するのだ。
@@ -182,14 +182,14 @@ HTTP のレイヤはすべて暗号化されるので、Origin から CDN への
 とはいえ、CDN-Origin のネットワークはサービス提供側の管理下になることが多いだろうため、心配する範囲は狭いのかもしれない。
 
 
-## Client Selected Inermediaries
+## Client Selected Intermediaries
 
 ここまでの話は、サービスプロバイダが Origin の前に立てる Intermediaries を例に話した。
 
 しかし、この仕様のスコープには、Browser 側に立つ Intermediaries も含まれている。例えば以下だ。
 
 - 企業のネットワークに立ってる社内 Proxy
-- Private Realy のような OHTTP Proxy
+- Private Rely のような OHTTP Proxy
 - 自分で立てるなんらかの用途の串
 
 こうした Intermediaries に対しても Reverse HTTP を適用しても良いとされている。

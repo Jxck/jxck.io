@@ -20,7 +20,7 @@
 - 2023-05-02: [技術書籍をシンタックスハイライトする話](https://blog.jxck.io/entries/2023-05-02/syntax-highlighted-wdpress.html)
 - 2023-05-17: [IETF RFC における ABNF と Parsing Algorithm の関係](https://blog.jxck.io/entries/2023-05-17/abnf-or-algorithm-in-rfc.html)
 - 2023-05-28: [URL バーの表示の変遷](https://blog.jxck.io/entries/2023-05-28/history-of-url-bar.html)
-- 2023-06-01: [AbortSignal.any(), AbortSignal.timeout(), そして addEvnetListener() の Signal](https://blog.jxck.io/entries/2023-06-01/abort-signal-any.html)
+- 2023-06-01: [AbortSignal.any(), AbortSignal.timeout(), そして addEventListener() の Signal](https://blog.jxck.io/entries/2023-06-01/abort-signal-any.html)
 - 2023-06-18: [Cookie Store API による document.cookie の改善](https://blog.jxck.io/entries/2023-06-18/cookie-store-api.html)
 - 2023-07-29: [Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化](https://blog.jxck.io/entries/2023-07-29/compression-dictionary-transport.html)
 - 2023-08-19: [Cookie2 とは何か](https://blog.jxck.io/entries/2023-08-19/cookie2.html)
@@ -131,7 +131,7 @@ mozaic は来年で 10 年を迎える。
 
 来年は 3rd Party Cookie が終わり、Web のエコシステムにはかなり大きな影響を与えるだろう。
 
-その意味でも、来年は moziac.fm をやるうえで、この変化を慎重に観察していきたいと思う。
+その意味でも、来年は mozaic.fm をやるうえで、この変化を慎重に観察していきたいと思う。
 
 
 ## イベント

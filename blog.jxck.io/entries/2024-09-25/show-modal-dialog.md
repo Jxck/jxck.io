@@ -68,7 +68,7 @@ window.returnValue = "returnedValue"
 かなり初期の API で、ろくに議論されないまま独自実装として始まったこの API を、互換性のために他のブラウザも仕方なく実装し、HTML にも渋々現状を仕様として起こした、そんな API だ。この API のヒドさについて Hixie はこう説明している。
 
 > This API single-handedly makes completely unrelated parts of the platform significantly more complicated to implement, which leads to more bugs, which makes everything worse for everyone.
-> And to top it all off, it's not even a particuarly good UI. We have much better solutions in the works, too, like dialog.
+> And to top it all off, it's not even a particularly good UI. We have much better solutions in the works, too, like dialog.
 >
 > この API のせいで、プラットフォームのまったく関係のない部分の実装が著しく複雑になり、バグが増え、すべての人にとってすべてが悪くなる。
 > その上、特に良い UI でもない。私たちは、`<dialog>` のような、より良い解決策も準備している。

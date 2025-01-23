@@ -208,7 +208,7 @@ Finding っていう資料が二つ出た。
   - [Service-Worker-Navigation-Preload ヘッダもある](https://twitter.com/horo/status/827321909108838400)
 
 - 2/2: [Android で Add to Home Screen](https://developers.google.com/web/updates/2017/02/improved-add-to-home-screen)
-  - [chome beta 57](https://blog.chromium.org/2017/02/integrating-progressive-web-apps-deeply.html?m=1)
+  - [chrome beta 57](https://blog.chromium.org/2017/02/integrating-progressive-web-apps-deeply.html?m=1)
   - 対 Native で始まった PWA の本懐
   - Intent に登録されて開ける
 

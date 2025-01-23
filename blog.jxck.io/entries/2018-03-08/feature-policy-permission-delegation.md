@@ -110,7 +110,7 @@ iframe sandbox の特徴は、何をブロックするのかが先に決まっ�
 
 ## CSP
 
-HTML に埋め込む sanbox 属性は、埋め込んだ iframe にしか適用されない。
+HTML に埋め込む sandbox 属性は、埋め込んだ iframe にしか適用されない。
 
 これを HTTP ヘッダで適用できるように、CSP2 では sandbox ディレクティブが追加された。
 
@@ -203,7 +203,7 @@ Feature-Policy: geolocation 'self' https://example.com
 
 ユーザがこれを許可すると、サイトに対して権限が付与され、それが example.com にも移譲される。
 
-これにより、iframe 内で Geoloation API が実行できることになる。
+これにより、iframe 内で Geolocation API が実行できることになる。
 
 (執筆時点では、この Prompt はまだ「example.com が現在位置の取得を求めている」という表示になっているが、この表示はいずれ変更されるようだ)
 
@@ -251,7 +251,7 @@ Feature-Policy: sync-xhr 'none'
 
 Feature Policy には執筆時点で Reporting の仕様が無い。
 
-しかし、これは Reporing 側で CORS の Preflight をどうするかの問題がブロッカーとなっているだけで、盛り込む予定ではあるようだ。
+しかし、これは Reporting 側で CORS の Preflight をどうするかの問題がブロッカーとなっているだけで、盛り込む予定ではあるようだ。
 
 - https://github.com/WICG/feature-policy/issues/142
 
