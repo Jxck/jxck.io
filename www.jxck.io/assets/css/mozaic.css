@@ -21,6 +21,9 @@
     --border-color: #fff;
     --player-color: #030303;
 
+    --anchor-visited-color: HotPink;
+    --anchor-color: LightSkyBlue;
+
     --ui-back: #888;
     --ui-front: #fff;
   }
@@ -95,6 +98,8 @@ main .info {
   margin-block-end:    0.5em;
   margin-inline-start: 1em;
   margin-inline-end:   0;
+  line-height: 1.4em;
+  vertical-align: baseline;
 }
 
 main .info dd {
@@ -238,6 +243,12 @@ mozaic-player {
     margin: 0;
   }
 
+  .info {
+    div {
+      width: 100%;
+    }
+  }
+
   header {
     position: unset;
   }
@@ -281,7 +292,7 @@ background-fetch::part(progress) {
 }
 
 /* portal preview */
-portal#preview {
+/* portal#preview {
   display:  none;
   position: fixed;
   bottom:   10px;
@@ -305,4 +316,4 @@ portal#preview.activate {
   bottom:     0px;
   right:      0px;
   transform:  scale(1.0);
-}
+} */
