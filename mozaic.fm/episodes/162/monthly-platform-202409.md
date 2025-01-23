@@ -743,7 +743,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://meyerweb.com/eric/thoughts/2024/09/23/announcing-bcd-watch/
 - **Rauchg が Ladybird に 5 万ドルを寄付**
   - https://x.com/ladybirdbrowser/status/1839620997680431336
-- \*\*[作って学ぶ] ブラウザのしくみ──HTTP、HTML、CSS、JavaScript の裏側
+- [作って学ぶ] ブラウザのしくみ──HTTP、HTML、CSS、JavaScript の裏側
   - https://www.amazon.co.jp/dp/4297145464
   - https://x.com/d0iasm/status/1840376364832289040
 
