@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-06-01T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2025-01-23T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-06-01>2023-06-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-01-23>2025-01-23</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -140,7 +140,7 @@
               <li><a href="#abortcontroller.prototype.followsignal">AbortController.prototype.follow(signal)</a>
               <li><a href="#abortsignal-in-addeventlistener">AbortSignal in addEventListener</a>
               <li><a href="#abortsignal.timeout">AbortSignal.timeout()</a>
-              <li><a href="#abortsginal.any">AbortSginal.any()</a>
+              <li><a href="#abortsignal.any">AbortSignal.any()</a>
               <li><a href="#status">Status</a>
               <li><a href="#abort-handling-practice">Abort Handling Practice</a>
               <li><a href="#例外処理">例外処理</a>
@@ -374,7 +374,7 @@ rootController.on(&quot;abort&quot;, () =&gt; {
         <p>実は、この <code translate=no>AbortSignal.timeout()</code> の策定の時点で、前述の「Signal の連結」を行う API の構想が進みつつあったのだ。
       </section>
       <section>
-        <h2 id="abortsginal.any"><a href="#abortsginal.any">AbortSginal.any()</a></h2>
+        <h2 id="abortsignal.any"><a href="#abortsignal.any">AbortSignal.any()</a></h2>
         <p>結局必要なのは、「Signal の連結」を行う API だったが、その API をどうデザインするかの段階で多少議論が止まっていた。
         <p>それが今年になって急速に進み、提案されたのが <code translate=no>AbortSignal.any()</code> だ。
         <ul>
@@ -497,7 +497,7 @@ app.get(&quot;/entries&quot;, (req, res) =&gt; {
   const userSignal = controller.signal
 
   // タイムアウトかボタンクリックでキャンセル
-  const combinedSignal = AbortSignal.any([ timoutSignal, userSignal ])
+  const combinedSignal = AbortSignal.any([ timeoutSignal, userSignal ])
 
   $button.addEventListener(&quot;click&quot;, () =&gt; {
     controller.abort()

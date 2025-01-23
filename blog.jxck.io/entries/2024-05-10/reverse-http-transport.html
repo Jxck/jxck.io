@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-05-10T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2025-01-23T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-05-10>2024-05-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-01-23>2025-01-23</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -148,7 +148,7 @@
                 <li><a href="#ip-アドレス">IP アドレス</a>
                 <li><a href="#逆方向のトラフィック">逆方向のトラフィック</a>
               </ol>
-              <li><a href="#client-selected-inermediaries">Client Selected Inermediaries</a>
+              <li><a href="#client-selected-intermediaries">Client Selected Intermediaries</a>
               <li><a href="#outro">Outro</a>
             </ol>
           </nav>
@@ -180,9 +180,9 @@
         <p>この場合、Browser がリクエストをし、コンテンツを返すのが Origin だ。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?220404_030403">
         <pre><code translate=no>Browser ----&gt; Origin</code></pre>
-        <p>しかし、実際にはその間にさまざまな Intermedialies (Middle Box とも呼ぶ) が挟まり、HTTP を中継している。
-        <pre><code translate=no>Browser ---&gt; Intermedialies ---&gt; Origin</code></pre>
-        <p>Intermedialies で代表的なのは、以下のようなものだ。
+        <p>しかし、実際にはその間にさまざまな Intermediaries (Middle Box とも呼ぶ) が挟まり、HTTP を中継している。
+        <pre><code translate=no>Browser ---&gt; Intermediaries ---&gt; Origin</code></pre>
+        <p>Intermediaries で代表的なのは、以下のようなものだ。
         <ul>
           <li>Reverse Proxy
           <li>Loadbalancer
@@ -209,7 +209,7 @@
           <li>etc etc etc
         </ul>
         <p>今回は、何をしているかはあまり関係なく、とにかく何かが立っていて、それを経由して Origin に接続するという構成がわかっていればいい。
-        <p>そして、この Intermedialies を、サービス開発者が Origin と一緒に管理していると、少し旨みがわかりにくくなる。
+        <p>そして、この Intermediaries を、サービス開発者が Origin と一緒に管理していると、少し旨みがわかりにくくなる。
         <p>そこであえて今回は、何をやっているかは別として、外部の CDN ベンダが入っていると仮定して話を進める。
         <p>Cloudflare や Fastly が入ってるようなイメージで考えると良いだろう。
         <pre><code translate=no>Browser ---------&gt; CDN --&gt; Origin</code></pre>
@@ -230,28 +230,28 @@
 | browser |                  |   CDN   |                |  Origin  |
 |         |                  |         |                |          |
 +----+----+                  +----+----+                +-----+----+
-     |                            |                           |     
-     |                            |       TLS Handshake       |     
-     |                            | &lt;-------------------------+     
-     |                            +-------------------------&gt; |     
-     |                            |                           |     
-     |      TLS Handshake         |                           |     
-     +--------------------------&gt; |                           |     
-     | &lt;--------------------------+                           |     
-     |                            |                           |     
-     |                            |                           |     
-     |         HTTP Req           |                           |     
-     +--------------------------&gt; |                           |     
-     |                            |         HTTP Req          |     
-     |                            +--------------------------&gt;|     
-     |                            |                           |     
-     |                            |         HTTP Res          |     
-     |                            | &lt;-------------------------+     
-     |         HTTP Res           |                           |     
-     | &lt;--------------------------+                           |     
-     |                            |                           |     
-     |                            |                           |     
-     |                            |                           |     </code></pre>
+     |                            |                           |
+     |                            |       TLS Handshake       |
+     |                            | &lt;-------------------------+
+     |                            +-------------------------&gt; |
+     |                            |                           |
+     |      TLS Handshake         |                           |
+     +--------------------------&gt; |                           |
+     | &lt;--------------------------+                           |
+     |                            |                           |
+     |                            |                           |
+     |         HTTP Req           |                           |
+     +--------------------------&gt; |                           |
+     |                            |         HTTP Req          |
+     |                            +--------------------------&gt;|
+     |                            |                           |
+     |                            |         HTTP Res          |
+     |                            | &lt;-------------------------+
+     |         HTTP Res           |                           |
+     | &lt;--------------------------+                           |
+     |                            |                           |
+     |                            |                           |
+     |                            |                           |</code></pre>
         <p>Origin デプロイした瞬間に CDN に事前にコネクションを確立しておく。そして CDN はそのコネクションを逆に使って HTTP を転送するのだ。
         <p>その接続を逆に使い、かつそこに複数のリクエスト/レスポンスを多重化するため、HTTP/2, 3 が前提となり HTTP/1.1 は使えない。
         <p>この方式に、いったいどういうメリットがあるだろうか?
@@ -297,12 +297,12 @@
         </section>
       </section>
       <section>
-        <h2 id="client-selected-inermediaries"><a href="#client-selected-inermediaries">Client Selected Inermediaries</a></h2>
+        <h2 id="client-selected-intermediaries"><a href="#client-selected-intermediaries">Client Selected Intermediaries</a></h2>
         <p>ここまでの話は、サービスプロバイダが Origin の前に立てる Intermediaries を例に話した。
         <p>しかし、この仕様のスコープには、Browser 側に立つ Intermediaries も含まれている。例えば以下だ。
         <ul>
           <li>企業のネットワークに立ってる社内 Proxy
-          <li>Private Realy のような OHTTP Proxy
+          <li>Private Rely のような OHTTP Proxy
           <li>自分で立てるなんらかの用途の串
         </ul>
         <p>こうした Intermediaries に対しても Reverse HTTP を適用しても良いとされている。

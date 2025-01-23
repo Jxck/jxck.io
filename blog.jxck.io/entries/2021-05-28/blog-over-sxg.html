@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-05-28T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2025-01-23T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-05-28>2021-05-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-01-23>2025-01-23</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -245,14 +245,14 @@ dump-signedexchange -i dump.sxg</code></pre>
         <p>このサービスに対して行うべきルーティングは 3 つだ。
         <ul>
           <li>webpkgserver に直接アクセスできないようポートを閉じる
-          <li><code translate=no>/webpkg</code> を webpkserver に転送
+          <li><code translate=no>/webpkg</code> を webpkgserver に転送
           <li>Content Negotiation で SXG を返す場合は <code translate=no>/priv/doc</code> をつけて proxy
           <li>それ以外は proxy しない
         </ul>
       </section>
       <section>
         <h2 id="content-negotiation"><a href="#content-negotiation">Content Negotiation</a></h2>
-        <p>基本的にはリクエストヘッダに <code translate=no>Accpet: application/signed-exchange;v=b3</code> が付与されている場合、Web Package Server に転送すれば良い。
+        <p>基本的にはリクエストヘッダに <code translate=no>Accept: application/signed-exchange;v=b3</code> が付与されている場合、Web Package Server に転送すれば良い。
         <p>しかし、Google の Bot だけでなく、Chrome も現状このヘッダをデフォルトで付与しているため、単にこのヘッダの有無だけを見てルーティングすると、ブラウザからのリクエストにも SXG を返すことになる。
         <p>これについては Q value を参照するように <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/README.md#content-negotiation" target=_blank>ドキュメント</a> に書かれている。
         <p>具体的には Chrome と Google Bot の付与する Accept は以下のように異なる。
@@ -265,7 +265,7 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/a
         <p>ドキュメントでは、Google Bot は Q value を付与しないことで優先度を下げないため、Q value の有無が判断材料になると書かれており、それを Nginx で実現する正規表現の例が書かれている。
         <p>しかしドキュメントの正規表現が気に入らず、また本サイトでは h2o の mruby handler で対応するため、以下のように否定先読みで実現することとした。
         <pre class=ruby data-code=ruby><code translate=no class=language-ruby>if /application\/signed-exchange;v=b3(?!;q=)/.match(env[&quot;HTTP_ACCEPT&quot;])
-  # reproxy to backend wepkgserver
+  # reproxy to backend webpkgserver
   next [307, {&quot;x-reproxy-url&quot; =&gt; &quot;http://127.0.0.1:11000/priv/doc/https://blog.jxck.io#{path}&quot;}, []]
 else
   # fallthrough
@@ -375,7 +375,7 @@ dump-certurl -i cert.cbor</code></pre>
             <picture>
               <source type=image/avif srcset=sxg-navigate.avif?231116_154951>
               <source type=image/webp srcset=sxg-navigate.webp?240402_005258>
-              <img loading=lazy decoding=async src=sxg-navigate.png?230731_162900 alt="検索結果に遷移すると Prefetch した HMTL が展開されている" width=3044 height=736>
+              <img loading=lazy decoding=async src=sxg-navigate.png?230731_162900 alt="検索結果に遷移すると Prefetch した HTML が展開されている" width=3044 height=736>
             </picture>
           </p>
           <p>このとき(スクショでは切れているが)、アドレスバーには SXG Cache の URL である <code translate=no>https://blog-jxck-io.webpkgcache.com/</code> ではなく、SXG を検証した結果として <code translate=no>https://blog.jxck.io</code> が表示されている。

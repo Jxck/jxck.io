@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-10T08:00:00+08:00",
-    "dateModified": "2024-11-20T08:00:00+08:00",
+    "dateModified": "2025-01-23T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-10>2024-10-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-20>2024-11-20</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-01-23>2025-01-23</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -281,18 +281,18 @@
 /* transition style */
 dialog {
   opacity: 0;
-  transition: 
-    display var(--duration) allow-discrete, 
-    overlay var(--duration) allow-discrete, 
+  transition:
+    display var(--duration) allow-discrete,
+    overlay var(--duration) allow-discrete,
     opacity var(--duration);
 }
 ::backdrop {
   opacity: 0;
   background-color: transparent;
   backdrop-filter: none;
-  transition: 
-    display var(--duration) allow-discrete, 
-    overlay var(--duration) allow-discrete, 
+  transition:
+    display var(--duration) allow-discrete,
+    overlay var(--duration) allow-discrete,
     background-color var(--duration),
     backdrop-filter var(--duration),
     opacity var(--duration);
@@ -342,7 +342,7 @@ dialog {
 })</code></pre>
           <p>ここで、値として渡したいものがある場合は、<code translate=no>close()</code> に値をシリアライズして渡す。
           <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&quot;form&quot;).addEventListener(&quot;submit&quot;, (e) =&gt; {
-  e.preventDafault()
+  e.preventDefault()
   const returnValue = JSON.stringify({
     agree: true
   })

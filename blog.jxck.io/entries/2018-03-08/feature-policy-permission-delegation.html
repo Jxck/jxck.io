@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-03-08T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2025-01-23T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-03-08>2018-03-08</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-01-23>2025-01-23</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -248,7 +248,7 @@
       </section>
       <section>
         <h2 id="csp"><a href="#csp">CSP</a></h2>
-        <p>HTML に埋め込む sanbox 属性は、埋め込んだ iframe にしか適用されない。
+        <p>HTML に埋め込む sandbox 属性は、埋め込んだ iframe にしか適用されない。
         <p>これを HTTP ヘッダで適用できるように、CSP2 では sandbox ディレクティブが追加された。
         <pre class=http data-code=http><code translate=no class=language-http>Content-Security-Policy: sandbox</code></pre>
         <ul>
@@ -302,7 +302,7 @@
           <pre class=http data-code=http><code translate=no class=language-http>Feature-Policy: geolocation &apos;self&apos; https://example.com</code></pre>
           <p>すると、この iframe で Geolocation API が呼び出された時、埋め込んだサイト上でプロンプトが表示される。
           <p>ユーザがこれを許可すると、サイトに対して権限が付与され、それが example.com にも移譲される。
-          <p>これにより、iframe 内で Geoloation API が実行できることになる。
+          <p>これにより、iframe 内で Geolocation API が実行できることになる。
           <p>(執筆時点では、この Prompt はまだ「example.com が現在位置の取得を求めている」という表示になっているが、この表示はいずれ変更されるようだ)
           <p>もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
           <pre class=http data-code=http><code translate=no class=language-http>Feature-Policy: geolocation *</code></pre>
@@ -337,7 +337,7 @@ Feature-Policy: sync-xhr &apos;none&apos;</code></pre>
       <section>
         <h2 id="reporting"><a href="#reporting">Reporting</a></h2>
         <p>Feature Policy には執筆時点で Reporting の仕様が無い。
-        <p>しかし、これは Reporing 側で CORS の Preflight をどうするかの問題がブロッカーとなっているだけで、盛り込む予定ではあるようだ。
+        <p>しかし、これは Reporting 側で CORS の Preflight をどうするかの問題がブロッカーとなっているだけで、盛り込む予定ではあるようだ。
         <ul>
           <li><a href="https://github.com/WICG/feature-policy/issues/142" target=_blank>https://github.com/WICG/feature-policy/issues/142</a>
         </ul>

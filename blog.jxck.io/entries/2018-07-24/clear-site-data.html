@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-07-24T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2025-01-23T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?240713_033306>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-07-24>2018-07-24</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-01-23>2025-01-23</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -176,7 +176,7 @@
           <li>cache api
         </ul>
         <p>これらを、ログアウト処理の中で各 API を適切に呼び出し、全て確実に削除するのは簡単ではない。
-        <p>また、httponly の Cookie や browser cache などは、JS からの削除もできない。
+        <p>また、HttpOnly の Cookie や browser cache などは、JS からの削除もできない。
         <p>SPA のように実装されている場合は、その状態を含めて初期化しないと不整合が発生する場合もある。
         <p>こうした問題に対して策定されたのが、Clear-Site-Data Header である。
         <ul>
@@ -203,7 +203,7 @@ Clear-Site-Data: &quot;*&quot;</code></pre>
         <p>各 Type で解説する。
         <section>
           <h3 id="cookies"><a href="#cookies">cookies</a></h3>
-          <p>httponly, secure の有無に関わらず、全ての Cookie が消える。
+          <p>HttpOnly, Secure の有無に関わらず、全ての Cookie が消える。
           <p>(<code translate=no>document.cookie</code> や <a href="https://wicg.github.io/cookie-store/explainer.html" target=_blank>Cookie Store API</a> も全て同じ Cookie を見ているため、storage ではなく cookie である)
           <p>また Basic Auth の Authorization Header や TLS の Channel ID 、Token Binding なども対象になっている。
         </section>
