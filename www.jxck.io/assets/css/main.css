@@ -2,38 +2,37 @@ main {
   display: block;
   width: var(--width);
   max-width: var(--max-width);
-  margin-block-start:  1em;
-  margin-block-end:    1em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
   margin-inline-start: auto;
-  margin-inline-end:   auto;
+  margin-inline-end: auto;
 }
 
 a {
   word-wrap: break-word;
   text-decoration: none;
   color: var(--anchor-color);
-}
-
-a:visited {
-  color: var(--anchor-visited-color);
+  &:visited {
+    color: var(--anchor-visited-color);
+  }
 }
 
 ol,
 ul {
   list-style: none;
   padding-inline-start: 0;
+  li {
+    word-break: break-all;
+    word-wrap: break-word;
+  }
 }
 
-li {
-  word-break: break-all;
-  word-wrap: break-word;
-}
-
-dl dt {
-  font-weight: bold;
-  margin: 0;
-}
-
-dl dd {
-  margin: 0;
+dl {
+  dt {
+    font-weight: bold;
+    margin: 0;
+  }
+  dd {
+    margin: 0;
+  }
 }
