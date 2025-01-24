@@ -4,41 +4,39 @@ dl.info {
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
-}
 
-dl.info div {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
+  div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
 
-dl.info dt::after {
-  content: ":";
-  content: ":"/ "";
-  padding-inline-end: calc(var(--grid)/2);
-}
+  dt::after {
+    content: ":";
+    content: ":"/ "";
+    padding-inline-end: calc(var(--grid) / 2);
+  }
 
-dl.info dd {
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-end: var(--grid);
-  margin-inline-start: 0;
-}
+  dd {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-end: var(--grid);
+    margin-inline-start: 0;
 
-dl.info dd i {
-  font-style: normal;
-  padding-inline-end: calc(var(--grid)/3);
+    i {
+      font-style: normal;
+      padding-inline-end: calc(var(--grid) / 3);
+    }
+  }
 }
 
 #toc[popover] {
   font-size: 0.8rem;
   margin-top: 0;
   margin-right: 0;
-
   width: 10rem;
   max-height: 4rem;
   transition: max-height 0.4s ease-out;
-
   border: solid 1px #333;
   border-radius: var(--radius);
 
@@ -65,55 +63,59 @@ dl.info dd i {
   ul,
   ol {
     margin-block-start: 0;
-    margin-inline-start: calc(var(--grid)/2);
+    margin-inline-start: calc(var(--grid) / 2);
   }
 
   ol {
     list-style: none;
     counter-reset: counter;
+
     li {
       ol {
         list-style: none;
         counter-reset: counter;
       }
-    }
-    li::before {
-      content: counters(counter, ".") ". ";
-      counter-increment: counter;
+
+      &::before {
+        content: counters(counter, ".") ". ";
+        counter-increment: counter;
+      }
     }
   }
 }
 
 nav.tags {
   display: inline;
-}
 
-.tags ul {
-  display: inline-flex;
-  margin: 0;
-  padding: 0;
-}
+  ul {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
 
-.tags li:before {
-  content: none;
-}
+    li {
+      &::before {
+        content: none;
+      }
 
-.tags li:first-child:before {
-  content: "[ ";
-  content: "[ "/ "";
-}
+      &:first-child::before {
+        content: "[ ";
+        content: "[ "/ "";
+      }
 
-.tags li > a:after {
-  content: ",";
-  content: ","/ "";
-  padding-inline-end: 0.5rem;
-}
+      > a::after {
+        content: ",";
+        content: ","/ "";
+        padding-inline-end: 0.5rem;
+      }
 
-.tags li:last-child > a:after {
-  content: none;
-}
+      &:last-child > a::after {
+        content: none;
+      }
 
-.tags li:last-child:after {
-  content: " ]";
-  content: " ]"/ "";
+      &:last-child::after {
+        content: " ]";
+        content: " ]"/ "";
+      }
+    }
+  }
 }
