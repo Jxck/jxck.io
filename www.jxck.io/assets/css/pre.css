@@ -1,141 +1,137 @@
 pre {
-  margin-block-start:  var(--grid);
-  margin-block-end:    var(--grid);
+  margin-block-start: var(--grid);
+  margin-block-end: var(--grid);
   margin-inline-start: 0;
-  margin-inline-end:   0;
+  margin-inline-end: 0;
   border-radius: var(--radius);
-}
 
-pre code {
-  background-color: var(--code-block);
-  color: var(--code-block-font);
-}
+  code {
+    background-color: var(--code-block);
+    color: var(--code-block-font);
+    font-family: var(--code-font);
+    overflow: auto;
+    display: block;
+    padding: 0.5rem;
+    margin: 0;
 
-pre::before {
-  font-family: var(--code-font);
-  content: "```" attr(data-code) "\A";
-  content: "```" attr(data-code) "\A" / "";
-  font-size: 0.8em;
-}
+    &::before,
+    &::after {
+      content: none;
+    }
+  }
 
-pre::after {
-  font-family: var(--code-font);
-  z-index: -1;
-  position: relative;
-  top: -1em;
-  font-size: 0.8em;
-  content: "\A```";
-  content: "\A```" / "";
-}
+  &::before {
+    font-family: var(--code-font);
+    content: "```" attr(data-code) "\A";
+    content: "```" attr(data-code) "\A" / "";
+    font-size: 0.8em;
+  }
 
-pre > code {
-  font-family: var(--code-font);
-  overflow: auto;
-  display: block;
-  padding: 0.5rem;
-  margin: 0;
+  &::after {
+    font-family: var(--code-font);
+    z-index: -1;
+    position: relative;
+    top: -1em;
+    font-size: 0.8em;
+    content: "\A```";
+    content: "\A```" / "";
+  }
 }
-
-pre > code::before,
-pre > code::after {
-  content: none;
-}
-
 
 /** Prism.js Syntax Highlight **/
 :root {
   --code-yellow: #ffe557;
-  --code-aqua:   #03b5f1;
-  --code-blue:   #76acff;
-  --code-gray:   #b3b3b3;
-  --code-green:  #1cd24d;
+  --code-aqua: #03b5f1;
+  --code-blue: #76acff;
+  --code-gray: #b3b3b3;
+  --code-green: #1cd24d;
   --code-orange: #ff8b24;
-  --code-pink:   #ff61bf;
+  --code-pink: #ff61bf;
 }
 
 /** style **/
-.token.important,
-.token.bold {
-  font-weight: bold;
-}
-.token.italic {
-  font-style: italic;
-}
+.token {
+  &.important,
+  &.bold {
+    font-weight: bold;
+  }
 
-.token.entity {
-  cursor: help;
-}
+  &.italic {
+    font-style: italic;
+  }
 
-/** color **/
-.token.command,
-.token.parameter,
-.token.operator,
-.token.punctuation,
-.token.output {
-  color: var(--code-block-font);
-}
+  &.entity {
+    cursor: help;
+  }
 
-.token.attr-name,
-.token.selector,
-.token.shell-symbol {
-  color: var(--code-blue);
-}
+  &.command,
+  &.parameter,
+  &.operator,
+  &.punctuation,
+  &.output {
+    color: var(--code-block-font);
+  }
 
-.token.delimiter.tag,
-.token.variable {
-  color: var(--code-yellow);
-}
+  &.attr-name,
+  &.selector,
+  &.shell-symbol {
+    color: var(--code-blue);
+  }
 
-.token.tag,
-.token.function {
-  color: var(--code-green);
-}
+  &.delimiter.tag,
+  &.variable {
+    color: var(--code-yellow);
+  }
 
-.token.key,
-.token.attr-value,
-.token.atom,
-.token.property,
-.token.keyword {
-  color: var(--code-pink);
-}
+  &.tag,
+  &.function {
+    color: var(--code-green);
+  }
 
-.token.header-name.keyword,
-.token.string,
-.token.regex {
-  color: var(--code-blue);
-}
+  &.key,
+  &.attr-value,
+  &.atom,
+  &.property,
+  &.keyword {
+    color: var(--code-pink);
+  }
 
-.token.interpolation,
-.token.constant,
-.token.class-name {
-  color: var(--code-orange);
-}
+  &.header-name.keyword,
+  &.string,
+  &.regex {
+    color: var(--code-blue);
+  }
 
-.token.response-status,
-.token.boolean,
-.token.number {
-  color: var(--code-aqua);
-}
+  &.interpolation,
+  &.constant,
+  &.class-name {
+    color: var(--code-orange);
+  }
 
-.token.rule,
-.token.builtin {
-  color: var(--code-green);
-}
+  &.response-status,
+  &.boolean,
+  &.number {
+    color: var(--code-aqua);
+  }
 
-.token.prolog,
-.token.doctype,
-.token.shebang,
-.token.comment {
-  color: var(--code-gray);
-}
+  &.rule,
+  &.builtin {
+    color: var(--code-green);
+  }
 
-.token.request-line {
-  color: var(--code-aqua);
-}
+  &.prolog,
+  &.doctype,
+  &.shebang,
+  &.comment {
+    color: var(--code-gray);
+  }
 
+  &.request-line {
+    color: var(--code-aqua);
+  }
 
-/** language **/
-.token.bash.language-bash,
-.token.bash.language-bash > .token.function {
-  color: var(--code-block-font);
+  &.bash.language-bash,
+  &.bash.language-bash > &.function {
+    color: var(--code-block-font);
+  }
 }
