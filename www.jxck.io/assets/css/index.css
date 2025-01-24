@@ -1,0 +1,40 @@
+.index {
+  font-size: 1.2rem;
+  line-height: 2rem;
+  ul {
+    margin: 0;
+    time {
+      padding-inline-end: calc(var(--grid) / 2);
+      &::after {
+        content: ":";
+        content: ":" / "";
+      }
+    }
+  }
+}
+
+/* Mobile Theme */
+@media screen and (max-device-width: 960px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  .index {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    li {
+      margin-block-end: var(--grid);
+      &::before {
+        content: none;
+      }
+      time {
+        font-size: 0.9rem;
+      }
+      a {
+        display: block;
+      }
+    }
+  }
+}
