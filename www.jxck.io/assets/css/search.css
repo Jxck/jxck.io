@@ -1,68 +1,70 @@
 .search {
   font-size: 1.2rem;
   line-height: 2rem;
-}
 
-.search h1 a {
-  color: var(--font-color);
-}
+  h1 a {
+    color: var(--font-color);
+  }
 
-.search label::after {
-  content: ":";
-  content: ":" / "";
-}
+  label::after {
+    content: ":";
+    content: ":" / "";
+  }
 
-.search form p.error {
-  color: red;
-  margin: 0;
-  padding: 0;
-}
+  form p.error {
+    color: red;
+    margin: 0;
+    padding: 0;
+  }
 
-.search time::after {
-  content: ":";
-  content: ":" / "";
-}
+  time::after {
+    content: ":";
+    content: ":" / "";
+  }
 
-.search ul.results summary {
-  font-size: 1.2em;
-  margin-block-end: calc(var(--grid)/2);
-}
+  ul.results {
+    summary {
+      font-size: 1.2em;
+      margin-block-end: calc(var(--grid) / 2);
+    }
 
-.search ul.results li:before {
-  content: none;
-}
+    li::before {
+      content: none;
+    }
 
-.search ul.results > li {
-  margin-block-start: var(--grid);
-  margin-block-end: 0;
-}
+    > li {
+      margin-block-start: var(--grid);
+      margin-block-end: 0;
+    }
+  }
 
-.search ul.detail {
-  margin-inline-start: calc(var(--grid)*3);
-}
+  ul.detail {
+    margin-inline-start: calc(var(--grid) * 3);
 
-.search ul.detail li {
-  list-style: circle;
-}
+    li {
+      list-style: circle;
+    }
+  }
 
-.search .detail a.highlight {
-  background-color: #ff07;
-}
+  .detail a.highlight {
+    background-color: #ff07;
+  }
 
-@media screen and (max-device-width: 800px) {
-  .search {
+  @media screen and (max-device-width: 800px) {
     font-size: 0.8rem;
     line-height: 1.2rem;
     margin: 0.2rem;
     word-wrap: break-word;
-  }
-  .search ul.detail li {
-    margin-block-start:  calc(var(--grid)/2);
-    margin-block-end:    calc(var(--grid)/2);
-    margin-inline-start: 0;
-    margin-inline-end:   0;
-  }
-  .search ul.detail {
-    margin-inline-start: calc(var(--grid)*2);
+
+    ul.detail {
+      margin-inline-start: calc(var(--grid) * 2);
+
+      li {
+        margin-block-start: calc(var(--grid) / 2);
+        margin-block-end: calc(var(--grid) / 2);
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+      }
+    }
   }
 }
