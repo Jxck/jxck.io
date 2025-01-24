@@ -1,19 +1,16 @@
-.archive {
+.index {
   font-size: 1.2rem;
   line-height: 2rem;
-}
-
-.archive ul {
-  margin: 0;
-}
-
-.archive time {
-  padding-inline-end: calc(var(--grid)/2);
-}
-
-.archive time::after {
-  content: ":";
-  content: ":" / "";
+  ul {
+    margin: 0;
+    time {
+      padding-inline-end: calc(var(--grid) / 2);
+      &::after {
+        content: ":";
+        content: ":" / "";
+      }
+    }
+  }
 }
 
 /* Mobile Theme */
@@ -24,24 +21,20 @@
   h2 {
     font-size: 1.2rem;
   }
-
-  .archive {
+  .index {
     font-size: 1rem;
     line-height: 1.4rem;
-  }
-
-  .archive li {
-    margin-block-end: var(--grid);
-  }
-  .archive li::before {
-    content: none;
-  }
-
-  .archive li a {
-    display: block;
-  }
-
-  .archive li time {
-    font-size: 0.9rem;
+    li {
+      margin-block-end: var(--grid);
+      &::before {
+        content: none;
+      }
+      time {
+        font-size: 0.9rem;
+      }
+      a {
+        display: block;
+      }
+    }
   }
 }
