@@ -1,0 +1,46 @@
+/* https://jxck.io */
+:root {
+  --item-width: 15vw;
+  --body-width: calc(var(--item-width)*5);
+  --gap: calc(var(--item-width)/3);
+  --justify: space-between;
+}
+
+/* Mobile Theme */
+@media screen and (max-device-width: 500px) {
+  :root {
+    --item-width: 40vw;
+    --body-width: 90vw;
+    --gap: 5vw;
+    --justify: space-around;
+  }
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #fefefe;
+  margin: 0 auto;
+  width: var(--body-width);
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: var(--justify);
+  align-content: space-around;
+  gap: var(--gap);
+}
+
+section {
+  display: block;
+  box-sizing: border-box;
+  width: var(--item-width);
+}
+
+img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: black;
+}
