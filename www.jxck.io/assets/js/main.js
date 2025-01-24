@@ -79,15 +79,3 @@ if (window.PerformanceObserver) {
     console.log(performance)
   }, 3000)
 }
-
-
-// if (navigator.serviceWorker) {
-//   (async () => {
-//     const scope  = '/entries/2016-01-27'
-//     const worker = await navigator.serviceWorker.register('/assets/js/workbox.js', {scope})
-//     console.debug('%cREGISTERED:', 'color: blue; font-weight: bold', worker);
-//   })()
-// }
-
-document.addEventListener('DOMContentLoaded', () => {
-})

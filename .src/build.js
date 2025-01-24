@@ -973,38 +973,6 @@ async function podcast(files, params = { preview: false }) {
   await overWriteFile(`../id3all.sh`, id3_result)
 }
 
-async function workbox() {
-  const js = await readFile(`../www.jxck.io/assets/js/workbox.js`, {
-    encoding: `utf-8`,
-  })
-
-  const boundary = `---build.js---`
-  const reg = new RegExp(
-    `\\/\\*${boundary}\\*\\/(?<list>[\\s\\S]*)\\/\\*${boundary}\\*\\/`,
-    `m`
-  )
-  const matched = js.match(reg)
-  /**@type {Array.<string>} */
-  const scripts = eval(matched.groups.list)
-
-  const array = scripts
-    .map((script) => {
-      const url = new URL(script)
-      const pathname = url.pathname
-      const busting = cache_busting(`../www.jxck.io${pathname}`)
-      url.search = busting
-      return `  "${url.toString()}",`
-    })
-    .join(`\n`)
-
-  const fragment = [`/*${boundary}*/`, `[`, array, `]`, `/*${boundary}*/`].join(
-    `\n`
-  )
-
-  const replaced = js.replace(reg, () => fragment)
-  await overWriteFile(`../www.jxck.io/assets/js/workbox.js`, replaced)
-}
-
 /**
  * main
  * @param {string} arg
@@ -1015,7 +983,7 @@ async function main(arg) {
       Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`)),
       Array.fromAsync(glob(`../mozaic.fm/episodes/**/*.md`)),
     ])
-    return await Promise.all([blog(entries), podcast(episodes), workbox()])
+    return await Promise.all([blog(entries), podcast(episodes)])
   }
 
   if (arg === `preview`) {

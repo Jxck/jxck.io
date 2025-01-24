@@ -25,7 +25,6 @@ fmt:
 
 install:
 	npm install
-	workbox copyLibraries www.jxck.io/assets/js
 	$(DOTFILES)/install/install-avif.sh
 	$(DOTFILES)/install/install-brotli.sh
 	$(DOTFILES)/install/install-h2o.sh
