@@ -1,88 +1,79 @@
-h1 > a,
-h2 > a,
-h3 > a,
-h4 > a,
-h5 > a,
-h6 > a {
-  color: var(--font-color);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  a {
+    color: var(--font-color);
+    &:visited {
+      color: var(--font-color);
+    }
+    &:hover::before {
+      color: var(--anchor-visited-color);
+    }
+  }
 }
 
-h1 > a:visited,
-h2 > a:visited,
-h3 > a:visited,
-h4 > a:visited,
-h5 > a:visited,
-h6 > a:visited {
-  color: var(--font-color);
+h1 {
+  > a::before {
+    content: "# " / "";
+  }
 }
 
-h1 > a::before {
-  content: "# ";
-  content: "# " / "";
+h2 {
+  > a::before {
+    content: "## " / "";
+  }
 }
 
-h2 > a::before {
-  content: "## ";
-  content: "## " / "";
+h3 {
+  > a::before {
+    content: "### " / "";
+  }
 }
 
-h3 > a::before {
-  content: "### ";
-  content: "### " / "";
-}
-
-h4 > a::before {
-  content: "#### ";
-  content: "#### " / "";
-}
-
-h1 > a:hover::before,
-h2 > a:hover::before,
-h3 > a:hover::before,
-h4 > a:hover::before,
-h5 > a:hover::before,
-h6 > a:hover::before {
-  color: var(--anchor-visited-color);
+h4 {
+  > a::before {
+    content: "#### " / "";
+  }
 }
 
 em {
   font-weight: bold;
   font-style: normal;
-}
-
-em::before,
-em::after {
-  content: "*";
-  content: "*" / "";
+  &::before,
+  &::after {
+    content: "*" / "";
+  }
 }
 
 strong {
   color: red;
+  &::before,
+  &::after {
+    content: "**" / "";
+  }
 }
 
-strong::before,
-strong::after {
-  content: "**";
-  content: "**" / "";
-}
-
-ul li::before {
-  content: "- ";
-  content: "- " / "";
+ul {
+  li::before {
+    content: "- " / "";
+  }
 }
 
 ol {
   counter-reset: list;
+  li::before {
+    counter-increment: list;
+    content: counter(list) ". ";
+  }
 }
 
-ol li::before {
-  counter-increment: list;
-  content: counter(list) ". ";
-}
-
-dl dt::after {
-  content: ":";
-  content: ":" / "";
+dl {
+  dt::after {
+    content: ":" / "";
+  }
 }
 
 blockquote {
@@ -91,11 +82,9 @@ blockquote {
   border-radius: var(--radius);
   padding: 1rem;
   margin: 0;
-}
-
-blockquote p::before {
-  content: "> ";
-  content: "> " / "";
+  p::before {
+    content: "> " / "";
+  }
 }
 
 code {
@@ -103,10 +92,8 @@ code {
   color: var(--code-inline-font);
   border-radius: var(--radius);
   padding: 0 4px;
-}
-
-code::before,
-code::after {
-  content: "`";
-  content: "`" / "";
+  &::before,
+  &::after {
+    content: "`" / "";
+  }
 }
