@@ -394,11 +394,11 @@ dialog[popover]::backdrop {
         <p>通常の DOM であれば、<code translate=no>&lt;button&gt;</code> を基準にし、<code translate=no>&lt;div&gt;</code> を相対的に配置すれば良いが、今 <code translate=no>&lt;div popover&gt;</code> は Top Layer に、<code translate=no>&lt;button&gt;</code> はその backdrop に表示されているため、2 つを相対的に配置することができないのだ。
         <p><code translate=no>&lt;div popover&gt;</code> が表示されている Top Layer には、他の DOM が何もない状態なので、何らかの方法で <code translate=no>&lt;div popover&gt;</code> の座標などを渡されない限りは、「画面の真ん中」や「四隅」といった、絶対値指定できる場所くらいしか、配置のしようがない。
         <p>
-          <img loading=lazy decoding=async src=top-layer.drawio.svg?241002_152445 alt="Top Layer の真ん中に表示された Popover" width=524 height=154>
+          <img loading=lazy decoding=async src=top-layer.drawio.svg?241002_223502 alt="Top Layer の真ん中に表示された Popover" width=524 height=154>
         </p>
         <p>そこで、Anchor という概念を導入し、「開いた <code translate=no>&lt;button&gt;</code> を Anchor として、開かれた側はその Anchor の右上に表示する」といった指定ができるようにした。これが Anchor Positioning だ。
         <p>
-          <img loading=lazy decoding=async src=top-layer-anchor.drawio.svg?241002_152454 alt="button を anchor としその右下に Popover を表示" width=524 height=154>
+          <img loading=lazy decoding=async src=top-layer-anchor.drawio.svg?241002_223502 alt="button を anchor としその右下に Popover を表示" width=524 height=154>
         </p>
         <section>
           <h3 id="anchor-attributes"><a href="#anchor-attributes">Anchor Attributes</a></h3>
@@ -419,7 +419,7 @@ dialog[popover]::backdrop {
           <p>この場合、<code translate=no>&lt;div popover&gt;</code> の Anchor を <code translate=no>&lt;button&gt;</code> としている。
           <p><code translate=no>top: anchor(bottom)</code> は、自分の上端が Anchor の下端になるという指定だ。<code translate=no>left: anchor(right)</code> は自身の左端を Anchor の右端にしているため、結果、<code translate=no>&lt;button&gt;</code> に対して右下に表示されるというものだ。
           <p>
-            <img loading=lazy decoding=async src=anchor.drawio.svg?241002_152559 alt="button を anchor として右下に popover を表示する" width=241 height=141>
+            <img loading=lazy decoding=async src=anchor.drawio.svg?241002_223502 alt="button を anchor として右下に popover を表示する" width=241 height=141>
           </p>
           <p>そして、何よりもこの Anchor 属性が独立していることで、Popover ではない要素でも Anchor 関係を指定し、配置することが可能なのだ。これは、従来の Flex, Grid などに並んで、新しい CSS の設計に影響する、重要な要素であると筆者は考えている。
         </section>
@@ -429,7 +429,7 @@ dialog[popover]::backdrop {
         <p>Anchor に対して相対配置する場合は、Anchor となる要素の周囲のどこかに配置することになるため、先ほどの「左上」や「右下」などの指定は頻出することになる。
         <p>このケースに対して、<code translate=no>anchor()</code> を用いて指定する代わりに「Anchor の周囲のどこに配置するか」を指定できるように導入されたのが Position Area Grid だ。
         <p>
-          <img loading=lazy decoding=async src=position-area-grid.drawio.svg?241003_012409 alt="Anchor を中心に 9 個に分割したグリッド" width=300 height=300>
+          <img loading=lazy decoding=async src=position-area-grid.drawio.svg?241003_012609 alt="Anchor を中心に 9 個に分割したグリッド" width=300 height=300>
         </p>
         <p><code translate=no>position-anchor</code> を指定した要素に <code translate=no>position-area</code> で、表示したい位置を指定する。(もともとは <code translate=no>inset-area</code> という名前だったが、指定する側からすれば Position なのでこの名前に変更された。)
         <p>先ほどの「右下」を <code translate=no>position-anchor</code> を使い、ロジカルプロパティで指定するなら、以下のようになる。
@@ -442,7 +442,7 @@ dialog[popover]::backdrop {
         <h2 id="anchor-position-の-fallback"><a href="#anchor-position-の-fallback">Anchor Position の fallback</a></h2>
         <p>先の例で、<code translate=no>&lt;div popover&gt;</code> を表示するための余白が <code translate=no>&lt;button&gt;</code> の右下に無かった場合、Popover がはみ出して表示されることになる。
         <p>
-          <img loading=lazy decoding=async src=anchor-over.drawio.svg?241002_152835 alt="anchor で右下に表示した popover がはみ出す" width=411 height=331>
+          <img loading=lazy decoding=async src=anchor-over.drawio.svg?241002_223502 alt="anchor で右下に表示した popover がはみ出す" width=411 height=331>
         </p>
         <p>これを避けるために、フォールバックという仕組みを導入し、「はみ出る場合は、別のスタイルに切り替える」という指定をするための <code translate=no>position-try-options</code> が提案された。
         <p>これは後に <code translate=no>position-try-fallbacks</code> と名前を変え、例えば <code translate=no>flip-inline</code> を指定すれば Inline 方向(つまり左右)を逆にするようフォールバックできる。
@@ -452,7 +452,7 @@ dialog[popover]::backdrop {
   position-try-fallbacks: flip-inline;
 }</code></pre>
         <p>
-          <img loading=lazy decoding=async src=./anchor-fallback.drawio.svg?241002_153013 alt="左でははみ出す popover を anchor の右にフォールバック表示" width=411 height=331>
+          <img loading=lazy decoding=async src=./anchor-fallback.drawio.svg?241002_223502 alt="左でははみ出す popover を anchor の右にフォールバック表示" width=411 height=331>
         </p>
         <p>Block 方向(つまり上下)であれば <code translate=no>flip-block</code> でフォールバックできる。
         <p>より細かくスタイルを指定したい場合は、フォールバックの先を <code translate=no>@position-try</code> に複数指定し、それを並べて順に試行させることができる。複数適用できる場合の優先順位は <code translate=no>position-try-order</code> に指定可能だ。
@@ -521,8 +521,8 @@ button {
         <p>
           <picture>
             <source type=image/avif srcset=github-profile-popover.avif?241002_222319>
-            <source type=image/webp srcset=github-profile-popover.webp?241002_222319>
-            <img loading=lazy decoding=async src=github-profile-popover.png?241002_222319 alt="GitHub のアカウントをマウスオーバーすると開くプロフィールのポップオーバー" width=844 height=662>
+            <source type=image/webp srcset=github-profile-popover.webp?241002_223655>
+            <img loading=lazy decoding=async src=github-profile-popover.png?241002_223502 alt="GitHub のアカウントをマウスオーバーすると開くプロフィールのポップオーバー" width=844 height=662>
           </picture>
         </p>
         <p>このような Popover は、画面中のすべてのアカウントごとに <code translate=no>&lt;div popover&gt;</code> を作っておくのではなく、1 つ用意してその内容を書き換えながら再利用する実装が多い。

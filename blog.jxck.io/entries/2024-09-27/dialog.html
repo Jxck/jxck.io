@@ -179,7 +179,7 @@
   &lt;/div&gt;
 &lt;/dialog&gt;</code></pre>
           <p>
-            <img loading=lazy decoding=async src=1.show.drawio.svg?240927_193639 alt="dialog を open 属性で開く" width=451 height=231>
+            <img loading=lazy decoding=async src=1.show.drawio.svg?240928_041512 alt="dialog を open 属性で開く" width=451 height=231>
           </p>
         </section>
         <section>
@@ -198,20 +198,20 @@ document.querySelector(&quot;button.showModal&quot;).addEventListener(&quot;clic
           <p>
             <picture>
               <source type=image/avif srcset=2.a11y-tree.avif?240927_190504>
-              <source type=image/webp srcset=2.a11y-tree.webp?240927_190504>
-              <img loading=lazy decoding=async src=2.a11y-tree.png?240927_190504 alt="Accessibility Tree 上は role: dialog, modal: false になっている" width=538 height=514>
+              <source type=image/webp srcset=2.a11y-tree.webp?240928_042208>
+              <img loading=lazy decoding=async src=2.a11y-tree.png?240928_041512 alt="Accessibility Tree 上は role: dialog, modal: false になっている" width=538 height=514>
             </picture>
           </p>
           <p>これを、<code translate=no>showModal()</code> で開くとこうなる。
           <p>
-            <img loading=lazy decoding=async src=3.showModal.drawio.svg?240927_193445 alt="showModal() で Modal Dialog を開く" width=451 height=231>
+            <img loading=lazy decoding=async src=3.showModal.drawio.svg?240928_041512 alt="showModal() で Modal Dialog を開く" width=451 height=231>
           </p>
           <p>背景が薄くグレーになるのは、<code translate=no>::backdrop</code> のデフォルト CSS が当たっているからだ。
           <p>
             <picture>
               <source type=image/avif srcset=4.default-style.avif?240927_190504>
-              <source type=image/webp srcset=4.default-style.webp?240927_190504>
-              <img loading=lazy decoding=async src=4.default-style.png?240927_190504 alt="Chrome の backdrop デフォルトスタイル" width=920 height=186>
+              <source type=image/webp srcset=4.default-style.webp?240928_042208>
+              <img loading=lazy decoding=async src=4.default-style.png?240928_041512 alt="Chrome の backdrop デフォルトスタイル" width=920 height=186>
             </picture>
           </p>
           <p>non-Modal と異なり、Modal は同時に 1 つしか開けない。
@@ -219,8 +219,8 @@ document.querySelector(&quot;button.showModal&quot;).addEventListener(&quot;clic
           <p>
             <picture>
               <source type=image/avif srcset=5.a11y-tree.avif?240927_190504>
-              <source type=image/webp srcset=5.a11y-tree.webp?240927_190504>
-              <img loading=lazy decoding=async src=5.a11y-tree.png?240927_190504 alt="Accessibility Tree 上は role: dialog, modal: true になっている" width=548 height=522>
+              <source type=image/webp srcset=5.a11y-tree.webp?240928_042208>
+              <img loading=lazy decoding=async src=5.a11y-tree.png?240928_041512 alt="Accessibility Tree 上は role: dialog, modal: true になっている" width=548 height=522>
             </picture>
           </p>
         </section>
@@ -383,8 +383,8 @@ document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (
           <p>
             <picture>
               <source type=image/avif srcset=6.scrollable-section.avif?240928_041042>
-              <source type=image/webp srcset=6.scrollable-section.webp?240928_041042>
-              <img loading=lazy decoding=async src=6.scrollable-section.png?240928_041042 alt="scrollable section" width=797 height=494>
+              <source type=image/webp srcset=6.scrollable-section.webp?240928_042208>
+              <img loading=lazy decoding=async src=6.scrollable-section.png?240928_041512 alt="scrollable section" width=797 height=494>
             </picture>
           </p>
           <p>注意点として、もしこのスクロールする <code translate=no>&lt;section&gt;</code> の手前に別のコントローラがあった場合を考えよう。
@@ -460,7 +460,7 @@ dialog.returnValue // &quot;accept&quot;</code></pre>
   console.log(e.target) // dialog
 })</code></pre>
           <p>
-            <img loading=lazy decoding=async src=7.backdrop-click.drawio.svg?240927_190504 alt="Modal は画面のどこをクリックしても dialog 要素で発火する" width=451 height=231>
+            <img loading=lazy decoding=async src=7.backdrop-click.drawio.svg?240928_041512 alt="Modal は画面のどこをクリックしても dialog 要素で発火する" width=451 height=231>
           </p>
           <p>そこで、<code translate=no>&lt;dialog&gt;</code> を <code translate=no>padding: 0</code> にし、直下の <code translate=no>&lt;div&gt;</code> が <code translate=no>&lt;dialog&gt;</code> の内側いっぱいに表示されている状態にする。以下では、赤い <code translate=no>&lt;div&gt;</code> が <code translate=no>&lt;dialog&gt;</code> いっぱいに被さっている形だ。
           <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;

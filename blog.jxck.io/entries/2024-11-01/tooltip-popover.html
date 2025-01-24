@@ -162,7 +162,7 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>今回考えたいのは、GitHub の Issue や User アイコンをマウスでホバーすると、Issue の詳細や User Profile が表示されるアレだ。
         <p>
-          <img loading=lazy decoding=async src=./tooltip-popover.drawio.svg?241101_195247 alt="リンクを hover すると Tooltip でリンク先の詳細がカード表示される" width=300 height=300>
+          <img loading=lazy decoding=async src=./tooltip-popover.drawio.svg?241101_195146 alt="リンクを hover すると Tooltip でリンク先の詳細がカード表示される" width=300 height=300>
         </p>
         <p>挙動としては想像通り、対象要素に Anchoring した <code translate=no>&lt;div popover&gt;</code> を表示し、中に好きなようにコンテンツを入れれば良い。ただし、UI のセマンティクスに関しては、複数の議論が行われており、方針もいくつか考えられる。
         <p>今回は、それらの現状を整理しつつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。
@@ -177,8 +177,8 @@
           <p>
             <picture>
               <source type=image/avif srcset=native-tooltip.avif?241101_195247>
-              <source type=image/webp srcset=native-tooltip.webp?241101_195247>
-              <img loading=lazy decoding=async src=native-tooltip.png?241101_195247 alt="画像の title 属性の文字列をブラウザが小さいポップアップで表示している" width=180 height=156>
+              <source type=image/webp srcset=native-tooltip.webp?241101_195146>
+              <img loading=lazy decoding=async src=native-tooltip.png?241101_195146 alt="画像の title 属性の文字列をブラウザが小さいポップアップで表示している" width=180 height=156>
             </picture>
           </p>
           <p>紛らわしいので、ここではこれを Native Tooltip と呼ぶことにする。

@@ -233,11 +233,11 @@
         <p>例えば <code translate=no>opacity</code> の Animation Type は by computed value で、0 から 1 の間をスライダーを動かすように連続した変化をさせる。一方、true/false, enable/disable といった値は discrete (離散値) というカテゴリになる。
         <p>discrete な値を <code translate=no>transition</code> する場合は、真ん中(50%)で値が切り替わる挙動になるため、<code translate=no>opacity</code> が 0.5 まで減ったところで、<code translate=no>display: none</code> になって要素がぱっと消えてしまうことになる。
         <p>
-          <img loading=lazy decoding=async src=./transition-display.drawio.svg?241003_001028 alt="display が途中で変わり要素が消える" width=442 height=182>
+          <img loading=lazy decoding=async src=./transition-display.drawio.svg?241003_001835 alt="display が途中で変わり要素が消える" width=442 height=182>
         </p>
         <p>しかし、実際に欲しいのは <code translate=no>opacity: 0</code> になった後に、<code translate=no>display: none</code> / <code translate=no>content-visibility: hidden</code> に変化し消える挙動だ。
         <p>
-          <img loading=lazy decoding=async src=./transition-display-finally.drawio.svg?241003_001232 alt="display が最後に変更する" width=442 height=182>
+          <img loading=lazy decoding=async src=./transition-display-finally.drawio.svg?241003_001835 alt="display が最後に変更する" width=442 height=182>
         </p>
         <p>この変更を利用するためには、<code translate=no>keyframe</code> をそのままに、<code translate=no>transition</code> の対象プロパティに <code translate=no>allow-discrete</code> をつける。
         <pre class=css data-code=css><code translate=no class=language-css>div {
