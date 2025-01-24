@@ -1,16 +1,4 @@
-/** table の align */
-.align-left {
-  text-align: left;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.align-center {
-  text-align: center;
-}
-
+/* [表: N] のカウンター */
 article {
   counter-reset: table;
 }
@@ -20,132 +8,144 @@ figure {
   padding: 0;
   overflow-x: auto;
   font-family: var(--mono-font);
-}
 
-figcaption {
-  margin-inline-start: 0.5em;
-  margin-block-end: 0.5em;
-  font-style: italic;
-}
-figcaption::before {
-  counter-increment: table;
-  content: "[表:" counter(table) " "
-}
-figcaption::after {
-  content: "]"
-}
+  figcaption {
+    margin-inline-start: 0.5em;
+    margin-block-end: 0.5em;
+    font-style: italic;
 
-table {
-  margin: 0 auto;
-  text-align: left;
-  white-space: nowrap;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+    &::before {
+      counter-increment: table;
+      content: "[表:" counter(table) " ";
+    }
 
-/* Mobile では wrap させて余白調整 */
-@media screen and (max-device-width: 960px) {
+    &::after {
+      content: "]";
+    }
+  }
+
   table {
-    overflow-x: scroll;
+    margin: 0 auto;
+    text-align: left;
     white-space: nowrap;
-  }
+    border-collapse: collapse;
+    border-spacing: 0;
 
-  th, td {
-    padding-inline-end: calc(var(--table-padding) * 2);
-  }
-}
+    /** table の align */
+    .align-left {
+      text-align: left;
+    }
 
+    .align-right {
+      text-align: right;
+    }
 
+    .align-center {
+      text-align: center;
+    }
 
-/* Alternative Text not Supported */
-table {
-  font-family: var(--mono-font);
-  margin: var(--grid) 0;
-  border-spacing: 0 0.4rem;
-}
+    /* Mobile では wrap させて余白調整 */
+    @media screen and (max-device-width: 960px) {
+      overflow-x: scroll;
+      white-space: nowrap;
 
-th {
-  padding: 0 var(--grid) calc(var(--grid)/2) var(--grid);
-  border-left: 2px solid var(--table-border);
-  border-bottom: 2px dashed var(--table-border);
-}
+      th,
+      td {
+        padding-inline-end: calc(var(--table-padding) * 2);
+      }
+    }
 
-td {
-  padding: calc(var(--grid)/2) var(--grid);
-  border-left: 2px solid var(--table-border);
-}
+    /* Alternative Text not Supported */
+    font-family: var(--mono-font);
+    margin: var(--grid) 0;
+    border-spacing: 0 0.4rem;
 
-th:last-child,
-td:last-child {
-  border-right: 2px solid var(--table-border);
-}
+    th {
+      padding: 0 var(--grid) calc(var(--grid) / 2) var(--grid);
+      border-left: 2px solid var(--table-border);
+      border-bottom: 2px dashed var(--table-border);
+    }
 
-@supports (content: "a" / "b") {
-  th,
-  td,
-  th:last-child,
-  td:last-child {
-    padding: unset;
-    border: none;
-    border: none;
-  }
+    td {
+      padding: calc(var(--grid) / 2) var(--grid);
+      border-left: 2px solid var(--table-border);
+    }
 
-  /** 左右の罫線 */
-  th::before,
-  td::before {
-    content: "|" / "";
-    font-weight: normal;
-    margin-inline-end: var(--table-padding);
-    float: left;
-  }
+    th:last-child,
+    td:last-child {
+      border-right: 2px solid var(--table-border);
+    }
 
-  th,
-  td {
-    padding-inline-end: var(--table-padding);
-    clear: left;
-  }
+    @supports (content: "a" / "b") {
+      th,
+      td,
+      th:last-child,
+      td:last-child {
+        padding: unset;
+        border: none;
+      }
 
-  tr::after {
-    content: "|" / "";
-    font-weight: normal;
-  }
+      /** 左右の罫線 */
+      th::before,
+      td::before {
+        content: "|" / "";
+        font-weight: normal;
+        margin-inline-end: var(--table-padding);
+        float: left;
+      }
 
-  /** tbody の最初の行だけ左右の罫線を 2 本にする */
-  th::before,
-  thead tr:last-child::after {
-    content: "|\A|" / "";
-    white-space: pre;
-  }
+      th,
+      td {
+        padding-inline-end: var(--table-padding);
+        clear: left;
+      }
 
-  /** thead と tbody の間の仕切り */
-  th {
-    position: relative;
-  }
+      tr::after {
+        content: "|" / "";
+        font-weight: normal;
+      }
 
-  /** 中央は : をつけない */
-  /** TODO: 線が途切れるのと :--: は text-verflow が string に対応したらできそう(firefox のみ) */
-  th::after {
-    content: "------------------------------------------------------------------" / "";
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: clip;
-    position: absolute;
-    letter-spacing: 0.1em;
-    font-weight: normal;
-    top: 100%;
-    transform: translateY(-100%);
-    left: calc(var(--table-separator-width) + var(--table-padding));
-    right: var(--table-separator-width);
-  }
+      /** tbody の最初の行だけ左右の罫線を 2 本にする */
+      th::before,
+      thead tr:last-child::after {
+        content: "|\A|" / "";
+        white-space: pre;
+      }
 
-  /** 左は : を頭に */
-  th.align-left::after {
-    content: ":-----------------------------------------------------------------" / "";
-  }
+      /** thead と tbody の間の仕切り */
+      th {
+        position: relative;
 
-  /** 右は RTL で */
-  th.align-right::after {
-    content: ":-----------------------------------------------------------------" / "";
-    direction: rtl;
+        /** 中央は : をつけない */
+        /** TODO: 線が途切れるのと :--: は text-overflow が string に対応したらできそう(firefox のみ) */
+        &::after {
+          content: "------------------------------------------------------------------" /
+            "";
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: clip;
+          position: absolute;
+          letter-spacing: 0.1em;
+          font-weight: normal;
+          top: 100%;
+          transform: translateY(-100%);
+          left: calc(var(--table-separator-width) + var(--table-padding));
+          right: var(--table-separator-width);
+        }
+
+        /** 左は : を頭に */
+        &.align-left::after {
+          content: ":-----------------------------------------------------------------" /
+            "";
+        }
+
+        /** 右は RTL で */
+        &.align-right::after {
+          content: ":-----------------------------------------------------------------" /
+            "";
+          direction: rtl;
+        }
+      }
+    }
   }
 }
