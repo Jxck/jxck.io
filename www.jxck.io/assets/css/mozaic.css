@@ -9,23 +9,23 @@
 
   --ui-back: #888;
   --ui-front: #fff;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --font-color: #eee;
-    --background-color: #333;
-    --header-color: #000;
-    --heading-font-color: #fff;
-    --heading-back-color: #111;
-    --border-color: #fff;
-    --player-color: #030303;
+  @media (prefers-color-scheme: dark) {
+    & {
+      --font-color: #eee;
+      --background-color: #333;
+      --header-color: #000;
+      --heading-font-color: #fff;
+      --heading-back-color: #111;
+      --border-color: #fff;
+      --player-color: #030303;
 
-    --anchor-visited-color: HotPink;
-    --anchor-color: LightSkyBlue;
+      --anchor-visited-color: HotPink;
+      --anchor-color: LightSkyBlue;
 
-    --ui-back: #888;
-    --ui-front: #fff;
+      --ui-back: #888;
+      --ui-front: #fff;
+    }
   }
 }
 
@@ -40,6 +40,72 @@ header button {
 
 main {
   min-height: 100vh;
+
+  > ol > li {
+    margin: 0;
+    padding: 0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    border: 1px solid #ccc;
+    border-radius: var(--radius);
+    background-color: var(--background-color);
+
+    h2 {
+      margin: 0;
+      padding: 0.4em 0.6em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      /** TODO: fix when supported */
+      border-top-left-radius: calc(var(--radius) - 1px);
+      /** TODO: fix when supported */
+      border-top-right-radius: calc(var(--radius) - 1px);
+      font-weight: normal;
+      font-size: 1em;
+      color: var(--font-color);
+      background-color: var(--heading-back-color);
+
+      a,
+      a:visited,
+      a:hover {
+        color: var(--heading-font-color);
+      }
+    }
+
+    ul {
+      padding: 0 2em;
+
+      li {
+        list-style-type: disc;
+      }
+    }
+
+    p {
+      margin: 1em;
+    }
+  }
+
+  .info {
+    margin-block-start: 1em;
+    margin-block-end: 0.5em;
+    margin-inline-start: 1em;
+    margin-inline-end: 0;
+    line-height: 1.4em;
+    vertical-align: baseline;
+
+    dd {
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-start: 0.4rem;
+      margin-inline-end: 2rem;
+    }
+
+    details {
+      margin: 0;
+    }
+  }
 }
 
 footer {
@@ -47,162 +113,98 @@ footer {
   color: var(--heading-font-color);
   background-color: var(--heading-back-color);
   padding: calc(var(--grid) / 2);
+
+  small,
+  strong {
+    font-size: 0.8em;
+  }
 }
 
-footer small,
-footer strong {
-  font-size: 0.8em;
+h1 {
+  a,
+  a:visited,
+  a:hover {
+    display: block;
+    color: var(--heading-font-color);
+  }
 }
 
-main > ol > li {
-  margin: 0;
-  padding: 0;
-}
-
-main > ol > li {
-  margin-block-start:  1em;
-  margin-block-end:    1em;
-  margin-inline-start: 0;
-  margin-inline-end:   0;
-  border: 1px solid #ccc;
-  border-radius: var(--radius);
-  background-color: var(--background-color);
-}
-
-main > ol > li h2 {
-  margin: 0;
-  padding: 0.4em 0.6em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /** TODO: fix when supported */
-  border-top-left-radius:  calc(var(--radius) - 1px);
-  /** TODO: fix when supported */
-  border-top-right-radius: calc(var(--radius) - 1px);
-  font-weight: normal;
-  font-size: 1em;
-  color: var(--font-color);
-  background-color: var(--heading-back-color);
-}
-
-main > ol > li ul {
-  padding: 0 2em;
-}
-
-main > ol > li ul li {
-  list-style-type: disc;
-}
-
-main .info {
-  margin-block-start:  1em;
-  margin-block-end:    0.5em;
-  margin-inline-start: 1em;
-  margin-inline-end:   0;
-  line-height: 1.4em;
-  vertical-align: baseline;
-}
-
-main .info dd {
-  margin-block-start:  0;
-  margin-block-end:    0;
-  margin-inline-start: 0.4rem;
-  margin-inline-end:   2rem;
-}
-
-main .info details {
-  margin: 0;
-}
-
-h1 a,
-h1 a:visited,
-h1 a:hover {
-  display: block;
-  color: var(--heading-font-color);
-}
-
-h2 a,
-h2 a:visited,
-h2 a:hover {
-  display: block;
-  color: var(--font-color);
-}
-
-main > ol > li > h2 > a,
-main > ol > li > h2 > a:visited,
-main > ol > li > h2 > a:hover {
-  color: var(--heading-font-color);
-}
-
-main > ol li p {
-  margin: 1em;
+h2 {
+  a,
+  a:visited,
+  a:hover {
+    display: block;
+    color: var(--font-color);
+  }
 }
 
 article {
   border: 1px solid #ccc;
   border-radius: var(--radius);
   background-color: var(--background-color);
-}
 
-article h1 {
-  margin: 0;
-  padding: 0.4em 0.6em;
-  font-size: 1em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /** TODO: fix when supported */
-  border-top-left-radius:  calc(var(--radius) - 1px);
-  /** TODO: fix when supported */
-  border-top-right-radius: calc(var(--radius) - 1px);
-  font-weight: normal;
-  color: var(--font-color);
-  background-color: var(--heading-back-color);
-}
+  h1 {
+    margin: 0;
+    padding: 0.4em 0.6em;
+    font-size: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /** TODO: fix when supported */
+    border-top-left-radius: calc(var(--radius) - 1px);
+    /** TODO: fix when supported */
+    border-top-right-radius: calc(var(--radius) - 1px);
+    font-weight: normal;
+    color: var(--font-color);
+    background-color: var(--heading-back-color);
+  }
 
-article strong {
-  font-style: normal;
-  color: deeppink;
-}
+  strong {
+    font-style: normal;
+    color: deeppink;
+  }
 
-article code {
-  background-color: var(--code-inline);
-  color: var(--code-inline-font);
-}
+  code {
+    background-color: var(--code-inline);
+    color: var(--code-inline-font);
+  }
 
-article section {
-  padding: 0 1em;
-}
+  section {
+    padding: 0 1em;
+  }
 
-article ul,
-article ol {
-  font-family: inherit;
-  font-size: 1em;
-}
+  ul,
+  ol {
+    font-family: inherit;
+    font-size: 1em;
+  }
 
-article ul {
-  list-style-type: disc;
-}
-article ol {
-  list-style-type: decimal;
-}
+  ul {
+    list-style-type: disc;
+  }
 
-article blockquote {
-  display: block;
-  border: solid 1px var(--block-quote);
-  border-radius: var(--radius);
-  padding: 1rem;
-  margin: 0;
-}
+  ol {
+    list-style-type: decimal;
+  }
 
-article blockquote p::before {
-  content: "> ";
-  content: "> " / "";
-}
+  blockquote {
+    display: block;
+    border: solid 1px var(--block-quote);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin: 0;
 
-article img.download {
-  margin: 0;
-  border: none;
-  background-color: unset;
+    p::before {
+      content: "> ";
+      content: "> " / "";
+    }
+  }
+
+  img.download {
+    margin: 0;
+    border: none;
+    background-color: unset;
+  }
 }
 
 nav {
@@ -210,10 +212,10 @@ nav {
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-}
 
-nav > ol {
-  margin: 0;
+  > ol {
+    margin: 0;
+  }
 }
 
 .disabled {
@@ -229,18 +231,20 @@ mozaic-player {
 }
 
 @media screen and (max-device-width: 800px) {
-  article section {
-    padding: calc(var(--grid)/2);
-  }
+  article {
+    section {
+      padding: calc(var(--grid) / 2);
+    }
 
-  article ul,
-  article ol,
-  article dl {
-    margin-inline-start: calc(var(--grid)*1.4);
-  }
+    ul,
+    ol,
+    dl {
+      margin-inline-start: calc(var(--grid) * 1.4);
+    }
 
-  article li {
-    margin: 0;
+    li {
+      margin: 0;
+    }
   }
 
   .info {
@@ -265,30 +269,36 @@ mozaic-player {
     width: 100%;
   }
 
-  h2, h3, h4 {
+  h2,
+  h3,
+  h4 {
     margin: 0;
   }
 }
 
 /* background-fetch */
-background-fetch  {
+background-fetch {
   display: block;
   width: 1.5em;
   height: 1.5em;
-}
-background-fetch::part(arrow) {
-  fill: var(--ui-back);
-}
-background-fetch::part(arrow done) {
-  fill: var(--ui-front);
-}
-background-fetch::part(base) {
-  stroke: var(--ui-back);
-  fill: transparent;
-}
-background-fetch::part(progress) {
-  stroke: var(--ui-front);
-  fill:transparent;
+
+  &::part(arrow) {
+    fill: var(--ui-back);
+  }
+
+  &::part(arrow done) {
+    fill: var(--ui-front);
+  }
+
+  &::part(base) {
+    stroke: var(--ui-back);
+    fill: transparent;
+  }
+
+  &::part(progress) {
+    stroke: var(--ui-front);
+    fill: transparent;
+  }
 }
 
 /* portal preview */
