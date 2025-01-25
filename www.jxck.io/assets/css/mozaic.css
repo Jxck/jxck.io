@@ -1,32 +1,19 @@
 :root {
-  --font-color: #111;
-  --background-color: #fff;
-  --header-color: #000;
-  --heading-font-color: #fff;
-  --heading-back-color: #333;
-  --border-color: #000;
-  --player-color: #333;
+  color-scheme: light dark;
 
-  --ui-back: #888;
-  --ui-front: #fff;
+  --font-color: light-dark(#111, #eee);
+  --background-color: light-dark(#fff, #333);
+  --header-color: light-dark(#000, #000);
+  --heading-font-color: light-dark(#fff, #fff);
+  --heading-back-color: light-dark(#333, #111);
+  --border-color: light-dark(#000, #fff);
+  --player-color: light-dark(#333, #030303);
 
-  @media (prefers-color-scheme: dark) {
-    & {
-      --font-color: #eee;
-      --background-color: #333;
-      --header-color: #000;
-      --heading-font-color: #fff;
-      --heading-back-color: #111;
-      --border-color: #fff;
-      --player-color: #030303;
+  --ui-back: light-dark(#888, #888);
+  --ui-front: light-dark(#fff, #fff);
 
-      --anchor-visited-color: HotPink;
-      --anchor-color: LightSkyBlue;
-
-      --ui-back: #888;
-      --ui-front: #fff;
-    }
-  }
+  --anchor-color: light-dark(RoyalBlue, LightSkyBlue);
+  --anchor-visited-color: light-dark(Brown, HotPink);
 }
 
 body {
@@ -48,7 +35,7 @@ main {
     margin-block-end: 1em;
     margin-inline-start: 0;
     margin-inline-end: 0;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: var(--radius);
     background-color: var(--background-color);
 
@@ -109,7 +96,7 @@ main {
 }
 
 footer {
-  border-block-start: 1px solid #fff;
+  border-block-start: 1px solid var(--border-color);
   color: var(--heading-font-color);
   background-color: var(--heading-back-color);
   padding: calc(var(--grid) / 2);
@@ -139,7 +126,7 @@ h2 {
 }
 
 article {
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
   background-color: var(--background-color);
 
