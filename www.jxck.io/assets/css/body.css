@@ -1,21 +1,22 @@
 /* Light Mode Theme */
 :root {
-  --background-color: #fefefe;
-  --font-color: #222;
-  --header-color: #222;
+  color-scheme: light dark;
+  --background-color: light-dark(#fefefe, #333);
+  --font-color: light-dark(#222, #eee);
+  --header-color: light-dark(#222, #111);
 
-  --anchor-color: RoyalBlue;
-  --anchor-visited-color: Brown;
+  --anchor-color: light-dark(RoyalBlue, CornflowerBlue);
+  --anchor-visited-color: light-dark(Brown, Crimson);
 
   --code-block: #161b22;
-  --code-block-font: #ffffff;
+  --code-block-font: #fff;
 
-  --code-inline: #f1f5f9;
-  --code-inline-font: #292929;
+  --code-inline: light-dark(#f1f5f9, #161b22);
+  --code-inline-font: light-dark(#292929, #fff);
 
   --block-quote: #ddd;
 
-  --table-border: #333;
+  --table-border: light-dark(#333, #eee);
   --table-padding: 0.8em;
   --table-separator-width: 0.4em;
 
@@ -45,27 +46,6 @@
     width: 100%;
   }
 }
-
-/* Dark Mode Theme
-@media (prefers-color-scheme: dark) {
-  :root {
-    --header-color: #111;
-    --background-color: #222;
-    --font-color: #eee;
-
-    --anchor-color: CornflowerBlue;
-    --anchor-visited-color: RosyBrown;
-
-    --table-border: #eee;
-  }
-
-  article img {
-    filter: grayscale(50%);
-  }
-  article img[src*=svg] {
-    filter: invert(100%) grayscale(50%);
-  }
-} */
 
 html {
   scroll-behavior: smooth;
