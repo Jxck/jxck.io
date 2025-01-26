@@ -118,9 +118,9 @@ Password は覚えていても、 2FA が設定されていたら、、、それ
 
 ## 最後の Password
 
-Password Less の終着点は、Password Manager の普及で、 Passkey はその中継地点と捉えている。
+Password Less の終着点は、Password Manager の普及で、 Passkey はその中継地点と捉えている。今の Passkey は Apple の最初のコンセプトとは代わり、 FIDO の Discoverable Credentials という位置づけになっているが、「Device Bound Secret は端末を変えたときに困る」というコンセプトには納得感があり、秘密鍵を同期で共有するなら何かしらの Password Manager が必要だ。そして、 Password Manager を使っているなら、認証方法が Passkey であるかどうか自体はあまり大きな問題では無いと感じる。
 
-最後に考えないといけないのは、その Password Manager のリカバリだ。これは、Google でも Apple でも 1Password でも、最後には Password が出てくる。
+結局災害関係なく、 Password Manager は入れておくのが現代の前提となる。そして、災害宅の観点で最後に考えないといけないのは、その Password Manager のリカバリだ。これは、Google でも Apple でも 1Password でも、最後には Password が出てくる。
 
 Passkey を保存する Manager のリカバリに Passkey を使うと、鶏が卵を背負ってやってくるので、他に頼りにくい「ルート」であるサービスがリカバリ手段として提供できる手段は実は少ない。結局そこは Password を消せなのだ。
 
