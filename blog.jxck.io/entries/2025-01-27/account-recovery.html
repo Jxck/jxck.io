@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-01-27/account-recovery.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="震災の直後、復興のさなかに水害が起こり、再び全てが流される。能登の人々にとっては大変な 2024 年だったと思う。首都直下型や南海トラフはいつ起こってもおかしくないと言われ、戦火すら他人事ではなくなっている。家に災害用の備蓄を用意するのと同様、定期的に「アカウント防災訓練」...">
+  <meta name=keywords            content="passkey,password">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-01-27/account-recovery.html>
+  <meta property=og:title        content="&quot;Less Password&quot; 時代のアカウント防災訓練 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="震災の直後、復興のさなかに水害が起こり、再び全てが流される。能登の人々にとっては大変な 2024 年だったと思う。首都直下型や南海トラフはいつ起こってもおかしくないと言われ、戦火すら他人事ではなくなっている。家に災害用の備蓄を用意するのと同様、定期的に「アカウント防災訓練」...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "&quot;Less Password&quot; 時代のアカウント防災訓練 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-01-27T08:00:00+08:00",
+    "dateModified": "2025-01-27T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "震災の直後、復興のさなかに水害が起こり、再び全てが流される。能登の人々にとっては大変な 2024 年だったと思う。首都直下型や南海トラフはいつ起こってもおかしくないと言われ、戦火すら他人事ではなくなっている。家に災害用の備蓄を用意するのと同様、定期的に「アカウント防災訓練」..."
+  }
+  </script>
+
+  <title>&quot;Less Password&quot; 時代のアカウント防災訓練 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-01-27>2025-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-01-27>2025-01-27</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#passkey">passkey</a>
+              <li><a href="/tags#password">password</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#注意">注意</a>
+              <li><a href="#前提">前提</a>
+              <li><a href="#リカバリチェーン">リカバリチェーン</a>
+              <li><a href="#リカバリルートの特定とチェーンの整理">リカバリルートの特定とチェーンの整理</a>
+              <li><a href="#2fa">2FA</a>
+              <li><a href="#最後の-password">最後の Password</a>
+              <li><a href="#recovery-kit">Recovery Kit</a>
+              <li><a href="#kyc-によるリカバリ">KYC によるリカバリ</a>
+              <li><a href="#その他">その他</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">&quot;Less Password&quot; 時代のアカウント防災訓練</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>震災の直後、復興のさなかに水害が起こり、再び全てが流される。能登の人々にとっては大変な 2024 年だったと思う。首都直下型や南海トラフはいつ起こってもおかしくないと言われ、戦火すら他人事ではなくなっている。
+        <p>家に災害用の備蓄を用意するのと同様、定期的に「アカウント防災訓練」を個人的に実施するようになって数年経つ。
+        <p>観点は「 <strong>今、持っているものを全て失っても、リカバリできるだろうか?</strong> 」だ。
+        <p>現代のアカウントの管理は、リテラシがある程度高い人間にとっても、十分に複雑になってきている。
+        <p>&quot;<em>Password Less</em>&quot; が叫ばれているが、現状 Password は無くなっているというより集約されている。つまり &quot;<em>Less Password</em>&quot; で残る「最後の Password」を起点に、どう全体を復元するかが災害時リカバリの課題だ。これに失敗して全てが詰むと、仮に無事避難できたとしても、相当な喪失を味わうだろう。
+        <p>現状の選択肢と設計方針を振り返りつつ、災害時にデジタルアカウントをどう守るかについて考えたい。
+      </section>
+      <section>
+        <h2 id="注意"><a href="#注意">注意</a></h2>
+        <p>このアカウント防災訓練は、特に答えを出しているつもりはなく、見直してみること自体はお勧めするが、ここに書くやり方を人に勧めたいわけでは無い。その時の状況や選択肢、個々の事情や主義/理想によって、結果は変わるだろう。
+        <p>どちらかというと趣味の延長で、「こういうのを考えるのが楽しい」からやっているのが、正直なところだ。
+        <p>それを踏まえ、少しでも「あ、そういえば自分はどうなるだろう?」と思うきっかけになればと思い、今年初めて公開してみることにした。
+      </section>
+      <section>
+        <h2 id="前提"><a href="#前提">前提</a></h2>
+        <p>アカウント管理は、結局「どうリカバリするか」に行き着く。これはサービスを提供する側も、使うユーザ側も同じだ。
+        <p>Password を忘れたら、メールでリカバリできるかもしれない。では、そのメールのリカバリはどうなっているか?
+        <p>Passkey で Password を無くせるかもしれない。でも Passkey を保存した Password Manager にはどう入るのか?
+        <p>「アレが残っていれば大丈夫」「コレがあればなんとかなる」という前提は、それが手に入る場面でしか成立しない。
+        <p>災害で家や職場をすべて失い、普段使っているデバイス(PC, スマホ, Authenticator etc)をすべて失った状態でも、普段使っているサービスに再び入れるだろうか?
+        <p>アカウント防災訓練を、「<strong>ある日持っているものをすべて失ったら</strong>」という前提で行うと、いろいろなものが見えてくる。
+        <p>もちろん、「そんな状況ならまあ、諦めるかな」と思う人もいるだろう。しかし、もし無事に避難できた場合に、そこから続く生活を前に、同じことを言えるかは考えてみてほしい。
+      </section>
+      <section>
+        <h2 id="リカバリチェーン"><a href="#リカバリチェーン">リカバリチェーン</a></h2>
+        <p>Password を忘れてリカバリする場合、メールを受信するのが一般的だろう。
+        <p>そのメールが Gmail だった場合、Google にログインできないといけない。
+        <p>では、Google へのログインはどうやってリカバリするだろう?
+        <p>覚えられるような Password だとまずいので、複雑な Password を iPhone で作った?
+        <p>それを保存した iCloud にはどうやって入る?
+        <p>Password は覚えていても、2FA が設定されていたら、、、それって SMS だっけ? それとも YubiKey?
+        <p>デバイスが失われた時のための、バックアップコードは? 印刷したものは燃え、USB は流され、机に入れたらまずいだろと Dropbox に入れてあるけど Dropbox には入れる?
+        <p>こうした依存関係を把握すると、リカバリの連鎖は割と複雑になっていることが多い。
+        <p>特に、二段階/要素認証の普及で、覚えておいた Password だけで入れるサービスは減った。一方、二段階/要素の選択肢が多く、フローもサービスによって異なるので、全体を把握するのはエンジニアでも難しくなってきている。
+        <p>あまり意識せず、場当たり的に色々な場所に保存し、知らぬ間に複雑にしてしまっている場合もあるだろう。
+        <p>最初にこのチェーンを把握し、どういう依存関係になっているかを把握すると良いだろう。
+        <p>
+          <img loading=lazy decoding=async src=./recovery-chain.drawio.svg?250127_155159 alt="依存が複雑なリカバリの連鎖" width=565 height=365>
+        </p>
+      </section>
+      <section>
+        <h2 id="リカバリルートの特定とチェーンの整理"><a href="#リカバリルートの特定とチェーンの整理">リカバリルートの特定とチェーンの整理</a></h2>
+        <p>このチェーンを辿ったときに、最後に行き着く場所を、便宜的に「リカバリルート」と呼ぶことにしよう。
+        <p>多くの場合、Google、Apple、Microsoft、1Password などに行き着くことが多いと思う。意識せず 2 つのサービスで相互に認証情報を保存しあっていると、どちらかに入っているうちは良いが、同時に入り直そうととすると、デッドロックする可能性もある。
+        <p>その上で、SMS による TOTP や、Passkey、会社で配られた YubiKey や、銀行から送られてきた乱数表など、付随する何かを用いている場合も多い。
+        <p>登録時のバックアップコードまでちゃんと保存しているか、保存していたとしても、それが最新のものになっているかなど、普段使わないものは確認しておかないと、いざというとき使えないだろう。
+        <p>基本的には、チェーンはシンプルな方が良い。筆者の場合は基本的に全て 1Password に保存し、1Password にさえログインできれば、ほぼ全て復旧できる状態だ。そのうえで、利便性のために中間(iCloud Keychain etc)にいくつかのコピーが挟まっているような状態にしている。
+        <p>
+          <img loading=lazy decoding=async src=./simplified-chain.drawio.svg?250127_155348 alt="チェーンをシンプルにし復旧コストを下げたチェーン" width=565 height=365>
+        </p>
+        <p>もちろん、1Password が SPoF で、コンプロマイズされれば終わる。LastPass のようなことが 1Password で起こらない保証は難しい。しかし、疑い出せばデバイスだって OS だって多角形の重箱にしか見えなくなる。素人が独自で考えたオリジナルの管理方法のように、自分だけが安全だと過信した泥船に乗ることを選ばない限りは、何かしらのリカバリルートを信用するしかない。
+        <p>セキュリティと可用性はトレードオフだが、多くの一般ユーザにとっては「<em>攻撃されるリスク</em>」よりも「<em>ミスって詰む</em>」リスクのほうがよっぽど高いと個人的には思っている。
+        <p>また、Google や Apple は、災害など関係なく突然アカウントが Ban されるという事例が、探すと色々出てくるだろう。仮に Google 八部に会い、Google のサービスを使えなくなるのはしょうがないとしても、それによって他のすべてのサービスに入れなくなるのは避けたい。
+        <p>米国大統領が変わった今、こうした米国ビッグテックは、それこそ隣の島で何かあったとき、どうなるんだろう?と思ったりもする。そういう心配をするなら OSS の Password Manager などを入れるのが筋だろうが、それにしても 1Password が便利すぎるし、一応カナダの会社だし、中の人(今は違うが)にも知り合いがいて個人的な安心感もあるので、ここにルートを預けている。
+      </section>
+      <section>
+        <h2 id="2fa"><a href="#2fa">2FA</a></h2>
+        <p>二要素認証は、構図としては以下のようになる。
+        <p>
+          <img loading=lazy decoding=async src=./2-factor-auth.drawio.svg?250127_154118 alt="Password と Authenticator の二要素認証" width=200 height=300>
+        </p>
+        <p>「記憶」に頼る Password と独立させるために、YubiKey や Titan のような Authenticator の「所持」要素を入れるのは、2FA としては理想かもしれない。しかし、壊れたり流されれば終わりだ。
+        <p>実際、WebAuthn (not Passkey) が出てきた頃は、「2 つの Authenticator を買い、1 つは普段遣い、1 つは緒に貸金庫に保存」などという話もあった。しかし、物理 Authenticator を何個か使ってきたが、割とすぐ壊れ、何度か買い直したので、バックアップとしての心もとなさを感じている。
+        <p>一方、Google Authenticator などの同期のないアプリは、端末移行などでミスって詰む人を何人も見てきた。そこで、同期ができる Authy などを使っていた時期もあるが、結局これも全て 1Password に集約した。
+        <p>最近では 2FA 適用時に、バックアップコードを提供することが多い。このバックアップコードも「災害」を前提に考えると、意外と保管が難しい。紙で印刷したり、USB に入れて貸金庫に入れても、何かのはずみでサービス側のコードを更新してしまうと、保管したものは無効になるという同期の問題もある。
+        <p>結局、筆者は 2FA だろうがバックアップコードだろうが、全て 1Password のログインアイテムに、Password と一緒に保存している。二要素ではなく、俗に言う一要素二段階の状態だが、可用性を重視しているのでそれ自体は気にしていない。
+        <p>
+          <img loading=lazy decoding=async src=./1-factor-2-step-auth.drawio.svg?250127_154118 alt="1Password での一要素二段階認証" width=200 height=300>
+        </p>
+        <p>代わりに、Passkey だろうと乱数表だろうと、全て 1Password に保存し、1Password の管理にだけ集中すれば良くすることで、運用と認知の負荷をかなり下げることができている。
+        <p>2FA は、簡単な Password が使い回されていた時代に、後付けで「それだけでは入れなくする」目的で追加された側面が大きいと考えている。すでに Password Manager で複雑な Password を登録し、さらに追加の要素を足しているのであれば、その時点でほとんどの攻撃に対策はできている。
+        <p>それでも漏れる少しの隙を防ぎたいなら、それは個々の認知の負荷と運用練度の範囲でやればいいと思う。自分がやらかして詰むリスクよりも、コンプロマイズされるリスクの方が高いと思うのであれば。
+      </section>
+      <section>
+        <h2 id="最後の-password"><a href="#最後の-password">最後の Password</a></h2>
+        <p>Password Less の終着点は、Password Manager の普及で、Passkey はその中継地点と捉えている。今の Passkey は Apple の最初のコンセプトとは代わり、FIDO の Discoverable Credentials という位置づけになっているが、「Device Bound Secret は端末を変えたときに困る」というコンセプトには納得感があり、秘密鍵を同期で共有するなら何かしらの Password Manager が必要だ。そして、Password Manager を使っているなら、認証方法が Passkey であるかどうか自体はあまり大きな問題では無いと感じる。
+        <p>結局災害関係なく、Password Manager は入れておくのが現代の前提となる。そして、災害宅の観点で最後に考えないといけないのは、その Password Manager のリカバリだ。これは、Goog＊le でも Apple でも 1Password でも、最後には Password が出てくる。
+        <p>Passkey を保存する Manager のリカバリに Passkey を使うと、鶏が卵を背負ってやってくるので、他に頼りにくい「ルート」であるサービスがリカバリ手段として提供できる手段は実は少ない。結局そこは Password を消せなのだ。
+        <p>必然的にこの「最後の Password」をどう守るかがリカバリの要になる。
+        <p>これを失えば全部失い、これさえあれば他の Password は無くせる。そういう意味で &quot;Password Less&quot; の実態は、今のところこの「最後の Password」に集約する &quot;Less Password&quot; なのが現状だ。
+        <p>1Password の場合、リカバリには 3 つの情報が必要となる。
+        <ol>
+          <li>Email
+          <li>Secret Key
+          <li>Password
+        </ol>
+        <p>
+          <picture>
+            <source type=image/avif srcset=./1password-signin.avif?250127_154118>
+            <source type=image/webp srcset=./1password-signin.webp?250127_154118>
+            <img loading=lazy decoding=async src=./1password-signin.png?250127_154118 alt="1Password のサインイン画面。前述の 3 つが必要" width=476 height=413>
+          </picture>
+        </p>
+        <p>1 と 3 は、記憶に頼ることになるだろう。特に 3 は、1Password を使っていれば、高頻度で入力することになるため、普段使いしている筆者は記憶に頼れる。
+        <p>問題は 2 だ。これは登録時に付与される 34 桁のランダム文字列であり、最初くらいしか入力しないので、記憶に頼るのは難しい。これが 1Password における「最後の Password」相当になる。
+        <p>1Password は、この値の書かれた PDF を「Recovery Kit」として配布し、「印刷して金庫にしまっておけ」と啓蒙してくる。
+        <p>これをどう守るか。これが最大の課題だ。
+      </section>
+      <section>
+        <h2 id="recovery-kit"><a href="#recovery-kit">Recovery Kit</a></h2>
+        <p>最初に思いつくのは、先程も出た「貸金庫」だろう。
+        <p>ところで貸金庫は、震災があっても無事なものなのだろうか? 3.11 後の新聞などを探すと、一応残っていたという話もあるようだが、場所にもよる気がするので、信頼性はよくわからない。そもそも、ペライチの紙や USB メモリを保存しておくには、サブスクとしてちょっと高い。
+        <p>ちなみに、最近だと行員の方の信頼性の話もあるが、換金できないモノなんかに興味はないだろうから、そこはどうでもいい。というか、そう考えると Secret Key だけが盗めてもなんにもならないので、機密性自体は重要ではなく、どちらかというとディザスタリカバリとして、「家ではない場所」に価値があるようにも思う。
+        <p>関東大震災のような想定だと、もう少し遠隔地であれば良さそうだ。例えば北海道とか、海外とか。会社に支社でもあるなら、出張がてらそこにちょっと置かせてもらえれば、その方が良いかもしれない。というか、無事なオフィスがあるなら、機種変前に使ってた iPhone でも置いておきたいものだ。
+        <p>そもそも、預けるにしても紙は心もとない。USB に入れたり CD といったメディアも結構簡単に壊れるからなぁ。一番安全なのは、金属か。ドッグタグに刻印しておけば、簡単には破損しなさそうだ。
+        <p>まあ、被災した直後に、そんな遠くにモノを取りに行く余裕があるか怪しいし、有事でも起これば海外なんかしばらく行けない可能性もある。
+        <p>物理バックアップは、ちゃんと考えると家の地下にシェルターでも欲しくなる。形あるものの儚さと扱いにくさを感じる。
+        <p>腕に入れ墨、、、
+        <p>ということで、とりあえずドッグタグを採用して、Secret Key (を導出できるもの)を刻み込んだものを作り、それを災害時に持ち出す防災カバンに取り付けて、物理バックアップについては終わることにした。
+        <p>これは、「全て失ったら」の制約からは外れるが、持ち出せた場合にすぐリカバリできる用だ。そっちは別の方法に切り替えることにする。
+      </section>
+      <section>
+        <h2 id="kyc-によるリカバリ"><a href="#kyc-によるリカバリ">KYC によるリカバリ</a></h2>
+        <p>物理はこのくらいで諦めて、視点を変えてみる。
+        <p>世の中には「自分が自分であること」を証明できればなんとかなる場面が少なからずある。例えば被災時には、銀行や保険は、ある程度の本人確認でサービスを受けられるようになるといった仕組みになっている。
+        <p>そして、同様に一定の認証を経て公共サービスはリカバリできる、つまりマイナンバーや運転免許は、どこかのタイミングで戻ってくることになるはずだ。(災害時に実際どういう運用になるのかは知らないのだが)
+        <p>ここまで来ると、KYC を経て登録する系のサービスは、リカバリできる可能性が高い。一般的に、登録時に免許の撮影を求めるようなサービスだ。
+        <p>そして、筆者が使っている Line Mobile は、KYC が通れば同じ番号の SIM を再発行してくれる。これは、実際に問い合わせて確認した。他の SIM でも同じかは知らない。
+        <p>SIM が戻ってくるなら、端末さえ手に入れば SMS 認証が通るということになる。
+        <p>つまり、SMS は「自分が自分であること」を証明できれば、どこかのタイミングで戻ってくるリカバリ手段として使えそうだ。
+        <p>一般的に、SMS はその脆弱性がよく指摘され、使わない方が良いものとされてはいる。今後は使えなくなるかもしれない。
+        <p>しかし、筆者はこの性質をバックアップとして使い、記憶ベースの Password と SMS で認証できるサービスに、1Password の Secret Key やいくつかのバックアップコードをバックアップしている。(もちろん、それとはわからない形で)
+        <p>Passkey 普及などを、リテラシを差し置いて推し進めると、自爆で入れなくなる人も少なくないだろう。そういう人のカバーのためにも、KYC でリカバリできるサービスは増えていくような気が個人的にはしている。しかし、個別にはよくても 1Password 自体が KYC ではリカバリできないため、1Hop 置いたバックアップをそのどこかに置いておくのは重要だ。もちろん、一緒に Password まで置いてはいけないのは、言うまでもない。
+      </section>
+      <section>
+        <h2 id="その他"><a href="#その他">その他</a></h2>
+        <p>マイナンバーカード自体が使えないかとは思っている。今は、マイナンバーでログインできるサービスは非常に限られているが、そのどこかに任意の情報が保存できる領域があれば、市役所でマイナンバーカードを発行してもらえた時点でリカバリができる状態を作れるかもしれない。
+        <p>もっと言えば、一般サービスがマイナンバーカードでログインできるようになれば楽そうに見えてくる。しかし、中にある秘密鍵自体は再発行で変わるため、リカバリに使う場合は券面情報(つまりマイナンバーそのもの)を求めることになり、ハードルが非常に高いはずなので難しいという認識だ。公開はされていないが、IDP の機能自体もあるようなので、それが公開されれば良いのかもしれないが、おそらく公共サービスだけなのだろう。
+        <p>また、今回は「全てを失ったが、無事ではあった」という暗黙の前提だった。しかし、リカバリを考えるなら「人間は、無くすし、壊すし、忘れる」という前提に立つのが、完全性の意味では筋だろう。なんらかの理由で、パスワードを思い出せるような状況が期待できない可能性は、今回の考慮からは外れている。
+        <p>そんな状況でも、いわゆる「本当の生体認証」なら通るかもしれない。Touch ID や Windows Hello のように、生体情報を Authenticator Unlock に使うものは多いが、本当に生体情報を登録し直接認証に使うサービスを、筆者はまだ見たことがない。個人情報の問題もあって難しいのだろうが、こういう用途で使えるサービスがあったら 1 箇所くらいいいかという気もするので、あるならぜひ知りたい。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>防災訓練としてはいるが、思考実験の側面も強い。
+        <p>今回は自分のアカウントだけの話をしたが、家庭内 SE の役目を担っている場合、家族(特に高齢の両親など)のように、ネットリテラシが高くない人をカバーする必要もあるかもしれない。
+        <p>筆者はこの訓練を定期的に行い、そのたびに色々と更新してきた。つまり、今後もその時々のインターネットや社会状況に応じて、更新し続ける必要があるだろう。
+        <p>そういうものだと思って、年に一回くらいはなんとなく気にかけてみる機会になると良いと思う。
+        <p>ちなみに、筆者の最近のテーマはどちらかというと「自分が死んだときに残された家族にアカウントをどう移譲/処分してもらうか」というデジタル終活の方だ。プライバシーを守りつつ、必要なアカウントは家族が継続して使え、不要なものは処分し、誰かに継いでもらう必要があるものを移譲してもらう、などを考えると、こちらはもっと難しく、考え甲斐があって楽しい。
+        <p>その話も、いずれ書いてみたい。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
