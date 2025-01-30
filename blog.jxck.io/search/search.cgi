@@ -9,6 +9,7 @@ MAX_LENGTH = 30
 
 def log(*a)
   STDERR.print(*a)
+  STDERR.print("\n")
   #p(*a)
 end
 
@@ -25,7 +26,10 @@ def search(pwd, host, query)
                   "#{base}/episodes/**/*.md"
                 end
 
-  Pathname.glob(search_path).sort.reverse.reduce([]){|acc, path|
+  Pathname.glob(search_path).sort_by {|v|
+    # Path 中の ep の数値順でソート
+    v.dirname.to_s.split("/").last.to_i
+  }.reverse.reduce([]){|acc, path|
     body    = File.read(path)
 
     # そもそも全キーワードが存在するか確認
