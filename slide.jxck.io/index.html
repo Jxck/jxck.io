@@ -16,14 +16,14 @@
 
 <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/markdown.css>
 <link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/main.css>
-<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/archive.css>
-<main class=archive>
+<link rel=stylesheet property=stylesheet type=text/css href=https://jxck.io/assets/css/index.css>
+<main class=index>
   <h1><a href=#slides>Slides</a></h1>
 </main>
 
 <script>
 const entries = {
-  2024: [
+  2025: [
     // {
     //   date: "",
     //   slide: {
@@ -40,6 +40,24 @@ const entries = {
     //     url: "",
     //   }
     // },
+    {
+      date: "2025-02-01",
+      slide: {
+        title: "Web Platform の変化がフロントエンド開発に与える影響",
+        url: "https://www.docswell.com/s/jxck/57R1VW-web-frontend-over-web-platform",
+      },
+      event: {
+        title: "フロントエンドチョットデキル 2025 - connpass",
+        url: "https://chot.connpass.com/event/339257/",
+        tag: "#chotdekiru",
+      },
+      blog: {
+        title: "",
+        url: "",
+      }
+    },
+  ],
+  2024: [
     {
       date: "2024-09-24",
       slide: {
@@ -1114,7 +1132,7 @@ EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
 const item_template    = $('#item_template')
 const section_template = $('#section_template')
-const $archive         = $('.archive')
+const $index           = $('.index')
 
 Object.keys(entries).sort().reverse().forEach((key) => {
   const $section = document.importNode(section_template.content, true)
@@ -1142,7 +1160,7 @@ Object.keys(entries).sort().reverse().forEach((key) => {
     $ul.appendChild($item)
   })
 
-  $archive.appendChild($section)
+  $index.appendChild($section)
 })
 </script>
 <hr>
