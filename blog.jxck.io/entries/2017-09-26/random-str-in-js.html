@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-09-26T08:00:00+08:00",
-    "dateModified": "2022-01-27T08:00:00+08:00",
+    "dateModified": "2025-02-04T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-09-26>2017-09-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2022-01-27>2022-01-27</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-02-04>2025-02-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -137,7 +137,8 @@
             <button popovertarget="toc" popovertargetaction="hide">❌</button>
             <ol>
               <li><a href="#intro">Intro</a>
-              <li><a href="#random-string">random string</a>
+              <li><a href="#new-random-string-with-tobase64">[new] random string with toBase64</a>
+              <li><a href="#random-string-with-btoa">random string with btoa</a>
             </ol>
           </nav>
         </dd>
@@ -152,9 +153,14 @@
         <p>テストや仮実装で、適当なランダム文字列が欲しい場合に便利なスニペット。
       </section>
       <section>
-        <h2 id="random-string"><a href="#random-string">random string</a></h2>
-        <p><a href="https://labs.jxck.io/snippets/random.html" target=_blank>DEMO</a>
+        <h2 id="new-random-string-with-tobase64"><a href="#new-random-string-with-tobase64">[new] random string with toBase64</a></h2>
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <pre class=js data-code=js><code translate=no class=language-js>// Base64 URL without Padding
+crypto.getRandomValues(new Uint8Array(16)).toBase64({omitPadding: true, alphabet: &quot;base64url&quot;})</code></pre>
+      </section>
+      <section>
+        <h2 id="random-string-with-btoa"><a href="#random-string-with-btoa">random string with btoa</a></h2>
+        <p><a href="https://labs.jxck.io/snippets/random.html" target=_blank>DEMO</a>
         <pre class=js data-code=js><code translate=no class=language-js>// with random
 btoa(Math.random())
 // =&gt; MC44NzEwODQwMjA1NDA2MTE4
