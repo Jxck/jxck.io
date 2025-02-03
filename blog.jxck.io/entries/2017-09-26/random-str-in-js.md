@@ -5,7 +5,15 @@
 テストや仮実装で、適当なランダム文字列が欲しい場合に便利なスニペット。
 
 
-## random string
+## [new] random string with toBase64
+
+```js
+// Base64 URL without Padding
+crypto.getRandomValues(new Uint8Array(16)).toBase64({omitPadding: true, alphabet: "base64url"})
+```
+
+
+## random string with btoa
 
 [DEMO](https://labs.jxck.io/snippets/random.html)
 
