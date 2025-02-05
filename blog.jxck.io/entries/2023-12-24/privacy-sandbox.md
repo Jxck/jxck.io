@@ -86,6 +86,23 @@ Google は標準を重視するため、Attribution Reporting API などは Ad C
 
 しかし、実際はそんな簡単な話ではない。なぜなら、Google は First Party Data を多く保有しているからだ。
 
+CMA のレポートには、以下のように書かれている。長いが、引用と筆者の翻訳を併記する。
+
+- Online platforms and digital advertising Market study final report - 1 July 2020
+  - https://assets.publishing.service.gov.uk/media/5fa557668fa8f5788db46efc/Final_report_Digital_ALT_TEXT.pdf
+
+> 5.324 However, targeting using first-party data and authenticated user data does not require cross-site tracking and is unaffected by the demise of third-party cookies. Therefore, large incumbent platforms with leading consumer-facing services like Google and Facebook are significantly less dependent on third-party cookies for delivery of high-performing targeted ads and continued advertising revenues than, for instance, small publishers with free-to-read content that does not require log-in.
+>
+> しかし、1st Party Data と認証されたユーザのデータを使ったターゲティングは、クロスサイトトラッキングを必要とせず、3rd Party Cookie の廃止の影響を受けません。したがって、Google や Facebook のような消費者向けサービスをリードする大規模な既存プラットフォームは、ログインを必要せずに無料で読めるコンテンツを持つ小規模なパブリッシャーなどに比べ、パフォーマンスの高いターゲティング広告の配信や継続的な広告収入のための 3rd Party Cookie への依存度が著しく低くなる。
+>
+> 5.325 For instance, Google would still be able to use the insights it obtains from users' activities on Google Search and YouTube to select personalised ads on Google's properties. In contrast, publishers, advertisers and intermediaries that are currently reliant on third-party data obtained via data management platforms and data brokers are likely to have less granular data with which to target personalised advertising. Therefore, to the extent that targeted advertising on open display inventory is less feasible or effective without third-party cookies, advertisers may substitute spending away from open display advertising and towards advertising on platforms' owned-and-operated inventory.
+>
+> 例えば、Google は、Google 検索や YouTube でのユーザの行動から得た情報を、Google の製品上でパーソナライズされた広告を選択するために使用することができる。対照的に、データ管理プラットフォームやデータブローカーを通じて得られる 3rd Party Data に現在依存しているパブリッシャー、広告主、および仲介業者は、パーソナライズされた広告をターゲティングするためのきめ細かいデータをそれほど保持していない可能性が高い。したがって、3rd Party Cookie がなければ、オープンディスプレイのインベントリにおけるターゲティング広告の実現性や効果が低くなる分、広告主はオープンディスプレイ広告から、プラットフォームが所有/運営するインベントリにおける広告に支出を切り替える可能性がある。
+>
+> 5.326 This potentially presents a fundamental challenge to the non-vertically integrated advertising business model used by newspapers and other online publishers. We have reviewed evidence that suggests that prohibiting publishers from serving personalised advertising in the open display market while allowing platforms to continue to offer personalised advertising would have a very significant impact on publishers' revenue. For example, a recent study indicated that UK publishers earned around 70% less revenue overall when they were unable to sell inventory using personalised advertising but competed against others who could play activities will also be affected by the deprecation of third-party cookies.
+>
+> これは、新聞社やその他のオンラインパブリッシャーが採用している非垂直統合型広告ビジネスモデルに対する根本的な挑戦となる可能性がある。我々は、プラットフォームがパーソナライズされた広告を提供し続けることを認める一方で、パブリッシャーがオープンディスプレイ市場でパーソナライズされた広告を提供することを禁止することは、パブリッシャーの収益に非常に大きな影響を与えることを示唆する証拠を検討した。例えば、最近の調査によると、英国のパブリッシャーが、パーソナライズされた広告を使用して在庫を販売できずに、アクティビティを活用できる他のパブリッシャーと競合した場合、全体の収益が約 70% 減少したことも、3rd Party Cookie の廃止によって影響を受けることを示した。
+
 3rd Party Cookie がなくなり、トラッキングができなくなると、(Fingerprint などにすがりつくのを諦めれば) 1st Party Data の活用が重要になるとされている。
 
 しかし、1st Party Data の保有となれば、GAFA に代表されるビッグテックが圧倒的に有利になってしまう。その中でも特に Google は "1st Party Data", 広告事業, ブラウザの全てを持っているのだ。
@@ -106,7 +123,7 @@ CMA による最初の調査が入ったのは 2021/01 と記録されている�
 
 これ以降、Google は定期的に CMA のレビューを受けながらプロセスを進めることになる。
 
-多くのユースケースごとに、代替手段となる API を策定し、それを実装し、リリースし、CMA の許可を得て初めて Chrome は 3rd Party Cookie をブロックできるのだ。
+多くのユースケースごとに、代替手段となる API を策定し、それを実装し、リリースする。もちろん、シェアの大きいブラウザを保つ Google は、自分たちの事業に有利な API を Ship できる可能性もあるため、そうならないような監視自体も必要だ(この点も先の Final Report にもちろん書かれている)。しかし、3rd Party Cookie 自体のブロックも CMA の許可を得て初めて リリースできるのは、広告事業へのインパクは Privacy Sandbox の登場よりも、3rd Party Cookie の廃止の方がよっぽどインパクトが大きいと考えられているからなのだ。
 
 結果、一度リスケを挟んで、ゴールが 2024 年 Q1 になったが、そもそもこの規模のプロジェクトを、3 年たらずで終わらせることの難しさは、容易に想像できるだろう。
 
