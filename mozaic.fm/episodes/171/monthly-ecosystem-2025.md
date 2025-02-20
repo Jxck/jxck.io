@@ -4,7 +4,7 @@ tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep171.mp3
 published_at: 2025-02-20
 guest: [@hiroppy](https://x.com/about_hiroppy)
-guset: [@araya](https://bsky.app/profile/araya.dev)
+guest: [@araya](https://bsky.app/profile/araya.dev)
 ---
 
 # ep171 Monthly Ecosystem 202502
@@ -12,7 +12,6 @@ guset: [@araya](https://bsky.app/profile/araya.dev)
 ## Theme
 
 第 171 回のテーマは 2025 年 2 月の Monthly Ecosystem です。
-
 
 ## Show Note
 
@@ -144,7 +143,6 @@ guset: [@araya](https://bsky.app/profile/araya.dev)
   - https://astro.build/blog/astro-530/
 - Introducing HeroUI
   - https://www.heroui.com/blog/introducing-heroui
-
 
 ## Events
 
