@@ -1,4 +1,4 @@
-# [fetchLater][fetch][beacon] Web における Beacon の変遷 (sendBeacon(), fetch() keepalive, fetchLater())
+# [fetch][beacon] Web における Beacon の変遷 (sendBeacon(), fetch() keepalive, fetchLater())
 
 ## Intro
 
