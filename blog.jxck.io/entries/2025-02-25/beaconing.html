@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-02-25/beaconing.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?210115_215132>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?210115_215132></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="ページを閉じる際に何かしらの情報をサーバで収集したいケースがある。これを Beacon の送信(Beaconing)と呼び、ブラウザではページ表示中に収集したパフォーマンス統計の収集や、広告タグによるトラッキングなどに用いられる。しかし、「ページが閉じる直前に、サーバにリク...">
+  <meta name=keywords            content="fetch,beacon">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-02-25/beaconing.html>
+  <meta property=og:title        content="Web における Beacon の変遷 (sendBeacon(), fetch() keepalive, fetchLater()) | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="ページを閉じる際に何かしらの情報をサーバで収集したいケースがある。これを Beacon の送信(Beaconing)と呼び、ブラウザではページ表示中に収集したパフォーマンス統計の収集や、広告タグによるトラッキングなどに用いられる。しかし、「ページが閉じる直前に、サーバにリク...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Web における Beacon の変遷 (sendBeacon(), fetch() keepalive, fetchLater()) | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-02-25T08:00:00+08:00",
+    "dateModified": "2025-02-25T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "ページを閉じる際に何かしらの情報をサーバで収集したいケースがある。これを Beacon の送信(Beaconing)と呼び、ブラウザではページ表示中に収集したパフォーマンス統計の収集や、広告タグによるトラッキングなどに用いられる。しかし、「ページが閉じる直前に、サーバにリク..."
+  }
+  </script>
+
+  <title>Web における Beacon の変遷 (sendBeacon(), fetch() keepalive, fetchLater()) | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-02-25>2025-02-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-02-25>2025-02-25</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#fetch">fetch</a>
+              <li><a href="/tags#beacon">beacon</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#img-での送信"><code translate=no>&lt;img&gt;</code> での送信</a>
+              <li><a href="#sync-xhr">Sync XHR</a>
+              <li><a href="#beacon-api">Beacon API</a>
+              <li><a href="#fetch-keepalive">Fetch KeepAlive</a>
+              <ol>
+                <li><a href="#pending-beacon-api">Pending Beacon API</a>
+                <li><a href="#fetch-with-pending-request">Fetch with Pending Request</a>
+              </ol>
+              <li><a href="#fetchlater-api">fetchLater API</a>
+              <li><a href="#outro">Outro</a>
+              <li><a href="#demo">DEMO</a>
+              <li><a href="#resources">Resources</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">Web における Beacon の変遷 (sendBeacon(), fetch() keepalive, fetchLater())</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>ページを閉じる際に何かしらの情報をサーバで収集したいケースがある。
+        <p>これを Beacon の送信(Beaconing)と呼び、ブラウザではページ表示中に収集したパフォーマンス統計の収集や、広告タグによるトラッキングなどに用いられる。
+        <p>しかし、「<strong>ページが閉じる直前に、サーバにリクエストを送信する</strong>」を確実に実行するのは実は難しく、これを標準技術で実現する過程で、複数の API が生まれるに至った。
+        <p>各 API の策定経緯と、挙動の違いについて解説していく。
+      </section>
+      <section>
+        <h2 id="img-での送信"><a href="#img-での送信"><code translate=no>&lt;img&gt;</code> での送信</a></h2>
+        <p>最もプリミティブな Beacon の送信は、<code translate=no>&lt;img&gt;</code> を用いたものだった。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&quot;unload&quot;, () =&gt; {
+  const beaconImage = new Image(1, 1);
+  beaconImage.src = &quot;https://telemetry.example/beacon?a=10&amp;b=20&quot;;
+  document.body.appendChild(beaconImage);
+});</code></pre>
+        <p>このように、URL のクエリに情報を詰め込んだタグを body に追加すると、画像取得のために GET リクエストを送信できる。
+        <p>この追加を <code translate=no>unload</code> 時に行うことで、画像の取得完了まで <code translate=no>unload</code> を遅延する実装が多くあったため、送信の確度も高かった。
+        <p>また、この方法であれば CORS の制約なく任意のサーバに情報を送信できるため、XHR 以前からよく用いられていた。
+        <p>サーバはレスポンスとして 1x1 px の白い画像を返すことで、仮に画面に表示してもユーザには気づかれないため、今でもアナリティクスサービスなどで、この実装の名残を見ることが少なくない。
+        <p>しかし、GET しかできない、送信できるデータ量が限られるといった、かなり強い制約を伴う。
+        <p>そこで、次に目をつけられたのが XHR の同期送信だ。
+      </section>
+      <section>
+        <h2 id="sync-xhr"><a href="#sync-xhr">Sync XHR</a></h2>
+        <p><code translate=no>fetch()</code> では禁止されているが、XHR ではブロックを伴う同期の送信が可能だ。<code translate=no>unload</code> の中で呼べば、そこでメインスレッドをブロックして送信できるし、POST により JSON も送れる。
+        <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&quot;unload&quot;, () =&gt; {
+  const xhr = new XMLHttpRequest();
+  xhr.open(&quot;POST&quot;, &quot;https://telemetry.example/beacon&quot;, false /*sync*/);
+  xhr.send(data); // 送り終わるまでブロック
+});</code></pre>
+        <p>API の自由度が高まったように思えるだろう。しかし、CORS で JSON を POST すると Preflight が発生し、リクエストが一回では終わらず、きちんと送信しきれない場合が出てくる。
+        <p>なにより、同期 API の利用は、ブラウザとしては無くしていくべきものだ。<code translate=no>unload</code> をブロックすると画面遷移を阻害し、ユーザの体験が悪化する原因になる。こうした行儀の悪い実装がはびこった結果や、BFCache との相性の悪さもあり、後には <code translate=no>unload</code> 自体を限定的にしか発火しなくなる動きも出てきた。
+        <p>ユースケースはあるのに API が無いばかりに、ワークアラウンドが負債になるのであれば、それを API として標準化するのがプラットフォームの役目だろう。
+        <p>そこで策定されたのが Beacon API だ。
+      </section>
+      <section>
+        <h2 id="beacon-api"><a href="#beacon-api">Beacon API</a></h2>
+        <p><code translate=no>navigator.sendBeacon()</code> は、メインスレッドをブロックせず、ページ遷移にも影響しないが、ページが閉じたあとでも非同期に Beacon を送信できる方法として 2014 年頃に提案された。
+        <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&quot;unload&quot;, () =&gt; {
+  navigator.sendBeacon(&quot;https://telemetry.example/beacon&quot;, data);
+});</code></pre>
+        <p>非常にシンプルな API だが、要は渡したデータを URL に対して POST で送信する。その際、ページが閉じようが送信中のものは完了までハンドルされるため、取りこぼしを気にする必要が減るのだ。
+        <p>一方、XHR と比べれば制限が非常に大きい API でもある。
+        <p>例えば、Preflight や Redirect が挟まると送信に時間がかかるため、そのようなリクエストは最初からサポート外となっている。ヘッダには触れないし、<code translate=no>fetch()</code> に指定できるオプションも無い。
+        <p>つまり <code translate=no>sendBeacon()</code> は意図して非常に不自由な API となっており、それゆえに拡張性が乏しい。
+        <p>また、これまではページの上で発生したリクエストは、ページが閉じれば終わるものだったが、これをタブが閉じた後にも延命するには、ブラウザのアーキテクチャにも変更が必要となる。Chromium の場合は、従来の Fetch のパスを通さずにレイヤをまたぐ、少し強引な実装がされていた。特に CSP や Mixed Content Check など、ブラウザから発生する Fetch に関する共通処理も、例外的な適用になっていたのだ。
+        <p>このあたりは、以下にまとまっている。
+        <ul>
+          <li>
+            Implementing keepalive on Fetch API #Chromium - Qiita
+            <ul>
+              <li><a href="https://qiita.com/hirano_y_aa/items/ee73bdd74f70f1d36b01" target=_blank>https://qiita.com/hirano_y_aa/items/ee73bdd74f70f1d36b01</a>
+            </ul>
+          </li>
+        </ul>
+        <p>こうした問題を解決するために、<code translate=no>fetch()</code> そのものがページを閉じても止まらないようにする方が、将来への API の拡張性にも良いだろうとして提案されたのが <code translate=no>fetch()</code> の <code translate=no>keepalive</code> だ。
+      </section>
+      <section>
+        <h2 id="fetch-keepalive"><a href="#fetch-keepalive">Fetch KeepAlive</a></h2>
+        <p><code translate=no>fetch()</code> に追加された <code translate=no>keepalive: true</code> オプションは、ページが閉じても送信を止めずに <code translate=no>fetch()</code> を完了できるようにするオプションとして、2017 年頃に提案された。
+        <pre class=js data-code=js><code translate=no class=language-js>fetch(&quot;https://telemetry.example/beacon&quot;, {
+  keepalive: true,
+  body: data,
+  // ...
+})</code></pre>
+        <p>これなら <code translate=no>fetch()</code> が持つ全ての API がそのまま利用できるため、POST もできるし <code translate=no>Content-Type</code> も変えられる。<code translate=no>sendBeacon()</code> に比べると格段に柔軟な API となったのだ。仕様的にも <code translate=no>sendBeacon()</code> が、内部的に KeepAlive Fetch で定義されるように更新されている。
+        <p>これにより、「送信を始めたら終わるまで送ってくれる」点は改善した。
+        <p>しかし、問題はそれを呼び出すタイミングの方に移っていく。
+        <p>「ページが終わるときにビーコンを送りたい」というユースケースを実現するための送信タイミングは、<code translate=no>unload</code>、<code translate=no>beforeunload</code> などのイベントが考えられる。しかし、モバイルブラウザなどを考えると、「ユーザは閉じる動作は何もしていないが、ずっと使われていないアプリが OS によって消される」など、特にイベントが発火しない場合などもあるのだ。
+        <p>そこで、<code translate=no>pagehide</code>、<code translate=no>visibilitychange</code> への移行が求められた時期もあるが、長いこと互換性がなく、発火の条件やタイミングがモバイルブラウザで揃わなかった。
+        <p>その後、BFCache が重要視される時代になると、BFCache への保存やキャッシュヒットを考えたときに「いつページが終わったか」という指標はより複雑になった。
+        <p>結果、「ページの終わり」を意図したタイミングは、何らかのイベントが全ブラウザで同様に発火するとも、意図したタイミングで確実に発火するとも保証がないことが浮き彫りになった。
+        <ul>
+          <li>
+            The spec&apos;s definition of hidden is unclear and should be updated to better account for mobile use cases · Issue #59 · w3c/page-visibility
+            <ul>
+              <li><a href="https://github.com/w3c/page-visibility/issues/59" target=_blank>https://github.com/w3c/page-visibility/issues/59</a>
+            </ul>
+          </li>
+        </ul>
+        <p>そこで、提案された「送るタイミング自体も、ブラウザに任せよう」という API が Pending Beacon API だ。
+        <section>
+          <h3 id="pending-beacon-api"><a href="#pending-beacon-api">Pending Beacon API</a></h3>
+          <p>Pending Beacon は、「送信」ではなく「登録」のみを行う API として 2022 年頃に提案された。
+          <pre class=js data-code=js><code translate=no class=language-js>beacon = new PendingBeacon(url, {backgroundTimeout: 1000});
+beacon.setData(data);</code></pre>
+          <p>このように送信したい情報を登録すると、それがブラウザの送信キューに保存され、「閉じる」に相当するとブラウザが判断したタイミングで、内部的に送信されることになる。逆を言うと、開発者にとってはいつ送信されるかはわからないため、コード上は「常に最新のデータを PendingBeacon に登録し続ける」といった使い方だ。
+          <p>つまり開発者は、「送る情報」だけに集中し、「送られるタイミング」について気にする必要がなくなったのだ。
+          <p>しかし、前述の通り Pending Beacon は Keep Alive Fetch よりも後の提案でありながら、「不自由な API」だった Beacon API の方をベースに策定されている。
+          <p>そもそも、<code translate=no>fetch()</code> とは「<code translate=no>Request</code> を受け取り <code translate=no>Response</code> を Resolve する API」だ。送っていない Response を Resolve することは想定されていない。そんな <code translate=no>fetch()</code> に「Request を登録するだけ」という概念を持ち込むのは、そのままでは難しかったのだ。
+          <p>それでも、無理やり <code translate=no>fetch()</code> でやろうという提案はあった。それが Fetch with Pending Request と呼ばれる API だ。
+        </section>
+        <section>
+          <h3 id="fetch-with-pending-request"><a href="#fetch-with-pending-request">Fetch with Pending Request</a></h3>
+          <p><code translate=no>fetch()</code> を強引に拡張して、Defer を実現するための提案が 2023 年頃になされた。
+          <ul>
+            <li>
+              pending-beacon/docs/fetch-with-pending-request-api.md at main · WICG/pending-beacon
+              <ul>
+                <li><a href="https://github.com/WICG/pending-beacon/blob/main/docs/fetch-with-pending-request-api.md" target=_blank>https://github.com/WICG/pending-beacon/blob/main/docs/fetch-with-pending-request-api.md</a>
+              </ul>
+            </li>
+            <li>
+              Fetch-based design · Issue #70 · WICG/pending-beacon
+              <ul>
+                <li><a href="https://github.com/WICG/pending-beacon/issues/70" target=_blank>https://github.com/WICG/pending-beacon/issues/70</a>
+              </ul>
+            </li>
+          </ul>
+          <pre class=js data-code=js><code translate=no class=language-js>pending = true;
+abort = new AbortController();
+let sentSignal = new SentSignal();
+fetch(data, {
+  deferSend: new DeferSend(),
+  signal: abortController.signal,
+  sentSignal: sentsentSignal
+});
+
+sentSignal.addEventListener(&quot;sent&quot;, () =&gt; {
+  pending = false;
+});</code></pre>
+          <p>見ての通り、<code translate=no>AbortSignal</code> の要領で、新しく <code translate=no>DeferSend</code> クラスを導入している。
+          <p>この提案があった期間はとても短く、Intents も出ていなかったため、実装されたのかもよくわからない。
+          <p>確かに <code translate=no>fetch()</code> ベースではあるが、この方針もそこまで上手く行かず、議論は長引いていた。
+        </section>
+      </section>
+      <section>
+        <h2 id="fetchlater-api"><a href="#fetchlater-api">fetchLater API</a></h2>
+        <p><code translate=no>fetch()</code> を拡張する方針は複雑になりすぎるため、同じく 2023 年に代替案として提案されたのが <code translate=no>fetchLater()</code> だ。
+        <p>議論を見ると、前述の議論の途中に Safari の内部から出てきたのが出自のようだ。
+        <ul>
+          <li>
+            Fetch-based design · Issue #70 · WICG/pending-beacon
+            <ul>
+              <li><a href="https://github.com/WICG/pending-beacon/issues/70#issuecomment-1525821663" target=_blank>https://github.com/WICG/pending-beacon/issues/70#issuecomment-1525821663</a>
+            </ul>
+          </li>
+          <li>
+            [explainer] Add explainer for <code translate=no>fetchLater()</code> API by mingyc · Pull Request #80 · WICG/pending-beacon
+            <ul>
+              <li><a href="https://github.com/WICG/pending-beacon/pull/80" target=_blank>https://github.com/WICG/pending-beacon/pull/80</a>
+            </ul>
+          </li>
+        </ul>
+        <p><code translate=no>fetch()</code> の Request を受け Response を Resolve するという設計は変えず、<code translate=no>fetch()</code> とほぼ同じ引数を取るが、送信キューへの登録が完了したことだけを Resolve する API にしたものが <code translate=no>fetchLater()</code> となる。
+        <p>追加されたのは <code translate=no>activeAfter</code> という、送信イベント発火後の遅延時間の指定だけだ。
+        <pre class=js data-code=js><code translate=no class=language-js>const fetchLaterResult = await fetchLater({
+  url,
+  method: &apos;POST&apos;,
+  body,
+}, {
+  activateAfter: 60000 // 1min
+});</code></pre>
+        <p>返すのは <code translate=no>FetchLaterResult</code> で、そこには <code translate=no>activated</code> という送信済みかどうかのフラグだけがある。
+        <p>これを用いれば、送信前に Abort して登録し直すといったことも可能だ。
+        <pre class=js data-code=js><code translate=no class=language-js>const controller = new AbortController();
+const fetchLaterResult = await fetchLater({
+  url,
+  body,
+  signal: controller.signal
+});
+if (fetchLaterResult.activated === false) {
+  controller.abort();
+  // fetchLater しなおす
+}</code></pre>
+        <p>あとは Stream で送れないといった点を除けば、<code translate=no>keepalive: true</code> な <code translate=no>fetch()</code> とほぼそのまま同じ API となっている。
+        <p>これにより、ここまでの全ての要件を満たし、<code translate=no>fetch()</code> の最小限のラッパーによって実装が可能な Beaconing API が完成したのだ。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>様々な議論の紆余曲折があり、結局どうなるのかとウォッチしてきたが、先日とうとう Chrome で <code translate=no>fetchLater()</code> の Ship が出たため、ここまでの経緯をまとめることにした。
+        <p>別の観点で、「登録し続けた Beacon が、送信されずに溜まっていくことを考えると、Quota を設定する必要がある」という議論が並行して行われていたが、今回は省略した。使う場合は送信の上限について留意してほしい。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作するデモを以下に用意した。
+        <ul>
+          <li><a href="https://labs.jxck.io/fetch/fetchLater.html" target=_blank>https://labs.jxck.io/fetch/fetchLater.html</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                Beacon
+                <ul>
+                  <li><a href="https://w3c.github.io/beacon/" target=_blank>https://w3c.github.io/beacon/</a>
+                </ul>
+              </li>
+              <li>
+                Fetch Standard Pull Request #1647 Preview
+                <ul>
+                  <li><a href="https://whatpr.org/fetch/1647/07662d3...139351f.html" target=_blank>https://whatpr.org/fetch/1647/07662d3...139351f.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                Beacon
+                <ul>
+                  <li><a href="https://github.com/w3c/beacon" target=_blank>https://github.com/w3c/beacon</a>
+                </ul>
+              </li>
+              <li>
+                Pending Beacon
+                <ul>
+                  <li><a href="https://github.com/WICG/pending-beacon/blob/main/docs/pending-beacon-api.md" target=_blank>https://github.com/WICG/pending-beacon/blob/main/docs/pending-beacon-api.md</a>
+                </ul>
+              </li>
+              <li>
+                fetchLater()
+                <ul>
+                  <li><a href="https://github.com/WICG/pending-beacon/blob/main/docs/fetch-later-api.md" target=_blank>https://github.com/WICG/pending-beacon/blob/main/docs/fetch-later-api.md</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Requirements Doc
+            <ul>
+              <li>
+                Fetch Keep Alive
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1iHJtFa3jOo5n9QXHb6Ok5nK8kavXSk2DrLoubPWi9ys" target=_blank>https://docs.google.com/document/d/1iHJtFa3jOo5n9QXHb6Ok5nK8kavXSk2DrLoubPWi9ys</a>
+                </ul>
+              </li>
+              <li>
+                Pending Beacon
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1QIFUu6Ne8x0W62RKJSoTtZjSd_bIM2yXZSELxdeuTFo" target=_blank>https://docs.google.com/document/d/1QIFUu6Ne8x0W62RKJSoTtZjSd_bIM2yXZSELxdeuTFo</a>
+                </ul>
+              </li>
+              <li>
+                fetchLater
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1U8XSnICPY3j-fjzG35UVm6zjwL6LvX6ETU3T8WrzLyQ" target=_blank>https://docs.google.com/document/d/1U8XSnICPY3j-fjzG35UVm6zjwL6LvX6ETU3T8WrzLyQ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Mozilla Standard Position
+            <ul>
+              <li>
+                Fetch keepalive · Issue #967 · mozilla/standards-positions
+                <ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/967" target=_blank>https://github.com/mozilla/standards-positions/issues/967</a>
+                </ul>
+              </li>
+              <li>
+                fetchLater() API · Issue #703 · mozilla/standards-positions
+                <ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/703" target=_blank>https://github.com/mozilla/standards-positions/issues/703</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Webkit Position
+            <ul>
+              <li>
+                Fetch keepalive · Issue #967 · mozilla/standards-positions
+                <ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/967" target=_blank>https://github.com/mozilla/standards-positions/issues/967</a>
+                </ul>
+              </li>
+              <li>
+                fetchLater() API (previously: PendingBeacon API) · Issue #85 · WebKit/standards-positions
+                <ul>
+                  <li><a href="https://github.com/WebKit/standards-positions/issues/85" target=_blank>https://github.com/WebKit/standards-positions/issues/85</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TAG Design Review
+            <ul>
+              <li>
+                Beacon · Issue #23 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/23" target=_blank>https://github.com/w3ctag/design-reviews/issues/23</a>
+                </ul>
+              </li>
+              <li>
+                Early Design Review: Pending Beacon API · Issue #776 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/776" target=_blank>https://github.com/w3ctag/design-reviews/issues/776</a>
+                </ul>
+              </li>
+              <li>
+                Specification Review: FetchLater API · Issue #887 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/887" target=_blank>https://github.com/w3ctag/design-reviews/issues/887</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to implement: Beacon (2014/04/11)
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/Vdi7F7Mk_rM/m/hSFI2NQ_z14J" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/Vdi7F7Mk_rM/m/hSFI2NQ_z14J</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Ship: Beacon (2014/07/25)
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/lpMtr_-2yYw/m/FNnMpiJA2mAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/lpMtr_-2yYw/m/FNnMpiJA2mAJ</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Implement: Fetch API: keepalive
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/AUAIHVF63SM/m/naGVAnoBAwAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/AUAIHVF63SM/m/naGVAnoBAwAJ</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Ship: Fetch API: keepalive
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/8vqcABTnDF4/m/ykhzwcggDgAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/8vqcABTnDF4/m/ykhzwcggDgAJ</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Prototype: Declarative PendingBeacon API (2022/05/09)
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/tPTRZkSmlbg/m/5vGhjrEsAgAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/tPTRZkSmlbg/m/5vGhjrEsAgAJ</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Prototype: fetchLater API (2023/07/18)
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/KXnqpUpVwPQ/m/0vGKd1r8AAAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/KXnqpUpVwPQ/m/0vGKd1r8AAAJ</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Ship: fetchLater API (2025/02/12)
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/Nd8Y3BVEoDs/m/YAt18AlHAAAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/Nd8Y3BVEoDs/m/YAt18AlHAAAJ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                Beacon - Chrome Platform Status
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/5517433905348608" target=_blank>https://chromestatus.com/feature/5517433905348608</a>
+                </ul>
+              </li>
+              <li>
+                Fetch API: keepalive - Chrome Platform Status
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/5760375567941632" target=_blank>https://chromestatus.com/feature/5760375567941632</a>
+                </ul>
+              </li>
+              <li>
+                fetchLater API - Chrome Platform Status
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/4654499737632768" target=_blank>https://chromestatus.com/feature/4654499737632768</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>WPT (Web Platform Test)
+          <li>DEMO
+          <li>Blog
+          <li>Presentation
+          <li>
+            Issues
+            <ul>
+              <li>
+                Specification Review: FetchLater API · Issue #887 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/887" target=_blank>https://github.com/w3ctag/design-reviews/issues/887</a>
+                </ul>
+              </li>
+              <li>
+                Specify restriction for requests with keepalive set · Issue #679 · whatwg/fetch
+                <ul>
+                  <li><a href="https://github.com/whatwg/fetch/issues/679" target=_blank>https://github.com/whatwg/fetch/issues/679</a>
+                </ul>
+              </li>
+              <li>
+                keepalive: Do we need to restrict the number of requests at a time? · Issue #662 · whatwg/fetch
+                <ul>
+                  <li><a href="https://github.com/whatwg/fetch/issues/662" target=_blank>https://github.com/whatwg/fetch/issues/662</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
