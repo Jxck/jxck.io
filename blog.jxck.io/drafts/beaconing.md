@@ -189,7 +189,7 @@ const fetchLaterResult = await fetchLater({
   method: 'POST'
   body,
 }, {
-  activateAfter: 60000 /* 1 min */
+  activateAfter: 60000 // 1min
 })
 ```
 
@@ -226,7 +226,7 @@ if (fetchLaterResult.activated === false) {
 
 動作するデモを以下に用意した。
 
-- https://labs.jxck.io/
+- https://labs.jxck.io/fetch/fetchLater.html
 
 
 ## Resources
