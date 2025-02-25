@@ -247,7 +247,7 @@ beacon.setData(data);</code></pre>
           <p>つまり開発者は、「送る情報」だけに集中し、「送られるタイミング」について気にする必要がなくなったのだ。
           <p>しかし、前述の通り Pending Beacon は Keep Alive Fetch よりも後の提案でありながら、「不自由な API」だった Beacon API の方をベースに策定されている。
           <p>そもそも、<code translate=no>fetch()</code> とは「<code translate=no>Request</code> を受け取り <code translate=no>Response</code> を Resolve する API」だ。送っていない Response を Resolve することは想定されていない。そんな <code translate=no>fetch()</code> に「Request を登録するだけ」という概念を持ち込むのは、そのままでは難しかったのだ。
-          <p>それでも、無理やり <code translate=no>fetch()</code> でやろうという提案はあった。それが Fetch with Pending Request と呼ばれる API だ。
+          <p>そこで Pending Beacon の方針は辞め、<code translate=no>fetch()</code> の拡張でやろうという提案に移る。それが Fetch with Pending Request と呼ばれる API だ。
         </section>
         <section>
           <h3 id="fetch-with-pending-request"><a href="#fetch-with-pending-request">Fetch with Pending Request</a></h3>
@@ -280,7 +280,8 @@ sentSignal.addEventListener(&quot;sent&quot;, () =&gt; {
 });</code></pre>
           <p>見ての通り、<code translate=no>AbortSignal</code> の要領で、新しく <code translate=no>DeferSend</code> クラスを導入している。
           <p>この提案があった期間はとても短く、Intents も出ていなかったため、実装されたのかもよくわからない。
-          <p>確かに <code translate=no>fetch()</code> ベースではあるが、この方針もそこまで上手く行かず、議論は長引いていた。
+          <p>確かに <code translate=no>fetch()</code> ベースではあるが、この方針もそこまで上手く行かず、議論は長引いた。
+          <p>そんな中、Safari を中心に対案として持ち込まれたのが、<code translate=no>fetchLater()</code> だった。
         </section>
       </section>
       <section>
@@ -301,7 +302,7 @@ sentSignal.addEventListener(&quot;sent&quot;, () =&gt; {
             </ul>
           </li>
         </ul>
-        <p><code translate=no>fetch()</code> の Request を受け Response を Resolve するという設計は変えず、<code translate=no>fetch()</code> とほぼ同じ引数を取るが、送信キューへの登録が完了したことだけを Resolve する API にしたものが <code translate=no>fetchLater()</code> となる。
+        <p><code translate=no>fetch()</code> の Request を受けるという設計は変えず、送信キューへの登録が完了したことだけを Resolve する API にしたものが <code translate=no>fetchLater()</code> となる。
         <p>追加されたのは <code translate=no>activeAfter</code> という、送信イベント発火後の遅延時間の指定だけだ。
         <pre class=js data-code=js><code translate=no class=language-js>const fetchLaterResult = await fetchLater({
   url,
@@ -328,6 +329,12 @@ if (fetchLaterResult.activated === false) {
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>様々な議論の紆余曲折があり、結局どうなるのかとウォッチしてきたが、先日とうとう Chrome で <code translate=no>fetchLater()</code> の Ship が出たため、ここまでの経緯をまとめることにした。
+        <p>結果、今ある選択肢は以下となる。
+        <ul>
+          <li>sendBeacon
+          <li>fetch({ keepalive: true})
+          <li>fetchLater
+        </ul>
         <p>別の観点で、「登録し続けた Beacon が、送信されずに溜まっていくことを考えると、Quota を設定する必要がある」という議論が並行して行われていたが、今回は省略した。使う場合は送信の上限について留意してほしい。
       </section>
       <section>
