@@ -134,7 +134,7 @@ beacon.setData(data);
 
 そもそも、`fetch()` とは「`Request` を受け取り `Response` を Resolve する API」だ。送っていない Response を Resolve することは想定されていない。そんな `fetch()` に「Request を登録するだけ」という概念を持ち込むのは、そのままでは難しかったのだ。
 
-それでも、無理やり `fetch()` でやろうという提案はあった。それが Fetch with Pending Request と呼ばれる API だ。
+そこで Pending Beacon の方針は辞め、`fetch()` の拡張でやろうという提案に移る。それが Fetch with Pending Request と呼ばれる API だ。
 
 
 ### Fetch with Pending Request
@@ -165,7 +165,9 @@ sentSignal.addEventListener("sent", () => {
 
 この提案があった期間はとても短く、Intents も出ていなかったため、実装されたのかもよくわからない。
 
-確かに `fetch()` ベースではあるが、この方針もそこまで上手く行かず、議論は長引いていた。
+確かに `fetch()` ベースではあるが、この方針もそこまで上手く行かず、議論は長引いた。
+
+そんな中、Safari を中心に対案として持ち込まれたのが、`fetchLater()` だった。
 
 
 ## fetchLater API
@@ -179,7 +181,7 @@ sentSignal.addEventListener("sent", () => {
 - [explainer] Add explainer for `fetchLater()` API by mingyc · Pull Request #80 · WICG/pending-beacon
   - https://github.com/WICG/pending-beacon/pull/80
 
-`fetch()` の Request を受け Response を Resolve するという設計は変えず、`fetch()` とほぼ同じ引数を取るが、送信キューへの登録が完了したことだけを Resolve する API にしたものが `fetchLater()` となる。
+`fetch()` の Request を受けるという設計は変えず、送信キューへの登録が完了したことだけを Resolve する API にしたものが `fetchLater()` となる。
 
 追加されたのは `activeAfter` という、送信イベント発火後の遅延時間の指定だけだ。
 
@@ -218,6 +220,12 @@ if (fetchLaterResult.activated === false) {
 ## Outro
 
 様々な議論の紆余曲折があり、結局どうなるのかとウォッチしてきたが、先日とうとう Chrome で `fetchLater()` の Ship が出たため、ここまでの経緯をまとめることにした。
+
+結果、今ある選択肢は以下となる。
+
+- sendBeacon
+- fetch({ keepalive: true})
+- fetchLater
 
 別の観点で、「登録し続けた Beacon が、送信されずに溜まっていくことを考えると、Quota を設定する必要がある」という議論が並行して行われていたが、今回は省略した。使う場合は送信の上限について留意してほしい。
 
