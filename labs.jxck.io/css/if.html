@@ -1,0 +1,85 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>" />
+<title>Test DEMO</title>
+
+<meta http-equiv="origin-trial" content="" />
+<style>
+  :root {
+    font-family: sans-serif;
+    div {
+      border: solid 1px #000;
+    }
+    section {
+      margin: 10px;
+    }
+  }
+</style>
+
+<section class="one">
+  <h2>Sample 1</h2>
+  <style>
+    @scope (section.one){
+      div {
+        background-color: if(
+          style(--mode: dark): #000;
+          else: #fff
+        );
+        color: if(
+          style(--mode: dark): #fff;
+          else: #000
+        );
+      }
+      .dark {
+        --mode: dark;
+      }
+      .light {
+        --mode: light;
+      }
+    }
+  </style>
+  <div class="dark">dark</div>
+  <div class="light">light</div>
+</section>
+
+<section class="two">
+  <h2>Sample 2</h2>
+  <style>
+    @scope(section.two) {
+      :scope {
+        --unit: 20px;
+        --color: #deadbeef;
+      }
+      div {
+        color: if(
+          style(--size: s): oklch(from var(--color) 20% c h);
+          style(--size: m): oklch(from var(--color) 40% c h);
+          style(--size: l): oklch(from var(--color) 60% c h);
+          else: var(--color);
+        );
+
+        width: if(
+          style(--size: s): calc(var(--unit) * 1.0);
+          style(--size: m): calc(var(--unit) * 2.0);
+          style(--size: l): calc(var(--unit) * 4.0);
+          else: var(--unit);
+        );
+
+        height: if(
+          style(--size: s): calc(var(--unit) * 1.2);
+          style(--size: m): calc(var(--unit) * 1.3);
+          style(--size: l): calc(var(--unit) * 1.4);
+          else: var(--unit);
+        );
+      }
+      div.s { --size: s; }
+      div.m { --size: m; }
+      div.l { --size: l; }
+    }
+  </style>
+  <div class="s">S</div>
+  <div class="m">M</div>
+  <div class="l">L</div>
+  <div>X</div>
+</section>
