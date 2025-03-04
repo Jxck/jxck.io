@@ -12,6 +12,8 @@ CSS に `if()` および `@function` が提案されている。
 ## if()
 
 - Intents
+  - Intent to Ship: CSS if() function
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/EOz7NK6Y0cE
   - Intent to Prototype: CSS if() function
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/ySEBHgVlhBM
 - Explainer
@@ -220,6 +222,26 @@ return `--mode: ${mode}`
 特に今は CSS Variable ベースのスタイルライブラリが多く出回っているため、それらを条件分岐の中で参照するといったこと使い方が馴染むだろう。
 
 一方、変数を計算するためだけに、不必要に増えた中間 Variable のようなものは、ある程度減らしていける可能性もあるのだ。
+
+
+### 用途と注意
+
+単に「CSS に条件分岐が入った」と聞くと、これまで SASS などで運用した経験からアレルギーを持つ開発者もいるだろう。
+
+しかし、「スタイルをカプセル化し、そのスタイルを有意な Custom Property で制御する」ということを CSS 内で簡潔に行うというユースケースがあると言えば、ある程度の納得感はあるのではないだろうか?
+
+もともは、こうした要件を満たすために「他の Style がどう変わったかを変更検知して追従する」という Observer 方式の仕様も提案されていたことからも、ユースケースが見えてくるだろう。結果としては実装上の都合で実現しなかったが、もし Observer 方式でやるとしたら、おそらく `if()` 以上に複雑な結果になっていたのではないかと筆者は感じる。
+
+- observedStyles · Issue #856 · WICG/webcomponents
+  - https://github.com/WICG/webcomponents/issues/856
+
+つまり `if()` の導入には、前提としてのコンポーネント設計がきちんと行われており、そのスタイルバリエーションを実現するために、Custom Property とそこから導出されるスタイルの設計ができてる場合が理想となる。
+
+思いつきで「ここは `if()` 使えば一行で書けるな」程度の無秩序な分岐を伴うコードは、あまり良い結果にならないだろう。
+
+実際、現状はまだ Experimental であるため、DevTools のデバッグも特に支援はない。シンタックスハイライトも大体壊れる。動かない場合に何が悪いのかぱっとはわかりにくい。もちろん、それらはこれから整備されていくことにはなるが、それでも無秩序に「使えるところから使っていこう」では後悔するように思う。
+
+では、どうやってその秩序を維持するかは、ここからエコシステム側が考えていくことになる。
 
 
 ## function()
