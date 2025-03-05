@@ -8,24 +8,8 @@ CSS に `if()` および `@function` が提案されている。
 
 なお、先に言っておくが関数の再起は、初期仕様から外されている。「関数と分岐」と聞いて想像するであろう「CSS のチューリング完全化」は、まだきてない。
 
-## if()
 
-- Intents
-  - Intent to Ship: CSS if() function
-    - https://groups.google.com/a/chromium.org/g/blink-dev/c/EOz7NK6Y0cE
-  - Intent to Prototype: CSS if() function
-    - https://groups.google.com/a/chromium.org/g/blink-dev/c/ySEBHgVlhBM
-- Explainer
-  - Explainer: CSS if() function - Google Docs
-    - https://docs.google.com/document/d/1mbHBUR40jUBay7QZxgbjX7qixs5UZXkdL9tVwGvbmt0/edit?tab=t.0#heading=h.xzptrog8pyxf
-- Spec
-  - CSS Values and Units Module Level 5
-    - https://drafts.csswg.org/css-values-5/#if-notation
-- Issue
-  - [css-values-5] What is the MVP for inline conditionals on custom properties? · Issue #10064 · w3c/csswg-drafts
-    - https://github.com/w3c/csswg-drafts/issues/10064
-  - [css-values] Short-circuit if() evaluation · Issue #11500 · w3c/csswg-drafts
-    - https://github.com/w3c/csswg-drafts/issues/11500
+## if()
 
 まず Dark/Light 2 つのモードをもつコンポーネントを考える。
 
@@ -245,13 +229,13 @@ return `--mode: ${mode}`
 
 ## @function
 
-CSS の中にも、 `calc()` や `minmax()` など、動的に値を算出する構成は増えてきた。特に、デザインシステムのようにオーガナイズされたスタイルは、ベースとなる特定の値からのバリエーションを、機械的に計算できるように設計するのが主流になっている。
+CSS の中にも、`calc()` や `minmax()` など、動的に値を算出する構成は増えてきた。特に、デザインシステムのようにオーガナイズされたスタイルは、ベースとなる特定の値からのバリエーションを、機械的に計算できるように設計するのが主流になっている。
 
-また、 `random()` や `sin()`/`cos()` など、頻出する関数のネイティブ化の流れも顕著で、追加の仕様検討も頻繁に行われている。
+また、`random()` や `sin()`/`cos()` など、頻出する関数のネイティブ化の流れも顕著で、追加の仕様検討も頻繁に行われている。
 
 となれば、やはりカスタムファンクションを定義したいという要望が当然出てくることになる。
 
-もともとは、「処理の一部を共通化する」という類似した目的から、 function と mixin が同軸で議論されており、ドラフトも両方を同時に定義している。しかし、今回実装する範囲は function のみとなっている。
+もともとは、「処理の一部を共通化する」という類似した目的から、function と mixin が同軸で議論されており、ドラフトも両方を同時に定義している。しかし、今回実装する範囲は function のみとなっている。
 
 先程の出てきた、色の計算部分を抜き出してみよう。
 
@@ -289,7 +273,7 @@ div {
 
 使う側を見れば、何によるバリエーションがスタイルを変えているのかが、ある程度わかりやすくなっているとは思う。
 
-他の例として、 `dark-light(A, B)` のメディアクエリ版として、 `--pc-mobile(A, B)` をカスタムファンクションとして考えてみよう。
+他の例として、`dark-light(A, B)` のメディアクエリ版として、`--pc-mobile(A, B)` をカスタムファンクションとして考えてみよう。
 
 960px を起点に、大きければ PC と判断し A を、小さければ Mobile と判断し B を返すようなイメージだ。
 
@@ -311,23 +295,13 @@ body {
 これまで、分散しがちだったメディアクエリによる定義も、一箇所に集約できており、発生しえるバリエーションも明示的になっただろう。
 
 
-
-
-- Intents
-  - Intent to Ship: CSS Custom Functions (@function)
-    - https://groups.google.com/a/chromium.org/g/blink-dev/c/bvi4D7eD7wI
-- Explainer
-  - CSS Mixins & Functions Explainer
-    - https://css.oddbird.net/sasslike/mixins-functions/
-
-
 ## 使い所
 
 こちらは、いわゆる DRY 的な文脈で処理を一元管理できるという点で、一定の簡素化には繋がるかもしれない。特にこれまで `var()` や `calc()` の連鎖でのみバリエーションを広げていく書き方をしていたのと比べると、コードもかなり減るだろう。プリプロセッサで展開されてコードが肥大していたころよりは、ダイエットになる可能性は高い。
 
 しかし、こちらも何をどのレベルで関数化するのかといった側面にガバナンスが無いと、非常に複雑なコードの連鎖と化したコードが容易に想像できる。
 
-今回の `if()` や `@function` の前提として、やはりコンポーネント指向の Web 開発は、分けては考えられないだろう。 `@scope` や Container Query などは、 HTML / JS と合わせて CSS を同梱したコンポーネントを基本に開発し、アプリとはそれを敷き詰めた実装であるというスタンスが前提にあるか、それとも古き良き HTML で組まれたサイトに、 CSS ファイルを読み込み、そこにページ全体のスタイルが書かれているような作り方とでは、影響が変わってくるだろう。
+今回の `if()` や `@function` の前提として、やはりコンポーネント指向の Web 開発は、分けては考えられないだろう。`@scope` や Container Query などは、HTML / JS と合わせて CSS を同梱したコンポーネントを基本に開発し、アプリとはそれを敷き詰めた実装であるというスタンスが前提にあるか、それとも古き良き HTML で組まれたサイトに、CSS ファイルを読み込み、そこにページ全体のスタイルが書かれているような作り方とでは、影響が変わってくるだろう。
 
 コンポーネントに閉じるということは、ある程度スコープの狭い CSS だけを対象にすればよく、そこに当てたいスタイルそのものよりもその「コンポーネントが置かれている条件」のハンドリングの方が関心事として大きい。
 
@@ -335,29 +309,23 @@ body {
 
 コンポーネントの中はある程度見通しの効く量の CSS であるべきだし、そこでの実装が、設計に応じたカスタムプロパティとそれを反映するための `if()` や、その実装を共通化する `@function` によって書かれていても、そこまで大きく可読性を失うことは無いだろう。むしろ、下手に JS との行き来が発生する方が汚れやすい可能性すらある。
 
-また、デザインシステムの中で、デザインは Token ベースの設計を行い、Headless 系のコンポーネントと繋ぎこむ設計も多くなってきたが、この Token の設計に使える `@function` を共通の Utility として整備したり、 Token として提供していた Custom Property の代わりに Custom Function そのものを利用者に提供してしまうという設計もあるだろう。
+また、デザインシステムの中で、デザインは Token ベースの設計を行い、Headless 系のコンポーネントと繋ぎこむ設計も多くなってきたが、この Token の設計に使える `@function` を共通の Utility として整備したり、Token として提供していた Custom Property の代わりに Custom Function そのものを利用者に提供してしまうという設計もあるだろう。
 
 Figma がどうやって吐いてくれるのか
+
 ロジックが入ってくるとデバッグはどうするのか
-テストを書きたくなるがそれは JS の方がやりやすくないか？
-CSS Variable ベースのスタイルライブラリはどうなっていくのか？
-CSS Modules / CSS in JS / Tailwind などの選定にどう影響していくのか？
+
+テストを書きたくなるがそれは JS の方がやりやすくないか?
+
+CSS Variable ベースのスタイルライブラリはどうなっていくのか?
+
+CSS Modules / CSS in JS / Tailwind などの選定にどう影響していくのか?
 
 など、かなり考え方が変わってきそうだ。
 
 ここまで CSS で出来ることが増えると、デザインシステムを作り始めていたころの前提ともかなり変わってくるだろう。
 
 次の 10 年、CSS がどうなっていくのか、また全くわからなくなってきた。
-
-
-
-
-
-
-
-
-
-
 
 ```
 $ --enable-blink-features=CSSFunctions
@@ -367,20 +335,16 @@ $ --enable-blink-features=CSSFunctions
 ## Outro
 
 
-
-
 ## DEMO
 
 動作するデモを以下に用意した。
 
 Chrome で以下の 2 つのフラグを有効にすると動作する。
 
-
 - chrome:flags
   - `chrome://flags/#enable-experimental-web-platform-features`
 - runtime flag
   - `--enable-blink-features=CSSFunctions`
-```
 
 - https://labs.jxck.io/css/if.html
 - https://labs.jxck.io/css/function.html
@@ -389,16 +353,60 @@ Chrome で以下の 2 つのフラグを有効にすると動作する。
 ## Resources
 
 - Spec
+  - CSS Values and Units Module Level 5
+    - https://drafts.csswg.org/css-values-5/#if-notation
+  - CSS Functions and Mixins Module
+    - https://drafts.csswg.org/css-mixins-1/
 - Explainer
+  - Explainer: CSS if() function - Google Docs
+    - https://docs.google.com/document/d/1mbHBUR40jUBay7QZxgbjX7qixs5UZXkdL9tVwGvbmt0/
+  - CSS Mixins & Functions Explainer
+    - https://css.oddbird.net/sasslike/mixins-functions/
 - Requirements Doc
 - Mozilla Standard Position
+  - CSS if() function · Issue #1167 · mozilla/standards-positions
+    - https://github.com/mozilla/standards-positions/issues/1167
+  - CSS Functions and Mixins 1 (@function) · Issue #1148 · mozilla/standards-positions
+    - https://github.com/mozilla/standards-positions/issues/1148
 - Webkit Position
+  - CSS if() function · Issue #453 · WebKit/standards-positions
+    - https://github.com/WebKit/standards-positions/issues/453
+  - CSS Functions and Mixins 1 (@function) · Issue #437 · WebKit/standards-positions
+    - https://github.com/WebKit/standards-positions/issues/437
 - TAG Design Review
+  - CSS if() function · Issue #1045 · w3ctag/design-reviews
+    - https://github.com/w3ctag/design-reviews/issues/1045
+  - Custom Functions (@function) · Issue #1031 · w3ctag/design-reviews
+    - https://github.com/w3ctag/design-reviews/issues/1031
 - Intents
+  - Intent to Ship: CSS if() function
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/EOz7NK6Y0cE
+  - Intent to Prototype: CSS if() function
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/ySEBHgVlhBM
+  - Intent to Ship: CSS Custom Functions (@function)
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/bvi4D7eD7wI
+  - Intent to Prototype: CSS functions
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/b-BTxKD-Ldc/
 - Chrome Platform Status
+  - CSS if() function - Chrome Platform Status
+    - https://chromestatus.com/feature/6313805904347136
+  - CSS Custom Functions - Chrome Platform Status
+    - https://chromestatus.com/feature/5179721933651968
 - WPT (Web Platform Test)
+  - if
+    - https://wpt.fyi/results/css/css-values?label=master&q=if-
+  - function
+    - https://wpt.fyi/results/css/css-mixins?label=experimental&label=master&aligned
 - DEMO
 - Blog
 - Presentation
 - Issues
+  - [css-values-5] What is the MVP for inline conditionals on custom properties? · Issue #10064 · w3c/csswg-drafts
+    - https://github.com/w3c/csswg-drafts/issues/10064
+  - [css-values] Short-circuit if() evaluation · Issue #11500 · w3c/csswg-drafts
+    - https://github.com/w3c/csswg-drafts/issues/11500
+  - [css-mixins] Allow mixins/functions to be called via custom properties · Issue #10006 · w3c/csswg-drafts
+    - https://github.com/w3c/csswg-drafts/issues/10006
+  - Proposal: Custom CSS Functions & Mixins · Issue #9350 · w3c/csswg-drafts
+    - https://github.com/w3c/csswg-drafts/issues/9350
 - Other
