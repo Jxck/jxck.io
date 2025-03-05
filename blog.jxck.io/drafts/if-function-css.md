@@ -108,8 +108,8 @@ Old School な書き方だとこうなるだろう。
 ```js
 if (mode === "dark") {
   return css`
-    color: light-dark(#000, #fff);
-    background-color: light-dark(#fff, #000);
+    color: #fff;
+    background-color: #000;
   `
 }
 // or
@@ -272,10 +272,8 @@ div {
 このように一部のパラメータだけが違う場合は、以下のように関数化出来る。
 
 ```css
-@function --color(
-  --l type(percentage)
-) returns type(color) {
-  result oklch(from var(#deadbeef) var(--l) c h);
+@function --color(--l) {
+  result: oklch(from #deadbeef var(--l) c h);
 }
 
 div {
@@ -296,15 +294,12 @@ div {
 960px を起点に、大きければ PC と判断し A を、小さければ Mobile と判断し B を返すようなイメージだ。
 
 ```css
-@function --pc-mobile(
-  --PC type(length),
-  --Mobile type(length)
-) returns type(length) {
-  @media screen and (960px < width) {
-    result: var(--PC); /* PC */
+@function --pc-mobile(--PC, --Mobile) {
+  @media (width <= 960px) {
+    result: var(--PC);
   }
-  @media screen and (width <= 960px) {
-    result: var(--Mobile); /* mobile */
+  @media (960px < width) {
+    result: var(--Mobile)
   }
 }
 
@@ -364,11 +359,31 @@ CSS Modules / CSS in JS / Tailwind などの選定にどう影響していくの
 
 
 
-テスト
+```
+$ --enable-blink-features=CSSFunctions
+```
+
+
+## Outro
 
 
 
 
+## DEMO
+
+動作するデモを以下に用意した。
+
+Chrome で以下の 2 つのフラグを有効にすると動作する。
+
+
+- chrome:flags
+  - `chrome://flags/#enable-experimental-web-platform-features`
+- runtime flag
+  - `--enable-blink-features=CSSFunctions`
+```
+
+- https://labs.jxck.io/css/if.html
+- https://labs.jxck.io/css/function.html
 
 
 ## Resources
