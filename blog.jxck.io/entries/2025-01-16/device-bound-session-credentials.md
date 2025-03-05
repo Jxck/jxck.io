@@ -240,7 +240,7 @@ https://github.com/drubery/dbsc/issues/88#issuecomment-2591379358
 
 このリクエストに対し、サーバは以下のような JSON を body で送る。
 
-```json
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 65535
@@ -328,7 +328,7 @@ Set-Cookie: __Host-session-id=deadbeef; Path=/; Secure; HttpOnly; Max-Age=604800
 
 もし (DBSC における) Session を終了する場合は、リフレッシュのレスポンスで以下のように返す。
 
-```http
+```json
 {
   "session_identifier": "b434736b1daa31f7",
   "continue": false
