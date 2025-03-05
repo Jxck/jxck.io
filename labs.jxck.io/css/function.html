@@ -1,0 +1,82 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>" />
+<title>CSS @function DEMO</title>
+
+<meta http-equiv="origin-trial" content="" />
+<style>
+  :root {
+    font-family: sans-serif;
+    div {
+      border: solid 1px #000;
+    }
+    section {
+      margin: 10px;
+    }
+  }
+</style>
+
+
+<section class="one">
+  <h2>Sample 1</h2>
+  <style>
+    @scope(section.one) {
+      :scope {
+        --unit: 20px;
+        --color: #deadbeef;
+      }
+
+      @function --color(--l) {
+        result: oklch(from #deadbeef var(--l) c h);
+      }
+
+      div {
+        color: if(
+          style(--size: s): --color(20%);
+          style(--size: m): --color(40%);
+          style(--size: l): --color(60%);
+        );
+      }
+      div.s { --size: s; }
+      div.m { --size: m; }
+      div.l { --size: l; }
+    }
+  </style>
+  <div class="s">S</div>
+  <div class="m">M</div>
+  <div class="l">L</div>
+</section>
+
+<section class="two">
+  <h2>Sample 2</h2>
+  <style>
+    @scope(section.two) {
+      @function --minus(--value, --minus) {
+        result: calc(var(--value) - var(--minus));
+      }
+
+      @function --mycalc(--value) {
+        /* 動かない */
+        /* result: --minus(--minus(var(--value), 100px), 100px); */
+
+        /* 動く */
+        result: calc(calc(var(--value) - 100px) - 100px);
+      }
+
+      @function --recur(--value) {
+        result: if(
+          style(--value: 0px): 100vh;
+          else: --recur(calc(var(--value) - 1px));
+        )
+      }
+
+      div {
+        width: --mycalc(300px);
+        height: --recur(300px);
+        background-color: #deadbeef;
+      }
+    }
+  </style>
+  <div class="pc-mobile">PC/Mobile</div>
+</section>
