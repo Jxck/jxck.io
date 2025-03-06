@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-03-06/if-function-css.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="CSS に if() および @function が提案されている。仕様がこれで確定したとは言い切れないため、背景および現状にフォーカスして解説する。なお先に言っておくが、関数の再帰は初期仕様から外されているため、「CSS がプログラミング言語になった」という話ではない。">
+  <meta name=keywords            content="css">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-03-06/if-function-css.html>
+  <meta property=og:title        content="CSS における if と function の提案 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="CSS に if() および @function が提案されている。仕様がこれで確定したとは言い切れないため、背景および現状にフォーカスして解説する。なお先に言っておくが、関数の再帰は初期仕様から外されているため、「CSS がプログラミング言語になった」という話ではない。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "CSS における if と function の提案 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-03-06T08:00:00+08:00",
+    "dateModified": "2025-03-06T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "CSS に if() および @function が提案されている。仕様がこれで確定したとは言い切れないため、背景および現状にフォーカスして解説する。なお先に言っておくが、関数の再帰は初期仕様から外されているため、「CSS がプログラミング言語になった」という話ではない。"
+  }
+  </script>
+
+  <title>CSS における if と function の提案 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-03-06>2025-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-03-06>2025-03-06</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#css">css</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#if">if()</a>
+              <ol>
+                <li><a href="#提案の背景">提案の背景</a>
+                <li><a href="#style-query-との使い分け">Style Query との使い分け</a>
+                <li><a href="#用途と注意">用途と注意</a>
+              </ol>
+              <li><a href="#@function">@function</a>
+              <ol>
+                <li><a href="#提案の背景_1">提案の背景</a>
+                <li><a href="#用途と注意_1">用途と注意</a>
+              </ol>
+              <li><a href="#いつ-ship-するか">いつ Ship するか</a>
+              <li><a href="#outro">Outro</a>
+              <li><a href="#demo">DEMO</a>
+              <li><a href="#resources">Resources</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">CSS における if と function の提案</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>CSS に <code translate=no>if()</code> および <code translate=no>@function</code> が提案されている。
+        <p>仕様がこれで確定したとは言い切れないため、背景および現状にフォーカスして解説する。
+        <p>なお先に言っておくが、関数の再帰は初期仕様から外されているため、「CSS がプログラミング言語になった」という話ではない。
+      </section>
+      <section>
+        <h2 id="if"><a href="#if">if()</a></h2>
+        <p>まず Dark/Light 2 つのモードをもつコンポーネントを考える。Old School な書き方だとこうなるだろう。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
+  .dark {
+    color: #fff;
+    background-color: #000;
+  }
+  .light {
+    color: #000;
+    background-color: #fff;
+  }
+&lt;/style&gt;
+&lt;my-div class=&quot;dark&quot;&gt;dark&lt;/my-div&gt;
+&lt;my-div class=&quot;light&quot;&gt;light&lt;/my-div&gt;</code></pre>
+        <p>この場合、スタイルのバリエーションごとに、プロパティを重複して指定している状態になる。
+        <p>ここでは class で指定しているが、Prefer Color Scheme に対応して Color Scheme を切り替える場合は、<code translate=no>dark-light()</code> で以下のように書ける。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
+  my-div {
+    color-scheme: light, dark;
+    color: light-dark(#000, #fff);
+    background-color: light-dark(#fff, #000);
+  }
+&lt;/style&gt;
+&lt;my-div&gt;dark or light&lt;/my-div&gt;</code></pre>
+        <p>ここでは、先ほど重複していた <code translate=no>color</code> と <code translate=no>background-color</code> という 2 つのプロパティ指定が、一箇所に集約されている点に注目したい。
+        <p><code translate=no>light-dark()</code> は Prefer Color Scheme を参照した分岐を自動で行うが、これを明示的に指定できるようにするには、汎用的な条件分岐の仕組みが必要となる。
+        <p>そこで提案されたのが <code translate=no>if()</code> だ。先の例は以下のようになる。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
+  div {
+    background-color: if(
+      style(--mode: dark): #000;
+      else: #fff
+    );
+    color: if(
+      style(--mode: dark): #fff;
+      else: #000
+    );
+  }
+  .dark {
+    --mode: dark;
+  }
+  .light {
+    --mode: light;
+  }
+&lt;/style&gt;
+&lt;div class=&quot;dark&quot;&gt;dark&lt;/div&gt;
+&lt;div class=&quot;light&quot;&gt;light&lt;/div&gt;</code></pre>
+        <p>まず注目したいのは、クラスに合わせて定義しているカスタムプロパティの <code translate=no>--mode</code> だ。
+        <p>ここでは <code translate=no>dark</code> / <code translate=no>light</code> という値を定義し、スタイルはこの値に応じた分岐で重複無く定義されているのがわかるだろう。
+        <p>この設計では大外の切り替えを class によって行っているが、実態は「<em>1 つのカスタムプロパティを定義するだけで、スタイルが全て決まる</em>」という状態であることに注意したい。
+        <p>もしこの実装を Custom Elements にし、スタイルを隠蔽する場合は、外側には以下のように <code translate=no>mode</code> プロパティだけを出すのが一般的だ。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;my-div mode=dark&gt;dark&lt;/my-div&gt;</code></pre>
+        <p>従来の指定方法では、JS で取得した <code translate=no>mode</code> の値でスタイルの塊、もしくは具象クラスを指定しただろう。
+        <pre class=js data-code=js><code translate=no class=language-js>if (mode === &quot;dark&quot;) {
+  return css`
+    color: #fff;
+    background-color: #000;
+  `
+}
+// or
+const klass = (mode === &quot;dark&quot;) ? &quot;.dark&quot; : &quot;.light&quot;</code></pre>
+        <p>しかし、<code translate=no>if()</code> を用いてカスタムプロパティからスタイルが導出できるようになっている現状、JS 側で行うのは HTML <code translate=no>mode</code> attr の CSS <code translate=no>--mode</code> Custom Properties への転記だけだ。
+        <pre class=js data-code=js><code translate=no class=language-js>return `--mode: ${mode}`</code></pre>
+        <p>従来の CSS Custom Property は、一度に 1 つの値を定義できるだけであるため、単なる「変数」としての役割しか果たすことができなかった。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
+  :root {
+    --unit: 10px;
+    --color: #deadbeef;
+
+    --s-width: calc(var(--unit) * 1.0);
+    --m-width: calc(var(--unit) * 1.2);
+    --l-width: calc(var(--unit) * 1.4);
+
+    --s-height: calc(var(--unit) * 2.0);
+    --m-height: calc(var(--unit) * 3.0);
+    --l-height: calc(var(--unit) * 4.0);
+
+    --s-color: oklch(from var(--color) 20% c h);
+    --m-color: oklch(from var(--color) 40% c h);
+    --l-color: oklch(from var(--color) 60% c h);
+  }
+  div {
+    border: solid 1px #000;
+    width: var(--unit);
+    height: var(--unit);
+    color: var(--color);
+  }
+  div.s {
+    width:  var(--s-width);
+    height: var(--s-height);
+    color:  var(--s-color);
+  }
+  div.m {
+    width:  var(--m-width);
+    height: var(--m-height);
+    color:  var(--m-color);
+  }
+  div.l {
+    width:  var(--l-width);
+    height: var(--l-height);
+    color:  var(--l-color);
+  }
+&lt;/style&gt;
+&lt;div class=&quot;s&quot;&gt;S&lt;/div&gt;
+&lt;div class=&quot;m&quot;&gt;M&lt;/div&gt;
+&lt;div class=&quot;l&quot;&gt;L&lt;/div&gt;
+&lt;div&gt;X&lt;/div&gt;</code></pre>
+        <p>しかし、<code translate=no>if()</code> を用いると、分岐条件に用いる Custom Properties として <code translate=no>--size</code> の指定だけにまとめられるのだ。
+        <p>不要となる中間 Variable を消すとしたら、以下のようにまとめることもできる。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
+  :root {
+    --unit: 20px;
+    --color: #deadbeef;
+  }
+  div {
+    border: solid 1px #000;
+    color: if(
+      style(--size: s): oklch(from var(--color) 20% c h);
+      style(--size: m): oklch(from var(--color) 40% c h);
+      style(--size: l): oklch(from var(--color) 60% c h);
+      else: var(--color);
+    );
+
+    width: if(
+      style(--size: s): calc(var(--unit) * 1.0);
+      style(--size: m): calc(var(--unit) * 2.0);
+      style(--size: l): calc(var(--unit) * 4.0);
+      else: var(--unit);
+    );
+
+    height: if(
+      style(--size: s): calc(var(--unit) * 1.2);
+      style(--size: m): calc(var(--unit) * 1.3);
+      style(--size: l): calc(var(--unit) * 1.4);
+      else: var(--unit);
+    );
+  }
+  div.s { --size: s; }
+  div.m { --size: m; }
+  div.l { --size: l; }
+&lt;/style&gt;
+&lt;div class=&quot;s&quot;&gt;S&lt;/div&gt;
+&lt;div class=&quot;m&quot;&gt;M&lt;/div&gt;
+&lt;div class=&quot;l&quot;&gt;L&lt;/div&gt;
+&lt;div&gt;X&lt;/div&gt;</code></pre>
+        <p>もちろん、恣意的に全てインラインで書いているだけで、各値を CSS Variable に残す中間の記述も可能だ。
+        <p>特に今は CSS Variable ベースのスタイルライブラリが多く出回っているため、それらを条件分岐の中で参照するといった使い方が馴染むだろう。
+        <p>一方、変数を計算するためだけに、不必要に増えた中間 Variable のようなものは、ある程度減らしていける可能性もあるのだ。
+        <section>
+          <h3 id="提案の背景"><a href="#提案の背景">提案の背景</a></h3>
+          <p><code translate=no>if()</code> 相当が提案されたのは、初めてのことではない。2018 年にも Less の <code translate=no>if()</code> をベースとした提案がなされていた。
+          <ul>
+            <li>
+              [css-values] if() function · Issue #3455 · w3c/csswg-drafts
+              <ul>
+                <li><a href="https://github.com/w3c/csswg-drafts/issues/3455" target=_blank>https://github.com/w3c/csswg-drafts/issues/3455</a>
+              </ul>
+            </li>
+          </ul>
+          <p>しかし、この時点では条件式がどのように挙動するのかが非常に曖昧だった。
+          <p>ところが、その後 Style Query の仕様が先に進んだことで、条件式にはその仕様をほとんど再利用することができたのだ。
+          <p>これをきっかけに 2023 年頃から話が進み、現在は Values and Units Lv5 に組み込む形でドラフトが書かれている。
+          <ul>
+            <li>
+              CSS Values and Units Module Level 5
+              <ul>
+                <li><a href="https://drafts.csswg.org/css-values-5/#if-notation" target=_blank>https://drafts.csswg.org/css-values-5/#if-notation</a>
+              </ul>
+            </li>
+          </ul>
+          <p>Style Query の条件に書けるものは、ほぼそのまま <code translate=no>if()</code> でも使えるため、実装も比較的早く進んだ。
+          <p>このあたりの経緯は以下に詳しい。
+          <ul>
+            <li>
+              Inline conditionals in CSS? • Lea Verou
+              <ul>
+                <li><a href="https://lea.verou.me/blog/2024/css-conditionals/" target=_blank>https://lea.verou.me/blog/2024/css-conditionals/</a>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="style-query-との使い分け"><a href="#style-query-との使い分け">Style Query との使い分け</a></h3>
+          <p>ほぼ Style Query と同じことができるわけだが、それぞれはユースケースが異なる。
+          <p>Style Query は「コンテナコンポーネントのスタイルに応じた指定」を行うためのものだ。しかし、スタイルが指定できるのはコンテナ内の子孫だけなので、コンテナそのものには指定ができなかった。
+          <p>こうした場合に、親側のスタイルだけを指定するために <code translate=no>pill</code>, <code translate=no>size</code>, <code translate=no>outline</code> など、具体的な値を入れ、それをそのまま CSS に反映するような、Presentational Attributes と呼ばれる属性が提供されることが多かった。そのため、コンポーネントライブラリの中には、「属性経由で指定されるスタイル」と「カスタムプロパティ経由で指定されるスタイル」が入り交じるような設計も多くあったのだ。
+          <p><code translate=no>if()</code> にはそうした制限がないため、コンテナそのものは <code translate=no>if()</code> で、コンテナ内の子孫は Style Query で参照しつつ指定する、といった使い分けもできるだろう。これにより、Presentational Attributes が不要となれば、「HTML の属性にスタイルそのものを書く」に近い状態を脱することができる(まあ、Tailwind が流行っている今、文書/スタイルの分離に価値を見出している人がどのくらいいるかは疑問だが)。
+        </section>
+        <section>
+          <h3 id="用途と注意"><a href="#用途と注意">用途と注意</a></h3>
+          <p>単に「CSS に条件分岐が入った」と聞くと、これまで SASS などで運用した経験からアレルギーを持つ開発者もいるだろう。
+          <p>しかし先の例 <code translate=no>--mode</code> は、「スタイルそのものを入れた単なる変数」ではなく、「バリエーションを示しそれにより複数のプロパティが決定」するプロパティだった。これは、議論の中で <em>Higher Level Custom Properties</em> と呼ばれている。
+          <ul>
+            <li>
+              [css-variables?] Higher level custom properties that control multiple declarations · Issue #5624 · w3c/csswg-drafts
+              <ul>
+                <li><a href="https://github.com/w3c/csswg-drafts/issues/5624" target=_blank>https://github.com/w3c/csswg-drafts/issues/5624</a>
+              </ul>
+            </li>
+          </ul>
+          <p>しかし、「スタイルバリエーションを凝集し、それらを代表する Higher Level Custom Property の指定のみで制御する」という設計を CSS だけで簡潔に行うというユースケースがあると言えば、ある程度の納得感はありそうだ。そして、これこそが <code translate=no>if()</code> を入れる最終的なモチベーションであると筆者は理解している。
+          <p>もともとは、こうした要件を満たすために「他の Style がどう変わったかを変更検知して追従する」という Observer 方式の仕様も提案されていた。
+          <ul>
+            <li>
+              observedStyles · Issue #856 · WICG/webcomponents
+              <ul>
+                <li><a href="https://github.com/WICG/webcomponents/issues/856" target=_blank>https://github.com/WICG/webcomponents/issues/856</a>
+              </ul>
+            </li>
+          </ul>
+          <p>結果としては実装上の都合で実現しなかったが、もし Observer 方式でやるとしたら、おそらく <code translate=no>if()</code> 以上に複雑な結果になっていたのではないかと筆者は感じる。
+          <p>つまり <code translate=no>if()</code> の導入は、前提としてのコンポーネント設計がきちんと行われており、そのスタイルバリエーションを実現するために、Higher Level Custom Property の指定のみに集約できている状態が理想となる。
+          <p>思いつきで「ここは <code translate=no>if()</code> 使えば一行で書けるな」程度の無秩序な分岐を伴うコードは、あまり良い結果にならないだろう。
+          <p>実際、現状はまだ Experimental であるため、DevTools のデバッグも特に支援はない。Syntax Highlight も Formatter も大体動かない。意図した挙動をしない場合に、何が悪いのかぱっとはわかりにくい。もちろん、開発環境はこれから整備されていくことにはなるが、それでも無秩序に「使えるところから使っていこう」では後悔するように思う。
+          <p>では、どうやってその秩序を維持するかは、ここからエコシステム側が考えていくことになるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="@function"><a href="#@function">@function</a></h2>
+        <p>CSS の中にも、<code translate=no>calc()</code> や <code translate=no>minmax()</code> など、動的に値を算出する API は増えてきた。特に、デザインシステムのようにオーガナイズされたスタイルは、ベースとなる特定の値 (Primary Color や Base Gap など) を定義し、バリエーションは機械的に計算できるように設計するのが主流になっている。
+        <p>また、<code translate=no>random()</code> や <code translate=no>sin()</code>/<code translate=no>cos()</code> など、頻出する関数のネイティブ化の流れも顕著で、追加の仕様検討も頻繁に行われている。
+        <p>となれば、やはりカスタムファンクションを定義したいという要望が出てくることになる。
+        <p>もともとは、「処理の一部を共通化する」という類似した目的から、function と mixin が同軸で議論されており、ドラフトも両方を同時に定義している。しかし、今回実装する範囲は function のみとなっている。
+        <p>先程出てきた、色の計算部分を抜き出してみよう。
+        <pre class=css data-code=css><code translate=no class=language-css>:root {
+  --color: #deadbeef;
+}
+div {
+  color: if(
+    style(--size: s): oklch(from var(--color) 20% c h);
+    style(--size: m): oklch(from var(--color) 40% c h);
+    style(--size: l): oklch(from var(--color) 60% c h);
+    else: var(--color);
+  );
+}</code></pre>
+        <p>このように一部のパラメータだけが違う場合は、以下のように関数化できる。
+        <pre class=css data-code=css><code translate=no class=language-css>@function --color(--l) {
+  result: oklch(from #deadbeef var(--l) c h);
+}
+
+div {
+  color: if(
+    style(--size: s): --color(20%);
+    style(--size: m): --color(40%);
+    style(--size: l): --color(60%);
+  );
+}</code></pre>
+        <p>ここまで、グローバル変数として <code translate=no>--color</code> を定義していたが、同じ名前のままカスタムファンクションになった。代わりに、定義が一箇所なので、それまで独立させていた基本色は、関数に直書きしているがこれはまあ、従来通り外に出しても良いだろう。
+        <p>使う側を見れば、何によるバリエーションがスタイルを変えているのかが、ある程度わかりやすくなっているとは思う。
+        <p>他の例として、<code translate=no>dark-light(A, B)</code> のメディアクエリ版として、<code translate=no>--pc-mobile(A, B)</code> をカスタムファンクションとして考えてみよう。
+        <p>960px を起点に、大きければ PC と判断し A を、小さければ Mobile と判断し B を返すようなイメージだ。
+        <pre class=css data-code=css><code translate=no class=language-css>@function --pc-mobile(--PC, --Mobile) {
+  @media (width &lt;= 960px) {
+    result: var(--PC);
+  }
+  @media (960px &lt; width) {
+    result: var(--Mobile);
+  }
+}
+
+body {
+  width: --pc-mobile(60vw, 94vw);
+}</code></pre>
+        <p>これまで、分散しがちだったメディアクエリによる定義も、一箇所に集約できており、発生し得るバリエーションも明示的になっただろう。
+        <section>
+          <h3 id="提案の背景_1"><a href="#提案の背景_1">提案の背景</a></h3>
+          <p>同様の提案は、おそらく歴史上複数回あっただろうが、直近では 2022 年に Declarative Custom Functions という形で提案されたものがある。
+          <ul>
+            <li>
+              Declarative custom functions · Issue #7490 · w3c/csswg-drafts
+              <ul>
+                <li><a href="https://github.com/w3c/csswg-drafts/issues/7490" target=_blank>https://github.com/w3c/csswg-drafts/issues/7490</a>
+              </ul>
+            </li>
+          </ul>
+          <p>やはり、プリプロセッサベースで行われてきた「定義の再利用」を、ネイティブでどのように提供できるかというモチベーションが大きい。
+          <p>この提案を拡張し、構文の変更や function/mixin の分離、その他細かいところを変更してまとめられたのが、今回紹介した提案となる。
+          <ul>
+            <li>
+              Proposal: Custom CSS Functions &amp; Mixins · Issue #9350 · w3c/csswg-drafts
+              <ul>
+                <li><a href="https://github.com/w3c/csswg-drafts/issues/9350" target=_blank>https://github.com/w3c/csswg-drafts/issues/9350</a>
+              </ul>
+            </li>
+          </ul>
+          <p>両者は共通点が多いため、同一のスレッドで議論されることになったが、今回実装されたのは <code translate=no>@function</code> の方のみだ。
+        </section>
+        <section>
+          <h3 id="用途と注意_1"><a href="#用途と注意_1">用途と注意</a></h3>
+          <p>こちらは、いわゆる DRY 的な文脈で処理を一元管理できるという点で、一定の簡素化につながるかもしれない。特にこれまで <code translate=no>var()</code> や <code translate=no>calc()</code> の連鎖でのみバリエーションを広げていく書き方をしていたのと比べると、コードもかなり減るだろう。プリプロセッサで展開されてコードが肥大していた頃よりは、ダイエットになる可能性は高い。
+          <p>しかし、こちらも何をどのレベルで関数化するのかといった側面にガバナンスが無いと、非常に複雑なコードの連鎖と化したコードが容易に想像できる。
+          <p>今回の <code translate=no>if()</code> や <code translate=no>@function</code> の前提として、やはりコンポーネント指向の Web 開発は、分けては考えられないだろう。<code translate=no>@scope</code> や Container Query などは、HTML / JS と合わせて CSS を同梱したコンポーネントを基本に開発し、アプリとはそれを敷き詰めた実装であるというスタンスが前提にあるか、それとも古き良き HTML で組まれたサイトに、CSS ファイルを読み込み、そこにページ全体のスタイルが書かれているような作り方とでは、影響が変わってくるだろう。
+          <p>コンポーネントに閉じるということは、ある程度スコープの狭い CSS だけを対象にすればよく、そこに当てたいスタイルそのものよりもその「コンポーネントが置かれている条件」のハンドリングの方が関心事として大きい。
+          <p>汎用的な設計のコンポーネントは、それらを外から引数として注入され、その値に応じて形を変え、それ以上のこと(自分がコンテナ側でどう扱われるか)は呼び出した側(コンテナ)に任せるという発想に必然的に行き着く。
+          <p>コンポーネントの中はある程度見通しの効く量の CSS であるべきだし、そこでの実装が、設計に応じたカスタムプロパティとそれを反映するための <code translate=no>if()</code> や、その実装を共通化する <code translate=no>@function</code> によって書かれていても、そこまで大きく可読性を失うことは無いだろう。むしろ、下手に JS との行き来が発生する方が汚れやすい可能性すらある。
+          <p>また、デザインシステムの中で、デザインは Token ベースの設計を行い、Headless 系のコンポーネントと繋ぎこむ設計も多くなってきたが、この Token の設計に使える <code translate=no>@function</code> を共通の Utility として整備したり、Token として提供していた Custom Property の代わりに Custom Function そのものを利用者に提供してしまうという設計もあるだろう。
+          <ul>
+            <li>Figma がどうやって吐いてくれるのか
+            <li>ロジックが入ってくるとデバッグはどうするのか
+            <li>テストを書きたくなるがそれは JS の方がやりやすくないか?
+            <li>CSS Variable ベースのスタイルライブラリはどうなっていくのか?
+            <li>CSS Modules / CSS in JS / Tailwind などの選定にどう影響していくのか?
+            <li>プリプロセッサに残された役割とは?
+          </ul>
+          <p>など、かなり考え方が変わってきそうだ。
+        </section>
+      </section>
+      <section>
+        <h2 id="いつ-ship-するか"><a href="#いつ-ship-するか">いつ Ship するか</a></h2>
+        <p>今回特筆すべきは、Chrome の Intents を出す早さだった。どちらの機能も I2P が出た直後に I2S が出されたのだ。
+        <ul>
+          <li>
+            <code translate=no>if()</code>
+            <ul>
+              <li>I2P: 2025/01/28
+              <li>I2S: 2025/02/26
+            </ul>
+          </li>
+          <li>
+            <code translate=no>@function</code>
+            <ul>
+              <li>I2P: 2025/02/13
+              <li>I2S: 2025/02/25
+            </ul>
+          </li>
+        </ul>
+        <p>筆者としても「やってるなぁ」と思った直後には Ship が出たので、非常に驚いた。
+        <p>さすがに、「重要な機能であるため、Ship を急がずにトライアルをもっと試した方が良い」というフィードバックがあり、少なくとも <code translate=no>@function</code> の Ship は 3 ヶ月延期された。
+        <p>しかし、それでも 3 ヶ月は流石に短いと感じる。昨今の CSS では、途中で名前や挙動を変えることが度々あり、Ship してから互換性の問題が見つかることもあったため、あまり焦ってリリースしない方が良いのは間違いない。一方で、ダラダラ議論しても先に進まないのも事実であり、互換性の問題は Ship してみないと見つかりにくいのも事実だ。もしかしたら、この Ship は意図して早急に出し周囲を急かす目的もあるのかもしれない。
+        <p>なお、Firefox / Safari のポジションは現時点では出ていない。
+        <p>一方、ドラスティックな提案でありながら TAG の反応は意外にもポジティブ寄りに見える。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>議論の中期段階程度だが、詳細な仕様はどうあれ、CSS WG としては「やっていく」こと自体に一定の合意がある状態と言えるだろう。
+        <p>ここまで CSS でできることが増えると、デザインシステムを作り始めていたころの前提ともかなり変わってくるだろう。
+        <p>次の 10 年、CSS がどうなっていくのか、また全くわからなくなってきた。
+        <p>そんな重要な議論を、受け身で与えられてから仕様に文句を言っても遅いため、我々も、今この時点から「CSS における <code translate=no>if()</code> / <code translate=no>@function</code> がどうあるべきか」を考える必要があるのだ。
+        <p>その啓蒙の意味を込めて、仕様の詳細解説ではなく、議論の現状を解説した。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>動作するデモを以下に用意した。
+        <p>Chrome で以下の 2 つのフラグを有効にすると動作する。
+        <ul>
+          <li>
+            chrome:flags
+            <ul>
+              <li><code translate=no>chrome://flags/#enable-experimental-web-platform-features</code>
+            </ul>
+          </li>
+          <li>
+            runtime flag
+            <ul>
+              <li><code translate=no>--enable-blink-features=CSSFunctions</code>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="https://labs.jxck.io/css/if.html" target=_blank>https://labs.jxck.io/css/if.html</a>
+          <li><a href="https://labs.jxck.io/css/function.html" target=_blank>https://labs.jxck.io/css/function.html</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                CSS Values and Units Module Level 5
+                <ul>
+                  <li><a href="https://drafts.csswg.org/css-values-5/#if-notation" target=_blank>https://drafts.csswg.org/css-values-5/#if-notation</a>
+                </ul>
+              </li>
+              <li>
+                CSS Functions and Mixins Module
+                <ul>
+                  <li><a href="https://drafts.csswg.org/css-mixins-1/" target=_blank>https://drafts.csswg.org/css-mixins-1/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                Explainer: CSS if() function - Google Docs
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1mbHBUR40jUBay7QZxgbjX7qixs5UZXkdL9tVwGvbmt0/" target=_blank>https://docs.google.com/document/d/1mbHBUR40jUBay7QZxgbjX7qixs5UZXkdL9tVwGvbmt0/</a>
+                </ul>
+              </li>
+              <li>
+                CSS Mixins &amp; Functions Explainer
+                <ul>
+                  <li><a href="https://css.oddbird.net/sasslike/mixins-functions/" target=_blank>https://css.oddbird.net/sasslike/mixins-functions/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Requirements Doc
+          <li>
+            Mozilla Standard Position
+            <ul>
+              <li>
+                CSS if() function · Issue #1167 · mozilla/standards-positions
+                <ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/1167" target=_blank>https://github.com/mozilla/standards-positions/issues/1167</a>
+                </ul>
+              </li>
+              <li>
+                CSS Functions and Mixins 1 (@function) · Issue #1148 · mozilla/standards-positions
+                <ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/1148" target=_blank>https://github.com/mozilla/standards-positions/issues/1148</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Webkit Position
+            <ul>
+              <li>
+                CSS if() function · Issue #453 · WebKit/standards-positions
+                <ul>
+                  <li><a href="https://github.com/WebKit/standards-positions/issues/453" target=_blank>https://github.com/WebKit/standards-positions/issues/453</a>
+                </ul>
+              </li>
+              <li>
+                CSS Functions and Mixins 1 (@function) · Issue #437 · WebKit/standards-positions
+                <ul>
+                  <li><a href="https://github.com/WebKit/standards-positions/issues/437" target=_blank>https://github.com/WebKit/standards-positions/issues/437</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TAG Design Review
+            <ul>
+              <li>
+                CSS if() function · Issue #1045 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/1045" target=_blank>https://github.com/w3ctag/design-reviews/issues/1045</a>
+                </ul>
+              </li>
+              <li>
+                Custom Functions (@function) · Issue #1031 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/1031" target=_blank>https://github.com/w3ctag/design-reviews/issues/1031</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Ship: CSS if() function
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/EOz7NK6Y0cE" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/EOz7NK6Y0cE</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Prototype: CSS if() function
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/ySEBHgVlhBM" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/ySEBHgVlhBM</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Ship: CSS Custom Functions (@function)
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/bvi4D7eD7wI" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/bvi4D7eD7wI</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Prototype: CSS functions
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/b-BTxKD-Ldc/" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/b-BTxKD-Ldc/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                CSS if() function - Chrome Platform Status
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/6313805904347136" target=_blank>https://chromestatus.com/feature/6313805904347136</a>
+                </ul>
+              </li>
+              <li>
+                CSS Custom Functions - Chrome Platform Status
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/5179721933651968" target=_blank>https://chromestatus.com/feature/5179721933651968</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            WPT (Web Platform Test)
+            <ul>
+              <li>
+                if
+                <ul>
+                  <li><a href="https://wpt.fyi/results/css/css-values?label=master&q=if-" target=_blank>https://wpt.fyi/results/css/css-values?label=master&amp;q=if-</a>
+                </ul>
+              </li>
+              <li>
+                function
+                <ul>
+                  <li><a href="https://wpt.fyi/results/css/css-mixins?label=experimental&label=master&aligned" target=_blank>https://wpt.fyi/results/css/css-mixins?label=experimental&amp;label=master&amp;aligned</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>DEMO
+          <li>
+            Blog
+            <ul>
+              <li>
+                Inline conditionals in CSS? • Lea Verou
+                <ul>
+                  <li><a href="https://lea.verou.me/blog/2024/css-conditionals/" target=_blank>https://lea.verou.me/blog/2024/css-conditionals/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Presentation
+          <li>
+            Issues
+            <ul>
+              <li>
+                [css-values] if() function · Issue #3455 · w3c/csswg-drafts
+                <ul>
+                  <li><a href="https://github.com/w3c/csswg-drafts/issues/3455" target=_blank>https://github.com/w3c/csswg-drafts/issues/3455</a>
+                </ul>
+              </li>
+              <li>
+                [css-values-5] What is the MVP for inline conditionals on custom properties? · Issue #10064 · w3c/csswg-drafts
+                <ul>
+                  <li><a href="https://github.com/w3c/csswg-drafts/issues/10064" target=_blank>https://github.com/w3c/csswg-drafts/issues/10064</a>
+                </ul>
+              </li>
+              <li>
+                [css-values] Short-circuit if() evaluation · Issue #11500 · w3c/csswg-drafts
+                <ul>
+                  <li><a href="https://github.com/w3c/csswg-drafts/issues/11500" target=_blank>https://github.com/w3c/csswg-drafts/issues/11500</a>
+                </ul>
+              </li>
+              <li>
+                [css-mixins] Allow mixins/functions to be called via custom properties · Issue #10006 · w3c/csswg-drafts
+                <ul>
+                  <li><a href="https://github.com/w3c/csswg-drafts/issues/10006" target=_blank>https://github.com/w3c/csswg-drafts/issues/10006</a>
+                </ul>
+              </li>
+              <li>
+                Proposal: Custom CSS Functions &amp; Mixins · Issue #9350 · w3c/csswg-drafts
+                <ul>
+                  <li><a href="https://github.com/w3c/csswg-drafts/issues/9350" target=_blank>https://github.com/w3c/csswg-drafts/issues/9350</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
