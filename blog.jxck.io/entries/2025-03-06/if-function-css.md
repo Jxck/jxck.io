@@ -1,4 +1,4 @@
-# [css] CSS の if と function の提案
+# [css] CSS における if と function の提案
 
 ## Intro
 
