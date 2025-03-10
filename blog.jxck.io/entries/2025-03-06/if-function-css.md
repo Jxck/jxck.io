@@ -415,7 +415,7 @@ body {
 
 Chrome で以下の 2 つのフラグを有効にすると動作する。
 
-- chrome:flags
+- chrome://flags
   - `chrome://flags/#enable-experimental-web-platform-features`
 - runtime flag
   - `--enable-blink-features=CSSFunctions`
