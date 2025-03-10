@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-03-06T08:00:00+08:00",
-    "dateModified": "2025-03-06T08:00:00+08:00",
+    "dateModified": "2025-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-03-06>2025-03-06</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-03-06>2025-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-03-10>2025-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -181,7 +181,7 @@
 &lt;my-div class=&quot;dark&quot;&gt;dark&lt;/my-div&gt;
 &lt;my-div class=&quot;light&quot;&gt;light&lt;/my-div&gt;</code></pre>
         <p>この場合、スタイルのバリエーションごとに、プロパティを重複して指定している状態になる。
-        <p>ここでは class で指定しているが、Prefer Color Scheme に対応して Color Scheme を切り替える場合は、<code translate=no>dark-light()</code> で以下のように書ける。
+        <p>ここでは class で指定しているが、Prefer Color Scheme に対応して Color Scheme を切り替える場合は、<code translate=no>light-dark()</code> で以下のように書ける。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
   my-div {
     color-scheme: light, dark;
@@ -415,7 +415,7 @@ div {
 }</code></pre>
         <p>ここまで、グローバル変数として <code translate=no>--color</code> を定義していたが、同じ名前のままカスタムファンクションになった。代わりに、定義が一箇所なので、それまで独立させていた基本色は、関数に直書きしているがこれはまあ、従来通り外に出しても良いだろう。
         <p>使う側を見れば、何によるバリエーションがスタイルを変えているのかが、ある程度わかりやすくなっているとは思う。
-        <p>他の例として、<code translate=no>dark-light(A, B)</code> のメディアクエリ版として、<code translate=no>--pc-mobile(A, B)</code> をカスタムファンクションとして考えてみよう。
+        <p>他の例として、<code translate=no>light-dark(A, B)</code> のメディアクエリ版として、<code translate=no>--pc-mobile(A, B)</code> をカスタムファンクションとして考えてみよう。
         <p>960px を起点に、大きければ PC と判断し A を、小さければ Mobile と判断し B を返すようなイメージだ。
         <pre class=css data-code=css><code translate=no class=language-css>@function --pc-mobile(--PC, --Mobile) {
   @media (width &lt;= 960px) {
@@ -512,7 +512,7 @@ body {
         <p>Chrome で以下の 2 つのフラグを有効にすると動作する。
         <ul>
           <li>
-            chrome:flags
+            chrome://flags
             <ul>
               <li><code translate=no>chrome://flags/#enable-experimental-web-platform-features</code>
             </ul>
