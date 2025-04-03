@@ -13,13 +13,11 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 174 回のテーマは 2025 年 3 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 135
-
 
 #### Updates
 
@@ -885,7 +883,7 @@ guest: [@saku](https://x.com/sakupi01)
     - Incremental HTTP Messages: Kazuho Oku, presenting in-person
       - #3007, Definition of Incremental Delivery
     - HTTP Unencoded Digest: Lucas Pardue, presenting remotely
-    - **Delete-Cookie and _HttpOnly Prefix: Yoav Weiss, presenting remotely**
+    - **Delete-Cookie and \_HttpOnly Prefix: Yoav Weiss, presenting remotely**
     - **Cookies: HTTP State Management Mechanism: Johann Hofmann, presenting remotely**
 
   #### WG
