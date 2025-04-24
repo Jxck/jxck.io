@@ -141,7 +141,11 @@ async function main() {
       writeResponse(response);
     }
   } catch (error) {
-    console.error(`エラーが発生しました: ${error.message}`);
+    if (error instanceof Error) {
+      console.error(`エラーが発生しました: ${error.message}`);
+    } else {
+      console.error("エラーが発生しました: 不明なエラー");
+    }
     Deno.exit(1);
   }
 }
