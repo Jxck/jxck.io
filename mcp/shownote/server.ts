@@ -1,4 +1,3 @@
-#!/usr/bin/env -S deno run --allow-read --allow-net
 import { getEpisodeScript } from "./reader.ts";
 
 // MCPサーバーの実装
