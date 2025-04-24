@@ -2,7 +2,7 @@ import config from "./deno.json" with { type: "json" };
 const BASE_PATH: string = config.BASE_PATH;
 
 // エピソード番号から台本を取得する関数
-export async function getEpisodeScript(
+export async function getShowNote(
   episodeNumber: number,
 ): Promise<{ content: string } | { error: string }> {
   try {

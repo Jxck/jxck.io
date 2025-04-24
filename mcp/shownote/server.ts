@@ -1,13 +1,7 @@
-import { getEpisodeScript } from "./reader.ts";
+import { getShowNote } from "./reader.ts";
 
 // MCPサーバーの実装
 class MozaicScriptServer {
-  // エピソード台本を取得するメソッド
-  async getEpisodeScript(
-    episodeNumber: number,
-  ): Promise<{ content: string } | { error: string }> {
-    return await getEpisodeScript(episodeNumber);
-  }
   // JSONRPC形式のリクエストを処理する
   async handleRequest(request: any): Promise<any> {
     if (request.method === "initialize") {
@@ -16,9 +10,9 @@ class MozaicScriptServer {
         jsonrpc: "2.0",
         id: request.id,
         result: {
-          protocolVersion: "2024-11-05",
+          protocolVersion: request.params.protocolVersion,
           serverInfo: {
-            name: "mozaic-script-server",
+            name: "shownote",
             version: "1.0.0",
           },
           capabilities: {
@@ -30,7 +24,9 @@ class MozaicScriptServer {
           },
         },
       };
-    } else if (request.method === "list_tools") {
+    } else if (request.method === "notifications/initialized") {
+      return null;
+    } else if (request.method === "tools/list") {
       // ツール一覧を返す
       return {
         jsonrpc: "2.0",
@@ -38,7 +34,7 @@ class MozaicScriptServer {
         result: {
           tools: [
             {
-              name: "get_episode_script",
+              name: "get_shownote",
               description: "指定されたエピソード番号の台本を取得します",
               inputSchema: {
                 type: "object",
@@ -57,9 +53,9 @@ class MozaicScriptServer {
     } else if (
       request.method === "call_tool" || request.method === "tools/call"
     ) {
-      if (request.params.name === "get_episode_script") {
+      if (request.params.name === "get_shownote") {
         const episodeNumber = request.params.arguments.episode_number;
-        const result = await this.getEpisodeScript(episodeNumber);
+        const result = await getShowNote(episodeNumber);
 
         if ("error" in result) {
           return {
@@ -123,6 +119,7 @@ async function readRequest(): Promise<any> {
 
 // 標準出力にJSONRPCレスポンスを書き込む
 function writeResponse(response: any): void {
+  if (response === null) return;
   const text = JSON.stringify(response);
   Deno.stdout.write(new TextEncoder().encode(text + "\n"));
 }
@@ -135,8 +132,9 @@ async function main() {
       if (request === null) {
         break;
       }
-
+      console.error(">>>>>>>>>>>>>>>>>>>>>>>>>>>\n", JSON.stringify(request, null, " "), "\n===========================");
       const response = await server.handleRequest(request);
+      console.error("<<<<<<<<<<<<<<<<<<<<<<<<<<<\n", JSON.stringify(response, null, " "), "\n===========================");
       writeResponse(response);
     }
   } catch (error) {

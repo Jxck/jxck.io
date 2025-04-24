@@ -1,4 +1,4 @@
-import { getEpisodeScript } from "./reader.ts";
+import { getShowNote } from "./reader.ts";
 
 // コマンドライン引数からエピソード番号を取得
 const args: string[] = Deno.args;
@@ -14,7 +14,7 @@ if (isNaN(episodeNumber)) {
 }
 
 // 台本を取得して表示
-getEpisodeScript(episodeNumber).then(
+getShowNote(episodeNumber).then(
   (result: { content: string } | { error: string }) => {
     if ("error" in result) {
       console.error(result.error);
