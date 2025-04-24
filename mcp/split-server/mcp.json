@@ -1,0 +1,48 @@
+{
+  "schema_version": "v1",
+  "name": "split-server",
+  "description": "ファイルを300行ごとに分割して操作するためのMCPサーバー",
+  "tools": [
+    {
+      "name": "get_file_chunk",
+      "description": "指定されたファイルを300行ごとに分割し、特定のインデックスの部分を取得します",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "読み込むファイルのパス"
+          },
+          "index": {
+            "type": "integer",
+            "description": "取得する300行ブロックのインデックス(0から始まる)"
+          }
+        },
+        "required": ["filePath", "index"]
+      }
+    },
+    {
+      "name": "replace_file_chunk",
+      "description": "指定されたファイルの特定の部分(300行ごとに区切った特定のインデックス)を指定されたテキストで置き換えます",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "編集するファイルのパス"
+          },
+          "text": {
+            "type": "string",
+            "description": "置き換えるテキスト"
+          },
+          "index": {
+            "type": "integer",
+            "description": "置き換える300行ブロックのインデックス(0から始まる)"
+          }
+        },
+        "required": ["filePath", "text", "index"]
+      }
+    }
+  ],
+  "resources": []
+}
