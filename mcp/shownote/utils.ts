@@ -32,8 +32,8 @@ export async function writeFile(
 /**
  * 指定されたインデックスに基づいて、ファイルの特定の範囲の行を取得する
  * @param lines ファイルの内容を行ごとに分割した配列
- * @param index 取得する300行ブロックのインデックス(0から始まる)
- * @param chunkSize 1ブロックあたりの行数(デフォルト: 300)
+ * @param index 取得する50行ブロックのインデックス(0から始まる)
+ * @param chunkSize 1ブロックあたりの行数(デフォルト: 50)
  * @returns 指定された範囲の行
  */
 export function getChunkByIndex(
@@ -58,9 +58,9 @@ export function getChunkByIndex(
 /**
  * 指定されたインデックスに基づいて、ファイルの特定の範囲の行を置き換える
  * @param lines ファイルの内容を行ごとに分割した配列
- * @param index 置き換える300行ブロックのインデックス(0から始まる)
+ * @param index 置き換える50行ブロックのインデックス(0から始まる)
  * @param text 置き換える内容
- * @param chunkSize 1ブロックあたりの行数(デフォルト: 300)
+ * @param chunkSize 1ブロックあたりの行数(デフォルト: 50)
  * @returns 置き換え後の行の配列
  */
 export function replaceChunkByIndex(

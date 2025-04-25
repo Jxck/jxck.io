@@ -27,10 +27,10 @@ export async function get_shownote({ episode_number }: {
 }
 
 /**
- * VTT ファイルの特定の部分(300行ごとに区切った特定のインデックス)を取得する
+ * VTT ファイルの特定の部分(50行ごとに区切った特定のインデックス)を取得する
  *
  * @param episode_number 読み込む VTT のエピソード番号
- * @param index 取得する 300 行ブロックのインデックス（0から始まる）
+ * @param index 取得する 50 行ブロックのインデックス（0から始まる）
  * @returns 指定された範囲の VTT 文字列
  */
 export async function get_vtt_chunk({ episode_number, index }: {
@@ -50,10 +50,10 @@ export async function get_vtt_chunk({ episode_number, index }: {
 }
 
 /**
- * ファイルの特定の部分（300行ごとに区切った特定のインデックス）を置き換える
+ * ファイルの特定の部分（50行ごとに区切った特定のインデックス）を置き換える
  * @param filePath 編集するファイルのパス
  * @param text 置き換えるテキスト
- * @param index 置き換える300行ブロックのインデックス（0から始まる）
+ * @param index 置き換える50行ブロックのインデックス（0から始まる）
  * @returns 置き換えが成功したかどうか
  */
 export async function replace_vtt_chunk({
