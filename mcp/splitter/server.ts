@@ -94,8 +94,17 @@ async function main() {
       // 入力をJSONとしてパース
       const request: Request = JSON.parse(input);
 
-      // リクエストを処理
+      console.error(
+        ">>>>>>>>>>>>>>>>>>>>>>>>>>>\n",
+        JSON.stringify(request, null, " "),
+        "\n===========================",
+      );
       const response = await handleRequest(request);
+      console.error(
+        "<<<<<<<<<<<<<<<<<<<<<<<<<<<\n",
+        JSON.stringify(response, null, " "),
+        "\n===========================",
+      );
 
       // レスポンスをJSON形式で標準出力に書き込む
       console.log(JSON.stringify(response));
