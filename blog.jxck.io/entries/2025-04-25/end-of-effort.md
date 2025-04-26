@@ -1,4 +1,4 @@
-# 3PCA 31 日目: 3rd Party Cookie 廃止の廃止
+# [cookie][3pca] 3PCA 31 日目: 3rd Party Cookie 廃止の廃止
 
 ## Intro
 

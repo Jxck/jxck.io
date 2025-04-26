@@ -1,4 +1,4 @@
-# 3PCA 30 日目: 2024 年の 3rd Party Cookie まとめ
+# [cookie][3pca] 3PCA 30 日目: 2024 年の 3rd Party Cookie まとめ
 
 ## Intro
 
