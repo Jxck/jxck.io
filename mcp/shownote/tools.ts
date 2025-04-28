@@ -21,7 +21,10 @@ export async function get_shownote({ episode_number }: {
       const scriptPath: string = `${path}/${entry.name}`;
       const fullText: string = await Deno.readTextFile(scriptPath);
       // URL を消す
-      const compact = fullText.replace(/https?:\/\/[^ ]+/g, "");
+      const compact = fullText
+        .replaceAll(/https:\/\/.+/g, "\n")
+        .replaceAll(/( )*-( )+\n/g, "\n")
+        .replaceAll(/\n+/g, "\n")
       return compact;
     }
   }
