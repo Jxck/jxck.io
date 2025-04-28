@@ -155,7 +155,7 @@ guest: [@saku](https://x.com/sakupi01)
   - More accurate DevTools performance debugging using real-world data
     - https://developer.chrome.com/blog/devtools-grounded-real-world
   - Use `shape()` for responsive clipping
-    - https://developer.chrome.com/blog/css-shape?hl=en
+    - https://developer.chrome.com/blog/css-shape
   - **What is a Chrome Finch experiment?**
     - https://developer.chrome.com/docs/web-platform/chrome-finch
     - chrome://version/?show-variations-cmd
@@ -475,7 +475,7 @@ guest: [@saku](https://x.com/sakupi01)
     - https://github.com/WICG/webcomponents/issues/1095
   - DCE Breakout #2 · Issue #109 · w3c/webcomponents-cg
     - https://github.com/w3c/webcomponents-cg/issues/109
-    - [https://docs.google.com/document/d/1MV7OTxlrU67x4Z0O9jgtIsRCya5LP04Jyf91aNr2Bqs/edit](https://docs.google.com/document/d/1MV7OTxlrU67x4Z0O9jgtIsRCya5LP04Jyf91aNr2Bqs/edit?tab=t.0#heading=h.g8jvf2qs7cgm)
+    - https://docs.google.com/document/d/1MV7OTxlrU67x4Z0O9jgtIsRCya5LP04Jyf91aNr2Bqs/edit
 - CSSWG
   - **[css-display] create a display property value for visually hiding an element while making it available for AT**
     - https://github.com/w3c/csswg-drafts/issues/560

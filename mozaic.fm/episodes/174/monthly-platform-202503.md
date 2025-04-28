@@ -283,9 +283,9 @@ guest: [@saku](https://x.com/sakupi01)
     - 関連で、Stylelint のプラグイン
       - https://github.com/ryo-manba/stylelint-plugin-require-baseline
   - `Intl.DurationFormat` is now Baseline Newly available
-    - https://web.dev/blog/intl-durationformat-baseline?hl=en
+    - https://web.dev/blog/intl-durationformat-baseline
   - The contenteditable "plaintext-only" attribute value combination is now Baseline Newly available
-    - [https://web.dev/blog/contenteditable-plaintext-only-baseline](https://web.dev/blog/contenteditable-plaintext-only-baseline?hl=en)
+    - https://web.dev/blog/contenteditable-plaintext-only-baseline
   - How to think about Baseline and polyfills
     - https://web.dev/articles/baseline-and-polyfills
 - google for developers

@@ -535,7 +535,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 #### Proposals Diff
 
-- [https://github.com/tc39/proposals/compare/main@{2024-08-01}...main@{2024-09-01}](https://github.com/tc39/proposals/compare/main@{2023-01-01}...main@{2023-02-01})
+- https://github.com/tc39/proposals/compare/main@{2024-08-01}...main@{2024-09-01}
 - https://tc39.github.io/beta/
 - 0->1
   - Unordered Async Iterator Helpers

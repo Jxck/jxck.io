@@ -130,7 +130,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://storybook.js.org/blog/component-testing/
   - Storybook と Chromatic を活用した component test と e2e について
 - Storybook 8.3
-  - [https://github.com/storybookjs/storybook/blob/next/CHANGELOG.md #830](https://github.com/storybookjs/storybook/blob/next/CHANGELOG.md#830)
+  - https://github.com/storybookjs/storybook/blob/next/CHANGELOG.md#830
   - First-class Vitest integration to run stories as component tests
   - Next.js-Vite framework for Vitest compatibility and better DX
   - Further reduced bundle size for a smaller install footprint

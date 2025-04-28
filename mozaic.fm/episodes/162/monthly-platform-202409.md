@@ -106,7 +106,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Ship: Private Aggregation API: increase contribution limit to 100 for Protected Audience callers
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Dpg9N9rcFKM
 - Ship: WebGPU: Clip Distances
-  - [https://groups.google.com/a/chromium.org/g/blink-dev/c/\_eetFP94I8c](https://groups.google.com/a/chromium.org/g/blink-dev/c/_eetFP94I8c)
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/_eetFP94I8c
 - **Prototype and Ship: Private State Token API Permissions Policy Default Allowlist Wildcard**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/5jI8kLLdIFw
 - **Prototype: `Document-Policy: expect-no-linked-resources`**

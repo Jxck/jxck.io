@@ -232,7 +232,7 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
 - 8 月
 - 9 月
   - 6: フロントエンドカンファレンス北海道
-    - [https://note.com/_n13u_/n/n7ae05b22c09d](https://note.com/_n13u_/n/n7ae05b22c09d?sub_rt=share_pb)
+    - https://note.com/_n13u_/n/n7ae05b22c09d
   - 21: フロントエンドカンファレンス東京
     - https://x.com/fec_tokyo/status/1908082128815812618
 - 10 月

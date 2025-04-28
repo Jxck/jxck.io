@@ -172,7 +172,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - CSS nesting improves with CSSNestedDeclarations
     - https://web.dev/blog/css-nesting-cssnesteddeclarations
   - **Show Baseline status on your blog posts and presentations**
-    - [https://web.dev/blog/show-baseline-status](https://web.dev/blog/show-baseline-status?hl=en)
+    - https://web.dev/blog/show-baseline-status
 - google for developers
   - **Chrome on Android to support third-party autofill services natively - Google Developers Blog**
     - https://developers.googleblog.com/en/chrome-3p-autofill-services/
@@ -269,7 +269,7 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Standard Position
 
 - 今月 Close された Issue と PR ものをみる
-  - [https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2024-10-01+](https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2024-07-01+)
+  - https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2024-10-01+
 - Positive
   - CSS Layout API
     - https://github.com/mozilla/standards-positions/issues/1088
@@ -395,7 +395,7 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Standard Positions
 
 - 今月 Close されたものをみる
-  - [https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2024-10-01+](https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2024-06-01+)
+  - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2024-10-01+
   - Support
     - Generate CSS `view-transition-name` from element
       - https://github.com/WebKit/standards-positions/issues/408

@@ -26,7 +26,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Document picture-in-picture: propagate user activation
   - Keyboard focusable scroll containers.
 - **What's new in DevTools, Chrome 127**
-  - [https://developer.chrome.com/blog/new-in-devtools-127](https://developer.chrome.com/blog/new-in-devtools-127?hl=en)
+  - https://developer.chrome.com/blog/new-in-devtools-127
   - Inspect CSS anchor positioning in the Elements panel
   - Sources panel improvements
     - Enhanced 'Never Pause Here'
@@ -173,11 +173,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - web.dev
   - blog
     - **How to use container queries now**
-      - [https://web.dev/blog/how-to-use-container-queries-now](https://web.dev/blog/how-to-use-container-queries-now?hl=en)
+      - https://web.dev/blog/how-to-use-container-queries-now
     - **Interop 2024 mid-year update**
-      - [https://web.dev/blog/interop-2024-midyear](https://web.dev/blog/interop-2024-midyear?hl=en)
+      - https://web.dev/blog/interop-2024-midyear
     - New to the web platform in June
-      - [https://web.dev/blog/web-platform-06-2024](https://web.dev/blog/web-platform-06-2024?hl=en)
+      - https://web.dev/blog/web-platform-06-2024
     - @property: Next-gen CSS variables now with universal browser support
       - https://web.dev/blog/at-property-baseline
     - CSS font-size-adjust is now in Baseline
@@ -194,7 +194,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers-jp.googleblog.com/2024/07/google-ads-api-v17.html
 - chrome developer blog
   - Adding Trusted Types to YouTube
-    - [https://developer.chrome.com/blog/trusted-types-on-youtube](https://developer.chrome.com/blog/trusted-types-on-youtube?hl=en)
+    - https://developer.chrome.com/blog/trusted-types-on-youtube
   - What's happening in Chrome Extensions?
     - https://developer.chrome.com/blog/extension-news-july-2024
   - Chrome Extensions: Important policy updates
@@ -276,7 +276,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://fxdx.dev/firefox-webdriver-newsletter-128/
   - Support for the "BiDi flag"
 - Necko Newsletter Q2 2024
-  - [https://groups.google.com/a/mozilla.org/g/dev-platform/c/kfLDXD_M6IA](https://groups.google.com/a/mozilla.org/g/dev-platform/c/kfLDXD_M6IA/m/V8RKsQHhAAAJ)
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/kfLDXD_M6IA/m/V8RKsQHhAAAJ
 
 #### MDN / Open Web Docs
 
@@ -558,7 +558,7 @@ guest: [@myakura](https://twitter.com/myakura)
 #### Meeting
 
 - 2024-06 Meeting
-  - [https://github.com/wintercg/admin/issues](https://github.com/wintercg/admin/issues/49)
+  - https://github.com/wintercg/admin/issues/49
   - no meeting
 
 ### IETF 動向
@@ -567,7 +567,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - HTTPbis
   - https://httpwg.org/wg-materials/ietf120/minutes.html
-  - 20 min - [Communicating Proxy Configurations in Provisioning Domains](https://datatracker.ietf.org/doc/draft-ietf-intarea-proxy-config/) - Tommy Pauly
+  - 20 min
+    - Communicating Proxy Configurations in Provisioning Domains
+      - https://datatracker.ietf.org/doc/draft-ietf-intarea-proxy-config/
     - https://datatracker.ietf.org/meeting/120/materials/slides-120-httpbis-pvd-proxy-discovery-00
     - Proxy 自体に新しいプロトコルのサポートとかを問い合わせる?
     - .well-know に JSON
@@ -651,7 +653,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.phylum.io/persistent-npm-campaign-shipping-trojanized-jquery/
   - jQuery に悪意のあるコードを含んで、同梱配布しているパッケージがみつかった
 - **Security Alert: Update to the Authy Android (v25.1.0) and iOS App (v26.1.0) | Twilio**
-  - [\*\*https://www.twilio.com/en-us/changelog/Security_Alert_Authy_App_Android_iOS\*\*](https://www.twilio.com/en-us/changelog/Security_Alert_Authy_App_Android_iOS)
+  - **https://www.twilio.com/en-us/changelog/Security_Alert_Authy_App_Android_iOS**
   - Authy ハッキングで 3,300 万件の電話番号流出
 - **Unlawful Access of Customer Data - AT&T Bill & account Customer Support**
   - https://www.att.com/support/article/my-account/000102979
