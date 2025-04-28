@@ -12,6 +12,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
 
 第 49 回のテーマは 2019 年 02 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -52,7 +53,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
   - **Trust is Good, Observation is Better-Intersection Observer v2**
     - https://developers.google.com/web/updates/2019/02/intersectionobserver-v2
     - **Trusted Types help prevent Cross-Site Scripting**
-    - .isVisible が入り、 transform や opacity も含め false negative で取れる
+    - .isVisible が入り、transform や opacity も含め false negative で取れる
   - https://developers.google.com/web/updates/2019/02/trusted-types
     - [blog](https://blog.jxck.io/entries/2019-01-27/trusted-types.html)
   - **Get Ready for Priority Hints**
@@ -175,6 +176,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
   - **What's new in AMP, Q1 2019: Improvements to consent, videos, forms and lists**
     - https://amphtml.wordpress.com/2019/02/27/whats-new-in-amp-q1-2019-improvements-consent-videos-forms-and-lists/
 
+
 ### Firefox 動向
 
 - Stable: 65
@@ -233,6 +235,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - Rust で Style Component を書き直す話
     - パフォーマンスの為に始めたがセキュリティ向上の副産物が
     - これまで 69 個の脆弱性があったが、最初から Rust で書いてたら 51 個は発生しなかった
+
 
 ### Safari 動向
 
@@ -296,6 +299,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
   - IntersectionObserver in WebKit
     - https://webkit.org/blog/8582/intersectionobserver-in-webkit/
 
+
 ### Edge 動向
 
 - Stable:
@@ -336,6 +340,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - https://github.com/MicrosoftEdge/wptest
     - https://wptest.center/#/new
     - より簡単に WPTest を書くための仕組み
+
 
 ### WHATWG/W3C 動向
 
@@ -401,10 +406,11 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
   - **W3C updates its Process Document**
     - https://www.w3.org/blog/news/archives/7568
     - W3C の Process が更新された
-    - W3C AB のメンバーが fixed 9 人から、 range 9~11 人に変更
+    - W3C AB のメンバーが fixed 9 人から、range 9~11 人に変更
     - 一人のメンバが WG 内の単一 Organization にしか参加できなかったのが、複数可能に
     - WG メンバ外からの Contribution についての新しいライセンスを追加
     - 不明瞭な部分を明瞭に
+
 
 ### TC39 動向
 
@@ -462,7 +468,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - `class A extends B{}` を `new` する前に `A.__proto__` を変えることができる
     - `new A` で必ず B の constructor を呼ぶには `freeze()` しないといけない
     - でも `freeze()` したくなければ A の constructor で `Reflect.construct(C, [], new.target);` する
-    - これの戻り値に独自のプロパティを定義することができ、 built in class はこうなってる
+    - これの戻り値に独自のプロパティを定義することができ、built in class はこうなってる
     - でも親の private/public field を継承する余地が無い
     - `new.initialize()` で親の field も継承する
     - 応用すれば private field の proxy もできる
@@ -474,6 +480,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - 言語や地名などの翻訳を提供する API
     - Firefox が既に独自実装を持っている
     - https://firefox-source-docs.mozilla.org/intl/dataintl.html#mozintl-getlanguagedisplaynames-locales-langcodes
+
 
 ### IETF 動向
 
@@ -556,6 +563,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
     - https://tools.ietf.org/html/draft-andersson-mpls-spl-terminology-01
 - Other
 
+
 ### セキュリティ動向
 
 - 韓国で SNI Blocking
@@ -575,6 +583,7 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
   - ただし SW の仕様をよくわかってない、かつ間違いがある論文のように見える
   - おそらく Chrome チームが調査しているのでは無いか?
 
+
 ### 周辺動向
 
 - **1991: A SERVER-SIDE WEB FRAMEWORK WRITTEN IN FORTH**
@@ -583,13 +592,14 @@ guest: [@sisidovski](https://twitter.com/sisidovski)
 - DeskGap
   - https://deskgap.com/
   - Web 技術でデスクトップアプリを作るフレームワーク
-  - Node.js をバンドルし、 System の WebView に表示
+  - Node.js をバンドルし、System の WebView に表示
 - Creating standards for CDNs
   - https://www.fastly.com/blog/creating-standards-for-cdns
 - **AddyOsmani.com - JavaScript Loading Priorities in Chrome**
   - https://addyosmani.com/blog/script-priorities/
   - https://medium.com/dev-channel/javascript-loading-priorities-in-chrome-57c54cfa6672
   - Priority Hints 以前の preload や async/defer の priority の話
+
 
 ### イベント
 

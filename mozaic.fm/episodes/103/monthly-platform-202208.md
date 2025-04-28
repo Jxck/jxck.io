@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 103 回のテーマは 2022 年 08 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 105
+
 
 #### Updates
 
@@ -106,6 +108,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Remove HTTP/2 push
   - **Remove Persistent Quota**
 
+
 #### Intents
 
 - **Ship: CSS 'ic' Length Unit**
@@ -148,7 +151,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kC-AeZ1fSdY
   - 2022 年 10 月から始まる UA Reduction Phase 5(デスクトップ OS のバージョン固定)の展開について
   - 古い Windows で影響が出るかもしれないので影響を見ながら少しずつ展開していく
-  - Chrome 107 時点では 1% で、 3 ヶ月ほどかけ徐々に増やす
+  - Chrome 107 時点では 1% で、3 ヶ月ほどかけ徐々に増やす
   - 2023 年 2 月上旬に 100% 予定
 - Prototype: PerformanceResourceTiming.deliveryType
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0if9oQR2GCs
@@ -201,7 +204,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Reminder: Registration for BlinkOn 17 is open!
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0NtqfBwQc6E
 
+
 #### V8
+
 
 #### Other
 
@@ -287,9 +292,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - canary
   - https://www.chromium.org/getting-involved/dev-channel
 
+
 ### Firefox 動向
 
 #### Stable: 104
+
 
 #### Updates
 
@@ -302,6 +309,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **1750972 - Re-enable same-site schemeful**
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1750972
   - Firefox 104 で Schemeful SameSite が再び有効に
+
 
 #### Intents
 
@@ -318,6 +326,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Unship: "invalid-markup" error message for invalid MathML markup
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/lGPBzvOIKpk
 
+
 #### Other
 
 - Engineering Effectiveness Newsleter (July 2022 Edition)
@@ -331,9 +340,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Positive, neutral, and negative positions**
   - https://github.com/mozilla/standards-positions/pull/680
 
+
 ### Safari 動向
 
 #### Stable: 15.6.1
+
 
 #### Updates
 
@@ -365,6 +376,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web API
     - Implemented Compression Streams API (253093@main)
 
+
 #### Other
 
 - **Using `:has()` as a CSS Parent Selector and much more**
@@ -379,9 +391,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Speedometer 2.1
   - https://webkit.org/blog/13083/speedometer-2-1/
 
+
 ### Edge 動向
 
 #### Stable: 105
+
 
 #### Updates
 
@@ -394,7 +408,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **The new sidebar in Microsoft Edge helps you multitask smarter**
   - https://blogs.windows.com/msedgedev/2022/09/01/microsoft-edge-sidebar-multitask-smarter/
 
+
 #### Chakra
+
 
 #### Other
 
@@ -409,6 +425,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2022/08/01/certificate-revocation-in-microsoft-edge/
 - Basic Authentication Deprecation in Exchange Online - September 2022 Update - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/exchange-team-blog/basic-authentication-deprecation-in-exchange-online-september/ba-p/3609437
+
 
 ### WHATWG/W3C 動向
 
@@ -428,6 +445,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/9650
 - Chartering
 
+
 #### Other
 
 - **TPAC topics -- please contribute to this list**
@@ -443,12 +461,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - 仕様と実装がばらけるのでそれは避けたいという話になっている
 - **[selectors] The forgiving nature of :has breaks jQuery when used with a complex :has selector**
   - https://github.com/w3c/csswg-drafts/issues/7676
-  - Chrome 105 で `:has()` が有効になったところ、 jQuery が壊れた
+  - Chrome 105 で `:has()` が有効になったところ、jQuery が壊れた
   - jQuery は昔から `:has()` セレクタや、`:contains` などを独自拡張として持っていた
-    - `$()` のセレクタはまずブラウザ `querySelectorAll()` に渡され、 fail したら jQuery のエンジンに渡すようになっている
+    - `$()` のセレクタはまずブラウザ `querySelectorAll()` に渡され、fail したら jQuery のエンジンに渡すようになっている
     - `ul:has(li:contains('Item'))` といったセレクタはこれまで jQuery で処理されるようになっていた
   - ネイティブ `:has()` の引数は forgiving selector list をとり、中のセレクタに invalid なものがあっても fail しない
-    - なので jQuery 内の `:has()` がネイティブ実装を参照し続け、 jQuery のエンジンにフォールバックしなくなってしまった
+    - なので jQuery 内の `:has()` がネイティブ実装を参照し続け、jQuery のエンジンにフォールバックしなくなってしまった
+
 
 ### TC39 動向
 
@@ -462,7 +481,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tc39/notes/blob/main/meetings/2022-07/jul-20.md
     - https://github.com/tc39/notes/blob/main/meetings/2022-07/jul-21.md
     - Change Array By Copy Update (Issue 95)
-      - TypedArray には splice がないので、 toSpliced は無くす
+      - TypedArray には splice がないので、toSpliced は無くす
       - TA は長さが変えられないから splice できない
       - Bun が Change array by copy を使う最初の platoform
     - Well-formatted PDFs for TC39 Standards in 2022 and Beyond
@@ -475,6 +494,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - 関数の合成系のやつ
       - pipeline operator とは被るが、トレードオフが違うらしい
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2022-08-01}...main@{2022-09-01}
@@ -484,9 +504,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -522,7 +545,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
+
 
 ### CDN 動向
 
@@ -539,19 +564,24 @@ guest: [@myakura](https://twitter.com/myakura)
   - Deep dives & how the Internet works
     - https://blog.cloudflare.com/deep-dives-how-the-internet-works/
 
+
 #### Fastly
 
+
 #### Other
+
 
 ### セキュリティ動向
 
 - **「Apple でログイン」によるログイン機能廃止のお知らせ|コインチェック株式会社**
   - https://corporate.coincheck.com/news/Zj9osP2j
 
+
 ### 周辺動向
 
 - **All Change, Still Purple. | by Daniel Appelquist**
   - https://medium.com/@torgo/all-change-still-purple-b7430e84afa
+
 
 ### イベント
 
@@ -564,6 +594,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 11 月
   - 15-17: BlinkOn17
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/16LQXKmAD4s
+
 
 ### Wrap Up
 

@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 68 回のテーマは 2020 年 5 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -270,6 +271,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - AMP: a well-lit path to optimizing for Google's page experience signal - The AMP Blog
     - https://blog.amp.dev/2020/05/28/amp-page-experience/
 
+
 ### Firefox 動向
 
 - Stable: 76
@@ -340,6 +342,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Firefox Reality 10
     - https://blog.mozvr.com/firefox-reality-10/
 
+
 ### Safari 動向
 
 - Stable: 13.1
@@ -372,7 +375,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Implemented accessibility of HTML 5.1 Drag & Drop (r261248)
 - **Position**
   - Webkit-dev から Position Request についてだけ抜粋
-    - 返信は apple の開発者個々人の意見や、 apple 外の人からもくる
+    - 返信は apple の開発者個々人の意見や、apple 外の人からもくる
     - 単純に Yes/No にまとめることはできない
   - [webkit-dev] Position on emerging standard: WebCodecs
     - https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html
@@ -402,6 +405,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.webkit.org/pipermail/webkit-dev/2020-May/031225.html
     - no reply
 - Other
+
 
 ### Edge 動向
 
@@ -458,7 +462,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - VirtualKeyboardPolicy と PenButtonEvents からから
   - **Making the web more accessible and inclusive for all with Microsoft Edge**
     - https://blogs.windows.com/windowsexperience/2020/05/21/making-the-web-more-accessible-and-inclusive-for-all-with-microsoft-edge/
-    - Chromium に取り組み始めてから、 150 以上の a11y 機能改善を実施した
+    - Chromium に取り組み始めてから、150 以上の a11y 機能改善を実施した
     - 「Immersive Reader で開く」ができるように
     - Immersive Reader で翻訳できるように
     - Read Aloud で読み上げ
@@ -481,6 +485,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://textslashplain.com/2020/05/18/browser-basics-user-gestures/
   - A bit of GREASE keeps the web moving | text/plain
     - https://textslashplain.com/2020/05/18/a-bit-of-grease-keeps-the-web-moving/
+
 
 ### WHATWG/W3C 動向
 
@@ -529,6 +534,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - W3C Strategic Highlights, May 2020
     - https://www.w3.org/blog/news/archives/8564
 
+
 ### TC39 動向
 
 - Meeting
@@ -548,6 +554,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/FrankYFTang/proposal-intl-enumeration
     - サポートされている言語設定などを取得できる API
 - Other
+
 
 ### IETF 動向
 
@@ -594,10 +601,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-brownlee-rfc-series-and-rse-changes-00
 - Other
 
+
 ### セキュリティ動向
 
 - Network-Layer DDoS Attack Trends for Q1 2020
   - https://blog.cloudflare.com/network-layer-ddos-attack-trends-for-q1-2020/
+
 
 ### 周辺動向
 
@@ -611,6 +620,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/making-video-intuitive-an-explainer/
 - The requestVideoFrameCallback API
   - https://blog.tomayac.com/2020/05/15/the-requestvideoframecallback-api/
+
 
 ### イベント
 
@@ -637,6 +647,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 11 月
   - 14-20: IETF 109 Bangkok
     - https://www.ietf.org/how/meetings/109/
+
 
 ### Wrap Up
 

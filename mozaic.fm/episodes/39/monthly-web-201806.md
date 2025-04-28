@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 39 回のテーマは 2018 年 6 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -189,6 +190,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Deprecation of Android MediaStream.label()
     - Deleting RTPFragmentationHeader on the video decode path
 
+
 ### Firefox 動向
 
 - Stable: 61
@@ -267,6 +269,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - AV1: next generation video - The Constrained Directional Enhancement Filter
     - https://hacks.mozilla.org/2018/06/av1-next-generation-video-the-constrained-directional-enhancement-filter/
 
+
 ### Safari 動向
 
 - Stable: 11.1
@@ -323,6 +326,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web Animations in WebKit
     - https://webkit.org/blog/8343/web-animations-in-webkit/
 
+
 ### Edge 動向
 
 - Stable: EdgeHTML17
@@ -376,6 +380,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Preloading HSTS for TLDs across browsers**
     - https://groups.google.com/a/chromium.org/forum/#!msg/hsts-discuss/XzMpDMqtkKc/PDUICTieAwAJ
     - IE と Edge も Chrome の HSTS Preload List を読むように
+
 
 ### WHATWG/W3C 動向
 
@@ -445,6 +450,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/2018/06/w3c-strategic-highlights-for-spring-2018-and-advisory-committee-meeting/
     - WHATWG Review Drafts の背景(Our partnership with WHATWG のところ)
 
+
 ### TC39 動向
 
 - **TC39 Meetings Notes**
@@ -466,6 +472,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 2->3
   - 3->4
 - New Proposals
+
 
 ### IETF 動向
 
@@ -505,7 +512,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-mdns-ice-candidates-00
   - **HTTP/2 Server Push Use Cases**
     - https://tools.ietf.org/html/draft-bishop-httpbis-push-cases-00
-    - Push するリソースのタイプ、 Push の目的、ブラウザ以外のケースなどの整理
+    - Push するリソースのタイプ、Push の目的、ブラウザ以外のケースなどの整理
   - Analysis and Problem Statements for Interworking between 5G Network Slicing and Transport Network
     - https://tools.ietf.org/html/draft-mink-5g-ns-transport-ps-00
   - **TLS 1.3 Authentication and Integrity only Ciphersuites**
@@ -519,6 +526,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.ietf.org/mail-archive/web/tls/current/msg26385.html
     - TLS の ossification (硬化) を防ぐ GREASE 的なことをもっとやっていこうという話
     - Chrome はバージョンナンバーなどを定期的に変えていくことを計画
+
 
 ### セキュリティ動向
 
@@ -572,6 +580,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://itc.jipdec.or.jp/aossl_local-government/201806.html
   - 設定率のトップは愛媛県の 71.4%
 
+
 ### 周辺動向
 
 - **5G 策定完了**
@@ -582,6 +591,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Towards ever faster websites with early hints and priority hints**
   - https://www.fastly.com/blog/towards-ever-faster-websites-early-hints-and-priority-hints
   - Fastly の Andrew による Priority Hints と Erly Hints
+
 
 ### イベント
 

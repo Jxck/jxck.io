@@ -13,6 +13,7 @@ guest: [@yoshiko](https://x.com/yoshiko_pg)
 
 第 173 回のテーマは 2025 年 3 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - mastra.ai
@@ -58,6 +59,7 @@ guest: [@yoshiko](https://x.com/yoshiko_pg)
 - Figma In Talks With Bankers To Explore An I.P.O. This Year- NYT
   - https://www.nytimes.com/2025/03/07/technology/figma-ipo.html
   - Figma の IPO 準備報道
+
 
 ## Events
 

@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 108 回のテーマは 2022 年 11 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - **Next.js 13**
@@ -20,7 +21,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
     - https://nextjs.org/blog/next-13
     - app Directory (beta):
       - Layouts
-        - ディレクトリ構成とファイル名で共通レイアウト、ページ、テンプレート、 loading などを実現するもの
+        - ディレクトリ構成とファイル名で共通レイアウト、ページ、テンプレート、loading などを実現するもの
       - React Server Components
         - `fetch()` の拡張、`use()`、`"use client"` ディレクティブなど
       - Streaming
@@ -54,7 +55,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - Is Turbopack really 10x Faster than Vite?
     - https://github.com/yyx990803/vite-vs-next-turbo-hmr/discussions/8
     - Evanyou 氏の Turbopack 計測に関するもの
-    - React Server Components(RSC) を使用している場合は HMR が遅く、 RSC を使用せずにルートを​​ use client ディレクディブにすると、 Vite の 2 倍ほど HMR が早くなったとのこと
+    - React Server Components(RSC) を使用している場合は HMR が遅く、RSC を使用せずにルートを​​ use client ディレクディブにすると、Vite の 2 倍ほど HMR が早くなったとのこと
     - Vite の HMR に vite-plugin-swc-react-refresh を使用すると Next と同等のスピードになったとのこと
     - 上記の Turbopack Performance Benchmarks の記事も Vite より 10 倍早くなるにはある一定の状況である必要があり、数字の切り上げも Vite と Turbopack で違うという記載もある
   - Make ship happen by sokra · Pull Request #2315 · vercel/turbo
@@ -68,7 +69,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
     - これをベースに Webpack の後継として作られたのが Turbopack
     - ここの関数結果レベルでインメモリキャッシュが強いので Next.js の開発が高速に
     - これをファイルキャッシュにすれば、リモート共有できチーム開発も早くなる
-    - Turborepo と Turboengine は Go だったが Turbopack は Rust で、 repo/engine も Rust に置き換え予定
+    - Turborepo と Turboengine は Go だったが Turbopack は Rust で、repo/engine も Rust に置き換え予定
 - What is the reason to patch the fetch? · Issue #25573 · facebook/react
   - https://github.com/facebook/react/issues/25573
 - Mixing It Up: Remix Joins Shopify to Push the Web Forward - Development (2022)
@@ -136,7 +137,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - ​​ Mark Zuckerberg's Message to Meta Employees | Meta
   - https://about.fb.com/news/2022/11/mark-zuckerberg-layoff-message-to-employees/
   - Meta が 13% (1.1 万人以上)のレイオフを発表
-  - Facebook を始めとしたアプリから、 VR (Reality Labs) 事業まで幅広く影響予定
+  - Facebook を始めとしたアプリから、VR (Reality Labs) 事業まで幅広く影響予定
   - 採用も絞る
   - React を始めとする OSS 関連への影響も心配
   - https://twitter.com/rickhanlonii/status/1590369312845762560
@@ -174,6 +175,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - Builtin TypeChecking として型テストが入ってる
 - [sharing only] npm@9 が GA
   - https://github.blog/changelog/2022-11-09-npm-cli-v9-is-now-generally-available/
+
 
 ## Events
 

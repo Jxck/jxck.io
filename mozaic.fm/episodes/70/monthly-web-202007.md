@@ -12,6 +12,7 @@ guest: [@shqld](https://twitter.com/shqld)
 
 第 70 回のテーマは 2020 年 7 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -149,8 +150,8 @@ guest: [@shqld](https://twitter.com/shqld)
     - 長期間:
       - BFCache のヒット率をさらに高めるための機能のサポートを追加し、デスクトッププラットフォームのサポートを追加します
       - Safari と Firefox を使用して、相互運用性を改善し、動作を標準化します。
-    - Android Chrome のみ、 Web View もなし
-    - DevTools を介してページがバックフォワードキャッシュから復元されなかった理由を公開し、 Web 開発者が Web サイトを最適化する方法に関する情報を提供することも計画しています。
+    - Android Chrome のみ、Web View もなし
+    - DevTools を介してページがバックフォワードキャッシュから復元されなかった理由を公開し、Web 開発者が Web サイトを最適化する方法に関する情報を提供することも計画しています。
     - Cache-Control:no-store で bfcache を無効にできる
     - **JS-based なオプトアウト API も策定?中**
       - https://github.com/whatwg/html/issues/5744
@@ -236,6 +237,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - **Official Google Webmaster Central Blog: Prepare for mobile-first indexing (with a little extra time)**
     - https://webmasters.googleblog.com/2020/07/prepare-for-mobile-first-indexing-with.html
 
+
 ### Firefox 動向
 
 - Stable: 79
@@ -305,9 +307,9 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blog.mozilla.org/security/2020/07/09/reducing-tls-certificate-lifespans-to-398-days/
     - 証明書の期限を 825 日から 398 日に短くする 3 つの理由
       1. 長いとインシデントがあっても対応が遅れる。証明書が 5 年だったころ見つかった MD5 の問題を無くすのに 5 年かかり、最大 3 年だった SHA1 を無くすのに 3 年かかった。
-      2. 期限が長いと、侵害されたときに、 MITM できる期間が長くなる。
+      2. 期限が長いと、侵害されたときに、MITM できる期間が長くなる。
       3. ドメインを手放しても証明書を保持できる。ドメインオーナーが変わっても前のオーナーが持っていた証明書は切れるまで有効なので MITM できる。また SAN に自分が所有してないドメインがある証明書があった場合、それを失効すると全てのドメインに影響が出るため DoS に使える。
-    - mozilla のルートストアポリシーを更新してこれを適用し、 2020/9/1 には適用する計画らしい。
+    - mozilla のルートストアポリシーを更新してこれを適用し、2020/9/1 には適用する計画らしい。
   - New Blog Post on 398-Day Certificate Lifetimes
     - https://groups.google.com/g/mozilla.dev.security.policy/c/EPTMdyIKcYg
   - Performance Improvements via Formally-Verified Cryptography in Firefox - Mozilla Security Blog
@@ -316,6 +318,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blog.mozilla.org/addons/2020/07/24/extensions-in-firefox-79/
   - Call for Participants - W3C/OGC workshop series on Maps for the Web
     - https://groups.google.com/g/mozilla.dev.platform/c/dM5MQY8H9Co
+
 
 ### Safari 動向
 
@@ -352,7 +355,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - Implemented user action specifications for Escape action (r264000)
   - **Speculation in JavaScriptCore**
     - https://webkit.org/blog/10308/speculation-in-javascriptcore/
-    - v8 とは異なって、 JIT の最適化を Profiling と Speculation のフェーズに分けて説明してる
+    - v8 とは異なって、JIT の最適化を Profiling と Speculation のフェーズに分けて説明してる
       - Speculation といいつつ殆んど JIT の話
     - Optimizer Chain(?)の全体構成や個々の最適化(手法)も一通り紹介されている
     - 結構 V8 とは方向性が違う印象
@@ -374,6 +377,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - **Big updates in Safari 14 with Ronak Shah and Beth Dakin (The Changelog #400) - Changelog**
     - https://changelog.com/podcast/400
     - Safari の人が Podcast で Safari14 の話をしている
+
 
 ### Edge 動向
 
@@ -397,6 +401,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://blogs.windows.com/msedgedev/2020/07/22/multitasking-improvements-windows-10-microsoft-edge/
   - What's new in Microsoft Edge - July 2020 / Microsoft Inspire Edition
     - https://blogs.windows.com/windowsexperience/2020/07/21/whats-new-in-microsoft-edge-july-2020-microsoft-inspire-edition/
+
 
 ### WHATWG/W3C 動向
 
@@ -423,6 +428,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://bocoup.com/blog/introducing-the-web-platform-contribution-guide
     - W3C/WHATWG への貢献のしかたガイド
     - 5 月の取りこぼし
+
 
 ### TC39 動向
 
@@ -455,6 +461,7 @@ guest: [@shqld](https://twitter.com/shqld)
 - New Proposals
   - https://github.com/tc39/proposal-await.ops
 - Other
+
 
 ### IETF 動向
 
@@ -509,7 +516,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://tools.ietf.org/html/draft-an-multipath-quic-application-policy-00
   - **Greasing HTTP**
     - https://tools.ietf.org/html/draft-nottingham-http-grease-00
-    - Grease を HTTP でするガイドラインと、 Header/Cache Directive での GREASE 方法の定義
+    - Grease を HTTP でするガイドラインと、Header/Cache Directive での GREASE 方法の定義
   - A Proposed Model for RFC Editing and Publication
     - https://tools.ietf.org/html/draft-thomson-rfced-model-00
   - **Using TLS Application-Layer Protocol Settings (ALPS) in HTTP**
@@ -557,6 +564,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - HTTP/3 logo | daniel.haxx.se
     - https://daniel.haxx.se/blog/2020/08/01/http-3-logo/
 
+
 ### セキュリティ動向
 
 - SSL サーバ証明書の有効期間を短縮するという決定に関する続報 | グローバルサインブログ
@@ -580,9 +588,10 @@ guest: [@shqld](https://twitter.com/shqld)
     - 全ポート
     - 最初のブロック後 120~180 秒間くらい続く
 
+
 ### 周辺動向
 
-- **Chrome もダメ、 Edge もダメ... マイナポイント予約、 PC は「IE11」のみ対応です: J-CAST ニュース**
+- **Chrome もダメ、Edge もダメ... マイナポイント予約、PC は「IE11」のみ対応です: J-CAST ニュース**
   - https://www.j-cast.com/2020/07/05389466.html?p=all
   - なぜこうなったのか、中の人の書き残し
   - https://comemo.nikkei.com/n/n1c9103c81c79
@@ -620,6 +629,7 @@ guest: [@shqld](https://twitter.com/shqld)
 - **Introducing Rome**
   - https://romefrontend.dev/blog/2020/08/08/introducing-rome.html
 
+
 ### イベント
 
 - 7 月
@@ -641,6 +651,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://www.ietf.org/how/meetings/109/
   - 17-19: BlinkOn
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/zNDLekIrSQE
+
 
 ### Wrap Up
 

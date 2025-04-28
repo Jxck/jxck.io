@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 115 回のテーマは 2022 年 2 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 110
+
 
 #### Updates
 
@@ -70,6 +72,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Better syntax highlight for Angular
   - Reorganize caches in the Application panel
   - > To better facilitate debugging, DevTools now supports evaluating expressions with private class members.
+
 
 #### Intents
 
@@ -173,7 +176,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **PSA: re Iframe Render Throttling**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/op-z7fMMmWY
 
+
 #### V8
+
 
 #### Other
 
@@ -221,7 +226,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developers.googleblog.com/
   - Chrome 110
     - https://developers-jp.googleblog.com/2023/02/blog-post.html
-  - Chrome 111 ベータ版 : 新しい CSS カラータイプとカラースペース、 CSS 三角関数、 View Transitions API
+  - Chrome 111 ベータ版 : 新しい CSS カラータイプとカラースペース、CSS 三角関数、View Transitions API
     - https://developers-jp.googleblog.com/2023/02/chrome-111-beta.html
 - google developer japan blog
   - **デジタル証明書のセキュリティを保つ - TrustCor の証明書の削除について**
@@ -295,7 +300,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Moving Forward, Together**
     - https://www.chromium.org/Home/chromium-security/root-ca-policy/moving-forward-together/
     - Chrome の Root Program Policy が更新される
-    - Root CA 証明書は、 30 年信頼されるべきとされていたが、 7 年にする
+    - Root CA 証明書は、30 年信頼されるべきとされていたが、7 年にする
     - 中間 CA は 3 年にする
     - サーバ証明書は 398 日から 90 日に短縮する
     - Chrome の Root は TLS 専用とし、多目的 CA は段階的に外していく
@@ -308,9 +313,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/HTTPArchive/status/1630178203871395848
     - Web Almanac 2023 はやらない
 
+
 ### Firefox 動向
 
 #### Stable: 110.0.1
+
 
 #### Updates
 
@@ -328,6 +335,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - SpiderMonkey Newsletter (Firefox 110-111)
   - https://spidermonkey.dev/blog/2023/02/16/newsletter-firefox-110-111.html
 
+
 #### Intents
 
 - **Ship: Forced color adjust**
@@ -340,6 +348,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/9FkNumU5X44
 - Change:
 - Remove:
+
 
 #### Other
 
@@ -358,9 +367,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/openwebdocs/project/blob/main/steering-committee/meetups/london-2023/index.md
   - OWD と MDN のミーティング議事録
 
+
 ### Safari 動向
 
 #### Stable: 16.3
+
 
 #### Updates
 
@@ -503,14 +514,17 @@ guest: [@myakura](https://twitter.com/myakura)
 - **The User Activation API**
   - https://webkit.org/blog/13862/the-user-activation-api/
 
+
 #### Other
 
 - **Safari 16.4 Is An Admission - Infrequently Noted**
   - https://infrequently.org/2023/02/safari-16-4-is-an-admission/
 
+
 ### Edge 動向
 
 #### Stable: 110
+
 
 #### Updates
 
@@ -523,7 +537,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Adobe and Microsoft Bring Industry-Leading Acrobat PDF Experience to 1.4 Billion Windows Users through Microsoft Edge - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2023/02/08/adobe-acrobat-microsoft-edge-pdf/
 
+
 #### Chakra
+
 
 #### Other
 
@@ -545,6 +561,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - A Year of Intention - text/plain
   - https://textslashplain.com/2023/02/04/a-year-of-intention/
 
+
 ### WHATWG/W3C 動向
 
 #### Draft
@@ -562,6 +579,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - CSS Snapshot 2023
     - https://www.w3.org/TR/2023/DNOTE-css-2023-20230214/
 - Chartering
+
 
 #### Other
 
@@ -606,10 +624,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - > Ministry of Digital Affairs, Taiwan
     - 台湾のデジタル発展部が W3C に入った
 
+
 ### TC39 動向
 
 - ミーティングが終わって Minutes が出た月のみ実施
 - それ以外の月はスキップ
+
 
 #### Meeting
 
@@ -643,6 +663,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - だれも反対してないものもあるが、それが興味がないだけか、賛成なのかはっきりしない
   - そのへんをはっきりさせつつ、コンセンサスの取り方を how-we-work として明確にしよう
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2023-01-01}...main@{2023-02-01}
@@ -652,9 +673,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -662,6 +686,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - ML は RSS がないものもあって日常的にスレッドを全部追うのが難しい
 - いくつかの WG に絞り、ミーティングベースで追いかける感じにする
 - それ以外は試行錯誤中
+
 
 #### WG
 
@@ -695,7 +720,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
+
 
 ### CDN 動向
 
@@ -724,6 +751,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - How we built an open-source SEO tool using Workers, D1, and Queues
   - https://blog.cloudflare.com/how-we-built-an-open-source-seo-tool-using-workers-d1-and-queues/
 
+
 #### Fastly
 
 - **Fastly と Fediverse の未来 : パート 1 | Fastly**
@@ -732,7 +760,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/jp/blog/a-first-look-at-chromes-tls-clienthello-permutation-in-the-wild
 - Fastly 、業界初 5 年連続で Web アプリケーション & API 保護部門の「Customers' Choice」に選出 | Fastly
   - https://www.fastly.com/jp/blog/fifth-times-a-charm-fastly-is-the-only-vendor-to-be-named-a-customers-choice
-- Fastly の Glitch 、 2023 DEVIES Award を受賞 | Fastly
+- Fastly の Glitch 、2023 DEVIES Award を受賞 | Fastly
   - https://www.fastly.com/jp/blog/fastly-wins-2023-devies-award-for-glitch
 - 10 年以上にわたるスーパーボウルの配信サポートで新たな記録を更新 | Fastly
   - https://www.fastly.com/jp/blog/delivering-super-bowl-for-more-than-a-decade-and-breaking-records-in-the
@@ -745,6 +773,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Boulder で ACME サポート
   - Apple や Google の Root Store にも参加
   - GoDaddy とのクロスルート
+
 
 #### Other
 
@@ -769,6 +798,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 機能不全の危機 - Wininit.exe を使用したリモート DoS 攻撃 | Akamai
     - https://www.akamai.com/ja/blog/security-research/cant-wait-to-shut-you-down-msrpc-wininit
 
+
 ### セキュリティ動向
 
 - **当サイトへの不正アクセスによる個人情報漏えいに関するお詫びとお知らせ|ソースネクスト**
@@ -777,6 +807,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - > 弊社が運営するサイトのシステムの一部の脆弱性を利用した第三者の不正アクセスにより、ペイメントアプリケーションの改ざんが行なわれたため。
 - **ペイメントアプリケーションの改ざん(Web スキミング)に関する概説と対策手法について - セキュリティ研究センターブログ**
   - https://security.macnica.co.jp/blog/2023/02/web-1.html
+
 
 ### 周辺動向
 
@@ -790,7 +821,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - の 4 つを用いて、既存の Web 技術スタックから離れて開発する
 - **How Shadow DOM and accessibility are in conflict**
   - https://alice.pages.igalia.com/blog/how-shadow-dom-and-accessibility-are-in-conflict/
-  - 支援技術が必要とする情報が Shadow DOM の中に隠蔽されたり、 Shadow DOM 間で断絶したりする
+  - 支援技術が必要とする情報が Shadow DOM の中に隠蔽されたり、Shadow DOM 間で断絶したりする
   - すると支援技術が正しく DOM の構造を認識でない可能性がある
   - どうすべきかと足りてない仕様などの考察
 - 「輻輳」は「アクセス集中」に言い換え...通信障害時の説明わかりやすく、大手 6 社が素案(読売新聞オンライン) - Yahoo!ニュース
@@ -804,7 +835,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Brave に入る HTTPS by Default 機能について
   - リクエストした URL がアップグレードに失敗するサイトのリストになければ HTTPS でのアップグレードを試し、エラーが返ってこなかったら HTTPS のページを読み込む
     - https://github.com/brave/adblock-lists/blob/master/brave-lists/https-upgrade-exceptions-list.txt
-- Yahoo! JAPAN 、位置情報や Cookie など個人情報の利用に関する通知について、 Q&A 形式で解説するコンテンツ「とつぜん通知解決ガイド」を公開 - ニュース - ヤフー株式会社
+- Yahoo! JAPAN 、位置情報や Cookie など個人情報の利用に関する通知について、Q&A 形式で解説するコンテンツ「とつぜん通知解決ガイド」を公開 - ニュース - ヤフー株式会社
   - https://about.yahoo.co.jp/pr/release/2023/02/15a/
   - > スマートフォンなどを使用している際に表示される"位置情報の利用"や"Cookie の利用"など、さまざまな許可を求めるポップアップ通知について、通知の意味や気を付けるべき点を Q&A 形式でわかりやすく解説し、自分自身の個人情報の扱いに関する疑問や不安を解消するコンテンツ
 - 許可しちゃって、だいじょうぶ? とつぜん通知解決ガイド - Yahoo! JAPAN
@@ -826,6 +857,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - BCD - Experimental APIs
   - https://paul.kinlan.me/bcd-experimental-apis/
 
+
 ### イベント
 
 - 3 月
@@ -836,6 +868,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 5 月
   - 25: SecWeb
     - https://secweb.work/2023.html
+
 
 ### Wrap Up
 

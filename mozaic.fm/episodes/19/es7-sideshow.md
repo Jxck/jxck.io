@@ -12,11 +12,12 @@ guest: [@Constellation](https://twitter.com/Constellation)
 
 第 19 回 ES7 の SideShow です。
 
-[@Constellation](https://twitter.com/Constellation) さんが語る JavaScript Engine (JSCore) での実装の裏話と、 WebAssembly についてお送りします。
+[@Constellation](https://twitter.com/Constellation) さんが語る JavaScript Engine (JSCore) での実装の裏話と、WebAssembly についてお送りします。
 
-なお、エピソード内で「何よりも ES6 module が欲しい」という要望を出していましたが、 [@Constellation](https://twitter.com/Constellation) さんが、 [実装に着手してくれました!!](https://plus.google.com/+YusukeSUZUKI/posts/CtKaHMhXrEH) 楽しみに待ちましょう!!
+なお、エピソード内で「何よりも ES6 module が欲しい」という要望を出していましたが、[@Constellation](https://twitter.com/Constellation) さんが、[実装に着手してくれました!!](https://plus.google.com/+YusukeSUZUKI/posts/CtKaHMhXrEH) 楽しみに待ちましょう!!
 
 [Bug 147340 - [ES6] Implement ES6 Modules](https://bugs.webkit.org/show_bug.cgi%3Fid%3D147340)
+
 
 ## Show Note
 

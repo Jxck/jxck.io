@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 158 回のテーマは 2024 年 8 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - Figma Config 2024
@@ -136,6 +137,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - Lottielab で作ってたエディターがアップデートして正式アプデぽい
 - Postgres Sandbox
   - https://postgres.new/
+
 
 ## Events
 

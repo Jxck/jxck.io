@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 41 回のテーマは 2018 年 8 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -230,6 +231,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.apnic.net/2018/08/14/passive-observations-of-a-large-dns-service/
     - 2009 年以来運用している最大の Public DNS 8.8.8.8 に関する知見
 
+
 ### Firefox 動向
 
 - Stable: 61
@@ -243,13 +245,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.nightly.mozilla.org/2018/08/29/these-weeks-in-firefox-issue-44/
   - Extensions in Firefox 63 | Mozilla Add-ons Blog
     - https://blog.mozilla.org/addons/2018/08/31/extensions-in-firefox-63/
-    - 拡張視点の記事だが、 Async Clipboard API やタブの複数選択など、 Firefox 63 で導入される機能に触れている
+    - 拡張視点の記事だが、Async Clipboard API やタブの複数選択など、Firefox 63 で導入される機能に触れている
 - Intents
   - Ship MediaSource SourceBuffer.changeType
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Wr19mMZnC80/WEGHDqx5CQAJ
   - Ship '-webkit-appearance' and changes to '-moz-appearance' values
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/Fq6OH5SWeRo/lxHDXFnwCQAJ
-    - `-webkit-appearance` しか指定しないサイトが多いので、 -moz-appearance のエイリアスにする
+    - `-webkit-appearance` しか指定しないサイトが多いので、-moz-appearance のエイリアスにする
   - **Ship: Enable `navigator.clipboard.*` APIs by default**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/ef7O7PrmNh0/qy8k9HDjCQAJ
     - Async Clipboard API が有効に
@@ -345,7 +347,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - `about:blank` あたりから重要な機能が入っていく
   - **ungleich Blog - Mozilla's new DNS resolution is dangerous**
     - https://blog.ungleich.ch/en-us/cms/blog/2018/08/04/mozillas-new-dns-resolution-is-dangerous/
-    - Firefox が実験中の DoH で、 TRR (Trusted Recursive Resolver) に(広く使われている) Cloudflare を使うのは SPOF になるよねという批判
+    - Firefox が実験中の DoH で、TRR (Trusted Recursive Resolver) に(広く使われている) Cloudflare を使うのは SPOF になるよねという批判
     - システムの DNS 設定も上書きするのでデフォルトにするのはよくないとも
   - **Firefox Nightly Secure DNS Experimental Results**
     - https://blog.nightly.mozilla.org/2018/08/28/firefox-nightly-secure-dns-experimental-results/
@@ -361,7 +363,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 試験中。早ければ遅いトラッキングスクリプトのブロックが Firefox 63 、サードパーティのトラッキングスクリプトのブロックが Firefox 65 から
   - Let's be Transparent - The Mozilla Blog
     - https://blog.mozilla.org/blog/2018/08/28/lets-be-transparent/
-    - Telemetry で得られたデータをグラフ化、 Firefox Hardware Report の後継となる Firefox Public Data Report を公開
+    - Telemetry で得られたデータをグラフ化、Firefox Hardware Report の後継となる Firefox Public Data Report を公開
     - https://data.firefox.com/
   - Bug 1471947, bug 1471948 - Enable Shadow DOM and Custom Elements in release builds, r=ehsan, emilio
     - https://hg.mozilla.org/integration/mozilla-inbound/rev/16daef3a89a2
@@ -372,6 +374,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://palant.de/2018/08/29/password-managers-please-make-sure-autofill-is-secure
   - Dweb:IPFS による Web への協力と信頼の構築
     - https://hacks.mozilla.org/2018/08/dweb-building-cooperation-and-trust-into-the-web-with-ipfs/
+
 
 ### Safari 動向
 
@@ -407,6 +410,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://trac.webkit.org/changeset/235459/webkit ほか
     - https://lists.webkit.org/pipermail/webkit-dev/2018-July/030060.html にて実装したい旨を表明していた
 
+
 ### Edge 動向
 
 - Stable: Microsoft Edge 42 / Edge EdgeHTML17
@@ -440,6 +444,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Improved performance on Windows 10 due to Cubic, the new default TCP congestion provider.
   - 2018 年 8 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました - Japan IE Support Team Blog
     - https://blogs.technet.microsoft.com/jpieblog/2018/08/15/securityupdate201808/
+
 
 ### WHATWG/W3C 動向
 
@@ -515,6 +520,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/annevk/status/1031824798312218624
     - `fetch()` でクエリーを渡すのにもっと書きやすい方法が求められているらしい
 
+
 ### TC39 動向
 
 - Meeting
@@ -542,8 +548,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.infoq.com/jp/news/2018/08/eich-crockford-js-future
   - Harmony Day: Ten yours ago today @BrendanEich announced that TC39 was terminating work on ES4 and starting work on ECMAScript Harmony
     - https://twitter.com/awbjs/status/1029057495808000001
-    - ES4 をやめ、 ES 3.1(のちの ES5)をまずやり、大きな機能追加はその後やるという Harmony の方針が決まって 10 年たった
+    - ES4 をやめ、ES 3.1(のちの ES5)をまずやり、大きな機能追加はその後やるという Harmony の方針が決まって 10 年たった
       - https://mail.mozilla.org/pipermail/es-discuss/2008-August/006837.html
+
 
 ### IETF 動向
 
@@ -561,7 +568,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Deploying TLS 1.3 at scale with Fizz, a performant open source TLS library - Facebook Code**
     - https://code.fb.com/networking-traffic/deploying-tls-1-3-at-scale-with-fizz-a-performant-open-source-tls-library/
     - Facebook 製 TLS ライブラリ Fizz がオープンソースに
-    - モバイルアプリですでに使用中、 50% 以上のトラフィックが TLS 1.3
+    - モバイルアプリですでに使用中、50% 以上のトラフィックが TLS 1.3
     - 1 秒に百万単位で TLS 1.3 ハンドシェイクが行われている
 - RFC
   - RFC 8410 - Algorithm Identifiers for Ed25519, Ed448, X25519, and X448 for Use in the Internet X.509 Public Key Infrastructure
@@ -611,6 +618,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Dictionary Compression for HTTP (at Facebook)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0284.html
 
+
 ### セキュリティ動向
 
 - Introducing Web Security Analytics
@@ -623,7 +631,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Enable Private DNS with 1.1.1.1 on Android 9 Pie
   - https://blog.cloudflare.com/enable-private-dns-with-1-1-1-1-on-android-9-pie/
   - Android Pie (9.0) でついに DNS の設定が可能になる
-  - DNS over TLS をサポートしているので、 1.1.1.1 を設定する手順を紹介
+  - DNS over TLS をサポートしているので、1.1.1.1 を設定する手順を紹介
 - Practical Web Cache Poisoning
   - https://portswigger.net/blog/practical-web-cache-poisoning
   - cache poisoning の攻撃パターン
@@ -634,6 +642,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google, Apple, Mozilla, Oracle, Blackberry に加え Microsoft でも信頼された
   - 直接信頼がよりメジャーになるには少なくとも 5 年の更新サイクルは必要という見積もり
   - 引き続き IdenTrust のクロスルートを続ける
+
 
 ### 周辺動向
 
@@ -665,6 +674,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Are you leaving revenue on the table with AMP? - Accelerated Mobile Pages Project
   - https://amphtml.wordpress.com/2018/08/28/are-you-leaving-revenue-on-the-table-with-amp/
   - AMP の ad において気をつけること
+
 
 ### イベント
 

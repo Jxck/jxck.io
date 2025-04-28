@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 34 回のテーマは 2018 年 2 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -58,7 +59,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Ship: `String.prototype.trimStart` / `String.prototype.trimEnd`**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Mx3Goj6pai4/CoJbFCDcCAAJ
     - `String.prototype.{trimLeft,trimRight}` があったがこれは非標準に
-    - 相対方向にするため、 Start/End にし、 Left/Right は互換のための alias に
+    - 相対方向にするため、Start/End にし、Left/Right は互換のための alias に
   - Ship: AudioWorklet
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dEsseBBMbs4/rvdT2wK4BQAJ
   - Ship: Link rel=modulepreload
@@ -94,7 +95,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/bTSMCMbBb00/RjbaJTxkBwAJ
   - Implement: constructable stylesheet objects
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/irhrlr6n5YQ/LOS8xSGsBwAJ
-    - style を `<style>` や `<link>` ではなく、 `new CSSStyleSheet()` で生成できるように
+    - style を `<style>` や `<link>` ではなく、`new CSSStyleSheet()` で生成できるように
     - パースコストを減らしつつ、再利用などの最適化余地を与える
   - **Implement :is()**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/BLBHKKG90DM/MxokOGuaBwAJ
@@ -189,6 +190,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.chromium.org/Home/chromium-security/site-isolation
   - Winning on Mobile
     - https://www.thinkwithgoogle.com/feature/mobile/
+
 
 ### Firefox 動向
 
@@ -301,6 +303,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Mozilla v FCC: Mozilla Re-files Suit Against FCC to Protect Net Neutrality
     - https://blog.mozilla.org/blog/2018/02/22/mozilla-v-fcc-mozilla-re-files-suit-fcc-protect-net-neutrality/
 
+
 ### Safari 動向
 
 - Release Notes for Safari Technology Preview 49
@@ -316,15 +319,16 @@ guest: [@myakura](https://twitter.com/myakura)
 - Workers at Your Service
   - https://webkit.org/blog/8090/workers-at-your-service/
   - Service Worker 周りの紹介
-  - ITP との関連や、 API Quota などについて
+  - ITP との関連や、API Quota などについて
 - **Introducing Storage Access API**
   - https://webkit.org/blog/8124/introducing-storage-access-api/
   - ITP により 3rd Party は Cookie が別領域に格納(double keying)される
   - First Party Cookie には 24h しかアクセスできない
-  - そもそも、 Cookie ヘッダが自動的に付与される場合はトラックに使える
+  - そもそも、Cookie ヘッダが自動的に付与される場合はトラックに使える
   - ユーザがインタラクションをしてればページ上だろう。
   - first child iframe だったらアクセスも許可できようという緩和手段
   - 一旦は prompt は無しで様子見
+
 
 ### Edge 動向
 
@@ -352,6 +356,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blogs.technet.microsoft.com/exchange/2018/02/09/an-update-on-office-365-requiring-tls-1-2/
     - TLS 1.0 / TLS 1.1 のサポート終了を 2018/3/1 から 2018/10/31 に延期
     - 先月話したやつ。やっぱりダメだった。
+
 
 ### WHATWG/W3C 動向
 
@@ -408,7 +413,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - text-decoration-skip-ink のデフォルト挙動が変わったことについて想像通りの混乱
     - 騒いでる人をなだめているだけ
       - Apple はもとからいろんなところで下線をスキップするようにできていた
-      - 挙動は新しいものではない。 Mac 版 Mosaic でさえそんな挙動を取っていた
+      - 挙動は新しいものではない。Mac 版 Mosaic でさえそんな挙動を取っていた
       - https://history-computer.com/Internet/Conquering/Mosaic.html
       - ただ喚き散らしてるのでみんな苦慮している
     - Chrome の挙動が変わって、またその実装があまりよくなかったのでみんなが気にし始めた
@@ -430,7 +435,8 @@ guest: [@myakura](https://twitter.com/myakura)
     - これまで実装されてなかったアウトラインアルゴリズムをなんとかする
       - https://github.com/whatwg/html/issues/83#issuecomment-359871505
     - 見出しにフォーカス
-      - h2-h6 はそのまま、 h1 だけ hgroup やネストしたセクション系要素の数で変動
+      - h2-h6 はそのまま、h1 だけ hgroup やネストしたセクション系要素の数で変動
+
 
 ### TC39 動向
 
@@ -490,6 +496,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - box してライブラリに渡せば、抜かれないという用途
     - tl;dr;
 
+
 ### IETF 動向
 
 - IETF101(3/17~23)
@@ -534,6 +541,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-quic-qcram-00
 - Other
 
+
 ### 周辺動向
 
 - **12 best practices for user account, authorization and password management**
@@ -566,6 +574,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Weak cryptographic standards removed
   - https://github.com/blog/2507-weak-cryptographic-standards-removed
   - github が TLS1/1.1 を切る
+
 
 ### イベント
 

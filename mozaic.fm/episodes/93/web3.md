@@ -12,9 +12,10 @@ guest: [@aggre_](https://twitter.com/aggre_)
 
 第 93 回のテーマは Web3 です。
 
-2021 年頃から、エンジニアの間でも話題になり、 Brave / Opera / Cloudflare などのベンダも Web3 に関するアウトプットを出す一方、懐疑的な意見もあるのが現状です。
+2021 年頃から、エンジニアの間でも話題になり、Brave / Opera / Cloudflare などのベンダも Web3 に関するアウトプットを出す一方、懐疑的な意見もあるのが現状です。
 
-今回は、 [Dev Protocol](https://devprotocol.xyz/) の CTO であり、 Web フロントエンドの経験もある [@aggre](https://twitter.com/aggre_) さんをお迎えし、 Web3 についての「**技術の話**」にフォーカスし、今何が起こっていて、これからどうなっていくのかについて議論しました。
+今回は、[Dev Protocol](https://devprotocol.xyz/) の CTO であり、Web フロントエンドの経験もある [@aggre](https://twitter.com/aggre_) さんをお迎えし、Web3 についての「**技術の話**」にフォーカスし、今何が起こっていて、これからどうなっていくのかについて議論しました。
+
 
 ## Show Note
 
@@ -27,6 +28,7 @@ guest: [@aggre_](https://twitter.com/aggre_)
 - 1:56:45~ DAO
 - 2:31:20~ まとめ
 - 2:37:30~ これから Web はどうなっていくのか?
+
 
 ## Reference
 

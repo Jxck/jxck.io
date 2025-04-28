@@ -14,6 +14,7 @@ guest: [@chikoski](https://twitter.com/chikoski)
 
 [@chikoski](https://twitter.com/chikoski) さんとのこぼれ話です。
 
+
 ## Show Note
 
 - [builderscon 2018](https://builderscon.io/tokyo/2018/session/476a4a30-2f94-424c-bbc2-f6cb14f1c4cd)

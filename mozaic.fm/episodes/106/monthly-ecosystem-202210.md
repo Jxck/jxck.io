@@ -13,12 +13,13 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 106 回のテーマは 2022 年 10 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - **Astro 1.4.0/1.5.0 Release | Astro**
   - https://astro.build/blog/astro-140/
   - https://astro.build/blog/astro-150/
-  - node/standalone が追加され、 express とかのコード書かなくて良くなった + SSR の preview ができるようになった
+  - node/standalone が追加され、express とかのコード書かなくて良くなった + SSR の preview ができるようになった
   - tailwind/tsconfig の HMR 対応
   - cookie のライブラリ buit-in
   - `:where` で css が出力されるようになった
@@ -27,8 +28,8 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - `use` Hook と Server Components での async/await のサポートについて
   - Suspense で Promise を解決するもの
     - これでデータの取得を解決し、別の RFC で cache についてのサポートも追加予定らしい
-  - Server Components と Client Components で同じような Promise の解決をしたいモチベーションがあり、 async/await を使用していることが、 Server Components であるという指標にもなるらしい。
-  - Client Components はいくつかの技術的な問題があり、 Server Components のような async/await コンポーネントにできないらしい
+  - Server Components と Client Components で同じような Promise の解決をしたいモチベーションがあり、async/await を使用していることが、Server Components であるという指標にもなるらしい。
+  - Client Components はいくつかの技術的な問題があり、Server Components のような async/await コンポーネントにできないらしい
     - https://github.com/acdlite/rfcs/blob/first-class-promises/text/0000-first-class-support-for-promises.md#why-cant-client-components-be-async-functions
   - postgres
     - https://github.com/facebook/react/blob/main/packages/react-pg/src/ReactPostgres.js

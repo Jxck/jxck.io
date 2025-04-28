@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 157 回のテーマは 2024 年 7 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 127
+
 
 #### Updates
 
@@ -66,6 +68,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - WebGPU Subgroups experimentation
   - Deprecations and removals
     - There are no deprecations or removals planned for Chrome 128.
+
 
 #### Intents
 
@@ -168,6 +171,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Unship:
 - Remove:
 
+
 #### Other
 
 - web.dev
@@ -233,9 +237,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Docs の Markdown のエクスポートが可能に
   - mozaic.fm 的には待望の神機能
 
+
 ### Firefox 動向
 
 #### Stable: 128
+
 
 #### Updates
 
@@ -256,6 +262,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Concise and compact - These Weeks in Firefox: Issue 165 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2024/07/30/concise-and-compact-these-weeks-in-firefox-issue-165/
 
+
 #### Intents
 
 - Ship: screen and viewport options for vector-effect
@@ -270,6 +277,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
+
 #### Newsletter
 
 - Firefox WebDriver Newsletter - 128 - Firefox Developer Experience
@@ -277,6 +285,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Support for the "BiDi flag"
 - Necko Newsletter Q2 2024
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/kfLDXD_M6IA/m/V8RKsQHhAAAJ
+
 
 #### MDN / Open Web Docs
 
@@ -289,6 +298,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Exploring the Broadcast Channel API for cross-tab communication
   - https://developer.mozilla.org/en-US/blog/exploring-the-broadcast-channel-api-for-cross-tab-communication/
 
+
 #### Standard Position
 
 - 今月 Close された Issue と PR ものをみる
@@ -296,6 +306,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Positive
     - New `trusted-types-eval` keyword for CSP script-src
       - https://github.com/mozilla/standards-positions/issues/1032
+
 
 #### Other
 
@@ -321,9 +332,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.reddit.com/r/firefox/comments/1e43w7v/a_word_about_private_attribution_in_firefox/
   - Firefox 128 で PPA の実験を開始したところ炎上したことに対し CTO が Reddit で PPA の仕組みを説明
 
+
 ### Safari 動向
 
 #### Stable: 17.6
+
 
 #### Updates
 
@@ -347,6 +360,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://webkit.org/blog/15739/webkit-features-in-safari-17-6/
   - **Safe alignment in Flexbox**
 
+
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -358,14 +372,17 @@ guest: [@myakura](https://twitter.com/myakura)
     - CSS Nesting: @nest
       - https://github.com/WebKit/standards-positions/issues/337
 
+
 #### Other
 
 - Fifteen Years of Contributing to WebKit
   - https://rniwa.com/2024-07-20/fifteen-years-of-contributing-to-webkit/
 
+
 ### Edge 動向
 
 #### Stable: 127
+
 
 #### Updates
 
@@ -376,12 +393,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
 
+
 #### Other
 
 - Seamless SVG copy-paste on the web - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2024/07/11/seamless-svg-copy-paste-on-the-web/
 - Browser Features: Find in Page - text/plain
   - https://textslashplain.com/2024/07/15/browser-features-find-in-page/
+
 
 ### WHATWG/W3C 動向
 
@@ -392,6 +411,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Candidate Recommendation
 - Working Draft
 - First Public Working Draft
+
 
 #### Open/UI
 
@@ -414,6 +434,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - [invokers] should we pursue proposing method names to match invoke actions? #954
   - [invokers] Casing for action values #969
   - Foundation for the Global Design System component library #1066
+
 
 #### WHATNOT
 
@@ -465,6 +486,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/whatwg/html/issues/10496
   - ???
 
+
 #### Other
 
 - **Third Party Cookies Must Be Removed**
@@ -477,6 +499,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.w3.org/news/2024/w3c-offers-an-inclusion-fund-for-tpac-2024/
 - WebAssembly spec advancement to Candidate Recommendation
   - https://lists.w3.org/Archives/Public/public-webassembly/2024Jul/0000.html
+
 
 ### TC39 動向
 
@@ -524,6 +547,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Temporal の近況(主に Scope を狭める話)
     - https://zenn.dev/cybozu_frontend/articles/temporal-reduces-scope
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2024-06-01}...main@{2024-08-01}
@@ -544,22 +568,27 @@ guest: [@myakura](https://twitter.com/myakura)
   - Time Zone Canonicalization
 - 3->4
 
+
 #### New Proposals
+
 
 #### Other
 
 - Summary of the June 2024 TC39 plenary in Helsinki
   - https://blogs.igalia.com/compilers/2024/07/18/summary-of-the-june-2024-tc39-plenary-in-helsinki/
 
+
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
+
 
 #### Meeting
 
 - 2024-06 Meeting
   - https://github.com/wintercg/admin/issues/49
   - no meeting
+
 
 ### IETF 動向
 
@@ -589,6 +618,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - TLS
   - https://notes.ietf.org/notes-ietf-120-tls
 
+
 #### WG
 
 - RFC
@@ -611,12 +641,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0125.html
 - Meeting
 
+
 #### Other
 
 - Openness in Internet Standards: Necessary, but Insufficient
   - https://www.mnot.net/blog/2024/07/05/open_internet_standards
 - **Are Internet Standards Competitive or Collaborative?**
   - https://www.mnot.net/blog/2024/07/16/collaborative_standards
+
 
 ### CDN 動向
 
@@ -635,6 +667,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - How the Paris 2024 Summer Olympics has impacted Internet traffic
   - https://blog.cloudflare.com/paris-2024-summer-olympics-impacted-internet-traffic/
 
+
 #### Fastly
 
 - Level up your images: JPEG XL now supported by Image Optimizer | Fastly
@@ -642,10 +675,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - Is purging still the hardest problem in computer science? | Fastly
   - https://www.fastly.com/blog/is-purging-still-the-hardest-problem-in-computer-science/
 
+
 #### Other
 
 - Akamai Early Hints: A New Way for Improving User Experience and Core Web Vitals | Akamai
   - https://www.akamai.com/blog/performance/2024/jul/akamai-early-hints-improving-user-experience
+
 
 ### セキュリティ動向
 
@@ -682,6 +717,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **～ニコニコ動画が 8/5 に再開、新バージョンに～ ニコニコの復旧状況およびサービス停止に伴う補償について|ニコニコインフォ**
   - https://blog.nicovideo.jp/niconews/225330.html
 
+
 ### 周辺動向
 
 - **Open Internet Governance**
@@ -701,7 +737,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Why we need Ladybird - Chris Wanstrath**
   - https://ladybird.org/why-ladybird.html
   - Safari / Firefox は、デフォルト検索エンジンを Google にするために年間数億ドルを受け取ってる
-  - 新しいブラウザを作るのは不可能で、 Chrome の座は奪えないという人はたくさんいる
+  - 新しいブラウザを作るのは不可能で、Chrome の座は奪えないという人はたくさんいる
   - 完全にゼロから、寄付のみで運用されるブラウザを作ることが非常に重要
 - Igalians Celebrated with Prestigious Awards | Igalia
   - https://www.igalia.com/2024/07/10/Igalians-Celebrated-with-Prestigious-Awards.html
@@ -716,6 +752,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 3rd Party Cookie に関する一連の流れについて、の TAG に対する批判
   - 「TAG がやるべきこと」という視点でまとめられている
 
+
 ### Cookie 動向
 
 - How Chromium's cookies get evicted
@@ -725,7 +762,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - オンラインプライバシーの問題を解決するため Privacy Sandbox などに取り組んできた。
   - その活動は CMA や ICO その他各機関や業界からフィードバックを得てきた。
   - 検証の結果、効果は出ているが、それでも業界の移行に時間がかかりすぎており、影響も大きい。
-  - そこで、 3rd Party Cookie の廃止をやめて、ユーザが「informed choice」できるように方針を変更していくことにする。
+  - そこで、3rd Party Cookie の廃止をやめて、ユーザが「informed choice」できるように方針を変更していくことにする。
   - それでも Privacy Sandbox は重要なので投資は続ける。またユーザのプライバシーのために、プライベートモードに IP Protection を入れる。
 - **Investigation into Google's 'Privacy Sandbox' browser changes - GOV.UK**
   - https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes
@@ -733,6 +770,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://privacysandbox.com/news/learnings-from-privacy-sandbox-testing/
 - **Results from Privacy Sandbox APIs testing**
   - https://support.google.com/admanager/answer/15189422
+
 
 ### イベント
 
@@ -752,6 +790,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 10 月
   - 8-10: blinkOn19
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/XZPgZ3DymqY
+
 
 ### Wrap Up
 

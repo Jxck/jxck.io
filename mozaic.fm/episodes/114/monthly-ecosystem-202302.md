@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 114 回のテーマは 2023 年 2 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - **Rome からもう一人やめる**
@@ -26,7 +27,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - SSR + Hydration だと重いので SSR してこうという話
   - そこで Isomorphic な JS が活きてくる
   - これが Deno + Fresh で実現できるという話
-- Electron ライクな新フレームワーク「Gluon」登場。 Chromium 内蔵せず Web ブラウザを利用、 Node.js だけでなく Deno と Bun にも対応 - Publickey
+- Electron ライクな新フレームワーク「Gluon」登場。Chromium 内蔵せず Web ブラウザを利用、Node.js だけでなく Deno と Bun にも対応 - Publickey
   - https://www.publickey1.jp/blog/23/electrongluonchromiumwebnodejsdenobun.html
 - **RFC: React DOM for Native**
   - https://github.com/necolas/discussions-and-proposals/blob/reduce-fragmentation/proposals/0000-reduce-fragmentation.md
@@ -64,7 +65,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://github.com/facebook/jest/releases/tag/v29.4.0
 - **Storybook Component Story Format 3 is here**
   - https://storybook.js.org/blog/storybook-csf3-is-here/
-  - CSF 3 はいまでも使えるけど、 Storybook 7 で正式に入るにあたって色々と追加要素の説明がある
+  - CSF 3 はいまでも使えるけど、Storybook 7 で正式に入るにあたって色々と追加要素の説明がある
 - **Improved type safety in Storybook 7**
   - https://storybook.js.org/blog/improved-type-safety-in-storybook-7/
   - Storybook の story ファイルに型をつける説明
@@ -72,7 +73,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - **Gatsby**
   - https://www.gatsbyjs.com/blog/gatsby-is-joining-netlify/
   - gatsby が netlify に買収された
-  - build system 、さまざまなコンテンツ ソースからの Webhook 、 deploy 、 edge runtime などを結び付ける composable architectures と呼ばれる Web UI レイヤーを構築していく
+  - build system 、さまざまなコンテンツ ソースからの Webhook 、deploy 、edge runtime などを結び付ける composable architectures と呼ばれる Web UI レイヤーを構築していく
   - https://thenewstack.io/netlify-acquires-gatsby-its-struggling-jamstack-competitor/
 - **Astro**
   - https://astro.build/blog/astro-2/
@@ -93,6 +94,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://github.com/DanielXMoore/Civet
   - CoffeeScript の TS 版みたいなもの
   - 今年どうなるか注目
+
 
 ## Events
 

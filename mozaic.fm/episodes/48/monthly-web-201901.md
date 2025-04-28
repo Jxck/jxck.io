@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 48 回のテーマは 2019 年 01 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -47,7 +48,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Ship: Hashbang Interpreter Line Syntax**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/xSD0PYiZq9U/Af87U7wWDAAJ
     - https://tc39.github.io/proposal-hashbang/ の実装
-    - Shebang/Hashbang を許容するようにし、 CLI 向けのコードがそのまま動くように
+    - Shebang/Hashbang を許容するようにし、CLI 向けのコードがそのまま動くように
   - Implement: Media Queries: prefers-color-scheme feature
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Muw0N43ntSw/WZZZI7w7DQAJ
   - Implement and Ship: OverconstrainedErrorEvent
@@ -92,7 +93,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - TaskQueue API を追加する
   - **Implement: High Contrast support**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/N77UCHle_rw/omPE8XRzFQAJ
-    - MSEdge チームから、 Windows にあったコントラスト系の API を出したい模様
+    - MSEdge チームから、Windows にあったコントラスト系の API を出したい模様
     - Media Queries lv5 の prefers-contrast とは違う
     - ブラウザがデフォルトでハイコントラストを提供し、コンテンツがオプトアウトするための仕組み、らしい。
     - 下の supported-color-schemes meta tag と被ってそう?
@@ -100,7 +101,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8NsJruvDJIw/xgtAfWJoDAAJ
     - コンテンツがサポートしている Color Scheme をメタタグに明示する
     - UA はそれを元に、何がサポートされているのかを知ることができる
-    - この有無により、 UA による自動変換での Color Scheme 変更などをコントロールしたい
+    - この有無により、UA による自動変換での Color Scheme 変更などをコントロールしたい
     - `<meta name="supported-color-schemes" content="[light? || dark? || <ident>?]* || only?">`
     - light dark: UA はユーザのセッティングによってリストから選んで適用、いいのがなかったら自動変換できる
     - light dark only: UA はリストから選ぶ。自動変換はしない
@@ -162,7 +163,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Chromium Blog: Building a Better World Wide Web**
     - https://blog.chromium.org/2019/01/building-better-world-wide-web.html
     - Better Ads Standard の最初の成果の紹介
-    - サイトの改善も広がり、 UX が向上しつつあるとのこと
+    - サイトの改善も広がり、UX が向上しつつあるとのこと
   - Test your site speed automatically with Speed Demon
     - https://medium.com/dev-channel/introducing-speed-demon-a36d95dd0174
     - WebPageTest を定期的に叩いて spreadsheet に保存する app script
@@ -203,6 +204,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Chrome を直したら Google Photos が壊れた話
     - https://twitter.com/ecbos_/status/1090726938925297665
     - Photos を直す代わりに Blink の挙動を仕様に則さないようにしていたらしい
+
 
 ### Firefox 動向
 
@@ -262,7 +264,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - **Bug 1342012 - Implement the dynamic import() proposal**
     - https://hg.mozilla.org/integration/mozilla-inbound/pushloghtml?changeset=8e6f86cd811a
-    - Dynamic import がフラグ付きで実装、 Firefox 67 で有効に
+    - Dynamic import がフラグ付きで実装、Firefox 67 で有効に
   - thank u, next
     - https://words.steveklabnik.com/thank-u-next
     - rust の人が抜ける
@@ -277,6 +279,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **The Legacy of Firefox OS - Ben Francis - Medium**
     - https://medium.com/@bfrancis/the-legacy-of-firefox-os-c58ec32d94f0
     - Firefox OS 終了前後にうまれた KaiOS などのフォークなどについて
+
 
 ### Safari 動向
 
@@ -306,6 +309,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/rmondello/status/1088456470356668417
     - Safari TP 73 までの機能が Safari 12.1 に入る模様
 
+
 ### Edge 動向
 
 - Stable: EdgeHTML18
@@ -319,6 +323,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Build Changelog
 - Chakra
 - Other
+
 
 ### WHATWG/W3C 動向
 
@@ -362,6 +367,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/othermaciej/status/1088871541629116416
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/g-pdQdSR0HI/vXSne9aCDAAJ
       - 個人の explainer ではなくちゃんとグループのレポジトリに追加しようね、など
+
 
 ### TC39 動向
 
@@ -424,6 +430,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/justinfagnani/status/1090732607615029248
     - class fields の設計がうれしくないという指摘
 
+
 ### IETF 動向
 
 - IETF
@@ -455,7 +462,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-httpbis-cache-header-00
   - **Pairing-Friendly Curves**
     - https://tools.ietf.org/html/draft-yonezawa-pairing-friendly-curves-00
-    - 日本人(レピダム、 NTT)からのドラフト
+    - 日本人(レピダム、NTT)からのドラフト
   - Using Early Data in DOTS
     - https://tools.ietf.org/html/draft-boucadair-dots-earlydata-00
     - DOTS で TLS1.3 の 0-RTT を使う
@@ -511,6 +518,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/andydavies/http2-prioritization-issues#cdns--cloud-hosting-services
     - CDN で H2 Priority を実装できているかのテスト結果
 
+
 ### セキュリティ動向
 
 - **TLS 1.3 rollout on GitHub.com | The GitHub Blog**
@@ -527,6 +535,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - CT を監視して似た名前で取ってるフィッシングサイトを見つけ出す話
 - Introduction to WebAuthn API
   - https://medium.com/@herrjemand/introduction-to-webauthn-api-5fd1fb46c285
+
 
 ### 周辺動向
 
@@ -545,6 +554,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/WICG/change-password-url
   - https://twitter.com/rmondello/status/1090702498220961793
   - https://www.youtube.com/watch?v=-0dwX2kf6Oc
+
 
 ### イベント
 

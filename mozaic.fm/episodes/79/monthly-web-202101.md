@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 79 回のテーマは 2020 年 12 月と 2021 年 1 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 88
+
 
 #### Updates
 
@@ -116,7 +118,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.chromium.org/2020/12/seamless-payments-and-password.html
 - **Chromium Blog: Continuing our journey to bring instant experiences to the whole web**
   - https://blog.chromium.org/2020/12/continuing-our-journey-to-bring-instant.html
-  - Prefetch を頑張ってきたが、 NoState にしても IP がリークする
+  - Prefetch を頑張ってきたが、NoState にしても IP がリークする
   - Private prefetch proxy を導入し Google の IP に置き換える
   - という実験をやっている話
 - Chromium Blog: Limiting Private API availability in Chromium
@@ -134,7 +136,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.chrome.com/blog/welcome/
   - developer.chrome.com がリニューアル
   - Chrome 関連の情報はこちらで更新していく
-  - What's new in Chrome など、 Google Developers にあったコンテンツも移動中
+  - What's new in Chrome など、Google Developers にあったコンテンツも移動中
 - SharedArrayBuffer updates in Android Chrome 88 and Desktop Chrome 91 - Chrome Developers
   - https://developer.chrome.com/blog/enabling-shared-array-buffer/
 - Heavy throttling of chained JS timers beginning in Chrome 88 - Chrome Developers
@@ -172,6 +174,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/better-layout-shift-metric/
   - **Use AMP Components everywhere**
     - https://blog.amp.dev/2021/01/28/bento/
+
 
 #### Intents
 
@@ -311,10 +314,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/qtMVkfpd3_U
   - igalia の人の提案
 
+
 #### V8
 
 - An additional non-backtracking RegExp engine · V8
   - https://v8.dev/blog/non-backtracking-regexp
+
 
 #### Other
 
@@ -336,7 +341,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Correlation between Core Web Vitals and AMP - The AMP Blog
   - https://blog.amp.dev/2021/01/15/correlation-between-core-web-vitals-and-amp/
 - **Form Submit 時に Security Alert が出てしまうようになった件の報告が殺到**
-  - HTTP -> HTTPS redirect で HTTPS 対応しているが、 Form Submit 後の Redirect (PRG Pattern) のリダイレクト先(Location)が HTTP になってる場合、`not secure` なエラー画面が出てしまい、 Submit できない。
+  - HTTP -> HTTPS redirect で HTTPS 対応しているが、Form Submit 後の Redirect (PRG Pattern) のリダイレクト先(Location)が HTTP になってる場合、`not secure` なエラー画面が出てしまい、Submit できない。
   - https://groups.google.com/a/chromium.org/g/security-dev/c/_yE-XITw5nc/m/3cJyqhdBBAAJ
   - https://groups.google.com/a/chromium.org/g/security-dev/c/PXuy9aKftG0/m/Nz06ohVBBAAJ
   - https://groups.google.com/a/chromium.org/g/security-dev/c/HH_FO5FbiwM/m/t3s_7RRBBAAJ
@@ -349,7 +354,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 影響が広すぎてロールバックすることに
 - **1168528 - [User Feedback - Stable] Users report Chrome's clock time measurement doesn't match local time (RU, JA) - chromium**
   - https://bugs.chromium.org/p/chromium/issues/detail?id=1168528&q=chrome88&can=2#c49
-  - Chrome アップデート後に時刻/タイムゾーンがおかしい、 18 時間ずれる等の不具合発生中(2021 年 1 月 29 日更新)
+  - Chrome アップデート後に時刻/タイムゾーンがおかしい、18 時間ずれる等の不具合発生中(2021 年 1 月 29 日更新)
   - https://did2memo.net/2021/01/20/chrome-timezone-issue/#2021128
 - **Chromium University 2020: Videos Published**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/YEmcQmpUb1c/m/Z0uc56ohCwAJ
@@ -357,9 +362,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Building a privacy-first future for web advertising
   - https://blog.google/products/ads-commerce/2021-01-privacy-sandbox
 
+
 ### Firefox 動向
 
 #### Stable: 85.0
+
 
 #### Updates
 
@@ -413,8 +420,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - 2020 年 Firefox に加えられたパフォーマンス改善の詳細
 - **Encrypted Client Hello: the future of ESNI in Firefox - Mozilla Security Blog**
   - https://blog.mozilla.org/security/2021/01/07/encrypted-client-hello-the-future-of-esni-in-firefox/
-  - ESNI だけではプロトコル上問題があるため、 ClientHello 全体を暗号化する ECH が提案された
-  - Firefox は ESNI を早くから実装していたが、 85 から ECH に移行するという話
+  - ESNI だけではプロトコル上問題があるため、ClientHello 全体を暗号化する ECH が提案された
+  - Firefox は ESNI を早くから実装していたが、85 から ECH に移行するという話
 - These Weeks in Firefox: Issue 84
   - https://blog.nightly.mozilla.org/2020/12/08/these-weeks-in-firefox-issue-84/
 - These Weeks in Firefox: Issue 85
@@ -423,9 +430,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2021/01/19/these-weeks-in-firefox-issue-86/
 - **Guest Blog Post: Leaking silhouettes of cross-origin images - Attack & Defense**
   - https://blog.mozilla.org/attack-and-defense/2021/01/11/leaking-silhouettes-of-cross-origin-images/
-  - Canvas の `drawImage()` でピクセルの不透明度によって処理速度が変わるのを利用し、 cross origin info leaks が起きる脆弱性があった
+  - Canvas の `drawImage()` でピクセルの不透明度によって処理速度が変わるのを利用し、cross origin info leaks が起きる脆弱性があった
   - 利用している Skia で透明度によって処理を分けており、ソフトウェアデコーダの場合に処理速度が特に変わっていた
-  - Skia が修正され、 Chromium 、 Firefox ともに対応
+  - Skia が修正され、Chromium 、Firefox ともに対応
+
 
 #### Intents
 
@@ -450,6 +458,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Unship: HTML `<menuitem>` element and the context menu feature**
   - https://groups.google.com/g/mozilla.dev.platform/c/tc11BCenm2c
 
+
 #### Other
 
 - **EKR 先生による「投票システム」の難しさの話**
@@ -468,9 +477,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - SpiderMonkey Newsletter #8
   - https://mozilla-spidermonkey.github.io/blog/2020/12/18/newsletter-8.html
 
+
 ### Safari 動向
 
 #### Stable: 14.0.2
+
 
 #### Updates
 
@@ -535,6 +546,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Adjusted date input placeholder color based on specified text color (r270875)
     - Corrected the intrinsic size stored for SVG images (r271129)
 
+
 #### Position
 
 - [webkit-dev] Request for position: overflow: clip and overflip-clip-margin
@@ -558,11 +570,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - [webkit-dev] Request for position: Critical-CH response header, part of Client Hints Reliability proposal
   - https://lists.webkit.org/pipermail/webkit-dev/2021-January/031673.html
 
+
 #### Other
+
 
 ### Edge 動向
 
 #### Stable:88
+
 
 #### Updates
 
@@ -577,10 +592,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Sleeping Tabs in Microsoft Edge: Delivering better browser performance - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2020/12/09/sleeping-tabs-beta-performance/
 
+
 #### Chakra
 
 - Release ChakraCore v1.11.24 · microsoft/ChakraCore
   - https://github.com/microsoft/ChakraCore/releases/tag/v1.11.24
+
 
 #### Other
 
@@ -590,6 +607,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://techcommunity.microsoft.com/t5/articles/now-autofill-your-saved-passwords-from-microsoft-edge-on-your/m-p/1990161
 - **Sandboxing vs. Elevated Browsing (As Administrator) - text/plain**
   - https://textslashplain.com/2021/01/07/sandboxing-vs-elevated-browsing-as-administrator/
+
 
 ### WHATWG/W3C 動向
 
@@ -630,6 +648,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - W3C launches MiniApps Working Group
     - https://www.w3.org/blog/news/archives/8853
 
+
 #### Other
 
 - **W3C opens Technical Architecture Group (TAG) election**
@@ -647,6 +666,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Upcoming: W3C Workshop on Wide Color Gamut and High Dynamic Range for the Web
   - https://lists.w3.org/Archives/Public/public-new-work/2020Dec/0014.html
 
+
 ### TC39 動向
 
 #### Meeting
@@ -656,6 +676,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tc39/agendas/blob/master/2021/01.md
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
+
 
 #### Proposals Diff
 
@@ -681,6 +702,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 3->4
   - Intl.DateFormat.prototype.formatRange
 
+
 #### New Proposals
 
 - **bakkot/proposal-async-do-expressions**
@@ -701,6 +723,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - import したモジュールの評価を遅延する?
   - dynamic import だとコードが非同期になるが、これならならない
 
+
 #### Other
 
 - **JSCIG/dataset: TC39 Proposal Dataset**
@@ -718,6 +741,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://web.archive.org/web/20060111090514/http://wp.netscape.com/newsref/pr/newsrelease67.html
   - "The open, cross-platform object scripting language for enterprise networks and the Internet"" / Twitter
   - 2020 年 12 月 4 日で JavaScript の発表から 25 年
+
 
 ### IETF 動向
 
@@ -737,6 +761,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - privacypass
 - dispatch
 - secdispatch
+
 
 #### Spec
 
@@ -785,7 +810,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - draft-liu-multipath-quic-00 - Multipath Extension for QUIC
     - https://tools.ietf.org/html/draft-liu-multipath-quic-00
 
+
 #### Other
+
 
 ### CDN 動向
 
@@ -802,7 +829,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/next-generation-privacy-protocols/
 - **Good-bye ESNI, hello ECH!**
   - https://blog.cloudflare.com/encrypted-client-hello/
-  - TLS ハンドシェイクの暗号化と ESNI の課題、 ECH にいたるまでの経緯
+  - TLS ハンドシェイクの暗号化と ESNI の課題、ECH にいたるまでの経緯
 - **Improving DNS Privacy with Oblivious DoH in 1.1.1.1**
   - https://blog.cloudflare.com/oblivious-dns/
   - Apple, Fastly と共同で Oblivious DoH (ODoH) を進めていることの紹介
@@ -830,6 +857,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Holistic web protection: industry recognition for a prolific 2020
   - https://blog.cloudflare.com/cloudflare-named-the-innovation-leader-in-holistic-web-protection/
 
+
 #### Fastly
 
 - DDoS attacks grow bigger, but so do responses
@@ -839,10 +867,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Debugging QUIC with H2O and QLog**
   - https://www.fastly.com/blog/debugging-quic-with-h2o-and-qlog
 
+
 #### Other
 
 - 日本の CDN シェアについて調査結果@2020 年 10 月 | J-Stream CDN 情報サイト
   - https://tech.jstream.jp/blog/cdn/cdn-share-oct2020/
+
 
 ### セキュリティ動向
 
@@ -862,23 +892,24 @@ guest: [@myakura](https://twitter.com/myakura)
 - 様々なサイバー攻撃に繋がる脆弱性 HTTP リクエストスマグリング | yamory Blog
   - https://yamory.io/blog/about-http-request-smuggling/
 
+
 ### 周辺動向
 
 - **2020 Web Almanac**
   - https://almanac.httparchive.org/
 - **No cookie for you - The GitHub Blog**
   - https://github.blog/2020-12-17-no-cookie-for-you/
-  - Github から 3rd Party Cookie を全て無くし、 Session Cookie のみにした
-  - 合意を取る必要がなくなったため、 Cookie Banner が無くなった
+  - Github から 3rd Party Cookie を全て無くし、Session Cookie のみにした
+  - 合意を取る必要がなくなったため、Cookie Banner が無くなった
 - **エンドツーエンド暗号化と法規制 - JPNIC Blog**
   - https://blog.nic.ad.jp/2020/5545/
   - E2E に関する規制への署名の話の詳細
-  - > 声明に署名した 7 ヶ国および EU が言っていることは、バックドアを作るか鍵を預けなさいということだと考えられます。 ISOC が主張するように、 E2EE を破ることは一般の人を脆弱にさらすことになり、声明署名国や EU が主張するような、プライバシーを守りつつ法執行機関が暗号化された通信コンテンツにアクセスできるようにする方法は、両立しないと考えます。とはいえ、犯罪被害者になり、 E2EE のため犯人がつかまらない、となった場合、 E2EE が絶対といえるか、と考えると難しいものがあります。
+  - > 声明に署名した 7 ヶ国および EU が言っていることは、バックドアを作るか鍵を預けなさいということだと考えられます。ISOC が主張するように、E2EE を破ることは一般の人を脆弱にさらすことになり、声明署名国や EU が主張するような、プライバシーを守りつつ法執行機関が暗号化された通信コンテンツにアクセスできるようにする方法は、両立しないと考えます。とはいえ、犯罪被害者になり、E2EE のため犯人がつかまらない、となった場合、E2EE が絶対といえるか、と考えると難しいものがあります。
 - `content-visiblity` Without Jittery Scrollbars - Infrequently Noted
   - https://infrequently.org/2020/12/content-visibility-scroll-fix/
 - Resize-Resilient `content-visiblity` Fixes - Infrequently Noted
   - https://infrequently.org/2020/12/resize-resilient-deferred-rendering/
-- ソフトバンク・博報堂・トレジャーデータの合弁会社、 3rd パーティクッキー依存しないソリューションを提供開始 | RTB SQUARE
+- ソフトバンク・博報堂・トレジャーデータの合弁会社、3rd パーティクッキー依存しないソリューションを提供開始 | RTB SQUARE
   - https://rtbsquare.work/archives/34250
 - South Korea kills ActiveX-based government digital certificate service - The Register
   - https://www.theregister.com/2020/12/10/south_korea_activex_certs_dead/
@@ -892,7 +923,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.verisign.com/domain-names/chromiums-reduction-of-root-dns-traffic/
   - ブラウザが NXDOMAIN なレコードを勝手に返す ISP などの環境にある場合がある
   - omni bar に単語を入れるたびにそういうサイトが表示されてしまう場合がある
-  - これを防ぐためにランダムなドメインの解決を 3 つやって、 IP が同じかどうかを見てた
+  - これを防ぐためにランダムなドメインの解決を 3 つやって、IP が同じかどうかを見てた
   - このクエリが多すぎて問題になっていたのが解決したという話
   - M87 がリリースされて以降 41% のクエリが削減している
 - **State of JS 2020**
@@ -905,7 +936,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Open Web Docs**
   - https://opencollective.com/open-web-docs/updates/introducing-open-web-docs
   - https://github.com/openwebdocs/
-  - Open Collective で立ち上げた、 Web のドキュメンテーションの支援組織
+  - Open Collective で立ち上げた、Web のドキュメンテーションの支援組織
   - MDN を移行したり、別で立ち上げるのではなく、暫くは MDN(Yari) の支援が中心
   - Igalia, Coil, Google, MS, Mozilla, Samsong, W3C などが参加
   - 組織中立なので Mozilla 自身も参加者
@@ -926,6 +957,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Coil
     - https://press.coil.com/press-news/coil-is-proud-to-support-open-web-docs
 
+
 ### イベント
 
 - 1 月
@@ -934,6 +966,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 8-12: IETF | IETF 110 Online
     - https://www.ietf.org/how/meetings/110/
   - TBD: TC39 Meeting
+
 
 ### Wrap Up
 

@@ -19,9 +19,10 @@ Monthly Ecosystem では、様々なツールやフレームワーク、開発�
 
 月一で進捗確認兼方針の相談などをそのまま配信していきます。
 
+
 ## 現状
 
-現場の mozaic.fm は、 blog.jxck.io と同じスタックでできています。
+現場の mozaic.fm は、blog.jxck.io と同じスタックでできています。
 
 - markdown でエピソードの Show Note を書く
 - 自作の markdwon パーサでパースし、筆者好みの HTML にレンダリングする
@@ -30,6 +31,7 @@ Monthly Ecosystem では、様々なツールやフレームワーク、開発�
 - それを h2o で配信
 - 画面は、一覧、個別、検索のみ
 - 検索は Ruby で書いた CGI (h2o だけでやる方法が mruby か gci しかないため)
+
 
 ## 方針
 
@@ -57,6 +59,7 @@ Monthly Ecosystem では、様々なツールやフレームワーク、開発�
   - 認証する理由は今のところない
   - 何かアカウントを作るモチベーションを提供する必要?
 
+
 ## 進捗
 
 ### init repo
@@ -68,6 +71,7 @@ $ npm init
 $ npm install --save-dev --save-exact @biomejs/biome
 ```
 
+
 ### storybook
 
 ```sh
@@ -76,12 +80,14 @@ $ npx storybook@latest init
 > vite
 ```
 
+
 ### chromatic
 
 ```sh
 $ npm install --save-dev chromatic
 $ npx chromatic --project-token=$PORJECT_TOKEN
 ```
+
 
 ### figma devmode
 
@@ -97,7 +103,8 @@ Figma でコンポーネントを作り、それを Figma to Code で JSX / HTML
 
 その Figma を VSCode に表示でき、その CSS がサジェストされるようになる。
 
-これを元にコンポーネントを作り、 Storybook を作れば、 Chromatic にあげてテストできる。
+これを元にコンポーネントを作り、Storybook を作れば、Chromatic にあげてテストできる。
+
 
 ## スケジュール
 
@@ -107,5 +114,6 @@ Figma でコンポーネントを作り、それを Figma to Code で JSX / HTML
 - ? 月: 検索
 - 11 月: デプロイ
 - 1 月: 振り返り?
+
 
 ## Show Note

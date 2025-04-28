@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 59 回のテーマは 2019 年 10 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -215,6 +216,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 報奨金の増額
     - Chromium に提供されたパッチが Chrome のリリースに乗るまで 33 日の "patch gap" があったが、直接リリースに反映できるようにし 19 日まで縮めた
 
+
 ### Firefox 動向
 
 - Stable: 70
@@ -237,7 +239,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Ship: CSS subgrid**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/IKzfuoD77yE/-DiLKfkNDwAJ
     - Firefox が先行中の Subgrid について I2S がでた
-    - 現在 Firefox だけの新機能なので、 Secure Context のみにしないのという質問が出て、今後追加される新しい CSS の機能は Secure Context に限定すべきかという議論が生まれた
+    - 現在 Firefox だけの新機能なので、Secure Context のみにしないのという質問が出て、今後追加される新しい CSS の機能は Secure Context に限定すべきかという議論が生まれた
   - Ship: CSS column-span property
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/p80ptKoqVvk/uKJwoK6JDAAJ
   - Ship: Web Speech API
@@ -308,6 +310,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mozillagfx.wordpress.com/2019/10/22/dramatically-reduced-power-usage-in-firefox-70-on-macos-with-core-animation/
     - 画像の最適化について解説しているビデオ
 
+
 ### Safari 動向
 
 - Stable: 13.0.3
@@ -340,6 +343,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - 引き続き手が入ってる
 - Other
 
+
 ### Edge 動向
 
 - Stable:
@@ -355,10 +359,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Improving form controls in Microsoft Edge and Chromium - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2019/10/15/form-controls-microsoft-edge-chromium/
     - フォームコントローラ UI のデザインを刷新
-    - Edge / Chrome チームが連携して実現し、 Chromium に入る
+    - Edge / Chrome チームが連携して実現し、Chromium に入る
     - つまり Chromium ベースの他のブラウザにも入る
     - `<input type=password>` にパスワードを確認するアイコンが入るっぽい
     - ハイコントラストモードにも対応
+
 
 ### WHATWG/W3C 動向
 
@@ -378,7 +383,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - 仕様に有ったが実装は無かった
       - Google, Apple, Mozilla が合意した
       - 動画アップロードなどもできる
-    - **onfetch で respondWith に response を渡した後、 waitUntil でタスクを実行したい**
+    - **onfetch で respondWith に response を渡した後、waitUntil でタスクを実行したい**
       - でも waitUntil が respondWith を遅延させるケースがあった
       - setTimeout とかで迂回してた
       - event.handled という Promise を入れて respondWith を待てるように
@@ -415,6 +420,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **World Wide Web Consortium celebrates its 25th anniversary**
     - https://www.w3.org/blog/news/archives/7972
     - W3C 25 周年
+
 
 ### TC39 動向
 
@@ -465,6 +471,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Nullish が TS にマージ
     - https://github.com/microsoft/TypeScript/pull/32883
 
+
 ### IETF 動向
 
 - IETF106
@@ -495,6 +502,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Using QUIC Datagrams with HTTP/3
     - https://tools.ietf.org/html/draft-schinazi-quic-h3-datagram-01
 - Other
+
 
 ### セキュリティ動向
 
@@ -547,6 +555,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Getting started with security keys**
   - https://paulstamatiou.com/getting-started-with-security-keys/
 
+
 ### 周辺動向
 
 - google/nginx-sxg-module
@@ -589,6 +598,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - WebAssembly.sh
   - https://webassembly.sh/?run-command=sqlite
   - WASM で SQLite
+
 
 ### イベント
 

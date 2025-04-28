@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 80 回のテーマは 2021 年 2 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 88
+
 
 #### Updates
 
@@ -25,14 +27,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://web.dev/origin-agent-cluster/
     - Origin-Isolation として始まったもの
     - デフォルトではリソースの分離を完全に行うのは難しく特に Same Site では混ざっていた
-    - 埋め込んだ iframe がリソースを食い尽くすと、 Top Level Frame 側にも影響することもある
+    - 埋め込んだ iframe がリソースを食い尽くすと、Top Level Frame 側にも影響することもある
     - Origin-Agent-Cluster はこれを Origin Keyed に変えるためのヒント
     - ヒントであって確実ではない、これにより確実にリソース消費が改善するとも限らない
-    - また、 Site Isolation の機能と違い、セキュリティ対策のヘッダではない(rename の理由の一つ)
+    - また、Site Isolation の機能と違い、セキュリティ対策のヘッダではない(rename の理由の一つ)
   - **New aspect-ratio CSS property supported in Chromium, Safari Technology Preview, and Firefox Nightly**
     - https://web.dev/aspect-ratio/
     - `aspect-ratio` プロパティによる img 領域の確保方法やユースケース
-    - padding-top を用いたハックが不要になり、 width だけで height が計算される
+    - padding-top を用いたハックが不要になり、width だけで height が計算される
     - CLS の改善にも役立つ
     - width / height を設定した場合は、そのサイズ正確でなくても `width: 100%` なら比率は反映される
   - Accessing hardware devices on the web
@@ -81,6 +83,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Google が Stadia ゲームの開発を行う Stadia Games & Entertainment がゲームを一本もリリースしないうちに閉鎖
     - スタジオを率いていた Jade Raymond は Google を離れる
     - Google は Stadia 自体はクローズせず、プラットフォームの方に注力する
+
 
 #### Intents
 
@@ -140,7 +143,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Prototype: Multicast Receive API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8sNTXCoggcQ/m/sFr7FOteBAAJ
   - Browser - Server 間の 1:1 通信では大規模な配信は限界がある
-  - IP multicast をブラウザが受け取れれば、 CDN の大規模配信にも対応できる
+  - IP multicast をブラウザが受け取れれば、CDN の大規模配信にも対応できる
   - ワールドカップを 4k 配信して 500m 人が見るなどを考えると必須の機能になる
   - OS のアップデート配信も無視できない
   - なおトラフィックの記録は 2020/4 に Akamai が記録した 167tbps
@@ -194,6 +197,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Unship:
 - Remove:
 
+
 #### V8
 
 - **V8 release v8.9 · V8**
@@ -204,14 +208,17 @@ guest: [@myakura](https://twitter.com/myakura)
 - Super fast super property access · V8
   - https://v8.dev/blog/fast-super
 
+
 #### Other
 
 - Chrome CT 2021 Plans
   - https://groups.google.com/a/chromium.org/g/ct-policy/c/4puGir9pNFA
 
+
 ### Firefox 動向
 
 #### Stable: 86.0
+
 
 #### Updates
 
@@ -231,6 +238,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - これまで Tracker 判定に基づくアクセス制御だったが、完全に Isolate する
   - Super Cookie Protection もあわせると、ブラウザによるサイトのタグ付けがいらなくなる
   - Strict Mode だと ITP2 レベルになるが、まだデフォルトではない
+
 
 #### Intents
 
@@ -264,6 +272,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Experiment:
 - Change:
 - Remove:
+
 
 #### Other
 
@@ -302,15 +311,17 @@ guest: [@myakura](https://twitter.com/myakura)
 - SpiderMonkey Newsletter #9
   - https://groups.google.com/g/mozilla.dev.platform/c/MjtIzZ2T8Rc/m/KUl0Flp6AQAJ
 
+
 ### Safari 動向
 
 #### Stable: 14.0.3
+
 
 #### Updates
 
 - **Introducing Private Click Measurement, PCM**
   - https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/
-  - Conversion Measurement とは送れるデータ量や、 1st Party only などが違う
+  - Conversion Measurement とは送れるデータ量や、1st Party only などが違う
   - App-To-Web
 - **Updates to the Storage Access API**
   - https://webkit.org/blog/11545/updates-to-the-storage-access-api/
@@ -341,6 +352,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - A11y
     - Exposed focusable elements even if the element or ancestor has aria-hidden=true (r272390)
 
+
 #### Position
 
 - [webkit-dev] Request for Position on Foundation Storage API
@@ -358,7 +370,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - positive
 - **[webkit-dev] Position on emerging standard: Declarative Shadow DOM**
   - https://lists.webkit.org/pipermail/webkit-dev/2021-February/031698.html
-  - rniwa さんとのやり取りあり、以前指摘した問題のいくつかは解決しているが、 getInnerHTML などのセマンティクスに問題ありと指摘
+  - rniwa さんとのやり取りあり、以前指摘した問題のいくつかは解決しているが、getInnerHTML などのセマンティクスに問題ありと指摘
 - [webkit-dev] Request for position: CSS custom counter style
   - https://lists.webkit.org/pipermail/webkit-dev/2021-February/031700.html
   - generally supportive
@@ -369,17 +381,20 @@ guest: [@myakura](https://twitter.com/myakura)
   - Igalia からのリクエスト、スレッドには Mozilla も参加
   - WebKit 的にはこの仕様のままでは won't support らしい
 
+
 #### Other
+
 
 ### Edge 動向
 
 #### Stable: 88
 
+
 #### Updates
 
 - **New Microsoft Edge to replace Microsoft Edge Legacy with April's Windows 10 Update Tuesday release - Microsoft Tech Community**
   - https://techcommunity.microsoft.com/t5/microsoft-365-blog/new-microsoft-edge-to-replace-microsoft-edge-legacy-with-april-s/ba-p/2114224
-  - 2021 年 4 月 13 日リリースの Windows のアップデートで、 Edge Legacy が削除される
+  - 2021 年 4 月 13 日リリースの Windows のアップデートで、Edge Legacy が削除される
 - Introducing the new downloads experience - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/articles/introducing-the-new-downloads-experience/m-p/2111551
 - Introducing improvements to the Collections experience - Microsoft Tech Community
@@ -413,7 +428,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.microsoft.com/en-us/windows/remote-resource-center/manage-web-cookies
   - ユーザリテラシー教育的な話
 
+
 #### Chakra
+
 
 #### Other
 
@@ -432,7 +449,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://help.abema.tv/hc/ja/articles/360055647611
   - Internet Explorer への対応終了のお知らせ | SmartHR
     - https://smarthr.jp/other/22512
-    - > 2021 年 1 月現在、 IE11 で SmartHR をご利用いただいているのは、管理者権限の方の 25%、お客さま全体では 6%です。
+    - > 2021 年 1 月現在、IE11 で SmartHR をご利用いただいているのは、管理者権限の方の 25%、お客さま全体では 6%です。
   - Internet Explorer 11 を推奨利用環境の対象外といたします | クラウドワークス
     - https://blog.crowdworks.jp/?p=4293
   - Internet Explorer サポート終了のお知らせ | マネーフォワード
@@ -440,6 +457,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google Workspace Updates: Reminder: Ending support for IE11 for all Google Workspace apps on March 15
     - https://workspaceupdates.googleblog.com/2021/02/reminder-ending-support-for-ie11-for.html
   - etc etc etc
+
 
 ### WHATWG/W3C 動向
 
@@ -464,7 +482,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Advance notice: Working in progress on an Editing Working Group Charter
     - https://lists.w3.org/Archives/Public/public-new-work/2021Feb/0006.html
 
+
 #### Other
+
 
 ### TC39 動向
 
@@ -473,6 +493,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2021-01
   - https://github.com/tc39/agendas/blob/master/2021/01.md
   - https://github.com/tc39/notes/tree/master/meetings/2021-01
+
 
 #### Proposals Diff
 
@@ -483,9 +504,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -520,6 +544,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - dispatch
 - secdispatch
 
+
 #### Spec
 
 - RFC
@@ -533,7 +558,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - I-D Action
 - Draft
 
+
 #### Other
+
 
 ### CDN 動向
 
@@ -544,12 +571,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - Using HPKE to Encrypt Request Payloads
   - https://blog.cloudflare.com/using-hpke-to-encrypt-request-payloads/
 
+
 #### Fastly
 
 - The GOAT of all games: traffic patterns and user behaviors from Super Bowl LV | Fastly
   - https://www.fastly.com/blog/the-goat-of-all-games-traffic-patterns-and-user-behaviors-from-super-bowl-lv
 
+
 #### Other
+
 
 ### セキュリティ動向
 
@@ -557,7 +587,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://gigazine.net/news/20210204-google-replacing-cookie-antitrust/
 - **Preparing to Issue 200 Million Certificates in 24 Hours - Let's Encrypt - Free SSL/TLS Certificates**
   - https://letsencrypt.org/2021/02/10/200m-certs-24hrs.html
-  - 2020/2 に、 300 万(全体の 2.6%)の証明書を置き換えるべき状況があった
+  - 2020/2 に、300 万(全体の 2.6%)の証明書を置き換えるべき状況があった
   - もしこれが 100% になる最悪のケースがあっても実施できるインフラに改善した
   - 2.4 億証明書を 24h で再発行するためにはボトルネックが 4 つあった
     - DB パフォーマンス
@@ -582,7 +612,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://letsencrypt.org/become-a-sponsor/
 - Post-Spectre Web Development
   - https://mikewest.github.io/post-spectre-webdev/
-- こんばんは、 X-Forwarded-For 警察です - エムスリーテックブログ
+- こんばんは、X-Forwarded-For 警察です - エムスリーテックブログ
   - https://www.m3tech.blog/entry/x-forwarded-for
 - (令和 3 年 2 月 17 日)デジタル・プラットフォーム事業者の取引慣行等に関する実態調査(デジタル広告分野)について(最終報告):公正取引委員会
   - https://www.jftc.go.jp/houdou/pressrelease/2021/feb/210217.html
@@ -592,17 +622,19 @@ guest: [@myakura](https://twitter.com/myakura)
   - 3rd Party Cookie がブロックされた場合の、広告ビジネスの影響などについても言及されている
   - (Privacy Sandbox という言葉じたいは出てこない)
 
+
 ### 周辺動向
 
 - mnot's blog: No news is... a sign of a stagnating Internet
   - https://www.mnot.net/blog/2021/02/18/no-news
-- サイバーエージェント、 freee 、サイボウズで Web アクセシビリティに関する調査を実施 | CyberAgent, Inc.
+- サイバーエージェント、freee 、サイボウズで Web アクセシビリティに関する調査を実施 | CyberAgent, Inc.
   - https://www.cyberagent.co.jp/news/detail/id=25796
 - Why your phone's portrait mode fakes the blur - surma.dev
   - https://surma.dev/things/portrait-mode/
 - Adobe co-founds the Coalition for Content Provenance and Authenticity (C2PA) standards organization
   - https://blog.adobe.com/en/publish/2021/02/22/adobe-continues-content-authenticity-commitment-founder-c2pa-standards-org.html
   - Microsoft, Truepic, Arm, Intel, BBC と共同で立ち上げた Contents Authenticity Initialtive
+
 
 ### イベント
 
@@ -615,6 +647,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/httpwg/wg-materials/blob/gh-pages/interim-21-02/agenda.md
   - 9-10: TC39 Meeting
     - https://github.com/tc39/agendas/blob/master/2021/03.md
+
 
 ### Wrap Up
 

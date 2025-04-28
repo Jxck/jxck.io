@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 45 回のテーマは 2018 年 11 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -50,7 +51,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - ロード時に勝手に再生されるうざい Autoplay を止める
     - 行動から、そのページに Autoplay を許すかを Media Engagement Index (MEI) に記録
     - 例えば恒常的に 7 秒以上再生するなど
-    - それ以外は、 UserGesture が無いと resume できない
+    - それ以外は、UserGesture が無いと resume できない
     - Proxy で UserGesture を全部 resume に繋げるコード例が紹介されている
   - What's New In DevTools (Chrome 72)
     - https://developers.google.com/web/updates/2018/11/devtools
@@ -142,7 +143,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - CORS チェックは renderer 側でやっていた
     - これを browser 側に持っていく
     - つまり CORS を off the main thread する
-    - browser 側でやることで、 renderer を騙せたとしても cors バイパスが成立しにくくなる
+    - browser 側でやることで、renderer を騙せたとしても cors バイパスが成立しにくくなる
     - by toyoshima-san
 - Team Weekly Snippet
   - Chrome Storage Team Weekly for 11/06/2018
@@ -191,6 +192,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://chrome.google.com/webstore/detail/visbug/cdockenadnadldjbbgcallicgledbeoc
     - https://medium.com/dev-channel/visbug-101-749f26a485c8
 
+
 ### Firefox 動向
 
 - Stable: 63.0.3
@@ -205,8 +207,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Next Steps in DNS-over-HTTPS Testing - Future Releases**
     - https://blog.mozilla.org/futurereleases/2018/11/27/next-steps-in-dns-over-https-testing/
     - DoH (Cloudflare) を使うと一定の改善は見込めた
-    - CDN は一番近い Edge を DNS で解決するが、 DoH だとそれがうまくいかない
-    - これをどうするか、 Akamai と協力して Firefox でテストしていくことに
+    - CDN は一番近い Edge を DNS で解決するが、DoH だとそれがうまくいかない
+    - これをどうするか、Akamai と協力して Firefox でテストしていくことに
 - Intents
   - Ship: window.event
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/riVG9FqN9iM/U4PZJb0NBQAJ
@@ -261,6 +263,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Multilingual Gecko Status Update 2018.2 | Mozilla L10N
     - https://blog.mozilla.org/l10n/2018/11/27/multilingual-gecko-status-update-2018-2/
 
+
 ### Safari 動向
 
 - Stable: 12.0.1
@@ -288,6 +291,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Web High Level Shading Language = WHLSL (ホイッスル)
     - WebGPU Community Group が作業中
 
+
 ### Edge 動向
 
 - Stable: EdgeHTML 18.17763 / Edge 44.17763
@@ -305,6 +309,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/Microsoft/ChakraCore/releases/tag/v1.11.3
 - Other
   - https://developer.microsoft.com/en-us/microsoft-edge/platform/
+
 
 ### WHATWG/W3C 動向
 
@@ -341,7 +346,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Chartering
   - BD Comics Manga Community Group created
     - https://lists.w3.org/Archives/Public/public-new-work/2018Oct/0019.html
-    - バンド・デシネ、コミック、漫画、 Motion Comics, Web Comics, Visual novels, Interactive Manga, Webtoon, Turbomedia, Parallax strip, Still motion art ...
+    - バンド・デシネ、コミック、漫画、Motion Comics, Web Comics, Visual novels, Interactive Manga, Webtoon, Turbomedia, Parallax strip, Still motion art ...
     - Web における様々な表現についてのコミュニティグループ
   - Pointer Events Working Group (until 2018-12-04)
     - https://lists.w3.org/Archives/Public/public-new-work/2018Nov/0000.html
@@ -367,12 +372,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Change Response's statusText's default by `""` annevk · Pull Request #836**
     - https://github.com/whatwg/fetch/pull/836
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/URFbbfpXiPA/zaMD1BjqCQAJ
-    - fetch の仕様で、 res.statusText のデフォルトが "OK" から "" になる
+    - fetch の仕様で、res.statusText のデフォルトが "OK" から "" になる
     - Chrome から PSA が出ている
     - 仕様上 `200 OK` の `OK` (reason-phrase) はなんでも良いし、無くても良い。
     - https://tools.ietf.org/html/rfc7230#section-3.1.2
   - New Resource: Developing an Accessibility Statement
     - https://www.w3.org/blog/news/archives/7413
+
 
 ### TC39 動向
 
@@ -398,6 +404,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - sebmarkbage/ecmascript-asset-references: Proposal to ECMAScript to add first-class location references relative to a module
     - https://github.com/sebmarkbage/ecmascript-asset-references
 
+
 ### IETF 動向
 
 - IETF
@@ -408,7 +415,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://daniel.haxx.se/blog/2018/11/11/http-3/
   - HTTP3
     - QUIC を HTTP over QUIC と思っている人がいる
-    - 実際は QUIC は Transport で、 HTTP 外にも議論すべき話が多数
+    - 実際は QUIC は Transport で、HTTP 外にも議論すべき話が多数
     - HTTP over QUIC を HTTP/3 と呼ぼう、という話に
     - HTTP/3 | daniel.haxx.se
       - https://daniel.haxx.se/blog/2018/11/11/http-3/
@@ -456,6 +463,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - HTTPWorkshop/workshop2019: Working area for the 2019 HTTP Workshop
     - https://github.com/httpworkshop/workshop2019
 
+
 ### セキュリティ動向
 
 - **The Holy Hand Grenade of Antioch - OpenSSL Blog**
@@ -466,6 +474,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 1.1.1 and 1.0.2 は変わらない
   - 2.0.0 は FIPS module で使われている
   - 3.0.0 から新しくなる
+
 
 ### 周辺動向
 
@@ -517,6 +526,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.popsci.com/best-of-whats-new-2018
   - 2018 年のイノベーション 100 選
   - ここに WebAuthn (Web Authentication) by FIDO Alliance & W3C が入ってる
+
 
 ### イベント
 

@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 36 回のテーマは 2018 年 3 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -65,7 +66,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Ship: Customized Built-in Elements
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/S3naD9vIcM4/7tKyfvi0AgAJ
     - HTML ビルトインの要素を継承してカスタム要素を作る is 属性を有効に
-    - Apple が強く反対していたものの、 Mozilla が実装した & Edge も反対してないということで有効に
+    - Apple が強く反対していたものの、Mozilla が実装した & Edge も反対してないということで有効に
   - Ship: CSS conic-gradient()
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ySuNvyaB8jY/CtcfGxoCAgAJ
   - **Ship: Numeric separators**
@@ -103,7 +104,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Implement: An event to enable arbitrary objects to provide form data**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IIV1MfaPHYc/l0lsJ-agBQAJ
     - https://docs.google.com/document/d/1JO8puctCSpW-ZYGU8lF-h4FWRIDQNDVexzHoOQ2iQmY/edit
-    - `<form>` に hidden を増やさないで済むよう、 `formdata` イベントを `submit` の前に上げて、データをいじれるようにする。
+    - `<form>` に hidden を増やさないで済むよう、`formdata` イベントを `submit` の前に上げて、データをいじれるようにする。
   - Implement: Reject PaymentRequest.show with SecurityError DOMException if it is not triggered by user activation
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2PhPgk_k9a0/alO4yt_HBQAJ
   - **Implement: Default Style for Custom Elements**
@@ -119,7 +120,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Experiment: AudioWorklet (continue)**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/C5ouVl8q3rU/WZLU1iM4DQAJ
     - 先月 ship が出ている
-    - 現在 Origin Trial で実験中だが、 ship される前に失効してしまうので、 1 リリースぶん延長して使い続けられるように
+    - 現在 Origin Trial で実験中だが、ship される前に失効してしまうので、1 リリースぶん延長して使い続けられるように
   - Experiment : WebXR Device API
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7TWtMJffZno/vSxIWMOQBQAJ
   - Change:
@@ -183,6 +184,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://bugs.chromium.org/p/chromium/issues/detail?id=826427
     - Chrome も ITP をやるべきではないかという提案
     - 提案したのは Robin Berjon(W3C で SVG やデバイス API や HTML5 をやってた人)
+
 
 ### Firefox 動向
 
@@ -250,7 +252,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!topic/mozilla.dev.platform/_8OAKUHso0c
     - Nightly ユーザの 50% を対象に DNS over HTTP の実験を計画中
     - DoH サーバの実装が Cloudflare を使うので、オプトインにしないのというコメントが
-    - DNS の仕組みや、 DoH が解決するものを知っている人からは、プライバシーに関して懸念はないだろうという声も
+    - DNS の仕組みや、DoH が解決するものを知っている人からは、プライバシーに関して懸念はないだろうという声も
     - いろんなコメントがあったので、それを反映すべく検討中
       - https://bugzilla.mozilla.org/show_bug.cgi?id=1446404#c27
   - **Bringing interactive examples to MDN**
@@ -272,6 +274,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 互換性をあげようとしたら Google Docs(Closure Compiler)が壊れた
   - https://twitter.com/ehsanakhgari/status/972224912634064896
     - ページ内ポップアップのブロックをできないか検討していて、サンプルになるようなサイトを募集中
+
 
 ### Safari 動向
 
@@ -316,7 +319,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Intelligent Tracking Prevention 1.1**
     - https://webkit.org/blog/8142/intelligent-tracking-prevention-1-1/
     - double keying された Cookie が永続されなくなった
-    - purge 待ちの Cookie がある場合は、新しい Cookie が付与できず、 Request にも乗らなくなった
+    - purge 待ちの Cookie がある場合は、新しい Cookie が付与できず、Request にも乗らなくなった
       - 付与した Cookie がすぐ消えるとサーバが混乱するから
   - **Protecting Against HSTS Abuse**
     - https://webkit.org/blog/8146/protecting-against-hsts-abuse/
@@ -328,6 +331,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://webkit.org/blog/8170/clipboard-api-improvements/
     - DataTransfer の互換性向上や、ディレクトリアップロードなども対応
     - Safari 11.1 で ship
+
 
 ### Edge 動向
 
@@ -369,6 +373,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/
     - https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/0.1/
     - Chrome DevTools Protocol のサポート開始
+
 
 ### WHATWG/W3C 動向
 
@@ -434,6 +439,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - オートコレクト機能を制御するための属性
     - iOS の独自実装を標準化したい模様
 
+
 ### TC39 動向
 
 - Proposals Diff
@@ -488,12 +494,13 @@ guest: [@myakura](https://twitter.com/myakura)
     - Unicode 周りっぽい
   - Decorators: Towards Stage 3 - Google Slides
     - https://docs.google.com/presentation/d/1Sx5gwx9yd3gbRhbzgwQijGLRIbfR9PkwLlwfNK_USQs/edit
-    - Decorators の現状と、 Stage 3 に向けた動きまとめ
+    - Decorators の現状と、Stage 3 に向けた動きまとめ
   - https://twitter.com/awbjs/status/979025502634590208
     - awb 氏が現状のプロセスにビジョンがないのではと問いかけている
   - domenic/package-name-maps
     - https://github.com/domenic/package-name-maps
     - `import foo from "bar"` と書いたときに参照するものを package name maps に定義し、それを読み込むための仕組みを定義
+
 
 ### IETF 動向
 
@@ -580,6 +587,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Updates on TCP Fast Open deployment
     - https://datatracker.ietf.org/meeting/101/materials/slides-101-tcpm-updates-on-tcp-fast-open-deployments-01
 
+
 ### 周辺動向
 
 - Japan GPKI Root Renewal Request
@@ -632,6 +640,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ESM の最適化はこれからという話
 - **The Alliance for Open Media Kickstarts Video Innovation Era with "AV1" Release**
   - https://aomedia.org/the-alliance-for-open-media-kickstarts-video-innovation-era-with-av1-release/
+
 
 ### イベント
 

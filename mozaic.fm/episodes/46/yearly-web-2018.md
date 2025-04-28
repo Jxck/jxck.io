@@ -16,6 +16,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 また、収録直前に公表された Microsoft EdgeHTML の開発中止と Edge の Chromium ベースへの移行についても冒頭で話しています。
 
+
 ## Show Note
 
 ### Microsoft Edge が Chromium ベースに
@@ -36,6 +37,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Hummingbird: Building Flutter for the Web - Flutter
   - https://medium.com/flutter-io/hummingbird-building-flutter-for-the-web-e687c2a023a8
 
+
 ### 2018 年のキーワード
 
 #### Jxck
@@ -54,6 +56,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - first input delay
 - coinhive
 
+
 #### myakura
 
 - deprecation (+ removals)
@@ -66,6 +69,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - whatwg+w3c
 - symantec distrust
 - compatibility
+
 
 ### 1 月
 
@@ -108,6 +112,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ACMEv2 で Let's Encrypt が WildCard サポート
   - Apple が AV1 にジョイン
 
+
 ### 2 月
 
 - Chrome
@@ -124,6 +129,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - IETF
 - 周辺動向
   - 3rd Party CSS でキーロガーができる話
+
 
 ### 3 月
 
@@ -166,6 +172,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ACME v2 で Wildcard サポート
   - Cloudflare が SW サポート
 
+
 ### 4 月
 
 - Chrome
@@ -187,6 +194,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 1.1.1.1 アナウンス
   - 漫画村とブロッキングに対する声明
   - Yahoo! Japan TLS 1.0/1.1 切る発表
+
 
 ### 5 月
 
@@ -224,6 +232,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - Github Pages でカスタムドメイン HTTPS
 
+
 ### 6 月
 
 - Chrome
@@ -260,6 +269,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺
   - 5G 策定完了
 
+
 ### 7 月
 
 - Chrome
@@ -286,6 +296,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - EFF からブロッキングに対する声明
 
+
 ### 8 月
 
 - Chrome
@@ -306,10 +317,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Let's Encrypt Root Trusted By All Major Root Programs
 - 周辺動向
 
+
 ### 9 月
 
 - Chrome
-  - Chrome 10 周年。 UI デザインが変わる
+  - Chrome 10 周年。UI デザインが変わる
   - M69 で `www.`, `m.` の非表示化
   - M69 で Google 系サービスにログインしたら Chrome にもログイン
 - Firefox
@@ -326,6 +338,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - YouTube や Netflix が AV1 のテスト
 
+
 ### 10 月
 
 - Chrome
@@ -339,6 +352,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Symantec Distrust を年末まで延期(後に Firefox 64 で有効に)
 - Safari
   - WebKit Contributors Meeting
+
 
 ### 11 月
 

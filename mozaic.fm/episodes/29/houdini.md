@@ -12,9 +12,10 @@ guest: [@kojiishi](https://twitter.com/kojiishi)
 
 第 29 回のテーマは Houdini です。
 
-今回は、ゲストとして Chrome チームの開発者であり、 CSS の標準化にも関わられている [@kojiishi](https://twitter.com/kojiishi) さんをお呼びし、 Houdini がどういうモチベーションで始まり、現在仕様策定や実装状況はどうなっているのか。
+今回は、ゲストとして Chrome チームの開発者であり、CSS の標準化にも関わられている [@kojiishi](https://twitter.com/kojiishi) さんをお呼びし、Houdini がどういうモチベーションで始まり、現在仕様策定や実装状況はどうなっているのか。
 
 実装する上での問題点や、今後の展望をお聞きし、今後 Houdini が CSS に対してどういった影響を及ぼしていくかを踏まえ、「**今何がおこっているのか**」と「**これからどうなっていくのか**」について議論しました。
+
 
 ## Show Note
 

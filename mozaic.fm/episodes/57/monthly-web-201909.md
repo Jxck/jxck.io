@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 57 回のテーマは 2019 年 9 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -60,7 +61,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/network-service-dev/5HATwq4CE50/JMMOI9QJAAAJ
     - 2.5 年かけて off the main thread を進めてきた
     - 1100 bugs の 3200 行を 150 人が書き 250 人がレビューした
-    - セキュリティレイヤを追加し、ジャンクを改善、 SW のプロセスホップを 4->0 にした
+    - セキュリティレイヤを追加し、ジャンクを改善、SW のプロセスホップを 4->0 にした
     - クラッシュの 8% をレンダリングプロセスからブラウザプロセスに移し、回復可能にした
     - この Chrome 史上最大のリファクタリングに貢献した kinuko さんが今後オーナーになる
     - ネットワークサービスに関する全てのデザインレビューは kinuko さんを通すことに
@@ -99,7 +100,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 「戻るボタン」が UI 上表示されているかどうかを知る media query
     - fullscreen や app の webview など、戻るが無い場合に提供する目的
     - 戻るボタンがアプリ/UI 両方で存在する double back button も回避
-    - media query で提供することで CSS だけではなく、 JS にも API が出る
+    - media query で提供することで CSS だけではなく、JS にも API が出る
   - Implement: Navigation-controls media query
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/b5vXvm1bP3s/BDBx92QxAwAJ
   - **Implement: rendersubtree attribute.**
@@ -202,6 +203,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Buggy Google Chrome Update Behind Recent Unbootable Macs
     - https://www.bleepingcomputer.com/news/security/buggy-google-chrome-update-behind-recent-unbootable-macs/
 
+
 ### Firefox 動向
 
 - Stable: 69.0
@@ -229,7 +231,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **What's next in making Encrypted DNS-over-HTTPS the Default**
     - https://blog.mozilla.org/futurereleases/2019/09/06/whats-next-in-making-dns-over-https-the-default/
     - US で DoH をデフォルト有効に
-    - split-horizon などが検出された場合は、 OS の設定にフォールバック
+    - split-horizon などが検出された場合は、OS の設定にフォールバック
   - Firefox's Test Pilot Program Returns with Firefox Private Network Beta
     - https://blog.mozilla.org/blog/2019/09/10/firefoxs-test-pilot-program-returns-with-firefox-private-network-beta/
   - **Moving Firefox to a faster 4-week release cycle**
@@ -276,7 +278,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - scroll anchoring is really a mess
     - レイアウトが変わったときの追従
     - 仕様にも問題が多く残っておりこれをどうするかという話
-    - WebKit は未実装、 Blink は実装、 Gecko から消すかどうかという話
+    - WebKit は未実装、Blink は実装、Gecko から消すかどうかという話
   - Implement and Ship:
   - Experiment:
   - Change:
@@ -320,6 +322,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - caniuse が MDN にクエリを投げて、反映するなどができるようにする
   - Community Involvement in Recommended Extensions
     - https://blog.mozilla.org/addons/2019/09/25/recommended-extensions-community-involvement/
+
 
 ### Safari 動向
 
@@ -375,6 +378,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - その他 developer tools などの改善
 - Other
 
+
 ### Edge 動向
 
 - Beta:79.0
@@ -387,6 +391,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - **Update on removing Flash from Microsoft Edge and Internet Explorer - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2019/08/30/update-removing-flash-microsoft-edge-internet-explorer/
+
 
 ### WHATWG/W3C 動向
 
@@ -450,7 +455,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web Components
     - https://www.w3.org/2019/09/17-components-minutes.html
     - JSON Modules やその他の Synthetic Modules が一旦仕様から外れる
-    - MIME タイプによって挙動が変わるので、 import する側でどの形式を読むかを指定しなければセキュリティ上問題があるという指摘
+    - MIME タイプによって挙動が変わるので、import する側でどの形式を読むかを指定しなければセキュリティ上問題があるという指摘
       - HTML, CSS, and JSON modules shouldn't solely rely on MIME type to change parsing behavior · Issue #839 · w3c/webcomponents
       - https://github.com/w3c/webcomponents/issues/839
   - Web and TV IG
@@ -499,7 +504,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Intent to Migrate trusted-types to W3C Security WG**
     - https://lists.w3.org/Archives/Public/public-webappsec/2019Sep/0003.html
     - Trusted Types を WICG W3C に移す
-    - react/lit-html が取り込み作業をしており、 JS community は positive と
+    - react/lit-html が取り込み作業をしており、JS community は positive と
     - https://wicg.github.io/trusted-types/dist/spec/
     - https://github.com/facebook/react/pull/16157
     - https://github.com/Polymer/lit-html/pull/970
@@ -514,6 +519,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - etc
   - W3C Strategic Highlights - September 2019
     - https://www.w3.org/2019/09/w3c-highlights/
+
 
 ### TC39 動向
 
@@ -534,6 +540,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - domenic が複数 draft の chanpion から降りた
     - https://github.com/tc39/proposals/commit/276456524d0305a922332ab231aed808d0f7fb5e
+
 
 ### IETF 動向
 
@@ -575,6 +582,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mozaic.fm/episodes/44/monthly-web-201810.html
     - patrick が抜け mnot と tommy の 2 人になる
 
+
 ### セキュリティ動向
 
 - Project Zero: A very deep dive into iOS Exploit chains found in the wild
@@ -603,6 +611,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2019/09/25/web-to-app-communication-directinvoke/
   - directinvoke ?
 
+
 ### 周辺動向
 
 - Observability in Live Broadcasts and Quality of Experience
@@ -614,7 +623,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - メールクライアントの HTML メールのサポートの caniuse
 - **Wikipedia's JavaScript initialisation on a budget**
   - https://phabricator.wikimedia.org/phame/live/7/post/175/wikipedia_s_javascript_initialisation_on_a_budget/
-  - 1 年かけて Wikipedia の JS 初期ロードを 36KB から 28KB に減らし、 1 日 4.3TB の転送を削減
+  - 1 年かけて Wikipedia の JS 初期ロードを 36KB から 28KB に減らし、1 日 4.3TB の転送を削減
   - TCP 初期ウインドウサイズ 14KB の倍数として budget を設定
   - 未使用機能の検出、不要モジュールの削減、測定と可視化を行い計画的に実施
   - 作業資料や Grafana も公開されている
@@ -641,6 +650,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/extending-the-workers-platform/
 - vasanthv/jsonbox: A Free HTTP based JSON storage.
   - https://github.com/vasanthv/jsonbox
+
 
 ### イベント
 

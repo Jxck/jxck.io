@@ -22,9 +22,9 @@ guest: [@myakura](https://twitter.com/myakura)
 
 名前に反し、本当に月一でできるかはわからないし、どこまで続けられるかはわかりませんが、やりながら考えて進めて行こうと思います。
 
-一方で、 mozaic.fm は月間情報チャンネルになるわけではないので、通常のテーマ回は今まで通りやっていこうと思っています。
+一方で、mozaic.fm は月間情報チャンネルになるわけではないので、通常のテーマ回は今まで通りやっていこうと思っています。
 
-テーマ回であれ Monthly Web であれ、 Podcast を通して mozaic.fm でやりたいことは変わっていません。
+テーマ回であれ Monthly Web であれ、Podcast を通して mozaic.fm でやりたいことは変わっていません。
 
 Web をより深く理解するために
 
@@ -32,6 +32,7 @@ Web をより深く理解するために
 - **これからどうなっていくのか**
 
 について、議論していければと思っています。
+
 
 ## Show Note
 
@@ -62,6 +63,7 @@ Web をより深く理解するために
     - Expect-CT header
 - Chrome 62.0.3167 Canary
 
+
 ### Firefox 動向
 
 - Firefox 54 Stable
@@ -83,6 +85,7 @@ Web をより深く理解するために
   - https://blog.nightly.mozilla.org/2017/07/25/stylo-is-ready-for-community-testing-on-nightly/
   - stylo rendering engine
 
+
 ### Safari 動向
 
 - Safari Technology Preview 35
@@ -91,6 +94,7 @@ Web をより深く理解するために
 - Safari Technology Preview 36
   - https://webkit.org/blog/7833/release-notes-for-safari-technology-preview-36/
   - Implemented Object Spread
+
 
 ### Edge 動向
 
@@ -105,6 +109,7 @@ Web をより深く理解するために
   - https://developer.microsoft.com/en-us/microsoft-edge/platform/changelog/desktop/16251/
 - Save the date: Microsoft Edge Web Summit 2017 comes to Seattle on September 13th
   - https://blogs.windows.com/msedgedev/2017/06/20/save-the-date-edge-web-summit-2017-september-13th-seattle/
+
 
 ### 標準動向
 
@@ -144,6 +149,7 @@ Web をより深く理解するために
   - https://github.com/w3c/charter-html/issues/145
   - https://diffofhtmls.herokuapp.com/
 
+
 ### 周辺動向
 
 - Apple Engineers Join WebVR Community Group
@@ -178,6 +184,7 @@ Web をより深く理解するために
   - Mozilla: https://blog.mozilla.org/futurereleases/2017/07/25/firefox-roadmap-flash-end-life/
   - Apple: https://webkit.org/blog/7839/adobe-announces-flash-distribution-and-updates-to-end/
   - Facebook: https://developers.facebook.com/blog/post/2017/07/25/Games-Migration-to-Open-Web-Standards/
+
 
 ### イベント
 

@@ -14,6 +14,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 今年行った Monthly Web を振り返ります。
 
+
 ## Show Note
 
 ### 2020 年キーワード
@@ -34,6 +35,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Mozilla Layoff
 - Instant & Seamless
 
+
 #### myakura
 
 - Chrome のサードパーティ Cookie 廃止のお気持ち
@@ -44,6 +46,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - WebKit の tracking prevention ポリシーと各種デバイス API
 - Microsoft とフォーム周りの CSS
 - IE11 から Edge へのリダイレクト機能
+
 
 ### 1 月
 
@@ -61,6 +64,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Puppeteer 派生 Chromium/Firefox/WebKit の自動化ライブラリ Playwright
 - CNAME Cloaking
 
+
 ### 2 月
 
 - CSS for foldable device
@@ -74,6 +78,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - NextDNS が DoH 対応し Chrome の対応プロバイダリストへの登録
 - Adobe が Web 版の Acrobat を発表
 
+
 ### 3 月
 
 - JS/CSS/URL などの歴史振り返りが多かった
@@ -86,6 +91,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Privacy Pass が動きはじめる
 - WebPackage も SXG の署名方法に動き
 
+
 ### 4 月
 
 - ブラウザが Compatibility risk のある変更を延期
@@ -97,6 +103,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Covid-19 によるネットワークトラフィック統計 by Fastly/Cloudflare
 - Twitter Cache のバグと Firefox 実装の話
 
+
 ### 5 月
 
 - Core Web Vitals 発表
@@ -106,6 +113,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Firefox Devtools が活発
 - WebKit の Request for Position のトラッキング開始
 - Feature Policy から Permission Policy への Rename
+
 
 ### 6 月
 
@@ -122,6 +130,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - インドが中国のアプリをブロック
 - パスワード漏洩検知をみんなやりはじめた
 - replaceChildren() 同時実装
+
 
 ### 7 月
 
@@ -146,6 +155,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - await opration
 - Rome Introduction
 
+
 ### 8 月
 
 - Chrome 85 リリース
@@ -158,11 +168,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Intent to Experiment: Digital Goods API
   - Intent to Experiment で Draft が Required に
 - Mozilla Layoff
-  - 250 人程のレイオフ、 MDN などのチームが縮小
+  - 250 人程のレイオフ、MDN などのチームが縮小
 - MS365 の IE11/Legacy Edge サポート終了
 - Webkit-dev request for position で Niwa さんの回答が結構ついてた
 - mnot's blog: RFC8890: The Internet is for End Users
 - http2bis 作業開始
+
 
 ### 9 月
 
@@ -182,6 +193,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Import Assertion の実装や仕様や Intents
 - Moment.js のメンテナンスモード
 - Inclusive rename (direct socket api / file system access api / v8 code)
+
 
 ### 10 月
 
@@ -206,6 +218,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Early Hints Experiment
 - SEARCH Method call for adoption
 - Party and Browsers
+
 
 ### 11 月
 

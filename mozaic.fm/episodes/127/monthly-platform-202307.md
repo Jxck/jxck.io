@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 127 回のテーマは 2023 年 7 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable:115
+
 
 #### Updates
 
@@ -57,6 +59,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - New offscreen reason: GEOLOCATION
     - chrome.action.setBadgeText()
     - Summary: another step towards Manifest V3
+
 
 #### Intents
 
@@ -136,6 +139,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Clear Client Hints via Clear-Site-Data header
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/lJY86eTPQ0s
 
+
 #### Other
 
 - web.dev
@@ -202,15 +206,17 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/RupertBenWiser/Web-Environment-Integrity/blob/main/explainer.md
     - https://github.com/RupertBenWiser/Web-Environment-Integrity/issues/28#issuecomment-1651129388
 
+
 ### Firefox 動向
 
 #### Stable: 115.0
+
 
 #### Updates
 
 - Firefox 115.0, See All New Features, Updates and Fixes
   - https://www.mozilla.org/en-US/firefox/115.0/releasenotes/
-  - Windows 7 、 Windows 8 、 macOS 10.12 、 10.13 、 10.14 のサポートがこのバージョンで終了
+  - Windows 7 、Windows 8 、macOS 10.12 、10.13 、10.14 のサポートがこのバージョンで終了
 - **Firefox 115 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/115
   - `link rel="modulepreload"`
@@ -233,6 +239,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - L10n Report: July 2023 Edition | Mozilla L10N
   - https://blog.mozilla.org/l10n/2023/07/27/l10n-report-july-2023-edition/
 
+
 #### Intents
 
 - Ship: math-style, math-depth, font-size: math
@@ -253,6 +260,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Unship: mathvariant other than `<mi mathvariant=normal>`
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/rr403BgAA0s
 
+
 #### Newsletter
 
 - Necko Newsletter #4 - 2023 H1 Recap
@@ -263,6 +271,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://fxdx.dev/firefox-devtools-newsletter-115/
 - Firefox WebDriver Newsletter - 115 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-115/
+
 
 #### MDN / Open Web Docs
 
@@ -278,6 +287,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://openwebdocs.org/content/posts/open-docs/
 - **OWD projects in H1 2023**
   - https://openwebdocs.org/content/posts/owd-projects-h1-2023/
+
 
 #### Standard Position
 
@@ -298,6 +308,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Tabbed web apps · Issue #811 · mozilla/standards-positions
   - https://github.com/mozilla/standards-positions/issues/811
 
+
 #### Other
 
 - **MDN can now automatically lie to people seeking technical information · Issue #9208 · mdn/yari**
@@ -311,9 +322,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Minimum issuance volume for established CAs?
   - https://www.mail-archive.com/dev-security-policy@mozilla.org/msg01382.html
 
+
 ### Safari 動向
 
 #### Stable: 16.6
+
 
 #### Updates
 
@@ -330,6 +343,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Added support for priority to CSS Highlight API (265812@main)
   - Aligned `<script type language>` with the HTML Standard (265977@main)
 
+
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -341,11 +355,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Content-type in Resource Timing · Issue #88 · WebKit/standards-positions**
   - https://github.com/WebKit/standards-positions/issues/88
 
+
 #### Other
+
 
 ### Edge 動向
 
 #### Stable: 115
+
 
 #### Updates
 
@@ -354,11 +371,13 @@ guest: [@myakura](https://twitter.com/myakura)
 - Fighting notification spam in Microsoft Edge
   - https://blogs.windows.com/msedgedev/2023/07/06/fighting-notification-spam-microsoft-edge/
 
+
 #### Other
 
 - 🎻 Eric Lawrence on Twitter: "https://t.co/SwtGWnHsVe" / X
   - https://twitter.com/ericlaw/status/1685097282452983808
   - Twitter の Web App マニフェストが更新され、アイコンが X になったので Edge がアイコンが変わったけど大丈夫かというポップアップを出した
+
 
 ### WHATWG/W3C 動向
 
@@ -378,6 +397,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/public-new-work/2023Jul/0001.html
     - Managed Components (3rd Party Script を読み込むフォーマット)
     - これをサンドボックス上で読み込むための標準化
+
 
 #### Other
 
@@ -400,7 +420,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Do we need WCAG 3 (now)? · Eric Eggert**
   - https://yatil.net/blog/do-we-need-wcag-3-now
 
+
 ### TC39 動向
+
 
 ### ES2023
 
@@ -411,9 +433,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Hashbang Grammar
   - Symbols as WeakMap keys
 
+
 #### Meeting
 
 - Meeting Note が公開された時だけやる、それ以外はやらない。
+
 
 #### Proposals Diff
 
@@ -424,22 +448,27 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
+
 #### New Proposals
+
 
 #### Other
 
 - What's Next for JavaScript: New Features to Look Forward to - The New Stack
   - https://thenewstack.io/whats-next-for-javascript-new-features-to-look-forward-to/
 
+
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
+
 
 #### Meeting
 
 - 2023-07-06 Meeting · Issue #52 · wintercg/admin
   - https://github.com/wintercg/admin/issues/52
   - 特になし
+
 
 ### IETF 動向
 
@@ -471,6 +500,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
 
 - Last Call: draft-ietf-lake-edhoc-20.txt (Ephemeral Diffie-Hellman Over COSE (EDHOC)) to Proposed Standard
@@ -483,6 +513,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/8tv9mYhoxEF3IPaeGFq_aMzQPZQ/
 - **Last Call: \<draft-ietf-jsonpath-base-16.txt> (JSONPath: Query expressions for JSON) to Proposed Standard**
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/cMykgfMBMzGXDFU7FhYGug8V-eI/
+
 
 ### CDN 動向
 
@@ -497,11 +528,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - Measuring the Internet's pulse: trending domains now on Cloudflare Radar
   - https://blog.cloudflare.com/radar-trending-domains/
 
+
 #### Fastly
+
 
 #### Other
 
+
 ### セキュリティ動向
+
 
 ### 周辺動向
 
@@ -518,6 +553,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Happy 50th birthday, Ethernet | APNIC Blog
   - https://blog.apnic.net/2023/06/29/happy-50th-birthday-ethernet/
 
+
 ### イベント
 
 - 7 月
@@ -531,6 +567,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/2023/09/TPAC/
   - 26-28: W3C Workshop Secure the Web Forward
     - https://www.w3.org/2023/03/secure-the-web-forward/
+
 
 ### Wrap Up
 

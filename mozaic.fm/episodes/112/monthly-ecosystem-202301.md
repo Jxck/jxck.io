@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 112 回のテーマは 2023 年 1 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - State of JS 2022
@@ -43,7 +44,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
     - next/image
     - next/font
     - next.config.js
-    - Built-in module transpilation によって、 next-transpile-modules がいらなくなった
+    - Built-in module transpilation によって、next-transpile-modules がいらなくなった
   - Roadmap - Turbopack
     - https://turbo.build/pack/docs/roadmap
 - Rome に関わってたエンジニアがやめたらしい
@@ -64,10 +65,10 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - 2023 年の大きめのもの
     - 2023 年 3 月に 2 年ぶりのメジャーバージョンの v7 をリリース予定
       - カンファレンス開催予定
-    - Turbopack チームと連携して、 2023 年にサポートに追加
+    - Turbopack チームと連携して、2023 年にサポートに追加
 - Tamagui 1.0 🎉
   - https://tamagui.dev/blog/version-one
-  - React Native 、 React for Web 対応の UI ライブラが v1 リリース
+  - React Native 、React for Web 対応の UI ライブラが v1 リリース
 - ESLint's 2022 year in review
   - https://eslint.org/blog/2023/01/eslint-2022-year-review/
   - ESLint の 2022 年まとめ、起きた変化や収益、経費など
@@ -84,6 +85,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - Rename experimental useEvent to useEffectEvent by sebmarkbage · Pull Request #25881 · facebook/react
   - https://github.com/facebook/react/pull/25881
   - useEvent は useEffectEvent に名前が変わる
+
 
 ## Events
 

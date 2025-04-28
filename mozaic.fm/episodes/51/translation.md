@@ -22,6 +22,7 @@ guest: [@strontium91](https://twitter.com/strontium91)
 
 今後、どのような仕様を翻訳していくのか、などをお聞きしました。
 
+
 ## Show Note
 
 - ウェブ関連仕様 日本語訳

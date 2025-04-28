@@ -12,7 +12,8 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 111 回のテーマは 2022 年 の Yearly Platform です。
 
-今年の 8 月まで実施した Monthly Web と、 8 月からの Monthly Platform を踏まえ、今年の Web Platform を振り返ります。
+今年の 8 月まで実施した Monthly Web と、8 月からの Monthly Platform を踏まえ、今年の Web Platform を振り返ります。
+
 
 ## Show Note
 
@@ -27,6 +28,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 8 月: 通常回 ep101 Passwordless
 - 12 月: Yearly Web
   - Yearly Platform と Yearly Ecosystem 両方実施
+
 
 ### 今年のキーワード
 
@@ -49,6 +51,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Igalia
   - W3C Inc.設立準備
 
+
 ### 2023 年チェックポイント
 
 - Style Query
@@ -58,6 +61,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Winter CG の今後
 - Figma 買収での Adobe 製品の今後
 - Addon-gated と Permission
+
 
 ### 1 月
 
@@ -133,6 +137,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Vivaldi は暗号通貨に手を出さない**
   - **Opera は Crypto Browser として Web3 進めていく**
   - State of CSS / State of JS
+
 
 ### 2 月
 
@@ -218,6 +223,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - セキュリティ動向
 - 周辺動向
   - **Igalia が Firefox Reality を Fork した Wolvic ブラウザ**
+
 
 ### 3 月
 
@@ -307,6 +313,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Internet Society の「国境でアクセスを弾いたりしない」**
   - **ロシア情勢が Web/Internet/Tech に与えた影響の記録 2022 年 3 月**
 
+
 ### 4 月
 
 - Chrome
@@ -381,6 +388,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - DuckDuckGo mac 向けブラウザ
   - Digital Ocean が CSS-Tricks を買収
+
 
 ### 5 月
 
@@ -461,6 +469,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - WebEngine Hackfest
   - **Ryan Dahl の container に関する Blog (WinterCG)**
+
 
 ### 6 月
 
@@ -544,6 +553,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - モバイルエコシステムに対するパブコメ募集
   - **行政におけるデザインシステムの在り方**
 
+
 ### 7 月
 
 - Chrome
@@ -612,6 +622,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - State of CSS Survey 2022 のフィードバック募集
   - **AV1 に対して EU の公正取引調査**
   - **「いちばんやさしい Web3 の教本」回収**
+
 
 ### 8 月
 
@@ -688,6 +699,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - セキュリティ動向
   - Coincheck が Sign in with Apple の廃止
 - 周辺動向
+
 
 ### 9 月
 
@@ -784,6 +796,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **2022 Web Almanac**
   - **Stadia 終了アナウンス**
 
+
 ### 10 月
 
 - Chrome
@@ -872,6 +885,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - **Facebook が Chromium-based WebView for Android**
   - Igalia の MPArch の記事
+
 
 ### 11 月
 

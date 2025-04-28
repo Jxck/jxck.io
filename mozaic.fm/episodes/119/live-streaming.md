@@ -15,7 +15,8 @@ guest: [@nodaguti](https://twitter.com/nodaguti)
 
 Abema TV が 2022 年に全試合生放送を行った「FIFA ワールドカップ カタール 2022」で行われた、大規模ライブ配信の話を元に、今の Web でライブ配信を行うとどうなるのか、より規模の大きい配信を行うために今の Web に足りないものは何か、を議論しました。
 
-議論の内容は、 Abema チームが 2023/04/19 に開催した「ABEMA Developer Conference 2023」の発表内容をベースにしています。
+議論の内容は、Abema チームが 2023/04/19 に開催した「ABEMA Developer Conference 2023」の発表内容をベースにしています。
+
 
 ## Show Note
 

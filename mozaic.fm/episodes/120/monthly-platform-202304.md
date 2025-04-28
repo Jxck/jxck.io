@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 120 回のテーマは 2023 年 04 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 113
+
 
 #### Updates
 
@@ -105,6 +107,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - `profile()` command populates Performance > Main
     - Warning for slow user interactions
   - JavaScript Profiler deprecation: Phase three
+
 
 #### Intents
 
@@ -261,7 +264,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **FYI: HSTS preload enforcing continued requirements**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/gJZkQN4g17o
 
+
 #### V8
+
 
 #### Other
 
@@ -310,9 +315,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google Developers Blog: Get ready for Google I/O
     - https://developers.googleblog.com/2023/04/get-ready-for-google-io.html
 - google developer japan blog
-  - Google Developers Japan: Chrome 112: CSS のネスト、 animation-composition 、 FormData コンストラクタの submitter パラメータ
+  - Google Developers Japan: Chrome 112: CSS のネスト、animation-composition 、FormData コンストラクタの submitter パラメータ
     - https://developers-jp.googleblog.com/2023/04/chrome-112.html
-  - Google Developers Japan: Chrome 113 ベータ版 : 新しい CSS メディア特性、 `linear()` イージング関数、 WebGPU
+  - Google Developers Japan: Chrome 113 ベータ版 : 新しい CSS メディア特性、`linear()` イージング関数、WebGPU
     - https://developers-jp.googleblog.com/2023/04/chrome-113-beta.html
   - Google Developers Japan: WebAssembly が新しいウェブ機能を加速する仕組み
     - https://developers-jp.googleblog.com/2023/05/webassembly.html
@@ -388,9 +393,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Jake Archibald が Google を離れる**
   - https://twitter.com/jaffathecake/status/1656239197898801152
 
+
 ### Firefox 動向
 
 #### Stable: 113
+
 
 #### Updates
 
@@ -426,6 +433,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2023/04/25/harder-better-faster-stronger-prettier-these-weeks-in-firefox-issue-136/
 - Short but Sweet - These Weeks in Firefox: Issue 137 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2023/05/05/short-but-sweet-these-weeks-in-firefox-issue-137/
+
 
 #### Intents
 
@@ -472,6 +480,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
+
 #### Other
 
 - **Welcome to the MDN blog | MDN Blog**
@@ -500,9 +509,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Engineering Effectiveness Newsletter (April 2023 Edition)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Fp80jrh31C4
 
+
 ### Safari 動向
 
 #### Stable:16.4
+
 
 #### Updates
 
@@ -628,10 +639,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Introducing WebKit Documentation**
   - https://webkit.org/blog/14139/introducing-webkit-documentation/
 
+
 #### Standard Positions
 
 - どうやって追うかまださだまってない
   - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+created%3A%3E2023-03-20+
+
 
 #### Other
 
@@ -639,13 +652,17 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://fantasai.inkedblade.net/weblog/2023/affiliation-change/
   - いろんな CSS 仕様の editor を務める fantasai が Apple に
 
+
 ### Edge 動向
 
 #### Stable: 113
 
+
 #### Updates
 
+
 #### Chakra
+
 
 #### Other
 
@@ -665,6 +682,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - A Beautiful 10K - text/plain
   - https://textslashplain.com/2023/04/16/a-beautiful-10k/
 
+
 ### WHATWG/W3C 動向
 
 #### Draft
@@ -681,6 +699,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - First Public Working Drafts: EdDSA Cryptosuite v2022; ECDSA Cryptosuite v2019
     - https://www.w3.org/blog/news/archives/9888
 - Chartering
+
 
 #### Other
 
@@ -712,7 +731,8 @@ guest: [@myakura](https://twitter.com/myakura)
 - CSS Creator H å kon Wium Lie Interview by Evrone
   - https://evrone.com/hakon-wium-lie-interview
   - H å kon Wium Lie へのインタビュー
-  - コンピューターとの出会い、 CSS の話、 VR や ChatGPT など最近の流行りなど
+  - コンピューターとの出会い、CSS の話、VR や ChatGPT など最近の流行りなど
+
 
 ### TC39 動向
 
@@ -725,11 +745,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://twitter.com/mozaicfm/status/1647223716747837440
   - https://docs.google.com/document/d/1qXUf4QRTbexUj0fg2sgYTxWwOT2v_q7lmjR282BOWLU
 
+
 #### 3/21
 
 - Test262 funding status
   - https://ptomato.name/talks/tc39-2023-03/
-  - Google から funding があったが、 4/1 からそれが止まる
+  - Google から funding があったが、4/1 からそれが止まる
   - やばい。でもどうするか具体的ではない。
 - **Iterator helpers**
   - 3 つに分割
@@ -749,8 +770,8 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://docs.google.com/presentation/d/1b74GI-zHrG0wDzmwFs_yPWRli24KyVUNx3GeZt8JouA/edit#slide=id.p
 - Set methods: What to do about intersection order?
   - Set には内部的に順序がある
-  - 集合の Intercection をしたばあい、 receive の順序を維持したまま後ろに追加されたい
-  - V8/SM はそれができるが、 JSC は実装が linked list だからパフォーマンスが出ない
+  - 集合の Intercection をしたばあい、receive の順序を維持したまま後ろに追加されたい
+  - V8/SM はそれができるが、JSC は実装が linked list だからパフォーマンスが出ない
   - どうするか?
   - 引数とレシーバのサイズ(どっちが大きいか)によって結果が変わる
   - ちょっと奇妙な挙動だが、決定論的
@@ -765,6 +786,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ユースケースによってはこれが必要
   - その実装方法について 3 つの案
   - Option 1 でコンセンサス
+
 
 #### 3/22
 
@@ -801,14 +823,15 @@ guest: [@myakura](https://twitter.com/myakura)
     - 型の消去
     - 型のチェック
   - 二つ目に手を出したい
-  - でも、 3 ブラウザが拒否、型消去以外は受け入れられない
+  - でも、3 ブラウザが拒否、型消去以外は受け入れられない
 - Type Annotations Delimiting Concerns
   - Type Annotation によって間違ったコードが型として消される場合があるよね
     - `< >` がジェネリクスになっちゃうとか
 - **Await Dictionary for stage 1**
   - `const obj = { shape: await getShape(), color: await getColor() }`
-  - これが waterfall になるから、並行してやりたいけど、 Promise.all は面倒
+  - これが waterfall になるから、並行してやりたいけど、Promise.all は面倒
   - Stage1
+
 
 #### 3/23
 
@@ -847,6 +870,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Async Explicit Resource Management again
   - 条件付き Stage 3
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2023-01-01}...main@{2023-02-01}
@@ -864,9 +888,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Async Explicit Resource Management
 - 3->4
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### WinterCG 動向
 
@@ -882,6 +909,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/whatwg/streams/pull/1083
   - Prioritization of Web Crypto Stream
 
+
 ### IETF 動向
 
 #### IETF116
@@ -892,6 +920,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://twitter.com/mozaicfm/status/1643962835393986560
 - IETF116 復習(録音)
   - https://twitter.com/mozaicfm/status/1646499507583225857
+
 
 #### WG
 
@@ -918,6 +947,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - HTTP Dictionary Compression
     - https://wiki.ietf.org/meeting/116/sidemeetings
 
+
 #### Other
 
 - Httpdir early review of draft-ietf-satp-core-00
@@ -941,6 +971,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - I-D Action: draft-ietf-httpbis-digest-headers-12.txt
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2023AprJun/0063.html
 
+
 ### CDN 動向
 
 #### Cloudflare
@@ -958,6 +989,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Cloudflare's view of Internet disruptions in Pakistan
   - https://blog.cloudflare.com/cloudflares-view-of-internet-disruptions-in-pakistan/
 
+
 #### Fastly
 
 - ETags: What they are, and how to use them | Fastly
@@ -966,6 +998,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/announcing-mutual-tls-from-fastly
 - Join Fastly at RSA Conference 2023 | Fastly
   - https://www.fastly.com/blog/join-fastly-at-rsa-conference-2023
+
 
 #### Akamai
 
@@ -980,15 +1013,18 @@ guest: [@myakura](https://twitter.com/myakura)
 - Phishing: The Oldest and Wisest Attack Vector | Akamai
   - https://www.akamai.com/blog/security/phishing-oldest-wisest-attack-vector
 
+
 #### Other
 
 - Streaming for Serverless Node.js and Edge Runtimes with Vercel Functions - Vercel
   - https://vercel.com/blog/streaming-for-serverless-node-js-and-edge-runtimes-with-vercel-functions
 
+
 ### セキュリティ動向
 
 - 2023 USA | RSA Conference
   - https://www.rsaconference.com/usa
+
 
 ### 周辺動向
 
@@ -1020,6 +1056,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - The malware threat landscape: NodeStealer, DuckTail, and more
   - https://engineering.fb.com/2023/05/03/security/malware-nodestealer-ducktail/
 
+
 ### イベント
 
 - 4 月
@@ -1041,6 +1078,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 9 月
   - 11-15: TPAC 2023
     - https://www.w3.org/2023/09/TPAC/
+
 
 ### Wrap Up
 

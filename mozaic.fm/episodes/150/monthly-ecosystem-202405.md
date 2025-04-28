@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 150 回のテーマは 2024 年 5 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - React 19 Beta - React
@@ -119,13 +120,13 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - npm はほぼ進歩してない
   - かつて node で requre を採用し、のちに import ができたが、結局配布は複雑なまま
   - JSR は ESM/TS ファーストで、設定要らずなシンプルなもの
-  - JSR は npm を補完する。 JSR パッケージは npm に依存できる
+  - JSR は npm を補完する。JSR パッケージは npm に依存できる
   - JSR 自体も npm としてアクセスできる(npm.jsr.io)
   - private registries も使える
-  - OIDC token を GH Action と連携し、 SALSA に準拠した署名を Sigsotre に保存する
+  - OIDC token を GH Action と連携し、SALSA に準拠した署名を Sigsotre に保存する
 - Node.js - Node.js 22 is now available!
   - https://nodejs.org/en/blog/announcements/v22-release-announce
-  - v8 が 12.4 で Array.fromAsync や Set Methods、 Iterator Helpers が入った
+  - v8 が 12.4 で Array.fromAsync や Set Methods、Iterator Helpers が入った
   - Maglev Compiler が入り短命な CLI 実行がはやくなった
   - `--experimental-require-module` で reqire(esm)
   - `node --run tast` のサポート
@@ -233,6 +234,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://svelte.dev/blog/svelte-5-release-candidate
 - Introducing TypeSpec: A New Language for API-Centric Development | TypeSpec
   - https://typespec.io/blog/2024-04-25-introducing
+
 
 ## Events
 

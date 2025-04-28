@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 155 回のテーマは 2024 年 7 月の mozaic.fm renewal project です。
 
+
 ## 進捗
 
 - Jxck
@@ -40,6 +41,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
       - remark plugin 作る?
   - ビルド時に全部 SSG する(検索以外)
 
+
 ## タスク
 
 - jxck
@@ -52,12 +54,15 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - hiroppy
   - 検索と md frontmatter 対応
 
+
 ## Done
+
 
 ## スタック
 
 - Next.js
 - algoria
+
 
 ## スケジュール
 

@@ -10,7 +10,8 @@ guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 
 ## Theme
 
-第 161 回のテーマは、 Node.js ユーザグループ会長である [@yosuke_furukawa](https://twitter.com/yosuke_furukawa) の愛車での Drive Talk です。
+第 161 回のテーマは、Node.js ユーザグループ会長である [@yosuke_furukawa](https://twitter.com/yosuke_furukawa) の愛車での Drive Talk です。
+
 
 ## Show Note
 

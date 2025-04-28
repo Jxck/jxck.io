@@ -16,6 +16,7 @@ OIDC や WebAuthN もある程度普及し、我々が「ログイン画面」�
 
 その中で常に課題として上がる「Web からパスワードを無くすという大きな流れ」について、今何が起こっており、これからどうなっていくのか、我々開発者は何を考えないといけないのか、ユーザに必要なリテラシレベルはどこなのか、などについて OpenID Foundation エヴァンジェリストである [@nov](https://twitter.com/nov) さんをお呼びし、議論しました。
 
+
 ## Show Note
 
 - OpenID Foundation Japan

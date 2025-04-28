@@ -13,11 +13,13 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 174 回のテーマは 2025 年 3 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 135
+
 
 #### Updates
 
@@ -668,19 +670,23 @@ guest: [@saku](https://x.com/sakupi01)
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
 - open-ui/meetings/telecon/2025-03-06.md
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2025-03-06.md
-  - [openable] do we need exclusive openables? [#1163](https://github.com/openui/open-ui/issues/1163)
+  - [openable] do we need exclusive openables? [#1163]
+    - https://github.com/openui/open-ui/issues/1163
     - Tab UI のようなパターンで JS なしで排他性を持たせたい
-  - [Interest invokers] Keyboard inputs [#1133](https://github.com/openui/open-ui/issues/1133)
+  - [Interest invokers] Keyboard inputs [#1133]
+    - https://github.com/openui/open-ui/issues/1133
     - 現状のまとめ
     - https://blog.sakupi01.com/dev/articles/standardizing-user-intent-with-interest-invokers
 - open-ui/meetings/telecon/2025-03-13.md
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2025-03-13.md
-  - New draft of appearance:base spec [#1175](https://github.com/openui/open-ui/issues/1175)
+  - New draft of appearance:base spec [#1175]
+    - https://github.com/openui/open-ui/issues/1175
     - `control-value()` で取得できる値の type を string 以外にも対応したい
       ( attr に type を指定できるようになった感じ)
 - open-ui/meetings/telecon/2025-03-20.md
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2025-03-20.md
-  - **[menu] Menu elements proposal [#1179](https://github.com/openui/open-ui/issues/1179)**
+  - **[menu] Menu elements proposal [#1179]**
+    - https://github.com/openui/open-ui/issues/1179
     - https://docs.google.com/document/d/1xJlcuHEvWULa_5iwPwIg6KtvGtVBvyBm_nxkUK7ONTY/
     - 現状の `<menu>` はブラウザでは `<ul>` と違いないものとして表される
     - なので、APG に則った独自の実装が必要とされているが、これを標準でやろうという提案

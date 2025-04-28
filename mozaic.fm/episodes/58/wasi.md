@@ -12,9 +12,10 @@ guest: [@chikoski](https://twitter.com/chikoski)
 
 第 58 回のテーマは WASI (WebAssembly System Interface) です。
 
-今回は [@chikoski](https://twitter.com/chikoski) さんをお迎えし、事例もで始めた WASM が次のステップとして取り組んでいる WASI について、 WASI は何を目指し、今どうなっているのか。また、それは Web の進化に影響をするのかしないのか。
+今回は [@chikoski](https://twitter.com/chikoski) さんをお迎えし、事例もで始めた WASM が次のステップとして取り組んでいる WASI について、WASI は何を目指し、今どうなっているのか。また、それは Web の進化に影響をするのかしないのか。
 
 2015-08-05 にやった [WASM](https://mozaic.fm/episodes/19/es7-sideshow.html) の回から WASM が辿った 4 年を振り返りつつ、今何が起こっているのか、これからどうなっていくのかを議論しました。
+
 
 ## Show Note
 

@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 65 回のテーマは 2020 年 3 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Covid-19
@@ -28,6 +29,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ブラウザのリリースにも影響
   - 多くのイベント、カンファレンス等が中止かリモートに
   - インターネットのトラフィックが急増中
+
 
 ### Chrome 動向
 
@@ -157,6 +159,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.youtube.com/playlist?list=PLNYkxOF6rcIAZqdZ8Uz5hWLgTl319CaLH
     - GDE の Video を集めた Youtube のプレイリスト
 
+
 ### Firefox 動向
 
 - Stable: 74.0
@@ -164,7 +167,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Firefox 74.0, See All New Features, Updates and Fixes**
     - https://www.mozilla.org/en-US/firefox/74.0/releasenotes/
     - Optional Chaining operator のサポート
-    - TLS 1.0/1.1 がリリース時は無効にされたが、 COVID-19 による影響で復帰
+    - TLS 1.0/1.1 がリリース時は無効にされたが、COVID-19 による影響で復帰
       - 政府系のサイトなどでも移行できてなかった模様
       - https://www.mozilla.org/en-US/firefox/74.0/releasenotes/#note-788289
   - Firefox 74 for developers
@@ -226,7 +229,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Try our latest Test Pilot, Firefox for a Better Web, offering privacy and faster access to great content**
     - https://blog.mozilla.org/blog/2020/03/24/try-our-latest-test-pilot-firefox-for-a-better-web-offering-privacy-and-faster-access-to-great-content/
     - Scroll というサービスと組んで Better Web という試験サービスを米国でリリース
-    - 月 2.5 ドルを払えば、 Scroll とパートナーシップを結んだパブリッシャーのサイトでは広告がでない
+    - 月 2.5 ドルを払えば、Scroll とパートナーシップを結んだパブリッシャーのサイトでは広告がでない
     - 昨年のテストでは、広告を表示するよりも 40% より多い額がパブリッシャーに渡った
   - **KaiOS Technologies and Mozilla partner to enable a healthy mobile internet for everyone**
     - https://www.kaiostech.com/press/kaios-technologies-and-mozilla-partner-to-enable-a-healthy-mobile-internet-for-everyone/
@@ -236,6 +239,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/data/2020/03/30/opening-data-to-understand-social-distancing/
     - フランスで Firefox の DAU(Daily Active Usage) が 3 月中旬から増加している
     - Social distancing の影響かはちゃんと検証しないとわからないとは前置きした上で、一部データを公開
+
 
 ### Safari 動向
 
@@ -276,6 +280,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - cross site document.referrer は origin のみに
 - Other
 
+
 ### Edge 動向
 
 - Stable: 80.0
@@ -285,7 +290,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Chromium のリリースに追従する
   - **Plan for change: TLS 1.0 and TLS 1.1 soon to be disabled by default**
     - https://blogs.windows.com/msedgedev/2020/03/31/tls-1-0-tls-1-1-schedule-update-edge-ie11/
-    - 現状を鑑みて、 2020 前半に予定されていた 1.0/1.1 の無効化を延期
+    - 現状を鑑みて、2020 前半に予定されていた 1.0/1.1 の無効化を延期
     - Edge は 2020/7 の 84
     - Edge Legacy と IE11 は 2020/9
     - をそれぞれ予定
@@ -304,6 +309,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Debugging Proxy Configuration Scripts in the new Edge
     - https://textslashplain.com/2020/03/25/debugging-proxy-configuration-scripts-in-the-new-edge/
     - PAC のデバッグの話?
+
 
 ### WHATWG/W3C 動向
 
@@ -342,6 +348,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Electron での情報漏えいなどをうけ Reference Monitor を入れる提案
     - 意図しない呼び出しなどを止める仕組み
 
+
 ### TC39 動向
 
 - Meeting
@@ -376,6 +383,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://zenodo.org/record/3707008
     - JS の歴史についての論文
     - HOPL (History Of Programming Languages Conferences) に提出する
+
 
 ### IETF 動向
 
@@ -550,6 +558,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-dekok-emu-tls-eap-types-01
 - Other
 
+
 ### セキュリティ動向
 
 - Cookie Status :: Current Status Of Browser Tracking Prevention
@@ -566,7 +575,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://letsencrypt.org/2020/02/27/one-billion-certs.html
   - 2017/6 に開始し 2020/02/27 で 10 億の証明書を発行
   - HTTPS は世界 58% 米 64% だったのが、世界 81% 米 91%
-  - LE は 4600 万サイト 11 人で 261 万ドル予算から始まり、 1.92 億を 13 人で 335 万ドルで
+  - LE は 4600 万サイト 11 人で 261 万ドル予算から始まり、1.92 億を 13 人で 335 万ドルで
   - LE 自体もそうだが ACME(2019)や Certbot が大きい
 - **2020.02.29 CAA Rechecking Bug - Incidents - Let's Encrypt Community Support**
   - https://community.letsencrypt.org/t/2020-02-29-caa-rechecking-bug/114591/4
@@ -575,13 +584,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - その 30 日の間でも発行 8h 前に CAA は再チェックをする
   - 1 回で N 個の証明書を発行する場合(SNI)、本来 N 個の CAA 全部チェック
   - しかしバグで最初の 1 個を N 回チェックしていた
-  - 30 日以内に domain control してたら、 2 個目以降の CAA を変えていても素通り
+  - 30 日以内に domain control してたら、2 個目以降の CAA を変えていても素通り
   - CAA(任意)を設定し、同時に複数取得し、期限より前に再発行している場合該当うる可能性
   - 大半の証明書はセキュリティリスクがあるとは言えないが、ルール上取り消す必要がある
   - 2.6%(300 万件)が失効対象、そのうち CAA で禁止されてた 445 件と 170 万件はすでに置き換わった
   - 3/5 までに残り 130 万も失効したかったが、影響が大きすぎ、放っておいても 90 日で消えるので取りやめに
 - An Opinion Piece on Internet Security | APNIC Blog
   - https://blog.apnic.net/2020/03/24/an-opinion-piece-on-internet-security/
+
 
 ### 周辺動向
 
@@ -603,6 +613,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **COVID-19 impacts on Internet traffic: Seattle, Northern Italy and South Korea**
   - https://blog.cloudflare.com/covid-19-impacts-on-internet-traffic-seattle-italy-and-south-korea/
 
+
 ### イベント
 
 - 3 月
@@ -621,6 +632,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 19: SecWeb
   - ??: WWDC
     - virtual
+
 
 ### WrapUp
 

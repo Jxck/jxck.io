@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 149 回のテーマは 2024 年 4 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 124
+
 
 #### Updates
 
@@ -64,6 +66,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Removal of prefixed HTMLVideoElement Fullscreen properties and methods
 - What's New in WebGPU (Chrome 124)
   - https://developer.chrome.com/blog/new-in-webgpu-124
+
 
 #### Intents
 
@@ -132,6 +135,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0V39bkO_ddk
 - **Q1 2024 Summary from Chrome Security**
   - https://groups.google.com/a/chromium.org/g/security-dev/c/VSTfZ3SsGDk
+
 
 #### Other
 
@@ -215,9 +219,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://twitter.com/justinfagnani/status/1776339358284644599
   - Lit には引き続き関わる
 
+
 ### Firefox 動向
 
 #### Stable: 125.0.2
+
 
 #### Updates
 
@@ -245,6 +251,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Firefox Nightly Now Available for Linux on ARM64 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2024/04/19/firefox-nightly-now-available-for-linux-on-arm64/
 
+
 #### Intents
 
 - **Ship: CSS zoom property, Element.currentCSSZoom (and partially unship -moz-transform)**
@@ -270,6 +277,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - ESMification: Out-of-tree migration
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/HJHAaGKSeGU
 
+
 #### Newsletter
 
 - Performance Testing Newsletter, Q1 Edition
@@ -278,6 +286,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/KJZhd7UZohM
 - Firefox WebDriver Newsletter - 125 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-125/
+
 
 #### MDN / Open Web Docs
 
@@ -289,6 +298,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.mozilla.org/en-US/blog/setting-up-service-workers-on-vultr/
 - **CSS containment**
   - https://openwebdocs.org/content/posts/css-containment/
+
 
 #### Standard Position
 
@@ -306,6 +316,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - negative
   - **`autocomplete=device-eid` and `=device-imei` · Issue #1002 · mozilla/standards-positions**
     - https://github.com/mozilla/standards-positions/issues/1002
+
 
 #### Other
 
@@ -326,9 +337,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Bug 1871963: Implement zstd content-encoding support**
   - https://hg.mozilla.org/mozilla-central/rev/99e71b905661
 
+
 ### Safari 動向
 
 #### Stable: 17.4
+
 
 #### Updates
 
@@ -351,6 +364,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Fixed inconsistent output of Function.prototype.toString for accessor properties. (276904@main) (125739577)
   - Added support for PopStateEvent's hasUAVisualTransition. (277001@main) (125849073)
 
+
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -362,15 +376,18 @@ guest: [@myakura](https://twitter.com/myakura)
   - Page Embedded Permission Control · Issue #270 · WebKit/standards-positions
     - https://github.com/WebKit/standards-positions/issues/270
 
+
 #### Other
 
 - **www.nhl.com - design is broken · Issue #135984 · webcompat/web-bugs**
   - https://github.com/webcompat/web-bugs/issues/135984
   - Safari で JPEG2000 のサポートを削除したところ nhl.com が壊れた
 
+
 ### Edge 動向
 
 #### Stable: 124
+
 
 #### Updates
 
@@ -380,6 +397,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://microsoftedge.github.io/TopDeveloperNeeds/
 - Improving text editing on the web, one feature at a time - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2024/04/23/improving-text-editing-on-the-web/
+
 
 #### Other
 
@@ -392,6 +410,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **We've just launched Microsoft Store installers for web**
   - https://twitter.com/RudyHuyn/status/1781839212935069856
 
+
 ### WHATWG/W3C 動向
 
 #### Draft
@@ -402,10 +421,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - Working Draft
 - First Public Working Draft
 
+
 #### Open/UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
 - 気になるのがあったときだけ
+
 
 #### Other
 
@@ -421,6 +442,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Mark Nottingham: "**On the Shinkansen, hyperventilating...**" - techpolicy
   - https://techpolicy.social/@mnot/112228877734080748
   - 広島で開催の AC ミーティングに向かう新幹線の中で mnot が見た光景
+
 
 ### TC39 動向
 
@@ -454,6 +476,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - destructuring とかで便利
   - Stage 1
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2024-02-01}...main@{2024-03-01}
@@ -480,23 +503,28 @@ guest: [@myakura](https://twitter.com/myakura)
   - Generator Arrow function
   - Math.signbit
 
+
 #### New Proposals
 
 - **proposal-signals/proposal-signals: A proposal to add signals to JavaScript.**
   - https://github.com/proposal-signals/proposal-signals
 
+
 #### Other
 
 - WinterCG
+
 
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
 
+
 #### Meeting
 
 - 2024-04-04 meeting · Issue #64 · wintercg/admin
   - https://github.com/wintercg/admin/issues/64
+
 
 ### IETF 動向
 
@@ -530,6 +558,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - QUIC
   - https://github.com/quicwg/wg-materials/blob/main/ietf119/minutes.md
 
+
 #### WG
 
 - RFC
@@ -548,12 +577,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024AprJun/0017.html
 - Meeting
 
+
 #### Other
 
 - Review of TLS's ECH HTTP-related I-Ds from Sean Turner on 2024-04-01 (ietf-http-wg@w3.org from April to June 2024)
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2024AprJun/0000.html
 - Content-Encoding and MITM devices from Patrick Meenan
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2024AprJun/0002.html
+
 
 ### CDN 動向
 
@@ -582,6 +613,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Cloudflare named in 2024 Gartner ® Magic Quadrant ™ for Security Service Edge**
   - https://blog.cloudflare.com/cloudflare-sse-gartner-magic-quadrant-2024/
 
+
 #### Fastly
 
 - **Let's Encrypt Chain of Trust Impact**
@@ -600,10 +632,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - BoringSSL 移行に合わせて Neverbleed を導入した
   - パフォーマンスが劣化しないように非同期化などでチューニングした話
 
+
 #### Other
 
 - Latency numbers every frontend developer should know - Vercel
   - https://vercel.com/blog/latency-numbers-every-web-developer-should-know
+
 
 ### セキュリティ動向
 
@@ -628,6 +662,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://venafi.com/blog/24-000-mis-issued-ev-certificates-to-be-revoked-and-reissued-by-entrust-this-sunday-are-you-ready/
   - Entrust という会社で EV の誤発行があったらしい
 
+
 ### 周辺動向
 
 - April Conference News | Igalia
@@ -639,12 +674,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Chromium Backend Beta - Wolvic**
   - https://wolvic.com/blog/Chromium_Beta_APKs/
 
+
 ### Cookie 動向
 
 - **Update on the plan for phase-out of third-party cookies on Chrome**
   - https://privacysandbox.com/intl/en_us/news/update-on-the-plan-for-phase-out-of-third-party-cookies-on-chrome/
   - 3rd Party Cookie Deprecation の延期。
   - 未定だが少なくとも 2024 年内の deprecation 完了はない。
+
 
 ### イベント
 
@@ -658,6 +695,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://webengineshackfest.org/
   - 10: WWDC
     - https://developer.apple.com/wwdc24/
+
 
 ### Wrap Up
 

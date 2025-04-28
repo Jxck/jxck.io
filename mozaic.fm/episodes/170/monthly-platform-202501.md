@@ -13,11 +13,13 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 170 回のテーマは 2024 年 12 月と 2025 年 1 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 132
+
 
 #### Updates
 
@@ -1071,6 +1073,7 @@ guest: [@saku](https://x.com/sakupi01)
 - 3 月
   - IETF 122 Bangkok
     - https://www.ietf.org/meeting/122/
+
 
 ### Wrap Up
 

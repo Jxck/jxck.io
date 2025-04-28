@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 90 回のテーマは 2021 年 11 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 96
+
 
 #### Updates
 
@@ -79,7 +81,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - Remove SDP Plan B
 - Chrome Dev Summit
   - https://www.youtube.com/watch?v=lNecNY6vDek
-  - Keynote で Flash を HTML5 に終わらせられた Adobe の VP が Photoshop PWA で、 「Web でなんでもできる」って話をしてて感慨深い。
+  - Keynote で Flash を HTML5 に終わらせられた Adobe の VP が Photoshop PWA で、「Web でなんでもできる」って話をしてて感慨深い。
+
 
 #### Intents
 
@@ -120,7 +123,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/kcvn81WtlvM
   - 今の Chrome は Cookie の Domain 属性が空文字だと仕様と違う動きをする
   - これを仕様(RFC6265bis) に準じるように直す。
-  - 互換性もあがり、 WPT も通る。
+  - 互換性もあがり、WPT も通る。
 - Prototype: Presentation API: Site-initiated mirroring
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/IYgoj9avvK0
 - Prototype: Declarative Link Capturing for PWAs
@@ -161,7 +164,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8p7QvGn3Ezo/m/j-nO6azUBwAJ
 - **Ship: CSS cascade layers**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ZCN2tBZ2cUY/m/BQAcIIjFCAAJ
-  - `@layer {}` block を定義し、 CSS のブロックをレイヤーに分けられるように
+  - `@layer {}` block を定義し、CSS のブロックをレイヤーに分けられるように
   - `@layer` rule でレイヤーの優先順位を決められる
   - カスケードはレイヤー内で行われ、別の(優先度の低い)レイヤーによる意図しない上書きを予防できるようになる
   - Gecko: [In development](https://bugzilla.mozilla.org/show_bug.cgi?id=1699215)
@@ -204,12 +207,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Request for (Extending) Deprecation Trial: [WebRTC] Deprecate and Remove Plan B
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Zyvaa5VNijg/m/tAgoASxRBAAJ
 
+
 #### V8
 
 - WebAssembly Dynamic Tiering ready to try in Chrome 96 · V8
   - https://v8.dev/blog/wasm-dynamic-tiering
 - Oilpan library · V8
   - https://v8.dev/blog/oilpan-library
+
 
 #### Other
 
@@ -307,9 +312,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.youtube.com/playlist?list=PL9ioqAuyl6UL_1DiG1tPRHbGJlGQ_gQJW
   - https://docs.google.com/spreadsheets/d/1x2MXoLaYENQg7WKHWspzwAuttDB38T5pc74ZHRYEKgo/edit#gid=0
 
+
 ### Firefox 動向
 
 #### Stable: 95.0
+
 
 #### Updates
 
@@ -336,6 +343,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2021/11/18/these-weeks-in-firefox-issue-104/
 - These Weeks in Firefox: Issue 105 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/12/07/these-weeks-in-firefox-issue-105/
+
 
 #### Intents
 
@@ -365,6 +373,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/iA1PcfXiqNQ
 - Firefox Security & Privacy Newsletter 2021 Q3
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/5RpuDK2tySk
+
 
 #### Other
 
@@ -397,9 +406,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **WebAssembly and Back Again: Fine-Grained Sandboxing in Firefox 95 - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/12/webassembly-and-back-again-fine-grained-sandboxing-in-firefox-95/
 
+
 ### Safari 動向
 
 #### Stable: 15.1
+
 
 #### Updates
 
@@ -528,19 +539,23 @@ guest: [@myakura](https://twitter.com/myakura)
 - PCM for In-App Direct Response Advertising
   - https://webkit.org/blog/12042/pcm-for-in-app-direct-response-advertising/
 
+
 #### Position
 
 - https://lists.webkit.org/pipermail/webkit-dev/
 - いくつかあるが返事は無し
+
 
 #### Other
 
 - **Enable :focus-visible pseudo-class by default**
   - https://trac.webkit.org/changeset/286783/webkit
 
+
 ### Edge 動向
 
 #### Stable: 96
+
 
 #### Updates
 
@@ -555,7 +570,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Cloud Site List Management experience for IE mode in Microsoft Edge now generally available
   - https://blogs.windows.com/msedgedev/2021/12/07/cloud-site-list-management-experience-for-ie-mode-in-microsoft-edge-now-generally-available/
 
+
 #### Chakra
+
 
 #### Other
 
@@ -576,7 +593,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Edge に「Chrome のダウンロードを中止するように必死で促す新機能」が追加、実際の画面はこんな感じ - GIGAZINE**
   - https://gigazine.net/news/20211203-edge-chrome/
 
+
 ### WHATWG/W3C 動向
+
 
 ### TPAC
 
@@ -631,6 +650,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/w3c/webappsec/blob/main/meetings/2021/2021-11-16-agenda.md
     - XS-Leaks summit の話
 
+
 #### Draft
 
 - Recommendation
@@ -658,6 +678,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Call for Prior Art - Second Screen Working Group PAG
     - https://www.w3.org/blog/news/archives/9355
 
+
 #### Other
 
 - **The WHATWG Blog - New Living Standards**
@@ -680,6 +701,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Interoperability Remedies Community Group Charter
   - https://interop-remedies-cg.github.io/charter.html
 
+
 ### TC39 動向
 
 #### Meeting
@@ -690,6 +712,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/notes/blob/master/meetings/2021-10/oct-26.md
   - https://github.com/tc39/notes/blob/master/meetings/2021-10/oct-27.md
   - https://github.com/tc39/notes/blob/master/meetings/2021-10/oct-28.md
+
 
 #### Proposals Diff
 
@@ -710,6 +733,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 3->4
   - Error Cause
 
+
 #### New Proposals
 
 - **tc39/proposal-function-helpers**
@@ -729,7 +753,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - tc39/proposal-regexp-buffer-boundaries
   - https://github.com/tc39/proposal-regexp-buffer-boundaries
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -827,7 +853,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Avoiding Internet Centralization**
     - https://www.ietf.org/archive/id/draft-nottingham-avoiding-internet-centralization-00.html
 
+
 #### Other
+
 
 ### CDN 動向
 
@@ -846,6 +874,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - CVE-2021-44228 - Log4j RCE 0-day mitigation
   - https://blog.cloudflare.com/cve-2021-44228-log4j-rce-0-day-mitigation/
 
+
 #### Fastly
 
 - 30 years of the website: meeting the demands of the future | Fastly
@@ -859,7 +888,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Digging deeper into Log4Shell - 0Day RCE exploit found in Log4j | Fastly**
   - https://www.fastly.com/blog/digging-deeper-into-log4shell-0day-rce-exploit-found-in-log4j
 
+
 #### Other
+
 
 ### セキュリティ動向
 
@@ -868,18 +899,19 @@ guest: [@myakura](https://twitter.com/myakura)
   - Webkit の CSP バグを使って認証を盗む
   - DEMO の動画あり
 
+
 ### 周辺動向
 
 - **Sorry Safari team - Modern Web Development with Chrome by Paul Kinlan**
   - https://paul.kinlan.me/sorry-safari-team/
   - Chrome Dev Summit で Compat 2021 の成果報告があった
-  - 3 ブラウザそれぞれでスコアが向上していたが、 Safari だけ点数が低かった
+  - 3 ブラウザそれぞれでスコアが向上していたが、Safari だけ点数が低かった
     - 実は数ヶ月前の Safari TP でテストしていたことが判明
     - スコアの元になった web-platform-tests はインフラの都合上、新しい Safari TP を入れられていなかった
-  - public shaming として扱われて燃えてしまい、 Paul Kinlan が謝罪
+  - public shaming として扱われて燃えてしまい、Paul Kinlan が謝罪
 - **Top web developer pain points in 2021 - Modern Web Development with Chrome by Paul Kinlan**
   - https://paul.kinlan.me/top-web-developer-pain-points-in-2021/
-  - 米国、イギリスとインドの開発者に、 Web 開発の難しいところについて 3 ヶ月ごとにアンケートをとった
+  - 米国、イギリスとインドの開発者に、Web 開発の難しいところについて 3 ヶ月ごとにアンケートをとった
   - 上位 5 つの変化はそこまでなかった
     - Keeping up with changes to the web platform/web standards
     - Keeping up with a large number of new and existing tools or frameworks
@@ -892,6 +924,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://open-props.style/
   - Adam Argyle によるユーティリティカスタムプロパティ集
 
+
 ### イベント
 
 - 12 月
@@ -901,6 +934,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2 月
   - 1-3: HTTPBis Interim
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021OctDec/0149.html
+
 
 ### Wrap Up
 

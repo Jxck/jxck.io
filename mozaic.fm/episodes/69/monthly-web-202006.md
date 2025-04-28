@@ -12,6 +12,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 
 第 69 回のテーマは 2020 年 6 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -184,6 +185,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - Project Zero: FF Sandbox Escape (CVE-2020-12388)
     - https://googleprojectzero.blogspot.com/2020/06/ff-sandbox-escape-cve-2020-12388.html
 
+
 ### Firefox 動向
 
 - Stable: 78
@@ -240,7 +242,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - **Ship : HTML5 `<dialog>` element (Nightly Only)**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/gqi4MDQDwX8/eXCcIZNWAwAJ
     - Nightly でだけ `<dialog>` 要素を有効に
-    - Layout 実装が仮なのと、 Inert(後述) が無いため、まだ改善が必要
+    - Layout 実装が仮なのと、Inert(後述) が無いため、まだ改善が必要
   - **Ship: returning shared memory to the web**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/-hYWoob95LI/k160l4k7AwAJ
     - COOP + COEP による crossOriginIsolated が true なら SharedArrayBuffer を有効に
@@ -256,7 +258,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - `-moz-appearance` の Prefix を削除
   - **Unship: JavaScript BinAST prototype implementation**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/B3sVl2hCJCE/KLoMRrXFAwAJ
-    - 実装が一応入っていたが、完成には程遠いので、 CI 負荷などを下げるため一旦下ろす
+    - 実装が一応入っていたが、完成には程遠いので、CI 負荷などを下げるため一旦下ろす
     - 次やる場合は、新しい JS パーサのデザインに合わせてやりなおす
   - Unship: prefers-color-scheme:no-preference value.
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/PxkHBfdorRo/a-fswdp0AwAJ
@@ -280,6 +282,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://mozilla-spidermonkey.github.io/blog/2020/07/03/newsletter-5.html
   - SpiderMonkey Newsletter #5
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/eEAh6uE2M5E/dSsp0fa1AgAJ
+
 
 ### Safari 動向
 
@@ -415,12 +418,13 @@ guest: [@araya](https://twitter.com/arayaryoma)
       - タイトルと比べるとニュアンスはだいぶ違う
   - **App-Bound Domains**
     - https://webkit.org/blog/10882/app-bound-domains/
-      - WKWebView で App 内 WebView を使うときに、 Web サイトのトラッキングスクリプトをブロックする方法を提供
+      - WKWebView で App 内 WebView を使うときに、Web サイトのトラッキングスクリプトをブロックする方法を提供
         - info.plist の WebAppBoundDomains に allow list を指定する(最大 10 個)
         - WebAppBoundDomains を指定しなければデフォルトの挙動
         - iOS14.0, macOS Big Sur 以降では WKWebView で ITP が有効になる
   - Async Clipboard API
     - https://webkit.org/blog/10855/async-clipboard-api/
+
 
 ### Edge 動向
 
@@ -466,6 +470,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://techcommunity.microsoft.com/t5/surveys/survey-your-experience-installing-microsoft-edge/m-p/1500436
     - Edge の利用に関するアンケート
 
+
 ### WHATWG/W3C 動向
 
 - Recommendation
@@ -491,6 +496,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 - Other
   - **W3C Advisory Committee Elects Advisory Board**
     - https://www.w3.org/blog/news/archives/8569
+
 
 ### TC39 動向
 
@@ -540,6 +546,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - tc39/proposal-deep-path-properties-for-record
     - https://github.com/tc39/proposal-deep-path-properties-for-record
 - Other
+
 
 ### IETF 動向
 
@@ -599,6 +606,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0277.html
     - UA-CH が Structured Header のせいで落ちる
 
+
 ### セキュリティ動向
 
 - **インド政府が中国製のアプリ 59 個を禁止にした**
@@ -610,6 +618,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://textslashplain.com/2020/06/03/same-origin-policy-cors/
 - Avoiding Unexpected Navigation
   - https://textslashplain.com/2020/06/03/avoiding-unexpected-navigation/
+
 
 ### 周辺動向
 
@@ -665,6 +674,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 - QUIC with wolfSSL | daniel.haxx.se
   - https://daniel.haxx.se/blog/2020/06/18/quic-with-wolfssl/
 
+
 ### イベント
 
 - 6 月
@@ -689,6 +699,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 - 11 月
   - 14-20: IETF 109 Bangkok
     - https://www.ietf.org/how/meetings/109/
+
 
 ### Wrap Up
 

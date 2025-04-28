@@ -14,7 +14,8 @@ guest: [@toyoshim](https://twitter.com/toyoshim)
 
 今回は [@toyoshim](https://twitter.com/toyoshim) をお呼びし、今議論中の Web における Permission について、何が問題/課題であり、現状どうなっているのか。
 
-実装と仕様の両方の側面から議論し、 Web における Permission の扱いが Web をどのように変えていくのかについて議論しました。
+実装と仕様の両方の側面から議論し、Web における Permission の扱いが Web をどのように変えていくのかについて議論しました。
+
 
 ## Show Note
 
@@ -32,7 +33,7 @@ guest: [@toyoshim](https://twitter.com/toyoshim)
   - chrome が web push で問い合わせるのは notification の permission
   - chrome の site settings 一覧には notification の permission は無い
 - [Feature Policy](https://wicg.github.io/feature-policy/)
-  - 許可の付与以外に、 iframe 内への権限委譲にも使われる
+  - 許可の付与以外に、iframe 内への権限委譲にも使われる
   - https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html
 - [gpuweb/gpuweb: Where the GPU on the Web work happens!](https://github.com/gpuweb/gpuweb)
   - apple が提案しているため Metal ベース

@@ -13,17 +13,18 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 124 回のテーマは 2023 年 6 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - Turborepo 1.10 - Turbo
   - https://turbo.build/blog/turbo-1-10-0
-  - 実験段階だが、 scafolding ができるようになる(copy, add, append, etc)
+  - 実験段階だが、scafolding ができるようになる(copy, add, append, etc)
   - .env のよみとりができるようになった
   - 環境変数名でワイルドカードが使えるようになった
   - https://www.hygen.io/
 - Fresh 1.2 - welcoming a full-time maintainer, sharing state between islands, limited npm support, and more
   - https://deno.com/blog/fresh-1.2
-  - Preact のメンテナ Marvin が Deno に入り、 Fresh のフルタイムコミッターになる
+  - Preact のメンテナ Marvin が Deno に入り、Fresh のフルタイムコミッターになる
 - RSC From Scratch. Part 1: Server Components · reactwg/server-components · Discussion #5
   - https://github.com/reactwg/server-components/discussions/5
   - Dan による RSC の deep dive
@@ -120,6 +121,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
     - API のインターフェースは Node の fetch と同様
     - Chromium が内部で URL ロードの様々な異なるモード(navigation, subresouce, worker)を区別している
     - electron ではそれらを気にすることが多く、コードが散らばってしまい一元化したいのでこのモジュールを追加
+
 
 ## Events
 

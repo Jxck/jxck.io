@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 164 回のテーマは 2024 年 10 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 130
+
 
 #### Updates
 
@@ -58,6 +60,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Remove non-standard GPUAdapter `requestAdapterInfo()` method
 - What's New in WebGPU (Chrome 130)
   - https://developer.chrome.com/blog/new-in-webgpu-130
+
 
 #### Intents
 
@@ -162,6 +165,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Proposal: Ignore Strict-Transport-Security headers for Localhost responses
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/gGHOmFGEzQ0
 
+
 #### Other
 
 - web.dev
@@ -211,9 +215,11 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://googlechromeai.devpost.com/
     - Develop a web application or Chrome Extension that uses one or more Chrome built-in AI APIs to interact with integrated models such as Gemini Nano. - Devpost
 
+
 ### Firefox 動向
 
 #### Stable: 131.0.3
+
 
 #### Updates
 
@@ -227,6 +233,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Text fragments
 - Search Improvements Are On Their Way - These Weeks in Firefox: Issue 169 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2024/10/09/search-improvements-are-on-their-way-these-weeks-in-firefox-issue-169/
+
 
 #### Intents
 
@@ -245,6 +252,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
+
 #### Newsletter
 
 - Engineering Effectiveness Newsletter (August & September 2024 Edition)
@@ -257,6 +265,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://spidermonkey.dev/blog/2024/10/16/75x-faster-optimizing-the-ion-compiler-backend.html
   - Spidermonkey の性能改善
 
+
 #### MDN / Open Web Docs
 
 - Fixing your website's JavaScript performance | MDN Blog
@@ -265,6 +274,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.mozilla.org/en-US/blog/new-community-page/
 - **Security documentation at TPAC 2024**
   - https://openwebdocs.org/content/posts/swag-at-tpac-anaheim/
+
 
 #### Standard Position
 
@@ -322,6 +332,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Window Controls Overlay
     - https://github.com/mozilla/standards-positions/issues/529
 
+
 #### Other
 
 - Behind the Scenes: Fixing an In-the-Wild Firefox Exploit - Mozilla Security Blog
@@ -333,9 +344,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Privacy-preserving digital ads infrastructure: An overview of Anonym's technology
   - https://blog.mozilla.org/en/products/anonym-technology-overview/
 
+
 ### Safari 動向
 
 #### Stable: 18.0.1
+
 
 #### Updates
 
@@ -392,6 +405,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.apple.com/documentation/safari-release-notes/safari-18_0_1-release-notes
   - Fixed `SameSite` default behavior. だがバグリンクなし
 
+
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -402,6 +416,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - CSS Scoping :has-slotted pseudo
       - https://github.com/WebKit/standards-positions/issues/404
 
+
 #### Other
 
 - Help us choose the final syntax for Masonry in CSS | WebKit
@@ -411,9 +426,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - フィードバック求
     - https://github.com/w3c/csswg-drafts/issues/11060
 
+
 ### Edge 動向
 
 #### Stable: 130
+
 
 #### Updates
 
@@ -423,6 +440,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ここでも見れる
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
+
 
 #### Other
 
@@ -442,6 +460,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/windowsdeveloper/2024/10/08/passkeys-on-windows-authenticate-seamlessly-with-passkey-providers/
 - **How Microsoft Edge Is Replacing React With Web Components - The New Stack**
   - https://thenewstack.io/how-microsoft-edge-is-replacing-react-with-web-components/
+
 
 ### WHATWG/W3C 動向
 
@@ -471,6 +490,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - CSSWG
   - https://github.com/orgs/w3c/projects/122/views/1?layout=board
 
+
 #### Draft
 
 - Recommendation
@@ -480,6 +500,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Candidate Recommendation
 - Working Draft
 - First Public Working Draft
+
 
 #### Open UI
 
@@ -497,6 +518,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2024-10-24.md
   - selectlist: Should `<selectedoption>` respond to mutations in the selected `<option>` #825
   - The utility of the popover=hint feature #1114
+
 
 #### WHATNOT
 
@@ -537,6 +559,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - [Keith] [Add an event for when a user attempts to submit](https://github.com/whatwg/html/issues/10694)
       - Noam suggested an interesting direction in the issue.
 
+
 #### Other
 
 - WCAG2ICT Published as W3C Group Note
@@ -546,7 +569,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - `<selectedoption>` の仕様についてフィードバック募集
   - `<option>`変更されると `<selectedoption>` にクローンが表示される
   - そういう挙動は今までの DOM にはなかった
-  - `cloneNode(true)` 相当だが、リスナやどは含まれないし、 `<canvas>` は空になるし、 `<iframe>` はリロードになる。
+  - `cloneNode(true)` 相当だが、リスナやどは含まれないし、`<canvas>` は空になるし、`<iframe>` はリロードになる。
   - `<selectedoption>` 側の変更は `<option>` には反映されない
   - どうするのがいいか?
   - Option1
@@ -562,6 +585,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - CSS masonry will take time, and that's just fine | Sean Voisen
   - https://sean.voisen.org/blog/figuring-out-css-masonry-takes-time
 
+
 ### TC39 動向
 
 #### Meeting
@@ -570,6 +594,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2024-01
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
+
 
 #### Proposals Diff
 
@@ -581,7 +606,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2.7->3
 - 3->4
 
+
 #### New Proposals
+
 
 #### WinterCG
 
@@ -589,12 +616,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/wintercg/admin/issues/76
   - Cancel
 
+
 #### Other
 
 - Language Evolution
   - https://docs.google.com/presentation/d/1ylROTu3N6MyHzNzWJXQAc7Bo1O0FHO3lNKfQMfPOA4o/edit
 - Dan's feedback on JSSugar
   - https://gist.github.com/littledan/a590784a72f2e1b8cc633ff5ff8a9dc2
+
 
 ### IETF 動向
 
@@ -616,17 +645,23 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024OctDec/0065.html
 - Meeting
 
+
 #### Other
+
 
 ### CDN 動向
 
 #### Cloudflare
 
+
 #### Fastly
+
 
 #### Other
 
+
 ### セキュリティ動向
+
 
 ### 周辺動向
 
@@ -676,7 +711,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - イギリス領インド洋地域(チャゴス諸島の周辺地域)に割り当てられた ccTLD だった
   - イギリスがこの地域の返還を決定したので、.io ドメインがなくなるのでは?という話。
 
+
 ### Cookie 動向
+
 
 ### イベント
 
@@ -693,6 +730,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 12 月
   - 2-5: TC39 Remote
     - https://github.com/tc39/agendas/blob/main/2024/12.md
+
 
 ### Wrap Up
 

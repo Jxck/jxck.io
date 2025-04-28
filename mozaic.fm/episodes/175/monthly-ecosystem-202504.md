@@ -13,6 +13,7 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
 
 第 175 回のテーマは 2025 年 4 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - TypeScript
@@ -218,6 +219,7 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
   - Model 自体に署名を付与し Sigstore で管理
 - 「GIMP 3.0」がリリース ～約 7 年ぶりの大規模アップデートで「GTK 3」ベースに
   - https://forest.watch.impress.co.jp/docs/news/1670985.html
+
 
 ## Events
 

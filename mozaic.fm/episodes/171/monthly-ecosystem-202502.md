@@ -13,6 +13,7 @@ guest: [@araya](https://bsky.app/profile/araya.dev)
 
 第 171 回のテーマは 2025 年 2 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - Node v24 が 2025-04-22 に予定
@@ -143,6 +144,7 @@ guest: [@araya](https://bsky.app/profile/araya.dev)
   - https://astro.build/blog/astro-530/
 - Introducing HeroUI
   - https://www.heroui.com/blog/introducing-heroui
+
 
 ## Events
 

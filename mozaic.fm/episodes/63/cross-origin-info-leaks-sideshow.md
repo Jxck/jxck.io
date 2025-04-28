@@ -12,7 +12,8 @@ guest: [@shhnjk](https://twitter.com/shhnjk)
 
 第 63 回 Cross Origin Info Leaks の SideShow です。
 
-[@shhnjk](https://twitter.com/shhnjk) さんと、 ブラウザにおける Privacy の今後や、 new Edge の話をしました。
+[@shhnjk](https://twitter.com/shhnjk) さんと、ブラウザにおける Privacy の今後や、new Edge の話をしました。
+
 
 ## Show Note
 

@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 44 回のテーマは 2018 年 10 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -69,7 +70,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kEtUcy7W0fU/dTyvzUy0BgAJ
   - **Ship: Public class fields**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Lawn0wM156I/vFjgt_9WCAAJ
-    - `constructor()` ではなく、 `class` 直下に書いて、メンバの初期化ができる
+    - `constructor()` ではなく、`class` 直下に書いて、メンバの初期化ができる
   - Ship: Canvas Color Management
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QILBb4Oqb-k/tvdXEy7dBwAJ
   - Implement and Ship: FetchEvent.resultingClientId
@@ -142,8 +143,8 @@ guest: [@myakura](https://twitter.com/myakura)
     - 文字数、グリフの複雑さが大きいので、最適化を調整
     - unicode-range, woff2, HTTP/2 のおかげでチャンクの分割ができるようになった
     - 文字を頻度順に並べ上から 3000 文字を 20 のスライスに等分割
-    - 残りの文字を Unicode のコードポイント順に並べ、 100 のスライスに等分割
-    - フォントそのままを配信するよりも、 80% のバイト数削減に
+    - 残りの文字を Unicode のコードポイント順に並べ、100 のスライスに等分割
+    - フォントそのままを配信するよりも、80% のバイト数削減に
   - Web Payments Overview
     - https://developers.google.com/web/fundamentals/payments/
     - えーじさん作、先月の収録直後だった。
@@ -183,6 +184,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **chromium/src - cf7ed613af - TaskWorklet prototype**
     - https://chromium.googlesource.com/chromium/src/+/cf7ed613af7b01f2e64929f969d3737067e28083
 
+
 ### Firefox 動向
 
 - Stable: 63
@@ -199,7 +201,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Custom Elements v1
     - Shadow DOM v1
     - Flexbox で gap プロパティサポート
-    - Async Clipboard API (writeText のみ、 readText は拡張でのみ利用可能)
+    - Async Clipboard API (writeText のみ、readText は拡張でのみ利用可能)
     - Object.fromEntries()
     - Element.toggleAttribute()
     - Clear-Site-Data ヘッダ
@@ -308,6 +310,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hg.mozilla.org/integration/mozilla-inbound/rev/d0b577458d53
     - いまのところ構文のみらしい
 
+
 ### Safari 動向
 
 - Stable: 12.0.1
@@ -373,6 +376,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Canvas Debugging
     - https://webkit.org/blog/8452/canvas-debugging/
 
+
 ### Edge 動向
 
 - Stable: Edge 44, EdgeHTML 18
@@ -419,6 +423,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/MicrosoftEdge/Status/commit/f1b8f6c045da693bf219d9dd682236fd92e373ed
   - 2018 年 10 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました - Japan IE Support Team Blog
     - https://blogs.technet.microsoft.com/jpieblog/2018/10/11/securityupdate201810/
+
 
 ### WHATWG/W3C 動向
 
@@ -497,7 +502,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/public-new-work/2018Oct/0001.html
   - **W3C Workshop on Permissions and User Consent**
     - https://www.w3.org/Privacy/permissions-ws-2018/report.html#workshop-report
-    - minutes はあるが、 final report はまだ
+    - minutes はあるが、final report はまだ
     - **W3C Workshop for Permissions and User Consent に行ってきた (2) 本編 - そんなことはさておいて**
       - https://sylph01.hatenablog.jp/entry/20181005/1538727120
       - 前提として機能の低レイヤ化だけでなく Cambridge Analytica や GDPR も
@@ -523,6 +528,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - WPWG の現在の charter が年末まで延長
     - WHATWG との話し合い中なので、その期間中に W3C 版の仕様は出さない
 
+
 ### TC39 動向
 
 - Meeting
@@ -541,6 +547,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 1 -> inactive
     - `Date.parse` fallback semantics
 - New Proposals
+
 
 ### IETF 動向
 
@@ -646,6 +653,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Identifying our deliverables**
     - https://mailarchive.ietf.org/arch/msg/quic/RLRs4nB1lwFCZ_7k0iuz0ZBa35s
 
+
 ### セキュリティ動向
 
 - **Remove TLS1.0/1.1**
@@ -668,7 +676,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://twitter.com/mbleigh/status/1047950318363803649?s=12
 - URLs are hard, let's kill them
   - https://scotthelme.co.uk/urls-are-hard/
-- **[速報] GitHub 、見られてはいけないコード中のアクセストークンを発見し通知してくれる「Token Scanning」発表。 GitHub Universe 2018 - Publickey**
+- **[速報] GitHub 、見られてはいけないコード中のアクセストークンを発見し通知してくれる「Token Scanning」発表。GitHub Universe 2018 - Publickey**
   - https://www.publickey1.jp/blog/18/githubtoken_scanninggithub_universe_2018.html
   - security token scheme もこの関連か?
   - Behind the scenes of GitHub Token Scanning | The GitHub Blog
@@ -676,6 +684,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **The secret-token URI Scheme** https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00
 - Metadata-Attacker - A Tool To Generate Media Files With Malicious Metadata - KitPloit - PenTest Tools for your Security Arsenal
   - https://www.kitploit.com/2018/10/metadata-attacker-tool-to-generate.html
+
 
 ### 周辺動向
 
@@ -709,6 +718,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/webassembly-on-cloudflare-workers/
 - **Serverless Rust with Cloudflare Workers**
   - https://blog.cloudflare.com/cloudflare-workers-as-a-serverless-rust-platform/
+
 
 ### イベント
 

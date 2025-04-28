@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 94 回のテーマは 2022 年 2 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 98
+
 
 #### Updates
 
@@ -64,6 +66,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - backup に site intervention mechanism などが利用可能
   - 壊れるサイトの報告
     - https://github.com/webcompat/web-bugs/labels/version100
+
 
 #### Intents
 
@@ -133,12 +136,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Request for deprecation trial (I2E): Sending the full User-Agent string after User-Agent reduction
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-2OW78CB1-A/m/N0lz8F0qAQAJ
 
+
 #### V8
 
 - V8 release v9.9 · V8
   - https://v8.dev/blog/v8-release-99
   - Intl.Locale extensions
   - Intl Enumeration
+
 
 #### Other
 
@@ -189,9 +194,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Privacy Sandbox on Android
     - https://developer.android.com/design-for-safety/ads
 
+
 ### Firefox 動向
 
 #### Stable: 97.0.1
+
 
 #### Updates
 
@@ -214,11 +221,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2022/01/28/these-weeks-in-firefox-issue-108/
     - DevTools の Compatibility パネル
 
+
 #### Intents
 
 - **Ship: OffscreenCanvas on limited domains**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/kp9SZL-0wW0
-  - 現状は WebGL のみを OffscreenCanvas でサポートしており、 Canvas2D はこれから
+  - 現状は WebGL のみを OffscreenCanvas でサポートしており、Canvas2D はこれから
   - 部分的な実装を Nightly で有効にしてみたら壊れるサイトが出たのでバックアウト
   - WebGL だけでもいいので使いたいというパートナーが出てきた
   - Firefox 99 で Zoom にのみ有効にする
@@ -232,6 +240,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Experiment:
 - Change:
 - Remove:
+
 
 #### Other
 
@@ -248,6 +257,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Privacy Preserving Attribution for Advertising**
   - https://blog.mozilla.org/en/mozilla/privacy-preserving-attribution-for-advertising/
 
+
 ### Safari 動向
 
 #### Stable: 15.3
@@ -261,6 +271,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 15.2: December 13, 2021
   - 15.3: January 26, 2022
   - 6~8 週くらいになった?
+
 
 #### Updates
 
@@ -362,21 +373,25 @@ guest: [@myakura](https://twitter.com/myakura)
 - **The Focus-Indicated Pseudo-class :focus-visible | WebKit**
   - https://webkit.org/blog/12179/the-focus-indicated-pseudo-class-focus-visible/
 
+
 #### Position
 
 - 特になし
+
 
 #### Other
 
 - **No, Apple Did Not Crowdfund :focus-visible in Safari - Eric's Archived Thoughts**
   - https://meyerweb.com/eric/thoughts/2022/01/24/no-apple-did-not-crowdfund-focus-visible-in-safari/
   - Safari TP で `:focus-visible` が有効になったことを Apple の人がツイート
-  - Igalia の貢献とクラウドファンディングについて言及したところ、 Apple が自分で実装せずにクラウドファンディングに頼ったと見られちょっと炎上
-  - Igalia の Eric Meyer が、 Apple が Igalia に実装を頼んだわけではないこと、 Open Prioritization プロジェクトの目的について改めて説明
+  - Igalia の貢献とクラウドファンディングについて言及したところ、Apple が自分で実装せずにクラウドファンディングに頼ったと見られちょっと炎上
+  - Igalia の Eric Meyer が、Apple が Igalia に実装を頼んだわけではないこと、Open Prioritization プロジェクトの目的について改めて説明
+
 
 ### Edge 動向
 
 #### Stable: 98
+
 
 #### Updates
 
@@ -389,7 +404,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Test IE mode in Microsoft Edge with Internet Explorer Driver - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2022/02/01/test-ie-mode-in-microsoft-edge-internet-explorer-driver/
 
+
 #### Chakra
+
 
 #### Other
 
@@ -401,6 +418,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2022/01/21/adding-protocol-schemes-to-chromium/
 - Microsoft Edge Add-ons: NEW features to improve extension discoverability - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/articles/microsoft-edge-add-ons-new-features-to-improve-extension/m-p/3109094#M6391
+
 
 ### WHATWG/W3C 動向
 
@@ -425,7 +443,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - W3C invites implementations of CSS Color Adjustment Module Level 1 | W3C News
     - https://www.w3.org/blog/news/archives/9409
 
+
 #### Other
+
 
 ### TC39 動向
 
@@ -441,6 +461,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - agenda
     - https://github.com/tc39/agendas/blob/main/2022/03.md
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2022-01-20}...main@{2022-03-01}
@@ -450,9 +471,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -509,6 +533,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - draft-pauly-privacypass-auth-scheme-00 - The Privacy Pass HTTP Authentication Scheme
     - https://datatracker.ietf.org/doc/draft-pauly-privacypass-auth-scheme/
 
+
 #### Other
 
 - **AUTH48 status page for C430 > RFC Editor**
@@ -529,6 +554,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - AUTH48 for HTTP/3 and QPACK from Mike Bishop
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2022JanMar/0146.html
 
+
 ### CDN 動向
 
 #### Cloudflare
@@ -536,11 +562,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - Announcing the public launch of Cloudflare's bug bounty program
   - https://blog.cloudflare.com/cloudflare-bug-bounty-program/
 
+
 #### Fastly
+
 
 #### Other
 
+
 ### セキュリティ動向
+
 
 ### 周辺動向
 
@@ -561,6 +591,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **ヤフーの IE11 サポート終了の進め方 - Yahoo! JAPAN Tech Blog**
   - https://techblog.yahoo.co.jp/entry/2022021630265506/
 
+
 ### イベント
 
 - 2 月
@@ -575,6 +606,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 5 月
   - 17-18 BlinkOn 16
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/tvOHmMflQy4/m/c5NXpLFoAgAJ
+
 
 ### Wrap Up
 

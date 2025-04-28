@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 97 回のテーマは 2022 年 5 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 102
+
 
 #### Updates
 
@@ -56,6 +58,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Google I/O
   - Google I/O 2022: That's a wrap!
     - https://web.dev/googleio22-recap/
+
 
 #### Intents
 
@@ -180,7 +183,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - FYI: Remove the service worker requirement for WebAPKs
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/0uhGufIFLeo
 
+
 #### V8
+
 
 #### Other
 
@@ -258,9 +263,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Apple, Google and Microsoft Commit to Expanded Support for FIDO Standard to Accelerate Availability of Passwordless Sign-Ins - FIDO Alliance
     - https://fidoalliance.org/apple-google-and-microsoft-commit-to-expanded-support-for-fido-standard-to-accelerate-availability-of-passwordless-sign-ins/
 
+
 ### Firefox 動向
 
 #### Stable: 101
+
 
 #### Updates
 
@@ -302,6 +309,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Prioritized Task Scheduling API is Prototyped in Nightly - Mozilla Performance
   - https://blog.mozilla.org/performance/2022/06/02/prioritized-task-scheduling-api-is-prototyped-in-nightly/
 
+
 #### Intents
 
 - Ship: Web Animations Animation.timeline setter
@@ -330,6 +338,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Unship: network.cookie.lifetimePolicy
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Otdhy3mfQt8
 
+
 #### Other
 
 - SpiderMonkey Newsletter (Firefox 100-101)
@@ -345,9 +354,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Marketing our privacy products while preserving privacy**
   - https://blog.mozilla.org/en/products/mozilla-vpn/marketing-our-privacy-products-while-preserving-privacy/
 
+
 ### Safari 動向
 
 #### Stable: 15.5
+
 
 #### Updates
 
@@ -397,23 +408,29 @@ guest: [@myakura](https://twitter.com/myakura)
 - Customizing Color Fonts on the Web
   - https://webkit.org/blog/12662/customizing-color-fonts-on-the-web/
 
+
 #### Position
 
 - [webkit-dev] Request for position: Response.json() static method
   - https://lists.webkit.org/pipermail/webkit-dev/2022-May/032250.html
 
+
 #### Other
+
 
 ### Edge 動向
 
 #### Stable: 102
+
 
 #### Updates
 
 - Microsoft Edge の更新制御とサポート範囲について | Japan Developer Support Internet Team Blog
   - https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-and-why-to-update-edge/
 
+
 #### Chakra
+
 
 #### Other
 
@@ -429,7 +446,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Introducing Microsoft Edge Secure Network - Microsoft Tech Community**
   - https://techcommunity.microsoft.com/t5/articles/introducing-microsoft-edge-secure-network/m-p/3367243
   - Microsoft Edge Secure Network という VPN を搭載
-  - Cloudflare と提携、 1GB まで無料
+  - Cloudflare と提携、1GB まで無料
 - Use the Microsoft Edge Secure Network to protect your browsing
   - https://support.microsoft.com/en-us/topic/use-the-microsoft-edge-secure-network-to-protect-your-browsing-885472e2-7847-4d89-befb-c80d3dda6318
 - Unexpectedly HTTPS? - text/plain
@@ -438,6 +455,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2022/05/03/chromium-internals-pak-files/
 - Losing your cookies - text/plain
   - https://textslashplain.com/2022/05/26/losing-your-cookies/
+
 
 ### WHATWG/W3C 動向
 
@@ -454,6 +472,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/9559
 - Chartering
 
+
 #### Other
 
 - **W3C Strategic Highlights, April 2022**
@@ -467,6 +486,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Redesigning ARIA Authoring Practices Guide - Bocoup
   - https://bocoup.com/blog/redesigning-aria-apg
 
+
 ### TC39 動向
 
 #### Meeting
@@ -474,6 +494,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2021-06
   - https://github.com/tc39/agendas/blob/main/2022/06.md
   - https://github.com/tc39/notes
+
 
 #### Proposals Diff
 
@@ -484,9 +505,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -547,6 +571,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
 
 - **RFC 9239 - Updates to ECMAScript Media Types**
@@ -554,6 +579,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - draft-fabbrini-algorithm-post-alien-cryptography-00
   - https://datatracker.ietf.org/doc/html/draft-fabbrini-algorithm-post-alien-cryptography-00
   - 高度な知能のエイリアンが襲来しても大丈夫な暗号化技術
+
 
 ### CDN 動向
 
@@ -600,7 +626,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/introducing-the-wintercg/
   - https://wintercg.org/
   - WHATWG はブラウザに特化した API を策定してきた
-  - Node や Deno 、 Edge コンピューティングのランタイムでは合わない場合もある
+  - Node や Deno 、Edge コンピューティングのランタイムでは合わない場合もある
   - その差分をうめるための WinterCG を設立 W3C みたいなプロセスだが参加は自由
   - Cloudflare, Vercel, Shopify, Node.js, Deno などが参加
 - **Zaraz use Workers to make third-party tools secure and fast**
@@ -645,6 +671,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Cloudflare Stream simplifies creator management for creator platforms
   - https://blog.cloudflare.com/stream-creator-management/
 
+
 #### Fastly
 
 - Taming third parties with a single-origin website | Fastly
@@ -663,7 +690,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.glitch.com/post/an-exciting-leap-forward-for-glitch
   - Fastly が Glitch を買収
 
+
 #### Other
+
 
 ### セキュリティ動向
 
@@ -672,6 +701,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Understanding Online Identity
   - https://educatedguesswork.org/posts/understanding-identity/
   - EKR 先生の記事
+
 
 ### 周辺動向
 
@@ -688,6 +718,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **JavaScript Containers**
   - https://tinyclouds.org/javascript_containers
   - Deno では JS コンテナを模索するという Ryan Dahl の記事
+
 
 ### イベント
 
@@ -715,6 +746,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 9 月
   - 12-16: TPAC 2022 Vancouver
     - https://www.w3.org/wiki/TPAC/2022
+
 
 ### Wrap Up
 

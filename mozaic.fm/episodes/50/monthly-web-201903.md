@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 50 回のテーマは 2019 年 03 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -50,7 +51,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/MicrosoftEdge/JsDbg
     - DOM tree や AOM Tree まで触れるデバッガ
     - Web 技術(HTML/CSS/JS) で作られている
-    - 今は Windows のみで、 WinDbg や VS debugger で使える
+    - 今は Windows のみで、WinDbg や VS debugger で使える
     - 他の OS や他のデバッガ(GDB)などは future work
     - BlinkOn 10 で話すらしい
   - **Chromium Blog: Chrome 74 beta: reducing unwanted motion, private class fields, and feature policy API**
@@ -179,6 +180,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Elliott Sprehn on Twitter: "I'm rethinking my former advice around web storage: localStorage reads are super fast since they read an in memory cache, writes are very slow. IndexedDB KV storage (like the built-in API proposal) has slow reads **and** writes and event loop delays on reads. @shubhie @\_developit"
     - https://twitter.com/ElliottZ/status/1105342069449474048
 
+
 ### Firefox 動向
 
 - Stable: 66.0.1
@@ -250,6 +252,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2019/03/fast-bump-allocated-virtual-doms-with-rust-and-wasm/
     - Dodrio
 
+
 ### Safari 動向
 
 - Stable: 12.1
@@ -286,6 +289,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Unified Plan
     - Additional API updates
 
+
 ### Edge 動向
 
 - Stable: EdgeHTML18
@@ -303,12 +307,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - Announcing Windows 10 Insider Preview Build 18358 | Windows Experience Blog
     - https://blogs.windows.com/windowsexperience/2019/03/15/announcing-windows-10-insider-preview-build-18358/
     - Windows Defender Application Guard as browser extensions in Google Chrome and Mozilla Firefox
-    - Microsoft 、 Chrome と Firefox 向け「Windows Defender Application Guard」拡張機能公開
+    - Microsoft 、Chrome と Firefox 向け「Windows Defender Application Guard」拡張機能公開
     - https://www.itmedia.co.jp/news/articles/1903/18/news077.html
   - **Japan Support Blog がついにアクセスできなくなる**
     - https://blogs.technet.microsoft.com/jpieblog/2018/12/30/japan-ie-support-team-blog-終了のお知らせ/
     - forum に記事がポートされているが新着はなし
     - https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja
+
 
 ### WHATWG/W3C 動向
 
@@ -348,7 +353,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://docs.google.com/document/d/1kOLu53dYzwElJZ6JBgMR137-Rdj8cDc_rX2YkPFYUsY/edit
     - Add first-class support for differential script loading · Issue #4432 · whatwg/html
     - https://github.com/whatwg/html/issues/4432
-    - syntax 属性を追加して、 ECMA 2019 などのバージョンで読み込むスクリプトを変えられるようにする提案
+    - syntax 属性を追加して、ECMA 2019 などのバージョンで読み込むスクリプトを変えられるようにする提案
     - babel などで変換する粒度を変えられる
   - **Upcoming: W3C Workshop on Web Games, 27-28 June**
     - https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0007.html
@@ -363,6 +368,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 「標準化ってぶっちゃけどう思う?」
   - W3C doesn't help its invited experts. It should. - Tobie Langel - Medium
     - https://medium.com/@tobie/w3c-doesnt-help-its-invited-experts-it-should-2fb36ae9f720
+
 
 ### TC39 動向
 
@@ -387,6 +393,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - JS のスペックや Proposal を追うためのハブサイト
     - spec/test/presentation などのリンクがまとまってる
     - 簡単な Example コードがあるものも
+
 
 ### IETF 動向
 
@@ -486,6 +493,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-ice-pac-00
 - Other
 
+
 ### セキュリティ動向
 
 - Monsters in the Middleboxes: Introducing Two New Tools for Detecting HTTPS Interception
@@ -504,6 +512,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 一般社団法人日本ハッカー協会で寄付を募り 6,934,471 円の寄付を集めた
   - 法的支援や転職支援を行う協会の会員有志が始めた
 
+
 ### 周辺動向
 
 - **OpenJS Foundation**
@@ -517,6 +526,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/why-fastly-loves-quic-http3
 - Google to offer Android users browser choice - QuirksBlog
   - https://www.quirksmode.org/blog/archives/2019/03/google_to_offer.html
+
 
 ### イベント
 

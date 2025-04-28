@@ -13,9 +13,10 @@ guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 
 第 10 回のテーマは Node.js です。
 
-今回は唯一の日本人 Node.js コミッタである [@koichik](https://twitter.com/koichik/) さんと、日本 Node.js ユーザグループの現代表である [@yosuke_furukawa](https://twitter.com/yosuke_furukawa) さんをお迎えし、 Node.js をテーマに 「Node.js ができた理由」から、「node@1.0」の展望「nodeconf.eu での最新事情」や「Node.js コミュニティの今後」などを二時間半たっぷり議論しました。
+今回は唯一の日本人 Node.js コミッタである [@koichik](https://twitter.com/koichik/) さんと、日本 Node.js ユーザグループの現代表である [@yosuke_furukawa](https://twitter.com/yosuke_furukawa) さんをお迎えし、Node.js をテーマに 「Node.js ができた理由」から、「node@1.0」の展望「nodeconf.eu での最新事情」や「Node.js コミュニティの今後」などを二時間半たっぷり議論しました。
 
 また、危なげな運用で続けてきた mozaic.fm も、一つ目の目標だった 10 回を達成することができました。これも、購読/出演、してくださった皆様のおかげです。これからもしばらくは続けたいと思いますので、よろしくお願いします。
+
 
 ## Show Note
 
@@ -68,7 +69,7 @@ guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
   - [位置透過性 椎名林檎](http://jxck.tumblr.com/post/11435831106/hook-io)
 - 01:34:30 ~ : Node は何に向いていたのか?
   - [render](http://www.renderjs.org/)
-  - [Rendr 入門: サーバサイドで(も)動かす、 Backbone.js](http://www.slideshare.net/mshk/rendr)
+  - [Rendr 入門: サーバサイドで(も)動かす、Backbone.js](http://www.slideshare.net/mshk/rendr)
 - 01:42:00 ~ : 今のトレンド LevelDB + WebRTC + Microservices
   - [MEAN](http://meanjs.org/)
   - [LevelDB](https://github.com/google/leveldb)

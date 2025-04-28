@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 116 回のテーマは 2023 年 3 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - rspack
@@ -72,6 +73,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://openai.com/research/gpt-4
   - https://www.bing.com/search?toWww=1&redig=62629AE8D1064E45AC7AF348327DDDDB&q=Bing+AI&showconv=1
   - https://twitter.com/towernter/status/1635950636935049219
+
 
 ## Events
 

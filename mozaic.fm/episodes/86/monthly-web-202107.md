@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 86 回のテーマは 2021 年 7 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 92
+
 
 #### Updates
 
@@ -82,6 +84,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Fixed CSS matching selectors
   - Pretty-printing JSON responses in the Network panel
 
+
 #### Intents
 
 - Ship: Clipboard API: Svg
@@ -96,9 +99,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ruFLLkjvzwg/m/9aGteUUlAgAJ
 - **Ship: preferCurrentTab**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/YoefXLTQsw0/m/NVoV6NcIAgAJ
-  - `getDisplayMedia()` でユーザに Tab, Window, Display を選ばせる際に、 Tab を推奨するための属性を追加
+  - `getDisplayMedia()` でユーザに Tab, Window, Display を選ばせる際に、Tab を推奨するための属性を追加
   - 別途 `getViewportMedia()` も提案されているがまだ策定初期段階なので属性を追加するもの
-  - `getDisplayMedia()` の仕様では「ソースの選択を制限するような実装をしてはいけない」という制約があるので、 Moziila は `harmful`
+  - `getDisplayMedia()` の仕様では「ソースの選択を制限するような実装をしてはいけない」という制約があるので、Moziila は `harmful`
 - **Ship: Feature Policy: `diplay-capture`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/pNPotQY92UY/m/thZ3h-zQAQAJ
   - `getDisplayMedia()` のための Policy
@@ -107,7 +110,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/71vtc_Xv7jk/m/EezoVS9dBQAJ
   - Scroll Bar が表示されることで表示領域が狭まり Layout Shift が発生することがある
   - Scroll Bar のための領域をコントロールする属性
-  - stable だと常に表示、 both-edges だと両方に表示
+  - stable だと常に表示、both-edges だと両方に表示
 - **Ship: Note taking new note URL**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/tZqSbhmxiGM/m/5iL3gWvpBAAJ
 - Ship: MediaStreamTrack Insertable Streams (a.k.a. Breakout Box)
@@ -209,7 +212,8 @@ guest: [@myakura](https://twitter.com/myakura)
   - XSS の PoC には `alert()` ではなく `print()` を使おうという話も
   - https://github.com/whatwg/html/issues/5407
   - https://github.com/whatwg/html/issues/6897
-  - Chrome 91 、 Chrome 92 リリース前後で問題がでたという報告が HTML の issue にも
+  - Chrome 91 、Chrome 92 リリース前後で問題がでたという報告が HTML の issue にも
+
 
 #### V8
 
@@ -217,6 +221,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://v8.dev/blog/v8-release-92
   - at method
   - Shared Pointer Compression Cage
+
 
 #### Other
 
@@ -271,7 +276,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 8 年前に開始し今年殆どをリリースする予定
     - 信頼性、パフォーマンス、拡張性を向上
     - HTML, CSS, 2D Canvas, 3D canvas, images, video, and fonts 全てを最適化
-    - デバイスの能力を最大限活かす(GPU 、 解像度、リフレッシュレート etc)
+    - デバイスの能力を最大限活かす(GPU 、解像度、リフレッシュレート etc)
   - **Overview of the RenderingNG architecture - Chrome Developers**
     - https://developer.chrome.com/en/blog/renderingng-architecture/
   - The Chromium Chronicle #22: Know Thy (Depot) Tools - Chrome Developers
@@ -290,7 +295,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Chromium Blog: Faster and more efficient phishing detection in M92**
     - https://blog.chromium.org/2021/07/m92-faster-and-more-efficient-phishing-detection.html
     - サイトのカラープロファイルを取得し比較することでフィッシングサイトを割り出す
-    - プロファイルの取得アルゴリズムを改善し 50 パーセンタイルで最大 50 倍、 99 パーセンタイルで 2.5 倍に
+    - プロファイルの取得アルゴリズムを改善し 50 パーセンタイルで最大 50 倍、99 パーセンタイルで 2.5 倍に
   - **Chromium Blog: Increasing HTTPS adoption**
     - https://blog.chromium.org/2021/07/increasing-https-adoption.html
     - HTTPS First モードを M94 から導入し HSTS がデフォルトな状態に
@@ -300,9 +305,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Deprecation of Internet Explorer Support - The AMP Blog**
   - https://blog.amp.dev/2021/07/20/deprecation-of-internet-explorer-support/
 
+
 ### Firefox 動向
 
 #### Stable: 90
+
 
 #### Updates
 
@@ -317,6 +324,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Fetch Metadata をサポートした話
 - Firefox 90 for developers - Mozilla
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/90
+
 
 #### Intents
 
@@ -333,6 +341,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Experiment:
 - Change:
 - Remove:
+
 
 #### Other
 
@@ -373,9 +382,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - これによりカナダの FF ユーザに徐々に DoH をロールアウトしていく
   - CIRA は TRR(Trusted Recursive Resolver) に参加した最初の Internet Registration Authority
 
+
 ### Safari 動向
 
 #### Stable: 14.1.2
+
 
 #### Updates
 
@@ -402,11 +413,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Optimizing JavaScript Standard Library Functions in JSC
   - https://webkit.org/blog/11934/optimizing-javascript-standard-library-functions-in-jsc/
 
+
 #### Position
 
 - 返信があるもの一個もない
 
+
 #### Other
+
 
 ### Edge 動向
 
@@ -415,6 +429,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Dev channel update to 93.0.961.2 is live - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/discussions/dev-channel-update-to-93-0-961-2-is-live/m-p/2592537
 
+
 #### Updates
 
 - **Easier browser debugging with Developer Tools integration in Visual Studio Code**
@@ -422,7 +437,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - How to opt-in to the Extended Stable release cycle option beginning with Microsoft Edge 94
   - https://blogs.windows.com/msedgedev/2021/07/15/opt-in-extended-stable-release-cycle/
 
+
 #### Chakra
+
 
 #### Other
 
@@ -433,8 +450,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **WebView2 and Electron | Electron Blog**
   - https://www.electronjs.org/blog/webview2
   - Chromium を使う WebView2 と Electron はどう違うのかを紹介
-  - Electron は Chromium をバンドルするが、 WebView2 ではランタイムも選択できる
-  - Electron はデスクトップの UI なども API を提供するが、 WebView2 にはそれがなくアプリケーションフレームワークに任せる
+  - Electron は Chromium をバンドルするが、WebView2 ではランタイムも選択できる
+  - Electron はデスクトップの UI なども API を提供するが、WebView2 にはそれがなくアプリケーションフレームワークに任せる
+
 
 ### WHATWG/W3C 動向
 
@@ -467,6 +485,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Federated Identity Community Group created**
     - https://lists.w3.org/Archives/Public/public-new-work/2021Jul/0002.html
 
+
 #### Other
 
 - **Trusted Types**
@@ -493,12 +512,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Introduce CSS module scripts · whatwg/html@3d45584**
   - https://github.com/whatwg/html/commit/3d45584d286e9455cc24ebae1f3aca3db120dc9d
 
+
 ### TC39 動向
 
 #### Meeting
 
 - 2021-07
   - https://github.com/tc39/agendas/blob/master/2021/07.md
+
 
 #### Proposals Diff
 
@@ -515,6 +536,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 3->4
   - Ergonomic Brand Checks for Private Fields
 
+
 #### New Proposals
 
 - **Proposal to add argument for .trim(), .trimStart() and .trimEnd() to allow strip the specified characters from strings.**
@@ -524,11 +546,13 @@ guest: [@myakura](https://twitter.com/myakura)
 - **A proposal to make grouping of array items easier**
   - https://github.com/tc39/proposal-array-grouping
 
+
 #### Other
 
 - Node v16.5.0 (Current) | Node.js
   - https://nodejs.org/en/blog/release/v16.5.0/
   - Experimental Web Streams API
+
 
 ### IETF 動向
 
@@ -578,11 +602,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
+
 
 ### CDN 動向
 
 #### Cloudflare
+
 
 #### Fastly
 
@@ -590,20 +617,22 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/compute-edge-now-supports-javascript
   - https://www.publickey1.jp/blog/21/fastlyjavascriptwebassemblycdncomputeedge.html
   - Fastly 上の WASM 実行環境で JS がサポートされた
-  - AssemblyScript で WASM に変換するのではなく、 SpiderMonkey の WASM 版を使う方向に
+  - AssemblyScript で WASM に変換するのではなく、SpiderMonkey の WASM 版を使う方向に
   - JS もデプロイ時に最適化処理するので高速に起動できる
+
 
 #### Other
 
 - **一時的なサービス障害の概要について(ステータス:解決済) - Akamai Japan Blog**
   - https://blogs.akamai.com/jp/2021/07/post-24.html
 
+
 ### セキュリティ動向
 
 - **2021.06.08 Certificate Lifetime Incident (valid for an extra one second) - Incidents - Let's Encrypt Community Support**
   - https://community.letsencrypt.org/t/2021-06-08-certificate-lifetime-incident-valid-for-an-extra-one-second/153426
   - Let's Encrypt の証明書が 90 日ではなく 90 日 + 1 秒になっていて修正
-  - 有効期間は "not before" と "not after" で定義するが、 "not after" はその時間を含むため
+  - 有効期間は "not before" と "not after" で定義するが、"not after" はその時間を含むため
   - 1s 減らした修正を発覚から 8h でデプロイした
   - 1.8 億の証明書に影響するが仕様違反なわけではないため失効はしない
   - **Yeti 2022 not furnishing entries for STH 65569149**
@@ -613,13 +642,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - 「宇宙線(Cosmic Ray)が原因では」という話があり HN が盛り上がってる
   - https://news.ycombinator.com/item?id=27728287
 
+
 ### 周辺動向
 
 - **WorldWideWeb のソースコードの NFT が約 6 億円で落札**
   - https://www.gizmodo.jp/2021/07/worldwideweb-nft.html
   - https://www.sothebys.com/en/buy/auction/2021/this-changed-everything-source-code-for-www-x-tim-berners-lee-an-nft/source-code-for-the-www
   - 1990/10/3 に書かれた Sir TBL の www のコードが NFT で出品される
-  - 約 1 万行のコードと、コードを表示した動画、 SVG 、 TBL のメッセージ README が同梱
+  - 約 1 万行のコードと、コードを表示した動画、SVG 、TBL のメッセージ README が同梱
   - サザビーズで 543 万ドルで落札(6 万円/行)され、収益はチャリティへ
   - 動画の中の `<>` が何故か `&lt; &gt;` にエンコードされて表示されていた
     - https://github.com/cynthia/WorldWideWeb
@@ -636,6 +666,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Hobson's Browser - Infrequently Noted**
   - https://infrequently.org/2021/07/hobsons-browser/
 
+
 ### イベント
 
 - 8 月
@@ -647,6 +678,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 10/18-22 October: Breakout sessions
   - 10/25-29 October: Groups and Joint Meetings
     - https://lists.w3.org/Archives/Public/public-webrtc/2021Apr/0027.html
+
 
 ### Wrap Up
 

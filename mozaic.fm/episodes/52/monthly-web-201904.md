@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 52 回のテーマは 2019 年 4 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -98,12 +99,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Feature Policies for a Better Web
     - https://docs.google.com/presentation/d/16Ae9JJNZt3zSZtRoztTqfruStmv1vKoSkMVnSgJKc3M/
     - Feature Policy で定義されているポリシーの大まかなまとめ
-    - ソースには 41 個定義されていて、うち 16 個が ship 、 experimental なものが 8 個、などなど
+    - ソースには 41 個定義されていて、うち 16 個が ship 、experimental なものが 8 個、などなど
   - Fonts Update
     - https://docs.google.com/presentation/d/1aRpvVhX8Q3wgMbg1S3gwJaFvBMzIiZbU_KKvVVqpois
   - New Speed Metrics
     - https://docs.google.com/presentation/d/1WtXMsHzTTr5za2X9fD8L7lzjtPVs7NQ8NQW3QsT2f3g/
-    - First Input Delay だけではなく、 Layout Stability(どれくらい読み込み中にコンテンツが動いたか)、 Largest Content Paint(最も大きな画像やテキストが表示されるまでの時間)などを検討している
+    - First Input Delay だけではなく、Layout Stability(どれくらい読み込み中にコンテンツが動いたか)、Largest Content Paint(最も大きな画像やテキストが表示されるまでの時間)などを検討している
 - AMP Conf 2019
   - AMP Conf 2019: Successful web experiences for everyone
     - https://blog.amp.dev/2019/04/17/amp-conf-2019-successful-web-experiences-for-everyone/
@@ -131,7 +132,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Ship: Lazily load below-the-fold images and iframes**
     - https://groups.google.com/a/chromium.org/d/topic/blink-dev/jxiJvQc-gVg/discussion
     - loading 属性を img と iframe に追加
-    - 値に lazy, eager, auto (default) のいずれかをとる。 lazy は lazy loading に opt-in 、 eager は opt-out 。
+    - 値に lazy, eager, auto (default) のいずれかをとる。lazy は lazy loading に opt-in 、eager は opt-out 。
   - **Ship: WebAssembly Bulk Memory operations**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/_TN1EsRyT_s/4c0CZ3s_BwAJ
     - memset, memcopy 的なものができる
@@ -222,7 +223,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Next.js での AMP サポート
     - Google Search での Signed Exchange 展開
     - Google に AMP Stories の専用 UI が追加される
-    - AMP Email が Gmail の Dynamic mail として登場、 Outlook なども検討中
+    - AMP Email が Gmail の Dynamic mail として登場、Outlook なども検討中
     - AMP コンポーネントを AMP 外で使えるようにする Bento AMP プロジェクトの発表
       - リアーキテクチャが必要になるとのことで特に詳細はなし
   - **isInputPending: Facebook's first browser API contribution - Facebook Code**
@@ -235,6 +236,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Presenting search app and browser options to Android users in Europe
     - https://www.blog.google/around-the-globe/google-europe/presenting-search-app-and-browser-options-android-users-europe/
     - ヨーロッパで展開する Android 端末で表示される、ブラウザと検索エンジンの選択・インストール画面について
+
 
 ### Firefox 動向
 
@@ -251,7 +253,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2019/03/scroll-anchoring-in-firefox-66/
   - **Backward-Compatibility FIDO U2F support shipping soon in Firefox**
     - https://blog.mozilla.org/security/2019/04/04/shipping-fido-u2f-api-support-in-firefox/
-    - WebAuthn をサポートしたが、 Google アカウントでは FIDO U2F API しかサポートしないので互換性のため一部ドメインで有効にする
+    - WebAuthn をサポートしたが、Google アカウントでは FIDO U2F API しかサポートしないので互換性のため一部ドメインで有効にする
   - **DNS-over-HTTPS (DoH) Update - Recent Testing Results and Next Steps - Future Releases**
     - https://blog.mozilla.org/futurereleases/2019/04/02/dns-over-https-doh-update-recent-testing-results-and-next-steps/
     - 2018 年 11 月に行った DoH のテストの結果
@@ -262,7 +264,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Web Push のプロンプトについて 2018 年 12 月 25 日からひと月調査した
     - 1800 万以上のプロンプトが表示され、許可されたのが 3% 未満、表示されたら即離脱したケースが 19% も
     - カメラの許可が 85% 以上なので、これは多すぎる
-    - 4 月の 1 ヶ月間、 Nightly でユーザージェスチャーのないプロンプトを拒否する実験をする
+    - 4 月の 1 ヶ月間、Nightly でユーザージェスチャーのないプロンプトを拒否する実験をする
     - リリース版においても、プロンプトに関する情報を限定的に集めるとも
   - Stop videos from automatically playing with new autoplay controls from Firefox
     - https://blog.mozilla.org/firefox/block-autoplay/
@@ -303,6 +305,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/blog/2019/03/26/firefox-lockbox-now-on-android-keeping-your-passwords-safe/
   - DNS-over-HTTPS Policy Requirements for Resolvers
     - https://blog.mozilla.org/security/2019/04/09/dns-over-https-policy-requirements-for-resolvers/
+
 
 ### Safari 動向
 
@@ -374,7 +377,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - この二つを無効にするかどうかは、プライバシーの問題だけでは済まない
     - Safari はどうしているか
       - 全ての手法でリクエストが 3rd party に送られる場合はリファラや Cookie を消す
-      - 3rd party tracking に使われることを防ぎ、 1st party のクリック解析は許可
+      - 3rd party tracking に使われることを防ぎ、1st party のクリック解析は許可
       - これがちょうど良いバランスだと考えている
     - それでも ping させたくなければ
       - Content Blocker を使えば良い
@@ -386,6 +389,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - しかし Safari のメニューに出す意図はなかった
       - 代替手段があるのに、標準機能の無効を可能にすると誤った方向に導いてしまう
       - 代わりに ITP や Content Blocker がある。
+
 
 ### Edge 動向
 
@@ -432,6 +436,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Microsoft Edge での EV 証明書の信頼 (EV Trust Badge) 表示について**
     - https://social.msdn.microsoft.com/Forums/ja-JP/bfe59a95-e0fb-403a-9041-02ae3bbbc4a1/microsoft-edge-1239112398-ev-353882612626360123982044938972-ev-trust-badge?forum=edgeiesupportteamja
 
+
 ### WHATWG/W3C 動向
 
 - Recommendation
@@ -457,7 +462,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **[PROPOSED] Media Working Group Charter**
     - https://www.w3.org/2019/04/media-charter-draft.html
     - https://lists.w3.org/Archives/Public/public-new-work/2019Apr/0003.html
-    - MSE や EME 、 PiP などメディア関連の仕様を策定する新たな WG が提案
+    - MSE や EME 、PiP などメディア関連の仕様を策定する新たな WG が提案
   - [PROPOSED] Web & Networks Interest Group Charter
     - https://www.w3.org/2019/03/web-networks-charter-draft.html
     - https://lists.w3.org/Archives/Public/public-new-work/2019Mar/0009.html
@@ -483,7 +488,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - **DRAFT Memorandum of Understanding Between W3C and WHATWG**
     - https://www.w3.org/2019/04/WHATWG-W3C-MOU.html
-    - HTML と DOM 仕様を WHATWG で策定し、 W3C がその Review Drafts を REC に持って行くという方針のドラフト
+    - HTML と DOM 仕様を WHATWG で策定し、W3C がその Review Drafts を REC に持って行くという方針のドラフト
   - Idiosyncrancies of the HTML parser - The HTML Parser Book
     - https://htmlparser.info/
     - https://leanpub.com/html-parser-book/
@@ -500,6 +505,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - トラッキング入りの個別の Signed package を送られやしないか?
   - W3C Strategic Highlights, Spring 2019
     - https://www.w3.org/blog/news/archives/7724
+
 
 ### TC39 動向
 
@@ -548,6 +554,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 2 つを組み合わせて TrustedTypes の JS 版 TrustedScript 的なものを入れる
     - eval の仕様を変えずに XSS リスクを減らす
 - Other
+
 
 ### IETF 動向
 
@@ -629,6 +636,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Formalizing the HTTP State Tokens proposal.
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2019JanMar/0249.html
 
+
 ### セキュリティ動向
 
 - Heartbleed からちょうど 5 年(4/8)
@@ -650,11 +658,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Content Security Policy: A successful mess between hardening and mitigation**
   - https://speakerdeck.com/mikispag/content-security-policy-a-successful-mess-between-hardening-and-mitigation
   - Google における CSP の導入
-  - XSS は未だに多く、 Google ドメインは広く CSP でカバーしている
+  - XSS は未だに多く、Google ドメインは広く CSP でカバーしている
   - 60% の XSS は CSP でブロックできている
   - Whitelist 形式はバイパスが可能なので Level 3 の nonce ベースに移行している
   - 緩和策を講じながら最終的に nonce only に移行していく
-  - 7 割くらい CSP をデプロイし、 nonce only は 1 割程度までデプロイ済み
+  - 7 割くらい CSP をデプロイし、nonce only は 1 割程度までデプロイ済み
+
 
 ### 周辺動向
 
@@ -700,6 +709,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - A history of the HTML slot element - Component Kitchen
   - https://component.kitchen/blog/posts/a-history-of-the-html-slot-element
   - Shadow DOM v1 の slot について、そうなった歴史
+
 
 ### イベント
 

@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 104 回のテーマは 2022 年 9 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - **Blog - Next.js 12.3 | Next.js**
@@ -76,6 +77,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
     - https://github.com/gatsbyjs/gatsby/pull/36577
 - **Storybook 6.5.11**
   - https://github.com/storybookjs/storybook/releases/tag/v6.5.11
-  - これで Stroybook 6.5 にしたときに、 @storybook/testing-react が原因で型が落ちていたのが直る
+  - これで Stroybook 6.5 にしたときに、@storybook/testing-react が原因で型が落ちていたのが直る
 - Rollup v3 の Issue
   - https://github.com/rollup/rollup/pull/4549

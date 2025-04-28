@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 125 回のテーマは 2023 年 6 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable:114
+
 
 #### Updates
 
@@ -160,7 +162,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Generating Extension API documentation
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/RPHc8j68S48
 
+
 #### V8
+
 
 #### Other
 
@@ -233,9 +237,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.youtube.com/watch?v=2xdV-xut7EQ
   - Google Chrome Developers チャンネルのパスキー解説動画
 
+
 ### Firefox 動向
 
 #### Stable: 114
+
 
 #### Updates
 
@@ -277,6 +283,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Firefox DevTools Newsletter - 114 - Firefox Developer Experience
   - https://fxdx.dev/firefox-devtools-newsletter-114/
 
+
 #### Intents
 
 - Ship: Canvas2d `TextMetrics.*Baseline` attributes
@@ -310,12 +317,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Engineering Effectiveness Newsletter (May 2023 Edition)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/5R1wabKbGrc
 
+
 #### MDN Blog
 
 - MDN doc updates: CSS selectors & media queries, WebGPU & WebTransport APIs, Progressive web apps | MDN Blog
   - https://developer.mozilla.org/en-US/blog/mdn-docs-june-2023/
 - **Introducing the MDN Playground: Bring your code to life! | MDN Blog**
   - https://developer.mozilla.org/en-US/blog/introducing-the-mdn-playground/
+
 
 #### Other
 
@@ -324,9 +333,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - そして CDC (Centers for Disease Control) の CFA (Forecasting and Outbreak Analytics) の Chief Technologist に就任
   - https://www.linkedin.com/feed/update/urn:li:activity:7073037304184909824/
 
+
 ### Safari 動向
 
 #### Stable: 16.5
+
 
 #### Updates
 
@@ -458,6 +469,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for inline predictions for autocomplete. (105197136)
     - Current page is Safari 17 Beta Release Notes
 
+
 #### Standard Positions
 
 - Closed
@@ -468,6 +480,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Permissions Policy: Unload
   - https://github.com/WebKit/standards-positions/issues/127
   - 別 Issue に移動
+
 
 #### Other
 
@@ -542,13 +555,17 @@ guest: [@myakura](https://twitter.com/myakura)
 - MotionMark Moves to Open Governance | WebKit
   - https://webkit.org/blog/14359/motionmark-moves-to-open-governance/
 
+
 ### Edge 動向
 
 #### Stable: 114
 
+
 #### Updates
 
+
 #### Chakra
+
 
 #### Other
 
@@ -559,6 +576,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Announcing Windows 11 Insider Preview Build 23486 | Windows Insider Blog**
   - https://blogs.windows.com/windows-insider/2023/06/22/announcing-windows-11-insider-preview-build-23486/
   - Windows Hello でパスキーのサポート
+
 
 ### WHATWG/W3C 動向
 
@@ -577,6 +595,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/news/2023/first-public-working-draft-verifiable-credentials-json-schema-specification-2023/
 - Chartering
 
+
 #### Other
 
 - **W3C updates its Process Document | W3C News**
@@ -593,6 +612,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Proposal: Meta Tag for AI Consent Management · Issue #9334 · whatwg/html
   - https://github.com/whatwg/html/issues/9334
   - AI の学習にコンテンツが使われるのを防ぎたい人がオプトアウトできる手段を提案
+
 
 ### TC39 動向
 
@@ -644,6 +664,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 概ね構文は認めるが意見が割れてる
   - Stage 2 のまま
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2023-05-01}...main@{2023-07-01}
@@ -662,9 +683,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Atomics.waitAsync
   - RegExp v flag
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### WinterCG 動向
 
@@ -678,6 +702,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - performance.now/timeOrigin PR needs review Add performance.now/timeOrigin proposal-common-minimum-api#40
   - Add import.meta.url and import.meta.resolve to the Minimum common API
   - Write up draft for pattern-matching dynamic imports for bundlers (@lucacasonato)
+
 
 ### IETF 動向
 
@@ -749,11 +774,13 @@ guest: [@myakura](https://twitter.com/myakura)
 - Protocol Action: 'CoAP Transfer for the Certificate Management Protocol' to Proposed Standard (draft-ietf-ace-cmpv2-coap-transport-10.txt)
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/5capVXdu4x1d_m_A8Dtz9OiljMg/
 
+
 #### Other
 
 - **Reflections on Ten Years Past The Snowden Revelations**
   - https://www.ietf.org/archive/id/draft-farrell-tenyearsafter-05.html
   - スノーデン事件から 10 年のまとめ
+
 
 ### CDN 動向
 
@@ -770,7 +797,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Introducing Low-Latency HLS Support for Cloudflare Stream
   - https://blog.cloudflare.com/low-latency-hls-support-for-cloudflare-stream/
 
+
 #### Fastly
+
 
 #### Akamai
 
@@ -778,6 +807,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.akamai.com/blog/performance/deliver-fast-reliable-secure-web-experiences-http3
 - **OWASP Top 10 API Security Risks: The 2023 Edition Is Finally Here | Akamai**
   - https://www.akamai.com/blog/security/owasp-top-10-api-security-risks-2023-edition
+
 
 ### セキュリティ動向
 
@@ -787,6 +817,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.asahi.com/articles/ASR6R6W9YR6QUTFK016.html
 - 総務省|報道資料|電気通信事業法の一部改正(卸協議の適正性の確保に係る制度整備関係)に係る関係ガイドラインの改定
   - https://www.soumu.go.jp/menu_news/s-news/01kiban03_02000859.html
+
 
 ### 周辺動向
 
@@ -813,6 +844,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.kantei.go.jp/jp/singi/digitalmarket/kyosokaigi/dai7/siryou1s.pdf
   - https://www.kantei.go.jp/jp/singi/digitalmarket/kyosokaigi/dai7/siryou2s.pdf
 
+
 ### イベント
 
 - 6 月
@@ -826,6 +858,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/2023/09/TPAC/
   - 26-28: W3C Workshop Secure the Web Forward
     - https://www.w3.org/2023/03/secure-the-web-forward/
+
 
 ### Wrap Up
 

@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 113 回のテーマは 2023 年 1 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 109
+
 
 #### Updates
 
@@ -88,6 +90,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - **Remove Web SQL in non-secure contexts**
     - Remove window.webkitStorageInfo
 
+
 #### Intents
 
 - Ship: CSS Trigonometric functions
@@ -123,7 +126,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/uTbFlDLATho
 - **Ship: CSS Selectors 4 Pseudo-Class :nth-child(an + b of S)**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6zLouMDG4Eg
-  - p:nth-child(2n) は p p p なら 2 つ目の p だが、 p h2 p のような順では拾えない
+  - p:nth-child(2n) は p p p なら 2 つ目の p だが、p h2 p のような順では拾えない
   - :nth-child(2n p) なら p h2 p でも 2 つ目の p が拾える
 - Ship: Secure Payment Confirmation - Opt-Out Support
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/08KdhA66MyA
@@ -250,12 +253,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - PSA Resource-Timing for cross-origin iframes: change in behavior
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/b0-4JXb3kuo
 
+
 #### V8
 
 - **Introducing the WebAssembly JavaScript Promise Integration API · V8**
   - https://v8.dev/blog/jspi
 - Pointer compression in Oilpan · V8
   - https://v8.dev/blog/oilpan-pointer-compression
+
 
 #### Other
 
@@ -348,9 +353,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - A difficult decision to set us up for the future
     - https://blog.google/inside-google/message-ceo/january-update/
 
+
 ### Firefox 動向
 
 #### Stable: 109.0
+
 
 #### Updates
 
@@ -369,6 +376,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Firefox 109 for developers - Mozilla | MDN
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/109
     - `scrollend` event
+
 
 #### Intents
 
@@ -401,13 +409,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
+
 #### Other
 
 - **1805967 - Freeze `rv:` segment in the User Agent string to `rv:109.0` to avoid erroneous IE11 detection**
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1805967
     - Firefox 110 以降で IE11 と誤検知され動かないサイトが出た
       - UA 文字列に含まれる `rv:110` が原因
-    - IE11 の UA 文字列に `rv:11.0` という部分があり、 IE11 を検出しようと`/rv:11/.test(navigator.userAgent)` のように書いてたコードに引っかかった
+    - IE11 の UA 文字列に `rv:11.0` という部分があり、IE11 を検出しようと`/rv:11/.test(navigator.userAgent)` のように書いてたコードに引っかかった
     - 回避策として 110 台のバージョンは `rv:109` に固定する
 - 1806690 - Remove the frozen `rv:109.0` IE11 UA workaround after Firefox reaches version 120 (desktop and Android)
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1806690
@@ -432,9 +441,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Introducing about:logging
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/2Xv74MmiYpI/m/sIrino8gAwAJ
 
+
 ### Safari 動向
 
 #### Stable: 16.3
+
 
 #### Updates
 
@@ -527,18 +538,23 @@ guest: [@myakura](https://twitter.com/myakura)
   - Accessibility
     - Enabled default ARIA for custom elements (258743@main)
 
+
 #### Other
 
 - **Help choose the syntax for CSS Nesting**
   - https://webkit.org/blog/13607/help-choose-from-options-for-css-nesting-syntax/
 
+
 ### Edge 動向
 
 #### Stable: 109
 
+
 #### Updates
 
+
 #### Chakra
+
 
 #### Other
 
@@ -564,9 +580,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://textslashplain.com/2023/01/19/defense-techniques-reporting-phish/
 - **TLS Certificate Verification Changes in Edge - text/plain**
   - https://textslashplain.com/2022/12/06/tls-certificate-verification-changes-in-edge/
-- **Microsoft Edge に「ウィンドウの分割」機能が導入。 2 つのページを同時に閲覧可能に | ソフトアンテナ**
+- **Microsoft Edge に「ウィンドウの分割」機能が導入。2 つのページを同時に閲覧可能に | ソフトアンテナ**
   - https://softantenna.com/blog/microsoft-edge-split-window/
     - Edge の Canary に分割表示のフラグがあるらしい
+
 
 ### WHATWG/W3C 動向
 
@@ -591,6 +608,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/9806
 - Chartering
 
+
 #### Other
 
 - **Dr. Jeffrey Jaffe steps down as W3C CEO; Ralph Swick appointed Interim CEO | W3C News**
@@ -613,6 +631,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - jQuery 3.6.3 Released: A Quick Selector Fix | Official jQuery Blog
     - https://blog.jquery.com/2022/12/20/jquery-3-6-3-released-a-quick-selector-fix/
 
+
 ### TC39 動向
 
 #### Meeting
@@ -621,6 +640,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/agendas/blob/main/2022/11.md
   - https://github.com/tc39/notes/tree/main/meetings/2022-11
   - https://twitter.com/mozaicfm/status/1608087053002235905
+
 
 #### Proposals Diff
 
@@ -640,6 +660,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Explicit Resource Management
 - 3->4
   - Intl.Enumeration
+
 
 #### New Proposals
 
@@ -672,7 +693,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - dynamic import だと async になるので
   - 非同期に読み込む import を定義したい
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -708,11 +731,13 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
 
 - **mikewest/baseline-header**
   - https://github.com/mikewest/baseline-header
   - セキュリティ関連のヘッダをまとめて指定できる提案
+
 
 ### CDN 動向
 
@@ -723,7 +748,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Cyberattacks on Holocaust educational websites increased in 2022**
   - https://blog.cloudflare.com/cyberattacks-on-holocaust-educational-websites-increased-in-2022/
 
+
 #### Fastly
+
 
 #### Other
 
@@ -744,6 +771,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.akamai.com/blog/developers/seo-google-core-web-vitals-part-2-of-5
   - Beyond CWV: 11 More Performance Metrics to Monitor, Part 3 of 5 | Akamai
     - https://www.akamai.com/blog/developers/beyond-cwv-more-performance-metrics-to-monitor-part-3-of-5
+
 
 ### セキュリティ動向
 
@@ -767,6 +795,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **The death of the line of death | Emily M. Stark**
   - https://emilymstark.com/2022/12/18/death-to-the-line-of-death.html
 
+
 ### 周辺動向
 
 - Open-sourcing Anonymous Credential Service
@@ -788,7 +817,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.smashingmagazine.com/2023/01/usability-2023/
 - On This Day in History on Twitter: "Today in 1983, 40 years ago: The ARPANET officially changes to using TCP/IP, the Internet Protocol, effectively creating the Internet. #OnThisDay" / Twitter
   - https://twitter.com/OnThisDayHappnd/status/1609635690702143488
-  - 2023 年 1 月 1 日で、 ARPANET が TCP/IP に切り替わってから 40 年
+  - 2023 年 1 月 1 日で、ARPANET が TCP/IP に切り替わってから 40 年
     - https://www.ietf.org/rfc/rfc0801.txt
 - **What I Learned in Law School**
   - https://www.mnot.net/blog/2023/01/05/law-school
@@ -802,9 +831,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - WebKit フォーク後の Blink では消されていた MathML が戻ってくる
 - **ウェブアクセシビリティ導入ガイドブック|デジタル庁**
   - https://www.digital.go.jp/resources/introduction-to-web-accessibility-guidebook/
-- **【 1 月 23 日追記】 12 月 23 日、 24 日に発生しました障害に関するご報告 - skeb_jp - Medium**
+- **【 1 月 23 日追記】 12 月 23 日、24 日に発生しました障害に関するご報告 - skeb_jp - Medium**
   - https://medium.com/skeb-jp/report-36b5608aa867
-- **アイルランド、 Meta にまた罰金 GDPR 違反で約 547 億円 - ITmedia NEWS**
+- **アイルランド、Meta にまた罰金 GDPR 違反で約 547 億円 - ITmedia NEWS**
   - https://www.itmedia.co.jp/news/articles/2301/05/news137.html
 - **Watch Meta's engineers discuss optimizing large-scale networks - Engineering at Meta**
   - https://engineering.fb.com/2023/01/27/networking-traffic/optimizing-large-scale-networks-meta-engineers/
@@ -815,6 +844,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 4. Network SLOs(Service Level Objective)
   - 5. L4 ルーティングの一貫性の向上
 
+
 ### イベント
 
 - 1 月
@@ -822,6 +852,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 3 月
   - 25-31: IETF116 Yokohama
     - https://www.ietf.org/how/meetings/116/
+
 
 ### Wrap Up
 

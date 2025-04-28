@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 81 回のテーマは 2021 年 3 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 89
+
 
 #### Updates
 
@@ -99,6 +101,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - これまであまり公開されてこなかった Spectre の DEMO が公開された
 - 2020 Q4 Summary from Chrome Security
   - https://groups.google.com/a/chromium.org/g/security-dev/c/lSebbMvUBeY/m/yPa1YYOrBAAJ
+
 
 #### Intents
 
@@ -198,6 +201,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Call for lightning talks at BlinkOn 14!!
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-P5UnWO6-yo/m/KjKoRCK7BwAJ
 
+
 #### V8
 
 - Faster releases · V8
@@ -206,6 +210,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Extended Stable も提供
 - V8 release v9.0 · V8
   - https://v8.dev/blog/v8-release-90
+
 
 #### Other
 
@@ -276,11 +281,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - あわせて https://www.privacysandbox.com/ も公開
 - **Android の Chrome と WebView で障害**
   - https://twitter.com/googlejapan/status/1374269162961268741
-  - Google Japan on Twitter: "Android アプリが一部のユーザーで強制終了する問題を修正しました。不具合が解消しない場合は、 Google Play ストアから Android システムの WebView と Google Chrome をアップデートしてください。ご迷惑をおかけした皆さまにお詫び申し上げます。" / Twitter
+  - Google Japan on Twitter: "Android アプリが一部のユーザーで強制終了する問題を修正しました。不具合が解消しない場合は、Google Play ストアから Android システムの WebView と Google Chrome をアップデートしてください。ご迷惑をおかけした皆さまにお詫び申し上げます。" / Twitter
+
 
 ### Firefox 動向
 
 #### Stable: 87.0
+
 
 #### Updates
 
@@ -302,6 +309,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2021/03/12/these-weeks-in-firefox-issue-89/
 - These Weeks in Firefox: Issue 90 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/03/25/these-weeks-in-firefox-issue-90/
+
 
 #### Intents
 
@@ -351,6 +359,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - intl.uidirection pref
     - https://groups.google.com/g/mozilla.dev.platform/c/e8w70uOCmss/m/l6PFZWdSAAAJ
 
+
 #### Other
 
 - **Reinstating net neutrality in the US - The Mozilla Blog**
@@ -360,15 +369,17 @@ guest: [@myakura](https://twitter.com/myakura)
   - Tier 1 (fr, ja, ru, zh-CN, zh-TW) のロケールが編集可能に戻った
   - アクティブコントリビューターが紹介されている(日本人による ja チームも)
   - メンテされてないロケールの非表示化を 4/30 に行う
-    - 韓国語やドイツ語など、 Tier 1 ではないもののアクセスの多いものは公開継続してメンテナを募る
+    - 韓国語やドイツ語など、Tier 1 ではないもののアクセスの多いものは公開継続してメンテナを募る
 - How MDN's site-search works - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2021/03/how-mdns-site-search-works/
 - A web testing deep dive: The MDN web testing report - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2021/04/a-web-testing-deep-dive-the-mdn-web-testing-report/
 
+
 ### Safari 動向
 
 #### Stable: 14.0.3
+
 
 #### Updates
 
@@ -408,6 +419,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web API
     - **Removed the Origin header if the navigation request goes from POST to GET (r273905)**
 
+
 #### Position
 
 - [webkit-dev] Request for position: Honor media HTML attribute for link icon
@@ -439,11 +451,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - [webkit-dev] Request for position on Handwriting Recognition API
   - https://lists.webkit.org/pipermail/webkit-dev/2021-March/031762.html
 
+
 #### Other
+
 
 ### Edge 動向
 
 #### Stable: 89
+
 
 #### Ignite
 
@@ -451,6 +466,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://myignite.microsoft.com/sessions
   - Top reasons why customers love Microsoft Edge
     - https://myignite.microsoft.com/sessions/e6450bfb-4db9-491e-87d2-0bf2fbf5f1d1?source=sessions
+
 
 #### Updates
 
@@ -465,7 +481,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Joining forces on better browser compatibility in 2021 - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2021/03/22/better-compatibility-compat2021/
 
+
 #### Chakra
+
 
 #### Other
 
@@ -473,6 +491,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2021/03/29/per-site-permissions-in-edge/
 - Specifying Per-Site Policy with Chromium's URL Filter Format - text/plain
   - https://textslashplain.com/2021/03/29/specifying-per-site-policy-with-chromiums-url-filter-format/
+
 
 ### WHATWG/W3C 動向
 
@@ -495,10 +514,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/8944
 - Chartering
 
+
 #### Other
 
 - Authorized Translation of WCAG 2.1 in Polish
   - https://www.w3.org/blog/news/archives/8951
+
 
 #### ES2021
 
@@ -509,6 +530,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - WeakRefs
   - Logical assignment operators
   - number literals and bigint literals
+
 
 #### Meeting
 
@@ -540,6 +562,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Pipeline Operator
   - Opt-Out Period
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/master@{2021-03-01}...master@{2021-04-01}
@@ -554,6 +577,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Class Static Block
 - 3->4
 
+
 #### New Proposals
 
 - **Provides additional methods to Array.prototype to enable changes on an array by returning a new copy of it with the change.**
@@ -561,10 +585,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - record / tuple に必要な immutable な method を Array.prototype にも入れる案
   - pushed / shifted / with など
 
+
 #### Other
 
 - ECMAScript 2021: the final feature set
   - https://2ality.com/2020/09/ecmascript-2021.html
+
 
 ### IETF 動向
 
@@ -632,6 +658,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Spec
 
 - RFC
@@ -642,26 +669,32 @@ guest: [@myakura](https://twitter.com/myakura)
 - I-D Action
 - Draft
 
+
 #### Other
 
 - Where is HTTP/3 right now? | daniel.haxx.se
   - https://daniel.haxx.se/blog/2021/04/02/where-is-http-3-right-now/
 
+
 ### CDN 動向
 
 #### Cloudflare
+
 
 #### Fastly
 
 - 2020 Year-in-Review: COVID drives "bump" in traffic across various industries | Fastly
   - https://www.fastly.com/blog/2020-year-in-review-covid-drives-bump-in-traffic-across-various-industries
 
+
 #### Other
+
 
 ### セキュリティ動向
 
 - Spectre DEMO
   - https://leaky.page/
+
 
 ### 周辺動向
 
@@ -687,6 +720,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Part 5 - JakeArchibald.com
     - https://jakearchibald.com/2021/f1-perf-part-5/
 
+
 ### イベント
 
 - 6 月
@@ -694,6 +728,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.apple.com/wwdc21/
   - 24-30: IETF111
     - IETF 111 San Francisco
+
 
 ### Wrap Up
 

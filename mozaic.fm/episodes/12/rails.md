@@ -12,9 +12,10 @@ guest: [@a_matsuda](https://twitter.com/a_matsuda)
 
 第 12 回のテーマは Ruby on Rails です。
 
-今回は Ruby と Rail のコミッターである [@a_matsuda](https://twitter.com/a_matsuda/) さんをお迎えして、 Rails が引っ張ってきた Web 開発と、 Web の進化が Ruby に与えた影響などを振り返りながら、 Rails に「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
+今回は Ruby と Rail のコミッターである [@a_matsuda](https://twitter.com/a_matsuda/) さんをお迎えして、Rails が引っ張ってきた Web 開発と、Web の進化が Ruby に与えた影響などを振り返りながら、Rails に「今何が起こっているのか」、「これからどうなっていくのか」を議論しました。
 
-プロジェクトオーナーである DHH が最初の Rails をリリースしてから 10 年たった今、この 10 年を見てきた [@a_matsuda](https://twitter.com/a_matsuda/) さんとともに、 10 年前と比べて様変わりしたフロントエンド開発との兼ね合いや、 Microservices に対する感触などについて議論しました。
+プロジェクトオーナーである DHH が最初の Rails をリリースしてから 10 年たった今、この 10 年を見てきた [@a_matsuda](https://twitter.com/a_matsuda/) さんとともに、10 年前と比べて様変わりしたフロントエンド開発との兼ね合いや、Microservices に対する感触などについて議論しました。
+
 
 ## Show Note
 

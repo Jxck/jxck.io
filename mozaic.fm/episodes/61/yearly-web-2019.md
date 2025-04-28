@@ -14,6 +14,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 今年行った Monthly Web を振り返ります。
 
+
 ## Show Note
 
 ### 2019 年キーワード
@@ -29,6 +30,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Portal
 - DoH
 
+
 #### myakura
 
 - doh
@@ -38,6 +40,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - aspectratio
 - apple/mozilla -> google
 - chromium への不安
+
 
 ### 1 月
 
@@ -81,6 +84,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - `<pinch-zoom>` のデモ
   - twitter の .well-known/change-password サポート
 
+
 ### 2 月
 
 - Chrome
@@ -111,7 +115,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - W3C
   - Salesforce が W3C に参加
   - W3C が中規模企業プラン用意
-  - W3C Process 更新、 AB メンバの席や、 Contribution ライセンスの整備
+  - W3C Process 更新、AB メンバの席や、Contribution ライセンスの整備
 - TC39
   - Single-Chair + Vice Chair 構成から Flat 3 Chair にし責任分散
   - ES2020 開始
@@ -122,6 +126,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 韓国で SNI Blocking
   - ESNI と ESNI Block と Fake SNI
 - Other
+
 
 ### 3 月
 
@@ -176,6 +181,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.nginx.com/blog/nginx-joins-f5/
     - https://www.publickey1.jp/blog/19/nginxf5f5nginx.html
 
+
 ### 4 月
 
 - Chrome
@@ -197,7 +203,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Web Push のプロンプトについて 2018 年 12 月 25 日からひと月調査した
     - 1800 万以上のプロンプトが表示され、許可されたのが 3% 未満、表示されたら即離脱したケースが 19% も
     - カメラの許可が 85% 以上なので、これは多すぎる
-    - 4 月の 1 ヶ月間、 Nightly でユーザージェスチャーのないプロンプトを拒否する実験をする
+    - 4 月の 1 ヶ月間、Nightly でユーザージェスチャーのないプロンプトを拒否する実験をする
     - リリース版においても、プロンプトに関する情報を限定的に集めるとも
   - Implement and Ship: Support "noreferrer" feature for window.open()
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/eTt1nd1Ia_Y/x-8JIf2TCwAJ
@@ -223,7 +229,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - コードは Redmond に 5$ 送ったらもらえる?
 - WHATWG/W3C
   - DRAFT Memorandum of Understanding Between W3C and WHATWG
-    - HTML と DOM 仕様を WHATWG で策定し、 W3C がその Review Drafts を REC に持って行くという方針のドラフト
+    - HTML と DOM 仕様を WHATWG で策定し、W3C がその Review Drafts を REC に持って行くという方針のドラフト
   - W3C が standardize a Full TV Experience on the Web で Emmy 賞
   - Apple の John Wilander による Signed Exchange のプライバシーにおける考察
     - リソースのないニュースサイトにアドテクが Signed Exchange を提供するようになるとどうなるか?
@@ -246,7 +252,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://note.mu/morois/n/n7210db925aa1
   - 2019/7/8 からは CrossRoot ではなく ISRG Root X1 で証明書を配布するようになる
     - https://letsencrypt.org/2019/04/15/transitioning-to-isrg-root.html
-  - Google 7 割くらい CSP をデプロイし、 nonce only は 1 割程度までデプロイ済み
+  - Google 7 割くらい CSP をデプロイし、nonce only は 1 割程度までデプロイ済み
     - https://speakerdeck.com/mikispag/content-security-policy-a-successful-mess-between-hardening-and-mitigation
 - Other
   - Fastly Lucet
@@ -257,6 +263,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - WAPM
     - https://wapm.io/
     - WASM のパッケージマネージャー/リポジトリ
+
 
 ### 5 月
 
@@ -326,7 +333,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - JSON module support
     - import 文で JSON を読み込めるように
   - Add form.requestSubmit()
-    - submit ボタンを押した時の挙動(バリデーション、 submit イベント発火)と同様のメソッド
+    - submit ボタンを押した時の挙動(バリデーション、submit イベント発火)と同様のメソッド
   - tkent-google/std-switch
     - スイッチコントロールを標準コンポーネント化する試み
 - TC39
@@ -351,35 +358,43 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://security.googleblog.com/2019/05/new-research-how-effective-is-basic.html
   - A Conspiracy To Kill IE6
     - 元 YouTube エンジニアによる YouTube が IE6 サポートを打ち切るための策略についての回顧録
-    - 買収前の古い YouTube 社員によって作られた "OldTuber" という、 Google のインフラチェックをバイパスする権限を悪用しバナーを表示
+    - 買収前の古い YouTube 社員によって作られた "OldTuber" という、Google のインフラチェックをバイパスする権限を悪用しバナーを表示
+
 
 ### 6 月
 
 - TODO
 
+
 ### 7 月
 
 - TODO
+
 
 ### 8 月
 
 - TODO
 
+
 ### 9 月
 
 - TODO
+
 
 ### 10 月
 
 - TODO
 
+
 ### 11 月
 
 - TODO
 
+
 ### 12 月
 
 - TODO
+
 
 ### Similar Yearly
 

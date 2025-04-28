@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 160 回のテーマは 2024 年 9 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - What we got wrong about HTTP imports
@@ -82,7 +83,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - Announcing TypedSQL: Make your raw SQL queries type-safe with Prisma ORM
   - https://www.prisma.io/blog/announcing-typedsql-make-your-raw-sql-queries-type-safe-with-prisma-orm
   - 生 SQL を型安全にしたライブラリ
-  - prisma ディレクトリに sql ファイルを配置し、 `prisma generate --sql` を実行することにより、ts のコードを生成できる
+  - prisma ディレクトリに sql ファイルを配置し、`prisma generate --sql` を実行することにより、ts のコードを生成できる
 - Astro
   - v5.0 Beta
     - https://astro.build/blog/astro-5-beta/
@@ -150,6 +151,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - OpenAI が Remix にしたはなし
 - node-fetch-server
   - https://github.com/mjackson/remix-the-web/tree/main/packages/node-fetch-server
+
 
 ## Events
 

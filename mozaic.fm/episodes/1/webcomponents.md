@@ -13,9 +13,10 @@ guest: [@ahomu](https://twitter.com/ahomu)
 
 第 1 回のテーマは WebComponents です。
 
-今回は [@hokaccha](https://twitter.com/hokaccha) さんと [@ahomu](https://twitter.com/ahomu) さんをお迎えし、 WebComponents で何が変わるのか、 ShadowDOM で何が嬉しいのか、今の課題は何か?
+今回は [@hokaccha](https://twitter.com/hokaccha) さんと [@ahomu](https://twitter.com/ahomu) さんをお迎えし、WebComponents で何が変わるのか、ShadowDOM で何が嬉しいのか、今の課題は何か?
 
 「なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
+
 
 ## Show Note
 
@@ -29,6 +30,7 @@ guest: [@ahomu](https://twitter.com/ahomu)
 - [Brick](http://mozilla.github.io/brick/index.html)
 - [x-tag](http://x-tags.org)
 - [vulcanize](https://github.com/Polymer/vulcanize)
+
 
 ## Additional
 

@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 40 回のテーマは 2018 年 7 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -61,7 +62,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - `sync-script`
   - **Implement: Portals**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/SgsbpO08AeI/ZyDL6r5FBgAJ
-    - `<portal>` Tag により、 embed content とシームレスに遷移
+    - `<portal>` Tag により、embed content とシームレスに遷移
   - **Implement: Feature Policy control over sandbox features**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/WLuXgLp2WWY/WvzMRIjdAgAJ
     - "forms"
@@ -161,6 +162,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.google.com/web/updates/2018/07/reportingobserver
     - 導入してるけど Report が JSON serializable ではないので報告中
 
+
 ### Firefox 動向
 
 - Stable: 61
@@ -256,6 +258,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Beta - September 5
     - Release - October 23
 
+
 ### Safari 動向
 
 - Stable: 11.1
@@ -268,6 +271,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Implemented support for Element.toggleAttribute (r233475) [blog](https://blog.jxck.io/entries/2018-07-20/toggle-attribute.html)
   - Made fetch() use "same-origin" credentials by default (r233720)
 - Other
+
 
 ### Edge 動向
 
@@ -282,7 +286,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - **XSS Filter が終了する**
     - Filter のせいで XSS が発生したりと潜在的な危険性もあった
     - 作った人が Google に行っちゃったり、メンテできる人も少なそう
-    - 更新されてないし、 CSP もあるから消されたっぽい
+    - 更新されてないし、CSP もあるから消されたっぽい
     - でも段階的な緩和や事前アナウンスなしでいきなりはどうなの?
     - MS の独自機能史上もっともクソな機能だったと思う
 - Chakra
@@ -301,6 +305,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blogs.technet.microsoft.com/jpieblog/2018/07/18/internet-explorer-support/
   - **Introducing Web Authentication in Microsoft Edge**
     - https://blogs.windows.com/msedgedev/2018/07/30/introducing-web-authentication-microsoft-edge
+
 
 ### WHATWG/W3C 動向
 
@@ -363,6 +368,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/w3c/csswg-drafts/issues/2701#issuecomment-402392212
     - Sass みたいなブロックのネストをする nesting プロポーザルがなぜか突如 ED になることに
 
+
 ### TC39 動向
 
 - Meeting
@@ -404,6 +410,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 現状の ES Proposals 全部を実装したらどうなるかというまとめ
     - 提案は簡単だが実装は大変だ、という話
     - 記号の取り合い問題
+
 
 ### IETF 動向
 
@@ -517,6 +524,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - RFC の読み方
     - RFC というフォーマットをどう読み解くかなどが書かれている
 
+
 ### セキュリティ動向
 
 - HTTP Security Headers Analysis of Top One Million Websites
@@ -538,6 +546,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Into the Borg - SSRF inside Google production network
   - https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/
 
+
 ### 周辺動向
 
 - A2O, a converter from iOS app to web app, is now open source
@@ -550,7 +559,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Feature Policy のデモページ
 - **How to drop 10 million packets per second**
   - https://blog.cloudflare.com/how-to-drop-10-million-packets/
-  - Cloudflare による、 DDoS 対策にパケットを落とす方法
+  - Cloudflare による、DDoS 対策にパケットを落とす方法
 - Web Architecture 101 - VideoBlocks Product & Engineering
   - https://engineering.videoblocks.com/web-architecture-101-a3224e126947
 - The CSS Paint API
@@ -570,7 +579,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Removing Babel's Stage Presets**
   - https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets
   - ES のプロポーザルのステージごとに用意された Babel プラグインのプリセットを廃止
-  - Stage 0 などの早すぎるプロポーザルのプラグインへの危惧("BabelScript"化)や、 Stage 3 から 4 になる際にプラグインを抜く関係で breaking change が起こるなど、メンテナンスの問題も
+  - Stage 0 などの早すぎるプロポーザルのプラグインへの危惧("BabelScript"化)や、Stage 3 から 4 になる際にプラグインを抜く関係で breaking change が起こるなど、メンテナンスの問題も
 - The Road to QUIC
   - https://blog.cloudflare.com/the-road-to-quic/
 - What are the pain points for web designers?
@@ -579,6 +588,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.benjojo.co.uk/post/the-death-of-a-tld
   - Sony が .xperia を持ってたんだけど消したとのこと
   - 他にも結構な TLD が過去に消えているらしい
+
 
 ### イベント
 

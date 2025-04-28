@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 88 回のテーマは 2021 年 9 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 94
+
 
 #### Updates
 
@@ -113,6 +115,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - WebAssembly Cross-Origin Module Sharing
     - Deprecate U2F API (Cryptotoken)
 
+
 #### Intents
 
 - Ship: COEP for shared worker
@@ -133,7 +136,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/R5r4-TF6at8
 - **Ship: self.reportError()**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/QzoPDXSwq4s
-  - 例えば Listener を複数呼び出す必要があるライブラリで、 1 つのリスナが例外を投げると後続が全部止まる問題がある。
+  - 例えば Listener を複数呼び出す必要があるライブラリで、1 つのリスナが例外を投げると後続が全部止まる問題がある。
   - 例外を伝えたいがリスナは全部実行してからにしたい場合にどう例外をブラウザに伝えるか
   - そこで「例外をブラウザに伝えるための API をいれる」という 提案
   - Safari も実装着手済み
@@ -239,6 +242,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - When: November 16-18, 2021 PT
   - Where: Virtual
 
+
 #### V8
 
 - V8 release v9.4 · V8
@@ -249,6 +253,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Intl.DisplayNames v2
   - Extended timeZoneName option
   - Exception Handling
+
 
 #### Other
 
@@ -277,11 +282,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developers.googleblog.com/
 - google developer japan blog
   - https://developers-jp.googleblog.com/
-  - Google Developers Japan: Chrome 93: マルチスクリーン ウィンドウの配置、 URL ハンドラとしての PWA など
+  - Google Developers Japan: Chrome 93: マルチスクリーン ウィンドウの配置、URL ハンドラとしての PWA など
     - https://developers-jp.googleblog.com/2021/08/chrome-93-url-pwa.html
   - Google Developers Japan: 新しい Google Identity Services API のリリースについて
     - https://developers-jp.googleblog.com/2021/08/google-identity-services-api.html
-  - Google Developers Japan: Chrome 94 ベータ版: WebCodecs 、 WebGPU 、スケジューリングなど
+  - Google Developers Japan: Chrome 94 ベータ版: WebCodecs 、WebGPU 、スケジューリングなど
     - https://developers-jp.googleblog.com/2021/09/chrome-94-webcodecswebgpu.html
   - Google Developers Japan: ウェブ用の Google Sign-In JavaScript プラットフォーム ライブラリの提供終了について
     - https://developers-jp.googleblog.com/2021/09/google-sign-in-javascript.html
@@ -353,9 +358,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Web Stories call to action buttons get an upgrade - The AMP Blog
   - https://blog.amp.dev/2021/09/15/web-stories-call-to-action-buttons-get-an-upgrade/
 
+
 ### Firefox 動向
 
 #### Stable: 92.0.1
+
 
 #### Updates
 
@@ -375,6 +382,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - accent-color
     - font-family: system-ui
     - Object.hasOwn()
+
 
 #### Intents
 
@@ -407,6 +415,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Deprecate Infer linting
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/eSCG8p2FWhM
 
+
 #### Other
 
 - SpiderMonkey Newsletter (Firefox 92-93)
@@ -427,9 +436,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **UA Client Hints is less than harmful by martinthomson · Pull Request #579 · mozilla/standards-positions**
   - https://github.com/mozilla/standards-positions/pull/579
 
+
 ### Safari 動向
 
 #### Stable: 15
+
 
 #### Updates
 
@@ -524,6 +535,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - **Implemented Crypto.randomUUID() (r281206, r281284)**
     - **Implemented self.reportError() (r281756)**
 
+
 #### Position
 
 - [webkit-dev] Request for position: supports() extended syntax for @font-face
@@ -539,11 +551,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - [webkit-dev] Request for position: Cryptographically secure random UUIDs
   - https://lists.webkit.org/pipermail/webkit-dev/2021-August/031962.html
 
+
 #### Other
 
 - **iOS Engine Choice In Depth - Infrequently Noted**
   - https://infrequently.org/2021/08/webkit-ios-deep-dive/
-- **ドコモとソフトバンク、 iOS 15 の「プライベートリレー」で注意呼びかけ - ケータイ Watch**
+- **ドコモとソフトバンク、iOS 15 の「プライベートリレー」で注意呼びかけ - ケータイ Watch**
   - https://k-tai.watch.impress.co.jp/docs/news/1351917.html
   - iCloud Private Relay で影響がでるキャリアのサービス
   - フィルタリングやカウントフリー系に影響が出る
@@ -551,9 +564,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.playcanvas.com/important-information-about-safari-15/
   - WebGL のライブラリやゲームエンジンが Safari 15 でクラッシュしているらしい
 
+
 ### Edge 動向
 
 #### Stable: 94
+
 
 #### Updates
 
@@ -562,7 +577,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Microsoft announces passwordless future - available across Microsoft Edge and Microsoft 365 apps | Windows Experience Blog**
   - https://blogs.windows.com/windowsexperience/2021/09/15/microsoft-announces-passwordless-future-available-across-microsoft-edge-and-microsoft-365-apps/
 
+
 #### Chakra
+
 
 #### Other
 
@@ -576,6 +593,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://techcommunity.microsoft.com/t5/articles/top-feedback-summary-for-august/m-p/2704082
 - Top Feedback Summary for August 24 - Microsoft Tech Community
   - https://techcommunity.microsoft.com/t5/articles/top-feedback-summary-for-august-24/m-p/2680552
+
 
 ### WHATWG/W3C 動向
 
@@ -610,6 +628,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - HTML Working Group Charter extended until 30 November 2021
     - https://lists.w3.org/Archives/Public/public-new-work/2021Sep/0007.html
 
+
 #### Other
 
 - CFC notification for the HTML WG from L é onie Watson
@@ -618,6 +637,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://lists.w3.org/Archives/Public/public-html/2021Aug/0006.html
 - Normative references to works in progress
   - https://lists.w3.org/Archives/Public/public-html/2021Aug/0005.html
+
 
 ### TC39 動向
 
@@ -633,6 +653,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://spidermonkey.dev/blog/2021/08/09/tc39.html
   - Updates from the 85th meeting of TC39 - DEV Community
     - https://dev.to/hemanth/updates-from-the-85th-meeting-of-tc39-2kep
+
 
 #### Proposals Diff
 
@@ -656,6 +677,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Object.hasOwn
   - Class Static Blocks
 
+
 #### New Proposals
 
 - **guybedford/proposal-is-usv-string**
@@ -677,10 +699,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - メモリ上に確保したらその後レイアウトが変わらない構造体
   - シリアライズしてやり取りしたりする際に便利。
 
+
 #### Other
 
 - SpiderMonkey Newsletter (Firefox 92-93) | SpiderMonkey JavaScript/WebAssembly Engine
   - https://spidermonkey.dev/blog/2021/09/10/newsletter-firefox-92-93.html
+
 
 ### IETF 動向
 
@@ -750,7 +774,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
+
 
 ### CDN 動向
 
@@ -767,9 +793,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - Unboxing the Last Mile: Introducing Last Mile Insights
   - https://blog.cloudflare.com/last-mile-insights/
 
+
 #### Fastly
 
+
 #### Other
+
 
 ### セキュリティ動向
 
@@ -784,6 +813,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - HTTPS Is Actually Everywhere | Electronic Frontier Foundation
   - https://www.eff.org/deeplinks/2021/09/https-actually-everywhere
 
+
 ### 周辺動向
 
 - **開発終了の国産 Web ブラウザー「Kinza」、ソースコードが公開 - 窓の杜**
@@ -791,6 +821,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Testing Chrome version 100 for fun and profit (but mostly fun I guess)**
   - https://miketaylr.com/posts/2021/09/chrome-version-100-testing.html
   - Chrome Canary に UA 文字列のメジャーバージョンを 100 に変更するフラグが入った
+
 
 ### イベント
 
@@ -806,6 +837,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.ietf.org/how/meetings/112/
   - 16-18: BlinkOn 15
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/w1ChUGMhO58/m/_6mgHrfgAwAJ
+
 
 ### Wrap Up
 

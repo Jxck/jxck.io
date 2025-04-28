@@ -13,9 +13,10 @@ guest: 菊池さん
 
 第 4 回のテーマは Security (Protocol)です。
 
-今回は、 [CCS Injection](http://ccsinjection.lepidum.co.jp/ja.html) の発見にともない、発見者の菊池さんと [@lef](https://twitter.com/lefb) さんをお迎えし、 CCS Injection の影響や発見の経緯、 Open SSL や TLS の現状、ここから見える未来など、プロトコル寄りのセキュリティをテーマに、議論しました。
+今回は、[CCS Injection](http://ccsinjection.lepidum.co.jp/ja.html) の発見にともない、発見者の菊池さんと [@lef](https://twitter.com/lefb) さんをお迎えし、CCS Injection の影響や発見の経緯、Open SSL や TLS の現状、ここから見える未来など、プロトコル寄りのセキュリティをテーマに、議論しました。
 
 今回は [Qiita でラフノートを公開](http://qiita.com/Jxck_/items/324f5b68f2da4add6a45) し、質問を募集しました。全部は紹介できませんでしたが、質問頂いた方々有難うございました。
+
 
 ## Show Note
 

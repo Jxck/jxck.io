@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 62 回のテーマは 2019 年 12 月と 2020 年 1 月の Monthly Web 合併号です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -238,6 +239,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - The Chromium Chronicle: ClusterFuzz
     - https://developers.google.com/web/updates/2019/12/chromium-chronicle-9
 
+
 ### Firefox 動向
 
 - Stable:72.0.2
@@ -330,6 +332,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ICANN Directors: Take a Close Look at the Dot Org Sale - The Mozilla Blog
     - https://blog.mozilla.org/blog/2020/01/23/icann-directors-take-a-close-look-at-the-dot-org-sale/
 
+
 ### Safari 動向
 
 - Stable:13.0.3
@@ -404,13 +407,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - ResizeObserver in WebKit | WebKit
     - https://webkit.org/blog/9997/resizeobserver-in-webkit/
 
+
 ### Edge 動向
 
 - Stable: 79
 - Update
   - **新たな年に新たなブラウザーを - 新しい Microsoft Edge はプレビューを終え、ダウンロード提供を開始 - Windows Blog for Japan**
     - https://blogs.windows.com/japan/2020/01/16/new-year-new-browser-the-new-microsoft-edge-is-out-of-preview-and-now-available-for-download/
-    - 「日本のお客様に対しては、確定申告への影響を考慮し、 Windows Update を通じた新しい Microsoft Edge の配信は令和 2 年 4 月 1 日以降、順次開始される予定です。」
+    - 「日本のお客様に対しては、確定申告への影響を考慮し、Windows Update を通じた新しい Microsoft Edge の配信は令和 2 年 4 月 1 日以降、順次開始される予定です。」
     - とのこと
   - **Improving Tracking Prevention in Microsoft Edge**
     - https://blogs.windows.com/msedgedev/2019/12/03/improving-tracking-prevention-microsoft-edge-79/
@@ -473,6 +477,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 2020 May にリリースのスケジュール
   - **Retiring Internet Explorer | text/plain**
     - https://textslashplain.com/2020/01/19/retiring-internet-explorer/
+
 
 ### WHATWG/W3C 動向
 
@@ -552,6 +557,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - for authors/for implementers リンクなど
     - https://www.24a11y.com/2019/pouring-aria-into-the-html-element-specs/
 
+
 ### TC39 動向
 
 - Meeting
@@ -579,6 +585,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - ECMAScript Archives
     - https://www.ecma-international.org/archive/ecmascript/
+
 
 ### IETF 動向
 
@@ -633,6 +640,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-04
 - Other
 
+
 ### セキュリティ動向
 
 - **Information Leaks via Safari's Intelligent Tracking Prevention**
@@ -658,6 +666,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 「Web をセキュアにする」のではなく「セキュアな Web を作る」ための会議
   - 互換性を壊す大幅な変更提案も含めて議論される模様
   - CfP 中で、かなり広い分野から Program Committee が選出されてる
+
 
 ### 周辺動向
 
@@ -709,15 +718,16 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.quirksmode.org/blog/archives/2020/01/new_browser_on.html
   - Ekioh の Flow
   - 2006 年、組み込み SVG エンジンから始まり徐々に HTML/CSS も実装
-  - Gmail の表示まで来た、 JS が難読化されててデバッグが大変だった
+  - Gmail の表示まで来た、JS が難読化されててデバッグが大変だった
   - HTML パーサの仕様がかなり整理されたので実装は思ったより簡単だった
-  - UA は Chrome ベースで始めたが、 SpiderMonkey を利用してるので最後は Firefox っぽくなった
+  - UA は Chrome ベースで始めたが、SpiderMonkey を利用してるので最後は Firefox っぽくなった
 - JavaScript Libraries Are Almost Never Updated Once Installed
   - https://blog.cloudflare.com/javascript-libraries-are-almost-never-updated/
 - Empowering Your Privacy
   - https://blog.cloudflare.com/empowering-your-privacy/
 - Modernizing the internet with HTTP/3 and QUIC
   - https://www.fastly.com/blog/modernizing-the-internet-with-http3-and-quic
+
 
 ### イベント
 

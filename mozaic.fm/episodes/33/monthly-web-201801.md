@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 33 回のテーマは 2018 年 1 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Spectore/Meltdown
@@ -42,6 +43,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Mitigating speculative execution side-channel attacks in Microsoft Edge and Internet Explorer
     - https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer/
   - `performance.now()` が 5us -> 20us に
+
 
 ### Chrome 動向
 
@@ -115,7 +117,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Chrome welcomes Speedometer 2.0!**
     - https://v8project.blogspot.jp/2018/01/speedometer-2.html
     - JavaScript フレームワークを使った Web アプリを使いパフォーマンスをチェックする
-    - Apple がつくったものだが、他のブラウザにも受け入れられて、 2.0 のアップデートには Chrome チームも関わった
+    - Apple がつくったものだが、他のブラウザにも受け入れられて、2.0 のアップデートには Chrome チームも関わった
   - PSA: `replaceTrack()` shipping in M65
     - https://groups.google.com/forum/#!msg/discuss-webrtc/C6Z5XstxHhc/E9HPASujAAAJ
 - Intents
@@ -269,6 +271,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - http://blog.chromium.org/2018/01/further-protecting-users-from-deceptive.html
     - inline install を無効に
 
+
 ### Firefox 動向
 
 - Updates
@@ -285,7 +288,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/t0m_cRisNQw/d-cnG4M-CgAJ
   - **Next year in web-platform-tests**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/W7Oi6-rSiIc/dxNFUYg-CgAJ
-      - W3C の Web 関連 API に使われる web-platform-tests について、 Mozilla の今年の展望
+      - W3C の Web 関連 API に使われる web-platform-tests について、Mozilla の今年の展望
       - Web で使われる機能については基本的に wpt を使うようにしたい、など
   - Mozilla Made the Web Better for Developers in 2017
     - https://medium.com/mozilla-tech/mozilla-made-the-web-better-for-developers-in-2017-3e4cf9224776
@@ -306,7 +309,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Intents
   - **Ship: Support already-enrolled U2F devices with Google Accounts for Web Authentication**
     - https://groups.google.com/forum/#!topic/mozilla.dev.platform/Uiu3fwnA2xw
-    - WebAuthN が Firefox 60 でくるが、 Google アカウントで使ってる旧式の FIDO U2F に対応したものも期限付きで実装したい
+    - WebAuthN が Firefox 60 でくるが、Google アカウントで使ってる旧式の FIDO U2F に対応したものも期限付きで実装したい
     - 5 年くらいと考えているという話に、長すぎないかという指摘など
   - Implement: individual transform
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/uidYTDXu1CE/_Ax4VvckCgAJ
@@ -361,7 +364,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://twitter.com/MozDevNet/status/956219627775774720
       - 新しい Compat Data の表がローンチされた
       - https://github.com/mdn/browser-compat-data
-      - 現在は手入力のデータが多いが、 wpt を使って自動化できたら、とも
+      - 現在は手入力のデータが多いが、wpt を使って自動化できたら、とも
   - Improving privacy without breaking the web
     - https://blog.mozilla.org/data/2018/01/26/improving-privacy-without-breaking-the-web/
   - **CSS 2018 Priorities**
@@ -374,6 +377,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - (Low) Houdini
   - Shrinking WebAssembly and JavaScript code sizes in Emscripten
     - https://hacks.mozilla.org/2018/01/shrinking-webassembly-and-javascript-code-sizes-in-emscripten/
+
 
 ### Safari 動向
 
@@ -424,7 +428,8 @@ guest: [@myakura](https://twitter.com/myakura)
 - Speedometer 2.0: A Benchmark for Modern Web App Responsiveness
   - https://webkit.org/blog/8063/speedometer-2-0-a-benchmark-for-modern-web-app-responsiveness/
   - web-tooling bench みたいに、実世界を反映したベンチに
-  - TODO MVC ベースで、 JS だけではなく DOM, Layout, CSS 全部を測る
+  - TODO MVC ベースで、JS だけではなく DOM, Layout, CSS 全部を測る
+
 
 ### Edge 動向
 
@@ -472,6 +477,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Microsoft is blocking browsers using TLS 1.0 and TLS 1.1 from Office 365 on 2018-03-01**
     - https://support.microsoft.com/en-us/help/4057306/preparing-for-tls-1-2-in-office-365
     - 1.2 を使えという話
+
 
 ### WHATWG/W3C 動向
 
@@ -660,7 +666,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **What would you like to see in WebRTC next? A low-level API?**
     - https://lists.w3.org/Archives/Public/public-webrtc/2018Jan/0196.html
     - WebRTC 1.0 CR を経て WebRTC NV を考える良い機会
-    - 今一度開発者から、 WebRTC (low level) API への要望を募っている
+    - 今一度開発者から、WebRTC (low level) API への要望を募っている
   - **Circularity and Container Queries**
     - https://github.com/WICG/cq-usecases
     - https://github.com/WICG/cq-usecases/wiki/Circularity-and-Container-Queries
@@ -677,6 +683,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/whatwg/html/commit/1dec930b3df93c799d5f3f685a46940913476086
     - 複数許可されていた main 要素がひとつのみに
     - 文面は違うが、効果としては W3C 版と同じような形になった
+
 
 ### TC39 動向
 
@@ -757,6 +764,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tc39/tc39-logo
     - TC39 の Logo ができた
 
+
 ### IETF 動向
 
 - **RFC 8297 on An HTTP Status Code for Indicating Hints**
@@ -805,6 +813,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mailarchive.ietf.org/arch/msg/tls/i9blmvG2BEPf1s1OJkenHknRw9c
   - QUIC Interop Matrix
     - https://docs.google.com/spreadsheets/d/1D0tW89vOoaScs3IY9RGC0UesWGAwE6xyLk0l4JtvTVg/
+
 
 ### 周辺動向
 
@@ -870,6 +879,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://rollbar.com/blog/top-10-javascript-errors/
 - **Instagram PWA**
   - https://twitter.com/HenrikJoreteg/status/954937188973666304
+
 
 ### イベント
 

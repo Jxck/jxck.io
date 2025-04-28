@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 168 回のテーマは 2024 年の Yearly Platform です。
 
+
 ## Show Note
 
 ### 今年の mozaic.fm
@@ -19,6 +20,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 10 周年記念イベント
 - mozaic.fm renewal WIP
 - 通常回なし
+
 
 ### 2024 年チェックポイント
 
@@ -39,6 +41,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - CSS 進化の受け入れられ方(@scope etc.)
 - View Transitions
 - 3PCD
+
 
 ### 今年のキーワード
 
@@ -70,6 +73,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - タイポグラフィ系 CSS の実装
   - ブラウザエンジン再注目
 
+
 ### 2025 年チェックポイント
 
 - Open UI
@@ -91,6 +95,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 耐量子暗号の普及
 - TLS 証明書どこまで短縮できるか
 - JSSugar / JS0
+
 
 ### 1 月
 
@@ -199,6 +204,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Brave が Strict の Fingerprinting 防止モードを削除
   - カンファレンスイベントで会場回線を過信してはいけない
   - 00000JAPAN は安全なのか?
+
 
 ### 2 月
 
@@ -345,7 +351,8 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - AWS Serverless 用ランタイム LLRT
 - Cookie 動向
-  - nintendo.co.jp -> [nintendo.com/jp](https://nintendo.com/jp) リダイレクト
+  - nintendo.co.jp -> nintendo.com/jp リダイレクト
+
 
 ### 3 月
 
@@ -468,6 +475,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Cookie 動向
   - Edge の Deprecation アナウンス
 
+
 ### 4 月
 
 - Chrome
@@ -572,6 +580,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Wolvic Chromium backend beta
 - Cookie 動向
   - 3PCD 延期
+
 
 ### 5 月
 
@@ -684,6 +693,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - KHTML がなくなった
   - twitter.com -> x.com
 - Cookie 動向
+
 
 ### 6 月
 
@@ -824,6 +834,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ブラウザを作りたい人へのアドバイス
 - Cookie 動向
 
+
 ### 7 月
 
 - Chrome
@@ -919,6 +930,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Cookie 動向
   - Privacy Sandbox の方針変更
 
+
 ### 8 月
 
 - Chrome
@@ -1003,6 +1015,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Tomayac が CMA に送ったメール
 - Cookie 動向
   - EFF による Chrome への批判
+
 
 ### 9 月
 
@@ -1124,6 +1137,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - [作って学ぶ] ブラウザのしくみ
 - Cookie 動向
 
+
 ### 10 月
 
 - Chrome
@@ -1228,6 +1242,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Passkey Central
   - `.io` ドメイン消えるかも
 - Cookie 動向
+
 
 ### 11 月
 

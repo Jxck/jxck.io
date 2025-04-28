@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 54 回のテーマは 2019 年 6 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -58,7 +59,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/8WnMLRKeaog/VL4eBEJHAwAJ
   - **Implement and Ship: Cookies with SameSite by default**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/AknSSyQTGYs/SSB1rTEkBgAJ
-    - Chrome 77 での ship を計画していたが、 macOS/iOS の CFNetwork にバグがあった。
+    - Chrome 77 での ship を計画していたが、macOS/iOS の CFNetwork にバグがあった。
     - SameSite=None (や他の未知の値)が SameSite=Strict として解釈されるため Chrome 80 まで延期
   - Implement and Ship: Freeze task queues in background (desktop)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Ik4vvlOg0jc/-EYx9IdxBAAJ
@@ -105,7 +106,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Implement: Toast UI element**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/Gl7FIKM5IFw/tA70X9ZIBQAJ
     - `<std-toast>`
-    - intent プロセスや Chrome チームのやりかた、機能に対して解決する問題、 toast という名前などいろんな観点で燃えている
+    - intent プロセスや Chrome チームのやりかた、機能に対して解決する問題、toast という名前などいろんな観点で燃えている
   - **Implement: Toggle switch control element**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/kP556piqDR8/XHuly9HMAwAJ
     - `<std-switch>`
@@ -228,6 +229,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Hello Darkness, My Old Friend
     - https://web.dev/prefers-color-scheme/
 
+
 ### Firefox 動向
 
 - Stable: 67
@@ -333,7 +335,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozvr.com/pathfinder-a-first-look/
   - JavaScript and evidence-based language design
     - https://hacks.mozilla.org/2019/05/javascript-and-evidence-based-language-design/
-    - JS をデザインする上での調査として、 JS に関する調査をやっている
+    - JS をデザインする上での調査として、JS に関する調査をやっている
     - どっちの書き方が読みやすいか、あなたならどう書くか、みたいなやつ
     - pipeline operator 周りの話が出る選択肢もある模様
   - **Firefox Now Available with Enhanced Tracking Protection by Default Plus Updates to Facebook Container, Firefox Monitor and Lockwise**
@@ -353,6 +355,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 1490661 - Support enterkeyhint and deprecate mozactionhint
     - https://bugzilla.mozilla.org/show_bug.cgi?id=1490661
     - enter の挙動
+
 
 ### Safari 動向
 
@@ -418,9 +421,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Audits in Web Inspector**
     - https://webkit.org/blog/8935/audits-in-web-inspector/
     - Audit で a11y チェックを実行できる。
-    - 同じようなことを、 JSON で設定することで任意のツールで実行できる。
+    - 同じようなことを、JSON で設定することで任意のツールで実行できる。
     - eslint のサンプルが紹介されている
-    - 実行は、 JS の `test` プロパティに JS ワンライナーで書く
+    - 実行は、JS の `test` プロパティに JS ワンライナーで書く
     - eslint.js を fetch して eval (Function()) してる
     - 公開されている設定 JSON を雑に入れると危なそう
   - Creating Web Inspector Audits
@@ -433,6 +436,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://appleosophy.com/2019/06/04/did-apple-kill-the-dashboard-in-macos-catalina/
     - Dashboard が macOS Catalina で削除
     - Canvas や HTML5 の原点
+
 
 ### Edge 動向
 
@@ -465,6 +469,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://discourse.wicg.io/t/proposal-highlight-api/3679
     - https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/highlight/explainer.md
     - これの再議論
+
 
 ### WHATWG/W3C 動向
 
@@ -519,7 +524,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Lazyload images and iframes by bengreenstein · Pull Request #3752 · whatwg/html**
     - https://github.com/whatwg/html/pull/3752#issuecomment-498114767
     - kinu さんが loading=lazy で Range リクエストを投げる提案についてコメント
-    - 実装の複雑さが増すことや、 Service Worker で 206 をうまく扱えないことへの懸念
+    - 実装の複雑さが増すことや、Service Worker で 206 をうまく扱えないことへの懸念
   - Cake or death: AMP and the worrying power dynamics of the web
     - https://trib.tv/2019/05/28/cake-or-death-amp-and-the-worrying-power-dynamics-of-the-web/
   - A report from the AMP Advisory Committee Meeting - Terence Eden's Blog
@@ -548,6 +553,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Privacy Anti-Patterns in Standards**
     - https://www.w3.org/blog/2019/06/privacy-anti-patterns-in-standards/
     - Privacy Interest Group (PING)
+
 
 ### TC39 動向
 
@@ -582,6 +588,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - cyclic-imports.md
     - https://gist.github.com/rauschma/8443b5eb3a3e00ca52e174e909cd5e21
 
+
 ### IETF 動向
 
 - IETF
@@ -607,6 +614,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - An HTTPS-based Transport for Configured Subscriptions
     - https://tools.ietf.org/html/draft-mahesh-netconf-https-notif-00
 - Other
+
 
 ### セキュリティ動向
 
@@ -635,6 +643,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.fastly.com/blog/defend-against-credential-stuffing-attacks-proof-of-work
 - decalage2/awesome-security-hardening: A collection of awesome security hardening guides, tools and other resources
   - https://github.com/decalage2/awesome-security-hardening
+
 
 ### 周辺動向
 
@@ -704,14 +713,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://2019.stateofcss.com/
   - Flexbox や calc はもうほとんど一般的になっている
   - rem の利用が増えてきた
-  - sass は相変わらず強いが、 PostCSS が追い上げてる
+  - sass は相変わらず強いが、PostCSS が追い上げてる
   - bootstrap は相変わらず強いが Bulma/PureCSS/Tailwind などが追い上げてる
   - BEM は強いし、みんな割と満足してる
   - Styled Components/CSS Modules が人気で Emotion などが気になってる
   - Desktop の VSCode で書き Chrome でみる。
   - Print 対応はだいぶまれ
-  - CSS Tricks を読み、 Stackoverflow で調べる
-  - CSS は Easy to Learn 寄りで、 Evolving は普通で、書いてて超楽しい
+  - CSS Tricks を読み、Stackoverflow で調べる
+  - CSS は Easy to Learn 寄りで、Evolving は普通で、書いてて超楽しい
   - Container Queries と Parent Selector が早く欲しい
 - New - UDP Load Balancing for Network Load Balancer
   - https://aws.amazon.com/jp/blogs/aws/new-udp-load-balancing-for-network-load-balancer/
@@ -719,19 +728,19 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.techradar.com/news/today-is-the-last-day-to-register-a-uk-domain
 - **Dark Mode.js**
   - https://darkmodejs.learn.uno/
-  - 全体を bgcolor white の div で覆い、 mix-blend-mode: difference で反転する
+  - 全体を bgcolor white の div で覆い、mix-blend-mode: difference で反転する
   - https://dev.to/wgao19/night-mode-with-mix-blend-mode-difference-23lm
   - この記事で紹介されて手法をライブラリ化したもの
 - June 2019 Web Server Survey
   - https://news.netcraft.com/archives/2019/06/17/june-2019-web-server-survey.html
   - https://news.mynavi.jp/article/20190621-846088/
-  - Nginx のシェアがどんどん増え、 Web の 1/3 で使われている
+  - Nginx のシェアがどんどん増え、Web の 1/3 で使われている
   - Apache は徐々に減り、来年にも Nginx が上回る可能性も
 - **Building the most inaccessible site possible with a perfect Lighthouse score - Manuel Matuzovi ć**
   - https://www.matuzo.at/blog/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/
   - Lighthouse で 100 点がとれるもっともアクセシブルではないサイトの作り方
   - ~ もっとも遅いサイトの作り方、にインスパイアされた
-  - Lighthouse 内部の ax-core のルールを理解し、 CSS などでハックしていく
+  - Lighthouse 内部の ax-core のルールを理解し、CSS などでハックしていく
 - Official Google Webmaster Central Blog: Bye Bye Preferred Domain setting
   - https://webmasters.googleblog.com/2019/06/bye-bye-preferred-domain-setting.html
   - `www` ありなしで同じページを運用する場合、どちらを正とするかの設定がサーチコンソールでできたがそれがなくなる
@@ -740,7 +749,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://webmasters.googleblog.com/2019/05/mobile-first-indexing-by-default-for.html
   - 7 月 1 日よりモバイルファーストなインデックスが新規サイトに対して適用される
 - pipeline operator
-  - Ruby に入ったおかげで、 JS の Pipeline Operator とかがちょっと引き合いに出されたり云々
+  - Ruby に入ったおかげで、JS の Pipeline Operator とかがちょっと引き合いに出されたり云々
 - **Introducing time.cloudflare.com**
   - https://blog.cloudflare.com/secure-time/
   - CloudFlare が NTP を始めた
@@ -748,6 +757,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.troyhunt.com/project-svalbard-the-future-of-have-i-been-pwned/
 - HTML is the Web ~ Pete Lambert
   - https://www.petelambert.com/journal/html-is-the-web/
+
 
 ### イベント
 

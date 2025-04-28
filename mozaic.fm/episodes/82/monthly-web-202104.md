@@ -14,11 +14,13 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 
 第 82 回のテーマは 2021 年 4 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 90
+
 
 #### Updates
 
@@ -50,6 +52,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - **ES Modules for service workers ('module' type option)**
     - **Checks for Private Fields**
 
+
 #### Intents
 
 - Ship: Add dayPeriod option for Intl.DateTimeFormat
@@ -60,7 +63,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/h-5nQQLs2QU/m/iRVKU4LhAgAJ
 - **Ship: Cookie Store API on local secure contexts**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ekdeaj09c0w/m/gK9lu568AgAJ
-  - Cookie Store API が secure context に限定され、 localhost などにも公開されてなかった
+  - Cookie Store API が secure context に限定され、localhost などにも公開されてなかった
   - HTTPS サーバが無くても試せるよう localhost などにも公開する
 - Ship: Final specified imperative slot distribution behavior
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6U78F3KWJ78/m/hcEoYVx8AgAJ
@@ -98,11 +101,13 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - Deprecate and Remove: RTCConfiguration.offerExtmapAllowMixed
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Plik-x6biZ0/m/eJ8P1iy0AQAJ
 
+
 #### V8
 
 - Private brand checks a.k.a #foo in obj
   - https://v8.dev/features/private-brand-checks
   - https://github.com/tc39/proposal-private-fields-in-in/blob/main/README.md
+
 
 #### Other
 
@@ -159,6 +164,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - https://static.googleusercontent.com/media/www.google.com/en//appsstatus/ir/fw6156fs1panucr.pdf
   - > A bug within Chrome & WebView's experiment & configuration technology caused instability for Android applications which incorporated WebView to surface web content.
 
+
 ### Firefox 動向
 
 #### Stable: 88
@@ -183,13 +189,15 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - トラッキング以外で使われているコードにも影響が出るので、ポップアップウインドウなどは対象外
     - 戻るボタンなどで戻った場合は、`window.name` の値を復元する
 
+
 #### Updates
 
 - **QUIC and HTTP/3 Support now in Firefox Nightly and Beta - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/04/quic-and-http-3-support-now-in-firefox-nightly-and-beta/
-  - Firefox 88 から Stable でも段階的ロールアウト開始予定、 5 月末までにはデフォルトで有効になる
+  - Firefox 88 から Stable でも段階的ロールアウト開始予定、5 月末までにはデフォルトで有効になる
 - **SpiderMonkey Newsletter 10 (Firefox 88-89)**
   - https://spidermonkey.dev/blog/2021/04/22/newsletter-10.html
+
 
 #### Intents
 
@@ -208,11 +216,12 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - Unship: -moz-outline-radius (now that we follow the border-radius curve for outlines)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/atwrUuiMa-U
 
+
 #### Other
 
 - **TC39 Proposal Temporal · Issue #498 - mozilla/standards-positions**
   - https://github.com/mozilla/standards-positions/issues/498#issuecomment-817512705
-  - 先月話した件、 Anne 的には "that is fine" とのこと
+  - 先月話した件、Anne 的には "that is fine" とのこと
   - 以下の 3 つがわかった
     - stage 3 なら mozilla は少なくとも harmful じゃない
     - harmful ならそもそも stage 3 にはならない
@@ -228,14 +237,17 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - 物理的なものはスケールしにくい
     - デジタル証明による仕組みがいいんじゃないか
 
+
 ### Safari 動向
 
 #### Stable: 14.0.3
+
 
 #### Updates
 
 - Introducing CSS Grid Inspector
   - https://webkit.org/blog/11588/introducing-css-grid-inspector/
+
 
 #### Position
 
@@ -256,11 +268,14 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - [webkit-dev] Request for position: Element/FrozenArray IDL attribute reflection
   - https://lists.webkit.org/pipermail/webkit-dev/2021-April/031790.html\
 
+
 #### Other
+
 
 ### Edge 動向
 
 #### Stable: 90
+
 
 #### Updates
 
@@ -269,7 +284,9 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
 
+
 #### Chakra
+
 
 #### Other
 
@@ -288,6 +305,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - **5/25-27 Microsoft Build 2021**
   - https://japan.zdnet.com/article/35168829/
   - 詳細はまだ
+
 
 ### WHATWG/W3C 動向
 
@@ -321,6 +339,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - Accessible Platform Architectures Working Group
     - https://lists.w3.org/Archives/Public/public-new-work/2021Apr/0011.html
 
+
 #### Other
 
 - WEBRTC WG Virtual Interim
@@ -332,6 +351,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - 2021 年 03 月 W3C 活動概要
   - https://w3ckeio.github.io/monthly-summary/202103.html
 
+
 ### TC39 動向
 
 #### Meeting
@@ -341,6 +361,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - https://github.com/tc39/agendas/blob/master/2021/04.md
   - TODO: note
     - https://github.com/tc39/notes
+
 
 #### Proposals Diff
 
@@ -361,6 +382,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - https://github.com/tc39/proposal-class-fields
   - https://github.com/tc39/proposal-static-class-features
 
+
 #### New Proposals
 
 - tc39/proposal-accessible-object-hasownproperty
@@ -376,11 +398,13 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - https://github.com/Jack-Works/proposal-arraybuffer-fixed-view
   - .buffer にアクセスできない ArrayBuffer
 
+
 #### Other
 
 - https://github.com/tc39/notes/blob/master/meetings/2021-03/mar-10.md#promiseanysettled
 - Pattern matching updates - HackMD
   - https://hackmd.io/@mpcsh/HkZ712ig_#/
+
 
 ### IETF 動向
 
@@ -449,6 +473,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - https://www.ietf.org/archive/id/draft-cms-masque-connect-ip-00.html
 - other
 
+
 #### Other
 
 - **DCtheTall/CHIPS: A proposal for a cookie attribute to partition cross-site cookies by top-level site**
@@ -465,6 +490,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - Updating HTTP Caching Policy in Trailers
   - https://www.ietf.org/archive/id/draft-nottingham-cache-trailers-00.html
 
+
 ### CDN 動向
 
 #### Akamai
@@ -474,7 +500,8 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - Akamai 、新たなピークトラフィックを記録 - さらに「その先」を見据えて - Akamai Japan Blog
   - https://blogs.akamai.com/jp/2021/04/akamai-2.html
   - 3 月にエッジのトラフィックが 200Tbps を記録
-  - > 1 杯のコーヒーを 1 メガバイトとした場合、 200 Tbps は、すべてのニューヨーク市民に 1 分あたり 180 杯以上のコーヒーを提供したことになります。
+  - > 1 杯のコーヒーを 1 メガバイトとした場合、200 Tbps は、すべてのニューヨーク市民に 1 分あたり 180 杯以上のコーヒーを提供したことになります。
+
 
 #### Cloudflare
 
@@ -493,9 +520,12 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 - Announcing Cloudflare Images beta to simplify your image pipeline
   - https://blog.cloudflare.com/announcing-cloudflare-images-beta/
 
+
 #### Fastly
 
+
 #### Other
+
 
 ### セキュリティ動向
 
@@ -508,11 +538,12 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
   - これを使うにはドメイン認証が必要になる
     - https://www.facebook.com/business/help/245311299870862
     - ドメイン認証は eTLD + 1 の範囲で Public Suffix List を見る
-  - その結果、 PSL への追加リクエストが急増している
+  - その結果、PSL への追加リクエストが急増している
     - https://github.com/publicsuffix/list/issues/1245
     - FB も FB Pixel のために PSL 追加リクエストをすることは推奨しないと書いてはいる
   - PSL のメンテナンスはボランティアベースなので困っている
   - [blog](https://blog.jxck.io/entries/2021-04-21/public-suffix-list.html)
+
 
 ### 周辺動向
 
@@ -538,6 +569,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - https://jakearchibald.com/2021/f1-perf-part-7/
   - Who has the fastest F1 website in 2021? Part 8
     - https://jakearchibald.com/2021/f1-perf-part-8/
+
 
 ### イベント
 
@@ -565,6 +597,7 @@ guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
     - 10/18-22 October: Breakout sessions
     - 10/25-29 October: Groups and Joint Meetings
     - https://lists.w3.org/Archives/Public/public-webrtc/2021Apr/0027.html
+
 
 ### Wrap Up
 

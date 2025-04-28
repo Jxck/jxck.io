@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 102 回のテーマは 2022 年 8 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - Grafbase: Instant serverless GraphQL backends - Grafbase
@@ -34,9 +35,9 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - Cold Start Improvements
     - 依存の欠損が発生した場合のリロードが減った
   - Esbuild Deps Optimization at Build Time (Experimental)
-    - 今までは、 deps をスキャンして最適化してブラウザに渡していた
+    - 今までは、deps をスキャンして最適化してブラウザに渡していた
       - これだと渡したあとに欠損した deps があった場合、再度最適化してブラウザに渡してブラウザをリロードさせる必要がある
-    - 今後は、 deps をスキャンして最適化して欠損を見つけてブラウザに渡すようにしたことにより、欠損がみつかったとしても再度ブラウザをリロードする必要がなくなった
+    - 今後は、deps をスキャンして最適化して欠損を見つけてブラウザに渡すようにしたことにより、欠損がみつかったとしても再度ブラウザをリロードする必要がなくなった
   - HMR Partial Accept (Experimental)
     - UI と純粋な関数の混合モジュールの HMR は関数側の書き換えでも起こってしまう
     - これが起こらないように明示的に UI コンポーネントを指定する

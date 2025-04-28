@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 71 回のテーマは 2020 年 8 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -81,7 +82,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/Jdw3VWbKvLY/
     - 1 v0 と比べて v1 は明示的に slot を指定しないといけない
     - 2 condition を明示して slot を切り替えることができなかった
-    - これに対応するため、`attachShadow({ mode: 'open', slotAssignment: 'manual' })` することで auto な slotAssign を止め、 `slot.assign()` で命令的にできるように。
+    - これに対応するため、`attachShadow({ mode: 'open', slotAssignment: 'manual' })` することで auto な slotAssign を止め、`slot.assign()` で命令的にできるように。
   - Ship: Intl.Segmenter
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/MJ1OpvkcA8s
   - **Ship: Native File System**
@@ -168,6 +169,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Q2 2020 Summary from Chrome Security**
     - https://groups.google.com/a/chromium.org/g/security-dev/c/tRgTmKbA0Vo/m/2WADAmPTCAAJ
 
+
 ### Firefox 動向
 
 - Stable: 80
@@ -191,7 +193,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.nightly.mozilla.org/2020/08/07/these-weeks-in-firefox-issue-77/
   - **An Update on MDN Web Docs**
     - https://hacks.mozilla.org/2020/08/an-update-on-mdn-web-docs/
-    - MDN は存続するが、 Mozilla Hacks などは休止
+    - MDN は存続するが、Mozilla Hacks などは休止
   - **Fast, personalized and private by design on all platforms: introducing a new Firefox for Android experience**
     - https://blog.mozilla.org/blog/2020/08/25/introducing-a-new-firefox-for-android-experience/
   - SpiderMonkey Newsletter #6
@@ -218,6 +220,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.mozilla.org/blog/2020/08/20/password-security-part-iv-webauthn/
   - **Update on Mozilla Mixed Reality**
     - https://blog.mozvr.com/update-on-mozilla-mixed-reality-2/
+
 
 ### Safari 動向
 
@@ -277,6 +280,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.webkit.org/pipermail/webkit-dev/2020-August/031366.html
   - Other
 
+
 ### Edge 動向
 
 - Stable: 85
@@ -302,6 +306,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - それを利用して、画像を読み込んで成功すればトークンが残ってる、失敗すれば認証フローに行けば良い、という切り分けをプロンプトを出すことなくできる。
   - Managing Edge via Policy - text/plain
     - https://textslashplain.com/2020/08/24/managing-edge-via-policy/
+
 
 ### WHATWG/W3C 動向
 
@@ -331,6 +336,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - HTTP State Tokens
       - Mike West will update folks on this proposal.
 
+
 ### TC39 動向
 
 - Meeting
@@ -347,6 +353,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Daniel Ehrenberg on Twitter: "Visiting family in beautiful Rochester, NY, but in my downtime, I'm back on my bullshit." / Twitter
     - https://twitter.com/littledan/status/1292468777490284544
     - littledan が新しい Decorators の proposal を書いているらしい
+
 
 ### IETF 動向
 
@@ -378,7 +385,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - mnot's blog: RFC8890: The Internet is for End Users
     - https://www.mnot.net/blog/2020/08/28/for_the_users
 
+
 ### セキュリティ動向
+
 
 ### 周辺動向
 
@@ -399,6 +408,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - WebBundles Harmful to Content Blocking, Security Tools, and the Open Web (Standards Updates #2)
   - https://brave.com/webbundles-harmful-to-content-blocking-security-tools-and-the-open-web/
 
+
 ### イベント
 
 - 9 月
@@ -415,6 +425,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 17-19: BlinkOn
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/zNDLekIrSQE
 
+
 ### Wrap Up
 
 - Chrome 85 リリース
@@ -427,7 +438,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Intent to Experiment: Digital Goods API
   - Intent to Experiment で Draft が Required に
 - Mozilla Layoff
-  - 250 人程のレイオフ、 MDN などのチームが縮小
+  - 250 人程のレイオフ、MDN などのチームが縮小
 - MS365 の IE11/Legacy Edge サポート終了
 - Webkit-dev request for position で Niwa さんの回答が結構ついてた
 - mnot's blog: RFC8890: The Internet is for End Users

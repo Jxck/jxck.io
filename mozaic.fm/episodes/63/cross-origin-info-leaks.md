@@ -12,11 +12,12 @@ guest: [@shhnjk](https://twitter.com/shhnjk)
 
 第 63 回のテーマは Cross Origin Info Leaks です。
 
-今回は [@shhnjk](https://twitter.com/shhnjk) さんをお迎えし、 Spectre で発覚した Side Channel Attack と、対策として出てきた Site Isolation や増えてきた `Cross-Origin-*` 系のヘッダ群。
+今回は [@shhnjk](https://twitter.com/shhnjk) さんをお迎えし、Spectre で発覚した Side Channel Attack と、対策として出てきた Site Isolation や増えてきた `Cross-Origin-*` 系のヘッダ群。
 
 今の Web はどういう脅威と戦い、これらの仕様や実装は何を目的として提案されたのか。
 
 Origin を守るための Web の戦いと、そこから見える Web や Browser のアーキテクチャの今後について議論します。
+
 
 ## Show Note
 
@@ -68,7 +69,7 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
 - COOP(Cross-Origin-Opener-Policy) (was Cross Origin Window Policy)
   - 自分が開かれたときに window.opener をなくせる
   - 前のページとのリファレンスが無くせるため、新しく開いたページを別 Process に isolate できる
-  - なお、開く側が次のページとのリファレンスを無くす場合は、 `rel=noopener` を指定
+  - なお、開く側が次のページとのリファレンスを無くす場合は、`rel=noopener` を指定
   - Restricting cross-origin WindowProxy access (Cross-Origin-Opener-Policy) - Issue #3740 - whatwg/html
     - https://github.com/whatwg/html/issues/3740
 - COEP(Cross-Origin-Embedder-Policy) (was Cross Origin Resource Resource Policy)
@@ -88,14 +89,14 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
   - 別 Site に Cookie が飛ばないようにする
 - schemeless/schemefull same site
   - https://lists.w3.org/Archives/Public/public-webappsec/2019Nov/0004.html
-  - same site = TopLevel ドメインが同じ、において、 scheme を意識するかしないかを明確にする
+  - same site = TopLevel ドメインが同じ、において、scheme を意識するかしないかを明確にする
 - Origin Isolation
   - https://github.com/domenic/origin-isolation
 - Securer Contexts
   - https://github.com/mikewest/securer-contexts/
 - Securing your extensions against compromised renderer processes
   - https://groups.google.com/a/chromium.org/d/msg/chromium-extensions/0ei-UCHNm34/lDaXwQhzBAAJ
-  - あまり関係ないドキュメントだが、 Compromised renderer process の定義が書いてある
+  - あまり関係ないドキュメントだが、Compromised renderer process の定義が書いてある
 - Possible side-channel information leak using IntersectionObserver
   - https://github.com/WICG/ScrollToTextFragment/issues/79
 - XS-Leaks

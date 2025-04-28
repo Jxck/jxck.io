@@ -12,6 +12,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 
 第 60 回のテーマは 2019 年 11 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -73,7 +74,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - **PWA and the installable web**
     - https://www.youtube.com/watch?v=Hp_dQvQyYEI
     - OYO の事例 by Mukund, Product Manager for OYO Consumer Experience
-      - もとのサイトに比べて、 Chrome の PWA では 4.4 倍、 Trusted Web Activity では 6.6 倍の conversion があった。
+      - もとのサイトに比べて、Chrome の PWA では 4.4 倍、Trusted Web Activity では 6.6 倍の conversion があった。
       - TWA のアプリは 900KB 未満の app size
   - Next-generation web styling
     - https://www.youtube.com/watch?v=-oyeaIirVC0
@@ -127,7 +128,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://www.youtube.com/playlist?list=PL9ioqAuyl6UI6MmaMnRWHl2jHzflPcmA6
   - **Keynote**
     - 日本でのモバイルデータ通信の紹介
-      - 月末になるにつれ、 4G 対応デバイスでの Web ページのロード数が減少する
+      - 月末になるにつれ、4G 対応デバイスでの Web ページのロード数が減少する
       - 1 ページあたりのロード時間は増加する
     - Chromium: The past 6 months
 - Updates
@@ -270,6 +271,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - The Chromium Chronicle: GWP-ASan: Detect bugs in the wild
     - https://developers.google.com/web/updates/2019/11/chromium-chronicle-8
 
+
 ### Firefox 動向
 
 - Stable: 70
@@ -346,6 +348,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - How I made the Firefox Protection report screen reader accessible
     - https://marcozehe.de/2019/11/25/how-i-made-the-firefox-protection-report-screen-reader-accessible/
 
+
 ### Safari 動向
 
 - Stable:13.0.3
@@ -373,6 +376,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://webkit.org/blog/9624/webgpu-and-wsl-in-web-inspector/
 - Other
 
+
 ### Edge 動向
 
 - Stable:
@@ -393,6 +397,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja
   - https://developer.microsoft.com/en-us/microsoft-edge/platform/
   - feed で見るのがいい
+
 
 ### WHATWG/W3C 動向
 
@@ -444,6 +449,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - New version of the Roadmap of Web Applications on Mobile
     - https://www.w3.org/blog/news/archives/8083
 
+
 ### TC39 動向
 
 - Meeting
@@ -459,6 +465,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - 3->4
 - New Proposals
 - Other
+
 
 ### IETF 動向
 
@@ -517,7 +524,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - **Web Packaging Design**
       - https://datatracker.ietf.org/meeting/106/materials/slides-106-wpack-wpack-proposed-solution-01
       - 特に Origin Trust (署名や検証、証明書の期限)をどうするかの話
-      - 証明書を 7 日で切る、 DNS AAC を送る、 Credential は載せないなど
+      - 証明書を 7 日で切る、DNS AAC を送る、Credential は載せないなど
   - **webtrans**
     - **minutes**
       - https://github.com/DavidSchinazi/webtrans-wg-materials/blob/master/ietf106/minutes.md
@@ -604,6 +611,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://bugs.chromium.org/p/chromium/issues/detail?id=1019410
     - どうするか議論中
 
+
 ### セキュリティ動向
 
 - Delegated Credentials for TLS
@@ -620,6 +628,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://palant.de/2019/11/27/assorted-kaspersky-vulnerabilities/
 - Thoughts from IETF 106 | APNIC Blog
   - https://blog.apnic.net/2019/11/27/thoughts-from-ietf-106/
+
 
 ### 周辺動向
 
@@ -653,7 +662,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
 - **Flow - Ekioh が開発している新しい Web ブラウザ**
   - https://www.ekioh.com/flow-browser/
   - マルチスレッド処理と GPU を駆使して他のブラウザの 2 倍以上のフレームレートを実現する
-  - レンダリングエンジンはフルスクラッチ、 JS エンジンは SpiderMonkey
+  - レンダリングエンジンはフルスクラッチ、JS エンジンは SpiderMonkey
     - https://twitter.com/FlowBrowser/status/1200098712816631809?s=20
   - Gmail が動くようになった
     - https://ekioh.com/devblog/full-google-mail-in-a-clean-room-browser/
@@ -663,6 +672,7 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://blog.cloudflare.com/html-parsing-1/
 - Low Output Latency (LOL)HTML parser/rewriter
   - https://blog.cloudflare.com/html-parsing-2/
+
 
 ### イベント
 

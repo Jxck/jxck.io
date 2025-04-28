@@ -13,6 +13,7 @@ guest: [@koba04](https://twitter.com/koba04)
 
 第 128 回のテーマは 2023 年 8 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - How React 18 Improves Application Performance
@@ -77,6 +78,7 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://github.com/vercel/next.js/pull/52520
 - How Turborepo is porting from Go to Rust - Vercel
   - https://vercel.com/blog/how-turborepo-is-porting-from-go-to-rust
+
 
 ## Events
 

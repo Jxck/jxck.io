@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 47 回のテーマは 2018 年 12 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -68,7 +69,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7z3uvp0-ZAc/8Z7qpp71BgAJ
   - **Implement and Ship: UIAutomation Provider Mappings**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h4HTt4M5dWo/3P2jNGIwBgAJ
-    - Microsoft UI Automation (UIA) をマッピングし、 Assistive Technology (AT) などができることを増やす
+    - Microsoft UI Automation (UIA) をマッピングし、Assistive Technology (AT) などができることを増やす
   - Implement and Ship: CSS: Use the response URL for base URL and response type for security decisions
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/7OSy00oxVpk/siufiQVBBwAJ
   - Implement and Ship: Feature Policy JS Introspection API
@@ -123,7 +124,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://amphtml.wordpress.com/2018/12/07/the-official-amp-plugin-for-wordpress/
   - **Contributing to WebKit for a more predictable web platform**
     - https://amphtml.wordpress.com/2018/12/06/contributing-to-webkit-for-a-more-predictable-web-platform/
-    - AMP チームが Igalia と組んで、 iOS の WebKit を改善してきた記録
+    - AMP チームが Igalia と組んで、iOS の WebKit を改善してきた記録
   - Why AddThis chose to integrate with AMP
     - https://amphtml.wordpress.com/2018/12/13/why-addthis-chose-to-integrate-with-amp/
   - **Experimenting with the Wake Lock API**
@@ -134,6 +135,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.chrome.com/origintrials/
     - (取りこぼし) Origin Trials の一覧
     - 実施中のものから終わったもの、自分が参加したものも見られる
+
 
 ### Firefox 動向
 
@@ -207,6 +209,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - もっとも読まれた記事
     - cartoons はやっぱり強かった
 
+
 ### Safari 動向
 
 - Stable: 12.0.2
@@ -230,6 +233,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Added BigInt support for logic operations (r238861)
   - Implemented BigInt support for `<<` and `>>` (r238790)
 - Other
+
 
 ### Edge 動向
 
@@ -267,6 +271,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 今後も味のあるポエムが続くことを期待したい
     - フォーラムは RSS が無いようなのでどう watch するか
     - あった
+
 
 ### WHATWG/W3C 動向
 
@@ -349,6 +354,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - New version of the Roadmap of Web Applications on Mobile
     - https://www.w3.org/blog/news/archives/7475
 
+
 ### TC39 動向
 
 - Proposals Diff
@@ -359,6 +365,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 3->4
   - 特に無い
 - New Proposals
+
 
 ### IETF 動向
 
@@ -391,6 +398,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 結果だけ見てもどれでエンコードしたかわからないので見分ける仕組みを
 - Other
 
+
 ### セキュリティ動向
 
 - **J-STAGE が Firefox でのアクセスを遮断、日本の電子ジャーナルが世界から不可視となった日**
@@ -405,6 +413,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 良い結果が得られた
 - ImperialViolet - Zero-knowledge attestation
   - https://www.imperialviolet.org/2019/01/01/zkattestation.html
+
 
 ### 周辺動向
 
@@ -424,6 +433,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.basilisk-browser.org/
   - A XUL-based web-browser demonstrating the Unified XUL Platform (UXP).
   - This browser is a close twin to pre-Servo Firefox in how it operates.
+
 
 ### イベント
 

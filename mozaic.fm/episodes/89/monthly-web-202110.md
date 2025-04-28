@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 89 回のテーマは 2021 年 10 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 95
+
 
 #### Updates
 
@@ -57,6 +59,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Picking colors with the Eye Dropper API
   - PWA Summit
   - User-agent reduction origin trial
+
 
 #### Intents
 
@@ -160,10 +163,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://bit.ly/blinkintents
   - https://groups.google.com/a/chromium.org/forum/#!forum/blink-dev
 
+
 #### V8
 
 - V8 release v9.6 - V8
   - https://v8.dev/blog/v8-release-96
+
 
 #### Other
 
@@ -210,7 +215,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers-jp.googleblog.com/2021/10/chrome01243979301.html
   - Chrome のメモリの安全性に関するアップデート
     - https://developers-jp.googleblog.com/2021/10/chrome.html
-  - **Chrome 95 ベータ版: Secure Payment Confirmation 、 WebAssembly の例外ハンドリングなど**
+  - **Chrome 95 ベータ版: Secure Payment Confirmation 、WebAssembly の例外ハンドリングなど**
     - https://developers-jp.googleblog.com/2021/10/chrome-95-webassembly.html
   - Web Stories の行動喚起ボタンをアップグレード
     - https://developers-jp.googleblog.com/2021/10/web-stories.html
@@ -238,7 +243,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.chromium.org/getting-involved/dev-channel
 - Aligning Search Console testing tools and the URL Inspection tool
   - https://developers.google.com/search/blog/2021/10/search-console-tools-alignment
-- **Google 検索、 Internet Explorer の公式サポートを終了 - iPhone Mania**
+- **Google 検索、Internet Explorer の公式サポートを終了 - iPhone Mania**
   - https://iphone-mania.jp/news-407777/
   - https://twitter.com/cramforce/status/1443962459723755533
 - **長くいたチームから移る日のこと | Kinuko Yasuda | note**
@@ -250,9 +255,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - PWA Summit, October 6-7
   - https://pwasummit.org/
 
+
 ### Firefox 動向
 
 #### Stable: 93
+
 
 #### Updates
 
@@ -275,6 +282,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2021/09/30/these-weeks-in-firefox-issue-101/
 - These Weeks in Firefox: Issue 102 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/10/21/these-weeks-in-firefox-issue-102/
+
 
 #### Intents
 
@@ -308,6 +316,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Soft code freeze for Firefox 94 starts September 30
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/-T1zpAhVZOk
 
+
 #### Other
 
 - Hacked! Unravelling a data breach - The Mozilla Blog
@@ -321,9 +330,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Superhero passwords may be your kryptonite wherever you go online
   - https://blog.mozilla.org/en/mozilla/news/superhero-passwords-may-be-your-kryptonite-wherever-you-go-online/
 
+
 ### Safari 動向
 
 #### Stable: 15.0
+
 
 #### Updates
 
@@ -371,10 +382,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Added the extension's icon to extension URL tabs for both app and web extensions
   - Added the extension name as the title of tabs when an app extension page and does not specify a title
 
+
 #### Position
 
 - **[webkit-dev] Request for position: WEBRTC-SVC**
   - https://lists.webkit.org/pipermail/webkit-dev/2021-October/032007.html
+
 
 #### Other
 
@@ -382,9 +395,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://trac.webkit.org/changeset/283438/webkit
   - Service Worker の push イベント実装
 
+
 ### Edge 動向
 
 #### Stable: 95
+
 
 #### Updates
 
@@ -397,13 +412,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Save time by automatically filling your addresses and credit cards with Microsoft Autofill | Windows Experience Blog**
   - https://blogs.windows.com/windowsexperience/2021/10/18/save-time-by-automatically-filling-your-addresses-and-credit-cards-with-microsoft-autofill/
 
+
 #### Chakra
+
 
 #### Other
 
 - **Windows 11 の仕様とシステム要件 | Microsoft**
   - https://www.microsoft.com/ja-jp/windows/windows-11-specifications
-  - > Windows 11 では Internet Explorer 11 デスクトップアプリケーションに代わり、 Microsoft Edge の IE モードが導入されます。
+  - > Windows 11 では Internet Explorer 11 デスクトップアプリケーションに代わり、Microsoft Edge の IE モードが導入されます。
 - **Bug bounty hunter to working at Microsoft | Microsoft Browser Vulnerability Research**
   - https://microsoftedge.github.io/edgevr/posts/bug-bounty-hunter-to-working-at-microsoft/
 - Spooky: Enhancing Dark Mode in Chromium - text/plain
@@ -416,6 +433,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2021/10/01/practical-time-machines/
 - **vscode.dev**
   - https://code.visualstudio.com/blogs/2021/10/20/vscode-dev
+
 
 ### WHATWG/W3C 動向
 
@@ -458,6 +476,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Call for Participation: Internationalization Working Group and Interest Group Charters Approved; Join i18n Groups
     - https://lists.w3.org/Archives/Public/public-new-work/2021Sep/0009.html
 
+
 #### Other
 
 - **TPAC privacy and security related meetings (fwd)**
@@ -472,6 +491,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://twitter.com/domenic/status/1444103114072727553?s=20
   - https://github.com/Jxck/html2json/pull/44
 
+
 ### TC39 動向
 
 #### Meeting
@@ -479,6 +499,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2021-10
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
+
 
 #### Proposals Diff
 
@@ -489,9 +510,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -576,10 +600,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
 
 - **Secure Credential Transfer**
   - https://www.ietf.org/archive/id/draft-secure-credential-transfer-01.html
+
 
 ### CDN 動向
 
@@ -606,9 +632,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - A Better Internet with UN Global Compact
   - https://blog.cloudflare.com/cloudflare-and-un-global-compact/
 
+
 #### Fastly
 
+
 #### Other
+
 
 ### セキュリティ動向
 
@@ -621,6 +650,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **WIP: master QUIC support by tmshort - Pull Request #8797 - openssl/openssl**
   - https://github.com/openssl/openssl/pull/8797
 
+
 ### 周辺動向
 
 - **Facebook が落ちた話**
@@ -630,7 +660,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://engineering.fb.com/2021/10/04/networking-traffic/outage/
   - More details about the October 4 outage - Facebook Engineering
     - https://engineering.fb.com/2021/10/05/networking-traffic/outage-details/
-  - Facebook がダウンしたが、単なるサーバのダウンと言うより、 Facebook 自体がインターネット上から消えたという珍しい現象だった
+  - Facebook がダウンしたが、単なるサーバのダウンと言うより、Facebook 自体がインターネット上から消えたという珍しい現象だった
   - DC のメンテナンスのために一部をオフラインにするコマンドを発行したところ、評価ツールの投げた危険なコマンドが、監査ツールのバグをすり抜けて実行された。
   - 結果 DC 全体がオフラインになり、ネットワークから切断された。
   - そこで DNS も DC にアクセスできないため、縮退のため BGP のアドバタイズを取りやめ、結果 Facebook がインターネット上から完全に隔離された
@@ -640,12 +670,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - 普段から "strom" という訓練をしていたため、大規模障害を模したストレステストを走らせる準備はできていた。
   - 結果、なんとかもとに戻した。
   - こうした事象のシミュレート方法も模索して今後に活かしたい。
-- **Web のルビ仕様にはアクセシビリティを阻害している面がある。「日本 DAISY コンソーシアム」が改善を求めてブラウザベンダ、 WHATWG 、 W3C らに公開書簡 - Publickey**
+- **Web のルビ仕様にはアクセシビリティを阻害している面がある。「日本 DAISY コンソーシアム」が改善を求めてブラウザベンダ、WHATWG 、W3C らに公開書簡 - Publickey**
   - https://www.publickey1.jp/blog/21/webdaisywhatwgw3c.html
   - https://www.normanet.ne.jp/~jdc/tech/index.html
   - https://www.youtube.com/watch?v=S4xE8hCOmK8
 - **The State of CSS 2021 Survey is Now Open**
   - https://dev.to/sachagreif/the-state-of-css-2021-survey-is-now-open-167n
+
 
 ### イベント
 
@@ -659,6 +690,7 @@ guest: [@myakura](https://twitter.com/myakura)
       - https://docs.google.com/spreadsheets/d/1FzxhGtmfaEP_yO8ePmWoYuvFS0qk44hQA5Mui06E9Rk/edit#gid=0
   - 25-28: TC39 86th
     - https://github.com/tc39/agendas/blob/master/2021/10.md
+
 
 ### Wrap Up
 

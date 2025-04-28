@@ -15,9 +15,10 @@ guest: [@nunnun](https://twitter.com/nunnun)
 
 収録自体は [前回のエピソード](https://mozaic.fm/episodes/14/whatwg.html) の続きにあたります。
 
-前回に引き続き [@myakura](https://twitter.com/myakura) さんと [@nunnun (hiro)](https://twitter.com/nunnun) さんをお迎えして、 これまでの Web の標準化の持つ課題を解決する動きとして始まった、 [Extensible Web](https://extensiblewebmanifesto.org/)とはなんなのか、どういう経緯で提唱され、何を解決するのか。
+前回に引き続き [@myakura](https://twitter.com/myakura) さんと [@nunnun (hiro)](https://twitter.com/nunnun) さんをお迎えして、これまでの Web の標準化の持つ課題を解決する動きとして始まった、[Extensible Web](https://extensiblewebmanifesto.org/)とはなんなのか、どういう経緯で提唱され、何を解決するのか。
 
 それによって「今何が起こっているのか」、「これからどうなっていくのか」そして、「自分たちはそれにどう参加できるのか?」を議論しました。
+
 
 ## Show Note
 

@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 169 回のテーマは 2025 年 1 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - React v19 Release!
@@ -105,6 +106,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://nodejs.org/ja/blog/release/v23.5.0
 - Node v23.4.0
   - https://nodejs.org/ja/blog/release/v23.4.0
+
 
 ## Events
 

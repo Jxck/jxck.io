@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 140 回のテーマは 2023 年 12 月と 2024 年 1 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 120
+
 
 #### Updates
 
@@ -72,6 +74,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - New Command Menu options for adding and removing request blocking patterns
   - The CSP violations experiment is removed
   - Lighthouse 11.3.0
+
 
 #### Intents
 
@@ -142,7 +145,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Sq2WAVbPz6g
 - **Ship: CSS Highlight Inheritance**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/73qlvaSFmfg
-  - 10 月に出た intent だが、 WordPress のエディターが壊れることがわかり延期に
+  - 10 月に出た intent だが、WordPress のエディターが壊れることがわかり延期に
 - Prototype and Ship: MessagePort.onclose
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/enQs5VEdOmU
 - Implement and ship: blocking=render on inline scripts
@@ -247,6 +250,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KRUgJBFVbqQ
 - **New API owner: Domenic Denicola**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/IBBUEIpi0k4
+
 
 #### Other
 
@@ -388,9 +392,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Chrome Browser Choice Screen - Google Chrome
     - https://www.google.com/chrome/choicescreen/
 
+
 ### Firefox 動向
 
 #### Stable: 122
+
 
 #### Updates
 
@@ -413,6 +419,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Happy New Year - These Weeks in Firefox: Issue 152 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2024/01/22/happy-new-year-these-weeks-in-firefox-issue-152/
 
+
 #### Intents
 
 - Ship: HTML editor respects CSS display property to consider inline vs. block
@@ -431,12 +438,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
+
 #### Newsletter
 
 - Firefox DevTools Newsletter - 121 - Firefox Developer Experience
   - https://fxdx.dev/firefox-devtools-newsletter-121/
 - Firefox WebDriver Newsletter - 121 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-121/
+
 
 #### MDN / Open Web Docs
 
@@ -458,6 +467,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Proposal: Updating cookie docs on MDN - Google Docs
   - https://docs.google.com/document/d/1Ipc9onwOssCMz6cVdlpvRVdhGbaC0gAjqFwib-aeUoU/preview
 
+
 #### Standard Position
 
 - 今月 Close された Issue と PR ものをみる
@@ -476,6 +486,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/mozilla/standards-positions/issues/954
   - Private State Token API
     - https://github.com/mozilla/standards-positions/issues/262
+
 
 #### Other
 
@@ -523,9 +534,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **What's next for Mozilla? | TechCrunch**
   - https://techcrunch-com.cdn.ampproject.org/c/s/techcrunch.com/2024/01/03/whats-next-for-mozilla/amp/
 
+
 ### Safari 動向
 
 #### Stable: 17.3
+
 
 #### Updates
 
@@ -621,6 +634,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://webkit.org/blog/14919/webkit-features-in-safari-17-3/
   - Bugfix のみ
 
+
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -629,15 +643,18 @@ guest: [@myakura](https://twitter.com/myakura)
   - CSS transition-behavior property · Issue #148 · WebKit/standards-positions
     - https://github.com/WebKit/standards-positions/issues/148
 
+
 #### Other
 
 - **Nicole Sullivan: "Today was my first day working on WebKit at Apple. Squeee! I'm the Eng Manager for Layout and Rendering." - Front-End Social**
   - https://front-end.social/@stubbornella/111565293257301386
   - 先日 Google をやめた Nicole Sullivan が Apple に
 
+
 ### Edge 動向
 
 #### Stable: 120
+
 
 #### Updates
 
@@ -647,12 +664,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2023/12/20/inside-the-all-new-edge-devtools-ui/
   - アクティビティバーがアイコン導入によりコンパクトに
 
+
 #### Other
 
 - Browser Security Bugs that Aren't - #1: Local Attacks | Microsoft Browser Vulnerability Research
   - https://microsoftedge.github.io/edgevr/posts/Browser-Security-Bugs-that-Aren-t-part-1/
 - Coding at Google - text/plain
   - https://textslashplain.com/2024/01/02/coding-at-google/
+
 
 ### WHATWG/W3C 動向
 
@@ -673,10 +692,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - **JSX as markup language Community Group created**
     - https://lists.w3.org/Archives/Public/public-new-work/2024Jan/0003.html
 
+
 #### Open/UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
 - 気になるのがあったときだけ
+
 
 #### Other
 
@@ -703,6 +724,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - WC Face-to-Face: Y23Q1 - Google Docs
   - https://docs.google.com/document/d/1NRI_Ns8dw33LA21Fj2F21J-aTI-QbXW6jKWkiwsQA_Q/preview
 
+
 ### TC39 動向
 
 #### Meeting
@@ -711,6 +733,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
   - 11 月のミーティングノートがまだ公開されない
+
 
 #### Proposals Diff
 
@@ -721,19 +744,24 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
+
 
 #### Meeting
 
 - 2024-01-04 Meeting · Issue #60 · wintercg/admin
   - https://github.com/wintercg/admin/issues/60
   - 特になさそう
+
 
 ### IETF 動向
 
@@ -757,6 +785,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mailarchive.ietf.org/arch/msg/tls/VyOsR6iNXX82xN6GfIfP1lH9Ayg/
 - Meeting
 
+
 #### Other
 
 - **RFC 9518 - What Can Internet Standards Do About Centralisation?**
@@ -765,6 +794,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://seemann.io/posts/2023-12-18-exploiting-quics-path-validation/
   - QUIC の脆弱性の話
   - 仕様のまま実装するとメモリが無限に使えてしまう
+
 
 ### CDN 動向
 
@@ -777,7 +807,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - DDoS threat report for 2023 Q4
   - https://blog.cloudflare.com/ddos-threat-report-2023-q4/
 
+
 #### Fastly
+
 
 #### Other
 
@@ -787,6 +819,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.akamai.com/blog/security/2024/jan/a-retrospective-on-ddos-trends-in-2023
 - HTTPS DNS records are now supported in Vercel DNS - Vercel
   - https://vercel.com/changelog/https-dns-records-are-now-supported-in-vercel-dns
+
 
 ### セキュリティ動向
 
@@ -811,6 +844,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - A quick look inside the HSTS file - Terence Eden's Blog
   - https://shkspr.mobi/blog/2024/01/a-quick-look-inside-the-hsts-file/
   - HSTS の preload list の解析
+
 
 ### Cookie 動向
 
@@ -837,6 +871,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.google/products/chrome/privacy-sandbox-tracking-protection/
   - 3PCD ロールアウトスタート
   - ブロックされたページでは Omnibox にアイコンが表示され、一時的に解除できる
+
 
 ### 周辺動向
 
@@ -880,6 +915,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Google で 18 年間勤務した元社員が「Google の文化は変わってしまった」と嘆く長文を投稿して話題に - GIGAZINE
   - https://gigazine.net/news/20240122-gooele-changed/
 
+
 ### イベント
 
 - 1 月
@@ -893,6 +929,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 19-22: IETF | IETF 119 Brisbane
     - https://www.ietf.org/how/meetings/119/
 - 4 月
+
 
 ### Wrap Up
 

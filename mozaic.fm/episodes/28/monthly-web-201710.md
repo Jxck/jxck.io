@@ -16,6 +16,7 @@ Monthly Web のモチベーションについては以下。
 
 [ep25 Monthly Web 201707](https://mozaic.fm/episodes/25/monthly-web-201707.html)
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -38,7 +39,7 @@ Monthly Web のモチベーションについては以下。
     - async iterators/generators
     - Device Memory API
     - (Android) 許可の UI が変更
-      - 下からにゅっと出すパネルだと、 90% が dismiss することがわかった
+      - 下からにゅっと出すパネルだと、90% が dismiss することがわかった
       - 63 からダイアログをモーダルにすることにした
       - https://twitter.com/grigs/status/922524110961307649
     - font-variant-east-asian
@@ -129,13 +130,13 @@ Monthly Web のモチベーションについては以下。
   - Implement: Fetch API: keepalive
     - https://groups.google.com/a/chromium.org/d/msg/blink-dev/AUAIHVF63SM/naGVAnoBAwAJ
     - https://docs.google.com/document/d/1iHJtFa3jOo5n9QXHb6Ok5nK8kavXSk2DrLoubPWi9ys/edit
-    - Beacon API は POST のみだが、 GET (analytics) や HEAD (ads) のニーズが
-    - Beacon は拡張し辛いので、 `fetch()` でやろう。しかし keep-alive が無いので入れよう
+    - Beacon API は POST のみだが、GET (analytics) や HEAD (ads) のニーズが
+    - Beacon は拡張し辛いので、`fetch()` でやろう。しかし keep-alive が無いので入れよう
     - Blink の Beacon 実装が fetch の層を通らずダイレクトにネットワークしてるので直す
   - Ship: text-decoration-skip-ink: auto;
   - Deprecate and Remove: text-decoration-skip:
     - https://groups.google.com/a/chromium.org/d/msg/blink-dev/47BHtmz0jVY/itAC_xpwBgAJ
-    - text-decoration-skip: ink を廃止して、 text-decoration-skip-ink が新設される
+    - text-decoration-skip: ink を廃止して、text-decoration-skip-ink が新設される
   - Deprecate and Remove: legacy touch event APIs on desktop devices
     - https://groups.google.com/a/chromium.org/d/msg/blink-dev/KV6kqDJpYiE/YFM28ZNBBAAJ
   - Remove: ImageCapture.setOptions()
@@ -146,11 +147,11 @@ Monthly Web のモチベーションについては以下。
     - https://groups.google.com/a/chromium.org/d/msg/blink-dev/uptbsZKhUxg/xTZalM25BAAJ
     - 仕様と違ってた部分を改善
     - メソッドを全部 NotEnumerable に
-    - getter/setter などもあったが、無い場合 undefined を返すなど、メソッドと挙動が違ったので、 null を返す getItem() などのメソッドに統一
+    - getter/setter などもあったが、無い場合 undefined を返すなど、メソッドと挙動が違ったので、null を返す getItem() などのメソッドに統一
   - Ship: CSS Paint API
     - https://groups.google.com/a/chromium.org/d/msg/blink-dev/Jex3idOld48/8C2mDsSjBQAJ
     - Worklet がらみで議論が足りてなかったので止まってたが、月末に動きが
-    - Secure Contexts に限定するように変更して、 ship する予定
+    - Secure Contexts に限定するように変更して、ship する予定
     - https://bugs.chromium.org/p/chromium/issues/detail?id=779938
     - [手書きみたいな線を引くデモ](http://lab.iamvdo.me/houdini/rough-boxes)
     - [blog](https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html)
@@ -164,7 +165,7 @@ Monthly Web のモチベーションについては以下。
   - Module loading performance
     - https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit
     - 100 以上もしくは依存のネストが 5 以上の場合は Bundle を強く推奨
-    - NW コストだけではなく、 Renderer Process と IO を行う Browser Process との IPC も結構ある。
+    - NW コストだけではなく、Renderer Process と IO を行う Browser Process との IPC も結構ある。
   - Jumbo: Fully supported in Blink + Some requests
     - https://groups.google.com/a/chromium.org/d/msg/blink-dev/F4JYqAY1dgM/b-hopZvmBgAJ
     - Jumbo = unity build implementation in Chromium
@@ -192,7 +193,7 @@ Monthly Web のモチベーションについては以下。
     - https://medium.com/dev-channel/how-payment-methods-work-in-the-payment-request-api-54b8f2ee03c5
   - AMP: Two years of user-first webpages
     - https://amphtml.wordpress.com/2017/10/19/amp-two-years-of-user-first-webpages/
-    - 2500 万ドメイン 40 億ページで、 Google からの読み込み中央値 0.5s
+    - 2500 万ドメイン 40 億ページで、Google からの読み込み中央値 0.5s
     - アクセス 10% 増、滞在時間 2 倍、コンバージョン 20% 増 etc
   - Promise.prototype.finally
     - https://developers.google.com/web/updates/2017/10/promise-finally
@@ -208,6 +209,7 @@ Monthly Web のモチベーションについては以下。
     - https://twitter.com/owencm/status/913059860215762944
     - PWA だと URL バーなかったりするのが問題だよねという声に答えようとしているよという話
 
+
 ### Firefox 動向
 
 - Firefox 56 Stable
@@ -221,7 +223,7 @@ Monthly Web のモチベーションについては以下。
   - Unship: rel=preload for firefox 57 (CSS loaded with are not applied)
     - https://groups.google.com/d/msg/mozilla.dev.platform/aNUUx0S6PxE/3E3TkBXtAgAJ
     - https://www.fxsitecompat.com/en-CA/docs/2017/css-loaded-with-link-rel-preload-are-not-applied/
-    - 56 で入ったが、 preload された CSS がうまく当たらないバグが出た
+    - 56 で入ったが、preload された CSS がうまく当たらないバグが出た
     - cacheable なリソースにしか適用されていなかったので 57 で unship
     - non-cacheable なリソースにも適用できるように直して 58 で戻したい
   - Ship: PerformanceNavigationTiming
@@ -270,7 +272,7 @@ Monthly Web のモチベーションについては以下。
     - OSS としては残る
   - WebRTC video may stop in low-bandwidth conditions
     - https://www.fxsitecompat.com/en-CA/docs/2017/webrtc-video-may-stop-in-low-bandwidth-conditions/
-    - WebRTC で帯域がサチって一度止まった映像が復帰しない問題、 56.0.2 では修正済み。
+    - WebRTC で帯域がサチって一度止まった映像が復帰しない問題、56.0.2 では修正済み。
   - Object.prototype.watch has been removed
     - https://www.fxsitecompat.com/en-CA/docs/2017/object-prototype-watch-has-been-removed/
     - Use the standard Proxy or Reflect object instead
@@ -283,6 +285,7 @@ Monthly Web のモチベーションについては以下。
     - https://groups.google.com/d/msg/mozilla.dev.platform/CogfmMY2bLA/ZJWkXGRBCAAJ
     - Android 版 Firefox でも Stylo をビルドするように(58)
     - 59 でデフォルト有効を目指しているよう
+
 
 ### Safari 動向
 
@@ -317,6 +320,7 @@ Monthly Web のモチベーションについては以下。
     - https://lists.webkit.org/pipermail/webkit-dev/2017-October/029693.html
     - HTML の `<menu>` と `<menuitem>` を再利用する方向で検討中
 
+
 ### Edge 動向
 
 - EdgeHTML
@@ -340,6 +344,7 @@ Monthly Web のモチベーションについては以下。
     - HTML, HTTP, HTTPS などあらゆるものを lint できるツールの紹介
   - Microsoft Edge for iOS and Android: What developers need to know
     - https://blogs.windows.com/msedgedev/2017/10/05/microsoft-edge-ios-android-developer/
+
 
 ### WHATWG/W3C 標準動向
 
@@ -367,7 +372,7 @@ Monthly Web のモチベーションについては以下。
   - Page Visibility Level 2
     - https://www.w3.org/blog/news/archives/6562
     - https://www.w3.org/TR/2017/PR-page-visibility-2-20171017/
-    - document.hidden が非推奨になり、 document.visibilityState を見ろということに
+    - document.hidden が非推奨になり、document.visibilityState を見ろということに
     - onvisiblitychange ハンドラが追加
 - Candidate Recommendation
   - Audio Output Devices API; Media Capture and Streams
@@ -375,7 +380,7 @@ Monthly Web のモチベーションについては以下。
   - CSS Backgrounds and Borders Module Level 3
     - https://www.w3.org/blog/news/archives/6564
     - https://www.w3.org/TR/2017/CR-css-backgrounds-3-20171017/
-    - 2014 年の CR を更新、 Changes を見る限りは地味め
+    - 2014 年の CR を更新、Changes を見る限りは地味め
   - Remote Playback API
     - https://www.w3.org/blog/news/archives/6581
   - Tracking Preference Expression (DNT)
@@ -404,7 +409,7 @@ Monthly Web のモチベーションについては以下。
 - FetchObserver (for a single fetch)
   - https://github.com/whatwg/fetch/issues/607
   - https://gist.github.com/slightlyoff/18dc42ae00768c23fbc4c5097400adfb#gistcomment-2227534
-  - `observe()` から `observer` を取り、 `onpush` などのイベントで取れるように
+  - `observe()` から `observer` を取り、`onpush` などのイベントで取れるように
 - WHATWG HTML で UTF-8 がエンコーディングに規定された
   - https://github.com/whatwg/html/commit/fae77e3c558b9f083dfb9086752863a4789268f5
   - authoring conformance なので UTF-8 以外をブラウザが受け付けなくなるわけではない
@@ -431,6 +436,7 @@ Monthly Web のモチベーションについては以下。
     - Mixed Content を更新していくロードマップ
     - Upgrade-Insecure-Request を消して、デフォルト動作にするなど
 
+
 ### TC39 標準動向
 
 - 取りこぼし ECMAScript, TC39, and the History of JavaScript
@@ -450,6 +456,7 @@ Monthly Web のモチベーションについては以下。
   - イテレーションの中で使えるようにイテレータで取り出す API
 - proposal-block-params
   - https://github.com/samuelgoto/proposal-block-params
+
 
 ### IETF 標準動向
 
@@ -475,7 +482,7 @@ Monthly Web のモチベーションについては以下。
       - .mjs の件 Dispatch WG から
     - QUIC Multiplexing
       - https://tools.ietf.org/html/draft-aboba-avtcore-quic-multiplexing-00
-      - De-Multiplex するためめに、 Type を犠牲にして最初の 2-bit を 11 にする。 [192..] -> QUIC
+      - De-Multiplex するためめに、Type を犠牲にして最初の 2-bit を 11 にする。[192..] -> QUIC
     - HTTP/2 "Dropped Frame" Frame
       - https://tools.ietf.org/html/draft-kerwin-http2-nak-frame-01
       - 対応してない拡張フレームが送られてきたことを相手に伝えたい
@@ -520,6 +527,7 @@ Monthly Web のモチベーションについては以下。
       - HTTP/1.1 の更新を進めるという話
       - IETF でもスケジュールあり
 
+
 ### 周辺動向
 
 - MDN への Documentation リソース統合
@@ -532,7 +540,7 @@ Monthly Web のモチベーションについては以下。
     - https://blogs.windows.com/msedgedev/2017/10/18/documenting-web-together-mdn-web-docs/
 - Say "yes" to HTTPS: Chrome secures the web, one site at a time
   - https://www.blog.google/topics/safety-security/say-yes-https-chrome-secures-web-one-site-time
-  - 日本は 30% 程度と非常に低かったが、 55% までアップした
+  - 日本は 30% 程度と非常に低かったが、55% までアップした
 - (取りこぼし) Introducing Cloudflare Workers
   - https://blog.cloudflare.com/introducing-cloudflare-workers/
   - Cloudflare の CDN エッジで SW を動かせる
@@ -552,6 +560,7 @@ Monthly Web のモチベーションについては以下。
 - Get ready for TLS 1.3 | Akamai Community
   - https://community.akamai.com/community/web-performance/blog/2017/10/25/get-ready-for-tls-13
   - Akamai で TLS1.3 beta リリース
+
 
 ### イベント
 

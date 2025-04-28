@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 91 回のテーマは 2021 年の Yearly Web です。
 
+
 ## Show Note
 
 ### 今年の mozaic.fm
@@ -24,6 +25,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - CORP をデプロイしたら Google Podcast でエラーになってた
   - Markdown パーサを自作して Show Note 編集の手間が激減した
 - 実はコロナ中はアクセスが倍近く増えていた。今は戻りつつある。
+
 
 ### 2021 年キーワード
 
@@ -43,6 +45,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Safari rapid release
 - Web3 ?
 
+
 #### myakura
 
 - Chrome のリリースサイクル短縮
@@ -53,6 +56,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - QUIC が出た & HTTP/3 普及
 - CSS の夢機能たち
 - AMP から手を引く流れ
+
 
 ### 1 月
 
@@ -92,6 +96,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Smooz
 - ESE 暗号化と法規制まとめ
 
+
 ### 2 月
 
 - Chrome
@@ -126,6 +131,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺
   - 日本の Web A11y 関心調査
 
+
 ### 3 月
 
 - **Chrome Faster release from 94**
@@ -155,6 +161,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Promise.race と anySettled の話**
 - Module Fragments for stage 1
 - BCP65bis の Re-WGLC
+
 
 ### 4 月
 
@@ -188,6 +195,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Security: PSL が辛い**
 - 周辺: .new ドメインめっちゃ増えてる
 - **周辺: FLoC への風当たりが強い**
+
 
 ### 5 月
 
@@ -233,6 +241,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Cloudflare の Privacy Pass + WebAuthN に FIDO から反論
 - Secruity
   - **CAB Forum の update を globalsign がアナウンス**
+
 
 ### 6 月
 
@@ -281,6 +290,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺
   - mnot の Internet Layer に関するブログ
   - EU が Google を検索周りで訴える
+
 
 ### 7 月
 
@@ -336,6 +346,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **WWW のコードが NFT で 6 億**
   - Jake の URLSearchParams/FormData blog
 
+
 ### 8 月
 
 - Chrome
@@ -373,6 +384,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 支援技術調査
   - **DHH の importmap への期待**
   - **Is Safari new IE ?**
+
 
 ### 9 月
 
@@ -428,6 +440,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Security
   - secweb で面白そうな論文がちらほら
 
+
 ### 10 月
 
 - Chrome
@@ -477,6 +490,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Facebook Disconnected from Internet**
   - Web のルビと a11y
   - State of CSS 2021
+
 
 ### 11 月
 

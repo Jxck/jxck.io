@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 55 回のテーマは 2019 年 7 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -85,7 +86,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/X7rWpAkMCyg/j6K7mEEwAgAJ
     - Stream や Promise の無い時代に設計された今の WS API を置き換える API
     - 従来は backpressure が無かった問題も Stream によって解決
-    - Promise によるエラー処理や、 AbortController のサポートも入る
+    - Promise によるエラー処理や、AbortController のサポートも入る
   - **Implement: JSON Modules**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ojwkySW-bpQ/ecR5pnocAgAJ
     - Synthetic Modules (builtin module の共通仕様) の JSON 版
@@ -146,7 +147,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - robots.txt を標準化したい
   - **Google's robots.txt Parser is Now Open Source**
     - https://opensource.googleblog.com/2019/07/googles-robotstxt-parser-is-now-open.html
-    - 標準化するにあたり、 Google の実装を公開
+    - 標準化するにあたり、Google の実装を公開
   - Official Google Webmaster Central Blog: A note on unsupported rules in robots.txt
     - https://webmasters.googleblog.com/2019/07/a-note-on-unsupported-rules-in-robotstxt.html
   - **Robots.txt Specifications**
@@ -162,6 +163,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - ContentSettingObserver の導入
   - draft-rep-wg-topic-00 - Robots Exclusion Protocol
     - https://tools.ietf.org/html/draft-rep-wg-topic-00
+
 
 ### Firefox 動向
 
@@ -288,6 +290,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Firefox Reality for Oculus Quest
     - https://blog.mozvr.com/firefox-reality-for-oculus-quest/
 
+
 ### Safari 動向
 
 - Stable: 12.1
@@ -312,6 +315,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **WebDriver is Coming to Safari in iOS 13**
     - https://webkit.org/blog/9395/webdriver-is-coming-to-safari-in-ios-13/
 - Other
+
 
 ### Edge 動向
 
@@ -339,6 +343,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Livin' on the Edge: Dude Where's My Fix?!? | text/plain**
     - https://textslashplain.com/2019/07/17/finding-where-fixes-landed-in-chrome-edge-chromium/
     - OmahaProxy
+
 
 ### WHATWG/W3C 動向
 
@@ -377,6 +382,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Call for Exclusions: WebAssembly JavaScript Interface
     - https://lists.w3.org/Archives/Public/public-webassembly/2019Jul/0001.html
 
+
 ### TC39 動向
 
 - Meeting 2019/6
@@ -406,17 +412,18 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://bellard.org/quickjs/quickjs.html
     - Fabrice Bellard (ffmpeg 作者)実装の JS エンジン
     - C で書かれ外部依存が無く小さい
-    - ES2019 準拠に加え、 BigInt/BigFloat/Operator Overload など計算向けの機能を追加
+    - ES2019 準拠に加え、BigInt/BigFloat/Operator Overload など計算向けの機能を追加
     - JS を実行可能バイナリにコンパイル可能
   - **Hermes: A new open source JavaScript engine optimized for mobile apps**
     - https://code.fb.com/android/hermes/
     - Facebook 製の JS エンジン
     - ReactNative on Android を効率よく実行することに特化している
-    - 省メモリ、省バンドルサイズ、 TTI の削減
-    - 特に TTI とメモリを重視するために、 JIT をやめ AOT を導入
+    - 省メモリ、省バンドルサイズ、TTI の削減
+    - 特に TTI とメモリを重視するために、JIT をやめ AOT を導入
       - JIT を入れると高速化でききるが起動時に WormUP が必要になり TTI が低下する
       - AOT によりビルドプロセスで最適化可能
       - ベンチマークによっては遅くなるが、目的に特化して計測するとこの方が改善した
+
 
 ### IETF 動向
 
@@ -503,6 +510,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-kuehlewind-update-tag-00
 - Other
 
+
 ### セキュリティ動向
 
 - 7pay の不正利用についてまとめてみた - piyolog
@@ -540,7 +548,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **ISPA announces finalists for 2019 Internet Heroes and Villains: Trump and Mozilla lead the way as Villain nominees >> News, Press Releases | The Internet Service Providers Association**
   - https://www.ispa.org.uk/ispa-announces-finalists-for-2019-internet-heroes-and-villains-trump-and-mozilla-lead-the-way-as-villain-nominees/
   - https://jp.techcrunch.com/2019/07/06/2019-07-05-isp-group-mozilla-internet-villain-dns-privacy/
-  - DoH を実装するとペアレンタルコントロールができなくなり、 UK の ISP が義務を履行できない。
+  - DoH を実装するとペアレンタルコントロールができなくなり、UK の ISP が義務を履行できない。
   - ISPA (ISP 業界団体)から「Mozilla は悪(Villan)」 だと認定された。
   - ちなみに他の Hero は Sir TBL, Villan は Trump
 - **An Analysis of Godlua Backdoor**
@@ -554,7 +562,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.brighttalk.com/webcast/6331/350179
   - https://docs.digicert.com/certificate-tools/acme-user-guide/
   - DigiCert が ACME トライアルを開始
-- デジサート、 AMP URL 用 SXG(Signed HTTP Exchange)対応の SSL/TLS 証明書の発行を開始
+- デジサート、AMP URL 用 SXG(Signed HTTP Exchange)対応の SSL/TLS 証明書の発行を開始
   - https://www.digicert.com/blog/googles-signed-http-exchange-solution-displays-publisher-urls-for-amp-pages-via-tls-jp/
 - ヤフーがデジサートの新しい電子証明書を採用 安全で高速なモバイルウェブ環境を実現
   - https://www.digicert.co.jp/press/2019/pr_20190702.html
@@ -568,7 +576,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Zoom の脆弱性の話
   - CORS を迂回するために localhost サーバを起動していた
   - URL を踏むだけで会議に参加できるようにするため
-  - ここに脆弱性があるが、 zoom は完全な修正はしなかった
+  - ここに脆弱性があるが、zoom は完全な修正はしなかった
   - Safari が URI ハンドラをサポートしてないことも要因の一つ
 - Updating Browsers Quickly: Flags, Respins, and Components | text/plain
   - https://textslashplain.com/2019/07/16/updating-browsers-quickly-flags-respins-and-components/
@@ -603,6 +611,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Android - Cloudflare Resolver
     - https://developers.cloudflare.com/1.1.1.1/setting-up-1.1.1.1/android/
 
+
 ### 周辺動向
 
 - **Chrome's privacy changes are a humbling reminder for subscription publishers - Digiday**
@@ -612,7 +621,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - これをメモリ上にスタブ実装し、判定ができないようにした
     - https://twitter.com/paul_irish/status/1138471166115368960
   - Chrome としては個人情報保護強化だが、パブリッシャーにはペイウォール回避で非難
-  - そこから転じて、 Chrome が縦割り組織でどうこうという話にまで
+  - そこから転じて、Chrome が縦割り組織でどうこうという話にまで
 - **The Web We Want**
   - https://webwewant.fyi/
   - Web に対する要望を投げられるサイト
@@ -626,6 +635,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Object の深さ、要素数を変えた時の postMessage への影響について
   - シリアライズと転送のコストは、要素の大きさと相関している
   - Spector/Meltdown で `performance.now()` が制限されてるブラウザではうまく測れない
+
 
 ### イベント
 

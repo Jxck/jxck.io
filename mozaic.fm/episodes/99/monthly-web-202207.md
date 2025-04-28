@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 99 回のテーマは 2022 年 7 月の Monthly Web です。
 
+
 ## Show Note
 
 ### ep100 オフラインイベント
@@ -20,14 +21,17 @@ guest: [@myakura](https://twitter.com/myakura)
 - オンライン開催はしない
 - 延期もしくは 2024 年 3 月 に 10 周年イベントとか
 
+
 ### Chrome 動向
 
 #### Stable: 103
+
 
 #### Updates
 
 - What's New In DevTools (Chrome 104)
   - https://developer.chrome.com/en/blog/new-in-devtools-104/
+
 
 #### Intents
 
@@ -96,7 +100,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Save the date for BlinkOn 17!
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/16LQXKmAD4s
 
+
 #### V8
+
 
 #### Other
 
@@ -150,14 +156,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Google Japan Blog: ウェブ向けプライバシー サンドボックスのテスト期間延長について**
   - https://japan.googleblog.com/2022/07/blog-post.html
   - トライアルのフィードバックを元にスケジュールの変更
-  - API 実装が 2023 Q3 、 3P Cookie 廃止が late 2024 に 1 年延期
-  - 2021/6 にも API 実装が late 2022 、 3P Cookie 廃止を late 2023 に延期していた
+  - API 実装が 2023 Q3 、3P Cookie 廃止が late 2024 に 1 年延期
+  - 2021/6 にも API 実装が late 2022 、3P Cookie 廃止を late 2023 に延期していた
 - **Proposing changes to First-Party Sets based on community feedback · Issue #92 · WICG/first-party-sets**
   - https://github.com/WICG/first-party-sets/issues/92
     - 「セット」をカテゴリごとのサブセットで考える
     - Storage Access API を使う
     - SameParty 属性を廃止
   - CHIPS にも影響するが、現在検討中なのでそちらは案がまとまったら共有する
+
 
 ### Firefox 動向
 
@@ -175,7 +182,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - Transferable streams
     - Cache API が Secure Context に
 
+
 #### Updates
+
 
 #### Intents
 
@@ -191,6 +200,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/s0_mISL9ac8
 - Engineering Effectiveness Newsletter (June 2022 Edition)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/H389vt45F0Y
+
 
 #### Other
 
@@ -211,9 +221,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Facebook が URL の形式を変更。一部ブラウザーが実装したパラメーター削除機能への対策か【やじうま Watch 】 - INTERNET Watch**
   - https://internet.watch.impress.co.jp/docs/yajiuma/1426324.html
 
+
 ### Safari 動向
 
 #### Stable: 15.6
+
 
 #### Updates
 
@@ -261,6 +273,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Understanding GC in JSC From Scratch
   - https://webkit.org/blog/12967/understanding-gc-in-jsc-from-scratch/
 
+
 #### Other
 
 - **Apple - Anne's Blog**
@@ -272,13 +285,17 @@ guest: [@myakura](https://twitter.com/myakura)
   - Pegasus など要人や人権活動家のスマートフォンに仕込まれたスパイウェアから守る
   - 有効にすると JIT コンパイラが動かなくなるなどの制限はかかる
 
+
 ### Edge 動向
 
 #### Stable: 103
 
+
 #### Updates
 
+
 #### Chakra
+
 
 #### Other
 
@@ -291,6 +308,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2022/07/22/iwebbrowser3beforenavigate/
 - Edge URL Schemes - text/plain
   - https://textslashplain.com/2022/07/18/edge-url-schemes/
+
 
 ### WHATWG/W3C 動向
 
@@ -306,6 +324,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - First Public Working Draft
 - Chartering
 
+
 #### Other
 
 - **W3C offers an Inclusion Fund and Fellowships for TPAC 2022**
@@ -317,6 +336,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Nominations and statements for the election for the Board of Directors of W3C, Incorporated
   - https://www.w3.org/2022/08/bod-nominations.html
 
+
 ### TC39 動向
 
 #### Meeting
@@ -324,6 +344,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **2021-06**
   - https://github.com/tc39/agendas/blob/main/2022/06.md
   - https://github.com/tc39/notes/tree/main/meetings/2022-06
+
 
 #### Proposals Diff
 
@@ -341,6 +362,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - JSON.parse source text access
 - 3->4
   - Hashbang Grammar
+
 
 #### New Proposals
 
@@ -361,7 +383,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/proposal-object-pick-or-omit
   - オブジェクトの特定プロパティだけを残したり消したり
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -409,11 +433,13 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
 
 - IETF | IETF 116 Yokohama
   - https://www.ietf.org/how/meetings/116/
   - 2022 年 3 月が横浜開催
+
 
 ### CDN 動向
 
@@ -432,17 +458,21 @@ guest: [@myakura](https://twitter.com/myakura)
   - **NIST's pleasant post-quantum surprise**
     - https://blog.cloudflare.com/nist-post-quantum-surprise/
 
+
 #### Fastly
 
 - **The state of TLS fingerprinting: What's Working, What Isn't, and What's Next | Fastly**
   - https://www.fastly.com/blog/the-state-of-tls-fingerprinting-whats-working-what-isnt-and-whats-next
 
+
 #### Other
+
 
 ### セキュリティ動向
 
 - **NIST Announces First Four Quantum-Resistant Cryptographic Algorithms | NIST**
   - https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms
+
 
 ### 周辺動向
 
@@ -467,8 +497,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://dev.to/iarchitsharma/the-history-of-javascript-5e98
 - **Apple, Google, Facebook's AV1 standards group under antitrust investigation in EU**
   - https://appleinsider.com/articles/22/07/07/apple-google-facebooks-av1-standards-group-under-antitrust-investigation-in-eu/amp/
-- **書籍「いちばんやさしい Web3 の教本 人気講師が教える NFT 、 DAO 、 DeFi が織りなす新世界」の回収について - インプレスブックス**
+- **書籍「いちばんやさしい Web3 の教本 人気講師が教える NFT 、DAO 、DeFi が織りなす新世界」の回収について - インプレスブックス**
   - https://book.impress.co.jp/info/20220725.html
+
 
 ### イベント
 
@@ -480,6 +511,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 11 月
   - 15-17: BlinkOn17
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/16LQXKmAD4s
+
 
 ### Wrap Up
 

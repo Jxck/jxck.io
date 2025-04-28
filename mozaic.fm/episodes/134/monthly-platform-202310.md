@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 134 回のテーマは 2023 年 10 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 118
+
 
 #### Updates
 
@@ -65,6 +67,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web SQL deprecation
   - Screenshot aspect ratio validation in Application > Manifest
   - Miscellaneous highlights
+
 
 #### Intents
 
@@ -221,6 +224,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Unship:
 - Remove:
 
+
 #### Other
 
 - web.dev
@@ -312,19 +316,21 @@ guest: [@myakura](https://twitter.com/myakura)
     - HTTPS Upgrades により mixed contents となってしまい表示されない?
   - 艦これの表示が壊れた
     - https://twitter.com/KanColle_STAFF/status/1713048810291962131
-    - > 「艦これ」開発/運営 on X: "提督の皆さん、お疲れさまです! ブラウザ【 Chrome 】さんの今夏～秋の更新以降、「艦これ」接続時に真っ白い画面で動作しないケースが発生する場合がありますが、この場合は下記の方法などで Chrome でも接続可能です。 Chrome 提督でお困りの方はお試しください。
+    - > 「艦これ」開発/運営 on X: "提督の皆さん、お疲れさまです! ブラウザ【 Chrome 】さんの今夏～秋の更新以降、「艦これ」接続時に真っ白い画面で動作しないケースが発生する場合がありますが、この場合は下記の方法などで Chrome でも接続可能です。Chrome 提督でお困りの方はお試しください。
     - > https 移行も準備していますが、既に使われている一般ではない(そして通信及び機能的には問題のない)ブラウザ環境も留意して、移行は慎重にしています。
   - Google Chrome で Web サイトが表示されなくなったお客様へ | さくらのサポート情報
     - https://help.sakura.ad.jp/notification/n-2624/
     - おそらく HTTPS Upgrade によって表示されないサイトが出ている
   - 公開中の Web サイトに Google Chrome でアクセスできなくなった - よくあるご質問 - さくらのサポート情報
     - https://faq.sakura.ad.jp/s/article/000001530
-    - > Google Chrome のアップデートで、 HTTP 接続(http://～ )が自動で HTTPS 接続(https://～)にリダイレクトされるようになり、 SSL の設定が有効になっていないと、正常に表示できなくなってしまう場合があります。
+    - > Google Chrome のアップデートで、HTTP 接続(http://～ )が自動で HTTPS 接続(https://～)にリダイレクトされるようになり、SSL の設定が有効になっていないと、正常に表示できなくなってしまう場合があります。
     - 証明書を設定するように誘導している
+
 
 ### Firefox 動向
 
 #### Stable: 119
+
 
 #### Updates
 
@@ -342,6 +348,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2023/10/10/developments-aplenty-for-120-these-weeks-in-firefox-issue-146/
 - More WebExtensions! Coming to an Android near you soon - These Weeks in Firefox: Issue 147 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2023/10/19/more-webextensions-coming-to-an-android-near-you-soon-these-weeks-in-firefox-issue-147/
+
 
 #### Intents
 
@@ -370,12 +377,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
+
 #### Newsletter
 
 - Firefox WebDriver Newsletter - 119 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-119/
 - Firefox DevTools Newsletter - 119 - Firefox Developer Experience
   - https://fxdx.dev/firefox-devtools-newsletter-119/
+
 
 #### MDN / Open Web Docs
 
@@ -387,7 +396,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Sovereign Tech Fund invests in Open Web Docs**
   - https://openwebdocs.org/content/posts/sovereign-tech-fund/
   - Sovereign Tech Fund からの援助で BCD(Browser Compat Data) の自動更新や機能のグループ化に取り組む
-  - STF はドイツの連邦経済・気候保護省が出資、 SPRIND(ドイツのイノベーション関係の機関)運営
+  - STF はドイツの連邦経済・気候保護省が出資、SPRIND(ドイツのイノベーション関係の機関)運営
 - Migrating from GitHub to GitLab seamlessly: A step-by-step guide | MDN Blog
   - https://developer.mozilla.org/en-US/blog/migrating-from-github-to-gitlab-seamlessly-a-step-by-step-guide/
 - **Introduction to web sustainability | MDN Blog**
@@ -397,6 +406,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://developer.mozilla.org/en-US/blog/optimizing-devsecops-workflows-with-gitlab-conditional-ci-cd-pipelines/
 - **Coming Soon: MDN Observatory 2.0 | MDN Blog**
   - https://developer.mozilla.org/en-US/blog/mdn-observatory/
+
 
 #### Standard Position
 
@@ -426,6 +436,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - **Storage Buckets API · Issue #475 · mozilla/standards-positions**
       - https://github.com/mozilla/standards-positions/issues/475
 
+
 #### Other
 
 - **Say (an encrypted) hello to a more private internet**
@@ -445,9 +456,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Global Network Fee Proposals are Troubling. Here are Three Paths Forward. - Open Policy & Advocacy
   - https://blog.mozilla.org/netpolicy/2023/10/26/global-network-fee-proposals-are-troubling-here-are-three-paths-forward/
 
+
 ### Safari 動向
 
 #### Stable: 17.1
+
 
 #### Updates
 
@@ -466,6 +479,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **WebKit Features in Safari 17.1**
   - https://webkit.org/blog/14735/webkit-features-in-safari-17-1/
   - Managed Media Source API to iPhone
+
 
 #### Standard Positions
 
@@ -493,6 +507,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - **Web Preferences API · Issue #252 · WebKit/standards-positions**
       - https://github.com/WebKit/standards-positions/issues/252
 
+
 #### Other
 
 - **Get ready for Interop 2024 | WebKit**
@@ -500,11 +515,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Simplified Responsive Design Mode | WebKit**
   - https://webkit.org/blog/14670/simplified-responsive-design-mode/
 
+
 ### Edge 動向
 
 #### Stable: 118
 
+
 #### Updates
+
 
 #### Other
 
@@ -519,7 +537,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Microsoft Store がリニューアル
   - Judah Gabriel: "Hey! Today we released the new https://t.co/g2dIFhnDWG - app store for Windows. 🎉 Proud of this work! It's built with web components, using @buildWithLit, @shoelace_style, @vite_js, @pwabuilder's PWA template, App Tools router, running on C# ASPNET backend. 😎"
   - https://twitter.com/JudahGabriel/status/1710075338326454390
-  - 以前は React だったが、 Vite, PWABuilder, Lit, Shoelace などに移行
+  - 以前は React だったが、Vite, PWABuilder, Lit, Shoelace などに移行
 - Fiddler Web Debugger Turns 20 - text/plain
   - https://textslashplain.com/2023/10/05/fiddler-turns-twenty/
 - **Security Tradeoffs: Privacy - text/plain**
@@ -536,6 +554,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2023/10/17/serviceworkers-vs-network-filtering/
 - Protecting Auth Tokens - text/plain
   - https://textslashplain.com/2023/10/23/protecting-auth-tokens/
+
 
 ### WHATWG/W3C 動向
 
@@ -568,6 +587,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Proposed W3C Charter: WebAssembly Working Group (until 2023-11-09/10); Current Charter Extended
     - https://lists.w3.org/Archives/Public/public-new-work/2023Oct/0010.html
 
+
 #### Other
 
 - **Hiring: Web Security Lead | 2023 | News | W3C**
@@ -582,6 +602,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - URL Pattern Standard
   - https://urlpattern.spec.whatwg.org/
 
+
 ### TC39 動向
 
 #### Meeting
@@ -590,6 +611,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2023-07
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
+
 
 #### Proposals Diff
 
@@ -600,7 +622,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
+
 #### New Proposals
+
 
 #### Other
 
@@ -609,15 +633,18 @@ guest: [@myakura](https://twitter.com/myakura)
 - **6 年を経て Float16Array を Stage 3 にしてもらった - pixiv inside**
   - https://inside.pixiv.blog/2023/10/19/130000
 
+
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
+
 
 #### Meeting
 
 - 2023-10-05 - Meeting · Issue #56 · wintercg/admin
   - https://github.com/wintercg/admin/issues/56
   - 特になし
+
 
 ### IETF 動向
 
@@ -726,6 +753,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
 
 - Call for Comment: draft-iab-privacy-partitioning-03 (Partitioning as an Architecture for Privacy)
@@ -748,6 +776,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/bcNiP8zKpybSmIE6kNz36tj2wTQ/
 - RFC 9495 on Certification Authority Authorization (CAA) Processing for Email Addresses
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/IwM-l3IIZcm1CaebBbA-PrUiv8k/
+
 
 ### CDN 動向
 
@@ -802,12 +831,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - **ポスト量子暗号が一般利用可能に**
   - https://blog.cloudflare.com/ja-jp/post-quantum-cryptography-ga-ja-jp/
 
+
 #### Fastly
 
 - **Thriving amidst chaos: Managed security tips for Black Friday weekend | Fastly**
   - https://www.fastly.com/blog/thriving-amidst-chaos-managed-security-tips-for-black-friday-weekend
 - Firefox and Fastly take another step toward a privacy upgrade for the internet | Fastly
   - https://www.fastly.com/blog/firefox-fastly-take-another-step-toward-security-upgrade
+
 
 #### Other
 
@@ -822,11 +853,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - Strengthening Vercel's Infrastructure against HTTP/2 Rapid Reset Attacks - Vercel
   - https://vercel.com/changelog/strengthening-vercels-infrastructure-against-http-2-rapid-reset-attacks
 
+
 ### セキュリティ動向
 
 - **偽サイトもアドレス欄に鍵マーク、証明書を確認してフィッシング詐欺を見抜こう | 日経クロステック(xTECH)**
   - https://xtech.nikkei.com/atcl/nxt/column/18/02574/090700003/
-  - > 証明書には信頼度の高い順に EV 、 OV 、 DV という 3 種類がある(図 33)。このうち詐欺で悪用されるのが DV 証明書。「Let's Encrypt」という認証局では無料で発行しており、フィッシング対策協議会によれば、一部の例外を除いて大半のフィッシングサイトでこの証明書が利用されているという。大手企業が利用するケースは考えにくい。ブラウザーの証明書ビューアーで、発行者が「Let's Encrypt」の場合は用心しよう(図 34)。
+  - > 証明書には信頼度の高い順に EV 、OV 、DV という 3 種類がある(図 33)。このうち詐欺で悪用されるのが DV 証明書。「Let's Encrypt」という認証局では無料で発行しており、フィッシング対策協議会によれば、一部の例外を除いて大半のフィッシングサイトでこの証明書が利用されているという。大手企業が利用するケースは考えにくい。ブラウザーの証明書ビューアーで、発行者が「Let's Encrypt」の場合は用心しよう(図 34)。
 - **HTTP/2 Rapid Reset**
   - 仕組み: 新手の HTTP/2 「Rapid Reset」 DDoS 攻撃 | Google Cloud 公式ブログ
     - https://cloud.google.com/blog/ja/products/identity-security/how-it-works-the-novel-http2-rapid-reset-ddos-attack
@@ -839,13 +871,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - Cloudflare は TLS を解く Proxy と、バックエンドに送るための Proxy がある
     - ここで、一度にたくさんの Stream を開始するようリクエストを送る
     - それぞれをすぐに RST すると、ストリーム数上限にひっかからず無限に送れる
-    - しかし、 Proxy は後ろの Origin に forward するためにバッファに貯めている
-    - RST されるとリソースを解放し、 Origin に通知するが、早いとここが詰まる
+    - しかし、Proxy は後ろの Origin に forward するためにバッファに貯めている
+    - RST されるとリソースを解放し、Origin に通知するが、早いとここが詰まる
     - 攻撃者は上限にひっからないように、無限にリソースを確保させられる
-    - Proxy がさばききれなくなり、 Proxy 上でエラーになる
+    - Proxy がさばききれなくなり、Proxy 上でエラーになる
     - Origin ではエラーがおこらないので、サービス提供者はなぜ落ちたかわからない
-    - 対策として、 IP の監視や短時間での RST 数のカウントなどで TLS Proxy 側で対策
+    - 対策として、IP の監視や短時間での RST 数のカウントなどで TLS Proxy 側で対策
     - 今ではおおよそ対策済み
+
 
 ### 周辺動向
 
@@ -857,6 +890,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.igalia.com/2023/09/29/October-Conference-News.html
 - ARIA-AT Public Data Management Page - Bocoup
   - https://bocoup.com/blog/aria-at-public-data-management-page
+
 
 ### イベント
 
@@ -870,6 +904,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 12 月
   - 16: 次世代 Web カンファレンス
     - https://nextwebconf.connpass.com/event/300174/
+
 
 ### Wrap Up
 

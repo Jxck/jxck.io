@@ -15,6 +15,7 @@ guest: [@koba04](https://twitter.com/koba04)
 
 第 137 回のテーマは 2023 年を振り返る Yearly Ecosystem です。
 
+
 ## Show Note
 
 ### 今年のキーワード
@@ -66,10 +67,11 @@ guest: [@koba04](https://twitter.com/koba04)
   - State Management
   - Byte Dance をよく見るように
 
+
 ### 来年のキーワード
 
 - Vite の覇権を Turbopack, RSPack が奪えるか?
-- Storybook は覇権をとって、 Chromatic もすごくなりそう
+- Storybook は覇権をとって、Chromatic もすごくなりそう
 - Next Approuter が本当に広がるか
 - RSC 対応の Bundler が増えて Next 以外の解が見れそう
 - アプリケーションの Rust 化くるか?
@@ -79,6 +81,7 @@ guest: [@koba04](https://twitter.com/koba04)
 - ESLint to flat config or Biome
 - AI driven FE Development
 - CSS の新しい方法論
+
 
 ### 1 月
 
@@ -110,7 +113,7 @@ guest: [@koba04](https://twitter.com/koba04)
     - next/image
     - next/font
     - next.config.js
-    - Built-in module transpilation によって、 next-transpile-modules がいらなくなった
+    - Built-in module transpilation によって、next-transpile-modules がいらなくなった
   - Roadmap - Turbopack
     - https://turbo.build/pack/docs/roadmap
 - Rome に関わってたエンジニアがやめたらしい
@@ -131,10 +134,10 @@ guest: [@koba04](https://twitter.com/koba04)
   - 2023 年の大きめのもの
     - 2023 年 3 月に 2 年ぶりのメジャーバージョンの v7 をリリース予定
       - カンファレンス開催予定
-    - Turbopack チームと連携して、 2023 年にサポートに追加
+    - Turbopack チームと連携して、2023 年にサポートに追加
 - Tamagui 1.0 🎉
   - https://tamagui.dev/blog/version-one
-  - React Native 、 React for Web 対応の UI ライブラが v1 リリース
+  - React Native 、React for Web 対応の UI ライブラが v1 リリース
 - ESLint's 2022 year in review
   - https://eslint.org/blog/2023/01/eslint-2022-year-review/
   - ESLint の 2022 年まとめ、起きた変化や収益、経費など
@@ -152,6 +155,7 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://github.com/facebook/react/pull/25881
   - useEvent は useEffectEvent に名前が変わる
 
+
 ### 2 月
 
 - **Rome からもう一人やめる**
@@ -165,7 +169,7 @@ guest: [@koba04](https://twitter.com/koba04)
   - SSR + Hydration だと重いので SSR してこうという話
   - そこで Isomorphic な JS が活きてくる
   - これが Deno + Fresh で実現できるという話
-- Electron ライクな新フレームワーク「Gluon」登場。 Chromium 内蔵せず Web ブラウザを利用、 Node.js だけでなく Deno と Bun にも対応 - Publickey
+- Electron ライクな新フレームワーク「Gluon」登場。Chromium 内蔵せず Web ブラウザを利用、Node.js だけでなく Deno と Bun にも対応 - Publickey
   - https://www.publickey1.jp/blog/23/electrongluonchromiumwebnodejsdenobun.html
 - **RFC: React DOM for Native**
   - https://github.com/necolas/discussions-and-proposals/blob/reduce-fragmentation/proposals/0000-reduce-fragmentation.md
@@ -203,7 +207,7 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://github.com/facebook/jest/releases/tag/v29.4.0
 - **Storybook Component Story Format 3 is here**
   - https://storybook.js.org/blog/storybook-csf3-is-here/
-  - CSF 3 はいまでも使えるけど、 Storybook 7 で正式に入るにあたって色々と追加要素の説明がある
+  - CSF 3 はいまでも使えるけど、Storybook 7 で正式に入るにあたって色々と追加要素の説明がある
 - **Improved type safety in Storybook 7**
   - https://storybook.js.org/blog/improved-type-safety-in-storybook-7/
   - Storybook の story ファイルに型をつける説明
@@ -211,7 +215,7 @@ guest: [@koba04](https://twitter.com/koba04)
 - **Gatsby**
   - https://www.gatsbyjs.com/blog/gatsby-is-joining-netlify/
   - gatsby が netlify に買収された
-  - build system 、さまざまなコンテンツ ソースからの Webhook 、 deploy 、 edge runtime などを結び付ける composable architectures と呼ばれる Web UI レイヤーを構築していく
+  - build system 、さまざまなコンテンツ ソースからの Webhook 、deploy 、edge runtime などを結び付ける composable architectures と呼ばれる Web UI レイヤーを構築していく
   - https://thenewstack.io/netlify-acquires-gatsby-its-struggling-jamstack-competitor/
   - server components
     - https://github.com/gatsbyjs/gatsby/pull/36485
@@ -234,6 +238,7 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://github.com/DanielXMoore/Civet
   - CoffeeScript の TS 版みたいなもの
   - 今年どうなるか注目
+
 
 ### 3 月
 
@@ -295,6 +300,7 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://www.bing.com/search?toWww=1&redig=62629AE8D1064E45AC7AF348327DDDDB&q=Bing+AI&showconv=1
   - https://twitter.com/towernter/status/1635950636935049219
 
+
 ### 4 月
 
 - Next.js
@@ -310,7 +316,7 @@ guest: [@koba04](https://twitter.com/koba04)
   - @vercel/og の ImageResponse が next/server に入った
 - Add Zod and router state validation by shuding · Pull Request #46962 · vercel/next.js
   - https://github.com/vercel/next.js/pull/46962
-  - `typedRoutes`を提供し、 Next に Zod を入れてやってるぽい
+  - `typedRoutes`を提供し、Next に Zod を入れてやってるぽい
 - RFC: `next/third-parties` - vercel/next.js - Discussion #48256
   - https://github.com/vercel/next.js/discussions/48256
   - Nextjs でよく使われる
@@ -324,7 +330,7 @@ guest: [@koba04](https://twitter.com/koba04)
   - RSC が入ったが、これを最大限生かすには bundler の integration が必須
     - 今の Bundler は Client に特化してる
     - 単一のモジュールグラフを Server/Client で分割できるものがない
-    - なので、 Bundler 開発者と組んでやっていく
+    - なので、Bundler 開発者と組んでやっていく
   - Asset Loading
     - CSS, Font, Img を Suspence と統合していく
   - Document Metadata
@@ -348,8 +354,8 @@ guest: [@koba04](https://twitter.com/koba04)
 - React の公式ドキュメントサイトリニューアルについての Dan 氏の解説
   - https://react.dev/
   - https://twitter.com/dan_abramov/status/1638004334544707584
-  - ドキュメントの最初の方には hooks が登場しなくて、 Server Components でも動くような説明を意識してる
-  - memo 系の関数は使用されてなくて、多くのコードで問題なく、 React labs でやってるコンパイラ周りで解決されることを確信している(使うことが非推奨とかではない)
+  - ドキュメントの最初の方には hooks が登場しなくて、Server Components でも動くような説明を意識してる
+  - memo 系の関数は使用されてなくて、多くのコードで問題なく、React labs でやってるコンパイラ周りで解決されることを確信している(使うことが非推奨とかではない)
   - Effects 周りと Refs はあまり使用しない方向でドキュメントの最後の Escape Hatches のコンテンツへ(使うことが非推奨とかではない)
   - なんで最初から Effects 周りはそうなってなかったかというと、まぁすぐにベストプラクティスができるわけでもないからさ〜ってやつ
 - Storybook v7
@@ -380,8 +386,8 @@ guest: [@koba04](https://twitter.com/koba04)
 - Sass: Sass and Native Nesting
   - https://sass-lang.com/blog/sass-and-native-nesting
   - Sass と CSS Nestting に関する違いと、今後のプラン
-  - CSS だと `:is()` を使用するが、 Sass は使用しないので、適用されるパターンに違いがある
-  - `:is()` のシェアが 98%を超えたら、 Sass も `:is()` を使用するプラン
+  - CSS だと `:is()` を使用するが、Sass は使用しないので、適用されるパターンに違いがある
+  - `:is()` のシェアが 98%を超えたら、Sass も `:is()` を使用するプラン
 - layer - vanilla-extract
   - https://vanilla-extract.style/documentation/api/layer/#layer
   - vanilla-extract のレイヤーサポート
@@ -398,6 +404,7 @@ guest: [@koba04](https://twitter.com/koba04)
 - Vercel
   - https://twitter.com/vercel/status/1643270051049660417
   - 謎告知
+
 
 ### 5 月
 
@@ -448,7 +455,7 @@ guest: [@koba04](https://twitter.com/koba04)
 - 日本人から Rome の core contributor
   - https://zenn.dev/nissy_dev/articles/become-a-core-contributor-of-rome
   - 最近の開発状況についても
-  - > 現在の開発は、元コアメンバーである Emanuele さんを中心とした有志が集まって進めているという状態になっています。そのため、チームでの開発体制や明確なマイルストーンなどはなく、次のリリースもいつ、どのような内容で行うのかという点についてはあまり議論していません。最近だと、 formatter や linter の不具合や ECMAScript decorator などの対応を行っています。
+  - > 現在の開発は、元コアメンバーである Emanuele さんを中心とした有志が集まって進めているという状態になっています。そのため、チームでの開発体制や明確なマイルストーンなどはなく、次のリリースもいつ、どのような内容で行うのかという点についてはあまり議論していません。最近だと、formatter や linter の不具合や ECMAScript decorator などの対応を行っています。
 - apollo の next app dir サポート
   - https://www.apollographql.com/blog/announcement/frontend/using-apollo-client-with-next-js-13-releasing-an-official-library-to-support-the-app-router/
 - astro@2.4
@@ -483,17 +490,18 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://community.redwoodjs.com/t/redwood-v5-0-0-is-now-available/4830/1
   - React 18 対応など
 
+
 ### 6 月
 
 - Turborepo 1.10 - Turbo
   - https://turbo.build/blog/turbo-1-10-0
-  - 実験段階だが、 scafolding ができるようになる(copy, add, append, etc)
+  - 実験段階だが、scafolding ができるようになる(copy, add, append, etc)
   - .env のよみとりができるようになった
   - 環境変数名でワイルドカードが使えるようになった
   - https://www.hygen.io/
 - Fresh 1.2 - welcoming a full-time maintainer, sharing state between islands, limited npm support, and more
   - https://deno.com/blog/fresh-1.2
-  - Preact のメンテナ Marvin が Deno に入り、 Fresh のフルタイムコミッターになる
+  - Preact のメンテナ Marvin が Deno に入り、Fresh のフルタイムコミッターになる
 - RSC From Scratch. Part 1: Server Components · reactwg/server-components · Discussion #5
   - https://github.com/reactwg/server-components/discussions/5
   - Dan による RSC の deep dive
@@ -588,13 +596,14 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://www.electronjs.org/blog/electron-25-0
   - net.fetch
     - API のインターフェースは Node の fetch と同様
-    - Chromium が内部で URL ロードの様々な異なるモード(navigation 、 subresouce 、 worker)を区別しており、 electron ではそれらを気にすることが多く、コードが散らばってしまい一元化したいのでこのモジュールを追加
+    - Chromium が内部で URL ロードの様々な異なるモード(navigation 、subresouce 、worker)を区別しており、electron ではそれらを気にすることが多く、コードが散らばってしまい一元化したいのでこのモジュールを追加
       - Is there a webRequest handler that needs to be invoked?
       - Has any extension registered a chrome.webRequest handler? (This is not the same thing as webRequest.)
       - Is this a request to a custom protocol (registered with protocol.register\*Protocol)?
       - Is there an intercept handler registered for this protocol (from protocol.interceptProtocol)?
       - Should the connection limit be applied to this request? (i.e. is the domain listed in --ignore-connections-limit)?
       - Should access to file: be allowed? (We do some hacks here to allow service workers to be loaded in file:// domains; arguably we should not do this)
+
 
 ### 7 月
 
@@ -658,6 +667,7 @@ guest: [@koba04](https://twitter.com/koba04)
   - Symbols as WeakMap keys
 - Announcing typescript-eslint v6
   - https://typescript-eslint.io/blog/announcing-typescript-eslint-v6/
+
 
 ### 8 月
 
@@ -727,6 +737,7 @@ guest: [@koba04](https://twitter.com/koba04)
 - How Turborepo is porting from Go to Rust - Vercel
   - https://vercel.com/blog/how-turborepo-is-porting-from-go-to-rust
 
+
 ### 9 月
 
 - biomejs
@@ -774,8 +785,9 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://nodejs.org/en/blog/announcements/nodejs16-eol
 - electron: Support Node's ES Modules
   - https://github.com/electron/electron/issues/21457
-- マイクロソフト、 Web アプリテストの自動化サービス「Microsoft Playwright Testing」プレビューを開始
+- マイクロソフト、Web アプリテストの自動化サービス「Microsoft Playwright Testing」プレビューを開始
   - https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing.html
+
 
 ### 10 月
 
@@ -840,12 +852,13 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://blog.koba04.com/post/2023/10/05/new-japanese-react-dev
 - Support Server Actions by kotarella1110 · Pull Request #11061 · react-hook-form/react-hook-form
   - https://github.com/react-hook-form/react-hook-form/pull/11061
-- マイクロソフト、 Web アプリのテスト自動化サービス「Microsoft Playwright Testing」プレビュー公開。クロスブラウザ/クロスプラットフォームのテストを並列実行
+- マイクロソフト、Web アプリのテスト自動化サービス「Microsoft Playwright Testing」プレビュー公開。クロスブラウザ/クロスプラットフォームのテストを並列実行
   - https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing_1.html
 - pattycake
   - https://github.com/aidenybai/pattycake
 - Announcing Deno Queues
   - https://deno.com/blog/queues
+
 
 ### 11 月
 

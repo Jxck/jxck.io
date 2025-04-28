@@ -12,6 +12,7 @@ guest: [@shqld](https://twitter.com/shqld)
 
 第 56 回のテーマは 2019 年 8 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -52,11 +53,11 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://developers.google.com/web/updates/2019/08/periodic-background-sync
   - A Contact Picker for the Web
     - https://developers.google.com/web/updates/2019/08/contact-picker
-    - 連絡先にアクセスし、 name/tel/mail などを取得できる API
+    - 連絡先にアクセスし、name/tel/mail などを取得できる API
     - フラグで有効化可能
   - **The Native File System API: Simplifying access to local files**
     - https://developers.google.com/web/updates/2019/08/native-file-system
-    - 全ての API が実装されているわけではなく、 Flag で有効にできる
+    - 全ての API が実装されているわけではなく、Flag で有効にできる
     - File の読み書き、ディレクトリ内の列挙などが可能な API
     - メディア系のエディタなどを作る上で重要
     - 権限はプロンプトで取得、タブを開いている間は永続化される
@@ -79,7 +80,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://www.bleepingcomputer.com/news/security/chrome-to-add-http-cache-partitioning-to-block-attacks-tracking/
     - キャッシュがあることをチェックするタイプの攻撃への耐性
     - キャッシュヒットが下がるとして対応してなかったが、許容できるレベルだったので対応した
-    - Safari は 6 年前からやっており、 Firefox も表明している
+    - Safari は 6 年前からやっており、Firefox も表明している
   - Implement: Main thread Scheduling APIs: Prioritized scheduler.postTask
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HvqbB7TGJKU/xda9kTXGBAAJ
   - Implement: Default Accessibility Semantics for Custom Elements
@@ -113,8 +114,8 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/XfkSdpMWNik/IX67fOTLAQAJ
   - **Implement: Element Reflection**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pWxNRxNcxFE/cjjqFse5AQAJ
-    - ARIA のステート属性のうち、 ID で参照するものの API
-    - id 属性値ではなく、 Element を代入する `ariaDescribedByElements = element`
+    - ARIA のステート属性のうち、ID で参照するものの API
+    - id 属性値ではなく、Element を代入する `ariaDescribedByElements = element`
   - Implement: CSS content-size
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/RMCpsWaqds0/_H9hTQ5tAgAJ
     - まだ表示されていない要素のサイズを指定し、表示時にレイアウトジャンクを防ぐ
@@ -125,9 +126,9 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aHdERJoKYh8/o3IysK5PFQAJ
   - **Extend Origin Trial: Web Components v0 Deprecation**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/PoC7ShITSJI/-mrg7qQRBQAJ
-    - M73 で Remove 、 M80 で Expire Reverse Origin Trial の予定だった
+    - M73 で Remove 、M80 で Expire Reverse Origin Trial の予定だった
     - M73 の現在、まだ 2% が使ってるので無理だった
-    - M80 で Remove 、 M87 で Expire Reverse Origin Trial に延期する
+    - M80 で Remove 、M87 で Expire Reverse Origin Trial に延期する
   - Extend Origin Trial: Allow to set Jitter Buffer Target Delay
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/ujRD28oEej4/Po73gdcwEQAJ
   - Experiment: JS Self-Profiling API
@@ -142,11 +143,11 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/zBYneRf242s/OXCLsqoeAgAJ
   - Remove: Deprecate FTP support
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/e1hkwUL4p3w/11sdjpuMAgAJ
-    - ブラウザでほぼ使われてないし、 SFTP もサポートしてないので段階的に消していく
+    - ブラウザでほぼ使われてないし、SFTP もサポートしてないので段階的に消していく
   - **Upcoming Change to Chrome's Identity Indicators**
     - https://groups.google.com/a/chromium.org/forum/#!topic/security-dev/h1bTcoTpfeI
     - https://chromium.googlesource.com/chromium/src/+/HEAD/docs/security/ev-to-page-info.md
-    - EV バッジを Omnibox から消して、 Site Info に移す話
+    - EV バッジを Omnibox から消して、Site Info に移す話
   - PSA: Private IP addresses exposed by WebRTC changing to mDNS hostnames
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/z5hSy6Rf_aE/u3MPuMYZGAAJ
   - Continue Experimenting: WebXR Device API
@@ -177,7 +178,7 @@ guest: [@shqld](https://twitter.com/shqld)
       - `<img>`, `<svg>` の `<images>`, `<video>` の poster
       - background-image
       - inline text を含む block-level 要素
-    - 判定方法や取得方法、 LCP の改善方法について
+    - 判定方法や取得方法、LCP の改善方法について
       - 不必要に大きい要素はカウントされない(e.g. overflow, viewport 外)
       - Text Node のサイズのみ
       - 本質的ではないスタイルは無視
@@ -200,7 +201,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - Native lazy loading has arrived! - BBC Design + Engineering - Medium
       - https://medium.com/bbc-design-engineering/native-lazy-loading-has-arrived-c37a165d70a5
       - BBC では fast network で load time 50% 削減
-      - ページあたり 0.5~1.0s 短く、 40 リクエスト削減
+      - ページあたり 0.5~1.0s 短く、40 リクエスト削減
   - **Progressive Web Apps in multi-origin sites**
     - https://web.dev/multi-origin-pwas/
     - PWA にする時 Origin 別れてると色々面倒だから一緒にしたほうが良いという話
@@ -218,6 +219,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://developers.google.com/web/updates/2019/08/get-started-with-gpu-compute-on-the-web
   - The Chromium Chronicle: Coding Outside the Sandbox
     - https://developers.google.com/web/updates/2019/08/chromium-chronicle-5
+
 
 ### Firefox 動向
 
@@ -264,7 +266,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - **Prototype: re-enabling SharedArrayBuffer**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/IHkBZlHETpA/dwsMNchWEQAJ
     - Spectre 対策で無効にした SharedArrayBuffer を再び有効にする試み
-    - `postMessage()` はデフォルトで無効にし、 COOP や COEP の設定で使えるようにするといった緩和策を検討中
+    - `postMessage()` はデフォルトで無効にし、COOP や COEP の設定で使えるようにするといった緩和策を検討中
     - Nightly で試しつつ、影響を調査
     - Fission が進んでいることで、影響が減ることを見越しての検討開始
   - Unship: nonzero unitless MathML lengths
@@ -307,14 +309,15 @@ guest: [@shqld](https://twitter.com/shqld)
   - **DNS-over-HTTPS (DoH) Update - Detecting Managed Networks and User Choice - Future Releases**
     - https://blog.mozilla.org/futurereleases/2019/07/31/dns-over-https-doh-update-detecting-managed-networks-and-user-choice/
     - DoH について新たな実験をするとの告知
-    - ペアレンタルコントロール、セーフサーチ、企業内の split-horizon など、 DNS によるフィルタリングが DoH によって機能しなくなるという懸念に対して行う模様
-    - ペアレンタルコントロールでは、テスト用のサイトのドメインを食わせて、 IP アドレスが変わっていないかを調べる
-    - セーフサーチは、 Google が公開しているセーフサーチ用ドメインの IP アドレスに接続しているかを調べる
+    - ペアレンタルコントロール、セーフサーチ、企業内の split-horizon など、DNS によるフィルタリングが DoH によって機能しなくなるという懸念に対して行う模様
+    - ペアレンタルコントロールでは、テスト用のサイトのドメインを食わせて、IP アドレスが変わっていないかを調べる
+    - セーフサーチは、Google が公開しているセーフサーチ用ドメインの IP アドレスに接続しているかを調べる
     - 企業内 DNS については、解決できるドメインか、解決できる場合はプライベートアドレスに解決されるかを調べる
   - My Next Chapter - The Mozilla Blog
     - https://blog.mozilla.org/blog/2019/08/29/my-next-chapter/
     - https://blog.mozilla.org/blog/2019/08/29/thank-you-chris/
     - Mozilla Corp の CEO である Chris Beard が 2019 末で辞任
+
 
 ### Safari 動向
 
@@ -336,7 +339,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - 細かいのが多い
   - **Announcing the WebKit Tracking Prevention Policy**
     - https://webkit.org/blog/9507/announcing-the-webkit-tracking-prevention-policy/
-    - WebKit の Tracking Prevention について、トラッキングの定義やブロック対象をまとめたドキュメントを公開。 Mozilla の Anti Tracking Policy を参考にしたとも。
+    - WebKit の Tracking Prevention について、トラッキングの定義やブロック対象をまとめたドキュメントを公開。Mozilla の Anti Tracking Policy を参考にしたとも。
     - https://webkit.org/tracking-prevention-policy/
   - **How Web Content Can Affect Power Usage**
     - https://webkit.org/blog/8970/how-web-content-can-affect-power-usage/
@@ -348,7 +351,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - ページが最前面ではない
     - User Interaction のための **fast paths** をあけておく
       - FP/ロードの最適化は、電力消費にも効果的
-      - 初期ロード後は、 JS をすばやくアイドルにすることが重要
+      - 初期ロード後は、JS をすばやくアイドルにすることが重要
       - OS で可能な操作(スクロール etc) は JS でやらずに OS に任せるほうが効率的。
     - できるだけ電力を消費しない
       - 頻繁に CPU を起こすような Timer の数を減らす。
@@ -368,6 +371,7 @@ guest: [@shqld](https://twitter.com/shqld)
         - Page Visibility API
         - fucus されてない場合に発生する blur event
 - Other
+
 
 ### Edge 動向
 
@@ -403,6 +407,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - 新しい BugBounty Program
     - https://www.microsoft.com/en-us/msrc/bounty-new-edge
     - https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja
+
 
 ### WHATWG/W3C 動向
 
@@ -446,6 +451,7 @@ guest: [@shqld](https://twitter.com/shqld)
       - Double-keyed (or more) caches
       - Protecting/sandboxing `<iframe>` sites (history.length, caches, window)
 
+
 ### TC39 動向
 
 - Meeting
@@ -468,6 +474,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - Promise をチェインする演算子
     - `Promise.resolve(x).get(i)` を `x!i` って書ける
 - Other
+
 
 ### IETF 動向
 
@@ -516,6 +523,7 @@ guest: [@shqld](https://twitter.com/shqld)
     - https://mailarchive.ietf.org/arch/msg/rtcweb/4cj95edGFtfjZkUjozTybOJiMcA
     - rtcweb wg が close
 
+
 ### セキュリティ動向
 
 - Introducing Certificate Transparency Monitoring
@@ -529,7 +537,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - H2 は H1 よりもリソースを必要とする。
   - リソースの過剰確保などの DoS には実装が注意しないといけない
   - 対応しきれてない複数の実装で脆弱性(Apache, Tomcat etc)
-  - 最初の報告は Netflix で、 Google や CERT/CC と調整して発表
+  - 最初の報告は Netflix で、Google や CERT/CC と調整して発表
   - https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md
   - 各実装やサービスが対応を発表している
 - Spying on HTTPS - text/plain
@@ -549,6 +557,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - すでに国内 ISP の MITM も確認されている
   - これを Chrome/Firefox がブロック
 
+
 ### 周辺動向
 
 - First HTTP/3 with curl - daniel.haxx.se
@@ -561,6 +570,7 @@ guest: [@shqld](https://twitter.com/shqld)
   - 2012 年"NO-TAGS" でも同じことがあった
 - Web-to-App Communication: App Protocols
   - https://textslashplain.com/2019/08/29/web-to-app-communication-app-protocols/
+
 
 ### イベント
 

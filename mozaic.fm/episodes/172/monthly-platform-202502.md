@@ -13,11 +13,13 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 172 回のテーマは 2025 年 2 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 133
+
 
 #### Updates
 
@@ -26,6 +28,7 @@ guest: [@saku](https://x.com/sakupi01)
   - CSS advanced `attr()` function
   - CSS scroll state container queries
   - CSS `text-box`, `text-box-trim`, and `text-box-edge`
+
 
 #### Intents
 
@@ -187,6 +190,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Web-Facing Change PSA: NotRestoredReasons name change
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/keA8QE_uFxo
 
+
 #### Other
 
 - web.dev
@@ -273,9 +277,11 @@ guest: [@saku](https://x.com/sakupi01)
     - https://www.forbes.com/sites/daveywinder/2025/02/26/google-confirms-gmail-to-ditch-sms-code-authentication/
     - Google が SMS を辞め、QR コードに移行していく
 
+
 ### Firefox 動向
 
 #### Stable: 135.01
+
 
 #### Updates
 
@@ -287,6 +293,7 @@ guest: [@saku](https://x.com/sakupi01)
 - **Firefox 135 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/135
   - `JSON.parse()` with source
+
 
 #### Intents
 
@@ -313,7 +320,8 @@ guest: [@saku](https://x.com/sakupi01)
 - Unship: onreadystatechange/onvisibilitychange content attributes on HTML elements.
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/LJC3FnNbmfI
 - Certificate Transparency is now enforced in Firefox on desktop platforms starting with version 135
-  - [https://groups.google.com/a/mozilla.org/g/dev-platform/c](https://groups.google.com/a/mozilla.org/g/dev-platform/c/ueq_33tA_iQ)
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ueq_33tA_iQ
+
 
 #### Newsletter
 
@@ -328,7 +336,9 @@ guest: [@saku](https://x.com/sakupi01)
 - WebDriver BiDi Becomes the Default for Cypress with Firefox - Firefox Developer Experience
   - https://fxdx.dev/webdriver-bidi-becomes-the-default-for-cypress-in-firefox/
 
+
 #### MDN / Open Web Docs
+
 
 #### Standard Position
 
@@ -353,6 +363,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Reduce Accept-Language
     - https://github.com/mozilla/standards-positions/issues/1014
 
+
 #### Other
 
 - **Certificate Transparency is now enforced in Firefox on desktop platforms starting with version 135**
@@ -373,9 +384,11 @@ guest: [@saku](https://x.com/sakupi01)
   - https://www.mozilla.org/en-US/about/legal/terms/firefox/
   - > When you upload or input information through Firefox, you hereby grant us a nonexclusive, royalty-free, worldwide license to use that information to help you navigate, experience, and interact with online content as you indicate with your use of Firefox.
 
+
 ### Safari 動向
 
 #### Stable: 18.3
+
 
 #### Updates
 
@@ -444,6 +457,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Web API
   - Web Inspector
 
+
 #### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-02-01+
@@ -460,6 +474,7 @@ guest: [@saku](https://x.com/sakupi01)
     - https://github.com/WebKit/standards-positions/issues/229
   - **CSS Anchor Positioning**
     - https://github.com/WebKit/standards-positions/issues/167
+
 
 #### Other
 
@@ -492,9 +507,11 @@ guest: [@saku](https://x.com/sakupi01)
     - Privacy Testing
     - WebVTT
 
+
 ### Edge 動向
 
 #### Stable: 133
+
 
 #### Updates
 
@@ -504,6 +521,7 @@ guest: [@saku](https://x.com/sakupi01)
   - ここでも見れる
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
+
 
 #### Other
 
@@ -522,6 +540,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Empowering Microsoft Edge Add-ons developers with faster reviews - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2025/02/26/empowering-microsoft-edge-add-ons-developers-with-faster-reviews/
 
+
 ### WHATWG/W3C 動向
 
 #### Draft
@@ -531,6 +550,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Candidate Recommendation
 - Working Draft
 - First Public Working Draft
+
 
 #### Open UI
 
@@ -563,7 +583,7 @@ guest: [@saku](https://x.com/sakupi01)
     - https://github.com/openui/open-ui/issues/1133#issuecomment-2689101970
     - モーダルダイアログでは interactivity: inert;になる挙動(partial-interest)を呼び出すべきではない
     - サブツリー内の全ての要素が tabindex: -1;になるような新しい CSS が欲しい
-    - [https://github.com/openui/open-ui/pull/1172](https://github.com/openui/open-ui/pull/1172/files)/
+    - https://github.com/openui/open-ui/pull/1172
     - > the special tabindex=-1 behavior will be implemented with a new UA stylesheet rule: :target-has-partial-interest {keyboard-focusable:not-focusable}. See the keyboard-focusable section for more detail.
   - [popover]: event propagation for the escape key
     - https://github.com/openui/open-ui/issues/1147
@@ -582,6 +602,7 @@ guest: [@saku](https://x.com/sakupi01)
   - https://github.com/openui/open-ui/pull/1167
     - Graduated Proposal のセクションが爆誕
 
+
 #### Open UI Design System
 
 - 2025-02-25.md
@@ -589,6 +610,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Badge RFC Overview
   - What's the target browser support?
   - MVP list of components
+
 
 #### WHATNOT
 
@@ -611,7 +633,8 @@ guest: [@saku](https://x.com/sakupi01)
 - Upcoming WHATNOT meeting on 2025-02-20
   - https://github.com/whatwg/html/issues/11026
   - Carryovers from last time
-    - [Kurt] [Add sheet attribute to the](https://github.com/whatwg/html/issues/11022) `<link>` [tag's for CSS @sheet support](https://github.com/whatwg/html/issues/11022)
+    - [Kurt] Add sheet attribute to the `<link>` tag's for CSS @sheet support
+    - https://github.com/whatwg/html/issues/11022
   - New topics
     - [Luke] Add request-close command for dialogs
       - https://github.com/whatwg/html/pull/11045
@@ -620,6 +643,7 @@ guest: [@saku](https://x.com/sakupi01)
       - command が実装されていないブラウザでは、form の button が submit にフォールバックして、意図せずフォームが submit される可能性がある
 - Upcoming WHATNOT meeting on 2025-02-27
   - https://github.com/whatwg/html/issues/11055
+
 
 #### Other
 
@@ -648,12 +672,14 @@ guest: [@saku](https://x.com/sakupi01)
     - Issues · w3c/breakouts-day-2025
     - https://github.com/w3c/breakouts-day-2025/issues
 
+
 ### TC39 動向
 
 #### Meeting
 
 - 2025-02
   - 来月
+
 
 #### Proposals Diff
 
@@ -663,7 +689,9 @@ guest: [@saku](https://x.com/sakupi01)
 - 2.7->3
 - 3->4
 
+
 #### New Proposals
+
 
 #### WinterTC
 
@@ -676,7 +704,9 @@ guest: [@saku](https://x.com/sakupi01)
   - Review of last meeting's notes
   - Approval of this meeting's agenda
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -712,7 +742,9 @@ guest: [@saku](https://x.com/sakupi01)
     - https://mailarchive.ietf.org/arch/msg/httpapi/hpWpp1QMPqch9jMh5VbtMOmZFoU/
 - Meeting
 
+
 #### Other
+
 
 ### 周辺動向
 
@@ -753,6 +785,7 @@ guest: [@saku](https://x.com/sakupi01)
   - 開発者向けブラウザーの Polypane が Igalia のエンジニアを雇用し Chromium のバグ修正をやっていく
   - デバイスのエミュレーション周りをまずやるらしい
 
+
 #### セキュリティ動向
 
 - **1934361 - ICP-Brasil: Mis-issued certificate**
@@ -770,7 +803,9 @@ guest: [@saku](https://x.com/sakupi01)
     - 1910322 - DigiCert: Random value in CNAME without underscore prefix
     - https://bugzilla.mozilla.org/show_bug.cgi?id=1910322
 
+
 #### Cookie 動向
+
 
 #### Other
 
@@ -788,6 +823,7 @@ guest: [@saku](https://x.com/sakupi01)
   - https://www.mnot.net/blog/2025/02/09/decentralize-icloud
   - Apple が英国政府から iCloud のクラウドバックアップの暗号化機能にバックドアをつけろと秘密裏に言われ、Apple がその機能を英国で無効にした
 
+
 ### イベント
 
 - 1 月
@@ -800,6 +836,7 @@ guest: [@saku](https://x.com/sakupi01)
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/OwhKs-ofakU
 - 5 月
   - 20-21: Google I/O
+
 
 ### Wrap Up
 

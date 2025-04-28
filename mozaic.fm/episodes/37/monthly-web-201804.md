@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 37 回のテーマは 2018 年 4 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -166,6 +167,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Chromium Blog: Protecting users from extension cryptojacking
     - https://blog.chromium.org/2018/04/protecting-users-from-extension-cryptojacking.html
 
+
 ### Firefox 動向
 
 - Stable: 59
@@ -239,6 +241,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2018/04/sneak-peek-at-webassembly-studio/
     - https://webassembly.studio/
 
+
 ### Safari 動向
 
 - Stable: 11.1
@@ -265,6 +268,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - itp_study
     - https://web-study.connpass.com/event/84158/
 
+
 ### Edge 動向
 
 - Stable: EdgeHTML 16
@@ -289,6 +293,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Web を lint するツールの v1 がリリース
   - **Introducing the Microsoft Edge DevTools Preview app**
     - https://blogs.windows.com/msedgedev/2018/04/25/introducing-the-microsoft-edge-devtools-preview-app/
+
 
 ### WHATWG/W3C 動向
 
@@ -351,13 +356,14 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2018AprJun/0052.html
   - **`Accept-CH` header is weird · Issue #206 · w3ctag/design-reviews**
     - https://github.com/w3ctag/design-reviews/issues/206#issuecomment-379422513
-    - 先月話した Client Hints 、 TAG 的にはやってくことになった
+    - 先月話した Client Hints 、TAG 的にはやってくことになった
   - **CSS2 maintenance proposal · Issue #2553 · w3c/csswg-drafts**
     - https://github.com/w3c/csswg-drafts/issues/2553
-    - CSSWG の F2F で、 CSS Level 2 仕様の現状まとめと今後のメンテ計画について議論
+    - CSSWG の F2F で、CSS Level 2 仕様の現状まとめと今後のメンテ計画について議論
   - **A short update on the web-platform-test project invitation**
     - https://www.w3.org/blog/2018/04/a-short-update-on-the-web-platform-test-project-invitation/
     - WTP の organization を移した話
+
 
 ### TC39 動向
 
@@ -375,6 +381,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **「TC39 のリリースは 5-10 年サイクルに戻した方がいいのかもなぁ」 by @awbjs**
     - https://twitter.com/awbjs/status/984546160277794816
     - TC39 の大きなゴールが無い問題
+
 
 ### IETF 動向
 
@@ -437,6 +444,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/httpwg/structured-header-tests
     - 実装者向け test case のリポジトリ
 
+
 ### 周辺動向
 
 - **Announcing 1.1.1.1: the fastest, privacy-first consumer DNS service**
@@ -464,9 +472,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - インターネット上の海賊版サイトに対するブロッキングの実施について
     - http://www.ntt.co.jp/news2018/1804/180423a.html
   - その他多数
-  - mangamura.org で言えば、 Cloudflare を使ってるので DNS A レコード削除で対応
+  - mangamura.org で言えば、Cloudflare を使ってるので DNS A レコード削除で対応
   - ISP なら、外の DNS を設定してる人にもブロックを適用できる
-  - 外 DNS を DoH で使うとブロックできないので、 DoH 普及するとこの方法はできなさそう
+  - 外 DNS を DoH で使うとブロックできないので、DoH 普及するとこの方法はできなさそう
 - **Wizard Bible**
   - http://wizardbible.org/
   - セキュリティ系の情報まとめサイトが閉鎖された。
@@ -479,6 +487,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Mosaic 1.0 リリースから 25 年
 - **Yahoo! Japan が TLS1.0, TLS1.1 を 2018 年 6 月 1 日で切る**
   - https://security.yahoo.co.jp/news/tls12.html
+
 
 ### イベント
 

@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 67 回のテーマは 2020 年 4 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -150,7 +151,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - すでに approve された intent も、それぞれ機能ごとに改めて判断する
   - **Deprecate and Freeze: The User-Agent string**
     - https://groups.google.com/a/chromium.org/d/msg/blink-dev/-2JIRNMWJ7s/u-YzXjZ8BAAJ
-    - UA 文字列のエントロピー減らす試みのうち、 UA 文字列の半固定化を少なくとも 2021 年まで
+    - UA 文字列のエントロピー減らす試みのうち、UA 文字列の半固定化を少なくとも 2021 年まで
     - CH-UA ヘッダは Chrome 84 で ship 予定
 - v8
   - Understanding the ECMAScript spec, part 3 · V8
@@ -185,6 +186,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Project Zero: You Won't Believe what this One Line Change Did to the Chrome Sandbox
   - https://googleprojectzero.blogspot.com/2020/04/you-wont-believe-what-this-one-line.html
 
+
 ### Firefox 動向
 
 - Stable: 75.0
@@ -204,7 +206,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/T_dD0us_W1E/F9FxewRDAQAJ
   - Ship: AudioWorklet
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/_i1mSzhaDkQ/HCQ8CZwsAQAJ
-    - あるサービスプロバイダから WFH な環境で有益という声がでたので、 76 にアップリフトした
+    - あるサービスプロバイダから WFH な環境で有益という声がでたので、76 にアップリフトした
   - Ship: "Multi-value" WebAssembly proposal
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/lh3u-nqbFf8/A3KwV6thAQAJ
   - Ship: RegExp dotAll flag (/s), unicode escape sequences, lookbehind assertions
@@ -232,7 +234,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://privacy.twitter.com/en/blog/2020/data-cache-firefox.html
     - Shared PC で、別アカウントの Cache が Firefox では残っていたと Twitter 発表。(Firefox の問題のような書かれ方)
     - https://blog.mozilla.org/blog/2020/04/03/what-you-need-to-know-about-twitter-on-firefox
-    - 実際は Content-Disposition が指定されて Cache-Control が指定されてないレスポンスが、 Huristic Cache に載っていた問題。 Huristic Cache は仕様にもあり実装にゆだねられているので、本来は明示的に Cache-Control: no-store を指定すべきだが、 Twitter は Chrome/Safari の実装でしかテストしてなかった模様。
+    - 実際は Content-Disposition が指定されて Cache-Control が指定されてないレスポンスが、Huristic Cache に載っていた問題。Huristic Cache は仕様にもあり実装にゆだねられているので、本来は明示的に Cache-Control: no-store を指定すべきだが、Twitter は Chrome/Safari の実装でしかテストしてなかった模様。
     - Mozilla は仕様はこうした問題を解決するためにあるのに、正しく使われていないことによる問題を Firefox の問題のようにすり替えていることに遺憾。
     - Twitter Direct Message Caching and Firefox - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/04/twitter-direct-message-caching-and-firefox/
@@ -262,6 +264,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hacks.mozilla.org/2020/04/experimental-webgpu-in-firefox/
   - Keeping Firefox working for you during challenging times | The Firefox Frontier
     - https://blog.mozilla.org/firefox/keeping-firefox-working-for-you-during-challenging-times/
+
 
 ### Safari 動向
 
@@ -314,6 +317,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - delete が最適化にもたらす影響
 - Other
 
+
 ### Edge 動向
 
 - Stable: 81
@@ -324,6 +328,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - Analyzing Network Traffic Logs (NetLog json) | text/plain
     - https://textslashplain.com/2020/04/08/analyzing-network-traffic-logs-netlog-json/
+
 
 ### WHATWG/W3C 動向
 
@@ -340,6 +345,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/2020/04/w3c-website-redesign-user-stories-brand-and-identity/
   - Upcoming Distributed, Online Workshops: W3C/OGC Joint Workshop Series on Maps for the Web
     - https://www.w3.org/blog/news/archives/8455
+
 
 ### TC39 動向
 
@@ -380,6 +386,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - diff 記法みたいな
     - ジョークらしい(table から削除されてる)
 - Other
+
 
 ### IETF 動向
 
@@ -428,11 +435,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-whited-kitten-password-storage-01
 - Other
 
+
 ### セキュリティ動向
 
 - Zoom Japan FAQ - 2020/04/01 Zoom 利用者へのメッセージ
   - https://sites.google.com/zoom.us/zoomjapanfaq/zoomblog/a-message-to-our-users
-  - 様々な脆弱性や実装上の問題に対応するため、 90 日の集中対策計画を発表
+  - 様々な脆弱性や実装上の問題に対応するため、90 日の集中対策計画を発表
 - ミーティング・ウェビナーの暗号化について (翻訳版) - Zoom Blog
   - https://blog.zoom.us/wordpress/ja/2020/04/01/zoom%e3%81%8a%e3%82%88%e3%81%b3%e3%83%9f%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0-%e3%82%a6%e3%82%a7%e3%83%93%e3%83%8a%e3%83%bc%e3%81%ae%e6%9a%97%e5%8f%b7%e5%8c%96%e3%81%ab%e9%96%a2%e3%81%99/
   - End-to-End 暗号化
@@ -443,6 +451,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - ただし、事前に subdomain を乗っ取っておく必要がある
 - 「ニンテンドーネットワーク ID」に対する不正ログイン発生のご報告と「ニンテンドーアカウント」を安全にご利用いただくためのお願い
   - https://www.nintendo.co.jp/support/information/2020/0424.html
+
 
 ### 周辺動向
 
@@ -465,6 +474,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - オランダ当局が Cookie ウォールは GDPR の要件を満たさないと判断 | TechCrunch Japan
   - https://jp.techcrunch.com/2019/03/11/2019-03-08-cookie-walls-dont-comply-with-gdpr-says-dutch-dpa/
 
+
 ### イベント
 
 - 5 月
@@ -476,6 +486,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 19: SecWeb
   - ??: WWDC
     - virtual
+
 
 ### Wrap Up
 

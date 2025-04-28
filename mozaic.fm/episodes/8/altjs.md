@@ -15,7 +15,8 @@ guest: [vvakame](https://twitter.com/vvakame)
 
 今回は [#LLDiver](http://ll.jus.or.jp/2014/) で [「mozaic.fm 出張版: TypeScript and Dart」](http://ll.jus.or.jp/2014/program%23mozaic.fm) という枠をやらせて頂きました。
 
-ゲストは [あんどう](https://twitter.com/technohippy) さんと、 [わかめ](https://twitter.com/vvakame) さんをお迎えし altJS をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
+ゲストは [あんどう](https://twitter.com/technohippy) さんと、[わかめ](https://twitter.com/vvakame) さんをお迎えし altJS をテーマに 「今なにが起こっているのか?」「これからどうなっていくのか?」を議論しました。
+
 
 ## Show Note
 
@@ -28,6 +29,7 @@ guest: [vvakame](https://twitter.com/vvakame)
 - [DefinitelyTyped](https://github.com/borisyankov/DefinitelyTyped)
 - [Dart Editor](https://www.dartlang.org/tools/editor/)
 - [Chrome Dev Editor](https://github.com/dart-lang/chromedeveditor)
+
 
 ## Slide
 

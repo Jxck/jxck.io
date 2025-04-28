@@ -16,6 +16,7 @@ Monthly Web のモチベーションについては以下。
 
 [ep25 Monthly Web 201707](https://mozaic.fm/episodes/25/monthly-web-201707.html)
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -118,7 +119,7 @@ Monthly Web のモチベーションについては以下。
     - [Code Grid](https://www.codegrid.net/)
   - Experiment: AudioWorklet
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/oeBf3websgM/Smi7gQxjAQAJ
-    - ScriptProcessorNode を置き換える。 2018 March まで Origin Trials 。
+    - ScriptProcessorNode を置き換える。2018 March まで Origin Trials 。
 - Loading Team weekly snippet
   - Oct 30 - Nov 3
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/QG9JBkUcKS4/X3saKgZhAQAJ
@@ -155,6 +156,7 @@ Monthly Web のモチベーションについては以下。
   - Integrating the Payment Request API with a payment service provider
     - https://medium.com/dev-channel/integrating-the-payment-request-api-with-a-payment-service-provider-b6a23aa44bd6
     - Payment Request API の解説
+
 
 ### Firefox 動向
 
@@ -290,6 +292,7 @@ Monthly Web のモチベーションについては以下。
   - DASH playback of AV1 video in Firefox - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2017/11/dash-playback-of-av1-video/
 
+
 ### Safari 動向
 
 - Safari Technology Preview 43
@@ -314,6 +317,7 @@ Monthly Web のモチベーションについては以下。
     - Visual Viewport API の実装も発表
     - 実装しているのは Chrome のエンジニアらしい
 
+
 ### Edge 動向
 
 - Introducing new JavaScript optimizations, WebAssembly, SharedArrayBuffer, and Atomics in EdgeHTML 16
@@ -328,7 +332,7 @@ Monthly Web のモチベーションについては以下。
   - 15: https://aka.ms/devguide_edgehtml_15
 - ChakraCore
 - Other
-  - Windows 10 バージョン 1607 (RS1) 以降、 HSTS 機能が常に有効となりました
+  - Windows 10 バージョン 1607 (RS1) 以降、HSTS 機能が常に有効となりました
     - https://blogs.technet.microsoft.com/jpieblog/2017/11/01/rs1_hsts_update/
     - 試験したが目立った障害がないためデフォルトオンに
     - レジストリによる無効化もできないように
@@ -337,6 +341,7 @@ Monthly Web のモチベーションについては以下。
     - https://blogs.technet.microsoft.com/jpieblog/2017/11/15/securityupdate201711/
   - New and improved Event and CSS inspection for Microsoft Edge DevTools
     - https://blogs.windows.com/msedgedev/2017/11/28/new-improved-event-css-inspection-microsoft-edge-devtools/
+
 
 ### TPAC
 
@@ -530,6 +535,7 @@ Monthly Web のモチベーションについては以下。
   - TAG
     - https://github.com/w3ctag/meetings/tree/gh-pages/2017/11-SFO
 
+
 ### WHATWG/W3C 標準動向
 
 - W3C Strategic Highlights
@@ -613,6 +619,7 @@ Monthly Web のモチベーションについては以下。
   - Proposed Group: Art & Culture (Museums) On The Web Community Group
     - https://www.w3.org/community/blog/2017/11/17/proposed-group-art-culture-museums-on-the-web-community-group/
 
+
 ### TC39 動向
 
 - Proposals Diff
@@ -641,6 +648,7 @@ Monthly Web のモチベーションについては以下。
   - https://github.com/tc39/process-document/pull/15
   - stage 4 になるための実装要件を明確にしたい人と、意図的に曖昧であるべきという議論
   - stage 5 を設けるという話も出た(が消えた)
+
 
 ### IETF 動向
 
@@ -701,6 +709,7 @@ Monthly Web のモチベーションについては以下。
     - https://lists.w3.org/Archives/Public/public-webappsec/2017Nov/0023.html
     - signature-based-sri (公開鍵を使う SRI) の現状と今後を話したい、という話
 
+
 ### 周辺動向
 
 - Please build websites for the web, not just Google Chrome.
@@ -741,6 +750,7 @@ Monthly Web のモチベーションについては以下。
   - https://amphtml.wordpress.com/2017/11/28/an-amp-paywall-and-subscription-model-for-all-publishers/
   - AMP でマネタイズの話(LaterPay のブログ記事の転載)
   - amp-access-laterpay で LaterPay 経由で課金を実装できる話
+
 
 ### イベント
 

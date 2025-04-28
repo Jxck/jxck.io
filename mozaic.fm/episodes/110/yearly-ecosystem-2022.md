@@ -15,6 +15,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 今年の 8 月に開始した Ecosystem と、今回作成したそれ以前のまとめを踏まえ、今年の Web Ecosystem を振り返ります。
 
+
 ## Show Note
 
 ### 今年一年で思い出に残っているトピック 3 つ
@@ -32,6 +33,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   2. Astro
   3. Deno + npm
 
+
 ### 1 月
 
 - Marak 問題
@@ -39,6 +41,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - 応じないことに怒り color.js / faker.js に攻撃コードが仕込まれた
   - npm で更新が戻されたり、コミュニティベースになったりといった対応がされた
   - OSS がお金にならない問題
+
 
 ### 2 月
 
@@ -49,6 +52,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - State of JS 2021 公開
 - React 18 RC
 
+
 ### 3 月
 
 - MDN 刷新 / MDN Plus 開始
@@ -57,6 +61,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - TS 4.6
 - Ladle
   - Storybook Alternative by uber
+
 
 ### 4 月
 
@@ -71,6 +76,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - storybook に正式に vite が入った
 - rome に formatter が追加された
 
+
 ### 5 月
 
 - WinterCG
@@ -82,6 +88,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - Layout RFC
 - useEvent (なくなった気がするけど)
 
+
 ### 6 月
 
 - TS 4.7
@@ -91,15 +98,18 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - Announcing Cypress 10 with Component Testing Beta!
   - https://cypress.io/blog/2022/06/01/cypress-10-release/
 
+
 ### 7 月
 
 - Fresh1.0
 - Vite 3.0
 - bun
 
+
 ### 8 月
 
 - https://mozaic.fm/episodes/102/monthly-ecosystem-202208.html
+
 
 ### 9 月
 
@@ -109,9 +119,11 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - adobe の fetch 実装
   - https://github.com/adobe/fetch
 
+
 ### 10 月
 
 - https://mozaic.fm/episodes/106/monthly-ecosystem-202210.html
+
 
 ### 11 月
 

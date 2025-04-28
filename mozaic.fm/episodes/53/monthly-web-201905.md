@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 53 回のテーマは 2019 年 5 月の Monthly Web です。
 
+
 ## Show Note
 
 ### mozaic bootcamp 2019
@@ -22,6 +23,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.isyumi.net/entry/2019/05/03/134854
 - mozaic bootcamp に参加して気づいた、自分に欠けていた Web 技術の知識メモ - ninjinkun's diary
   - https://ninjinkun.hatenablog.com/entry/mozaic-bootcamp
+
 
 ### Chrome 動向
 
@@ -201,6 +203,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.googleblog.com/2019/05/Flutter-io19.html
     - Flutter for web
 
+
 ### Firefox 動向
 
 - Stable: 67
@@ -307,6 +310,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://events.mozilla.org/becomeabetatestingbughunter
     - Fenix の β テスト
 
+
 ### Safari 動向
 
 - Stable: 12.1
@@ -334,6 +338,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - コンバージョン結果は 24~48h の間に wellknown uri に post される
     - `/.well-known/ad-click-attribution/`
     - そして Opt-Out 可能に
+
 
 ### Edge 動向
 
@@ -374,6 +379,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja
   - https://developer.microsoft.com/en-us/microsoft-edge/platform/
 
+
 ### WHATWG/W3C 動向
 
 - Recommendation
@@ -410,7 +416,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/whatwg/html/commit/ab7344318eed117b94f094b1c564e60527d2257f
   - **Add form.requestSubmit()**
     - https://github.com/whatwg/html/commit/e0742f8fdf3b119fdabdcad01d2ebfef1d7a2262
-    - submit ボタンを押した時の挙動(バリデーション、 `submit` イベント発火)と同様のメソッド
+    - submit ボタンを押した時の挙動(バリデーション、`submit` イベント発火)と同様のメソッド
   - Define button layout
     - https://github.com/whatwg/html/commit/6780c22fccb41f5d84aa079d2644c79b1acdc5eb
     - ボタン周りのレイアウトが厳密に
@@ -419,6 +425,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - tkent-google/std-switch
     - https://github.com/tkent-google/std-switch
     - スイッチコントロールを標準コンポーネント化する試み
+
 
 ### TC39 動向
 
@@ -431,6 +438,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 3->4
 - New Proposals
 - Other
+
 
 ### IETF 動向
 
@@ -522,6 +530,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - SameSite cookies explained
     - https://web.dev/samesite-cookies-explained/
 
+
 ### セキュリティ動向
 
 - **日本ハッカー協会セミナー「不正指令電磁的記録罪の傾向と対策」**
@@ -541,6 +550,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Abusing jQuery for CSS powered timing attacks**
   - https://portswigger.net/blog/abusing-jquery-for-css-powered-timing-attacks
   - CSS selector で Timing Attack
+
 
 ### 周辺動向
 
@@ -564,7 +574,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.chriszacharias.com/a-conspiracy-to-kill-ie6
   - 元 YouTube エンジニアによる YouTube が IE6 サポートを打ち切るための策略についての回顧録
   - IE6 のサポートを段階的に打ち切るバナーを表示
-  - 買収前の古い YouTube 社員によって作られた "OldTuber" という、 Google のインフラチェックをバイパスする権限を悪用した
+  - 買収前の古い YouTube 社員によって作られた "OldTuber" という、Google のインフラチェックをバイパスする権限を悪用した
   - バナーを見た Google Docs のエンジニアもそれを理由に同様のバナーを表示
 - NGINX structural enhancements for HTTP/2 performance
   - https://blog.cloudflare.com/nginx-structural-enhancements-for-http-2-performance/
@@ -574,6 +584,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/better-http-2-prioritization-for-a-faster-web/
 - WebAssembly at eBay: A Real-World Use Case
   - https://www.ebayinc.com/stories/blogs/tech/webassembly-at-ebay-a-real-world-use-case/
+
 
 ### イベント
 

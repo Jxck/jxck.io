@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 117 回のテーマは 2023 年 3 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable:111
+
 
 #### Updates
 
@@ -64,6 +66,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - A Console warning to remove your no-op service worker fetch handler
   - Miscellaneous highlights
 
+
 #### Intents
 
 - Ship: CSS :lang pseudo class level 4
@@ -81,7 +84,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zCW6oEALAl4
 - **Ship: Forbidden and escaped host characters compliant with the URL standard**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ZkeDSeuBx0Q
-  - URL の仕様に合わせるため、 Host で利用できる文字の制限が修正
+  - URL の仕様に合わせるため、Host で利用できる文字の制限が修正
   - % エンコードされる文字も修正
 - **Ship: Private State Tokens API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/vKCYxKqw8k0
@@ -145,7 +148,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - deprecate forwarding of mdoc-scheme URLs as Android Intents
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/wcCrcMTELS0
 
+
 #### V8
+
 
 #### Other
 
@@ -164,7 +169,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers-jp.googleblog.com/2023/03/ads-api-image-and-location-auto-migrations.html
   - Google Developers Japan: Google Ads API v13 のお知らせ
     - https://developers-jp.googleblog.com/2023/03/announcing-v13-of-google-ads-api.html
-  - Google Developers Japan: Google 広告の検索、ショッピング、ディスプレイ、 P-MAX キャンペーンの地域ターゲティングの変更について
+  - Google Developers Japan: Google 広告の検索、ショッピング、ディスプレイ、P-MAX キャンペーンの地域ターゲティングの変更について
     - https://developers-jp.googleblog.com/2023/03/changes-to-location-targeting-in-google-ads.html
 - chrome developer blog
   - **SPA view transitions land in Chrome 111 - Chrome Developers**
@@ -194,9 +199,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - v8
   - https://v8.dev/
 
+
 ### Firefox 動向
 
 #### Stable: 111.0
+
 
 #### Updates
 
@@ -208,6 +215,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - FormData `submitter`
 - Firefox 111.0, See All New Features, Updates and Fixes
   - https://www.mozilla.org/en-US/firefox/111.0/releasenotes/
+
 
 #### Intents
 
@@ -230,6 +238,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
+
 #### Other
 
 - Firefox Android's new privacy feature, Total Cookie Protection, stops companies from keeping tabs on your moves
@@ -249,9 +258,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Surf with more Perf(ormance) - These Weeks in Firefox: Issue 133 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2023/03/07/surf-with-more-performance-these-weeks-in-firefox-issue-133/
 
+
 ### Safari 動向
 
 #### Stable: 16.3
+
 
 #### Updates
 
@@ -281,19 +292,24 @@ guest: [@myakura](https://twitter.com/myakura)
 
 ####
 
+
 #### Other
 
 - **Issues · WebKit/standards-positions**
   - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+is%3Aclosed+closed%3A%3E2023-02-28+
   - 今後は定期観測していく
 
+
 ### Edge 動向
 
 #### Stable:
 
+
 #### Updates
 
+
 #### Chakra
+
 
 #### Other
 
@@ -311,6 +327,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2023/03/14/taking-control-of-your-applications-title-bar/
 - **Video super resolution in Microsoft Edge**
   - https://blogs.windows.com/msedgedev/2023/03/08/video-super-resolution-in-microsoft-edge/
+
 
 ### WHATWG/W3C 動向
 
@@ -341,6 +358,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Working Group Note: EPUB Type to ARIA Role Authoring Guide 1.1
   - https://www.w3.org/blog/news/archives/9857
 
+
 #### Other
 
 - **popover attribute may not be web compatible · Issue #9042 · whatwg/html**
@@ -359,6 +377,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.w3.org/blog/news/archives/9851
 - **Add `URL.canParse()` by annevk · Pull Request #763 · whatwg/url**
   - https://github.com/whatwg/url/pull/763
+
 
 ### IETF 動向
 
@@ -388,18 +407,22 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
+
 
 ### TC39 動向
 
 - Meeting のある月はステージの移動のみ見る
 - 翌月に公開された Note だけを見る
 
+
 #### Meeting
 
 - 2023-01
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
+
 
 #### Proposals Diff
 
@@ -410,13 +433,17 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
+
 #### New Proposals
 
+
 #### Other
+
 
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
+
 
 #### Meeting
 
@@ -436,6 +463,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Relax forbidden header restrictions for non-browser runtimes: Relax forbidden header restrictions for non-browser runtimes fetch#19
   - @andreubotella: preview of blog post
     - https://preview-andreubotella-com.deno.dev/blog/wintercg/
+
 
 ### CDN 動向
 
@@ -468,10 +496,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Out now! Auto-renew TLS certificates with DCV Delegation**
   - https://blog.cloudflare.com/introducing-dcv-delegation/
 
+
 #### Fastly
 
 - **ネット上のプライバシーを強化する Oblivious HTTP | Fastly**
   - https://www.fastly.com/jp/blog/enabling-privacy-on-the-internet-with-oblivious-http
+
 
 #### Other
 
@@ -484,7 +514,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - What Proposed New Changes in the OWASP API Security Top 10 Mean for You | Akamai
   - https://www.akamai.com/blog/security/proposed-new-changes-in-owasp-api-security
 
+
 ### セキュリティ動向
+
 
 ### 周辺動向
 
@@ -495,6 +527,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.igalia.com/2023/03/07/Be-a-Part-of-Web-Engines-HackFest-2023.html
 - The Igalia 2023 Coding Experience Program | Igalia
   - https://www.igalia.com/2023/03/15/The-Igalia-2023-Coding-Experience-Program.html
+
 
 ### イベント
 
@@ -510,6 +543,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 6 月
   - 7-8: W3C Workshop Secure the Web Forward
     - https://www.w3.org/2023/03/secure-the-web-forward/
+
 
 ### Wrap Up
 

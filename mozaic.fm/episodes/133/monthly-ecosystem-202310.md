@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 133 回のテーマは 2023 年 10 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - TypeScript Origins: The Documentary - YouTube
@@ -81,6 +82,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - https://github.com/aidenybai/pattycake
 - Announcing Deno Queues
   - https://deno.com/blog/queues
+
 
 ## Events
 

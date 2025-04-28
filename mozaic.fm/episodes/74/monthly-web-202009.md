@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 74 回のテーマは 2020 年 9 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -191,6 +192,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - sellers.json で販売者情報を提供する - AdSense ヘルプ
     - https://support.google.com/adsense/answer/9889911?hl=ja
 
+
 ### Firefox 動向
 
 - Stable: 81
@@ -267,6 +269,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - MDN が開発者にブラウザの互換性についてアンケートをとった結果がまとまった
     - Flexbox や viewport の実装の違いなどについての回答が多かったらしい
 
+
 ### Safari 動向
 
 - Stable: 14.0
@@ -275,7 +278,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.apple.com/documentation/safari-release-notes/safari-14-release-notes
     - WebExtensions
     - HTTP/3
-    - WebP(iOS 14 、 macOS 11 で)
+    - WebP(iOS 14 、macOS 11 で)
   - Release Notes for Safari Technology Preview 113
     - https://webkit.org/blog/11294/release-notes-for-safari-technology-preview-113/
     - Added support for MediaRecorder bitrate options (r265328)
@@ -315,6 +318,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - [webkit-dev] 2020 WebKit Contributors Meeting - Save the Date
     - https://lists.webkit.org/pipermail/webkit-dev/2020-September/031419.html
     - 11/16 と 11/17 の 2 日間、オンラインで開催
+
 
 ### Edge 動向
 
@@ -392,6 +396,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Debugging Browsers - Tools and Techniques - text/plain
     - https://textslashplain.com/2020/09/29/debugging-browsers-tools-and-techniques/
 
+
 ### WHATWG/W3C 動向
 
 - TPAC
@@ -399,8 +404,8 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/2020/10/TPAC/
     - https://www.w3.org/2020/10/TPAC/group-schedule.html
     - https://www.w3.org/wiki/TPAC/2020/GroupMeetings
-    - 10/12-16 、 10/20 、 10/26-30 で分散開催
-    - グループのミーティング、 AC ミーティング、ブレークアウトに週を分けた
+    - 10/12-16 、10/20 、10/26-30 で分散開催
+    - グループのミーティング、AC ミーティング、ブレークアウトに週を分けた
   - web-advertising agenda
     - https://github.com/w3c/web-advertising/blob/master/meetings/TPAC2020.md
   - web-platform-tests agenda
@@ -425,7 +430,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **W3C re-energizes process for agile Web standardization and earlier Royalty-Free protection**
     - https://www.w3.org/blog/news/archives/8677
     - プロセスドキュメントと特許ポリシーが改訂
-    - 勧告の修正や部分的な機能追加の要件や手順が新プロセスの仕様では簡略化でき、 Living Standard モデルのような改訂ができるようになった
+    - 勧告の修正や部分的な機能追加の要件や手順が新プロセスの仕様では簡略化でき、Living Standard モデルのような改訂ができるようになった
     - 特許ポリシーもあわせて、効力の発行が REC から CR に
   - **New version of the Roadmap of Web Applications on Mobile | W3C News**
     - https://www.w3.org/blog/news/archives/8686
@@ -447,6 +452,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Work in progress on a Decentralized Web Interest Group Charter (Advance Notice)**
     - https://lists.w3.org/Archives/Public/public-new-work/2020Sep/0006.html
     - dweb 的な流れを組んでるのかと思いきや Improving Web Advertising Business Group 系
+
 
 ### TC39 動向
 
@@ -505,6 +511,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://slides.com/pzuraq/decorators-a-new-proposal-2020-09
 - Other
 
+
 ### IETF 動向
 
 - IETF
@@ -551,9 +558,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.fastly.com/blog/state-of-quic-and-http3-2020
     - WG Last Call 直前というのもありドラフトの変遷や実装状況をおさらい
 
+
 ### セキュリティ動向
 
-- 安心して利用できるログイン方法として最も多くの人が選んだのは「パスワード」 一方、 60%以上が「複数のサービスでパスワードを使いまわしている」と回答 - トピックス - ヤフー株式会社
+- 安心して利用できるログイン方法として最も多くの人が選んだのは「パスワード」 一方、60%以上が「複数のサービスでパスワードを使いまわしている」と回答 - トピックス - ヤフー株式会社
   - https://about.yahoo.co.jp/topics/20200903.html
 - Project Zero: JITSploitation I: A JIT Bug
   - https://googleprojectzero.blogspot.com/2020/09/jitsploitation-one.html
@@ -565,7 +573,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://googleprojectzero.blogspot.com/2020/09/attacking-qualcomm-adreno-gpu.html
 - **Project Zero: Announcing the Fuzzilli Research Grant Program**
   - https://googleprojectzero.blogspot.com/2020/10/announcing-fuzzilli-research-grant.html
-  - JS の fazzing で脆弱性見つけるプログラム。 1 年間実施、脆弱性には最大 $5000
+  - JS の fazzing で脆弱性見つけるプログラム。1 年間実施、脆弱性には最大 $5000
 - **JVNVU#91973538: OpenSSL における暗号通信を解読可能な脆弱性 (Raccoon Attack)**
   - https://jvn.jp/vu/JVNVU91973538/
 - note でソースコードから IP アドレスが確認できた事態に関する追加報告とお詫び | note 株式会社
@@ -574,6 +582,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://japan.zdnet.com/article/35159781/
 - ドコモ口座を悪用した不正送金についてまとめてみた - piyolog
   - https://piyolog.hatenadiary.jp/entry/2020/09/08/054431
+
 
 ### 周辺動向
 
@@ -619,10 +628,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - Google で障害発生 Drive Gmail YouTube Hangouts 等各種サービスダウン
     - https://cubeglb.com/media/2020/09/25/google_502_20200925/
   - Apple
-    - Apple サービスで大規模障害。 Music や App Store 、 Arcade など多数が機能停止
+    - Apple サービスで大規模障害。Music や App Store 、Arcade など多数が機能停止
     - https://japanese.engadget.com/apple-outage-024018171.html
   - MS
-    - MS365 サービス障害発生。 Teams 、 Outlook 等がアクセス不能な状態に。
+    - MS365 サービス障害発生。Teams 、Outlook 等がアクセス不能な状態に。
     - https://news.yahoo.co.jp/byline/ohmototakashi/20200929-00200601/
   - AWS
     - 2020 年 9 月 26 日 CloudFront 障害中のアクセスログを調査してみた
@@ -630,6 +639,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 東証
     - 東証、システム障害で謝罪 詳細な経緯説明、当面は「人的監視」で対応
     - https://www.itmedia.co.jp/news/articles/2010/01/news156.html
+
 
 ### イベント
 
@@ -648,6 +658,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.ietf.org/how/meetings/109/
   - 17-19: BlinkOn
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/zNDLekIrSQE
+
 
 ### Wrap Up
 

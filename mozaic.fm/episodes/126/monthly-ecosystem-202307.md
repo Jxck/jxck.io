@@ -13,6 +13,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 126 回のテーマは 2023 年 7 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - Agenda | Config 2023
@@ -75,6 +76,7 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - Symbols as WeakMap keys
 - Announcing typescript-eslint v6
   - https://typescript-eslint.io/blog/announcing-typescript-eslint-v6/
+
 
 ## Events
 

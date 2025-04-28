@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 66 回のテーマは mozaic.fm v3 リリースアナウンスです。
 
+
 ## Show Note
 
 アップデートの詳細はブログに書いています。

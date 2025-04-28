@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 138 回のテーマは 2023 年を振り返る Yearly Platform です。
 
+
 ## Show Note
 
 ### 今年の mozaic.fm
@@ -20,6 +21,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 6 月: Coinhive
 - 9 月: Drive Talk
 - 8 月: Monthly Ecosystem 1 周年
+
 
 ### 2023 年チェックポイント
 
@@ -30,6 +32,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Winter CG の今後
 - Figma 買収での Adobe 製品の今後
 - Addon-gated と Permission
+
 
 ### 今年のキーワード
 
@@ -118,6 +121,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Manifest V2
     - その他プラットフォームの負債
 
+
 ### 2024 年チェックポイント
 
 - Module Harmoney
@@ -137,6 +141,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - CSS 進化の受け入れられ方(`@scope` etc.)
 - View Transitions
 - 3PCD
+
 
 ### 1 月
 
@@ -274,6 +279,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - skeb_jp の heroku 障害? と対応
   - Meta に GDPR 違反で 547 億円罰金
   - Meta が取り組むグローバルネットワーク最適化の話
+
 
 ### 2 月
 
@@ -415,6 +421,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - img 要素が提案されてから 30 年経った
   - mnot 先生による meta への「Platform を作るのは簡単じゃないよ」って話
 
+
 ### 3 月
 
 - Chrome
@@ -495,6 +502,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - セキュリティ動向
 - 周辺動向
   - Intent2Ship bot の中の人が twitter 垢 BAN された
+
 
 ### 4 月
 
@@ -625,6 +633,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Open Web Docs の API 名 rename
   - ARIA 版の caniuse
 
+
 ### 5 月
 
 - Chrome
@@ -703,6 +712,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - セキュリティ動向
 - 周辺動向
   - 改正電気通信事業法 6 月から実施
+
 
 ### 6 月
 
@@ -806,6 +816,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web Engines Hackfest 2023 Starts Monday | Igalia
   - モバイル・エコシステムに関する競争評価 最終報告(案)
 
+
 ### 7 月
 
 - Chrome
@@ -884,6 +895,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - ニンテンドーでブラウザ開発者募集
   - Vivaldi から WEI へのコメント
+
 
 ### 8 月
 
@@ -978,6 +990,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Meta on short-lived certificates
 - 周辺動向
   - 10 years anniv of Let's Encrypt
+
 
 ### 9 月
 
@@ -1107,6 +1120,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - State of HTML
   - Molly Holzschlag 追悼
 
+
 ### 10 月
 
 - Chrome
@@ -1214,6 +1228,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 周辺動向
   - 登さんのインターネット入門
   - Chrome の パスキーが iCloud Keychain に
+
 
 ### 11 月
 

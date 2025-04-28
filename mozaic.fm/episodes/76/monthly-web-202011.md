@@ -12,6 +12,7 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 76 回のテーマは 2020 年 11 月の Monthly Web です。
 
+
 ## Show Note
 
 ### Chrome 動向
@@ -120,7 +121,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Safari/FF にはあった戻る時のキャッシュヒットを Chrome に入れていく話
     - CrossSite は Finch release 済み
     - SameSite への OT を実施中
-    - pageshow/pagehide の扱い、 no-store でのオプトアウトなど
+    - pageshow/pagehide の扱い、no-store でのオプトアウトなど
   - **BlinkOn13 Youtube Playlist**
     - https://www.youtube.com/playlist?list=PL9ioqAuyl6UJ_1hPrSWD1LpaIAeF9aaJi
     - 動画の前半がセッション、後半は QA な録画
@@ -178,7 +179,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Ship: 'display: list-item' by default for `<summary>`**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/ihZFdCHuiTA/m/e1SEN6IQCQAJ
     - summary の開閉の三角を別のものに書き換えるとき `::-webkit-details-marker` の `::before` content 経由だった
-    - list-item になり list-style-type でコンテントを、 `::marker` でスタイルを定義できるように
+    - list-item になり list-style-type でコンテントを、`::marker` でスタイルを定義できるように
   - **Ship: 'disclosure-open' and 'disclosure-closed' keywords for CSS list-style-type property**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/Czc_36BS2dA/m/_yHDeFwQCQAJ
     - list-style-type に `disclosure-open`/`closed` を追加(`<summary>` の開閉の三角)
@@ -261,6 +262,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.chromium.org/Home/chromium-security/root-ca-policy
     - Chrome も Firefox みたいに証明書ストアを自分で持つようになるらしい
 
+
 ### Firefox 動向
 
 - Stable: 83.0
@@ -274,7 +276,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - DNS のパフォーマンスへの影響を Cloudflare と調査
   - **Firefox 83 introduces HTTPS-Only Mode**
     - https://blog.mozilla.org/security/2020/11/17/firefox-83-introduces-https-only-mode/
-    - HTTPS でしか接続せず、 HTTP で接続しようとすると許可を求めるモードの導入
+    - HTTPS でしか接続せず、HTTP で接続しようとすると許可を求めるモードの導入
   - Foundations for the Future - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/11/foundations-for-the-future/
     - Servo が Linux Foundation に移管されたことを受けての今後の話
@@ -322,6 +324,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.igalia.com/2020/12/02/Igalia-joins-MDN-Product-Advisory-Board.html
     - Igalia (Daniel Ehrenberg) が MDN の PAB に参加
 
+
 ### Safari 動向
 
 - Stable: 14.0.1
@@ -346,7 +349,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Reserving Layout Space for Images
       - width/height でアスペクト比割り出し領域予約
     - New CSS Features
-      - **画像の向きが EXIF ベースになり、 image-orientation で上書き**
+      - **画像の向きが EXIF ベースになり、image-orientation で上書き**
       - is:(), :matches(), :where()
       - line-break: anywhere
     - Media Enhancements
@@ -391,6 +394,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.webkit.org/pipermail/webkit-dev/2020-November/031622.html
 - Other
 
+
 ### Edge 動向
 
 - Stable: 87
@@ -415,6 +419,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Outlook REST API beta and Outlook REST API v2.0 Deprecation Notice - Microsoft Tech Community
     - https://techcommunity.microsoft.com/t5/exchange-team-blog/outlook-rest-api-beta-and-outlook-rest-api-v2-0-deprecation/ba-p/1898162
 
+
 ### WHATWG/W3C 動向
 
 - Recommendation
@@ -438,6 +443,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Remove AppCache · whatwg/html@e4330d5**
     - https://github.com/whatwg/html/commit/e4330d510a1d05e1f5f84707c9d6dcec97db94b8
     - HTML 仕様から AppCache が削除
+
 
 ### TC39 動向
 
@@ -475,6 +481,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - 7 月は Tokyo (4 days) -> のちに remote に変更(たぶん Olympic)
   - **TC39 も MDN に協力してこう**
     - MDN staffing to document TC39's work
+
 
 ### IETF 動向
 
@@ -514,10 +521,12 @@ guest: [@myakura](https://twitter.com/myakura)
     - 冪等性の無い POST をリトライできるように id をつけるためのヘッダ
 - Other
 
+
 ### セキュリティ動向
 
 - Standing on Our Own Two Feet - Let's Encrypt - Free SSL/TLS Certificates
   - https://letsencrypt.org/2020/11/06/own-two-feet.html
+
 
 ### 周辺動向
 
@@ -547,6 +556,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://calendar.perfplanet.com/2020/
     - https://calendar.perfplanet.com/contribute/
 
+
 ### イベント
 
 - 12 月
@@ -554,6 +564,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developer.chrome.com/devsummit/
 - 1 月
 - 2 月
+
 
 ### Wrap Up
 

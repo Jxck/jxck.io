@@ -13,6 +13,7 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 
 第 118 回のテーマは 2023 年 4 月の Monthly Ecosystem です。
 
+
 ## Show Note
 
 - Next.js
@@ -28,7 +29,7 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - @vercel/og の ImageResponse が next/server に入った
 - Add Zod and router state validation by shuding · Pull Request #46962 · vercel/next.js
   - https://github.com/vercel/next.js/pull/46962
-  - `typedRoutes`を提供し、 Next に Zod を入れてやってるぽい
+  - `typedRoutes`を提供し、Next に Zod を入れてやってるぽい
 - RFC: `next/third-parties` - vercel/next.js - Discussion #48256
   - https://github.com/vercel/next.js/discussions/48256
   - Nextjs でよく使われる
@@ -42,7 +43,7 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - RSC が入ったが、これを最大限生かすには bundler の integration が必須
     - 今の Bundler は Client に特化してる
     - 単一のモジュールグラフを Server/Client で分割できるものがない
-    - なので、 Bundler 開発者と組んでやっていく
+    - なので、Bundler 開発者と組んでやっていく
   - Asset Loading
     - CSS, Font, Img を Suspence と統合していく
   - Document Metadata
@@ -65,8 +66,8 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
     - 実装済みだがプロジェクトが休止中
 - React の公式ドキュメントサイトリニューアルについての Dan 氏の解説
   - https://twitter.com/dan_abramov/status/1638004334544707584
-  - ドキュメントの最初の方には hooks が登場しなくて、 Server Components でも動くような説明を意識してる
-  - memo 系の関数は使用されてなくて、多くのコードで問題なく、 React labs でやってるコンパイラ周りで解決されることを確信している(使うことが非推奨とかではない)
+  - ドキュメントの最初の方には hooks が登場しなくて、Server Components でも動くような説明を意識してる
+  - memo 系の関数は使用されてなくて、多くのコードで問題なく、React labs でやってるコンパイラ周りで解決されることを確信している(使うことが非推奨とかではない)
   - Effects 周りと Refs はあまり使用しない方向でドキュメントの最後の Escape Hatches のコンテンツへ(使うことが非推奨とかではない)
   - なんで最初から Effects 周りはそうなってなかったかというと、まぁすぐにベストプラクティスができるわけでもないからさ〜ってやつ
 - Storybook v7
@@ -96,8 +97,8 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - Sass: Sass and Native Nesting
   - https://sass-lang.com/blog/sass-and-native-nesting
   - Sass と CSS Nestting に関する違いと、今後のプラン
-  - CSS だと `:is()` を使用するが、 Sass は使用しないので、適用されるパターンに違いがある
-  - `:is()` のシェアが 98%を超えたら、 Sass も `:is()` を使用するプラン
+  - CSS だと `:is()` を使用するが、Sass は使用しないので、適用されるパターンに違いがある
+  - `:is()` のシェアが 98%を超えたら、Sass も `:is()` を使用するプラン
 - layer - vanilla-extract
   - https://vanilla-extract.style/documentation/api/layer/#layer
   - vanilla-extract のレイヤーサポート
@@ -114,6 +115,7 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 - Vercel
   - https://twitter.com/vercel/status/1643270051049660417
   - 謎告知
+
 
 ## Events
 

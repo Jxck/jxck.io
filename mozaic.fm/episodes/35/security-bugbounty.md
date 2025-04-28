@@ -14,7 +14,7 @@ guest: [@hnagatomo](https://github.com/hnagatomo)
 
 第 35 回のテーマは Security の Bug Bounty 編です。
 
-今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、 Bug Hunter として報告をする側である [@kinugawamasato](https://twitter.com/kinugawamasato) さんと、報告を受け付ける側である [@k2wanko](https://twitter.com/k2wanko) さんと、 [@hnagatomo](https://github.com/hnagatomo) さんをお呼びして議論しました。
+今回は、脆弱性報奨金制度(Bug Bounty)のしくみについて、Bug Hunter として報告をする側である [@kinugawamasato](https://twitter.com/kinugawamasato) さんと、報告を受け付ける側である [@k2wanko](https://twitter.com/k2wanko) さんと、[@hnagatomo](https://github.com/hnagatomo) さんをお呼びして議論しました。
 
 - 報告する側
   - ハンターは何を見ているか
@@ -29,7 +29,8 @@ guest: [@hnagatomo](https://github.com/hnagatomo)
   - 成立するが CSP でブロックされるバグはどう扱うか
   - 報奨金制度を始めたい人へ
 
-これらを踏まえ、 Web セキュリティで **今何が起きているのか**、 **これからどうなっていくのか** について議論しました。
+これらを踏まえ、Web セキュリティで **今何が起きているのか**、**これからどうなっていくのか** について議論しました。
+
 
 ## Show Note
 

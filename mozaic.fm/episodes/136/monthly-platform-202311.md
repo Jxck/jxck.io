@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 136 回のテーマは 2023 年 11 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 119
+
 
 #### Updates
 
@@ -94,6 +96,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Lighthouse 11.2.0
   - Accessibility improvements
   - Miscellaneous highlights
+
 
 #### Intents
 
@@ -202,6 +205,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Request for Deprecation Trial: Deprecate Third-Party Cookies**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/yGUdvW_t_y0
 
+
 #### Other
 
 - web.dev
@@ -298,9 +302,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Upcoming deprecation of Crawl Rate Limiter Tool in Search Console | Google Search Central Blog | Google for Developers
     - https://developers.google.com/search/blog/2023/11/sc-crawl-limiter-byebye
 
+
 ### Firefox 動向
 
 #### Stable: 120
+
 
 #### Updates
 
@@ -326,6 +332,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.mozilla.org/netpolicy/2023/11/21/global-privacy-control-empowers-individuals-to-limit-privacy-invasive-tracking/
   - `Sec-GPC: 1` が送れるように
 
+
 #### Intents
 
 - **Ship: :has Selector**
@@ -350,9 +357,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/NgCjRyn5n3c
 - **Firefox Development Is Moving From Mercurial To Git**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/5MrpDdHIr-Y
-  - Mercurial と Git を SCM として使っていたが、 Git に一本化
+  - Mercurial と Git を SCM として使っていたが、Git に一本化
   - GitHub でホストするが、バグトラッカーやレビューツールは既存のものを使う
   - 移行時期は検討中
+
 
 #### Newsletter
 
@@ -371,10 +379,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - Unicode Strings をサポート
   - Array grouping をサポート
 
+
 #### MDN / Open Web Docs
 
 - Getting started with CSS container queries | MDN Blog
   - https://developer.mozilla.org/en-US/blog/getting-started-with-css-container-queries/
+
 
 #### Standard Position
 
@@ -389,6 +399,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Element Capture · Issue #857 · mozilla/standards-positions
       - https://github.com/mozilla/standards-positions/issues/857
 
+
 #### Other
 
 - **Down and to the Right: Firefox Got Faster for Real Users in 2023 - Mozilla Hacks - the Web developer blog**
@@ -402,11 +413,13 @@ guest: [@myakura](https://twitter.com/myakura)
   - JSConfJP でのトークの話
 - **Quick as a Fox: Firefox keeps getting faster**
   - https://blog.mozilla.org/en/products/quick-as-a-fox-firefox-keeps-getting-faster/
-  - 2023 年 1 月以降、 Firefox の Speedometer のスコアは 50% 向上
+  - 2023 年 1 月以降、Firefox の Speedometer のスコアは 50% 向上
+
 
 ### Safari 動向
 
 #### Stable: 17.1
+
 
 #### Updates
 
@@ -441,6 +454,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Added support for the allow-downloads directive for frames. (109414664)
   - **Added support for ArrayBuffer.prototype.transfer. (269674@main) (117337535)**
   - Aligned the implementation of the internal function IntlMathematicalValue (used in Number.prototype.toLocaleString, and Intl.NumberFormat) with its current specification. (269825@main) (117535507)
+
 
 #### Standard Positions
 
@@ -487,16 +501,20 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web Environment Integrity API
     - https://github.com/WebKit/standards-positions/issues/234
 
+
 #### Other
+
 
 ### Edge 動向
 
 #### Stable: 119
 
+
 #### Updates
 
 - Microsoft Edge WebView2 now available for Xbox apps
   - https://blogs.windows.com/msedgedev/2023/11/01/webview2-for-xbox-announcement/
+
 
 #### Other
 
@@ -512,6 +530,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/msedgedev/2023/11/15/ignite-2023-latest-innovations-microsoft-edge/
 - Microsoft Defender の報奨金プログラムの紹介 | MSRC Blog | Microsoft Security Response Center
   - https://msrc.microsoft.com/blog/2023/11/introducing-the-microsoft-defender-bounty-program-ja/
+
 
 ### WHATWG/W3C 動向
 
@@ -544,6 +563,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Spatial Data on the Web Working Group Charter extended until 4 April 2024
     - https://lists.w3.org/Archives/Public/public-new-work/2023Nov/0011.html
 
+
 #### Other
 
 - **Define the privacy-policy link type · whatwg/html@1fc1a14**
@@ -566,6 +586,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - W3C Invites Implementations of VC Data Integrity, Data Integrity EdDSA and ECDSA Cryptosuites, and VC JSON Schema | 2023 | News | W3C
   - https://www.w3.org/news/2023/w3c-invites-implementations-of-vc-data-integrity-data-integrity-eddsa-and-ecdsa-cryptosuites-and-vc-json-schema/
 
+
 ### TC39 動向
 
 #### Meeting
@@ -582,14 +603,14 @@ guest: [@myakura](https://twitter.com/myakura)
   - **ShadowRealm: Implementer Feedback and Demotion to Stage 2**
     - https://github.com/tc39/proposal-shadowrealm/issues/331
     - https://docs.google.com/presentation/d/1WJd9g3df_ibVHK3LdoKX2FboDwYQBUBJNxuRAWOYYbM/edit#slide=id.g27ba44aabab_0_57
-    - Stage 3 にはなっているが、 HTML 側をどうするか決まってない
-    - Worker だけならできるが、 Document を触るには、仕様もテストも足りてない
+    - Stage 3 にはなっているが、HTML 側をどうするか決まってない
+    - Worker だけならできるが、Document を触るには、仕様もテストも足りてない
     - Stage 3 のままにしておくのはおかしいので
       - 1. HTML を諦めて Stage 3 keep
       - 2. Stage 2 に下げて HTML 側の作業をする
       - 3. 完全に諦める
     - 結論は 2
-    - JSC も V8 も、 2 が終わった状態の ShadowRealms について Agree してる
+    - JSC も V8 も、2 が終わった状態の ShadowRealms について Agree してる
     - 二つの明示的サポート、触れる API のリスト、十分なテスト、が揃うとまた Stage 3
   - **Structs and shared structs update**
     - https://github.com/tc39/proposal-structs
@@ -636,6 +657,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Stage 2 と 3 の間が欲しい話
     - 増やすことに決定。番号にするが名前は未定。既存の番号はそのまま。
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2023-09-01}...main@{2023-11-01}
@@ -656,6 +678,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Promise.thenable
   - cleanupSome
 
+
 #### New Proposals
 
 - Iterator Sequencing
@@ -669,17 +692,21 @@ guest: [@myakura](https://twitter.com/myakura)
 - Locale Extensions
   - https://github.com/ben-allen/locale-extensions
 
+
 #### Other
+
 
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
+
 
 #### Meeting
 
 - 2023-11-02 Meeting
   - https://github.com/wintercg/admin/issues/57
   - 特になし
+
 
 ### IETF 動向
 
@@ -696,8 +723,8 @@ guest: [@myakura](https://twitter.com/myakura)
     - TLS 1.2 is (still) frozen - Rich Salz - 10 min
       - TLS 1.2 はこれ以上更新されないので Post-Quantum 対応しない
     - TLS Key Share Prediction - David Benjamin - 15 min
-      - PQ 移行考えると、 Client は Server のサポートする暗号化方式を先に知りたい
-      - supported_group / key_share の候補を、 DNS で先んじて交換しておいて、 Handshake で確実に交換できるようにしたい。
+      - PQ 移行考えると、Client は Server のサポートする暗号化方式を先に知りたい
+      - supported_group / key_share の候補を、DNS で先んじて交換しておいて、Handshake で確実に交換できるようにしたい。
     - TLS Trust Expressions - Devon O'Brien, David Benjamin, Bob Beck - 30 min
       - 証明書を単一ではなく複数送るモデルにしたい場合がある
         - キーロテーション
@@ -712,7 +739,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - QUIC Address Discovery
       - STUN 機能を QUIC に持たせたい?
     - NAT Traversal
-      - QUIC で WebRTC とか P2P できるように、 ICE 相当の双方の Traversal をできるようにしたい。
+      - QUIC で WebRTC とか P2P できるように、ICE 相当の双方の Traversal をできるようにしたい。
   - httpwg
     - Compression Dictionary Transport - Patrick Meenan (remote)
       - やってますよ
@@ -755,6 +782,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
+
 #### Other
 
 - **Technical Standards Bodies are Regulators**
@@ -764,6 +792,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Introducing httpbisGPT**
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2023OctDec/0163.html
   - httpbisGPT を作ったよという人
+
 
 ### CDN 動向
 
@@ -776,10 +805,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2024, the year of elections
   - https://blog.cloudflare.com/2024-the-year-of-elections/
 
+
 #### Fastly
 
 - Fastly 、基幹イベント「Yamagoya 2023」を開催 | Fastly
   - https://www.fastly.com/jp/press/press-releases/yamagoya-2023
+
 
 #### Other
 
@@ -788,10 +819,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - InfectedSlurs Botnet Spreads Mirai via Zero-Days | Akamai
   - https://www.akamai.com/blog/security-research/2023/nov/new-rce-botnet-spreads-mirai-via-zero-days
 
+
 ### セキュリティ動向
 
 - LINE ヤフー 個人情報 40 万件流出か - Yahoo!ニュース
   - https://news.yahoo.co.jp/pickup/6483067
+
 
 ### 周辺動向
 
@@ -811,6 +844,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **State of JavaScript 2023**
   - https://survey.devographics.com/ja-JP/survey/state-of-js/2023
 
+
 ### イベント
 
 - 11 月
@@ -825,6 +859,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2 月
 - 3 月
   - 8: 空けといて
+
 
 ### Wrap Up
 

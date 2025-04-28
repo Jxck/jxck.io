@@ -12,11 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 159 回のテーマは 2024 年 8 月の Monthly Platform です。
 
+
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 128
+
 
 #### Updates
 
@@ -51,6 +53,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Remove the includeShadowRoots argument on DOMParser
     - Remove non-standard declarative shadow DOM serialization
     - Remove `PointerEvent.getCoalescedEvents()` from insecure contexts
+
 
 #### Intents
 
@@ -160,6 +163,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Web-Facing Change PSA: Concurrent Smooth scrollIntoViews
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/vnEtycmNGM4
 
+
 #### Other
 
 - web.dev
@@ -213,9 +217,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - google security blog
   - **Google Online Security Blog: Improving the security of Chrome cookies on Windows**
     - https://security.googleblog.com/2024/07/improving-security-of-chrome-cookies-on.html
-    - Cookie がマルウェアから盗まれないように、 macOS は Keychain, Linux は kwallet などで保護している
+    - Cookie がマルウェアから盗まれないように、macOS は Keychain, Linux は kwallet などで保護している
     - Windows は DPAPI があるが、ログインユーザで実行された他のアプリからも盗むことができてしまう
-    - App-Bound Encryption により、 Keychain のように App ID が一致(つまり Chrome から)しないと読めないようにする
+    - App-Bound Encryption により、Keychain のように App ID が一致(つまり Chrome から)しないと読めないようにする
     - Chrome 127 の Cookie から順に Password や Payment にも適用していく
   - **Google Online Security Blog: Post-Quantum Cryptography: Standards and Progress**
     - https://security.googleblog.com/2024/08/post-quantum-cryptography-standards.html
@@ -248,9 +252,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - **ブラウザはどのようにしてテキストを描画しているのか?――Chromium にみるテキスト描画の深淵 - Google Slides**
     - https://docs.google.com/presentation/d/1-OyytTBfOI9vs22Xbqx3PkvUcnFQEJEOWKiJzh1h_RY/edit
 
+
 ### Firefox 動向
 
 #### Stable: 129
+
 
 #### Updates
 
@@ -267,6 +273,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2024/08/07/firefox-sidebar-and-vertical-tabs-try-them-out-in-nightly-firefox-labs-131/
 - Streamline your screen time with auto-open Picture-in-Picture and more - These Weeks in Firefox: Issue 166 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2024/08/26/streamline-your-screen-time-with-auto-open-picture-in-picture-and-more-these-weeks-in-firefox-issue-166/
+
 
 #### Intents
 
@@ -291,6 +298,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - フォローアップで Nightly だけではなくすべてのチャンネルで有効にした
   - 実質 I2S
 
+
 #### Newsletter
 
 - Performance Testing Newsletter (Q2 Edition) + MozWeek Workshops
@@ -302,12 +310,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - Engineering Effectiveness Newsletter (June & July 2024 Edition)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/XpUafEc-ATk
 
+
 #### MDN / Open Web Docs
 
 - Exclusive accordions using the HTML details element | MDN Blog
   - https://developer.mozilla.org/en-US/blog/html-details-exclusive-accordions/
 - How to debug mobile apps across devices | MDN Blog
   - https://developer.mozilla.org/en-US/blog/debug-mobile-apps-across-devices/
+
 
 #### Standard Position
 
@@ -323,6 +333,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - CSS Anchor Positioning · Issue #794 · mozilla/standards-positions
       - https://github.com/mozilla/standards-positions/issues/794
 
+
 #### Other
 
 - Mozilla's Decision on Entrust's Root CA Certificates used for TLS
@@ -336,9 +347,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Shared post - Mozilla Faces Financial Uncertainty After Google Loses Lawsuit**
   - https://lunduke.locals.com/post/5985554/mozilla-faces-financial-uncertainty-after-google-loses-lawsuit
 
+
 ### Safari 動向
 
 #### Stable: 17.6
+
 
 #### Updates
 
@@ -389,6 +402,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - Added support for Wasm Tail Calls. (281716@main) (131410516)
   - WebDriver
 
+
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -412,14 +426,17 @@ guest: [@myakura](https://twitter.com/myakura)
     - Support for PointerEvent getCoalescedEvents() API · Issue #374 · WebKit/standards-positions
       - https://github.com/WebKit/standards-positions/issues/374
 
+
 #### Other
 
 - Upcoming changes to the browser choice screen, default apps, and app deletion for EU users - Latest News - Apple Developer
   - https://developer.apple.com/news/?id=zglax7gc
 
+
 ### Edge 動向
 
 #### Stable: 128
+
 
 #### Updates
 
@@ -430,7 +447,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
 
+
 #### Other
+
 
 ### WHATWG/W3C 動向
 
@@ -448,6 +467,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **First Public Working Draft: Federated Credential Management API**
     - https://www.w3.org/news/2024/first-public-working-draft-federated-credential-management-api/
 
+
 #### Open/UI
 
 - open-ui/meetings/telecon/2024-08-15.md
@@ -456,6 +476,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - open-ui/meetings/telecon/2024-08-29.md
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2024-08-29.md
   - [interest invokers] Touch inputs #1052
+
 
 #### WHATNOT
 
@@ -470,6 +491,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/whatwg/html/issues/10560
 - Upcoming WHATNOT meeting on 2024-08-29
   - https://github.com/whatwg/html/issues/10574
+
 
 #### Other
 
@@ -500,6 +522,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/fedidcg/LightweightFedCM/wiki/Comparing-FedCM-and-Lightweight-FedCM
 - Issues · w3c/tpac2024-breakouts
   - https://github.com/w3c/tpac2024-breakouts/issues?q=is%3Aopen+is%3Aissue
+
 
 ### TC39 動向
 
@@ -533,6 +556,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - これが Piercing
 - 次回 2.7 にしたいかも
 
+
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2024-08-01}...main@{2024-09-01}
@@ -550,14 +574,18 @@ guest: [@myakura](https://twitter.com/myakura)
 - Inactive
   - UUID
 
+
 #### New Proposals
+
 
 #### WinterCG
 
 - 2024-08-01 meeting · Issue #66 · wintercg/admin
   - https://github.com/wintercg/admin/issues/66
 
+
 #### Other
+
 
 ### IETF 動向
 
@@ -575,22 +603,27 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0190.html
 - Meeting
 
+
 #### Other
 
 - The Nature of Internet Standards
   - https://www.mnot.net/blog/series/internet-standards/
   - mnot の一連の投稿のシリーズページがあった
 
+
 ### CDN 動向
 
 #### Cloudflare
+
 
 #### Fastly
 
 - Andrew Betts が Fastly 辞めた
   - https://x.com/triblondon/status/1825944420321210469
 
+
 #### Other
+
 
 ### セキュリティ動向
 
@@ -598,6 +631,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.digicert.com/support/certificate-revocation-incident
   - Digicert が DV 用の CNAME レコードに入れる乱数を `_` で始めるのを忘れた
   - 全体の 0.4% を 24 時間以内に失効が必要
+
 
 ### 周辺動向
 
@@ -636,10 +670,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - 「Chrome は HTTPS RR をまともに実装できているとは言い難い」各ブラウザーの対応状況を調べた結果が報告される【DNS Summer Day 2024】 - INTERNET Watch
   - https://internet.watch.impress.co.jp/docs/event/1617586.html
 
+
 ### Cookie 動向
 
 - Google Breaks Promise to Block Third-Party Cookies | Electronic Frontier Foundation
   - https://www.eff.org/deeplinks/2024/08/google-breaks-promise-block-third-party-cookies
+
 
 ### イベント
 
@@ -654,6 +690,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - 8-10: BlinkOn19
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/XZPgZ3DymqY
   - ?: CMA の Q3 レポート
+
 
 ### Wrap Up
 
