@@ -19,8 +19,10 @@ export async function get_shownote({ episode_number }: {
     if (entry.isFile && entry.name.endsWith(".md")) {
       // 最初の.mdファイルを返す
       const scriptPath: string = `${path}/${entry.name}`;
-      const content: string = await Deno.readTextFile(scriptPath);
-      return content;
+      const fullText: string = await Deno.readTextFile(scriptPath);
+      // URL を消す
+      const compact = fullText.replace(/https?:\/\/[^ ]+/g, "");
+      return compact;
     }
   }
   throw new Error("ファイルが見つかりませんでした");
