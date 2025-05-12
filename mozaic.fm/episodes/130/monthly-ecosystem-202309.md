@@ -13,7 +13,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
 
 第 130 回のテーマは 2023 年 9 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - biomejs
@@ -63,7 +62,6 @@ guest: [@yoshiko](https://twitter.com/yoshiko_pg)
   - https://github.com/electron/electron/issues/21457
 - マイクロソフト、Web アプリテストの自動化サービス「Microsoft Playwright Testing」プレビューを開始
   - https://www.publickey1.jp/blog/23/webmicrosoft_playwright_testing.html
-
 
 ## Events
 

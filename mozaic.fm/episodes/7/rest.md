@@ -19,7 +19,6 @@ guest: [@t_wada](https://twitter.com/t_wada)
 
 今回は、居酒屋トークの録音なので周囲の雑音が多いですがご了承ください。
 
-
 ## Show Note
 
 - [Representational State Transfer (REST)](http://www.ics.uci.edu/%7Efielding/pubs/dissertation/rest_arch_style.htm)

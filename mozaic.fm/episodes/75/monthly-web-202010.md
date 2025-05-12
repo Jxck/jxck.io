@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 75 回のテーマは 2020 年 10 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -204,7 +203,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - OpenJS Foundation AMA: AMP Project TSC - The AMP Blog
     - https://blog.amp.dev/2020/11/05/openjs-foundation-ama-amp-project-tsc/
 
-
 ### Firefox 動向
 
 - Stable: 82
@@ -250,7 +248,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://groups.google.com/g/mozilla.dev.platform/c/oFKfdkok3JQ
   - Firefox Security Newsletter/FSN-2020-Q3 - MozillaWiki
     - https://wiki.mozilla.org/Firefox_Security_Newsletter/FSN-2020-Q3
-
 
 ### Safari 動向
 
@@ -321,7 +318,6 @@ guest: [@myakura](https://twitter.com/myakura)
       - コントリビューターを集めたい
     - SVN + Bugzilla と Git + GitHub の機能さやフローへの影響について議論中
 
-
 ### Edge 動向
 
 - Stable: 86
@@ -371,7 +367,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Simply Making Simple Fixes Simple for Chromium - text/plain
     - https://textslashplain.com/2020/10/27/simply-making-simple-fixes-simple-for-chromium/
     - ブログの見た目がめっちゃ変わった
-
 
 ### WHATWG/W3C 動向
 
@@ -492,7 +487,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Advance notice: Working in progress on a MiniApps Working Group Charter
     - https://lists.w3.org/Archives/Public/public-new-work/2020Oct/0006.html
 
-
 ### TC39 動向
 
 - Meeting
@@ -508,7 +502,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 3->4
 - New Proposals
 - Other
-
 
 ### IETF 動向
 
@@ -572,7 +565,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/httpwg/wg-materials/blob/gh-pages/interim-20-10/agenda.md
     - https://httpwg.org/wg-materials/interim-20-10/minutes.html
 
-
 ### セキュリティ動向
 
 - Project Zero: Enter the Vault: Authentication Issues in HashiCorp Vault
@@ -590,7 +582,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.itmedia.co.jp/enterprise/articles/2010/02/news021.html
   - レジストラが攻撃されるという自分ではどうしようもない恐ろしい問題
   - そもそも運用のレベルが高かった
-
 
 ### 周辺動向
 
@@ -650,7 +641,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Net Applications のブラウザシェア NetMarketShare が 10 月をもって終了
   - UA Client Hints への以降により、将来的にブラウザの検出が正確にできなくなると述べている
 
-
 ### イベント
 
 - 11 月
@@ -661,7 +651,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 12 月
   - 9-10: Chrome Dev Summit
     - https://developer.chrome.com/devsummit/
-
 
 ### Wrap Up
 

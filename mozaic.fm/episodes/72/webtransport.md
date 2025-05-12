@@ -16,7 +16,6 @@ guest: [@hirano](https://twitter.com/hirano_y_aa)
 
 標準化の場面で行われている議論や、「今新しく API/Protocol を作るとしたら」という観点からの実装の話などをお聞きしながら、これが Web にどう影響を与えていきそうか議論しました。
 
-
 ## Show Note
 
 - WebTransport & WebCodecs (WebGames Workshop)

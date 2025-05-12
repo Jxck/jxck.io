@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 107 回のテーマは 2022 年 10 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 107
-
 
 #### Updates
 
@@ -63,7 +61,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Step through comma-separated expressions
   - Improved Ignore list setting
   - Miscellaneous highlights
-
 
 #### Intents
 
@@ -151,9 +148,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - PSA: Support for network quality client-hints in CORS
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ySqQe_Wyf50/m/qR2viSDnAwAJ
 
-
 #### V8
-
 
 #### Other
 
@@ -241,11 +236,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Project Zero: RC4 Is Still Considered Harmful
     - https://googleprojectzero.blogspot.com/2022/10/rc4-is-still-considered-harmful.html
 
-
 ### Firefox 動向
 
 #### Stable:106
-
 
 #### Updates
 
@@ -257,7 +250,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - `<source width height>`
     - `@supports font-tech()`/`@supports font-format()`
     - `<meta media>`
-
 
 #### Intents
 
@@ -295,7 +287,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Soft code freeze for Firefox 107 starts on October 13
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/j2sZAJhcfsM
 
-
 #### Other
 
 - **SpiderMonkey Newsletter (Firefox 106-107)**
@@ -321,11 +312,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - PiP subtitles, screenshots in 'about' pages & more - These Weeks in Firefox: Issue 125 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/10/10/pip-subtitles-screenshots-in-about-pages-more-these-weeks-in-firefox-issue-125/
 
-
 ### Safari 動向
 
 #### Stable: 16.1
-
 
 #### Updates
 
@@ -362,18 +351,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - Safari 16.1 Release Notes
   - https://developer.apple.com/documentation/safari-release-notes/safari-16_1-release-notes
 
-
 #### Other
 
 - **[webkit-dev] 2022 WebKit Contributors Meeting - Registration Open!**
   - https://lists.webkit.org/pipermail/webkit-dev/2022-October/032371.html
     - 11/9, 11/10 online
 
-
 ### Edge 動向
 
 #### Stable: 107
-
 
 #### Updates
 
@@ -384,9 +370,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Website typo protection defends against fraud including phishing, malware, and other scams - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2022/10/17/website-typo-protection-typosquatting/
 
-
 #### Chakra
-
 
 #### Other
 
@@ -404,7 +388,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://microsoftedge.github.io/edgevr/posts/memory-corruption-vulnerabilities-in-edge/
 - Efficiency mode in Microsoft Edge: Save even more battery life with recent updates - Microsoft Community Hub
   - https://techcommunity.microsoft.com/t5/articles/efficiency-mode-in-microsoft-edge-save-even-more-battery-life/m-p/3651853#M6586
-
 
 ### WHATWG/W3C 動向
 
@@ -434,7 +417,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/9723
 - Chartering
 
-
 #### Other
 
 - **Upcoming: W3C Workshop on Permissions | W3C News**
@@ -444,7 +426,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - 12/5, 12/6 in Munich
 - **W3C Workshop Report: WCG and HDR for the Web**
   - https://www.w3.org/blog/news/archives/9731
-
 
 ### TC39 動向
 
@@ -509,7 +490,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 次回
   - 11 月にスペインで igalia ホスト
 
-
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2022-01-01}...main@{2022-02-01}
@@ -519,12 +499,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
-
 #### New Proposals
 
-
 #### Other
-
 
 ### IETF 動向
 
@@ -562,9 +539,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -590,7 +565,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.cloudflare.com/building-privacy-into-internet-standards-and-how-to-make-your-app-more-private-today/
 - Deep Dive
 
-
 #### Fastly
 
 - Using Client Hints to Detect Disparities | Fastly
@@ -600,9 +574,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Yamagoya 2022
   - https://fastly.eventos.tokyo/web/portal/516/event/5941/#schedule
 
-
 #### Other
-
 
 ### セキュリティ動向
 
@@ -610,7 +582,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://newsroom.paypal-corp.com/2022-10-24-PayPal-Introduces-More-Secure-Payments-with-Passkeys
   - Passkeys supported sites and apps | MacRumors Forums
   - https://forums.macrumors.com/threads/passkeys-supported-sites-and-apps.2353325/
-
 
 ### 周辺動向
 
@@ -622,7 +593,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://engineering.fb.com/2022/09/30/android/launching-a-new-chromium-based-webview-for-android/
 - **MPArch(Multiple Page Architecture) project in Chromium | Gyuyoung Weblog**
   - https://blogs.igalia.com/gyuyoung/2022/10/13/mparchmultiple-page-architecture-project-in-chromium/
-
 
 ### イベント
 
@@ -636,7 +606,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 12 月
   - 5-6: W3C Workshop on Permissions
     - https://www.w3.org/Privacy/permissions-ws-2022/
-
 
 ### Wrap Up
 

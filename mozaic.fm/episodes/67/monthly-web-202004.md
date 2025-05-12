@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 67 回のテーマは 2020 年 4 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -186,7 +185,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Project Zero: You Won't Believe what this One Line Change Did to the Chrome Sandbox
   - https://googleprojectzero.blogspot.com/2020/04/you-wont-believe-what-this-one-line.html
 
-
 ### Firefox 動向
 
 - Stable: 75.0
@@ -265,7 +263,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Keeping Firefox working for you during challenging times | The Firefox Frontier
     - https://blog.mozilla.org/firefox/keeping-firefox-working-for-you-during-challenging-times/
 
-
 ### Safari 動向
 
 - Stable: 13.1
@@ -317,7 +314,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - delete が最適化にもたらす影響
 - Other
 
-
 ### Edge 動向
 
 - Stable: 81
@@ -328,7 +324,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - Analyzing Network Traffic Logs (NetLog json) | text/plain
     - https://textslashplain.com/2020/04/08/analyzing-network-traffic-logs-netlog-json/
-
 
 ### WHATWG/W3C 動向
 
@@ -345,7 +340,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/2020/04/w3c-website-redesign-user-stories-brand-and-identity/
   - Upcoming Distributed, Online Workshops: W3C/OGC Joint Workshop Series on Maps for the Web
     - https://www.w3.org/blog/news/archives/8455
-
 
 ### TC39 動向
 
@@ -386,7 +380,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - diff 記法みたいな
     - ジョークらしい(table から削除されてる)
 - Other
-
 
 ### IETF 動向
 
@@ -435,7 +428,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-whited-kitten-password-storage-01
 - Other
 
-
 ### セキュリティ動向
 
 - Zoom Japan FAQ - 2020/04/01 Zoom 利用者へのメッセージ
@@ -451,7 +443,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - ただし、事前に subdomain を乗っ取っておく必要がある
 - 「ニンテンドーネットワーク ID」に対する不正ログイン発生のご報告と「ニンテンドーアカウント」を安全にご利用いただくためのお願い
   - https://www.nintendo.co.jp/support/information/2020/0424.html
-
 
 ### 周辺動向
 
@@ -474,7 +465,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - オランダ当局が Cookie ウォールは GDPR の要件を満たさないと判断 | TechCrunch Japan
   - https://jp.techcrunch.com/2019/03/11/2019-03-08-cookie-walls-dont-comply-with-gdpr-says-dutch-dpa/
 
-
 ### イベント
 
 - 5 月
@@ -486,7 +476,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 19: SecWeb
   - ??: WWDC
     - virtual
-
 
 ### Wrap Up
 

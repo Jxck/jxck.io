@@ -17,7 +17,6 @@ guest: [@jovi0608](https://twitter.com/jovi0608)
 
 なお、今回は編集で収まりきらなかった 「Nghttp2 の今後」について、番外編として後日配信する予定です。ユーザの方は必聴です。
 
-
 ## Show Note
 
 - [HTTP2 SPEC](http://tools.ietf.org/html/draft-ietf-httpbis-http2)

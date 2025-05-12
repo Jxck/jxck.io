@@ -12,7 +12,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
 
 第 60 回のテーマは 2019 年 11 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -271,7 +270,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - The Chromium Chronicle: GWP-ASan: Detect bugs in the wild
     - https://developers.google.com/web/updates/2019/11/chromium-chronicle-8
 
-
 ### Firefox 動向
 
 - Stable: 70
@@ -348,7 +346,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - How I made the Firefox Protection report screen reader accessible
     - https://marcozehe.de/2019/11/25/how-i-made-the-firefox-protection-report-screen-reader-accessible/
 
-
 ### Safari 動向
 
 - Stable:13.0.3
@@ -376,7 +373,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://webkit.org/blog/9624/webgpu-and-wsl-in-web-inspector/
 - Other
 
-
 ### Edge 動向
 
 - Stable:
@@ -397,7 +393,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja
   - https://developer.microsoft.com/en-us/microsoft-edge/platform/
   - feed で見るのがいい
-
 
 ### WHATWG/W3C 動向
 
@@ -449,7 +444,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - New version of the Roadmap of Web Applications on Mobile
     - https://www.w3.org/blog/news/archives/8083
 
-
 ### TC39 動向
 
 - Meeting
@@ -465,7 +459,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - 3->4
 - New Proposals
 - Other
-
 
 ### IETF 動向
 
@@ -611,7 +604,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
     - https://bugs.chromium.org/p/chromium/issues/detail?id=1019410
     - どうするか議論中
 
-
 ### セキュリティ動向
 
 - Delegated Credentials for TLS
@@ -628,7 +620,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://palant.de/2019/11/27/assorted-kaspersky-vulnerabilities/
 - Thoughts from IETF 106 | APNIC Blog
   - https://blog.apnic.net/2019/11/27/thoughts-from-ietf-106/
-
 
 ### 周辺動向
 
@@ -672,7 +663,6 @@ guest: [@araya](https://twitter.com/arayaryoma)
   - https://blog.cloudflare.com/html-parsing-1/
 - Low Output Latency (LOL)HTML parser/rewriter
   - https://blog.cloudflare.com/html-parsing-2/
-
 
 ### イベント
 

@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 53 回のテーマは 2019 年 5 月の Monthly Web です。
 
-
 ## Show Note
 
 ### mozaic bootcamp 2019
@@ -23,7 +22,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.isyumi.net/entry/2019/05/03/134854
 - mozaic bootcamp に参加して気づいた、自分に欠けていた Web 技術の知識メモ - ninjinkun's diary
   - https://ninjinkun.hatenablog.com/entry/mozaic-bootcamp
-
 
 ### Chrome 動向
 
@@ -203,7 +201,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.googleblog.com/2019/05/Flutter-io19.html
     - Flutter for web
 
-
 ### Firefox 動向
 
 - Stable: 67
@@ -310,7 +307,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://events.mozilla.org/becomeabetatestingbughunter
     - Fenix の β テスト
 
-
 ### Safari 動向
 
 - Stable: 12.1
@@ -338,7 +334,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - コンバージョン結果は 24~48h の間に wellknown uri に post される
     - `/.well-known/ad-click-attribution/`
     - そして Opt-Out 可能に
-
 
 ### Edge 動向
 
@@ -378,7 +373,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Edge を Chromium ベースにする決断をしたときのインタビュー
   - https://social.msdn.microsoft.com/Forums/ja-JP/home?forum=edgeiesupportteamja
   - https://developer.microsoft.com/en-us/microsoft-edge/platform/
-
 
 ### WHATWG/W3C 動向
 
@@ -426,7 +420,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tkent-google/std-switch
     - スイッチコントロールを標準コンポーネント化する試み
 
-
 ### TC39 動向
 
 - Proposals Diff
@@ -438,7 +431,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 3->4
 - New Proposals
 - Other
-
 
 ### IETF 動向
 
@@ -530,7 +522,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - SameSite cookies explained
     - https://web.dev/samesite-cookies-explained/
 
-
 ### セキュリティ動向
 
 - **日本ハッカー協会セミナー「不正指令電磁的記録罪の傾向と対策」**
@@ -550,7 +541,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Abusing jQuery for CSS powered timing attacks**
   - https://portswigger.net/blog/abusing-jquery-for-css-powered-timing-attacks
   - CSS selector で Timing Attack
-
 
 ### 周辺動向
 
@@ -584,7 +574,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/better-http-2-prioritization-for-a-faster-web/
 - WebAssembly at eBay: A Real-World Use Case
   - https://www.ebayinc.com/stories/blogs/tech/webassembly-at-ebay-a-real-world-use-case/
-
 
 ### イベント
 

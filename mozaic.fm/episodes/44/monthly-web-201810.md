@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 44 回のテーマは 2018 年 10 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -184,7 +183,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **chromium/src - cf7ed613af - TaskWorklet prototype**
     - https://chromium.googlesource.com/chromium/src/+/cf7ed613af7b01f2e64929f969d3737067e28083
 
-
 ### Firefox 動向
 
 - Stable: 63
@@ -310,7 +308,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://hg.mozilla.org/integration/mozilla-inbound/rev/d0b577458d53
     - いまのところ構文のみらしい
 
-
 ### Safari 動向
 
 - Stable: 12.0.1
@@ -376,7 +373,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Canvas Debugging
     - https://webkit.org/blog/8452/canvas-debugging/
 
-
 ### Edge 動向
 
 - Stable: Edge 44, EdgeHTML 18
@@ -423,7 +419,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/MicrosoftEdge/Status/commit/f1b8f6c045da693bf219d9dd682236fd92e373ed
   - 2018 年 10 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました - Japan IE Support Team Blog
     - https://blogs.technet.microsoft.com/jpieblog/2018/10/11/securityupdate201810/
-
 
 ### WHATWG/W3C 動向
 
@@ -528,7 +523,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - WPWG の現在の charter が年末まで延長
     - WHATWG との話し合い中なので、その期間中に W3C 版の仕様は出さない
 
-
 ### TC39 動向
 
 - Meeting
@@ -547,7 +541,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 1 -> inactive
     - `Date.parse` fallback semantics
 - New Proposals
-
 
 ### IETF 動向
 
@@ -653,7 +646,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Identifying our deliverables**
     - https://mailarchive.ietf.org/arch/msg/quic/RLRs4nB1lwFCZ_7k0iuz0ZBa35s
 
-
 ### セキュリティ動向
 
 - **Remove TLS1.0/1.1**
@@ -684,7 +676,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **The secret-token URI Scheme** https://tools.ietf.org/html/draft-nottingham-how-did-that-get-into-the-repo-00
 - Metadata-Attacker - A Tool To Generate Media Files With Malicious Metadata - KitPloit - PenTest Tools for your Security Arsenal
   - https://www.kitploit.com/2018/10/metadata-attacker-tool-to-generate.html
-
 
 ### 周辺動向
 
@@ -718,7 +709,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/webassembly-on-cloudflare-workers/
 - **Serverless Rust with Cloudflare Workers**
   - https://blog.cloudflare.com/cloudflare-workers-as-a-serverless-rust-platform/
-
 
 ### イベント
 

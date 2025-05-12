@@ -14,7 +14,6 @@ guest: [@takoratta](https://twitter.com/takoratta)
 
 今回は [@takoratta](https://twitter.com/takoratta) さんをお迎えして、ブラウザは今どうなっているのか、そして、その進化は Web の進化とどう関わっているのかにつて議論しました。
 
-
 ## Show Note
 
 - 及川さんとブラウザの関わり

@@ -631,9 +631,9 @@
               <ul>
                 <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/xU3gTW4aTfg" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/xU3gTW4aTfg</a>
                 <li><code translate=no>navigator.cookieEnabled</code> は Cookie が有効かを返す
-                <li>Chrome が 3PCD すると、 unpartitioned cookie にアクセスできない場合 false を返すことになる
+                <li>Chrome が 3PCD すると、unpartitioned cookie にアクセスできない場合 false を返すことになる
                 <li>しかし、それは本来 <code translate=no>document.hasStorageAccess</code> の役目だったはず
-                <li>なので <code translate=no>hasStorageAccess</code> に任せて、 <code translate=no>cookieEnabled</code> は元の挙動に戻す
+                <li>なので <code translate=no>hasStorageAccess</code> に任せて、<code translate=no>cookieEnabled</code> は元の挙動に戻す
               </ul>
             </li>
             <li>
@@ -655,7 +655,7 @@
               <strong>Prototype: Multi-argument alt text in CSS Generated Content</strong>
               <ul>
                 <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/uCOrwnFuqNA" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/uCOrwnFuqNA</a>
-                <li>CSS の content で画像などを指定する際に、 alt を指定する記法はサポートされてた
+                <li>CSS の content で画像などを指定する際に、alt を指定する記法はサポートされてた
                 <li><code translate=no>content: url(&quot;cat.jpg&quot;) / &quot;A cute cat&quot;</code>
                 <li>仕様上この alt の方で関数などが使えるので、それに対応
                 <li><code translate=no>content: url(&quot;cat.jpg&quot;) / &quot;Cute &quot; attr(data-animal) &quot; number &quot; counter(animal-counter);</code>
@@ -1016,8 +1016,8 @@
                   <strong>Chromium Blog: Advancing Our Amazing Bet on Asymmetric Cryptography</strong>
                   <ul>
                     <li><a href="https://blog.chromium.org/2024/05/advancing-our-amazing-bet-on-asymmetric.html" target=_blank>https://blog.chromium.org/2024/05/advancing-our-amazing-bet-on-asymmetric.html</a>
-                    <li>耐量子暗号への移行を進めており、 Kyber を導入したが問題も多数発生している
-                    <li>X25519 鍵交換は 30 倍の鍵サイズで、 ClientHello は分割、ハンドシェイクは 4% 増加
+                    <li>耐量子暗号への移行を進めており、Kyber を導入したが問題も多数発生している
+                    <li>X25519 鍵交換は 30 倍の鍵サイズで、ClientHello は分割、ハンドシェイクは 4% 増加
                     <li>ML-DSA 認証では鍵と署名のサイズが 40 倍。レイテンシは 20~40% 増える予想
                     <li>PKI の俊敏性も、新しい仕様を展開する上での足枷になってきた
                     <li>クライアントごとに適切な証明書を提供できる Trust Expression の提案が進んでいる

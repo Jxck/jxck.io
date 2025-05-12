@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 108 回のテーマは 2022 年 11 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - **Next.js 13**
@@ -175,7 +174,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
   - Builtin TypeChecking として型テストが入ってる
 - [sharing only] npm@9 が GA
   - https://github.blog/changelog/2022-11-09-npm-cli-v9-is-now-generally-available/
-
 
 ## Events
 

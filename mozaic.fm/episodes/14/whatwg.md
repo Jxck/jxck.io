@@ -17,7 +17,6 @@ guest: [@nunnun](https://twitter.com/nunnun)
 
 後半は Extensible Web の話になったので、[次のエピソード](https://mozaic.fm/episodes/15/extensible-web.html) に分けています。
 
-
 ## Show Note
 
 - 0:00 ~ : intro

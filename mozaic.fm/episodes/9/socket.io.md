@@ -18,7 +18,6 @@ guest: [@rauchg](https://twitter.com/rauchg)
 
 今回も [Qiita で事前に質問を集め](http://qiita.com/Jxck_/items/c5bfa3d16053de3f21eb) その中のいつくかは紹介しています。質問くださったみなさんありがとうございました。
 
-
 ## Show Note
 
 - [Socket.IO](http://socket.io)

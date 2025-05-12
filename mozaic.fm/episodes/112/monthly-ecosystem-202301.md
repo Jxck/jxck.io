@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 112 回のテーマは 2023 年 1 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - State of JS 2022
@@ -85,7 +84,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - Rename experimental useEvent to useEffectEvent by sebmarkbage · Pull Request #25881 · facebook/react
   - https://github.com/facebook/react/pull/25881
   - useEvent は useEffectEvent に名前が変わる
-
 
 ## Events
 

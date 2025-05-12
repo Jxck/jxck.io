@@ -31,7 +31,6 @@ guest: [@hnagatomo](https://github.com/hnagatomo)
 
 これらを踏まえ、Web セキュリティで **今何が起きているのか**、**これからどうなっていくのか** について議論しました。
 
-
 ## Show Note
 
 - [脆弱性報奨金制度 | サイボウズ株式会社](https://cybozu.co.jp/products/bug-bounty/)

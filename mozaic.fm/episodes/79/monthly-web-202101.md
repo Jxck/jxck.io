@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 79 回のテーマは 2020 年 12 月と 2021 年 1 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 88
-
 
 #### Updates
 
@@ -175,7 +173,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Use AMP Components everywhere**
     - https://blog.amp.dev/2021/01/28/bento/
 
-
 #### Intents
 
 - Ship: Web Share Target Level 2 for Chrome OS
@@ -314,12 +311,10 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/qtMVkfpd3_U
   - igalia の人の提案
 
-
 #### V8
 
 - An additional non-backtracking RegExp engine · V8
   - https://v8.dev/blog/non-backtracking-regexp
-
 
 #### Other
 
@@ -362,11 +357,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - Building a privacy-first future for web advertising
   - https://blog.google/products/ads-commerce/2021-01-privacy-sandbox
 
-
 ### Firefox 動向
 
 #### Stable: 85.0
-
 
 #### Updates
 
@@ -434,7 +427,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 利用している Skia で透明度によって処理を分けており、ソフトウェアデコーダの場合に処理速度が特に変わっていた
   - Skia が修正され、Chromium 、Firefox ともに対応
 
-
 #### Intents
 
 - **Ship: Network Partitioning**
@@ -458,7 +450,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Unship: HTML `<menuitem>` element and the context menu feature**
   - https://groups.google.com/g/mozilla.dev.platform/c/tc11BCenm2c
 
-
 #### Other
 
 - **EKR 先生による「投票システム」の難しさの話**
@@ -477,11 +468,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - SpiderMonkey Newsletter #8
   - https://mozilla-spidermonkey.github.io/blog/2020/12/18/newsletter-8.html
 
-
 ### Safari 動向
 
 #### Stable: 14.0.2
-
 
 #### Updates
 
@@ -546,7 +535,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Adjusted date input placeholder color based on specified text color (r270875)
     - Corrected the intrinsic size stored for SVG images (r271129)
 
-
 #### Position
 
 - [webkit-dev] Request for position: overflow: clip and overflip-clip-margin
@@ -570,14 +558,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - [webkit-dev] Request for position: Critical-CH response header, part of Client Hints Reliability proposal
   - https://lists.webkit.org/pipermail/webkit-dev/2021-January/031673.html
 
-
 #### Other
-
 
 ### Edge 動向
 
 #### Stable:88
-
 
 #### Updates
 
@@ -592,12 +577,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Sleeping Tabs in Microsoft Edge: Delivering better browser performance - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2020/12/09/sleeping-tabs-beta-performance/
 
-
 #### Chakra
 
 - Release ChakraCore v1.11.24 · microsoft/ChakraCore
   - https://github.com/microsoft/ChakraCore/releases/tag/v1.11.24
-
 
 #### Other
 
@@ -607,7 +590,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://techcommunity.microsoft.com/t5/articles/now-autofill-your-saved-passwords-from-microsoft-edge-on-your/m-p/1990161
 - **Sandboxing vs. Elevated Browsing (As Administrator) - text/plain**
   - https://textslashplain.com/2021/01/07/sandboxing-vs-elevated-browsing-as-administrator/
-
 
 ### WHATWG/W3C 動向
 
@@ -648,7 +630,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - W3C launches MiniApps Working Group
     - https://www.w3.org/blog/news/archives/8853
 
-
 #### Other
 
 - **W3C opens Technical Architecture Group (TAG) election**
@@ -666,7 +647,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Upcoming: W3C Workshop on Wide Color Gamut and High Dynamic Range for the Web
   - https://lists.w3.org/Archives/Public/public-new-work/2020Dec/0014.html
 
-
 ### TC39 動向
 
 #### Meeting
@@ -676,7 +656,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tc39/agendas/blob/master/2021/01.md
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
-
 
 #### Proposals Diff
 
@@ -702,7 +681,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 3->4
   - Intl.DateFormat.prototype.formatRange
 
-
 #### New Proposals
 
 - **bakkot/proposal-async-do-expressions**
@@ -723,7 +701,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - import したモジュールの評価を遅延する?
   - dynamic import だとコードが非同期になるが、これならならない
 
-
 #### Other
 
 - **JSCIG/dataset: TC39 Proposal Dataset**
@@ -741,7 +718,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://web.archive.org/web/20060111090514/http://wp.netscape.com/newsref/pr/newsrelease67.html
   - "The open, cross-platform object scripting language for enterprise networks and the Internet"" / Twitter
   - 2020 年 12 月 4 日で JavaScript の発表から 25 年
-
 
 ### IETF 動向
 
@@ -761,7 +737,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - privacypass
 - dispatch
 - secdispatch
-
 
 #### Spec
 
@@ -810,9 +785,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - draft-liu-multipath-quic-00 - Multipath Extension for QUIC
     - https://tools.ietf.org/html/draft-liu-multipath-quic-00
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -857,7 +830,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Holistic web protection: industry recognition for a prolific 2020
   - https://blog.cloudflare.com/cloudflare-named-the-innovation-leader-in-holistic-web-protection/
 
-
 #### Fastly
 
 - DDoS attacks grow bigger, but so do responses
@@ -867,12 +839,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Debugging QUIC with H2O and QLog**
   - https://www.fastly.com/blog/debugging-quic-with-h2o-and-qlog
 
-
 #### Other
 
 - 日本の CDN シェアについて調査結果@2020 年 10 月 | J-Stream CDN 情報サイト
   - https://tech.jstream.jp/blog/cdn/cdn-share-oct2020/
-
 
 ### セキュリティ動向
 
@@ -891,7 +861,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://deprecate.it/
 - 様々なサイバー攻撃に繋がる脆弱性 HTTP リクエストスマグリング | yamory Blog
   - https://yamory.io/blog/about-http-request-smuggling/
-
 
 ### 周辺動向
 
@@ -957,7 +926,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Coil
     - https://press.coil.com/press-news/coil-is-proud-to-support-open-web-docs
 
-
 ### イベント
 
 - 1 月
@@ -966,7 +934,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 8-12: IETF | IETF 110 Online
     - https://www.ietf.org/how/meetings/110/
   - TBD: TC39 Meeting
-
 
 ### Wrap Up
 

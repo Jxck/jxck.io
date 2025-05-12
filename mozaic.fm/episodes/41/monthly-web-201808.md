@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 41 回のテーマは 2018 年 8 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -231,7 +230,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.apnic.net/2018/08/14/passive-observations-of-a-large-dns-service/
     - 2009 年以来運用している最大の Public DNS 8.8.8.8 に関する知見
 
-
 ### Firefox 動向
 
 - Stable: 61
@@ -375,7 +373,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Dweb:IPFS による Web への協力と信頼の構築
     - https://hacks.mozilla.org/2018/08/dweb-building-cooperation-and-trust-into-the-web-with-ipfs/
 
-
 ### Safari 動向
 
 - Stable: 11.1.2
@@ -410,7 +407,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://trac.webkit.org/changeset/235459/webkit ほか
     - https://lists.webkit.org/pipermail/webkit-dev/2018-July/030060.html にて実装したい旨を表明していた
 
-
 ### Edge 動向
 
 - Stable: Microsoft Edge 42 / Edge EdgeHTML17
@@ -444,7 +440,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Improved performance on Windows 10 due to Cubic, the new default TCP congestion provider.
   - 2018 年 8 月の Internet Explorer / Microsoft Edge の累積的なセキュリティ更新プログラムを公開しました - Japan IE Support Team Blog
     - https://blogs.technet.microsoft.com/jpieblog/2018/08/15/securityupdate201808/
-
 
 ### WHATWG/W3C 動向
 
@@ -520,7 +515,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/annevk/status/1031824798312218624
     - `fetch()` でクエリーを渡すのにもっと書きやすい方法が求められているらしい
 
-
 ### TC39 動向
 
 - Meeting
@@ -550,7 +544,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/awbjs/status/1029057495808000001
     - ES4 をやめ、ES 3.1(のちの ES5)をまずやり、大きな機能追加はその後やるという Harmony の方針が決まって 10 年たった
       - https://mail.mozilla.org/pipermail/es-discuss/2008-August/006837.html
-
 
 ### IETF 動向
 
@@ -618,7 +611,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Dictionary Compression for HTTP (at Facebook)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2018JulSep/0284.html
 
-
 ### セキュリティ動向
 
 - Introducing Web Security Analytics
@@ -642,7 +634,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Google, Apple, Mozilla, Oracle, Blackberry に加え Microsoft でも信頼された
   - 直接信頼がよりメジャーになるには少なくとも 5 年の更新サイクルは必要という見積もり
   - 引き続き IdenTrust のクロスルートを続ける
-
 
 ### 周辺動向
 
@@ -674,7 +665,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Are you leaving revenue on the table with AMP? - Accelerated Mobile Pages Project
   - https://amphtml.wordpress.com/2018/08/28/are-you-leaving-revenue-on-the-table-with-amp/
   - AMP の ad において気をつけること
-
 
 ### イベント
 

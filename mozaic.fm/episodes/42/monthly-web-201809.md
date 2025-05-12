@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 42 回のテーマは 2018 年 9 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -199,7 +198,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.cnet.com/news/google-chromes-biggest-challenge-at-age-10-might-just-be-its-own-success/
     - Chrome のこれまでと Google web になっていることへの危惧
 
-
 ### Firefox 動向
 
 - Stable: 62
@@ -295,7 +293,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Storage access policy: Block cookies from trackers**
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy
 
-
 ### Safari 動向
 
 - Stable: 12.0 (9/17)
@@ -319,7 +316,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Houdini の Custom Properties and Values 仕様の実装開始
     - カスタムプロパティに初期値やその型、継承の有無を指定可能に
 
-
 ### Edge 動向
 
 - Stable: Edge 42, EdgeHTML 17
@@ -342,7 +338,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Windows に Chrome や Firefox を入れようとすると、「Edge がもう入ってるよ!」ってプロンプトを出す機能を β テスト中らしい
     - 他のベンダーから苦言
     - 10 月のアップデートには含まれないとマイクロソフトがコメントしたらしい
-
 
 ### WHATWG/W3C 動向
 
@@ -378,7 +373,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/Privacy/permissions-ws-2018/schedule.html
     - ドラフトが出た
 
-
 ### TC39 動向
 
 - Meeting
@@ -390,7 +384,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 2->3
   - 3->4
 - New Proposals
-
 
 ### IETF 動向
 
@@ -474,7 +467,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-iasa2-rfc7776bis-00
 - Other
 
-
 ### セキュリティ動向
 
 - September 2018 CA Communication
@@ -495,7 +487,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 今はリファラチェックなど複数を組み合わせて対処
 - **さらば DES 暗号、2023 年終了へカウントダウン**
   - https://tech.nikkeibp.co.jp/atcl/nxt/column/18/00001/00986/
-
 
 ### 周辺動向
 
@@ -522,7 +513,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Star Trek はどうやって異星人間でビデオコーデックのネゴシエーションをしているのか**
     - https://twitter.com/jdrosen2/status/1042952371494629376
     - CISCO CTO のジョークレス
-
 
 ### イベント
 

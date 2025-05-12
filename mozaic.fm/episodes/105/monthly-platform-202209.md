@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 105 回のテーマは 2022 年 9 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 106
-
 
 #### Updates
 
@@ -67,7 +65,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Start DOM search after pressing Enter
   - Display start and end icons for align-content CSS flexbox properties
   - Miscellaneous highlights
-
 
 #### Intents
 
@@ -165,9 +162,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - In-person registration is now closed
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/KSz8dkm42N0
 
-
 #### V8
-
 
 #### Other
 
@@ -241,11 +236,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.chromium.org/getting-involved/dev-channel
 - other
 
-
 ### Firefox 動向
 
 #### Stable: 105
-
 
 #### Updates
 
@@ -257,7 +250,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - `Intl.DateTimeFormat`, `Intl.NumberFormat` などの range restriction が緩和
   - `TextEncoderStream`, `TextDecoderStream`
   - OffscreenCanvas
-
 
 #### Intents
 
@@ -278,7 +270,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/fsRlOxDnDwM
 - On making HTTPS the default for new tests
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/WTRvzOWQgfo
-
 
 #### Other
 
@@ -303,11 +294,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - These Weeks In Firefox: Issue 124 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/09/21/these-weeks-in-firefox-issue-124/
 
-
 ### Safari 動向
 
 #### Stable: 16.0
-
 
 #### Updates
 
@@ -394,7 +383,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Accessibility
     - Implemented the ARIA 1.3 mark role, which provides parity with the `<mark>` tag
 
-
 #### Other
 
 - **[JSC] Disable ShadowRealm by Constellation**
@@ -404,20 +392,16 @@ guest: [@myakura](https://twitter.com/myakura)
 - Introducing JetStream 2.1
   - https://webkit.org/blog/13146/introducing-jetstream-2-1/
 
-
 ### Edge 動向
 
 #### Stable:
-
 
 #### Updates
 
 - Microsoft Edge on Linux で SSL Key を設定してネットワークトレースを取得する | Japan Developer Support Internet Team Blog
   - https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/Edge-Linux-sslkeylog/
 
-
 #### Chakra
-
 
 #### Other
 
@@ -434,7 +418,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2022/09/27/badware-techniques-notification-spam/
 - Edge's Super-Res Image Enhancement
   - https://textslashplain.com/2022/09/12/edges-super-res-image-enhancement/
-
 
 ### WHATWG/W3C 動向
 
@@ -496,7 +479,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - :has()
     - shared element transition FPWD
 
-
 #### Draft
 
 - Recommendation
@@ -522,7 +504,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - First Board of Directors to Initiate Critical Functions of W3C Inc.
   - https://www.w3.org/blog/news/archives/9685
 
-
 #### Other
 
 - **[selectors] The forgiving nature of :has breaks jQuery when used with a complex :has selector · Issue #7676 - w3c/csswg-drafts**
@@ -542,19 +523,16 @@ guest: [@myakura](https://twitter.com/myakura)
   - igalia の TPAC 参加記
   - "You should hire Igalia to implement that" という声が何度もあった
 
-
 ### TC39 動向
 
 - Meeting のある月はステージの移動のみ見る
 - 翌月に公開された Note だけを見る
-
 
 #### Meeting
 
 - 2022-09
   - agendas/09.md at main · tc39/agendas
     - https://github.com/tc39/agendas/blob/main/2022/09.md
-
 
 #### Proposals Diff
 
@@ -568,13 +546,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - Array.fromAsync
 - 3->4
 
-
 #### New Proposals
 
 - **tc39/proposal-extractors**
   - https://github.com/tc39/proposal-extractors
   - Symbol.matcher で destructuring 時に同時にロジックを挟む提案
-
 
 #### Other
 
@@ -582,7 +558,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.unicode.org/2022/09/announcing-icu4x-10.html
   - ICU の Rust 実装が 1.0 に
   - Mozilla での Intl.Segmenter の実装が進むかも
-
 
 ### IETF 動向
 
@@ -618,9 +593,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -640,7 +613,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Announcing Turnstile, a user-friendly, privacy-preserving alternative to CAPTCHA**
   - https://blog.cloudflare.com/turnstile-private-captcha-alternative/
 
-
 #### Fastly
 
 - **A QUIC Chat, With Jana Iyengar | Fastly**
@@ -654,9 +626,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Private Access Tokens and the Future of Anti-Fraud | Fastly**
   - https://www.fastly.com/blog/private-access-tokens-and-the-future-of-anti-fraud
 
-
 #### Other
-
 
 ### セキュリティ動向
 
@@ -672,7 +642,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.imperialviolet.org/2022/09/22/passkeys.html
 - **No More EV Certificate Overhead in Chrome 106 - WebPageTest Blog**
   - https://blog.webpagetest.org/posts/eliminating-ev-certificate-performance-overhead/
-
 
 ### 周辺動向
 
@@ -695,7 +664,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.mnot.net/blog/2022/09/11/esafety-industry-codes
 - Sacha Greif on Twitter: "Anybody want to help us test the 2022 State of CSS survey? It's now open, let us know if you find any bugs or issues"
   - https://twitter.com/SachaGreif/status/1575647229259714560
-
 
 ### イベント
 

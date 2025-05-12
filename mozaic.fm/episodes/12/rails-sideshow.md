@@ -14,7 +14,6 @@ guest: [@a_matsuda](https://twitter.com/a_matsuda)
 
 [@a_matsuda](https://twitter.com/a_matsuda/) さんの語る Rails 開発のスタイルと、そのコミュニティの持つ力、Rails が引っ張ったテストの話などをお送りします。
 
-
 ## Show Note
 
 - [Aaron Patterson](https://twitter.com/tenderlove)

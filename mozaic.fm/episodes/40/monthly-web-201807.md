@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 40 回のテーマは 2018 年 7 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -162,7 +161,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://developers.google.com/web/updates/2018/07/reportingobserver
     - 導入してるけど Report が JSON serializable ではないので報告中
 
-
 ### Firefox 動向
 
 - Stable: 61
@@ -258,7 +256,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Beta - September 5
     - Release - October 23
 
-
 ### Safari 動向
 
 - Stable: 11.1
@@ -271,7 +268,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Implemented support for Element.toggleAttribute (r233475) [blog](https://blog.jxck.io/entries/2018-07-20/toggle-attribute.html)
   - Made fetch() use "same-origin" credentials by default (r233720)
 - Other
-
 
 ### Edge 動向
 
@@ -305,7 +301,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blogs.technet.microsoft.com/jpieblog/2018/07/18/internet-explorer-support/
   - **Introducing Web Authentication in Microsoft Edge**
     - https://blogs.windows.com/msedgedev/2018/07/30/introducing-web-authentication-microsoft-edge
-
 
 ### WHATWG/W3C 動向
 
@@ -368,7 +363,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/w3c/csswg-drafts/issues/2701#issuecomment-402392212
     - Sass みたいなブロックのネストをする nesting プロポーザルがなぜか突如 ED になることに
 
-
 ### TC39 動向
 
 - Meeting
@@ -410,7 +404,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - 現状の ES Proposals 全部を実装したらどうなるかというまとめ
     - 提案は簡単だが実装は大変だ、という話
     - 記号の取り合い問題
-
 
 ### IETF 動向
 
@@ -524,7 +517,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - RFC の読み方
     - RFC というフォーマットをどう読み解くかなどが書かれている
 
-
 ### セキュリティ動向
 
 - HTTP Security Headers Analysis of Top One Million Websites
@@ -545,7 +537,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 2 要素認証などを有効にしておくべき
 - Into the Borg - SSRF inside Google production network
   - https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/
-
 
 ### 周辺動向
 
@@ -588,7 +579,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.benjojo.co.uk/post/the-death-of-a-tld
   - Sony が .xperia を持ってたんだけど消したとのこと
   - 他にも結構な TLD が過去に消えているらしい
-
 
 ### イベント
 

@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 115 回のテーマは 2022 年 2 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 110
-
 
 #### Updates
 
@@ -72,7 +70,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Better syntax highlight for Angular
   - Reorganize caches in the Application panel
   - > To better facilitate debugging, DevTools now supports evaluating expressions with private class members.
-
 
 #### Intents
 
@@ -176,9 +173,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **PSA: re Iframe Render Throttling**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/op-z7fMMmWY
 
-
 #### V8
-
 
 #### Other
 
@@ -313,11 +308,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://twitter.com/HTTPArchive/status/1630178203871395848
     - Web Almanac 2023 はやらない
 
-
 ### Firefox 動向
 
 #### Stable: 110.0.1
-
 
 #### Updates
 
@@ -335,7 +328,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - SpiderMonkey Newsletter (Firefox 110-111)
   - https://spidermonkey.dev/blog/2023/02/16/newsletter-firefox-110-111.html
 
-
 #### Intents
 
 - **Ship: Forced color adjust**
@@ -348,7 +340,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/9FkNumU5X44
 - Change:
 - Remove:
-
 
 #### Other
 
@@ -367,11 +358,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/openwebdocs/project/blob/main/steering-committee/meetups/london-2023/index.md
   - OWD と MDN のミーティング議事録
 
-
 ### Safari 動向
 
 #### Stable: 16.3
-
 
 #### Updates
 
@@ -514,17 +503,14 @@ guest: [@myakura](https://twitter.com/myakura)
 - **The User Activation API**
   - https://webkit.org/blog/13862/the-user-activation-api/
 
-
 #### Other
 
 - **Safari 16.4 Is An Admission - Infrequently Noted**
   - https://infrequently.org/2023/02/safari-16-4-is-an-admission/
 
-
 ### Edge 動向
 
 #### Stable: 110
-
 
 #### Updates
 
@@ -537,9 +523,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Adobe and Microsoft Bring Industry-Leading Acrobat PDF Experience to 1.4 Billion Windows Users through Microsoft Edge - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2023/02/08/adobe-acrobat-microsoft-edge-pdf/
 
-
 #### Chakra
-
 
 #### Other
 
@@ -561,7 +545,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - A Year of Intention - text/plain
   - https://textslashplain.com/2023/02/04/a-year-of-intention/
 
-
 ### WHATWG/W3C 動向
 
 #### Draft
@@ -579,7 +562,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - CSS Snapshot 2023
     - https://www.w3.org/TR/2023/DNOTE-css-2023-20230214/
 - Chartering
-
 
 #### Other
 
@@ -624,12 +606,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - > Ministry of Digital Affairs, Taiwan
     - 台湾のデジタル発展部が W3C に入った
 
-
 ### TC39 動向
 
 - ミーティングが終わって Minutes が出た月のみ実施
 - それ以外の月はスキップ
-
 
 #### Meeting
 
@@ -663,7 +643,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - だれも反対してないものもあるが、それが興味がないだけか、賛成なのかはっきりしない
   - そのへんをはっきりさせつつ、コンセンサスの取り方を how-we-work として明確にしよう
 
-
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2023-01-01}...main@{2023-02-01}
@@ -673,12 +652,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
-
 #### New Proposals
 
-
 #### Other
-
 
 ### IETF 動向
 
@@ -686,7 +662,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - ML は RSS がないものもあって日常的にスレッドを全部追うのが難しい
 - いくつかの WG に絞り、ミーティングベースで追いかける感じにする
 - それ以外は試行錯誤中
-
 
 #### WG
 
@@ -720,9 +695,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - secdispatch
   - https://mailarchive.ietf.org/arch/browse/secdispatch/
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -751,7 +724,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - How we built an open-source SEO tool using Workers, D1, and Queues
   - https://blog.cloudflare.com/how-we-built-an-open-source-seo-tool-using-workers-d1-and-queues/
 
-
 #### Fastly
 
 - **Fastly と Fediverse の未来 : パート 1 | Fastly**
@@ -773,7 +745,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Boulder で ACME サポート
   - Apple や Google の Root Store にも参加
   - GoDaddy とのクロスルート
-
 
 #### Other
 
@@ -798,7 +769,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 機能不全の危機 - Wininit.exe を使用したリモート DoS 攻撃 | Akamai
     - https://www.akamai.com/ja/blog/security-research/cant-wait-to-shut-you-down-msrpc-wininit
 
-
 ### セキュリティ動向
 
 - **当サイトへの不正アクセスによる個人情報漏えいに関するお詫びとお知らせ|ソースネクスト**
@@ -807,7 +777,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - > 弊社が運営するサイトのシステムの一部の脆弱性を利用した第三者の不正アクセスにより、ペイメントアプリケーションの改ざんが行なわれたため。
 - **ペイメントアプリケーションの改ざん(Web スキミング)に関する概説と対策手法について - セキュリティ研究センターブログ**
   - https://security.macnica.co.jp/blog/2023/02/web-1.html
-
 
 ### 周辺動向
 
@@ -857,7 +826,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - BCD - Experimental APIs
   - https://paul.kinlan.me/bcd-experimental-apis/
 
-
 ### イベント
 
 - 3 月
@@ -868,7 +836,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 5 月
   - 25: SecWeb
     - https://secweb.work/2023.html
-
 
 ### Wrap Up
 

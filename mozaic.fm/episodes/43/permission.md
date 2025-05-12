@@ -16,7 +16,6 @@ guest: [@toyoshim](https://twitter.com/toyoshim)
 
 実装と仕様の両方の側面から議論し、Web における Permission の扱いが Web をどのように変えていくのかについて議論しました。
 
-
 ## Show Note
 
 - [Web MIDI API](http://webaudio.github.io/web-midi-api/)

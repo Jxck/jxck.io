@@ -15,7 +15,6 @@ mozaic.fm の v2 をリリースしました。breaking change があるので�
 
 http://feed.mozaic.fm
 
-
 ## Change Log
 
 少し時間がかかってしまいましたが、全体的に作り直しました。
@@ -43,7 +42,6 @@ http://feed.mozaic.fm
 不具合などがあった場合は、[@jxck\_](https://twitter.com/jxck_) までおしらせください。
 
 mozaic.fm を引き続きよろしくお願いいたします。
-
 
 ## Show Note
 

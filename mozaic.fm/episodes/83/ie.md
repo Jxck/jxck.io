@@ -14,7 +14,6 @@ guest: [@ms_yuhara](https://twitter.com/ms_yuhara)
 
 今回は Microsoft の [Yusuke](https://twitter.com/ms_yuhara) さんをお呼びして、IE のたどってきた歴史を振り返り、これをどう Edge に置き換えていくのかという流れを踏まえながら、IE が Web に与えた歴史や、IE 以降の Web について議論しました。
 
-
 ## Show Note
 
 - IE11 サポート終了の歴史 | blog.jxck.io

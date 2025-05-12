@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 102 回のテーマは 2022 年 8 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Grafbase: Instant serverless GraphQL backends - Grafbase

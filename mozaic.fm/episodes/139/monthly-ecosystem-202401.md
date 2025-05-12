@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 139 回のテーマは 2023 年 12 月 ~ 2024 年 1 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - 2023 JavaScript Rising Stars
@@ -101,7 +100,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - InVision design collaboration services shutdown
   - https://www.invisionapp.com/inside-design/invision-design-collaboration-services-shutdown/
   - 2024 年末に InVision のサービスは終了
-
 
 ## Events
 

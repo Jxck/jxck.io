@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 146 回のテーマは 2024 年 3 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 123
-
 
 #### Updates
 
@@ -60,7 +58,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - **Deprecation trial for mutation events**
   - Deprecations and removals
     - Remove "window-placement" alias for permission and permission policy "window-management"
-
 
 #### Intents
 
@@ -170,7 +167,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Coming soon: Windows ClearType Text Tuner Integration
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/MAordfWXb7E
 
-
 #### Other
 
 - web.dev
@@ -271,11 +267,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - Yu Gothic UI に text-spacing-trim を適用するとバグる
     - https://zenn.dev/inaniwaudon/scraps/f224417d4c51ee
 
-
 ### Firefox 動向
 
 #### Stable: 124
-
 
 #### Updates
 
@@ -292,7 +286,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2024/03/11/a-better-screenshots-tool-and-more-these-weeks-in-firefox-issue-156/
 - **Improving Performance in Firefox and Across the Web with Speedometer 3 - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2024/03/improving-performance-in-firefox-and-across-the-web-with-speedometer-3/
-
 
 #### Intents
 
@@ -317,7 +310,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
-
 #### Newsletter
 
 - Firefox DevTools Newsletter - 123 - Firefox Developer Experience
@@ -328,7 +320,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Ytr6DpwBISw
 - SpiderMonkey Newsletter (Firefox 124-125) | SpiderMonkey JavaScript/WebAssembly Engine
   - https://spidermonkey.dev/blog/2024/03/20/newletter-firefox-124-125.html
-
 
 #### MDN / Open Web Docs
 
@@ -347,7 +338,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Interop 2023: MDN updates**
   - https://developer.mozilla.org/en-US/blog/interop2023-mdn-doc-updates/
 
-
 #### Standard Position
 
 - 今月 Close された Issue と PR ものをみる
@@ -355,7 +345,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Positive
     - MediaRecorder: Support mp4 container with avc1 and mp4a.40.2 codecs for MediaRecorder #996
     - [css-color-adjust-1] Root non-overlay scrollbars used color scheme #995
-
 
 #### Other
 
@@ -379,11 +368,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/whatwg/compat/issues/257#issuecomment-1973814589
   - Android 版 Firefox の UA 文字列で Android のバージョンを固定したが Cisco のソフトウェアが壊れたためリバートされた
 
-
 ### Safari 動向
 
 #### Stable: 17.4.1
-
 
 #### Updates
 
@@ -533,13 +520,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Introducing Natural Input for WebXR in Apple Vision Pro**
   - https://webkit.org/blog/15162/introducing-natural-input-for-webxr-in-apple-vision-pro/
 
-
 #### Standard Positions
 
 - 今月 Close されたものをみる
   - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2024-03-01+
   - 今月はなし
-
 
 #### Other
 
@@ -554,14 +539,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Update: 2024-03-30**
   - Family にカラーバリエーションをつけるとバラけるのは、以前のフォントからそうでした。
 
-
 ### Edge 動向
 
 #### Stable: 123
 
-
 #### Updates
-
 
 #### Other
 
@@ -592,7 +574,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Windows は TLS の RSA Key で 2048bit 以下を deprecate した
   - https://www.bleepingcomputer.com/news/microsoft/microsoft-announces-deprecation-of-1024-bit-rsa-keys-in-windows/
 
-
 ### WHATWG/W3C 動向
 
 #### Draft
@@ -603,13 +584,11 @@ guest: [@myakura](https://twitter.com/myakura)
 - Working Draft
 - First Public Working Draft
 
-
 #### Open/UI
 
 - https://github.com/openui/open-ui/blob/main/meetings/telecon/2024-03-07.md
 - https://github.com/openui/open-ui/blob/main/meetings/telecon/2024-03-14.md
 - 特になし
-
 
 #### Other
 
@@ -626,7 +605,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Add URL.parse() · whatwg/url@58acb06**
   - https://github.com/whatwg/url/commit/58acb06dccec3e95a33d842337e61d25195d4b1b
 
-
 ### TC39 動向
 
 #### Meeting
@@ -635,7 +613,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/agendas/blob/main/2024/02.md
   - https://github.com/tc39/notes/tree/main/meetings/2024-02
   - 今読んでるから来月
-
 
 #### Proposals Diff
 
@@ -647,12 +624,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2.7->3
 - 3->4
 
-
 #### New Proposals
 
-
 #### Other
-
 
 ### WinterCG 動向
 
@@ -667,7 +641,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - WinterCG WPT Subset
     - https://docs.google.com/spreadsheets/d/1YhzQXmIngM1Am8qd6PNqiQLyIyNv2Cg3uzK-FcP_NRE/
 
-
 ### IETF 動向
 
 #### IETF
@@ -678,7 +651,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/httpwg/wg-materials/blob/gh-pages/ietf119/minutes.md
   - HTTPAPI Minutes
     - https://notes.ietf.org/notes-ietf-119-httpapi
-
 
 #### WG
 
@@ -694,12 +666,10 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mailarchive.ietf.org/arch/msg/tls/VLnfp97OpOPvmdowvR5NLiywjCI/
 - Meeting
 
-
 #### Other
 
 - **There Are No Standards Police**
   - https://www.mnot.net/blog/2024/03/13/voluntary
-
 
 ### CDN 動向
 
@@ -718,18 +688,15 @@ guest: [@myakura](https://twitter.com/myakura)
 - Undersea cable failures cause Internet disruptions for multiple African countries
   - https://blog.cloudflare.com/undersea-cable-failures-cause-internet-disruptions-across-africa-march-14-2024/
 
-
 #### Fastly
 
 - **New options for Polyfill.io users - General - Fastly Community**
   - https://community.fastly.com/t/new-options-for-polyfill-io-users/2540
 
-
 #### Other
 
 - **Learning from the LockBit Takedown | Akamai**
   - https://www.akamai.com/blog/security/2024/feb/learning-from-the-lockbit-takedown
-
 
 ### セキュリティ動向
 
@@ -741,7 +708,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.publickey1.jp/blog/24/publickeydos.html
 - **続、Publickey が受けた DoS 攻撃、これまでの経緯と対策まとめ - Publickey**
   - https://www.publickey1.jp/blog/24/publickeydos_1.html
-
 
 ### 周辺動向
 
@@ -782,7 +748,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Brave, Mozilla, Vivaldi see browser installs rise on iOS • The Register**
   - https://www.theregister.com/2024/03/14/brave_mozilla_europe_ios/
 
-
 ### Cookie 動向
 
 - **New Privacy-Preserving Ads API coming to Microsoft Edge - Microsoft Edge Blog**
@@ -791,7 +756,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 1% ロールアウトを数ヶ月以内に実施
   - 2024 年内は継続
   - Ad Selection API のテストを呼びかけ
-
 
 ### イベント
 
@@ -813,7 +777,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://webengineshackfest.org/
   - 10: WWDC
     - https://developer.apple.com/wwdc24/
-
 
 ### Wrap Up
 

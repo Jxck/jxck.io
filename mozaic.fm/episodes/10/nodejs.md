@@ -17,7 +17,6 @@ guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 
 また、危なげな運用で続けてきた mozaic.fm も、一つ目の目標だった 10 回を達成することができました。これも、購読/出演、してくださった皆様のおかげです。これからもしばらくは続けたいと思いますので、よろしくお願いします。
 
-
 ## Show Note
 
 - 0:00 ~ : intro

@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 151 回のテーマは 2024 年 5 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 125
-
 
 #### Updates
 
@@ -138,7 +136,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://io.google/2024/explore/47fc6e98-8359-4be0-b9b9-4bc7b28bd063/
   - From fast loading to instant loading
     - https://io.google/2024/explore/24c82286-24fd-42b7-b5a8-bbe9c917cbe4/
-
 
 #### Intents
 
@@ -282,7 +279,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/fcvFzlE22NI
   - グラフィック/レンダリング周りをみてた Vlad が API Owner に
 
-
 #### Other
 
 - web.dev
@@ -377,11 +373,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - v8
   - https://v8.dev/
 
-
 ### Firefox 動向
 
 #### Stable: 126
-
 
 #### Updates
 
@@ -401,7 +395,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2024/05/09/screenshots-these-weeks-in-firefox-issue-160/
 - Today's Forecast: Browser Improvements - These Weeks in Firefox: Issue 161 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2024/05/17/todays-forecast-browser-improvements-these-weeks-in-firefox-issue-161/
-
 
 #### Intents
 
@@ -439,7 +432,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Unship: HTMLMediaElement.seekToNextFrame
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/cjiXyyFDmrw
 
-
 #### Newsletter
 
 - Firefox DevTools Newsletter - 125
@@ -453,12 +445,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - L10n report: May 2024 Edition - Mozilla L10N
   - https://blog.mozilla.org/l10n/2024/05/02/l10n-report-may-2024-edition/
 
-
 #### MDN / Open Web Docs
 
 - Using the Page Visibility API
   - https://developer.mozilla.org/en-US/blog/using-the-page-visibility-api/
-
 
 #### Standard Position
 
@@ -479,7 +469,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Defer
   - **Partitioned Popins**
     - https://github.com/mozilla/standards-positions/issues/1023
-
 
 #### Other
 
@@ -510,11 +499,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - 縦タブなど UI の強化やパフォーマンス向上などに取り組んでいくらしい
   - > We're looking at how we can use local, on-device AI models -- i.e., more private -- to enhance your browsing experience further. One feature we're starting with next quarter is AI-generated alt-text for images inserted into PDFs, which makes it more accessible to visually impaired users and people with learning disabilities. The alt text is then processed on your device and saved locally instead of cloud services, ensuring that enhancements like these are done with your privacy in mind.
 
-
 ### Safari 動向
 
 #### Stable: 17.5
-
 
 #### Updates
 
@@ -553,7 +540,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://webkit.org/blog/15417/release-notes-for-safari-technology-preview-195/
   - バグ修正のみ
 
-
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -587,14 +573,11 @@ guest: [@myakura](https://twitter.com/myakura)
   - focusability of elements with CSS display:contents
     - https://github.com/WebKit/standards-positions/issues/164
 
-
 #### Other
-
 
 ### Edge 動向
 
 #### Stable: 125
-
 
 #### Updates
 
@@ -607,7 +590,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://build.microsoft.com/en-US/sessions/812106ec-c88a-4203-bfbb-095c69ce221c?source=sessions
 - Deprecating support for -ms-high-contrast and -ms-high-contrast-adjust - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2024/04/29/deprecating-ms-high-contrast/
-
 
 #### Other
 
@@ -625,7 +607,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://textslashplain.com/2024/05/21/attack-techniques-remote-control-software/
 - Authenticode in 2024 - text/plain
   - https://textslashplain.com/2024/05/22/authenticode-in-2024/
-
 
 ### WHATWG/W3C 動向
 
@@ -650,14 +631,12 @@ guest: [@myakura](https://twitter.com/myakura)
   - First Public Working Draft: CSS View Transitions Module Level 2
     - https://www.w3.org/news/2024/first-public-working-draft-css-view-transitions-module-level-2/
 
-
 #### Open/UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
 - **CSS WG Blog - Minutes OpenUI-WHATWG/HTML-CSSWG Meeting 2024-05-08**
   - https://www.w3.org/blog/CSS/2024/05/18/minutes-openui-whatwg-html-csswg-meeting-2024-05-08/
   - stylable select や appearance: base の話
-
 
 #### Other
 
@@ -673,7 +652,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/WICG/proposals/issues/152
   - > This proposal advocates for the development of a web standard for the Cryptographic Message Syntax (CMS) API, specifically tailored to enhance the security of email communications through S/MIME. CMS, as described in RFC 5652, is fundamental for signing, encrypting, decrypting, and verifying email messages, facilitating end-to-end secure email communication.
 
-
 ### TC39 動向
 
 #### Meeting
@@ -683,7 +661,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/notes/tree/main/meetings/2024-04
   - https://x.com/mozaicfm/status/1793265693833769281
   - https://docs.google.com/document/d/1qXUf4QRTbexUj0fg2sgYTxWwOT2v_q7lmjR282BOWLU/edit
-
 
 #### Proposals Diff
 
@@ -709,24 +686,19 @@ guest: [@myakura](https://twitter.com/myakura)
 - Widthdrawn
   - Array.last
 
-
 #### New Proposals
 
-
 #### Other
-
 
 ### WinterCG 動向
 
 - Meeting や大きな動きがあった月だけやる
-
 
 #### Meeting
 
 - 2024-05-01 Meeting
   - https://github.com/wintercg/admin/issues
   - 特になし
-
 
 ### IETF 動向
 
@@ -744,7 +716,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2024AprJun/0050.html
 - Meeting
 
-
 #### Other
 
 - **これからの HTTP - 拡大するセマンティクスと、さらなる高速化 - Google Slides**
@@ -756,7 +727,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.mnot.net/blog/2024/05/24/consensus
   - 「コンセンサス」とは何か?についてと、その優位性や問題点などについて
 
-
 ### CDN 動向
 
 #### Cloudflare
@@ -766,12 +736,10 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Using Fortran on Cloudflare Workers**
   - https://blog.cloudflare.com/using-fortran-on-cloudflare-workers/
 
-
 #### Fastly
 
 - Getting started with Fastly CDN is easier than ever with Glitch | Fastly
   - https://www.fastly.com/blog/getting-started-with-fastly-cdn-is-easier-than-ever-with-glitch/
-
 
 #### Other
 
@@ -779,7 +747,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://vercel.com/changelog/interaction-timing-tool
 - Uncover accessibility issues on your deployments from the Vercel Toolbar - Vercel
   - https://vercel.com/changelog/accessibility-tool
-
 
 ### セキュリティ動向
 
@@ -796,7 +763,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://knowledge.digicert.com/ja/jp/alerts/ALERT2847
   - 証明書の Business Category フィールドの大文字小文字を間違えたので再発行する
   - "Private Organization" を "Private organization"
-
 
 ### 周辺動向
 
@@ -828,9 +794,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - twitter.com -> x.com へのリダイレクトが始まった
   - Firefox や Edge のトラッキング防止機能を Strict にしていると一時見られなくなっていた
 
-
 ### Cookie 動向
-
 
 ### イベント
 
@@ -842,7 +806,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 20-26: IETF 120 Vancouver
     - https://www.ietf.org/meeting/120/
 - 7 月
-
 
 ### Wrap Up
 

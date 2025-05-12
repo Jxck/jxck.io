@@ -18,7 +18,6 @@ guest: [@shhnjk](https://twitter.com/shhnjk)
 
 Origin を守るための Web の戦いと、そこから見える Web や Browser のアーキテクチャの今後について議論します。
 
-
 ## Show Note
 
 - Spectre

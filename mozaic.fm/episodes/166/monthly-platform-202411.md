@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 166 回のテーマは 2024 年 11 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 131
-
 
 #### Updates
 
@@ -60,7 +58,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Deprecations and removals
     - navigator.storage no longer an EventTarget
     - Remove Prefixed HTMLVideoElement Fullscreen APIs
-
 
 #### Intents
 
@@ -221,7 +218,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Ready for Developer Testing: Deprecate getters of Intl Locale Info
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/INf1aE8H4-c
 
-
 #### Other
 
 - web.dev
@@ -290,11 +286,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.bloomberg.co.jp/news/articles/2024-11-18/SN63GPT1UM0W00
   - https://www.bloomberg.com/news/articles/2024-11-18/doj-will-push-google-to-sell-off-chrome-to-break-search-monopoly
 
-
 ### Firefox 動向
 
 #### Stable: 133
-
 
 #### Updates
 
@@ -312,7 +306,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2024/11/19/celebrating-20-years-of-firefox-these-weeks-in-firefox-issue-171/
 - New Address Bar Updates are Here - These Weeks in Firefox: Issue 172
   - https://blog.nightly.mozilla.org/2024/11/19/new-address-bar-updates-are-here-these-weeks-in-firefox-issue-172/
-
 
 #### Intents
 
@@ -334,7 +327,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Change:
 - Remove:
 
-
 #### Newsletter
 
 - Performance Testing Newsletter (Q3 Edition)
@@ -346,7 +338,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Firefox WebDriver Newsletter 133 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-133/
 
-
 #### MDN / Open Web Docs
 
 - How to land your first developer job
@@ -355,7 +346,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://openwebdocs.org/content/posts/self-experimentation-with-csp/
 - Monitoring and optimizing website performance
   - https://developer.mozilla.org/en-US/blog/optimize-web-performance/
-
 
 #### Standard Position
 
@@ -373,7 +363,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Page Embedded Permission Control
     - https://github.com/mozilla/standards-positions/issues/908
 
-
 #### Other
 
 - **Firefox の開発元である Mozilla が従業員の約 5%に当たる約 60 人を解雇 - GIGAZINE**
@@ -389,11 +378,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **20 years of Firefox: How a community project changed the web**
   - https://blog.mozilla.org/en/products/firefox/firefox-milestones/
 
-
 ### Safari 動向
 
 #### Stable: 18.1
-
 
 #### Updates
 
@@ -430,7 +417,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web Inspector
   - WebRTC
 
-
 #### Standard Positions
 
 - 今月 Close されたものをみる
@@ -457,7 +443,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Support Skip-Ad media session action
     - https://github.com/WebKit/standards-positions/issues/350
 
-
 #### Other
 
 - Igalia and WebKit: status update and plans (2024) | mariospr.org
@@ -469,11 +454,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.gov.uk/government/news/cma-publishes-provisional-findings-in-mobile-browsers-and-cloud-gaming-market-investigation
   - モバイルでの寡占に関する調査に Safari が追加
 
-
 ### Edge 動向
 
 #### Stable: 131
-
 
 #### Updates
 
@@ -485,7 +468,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - これを見るしか無い
 - Ignite 2024: Transform your workday with the latest Edge for Business features - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2024/11/19/microsoft-edge-for-business-transform-your-workday-ignite-2024/
-
 
 #### Other
 
@@ -508,7 +490,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blogs.windows.com/windows-insider/2024/11/01/announcing-windows-11-insider-preview-build-22635-4440-beta-channel/
   - Windows Hello がリブランド
   - Passkey がより密接に
-
 
 ### WHATWG/W3C 動向
 
@@ -538,7 +519,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - First Public Working Draft: Global Privacy Control (GPC)
     - https://www.w3.org/news/2024/first-public-working-draft-global-privacy-control-gpc/
 
-
 #### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -555,7 +535,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2024-11-21.md
   - Design System Update
   - select: clarifying what should be used as the chosen value #1117
-
 
 #### WHATNOT
 
@@ -627,7 +606,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - [[css-ui] Colors to use for appearance:base \<select> w3c/csswg-drafts#10909](https://github.com/w3c/csswg-drafts/issues/10909)
   - [[css-ui] UA stylesheet for appearance:base \<select> w3c/csswg-drafts#10857](https://github.com/w3c/csswg-drafts/issues/10857)
 
-
 #### Other
 
 - **W3C opens Technical Architecture Group (TAG) election**
@@ -636,7 +614,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.w3.org/news/2024/w3c-receives-ford-foundation-core-funding-toward-development-of-web-accessibility-work/
 - **TPAC 2025**
   - https://www.w3.org/events/tpac/2025/tpac-2025/
-
 
 ### TC39 動向
 
@@ -676,7 +653,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - [Symbol.species]を消せるかどうかの話
   - TypedArray、ArrayBuffer、SharedArrayBuffer では消すことになった
 
-
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2024-09-01}...main@{2024-11-01}
@@ -699,9 +675,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - Sync Iterator Helpers
   - Promise.try
 
-
 #### New Proposals
-
 
 #### WinterCG
 
@@ -716,7 +690,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Import.meta
   - function api
 
-
 #### Other
 
 - Summary of the October-2024 TC39 plenary
@@ -724,7 +697,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Deno v. Oracle: Canceling the JavaScript Trademark**
   - https://deno.com/blog/deno-v-oracle
   - https://www.publickey1.jp/blog/24/javascriptdeno.html
-
 
 ### IETF 動向
 
@@ -751,7 +723,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - [Other Topics](https://httpwg.org/wg-materials/ietf121/minutes.html#other-topics-1)
       - [The IP Geolocation HTTP Client Hint](https://httpwg.org/wg-materials/ietf121/minutes.html#the-ip-geolocation-http-client-hint)
 
-
 #### WG
 
 - RFC
@@ -762,9 +733,7 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mailarchive.ietf.org/arch/msg/httpapi/6lAqDoH4s2Cy76Qxpnx0984i0YQ/
 - Meeting
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -772,7 +741,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 - A look at the latest post-quantum signature standardization candidates
   - https://blog.cloudflare.com/another-look-at-pq-signatures/
-
 
 #### Fastly
 
@@ -785,9 +753,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **The History of DDoS | Fastly**
   - https://www.fastly.com/blog/the-history-of-ddos
 
-
 #### Other
-
 
 ### セキュリティ動向
 
@@ -803,7 +769,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.47news.jp/11816046.html
 - **「Bing Wallpaper」の動きがどうも怪しい ～海外のオンラインソフト作家が注意喚起 - やじうまの杜 - 窓の杜**
   - https://forest.watch.impress.co.jp/docs/serial/yajiuma/1642305.html
-
 
 ### 周辺動向
 
@@ -853,7 +818,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **100 patches to 5 browsers in 18 months - Keith Cirkel**
   - https://www.keithcirkel.co.uk/100-patches-to-5-browsers-in-18-months/
 
-
 ### Cookie 動向
 
 - **Investigation into Google's 'Privacy Sandbox' browser changes - GOV.UK**
@@ -872,7 +836,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.iij.ad.jp/news/pressrelease/2024/1029.html
   - https://forest.watch.impress.co.jp/docs/news/1635467.html
 
-
 ### イベント
 
 - 11 月
@@ -886,7 +849,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 1 月
   - 20: Web 技術年末試験 2024
     - TODO
-
 
 ### Wrap Up
 

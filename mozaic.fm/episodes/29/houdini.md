@@ -16,7 +16,6 @@ guest: [@kojiishi](https://twitter.com/kojiishi)
 
 実装する上での問題点や、今後の展望をお聞きし、今後 Houdini が CSS に対してどういった影響を及ぼしていくかを踏まえ、「**今何がおこっているのか**」と「**これからどうなっていくのか**」について議論しました。
 
-
 ## Show Note
 
 - Koji さんのドラフト

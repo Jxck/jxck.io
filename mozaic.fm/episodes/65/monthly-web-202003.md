@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 65 回のテーマは 2020 年 3 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Covid-19
@@ -29,7 +28,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - ブラウザのリリースにも影響
   - 多くのイベント、カンファレンス等が中止かリモートに
   - インターネットのトラフィックが急増中
-
 
 ### Chrome 動向
 
@@ -159,7 +157,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.youtube.com/playlist?list=PLNYkxOF6rcIAZqdZ8Uz5hWLgTl319CaLH
     - GDE の Video を集めた Youtube のプレイリスト
 
-
 ### Firefox 動向
 
 - Stable: 74.0
@@ -240,7 +237,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - フランスで Firefox の DAU(Daily Active Usage) が 3 月中旬から増加している
     - Social distancing の影響かはちゃんと検証しないとわからないとは前置きした上で、一部データを公開
 
-
 ### Safari 動向
 
 - Stable: 13.1
@@ -280,7 +276,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - cross site document.referrer は origin のみに
 - Other
 
-
 ### Edge 動向
 
 - Stable: 80.0
@@ -309,7 +304,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Debugging Proxy Configuration Scripts in the new Edge
     - https://textslashplain.com/2020/03/25/debugging-proxy-configuration-scripts-in-the-new-edge/
     - PAC のデバッグの話?
-
 
 ### WHATWG/W3C 動向
 
@@ -348,7 +342,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Electron での情報漏えいなどをうけ Reference Monitor を入れる提案
     - 意図しない呼び出しなどを止める仕組み
 
-
 ### TC39 動向
 
 - Meeting
@@ -383,7 +376,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://zenodo.org/record/3707008
     - JS の歴史についての論文
     - HOPL (History Of Programming Languages Conferences) に提出する
-
 
 ### IETF 動向
 
@@ -558,7 +550,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-dekok-emu-tls-eap-types-01
 - Other
 
-
 ### セキュリティ動向
 
 - Cookie Status :: Current Status Of Browser Tracking Prevention
@@ -592,7 +583,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - An Opinion Piece on Internet Security | APNIC Blog
   - https://blog.apnic.net/2020/03/24/an-opinion-piece-on-internet-security/
 
-
 ### 周辺動向
 
 - **Enigma Conference 2020 - Browser Privacy Panel**
@@ -613,7 +603,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **COVID-19 impacts on Internet traffic: Seattle, Northern Italy and South Korea**
   - https://blog.cloudflare.com/covid-19-impacts-on-internet-traffic-seattle-italy-and-south-korea/
 
-
 ### イベント
 
 - 3 月
@@ -632,7 +621,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 19: SecWeb
   - ??: WWDC
     - virtual
-
 
 ### WrapUp
 

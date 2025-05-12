@@ -18,7 +18,6 @@ guest: [@Constellation](https://twitter.com/Constellation)
 
 [Bug 147340 - [ES6] Implement ES6 Modules](https://bugs.webkit.org/show_bug.cgi%3Fid%3D147340)
 
-
 ## Show Note
 
 - [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)

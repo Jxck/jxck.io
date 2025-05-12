@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 34 回のテーマは 2018 年 2 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -191,7 +190,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Winning on Mobile
     - https://www.thinkwithgoogle.com/feature/mobile/
 
-
 ### Firefox 動向
 
 - Stable: 58
@@ -303,7 +301,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Mozilla v FCC: Mozilla Re-files Suit Against FCC to Protect Net Neutrality
     - https://blog.mozilla.org/blog/2018/02/22/mozilla-v-fcc-mozilla-re-files-suit-fcc-protect-net-neutrality/
 
-
 ### Safari 動向
 
 - Release Notes for Safari Technology Preview 49
@@ -328,7 +325,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - ユーザがインタラクションをしてればページ上だろう。
   - first child iframe だったらアクセスも許可できようという緩和手段
   - 一旦は prompt は無しで様子見
-
 
 ### Edge 動向
 
@@ -356,7 +352,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blogs.technet.microsoft.com/exchange/2018/02/09/an-update-on-office-365-requiring-tls-1-2/
     - TLS 1.0 / TLS 1.1 のサポート終了を 2018/3/1 から 2018/10/31 に延期
     - 先月話したやつ。やっぱりダメだった。
-
 
 ### WHATWG/W3C 動向
 
@@ -437,7 +432,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - 見出しにフォーカス
       - h2-h6 はそのまま、h1 だけ hgroup やネストしたセクション系要素の数で変動
 
-
 ### TC39 動向
 
 - rwaldron/tc39-notes
@@ -496,7 +490,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - box してライブラリに渡せば、抜かれないという用途
     - tl;dr;
 
-
 ### IETF 動向
 
 - IETF101(3/17~23)
@@ -541,7 +534,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://tools.ietf.org/html/draft-ietf-quic-qcram-00
 - Other
 
-
 ### 周辺動向
 
 - **12 best practices for user account, authorization and password management**
@@ -574,7 +566,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Weak cryptographic standards removed
   - https://github.com/blog/2507-weak-cryptographic-standards-removed
   - github が TLS1/1.1 を切る
-
 
 ### イベント
 

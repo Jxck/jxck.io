@@ -456,7 +456,7 @@
                 <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/kC-AeZ1fSdY" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/kC-AeZ1fSdY</a>
                 <li>2022 年 10 月から始まる UA Reduction Phase 5(デスクトップ OS のバージョン固定)の展開について
                 <li>古い Windows で影響が出るかもしれないので影響を見ながら少しずつ展開していく
-                <li>Chrome 107 時点では 1% で、 3 ヶ月ほどかけ徐々に増やす
+                <li>Chrome 107 時点では 1% で、3 ヶ月ほどかけ徐々に増やす
                 <li>2023 年 2 月上旬に 100% 予定
               </ul>
             </li>
@@ -1216,18 +1216,18 @@
               <strong>[selectors] The forgiving nature of :has breaks jQuery when used with a complex :has selector</strong>
               <ul>
                 <li><a href="https://github.com/w3c/csswg-drafts/issues/7676" target=_blank>https://github.com/w3c/csswg-drafts/issues/7676</a>
-                <li>Chrome 105 で <code translate=no>:has()</code> が有効になったところ、 jQuery が壊れた
+                <li>Chrome 105 で <code translate=no>:has()</code> が有効になったところ、jQuery が壊れた
                 <li>
                   jQuery は昔から <code translate=no>:has()</code> セレクタや、<code translate=no>:contains</code> などを独自拡張として持っていた
                   <ul>
-                    <li><code translate=no>$()</code> のセレクタはまずブラウザ <code translate=no>querySelectorAll()</code> に渡され、 fail したら jQuery のエンジンに渡すようになっている
+                    <li><code translate=no>$()</code> のセレクタはまずブラウザ <code translate=no>querySelectorAll()</code> に渡され、fail したら jQuery のエンジンに渡すようになっている
                     <li><code translate=no>ul:has(li:contains(&apos;Item&apos;))</code> といったセレクタはこれまで jQuery で処理されるようになっていた
                   </ul>
                 </li>
                 <li>
                   ネイティブ <code translate=no>:has()</code> の引数は forgiving selector list をとり、中のセレクタに invalid なものがあっても fail しない
                   <ul>
-                    <li>なので jQuery 内の <code translate=no>:has()</code> がネイティブ実装を参照し続け、 jQuery のエンジンにフォールバックしなくなってしまった
+                    <li>なので jQuery 内の <code translate=no>:has()</code> がネイティブ実装を参照し続け、jQuery のエンジンにフォールバックしなくなってしまった
                   </ul>
                 </li>
               </ul>
@@ -1258,7 +1258,7 @@
                     <li>
                       Change Array By Copy Update (Issue 95)
                       <ul>
-                        <li>TypedArray には splice がないので、 toSpliced は無くす
+                        <li>TypedArray には splice がないので、toSpliced は無くす
                         <li>TA は長さが変えられないから splice できない
                         <li>Bun が Change array by copy を使う最初の platoform
                       </ul>

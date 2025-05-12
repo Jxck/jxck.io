@@ -19,7 +19,6 @@ guest: [@nhiroki_](https://twitter.com/nhiroki_)
 
 また、Service Worker へのフィードバックは [bug tracker](https://crbug.com/new) (基本は英語ですが、日本語でも良いそうです)、もしくは [#serviceworker](https://twitter.com/search?q=%23serviceworker&src=hash) です。
 
-
 ## Show Note
 
 ### 関連仕様
@@ -31,11 +30,9 @@ guest: [@nhiroki_](https://twitter.com/nhiroki_)
 - [Fetch](https://fetch.spec.whatwg.org/)
 - [Permissions API](https://w3c.github.io/permissions/)
 
-
 ### Service Worker の始まり(0:00)
 
 - [ServiceWorker](https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html)
-
 
 ### Application Cache はなぜダメだったのか (4:30~)
 
@@ -48,12 +45,10 @@ guest: [@nhiroki_](https://twitter.com/nhiroki_)
 - [幻の仕様 DataCache](http://www.w3.org/TR/DataCache/)
 - [[issue] The new API should be able to explain AppCache](https://github.com/slightlyoff/ServiceWorker/issues/2)
 
-
 ### Service Worker はそれをどう解決したか (12:20~)
 
 - [The new API should be able to explain AppCache](https://github.com/slightlyoff/ServiceWorker/issues/2)
 - [Why Fetch but not XHR, from SW point of view](https://github.com/slightlyoff/ServiceWorker/issues/5)
-
 
 ### 新しく出た API の詳解 (18:30~)
 
@@ -63,7 +58,6 @@ guest: [@nhiroki_](https://twitter.com/nhiroki_)
 - [Push API](http://w3c.github.io/push-api/) と他の Push との違い
 - [Service Worker ハッカソン](http://googledevjp.blogspot.jp/2015/03/service-worker.html)
 
-
 ### Push への危惧と Permission API (40:15~)
 
 - [Push を使った Chat のデモ](https://johnme-gcm.appspot.com/chat/)
@@ -71,22 +65,18 @@ guest: [@nhiroki_](https://twitter.com/nhiroki_)
 - [Permission の整理について](https://groups.google.com/d/topic/mozilla.dev.platform/rnSFZq14Xi4/discussion)
 - [Permissions API](https://w3c.github.io/permissions/)
 
-
 ### BackGround Sync とは何か (49:30~)
 
 - [BackGround Sync](https://github.com/slightlyoff/BackgroundSync/blob/master/explainer.md)
-
 
 ### 今後予定している API (54:00~)
 
 - [GeoFenching](https://github.com/slightlyoff/Geofencing)
 - [Navigator.connect](http://mkruisselbrink.github.io/navigator-connect/) ([#15](https://mozaic.fm/episodes/15/extensible-web.html) で @myakura さんが言及)
 
-
 ### CacheAPI と Browser Cache の違い (57:30~)
 
 - [Cache](http://www.w3.org/TR/service-workers/%23cache-storage) と ブラウザキャッシュの違い
-
 
 ### Devtools と ServiceWorker (1:00:00~)
 
@@ -94,7 +84,6 @@ guest: [@nhiroki_](https://twitter.com/nhiroki_)
 - Twitter [#serviceworker](https://twitter.com/search?q=%23serviceworker&src=hash) タグ
 - [元は NavigationController という名前だった](https://github.com/slightlyoff/ServiceWorker/commit/c49c878cdcbaf7a81e9e8cf3cca9970787017a19)
 - [bug tracker (英語ですが最悪日本語でも可)](https://crbug.com/new)
-
 
 ### これからどうなっていくか? (1:07:20~)
 

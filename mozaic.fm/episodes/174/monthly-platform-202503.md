@@ -13,13 +13,11 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 174 回のテーマは 2025 年 3 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 135
-
 
 #### Updates
 

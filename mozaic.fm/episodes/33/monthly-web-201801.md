@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 33 回のテーマは 2018 年 1 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Spectore/Meltdown
@@ -43,7 +42,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Mitigating speculative execution side-channel attacks in Microsoft Edge and Internet Explorer
     - https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer/
   - `performance.now()` が 5us -> 20us に
-
 
 ### Chrome 動向
 
@@ -271,7 +269,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - http://blog.chromium.org/2018/01/further-protecting-users-from-deceptive.html
     - inline install を無効に
 
-
 ### Firefox 動向
 
 - Updates
@@ -378,7 +375,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Shrinking WebAssembly and JavaScript code sizes in Emscripten
     - https://hacks.mozilla.org/2018/01/shrinking-webassembly-and-javascript-code-sizes-in-emscripten/
 
-
 ### Safari 動向
 
 - Safari Technology Preview 46
@@ -430,7 +426,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - web-tooling bench みたいに、実世界を反映したベンチに
   - TODO MVC ベースで、JS だけではなく DOM, Layout, CSS 全部を測る
 
-
 ### Edge 動向
 
 - **EdgeHTML16 DevTools Improvements (Win 10 Fall Creators Update)**
@@ -477,7 +472,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Microsoft is blocking browsers using TLS 1.0 and TLS 1.1 from Office 365 on 2018-03-01**
     - https://support.microsoft.com/en-us/help/4057306/preparing-for-tls-1-2-in-office-365
     - 1.2 を使えという話
-
 
 ### WHATWG/W3C 動向
 
@@ -684,7 +678,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - 複数許可されていた main 要素がひとつのみに
     - 文面は違うが、効果としては W3C 版と同じような形になった
 
-
 ### TC39 動向
 
 - **ECMAScript 2018: the final feature set**
@@ -764,7 +757,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/tc39/tc39-logo
     - TC39 の Logo ができた
 
-
 ### IETF 動向
 
 - **RFC 8297 on An HTTP Status Code for Indicating Hints**
@@ -813,7 +805,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mailarchive.ietf.org/arch/msg/tls/i9blmvG2BEPf1s1OJkenHknRw9c
   - QUIC Interop Matrix
     - https://docs.google.com/spreadsheets/d/1D0tW89vOoaScs3IY9RGC0UesWGAwE6xyLk0l4JtvTVg/
-
 
 ### 周辺動向
 
@@ -879,7 +870,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://rollbar.com/blog/top-10-javascript-errors/
 - **Instagram PWA**
   - https://twitter.com/HenrikJoreteg/status/954937188973666304
-
 
 ### イベント
 

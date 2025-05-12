@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 36 回のテーマは 2018 年 3 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -185,7 +184,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Chrome も ITP をやるべきではないかという提案
     - 提案したのは Robin Berjon(W3C で SVG やデバイス API や HTML5 をやってた人)
 
-
 ### Firefox 動向
 
 - Stable: 59
@@ -275,7 +273,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://twitter.com/ehsanakhgari/status/972224912634064896
     - ページ内ポップアップのブロックをできないか検討していて、サンプルになるようなサイトを募集中
 
-
 ### Safari 動向
 
 - Stable: 11.1
@@ -332,7 +329,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - DataTransfer の互換性向上や、ディレクトリアップロードなども対応
     - Safari 11.1 で ship
 
-
 ### Edge 動向
 
 - Stable:
@@ -373,7 +369,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/
     - https://docs.microsoft.com/en-us/microsoft-edge/devtools-protocol/0.1/
     - Chrome DevTools Protocol のサポート開始
-
 
 ### WHATWG/W3C 動向
 
@@ -439,7 +434,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - オートコレクト機能を制御するための属性
     - iOS の独自実装を標準化したい模様
 
-
 ### TC39 動向
 
 - Proposals Diff
@@ -500,7 +494,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - domenic/package-name-maps
     - https://github.com/domenic/package-name-maps
     - `import foo from "bar"` と書いたときに参照するものを package name maps に定義し、それを読み込むための仕組みを定義
-
 
 ### IETF 動向
 
@@ -587,7 +580,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Updates on TCP Fast Open deployment
     - https://datatracker.ietf.org/meeting/101/materials/slides-101-tcpm-updates-on-tcp-fast-open-deployments-01
 
-
 ### 周辺動向
 
 - Japan GPKI Root Renewal Request
@@ -640,7 +632,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - ESM の最適化はこれからという話
 - **The Alliance for Open Media Kickstarts Video Innovation Era with "AV1" Release**
   - https://aomedia.org/the-alliance-for-open-media-kickstarts-video-innovation-era-with-av1-release/
-
 
 ### イベント
 

@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 59 回のテーマは 2019 年 10 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -216,7 +215,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - 報奨金の増額
     - Chromium に提供されたパッチが Chrome のリリースに乗るまで 33 日の "patch gap" があったが、直接リリースに反映できるようにし 19 日まで縮めた
 
-
 ### Firefox 動向
 
 - Stable: 70
@@ -310,7 +308,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mozillagfx.wordpress.com/2019/10/22/dramatically-reduced-power-usage-in-firefox-70-on-macos-with-core-animation/
     - 画像の最適化について解説しているビデオ
 
-
 ### Safari 動向
 
 - Stable: 13.0.3
@@ -343,7 +340,6 @@ guest: [@myakura](https://twitter.com/myakura)
       - 引き続き手が入ってる
 - Other
 
-
 ### Edge 動向
 
 - Stable:
@@ -363,7 +359,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - つまり Chromium ベースの他のブラウザにも入る
     - `<input type=password>` にパスワードを確認するアイコンが入るっぽい
     - ハイコントラストモードにも対応
-
 
 ### WHATWG/W3C 動向
 
@@ -421,7 +416,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/7972
     - W3C 25 周年
 
-
 ### TC39 動向
 
 - Meeting
@@ -471,7 +465,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Nullish が TS にマージ
     - https://github.com/microsoft/TypeScript/pull/32883
 
-
 ### IETF 動向
 
 - IETF106
@@ -502,7 +495,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Using QUIC Datagrams with HTTP/3
     - https://tools.ietf.org/html/draft-schinazi-quic-h3-datagram-01
 - Other
-
 
 ### セキュリティ動向
 
@@ -555,7 +547,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Getting started with security keys**
   - https://paulstamatiou.com/getting-started-with-security-keys/
 
-
 ### 周辺動向
 
 - google/nginx-sxg-module
@@ -598,7 +589,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - WebAssembly.sh
   - https://webassembly.sh/?run-command=sqlite
   - WASM で SQLite
-
 
 ### イベント
 

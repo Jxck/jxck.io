@@ -20,7 +20,6 @@ HPBN は、複雑化し、知らなくてはならい知識が飛躍的に増え
 
 別途 [Qiita で募集した質問](http://qiita.com/Jxck_/items/a0cea350cc982915d092) も一部採用させていただきました。応募頂いた皆様ありがとうございました。
 
-
 ## Show Note
 
 - [Ilya Grigorik](https://www.igvita.com/)

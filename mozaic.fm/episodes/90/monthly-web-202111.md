@@ -12,13 +12,11 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 90 回のテーマは 2021 年 11 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 96
-
 
 #### Updates
 
@@ -82,7 +80,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Chrome Dev Summit
   - https://www.youtube.com/watch?v=lNecNY6vDek
   - Keynote で Flash を HTML5 に終わらせられた Adobe の VP が Photoshop PWA で、「Web でなんでもできる」って話をしてて感慨深い。
-
 
 #### Intents
 
@@ -207,14 +204,12 @@ guest: [@myakura](https://twitter.com/myakura)
 - Request for (Extending) Deprecation Trial: [WebRTC] Deprecate and Remove Plan B
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Zyvaa5VNijg/m/tAgoASxRBAAJ
 
-
 #### V8
 
 - WebAssembly Dynamic Tiering ready to try in Chrome 96 · V8
   - https://v8.dev/blog/wasm-dynamic-tiering
 - Oilpan library · V8
   - https://v8.dev/blog/oilpan-library
-
 
 #### Other
 
@@ -312,11 +307,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.youtube.com/playlist?list=PL9ioqAuyl6UL_1DiG1tPRHbGJlGQ_gQJW
   - https://docs.google.com/spreadsheets/d/1x2MXoLaYENQg7WKHWspzwAuttDB38T5pc74ZHRYEKgo/edit#gid=0
 
-
 ### Firefox 動向
 
 #### Stable: 95.0
-
 
 #### Updates
 
@@ -343,7 +336,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.nightly.mozilla.org/2021/11/18/these-weeks-in-firefox-issue-104/
 - These Weeks in Firefox: Issue 105 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2021/12/07/these-weeks-in-firefox-issue-105/
-
 
 #### Intents
 
@@ -373,7 +365,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/iA1PcfXiqNQ
 - Firefox Security & Privacy Newsletter 2021 Q3
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/5RpuDK2tySk
-
 
 #### Other
 
@@ -406,11 +397,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - **WebAssembly and Back Again: Fine-Grained Sandboxing in Firefox 95 - Mozilla Hacks - the Web developer blog**
   - https://hacks.mozilla.org/2021/12/webassembly-and-back-again-fine-grained-sandboxing-in-firefox-95/
 
-
 ### Safari 動向
 
 #### Stable: 15.1
-
 
 #### Updates
 
@@ -539,23 +528,19 @@ guest: [@myakura](https://twitter.com/myakura)
 - PCM for In-App Direct Response Advertising
   - https://webkit.org/blog/12042/pcm-for-in-app-direct-response-advertising/
 
-
 #### Position
 
 - https://lists.webkit.org/pipermail/webkit-dev/
 - いくつかあるが返事は無し
-
 
 #### Other
 
 - **Enable :focus-visible pseudo-class by default**
   - https://trac.webkit.org/changeset/286783/webkit
 
-
 ### Edge 動向
 
 #### Stable: 96
-
 
 #### Updates
 
@@ -570,9 +555,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Cloud Site List Management experience for IE mode in Microsoft Edge now generally available
   - https://blogs.windows.com/msedgedev/2021/12/07/cloud-site-list-management-experience-for-ie-mode-in-microsoft-edge-now-generally-available/
 
-
 #### Chakra
-
 
 #### Other
 
@@ -593,9 +576,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Edge に「Chrome のダウンロードを中止するように必死で促す新機能」が追加、実際の画面はこんな感じ - GIGAZINE**
   - https://gigazine.net/news/20211203-edge-chrome/
 
-
 ### WHATWG/W3C 動向
-
 
 ### TPAC
 
@@ -650,7 +631,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/w3c/webappsec/blob/main/meetings/2021/2021-11-16-agenda.md
     - XS-Leaks summit の話
 
-
 #### Draft
 
 - Recommendation
@@ -678,7 +658,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Call for Prior Art - Second Screen Working Group PAG
     - https://www.w3.org/blog/news/archives/9355
 
-
 #### Other
 
 - **The WHATWG Blog - New Living Standards**
@@ -701,7 +680,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Interoperability Remedies Community Group Charter
   - https://interop-remedies-cg.github.io/charter.html
 
-
 ### TC39 動向
 
 #### Meeting
@@ -712,7 +690,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://github.com/tc39/notes/blob/master/meetings/2021-10/oct-26.md
   - https://github.com/tc39/notes/blob/master/meetings/2021-10/oct-27.md
   - https://github.com/tc39/notes/blob/master/meetings/2021-10/oct-28.md
-
 
 #### Proposals Diff
 
@@ -733,7 +710,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 3->4
   - Error Cause
 
-
 #### New Proposals
 
 - **tc39/proposal-function-helpers**
@@ -753,9 +729,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - tc39/proposal-regexp-buffer-boundaries
   - https://github.com/tc39/proposal-regexp-buffer-boundaries
 
-
 #### Other
-
 
 ### IETF 動向
 
@@ -853,9 +827,7 @@ guest: [@myakura](https://twitter.com/myakura)
   - **Avoiding Internet Centralization**
     - https://www.ietf.org/archive/id/draft-nottingham-avoiding-internet-centralization-00.html
 
-
 #### Other
-
 
 ### CDN 動向
 
@@ -874,7 +846,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - CVE-2021-44228 - Log4j RCE 0-day mitigation
   - https://blog.cloudflare.com/cve-2021-44228-log4j-rce-0-day-mitigation/
 
-
 #### Fastly
 
 - 30 years of the website: meeting the demands of the future | Fastly
@@ -888,9 +859,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - **Digging deeper into Log4Shell - 0Day RCE exploit found in Log4j | Fastly**
   - https://www.fastly.com/blog/digging-deeper-into-log4shell-0day-rce-exploit-found-in-log4j
 
-
 #### Other
-
 
 ### セキュリティ動向
 
@@ -898,7 +867,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://threatnix.io/blog/exploiting-csp-in-webkit-to-break-authentication-authorization/
   - Webkit の CSP バグを使って認証を盗む
   - DEMO の動画あり
-
 
 ### 周辺動向
 
@@ -924,7 +892,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://open-props.style/
   - Adam Argyle によるユーティリティカスタムプロパティ集
 
-
 ### イベント
 
 - 12 月
@@ -934,7 +901,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2 月
   - 1-3: HTTPBis Interim
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2021OctDec/0149.html
-
 
 ### Wrap Up
 

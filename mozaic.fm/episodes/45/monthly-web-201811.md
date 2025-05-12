@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 45 回のテーマは 2018 年 11 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -192,7 +191,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://chrome.google.com/webstore/detail/visbug/cdockenadnadldjbbgcallicgledbeoc
     - https://medium.com/dev-channel/visbug-101-749f26a485c8
 
-
 ### Firefox 動向
 
 - Stable: 63.0.3
@@ -263,7 +261,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Multilingual Gecko Status Update 2018.2 | Mozilla L10N
     - https://blog.mozilla.org/l10n/2018/11/27/multilingual-gecko-status-update-2018-2/
 
-
 ### Safari 動向
 
 - Stable: 12.0.1
@@ -291,7 +288,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - Web High Level Shading Language = WHLSL (ホイッスル)
     - WebGPU Community Group が作業中
 
-
 ### Edge 動向
 
 - Stable: EdgeHTML 18.17763 / Edge 44.17763
@@ -309,7 +305,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/Microsoft/ChakraCore/releases/tag/v1.11.3
 - Other
   - https://developer.microsoft.com/en-us/microsoft-edge/platform/
-
 
 ### WHATWG/W3C 動向
 
@@ -379,7 +374,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - New Resource: Developing an Accessibility Statement
     - https://www.w3.org/blog/news/archives/7413
 
-
 ### TC39 動向
 
 - Meeting
@@ -403,7 +397,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://github.com/samuelgoto/proposal-optional-types
   - sebmarkbage/ecmascript-asset-references: Proposal to ECMAScript to add first-class location references relative to a module
     - https://github.com/sebmarkbage/ecmascript-asset-references
-
 
 ### IETF 動向
 
@@ -463,7 +456,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - HTTPWorkshop/workshop2019: Working area for the 2019 HTTP Workshop
     - https://github.com/httpworkshop/workshop2019
 
-
 ### セキュリティ動向
 
 - **The Holy Hand Grenade of Antioch - OpenSSL Blog**
@@ -474,7 +466,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - 1.1.1 and 1.0.2 は変わらない
   - 2.0.0 は FIPS module で使われている
   - 3.0.0 から新しくなる
-
 
 ### 周辺動向
 
@@ -526,7 +517,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://www.popsci.com/best-of-whats-new-2018
   - 2018 年のイノベーション 100 選
   - ここに WebAuthn (Web Authentication) by FIDO Alliance & W3C が入ってる
-
 
 ### イベント
 

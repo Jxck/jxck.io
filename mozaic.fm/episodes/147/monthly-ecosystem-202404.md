@@ -13,7 +13,6 @@ guest: [@koba04](https://twitter.com/koba04)
 
 第 147 回のテーマは 2024 年 4 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Next.js 14.2
@@ -74,7 +73,6 @@ guest: [@koba04](https://twitter.com/koba04)
   - https://turbo.build/blog/turbo-1-13-0
 - feat(migrate): add migrate eslint #2103
   - https://github.com/biomejs/biome/pull/2103
-
 
 ## Events
 

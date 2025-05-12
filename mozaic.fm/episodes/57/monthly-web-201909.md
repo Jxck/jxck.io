@@ -12,7 +12,6 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 57 回のテーマは 2019 年 9 月の Monthly Web です。
 
-
 ## Show Note
 
 ### Chrome 動向
@@ -203,7 +202,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Buggy Google Chrome Update Behind Recent Unbootable Macs
     - https://www.bleepingcomputer.com/news/security/buggy-google-chrome-update-behind-recent-unbootable-macs/
 
-
 ### Firefox 動向
 
 - Stable: 69.0
@@ -323,7 +321,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - Community Involvement in Recommended Extensions
     - https://blog.mozilla.org/addons/2019/09/25/recommended-extensions-community-involvement/
 
-
 ### Safari 動向
 
 - Stable: 13.0.1
@@ -378,7 +375,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - その他 developer tools などの改善
 - Other
 
-
 ### Edge 動向
 
 - Beta:79.0
@@ -391,7 +387,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - **Update on removing Flash from Microsoft Edge and Internet Explorer - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2019/08/30/update-removing-flash-microsoft-edge-internet-explorer/
-
 
 ### WHATWG/W3C 動向
 
@@ -520,7 +515,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - W3C Strategic Highlights - September 2019
     - https://www.w3.org/2019/09/w3c-highlights/
 
-
 ### TC39 動向
 
 - Meeting
@@ -540,7 +534,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Other
   - domenic が複数 draft の chanpion から降りた
     - https://github.com/tc39/proposals/commit/276456524d0305a922332ab231aed808d0f7fb5e
-
 
 ### IETF 動向
 
@@ -582,7 +575,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://mozaic.fm/episodes/44/monthly-web-201810.html
     - patrick が抜け mnot と tommy の 2 人になる
 
-
 ### セキュリティ動向
 
 - Project Zero: A very deep dive into iOS Exploit chains found in the wild
@@ -610,7 +602,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Web-to-App Communication: DirectInvoke
   - https://textslashplain.com/2019/09/25/web-to-app-communication-directinvoke/
   - directinvoke ?
-
 
 ### 周辺動向
 
@@ -650,7 +641,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://blog.cloudflare.com/extending-the-workers-platform/
 - vasanthv/jsonbox: A Free HTTP based JSON storage.
   - https://github.com/vasanthv/jsonbox
-
 
 ### イベント
 

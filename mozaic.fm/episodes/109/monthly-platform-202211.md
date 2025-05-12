@@ -12,16 +12,13 @@ guest: [@myakura](https://twitter.com/myakura)
 
 第 109 回のテーマは 2022 年 11 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 107
 
-
 #### Updates
-
 
 #### Intents
 
@@ -96,9 +93,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - PSA: Exclusive lock on `removeEntry()` in File System Access API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ddrh_bI1stY
 
-
 #### V8
-
 
 #### Other
 
@@ -154,11 +149,9 @@ guest: [@myakura](https://twitter.com/myakura)
     - 十分な関心を持たれなかったといった説明
     - Meta, Cloudinary, Adobe などが関心を持っており、強い反発が
 
-
 ### Firefox 動向
 
 #### Stable: 107
-
 
 #### Updates
 
@@ -169,7 +162,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - `contain-intrinsic-size`
 - These Weeks in Firefox: Issue 127 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2022/11/22/more-improvements-than-can-fit-into-this-title-these-weeks-in-firefox-issue-127/
-
 
 #### Intents
 
@@ -184,7 +176,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - Searchfox Update: Searchfox's feud with JS #hashtags is now over!
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/G4zaAEYlIG8
 
-
 #### Other
 
 - 4 ways a Firefox account comes in handy
@@ -195,11 +186,9 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://hacks.mozilla.org/2022/10/revamp-of-mdn-web-docs-contribution-docs/
   - MDN の Contribution Docs を更新する
 
-
 ### Safari 動向
 
 #### Stable: 16.1
-
 
 #### Updates
 
@@ -275,20 +264,15 @@ guest: [@myakura](https://twitter.com/myakura)
   - Web API
     - Aligned fetch header handling with fetch specification
 
-
 #### Other
-
 
 ### Edge 動向
 
 #### Stable: 107
 
-
 #### Updates
 
-
 #### Chakra
-
 
 #### Other
 
@@ -296,7 +280,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR3RyKfbQaBBGkxWFdiHDHbVURDI5RTNFNzlCUFlMV0VTUEw1U1VEWjROMS4u
 - "Not Secure" Warning for IE Mode - text/plain
   - https://textslashplain.com/2022/11/16/not-secure-warning-for-ie-mode/
-
 
 ### WHATWG/W3C 動向
 
@@ -325,7 +308,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://www.w3.org/blog/news/archives/9753
 - Chartering
 
-
 #### Other
 
 - **W3C opens Technical Architecture Group (TAG) election**
@@ -350,7 +332,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - W3C Workshop on Permissions
   - https://www.w3.org/Privacy/permissions-ws-2022/schedule
 
-
 ### TC39 動向
 
 #### Meeting
@@ -358,7 +339,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2022-11
   - https://github.com/tc39/agendas/blob/main/2022/11.md
   - https://github.com/tc39/notes
-
 
 #### Proposals Diff
 
@@ -369,12 +349,9 @@ guest: [@myakura](https://twitter.com/myakura)
 - 2->3
 - 3->4
 
-
 #### New Proposals
 
-
 #### Other
-
 
 ### IETF 動向
 
@@ -433,7 +410,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - DoubleCheck OHAI @ IETF 115
     - https://datatracker.ietf.org/meeting/115/materials/slides-115-ohai-doublecheck-for-oblivious-http-and-beyond
 
-
 #### Other
 
 - **The HTTP Workshop**
@@ -457,7 +433,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - adobe/fetch が紹介されてた
       - adobe/fetch: Simplified HTTP/1(.1) and HTTP/2 requests with Server Push Support
         - https://github.com/adobe/fetch
-
 
 ### CDN 動向
 
@@ -488,7 +463,6 @@ guest: [@myakura](https://twitter.com/myakura)
     - https://blog.cloudflare.com/open-api-transition/
 - Deep Dive
 
-
 #### Fastly
 
 - What is a DDoS attack? | Fastly
@@ -502,9 +476,7 @@ guest: [@myakura](https://twitter.com/myakura)
 - Introducing Cloud WAF Terraform Support | Fastly
   - https://www.fastly.com/blog/introducing-cloud-waf-terraform-support
 
-
 #### Other
-
 
 ### セキュリティ動向
 
@@ -515,7 +487,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - No need for Signal, WhatsApp when I'm in charge - President-elect Ruto | Nation
     - https://nation.africa/kenya/news/politics/no-need-for-signal-whatsapp-president-elect-ruto-3917538
     - 元のスピーチに関する記事
-
 
 ### 周辺動向
 
@@ -555,7 +526,6 @@ guest: [@myakura](https://twitter.com/myakura)
   - https://gizmodo.com/facebook-meta-news-instant-articles-1849660590
   - Facebook が Instant Articles を来年 4 月にはやめるとメールで案内
 
-
 ### イベント
 
 - 11 月
@@ -573,7 +543,6 @@ guest: [@myakura](https://twitter.com/myakura)
 - 3 月
   - 25-31: IETF116 Yokohama
     - https://www.ietf.org/how/meetings/116/
-
 
 ### Wrap Up
 

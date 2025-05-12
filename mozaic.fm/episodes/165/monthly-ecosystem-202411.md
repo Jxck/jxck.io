@@ -13,7 +13,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 
 第 165 回のテーマは 2024 年 11 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Recap: Next.js Conf 2024 - Vercel
@@ -126,7 +125,6 @@ guest: [@hiroppy](https://twitter.com/about_hiroppy)
 - State of React 2024
   - https://survey.devographics.com/ja-JP/survey/state-of-react/2024
   - 募集開始
-
 
 ## Events
 

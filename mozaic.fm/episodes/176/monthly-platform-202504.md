@@ -13,13 +13,11 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 176 回のテーマは 2025 年 4 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 136
-
 
 #### Updates
 
@@ -68,7 +66,6 @@ guest: [@saku](https://x.com/sakupi01)
     - Contribute
     - Related content
     - Follow
-
 
 #### Intents
 
@@ -141,7 +138,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Ready for Developer Testing: Web Authentication immediate mediation
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zC13ioLIZ_E
 
-
 #### Other
 
 - web.dev
@@ -197,11 +193,9 @@ guest: [@saku](https://x.com/sakupi01)
     - 3rd Party Cookie Deprecation をやめる
     - プロンプトも出さない
 
-
 ### Firefox 動向
 
 #### Stable: 137
-
 
 #### Updates
 
@@ -223,7 +217,6 @@ guest: [@saku](https://x.com/sakupi01)
   - 1 人のコントリビューターにより Temporal が実装
 - Mozilla's CEO weighs in on U.S. v. Google
   - https://blog.mozilla.org/en/mozilla/internet-policy/mozilla-ceo-on-google-antitrust/
-
 
 #### Intents
 
@@ -250,9 +243,7 @@ guest: [@saku](https://x.com/sakupi01)
     - 138 beta では rollout を 100% にする
     - stable では 10% rollout する
 
-
 #### Newsletter
-
 
 #### MDN / Open Web Docs
 
@@ -262,7 +253,6 @@ guest: [@saku](https://x.com/sakupi01)
   - https://openwebdocs.org/content/posts/w3c-docs-cg/
 - **Customizable select elements**
   - https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select
-
 
 #### Standard Position
 
@@ -283,17 +273,14 @@ guest: [@saku](https://x.com/sakupi01)
   - WebXR Anchors Module · Issue #351 · mozilla/standards-positions
     - https://github.com/mozilla/standards-positions/issues/351
 
-
 #### Other
 
 - **Joining Mozilla - Keith Cirkel**
   - https://www.keithcirkel.co.uk/joining-mozilla/
 
-
 ### Safari 動向
 
 #### Stable: 18.4
-
 
 #### Updates
 
@@ -350,7 +337,6 @@ guest: [@saku](https://x.com/sakupi01)
     - Added serialisation of RTCEncodedAudioFrame and RTCEncodedVideoFrame.
     - Added support for ImageCapture.grabFrame.
 
-
 #### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-04-01+
@@ -358,14 +344,11 @@ guest: [@saku](https://x.com/sakupi01)
   - Scoped Custom Element Registries · Issue #38 · WebKit/standards-positions
     - https://github.com/WebKit/standards-positions/issues/38
 
-
 #### Other
-
 
 ### Edge 動向
 
 #### Stable:
-
 
 #### Updates
 
@@ -382,12 +365,10 @@ guest: [@saku](https://x.com/sakupi01)
 - Contextual logging with `console.context()` - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2025/04/22/contextual-logging-with-console-context/
 
-
 #### Other
 
 - Vibe-coding for security - text/plain
   - https://textslashplain.com/2025/04/15/vibe-coding-for-security/
-
 
 ### WHATWG/W3C 動向
 
@@ -412,7 +393,6 @@ guest: [@saku](https://x.com/sakupi01)
 - ContentEditable
   - https://www.w3.org/TR/2025/WD-content-editable-20250325/
 
-
 #### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -435,7 +415,6 @@ guest: [@saku](https://x.com/sakupi01)
   - Especially as it might be that the menu proposal + customisable select etc end up superseding the primitive
   - より高レベルな menu や select が出てきたため、focusgroup の優先度が下がった
 
-
 #### WHATNOT
 
 - https://github.com/whatwg/html/issues?q=%20WHATNOT%20meeting%20
@@ -444,7 +423,6 @@ guest: [@saku](https://x.com/sakupi01)
   - cancel
 - Upcoming WHATNOT meeting on 2025-04-17
   - https://github.com/whatwg/html/issues/11192
-
 
 #### Other
 
@@ -518,14 +496,12 @@ guest: [@saku](https://x.com/sakupi01)
 - Breakouts 2025: Collective
   - https://bkardell.com/blog/Breakouts2025.html
 
-
 ### TC39 動向
 
 #### Meeting
 
 - 2025-04
   - 来月
-
 
 #### Proposals Diff
 
@@ -537,9 +513,7 @@ guest: [@saku](https://x.com/sakupi01)
 - 2.7->3
 - 3->4
 
-
 #### New Proposals
-
 
 #### WinterTC
 
@@ -550,12 +524,10 @@ guest: [@saku](https://x.com/sakupi01)
   - 4.1 Web Platform Test review
   - 4.2 Fetch Specification review
 
-
 #### Other
 
 - Proposal is withdrawn · Issue #394 · tc39/proposal-record-tuple
   - https://github.com/tc39/proposal-record-tuple/issues/394
-
 
 ### IETF 動向
 
@@ -565,9 +537,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Work
 - Meeting
 
-
 #### Other
-
 
 ### 周辺動向
 
@@ -592,7 +562,6 @@ guest: [@saku](https://x.com/sakupi01)
 - A next-generation Certificate Transparency log built on Cloudflare Workers
   - https://blog.cloudflare.com/azul-certificate-transparency-log/
 
-
 #### セキュリティ動向
 
 - **CVE Foundation**
@@ -609,12 +578,10 @@ guest: [@saku](https://x.com/sakupi01)
   - DKIM Replay 攻撃のセットで
   - 非常に見分けにくい詐欺メールが作れる
 
-
 #### Cookie 動向
 
 - Call for Adoption: draft-annevk-johannhof-httpbis-cookies from Mark Nottingham
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2025AprJun/0028.html
-
 
 #### Other
 
@@ -629,7 +596,6 @@ guest: [@saku](https://x.com/sakupi01)
 - **OpenAI 幹部、Chrome 買収に関心 Google 会社分割なら - 日本経済新聞**
   - https://www.nikkei.com/article/DGXZQOGN2300H0T20C25A4000000/
 
-
 ### イベント
 
 - 4 月
@@ -641,7 +607,6 @@ guest: [@saku](https://x.com/sakupi01)
 - 6 月
   - 9-13: WWDC '25
     - https://developer.apple.com/wwdc25/
-
 
 ### Wrap Up
 
