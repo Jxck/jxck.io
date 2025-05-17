@@ -2,7 +2,7 @@
 type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep177.mp3
-published_at: 2025-05-16
+published_at: 2025-05-17
 guest: [@sakito](https://x.com/__sakito__)
 guest: [@hiroppy](https://x.com/about_hiroppy)
 ---
@@ -12,7 +12,6 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
 ## Theme
 
 第 177 回のテーマは 2025 年 5 月の Monthly Ecosystem です。
-
 
 ## Show Note
 
@@ -138,7 +137,6 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
   - https://gihyo.jp/book/2025/978-4-297-14945-1
 - today we are introducing codex.
   - https://x.com/sama/status/1923398457747787817
-
 
 ## Events
 
