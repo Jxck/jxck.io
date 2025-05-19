@@ -178,7 +178,7 @@ Microsoft は DPoP に似た BPoP というプロトコルを提案していた�
 
 そこで、セッションの維持自体は従来通り Cookie を用いて行う。しかし、Cookie を短命にしておき、それが切れる前に公開鍵による認証を行うことで、Cookie を再発行するのだ。
 
-![DBSC の Flow](flow.png)
+![DBSC の Flow](flow.png#500x416)
 
 これにより、Cookie を発行する相手が確実に Session を開始した相手であることが革新できるし、Cookie を短命にすることで窃取された時のリスクも減らすことができる。
 
