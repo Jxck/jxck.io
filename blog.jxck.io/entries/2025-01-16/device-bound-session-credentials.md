@@ -7,6 +7,11 @@ Chrome チームより提案された Device Bound Session Credentials の実装
 この提案の背景と、解決する問題、現時点での挙動について解説する。
 
 
+## Update
+
+- 2025/05/15: OT が始まったため、内容を大幅に更新
+
+
 ## 背景
 
 2FA や Passkey の普及により、認証部分はかなりセキュアになってきた。インシデントによりパスワードが漏洩しても、それだけでなりすましを成立させるのも困難になっている。
@@ -107,7 +112,7 @@ Cookie が Bearer Token である以上、サーバが受け取った Cookie が
 
 このような方式を取る場合、問題になるのは鍵 (Private Key) の管理だ。クライアントに鍵を保持するなら、それが盗まれる可能性を考える必要があり、そこが安全性の下限になる。
 
-ちなみに、JS で鍵を生成し IndexedDB に入れる実装としては、以下がある。もちろん、JS で取得可能のとこに鍵が保存されていることになる。
+ちなみに、JS で鍵を生成し IndexedDB に入れる実装としては、以下がある。もちろん、JS で取得可能な場所に鍵が保存されていることになる。
 
 - session-lock - Home
   - https://session-lock.keyri.com/
@@ -167,11 +172,50 @@ Microsoft は DPoP に似た BPoP というプロトコルを提案していた�
 - Chromium Blog: Fighting cookie theft using device bound sessions
   - https://blog.chromium.org/2024/04/fighting-cookie-theft-using-device.html
 
-完全に Cookie とは別の仕組みにすると、デプロイ負荷が高いと広がらないため、Cookie との互換性も持たせるように設計されている。
+一度鍵の交換を Client-Server 間で行えば、それを用いて確実な Session 維持が可能になる。
 
-ここからは、実際に Chrome のフラグを有効にし、その挙動を確認しながら基本的な仕様を見ていく。なお、現状は Windows でしか動かなかったため、以下は Win11 / Chrome 131 で検証している。
+しかし、毎回公開鍵による認証を行うと負荷が高くなり、パフォーマンスに影響が出る。
 
+そこで、セッションの維持自体は従来通り Cookie を用いて行う。しかし、Cookie を短命にしておき、それが切れる前に公開鍵による認証を行うことで、Cookie を再発行するのだ。
+
+![DBSC の Flow](flow.png)
+
+これにより、Cookie を発行する相手が確実に Session を開始した相手であることが革新できるし、Cookie を短命にすることで窃取された時のリスクも減らすことができる。
+
+なにより、完全に Cookie とは別の仕組みにすると、デプロイ負荷が高いと広がらないため、Cookie そのものは従来通り用いることで互換性を保っているのだ。
+
+デプロイに必要なのは、DBSC を行うためのエンドポイントのみになるため、サービス全体に大きな変更はなくて済む。
+
+
+### Trial
+
+執筆時点では OT が開始され、Chrome には複数のフラグが入っている。しかし、適切に動かすには、以下の Wiki にたどり着かないと無理だった。同じようにこの機能を検証する場合は、必ず一読することを勧める。
+
+- Testing early versions of DBSC · w3c/webappsec-dbsc Wiki
+  - https://github.com/w3c/webappsec-dbsc/wiki/Testing-early-versions-of-DBSC
+
+以前は TPM を持っている Win11 でしか動かなかったが、現在は Software Emulation を有効にするフラグがあるため Mac でも動作可能だ。
+
+- chrome://flags/#enable-bound-session-credentials-software-keys-for-manual-testing
+  - Enabled
 - chrome://flags/#enable-standard-device-bound-session-credentials
+  - Enabled Without Origin Trials
+- chrome://flags/#enable-standard-device-bound-sesssion-refresh-quota
+  - Disabled
+
+検証には Chrome Dev 138 を用いている。
+
+公開されているプロトタイプとしては、以下が参考になる。
+
+- DBSC prototype
+  - https://dbsc-prototype-server.glitch.me/
+
+なお、ブラウザが内部的に送るリクエストのため、Dev Tools の Network タブでのデバッグはできない。Wiki では chrome://net-export か chrome://histogram でデバッグ可能とあったが、サーバでログを出すほうが楽だったため試してない。早く内部デバッガ (chrome://dbsc-internals)が欲しいところだ。
+
+また、移行のヘッダ名は今後変わることが議論されているため、注意したい。
+
+- Appropriate Prefix for Server initiated header field (`Secure-` ?)
+  - https://github.com/w3c/webappsec-dbsc/issues/186
 
 
 ### Sec-Session-Registration
@@ -183,17 +227,15 @@ Microsoft は DPoP に似た BPoP というプロトコルを提案していた�
 ```http
 HTTP/1.1 302 Found
 Location: /
-Sec-Session-Registration: (RS256 ES256);challenge="challenge_value";path="session"
+Sec-Session-Registration: (ES256);challenge="challenge_value";path="session"
 ```
 
-構造は SFV になっており、最初は暗号方式のリストから始まり、後で用いるチャレンジと、エンドポイントのパスが含まれている。
+構造は SFV になっており、最初は暗号方式のリスト(トライアルでは ES256 のみ)から始まり、後で用いるチャレンジ値と、エンドポイントのパスが含まれている。
 
 
 ### Sec-Session-Response
 
-レスポンスを受け取ったクライアントは、TPM で生成した鍵を JWT でシリアライズし、`Sec-Session-Response` に付与して、先程の指定したエンドポイントにリクエストする。body はない。
-
-ブラウザが内部的に送るリクエストのため、Dev Tools の Network タブに今は出ない。早く内部デバッガ (chrome://dbsc-internals)が欲しいところだ。
+レスポンスを受け取ったクライアントは、TPM で鍵ペアを生成する。公開鍵を JWT でシリアライズし、`Sec-Session-Response` に付与して、先程 `path` で指定したエンドポイント("/session")にリクエストする。body はない。
 
 ```http
 POST /session HTTP/1.1
@@ -201,39 +243,34 @@ Host: example.com
 Sec-Session-Response: eyJ...
 ```
 
-実際に送られてきた JWT は以下のようなものだった。
+実際に送られてきた JWT は以下のようなものだ。
 
 ```js
 // Header
 {
-  "typ": "JWT",
-  "alg": "RS256"
+  "typ": "dbsc+jwt",
+  "alg": "ES256"
 }
 // Payload
 {
   "aud": "https://example.com/session",
   "jti": "challenge_value",
   "iat": "1736267817",
-  "key": {
-    "e": "AQAB",
-    "kty": "RSA",
-    "n": "oPJngC..."
+  "key": { // JWK
+      "crv": "P-256",
+      "kty": "EC",
+      "x": "u2gM9t-LViGiATUQEGEDyAxU_KY4LHmUm0RatmyQW2c",
+      "y":"OMPRp_BQV0YoHTuzuuuzDThjOAqhZW5c8gIwOcCpXnk"
   },
-  "authorization": ""
+  "authorization": "" // optional
 }
 // Signature
 "gkkfn2VDUQzJHv7..."
 ```
 
-この鍵をサーバ側で保存する。
+この JWT の署名を検証し、送信した `challenge` と `jti` の値が同じになることを確認する。
 
----
-
-TODO: ここから下はまだ Chrome には実装されてなかったため、挙動が確認できていない。
-
-https://github.com/drubery/dbsc/issues/88#issuecomment-2591379358
-
-現状は、仕様ベースで解説し、挙動が確認でき次第更新する。
+これにより、意図した Session 確立のために生成された鍵であることがわかるため、この鍵をセッションに紐づけて保存する。
 
 
 ### Session Registration Instructions JSON
@@ -243,38 +280,50 @@ https://github.com/drubery/dbsc/issues/88#issuecomment-2591379358
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 65535
-Set-Cookie: __Host-session-id=deadbeef; Path=/; Secure; HttpOnly; Max-Age=604800
+Set-Cookie: __Secure-session_id=deadbeef; Path=/; Secure; HttpOnly; Max-Age=604800;
 
 {
-  "session_identifier": "b434736b1daa31f7",
-  "refresh_url": "/refresh",
+  "session_identifier": "1",
+  "refresh_url": "https://labs.jxck.io/device-bound-session-credentials/refresh",
   "scope": {
-    "origin": "example.com"
+    "origin": "https://labs.jxck.io",
+    "include_site": true,
+    "defer_requests": true,
+    "scope_specification": []
   },
-  "credentials": [{
-    "type": "cookie",
-    "name": "__Host-session-id",
-    "attributes": "Path=/; Secure; HttpOnly; Max-Age=604800"
-  }]
+  "credentials": [
+    {
+      "type": "cookie",
+      "name": "__Secure-session_id",
+      "value": "deadbeef",
+      "attributes": "Path=/; Secure; HttpOnly; Max-Age=604800"
+    }
+  ]
 }
 ```
 
-ここで `Set-Cookie` する Cookie は、従来の Cookie と同じだ。
+まず、セッション維持のための `Set-Cookie` をしているが、これは従来の Cookie 付与をそのまま利用できる。ただし、ここで `Max-Age` を短く設定することで、Cookie が盗まれた際のリスクを減らすことができる。どこまで短くするかは、後ほど考察する。
 
-つまり、従来の Cookie のデプロイと互換性があり、セッション管理自体を新しいヘッダなどに移行する必要はない。
+そして、設定した Cookie を Session に紐づける情報が body に入る。`session_identifier` を key として Session を識別し、`credentials` に Cookie の情報を入れる。
+
+`refresh_url` は、Session が切れた際に Cookie を更新するためのエンドポイントを指定する。
+
+`attributes` には、設定した属性をそのまま指定する。仕様上 `HttpOnly`, `Max-Age`, `Expires` は無視されるようだが、全く同じように指定しておかないと無限にリクエストを繰り返す実装のため、ここでもかなりハマった。
+
+ところが、このトライアルでの最大のハマりどころは、この Cookie 名に `__Host-` を付与するとうまく動かないという点だ。ちなみに `__Secure-` は動く。実装者本人も気づいてないバグのようだが、トライアルが終わるころには治ってることだろう。
+
+今回は、このエンドポイントの実装が最も時間を溶かした。
 
 
 ### Refresh Request
 
-この Cookie の期限が切れたあと、Cookie を必要とするリクエストを実施する際に、ブラウザは DBSC の Refresh をサーバに対して実施することになる。
+この Cookie の期限が切れたあと、Cookie を必要とするリクエストを送信する際に、ブラウザは先ほど `refresh_url` に指定されたエンドポイントに対して、Session の更新を実施することになる。
 
-つまり、`Max-Age` が経過した後に `/` にアクセスする場合は、そのアクセスを一旦保留して、裏側で先程指定された `refresh_url` である `/refresh` に以下のようなリクエストを行う。
+つまり、`Max-Age` が経過した後にアクセスする場合は、そのアクセスを一旦保留して、裏側で先程指定した `/refresh` に以下のようなリクエストを行う。
 
 ```http
 POST /refresh HTTP/1.1
-Host: example.com
-Sec-Session-Id: b434736b1daa31f7
+Sec-Session-Id: 1
 ```
 
 これが、「割り当てられた Session の Credential の Refresh」を要求している。
@@ -283,54 +332,62 @@ Sec-Session-Id: b434736b1daa31f7
 
 ```http
 HTTP/1.1 401 Unauthorized
-Sec-Session-Challenge: "challenge_value";id="b434736b1daa31f7"
+Sec-Session-Challenge: "challenge_value";id="1"
 ```
 
-クライアントは、秘密鍵を用いてこれに応答する。
+クライアントは、秘密鍵を用いてこれに応答する。つまり、`/refresh` は 2 回アクセスされる。
 
 ```http
 POST /refresh HTTP/1.1
+Sec-Session-Id: 1
 Sec-Session-Response: JWT proof
 ```
 
-検証に成功すれば、再度 `Set-Cookie` することで Cookie を更新することができる。
+JWT を検証し、Challenge の一致と、鍵の一致が確認できたら、再度 `Set-Cookie` することで Cookie を更新することができる。
 
-レスポンスとして、設定時と全く同じ JSON を返すことで更新が可能だ。
+```http
+HTTP/1.1 200 OK
+Set-Cookie: __Secure-session_id=deadbeef; Path=/; Secure; HttpOnly; Max-Age=604800;
+```
+
+この時、登録時と同じように JSON を返すことで、Cookie の名前や設定などを変えることも可能だ。
 
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 65535
-Set-Cookie: __Host-session-id=deadbeef; Path=/; Secure; HttpOnly; Max-Age=604800
+Cache-Control: no-cache
+Set-Cookie: __Secure-session_id=deadbeef; Path=/; Secure; HttpOnly; Max-Age=604800;
 
 {
-  "session_identifier": "b434736b1daa31f7",
-  "refresh_url": "/refresh",
+  "session_identifier": "1",
+  "refresh_url": "https://labs.jxck.io/device-bound-session-credentials/refresh",
   "scope": {
-    "origin": "example.com"
+    "origin": "https://labs.jxck.io",
+    "include_site": true,
+    "defer_requests": true,
+    "scope_specification": []
   },
   "credentials": [{
     "type": "cookie",
-    "name": "__Host-session-id",
+    "name": "__Secure-session_id",
+    "value": "deadbeef",
     "attributes": "Path=/; Secure; HttpOnly; Max-Age=604800"
   }]
 }
 ```
 
-これを受け取ったクライアントは、保留していたリクエストをすべて送信することになる。
+更新に成功したクライアントは、保留していたリクエストをすべて送信することになる。
 
-また、このリクエストはクライアントが Refresh を要求してこなくても送信できるため、期限が切れる前に Credential を新しくしておくことで、リクエストの保留を避けることも可能だ。
-
-この Refresh の要求をサーバのタイミングでできることは、単なる更新だけでなく、最初に問題視した「Cookie を送ってきているのは想定したクライアントか?」を確認する手段に使うことができることを意味する。
+なお、`Sec-Session-Challenge` はクライアントが Refresh を要求してこなくても送信できる。つまり Cookie の期限が切れる前に Credential を新しくしておくことで、リクエストの保留を避けることが可能になるのだ。
 
 
-## Session の終了
+### Session の終了
 
 もし (DBSC における) Session を終了する場合は、リフレッシュのレスポンスで以下のように返す。
 
 ```json
 {
-  "session_identifier": "b434736b1daa31f7",
+  "session_identifier": "1",
   "continue": false
 }
 ```
@@ -342,14 +399,41 @@ Set-Cookie: __Host-session-id=deadbeef; Path=/; Secure; HttpOnly; Max-Age=604800
 以降は、削除した Session に対する `Sec-Session-Response` をクライアントが送ってくることも、`Sec-Session-Challenge` に応答することもなくなる。
 
 
-## JS API
+## 設計の考察
+
+基本的には、既存の Session 管理に対して追加で導入するのが望ましいだろう。
+
+この API の設計は、`Sec-Session-Registration` と `Set-Cookie` は別であっても良いという点だ。
+
+つまり、DBSC の API は別途新設し、従来のログインによる Session 確立には、`Sec-Session-Registration` を付与するだけで良い。サポートしてるブラウザのみが、バックグラウンドで鍵交換を行い、Cookie で確率中のセッションに保存する形だ。
+
+最も注意すべき点は Cookie の `Max-Age` だ。
+
+ログインの頻度が上がるとユーザの離脱につながることを恐れ、多くのサービスはセッション Cookie の期限を長く取ることが多い。しかし、Cookie の有効期限が長いことは、今回対象としている Cookie の窃取が発生した時に、攻撃リスクを高めることに繋がる。
+
+しかし、短くしすぎると、リクエストをペンディングして 2RT のリフレッシュが発生するため、場合によっては「非常にレスポンスが遅い」という体験に高頻度で遭遇することになるだろう。
+
+できれば、Cookie の期限が一定以上短くなったら、バックグラウンドでリフレッシュをかけることで、期限を延長しておくのが望ましい。これが、仕様の推奨している典型的なユースケースだ。
+
+ところが、この仕様であれば Cookie の `Max-Age` を必ずしも短くする必要はないと筆者は考えている。
+
+Cookie の `Max-Age` 自体は長くしておくが、同時にセッションのライフタイムを別途短く設定し、その閾値を下回ったらリフレッシュをサーバから提案し、Cookie の値を変えつつ Registration し直してしまえば良い。
+
+Cookie 窃取が起ころうと、その値をサーバが認識していなければ攻撃は発生しないため、十分ランダムな値を用いてサーバが管理し、リフレッシュでサーバ/クライアントともに別の値に上書きしてしまえば、その Cookie は実質無効な値になるからだ。
+
+現状はまだトライアルであるため、詳細な設計を詰めるのは難しいところもあるが、仕様が固まるまでの過程である程度のプラクティスを考察しておきたい。
+
+
+## Other
+
+### JS API
 
 Explainer では JS API の可能性についても触れられている。
 
 しかし、現状はあくまで構想だけであり、Chrome も初期の実装では JS API はスコープから外しているため、実装されたら検証する。
 
 
-## Device Bound Session Credentials for Enterprise
+### Device Bound Session Credentials for Enterprise
 
 この仕組みを拡張し、Enterprise 領域で発生する様々な要求をカバーできる可能性にも言及されている。
 
@@ -372,14 +456,21 @@ MS はこれまで、BindingContext という独自の仕様を提案してい�
 
 Cookie Theft 対策の新しい提案である Device Bound Session Credentials について解説した。
 
-挙動未確認の部分については、実装されてから確認し、本エントリを更新する。
-
 
 ## DEMO
 
-WIP: 動作するデモを以下に用意した。
+動作するデモを以下に用意した。しかし、サーバ側で完結する挙動であるため、アクセスしてもよくわからないところが大きい。
 
 - https://labs.jxck.io/device-bound-session-credentials/index.html
+
+ソースコードは以下なので、こちらを参考にしてほしい。
+
+- https://github.com/Jxck/jxck.io/blob/main/labs.jxck.io/device-bound-session-credentials/session.cgi
+
+もしくは、公式のデモも参考になるだろう。
+
+- DBSC prototype
+  - https://dbsc-prototype-server.glitch.me/
 
 
 ## Resources
@@ -409,6 +500,10 @@ WIP: 動作するデモを以下に用意した。
 - Blog
   - Chromium Blog: Fighting cookie theft using device bound sessions
     - https://blog.chromium.org/2024/04/fighting-cookie-theft-using-device.html
+  - Device Bound Session Credentials
+    - https://w3c.github.io/webappsec-dbsc/
+  - Origin trial: Device Bound Session Credentials in Chrome
+    - https://developer.chrome.com/blog/dbsc-origin-trial
 - Presentation
 - Issues
   - DBSC (Device Bound Session Credentials) · Issue #106 · WICG/proposals
