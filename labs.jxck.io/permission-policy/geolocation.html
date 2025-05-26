@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Permission Policy DEMO: geolocation</title>
+
+<h1>geolocation</h1>
+
+
+<script>
+  navigator.geolocation.getCurrentPosition((pos) => {
+    console.log(pos)
+  }, (err) => {
+    console.error(err)
+  })
+</script>
