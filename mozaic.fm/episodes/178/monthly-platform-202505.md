@@ -13,13 +13,11 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 178 回のテーマは 2025 年 5 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 137
-
 
 #### Updates
 
@@ -666,7 +664,6 @@ guest: [@saku](https://x.com/sakupi01)
   - 動的な無効化(スクロール終端での無効化)をするかどうかについては検討中
 - [Range] update enhanced range slider to use the rangegroup element
 - https://github.com/openui/open-ui/pull/1212
-
 
 #### WHATNOT
 
