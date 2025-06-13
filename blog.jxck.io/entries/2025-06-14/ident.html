@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-06-14/ident.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="CSS で Custom Ident 値を動的に生成する ident() が提案されている。策定中の仕様をベースに解説する。">
+  <meta name=keywords            content="ident,css">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-06-14/ident.html>
+  <meta property=og:title        content="CSS の ident() による動的な custom-ident の生成 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="CSS で Custom Ident 値を動的に生成する ident() が提案されている。策定中の仕様をベースに解説する。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "CSS の ident() による動的な custom-ident の生成 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-06-14T08:00:00+08:00",
+    "dateModified": "2025-06-14T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "CSS で Custom Ident 値を動的に生成する ident() が提案されている。策定中の仕様をベースに解説する。"
+  }
+  </script>
+
+  <title>CSS の ident() による動的な custom-ident の生成 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-06-14>2025-06-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-06-14>2025-06-14</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#ident">ident</a>
+              <li><a href="/tags#css">css</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#anchor-name-の動的生成">Anchor Name の動的生成</a>
+              <ol>
+                <li><a href="#ident">ident()</a>
+              </ol>
+              <li><a href="#usecases">Usecases</a>
+              <li><a href="#feature-detection">Feature Detection</a>
+              <li><a href="#outro">Outro</a>
+              <li><a href="#demo">DEMO</a>
+              <li><a href="#resources">Resources</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">CSS の ident() による動的な custom-ident の生成</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>CSS で Custom Ident 値を動的に生成する <code translate=no>ident()</code> が提案されている。
+        <p>策定中の仕様をベースに解説する。
+      </section>
+      <section>
+        <h2 id="anchor-name-の動的生成"><a href="#anchor-name-の動的生成">Anchor Name の動的生成</a></h2>
+        <p>Popover の Anchoring は、<code translate=no>anchor-name</code> と <code translate=no>position-anchor</code> の組で対応付けられる。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;a id=anchor&gt;this is anchor&lt;/a&gt;
+
+&lt;div popover&gt;this is popover&lt;/div&gt;
+
+&lt;style&gt;
+#anchor {
+  anchor-name: --anchor;
+}
+
+[popover] {
+  position-anchor: --anchor;
+}
+&lt;/style&gt;</code></pre>
+        <p>一方、以下のように複数の Anchor に対して、紐づけを変えながら単一の Popover DOM を再利用する場合も、全ての対象に <code translate=no>anchor-name</code> を振り、Popover の <code translate=no>position-anchor</code> を動的に変える必要がある。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;ul&gt;
+  &lt;li&gt;&lt;a id=&quot;aaaa&quot;&gt;anchor aaaa&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a id=&quot;bbbb&quot;&gt;anchor bbbb&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a id=&quot;cccc&quot;&gt;anchor cccc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div popover&gt;this is popover&lt;/div&gt;
+
+&lt;style&gt;
+#aaaa { anchor-name: --aaaa; }
+#bbbb { anchor-name: --bbbb; }
+#cccc { anchor-name: --cccc; }
+
+[popover] {
+  position-anchor: none;
+}
+&lt;/style&gt;
+&lt;script&gt;
+  const $popover = $(&quot;[popover]&quot;);
+  $$(&quot;a&quot;).forEach(($a) =&gt; {
+    $a.on(&quot;click&quot;, () =&gt; {
+      $popover.style.positionAnchor = $a.style.anchorName;
+    })
+  })
+&lt;/script&gt;</code></pre>
+        <p>このように <code translate=no>anchor-name</code> を全て書きあげるのは無駄が多いため、JS から動的に設定することになるだろう。
+        <p>また <code translate=no>position-anchor</code> 部分を動的に紐づけるために、HTML の Anchor Attribute を定義し、Anchor の ID を指定する方針が当初はあった。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;div popover anchor=&quot;aaaa&quot;&gt;this is popover&lt;/div&gt;</code></pre>
+        <p>しかし、これは Anchor の紐づけがスタイル上の役割しか持たない場合、文書のセマンティクスではなく Presentational な側面が HTML に過度に染み出していることになるため、議論も実装も停滞していた。
+        <section>
+          <h3 id="ident"><a href="#ident">ident()</a></h3>
+          <p>ここで <code translate=no>ident()</code> を用いると、以下のように <code translate=no>id</code> をベースとした <code translate=no>anchor-name</code> を動的に指定できる。
+          <pre class=css data-code=css><code translate=no class=language-css>a {
+  anchor-name: ident(&quot;--&quot; attr(id));
+}</code></pre>
+          <p>ハイフンを連結していることからもわかるように、CSS 中での文字列連結の仕様も包含している。
+          <p><code translate=no>id</code> が <code translate=no>&lt;a&gt;</code> ではなく <code translate=no>&lt;li&gt;</code> に振られている場合は、Custom Property 経由で以下のようにも定義できる。
+          <pre class=html data-code=html><code translate=no class=language-html>&lt;ul&gt;
+  &lt;li id=&quot;aaaa&quot;&gt;&lt;a&gt;anchor aaaa&lt;/a&gt;&lt;/li&gt;
+  &lt;li id=&quot;bbbb&quot;&gt;&lt;a&gt;anchor bbbb&lt;/a&gt;&lt;/li&gt;
+  &lt;li id=&quot;cccc&quot;&gt;&lt;a&gt;anchor cccc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;style&gt;
+  li[id] {
+    --id: attr(id);
+    a {
+      anchor-name: ident(&quot;--&quot; var(--id));
+    }
+  }
+&lt;/style&gt;</code></pre>
+          <p>また、<code translate=no>id</code> を個別に持っていない場合も、別途提案されている <code translate=no>sibling-index()</code> を用いれば、以下のように定義できる。
+          <pre class=css data-code=css><code translate=no class=language-css>a {
+  anchor-name: ident(&quot;--&quot; sibling-index());
+}</code></pre>
+          <p>これは、従来プリプロセッサで行っていたようなユースケースのカバーに繋がる。
+        </section>
+      </section>
+      <section>
+        <h2 id="usecases"><a href="#usecases">Usecases</a></h2>
+        <p><code translate=no>ident()</code> は、動的に文字列を生成しているだけではない。
+        <p>生成した結果は <code translate=no>&lt;custom-ident&gt;</code> / <code translate=no>&lt;dashed-ident&gt;</code> 型の値であり、最近はこうした値を指定する API が増えているため、必然的に応用範囲はかなり広くなる。
+        <p>その一個一個を実装する作業が Chromium で進んでいるため、その Issue を見るに、現在作業が進んでいる対象は以下のようだ。
+        <ul>
+          <li>
+            [css-values] Implement ident() [384930424]
+            <ul>
+              <li><a href="https://issues.chromium.org/issues/384930424/resources" target=_blank>https://issues.chromium.org/issues/384930424/resources</a>
+              <li><code translate=no>anchor-name</code>
+              <li><code translate=no>timeline-name</code>
+              <li><code translate=no>container-name</code>
+              <li><code translate=no>@position-try</code>
+              <li><code translate=no>@property</code>
+            </ul>
+          </li>
+        </ul>
+        <p>これにより、<code translate=no>position-anchor</code> のために HTML Anchor Attribute を定義するといった必要がなくなるため、今後策定される仕様でも採用されていくだろう。
+        <p>なお、単に文字列の結合だけを行い、String を返したいケースのために <code translate=no>concat()</code> / <code translate=no>string()</code> も議論されている。
+        <ul>
+          <li>
+            [css-values] String concatentation · Issue #542 · w3c/csswg-drafts
+            <ul>
+              <li><a href="https://github.com/w3c/csswg-drafts/issues/542" target=_blank>https://github.com/w3c/csswg-drafts/issues/542</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="feature-detection"><a href="#feature-detection">Feature Detection</a></h2>
+        <p>まだ議論も実装も初期段階だが、このままの構文でいくのであれば以下のように detection できる。
+        <pre class=js data-code=js><code translate=no class=language-js>CSS.supports(&quot;--id: ident(var(--name))&quot;)</code></pre>
+        <pre class=css data-code=css><code translate=no class=language-css>@supports (--id: ident(var(--name))) {
+  --id: ident(var(--name));
+}</code></pre>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>View Transition や Anchor Positioning のように、かなり動きに特化した API も増えてきた。それらをコントロールするために、JS で動的に文字列を生成し、指定していく方法もあるが、それが CSS でカバーできることには一定の需要があるだろう。
+        <p>実際、例え動的な動きがあろうとも、スタイルに関しては CSS に閉じている方が望ましく、あっても最小限の JS でカバーできる方が、コードベースも最適化もしやすい。そういう点で <code translate=no>ident()</code> はかなり使われていくだろう。
+        <p>一方で、動的に生成される値が多くなると、懸念されるのはデバッグだ。うっかり <code translate=no>id</code> が振られていない要素が対象に含まれたが、壊れた値の原因がどこなのかがわかりにくいといったことが起こり得る。
+        <p>もちろん、DevTools でのサポートが手厚くなっていくのも込みで進んでいくが、逆を言えば動かさなければわからない部分が増えることを意味する。
+        <p>別途策定が進んでいる <code translate=no>@if()</code> や <code translate=no>@function()</code> とも相性が良い <code translate=no>ident()</code> は、<code translate=no>var()</code> / <code translate=no>calc()</code> や <code translate=no>sibling-index()</code> / <code translate=no>sibling-count()</code> などと合わせて、便利ユーティリティ(作った時点では)を大量に生み出すだろうことが、容易に想像できる。
+        <p>CSS を Step 実行したり、CSS のためのテストを書く、といった未来も近いのかもしれない。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>仕様をベースに作成したデモを以下に用意した。
+        <p>ただし、執筆時点では動作するブラウザが存在しないため(Chrome Canary M139 含め)、動作は確認していない。
+        <ul>
+          <li><a href="https://labs.jxck.io/css/ident.html" target=_blank>https://labs.jxck.io/css/ident.html</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                CSS Values and Units Module Level 5
+                <ul>
+                  <li><a href="https://drafts.csswg.org/css-values-5/#ident" target=_blank>https://drafts.csswg.org/css-values-5/#ident</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Explainer
+          <li>Requirements Doc
+          <li>Mozilla Standard Position
+          <li>Webkit Position
+          <li>TAG Design Review
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Prototype: The ident() function
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/pAqsAGZIIjw" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/pAqsAGZIIjw</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                The ident() function - Chrome Platform Status
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/6230159413477376" target=_blank>https://chromestatus.com/feature/6230159413477376</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>WPT (Web Platform Test)
+          <li>DEMO
+          <li>Blog
+          <li>Presentation
+          <li>
+            Issues
+            <ul>
+              <li>
+                [css-values] A way to dynamically construct custom-ident and dashed-ident values · Issue #9141 · w3c/csswg-drafts
+                <ul>
+                  <li><a href="https://github.com/w3c/csswg-drafts/issues/9141" target=_blank>https://github.com/w3c/csswg-drafts/issues/9141</a>
+                </ul>
+              </li>
+              <li>
+                [css-values] String concatentation · Issue #542 · w3c/csswg-drafts
+                <ul>
+                  <li><a href="https://github.com/w3c/csswg-drafts/issues/542" target=_blank>https://github.com/w3c/csswg-drafts/issues/542</a>
+                </ul>
+              </li>
+              <li>
+                [ident] Implement ident() function fundamentals (6551725) · Gerrit Code Review
+                <ul>
+                  <li><a href="https://chromium-review.googlesource.com/c/chromium/src/+/6551725" target=_blank>https://chromium-review.googlesource.com/c/chromium/src/+/6551725</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
