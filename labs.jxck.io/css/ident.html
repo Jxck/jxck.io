@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+<title>CSS ident() DEMO</title>
+
+<meta http-equiv="origin-trial" content="">
+
+<style>
+@supports (anchor-name: ident("--" attr(id))) {
+  strong {
+    color: red;
+  }
+}
+
+:root {
+  font-family: sans-serif;
+}
+
+ul {
+  li {
+    margin: 4px 2px;
+
+    a {
+      font-size: 2rem;
+    }
+  }
+}
+
+[popover] {
+  width: fit-content;
+  max-width: 500px;
+  position: absolute;
+  top: anchor(end);
+  left: anchor(start);
+  margin: 0;
+  padding: 1rem;
+
+  h2 {
+    margin: 0;
+  }
+}
+</style>
+
+<h1>CSS ident() DEMO</h1>
+
+<h2>CSS.support: <strong>false</strong></h2>
+
+<ul>
+  <li id="aaaa"><a href="#aaaa">aaaa</a></li>
+  <li id="bbbb"><a href="#bbbb">bbbb</a></li>
+  <li id="cccc"><a href="#cccc">cccc</a></li>
+</ul>
+
+<div id="tooltip" popover>
+  <h2></h2>
+  <article>
+    <p>This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.</p>
+    <p>More information...</p>
+  </article>
+</div>
+
+
+<script>
+  'use strict';
+  const $  = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+  EventTarget.prototype.on = EventTarget.prototype.addEventListener
+
+  document.on('DOMContentLoaded', async (e) => {
+    const support = CSS.supports(`anchor-name: ident("--" attr(id))`)
+    $("h2 > strong").textContent = support
+
+    const $popover = $("[popover]")
+
+    $$("a").forEach(($a) => {
+      $a.on("click", (e) => {
+        $popover.style.positionAnchor = $a.style.anchorName
+        $popover.showPopover()
+      })
+    })
+  })
+</script>
