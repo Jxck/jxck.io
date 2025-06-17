@@ -13,7 +13,6 @@ guest: [@re-taro](https://x.com/re_taro_)
 
 第 179 回のテーマは 2025 年 6 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - State of CSS 2025
@@ -99,7 +98,6 @@ guest: [@re-taro](https://x.com/re_taro_)
 - Migrate from Next.js | TanStack Start React Docs
   - https://tanstack.com/start/latest/docs/framework/react/migrate-from-next-js
   - Next.js から TanStack Start に移行する方法ドキュメント
-
 
 ## Events
 
