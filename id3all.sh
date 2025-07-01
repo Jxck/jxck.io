@@ -2432,3 +2432,16 @@ eyeD3 --title "ep179 Monthly Ecosystem 202506" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep180.mp3
+
+eyeD3 --title "ep180 Monthly Platform 202506" \
+      --track 188 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep180.mp3
+
+
+

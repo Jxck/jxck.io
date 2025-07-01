@@ -13,13 +13,11 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 180 回のテーマは 2025 年 6 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 138
-
 
 #### Updates
 
@@ -80,7 +78,6 @@ guest: [@saku](https://x.com/sakupi01)
   - `calc()`, `min()`, `max()`, `var()` などの関数をホバーすると、計算プロセスを示すツールチップが出現
   - https://docs.google.com/document/d/1zyKdPREtKT8OU4WtlHV_Wxet3SvyUtAXrTdFLPmYmdU/edit?pli=1&tab=t.0
   - `attr()` and `if()` のサポートや CSS Debugger Tool やの実装も予定されている
-
 
 #### Intents
 
@@ -273,7 +270,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Possible to remove WebGLRenderingContextBase::commit()?
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/4oy-XTtUViA
 
-
 #### Other
 
 - web.dev
@@ -329,11 +325,9 @@ guest: [@saku](https://x.com/sakupi01)
   - **Escaping `<` and `>` in attributes - How it helps protect against mutation XSS - Google Bug Hunters**
     - https://bughunters.google.com/blog/5038742869770240/escaping-and-in-attributes-how-it-helps-protect-against-mutation-xss
 
-
 ### Firefox 動向
 
 #### Stable: 140
-
 
 #### Updates
 
@@ -358,7 +352,6 @@ guest: [@saku](https://x.com/sakupi01)
   - 自動的な代替テキスト生成、ページの即時翻訳、AI によるタブグループの提案など、プライバシーを損なうことなく生産性を向上させるツールが提供されている。
   - ユーザーは好みの AI チャットボットを選択・切り替え可能で、ダウンロードした AI モデルをいつでも削除できるため、プライバシーを守りながら自由に利用できる。
 
-
 #### Intents
 
 - Ship: WebGPU on Windows
@@ -382,7 +375,6 @@ guest: [@saku](https://x.com/sakupi01)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/NW3z8YdR8PQ/m/xgY3hKohAgAJ
 - Remove:
 
-
 #### Newsletter
 
 - Absolute Unit of an Update - These Weeks in Firefox: Issue 183 - Firefox Nightly News
@@ -390,9 +382,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Firefox WebDriver Newsletter 140 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-140/
 
-
 #### MDN / Open Web Docs
-
 
 #### Standard Position
 
@@ -404,7 +394,6 @@ guest: [@saku](https://x.com/sakupi01)
     - https://github.com/mozilla/standards-positions/issues/1212
   - Scoped Custom Elements Registries
     - https://github.com/mozilla/standards-positions/issues/424
-
 
 #### Other
 
@@ -437,11 +426,9 @@ guest: [@saku](https://x.com/sakupi01)
 - Platform/2025PlannedWork - MozillaWiki
   - https://wiki.mozilla.org/Platform/2025PlannedWork
 
-
 ### Safari 動向
 
 #### Stable: 18.5
-
 
 #### Updates
 
@@ -543,7 +530,6 @@ guest: [@saku](https://x.com/sakupi01)
 - A step into the spatial web: The HTML model element in Apple Vision Pro | WebKit
   - https://webkit.org/blog/17118/a-step-into-the-spatial-web-the-html-model-element-in-apple-vision-pro/
 
-
 #### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-06-01+
@@ -558,14 +544,11 @@ guest: [@saku](https://x.com/sakupi01)
   - WebUSB API
     - https://github.com/WebKit/standards-positions/issues/68
 
-
 #### Other
-
 
 ### Edge 動向
 
 #### Stable:
-
 
 #### Updates
 
@@ -574,7 +557,6 @@ guest: [@saku](https://x.com/sakupi01)
   - Microsoft Edge チームは、Interop 2025 プロジェクトを通じて、主要なウェブ開発者のニーズに関する透明性を高め、ブラウザ間の互換性を向上させるために努力している。
   - 新たに発表された「Edge 2025 ウェブプラットフォームトップ開発者ニーズダッシュボード」は、開発者が求める重要な機能の互換性とテストの成功を追跡する。
   - ダッシュボードには、スクロール駆動アニメーションやクロスドキュメントビュー遷移など、開発者が必要とする複数の機能が含まれており、ブラウザベンダーによる実装の進捗が確認できる。
-
 
 #### Other
 
@@ -593,7 +575,6 @@ guest: [@saku](https://x.com/sakupi01)
 - **Use Windows Hello to unlock 1Password on your Windows PC | 1Password Support**
   - https://support.1password.com/windows-hello/
 
-
 ### WHATWG/W3C 動向
 
 #### Draft
@@ -608,7 +589,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Working Draft
 - First Public Working Draft
 
-
 #### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -622,7 +602,6 @@ guest: [@saku](https://x.com/sakupi01)
   - 「なぜそのホバーカードが disabled なのか説明する時のツールチップ」を出すために `interestfor` を使用可能にすべきか
   - Accessibility の観点から scott が猛烈に反対
   - 無効な状態を示したければ、`aria-disabled` や適切な UI 設計で同様の結果を達成可能
-
 
 #### WHATNOT
 
@@ -642,7 +621,6 @@ guest: [@saku](https://x.com/sakupi01)
   - https://github.com/whatwg/html/issues/11378
 - 2025-06-26
   - https://github.com/whatwg/html/issues/11386
-
 
 #### Other
 
@@ -705,7 +683,6 @@ guest: [@saku](https://x.com/sakupi01)
   - セッションは、Web 標準寄りと CSS 芸人寄りに大別される感じがあった
   - Google お家芸(?)の「What's Missing from HTML & CSS ?」も催されていた
 
-
 ### TC39 動向
 
 #### Meeting
@@ -720,7 +697,6 @@ guest: [@saku](https://x.com/sakupi01)
   - `window.Random` の追加提案
   - Comparisons (strictDeepEqual 的なことができる)の提案
   - Decimal.Amount で精度保持はやっていく
-
 
 #### Proposals Diff
 
@@ -738,9 +714,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Error.isError
   - Array.fromAsync (条件付き)
 
-
 #### New Proposals
-
 
 #### WinterTC
 
@@ -750,9 +724,7 @@ guest: [@saku](https://x.com/sakupi01)
 - ​​2025-06-12 meeting agenda · Issue #120 · WinterTC55/admin
   - https://github.com/WinterTC55/admin/issues/120
 
-
 #### Other
-
 
 ### IETF 動向
 
@@ -761,7 +733,6 @@ guest: [@saku](https://x.com/sakupi01)
 - RFC
 - Work
 - Meeting
-
 
 #### Other
 
@@ -776,7 +747,6 @@ guest: [@saku](https://x.com/sakupi01)
   - https://docs.google.com/document/d/1cNksLq-nd1_ALHhGYTEG_g3RaNGeWrDMHXLORwV0dY8/edit
   - > The Web Bot Auth Working Group will standardise methods for cryptographically authenticating non-browser clients to Web sites. This is intended for use by sites that primarily serve browsers.
 
-
 ### 周辺動向
 
 #### ベンダー動向
@@ -789,7 +759,6 @@ guest: [@saku](https://x.com/sakupi01)
   - https://blogs.igalia.com/webkit/blog/2025/wip-27/
 - une Conference News | Igalia
   - https://www.igalia.com/2025/05/30/June-Conference-News.html
-
 
 #### セキュリティ動向
 
@@ -805,9 +774,7 @@ guest: [@saku](https://x.com/sakupi01)
   - セキュリティを強化して大切な情報を守りましょう。
   - https://x.com/MPD_cybersec/status/1937677739882078268
 
-
 #### Cookie 動向
-
 
 #### Other
 
@@ -837,7 +804,6 @@ guest: [@saku](https://x.com/sakupi01)
   - 施行近づく「スマホ新法」 競争促進の実際や消費者保護への指摘も - Impress Watch
   - https://www.watch.impress.co.jp/docs/topic/2019566.html
 
-
 ### イベント
 
 - 7 月
@@ -845,7 +811,6 @@ guest: [@saku](https://x.com/sakupi01)
     - https://www.ietf.org/meeting/123/
 - 8 月
 - 9 月
-
 
 ### Wrap Up
 
