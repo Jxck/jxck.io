@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-07-08/load-to-passkey-1.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="まず、今使われているパスワード認証について、これがなぜ問題で、なぜ Password-Less が求められているのかを振り返っていこう。">
+  <meta name=keywords            content="passkey">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-08/load-to-passkey-1.html>
+  <meta property=og:title        content="Passkey への道 #1 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="まず、今使われているパスワード認証について、これがなぜ問題で、なぜ Password-Less が求められているのかを振り返っていこう。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Passkey への道 #1 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-07-08T08:00:00+08:00",
+    "dateModified": "2025-07-08T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "まず、今使われているパスワード認証について、これがなぜ問題で、なぜ Password-Less が求められているのかを振り返っていこう。"
+  }
+  </script>
+
+  <title>Passkey への道 #1 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-08>2025-07-08</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-07-08>2025-07-08</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#passkey">passkey</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#平成のパスワード感">平成のパスワード感</a>
+              <ol>
+                <li><a href="#使う側">使う側</a>
+                <li><a href="#預かる側">預かる側</a>
+              </ol>
+              <li><a href="#使い回し">使い回し</a>
+              <li><a href="#攻撃の検知">攻撃の検知</a>
+              <li><a href="#平文保存しているサイトの見分け方">平文保存しているサイトの見分け方</a>
+              <li><a href="#複雑さよりもリトライ制限">複雑さよりもリトライ制限</a>
+              <li><a href="#自分で持たない">自分で持たない</a>
+              <li><a href="#パスワードに期待しない">パスワードに期待しない</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">Passkey への道 #1</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>まず、今使われているパスワード認証について、これがなぜ問題で、なぜ Password-Less が求められているのかを振り返っていこう。
+      </section>
+      <section>
+        <h2 id="平成のパスワード感"><a href="#平成のパスワード感">平成のパスワード感</a></h2>
+        <p>このエントリを読むような読者であれば、平成にわたって「パスワード」というものがどう扱うべきかは、さんざん啓蒙されてきただろう。
+        <section>
+          <h3 id="使う側"><a href="#使う側">使う側</a></h3>
+          <ul>
+            <li>簡単な単語などにしない
+            <li>英数記号を使って複雑にする
+            <li>最低 N 文字以上にする
+            <li>サービス間で使い回さない
+            <li>雑に保管(モニターポストイットなど)しない
+            <li>定期的に変更する
+            <li>etc etc
+          </ul>
+        </section>
+        <section>
+          <h3 id="預かる側"><a href="#預かる側">預かる側</a></h3>
+          <ul>
+            <li>簡単なパスワードを弾くようにルールを設ける
+            <li>平文で保存せずハッシュにする
+            <li>定期変更を強制する
+            <li>ハッシュは自分で実装せず、適切なライブラリを使う
+            <li>ログに残ったりしないようマスクする
+            <li>ディスクごと暗号化する
+            <li>通信も暗号化する
+            <li>認証のリトライに制限をかける
+            <li>異常なアクティビティにはアカウントロックをかける
+            <li><a href="https://pages.nist.gov/800-63-4/sp800-63b.html#passwordver" target=_blank>NIST 800-63-4</a> を参照する
+            <li>etc etc
+          </ul>
+          <p>まずはこのあたりを振り返ってみよう。
+        </section>
+      </section>
+      <section>
+        <h2 id="使い回し"><a href="#使い回し">使い回し</a></h2>
+        <p>実はこのルールの中で、ユーザにとって最も重要で、かつ運用が難しいのは「使い回さない」ことだ。
+        <p>一般のユーザですら、日常的に多くのサービスを使い分け、加えて何年かに一回しか使わないようなサービスを登録している状態が普通になった。そんな中で、すべてのサービスで別のパスワードを「記憶」に頼る運用は破綻が近い。
+        <p>代わりに、記憶しているパスワードに、サービス名やドメイン名を追加して一意性を担保するような運用をしている人も多いだろうが、サービス名やドメイン名が変わることは多々あるので、やはり人力での運用には限界がある。
+        <p>結果、多くの人が未だにパスワードを使い回している。
+        <p>そこに輪をかけて、同じサービスでも定期変更を求められようものなら、いよいよ覚えきれる簡単なルールでパスワードを作るしかなくなる。NIST でもパスワード変更が非推奨になったのは、こうした背景があるのだ。
+        <p>使い回しの問題は、サービスがベストプラクティスをすべて完璧に実装していたとしても、他の脆弱なサービスから漏れたパスワードで、自分たちもなりすまされてしまう点にある。漏洩したサービス自体が悪用されるのはまだしも、その魔の手が他のサービスにも及ぶ。と、わかっていながら、それを防ぐ手立てはない。
+        <p><a href="https://haveibeenpwned.com/" target=_blank>Have I Been Pwned</a> に、自分が普段使っているアドレスを入れてみれば、自分の使っているパスワードが過去にどのくらい漏洩しているかを知ることができる。
+        <p>長く使っているアドレスなら、少なからず報告が表示されるだろう。しかし、表示されなかったからといって安心できるとは限らない。ここにはバイアスがあるのだ。
+      </section>
+      <section>
+        <h2 id="攻撃の検知"><a href="#攻撃の検知">攻撃の検知</a></h2>
+        <p>Have I Been Pwned は、漏洩が発覚したサービスと連携し、その事実をユーザに通知する目的を持っている。つまり、ここに載っているのは「漏洩に自分で気づけているサービス」から提供された情報だけなのだ。
+        <p>サイバー攻撃関連のニュースは連日あるが、そもそも攻撃されたこと自体に気づくのも、一定の体制が必要だ。そこまでの体制が組めているようなサービスは、とっくの昔から平文でパスワードを保存したりしていないだろう。適切な方式でハッシュ化し、通信やディスクを暗号化し、ログどころかメモリ上にすら残らないように平文を消去していれば、そもそも「パスワードの漏洩」リスクはかなり抑えられる。ハッシュの漏洩でも立派なインシデントではあるが、それが他のサービスにまで迷惑をかける可能性は格段に下がる。
+        <p>一方、未だにパスワードを平文で保存しているようなサービスは、古い実装を更新をしていないか、信じられないほどの素人がノリで作ったサービスだろう。そうしたサービスは、漏洩どころか攻撃されていることにすら、気づいていない可能性が高いのだ。
+        <p>ユーザは、自分のパスワードが「どうせどこかしらで漏洩している。」と思って行動するくらいで良い。これは大げさではない。
+      </section>
+      <section>
+        <h2 id="平文保存しているサイトの見分け方"><a href="#平文保存しているサイトの見分け方">平文保存しているサイトの見分け方</a></h2>
+        <p>パスワードはハッシュ化して保存するのが、預かる側の大原則だ。bcrypt, argon2, PBKDF2 などの知られた方式とライブラリがあるため、それらを導入することになる。受け取ったパスワードをそれらに通したら、パスワード自体はログからもメモリからも跡形もなく消し去るべきだ。
+        <p>この時、DB に保存するのは固定長のハッシュ値が基本だ。ユーザの指定したパスワードの文字数に限らず一定になる。仕様で定義されたハッシュ値が入るカラムサイズを、DB のテーブルに確保すればよい。認証時は、受け取ったパスワードを同じハッシュにかけ、結果を比較する。
+        <p>つまり、もしあなたがパスワードを登録する時、「15 文字以下」などの文字数上限がついていたり、「記号は <code translate=no>&amp;</code>, <code translate=no>\\</code> 以外」といったルールが設けられていれば、そのサイトは平文で保存している可能性が高い。
+        <p>長さに上限を設けるのは、カラムのサイズ以上に大きいとそのまま保存できないから。使えない記号があるのは、ろくにエスケープもせず SQL に埋め込んで DB を検索するような実装になっているから。といった可能性が高いのだ。
+        <p>これはあくまで経験則だが、もし現代のプラクティスで適切に実装されていれば、ユーザが何文字のパスワードをどんな文字列で指定しようとも、ハッシュを通して終わりだ。入力長に上限があっても、NIST の推奨のように 64 文字などで十分であり、少なくとも Ascii 可視文字範囲で、使ってはいけない文字種など指定する必要は基本無いのだ。
+      </section>
+      <section>
+        <h2 id="複雑さよりもリトライ制限"><a href="#複雑さよりもリトライ制限">複雑さよりもリトライ制限</a></h2>
+        <p>パスワード登録時に「N 文字以上で、英数記号のうち少なくとも〜」などのように、多くのルールを課したり、簡単な文字列だったらエラーを出すようなサービスは多くある。
+        <p>しかし、そうしたルールを強いておきながら、認証のリトライ制限をきちんと実施していないサービスは、体感ではかなり多い。アカウントのロックはユーザにとって避けたいことなので、自分のアカウントが攻撃にあった時に適切にロックされるかをわざわざ確認するユーザもいない。
+        <p>リトライの制限すらしていないということは、ろくに監視すらしていない可能性がある。攻撃者が Bot を走らせて、何万回もの総当たりをかけていても、開くまで放置されている可能性があるのだ。正門をこじ開けるのだから、ハッシュ保存などをしていたとて意味がない。
+        <p>10 回連続で失敗したら、メール確認が通るまでロックする、いや 10 分ロックするだけでも攻撃難易度はだいぶ変わる。また、パスワードを間違えると、エラーのレスポンスをあえて遅延するのも効果的だ。ログインに失敗したときだけ、一瞬止まったように見えるログイン画面などは、攻撃難易度のためにやっている。
+        <p>それらができていれば、むしろパスワード自体の文字の組み合わせなど、そこまで問題ではないのだ。パスワードの本質はエントロピーなので、辞書にあるような簡単な単語などを避ければ、基本は長さだけ気にすれば良い。英数だけであっても、記号を入れさせるより一桁増やさせる方がエントロピーは上がる。
+        <p>例えば Google なんかはだいぶ前からパスワードに文字種の指定はない。最低が 8 文字で簡単な単語でなければ良い。異常なアクティビティは試行回数にとどまらず、ロックの実装はかなりちゃんとしている。
+        <p>もちろん、DB ハードウェアごと盗まれて(こっちはスパイ映画のように忍び込んでではない、ある日突然データセンターにシャベルカーが突っ込んできて、DB をサーバーラックごと引っ剥がして盗まれるみたいなやつだ)、オフラインで攻撃されることを考えると、複雑性の問題も多少は関わってくる。が、むしろそれはディスクそのものの暗号化や、単純な建物の堅牢性みたいな方向で対処すべきだ。まあ、そこまでやる攻撃者がいたら、多少の抵抗をしてもどうせ開けられるだろうという気はする。
+      </section>
+      <section>
+        <h2 id="自分で持たない"><a href="#自分で持たない">自分で持たない</a></h2>
+        <p>パスワードを預かる実装がきちんとやり遂げられないなら、自分では預からず、認証を移譲する方法もある。
+        <p>マッシュアップ全盛の OAuth を経て、OpenID Connect が整備された今、自分よりも技術力もリソースも大きいビックテックに、認証を頼ることもできるようになった。
+        <p>それで済むなら、サービスとしてはその方が堅牢にはなるだろう。使う側も「このサービスにパスワードを預けて大丈夫だろうか?」と心配する必要もなくなる。
+        <p>しかし、現実にはそうはいかないサービスも多い。
+        <p>銀行のサービスを Sign-In with Apple にするわけにもいかないだろうし、病院のアカウントを Sign-In with Google にしたら「医療情報を Google に渡してるのか?」と思われてしまう可能性もある。全部がマイナンバーに統合されようものなら、政治的な理由から離れるユーザも出るだろう。
+        <p>本当はパスワードなど預かりたくはないとしても、認証を独自に持たないといけなければ、必然的にパスワードを預かるしかないのだ。
+      </section>
+      <section>
+        <h2 id="パスワードに期待しない"><a href="#パスワードに期待しない">パスワードに期待しない</a></h2>
+        <p>結果、平成における「パスワード」とは「なんとか死守するもの」として扱われていた。啓蒙されるプラクティスはすべてそれを補強するものだった。
+        <p>しかし、何らかの形で漏洩したパスワードは、リストとしてダークネットで取引されている。その中のすべてが使い回されていなくても、使い回している人が少しでもいれば、そのリストは商品価値を持つのだ。
+        <p>とにかく弱いサービスを見つけ、攻撃し、パスワードを窃取し販売する。別の攻撃者は、サイバー攻撃を企てる際に、ダークネットで使えそうなリストを購入し、攻撃の足しにする。これらがすべて分業されており、どの犯人も足取りを掴むのは困難だ。
+        <p>目の前で陳列され、売買されているリストたちを見ていれば、自然と同じことを思うだろう。もはや「パスワードに期待してもしょうがない」のだ。
+        <p>ユーザは、とにかく使い回さないことにだけ注意して登録しつつ、「このパスワード、どうせ何割かは漏洩するんだろうな」という前提でいる。
+        <p>サービスは、とにかく推奨されるプラクティス通り実装することに注意しつつ「このパスワード、どうせ何割かはどこかで使い回してるんだろうな」という前提でいる。
+        <p>こうして「<strong>決してパスワードだけで認証しようとしない</strong>」のが、今の認証の最重要プラクティスとなっていった。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
