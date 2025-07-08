@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-07-09/load-to-passkey-2.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="「パスワード」が認証の最重要要素で、いかにそれを死守するかを「サービス側」「ユーザ側」双方で考え続けてきたのが、平成の認証だった。ところが、それは早々に破綻し、「パスワードだけでの認証」に限界が来た。そこで、導入されたのが二要素認証(2FA: 2-Factor Auth)だ。">
+  <meta name=keywords            content="passkey">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-09/load-to-passkey-2.html>
+  <meta property=og:title        content="Passkey への道 #2 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="「パスワード」が認証の最重要要素で、いかにそれを死守するかを「サービス側」「ユーザ側」双方で考え続けてきたのが、平成の認証だった。ところが、それは早々に破綻し、「パスワードだけでの認証」に限界が来た。そこで、導入されたのが二要素認証(2FA: 2-Factor Auth)だ。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Passkey への道 #2 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-07-09T08:00:00+08:00",
+    "dateModified": "2025-07-09T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "「パスワード」が認証の最重要要素で、いかにそれを死守するかを「サービス側」「ユーザ側」双方で考え続けてきたのが、平成の認証だった。ところが、それは早々に破綻し、「パスワードだけでの認証」に限界が来た。そこで、導入されたのが二要素認証(2FA: 2-Factor Auth)だ。"
+  }
+  </script>
+
+  <title>Passkey への道 #2 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-09>2025-07-09</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-07-09>2025-07-09</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#passkey">passkey</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#2fa-が必要だった理由">2FA が必要だった理由</a>
+              <li><a href="#銀行の乱数表">銀行の乱数表</a>
+              <li><a href="#totp-time-based-one-time-password">TOTP (Time-based One-Time Password)</a>
+              <li><a href="#スマホ以降">スマホ以降</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">Passkey への道 #2</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>「パスワード」が認証の最重要要素で、いかにそれを死守するかを「サービス側」「ユーザ側」双方で考え続けてきたのが、平成の認証だった。
+        <p>ところが、それは早々に破綻し、「パスワードだけでの認証」に限界が来た。
+        <p>そこで、導入されたのが二要素認証(2FA: 2-Factor Auth)だ。
+      </section>
+      <section>
+        <h2 id="2fa-が必要だった理由"><a href="#2fa-が必要だった理由">2FA が必要だった理由</a></h2>
+        <p>認証には「記憶」「所有」「生体」の 3 種類があり、そのうち 2 つを組み合わせるのが 2FA だと言われるアレだ。
+        <p>この文脈で言えば、「記憶」に頼るパスワードだけで認証するのはもう限界なので、別の要素に頼る必要がある。それがパスワードと同じ「記憶」に頼るものであれば、追加する意味がないということだ。
+        <p>記憶要素追加の典型例は「秘密の質問」だ。「パスワード」の後に「飼っていたペットの名前は?」を入れさせたところで、有意な認証強度の向上には繋がらない。どちらも記憶に頼っているため、これは「二要素認証」ではなく「一要素二段階認証」などと揶揄される。
+        <p>1st Factor がパスワードである以上、2nd Factor の選択肢は自ずと「所有」か「生体」のどちらかになる。
+        <p>実はこの選択で「生体」を取るのは非常に難しい。
+        <p>本当はここで「生体認証」の持つ問題や、Face ID/Touch ID などの解説をしたいところだが、長くなる上に後でまた出てくるため、そこでまとめて解説する。
+        <p>とにかく、今 Web で行われる 2FA は、「所有」の要素を用いたものが主流だ。
+      </section>
+      <section>
+        <h2 id="銀行の乱数表"><a href="#銀行の乱数表">銀行の乱数表</a></h2>
+        <p>平成の中~後期頃、銀行は顧客に以下のような乱数表を配り始めた。
+        <p>
+          <picture>
+            <source type=image/avif srcset=security-card.avif?250707_145919>
+            <source type=image/webp srcset=security-card.webp?250707_145919>
+            <img loading=lazy decoding=async src=security-card.png?250707_145919 alt="楽天銀行のセキュリティカード" width=556 height=168>
+          </picture>
+        </p>
+        <ul>
+          <li>
+            セキュリティカード認証
+            <ul>
+              <li><a href="https://www.rakuten-bank.co.jp/security/howto/enhanced/securitycard/" target=_blank>https://www.rakuten-bank.co.jp/security/howto/enhanced/securitycard/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>パスワードを入れた後に、乱数表の「A-2, E-4, J-6, C-1」に書かれた文字を入力させる、といったものだ。
+        <p>この場合、入力するのはパスワードと同じ「短い文字列」だが、この乱数表は覚えることを目的としておらず、「口座登録者の住所に書留で送った、つまり入力できる人は間違いなく、乱数表の持ち主だ」ということを担保している。
+        <p>つまり「所有」の要素とみなすことができ、「記憶」に頼るパスワードと合わせた 2FA になるのだ。
+        <p>仮に顧客が使い回しているパスワードが、平文保存しているどこかで漏洩し、それがダークネット経由で買われ、この銀行のパスワードと同じものが含まれていたとしても、このカードが無ければログインはできない。
+        <p>この方式は、カードが二枚になるだけで扱いは比較的楽だった。しかし、限界も近かった。
+        <p>この乱数表の写真を撮って送らせたり、全部を入力させるフィッシング詐欺サイトが登場し、結構な顧客が引っかかってしまったのだ。もちろん、再発行はできるが、それは被害に気づいている場合であって、被害にあったことにすら気づかなければ継続的に攻撃ができる。
+        <p>もう少し、生成される値が予測しにくく、その場限りな乱数が提供できれば。
+        <p>ということで、次に出てくるのが TOTP になる。
+      </section>
+      <section>
+        <h2 id="totp-time-based-one-time-password"><a href="#totp-time-based-one-time-password">TOTP (Time-based One-Time Password)</a></h2>
+        <p>銀行が乱数表の次に顧客に配ったのは、以下のようなデバイスだ。
+        <p>
+          <picture>
+            <source type=image/avif srcset=hardware-token.avif?250707_150706>
+            <source type=image/webp srcset=hardware-token.webp?250707_150706>
+            <img loading=lazy decoding=async src=hardware-token.png?250707_150706 alt="きらぼし銀行のハードウェアトークン" width=450 height=248>
+          </picture>
+        </p>
+        <ul>
+          <li>
+            ワンタイムパスワード | きらぼし銀行
+            <ul>
+              <li><a href="https://www.kiraboshibank.co.jp/hojin/kouritsuka/biz-net/security/otp.html" target=_blank>https://www.kiraboshibank.co.jp/hojin/kouritsuka/biz-net/security/otp.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ここに 30~60 秒ごとに変わる乱数が表示され、パスワードの次にそれを入力させるというものだ。
+        <p>急に見慣れないものが送られてきて、困惑した顧客も多いだろう。これこそが、一定時間だけ有効な乱数を、その都度生成する TOTP (Time-based One-Time Password) のデバイスだ。
+        <p>デバイスには鍵が入っており、それは取り出せない。無理に取り出そうとこじ開けたりすると、壊れて鍵が吹き飛ぶ作りになっている。代わりに、対になる鍵だけをサービス側に共有しておく。
+        <p>このデバイスとサービスは、事前に交換した鍵のペアをうまく使うことで、全く同じ値を算出することができるのだ。それが固定値だと一回しか使えないため、変数としてタイムスタンプを入れることで、数秒間だけ有効な乱数をサーバ/クライアントで同時に生成できるという仕組みだ。
+        <p>ユーザがこの値を入力して、サービス側で一致が確認できれば「このユーザが間違いなく、送ったデバイスを書留で受け取った人だ」ということを確認できる。つまり、色々やっているがこれも結局は「所有」による認証と言える。
+        <p>これで、乱数表よりはまともな二要素認証ができたが、それでもこのような見慣れないデバイスの利用は、一般人とりわけ高齢者などにとっては負荷が高かっただろう。乱数表が並行運用される時間も長く、今でも運用しているサービスもあるだろう。
+      </section>
+      <section>
+        <h2 id="スマホ以降"><a href="#スマホ以降">スマホ以降</a></h2>
+        <p>携帯どころか、メールアドレスまで持っていないユーザをカバーするには、乱数表なりデバイスなりをサービスが用意して送りつける方法しかなかった。しかし、スマホが普及して以降は、2FA もスマホベースに移っていく。
+        <p>昨今では、TOTP は SMS やメールに送られてくるものと思っている人も多いだろう。
+        <p>SMS の場合は「登録した番号(SIM)を所有している」という要素になるが、国によってはキャリアの運用に穴が多く、SIM の乗っ取りなどの被害も横行して信頼性が揺らぎつつある。また、送信料をサービスが負担するため、一通数円の送料が積もればかなりのコストになる。
+        <p>メールは、登録でも求めることが多く、多くのユーザをカバーする。しかし、パスワードのリカバリがメールで、TOTP もメールだと、そのメールサービスが盗まれた際に二要素の意味が無くなるという問題もある。また、銀行からの DM をブロックしたついでに、TOTP も迷惑フォルダに入ってしまうなど、ログイントラブルも尽きない。
+        <p>そこで銀行は、前述した TOTP デバイス相当を、独自アプリとして提供し、顧客にインストールさせる方式を取り始めた。最近の金融詐欺対策で送られてくる「FIDO 対応アプリに移行してください」のアレだ。TOTP が表示されるものや、開いてタップするだけのものなど、実装は色々あるがやっていることは同じだ。
+        <p>しかし、サービスごとにログイン用アプリが増えていくのは、ユーザにとってもサービスにとっても負荷だ。そこで、一般的なサービスでは、標準化されているこの仕組みを実装して QR コードを表示し、ユーザが好きな対応アプリで登録する方式が広まった。黎明期は Google Authenticator や Authy などがあり、しばらくするとパスワードマネージャも TOTP に対応するようになっていった。
+        <p>
+          <picture>
+            <source type=image/avif srcset=google-authenticator.avif?250707_151451>
+            <source type=image/webp srcset=google-authenticator.webp?250707_151451>
+            <img loading=lazy decoding=async src=google-authenticator.png?250707_151451 alt="Google Authenticator" width=166 height=360>
+          </picture>
+        </p>
+        <ul>
+          <li>
+            Google Authenticator
+            <ul>
+              <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target=_blank>https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2</a>
+            </ul>
+          </li>
+        </ul>
+        <p>「2FA にすれば安全になる」ということで、特に意識の高いサービスと、そのユーザらが積極的に導入し普及を進めた。エンジニアでは GitHub に登録するため、2010 年代中ごろ Google Authenticator を入れた人が多かったように思う。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>こうして、「パスワード」に加えて「TOTP」を入力する 2FA が登場したことで、認証の強度は格段に上がった。
+        <p>仮にパスワードだけが漏洩し、それを攻撃者が手にしても、それだけではログインできなくなったからだ。
+        <p>何度言っても使い回しをやめないユーザや、平文保存して漏洩したことにすら気づいていない脆弱なサイトがあったとしても、自分で自分のサイトを守ることができる。
+        <p>ここまでを踏まえて、「パスワードをちゃんと管理し、TOTP も登録しているから大丈夫」と思っている人も多いだろう。それもまだ、平成の感覚に過ぎない。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
