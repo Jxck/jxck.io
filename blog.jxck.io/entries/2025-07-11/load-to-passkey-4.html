@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-07-11/load-to-passkey-4.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="パスワードと TOTP の問題は、「人間が入力する必要がある」ことだった。対策は Autofill であり、そのためにもパスワードマネージャ相当が必要になる。では、パスワードマネージャを使っていれば、パスワードと TOTP で十分なのだろうか?">
+  <meta name=keywords            content="passkey">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-11/load-to-passkey-4.html>
+  <meta property=og:title        content="Passkey への道 #4: 文字列の限界 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="パスワードと TOTP の問題は、「人間が入力する必要がある」ことだった。対策は Autofill であり、そのためにもパスワードマネージャ相当が必要になる。では、パスワードマネージャを使っていれば、パスワードと TOTP で十分なのだろうか?">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Passkey への道 #4: 文字列の限界 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-07-11T08:00:00+08:00",
+    "dateModified": "2025-07-10T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "パスワードと TOTP の問題は、「人間が入力する必要がある」ことだった。対策は Autofill であり、そのためにもパスワードマネージャ相当が必要になる。では、パスワードマネージャを使っていれば、パスワードと TOTP で十分なのだろうか?"
+  }
+  </script>
+
+  <title>Passkey への道 #4: 文字列の限界 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-11>2025-07-11</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-07-10>2025-07-10</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#passkey">passkey</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#パスワードマネージャ">パスワードマネージャ</a>
+              <li><a href="#infostealer">Infostealer</a>
+              <li><a href="#user-bound-encryption-の限界">User Bound Encryption の限界</a>
+              <li><a href="#文字列の限界">文字列の限界</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">Passkey への道 #4: 文字列の限界</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>パスワードと TOTP の問題は、「人間が入力する必要がある」ことだった。
+        <p>対策は Autofill であり、そのためにもパスワードマネージャ相当が必要になる。
+        <p>では、パスワードマネージャを使っていれば、パスワードと TOTP で十分なのだろうか?
+      </section>
+      <section>
+        <h2 id="パスワードマネージャ"><a href="#パスワードマネージャ">パスワードマネージャ</a></h2>
+        <p>パスワードマネージャを使っているならば、以下のことが達成されているはずだ。
+        <ul>
+          <li>パスワードをサイトごとに自動生成
+          <li>それを保存し、暗号化して管理
+          <li>TOTP もドメインに紐づけて登録する
+          <li>ログイン時にそれらを Autofill
+        </ul>
+        <p>しかも、最近はスマホを使っていれば Apple や Google のパスワードマネージャが最初から統合されている。
+        <p>自分のアカウントに紐づけてパスワードを保存し、端末を移行しても自動で同期される。
+        <p>ここまでできていれば、解説してきたほとんどの問題に対策できていそうだ。
+        <p>確かに、記憶に頼ってパスワードを管理し、スマホの画面を見て TOTP を手打ちしていたころと比べれば、だいぶ良くなっている。
+        <p>はずだった。
+      </section>
+      <section>
+        <h2 id="infostealer"><a href="#infostealer">Infostealer</a></h2>
+        <p>特に近年の金融アカウント乗っ取り詐欺は、前述のフィッシングサイト以外にもう 1 つ重要なファクターがある。
+        <p>それが <strong>Infostealer</strong> と呼ばれるマルウェアだ。
+        <p>名前の通り、感染するとローカルのあらゆる情報を盗み出し、用が済んだらすぐ自己消滅するため、ウィルス対策ソフトなどにもひっかからないようなものが主流らしい。
+        <p>どちらもダークネットで取引されており、最近はソースを買ってきて自分でばらまくのではなく、感染済みの Infostealer をサブスクで借りられるようなビジネスもあるようだ。
+        <p>感染経路は、様々なものがある。
+        <p>例えば「私はロボットではありません」でおなじみの CAPTCHA で、Windows にバイナリをダウンロード/インストールするショートカットを表示して、実行させるような方式だ。いつも「信号を選べ」といった意味がわからない操作を要求されているので、同じようなノリで意味のわからないキー操作を受け入れてしまうユーザがいる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=captcha-infostealer.avif?250707_155510>
+            <source type=image/webp srcset=captcha-infostealer.webp?250707_155510>
+            <img loading=lazy decoding=async src=captcha-infostealer.png?250707_155510 alt="CAPTCHA に表示したショートカットでマルウェアをダウンロードさせる" width=515 height=427>
+          </picture>
+        </p>
+        <ul>
+          <li>
+            Chasing Eddies: New Rust-based InfoStealer used in CAPTCHA campaigns
+            <ul>
+              <li><a href="https://www.elastic.co/security-labs/eddiestealer" target=_blank>https://www.elastic.co/security-labs/eddiestealer</a>
+            </ul>
+          </li>
+        </ul>
+        <p>他にも、架空の会社が LinkedIn で技術面接を持ちかけてきて、準備のためにと送られた GitHub をクローンして Init したらマルウェアがインストールされる例もある。
+        <ul>
+          <li>
+            北朝鮮を背景とするサイバー攻撃グループ TraderTraitor による暗号資産関連事業者を標的としたサイバー攻撃について
+            <ul>
+              <li><a href="https://www.npa.go.jp/bureau/cyber/pdf/020241224_pa.pdf" target=_blank>https://www.npa.go.jp/bureau/cyber/pdf/020241224_pa.pdf</a>
+            </ul>
+          </li>
+        </ul>
+        <p>最近では、Zoom で表示されたフェイクの相手が、音声トラブルに対応するためにスクリプトを送って実行させる攻撃もある。
+        <ul>
+          <li>
+            BlueNoroff Deepfake Zoom Scam Hits Crypto Employee with macOS Backdoor Malware
+            <ul>
+              <li><a href="https://thehackernews.com/2025/06/bluenoroff-deepfake-zoom-scam-hits.html" target=_blank>https://thehackernews.com/2025/06/bluenoroff-deepfake-zoom-scam-hits.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>本当によく考えるなと思う。
+        <p>よく「サイトを見るだけで感染する」といった不安を煽る話もあるが、基本的にブラウザで閲覧するだけでマルウェアに感染させることはできない。もし本当にそんな方法を見つけたのなら、億では効かない報奨金が貰えるだろう。悪用するより、報告してキレイなお金を受け取る方が良い。
+        <p>基本的に「感染」と言われているものは、ユーザが何らかの方法で「ダウンロード/インストール」をさせられている。つまり自分で能動的に感染していることがほとんどだ。その方法が巧妙で、気づいてすらない場合も多い。iPhone のように、審査済みのアプリだけが並ぶストアからしか、アプリがダウンロードできなければ、こうした攻撃はかなり防げる。しかし、PC はそれが難しい。iPhone もサイドローディングの解禁が始まり、別のストアも選べるようになれば、安心とは言えなくなるだろう。
+        <p>さて、問題はそうした Infostealer が何を盗んでいるかという点だ。
+      </section>
+      <section>
+        <h2 id="user-bound-encryption-の限界"><a href="#user-bound-encryption-の限界">User Bound Encryption の限界</a></h2>
+        <p>ブラウザには、フォームへの入力を保存して、次回から Autofill する機能がある。ブラウザはこうしたユーザ固有の値をどこに保存するかというと、ローカルの SQLite などである場合が多い。
+        <p>普通に Chrome 配下を探せば、様々な SQLite ファイルがあり、実行して SQL を叩けば中が覗ける。平文テキストに書かれているのと、セキュリティレベルは変わらない。
+        <p>しかし、さすがにパスワードやカード情報などが、そこまで緩く保存されているとマズイので、クレデンシャルは別の安全な場所に保存する。では、「別の安全な場所」とはどこだろうか?
+        <p>Infostealer(マルウェア)は、ユーザがインストールして感染しているため、ユーザの権限で動いている。つまりユーザの権限で開けるファイルは、覗き放題だ。暗号化しても、その鍵が同じようにアクセスできれば意味がない。つまり、同一ファイルシステム上で隠せる場所を用意するのは、本質的に難しいことなのだ。
+        <p>そこで、OS によっては、こうした重要な情報を隠す API が提供されている。Mac であれば KeyChain, Linux なら Kwallet などがそれにあたる。
+        <p>Windows には DPAPI というデータ保護 API があり、Chrome で使われているが、これではログインユーザの権限での攻撃耐性がないため、App-Bound Encryption という「どのアプリなら読めるか」までチェックする API への移行を進めている。
+        <ul>
+          <li>
+            Improving the security of Chrome cookies on Windows
+            <ul>
+              <li><a href="https://security.googleblog.com/2024/07/improving-security-of-chrome-cookies-on.html" target=_blank>https://security.googleblog.com/2024/07/improving-security-of-chrome-cookies-on.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>この変更アナウンスは昨年のものだ。時期的にも、昨今の攻撃トレンドを鑑みての変更に見えなくない。つまり、少なくとも Windows Chrome のクレデンシャルは Infostealer の餌食になりやすかった可能性がある。
+        <p>こうした対策が終われば完璧か? というと、そんなこともない。
+      </section>
+      <section>
+        <h2 id="文字列の限界"><a href="#文字列の限界">文字列の限界</a></h2>
+        <p>パスワードマネージャは、保存したパスワードを暗号化して秘匿するだろう。
+        <p>ブラウザも、保存されたパスワードを暗号化して秘匿する。
+        <p>OS もそのための API を用意する。
+        <p>ハードウェアレベルで達成するために、TPM という秘匿用モジュールがついたチップが使われるようにもなった。
+        <p>しかし、パスワードをどんなに暗号化しても、そのままでは使えない。<code translate=no>&lt;input type=password&gt;</code> には平文文字列で入力する必要が出るのだ。
+        <p>つまり、ログインプロセスの中で、絶対に一度は暗号が解かれ、むき出しになった状態で、ブラウザに入力され送信されるタイミングがある。
+        <p>むき出しの平文になった値を、同じ権限でインストールされ、隙あらばと狙っている Infostealer から完全に守り切るのは、実際のところ非常に難しいのだ。
+        <p>Windows なら、Chrome に DLL でも差し込めれば、プロセス上の値にアクセスできる。Chrome に DLL なんか差し込めるのか? と思うかもしれないが、アンチウイルスソフトなんかは、まさしくそれをやるものがある。Chrome から見れば、どちらも同じような振る舞いをしているのは皮肉そのものだ。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>であれば、なんとかして平文ではなく暗号化したままのパスワードが、そのままサービスに送られ、サービスだけが解読できれば良さそうだ。
+        <p>その通りだ、だいぶ話は核心に近づいてきた。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
