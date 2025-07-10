@@ -1,4 +1,4 @@
-# [passkey] Passkey への道 #2
+# [passkey] Passkey への道 #2: 2FA/TOTP
 
 ## Intro
 

@@ -1,4 +1,4 @@
-# [passkey] Passkey への道 #0
+# [passkey] Passkey への道 #0: Intro
 
 ## Intro
 

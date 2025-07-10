@@ -1,4 +1,4 @@
-# [passkey] Passkey への道 #3
+# [passkey] Passkey への道 #3: 手入力したら終わり
 
 ## Intro
 
