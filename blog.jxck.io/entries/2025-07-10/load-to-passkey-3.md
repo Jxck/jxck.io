@@ -1,4 +1,4 @@
-# [passkey] Passkey への道 #3: 手入力したら終わり
+# [passkey] Passkey への道 #3: 手入力の限界
 
 ## Intro
 
