@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Infostealer は、ユーザの権限でインストールされ、ユーザがアクセスできるあらゆる情報を盗んで去っていく。そこから、どんなに暗号化して保存しても、使用時には平文にしないといけない「パスワード」という文字列を守り抜くのは非常に難しい。であれば、最初から文字列に頼らなけ...">
+  <meta name=keywords            content="passkey">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html>
+  <meta property=og:title        content="Passkey への道 #5: 2FA/WebAuthn | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Infostealer は、ユーザの権限でインストールされ、ユーザがアクセスできるあらゆる情報を盗んで去っていく。そこから、どんなに暗号化して保存しても、使用時には平文にしないといけない「パスワード」という文字列を守り抜くのは非常に難しい。であれば、最初から文字列に頼らなけ...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Passkey への道 #5: 2FA/WebAuthn | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-07-12T08:00:00+08:00",
+    "dateModified": "2025-07-10T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Infostealer は、ユーザの権限でインストールされ、ユーザがアクセスできるあらゆる情報を盗んで去っていく。そこから、どんなに暗号化して保存しても、使用時には平文にしないといけない「パスワード」という文字列を守り抜くのは非常に難しい。であれば、最初から文字列に頼らなけ..."
+  }
+  </script>
+
+  <title>Passkey への道 #5: 2FA/WebAuthn | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-12>2025-07-12</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-07-10>2025-07-10</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#passkey">passkey</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#authenticator">Authenticator</a>
+              <li><a href="#2fa-のリカバリ">2FA のリカバリ</a>
+              <li><a href="#パスワードマネージャの場合">パスワードマネージャの場合</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">Passkey への道 #5: 2FA/WebAuthn</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Infostealer は、ユーザの権限でインストールされ、ユーザがアクセスできるあらゆる情報を盗んで去っていく。
+        <p>そこから、どんなに暗号化して保存しても、使用時には平文にしないといけない「パスワード」という文字列を守り抜くのは非常に難しい。
+        <p>であれば、最初から文字列に頼らなければ良い。それが WebAuthn と FIDO だった。
+      </section>
+      <section>
+        <h2 id="authenticator"><a href="#authenticator">Authenticator</a></h2>
+        <p>会社で、このようなデバイスを配られた人もいるかもしれない。
+        <p>
+          <picture>
+            <source type=image/avif srcset=yubikey.avif?250707_162111>
+            <source type=image/webp srcset=yubikey.webp?250707_162111>
+            <img loading=lazy decoding=async src=yubikey.png?250707_162111 alt="YubiKey" width=340 height=100>
+          </picture>
+        </p>
+        <p>このメモリースティックのようなデバイスは、Security Key と呼ばれ、内部に取り出せない秘密鍵を保存している。
+        <p>TOTP 用のデバイスと同じように秘密鍵を持っているが、乱数を表示するのではなく、この中にある秘密鍵そのもので認証を行うためのものだ。「所有」の要素であるため、社員証につけて首から下げている人もいるかもしれない。
+        <p>こうしたデバイスで認証するために、ブラウザには WebAuthn という API が標準化されている。デバイスを USB ポートに差し込み、サイトに登録する。ログイン時は、金属部分をタップすればログインできるのだ。
+        <p>TOTP とやっていることは非常に近いが、「文字列を入力する」という行為がない分、こちらの方式のほうが安全と言える。
+        <p>WebAuthn は、明示的に API を呼び出さなければ認証できない上に、ドメインが変われば反応しない。対応するサービスは、登録と利用でドメインが変わるといった実装ができないのだ。
+        <p>物理的に盗まれれば別だが、例えば指した USB ポートを経由して中の鍵を吸い出したり、すれ違いざまに鍵をスキャンするといった攻撃もできないよう設計されている。無理に開けて取り出そうとすれば、鍵が消えて壊れるという、耐タンパー性を持っている。
+        <p>これを二要素認証に用いれば、TOTP よりもよっぽど堅牢な作りになるのだ。
+        <p>しかし、情シスがしっかりした企業で配られて使っている社員か、セキュリティ意識の高くてわざわざ購入する少数のユーザがいるだけで、一般ユーザまで広く普及し、みんなが 1 つは持っているという状態にはならなかった。
+        <p>何より人間は、こういったものを簡単に無くすし、簡単に壊す。登録できる鍵の数も制限があるため、しっかり使うと一個では足りなくなる。決して扱いやすいものではなかった。
+        <p>転機が訪れたのは、やはりスマホの対応だ。WebAuthn の API に反応し、スマホ内部に秘密鍵を生成できるようになったのだ。これを Platform Authenticator などと呼ぶ。
+        <p>スマホであればすでに普及し、みんなが肌身離さず持ち歩いている。容量も格段に多く、単体デバイスよりは壊れにくい。ユーザさえその気になれば普及するための基盤は整っていた。
+        <p>しかし、普及の足かせとして、リカバリの問題が無視できなかった。
+      </section>
+      <section>
+        <h2 id="2fa-のリカバリ"><a href="#2fa-のリカバリ">2FA のリカバリ</a></h2>
+        <p>実は TOTP でもそうなのだが、リカバリはユーザにとって非常に重要な問題だ。
+        <p>パスワードを忘れたユーザは、メールアドレスでリカバリできるのが一般的だ。もしここで、TOTP や WebAuthn を登録したスマホを無くしたら、そのユーザはどうリカバリすべきだろうか?
+        <p>もしここで、メールアドレスで TOTP/WebAuthn をリカバリできるとなれば、それは正規化するとメールで入っている単要素に集約される。メールが盗まれた時に、両方とも突破できるなら 2FA としての効能が薄い。
+        <p>そこで、TOTP/WebAuthn を登録したユーザには、通常以下のような乱数列が表示され、それを保存するように促される。これが「バックアップコード」と呼ばれるものだ。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <pre><code translate=no>adsff-aoeif
+xpvge-fiqle
+o438d-fo2de
+...
+...</code></pre>
+        <p>もしスマホを忘れたり、壊れたりして、TOTP/WebAuthn ができなくなったら、このバックアップコードのうち 1 つを入力すれば、2FA を通ることができる。
+        <p>問題は、多くの一般ユーザにとって「これが何なのか」を理解するのが難しかったり、わかっていてもどう管理すればいいのかわからない状態で、2FA の登録だけが推し進められてしまったことだ。
+        <p>エンジニアの中にも、GitHub が TOTP に対応したとき、進められるまま Google Authenticator を入れたが、バックアップコードをスマホ内にダウンロードしたまま放置し、スマホが壊れた時に GitHub に入れなくなったという人がちらほら出た。
+        <p>そう、多くの人は「バックアップコード」など見向きもしないか、一応スマホの中にダウンロードしてそのままなのだ。その状態でスマホが壊れたり、機種変してしまうと、TOTP/WebAuthn は詰んでしまう。
+        <p>銀行や保険のように、本人確認という最終手段が使えたり、GitHub のように登録した SSH の鍵で確認できるサービスは良いが、そうでない一般サービスには「アカウントの乗っ取り」を防ぐためにリカバリプロセスが実施できなければ、安全側に倒すため「救済しない」ものもある。そのあたりが、機種変しても TOTP が途絶えないように、Authenticator アプリを入れさせるよりも、SMS に送りつけることを選び続けるサイトが残る理由でもあるだろう。
+      </section>
+      <section>
+        <h2 id="パスワードマネージャの場合"><a href="#パスワードマネージャの場合">パスワードマネージャの場合</a></h2>
+        <p>ちなみに、Google Authenticator の TOTP の鍵は、スマホのローカルに生成され取り出せないため、扱いは YubiKey などの Authenticator と近いものだ。
+        <p>機種変更するには、新しい機種で登録し直してから古い機種を処分するなど、適切な移行プロセスを行う必要がある。ここで、100 個の TOTP が登録されていたら、移行前に 100 回登録のし直しが必要になる。
+        <p>一方、Authy というアプリは、TOTP をクラウドで同期できるため、新しい機種で Authy にログインさえすれば、端末の移行や複数端末の併用は圧倒的に楽になる。筆者も昔は Authy を使っていた。
+        <p>後にパスワードマネージャが TOTP に対応し、同じように同期がクラウドを介して行えるようになったのは画期的で、バックアップを気にせずとも「クラウドにログインすれば同じ環境」という、今では当たり前の世界観に徐々に移行していったのだ。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>それでも、TOTP は最終的に文字列を入力する。Autofill に頼るにしても、本来は文字列にしたくはない。2FA はできれば WebAuthn が望ましい。
+        <p>「WebAuthn も共有できればな」というのが、うっすらみんなの本音としてあるが、タブーなので決して口には出せない、そんな状態だったように思う。
+        <p>Apple が口火を切るまでは。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
