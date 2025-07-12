@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-07-13/load-to-passkey-6.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="TOTP/WebAuthn は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティス...">
+  <meta name=keywords            content="passkey">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-13/load-to-passkey-6.html>
+  <meta property=og:title        content="Passkey への道 #6: タブーを破った Apple | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="TOTP/WebAuthn は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティス...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Passkey への道 #6: タブーを破った Apple | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-07-13T08:00:00+08:00",
+    "dateModified": "2025-07-12T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "TOTP/WebAuthn は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティス..."
+  }
+  </script>
+
+  <title>Passkey への道 #6: タブーを破った Apple | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-13>2025-07-13</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-07-12>2025-07-12</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#passkey">passkey</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#passkey-の登場">Passkey の登場</a>
+              <li><a href="#password-less">Password-Less</a>
+              <li><a href="#生体認証">生体認証</a>
+              <li><a href="#デバイスの生体アンロック">デバイスの生体アンロック</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">Passkey への道 #6: タブーを破った Apple</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>TOTP/WebAuthn は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。
+        <p>YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティスが啓蒙されたりもしていた。
+        <p>それらをスマホに移行して、登録は便利だが壊したら詰むでは、ユーザは安心して使えない。いや、正確には「よくわからないまま使って、詰んでから Apple のサポートに連絡する」という状態だったのだろう。
+        <p>ここに解決策が提示されたのが、WWDC 2021 だった。
+      </section>
+      <section>
+        <h2 id="passkey-の登場"><a href="#passkey-の登場">Passkey の登場</a></h2>
+        <p>Apple による Passkey の発表は、いつも通り何の前触れもなく行われた。
+        <ul>
+          <li>
+            Move beyond passwords - WWDC21 - Videos - Apple Developer
+            <ul>
+              <li><a href="https://developer.apple.com/videos/play/wwdc2021/10106/" target=_blank>https://developer.apple.com/videos/play/wwdc2021/10106/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>実態は、単なる WebAuthn の API を使った、秘密鍵での認証の話だ。つまり今までやってきた Platform Authenticator としての iPhone 認証と全く同じ。
+        <p>異なるのは、その「iPhone の中に作られた鍵を iCloud Keychain で同期する」という点だ。
+        <p>元をたどれば YubiKey のような、「鍵が絶対取り出せない」ことに意味のある Authenticator を、スマホに移して使っている状態だ。スマホの中に生成された鍵は、スマホから出てはならないのが、認証業界の常識であり鉄則であり前提だった。
+        <p>それを、「取り出して同期してしまおう」そして「それを Passkey と呼ぼう」という発表を、何の標準化もなく、いきなり Apple サービスの機能として発表したのだ。
+        <p>
+          <picture>
+            <source type=image/avif srcset=passkey.avif?250712_233752>
+            <source type=image/webp srcset=passkey.webp?250712_233752>
+            <img loading=lazy decoding=async src=passkey.png?250712_233752 alt="It's called "Passkeys" in iCloud Keychain" width=457 height=262>
+          </picture>
+        </p>
+        <p>当初筆者は、この内容の意味が完全には飲み込めておらず、当惑していた。
+        <p>「それ、やっていいんだっけ?」と思った人も多いだろう。
+      </section>
+      <section>
+        <h2 id="password-less"><a href="#password-less">Password-Less</a></h2>
+        <p>今となっては、Passkey の発表を「秘密鍵の扱いを軽視している」ように受け取ってしまった部分が、実情とズレていたと言える。本来は「そうやってバックアップを容易にしてでも、パスワードをやめないと先はない」という点にこそ真意があったのだろう。
+        <p>Apple は、OS、デバイス、ブラウザ、アプリストア、パスワードマネージャに至るまで、とにかく上から下まで全部揃える稀有なベンダだ。ここまで隙間ない垂直統合で、ここまで大きなシェアを持つのは、Google でも MS でも成し得ていない。
+        <p>そして、Apple は CM でさんざんやっているように、ユーザの「セキュリティ」や「プライバシー」を非常に重視している。それはリリースしているサービスや、方針などからも明らかだ(同時期に ITP や Private Relay もリリースしている)。もちろん、ユーザが日々遭遇しているフィッシングやマルウェアといった脅威を、Apple は高い解像度で把握しているだろう。
+        <p>そんな Apple が、既存の認証のボトルネックであったパスワードを終わりにし、フィッシング詐欺や Infostealer にも対策し、iPhone を落としても簡単に詰まないように考えた、理想的な認証手段の答えが Passkey だったと言える。
+        <p>そう、Passkey は、その実態がほぼただの WebAuthn でありながら、もはや二要素ではなく、それ単体でログインするための単要素として活用できる。ユーザが必要なのは、iCloud にログインしたデバイスで「Sign-in with Passkey」のボタンをタップすることだけになるのだ。
+        <p>その要素としての「秘密鍵を共有する」という掟破りは、その後今に至る認証の常識を変えてしまった。業界にとっての大きなイノベーションだったと言って良いだろう。
+      </section>
+      <section>
+        <h2 id="生体認証"><a href="#生体認証">生体認証</a></h2>
+        <p>そもそも、生体認証そのものを GitHub などに登録すればよいのでは?と思うかもしれない。ここで、最初の方で保留した生体認証について触れておこう。
+        <p>確かに、かつては生体情報を読み取るデバイスがなかったが、今はスマホがあれば簡単にできる。指紋そのものを GitHub に登録すれば、スマホをタッチするだけでログインできるし、確実に自分であることを証明できそうだ。
+        <p>しかし、生体認証には様々な問題がある。最も大きいのは、プライバシーだ。
+        <p>生体認証は、簡単には変わらないことが利点だが、逆を言えば簡単には変えられない。指紋認証を使うとなれば、すべてのサービスで全く同じ指紋を登録することになり、結託したり漏洩したりすれば、指紋を元に全データを名寄せできてしまう。Fingerprinting などしなくとも Fingerprint そのものがあるからだ。何かの被害にあっても、指紋は高々 10 通りしかないため、サービスごとに任意のものを使うといったことができない。
+        <p>また、生体認証は基本的に「外に出ている」情報であるため、窃取や偽装も比較的容易になる。知り合いであれば、顔写真や指紋は簡単に手に入る。スパイ映画のような工作を地で行えば、相応の突破が可能な場面が多くなる。
+        <p>仮に、サービス自身が生体情報を預かるなら、指紋や顔そのものではなく、パスワードをハッシュにするような行為をそれらに対して行うだろう。しかし、どのようなプロセスで処理し、どのような形式で保存し、どのように管理すべきか、ユーザにはどんな同意を取るか。そうしたプラクティスが確立していないため、特殊なユースケースで環境込みで導入する場面はあっても、一般ユーザに提供する一般の Web サービスが、わざわざ生体認証ログインそのものを実装するインセンティブも特にないのだ。
+        <p>そんなことをするくらいなら Passkey に対応する方が合理的になる。
+        <p>少なくとも、筆者の知る範囲で「生体認証ログインそのものを実装した一般向け Web サービス」は見たことがない。もし実在するなら、試してみたいので是非教えてほしい。
+      </section>
+      <section>
+        <h2 id="デバイスの生体アンロック"><a href="#デバイスの生体アンロック">デバイスの生体アンロック</a></h2>
+        <p>いやいや、Face ID や Touch ID があるし、それでログインもできるじゃないか? と思うだろう。
+        <p>ここがまた、少しややこしいところだ。
+        <p>例として、もし GitHub に Passkey を登録し、それを iPhone の iCloud Keychain に保存していたら、ログイン時は Face ID や Touch ID を求められるだろう。
+        <p>しかし、これは「生体認証で GitHub にログインしている」わけではない。
+        <p>ユーザはあくまで、iCloud Keychain に保存された Passkey でログインしている。つまり秘密鍵を用いた「所有」の認証だ。GitHub に登録されるのは指紋情報ではなく、対応する公開鍵だ。では、iPhone はなぜ Face/Touch ID を求めるのかと言うと、それはパスワードマネージャをアンロックするためだ。
+        <p>GitHub のサイトが WebAuthn の API を叩いた際に、Passkey のログインが勝手に行われてしまっては、ユーザの意図しないところでログインが行われてしまう。iCloud Keychain に保存された Passkey はあくまでユーザのものなので、勝手に取り出して認証するわけにはいかないのだ。また、その端末が誰かに盗まれたものであった場合に、パスワードマネージャを勝手に使われるわけにはいかない。
+        <p>本人確認を必要としているのはサービス(GitHub)ではなく、端末(iPhone)なのだ。このプロセスを User Verification という。だから、何回か Touch/Face ID が失敗したら、いつもの iPhone の PIN コードで代替できるのは、それがあくまで iPhone に閉じた話だからだ。
+        <p>したがって、iPhone/Android や Windows Hello などの機能は、生体情報が「デバイスの中に保存」されており、外には出ないようになっている。iPhone を買い直しても、指紋や顔の登録は同期されない。PIN を買うたびに設定するように、買うたびに顔と指紋を登録する必要があるのはこのためだ。
+        <p>もちろん、生体認証はローカルに閉じ外には出ないというのは、ベンダの説明だ。Apple や Google や MS が、それらの情報をこっそりサーバに収集している可能性を疑うことも可能だ。疑わしいなら登録せずに PIN だけにすれば良い。PIN でも User Verification にはなり、マネージャはアンロックでき、Passkey は問題なく使える。
+        <p>ちなみに、YubiKey や Titan の物理セキュリティキーの中には、中央にくぼみがあり、そこを指でタップしないと動かないものがある。これを見て、指紋認証だと勘違いする人も多い。ハイエンドなら、指紋を登録できるものもあるだろうが、大抵はただタッチすればよいだけの感圧板であることが多い。
+        <p>これが必要なのは、挿しっぱなしのセキュリティキーが勝手に動くことを防ぐために、ユーザが明示的にジェスチャーをしないと動作しないようにするためだ。ただ、アンロックするためにタッチするだけなので、逆を言えば盗まれたら認証自体はできてしまう。そもそも所有の要素なので、無くしたり盗まれたら、それ相応の対応が必要なのだ。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
