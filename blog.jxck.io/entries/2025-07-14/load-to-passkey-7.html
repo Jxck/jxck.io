@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-07-14/load-to-passkey-7.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Apple が突如発表した Passkey。実態は「WebAuthn の秘密鍵を iCloud で共有」するサービスだった。そして、業界は本格的な Password-Less に向けて進んでいく。">
+  <meta name=keywords            content="passkey">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-14/load-to-passkey-7.html>
+  <meta property=og:title        content="Passkey への道 #7: そして Username-Less へ | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Apple が突如発表した Passkey。実態は「WebAuthn の秘密鍵を iCloud で共有」するサービスだった。そして、業界は本格的な Password-Less に向けて進んでいく。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Passkey への道 #7: そして Username-Less へ | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-07-14T08:00:00+08:00",
+    "dateModified": "2025-07-14T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Apple が突如発表した Passkey。実態は「WebAuthn の秘密鍵を iCloud で共有」するサービスだった。そして、業界は本格的な Password-Less に向けて進んでいく。"
+  }
+  </script>
+
+  <title>Passkey への道 #7: そして Username-Less へ | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-14>2025-07-14</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-07-14>2025-07-14</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#passkey">passkey</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#passkey-と-fido">Passkey と FIDO</a>
+              <li><a href="#username-less">Username-Less</a>
+              <li><a href="#passkey-の定義">Passkey の定義?</a>
+              <li><a href="#single-factor-auth-via-passkey">Single Factor Auth via Passkey</a>
+              <li><a href="#認証をロックインしたいベンダの陰謀">認証をロックインしたいベンダの陰謀?</a>
+              <li><a href="#企業における-passkey">企業における Passkey</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">Passkey への道 #7: そして Username-Less へ</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Apple が突如発表した Passkey。
+        <p>実態は「WebAuthn の秘密鍵を iCloud で共有」するサービスだった。
+        <p>そして、業界は本格的な Password-Less に向けて進んでいく。
+      </section>
+      <section>
+        <h2 id="passkey-と-fido"><a href="#passkey-と-fido">Passkey と FIDO</a></h2>
+        <p>Passkey は Apple のサービスとして始まったが、単なるいちベンダのサービスでは終わらなかった。
+        <p>もともと生体認証を牽引していた FIDO を中心にこの方式についての議論が行われ、最終的には業界全体が Passkey を用いて Password-Less を目指す方向で概ね合意することになる。
+        <p>Apple 以外のパスワードマネージャも Passkey に対応(つまり、秘密鍵を登録しそれを共有する)ようになり、様々な場所で Passkey への移行が啓蒙されるようになった。
+        <p>ちょうどコロナ禍と重なるくらいの時期だ。
+        <p>ちなみに、ここまで WebAuthn の鍵と言っているものは、FIDO では &quot;FIDO(2) の Credential&quot; という呼称になる。
+        <p>ところが、FIDO の中では「Passkey」=「共有された FIDO Credential」ではないことになった。
+        <p>これだけ「共有されることが革新だった」という話をしてきたが、厳密にはそれは FIDO の言う Passkey にとって必要条件ではない。
+        <p>FIDO にとって大事なのは、どちらかというと Discoverable Credentials や Resident Key と呼ばれるものだ。
+      </section>
+      <section>
+        <h2 id="username-less"><a href="#username-less">Username-Less</a></h2>
+        <p>安い YubiKey や Titan の Security Key には、単純に「秘密鍵の入ったデバイス」なものもある。こうしたデバイスは、スマホ/PC での保存を Platform Authenticator と呼ぶのに対して、Roaming Authenticator と呼び分ける。
+        <p>Roaming Authenticator の場合、WebAuthn の API を使うと、その秘密鍵からサイトごとの公開鍵を作成し、サイトのドメインに紐づけて保存するが、このとき、自身は「どのサイトに使う鍵を保存しているか」は知らない場合がある。WebAuthn の API で、鍵の ID を知らされてそれを返すだけだ。
+        <p>しかし、このとき生成した鍵に紐づけて、「どのサイト用」「どのアカウント用」などの情報を紐づけて保存できると、以下のようにポップアップで「保存している Passkey」一覧を表示できるのだ。ここにアカウント名(Email など)が同時に表示されているため、選んでクリックするだけでログインできる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=username-less.avif?250713_234245>
+            <source type=image/webp srcset=username-less.webp?250713_234245>
+            <img loading=lazy decoding=async src=username-less.png?250713_234245 alt="passkey を用いた username-less ログイン" width=555 height=314>
+          </picture>
+        </p>
+        <p>つまり、ユーザは「ユーザ名」すら入力していないのだ。この状態は Password-Less の先にある <strong>Username-Less</strong> な状態と言える。
+        <p>このように、ユーザ情報も紐づけて保存している鍵が、前述の Discoverable Credentials や Resident Key と呼ばれるもので、これが保存できる Authenticator では Username-Less が実現できるのだ。
+      </section>
+      <section>
+        <h2 id="passkey-の定義"><a href="#passkey-の定義">Passkey の定義?</a></h2>
+        <p>実は、FIDO における Passkey とは、この Discoverable Credentials、つまり Username-Less が実現できる状態を指すことになった。これをクラウドで同期するかどうかは、Passkey そのものとは関係ない、オプショナルなものであるという立場だ。
+        <ul>
+          <li>
+            Passkeys: Passwordless Authentication | FIDO Alliance
+            <ul>
+              <li><a href="https://fidoalliance.org/passkeys/" target=_blank>https://fidoalliance.org/passkeys/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>なお、Username-Less で入れるということは、その Authenticator さえあれば他に何もなくログインできてしまう。したがって、必ず User Verification つまり、指紋や顔認証などを用いた「本人確認」が必要となる。スマホであれば何度も言っているアンロックプロセスがそれにあたり、Roaming Authenticator の場合も、単なるタッチではなくちゃんと指紋を登録し確認するタイプの Authenticator などであれば、Passkey と言えるのだ。
+        <p>この User Verification が生体認証で行われている限りは、実質的に二要素認証と同等の安全性が見込めることも、Password/Username-Less が従来の Password+TOTP より安全である根拠にもなっている。つまり、Username-Less できる記憶領域があり、生体認証できるなら、パスワードマネージャと呼ばれるものではない、単体デバイスの Roaming Authenticator でも Passkey を保存することは可能だ。つまり、「Passkey にはパスワードマネージャが必要」ではないということだ。
+        <p>ところで、FIDO には Passkey について色々書かれており、公式ロゴっぽいものも公開しているが、FIDO が Passkey という標準を決めているわけではない。Password に仕様がないように、IETF や W3C を探しても &quot;Passkey&quot; という標準仕様は無いのだ。あくまで WebAuthn などの「ユースケース」であり、iCloud などのサービス固有の名前ではない「普通名詞」であり、従来の認証を次に進めていくための「ブランド」のような立ち位置になっている。
+        <p>「Passkey の定義は?」という質問に対する説明の歯切れが悪くなりがちなのは、こうした微妙な構図がある。したがって、一般ユーザの視点で言えば「何も入力せず、タップだけでログインできれば Passkey」くらいの認識で問題ないとも言える。
+      </section>
+      <section>
+        <h2 id="single-factor-auth-via-passkey"><a href="#single-factor-auth-via-passkey">Single Factor Auth via Passkey</a></h2>
+        <p>さて、User Verification さえすれば、アカウントを選ぶだけで入れる。つまりこれは Single Factor Auth だ。
+        <p>さんざん 2FA で堅牢に、と言ってやってきた今、行き着く先が 1FA で良いのだろうか?
+        <p>実は Passkey は、これまでの認証の問題だった点を、基本的にはすべてカバーできている状態とみなされる。
+        <ul>
+          <li>使い回せない
+          <li>エントロピーも高い
+          <li>平文文字列を使わない
+          <li>ドメインの機械的検証ができる
+          <li>簡単には盗めない
+          <li>使用時に生体などでユーザ認証
+          <li>同期できれば詰むこともない
+        </ul>
+        <p>つまり、ここに余計なプロセスを追加する必要はないほど、単体で十分堅牢なのだ。
+        <p>今の認証の暫定的なゴールは、Password も TOTP もやめ、Passkey で Password/Username-Less を実現し、詰まないためにそれをクラウドで同期する。ユーザは、そのパスワードマネージャの管理だけに集中すれば良い、という状態なのだ。
+        <p>ユーザもサービスも、基本的にはその方向に進んでいくのが、令和における認証の目的地と言えるだろう。
+      </section>
+      <section>
+        <h2 id="認証をロックインしたいベンダの陰謀"><a href="#認証をロックインしたいベンダの陰謀">認証をロックインしたいベンダの陰謀?</a></h2>
+        <p>Passkey の管理は、人間が記憶などに頼って行うことができない(させないのが目的)。
+        <p>したがって、何かしらの Platform / Roaming Authenticator を用意する必要が出てくる。これらは Passkey の管理という面で、まとめて「Passkey Provider」と呼ばれたりもする。
+        <p>中には、Passkey はパスワードマネージャが必須で、そこを握ればユーザの認証を大きく押さえることができるため、ベンダとしてはビジネス上有利になる。だからユーザを自社のパスワードマネージャに移行させようとしている、という論調もある。
+        <p>仮にビッグテックがユーザのアカウントを抑えることでロックインしたいと思うのであれば、抑えるべきは Passkey よりアカウントの源泉である「メール」の方だろう。パスワードが他者のパスワードマネージャに保存されても、特にデメリットはなかったのと同じだ。それが Passkey に置き換わったときに、ベンダの陰謀を持ち出す論調は少し雑がすぎると、少なくとも筆者は感じる。
+        <p>あらゆるサービスが Passkey への移行を呼びかけるのは、<strong>いよいよ Password に限界が来ている</strong> からだ。そして、その保存先が何であれ Passkey に移行してもらわない限りは、サービスがユーザを守りきれるか怪しい局面まで来ていることの現れだと、素直に受け取ったところでユーザに大きなデメリットはない。
+        <p>例えば、最近 <a href="https://news.yahoo.co.jp/articles/4156cd473dc89d7c650b7ef76d8af06844412d08" target=_blank>20 億を超えるユーザに対して移行を啓蒙している Gmail</a> にしてみれば、保存先が iCloud だろうとなんだろうと、とにかく Passkey を使ってもらうこと自体の方が優先度が高くなる。Gmail が攻撃されたときの被害に比べれば、別ベンダの Passkey Provider を使っている事実は些末なことだ。
+        <p>もし、ビッグテックの Platform Authenticator が嫌なのであれば、好きな Passkey Provider を使えばよい。パスワードマネージャで同期されることに違和感を覚えるなら、Roaming Authenticator を買ってくれば良い。
+        <p>実際、一般ユーザにとっては、共有されることで「詰み」を回避するインセンティブがあるが、別手段でなんとでもできるエンタープライズでは、ベンダに依存しないために、生体認証が可能な物理デバイス(User Verification が可能な Roaming Authenticator)を配布することもあるだろう。このあたりに、FIDO で Passkey に同期を必須にしなかったことが効いてくることになる。
+        <p>同時に、Passkey を Authenticator 間で安全に共有できるようにする仕様も検討されている。これを使えば、iCloud で作った Passkey を Google Password Manager にも移せるということだ。ユーザは対応する任意の Passkey Provider を選択でき、ロックインを逃れることができるようになる。
+        <ul>
+          <li>
+            FIDO Credential Exchange Specifications | FIDO Alliance
+            <ul>
+              <li><a href="https://fidoalliance.org/specifications-credential-exchange-specifications/" target=_blank>https://fidoalliance.org/specifications-credential-exchange-specifications/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>こうした仕様を議論する FIDO の円卓には、Google, Apple, MS といった Platform Authenticator 提供ベンダも並んでいるのだ。
+        <p>「ロックインされたくないから Passkey を使いたくない」という姿勢は、ロックインされない方法で Passkey を導入する方法を知らないことの表明でしかない。
+        <p>「Passkey はベンダの陰謀だ」とするのは自由だし、使わないのも自由だが、それはもう反ワクチンなどに近い論争に思える。
+      </section>
+      <section>
+        <h2 id="企業における-passkey"><a href="#企業における-passkey">企業における Passkey</a></h2>
+        <p>企業は情シスなどが主導し、ルールを策定することで、認証強度がコントロールされるのが一般的だ。
+        <p>今だと「TOTP を必須」にし、社員に配った社用スマホで SMS 認証させたりしているだろう。
+        <p>それを根拠に、「TOTP の二要素認証を必須にしており、十分なセキュリティ対策をしているため、Passkey に移行する必要はないという認識だ」といったポリシーも、今は多いだろう。
+        <p>ここまで解説してきたことからもわかるように、TOTP の二要素であれば、昨今発生している攻撃に対しては、対策として不十分、というか対策したことになっていないのだ。
+        <p>直近でも、多くの企業がサイバー犯罪の被害を受け、甚大な損害を出していることが、連日報道されている。これらのきっかけは、金融口座乗っ取りなどと同じように、フィッシング詐欺や Infostealer によって突破口を開いた例も複数ある。
+        <p>たとえば、以下のような攻撃だ。
+        <ul>
+          <li>
+            LinkedIn からリクルーターとしてコンタクトし、入社試験のためとして GitHub を Clone-Init させたら、それがマルウェアだった。
+            <ul>
+              <li><a href="https://www.npa.go.jp/bureau/cyber/pdf/020241224_pa.pdf" target=_blank>https://www.npa.go.jp/bureau/cyber/pdf/020241224_pa.pdf</a>
+            </ul>
+          </li>
+          <li>
+            DeepFake の動画で知人になりすまし Zoom 会議に参加、声が聞こえないから解決のためにドライバを更新してほしいと、マルウェアのリンクを送って感染させる。
+            <ul>
+              <li><a href="https://internet.watch.impress.co.jp/docs/column/netliteracy/2025729.html" target=_blank>https://internet.watch.impress.co.jp/docs/column/netliteracy/2025729.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>人を狙うのは、機械よりも人間の方が騙しやすいからだ。企業には社員の数だけ脆弱性があり、攻撃者からすればそのどれか一人を落とせればよいだけなので、一度ターゲットにされれば基本的には逃げきれない。
+        <p>落とした一人を皮切りに、そこから社内に潜入し、全てのデータを暗号化した上で身代金を要求したり、仮想通貨をまるっと盗み出したり、顧客情報を全て盗んでダークネットで売り捌いたり、なんとでも攻撃はできる。翌日には新聞に載り、記者会見で頭を下げ、復旧作業のために数週間働き詰めになっても、「対策に問題はなかった」と言い切れるだろうか。
+        <p>何かに入られるということは、何らかの形で認証が突破されたということだ。もちろん、Passkey にしたら完璧な防御になるわけではない。むしろ、今後はやっていて当たり前の対策になっていく。これだけ攻撃が多様化していることを考えると、「TOTP 必須だから大丈夫」という認識がもう平成のものなのだ。
+        <p>もうしばらくは、大きな企業被害が続き「原因は Passkey への移行をしなかったから」といった記事が出たり、より強制力の強いガイドラインなどで必須にならない限り、この層を動かすのは啓蒙だけでは無理だろうと思う。
+        <p>ただ、会社で必須でなくても、個人的に Passkey に移行するのは可能なサービスが多い。突破口に自分がならないために、Passkey に移行しておく、という自衛はあるだろう。そこで Passkey に移行できるように、パスワードマネージャなどを導入して基盤を整えておくのは、リテラシの範囲だ。
+        <p>Passkey を使える状態にしておくのは、もう自分の金融口座や SNS の裏垢を、盗まれないように守るだけの話でもないのだ。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
