@@ -1,4 +1,4 @@
-# [passkey] Passkey への道 #8: サービスはどうするべきか
+# [passkey] Passkey への道 #8: サービスにとって「移行」のゴールは何か?
 
 ## Intro
 
@@ -108,7 +108,7 @@ Passkey 対応ログイン画面を実装するためのノウハウはいくら
 
 Watchtower という項目では、まだ Passkey 移行が済んでいないアイテムが一覧できる。
 
-![Watchtower で未移行のアイテムが表示される](watch-over.png#516x6512)
+![Watchtower で未移行のアイテムが表示される](watchtower.png#516x6512)
 
 このリストが 1Password 以外に使われているかはわからないが、今のところ最も網羅されていると思うので、ここに登録しない理由は特にない。
 

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-07-15/load-to-passkey-8.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="パスワード + TOTP は限界を迎え、Passkey へ移行しなければ、サービスがユーザを守りきれなくなった。逆を言えば、サービスがユーザを守りたいと思うのであれば、Passkey を提供しないわけにはいかない時代に突入している。では、令和のこの状況において、サービスはど...">
+  <meta name=keywords            content="passkey">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-15/load-to-passkey-8.html>
+  <meta property=og:title        content="Passkey への道 #8: サービスにとって「移行」のゴールは何か? | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="パスワード + TOTP は限界を迎え、Passkey へ移行しなければ、サービスがユーザを守りきれなくなった。逆を言えば、サービスがユーザを守りたいと思うのであれば、Passkey を提供しないわけにはいかない時代に突入している。では、令和のこの状況において、サービスはど...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Passkey への道 #8: サービスにとって「移行」のゴールは何か? | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-07-15T08:00:00+08:00",
+    "dateModified": "2025-07-15T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "パスワード + TOTP は限界を迎え、Passkey へ移行しなければ、サービスがユーザを守りきれなくなった。逆を言えば、サービスがユーザを守りたいと思うのであれば、Passkey を提供しないわけにはいかない時代に突入している。では、令和のこの状況において、サービスはど..."
+  }
+  </script>
+
+  <title>Passkey への道 #8: サービスにとって「移行」のゴールは何か? | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-15>2025-07-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-07-15>2025-07-15</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#passkey">passkey</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#サービスの対応">サービスの対応</a>
+              <li><a href="#いかにユーザを移行させるか">いかにユーザを移行させるか</a>
+              <ol>
+                <li><a href="#passkey-の通知">Passkey の通知</a>
+                <li><a href="#automatic-passkey-upgrade">Automatic Passkey Upgrade</a>
+                <li><a href="#パスワードマネージャへの通知">パスワードマネージャへの通知</a>
+                <ol>
+                  <li><a href="#1password">1Password</a>
+                  <li><a href="#google-password-manager">Google Password Manager</a>
+                </ol>
+              </ol>
+              <li><a href="#.well-knownpasskey-endpoints">/.well-known/passkey-endpoints</a>
+              <li><a href="#password-の削除">Password の削除</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">Passkey への道 #8: サービスにとって「移行」のゴールは何か?</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>パスワード + TOTP は限界を迎え、Passkey へ移行しなければ、サービスがユーザを守りきれなくなった。
+        <p>逆を言えば、サービスがユーザを守りたいと思うのであれば、Passkey を提供しないわけにはいかない時代に突入している。
+        <p>では、令和のこの状況において、サービスはどう対応していくべきだろうか?
+      </section>
+      <section>
+        <h2 id="サービスの対応"><a href="#サービスの対応">サービスの対応</a></h2>
+        <p>理想だけを言うなら、Passkey をサポートし、Username-Less のログインを可能にする。その上で、パスワード+TOTP の認証はサポートを止め、保持していてもリスクでしかないパスワードのハッシュを、サーバから消す。鍵の管理とリカバリにだけに注力すれば良い。
+        <p>というところまで到達できればよいが、現実的にはまだまだ過渡期どころか黎明期だ。サービスをそのように実装できればシンプルで堅牢だが、ユーザはそこまでの準備が整っているとは言えない。
+        <p>サービスがパスワードを無くせば、パスワードと共にユーザの一部/大部分を失う可能性が高い。したがって、しばらくは Password + TOTP という旧来の方式を並行サポートする。
+        <p>ただし、準備のできたユーザから順に Passkey へ移行を促せるよう、選択肢としてきっちり導入しておくのが今のフェーズと言えるだろう。
+      </section>
+      <section>
+        <h2 id="いかにユーザを移行させるか"><a href="#いかにユーザを移行させるか">いかにユーザを移行させるか</a></h2>
+        <p>Passkey 対応ログイン画面を実装するためのノウハウはいくらでも出てくるし、ガイドラインも多々ある。AI に聞けば動くものはいくらでもできるだろう。プロンプトには、以下のチェックリストを渡しておくと良い。
+        <ul>
+          <li>
+            Secure and seamless passkeys: A deployment checklist
+            <ul>
+              <li><a href="https://web.dev/articles/passkey-checklist" target=_blank>https://web.dev/articles/passkey-checklist</a>
+            </ul>
+          </li>
+        </ul>
+        <p>こうして、ログイン画面を Passkey 対応した。これで移行タスクは完了。
+        <p>ではない。
+        <p>ユーザのアカウントを守るためには、サービスはとにかく「Passkey に移行してもらう」必要がある。しかし、一般ユーザの多くは、パスワードのサポートが切られでもしない限り、従来通りそちらを使うだろう。ユーザは特に困っていないからだ。
+        <p>そうしたユーザに、どうアドバタイズし、どう移行させるかは、まだまだ課題が多い。Passkey に対応したサービスを見ても、この点の取り組みは、まだまだ消極的に感じるものが多い。あまりしつこく勧めると UX を損ねるため、プラクティス不足で様子見な部分もあるだろう。
+        <p>「移行」は、今サービスが「ユーザを守るために」取り組むべき、最も重要なテーマであるはずなのだ。
+        <section>
+          <h3 id="passkey-の通知"><a href="#passkey-の通知">Passkey の通知</a></h3>
+          <p>最もナイーブな発想は、ユーザの環境が Passkey に対応しているかを調べ、対応しているユーザに Passkey 作成を促すプロンプトを出すことだ。
+          <p>出すタイミングは、ユーザがパスワードでログインした直後が良いだろう。
+          <p>
+            <picture>
+              <source type=image/avif srcset=start-using-passkeys.avif?250715_023926>
+              <source type=image/webp srcset=start-using-passkeys.webp?250715_023926>
+              <img loading=lazy decoding=async src=start-using-passkeys.png?250715_023926 alt="Passkey 対応のアドバタイズ" width=1000 height=650>
+            </picture>
+          </p>
+          <ul>
+            <li>
+              Passkeys user journeys
+              <ul>
+                <li><a href="https://developers.google.com/identity/passkeys/ux/user-journeys" target=_blank>https://developers.google.com/identity/passkeys/ux/user-journeys</a>
+              </ul>
+            </li>
+          </ul>
+          <p>ユーザの遷移に挟んでもまで、これをしっかりとアドバタイズしているサイトは、パッとは思いつかなかった。
+          <p>体感でも、そこまで見ないような気がする。
+          <p>ところが、ユーザが「Passkey に対応した環境にいる」ということは、すでにパスワードマネージャなどを導入しているということだ。
+          <p>もしパスワードマネージャを生体認証でアンロックし、パスワードを Autofill してログインできているのであれば、そのユーザが Passkey に移行しない強い理由はないだろう。体験はほぼ同じだからだ。
+          <p>そこで Apple は、こうしたユーザに対してまたもや積極的なアプローチを展開した。
+        </section>
+        <section>
+          <h3 id="automatic-passkey-upgrade"><a href="#automatic-passkey-upgrade">Automatic Passkey Upgrade</a></h3>
+          <p>少なくとも、iPhone を使っていれば Passwords が、Android を使っていれば Google Password Manager が使える状態にある。ユーザによっては、既にパスワードをそれらパスワードマネージャで管理し、ログインを Autofill で行っている場合もあるだろう。
+          <p>他にも、1Password, Bitwarden, Enpass などに移行済みで、ブラウザに拡張を入れて、パスワードを Autofill しているユーザもいる。
+          <p>こうしたユーザは、「あとは Passkey を登録するだけ」の状態だ。アカウントを選択し、アンロックしてログインするという動線は、パスワードも Passkey も大差ないため、もはや移行をしない理由のほうが少ない。
+          <p>ユーザにとって重要なのは、その導線だった。
+          <p>そこで、Apple は「特定の条件が揃ったユーザに対して、自動的に Passkey を登録する」という方式を発表した。いつも通り WWDC でだ。
+          <ul>
+            <li>
+              Passkeys user journeys
+              <ul>
+                <li><a href="https://developers.google.com/identity/passkeys/ux/user-journeys" target=_blank>https://developers.google.com/identity/passkeys/ux/user-journeys</a>
+              </ul>
+            </li>
+          </ul>
+          <p>2024 年、iOS 18 には Passwords という純正のパスワードマネージャが搭載された。iCloud Keychain は証明書管理まで含む、かなりプロユースなものだったため、よりわかりやすい「パスワードマネージャ」として提供したものだ。そこを起点に iCloud ユーザを Passkey に移行していくため、準備の整ったユーザは裏で自動的に Passkey を登録するようになったのだ。かなり強力な施策だったと思う。
+          <p>後に、Google も GPM で同様の Auto Upgrade に対応する。
+          <ul>
+            <li>
+              Automatically create passkeys in Google Password Manager on Chrome desktop
+              <ul>
+                <li><a href="https://developer.chrome.com/blog/passkey-automatic-upgrades" target=_blank>https://developer.chrome.com/blog/passkey-automatic-upgrades</a>
+              </ul>
+            </li>
+          </ul>
+          <p>で、自動で登録される条件とは何か? が気になるだろう。もちろん「パスワードマネージャにパスワードを保存しており、それを使ってログインした直後」といったものだが、このクライテリアはパスワードマネージャやブラウザが決めることで、また段階的に更新されていく部分だ。
+          <p>要するに「どのような条件にすれば、もっともスムーズに Passkey への移行を促せるか」について完全には答えが出ていないため、実装に委ねることで更新の余白を残しているのだ。その答えは時間とともに変わり、パスワードが無くなる日まで模索し続けることになる。サービス開発者は下手な &quot;過対応&quot; をするのではなく、素直に「ログイン後に API を呼ぶ」だけにしておき、各プラットフォームやパスワードマネージャに条件判断を委ねるのが良いだろう。
+        </section>
+        <section>
+          <h3 id="パスワードマネージャへの通知"><a href="#パスワードマネージャへの通知">パスワードマネージャへの通知</a></h3>
+          <section>
+            <h4 id="1password"><a href="#1password">1Password</a></h4>
+            <p>パスワードマネージャにパスワードを登録しているサービスが、Passkey に対応しているのであれば、その事実をパスワードマネージャに伝えることで、ユーザに移行を促すことができる。
+            <p>1Password が運営する Passkeys.directory というサイトには、Passkey への対応が完了したサービスがリストされている。
+            <ul>
+              <li>
+                Passkeys.directory
+                <ul>
+                  <li><a href="https://passkeys.directory/" target=_blank>https://passkeys.directory/</a>
+                </ul>
+              </li>
+            </ul>
+            <p>単なる対応有無だけではなく、どのエンドポイントで登録できるか、登録フローはどうなるか、などが細かく登録されている。
+            <p>
+              <picture>
+                <source type=image/avif srcset=github-passkey-directory.avif?250715_025920>
+                <source type=image/webp srcset=github-passkey-directory.webp?250715_025920>
+                <img loading=lazy decoding=async src=github-passkey-directory.png?250715_025920 alt="GitHub の passkeys.directory 登録" width=498 height=918>
+              </picture>
+            </p>
+            <p>これにより、1Password 上の該当アカウントに、Passkey 対応が通知され、移行の導線が表示されるのだ。
+            <p>
+              <picture>
+                <source type=image/avif srcset=github-passkey-1password.avif?250715_031020>
+                <source type=image/webp srcset=github-passkey-1password.webp?250715_031020>
+                <img loading=lazy decoding=async src=github-passkey-1password.png?250715_031020 alt="1Password の GitHub アイテムに Passkey 対応が通知される" width=776 height=466>
+              </picture>
+            </p>
+            <p>Watchtower という項目では、まだ Passkey 移行が済んでいないアイテムが一覧できる。
+            <p>
+              <picture>
+                <source type=image/avif srcset=watchtower.avif?250715_031251>
+                <source type=image/webp srcset=watchtower.webp?250715_031251>
+                <img loading=lazy decoding=async src=watchtower.png?250715_031251 alt="Watchtower で未移行のアイテムが表示される" width=516 height=6512>
+              </picture>
+            </p>
+            <p>このリストが 1Password 以外に使われているかはわからないが、今のところ最も網羅されていると思うので、ここに登録しない理由は特にない。
+            <p>登録はコミュニティドリブンで、気付いた人がフォームから登録するスタイルだ。自分のサービスで対応が済んだら、自分で登録をリクエストしても良いだろう。
+          </section>
+          <section>
+            <h4 id="google-password-manager"><a href="#google-password-manager">Google Password Manager</a></h4>
+            <p>Google Password Manager は、独自の登録フォームを別途持っている。
+            <ul>
+              <li>
+                Promote passkey upgrades in Google Password Manager | Sign in with Google for Web
+                <ul>
+                  <li><a href="https://developers.google.com/identity/passkeys/developer-guides/upgrades" target=_blank>https://developers.google.com/identity/passkeys/developer-guides/upgrades</a>
+                </ul>
+              </li>
+            </ul>
+            <p>ただし、こちらは <code translate=no>/.well-known/passkey-endpoints</code> の対応も含めている。
+          </section>
+        </section>
+      </section>
+      <section>
+        <h2 id=".well-knownpasskey-endpoints"><a href="#.well-knownpasskey-endpoints">/.well-known/passkey-endpoints</a></h2>
+        <p>Passkey に対応したサービスは、<code translate=no>/.well-known/passkey-endpoints</code> に対応し、以下のような JSON を返す。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <pre class=json data-code=json><code translate=no class=language-json>{
+  &quot;enroll&quot;: &quot;https://example.com/sign-up&quot;,
+  &quot;manage&quot;: &quot;https://example.com/settings/passkeys&quot;
+}</code></pre>
+        <p><code translate=no>enroll</code> が Passkey 登録画面で、<code translate=no>manage</code> が管理画面だ。
+        <p>これにより、パスワードマネージャがこの URL を使って、ユーザを登録画面や管理画面に誘導できる。
+        <p>パスワード変更画面へのリダイレクトとして <code translate=no>/.well-known/change-password</code> という仕様もあり、パスワードが危殆化したときに、パスワードマネージャがユーザを変更画面に誘導するために使われてきた。その Passkey 版だ。
+        <ul>
+          <li>
+            ms-id-standards/MSIdentityStandardsExplainers
+            <ul>
+              <li><a href="https://github.com/ms-id-standards/MSIdentityStandardsExplainers/blob/main/PasskeyEndpointsWellKnownUrl/explainer.md" target=_blank>https://github.com/ms-id-standards/MSIdentityStandardsExplainers/blob/main/PasskeyEndpointsWellKnownUrl/explainer.md</a>
+            </ul>
+          </li>
+        </ul>
+        <p>このエンドポイント提供は「Passkey 対応」というタスクに含めるべきであり、GPM だけでなく Passkeys.directory への登録にも用いると良いだろう。
+      </section>
+      <section>
+        <h2 id="password-の削除"><a href="#password-の削除">Password の削除</a></h2>
+        <p>本来の「Passkey 移行完了」は、ユーザが Passkey を登録している状態ではない。
+        <p>「サービスがパスワードを持っていない」状態だ。
+        <p>「Passkey の方が安全」だから移行するのではない。「パスワード+TOTP はもうすでに脆弱」だから移行が必要なのだ。
+        <p>したがって、Passkey への移行を無事に済ませているユーザからは、どこかのタイミングでパスワードを削除することで、「パスワードでもログインできる状態」を無くすのが理想だ。残っていれば、そこはフィッシング詐欺や Infostealer の餌食になる。追加で Passkey を登録するだけでは、本来は片手落ちなのだ。
+        <p>しかし、まだ多くのサービスがそこまでは行っていないだろう。少なくとも、1Password で通知されたほとんどのサービスで移行済みの筆者も、パスワードを削除したサービスはまだ見ていない。認証手段から、パスワードを削除できるサービスも、まだ見ていないように思う。
+        <p>ここはまだ、業界全体としてどう進めるかが見えていない部分であり、現実的にどこまでできるのか、筆者としてもまだわかっていない部分だ。
+        <p>ここも Apple が先導してくれるのではないかと、密かに期待している。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>とにかく、サービスがログイン画面や管理画面に Passkey の動線を入れて、あとはユーザの選択なので自己責任にお任せです、では正直「サポートした」の半分にも達していないと筆者は感じる。
+        <p>Auto Upgrade などを見ると「やり方が強引だ」「Apple はこれだから〜」などのアレルギーを感じる人もいるだろう。
+        <p>しかし、Apple が率先してこれを始めたのも、それに合わせて iCloud Keychain から独立した Passwords というアプリまで出したのも、「移行をユーザに任せるなんて呑気なことは言ってられない」ことを、高い解像度で認識しているからだと筆者は感じる。そもそも Passkey という概念自体を業界に持ち込んだのも、他でもなく Apple だったのだ。
+        <p>サービスが、Passkey への移行をユーザの自主性に任せて、「あとはユーザの選択なので」で終わらせて良い時期がいつまで続くかは、筆者にもわからない。それでも、「Passkey のサポート」がどこまでを意味すべきかは、ぜひ考えておきたい。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
