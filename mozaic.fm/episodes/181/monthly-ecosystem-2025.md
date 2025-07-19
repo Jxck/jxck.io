@@ -12,7 +12,6 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
 
 第 181 回のテーマは 2025 年 7 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - React Router and React Server Components: The Path Forward
@@ -117,7 +116,6 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
   - https://www.itmedia.co.jp/news/articles/2507/15/news057.html
 - Introducing ChatGPT agent: bridging research and action | OpenAI
   - https://openai.com/index/introducing-chatgpt-agent/
-
 
 ## Events
 
