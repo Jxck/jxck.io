@@ -145,7 +145,7 @@ Passkey に対応したサービスは、`/.well-known/passkey-endpoints` に対
 - ms-id-standards/MSIdentityStandardsExplainers
   - https://github.com/ms-id-standards/MSIdentityStandardsExplainers/blob/main/PasskeyEndpointsWellKnownUrl/explainer.md
 
-このエンドポイント提供は「Passkey 対応」というタスクに含めるべきであり、GPM だけでなく Passkeys.directory への登録にも用いると良いだろう。
+この Well-Known エンドポイント提供は「Passkey 対応」というタスクに含めるべきであり、GPM だけでなく Passkeys.directory への登録にも用いると良いだろう。
 
 
 ## Password の削除
