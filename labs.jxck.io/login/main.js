@@ -157,8 +157,10 @@ function initializeVerifyPage() {
     // Don't clear stored data yet - dashboard needs it
     // localStorage.removeItem('userEmail');
 
-    // Redirect to dashboard without alert
-    window.location.href = "main.html";
+    setTimeout(() => {
+      // Redirect to dashboard without alert
+      window.location.href = "main.html";
+    }, 2000);
   });
 }
 
