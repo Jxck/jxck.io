@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Your Account</title>
+    <link rel="stylesheet" href="style-verify.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="verify-card">
+        <div class="icon-wrapper">
+          <svg
+            class="shield-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2L4 7V11C4 16.55 7.84 21.74 12 23C16.16 21.74 20 16.55 20 11V7L12 2Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9 12L11 14L15 10"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+
+        <h1>Two-Factor Authentication</h1>
+        <p class="subtitle">
+          Enter the 6-digit code from your authenticator app
+        </p>
+
+        <form id="verifyForm">
+          <div class="code-input-wrapper">
+            <input
+              type="text"
+              class="code-input"
+              maxlength="1"
+              data-index="0"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="code-input"
+              maxlength="1"
+              data-index="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="code-input"
+              maxlength="1"
+              data-index="2"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="code-input"
+              maxlength="1"
+              data-index="3"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="code-input"
+              maxlength="1"
+              data-index="4"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="code-input"
+              maxlength="1"
+              data-index="5"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+          </div>
+
+          <button type="submit" class="btn-primary">Verify</button>
+        </form>
+
+        <p class="help-text">Didn't receive a code? <a href="#">Resend</a></p>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

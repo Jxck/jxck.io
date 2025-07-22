@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style-main.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <svg
+            class="logo-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor" />
+            <rect
+              x="14"
+              y="3"
+              width="7"
+              height="7"
+              rx="1"
+              fill="currentColor"
+            />
+            <rect
+              x="3"
+              y="14"
+              width="7"
+              height="7"
+              rx="1"
+              fill="currentColor"
+            />
+            <rect
+              x="14"
+              y="14"
+              width="7"
+              height="7"
+              rx="1"
+              fill="currentColor"
+            />
+          </svg>
+          <span>Dashboard</span>
+        </div>
+
+        <div class="nav-menu">
+          <a href="#" class="nav-link active">Overview</a>
+          <a href="#" class="nav-link">Analytics</a>
+          <a href="#" class="nav-link">Reports</a>
+          <a href="#" class="nav-link">Settings</a>
+        </div>
+
+        <div class="nav-user">
+          <div class="user-avatar">
+            <span id="userInitial">U</span>
+          </div>
+          <span class="user-email" id="userEmail">user@example.com</span>
+          <button class="btn-logout" id="logoutBtn">Logout</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="container">
+        <div class="welcome-section">
+          <h1>Welcome back, <span id="userName">User</span>!</h1>
+          <p class="welcome-message">
+            Here's what's happening with your account today.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div
+              class="stat-icon"
+              style="
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 2L2 7V12C2 16.5 4.73 20.61 8.5 21.69C9.45 20.54 10.24 19.22 10.85 17.81C10.32 17.93 9.78 18 9.25 18C7.45 18 6 16.55 6 14.75C6 12.95 7.45 11.5 9.25 11.5C11.05 11.5 12.5 12.95 12.5 14.75C12.5 15.33 12.35 15.87 12.08 16.34C12.75 14.85 13.25 13.23 13.54 11.53L22 7V12C22 16.19 19.66 19.92 16.52 21.44C16.05 20.26 15.49 19.15 14.85 18.13C17.17 17.47 19 15.35 19 12.79V9.5L12 5.69L5 9.5V12.79C5 15.94 7.96 18.67 11.64 19.12C11.26 19.86 10.82 20.55 10.33 21.17C8.9 21.05 7.54 20.56 6.34 19.78C3.72 18.14 2 15.19 2 12V7L12 2Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <div class="stat-content">
+              <h3>Security Status</h3>
+              <p class="stat-value">Protected</p>
+              <p class="stat-label">2FA Enabled</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div
+              class="stat-icon"
+              style="
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22 12H18L15 21L9 3L6 12H2"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="stat-content">
+              <h3>Activity</h3>
+              <p class="stat-value">342</p>
+              <p class="stat-label">Actions this month</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div
+              class="stat-icon"
+              style="
+                background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <div class="stat-content">
+              <h3>Last Login</h3>
+              <p class="stat-value">Just now</p>
+              <p class="stat-label" id="loginTime">Via 2FA</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div
+              class="stat-icon"
+              style="
+                background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 11H7V13H9V11ZM13 11H11V13H13V11ZM17 11H15V13H17V11ZM19 4H18V2H16V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4ZM19 20H5V9H19V20Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <div class="stat-content">
+              <h3>Member Since</h3>
+              <p class="stat-value">2024</p>
+              <p class="stat-label">Premium Account</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="content-card">
+            <h2>Recent Activity</h2>
+            <ul class="activity-list">
+              <li class="activity-item">
+                <span class="activity-icon">🔐</span>
+                <div class="activity-content">
+                  <p class="activity-title">Successfully logged in with 2FA</p>
+                  <p class="activity-time">Just now</p>
+                </div>
+              </li>
+              <li class="activity-item">
+                <span class="activity-icon">📊</span>
+                <div class="activity-content">
+                  <p class="activity-title">Generated monthly report</p>
+                  <p class="activity-time">2 hours ago</p>
+                </div>
+              </li>
+              <li class="activity-item">
+                <span class="activity-icon">⚙️</span>
+                <div class="activity-content">
+                  <p class="activity-title">Updated account settings</p>
+                  <p class="activity-time">Yesterday</p>
+                </div>
+              </li>
+              <li class="activity-item">
+                <span class="activity-icon">🔔</span>
+                <div class="activity-content">
+                  <p class="activity-title">Enabled email notifications</p>
+                  <p class="activity-time">3 days ago</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="content-card">
+            <h2>Quick Actions</h2>
+            <div class="quick-actions">
+              <button class="action-btn">
+                <svg
+                  class="action-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L2 7V11C2 16.55 5.84 21.74 12 23C20.16 21.74 24 16.55 24 11V7L12 2Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                </svg>
+                Security Settings
+              </button>
+              <button class="action-btn">
+                <svg
+                  class="action-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 12C21 16.97 16.97 21 12 21C7.03 21 3 16.97 3 12C3 7.03 7.03 3 12 3C16.97 3 21 7.03 21 12Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M12 8V12L15 15"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                View Analytics
+              </button>
+              <button class="action-btn">
+                <svg
+                  class="action-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 17H15M9 13H15M9 9H10M13 9H15M5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                Generate Report
+              </button>
+              <button class="action-btn">
+                <svg
+                  class="action-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M19.4 15C19.2 15.4 19.2 16 19.4 16.4L20.5 18.5C20.7 18.9 20.6 19.4 20.3 19.7C20 20 19.5 20.1 19.1 19.9L17 18.8C16.6 18.6 16 18.6 15.6 18.8L13.5 19.9C13.1 20.1 12.6 20 12.3 19.7C12 19.4 11.9 18.9 12.1 18.5L13.2 16.4C13.4 16 13.4 15.4 13.2 15L12.1 12.9C11.9 12.5 12 12 12.3 11.7C12.6 11.4 13.1 11.3 13.5 11.5L15.6 12.6C16 12.8 16.6 12.8 17 12.6L19.1 11.5C19.5 11.3 20 11.4 20.3 11.7C20.6 12 20.7 12.5 20.5 12.9L19.4 15Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                </svg>
+                Account Settings
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
