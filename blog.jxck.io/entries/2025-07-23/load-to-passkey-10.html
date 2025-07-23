@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-07-23/load-to-passkey-10.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="先日、Passkey 啓蒙の一環で、まだパスワードマネージャを導入してない人に対する「1Password 導入セミナー」を実施した。その内容を再収録したものを公開する。ざっくりと、前半が一般ユーザ、後半が開発者向けの内容となっている。動画及び資料は、啓蒙目的であれば自由に使...">
+  <meta name=keywords            content="passkey">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-23/load-to-passkey-10.html>
+  <meta property=og:title        content="Passkey への道 #10: 1Password 導入セミナー | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="先日、Passkey 啓蒙の一環で、まだパスワードマネージャを導入してない人に対する「1Password 導入セミナー」を実施した。その内容を再収録したものを公開する。ざっくりと、前半が一般ユーザ、後半が開発者向けの内容となっている。動画及び資料は、啓蒙目的であれば自由に使...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Passkey への道 #10: 1Password 導入セミナー | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-07-23T08:00:00+08:00",
+    "dateModified": "2025-07-23T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "先日、Passkey 啓蒙の一環で、まだパスワードマネージャを導入してない人に対する「1Password 導入セミナー」を実施した。その内容を再収録したものを公開する。ざっくりと、前半が一般ユーザ、後半が開発者向けの内容となっている。動画及び資料は、啓蒙目的であれば自由に使..."
+  }
+  </script>
+
+  <title>Passkey への道 #10: 1Password 導入セミナー | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-23>2025-07-23</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-07-23>2025-07-23</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#passkey">passkey</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#slide">Slide</a>
+              <li><a href="#video">Video</a>
+              <li><a href="#links">Links</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">Passkey への道 #10: 1Password 導入セミナー</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>先日、Passkey 啓蒙の一環で、まだパスワードマネージャを導入してない人に対する「1Password 導入セミナー」を実施した。
+        <p>その内容を再収録したものを公開する。
+        <p>ざっくりと、前半が一般ユーザ、後半が開発者向けの内容となっている。
+        <p>動画及び資料は、啓蒙目的であれば自由に使ってもらって構わない。
+        <p>なお、筆者は 1Password との利害関係は一切無い。
+      </section>
+      <section>
+        <h2 id="slide"><a href="#slide">Slide</a></h2>
+        <iframe src="https://www.docswell.com/slide/KE89J6/embed" allowfullscreen="true" width="552" height="311" style="border: 0px; display: block; padding: 0px;"></iframe>
+        <ul>
+          <li>
+            1Password 導入セミナー | ドクセル
+            <ul>
+              <li><a href="https://www.docswell.com/s/jxck/KE89J6-passkey-via-1password" target=_blank>https://www.docswell.com/s/jxck/KE89J6-passkey-via-1password</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="video"><a href="#video">Video</a></h2>
+        <iframe src="https://www.youtube.com/embed/f5Z2b_-FnDs" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+      </section>
+      <section>
+        <h2 id="links"><a href="#links">Links</a></h2>
+        <ul>
+          <li><a href="https://blog.jxck.io/entries/2025-07-07/load-to-passkey-0.html">Passkey への道 #0: Intro</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-08/load-to-passkey-1.html">Passkey への道 #1: 平成の Password 感</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-09/load-to-passkey-2.html">Passkey への道 #2: 2FA/TOTP</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-10/load-to-passkey-3.html">Passkey への道 #3: 手入力の限界</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-11/load-to-passkey-4.html">Passkey への道 #4: 文字列の限界</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html">Passkey への道 #5: 2FA/WebAuthn</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-13/load-to-passkey-6.html">Passkey への道 #6: タブーを破った Apple</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-14/load-to-passkey-7.html">Passkey への道 #7: そして Username-Less へ</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-15/load-to-passkey-8.html">Passkey への道 #8: サービスにとって「移行」のゴールは何か?</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-16/load-to-passkey-9.html">Passkey への道 #9: ユーザに求められる令和のアカウントリテラシ</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-23/load-to-passkey-10.html">Passkey への道 #10: 1Password 導入セミナ</a>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
