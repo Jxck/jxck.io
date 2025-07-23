@@ -44,3 +44,4 @@ Passkey の解説といえば、多くの場合は「サービスにいかに実
 - [Passkey への道 #7: そして Username-Less へ](https://blog.jxck.io/entries/2025-07-14/load-to-passkey-7.html)
 - [Passkey への道 #8: サービスにとって「移行」のゴールは何か?](https://blog.jxck.io/entries/2025-07-15/load-to-passkey-8.html)
 - [Passkey への道 #9: ユーザに求められる令和のアカウントリテラシ](https://blog.jxck.io/entries/2025-07-16/load-to-passkey-9.html)
+- [Passkey への道 #10: 1Password 導入セミナ](https://blog.jxck.io/entries/2025-07-23/load-to-passkey-10.html)
