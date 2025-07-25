@@ -13,13 +13,11 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 182 回のテーマは 2025 年 7 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 138
-
 
 #### Updates
 
@@ -32,7 +30,6 @@ guest: [@saku](https://x.com/sakupi01)
   - Miscellaneous highlights
   - Download the preview channels
   - Get in touch with the Chrome DevTools team
-
 
 #### Intents
 
@@ -186,7 +183,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Web-Facing Change PSA: View Transition finished promise timing change
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/PPgNBAteKz4
 
-
 ### Other
 
 - web.dev
@@ -253,11 +249,9 @@ guest: [@saku](https://x.com/sakupi01)
   - https://v8.dev/
 - other
 
-
 ## Firefox 動向
 
 ### Stable: 141
-
 
 ### Updates
 
@@ -271,7 +265,6 @@ guest: [@saku](https://x.com/sakupi01)
   - `<dialog closedby>`
 - Highlights from Volunteer Contributors - These Weeks in Firefox: Issue 184
   - https://blog.nightly.mozilla.org/2025/07/01/highlights-from-volunteer-contributors-these-weeks-in-firefox-issue-184/
-
 
 ### Intents
 
@@ -287,7 +280,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Unship: CSS "`overflow: -moz-hidden-unscrollable`" (legacy alias for "`overflow: clip`")
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/XnmrGbMGum4/m/Bvj67e2NAwAJ
 
-
 ### Newsletter
 
 - Engineering Effectiveness Newsletter (Q2 2025 Edition)
@@ -299,12 +291,10 @@ guest: [@saku](https://x.com/sakupi01)
 - Firefox WebDriver Newsletter 141 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-141/
 
-
 ### MDN / Open Web Docs
 
 - **Celebrating 20 years of MDN**
   - https://developer.mozilla.org/en-US/blog/mdn-turns-20/
-
 
 ### Standard Position
 
@@ -313,14 +303,11 @@ guest: [@saku](https://x.com/sakupi01)
   - Web Neural Network API
     - https://github.com/mozilla/standards-positions/issues/1215
 
-
 ### Other
-
 
 ## Safari 動向
 
 ### Stable: 18.5
-
 
 ### Updates
 
@@ -368,7 +355,6 @@ guest: [@saku](https://x.com/sakupi01)
   - Web Inspector
     - Added support for @starting-style.
 
-
 ### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-07-01+
@@ -376,14 +362,11 @@ guest: [@saku](https://x.com/sakupi01)
   - Web Neural Network API
     - https://github.com/WebKit/standards-positions/issues/486
 
-
 ### Other
-
 
 ## Edge 動向
 
 ### Stable:
-
 
 ### Updates
 
@@ -402,9 +385,7 @@ guest: [@saku](https://x.com/sakupi01)
   - 過去数ヶ月の努力により、13 のブラウザ機能において平均 40%の読み込み時間短縮を達成し、設定、音声読み上げ、分割画面、ワークスペースなどの機能の応答性が向上した。
   - 今後も印刷プレビューや拡張機能など、さらなるパフォーマンス改善が予定されており、より快適でスムーズなブラウジング体験を提供することを目指している。
 
-
 ### Other
-
 
 ## WHATWG/W3C 動向
 
@@ -426,7 +407,6 @@ guest: [@saku](https://x.com/sakupi01)
   - IMSC Text Profile 1.3
     - https://www.w3.org/news/2025/first-public-working-draft-imsc-text-profile-1-3/
 
-
 ### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -438,7 +418,6 @@ guest: [@saku](https://x.com/sakupi01)
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2025-07-24.md
   - Working session (triage issues, review PRs, etc)
 
-
 ### WHATNOT
 
 - https://github.com/whatwg/html/issues?q=%20WHATNOT%20meeting%20
@@ -447,7 +426,6 @@ guest: [@saku](https://x.com/sakupi01)
   - パーサの緩和と既存コンテンツモデルの変更(option にインタラクティブな要素は含められないので注意)、新しい要素(`<selectedcontent>`)の追加、`base-appearance` 時の UA StyleSheet 及び select の挙動の定義
 - `<select>` attribute to switch between dropdown and listbox (`type` ?)
   - https://github.com/whatwg/html/issues/11452
-
 
 ### CSSWG
 
@@ -463,7 +441,6 @@ guest: [@saku](https://x.com/sakupi01)
   - https://www.w3.org/blog/CSS/2025/07/16/minutes-2025-07-16/
   - Resolved: `appearance: base-select` can be used to opt listbox selects into base appearance. control of listbox and multiple rendering will be improved in html (Issue #12468: Should `appearance: base-select` work on listbox selects? (`select size`/`select multiple`))
     - https://github.com/w3c/csswg-drafts/issues/12468
-
 
 ### Other
 
@@ -481,7 +458,6 @@ guest: [@saku](https://x.com/sakupi01)
 - **W3C Digital Credentials API publication: the next step to privacy-preserving identities on the web**
   - https://www.w3.org/blog/2025/w3c-digital-credentials-api-publication-the-next-step-to-privacy-preserving-identities-on-the-web/
 
-
 ## TC39 動向
 
 ### Meeting
@@ -489,7 +465,6 @@ guest: [@saku](https://x.com/sakupi01)
 - 2025-01
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
-
 
 ### Proposals Diff
 
@@ -501,9 +476,7 @@ guest: [@saku](https://x.com/sakupi01)
 - 2.7->3
 - 3->4
 
-
 ### New Proposals
-
 
 ### WinterTC
 
@@ -513,9 +486,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Review of the notes for last meeting (5 min)
   - Approval of this meeting's agenda (2 min)
 
-
 ### Other
-
 
 ## IETF 動向
 
@@ -533,9 +504,7 @@ guest: [@saku](https://x.com/sakupi01)
     - 新しいセマンティックヘッダ `X-OODA-Action`を導入し、TLS とのランタイム調整(例:KeyUpdate トリガー)を実施する。
     - ボット検出、セッションスコアリング、適応防御などのユースケースを含む軽量の「セマンティックベクターエンジン」を活用し、リアルタイムの脅威に対する適応的な応答を可能にする。
 
-
 ### Other
-
 
 ## 周辺動向
 
@@ -597,14 +566,12 @@ guest: [@saku](https://x.com/sakupi01)
   - 障害は、6 月 6 日に行われた設定変更が原因で、1.1.1.1 の IP アドレスが誤って非稼働のサービスにリンクされ、グローバルにルートが撤回されたことによって発生した。
   - Cloudflare は、今後同様の問題を防ぐために、レガシーシステムの廃止と段階的なアドレス展開の導入を進める計画を発表した。
 
-
 ### セキュリティ動向
 
 - **Troy Hunt: Passkeys for Normal People**
   - https://www.troyhunt.com/passkeys-for-normal-people/
   - Have I Been Pwned の Troy による紹介
   - Mailchimp で引っかかった詐欺をきっかけに
-
 
 ### Other
 
@@ -625,7 +592,6 @@ guest: [@saku](https://x.com/sakupi01)
   - Chromium Blog: Building a faster, smarter, Chromebook experience with the best of Google technologies
     - https://blog.chromium.org/2024/06/building-faster-smarter-chromebook.html
 
-
 ## イベント
 
 - 7 月
@@ -633,7 +599,6 @@ guest: [@saku](https://x.com/sakupi01)
     - https://www.ietf.org/meeting/123/
 - 8 月
 - 9 月
-
 
 ## Wrap Up
 
