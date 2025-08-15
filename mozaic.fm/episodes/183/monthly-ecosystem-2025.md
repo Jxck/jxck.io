@@ -13,7 +13,6 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
 
 第 183 回のテーマは 2025 年 8 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Node.js v24.6.0 (Current)
@@ -159,7 +158,6 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
   - Productivity
     - Check out multiple branches simultaneously with Git worktrees
     - Manage coding agent sessions in a dedicated view
-
 
 ## Events
 

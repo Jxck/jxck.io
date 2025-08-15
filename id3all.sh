@@ -2471,3 +2471,16 @@ eyeD3 --title "ep182 Monthly Platform 202507" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep183.mp3
+
+eyeD3 --title "ep183 Monthly Ecosystem 202508" \
+      --track 191 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep183.mp3
+
+
+
