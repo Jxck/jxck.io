@@ -13,13 +13,11 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 184 回のテーマは 2025 年 8 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 140
-
 
 #### Updates
 
@@ -67,7 +65,6 @@ guest: [@saku](https://x.com/sakupi01)
     - Follow
 - **What's New in Web UI: I/O 2025 Recap**
   - https://developer.chrome.com/blog/new-in-web-ui-io-2025-recap
-
 
 #### Intents
 
@@ -194,7 +191,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Web-Facing Change PSA: Faster background freezing on Android
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/NXZ_aTNzR2w
 
-
 #### Other
 
 - web.dev
@@ -254,11 +250,9 @@ guest: [@saku](https://x.com/sakupi01)
     - 言語モデルに特化した「プロンプト API」の設計では、メッセージの役割や形式、マルチモーダル入力の取り扱いなど、複雑な要素が考慮されている。
     - API はクライアントサイドでの使用を前提とし、状態管理を重視した設計がなされており、将来的な互換性や相互運用性を確保するための工夫が求められている。
 
-
 ## Firefox 動向
 
 ### Stable: 142
-
 
 ### Updates
 
@@ -275,7 +269,6 @@ guest: [@saku](https://x.com/sakupi01)
   - https://blog.nightly.mozilla.org/2025/08/04/custom-profile-avatars-arrive-in-nightly-these-weeks-in-firefox-issue-186/
   - アドレスバーのシールドアイコンと鍵アイコンが統合
   - Perplexity 検索エンジン追加も実装中
-
 
 ### Intents
 
@@ -303,12 +296,10 @@ guest: [@saku](https://x.com/sakupi01)
 - Unship: element.style.MozAppearance
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/T3Ta628jvuQ/m/zdVtLePKCgAJ
 
-
 ### Newsletter
 
 - Firefox WebDriver Newsletter 142 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-142/
-
 
 ### MDN / Open Web Docs
 
@@ -319,7 +310,6 @@ guest: [@saku](https://x.com/sakupi01)
   - MDN のフロントエンドが刷新
   - Lit ベース
   - https://github.com/mdn/fred
-
 
 ### Standard Position
 
@@ -348,7 +338,6 @@ guest: [@saku](https://x.com/sakupi01)
   - [SVG 2.0] Allow `use` to reference entire files
     - https://github.com/mozilla/standards-positions/issues/1204
 
-
 ### Other
 
 - **1977365 - (jp-text) [meta] layout/rendering improvements for Japanese text**
@@ -371,11 +360,9 @@ guest: [@saku](https://x.com/sakupi01)
   - https://mastodon.social/@jaffathecake/114947963365880322
   - Jake Archibald が Mozilla に
 
-
 ## Safari 動向
 
 ### Stable: 18.6
-
 
 ### Updates
 
@@ -431,7 +418,6 @@ guest: [@saku](https://x.com/sakupi01)
   - `random()` 関数は、最小値、最大値、ステップの 3 つの引数を持ち、さまざまな数値タイプ(整数、パーセンテージ、長さ、角度など)に対応している。
   - この機能は、Safari Technology Preview で試すことができ、開発者からのフィードバックを求めている。
 
-
 ### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-08-01+
@@ -450,14 +436,11 @@ guest: [@saku](https://x.com/sakupi01)
     - https://github.com/WebKit/standards-positions/issues/36
     - Spec は WHATWG に移行した
 
-
 ### Other
-
 
 ## Edge 動向
 
 ### Stable:
-
 
 ### Updates
 
@@ -468,9 +451,7 @@ guest: [@saku](https://x.com/sakupi01)
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
 
-
 ### Other
-
 
 ## WHATWG/W3C 動向
 
@@ -490,7 +471,6 @@ guest: [@saku](https://x.com/sakupi01)
   - First Public Working Draft: A Well-Known URL for Relying Party Passkey Endpoints
     - https://www.w3.org/news/2025/first-public-working-draft-a-well-known-url-for-relying-party-passkey-endpoints/
 
-
 ### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -507,7 +487,6 @@ guest: [@saku](https://x.com/sakupi01)
       - https://www.w3.org/2025/08/14-openui-minutes.html
   - 2025-08-21
     - https://github.com/openui/open-ui/blob/main/meetings/telecon/2025-08-21.md
-
 
 ### WHATNOT
 
@@ -530,7 +509,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Jake Archibald が WHATNOT にレギュラー参加
   - https://github.com/whatwg/html/issues/11527#issuecomment-3159764087
 
-
 ### CSSWG
 
 - https://www.w3.org/blog/CSS/
@@ -548,7 +526,6 @@ guest: [@saku](https://x.com/sakupi01)
   - 特定の CSS 構文をサポートしてるかに名前をつける `@supports-condition` の提案
   - `@supports` は最初プロパティだけで、後にセレクターや@ルールなども対象とするように拡張された。それでもすべての構文に対応できるわけではない
   - すでに `CSS` パーザーがあるので、`@supports-condition` ブロック内に書いたものに名前をつけて参照可能にすればいいのではというアイデア
-
 
 ### Other
 
@@ -581,7 +558,6 @@ guest: [@saku](https://x.com/sakupi01)
   - https://github.com/mikewest/origin-api/
   - `Origin` オブジェクトの提案
 
-
 ## TC39 動向
 
 ### Meeting
@@ -604,7 +580,6 @@ guest: [@saku](https://x.com/sakupi01)
   - Array.isSparse
     - Array に穴があるかどうか
 
-
 ### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2025-08-01}...main@{2025-09-01}
@@ -622,9 +597,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Math.sumPrecise
   - Uint8Array to/from Base64
 
-
 ### New Proposals
-
 
 ### WinterTC
 
@@ -634,9 +607,7 @@ guest: [@saku](https://x.com/sakupi01)
 - 2025-08-07 meeting agenda · Issue #133 · WinterTC55/admin
   - https://github.com/WinterTC55/admin/issues/133
 
-
 ### Other
-
 
 ## IETF 動向
 
@@ -648,16 +619,13 @@ guest: [@saku](https://x.com/sakupi01)
 - Cookie Bis まだ
 - そんなに面白い話がなかった
 
-
 ### WG
 
 - RFC
 - Work
 - Meeting
 
-
 ### Other
-
 
 ## 周辺動向
 
@@ -691,7 +659,6 @@ guest: [@saku](https://x.com/sakupi01)
   - Ed25519 および X25519 のネイティブ実装が Web Cryptography API に組み込まれたことで、開発者は外部ライブラリに依存せず、安全で効率的なアプリケーションを構築できるようになる。
   - この機能の実装は、IPFS だけでなく、Proton や Matrix、Signal などの他の分散型技術にも広く影響を与え、ウェブ全体のプラットフォーム改善に寄与する。
 
-
 ### セキュリティ動向
 
 - MadeYouReset: An HTTP/2 vulnerability thwarted by Rapid Reset mitigations
@@ -702,12 +669,10 @@ guest: [@saku](https://x.com/sakupi01)
 - Google Chrome の人気拡張機能が実はスパイウェア、10 万 DL 超、おすすめバッジもついている無償 VPN - 窓の杜
   - https://forest.watch.impress.co.jp/docs/news/2041333.html
 
-
 ### Other
 
 - **State of CSS 2025**
   - https://2025.stateofcss.com/en-US
-
 
 ## イベント
 
@@ -721,7 +686,6 @@ guest: [@saku](https://x.com/sakupi01)
     - https://www.ietf.org/meeting/124/
   - 10-14: TPAC 2025
     - https://www.w3.org/events/tpac/2025/tpac-2025/
-
 
 ## Wrap Up
 
