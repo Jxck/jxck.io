@@ -1,0 +1,185 @@
+---
+type: podcast
+tags: ["monthly ecosystem"]
+audio: https://files.mozaic.fm/mozaic-ep183.mp3
+published_at: 2025-08-16
+guest: [@sakito](https://x.com/__sakito__)
+guest: [@hiroppy](https://x.com/about_hiroppy)
+---
+
+# ep183 Monthly Ecosystem 202508
+
+## Theme
+
+第 183 回のテーマは 2025 年 8 月の Monthly Ecosystem です。
+
+## Show Note
+
+- Node.js v24.6.0 (Current)
+  - https://nodejs.org/en/blog/release/v24.6.0
+  - CLI に `NODE_USE_SYSTEM_CA=1` オプションが追加された。
+  - ML-DSA KeyObject のサポートが強化された。
+  - zlib モジュールに辞書サポートが追加された。
+  - HTTP サーバーに `keepAliveTimeoutBuffer` オプションが導入された。
+  - `_http_*` の非推奨化が進められた。
+  - `fs` モジュールに SonicBoom モジュールが移植された。
+- Node.js v24.5.0 (Current)
+  - https://nodejs.org/en/blog/release/v24.5.0
+  - OpenSSL 3.5 は 2030 年 4 月までサポートされ、Node.js 24 は 2028 年 4 月までサポート。
+  - WebAssembly モジュールのインポートが強化され、実装は変更される可能性がある。
+  - リクエストに対するプロキシサポートが追加され、環境変数からプロキシ設定を取得可能。
+  - `setDefaultCACertificates()` API により、TLS クライアントの CA 証明書を動的に設定できる。
+  - CLI の改善や DNS のタイムアウト設定のサポートなど、いくつかのマイナーな変更が含まれる。
+- Introducing Vercel MCP: Connect Vercel to your AI tools
+  - https://vercel.com/blog/introducing-vercel-mcp-connect-vercel-to-your-ai-tools
+- Initial MCP implementation by sokra · Pull Request #81770 · vercel/next.js
+  - https://github.com/vercel/next.js/pull/81770
+  - Nextjs の内部に MCP がマージされたよう
+- Next.js migration - Changelog - LLM Gateway
+  - https://llmgateway.io/changelog/nextjs-migration?v=2
+  - TanStack Start から Nextjs への移行
+  - まだまだ TanStack Start はたりないぽい
+- **vitest v4.0.0-beta.4**
+  - https://github.com/vitest-dev/vitest/releases/tag/v4.0.0-beta.4
+  - Introduce toMatchScreenshot for Visual Regression Testing
+- Biome CLI v2.2.0
+  - https://github.com/biomejs/biome/releases/tag/%40biomejs/biome%402.2.0
+  - `noRestrictedImports` ルールの強化と新しい `patterns` オプションの追加
+  - 特定のインポート名を正規表現で制限する `importNamePattern` の導入
+  - 異なるソートアクションの順序をカスタマイズできる `sortOrder` オプションの追加
+  - 新しい `useBiomeIgnoreFolder` ルールの追加
+  - フォルダのインデックス作成とクロールを防ぐ機能の改善
+- **jQuery 4.0.0 Release Candidate 1**
+  - https://blog.jquery.com/2025/08/11/jquery-4-0-0-release-candidate-1/
+  - jQuery v4 RC のリリース
+  - いろいろな依存を取り除いた Slim build 版の提供
+- [Fiber] Deprecate "Throw a Promise" technique by sebmarkbage · Pull Request #34032 · facebook/react
+  - https://github.com/facebook/react/pull/34032
+- Expose `cacheSignal()` alongside `cache()` by sebmarkbage · Pull Request #33557 · facebook/react
+  - https://github.com/facebook/react/pull/33557
+- v0.dev -> v0.app
+  - https://vercel.com/blog/v0-app
+- GitHub Spark
+  - https://github.com/features/spark?locale=ja
+- AI SDK 5
+  - https://vercel.com/blog/ai-sdk-5
+- What's New in ViteLand: July 2025 Recap
+  - https://voidzero.dev/posts/whats-new-jul-2025
+- @vitejs/plugin-rsc
+  - https://www.npmjs.com/package/@vitejs/plugin-rsc
+  - Vite の RSC 対応
+  - React 側でのやり取りはまだ止まっているが果たして?
+    - https://github.com/facebook/react/pull/33152
+- chore(lint): oxlint --type-aware
+  - https://github.com/rolldown/rolldown/pull/5660
+- tsup chore: add maintenance info in README
+  - https://github.com/egoist/tsup/pull/1332
+- Faster Type-Aware Lint Rules: Biome vs. Oxlint
+  - https://www.solberg.is/fast-type-aware-linting
+- Rslint
+  - https://rslint.rs/
+- ESLint v9.33.0 released
+  - https://eslint.org/blog/2025/08/eslint-v9.33.0-released/
+- ESLint v9.32.0 released
+  - https://eslint.org/blog/2025/07/eslint-v9.32.0-released/
+- ESLint Plugin Kit
+  - https://github.com/eslint/rewrite/tree/main/packages/plugin-kit
+  - ESLint 公式のプラグインを作る際に便利な関数等が用意されたパッケージ
+- Figma 上場
+  - https://www.nikkei.com/article/DGXZQOGN31E7C0R30C25A7000000
+  - 初日の終値は 115.50 ドルと、公開価格(33 ドル)の 3.5 倍で取引を終えた。
+  - 初値は 85 ドルと、公開価格の 2.5 倍以上の水準に達した。
+- Component Test with Storybook and Vitest
+  - https://storybook.js.org/blog/component-test-with-storybook-and-vitest/
+- Accessibility Testing & Dashboard are live
+  - https://www.chromatic.com/blog/accessibility-testing-is-here/
+  - Chromatic で Storybook を活用した a11y のテストやダッシュボードによる監視ができるように
+- Stop Re-Rendering - TanStack DB, the Embedded Client Database for TanStack Query
+  - https://tanstack.com/blog/tanstack-db-0.1-the-embedded-client-database-for-tanstack-query
+- **npmjs.com/is has malware**
+  - https://x.com/ljharb/status/1946636509601538233
+  - https://socket.dev/blog/npm-is-package-hijacked-in-expanding-supply-chain-attack
+  - v3.3.1 にマルウェアが含まれていた
+  - メンテナーのアカウントが乗っ取られたため
+  - そのメンテナーは削除され、v3.3.0 が最新に設定され、v3.3.1 は非推奨となっている
+- Securing the supply chain at scale: Starting with 71 important open source projects
+  - https://github.blog/open-source/maintainers/securing-the-supply-chain-at-scale-starting-with-71-important-open-source-projects/
+- Astro 5.13
+  - https://astro.build/blog/astro-5130/
+- Astro 5.12
+  - https://astro.build/blog/astro-5120/
+- Remix は Preact も辞めたらしい
+  - https://x.com/mjackson/status/1955083457144762729
+  - > If you read between the lines here, we're not using Preact as we originally intended to do.
+- remix-run/remix at v3
+  - https://github.com/remix-run/remix/tree/v3
+  - Remix v3 のレポジトリ
+- Announcing the Apollo GraphOS Operator in Public Preview
+  - https://www.apollographql.com/blog/announcing-the-apollo-graphos-operator-in-public-preview
+- Bun v1.2.20
+  - https://bun.com/blog/bun-v1.2.20
+- Nuxt 3.18
+  - https://nuxt.com/blog/v3-18
+- Panda v1
+  - https://github.com/chakra-ui/panda/discussions/3321
+- pnpm 10.14
+  - https://pnpm.io/blog/releases/10.14
+- Centralized Dependency Management Made Simple
+  - https://blog.vlt.sh/blog/catalogs
+- Prisma ORM v6.14.0, Relationships for SQL Views, More Robust Management API & More
+  - https://www.prisma.io/blog/prisma-orm-v6-14-0-relationships-for-sql-views-more-robust-management-api-and-more
+  - SQL ビューに `@unique` 属性を再導入し、Relationship や Pagination を可能にした
+  - Prisma Client のミドルウェアを削除し、Prisma Client 拡張を使用するように変更
+  - パフォーマンスの向上を図り、エディタの遅延を改善
+- Announcing TypeScript 5.9
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-9/
+- Announcing TypeScript 5.9 RC
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-5-9-rc/
+- Meet your new AI coding teammate: Gemini CLI GitHub Actions
+  - https://blog.google/technology/developers/introducing-gemini-cli-github-actions/
+- Perplexity is using stealth, undeclared crawlers to evade website no-crawl directives
+  - https://blog.cloudflare.com/perplexity-is-using-stealth-undeclared-crawlers-to-evade-website-no-crawl-directives/
+- MCP-UI
+  - https://mcpui.dev/
+  - shopify の事例
+  - https://shopify.engineering/mcp-ui-breaking-the-text-wall
+- ChatGPT に「4o」を返して--「keep4o」運動が話題 新モデル不評? アルトマン氏も対応表明(CNET Japan) - Yahoo!ニュース
+  - https://news.yahoo.co.jp/articles/e7e29e117c0c76e6d8de062c7cb5899d9062856a
+- gpt-oss が登場
+  - https://openai.com/ja-JP/index/introducing-gpt-oss/
+- VS Code の 7 月アップデート
+  - https://code.visualstudio.com/updates/v1_103
+  - MCP
+    - Revamped tool picker experience
+    - Enable more than 128 tools per agent request
+  - Chat
+    - Use GPT-5 in VS Code
+    - Restore to a previous good state with chat checkpoints
+  - Productivity
+    - Check out multiple branches simultaneously with Git worktrees
+    - Manage coding agent sessions in a dedicated view
+
+## Events
+
+- 9 月
+  - 6: フロントエンドカンファレンス北海道
+    - https://note.com/_n13u_/n/n7ae05b22c09d
+  - 21: フロントエンドカンファレンス東京
+    - https://x.com/fec_tokyo/status/1908082128815812618
+- 10 月
+  - 7-8: React Conf
+    - https://conf.react.dev/
+  - 9-10: Vite Conf
+    - https://viteconf.amsterdam/
+  - 22: Next Conf
+    - https://vercel.typeform.com/to/KYobJh3C
+  - 25: Vue Fes Japan 2025
+    - https://vuefes.jp/2025/
+- 11 月
+
+  - 16: JSConf JP
+    - https://jsconf.jp/2025/en
+  - 23: TSKaigi Hokuriku 2025
+    - https://x.com/tskaigi/status/1944237850071118068
+  - 30: フロントエンドカンファレンス関西
+    - https://frontend-conf.osaka.jp/
