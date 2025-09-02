@@ -31,7 +31,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Coming soon: What's new in DevTools, Chrome 133
   - https://developer.chrome.com/blog/new-in-devtools-133
 - **Chrome 133 beta**
-
   - https://developer.chrome.com/blog/chrome-133-beta
   - CSS and UI
     - **CSS advanced `attr()` function**
@@ -152,7 +151,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Web-Facing Change PSA: Expose CSSFontFeaturesValueRule
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zqC2dYxKpQw
 - FYI: Planning to change layout tests on Mac-ARM from using Skia-Ganesh to using Skia-Graphite imminently
-
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/p96GK5F89QA
 
   #### Other
@@ -249,7 +247,6 @@ guest: [@saku](https://x.com/sakupi01)
 - v8
   - https://v8.dev/
 - other
-
   - Introducing Eclipsa Audio: immersive audio for everyone | Google Open Source Blog
     - https://opensource.googleblog.com/2025/01/introducing-eclipsa-audio-immersive-audio-for-everyone.html
     - AOMedia の空間オーディオフォーマット
@@ -273,7 +270,6 @@ guest: [@saku](https://x.com/sakupi01)
   - https://blog.nightly.mozilla.org/2025/01/13/key-improvements-these-weeks-in-firefox-issue-174/
   - コンソールのコマンドに Shadow DOM を含めた要素を取得する `$$$` が追加
 - New Year New Tab - These Weeks in Firefox: Issue 175
-
   - https://blog.nightly.mozilla.org/2025/01/24/new-year-new-tab-these-weeks-in-firefox-issue-175/
 
   #### Intents
@@ -299,7 +295,6 @@ guest: [@saku](https://x.com/sakupi01)
 - PSA: Avoid Inline event handlers in the Firefox UI
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/xPUwmty-xp0
 - Inquiry Regarding Firefox's Handling of Multiple CA Certificates in Chain Building
-
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/zoElyUK20bE
 
   #### Newsletter
@@ -309,7 +304,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Firefox DevTools Newsletter - 133 - Firefox Developer Experience
   - https://fxdx.dev/firefox-devtools-newsletter-133/
 - Firefox WebDriver Newsletter 134 - Firefox Developer Experience
-
   - https://fxdx.dev/firefox-webdriver-newsletter-134/
 
   #### MDN / Open Web Docs
@@ -326,14 +320,12 @@ guest: [@saku](https://x.com/sakupi01)
 - Fix your website's Largest Contentful Paint by optimizing image loading
   - https://developer.mozilla.org/en-US/blog/fix-image-lcp/
 - JavaScript Temporal is coming
-
   - https://developer.mozilla.org/en-US/blog/javascript-temporal-is-coming/
 
   #### Standard Position
 
 - https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2025-01-01+
 - Positive
-
   - On-device Web Speech API
     - https://github.com/mozilla/standards-positions/issues/1157
   - CSS Scoping :has-slotted pseudo
@@ -372,7 +364,6 @@ guest: [@saku](https://x.com/sakupi01)
 - **Announcing the WebExtensions ML API - Mozilla Add-ons Community Blog**
   - https://blog.mozilla.org/addons/2025/01/22/announcing-the-webextensions-ml-api/
 - Running Inference In Web Extensions
-
   - https://blog.mozilla.org/en/mozilla/ai/ai-tech/running-inference-in-web-extensions/
 
   ### Safari 動向
@@ -501,7 +492,6 @@ guest: [@saku](https://x.com/sakupi01)
     - @starting-style
     - transition-behavior.
 - Release Notes for Safari Technology Preview 212 | WebKit
-
   - https://webkit.org/blog/16445/release-notes-for-safari-technology-preview-212/
   - Authentication
     - Added support for setting a pin on a security key when a registration requires it.
@@ -529,7 +519,6 @@ guest: [@saku](https://x.com/sakupi01)
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-01-01+
 - Supported
-
   - WebGPU Subgroups
     - https://github.com/WebKit/standards-positions/issues/446
   - CSSPageRule to inherit from CSSGroupingRule
@@ -538,7 +527,6 @@ guest: [@saku](https://x.com/sakupi01)
   #### Other
 
 - **Apple Explains Why It Doesn't Plan to Create a Search Engine - MacRumors**
-
   - https://www.macrumors.com/2024/12/24/apple-explains-why-it-wont-make-search-engine/
 
   ### Edge 動向
@@ -566,13 +554,11 @@ guest: [@saku](https://x.com/sakupi01)
 - Enhancing the security of Microsoft Edge Extensions with the new Publish API - What's next?
   - https://blogs.windows.com/msedgedev/2025/01/08/enhanced-security-for-extensions-with-publish-api-next-steps/
 - Introducing Microsoft Edge Game Assist (Preview)-a seamless, full-featured in-game browser - Microsoft Edge Blog
-
   - https://blogs.windows.com/msedgedev/2024/11/22/introducing-microsoft-edge-game-assist-preview/
 
   #### Other
 
 - **Bing tries to trick you into thinking you're using Google [Video]**
-
   - https://9to5google.com/2025/01/15/bing-trick-users-google/
   - Edge で Google と検索すると Google っぽい見た目の Bing が表示され、deceptive パターンとして顰蹙を買った
 
@@ -632,7 +618,6 @@ guest: [@saku](https://x.com/sakupi01)
   - Intent to ship: Customizable select
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/kN5LTzuTLVs/m/6HqTsmk3EQAJ
 - [meta] Should we have an openui bluesky account? · Issue #1142 · openui/open-ui
-
   - https://github.com/openui/open-ui/issues/1142
 
   #### WHATNOT
@@ -756,7 +741,6 @@ guest: [@saku](https://x.com/sakupi01)
   - 2b [Di]: Composed live ranges
   - 2c [Stephen]: Canvas TextStyles direction getter
 - Upcoming WHATNOT meeting on 2025-01-30
-
   - https://github.com/whatwg/html/issues/10941
 
   #### Other
@@ -774,7 +758,6 @@ guest: [@saku](https://x.com/sakupi01)
 - W3C seeking community input for TAG appointment | 2024 | Blog | W3C
   - https://www.w3.org/blog/2024/w3c-seeking-community-input-for-tag-appointment/
 - Loading CSS asynchronously without FoUC · Issue #195 · WICG/proposals
-
   - https://github.com/WICG/proposals/issues/195
 
   ### TC39 動向
@@ -782,7 +765,6 @@ guest: [@saku](https://x.com/sakupi01)
   #### Meeting
 
 - 2024-12
-
   - https://github.com/tc39/agendas/blob/main/2024/12.md
   - https://github.com/tc39/notes/pull/360
   - https://x.com/mozaicfm/status/1876963231945634131
@@ -813,7 +795,6 @@ guest: [@saku](https://x.com/sakupi01)
 - 2.7->3
   - Error.isError
 - 3->4
-
   - Intl.DurationFormat
 
   #### New Proposals
@@ -821,7 +802,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Stabilize
   - https://github.com/tc39/proposal-stabilize
 - Sync Imports
-
   - https://github.com/tc39/proposal-import-sync
 
   #### WinterTC
@@ -859,13 +839,11 @@ guest: [@saku](https://x.com/sakupi01)
   - Invited experts onboarding
   - Formation comms for TC55
 - 2024-01-23 meeting agenda · Issue #92 · wintercg/admin
-
   - https://github.com/wintercg/admin/issues/92
 
   #### Other
 
 - Oracle が JavaScript の商標を素直には手放さないとの回答
-
   - https://fosstodon.org/@deno_land/113793964751001617
 
   ### IETF 動向
@@ -890,7 +868,6 @@ guest: [@saku](https://x.com/sakupi01)
   #### Other
 
 - **New Cookies Draft from Johann Hofmann**
-
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2024OctDec/0278.html
   - https://docs.google.com/presentation/d/17FCT2BuYou7AB_dUzq9u6_q3X8L9CTswmrOMGVnshCM/
   - https://datatracker.ietf.org/doc/draft-annevk-johannhof-httpbis-cookies/
@@ -981,7 +958,6 @@ guest: [@saku](https://x.com/sakupi01)
 - The Open Web is Vibrant, and Vital to 2025 | Fastly
   - https://www.fastly.com/blog/the-open-web-is-vibrant-and-vital-to-2025
 - **Erik on X: "Want to work with me on V8? If you have commits under your belt on V8, or perhaps a similar VM, Cloudflare is hiring. DM me." / X**
-
   - https://x.com/erikcorry/status/1869795043705532466
   - Cloudflare で V8 のエンジニアを募集中
 
@@ -1038,7 +1014,6 @@ guest: [@saku](https://x.com/sakupi01)
 - パスワード、パスキー、生体認証...どんなユーザー認証にも"詰み"はあり得る - r-weblife
   - https://ritou.hatenablog.com/entry/2024/12/19/173802
 - Hackers target dozens of VPN and AI extensions for Google Chrome to compromise data | The Record from Recorded Future News
-
   - https://therecord.media/hackers-target-vpn-ai-extensions-google-chrome-malicious-updates
 
   #### Cookie 動向
@@ -1061,7 +1036,6 @@ guest: [@saku](https://x.com/sakupi01)
 - Staring into the Void | Internet Archive Blogs
   - https://blog.archive.org/2024/12/25/staring-into-the-void/
 - Dia from The Browser Company
-
   - https://www.diabrowser.com/
 
   ### イベント

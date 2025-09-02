@@ -176,7 +176,6 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
   - 25: Vue Fes Japan 2025
     - https://vuefes.jp/2025/
 - 11 月
-
   - 16: JSConf JP
     - https://jsconf.jp/2025/en
   - 23: TSKaigi Hokuriku 2025
