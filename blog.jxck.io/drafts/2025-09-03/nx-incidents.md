@@ -70,7 +70,7 @@ https://github.com/nrwl/nx/pull/32496
 
 しかし、任意の Shell が実行できるということは、例えば以下のようにすれば、何でもできる。
 
-![PR のタイトルでスクリプトを取得し実行する例](./shell-injection-pr.png)
+![PR のタイトルでスクリプトを取得し実行する例](shell-injection-pr.png#458x60)
 
 これにより、GitHub Actions 上で任意のスクリプトが実行された。
 
@@ -81,7 +81,7 @@ https://github.com/nrwl/nx/pull/32496
 
 ところが、この PR にはおなじみの "🤖 Generated with Claude Code" が付与されていた。
 
-!["🤖 Generated with Claude Code" が付与された PR](./PR-by-CC.png)
+!["🤖 Generated with Claude Code" が付与された PR](PR-by-CC.png#255x109)
 
 そのため、「AI で作成された PR で脆弱性が発生した」と喧伝されることになった。
 
@@ -323,7 +323,7 @@ const cliChecks = {
 
 - https://play.clickhouse.com/play?user=play#c2VsZWN0ICogZnJvbSBnaXRodWJfZXZlbnRzIHdoZXJlIGV2ZW50X3R5cGUgPSAnQ3JlYXRlRXZlbnQnIGFuZCByZWZfdHlwZSA9ICdyZXBvc2l0b3J5JyBhbmQgcmVwb19uYW1lIGxpa2UgJyVzMW5ndWxhcml0eS1yZXBvc2l0b3J5JScgYW5kIGNyZWF0ZWRfYXQgPiAgJzIwMjUtMDgtMjYgMDA6MDA6MDAnIG9yZGVyIGJ5IGNyZWF0ZWRfYXQgQVNDCg==
 
-![攻撃されたリポジトリのリスト](attacked-repo.png)
+![攻撃されたリポジトリのリスト](attacked-repo.png#855x215)
 
 これによると 904 行ヒットしていることがわかる。調査によってはブレがあるようで、ニュース記事などで「1000 人以上が被害に」と謳われているのは、おそらくこの数をもとにしていそうだ。いずれも、8/26 22:30 ~ 8/27 04:00 くらいまでの 6 時間程度で発生しているため、おかしなコードがコミットされたと気付いたときには、かなり攻撃は進んでいたことがわかる。
 
