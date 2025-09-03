@@ -118,6 +118,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Watch our AI talks at I/O 2025
   - https://developer.chrome.com/blog/ai-io25
 - What's New in WebGPU (Chrome 137)
+
   - https://developer.chrome.com/blog/new-in-webgpu-137
 
   #### Intents
@@ -260,6 +261,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Ready for Developer Testing: Modulepreload Referrer Header Fix
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LY7LgtL52DI
 - Ready for Developer Testing: HTML in Canvas: drawElement
+
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LYJyOdLbOfY
 
   #### Other
@@ -370,6 +372,7 @@ guest: [@saku](https://x.com/sakupi01)
 - A Tab Groups Scoop - These Weeks in Firefox: Issue 179
   - https://blog.nightly.mozilla.org/2025/04/23/a-tab-groups-scoop-these-weeks-in-firefox-issue-179/
 - Keep on Rolling with Profile Improvements - These Weeks in Firefox: Issue 180
+
   - https://blog.nightly.mozilla.org/2025/05/05/keep-on-rolling-with-profile-improvements-these-weeks-in-firefox-issue-180/
 
   #### Intents
@@ -396,6 +399,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Change: `click`, `auxclick` and `contextmenu` event target is the preceding `pointerup` event target if and only if the pointer is captured when the `pointerup` is dispatched
     - https://groups.google.com/a/mozilla.org/g/dev-platform/c/CoBboR86WnM
 - Remove:
+
   - Unship: beforescriptexecute and afterscriptexecute events in early Beta
     - https://groups.google.com/a/mozilla.org/g/dev-platform/c/3qtHMYJ6paQ
 
@@ -406,17 +410,20 @@ guest: [@saku](https://x.com/sakupi01)
 - Firefox WebDriver Newsletter 138 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-138/
 - Firefox WebDriver Newsletter 139 - Firefox Developer Experience
+
   - https://fxdx.dev/firefox-webdriver-newsletter-139/
 
   #### MDN / Open Web Docs
 
 - Color models for humans and devices
+
   - https://developer.mozilla.org/en-US/blog/color-models-humans-devices/
 
   #### Standard Position
 
 - https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2025-05-01+
 - Positive
+
   - `getComputedStyle()` returns true visited colors
     - https://github.com/mozilla/standards-positions/issues/1234
   - colorspace and alpha attributes on `<input type="color">`
@@ -476,6 +483,7 @@ guest: [@saku](https://x.com/sakupi01)
   - 製品開発プロセスを水平線と捉え、Left は "user research" で Right は "launch to market" であるとすると、アクセシビリティは通常右側に位置していたが、左側(早期段階)に移動させることで、障害のある人々と「共に」製品を作る(彼らの「ために」作るのではなく)というアプローチ
   - Shift Left により、設計初期段階から障害のある人々と意見交換することで、アクセシビリティの問題を未然に発見・防止
 - **「Firefox 138」のリリースノートにない日本人にとって重要な変更とは? - やじうまの杜 - 窓の杜**
+
   - https://forest.watch.impress.co.jp/docs/serial/yajiuma/2012339.html
   - NHK プラスは Firefox をサポート対象外にし、対象外というメッセージを出している
   - ただこの表示は Picture-in-Picuture API の feature detection を使っているらしく、Firefox の compat shim 導入により NHK プラスが動くようになった
@@ -544,6 +552,7 @@ guest: [@saku](https://x.com/sakupi01)
   - https://webkit.org/blog/16967/two-lines-of-cross-document-view-transitions-code-you-can-use-on-every-website-today/
   - `@view-transition { navigation: auto; }`
 - **Release Notes for Safari Technology Preview 220 | WebKit**
+
   - https://webkit.org/blog/16973/release-notes-for-safari-technology-preview-220/
   - CSS
     - **Added support for field-sizing to override the default sizing behavior of form elements and adjust size to fit their contents.**
@@ -566,6 +575,7 @@ guest: [@saku](https://x.com/sakupi01)
   - **ToggleEvent source attribute**
     - https://github.com/WebKit/standards-positions/issues/494
 - Newtral
+
   - CSP hash reporting keywords
     - https://github.com/WebKit/standards-positions/issues/430
 
@@ -607,6 +617,7 @@ guest: [@saku](https://x.com/sakupi01)
     - New controls to prevent data leaks from typed prompts in consumer AI apps
   - Easily extend your security solutions into Edge for Business - at no additional cost
 - Microsoft Edge Game Assist is now available - Microsoft Edge Blog
+
   - https://blogs.windows.com/msedgedev/2025/05/29/microsoft-edge-game-assist-is-now-available/
 
   ### WHATWG/W3C 動向
@@ -626,6 +637,7 @@ guest: [@saku](https://x.com/sakupi01)
     - Google、Apple、Roman Komarov の貢献が大きい
     - 今回は比較的マイナーな変更のみが含まれており、これは仕様が安定してきていることを示す
 - First Public Working Draft
+
   - **CSS Functions and Mixins Module**
     - https://www.w3.org/TR/2025/WD-css-mixins-1-20250515/
 
@@ -668,6 +680,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Upcoming WHATNOT meeting on 2025-05-22
   - https://github.com/whatwg/html/issues/11307
 - Upcoming WHATNOT meeting on 2025-05-29
+
   - https://github.com/whatwg/html/issues/11328
 
   #### Other
@@ -700,6 +713,7 @@ guest: [@saku](https://x.com/sakupi01)
   - 現状の定義では Ladybird や Deno のようなプロジェクトを排除する可能性
   - WHATWG はウェブ互換性を考慮するため、ユーザー数の規模が大きいエンジンのみを重視している
 - **Accessibility Compat Data Deep Dive Proposal · Issue #2538 · w3c/aria**
+
   - https://github.com/w3c/aria/issues/2538
   - The Accessibility Compat Data Project
     - https://lolaslab.co/blog/2025/accessibility-compat-data/
@@ -713,6 +727,7 @@ guest: [@saku](https://x.com/sakupi01)
   #### Meeting
 
 - 2025-05
+
   - 来月
 
   #### Proposals Diff
@@ -740,6 +755,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Continue going through the fetch spec (30 min?)
     - HTTP-redirect fetch, starting on step 15
 - 2025-05-15 meeting agenda
+
   - https://github.com/WinterTC55/admin/issues/117
   - Review of the notes for the last meeting ([Minutes, 03 April 2025 #114](https://github.com/WinterTC55/admin/pull/114)) (5 min)
   - Approval of this meeting's agenda (2 min)
@@ -765,6 +781,7 @@ guest: [@saku](https://x.com/sakupi01)
   #### Other
 
 - IETF 125 booked for Shenzhen, China for March 14-20, 2026
+
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/EZo3-65dvZkR1I3P2Aa0Bvee5xY/
 
   ### 周辺動向
@@ -787,6 +804,7 @@ guest: [@saku](https://x.com/sakupi01)
 - **Opera Neon | Agentic AI browser | Opera**
   - https://www.operaneon.com/
 - **Letter to Arc members 2025**
+
   - https://browsercompany.substack.com/p/letter-to-arc-members-2025
   - Dia from The Browser Company
     - https://www.diabrowser.com/

@@ -93,6 +93,7 @@ guest: [@saku](https://x.com/sakupi01)
   - The `command` and `commandfor` attributes
   - The CSS `shape()` function
 - Chrome 135 | Release notes | Chrome for Developers
+
   - https://developer.chrome.com/release-notes/135
 
   #### Intents
@@ -262,6 +263,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Ready for Developer Testing: Incoming Call Notifications
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/GoS6kTKV3Qs
 - Ready for Developer Testing: CSS find-in-page highlight pseudos
+
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dcmserL50FM
 
   #### Other
@@ -354,6 +356,7 @@ guest: [@saku](https://x.com/sakupi01)
       - 得られるメリットが限定的
       - コンパイルが遅すぎる
 - other
+
   - **Google が「uBlock Origin のサポートは終了しました」とウソをついているとネットが騒然、広告ブロッカーを使い続ける方法はコレ - GIGAZINE**
     - https://gigazine.net/news/20250307-ublock-origin-is-gone/
   - Project Zero: Blasting Past Webp
@@ -390,6 +393,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Turn Tabs To Their Side - These Weeks in Firefox: Issue 177
   - https://blog.nightly.mozilla.org/2025/03/11/turn-tabs-to-their-side-these-weeks-in-firefox-issue-177/
 - **An update on our Terms of Use**
+
   - https://blog.mozilla.org/en/products/firefox/update-on-terms-of-use/
     - Mozilla が利用規約の更新に対する批判を受け Firefox の利用規約を再度更新
     - ユーザーの入力内容の所有権は主張しないと明記、CCPA などの法律での「販売」という用語に対応するように FAQ を更新
@@ -411,6 +415,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Change:
 - Remove:
 - **Unship: UA styles for h1 in article, aside, nav, section**
+
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/CzG_pVa7pws/m/Ab3Bwsg2BQAJ
   - section 系要素の入れ子度合いに応じて h1 のフォントサイズが変わっていた挙動を削除する
   - Chromium も deprecate し、console エラーが出たり、Lighthouse でもスコアが下がったりするようになる
@@ -431,6 +436,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Firefox WebDriver Newsletter 137 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-137/
 - SpiderMonkey Newsletter (Firefox 135-137) | SpiderMonkey JavaScript/WebAssembly Engine
+
   - https://spidermonkey.dev/blog/2025/03/17/newsletter-firefox-135-137.html
 
   #### MDN / Open Web Docs
@@ -440,6 +446,7 @@ guest: [@saku](https://x.com/sakupi01)
   - DNT は法律の裏付けが無かったため、誰も守らず形骸化した
   - CCPA は GPC 準拠を勧告したため、サービスはこれに従う
 - **Bloomberg Joins Open Web Docs**
+
   - https://openwebdocs.org/content/posts/bloomberg/
 
   #### Standard Position
@@ -461,6 +468,7 @@ guest: [@saku](https://x.com/sakupi01)
   - **[Push API] Declarative Web Push**
     - https://github.com/mozilla/standards-positions/issues/1176
 - Defer
+
   - Focusgroup
     - https://github.com/mozilla/standards-positions/issues/631
 
@@ -504,6 +512,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Strengthening CA Key Security with "Cradle-to-Grave" Monitoring
     - 発行したがまだ使ってない鍵のモニタリングも実施
 - 4 accessibility tools to try in Firefox
+
   - https://blog.mozilla.org/en/products/firefox/accessibility-extensions/
 
   ### Safari 動向
@@ -574,6 +583,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Resolved Issues
     - バグ修正多数
 - **Meet Declarative Web Push | WebKit**
+
   - https://webkit.org/blog/16535/meet-declarative-web-push/
   - The status quo
     - Challenge 1 - Silent push protection
@@ -587,12 +597,14 @@ guest: [@saku](https://x.com/sakupi01)
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-03-01+
 - Support
+
   - Add MediaStreamTrack support to the Web Speech API
     - https://github.com/WebKit/standards-positions/issues/438
 
   #### Other
 
 - **Item Flow, Part 1: A new unified concept for layout | WebKit**
+
   - https://webkit.org/blog/16587/item-flow-part-1-a-new-unified-concept-for-layout/
   - Masonry Layout を議論する過程で Item Flow という新たな概念が登場
   - Item Flow をもちいると Flexbox, Grid, Masonry が全て統一的に説明できる
@@ -617,6 +629,7 @@ guest: [@saku](https://x.com/sakupi01)
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
   - ここでも見れる
 - https://twitter.com/MSEdgeDev
+
   - これを見るしか無い
 
   #### Other
@@ -627,6 +640,7 @@ guest: [@saku](https://x.com/sakupi01)
   - https://forest.watch.impress.co.jp/docs/news/1670239.html
   - Noto Sans/Serif CJK が Windows Insider に入った
 - **Minding the gaps: A new way to draw separators in CSS - Microsoft Edge Blog**
+
   - https://blogs.windows.com/msedgedev/2025/03/19/minding-the-gaps-a-new-way-to-draw-separators-in-css/
   - Grid や Flexbox のみならず、将来的には Masonry などでも使えるように `column-rule` を拡張し、横方向用に `row-rule` を新設することで、コンテナレイアウトでも縦横不問の Separator を実現したい
 
@@ -639,6 +653,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Candidate Recommendation
 - Working Draft
 - First Public Working Draft
+
   - First Public Working Draft: ContentEditable | 2025 | News | W3C
     - https://www.w3.org/news/2025/first-public-working-draft-contenteditable/
   - **CSS Form Control Styling Level 1**
@@ -675,6 +690,7 @@ guest: [@saku](https://x.com/sakupi01)
     - なので、APG に則った独自の実装が必要とされているが、これを標準でやろうという提案
     - > OpenUI will incubate the "menu" concept, and we can land an explainer.
 - Others
+
   - Add initial explainer for menu elements by dizhang168
     - https://github.com/openui/open-ui/pull/1181
   - **Enhanced Range Input (Explainer)**
@@ -696,6 +712,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Upcoming WHATNOT meeting on 2025-03-13
   - https://github.com/whatwg/html/issues/11115
 - Upcoming WHATNOT meeting on 2025-03-20
+
   - https://github.com/whatwg/html/issues/11131
 
   #### Other
@@ -729,6 +746,7 @@ guest: [@saku](https://x.com/sakupi01)
   - Scoped custom element registry · Issue #18 · w3c/breakouts-day-2025
     - https://github.com/w3c/breakouts-day-2025/issues/18
 - CSSWG
+
   - [css-fonts-4] Extension of font-stretch property
     - https://lists.w3.org/Archives/Public/www-style/2025Mar/0000.html
   - [CSSWG] Minutes Telecon 2025-03-05 [css-fonts][css-values][css-overflow][css-display]
@@ -755,6 +773,7 @@ guest: [@saku](https://x.com/sakupi01)
   #### Meeting
 
 - 2025-02
+
   - https://github.com/tc39/agendas/blob/main/2025/02.md
   - https://github.com/tc39/notes/pull/363
   - TC39 Minutes を読む
@@ -818,12 +837,14 @@ guest: [@saku](https://x.com/sakupi01)
 - 2.7->3
   - import defer
 - 3->4
+
   - RegExp.escape
   - Float16Array
 
   #### New Proposals
 
 - **Release ES2025 Candidate March 31st 2025 · tc39/ecma262**
+
   - https://github.com/tc39/ecma262/releases/tag/es2025-candidate-2025-03-31
 
   #### WinterTC
@@ -833,12 +854,14 @@ guest: [@saku](https://x.com/sakupi01)
   - https://github.com/wintercg/admin/issues/99
   - 特に無し
 - 2025-03-20 meeting agenda · Issue #108 · wintercg/admin
+
   - https://github.com/wintercg/admin/issues/108
   - 特に無し
 
   #### Other
 
 - Summary of the February 2025 TC39 plenary
+
   - https://blogs.igalia.com/compilers/2025/03/27/summary-of-the-february-2025-tc39-plenary/
 
   ### IETF 動向
@@ -846,6 +869,7 @@ guest: [@saku](https://x.com/sakupi01)
   #### IETF122
 
 - HTTP Working Group Minutes - IETF 122
+
   - https://httpwg.org/wg-materials/ietf122/minutes.html
   - HTTPBis meeting 1 March 18 2025
     - Chair present: Tommy Pauly
@@ -877,6 +901,7 @@ guest: [@saku](https://x.com/sakupi01)
   #### Other
 
 - **aipref WG IETF122 Chair Slides - slides-122-aipref-chair-slides-00.pdf**
+
   - https://datatracker.ietf.org/meeting/122/materials/slides-122-aipref-chair-slides-00
 
   ### 周辺動向
@@ -902,6 +927,7 @@ guest: [@saku](https://x.com/sakupi01)
 - Breakouts 2025: Collective
   - https://bkardell.com/blog/Breakouts2025.html
 - Chaos in Cloudflare's Lisbon office: securing the Internet with wave motion
+
   - https://blog.cloudflare.com/chaos-in-cloudflare-lisbon-office-securing-the-internet-with-wave-motion/
   - Cloudflare の Lisbon オフィスにできた新しいエントロピーの壁について
     - 波を発生させてそれを使う。名前を募集中
@@ -909,6 +935,7 @@ guest: [@saku](https://x.com/sakupi01)
   #### セキュリティ動向
 
 - **Troy Hunt: A Sneaky Phish Just Grabbed my Mailchimp Mailing List**
+
   - https://www.troyhunt.com/a-sneaky-phish-just-grabbed-my-mailchimp-mailing-list/
   - Have I Been Pwned の運営者 Troy Hunt がフィッシングにやられ、運営するメーリングリストの購読者のメールアドレスが抜かれる
     - Mailchimp が解約者のメールアドレスも保存していたので被害にあった人数が増えてしまった
@@ -917,6 +944,7 @@ guest: [@saku](https://x.com/sakupi01)
   #### Cookie 動向
 
 - My cookie spec problem | daniel.haxx.se
+
   - https://daniel.haxx.se/blog/2025/03/01/my-cookie-spec-problem/
 
   #### Other
@@ -942,6 +970,7 @@ guest: [@saku](https://x.com/sakupi01)
   - https://www.jftc.go.jp/houdou/pressrelease/2025/mar/250331_smartphone.html
   - Apple, iTunes, Google が特定ソフトウェア事業者に指定
 - Opera、AI がウェブ操作を代行「Browser Operator」 - Impress Watch
+
   - https://www.watch.impress.co.jp/docs/news/1667787.html
 
   ### イベント
@@ -958,6 +987,7 @@ guest: [@saku](https://x.com/sakupi01)
   - 20-21: Google I/O
     - https://io.google/
 - 6 月
+
   - 9-13: WWDC '25
     - https://developer.apple.com/wwdc25/
 
