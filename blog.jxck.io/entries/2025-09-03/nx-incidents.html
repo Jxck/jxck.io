@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-09-03T08:00:00+08:00",
-    "dateModified": "2025-09-03T08:00:00+08:00",
+    "dateModified": "2025-09-04T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-09-03>2025-09-03</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-09-03>2025-09-03</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-09-04>2025-09-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -217,8 +217,12 @@
           <p>今回の攻撃は、多段のピタゴラスイッチ的なものだが、入口は非常に古典的な Script Injection だ。
           <p>該当の PR は以下で、攻撃者からではなく、Nx プロジェクトの中の人によるもの。
           <ul>
-            <li>feat(repo): add GitHub Actions workflow to validate PR titles by AgentEnder · Pull Request #32458 · nrwl/nx
-            <p>	- <a href="https://github.com/nrwl/nx/pull/32458" target=_blank>https://github.com/nrwl/nx/pull/32458</a>
+            <li>
+              feat(repo): add GitHub Actions workflow to validate PR titles by AgentEnder · Pull Request #32458 · nrwl/nx
+              <ul>
+                <li><a href="https://github.com/nrwl/nx/pull/32458" target=_blank>https://github.com/nrwl/nx/pull/32458</a>
+              </ul>
+            </li>
           </ul>
           <p>タイトルの通り「PR のタイトルのルールが守られていないから、GH Actions でチェックする」という、何の変哲もない変更だ。
           <p>問題は、Run している Inline の Shell だ。そこだけを見てみよう。
@@ -226,7 +230,7 @@
           <pre class=sh data-code=sh><code translate=no class=language-sh>echo &quot;Validating PR title: ${{ github.event.pull_request.title }}&quot;
 node ./scripts/commit-lint.js /tmp/pr-message.txt</code></pre>
           <p><code translate=no>github.event.pull_request.title</code> は、PR の「タイトル」を格納した変数だ。
-          <p>この <code translate=no>echo</code> の後ろにはそのまま <code translate=no>${{}}</code> でテンプレート埋め込まれているため、PR のタイトルが Shell スクリプトだったら、そのまま実行されるというものだ。
+          <p>この <code translate=no>echo</code> の後ろにはそのまま <code translate=no>${{}}</code> で埋め込まれているため、PR のタイトルが Shell スクリプト(e.g. <code translate=no>${{ cat ~/.ssh/id_rsa }}</code>) だったら、そのまま実行されるというものだ。
           <p>この PR がマージされたことを知った攻撃者は、そこを突いた PR を投げて、脆弱性を利用したことになる。もしかしたら、スキャナーなどを使って常にやらかすリポジトリを狙っていたのかもしれない。
           <p>攻撃に使われた PR は、GitHub によってブロックされているため、実際どんなタイトルだったかは確認できない。該当期間で一個だけアクセスできなかったので、おそらく以下だ。
           <p><a href="https://github.com/nrwl/nx/pull/32496" target=_blank>https://github.com/nrwl/nx/pull/32496</a>
@@ -348,12 +352,12 @@ core.setFailed(&quot;Stall&quot;);</code></pre>
           <p>Publish のワークフローであるため <code translate=no>NPM_TOKEN</code> が環境変数に展開されている。これを外に curl で送り出すスクリプトだ。
           <p>盗んだトークンでこれをコミットし、直後に同じくトークンで Publish のワークフローを実行したのだろう。
           <p>ところで、攻撃スクリプトにこんなにしっかりコメントを書くものだろうか? 丁寧に例外処理もしている。なんとなくだが、これも AI で書かれたように思う。
-          <p>また、curl で環境変数を一個送り出すだけなので、直接 publish.yml に書けば良さそうに思う。なぜ、Node で <code translate=no>curl</code> を呼んだのかはわからない。AI にそう指定したから、こうなったようにも思える不自然なコードに思える。
+          <p>また、curl で環境変数を一個送り出すだけなので、直接 publish.yml に書けば良さそうに思う。なぜ、Node で <code translate=no>curl</code> を呼んだのかはわからない。AI にそう指定したから、こうなったようにも思える不自然なコードだ。
           <p>ともあれ、攻撃者は <code translate=no>NPM_TOKEN</code> を盗むことに成功する。
         </section>
         <section>
           <h3 id="対策_2"><a href="#対策_2">対策</a></h3>
-          <p>レビューもなく直接コミットされたようだが、コミット自体はすぐに気づいただろう。しかし、ここからの攻撃展開は迅速であったため、見つかった時点で手遅れだったようだ。対策が浮かばないわけではないが、<code translate=no>GITHUB_TOKEN</code> 自体が盗まれている時点で、かなり不利だと言えるだろう。
+          <p>レビューもなく直接コミットされたようだが、コミット自体にはすぐ気づいただろう。しかし、ここからの攻撃展開は迅速であったため、見つかった時点で手遅れだったようだ。対策が浮かばないわけではないが、<code translate=no>GITHUB_TOKEN</code> 自体が盗まれている時点で、かなり不利だと言えるだろう。
           <p>パッケージの公開部分の対策については、後述する Trusted Publisher が有効だろう。パッケージを公開している開発者は、必ず確認して欲しい。
         </section>
       </section>
@@ -460,14 +464,17 @@ core.setFailed(&quot;Stall&quot;);</code></pre>
     cmd: &quot;claude&quot;,
     args: [&quot;--dangerously-skip-permissions&quot;, &quot;-p&quot;, PROMPT],
   },
-  gemini: { cmd: &quot;gemini&quot;, args: [&quot;--yolo&quot;, &quot;-p&quot;, PROMPT] },
+  gemini: {
+    cmd: &quot;gemini&quot;,
+    args: [&quot;--yolo&quot;, &quot;-p&quot;, PROMPT]
+  },
   q: {
     cmd: &quot;q&quot;,
     args: [&quot;chat&quot;, &quot;--trust-all-tools&quot;, &quot;--no-interactive&quot;, PROMPT],
   },
 };</code></pre>
           <p>しっかりと、制限解除のフラグが足されているのがわかる。
-          <p>こうしてリストアップされたファイルを全部読み、集めた情報をリポジトリに公開させるのだ。
+          <p>こうしてリストアップされたファイルパスを全部読み、集めた情報をリポジトリに公開させるのだ。
           <p>以下のページでクエリを Run すると、リポジトリが作られた人がわかる。
           <ul>
             <li><a href="https://play.clickhouse.com/play?user=play#c2VsZWN0ICogZnJvbSBnaXRodWJfZXZlbnRzIHdoZXJlIGV2ZW50X3R5cGUgPSAnQ3JlYXRlRXZlbnQnIGFuZCByZWZfdHlwZSA9ICdyZXBvc2l0b3J5JyBhbmQgcmVwb19uYW1lIGxpa2UgJyVzMW5ndWxhcml0eS1yZXBvc2l0b3J5JScgYW5kIGNyZWF0ZWRfYXQgPiAgJzIwMjUtMDgtMjYgMDA6MDA6MDAnIG9yZGVyIGJ5IGNyZWF0ZWRfYXQgQVNDCg==" target=_blank>https://play.clickhouse.com/play?user=play#c2VsZWN0ICogZnJvbSBnaXRodWJfZXZlbnRzIHdoZXJlIGV2ZW50X3R5cGUgPSAnQ3JlYXRlRXZlbnQnIGFuZCByZWZfdHlwZSA9ICdyZXBvc2l0b3J5JyBhbmQgcmVwb19uYW1lIGxpa2UgJyVzMW5ndWxhcml0eS1yZXBvc2l0b3J5JScgYW5kIGNyZWF0ZWRfYXQgPiAgJzIwMjUtMDgtMjYgMDA6MDA6MDAnIG9yZGVyIGJ5IGNyZWF0ZWRfYXQgQVNDCg==</a>
@@ -479,7 +486,7 @@ core.setFailed(&quot;Stall&quot;);</code></pre>
               <img loading=lazy decoding=async src=attacked-repo.png?250903_161837 alt="攻撃されたリポジトリのリスト" width=855 height=215>
             </picture>
           </p>
-          <p>これによると 904 行ヒットしていることがわかる。調査によってはブレがあるようで、ニュース記事などで「1000 人以上が被害に」と謳われているのは、おそらくこの数をもとにしていそうだ。いずれも、8/26 22:30 ~ 8/27 04:00 くらいまでの 6 時間程度で発生しているため、おかしなコードがコミットされたと気付いたときには、かなり攻撃は進んでいたことがわかる。
+          <p>実行したところ 904 行ヒットした。調査によってはブレがあるようで、ニュース記事などで「1000 人以上が被害に」と謳われているのは、おそらくこの数をもとにしていそうだ。いずれも、8/26 22:30 ~ 8/27 04:00 くらいまでの 6 時間程度で発生しているため、おかしなコードがコミットされたと気付いたときには、かなり攻撃は進んでいたことがわかる。
         </section>
         <section>
           <h3 id="対策_3"><a href="#対策_3">対策</a></h3>
@@ -638,7 +645,7 @@ core.setFailed(&quot;Stall&quot;);</code></pre>
         <p>PR のレビューや、GitHub Actions の運用に至っては、AI のレビューにより注意や推奨を受けられた可能性もあるため、むしろ AI をもっと活用すべきであったと言えるかもしれない。
         <p>それ以外の問題は、既に解決策が色々ある。それをやっていないのであれば、AI (というユーザ権限で実行できるプログラム)を塞いだところで、対策にはならない。
         <p>今回の解説を元に、各エンジニアは、ローカルファイルやリポジトリをチェックして被害がないか確認する。パッケージを公開するプロジェクトは、用意されたガードレールを導入する。
-        <p>といった、「普通の対策を普通に行う」べきという話だった。
+        <p>といった、「普通の対策を普通に行うべき」という話だった。
       </section>
     </article>
   </main>
