@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-09-20/mitigate-risk-of-oss-dependencies.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="前回は、Nx の事例をベースに「パッケージを公開する側」の対策について解説した。今回は、「パッケージを使う側」、もっと言えば「OSS を使う上で開発者が考えるべきこと」について考察する。">
+  <meta name=keywords            content="oss,security">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-09-20/mitigate-risk-of-oss-dependencies.html>
+  <meta property=og:title        content="サプライチェーン攻撃への防御策 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="前回は、Nx の事例をベースに「パッケージを公開する側」の対策について解説した。今回は、「パッケージを使う側」、もっと言えば「OSS を使う上で開発者が考えるべきこと」について考察する。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "サプライチェーン攻撃への防御策 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-09-20T08:00:00+08:00",
+    "dateModified": "2025-09-20T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "前回は、Nx の事例をベースに「パッケージを公開する側」の対策について解説した。今回は、「パッケージを使う側」、もっと言えば「OSS を使う上で開発者が考えるべきこと」について考察する。"
+  }
+  </script>
+
+  <title>サプライチェーン攻撃への防御策 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-09-20>2025-09-20</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-09-20>2025-09-20</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#oss">oss</a>
+              <li><a href="/tags#security">security</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#oss-の危険性">OSS の危険性</a>
+              <li><a href="#npm-以外の対策">npm 以外の対策</a>
+              <li><a href="#危険なコードができること">危険なコードができること</a>
+              <li><a href="#取りうる対策">取りうる対策</a>
+              <li><a href="#クレデンシャルの秘匿">クレデンシャルの秘匿</a>
+              <li><a href="#コンテナでの開発">コンテナでの開発</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">サプライチェーン攻撃への防御策</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>前回は、Nx の事例をベースに「パッケージを公開する側」の対策について解説した。
+        <p>今回は、「パッケージを使う側」、もっと言えば「OSS を使う上で開発者が考えるべきこと」について考察する。
+      </section>
+      <section>
+        <h2 id="oss-の危険性"><a href="#oss-の危険性">OSS の危険性</a></h2>
+        <p>npm 起因のサプライチェーン攻撃が確認されたことで「npm は危険だ」という話になると、「npm を禁止すべき」といった極端な話になったりする。
+        <p>前回のブログで紹介したような対策を行うなら、多少は良くなるかもしれない。しかし、それらは全てパッケージ公開者に委ねられる。自分が公開者として実施するなら、自分が原因で攻撃が発生することは防げるだろう。
+        <p>一方、攻撃に必要な突破口は 1 つあれば良い。npm にある全てのパッケージが対策されない限り、npm を主語とした安全が担保される日は来ない。
+        <p>この広大な依存関係の中には、闇落ちした開発者が、それまでの善良なコードを、自分の意志で攻撃コードに置き換えて公開することもある。
+        <p>そう、OSS とは、本質的にそういうものだ。
+        <p>誰かが公開したコードを、ライセンスに基づいて活用しているだけ。そこに安全の保証などない。
+        <p>我々は、自分たちで全てのコードを書き、サービスを運用することなどできない。代わりに共通資産としてのコードを育て、危険性と天秤にかけた経済合理性を享受している。
+        <p>つまり npm は「危険になった」のではなく「最初からずっと危険だった」のだ。
+        <p>もっと言えば、OSS とは誕生したときからずっとそうだった。
+        <p>我々は、全てのコードをチェックすることも叶わなくなり、祈るようにコードをチェックアウトしてきた。
+        <p>いつしか祈ることすら忘れ、「潜在的に危険なコードを受容する体制づくり」を怠っていたことが、今回の件で表面化しただけと捉えるべきだろう。
+      </section>
+      <section>
+        <h2 id="npm-以外の対策"><a href="#npm-以外の対策">npm 以外の対策</a></h2>
+        <p>npm を中心とした議論では、socket.dev などを使ってフィルタリングを行うといったソリューションや、pnpm に移行して minimumReleaseAge を指定するといったプラクティスもある。
+        <p>Nx の攻撃はほぼ数時間の間に発生したものだ。仮に 4h として、セキュリティベンダが攻撃発生から 3h で発見できたとしても、1h は攻撃が成立している状態だ。そこで、公開から 1~2 日猶予を持てば被害は軽減できるとし、アップデートを遅らせるのが minimumReleaseAge だ。しかし、それは同時に緊急のセキュリティフィックスが適用されるまでの、ゼロデイ可能性にも寄与する両刃の剣となる。
+        <p>また、npm の対策がある程度盤石となったとして、同じ手法を gem や pip や brew その他あらゆるパッケージマネージャーに応用しない根拠はない。
+        <p>これは完全に妄想だが、今回の攻撃は、おそらく誰かが既知の攻撃をパッケージ化し、ダークウェブ上で商品として販売し、誰かがそれを買って実行したのだろうと思う。そうであれば、別の攻撃が起こるかどうかは、そのパッケージの別バージョンを作って売る人と、それを買って実行する人が現れるかどうかの差でしかない。
+        <p>最近では、MCP のレジストリなども出てきており、我々が運用に慣れるまでの黎明期はおそらく狙い放題、格好の餌食になる可能性もある。
+        <p>npm 一箇所を対策したことは、それ以外の対策を怠っていることの裏返しでしかないのだ。
+        <p>「やっぱり OSS は危険だ、使うべきではない」と決別するのは自由だが、普通に考えれば、それをするには我々は OSS の良さも十分に知ってしまった。
+        <p>捨てたところで、今以上に良くなる保証は、もはやできない。
+        <p>では、我々は何ができるだろうか?
+      </section>
+      <section>
+        <h2 id="危険なコードができること"><a href="#危険なコードができること">危険なコードができること</a></h2>
+        <p>危険なコードを受容するには、この広義の「危険なコード」で何ができるかを考える必要がある。
+        <p>任意の処理が実行できるマルウェアでも動かせれば、できることは無限にある。しかし、「攻撃者にとってメリットのある攻撃」は、実はある程度パターンが絞られるだろう。
+        <p>大抵「<strong>壊す</strong>」か「<strong>盗む</strong>」かだ。
+        <p>壊す場合は、OS やハードまで含め、機能不全に陥れる状態だ。重要なプロセスを掌握してシステムを停止したり、まるっと暗号化して身代金を要求するような攻撃がそれにあたる。
+        <p>盗む場合は、クレデンシャルと称される <code translate=no>NPM_TOKEN</code> や <code translate=no>GITHUB_TOKEN</code>、SSH の鍵、パスワード、個人情報、仮想通貨の鍵など、それ自体に価値のあるものか、次の攻撃に転用できるものを狙う。
+      </section>
+      <section>
+        <h2 id="取りうる対策"><a href="#取りうる対策">取りうる対策</a></h2>
+        <p>そんなことが起こる可能性があるコードを、我々は日々取得して利用しているのだ。リスクは最近生じたわけではない。
+        <p>その中で、「感染しない」ことを求めることが難しいのであれば、「感染しても大丈夫」な状態に近づけるために、レジリエンシーを上げていく方向を考えるのが妥当だろう。
+        <p>過去にも類似する攻撃は何度も発生し、その上で様々な対策や緩和策が考えられてきた。
+        <p>その中で、筆者が見直したいと思うのは、大きく分けて 2 つだ。
+      </section>
+      <section>
+        <h2 id="クレデンシャルの秘匿"><a href="#クレデンシャルの秘匿">クレデンシャルの秘匿</a></h2>
+        <p>パスワードを <code translate=no>~/Desktop/パスワード.txt</code> に書いて置いておくのは、誰が見ても駄目だとわかるだろう。
+        <p>ところが、Personal Access Token を <code translate=no>~/develop/my-project/.env</code> に書いて置いておくのは、なぜか一般的に行われている。
+        <p>運用が面倒だからと広い権限が付与され、更新が面倒だからと no expire な期限が付与されることも、少なくないだろう。
+        <p>昨今の攻撃には様々な要因があるが、「盗まれたもの」は基本的にはこうした <code translate=no>*_TOKEN</code> の類だ。
+        <p>また、こうしたクレデンシャルは、環境変数を経由してプロセスに渡されることが多い。
+        <p>環境変数も、グローバルにアクセスできる平文のファイルのようなものだ。そのうえで、以下のような設定が環境構築で指示されるようなことも多い。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <pre class=sh data-code=sh><code translate=no class=language-sh># 環境変数を設定
+echo GITHUB_TOKEN=&quot;your-access-token&quot; &gt;&gt; .zshrc</code></pre>
+        <p>これは、この zsh で実行する全てのプロセスでアクセス可能であることを意味する。本来、開発中のサーバでしか使わない値であっても、同じ zsh で起動した他のプロセスからアクセスができるため、Infostealer からすれば盗み放題だ。
+        <p>この状況を改善するためには、まず「クレデンシャルを平文でファイルに保存するのをやめる」が最初にあるだろう。
+        <p>パスワードと同様に考えて、<code translate=no>.zshrc</code> や <code translate=no>.env</code> にあるクレデンシャルを全てパスワードマネージャに保存し、例えば Touch ID を経ないと開けないように暗号化して管理してしかるべきだ。
+        <p>ところが、その値を必要とするプロセスには平文で渡す必要がある。
+        <p>1Password の場合は op コマンドを使えば、起動しているプロセスにのみ、1Password 内のクレデンシャルを渡すことも可能だ。(ファイルを用いた書き方など、方法は複数ある)
+        <pre class=sh data-code=sh><code translate=no class=language-sh>$ NPM_TOKEN=&quot;op://develop/npm/token&quot; op run -- npm start</code></pre>
+        <p>クレデンシャルそのものがファイルにはなく、Touch ID を伴わないと出てこない。これにより、こっそり動いている infostealer はクレデンシャルを盗む方法がなくなるのだ。
+        <p>もしクレデンシャルをファイルに平文で書いてるのであれば、格段に安全になるだろう。op 以外にも同様のことができるツールはある。
+        <p>ただし、この npm start のプロセス自体が compromise されていれば、もちろん環境変数は盗める。そこを安全にするには、環境変数を Bearer Token にするのをやめるしかない。つまり、この世界にも Passkey のような考え方が必要になる。パスワードと同じ道を開発用トークンもたどるというのは、自然な発想だと筆者は考えているため、いずれはそうなるかもしれない。
+      </section>
+      <section>
+        <h2 id="コンテナでの開発"><a href="#コンテナでの開発">コンテナでの開発</a></h2>
+        <p>自分の PC でターミナルを開き、そこで <code translate=no>npm i</code> をするような行為は、感染した結果生じる被害がその PC 全体に及ぶ。
+        <p><code translate=no>.env</code> や <code translate=no>~/.ssh/*</code> をパスワードマネージャに隠したとしても、<code translate=no>~/Downloads</code> や <code translate=no>~/Desktop</code> は、日常的に情報が蓄積されやすい、秘情報の宝庫だ。最近の Mac はここへのアプリアクセスに権限がついたが、安易に許可している人も多いだろう。
+        <p>昨今の攻撃では、ここらへんは回収対象になっていない。おそらく、もっと簡単に換金できる情報(仮想通貨ウォレットなど)を集める方が効率が良いからだ。盗めないのではなく、たまたま盗んでいないだけだ。攻撃者のモチベーションやインセンティブが変われば、矛先を変えるのは造作もない。その PC が社内ネットワークにアクセスできることを利用し、踏み台として攻撃を広げていくことも可能だ。
+        <p>つまり、「普段使っている業務用 PC で、そのまま開発作業をする」という事自体が、危険な行為だったと言える。それも、別に今始まったことではない、ずっと危険だったのだ。
+        <p>ここに対して、最も端的に効果が出やすいのがコンテナでの開発だ。VirtualBox、Docker、Dev Container など、選択肢はいくらでもある。
+        <p>これらを入れ、業務用と開発用の環境を分離(Isolation)することで、仮に攻撃を受けても開発用環境しか影響を受けないように封じ込めることができる。
+        <p>開発用環境の中でさらにクレデンシャルが隠せていれば、盗めるものはかなり限られてくる。標的型で「ソースコードを盗む」自体が目的にでもなっていれば別だが、ばらまき型のサプライチェーン攻撃を受けて発生する被害は、最小限に抑えられると考えられるだろう。
+        <p>もちろん、コマンドのインストールや実行自体を細かく Docker でくるんだり、Deno のように権限を指定できるサンドボックス環境で実行したりと、他の選択肢もある。
+        <p>しかし、「一個一個気をつける」という運用は、認知の負荷が上がっていくだけで、人間には向かない。
+        <p>まるっと Dev Container を用意し、最初に細かな設定に気を使ったら、あとは「開発作業はこの中でやる」「余計なファイルを持ち込んだり、ディレクトリをマウントしない」といったルールの方が運用負荷も低いだろう。特に VSCode を使っているなら、立ち上げるワークスペースが変わるだけで、かなり透過的に実現できるはずだ。
+        <p>Mac を使う多くの開発者は、brew ベースで開発環境を整えるような運用をしていると思う。筆者もそうだ。
+        <p>これ自体がリスクのある行為だったことを認め、あらゆる開発を Dev Container に移行するように筆者自身もやっていきたいと思っている。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>今回の件を受けて、「npm は危険だから使用禁止」や「brew は入れるモジュールを都度申請」などと、一見リスクを回避していそうで何の解決にもなっていないルールが課され、仕事を邪魔されている現場もあるかもしれない。
+        <p>OSS は確かに危険だ。しかし、だからといってエコシステムを全て捨てられるほど、我々の開発は独立してない。むしろ、コードが衆目に晒され、数多くのコントリビューターによって修正されたバグや、脆弱性があることを考えると、<code translate=no>node_modules</code> 以下を全部自前で書き直したところで、OSS 以上に安全になることもないだろう。
+        <p>何も対策せずに npm や OSS を批判するのもナンセンスだし、benefit と risk、solve と mitigation をきちんと見極めずに OSS と決別するのはもっとナンセンスだ。するべき判断と対策をサボっているだけでしかない。
+        <p>今まで我々が甘んじてきた牧歌的な開発環境を見直し、OSS のリスクとベネフィットを正しく受け入れる体制を、見直すべき時が来たのだと考えたい。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
