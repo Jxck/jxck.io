@@ -13,7 +13,6 @@ guest: [@re-taro](https://x.com/re_taro_)
 
 第 185 回のテーマは 2025 年 9 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Malicious versions of Nx and some supporting plugins were published · Advisory · nrwl/nx
@@ -97,7 +96,6 @@ guest: [@re-taro](https://x.com/re_taro_)
   - https://www.publickey1.jp/blog/25/railsdhhlinux_osomarchy_5ui.html
   - Omakase + Arch linux = Omarchy
   - すでに資産はあるので、収益などは考えない趣味プロジェクトらしい
-
 
 ## Events
 
