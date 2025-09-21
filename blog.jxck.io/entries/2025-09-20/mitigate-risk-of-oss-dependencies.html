@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-09-20T08:00:00+08:00",
-    "dateModified": "2025-09-20T08:00:00+08:00",
+    "dateModified": "2025-09-21T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-09-20>2025-09-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-09-20>2025-09-20</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-09-21>2025-09-21</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -215,8 +215,7 @@ echo GITHUB_TOKEN=&quot;your-access-token&quot; &gt;&gt; .zshrc</code></pre>
           <p>ところが、その値を必要とするプロセスには平文で渡す必要がある。
           <p>1Password の場合は op コマンドを使えば、起動しているプロセスにのみ、1Password 内のクレデンシャルを渡すことも可能だ。(ファイルを用いた書き方など、方法は複数ある)
           <pre class=sh data-code=sh><code translate=no class=language-sh>$ NPM_TOKEN=&quot;op://develop/npm/token&quot; op run -- npm start</code></pre>
-          <p>クレデンシャルそのものがファイルにはなく、Touch ID を伴わないと出てこない。これにより、こっそり動いている infostealer はクレデンシャルを盗む方法がなくなるのだ。
-          <p>もしクレデンシャルをファイルに平文で書いてるのであれば、格段に安全になるだろう。op 以外にも同様のことができるツールはある。
+          <p>クレデンシャルそのものがファイルにはなく、Touch ID を伴わないと出てこない。これにより、こっそり動いている infostealer はクレデンシャルを盗む方法がなくなるのだ。もしクレデンシャルをファイルに平文で書いてるのであれば、これだけで格段に安全になるだろう。op 以外にも同様のことができるツールはある。
           <p>ただし、この npm start のプロセス自体が compromise されていれば、もちろん環境変数は盗める。そこを安全にするには、環境変数を Bearer Token にするのをやめるしかない。つまり、この世界にも Passkey のような考え方が必要になる。パスワードと同じ道を開発用トークンもたどるというのは、自然な発想だと筆者は考えているため、いずれはそうなるかもしれない。
         </section>
         <section>
