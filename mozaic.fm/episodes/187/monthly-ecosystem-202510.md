@@ -1,0 +1,226 @@
+---
+type: podcast
+tags: ["monthly ecosystem"]
+audio: https://files.mozaic.fm/mozaic-ep187.mp3
+published_at: 2025-10-15
+guest: [@sakito](https://x.com/__sakito__)
+guest: [@hiroppy](https://x.com/about_hiroppy)
+guest: [@re-taro](https://x.com/re_taro_)
+---
+
+# ep187 Monthly Ecosystem 202510
+
+## Theme
+
+第 187 回のテーマは 2025 年 10 月の Monthly Ecosystem です。
+
+
+## Show Note
+
+- React Conf 2025
+  - https://conf.react.dev/
+  - https://blog.re-taro.dev/p/01K72ECG97DYRTNSG7CB6KB6J9
+- React 19.2
+  - https://react.dev/blog/2025/10/01/react-19-2
+  - `<Activity>` は表示状態を制御し、非表示部分を事前にレンダリングすることでパフォーマンスを向上させる
+  - `useEffectEvent` は外部イベントを通知する新しいパターンで、依存関係の管理を簡素化する
+  - `cacheSignal`
+  - eslint-plugin-react-hooks のバージョンを 6.1.0 にアップグレードする必要がある
+- React Compiler v1.0
+  - https://react.dev/blog/2025/10/07/react-compiler-1
+  - React と React Native で動作する
+  - コンパイラは自動メモ化を通じてコンポーネントやフックを最適化する
+  - 新しいアプリは Expo、Vite、Next.js と連携してコンパイラを有効にできる
+  - コンパイラは Meta の主要アプリでテストされ、プロダクション環境での使用に適している
+- React Native 0.82 - A New Era
+  - https://reactnative.dev/blog/2025/10/08/react-native-0.82
+  - React Native 0.82 は新しいアーキテクチャに完全移行した初のバージョンである
+  - レガシーアーキテクチャのコードを削除し、インストールサイズを削減する予定
+  - Hermes v1 の実験的なオプトインサポートが追加された
+  - React のバージョンが 19.1.1 に更新され、DOM ノード API のサポートが追加された
+  - 新しいアーキテクチャは今後のバージョンでもデフォルトとして使用される
+  - 移行は React Native 0.81 または Expo SDK 54 から始めることが推奨されている
+  - Hermes v1 はパフォーマンス向上が期待され、特にバンドルの読み込み時間や初回表示時間が改善されている
+- Introducing the React Foundation
+  - https://react.dev/blog/2025/10/07/introducing-the-react-foundation
+  - React Foundation の設立により、React と React Native の新しい技術的ガバナンスが導入される
+  - React は 10 年以上前にオープンソース化され、Meta 以外の多くの貢献者からの支援を受けて成長してきた
+  - 新しい React Foundation は、React と React Native、JSX などのプロジェクトを支援する
+  - React Foundation は GitHub や CI、商標の管理、React Conf の開催、エコシステムプロジェクトへの財政支援を行う
+  - 理事会が設立され、Seth Webster がエグゼクティブディレクターを務める
+  - React の技術的方向性は、React に貢献する人々によって決定されるべきである
+- Remix Jam 2025
+  - https://remix.run/jam/2025
+  - https://www.youtube.com/watch?v=xt_iEOn2a6Y
+  - Thoughts on Remix 3 / frantic.im
+    - https://frantic.im/remix-3
+  - Remix 3 のコード
+    - https://github.com/remix-run/remix/tree/main/demos/bookstore
+- React Router RSC Framework Mode Preview
+  - https://remix.run/blog/rsc-framework-mode-preview
+  - RSC Data Mode を基盤にして、RSC Framework Mode が構築されている
+  - 新しいプラグインを使用することで、RSC コンテンツをローダーやアクションから返す機能が追加される
+- Next.js 16 (beta)
+  - https://nextjs.org/blog/next-16-beta
+  - Turbopack が全アプリのデフォルトバンドラーに
+  - Turbopack は最大 5-10 倍の Fast Refresh と 2-5 倍のビルド速度を提供
+  - ファイルシステムキャッシングにより、大規模アプリの起動とコンパイル時間が短縮
+  - React Compiler のサポートが安定し、コンポーネントの自動メモ化が実現
+  - Build Adapters API がアルファ版として登場し、カスタムアダプターの作成が可能
+  - ルーティングの最適化やキャッシング API の改善が行われている
+- Beyond the Horizon: How Angular is Embracing AI for Next-Gen Apps
+  - https://blog.angular.dev/beyond-the-horizon-how-angular-is-embracing-ai-for-next-gen-apps-7a7ed706e1a3
+  - Angular は AI ファーストなフレームワークになるらしい
+  - Angular は AI 志向のフレームワークへ
+    - https://zenn.dev/lacolaco/articles/angular-ai-forward
+- ViteConf 2025
+  - https://viteconf.amsterdam/
+  - https://voidzero.dev/posts/announcing-vite-plus
+  - https://vite.plus
+  - Vite+は JavaScript のための統合ツールチェーンである
+  - 新しいプロジェクトのスキャフォールディングやユニットテストの実行が可能
+  - Oxlint を使用したコードのリント機能を提供し、ESLint よりも高速
+  - Oxfmt を使用したコードフォーマット機能を提供予定
+  - モノレポ用のタスクランナーを内蔵し、インテリジェントなキャッシングを実現
+  - Rust で構築されたコンパイラツールチェーンにより高いパフォーマンスを実現
+- Vite: The Documentary
+  - https://www.youtube.com/watch?v=bmWQqAKLgT4
+  - Vite の誕生から今まで
+- Node.js v24.10.0
+  - https://nodejs.org/en/blog/release/v24.10.0
+  - `console` に `per-stream`, `inspectOptions` オプションが追加された
+  - `util.getCallSite` が削除された
+  - SQLite に認証 API が追加された
+- Node.js v24.9.0
+  - https://nodejs.org/en/blog/release/v24.9.0
+  - HTTP アップグレードを制御する shouldUpgradeCallback が追加された
+  - SQLite の ERM サポートがクリーンアップされ、Session クラスがエクスポートされた
+  - ワーカーにヒーププロファイル API が追加された
+  - 暗号化機能が改善され、Promise の返却方法が最適化された
+- What's coming in ESLint v10.0.0
+  - https://eslint.org/blog/2025/10/whats-coming-in-eslint-10.0.0/
+  - Node.js v20.19.0 以降のサポートが必須となる
+  - eslintrc 設定システムが完全に削除される
+  - `eslint:recommended` 設定に新しいルールが追加される
+  - jiti のバージョン 2.2.0 未満のサポートが削除される
+  - Program AST ノードの範囲計算が全ソーステキストをカバーするように変更される
+- ESLint v9.37.0 released
+  - https://eslint.org/blog/2025/10/eslint-v9.37.0-released/
+  - `no-restricted-imports` ルールに `allowTypeImports` オプションが追加され、TypeScript ファイルでの型のみのインポートが許可されるようになった
+  - `--concurrency=auto` オプションのヒューリスティックが改善され、キャッシュがほとんどある場合に不必要なマルチスレッドモードが有効にならないようになった
+  - `preserve-caught-error` ルールが計算されたプロパティ構文を使用したエラーの原因オプションを正しく処理するようになった
+  - バグ修正として、先頭ゼロに関する精度の損失の誤検出が修正された
+  - ESLint の型定義が修正され、AST トークンタイプが追加された
+- Oxlint JS Plugins Preview
+  - https://oxc.rs/blog/2025-10-09-oxlint-js-plugins.html
+- Astro 5.14
+  - https://astro.build/blog/astro-5140/
+  - プリレンダリングされたルートの衝突警告機能により、動的ルーティングのエラーを事前に特定できる
+  - `getStaticPaths` での `routePattern` プロパティにより、複雑な動的ルートの処理が容易になる
+  - Svelte の非同期レンダリング機能が追加され、サーバーレンダリングコンポーネントでも使用可能になる
+  - React 19 アクションの統合が行われ、より多くの機能が利用可能になる
+- Storybook is going ESM-only
+  - https://storybook.js.org/blog/storybook-is-going-esm-only
+  - Storybook は ESM 専用に移行することを発表した
+  - 二重ビルドによるパッケージサイズの増加とメンテナンスの複雑化が問題だった
+  - Storybook 10 からは ESM 専用ビルドを提供し、パッケージサイズを約 15%削減する
+  - Node.js のバージョンは 20.16、22.19、24 以上が必要
+  - 設定ファイルは ESM に準拠する必要がある
+- Playwright v1.56
+  - https://x.com/playwrightweb/status/1975223910573785425
+  - https://playwright.dev/docs/test-agents
+  - planner: explores the app and produces a Markdown test plan
+  - generator: transforms the Markdown plan into the Playwright Test files
+  - healer: executes the test suite and automatically repairs failing tests
+- Chrome DevTools
+  - https://developer.chrome.com/blog/chrome-devtools-mcp?hl=ja
+  - MCP を使用することで、AI エージェントはウェブサイトのパフォーマンスを分析し、改善提案を行うことができる
+  - AI エージェントは、リアルタイムでコード変更を検証し、ネットワークエラーを診断することができる
+  - ユーザーの行動をシミュレートし、バグを再現することが可能
+- What's new in Svelte: October 2025
+  - https://svelte.dev/blog/whats-new-in-svelte-october-2025
+  - リモート関数の改善により、バッチ処理ツールとレイジーディスカバリーによるパフォーマンス向上が実現された
+  - 実験的な Async SSR が利用可能で、任意の場所で await を使用できる
+  - SvelteKit に新たに popstate、link、form ナビゲーションのイベントプロパティが追加された。
+  - `%sveltekit.version%` プレースホルダーを使用して SvelteKit のバージョンを出力に含めることができる
+  - Svelte プレイグラウンドからプロジェクトを作成する機能が追加された
+  - リモート関数の `set()` がサーバークエリで呼び出せるようになり、`query.refresh()` の Promise が自動的に解決される
+  - 新しい `query.batch` リモート関数により、同じマクロタスク内でのリクエストをバッチ処理できる
+- How Deno protects against npm exploits
+  - https://deno.com/blog/deno-protects-npm-exploits
+  - npm のセキュリティ侵害が発生し、悪意のある依存関係がシステムにアクセスする危険性がある
+  - Deno はデフォルトでサンドボックス内でコードを実行し、システムへのアクセスを制限する
+  - 開発者は明示的に権限を付与する必要があり、これにより不正なコードのリスクが低減される
+  - Deno は特定のファイルやネットワークエンドポイントへの部分的なアクセスを許可できる
+  - 権限の管理を簡素化するための設定ファイル(deno.json)を使用できる
+  - 今後、npm パッケージのインストールに関する新しいセキュリティ機能が追加される予定
+- North Korea's Contagious Interview Campaign Escalates: 338 Malicious npm Packages, 50,000 Download
+  - https://socket.dev/blog/north-korea-contagious-interview-campaign-338-malicious-npm-packages
+- 175 Malicious npm Packages Host Phishing Infrastructure Targeting 135+ Organizations
+  - https://socket.dev/blog/175-malicious-npm-packages-host-phishing-infrastructure
+- Where It's at://
+  - https://overreacted.io/where-its-at/
+- Apollo MCP Server 1.0 is Generally Available
+  - https://www.apollographql.com/blog/apollo-mcp-server-1-0-is-generally-available
+  - GraphQL 操作を MCP ツールに変換し、MCP クライアントがそれらを利用できる
+  - ホットリロード機能により、GraphQL 操作の変更が即座にエージェントに反映される
+  - エージェントはスキーマを動的に探索し、必要な情報を効率的に取得できる
+  - 持続的なクエリにより、事前承認された操作のみを実行可能にし、安全性を確保する
+  - OAuth を使用して MCP Server のセキュリティを強化している
+- Prisma 6.17.0
+  - https://github.com/prisma/prisma/releases/tag/6.17.0
+- Announcing Lynx for HarmonyOS
+  - https://lynxjs.org/blog/lynx-harmony
+- The next evolution of Mastra streaming
+  - https://mastra.ai/blog/mastra-streaming
+- Nuxt UI v4
+  - https://nuxt.com/blog/nuxt-ui-v4
+- Query Across Projects with the host selector
+  - https://blog.vlt.sh/blog/host-context
+- Cloudflare の新コンテンツシグナルポリシーでユーザーに選択肢を
+  - https://blog.cloudflare.com/ja-jp/content-signals-policy/
+- Announcing Cloudflare Email Service's private beta
+  - https://blog.cloudflare.com/email-service/
+- 元 Vercel の VP of AI が MS ヘ
+  - https://x.com/jaredpalmer/status/1977732721259540735
+- Figma partners with Google to integrate Gemini into its platform
+  - https://ux-news.com/figma-partners-with-google-to-integrate-gemini-into-its-platform/
+  - Figma と Google が提携
+- Figma Make と GitHub 連携がくる
+  - https://x.com/figma/status/1976745908168802357
+- Is Lovable Dying
+  - https://x.com/chrispisarski/status/1975686843489190268
+- GraphQLConf 2025
+  - https://graphql.org/conf/2025/
+  - https://www.apollographql.com/blog/10-years-of-graphql-celebrated-at-graphqlconf-2025
+- Bringing Figma Make to the canvas
+  - https://www.figma.com/blog/bringing-figma-make-to-the-canvas/
+  - Figma Make を Design ファイルでいじれるようになる
+- New partnership with Figma to bring your Make prototypes into Figma Design
+  - https://divriots.com/blog/new-figma-partnership-to-bring-figma-make-to-the-canvas
+  - html.to.design と Figma がパートナーシップ
+- Help Us Raise $200k to Free JavaScript from Oracle | Deno
+  - https://deno.com/blog/javascript-tm-gofundme
+- GitHub Copilot CLI is now in public preview
+  - https://github.blog/changelog/2025-09-25-github-copilot-cli-is-now-in-public-preview/
+- Events
+- 10 月
+  - 7-8: React Conf
+    - https://conf.react.dev/
+  - 9-10: Vite Conf
+    - https://viteconf.amsterdam/
+  - 18: Hono Conference 2025
+    - https://hono.connpass.com/event/368214/
+  - 22: Next Conf
+    - https://nextjs.org/conf
+  - 25: Vue Fes Japan 2025
+    - https://vuefes.jp/2025/
+- 11 月
+  - 14-15: YAPC fukuoka
+    - https://fortee.jp/yapc-fukuoka-2025
+  - 16: JSConf JP
+    - https://jsconf.jp/2025/en
+  - 23: TSKaigi Hokuriku 2025
+    - https://x.com/tskaigi/status/1944237850071118068
+  - 30: フロントエンドカンファレンス関西
+    - https://frontend-conf.osaka.jp/
