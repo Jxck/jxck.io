@@ -14,7 +14,6 @@ guest: [@re-taro](https://x.com/re_taro_)
 
 第 187 回のテーマは 2025 年 10 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - React Conf 2025
