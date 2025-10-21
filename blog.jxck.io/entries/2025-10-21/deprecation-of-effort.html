@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-10-21/deprecation-of-effort.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 32 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adven...">
+  <meta name=keywords            content="cookie,3pca">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-10-21/deprecation-of-effort.html>
+  <meta property=og:title        content="3PCA 32 日目: Privacy Sandbox の後始末 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 32 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adven...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "3PCA 32 日目: Privacy Sandbox の後始末 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-10-21T08:00:00+08:00",
+    "dateModified": "2025-10-21T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 32 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adven..."
+  }
+  </script>
+
+  <title>3PCA 32 日目: Privacy Sandbox の後始末 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-10-21>2025-10-21</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-10-21>2025-10-21</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#privacy-sandbox-の軌跡">Privacy Sandbox の軌跡</a>
+              <li><a href="#api-の今後">API の今後</a>
+              <li><a href="#cma-の反応">CMA の反応</a>
+              <li><a href="#cma-とのコミットメントとは">CMA とのコミットメントとは?</a>
+              <li><a href="#コミットメント解除">コミットメント解除</a>
+              <li><a href="#privacy-sandbox-とは何だったのか">Privacy Sandbox とは何だったのか</a>
+              <ol>
+                <li><a href="#市場の変化">市場の変化</a>
+              </ol>
+              <li><a href="#損切りとしての中止">損切りとしての中止</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">3PCA 32 日目: Privacy Sandbox の後始末</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、<em>2023</em> 年の 3rd Party Cookie Advent Calendar の 32 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>宙に浮いていた Privacy Sandbox プロジェクトの「後始末」が公開された。
+      </section>
+      <section>
+        <h2 id="privacy-sandbox-の軌跡"><a href="#privacy-sandbox-の軌跡">Privacy Sandbox の軌跡</a></h2>
+        <p>Privacy Sandbox の開始は、以下のエントリの公開と捉えることにする。
+        <ul>
+          <li>
+            2019/08/22: Building a more private web
+            <ul>
+              <li><a href="https://blog.google/products/chrome/building-a-more-private-web/" target=_blank>https://blog.google/products/chrome/building-a-more-private-web/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>そして、2025/4 に Privacy Sandbox の方針転換が公開され、「3rd Party Cookie の Deprecation はしない」という結論が公開された。
+        <ul>
+          <li>
+            2025/04/22: Next steps for Privacy Sandbox and tracking protections in Chrome
+            <ul>
+              <li><a href="https://privacysandbox.com/news/privacy-sandbox-next-steps/" target=_blank>https://privacysandbox.com/news/privacy-sandbox-next-steps/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>この時点では、「Privacy Sandbox の作業は続ける」といった言い回しで締められていた。
+        <p>ところが、多くの API は Chrome でしか実装されていないか、他のブラウザが実装するつもりのないものであり、Chrome が 3rd Party Cookie を消さないのであれば、不要な API ばかりであった。
+        <p>今回出た発表は、そうした「これ以上不要な API」についての作業を中止し、実装されていないものも含め Deprecate していくというものだった。
+        <ul>
+          <li>
+            2025/10/17: Update on Plans for Privacy Sandbox Technologies
+            <ul>
+              <li><a href="https://privacysandbox.com/news/update-on-plans-for-privacy-sandbox-technologies/" target=_blank>https://privacysandbox.com/news/update-on-plans-for-privacy-sandbox-technologies/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>来月に TPAC も控えており、このままでは該当する WG で「この API はどうするのか」といった議論になる可能性があっただろう。それを防ぐためにも、このタイミングだったように取れる。
+        <p>いくつかの API は残るが、それを Privacy Sandbox と括る必要ももうないだろう。つまり、これが <em>Privacy Sandbox の終わり</em> と捉えることができそうだ。
+      </section>
+      <section>
+        <h2 id="api-の今後"><a href="#api-の今後">API の今後</a></h2>
+        <p>発表をもとにすると、作業が行われていた API は以下のようになる。
+        <ul>
+          <li>
+            継続
+            <ul>
+              <li>
+                Attribution
+                <ul>
+                  <li><a href="https://github.com/w3c/attribution" target=_blank>https://github.com/w3c/attribution</a>
+                </ul>
+              </li>
+              <li>
+                CHIPS
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/cookies/chips" target=_blank>https://privacysandbox.google.com/cookies/chips</a>
+                </ul>
+              </li>
+              <li>
+                FedCM
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/cookies/fedcm" target=_blank>https://privacysandbox.google.com/cookies/fedcm</a>
+                </ul>
+              </li>
+              <li>
+                Private State Token
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/protections/private-state-tokens" target=_blank>https://privacysandbox.google.com/protections/private-state-tokens</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            廃止
+            <ul>
+              <li>
+                Attribution Reporting API (Chrome/Android)
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/private-advertising/attribution-reporting/android" target=_blank>https://privacysandbox.google.com/private-advertising/attribution-reporting/android</a>
+                </ul>
+              </li>
+              <li>
+                IP Protection
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/protections/ip-protection" target=_blank>https://privacysandbox.google.com/protections/ip-protection</a>
+                </ul>
+              </li>
+              <li>
+                On-Device Personalization
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/protections/on-device-personalization" target=_blank>https://privacysandbox.google.com/protections/on-device-personalization</a>
+                </ul>
+              </li>
+              <li>
+                Private Aggregation (Shared Storage 含む)
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/private-advertising/private-aggregation" target=_blank>https://privacysandbox.google.com/private-advertising/private-aggregation</a>
+                </ul>
+              </li>
+              <li>
+                Protected Audience (Chrome/Android)
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/private-advertising/protected-audience" target=_blank>https://privacysandbox.google.com/private-advertising/protected-audience</a>
+                </ul>
+              </li>
+              <li>
+                Protected App Signals
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/private-advertising/protected-audience/android/protected-app-signals" target=_blank>https://privacysandbox.google.com/private-advertising/protected-audience/android/protected-app-signals</a>
+                </ul>
+              </li>
+              <li>
+                Related Website Sets (requestStorageAccessFor 含む)
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/cookies/related-website-sets" target=_blank>https://privacysandbox.google.com/cookies/related-website-sets</a>
+                </ul>
+              </li>
+              <li>
+                SelectURL
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/private-advertising/select-url" target=_blank>https://privacysandbox.google.com/private-advertising/select-url</a>
+                </ul>
+              </li>
+              <li>
+                SDK Runtime
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/private-advertising/sdk-runtime" target=_blank>https://privacysandbox.google.com/private-advertising/sdk-runtime</a>
+                </ul>
+              </li>
+              <li>
+                Topics (Chrome/Android)
+                <ul>
+                  <li><a href="https://privacysandbox.google.com/private-advertising/topics" target=_blank>https://privacysandbox.google.com/private-advertising/topics</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>つまり、Privacy Sandbox の大半を占めていた「広告関連ユースケース」として提案されていたものは、軒並み廃止の対象となった形だ。
+        <p>ところが、3rd Party Cookie が無くとも、「広告効果の計測は行いたい」というユースケースは、ITP や ETP を推し進めた Safari/Mozilla をしても妥当と捉えられている。Web における広告事業には効果測定が必須であり、それをユーザを追跡することなく行うことのモチベーションは共通しているからだ。
+        <p>Chrome 主導だった Attribution Reporting API、Apple 提案の PPA、Mozilla 主導の PCM と提案が乱立していた。
+        <ul>
+          <li>
+            WICG/attribution-reporting-api: Attribution Reporting API
+            <ul>
+              <li><a href="https://github.com/WICG/attribution-reporting-api" target=_blank>https://github.com/WICG/attribution-reporting-api</a>
+            </ul>
+          </li>
+          <li>
+            Privacy-Preserving Attribution: Level 1
+            <ul>
+              <li><a href="https://www.w3.org/TR/privacy-preserving-attribution/" target=_blank>https://www.w3.org/TR/privacy-preserving-attribution/</a>
+            </ul>
+          </li>
+          <li>
+            Introducing Private Click Measurement, PCM | WebKit
+            <ul>
+              <li><a href="https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/" target=_blank>https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>これらを統合した Attribution API だけは残り、継続して PATWG で議論されるようだ。
+        <ul>
+          <li>
+            Attribution Level 1
+            <ul>
+              <li><a href="https://w3c.github.io/attribution/" target=_blank>https://w3c.github.io/attribution/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>CHIPS や FedCM のように、既に一定の合意があり実装が進んでいるもの以外は、全て終わるということになる。Private State Token はまたかなり毛色が違い、広告以外にもかなり応用が期待されているため、残ったのだろう。
+        <p>IP Protection は、Safari でいう Private Relay 相当の機能だ。<a href="https://privacysandbox.com/news/privacy-sandbox-next-steps/" target=_blank>4 月の段階</a>では「2025/Q3 で提供予定で、引き続き取り組む」という旨が書かれていたが、廃止のリストに入っている。すでにドメインリストベースの実装がプライベートモード向けに Ship のアナウンスが出ているが、どうなるのかは気になるところだ。
+        <ul>
+          <li>
+            Intent to Ship: IP Protection in Incognito using published Masked Domain list
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/EbdlJ3pc3NM/m/onR2VnBgAgAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/EbdlJ3pc3NM/m/onR2VnBgAgAJ</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="cma-の反応"><a href="#cma-の反応">CMA の反応</a></h2>
+        <p>この連載の中でも何度も解説したが、この話を調べる上では、必ず CMA の反応を踏まえる必要がある。基本的には Google は CMA とのコミットメントの上で、全ての話を進めてきたからだ。
+        <ul>
+          <li>
+            Investigation into Google&apos;s &apos;Privacy Sandbox&apos; browser changes - GOV.UK
+            <ul>
+              <li><a href="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes" target=_blank>https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes</a>
+            </ul>
+          </li>
+        </ul>
+        <p>4 月の方針転換(Deprecating Deprecation)が出たばかりの Q1 のレポートには、特に何も書かれなかった。
+        <p>そして、Q2 で Google が提出したレポートは以下だ。
+        <ul>
+          <li>
+            Privacy Sandbox Progress Report Q2 Reporting Period
+            <ul>
+              <li><a href="https://assets.publishing.service.gov.uk/media/6889f52a6478525675738fe0/Google_s_Q2_2025_report.pdf" target=_blank>https://assets.publishing.service.gov.uk/media/6889f52a6478525675738fe0/Google_s_Q2_2025_report.pdf</a>
+            </ul>
+          </li>
+        </ul>
+        <p>これは、すでに Google が 3PC を維持する方針に変化したために、2 つの変更が生じることを提起している。
+        <ul>
+          <li>Privacy Sandbox API が今後も必要か、エコシステムと協議(つまり広告ベンダにヒアリング)が必要
+          <li>CMA の懸念がなくなるため Google がもはや CMA とのコミットメントを維持する必要がなくなる
+        </ul>
+        <p>重要なのは後者だ。
+      </section>
+      <section>
+        <h2 id="cma-とのコミットメントとは"><a href="#cma-とのコミットメントとは">CMA とのコミットメントとは?</a></h2>
+        <p>今回の連載を追っているとわかるが、多くの人が勘違いしている点は、CMA と Google が何をしていたかだ。
+        <p>よく Google が、自分たちが使うために Privacy Sandbox を始め、そこで好き放題しないように監視をするのが CMA という構図だと思われている。
+        <p>実態はそうではない。
+        <p>Google が 3rd Party Cookie を廃止すると、もはや 3PC を用いたトラッキングは不可能になる。
+        <p>するとどうなるかというと、「1st Party Data (1PD)」を用いた広告戦略が重要になり、それを大量に持っている企業が有利になるのだ。
+        <p>Google は、メールからカレンダー、YouTube から Store まで大量の 1PD を持ちつつ広告もやっている。1PD を持たない広告プロバイダは、どうしたって敵わない。
+        <p>そのうえで Chrome を持っていることもあり、Google が独自に Chrome だけで使える機能などを入れないか、といった点ももちろん考慮される。
+        <p>つまり CMA が懸念していたのは、「業界の準備が整っていない状態で 3rd Party Cookie を廃止する」ことで、Google が一人勝ちすることだったのだ。
+        <p>そうならないための「準備」に当たるのが、代替手段としての Privacy Sandbox であり、それは Google のためというよりも、Google 以外のためと言っても過言ではなかった。
+        <p>しかし、今回 Google が「3rd Party Cookie の廃止をやめる」と宣言したことで、CMA が懸念していた問題自体がなくなったのだ。
+        <p>結果、法的なプロセスに則り、コミットメントの解除に向けて進める、というのが Q2 の段階で始まっていた。
+      </section>
+      <section>
+        <h2 id="コミットメント解除"><a href="#コミットメント解除">コミットメント解除</a></h2>
+        <p>CMA が行うべきことは、「コミットメントを解除しても問題ないか?」という部分だ。
+        <p>当初懸念されていたのは、前述の通り「Google が Chrome で 3PC をブロックすることで、一人勝ちする」ことだったと考えれば、その前提が崩れた今、懸念は一緒に消えている。
+        <p>6/13 ~ 7/4 (サイトの記載が間違っている)に実施した外部コンサルテーションの意見も集め、調査検証した結果、コミットメントを解除しても問題ないという結論に至った。
+        <ul>
+          <li>
+            Decision to release the commitments previously accepted by the CMA in respect of Google&apos;s Privacy Sandbox proposals
+            <ul>
+              <li><a href="https://assets.publishing.service.gov.uk/media/68f213ce06e6515f7914c728/Decision_to_release_the_commitments_previously_accepted_by_the_CMA_in_respect_of_Google_s_Privacy_Sandbox_proposals.pdf" target=_blank>https://assets.publishing.service.gov.uk/media/68f213ce06e6515f7914c728/Decision_to_release_the_commitments_previously_accepted_by_the_CMA_in_respect_of_Google_s_Privacy_Sandbox_proposals.pdf</a>
+            </ul>
+          </li>
+        </ul>
+        <p>2025/06/13 には、CMA から「コミットメント解除」の意向がアナウンスされ、関係する第三者からのコメントを募集していた。
+        <p>合わせて Google からの Privacy Sandbox API のテスト(トライアル)結果なども公開されている。
+        <ul>
+          <li>
+            Testing of Google&apos;s Privacy Sandbox proposals: CMA summary
+            <ul>
+              <li><a href="https://assets.publishing.service.gov.uk/media/684bee68df3ce2ce31e3f948/Summary_of_testing_of_Google_Privacy_Sandbox_proposals.pdf" target=_blank>https://assets.publishing.service.gov.uk/media/684bee68df3ce2ce31e3f948/Summary_of_testing_of_Google_Privacy_Sandbox_proposals.pdf</a>
+            </ul>
+          </li>
+        </ul>
+        <p>こうしたプロセスに則り、慎重に検討を重ねた結果、2025/10/17 に CMA はコミットメントを解除した。
+        <blockquote cite="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes">
+          <p>After carefully considering the consultation responses to the June 2025 consultation,
+          <p>the CMA remains of the view that it has reasonable grounds for believing that
+          <p>its competition concerns no longer arise and that it is appropriate to release the commitments.
+          <p>On 17 October 2025, the CMA issued its Decision to release the commitments.
+          <p>
+          </p>
+          <p>2025 年 6 月の協議に対する回答を慎重に検討した結果、
+          <p>CMA は、競争上の懸念はもはや生じず、
+          <p>コミットメントを解除することが適切であると考える合理的な根拠があるとの見解を維持している。
+          <p>2025 年 10 月 17 日、CMA はコミットメントを解除する決定を下した。
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes" target=_blank>https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes</a></cite>
+        </blockquote>
+        <p>合わせて、冒頭の Google からのアナウンスが行われた。
+      </section>
+      <section>
+        <h2 id="privacy-sandbox-とは何だったのか"><a href="#privacy-sandbox-とは何だったのか">Privacy Sandbox とは何だったのか</a></h2>
+        <p>Web から 3rd Party Cookie を廃止しようと始まった 1 つのサーガだった、この一連の流れだった。
+        <p>Privacy Sandbox のアナウンスは 2019 年だが、Safari が ITP をアナウンスしたところまで遡れば 2017 年だ。
+        <p>Web が登場してから、その時点までの 30 年近くの間、3rd Party Cookie は確実に総力を結集してでも解決すべき「問題」だった。
+        <p>では、その戦いに人間が負けたという結論で、よいのだろうか?
+        <section>
+          <h3 id="市場の変化"><a href="#市場の変化">市場の変化</a></h3>
+          <p>Google が CMA に提出したレポートに、Deprecation を辞める根拠として、市場に起こっている変化が 3 つ挙げられている。
+          <ul>
+            <li>privacy-enhancing technologies (新しいプライバシー保護機構)
+            <li>new AI-driven safeguards (AI による安全確保技術)
+            <li>evolving global regulations (グローバルな規制の進化)
+          </ul>
+          <p>ところが、重要そうな点でありながら、いずれもインラインで列挙しているだけで、具体例などがない。とにかく、今はもう始めたころと時代が変わって、Deprecation しなくてもなんとかなるとでも言いたそうだ。しかし、それが言えてるのかは非常に曖昧に思える。
+          <p>ここで別の視点も見てみる。
+          <p>Google は CMA との本件以外に、US の DOJ (司法省)とも裁判を行っていた。いわゆる「Chrome 売却令」のアレだ。こちらも、ビジネスの寡占が火種となっている。
+          <p>結果として、「Chrome の売却は不要」という点で落ち着いたが、この中で Google が提出してた Memorandum が以下だ。
+          <ul>
+            <li>
+              GOOGLE LLC&apos;S MEMORANDUM ADDRESSING THE LEGAL FRAMEWORK APPLICABLE TO REMEDIES
+              <ul>
+                <li><a href="https://storage.courtlistener.com/recap/gov.uscourts.vaed.533508/gov.uscourts.vaed.533508.1664.0.pdf" target=_blank>https://storage.courtlistener.com/recap/gov.uscourts.vaed.533508/gov.uscourts.vaed.533508.1664.0.pdf</a>
+              </ul>
+            </li>
+          </ul>
+          <p>意訳すると
+          <ul>
+            <li>
+              AI is reshaping ad tech at every level
+              <ul>
+                <li>AI はあらゆるレベルで AdTech の形を変えつつある
+              </ul>
+            </li>
+            <li>
+              non-open web display ad formats like Connected TV and retail media are exploding in popularity
+              <ul>
+                <li>Connected TV や Retail Media のような、Open でない Web Display Ad の人気が爆発的に高まっている
+              </ul>
+            </li>
+            <li>
+              Google&apos;s competitors are directing their investments to these new growth areas.
+              <ul>
+                <li>Google の競合他社は、こうした新たな成長分野に投資している。
+              </ul>
+            </li>
+          </ul>
+          <p>そして、こうも付け足している。
+          <blockquote>
+            <p>The fact is that today, the open web is already in rapid decline and Plaintiffs&apos; divestiture proposal would only accelerate that decline, harming publishers who currently rely on open-web display advertising revenue.
+            <p>As the law makes clear, the last thing a court should do is intervene to reshape an industry that is already in the midst of being reshaped by market forces.
+            <p>
+            </p>
+            <p>事実、今日の Open Web (Ads) はすでに急速に衰退しており、原告の分割提案はその衰退を加速させ、
+            <p>現在 Open Web のディスプレイ広告収入に依存しているパブリッシャーに打撃を与えるだけである。
+            <p>法律が明示しているように、裁判所は、すでに市場原理によって再構築されつつある業界に介入するべきではない。
+          </blockquote>
+          <p>ここでは &quot;the open web is already ~&quot; とされているため、「Web そのものの衰退」としてニュースで喧伝されているが、全体を読めば、あくまで「他の媒体と比べた時の、クローズでない、Web 広告」のことを指していると捉える方が妥当だろう。
+          <p>その点は、今回の係争そのものに対する Google からの非難にも現れている。
+          <blockquote>
+            <p>Harms to the open web.
+            <p>In the face of this significant hardship and uncertainty accompanying divestiture, Plaintiffs fail to acknowledge (let alone take into account) the reality that the world has moved significantly away from open-web display
+            <p>In January 2025, only 11% of display advertising impressions purchased by AdWords advertisers were for open-web display (for comparison, down from over 40% in January 2019).
+            <p>Plaintiffs are fighting for a remedy that would vanquish a past that has been overtaken by technological and market transformations in the way digital ads are consumed.
+            <p>
+            </p>
+            <p>Open Web への弊害
+            <p>分割に伴うこの重大な苦難と不確実性に直面して、原告は、世界が Open Web Display (ads) から大きく離れているという現実を認めていない(ましてや考慮に入れていない)。
+            <p>2025 年 1 月、AdWords の広告主が購入したディスプレイ広告のインプレッションのうち、Open Web Display 向けはわずか <em>11%</em> だった(2019 年 1 月比較で 40% 超減少)。
+            <p>原告は、デジタル広告の消費方法における技術と、市場の変革に追い越された過去を、打ち消す救済策を求めて戦っている。
+          </blockquote>
+          <p>2025 年 1 月の次点で 2019 年から 40% 減っているということは、既にコロナ前と比べて半減しているということだ。もう Web におけるディスプレイ広告は、広告市場の「中心」ではないと捉えるのが妥当と言えるだろう。
+          <p>では、広告市場の中心はどこに行ったのか? それは以下で述べられている。
+          <blockquote>
+            <p>Google&apos;s ad tech provider competitors, many of whom are major household names, have also uniformly directed their investments and focus to the most rapidly growing ad formats-not open-web display.
+            <p>Connected TV advertising via providers like Netflix and Disney is now &quot;the fastest-growing advertising channel in the U.S.&quot;
+            <p>And retail media advertising has experienced enormous investments by &quot;retailers of all sizes,&quot; with $60 billion expected to be spent in 2025.
+            <p>For example, Amazon invested in its demand-side platform, in particular through partnerships with TV providers, &quot;to clobber rivals The Trade Desk and Google in a key area of advertising&quot;;
+            <p>The Trade Desk worked with Spotify, a digital audio platform, to launch a Spotify ad exchange;
+            <p>and Magnite partnered with Samsung Ads to support Samsung&apos;s TV advertising and with Netflix to support Netflix&apos;s new, in-house ad suite.
+            <p>
+            </p>
+            <p>AdTech プロバイダとしての Google の競合他社(その多くは大手有名企業)もまた、オープン Web のディスプレイ広告ではなく、最も急速に成長している広告フォーマットに投資と集中を向けている。
+            <p>Netflix や Disney などのプロバイダを通じた Connected TV 広告は、今や「米国で最も急成長している広告チャンネル」である。
+            <p>また、小売メディア広告は「あらゆる規模の小売業者」によって莫大な投資が行われており、2025 年には <em>600 億ドル</em> が投じられると予想されている。
+            <p>例えば、Amazon は Demand-Side Platform、特に TV プロバイダとの提携に投資し、「広告の主要分野でライバルである Trade Desk や Google を打ち負かした」
+            <p>Trade Desk はデジタルオーディオプラットフォームの Spotify と協力し、Spotify の広告取引所を立ち上げた。
+            <p>そして Magnite は、Samsung のテレビ広告をサポートするために Samsung Ads と提携し、Netflix の新しい自社広告スイートをサポートするために Netflix と提携した。
+          </blockquote>
+          <p>動画/音声市場の強さが強調されている。そしてその市場は YouTube を持つ Google ですら掌握はできていない。つまり、そこに寡占状態があると認めるのは難しいことは、我々の体感とも合いそうだ。
+          <p>また他にも、例に漏れず AI の登場による市場の転換についても、随所に述べられている。
+          <p>問題は、これらの変化が 1 年そこらで起こっている点だ。CMA にしても DOJ にしても、話が始まったときと比べて Web を取り巻く産業構造は前提からして変わってしまったのだ。
+        </section>
+      </section>
+      <section>
+        <h2 id="損切りとしての中止"><a href="#損切りとしての中止">損切りとしての中止</a></h2>
+        <p>Chrome 売買を避けるためとはいえ、「もう Web の広告は儲からない」と、それで一時代を成してきた Google が、重厚なレビューを経た公式の文書で自ら言っているのだから、実際にそうなのだろう。
+        <p>つまり、3rd Party Cookie のユースケースだった「トラッキング」を最も必要としていた「<em>Web のディスプレイ広告</em>」は、デジタル広告事業の中心的なポジションには全くない。
+        <p>それは同時に、3rd Party Cookie 自体が、もうそんなに気にするほど重要な「問題」ではなくなってきていることを、暗に示唆しているようにも思う。
+        <p>むしろ、こうして産業構造が変化した中で、新聞社のようなニュースメディアが、どのように収入源を確保するのかを考える方が、全体としては重要な課題になっていることは、読者にも実感があるだろう。
+        <p>もう我々が戦うべき相手はとっくに変わっており、これ以上 3PC にリソースを投じること自体の価値が目減りした、つまりこれは「<em>損切り</em>」だったという解釈が、妥当だったように思う。
+        <p>Safari と Firefox が 3PC を戻すこともないだろう。他にも、エコシステムが用意した自衛手段は多々ある。今後は、ブラウザ内蔵の AI モデルによる、非決定的防御機構なども一定の期待ができ、それによって解消される懸念もあるだろう。
+        <p>3PC を一律に廃止して Web をぶっ壊す正義よりも、そこにかけるリソースを転嫁してでも戦うべき相手が、もう我々を取り囲んでいるのかもしれない。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>アナウンスが出て 2 日ほどしか経っていないため、今回のアナウンスに対する他のパーティーの反応は、今のところ確認できていない。
+        <p>前回の、Deprecating Deprecation 発表も、そこまで大きな騒ぎにならなかったように記憶しているため、もう業界自体が「どうでもいい」というフェーズになっているのかもしれない。
+        <p>気になるのは、わざわざアナウンスまでしていた IP Protection をどうするのか。そして、W3C でこれら API の策定に取り組んできた各 WG の反応くらいだ。
+        <p>こちらは、ちょうど来月日本で開催される TPAC に参加できるため、そこで様子を見てきたいと思う。
+        <p>そこで特に何もなければ、深くにも 2023 年から続いてしまったこのアドベントカレンダーも、いよいよ終わらせることができそうだ。
+        <p>Privacy Sandbox というプロジェクトが、世紀の大失敗プロジェクトだったのか、日の目を見なかった人類の叡智だったのかの判断は、後世に委ねたい。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
