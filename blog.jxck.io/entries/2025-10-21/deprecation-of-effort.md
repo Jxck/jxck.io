@@ -7,7 +7,7 @@
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
 
-宙に浮いていた Privacy Sandbox プロジェクトの、後始末が公開された。
+宙に浮いていた Privacy Sandbox プロジェクトの「後始末」が公開された。
 
 
 ## Privacy Sandbox の軌跡
@@ -24,9 +24,9 @@ Privacy Sandbox の開始は、以下のエントリの公開と捉えること�
 
 この時点では、「Privacy Sandbox の作業は続ける」といった言い回しで締められていた。
 
-ところが、多くの API は Chrome でしか実装されてないか、他のブラウザが実装するつもりの無いものであり、Chrome が 3rd Party Cookie を消さないのであれば、不要な API ばかりであった。
+ところが、多くの API は Chrome でしか実装されていないか、他のブラウザが実装するつもりのないものであり、Chrome が 3rd Party Cookie を消さないのであれば、不要な API ばかりであった。
 
-今回出た発表は、そうした「これ以上不要な API」についての作業を中止し、実装されてないものもふくめ Deprecate していくというものだった。
+今回出た発表は、そうした「これ以上不要な API」についての作業を中止し、実装されていないものも含め Deprecate していくというものだった。
 
 - 2025/10/17: Update on Plans for Privacy Sandbox Technologies
   - https://privacysandbox.com/news/update-on-plans-for-privacy-sandbox-technologies/
@@ -50,32 +50,32 @@ Privacy Sandbox の開始は、以下のエントリの公開と捉えること�
   - Private State Token
     - https://privacysandbox.google.com/protections/private-state-tokens
 - 廃止
-  - Attribution Reporting API(Chrome/Android)
+  - Attribution Reporting API (Chrome/Android)
     - https://privacysandbox.google.com/private-advertising/attribution-reporting/android
   - IP Protection
     - https://privacysandbox.google.com/protections/ip-protection
   - On-Device Personalization
     - https://privacysandbox.google.com/protections/on-device-personalization
-  - Private Aggregation(Shared Storage 含む)
+  - Private Aggregation (Shared Storage 含む)
     - https://privacysandbox.google.com/private-advertising/private-aggregation
-  - Protected Audience(Chrome/Android)
+  - Protected Audience (Chrome/Android)
     - https://privacysandbox.google.com/private-advertising/protected-audience
   - Protected App Signals
     - https://privacysandbox.google.com/private-advertising/protected-audience/android/protected-app-signals
-  - Related Website Sets(requestStorageAccessFor 含む)
+  - Related Website Sets (requestStorageAccessFor 含む)
     - https://privacysandbox.google.com/cookies/related-website-sets
   - SelectURL
     - https://privacysandbox.google.com/private-advertising/select-url
   - SDK Runtime
     - https://privacysandbox.google.com/private-advertising/sdk-runtime
-  - Topics(Chrome/Android)
+  - Topics (Chrome/Android)
     - https://privacysandbox.google.com/private-advertising/topics
 
-つまり、Privacy Sandbox の大半を締めていた「広告関連ユースケース」として提案されていたものは、軒並み廃止の対象となった形だ。
+つまり、Privacy Sandbox の大半を占めていた「広告関連ユースケース」として提案されていたものは、軒並み廃止の対象となった形だ。
 
 ところが、3rd Party Cookie が無くとも、「広告効果の計測は行いたい」というユースケースは、ITP や ETP を推し進めた Safari/Mozilla をしても妥当と捉えられている。Web における広告事業には効果測定が必須であり、それをユーザを追跡することなく行うことのモチベーションは共通しているからだ。
 
-Chrome 主導だった Attribution Reporting API, Apple 提案の PPA, Mozilla 主導の PCM と提案が乱立していた。
+Chrome 主導だった Attribution Reporting API、Apple 提案の PPA、Mozilla 主導の PCM と提案が乱立していた。
 
 - WICG/attribution-reporting-api: Attribution Reporting API
   - https://github.com/WICG/attribution-reporting-api
@@ -91,7 +91,7 @@ Chrome 主導だった Attribution Reporting API, Apple 提案の PPA, Mozilla �
 
 CHIPS や FedCM のように、既に一定の合意があり実装が進んでいるもの以外は、全て終わるということになる。Private State Token はまたかなり毛色が違い、広告以外にもかなり応用が期待されているため、残ったのだろう。
 
-IP Protection は、Safari でいう Private Relay 相当の機能だ。[4 月の段階](https://privacysandbox.com/news/privacy-sandbox-next-steps/)では「2025/Q3 で提供予定で、引き続き取り組む」という旨が書かれていたが、廃止のリストに入っている。すでにドメインリストベースの実装がプライベートモード向けに Ship のアナウンスがでているが、どうなるのかは気になるところだ。
+IP Protection は、Safari でいう Private Relay 相当の機能だ。[4 月の段階](https://privacysandbox.com/news/privacy-sandbox-next-steps/)では「2025/Q3 で提供予定で、引き続き取り組む」という旨が書かれていたが、廃止のリストに入っている。すでにドメインリストベースの実装がプライベートモード向けに Ship のアナウンスが出ているが、どうなるのかは気になるところだ。
 
 - Intent to Ship: IP Protection in Incognito using published Masked Domain list
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/EbdlJ3pc3NM/m/onR2VnBgAgAJ
@@ -121,27 +121,27 @@ IP Protection は、Safari でいう Private Relay 相当の機能だ。[4 月�
 
 ## CMA とのコミットメントとは?
 
-今回の連載を追っているとわかり、多くの人が勘違いしている点は、CMA と Google が何をしていたかだ。
+今回の連載を追っているとわかるが、多くの人が勘違いしている点は、CMA と Google が何をしていたかだ。
 
-よく Google が Privacy Sandbox を自分たちに理のある API に勝手にしないように、監視をするのが CMA という構図だと思われている。
+よく Google が、自分たちが使うために Privacy Sandbox を始め、そこで好き放題しないように監視をするのが CMA という構図だと思われている。
 
 実態はそうではない。
 
-Google が 3rd Party Cookie を Deprecate すると、ほぼ全てのプレイヤーが 3PC を用いたトラッキングができなくなる。
+Google が 3rd Party Cookie を廃止すると、もはや 3PC を用いたトラッキングは不可能になる。
 
-するとどうなるかというと、「1st Party Data(1PD)」を用いた広告戦略が重要になり、それを大量に持っている企業が有利になるのだ。
+するとどうなるかというと、「1st Party Data (1PD)」を用いた広告戦略が重要になり、それを大量に持っている企業が有利になるのだ。
 
-Google は、メールからカレンダー、YouTube から Store まで大量の 1PD を持ちつつ広告もやっている。1PD を持たない広告プロバイダは、どうしたって叶わない。
+Google は、メールからカレンダー、YouTube から Store まで大量の 1PD を持ちつつ広告もやっている。1PD を持たない広告プロバイダは、どうしたって敵わない。
 
 そのうえで Chrome を持っていることもあり、Google が独自に Chrome だけで使える機能などを入れないか、といった点ももちろん考慮される。
 
-つまり CMA が懸念していたのは、「業界の準備が整ってない状態で 3rd Party Cookie を Deprecate する」ことで、Google が一人勝ちすることだったのだ。
+つまり CMA が懸念していたのは、「業界の準備が整っていない状態で 3rd Party Cookie を廃止する」ことで、Google が一人勝ちすることだったのだ。
 
 そうならないための「準備」に当たるのが、代替手段としての Privacy Sandbox であり、それは Google のためというよりも、Google 以外のためと言っても過言ではなかった。
 
-しかし、今回 Google が「3rd Party Cookie の Deprecation を辞める」と宣言したことで、CMA が懸念していた問題自体がなくなったのだ。
+しかし、今回 Google が「3rd Party Cookie の廃止をやめる」と宣言したことで、CMA が懸念していた問題自体がなくなったのだ。
 
-結果、法的なプロセスに乗っ取り、コミットメントの解除に向けて進める、というのが Q2 の段階で始まっていた。
+結果、法的なプロセスに則り、コミットメントの解除に向けて進める、というのが Q2 の段階で始まっていた。
 
 
 ## コミットメント解除
@@ -172,7 +172,7 @@ CMA が行うべきことは、「コミットメントを解除しても問題�
 > 2025 年 6 月の協議に対する回答を慎重に検討した結果、
 > CMA は、競争上の懸念はもはや生じず、
 > コミットメントを解除することが適切であると考える合理的な根拠があるとの見解を維持している。
-> 2025 年 10 月 17 日、CMA は公約を解除する決定を下した。
+> 2025 年 10 月 17 日、CMA はコミットメントを解除する決定を下した。
 >
 > --- https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes
 
@@ -183,7 +183,7 @@ CMA が行うべきことは、「コミットメントを解除しても問題�
 
 Web から 3rd Party Cookie を廃止しようと始まった 1 つのサーガだった、この一連の流れだった。
 
-Privacy Sandbox のアナウンスは 2019 だが、Safari が ITP をアナウンスしたところまで遡れば 2017 年だ。
+Privacy Sandbox のアナウンスは 2019 年だが、Safari が ITP をアナウンスしたところまで遡れば 2017 年だ。
 
 Web が登場してから、その時点までの 30 年近くの間、3rd Party Cookie は確実に総力を結集してでも解決すべき「問題」だった。
 
@@ -216,18 +216,20 @@ Google は CMA との本件以外に、US の DOJ (司法省)とも裁判を行�
 - non-open web display ad formats like Connected TV and retail media are exploding in popularity
   - Connected TV や Retail Media のような、Open でない Web Display Ad の人気が爆発的に高まっている
 - Google's competitors are directing their investments to these new growth areas.
-  - グーグルの競合他社は、こうした新たな成長分野に投資している。
+  - Google の競合他社は、こうした新たな成長分野に投資している。
 
 そして、こうも付け足している。
 
 > The fact is that today, the open web is already in rapid decline and Plaintiffs' divestiture proposal would only accelerate that decline, harming publishers who currently rely on open-web display advertising revenue.
 > As the law makes clear, the last thing a court should do is intervene to reshape an industry that is already in the midst of being reshaped by market forces.
 >
-> 事実、今日の Open Web (Ads?) はすでに急速に衰退しており、原告の分割提案はその衰退を加速させ、
+> 事実、今日の Open Web (Ads) はすでに急速に衰退しており、原告の分割提案はその衰退を加速させ、
 > 現在 Open Web のディスプレイ広告収入に依存しているパブリッシャーに打撃を与えるだけである。
 > 法律が明示しているように、裁判所は、すでに市場原理によって再構築されつつある業界に介入するべきではない。
 
----
+ここでは "the open web is already ~" とされているため、「Web そのものの衰退」としてニュースで喧伝されているが、全体を読めば、あくまで「他の媒体と比べた時の、クローズでない、Web 広告」のことを指していると捉える方が妥当だろう。
+
+その点は、今回の係争そのものに対する Google からの非難にも現れている。
 
 > Harms to the open web.
 > In the face of this significant hardship and uncertainty accompanying divestiture, Plaintiffs fail to acknowledge (let alone take into account) the reality that the world has moved significantly away from open-web display
@@ -239,17 +241,9 @@ Google は CMA との本件以外に、US の DOJ (司法省)とも裁判を行�
 > 2025 年 1 月、AdWords の広告主が購入したディスプレイ広告のインプレッションのうち、Open Web Display 向けはわずか *11%* だった(2019 年 1 月比較で 40% 超減少)。
 > 原告は、デジタル広告の消費方法における技術と、市場の変革に追い越された過去を、打ち消す救済策を求めて戦っている。
 
----
+2025 年 1 月の次点で 2019 年から 40% 減っているということは、既にコロナ前と比べて半減しているということだ。もう Web におけるディスプレイ広告は、広告市場の「中心」ではないと捉えるのが妥当と言えるだろう。
 
-> Even just since the liability trial, the display ad industry has been transformed by significant disruptions that will only proliferate: AI is reshaping every level of display advertising, from ad buying to ad selling to creating entirely new kinds of enormously popular publishers, such as AI chatbots, who can monetize their display content.
-> For example, Meta has launched AI tools with the aim of "fully automat[ing] ad creation using AI"; sell-side providers like Index Exchange have integrated with AI to power ad curation4 ; and immensely popular generative AI products like Perplexity that "changed the course" of the Search case, Search, have started monetizing through ads.
-> As the Court will hear from Plaintiffs' own witnesses, AI will cause "new disruptions into the market on a weekly basis," creating a "wild-west scenario" that will be very difficult to predict.
->
-> 責任追及の裁判以来、ディスプレイ広告業界は大きな破壊によって変貌を遂げ、それは今後さらに拡大していくだろう: AI は、広告購入から広告販売、ディスプレイコンテンツを収益化できる AI チャットボットのような全く新しい種類の絶大な人気を誇るパブリッシャーの創出に至るまで、ディスプレイ広告のあらゆるレベルを再構築している。
-> 例えば、Meta は「AI を使った広告制作の完全自動化」を目指して AI ツールを発表し、Index Exchange のような Sell-side プロバイダは AI と統合して広告キュレーションを強化し、Search 事件の「流れを変えた」Perplexity のような絶大な人気を誇るジェネレーティブ AI 製品は、広告による収益化を開始している。
-> 法廷が原告自身の証人から聞くことになるように、AI は「毎週のように市場に新たな混乱」を引き起こし、予測が非常に困難な「西部開拓レベルの無秩序」を生み出すだろう。
-
----
+では、広告市場の中心はどこに行ったのか? それは以下で述べられている。
 
 > Google's ad tech provider competitors, many of whom are major household names, have also uniformly directed their investments and focus to the most rapidly growing ad formats-not open-web display.
 > Connected TV advertising via providers like Netflix and Disney is now "the fastest-growing advertising channel in the U.S."
@@ -258,34 +252,47 @@ Google は CMA との本件以外に、US の DOJ (司法省)とも裁判を行�
 > The Trade Desk worked with Spotify, a digital audio platform, to launch a Spotify ad exchange;
 > and Magnite partnered with Samsung Ads to support Samsung's TV advertising and with Netflix to support Netflix's new, in-house ad suite.
 >
-> Google の AdTech プロバイダである競合他社(その多くは大手有名企業である)もまた、Open Web Display (Ads)ではなく、最も急速に成長している広告フォーマットに一様に投資と集中を向けている。
+> AdTech プロバイダとしての Google の競合他社(その多くは大手有名企業)もまた、オープン Web のディスプレイ広告ではなく、最も急速に成長している広告フォーマットに投資と集中を向けている。
 > Netflix や Disney などのプロバイダを通じた Connected TV 広告は、今や「米国で最も急成長している広告チャンネル」である。
 > また、小売メディア広告は「あらゆる規模の小売業者」によって莫大な投資が行われており、2025 年には *600 億ドル* が投じられると予想されている。
 > 例えば、Amazon は Demand-Side Platform、特に TV プロバイダとの提携に投資し、「広告の主要分野でライバルである Trade Desk や Google を打ち負かした」
 > Trade Desk はデジタルオーディオプラットフォームの Spotify と協力し、Spotify の広告取引所を立ち上げた。
 > そして Magnite は、Samsung のテレビ広告をサポートするために Samsung Ads と提携し、Netflix の新しい自社広告スイートをサポートするために Netflix と提携した。
 
-これらの変化が 1 年そこらで起こっているのだ。
+動画/音声市場の強さが強調されている。そしてその市場は YouTube を持つ Google ですら掌握はできていない。つまり、そこに寡占状態があると認めるのは難しいことは、我々の体感とも合いそうだ。
 
-つまり、3rd Party Cookie のユースケースだった「トラッキング」を最も必要としていた「*Web のディスプレイ広告*」は、デジタル広告事業の中心的なポジションには全くおらず、その産業構造はとっくに変化しているのだ。
+また他にも、例に漏れず AI の登場による市場の転換についても、随所に述べられている。
 
-売買を避けるためとはいえ、「もう Web の広告は儲からない」と、それで一時代を成してきた Google が自分で言っているのだから、実際にそうなんだろう。
+問題は、これらの変化が 1 年そこらで起こっている点だ。CMA にしても DOJ にしても、話が始まったときと比べて Web を取り巻く産業構造は前提からして変わってしまったのだ。
 
-それは同時に、3rd Party Cookie 自体が、もうそんなに気にする程重要な「問題」ではなくなってきていることを、暗に示唆しているようにも思う。
 
-むしろ、こうして産業構造が変化した中で、新聞社ようなニュースメディアが、どのように収入源を確保するのかを考える方が、全体としては重要な課題になっていることは、読者にも実感があるだろう。
+## 損切りとしての中止
+
+Chrome 売買を避けるためとはいえ、「もう Web の広告は儲からない」と、それで一時代を成してきた Google が、重厚なレビューを経た公式の文書で自ら言っているのだから、実際にそうなのだろう。
+
+つまり、3rd Party Cookie のユースケースだった「トラッキング」を最も必要としていた「*Web のディスプレイ広告*」は、デジタル広告事業の中心的なポジションには全くない。
+
+それは同時に、3rd Party Cookie 自体が、もうそんなに気にするほど重要な「問題」ではなくなってきていることを、暗に示唆しているようにも思う。
+
+むしろ、こうして産業構造が変化した中で、新聞社のようなニュースメディアが、どのように収入源を確保するのかを考える方が、全体としては重要な課題になっていることは、読者にも実感があるだろう。
 
 もう我々が戦うべき相手はとっくに変わっており、これ以上 3PC にリソースを投じること自体の価値が目減りした、つまりこれは「*損切り*」だったという解釈が、妥当だったように思う。
+
+Safari と Firefox が 3PC を戻すこともないだろう。他にも、エコシステムが用意した自衛手段は多々ある。今後は、ブラウザ内蔵の AI モデルによる、非決定的防御機構なども一定の期待ができ、それによって解消される懸念もあるだろう。
+
+3PC を一律に廃止して Web をぶっ壊す正義よりも、そこにかけるリソースを転嫁してでも戦うべき相手が、もう我々を取り囲んでいるのかもしれない。
 
 
 ## Outro
 
-アナウンスが出て 2 日程しか経ってないため、今回のアナウンスに対する他のパーティーの反応は、今のところ確認できてない。
+アナウンスが出て 2 日ほどしか経っていないため、今回のアナウンスに対する他のパーティーの反応は、今のところ確認できていない。
 
 前回の、Deprecating Deprecation 発表も、そこまで大きな騒ぎにならなかったように記憶しているため、もう業界自体が「どうでもいい」というフェーズになっているのかもしれない。
 
-気になるのは、わざわざアナウンスまでしていた IP Protection をどうするのか。
+気になるのは、わざわざアナウンスまでしていた IP Protection をどうするのか。そして、W3C でこれら API の策定に取り組んできた各 WG の反応くらいだ。
 
-そして、W3C でこれら API の策定に取り組んできた各 WG の反応だ。こちらは、ちょうど来月日本で開催される TPAC に参加できるため、そこで様子を見てきたいと思う。
+こちらは、ちょうど来月日本で開催される TPAC に参加できるため、そこで様子を見てきたいと思う。
 
 そこで特に何もなければ、深くにも 2023 年から続いてしまったこのアドベントカレンダーも、いよいよ終わらせることができそうだ。
+
+Privacy Sandbox というプロジェクトが、世紀の大失敗プロジェクトだったのか、日の目を見なかった人類の叡智だったのかの判断は、後世に委ねたい。
