@@ -1,4 +1,4 @@
-# [1Password][security] 1Password Business 運用の検証 #0
+# [1password][security] 1Password Business 運用の検証 #0
 
 ## Intro
 
