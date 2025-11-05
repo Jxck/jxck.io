@@ -13,13 +13,11 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 188 回のテーマは 2025 年 10 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 142
-
 
 #### Updates
 
@@ -210,7 +208,7 @@ guest: [@saku](https://x.com/sakupi01)
   - 「計算値」を利用するのは、自己参照ループを防ぐため
   - 「直親要素」に限定されているのは、パフォーマンスの観点から、Style Invalidation の範囲を限定するため
   - 親要素に相対的な `border-radius` 、カラー、親要素の前景色と背景色を反転させた色合わせなど、考えられるユースケースは多岐に渡る
-  - 現状では *カスタムプロパティのみ* サポート
+  - 現状では **カスタムプロパティのみ** サポート
   - ちなみに、デザイントークンの Pain Points 改善活動の一部
   - [High-level] Making it less painful to communicate design tokens across parties
     - https://github.com/w3c/csswg-drafts/issues/10948
