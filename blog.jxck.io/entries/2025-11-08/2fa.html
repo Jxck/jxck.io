@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-11-08/2fa.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、1Password Advent Calendar の 5 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwor...">
+  <meta name=keywords            content="1password,security">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-11-08/2fa.html>
+  <meta property=og:title        content="1Password AC #5: 1Password アカウントへの 2FA | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、1Password Advent Calendar の 5 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwor...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "1Password AC #5: 1Password アカウントへの 2FA | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-11-08T08:00:00+08:00",
+    "dateModified": "2025-11-07T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、1Password Advent Calendar の 5 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwor..."
+  }
+  </script>
+
+  <title>1Password AC #5: 1Password アカウントへの 2FA | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-11-08>2025-11-08</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-11-07>2025-11-07</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#1password">1password</a>
+              <li><a href="/tags#security">security</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#2fa-の追加">2FA の追加</a>
+              <li><a href="#ビジネスアカウントの場合">ビジネスアカウントの場合</a>
+              <li><a href="#個人アカウントの場合">個人アカウントの場合</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">1Password AC #5: 1Password アカウントへの 2FA</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、1Password Advent Calendar の 5 日目である。
+        <ul>
+          <li>
+            1Password - Qiita Advent Calendar 2025 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2025/1password" target=_blank>https://qiita.com/advent-calendar/2025/1password</a>
+            </ul>
+          </li>
+        </ul>
+        <p>このシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。
+        <ul>
+          <li>
+            1Password Business 運用ガイド素案 - Google ドキュメント
+            <ul>
+              <li><a href="https://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw" target=_blank>https://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ここでは、1Password アカウントに対する 2FA の有効化について検討する。
+      </section>
+      <section>
+        <h2 id="2fa-の追加"><a href="#2fa-の追加">2FA の追加</a></h2>
+        <p>1Password のアカウントは、Secret Key と Master Password の二要素によって認証している。
+        <p>しかし、両者が平文文字列であるため、フィッシング詐欺への耐性がないことは懸念すべき点だ。
+        <p>ここに対して、2FA を設定し Authenticator (TOTP や物理キー)を追加すれば、両方の文字列が盗まれても、アカウントを奪うことは難しくなる。
+        <p>したがって、他の認証がそうであるように、1Password にも Authenticator を追加するのが理想だ。初回のログイン時(Secret Key と同じ登場頻度)なので、通常利用でも負荷にならない。
+        <p>ところが、これも個人アカウントかビジネスアカウントかで、考えることが変わってくる。
+      </section>
+      <section>
+        <h2 id="ビジネスアカウントの場合"><a href="#ビジネスアカウントの場合">ビジネスアカウントの場合</a></h2>
+        <p>今回は、先にビジネスアカウントについて考えてみる。
+        <p>多くの企業では、社員を統合 ID 管理(例えば MS Entra ID など)で管理しているだろう。
+        <p>その場合、企業が管理する Authenticator を社員に提供し、SSO などで使用するような運用をしている場合が多い。
+        <p>こうした Authenticator は、社員が気にしなくても、端末の紛失などは企業の管理者によってリカバリが可能になっている。
+        <p>したがって、社員は 1Password の 2FA に、この業務用として配布済みの Authenticator を登録すればよいのだ。
+        <p>何かあっても、情シスなどに依頼して、端末から ID から 1Password から全てリカバリを依頼できるなら、これは非常に強力な後ろ盾なので、登録しない理由も特になくなってくる。
+        <p>メンバーに配布済みの Authenticator があるのであれば、管理者はポリシーから「二要素認証の強制」を有効にすれば良い。
+        <p>
+          <picture>
+            <source type=image/avif srcset=authenticator.avif?251107_014046>
+            <source type=image/webp srcset=authenticator.webp?251107_014046>
+            <img loading=lazy decoding=async src=authenticator.png?251107_014046 alt="二要素認証の強制" width=484 height=156>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="個人アカウントの場合"><a href="#個人アカウントの場合">個人アカウントの場合</a></h2>
+        <p>問題は、管理者がいない個人アカウントだ。
+        <p>個人アカウントで運用する 1Password には、あらゆるログインの 2FA も集約されるだろう。すると、1Password ユーザが運用する Authenticator は基本的に 1Password のみになる。
+        <p>しかし、1Password のアカウント自体に 2FA を適用するのであれば、その Authenticator として 1Password を指定することは当然できない。つまり、別途 Authenticator を用意する必要が出てくる。
+        <p>これが仮に Authy のようなアプリベースであれば、「では Authy のバックアップコードはどこに保存するか?」という問題が発生し、それを 1Password にすれば循環参照になる。1Password 以外に保存するのであれば、Secret Key の保管と同じようなバックアップ手段をまた考える必要がある。物理キーでも同じだ。紛失したり壊れたりしても良いように、バックアップを考える必要が出てくる。
+        <p>つまり、個人の場合は 2FA を追加しても、むしろ考えることを増やしているだけで、もし失敗すればアカウントが詰む可能性を増やす。
+        <p>Secret Key と Master Password が両方漏洩することを危惧するよりも、気にかけるべきものを増やし、その運用に失敗してアカウントをロストする方がリスクとしては大きいだろう。
+        <p>したがって、筆者は個人用 1Password アカウントでは 2FA の導入はやめたほうが良いと考えている。考えることを減らし、「Secret Key をロストしない」だけに集中する。
+        <p>フィッシング詐欺は、「Secret Key を入れることは滅多にない。入れる時はまずアプリから入れる」という意識を徹底すれば、ある程度カバーできるだろう。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>やはり、自分でなんとかするしかなかった個人の 1Password アカウントよりも、管理者が存在するビジネスアカウントの方が、何かあった時にリカバリを依頼できる点で、バックアップの難易度がぐっと下がる。
+        <p>1 つでも Business アカウントのチームに入っていれば、それは強力なアドバンテージになるのだ。
+        <p>そして、Business アカウントのチームに入ることは、個人アカウントにとって金銭的なメリットもある。
+        <p>次回はそれを解説する。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
