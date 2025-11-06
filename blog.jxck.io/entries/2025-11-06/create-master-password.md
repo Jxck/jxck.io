@@ -2,6 +2,11 @@
 
 ## Intro
 
+このエントリは、組織において 1Password Business を運用する上での考慮点を解説する。
+
+- 1Password Business 運用ガイド素案 - Google ドキュメント
+  - https://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw/edit?tab=t.0#heading=h.tt9z21tir3fm
+
 前回は「1Password の Master Password はマルチアカウントで共通して使って良い」という解説をした。
 
 - 1Password の Master Password は使い回すべき理由 | blog.jxck.io
