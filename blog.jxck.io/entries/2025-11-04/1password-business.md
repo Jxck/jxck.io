@@ -1,6 +1,11 @@
-# [1password][security] 1Password Business 運用の検証 #0
+# [1password][security] 1Password AC #1: Business アカウント運用の検証
 
 ## Intro
+
+このエントリは、1Password Advent Calendar の 1 日目である。
+
+- 1Password - Qiita Advent Calendar 2025 - Qiita
+  - https://qiita.com/advent-calendar/2025/1password
 
 1Password を個人で使うだけでなく、組織全体で利用することで、開発に必要なアカウントを共有したり、CLI を使って自動化するといった、様々なメリットがある。
 

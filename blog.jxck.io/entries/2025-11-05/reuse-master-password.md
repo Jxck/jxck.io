@@ -1,8 +1,13 @@
-# [1password][security] 1Password の Master Password は使い回すべき理由 #1
+# [1password][security] 1Password AC #2: Master Password をマルチアカウントで使い回すべき理由
 
 ## Intro
 
-このエントリは、組織において 1Password Business を運用する上での考慮点を解説する。
+このエントリは、1Password Advent Calendar の 2 日目である。
+
+- 1Password - Qiita Advent Calendar 2025 - Qiita
+  - https://qiita.com/advent-calendar/2025/1password
+
+このシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。
 
 - 1Password Business 運用ガイド素案 - Google ドキュメント
   - https://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw
