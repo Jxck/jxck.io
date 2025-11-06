@@ -5,7 +5,7 @@
 このエントリは、組織において 1Password Business を運用する上での考慮点を解説する。
 
 - 1Password Business 運用ガイド素案 - Google ドキュメント
-  - https://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw/edit?tab=t.0#heading=h.tt9z21tir3fm
+  - https://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw
 
 個人で 1Password を使っている人が、1Password Business を導入している組織にジョインする場合、新しく組織用のアカウントが発行される。
 
