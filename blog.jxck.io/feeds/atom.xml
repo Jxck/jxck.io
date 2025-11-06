@@ -8,35 +8,35 @@
 <updated>2016-01-28T18:30:02Z</updated>
 
   <entry>
-   <title>Secret Key の運用とアカウントリカバリ #3</title>
+   <title>1Password AC #4: Secret Key の運用とアカウントリカバリ</title>
    <link href="https://blog.jxck.io/entries/2025-11-07/secret-key.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-07</id>
    <updated>2025-11-07T00:00:00Z</updated>
-   <summary>このエントリは、組織において 1Password Business を運用する上での考慮点を解説する。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw/edit?tab=t.0#heading=h.tt9z21tir3fmここまで 1Password における Master Password について解説してきた。記憶に頼る Master Password と異なり、Secret Key は実質的に所有の要素となる。本エントリでは、この Secret Key の扱いについて解説する。</summary>
+   <summary>このエントリは、1Password Advent Calendar の 4 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmwここまで 1Password における Master Password について解説してきた。記憶に頼る Master Password と異なり、Secret Key は実質的に所有の要素となる。本エントリでは、この Secret Key の扱いについて解説する。</summary>
   </entry>
 
   <entry>
-   <title>1Password の Master Password の作り方 #2</title>
+   <title>1Password AC #3: Master Password の作り方</title>
    <link href="https://blog.jxck.io/entries/2025-11-06/create-master-password.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-06</id>
    <updated>2025-11-06T00:00:00Z</updated>
-   <summary>このエントリは、組織において 1Password Business を運用する上での考慮点を解説する。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw/edit?tab=t.0#heading=h.tt9z21tir3fm前回は「1Password の Master Password はマルチアカウントで共通して使って良い」という解説をした。1Password の Master Password は使い回すべき理由 | blog.jxck.iohttps://blog.jxck.io/entries/2025-11-05/reuse-master-password.htmlこれは 1Password のマルチアカウントが「単一ユーザ内のスコープ」として設計されていること、そして「Master Password が覚えるべき最後の 1 つのパスワード」であるという設計思想に基づくものだった。つまり、「Master Password」をいかに堅牢に作るかは、1Password ユーザにとって非常に重要だ。「そんな Master Password はどう作ればよいか?」について解説を試みる。</summary>
+   <summary>このエントリは、1Password Advent Calendar の 3 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw前回は「1Password の Master Password はマルチアカウントで共通して使って良い」という解説をした。1Password の Master Password は使い回すべき理由 | blog.jxck.iohttps://blog.jxck.io/entries/2025-11-05/reuse-master-password.htmlこれは 1Password のマルチアカウントが「単一ユーザ内のスコープ」として設計されていること、そして「Master Password が覚えるべき最後の 1 つのパスワード」であるという設計思想に基づくものだった。つまり、「Master Password」をいかに堅牢に作るかは、1Password ユーザにとって非常に重要だ。「そんな Master Password はどう作ればよいか?」について解説を試みる。</summary>
   </entry>
 
   <entry>
-   <title>1Password の Master Password は使い回すべき理由 #1</title>
+   <title>1Password AC #2: Master Password をマルチアカウントで使い回すべき理由</title>
    <link href="https://blog.jxck.io/entries/2025-11-05/reuse-master-password.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-05</id>
    <updated>2025-11-05T00:00:00Z</updated>
-   <summary>このエントリは、組織において 1Password Business を運用する上での考慮点を解説する。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw/edit?tab=t.0#heading=h.tt9z21tir3fm個人で 1Password を使っている人が、1Password Business を導入している組織にジョインする場合、新しく組織用のアカウントが発行される。つまり、1Password をマルチアカウントで運用することになる。関わる組織が増えていけば、切り替えるアカウントもどんどん増えていくが、1Password はマルチアカウントの UI がよくできているため、負担になることは特にないだろう。このとき、追加する別アカウントの Master Password は、それまで使っているものを「使い回す」ことが推奨されている。「パスワードを使い回すのは避けるべき」というのが、認証において啓蒙し続けられた基本だった。ではなぜ 1Password のマルチアカウントでは、推奨されるのだろうか。</summary>
+   <summary>このエントリは、1Password Advent Calendar の 2 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw個人で 1Password を使っている人が、1Password Business を導入している組織にジョインする場合、新しく組織用のアカウントが発行される。つまり、1Password をマルチアカウントで運用することになる。関わる組織が増えていけば、切り替えるアカウントもどんどん増えていくが、1Password はマルチアカウントの UI がよくできているため、負担になることは特にないだろう。このとき、追加する別アカウントの Master Password は、それまで使っているものを「使い回す」ことが推奨されている。「パスワードを使い回すのは避けるべき」というのが、認証において啓蒙し続けられた基本だった。ではなぜ 1Password のマルチアカウントでは、推奨されるのだろうか。</summary>
   </entry>
 
   <entry>
-   <title>1Password Business 運用の検証 #0</title>
+   <title>1Password AC #1: Business アカウント運用の検証</title>
    <link href="https://blog.jxck.io/entries/2025-11-04/1password-business.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-04</id>
    <updated>2025-11-04T00:00:00Z</updated>
-   <summary>1Password を個人で使うだけでなく、組織全体で利用することで、開発に必要なアカウントを共有したり、CLI を使って自動化するといった、様々なメリットがある。組織で 1Password を展開する際は、1Password を Business プランで契約し、ドメインに所属するメンバーにアカウントを発行することになるだろう。その際、組織でどのようなルールを設け、どのような方法で管理し、どのように組織に合わせた設計を行うかは、多くの人が同じような検証を実施することになると思われる。今回は筆者 (Jxck) が、自分で持っている mozaic.fm のドメインを用いて、ビジネスアカウントを契約し、汎用的な運用方法の素案を検討した。その成果をドキュメントにまとめたので、同じように 1Password の組織展開を考えている際は参考になればと思う。</summary>
+   <summary>このエントリは、1Password Advent Calendar の 1 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1password1Password を個人で使うだけでなく、組織全体で利用することで、開発に必要なアカウントを共有したり、CLI を使って自動化するといった、様々なメリットがある。組織で 1Password を展開する際は、1Password を Business プランで契約し、ドメインに所属するメンバーにアカウントを発行することになるだろう。その際、組織でどのようなルールを設け、どのような方法で管理し、どのように組織に合わせた設計を行うかは、多くの人が同じような検証を実施することになると思われる。今回は筆者 (Jxck) が、自分で持っている mozaic.fm のドメインを用いて、ビジネスアカウントを契約し、汎用的な運用方法の素案を検討した。その成果をドキュメントにまとめたので、同じように 1Password の組織展開を考えている際は参考になればと思う。</summary>
   </entry>
 
   <entry>
