@@ -150,10 +150,36 @@ UI を見てもわかるように、個別のユーザを指定して追加す�
 
 ## Team Group/Vault
 
-まずは素直に Frontend/Backend の Group を作り、そこにメンバーをアサインする。
+まずは素直に Frontend/Backend の Group を作り、そこにメンバーをアサインする。ここで同時に Vault も作る。
 
-Group を作れば同時に Vault が作られるため、 Vault が以下のようになるだろう。
+![Group の作成](create-group.png)
 
-![Frontend Team](frontend_team.png#833x627)
+作成したグループのメンバーを整理する。デフォルトでは管理者も追加されるが、ダッシュボードから操作できるため、追加しておく必要は特になさそうだ。ここでは Alice と Charlie を追加する。
+
+![Frontend Group の設定](frontend-group.png)
+
+次に Vault を整理する。 Frontend Group は最初から割り当てられている。 所有者 Group も追加されているが、これは削除できない。Vault 内は企業の資産とも言えるため、所有者 Group はデフォルトなのだろう。ただ、管理はあくまで管理者 Group で行っているため、こちらには管理者 Group も追加した。
+
+![Frontend Vault の設定](frontend-vault.png)
+
+同じことを Backend でも作れば、チームに必要な Group と Vault の作成は完了だ。
+
+## Manager Group
+
+Alice と Bob は、チームを管理するマネージャであるが、 Business アカウント全体の管理者である必要はないため、ここで権限の分離を行いたい。
+
+そこで Vault を持たない Manager Group を作り、 Alice と Bob を追加する。ここに、チームメンバーよりも強い権限を付与する。
+
+![TODO]()
+
+次に Vault だが、方針は大きく二つ考えられる。
+
+- それぞれを個別に Vault の管理者にする
+- Manager Group に両方の Vault を追加する
 
 
+今回はチームにマネージャが一人なので、 Vault に一人づつついかすればそれでも足りる。
+
+しかし、 Frontend/Backend Vault 両方に Manager Group を追加することで、二人をマネージャとして機能させることもできる。この場合、例えば Bob が Frontend Vault も見えてしまう。
+
+この場合は、 Team x Manager ごとの Group をまた作るなど、方法は考えられる。
