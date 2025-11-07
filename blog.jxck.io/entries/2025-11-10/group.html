@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2025-11-10/group.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="このエントリは、1Password Advent Calendar の 7 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwor...">
+  <meta name=keywords            content="1password,security">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2025-11-10/group.html>
+  <meta property=og:title        content="1Password AC #7: Group と Vault の運用 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="このエントリは、1Password Advent Calendar の 7 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwor...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "1Password AC #7: Group と Vault の運用 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2025-11-10T08:00:00+08:00",
+    "dateModified": "2025-11-07T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "このエントリは、1Password Advent Calendar の 7 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwor..."
+  }
+  </script>
+
+  <title>1Password AC #7: Group と Vault の運用 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2025-11-10>2025-11-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-11-07>2025-11-07</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#1password">1password</a>
+              <li><a href="/tags#security">security</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#group">Group</a>
+              <ol>
+                <li><a href="#管理用アカウントは必要か">管理用アカウントは必要か</a>
+                <li><a href="#security-group">Security Group</a>
+                <li><a href="#チームメンバー">チームメンバー</a>
+              </ol>
+              <li><a href="#vault">Vault</a>
+              <ol>
+                <li><a href="#vault-へのアクセス権">Vault へのアクセス権</a>
+              </ol>
+              <li><a href="#実運用を想定した検証">実運用を想定した検証</a>
+              <li><a href="#team-groupvault">Team Group/Vault</a>
+              <li><a href="#manager-group">Manager Group</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">1Password AC #7: Group と Vault の運用</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、1Password Advent Calendar の 7 日目である。
+        <ul>
+          <li>
+            1Password - Qiita Advent Calendar 2025 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2025/1password" target=_blank>https://qiita.com/advent-calendar/2025/1password</a>
+            </ul>
+          </li>
+        </ul>
+        <p>このシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。
+        <ul>
+          <li>
+            1Password Business 運用ガイド素案 - Google ドキュメント
+            <ul>
+              <li><a href="https://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw" target=_blank>https://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今回は、Business アカウントを運用する上で重要な、Group/Vault の概念について解説する。
+      </section>
+      <section>
+        <h2 id="group"><a href="#group">Group</a></h2>
+        <p>権限管理の方式は色々あるが、1Password ではユーザを Vault に追加し、その Vault に権限を付与することで管理するのが基本だ。
+        <p>いわゆる管理者となるアカウントも、実態は「管理」Vault に入ったユーザという形だ。
+        <p>デフォルトで作られている Vault は以下の 3 つがある。
+        <ul>
+          <li>所有者 (Owner)
+          <li>管理者 (Admin)
+          <li>チームメンバー (Team Member)
+        </ul>
+        <p>
+          <picture>
+            <source type=image/avif srcset=default-groups.avif?251107_225907>
+            <source type=image/webp srcset=default-groups.webp?251107_225907>
+            <img loading=lazy decoding=async src=default-groups.png?251107_225907 alt="default groups" width=338 height=434>
+          </picture>
+        </p>
+        <p>この Vault に振られたデフォルトの権限は以下だ。
+        <p>
+          <picture>
+            <source type=image/avif srcset=default-permission.avif?251107_225907>
+            <source type=image/webp srcset=default-permission.webp?251107_225907>
+            <img loading=lazy decoding=async src=default-permission.png?251107_225907 alt="default permission" width=716 height=437>
+          </picture>
+        </p>
+        <p>つまり最も権限が強いのは「所有者 (Owner)」だが、「管理者 (Admin)」との差分は支払い周りなので、いわゆる組織の運用上はあまり気にする必要はない。
+        <p>つまり、基本は「管理者」と「メンバー」がいると思えば良い。
+        <p>Business アカウントを作ったら、まず最初にこの「管理者」Vault に複数のアカウントを登録し、SPoF を防ぐのが重要だ。
+        <section>
+          <h3 id="管理用アカウントは必要か"><a href="#管理用アカウントは必要か">管理用アカウントは必要か</a></h3>
+          <p>企業においてこうしたソリューションを運用する際に、「管理者用のアカウントを作るか」という点は議論になる。
+          <p>要するにこの場合は、<code translate=no>admin@example.com</code> のようなメールアドレスを用意し、それを用いて &quot;Admin&quot; のようなアカウントを作り、そのアカウントを管理担当者で共有するといった運用だ。
+          <p>検証した結論から言うと、1Password の場合、そのアカウントは不要と考えて良さそうだ。
+          <p>もしここで &quot;Admin&quot; アカウントを作れば、それは別途共有する必要があり、その Master Password / Secret Key をどう共有するかの問題が出る。全員が 1Password を使っているなら、それをアイテムにして共有するといったことになるだろう。
+          <p>そもそも Owner は Vault なので、管理担当者は個々に自分のメールアドレスを用いてアカウントを作り、それを Owner Vault に追加するのが 1Password の運用方法になる。
+          <p>このメリットは、「誰が Owner であるか」の管理が 1Password の Vault を見ればわかる点だ。Admin アカウントをアイテムに入れて共有すると、ダッシュボードだけでなく、そのアイテムの共有範囲を別途管理する必要があり、二度手間なだけになる。
+          <p>また、1Password のダッシュボードでは、アカウントごとのアクティビティも細かくログが残るため、重要な変更などを行った場合、そのアカウントの特定などが容易にできる。
+          <p>もし、ここで &quot;Admin&quot; アカウントでログが残ると、ではその 「&quot;Admin&quot; アカウントを使っていたのは誰なのか?」がわからなくなってしまう。
+          <p>個々がきちんと管理している、それぞれの Business アカウントを「管理者」Vault に追加し、素直に運用するのが 1Password Business の機能を最も有効に使えるだろう。
+        </section>
+        <section>
+          <h3 id="security-group"><a href="#security-group">Security Group</a></h3>
+          <p>もう 1 つ、デフォルトでは作られていない Security という Vault がある。
+          <p>これは、「ドメイン侵害レポート」という機能を有効にすることで作られ、そのレポートを見ることができる権限が付与される Vault だ。
+          <p>
+            <picture>
+              <source type=image/avif srcset=domain-breach-report.avif?251107_225907>
+              <source type=image/webp srcset=domain-breach-report.webp?251107_225907>
+              <img loading=lazy decoding=async src=domain-breach-report.png?251107_225907 alt="ドメイン侵害レポート" width=625 height=467>
+            </picture>
+          </p>
+          <ul>
+            <li>
+              ドメイン侵害レポート | 1Password
+              <ul>
+                <li><a href="https://1password.com/jp/business/domain-breach-report/" target=_blank>https://1password.com/jp/business/domain-breach-report/</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これは、Have I Been Pwned などで公開された漏洩アカウントのリストに、チームメンバーのアドレスが存在しないかをチェックする機能のようだ(検証中ではレポートを見ることができなかった)。
+          <p>この機能のみ Vault が別で、「管理者」Vault に権限を振ることもできないようだ。なぜそうなっているのかはよくわからなかったが、おそらくレポート内容の機微性を踏まえてそうなっているのだろう。
+        </section>
+        <section>
+          <h3 id="チームメンバー"><a href="#チームメンバー">チームメンバー</a></h3>
+          <p>デフォルトでは、追加したユーザは全て「チームメンバー」Vault に追加される。
+          <p>組織が小さいうちはそれでも良いだろうが、大きくなってくるといくつかの問題が出るだろう。
+          <ul>
+            <li>「管理者」だと権限が強すぎるため、ある程度の権限を保つ「マネージャ」ロールが欲しい
+            <li>組織にあるチームの実態に合わせて、Vault を管理したい
+          </ul>
+          <p>特に後者は、権限が同じだとしても、共有するアイテムが異なるため、Vault の単位を分けたくなる。このとき、Group も一緒に分けてしまうと、管理しやすくなる。
+        </section>
+      </section>
+      <section>
+        <h2 id="vault"><a href="#vault">Vault</a></h2>
+        <p>Group がユーザを束ねる単位なのに対して、Vault はアイテムを束ねる単位だ。
+        <p>デフォルトでは以下の 2 つの Vault が作成されている。
+        <ul>
+          <li>従業員 (Employee)
+          <li>共有 (Shared)
+        </ul>
+        <p>前者は、メンバーごとに異なる「自分だけのアイテム」を入れるための Vault だ。
+        <p>後者は、名前の通りメンバー間で共有するアイテムを入れるためのものだ。デフォルトでは、ここに入れれば組織内の全員に共有されることになる。
+        <p>Vault でアイテムを共有できるのは、組織で 1Password を導入する大きなメリットの 1 つだ。
+        <p>例えば、特定サービスの管理者パスワードを入れて共有できる。従来は、どこかにパスワードを書いて共有していたようなものが、Passkey に移行しても、アイテムさえ共有しておけば誰でもログインできるのだ。
+        <p>また、共通して使う Access Token 系の値を入れて共有するのも便利だ。別途解説する CLI を使えば、環境変数の適用まで自動化できる。Token のローテーションがある場合も、担当者が 1Password 上で更新すれば、メンバー全員が常に最新の値を使用できる。
+        <section>
+          <h3 id="vault-へのアクセス権"><a href="#vault-へのアクセス権">Vault へのアクセス権</a></h3>
+          <p>Vault へのアクセス権の管理は、ダッシュボード上で行う。
+          <p>
+            <picture>
+              <source type=image/avif srcset=shared-vault.avif?251107_225907>
+              <source type=image/webp srcset=shared-vault.webp?251107_225907>
+              <img loading=lazy decoding=async src=shared-vault.png?251107_225907 alt="Vault へのアクセス権" width=625 height=308>
+            </picture>
+          </p>
+          <p>UI を見てもわかるように、個別のユーザを指定して追加することもできるが、基本は Group を追加して、そこに権限(表示、編集 etc)を割り当てる仕様になっている。
+          <p>このように、基本的には Vault へのアクセスは Group の単位で行うようにし、Vault には対応する Group がある状態が運用しやすいだろう。
+          <p>いちいち Vault と対応する Group を作るのは面倒そうに思うかもしれないが、Group を作る際に「対応する Vault を作る」というオプションがあるため、この組み合わせを作るのは難しくない。
+          <p>「管理者」 Group は自動で追加されるため、管理から外れてしまうこともない。
+        </section>
+      </section>
+      <section>
+        <h2 id="実運用を想定した検証"><a href="#実運用を想定した検証">実運用を想定した検証</a></h2>
+        <p>では、実際の運用はどうなるか、1 つの典型的な組織モデルを想定し、Group/Vault の設計を試してみる。
+        <p>今回想定するのは以下のような組織だ。
+        <ul>
+          <li>Jxck (管理者)
+          <li>
+            Frontend Team
+            <ul>
+              <li>Alice (マネージャ)
+              <li>Charlie
+            </ul>
+          </li>
+          <li>
+            Backend Team
+            <ul>
+              <li>Bob (マネージャ)
+              <li>Dave
+            </ul>
+          </li>
+          <li>Eve (業務委託)
+        </ul>
+        <p>
+          <img loading=lazy decoding=async src=organization.svg?251107_225907 alt="想定する組織の構成" width=400 height=300>
+        </p>
+        <p>2 つのチームは、それぞれ扱うアイテムが異なるため、Vault は別で作りたい。
+        <p>またチームの中で「マネージャ」だけは、メンバーを管理できる権限を付与したい。
+        <p>そして、Backend チームには業務委託のメンバーが参加している。
+        <p>この状態を運用する設計を考えてみよう。
+      </section>
+      <section>
+        <h2 id="team-groupvault"><a href="#team-groupvault">Team Group/Vault</a></h2>
+        <p>まずは素直に Frontend/Backend の Group を作り、そこにメンバーをアサインする。ここで同時に Vault も作成する。
+        <p>
+          <picture>
+            <source type=image/avif srcset=create-group.avif?251107_225907>
+            <source type=image/webp srcset=create-group.webp?251107_225907>
+            <img loading=lazy decoding=async src=create-group.png?251107_225907 alt="Group の作成" width=483 height=620>
+          </picture>
+        </p>
+        <p>作成した Group のメンバーを整理する。デフォルトでは管理者も追加されるが、ダッシュボードから操作できるため、追加しておく必要は特になさそうだ。ここでは Alice と Charlie を追加する。
+        <p>
+          <picture>
+            <source type=image/avif srcset=frontend-group.avif?251107_225907>
+            <source type=image/webp srcset=frontend-group.webp?251107_225907>
+            <img loading=lazy decoding=async src=frontend-group.png?251107_225907 alt="Frontend Group の設定" width=668 height=261>
+          </picture>
+        </p>
+        <p>次に Vault を整理する。Frontend Group は最初から割り当てられている。所有者 Group も追加されているが、これは削除できない。Vault 内は企業の資産とも言えるため、所有者 Group はデフォルトなのだろう。ただし、管理はあくまで管理者 Group で行っているため、こちらには管理者 Group も追加した。
+        <p>
+          <picture>
+            <source type=image/avif srcset=frontend-vault.avif?251107_225907>
+            <source type=image/webp srcset=frontend-vault.webp?251107_225907>
+            <img loading=lazy decoding=async src=frontend-vault.png?251107_225907 alt="Frontend Vault の設定" width=666 height=372>
+          </picture>
+        </p>
+        <p>同じことを Backend でも行えば、チームに必要な Group と Vault の作成は完了だ。
+      </section>
+      <section>
+        <h2 id="manager-group"><a href="#manager-group">Manager Group</a></h2>
+        <p>Alice と Bob は、チームを管理するマネージャであるが、Business アカウント全体の管理者である必要はないため、ここで権限の分離を行いたい。
+        <p>そこで Vault を持たない Manager Group を作り、Alice と Bob を追加する。
+        <p>
+          <picture>
+            <source type=image/avif srcset=manager-group.avif?251107_225907>
+            <source type=image/webp srcset=manager-group.webp?251107_225907>
+            <img loading=lazy decoding=async src=manager-group.png?251107_225907 alt="Manager Group" width=668 height=261>
+          </picture>
+        </p>
+        <p>ここに、チームメンバーよりも強い権限として、例えば「アカウントの復旧」を付与する。
+        <p>
+          <picture>
+            <source type=image/avif srcset=permission.avif?251107_225907>
+            <source type=image/webp srcset=permission.webp?251107_225907>
+            <img loading=lazy decoding=async src=permission.png?251107_225907 alt="アカウントの復旧権限を Manager Group に付与する" width=214 height=478>
+          </picture>
+        </p>
+        <p>次に Vault だが、方針は大きく 2 つ考えられる。
+        <p>まず、作成した Manager Group を Frontend/Backend 両方のグループに追加する方法だ。
+        <p>
+          <picture>
+            <source type=image/avif srcset=manager-to-vault.avif?251107_225907>
+            <source type=image/webp srcset=manager-to-vault.webp?251107_225907>
+            <img loading=lazy decoding=async src=manager-to-vault.png?251107_225907 alt="Vault に Manager を追加する" width=529 height=263>
+          </picture>
+        </p>
+        <p>ただ、これでは Alice だけでなく Bob も Frontend Vault を管理する形になる。
+        <p>多くの場合はこれで足りるだろうが、もし Alice だけが Frontend Vault の管理者にしたいのであれば、個別に Alice だけを追加することもできる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=alice-to-vault.avif?251107_225907>
+            <source type=image/webp srcset=alice-to-vault.webp?251107_225907>
+            <img loading=lazy decoding=async src=alice-to-vault.png?251107_225907 alt="Vault に Alice を追加する" width=522 height=258>
+          </picture>
+        </p>
+        <p>今回はチームにマネージャが一人なので、Vault に一人ずつ追加すればそれでも足りる。
+        <p>しかし、Frontend/Backend Vault 両方に Manager Group を追加することで、二人をマネージャとして機能させることもできる。この場合、例えば Bob が Frontend Vault も見えてしまう。
+        <p>この場合は、Team x Manager ごとの Group をまた作るなどが考えられる。しかし、そこまでいくとかなり煩雑になるため、Manager Group 単位の運用で足りるうちはそこに留めた方が良さそうだ。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>Manager と Vault の運用は、組織の構成によってかなりバリエーションがあるだろう。しかし、あまり細かく指定しすぎると、組織変更に対して管理負荷がかなり上がりそうだ。
+        <p>ある程度余白のある運用に落とし所を見つけるのが、適切な負荷で運用するコツになると思われる。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>

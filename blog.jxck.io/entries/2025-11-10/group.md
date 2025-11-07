@@ -27,11 +27,11 @@
 - 管理者 (Admin)
 - チームメンバー (Team Member)
 
-![default groups](default-groups.png)
+![default groups](default-groups.png#338x434)
 
 この Vault に振られたデフォルトの権限は以下だ。
 
-![default permission](default-permission.png)
+![default permission](default-permission.png#716x437)
 
 つまり最も権限が強いのは「所有者 (Owner)」だが、「管理者 (Admin)」との差分は支払い周りなので、いわゆる組織の運用上はあまり気にする必要はない。
 
@@ -67,7 +67,7 @@ Business アカウントを作ったら、まず最初にこの「管理者」Va
 
 これは、「ドメイン侵害レポート」という機能を有効にすることで作られ、そのレポートを見ることができる権限が付与される Vault だ。
 
-![ドメイン侵害レポート](domain-breach-report.png#833x625)
+![ドメイン侵害レポート](domain-breach-report.png#625x467)
 
 - ドメイン侵害レポート | 1Password
   - https://1password.com/jp/business/domain-breach-report/
@@ -177,7 +177,7 @@ Alice と Bob は、チームを管理するマネージャであるが、Busine
 
 ここに、チームメンバーよりも強い権限として、例えば「アカウントの復旧」を付与する。
 
-![アカウントの復旧権限を Manager Group に付与する](permission.png#343x765)
+![アカウントの復旧権限を Manager Group に付与する](permission.png#214x478)
 
 次に Vault だが、方針は大きく 2 つ考えられる。
 
