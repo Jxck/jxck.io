@@ -41,7 +41,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 32 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adven...">
+  <meta name=description         content="このエントリは、_2023_ 年の 3rd Party Cookie Advent Calendar の 32 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adv...">
   <meta name=keywords            content="cookie,3pca">
   <meta name=theme-color         content=#000000>
 
@@ -49,7 +49,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2025-10-21/deprecation-of-effort.html>
   <meta property=og:title        content="3PCA 32 日目: Privacy Sandbox の後始末 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 32 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adven...">
+  <meta property=og:description  content="このエントリは、_2023_ 年の 3rd Party Cookie Advent Calendar の 32 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adv...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -70,7 +70,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-10-21T08:00:00+08:00",
-    "dateModified": "2025-10-28T08:00:00+08:00",
+    "dateModified": "2025-11-18T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -86,7 +86,7 @@
         "width": 120
       }
     },
-    "description": "このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 32 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adven..."
+    "description": "このエントリは、_2023_ 年の 3rd Party Cookie Advent Calendar の 32 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/adv..."
   }
   </script>
 
@@ -114,7 +114,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-10-21>2025-10-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-10-28>2025-10-28</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-11-18>2025-11-18</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -157,7 +157,7 @@
       <h1><a href="">3PCA 32 日目: Privacy Sandbox の後始末</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>このエントリは、<em>2023</em> 年の 3rd Party Cookie Advent Calendar の 32 日目である。
+        <p>このエントリは、_2023_ 年の 3rd Party Cookie Advent Calendar の 32 日目である。
         <ul>
           <li>
             3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
@@ -200,108 +200,66 @@
           </li>
         </ul>
         <p>来月に TPAC も控えており、このままでは該当する WG で「この API はどうするのか」といった議論になる可能性があっただろう。それを防ぐためにも、このタイミングだったように取れる。
-        <p>いくつかの API は残るが、それを Privacy Sandbox と括る必要ももうないだろう。つまり、これが <em>Privacy Sandbox の終わり</em> と捉えることができそうだ。
+        <p>いくつかの API は残るが、それを Privacy Sandbox と括る必要ももうないだろう。つまり、これが _Privacy Sandbox の終わり_ と捉えることができそうだ。
       </section>
       <section>
         <h2 id="api-の今後"><a href="#api-の今後">API の今後</a></h2>
-        <p>発表をもとにすると、作業が行われていた API は以下のようになる。
+        <p>それぞれの API がどうなるかについては、以下にまとまっている。
         <ul>
           <li>
-            継続
+            Privacy Sandbox feature status
             <ul>
-              <li>
-                Attribution
-                <ul>
-                  <li><a href="https://github.com/w3c/attribution" target=_blank>https://github.com/w3c/attribution</a>
-                </ul>
-              </li>
-              <li>
-                CHIPS
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/cookies/chips" target=_blank>https://privacysandbox.google.com/cookies/chips</a>
-                </ul>
-              </li>
-              <li>
-                FedCM
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/cookies/fedcm" target=_blank>https://privacysandbox.google.com/cookies/fedcm</a>
-                </ul>
-              </li>
-              <li>
-                Private State Token
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/protections/private-state-tokens" target=_blank>https://privacysandbox.google.com/protections/private-state-tokens</a>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            廃止
-            <ul>
-              <li>
-                Attribution Reporting API (Chrome/Android)
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/private-advertising/attribution-reporting/android" target=_blank>https://privacysandbox.google.com/private-advertising/attribution-reporting/android</a>
-                </ul>
-              </li>
-              <li>
-                IP Protection
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/protections/ip-protection" target=_blank>https://privacysandbox.google.com/protections/ip-protection</a>
-                </ul>
-              </li>
-              <li>
-                On-Device Personalization
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/protections/on-device-personalization" target=_blank>https://privacysandbox.google.com/protections/on-device-personalization</a>
-                </ul>
-              </li>
-              <li>
-                Private Aggregation (Shared Storage 含む)
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/private-advertising/private-aggregation" target=_blank>https://privacysandbox.google.com/private-advertising/private-aggregation</a>
-                </ul>
-              </li>
-              <li>
-                Protected Audience (Chrome/Android)
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/private-advertising/protected-audience" target=_blank>https://privacysandbox.google.com/private-advertising/protected-audience</a>
-                </ul>
-              </li>
-              <li>
-                Protected App Signals
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/private-advertising/protected-audience/android/protected-app-signals" target=_blank>https://privacysandbox.google.com/private-advertising/protected-audience/android/protected-app-signals</a>
-                </ul>
-              </li>
-              <li>
-                Related Website Sets (requestStorageAccessFor 含む)
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/cookies/related-website-sets" target=_blank>https://privacysandbox.google.com/cookies/related-website-sets</a>
-                </ul>
-              </li>
-              <li>
-                SelectURL
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/private-advertising/select-url" target=_blank>https://privacysandbox.google.com/private-advertising/select-url</a>
-                </ul>
-              </li>
-              <li>
-                SDK Runtime
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/private-advertising/sdk-runtime" target=_blank>https://privacysandbox.google.com/private-advertising/sdk-runtime</a>
-                </ul>
-              </li>
-              <li>
-                Topics (Chrome/Android)
-                <ul>
-                  <li><a href="https://privacysandbox.google.com/private-advertising/topics" target=_blank>https://privacysandbox.google.com/private-advertising/topics</a>
-                </ul>
-              </li>
+              <li><a href="https://privacysandbox.google.com/overview/status" target=_blank>https://privacysandbox.google.com/overview/status</a>
             </ul>
           </li>
         </ul>
-        <p>つまり、Privacy Sandbox の大半を占めていた「広告関連ユースケース」として提案されていたものは、軒並み廃止の対象となった形だ。
+        <p>Privacy Sandbox の大半を占めていた「広告関連ユースケース」として提案されていたものは、軒並み廃止の対象となった形だ。
+        <ul>
+          <li>
+            Continue to support
+            <ul>
+              <li>Bounce tracking mitigations
+              <li>CHIPS
+              <li>FedCM
+              <li>Fenced Frames
+              <li>frame-ancestors directive
+              <li>Private State Tokens
+              <li>Storage and Network State Partitioning
+              <li>Storage Access (including Storage Access Header)
+              <li>User-Agent Client Hints
+              <li>User-Agent reduction
+            </ul>
+          </li>
+          <li>
+            Deprecate and remove
+            <ul>
+              <li>Aggregation Service
+              <li>Attribution Reporting
+              <li>Private Aggregation
+              <li>Protected Audience
+              <li>Related Web Sites (including requestStorageAccessFor())
+              <li>Shared Storage (including Select URL)
+              <li>Topics
+            </ul>
+          </li>
+          <li>
+            Discontinue
+            <ul>
+              <li>IP Protection
+              <li>Partitioned Popins
+              <li>Related Website Partition
+            </ul>
+          </li>
+          <li>
+            Do not launch
+            <ul>
+              <li>Fenced Storage Read
+              <li>Private Proofs
+              <li>Probabilistic Reveal Tokens
+              <li>Script Blocking
+            </ul>
+          </li>
+        </ul>
         <p>ところが、3rd Party Cookie が無くとも、「広告効果の計測は行いたい」というユースケースは、ITP や ETP を推し進めた Safari/Mozilla をしても妥当と捉えられている。Web における広告事業には効果測定が必須であり、それをユーザを追跡することなく行うことのモチベーションは共通しているからだ。
         <p>Chrome 主導だった Attribution Reporting API、Apple 提案の PPA、Mozilla 主導の PCM と提案が乱立していた。
         <ul>
@@ -495,7 +453,7 @@
             </p>
             <p>Open Web への弊害
             <p>分割に伴うこの重大な苦難と不確実性に直面して、原告は、世界が Open Web Display (ads) から大きく離れているという現実を認めていない(ましてや考慮に入れていない)。
-            <p>2025 年 1 月、AdWords の広告主が購入したディスプレイ広告のインプレッションのうち、Open Web Display 向けはわずか <em>11%</em> だった(2019 年 1 月比較で 40% 超減少)。
+            <p>2025 年 1 月、AdWords の広告主が購入したディスプレイ広告のインプレッションのうち、Open Web Display 向けはわずか _11%_ だった(2019 年 1 月比較で 40% 超減少)。
             <p>原告は、デジタル広告の消費方法における技術と、市場の変革に追い越された過去を、打ち消す救済策を求めて戦っている。
           </blockquote>
           <p>2025 年 1 月の次点で 2019 年から 40% 減っているということは、既にコロナ前と比べて半減しているということだ。もう Web におけるディスプレイ広告は、広告市場の「中心」ではないと捉えるのが妥当と言えるだろう。
@@ -511,7 +469,7 @@
             </p>
             <p>AdTech プロバイダとしての Google の競合他社(その多くは大手有名企業)もまた、オープン Web のディスプレイ広告ではなく、最も急速に成長している広告フォーマットに投資と集中を向けている。
             <p>Netflix や Disney などのプロバイダを通じた Connected TV 広告は、今や「米国で最も急成長している広告チャンネル」である。
-            <p>また、小売メディア広告は「あらゆる規模の小売業者」によって莫大な投資が行われており、2025 年には <em>600 億ドル</em> が投じられると予想されている。
+            <p>また、小売メディア広告は「あらゆる規模の小売業者」によって莫大な投資が行われており、2025 年には _600 億ドル_ が投じられると予想されている。
             <p>例えば、Amazon は Demand-Side Platform、特に TV プロバイダとの提携に投資し、「広告の主要分野でライバルである Trade Desk や Google を打ち負かした」
             <p>Trade Desk はデジタルオーディオプラットフォームの Spotify と協力し、Spotify の広告取引所を立ち上げた。
             <p>そして Magnite は、Samsung のテレビ広告をサポートするために Samsung Ads と提携し、Netflix の新しい自社広告スイートをサポートするために Netflix と提携した。
@@ -524,10 +482,10 @@
       <section>
         <h2 id="損切りとしての中止"><a href="#損切りとしての中止">損切りとしての中止</a></h2>
         <p>Chrome 売却を避けるためとはいえ、「もう Web の広告は儲からない」と、それで一時代を成してきた Google が、重厚なレビューを経た公式の文書で自ら言っているのだから、実際にそうなのだろう。
-        <p>つまり、3rd Party Cookie のユースケースだった「トラッキング」を最も必要としていた「<em>Web のディスプレイ広告</em>」は、デジタル広告事業の中心的なポジションには全くない。
+        <p>つまり、3rd Party Cookie のユースケースだった「トラッキング」を最も必要としていた「_Web のディスプレイ広告_」は、デジタル広告事業の中心的なポジションには全くない。
         <p>それは同時に、3rd Party Cookie 自体が、もうそんなに気にするほど重要な「問題」ではなくなってきていることを、暗に示唆しているようにも思う。
         <p>むしろ、こうして産業構造が変化した中で、新聞社のようなニュースメディアが、どのように収入源を確保するのかを考える方が、全体としては重要な課題になっていることは、読者にも実感があるだろう。
-        <p>もう我々が戦うべき相手はとっくに変わっており、これ以上 3PC にリソースを投じること自体の価値が目減りした、つまりこれは「<em>損切り</em>」だったという解釈が、妥当だったように思う。
+        <p>もう我々が戦うべき相手はとっくに変わっており、これ以上 3PC にリソースを投じること自体の価値が目減りした、つまりこれは「_損切り_」だったという解釈が、妥当だったように思う。
         <p>Safari と Firefox が 3PC のサポートを再開することもないだろう。他にも、エコシステムが用意した自衛手段は多々ある。今後は、ブラウザ内蔵の AI モデルによる、非決定的防御機構なども一定の期待ができ、それによって解消される懸念もあるだろう。
         <p>3PC を一律に廃止して Web をぶっ壊す正義よりも、そこにかけるリソースを転嫁してでも戦うべき相手が、もう我々を取り囲んでいるのかもしれない。
       </section>
