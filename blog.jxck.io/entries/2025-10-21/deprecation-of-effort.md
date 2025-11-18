@@ -2,7 +2,7 @@
 
 ## Intro
 
-このエントリは、*2023* 年の 3rd Party Cookie Advent Calendar の 32 日目である。
+このエントリは、_2023_ 年の 3rd Party Cookie Advent Calendar の 32 日目である。
 
 - 3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
   - https://qiita.com/advent-calendar/2023/3rd-party-cookie
@@ -33,45 +33,46 @@ Privacy Sandbox の開始は、以下のエントリの公開と捉えること�
 
 来月に TPAC も控えており、このままでは該当する WG で「この API はどうするのか」といった議論になる可能性があっただろう。それを防ぐためにも、このタイミングだったように取れる。
 
-いくつかの API は残るが、それを Privacy Sandbox と括る必要ももうないだろう。つまり、これが *Privacy Sandbox の終わり* と捉えることができそうだ。
+いくつかの API は残るが、それを Privacy Sandbox と括る必要ももうないだろう。つまり、これが _Privacy Sandbox の終わり_ と捉えることができそうだ。
 
 
 ## API の今後
 
-発表をもとにすると、作業が行われていた API は以下のようになる。
+それぞれの API がどうなるかについては、以下にまとまっている。
 
-- 継続
-  - Attribution
-    - https://github.com/w3c/attribution
+- Privacy Sandbox feature status
+  - https://privacysandbox.google.com/overview/status
+
+Privacy Sandbox の大半を占めていた「広告関連ユースケース」として提案されていたものは、軒並み廃止の対象となった形だ。
+
+- Continue to support
+  - Bounce tracking mitigations
   - CHIPS
-    - https://privacysandbox.google.com/cookies/chips
   - FedCM
-    - https://privacysandbox.google.com/cookies/fedcm
-  - Private State Token
-    - https://privacysandbox.google.com/protections/private-state-tokens
-- 廃止
-  - Attribution Reporting API (Chrome/Android)
-    - https://privacysandbox.google.com/private-advertising/attribution-reporting/android
+  - Fenced Frames
+  - frame-ancestors directive
+  - Private State Tokens
+  - Storage and Network State Partitioning
+  - Storage Access (including Storage Access Header)
+  - User-Agent Client Hints
+  - User-Agent reduction
+- Deprecate and remove
+  - Aggregation Service
+  - Attribution Reporting
+  - Private Aggregation
+  - Protected Audience
+  - Related Web Sites (including requestStorageAccessFor())
+  - Shared Storage (including Select URL)
+  - Topics
+- Discontinue
   - IP Protection
-    - https://privacysandbox.google.com/protections/ip-protection
-  - On-Device Personalization
-    - https://privacysandbox.google.com/protections/on-device-personalization
-  - Private Aggregation (Shared Storage 含む)
-    - https://privacysandbox.google.com/private-advertising/private-aggregation
-  - Protected Audience (Chrome/Android)
-    - https://privacysandbox.google.com/private-advertising/protected-audience
-  - Protected App Signals
-    - https://privacysandbox.google.com/private-advertising/protected-audience/android/protected-app-signals
-  - Related Website Sets (requestStorageAccessFor 含む)
-    - https://privacysandbox.google.com/cookies/related-website-sets
-  - SelectURL
-    - https://privacysandbox.google.com/private-advertising/select-url
-  - SDK Runtime
-    - https://privacysandbox.google.com/private-advertising/sdk-runtime
-  - Topics (Chrome/Android)
-    - https://privacysandbox.google.com/private-advertising/topics
-
-つまり、Privacy Sandbox の大半を占めていた「広告関連ユースケース」として提案されていたものは、軒並み廃止の対象となった形だ。
+  - Partitioned Popins
+  - Related Website Partition
+- Do not launch
+  - Fenced Storage Read
+  - Private Proofs
+  - Probabilistic Reveal Tokens
+  - Script Blocking
 
 ところが、3rd Party Cookie が無くとも、「広告効果の計測は行いたい」というユースケースは、ITP や ETP を推し進めた Safari/Mozilla をしても妥当と捉えられている。Web における広告事業には効果測定が必須であり、それをユーザを追跡することなく行うことのモチベーションは共通しているからだ。
 
@@ -238,7 +239,7 @@ Google は CMA との本件以外に、US の DOJ (司法省)とも裁判を行�
 >
 > Open Web への弊害
 > 分割に伴うこの重大な苦難と不確実性に直面して、原告は、世界が Open Web Display (ads) から大きく離れているという現実を認めていない(ましてや考慮に入れていない)。
-> 2025 年 1 月、AdWords の広告主が購入したディスプレイ広告のインプレッションのうち、Open Web Display 向けはわずか *11%* だった(2019 年 1 月比較で 40% 超減少)。
+> 2025 年 1 月、AdWords の広告主が購入したディスプレイ広告のインプレッションのうち、Open Web Display 向けはわずか _11%_ だった(2019 年 1 月比較で 40% 超減少)。
 > 原告は、デジタル広告の消費方法における技術と、市場の変革に追い越された過去を、打ち消す救済策を求めて戦っている。
 
 2025 年 1 月の次点で 2019 年から 40% 減っているということは、既にコロナ前と比べて半減しているということだ。もう Web におけるディスプレイ広告は、広告市場の「中心」ではないと捉えるのが妥当と言えるだろう。
@@ -254,7 +255,7 @@ Google は CMA との本件以外に、US の DOJ (司法省)とも裁判を行�
 >
 > AdTech プロバイダとしての Google の競合他社(その多くは大手有名企業)もまた、オープン Web のディスプレイ広告ではなく、最も急速に成長している広告フォーマットに投資と集中を向けている。
 > Netflix や Disney などのプロバイダを通じた Connected TV 広告は、今や「米国で最も急成長している広告チャンネル」である。
-> また、小売メディア広告は「あらゆる規模の小売業者」によって莫大な投資が行われており、2025 年には *600 億ドル* が投じられると予想されている。
+> また、小売メディア広告は「あらゆる規模の小売業者」によって莫大な投資が行われており、2025 年には _600 億ドル_ が投じられると予想されている。
 > 例えば、Amazon は Demand-Side Platform、特に TV プロバイダとの提携に投資し、「広告の主要分野でライバルである Trade Desk や Google を打ち負かした」
 > Trade Desk はデジタルオーディオプラットフォームの Spotify と協力し、Spotify の広告取引所を立ち上げた。
 > そして Magnite は、Samsung のテレビ広告をサポートするために Samsung Ads と提携し、Netflix の新しい自社広告スイートをサポートするために Netflix と提携した。
@@ -270,13 +271,13 @@ Google は CMA との本件以外に、US の DOJ (司法省)とも裁判を行�
 
 Chrome 売却を避けるためとはいえ、「もう Web の広告は儲からない」と、それで一時代を成してきた Google が、重厚なレビューを経た公式の文書で自ら言っているのだから、実際にそうなのだろう。
 
-つまり、3rd Party Cookie のユースケースだった「トラッキング」を最も必要としていた「*Web のディスプレイ広告*」は、デジタル広告事業の中心的なポジションには全くない。
+つまり、3rd Party Cookie のユースケースだった「トラッキング」を最も必要としていた「_Web のディスプレイ広告_」は、デジタル広告事業の中心的なポジションには全くない。
 
 それは同時に、3rd Party Cookie 自体が、もうそんなに気にするほど重要な「問題」ではなくなってきていることを、暗に示唆しているようにも思う。
 
 むしろ、こうして産業構造が変化した中で、新聞社のようなニュースメディアが、どのように収入源を確保するのかを考える方が、全体としては重要な課題になっていることは、読者にも実感があるだろう。
 
-もう我々が戦うべき相手はとっくに変わっており、これ以上 3PC にリソースを投じること自体の価値が目減りした、つまりこれは「*損切り*」だったという解釈が、妥当だったように思う。
+もう我々が戦うべき相手はとっくに変わっており、これ以上 3PC にリソースを投じること自体の価値が目減りした、つまりこれは「_損切り_」だったという解釈が、妥当だったように思う。
 
 Safari と Firefox が 3PC のサポートを再開することもないだろう。他にも、エコシステムが用意した自衛手段は多々ある。今後は、ブラウザ内蔵の AI モデルによる、非決定的防御機構なども一定の期待ができ、それによって解消される懸念もあるだろう。
 
