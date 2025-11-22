@@ -1,0 +1,248 @@
+---
+type: podcast
+tags: ["monthly ecosystem"]
+audio: https://files.mozaic.fm/mozaic-ep190.mp3
+published_at: 2025-11-22
+guest: [@sakito](https://x.com/__sakito__)
+guest: [@hiroppy](https://x.com/about_hiroppy)
+---
+
+# ep190 Monthly Ecosystem 202511
+
+## Theme
+
+第 190 回のテーマは 2025 年 11 月の Monthly Ecosystem です。
+
+
+## Show Note
+
+- Next.js 16
+  - https://nextjs.org/blog/next-16
+  - Cache Components は、Partial Pre-Rendering (PPR)を利用してページやコンポーネントのキャッシングを明示的に行える。
+  - Next.js Devtools MCP が統合され、AI 支援のデバッグが可能になった。
+  - ミドルウェアは proxy.ts に置き換えられ、ネットワーク境界が明確化された。
+  - Turbopack は全アプリのデフォルトバンドラーとなり、ビルド時間が 5-10 倍短縮される。
+- Turborepo 2.6
+  - https://turborepo.com/blog/turbo-2-6
+  - マイクロフロントエンドのローカル開発用プロキシが導入され、複数のアプリケーションを 1 つのポートで実行可能に
+  - 開発コマンドやポートの管理が簡素化され、チームは独立してアプリケーションを展開できる
+  - Bun パッケージマネージャーが安定版として統合され、依存関係の変更があったパッケージのみがキャッシュから外れる
+- Make any TypeScript Function Durable
+  - https://useworkflow.dev/
+  - "use workflow"ディレクティブを使用して関数を耐久性のあるワークフローに変換できる。
+  - 手動でのキューやスケジューラの設定は不要で、自動リトライ機能がある。
+  - "sleep"を使用して計算を保持せずに一時停止し、再開できる。
+  - デバッグ時にはトレース、ログ、メトリクスが可視化される。
+  - ローカル開発が可能で、Vercel や他のクラウドにデプロイできる。
+- VS Code の Private Marketplace 機能
+  - https://code.visualstudio.com/blogs/2025/11/18/privatemarketplace
+  - 公開されている、社内自作ともに VS Code プラグインの適用を制限できる
+  - GitHub Enterprise プランのみ
+- Schema 2025: Design systems for a new era
+  - https://www.figma.com/blog/schema-2025-design-systems-recap/
+  - Figma のデザインシステム周りのカンファレンスが行われ、そこで Figma の機能も追加された
+  - Extended Collections
+    - デザインシステムのマルチブランド対応が容易に
+  - Slots
+    - figma 上で react children 的なことができる
+  - Check designs
+    - DevMode 移行時にデザイン上でコンポーネントや variables の紐付け漏れ検知
+  - Code Connect UI
+    - GUI 上から実装ファイルへの紐付けが可能に
+    - コンポーネント毎に MCP に読み込ませるコンテキスト追加できる
+  - Figma MCP server
+    - beta 版の終了
+  - Make kits
+    - Figma ライブラリを読み込ませて React などのコードを出せるように
+  - Figma Make に Npm package imports
+    - Figma Make に npm package を読み込ませて実装コードを参照させれるように
+  - Variables の Design Tokens Community Group の仕様に準拠した import/export
+    - Design Tokens Community Group の仕様も stable に
+      - https://www.w3.org/community/design-tokens/2025/10/28/design-tokens-specification-reaches-first-stable-version/
+- StyleX: A Styling Library for CSS at Scale - Engineering at Meta
+  - https://engineering.fb.com/2025/11/11/web/stylex-a-styling-library-for-css-at-scale/
+  - CSS-in-JS の利便性と Static CSS の性能を組み合わせ、Type Safe で衝突のない CSS を生成する。
+  - Meta 製品だけでなく、Figma や Snowflake でも使われている
+  - それを使ってスケールする CSS を書く方法
+- Hono CLI 爆誕
+  - https://zenn.dev/yusukebe/articles/ff69c13ccafb28
+  - hono docs
+  - hono search
+  - hono request
+  - hono serve
+  - hono optimize
+- VoidZero Raises $12.5M Series A
+  - https://voidzero.dev/posts/announcing-series-a
+  - VoidZero は 1,250 万ドルのシリーズ A 資金調達を実施した。
+  - 新たにチームに加わったメンバーには、napi-rs の創設者や OSS プロジェクトのコア貢献者がいる。
+  - Vite は Webpack を超える週次ダウンロード数を達成した。
+  - Vitest のブラウザモードが安定し、Rolldown は 100 万の週次ダウンロードを記録した。
+  - Vite+は VoidZero の持続可能なビジョンの第一歩であり、現在プライベートベータ版である。
+- ViteConf 2025 Recap
+  - https://voidzero.dev/posts/whats-new-viteconf-2025
+  - Vite+は、Vite のスーパーセットであり、開発者ツールを統合した CLI を提供する。
+  - Vite+は、テスト、リント、フォーマット、ライブラリバンドル、タスク実行の新しいコマンドを追加し、ゼロ設定で動作する。
+  - Oxlint が JavaScript プラグインをサポートし、ESLint のカスタムルールを使用できるようになった。
+  - Vite DevTools には、ビジュアルビルド分析ツールとプラグイン API が追加され、開発者がビルドプロセスを簡単に検査できる。
+- Vitest 4.0 is out!
+  - https://vitest.dev/blog/vitest-4
+  - https://x.com/voidzerodev/status/1991169793257336971
+  - Browser Mode が安定版としてリリースされ、実際のブラウザ環境でのテストが可能に
+  - Visual Regression テストが追加され、コンポーネントの視覚的変化を検出できる
+  - Playwright Trace のサポートにより、詳細なトレースファイルを生成し、デバッグが容易に
+  - schema validation 用の assertion が追加
+- 国土交通省が「MCP サーバ」公開 API の知識不要、対話形式でのデータ取得が可能に
+  - https://atmarkit.itmedia.co.jp/ait/articles/2511/14/news056.html
+- Cloudflare outage on November 18, 2025
+  - https://blog.cloudflare.com/18-november-2025-outage/
+- 海賊版サイト巡り米 Cloudflare に賠償命令 著作権侵害ほう助認定
+  - https://www.nikkei.com/article/DGXZQOUD14CEF0U5A111C2000000/
+- Bun runtime on Vercel Functions
+  - https://vercel.com/docs/functions/runtimes/bun
+  - Vercel Functions で Bun をランタイムオプションとしてサポート
+  - Node.js と Bun の選択が可能で、特に計算集約型アプリケーションに適している
+  - Bun は CPU バウンドの Next.js レンダリングで平均レイテンシを 28%削減
+  - Bun は Express、Hono、Nitro に対応し、vercel.json で設定可能
+  - Fluid compute 上で動作し、同一インスタンスで複数リクエストを処理
+  - アクティブ CPU 料金により、実行時間のみが課金される
+- Introducing Vercel Agent: Your new Vercel teammate
+  - https://vercel.com/blog/introducing-vercel-agent
+  - Vercel Agent は AI を活用した開発支援ツールで、コードレビューと調査の 2 つの主要機能を持つ。
+  - コードレビュー機能は GitHub 内で動作し、シミュレーションビルドを用いて提案を検証する。
+  - 調査機能はアプリケーションの異常を分析し、根本原因を特定する。
+  - Vercel Agent は、開発者が迅速にマージを行えるようにし、パフォーマンス問題を事前に特定する。
+- Oxlint enabling type checking straight out of tsgo!
+  - https://x.com/boshen_c/status/1991533371198173677
+  - 直接型チェックができるようになり、tsc --noEmit が高速化される
+- Announcing Oxlint JavaScript Plugin Support
+  - https://voidzero.dev/posts/announcing-oxlint-js-plugins
+  - 多くの ESLint プラグインが変更なしで動作する。
+  - JavaScript プラグインは 86%速く動作し、Oxlint の速度が大幅に改善された。
+- Biome v2.3-Let's bring the ecosystem closer
+  - https://biomejs.dev/blog/biome-v2-3/
+  - Vue、Svelte、Astro の完全サポートが追加された。
+  - JavaScript、TypeScript、CSS コードのフォーマットとリンティングが可能。
+- Directives and the Platform Boundary
+  - https://tanstack.com/blog/directives-and-the-platform-boundary
+  - use client などのディレクティブの問題点
+- Announcing Prisma 7
+  - https://www.prisma.io/blog/announcing-prisma-orm-7-0-0
+  - Rust のコードをすべてなくした。
+  - 生成されたコードが node_modules 以外に出力可能となった。
+- Storybook MCP sneak peek
+  - https://storybook.js.org/blog/storybook-mcp-sneak-peek/
+  - Storybook MCP は、コーディングエージェントが生成するコードの質を向上させるためのツールである。
+  - エージェントに機械可読なコンポーネントメタデータを提供し、より良いコード生成を実現する。
+  - 自動修正ループを持ち、エージェントが自らエラーを修正できる。
+  - 既存のパターンを再利用することで、トークンの使用量を削減しつつ高品質なコードを生成する。
+- Astro 5.16
+  - https://astro.build/blog/astro-5160/
+  - SVG 最適化により、SVG ファイルのサイズを削減し、ページの読み込み時間を改善する。
+  - astro preview コマンドにキーボードショートカットが追加され、プレビューサーバーの操作が簡単になった。
+  - astro add コマンドは--yes フラグをサポートし、AI エージェントが自動的に Astro プロジェクトを設定できる。
+  - ActionInputSchema ユーティリティタイプにより、アクション定義から入力スキーマを簡単に抽出できる。
+- Astro 5.15
+  - https://astro.build/blog/astro-5150/
+  - 新しいアダプターAPI により、ヘッダーやアセットのカスタマイズが可能になる。
+  - Astro のコア機能全体でスキュー保護が機能し、開発者は手動設定なしで高度な機能を実装できる。
+- pnpm 10.21
+  - https://pnpm.io/blog/releases/10.21
+  - Node.js の自動インストールを可能に。
+- Announcing Angular v21
+  - https://blog.angular.dev/announcing-angular-v21-57946c34f14b
+- Node.js v25.2.1 (Current)
+  - https://nodejs.org/en/blog/release/v25.2.1
+  - ローカルストレージへのアクセス時に例外をスローする仕様が元に戻された
+  - この変更は次のバージョン 26.0.0 に持ち越される
+- Node.js v25.2.0 (Current)
+  - https://nodejs.org/en/blog/release/v25.2.0
+  - util.deprecate にオプションが追加され、より柔軟な非推奨機能の管理が可能になった。
+  - localStorage の getter がストレージパスが存在しない場合にエラーをスローするようになった。
+  - HeapStatistics に total_allocated_bytes が追加され、メモリ使用状況の把握が容易になった。
+- Node.js v25.1.0 (Current)
+  - https://nodejs.org/en/blog/release/v25.1.0
+  - SQLite の防御フラグ設定が可能に
+  - watch 設定の名前空間の追加
+- ESLint v10.0.0-alpha.0 released
+  - https://eslint.org/blog/2025/11/eslint-v10.0.0-alpha.0-released/
+  - 新しい設定ファイルの検索アルゴリズムにより、各リント対象ファイルのディレクトリから設定ファイルを検索する。
+  - eslintrc 機能が完全に削除され、CLI は eslintrc 特有の引数をサポートしなくなった。
+  - eslint:recommended 設定が更新され、新しいルールが追加された。
+- ESLint v9.39.1 released
+  - https://eslint.org/blog/2025/11/eslint-v9.39.1-released/
+- ESLint v9.39.0 released
+  - https://eslint.org/blog/2025/10/eslint-v9.39.0-released/
+  - 特定のルール違反に対するハイライト位置がより正確になり、視覚的なノイズが減少した。
+  - complexity ルールが関数のヘッダーのみをハイライトするように更新された。
+  - for-direction、no-dupe-args、no-dupe-class-members ルールも同様に改善された。
+  - TIMING 環境変数を設定すると、統一されたパフォーマンスレポートが出力される。
+- Building an MCP Server for Nuxt
+  - https://nuxt.com/blog/building-nuxt-mcp
+- Nuxt 4.2
+  - https://nuxt.com/blog/v4-2
+  - TypeScript プラグインの実験的サポートが追加された。
+  - AbortController を使用してデータ取得のリクエストをキャンセルできるようになった。
+  - 開発中のエラー表示が改善され、カスタムエラーページと技術エラーオーバーレイが同時に表示される。
+  - Vite 環境 API のオプトイン機能が追加され、開発と本番環境のパフォーマンスが向上。
+  - Nitro サーバー統合が@nuxt/nitro-server パッケージに分離され、モジュール性が向上。
+- Announcing Rspack 1.6
+  - https://rspack.rs/blog/announcing-1-6
+  - ツリーシェイキングは、動的インポートの幅広い使用パターンを認識し、未使用のエクスポートを排除する。
+  - import defer 構文のサポートにより、モジュールの即時実行を避けることができる。
+  - ESM 出力の改善には EsmLibraryPlugin が導入され、クリーンで効率的な ESM ライブラリの構築が可能になる。
+  - バンドルプロセスの完全な制御が可能となり、コード分割のサポートも強化される。
+- Rspack 2.0 を含めたロードマップの公開
+  - https://rspack.rs/misc/planning/roadmap
+  - https://x.com/jait_chen/status/1981290205836693941
+  - 🗓️ First preview planned for Feb 2026
+  - 🧩 Refined webpack outputs & APIs - cleaner and simpler
+  - 📦 Better ESM output, with out-of-the-box support via Rsbuild & Rslib
+  - ⚛️ Built-in RSC support
+  - 💾 More stable persistent cache, aiming for default in dev
+  - ⚡ Enable native watcher for faster HMR
+  - 🔄 Refined internal structure for better performance
+  - 🌐 Move toward pure ESM packages
+- Electron 39.0.0
+  - https://www.electronjs.org/blog/electron-39-0
+  - ASAR integrity が安定版となり、アプリの改ざん検出機能が追加された。
+  - 新機能として、app.isHardwareAccelerationEnabled()メソッドや USBDevice.configurations のサポートが追加された。
+  - window.open ポップアップが常にリサイズ可能になった。
+  - --host-rules コマンドラインスイッチが非推奨となった。
+- Cursor 2.0
+  - https://cursor.com/ja/blog/2-0
+  - Composer という速度早く、コーディングレベルもそこそこのモデルがでた
+  - マルチエージェント機能で複数のモデルの回答を選べるように
+  - bult-in browser でブラウザから UI を指定して修正できるように
+- Storybook 10
+  - https://storybook.js.org/blog/storybook-10/
+  - ESM 専用への移行により、インストールサイズが 29%削減された。
+  - モジュールの自動モック機能が追加され、Vitest との連携でテストが容易になった。
+  - 型安全な CSF ファクトリが導入され、TypeScript プロジェクトに対応した。
+  - UI 編集と共有の最適化により、QR コードを使ったモバイルアクセスが可能になった。
+  - CSF ファクトリは React 専用で、将来的に Vue、Angular、Web コンポーネントのサポートも予定されている。
+- Google Antigravity
+  - https://antigravity.google/
+  - Google 製 IDE、VS Code の fork で Cursor のようなもの
+- Sketch のデザイン刷新と機能追加
+  - https://www.sketch.com/changelog/copenhagen/
+  - figma の auto layout の折り返し機能やインスペクタの改善、画像背景削除など
+- Figma Weave
+  - https://www.figma.com/blog/welcome-weavy-to-figma/
+  - Figma のアニメーションや動画生成を行うツール Weavy の買収
+- Figma Make にリモート MCP が組み込めるように
+  - https://x.com/figma/status/1991175602729320516?s=20
+- Hire Me in Japan - overreacted
+  - https://overreacted.io/hire-me-in-japan/
+
+
+## Events
+
+- 11 月
+  - 14-15: YAPC fukuoka
+    - https://fortee.jp/yapc-fukuoka-2025
+  - 16: JSConf JP
+    - https://jsconf.jp/2025/en
+  - 23: TSKaigi Hokuriku 2025
+    - https://x.com/tskaigi/status/1944237850071118068
+  - 30: フロントエンドカンファレンス関西
+    - https://frontend-conf.osaka.jp/
