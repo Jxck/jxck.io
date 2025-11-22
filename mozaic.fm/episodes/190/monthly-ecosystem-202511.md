@@ -13,7 +13,6 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
 
 第 190 回のテーマは 2025 年 11 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Next.js 16
@@ -233,7 +232,6 @@ guest: [@hiroppy](https://x.com/about_hiroppy)
   - https://x.com/figma/status/1991175602729320516?s=20
 - Hire Me in Japan - overreacted
   - https://overreacted.io/hire-me-in-japan/
-
 
 ## Events
 
