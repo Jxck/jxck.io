@@ -13,16 +13,13 @@ guest: [@petamoriken](https://x.com/petamoriken)
 
 第 192 回のテーマは 2025 年 11 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 143
 
-
 #### Updates
-
 
 #### Intents
 
@@ -377,7 +374,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
   - この機能は、3P セキュリティソフトウェアとクラウドバックアップソフトウェアが Windows Security Center と統合するためのインターフェースを提供する。
 
   ### WHATWG/W3C 動向
-
 
 #### TPAC
 
