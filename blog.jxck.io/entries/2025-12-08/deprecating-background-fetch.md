@@ -95,54 +95,56 @@ TPAC が終わってすぐ、その Intent は公開された。
 
 渦中の API ユーザでもあり、TPAC でも話をしている手前、黙って見ているわけにもいかないので、自分からもフィードバックを投稿した。別に消されたら自分のサービスが壊れて困る、という意図はない。こうやって「消されてしまう可能性がある」というスタンスのリスクだ。
 
-> I am the owner of the website mozaic.fm, which is the only one that appears on that Status page.
->
-> 私は、その Status ページに唯一出てくるサイト mozaic.fm のオーナーです。
->
-> That page is my podcast program, and at that time, I turned the podcast page into an app by adopting the "PWA Narrative" and using its added features. I periodically fetched RSS using periodic background fetch, displayed badge with the badging API if new episodes are available, and downloaded episode MP3s using background fetch so they could be listened to offline.
->
-> そのページは私の Podcast Program で、私はその頃 PWA のナラティブに則り、追加された機能を使って、Podcast ページをアプリ化しました。Periodic Background Fetch で RSS を定期取得し、新しいエピソードがあれば Badging API で表示し、Background Fetch でエピソードの mp3 をダウンロードし、オフラインで聴けるようにしました。
->
-> However, I implemented it quite a while ago, and since many people listening my program on Spotify or Apple's podcast apps, I honestly had forgotten about this feature myself.
->
-> ところが、実装したのはかなり前で、多くの人は Spotify や Apple の Podcast アプリで聴いていると思われるので、私もこの機能のことはすっかり忘れていました。
->
-> At TPAC 2025, I spoke directly with Yoshisato, and he asked me, "Would you mind if this feature were removed ?".
->
-> TPAC 2025 で、私は Yoshisato と直接話し、「この機能の削除についてどう思うか?」と聞かれました。
->
-> I told him that if removing this feature would benefit the web, and if I were the only one blocker in worldwide, I wouldn't oppose it.
->
-> 私は、この機能の削除が Web のためになり、そのブロッカーが世界で自分しかいないのであれば、反対するつもりはありません。
->
-> However, the risks associated with not removing this feature are largely unknown. It's also unclear whether similar risks exist for other PWA features. PWA has incorporated ambitious capabilities, and I was in a position to try them. The Web values compatibility, but it should prioritize user safety even more. If security risks or similar issues were found, I would understand removing it. However, if the message is simply that "features with few users may be removed," then adopting new features early becomes a risky act.
->
-> しかし、この機能の削除をしないことで発生するリスクはあまりわかっていません。また、同様のリスクが PWA の他の機能ではどうなのかもわかっていません。PWA は野心的な機能を取り込み、私はそれを検証する立場にありました。Web は compat を重視しますが、それ以上に user safety を重視すべきです。
->
-> セキュリティリスクなどが見つかって消すならわかりますが、「単に使う人が少ないなら消される可能性がある」となれば、新しい機能に早期に飛びつくことはリスクのあることになってしまいます。そしてこの機能は、その後そこまでアドボケートもされてません。
->
-> Were they also hoping to remove other PWA features if they had few users? Wouldn't that imply that the very concept of "PWA" itself has failed?
->
-> PWA の他の機能も、もしユーザが少なければ消したかったのでしょうか?それは PWA というコンセプトそのものが失敗したということでは無いでしょうか?
->
-> If the reason was "too few users relative to the maintenance cost," are there any efforts being made to increase the number of users? At least for Background Fetch, I don't think there have been any updates or advocacy for a long time.
->
-> もし「メンテコストに対してユーザ数が少ない」のが原因なら、ユーザ数を増やす取り組みはしてるのでしょうか?少なくとも Background fetch については、長いこと何もアップデートや紹介を見ないと思います。
->
-> I believe PWA was a campaign strongly promoted by Google. Has Google already lost interest in PWA? Do they no longer have the budget or resources to advocate for the features they introduced? If that is the case, what has become of that narrative now?
->
-> PWA は Google が推し進めていたキャンペーンだと思います。もう Google は PWA に飽きたのでしょうか?出した機能を啓蒙に割くバジェットもリソースもないのでしょうか?そうであれば、あのナラティブは今どうなっているのでしょうか?
->
-> We developers are strongly encouraged to try new features every time a new campaign appears: Layered APIs, Houdini, Web Packaging etc etc. However, browser vendors do not signal when those campaigns have effectively ended. Even when teams are re-orged, people are laid off, or resources are redirected to another campaign, we keep waiting for updates.
->
-> 我々開発者は、そうしたキャンペーンの登場ごとに、強く先導されて新しい機能を試します。Layered API, Houdini, WebPackaging。しかし、ブラウザベンダーはキャンペーンが終わってもそれをシグナルしてくれません。チームが re-org したり、担当者がレイオフされたり、別のキャンペーンにリソースが取られても、我々はずっと更新を待ってます。
->
-> If there were either a serious explanation of why this feature should be removed on its own by security reason, or a clear indication that Google has shifted its overall policy regarding the PWA campaign, I believe we could have a more constructive discussion.
->
-> この機能を単体でも消すべき深刻な理由の説明か、PWA というキャンペーン全体に対する Google の方針転換か、そのどちらかがあれば、より建設的な議論ができると思います。
->
-> Best,
-> Jxck
+```
+I am the owner of the website mozaic.fm, which is the only one that appears on that Status page.
+
+私は、その Status ページに唯一出てくるサイト mozaic.fm のオーナーです。
+
+That page is my podcast program, and at that time, I turned the podcast page into an app by adopting the "PWA Narrative" and using its added features. I periodically fetched RSS using periodic background fetch, displayed badge with the badging API if new episodes are available, and downloaded episode MP3s using background fetch so they could be listened to offline.
+
+そのページは私の Podcast Program で、私はその頃 PWA のナラティブに則り、追加された機能を使って、Podcast ページをアプリ化しました。Periodic Background Fetch で RSS を定期取得し、新しいエピソードがあれば Badging API で表示し、Background Fetch でエピソードの mp3 をダウンロードし、オフラインで聴けるようにしました。
+
+However, I implemented it quite a while ago, and since many people listening my program on Spotify or Apple's podcast apps, I honestly had forgotten about this feature myself.
+
+ところが、実装したのはかなり前で、多くの人は Spotify や Apple の Podcast アプリで聴いていると思われるので、私もこの機能のことはすっかり忘れていました。
+
+At TPAC 2025, I spoke directly with Yoshisato, and he asked me, "Would you mind if this feature were removed ?".
+
+TPAC 2025 で、私は Yoshisato と直接話し、「この機能の削除についてどう思うか?」と聞かれました。
+
+I told him that if removing this feature would benefit the web, and if I were the only one blocker in worldwide, I wouldn't oppose it.
+
+私は、この機能の削除が Web のためになり、そのブロッカーが世界で自分しかいないのであれば、反対するつもりはありません。
+
+However, the risks associated with not removing this feature are largely unknown. It's also unclear whether similar risks exist for other PWA features. PWA has incorporated ambitious capabilities, and I was in a position to try them. The Web values compatibility, but it should prioritize user safety even more. If security risks or similar issues were found, I would understand removing it. However, if the message is simply that "features with few users may be removed," then adopting new features early becomes a risky act.
+
+しかし、この機能の削除をしないことで発生するリスクはあまりわかっていません。また、同様のリスクが PWA の他の機能ではどうなのかもわかっていません。PWA は野心的な機能を取り込み、私はそれを検証する立場にありました。Web は compat を重視しますが、それ以上に user safety を重視すべきです。
+
+セキュリティリスクなどが見つかって消すならわかりますが、「単に使う人が少ないなら消される可能性がある」となれば、新しい機能に早期に飛びつくことはリスクのあることになってしまいます。そしてこの機能は、その後そこまでアドボケートもされてません。
+
+Were they also hoping to remove other PWA features if they had few users? Wouldn't that imply that the very concept of "PWA" itself has failed?
+
+PWA の他の機能も、もしユーザが少なければ消したかったのでしょうか?それは PWA というコンセプトそのものが失敗したということでは無いでしょうか?
+
+If the reason was "too few users relative to the maintenance cost," are there any efforts being made to increase the number of users? At least for Background Fetch, I don't think there have been any updates or advocacy for a long time.
+
+もし「メンテコストに対してユーザ数が少ない」のが原因なら、ユーザ数を増やす取り組みはしてるのでしょうか?少なくとも Background fetch については、長いこと何もアップデートや紹介を見ないと思います。
+
+I believe PWA was a campaign strongly promoted by Google. Has Google already lost interest in PWA? Do they no longer have the budget or resources to advocate for the features they introduced? If that is the case, what has become of that narrative now?
+
+PWA は Google が推し進めていたキャンペーンだと思います。もう Google は PWA に飽きたのでしょうか?出した機能を啓蒙に割くバジェットもリソースもないのでしょうか?そうであれば、あのナラティブは今どうなっているのでしょうか?
+
+We developers are strongly encouraged to try new features every time a new campaign appears: Layered APIs, Houdini, Web Packaging etc etc. However, browser vendors do not signal when those campaigns have effectively ended. Even when teams are re-orged, people are laid off, or resources are redirected to another campaign, we keep waiting for updates.
+
+我々開発者は、そうしたキャンペーンの登場ごとに、強く先導されて新しい機能を試します。Layered API, Houdini, WebPackaging。しかし、ブラウザベンダーはキャンペーンが終わってもそれをシグナルしてくれません。チームが re-org したり、担当者がレイオフされたり、別のキャンペーンにリソースが取られても、我々はずっと更新を待ってます。
+
+If there were either a serious explanation of why this feature should be removed on its own by security reason, or a clear indication that Google has shifted its overall policy regarding the PWA campaign, I believe we could have a more constructive discussion.
+
+この機能を単体でも消すべき深刻な理由の説明か、PWA というキャンペーン全体に対する Google の方針転換か、そのどちらかがあれば、より建設的な議論ができると思います。
+
+Best,
+Jxck
+```
 
 その後もいくつかのフィードバックが続き、それらを踏まえて、この機能の Deprecate は撤回された。
 
