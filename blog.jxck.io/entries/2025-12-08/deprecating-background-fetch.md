@@ -26,8 +26,10 @@ Background Fetch は、Service Worker を使って、文字通り Fetch をバ�
 
 この頃 PWA で追加された機能は、こうしたユースケースをサポートするものだったので、そのナラティブに則って、自分のサイトで試していたものだ。
 
+- mozaic.fm v3 リリースと Podcast の PWA 化 | blog.jxck.io
+  - https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html
 - Podcast over PWA
-  - https://docs.google.com/presentation/d/1ojvmzyUqSJFL0KU5Iaa7DEW4G-DvGBIEnwD0sCjonII/edit?slide=id.p#slide=id.p
+  - https://speakerdeck.com/jxck/podcast-over-pwa
 
 ところが Android でしか動かないものばかりで、筆者は当時 Android を持っていなかった。そこで、借りた古い Android でデバッグしながら実装し、その端末のアップデートが止まって以降、自分でもまったく試していない機能でもあったた。去年のサイト刷新で一時的に UI を落としたので、試すこともできない状態のはずだ。
 
