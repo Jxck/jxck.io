@@ -26,7 +26,6 @@ guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 
 それでも良い人だけ聞いて下さい。
 
-
 ## Show Note
 
 - 技術的福祉の受容、および Web 開発との「出会い直し」 | JSConf JP 2025
