@@ -2614,3 +2614,16 @@ eyeD3 --title "ep193 Drive Talk: JSConf 2025" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep194.mp3
+
+eyeD3 --title "ep194 Yearly Ecosystem 2025" \
+      --track 202 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep194.mp3
+
+
+

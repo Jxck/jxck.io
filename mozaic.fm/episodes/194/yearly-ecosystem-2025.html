@@ -1,0 +1,3693 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/194/yearly-ecosystem-2025.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?250126_042048></script>
+  <script type=module src=/assets/js/sw.js?250126_041534></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 194 回のテーマは 2025 年の Yearly Ecosystem です。">
+  <meta name=keywords            content="yearly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/194/yearly-ecosystem-2025.html>
+  <meta property=og:title        content="ep194 Yearly Ecosystem 2025 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 194 回のテーマは 2025 年の Yearly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep194 Yearly Ecosystem 2025 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/193/drive-talk-jsconf2025.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?250126_044049>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?250125_014450>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?250125_013946>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?250126_041123>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/193/drive-talk-jsconf2025.html>ep193 Drive Talk: JSConf 2025</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep194 Yearly Ecosystem 2025</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2025-12-17
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/about_hiroppy" target=_blank>@hiroppy</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/re_taro_" target=_blank>@re-taro</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <ol>
+                  <li><a href="#2025-年のチェックポイント">2025 年のチェックポイント</a>
+                  <li><a href="#今年のキーワード">今年のキーワード</a>
+                  <li><a href="#2026-年のチェックポイント">2026 年のチェックポイント</a>
+                  <li><a href="#1-月">1 月</a>
+                  <li><a href="#2-月">2 月</a>
+                  <li><a href="#3-月">3 月</a>
+                  <li><a href="#4-月">4 月</a>
+                  <li><a href="#5-月">5 月</a>
+                  <li><a href="#6-月">6 月</a>
+                  <li><a href="#7-月">7 月</a>
+                  <li><a href="#8-月">8 月</a>
+                  <li><a href="#9-月">9 月</a>
+                  <li><a href="#10-月">10 月</a>
+                  <li><a href="#11-月">11 月</a>
+                </ol>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 194 回のテーマは 2025 年の Yearly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <section>
+        <h3 id="2025-年のチェックポイント"><a href="#2025-年のチェックポイント">2025 年のチェックポイント</a></h3>
+        <ul>
+          <li>React の WC 対応と Open UI により WC 元年がまたくるかも
+          <li>
+            SC で zero runtime じゃない CSS も動くようになりそうなので、より戻すか?
+            <ul>
+              <li>CSS ライブラリのこの先はどこに落ち着くのか、css modules,tailwind,zero-runtime &amp; AI &amp; React の対応
+            </ul>
+          </li>
+          <li>next.js の cache が安定するか?
+          <li>figma-&gt;実装のワークフローの進化(devmode, codeconnect)、AI 活用
+          <li>
+            next.js app router 移行先に post remix としての tanstack family
+            <ul>
+              <li>remix 自体どうなる?
+            </ul>
+          </li>
+          <li>react compiler どうなるか
+          <li>JS0 / JSSugar によるツールとエンジンの分離
+          <li>OSS のマネタイズどうなる?
+          <li>Bun の独走に対するエコシステムへの還元
+          <li>jsr/vlt/npm の覇権争いと ESM 移行
+          <li>tooling 系百花繚乱どうなるか
+        </ul>
+      </section>
+      <section>
+        <h3 id="今年のキーワード"><a href="#今年のキーワード">今年のキーワード</a></h3>
+        <ul>
+          <li>
+            Jxck
+            <ul>
+              <li>Remix 迷走
+              <li>Vite+ 設立
+              <li>Bun 買収
+              <li>Hono CLI
+              <li>npm -&gt; pnpm
+              <li>Figma 上場
+              <li>Figma Make
+              <li>Keep4o
+              <li>tsgo
+            </ul>
+          </li>
+          <li>
+            Sakito
+            <ul>
+              <li>
+                vercel の陰り
+                <ul>
+                  <li>v0,<a href="http://Next.js" target=_blank>Next.js</a>周り
+                </ul>
+              </li>
+              <li>
+                Void 0 による Vite やツールチェインの新しい未来?
+                <ul>
+                  <li>Vite+とか
+                </ul>
+              </li>
+              <li>
+                AI + フロントエンドツール
+                <ul>
+                  <li>MCP,エディター周り,Bun,Playwright
+                </ul>
+              </li>
+              <li>
+                Lint 周りの変化
+                <ul>
+                  <li>ESLint の JS 以外の対応、OxLint
+                </ul>
+              </li>
+              <li>フロントエンドエコシステムへの攻撃
+            </ul>
+          </li>
+          <li>
+            Hiroppy
+            <ul>
+              <li>vite+
+              <li>security
+              <li>tsgo
+              <li>next@16
+              <li>thank you styled-components
+            </ul>
+          </li>
+          <li>
+            re-taro
+            <ul>
+              <li>remix くん...
+              <li>styled-components くん...
+              <li>recoil くん...
+              <li>cra くん...
+              <li>脆弱性
+              <li>
+                ツールチェイン Rust 化
+                <ul>
+                  <li>oxc が縁の下の力持ち
+                </ul>
+              </li>
+              <li>tsgo
+              <li>react compiler
+              <li>react foundation
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="2026-年のチェックポイント"><a href="#2026-年のチェックポイント">2026 年のチェックポイント</a></h3>
+        <ul>
+          <li>Bun 買収された影響がどうでる?
+          <li>Deno への意向モチベーションはどこに出てくるか?
+          <li>
+            ESLint から oxlint への移行は進むか?
+            <ul>
+              <li>Type Aware Linting 広まる?
+            </ul>
+          </li>
+          <li>tsgo に依存するライブラリが更新にどう追従するか?API は結局出るか?
+          <li>swc などの transpile するライブラリはどうなっていくか?
+          <li>Turbopack が Next 以外でも使われるか、Turporepo 相当が Vite Family にくるか?
+          <li>
+            Figma が AI とデザインの新しい可能性を見出せるのか?
+            <ul>
+              <li>Design Token Format 対応 / Make kit / npm package 読み込み etc は Figma に良い影響を与える?
+            </ul>
+          </li>
+          <li>app router はどうなるか?RCE 脆弱性の影響は?
+          <li>Vite+ のサービス内容と、価格はどういうものか?マネタイズが成り立つのか?
+          <li>
+            CSS は引き続き tailwind / css module が続くか、別のパラダイム/ライブラリが出るか?
+            <ul>
+              <li>shadcn が来年どうなっているか?
+            </ul>
+          </li>
+          <li>
+            サイバーインシデントは落ち着くのか?
+            <ul>
+              <li>サプライチェーンは無限に続く?
+              <li>Next/React 系のデカいインシデントはまだ出る?
+              <li>Cloudflare 落ちすぎじゃね?
+            </ul>
+          </li>
+          <li>AI がエコシステムにどう影響を与えるか?
+        </ul>
+      </section>
+      <section>
+        <h3 id="1-月"><a href="#1-月">1 月</a></h3>
+        <ul>
+          <li>
+            React v19 Release!
+            <ul>
+              <li><a href="https://react.dev/blog/2024/12/05/react-19" target=_blank>https://react.dev/blog/2024/12/05/react-19</a>
+            </ul>
+          </li>
+          <li>
+            RFC: Context selectors
+            <ul>
+              <li><a href="https://github.com/reactjs/rfcs/pull/119" target=_blank>https://github.com/reactjs/rfcs/pull/119</a>
+            </ul>
+          </li>
+          <li>
+            Suspense Fonts for View Transition
+            <ul>
+              <li><a href="https://github.com/facebook/react/pull/32031" target=_blank>https://github.com/facebook/react/pull/32031</a>
+            </ul>
+          </li>
+          <li>
+            Next.js 15.1
+            <ul>
+              <li><a href="https://nextjs.org/blog/next-15-1" target=_blank>https://nextjs.org/blog/next-15-1</a>
+            </ul>
+          </li>
+          <li>
+            Composable Caching with Next.js
+            <ul>
+              <li><a href="https://nextjs.org/blog/composable-caching" target=_blank>https://nextjs.org/blog/composable-caching</a>
+            </ul>
+          </li>
+          <li>
+            Single-Page Applications with Next.js
+            <ul>
+              <li><a href="https://nextjs.org/docs/app/building-your-application/upgrading/single-page-applications" target=_blank>https://nextjs.org/docs/app/building-your-application/upgrading/single-page-applications</a>
+            </ul>
+          </li>
+          <li>
+            Astro 5.1
+            <ul>
+              <li><a href="https://astro.build/blog/astro-510/" target=_blank>https://astro.build/blog/astro-510/</a>
+            </ul>
+          </li>
+          <li>
+            Astro 5.0
+            <ul>
+              <li><a href="https://astro.build/blog/astro-5/" target=_blank>https://astro.build/blog/astro-5/</a>
+            </ul>
+          </li>
+          <li>
+            Node v23.6.0
+            <ul>
+              <li><a href="https://nodejs.org/ja/blog/release/v23.6.0" target=_blank>https://nodejs.org/ja/blog/release/v23.6.0</a>
+            </ul>
+          </li>
+          <li>
+            Playwright に Aria snapshots 機能の追加
+            <ul>
+              <li><a href="https://playwright.dev/docs/release-notes#version-149" target=_blank>https://playwright.dev/docs/release-notes#version-149</a>
+            </ul>
+          </li>
+          <li>
+            Undici v7 is here
+            <ul>
+              <li><a href="https://blog.platformatic.dev/undici-v7-is-here" target=_blank>https://blog.platformatic.dev/undici-v7-is-here</a>
+            </ul>
+          </li>
+          <li>
+            Vite 6.0 is out!
+            <ul>
+              <li><a href="https://vite.dev/blog/announcing-vite6.html" target=_blank>https://vite.dev/blog/announcing-vite6.html</a>
+            </ul>
+          </li>
+          <li>
+            Rolldown 1.0.0-beta.1
+            <ul>
+              <li><a href="https://github.com/rolldown/rolldown/releases/tag/v1.0.0-beta.1" target=_blank>https://github.com/rolldown/rolldown/releases/tag/v1.0.0-beta.1</a>
+            </ul>
+          </li>
+          <li>
+            Base UI
+            <ul>
+              <li><a href="https://base-ui.com/" target=_blank>https://base-ui.com/</a>
+            </ul>
+          </li>
+          <li>
+            Recoil
+            <ul>
+              <li><a href="https://github.com/facebookexperimental/Recoil" target=_blank>https://github.com/facebookexperimental/Recoil</a>
+              <li><a href="https://x.com/mengdi_en/status/1875916781950468341" target=_blank>https://x.com/mengdi_en/status/1875916781950468341</a>
+            </ul>
+          </li>
+          <li>
+            Tailwind CSS v4.0 Beta 1
+            <ul>
+              <li><a href="https://tailwindcss.com/blog/tailwindcss-v4-beta" target=_blank>https://tailwindcss.com/blog/tailwindcss-v4-beta</a>
+            </ul>
+          </li>
+          <li>
+            Deno 2.1: Wasm Imports and other enhancements
+            <ul>
+              <li><a href="https://deno.com/blog/v2.1" target=_blank>https://deno.com/blog/v2.1</a>
+            </ul>
+          </li>
+          <li>
+            rslib
+            <ul>
+              <li><a href="https://lib.rsbuild.dev/" target=_blank>https://lib.rsbuild.dev/</a>
+            </ul>
+          </li>
+          <li>
+            rsdoctor v1.0.0-alpha.0
+            <ul>
+              <li><a href="https://github.com/web-infra-dev/rsdoctor/releases/tag/v1.0.0-alpha.0" target=_blank>https://github.com/web-infra-dev/rsdoctor/releases/tag/v1.0.0-alpha.0</a>
+            </ul>
+          </li>
+          <li>
+            RSpack のセキュリティ脆弱性
+            <ul>
+              <li><a href="https://github.com/web-infra-dev/rspack/releases/tag/v1.1.8" target=_blank>https://github.com/web-infra-dev/rspack/releases/tag/v1.1.8</a>
+              <li>
+                経緯
+                <ul>
+                  <li><a href="https://github.com/web-infra-dev/rspack/issues/8767" target=_blank>https://github.com/web-infra-dev/rspack/issues/8767</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            pnpm 10
+            <ul>
+              <li><a href="https://github.com/pnpm/pnpm/releases/tag/v10.0.0" target=_blank>https://github.com/pnpm/pnpm/releases/tag/v10.0.0</a>
+              <li>
+                lifecycle scripts で rspack の話をここでもしてる
+                <ul>
+                  <li><a href="https://github.com/pnpm/pnpm/pull/8897" target=_blank>https://github.com/pnpm/pnpm/pull/8897</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Bun&apos;s new text-based lockfile
+            <ul>
+              <li><a href="https://bun.sh/blog/bun-lock-text-lockfile" target=_blank>https://bun.sh/blog/bun-lock-text-lockfile</a>
+            </ul>
+          </li>
+          <li>
+            Bun supports S3
+            <ul>
+              <li><a href="https://x.com/bunjavascript/status/1873234802675204106" target=_blank>https://x.com/bunjavascript/status/1873234802675204106</a>
+            </ul>
+          </li>
+          <li>
+            Bun 1.1.43
+            <ul>
+              <li><a href="https://bun.sh/blog/bun-v1.1.43" target=_blank>https://bun.sh/blog/bun-v1.1.43</a>
+              <li>HTML Bundler
+              <li>bun install --filter
+            </ul>
+          </li>
+          <li>
+            Storybook v9 に来そうな変更
+            <ul>
+              <li><a href="https://x.com/storybookjs/status/1878939055582519432" target=_blank>https://x.com/storybookjs/status/1878939055582519432</a>
+              <li>
+                play function の api の見直し
+                <ul>
+                  <li><a href="https://github.com/storybookjs/storybook/discussions/30119" target=_blank>https://github.com/storybookjs/storybook/discussions/30119</a>
+                </ul>
+              </li>
+              <li>
+                CSF をより typesafe に書けるように
+                <ul>
+                  <li><a href="https://github.com/storybookjs/storybook/discussions/30112" target=_blank>https://github.com/storybookjs/storybook/discussions/30112</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Storybook Addon Test Codegen
+            <ul>
+              <li><a href="https://github.com/igrlk/storybook-addon-test-codegen" target=_blank>https://github.com/igrlk/storybook-addon-test-codegen</a>
+              <li>Storybook 上の画面操作で test を生成してくれる addon
+            </ul>
+          </li>
+          <li>
+            prisma v6
+            <ul>
+              <li><a href="https://github.com/prisma/prisma/releases/tag/6.0.0" target=_blank>https://github.com/prisma/prisma/releases/tag/6.0.0</a>
+            </ul>
+          </li>
+          <li>
+            React Router v7
+            <ul>
+              <li><a href="https://remix.run/blog/react-router-v7" target=_blank>https://remix.run/blog/react-router-v7</a>
+            </ul>
+          </li>
+          <li>
+            Nextra 4
+            <ul>
+              <li><a href="https://the-guild.dev/blog/nextra-4" target=_blank>https://the-guild.dev/blog/nextra-4</a>
+            </ul>
+          </li>
+          <li>
+            stylex
+            <ul>
+              <li><a href="https://stylexjs.com/blog/v0.10.0" target=_blank>https://stylexjs.com/blog/v0.10.0</a>
+            </ul>
+          </li>
+          <li>
+            TC39 に webpack のメンテナーが入っている
+            <ul>
+              <li><a href="https://x.com/evenstensberg/status/1860396114874142778" target=_blank>https://x.com/evenstensberg/status/1860396114874142778</a>
+              <li>
+                oxc の人も
+                <ul>
+                  <li><a href="https://x.com/boshen_c/status/1854796717998457324" target=_blank>https://x.com/boshen_c/status/1854796717998457324</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Oracle から JS の商標取り下げるつもりはないと回答
+            <ul>
+              <li><a href="https://x.com/deno_land/status/1876728474666217739" target=_blank>https://x.com/deno_land/status/1876728474666217739</a>
+            </ul>
+          </li>
+          <li>
+            A standard interface for TypeScript schema validation libraries
+            <ul>
+              <li><a href="https://github.com/standard-schema/standard-schema" target=_blank>https://github.com/standard-schema/standard-schema</a>
+            </ul>
+          </li>
+          <li>
+            State of JavaScript 2024
+            <ul>
+              <li><a href="https://2024.stateofjs.com/en-US" target=_blank>https://2024.stateofjs.com/en-US</a>
+            </ul>
+          </li>
+          <li>
+            2024 JavaScript Rising Stars
+            <ul>
+              <li><a href="https://risingstars.js.org/2024/en" target=_blank>https://risingstars.js.org/2024/en</a>
+            </ul>
+          </li>
+          <li>
+            Figma to v0 to Code
+            <ul>
+              <li><a href="https://x.com/leeerob/status/1869040369901453385" target=_blank>https://x.com/leeerob/status/1869040369901453385</a>
+            </ul>
+          </li>
+          <li>
+            Node v23.5.0
+            <ul>
+              <li><a href="https://nodejs.org/ja/blog/release/v23.5.0" target=_blank>https://nodejs.org/ja/blog/release/v23.5.0</a>
+            </ul>
+          </li>
+          <li>
+            Node v23.4.0
+            <ul>
+              <li><a href="https://nodejs.org/ja/blog/release/v23.4.0" target=_blank>https://nodejs.org/ja/blog/release/v23.4.0</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="2-月"><a href="#2-月">2 月</a></h3>
+        <ul>
+          <li>
+            Node v24 が 2025-04-22 に予定
+            <ul>
+              <li><a href="https://github.com/nodejs/node/issues/57057" target=_blank>https://github.com/nodejs/node/issues/57057</a>
+              <li>v18 が 2025-04-30 に EOL
+            </ul>
+          </li>
+          <li>
+            Node v23.7.0
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v23.7.0" target=_blank>https://nodejs.org/en/blog/release/v23.7.0</a>
+            </ul>
+          </li>
+          <li>
+            Node v23.8.0
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v23.8.0" target=_blank>https://nodejs.org/en/blog/release/v23.8.0</a>
+              <li>URL Pattern
+              <li>zstd のサポート
+            </ul>
+          </li>
+          <li>
+            Node JSX Support ?
+            <ul>
+              <li><a href="https://github.com/nodejs/node/issues/56822" target=_blank>https://github.com/nodejs/node/issues/56822</a>
+            </ul>
+          </li>
+          <li>
+            require(esm) Backported to Node.js 20, Paving the Way for ESM-Only Packages
+            <ul>
+              <li><a href="https://socket.dev/blog/require-esm-backported-to-node-js-20" target=_blank>https://socket.dev/blog/require-esm-backported-to-node-js-20</a>
+            </ul>
+          </li>
+          <li>
+            Add nodejs runtime support for middleware by ijjk · Pull Request #75624 · vercel/next.js
+            <ul>
+              <li><a href="https://x.com/leeerob/status/1886547050134647070" target=_blank>https://x.com/leeerob/status/1886547050134647070</a>
+              <li><a href="https://github.com/vercel/next.js/pull/75624" target=_blank>https://github.com/vercel/next.js/pull/75624</a>
+              <li>Next.js に新しく experimental.nodeMiddleware フラグが追加
+            </ul>
+          </li>
+          <li>
+            Sunsetting Create React App
+            <ul>
+              <li>
+                <a href="https://react.dev/blog/2025/02/14/sunsetting-create-react-app" target=_blank>https://react.dev/blog/2025/02/14/sunsetting-create-react-app</a>
+                <ul>
+                  <li>アクティブなメンテナーがいない
+                  <li>CRA で新しいアプリを作ると警告が出る
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Build a React app from Scratch
+            <ul>
+              <li><a href="https://react.dev/learn/build-a-react-app-from-scratch" target=_blank>https://react.dev/learn/build-a-react-app-from-scratch</a>
+            </ul>
+          </li>
+          <li>
+            create-tsrouter-app
+            <ul>
+              <li>Vite,Tanstack Router を使った CRA のようなやつ
+              <li>
+                Tanstack 公式ではないがスポンサー的なことはしてるらしい
+                <ul>
+                  <li><a href="https://x.com/tannerlinsley/status/1891950203256659996" target=_blank>https://x.com/tannerlinsley/status/1891950203256659996</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            State of React 2024
+            <ul>
+              <li><a href="https://2024.stateofreact.com/ja-JP/" target=_blank>https://2024.stateofreact.com/ja-JP/</a>
+            </ul>
+          </li>
+          <li>
+            [crud] Merge useResourceEffect into useEffect
+            <ul>
+              <li><a href="https://github.com/facebook/react/pull/32205/files" target=_blank>https://github.com/facebook/react/pull/32205/files</a>
+            </ul>
+          </li>
+          <li>
+            React Router v7.2.0
+            <ul>
+              <li><a href="https://github.com/remix-run/react-router/blob/main/CHANGELOG.md#v720" target=_blank>https://github.com/remix-run/react-router/blob/main/CHANGELOG.md#v720</a>
+            </ul>
+          </li>
+          <li>
+            react-hook-form に standard-schema が追加
+            <ul>
+              <li><a href="https://github.com/react-hook-form/resolvers/releases/tag/v4.0.0" target=_blank>https://github.com/react-hook-form/resolvers/releases/tag/v4.0.0</a>
+            </ul>
+          </li>
+          <li>
+            Announcing TypeScript 5.8 RC - TypeScript
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-8-rc/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-8-rc/</a>
+              <li>Granular Checks for Branches in Return Expressions
+              <li>Support for <code translate=no>require()</code> of ECMAScript Modules in <code translate=no>--module nodenext</code>
+              <li><code translate=no>--module node18</code>
+              <li>The <code translate=no>--erasableSyntaxOnly</code> Option
+              <li>The <code translate=no>--libReplacement</code> Flag
+              <li>Preserved Computed Property Names in Declaration Files
+              <li>Optimizations on Program Loads and Updates
+              <li>
+                Notable Behavioral Changes
+                <ul>
+                  <li>lib.d.ts
+                  <li>Restrictions on Import Assertions Under <code translate=no>--module nodenext</code>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            kermanx/simple_ts
+            <ul>
+              <li><a href="https://github.com/KermanX/simple_ts" target=_blank>https://github.com/KermanX/simple_ts</a>
+              <li>oxc の type aware linting に使う目的の ts 実装
+              <li>TS のパーサだが lint に必要な最小限に絞ることで実装を軽くする目的
+            </ul>
+          </li>
+          <li>
+            Introducing the JSR open governance board
+            <ul>
+              <li><a href="https://deno.com/blog/jsr-open-governance-board" target=_blank>https://deno.com/blog/jsr-open-governance-board</a>
+              <li>Announcing OpenAI on JSR <a href="https://deno.com/blog/openai-on-jsr" target=_blank>https://deno.com/blog/openai-on-jsr</a>
+            </ul>
+          </li>
+          <li>
+            Deno: &quot;#FreeJavaScript update: Oracle…&quot; - Fosstodon
+            <ul>
+              <li><a href="https://fosstodon.org/@deno_land/113793964751001617" target=_blank>https://fosstodon.org/@deno_land/113793964751001617</a>
+              <li>Oracle が JS 商標の放棄を拒否
+            </ul>
+          </li>
+          <li>
+            Announcing Rspack 1.2 - Rspack
+            <ul>
+              <li>
+                <a href="https://rspack.dev/blog/announcing-1-2" target=_blank>https://rspack.dev/blog/announcing-1-2</a>
+                <ul>
+                  <li>persisted cache
+                  <li>Yarn PnP support
+                  <li>Angular support
+                  <li><a href="https://github.com/Coly010/ng-rspack-build" target=_blank>https://github.com/Coly010/ng-rspack-build</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            @rsbuild/plugin-react-router
+            <ul>
+              <li><a href="https://github.com/rspack-contrib/rsbuild-plugin-react-router" target=_blank>https://github.com/rspack-contrib/rsbuild-plugin-react-router</a>
+              <li>RS Build で React Router を使うプラグイン
+            </ul>
+          </li>
+          <li>
+            Bun 1.2
+            <ul>
+              <li><a href="https://bun.sh/blog/bun-v1.2" target=_blank>https://bun.sh/blog/bun-v1.2</a>
+              <li>
+                lockfile の default が text file になり、dependabot でも beta として support された
+                <ul>
+                  <li><a href="https://github.com/dependabot/dependabot-core/issues/6528#issuecomment-2593393639" target=_blank>https://github.com/dependabot/dependabot-core/issues/6528#issuecomment-2593393639</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Newly published versions of package managers distributed from npm cannot be installed due to key id mismatch
+            <ul>
+              <li><a href="https://github.com/nodejs/corepack/issues/612" target=_blank>https://github.com/nodejs/corepack/issues/612</a>
+            </ul>
+          </li>
+          <li>
+            Open Props UI
+            <ul>
+              <li><a href="https://open-props-ui.netlify.app/" target=_blank>https://open-props-ui.netlify.app/</a>
+              <li>Open Props v2 をベースにした UI コンポーネント集
+            </ul>
+          </li>
+          <li>
+            Tailwind CSS v4.0 - Tailwind CSS
+            <ul>
+              <li><a href="https://tailwindcss.com/blog/tailwindcss-v4" target=_blank>https://tailwindcss.com/blog/tailwindcss-v4</a>
+              <li>New high-performance engine
+              <li>Designed for the modern web
+              <li>Simplified installation
+              <li>First-party Vite plugin
+              <li>Automatic content detection
+              <li>Built-in import support
+              <li>CSS-first configuration
+              <li>CSS theme variables
+              <li>Dynamic utility values and variants
+              <li>Modernized P3 color palette
+              <li>Container queries
+              <li>New 3D transform utilities
+              <li>Expanded gradient APIs
+              <li>@starting-style support
+              <li><code translate=no>not-*</code> variant
+              <li>Even more new utilities and variants
+            </ul>
+          </li>
+          <li>
+            Move on to ESM-only
+            <ul>
+              <li><a href="https://antfu.me/posts/move-on-to-esm-only" target=_blank>https://antfu.me/posts/move-on-to-esm-only</a>
+              <li>Anthony Fu が ESM 移行を推奨する記事
+              <li>もう準備は整ったとしている
+            </ul>
+          </li>
+          <li>
+            Prisma
+            <ul>
+              <li>
+                From Rust to TypeScript: A New Chapter for Prisma ORM
+                <ul>
+                  <li><a href="https://www.prisma.io/blog/from-rust-to-typescript-a-new-chapter-for-prisma-orm" target=_blank>https://www.prisma.io/blog/from-rust-to-typescript-a-new-chapter-for-prisma-orm</a>
+                </ul>
+              </li>
+              <li>
+                v6.4.0
+                <ul>
+                  <li><a href="https://github.com/prisma/prisma/releases/tag/6.4.0" target=_blank>https://github.com/prisma/prisma/releases/tag/6.4.0</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            ESLint now officially supports linting of CSS
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/02/eslint-css-support/" target=_blank>https://eslint.org/blog/2025/02/eslint-css-support/</a>
+            </ul>
+          </li>
+          <li>
+            Announcing NestJS 11: What&apos;s New?
+            <ul>
+              <li><a href="https://trilon.io/blog/announcing-nestjs-11-whats-new" target=_blank>https://trilon.io/blog/announcing-nestjs-11-whats-new</a>
+            </ul>
+          </li>
+          <li>
+            Biome Roadmap 2025 and Biome 2.0
+            <ul>
+              <li><a href="https://biomejs.dev/blog/roadmap-2025/" target=_blank>https://biomejs.dev/blog/roadmap-2025/</a>
+            </ul>
+          </li>
+          <li>
+            Fastly が「AI Accelerator」正式リリース、生成 AI からのレスポンスをキャッシュし高速化とコスト削減を実現
+            <ul>
+              <li><a href="https://www.publickey1.jp/blog/25/fastlyai_acceleratorai.html" target=_blank>https://www.publickey1.jp/blog/25/fastlyai_acceleratorai.html</a>
+            </ul>
+          </li>
+          <li>
+            Introducing Fluid compute: The power of servers, in serverless form
+            <ul>
+              <li><a href="https://vercel.com/blog/introducing-fluid-compute" target=_blank>https://vercel.com/blog/introducing-fluid-compute</a>
+            </ul>
+          </li>
+          <li>
+            storybook v8.5
+            <ul>
+              <li><a href="https://x.com/storybookjs/status/1881752469929365789" target=_blank>https://x.com/storybookjs/status/1881752469929365789</a>
+              <li><a href="https://storybook.js.org/blog/storybook-8-5/" target=_blank>https://storybook.js.org/blog/storybook-8-5/</a>
+            </ul>
+          </li>
+          <li>
+            shiki-stream
+            <ul>
+              <li><a href="https://github.com/antfu/shiki-stream" target=_blank>https://github.com/antfu/shiki-stream</a>
+            </ul>
+          </li>
+          <li>
+            Laravel Starter Kits
+            <ul>
+              <li><a href="https://laravel.com/docs/11.x/starter-kits" target=_blank>https://laravel.com/docs/11.x/starter-kits</a>
+              <li>Laravel アプリケーションのスターターキット
+            </ul>
+          </li>
+          <li>
+            Angular: The Documentary | An origin story
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=cRC9DlH45lA" target=_blank>https://www.youtube.com/watch?v=cRC9DlH45lA</a>
+            </ul>
+          </li>
+          <li>
+            Astro 5.2 | Astro
+            <ul>
+              <li><a href="https://astro.build/blog/astro-520/" target=_blank>https://astro.build/blog/astro-520/</a>
+            </ul>
+          </li>
+          <li>
+            Astro 5.3 | Astro
+            <ul>
+              <li><a href="https://astro.build/blog/astro-530/" target=_blank>https://astro.build/blog/astro-530/</a>
+            </ul>
+          </li>
+          <li>
+            Introducing HeroUI
+            <ul>
+              <li><a href="https://www.heroui.com/blog/introducing-heroui" target=_blank>https://www.heroui.com/blog/introducing-heroui</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="3-月"><a href="#3-月">3 月</a></h3>
+        <ul>
+          <li>
+            mastra.ai
+            <ul>
+              <li><a href="https://mastra.ai/" target=_blank>https://mastra.ai/</a>
+              <li>TypeScript ベースの Agent Framework
+              <li><a href="https://mastra.ai/docs/evals/01-supported-evals" target=_blank>https://mastra.ai/docs/evals/01-supported-evals</a>
+            </ul>
+          </li>
+          <li>
+            Lynx
+            <ul>
+              <li>bytedance 製品
+              <li><a href="https://lynxjs.org/react/" target=_blank>https://lynxjs.org/react/</a>
+              <li>
+                ブログ記事
+                <ul>
+                  <li><a href="https://lynxjs.org/blog/lynx-unlock-native-for-more.html" target=_blank>https://lynxjs.org/blog/lynx-unlock-native-for-more.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Claude 3.7 Sonnet
+            <ul>
+              <li><a href="https://www.anthropic.com/claude/sonnet" target=_blank>https://www.anthropic.com/claude/sonnet</a>
+            </ul>
+          </li>
+          <li>
+            Claude Code
+            <ul>
+              <li><a href="https://docs.anthropic.com/ja/docs/agents-and-tools/claude-code/overview" target=_blank>https://docs.anthropic.com/ja/docs/agents-and-tools/claude-code/overview</a>
+            </ul>
+          </li>
+          <li>
+            ChatGPT GPT-4.5
+            <ul>
+              <li><a href="https://www.reuters.com/technology/artificial-intelligence/openai-rolls-out-gpt-45-some-paying-users-expand-access-next-week-2025-02-27/" target=_blank>https://www.reuters.com/technology/artificial-intelligence/openai-rolls-out-gpt-45-some-paying-users-expand-access-next-week-2025-02-27/</a>
+            </ul>
+          </li>
+          <li>
+            React で moveBefore()を有効化する PR
+            <ul>
+              <li><a href="https://github.com/facebook/react/pull/32549" target=_blank>https://github.com/facebook/react/pull/32549</a>
+              <li>React で moveBefore()を有効化する PR
+              <li>
+                先日入った Node#moveBefore()
+                <ul>
+                  <li><a href="https://github.com/whatwg/dom/issues/1255" target=_blank>https://github.com/whatwg/dom/issues/1255</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Next 15.2
+            <ul>
+              <li><a href="https://nextjs.org/blog/next-15-2" target=_blank>https://nextjs.org/blog/next-15-2</a>
+            </ul>
+          </li>
+          <li>
+            llms.txt
+            <ul>
+              <li>
+                <a href="https://llmstxt.site/" target=_blank>https://llmstxt.site/</a>
+                <ul>
+                  <li>llms 使ってるサイトまとめ
+                </ul>
+              </li>
+              <li>
+                <a href="https://mozaic.fm/llms.txt">https://mozaic.fm/llms.txt</a>
+                <ul>
+                  <li>作ってみた
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TanStack Form v1
+            <ul>
+              <li><a href="https://tanstack.com/blog/announcing-tanstack-form-v1" target=_blank>https://tanstack.com/blog/announcing-tanstack-form-v1</a>
+            </ul>
+          </li>
+          <li>
+            Vercel が React Router v7 をサポート
+            <ul>
+              <li><a href="https://vercel.com/changelog/support-for-react-router-v7" target=_blank>https://vercel.com/changelog/support-for-react-router-v7</a>
+            </ul>
+          </li>
+          <li>
+            TypeScript 5.8
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-8/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-8/</a>
+            </ul>
+          </li>
+          <li>
+            Bun v1.2.3
+            <ul>
+              <li><a href="https://bun.sh/blog/bun-v1.2.3" target=_blank>https://bun.sh/blog/bun-v1.2.3</a>
+            </ul>
+          </li>
+          <li>
+            ESLint v9.22.0 released
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/03/eslint-v9.22.0-released/" target=_blank>https://eslint.org/blog/2025/03/eslint-v9.22.0-released/</a>
+              <li>
+                <code translate=no>defineConfig()</code> と <code translate=no>globalIgnores()</code>の追加
+                <ul>
+                  <li><code translate=no>defineConfig</code> で config の型を
+                  <li><code translate=no>globalIgnores</code> はヘルパーで、global の ignore を指定
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Figma In Talks With Bankers To Explore An I.P.O. This Year- NYT
+            <ul>
+              <li><a href="https://www.nytimes.com/2025/03/07/technology/figma-ipo.html" target=_blank>https://www.nytimes.com/2025/03/07/technology/figma-ipo.html</a>
+              <li>Figma の IPO 準備報道
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="4-月"><a href="#4-月">4 月</a></h3>
+        <ul>
+          <li>
+            TypeScript
+            <ul>
+              <li>
+                A 10x Faster TypeScript - TypeScript
+                <ul>
+                  <li><a href="https://devblogs.microsoft.com/typescript/typescript-native-port/" target=_blank>https://devblogs.microsoft.com/typescript/typescript-native-port/</a>
+                  <li>TSC を Go で書き直して高速化する話
+                  <li>Anders が去年 10 月くらいからゴリッと書き直し始めたっぽい
+                  <li>
+                    Go な理由
+                    <ul>
+                      <li>ネイティブコードの最適化がプラットフォームごとにしやすい
+                      <li>並列処理(Goroutine)での高速化がしやすい
+                      <li>TS のコードの形を維持しやすい
+                    </ul>
+                  </li>
+                  <li>checker 周りはできていて、今年中に CLI が出るかも
+                  <li>仕様の維持(推論周りとか)は期待できなさそう
+                  <li>開発者はビルドが速くなって嬉しいが、エコシステムはどうなるか?
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            ESLint
+            <ul>
+              <li>
+                v9.23.0 released
+                <ul>
+                  <li><a href="https://eslint.org/blog/2025/03/eslint-v9.23.0-released/" target=_blank>https://eslint.org/blog/2025/03/eslint-v9.23.0-released/</a>
+                </ul>
+              </li>
+              <li>
+                ESLint v9.24.0 released
+                <ul>
+                  <li><a href="https://eslint.org/blog/2025/04/eslint-v9.24.0-released/" target=_blank>https://eslint.org/blog/2025/04/eslint-v9.24.0-released/</a>
+                </ul>
+              </li>
+              <li>
+                Introducing bulk suppressions
+                <ul>
+                  <li><a href="https://eslint.org/blog/2025/04/introducing-bulk-suppressions/" target=_blank>https://eslint.org/blog/2025/04/introducing-bulk-suppressions/</a>
+                  <li>新しいルールを追加するときに段階的に適用していく方法
+                  <li>これまでは ignore していくしかなかった
+                  <li>新しく <code translate=no>eslint-suppressions.json</code> を設置しそこにルール違反の対象を記述
+                  <li>コードと一緒に管理できる
+                  <li>コマンドで更新も可能
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            React
+            <ul>
+              <li>
+                React for Two Computers
+                <ul>
+                  <li><a href="https://overreacted.io/react-for-two-computers/" target=_blank>https://overreacted.io/react-for-two-computers/</a>
+                </ul>
+              </li>
+              <li>
+                JSX Over The Wire
+                <ul>
+                  <li><a href="https://overreacted.io/jsx-over-the-wire/" target=_blank>https://overreacted.io/jsx-over-the-wire/</a>
+                </ul>
+              </li>
+              <li>
+                v19.1.0
+                <ul>
+                  <li><a href="https://github.com/facebook/react/releases/tag/v19.1.0" target=_blank>https://github.com/facebook/react/releases/tag/v19.1.0</a>
+                  <li>Owner Stack
+                  <li>Added support for beforetoggle and toggle events on the dialog element.
+                </ul>
+              </li>
+              <li>
+                Advanced React in the Wild
+                <ul>
+                  <li><a href="https://largeapps.dev/case-studies/advanced/" target=_blank>https://largeapps.dev/case-studies/advanced/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Next.js
+            <ul>
+              <li>
+                CVE-2025-29927: Authorization Bypass in Next.js | Fastly
+                <ul>
+                  <li><a href="https://www.fastly.com/blog/cve-2025-29927-authorization-bypass-in-next-js" target=_blank>https://www.fastly.com/blog/cve-2025-29927-authorization-bypass-in-next-js</a>
+                  <li><code translate=no>x-middleware-subrequest</code> で middle ware をスキップできる
+                </ul>
+              </li>
+              <li>
+                Postmortem on Next.js Middleware bypass - Vercel
+                <ul>
+                  <li><a href="https://vercel.com/blog/postmortem-on-next-js-middleware-bypass" target=_blank>https://vercel.com/blog/postmortem-on-next-js-middleware-bypass</a>
+                </ul>
+              </li>
+              <li>
+                v15.3
+                <ul>
+                  <li><a href="https://nextjs.org/blog/next-15-3" target=_blank>https://nextjs.org/blog/next-15-3</a>
+                  <li>Turbopack の本番ビルドのアルファバージョン対応
+                  <li>Rspack のサポート
+                  <li>Client Instrumentation Hook
+                  <li>Navigation Hooks
+                </ul>
+              </li>
+              <li>
+                RFC: Deployment Adapters API
+                <ul>
+                  <li><a href="https://github.com/vercel/next.js/discussions/77740" target=_blank>https://github.com/vercel/next.js/discussions/77740</a>
+                  <li>Vercel もこの仕様にのっとり、各サーバレスプラットフォームでも Next.js のデプロイを容易にするための API 案。
+                  <li>Netlify、Cloudflare、Amplify、OpenNext と共同でワーキンググループを立ち上げて進めている
+                </ul>
+              </li>
+              <li>
+                How we run Next.js today - and what should change
+                <ul>
+                  <li><a href="https://www.netlify.com/blog/how-we-run-nextjs/" target=_blank>https://www.netlify.com/blog/how-we-run-nextjs/</a>
+                  <li>Netlify から Next.js への提言
+                </ul>
+              </li>
+              <li>
+                Next.js Support Policy | Next.js by Vercel - The React Framework
+                <ul>
+                  <li><a href="https://nextjs.org/support-policy" target=_blank>https://nextjs.org/support-policy</a>
+                  <li>サポートポリシーの公開
+                  <li>
+                    Active LTS
+                    <ul>
+                      <li>次のメジャーまではメンテされる
+                      <li>今は 15.x 系
+                    </ul>
+                  </li>
+                  <li>
+                    Maintenance LTS
+                    <ul>
+                      <li>2 年間セキュリティフィックスのみ
+                      <li>今は 14.x 系
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            biome
+            <ul>
+              <li>
+                Biome partners with Vercel to improve type inference
+                <ul>
+                  <li><a href="https://biomejs.dev/blog/vercel-partners-biome-type-inference/" target=_blank>https://biomejs.dev/blog/vercel-partners-biome-type-inference/</a>
+                </ul>
+              </li>
+              <li>
+                v2.0 beta
+                <ul>
+                  <li><a href="https://biomejs.dev/blog/biome-v2-0-beta/" target=_blank>https://biomejs.dev/blog/biome-v2-0-beta/</a>
+                  <li>GritQL Plugin
+                  <li>Domains
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Rstack
+            <ul>
+              <li>
+                Rspack joins the Next.js ecosystem
+                <ul>
+                  <li><a href="https://rspack.dev/blog/rspack-next-partner" target=_blank>https://rspack.dev/blog/rspack-next-partner</a>
+                </ul>
+              </li>
+              <li>
+                Announcing Rsdoctor 1.0
+                <ul>
+                  <li><a href="https://rsdoctor.dev/blog/release/release-note-1_0" target=_blank>https://rsdoctor.dev/blog/release/release-note-1_0</a>
+                </ul>
+              </li>
+              <li>
+                Support running JavaScript loader in parallel
+                <ul>
+                  <li><a href="https://github.com/web-infra-dev/rspack/releases/tag/v1.3.1" target=_blank>https://github.com/web-infra-dev/rspack/releases/tag/v1.3.1</a>
+                </ul>
+              </li>
+              <li>
+                web-infra-dev/rstest: The testing framework powered by Rspack (WIP).
+                <ul>
+                  <li><a href="https://github.com/web-infra-dev/rstest" target=_blank>https://github.com/web-infra-dev/rstest</a>
+                  <li>Rspack 前提のテストツール
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            RedwoodJS は Redwood GraphQL と Redwood SDK に分かれるぽい
+            <ul>
+              <li><a href="https://community.redwoodjs.com/t/the-future-of-redwood-launches-today/7938/1" target=_blank>https://community.redwoodjs.com/t/the-future-of-redwood-launches-today/7938/1</a>
+            </ul>
+          </li>
+          <li>
+            Oxc
+            <ul>
+              <li>
+                Oxlint Plugins Written In JavaScript
+                <ul>
+                  <li><a href="https://github.com/oxc-project/oxc/discussions/10342" target=_blank>https://github.com/oxc-project/oxc/discussions/10342</a>
+                </ul>
+              </li>
+              <li>
+                Oxlint Beta
+                <ul>
+                  <li><a href="https://oxc.rs/blog/2025-03-15-oxlint-beta.html" target=_blank>https://oxc.rs/blog/2025-03-15-oxlint-beta.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Rolldown
+            <ul>
+              <li>
+                How Rolldown Works: Module Loading, Dependency Graphs, and Optimization Explained
+                <ul>
+                  <li><a href="https://www.atriiy.dev/blog/rolldown-module-loader-and-dependency-graph" target=_blank>https://www.atriiy.dev/blog/rolldown-module-loader-and-dependency-graph</a>
+                </ul>
+              </li>
+              <li>
+                tsdown が Rolldown の一部へ
+                <ul>
+                  <li><a href="https://github.com/rolldown/tsdown" target=_blank>https://github.com/rolldown/tsdown</a>
+                  <li>
+                    EvanYou のコメント
+                    <ul>
+                      <li><a href="https://x.com/youyuxi/status/1912149489701568661" target=_blank>https://x.com/youyuxi/status/1912149489701568661</a>
+                      <li>
+                        <blockquote>
+                          <p>Think tsup but based on Rolldown - which means it&apos;s compatible with Rollup/Vite plugins. Additionally, it has the additional ability to generate and bundle dts alongside the main js bundle in one go!
+                        </blockquote>
+                      </li>
+                      <li>
+                        <blockquote>
+                          <p>With Vite soon moving over the Rolldown, it will be the foundation to improve the lib mode feature of Vite
+                        </blockquote>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            webpack
+            <ul>
+              <li>
+                Introduce typescript/auto Mode for Faster TypeScript Transpilation in Webpack
+                <ul>
+                  <li><a href="https://github.com/webpack/webpack/issues/19354" target=_blank>https://github.com/webpack/webpack/issues/19354</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Turborepo
+            <ul>
+              <li>
+                v2.5
+                <ul>
+                  <li><a href="https://turbo.build/blog/turbo-2-5" target=_blank>https://turbo.build/blog/turbo-2-5</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            VoidZero and NuxtLabs join forces on Vite Devtools | VoidZero
+            <ul>
+              <li><a href="https://voidzero.dev/posts/voidzero-nuxtlabs-vite-devtools" target=_blank>https://voidzero.dev/posts/voidzero-nuxtlabs-vite-devtools</a>
+              <li>デバッグや解析を支援するツール Vite DevTools
+              <li>VoidZero が NuxtLabs と連携し、Anthony Fu がこれに専念する
+              <li><a href="https://node-modules.dev/" target=_blank>https://node-modules.dev/</a>
+            </ul>
+          </li>
+          <li>
+            Hello Tokyo!
+            <ul>
+              <li><a href="https://antfu.me/posts/hello-tokyo" target=_blank>https://antfu.me/posts/hello-tokyo</a>
+              <li>Anthony Fu が日本に移住
+            </ul>
+          </li>
+          <li>styled-components
+          <li>
+            メンテナンスモードへ
+            <ul>
+              <li><a href="https://opencollective.com/styled-components/updates/thank-you" target=_blank>https://opencollective.com/styled-components/updates/thank-you</a>
+              <li><a href="https://blog.re-taro.dev/p/01JQ4914YGQZ02Q5PW5CNRJTJT" target=_blank>https://blog.re-taro.dev/p/01JQ4914YGQZ02Q5PW5CNRJTJT</a>
+            </ul>
+          </li>
+          <li>
+            Node.js
+            <ul>
+              <li>
+                v23.11.0 (Current)
+                <ul>
+                  <li><a href="https://nodejs.org/ja/blog/release/v23.11.0" target=_blank>https://nodejs.org/ja/blog/release/v23.11.0</a>
+                  <li>assert.partialDeepStrictEqual
+                  <li>process.execve
+                </ul>
+              </li>
+              <li>
+                v23.10.0 (Current)
+                <ul>
+                  <li><a href="https://nodejs.org/ja/blog/release/v23.10.0" target=_blank>https://nodejs.org/ja/blog/release/v23.10.0</a>
+                  <li>experimental-config-file
+                </ul>
+              </li>
+              <li>
+                src: add --run-from runtime flag
+                <ul>
+                  <li><a href="https://github.com/nodejs/node/pull/57523" target=_blank>https://github.com/nodejs/node/pull/57523</a>
+                  <li>package.json を指定できるようになったので、monorepo 等でも root から実行可能になった
+                </ul>
+              </li>
+              <li>
+                Should Corepack stay in the Node.js distribution?
+                <ul>
+                  <li><a href="https://github.com/nodejs/TSC/pull/1697#issuecomment-2737093616" target=_blank>https://github.com/nodejs/TSC/pull/1697#issuecomment-2737093616</a>
+                  <li>段階的に廃止に決定。
+                  <li>Node.js の将来のリリース ライン (v25 以降) で Corepack の配布を停止し、内包されなくなる。
+                  <li>既存のリリース ラインと次のリリース ライン (24.x) では、Corepack は実験的なまま
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Zod
+            <ul>
+              <li>
+                Introducing Zod 4 beta
+                <ul>
+                  <li><a href="https://v4.zod.dev/v4" target=_blank>https://v4.zod.dev/v4</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Tanstack
+            <ul>
+              <li>
+                TanStack + Netlify Partnership
+                <ul>
+                  <li><a href="https://tanstack.com/blog/netlify-partnership" target=_blank>https://tanstack.com/blog/netlify-partnership</a>
+                </ul>
+              </li>
+              <li>
+                Announcing TanStack Form v1
+                <ul>
+                  <li><a href="https://tanstack.com/blog/announcing-tanstack-form-v1" target=_blank>https://tanstack.com/blog/announcing-tanstack-form-v1</a>
+                </ul>
+              </li>
+              <li>
+                TanStack Pacer
+                <ul>
+                  <li><a href="https://tanstack.com/pacer/latest" target=_blank>https://tanstack.com/pacer/latest</a>
+                  <li>throttling, debounce などに特化したライブラリ
+                  <li>現代版 rxjs
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Prisma
+            <ul>
+              <li>
+                Prisma ORM Roadmap: March - May 2025
+                <ul>
+                  <li><a href="https://github.com/prisma/prisma/issues/26592" target=_blank>https://github.com/prisma/prisma/issues/26592</a>
+                </ul>
+              </li>
+              <li>
+                Prisma ORM 6.6.0: ESM Support, D1 Migrations &amp; MCP Server
+                <ul>
+                  <li><a href="https://www.prisma.io/blog/prisma-orm-6-6-0-esm-support-d1-migrations-and-prisma-mcp-server" target=_blank>https://www.prisma.io/blog/prisma-orm-6-6-0-esm-support-d1-migrations-and-prisma-mcp-server</a>
+                </ul>
+              </li>
+              <li>
+                Announcing Prisma&apos;s MCP Server: Vibe Code with Prisma Postgres
+                <ul>
+                  <li><a href="https://www.prisma.io/blog/announcing-prisma-s-mcp-server-vibe-code-with-prisma-postgres" target=_blank>https://www.prisma.io/blog/announcing-prisma-s-mcp-server-vibe-code-with-prisma-postgres</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Valibot
+            <ul>
+              <li>
+                v1 - The 1 kB schema library
+                <ul>
+                  <li><a href="https://valibot.dev/blog/valibot-v1-the-1-kb-schema-library/" target=_blank>https://valibot.dev/blog/valibot-v1-the-1-kb-schema-library/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Cloudfalre
+            <ul>
+              <li>
+                Cloudflare &quot;Just use Vite&quot;… with the Workers runtime
+                <ul>
+                  <li><a href="https://blog.cloudflare.com/introducing-the-cloudflare-vite-plugin/" target=_blank>https://blog.cloudflare.com/introducing-the-cloudflare-vite-plugin/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Deno
+            <ul>
+              <li>
+                Node just added TypeScript support. What does that mean for Deno?
+                <ul>
+                  <li><a href="https://deno.com/blog/typescript-in-node-vs-deno" target=_blank>https://deno.com/blog/typescript-in-node-vs-deno</a>
+                  <li>Node が TS サポートしたが、それでも Deno にあるメリット
+                  <li>組み込み型チェック、JSX、ツールチェイン etc
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Playwright
+            <ul>
+              <li>
+                microsoft/playwright-mcp
+                <ul>
+                  <li><a href="https://github.com/microsoft/playwright-mcp" target=_blank>https://github.com/microsoft/playwright-mcp</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            React Native 0.79 - Faster tooling and much more
+            <ul>
+              <li><a href="https://reactnative.dev/blog/2025/04/08/react-native-0.79" target=_blank>https://reactnative.dev/blog/2025/04/08/react-native-0.79</a>
+              <li>JSC moving
+            </ul>
+          </li>
+          <li>
+            Lynx
+            <ul>
+              <li>
+                Lynx Roadmap 2025
+                <ul>
+                  <li><a href="https://lynxjs.org/blog/lynx-open-source-roadmap-2025.html" target=_blank>https://lynxjs.org/blog/lynx-open-source-roadmap-2025.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Sneak peek: Accessibility Addon refresh
+            <ul>
+              <li><a href="https://storybook.js.org/blog/preview-the-new-accessibility-addon/" target=_blank>https://storybook.js.org/blog/preview-the-new-accessibility-addon/</a>
+              <li>Storybook 9.0 で入るアクセシビリティ周りのはなし
+            </ul>
+          </li>
+          <li>
+            Figma Slides の正式リリース
+            <ul>
+              <li><a href="https://www.figma.com/release-notes/?title=slides-is-out-of-beta" target=_blank>https://www.figma.com/release-notes/?title=slides-is-out-of-beta</a>
+              <li>PowerPoint インポート、エクスポート機能の追加が入った
+            </ul>
+          </li>
+          <li>
+            Piecing together the Agent puzzle: MCP, authentication &amp; authorization, and Durable Objects free tier
+            <ul>
+              <li><a href="https://blog.cloudflare.com/building-ai-agents-with-mcp-authn-authz-and-durable-objects/" target=_blank>https://blog.cloudflare.com/building-ai-agents-with-mcp-authn-authz-and-durable-objects/</a>
+              <li>Cloudflare の AI 周りのツールが発表された
+            </ul>
+          </li>
+          <li>
+            e18e
+            <ul>
+              <li>
+                Community Showcase (Q1 2025)
+                <ul>
+                  <li><a href="https://e18e.dev/blog/community-showcase-q1.html" target=_blank>https://e18e.dev/blog/community-showcase-q1.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            mui
+            <ul>
+              <li>
+                Material UI v7 is here
+                <ul>
+                  <li><a href="https://mui.com/blog/material-ui-v7-is-here/" target=_blank>https://mui.com/blog/material-ui-v7-is-here/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Express
+            <ul>
+              <li>
+                Express@5.1.0: Now the Default on npm with LTS Timeline
+                <ul>
+                  <li><a href="https://expressjs.com/2025/03/31/v5-1-latest-release.html" target=_blank>https://expressjs.com/2025/03/31/v5-1-latest-release.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Astro
+            <ul>
+              <li>
+                v5.7
+                <ul>
+                  <li><a href="https://astro.build/blog/astro-570/" target=_blank>https://astro.build/blog/astro-570/</a>
+                </ul>
+              </li>
+              <li>
+                v5.6
+                <ul>
+                  <li><a href="https://astro.build/blog/astro-560/" target=_blank>https://astro.build/blog/astro-560/</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            社内デザインシステムを MCP サーバー化したら UI 実装が爆速になった
+            <ul>
+              <li><a href="https://zenn.dev/ubie_dev/articles/f927aaff02d618" target=_blank>https://zenn.dev/ubie_dev/articles/f927aaff02d618</a>
+            </ul>
+          </li>
+          <li>
+            OAuth 2.1 in MCP
+            <ul>
+              <li><a href="https://modelcontextprotocol.io/specification/2025-03-26" target=_blank>https://modelcontextprotocol.io/specification/2025-03-26</a>
+            </ul>
+          </li>
+          <li>
+            A2A protocol
+            <ul>
+              <li><a href="https://google.github.io/A2A" target=_blank>https://google.github.io/A2A</a>
+              <li>AI Agent 間で連携するためのプロトコル
+            </ul>
+          </li>
+          <li>
+            Taming the Wild West of ML: Practical Model Signing with Sigstore
+            <ul>
+              <li><a href="https://security.googleblog.com/2025/04/taming-wild-west-of-ml-practical-model.html" target=_blank>https://security.googleblog.com/2025/04/taming-wild-west-of-ml-practical-model.html</a>
+              <li>Model 自体に署名を付与し Sigstore で管理
+            </ul>
+          </li>
+          <li>
+            「GIMP 3.0」がリリース ～約 7 年ぶりの大規模アップデートで「GTK 3」ベースに
+            <ul>
+              <li><a href="https://forest.watch.impress.co.jp/docs/news/1670985.html" target=_blank>https://forest.watch.impress.co.jp/docs/news/1670985.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="5-月"><a href="#5-月">5 月</a></h3>
+        <ul>
+          <li>
+            Config 2025 Highlights
+            <ul>
+              <li><a href="https://www.config.new/" target=_blank>https://www.config.new/</a>
+              <li>Figma Config 2025 まとめ
+              <li>
+                Figma Sites
+                <ul>
+                  <li>CMS in Figma Sites (coming soon)
+                </ul>
+              </li>
+              <li>Figma Make
+              <li>Figma Draw
+              <li>Figma Buzz
+              <li>Grid
+              <li>
+                note 書きました、日本語で知りたい人どうぞ
+                <ul>
+                  <li><a href="https://note.com/sakit0/n/n146206abf74d" target=_blank>https://note.com/sakit0/n/n146206abf74d</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            MCP - Connect your AI tool to Figma
+            <ul>
+              <li>
+                <a href="https://html.to.design/docs/mcp-tab" target=_blank>https://html.to.design/docs/mcp-tab</a>
+                <ul>
+                  <li>Figma の MCP
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TanStack DB
+            <ul>
+              <li><a href="https://github.com/TanStack/db" target=_blank>https://github.com/TanStack/db</a>
+              <li>
+                a blazing fast query engine
+                <ul>
+                  <li>for sub-millisecond live queries - even for complex queries with joins and aggregates
+                </ul>
+              </li>
+              <li>
+                fine-grained reactivity
+                <ul>
+                  <li>to minimize component re-rendering
+                </ul>
+              </li>
+              <li>
+                robust transaction primitives
+                <ul>
+                  <li>for easy optimistic mutations with sync and lifecycle support
+                </ul>
+              </li>
+              <li>
+                normalized data
+                <ul>
+                  <li>to keep your backend simple
+                </ul>
+              </li>
+              <li>
+                ElectricSQL と協力して作ったらしい
+                <ul>
+                  <li><a href="https://x.com/ElectricSQL/status/1922320839862608215" target=_blank>https://x.com/ElectricSQL/status/1922320839862608215</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            React Compiler RC - React
+            <ul>
+              <li><a href="https://react.dev/blog/2025/04/21/react-compiler-rc" target=_blank>https://react.dev/blog/2025/04/21/react-compiler-rc</a>
+            </ul>
+          </li>
+          <li>
+            React Labs: View Transitions, Activity, and more
+            <ul>
+              <li><a href="https://react.dev/blog/2025/04/23/react-labs-view-transitions-activity-and-more" target=_blank>https://react.dev/blog/2025/04/23/react-labs-view-transitions-activity-and-more</a>
+            </ul>
+          </li>
+          <li>
+            React Server Confusion
+            <ul>
+              <li><a href="https://hire.jonasgalvez.com.br/2025/apr/8/react-server-confusion/" target=_blank>https://hire.jonasgalvez.com.br/2025/apr/8/react-server-confusion/</a>
+              <li>RSC が上手くいかなかった理由の話
+              <li>Next 以外のフレームワークへのドキュメントが全然なかった
+              <li>そんななかで fastify/react をリリースする困難の話
+            </ul>
+          </li>
+          <li>
+            feat: add react-server-dom-vite by hi-ogawa · Pull Request #33152 · facebook/react
+            <ul>
+              <li><a href="https://github.com/facebook/react/pull/33152" target=_blank>https://github.com/facebook/react/pull/33152</a>
+            </ul>
+          </li>
+          <li>
+            Remix v3 will be the true Remix. The way it was always supposed to be.
+            <ul>
+              <li><a href="https://x.com/mjackson/status/1922080987711774935" target=_blank>https://x.com/mjackson/status/1922080987711774935</a>
+              <li>Remix v3 は Remix らしい
+            </ul>
+          </li>
+          <li>
+            React Router RSC Preview
+            <ul>
+              <li><a href="https://remix.run/blog/rsc-preview" target=_blank>https://remix.run/blog/rsc-preview</a>
+              <li>React Router の RSC サポートがでた
+            </ul>
+          </li>
+          <li>
+            Node v24.0.0 (Current)
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v24.0.0" target=_blank>https://nodejs.org/en/blog/release/v24.0.0</a>
+            </ul>
+          </li>
+          <li>
+            ESLint v9.26.0 released - ESLint - Pluggable JavaScript Linter
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/05/eslint-v9.26.0-released/" target=_blank>https://eslint.org/blog/2025/05/eslint-v9.26.0-released/</a>
+              <li>MCP Server Integration が入った
+            </ul>
+          </li>
+          <li>
+            ESLint can now lint HTML using the html-eslint language plugin
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/05/eslint-html-plugin/" target=_blank>https://eslint.org/blog/2025/05/eslint-html-plugin/</a>
+            </ul>
+          </li>
+          <li>
+            ESLint は Rust への置き換えをする予定がないとのこと
+            <ul>
+              <li><a href="https://x.com/slicknet/status/1916978153966235742" target=_blank>https://x.com/slicknet/status/1916978153966235742</a>
+            </ul>
+          </li>
+          <li>
+            feat: multithread linting by fasttime · Pull Request #129 · eslint/rfcs
+            <ul>
+              <li><a href="https://github.com/eslint/rfcs/pull/129" target=_blank>https://github.com/eslint/rfcs/pull/129</a>
+            </ul>
+          </li>
+          <li>
+            Storybook 9 is now in beta
+            <ul>
+              <li>
+                <a href="https://storybook.js.org/blog/storybook-9-beta/" target=_blank>https://storybook.js.org/blog/storybook-9-beta/</a>
+                <ul>
+                  <li>Component test widget
+                  <li>Interaction testing
+                  <li>Accessibility testing
+                  <li>Visual testing
+                  <li>Test coverage
+                  <li>48% lighter bundle
+                  <li>Tags-based organization
+                  <li>React Native for device and web
+                </ul>
+              </li>
+              <li>
+                テストマシンを目指しているとのこと
+                <ul>
+                  <li>Our goal is to turn Storybook into a lean, mean testing machine. Here&apos;s what&apos;s inside:
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            DeepWiki | AI documentation you can talk to, for every repo
+            <ul>
+              <li><a href="https://deepwiki.com/" target=_blank>https://deepwiki.com/</a>
+            </ul>
+          </li>
+          <li>
+            rbuckton 氏がレイオフで MS 退職、TS の貢献や TC39 のチャンピオンを色々してた人、enum とか
+            <ul>
+              <li><a href="https://x.com/rbuckton/status/1922364558426911039" target=_blank>https://x.com/rbuckton/status/1922364558426911039</a>
+            </ul>
+          </li>
+          <li>
+            VSCode April 2025 (version 1.100)
+            <ul>
+              <li><a href="https://code.visualstudio.com/updates/v1_100" target=_blank>https://code.visualstudio.com/updates/v1_100</a>
+              <li>.instructions.md
+              <li>.prompt.md
+              <li>などのサポート
+            </ul>
+          </li>
+          <li>
+            Cursor Background Agents (Preview)
+            <ul>
+              <li><a href="https://docs.cursor.com/background-agent" target=_blank>https://docs.cursor.com/background-agent</a>
+            </ul>
+          </li>
+          <li>
+            Cursor 0.5.0
+            <ul>
+              <li><a href="https://www.cursor.com/ja/changelog/0-50" target=_blank>https://www.cursor.com/ja/changelog/0-50</a>
+              <li>background agend
+              <li>new tab mode
+              <li>context for your entire code base
+              <li>multiple workspaces
+              <li>export/duplicate chat
+              <li>MAX mode for all top models
+            </ul>
+          </li>
+          <li>
+            Getting started with Apollo MCP Server for any GraphQL API
+            <ul>
+              <li><a href="https://www.apollographql.com/blog/getting-started-with-apollo-mcp-server-for-any-graphql-api" target=_blank>https://www.apollographql.com/blog/getting-started-with-apollo-mcp-server-for-any-graphql-api</a>
+            </ul>
+          </li>
+          <li>
+            Prisma 6.8.0: VS Code Agent Mode, Local Prisma Postgres, Native Deno Support
+            <ul>
+              <li><a href="https://www.prisma.io/blog/prisma-6-8-0-release" target=_blank>https://www.prisma.io/blog/prisma-6-8-0-release</a>
+            </ul>
+          </li>
+          <li>
+            Material UI now works with Tailwind CSS v4!
+            <ul>
+              <li><a href="https://x.com/MUI_hq/status/1919791451841474773" target=_blank>https://x.com/MUI_hq/status/1919791451841474773</a>
+            </ul>
+          </li>
+          <li>
+            Rslib: Build library with Rspack
+            <ul>
+              <li><a href="https://lib.rsbuild.dev/blog/introducing-rslib" target=_blank>https://lib.rsbuild.dev/blog/introducing-rslib</a>
+            </ul>
+          </li>
+          <li>
+            @rspress/plugin-llms
+            <ul>
+              <li><a href="https://v2.rspress.dev/plugin/official-plugins/llms" target=_blank>https://v2.rspress.dev/plugin/official-plugins/llms</a>
+            </ul>
+          </li>
+          <li>
+            Zod 4 stable will be released this Monday, May 19th
+            <ul>
+              <li><a href="https://x.com/colinhacks/status/1922958736584253814" target=_blank>https://x.com/colinhacks/status/1922958736584253814</a>
+            </ul>
+          </li>
+          <li>
+            prettier Add oxc parser
+            <ul>
+              <li><a href="https://github.com/prettier/prettier/pull/17472" target=_blank>https://github.com/prettier/prettier/pull/17472</a>
+            </ul>
+          </li>
+          <li>
+            Hyper: Standards first React alternative - Nue
+            <ul>
+              <li><a href="https://nuejs.org/blog/introducing-hyper/" target=_blank>https://nuejs.org/blog/introducing-hyper/</a>
+            </ul>
+          </li>
+          <li>
+            Intent UI
+            <ul>
+              <li><a href="https://intentui.com/" target=_blank>https://intentui.com/</a>
+              <li>React Aria をベースとしたコンポーネント集
+              <li>コピペ導入でき Tailwind ベースのスタイル
+            </ul>
+          </li>
+          <li>
+            Start building with Material 3 Expressive
+            <ul>
+              <li><a href="https://m3.material.io/blog/building-with-m3-expressive" target=_blank>https://m3.material.io/blog/building-with-m3-expressive</a>
+              <li>Material 3 のアプデ
+            </ul>
+          </li>
+          <li>
+            CheerpJ 4.0: WebAssembly JVM for the browser, now with Java 11 and JNI support
+            <ul>
+              <li><a href="https://labs.leaningtech.com/blog/cheerpj-4.0" target=_blank>https://labs.leaningtech.com/blog/cheerpj-4.0</a>
+            </ul>
+          </li>
+          <li>
+            2025 Technical Steering Committee
+            <ul>
+              <li><a href="https://astro.build/blog/astro-tsc-2025/" target=_blank>https://astro.build/blog/astro-tsc-2025/</a>
+              <li>Astro の技術運営を担う組織ができたらしい
+            </ul>
+          </li>
+          <li>
+            Mastra の日本語ドキュメント
+            <ul>
+              <li><a href="https://mastra.ai/ja/docs" target=_blank>https://mastra.ai/ja/docs</a>
+            </ul>
+          </li>
+          <li>
+            Components | Tiptap UI Component
+            <ul>
+              <li><a href="https://tiptap.dev/docs/ui-components/components/overview" target=_blank>https://tiptap.dev/docs/ui-components/components/overview</a>
+              <li>RTE の Tiptap が UI コンポーネントを出した
+            </ul>
+          </li>
+          <li>
+            ハイパーメディアシステム - htmx と REST によるシンプルで軽やかなウェブ開発
+            <ul>
+              <li><a href="https://gihyo.jp/book/2025/978-4-297-14945-1" target=_blank>https://gihyo.jp/book/2025/978-4-297-14945-1</a>
+            </ul>
+          </li>
+          <li><a href="https://x.com/sama/status/1923398457747787817?s=46" target=_blank>https://x.com/sama/status/1923398457747787817?s=46</a>
+        </ul>
+      </section>
+      <section>
+        <h3 id="6-月"><a href="#6-月">6 月</a></h3>
+        <ul>
+          <li>
+            State of CSS 2025
+            <ul>
+              <li><a href="https://survey.devographics.com/en-US/survey/state-of-css/2025" target=_blank>https://survey.devographics.com/en-US/survey/state-of-css/2025</a>
+              <li>回答期限 7/1 までなのでみんなやろう
+            </ul>
+          </li>
+          <li>
+            Wake up, Remix! | Remix
+            <ul>
+              <li><a href="https://remix.run/blog/wake-up-remix" target=_blank>https://remix.run/blog/wake-up-remix</a>
+              <li><a href="https://x.com/ryanflorence/status/1928190268148248815" target=_blank>https://x.com/ryanflorence/status/1928190268148248815</a>
+            </ul>
+          </li>
+          <li>
+            vercel/remix
+            <ul>
+              <li><a href="https://github.com/vercel/remix" target=_blank>https://github.com/vercel/remix</a>
+              <li><a href="https://vercel.com/docs/frameworks/remix" target=_blank>https://vercel.com/docs/frameworks/remix</a>
+              <li><a href="https://github.com/vercel/remix/tree/main/packages/vercel-remix" target=_blank>https://github.com/vercel/remix/tree/main/packages/vercel-remix</a>
+              <li>
+                モチベはこれぽい
+                <ul>
+                  <li><a href="https://x.com/markdalgleish/status/1760053732744798707" target=_blank>https://x.com/markdalgleish/status/1760053732744798707</a>
+                  <li>
+                    <blockquote>
+                      <p>I&apos;m actually not sure what the current state is if you try to deploy a Remix Vite app to Vercel, but there&apos;s an official Vercel preset for Remix coming soon.
+                    </blockquote>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            react-router/GOVERNANCE.md
+            <ul>
+              <li><a href="https://github.com/remix-run/react-router/blob/main/GOVERNANCE.md" target=_blank>https://github.com/remix-run/react-router/blob/main/GOVERNANCE.md</a>
+              <li><a href="https://remix.run/blog/rr-governance" target=_blank>https://remix.run/blog/rr-governance</a>
+              <li>React Router のガバナンスモデルが出来た
+              <li>Stage 制採用
+            </ul>
+          </li>
+          <li>
+            The State of React and the Community in 2025 · Mark&apos;s Dev Blog
+            <ul>
+              <li><a href="https://blog.isquaredsoftware.com/2025/06/react-community-2025/" target=_blank>https://blog.isquaredsoftware.com/2025/06/react-community-2025/</a>
+              <li>Redux メンテナによるここ数年の React とコミュニティの振り返り
+              <li>特に後半は FUD の解説
+              <li>「Vercel と React 開発を牛耳って金稼ぎしてる」わけではなく、Meta ができなかった RSC のビジョンを Vercel が実装しただけ
+              <li>React にはやはり RSC に関するドキュメントが不足している
+              <li>etc
+            </ul>
+          </li>
+          <li>
+            ESLint v9.0.0: A retrospective
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/05/eslint-v9.0.0-retrospective/" target=_blank>https://eslint.org/blog/2025/05/eslint-v9.0.0-retrospective/</a>
+              <li>ESLint v9 の振り返り、うまくいったこと、いかなかったこと
+            </ul>
+          </li>
+          <li>
+            Introducing our Dev Mode MCP server: Bringing Figma into your workflow
+            <ul>
+              <li><a href="https://www.figma.com/blog/introducing-figmas-dev-mode-mcp-server/" target=_blank>https://www.figma.com/blog/introducing-figmas-dev-mode-mcp-server/</a>
+              <li>Figma Config 後に発表された公式 MCP
+              <li>
+                Guide to the Dev Mode MCP Server
+                <ul>
+                  <li><a href="https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server" target=_blank>https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Announcing TypeScript Native Previews
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-native-previews/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-native-previews/</a>
+              <li>tsgo の実装プレビュー公開
+              <li><a href="https://kdy1.dev/2022-1-26-porting-tsc-to-go" target=_blank>https://kdy1.dev/2022-1-26-porting-tsc-to-go</a>
+            </ul>
+          </li>
+          <li>
+            Announcing Rolldown-Vite
+            <ul>
+              <li><a href="https://voidzero.dev/posts/announcing-rolldown-vite" target=_blank>https://voidzero.dev/posts/announcing-rolldown-vite</a>
+            </ul>
+          </li>
+          <li>
+            Announcing Oxlint 1.0
+            <ul>
+              <li><a href="https://voidzero.dev/posts/announcing-oxlint-1-stable" target=_blank>https://voidzero.dev/posts/announcing-oxlint-1-stable</a>
+              <li>Rust で作られたリンター
+              <li>専任のメンテナーとコアチームもある
+              <li>すでに shopify や Airbnb などの企業にも使われているらしい
+              <li>だいたいのルールもカバーされていそう
+              <li>プラグインのサポートは今後予定されているらしい
+            </ul>
+          </li>
+          <li>
+            Rstest v0.0.1
+            <ul>
+              <li><a href="https://github.com/web-infra-dev/rstest/releases/tag/v0.0.1" target=_blank>https://github.com/web-infra-dev/rstest/releases/tag/v0.0.1</a>
+              <li>Rstack の一部としてテストツールがリリースされた
+              <li>
+                ロードマップ
+                <ul>
+                  <li><a href="https://github.com/web-infra-dev/rstest/issues/85" target=_blank>https://github.com/web-infra-dev/rstest/issues/85</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            VS Code: Open Source AI Editor
+            <ul>
+              <li><a href="https://code.visualstudio.com/blogs/2025/05/19/openSourceAIEditor" target=_blank>https://code.visualstudio.com/blogs/2025/05/19/openSourceAIEditor</a>
+            </ul>
+          </li>
+          <li>
+            Genspark AI ブラウザ
+            <ul>
+              <li><a href="https://www.genspark.ai/browser" target=_blank>https://www.genspark.ai/browser</a>
+            </ul>
+          </li>
+          <li>
+            Cursor v1
+            <ul>
+              <li><a href="https://www.cursor.com/ja/changelog/1-0" target=_blank>https://www.cursor.com/ja/changelog/1-0</a>
+            </ul>
+          </li>
+          <li>
+            Storybook 9
+            <ul>
+              <li><a href="https://storybook.js.org/blog/storybook-9/" target=_blank>https://storybook.js.org/blog/storybook-9/</a>
+            </ul>
+          </li>
+          <li>
+            Jest 30: Faster, Leaner, Better
+            <ul>
+              <li><a href="https://jestjs.io/blog/2025/06/04/jest-30" target=_blank>https://jestjs.io/blog/2025/06/04/jest-30</a>
+              <li>Jest が 3 年ぶりにメジャーバージョンをアップデート
+              <li>Node の対応バージョンは v18 が最小に
+              <li>JSDOM v26 にアプデ
+              <li>TS v5.4 が最小に
+            </ul>
+          </li>
+          <li>
+            v0 の Design Mode
+            <ul>
+              <li><a href="https://x.com/v0/status/1932892095565660490" target=_blank>https://x.com/v0/status/1932892095565660490</a>
+            </ul>
+          </li>
+          <li>
+            @msw/playwright
+            <ul>
+              <li><a href="https://github.com/mswjs/playwright" target=_blank>https://github.com/mswjs/playwright</a>
+            </ul>
+          </li>
+          <li>
+            pnpm 10.12.1
+            <ul>
+              <li><a href="https://github.com/pnpm/pnpm/releases/tag/v10.12.1" target=_blank>https://github.com/pnpm/pnpm/releases/tag/v10.12.1</a>
+              <li>catalog 周り強化された
+            </ul>
+          </li>
+          <li>
+            Vitest 3.2 is out!
+            <ul>
+              <li><a href="https://vitest.dev/blog/vitest-3-2.html" target=_blank>https://vitest.dev/blog/vitest-3-2.html</a>
+            </ul>
+          </li>
+          <li>
+            Announcing Angular v20
+            <ul>
+              <li><a href="https://blog.angular.dev/announcing-angular-v20-b5c9c06cf301" target=_blank>https://blog.angular.dev/announcing-angular-v20-b5c9c06cf301</a>
+            </ul>
+          </li>
+          <li>
+            What&apos;s new in Svelte: June 2025
+            <ul>
+              <li><a href="https://svelte.dev/blog/whats-new-in-svelte-june-2025" target=_blank>https://svelte.dev/blog/whats-new-in-svelte-june-2025</a>
+              <li><code translate=no>{@attach ...}</code> 機能の追加
+              <li>DOM が削除やマウントされたりしたときに実行される関数
+            </ul>
+          </li>
+          <li>
+            Migrate from Next.js | TanStack Start React Docs
+            <ul>
+              <li><a href="https://tanstack.com/start/latest/docs/framework/react/migrate-from-next-js" target=_blank>https://tanstack.com/start/latest/docs/framework/react/migrate-from-next-js</a>
+              <li>Next.js から TanStack Start に移行する方法ドキュメント
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="7-月"><a href="#7-月">7 月</a></h3>
+        <ul>
+          <li>
+            React Router and React Server Components: The Path Forward
+            <ul>
+              <li><a href="https://remix.run/blog/react-router-and-react-server-components" target=_blank>https://remix.run/blog/react-router-and-react-server-components</a>
+              <li>Next.js と React Router の統合の現状と課題について解説している。
+              <li>React Server Components (RSC) と Client Components の共存におけるルーティングの複雑性に焦点を当てている。
+              <li>今後の React Router が RSC にどのように対応していくか、その方向性を示唆している。
+            </ul>
+          </li>
+          <li>
+            Next.js 15.4
+            <ul>
+              <li><a href="https://nextjs.org/blog/next-15-4" target=_blank>https://nextjs.org/blog/next-15-4</a>
+              <li><a href="https://nextjs.org/blog/next-15-4" target=_blank>Next.js 15.4 では、新しい <code translate=no>use</code> フックの追加、パフォーマンスの向上、開発者エクスペリエンスの改善が主な変更点。</a>
+              <li><a href="https://nextjs.org/blog/next-15-4" target=_blank>特に、React Server Components (RSC) のサポートが強化され、より効率的なデータフェッチとレンダリングが可能になった。</a>
+              <li><a href="https://nextjs.org/blog/next-15-4" target=_blank>エッジ環境での実行性能も向上し、アプリケーションの高速化とスケーラビリティが期待される。</a>
+            </ul>
+          </li>
+          <li>
+            Vercel Ship 2025 recap
+            <ul>
+              <li><a href="https://vercel.com/blog/vercel-ship-2025-recap" target=_blank>https://vercel.com/blog/vercel-ship-2025-recap</a>
+              <li>Ship 2025 では、Next.js や Vercel プラットフォームの最新機能とロードマップが発表された。
+              <li>特に、AI 関連の機能強化や、開発者体験を向上させるツールが多く紹介された。
+              <li>Vercel のエコシステム全体が、よりスケーラブルで高性能なアプリケーション開発を支援する方向に進化していることが示された。
+            </ul>
+          </li>
+          <li>
+            NuxtLabs is joining Vercel
+            <ul>
+              <li><a href="https://nuxtlabs.com/" target=_blank>https://nuxtlabs.com/</a>
+              <li>NuxtLabs は、Nuxt.js の開発を主導するチームであり、Vercel に参加した。
+              <li>この統合により、Nuxt.js の開発とエコシステムの成長が加速されることが期待される
+              <li>Vercel のプラットフォーム上で Nuxt.js のユーザーエクスペリエンスがさらに向上する見込み。
+            </ul>
+          </li>
+          <li>
+            Node v24.4.1 (Current)
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v24.4.1" target=_blank>https://nodejs.org/en/blog/release/v24.4.1</a>
+              <li>Node.js v24.4.1 のリリースでは、重要なバグ修正が含まれている。
+              <li>
+                Tuesday, July 15, 2025 Security Releases
+                <ul>
+                  <li><a href="https://nodejs.org/en/blog/vulnerability/july-2025-security-releases" target=_blank>https://nodejs.org/en/blog/vulnerability/july-2025-security-releases</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Node v24.4.0 (Current)
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v24.4.0" target=_blank>https://nodejs.org/en/blog/release/v24.4.0</a>
+            </ul>
+          </li>
+          <li>
+            Proposal - Shift Node.js to Annual Major Releases and Shorten LTS Duration
+            <ul>
+              <li><a href="https://github.com/nodejs/Release/issues/1113" target=_blank>https://github.com/nodejs/Release/issues/1113</a>
+              <li>メジャーリリースを年 1 回に
+              <li>LTS を 24month に
+            </ul>
+          </li>
+          <li>
+            Deno 2.4: deno bundle is back
+            <ul>
+              <li><a href="https://deno.com/blog/v2.4" target=_blank>https://deno.com/blog/v2.4</a>
+              <li>Deno 2.4 は、<code translate=no>deno bundle</code> コマンドが復活し、バンドル機能が強化された。
+              <li>ESM と CommonJS の両方に対応し、柔軟なビルドが可能になった。
+            </ul>
+          </li>
+          <li>
+            Laravel + Node.js: PHP in Watt Runtime
+            <ul>
+              <li><a href="https://blog.platformatic.dev/laravel-nodejs-php-in-watt-runtime" target=_blank>https://blog.platformatic.dev/laravel-nodejs-php-in-watt-runtime</a>
+              <li>PHP の Laravel アプリケーションと Node.js の Watt Runtime を統合する新しいアプローチ。
+              <li>Watt Runtime 上で PHP コードを直接実行することで、パフォーマンスの向上と開発の柔軟性を実現。
+              <li>これにより、異なる技術スタックの組み合わせによる、より効率的で高性能なアプリケーション開発が可能になる。
+            </ul>
+          </li>
+          <li>
+            Astro 5.12
+            <ul>
+              <li><a href="https://astro.build/blog/astro-5120/" target=_blank>https://astro.build/blog/astro-5120/</a>
+              <li>TOML for content loaders
+            </ul>
+          </li>
+          <li>
+            Astro 5.11
+            <ul>
+              <li><a href="https://astro.build/blog/astro-5110/" target=_blank>https://astro.build/blog/astro-5110/</a>
+              <li>CSP Adapters
+            </ul>
+          </li>
+          <li>
+            Astro 5.10
+            <ul>
+              <li><a href="https://astro.build/blog/astro-5100/" target=_blank>https://astro.build/blog/astro-5100/</a>
+              <li>live content collections
+            </ul>
+          </li>
+          <li>
+            Storybook bloat? Fixed.
+            <ul>
+              <li><a href="https://storybook.js.org/blog/storybook-bloat-fixed/" target=_blank>https://storybook.js.org/blog/storybook-bloat-fixed/</a>
+              <li>bundle をダイエットした
+            </ul>
+          </li>
+          <li>
+            Announcing Nuxt 4.0
+            <ul>
+              <li><a href="https://nuxt.com/blog/v4" target=_blank>https://nuxt.com/blog/v4</a>
+            </ul>
+          </li>
+          <li>
+            ESLint v9.31.0 released
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/07/eslint-v9.31.0-released/" target=_blank>https://eslint.org/blog/2025/07/eslint-v9.31.0-released/</a>
+            </ul>
+          </li>
+          <li>
+            ESLint v9.30.0 released
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/06/eslint-v9.30.0-released/" target=_blank>https://eslint.org/blog/2025/06/eslint-v9.30.0-released/</a>
+            </ul>
+          </li>
+          <li>
+            typescript-eslint/tsgolint
+            <ul>
+              <li><a href="https://github.com/typescript-eslint/tsgolint" target=_blank>https://github.com/typescript-eslint/tsgolint</a>
+            </ul>
+          </li>
+          <li>
+            oxc-project/tsgolint
+            <ul>
+              <li><a href="https://github.com/oxc-project/tsgolint" target=_blank>https://github.com/oxc-project/tsgolint</a>
+            </ul>
+          </li>
+          <li>
+            Biome v2-codename: Biotype
+            <ul>
+              <li><a href="https://biomejs.dev/blog/biome-v2/" target=_blank>https://biomejs.dev/blog/biome-v2/</a>
+            </ul>
+          </li>
+          <li>
+            Biome v2.1
+            <ul>
+              <li><a href="https://biomejs.dev/blog/biome-v2-1/" target=_blank>https://biomejs.dev/blog/biome-v2-1/</a>
+            </ul>
+          </li>
+          <li>
+            Babel 7.28.0 Released
+            <ul>
+              <li><a href="https://babeljs.io/blog/2025/06/30/7.28.0" target=_blank>https://babeljs.io/blog/2025/06/30/7.28.0</a>
+            </ul>
+          </li>
+          <li>
+            Announcing Rspack 1.4
+            <ul>
+              <li><a href="https://rspack.rs/blog/announcing-1-4" target=_blank>https://rspack.rs/blog/announcing-1-4</a>
+            </ul>
+          </li>
+          <li>
+            webpack 5.100.0
+            <ul>
+              <li><a href="https://github.com/webpack/webpack/releases/tag/v5.100.0" target=_blank>https://github.com/webpack/webpack/releases/tag/v5.100.0</a>
+            </ul>
+          </li>
+          <li>
+            Vite 7.0 is out!
+            <ul>
+              <li><a href="https://vite.dev/blog/announcing-vite7.html" target=_blank>https://vite.dev/blog/announcing-vite7.html</a>
+            </ul>
+          </li>
+          <li>
+            Prettier 3.6: Experimental fast CLI and new OXC and Hermes plugins!
+            <ul>
+              <li><a href="https://prettier.io/blog/2025/06/23/3.6.0" target=_blank>https://prettier.io/blog/2025/06/23/3.6.0</a>
+              <li>Prettier 3.6 では、CLI の高速化と、OXC および Hermes プラグインの追加が主な変更点。
+            </ul>
+          </li>
+          <li>
+            Announcing TypeScript 5.9 Beta
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-9-beta/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-9-beta/</a>
+            </ul>
+          </li>
+          <li>
+            Announcing Node-API Support for React Native
+            <ul>
+              <li><a href="https://www.callstack.com/blog/announcing-node-api-support-for-react-native" target=_blank>https://www.callstack.com/blog/announcing-node-api-support-for-react-native</a>
+            </ul>
+          </li>
+          <li>
+            Announcing NAPI-RS v3
+            <ul>
+              <li><a href="https://napi.rs/blog/announce-v3" target=_blank>https://napi.rs/blog/announce-v3</a>
+              <li>NAPI-RS v3 は、Node.js のネイティブアドオン開発をより安全かつ効率的に行うための主要な改善を導入。
+              <li>非同期処理のサポートが強化され、Rust から JavaScript の値を直接操作する機能が追加。
+              <li>堅牢なエラーハンドリングと型安全性が向上し、大規模なアプリケーションでの利用が容易になった。
+            </ul>
+          </li>
+          <li>
+            Kiro
+            <ul>
+              <li><a href="https://aws.amazon.com/jp/blogs/news/introducing-kiro/" target=_blank>https://aws.amazon.com/jp/blogs/news/introducing-kiro/</a>
+            </ul>
+          </li>
+          <li>
+            Amazon S3 Vectors
+            <ul>
+              <li><a href="https://aws.amazon.com/jp/blogs/aws/introducing-amazon-s3-vectors-first-cloud-storage-with-native-vector-support-at-scale/" target=_blank>https://aws.amazon.com/jp/blogs/aws/introducing-amazon-s3-vectors-first-cloud-storage-with-native-vector-support-at-scale/</a>
+              <li>Amazon S3 Vectors は、S3 にネイティブなベクトルサポートを統合し、大規模なデータ処理と AI/ML ワークロードを強化する。
+              <li>既存の S3 バケットのデータを活用してベクトルを生成し、検索や類似性分析を効率的に実行できる。
+              <li>これにより、開発者は複雑なインフラを構築することなく、ベクトルデータベースの機能を S3 上で利用できるようになる。
+            </ul>
+          </li>
+          <li>
+            Amazon Bedrock AgentCore now available in preview
+            <ul>
+              <li><a href="https://aws.amazon.com/jp/about-aws/whats-new/2025/07/amazon-bedrock-agentcore-preview/" target=_blank>https://aws.amazon.com/jp/about-aws/whats-new/2025/07/amazon-bedrock-agentcore-preview/</a>
+              <li>Amazon Bedrock AgentCore は、大規模言語モデル (LLM) を活用したエージェント構築のための新機能。
+              <li>API やデータソースと連携し、複雑なタスクを自律的に実行できるエージェントを開発できる。
+              <li>現在プレビュー版として提供されており、より高度な AI アプリケーション開発を支援する。
+            </ul>
+          </li>
+          <li>
+            AI エージェント「Devin」の Cognition、Google が幹部を引き抜いた Windsurf を買収 - ITmedia NEWS
+            <ul>
+              <li><a href="https://www.itmedia.co.jp/news/articles/2507/15/news057.html" target=_blank>https://www.itmedia.co.jp/news/articles/2507/15/news057.html</a>
+            </ul>
+          </li>
+          <li>
+            Introducing ChatGPT agent: bridging research and action | OpenAI
+            <ul>
+              <li><a href="https://openai.com/index/introducing-chatgpt-agent/" target=_blank>https://openai.com/index/introducing-chatgpt-agent/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="8-月"><a href="#8-月">8 月</a></h3>
+        <ul>
+          <li>
+            Node.js v24.6.0 (Current)
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v24.6.0" target=_blank>https://nodejs.org/en/blog/release/v24.6.0</a>
+              <li>CLI に <code translate=no>NODE_USE_SYSTEM_CA=1</code> オプションが追加された。
+              <li>ML-DSA KeyObject のサポートが強化された。
+              <li>zlib モジュールに辞書サポートが追加された。
+              <li>HTTP サーバーに <code translate=no>keepAliveTimeoutBuffer</code> オプションが導入された。
+              <li><code translate=no>_http_*</code>の非推奨化が進められた。
+              <li><code translate=no>fs</code> モジュールに SonicBoom モジュールが移植された。
+            </ul>
+          </li>
+          <li>
+            Node.js v24.5.0 (Current)
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v24.5.0" target=_blank>https://nodejs.org/en/blog/release/v24.5.0</a>
+              <li>OpenSSL 3.5 は 2030 年 4 月までサポートされ、Node.js 24 は 2028 年 4 月までサポート。
+              <li>WebAssembly モジュールのインポートが強化され、実装は変更される可能性がある。
+              <li>リクエストに対するプロキシサポートが追加され、環境変数からプロキシ設定を取得可能。
+              <li><code translate=no>setDefaultCACertificates()</code> API により、TLS クライアントの CA 証明書を動的に設定できる。
+              <li>CLI の改善や DNS のタイムアウト設定のサポートなど、いくつかのマイナーな変更が含まれる。
+            </ul>
+          </li>
+          <li>
+            Introducing Vercel MCP: Connect Vercel to your AI tools
+            <ul>
+              <li><a href="https://vercel.com/blog/introducing-vercel-mcp-connect-vercel-to-your-ai-tools" target=_blank>https://vercel.com/blog/introducing-vercel-mcp-connect-vercel-to-your-ai-tools</a>
+            </ul>
+          </li>
+          <li>
+            Initial MCP implementation by sokra · Pull Request #81770 · vercel/next.js
+            <ul>
+              <li><a href="https://github.com/vercel/next.js/pull/81770" target=_blank>https://github.com/vercel/next.js/pull/81770</a>
+              <li>Nextjs の内部に MCP がマージされたよう
+            </ul>
+          </li>
+          <li>
+            Next.js migration - Changelog - LLM Gateway
+            <ul>
+              <li><a href="https://llmgateway.io/changelog/nextjs-migration?v=2" target=_blank>https://llmgateway.io/changelog/nextjs-migration?v=2</a>
+              <li>TanStack Start から Nextjs への移行
+              <li>まだまだ TanStack Start はたりないぽい
+            </ul>
+          </li>
+          <li>
+            <strong>vitest v4.0.0-beta.4</strong>
+            <ul>
+              <li><a href="https://github.com/vitest-dev/vitest/releases/tag/v4.0.0-beta.4" target=_blank>https://github.com/vitest-dev/vitest/releases/tag/v4.0.0-beta.4</a>
+              <li>Introduce toMatchScreenshot for Visual Regression Testing
+            </ul>
+          </li>
+          <li>
+            Biome CLI v2.2.0
+            <ul>
+              <li><a href="https://github.com/biomejs/biome/releases/tag/%40biomejs/biome%402.2.0" target=_blank>https://github.com/biomejs/biome/releases/tag/%40biomejs/biome%402.2.0</a>
+              <li>noRestrictedImports ルールの強化と新しい patterns オプションの追加
+              <li>特定のインポート名を正規表現で制限する importNamePattern の導入
+              <li>異なるソートアクションの順序をカスタマイズできる sortOrder オプションの追加
+              <li>新しい useBiomeIgnoreFolder ルールの追加
+              <li>フォルダのインデックス作成とクロールを防ぐ機能の改善
+            </ul>
+          </li>
+          <li>
+            <strong>jQuery 4.0.0 Release Candidate 1</strong>
+            <ul>
+              <li><a href="https://blog.jquery.com/2025/08/11/jquery-4-0-0-release-candidate-1/" target=_blank>https://blog.jquery.com/2025/08/11/jquery-4-0-0-release-candidate-1/</a>
+              <li>jQuery v4 RC のリリース
+              <li>いろいろな依存を取り除いた Slim build 版の提供
+            </ul>
+          </li>
+          <li>
+            [Fiber] Deprecate &quot;Throw a Promise&quot; technique by sebmarkbage · Pull Request #34032 · facebook/react
+            <ul>
+              <li><a href="https://github.com/facebook/react/pull/34032" target=_blank>https://github.com/facebook/react/pull/34032</a>
+            </ul>
+          </li>
+          <li>
+            Expose <code translate=no>cacheSignal()</code> alongside <code translate=no>cache()</code> by sebmarkbage · Pull Request #33557 · facebook/react
+            <ul>
+              <li><a href="https://github.com/facebook/react/pull/33557" target=_blank>https://github.com/facebook/react/pull/33557</a>
+            </ul>
+          </li>
+          <li>
+            v0.dev -&gt; v0.app
+            <ul>
+              <li><a href="https://vercel.com/blog/v0-app" target=_blank>https://vercel.com/blog/v0-app</a>
+            </ul>
+          </li>
+          <li>
+            GitHub Spark
+            <ul>
+              <li><a href="https://github.com/features/spark?locale=ja" target=_blank>https://github.com/features/spark?locale=ja</a>
+            </ul>
+          </li>
+          <li>
+            AI SDK 5
+            <ul>
+              <li><a href="https://vercel.com/blog/ai-sdk-5" target=_blank>https://vercel.com/blog/ai-sdk-5</a>
+            </ul>
+          </li>
+          <li>
+            What&apos;s New in ViteLand: July 2025 Recap
+            <ul>
+              <li><a href="https://voidzero.dev/posts/whats-new-jul-2025" target=_blank>https://voidzero.dev/posts/whats-new-jul-2025</a>
+            </ul>
+          </li>
+          <li>
+            @vitejs/plugin-rsc
+            <ul>
+              <li><a href="https://www.npmjs.com/package/@vitejs/plugin-rsc" target=_blank>https://www.npmjs.com/package/@vitejs/plugin-rsc</a>
+              <li>Vite の RSC 対応
+              <li>
+                React 側でのやり取りはまだ止まっているが果たして?
+                <ul>
+                  <li><a href="https://github.com/facebook/react/pull/33152" target=_blank>https://github.com/facebook/react/pull/33152</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            chore(lint): oxlint --type-aware
+            <ul>
+              <li><a href="https://github.com/rolldown/rolldown/pull/5660" target=_blank>https://github.com/rolldown/rolldown/pull/5660</a>
+            </ul>
+          </li>
+          <li>
+            tsup chore: add maintenance info in README
+            <ul>
+              <li><a href="https://github.com/egoist/tsup/pull/1332" target=_blank>https://github.com/egoist/tsup/pull/1332</a>
+            </ul>
+          </li>
+          <li>
+            Faster Type-Aware Lint Rules: Biome vs. Oxlint
+            <ul>
+              <li><a href="https://www.solberg.is/fast-type-aware-linting" target=_blank>https://www.solberg.is/fast-type-aware-linting</a>
+            </ul>
+          </li>
+          <li>
+            Rslint
+            <ul>
+              <li><a href="https://rslint.rs/" target=_blank>https://rslint.rs/</a>
+            </ul>
+          </li>
+          <li>
+            ESLint v9.33.0 released
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/08/eslint-v9.33.0-released/" target=_blank>https://eslint.org/blog/2025/08/eslint-v9.33.0-released/</a>
+            </ul>
+          </li>
+          <li>
+            ESLint v9.32.0 released
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/07/eslint-v9.32.0-released/" target=_blank>https://eslint.org/blog/2025/07/eslint-v9.32.0-released/</a>
+            </ul>
+          </li>
+          <li>
+            ESLint Plugin Kit
+            <ul>
+              <li><a href="https://github.com/eslint/rewrite/tree/main/packages/plugin-kit" target=_blank>https://github.com/eslint/rewrite/tree/main/packages/plugin-kit</a>
+              <li>ESLint 公式のプラグインを作る際に便利な関数等が用意されたパッケージ
+            </ul>
+          </li>
+          <li>
+            Figma 上場
+            <ul>
+              <li><a href="https://www.nikkei.com/article/DGXZQOGN31E7C0R30C25A7000000" target=_blank>https://www.nikkei.com/article/DGXZQOGN31E7C0R30C25A7000000</a>
+              <li>初日の終値は 115.50 ドルと、公開価格(33 ドル)の 3.5 倍で取引を終えた。
+              <li>初値は 85 ドルと、公開価格の 2.5 倍以上の水準に達した。
+            </ul>
+          </li>
+          <li>
+            Component Test with Storybook and Vitest
+            <ul>
+              <li><a href="https://storybook.js.org/blog/component-test-with-storybook-and-vitest/" target=_blank>https://storybook.js.org/blog/component-test-with-storybook-and-vitest/</a>
+            </ul>
+          </li>
+          <li>
+            Accessibility Testing &amp; Dashboard are live
+            <ul>
+              <li><a href="https://www.chromatic.com/blog/accessibility-testing-is-here/" target=_blank>https://www.chromatic.com/blog/accessibility-testing-is-here/</a>
+              <li>Chromatic で Storybook を活用した a11y のテストやダッシュボードによる監視ができるように
+            </ul>
+          </li>
+          <li>
+            Stop Re-Rendering - TanStack DB, the Embedded Client Database for TanStack Query
+            <ul>
+              <li><a href="https://tanstack.com/blog/tanstack-db-0.1-the-embedded-client-database-for-tanstack-query" target=_blank>https://tanstack.com/blog/tanstack-db-0.1-the-embedded-client-database-for-tanstack-query</a>
+            </ul>
+          </li>
+          <li>
+            <strong>npmjs.com/is has malware</strong>
+            <ul>
+              <li><a href="https://x.com/ljharb/status/1946636509601538233" target=_blank>https://x.com/ljharb/status/1946636509601538233</a>
+              <li><a href="https://socket.dev/blog/npm-is-package-hijacked-in-expanding-supply-chain-attack" target=_blank>https://socket.dev/blog/npm-is-package-hijacked-in-expanding-supply-chain-attack</a>
+              <li>v3.3.1 にマルウェアが含まれていた
+              <li>メンテナーのアカウントが乗っ取られたため
+              <li>そのメンテナーは削除され、v3.3.0 が最新に設定され、v3.3.1 は非推奨となっている
+            </ul>
+          </li>
+          <li>
+            Securing the supply chain at scale: Starting with 71 important open source projects
+            <ul>
+              <li><a href="https://github.blog/open-source/maintainers/securing-the-supply-chain-at-scale-starting-with-71-important-open-source-projects/" target=_blank>https://github.blog/open-source/maintainers/securing-the-supply-chain-at-scale-starting-with-71-important-open-source-projects/</a>
+            </ul>
+          </li>
+          <li>
+            Astro 5.13
+            <ul>
+              <li><a href="https://astro.build/blog/astro-5130/" target=_blank>https://astro.build/blog/astro-5130/</a>
+            </ul>
+          </li>
+          <li>
+            Astro 5.12
+            <ul>
+              <li><a href="https://astro.build/blog/astro-5120/" target=_blank>https://astro.build/blog/astro-5120/</a>
+            </ul>
+          </li>
+          <li>
+            Remix は Preact も辞めたらしい
+            <ul>
+              <li><a href="https://x.com/mjackson/status/1955083457144762729" target=_blank>https://x.com/mjackson/status/1955083457144762729</a>
+              <li>
+                <blockquote>
+                  <p>If you read between the lines here, we&apos;re not using Preact as we originally intended to do.
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+          <li>
+            remix-run/remix at v3
+            <ul>
+              <li><a href="https://github.com/remix-run/remix/tree/v3" target=_blank>https://github.com/remix-run/remix/tree/v3</a>
+              <li>Reamix v3 のレポジトリ
+            </ul>
+          </li>
+          <li>
+            Announcing the Apollo GraphOS Operator in Public Preview
+            <ul>
+              <li><a href="https://www.apollographql.com/blog/announcing-the-apollo-graphos-operator-in-public-preview" target=_blank>https://www.apollographql.com/blog/announcing-the-apollo-graphos-operator-in-public-preview</a>
+            </ul>
+          </li>
+          <li>
+            Bun v1.2.20
+            <ul>
+              <li><a href="https://bun.com/blog/bun-v1.2.20" target=_blank>https://bun.com/blog/bun-v1.2.20</a>
+            </ul>
+          </li>
+          <li>
+            Nuxt 3.18
+            <ul>
+              <li><a href="https://nuxt.com/blog/v3-18" target=_blank>https://nuxt.com/blog/v3-18</a>
+            </ul>
+          </li>
+          <li>
+            Panda v1
+            <ul>
+              <li><a href="https://github.com/chakra-ui/panda/discussions/3321" target=_blank>https://github.com/chakra-ui/panda/discussions/3321</a>
+            </ul>
+          </li>
+          <li>
+            pnpm 10.14
+            <ul>
+              <li><a href="https://pnpm.io/blog/releases/10.14" target=_blank>https://pnpm.io/blog/releases/10.14</a>
+            </ul>
+          </li>
+          <li>
+            Centralized Dependency Management Made Simple
+            <ul>
+              <li><a href="https://blog.vlt.sh/blog/catalogs" target=_blank>https://blog.vlt.sh/blog/catalogs</a>
+            </ul>
+          </li>
+          <li>
+            Prisma ORM v6.14.0, Relationships for SQL Views, More Robust Management API &amp; More
+            <ul>
+              <li><a href="https://www.prisma.io/blog/prisma-orm-v6-14-0-relationships-for-sql-views-more-robust-management-api-and-more" target=_blank>https://www.prisma.io/blog/prisma-orm-v6-14-0-relationships-for-sql-views-more-robust-management-api-and-more</a>
+              <li>SQL ビューに <code translate=no>@unique</code> 属性を再導入し、relationship や pagenation を可能にした
+              <li>Prisma Client のミドルウェアを削除し、Prisma Client 拡張を使用するように変更
+              <li>パフォーマンスの向上を図り、エディタの遅延を改善
+            </ul>
+          </li>
+          <li>
+            Announcing TypeScript 5.9
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-9/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-9/</a>
+            </ul>
+          </li>
+          <li>
+            Announcing TypeScript 5.9 RC
+            <ul>
+              <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-9-rc/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-5-9-rc/</a>
+            </ul>
+          </li>
+          <li>
+            Meet your new AI coding teammate: Gemini CLI GitHub Actions
+            <ul>
+              <li><a href="https://blog.google/technology/developers/introducing-gemini-cli-github-actions/" target=_blank>https://blog.google/technology/developers/introducing-gemini-cli-github-actions/</a>
+            </ul>
+          </li>
+          <li>
+            Perplexity is using stealth, undeclared crawlers to evade website no-crawl directives
+            <ul>
+              <li><a href="https://blog.cloudflare.com/perplexity-is-using-stealth-undeclared-crawlers-to-evade-website-no-crawl-directives/" target=_blank>https://blog.cloudflare.com/perplexity-is-using-stealth-undeclared-crawlers-to-evade-website-no-crawl-directives/</a>
+            </ul>
+          </li>
+          <li>
+            MCP-UI
+            <ul>
+              <li><a href="https://mcpui.dev/" target=_blank>https://mcpui.dev/</a>
+              <li>shopify の事例
+              <li><a href="https://shopify.engineering/mcp-ui-breaking-the-text-wall" target=_blank>https://shopify.engineering/mcp-ui-breaking-the-text-wall</a>
+            </ul>
+          </li>
+          <li>
+            ChatGPT に「4o」を返して--「keep4o」運動が話題 新モデル不評? アルトマン氏も対応表明(CNET Japan) - Yahoo!ニュース
+            <ul>
+              <li><a href="https://news.yahoo.co.jp/articles/e7e29e117c0c76e6d8de062c7cb5899d9062856a" target=_blank>https://news.yahoo.co.jp/articles/e7e29e117c0c76e6d8de062c7cb5899d9062856a</a>
+            </ul>
+          </li>
+          <li>
+            gpt-oss が登場
+            <ul>
+              <li><a href="https://openai.com/ja-JP/index/introducing-gpt-oss/" target=_blank>https://openai.com/ja-JP/index/introducing-gpt-oss/</a>
+            </ul>
+          </li>
+          <li>
+            VS Code の 7 月アップデート
+            <ul>
+              <li><a href="https://code.visualstudio.com/updates/v1_103" target=_blank>https://code.visualstudio.com/updates/v1_103</a>
+              <li>
+                MCP
+                <ul>
+                  <li>Revamped tool picker experience
+                  <li>Enable more than 128 tools per agent request
+                </ul>
+              </li>
+              <li>
+                Chat
+                <ul>
+                  <li>Use GPT-5 in VS Code
+                  <li>Restore to a previous good state with chat checkpoints
+                </ul>
+              </li>
+              <li>
+                Productivity
+                <ul>
+                  <li>Check out multiple branches simultaneously with Git worktrees
+                  <li>Manage coding agent sessions in a dedicated view
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="9-月"><a href="#9-月">9 月</a></h3>
+        <ul>
+          <li>
+            Malicious versions of Nx and some supporting plugins were published · Advisory · nrwl/nx
+            <ul>
+              <li><a href="https://github.com/nrwl/nx/security/advisories/GHSA-cxm3-wv7p-598c" target=_blank>https://github.com/nrwl/nx/security/advisories/GHSA-cxm3-wv7p-598c</a>
+              <li>Nx の特定パッケージに含まれた脆弱性に対するサプライチェーン攻撃(s1ngularity)
+              <li>影響の確認、対応策、攻撃背景、今後の対応
+              <li>
+                npm debug and chalk packages compromised
+                <ul>
+                  <li><a href="https://www.aikido.dev/blog/npm-debug-and-chalk-packages-compromised" target=_blank>https://www.aikido.dev/blog/npm-debug-and-chalk-packages-compromised</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Shai-Hulud npm Supply Chain Attack | Wiz Blog
+            <ul>
+              <li><a href="https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack" target=_blank>https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack</a>
+              <li>Nx の攻撃の発展形で、今度は自己増殖型ワームが配布された
+              <li>CrowdStrike などのパッケージが侵害される
+            </ul>
+          </li>
+          <li>
+            Mitigating supply chain attacks | pnpm
+            <ul>
+              <li><a href="https://pnpm.io/supply-chain-security" target=_blank>https://pnpm.io/supply-chain-security</a>
+              <li>npm パッケージが狙われていることに対する pnpm を使用した対応策
+              <li><code translate=no>公開から一定時間経過したバージョンのみインストールするよう制御可能な minimumReleaseAge</code> が pnpm 10.16 で追加された
+              <li>
+                Yarn にも <code translate=no>minimumReleaseAge</code> が追加された
+                <ul>
+                  <li><a href="https://github.com/yarnpkg/berry/releases/tag/%40yarnpkg%2Fcli%2F4.10.0" target=_blank>https://github.com/yarnpkg/berry/releases/tag/%40yarnpkg%2Fcli%2F4.10.0</a>
+                </ul>
+              </li>
+              <li>
+                npm は <code translate=no>minimumReleaseAge</code> について議論中
+                <ul>
+                  <li><a href="https://github.com/npm/cli/issues/8570" target=_blank>https://github.com/npm/cli/issues/8570</a>
+                  <li>npm では <code translate=no>--before</code> がそれにあたるらしい
+                  <li>ただし絶対日付指定なので計算が必要
+                  <li>.npmrc には書けないので強制が難しい
+                </ul>
+              </li>
+              <li>pnpm は v10 以降で postinstall をデフォルトで無効化しているが、npm と Yarn はデフォルトで有効
+            </ul>
+          </li>
+          <li>
+            npm trusted publishing with OIDC is generally available - GitHub Changelog
+            <ul>
+              <li><a href="https://github.blog/changelog/2025-07-31-npm-trusted-publishing-with-oidc-is-generally-available/" target=_blank>https://github.blog/changelog/2025-07-31-npm-trusted-publishing-with-oidc-is-generally-available/</a>
+              <li>
+                Trusted publishing for npm packages | npm Docs
+                <ul>
+                  <li><a href="https://docs.npmjs.com/trusted-publishers#supported-cicd-providers" target=_blank>https://docs.npmjs.com/trusted-publishers#supported-cicd-providers</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Releases now support immutability in public preview - GitHub Changelog
+            <ul>
+              <li><a href="https://github.blog/changelog/2025-08-26-releases-now-support-immutability-in-public-preview/" target=_blank>https://github.blog/changelog/2025-08-26-releases-now-support-immutability-in-public-preview/</a>
+            </ul>
+          </li>
+          <li>
+            Middleware in React Router | Remix
+            <ul>
+              <li><a href="https://remix.run/blog/middleware" target=_blank>https://remix.run/blog/middleware</a>
+              <li>React Router v7.9.0 で導入された Middleware の解説
+            </ul>
+          </li>
+          <li>
+            Next.js 15.5
+            <ul>
+              <li><a href="https://nextjs.org/blog/next-15-5" target=_blank>https://nextjs.org/blog/next-15-5</a>
+            </ul>
+          </li>
+          <li>
+            Deno 2.5: Permissions in the config file
+            <ul>
+              <li><a href="https://deno.com/blog/v2.5" target=_blank>https://deno.com/blog/v2.5</a>
+            </ul>
+          </li>
+          <li>
+            Behind The Scenes of Bun Install | Bun Blog
+            <ul>
+              <li><a href="https://bun.com/blog/behind-the-scenes-of-bun-install" target=_blank>https://bun.com/blog/behind-the-scenes-of-bun-install</a>
+              <li>Bun install が高速な理由の解説
+            </ul>
+          </li>
+          <li>
+            A deep dive into Cloudflare&apos;s September 12, 2025 dashboard and API outage
+            <ul>
+              <li><a href="https://blog.cloudflare.com/deep-dive-into-cloudflares-sept-12-dashboard-and-api-outage/" target=_blank>https://blog.cloudflare.com/deep-dive-into-cloudflares-sept-12-dashboard-and-api-outage/</a>
+              <li>Cloudflare が useEffect に渡す依存配列のミスでセルフ DoS
+            </ul>
+          </li>
+          <li>
+            Migration guide for Storybook 10
+            <ul>
+              <li><a href="https://storybook.js.org/docs/10/releases/migration-guide" target=_blank>https://storybook.js.org/docs/10/releases/migration-guide</a>
+              <li>Storybook v10 はまだ beta だが、Migration guide がでた
+              <li>ESM 化,CSF の型周り強化が入っている
+            </ul>
+          </li>
+          <li>
+            feat: CSS variable tracking by nzakas · Pull Request #136 · eslint/rfcs
+            <ul>
+              <li><a href="https://github.com/eslint/rfcs/pull/136" target=_blank>https://github.com/eslint/rfcs/pull/136</a>
+              <li>ESLint の CSS Variabl の静的解析の機能追加
+            </ul>
+          </li>
+          <li>
+            Release Activity in Canary by rickhanlonii · Pull Request #34374 · facebook/react
+            <ul>
+              <li><a href="https://github.com/facebook/react/pull/34374" target=_blank>https://github.com/facebook/react/pull/34374</a>
+              <li><code translate=no>&lt;Activity&gt;</code> が Canary リリースへ
+            </ul>
+          </li>
+          <li>
+            りぃさん VoidZero へ
+            <ul>
+              <li><a href="https://x.com/leaysgur/status/1962395920483643481" target=_blank>https://x.com/leaysgur/status/1962395920483643481</a>
+              <li>
+                <blockquote>
+                  <p>目下のタスクとしては、やっぱり Prettier の Rust リライトかな?
+                </blockquote>
+              </li>
+              <li>oxfmt の RFC: <a href="https://github.com/oxc-project/oxc/discussions/13608" target=_blank>https://github.com/oxc-project/oxc/discussions/13608</a>
+            </ul>
+          </li>
+          <li>
+            Storybook MCP Addon
+            <ul>
+              <li><a href="https://www.npmjs.com/package/@storybook/addon-mcp" target=_blank>https://www.npmjs.com/package/@storybook/addon-mcp</a>
+              <li>Storybook 公式から出た MCP Addon
+              <li>Story ファイルを生成してくれる
+            </ul>
+          </li>
+          <li>
+            Storybook Design Systems with Agents RFC
+            <ul>
+              <li><a href="https://github.com/storybookjs/ds-mcp-experiment-reshaped/discussions/1" target=_blank>https://github.com/storybookjs/ds-mcp-experiment-reshaped/discussions/1</a>
+            </ul>
+          </li>
+          <li>
+            Agentic Workflow RFC
+            <ul>
+              <li><a href="https://github.com/storybookjs/addon-mcp/discussions/15" target=_blank>https://github.com/storybookjs/addon-mcp/discussions/15</a>
+            </ul>
+          </li>
+          <li>
+            Remote GitHub MCP Server is now generally available - GitHub Changelog
+            <ul>
+              <li><a href="https://github.blog/changelog/2025-09-04-remote-github-mcp-server-is-now-generally-available/" target=_blank>https://github.blog/changelog/2025-09-04-remote-github-mcp-server-is-now-generally-available/</a>
+            </ul>
+          </li>
+          <li>
+            Meet the GitHub MCP Registry: The fastest way to discover MCP Servers - The GitHub Blog
+            <ul>
+              <li><a href="https://github.blog/ai-and-ml/github-copilot/meet-the-github-mcp-registry-the-fastest-way-to-discover-mcp-servers/" target=_blank>https://github.blog/ai-and-ml/github-copilot/meet-the-github-mcp-registry-the-fastest-way-to-discover-mcp-servers/</a>
+            </ul>
+          </li>
+          <li>
+            Introducing the MCP Registry | mcp blog
+            <ul>
+              <li><a href="https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/" target=_blank>https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/</a>
+            </ul>
+          </li>
+          <li>
+            A postmortem of three recent issues
+            <ul>
+              <li><a href="https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues" target=_blank>https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues</a>
+              <li>Claude の品質が落ちていたバグの修正と技術的分析など
+            </ul>
+          </li>
+          <li>
+            国内における脆弱性関連情報を取り扱う全ての皆様へ - 情報セキュリティ早期警戒パートナーシップガイドラインに則した対応に関するお願い - (METI/経済産業省)
+            <ul>
+              <li><a href="https://www.meti.go.jp/policy/netsecurity/vul_request.html" target=_blank>https://www.meti.go.jp/policy/netsecurity/vul_request.html</a>
+              <li>共同通信が Felica の脆弱性を先走って公開した件
+              <li>Sony は内部で対応を進めていたにもかかわらず、なし崩し的に一方を出すしかなかった。
+              <li>脆弱性情報の共有には、対応がある程度済んでから行うべき手順として、パートナーシップガイドラインがあるので、メディアも発見者も守るべき
+            </ul>
+          </li>
+          <li>
+            Rails 作者の DHH 氏、独自開発した Linux OS「Omarchy」 をデモ。5 分で最高の開発環境を導入。ターミナル UI とタイリングウィンドウが特徴 － Publickey
+            <ul>
+              <li><a href="https://www.publickey1.jp/blog/25/railsdhhlinux_osomarchy_5ui.html" target=_blank>https://www.publickey1.jp/blog/25/railsdhhlinux_osomarchy_5ui.html</a>
+              <li>Omakase + Arch linux = Omarchy
+              <li>すでに資産はあるので、収益などは考えない趣味プロジェクトらしい
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="10-月"><a href="#10-月">10 月</a></h3>
+        <ul>
+          <li>
+            React Conf 2025
+            <ul>
+              <li><a href="https://conf.react.dev/" target=_blank>https://conf.react.dev/</a>
+              <li><a href="https://blog.re-taro.dev/p/01K72ECG97DYRTNSG7CB6KB6J9" target=_blank>https://blog.re-taro.dev/p/01K72ECG97DYRTNSG7CB6KB6J9</a>
+            </ul>
+          </li>
+          <li>
+            React 19.2
+            <ul>
+              <li><a href="https://react.dev/blog/2025/10/01/react-19-2" target=_blank>https://react.dev/blog/2025/10/01/react-19-2</a>
+              <li><code translate=no>&lt;Activity&gt;</code> は表示状態を制御し、非表示部分を事前にレンダリングすることでパフォーマンスを向上させる
+              <li>useEffectEvent は外部イベントを通知する新しいパターンで、依存関係の管理を簡素化する
+              <li>cacheSignal
+              <li>eslint-plugin-react-hooks のバージョンを 6.1.0 にアップグレードする必要がある
+            </ul>
+          </li>
+          <li>
+            React Compiler v1.0
+            <ul>
+              <li><a href="https://react.dev/blog/2025/10/07/react-compiler-1" target=_blank>https://react.dev/blog/2025/10/07/react-compiler-1</a>
+              <li>React と React Native で動作する
+              <li>コンパイラは自動メモ化を通じてコンポーネントやフックを最適化する
+              <li>新しいアプリは Expo、Vite、Next.js と連携してコンパイラを有効にできる
+              <li>コンパイラは Meta の主要アプリでテストされ、プロダクション環境での使用に適している
+            </ul>
+          </li>
+          <li>
+            React Native 0.82 - A New Era
+            <ul>
+              <li><a href="https://reactnative.dev/blog/2025/10/08/react-native-0.82" target=_blank>https://reactnative.dev/blog/2025/10/08/react-native-0.82</a>
+              <li>React Native 0.82 は新しいアーキテクチャに完全移行した初のバージョンである
+              <li>レガシーアーキテクチャのコードを削除し、インストールサイズを削減する予定
+              <li>Hermes v1 の実験的なオプトインサポートが追加された
+              <li>React のバージョンが 19.1.1 に更新され、DOM ノード API のサポートが追加された
+              <li>新しいアーキテクチャは今後のバージョンでもデフォルトとして使用される
+              <li>移行は React Native 0.81 または Expo SDK 54 から始めることが推奨されている
+              <li>Hermes v1 はパフォーマンス向上が期待され、特にバンドルの読み込み時間や初回表示時間が改善されている
+            </ul>
+          </li>
+          <li>
+            Introducing the React Foundation
+            <ul>
+              <li><a href="https://react.dev/blog/2025/10/07/introducing-the-react-foundation" target=_blank>https://react.dev/blog/2025/10/07/introducing-the-react-foundation</a>
+              <li>React Foundation の設立により、React と React Native の新しい技術的ガバナンスが導入される
+              <li>React は 10 年以上前にオープンソース化され、Meta 以外の多くの貢献者からの支援を受けて成長してきた
+              <li>新しい React Foundation は、React と React Native、JSX などのプロジェクトを支援する
+              <li>React Foundation は GitHub や CI、商標の管理、React Conf の開催、エコシステムプロジェクトへの財政支援を行う
+              <li>理事会が設立され、Seth Webster がエグゼクティブディレクターを務める
+              <li>React の技術的方向性は、React に貢献する人々によって決定されるべきである
+            </ul>
+          </li>
+          <li>
+            Remix Jam 2025
+            <ul>
+              <li><a href="https://remix.run/jam/2025" target=_blank>https://remix.run/jam/2025</a>
+              <li><a href="https://www.youtube.com/watch?v=xt_iEOn2a6Y" target=_blank>https://www.youtube.com/watch?v=xt_iEOn2a6Y</a>
+              <li><a href="https://frantic.im/remix-3" target=_blank>Thoughts on Remix 3 / frantic.im</a>
+              <li>
+                Remix 3 のコード
+                <ul>
+                  <li><a href="https://github.com/remix-run/remix/tree/main/demos/bookstore" target=_blank>https://github.com/remix-run/remix/tree/main/demos/bookstore</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            React Router RSC Framework Mode Preview
+            <ul>
+              <li><a href="https://remix.run/blog/rsc-framework-mode-preview" target=_blank>https://remix.run/blog/rsc-framework-mode-preview</a>
+              <li>RSC Data Mode を基盤にして、RSC Framework Mode が構築されている
+              <li>新しいプラグインを使用することで、RSC コンテンツをローダーやアクションから返す機能が追加される
+            </ul>
+          </li>
+          <li>
+            Next.js 16 (beta)
+            <ul>
+              <li><a href="https://nextjs.org/blog/next-16-beta" target=_blank>https://nextjs.org/blog/next-16-beta</a>
+              <li>Turbopack が全アプリのデフォルトバンドラーに
+              <li>Turbopack は最大 5-10 倍の Fast Refresh と 2-5 倍のビルド速度を提供
+              <li>ファイルシステムキャッシングにより、大規模アプリの起動とコンパイル時間が短縮
+              <li>React Compiler のサポートが安定し、コンポーネントの自動メモ化が実現
+              <li>Build Adapters API がアルファ版として登場し、カスタムアダプターの作成が可能
+              <li>ルーティングの最適化やキャッシング API の改善が行われている
+            </ul>
+          </li>
+          <li>
+            Beyond the Horizon: How Angular is Embracing AI for Next-Gen Apps
+            <ul>
+              <li><a href="https://blog.angular.dev/beyond-the-horizon-how-angular-is-embracing-ai-for-next-gen-apps-7a7ed706e1a3" target=_blank>https://blog.angular.dev/beyond-the-horizon-how-angular-is-embracing-ai-for-next-gen-apps-7a7ed706e1a3</a>
+              <li>Angular は AI ファーストなフレームワークになるらしい
+              <li>
+                Angular は AI 志向のフレームワークへ
+                <ul>
+                  <li><a href="https://zenn.dev/lacolaco/articles/angular-ai-forward" target=_blank>https://zenn.dev/lacolaco/articles/angular-ai-forward</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            ViteConf 2025
+            <ul>
+              <li><a href="https://viteconf.amsterdam/" target=_blank>https://viteconf.amsterdam/</a>
+              <li><a href="https://voidzero.dev/posts/announcing-vite-plus" target=_blank>https://voidzero.dev/posts/announcing-vite-plus</a>
+              <li><a href="https://vite.plus" target=_blank>https://vite.plus</a>
+              <li>Vite+は JavaScript のための統合ツールチェーンである
+              <li>新しいプロジェクトのスキャフォールディングやユニットテストの実行が可能
+              <li>Oxlint を使用したコードのリント機能を提供し、ESLint よりも高速
+              <li>Oxfmt を使用したコードフォーマット機能を提供予定
+              <li>モノレポ用のタスクランナーを内蔵し、インテリジェントなキャッシングを実現
+              <li>Rust で構築されたコンパイラツールチェーンにより高いパフォーマンスを実現
+            </ul>
+          </li>
+          <li>
+            Vite: The Documentary
+            <ul>
+              <li><a href="https://www.youtube.com/watch?v=bmWQqAKLgT4" target=_blank>https://www.youtube.com/watch?v=bmWQqAKLgT4</a>
+              <li>Vite の誕生から今まで
+            </ul>
+          </li>
+          <li>
+            Node.js v24.10.0
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v24.10.0" target=_blank>https://nodejs.org/en/blog/release/v24.10.0</a>
+              <li>console に per-stream inspectOptions オプションが追加された
+              <li>util.getCallSite が削除された
+              <li>SQLite に認証 API が追加された
+            </ul>
+          </li>
+          <li>
+            Node.js v24.9.0
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v24.9.0" target=_blank>https://nodejs.org/en/blog/release/v24.9.0</a>
+              <li>HTTP アップグレードを制御する shouldUpgradeCallback が追加された
+              <li>SQLite の ERM サポートがクリーンアップされ、Session クラスがエクスポートされた
+              <li>ワーカーにヒーププロファイル API が追加された
+              <li>暗号化機能が改善され、Promise の返却方法が最適化された
+            </ul>
+          </li>
+          <li>
+            What&apos;s coming in ESLint v10.0.0
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/10/whats-coming-in-eslint-10.0.0/" target=_blank>https://eslint.org/blog/2025/10/whats-coming-in-eslint-10.0.0/</a>
+              <li>Node.js v20.19.0 以降のサポートが必須となる
+              <li>eslintrc 設定システムが完全に削除される
+              <li>eslint:recommended 設定に新しいルールが追加される
+              <li>jiti のバージョン 2.2.0 未満のサポートが削除される
+              <li>Program AST ノードの範囲計算が全ソーステキストをカバーするように変更される
+            </ul>
+          </li>
+          <li>
+            ESLint v9.37.0 released
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/10/eslint-v9.37.0-released/" target=_blank>https://eslint.org/blog/2025/10/eslint-v9.37.0-released/</a>
+              <li>no-restricted-imports ルールに allowTypeImports オプションが追加され、TypeScript ファイルでの型のみのインポートが許可されるようになった
+              <li>--concurrency=auto オプションのヒューリスティックが改善され、キャッシュがほとんどある場合に不必要なマルチスレッドモードが有効にならないようになった
+              <li>preserve-caught-error ルールが計算されたプロパティ構文を使用したエラーの原因オプションを正しく処理するようになった
+              <li>バグ修正として、先頭ゼロに関する精度の損失の誤検出が修正された
+              <li>ESLint の型定義が修正され、AST トークンタイプが追加された
+            </ul>
+          </li>
+          <li>
+            Oxlint JS Plugins Preview
+            <ul>
+              <li><a href="https://oxc.rs/blog/2025-10-09-oxlint-js-plugins.html" target=_blank>https://oxc.rs/blog/2025-10-09-oxlint-js-plugins.html</a>
+            </ul>
+          </li>
+          <li>
+            Astro 5.14
+            <ul>
+              <li><a href="https://astro.build/blog/astro-5140/" target=_blank>https://astro.build/blog/astro-5140/</a>
+              <li>プリレンダリングされたルートの衝突警告機能により、動的ルーティングのエラーを事前に特定できる
+              <li>getStaticPaths での routePattern プロパティにより、複雑な動的ルートの処理が容易になる
+              <li>Svelte の非同期レンダリング機能が追加され、サーバーレンダリングコンポーネントでも使用可能になる
+              <li>React 19 アクションの統合が行われ、より多くの機能が利用可能になる
+            </ul>
+          </li>
+          <li>
+            Storybook is going ESM-only
+            <ul>
+              <li><a href="https://storybook.js.org/blog/storybook-is-going-esm-only" target=_blank>https://storybook.js.org/blog/storybook-is-going-esm-only</a>
+              <li>Storybook は ESM 専用に移行することを発表した
+              <li>二重ビルドによるパッケージサイズの増加とメンテナンスの複雑化が問題だった
+              <li>Storybook 10 からは ESM 専用ビルドを提供し、パッケージサイズを約 15%削減する
+              <li>Node.js のバージョンは 20.16、22.19、24 以上が必要
+              <li>設定ファイルは ESM に準拠する必要がある
+            </ul>
+          </li>
+          <li>
+            Playwright v1.56
+            <ul>
+              <li><a href="https://x.com/playwrightweb/status/1975223910573785425" target=_blank>https://x.com/playwrightweb/status/1975223910573785425</a>
+              <li><a href="https://playwright.dev/docs/test-agents" target=_blank>https://playwright.dev/docs/test-agents</a>
+              <li>planner : explores the app and produces a Markdown test plan
+              <li>generator : transforms the Markdown plan into the Playwright Test files
+              <li>healer : executes the test suite and automatically repairs failing tests
+            </ul>
+          </li>
+          <li>
+            Chrome DevTools
+            <ul>
+              <li><a href="https://developer.chrome.com/blog/chrome-devtools-mcp?hl=ja" target=_blank>https://developer.chrome.com/blog/chrome-devtools-mcp?hl=ja</a>
+              <li>MCP を使用することで、AI エージェントはウェブサイトのパフォーマンスを分析し、改善提案を行うことができる
+              <li>AI エージェントは、リアルタイムでコード変更を検証し、ネットワークエラーを診断することができる
+              <li>ユーザーの行動をシミュレートし、バグを再現することが可能
+            </ul>
+          </li>
+          <li>
+            What&apos;s new in Svelte: October 2025
+            <ul>
+              <li><a href="https://svelte.dev/blog/whats-new-in-svelte-october-2025" target=_blank>https://svelte.dev/blog/whats-new-in-svelte-october-2025</a>
+              <li>リモート関数の改善により、バッチ処理ツールとレイジーディスカバリーによるパフォーマンス向上が実現された
+              <li>実験的な Async SSR が利用可能で、任意の場所で await を使用できる
+              <li>SvelteKit に新たに popstate、link、form ナビゲーションのイベントプロパティが追加された。
+              <li>%sveltekit.version%プレースホルダーを使用して SvelteKit のバージョンを出力に含めることができる
+              <li>Svelte プレイグラウンドからプロジェクトを作成する機能が追加された
+              <li>リモート関数の set()がサーバークエリで呼び出せるようになり、query.refresh()の Promise が自動的に解決される
+              <li>新しい query.batch リモート関数により、同じマクロタスク内でのリクエストをバッチ処理できる
+            </ul>
+          </li>
+          <li>
+            How Deno protects against npm exploits
+            <ul>
+              <li><a href="https://deno.com/blog/deno-protects-npm-exploits" target=_blank>https://deno.com/blog/deno-protects-npm-exploits</a>
+              <li>npm のセキュリティ侵害が発生し、悪意のある依存関係がシステムにアクセスする危険性がある
+              <li>Deno はデフォルトでサンドボックス内でコードを実行し、システムへのアクセスを制限する
+              <li>開発者は明示的に権限を付与する必要があり、これにより不正なコードのリスクが低減される
+              <li>Deno は特定のファイルやネットワークエンドポイントへの部分的なアクセスを許可できる
+              <li>権限の管理を簡素化するための設定ファイル(deno.json)を使用できる
+              <li>今後、npm パッケージのインストールに関する新しいセキュリティ機能が追加される予定
+            </ul>
+          </li>
+          <li>
+            North Korea&apos;s Contagious Interview Campaign Escalates: 338 Malicious npm Packages, 50,000 Download
+            <ul>
+              <li><a href="https://socket.dev/blog/north-korea-contagious-interview-campaign-338-malicious-npm-packages" target=_blank>https://socket.dev/blog/north-korea-contagious-interview-campaign-338-malicious-npm-packages</a>
+            </ul>
+          </li>
+          <li>
+            175 Malicious npm Packages Host Phishing Infrastructure Targeting 135+ Organizations
+            <ul>
+              <li><a href="https://socket.dev/blog/175-malicious-npm-packages-host-phishing-infrastructure" target=_blank>https://socket.dev/blog/175-malicious-npm-packages-host-phishing-infrastructure</a>
+            </ul>
+          </li>
+          <li>
+            Where It&apos;s at://
+            <ul>
+              <li><a href="https://overreacted.io/where-its-at/" target=_blank>https://overreacted.io/where-its-at/</a>
+            </ul>
+          </li>
+          <li>
+            Apollo MCP Server 1.0 is Generally Available
+            <ul>
+              <li><a href="https://www.apollographql.com/blog/apollo-mcp-server-1-0-is-generally-available" target=_blank>https://www.apollographql.com/blog/apollo-mcp-server-1-0-is-generally-available</a>
+              <li>GraphQL 操作を MCP ツールに変換し、MCP クライアントがそれらを利用できる
+              <li>ホットリロード機能により、GraphQL 操作の変更が即座にエージェントに反映される
+              <li>エージェントはスキーマを動的に探索し、必要な情報を効率的に取得できる
+              <li>持続的なクエリにより、事前承認された操作のみを実行可能にし、安全性を確保する
+              <li>OAuth を使用して MCP Server のセキュリティを強化している
+            </ul>
+          </li>
+          <li>
+            Prisma 6.17.0
+            <ul>
+              <li><a href="https://github.com/prisma/prisma/releases/tag/6.17.0" target=_blank>https://github.com/prisma/prisma/releases/tag/6.17.0</a>
+            </ul>
+          </li>
+          <li>
+            Announcing Lynx for HarmonyOS
+            <ul>
+              <li><a href="https://lynxjs.org/blog/lynx-harmony" target=_blank>https://lynxjs.org/blog/lynx-harmony</a>
+            </ul>
+          </li>
+          <li>
+            The next evolution of Mastra streaming
+            <ul>
+              <li><a href="https://mastra.ai/blog/mastra-streaming" target=_blank>https://mastra.ai/blog/mastra-streaming</a>
+            </ul>
+          </li>
+          <li>
+            Nuxt UI v4
+            <ul>
+              <li><a href="https://nuxt.com/blog/nuxt-ui-v4" target=_blank>https://nuxt.com/blog/nuxt-ui-v4</a>
+            </ul>
+          </li>
+          <li>
+            Query Across Projects with the host selector
+            <ul>
+              <li><a href="https://blog.vlt.sh/blog/host-context" target=_blank>https://blog.vlt.sh/blog/host-context</a>
+            </ul>
+          </li>
+          <li>
+            Cloudflare の新コンテンツシグナルポリシーでユーザーに選択肢を
+            <ul>
+              <li><a href="https://blog.cloudflare.com/ja-jp/content-signals-policy/" target=_blank>https://blog.cloudflare.com/ja-jp/content-signals-policy/</a>
+            </ul>
+          </li>
+          <li>
+            Announcing Cloudflare Email Service&apos;s private beta
+            <ul>
+              <li><a href="https://blog.cloudflare.com/email-service/" target=_blank>https://blog.cloudflare.com/email-service/</a>
+            </ul>
+          </li>
+          <li>
+            元 Vercel の VP of AI が MS ヘ
+            <ul>
+              <li><a href="https://x.com/jaredpalmer/status/1977732721259540735" target=_blank>https://x.com/jaredpalmer/status/1977732721259540735</a>
+            </ul>
+          </li>
+          <li>
+            Figma partners with Google to integrate Gemini into its platform
+            <ul>
+              <li><a href="https://ux-news.com/figma-partners-with-google-to-integrate-gemini-into-its-platform/" target=_blank>https://ux-news.com/figma-partners-with-google-to-integrate-gemini-into-its-platform/</a>
+              <li>Figma と Google が提携
+            </ul>
+          </li>
+          <li>
+            Figma Make と GitHub 連携がくる
+            <ul>
+              <li><a href="https://x.com/figma/status/1976745908168802357" target=_blank>https://x.com/figma/status/1976745908168802357</a>
+            </ul>
+          </li>
+          <li>
+            Is Lovable Dying
+            <ul>
+              <li><a href="https://x.com/chrispisarski/status/1975686843489190268" target=_blank>https://x.com/chrispisarski/status/1975686843489190268</a>
+            </ul>
+          </li>
+          <li>
+            GraphQLConf 2025
+            <ul>
+              <li><a href="https://graphql.org/conf/2025/" target=_blank>https://graphql.org/conf/2025/</a>
+              <li><a href="https://www.apollographql.com/blog/10-years-of-graphql-celebrated-at-graphqlconf-2025" target=_blank>https://www.apollographql.com/blog/10-years-of-graphql-celebrated-at-graphqlconf-2025</a>
+            </ul>
+          </li>
+          <li>
+            Bringing Figma Make to the canvas
+            <ul>
+              <li><a href="https://www.figma.com/blog/bringing-figma-make-to-the-canvas/" target=_blank>https://www.figma.com/blog/bringing-figma-make-to-the-canvas/</a>
+              <li>Figma Make を Design ファイルでいじれるようになる
+            </ul>
+          </li>
+          <li>
+            New partnership with Figma to bring your Make prototypes into Figma Design
+            <ul>
+              <li><a href="https://divriots.com/blog/new-figma-partnership-to-bring-figma-make-to-the-canvas" target=_blank>https://divriots.com/blog/new-figma-partnership-to-bring-figma-make-to-the-canvas</a>
+              <li>html.to.design と Figma がパートナーシップ
+            </ul>
+          </li>
+          <li>
+            Help Us Raise $200k to Free JavaScript from Oracle | Deno
+            <ul>
+              <li><a href="https://deno.com/blog/javascript-tm-gofundme" target=_blank>https://deno.com/blog/javascript-tm-gofundme</a>
+            </ul>
+          </li>
+          <li>
+            GitHub Copilot CLI is now in public preview
+            <ul>
+              <li><a href="https://github.blog/changelog/2025-09-25-github-copilot-cli-is-now-in-public-preview/" target=_blank>https://github.blog/changelog/2025-09-25-github-copilot-cli-is-now-in-public-preview/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="11-月"><a href="#11-月">11 月</a></h3>
+        <ul>
+          <li>
+            Next.js 16
+            <ul>
+              <li><a href="https://nextjs.org/blog/next-16" target=_blank>https://nextjs.org/blog/next-16</a>
+              <li>Cache Components は、Partial Pre-Rendering (PPR)を利用してページやコンポーネントのキャッシングを明示的に行える。
+              <li>Next.js Devtools MCP が統合され、AI 支援のデバッグが可能になった。
+              <li>ミドルウェアは proxy.ts に置き換えられ、ネットワーク境界が明確化された。
+              <li>Turbopack は全アプリのデフォルトバンドラーとなり、ビルド時間が 5-10 倍短縮される。
+            </ul>
+          </li>
+          <li>
+            Turborepo 2.6
+            <ul>
+              <li><a href="https://turborepo.com/blog/turbo-2-6" target=_blank>https://turborepo.com/blog/turbo-2-6</a>
+              <li>マイクロフロントエンドのローカル開発用プロキシが導入され、複数のアプリケーションを 1 つのポートで実行可能に
+              <li>開発コマンドやポートの管理が簡素化され、チームは独立してアプリケーションを展開できる
+              <li>Bun パッケージマネージャーが安定版として統合され、依存関係の変更があったパッケージのみがキャッシュから外れる
+            </ul>
+          </li>
+          <li>
+            Make any TypeScript Function Durable
+            <ul>
+              <li><a href="https://useworkflow.dev/" target=_blank>https://useworkflow.dev/</a>
+              <li>&quot;use workflow&quot;ディレクティブを使用して関数を耐久性のあるワークフローに変換できる。
+              <li>手動でのキューやスケジューラの設定は不要で、自動リトライ機能がある。
+              <li>&quot;sleep&quot;を使用して計算を保持せずに一時停止し、再開できる。
+              <li>デバッグ時にはトレース、ログ、メトリクスが可視化される。
+              <li>ローカル開発が可能で、Vercel や他のクラウドにデプロイできる。
+            </ul>
+          </li>
+          <li>
+            VS Code の Private Marketplace 機能
+            <ul>
+              <li><a href="https://code.visualstudio.com/blogs/2025/11/18/privatemarketplace" target=_blank>https://code.visualstudio.com/blogs/2025/11/18/privatemarketplace</a>
+              <li>公開されている、社内自作ともに VS Code プラグインの適用を制限できる
+              <li>GitHub Enterprise プランのみ
+            </ul>
+          </li>
+          <li>
+            Schema 2025: Design systems for a new era
+            <ul>
+              <li><a href="https://www.figma.com/blog/schema-2025-design-systems-recap/" target=_blank>https://www.figma.com/blog/schema-2025-design-systems-recap/</a>
+              <li>Figma のデザインシステム周りのカンファレンスが行われ、そこで Figma の機能も追加された
+              <li>
+                Extended Collections
+                <ul>
+                  <li>デザインシステムのマルチブランド対応が容易に
+                </ul>
+              </li>
+              <li>
+                Slots
+                <ul>
+                  <li>figma 上で react children 的なことができる
+                </ul>
+              </li>
+              <li>
+                Check designs
+                <ul>
+                  <li>DevMode 移行時にデザイン上でコンポーネントや variables の紐付け漏れ検知
+                </ul>
+              </li>
+              <li>
+                Code Connect UI
+                <ul>
+                  <li>GUI 上から実装ファイルへの紐付けが可能に
+                  <li>コンポーネント毎に MCP に読み込ませるコンテキスト追加できる
+                </ul>
+              </li>
+              <li>
+                Figma MCP server
+                <ul>
+                  <li>beta 版の終了
+                </ul>
+              </li>
+              <li>
+                Make kits
+                <ul>
+                  <li>Figma ライブラリを読み込ませて React などのコードを出せるように
+                </ul>
+              </li>
+              <li>
+                Figma Make に Npm package imports
+                <ul>
+                  <li>Figma Make に npm package を読み込ませて実装コードを参照させれるように
+                </ul>
+              </li>
+              <li>
+                Variables の Design Tokens Community Group の仕様に準拠した import/export
+                <ul>
+                  <li>
+                    Design Tokens Community Group の仕様も stable に
+                    <ul>
+                      <li><a href="https://www.w3.org/community/design-tokens/2025/10/28/design-tokens-specification-reaches-first-stable-version/" target=_blank>https://www.w3.org/community/design-tokens/2025/10/28/design-tokens-specification-reaches-first-stable-version/</a>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            StyleX: A Styling Library for CSS at Scale - Engineering at Meta
+            <ul>
+              <li><a href="https://engineering.fb.com/2025/11/11/web/stylex-a-styling-library-for-css-at-scale/" target=_blank>https://engineering.fb.com/2025/11/11/web/stylex-a-styling-library-for-css-at-scale/</a>
+              <li>CSS-in-JS の利便性と Static CSS の性能を組み合わせ、Type Safe で衝突のない CSS を生成する。
+              <li>Meta 製品だけでなく、Figma や Snowflake でも使われている
+              <li>それを使ってスケールする CSS を書く方法
+            </ul>
+          </li>
+          <li>
+            Hono CLI 爆誕
+            <ul>
+              <li><a href="https://zenn.dev/yusukebe/articles/ff69c13ccafb28" target=_blank>https://zenn.dev/yusukebe/articles/ff69c13ccafb28</a>
+              <li>hono docs
+              <li>hono search
+              <li>hono request
+              <li>hono serve
+              <li>hono optimize
+            </ul>
+          </li>
+          <li>
+            VoidZero Raises $12.5M Series A
+            <ul>
+              <li><a href="https://voidzero.dev/posts/announcing-series-a" target=_blank>https://voidzero.dev/posts/announcing-series-a</a>
+              <li>VoidZero は 1,250 万ドルのシリーズ A 資金調達を実施した。
+              <li>新たにチームに加わったメンバーには、napi-rs の創設者や OSS プロジェクトのコア貢献者がいる。
+              <li>Vite は Webpack を超える週次ダウンロード数を達成した。
+              <li>Vitest のブラウザモードが安定し、Rolldown は 100 万の週次ダウンロードを記録した。
+              <li>Vite+は VoidZero の持続可能なビジョンの第一歩であり、現在プライベートベータ版である。
+            </ul>
+          </li>
+          <li>
+            ViteConf 2025 Recap
+            <ul>
+              <li><a href="https://voidzero.dev/posts/whats-new-viteconf-2025" target=_blank>https://voidzero.dev/posts/whats-new-viteconf-2025</a>
+              <li>Vite+は、Vite のスーパーセットであり、開発者ツールを統合した CLI を提供する。
+              <li>Vite+は、テスト、リント、フォーマット、ライブラリバンドル、タスク実行の新しいコマンドを追加し、ゼロ設定で動作する。
+              <li>Oxlint が JavaScript プラグインをサポートし、ESLint のカスタムルールを使用できるようになった。
+              <li>Vite DevTools には、ビジュアルビルド分析ツールとプラグイン API が追加され、開発者がビルドプロセスを簡単に検査できる。
+            </ul>
+          </li>
+          <li>
+            Vitest 4.0 is out!
+            <ul>
+              <li><a href="https://vitest.dev/blog/vitest-4" target=_blank>https://vitest.dev/blog/vitest-4</a>
+              <li><a href="https://x.com/voidzerodev/status/1991169793257336971" target=_blank>https://x.com/voidzerodev/status/1991169793257336971</a>
+              <li>Browser Mode が安定版としてリリースされ、実際のブラウザ環境でのテストが可能に
+              <li>Visual Regression テストが追加され、コンポーネントの視覚的変化を検出できる
+              <li>Playwright Trace のサポートにより、詳細なトレースファイルを生成し、デバッグが容易に
+              <li>schema validation 用の assertion が追加
+            </ul>
+          </li>
+          <li>
+            国土交通省が「MCP サーバ」公開 API の知識不要、対話形式でのデータ取得が可能に
+            <ul>
+              <li><a href="https://atmarkit.itmedia.co.jp/ait/articles/2511/14/news056.html" target=_blank>https://atmarkit.itmedia.co.jp/ait/articles/2511/14/news056.html</a>
+            </ul>
+          </li>
+          <li>
+            Cloudflare outage on November 18, 2025
+            <ul>
+              <li><a href="https://blog.cloudflare.com/18-november-2025-outage/" target=_blank>https://blog.cloudflare.com/18-november-2025-outage/</a>
+            </ul>
+          </li>
+          <li>
+            海賊版サイト巡り米 Cloudflare に賠償命令 著作権侵害ほう助認定
+            <ul>
+              <li><a href="https://www.nikkei.com/article/DGXZQOUD14CEF0U5A111C2000000/" target=_blank>https://www.nikkei.com/article/DGXZQOUD14CEF0U5A111C2000000/</a>
+            </ul>
+          </li>
+          <li>
+            Bun runtime on Vercel Functions
+            <ul>
+              <li><a href="https://vercel.com/docs/functions/runtimes/bun" target=_blank>https://vercel.com/docs/functions/runtimes/bun</a>
+              <li>Vercel Functions で Bun をランタイムオプションとしてサポート
+              <li>Node.js と Bun の選択が可能で、特に計算集約型アプリケーションに適している
+              <li>Bun は CPU バウンドの Next.js レンダリングで平均レイテンシを 28%削減
+              <li>Bun は Express、Hono、Nitro に対応し、vercel.json で設定可能
+              <li>Fluid compute 上で動作し、同一インスタンスで複数リクエストを処理
+              <li>アクティブ CPU 料金により、実行時間のみが課金される
+            </ul>
+          </li>
+          <li>
+            Introducing Vercel Agent: Your new Vercel teammate
+            <ul>
+              <li><a href="https://vercel.com/blog/introducing-vercel-agent" target=_blank>https://vercel.com/blog/introducing-vercel-agent</a>
+              <li>Vercel Agent は AI を活用した開発支援ツールで、コードレビューと調査の 2 つの主要機能を持つ。
+              <li>コードレビュー機能は GitHub 内で動作し、シミュレーションビルドを用いて提案を検証する。
+              <li>調査機能はアプリケーションの異常を分析し、根本原因を特定する。
+              <li>Vercel Agent は、開発者が迅速にマージを行えるようにし、パフォーマンス問題を事前に特定する。
+            </ul>
+          </li>
+          <li>
+            Oxlint enabling type checking straight out of tsgo!
+            <ul>
+              <li><a href="https://x.com/boshen_c/status/1991533371198173677" target=_blank>https://x.com/boshen_c/status/1991533371198173677</a>
+              <li>直接型チェックができるようになり、tsc --noEmit が高速化される
+            </ul>
+          </li>
+          <li>
+            Announcing Oxlint JavaScript Plugin Support
+            <ul>
+              <li><a href="https://voidzero.dev/posts/announcing-oxlint-js-plugins" target=_blank>https://voidzero.dev/posts/announcing-oxlint-js-plugins</a>
+              <li>多くの ESLint プラグインが変更なしで動作する。
+              <li>JavaScript プラグインは 86%速く動作し、Oxlint の速度が大幅に改善された。
+            </ul>
+          </li>
+          <li>
+            Biome v2.3-Let&apos;s bring the ecosystem closer
+            <ul>
+              <li><a href="https://biomejs.dev/blog/biome-v2-3/" target=_blank>https://biomejs.dev/blog/biome-v2-3/</a>
+              <li>Vue、Svelte、Astro の完全サポートが追加された。
+              <li>JavaScript、TypeScript、CSS コードのフォーマットとリンティングが可能。
+            </ul>
+          </li>
+          <li>
+            Directives and the Platform Boundary
+            <ul>
+              <li><a href="https://tanstack.com/blog/directives-and-the-platform-boundary" target=_blank>https://tanstack.com/blog/directives-and-the-platform-boundary</a>
+              <li>use client などのディレクティブの問題点
+            </ul>
+          </li>
+          <li>
+            Announcing Prisma 7
+            <ul>
+              <li><a href="https://www.prisma.io/blog/announcing-prisma-orm-7-0-0" target=_blank>https://www.prisma.io/blog/announcing-prisma-orm-7-0-0</a>
+              <li>Rust のコードをすべてなくした。
+              <li>生成されたコードが node_modules 以外に出力可能となった。
+            </ul>
+          </li>
+          <li>
+            Storybook MCP sneak peek
+            <ul>
+              <li><a href="https://storybook.js.org/blog/storybook-mcp-sneak-peek/" target=_blank>https://storybook.js.org/blog/storybook-mcp-sneak-peek/</a>
+              <li>Storybook MCP は、コーディングエージェントが生成するコードの質を向上させるためのツールである。
+              <li>エージェントに機械可読なコンポーネントメタデータを提供し、より良いコード生成を実現する。
+              <li>自動修正ループを持ち、エージェントが自らエラーを修正できる。
+              <li>既存のパターンを再利用することで、トークンの使用量を削減しつつ高品質なコードを生成する。
+            </ul>
+          </li>
+          <li>
+            Astro 5.16
+            <ul>
+              <li><a href="https://astro.build/blog/astro-5160/" target=_blank>https://astro.build/blog/astro-5160/</a>
+              <li>SVG 最適化により、SVG ファイルのサイズを削減し、ページの読み込み時間を改善する。
+              <li>astro preview コマンドにキーボードショートカットが追加され、プレビューサーバーの操作が簡単になった。
+              <li>astro add コマンドは--yes フラグをサポートし、AI エージェントが自動的に Astro プロジェクトを設定できる。
+              <li>ActionInputSchema ユーティリティタイプにより、アクション定義から入力スキーマを簡単に抽出できる。
+            </ul>
+          </li>
+          <li>
+            Astro 5.15
+            <ul>
+              <li><a href="https://astro.build/blog/astro-5150/" target=_blank>https://astro.build/blog/astro-5150/</a>
+              <li>新しいアダプターAPI により、ヘッダーやアセットのカスタマイズが可能になる。
+              <li>Astro のコア機能全体でスキュー保護が機能し、開発者は手動設定なしで高度な機能を実装できる。
+            </ul>
+          </li>
+          <li>
+            pnpm 10.21
+            <ul>
+              <li><a href="https://pnpm.io/blog/releases/10.21" target=_blank>https://pnpm.io/blog/releases/10.21</a>
+              <li>Node.js の自動インストールを可能に。
+            </ul>
+          </li>
+          <li>
+            Announcing Angular v21
+            <ul>
+              <li><a href="https://blog.angular.dev/announcing-angular-v21-57946c34f14b" target=_blank>https://blog.angular.dev/announcing-angular-v21-57946c34f14b</a>
+            </ul>
+          </li>
+          <li>
+            Node.js v25.2.1 (Current)
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v25.2.1" target=_blank>https://nodejs.org/en/blog/release/v25.2.1</a>
+              <li>ローカルストレージへのアクセス時に例外をスローする仕様が元に戻された
+              <li>この変更は次のバージョン 26.0.0 に持ち越される
+            </ul>
+          </li>
+          <li>
+            Node.js v25.2.0 (Current)
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v25.2.0" target=_blank>https://nodejs.org/en/blog/release/v25.2.0</a>
+              <li>util.deprecate にオプションが追加され、より柔軟な非推奨機能の管理が可能になった。
+              <li>localStorage の getter がストレージパスが存在しない場合にエラーをスローするようになった。
+              <li>HeapStatistics に total_allocated_bytes が追加され、メモリ使用状況の把握が容易になった。
+            </ul>
+          </li>
+          <li>
+            Node.js v25.1.0 (Current)
+            <ul>
+              <li><a href="https://nodejs.org/en/blog/release/v25.1.0" target=_blank>https://nodejs.org/en/blog/release/v25.1.0</a>
+              <li>SQLite の防御フラグ設定が可能に
+              <li>watch 設定の名前空間の追加
+            </ul>
+          </li>
+          <li>
+            ESLint v10.0.0-alpha.0 released
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/11/eslint-v10.0.0-alpha.0-released/" target=_blank>https://eslint.org/blog/2025/11/eslint-v10.0.0-alpha.0-released/</a>
+              <li>新しい設定ファイルの検索アルゴリズムにより、各リント対象ファイルのディレクトリから設定ファイルを検索する。
+              <li>eslintrc 機能が完全に削除され、CLI は eslintrc 特有の引数をサポートしなくなった。
+              <li>eslint:recommended 設定が更新され、新しいルールが追加された。
+            </ul>
+          </li>
+          <li>
+            ESLint v9.39.1 released
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/11/eslint-v9.39.1-released/" target=_blank>https://eslint.org/blog/2025/11/eslint-v9.39.1-released/</a>
+            </ul>
+          </li>
+          <li>
+            ESLint v9.39.0 released
+            <ul>
+              <li><a href="https://eslint.org/blog/2025/10/eslint-v9.39.0-released/" target=_blank>https://eslint.org/blog/2025/10/eslint-v9.39.0-released/</a>
+              <li>特定のルール違反に対するハイライト位置がより正確になり、視覚的なノイズが減少した。
+              <li>complexity ルールが関数のヘッダーのみをハイライトするように更新された。
+              <li>for-direction、no-dupe-args、no-dupe-class-members ルールも同様に改善された。
+              <li>TIMING 環境変数を設定すると、統一されたパフォーマンスレポートが出力される。
+            </ul>
+          </li>
+          <li>
+            Building an MCP Server for Nuxt
+            <ul>
+              <li><a href="https://nuxt.com/blog/building-nuxt-mcp" target=_blank>https://nuxt.com/blog/building-nuxt-mcp</a>
+            </ul>
+          </li>
+          <li>
+            Nuxt 4.2
+            <ul>
+              <li><a href="https://nuxt.com/blog/v4-2" target=_blank>https://nuxt.com/blog/v4-2</a>
+              <li>TypeScript プラグインの実験的サポートが追加された。
+              <li>AbortController を使用してデータ取得のリクエストをキャンセルできるようになった。
+              <li>開発中のエラー表示が改善され、カスタムエラーページと技術エラーオーバーレイが同時に表示される。
+              <li>Vite 環境 API のオプトイン機能が追加され、開発と本番環境のパフォーマンスが向上。
+              <li>Nitro サーバー統合が@nuxt/nitro-server パッケージに分離され、モジュール性が向上。
+            </ul>
+          </li>
+          <li>
+            Announcing Rspack 1.6
+            <ul>
+              <li><a href="https://rspack.rs/blog/announcing-1-6" target=_blank>https://rspack.rs/blog/announcing-1-6</a>
+              <li>ツリーシェイキングは、動的インポートの幅広い使用パターンを認識し、未使用のエクスポートを排除する。
+              <li>import defer 構文のサポートにより、モジュールの即時実行を避けることができる。
+              <li>ESM 出力の改善には EsmLibraryPlugin が導入され、クリーンで効率的な ESM ライブラリの構築が可能になる。
+              <li>バンドルプロセスの完全な制御が可能となり、コード分割のサポートも強化される。
+            </ul>
+          </li>
+          <li>
+            Rspack 2.0 を含めたロードマップの公開
+            <ul>
+              <li><a href="https://rspack.rs/misc/planning/roadmap" target=_blank>https://rspack.rs/misc/planning/roadmap</a>
+              <li><a href="https://x.com/jait_chen/status/1981290205836693941" target=_blank>https://x.com/jait_chen/status/1981290205836693941</a>
+              <li>🗓️ First preview planned for Feb 2026
+              <li>🧩 Refined webpack outputs &amp; APIs - cleaner and simpler
+              <li>📦 Better ESM output, with out-of-the-box support via Rsbuild &amp; Rslib
+              <li>⚛️ Built-in RSC support
+              <li>💾 More stable persistent cache, aiming for default in dev
+              <li>⚡ Enable native watcher for faster HMR
+              <li>🔄 Refined internal structure for better performance
+              <li>🌐 Move toward pure ESM packages
+            </ul>
+          </li>
+          <li>
+            Electron 39.0.0
+            <ul>
+              <li><a href="https://www.electronjs.org/blog/electron-39-0" target=_blank>https://www.electronjs.org/blog/electron-39-0</a>
+              <li>ASAR integrity が安定版となり、アプリの改ざん検出機能が追加された。
+              <li>新機能として、app.isHardwareAccelerationEnabled()メソッドや USBDevice.configurations のサポートが追加された。
+              <li>window.open ポップアップが常にリサイズ可能になった。
+              <li>--host-rules コマンドラインスイッチが非推奨となった。
+            </ul>
+          </li>
+          <li>
+            Cursor 2.0
+            <ul>
+              <li><a href="https://cursor.com/ja/blog/2-0" target=_blank>https://cursor.com/ja/blog/2-0</a>
+              <li>Composer という速度早く、コーディングレベルもそこそこのモデルがでた
+              <li>マルチエージェント機能で複数のモデルの回答を選べるように
+              <li>bult-in browser でブラウザから UI を指定して修正できるように
+            </ul>
+          </li>
+          <li>
+            Storybook 10
+            <ul>
+              <li><a href="https://storybook.js.org/blog/storybook-10/" target=_blank>https://storybook.js.org/blog/storybook-10/</a>
+              <li>ESM 専用への移行により、インストールサイズが 29%削減された。
+              <li>モジュールの自動モック機能が追加され、Vitest との連携でテストが容易になった。
+              <li>型安全な CSF ファクトリが導入され、TypeScript プロジェクトに対応した。
+              <li>UI 編集と共有の最適化により、QR コードを使ったモバイルアクセスが可能になった。
+              <li>CSF ファクトリは React 専用で、将来的に Vue、Angular、Web コンポーネントのサポートも予定されている。
+            </ul>
+          </li>
+          <li>
+            Google Antigravity
+            <ul>
+              <li><a href="https://antigravity.google/" target=_blank>https://antigravity.google/</a>
+              <li>Google 製 IDE、VS Code の fork で Cursor のようなもの
+            </ul>
+          </li>
+          <li>
+            Sketch のデザイン刷新と機能追加
+            <ul>
+              <li><a href="https://www.sketch.com/changelog/copenhagen/" target=_blank>https://www.sketch.com/changelog/copenhagen/</a>
+              <li>figma の auto layout の折り返し機能やインスペクタの改善、画像背景削除など
+            </ul>
+          </li>
+          <li>
+            Figma Weave
+            <ul>
+              <li><a href="https://www.figma.com/blog/welcome-weavy-to-figma/" target=_blank>https://www.figma.com/blog/welcome-weavy-to-figma/</a>
+              <li>Figma のアニメーションや動画生成を行うツール Weavy の買収
+            </ul>
+          </li>
+          <li>
+            Figma Make にリモート MCP が組み込めるように
+            <ul>
+              <li><a href="https://x.com/figma/status/1991175602729320516?s=20" target=_blank>https://x.com/figma/status/1991175602729320516?s=20</a>
+            </ul>
+          </li>
+          <li>
+            Hire Me in Japan - overreacted
+            <ul>
+              <li><a href="https://overreacted.io/hire-me-in-japan/" target=_blank>https://overreacted.io/hire-me-in-japan/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/193/drive-talk-jsconf2025.html>ep193 Drive Talk: JSConf 2025</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright>
+    <small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small>
+    <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+  </p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep194.mp3
+    data-title="ep194 Yearly Ecosystem 2025"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>

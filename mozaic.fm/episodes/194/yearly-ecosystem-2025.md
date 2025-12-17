@@ -14,7 +14,6 @@ guest: [@re-taro](https://x.com/re_taro_)
 
 第 194 回のテーマは 2025 年の Yearly Ecosystem です。
 
-
 ## Show Note
 
 ### 2025 年のチェックポイント
@@ -32,7 +31,6 @@ guest: [@re-taro](https://x.com/re_taro_)
 - Bun の独走に対するエコシステムへの還元
 - jsr/vlt/npm の覇権争いと ESM 移行
 - tooling 系百花繚乱どうなるか
-
 
 ### 今年のキーワード
 
@@ -74,7 +72,6 @@ guest: [@re-taro](https://x.com/re_taro_)
   - react compiler
   - react foundation
 
-
 ### 2026 年のチェックポイント
 
 - Bun 買収された影響がどうでる?
@@ -95,7 +92,6 @@ guest: [@re-taro](https://x.com/re_taro_)
   - Next/React 系のデカいインシデントはまだ出る?
   - Cloudflare 落ちすぎじゃね?
 - AI がエコシステムにどう影響を与えるか?
-
 
 ### 1 月
 
@@ -189,7 +185,6 @@ guest: [@re-taro](https://x.com/re_taro_)
   - https://nodejs.org/ja/blog/release/v23.5.0
 - Node v23.4.0
   - https://nodejs.org/ja/blog/release/v23.4.0
-
 
 ### 2 月
 
@@ -322,7 +317,6 @@ guest: [@re-taro](https://x.com/re_taro_)
 - Introducing HeroUI
   - https://www.heroui.com/blog/introducing-heroui
 
-
 ### 3 月
 
 - mastra.ai
@@ -368,7 +362,6 @@ guest: [@re-taro](https://x.com/re_taro_)
 - Figma In Talks With Bankers To Explore An I.P.O. This Year- NYT
   - https://www.nytimes.com/2025/03/07/technology/figma-ipo.html
   - Figma の IPO 準備報道
-
 
 ### 4 月
 
@@ -577,7 +570,6 @@ guest: [@re-taro](https://x.com/re_taro_)
 - 「GIMP 3.0」がリリース ～約 7 年ぶりの大規模アップデートで「GTK 3」ベースに
   - https://forest.watch.impress.co.jp/docs/news/1670985.html
 
-
 ### 5 月
 
 - Config 2025 Highlights
@@ -702,7 +694,6 @@ guest: [@re-taro](https://x.com/re_taro_)
   - https://gihyo.jp/book/2025/978-4-297-14945-1
 - https://x.com/sama/status/1923398457747787817?s=46
 
-
 ### 6 月
 
 - State of CSS 2025
@@ -788,7 +779,6 @@ guest: [@re-taro](https://x.com/re_taro_)
 - Migrate from Next.js | TanStack Start React Docs
   - https://tanstack.com/start/latest/docs/framework/react/migrate-from-next-js
   - Next.js から TanStack Start に移行する方法ドキュメント
-
 
 ### 7 月
 
@@ -894,7 +884,6 @@ guest: [@re-taro](https://x.com/re_taro_)
   - https://www.itmedia.co.jp/news/articles/2507/15/news057.html
 - Introducing ChatGPT agent: bridging research and action | OpenAI
   - https://openai.com/index/introducing-chatgpt-agent/
-
 
 ### 8 月
 
@@ -1042,7 +1031,6 @@ guest: [@re-taro](https://x.com/re_taro_)
     - Check out multiple branches simultaneously with Git worktrees
     - Manage coding agent sessions in a dedicated view
 
-
 ### 9 月
 
 - Malicious versions of Nx and some supporting plugins were published · Advisory · nrwl/nx
@@ -1126,7 +1114,6 @@ guest: [@re-taro](https://x.com/re_taro_)
   - https://www.publickey1.jp/blog/25/railsdhhlinux_osomarchy_5ui.html
   - Omakase + Arch linux = Omarchy
   - すでに資産はあるので、収益などは考えない趣味プロジェクトらしい
-
 
 ### 10 月
 
@@ -1315,7 +1302,6 @@ guest: [@re-taro](https://x.com/re_taro_)
   - https://deno.com/blog/javascript-tm-gofundme
 - GitHub Copilot CLI is now in public preview
   - https://github.blog/changelog/2025-09-25-github-copilot-cli-is-now-in-public-preview/
-
 
 ### 11 月
 
