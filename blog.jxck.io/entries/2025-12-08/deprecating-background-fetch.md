@@ -11,7 +11,7 @@
 
 Background Fetch は、Service Worker を使って、文字通り Fetch をバックグラウンドで行う機能だ。
 
-特に Android では、ダウンロードの UI にプログレスが表示され、終わったら Cache API に保存されます。
+特に Android では、ダウンロードの UI にプログレスが表示され、終わったら Cache API に保存される。
 
 筆者が運営している mozaic.fm のサイトは、Podcast アプリと同じようなことを Web でもできるように PWA 化し、様々な機能を試していた。
 
