@@ -1,0 +1,1243 @@
+---
+type: podcast
+tags: ["yearly platform"]
+audio: https://files.mozaic.fm/mozaic-ep195.mp3
+published_at: 2025-12-23
+guest: [@myakura](https://github.com/myakura)
+guest: [@saku](https://x.com/sakupi01)
+---
+
+# ep195 Yearly Platform 2025
+
+## Theme
+
+第 195 回のテーマは 2025 年の Yearly Platform です。
+
+
+## Show Note
+
+### 2025 年のチェックポイント
+
+- Open UI
+  - `<select>` どこまで拡張できるか
+  - Global Design System どうなるか
+- Web Components また進む?
+- 新興ブラエンジンの進捗 (Ladybird, Verso, Gosub)
+- Google 解体と Chrome の分社化
+- Google 検索とブラウザのビジネス
+- 11 月の TPAC 2025 神戸
+- Web \+ AI どうなる
+- iOS での他のブラウザエンジン
+  - シェアへの影響
+- Intl/Temporal 元年?
+- FedCM どうなる?
+- Chrome の Cookie UI
+- RFC6265bis
+- 耐量子暗号の普及
+- TLS 証明書どこまで短縮できるか
+- JSSugar / JS0
+
+  ### 今年のキーワード
+
+- Jxck
+  - サプライチェーン攻撃/大規模サイバー攻撃
+  - Passkey 待ったナシ
+  - Chrome 売却棄却
+  - WCAG 3 作業本格化
+  - 新興ブラウザ/エンジンの隆盛
+  - Atlas
+  - Privacy Sandbox 終了
+  - TPAC "Open Web" Breakout
+  - Temporal 実装
+  - Masonry 決定
+  - Cookie RFC 出ず
+  - HTTPS by default / HTTPS First mode
+  - Sanitizer / TT 元年
+- saku
+  - Devtools どんどん使いやすくなる
+  - Baseline のエコシステムへの浸透
+  - Interop の功績
+  - CSS, HTML, JS のグラデーション
+    - CSS Carousel / Anchor Positioning / Invoker Commands / ViewTransition etc
+  - "命令的 CSS" なのか?
+    - `attr()` / `ident()` / `sibling-index()` / `if()` / `@function` / `@mixin` etc
+  - Masonry 一区切りと "Item Flow" 論争
+  - プラットフォーム SPA 元年?
+    - Navigation API / ViewTransition / `@navigation`
+  - TPAC 神戸
+  - Future of the Open Web
+- myakura
+  - パスキー普及
+  - DoJ vs Google
+  - Privacy Sandbox 本当に終了
+  - Invoker Commands の実装が揃う
+  - HTML の要素が拡大傾向
+  - 日本語関連 CSS が進む
+  - appearance: base による夢の広がり
+  - スマホ新法
+  - AI ブラウザーとウェブ
+
+  ### 2026 年のチェックポイント
+
+- WCAG3 本格化どうなる?
+- スマホ新法でどうなる?シェアの変化 Chromium Chrome ? 代替 App Store
+- Form Control Styling (select, menu, combobox, range) どうなる
+- Passkey 普及がどこまで進むか
+- サイバーインシデントどうなっていくか
+- anchor attr どうなる?
+- DBSC どうなる?
+- Degital Credentials API / VC, Wallet, マイナカード, 法制度
+- Page Embedded Permission Control ?
+- CSS Functions and Mixins ?
+- Web MCP と Agent との共生 ?
+- AI がもたらすユースケースが Web にどう影響するか?
+- Navigation API, Declarative Route Matching でプラットフォームが SPA に貢献できるか?
+- CSS / HTML module が来てバンドル周りに影響するか?
+- 新興のブラウザ(Dia, Atlas, Comet etc)/エンジン(Ladybird, Servo, Nova)どうなっていく?
+- HTML in Canvas が来たらどうなる?
+
+  ### 1 月
+
+- Chrome
+  - 132
+    - dialog toggle events
+    - element capture
+  - 133
+    - advanced attr()
+    - scroll-state()
+    - moveBefore()
+  - Ship
+    - remove 5min rule for link rel=prefetch
+    - on-device web speech api
+    - dialog light dismiss
+    - customizable select
+  - Prototype
+    - signature-based integrity
+    - shadowrealm
+    - shape()
+    - contentEncoding in Resource Timing
+    - HSTS Tracking Prevention
+  - web.dev
+    - Baseline 2024
+  - Chrome Developers
+    - moveBefore()
+    - customizable select
+    - text-box-trim
+  - Chromium blog
+    - supporters of cr-baesd browsers
+  - other
+    - Google セキュリティチームの退職時の password heist 文化
+- Firefox
+  - 134
+    - regexp.escape()
+    - Promise.try()
+  - Ship
+    - Intl.DurationFormat
+  - Prototype
+  - other intents
+  - MDN Blog
+    - Temporal くる
+  - Standard Position
+    - positive: on-device web speech api
+  - other
+    - ロゴ変わった
+    - Google 独占禁止法の悪影響
+    - WebExtensions ML API
+- Safari
+  - TP 209
+    - document.fragmentDirective
+  - 18.2
+    - text-box
+    - @view-transition
+    - ruby
+    - scrollbar-\*
+    - blocking=render
+    - Promise.try()
+    - RegExp.escape()
+  - TP 210
+    - text-autospace
+    - details styling
+    - Scroll-driven animations
+  - TP 211
+    - Error.isError
+    - Declarative web push
+  - TP 212
+    - view-transition-name: match-element
+    - CHIPS
+    - element.focus({focusVisible})
+  - Standard Position
+  - other
+    - Success of Interop 2024
+    - 検索エンジン作らない
+- Edge
+  - year-in-review
+- W3C/WHATWG
+  - Draft
+  - Open UI
+    - Updates to the customizable select API:
+    - Intent to ship: Customizable select
+    - Self-closing で動作しないバグ
+    - Selectedcontent がうまく初期化されないバグ
+    - blsky アカウント開始
+  - WHATNOT meeting
+    - 2024-12-05
+      - ShadowRealm
+      - moveBefore
+      - Dialog Light Dismiss
+      - Canvas Text Metric
+      - customizable select events
+    - 2024-12-12
+      - tabindex vs reading-flow property
+      - How to spec user interaction for select
+      - Revamped Scoped Custom Element Registries
+    - 2024-12-19
+      - Stage 3 for customizable select
+      - Add an optional lang argument to OffscreenCanvas constructor
+    - 2025-01-09
+      - How to spec user interaction for select
+      - Rendering `<select>` as a listbox is a one-line widget that opens a popup on iOS and Android
+      - commandfor & command attributes to HTMLButtonElement
+      - popover=hint
+    - 2025-01-16
+      - AsyncContext
+      - Async css
+      - Composed live ranges
+      - Canvas TextStyles direction getter
+  - Other
+    - Add 'interactivity' property
+    - AB 選挙
+    - WCAG 3 の更新
+    - WinterTC
+- TC39
+  - ShadowRealms の温度感が Chrome 以外不明
+  - Error.stack の標準化はプロパティだけ?
+  - Stabilize Stage 1
+  - Sync Imports Stage 1
+  - WinterTC
+    - W3C WinterCG が Ecma WinterTC (TC55 に)
+- IETF
+  - RFC6265bis の Publication request
+  - https:// を s:// にする提案
+  - RFC6265bis の次の Cookie Draft 作成開始
+- 周辺動向
+  - ベンダー動向
+    - 証明書の更新に Whois のメールは使えなくなる
+    - CSS Wish List 2025
+    - :is(), :where() などの Servo への実装
+    - TikTok アメリカで停止でのトラフィック
+    - Cloudflare で v8 エンジニア募集
+  - セキュリティ動向
+  - Cookie 動向
+  - Other
+    - Double Click Jacking
+    - tenki.jp DDoS
+    - Let's Encrypt 6 日証明書アナウンス
+    - Let's Encrypt メール通知やめる
+
+  ### 2 月
+
+- Chrome
+  - 133
+  - Ship
+    - fluent scrollbars
+    - Allow SameSite=None Cookies in First-Party Sandboxed Contexts
+    - float16array
+    - fetchLater()
+    - CSS カルーセル系擬似要素
+    - Invoker Commands
+    - Observable API
+    - :visited partiniting
+    - CSS @function
+    - CSS if()
+    - Nested View Transitions
+  - Prototype
+    - corner-shape
+    - Scoped View Transitions
+  - Chrome Developers
+    - popover=hint
+  - other
+    - Interop 2025
+    - Google I/O
+    - SMS やめて QR に
+- Firefox
+  - 135
+    - CT
+    - JSON parse with source
+  - Ship
+    - ARIA Element Reflection
+    - Cookie Store API
+    - Error.captureStackTrace
+  - Standard Position
+    - positive
+      - customizable select
+    - negative
+      - Network Error Logging
+    - defer
+      - Writing Assistance APIs
+      - Reduce Accept-Language
+  - other
+    - Firefox 135 から CT 強制
+    - Manifest V3
+    - New terms of use と privacy notice
+- Safari
+  - 18.3
+    - バグフィクス
+  - TP 213
+    - gradients with one color stop
+    - 3DES warning
+  - TP 214
+    - SVG favicon/data: URL favicon
+    - RegExp pattern modifiers
+    - blocked partitioned cookies for known tracking domains
+  - Standard Position
+    - positive
+      - corner-shape
+      - anchor positioning
+- Edge
+  - Incoming Call notifications
+  - application-title metatag
+  - Interop 2025 の透明性のなさなどにお気持ち
+- W3C/WHATWG
+  - Draft
+  - Open UI
+    - invokers method
+    - commands list
+    - Press Button
+    - openable
+    - keyboard inputs behaviour for interest invokers
+    - Range Input Styling API
+    - Range Input Dual Attribute
+  - WHATNOT meeting
+    - @sheet
+    - sheet(s) attribute for link
+    - request-close
+  - Other
+    - CSS Snapshot 2024
+    - fetchLater の task 版のドラフト
+    - W3C Breakouts Day 2025
+- TC39
+  - WinterTC
+- IETF
+  - Early Hints が Proposed Standard に格上げ
+  - Cookiebis Last Call
+  - Client Hello Last Call
+  - Cache Group Last Call
+  - TLS1.2 Feature Freeze Last Call
+  - Shared Brotli to Informational
+  - HTTPAPI と OpenAPI のリエゾン
+- 周辺動向
+  - ベンダー動向
+    - Ladybird が test262 を 97.4% パス
+    - Cross-root ARIA in ShadowDOM
+  - セキュリティ動向
+    - ICP-Brasil による Google の証明書不正発行
+    - Let's Encrypt の 6 日証明書発行開始
+    - Digiert の問題について訴訟
+  - Cookie 動向
+  - Other
+    - Perplexity 製のブラウザ Comet
+    - Apple が UK から iCloud のバックドアを秘密裏に求められてた
+
+  ### 3 月
+
+- Chrome
+  - 134
+    - dialog light-dismiss
+    - customizable select
+  - 135
+    - anchor positioning remembered scroll offset
+    - css carousels (`::column`, `::scroll-button()`, `::scroll-marker`, `::scroll-marker-group`), interactivity
+    - partitioning `:visited`
+    - Float16Array
+    - HTTP cache partition key
+    - HSTS tracking prevention
+    - `command`/`commandfor`
+    - `fetchLater`
+    - Interest invokers origin trial
+  - Ship
+    - anchor positioning remembered scroll offset
+    - type agnostic `var()` fallback
+    - `view-transition-name: auto`
+    - `view-transition-name: match-element`
+    - Accept-Language reduction for HTTP header
+  - Prototype
+    - `sibling-index()`, `sibling-count()`
+    - `Delete-Cookie` header
+    - related website partition
+    - source phase imports
+    - `flex-wrap: balance`
+  - Experiment
+    - extend 3pcd
+  - Deprecate and Remove
+    - h1 style inside sectioning elements
+  - PSA
+    - private proof api
+  - web.dev
+    - css baseline support in eslint
+  - Chrome Developers
+    - `@function` delayed to 139
+    - css carousels
+  - other blogs
+    - HTTPS certificate security reqs
+    - v8 moving from turbofan to turboshaft
+- Firefox
+  - 136
+    - サイドバーと縦タブ
+    - HTTPS-first
+    - Cookie Store API が入るも無効に
+    - `Intl.DurationFormat`
+    - `dialog :open`
+  - Ship
+    - import attributes
+    - `Error.isError`
+    - Temporal
+  - other intents
+    - unship h1 inside sectioning elements
+  - MDN Blog
+    - GPC
+    - Bloomberg joins OWD
+  - Standard Position
+    - positive
+      - passwordrules
+      - `view-transition-class`
+      - `text-box`
+      - declarative web push
+  - other
+    - 利用規約再度更新
+    - 司法省 vs Google の影響
+    - DMA の browser choice がユーザーを増やした
+    - Root Store Policy 3.0
+- Safari
+  - TP 215
+    - Scroll Driven Animations
+    - `text-wrap-style: pretty;`
+    - CSS Anchor Positioning
+  - 18.4
+    - Shape Function
+    - Details Styling
+    - Text Auto Space
+    - View Transitions `match-element`
+    - `attr()` fallback
+    - Cookie Store API
+    - Iterator Helpers
+    - `Error.isError`
+  - Standard Position
+  - other
+    - Masonry 第 3 案としての Item Flow Properties
+    - Declarative Web Push の説明
+- Edge
+  - Windows 10/11 に「Noto」フォントが標準搭載
+  - CSS Separators: `column-rule`, `row-rule` の MS Explainer
+- W3C/WHATWG
+  - Draft
+    - First Public Working Draft: ContentEditable
+    - CSS Form Control Styling Level 1
+  - Open UI
+    - Interest Invokers Keyboard Inputs
+    - Menu Elements Proposal
+    - Enhanced Range Input
+  - WHATNOT meeting
+    - Scoped Custom Element Registries の Polyfill 問題
+  - Other
+    - W3C Breakouts Day 2025
+    - Popover の設計思想と、単体で使用することが推奨されない事情
+    - CSS 論理プロパティをデフォルトで使いたい
+    - Baseline の功績まとめ
+    - CSS Form Control Styling Level 1 First Initial Public Working Draft Published
+    - CSS Grid Level 3 (masonry layout) updated Working Draft
+- TC39
+  - LittleDan が Ecma President に
+  - ES2025 Freeze
+    - Float16Array Stage
+    - `RegExp.escape`
+  - ECMA-426 (Source Map) が GA
+  - Decorator をみんな最初に Ship したくない
+  - `Math.clamp` の引数の順をどうするか
+  - Record / Tuple の妥協版の道模索
+  - ベンダ単一の拒否権が強すぎるのでルールが欲しい
+  - WinterTC
+    - 特に無し
+- IETF
+  - HTTPWG で `Delete-Cookie` や `__HttpOnly-` Prefix の話
+  - aipref WG のワークスタート
+- 周辺動向
+  - ベンダー動向
+  - セキュリティ動向
+    - Have I Been Pwned の運営者がフィッシング詐欺
+  - Cookie 動向
+  - Other
+    - Servo vs Ladybird は Ladybird の資金が潤沢
+    - Apple, iTunes, Google が特定ソフトウェア事業者に指定
+
+  ### 4 月
+
+- Chrome
+  - 136
+    - partitioning `:visited`
+    - `attr(raw-string)`
+    - type-agnostic `var()`
+  - Ship
+    - document-isolation-policy
+    - offset-path: `shape()`
+  - Prototype
+    - private proof API
+  - Deprecate and Remove
+    - ISO-2022-JP in HTML
+  - web.dev
+  - Google Developer Blog
+  - Chrome Developers
+    - Making `:visited` more private
+    - Finch の説明
+  - other
+    - Windows で Noto Sans に変わったことによる反応
+    - google.co.jp → google.com にリダイレクト
+    - Adam Argyle レイオフ
+    - Next steps for Privacy Sandbox
+      - 3PCD ストップ
+- Firefox
+  - 137
+    - タブグループ
+    - 検索 UI
+    - `hyphenate-limit-chars`
+  - Ship
+    - `hidden=until-found`
+  - other intents
+    - remove UA h1 styles in sectioning elements
+  - MDN Blog
+    - default styles for h1
+    - W3C docs community group
+  - other
+    - Keith Cirkel joining Mozilla
+    - Shipping Temporal
+- Safari
+  - TP 216
+    - バグ修正
+  - TP 217
+    - バグ修正
+  - Standard Position
+    - support: Scoped Custom Element Registries
+  - other
+    - `text-wrap: pretty`
+    - `shape()`
+- Edge
+  - Vibe-coding for security
+- W3C/WHATWG
+  - Draft
+    - CSS Gap Decorations Module Level 1
+      - `colum-rule`, `row-rule`
+  - Open UI
+    - menu
+      - Navigation Menu に関する議論
+    - focusgroup が inactive propsals に
+  - WHATNOT meeting
+  - Other
+    - Breakouts Day 2025
+      - Vectors of Neglect
+      - Collective funding, governance and prioritization of browser engine projects
+      - Template Instantiation
+    - CSS multicol block direction wrapping
+      - `column-count`, `column-height`
+    - DCE Breakout
+    - `view-transition-name: auto;` remove
+    - DOM Parts よりも軽量な `NodeGroup`
+- TC39
+  - WinterTC
+- IETF
+- 周辺動向
+  - ベンダー動向
+    - LINE ヤフーが組んで Brave Software Asia 設立
+    - Servo で Copilot を限定的に認める案が炎上棄却
+    - スペインの違法サッカー配信を ISP でブロックしたら Cloudflare / Vercel 上のサービスが巻き込み遮断
+  - セキュリティ動向
+    - CVE の政府支援が打ち切られ非営利団体設立
+    - IIJ が Active! mail の脆弱性で漏洩
+    - Google からの送信にしか見えないフィッシングメール
+  - Cookie 動向
+    - Cookiebis の次が Call for Adoption
+  - Other
+    - 公正取引委員会 Chrome に排除措置命令
+    - LLM のリクエストが Wikimedia を圧迫
+    - OpenAI Chrome 買収意欲
+
+  ### 5 月
+
+- Chrome
+  - 136
+    - Upgrade credentials to passkeys
+  - 137
+    - CSS `if()`
+    - `reading-flow` / `reading-order`
+    - `view-transition-name: match-element`
+  - 138 beta
+    - CSS `stretch`
+    - CSS `abs()` / `sign()`
+    - CSS env for OS-level font scale
+    - CSS `sibling-index()` / `sibling-count()`
+    - Summarizer API
+  - I/O 2025
+    - CSS Carousels
+  - Ship
+    - system accent color
+    - `Sec-Purpose: prefetch`
+    - CSS env for OS-level font scale
+    - `request-close`
+  - Prototype
+    - CSS fit-width text
+    - `caret-shape`
+    - Prompt API
+    - local style references
+    - `@scroll-state` scroll direction
+    - Trust Anchor Identifiers
+    - CSS color for `<input type="color">`
+    - `ident()`
+    - Responsive iframes
+    - CSS Anchored Fallback Container Queries
+    - URLPattern `generate()`
+  - Experiment
+    - Cache sharing for extremely-pervasive scripts
+  - web.dev
+    - Baseline support in VSCode
+  - Google Developer Blog
+  - Chrome Developers
+    - CSS reading-flow for logical sequential focus navigation
+    - Device Bound Session Credentials Origin trial
+    - Automatically create passkeys in Google Password Manager
+    - Enhancements to the `<permission>` element
+  - Chromium blog
+  - other blogs
+  - other
+    - v8
+      - Explicit Compile Hints
+      - Explicit Resource Management
+- Firefox
+  - 138
+    - `Error.isError()`
+  - 139
+    - `hidden=until-found`
+    - Temporal
+    - `requestClose()`
+  - Ship
+    - Explicit Resource Management
+  - Prototype
+  - other intents
+  - MDN Blog
+  - Standard Position
+    - CSS interpolate-size property and `calc-size()` function
+    - Global Privacy Control (GPC)
+  - other
+    - pwn2own で報告された脆弱性の報告に 21 時間で対応した
+    - Firefox のフロントエンドで Strict CSP を導入したのもあり、サンドボックスのエスケープが発生しなくなった
+    - 早い段階からアクセシビリティを考慮する「Shift Left」アプローチを採用した
+    - NHK プラスが Firefox をサポート対象外にしていることに対する意見
+- Safari
+  - TP 220
+    - field-sizing
+  - Standard Position
+    - ToggleEvent source attribute
+  - other
+    - `contrast-color()`
+    - `<input type=color>`
+- Edge
+  - Creating a more accessible web with Aria Notify
+  - Microsoft's Bing share is now 12.2%, Google drops to 79.10%, and it's not due to ChatGPT
+  - Introducing the Prompt and Writing Assistance APIs
+  - Empowering developers and organizations: Microsoft Edge innovations at Build
+- W3C/WHATWG
+  - Draft
+    - WD Update: CSS Anchor Positioning
+    - FPWD: CSS Functions and Mixins Module
+  - Open UI
+    - select multiple
+    - range multiple
+    - scroll command
+  - WHATNOT meeting
+    - CloseWatcher のバグ
+  - Other
+    - whatwg stage process. `moveBefore()` stage4
+    - Web interoperability のため implementer の定義
+    - Accessibility Compat Data
+- TC39
+  - WinterTC
+    - WPT のレビューがメイン
+- IETF
+- 周辺動向
+  - ベンダー動向
+    - Opera Neon
+    - Arc to Dia
+  - セキュリティ動向
+    - 3000 億円規模の大規模金融詐欺
+  - Cookie 動向
+  - Other
+    - Fit-to-Width の discussion
+    - Carousels の a11y
+    - Houdini Re-Revisted
+
+  ### 6 月
+
+- Chrome
+  - 138
+    - Built-in AI
+    - `sign()`/`progress()`/`sibling-index()`
+  - 139 beta
+    - CSS short-circuiting `var()`
+    - CSS `corner-shape`
+    - CSS custom functions
+    - `request-close`
+    - Crash Reporting API
+    - Reduce `Accept-Language` header
+  - 138 DevTools
+    - `calc()` 系の計算プロセスのツールチップ
+  - Ship
+    - Allow more chars in JS DOM APIs
+    - CSS Corner Shaping
+    - CSS `text-autospace`
+    - CSS `counter()` in `content` alt
+    - CSS `scroll-target-group`
+    - CSS typed arithmetic
+    - Crash Reporting API
+    - CSS `caret-animation`
+    - `font-feature-settings` in `@font-face`
+    - Uint8Array to/from base64 and hex
+    - Http Cookie prefix
+  - Prototype
+    - menu elements
+    - programmatic scroll promise
+    - CSS `border-shape`
+    - Customized built-in elements via `ElementInternals.type`
+    - `HTMLElement.scrollParent`
+    - unprintable areas via CSS
+    - Fetch retry for keepalive fetches
+  - Experiment
+    - IP Protection in Incognito using Masked Domain List
+  - Chrome Developers
+    - CSS gap styling
+  - other blogs
+    - V8 speculative optimization for WASM
+  - other
+    - Escaping `<` and `>` in attr getters
+- Firefox
+  - 140
+    - Custom Highlight API
+    - セクション系要素内 h1 のデフォルトスタイル削除
+    - Cookie Store API
+    - `<` and `>` escaping
+    - Mutation Events 削除
+  - Ship
+    - endpoint-inclusive commitStyles
+    - `scheduler.yield()`
+  - Prototype
+    - `:heading` and `:heading()`
+  - Standard Position
+    - support for `<a ping>`
+  - other
+    - Noto フォント revert
+    - PEPC ちょっと前進?
+- Safari
+  - TP 18.5
+  - Standard Position
+    - Observable
+  - other
+    - WWDC 2025 wrap-up
+- Edge
+  - Use Windows Hello to unlock 1Password on your Windows PC
+- W3C/WHATWG
+  - Draft
+    - Portable Network Graphics (PNG) Specification
+  - Open UI
+    - Select Multiple will provide cancel button.
+    - `interestfor` for disabled button?
+  - WHATNOT meeting
+    - `interesttarget` → `interestfor`
+    - `interest-delay`
+      - `normal` keyword
+  - Other
+    - WCAG 3 のスケジュール案が出る
+    - WCAG 2.2 からインクリメンタルに更新していく議論
+    - CSSDay wrap-up
+- TC39
+  - Meeting
+    - ECMA2025 もうすぐ
+    - WebIDL の ECMA での標準化提案
+    - `window.Random` の提案
+    - Comparisons での比較(assert)提案
+    - `Decimal.Amount` で精度保持
+  - WinterTC
+- IETF
+- 周辺動向
+  - ベンダー動向
+  - セキュリティ動向
+    - 160 億件のパスワードが流出- Apple, FB, Google, GitHub
+    - gmail の 20 億ユーザに Passkey 啓蒙
+    - 警視庁より Passkey の啓蒙
+  - Cookie 動向
+  - Other
+
+  ### 7 月
+
+- Chrome
+  - Ship
+    - セクション内 `h1` のスタイル廃止
+    - `ariaNotify`
+    - IP Protection in Incognito
+  - Prototype
+    - `hanging-punctuation`
+    - Script Tools API
+    - Document Local Dictionary API
+    - Declarative Document Patching
+    - FormControlRange
+    - Layout Instability Attribution in CSS pixels
+    - `@custom-media`
+  - PSA
+    - CSS Masonry developer testing
+  - web.dev
+    - State of HTML
+  - Chrome Developers
+    - CSS Masonry
+    - Prompt API Origin trial
+  - Chromium blog
+    - Skia Graphite
+- Firefox
+  - 141
+    - WebGPU on Windows
+    - CHIPS re-enabled
+    - `<dialog closedby>`
+  - MDN Blog
+    - 20 years
+  - other
+    - Security & Privacy newsletter Q2 2025
+- Safari
+  - TP 222
+    - バグ修正
+  - TP 223
+    - bare declarations in `@scope`
+  - TP 224
+    - `Element.currentCSSZoom`
+  - other
+    - `animation-range`
+- Edge
+  - Removing `-ms-high-contrast`, `-ms-high-contrast-adjust`
+  - Edge の Browser UI の速度改善
+- W3C/WHATWG
+  - Draft
+    - FPWD
+      - Positioned Layout \- Top Layer, `::backdrop` など
+      - Digital Credentials
+      - Borders and Box Decorations \- `corner-shape` や `border-shape`
+  - Open UI
+  - WHATNOT meeting
+    - Define customizable `<select>`
+    - `<select>` attribute to switch between dropdown and listbox
+  - CSSWG meeting
+    - text-autospace
+  - Other
+    - TPAC 2025 Registration Open
+    - TPAC 2025 Inclusion Fund for Invited Expert
+- TC39
+  - 次回
+  - WinterTC
+- IETF
+  - マドリード開催中なので次回
+- 周辺動向
+  - ベンダー動向
+    - Cloudflare 周りで AI 向け pay wall や利益還元などの話
+    - 1.1.1.1 の 62 分ダウン
+  - セキュリティ動向
+    - Have I Been Pwned の Troy さんのフィッシング被害振り返り
+  - Cookie 動向
+    - 今回でおしまい
+  - Other
+    - 欧州アクセシビリティ法完全施行
+    - Chrome OS がシュリンクして Android とマージ?
+
+  ### 8 月
+
+- Chrome
+  - 139
+    - `corner-shape`
+    - `@function`
+  - 140
+    - nested view transitions
+    - `Uint8Array.toBase64()`
+    - Http Cookie prefix
+    - deprecate h1 style in section elems
+  - Ship
+    - FedCM Alternative Fields in Account Selection
+    - Probabilistic Reveal Tokens
+    - Range syntax for style container and if()
+    - Digital Credentials API
+  - Prototype
+    - Customizable select multiple
+    - Declarative route matching
+    - Selective Permissions Intervention
+    - Function Calling in Prompt API
+    - `revert-rule`
+    - Delayed Messages Timing API
+  - other intents
+    - Scoped view transitions
+  - web.dev
+    - CSS Baseline in DevTools
+    - What's my Baseline
+  - Chrome Developers
+    - New Soft Navigations Origin Trial
+  - other blogs
+    - V8 JSON.stringify() 2x
+    - Designing Built-in Web APIs
+  - other
+- Firefox
+  - 142
+    - URLPattern
+    - `scheduler.yield()`
+  - Ship
+    - View Transitions L1
+    - Command/Commandfor
+    - Upsert
+    - `::details-content`
+  - Prototype
+    - `text-autospace`
+    - CSS Module Scripts
+  - MDN Blog
+    - New front end (Lit)
+  - Standard Position
+    - support for XSLT removal
+  - other
+    - Jake Archibald が Mozilla 入り
+    - CRLite
+- Safari
+  - TP 225
+    - `hidden=until-found`
+  - TP 226
+    - `sibling-count`
+    - `Math.sumPrecise`
+    - remove `h1` styles
+    - Navigation API
+  - other
+    - `item-flow` と Masonry
+    - Anchor positioning
+    - CSS `random()`
+- Edge
+  - MSEdgeExplainers の `README.md` のコミットもみるべき?
+- W3C/WHATWG
+  - Draft
+    - Incremental Font Transfer
+  - Open UI
+    - `::interest-hint`
+  - WHATNOT meeting
+    - Should we remove XSLT from the Web platform?
+  - CSS WG meeting
+    - addEventListener on `CSSPseudoElement`?
+    - August F2F
+      - Masonry Switch Syntax: `display: grid-*`
+      - `@supports-condition`
+  - Other
+    - Cookie Store API が WHATWG に
+    - W3C Process Document Update
+    - サイボウズ、W3C メンバー加入
+    - TPAC Inclusion and Invited Expert Support funds で 26 名が選出
+- TC39
+  - TC39 202507
+    - Upsert Stage3
+    - Error.captureStackTrace をプロパティにするかアクセサにするか
+    - Measure が Amount に
+    - Import Buffer (Uint8Arrray)
+    - `Object.propretyCount` / `Array.isSparse` テスト向け提案
+  - WinterTC
+- IETF123
+  - Cookie Bis がまだこない
+- 周辺動向
+  - ベンダー動向
+    - UK による iCloud のバックドアが US 政府の交渉でなくなる
+  - セキュリティ動向
+  - Other
+    - State of CSS 回答者減少
+
+  ### 9 月
+
+- Chrome
+  - 140
+  - 141
+    - ARIA Notify API
+    - Digital Credentials API
+    - Navigation API deferred commit
+    - Proofreader API origin trial
+  - Ship
+    - Interest Invokers
+    - ICU 77
+    - Temporal
+    - No-Vary-Search for HTTP disk cache
+  - Prototype
+    - Email Verification Protocol
+    - Scoped Focusgroup
+    - Two-phase cross-document VT
+    - `<meta name="text-scale">`
+  - Experiment
+    - Extend CSP script-src
+  - PSA
+    - Separate Defer Module Script Tasks
+  - web.dev
+    - Interop 2026
+  - Chrome Developers
+    - Scoped View Transitions
+    - Nested View Transition groups
+    - DevTools MCP
+  - other
+    - Chrome 売却無くなった
+    - Chrome at 17
+    - Chrome's new AI features
+    - Domenic リタイア
+- Firefox
+  - 143
+    - `::details-content`
+  - Ship
+    - `-webkit-fill-available`
+- Safari
+  - 26.0
+    - anchor positioning
+    - scroll-driven animations
+    - `text-wrap: pretty`
+    - `progress()`
+    - Digital Credentials API
+    - URLPattern
+    - SVG icons
+    - WebGPU
+    - WebSocket over h2/h3
+  - TP 227
+    - `field-sizing`
+    - `scrollbar-color`
+    - `command`/`commandfor`
+    - `scrollend`
+    - Cookie Store API
+    - Navigation API
+  - TP 228
+    - `hidden="until-found"` のアクセシビリティ
+  - Standard Position
+  - other
+    - iOS の UA 文字列も OS 部分がフリーズ
+- Edge
+  - FromPoint APIs
+- W3C/WHATWG
+  - Draft
+    - FPWD
+      - CSS Environment Variables Module Level 1
+        - `env()`, `preferred-text-scale`
+  - Open UI
+    - Interest Invokers API に対して WebKit が慎重な姿勢を示している
+  - WHATNOT meeting
+    - Focus Group, Element Internals Type が Stage 1 に
+  - CSS WG meeting
+    - `::clear-icon` と `::reveal-icon` が `appearance: base`; のオプトインで実現しそう
+    - `flex-wrap: balance;` が Flexbox Level 2 に入る方向で Resolve
+  - Other
+    - Design Tokens Community Group から、テーマ・モードのフォーマットを定義する Resolver/Groups\&Aliases
+    - headingoffset & headingreset HTML attributes
+    - CSS Snapshot 2025 の公開
+    - ISO/IEC 40500:2025 として WCAG 2.2 が採用される。13 年ぶりの改訂
+    - Community Group の提案を強化する検討
+- TC39
+  - WinterTC
+    - Fetch が落ち着いたので Server API の議論
+- IETF
+  - CookieBis が更新され RFC が遠のく
+- 周辺動向
+  - ベンダー動向
+    - The Browser Company が Attlassian に買収
+    - Cloudflare で 1.1.1.1 の誤発行インシデント
+    - Cloudflare が 1111 人のインターンを 2026 年にとる
+  - セキュリティ動向
+  - Other
+    - Chrome 売却不要
+    - スマホ新法 12 月施行
+    - fetch の progress 用に Observer を入れる
+    - Great Firewall のコード漏洩
+    - Apple が Liquid Galss 用コードを WebView 向けに入れいていた
+    - State of JS 開始
+    - Tim Berners-Lee の回顧録が出版
+    - AV2 が年末までにリリースされるとアナウンス
+
+  ### 10 月
+
+- Chrome
+  - 142
+    - Interest Invokers
+    - Origin Isolation
+  - 143 beta
+    - anchored fallback container queries
+    - Deprecate XSLT
+  - Ship
+    - `scroll-state()`
+    - anchored fallback container queries
+    - Scoped Custom Element Registry
+    - Web Smart Card API (IWA)
+    - `Blob.bytes()`
+    - Cache sharing for extremely-pervasive resources
+  - Prototype
+    - `appearance: base`
+    - anchor positioning with transforms
+    - declarative CSS module scripts
+    - CSS `inherit()`
+    - Customizable combobox
+    - `text-justify`
+  - Experiment
+    - digital credentials API (issurance)
+  - Deprecate and Remove
+    - XSLT
+  - Chrome Developers
+    - new in view transitions
+    - accessible carousels
+    - removing XSLT
+  - Chromium blog
+    - reducing notifications
+  - other blogs
+    - HTTPS by default
+  - other
+    - Q3 security summary
+    - Update on Privacy Sandbox
+- Firefox
+  - 144
+    - Perplexity / Google Lens
+    - Invoker Commands
+    - View Transitions V1
+    - `Element.moveBefore()`
+    - `Map.prototype.getOrInsert()`
+  - Ship
+    - `text-decoration-trim`
+    - `text-autospace`
+    - Scoped Styles
+  - Prototype
+    - Sanitizer API
+    - Document PiP
+- Safari
+  - 26.1
+  - Standard Position
+    - `interestfor` が opposed
+    - Privacy Sandbox 系 API の Withdrawn
+  - other
+- Edge
+  - Changes to Internet Explorer Mode
+- W3C/WHATWG
+  - Draft
+    - FPWD CSS Anchor Positioning Level 2 (anchored container query)
+    - WCAG 2.2 ISO/IEC international standard
+  - Open UI
+    - Customizable Combobox
+  - WHATNOT meeting
+    - Removing XSLT from the web platform
+    - FormControlRange
+    - Declarative scroll commands to HTMLButtonElement
+  - Other
+    - CSS masonry display value bikeshed
+    - W3C 新ロゴ & public concerns
+    - `moveOrInsertBefore()`
+    - Disposable AbortController
+    - DTCG spec reaches first stable version
+- TC39
+  - 2025-09 Meeting Minutes
+    - `Array.prototype.pushAll()`
+    - Amount が計算できなくなる
+    - native promise predicate で Promise 判定
+  - WinterTC
+- IETF
+  - IETF 142 開催中
+- 周辺動向
+  - ベンダー動向
+    - Servo 0.0.1 Release
+    - CMA が Google/Apple のモバイルプラットフォームを Storategic Market Status に指定
+  - セキュリティ動向
+    - アサヒサイバー攻撃
+    - アスクルサイバー攻撃
+    - SBI/楽天証券 Passkey 対応
+    - AWS 障害
+  - Other
+    - ChatGPT Atlas
+
+  ### 11 月
+
+- Chrome
+  - 143
+  - Ship
+    - Temporal unflagged
+    - Scroll Triggered Animation
+    - Origin API
+    - focusVisible option for `focus()`
+    - Deprecate BackgroundFetch
+    - ViewTransition types
+  - Prototype
+    - Scroll commands for HTMLButtonElement
+  - Experiment
+  - Deprecate and Remove
+    - Privacy Sandbox 関連 API Deprecation
+  - PSA
+    - Third-Party Cookie Allowlist Header
+  - other intents
+    - Anchor Positioning にセマンティックバインディングはしない
+  - web.dev
+    - Baseline Tooling Hackathon で日本人の方が優勝
+  - Google Developer Blog
+  - Chrome Developers
+  - Chromium blog
+  - other blogs
+  - other
+- Firefox
+  - 145
+    - `text-autospace`
+    - `<select>` 内部に `<hr>` を挿入できるように
+    - `Atomics.waitAsync()`
+    - CSS Anchor Positioning
+    - `Integrity-Policy`, `Integrity-Policy-Report-Only`
+  - 146
+    - CSS `@scope`
+    - `contrast-color()`
+    - `display-p3-linear` 色空間
+    - `WeakMap` and `WeakSet` now accept Symbol objects as keys
+    -
+  - Ship
+    - CSS Module Scripts
+    - Navigation API
+    - View transition types
+    - `Document.activeViewTransition`
+  - Prototype
+    - Deferred Imports Evaluation
+  - Other Intents
+  - MDN Blog
+  - Standard Position
+    - `<geolocation>`
+  - other
+    - Introducing early access for Firefox Support for Organizations
+    - Firefox expands fingerprint protections: advancing towards a more private web
+    - Rewiring Mozilla: Doing for AI what we did for the web
+- Safari
+  - TP 232
+    - `flip-x`, `flip-y`
+  - Standard Position
+    - Privacy Sandbox 系の Withdrawn
+  - other
+- Edge
+  - デスクトップ版 Edge (on Windows) でパスキー同期サポート
+  - Web Install API
+- W3C/WHATWG
+  - TPAC
+  - Draft
+    - Web User Agents
+  - Open UI
+    - Overscroll Gestures
+  - WHATNOT meeting
+    - WHATUP in TPAC で色々
+  - Other
+    - Proposal: Custom attributes
+    - ACD Projects Update
+    - Future of the Open Web
+    - Proposal: HTML in Canvas
+- TC39
+  - Technical Discussion with TC39 (JSConf JP 2025)
+- IETF
+  - RFC 9875 on HTTP Cache Groups
+  - yuki NTP DNS Record ドラフト執筆
+- 周辺動向
+  - ベンダー動向
+    - Cloudflare 大規模障害ポストモーテム
+    - Orion 1.0 WebKit ベースブラウザ
+  - セキュリティ動向
+    - Sha1-Hulud サプライチェーンアタック
+    - 小勝さん Code Blue インタビュー
+    - アサヒランサム記者会見で VPN 脆弱性公表
+  - Other
+    - Tim Berners-Lee 新刊
