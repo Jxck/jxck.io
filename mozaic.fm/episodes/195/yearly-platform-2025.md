@@ -13,7 +13,6 @@ guest: [@saku](https://x.com/sakupi01)
 
 第 195 回のテーマは 2025 年の Yearly Platform です。
 
-
 ## Show Note
 
 ### 2025 年のチェックポイント
