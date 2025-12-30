@@ -64,7 +64,7 @@
 
 今年は 26 本公開した。
 
-通常回は 1 回しかできなかったが、今年ならではの良いテーマで撮ることができた。
+通常回は 1 回しかできなかったが、今年ならではの良いテーマで録ることができた。
 
 - ep191 Privacy Sandbox | mozaic.fm
   - https://mozaic.fm/episodes/191/privacy-sandbox.html
@@ -78,9 +78,9 @@
 - ep193 Drive Talk: JSConf 2025 | mozaic.fm
   - https://mozaic.fm/episodes/193/drive-talk-jsconf2025.html
 
-車の中で撮るのは難しく、スマホで撮ると車の音が入ってしまう。そこで、ピンマイクを買ったが、まだ運用がうまくできてない。
+車の中で録るのは難しく、スマホで録ると車の音が入ってしまう。そこで、ピンマイクを買ったが、まだ運用がうまくできていない。
 
-せっかくいい収録ができても、終わってから録音を確認してガッカリするのはもう嫌なので、早めに上手い収録方法を確立しておきたい。
+せっかくいい収録ができても、終わってから録音を確認してガッカリするのはもう嫌なので、早めにうまい収録方法を確立しておきたい。
 
 来年こそ、もっと通常回を増やしたい。
 
@@ -89,23 +89,23 @@
 
 今年は大きく 4 つの登壇をした。
 
-- 2025-02-01[Web Platform の変化がフロントエンド開発に与える影響](https://www.docswell.com/s/jxck/57R1VW-web-frontend-over-web-platform) @ [#chotdekiru](https://chot.connpass.com/event/339257/ "フロントエンドチョットデキル 2025 - connpass")
-- 2025-02-27[WinterCG to WinterTC](https://www.docswell.com/s/jxck/KV183E-wintercg-to-wintertc) @ [#meguroes](https://meguroes.connpass.com/event/342717/ "Meguro.es #29 @ oRo")
-- 2025-09-21[TS-Type=JS ?](https://www.docswell.com/s/jxck/5M628L-ts-type-js) @ [#fec_tokyo](https://fec-tokyo.connpass.com/event/352581/ "Frontend Conference Tokyo 2025")
-- 2025-11-16[技術的福祉の受容、および Web 開発との「出会い直し」](https://jsconf.jp/2025/en/talks/embracing-technical-welfare-and-rediscovering-web-development) @ [#jsconfjp](https://jsconf.jp/2025/en/talks/embracing-technical-welfare-and-rediscovering-web-development "JSConf JP 2025")
+- 2025-02-01: [Web Platform の変化がフロントエンド開発に与える影響](https://www.docswell.com/s/jxck/57R1VW-web-frontend-over-web-platform) @ [#chotdekiru](https://chot.connpass.com/event/339257/ "フロントエンドチョットデキル 2025 - connpass")
+- 2025-02-27: [WinterCG to WinterTC](https://www.docswell.com/s/jxck/KV183E-wintercg-to-wintertc) @ [#meguroes](https://meguroes.connpass.com/event/342717/ "Meguro.es #29 @ oRo")
+- 2025-09-21: [TS-Type=JS ?](https://www.docswell.com/s/jxck/5M628L-ts-type-js) @ [#fec_tokyo](https://fec-tokyo.connpass.com/event/352581/ "Frontend Conference Tokyo 2025")
+- 2025-11-16: [技術的福祉の受容、および Web 開発との「出会い直し」](https://jsconf.jp/2025/en/talks/embracing-technical-welfare-and-rediscovering-web-development) @ [#jsconfjp](https://jsconf.jp/2025/en/talks/embracing-technical-welfare-and-rediscovering-web-development "JSConf JP 2025")
 
 去年の WDC に続き、今年の JSConf 基調講演も、スライド無しマイクのみのスタイルで実施した。
 
-この *"Stand-up Tech Talk"* スタイルは、従来のスライド発表会形式だとしっくりこないテーマに、非常にマッチしているので、来年以降もトークに応じて使っていきたい。
+この *"Stand-up Tech Talk"* スタイルは、従来のスライド発表会形式だとしっくりこないテーマに非常にマッチしているので、来年以降もトークに応じて使っていきたい。
 
 
 ## 勉強会
 
-今年も、カンファレンスが通年通して非常に多かったため、勉強会を開催する隙が少なく、結局開催しなかった。
+今年も、カンファレンスが通年を通して非常に多かったため、勉強会を開催する隙が少なく、結局開催しなかった。
 
 逆に昨今は、「小さい勉強会を続け、集大成としてのカンファレンス」というスタイルではなく、「いきなりカンファレンス」が開催されることが増え、小さい勉強会が減った体感がある。
 
-小さい勉強会によってコミュニティ自体が育つ部分も、界隈としては重要だと思うので、来年は Web Study 系で小さいテーマの勉強会開催を、積極的に行っていきたい。
+小さい勉強会によってコミュニティ自体が育つ部分も、界隈としては重要だと思うので、来年は Web Study 系で小さいテーマの勉強会開催を積極的に行っていきたい。
 
 
 ## Web 技術年末試験
@@ -127,7 +127,7 @@ Web に関する 1 年の動向を試験形式で振り返る、年末試験を�
 
 今年は [Web 技術解体新書](https://zenn.dev/jxck/articles/web-anatomia-concepts) の第三章として、Cookie の話を出す予定だった。
 
-6265bis の RFC は出ないながら、一応 3rd Party Cookie のケリはついたので、いよいよ仕上げる材料は揃ったが、結局書ききれなかった。
+6265bis の RFC は出ないながら、一応 3rd Party Cookie のケリはついたので、いよいよ仕上げる材料は揃ったが、結局書き切れなかった。
 
 この年末年始で本当に仕上げにかかり、年始には公開する目標で進めたい。
 
@@ -136,7 +136,7 @@ Web に関する 1 年の動向を試験形式で振り返る、年末試験を�
 
 サイボウズの W3C 加入を手伝った縁で、サイボウズ社員に帯同する形で TPAC 神戸に参加した。
 
-コロナ以降久々の参加だったので、久々の現場としていい刺激になった。
+コロナ以降、久々の参加だったので、久々の現場として良い刺激になった。
 
 - TPAC 2025 参加記録 | blog.jxck.io
   - https://blog.jxck.io/entries/2025-11-18/tpac2025.html
@@ -150,11 +150,11 @@ Web に関する 1 年の動向を試験形式で振り返る、年末試験を�
 
 Privacy Sandbox の終了や、Chrome の売却騒動、新しいブラウザエンジンの出現や、度重なるサイバーインシデント、そして TPAC 参加。
 
-AI の登場が印象に強いながらも、Web としてもかなり色々あって、充実した一年だったようにも思う。
+AI の登場が印象に強いながらも、Web としてもかなり色々あって、充実した一年だったように思う。
 
-長年の TODO として、執筆が残ってしまっているが、
+長年の TODO として、執筆が残ってしまっているが、年末年始を利用してもう少し書き進め、冬のうちに公開したい。
 
-来年は、もう少しブラウザコントリビュートを起動に載せつつ、執筆を引き続き進める一年にしたい。
+また、来年はもう少しブラウザコントリビュートを軌道に乗せつつ、以降の章の執筆を進める一年にしたい。
 
 2026 年も、引き続きよろしくお願いします。
 
