@@ -58,7 +58,8 @@ Web は誰のものでもなく、誰でも無料で使える。
 15. HTTP Archive
   - https://opencollective.com/httparchive
 
-# 対象外
+
+## 対象外
 
 以下は候補に上がったが、寄付方法が見つからない、個人からの寄付を受け付けていない、日本から寄付できない、GitHub Sponsors がエラーになる、などの理由で断念した。
 
