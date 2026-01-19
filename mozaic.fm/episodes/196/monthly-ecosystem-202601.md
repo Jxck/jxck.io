@@ -14,7 +14,6 @@ guest: [@syumai](https://x.com/__syumai)
 
 第 196 回のテーマは 2025 年 12 月と 2026 年 1 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - 2025 JavaScript Rising Stars
@@ -173,7 +172,6 @@ guest: [@syumai](https://x.com/__syumai)
 - pnpm in 2025
   - https://pnpm.io/blog/2025/12/29/pnpm-in-2025
   - pnpm の 2025 年まとめ
-
 
 ## Events
 

@@ -2640,3 +2640,16 @@ eyeD3 --title "ep195 Yearly Platform 2025" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep196.mp3
+
+eyeD3 --title "ep196 Monthly Ecosystem 202601" \
+      --track 204 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep196.mp3
+
+
+

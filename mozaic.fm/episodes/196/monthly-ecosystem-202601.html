@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/196/monthly-ecosystem-202601.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?250126_042048></script>
+  <script type=module src=/assets/js/sw.js?250126_041534></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 196 回のテーマは 2025 年 12 月と 2026 年 1 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/196/monthly-ecosystem-202601.html>
+  <meta property=og:title        content="ep196 Monthly Ecosystem 202601 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 196 回のテーマは 2025 年 12 月と 2026 年 1 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep196 Monthly Ecosystem 202601 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/195/yearly-platform-2025.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?250126_044049>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?250125_014450>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?250125_013946>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?250126_041123>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?190123_200004         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_013015 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200415_062604 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/195/yearly-platform-2025.html>ep195 Yearly Platform 2025</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep196 Monthly Ecosystem 202601</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2026-01-20
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/re_taro_" target=_blank>@re-taro</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/__syumai" target=_blank>@syumai</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 196 回のテーマは 2025 年 12 月と 2026 年 1 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          2025 JavaScript Rising Stars
+          <ul>
+            <li><a href="https://risingstars.js.org/2025/en" target=_blank>https://risingstars.js.org/2025/en</a>
+            <li>GitHub スターをベースにしたフロントエンド系のライブラリのランキング
+          </ul>
+        </li>
+        <li>
+          Vite 8 Beta リリース
+          <ul>
+            <li><a href="https://voidzero.dev/posts/announcing-vite-8-beta" target=_blank>https://voidzero.dev/posts/announcing-vite-8-beta</a>
+            <li>bundler が Rolldown に変更され、これまでの esbuild + Rollup の組み合わせを置き換える
+          </ul>
+        </li>
+        <li>
+          Oxfmt: Oxc Formatter Alpha リリース
+          <ul>
+            <li><a href="https://oxc.rs/blog/2025-12-01-oxfmt-alpha.html" target=_blank>https://oxc.rs/blog/2025-12-01-oxfmt-alpha.html</a>
+            <li>キャッシュなしの初回実行時、Prettier と比較して 30 倍以上、Biome と比較して 3 倍以上高速
+          </ul>
+        </li>
+        <li>
+          Oxlint: Type-Aware Linting Alpha リリース
+          <ul>
+            <li><a href="https://oxc.rs/blog/2025-12-08-type-aware-alpha" target=_blank>https://oxc.rs/blog/2025-12-08-type-aware-alpha</a>
+            <li>8 月の technical preview に続くリリース
+            <li>oxlint と一緒に oxlint-tsgolint をインストールしたら、<code translate=no>oxlint --type-aware</code> で使える
+            <li><code translate=no>--type-check</code> flag で Type Check の実行もまとめられる
+          </ul>
+        </li>
+        <li>
+          Oxc 周りの 2026 年 1Q のプラン
+          <ul>
+            <li><a href="https://github.com/oxc-project/oxc/issues/17411" target=_blank>https://github.com/oxc-project/oxc/issues/17411</a>
+            <li>Oxlint JS Plugins Alpha
+            <li>Oxlint 2026 Q1
+            <li>Formatter Beta
+            <li>Minifier Beta
+            <li>Transformer Milestone 3
+            <li>Work with the Rolldown team to improve transform, minify, DCE and chunking.
+          </ul>
+        </li>
+        <li>
+          Introducing Flint
+          <ul>
+            <li><a href="https://www.flint.fyi/blog/introducing-flint/" target=_blank>https://www.flint.fyi/blog/introducing-flint/</a>
+            <li>typescript-eslint のメンテナーが中心となって作っている新しいリンター
+            <li>TS 中心で書かれていながらも Rust などのパーサーと組み合わせることで、型情報を活かしながら、パフォーマンスも出せるのが売りぽい
+          </ul>
+        </li>
+        <li>
+          TypeScript 7 (tsgo) の進捗
+          <ul>
+            <li><a href="https://devblogs.microsoft.com/typescript/progress-on-typescript-7-december-2025/" target=_blank>https://devblogs.microsoft.com/typescript/progress-on-typescript-7-december-2025/</a>
+            <li>TypeScript の Go 実装が安定段階に到達
+            <li>TS/JS で実装される TypeScript は 6.0 が最終バージョン(6.1 は無い)
+            <li>6.0 と比較して、ビルド速度が 10 倍以上高速化されるベンチ結果も出ている
+            <li>
+              TS7 でいくつかのオプションの非推奨化、廃止がある予定
+              <ul>
+                <li>strict がデフォルトに。
+                <li>target は es2015 が最低に。
+                <li>baseUrl は廃止
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Introducing: React Best Practices
+          <ul>
+            <li><a href="https://vercel.com/blog/introducing-react-best-practices" target=_blank>https://vercel.com/blog/introducing-react-best-practices</a>
+            <li>Vercel の React と Next.js の最適化の知見とコード例を AI エージェント用のデータとして公開
+          </ul>
+        </li>
+        <li>
+          Tailwind でレイオフがあった
+          <ul>
+            <li><a href="https://github.com/tailwindlabs/tailwindcss.com/pull/2388#issuecomment-3717222957" target=_blank>https://github.com/tailwindlabs/tailwindcss.com/pull/2388#issuecomment-3717222957</a>
+            <li>AI が原因でドキュメントを見る人が 2023 年から 40% 減少
+            <li>急成長して人気もあるのに収益は 80% 減少している
+            <li>75%(3 人) をレイオフした
+            <li>その後多くのスポンサーが集まった
+          </ul>
+        </li>
+        <li>
+          Node.js - Tuesday, January 13, 2026 Security Releases
+          <ul>
+            <li><a href="https://nodejs.org/en/blog/vulnerability/december-2025-security-releases" target=_blank>https://nodejs.org/en/blog/vulnerability/december-2025-security-releases</a>
+            <li>最大深刻度 High の脆弱性修正が含まれたリリース
+            <li>v25.x、v24.x、v22.x、v20.x に影響
+            <li>年末にリリース予定だったが、みんな Holiday なので延期されてた
+            <li><a href="https://nodejs.org/ja/blog/vulnerability/january-2026-dos-mitigation-async-hooks" target=_blank>https://nodejs.org/ja/blog/vulnerability/january-2026-dos-mitigation-async-hooks</a>
+          </ul>
+        </li>
+        <li>
+          React Server Components の脆弱性 (React2Shell)
+          <ul>
+            <li><a href="https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components" target=_blank>https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components</a>
+            <li>認証無しでリモートコード実行が可能な脆弱性
+          </ul>
+        </li>
+        <li>
+          Denial of Service and Source Code Exposure in React Server Components
+          <ul>
+            <li><a href="https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components" target=_blank>https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components</a>
+            <li>React の脆弱性の原因と対応のまとめ
+          </ul>
+        </li>
+        <li>
+          Storybook の脆弱性
+          <ul>
+            <li><a href="https://storybook.js.org/blog/security-advisory/" target=_blank>https://storybook.js.org/blog/security-advisory/</a>
+            <li>Storybook における Storybook のビルドに.env の内容が入ってしまう脆弱性
+          </ul>
+        </li>
+        <li>
+          pnpm Has Lockfile Integrity Bypass that Allows Remote Dynamic Dependencies
+          <ul>
+            <li><a href="https://github.com/advisories/GHSA-7vhp-vf5g-r2fw" target=_blank>https://github.com/advisories/GHSA-7vhp-vf5g-r2fw</a>
+            <li>pnpm の脆弱性
+            <li>10.26.0 で解決された
+          </ul>
+        </li>
+        <li>
+          Cloudflare の大障害
+          <ul>
+            <li><a href="https://blog.cloudflare.com/ja-jp/5-december-2025-outage/" target=_blank>https://blog.cloudflare.com/ja-jp/5-december-2025-outage/</a>
+            <li>障害範囲は Cloudflare が処理する全 HTTP トラフィックの約 28%
+            <li>実は RSC の脆弱性のための対応による二次災害だった
+          </ul>
+        </li>
+        <li>
+          CSS at Scale With StyleX - Engineering at Meta
+          <ul>
+            <li><a href="https://engineering.fb.com/2026/01/12/web/css-at-scale-with-stylex/" target=_blank>https://engineering.fb.com/2026/01/12/web/css-at-scale-with-stylex/</a>
+            <li>CSS は大規模なウェブサイトでの課題を呈し、Meta はその解決策として StyleX をオープンソース化した。
+            <li>StyleX は CSS-in-JS の利便性と静的 CSS のパフォーマンスを組み合わせ、コンポーネントの原子的スタイリングを可能にする。
+            <li>Figma や Snowflake などで標準化され、Meta では Facebook、Instagram、WhatsApp、Messenger、Threads で使用されている。
+          </ul>
+        </li>
+        <li>
+          Anthropic が Bun を買収
+          <ul>
+            <li><a href="https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone" target=_blank>https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone</a>
+            <li>Claude Code の native installer は Bun チームと協力して実現されていた
+            <li>Bun は引き続き OSS として提供される
+          </ul>
+        </li>
+        <li>
+          Joint statement from Google and Apple
+          <ul>
+            <li><a href="https://blog.google/company-news/inside-google/company-announcements/joint-statement-google-apple/" target=_blank>https://blog.google/company-news/inside-google/company-announcements/joint-statement-google-apple/</a>
+            <li>Apple と Google が長期に協業する契約を締結
+            <li>Apple Intelligence の裏側が Gemini になる
+          </ul>
+        </li>
+        <li>
+          Cloudflare が Astro を買収
+          <ul>
+            <li><a href="https://astro.build/blog/joining-cloudflare/" target=_blank>https://astro.build/blog/joining-cloudflare/</a>
+            <li>Astro と Cloudflare が共通したビジョンを持っていたのが決め手らしい
+            <li>Astro は引き続き OSS として提供される
+          </ul>
+        </li>
+        <li>
+          Astro 6 Beta
+          <ul>
+            <li><a href="https://astro.build/blog/astro-6-beta" target=_blank>https://astro.build/blog/astro-6-beta</a>
+          </ul>
+        </li>
+        <li>
+          MicroQuickJS
+          <ul>
+            <li><a href="https://github.com/bellard/mquickjs" target=_blank>https://github.com/bellard/mquickjs</a>
+            <li>QuickJS と FFmpeg の作者の Fabrice Bellard の新作
+            <li>ES5 に近い、JS の subset しか実装しない。10kb のメモリがあれば動く
+          </ul>
+        </li>
+        <li>
+          Disco
+          <ul>
+            <li><a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/gentabs-gemini-3/" target=_blank>https://blog.google/innovation-and-ai/models-and-research/google-labs/gentabs-gemini-3/</a>
+            <li>Google Labs で提供される AI 搭載ブラウザ
+            <li>GenTabs と言う機能があり、ユーザーが開いているタブやチャット履歴から次のタスクを予測、そのタスクをこなすためのアプリを生成してくれる
+            <li>Wait List が出ていて、まだ US の人しか使えない
+          </ul>
+        </li>
+        <li>
+          Deno に Wasm の Source-phase import が来た
+          <ul>
+            <li><a href="https://x.com/deno_land/status/1996251639078965681" target=_blank>https://x.com/deno_land/status/1996251639078965681</a>
+            <li>fetch したり、ファイルを Read したりする JS のコードを書かなくてよくなった
+          </ul>
+        </li>
+        <li>
+          Deno Sandbox
+          <ul>
+            <li><a href="https://deno.com/deploy/sandboxes" target=_blank>https://deno.com/deploy/sandboxes</a>
+            <li>Deno Deploy 上で任意のコードや Shell Script を実行できる Sandbox の SDK
+            <li>
+              Ryan がひっそりとアナウンスしていた。正式公開ではなさそう
+              <ul>
+                <li><a href="https://x.com/rough__sea/status/2000719751262408735?s=20" target=_blank>https://x.com/rough__sea/status/2000719751262408735?s=20</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Akamai が Fermyon を買収
+          <ul>
+            <li><a href="https://www.fermyon.com/blog/fermyon-joins-akamai" target=_blank>https://www.fermyon.com/blog/fermyon-joins-akamai</a>
+            <li>Wasm 製 Web アプリのホスティングサービスや、Spin という Wasm Component ベースのフレームワークを提供している Fermyon が Akamai に買われた
+            <li>もともと、Fermyon Wasm Functions が Akamai でホストされていた
+            <li>これから Akamai も Wasm に力を入れていきそう
+          </ul>
+        </li>
+        <li>
+          ESLint v10.0.0-rc.0 released
+          <ul>
+            <li><a href="https://eslint.org/blog/2026/01/eslint-v10.0.0-rc.0-released/" target=_blank>https://eslint.org/blog/2026/01/eslint-v10.0.0-rc.0-released/</a>
+            <li>assertion option として requireData を追加
+          </ul>
+        </li>
+        <li>
+          jQuery 4.0.0
+          <ul>
+            <li><a href="https://blog.jquery.com/2026/01/17/jquery-4-0-0/" target=_blank>https://blog.jquery.com/2026/01/17/jquery-4-0-0/</a>
+            <li>jQuery v4!jQuery 20 周年
+          </ul>
+        </li>
+        <li>
+          vercel-labs/json-render
+          <ul>
+            <li>
+              <a href="https://github.com/vercel-labs/json-render" target=_blank>https://github.com/vercel-labs/json-render</a>
+              <ul>
+                <li>AI が JSON をストリーミングしてそれをインタラクティブな UI として描画する
+              </ul>
+            </li>
+            <li>
+              デモ的なもの
+              <ul>
+                <li><a href="https://x.com/ctatedev/status/2011589295862395238?s=20" target=_blank>https://x.com/ctatedev/status/2011589295862395238?s=20</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          vercel-labs/agent-browser
+          <ul>
+            <li><a href="https://github.com/vercel-labs/agent-browser" target=_blank>https://github.com/vercel-labs/agent-browser</a>
+            <li>AI エージェント向けのヘッドレスブラウザを Vercel が出した
+            <li>中身は Rust と Playwright ぽい
+          </ul>
+        </li>
+        <li>
+          VoidZero 関連のツールのリブランディング
+          <ul>
+            <li><a href="https://x.com/voidzerodev/status/2011019657960943994?s=20" target=_blank>https://x.com/voidzerodev/status/2011019657960943994?s=20</a>
+          </ul>
+        </li>
+        <li>
+          What&apos;s New in ViteLand: December 2025 Recap
+          <ul>
+            <li><a href="https://voidzero.dev/posts/whats-new-dec-2025" target=_blank>https://voidzero.dev/posts/whats-new-dec-2025</a>
+          </ul>
+        </li>
+        <li>
+          React Conf 2025 の Video とかが揃った
+          <ul>
+            <li><a href="https://conf.react.dev/" target=_blank>https://conf.react.dev/</a>
+          </ul>
+        </li>
+        <li>
+          Announcing Rspack 1.7
+          <ul>
+            <li><a href="https://rspack.rs/blog/announcing-1-7" target=_blank>https://rspack.rs/blog/announcing-1-7</a>
+            <li>Rspack 周りのアップデートのまとめも
+          </ul>
+        </li>
+        <li>
+          Webpack Establishing Working Groups for documentation &amp; outreach
+          <ul>
+            <li><a href="https://github.com/webpack/tsc/blob/main/notes/2026/2026-01-12-transcript.md" target=_blank>https://github.com/webpack/tsc/blob/main/notes/2026/2026-01-12-transcript.md</a>
+          </ul>
+        </li>
+        <li>
+          Manus、次なるイノベーションの時代へ:Meta と力を結ぶ
+          <ul>
+            <li><a href="https://manus.im/ja/blog/manus-joins-meta-for-next-era-of-innovation" target=_blank>https://manus.im/ja/blog/manus-joins-meta-for-next-era-of-innovation</a>
+            <li>meta が AI エージェントの Manus を買収
+          </ul>
+        </li>
+        <li>
+          Next.js 16.1
+          <ul>
+            <li><a href="https://nextjs.org/blog/next-16-1" target=_blank>https://nextjs.org/blog/next-16-1</a>
+          </ul>
+        </li>
+        <li>
+          TanStack AI Alpha
+          <ul>
+            <li><a href="https://tanstack.com/blog/tanstack-ai-alpha-your-ai-your-way" target=_blank>https://tanstack.com/blog/tanstack-ai-alpha-your-ai-your-way</a>
+          </ul>
+        </li>
+        <li>
+          Cursor Browser 向けビジュアルエディタ
+          <ul>
+            <li><a href="https://cursor.com/ja/blog/browser-visual-editor" target=_blank>https://cursor.com/ja/blog/browser-visual-editor</a>
+            <li>Cursor 上でデザインをいじれるビジュアルエディタモードがでた
+          </ul>
+        </li>
+        <li>
+          The State of TanStack, Two Years of Full-Time OSS
+          <ul>
+            <li><a href="https://tanstack.com/blog/tanstack-2-years" target=_blank>https://tanstack.com/blog/tanstack-2-years</a>
+            <li>TanStack の現状や OSS の苦労とこれからについて
+          </ul>
+        </li>
+        <li>
+          ESLint&apos;s 2025 year in review
+          <ul>
+            <li><a href="https://eslint.org/blog/2026/01/eslint-2025-year-review/" target=_blank>https://eslint.org/blog/2026/01/eslint-2025-year-review/</a>
+            <li>ESLint の 2025 年まとめ
+          </ul>
+        </li>
+        <li>
+          2025 year in review | Astro
+          <ul>
+            <li><a href="https://astro.build/blog/year-in-review-2025/" target=_blank>https://astro.build/blog/year-in-review-2025/</a>
+            <li>Astro の 2025 年のまとめ
+          </ul>
+        </li>
+        <li>
+          pnpm in 2025
+          <ul>
+            <li><a href="https://pnpm.io/blog/2025/12/29/pnpm-in-2025" target=_blank>https://pnpm.io/blog/2025/12/29/pnpm-in-2025</a>
+            <li>pnpm の 2025 年まとめ
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          1 月
+          <ul>
+            <li>
+              burikaigi 2026
+              <ul>
+                <li><a href="https://burikaigi.dev/" target=_blank>https://burikaigi.dev/</a>
+              </ul>
+            </li>
+            <li>
+              KNOTS 2026
+              <ul>
+                <li><a href="https://knots.crossrel.jp/" target=_blank>https://knots.crossrel.jp/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          2 月
+          <ul>
+            <li>
+              Spectrum Tokyo Festival 2026
+              <ul>
+                <li><a href="https://fest.spectrumtokyo.com/2026/" target=_blank>https://fest.spectrumtokyo.com/2026/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>3 月
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/195/yearly-platform-2025.html>ep195 Yearly Platform 2025</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright>
+    <small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small>
+    <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+  </p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep196.mp3
+    data-title="ep196 Monthly Ecosystem 202601"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
