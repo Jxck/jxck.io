@@ -1,0 +1,1444 @@
+---
+type: podcast
+tags: ["monthly platform"]
+audio: https://files.mozaic.fm/mozaic-ep197.mp3
+published_at: 2026-02-02
+guest: [@saku](https://x.com/sakupi01)
+guest: [@progfay](https://x.com/progfay)
+---
+
+# ep197 Monthly Platform 202601
+
+## Theme
+
+第 197 回のテーマは 2025 年 12 月と 2026 年 1 月の Monthly Platform です。
+
+
+## Show Note
+
+### Chrome 動向
+
+#### Stable: 144
+
+
+#### Updates
+
+- **New in Chrome 143**
+  - https://developer.chrome.com/blog/new-in-chrome-143
+  - **CSS anchored fallback container queries**
+  - Side-relative syntax for `background-position-x`/`y` longhands
+  - Implement the `font-language-override` CSS property
+    - 指定言語のリガチャで上書きする
+- **Chrome 144 beta**
+  - https://developer.chrome.com/blog/chrome-144-beta
+  - CSS and UI
+    - **CSS anchor positioning with transforms**
+    - CSS find-in-page highlight pseudos
+    - Don't use aria-details for anchor positioning
+    - `@scroll-state` scrolled support
+    - Respect overscroll-behavior for keyboard scrolls
+    - Respect `overscroll-behavior` on non-scrollable scroll containers
+    - Non-tree-scoped container-name matching
+    - SVG2 CSS cascading
+  - Web APIs
+    - XRVisibilityMaskChange
+    - **Expose `onanimationcancel` event to GlobalEventHandlers**
+    - View Transitions `waitUntil()` method
+    - **The `<geolocation>` element**
+    - WebGPU: subgroup_id feature
+    - WebGPU: Uniform buffer standard layout
+    - **The Temporal API**
+    - Support ping, hreflang, type and referrerPolicy for SVGAElement
+    - The clipboardchange event
+    - User-Agent Client Hints `ch-ua-high-entropy-values` permissions policy
+    - Mirroring of RTL MathML operators
+    - Multicast Support for the Direct Sockets API for Isolated Web Apps
+    - Performance and Event Timing: InteractionCount
+    - Interoperable pointer and mouse boundary events after DOM changes
+    - Pointer Lock on Android
+    - RTCDegradationPreference enum value maintain-framerate-and-resolution
+    - WebAuthn Signal API on Android and iOS
+  - New origin trials
+    - Enhanced Canvas TextMetrics
+  - Deprecations and removals
+    - Deprecate the Topics API
+    - Deprecate the Protected Audience API
+    - Deprecate the Shared Storage API
+    - Deprecate the Attribution Reporting API
+    - Deprecate the Private Aggregation API
+    - Deprecate Related Website Sets
+    - Deprecate document.requestStorageAccessFor
+    - Deprecate savedTabGroups as individual value in SyncTypesListDisabled
+    - Externally loaded entities in XML parsing
+- What's new in DevTools, Chrome 143
+  - https://developer.chrome.com/blog/new-in-devtools-143
+  - **DevTools MCP server updates**
+  - Improved trace sharing
+  - **Support for `@starting-style`**
+  - **Editor widget for display: masonry**
+  - Lighthouse 13
+  - Download the preview channels
+- **What's new in DevTools, Chrome 144**
+  - https://developer.chrome.com/blog/new-in-devtools-144
+  - DevTools MCP server updates
+  - **Individual network request throttling**
+  - **Edit `@font-face` and `@font-feature-values` rules**
+  - **Adopted stylesheets in the Elements panel**
+  - What was new in DevTools 2025
+    - AI innovations
+    - **Performance**
+    - **Web Platform**
+- What's New in WebGPU 144
+  - https://developer.chrome.com/blog/new-in-webgpu-144
+  - WGSL subgroup_id extension
+  - WGSL uniform_buffer_standard_layout extension
+  - WebGPU on Linux
+  - Faster writeBuffer and writeTexture
+  - Dawn updates
+- Chrome 143
+  - https://developer.chrome.com/release-notes/143
+  - CSS and UI
+    - CSS anchored fallback container queries
+    - Side-relative syntax for `background-position-x`/`y` longhands
+    - Implement CSS property `font-language-override`
+    - Web App Manifest: specify update eligibility
+  - Device
+    - Gamepad `ongamepadconnected` and ongamepaddisconnected event handler attributes
+  - DOM
+    - Allow more characters in JavaScript DOM APIs
+  - Graphics
+    - WebGPU: Texture component swizzle
+  - JavaScript
+    - ICU 77 (supporting Unicode 16)
+    - EditContext: TextFormat underlineStyle and underlineThickness
+    - DataTransfer property for insertFromPaste, insertFromDrop and insertReplacementText input events
+    - FedCM: Support structured JSON responses from IdPs
+  - Network
+    - WebTransport Application Protocol Negotiation
+  - Performance
+    - Speculation rules: mobile eager eagerness improvements
+  - WebRTC
+    - WebRTC RTP header extension behavior change
+  - Isolated Web Apps
+    - Web Smart Card API for Isolated Web Apps
+  - Origin trials
+    - Digital Credentials API (issuance support)
+    - Web Install API
+  - Deprecations and removals
+  - Deprecate XSLT
+    - Deprecate getters of Intl Locale Info
+    - FedCM Privacy Enforcement for Client Metadata
+    - FedCM-Migration of nonce to params field and renaming of IdentityCredentialError code attribute to error
+- New in Chrome 144
+  - https://developer.chrome.com/blog/new-in-chrome-144
+  - **The `::search-text` pseudo-element**
+  - **The `<geolocation>` element**
+  - **The Temporal API**
+- Chrome 145 beta
+  - https://developer.chrome.com/blog/chrome-145-beta
+  - CSS and UI
+    - Support the `text-justify` CSS property
+    - Refine border-radius shadow edge computation for high border-radius values
+    - Column wrapping for CSS multi-column layout
+    - Expose `onanimationcancel` event to GlobalEventHandlers
+    - **CSS `letter-spacing` and `word-spacing`: percentage values**
+    - **Customizable select listbox**
+      - https://codepen.io/sakupi01/pen/jErNKEd
+    - Enable monochrome emoji rendering in forced colors mode.
+    - The focusVisible option on the `focus()` method
+    - **Overscroll effect on non-root scrollers**
+      - https://nerdy.dev/overscroll-effects-on-nested-scrollers-in-all-browsers
+    - Show true window position on Android
+  - Web APIs
+    - Navigation API: expose destination in navigation.transition
+    - WebGPU: subgroup_uniformity feature
+    - Upsert
+    - InputEvent types for deletion commands on non-collapsed selections
+    - Cookie Store API `maxAge` attribute
+    - Secure Payment Confirmation: Browser Bound Keys
+    - Sticky activation for the clipboardchange event
+    - Expose rtpTimestamp from WebRTC video frames using `VideoFrame.metadata()`
+    - Let web applications understand bimodal performance timings
+    - Add presentationTime and paintTime to performance entries
+    - Use of CSS pixels in the LayoutShift API
+    - **Device Bound Session Credentials (DBSC)**
+    - Local Network Access split permissions
+    - **The Origin API**
+    - **Sanitizer API**
+    - **Trusted Types specification alignment**
+  - New origin trials
+    - WebAudio: Configurable render quantum
+  - Deprecations and removals
+    - Chrome removes support for obsolete virtual cameras on macOS
+    - Remove BMP Extension for Embedding JPEG-or-PNG-in-BMP
+    - Reduced User-Agent strings by default
+
+
+#### Intents
+
+- **Ship: Upsert**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/r-jgFHdBOXQ
+- Ship: Expose '`onanimationcancel`' event to GlobalEventHandlers
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/sg0zs47UZ44
+- **Ship: Trusted Types spec alignment**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/OjQXhCZiXe0
+  - TT の仕様が更新され、モンキーパッチで実装されていた Chrome が準拠した
+  - Safari/Firefox も開発を進めている
+- Ship: WebRequest.SecurityInfo in Controlled Frame
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/ZTZrGKEtgCE
+- Ship: Show true window position on Android
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/hrDKnx8qk-E
+- Ship: Enabling Web Applications to understand bimodal performance timings
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/mSIoFnpFo4s
+- **Ship: Customizable select listbox**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/i7bGjrFmuQU
+  - カスタマイズ可能なセレクト機能がリストボックスレンダリングモードに拡張される。
+  - リストボックスレンダリングモードは、複数またはサイズ属性を使用して有効化される。
+  - この機能は、セレクト要素の改善されたレンダリングと入力動作を提供する。
+- Ship: Layout Instability API CSS Pixel Attribution
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/fMBXw2w6J7I
+- Ship: Navigation API: expose destination in navigation.transition
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/EoMwF5Bn8kA
+- **Ship: Sanitizer API**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/iu3VwMotMBc
+  - HTML 文字列から、スクリプトなど危険な部分を削除する
+  - 全ブラウザが Positive で WHATWG Stage 2
+- Ship: Web App Manifest: specify update eligibility, icon urls are Cache-Control: immutable
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/3h-Rx2kVQow
+- Ship: WebGPU: `subgroup_uniformity` feature
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/ifPjq5LNyOA
+- **Ship: `text-justify` CSS property**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/7p3x9gwsB6U
+- Ship: Pointer Lock on Android
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/jXlkRs1KK3Y
+- Ship: Cache sharing for extremely-pervasive resources
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/oKoNHxyhZxs
+- Ship: Data URL MIME Type Parameter Preservation
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/5VWX4ujdd9o
+- Ship: Preserving dropEffect Values from dragover to drop Events
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/_Ii4ndjl5vk
+- Ship: Timeline Named Range "scroll"
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/tlFFfC0VLyA
+- Ship: WebGPU Compatibility mode
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/N3RlLGCOTJ4
+- Ship: WebGPU: Texture and Sampler Lets
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/uSCwz1uZpto
+- Ship: WebGPU: Transient attachments
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/nejekzLzk74
+- Ship: Web Authentication Conditional Create (Automatic Passkey Upgrades)
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/bTJ3EBKx8co
+- **Ship: meta name="text-scale"**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/0yp2ygJK5HE
+  - `<meta name="text-scale" content="scale">`
+  - https://www.joshtumath.uk/posts/2026-01-27-try-text-scaling-support-in-chrome-canary/
+- **Ship: Support the `hanging` and `each-line` for the `text-indent` property**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/E8lsWfkyWVk
+  - hanging: 最初の行を除く全ての行をインデントする。
+  - each-line: 強制改行後の各行にもインデントを適用する。
+- **Ship: Iterator Sequencing**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/d1FU_siECqQ
+  - `Iterator.concat()`
+  - Stage 4
+- Ship: Local Network Access split permissions
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/Zl3P6NHhMBw
+- Ship: Update Device Memory API limits
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/vXtAmrVZeDk
+  - メモリ利用制限値の緩和
+  - 従来の 0.25, 0.5, 1GB が時代遅れなので削除
+  - Android: 2, 4, 8GB
+  - Other: 2, 4, 8, 16, 32GB
+  - fingerprinting リスクを減少し、高性能デバイスの利用を促進できる。
+- Ship: WebRTC Datachannel: Always negotiate data channels
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/WQZZETOMrlE
+- **Ship: Decouple `border-width`, `outline-width` and `column-rule-width` values from their corresponding style values**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/_50sVoTmZ3I
+  - `border-width`, `outline-width`, `column-rule-width` を、対応する`*-style`から切り離す。
+  - `border-style: none` だと `border-width: 10px` が書いてあっても `0px` として解釈されていた
+  - 解決方法を変え、明示的な値が反映されるようになる。
+  - Gecko / Webkit はすでにこの挙動なのでリスクは低い
+- Ship: Crash Reporting key-value API
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/UD2RcDSb270
+- Ship: JSON and style support for link rel=modulepreload
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/Fqo74jE5dSs
+  - JSON, CSS Module を Preload できるように
+- Ship: Playback Statistics API for WebAudio
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/p-IHBp8Nw2Q
+  - `AudioContext.playbackStats` 属性が追加され、`AudioPlaybackStats` オブジェクトを返す。
+  - この API は、音声再生の統計情報 (平均レイテンシ、最小/最大レイテンシ、アンダーランの持続時間、アンダーランの回数) を提供する。
+  - WebAudio の再生品質を監視し、グリッチを検出する機能を持つ。
+- Prototype and Ship:
+- Prototype and Ship: trigger-scope
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/2hN81UUSQO8
+  - Scroll-triggered Animations で利用する dashed ident のスコープを制限し、名前の衝突を防ぐ
+  - `anchor-scope` の Scroll-triggered Animations 版
+- **Prototype and Ship: Cookie Store API `maxAge`**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/DK9JeCBW16g
+  - `expires` を採用していたが `maxAge` を使えるようにする
+- Prototype: Source Specific Multicast for Direct Sockets API
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/9_85J-eehT8
+- **Prototype: Canvas text writing mode support**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/WxD-ssll9K4
+  - Canvas のテキストを縦書きにできるように
+- **Prototype: Attribution API**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/8_VzKel3wm0
+  - 広告のパフォーマンスを測定する手段を提供し、トラッキングを可能にしない形でのコンバージョンの帰属を実現する API である。
+  - Blink コンポーネントとして、複数のブラウザによる共同作業に基づくものである。
+  - 初期の公開提案は GitHub で行われ、Chrome プラットフォームのステータスにリンクがある。
+- **Prototype: Run scripts when setting HTML**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/35pwApmgHQs
+  - `setHTMLUnsafe()` に `{runscript: true}` オプションを追加する
+  - `createContextualFragment`を通じて既に利用可能だが、使い勝手が悪く、文書化されていない副作用がある。
+  - setHTML 系を一貫性のある方法で整理し、script execution, sanitizing, streaming, partial/full replacement などのオプションも統一するため
+- **Prototype: Global Privacy Control**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/ztV1otnl_NQ
+  - https://w3c.github.io/gpc/#legal-effects
+- Prototype: Support `hanging` and `each-line` for the `text-indent` property
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/ppAnuRNiHM8
+- **Prototype: Autofill event**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/Y2lViVKDt6g
+  - Autofill は、動的なフォームに対応するために「autofill」イベントを追加する機能である。
+  - 開発者は、autofill されたデータに合わせてフォームを修正し、その情報をブラウザに通知できる。
+  - 現在の autofill は静的フォームに依存しており、動的なアドレスフォームとの整合性が求められている。
+- **Prototype: CSS Image Animation**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/0kUk5-6TAfM
+  - 新しい CSS プロパティ「`image-animation`」が導入され、アニメーション画像の再生制御が可能になる。
+  - 「`:animated-image`」という疑似クラスが、画像がアニメーション中かどうかを判定する。
+  - 現在の自動再生の挙動はアクセシビリティ基準に違反する可能性があり、開発者が再生を制御する手段が不足している。
+- **Prototype: `named-feature()` function for CSS `@supports`**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/yDqCRNiGZZs/
+  - 既存の「プロパティ: 値」という単純なチェックだけでは判別できない、特定の機能や組み合わせのサポート状況を確認するための仕組み
+  - こうした特定条件下での機能について、仕様側でキーワードを付けて、それを `@support` でチェックできるようにする
+    - https://drafts.csswg.org/css-conditional-5/#typedef-supports-named-feature-fn
+  - e.g. 特定の条件下でのみ動く機能
+    - `align-content` が `display: block` に対して効くようになった版かどうか
+    - `@supports named-feature(align-content-on-display-block)`
+- Prototype: Web Speech API: On-Device Recognition Quality
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/kR1Q5pcrk1Y
+- Prototype: Long Animation Frames style duration
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/34JZ4Z_XPXk
+- **Prototype: CSS `contrast-color()`**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/MRCj4zyxOgI
+  - White/Black のコントラストが高い方を計算する API
+- **Prototype: Agentic Login Toolkit**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/uXmdPPN2NUI
+  - Agent が自動でログインできるようにする目的
+  - ログインページの発見や操作をセマンティクスで補強する
+  - 具体的な方針などはまだ決まってないが、FedCM 文脈でやるっぽい
+- Prototype: FedCM for Android IdPs
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/DSE28phJjnA
+  - FedCM を Android ネイティブアプリと連携させる拡張を提案する文書である。
+  - 現在の FedCM は Web アプリとの統合に依存しており、ユーザーがログアウトしていることを前提としている。
+  - 提案により、Android アプリから直接アカウント情報を取得できるようになる。
+- **Prototype: `'step-up'` and `'step-down'` Invoker Commands**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/iwXoPUJhjIw
+  - number, range, date などでの、値の増減ボタンを Invoker Command 化
+  - Invokee の `.setUp()` / `.setDown()` を呼ぶ
+  - https://open-ui.org/components/future-invokers.explainer/
+- Prototype: Document Policy in Dedicated Workers
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/l-3DhX_uCco
+- Prototype: CSS Text Level 3 text-transform: full-size-kana
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/frmDarT4ek8
+- Prototype: Approximate Geolocation
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/Txa2H8yu0Yk
+  - Geolocation API の拡張として `accuracyMode` オプションを提案し、`getCurrentPosition()` および`watchPosition()` で使用可能にする。
+  - ユーザーの許可設定に基づき、精度の高い位置情報またはおおよその位置情報を返す機能を提供する。
+  - プライバシーと利便性のトレードオフを解決し、ユーザーの意図に応じた低精度の位置情報共有を可能にする。
+- Experiment: Context-aware media element(s)
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/jQgYo6TQrrU
+- **Experiment: WebNN**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/5CWKSChYo98
+  - Neural Network を構築・実行できるようにする
+  - グラフを構築するための演算処理 API(畳み込み、行列乗算など)を提供
+- Experiment: Speculation Rules: prerender-until-script Action
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/ik4zDGK_yxY
+- Experiment: WebAudio: Configurable render quantum
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/j7Wf7bA_qOY
+- **Experiment: Focusgroup**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/4vVuaMwMCTQ
+  - https://open-ui.org/components/scoped-focusgroup.explainer/
+- Extend Experiment : Prompt API
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/qs059tBaQMI
+- Extend Experiment: SharedWorker on Android
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/yUokoGf06T0
+- **Extend Experiment: Extended lifetime shared workers**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/k9FQc1iGQHk
+  - Unload 後も Shared Worker を延命する仕様
+  - Service Worker が無くても、Unload 後にタスクを継続できるようにする
+- Extend Experiment: Local network access restrictions
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/lRnFRIfzDMU
+- Ready for Developer Testing: Context-aware media element(s)
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/3uTUF37BMWs
+- Change:
+- Unship:
+- Remove:
+- Deprecate and remove: BMP extension for decoding JPEG/PNG-embedded-in-BMP
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/2XhFit5PXnE
+- PSA: Relaxing User Activation Requirements for Built-in AI APIs
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/QTIlr6Gkqg8
+- PSA: IndexedDB: SQLite backend (in-memory contexts)
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/jEDGJfRibfM
+- PSA: Overscroll effect on non-root scrollers
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/0rMc8bTNVCo
+- PSA: Supplementable is going away
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/nbTIoUZW6n0
+- PSA: Predictable reported storage quota
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/7q0YGQNVkjs
+- PSA: Enabling BFCache for pages using Shared Workers
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/l7bzGz4dDxY
+- Self-certification for Testing review gate on chromestatus.com
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/fnxQAMhpHkE
+- **Save the date for BlinkOn 21!**
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/k3qAz6ADbik
+  - April 20-21, 2026
+- Action required: You're invited to BlinkOn 21 on Apr 20-21!
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/VMUJ0GDRx4I
+
+
+#### Other
+
+- web.dev
+  - https://web.dev/
+  - WebGPU is now supported in major browsers
+    - https://web.dev/blog/webgpu-supported-major-browsers
+  - New to the web platform in November
+    - https://web.dev/blog/web-platform-11-2025
+  - Announcing Baseline in action
+    - https://web.dev/blog/announcing-baseline-in-action
+    - Baseline で紹介した機能を組み合わせた使い方紹介シリーズ
+    - dialog and popover
+    - An image gallery using Baseline features
+    - Container queries and units
+  - Preload responsive images
+    - https://web.dev/articles/preload-responsive-images
+  - November 2025 Baseline monthly digest
+    - https://web.dev/blog/baseline-digest-nov-2025
+  - Vote for the web features you want to see
+    - https://web.dev/blog/upvote-features
+    - caniuse.com や webstatus.dev などに Thumb-up UI が追加。多くの人が見るプラットフォームからより広く Developer Signals を集めやすくなる
+  - New to the web platform in December
+    - https://web.dev/blog/web-platform-12-2025
+  - Color themes with Baseline CSS features
+    - https://web.dev/articles/baseline-in-action-color-theme
+  - Responsive and fluid typography with Baseline CSS features
+    - https://web.dev/articles/baseline-in-action-fluid-type
+  - LCP and INP are now Baseline Newly available
+    - https://web.dev/blog/lcp-and-inp-are-now-baseline-newly-available
+  - Ten modern layouts in one line of CSS
+    - https://web.dev/articles/one-line-layouts
+- google for developers
+  - https://developers.googleblog.com/
+    - **Introducing A2UI: An open project for agent-driven interfaces**
+      - https://developers.googleblog.com/introducing-a2ui-an-open-project-for-agent-driven-interfaces/
+      - Agent が動的に UI を生成する標準フォーマット
+      - テキストベースではなく UI ベースで対話可能にする
+- google developer japan blog
+  - https://developers-jp.googleblog.com/
+- chrome developer blog
+  - https://developer.chrome.com/blog/
+  - **Digital Credentials API for credential issuance**
+    - https://developer.chrome.com/blog/digital-credentials-api-143-issuance-ot
+    - Digital Credentials API は、Chrome 143 から利用可能で、ウェブサイトがユーザーの好みのウォレットにデジタル資格を提供するのを容易にする。
+    - navigator.credentials.create() メソッドを使用し、発行者のウェブサイトが安全にウォレットアプリを呼び出して資格を発行できる。
+    - この API はプロトコルに依存せず、OpenID4VCI などのオープンスタンダードと連携して動作する。
+  - Let your Coding Agent debug your browser session with Chrome DevTools MCP
+    - https://developer.chrome.com/blog/chrome-devtools-mcp-debug-your-browser-session
+  - CSS scroll-triggered animations are coming!
+    - https://developer.chrome.com/blog/scroll-triggered-animations
+    - スクロール位置によってアニメーションの開始タイミングを指定可能に
+  - Throttle individual network requests
+    - https://developer.chrome.com/blog/throttle-individual-network-requests
+  - Winners of the Built-in AI Challenge 2025
+    - https://developer.chrome.com/blog/ai-challenge-winners-2025
+  - **CSS Wrapped 2025**
+    - https://developer.chrome.com/blog/css-wrapped-2025
+    - https://chrome.dev/css-wrapped-2025/
+    - 2025 年の CSS 要点まとめ
+  - Signal API for passkeys available on Chrome for Android
+    - https://developer.chrome.com/blog/signal-api-android
+  - Increasing web push notification value with rate limits
+    - https://developer.chrome.com/blog/web-push-rate-limits
+  - FedCM updates in Chrome 143
+    - https://developer.chrome.com/blog/fedcm-chrome-143-updates
+  - **Introducing the HTML `<geolocation>` element**
+    - https://developer.chrome.com/blog/geolocation-html-element
+    - PEPC からの切り出し
+    - 個々でやりたいことが複雑化したので、permission 要素に全て詰め込まずに一つの要素として仕切り直した
+    - そのほかにも `<usermedia>` などが検討されており、OT で試せる
+    - スタイリングの制限がある
+  - Screen configuration for automation and testing with Chrome Headless
+    - https://developer.chrome.com/blog/screen-configuration-with-chrome-headless
+  - Translator API is supported on Chromebook Plus
+    - https://developer.chrome.com/blog/ai-translation-chromebook-plus
+  - **Support for wrapped columns in multi-column layout**
+    - https://developer.chrome.com/blog/multicol-wrapping
+    - 以前までは高さが固定されていた場合「row 方向に無限にカラムが増えていく」挙動
+    - column の「折り返し」と「高さ」の指定が可能に
+    - 溢れる場合は新しい行として段組を続けられるので、割と紙面のようなレイアウトが組める
+    - 将来的には Gap Decorations などで行間に装飾を入れる提案についても検討が進んでいる
+  - **Throttle individual network requests**
+    - https://developer.chrome.com/blog/throttle-individual-network-requests
+    - 特定のリクエストだけスロットリングできる
+  - Speculation rules prerender until script origin trial
+    - https://developer.chrome.com/blog/prerender-until-script-origin-trial
+- chromium blog
+  - https://blog.chromium.org/
+- canary
+  - https://www.chromium.org/getting-involved/dev-channel
+- google security blog
+  - https://security.googleblog.com/
+  - **HTTPS certificate industry phasing out less secure domain validation methods**
+    - https://security.googleblog.com/2025/12/https-certificate-industry-phasing-out.html
+    - CA/BF での投票で決まった 11 のレガシーな手段を廃止
+    - Domain Control Validation について
+      - メールに依存する方法
+      - 電話に依存する方法
+      - 逆引きに依存する方法
+    - 基本は DNS TXT や well-known URL を用いる
+- search blog
+  - https://developers.google.com/search/
+- v8
+  - https://v8.dev/
+- other
+  - **Using 100vw is now scrollbar-aware (in Chrome 145+, under the right conditions)**
+    - https://www.bram.us/2026/01/15/100vw-horizontal-overflow-no-more/
+  - Subtract some scrollbars from viewport during viewport unit calculation
+    - https://issues.chromium.org/issues/354751900
+    - Chrome 145+ から ViewPort Units でスクロールバー分オーバーフローする問題なくなる
+    - 0.0003143195899% のページに影響するらしい
+    - https://github.com/w3c/csswg-drafts/issues/6026#issuecomment-1919428550
+  - **Chrome 145 adds Experimental Support for Vertical Tabs**
+    - https://www.bram.us/2026/01/16/chrome-145-adds-experimental-support-for-vertical-tabs/
+  - Google's Commitment to a Quantum-Safe Future: Why PQC is Google's Path forward and not QKD - Google Bug Hunters
+    - https://bughunters.google.com/blog/4625466008862720/google-s-commitment-to-a-quantum-safe-future-why-pqc-is-google-s-path-forward-and-not-qkd
+  - Welcome to the new Project Zero Blog - Project Zero
+    - https://projectzero.google/2025/12/welcome.html
+  - How Nano Banana got its name
+    - https://blog.google/products-and-platforms/products/gemini/how-nano-banana-got-its-name/
+    - モデルを評価サイト公開する直前(午前 2 時半)、急いでコードネームを決める必要があった
+    - PM が友人から「Naina Banana」や、小柄でコンピューター好きなので「Nano」と呼ばれていたことから、その 2 つをくっつけて「Nano Banana」を提案したところ、そのまま採用された
+    - 深夜テンションで決まったものがバズってしまい、公式にも採用されるに至った
+  - **Joint statement from Google and Apple**
+    - https://blog.google/company-news/inside-google/company-announcements/joint-statement-google-apple/
+    - Apple が Gemini を採用する共同声明
+    - Apple による「Gemini」採用は「不当な権力集中」──「Grok」擁するイーロン・マスク氏
+      - https://www.itmedia.co.jp/news/articles/2601/13/news045.html
+  - **Q4 2025 Summary from Chrome Security**
+    - https://groups.google.com/a/chromium.org/g/security-dev/c/K47tKuaOPUU
+    - AI Security: Indirect Prompt Injection 対策と Agentic Browsing の安全機構を公開。
+    - Counter-Abuse: Device Bound Session Credentials の Origin Trial 実施、Enhanced Protection の同期を改善。
+    - Secure Web & Network: Always Use Secure Connections のデフォルト化と Merkle Tree Certificate の初ハンドシェイク。
+    - Anti-Covert Tracking: TCP port randomization 導入と user dictionary leak 対策の実験開始。
+    - Security Architecture: Rust-based browser kernel の拡張と ChildProcessSecurityPolicy の Rust 移行開始。
+    - Platform Security: macOS legacy keychain API の廃止と memory-safe parser への移行推進。
+    - Safe Coding: Rust-based PNG codec への完全移行と Safe Buffers 対応率を 78% に向上。
+    - V8 Team: V8 sandbox の安定化と bytecode verifier の導入。
+    - Fuzzing & Product Security: Android での libfuzzer 対応拡大とチーム強化。
+  - **Gemini! Excited to share I'm now a director focused on AI in Google CloudAddyOsmani.com - Hello, Gemini.**
+    - https://addyosmani.com/blog/hello-gemini/
+    - Addy は Chrome から Google Cloud で Gemini にフォーカスしてく
+
+
+### Firefox 動向
+
+#### Stable: 146
+
+
+#### Updates
+
+- https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases
+- **Firefox 146 release notes for developers (Stable)**
+  - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/146
+  - contrast-color()
+  - display-p3-linear type support in color
+  - text-decoration-inset
+  - **@scope**
+  - WebDriverBiDi Bugfixes
+  - meta name="rating" (Nightly)
+  - **@custom-media (Nightly)**
+  - **Navigation API (Nightly)**
+- Firefox 147 release notes for developers (Beta)
+  - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/147
+  - DevTools Updates
+  - **CSS Anchor Positioning**
+    - supported set of features(MVP): https://groups.google.com/a/mozilla.org/g/dev-platform/c/B71NFNrZ8Lo/m/OhFEmNMSCQAJ
+  - CSS Module Scripts
+  - Document.activeViewTransition
+  - **Navigation API**
+- Firefox 148 release notes for developers (Nightly)
+  - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/148
+  - **Trusted Types API**
+  - **Location.ancestorOrigins**
+- **Closing out 2025 Strong - These Weeks in Firefox: Issue 193**
+  - https://blog.nightly.mozilla.org/2025/12/19/closing-out-2025-strong-these-weeks-in-firefox-issue-193/
+  - FirefoxDevTools の SNS アカウントが Firefox For Web Developers として再スタート
+    - https://bsky.app/profile/webdevs.firefox.com
+- **Phasing Out the Older Version of Firefox Sidebar in 2026 - Firefox Nightly News**
+  - https://blog.nightly.mozilla.org/2026/01/13/phasing-out-the-older-version-of-firefox-sidebar-in-2026/
+  - 2026 年に古いバージョンの Firefox Sidebar を廃止する決定がなされた。
+  - 新しい Sidebar は Firefox Nightly 148 からデフォルトで有効になる。
+  - 2026 年第 2 四半期に全ユーザーが新しい Sidebar に移行し、第 3 四半期には古い Sidebar が完全に廃止される。
+- Introducing Mozilla's Firefox Nightly .rpm package for RPM-based linux distributions! - Firefox Nightly News
+  - https://blog.nightly.mozilla.org/2026/01/19/introducing-mozillas-firefox-nightly-rpm-package-for-rpm-based-linux-distributions/
+- **Take note - Split View is ready for testing! - These Weeks in Firefox**
+  - https://blog.nightly.mozilla.org/2026/01/26/take-note-split-view-is-ready-for-testing-these-weeks-in-firefox-issue-194/
+- Experimental High Dynamic Range video playback on Windows in Firefox Nightly 148 - Mozilla Gfx Team Blog
+  - https://mozillagfx.wordpress.com/2026/01/16/experimental-high-dynamic-range-video-playback-on-windows-in-firefox-nightly-148/
+
+
+#### Intents
+
+- **Ship: Joint Iteration**
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/0ndpt09Bieo/
+  - Iterator.zip と Iterator.zipKeyed
+- Ship: movementX and movementY of pointerrawupdate event
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/9I9Lp11Vymc/
+- **Ship: Sanitizer API**
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/9ddjRQbYKuk
+- **Ship: Trusted Types**
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/WA8vLAbvzB0
+- **Ship: colorspace and alpha attributes for `<input type=color>`**
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/kxVLXKq-R9Q
+- Ship: Branch hinting
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Ya6E9yJ5E5w
+- **Prototype and Ship: support `shape()` in `basic-shape`**
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/eeqjJ-fvDTQ
+- **Prototype and Ship: Reporting API**
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/IepDyNjzuak
+- Prototype: Storage-Access-Headers
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/OPmJiLLZdak
+- Prototype: HTMLMediaElement.captureStream()
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ZbBXHcFyNyE
+- Prototype: CSS gradient easing functions
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/0kwIwvehpdI
+- Prototype: Add-On-Gated Web Serial
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/EDLTASS4Zik
+- **Prototype: "Customizable Select"**
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/B-oaFdvbrCI
+- Prototype: Replacing input type=color picker with in-browser popup
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/0xxbcFkr8zs/
+- **Prototype: ariaNotify**
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/7UOkFqbeH7o
+- **Prototype: JPEG XL decoding in Rust**
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/JMM5Nhdj6mc/
+- Change:
+- Remove:
+- **Unship: asm.js optimizations**
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Bx9SxZkhxGY/
+- Soft code freeze for Firefox 147 starts on Thursday, December 4 @ 8am UTC
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/oDFUqBISouY
+- Soft code freeze for Firefox 148 starts on January 8
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/dieXJsxcudk
+
+
+#### Newsletter
+
+- https://fxdx.dev/
+- Firefox WebDriver Newsletter 146 - Firefox Developer Experience
+  - https://fxdx.dev/firefox-webdriver-newsletter-146/
+- Engineering Effectiveness Newsletter (Q4 2025 Edition)
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/WDuRpd4h_-8
+- Firefox WebDriver Newsletter 147 - Firefox Developer Experience
+  - https://fxdx.dev/firefox-webdriver-newsletter-147/
+- Take note - Split View is ready for testing! - These Weeks in Firefox: Issue 194
+  - https://blog.nightly.mozilla.org/2026/01/26/take-note-split-view-is-ready-for-testing-these-weeks-in-firefox-issue-194/
+- Engineering Effectiveness Newsletter (Q4 2025 Edition) - Firefox Tooling Announcements - Mozilla Discourse
+  - https://discourse.mozilla.org/t/engineering-effectiveness-newsletter-q4-2025-edition/147161
+  - AGENTS.md and CLAUDE.md were added to the Firefox repository.
+- Mozilla Localization in 2025 - Mozilla L10N
+  - https://blog.mozilla.org/l10n/2026/01/07/mozilla-localization-in-2025/
+- Firefox Security & Privacy Newsletter Q4 2025
+  - https://groups.google.com/a/mozilla.org/g/dev-platform/c/kx9TkjuLDgk
+
+
+#### MDN / Open Web Docs
+
+- https://developer.mozilla.org/en-US/blog/
+
+
+#### Standard Position
+
+- https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2025-12-01+
+- Positive
+  - **Support maxAge in the Cookie Store API**
+    - https://github.com/mozilla/standards-positions/issues/1334
+  - Add support for video element lazy-loading via the loading attribute
+    - https://github.com/mozilla/standards-positions/issues/1325
+  - Expose navigation destination in NavigationTransition (navigation.transition.to)
+    - https://github.com/mozilla/standards-positions/issues/1324
+  - Sticky user activation across same-origin navigations
+    - https://github.com/mozilla/standards-positions/issues/1295
+  - Preventing User Dictionary Leaks via ::spelling-error and ::grammar-error CSS Pseudo-Elements
+    - https://github.com/mozilla/standards-positions/issues/1294
+  - **An Origin Object**
+    - https://github.com/mozilla/standards-positions/issues/1280
+  - **Web Neural Network API**
+    - https://github.com/mozilla/standards-positions/issues/1215
+  - Add prefetchCache and prerenderCache to Clear-Site-Data header
+    - https://github.com/mozilla/standards-positions/issues/1214
+  - [CSS UI-4] caret-shape property
+    - https://github.com/mozilla/standards-positions/issues/1211
+  - **Column wrapping (multicol)**
+    - https://github.com/mozilla/standards-positions/issues/1201
+  - **CSS view-transition-name: match-element**
+    - https://github.com/mozilla/standards-positions/issues/1198
+  - Navigation API: deferred commit
+    - https://github.com/mozilla/standards-positions/issues/1169
+  - CSS overflow-clip-margin
+    - https://github.com/mozilla/standards-positions/issues/1111
+  - ServiceWorkerAutoPreload
+    - https://github.com/mozilla/standards-positions/issues/1036
+  - Timing Info for ServiceWorker static routing API
+    - https://github.com/mozilla/standards-positions/issues/1031
+  - **Dialog light dismiss**
+    - https://github.com/mozilla/standards-positions/issues/998
+  - CanvasRenderingContext2D API Improvements
+    - https://github.com/mozilla/standards-positions/issues/519
+- Negative
+  - CanvasRenderingContext2D: Improved SVG filter interface
+    - https://github.com/mozilla/standards-positions/issues/1337
+  - CanvasRenderingContext2D: 4x4 transforms
+    - https://github.com/mozilla/standards-positions/issues/1336
+  - **CSS view-transition-name: auto**
+    - https://github.com/mozilla/standards-positions/issues/1329
+  - **Web Translation API**
+    - https://github.com/mozilla/standards-positions/issues/1015
+- Defer
+  - Email Verification Protocol
+    - https://github.com/mozilla/standards-positions/issues/1316
+  - Button Activation Behaviors
+    - https://github.com/mozilla/standards-positions/issues/1250
+
+
+#### Other
+
+- **Firefox の AI 機能サポートに関する Jake のお気持ち投稿**
+  - https://x.com/FirefoxWebDevs/status/2001626286243152102
+  - Firefox は AI 機能を完全に無効化する機能(AI Kill Switch)を提供している
+  - AI 機能はオプトイン
+  - > I'm not asking for faith in our direction - the thing I love about the Firefox community is how open, honest, and technical it is.
+  - > But I do ask that you don't have the opposite of faith. Like, try not to be determined that we're going to do the wrong thing here. -- Jake
+- Fast Company names Firefox as a 'Brand That Matters'
+  - https://blog.mozilla.org/en/firefox/fast-company-recognition/
+  - Firefox が Fast Company の「Brands That Matter」に選出された
+  - 新機能「Shake to Summarize」が情報過多を解消する手助けをする点が評価
+  - TIME 誌は Shake to Summarize をベスト発明リストに挙げた
+- Data War goes digital: Firefox's card game is now online
+  - https://blog.mozilla.org/en/firefox/bbo-data-war-digital-game/
+  - Firefox がゲームを作った
+  - 富裕層を宇宙に送り出すゲームらしい
+- When a video codec wins an Emmy
+  - https://blog.mozilla.org/en/mozilla/av1-video-codec-wins-emmy/
+- **You got more with Firefox in 2025**
+  - https://blog.mozilla.org/en/firefox/firefox-2025-updates/
+  - Firefox の 2025 年の UI/UX アップデート
+- Translate the web your way, plus choose the Firefox icon that suits your vibe
+  - https://blog.mozilla.org/en/firefox/firefox-146/
+- Meet the artist behind Firefox's new community-created app icon
+  - https://blog.mozilla.org/en/firefox/momo-creator/
+- Incident Report: A compiler bug and JSON - Data@Mozilla
+  - https://blog.mozilla.org/data/2025/12/09/incident-report-a-compiler-bug-and-json/
+- Ongoing CT Logging Mistakes by CAs
+  - https://www.mail-archive.com/dev-security-policy@mozilla.org/msg02291.html
+- **Mozilla's next chapter: Building the world's most trusted software company**
+  - https://blog.mozilla.org/en/mozilla/leadership/mozillas-next-chapter-anthony-enzor-demeo-new-ceo/
+  - Mozilla's new CEO
+- What we learned about choice and control online this year
+  - https://blog.mozilla.org/en/firefox/open-what-you-want-choice-survey/
+- Welcoming John Solomon as Mozilla's new Chief Marketing Officer
+  - https://blog.mozilla.org/en/mozilla/leadership/welcoming-john-solomon-mozilla-chief-marketing-officer/
+- Mozilla welcomes Amy Keating as Chief Business Officer
+  - https://blog.mozilla.org/en/mozilla/amy-keating-chief-business-officer/
+- **How founders are meeting the moment: Lessons from Mozilla Ventures' 2025 portfolio convening**
+  - https://blog.mozilla.org/en/mozilla/mozilla-ventures-2025-portfolio-convening/
+  - AI を big tech の占有物にするのではなく、オープンな共有資源にしようというマニフェスト
+  - AI をユーザのエージェント(代理人)として確立し、企業ではなくユーザサイドに位置付けたい
+  - そのために、2026 年は AI OSS を企業 AI と遜色ないくらい使いやすくするのが目標
+  - AI 開発に必要なコンポーネントを統合的に扱えるようにする Mozilla.ai の開発
+- How Mozilla builds now
+  - https://blog.mozilla.org/en/mozilla-new-products/how-mozilla-builds-now/
+  - Mozilla の製品開発に対する姿勢
+  - Mozilla Pioneers の紹介
+- **Who will pioneer the next web?**
+  - https://blog.mozilla.org/en/mozilla-new-products/mozilla-pioneers/
+  - 玄人向け有給インターンシップ的なもの?
+    - 経験豊富な開発者が、Mozilla と共同で初期段階のアイデアを検証する、期間限定かつ有給のプログラム
+  - 成果が良ければ、そのまま Mozilla でフルタイム雇用も
+  - Applications are open Monday, Jan. 26 and close Monday, Feb. 16, 2026.
+- December in Servo
+  - https://servo.org/blog/2026/01/23/december-in-servo/
+  - multiple windows, proxy support, better caching, and more! - Servo aims to empower developers with a lightweight, high-performance alternative for embedding web technologies in applications.
+- Flipping Responsibility for Jobs in SpiderMonkey
+  - https://spidermonkey.dev/blog/2026/01/15/job-responsibility.html
+- The State of Mozilla: Are you ready to choose your future?
+  - https://blog.mozilla.org/en/mozilla/state-of-mozilla-25-26/
+
+
+### Safari 動向
+
+#### Stable: 26.2
+
+
+#### Updates
+
+- Release Notes for Safari Technology Preview 233
+  - https://webkit.org/blog/17635/release-notes-for-safari-technology-preview-233/
+  - Added support for enhanced HTML select parsing to allow select elements to include optgroup, option, and hr at deeper nesting levels.
+  - Added support for the MathML scriptlevel attribute, mapping it to CSS math-depth as a presentational hint.
+  - Added support for reading Blob.stream() with a BYOB (getReader({mode:'byob'})) reader.
+  - Added support for capturing console.screenshot images within a Worker, including handling of ImageData, ImageBitmap, OffscreenCanvas, various CanvasRenderingContext types, and valid base64 data: URLs.
+- ::target-text: An easy way to style text fragments
+  - https://webkit.org/blog/17628/target-text-an-easy-way-to-style-text-fragments/
+  - text fragment 付きのリンクで遷移した際の fragment に対してスタイル
+- WebKit Features for Safari 26.2
+  - https://webkit.org/blog/17640/webkit-features-for-safari-26-2/
+  - WebKit Features for Safari 26.2
+    - HTML
+      - **Button commands**
+      - Finding content
+      - ARIA Index Text attributes
+      - Full width number normalization
+      - And more
+    - CSS
+      - **Shrink wrapping form fields**
+      - CSS Calc functions
+      - Text shaping across inline boxes
+      - Initial letter improvements
+      - **Anchor positioning improvements**
+      - **Color improvements**
+      - accent-color legibility
+      - Text decoration improvements
+      - **@scope**
+      - MathML
+      - More CSS
+    - Web API
+      - **Navigation API**
+      - Scrollend
+      - **View Transitions**
+      - Text Interaction
+      - Pointer and Touch Events
+      - Service Workers
+      - **Cookie Store**
+      - And more
+    - Performance API
+    - Web Inspector
+    - Web Animations API
+    - JavaScript
+    - WebAssembly
+    - WebGPU
+    - SVG
+    - WebRTC
+    - Canvas
+    - Web Compatibility
+    - WebDriver
+    - WebKit API
+    - Web Extensions
+    - Bug fixes and more
+- Release Notes for Safari Technology Preview 234
+  - https://webkit.org/blog/17674/release-notes-for-safari-technology-preview-234/
+  - Accessibility
+    - Resolved Issues
+  - Animations
+    - New Features
+      - Added support for Threaded Scroll-driven Animations.
+  - CSS
+    - New Features
+      - **Added support for CSS display: grid-lanes.**
+      - **Added support for an automatic initial value for grid-auto-flow in CSS Grid Level 3 to switch flow orientation based on grid-template-rows and grid-template-columns for grid lane layouts.**
+      - **Added support for item-tolerance in CSS Masonry layouts to improve flexible grid item placement.**
+  - Web API
+    - New Features
+      - Added support for ReadableStream.getIterator() and the [@@asyncIterator] methods to enable iteration over streams.
+      - Added support for the Keyboard Lock API.
+      - Added support for using readable byte streams as fetch request and response bodies and enabling synchronous start behavior.
+      - Added support for ReadableByteStream.
+      - Added support for upgrading elements in CustomElementRegistry.prototype.initialize.
+      - Added support for the customelementregistry content attribute and handling of null customElementRegistry values in document.createElement, document.createElementNS, and element.attachShadow.
+      - Expose MediaDeviceInfo interface in SecureContext only as per web specification.
+    - Resolved Issues
+  - Web Authentication
+    - New Features
+      - Added support for the WebAuthn PRF extension that maps to the CTAP hmac-secret extension, enabling credential-bound cryptographic secrets for both credential creation and authentication flows.
+    - Resolved Issues
+  - Web Inspector
+    - New Features
+      - **Added support for starting and stopping `<canvas>` recordings from the console within a Worker using console.record() and console.recordEnd().**
+      - Added support in the Web Inspector Timelines Heap view to display the dominator object, if any, when viewing the shortest GC path.
+      - **Added support for auto-completion of sideways-lr and sideways-rl values for the writing-mode CSS property.**
+      - **Added support for auto-completion of grid-lanes and inline-grid-lanes values for the display CSS property.**
+    - Resolved Issues
+  - WebRTC
+    - New Features
+      - Added support for capturing audio from multiple microphones on macOS with getUserMedia while managing echo cancellation and dynamically migrating existing captures to non-VPIO units.
+- Release Notes for Safari Technology Preview 235 | WebKit
+  - https://webkit.org/blog/17739/release-notes-for-safari-technology-preview-235/
+  - CSS
+    - Added support for parsing and evaluating name-only @container queries that have no conditions, allowing named containers to match without explicit constraints.
+    - Added support for math-depth.
+  - MathML
+    - Added support for CSS size containment in MathML elements using contain-intrinsic-inline-size and contain-intrinsic-block-size.
+    - Added support for math-style and math-shift to animate as discrete values.
+  - SVG
+    - Added support for the lighter operator in SVGFECompositeElement IDL to align with the Compositing and Blending specification.
+  - Web API
+    - Added support for pointer event and mouse event button support for the back and forward mouse buttons when they are available.
+  - Web Inspector
+    - Added a context menu option to DOM nodes in the Elements Tab to copy pretty-printed HTML.
+    - Added support for toggling the visibility of User Agent stylesheet rules in the Elements tab, including hiding related "go-to" arrows in the Computed panel when the setting is disabled.
+    - Added support for showing actual composited layer snapshots in the 3D Layers view.
+    - Added support for Web Inspector to fetch CSS property keyword completions based on feature support.
+    - Added support for displaying Order Numbers in CSS Grid and CSS Grid Lanes overlays in Web Inspector, including new UI settings for toggling order number visibility.
+    - Added support for visualizing gaps between items in the masonry axis of grid-lanes layouts within the Web Inspector grid overlay.
+- **Introducing CSS Grid Lanes**
+  - https://webkit.org/blog/17660/introducing-css-grid-lanes/
+  - Grid-Lanes の使い方と現状
+  - Item Flow の仕様はまだ固まっていないけれど、display: grid-lanes と grid-template-[columns | rows] のデフォルト挙動は固まった
+  - 基本的な Masonry レイアウトは組めるフェーズ
+- **New Safari developer tools provide insight into CSS Grid Lanes**
+  - https://webkit.org/blog/17746/new-safari-developer-tools-provide-insight-into-css-grid-lanes/
+  - Grid-lanes の DevTools 周りのアップデート
+  - 「たるみの許容度」を指定できた `item-slack` が `item-tolerance` になり、最終的に `flow-tolerance` に決定されたお知らせ
+    - https://github.com/w3c/csswg-drafts/issues/10884
+  - これから Item Flow は `item-*` 系ではなく `flow-*` 系で策定する可能性高そう
+- **When will CSS Grid Lanes arrive? How long until we can use it? | WebKit**
+  - https://webkit.org/blog/17758/when-will-css-grid-lanes-arrive-how-long-until-we-can-use-it/
+  - もうすぐ使えるぞっていう解説
+
+
+#### Standard Positions
+
+- https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-12-01+
+- Support
+  - **CSS Values and Units: sibling-count() and sibling-index()**
+    - https://github.com/WebKit/standards-positions/issues/591
+  - **An Origin Object**
+    - https://github.com/WebKit/standards-positions/issues/538
+- Oppose
+  - Web Bluetooth
+    - https://github.com/WebKit/standards-positions/issues/570
+- Withdrawn
+  - Protected Audience (formerly FLEDGE)
+    - https://github.com/WebKit/standards-positions/issues/158
+
+
+#### Other
+
+- Igalia WebKit Team | WebKit Igalia Periodical #49
+  - https://blogs.igalia.com/webkit/blog/2025/wip-49/
+- Igalia WebKit Team | WebKit Igalia Periodical #50
+  - https://blogs.igalia.com/webkit/blog/2025/wip-50/
+- Igalia WebKit Team | WebKit Igalia Periodical #51
+  - https://blogs.igalia.com/webkit/blog/2025/wip-51/
+- Igalia WebKit Team | WebKit Igalia Periodical #52
+  - https://blogs.igalia.com/webkit/blog/2025/wip-52/
+- Igalia WebKit Team | WebKit Igalia Periodical #53
+  - https://blogs.igalia.com/webkit/blog/2026/wip-53/
+- Igalia WebKit Team | WebKit Igalia Periodical #54
+  - https://blogs.igalia.com/webkit/blog/2026/wip-54/
+
+
+### Edge 動向
+
+#### Stable: 144
+
+
+#### Updates
+
+- https://blogs.windows.com/msedgedev/
+  - Making complex web apps faster - Microsoft Edge Blog
+    - https://blogs.windows.com/msedgedev/2025/12/09/making-complex-web-apps-faster/
+    - https://github.com/WICG/delayed-message-timing/blob/main/README.md
+    - Performance Timing API に追加された Delayed Message Timing API の解説
+    - 受信コンテキストの詰まり
+    - タスクキューの詰まり
+    - シリアライズ/デシリアライズオーバーヘッド
+    - などを検出できる
+- https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
+  - ここでも見れる
+- https://twitter.com/MSEdgeDev
+  - これを見るしか無い
+
+
+#### Other
+
+- Security Surfaces - text/plain
+  - https://textslashplain.com/2025/12/03/security-surfaces/
+
+
+### WHATWG/W3C 動向
+
+#### Draft
+
+- https://www.w3.org/news/
+- Recommendation
+  - Proposed Advancement of Accessibility Conformance Testing (ACT) Rules Format 1.1 to W3C Recommendation
+    - https://www.w3.org/news/2026/proposed-advancement-of-accessibility-conformance-testing-act-rules-format-1-1-to-w3c-recommendation/
+- Candidate Recommendation
+  - Updated Candidate Recommendation: CSS Color Adjustment Module Level 1
+    - https://www.w3.org/news/2025/updated-candidate-recommendation-css-color-adjustment-module-level-1/
+    - UA Pref で自動的に変化するカラー系のアップデート
+  - Updated Candidate Recommendation: Dubbing and Audio description Profiles of TTML2
+    - https://www.w3.org/news/2025/updated-candidate-recommendation-dubbing-and-audio-description-profiles-of-ttml2/
+  - W3C Invites Implementations of Web Authentication: An API for accessing Public Key Credentials Level 3
+    - https://www.w3.org/news/2026/w3c-invites-implementations-of-web-authentication-an-api-for-accessing-public-key-credentials-level-3/
+- Working Draft
+  - **Update: Selectors Level 4**
+    - https://www.w3.org/TR/2026/WD-selectors-4-20260122/
+    - Visited Links Partitioning の項目が追加
+      - https://www.w3.org/TR/2026/WD-selectors-4-20260122/#visited-privacy
+  - Update: CSS Nesting Module Level 1
+    - https://www.w3.org/TR/2026/WD-css-nesting-1-20260122/
+    - @scope の詳細度が変わる
+    - @scope 内の Nesting において、@scope 自身の要素の詳細度が考慮されなくなる
+  - Update: CSS Grid Layout Module Level 3
+    - https://www.w3.org/TR/2026/WD-css-grid-3-20260121/
+    - `item-tolerance` から `flow-tolerance` に名称変更
+- First Public Working Draft
+  - SHACL 1.2 Rules
+    - https://www.w3.org/news/2025/first-public-working-draft-shacl-1-2-rules/
+    - Shapes Constraint Language (SHACL) Rules(シャクル・ルール?)
+    - RDF データを検証・推論するルールのこと
+    - SHACL はもともと RDF データの「検証」のためだったが、SHACL Rules で「推論・データ生成」もできるように
+  - First Public Working Draft: SHACL 1.2 Node Expressions
+    - https://www.w3.org/news/2026/first-public-working-draft-shacl-1-2-node-expressions/
+- Group Note Draft
+  - RDF 1.2 Interoperability
+    - https://www.w3.org/news/2025/group-note-draft-rdf-1-2-interoperability/
+  - Threat Modeling Guide and Threat Model for Decentralized Credentials
+    - https://www.w3.org/news/2026/group-note-drafts-threat-modeling-guide-and-threat-model-for-decentralized-credentials/
+    - 仕様策定段階での脅威モデリング手法について記した Notes
+
+
+#### Open UI
+
+- https://github.com/openui/open-ui/tree/main/meetings/telecon
+- 2025-12-11
+  - https://github.com/openui/open-ui/blob/main/meetings/telecon/2025-12-11.md
+  - Should select multiple with popup have OK/Cancel buttons?
+    - https://github.com/openui/open-ui/issues/1217
+
+
+#### WHATNOT
+
+- https://github.com/whatwg/html/issues?q=%20WHATNOT%20meeting%20
+- Filtering support for customizable select
+  - https://github.com/whatwg/html/issues/12050
+  - Filterable Customizable Select Element のマークアップの方針が固まってきた
+- **Base appearance for drop-down select multiple**
+  - https://github.com/whatwg/html/issues/12049
+  - 複数選択ドロップダウン UI の見た目
+  - Summary: https://codepen.io/sakupi01/pen/jErNKEd
+- Writing Mode for Canvas text
+  - https://github.com/whatwg/html/issues/11449
+  - Canvas の縦書き対応
+  - textOrientation で文字だけ回し、ボックスは transform() で回せばいいのではという意見が出た
+  - Writing Mode をサポートしないとなると
+    - ロジカル Properties&Values
+    - 縦書き用のグリフ「っ」「。」の配置
+    - などがサポートされないことになる
+- td and role="columnheader/rowheader"
+  - https://github.com/w3c/html-aria/issues/562
+  - td に対して許可される role の範囲を広げる
+- Allow HTML web apps to force 24 hour time format in input type=time
+  - https://github.com/whatwg/html/issues/6698
+  - ユーザがローカルで変更してても 24h 表記を強制したい
+  - であれば 12h もサポートすべきでは
+
+
+#### CSSWG
+
+- https://www.w3.org/blog/CSS/
+- https://lists.w3.org/Archives/Public/www-style/
+- Event Invitation: CSSWG Grid-Lanes Breakout from Alan Stearns (W3C Calendar) on 2025-12-01 (www-style@w3.org from December 2025)
+  - https://lists.w3.org/Archives/Public/www-style/2025Dec/0001.html
+  - https://lists.w3.org/Archives/Public/www-style/2025Dec/0002.html
+- [css-scrollbars-1] Add scrollbar-style property for overlay scrollbars
+  - https://github.com/w3c/csswg-drafts/issues/13218
+  - Fluent Scrollbar のスイッチングを CSS で制御できるようになる
+- CSSWG F2F January 2026 meeting
+  - https://github.com/orgs/w3c/projects/221/views/1
+  - [css-borders] Allow multiple borders by listifying them
+    - https://github.com/w3c/csswg-drafts/issues/13044
+    - box に対して複数の border を描く
+  - [css-sizing] Auto-resize iframes based on content · Issue #1771 · w3c/csswg-drafts
+    - https://github.com/w3c/csswg-drafts/issues/1771
+    - 本格的に iframe の大きさを中身のコンテンツ量に合わせて自動で変えれるようになりそう
+    - HTML: meta name="responsive-embedded-sizing" content="auto"
+    - CSS : frame-sizing: content-height;
+    - JS: window.requestResize()
+    - https://groups.google.com/a/chromium.org/g/blink-dev/c/QirdSBIvM1k
+  - CSS Route Matching が進んでいる
+  - [css-fonts-5] Text Fitting: Default scaling limit
+    - https://github.com/w3c/csswg-drafts/issues/12886
+    - shrink の問題
+    - ズームしたら画面に収まる CSS ピクセルが少なくなるので、画面に収まる文字数が減る
+    - それを縮めようという力が働く
+    - テキストが大きくならない
+      - zoom 検知の仕組みとか、text-fit の適用範囲を 200% までの zoom っていうリミットとかを設ける?となっている
+  - [css-grid-3][masonry] item-flow row vs. column in masonry layouts
+    - https://github.com/w3c/csswg-drafts/issues/12803
+    - 決着するか?
+      - 決まらなかった
+
+
+#### Other
+
+- **AI Content Disclosure**
+  - https://github.com/WICG/proposals/issues/261
+  - 2026 年 8 月施行の「EU AI 法」では、AI が生成したコンテンツであることを機械が読み取れる形で明示することが義務付けられる
+  - HTML の方では meta タグで「ドキュメント全体に対して」AI 生成コンテンツかを開示できるようにする提案がある
+  - Proposal: Meta Tag for AI Generated Content
+    - https://github.com/whatwg/html/issues/9479
+  - 今回の WICG の方は属性の提案で、ページの部分的な AI 生成利用を開示するためのもの
+- **Standards Queues**
+  - https://bkardell.com/blog/Queues.html
+  - Web 標準の課題は技術ではなく、Queue の管理である。
+  - 提案は多くの専門家のレビューを必要とし、実装者は有限で忙しいため、進行が遅れる。
+  - Interop や Joint Meeting が進展を促進する手段として有効である。
+- The Secret Life of Custom Elements
+  - https://bkardell.com/blog/SecretLifeOfCustomElements.html
+  - 過去 6 年間にわたり、HTTP Archive のデータを利用して、独自に定義されたタグを調査してきた
+  - 何か機能が標準化されても、標準化団体の目の届かないところで意図しない利用がされている実態がある
+  - これは、標準の要素がなんらかの課題を抱えているためかもしれない
+  - 標準化を、もっとリアルなデータに基づいたものにしていくべきだ
+- Happy holidays from the World Wide Web Consortium!
+  - https://www.w3.org/news/2025/happy-holidays-from-the-world-wide-web-consortium/
+- W3C Invites Implementations of IMSC Text Profile 1.3
+  - https://www.w3.org/news/2025/w3c-invites-implementations-of-imsc-text-profile-1-3/
+- **EPUB and HTML - Survey results and next stepsEPUB and HTML - Survey results and next steps**
+  - https://www.w3.org/blog/2026/epub-and-html-survey-results-and-next-steps/
+  - 長年の議論の結果、EPUB で HTML を利用可能にする提案は見送りとなった
+  - 理想は HTML だったが、出版業界はあまりにも XML ベースなので、今更変えると大混乱をうんでしまう
+- **Strengthening Community Engagement at TPAC 2025: looking back at the IE & inclusion Funds**
+  - https://www.w3.org/blog/2026/strengthening-community-engagement-at-tpac-2025-looking-back-at-the-ie-inclusion-funds/
+  - TPAC2025 での Invited Experts fund と Inclusion fund の成果報告
+  - 67 件の応募があり、そのうち 26 名が実際に支援を受けた。過去 7 年間の合計の約 4 倍に相当する規模
+- **Some Thoughts on the Open Web**
+  - https://www.mnot.net/blog/2026/01/20/open_web
+  - Open Web Breakout Session を開いた mnot 自身の見解
+  - > we have to create an Internet where people want to publish content openly - for some definition of "open."
+
+
+### TC39/TC55 動向
+
+#### Meeting
+
+- 2025-11
+  - https://github.com/tc39/agendas/blob/main/2025/11.md
+  - https://github.com/tc39/notes
+    - https://github.com/tc39/notes/pull/386/files
+  - Error.captureStackTrace
+    - accessor ではなく data property を推奨
+    - Stage 2 に
+  - **Import text**
+    - with { type: "text" }
+    - UTF-8 としてインポート
+    - Stage 2.7
+  - TypedArray Find Within
+    - 特定の TypedArray が、別の TypedArray に入ってるか探す
+    - 名前をどうするか検討中(indexOf, find, contains etc)
+  - **Composites (Records & Tuples rebranding)**
+    - インスタンスではなく Composites() という関数を通すという新提案
+    - 通したオブジェクトは形が同じなら === になる
+    - つまり、渡したオブジェクトと同型のインスタンスを返す関数として実装される
+    - グローバルに map を持つことになり、その GC などを考える必要がある
+    - WeakMap の場合はエラーにするなどの議論
+  - **Concurrency Control**
+    - Async Iterator のリソース管理のために Governor の導入
+    - 同時並行の管理などが含まれる
+  - Object.propertyCount
+    - 今まではメソッドにオプションを渡す提案だった
+    - 用途ごとにメソッドを分ける方向に
+  - Intl Era Monthcode
+    - 時代(和暦など)の扱いがブロッカー
+    - 2 つの Normative Change で Stage 3 は延期
+  - **Amount**
+    - 数字と単位を持つ Amount が単位変換に再チャレンジ
+    - 計算については言及されず
+    - SI 単位系は全部サポートする方向
+    - CLDR が持っているらしい
+  - Intl Energy Units
+    - 電気自動車やバッテリーの UI で需要が高いエネルギー単位(ワット、キロワット、キロワット時)を Intl.NumberFormat に追加する提案
+    - 用途の重要性が指示され Stage 1 へ
+
+
+#### Proposals Diff
+
+- https://github.com/tc39/proposals/compare/main@{2026-01-01}...main@{2026-02-01}
+- https://tc39.github.io/beta/
+- 0->1
+  - Object.getNonIndexStringProperties
+  - Typed Array Find Within
+  - Typed Array Concat
+  - "explore associating a unit with a number"
+- 1->2
+  - Object.keysLength
+  - Import Text
+  - Error.captureStackTrace
+- 2->2.7
+  - Iterator Join
+  - Await Dictionary
+- 2.7->3
+  - Joint Iteration
+- 3->4
+  - Intl.Locale Info
+  - Iterator Sequencing
+
+
+#### New Proposals
+
+
+#### WinterTC
+
+- https://github.com/WinterTC55/admin/tree/main/meetings
+- 無し
+
+
+#### Other
+
+- ECMA-429 - Ecma International
+  - https://ecma-international.org/publications-and-standards/standards/ecma-429/
+  - Minimal Common API の 1st Edition
+
+
+### IETF 動向
+
+#### IETF
+
+
+#### WG
+
+- RFC
+- Work
+  - draft-ietf-httpbis-rfc6265bis-22.txt
+    - https://mailarchive.ietf.org/arch/msg/ietf-announce/tEjnrrb7ity30rPbPWblhFZCP3o/
+    - -22 が出た
+- Meeting
+
+
+#### Other
+
+
+### 周辺動向
+
+#### ベンダー動向
+
+- **Doing Our Share for the Web in 2025 | Igalia**
+  - https://www.igalia.com/2026/01/05/Doing-Our-Share-for-the-Web-in-2025.html
+  - Igalia は Chromium において非 Google の貢献者として第 2 位を維持している。
+  - WebKit においては Apple に次ぐ最大の貢献者であり、パフォーマンス向上に寄与している。
+  - Igalia は JavaScript のテストスイートで第 1 位の貢献者であり、様々な Web 標準にも積極的に関与している。
+- **Human Native is joining Cloudflare**
+  - https://blog.cloudflare.com/human-native-joins-cloudflare/
+  - CF が Human Native という AI データマーケットプレース企業を買収した。
+  - AI が課金してクロールできる、Pay per Crawl な基盤を作るのが目的。
+  - x402 Foundation で、その通信プロトコルなどを策定する。
+  - 新しいビジネスの基盤を作る取り組み。
+- **6-day and IP Address Certificates are Generally Available - Let's Encrypt**
+  - https://letsencrypt.org/2026/01/15/6day-and-ip-general-availability
+  - Let's Encrypt が IP アドレスと短命証明書を発行開始
+  - 短命は 6 日間。まだデフォルトではないが、今後 90 日は 45 日になるので、自動化すれば 6 日も可能になるはず。
+  - IP は DNS やホームネットワーク、DC 内などのユースケースがある。
+- Servo 2025 Stats
+  - https://blogs.igalia.com/mrego/servo-2025-stats/
+  - Igalia が本格的に Servo に入り始めた後の成長
+- Google's AI advantage: why crawler separation is the only path to a fair Internet
+  - https://blog.cloudflare.com/uk-google-ai-crawler-policy/
+  - CMA が Google に対する行動要件の提案に関する協議を開始。
+  - 出版社が Google の検索を通じて生成 AI サービスに利用されるコンテンツの選択肢と透明性を高めることを目的。
+  - Google は 90%の検索市場シェアを持ち、CMA によって戦略的市場ステータス(SMS)に指定。
+  - 出版社は自らのコンテンツが生成 AI に使用されることを制御する手段が必要。
+  - 現在の提案では、出版社が Google のコンテンツ利用に対する選択肢が不十分。
+  - Googlebot は他の AI クローラーに比べて遥かに多くのコンテンツにアクセスできるため、不公平な競争優位性を持つ。
+  - CMA は出版社に対して「意味のある」制御を提供することを提案しているが、実際には Google のプラットフォームに依存する形。
+  - クローラーの分離が唯一の効果的な解決策であり、これにより出版社はコンテンツ利用の条件を設定できる。
+  - 分離されたクローラーは、AI 企業と Google の競争の公平性を確保し、出版社の権限を回復する。
+  - Cloudflare は CMA と協力し、効果的な行動要件の最終決定を形成するためのデータ提供にコミット。
+
+
+#### セキュリティ動向
+
+- **イランでのネット切断**
+  - What we know about Iran's Internet shutdown
+    - https://blog.cloudflare.com/iran-protests-internet-shutdown/
+    - 1/8 から行われているイランのインターネット切断について
+    - イラン政府が国内の講義活動を抑制するためにネットを切断
+  - イランで Starlink の接続無料
+    - https://www.cnn.co.jp/world/35242673.html
+    - Starlink をイランでは無料に
+  - Starlink も切断
+    - https://www.nikkei.com/article/DGXZQOGR1392F0T10C26A1000000/
+    - ロシアのジャマーでジャミングされ Starlink も切断
+  - ネット不要の bitchat が利用拡大
+    - https://internet.watch.impress.co.jp/docs/yajiuma/2079035.html
+    - 元 Twitter 創業者の Jack Dorsey が開発
+    - Bluetooth Low Energy のメッシュで通信
+- Pre-Auth RCE Risk: OpenSSL Patches High-Severity Stack Overflow (CVE-2025-15467)
+  - https://securityonline.info/pre-auth-rce-risk-openssl-patches-high-severity-stack-overflow-cve-2025-15467/
+  - OpenSSL に深刻な脆弱性
+  - DoS や RCE が可能
+
+
+#### Other
+
+- **State of HTML 2025**
+  - https://2025.stateofhtml.com/en-US/
+- **State of JS 2025**
+  - https://2025.stateofjs.com/
+- **The 2025 Web Almanac**
+  - https://almanac.httparchive.org/en/2025/
+- Naked Power - Infrequently Noted
+  - https://infrequently.org/2026/01/naked-power
+- AddyOsmani.com - 21 Lessons From 14 Years at Google
+  - https://addyosmani.com/blog/21-lessons/
+- **Interop 2026 focus area 確定**
+  - https://github.com/web-platform-tests/interop/issues/1245
+  - Interop 2026 の focus area や investigation area が確定した模様
+  - このまま行けば 2/12 に公表されそう
+
+
+### イベント
+
+- 1 月
+- 2 月
+- 3 月
+  - 10-12: TC39 NY
+    - https://github.com/tc39/agendas/blob/main/2026/03.md
+  - 14-20: IETF 125 Shenzhen
+    - https://www.ietf.org/meeting/125/
+
+
+### Wrap Up
+
+- Chrome
+  - 143
+    - CSS anchored fallback container queries
+  - 144
+    - The ::search-text pseudo-element
+    - The geolocation element
+    - The Temporal API
+  - 145 beta
+    - Customizable select listbox
+    - Overscroll effect on non-root scrollers
+    - Device Bound Session Credentials (DBSC)
+    - Sanitizer API
+    - Trusted Types specification alignment
+  - Ship
+    - meta name="textscale"
+    - Decouple border-width, outline-width and column-rule-width values from their corresponding style values
+  - Prototype
+    - Canvas text writing mode support
+    - Attribution API
+    - Cookie Store API maxAge
+    - Global Privacy Control
+    - named-feature() function for CSS @supports
+    - Agentic Login Toolkit
+  - Experiment
+    - WebNN
+  - Deprecate and Remove
+  - PSA
+  - other intents
+  - web.dev
+  - Google Developer Blog
+    - Introducing A2UI
+  - Chrome Developers
+    - Digital Credentials API for credential issuance
+    - CSS Wrapped 2025
+    - Introducing the HTML geolocation element
+    - Support for wrapped columns in multi-column layout
+    - Throttle individual network requests
+  - Chromium blog
+  - other blogs
+    - CA/BF での投票で決まった 11 のレガシーな手段を廃止
+  - other
+    - Using 100vw is now scrollbar-aware
+    - Chrome 145 adds Experimental Support for Vertical Tabs
+    - Joint statement from Google and Apple
+    - Q4 2025 Summary from Chrome Security
+    - Addy が Gemini チームに異動
+- Firefox
+  - 146
+    - @scope
+    - @custom-media (Nightly)
+    - Navigation API (Nightly)
+  - 147
+    - CSS Anchor Positioning
+    - Navigation API
+  - 148
+    - Trusted Types API
+    - Location.ancestorOrigins
+  - FirefoxDevTools の SNS アカウントが Firefox For Web Developers として再スタート
+  - 古いバージョンの Firefox Sidebar を廃止
+  - Split View がトライアル開始
+  - Ship
+    - Joint Iteration
+    - Sanitizer API
+    - Trusted Types
+    - colorspace and alpha attributes for input type=color
+  - Prototype and Ship
+    - support shape() in basic-shape
+    - Reporting API
+  - Prototype
+    - Customizable Select
+    - ariaNotify
+    - JPEG XL decoding in Rust
+  - Unship
+    - asm.js optimizations
+  - other intents
+  - MDN Blog
+  - Standard Position
+    - Support maxAge
+    - Origin Object
+    - Web NN
+    - Column Wrapping
+    - Dialog Light Dismiss
+  - other
+    - Firefox の AI 機能サポートに関する Jake のお気持ち投稿
+    - Mozilla's new CEO
+    - AI 開発を OSS 化していきたい [mozilla.ai](http://mozill.ai) の開発
+    - 玄人向け有給インターンシップ的なもの
+- Safari
+  - TP 235
+  - Standard Position
+  - other
+    - Introducing CSS Grid Lanes
+- Edge
+  - Stable 144
+  - Performance Timing API
+- W3C/WHATWG
+  - Draft
+    - Visited Links Partitioning の項目が追加された
+    - `item-tolerance` から `flow-tolerance` に名称変更
+  - Open UI
+    - Filtering CSE
+  - WHATNOT meeting
+    - Canvas の縦書き対応
+      - textOrientation で文字だけ回し、ボックスは transform() で回せばいいのではという意見が出た
+    - input type=time でユーザのロケールに依らず 24h/12h 表記を強制したい
+  - CSSWG
+    - January F2F で色々決まった
+      - 複数 border を指定できるように
+      - Auto-resize iframes based on content
+      - CSS Route Matching が進んでいる
+      - Text Fitting shrink の問題
+      - Item Flow Direction 問題決まらず
+  - Other
+- TC39
+  - 2025-11
+    - Import text
+    - Composites (Records & Tuples rebranding)
+    - Concurrency Control
+    - Amount
+  - WinterTC
+- IETF
+- 周辺動向
+  - ベンダー動向
+    - Doing Our Share for the Web in 2025 | Igalia
+    - Human Native is joining Cloudflare
+    - 6-day and IP Address Certificates are Generally Available - Let's Encrypt
+  - セキュリティ動向
+    - イランでのネット切断
+  - Other
+    - State of HTML 2025
+    - State of JS 2025
+    - The 2025 Web Almanac
+    - Interop 2026 focus area 確定
