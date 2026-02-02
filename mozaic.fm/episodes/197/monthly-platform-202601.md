@@ -13,13 +13,11 @@ guest: [@progfay](https://x.com/progfay)
 
 第 197 回のテーマは 2025 年 12 月と 2026 年 1 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 144
-
 
 #### Updates
 
@@ -172,7 +170,6 @@ guest: [@progfay](https://x.com/progfay)
     - Chrome removes support for obsolete virtual cameras on macOS
     - Remove BMP Extension for Embedding JPEG-or-PNG-in-BMP
     - Reduced User-Agent strings by default
-
 
 #### Intents
 
@@ -393,7 +390,6 @@ guest: [@progfay](https://x.com/progfay)
 - Action required: You're invited to BlinkOn 21 on Apr 20-21!
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/VMUJ0GDRx4I
 
-
 #### Other
 
 - web.dev
@@ -537,11 +533,9 @@ guest: [@progfay](https://x.com/progfay)
     - https://addyosmani.com/blog/hello-gemini/
     - Addy は Chrome から Google Cloud で Gemini にフォーカスしてく
 
-
 ### Firefox 動向
 
 #### Stable: 146
-
 
 #### Updates
 
@@ -583,7 +577,6 @@ guest: [@progfay](https://x.com/progfay)
   - https://blog.nightly.mozilla.org/2026/01/26/take-note-split-view-is-ready-for-testing-these-weeks-in-firefox-issue-194/
 - Experimental High Dynamic Range video playback on Windows in Firefox Nightly 148 - Mozilla Gfx Team Blog
   - https://mozillagfx.wordpress.com/2026/01/16/experimental-high-dynamic-range-video-playback-on-windows-in-firefox-nightly-148/
-
 
 #### Intents
 
@@ -629,7 +622,6 @@ guest: [@progfay](https://x.com/progfay)
 - Soft code freeze for Firefox 148 starts on January 8
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/dieXJsxcudk
 
-
 #### Newsletter
 
 - https://fxdx.dev/
@@ -649,11 +641,9 @@ guest: [@progfay](https://x.com/progfay)
 - Firefox Security & Privacy Newsletter Q4 2025
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/kx9TkjuLDgk
 
-
 #### MDN / Open Web Docs
 
 - https://developer.mozilla.org/en-US/blog/
-
 
 #### Standard Position
 
@@ -707,7 +697,6 @@ guest: [@progfay](https://x.com/progfay)
     - https://github.com/mozilla/standards-positions/issues/1316
   - Button Activation Behaviors
     - https://github.com/mozilla/standards-positions/issues/1250
-
 
 #### Other
 
@@ -772,11 +761,9 @@ guest: [@progfay](https://x.com/progfay)
 - The State of Mozilla: Are you ready to choose your future?
   - https://blog.mozilla.org/en/mozilla/state-of-mozilla-25-26/
 
-
 ### Safari 動向
 
 #### Stable: 26.2
-
 
 #### Updates
 
@@ -903,7 +890,6 @@ guest: [@progfay](https://x.com/progfay)
   - https://webkit.org/blog/17758/when-will-css-grid-lanes-arrive-how-long-until-we-can-use-it/
   - もうすぐ使えるぞっていう解説
 
-
 #### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-12-01+
@@ -918,7 +904,6 @@ guest: [@progfay](https://x.com/progfay)
 - Withdrawn
   - Protected Audience (formerly FLEDGE)
     - https://github.com/WebKit/standards-positions/issues/158
-
 
 #### Other
 
@@ -935,11 +920,9 @@ guest: [@progfay](https://x.com/progfay)
 - Igalia WebKit Team | WebKit Igalia Periodical #54
   - https://blogs.igalia.com/webkit/blog/2026/wip-54/
 
-
 ### Edge 動向
 
 #### Stable: 144
-
 
 #### Updates
 
@@ -957,12 +940,10 @@ guest: [@progfay](https://x.com/progfay)
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
 
-
 #### Other
 
 - Security Surfaces - text/plain
   - https://textslashplain.com/2025/12/03/security-surfaces/
-
 
 ### WHATWG/W3C 動向
 
@@ -1007,7 +988,6 @@ guest: [@progfay](https://x.com/progfay)
     - https://www.w3.org/news/2026/group-note-drafts-threat-modeling-guide-and-threat-model-for-decentralized-credentials/
     - 仕様策定段階での脅威モデリング手法について記した Notes
 
-
 #### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -1015,7 +995,6 @@ guest: [@progfay](https://x.com/progfay)
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2025-12-11.md
   - Should select multiple with popup have OK/Cancel buttons?
     - https://github.com/openui/open-ui/issues/1217
-
 
 #### WHATNOT
 
@@ -1042,7 +1021,6 @@ guest: [@progfay](https://x.com/progfay)
   - https://github.com/whatwg/html/issues/6698
   - ユーザがローカルで変更してても 24h 表記を強制したい
   - であれば 12h もサポートすべきでは
-
 
 #### CSSWG
 
@@ -1078,7 +1056,6 @@ guest: [@progfay](https://x.com/progfay)
     - https://github.com/w3c/csswg-drafts/issues/12803
     - 決着するか?
       - 決まらなかった
-
 
 #### Other
 
@@ -1116,7 +1093,6 @@ guest: [@progfay](https://x.com/progfay)
   - https://www.mnot.net/blog/2026/01/20/open_web
   - Open Web Breakout Session を開いた mnot 自身の見解
   - > we have to create an Internet where people want to publish content openly - for some definition of "open."
-
 
 ### TC39/TC55 動向
 
@@ -1160,7 +1136,6 @@ guest: [@progfay](https://x.com/progfay)
     - 電気自動車やバッテリーの UI で需要が高いエネルギー単位(ワット、キロワット、キロワット時)を Intl.NumberFormat に追加する提案
     - 用途の重要性が指示され Stage 1 へ
 
-
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2026-01-01}...main@{2026-02-01}
@@ -1183,15 +1158,12 @@ guest: [@progfay](https://x.com/progfay)
   - Intl.Locale Info
   - Iterator Sequencing
 
-
 #### New Proposals
-
 
 #### WinterTC
 
 - https://github.com/WinterTC55/admin/tree/main/meetings
 - 無し
-
 
 #### Other
 
@@ -1199,11 +1171,9 @@ guest: [@progfay](https://x.com/progfay)
   - https://ecma-international.org/publications-and-standards/standards/ecma-429/
   - Minimal Common API の 1st Edition
 
-
 ### IETF 動向
 
 #### IETF
-
 
 #### WG
 
@@ -1214,9 +1184,7 @@ guest: [@progfay](https://x.com/progfay)
     - -22 が出た
 - Meeting
 
-
 #### Other
-
 
 ### 周辺動向
 
@@ -1254,7 +1222,6 @@ guest: [@progfay](https://x.com/progfay)
   - 分離されたクローラーは、AI 企業と Google の競争の公平性を確保し、出版社の権限を回復する。
   - Cloudflare は CMA と協力し、効果的な行動要件の最終決定を形成するためのデータ提供にコミット。
 
-
 #### セキュリティ動向
 
 - **イランでのネット切断**
@@ -1277,7 +1244,6 @@ guest: [@progfay](https://x.com/progfay)
   - OpenSSL に深刻な脆弱性
   - DoS や RCE が可能
 
-
 #### Other
 
 - **State of HTML 2025**
@@ -1295,7 +1261,6 @@ guest: [@progfay](https://x.com/progfay)
   - Interop 2026 の focus area や investigation area が確定した模様
   - このまま行けば 2/12 に公表されそう
 
-
 ### イベント
 
 - 1 月
@@ -1305,7 +1270,6 @@ guest: [@progfay](https://x.com/progfay)
     - https://github.com/tc39/agendas/blob/main/2026/03.md
   - 14-20: IETF 125 Shenzhen
     - https://www.ietf.org/meeting/125/
-
 
 ### Wrap Up
 
