@@ -1,4 +1,4 @@
-# [gpc][privacy] Global Privacy Control によるトラッキングのオプトアウト
+# [gpc][privacy] Global Privacy Control という法的効力を持つヘッダ
 
 ## Intro
 
@@ -43,14 +43,14 @@ US ではもともと "Do Not Call" という、そこに自分の電話番号�
 
 ## GPC
 
-GPC は WC3 の Privacy WG によって、 2020 年頃から策定が進められてきた仕様だ。
+GPC は WC3 の Privacy WG によって、2020 年頃から策定が進められてきた仕様だ。
 
-メンバーには大学やメディア、 EFF(電子フロンティア財団)などのメンバーが名を連ねている。
+メンバーには大学やメディア、EFF(電子フロンティア財団)などのメンバーが名を連ねている。
 
-- Global Privacy Control — Take Control Of Your Privacy
+- Global Privacy Control - Take Control Of Your Privacy
   - https://globalprivacycontrol.org/
 
-Chrome が進めてきた Privacy Sandbox とは異なり、 3rd Party Cookie の代替といった文脈より、完全にオプトアウトの手段を求めるものだ。つまり 3rd Party Cookie を使わないトラッキングなどでも、効果が期待できる。
+Chrome が進めてきた Privacy Sandbox とは異なり、3rd Party Cookie の代替といった文脈より、完全にオプトアウトの手段を求めるものだ。つまり 3rd Party Cookie を使わないトラッキングなどでも、効果が期待できる。
 
 仕様は非常にシンプルだ。
 

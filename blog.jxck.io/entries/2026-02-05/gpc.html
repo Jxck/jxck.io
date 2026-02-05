@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-02-05/gpc.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="GPC (Global Privacy Control) の策定と実装が進んでいる。このヘッダは、サービス、ユーザ、ブラウザ、全てにとって「無視することができない特別なヘッダ」となりつつある。たかだか 1 という値を送るだけのヘッダに、何の意味があるのか?失敗して歴史に消え...">
+  <meta name=keywords            content="gpc,privacy">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-02-05/gpc.html>
+  <meta property=og:title        content="Global Privacy Control という法的効力を持つヘッダ | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="GPC (Global Privacy Control) の策定と実装が進んでいる。このヘッダは、サービス、ユーザ、ブラウザ、全てにとって「無視することができない特別なヘッダ」となりつつある。たかだか 1 という値を送るだけのヘッダに、何の意味があるのか?失敗して歴史に消え...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "Global Privacy Control という法的効力を持つヘッダ | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2026-02-05T08:00:00+08:00",
+    "dateModified": "2026-02-05T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "GPC (Global Privacy Control) の策定と実装が進んでいる。このヘッダは、サービス、ユーザ、ブラウザ、全てにとって「無視することができない特別なヘッダ」となりつつある。たかだか 1 という値を送るだけのヘッダに、何の意味があるのか?失敗して歴史に消え..."
+  }
+  </script>
+
+  <title>Global Privacy Control という法的効力を持つヘッダ | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?250126_044049>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?250125_021828>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2026-02-05>2026-02-05</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-02-05>2026-02-05</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#gpc">gpc</a>
+              <li><a href="/tags#privacy">privacy</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#dnt">DNT</a>
+              <li><a href="#gpc">GPC</a>
+              <li><a href="#法的な効力">法的な効力</a>
+              <li><a href="#誰が遵守すべきか">誰が遵守すべきか?</a>
+              <li><a href="#どう遵守すべきか">どう遵守すべきか</a>
+              <li><a href="#ユースケースの規制再び">ユースケースの規制再び</a>
+              <li><a href="#opt-me-out-act">Opt Me Out Act</a>
+              <li><a href="#仕様">仕様</a>
+              <li><a href="#api">API</a>
+              <li><a href="#gpc-support-resource">GPC Support Resource</a>
+              <li><a href="#outro">Outro</a>
+              <li><a href="#resources">Resources</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?250125_013946>
+    <article>
+      <h1><a href="">Global Privacy Control という法的効力を持つヘッダ</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>GPC (Global Privacy Control) の策定と実装が進んでいる。
+        <p>このヘッダは、サービス、ユーザ、ブラウザ、全てにとって「無視することができない特別なヘッダ」となりつつある。
+        <p>たかだか <code translate=no>1</code> という値を送るだけのヘッダに、何の意味があるのか?
+        <p>失敗して歴史に消えつつある DNT と何が違うのか?
+        <p>解説していく。
+      </section>
+      <section>
+        <h2 id="dnt"><a href="#dnt">DNT</a></h2>
+        <p>長らく問題視されていた &quot;3rd Party Cookie&quot; は、技術そのものではなく、「トラッキング」というユースケースに問題があった。
+        <p>したがって、Web の歴史の前半では「トラッキングからの Opt-Out」という手段を、ユーザが手に入れるための戦いが繰り広げられていた。
+        <p>GDPR などが求めた Cookie Banner などが、その最たる例の 1 つだ。しかし、どうしても UI は邪魔になるし、毎回 Deny を押すのも不便だ。
+        <p>それより遡れば、ブラウザは DNT (Do Not Track) というヘッダを送ることで、ユーザが Opt-Out したいという意思を表明する手段を得た。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <pre class=http data-code=http><code translate=no class=language-http>DNT: 1</code></pre>
+        <p>これを送るだけで、トラッキングを行っているサイトは(それが 3rd Party Cookie を用いるかは関係なく)、Opt-Out できるという想定だ。
+        <p>US ではもともと &quot;Do Not Call&quot; という、そこに自分の電話番号を登録すれば、一切の営業電話がかかってこなくなるという仕組みがあり、それになぞらえたものだ。
+        <p>ところが、このヘッダには一切の「法的強制力」はなく、紳士協定のようなものだった。
+        <p>広告ベンダからすれば、自分だけがサポートすると、競合に対して不利になる。対応するなら業界全体である必要があるが、そこまでの法的根拠がない。
+        <p>結果、送っても誰もサポートしない。ただ無駄なペイロードを増やすヘッダになってしまった。P3P も同じだ。
+        <ul>
+          <li>
+            3PCA 9 日目: DNT | blog.jxck.io
+            <ul>
+              <li><a href="https://blog.jxck.io/entries/2023-12-09/3pca-dnt.html">https://blog.jxck.io/entries/2023-12-09/3pca-dnt.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="gpc"><a href="#gpc">GPC</a></h2>
+        <p>GPC は WC3 の Privacy WG によって、2020 年頃から策定が進められてきた仕様だ。
+        <p>メンバーには大学やメディア、EFF(電子フロンティア財団)などのメンバーが名を連ねている。
+        <ul>
+          <li>
+            Global Privacy Control - Take Control Of Your Privacy
+            <ul>
+              <li><a href="https://globalprivacycontrol.org/" target=_blank>https://globalprivacycontrol.org/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Chrome が進めてきた Privacy Sandbox とは異なり、3rd Party Cookie の代替といった文脈より、完全にオプトアウトの手段を求めるものだ。つまり 3rd Party Cookie を使わないトラッキングなどでも、効果が期待できる。
+        <p>仕様は非常にシンプルだ。
+        <pre class=http data-code=http><code translate=no class=language-http>Sec-GPC: 1</code></pre>
+        <p>DNT と何も変わっていない。
+        <p>最大の違いは、このヘッダは最初から「<strong>法的な効力</strong>」を念頭に策定されている点だ。
+        <p>つまり、大事なのはこのヘッダ仕様そのものというより、それを参照する各プライバシー法案の方にある。
+      </section>
+      <section>
+        <h2 id="法的な効力"><a href="#法的な効力">法的な効力</a></h2>
+        <p>GPC には、各種法律との連携についてのガイドラインが公開されている。
+        <ul>
+          <li>
+            Global Privacy Control (GPC) Legal and Implementation Considerations Guide
+            <ul>
+              <li><a href="https://w3c.github.io/gpc/explainer#411-the-california-consumer-privacy-act" target=_blank>https://w3c.github.io/gpc/explainer#411-the-california-consumer-privacy-act</a>
+            </ul>
+          </li>
+        </ul>
+        <p>要点をまとめると以下のようなものだ。
+        <ul>
+          <li>GPC は、すべての法律で効力を持つわけではない
+          <li>しかし、各種法律側が GPC を採用する場合、効力を持つことがある
+          <li>すでに US では複数の州が、GPC を法的根拠のあるオプトアウト表明手段として採用している
+        </ul>
+        <p>つまり、法律側が「GPC にユーザの意図を表明する効力がある」と宣言することで、その法の適用範囲で事業者は GPC を遵守することが求められることになる。
+        <p>筆頭として、この界隈で業界を牽引する CCPA(カリフォルニアのプライバシー法)は、ガイドラインの中でこのことを明示している。
+        <blockquote cite="https://oag.ca.gov/privacy/ccpa/gpc">
+          <p>Opting out of the sale or sharing of personal information should be easy for consumers,
+          <p>and the GPC is one option for consumers who want to submit requests
+          <p>to opt-out of the sale or sharing of personal information via a user-enabled global privacy control.
+          <p>Under law, it must be honored by covered businesses as a valid consumer request
+          <p>to stop the sale or sharing of personal information.
+          <p>
+          </p>
+          <p>個人情報の販売または共有をオプトアウトすることは、消費者にとって容易であるべきであり、
+          <p>GPC は、ユーザが有効にできる Global Privacy Control を介して、
+          <p>個人情報の販売または共有のオプトアウトをリクエストしたい消費者のための選択肢の 1 つです。
+          <p>法律に基づき、対象となる企業は、個人情報の販売または共有を停止するための
+          <p>有効な消費者リクエストとして、GPC を尊重しなければなりません。
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://oag.ca.gov/privacy/ccpa/gpc" target=_blank>https://oag.ca.gov/privacy/ccpa/gpc</a></cite>
+        </blockquote>
+        <p>すでに 2022 年には、Sephora 社は GPC を無視したとして $1.2 億ドルの罰金を求められた事例がある。
+        <ul>
+          <li><a href="https://oag.ca.gov/news/press-releases/attorney-general-bonta-announces-settlement-sephora-part-ongoing-enforcement" target=_blank>https://oag.ca.gov/news/press-releases/attorney-general-bonta-announces-settlement-sephora-part-ongoing-enforcement</a>
+        </ul>
+        <p>まだ Working Draft で、全てのブラウザで実装が済んだわけでもないが、運用が始まっているのだ。
+      </section>
+      <section>
+        <h2 id="誰が遵守すべきか"><a href="#誰が遵守すべきか">誰が遵守すべきか?</a></h2>
+        <p>筆者は Web の専門家であって、法律は専門ではない。
+        <p>したがって、自分のサービスが GPC を遵守すべきか? については、Ask your Lawyer ということになるだろう。
+        <p>サービスの運営元が日本でも、一般的にアクセスするユーザいる地域の法律が適用されるからだ。
+        <p>提供範囲や、ユーザデータの扱い方などによって、事情は変わってくるだろう。
+        <p>ちなみに、GDPR は明示的に GPC の採用を宣言しているわけではない。しかし、ePrivacy の策定が進めば、言及される可能性がある。日本の個人情報保護法や電気通信事業者法も、現状 GPC に直接言及しているわけではない。
+        <p>しかし、こうしたプライバシー関連法案が、明示的に &quot;GPC&quot; に言及しなくても、「オプトアウトの手段の提供」などの言及があれば、GPC がそれに該当すると判断される可能性は、法律を更新しなくてもあり得ると考えられる。
+        <p>そうした判断は裁判次第なので、判例がなければ誰にもわからない。
+        <p>しかし、エンジニアの視点として「軽視していいヘッダではない」という点は言えるだろう。
+      </section>
+      <section>
+        <h2 id="どう遵守すべきか"><a href="#どう遵守すべきか">どう遵守すべきか</a></h2>
+        <p>ここで勘違いしないほうがいいのは、「GPC が送られてきたら 3rd Party Cookie でトラッキングしなければいい」ではないという点だ。
+        <p>目的は 3rd Party Cookie やその使い方という「技術」や「実装」からのオプトアウトではないからだ。
+        <p>そのユーザが置かれている状況で、適用される法律が保証するプライバシーのコントロールを、ユーザが行使できているかどうかだ。
+        <p>「収集」や「共有」や「販売」と記された条文が、どの処理にあたるのかも、Ask your Lawyer になるだろう。
+        <p>サービスが保有しているユーザデータももちろん対象になるため、例えばサードパーティーのアナリティクスツールを入れている場合「ツールが対応するのを待つだけで、自分たちがやることはない」とも限らないのだ。
+      </section>
+      <section>
+        <h2 id="ユースケースの規制再び"><a href="#ユースケースの規制再び">ユースケースの規制再び</a></h2>
+        <p>何度も言うが、3rd Party Cookie という技術自体が問題なのではなく、そのユースケースが問題だった。そのため、ユースケースを規制するために DNT や法律の整備が行われた。
+        <p>それでも守られない事例があったため、技術としての 3rd Party Cookie 自体を無効にすることで、根本的な対処を求めたのが過去 6 年ほどの動きだった。
+        <p>しかし、やはり壊れる Web の影響を踏まえ、無効化自体は断念した。
+        <p>そこでまた、ユースケースを規制する方向に戻ってきたことになる。
+        <p>今度は、その間に整備の進んだ各法律を後ろ盾として、企業への強制力を持って戻ってきた形だ。
+        <p>もちろん、守らない企業もいるだろう。そうした企業が発覚し、消費者から訴えられる形で是正されていくという、この問題の初期の解決モデルが、また試されるフェーズが巡ってきた。
+      </section>
+      <section>
+        <h2 id="opt-me-out-act"><a href="#opt-me-out-act">Opt Me Out Act</a></h2>
+        <p>GPC を送ることが、法的な効力を持つ Opt Out の表明となったとしても、ブラウザが対応していなければユーザはそれを表明する術がない。
+        <p>そこで、ユーザ(消費者)がその手段を容易に手に入れ、容易に有効化できるよう、ブラウザベンダに要求するという法案が合わせて作られた。
+        <p>これが、カリフォルニアで 2025 年 10 月に署名された <strong>Opt Me Out Act</strong> だ。
+        <ul>
+          <li>
+            AB-566 California Consumer Privacy Act of 2018: opt-out preference signal.
+            <ul>
+              <li><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB566" target=_blank>https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB566</a>
+            </ul>
+          </li>
+        </ul>
+        <p>条文の最初はこう書かれている。
+        <blockquote>
+          <p>A business shall not develop or maintain a browser that does not include functionality configurable
+          <p>by a consumer that enables the browser to send an opt-out preference signal
+          <p>to businesses with which the consumer interacts through the browser.
+          <p>
+          </p>
+          <p>事業者は、消費者がブラウザを通じてやり取りする事業者に対し
+          <p>オプトアウトの意思表示シグナルを送信できるように
+          <p>消費者が設定可能な機能を搭載していないブラウザを
+          <p>開発または維持してはならない。
+        </blockquote>
+        <p>この法律は 2027 年 1 月 1 日に施行される。つまり、少なくとも CCPA の範囲内では、全てのブラウザは GPC を今年中に実装しないといけないということだ。
+        <ul>
+          <li>
+            California&apos;s Opt Me Out Act is a Win for Privacy - Open Policy &amp; Advocacy
+            <ul>
+              <li><a href="https://blog.mozilla.org/netpolicy/2025/10/29/californias-opt-me-out-act-is-a-win-for-privacy/" target=_blank>https://blog.mozilla.org/netpolicy/2025/10/29/californias-opt-me-out-act-is-a-win-for-privacy/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>執筆時点で GPC は、まだ Brave や Firefox でしか実装されておらず、他のブラウザは拡張などで使われている。しかし、それではこの要件を満たしたとは言えないため、Chrome には Intent to Prototype が出ている。
+        <p>Safari からはまだ情報はなく、Standard Position も出ていなかったが、カリフォルニアにある以上実装せざるを得ないだろう。
+        <p>今はカリフォルニアに限定したものだが、これも全米や他国に伝搬していく可能性もある。
+        <p>これまで、サービスを提供する事業者に対する強制力を持つ法案はあった。しかし、Opt Me Out Act はついに「ブラウザ実装に対する強制」まで法律が関与するようになった、非常にエポックメイキングなものだった。
+      </section>
+      <section>
+        <h2 id="仕様"><a href="#仕様">仕様</a></h2>
+        <p>もともとは、DNT と同じ以下のような形だった。
+        <pre><code translate=no>GPC: 1</code></pre>
+        <p>しかし、この設計には現代では 2 つの問題がある。
+        <p>まず、このヘッダはユーザの意図(設定)を反映してブラウザが付与するべきだ。それを JS から変更できてしまうのは問題なので、JS から触れないように <code translate=no>Sec-</code> があるのが望ましい。
+        <p>また、このヘッダは実質 Boolean を意図しているので、Structured Field Values を用いて <code translate=no>?1</code> を送るのが望ましい。
+        <p>前者はなんとか仕様に間に合ったが、後者は間に合わなかった。この策定が始まった頃には、まだ SFV は策定中で浸透しておらず、そのまま <code translate=no>1</code> を前提とした採用が先に進んでしまったのだ。
+        <p>Privacy に関する仕様は、「Privacy First」を標榜する製品などが、他との差別化としていち早く提案段階のものをサポートし、それを告知することが多い。
+        <p>結果、多くのサイトが以下を前提に、すでに対応をデプロイし始めている。
+        <pre><code translate=no>GPC: 1 // 非標準だが互換のため
+Sec-GPC: 1</code></pre>
+        <p>今から仕様を変更すると、<code translate=no>=== &quot;1&quot;</code> で判定している多くのサービスが「法律違反」な実装とみなされるリスクを考えると、やるとしても別のヘッダを作るしかなくなる。
+        <p>するとまた、法との兼ね合いも増えてくる。もういじることはできないだろう。
+        <ul>
+          <li>
+            Use HTTP structured field values · Issue #6 · w3c/gpc
+            <ul>
+              <li><a href="https://github.com/w3c/gpc/issues/6" target=_blank>https://github.com/w3c/gpc/issues/6</a>
+            </ul>
+          </li>
+        </ul>
+        <p><code translate=no>1</code> だと拡張が難しく、例えば「CCPA に対する選択的な表明」などができない、という話もあるが、GPC 自体は拡張を想定していない。
+        <p>これは、様々な条件ごとに細かく設定できる P3P が失敗したことからも、ユーザがそれを判断することは現実的ではないという表れでもある。
+        <p>結果、ユーザはあくまで Opt-Out を表明する手段を得た。それを、どう解釈するかは法律側が決め、その法律に則り適用範囲の企業が対応するという構図だ。
+        <p>表明しない場合に <code translate=no>0</code> を明示的に送ることもない。その場合は <code translate=no>Sec-GPC</code> 自体を送らなければ良いからだ。
+        <p>つまり、基本的に <code translate=no>1</code> 以外の値になる予定はなく、<code translate=no>1</code> 以外だったらヘッダまるごと無視するべきという仕様になっている。
+      </section>
+      <section>
+        <h2 id="api"><a href="#api">API</a></h2>
+        <p>ブラウザに設定されている情報を取得する JS API も定義されている。
+        <p>トラッキングスクリプトなどを無効にする場合は、この判定を利用することができる。
+        <pre class=js data-code=js><code translate=no class=language-js>if (navigator.globalPrivacyControl === false) {
+  // opt-out していないため実行
+  analytics()
+  tracking()
+}</code></pre>
+        <p>また、GPC の有効/無効を切り替えて自動テストを走らせることになるだろう。
+        <p>そのための WebDriver 拡張コマンドも定義されている。
+        <pre><code translate=no># GPC を有効にする
+POST /session/{session_id}/privacy
+
+# GPC 状態の確認
+GET /session/{session_id}/privacy</code></pre>
+      </section>
+      <section>
+        <h2 id="gpc-support-resource"><a href="#gpc-support-resource">GPC Support Resource</a></h2>
+        <p>ユーザからすればサービスが「送っている GPC をちゃんと見ているか」は分からない。
+        <p>そこで、GPC をサポートするサービスは、「サポートしている」という宣言を Support Resource で表明できる。
+        <p>具体的には、以下のような JSON を <code translate=no>/.well-known/gpc.json</code> でレスポンスする。
+        <pre class=json data-code=json><code translate=no class=language-json>{
+  &quot;gpc&quot;: true,
+  &quot;lastUpdate&quot;: &quot;2026-01-01&quot;
+}</code></pre>
+        <p>これにより、規約などを確認しなくても、機械的に対応を確認することができる。
+        <p>「GPC に対応すること」に言及する法律によっては、この設置は実質義務となる可能性があるだろう。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>法律にガイドラインが参照される事例がなかったわけではない。しかし、単体の Web 標準 API が法律で言及され、ましてやブラウザベンダの実装が、法的に強制された API は、これが初めてだろう。
+        <p>W3C の Recommendation プロセス自体は、現実の運用と乖離があるとはいえ、Working Draft の段階で実装され始め、使われ、全ブラウザの実装が確約されるのも、Web のプラットフォームにとってみれば新しい展開だ。
+        <p>Web および Web ブラウザ自体が、ユーザ(消費者)とサービス(事業者)を繋ぐ存在として、法律上も重要な立ち位置になる時代まで来たという現れだろう。
+        <p>そして 2027 年までに、そのまま「全てのブラウザが実装」した場合、サービスは「全てのユーザは Opt-Out の手段を有している」という世界になる。それはもともと Web が求めていた、「あるべき姿」だったと言えるかもしれない。
+        <p><code translate=no>Sec-GCP: 1</code> というシンプルな文字列は、人類が Web のプライバシーについて取り組んできた歴史の、集大成が詰まっていると言っても過言ではない。
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                Global Privacy Control (GPC)
+                <ul>
+                  <li><a href="https://w3c.github.io/gpc/" target=_blank>https://w3c.github.io/gpc/</a>
+                </ul>
+              </li>
+              <li>
+                Global Privacy Control (GPC) Legal and Implementation Considerations Guide
+                <ul>
+                  <li><a href="https://w3c.github.io/gpc/explainer" target=_blank>https://w3c.github.io/gpc/explainer</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                gpc/explainer.md
+                <ul>
+                  <li><a href="https://github.com/w3c/gpc/blob/main/explainer.md" target=_blank>https://github.com/w3c/gpc/blob/main/explainer.md</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Requirements Doc
+          <li>
+            Mozilla Standard Position
+            <ul>
+              <li>
+                Global Privacy Control (GPC)
+                <ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/867" target=_blank>https://github.com/mozilla/standards-positions/issues/867</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>WebKit Position
+          <li>TAG Design Review
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Prototype: Global Privacy Control
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/ztV1otnl_NQ/m/4S-V4iXWBgAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/ztV1otnl_NQ/m/4S-V4iXWBgAJ</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                Global Privacy Control - Chrome Platform Status
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/5137324344213504" target=_blank>https://chromestatus.com/feature/5137324344213504</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            WPT (Web Platform Test)
+            <ul>
+              <li>
+                web-platform-tests dashboard
+                <ul>
+                  <li><a href="https://wpt.fyi/results/gpc?label=master&label=experimental&aligned&q=gpc" target=_blank>https://wpt.fyi/results/gpc?label=master&amp;label=experimental&amp;aligned&amp;q=gpc</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>DEMO
+          <li>Blog
+          <li>Presentation
+          <li>
+            Issues
+            <ul>
+              <li>
+                Add Global Privacy Control (GPC) support to Chrome (feature request) [40745270]
+                <ul>
+                  <li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=40745270" target=_blank>https://bugs.chromium.org/p/chromium/issues/detail?id=40745270</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
