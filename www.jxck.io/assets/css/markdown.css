@@ -49,7 +49,7 @@ em {
 }
 
 strong {
-  color: red;
+  color: var(--strong);
   &::before,
   &::after {
     content: "**" / "";
@@ -78,9 +78,9 @@ dl {
 
 blockquote {
   display: block;
-  border: solid 1px var(--block-quote);
+  border: solid 0.4px var(--block-quote);
   border-radius: var(--radius);
-  padding: 1rem;
+  padding: var(--grid);
   margin: 0;
   p::before {
     content: "> " / "";
