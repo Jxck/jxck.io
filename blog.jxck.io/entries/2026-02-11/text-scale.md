@@ -36,11 +36,11 @@ View Port の小さいモバイル OS では、「拡大」をするための方
 
 今回検証するのは、iPhone 16e iOS 26.2 および Pixel 8a Android 16 の、以下の設定を対象とする。
 
-![iPhone と Android で文字サイズを最大まで拡大設定](setting.png#1000x1000)
+![iPhone と Android で文字サイズを最大まで拡大設定](setting.png#400x400)
 
 それぞれ最大まで拡大した状態で同一のコンテンツを開いても、iOS Safari / Android Chrome は拡大されず、Android Firefox だけ拡大されていることがわかる。
 
-![default を拡大設定で表示すると Firefox のみ拡大される](default.png#2000x1500)
+![default を拡大設定で表示すると Firefox のみ拡大される](default.png#500x375)
 
 Safari などが OS の設定を Web ページ全体に反映しないのは、レイアウトが崩れるページが多く存在するからだとされている。
 
@@ -70,7 +70,7 @@ Apple は iOS で最適なシステムフォントを選択できる Dynamic Typ
 }
 ```
 
-![Dynamic Type を指定することで、拡大率を反映できる](dynamic-type.png#1000x1000)
+![Dynamic Type を指定することで、拡大率を反映できる](dynamic-type.png#400x400)
 
 選択肢を用意してオプトインにすることで、きちんと対応できているサイトだけが、OS の設定に連動して拡大されることを意図している。
 
@@ -110,7 +110,7 @@ h1 {
 
 現状では Android Chrome のみ対応している。
 
-![preferred-text-scale での拡大](preferred-text-scale.png#1000x1000)
+![preferred-text-scale での拡大](preferred-text-scale.png#400x400)
 
 
 ## pem (廃止)
@@ -243,7 +243,8 @@ section {
 }
 ```
 
-![text-scale に合わせて調整](scale.png#1000x1000)
+![text-scale に合わせて調整](scale.png#400x400)
+
 
 ## Outro
 

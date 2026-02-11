@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta name="text-scale" content="scale">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-02-11/text-scale.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="小さい文字が見づらい場合、ユーザは OS の文字サイズを大きくすることで、視認性を調整することができる。こうした機能は大抵の OS が備えており、システムフォントのサイズなどに反映される。しかし、その指定がそのまま Web コンテンツにも反映されるかというと、必ずしもそうで...">
+  <meta name=keywords            content="text,a11y">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-02-11/text-scale.html>
+  <meta property=og:title        content="text-scale によるユーザ指定倍率での文字拡大 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="小さい文字が見づらい場合、ユーザは OS の文字サイズを大きくすることで、視認性を調整することができる。こうした機能は大抵の OS が備えており、システムフォントのサイズなどに反映される。しかし、その指定がそのまま Web コンテンツにも反映されるかというと、必ずしもそうで...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "text-scale によるユーザ指定倍率での文字拡大 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2026-02-11T08:00:00+08:00",
+    "dateModified": "2026-02-11T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "小さい文字が見づらい場合、ユーザは OS の文字サイズを大きくすることで、視認性を調整することができる。こうした機能は大抵の OS が備えており、システムフォントのサイズなどに反映される。しかし、その指定がそのまま Web コンテンツにも反映されるかというと、必ずしもそうで..."
+  }
+  </script>
+
+  <title>text-scale によるユーザ指定倍率での文字拡大 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2026-02-11>2026-02-11</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-02-11>2026-02-11</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#text">text</a>
+              <li><a href="/tags#a11y">a11y</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#サイズの相対値指定">サイズの相対値指定</a>
+              <li><a href="#os-ごとの拡大">OS ごとの拡大</a>
+              <li><a href="#apple-dynamic-type">Apple Dynamic Type</a>
+              <li><a href="#preferred-text-scale">Preferred Text Scale</a>
+              <li><a href="#pem-廃止">pem (廃止)</a>
+              <li><a href="#text-scale">text-scale</a>
+              <ol>
+                <li><a href="#contentscale">content=scale</a>
+                <li><a href="#contentlegacy">content=legacy</a>
+              </ol>
+              <li><a href="#非線形スケール">非線形スケール</a>
+              <li><a href="#設計草案">設計草案</a>
+              <li><a href="#outro">Outro</a>
+              <li><a href="#demo">DEMO</a>
+              <li><a href="#resources">Resources</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <article>
+      <h1><a href="">text-scale によるユーザ指定倍率での文字拡大</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>小さい文字が見づらい場合、ユーザは OS の文字サイズを大きくすることで、視認性を調整することができる。
+        <p>こうした機能は大抵の OS が備えており、システムフォントのサイズなどに反映される。
+        <p>しかし、その指定がそのまま Web コンテンツにも反映されるかというと、必ずしもそうではない。
+        <p>この問題を解決するために、いくつかの標準が提案され、策定と実装が進んでいる。
+      </section>
+      <section>
+        <h2 id="サイズの相対値指定"><a href="#サイズの相対値指定">サイズの相対値指定</a></h2>
+        <p>「ユーザは文字を拡大することがある」というのは、おそらく多くの開発者が認識しているだろう。
+        <p>WCAG を引き合いに出すなら、以下のセクションで「200% までの拡大に対応すべき」といった基準(AA)がある。
+        <blockquote cite="https://www.w3.org/TR/WCAG22/#resize-text">
+          <p>text can be resized without assistive technology
+          <p>up to 200 percent without loss of content or functionality.
+          <p>Success Criterion 1.4.4 Resize Text (Level AA)
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.w3.org/TR/WCAG22/#resize-text" target=_blank>https://www.w3.org/TR/WCAG22/#resize-text</a></cite>
+        </blockquote>
+        <p>レスポンシブデザインの普及もあり、<code translate=no>px</code> などの絶対値指定から、<code translate=no>%</code> や <code translate=no>em</code> など相対値を用いる設計も一般化してきた。
+        <p>フォントサイズを相対値指定してあれば、OS の設定が変わった際に追従できると期待した CSS 実装もあるだろう。しかし、実際にそれが意図の通り反映されているかというと、かなり乖離がある状態だ。
+      </section>
+      <section>
+        <h2 id="os-ごとの拡大"><a href="#os-ごとの拡大">OS ごとの拡大</a></h2>
+        <p>View Port の小さいモバイル OS では、「拡大」をするための方法がいくつか提供されている。テキストや画像だけを拡大するものから、画面全体を拡大するもの、OS だけでなくブラウザごとに設定できるものなど、選択肢と組み合わせは多い。
+        <p>ブラウザにおける <code translate=no>font-size</code> のベースは 16px がデフォルトであるため、この基本サイズに対してユーザが OS に指定した拡大率が反映され、<code translate=no>rem</code> / <code translate=no>em</code> を指定したサイズすべてに伝搬するのが理想だろう。
+        <p>今回検証するのは、iPhone 16e iOS 26.2 および Pixel 8a Android 16 の、以下の設定を対象とする。
+        <p>
+          <picture>
+            <source type=image/avif srcset=setting.avif?260211_231147>
+            <source type=image/webp srcset=setting.webp?260211_231147>
+            <img loading=lazy decoding=async src=setting.png?260211_231147 alt="iPhone と Android で文字サイズを最大まで拡大設定" width=400 height=400>
+          </picture>
+        </p>
+        <p>それぞれ最大まで拡大した状態で同一のコンテンツを開いても、iOS Safari / Android Chrome は拡大されず、Android Firefox だけ拡大されていることがわかる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=default.avif?260211_231146>
+            <source type=image/webp srcset=default.webp?260211_231146>
+            <img loading=lazy decoding=async src=default.png?260211_231146 alt="default を拡大設定で表示すると Firefox のみ拡大される" width=500 height=375>
+          </picture>
+        </p>
+        <p>Safari などが OS の設定を Web ページ全体に反映しないのは、レイアウトが崩れるページが多く存在するからだとされている。
+        <p>この場合 Firefox では、文字のサイズと同時に <code translate=no>rem</code> で指定した <code translate=no>margin</code> や <code translate=no>border</code> も同じように拡大されている。しかし、この場合余白や罫線まで太くする理由はあまりないだろう。表示領域が無駄に消費され、レイアウトに無駄が出ている。これがさらにひどくなると、レイアウトが崩れ文字が見切れたり、重なってしまうといったことが起こる。
+        <p>拡大したらどうなるかをきっちり確認せずにデプロイされたサイトの多くは、拡大しても読みやすいどころか、読めたものではないレイアウトになるだけなのだ。
+        <p>そうしたコンテンツが最低限閲覧できる状態を維持するために、歴史的にモバイルブラウザの多くは、デフォルトのフォントサイズを上書きすることができずにいた。代わりに、テキストだけではなくページ全体を拡大する「フルページズーム」のような機能を提供したり、選択した文字だけを拡大する拡大鏡のような機能を提供することで、ユーザをサポートしてきた。(ユーザのコントロールが難しい Web View は対象外だったりもする)
+        <p>もちろん、それがアクセシビリティ上問題になることは、ずっと前から知られており、議論も行われてきた。
+        <p>今回の議論では、BBC などのメディア系サービスからのフィードバックなどが中心となっている。
+      </section>
+      <section>
+        <h2 id="apple-dynamic-type"><a href="#apple-dynamic-type">Apple Dynamic Type</a></h2>
+        <p>Apple は iOS で最適なシステムフォントを選択できる Dynamic Type という仕組みを用意している。
+        <ul>
+          <li>
+            Using the System Font in Web Content | WebKit
+            <ul>
+              <li><a href="https://webkit.org/blog/3709/using-the-system-font-in-web-content/" target=_blank>https://webkit.org/blog/3709/using-the-system-font-in-web-content/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>独自の Variable を <code translate=no>font</code> 指定することで、Font Family だけでなく Size も含めて設定される。このとき OS の拡大率も反映されるのだ。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <pre class=css data-code=css><code translate=no class=language-css>:root {
+  font: -apple-system-body;
+}</code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=dynamic-type.avif?260211_231146>
+            <source type=image/webp srcset=dynamic-type.webp?260211_231146>
+            <img loading=lazy decoding=async src=dynamic-type.png?260211_231146 alt="Dynamic Type を指定することで、拡大率を反映できる" width=400 height=400>
+          </picture>
+        </p>
+        <p>選択肢を用意してオプトインにすることで、きちんと対応できているサイトだけが、OS の設定に連動して拡大されることを意図している。
+        <p>この機能は Safari 独自だが、ブラウザ間で互換を保つことを目的に、同等の手法を <code translate=no>system</code> として標準化するための議論が継続して行われてきた。
+        <pre class=css data-code=css><code translate=no class=language-css>:root {
+  font-size: system;
+}</code></pre>
+        <p>これは Apple からの初期提案に選択肢として含まれたが、議論は別の方向で進んだ。
+      </section>
+      <section>
+        <h2 id="preferred-text-scale"><a href="#preferred-text-scale">Preferred Text Scale</a></h2>
+        <ul>
+          <li>
+            csswg-drafts/css-env-1/explainers/env-preferred-text-scale.md at main · w3c/csswg-drafts
+            <ul>
+              <li><a href="https://github.com/w3c/csswg-drafts/blob/main/css-env-1/explainers/env-preferred-text-scale.md" target=_blank>https://github.com/w3c/csswg-drafts/blob/main/css-env-1/explainers/env-preferred-text-scale.md</a>
+            </ul>
+          </li>
+        </ul>
+        <p>OS などで指定した拡大率を取得し、それをページ全体の基本サイズに反映できれば、そこに連動して <code translate=no>rem</code> や <code translate=no>em</code> で指定されたすべてのサイズに反映することができる。
+        <p>そのために提案されたのが <code translate=no>preferred-text-scale</code> プロパティだ。
+        <p><code translate=no>env()</code> を用いて取得すると、OS にユーザが指定している拡大率が取得できるため、それを <code translate=no>:root</code> の <code translate=no>font-size</code> などに指定すれば、基本サイズに掛け合わせて拡大率を反映させることができる。
+        <p>この状態でページ全体が <code translate=no>em</code> / <code translate=no>rem</code> を元に設計されていれば、ページ全体に反映することができる。
+        <pre class=css data-code=css><code translate=no class=language-css>:root {
+  /* 1 はフォールバック */
+  font-size: calc(100% * env(preferred-text-scale, 1));
+}
+h1 {
+  font-size: 1.2rem;
+}</code></pre>
+        <p>現状では Android Chrome のみ対応している。
+        <p>
+          <picture>
+            <source type=image/avif srcset=preferred-text-scale.avif?260211_231145>
+            <source type=image/webp srcset=preferred-text-scale.webp?260211_231145>
+            <img loading=lazy decoding=async src=preferred-text-scale.png?260211_231145 alt="preferred-text-scale での拡大" width=400 height=400>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="pem-廃止"><a href="#pem-廃止">pem (廃止)</a></h2>
+        <p>Preferred Text Scale を一度だけ使い、全体をコントロールするのであればあまり問題にはならないが、部分的に置き換えていくような場合は、このスニペットを複数箇所で書く必要が出るだろう。
+        <p>そこで、構文糖衣として提案された新しい単位が <code translate=no>pem</code> だ。
+        <ul>
+          <li>
+            [css-env][css-values] UAs inconsistent in how OS font settings affect the default font-size <code translate=no>medium</code> · Issue #10674 · w3c/csswg-drafts
+            <ul>
+              <li><a href="https://github.com/w3c/csswg-drafts/issues/10674" target=_blank>https://github.com/w3c/csswg-drafts/issues/10674</a>
+            </ul>
+          </li>
+        </ul>
+        <pre class=css data-code=css><code translate=no class=language-css>h1 {
+  font-size: 1.2pem;
+}</code></pre>
+        <p>しかし、すでに <code translate=no>em</code> / <code translate=no>rem</code> が普及している中で、既存の CSS に <code translate=no>pem</code> を導入していくのは現実的ではない。
+        <p>結果、この提案は標準化までは至らなかった。
+        <ul>
+          <li>
+            [css-env-1] remove pem/bsem unit by davidsgrogan
+            <ul>
+              <li><a href="https://github.com/w3c/csswg-drafts/pull/13281" target=_blank>https://github.com/w3c/csswg-drafts/pull/13281</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="text-scale"><a href="#text-scale">text-scale</a></h2>
+        <p>ページ全体として、そもそも「ユーザの設定をそのままページに反映しても壊れない」という設計ができているのであれば、CSS に手を入れずとも OS の設定を最小フォントサイズに反映するフラグを用意するだけで良い場合もあるだろう。
+        <p>そこで提案されたのが <code translate=no>text-scale</code> プロパティだ。
+        <pre class=html data-code=html><code translate=no class=language-html>&lt;meta name=&quot;text-scale&quot; content=&quot;scale&quot;&gt;</code></pre>
+        <p>このプロパティは、<code translate=no>content</code> に複数の値を持つ。
+        <section>
+          <h3 id="contentscale"><a href="#contentscale">content=scale</a></h3>
+          <p>OS のサイズ指定がそのまま Web ページに反映される指定だ。
+          <p>つまり、以下のような指定が暗黙的にされている状態だ。
+          <pre class=css data-code=css><code translate=no class=language-css>:root {
+  font-size: calc(100% * env(preferred-text-scale, 1));
+}</code></pre>
+          <p>この指定は、「このサイトは OS の拡大設定をそのまま反映しても壊れないページである」という宣言とみなすことができる。
+        </section>
+        <section>
+          <h3 id="contentlegacy"><a href="#contentlegacy">content=legacy</a></h3>
+          <p>OS のサイズ指定を無視し、1rem は 16px のままにする指定だ。
+          <p>ユーザが拡大を求めても基本サイズが変わらず、従来の挙動を維持することになる。
+          <p>つまり、この指定は「このサイトは OS の拡大設定を反映する用意ができていない」という宣言とみなし、互換動作をキープするためのスイッチと見ることができる。
+        </section>
+      </section>
+      <section>
+        <h2 id="非線形スケール"><a href="#非線形スケール">非線形スケール</a></h2>
+        <p>Absolute Size は、<code translate=no>font-size</code> に対して指定できる以下のキーワードだ。
+        <pre><code translate=no>[ xx-small | x-small | small | medium | large | x-large | xx-large | xxx-large ]</code></pre>
+        <p>ここでは <code translate=no>medium</code> が 16px として、相対的に定義されている。
+        <p>しかし、ユーザが <code translate=no>medium</code> の読みやすさを基準に 200% に拡大した場合、<code translate=no>xxx-large</code> が指定された見出しなどが大きくなりすぎるといった問題がある。大きすぎて View Port を占有してしまうと、逆に視認しづらいページになる可能性もあるからだ。
+        <p>そこで、テキストの拡大に係数を適用する非線形スケールが提案されている。
+        <ul>
+          <li>
+            [css-fonts-5] Should absolute font size keywords scale at different rates depending on user&apos;s preferred text scale?
+            <ul>
+              <li><a href="https://github.com/w3c/csswg-drafts/issues/12475" target=_blank>https://github.com/w3c/csswg-drafts/issues/12475</a>
+            </ul>
+          </li>
+        </ul>
+        <p>これはまさしく、Apple が Dynamic Type で採用しているものだ。
+        <p>この変更では仕様上「OS/UA が非線形スケールを適用しても良い」という余地を導入するもので、<code translate=no>text-scale</code> を採用した場合に非線形のスケールが可能になるというものだ。
+        <p>実際にこれがどう反映されるか、または線形/非線形を切り替える新しい <code translate=no>text-scale</code> のプロパティができるかなどは、まだわからない。
+      </section>
+      <section>
+        <h2 id="設計草案"><a href="#設計草案">設計草案</a></h2>
+        <p>ブラウザのデフォルトは、しばらくは <code translate=no>legacy</code> のままになるだろう。理想的には、どこかでデフォルトを <code translate=no>scale</code> にし、対応準備ができていないサイトだけ <code translate=no>legacy</code> で Opt-Out する運用が理想とはなるが、なかなか時間がかかると予想される。
+        <p>したがって、標準化と実装が揃ったら、ページの状況に応じて明示的にこの値を付けていき、<code translate=no>legacy</code> なページを把握しつつ、<code translate=no>scale</code> に対応させていく移行作業を行っていくこととなるだろう。
+        <p>そのうえでモバイルでの拡大を確認し、壊れるものは「とりあえず相対になっているだけ」ではないかを確認する。
+        <p>例えば、文字が 2 倍になった時、border まで 2 倍に太くなり、margin も 2 倍の幅になる必要があるかというと、必ずしもそうではないだろう。
+        <p>この場合、<code translate=no>1px</code> の線を <code translate=no>calc()</code> で <code translate=no>rem</code> から算出するより、素直に <code translate=no>1px</code> とする方が良い場合もある。
+        <p>余白も、文字に追従する <code translate=no>rem</code> / <code translate=no>em</code> より <code translate=no>vh</code> や <code translate=no>vw</code> などを用いる方が意図を反映できるだろう。
+        <p>また、非線形スケールが対応されるまでは、拡大率をそのまま反映すると大きくなりすぎる場合、個別に <code translate=no>clamp()</code> で調整するといった暫定対応も必要かもしれない。
+        <pre class=css data-code=css><code translate=no class=language-css>h1 {
+  /* 32px &lt; Scale &lt; 64px */
+  font-size: clamp(
+    32px,
+    calc(32px * env(preferred-text-scale, 1)),
+    64px
+  );
+}</code></pre>
+        <p><code translate=no>border-width</code> を 1px としている場合、1.5 倍まではそのままでよいが 2 倍までくると少し太いほうが良い、といった対応も考えられる。
+        <p>その場合は、拡大率を Style Query で取るといった方法も考えられるだろう。
+        <pre class=css data-code=css><code translate=no class=language-css>:root {
+  --text-scale: env(preferred-text-scale, 1);
+}
+
+section {
+  border: solid 1px black;
+  @container style(--text-scale &gt;= 1.5) {
+    &amp; {
+      border: solid 2px black;
+    }
+  }
+}</code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=scale.avif?260211_231145>
+            <source type=image/webp srcset=scale.webp?260211_231145>
+            <img loading=lazy decoding=async src=scale.png?260211_231145 alt="text-scale に合わせて調整" width=400 height=400>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>まだ全てのブラウザのポジションが揃ったわけではないが、議論を見ていると、モバイルにおける拡大問題自体については一定の合意があるように思える。
+        <p>筆者の親などは、iPhone の文字をかなり大きくして使っているため、この問題自体はある程度身近ではあった。
+        <p>ある程度メジャーなサイトは一定の対応が取られているものも多いが、そうではないサイトも世の中にはかなりある。
+        <p>また、本サイトに <code translate=no>&lt;meta name=&quot;text-scale&quot; content=&quot;scale&quot;&gt;</code> を指定し、拡大表示でもある程度の閲覧に耐えるよう微調整を行った。
+        <p>拡大時に、余白などが必要以上に増えることがないように指定を見直し、200% の拡大までを対象に Android Chrome Dev で挙動を確認している。
+        <p>もともと、相対値設定していたため、<code translate=no>rem</code> / <code translate=no>vw</code> などで Grid や余白の設計をしていたため、そこまで大きな改修にはならなかった。
+        <p>ただ、Android で文字サイズを大きくしつつ、Chrome 側でも拡大を指定している場合は、全体的によくわからない崩れ方をしてしまう。こうした部分を考えると、移行期は拡大指定ユーザにとって煩わしい状況もあるかもしれない。
+        <p>標準化が進み、コンテンツが改善するとともに、UA や OS 側との連携も早く解決することを願いたい。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <ul>
+          <li>
+            Text Scale DEMO
+            <ul>
+              <li><a href="https://labs.jxck.io/text-scale/" target=_blank>https://labs.jxck.io/text-scale/</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                CSS Fonts Module Level 5
+                <ul>
+                  <li><a href="https://drafts.csswg.org/css-fonts-5/#text-scale-meta" target=_blank>https://drafts.csswg.org/css-fonts-5/#text-scale-meta</a>
+                </ul>
+              </li>
+              <li>
+                CSS Environment Variables Module Level 1
+                <ul>
+                  <li><a href="https://drafts.csswg.org/css-env-1/#text-zoom" target=_blank>https://drafts.csswg.org/css-env-1/#text-zoom</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                Explainer: env(preferred-text-scale)
+                <ul>
+                  <li><a href="https://davidsgrogan.github.io/env-explainer.html" target=_blank>https://davidsgrogan.github.io/env-explainer.html</a>
+                </ul>
+              </li>
+              <li>
+                Explainer: meta tag for text scaling behavior
+                <ul>
+                  <li><a href="https://github.com/w3c/csswg-drafts/blob/main/css-env-1/explainers/meta-text-scale.md" target=_blank>https://github.com/w3c/csswg-drafts/blob/main/css-env-1/explainers/meta-text-scale.md</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Requirements Doc
+          <li>
+            Mozilla Standard Position
+            <ul>
+              <li>
+                Text-Scale <code translate=no>&lt;meta&gt;</code> element · Issue #1326 · mozilla/standards-positions
+                <ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/1326" target=_blank>https://github.com/mozilla/standards-positions/issues/1326</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            WebKit Position
+            <ul>
+              <li>
+                Text-Scale <code translate=no>&lt;meta&gt;</code> element · Issue #587 · WebKit/standards-positions
+                <ul>
+                  <li><a href="https://github.com/WebKit/standards-positions/issues/587" target=_blank>https://github.com/WebKit/standards-positions/issues/587</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TAG Design Review
+            <ul>
+              <li>
+                <code translate=no>env(preferred-text-scale)</code>
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/1101" target=_blank>https://github.com/w3ctag/design-reviews/issues/1101</a>
+                </ul>
+              </li>
+              <li>
+                Other Spec Review: <code translate=no>&lt;meta name=&quot;text-scale&quot; content=&quot;scale&quot; /&gt;</code>
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/1172" target=_blank>https://github.com/w3ctag/design-reviews/issues/1172</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Ship: meta name=&quot;text-scale&quot;
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/0yp2ygJK5HE/" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/0yp2ygJK5HE/</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Prototype: meta name=&quot;text-scale&quot;
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/2F5g2dqy9_Q/" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/2F5g2dqy9_Q/</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Ship: CSS env variable for OS-level font scale
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/bZuQAcwcEig/" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/bZuQAcwcEig/</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Prototype: CSS env variable for OS-level font scale
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/OmEsGUUenqY" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/OmEsGUUenqY</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                CSS env variable for OS-level font scale
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/5328467685801984" target=_blank>https://chromestatus.com/feature/5328467685801984</a>
+                </ul>
+              </li>
+              <li>
+                meta name=&quot;text-scale&quot;
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/5112244702674944" target=_blank>https://chromestatus.com/feature/5112244702674944</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>WPT (Web Platform Test)
+          <li>DEMO
+          <li>Blog
+          <li>Presentation
+          <li>
+            Issues
+            <ul>
+              <li>
+                [css-env][css-values] UAs inconsistent in how OS font settings affect the default font-size <code translate=no>medium</code> · Issue #10674 · w3c/csswg-drafts
+                <ul>
+                  <li><a href="https://github.com/w3c/csswg-drafts/issues/10674" target=_blank>https://github.com/w3c/csswg-drafts/issues/10674</a>
+                </ul>
+              </li>
+              <li>
+                [css-env][css-fonts-5] New <code translate=no>&lt;meta text-scale&gt;</code> tag to make UA initial font size respond to OS text scale setting · Issue #12380 · w3c/csswg-drafts
+                <ul>
+                  <li><a href="https://github.com/w3c/csswg-drafts/issues/12380" target=_blank>https://github.com/w3c/csswg-drafts/issues/12380</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Other
+          <li>
+            Spec
+            <ul>
+              <li>
+                CSS Environment Variables Module Level 1
+                <ul>
+                  <li><a href="https://drafts.csswg.org/css-env-1/#text-zoom" target=_blank>https://drafts.csswg.org/css-env-1/#text-zoom</a>
+                </ul>
+              </li>
+              <li>
+                CSS Fonts Module Level 5
+                <ul>
+                  <li><a href="https://drafts.csswg.org/css-fonts-5/#text-scale-meta" target=_blank>https://drafts.csswg.org/css-fonts-5/#text-scale-meta</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
