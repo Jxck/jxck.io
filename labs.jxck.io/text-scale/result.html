@@ -3,20 +3,36 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
 
-<meta name="text-scale" content="legacy">
+<meta name="text-scale" content="scale">
 
-<title>text-scale legacy DEMO</title>
+<title>text scalable DEMO</title>
 
 <style>
   :root {
     font-family: sans-serif;
+    --text-scale: env(preferred-text-scale, 1);
+  }
+  section {
+    border: solid 1px black;
+    margin: 1vw;
+    padding: 1vw;
+
+    @container style(--text-scale >= 1.5) {
+      & {
+        border: solid 2px black;
+      }
+    }
   }
 </style>
 
-<h1>text-scale legacy DEMO</h1>
+<h1>text scalable DEMO</h1>
 
 <section>
-  <h2>scale</h2>
+  <h2>Lorem Ipsum</h2>
+  <details>
+    <summary>CSS</summary>
+    <pre></pre>
+  </details>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
   <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
   <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
@@ -37,11 +53,8 @@
   const $$ = document.querySelectorAll.bind(document)
   EventTarget.prototype.on = EventTarget.prototype.addEventListener
 
-
   document.on('DOMContentLoaded', async (e) => {
-    console.log(e)
-
-
-
+    const css = $("style").textContent
+    $("pre").textContent = css
   })
 </script>
