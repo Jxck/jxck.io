@@ -32,7 +32,7 @@ WCAG を引き合いに出すなら、以下のセクションで「200% まで�
 
 View Port の小さいモバイル OS では、「拡大」をするための方法がいくつか提供されている。テキストや画像だけを拡大するものから、画面全体を拡大するもの、OS だけでなくブラウザごとに設定できるものなど、選択肢と組み合わせは多い。
 
-ブラウザにおける `font-size` のベースは 16px がデフォルトであるため、この基本サイズに対してユーザが OS に指定した拡大率が反映され、`rem` / `em` を指定したサイズ全てに伝搬するのが理想だろう。
+ブラウザにおける `font-size` のベースは 16px がデフォルトであるため、この基本サイズに対してユーザが OS に指定した拡大率が反映され、`rem` / `em` を指定したサイズすべてに伝搬するのが理想だろう。
 
 今回検証するのは、iPhone 16e iOS 26.2 および Pixel 8a Android 16 の、以下の設定を対象とする。
 
@@ -44,7 +44,7 @@ View Port の小さいモバイル OS では、「拡大」をするための方
 
 Safari などが OS の設定を Web ページ全体に反映しないのは、レイアウトが崩れるページが多く存在するからだとされている。
 
-この場合 Firefox では、文字のサイズと同時に `rem` で指定した `margin` や `border` も同じように拡大されている。しかし、この場合余白や罫線まで太くする理由はあまり無いだろう。表示領域が無駄に消費され、レイアウトに無駄がでている。これがさらにひどくなると、レイアウトが崩れ文字が見切れたり、重なってしまうといったことが起こる。
+この場合 Firefox では、文字のサイズと同時に `rem` で指定した `margin` や `border` も同じように拡大されている。しかし、この場合余白や罫線まで太くする理由はあまりないだろう。表示領域が無駄に消費され、レイアウトに無駄が出ている。これがさらにひどくなると、レイアウトが崩れ文字が見切れたり、重なってしまうといったことが起こる。
 
 拡大したらどうなるかをきっちり確認せずにデプロイされたサイトの多くは、拡大しても読みやすいどころか、読めたものではないレイアウトになるだけなのだ。
 
@@ -57,7 +57,7 @@ Safari などが OS の設定を Web ページ全体に反映しないのは、�
 
 ## Apple Dynamic Type
 
-Apple は iOS で最適なシステムフォントを選択できる Dynamic Type としう仕組みを用意している。
+Apple は iOS で最適なシステムフォントを選択できる Dynamic Type という仕組みを用意している。
 
 - Using the System Font in Web Content | WebKit
   - https://webkit.org/blog/3709/using-the-system-font-in-web-content/
@@ -74,7 +74,7 @@ Apple は iOS で最適なシステムフォントを選択できる Dynamic Typ
 
 選択肢を用意してオプトインにすることで、きちんと対応できているサイトだけが、OS の設定に連動して拡大されることを意図している。
 
-この機能は Safari 独自だが、ブラウザ間で互換を保つことを目的に、同等の手法を `system` として標準化するための議論が継続して続けられてきた。
+この機能は Safari 独自だが、ブラウザ間で互換を保つことを目的に、同等の手法を `system` として標準化するための議論が継続して行われてきた。
 
 ```css
 :root {
@@ -132,7 +132,7 @@ h1 {
 
 結果、この提案は標準化までは至らなかった。
 
-- [css-env-1] remove pem/bsem unit by davidsgrogan · Pull Request #13281 · w3c/csswg-drafts
+- [css-env-1] remove pem/bsem unit by davidsgrogan
   - https://github.com/w3c/csswg-drafts/pull/13281
 
 
@@ -181,20 +181,20 @@ Absolute Size は、`font-size` に対して指定できる以下のキーワー
 [ xx-small | x-small | small | medium | large | x-large | xx-large | xxx-large ]
 ```
 
-ここでの `medium` が 16px として、総体的に定義されている。
+ここでは `medium` が 16px として、相対的に定義されている。
 
-しかし、ユーザが `medium` の読みやすさを起点に 200% に拡大した場合、`xxx-large` が指定された見出しなどが大きくなりすぎるといった問題がある。大きすぎて View Port を占有してしまっては、逆に視認しづらいページになる可能性もあるからだ。
+しかし、ユーザが `medium` の読みやすさを基準に 200% に拡大した場合、`xxx-large` が指定された見出しなどが大きくなりすぎるといった問題がある。大きすぎて View Port を占有してしまうと、逆に視認しづらいページになる可能性もあるからだ。
 
 そこで、テキストの拡大に係数を適用する非線形スケールが提案されている。
 
-- [css-fonts-5] Should absolute font size keywords scale at different rates depending on user's preferred text scale? · Issue #12475 · w3c/csswg-drafts
+- [css-fonts-5] Should absolute font size keywords scale at different rates depending on user's preferred text scale?
   - https://github.com/w3c/csswg-drafts/issues/12475
 
-これはまさしく、Apple が Dynamic Type で採用していたものだ。
+これはまさしく、Apple が Dynamic Type で採用しているものだ。
 
 この変更では仕様上「OS/UA が非線形スケールを適用しても良い」という余地を導入するもので、`text-scale` を採用した場合に非線形のスケールが可能になるというものだ。
 
-実際これがどう反映されるか、または線形/非線形を切り替える新しい `text-scale` のプロパティができるかなどは、まだわからない。
+実際にこれがどう反映されるか、または線形/非線形を切り替える新しい `text-scale` のプロパティができるかなどは、まだわからない。
 
 
 ## 設計草案
@@ -252,18 +252,21 @@ section {
 
 ある程度メジャーなサイトは一定の対応が取られているものも多いが、そうではないサイトも世の中にはかなりある。
 
-本サイトも、そこまで拡大を意識した検証をしてきていなかったため、これを機に CSS を見直し、推奨の方法で設計し直した。
+また、本サイトに `<meta name="text-scale" content="scale">` を指定し、拡大表示でもある程度の閲覧に耐えるよう微調整を行った。
 
-今後も、非線形スケールなどの仕様が採用され、実装が進むようであれば、合わせて検証していきたい。
+拡大時に、余白などが必要以上に増えることがないように指定を見直し、200% の拡大までを対象に Android Chrome Dev で挙動を確認している。
+
+もともと、相対値設定していたため、`rem` / `vw` などで Grid や余白の設計をしていたため、そこまで大きな改修にはならなかった。
+
+ただ、Android で文字サイズを大きくしつつ、Chrome 側でも拡大を指定している場合は、全体的によくわからない崩れ方をしてしまう。こうした部分を考えると、移行期は拡大指定ユーザにとって煩わしい状況もあるかもしれない。
+
+標準化が進み、コンテンツが改善するとともに、UA や OS 側との連携も早く解決することを願いたい。
 
 
 ## DEMO
 
-本サイトに `<meta name="text-scale" content="scale">` を指定しつつ、互換のために `preferred-text-scale` を指定した CSS 設計に見直し、iPhone Safari / Android Chrome での動作を確認した。
-
-拡大時に、余白などが必要以上に増えることが無いように指定を見直し、200% の拡大までを対象に挙動を確認している。
-
-画像やコードブロックを除けば、基本的にはただのテキストサイトであるため、あまり独自性を出すよりは、ブラウザの Reader Mode での閲覧相当になるように調整した。
+- Text Scale DEMO
+  - https://labs.jxck.io/text-scale/
 
 
 ## Resources
@@ -282,7 +285,7 @@ section {
 - Mozilla Standard Position
   - Text-Scale `<meta>` element · Issue #1326 · mozilla/standards-positions
     - https://github.com/mozilla/standards-positions/issues/1326
-- Webkit Position
+- WebKit Position
   - Text-Scale `<meta>` element · Issue #587 · WebKit/standards-positions
     - https://github.com/WebKit/standards-positions/issues/587
 - TAG Design Review
