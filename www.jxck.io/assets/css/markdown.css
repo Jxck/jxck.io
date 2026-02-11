@@ -57,14 +57,14 @@ strong {
 }
 
 ul {
-  li::before {
+  > li::before {
     content: "- " / "";
   }
 }
 
 ol {
   counter-reset: list;
-  li::before {
+  > li::before {
     counter-increment: list;
     content: counter(list) ". ";
   }
