@@ -3,7 +3,6 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep198.mp3
 published_at: 2026-02-17
-guest: [@re-taro](https://x.com/re_taro_)
 guest: [@syumai](https://x.com/__syumai)
 guest: [@yukukotani](https://x.com/yukukotani)
 ---
@@ -13,7 +12,6 @@ guest: [@yukukotani](https://x.com/yukukotani)
 ## Theme
 
 第 198 回のテーマは 2026 年 2 月の Monthly Ecosystem です。
-
 
 ## Show Note
 
@@ -229,7 +227,6 @@ guest: [@yukukotani](https://x.com/yukukotani)
   - https://x.com/karpathy/status/2019137879310836075
   - Agentic: 99%の時間はコードを直接書かずにエージェントを監督するから
   - Engineering: アート、サイエンス、専門性を強調
-
 
 ## Events
 
