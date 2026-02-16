@@ -1,0 +1,240 @@
+---
+type: podcast
+tags: ["monthly ecosystem"]
+audio: https://files.mozaic.fm/mozaic-ep198.mp3
+published_at: 2026-02-17
+guest: [@re-taro](https://x.com/re_taro_)
+guest: [@syumai](https://x.com/__syumai)
+guest: [@yukukotani](https://x.com/yukukotani)
+---
+
+# ep198 Monthly Ecosystem 202602
+
+## Theme
+
+第 198 回のテーマは 2026 年 2 月の Monthly Ecosystem です。
+
+
+## Show Note
+
+- State of React 2025
+  - https://2025.stateofreact.com/en-US
+  - React 19 と Compiler の安定化: useMemo などの手動最適化が不要になり、開発効率が劇的に向上しました。
+  - 新組織「React Foundation」: 特定企業に依存しない運営体制へ移行し、長期的な安定性が確保されました。
+  - CRA の終焉と新ツールの台頭: Create-React-App が公式に廃止され、TanStack Start などの新潮流が注目されています。
+  - AI による開発変革: v0 や Cursor 等の普及で、自然言語から UI を生成する「Vibe Coding」が一般化しました。
+  - 結論: サーバーサイドの議論は続くものの、React は依然として Web 開発の圧倒的標準であり続けています。
+- Announcing TypeScript 6.0 Beta
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-6-0-beta/
+  - TypeScript 7 への橋渡しの色が強いバージョン
+  - target, lib に es2025 が追加
+  - ECMAScript Proposal Stage 4 (, 一部 3) の型が追加
+    - Stage 4: Map.prototype.getOrInsert (upsert proposal)
+    - Stage 4: Regexp.escape
+    - Stage 3: Temporal
+  - `--stableTypeOrdering` flag の追加
+    - JS コードベースの TS では、内部の "型 ID" を使って出力の順番を制御していた
+    - Go では、並列で型チェックが行われるので、内部 ID に依存した順序では出力が安定しなくなる。そのため、明示的なソートが必要
+    - その挙動を先取りできる flag
+  - strict のデフォルト化
+  - オプションの非推奨化・廃止
+    - target: es5
+    - module: amd / umd / systemjs
+    - baseUrl
+    - など
+    - 6.0 の間は非推奨の機能も `"ignoreDeprecations": "6.0"` option で使えるが、7.0 で完全に使えなくなる
+- Biome Roadmap 2026
+  - https://biomejs.dev/blog/roadmap-2026/
+  - JavaScript 埋め込みの CSS / GraphQL の DX 改善
+  - HTML の安定化 (可能な限りフォーマットを Prettier に寄せるなど)
+  - YAML の安定化
+  - Cross-language lint rules (CSS / HTML 跨ぎで使われてない class を見つけるとか)
+  - SCSS サポート
+  - workspace の改善
+    - Biome では設定なしで monorepo を扱える
+    - それが意図しないメモリリークなどに繋がっていたらしい。
+    - より制御しやすくしたいとのこと
+  - [募集中] Markdown パーサーの Champion をしてくれる人
+- Announcing Rolldown 1.0 RC | VoidZero
+  - https://voidzero.dev/posts/announcing-rolldown-rc
+  - Beta 1 以降、主に API 安定化に取り組んできていたらしい。1/22 に v1.0.0-rc が出た
+- Yarn 6 Preview | Yarn
+  - https://yarn6.netlify.app/blog/2026-01-28-yarn-6-preview/
+  - Rust 移行
+  - Yarn Switch (Yarn 自身を管理する Corepack 的なもの)
+  - Lazy Installs (yarn run 時に必要なものをインストール)
+- Oxfmt の Prettier 互換性が 100%に到達
+  - https://github.com/oxc-project/oxc/issues/18717
+  - JavaScript / TypeScript のフォーマットの互換性テストが 100%通過するようになったらしい
+    - Issue の表にある Pass Rate を見ると 100%に到達していないが、Prettier 側の既知のバグに起因するものらしい(Oxfmt の出力の方が正しいとのこと)
+- コミュニティの Oxfmt / Oxlint 移行が進んでるらしい
+  - Turborepo
+    - Prettier -> Oxfmt
+      - https://github.com/vercel/turborepo/pull/11392
+    - ESLint -> Oxlint
+      - https://github.com/vercel/turborepo/pull/11391
+  - huggingface.js
+    - Prettier -> Oxfmt
+      - https://github.com/huggingface/huggingface.js/pull/1924
+  - sentry-javascript
+    - Prettier -> Oxfmt
+      - https://github.com/getsentry/sentry-javascript/pull/19200)
+      - CI が 45s -> 7s になった
+- Sosukesuzuki Prettier Retire
+  - https://sosukesuzuki.dev/posts/retire-prettier/
+- Deno Deploy が GA
+  - https://deno.com/blog/deno-deploy-is-ga
+  - もともとあった Deno KV に加えて、PostgreSQL が使えるようになった
+    - `npm:pg` が使える
+- Deno Sandbox の Beta がリリース (前回話したやつ)
+  - https://deno.com/blog/introducing-deno-sandbox
+  - Deno Deploy の GA と合わせてアナウンス
+    - 機能詳細、料金が公開された
+- RSC の脆弱性(新規)
+  - https://vercel.com/changelog/summary-of-cve-2026-23864
+  - Server Function への DoS
+  - CVE-2026-23864
+- Babel 8.0.0-rc.1
+  - https://babeljs.io/blog/2026/01/31/7.29.0?ref=dailydev
+- Node.js の require(esm) が stable になった
+  - v25.4.0 で stable
+    - https://nodejs.org/en/blog/release/v25.4.0
+    - https://github.com/nodejs/node/pull/60959
+  - 既に、全てのアクティブな LTS のラインにリリース済みなのでこの判断らしい
+- Turborepo 2.8
+  - https://turborepo.dev/blog/2-8
+  - Git worktree support
+  - Agent Skill
+  - AI-enabled documentation
+  - turbo docs
+  - Task descriptions
+- 7 learnings from Anders Hejlsberg: The architect behind C# and TypeScript
+  - https://github.blog/developer-skills/programming-languages-and-frameworks/7-learnings-from-anders-hejlsberg-the-architect-behind-c-and-typescript/
+  - Anders Hejlsberg のインタビュー記事が GitHub Blog に上がった
+    - TS の Go 移植のモチベーションとかも話している。以前も語られていた通りだが、高速なフィードバックを昔 (Turbo Pascal 時代) から重視しているらしい
+  - なぜ TypeScript は成功しているのか。作者ヘイルスバーグ氏が語る 7 つの教訓 － Publickey
+    - https://www.publickey1.jp/blog/26/typescript7.html
+  - 概要
+    - 高速なフィードバックループが何より重要
+    - スケールするには個人の好みを手放す必要がある
+    - TypeScript は JavaScript を置き換えず拡張した
+    - オープンソースでは「意思決定の可視性」が重要
+    - 実装言語の変更(Go 移植)は必要な決断だった
+    - AI 時代のツールに求められるのは「生成」ではなく「正確性と制約」
+    - オープンな協働が制度的記憶を残す
+    - 全体として、「エレガンスよりフィードバックの速さ」「純粋さより動作の互換性」「トレードオフの可視化が信頼を築く」という原則を強調
+- Ryan Dahl のポスト "the era of humans writing code is over."
+  - https://x.com/rough__sea/status/2013280952370573666
+- Cloudflare のコンポーネントライブラリ Kumo
+  - https://github.com/cloudflare/kumo
+  - BaseUI ベース
+- フランスが「Microsoft Teams」と「Zoom」を排除した理由--何に代替するのか
+  - https://japan.zdnet.com/article/35243443/
+- Introducing Markdown for Agents
+  - https://blog.cloudflare.com/markdown-for-agents/
+  - HTML を Markdown にし `text/markdown` で配信する機能
+  - Token を 80% 節約できる
+- Making agent-friendly pages with content negotiation - Vercel
+  - https://vercel.com/blog/making-agent-friendly-pages-with-content-negotiation
+  - 同じく `text/markdown`
+- Content Signals
+  - https://contentsignals.org/
+  - `Content-Signal` ヘッダでクローラに意図を伝える
+  - `ai-train`, `search`, `ai-input` などを表明する
+- WebMCP の早期プレビュー版が Chrome 146 で使えるようになった
+  - https://developer.chrome.com/blog/webmcp-epp?hl=ja
+  - Chrome built-in AI Early Preview Program に登録したら使える
+    - https://developer.chrome.com/docs/ai/join-epp
+  - Proposal
+    - https://github.com/webmachinelearning/webmcp/blob/main/docs/proposal.md
+    - tool を Object で定義し、その `execute` キーに設定した callback 関数をブラウザ上の AI エージェントが呼ぶ構造
+      - `execute` 関数で、ユーザー確認の UI を挟める (HITL)
+    - tool を HTML 要素で宣言的に提供することも可能
+  - 解説記事
+    - https://azukiazusa.dev/blog/webmcp-for-web-applications/
+- MCP Apps
+  - https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/
+  - https://claude.com/blog/interactive-tools-in-claude
+  - チャット内にインタラクティブなアプリケーションを埋め込むためのプロトコル
+  - 実装は iframe
+- Skill
+  - skills.sh
+    - http://skills.sh
+    - Vercel 製の Agent Skill レジストリ
+  - vercel-labs/next-skills
+    - https://github.com/vercel-labs/next-skills
+  - Turborepo
+    - https://skills.sh/vercel/turborepo/turborepo
+  - Next.js
+    - https://github.com/vercel-labs/next-skills
+  - Postgres
+    - https://supabase.com/blog/postgres-best-practices-for-ai-agents
+  - Anthony Fu
+    - https://github.com/antfu/skills
+- Pencil
+  - https://www.pencil.dev/
+  - AI デザインツール
+- Codex App
+  - https://openai.com/ja-JP/index/introducing-the-codex-app/
+- Fast mode for Claude Opus 4.6 is now in preview for GitHub Copilot - GitHub Changelog
+  - https://github.blog/changelog/2026-02-07-claude-opus-4-6-fast-is-now-in-public-preview-for-github-copilot/
+- GPT‑5.3‑Codex‑Spark のご紹介
+  - https://openai.com/ja-JP/index/introducing-gpt-5-3-codex-spark/
+- Claude Cowork
+  - https://claude.com/blog/cowork-research-preview
+  - Claude Code ライクなエージェントが GUI に
+- OpenClaw - Personal AI Assistant
+  - https://openclaw.ai/
+- exe.dev, sprites.dev
+  - https://exe.dev/
+  - https://sprites.dev/
+  - Coding Agent を動かす sandbox 的な VM
+  - VM が dedicated な domain を持っていてそのままアプリケーションを公開できる
+  - 25/12 くらいからでてるけど日本語圏で話題になったのは最近か
+- Conductor Update: Introducing Automated Reviews
+  - https://developers.googleblog.com/conductor-update-introducing-automated-reviews/
+  - Conductor に Automated Review 機能追加
+  - コードレビュー、計画遵守、ガイドライン遵守、テストスイート検証、基本的なセキュリティレビューを実施。
+  - レビュー結果は、重要度に応じて分類し、開発者に具体的な修正指示を提供。
+- Entire
+  - https://github.com/entireio/cli
+  - GitHub ex-CEO が立ち上げたプロダクト
+  - Coding Agent のセッションをコミットと紐づけて保存
+- Introducing the Developer Knowledge API and MCP Server
+  - https://developers.googleblog.com/introducing-the-developer-knowledge-api-and-mcp-server/
+  - Google が公開する開発者向け API へのアクセスできる
+  - API と MCP サーバで公開
+  - 24h ごとに更新される
+  - リスト
+    - https://developers.google.com/knowledge/reference/corpus-reference
+    - ai.google.dev
+    - developer.android.com
+    - developer.chrome.com
+    - developers.home.google.com
+    - developers.google.com
+    - docs.cloud.google.com
+    - docs.apigee.com
+    - firebase.google.com
+    - fuchsia.dev
+    - web.dev
+    - www.tensorflow.org
+- Claude Pro/Max BAN 騒動
+  - opencode をはじめとする 3rd party tool のサブスク利用を BAN
+    - https://github.com/anthropics/claude-code/issues/17118
+  - これを受けて GitHub Copilot が公式で opencode 対応
+    - https://x.com/github/status/2011822451613712646
+  - opencode も OpenCode Black というサブスク開始
+    - https://opencode.ai/black
+- Vibe Coding -> Agentic Engineering
+  - https://x.com/karpathy/status/2019137879310836075
+  - Agentic: 99%の時間はコードを直接書かずにエージェントを監督するから
+  - Engineering: アート、サイエンス、専門性を強調
+
+
+## Events
+
+- 1 月
+- 2 月
+  - 14-15: Spectrum Tokyo Festival 2026
+    - https://fest.spectrumtokyo.com/2026/
+- 3 月
