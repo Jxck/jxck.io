@@ -8,6 +8,8 @@ http://localhost:3000 での開発には限界がある。
 
 そこで、必要な全てを 1 つのツールで行い、様々な開発環境を再現するためのツールを開発したので、紹介する。
 
+![sptth logo](logo.banner.svg#640x180)
+
 - Jxck/sptth: reverse https proxy (https - sptth) for local development
   - https://github.com/Jxck/sptth
 
