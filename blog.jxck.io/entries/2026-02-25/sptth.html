@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta name="text-scale" content="scale">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-02-25/sptth.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="http://localhost:3000 での開発には限界がある。しかし、本番と同じように https://example.com でアクセスできる環境をローカルに作るには、ドメインの解決、証明書の発行、443 での起動など、少し手間がかかる。そこで、必要な全てを 1 つ...">
+  <meta name=keywords            content="https">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-02-25/sptth.html>
+  <meta property=og:title        content="ローカル HTTPS 開発専用ツール SPTTH を公開した | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="http://localhost:3000 での開発には限界がある。しかし、本番と同じように https://example.com でアクセスできる環境をローカルに作るには、ドメインの解決、証明書の発行、443 での起動など、少し手間がかかる。そこで、必要な全てを 1 つ...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "ローカル HTTPS 開発専用ツール SPTTH を公開した | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2026-02-25T08:00:00+08:00",
+    "dateModified": "2026-02-26T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "http://localhost:3000 での開発には限界がある。しかし、本番と同じように https://example.com でアクセスできる環境をローカルに作るには、ドメインの解決、証明書の発行、443 での起動など、少し手間がかかる。そこで、必要な全てを 1 つ..."
+  }
+  </script>
+
+  <title>ローカル HTTPS 開発専用ツール SPTTH を公開した | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2026-02-25>2026-02-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-02-26>2026-02-26</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#https">https</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#localhost-の罠">localhost の罠</a>
+              <li><a href="#3-つの-sudo">3 つの sudo</a>
+              <li><a href="#requirement">Requirement</a>
+              <li><a href="#sptth">SPTTH</a>
+              <li><a href="#architecture">Architecture</a>
+              <li><a href="#install">Install</a>
+              <li><a href="#implementation">Implementation</a>
+              <li><a href="#contribution">Contribution</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <article>
+      <h1><a href="">ローカル HTTPS 開発専用ツール SPTTH を公開した</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p><a href="http://localhost:3000" target=_blank>http://localhost:3000</a> での開発には限界がある。
+        <p>しかし、本番と同じように <a href="https://example.com" target=_blank>https://example.com</a> でアクセスできる環境をローカルに作るには、ドメインの解決、証明書の発行、443 での起動など、少し手間がかかる。
+        <p>そこで、必要な全てを 1 つのツールで行い、様々な開発環境を再現するためのツールを開発したので、紹介する。
+        <ul>
+          <li>
+            Jxck/sptth: reverse https proxy (https - sptth) for local development
+            <ul>
+              <li><a href="https://github.com/Jxck/sptth" target=_blank>https://github.com/Jxck/sptth</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="localhost-の罠"><a href="#localhost-の罠">localhost の罠</a></h2>
+        <p><code translate=no>localhost</code> はあまりにも特別なホストであるため、権限などの挙動は、本番ドメインにデプロイすると変わる。
+        <p>また、本番ドメインとは Origin が異なるため、連携のためのあらゆるセキュリティ境界も変わる。
+        <p>もし、複数のサービスの中で、1 サービスだけ手元で動かし、他は本番を参照したいような開発があっても、localhost ではうまく再現できない場合が多い。
+        <p>つまり、ある程度複雑なサービスを開発していれば、<a href="http://localhost:3000" target=_blank>http://localhost:3000</a> での開発など、早々に限界を迎えるのだ。
+        <p>もし本番が <a href="https://example.com" target=_blank>https://example.com</a> ならば、ローカルでも同じく <a href="https://example.com" target=_blank>https://example.com</a> で開発したい。
+        <p>しかも、自己署名証明書で起動し、ブラウザが出す証明書エラーを無視しながら開発するのもやめたい。
+        <p>どうしたら良いだろうか?
+      </section>
+      <section>
+        <h2 id="3-つの-sudo"><a href="#3-つの-sudo">3 つの sudo</a></h2>
+        <p>手法自体は知られている。以下の 3 つを行えば、ローカルで起動したサーバに <a href="https://example.com" target=_blank>https://example.com</a> でアクセスできるようになる。
+        <ol>
+          <li><code translate=no>/etc/hosts</code> を修正し、example.com を 127.0.0.1 にする
+          <li>mkcert でローカル CA を立て、example.com の証明書を発行する
+          <li>443 でサーバを起動する
+        </ol>
+        <p>そして、この 3 つのステップ全てに sudo が必要だ。
+        <p>なぜならどれも、システムにとって重要な操作をしているからだ。
+        <p>これらを手順書だけでやり遂げるのは、開発慣れしていない人には難しい場合もある。
+        <p>ここまでやっても、アプリサーバ自体が証明書を使って HTTPS を受けるようになっている必要があるが、通常サーバが直接 HTTPS を喋るようには作らないだろう。基本的に TLS の終端は LB や CDN などで行い、アプリサーバは平文で受け付ける構成が一般的だからだ。
+        <p>筆者はずっと、この 3 つを 1 つのツールで 1 回の sudo で実行できないか、と考えていた。
+      </section>
+      <section>
+        <h2 id="requirement"><a href="#requirement">Requirement</a></h2>
+        <p>要件はこうだ。
+        <ol>
+          <li>ローカル DNS を立ち上げ、名前解決を 127.0.0.1 にする。
+          <li>ローカルに CA を立ち上げ、動的に証明書を発行する。
+          <li>プロキシを 443 で立ち上げ、ローカルサーバには平文で転送する。
+        </ol>
+        <p>全てを 1 つのコマンドにし、一回の sudo で起動できれば、認証も一回で済みローカルへの影響も最小限にできる。
+        <p>と、頭では思いついていたが、手を動かすとなると相応の時間がかかる。
+        <p>しかも、DNS と CA と Reverse Proxy を実装するとなると、それなりに面倒だ。
+        <p>しかし時代が変わり一晩で動くところまでいけたため、公開することにした。
+        <p>それが <code translate=no>sptth</code> だ。
+      </section>
+      <section>
+        <h2 id="sptth"><a href="#sptth">SPTTH</a></h2>
+        <p>以下のような設定を TOML に記述する。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <pre class=toml data-code=toml><code translate=no class=language-toml>[dns]
+listen = &quot;127.0.0.1:53&quot;
+upstream = [&quot;1.1.1.1:53&quot;, &quot;8.8.8.8:53&quot;]
+
+[[record]]
+domain = &quot;example.com&quot;
+A = [&quot;127.0.0.1&quot;]
+AAAA = [&quot;::1&quot;]
+
+[[record]]
+domain = &quot;example.net&quot;
+A = [&quot;127.0.0.1&quot;]
+AAAA = [&quot;::1&quot;]
+
+[tls]
+ca_dir = &quot;~/.config/sptth/ca&quot;
+cert_dir = &quot;~/.config/sptth/certs&quot;
+
+[[proxy]]
+domain = &quot;example.com&quot;
+listen = &quot;127.0.0.1:443&quot;
+upstream = &quot;localhost:3000&quot;
+
+[[proxy]]
+domain = &quot;example.net&quot;
+listen = &quot;127.0.0.1:443&quot;
+upstream = &quot;localhost:4000&quot;</code></pre>
+        <p>そして、以下のように実行する。
+        <pre class=sh data-code=sh><code translate=no class=language-sh>$ sudo sptth config.toml</code></pre>
+        <p>初回起動時にローカル CA を立ち上げるので、それを許可する。
+        <p>あとは、OS の DNS 設定を 127.0.0.1 に変えるだけだ。
+        <p>ブラウザから <a href="https://example.com" target=_blank>https://example.com</a> にアクセスすれば <a href="http://localhost:3000" target=_blank>http://localhost:3000</a> に、<a href="https://example.net" target=_blank>https://example.net</a> にアクセスすれば <a href="http://localhost:4000" target=_blank>http://localhost:4000</a> にアクセスできる。ローカル CA で署名した正しい証明書なので、URL バーも赤くならない。
+        <p>sudo が一個になり、設定も一箇所にまとめて、複数のサービスを <strong>デプロイしたときと同じブラウザの状態</strong> で操作することができるようになる。ブラウザが持つ Permission も Origin も Security Surface も、本番と同じ条件で開発できるのだ。
+      </section>
+      <section>
+        <h2 id="architecture"><a href="#architecture">Architecture</a></h2>
+        <p>基本的には、DNS、CA、LB を 1 つのツールに詰め込んだだけだ。
+        <p>DNS は 53 (sudo) で起動し、toml に書いたドメインだけ、指定した A/AAAA レコードを返し、それ以外は upstream に移譲するようになる。
+        <p>CA は、初回起動時にルート証明書を OS の証明書ストアに入れる(sudo)。その上で、毎回 toml に書かれたドメインの証明書を発行する。
+        <p>LB は、443 (sudo) で起動し、リクエストを受けたら upstream のローカルサーバに転送する。したがって、ローカルで開発しているサーバは今まで通り localhost:3000 などで開発すれば良い。
+        <p>以上を 1 つのコマンドにしているため、<code translate=no>sudo</code> が一回で済み、toml を変えるまでは起動しっぱなしでよくなる。
+        <p>必要な設定は、OS の DNS 設定の変更だけだ。
+      </section>
+      <section>
+        <h2 id="install"><a href="#install">Install</a></h2>
+        <p>現在、ビルドを GitHub で配布している状態なので、それをダウンロードして実行して欲しい。
+        <p><a href="https://github.com/Jxck/sptth/releases" target=_blank>https://github.com/Jxck/sptth/releases</a>
+        <p>ツールの性質上、悪意があれば DNS クエリをすべて抜き取ったり、任意の証明書を発行して Person in the Middle 攻撃が可能だ。そこで、署名などはきちんと付けるようにしている。必要に応じて検証して欲しい。
+        <p>一応 Linux / Windows にも対応してはいるが、環境がないので試していない。
+        <p>ちなみに、ローカル環境を壊しても責任は取れないので <strong>AT YOUR OWN RISK</strong> で使用することを前提に公開している。
+        <p>心配であれば、最初に書いた旧来の環境構築を自分で行うことをおすすめする。
+      </section>
+      <section>
+        <h2 id="implementation"><a href="#implementation">Implementation</a></h2>
+        <p>プロトタイプはすべて Codex App の音声入力だけで開発した。
+        <p>コードは一行も書かず、読んでない。
+        <p>とはいえ、プランの段階でだいぶ脱線する場面もあるので、任せきりにはしていない。こちらには、かなり明確に方針とアーキテクチャが浮かんでいるため、そのキャリブレーションには相応の時間をかけている。
+        <p>今後の開発はこうなると思うので、そのうえでクオリティを担保するような方法を探る意味でも、様々な取り組みを試す場としている。
+        <p>特に Codex と Claude の相互レビューや、クオリティ担保系の Skill はある程度ワークしているように思う。
+        <p>Claude Code Security も解放されたら試したいが、それ相当のものを自分で Skill として組み、コマンドとしても使えるようにしている。
+        <p>引き続き、「<strong>書いてない読んでないコードのクオリティをどう担保できるか</strong>」を試す場にしたい。
+      </section>
+      <section>
+        <h2 id="contribution"><a href="#contribution">Contribution</a></h2>
+        <p>各地で見られるように、AI による PR も増えてきたが、レビューする気はない。
+        <p>代わりに、Issue template にプロンプトを書けるようにした。
+        <p>AI で実装するためのプロンプトをもらい、そのプロンプトをこちらで兼用しながら、こちらのガバナンスの元で実行して開発し、チェックしてリリースする方針だ。
+        <p>もちろん、プロンプト無しで、単に困った部分を Issue にファイルしてくれても構わない。
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>頭に描いたものを、可処分時間を過度に浪費せずに実現できるようになったのは、非常にありがたい。
+        <p>そして、長年なんとかしたかった問題も解決できたので、非常に満足度が高い。
+        <p>あと 10 年早く欲しかった。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
