@@ -651,7 +651,7 @@ guest: [@petamoriken](https://x.com/petamoriken)
     - サーバ代は個人が支払っており、200 ドル/month、約 8 年間も運用していた
     - 管理者と連絡が取れない状況が続いていた中、概要ページの更新が止まってしまっていたため、独自で解決しようとしたが、相談なしに解決策を講じたため管理者が怒った
     - > You're all very ready and eager to ping me when something breaks,
-      >yet crickets when talking about how to actually fix anything or shift the burden away from me. ..
+      > yet crickets when talking about how to actually fix anything or shift the burden away from me. ..
       > So here's another forcing function: I'm going to stop paying for the servers at the end of this month.
       > You can either find a way to fund them, replace them, or deal with them not being there.
     - 今月末でサーバ代の支払いが止まるので、急ピッチで移行作業が進められている
