@@ -13,13 +13,11 @@ guest: [@petamoriken](https://x.com/petamoriken)
 
 第 199 回のテーマは 2026 年 2 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 146
-
 
 #### Updates
 
@@ -65,7 +63,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
     - **WebNN**
 - What's New in WebGPU (Chrome 146)
   - https://developer.chrome.com/blog/new-in-webgpu-146
-
 
 #### Intents
 
@@ -183,7 +180,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/6Q-Y5kTmuIE
   - Date: April 20-21, 2026
 
-
 #### Other
 
 - web.dev
@@ -254,11 +250,9 @@ guest: [@petamoriken](https://x.com/petamoriken)
     - セキュリティが向上し、ユーザー体験が改善される。
     - さまざまなプラットフォーム間での互換性を促進する。
 
-
 ### Firefox 動向
 
 #### Stable: 148
-
 
 #### Updates
 
@@ -302,7 +296,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
     - https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md
   - WebAssembly CG とともに進めていく
 
-
 #### Intents
 
 - **Ship: Popover=hint**
@@ -326,13 +319,11 @@ guest: [@petamoriken](https://x.com/petamoriken)
 - Unship: Adjustment of default MathML operator lspace/rspace when `math-depth > 0`
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/4jCrlRGxIIM
 
-
 #### Newsletter
 
 - https://fxdx.dev/
 - Firefox WebDriver Newsletter 148 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-148/
-
 
 #### MDN / Open Web Docs
 
@@ -340,7 +331,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
 - **Open Web Docs Impact and Transparency Report 2025**
   - https://openwebdocs.org/content/reports/2025/
   - MDN の CSS モジュールや ACD などの取り組み
-
 
 #### Standard Position
 
@@ -368,7 +358,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
   - WebAssembly Phase 3 Proposals
     - https://github.com/mozilla/standards-positions/issues/1350
 
-
 #### Other
 
 - State of Mozilla 2025
@@ -391,11 +380,9 @@ guest: [@petamoriken](https://x.com/petamoriken)
 - How to turn off AI features in Firefox, or choose the ones you want
   - https://blog.mozilla.org/en/firefox/how-to-use-ai-controls/
 
-
 ### Safari 動向
 
 #### Stable: 26.3
-
 
 #### Updates
 
@@ -463,7 +450,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
     - Added support for JavaScript Promise Integration (JSPI) for WebAssembly, enabling WebAssembly code to suspend and resume execution while waiting for JavaScript promises.
   - WebRTC
 
-
 #### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2026-02-01+
@@ -473,7 +459,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
 - No-signal or Closed
   - HTML anchor attribute
     - https://github.com/WebKit/standards-positions/issues/216
-
 
 #### Other
 
@@ -516,11 +501,9 @@ guest: [@petamoriken](https://x.com/petamoriken)
     - Mobile testing
     - WebVTT
 
-
 ### Edge 動向
 
 #### Stable: 145
-
 
 #### Updates
 
@@ -554,7 +537,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
 
-
 #### Other
 
 - Graduating the delayed message timing explainer (#1237)
@@ -564,11 +546,9 @@ guest: [@petamoriken](https://x.com/petamoriken)
 - Address feedback on platform-provided mixins explainer (3) (#1245)
   - https://github.com/MicrosoftEdge/MSEdgeExplainers/commit/3e82e0441a898f4dc96affddecf1676f06d335a2
 
-
 ### WHATWG/W3C 動向
 
 #### TPAC
-
 
 #### Draft
 
@@ -604,7 +584,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
   - Group Note Draft: Considerations for Reviewing Differential Privacy Systems (for Non-Differential Privacy Experts)
     - https://www.w3.org/news/2026/group-note-draft-differential-privacy-guidance/
 
-
 #### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -620,7 +599,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
         - https://open-ui.org/components/overscroll-actions.explainer/
     - [switch] Should the explainer be rewritten to support the switch attribute?
       - https://github.com/openui/open-ui/issues/1282
-
 
 #### WHATNOT
 
@@ -640,7 +618,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
       - input/textarea のテキスト選択範囲の取得
       - Stage2
 
-
 #### CSSWG
 
 - https://www.w3.org/blog/CSS/
@@ -655,7 +632,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
       > So here's another forcing function: I'm going to stop paying for the servers at the end of this month.
       > You can either find a way to fund them, replace them, or deal with them not being there.
     - 今月末でサーバ代の支払いが止まるので、急ピッチで移行作業が進められている
-
 
 #### Other
 
@@ -678,7 +654,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
   - ARIA-AT とも連携していく
   - WebDX CG とも連携し、Baseline をアクセシビリティの指標としても拡張する方針
 
-
 ### TC39/TC55 動向
 
 #### Meeting
@@ -698,7 +673,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
     - Hack スタイル派 vs F#スタイル派 vs パイプライン演算子自体要らない派
     - プレースホルダー(トピックトークン)をどうするか
 
-
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2026-01-01}...main@{2026-03-01}
@@ -716,9 +690,7 @@ guest: [@petamoriken](https://x.com/petamoriken)
   - JSON.parse source text access
   - Upsert
 
-
 #### New Proposals
-
 
 #### WinterTC
 
@@ -737,14 +709,11 @@ guest: [@petamoriken](https://x.com/petamoriken)
     - グループの合意と議論: 機能シグネチャの一貫性を追求する価値あり。
     - リクエストオブジェクトのメタデータとハンドラーシグネチャをブレインストーミング。今後、これらを基にした仕様を議論。
 
-
 #### Other
-
 
 ### IETF 動向
 
 #### IETF
-
 
 #### WG
 
@@ -752,14 +721,12 @@ guest: [@petamoriken](https://x.com/petamoriken)
 - Work
 - Meeting
 
-
 #### Other
 
 - Fwd: New Version Notification for draft-nottingham-httpbis-pre-denied-00.txt
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2026JanMar/0075.html
 - [httpapi] draft-ietf-httpapi-digest-fields-problem-types-04 ietf last call Opsdir review
   - https://mailarchive.ietf.org/arch/msg/httpapi/KJnUWlhO3JwaGafbDhHjRHxV2QU/
-
 
 ### 周辺動向
 
@@ -811,7 +778,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
   - LibJS: Add Rust implementation of lexer, parser, AST, and bytecode generator by awesomekling
     - https://github.com/LadybirdBrowser/ladybird/pull/8104
 
-
 #### セキュリティ動向
 
 - DNS-PERSIST-01: A New Model for DNS-based Challenge Validation - Let's Encrypt
@@ -824,7 +790,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
   - 証明書のデフォルトの有効期限が 90 日から 64 日、最終的に 45 日へと短縮される。
   - 更新リクエストが倍増し、将来的には 30 日ごとに更新が期待される。
   - レート制限は新しいドメイン名の発行に影響するが、更新には適用されない。
-
 
 #### Other
 
@@ -856,7 +821,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
   - Well-kown URL に特定のフォーマットで Custom Element の情報を記述できるようにする
   - そうすれば、リアルワールドのデータに基づいた標準化作業ができるのでは
 
-
 ### イベント
 
 - 3 月
@@ -868,7 +832,6 @@ guest: [@petamoriken](https://x.com/petamoriken)
   - 20-21: BlinkOn
 - 5 月
   - 19-20: Google I/O
-
 
 ### Wrap Up
 

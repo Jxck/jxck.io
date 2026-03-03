@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta name="text-scale" content="scale">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-03-03/scheduled-and-periodic-execution.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="「毎時何時に実行」や「何時間ごとに実行」といった、タスクスケジューリングを実装する機会は少なくない。タスクを実装し cron に登録すれば、動くものを実装するのは難しくない。しかし、ひとたびタスクが思うように動かなかった途端、隠れていた要件が牙を剥く。一度でも痛い目を見た人...">
+  <meta name=keywords            content="systemd,cron,scheduling">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-03-03/scheduled-and-periodic-execution.html>
+  <meta property=og:title        content="「定時実行」と「定期実行」の実装ガイド | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="「毎時何時に実行」や「何時間ごとに実行」といった、タスクスケジューリングを実装する機会は少なくない。タスクを実装し cron に登録すれば、動くものを実装するのは難しくない。しかし、ひとたびタスクが思うように動かなかった途端、隠れていた要件が牙を剥く。一度でも痛い目を見た人...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io"
+    },
+    "headline": "「定時実行」と「定期実行」の実装ガイド | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2026-03-03T08:00:00+08:00",
+    "dateModified": "2026-03-03T08:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "「毎時何時に実行」や「何時間ごとに実行」といった、タスクスケジューリングを実装する機会は少なくない。タスクを実装し cron に登録すれば、動くものを実装するのは難しくない。しかし、ひとたびタスクが思うように動かなかった途端、隠れていた要件が牙を剥く。一度でも痛い目を見た人..."
+  }
+  </script>
+
+  <title>「定時実行」と「定期実行」の実装ガイド | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2026-03-03>2026-03-03</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-03>2026-03-03</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#systemd">systemd</a>
+              <li><a href="/tags#cron">cron</a>
+              <li><a href="/tags#scheduling">scheduling</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#定時実行">定時実行</a>
+              <ol>
+                <li><a href="#初回実行">初回実行</a>
+                <li><a href="#タスク遅延">タスク遅延</a>
+                <li><a href="#リトライ">リトライ</a>
+                <li><a href="#タスク欠損">タスク欠損</a>
+                <li><a href="#タスク重複">タスク重複</a>
+              </ol>
+              <li><a href="#定期実行">定期実行</a>
+              <ol>
+                <li><a href="#実行間隔">実行間隔</a>
+                <li><a href="#タスク遅延_1">タスク遅延</a>
+                <li><a href="#リトライ_1">リトライ</a>
+                <li><a href="#初回実行_1">初回実行</a>
+                <li><a href="#再起動">再起動</a>
+                <li><a href="#開始時刻指定">開始時刻指定</a>
+              </ol>
+              <li><a href="#実装-tips">実装 Tips</a>
+              <ol>
+                <li><a href="#タスクにスケジューリングを実装しない">タスクにスケジューリングを実装しない</a>
+                <li><a href="#定期実行は定時実行に置き換える">「定期実行」は「定時実行」に置き換える</a>
+              </ol>
+              <li><a href="#systemd">Systemd</a>
+              <ol>
+                <li><a href="#タスクをデーモンにする">タスクをデーモンにする</a>
+              </ol>
+              <li><a href="#呼び出されないために">呼び出されないために</a>
+              <li><a href="#まとめ">まとめ</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <article>
+      <h1><a href="">「定時実行」と「定期実行」の実装ガイド</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>「<em>毎時何時に実行</em>」や「<em>何時間ごとに実行</em>」といった、タスクスケジューリングを実装する機会は少なくない。
+        <p>タスクを実装し cron に登録すれば、動くものを実装するのは難しくない。
+        <p>しかし、ひとたびタスクが思うように動かなかった途端、隠れていた要件が牙を剥く。
+        <p>一度でも痛い目を見た人は、それを経験的に疑い「まず色々と前提を確かめよう」という気持ちになり、例外処理を事前に固めることができる。
+        <p>今回は、実装方法そのものというよりも、「<em>実装する前に確認すべき例外事項</em>」を個人の経験を元に解説していく。
+      </section>
+      <section>
+        <h2 id="定時実行"><a href="#定時実行">定時実行</a></h2>
+        <p>「<em>定時実行</em>」とは、例えば「毎日 00:10 になったら、前日分のログをローテーションする」や「毎日 9:00 になったら一斉にメールを送る」といったものだ。バッチ処理などと呼ばれることも多い。
+        <p>なお、00:10 のように微妙にずらすのは、00:00 には他のタスクも動いており、一度に負荷が上がるのを避けるための慣習だ。ずらした先が、他と被らないようにだけはしておきたい。
+        <p>実装も、「普通にスクリプトを書いて、00:10 に実行するだけだろう」と思いがちだ。
+        <p>ここでは少し短くして、毎時 10 分にタスクを実行する場合を考えてみよう。イメージとしてはこうだ。
+        <p>
+          <img loading=lazy decoding=async src=1.timeline.drawio.svg?260303_232340 alt="毎時 10 分(つまり 1 時間に 1 回)タスクを実行する" width=640 height=117>
+        </p>
+        <section>
+          <h3 id="初回実行"><a href="#初回実行">初回実行</a></h3>
+          <p>まず最初に、意外と見落としがちなのは、「<em>スケジュールを開始した瞬間に実行するかどうか</em>」だ。スケジュールの実行は、大抵中途半端なタイミングで行われ、その前にも処理すべきデータがある。
+          <p>例えば、「毎時 10 分に実行するスケジュールを、23:50 に開始したらどうするか」を考えてみよう。筆者の経験上、ここには大体 3 パターンある。
+          <p>1: 毎時 10 分と言っているのだから、次の最初の 10 分、つまり 00:10 から開始する。そこまでのデータもそこで処理する。
+          <p>
+            <img loading=lazy decoding=async src=2-1.timeline.drawio.svg?260303_232340 alt="毎時 10 分と言っているのだから、次の最初の 10 分、つまり 00:10 から開始する。そこまでのデータもそこで処理する。" width=640 height=117>
+          </p>
+          <p>2: 開始時に 23:50 までのデータを処理し、次は 00:10 にそこまでの処理を行い、以降は直近 1 時間のデータを処理する。
+          <p>
+            <img loading=lazy decoding=async src=2-2.timeline.drawio.svg?260303_232340 alt="開始時に 23:50 までのデータを処理し、次は 00:10 にそこまでの処理を行い、以降は直近 1 時間のデータを処理する。" width=640 height=117>
+          </p>
+          <p>3: 最初に 23:10 より前のものを一旦処理しておき、00:10 には直近 1 時間のデータを処理する。
+          <p>
+            <img loading=lazy decoding=async src=2-3.timeline.drawio.svg?260303_232340 alt="最初に 23:10 より前のものを一旦処理しておき、 00:10 には直近 1 時間のデータを処理する。" width=640 height=117>
+          </p>
+          <p>メールの一括送信のようなものは、次の定時から始めれば良い。しかし、何かを集計するようなタスクでは、集計結果のグラフがそこだけ異常値になるが、その異常値の影響をなるべく小さくなる方に倒したいことがほとんどだ。
+          <p>タスクによっては、「スクリプトを開始した瞬間から、次の定時までが n 分以内なら〜」といった絶妙な条件分岐を入れ、集計の影響が以降の集計に影響しないように調整することもある。
+          <p>この初回実行は、スクリプトを最初にデプロイして実行した瞬間だけでなく、何かの弾みでスケジューラを再起動した際にも関わってくる。
+          <p>「<em>定時実行の初回は例外処理</em>」と捉え、実装も「初回だけ動く前処理」と「繰り返す本処理」を分けて実装しておくと良い。
+        </section>
+        <section>
+          <h3 id="タスク遅延"><a href="#タスク遅延">タスク遅延</a></h3>
+          <p>初回をなんとか乗り切り、無事に定時タスクが走るようになったとしよう。
+          <p>ところで、「<em>00:10 に走ったタスクが 01:10 までに終わる</em>」という保証はあるだろうか?
+          <p>「このタスクが何分で終わるか」を意識して実装するのは重要だ。「さすがに 1 時間もかからないだろう」という根拠のない自信を元にデプロイしがちだが、想定していないことが起こるのが例外であり、例外処理を考えていなければ、例外が起こったときに困ることになる。
+          <p>例えば、移動するファイルが普段数 MB だったのが、その日だけ何かの弾みで TB ほど膨れ上がり、コピーにいつもより時間がかかった。サーバの再起動に重いアップデートが挟まって時間がかかった、ネットワークが極端に遅くアップロードが全く進まない。AWS や Cloudflare が落ちた、といったことが起こり得る。
+          <p>様々な例外があるため、「どんな例外が起こり得るか」を個別に洗い出して例外処理(つまり try-catch など)を実装する手前で、運用として「<em>次のタスクまでに前タスクが終わらなかったら</em>」を必ず考えておくべきだ。
+          <p>取り得る選択肢はいくつかある。
+          <p>1: 終わっていないタスクを中断して次を始める
+          <p>
+            <img loading=lazy decoding=async src=3-1.timeline.drawio.svg?260303_232340 alt="1: 終わっていないタスクを中断して次を始める" width=640 height=117>
+          </p>
+          <p>「実行したこと自体に意味がある」タイプのタスクはこれでよいだろう。特に、中断時のリカバリが定義できる要件であれば実現しやすい。
+          <p>ただし、そこまでのデータを処理するような場合は、前のタスクが失敗していた場合、残っているデータをどう処理するかなどを考慮する必要がある。
+          <p>2: 終わっていないタスクと並行して次を始める
+          <p>
+            <img loading=lazy decoding=async src=3-2.timeline.drawio.svg?260303_232340 alt="2: 終わっていないタスクと並行して次を始める" width=640 height=117>
+          </p>
+          <p>「完遂に意味がある」タイプのタスクなら 2 を実装しがちだが、非常に注意が必要だ。
+          <p>この場合、終わっていない理由が解決しない限り、無限にタスクプロセスが増え続ける可能性がある。そして、気づいたらリソースを食い潰してサーバが落ちる。そこまで終わっていなかった数週間分のタスクが全て中途半端に飛び、復旧で地獄を見る、ということになりかねない。
+          <p>3: 人間に助けを求める
+          <p>
+            <img loading=lazy decoding=async src=3-3.timeline.drawio.svg?260303_232340 alt="3: 人間に助けを求める" width=640 height=117>
+          </p>
+          <p>要するにアラートを出してスケジューラ自体を止めるという方針だ。
+          <p>筆者の意見としては「<strong>タスクスケジュールの中での例外処理は、そのプログラムの中で解決しようと頑張らない方が良い</strong>」と考えている。
+          <p>これは一般的な「例外処理」の考え方でもあるが、タスクとスケジューラの責務は、その実行環境の前提が整った上で履行される。前提が整っていない状態での実行を保証することは原理的にできない。それはタスクやスケジューラの「バグ」ではないからだ。
+          <p>なんとか落ちないように例外処理とリトライで固めようとしても、解決対象の問題がそのプログラムによって自己解決できることなどほとんどない。解決したように見えて解決に失敗していた場合、気づくのが遅れ、気づいたときには手遅れになる場合すらある。
+          <p>なんとかしようとすればするほど、被害を大きくするだけなことがほとんどだ。
+          <p>人間に気づかせて状況を確認させ、手動で環境を整備させ、前提を整えて再開する、というのが一番安心できる堅牢な実装だ。
+          <p>したがって、基本は 3 で、アラートやシグナルやメールや Slack などでいち早く人間に知らせる。そして、人間が来るまでの短期間を凌ぐ間、1 か 2 のどちらかを選ぶように実装しておくのが落としどころだろう。
+          <p>いつも 5 分で終わってたタスクも、失敗すれば長引く。長引くときは 1 日でも 1 週間でも長引く。「<em>タスクが時間内に終わるとは限らない</em>」ということは忘れないでほしい。
+        </section>
+        <section>
+          <h3 id="リトライ"><a href="#リトライ">リトライ</a></h3>
+          <p>タスクが失敗した場合、一番やりがちなのは「<em>リトライ</em>」だ。これは、大抵の場合問題を深刻にする。
+          <p>サーバやネットワークが一時的にちょっと不調だった場合などは、数回のリトライで上手くいくこともある。しかし、先程のように、環境に問題がある場合、何度繰り返そうと環境が直っていなければタスクは完遂できない。あたりまえだ。
+          <p>その環境を直すプログラムを例外処理に含むのも限界がある。アクセストークンを再発行したり、ストレージに空き容量を増やしたり、抜けた LAN ケーブルを差し込んだりするのは、タスクやスケジューラの責務ではないからだ。
+          <p>にもかかわらず、単にループを回してリトライし、リソースを食いつぶしてサーバを落としたり、相手にスパム判定されてブロックを食らったりといったよりひどい結果をもたらすことは往々にしてある。
+          <p>基本的に、「<em>リトライして解決できる問題は非常に少ない</em>」と思った方が良い。モバイルアプリのように、しょっちゅう WiFi と SIM を行き来してネットワークの切り替えが走るような場合は別だが、スケジューラを動かす環境でそういうことは少ない。
+          <p>そのうえでリトライするのであれば、絶対に考えるべきことが 2 つある。
+          <ol>
+            <li>
+              リトライ間隔をどうするか
+              <ul>
+                <li>一定間隔で繰り返す
+                <li>Exponential Backoff (2, 4, 8, 16 と倍々で間隔を増やす)
+              </ul>
+            </li>
+            <li>
+              リトライ上限をどうするか
+              <ul>
+                <li>回数上限
+                <li>時間上限
+              </ul>
+            </li>
+          </ol>
+          <p>筆者としては「<em>2 回リトライしてダメなら諦めて人間を呼ぶ</em>」くらいがちょうど良いと考えている。
+          <p>例えば、失敗直後に一回リトライ、しばらくしてからもう一回リトライ、それでもダメならアラートで人間を呼び出して終了、といった実装だ。
+          <p>タスクにとって重要な責務は、無駄に悪あがきせず「何が原因で失敗したのか」をなるべく高い解像度で吐き出してから落ちることだ。
+          <p>スケジューラにとって重要な責務は、失敗したことを隠さず、なるべく即座に、なるべく盛大に、失敗した事実を人間に伝えることだ。
+        </section>
+        <section>
+          <h3 id="タスク欠損"><a href="#タスク欠損">タスク欠損</a></h3>
+          <p>定時実行の仕様を噛み砕くと、「定時に実行する」の前提として「<em>その前までも同じように実行されている</em>」が暗黙に隠れている場合がある。
+          <p>例えば、「毎時 <code translate=no>**:10</code> にログを集計してレポートを出す」は、「その前のログが処理されてレポートが無事生成されている」ことが前提となっている。
+          <p>1 つ前のレポート生成が失敗し、そのタスクがリトライを諦めてレポートが欠損していたら。そもそも、ちょうどメンテ中でサーバが落ちている間に、前回のタスクの時間が来て、実行されていなかったら。
+          <p>次のレポートが二回分集計してしまうと困る。そうなっていなくても、前日のレポートがないと次のレポートに貼るリンクがなくてビルドが失敗する。などといった要件から、一個失敗したら、それ以降全て失敗するということがあり得るのだ。
+          <p>対策としては 2 つある。
+          <ul>
+            <li>
+              前後のタスクを極力依存させない
+              <ul>
+                <li>前のタスクへのリンクは別でやる
+                <li>前のタスクとの差分を取るなどは別でやる
+                <li>整合性の検査はそのタスクとは別でやる
+              </ul>
+            </li>
+            <li>
+              タスクが扱うデータを、そのタスクの担当範囲時間に絞る
+              <ul>
+                <li>「今残っているデータを全部処理対象にする」ではなく「自分の担当時間分だけ処理対象にする」といった実装をする
+              </ul>
+            </li>
+          </ul>
+          <p>「タスクは独立させる」「整合性検証は別でやる」は、あくまで理想ではある。
+          <p>そういった整合性が厳密に求められるなら、結局「一回でも失敗したら、それ以降余計なことをせず全部止めて、人を呼ぶ」方が全体としては被害が少ないこともある。
+          <p>とにかく「<em>前のタスクが成功しているとは限らない</em>」は実装時に意識すべきだ。
+        </section>
+        <section>
+          <h3 id="タスク重複"><a href="#タスク重複">タスク重複</a></h3>
+          <p>重複とは、「これからタスクの中で作ろうとしていたファイルが、なぜか既にある」というような状態だ。
+          <p>「なぜそんなことが起こるのか」と思うかもしれないが、リトライや、タスク実行中の再起動などで、例えば途中まで作ったファイルがある状態でもう一度タスクが走ってしまう、といった状況は普通にあり得る。
+          <p>このとき問題になるのが、例えば作るファイルの命名規則が被る場合、重複するため「上書き」「追記」「スキップ」の 3 択を迫られることだ。
+          <p>もし、ファイルを「連番」で作っていると、そもそもタスクが被ったことに気づかないままファイルを作り足してしまう可能性がある。すると、1 時間に 1 個しか作られないと思っていたファイルが、なぜか 1 時間に 10 個作られていたりすることがあるわけだ。
+          <p>「定時実行」の場合は「<em>その時間に一回だけ実行する</em>」という要件が裏に隠れていることが多い。大抵は「この時間のタスクが実行されたか。それが成功だったか失敗だったか。」といった情報を保存し、タスク開始時に検証できなければならない。
+          <p>しかし、そこまで考えて実装していないタスクは往々にしてある。実行回数や成否くらいはスケジューラ側が管理してくれる場合もあるが、スケジューラは通常タスクが何をしたかまで知らない。
+          <p>「タスクは冪等に設計すべき」といった話になるが、「ファイルが増えすぎるから集計して削除したい」のように、そもそもタスク自体が副作用を持つ場合は、冪等にするのが難しかったりもする。うっかり上書きして消してしまうと、より大きな問題になる要件だ。
+          <p>その場合は「集計」と「削除」のタスクを分け、毎日集計をするがファイルを残し、ファイルの削除は週に一回行う、といった二段のタスクにするといったことも考えられる。しばらく残しておくことで、最悪なんとか復旧するといったバッファだ。残しておいたらなんとかなる、というのも、かなり願望混じりではあるため、重要なタスクなら副作用部分は人間が確認の上でタスクをトリガーするといったことも考えられる。
+          <p>とにかく、「<em>一度だけ確実に実行する、は難しい</em>」ということは覚えておくべきだ。
+          <p>もちろん、冪等に実装するコストをかけて「保証」できるなら良いが、大抵複雑度を増すだけになったりする。発生頻度が少ないなら、「すでにファイルがあったら中断して人を呼ぶ」くらいの方が良い場合もある。
+        </section>
+      </section>
+      <section>
+        <h2 id="定期実行"><a href="#定期実行">定期実行</a></h2>
+        <p>定期実行、つまり「何分に一回実行」というタイプの実装は、定時実行よりも数段難しい。そんなに違うのかと思うかもしれないが、定期実行と定時実行の違いは、「絶対的な軸」がないということだ。
+        <p>ところが、会話の中では思った以上に一緒くたに使われるので、そこに注意が必要である。
+        <p>例えば「10 分ごとに実行」を考えてみよう。
+        <section>
+          <h3 id="実行間隔"><a href="#実行間隔">実行間隔</a></h3>
+          <p>実は、一番見落としがちなのが「実行間隔」である。「10 分ごとと言っているのだから 10 分ごとだろう」と思うかもしれない。おそらく、今想像している 10 分ごととは、こういうものではないだろうか。
+          <p>
+            <img loading=lazy decoding=async src=4-1.timeline.drawio.svg?260303_232340 alt="タスクの開始が 10 分間隔" width=640 height=117>
+          </p>
+          <p>では、それがざっくりこんな実装だったとしよう。
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+          <pre class=ruby data-code=ruby><code translate=no class=language-ruby>loop do
+  task()
+  sleep(10 * 60)
+end</code></pre>
+          <p>この場合、タイムラインはこうだ。
+          <p>
+            <img loading=lazy decoding=async src=4-2.timeline.drawio.svg?260303_232340 alt="タスクの終了から 10 分空ける" width=640 height=117>
+          </p>
+          <p>わかりにくいかもしれないが、微妙に後ろにずれている。
+          <p>「タスクが完了してから 10 分」で実装しているため、タスク実行にかかる時間を忘れているからだ。
+          <p>これはおそらく、多くの人が思う「10 分ごとに実行」とは異なる。
+          <p>多くの人が思う「10 分ごとに定期実行」は「<em>開始時を基点とした 10 分間隔の定時実行</em>」であることが多い。
+          <p>たとえ一瞬で終わりそうなタスクであっても、時間がかかるものだと想定して実装しなければならない。
+          <p>スケジューラとタスクを、一緒に実装してはならない理由でもある。
+        </section>
+        <section>
+          <h3 id="タスク遅延_1"><a href="#タスク遅延_1">タスク遅延</a></h3>
+          <p>定期実行でも、注意点は同じだ。例えば、前のタスクが 10 分以上終わらなかったらどうするか。
+          <p>もし、前のタスク終了から 10 分で続けていくと、どんどんズレが大きくなっていく。コレがしたい要件は、経験上見たことはない。あるんだろうか?
+          <p>
+            <img loading=lazy decoding=async src=4-3.timeline.drawio.svg?260303_232340 alt="タスク終了から 10 分後に次のタスクを開始する" width=640 height=117>
+          </p>
+          <p>前述を踏まえて「前の実行から 10 分経ったら次を始める」という実装だと、タスクが並列で走ってしまう。しかし、大抵は「前の実行から 10 分経ったら、前のタスクは終わっているので、次のタスクを始める」という暗黙の前提がある。
+          <p>つまり、スケジューラは前のタスクの実行が完了しているかも確認する必要があるのだ。そのうえで、前のタスクを止めて次を走らせるか、フォークして次のタスクも定時で走らせるかを決めることになる。
+          <p>
+            <img loading=lazy decoding=async src=4-4.timeline.drawio.svg?260303_232340 alt="前のタスクが終了していない場合の実行判断が必要" width=640 height=117>
+          </p>
+          <p>しかし、大抵は前の実行に問題があり、それを放置して次に進むほうがリスクなことも多いため、スケジューラ自体に「タスクが 3 分以上かかっていたら、全てをアラート」といった、スレッショルドを設定する方が良い。それをしていれば、後続をどうするかを考えるのも含め、人間に判断を委ねられて、実装をシンプルにできる。
+        </section>
+        <section>
+          <h3 id="リトライ_1"><a href="#リトライ_1">リトライ</a></h3>
+          <p>「定期実行」のリトライも注意が必要だ。特に「定期実行」として実装されたものは、初回実行を行うものが多い。したがって、例えばうっかり消えたファイルを探してリトライをし続けると、リトライした回数だけ実行し続けることになる。
+          <p>
+            <img loading=lazy decoding=async src=5.timeline.drawio.svg?260303_232340 alt="回復しない失敗をリトライし続ける" width=640 height=117>
+          </p>
+          <p>したがって、リトライは必ず間隔を空けるべきであり、回数を制限して終了するようにしなければならない。
+          <p>この点も、先述の話と同様だ。
+        </section>
+        <section>
+          <h3 id="初回実行_1"><a href="#初回実行_1">初回実行</a></h3>
+          <p>定時実行と違って、定期実行ではタスクを開始した瞬間に初回を実行するのが普通だろう。
+          <p>
+            <img loading=lazy decoding=async src=6-1.timeline.drawio.svg?260303_232340 alt="スケジュール開始時に初回の実行をする" width=640 height=117>
+          </p>
+          <p>一見、それで良さそうに見える。
+          <p>しかし、ここにも落とし穴がある。
+        </section>
+        <section>
+          <h3 id="再起動"><a href="#再起動">再起動</a></h3>
+          <p>「定期実行は定時実行と違って軸がない」が問題になるのは、スケジューラが再起動したときだ。
+          <p>先ほどの実装で、実行を開始してから 15 分後に再起動が走ったら、どうなるだろうか。
+          <p>
+            <img loading=lazy decoding=async src=6-2.timeline.drawio.svg?260303_232340 alt="再起動が入った場合に初回の実行をするか" width=640 height=117>
+          </p>
+          <p>おそらくこうなる。
+          <p>「<em>定期実行は、前回開始地点からの経過時間</em>」と普通は考えられるため、実は初回実行は「前回最後にいつ実行したか」を踏まえて行わなければならない。
+          <p>ただ繰り返すだけと思われがちな「定期実行」も、実際には様々な状態を保存しておかないと実装は難しいのだ。
+        </section>
+        <section>
+          <h3 id="開始時刻指定"><a href="#開始時刻指定">開始時刻指定</a></h3>
+          <p>定期実行の初回実行はスクリプトの開始時、と思われがちだが、意外と「最初の実行はこのタイミングにしたい」というように、開始時刻を指定したくなることがある。
+          <p>例えば、今は 00:12 だが、最初の実行は 00:30 にして、そこから 10 分ごとにしたいといった場合だ。しかし、そのために人間が 18 分間待機するのは不便なので、定期実行は大抵開始タイミングを指定できる実装にしたくなるものだ。意外と面倒である。
+        </section>
+      </section>
+      <section>
+        <h2 id="実装-tips"><a href="#実装-tips">実装 Tips</a></h2>
+        <section>
+          <h3 id="タスクにスケジューリングを実装しない"><a href="#タスクにスケジューリングを実装しない">タスクにスケジューリングを実装しない</a></h3>
+          <p>最も避けるべきは、なんちゃってスケジューラの自前実装だ。
+          <p>こういうやつだ。
+          <pre class=ruby data-code=ruby><code translate=no class=language-ruby>loop do
+  task()
+  sleep(10 * 60)
+end</code></pre>
+          <p>なぜか、「スケジューラを使うまでもない」などの意味不明な理由で、こういうものを常駐させたがる人がいる。「定期実行」や「定時実行」で痛い目を見たことがない、経験不足からくる失態だ。
+          <p>タスクのテストもしづらく、スケジューラもどこまで考慮できているか怪しい。スケジューラなんて大したことがない、と思っている人がまともに実装できていることなんかありえないので、こういう実装を見たら、まずタスクを剥がして、スケジューラを導入しよう。
+        </section>
+        <section>
+          <h3 id="定期実行は定時実行に置き換える"><a href="#定期実行は定時実行に置き換える">「定期実行」は「定時実行」に置き換える</a></h3>
+          <p>慣れている人には分かりきっていることだが、「<em>大抵の定期実行は定時実行に置き換えて実装した方が良い</em>」。
+          <p>cron は最初からそうなっているため、以下のように書いておけば 10 分間隔の定時実行になっている。
+          <pre class=cron data-code=cron><code translate=no class=language-cron>*/10 * * * * command</code></pre>
+          <p>また、それなりのスケジューラは基本的に cron 互換のスケジュールに対応しており、定時実行で設定ができる。
+          <p>ところが cron はシンプルすぎて、ここまで書いたような細かい処理をカバーしきれない。
+          <p>今ならスケジューラにも Systemd を用いる方が良い。
+        </section>
+      </section>
+      <section>
+        <h2 id="systemd"><a href="#systemd">Systemd</a></h2>
+        <p>タスクを常駐デーモンにするにも、単発タスクにするにも、どちらにせよ systemd で管理するべきだ。
+        <p>ログや再起動などの管理だけでなく、Timer 機能を使うことで cron よりもリッチなスケジューラ機能を、標準で使うことができる。
+        <p>タスクを実装して cron に登録するのと同じように、タスクを Service にし、<code translate=no>Type=oneshot</code> で登録する。
+        <p>スケジュールは、<code translate=no>Timer</code> に cron と同じように実装すれば良い。
+        <p>次の 10 分から 10 分ごとの定時実行はこうなる。
+        <pre><code translate=no>[Service]
+Type=oneshot
+
+[Timer]
+OnCalendar=*-*-* *:00/10:00</code></pre>
+        <p>また、この定時実行時に systemd が落ちており、実行されなかったタスクがあった場合、<code translate=no>Persistent=true</code> を付けておけば、補完して実行することもできる。
+        <p>定期実行の方もサポートすることができ、実行時間もオプションで細かく選ぶことができる。
+        <pre><code translate=no>[Timer]
+OnBootSec=10min         # システム起動から
+OnStartupSec=10min      # systemd 起動から
+OnUnitActiveSec=10min   # 対象 service の前回起動から
+OnUnitInactiveSec=10min # 対象 service の前回完了から</code></pre>
+        <p>他にも、発火時刻の許容誤差を指定したり、ランダムな遅延を加えたりと、さまざまなオプションがあるため、細かい設定が systemd だけで可能だ。
+        <section>
+          <h3 id="タスクをデーモンにする"><a href="#タスクをデーモンにする">タスクをデーモンにする</a></h3>
+          <p>タスクは単発実行されるコマンドとして実装されがちだが、それが必ずしも良いかというと、ケースによる。
+          <p>実際、ここまで述べてきたように、タスクの実行には前提となる条件が多く、それらを状態としてどこかに保持しなければならない。単発タスクなら結果を毎回ファイルに書き出し、ファイルの有無である程度を察することもできるが、ファイルの数が増えるほど状態の復元やチェックが面倒になる。例外処理も増える。
+          <p>そのため、<em>比較的重要なタスクはデーモンにして常駐させるのも 1 つの手だ</em>。
+          <p>そうすれば、インメモリに状態を持っても良い。前回実行について覚えておくこともできるし、再起動した場合にメモリ上の状態が無いことで「初回実行」を判別もできるからだ。
+          <p>すでに Systemd を使っているなら、そのままいつも通りデーモンとして登録する。
+          <pre><code translate=no>[Service]
+Type=simple
+ExecStart=/usr/local/bin/taskd</code></pre>
+          <p>では、デーモンにどう実行タイミングを教えるかと言うと、いくつか方法がある。
+          <ul>
+            <li>
+              UNIX Signal (USR1)
+              <ul>
+                <li><code translate=no>kill -USR1 $(cat /var/run/taskd.pid)</code>
+              </ul>
+            </li>
+            <li>
+              Inotify
+              <ul>
+                <li><code translate=no>touch /var/run/taskd-trigger</code>
+              </ul>
+            </li>
+            <li>
+              Named Pipe
+              <ul>
+                <li><code translate=no>echo &quot;run&quot; &gt; /var/run/taskd.fifo</code>
+              </ul>
+            </li>
+            <li>
+              UNIX Socket
+              <ul>
+                <li><code translate=no>socat - UNIX-CONNECT:/var/run/taskd.sock &lt;&lt;&lt; &apos;run&apos;</code>
+              </ul>
+            </li>
+            <li>
+              TCP
+              <ul>
+                <li><code translate=no>echo &quot;run&quot; | nc localhost 9090</code>
+              </ul>
+            </li>
+            <li>
+              HTTP
+              <ul>
+                <li><code translate=no>curl -s -X POST http://taskd/run</code>
+              </ul>
+            </li>
+          </ul>
+          <p>大きな違いは通知する相手を知る必要があるかどうかだ。ファイルを決め、それを <code translate=no>touch</code> したことをイベントでハンドルする方法は、そのファイルを見ているのが誰かを気にしないで良い。他の方法は、明確にデーモンめがけて指示を出す。
+          <p>今だとシグナルなどを扱うより、普通に HTTP を立ててしまったほうが、慣れている人も多い上に、簡単な UI を提供することもできて、良いようにも思う。
+          <p>そこまでいくと話が変わってくるが、「単なる定時/定期実行だと思っていた」ものが、色々と気にし出すと大きくなっていくというのは、よくあることだ。
+        </section>
+      </section>
+      <section>
+        <h2 id="呼び出されないために"><a href="#呼び出されないために">呼び出されないために</a></h2>
+        <p>安易に「人間を呼べ」などというと、「そんなことでいちいち呼ぶな」という話になる。
+        <p>そのとおりだ。「人間を呼ばないと解決しない」問題は人間を呼ぶしかないが、「人間を呼ばないとならない状態」になることを推奨するものではない。
+        <p>つまり、スケジューラの監視が重要である以上に、そのスケジューラが動いてる「<em>環境そのものの監視</em>」の方が実は重要なのだ。環境が整っていれば、雑に登録したタスクもそれなりに上手く動く。
+        <p>一方、環境がしっかり整っていれば、その上で動くタスクの実装、特に Access Token の更新などはきっちり管理した上でデプロイするといった、最小限の考慮は前提となる。
+        <p>そうした考慮をサボり、かといってアラートを上げるのも遠慮して、無駄な処理を無限に繰り返して大事になってから発覚するというのが、最も最悪のパターンだ。
+        <p>本番に影響しないようにと、誰もまともに監視していない別リージョンのインスタンスに閉じ込めて放置した結果、リトライでファイルを無限に生み、リソースを完全に食いつぶした状態でやっと気づき、SSH で入ってみるとファイルが溜まりすぎて <code translate=no>ls</code> すら返ってこないといった悲惨な状態で発掘されたりする。
+        <p>大したことがない要件だから、と甘く見られているものほど、雑な環境で雑に実装され、雑に走り続けた結果最悪の事態に陥りがちだ。どんな簡単なタスクも、ちゃんと実装し、ちゃんとレビューし、ちゃんとした環境に、ちゃんとしたスケジューラで走らせ、ちゃんと監視していればいいのだが、そうならないことが多い分野でもある。
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>これだけ考えても、実行したいタスクによって「隠れた前提条件」は次々に出てくるだろう。一度グラフを書き、そのグラフのバーを極端に伸ばしたり、ずらしたり、消したりしながら、どこまで炙り出せるかで失敗したときの被害はかなり変わる。
+        <p>また、6 ヶ月を超えるような定期実行は、カレンダーに登録して人間が行うのが一番安心だ。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
