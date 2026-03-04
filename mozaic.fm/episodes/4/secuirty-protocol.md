@@ -6,7 +6,7 @@ published_at: 2014-06-07
 guests:
   - name: "@lef"
     url: https://twitter.com/lef
-  - 菊池さん
+  - name: 菊池さん
 ---
 
 # ep4 Security (protocol)

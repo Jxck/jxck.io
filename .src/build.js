@@ -628,12 +628,14 @@ async function parse_episode(entry, order) {
     /^---\n(?<frontmatter>([\n\r]|.)*?)\n---\n(?<markdown>([\n\r]|.)*)$/m
   ).groups
   const { frontmatter, markdown } = groups
+
   /** @type {Info} */
   const yaml = parseYAML(frontmatter, { schema: "core" })
   yaml.tags.forEach((tag) => {
     if (/[A-Z]+/.test(tag))
       throw new Error(`tag should be lowercase: ${tag}`)
   })
+
   const { tags, published_at, audio, guests = [] } = yaml
 
   const [up, host, episodes, ep, filename] = entry.path.split(`/`)
