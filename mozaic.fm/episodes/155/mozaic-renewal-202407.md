@@ -28,7 +28,7 @@ guests:
     - 検索ボックスは全ページ
     - カテゴリも絞る場合は `/search?q=xxx&c=platform`
   - 一覧
-    - クエリをつけると `?c=platfrom` で絞れる
+    - クエリをつけると `?c=platform` で絞れる
   - darkmode
     - system を採用
   - - Hiroppy

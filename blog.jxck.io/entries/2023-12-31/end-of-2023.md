@@ -109,7 +109,7 @@
 - [ep118 Monthly Ecosystem 202304](https://mozaic.fm/episodes/118/monthly-ecosystem-202304.html)
 - [ep120 Monthly Platform 202304](https://mozaic.fm/episodes/120/monthly-platform-202304.html)
 - [ep121 Monthly Ecosystem 202305](https://mozaic.fm/episodes/121/monthly-ecosystem-202305.html)
-- [ep122 Monthly Platform 202305](https://mozaic.fm/episodes/122/monthly-platfrom-202305.html)
+- [ep122 Monthly Platform 202305](https://mozaic.fm/episodes/122/monthly-platform-202305.html)
 - [ep124 Monthly Ecosystem 202306](https://mozaic.fm/episodes/124/monthly-ecosystem-202306.html)
 - [ep125 Monthly Platform 202306](https://mozaic.fm/episodes/125/monthly-platform-202306.html)
 - [ep126 Monthly Ecosystem 202307](https://mozaic.fm/episodes/126/monthly-ecosystem-202307.html)
