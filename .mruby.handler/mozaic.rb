@@ -27,9 +27,11 @@ Proc.new do |env|
     "/81902884557/1-webcomponents"                          => "https://mozaic.fm/episodes/1/webcomponents.html",
     "/81224972090/0-introduction-of-mozaicfm"               => "https://mozaic.fm/episodes/0/introduction-of-mozaicfm.html",
     # Fix typo
-    "/episodes/4/secuirty-protocol.html"                    => "https://mozaic.fm/episodes/4/security-protocol.html",
-    "/episodes/122/monthly-platfrom-202305.html"            => "https://mozaic.fm/episodes/122/monthly-platform-202305.html",
-    "/episodes/181/monthly-ecosystem-2025.html"             => "https://mozaic.fm/episodes/181/monthly-ecosystem-202507.html",
+    "/episodes/4/secuirty-protocol.html"         => "https://mozaic.fm/episodes/4/security-protocol.html",
+    "/episodes/80/monthly-web-202002.html"       => "https://mozaic.fm/episodes/80/monthly-web-202102.html",
+    "/episodes/122/monthly-platfrom-202305.html" => "https://mozaic.fm/episodes/122/monthly-platform-202305.html",
+    "/episodes/129/monthly-platform-202309.html" => "https://mozaic.fm/episodes/129/monthly-platform-202308.html",
+    "/episodes/181/monthly-ecosystem-2025.html"  => "https://mozaic.fm/episodes/181/monthly-ecosystem-202507.html",
   }
   path = env["PATH_INFO"]
   if url_mapping[path]
