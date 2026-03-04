@@ -809,8 +809,8 @@ async function blog(files, params = { preview: false }) {
  * @property {string} path
  * @property {string} file
  * @property {string} title
- * @property {Podcast} [next]
- * @property {Podcast} [prev]
+ * @property {Podcast | null} next
+ * @property {Podcast | null} prev
  */
 
 /**
@@ -828,7 +828,7 @@ async function podcast(files, params = { preview: false }) {
       const title = readFileSync(path, { encoding: `utf-8` }).match(
         /# (?<h1>.*)/
       ).groups.h1
-      return {
+      return /** @type {Podcast} */ ({
         ep: parseInt(ep),
         canonical: `https://${mozaic}/${episodes}/${ep}/${file.replace(
           `.md`,
@@ -840,7 +840,7 @@ async function podcast(files, params = { preview: false }) {
         title,
         next: null,
         prev: null,
-      }
+      })
     })
     .sort((a, b) => {
       if (a.ep === b.ep) {
