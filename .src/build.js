@@ -634,7 +634,7 @@ async function parse_episode(entry, order) {
     if (/[A-Z]+/.test(tag))
       throw new Error(`tag should be lowercase: ${tag}`)
   })
-  const { tags, published_at, audio, guests } = yaml
+  const { tags, published_at, audio, guests = [] } = yaml
 
   const [up, host, episodes, ep, filename] = entry.path.split(`/`)
   const base = `${up}/${host}/${episodes}/${ep}/`
