@@ -6,6 +6,7 @@ import { promisify } from "util"
 import { render } from "ejs"
 import { exec } from "child_process"
 import { glob } from "node:fs/promises"
+import { parse as parseYAML } from "yaml"
 
 import {
   encode,
@@ -141,50 +142,6 @@ function short(str, n = 140) {
   str = str.replaceAll(`\n`, ``)
   if (str.length <= n) return str
   return str.slice(0, n - 3) + `...`
-}
-
-/**
- * parse yaml int object
- * @param {string} str
- * @returns {Info}
- */
-function parse_yaml(str) {
-  /**@type {any} */
-  const init = { guests: [] }
-  return str
-    .split(`\n`)
-    .map((line) => line.match(/^(?<key>.*?): (?<value>.*)/).groups)
-    .reduce((acc, { key, value }) => {
-      if (key === `tags`) {
-        acc.tags = value
-          .match(/^\[(?<values>.*?)\]/)
-          .groups.values.split(`, `)
-          .map((value) => value.match(/"(?<value>.*)"/).groups.value)
-          .map((tag) => {
-            if (/[A-Z]+/.test(tag))
-              throw new Error(`tag should be lowercase: ${tag}`)
-            return tag
-          })
-        return acc
-      }
-      if (key === `guest`) {
-        const matched = value.match(/^\[(?<name>.*?)\]\((?<url>.*)\)/)
-        let name = value
-        let url = null
-        if (matched) {
-          ;({ url, name } = matched.groups)
-        }
-        if (acc.guests) {
-          const values = acc.guests
-          acc.guests = [...values, { url, name }]
-        } else {
-          acc.guests = [{ url, name }]
-        }
-        return acc
-      }
-      acc[key] = value
-      return acc
-    }, init) // guests は必須で無い場合は空
 }
 
 /**
@@ -671,7 +628,12 @@ async function parse_episode(entry, order) {
     /^---\n(?<frontmatter>([\n\r]|.)*?)\n---\n(?<markdown>([\n\r]|.)*)$/m
   ).groups
   const { frontmatter, markdown } = groups
-  const yaml = parse_yaml(frontmatter)
+  /** @type {Info} */
+  const yaml = parseYAML(frontmatter, { schema: "core" })
+  yaml.tags.forEach((tag) => {
+    if (/[A-Z]+/.test(tag))
+      throw new Error(`tag should be lowercase: ${tag}`)
+  })
   const { tags, published_at, audio, guests } = yaml
 
   const [up, host, episodes, ep, filename] = entry.path.split(`/`)
