@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep144.mp3
 published_at: 2024-03-17
-guest:
-  - [@sakito](https://twitter.com/__sakito__)
-  - [@hiroppy](https://twitter.com/about_hiroppy)
+guests:
+  - name: "@sakito"
+    url: https://twitter.com/__sakito__
+  - name: "@hiroppy"
+    url: https://twitter.com/about_hiroppy
 ---
 
 # ep144 Monthly Ecosystem 202403

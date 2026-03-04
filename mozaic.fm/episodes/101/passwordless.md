@@ -3,8 +3,9 @@ type: podcast
 tags: ["password", "passkey", "openid"]
 audio: https://files.mozaic.fm/mozaic-ep101.mp3
 published_at: 2022-08-07
-guest:
-  - [@nov](https://twitter.com/nov)
+guests:
+  - name: "@nov"
+    url: https://twitter.com/nov
 ---
 
 # ep101 Passwordless

@@ -3,8 +3,9 @@ type: podcast
 tags: ["security"]
 audio: https://files.mozaic.fm/mozaic-ep16.mp3
 published_at: 2015-03-27
-guest:
-  - [@hasegawayosuke](https://twitter.com/hasegawayosuke)
+guests:
+  - name: "@hasegawayosuke"
+    url: https://twitter.com/hasegawayosuke
 ---
 
 # ep16 Security (application)

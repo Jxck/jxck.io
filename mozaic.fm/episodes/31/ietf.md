@@ -3,8 +3,9 @@ type: podcast
 tags: ["ietf"]
 audio: https://files.mozaic.fm/mozaic-ep31.mp3
 published_at: 2017-12-12
-guest:
-  - [@flano_yuki](https://twitter.com/flano_yuki)
+guests:
+  - name: "@flano_yuki"
+    url: https://twitter.com/flano_yuki
 ---
 
 # ep31 IETF

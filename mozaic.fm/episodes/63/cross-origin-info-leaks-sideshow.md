@@ -3,8 +3,9 @@ type: podcast
 tags: ["privacy", "sideshow"]
 audio: https://files.mozaic.fm/mozaic-ep63.sideshow.mp3
 published_at: 2020-02-17
-guest:
-  - [@shhnjk](https://twitter.com/shhnjk)
+guests:
+  - name: "@shhnjk"
+    url: https://twitter.com/shhnjk
 ---
 
 # ep63 Cross Origin Info Leaks sideshow

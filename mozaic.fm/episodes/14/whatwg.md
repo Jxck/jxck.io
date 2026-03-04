@@ -3,9 +3,11 @@ type: podcast
 tags: ["whatwg", "w3c"]
 audio: https://files.mozaic.fm/mozaic-ep14.mp3
 published_at: 2015-01-18
-guest:
-  - [@myakura](https://twitter.com/myakura)
-  - [@nunnun](https://twitter.com/nunnun)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
+  - name: "@nunnun"
+    url: https://twitter.com/nunnun
 ---
 
 # ep14 WHATWG

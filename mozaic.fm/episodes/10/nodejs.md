@@ -3,9 +3,11 @@ type: podcast
 tags: ["node.js"]
 audio: https://files.mozaic.fm/mozaic-ep10.mp3
 published_at: 2014-10-07
-guest:
-  - [@koichik](https://twitter.com/koichik)
-  - [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
+guests:
+  - name: "@koichik"
+    url: https://twitter.com/koichik
+  - name: "@yosuke_furukawa"
+    url: https://twitter.com/yosuke_furukawa
 ---
 
 # ep10 Node.js

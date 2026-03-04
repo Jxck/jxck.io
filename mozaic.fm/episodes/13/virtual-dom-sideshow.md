@@ -3,8 +3,9 @@ type: podcast
 tags: ["virtual dom", "react", "flex", "sideshow"]
 audio: https://files.mozaic.fm/mozaic-ep13.sideshow.mp3
 published_at: 2014-12-31
-guest:
-  - [@mizchi](https://twitter.com/mizchi)
+guests:
+  - name: "@mizchi"
+    url: https://twitter.com/mizchi
 ---
 
 # ep13 Virtual DOM sideshow

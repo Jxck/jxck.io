@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep87.mp3
 published_at: 2021-08-23
-guest:
-  - [@myakura](https://twitter.com/myakura)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
 ---
 
 # ep87 Monthly Web 202108

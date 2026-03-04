@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep153.mp3
 published_at: 2024-06-11
-guest:
-  - [@sakito](https://twitter.com/__sakito__)
-  - [@yoshiko](https://twitter.com/yoshiko_pg)
+guests:
+  - name: "@sakito"
+    url: https://twitter.com/__sakito__
+  - name: "@yoshiko"
+    url: https://twitter.com/yoshiko_pg
 ---
 
 # ep153 Monthly Ecosystem 202406

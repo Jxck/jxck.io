@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep171.mp3
 published_at: 2025-02-20
-guest:
-  - [@hiroppy](https://x.com/about_hiroppy)
-  - [@araya](https://bsky.app/profile/araya.dev)
+guests:
+  - name: "@hiroppy"
+    url: https://x.com/about_hiroppy
+  - name: "@araya"
+    url: https://bsky.app/profile/araya.dev
 ---
 
 # ep171 Monthly Ecosystem 202502

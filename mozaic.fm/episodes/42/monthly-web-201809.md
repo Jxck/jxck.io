@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep42.mp3
 published_at: 2018-09-29
-guest:
-  - [@myakura](https://twitter.com/myakura)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
 ---
 
 # ep42 Monthly Web 201809

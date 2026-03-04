@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep134.mp3
 published_at: 2023-10-31
-guest:
-  - [@myakura](https://twitter.com/myakura)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
 ---
 
 # ep134 Monthly Platform 202310

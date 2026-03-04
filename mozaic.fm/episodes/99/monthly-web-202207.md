@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep99.mp3
 published_at: 2022-07-31
-guest:
-  - [@myakura](https://twitter.com/myakura)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
 ---
 
 # ep99 Monthly Web 202207

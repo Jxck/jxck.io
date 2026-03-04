@@ -3,9 +3,11 @@ type: podcast
 tags: ["yearly platform"]
 audio: https://files.mozaic.fm/mozaic-ep195.mp3
 published_at: 2025-12-23
-guest:
-  - [@myakura](https://github.com/myakura)
-  - [@saku](https://x.com/sakupi01)
+guests:
+  - name: "@myakura"
+    url: https://github.com/myakura
+  - name: "@saku"
+    url: https://x.com/sakupi01
 ---
 
 # ep195 Yearly Platform 2025

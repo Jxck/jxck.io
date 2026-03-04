@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep69.mp3
 published_at: 2020-07-06
-guest:
-  - [@araya](https://twitter.com/arayaryoma)
+guests:
+  - name: "@araya"
+    url: https://twitter.com/arayaryoma
 ---
 
 # ep69 Monthly Web 202006

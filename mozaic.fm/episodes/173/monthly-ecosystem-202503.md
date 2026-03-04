@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep173.mp3
 published_at: 2025-03-12
-guest:
-  - [@sakito](https://x.com/__sakito__)
-  - [@yoshiko](https://x.com/yoshiko_pg)
+guests:
+  - name: "@sakito"
+    url: https://x.com/__sakito__
+  - name: "@yoshiko"
+    url: https://x.com/yoshiko_pg
 ---
 
 # ep173 Monthly Ecosystem 202503

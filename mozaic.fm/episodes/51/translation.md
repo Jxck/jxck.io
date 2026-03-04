@@ -3,8 +3,9 @@ type: podcast
 tags: ["whatwg", "w3c", "ietf", "translation"]
 audio: https://files.mozaic.fm/mozaic-ep51.mp3
 published_at: 2019-04-14
-guest:
-  - [@strontium91](https://twitter.com/strontium91)
+guests:
+  - name: "@strontium91"
+    url: https://twitter.com/strontium91
 ---
 
 # ep51 Translation

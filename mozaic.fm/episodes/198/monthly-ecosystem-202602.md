@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep198.mp3
 published_at: 2026-02-17
-guest:
-  - [@syumai](https://x.com/__syumai)
-  - [@yukukotani](https://x.com/yukukotani)
+guests:
+  - name: "@syumai"
+    url: https://x.com/__syumai
+  - name: "@yukukotani"
+    url: https://x.com/yukukotani
 ---
 
 # ep198 Monthly Ecosystem 202602

@@ -3,8 +3,9 @@ type: podcast
 tags: ["yearly platform"]
 audio: https://files.mozaic.fm/mozaic-ep138.mp3
 published_at: 2023-12-26
-guest:
-  - [@myakura](https://twitter.com/myakura)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
 ---
 
 # ep138 Yearly Platform 2023

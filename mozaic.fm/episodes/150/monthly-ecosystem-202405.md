@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep150.mp3
 published_at: 2024-05-16
-guest:
-  - [@sakito](https://twitter.com/__sakito__)
-  - [@hiroppy](https://twitter.com/about_hiroppy)
+guests:
+  - name: "@sakito"
+    url: https://twitter.com/__sakito__
+  - name: "@hiroppy"
+    url: https://twitter.com/about_hiroppy
 ---
 
 # ep150 Monthly Ecosystem 202405

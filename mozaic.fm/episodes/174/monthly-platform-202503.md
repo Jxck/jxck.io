@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep174.mp3
 published_at: 2025-04-03
-guest:
-  - [@myakura](https://github.com/myakura)
-  - [@saku](https://x.com/sakupi01)
+guests:
+  - name: "@myakura"
+    url: https://github.com/myakura
+  - name: "@saku"
+    url: https://x.com/sakupi01
 ---
 
 # ep174 Monthly Platform 202503

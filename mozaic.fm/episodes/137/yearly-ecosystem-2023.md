@@ -3,11 +3,15 @@ type: podcast
 tags: ["yearly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep137.mp3
 published_at: 2023-12-23
-guest:
-  - [@sakito](https://twitter.com/__sakito__)
-  - [@hiroppy](https://twitter.com/about_hiroppy)
-  - [@yoshiko](https://twitter.com/yoshiko_pg)
-  - [@koba04](https://twitter.com/koba04)
+guests:
+  - name: "@sakito"
+    url: https://twitter.com/__sakito__
+  - name: "@hiroppy"
+    url: https://twitter.com/about_hiroppy
+  - name: "@yoshiko"
+    url: https://twitter.com/yoshiko_pg
+  - name: "@koba04"
+    url: https://twitter.com/koba04
 ---
 
 # ep137 Yearly Ecosystem 2023

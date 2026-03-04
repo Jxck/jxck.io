@@ -3,9 +3,11 @@ type: podcast
 tags: ["web", "rest"]
 audio: https://files.mozaic.fm/mozaic-ep7.mp3
 published_at: 2014-08-19
-guest:
-  - [@yohei](https://twitter.com/yohei)
-  - [@t_wada](https://twitter.com/t_wada)
+guests:
+  - name: "@yohei"
+    url: https://twitter.com/yohei
+  - name: "@t_wada"
+    url: https://twitter.com/t_wada
 ---
 
 # ep7 REST

@@ -3,8 +3,9 @@ type: podcast
 tags: ["semantics"]
 audio: https://files.mozaic.fm/mozaic-ep73.mp3
 published_at: 2020-09-28
-guest:
-  - [@_masaka](https://twitter.com/_masaka)
+guests:
+  - name: "@_masaka"
+    url: https://twitter.com/_masaka
 ---
 
 # ep73 Semantic Web

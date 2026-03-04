@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep49.mp3
 published_at: 2019-03-05
-guest:
-  - [@sisidovski](https://twitter.com/sisidovski)
+guests:
+  - name: "@sisidovski"
+    url: https://twitter.com/sisidovski
 ---
 
 # ep49 Monthly Web 201902

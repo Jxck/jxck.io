@@ -3,9 +3,11 @@ type: podcast
 tags: ["webrtc"]
 audio: https://files.mozaic.fm/mozaic-ep6.mp3
 published_at: 2014-08-04
-guest:
-  - [@komasshu](https://twitter.com/komasshu)
-  - [@Tukimikage](https://twitter.com/Tukimikage)
+guests:
+  - name: "@komasshu"
+    url: https://twitter.com/komasshu
+  - name: "@Tukimikage"
+    url: https://twitter.com/Tukimikage
 ---
 
 # ep6 WebRTC

@@ -3,10 +3,13 @@ type: podcast
 tags: ["event"]
 audio: https://files.mozaic.fm/mozaic-ep143.mp3
 published_at: 2024-03-13
-guest:
-  - [@myakura](https://twitter.com/myakura)
-  - [@sakito](https://twitter.com/__sakito__)
-  - [@hiroppy](https://twitter.com/about_hiroppy)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
+  - name: "@sakito"
+    url: https://twitter.com/__sakito__
+  - name: "@hiroppy"
+    url: https://twitter.com/about_hiroppy
 ---
 
 # ep143 mozaic.fm 10 周年記念イベント

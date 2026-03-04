@@ -3,8 +3,9 @@ type: podcast
 tags: ["es7", "javascript"]
 audio: https://files.mozaic.fm/mozaic-ep19.mp3
 published_at: 2015-08-02
-guest:
-  - [@Constellation](https://twitter.com/Constellation)
+guests:
+  - name: "@Constellation"
+    url: https://twitter.com/Constellation
 ---
 
 # ep19 ES7

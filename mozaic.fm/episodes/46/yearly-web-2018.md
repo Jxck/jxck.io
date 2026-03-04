@@ -3,8 +3,9 @@ type: podcast
 tags: ["yearly web"]
 audio: https://files.mozaic.fm/mozaic-ep46.mp3
 published_at: 2018-12-16
-guest:
-  - [@myakura](https://twitter.com/myakura)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
 ---
 
 # ep46 Yearly Web 2018

@@ -3,8 +3,9 @@ type: podcast
 tags: ["performance", "network"]
 audio: https://files.mozaic.fm/mozaic-ep11.mp3
 published_at: 2014-11-10
-guest:
-  - [@igrigorik](https://twitter.com/igrigorik)
+guests:
+  - name: "@igrigorik"
+    url: https://twitter.com/igrigorik
 ---
 
 # ep11 High Performance Browser Networking

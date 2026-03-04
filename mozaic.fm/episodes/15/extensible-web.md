@@ -3,9 +3,11 @@ type: podcast
 tags: ["extensible web"]
 audio: https://files.mozaic.fm/mozaic-ep15.mp3
 published_at: 2015-01-19
-guest:
-  - [@myakura](https://twitter.com/myakura)
-  - [@nunnun](https://twitter.com/nunnun)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
+  - name: "@nunnun"
+    url: https://twitter.com/nunnun
 ---
 
 # ep15 Extensible Web

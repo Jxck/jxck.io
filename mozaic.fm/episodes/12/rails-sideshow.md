@@ -3,8 +3,9 @@ type: podcast
 tags: ["rails", "sideshow"]
 audio: https://files.mozaic.fm/mozaic-ep12.sideshow.mp3
 published_at: 2014-12-12
-guest:
-  - [@a_matsuda](https://twitter.com/a_matsuda)
+guests:
+  - name: "@a_matsuda"
+    url: https://twitter.com/a_matsuda
 ---
 
 # ep12 Rails sideshow

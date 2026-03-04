@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep130.mp3
 published_at: 2023-09-17
-guest:
-  - [@hiroppy](https://twitter.com/about_hiroppy)
-  - [@yoshiko](https://twitter.com/yoshiko_pg)
+guests:
+  - name: "@hiroppy"
+    url: https://twitter.com/about_hiroppy
+  - name: "@yoshiko"
+    url: https://twitter.com/yoshiko_pg
 ---
 
 # ep130 Monthly Ecosystem 202309

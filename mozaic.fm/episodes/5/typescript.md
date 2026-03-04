@@ -3,8 +3,9 @@ type: podcast
 tags: ["typescript"]
 audio: https://files.mozaic.fm/mozaic-ep5.mp3
 published_at: 2014-06-16
-guest:
-  - [@vvakame](https://twitter.com/vvakame)
+guests:
+  - name: "@vvakame"
+    url: https://twitter.com/vvakame
 ---
 
 # ep5 TypeScript

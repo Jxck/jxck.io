@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep56.mp3
 published_at: 2019-09-01
-guest:
-  - [@shqld](https://twitter.com/shqld)
+guests:
+  - name: "@shqld"
+    url: https://twitter.com/shqld
 ---
 
 # ep56 Monthly Web 201908

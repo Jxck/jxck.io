@@ -3,8 +3,9 @@ type: podcast
 tags: ["yearly web"]
 audio: https://files.mozaic.fm/mozaic-ep77.mp3
 published_at: 2020-12-28
-guest:
-  - [@myakura](https://twitter.com/myakura)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
 ---
 
 # ep77 Yearly Web 2020

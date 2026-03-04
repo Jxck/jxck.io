@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep70.mp3
 published_at: 2020-08-11
-guest:
-  - [@shqld](https://twitter.com/shqld)
+guests:
+  - name: "@shqld"
+    url: https://twitter.com/shqld
 ---
 
 # ep70 Monthly Web 202007

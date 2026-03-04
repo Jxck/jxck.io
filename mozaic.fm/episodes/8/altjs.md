@@ -3,9 +3,11 @@ type: podcast
 tags: ["typescript", "altjs"]
 audio: https://files.mozaic.fm/mozaic-ep8.mp3
 published_at: 2014-09-03
-guest:
-  - [technohippy](https://twitter.com/technohippy)
-  - [vvakame](https://twitter.com/vvakame)
+guests:
+  - name: "technohippy"
+    url: https://twitter.com/technohippy
+  - name: "vvakame"
+    url: https://twitter.com/vvakame
 ---
 
 # ep8 AltJS

@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep156.mp3
 published_at: 2024-07-18
-guest:
-  - [@koba04](https://twitter.com/koba04)
-  - [@hiroppy](https://twitter.com/about_hiroppy)
+guests:
+  - name: "@koba04"
+    url: https://twitter.com/koba04
+  - name: "@hiroppy"
+    url: https://twitter.com/about_hiroppy
 ---
 
 # ep156 Monthly Ecosystem 202407

@@ -3,10 +3,13 @@ type: podcast
 tags: ["bug bounty", "security"]
 audio: https://files.mozaic.fm/mozaic-ep35.mp3
 published_at: 2018-03-05
-guest:
-  - [@kinugawamasato](https://twitter.com/kinugawamasato)
-  - [@k2wanko](https://twitter.com/k2wanko)
-  - [@hnagatomo](https://github.com/hnagatomo)
+guests:
+  - name: "@kinugawamasato"
+    url: https://twitter.com/kinugawamasato
+  - name: "@k2wanko"
+    url: https://twitter.com/k2wanko
+  - name: "@hnagatomo"
+    url: https://github.com/hnagatomo
 ---
 
 # ep35 Security (Bug Bounty)

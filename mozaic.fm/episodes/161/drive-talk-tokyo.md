@@ -3,8 +3,9 @@ type: podcast
 tags: ["drive talk"]
 audio: https://files.mozaic.fm/mozaic-ep161.mp3
 published_at: 2024-09-21
-guest:
-  - [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
+guests:
+  - name: "@yosuke_furukawa"
+    url: https://twitter.com/yosuke_furukawa
 ---
 
 # ep161 Drive Talk: Tokyo

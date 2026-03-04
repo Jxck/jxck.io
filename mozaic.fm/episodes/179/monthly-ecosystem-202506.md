@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep179.mp3
 published_at: 2025-06-17
-guest:
-  - [@sakito](https://x.com/__sakito__)
-  - [@re-taro](https://x.com/re_taro_)
+guests:
+  - name: "@sakito"
+    url: https://x.com/__sakito__
+  - name: "@re-taro"
+    url: https://x.com/re_taro_
 ---
 
 # ep179 Monthly Ecosystem 202506

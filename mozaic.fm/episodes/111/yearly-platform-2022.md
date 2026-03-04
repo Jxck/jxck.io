@@ -3,8 +3,9 @@ type: podcast
 tags: ["yearly platform"]
 audio: https://files.mozaic.fm/mozaic-ep111.mp3
 published_at: 2022-12-29
-guest:
-  - [@myakura](https://twitter.com/myakura)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
 ---
 
 # ep111 Yearly Platform 2022

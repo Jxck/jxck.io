@@ -3,8 +3,9 @@ type: podcast
 tags: ["virtual dom", "react", "flex"]
 audio: https://files.mozaic.fm/mozaic-ep13.mp3
 published_at: 2014-12-27
-guest:
-  - [@mizchi](https://twitter.com/mizchi)
+guests:
+  - name: "@mizchi"
+    url: https://twitter.com/mizchi
 ---
 
 # ep13 Virtual DOM

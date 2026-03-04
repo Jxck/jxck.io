@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep199.mp3
 published_at: 2026-02-27
-guest:
-  - [@saku](https://x.com/sakupi01)
-  - [@petamoriken](https://x.com/petamoriken)
+guests:
+  - name: "@saku"
+    url: https://x.com/sakupi01
+  - name: "@petamoriken"
+    url: https://x.com/petamoriken
 ---
 
 # ep199 Monthly Platform 202602

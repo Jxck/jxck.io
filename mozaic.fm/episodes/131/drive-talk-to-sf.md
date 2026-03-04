@@ -3,8 +3,9 @@ type: podcast
 tags: ["drive talk"]
 audio: https://files.mozaic.fm/mozaic-ep131.mp3
 published_at: 2023-09-25
-guest:
-  - [@myakura](https://twitter.com/myakura)
+guests:
+  - name: "@myakura"
+    url: https://twitter.com/myakura
 ---
 
 # ep131 Drive Talk: San Francisco

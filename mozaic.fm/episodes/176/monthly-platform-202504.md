@@ -3,9 +3,11 @@ type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep176.mp3
 published_at: 2025-04-24
-guest:
-  - [@myakura](https://github.com/myakura)
-  - [@saku](https://x.com/sakupi01)
+guests:
+  - name: "@myakura"
+    url: https://github.com/myakura
+  - name: "@saku"
+    url: https://x.com/sakupi01
 ---
 
 # ep176 Monthly Platform 202504

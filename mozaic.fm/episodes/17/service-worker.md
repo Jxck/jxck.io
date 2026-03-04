@@ -3,9 +3,11 @@ type: podcast
 tags: ["service worker"]
 audio: https://files.mozaic.fm/mozaic-ep17.mp3
 published_at: 2015-04-22
-guest:
-  - [@kinu](https://twitter.com/kinu)
-  - [@nhiroki_](https://twitter.com/nhiroki_)
+guests:
+  - name: "@kinu"
+    url: https://twitter.com/kinu
+  - name: "@nhiroki_"
+    url: https://twitter.com/nhiroki_
 ---
 
 # ep17 Service Worker
