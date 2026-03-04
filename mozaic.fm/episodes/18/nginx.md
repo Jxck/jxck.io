@@ -3,7 +3,8 @@ type: podcast
 tags: ["nginx"]
 audio: https://files.mozaic.fm/mozaic-ep18.mp3
 published_at: 2015-06-01
-guest: [@cubicdaiya](https://twitter.com/cubicdaiya)
+guest:
+  - [@cubicdaiya](https://twitter.com/cubicdaiya)
 ---
 
 # ep18 Nginx

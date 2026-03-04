@@ -3,7 +3,8 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep85.mp3
 published_at: 2021-06-29
-guest: [@myakura](https://twitter.com/myakura)
+guest:
+  - [@myakura](https://twitter.com/myakura)
 ---
 
 # ep85 Monthly Web 202106

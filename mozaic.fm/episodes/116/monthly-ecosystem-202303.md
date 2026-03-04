@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep116.mp3
 published_at: 2023-03-18
-guest: [@sakito](https://twitter.com/__sakito__)
-guest: [@hiroppy](https://twitter.com/about_hiroppy)
+guest:
+  - [@sakito](https://twitter.com/__sakito__)
+  - [@hiroppy](https://twitter.com/about_hiroppy)
 ---
 
 # ep116 Monthly Ecosystem 202303

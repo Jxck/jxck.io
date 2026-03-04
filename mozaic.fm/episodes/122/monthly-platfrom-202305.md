@@ -3,7 +3,8 @@ type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep122.mp3
 published_at: 2023-05-29
-guest: [@myakura](https://twitter.com/myakura)
+guest:
+  - [@myakura](https://twitter.com/myakura)
 ---
 
 # ep122 Monthly Platform 202305

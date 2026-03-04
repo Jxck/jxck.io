@@ -3,7 +3,8 @@ type: podcast
 tags: ["web3"]
 audio: https://files.mozaic.fm/mozaic-ep93.mp3
 published_at: 2022-01-24
-guest: [@aggre_](https://twitter.com/aggre_)
+guest:
+  - [@aggre_](https://twitter.com/aggre_)
 ---
 
 # ep93 Web3

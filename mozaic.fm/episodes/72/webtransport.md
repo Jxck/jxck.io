@@ -3,7 +3,8 @@ type: podcast
 tags: ["webtransport"]
 audio: https://files.mozaic.fm/mozaic-ep72.mp3
 published_at: 2020-09-20
-guest: [@hirano](https://twitter.com/hirano_y_aa)
+guest:
+  - [@hirano](https://twitter.com/hirano_y_aa)
 ---
 
 # ep72 WebTransport

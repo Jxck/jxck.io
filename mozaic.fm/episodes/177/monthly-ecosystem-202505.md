@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep177.mp3
 published_at: 2025-05-17
-guest: [@sakito](https://x.com/__sakito__)
-guest: [@hiroppy](https://x.com/about_hiroppy)
+guest:
+  - [@sakito](https://x.com/__sakito__)
+  - [@hiroppy](https://x.com/about_hiroppy)
 ---
 
 # ep177 Monthly Ecosystem 202505

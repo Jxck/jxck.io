@@ -3,7 +3,8 @@ type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep162.mp3
 published_at: 2024-09-30
-guest: [@myakura](https://twitter.com/myakura)
+guest:
+  - [@myakura](https://twitter.com/myakura)
 ---
 
 # ep162 Monthly Platform 202409

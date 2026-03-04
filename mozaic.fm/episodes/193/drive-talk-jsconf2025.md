@@ -3,7 +3,8 @@ type: podcast
 tags: ["drive talk"]
 audio: https://files.mozaic.fm/mozaic-ep193.mp3
 published_at: 2025-12-17
-guest: [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
+guest:
+  - [@yosuke_furukawa](https://twitter.com/yosuke_furukawa)
 ---
 
 # ep193 Drive Talk: JSConf 2025

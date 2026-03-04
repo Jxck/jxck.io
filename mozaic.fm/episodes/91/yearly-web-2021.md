@@ -3,7 +3,8 @@ type: podcast
 tags: ["yearly web"]
 audio: https://files.mozaic.fm/mozaic-ep91.mp3
 published_at: 2021-12-27
-guest: [@myakura](https://twitter.com/myakura)
+guest:
+  - [@myakura](https://twitter.com/myakura)
 ---
 
 # ep91 Yearly Web 2021

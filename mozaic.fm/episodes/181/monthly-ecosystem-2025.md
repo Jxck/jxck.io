@@ -3,7 +3,8 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep181.mp3
 published_at: 2025-07-19
-guest: [@hiroppy](https://x.com/about_hiroppy)
+guest:
+  - [@hiroppy](https://x.com/about_hiroppy)
 ---
 
 # ep181 Monthly Ecosystem 202507

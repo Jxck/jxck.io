@@ -3,7 +3,8 @@ type: podcast
 tags: ["wasi", "wasm", "sideshow"]
 audio: https://files.mozaic.fm/mozaic-ep58.sideshow.mp3
 published_at: 2019-10-19
-guest: [@chikoski](https://twitter.com/chikoski)
+guest:
+  - [@chikoski](https://twitter.com/chikoski)
 ---
 
 # ep58 WASI sideshow

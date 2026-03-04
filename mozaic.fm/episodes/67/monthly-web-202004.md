@@ -3,7 +3,8 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep67.mp3
 published_at: 2020-05-07
-guest: [@myakura](https://twitter.com/myakura)
+guest:
+  - [@myakura](https://twitter.com/myakura)
 ---
 
 # ep67 Monthly Web 202004

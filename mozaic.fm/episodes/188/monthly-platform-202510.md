@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep188.mp3
 published_at: 2025-11-05
-guest: [@myakura](https://github.com/myakura)
-guest: [@saku](https://x.com/sakupi01)
+guest:
+  - [@myakura](https://github.com/myakura)
+  - [@saku](https://x.com/sakupi01)
 ---
 
 # ep188 Monthly Platform 202510

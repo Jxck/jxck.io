@@ -3,7 +3,8 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep80.mp3
 published_at: 2021-03-03
-guest: [@myakura](https://twitter.com/myakura)
+guest:
+  - [@myakura](https://twitter.com/myakura)
 ---
 
 # ep80 Monthly Web 202102

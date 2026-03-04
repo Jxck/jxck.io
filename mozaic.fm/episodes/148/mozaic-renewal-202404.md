@@ -3,8 +3,9 @@ type: podcast
 tags: ["mozaic renewal"]
 audio: https://files.mozaic.fm/mozaic-ep148.mp3
 published_at: 2024-04-22
-guest: [@sakito](https://twitter.com/__sakito__)
-guest: [@hiroppy](https://twitter.com/about_hiroppy)
+guest:
+  - [@sakito](https://twitter.com/__sakito__)
+  - [@hiroppy](https://twitter.com/about_hiroppy)
 ---
 
 # ep148 mozaic.fm Renewal Project 202404

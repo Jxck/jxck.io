@@ -3,9 +3,10 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep187.mp3
 published_at: 2025-10-15
-guest: [@sakito](https://x.com/__sakito__)
-guest: [@hiroppy](https://x.com/about_hiroppy)
-guest: [@re-taro](https://x.com/re_taro_)
+guest:
+  - [@sakito](https://x.com/__sakito__)
+  - [@hiroppy](https://x.com/about_hiroppy)
+  - [@re-taro](https://x.com/re_taro_)
 ---
 
 # ep187 Monthly Ecosystem 202510

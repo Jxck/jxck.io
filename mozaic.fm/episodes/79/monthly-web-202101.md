@@ -3,7 +3,8 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep79.mp3
 published_at: 2021-01-31
-guest: [@myakura](https://twitter.com/myakura)
+guest:
+  - [@myakura](https://twitter.com/myakura)
 ---
 
 # ep79 Monthly Web 202101

@@ -3,8 +3,9 @@ type: podcast
 tags: ["web components"]
 audio: https://files.mozaic.fm/mozaic-ep1.mp3
 published_at: 2014-04-07
-guest: [@hokaccha](https://twitter.com/hokaccha)
-guest: [@ahomu](https://twitter.com/ahomu)
+guest:
+  - [@hokaccha](https://twitter.com/hokaccha)
+  - [@ahomu](https://twitter.com/ahomu)
 ---
 
 # ep1 WebComponents

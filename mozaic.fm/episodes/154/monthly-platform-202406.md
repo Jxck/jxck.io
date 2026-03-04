@@ -3,7 +3,8 @@ type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep154.mp3
 published_at: 2024-06-30
-guest: [@myakura](https://twitter.com/myakura)
+guest:
+  - [@myakura](https://twitter.com/myakura)
 ---
 
 # ep154 Monthly Platform 202406

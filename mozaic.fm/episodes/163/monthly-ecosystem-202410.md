@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep163.mp3
 published_at: 2024-10-15
-guest: [@sakito](https://twitter.com/__sakito__)
-guest: [@yoshiko](https://x.com/yoshiko_pg)
+guest:
+  - [@sakito](https://twitter.com/__sakito__)
+  - [@yoshiko](https://x.com/yoshiko_pg)
 ---
 
 # ep163 Monthly Ecosystem 202410

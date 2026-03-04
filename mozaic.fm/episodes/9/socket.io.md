@@ -3,7 +3,8 @@ type: podcast
 tags: ["socket.io", "websocket"]
 audio: https://files.mozaic.fm/mozaic-ep9.mp3
 published_at: 2014-09-08
-guest: [@rauchg](https://twitter.com/rauchg)
+guest:
+  - [@rauchg](https://twitter.com/rauchg)
 ---
 
 # ep9 Socket.IO

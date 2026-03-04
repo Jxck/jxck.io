@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep183.mp3
 published_at: 2025-08-16
-guest: [@sakito](https://x.com/__sakito__)
-guest: [@hiroppy](https://x.com/about_hiroppy)
+guest:
+  - [@sakito](https://x.com/__sakito__)
+  - [@hiroppy](https://x.com/about_hiroppy)
 ---
 
 # ep183 Monthly Ecosystem 202508

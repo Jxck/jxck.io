@@ -3,7 +3,8 @@ type: podcast
 tags: ["ie", "browser"]
 audio: https://files.mozaic.fm/mozaic-ep83.mp3
 published_at: 2021-05-29
-guest: [@ms_yuhara](https://twitter.com/ms_yuhara)
+guest:
+  - [@ms_yuhara](https://twitter.com/ms_yuhara)
 ---
 
 # ep83 IE

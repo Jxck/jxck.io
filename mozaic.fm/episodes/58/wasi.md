@@ -3,7 +3,8 @@ type: podcast
 tags: ["wasi", "wasm"]
 audio: https://files.mozaic.fm/mozaic-ep58.mp3
 published_at: 2019-10-12
-guest: [@chikoski](https://twitter.com/chikoski)
+guest:
+  - [@chikoski](https://twitter.com/chikoski)
 ---
 
 # ep58 WASI

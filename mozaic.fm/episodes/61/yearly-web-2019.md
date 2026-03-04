@@ -3,7 +3,8 @@ type: podcast
 tags: ["yearly web"]
 audio: https://files.mozaic.fm/mozaic-ep61.mp3
 published_at: 2019-12-29
-guest: [@myakura](https://twitter.com/myakura)
+guest:
+  - [@myakura](https://twitter.com/myakura)
 ---
 
 # ep61 Yearly Web 2019

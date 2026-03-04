@@ -3,8 +3,9 @@ type: podcast
 tags: ["http2", "sideshow"]
 audio: https://files.mozaic.fm/mozaic-ep2.sideshow.mp3
 published_at: 2014-04-29
-guest: [@tatsuhiro_t](https://twitter.com/tatsuhiro_t)
-guest: [@jovi0608](https://twitter.com/jovi0608)
+guest:
+  - [@tatsuhiro_t](https://twitter.com/tatsuhiro_t)
+  - [@jovi0608](https://twitter.com/jovi0608)
 ---
 
 # ep2 HTTP2 sideshow

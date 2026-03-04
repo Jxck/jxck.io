@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep126.mp3
 published_at: 2023-07-16
-guest: [@sakito](https://twitter.com/__sakito__)
-guest: [@hiroppy](https://twitter.com/about_hiroppy)
+guest:
+  - [@sakito](https://twitter.com/__sakito__)
+  - [@hiroppy](https://twitter.com/about_hiroppy)
 ---
 
 # ep126 Monthly Ecosystem 202307

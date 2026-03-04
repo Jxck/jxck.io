@@ -3,7 +3,8 @@ type: podcast
 tags: ["angular2", "spa", "javascript"]
 audio: https://files.mozaic.fm/mozaic-ep24.mp3
 published_at: 2016-12-16
-guest: [@laco0416](https://twitter.com/laco0416)
+guest:
+  - [@laco0416](https://twitter.com/laco0416)
 ---
 
 # ep24 Angular2

@@ -3,8 +3,9 @@ type: podcast
 tags: ["livestreaming", "webtransport", "webrtc"]
 audio: https://files.mozaic.fm/mozaic-ep119.mp3
 published_at: 2023-05-01
-guest: [@ygoto3_](https://twitter.com/ygoto3_)
-guest: [@nodaguti](https://twitter.com/nodaguti)
+guest:
+  - [@ygoto3_](https://twitter.com/ygoto3_)
+  - [@nodaguti](https://twitter.com/nodaguti)
 ---
 
 # ep119 大規模ライブ配信

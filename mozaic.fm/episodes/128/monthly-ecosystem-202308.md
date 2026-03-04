@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep128.mp3
 published_at: 2023-08-19
-guest: [@sakito](https://twitter.com/__sakito__)
-guest: [@koba04](https://twitter.com/koba04)
+guest:
+  - [@sakito](https://twitter.com/__sakito__)
+  - [@koba04](https://twitter.com/koba04)
 ---
 
 # ep128 Monthly Ecosystem 202308

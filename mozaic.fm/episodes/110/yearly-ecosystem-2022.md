@@ -3,8 +3,9 @@ type: podcast
 tags: ["yearly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep110.mp3
 published_at: 2022-12-04
-guest: [@sakito](https://twitter.com/__sakito__)
-guest: [@hiroppy](https://twitter.com/about_hiroppy)
+guest:
+  - [@sakito](https://twitter.com/__sakito__)
+  - [@hiroppy](https://twitter.com/about_hiroppy)
 ---
 
 # ep110 Yearly Ecosystem 2022

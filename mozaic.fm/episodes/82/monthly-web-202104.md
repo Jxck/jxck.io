@@ -3,9 +3,10 @@ type: podcast
 tags: ["monthly web"]
 audio: https://files.mozaic.fm/mozaic-ep82.mp3
 published_at: 2021-05-09
-guest: [@myakura](https://twitter.com/myakura)
-guest: [@flano_yuki](https://twitter.com/flano_yuki)
-guest: [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
+guest:
+  - [@myakura](https://twitter.com/myakura)
+  - [@flano_yuki](https://twitter.com/flano_yuki)
+  - [@sosukesuzuki](https://twitter.com/__sosukesuzuki)
 ---
 
 # ep82 Monthly Web 202104

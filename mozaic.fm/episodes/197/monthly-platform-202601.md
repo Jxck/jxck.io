@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly platform"]
 audio: https://files.mozaic.fm/mozaic-ep197.mp3
 published_at: 2026-02-02
-guest: [@saku](https://x.com/sakupi01)
-guest: [@progfay](https://x.com/progfay)
+guest:
+  - [@saku](https://x.com/sakupi01)
+  - [@progfay](https://x.com/progfay)
 ---
 
 # ep197 Monthly Platform 202601

@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep121.mp3
 published_at: 2023-05-16
-guest: [@sakito](https://twitter.com/__sakito__)
-guest: [@hiroppy](https://twitter.com/about_hiroppy)
+guest:
+  - [@sakito](https://twitter.com/__sakito__)
+  - [@hiroppy](https://twitter.com/about_hiroppy)
 ---
 
 # ep121 Monthly Ecosystem 202305

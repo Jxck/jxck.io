@@ -3,7 +3,8 @@ type: podcast
 tags: ["coinhive"]
 audio: https://files.mozaic.fm/mozaic-ep123.mp3
 published_at: 2023-06-08
-guest: [@moro_is](https://twitter.com/moro_is)
+guest:
+  - [@moro_is](https://twitter.com/moro_is)
 ---
 
 # ep123 Engineering Risk

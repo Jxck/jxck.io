@@ -3,9 +3,10 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep196.mp3
 published_at: 2026-01-20
-guest: [@sakito](https://x.com/__sakito__)
-guest: [@re-taro](https://x.com/re_taro_)
-guest: [@syumai](https://x.com/__syumai)
+guest:
+  - [@sakito](https://x.com/__sakito__)
+  - [@re-taro](https://x.com/re_taro_)
+  - [@syumai](https://x.com/__syumai)
 ---
 
 # ep196 Monthly Ecosystem 202601

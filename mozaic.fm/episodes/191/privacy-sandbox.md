@@ -3,7 +3,8 @@ type: podcast
 tags: ["privacy sandbox"]
 audio: https://files.mozaic.fm/mozaic-ep191.mp3
 published_at: 2025-11-29
-guest: 石井さん
+guest:
+  - 石井さん
 ---
 
 # ep191 Privacy Sandbox

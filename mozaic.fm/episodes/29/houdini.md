@@ -3,7 +3,8 @@ type: podcast
 tags: ["houdini", "css"]
 audio: https://files.mozaic.fm/mozaic-ep29.mp3
 published_at: 2017-11-02
-guest: [@kojiishi](https://twitter.com/kojiishi)
+guest:
+  - [@kojiishi](https://twitter.com/kojiishi)
 ---
 
 # ep29 Houdini

@@ -3,7 +3,8 @@ type: podcast
 tags: ["yearly platform"]
 audio: https://files.mozaic.fm/mozaic-ep168.mp3
 published_at: 2024-12-29
-guest: [@myakura](https://twitter.com/myakura)
+guest:
+  - [@myakura](https://twitter.com/myakura)
 ---
 
 # ep168 Yearly Platform 2024

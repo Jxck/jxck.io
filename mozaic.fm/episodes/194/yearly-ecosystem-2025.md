@@ -3,9 +3,10 @@ type: podcast
 tags: ["yearly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep194.mp3
 published_at: 2025-12-17
-guest: [@sakito](https://x.com/__sakito__)
-guest: [@hiroppy](https://x.com/about_hiroppy)
-guest: [@re-taro](https://x.com/re_taro_)
+guest:
+  - [@sakito](https://x.com/__sakito__)
+  - [@hiroppy](https://x.com/about_hiroppy)
+  - [@re-taro](https://x.com/re_taro_)
 ---
 
 # ep194 Yearly Ecosystem 2025

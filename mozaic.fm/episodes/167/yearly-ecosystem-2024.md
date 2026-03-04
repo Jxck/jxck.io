@@ -3,9 +3,10 @@ type: podcast
 tags: ["yearly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep167.mp3
 published_at: 2024-12-10
-guest: [@sakito](https://twitter.com/__sakito__)
-guest: [@hiroppy](https://twitter.com/about_hiroppy)
-guest: [@yoshiko](https://twitter.com/yoshiko_pg)
+guest:
+  - [@sakito](https://twitter.com/__sakito__)
+  - [@hiroppy](https://twitter.com/about_hiroppy)
+  - [@yoshiko](https://twitter.com/yoshiko_pg)
 ---
 
 # ep167 Yearly Ecosystem 2024

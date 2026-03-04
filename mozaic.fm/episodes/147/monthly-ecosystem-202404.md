@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep147.mp3
 published_at: 2024-04-19
-guest: [@yoshiko](https://twitter.com/yoshiko_pg)
-guest: [@koba04](https://twitter.com/koba04)
+guest:
+  - [@yoshiko](https://twitter.com/yoshiko_pg)
+  - [@koba04](https://twitter.com/koba04)
 ---
 
 # ep147 Monthly Ecosystem 202404

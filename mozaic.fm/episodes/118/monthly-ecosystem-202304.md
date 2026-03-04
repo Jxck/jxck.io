@@ -3,8 +3,9 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep118.mp3
 published_at: 2023-04-15
-guest: [@sakito](https://twitter.com/__sakito__)
-guest: [@yoshiko](https://twitter.com/yoshiko_pg)
+guest:
+  - [@sakito](https://twitter.com/__sakito__)
+  - [@yoshiko](https://twitter.com/yoshiko_pg)
 ---
 
 # ep118 Monthly Ecosystem 202304

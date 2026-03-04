@@ -3,7 +3,8 @@ type: podcast
 tags: ["es7", "javascript", "sideshow"]
 audio: https://files.mozaic.fm/mozaic-ep19.sideshow.mp3
 published_at: 2015-08-05
-guest: [@Constellation](https://twitter.com/Constellation)
+guest:
+  - [@Constellation](https://twitter.com/Constellation)
 ---
 
 # ep19 ES7 sideshow
