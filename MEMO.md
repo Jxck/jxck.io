@@ -2,7 +2,7 @@
 
 ## blog.jxck.io
 
-- https://github.com/Jxck/jxck.io/tree/master/blog.jxck.io
+- https://github.com/Jxck/jxck.io/tree/main/blog.jxck.io
   - ビルド済み静的サイト
   - CSP/FeaturePolicy
   - Reporting
@@ -41,7 +41,7 @@
 - ラスタは WebP に
   - フォールバックとして jpeg/png/gif(anime)
 - picture タグで出しわけ
-- avif 対応検討中
+- avif 対応済み
 
 
 ### Video
@@ -117,7 +117,7 @@ image の記法で video に展開される。
 
 ただし markdown は以下に注意
 
-- 画像の URL は最後に `#120x120` のように width/height を入れる(AMP 用)
+- 画像の URL は最後に `#120x120` のように width/height を入れる
 - サンプルコードは外部ファイルを読み込める(独自)
 
 その他細かい挙動は最初のエントリをテストエントリにしているのでそこで確認。
@@ -139,11 +139,11 @@ alt, title, 画像のサイズがないといけない。
 ![alt](image.png#120x120 "title")
 ```
 
-また、この md は `<picture>` に展開され、可能であれば WebP で配信する。
+また、この md は `<picture>` に展開され、可能であれば avif/WebP で配信する。
 
-なので、 imgage.webp を作って置いておく必要がある。
+なので、 image.avif / image.webp を作って置いておく必要がある。
 
-これは make webp でできる。
+これは `make avif` / `make webp` でできる。
 
 だいたい q=40 でやっている。
 
@@ -172,7 +172,7 @@ html/css/js/png/jpeg/svg ファイルは全て圧縮する。
 
 ## podcast
 
-https://github.com/Jxck/jxck.io/tree/master/mozaic.fm
+https://github.com/Jxck/jxck.io/tree/main/mozaic.fm
 
 基本は blog と同じように作っている。
 
@@ -214,9 +214,7 @@ guest: [@gest2](url)
 - tag: タグのページ、ただし今はタグページを作ってない
 - Theme: これが index ページの見出し、 description 要素、 RSS の概要などに使われる
 
-AMP は吐かない。
-
-mp3 のプレイヤーは [mozaic-player](https://github.com/Jxck/jxck.io/blob/master/www.jxck.io/assets/js/mozaic-player.mjs) を作っている。
+mp3 のプレイヤーは [mozaic-player](https://github.com/Jxck/jxck.io/blob/main/www.jxck.io/assets/js/mozaic-player.mjs) を作っている。
 
 
 ### mp3
