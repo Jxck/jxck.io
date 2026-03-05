@@ -40,10 +40,6 @@ systemd-list:
 systemd-status:
 	$(foreach service, $(notdir $(wildcard ./.systemd/*)), systemctl status $(service))
 
-cron:
-	sudo crontab -u root .crontab/*
-	sudo crontab -u root -l
-
 
 ## optimize all image
 image:
