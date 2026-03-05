@@ -11,8 +11,8 @@ ProtectSystem=full
 NoNewPrivileges=true
 PIDFile=/home/jxck/server/jxck.io/.pid/h2o.pid
 WorkingDirectory=/home/jxck/server/jxck.io
-ExecStartPre=/home/jxck/dotfiles/local/h2o/bin/h2o -c h2o.conf -t
-ExecStart=/home/jxck/dotfiles/local/h2o/bin/h2o -c h2o.conf -m daemon
+ExecStartPre=/home/jxck/server/jxck.io/.h2o/local/bin/h2o -c h2o.conf -t
+ExecStart=/home/jxck/server/jxck.io/.h2o/local/bin/h2o -c h2o.conf -m daemon
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
 

@@ -27,9 +27,9 @@ install:
 	npm install
 	$(DOTFILES)/install/install-avif.sh
 	$(DOTFILES)/install/install-brotli.sh
-	$(DOTFILES)/install/install-h2o.sh
 	$(DOTFILES)/install/install-webp.sh
 	$(DOTFILES)/install/install-guetzli.sh
+	.h2o/install.sh
 
 update:
 	ncu -u
@@ -238,16 +238,19 @@ restart:
 	sudo systemctl restart h2o
 
 reload:
-	sudo $(DOTFILES)/local/h2o/bin/h2o -t -c h2o.conf | cat
+	sudo .h2o/local/bin/h2o -t -c h2o.conf | cat
 	sudo systemctl daemon-reload
 	sudo systemctl reload h2o
 
 test:
-	sudo $(DOTFILES)/local/h2o/bin/h2o -t -c h2o.conf | cat
+	sudo .h2o/local/bin/h2o -t -c h2o.conf | cat
+
+logf:
+	sudo journalctl -u h2o -f
 
 ## h2o local
 _start:
-	sudo $(DOTFILES)/local/h2o/bin/h2o -m daemon -c h2o.conf
+	sudo .h2o/local/bin/h2o -m daemon -c h2o.conf
 
 _stop:
 	sudo kill -TERM `cat ./.pid/h2o.pid`
