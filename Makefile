@@ -239,6 +239,7 @@ restart:
 
 reload:
 	sudo $(DOTFILES)/local/h2o/bin/h2o -t -c h2o.conf | cat
+	sudo systemctl daemon-reload
 	sudo systemctl reload h2o
 
 test:
