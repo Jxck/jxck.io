@@ -187,7 +187,7 @@ Alice と Bob は、チームを管理するマネージャであるが、Busine
 
 ただ、これでは Alice だけでなく Bob も Frontend Vault を管理する形になる。
 
-多くの場合はこれで足りるだろうが、もし Alice だけが Frontend Vault の管理者にしたいのであれば、個別に Alice だけを追加することもできる。
+多くの場合はこれで足りるだろうが、もし Alice だけを Frontend Vault の管理者にしたいのであれば、個別に Alice だけを追加することもできる。
 
 ![Vault に Alice を追加する](alice-to-vault.png#522x258)
 

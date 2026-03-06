@@ -168,9 +168,9 @@ If-Modified-Since: Sat, 11 Nov 2023 11:11:11 GMT
 - RFC 8246 - HTTP Immutable Responses
   - https://www.rfc-editor.org/rfc/rfc8246
 
-Firefox と Safari はこれを実装している。しかし Chrome は実装をしてない。
+Firefox と Safari はこれを実装している。しかし Chrome は実装をしていない。
 
-Chrome は独自の調査の結果、`immutable`がなくても Reload 時にサブリソースを Validation する必要はないという結論に至った。そのため、Reload 時にはメインリソースのみを再取得し、サブリソースは`immutable` がデフォルトという実装に変更されている。
+Chrome は独自の調査の結果、`immutable` がなくても Reload 時にサブリソースを Validation する必要はないという結論に至った。そのため、Reload 時にはメインリソースのみを再取得し、サブリソースは `immutable` がデフォルトという実装に変更されている。
 
 この変更については、以下に詳細がある。
 

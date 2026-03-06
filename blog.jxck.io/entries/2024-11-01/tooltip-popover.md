@@ -115,7 +115,7 @@ APG にも Tooltip についてのパターンがある。
 - Accessible Rich Internet Applications (WAI-ARIA) 1.3
   - https://w3c.github.io/aria/#tooltip
 
-`role=state` などと違い、`aria-live` や `aria-atomic` についてデフォルトがないため、特に UA にとって何か特別な挙動がないことも知られている。
+`role=status` などと違い、`aria-live` や `aria-atomic` についてデフォルトがないため、特に UA にとって何か特別な挙動がないことも知られている。
 
 このように、用途が狭い `role=tooltip` 自体が、曖昧かつ端的に言えば微妙なのではという議論が、Popover などの策定が進んでいく 2019 年ごろに出た。
 

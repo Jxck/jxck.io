@@ -31,7 +31,7 @@ Safari は、AOM には参加しているようだが WebP の対応も割と最
 
 本サイトでは、基本的に PNG/JPEG/GIF がソースとして存在し、それを WebP に変換している。これと同様に AVIF への事前変換を行う。
 
-変換ツールはいくつかあるが、Go が Node あたりが使いやすそうだった。
+変換ツールはいくつかあるが、Go か Node あたりが使いやすそうだった。
 
 - Kagami/go-avif
   - https://github.com/Kagami/go-avif

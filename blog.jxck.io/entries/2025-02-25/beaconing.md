@@ -183,7 +183,7 @@ sentSignal.addEventListener("sent", () => {
 
 `fetch()` の Request を受けるという設計は変えず、送信キューへの登録が完了したことだけを Resolve する API にしたものが `fetchLater()` となる。
 
-追加されたのは `activeAfter` という、送信イベント発火後の遅延時間の指定だけだ。
+追加されたのは `activateAfter` という、送信イベント発火後の遅延時間の指定だけだ。
 
 ```js
 const fetchLaterResult = await fetchLater({

@@ -45,7 +45,7 @@
 </dialog>
 ```
 
-全体が `<dialog>` であることで `role=dialog` な要素自体は定義できている。`role=dialog` には `aria-description` による説明があることが求められているため、ここでは `<h1>` をそのまま適用できるだろう。
+全体が `<dialog>` であることで `role=dialog` な要素自体は定義できている。`role=dialog` には `aria-labelledby` による説明があることが求められているため、ここでは `<h1>` をそのまま適用できるだろう。
 
 ```html
 <dialog aria-labelledby="dialog-label">

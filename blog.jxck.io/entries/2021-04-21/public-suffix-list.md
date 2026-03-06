@@ -188,7 +188,7 @@ FB のアナウンスは「ワークアラウンドとして PSL の追加があ
 
 Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「[望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.) 」という趣旨の発言をしている。
 
-過去にも Fingerprinting や CNAME Cloaking など、代替手段として提供されたものはあったが、特に Safari はそうしたものを徹底して塞いできた。これまで運用されていた仕組みがワークアラウンドに利用されることを防ぐためにパッチングを積み重ねることは、Web をより複雑にし、少しづつ歪が増え、将来的に負債になることは想像に難くない。
+過去にも Fingerprinting や CNAME Cloaking など、代替手段として提供されたものはあったが、特に Safari はそうしたものを徹底して塞いできた。これまで運用されていた仕組みがワークアラウンドに利用されることを防ぐためにパッチングを積み重ねることは、Web をより複雑にし、少しずつ歪が増え、将来的に負債になることは想像に難くない。
 
 かりそめのワークアラウンドのために PSL が利用され、内部の運用まで圧迫している現状は、Web を利用する誰にとっても良い結果にはならないと筆者は考えている。
 

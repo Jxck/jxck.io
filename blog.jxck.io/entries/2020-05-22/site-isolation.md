@@ -247,7 +247,7 @@ Cross-Origin-Embedder-Policy: require-corp
 
 Public CDN のようなサーバは、これまで CORP が暗黙的に `cross-origin` だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
 
-しかし、COEP のデプロイが広まると、今のままではコンテンツを読み込めな書くなるため、Public であっても `CORP: cross-origin` か `ACAO: *` に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
+しかし、COEP のデプロイが広まると、今のままではコンテンツを読み込めなくなるため、Public であっても `CORP: cross-origin` か `ACAO: *` に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
 
 逆に言うと、`CORP: cross-origin` を明示的に指定することが、そのリソースは public であることを表明するヘッダとして使われていくことになるだろう。
 

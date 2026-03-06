@@ -108,7 +108,7 @@
 
 ### Alternative Text
 
-そこで、[1.2. Alternative Text for Accessibility](https://drafts.csswg.org/css-content-3/#alt) に定義されているように Alternative Text を以下の用に指定した。
+そこで、[1.2. Alternative Text for Accessibility](https://drafts.csswg.org/css-content-3/#alt) に定義されているように Alternative Text を以下のように指定した。
 
 ```css
 th::before,
@@ -213,7 +213,7 @@ Caption: Webp を gz/br 圧縮した結果
 
 ## 謝辞
 
-実装の助言をくれた 、[@shqld](https://twitter.com/shqld), [@araya](https://twitter.com/arayaryoma), [@yoshiko](https://twitter.com/yoshiko_pg) に感謝する。
+実装の助言をくれた、[@shqld](https://twitter.com/shqld), [@araya](https://twitter.com/arayaryoma), [@yoshiko](https://twitter.com/yoshiko_pg) に感謝する。
 
 
 ## Reference

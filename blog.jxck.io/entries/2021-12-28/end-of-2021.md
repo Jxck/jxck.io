@@ -34,7 +34,7 @@
 
 - [ep78 TC39](https://mozaic.fm/episodes/78/tc39.html)
 - [ep79 Monthly Web 202101](https://mozaic.fm/episodes/79/monthly-web-202101.html)
-- [ep80 Monthly Web 202102](https://mozaic.fm/episodes/80/monthly-web-202002.html)
+- [ep80 Monthly Web 202102](https://mozaic.fm/episodes/80/monthly-web-202102.html)
 - [ep81 Monthly Web 202103](https://mozaic.fm/episodes/81/monthly-web-202103.html)
 - [ep82 Monthly Web 202104](https://mozaic.fm/episodes/82/monthly-web-202104.html)
 - [ep83 IE](https://mozaic.fm/episodes/83/ie.html)

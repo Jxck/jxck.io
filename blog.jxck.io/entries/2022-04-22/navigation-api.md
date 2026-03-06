@@ -237,7 +237,7 @@ console.assert(navigation.currentEntry.getState().count === 2);
 
 ### navigation.traverseTo(key)
 
-History API では、任意の履歴への遷移は `history.go()` にインデックスを指定する方法しかなった。遷移したい先の Index がなんであるかを把握し、`iframe` 内での履歴変更などがあっても Index が履歴リストの変更と同期していることを保証する必要がある。
+History API では、任意の履歴への遷移は `history.go()` にインデックスを指定する方法しかなかった。遷移したい先の Index がなんであるかを把握し、`iframe` 内での履歴変更などがあっても Index が履歴リストの変更と同期していることを保証する必要がある。
 
 Navigation API では、Entry List から選んだ特定の Entry への遷移は、Entry が生成されてから変わらない `entry.key` で行う。
 

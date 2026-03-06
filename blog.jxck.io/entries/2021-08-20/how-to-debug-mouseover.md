@@ -11,7 +11,7 @@
 
 マウスが乗ってないと出ない UI も、そこに Tab などでフォーカスを移し、その状態で Dev Tools の `"Emulate a focused page"` を有効にすれば良い。
 
-![Tab などでフォーカスした状態で "Emulate a focused page" を有効にする](4.emulate-a-focused-page.mp4#2880x1800 "emulate a forcused page")
+![Tab などでフォーカスした状態で "Emulate a focused page" を有効にする](4.emulate-a-focused-page.mp4#2880x1800 "emulate a focused page")
 
 
 ## Intro

@@ -107,7 +107,7 @@ Issue を調べると、その時点では Chrome だけまだアサインが浮
 - url.idl | Gerrit Code Review
   - https://chromium-review.googlesource.com/c/chromium/src/+/5414853/7/third_party/blink/renderer/core/url/url.idl
 
-これをもとに Python のスクリプトで binding が生成されるので、その実態となる C++ のコードを書く。
+これをもとに Python のスクリプトで binding が生成されるので、その実体となる C++ のコードを書く。
 
 ![C++ での binding の実装](dom_url-implementation.png#1186x1464)
 
@@ -136,7 +136,7 @@ Chromium が WPT を内部で流していながら、WPT にある URL.parse の
 
 今回、実装して WPT が通るようになったことで、この expected ファイルは削除し今後は WPT の結果を直接見るようになる。
 
-このような expected テストはいたることろにあるため、自分で一個一個探して書き直すのではなく、テストを流す時に `--reset-result` をつけて上書きし、その diff をチェックするのが基本らしい。それを知らずに、手作業でやっていたため、ここでかなり時間がかかった。
+このような expected テストはいたるところにあるため、自分で一個一個探して書き直すのではなく、テストを流す時に `--reset-result` をつけて上書きし、その diff をチェックするのが基本らしい。それを知らずに、手作業でやっていたため、ここでかなり時間がかかった。
 
 また、`--reset-result` する対象は、CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
 
@@ -156,7 +156,7 @@ Chromium が WPT を内部で流していながら、WPT にある URL.parse の
 - Enterprise
 - Debuggability
 - Testing
-- API Ownwers
+- API Owners
 
 このレビューは Chrome Platform Status からリクエストをする。いつも見ていた Platform Status にその機能があることはここで初めて知った。
 

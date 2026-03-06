@@ -198,7 +198,7 @@ self.addEventListener("cookiechange", (event) => {
 
 論点としては、そもそも Cookie についてまだ解決されてない互換性上の問題があり、それが Cookie Store API によって解決し切れているとはいいきれないという主張のようだ。
 
-それがはっきりしない限り Firefox / Safari のスタンスは変わらなそうだ。しかし、関連する Issue の議論も止まっているようだ。
+それがはっきりしない限り Firefox / Safari のスタンスは変わらなさそうだ。しかし、関連する Issue の議論も止まっているようだ。
 
 
 ## Outro

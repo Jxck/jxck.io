@@ -397,7 +397,7 @@ async function main() {
 
 ## 例外処理
 
-本来は `AbortSignal.Timeout()` は `AbortError` ではなく `TimeoutError` になることを踏まえた、`fetch()` 中断時の例外処理周りの話もしようと思ったが、Chrome と Safari が仕様に反して `AbortError` を上げるバグがあるため、それについては今回割愛する。
+本来は `AbortSignal.timeout()` は `AbortError` ではなく `TimeoutError` になることを踏まえた、`fetch()` 中断時の例外処理周りの話もしようと思ったが、Chrome と Safari が仕様に反して `AbortError` を上げるバグがあるため、それについては今回割愛する。
 
 
 ## Outro

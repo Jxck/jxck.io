@@ -2,7 +2,7 @@
 
 ## Intro
 
-JS における null/undefined の扱い改善するための 2 つの機能が提案されている。
+JS における null/undefined の扱いを改善するための 2 つの機能が提案されている。
 
 - [Nullish Coalescing Operator (stage 3)](https://github.com/tc39/proposal-nullish-coalescing)
 - [Optional Chaining Operator (stage 3)](https://github.com/TC39/proposal-optional-chaining)

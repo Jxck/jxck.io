@@ -60,7 +60,7 @@
 - URL.parse を Chromium で Ship するまで | blog.jxck.io
   - https://blog.jxck.io/entries/2024-06-14/url.parse.html
 
-来年は、Chromium 以外へのコントリビュートにも挑戦して行きたい。
+来年は、Chromium 以外へのコントリビュートにも挑戦していきたい。
 
 
 ## mozaic.fm

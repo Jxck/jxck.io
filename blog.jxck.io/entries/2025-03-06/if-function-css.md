@@ -30,7 +30,7 @@ CSS に `if()` および `@function` が提案されている。
 
 この場合、スタイルのバリエーションごとに、プロパティを重複して指定している状態になる。
 
-ここでは class で指定しているが、Prefer Color Scheme に対応して Color Scheme を切り替える場合は、`light-dark()` で以下のように書ける。
+ここでは class で指定しているが、Prefers Color Scheme に対応して Color Scheme を切り替える場合は、`light-dark()` で以下のように書ける。
 
 ```html
 <style>
@@ -45,7 +45,7 @@ CSS に `if()` および `@function` が提案されている。
 
 ここでは、先ほど重複していた `color` と `background-color` という 2 つのプロパティ指定が、一箇所に集約されている点に注目したい。
 
-`light-dark()` は Prefer Color Scheme を参照した分岐を自動で行うが、これを明示的に指定できるようにするには、汎用的な条件分岐の仕組みが必要となる。
+`light-dark()` は Prefers Color Scheme を参照した分岐を自動で行うが、これを明示的に指定できるようにするには、汎用的な条件分岐の仕組みが必要となる。
 
 そこで提案されたのが `if()` だ。先の例は以下のようになる。
 

@@ -23,7 +23,7 @@
 - Cookies Breakout
   - https://www.w3.org/events/meetings/7478d741-1709-489d-8032-2485176eb8e5/
 
-Private Adv は、割と前向きに Attribution API の議論を進め、2026 年に CR を目指すこととなった。他の API への作業が省けた分、議論が集中できて良い流れだったように思えた。
+Private Adv は、割と前向きに Attribution API の議論を進め、2026 年に CR を目指すこととなった。他の API への作業が省けた分、議論に集中できて良い流れだったように思えた。
 
 Privacy WG は、Privacy Sandbox から残った GPC の広がりなどについて議論され、他はガイドライン周りの整備についての調整が主だった。
 
