@@ -15,7 +15,7 @@
   - Media Session
   - text padding
   - SW NavigationPreload
-  - remove vender prefix from IDB
+  - remove vendor prefix from IDB
 - Chrome58 Beta, Dev, Canary
 
 - [release](https://chromereleases.googleblog.com/) ([stable updates tag](https://chromereleases.googleblog.com/search/label/Stable%20updates))
@@ -180,7 +180,7 @@ Finding っていう資料が二つ出た。
   - 大事そうな話なのであとで読む
 
 - 2/1: [Chrome for iOS が OSS](https://blog.chromium.org/2017/01/open-sourcing-chrome-on-ios.html)
-  - Webkit で レンダリングする iOS 用の Chrome が OSS に
+  - WebKit で レンダリングする iOS 用の Chrome が OSS に
 
 - 2/1: [なぜサポートが終了した Web ブラウザーを使うと危険なのか?](https://blogs.msdn.microsoft.com/osamum/2015/10/08/web-1/)
   - "サポート期間の終了した古い IE に対し、いままでと同じような品質でコンテンツが閲覧できるように精一杯の労力を注いでケアをしても、それはユーザーのためにはならない"
@@ -370,7 +370,7 @@ Finding っていう資料が二つ出た。
   - 2017 Q1/Q2 における PWA のロードマップ
 
 - 2/15: [JavaScript Debugging Improvements](https://webkit.org/blog/7219/javascript-debugging-improvements/)
-  - Webkit のデバッグが捗るようになる話
+  - WebKit のデバッグが捗るようになる話
 
 - 2/16: [V8 の新しいコンパイラパイプライン](https://v8project.blogspot.com/2017/02/help-us-test-future-of-v8.html)
   - Ignition interpreter + Turbofan compiler のフィールドテスト開始

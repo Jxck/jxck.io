@@ -160,7 +160,7 @@ Link: <font.woff2>;rel="preload";as="font";crossorigin
 
 HTTP Header にすることによって、マークアップと最適化を分離することができる。
 
-既存コンテツをいじらずに最適化を追加したい場合や、コンテンツをスキャンして自動的に最適化を設定するような、外部の [最適化エンジン](https://www.akamai.com/us/en/resources/front-end-optimization-feo.jsp) などに委ねる場合などに有用である。
+既存コンテンツをいじらずに最適化を追加したい場合や、コンテンツをスキャンして自動的に最適化を設定するような、外部の [最適化エンジン](https://www.akamai.com/us/en/resources/front-end-optimization-feo.jsp) などに委ねる場合などに有用である。
 
 
 ## Feature Detection
