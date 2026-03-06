@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-03-02T08:00:00+08:00",
-    "dateModified": "2024-12-19T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-03-02>2017-03-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-12-19>2024-12-19</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -218,8 +218,8 @@
           <p>単純に考えれば、この Code Point をバイナリデータとしてそのまま送れば良いだろう。
           <p>Code Point はおおよそ 4byte あれば収まるので、32bit のデータとして送ることができる。
           <pre class=js data-code=js><code translate=no class=language-js>[0x00, 0x01, 0xF6, 0x2D] // 😭
-// 0x1F62D を二進数にし 32 bit になるまで先頭に 0 を追加してから 8 bit づつ区切った配列</code></pre>
-          <p>受け取った側は、データを 32bit づつ Code Point とみなして文字に置き換えていけば良いし、受け取ったバイト数を 4 で割れば文字の数もわかる。
+// 0x1F62D を二進数にし 32 bit になるまで先頭に 0 を追加してから 8 bit ずつ区切った配列</code></pre>
+          <p>受け取った側は、データを 32bit ずつ Code Point とみなして文字に置き換えていけば良いし、受け取ったバイト数を 4 で割れば文字の数もわかる。
           <p>このように 1 Code Point を 32bit データとして表すという発想が、UTF-32 と呼ばれる方式の中核である。
         </section>
         <section>

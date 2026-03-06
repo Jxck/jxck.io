@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-02-17T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-02-17>2017-02-17</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -193,7 +193,7 @@
           <li>Universal support
         </ol>
         <p>多くの場合、5  と 6 の間は、実装が他よりも遅れるブラウザがあるために時間がかかる。
-        <p>その間にも、新しい機能を用いたコンテツが全てのブラウザで動くように導入するのが、Polyfill の代表的なユースケースだ。
+        <p>その間にも、新しい機能を用いたコンテンツが全てのブラウザで動くように導入するのが、Polyfill の代表的なユースケースだ。
         <p>ただし、ここでは 4 が終わっているため、Polyfill が実装する仕様は 6 の段階で各ブラウザが提供するものと同等であり、6 の段階に至ったら「Polyfill 自体の読み込みをやめる」だけで、他のコードは一切変更せずにネイティブの API を呼び出して動くというのが理想的な流れだ。
       </section>
       <section>
@@ -248,7 +248,7 @@ document.createElement(&apos;div&apos;).attachShadow({ mode: &apos;open&apos; })
         <p>本来ベンダプレフィックスは、先行実装であることを示すつもりで付けられていたが、こうした使われ方が広まった結果、本来の意図を果たすことができなかった。
         <p>特に WebKit が先行し、他のブラウザはプレフィックス付き実装すらしていなかった機能については、webkit プレフィックスをつけて実装され、そのまま放置されているものも少なくない。
         <p>そういったコンテンツを動作させられるよう、<a href="https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo" target=_blank>Firefox</a> や <a href="https://msdn.microsoft.com/ja-jp/library/mt270097%28v=vs.85%29.aspx" target=_blank>Edge</a> が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
-        <p>なお、Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用さている。これについては以下を参照のこと。
+        <p>なお、Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用されている。これについては以下を参照のこと。
         <p><a href="https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html">Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a>
       </section>
       <section>
@@ -269,7 +269,7 @@ document.createElement(&apos;div&apos;).attachShadow({ mode: &apos;open&apos; })
         <p>一番重要なのは名前だ。特に global スコープやネイティブオブジェクトの prototype に、策定段階の名前を使った実装を行うことは非常にリスクが高い。
         <p>ドキュメントでは、例えば仕様で <code translate=no>Foo</code> と定義されているものは、<code translate=no>FooPolyfill</code> や <code translate=no>FutureFoo</code> などに変えて実装することが推奨されている。
         <p>また <code translate=no>$</code>, <code translate=no>root</code>, <code translate=no>web</code> といった一般的で短い名前を利用することも、非推奨とされている。
-        <p>そして、もしブラウザが実装を持っていたら、その実装に移譲するようにコードを書くべきである。またブラウザの実装が全てを提供してないない場合は、不足分のみを補うようにする。
+        <p>そして、もしブラウザが実装を持っていたら、その実装に移譲するようにコードを書くべきである。またブラウザの実装が全てを提供していない場合は、不足分のみを補うようにする。
         <p>例えば <code translate=no>URL</code> を提供するが、その内部で <code translate=no>URL#searchParams</code> が <code translate=no>URLSearchParams</code> を提供していなかった場合は、<code translate=no>URL</code> 全体を Polyfill で置き換えるのでは無く、使える部分は <code translate=no>URL</code> を使い、<code translate=no>URL#searchParams</code> だけ <code translate=no>URLSearchParams</code> を追加するように実装するのが望ましい。
         <p>他細かい点では以下があげられる。
         <ul>

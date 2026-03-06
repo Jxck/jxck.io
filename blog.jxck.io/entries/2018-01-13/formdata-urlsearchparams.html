@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-01-13T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-01-13>2018-01-13</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -258,7 +258,7 @@ username=jxck&amp;password=thisismypassword</code></pre>
         <h2 id="json"><a href="#json">JSON</a></h2>
         <p>API バックエンドなどに対して JSON で送りたい場合もあるだろう。
         <p>せっかく FormData までは取得できているので、これを Object に変換してからシリアライズすれば良い。
-        <p>ここでは FormData が iterable であるこを利用してオブジェクトを組み立ててみる。
+        <p>ここでは FormData が iterable であることを利用してオブジェクトを組み立ててみる。
         <pre class=js data-code=js><code translate=no class=language-js>document.querySelector(&apos;#login&apos;).onsubmit = (e) =&gt; {
   e.preventDefault()
   const data = Object.fromEntries(new FormData(e.target).entries())

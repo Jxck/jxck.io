@@ -42,7 +42,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="ブラウザに追加される新しい機能に対して、Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などに...">
+  <meta name=description         content="ブラウザに追加される新しい機能に対して、Vendor Prefix の代替となる Origin Trials の導入が徐々に始まっている。今回は、これまでの Vendor Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などに...">
   <meta name=keywords            content="origin trials,vender prefix,web">
   <meta name=theme-color         content=#000000>
 
@@ -50,7 +50,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html>
   <meta property=og:title        content="Web 標準化のフィードバックサイクルを円滑にする Origin Trials について | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="ブラウザに追加される新しい機能に対して、Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などに...">
+  <meta property=og:description  content="ブラウザに追加される新しい機能に対して、Vendor Prefix の代替となる Origin Trials の導入が徐々に始まっている。今回は、これまでの Vendor Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などに...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-09-29T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -87,7 +87,7 @@
         "width": 120
       }
     },
-    "description": "ブラウザに追加される新しい機能に対して、Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などに..."
+    "description": "ブラウザに追加される新しい機能に対して、Vendor Prefix の代替となる Origin Trials の導入が徐々に始まっている。今回は、これまでの Vendor Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などに..."
   }
   </script>
 
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-09-29>2016-09-29</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -138,7 +138,7 @@
             <ol>
               <li><a href="#intro">Intro</a>
               <li><a href="#avoid-breaking-the-web">Avoid Breaking the Web</a>
-              <li><a href="#vender-prefix">Vender Prefix</a>
+              <li><a href="#vendor-prefix">Vendor Prefix</a>
               <li><a href="#doing-science-on-the-web">Doing Science On The Web</a>
               <li><a href="#origin-trials">Origin Trials</a>
               <li><a href="#利用の流れ">利用の流れ</a>
@@ -164,8 +164,8 @@
       <h1><a href="">Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>ブラウザに追加される新しい機能に対して、Vender Prefix の代替となる Origin Trials の導入が徐々に始まっている。
-        <p>今回は、これまでの Vender Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。
+        <p>ブラウザに追加される新しい機能に対して、Vendor Prefix の代替となる Origin Trials の導入が徐々に始まっている。
+        <p>今回は、これまでの Vendor Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。
       </section>
       <section>
         <h2 id="avoid-breaking-the-web"><a href="#avoid-breaking-the-web">Avoid Breaking the Web</a></h2>
@@ -174,11 +174,11 @@
         <p>これを <em>Breaking the Web</em> といい、プロトコルにしても API にしても、標準化団体やブラウザベンダなどは、これを避けることを念頭に置いて作業を行っている。(セキュリティ的な理由など、例外は多く有る。)
         <p>一方で、新しく提案される仕様はフィードバックを集めなければ、仕様や実装が妥当か、安全か、本当に問題を解決するかなど、わからないことが多い。
         <p>ところが、一度作られたコンテンツが更新されない可能性がある Web においては、Breaking the Web を避けながらフィードバックを反映する変更を入れるのが難しい場合がある。
-        <p>そこで、かつてブラウザや端末のメーカが取った手法が Vender Prefix だった。
+        <p>そこで、かつてブラウザや端末のメーカが取った手法が Vendor Prefix だった。
       </section>
       <section>
-        <h2 id="vender-prefix"><a href="#vender-prefix">Vender Prefix</a></h2>
-        <p>Vender Prefix とは、各ベンダが以下のような接頭辞を、標準プロパティの前に置くものをさす。
+        <h2 id="vendor-prefix"><a href="#vendor-prefix">Vendor Prefix</a></h2>
+        <p>Vendor Prefix とは、各ベンダが以下のような接頭辞を、標準プロパティの前に置くものをさす。
         <ul>
           <li>webkit (Chrome, Safari, newer versions of Opera.)
           <li>moz (Firefox)
@@ -186,7 +186,7 @@
           <li>ms (Internet Explorer)
         </ul>
         <p>(<a href="https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix" target=_blank>Vendor Prefix - Glossary | MDN</a>)
-        <p>Vender Prefix は、まさしくその機能が <em>実験中</em> であることを示すために用いられ、これを付したベンダは、実験の結果をより積極的に反映できると期待した。
+        <p>Vendor Prefix は、まさしくその機能が <em>実験中</em> であることを示すために用いられ、これを付したベンダは、実験の結果をより積極的に反映できると期待した。
         <p>そして、実験が終われば Prefix は取られ、標準プロパティに置きかわり役目を終える。はずだった。
         <p>ところが、実際には多くのコンテンツが以下のようなコードを含む結果となった。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
@@ -214,17 +214,17 @@
                   || window.webkitRTCPeerConnection
                   || window.msRTCPeerConnection;</code></pre>
         <p>HTML5 時代には、特に実装が早い webkit/moz あたりを取り上げて「こう書けば動く」という形でコードが広まる結果となった。
-        <p>特に、仕様の策定に時間がかかった機能は、Vender Prefix 付きの実装が多くのプロダクトに根強く染み込んでしまった。
-        <p>Vender Prefix は、<em>「変更や消滅がありえる」ということを使う側に強制することができなかった</em> ため、本来の目的を果たすためには弱い仕組みだったといえる。
+        <p>特に、仕様の策定に時間がかかった機能は、Vendor Prefix 付きの実装が多くのプロダクトに根強く染み込んでしまった。
+        <p>Vendor Prefix は、<em>「変更や消滅がありえる」ということを使う側に強制することができなかった</em> ため、本来の目的を果たすためには弱い仕組みだったといえる。
         <p>
           <picture>
             <source type=image/avif srcset=vender-prefix-warning.avif?231116_154951>
             <source type=image/webp srcset=vender-prefix-warning.webp?220107_193959>
-            <img loading=lazy decoding=async src=vender-prefix-warning.png?200901_002432 alt="Vender Prefix 付きの API が呼ばれているため DevTools に警告(warning)が出ている" title="vender prefix warning" width=570 height=194>
+            <img loading=lazy decoding=async src=vender-prefix-warning.png?200901_002432 alt="Vendor Prefix 付きの API が呼ばれているため DevTools に警告(warning)が出ている" title="vendor prefix warning" width=570 height=194>
           </picture>
         </p>
         <p>また、Prefix が付いていたのが、ベンダの独自拡張であったとしても、それに依存するサイトは同様の理由で産まれた。
-        <p>今年 Firefox が <a href="http://www.otsukare.info/2016/01/04/webkit-resolved-fixed" target=_blank>Prefix のついた webkit 独自拡張を見るようになった</a> のも、Vender Prefix の性質を象徴する現象と言えると思う。
+        <p>今年 Firefox が <a href="http://www.otsukare.info/2016/01/04/webkit-resolved-fixed" target=_blank>Prefix のついた webkit 独自拡張を見るようになった</a> のも、Vendor Prefix の性質を象徴する現象と言えると思う。
       </section>
       <section>
         <h2 id="doing-science-on-the-web"><a href="#doing-science-on-the-web">Doing Science On The Web</a></h2>
@@ -238,7 +238,7 @@
           <li>beta, dev, canary ビルドの提供
           <li>devtools での有効化
         </ul>
-        <p>いずれも、明示的に有効にしたユーザにのみ機能が提供できるが、実際にサービスなどにアクセスしてきたユーザに対しては機能が提供できない(だから Vender Prefix があった)。
+        <p>いずれも、明示的に有効にしたユーザにのみ機能が提供できるが、実際にサービスなどにアクセスしてきたユーザに対しては機能が提供できない(だから Vendor Prefix があった)。
         <p>開発者がリアルワールドにデプロイして検証するためには、ユーザにいちいちベータブラウザの利用や、about:flags の設定変更を求めるわけにもいかない。
         <p>ブラウザが適切なフィードバックを得るための先行実装を行うには、その <em>途中の実装に依存したコンテンツが広まりすぎない仕組み</em> が必要となる。
         <p>そこで、新しく提案されたのが Origin Trials だ。
