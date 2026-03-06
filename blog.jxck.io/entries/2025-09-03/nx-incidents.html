@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-09-03T08:00:00+08:00",
-    "dateModified": "2025-09-04T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-09-03>2025-09-03</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-09-04>2025-09-04</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -531,7 +531,7 @@ core.setFailed(&quot;Stall&quot;);</code></pre>
         <p>Provenance は、パッケージがどうビルドされたのかの証跡を残すことで、まさしくサプライチェーン攻撃に対策するために行われるものだ。しかし、今回は Nx 自身のワークフローが攻撃されているので、これで防ぐことはできなかった。シークレットを使う仕組みは、シークレットの漏洩がないことが前提になる良い例だ。
         <p>そして、今回の件を受けて追加でなされた対策がいくつかあるが、「トークンの再発行」など分かりきったものを除いて、参考になる点を抜粋する。
         <ul>
-          <li>Trusted Provider での Publish
+          <li>Trusted Publisher での Publish
           <li>CodeQL の有効化
           <li>SECURITY.md の追加
         </ul>
@@ -555,7 +555,7 @@ core.setFailed(&quot;Stall&quot;);</code></pre>
           <p>要するに、GitHub Actions と npm が OIDC で連携し、Publish ができるというものだ。
           <p>両者の間では非常に短命なトークンが自動的にやり取りされるので、ワークフローから <code translate=no>NPM_TOKEN</code> を消すことができる。また、Actions から直接 Publish するので、Provenance も付与される。
           <p>もし、パッケージを GitHub の Actions で <code translate=no>NPM_TOKEN</code> を渡して、自前で Publish しているなら移行するべきだろう。
-          <p>サプライチェーンを防ぐのは、「自分たちが被害にあわない」というよりも、「自分たちのせいで、他の人が被害に合わない」ためでもあるので、npm パッケージを公開しているのであれば、やらない理由は無いだろう。
+          <p>サプライチェーンを防ぐのは、「自分たちが被害にあわない」というよりも、「自分たちのせいで、他の人が被害に遭わない」ためでもあるので、npm パッケージを公開しているのであれば、やらない理由は無いだろう。
         </section>
         <section>
           <h3 id="codeql"><a href="#codeql">CodeQL</a></h3>

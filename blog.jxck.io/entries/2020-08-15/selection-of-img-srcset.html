@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-08-15T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-08-15>2020-08-15</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -195,7 +195,7 @@ body {
       </section>
       <section>
         <h2 id="viewport-width"><a href="#viewport-width">Viewport Width</a></h2>
-        <p>そこそも適切な画像がデバイスごとに異なるとされる理由の一つが、Viewport の大きさの違いだ。
+        <p>そもそも適切な画像がデバイスごとに異なるとされる理由の一つが、Viewport の大きさの違いだ。
         <p>例えば Viewport Width が 512px のデバイスは、width が 512px の画像が最も適していることになる。
         <p>それより大きすぎると無駄だし、逆に小さい場合は画像が荒くなってしまうので、512px よりも大きいなかで一番小さいものを選ぶことになるだろう。
         <p>先の srcset の中では 640px が適切だと考えられる。
@@ -435,7 +435,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
       </section>
       <section>
         <h2 id="なぜ幾何平均なのか"><a href="#なぜ幾何平均なのか">なぜ幾何平均なのか</a></h2>
-        <p>幾何平均を使っている理由は、おそらく画像 A と B の間が大きい時、A では 1px 足りないがその 1px のために B を選ぶというのを割けるためだろう。
+        <p>幾何平均を使っている理由は、おそらく画像 A と B の間が大きい時、A では 1px 足りないがその 1px のために B を選ぶというのを避けるためだろう。
         <p>A と B の密度の幾何平均を、デバイスの密度と比較しそこを基準に選択することで、完全にピクセル密度が足りるわけではないが、妥協的なサイズの画像が選べているということだと考えられる。
         <p>などと考えながらログを探したら、該当部分の issue に理由がずばり書かれていた。
         <blockquote cite="https://bugs.chromium.org/p/chromium/issues/detail?id=425511">
@@ -444,7 +444,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
           <p>even though the 1x resource would have been enough.
           <p>&mdash; <cite><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=425511" target=_blank>425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium</a></cite>
         </blockquote>
-        <p>もともともモチベーションは、ズームで DPR が 1 -&gt; 1.1 のようにずれることに起因するらしい。これも考察した理由と根底では同じと言えるだろう。
+        <p>もともとのモチベーションは、ズームで DPR が 1 -&gt; 1.1 のようにずれることに起因するらしい。これも考察した理由と根底では同じと言えるだろう。
         <p>(ズームで DPR がちゃんと変わってることは知らなかった)
       </section>
       <section>

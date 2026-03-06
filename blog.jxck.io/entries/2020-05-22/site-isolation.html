@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-05-22T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-05-22>2020-05-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -347,7 +347,7 @@ Cross-Origin-Resource-Policy: cross-origin</code></pre>
         <p>この場合、リクエストには Origin ヘッダが載り、サーバはそれを見て明示的に Access-Control-Allow-Origin を返すことになる。
         <p>つまり、すでに明示的に読み込める Origin を制限しているため、CORP をつけていなくても COEP の要件を満たす。
         <p>Public CDN のようなサーバは、これまで CORP が暗黙的に <code translate=no>cross-origin</code> だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
-        <p>しかし、COEP のデプロイが広まると、今のままではコンテンツを読み込めな書くなるため、Public であっても <code translate=no>CORP: cross-origin</code> か <code translate=no>ACAO: *</code> に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
+        <p>しかし、COEP のデプロイが広まると、今のままではコンテンツを読み込めなくなるため、Public であっても <code translate=no>CORP: cross-origin</code> か <code translate=no>ACAO: *</code> に対応する必要がでてくる。ブラウザサポートが増えれば前者のほうが導入は容易だろう。
         <p>逆に言うと、<code translate=no>CORP: cross-origin</code> を明示的に指定することが、そのリソースは public であることを表明するヘッダとして使われていくことになるだろう。
       </section>
       <section>

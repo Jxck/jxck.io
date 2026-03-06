@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-05-20T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-05-20>2019-05-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -309,7 +309,7 @@
         <section>
           <h3 id="range--full-request-rtt"><a href="#range--full-request-rtt">Range + Full request RTT</a></h3>
           <p>まず、全てのリクエストが Range + Full で 2 回発生しているため、特に最初は従来よりも RTT が増えることになる。
-          <p>これは Above / Blow 関係なく発生しているため、もし全ての画像が Above the Fold に収まっていた場合は、Lazy をつけると無駄に RTT が増えるだけであるとを意味する。
+          <p>これは Above / Blow 関係なく発生しているため、もし全ての画像が Above the Fold に収まっていた場合は、Lazy をつけると無駄に RTT が増えるだけであることを意味する。
           <p>仮に、最初の Range で取得した 2.0KB のレスポンスに合成するために 2.0KB 以降から If-Range などで Conditional GET し、結合するという実装も考えられなくはないが、そうはなっていないようだ。
           <p><a href="https://tools.ietf.org/html/rfc7233#section-4.3" target=_blank>RFC 7233 - Hypertext Transfer Protocol (HTTP/1.1): Range Requests 4.3 Combining Ranges</a>
         </section>

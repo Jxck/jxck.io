@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-12-25T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-12-25>2020-12-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -267,7 +267,7 @@ runtime.goexit
           <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ cat blog_jxck_io.crt DigiCertCA.crt &gt; blog_jxck_io_full.crt</code></pre>
           <p>toml を更新して起動し直すと成功。
           <p>これを systemd に登録して完了。
-          <pre class=service data-code=service data-path=../../../.systemd/amppkg.service><code translate=no class=language-service>[Unit]
+          <pre class=service data-code=service data-path=amppkg.service><code translate=no class=language-service>[Unit]
 Description=amppkg.jxck.io
 After=network.target nss-lookup.target
 
@@ -282,7 +282,7 @@ ExecStop=/bin/kill -s TERM $MAINPID
 
 [Install]
 WantedBy=multi-user.target</code></pre>
-          <p>(最初、検証時に作らた <code translate=no>/tmp/amppkg-ocsp</code> の権限が起動ユーザのみに絞られており、Systemd を別ユーザで起動すると既存のファイルにアクセスできずに失敗した。単純に消せばいい。)
+          <p>(最初、検証時に作られた <code translate=no>/tmp/amppkg-ocsp</code> の権限が起動ユーザのみに絞られており、Systemd を別ユーザで起動すると既存のファイルにアクセスできずに失敗した。単純に消せばいい。)
           <p>なお、amppkg から ACME で証明書の更新ができるようで、Digicert も ACME 対応しているので、後ほどそちらもやりたい。
         </section>
       </section>

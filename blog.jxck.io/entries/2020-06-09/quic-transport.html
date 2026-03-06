@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-06-09T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-06-09>2020-06-09</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -285,7 +285,7 @@ await transport.close()</code></pre>
           <ul>
             <li><a href="https://github.com/WICG/web-transport/issues/92" target=_blank>WebTransport.ready - Issue #92 - WICG/web-transport</a>
           </ul>
-          <p>メッセージについては、明示的な <code translate=no>read()</code> もしくはそれを行う Stream の Pipe でを行うため、<code translate=no>onmessage</code> イベントもいらない。
+          <p>メッセージについては、明示的な <code translate=no>read()</code> もしくはそれを行う Stream の Pipe で行うため、<code translate=no>onmessage</code> イベントもいらない。
           <p>内部の状態は以下なので、これが増えたらどうするかという懸念もあるが、WebSocket も同じ状態遷移で特に増えたことはないため、問題ないということだろう。
           <pre><code translate=no>connecting -&gt; connected
 connecting -&gt; failed
@@ -368,10 +368,10 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
       </section>
       <section>
         <h2 id="use-case"><a href="#use-case">Use Case</a></h2>
-        <p>さて、これを何に使うかという点に付いて考える。
+        <p>さて、これを何に使うかという点について考える。
         <section>
           <h3 id="media-stream"><a href="#media-stream">Media Stream</a></h3>
-          <p>まず、このブログでも以前紹介したように、WebRTC を比較対象に上がるのであれば、メディアの転送がどうなのかという問題になる。
+          <p>まず、このブログでも以前紹介したように、WebRTC を比較対象に挙がるのであれば、メディアの転送がどうなのかという問題になる。
           <p>現状 QuicTransport の転送単位は Uint8Array を基本としているため、getUserMedia の結果からバイナリを取得するなどができれば、ビデオ会議なども可能になるポテンシャルはあるだろう。
           <p>しかし、現状 getUserMedia した MediaStream API は、前述した WHATWG Stream を指すのではなく、たんなるメディアの抽象化という意味で、Pipe しても流れるわけではない。
           <p>Canvas 経由で ImageBitmap を取る、WASM でエンコードする、別の Peer とつないだ PeerConnection から InsertableStream で抜くなどの方法は無くはないが、正攻法でいうと WebCodecs を待つことになる。
@@ -383,7 +383,7 @@ readable.pipeThrough(new TextDecoderStream()).pipeTo(domWrite)
         <section>
           <h3 id="unreliable-stream"><a href="#unreliable-stream">Unreliable Stream</a></h3>
           <p>QUIC が作られた背景まで遡れば、TCP での Head of Line Blocking への対策や、Unreliable な通信を選択肢として持つという点が UDP によるメリットとしてあった。
-          <p>DatagramTransport を使えば out of order / unreliable な read/write が可能なので、現時点では個々が QuicTransport を使用するモチベーションの一つとして考えられるだろう。
+          <p>DatagramTransport を使えば out of order / unreliable な read/write が可能なので、現時点ではここが QuicTransport を使用するモチベーションの一つとして考えられるだろう。
           <p>(逆にそうでない場合は、「WebSocket でいいのでは?」となってしまう可能性がある)
           <p>例えば、ゲームのリアルタイムなコントロールは、ゲームの性質にもよるが、全ての入力が TCP レベルでの回復を伴いながら、順序を保って確実に送られる必要は必ずしもないかもしれない。
           <p>また、getUserMedia 以外の何らかのデバイスから、大量に入力し binary serialize したオブジェクトを送るケースも考えられるだろう。

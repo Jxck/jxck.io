@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-03-06T08:00:00+08:00",
-    "dateModified": "2025-03-10T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-03-06>2025-03-06</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-03-10>2025-03-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -182,7 +182,7 @@
 &lt;my-div class=&quot;dark&quot;&gt;dark&lt;/my-div&gt;
 &lt;my-div class=&quot;light&quot;&gt;light&lt;/my-div&gt;</code></pre>
         <p>この場合、スタイルのバリエーションごとに、プロパティを重複して指定している状態になる。
-        <p>ここでは class で指定しているが、Prefer Color Scheme に対応して Color Scheme を切り替える場合は、<code translate=no>light-dark()</code> で以下のように書ける。
+        <p>ここでは class で指定しているが、Prefers Color Scheme に対応して Color Scheme を切り替える場合は、<code translate=no>light-dark()</code> で以下のように書ける。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
   my-div {
     color-scheme: light, dark;
@@ -192,7 +192,7 @@
 &lt;/style&gt;
 &lt;my-div&gt;dark or light&lt;/my-div&gt;</code></pre>
         <p>ここでは、先ほど重複していた <code translate=no>color</code> と <code translate=no>background-color</code> という 2 つのプロパティ指定が、一箇所に集約されている点に注目したい。
-        <p><code translate=no>light-dark()</code> は Prefer Color Scheme を参照した分岐を自動で行うが、これを明示的に指定できるようにするには、汎用的な条件分岐の仕組みが必要となる。
+        <p><code translate=no>light-dark()</code> は Prefers Color Scheme を参照した分岐を自動で行うが、これを明示的に指定できるようにするには、汎用的な条件分岐の仕組みが必要となる。
         <p>そこで提案されたのが <code translate=no>if()</code> だ。先の例は以下のようになる。
         <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
   div {

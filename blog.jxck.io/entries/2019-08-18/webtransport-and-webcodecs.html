@@ -42,7 +42,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。W...">
+  <meta name=description         content="Transport として HTTP over TCP を基本としていた Web のあり方は大きく変わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。W...">
   <meta name=keywords            content="webtransport,webcodecs">
   <meta name=theme-color         content=#000000>
 
@@ -50,7 +50,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html>
   <meta property=og:title        content="WebTransport と WebCodecs そして Web はどこまで &quot;ゲーム化&quot; するか | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。W...">
+  <meta property=og:description  content="Transport として HTTP over TCP を基本としていた Web のあり方は大きく変わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。W...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-08-18T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -87,7 +87,7 @@
         "width": 120
       }
     },
-    "description": "Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。W..."
+    "description": "Transport として HTTP over TCP を基本としていた Web のあり方は大きく変わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。W..."
   }
   </script>
 
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-08-18>2019-08-18</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -177,7 +177,7 @@
       <h1><a href="">WebTransport と WebCodecs そして Web はどこまで &quot;ゲーム化&quot; するか</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>Transport として HTTP over TCP を基本としていた Web のあり方は大きく代わり、転送するメディアも HTML だけに止まらなくなってきた。
+        <p>Transport として HTTP over TCP を基本としていた Web のあり方は大きく変わり、転送するメディアも HTML だけに止まらなくなってきた。
         <p>その対角線上にあるユースケースとして、UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。
         <p>WebSocket/MSE/WebRTC/WASM など、Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。
         <p>しかし、できることが増えればこそ、それぞれのパーツの不足する部分が浮き彫りになる。
@@ -563,11 +563,11 @@ videoElem.srcObject = mediaStream;</code></pre>
           <p>WebRTC の作業が終わったわけでは無いが、おそらく彼らは今後 WebTransport の方に注力していくことになるのだろう。
           <p>なかでも中心である Peter Thatcher は Googler で、彼の Explainer には Game を Cloud Gaming と書いている部分も多い。
           <p>時期的にも「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、6 月にあった <a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport" target=_blank>Web Games Workshop</a> での <a href="https://vimeo.com/350908362" target=_blank>Peter のトーク</a> を見た最初の感想だった。
-          <p>確かに WebRTC は Web に UDP の API を初めてもたらしたが、その前提が P2P でのビデオチャットに寄りすぎており、ブラウザ持つコーデックで音声/映像が送れることを重視している。
+          <p>確かに WebRTC は Web に UDP の API を初めてもたらしたが、その前提が P2P でのビデオチャットに寄りすぎており、ブラウザが持つコーデックで音声/映像が送れることを重視している。
           <p>DTLS - SRTP というツギハギな仕組みも、もう少しスッキリすればなと個人的にも思う。
           <p>DataChannel で任意のバイナリをやりとりできるとしても、前提として Client-Server で提供したいという要求がある以上、インピーダンスミスマッチが産まれるのは想像に難くない。
           <p>WebRTC の Peer をサーバに実装し Global IP を降れば、Client-Server のようにデプロイすることも可能だが、やりたいことに対してやるべきことが複雑すぎる結果となる。
-          <p>かといって、直接 RawSocket を触りたいという TCP/UDP Socket API を入れたとしても、その上に必要なスタックは自前で実装することになる。せっかくアクティブにメンテされる枯れた実装がブラウザ内部あるのに、必要なプロトコルとコーデックを WASM でビルドすればいいと言われても、片手落ちだろう。
+          <p>かといって、直接 RawSocket を触りたいという TCP/UDP Socket API を入れたとしても、その上に必要なスタックは自前で実装することになる。せっかくアクティブにメンテされる枯れた実装がブラウザ内部にあるのに、必要なプロトコルとコーデックを WASM でビルドすればいいと言われても、片手落ちだろう。
           <p>そうした全ての、ある程度ユースケースが前提とされ始まった各仕様を一旦フラットにし、ここまでの経験(これは振り返って失敗と見えるかもしれないが、振り返る前は成功だった)を踏まえて再スタートするという点で、野心的だと言える。
         </section>
         <section>
@@ -582,7 +582,7 @@ videoElem.srcObject = mediaStream;</code></pre>
           <p>1 つ目は、完全に独立した仕様ではなく、既存 API に対する Low Level API として参照できるかという点だ。これはすでに意識されているし、TAG Review などで指摘されていくと期待される。
           <p>ここがうまくいけば、少なくとも現状その上位 API を使っている場面では、恩恵が受けられるはずだ。
           <p>2 つ目は、WASI が Networking を含めたシステム API の策定を始めている点との関わりだ。
-          <p>WASI はブラウザ以外のプラットフォームを視野に入れているが、API としてはどちらもネットワークを低めのレイヤで叩くため、ある程度ケースでは同じように使えることもあるだろう。
+          <p>WASI はブラウザ以外のプラットフォームを視野に入れているが、API としてはどちらもネットワークを低めのレイヤで叩くため、ある程度のケースでは同じように使えることもあるだろう。
           <p>例えば、新規に WASI ベースでネットワーククライアントを作るとして、それが WebTransport 向けにビルドできれば、用途が広がると考えることは想像に難くない。
           <p>そこをカバーすれば、単に「ゲーム開発のため」という枠を超えた汎用 Socket API 的な立ち位置になりえそうだが、今の所 WebTransport の文脈で WASI の話はあまり見当たらない。
           <p>WASI もまだ始まったばかりで、かつより低いレイヤを視野に入れているため、双方ニアミス感があるが、そのへんをお互いどう考えている(いく)のかは、少し気になっている。
@@ -720,7 +720,7 @@ videoElem.srcObject = mediaStream;</code></pre>
               </ul>
             </li>
             <li>
-              WICG Tread
+              WICG Thread
               <ul>
                 <li><a href="https://discourse.wicg.io/t/webcodecs-proposal/3662" target=_blank>https://discourse.wicg.io/t/webcodecs-proposal/3662</a>
               </ul>

@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-21T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-21>2023-12-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -227,7 +227,7 @@ Set-Cookie: session_id=deadbeef; Domain=co.jp</code></pre>
         <p>Chrome は、3rd Party Cookie Deprecation の計画を発表した時に、まず Cookie のデフォルトを <code translate=no>Lax</code> にするという変更を行った。
         <p>画面遷移では送られるため、ログインセッションは維持できる。しかし、3rd Party Cookie としては送られない、という非常に重要な破壊的変更だ。
         <p>この変更により 3rd Party Cookie がブロックされ、さまざまなユースケースが壊れる。ワークアラウンドとして、3rd Party Cookie に依存している場合は、明示的に <code translate=no>SameSite=None</code> を付与する必要が出たのだ。
-        <p>結果、世界中の広告プラットフォームや、認証連携や、SNS のボタンなどで用いられるあらゆる 3rd Party Cookie には、<code translate=no>SameSite=None</code> が付けられた。(対応が難しい場合は、サービスで使っている Cookie を全てにとりあえず <code translate=no>SameSite=None</code> を付与するといった対応もあった。)
+        <p>結果、世界中の広告プラットフォームや、認証連携や、SNS のボタンなどで用いられるあらゆる 3rd Party Cookie には、<code translate=no>SameSite=None</code> が付けられた。(対応が難しい場合は、サービスで使っている Cookie 全てにとりあえず <code translate=no>SameSite=None</code> を付与するといった対応もあった。)
         <p>しかし、いずれにせよこの作業を経て「<em>世界中の 3rd Party Cookie が可視化された</em>」ことになる。
         <p>ブラウザが <code translate=no>SameSite=None</code> の使用量をメトリクスで監視すれば、世界でどのくらい 3rd Party Cookie が使われているのかを把握でき、事業者は自分たちのコードベースに <code translate=no>SameSite=None</code> がどのくらい残っているのかを把握することで、どの程度 3rd Party Cookie への対応ができているのかを知ることができるのだ。
         <p>そして、3rd Party Cookie を無くしていく作業は、この <code translate=no>SameSite=None</code> とマークされている Cookie を無くしていく作業ということになる。つまり、Chrome が最後に「<code translate=no>SameSite=None</code> を無視する」という変更をブラウザに入れることが 3rd Party Cookie Deprecation のゴールになるわけだ。

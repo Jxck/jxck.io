@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-10-21T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-10-21>2021-10-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -159,7 +159,7 @@
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>IETF の RFC では ABNF 形式の表現がよく使われ、たまに実装することがある。
         <p>しかし、実装するたびに前のコードを引っ張り出して思い出す、を繰り返しているので、自分用にメモとしてやり方をまとめる。
-        <p>完全に我流であり、目的は「その ABNF が正しいかを確認すること」なので、高速化や効率的を求める実用実装とは目的が違う点は先に言っておく。
+        <p>完全に我流であり、目的は「その ABNF が正しいかを確認すること」なので、高速化や効率性を求める実用実装とは目的が違う点は先に言っておく。
       </section>
       <section>
         <h2 id="abnf-パーサ"><a href="#abnf-パーサ">ABNF パーサ</a></h2>
@@ -181,7 +181,7 @@ list-member   = sf-item / inner-list</code></pre>
       <section>
         <h2 id="js-での実装"><a href="#js-での実装">JS での実装</a></h2>
         <p>もともとは Erlang のパターンマッチを使って書いていたものだが、JS だとそれができないので、最小限の正規表現に置き換えている。
-        <p>基本の形は、各 ABFN の定義ごとに、「文字列を受け取ると結果を返す関数」を返す高階関数を作り、それを組み合わせていくという方式だ。
+        <p>基本の形は、各 ABNF の定義ごとに、「文字列を受け取ると結果を返す関数」を返す高階関数を作り、それを組み合わせていくという方式だ。
         <section>
           <h3 id="token"><a href="#token">token</a></h3>
           <p>最も基本的な、パターン(正規表現)を受け取ったら、そのパターンを文字列の先頭から取り出し、結果を返す形が以下のようになる。
@@ -308,7 +308,7 @@ number(&quot;0123&quot;)
         <section>
           <h3 id="abnf-実装"><a href="#abnf-実装">ABNF 実装</a></h3>
           <p><code translate=no>token()</code>, <code translate=no>list()</code>, <code translate=no>alt()</code>, <code translate=no>repeat()</code> があると、あとはこれを組み合わせていくだけだ。
-          <p>例えば最初の Structured Filed Values の一例の場合
+          <p>例えば最初の Structured Field Values の一例の場合
           <pre class=abnf data-code=abnf><code translate=no class=language-abnf>sf-list       = list-member *( OWS &quot;,&quot; OWS list-member )
 list-member   = sf-item / inner-list</code></pre>
           <p>こんな感じになる。
@@ -354,7 +354,7 @@ const list_member = alt([
         </ul>
         <p>RFC の方は URL のフォーマットが ABNF で書かれているが、WHATWG はパースのアルゴリズムが書かれている。前者は、実装方法に制限が無いが、WHATWG は実装のアルゴリズムが基本的にはどの言語でも同じになる。
         <p>もちろん、WHATWG の方はブラウザ特有の様々な要件が含まれているため、RFC のような汎用的な URL の定義とは担っている範囲が違うとはいえ、それぞれの仕様におけるフォーマットの扱いが垣間見えておもしろい。
-        <p>IETF の方は昔書いて公開せずどこかに言ってしまったが、WHATWG の方は <a href="https://github.com/Jxck/URL/blob/master/url.ts" target=_blank>公開</a> しているので、参考まで。
+        <p>IETF の方は昔書いて公開せずどこかに行ってしまったが、WHATWG の方は <a href="https://github.com/Jxck/URL/blob/master/url.ts" target=_blank>公開</a> しているので、参考まで。
       </section>
     </article>
   </main>

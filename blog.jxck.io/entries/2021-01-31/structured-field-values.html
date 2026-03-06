@@ -42,7 +42,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="HTTP Header の値を構造化する Structued Field Values の仕様が RFC になった。RFC 8941: Structured Field Values for HTTPこの仕様の詳細について、筆者の実装を交えて解説する。">
+  <meta name=description         content="HTTP Header の値を構造化する Structured Field Values の仕様が RFC になった。RFC 8941: Structured Field Values for HTTPこの仕様の詳細について、筆者の実装を交えて解説する。">
   <meta name=keywords            content="sfv,http,ietf">
   <meta name=theme-color         content=#000000>
 
@@ -50,7 +50,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2021-01-31/structured-field-values.html>
   <meta property=og:title        content="Structured Field Values による Header Field の構造化 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="HTTP Header の値を構造化する Structued Field Values の仕様が RFC になった。RFC 8941: Structured Field Values for HTTPこの仕様の詳細について、筆者の実装を交えて解説する。">
+  <meta property=og:description  content="HTTP Header の値を構造化する Structured Field Values の仕様が RFC になった。RFC 8941: Structured Field Values for HTTPこの仕様の詳細について、筆者の実装を交えて解説する。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-01-31T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -87,7 +87,7 @@
         "width": 120
       }
     },
-    "description": "HTTP Header の値を構造化する Structued Field Values の仕様が RFC になった。RFC 8941: Structured Field Values for HTTPこの仕様の詳細について、筆者の実装を交えて解説する。"
+    "description": "HTTP Header の値を構造化する Structured Field Values の仕様が RFC になった。RFC 8941: Structured Field Values for HTTPこの仕様の詳細について、筆者の実装を交えて解説する。"
   }
   </script>
 
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-01-31>2021-01-31</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -183,7 +183,7 @@
       <h1><a href="">Structured Field Values による Header Field の構造化</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>HTTP Header の値を構造化する Structued Field Values の仕様が RFC になった。
+        <p>HTTP Header の値を構造化する Structured Field Values の仕様が RFC になった。
         <ul>
           <li><a href="https://www.rfc-editor.org/rfc/rfc8941.html" target=_blank>RFC 8941: Structured Field Values for HTTP</a>
         </ul>
@@ -218,7 +218,7 @@ Permission-Policy: syncxhr &apos;none&apos; report-to=default-endpoint</code></p
           </ul>
           <p>HTTP 1.x 系のプロトコルは、パケットのフォーマットとセマンティクスが密結合なところがあったが、HTTP2 や 3 ではバイナリフォーマットが使われるようになった。
           <p>そこで、HTTP プロトコルが備えていたセマンティクス(意味)と転送方法をきちんと分離し、セマンティクスだけを取り出したのが HTTP Semantics の仕様となる。
-          <p>このなかで、これまで慣習的に <em>HTTP Header</em> などとと呼ばれていたプロトコル上のメタデータを表現するパートも、<em>Field</em> と呼ばれるように更新された。
+          <p>このなかで、これまで慣習的に <em>HTTP Header</em> などと呼ばれていたプロトコル上のメタデータを表現するパートも、<em>Field</em> と呼ばれるように更新された。
           <p>いわゆるヘッダは、必ずしも Header (Body より上)にあるとは限らず、Streaming などでは Trailer(Body より下)にある場合もあることから、上部にあれば Header Field 、下部にあれば Trailer Field で、共通して Field になる。
           <p>Field はさらに Field Name / Field Value から構成されるため、従来のように Header Name / Header Value という呼び方も更新されることになる。
           <p>話を戻して今回 <em>Structured Header</em> として始まった改善は、この方針に則ると <em>Structured Field Values</em> になるため、途中からドラフトの名前も変わっている。
@@ -354,7 +354,7 @@ Report-To: {
         <section>
           <h3 id="dict"><a href="#dict">Dict</a></h3>
           <p>Key に紐付けた Item の辞書。
-          <p>Key は Item ほど柔軟ではなく、文字列で使える文字種も限られている。。
+          <p>Key は Item ほど柔軟ではなく、文字列で使える文字種も限られている。
           <pre class=js data-code=js><code translate=no class=language-js>// a=10,b=20,c=30
 {
  &quot;a&quot;: { &quot;value&quot;: 10, &quot;params&quot;: {} },
@@ -520,7 +520,7 @@ Report-To: {
           <ul>
             <li><a href="https://github.com/Jxck/structured-field-values/blob/54cfea375be670cfcb873b6c0c4c4fc57e642bc9/index.js" target=_blank>Implementation based on spec Algorithm</a>
           </ul>
-          <p>また、本来 BNF は参考なので、仕様についても機械的な検証などはあまり行われてないことがほとんどだが、それを検証する意味で再起降下パーサを手書きした実装も行った。
+          <p>また、本来 BNF は参考なので、仕様についても機械的な検証などはあまり行われてないことがほとんどだが、それを検証する意味で再帰降下パーサを手書きした実装も行った。
           <ul>
             <li><a href="https://github.com/Jxck/structured-field-values/blob/54cfea375be670cfcb873b6c0c4c4fc57e642bc9/bnf.js" target=_blank>Implementation based on spec ABNF</a>
           </ul>

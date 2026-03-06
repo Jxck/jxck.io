@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-05-17T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-05-17>2023-05-17</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -209,7 +209,7 @@
           </li>
         </ul>
         <p>もともと WHATWG URL は、RFC ベースだったことによるブラウザ間の実装差異を無くし、互換性を高めるための基盤として書かれたものであるため、同じ &quot;URL&quot; に 2 つの別の仕様があるのは、目的の違いだと言える。
-        <p>(なお、実際ここで整理された仕様と、WPT によってよって浮き彫りになった URL の実装差を埋める作業は、Interop 2023 のテーマとして採択されている)
+        <p>(なお、実際ここで整理された仕様と、WPT によって浮き彫りになった URL の実装差を埋める作業は、Interop 2023 のテーマとして採択されている)
       </section>
       <section>
         <h2 id="abnf-は載せるべきか"><a href="#abnf-は載せるべきか">ABNF は載せるべきか</a></h2>
@@ -322,7 +322,7 @@
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>この流れは、IETF でも、少なくとも HTTPWG の仕様については、WHATWG の定義の仕方と近くなっていることを意味する。
         <p>HTTPWG の仕様はブラウザで実装されることが多いため、ブラウザの互換性を防ぐ意味でも自然な流れと言えるが、IETF/WHATWG 両方の仕様を実装してきた筆者からすると、なかなか興味深い流れに感じる。
-        <p>今回の話だけで、「本当に ABNF は必要なのか」という議論事態に決着がついたわけではない。Julian の言うように、ABNF があることで仕様が読みやすくなる人は一定いるのも事実だろう。SFV くらい複雑になると、全てを Example で書き下すよりは、ワイヤーフォーマットを想起する方法として妥当ではあると思う。
+        <p>今回の話だけで、「本当に ABNF は必要なのか」という議論自体に決着がついたわけではない。Julian の言うように、ABNF があることで仕様が読みやすくなる人は一定いるのも事実だろう。SFV くらい複雑になると、全てを Example で書き下すよりは、ワイヤーフォーマットを想起する方法として妥当ではあると思う。
         <p>問題はやはり「パースするための仕様」として ABNF を扱う部分だろう。実装してる身としても、「エラーにする」「無視する」などの細かい例外処理の表現については、どうしても ABNF よりも Parsing Algorithm に分があると感じる。
         <p>実装者は少なくとも &quot;仕様に明記されている通り&quot; Parsing Algorithm に基づいて実装を行うべきだろう。
         <p>一方で、Appendix にある non-normative だからといって、ABNF が勘で適当に書かれた、明らかに間違っているものになっていて良いとも思えない。

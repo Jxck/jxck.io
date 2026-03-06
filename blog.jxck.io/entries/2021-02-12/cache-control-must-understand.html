@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-02-12T08:00:00+08:00",
-    "dateModified": "2025-01-23T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-02-12>2021-02-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-01-23>2025-01-23</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -204,7 +204,7 @@ Cache-Control: max-age=3600, must-understand, no-store</code></pre>
         <p><code translate=no>must-understand</code> は、その status code の要件として定義されたキャッシュに関する挙動をサポートしない限りは、そのレスポンスをキャッシュしてはならないという意味になる。
         <p>上の例では、実装が <code translate=no>999</code> に定義された要件を実装してない、平たく言うと <code translate=no>999</code> をサポートしてない場合は、このレスポンスがキャッシュできないが、<code translate=no>999</code> をサポートしているのであれば後ろの <code translate=no>no-store</code> を無視してキャッシュすることができる。
         <p>もし <code translate=no>999</code> に特に何か特別な要件がなければ <code translate=no>max-age</code> に準じた挙動になるだろうし、何か <code translate=no>max-age</code> を上書きするような条件があればそれに従うことになるだろう。
-        <p>通常、キャッシュの実装はサポートしてないディレクティブを無視するため、<code translate=no>must-understand</code> に対応してない場合は、後ろの <code translate=no>no-store</code> が適応され、これは <code translate=no>max-age</code> よりも優先されるためにこのレスポンスはキャッシュされない。
+        <p>通常、キャッシュの実装はサポートしてないディレクティブを無視するため、<code translate=no>must-understand</code> に対応してない場合は、後ろの <code translate=no>no-store</code> が適用され、これは <code translate=no>max-age</code> よりも優先されるためにこのレスポンスはキャッシュされない。
         <p>結果、<code translate=no>must-understand</code> が <code translate=no>no-store</code> とともに付与された場合のレスポンスは、ステータスコードを理解してない実装によって意図しない保存をされることがなくなることが期待される。
         <section>
           <h3 id="改訂仕様"><a href="#改訂仕様">改訂仕様</a></h3>

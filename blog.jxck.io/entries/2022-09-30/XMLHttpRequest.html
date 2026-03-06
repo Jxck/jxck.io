@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-09-30T08:00:00+08:00",
-    "dateModified": "2025-01-23T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-09-30>2022-09-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-01-23>2025-01-23</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -266,7 +266,7 @@
             </ul>
           </li>
         </ul>
-        <p>特に Ajax によるマッシュアップの隆盛が、Origin を跨いだ連携を必要としながら、現実解が JSONP しかない状態は問題があったため、明示的に Origin を跨ぐ CORS が策定さていくことになるが、その仕様をそのまま HTML5 の仕様に追加していくのは実際かなり複雑だった。その後には、接続先を制限する CSP のマージも考えないといけない。
+        <p>特に Ajax によるマッシュアップの隆盛が、Origin を跨いだ連携を必要としながら、現実解が JSONP しかない状態は問題があったため、明示的に Origin を跨ぐ CORS が策定されていくことになるが、その仕様をそのまま HTML5 の仕様に追加していくのは実際かなり複雑だった。その後には、接続先を制限する CSP のマージも考えないといけない。
         <p>そこで Ann は、「<em>ブラウザがリソースを取得するとはどういうことか</em>」を整理し、仕様として切り出した。それが Fetch のスペックだ。
         <ul>
           <li>
@@ -379,7 +379,7 @@ const res = await fetch(req, { signal })</code></pre>
         <p>この llhttp を使ったクライアントライブラリが undici で、イタリア語で 11 という意味だ。HTTP/1.1 のライブラリであることを意味している。
         <p>Next-10 で議論されたのは、ものすごく雑にまとめると「undici を入れてしまえばいいのではないか?」という話だ。それだけ出来が良かったということだろう。
         <p>すると当然 undici の API を Node から全部出すのか? という話になる。しかし、触れるところを増やすのは後に響く問題になりやすいし、直接 socket を触りたい時もあるが、大抵はリクエストを投げてレスポンスを受け取れればいいだろう。結果「程よく抽象化され、かつ適切に制御ができる必要十分な API」が必要となる。そこで白羽の矢が立ったのが <code translate=no>fetch()</code> だったのだ。
-        <p><code translate=no>fetch()</code> を入れたかったというよりも、入れようとしたら <code translate=no>fetch()</code> くらいしかなかった。Polyfill がどう、バンドルサイズがどうという話とは、レイヤの違うところで行われていた議論の結果だったといえる。が、実際に作業を始めると案の上スレッドは長く伸びた。
+        <p><code translate=no>fetch()</code> を入れたかったというよりも、入れようとしたら <code translate=no>fetch()</code> くらいしかなかった。Polyfill がどう、バンドルサイズがどうという話とは、レイヤの違うところで行われていた議論の結果だったといえる。が、実際に作業を始めると案の定スレッドは長く伸びた。
         <ul>
           <li>
             lib: add fetch by targos · Pull Request #41749 · nodejs/node
@@ -396,7 +396,7 @@ const res = await fetch(req, { signal })</code></pre>
         <p>Fetch や Service Worker の API は、ECMA で定義された Promise や <code translate=no>await</code> などのプリミティブと、WHATWG で定義された Stream や URL とをうまく組み合わせて作られている。うまく組み合わせるというか、足りないものを補いながら発展していることの帰結だろう。
         <p>もちろん、それが「ブラウザで使われる」ことを前提に策定されていることで、他のプラットフォームで使おうと考えると問題が出ることはある。ECMA は中立であるが、WHATWG はそのための組織なので当たり前といえばそれまでだ。
         <p>「もし、もう少しブラウザ以外のことも考慮すれば、より広いプラットフォームで使えるだろう」というのが、fetch on Node や Service Worker on Edge Worker などから得られる絶妙に苦い教訓で、そこをなんとかしようというのが、Winter CG の目的だというのが筆者の理解だ。
-        <p>位置付けは W3C の Community Group であり、実際に仕様を書くというよりは、WHATWG/W3C が行っていることに対して、ブラウザ以外の視点からフィードバックを送るというスタンスとされている。この Group の成果によって、今後 Web API / JS が Cross Platform なスコープに広がるのは良いことに思える。一方で、ブラウザ間での合意も難しい標準化に、前提が違うブラウザ以外のプレイヤー参入が増えることで、議論の収集がつかずフットワークが重くなったりしないことは祈りたい。
+        <p>位置付けは W3C の Community Group であり、実際に仕様を書くというよりは、WHATWG/W3C が行っていることに対して、ブラウザ以外の視点からフィードバックを送るというスタンスとされている。この Group の成果によって、今後 Web API / JS が Cross Platform なスコープに広がるのは良いことに思える。一方で、ブラウザ間での合意も難しい標準化に、前提が違うブラウザ以外のプレイヤー参入が増えることで、議論の収拾がつかずフットワークが重くなったりしないことは祈りたい。
       </section>
       <section>
         <h2 id="移行期"><a href="#移行期">移行期</a></h2>

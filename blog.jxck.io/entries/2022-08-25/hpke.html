@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-08-25T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-08-25>2022-08-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -146,9 +146,7 @@
                 <li><a href="#auth-psk">Auth PSK</a>
               </ol>
               <li><a href="#kdf-key-derivation-function">KDF (Key Derivation Function)</a>
-              <ol>
-                <li><a href="#aead">AEAD</a>
-              </ol>
+              <li><a href="#aead">AEAD</a>
               <li><a href="#export">Export</a>
               <li><a href="#tls-との違い">TLS との違い</a>
               <ol>
@@ -303,16 +301,16 @@ ctx = KeySchedule(shared_secret, psk)</code></pre>
           <li>HKDF-SHA512
         </ul>
         <p>基本は TLS 1.3 と同じだ (SHA512 は TLS 1.3 の Mandatory ではないが)。
-        <section>
-          <h3 id="aead"><a href="#aead">AEAD</a></h3>
-          <p>生成した共通鍵を用いて共通鍵暗号を行う。HPKE では認証付暗号である AES の GCM か ChaCha-Poly を用いる。
-          <p>DES や CBC などは最初から入っておらず、こちらも TLS 1.3 と同じだ。
-          <ul>
-            <li>AES-128-GCM
-            <li>AES-256-GCM
-            <li>ChaCha20Poly1305
-          </ul>
-        </section>
+      </section>
+      <section>
+        <h2 id="aead"><a href="#aead">AEAD</a></h2>
+        <p>生成した共通鍵を用いて共通鍵暗号を行う。HPKE では認証付暗号である AES の GCM か ChaCha-Poly を用いる。
+        <p>DES や CBC などは最初から入っておらず、こちらも TLS 1.3 と同じだ。
+        <ul>
+          <li>AES-128-GCM
+          <li>AES-256-GCM
+          <li>ChaCha20Poly1305
+        </ul>
       </section>
       <section>
         <h2 id="export"><a href="#export">Export</a></h2>
@@ -374,7 +372,7 @@ ctx = KeySchedule(shared_secret, psk)</code></pre>
         <section>
           <h3 id="mls-messaging-layer-security"><a href="#mls-messaging-layer-security">MLS (Messaging Layer Security)</a></h3>
           <p>チャットのようなサービスは、TLS を用いてサーバとの通信を暗号化していても、サーバはそのメッセージの中身を見ることができてしまう。ここでメッセージに求められている E2E (End-To-End) 暗号化は、Client-Server の暗号化ではなく Client-Client の暗号化だ。
-          <p>MLS は、自分がメッセージをやりとりする相手にのみメッセージの復号を許し、Server にはメッセージを見せないと言った目的で策定されている。このドラフトで、メッセージの暗号化に HPKE を用いることが想定されている。
+          <p>MLS は、自分がメッセージをやりとりする相手にのみメッセージの復号を許し、Server にはメッセージを見せないといった目的で策定されている。このドラフトで、メッセージの暗号化に HPKE を用いることが想定されている。
           <ul>
             <li>
               The Messaging Layer Security (MLS) Protocol

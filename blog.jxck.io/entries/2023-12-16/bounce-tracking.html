@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-16T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-16>2023-12-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -217,7 +217,7 @@ Set-Cookie: muc_ads=9f928101-...; Path=/; Domain=t.co; Secure; SameSite=None ...
       </section>
       <section>
         <h2 id="link-decoration"><a href="#link-decoration">Link Decoration</a></h2>
-        <p>Facebook 内のリンクで外のサイトに行くと、遷移した先の URL に <code translate=no>fbclid=xxxxxxxxxxxxx...</code> というクエリが URL に付与されていることに気づくだろう。
+        <p>Facebook 内のリンクで外のサイトに行くと、遷移した先の URL に <code translate=no>fbclid=xxxxxxxxxxxxx...</code> というクエリが付与されていることに気づくだろう。
         <p>このように、プラットフォームからの遷移に URL クエリを付与することによって、その先に対応している JS (Facebook のボタンなど) があれば、クエリを取得しサイトの 1st Party Cookie として保存することで、トラッキングに使うという手法だ。
         <pre class=js data-code=js><code translate=no class=language-js>// 遷移先の JS
 const url = new URL(location.href)
@@ -244,7 +244,7 @@ if (fbclid) {
         <p>Federation や SSO の実装は、外部の IDP に遷移し、そこの 1st Party Cookie で認証が確認できたら、Token をクエリに付与してリダイレクトで戻ってくるような実装がある。
         <p>このケースは、Bounce Tracking + Link Decoration との見分けが難しく、巻き込まれて壊れることが懸念されている。
         <p>実際どのくらい壊れるのかは、ブラウザの課している制限によって変わるが、もし壊れていることがわかったら、気にすべき点は以下だ。
-        <p>まず、IDP のページをリダイレクトで通り過ぎるのではなく、ユーザに表示する。そこに「このアカウントで続行する」といったボタンなどの UI を置いて、それをユーザにクリックさせることで IDP 上でジェスチャーを発生させるといった対応が考えられる。
+        <p>まず、IDP のページをリダイレクトで通り過ぎるのではなく、ユーザに表示する。そこに「このアカウントで続行する」といったボタンなどの UI を置いて、それをユーザにクリックさせることで IDP 上でジェスチャを発生させるといった対応が考えられる。
         <p>次に、IDP -&gt; RP への遷移でも、Token を JS ではなくサーバで受け取り、サーバからの <code translate=no>Set-Cookie</code> で認証情報を保存する(もしくは、Session に紐づける)といった実装にする。
         <p>そして、認証連携などのユースケースを持つドメインは、ドメイン自体がトラッカー判定されないように、同じドメインの他の部分でトラッキングをしていないかに注意しておくといいだろう。
       </section>

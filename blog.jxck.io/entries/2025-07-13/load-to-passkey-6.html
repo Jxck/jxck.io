@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-07-13T08:00:00+08:00",
-    "dateModified": "2025-07-23T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-13>2025-07-13</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-07-23>2025-07-23</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -210,7 +210,7 @@
         <p>ユーザはあくまで、iCloud Keychain に保存された Passkey でログインしている。つまり秘密鍵を用いた「所有」の認証だ。GitHub に登録されるのは指紋情報ではなく、対応する公開鍵だ。では、iPhone はなぜ Face/Touch ID を求めるのかと言うと、それはパスワードマネージャをアンロックするためだ。
         <p>GitHub のサイトが WebAuthn の API を叩いた際に、Passkey のログインが勝手に行われてしまっては、ユーザの意図しないところでログインが行われてしまう。iCloud Keychain に保存された Passkey はあくまでユーザのものなので、勝手に取り出して認証するわけにはいかないのだ。また、その端末が誰かに盗まれたものであった場合に、パスワードマネージャを勝手に使われるわけにはいかない。
         <p>本人確認を必要としているのはサービス(GitHub)ではなく、端末(iPhone)なのだ。このプロセスを User Verification という。だから、何回か Touch/Face ID が失敗したら、いつもの iPhone の PIN コードで代替できるのは、それがあくまで iPhone に閉じた話だからだ。
-        <p>したがって、iPhone/Android や Windows Hello などの機能は、生体情報が「デバイスの中に保存」されており、外には出ないようになっている。iPhone を買い直しても、指紋や顔の登録は同期されない。PIN を買うたびに設定するように、買うたびに顔と指紋を登録する必要があるのはこのためだ。
+        <p>したがって、iPhone/Android や Windows Hello などの機能は、生体情報が「デバイスの中に保存」されており、外には出ないようになっている。iPhone を買い直しても、指紋や顔の登録は同期されない。買うたびに PIN を設定するように、買うたびに顔と指紋を登録する必要があるのはこのためだ。
         <p>もちろん、生体認証はローカルに閉じ外には出ないというのは、ベンダの説明だ。Apple や Google や MS が、それらの情報をこっそりサーバに収集している可能性を疑うことも可能だ。疑わしいなら登録せずに PIN だけにすれば良い。PIN でも User Verification にはなり、マネージャはアンロックでき、Passkey は問題なく使える。
         <p>ちなみに、YubiKey や Titan の物理セキュリティキーの中には、中央にくぼみがあり、そこを指でタップしないと動かないものがある。これを見て、指紋認証だと勘違いする人も多い。ハイエンドなら、指紋を登録できるものもあるだろうが、大抵はただタッチすればよいだけの感圧板であることが多い。
         <p>これが必要なのは、挿しっぱなしのセキュリティキーが勝手に動くことを防ぐために、ユーザが明示的にジェスチャーをしないと動作しないようにするためだ。ただ、アンロックするためにタッチするだけなので、逆を言えば盗まれたら認証自体はできてしまう。そもそも所有の要素なので、無くしたり盗まれたら、それ相応の対応が必要なのだ。

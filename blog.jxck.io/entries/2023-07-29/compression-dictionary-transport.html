@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-07-29T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-07-29>2023-07-29</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -403,7 +403,7 @@ $ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f
         <h2 id="h2o-のパッチ"><a href="#h2o-のパッチ">H2O のパッチ</a></h2>
         <p>本サイトは h2o でサーブしているが、h2o はまだ <code translate=no>.sbr</code> に対応していないのでパッチを当ててビルドした。
         <p><code translate=no>send-compression</code> を有効にしたときに、拡張子付きのファイルを探してくれる部分をいじったが、拡張子が 2 文字前提の実装になっていたので、とりいそぎ手を抜いて <code translate=no>.sbr</code> を <code translate=no>.sb</code> にしてデプロイしている。
-        <p>また、<code translate=no>.sb</code> を返す際に <code translate=no>Sec-Available-Dictionary</code> のハッシュを検証したり、<code translate=no>Vary</code> を付与するためには、conf で mruby を呼ぶか、同じくパッチを当てるしか無い。そのオーバーヘッドは検証に影響するため、ここも省略して辞書の <code translate=no>expire</code> を短くしておくにとどめた。
+        <p>また、<code translate=no>.sb</code> を返す際に <code translate=no>Sec-Available-Dictionary</code> のハッシュを検証したり、<code translate=no>Vary</code> を付与するためには、conf で mruby を呼ぶか、同じくパッチを当てるしか無い。そのオーバーヘッドは検証に影響するため、ここも省略して辞書の <code translate=no>expires</code> を短くしておくにとどめた。
       </section>
       <section>
         <h2 id="検証"><a href="#検証">検証</a></h2>

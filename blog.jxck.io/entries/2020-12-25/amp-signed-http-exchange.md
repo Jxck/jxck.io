@@ -127,7 +127,7 @@ toml を更新して起動し直すと成功。
 
 これを systemd に登録して完了。
 
-```service:../../../.systemd/amppkg.service
+```service:amppkg.service
 ```
 
 (最初、検証時に作られた `/tmp/amppkg-ocsp` の権限が起動ユーザのみに絞られており、Systemd を別ユーザで起動すると既存のファイルにアクセスできずに失敗した。単純に消せばいい。)

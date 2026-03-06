@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-05-07T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-06T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-05-07>2024-05-07</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -206,7 +206,7 @@ Content-Type: text/html
 Referer: https://ec.example/product/0230596283
 Cookie: ${login-cookie}</code></pre>
         <p>この場合、SNS サイトはユーザの情報を持っているため、追加でユーザが何に興味を持っているのかを知ることができる。
-        <p>この構造は、送信元/送信先サイトの組み合わせによってリスクが多様化する。趣味趣向、政治宗教感、疾病障害などのセンシティブな情報の漏洩リスクもゼロではない。
+        <p>この構造は、送信元/送信先サイトの組み合わせによってリスクが多様化する。趣味趣向、政治宗教観、疾病障害などのセンシティブな情報の漏洩リスクもゼロではない。
         <p>このため、個人のレベルでも Referer を送らないような設定を行うユーザもおり、特にブラウザに Private Mode が搭載されるようになる前は、プライバシーリテラシーが高いユーザは拡張などで Referer を落としていた。
       </section>
       <section>
@@ -282,7 +282,7 @@ body=こんにちはこんにちは</code></pre>
         <p>近年は HTTPS が普及したため、Proxy がヘッダを落とすということは構成的にレアになった。従って消すとすればクライアントの設定や拡張、サービスごとの <code translate=no>Referrer-Policy</code> のデプロイくらいしかない。この記述を無視した拡張やサービスを実装することは、自身が「行儀の良い実装」から逸脱していることを意味すると言っても良いだろう。
         <p>補足しておくと、本エントリは「CSRF 対策のために Referer を受け取り確認すべきだ」と言っているわけではない。前述の通り、既に Referer を送らないクライアントは多いため、受信側がセキュリティ対策のために依存するうえで的確なヘッダとは言えないからだ。
         <p>しかし、特に最後の一行にあるように、Same Origin でのリクエストであれば、サーバは Referer が無くてもユーザがどのページからどのページに遷移しているかを知るのは容易だ。つまり、わざわざ Referer を落とすことのメリットはない。外部に送るリスクはわかるが、同一サイトで送ることにリスクを感じるのは、見積もり方として間違っていると言える。
-        <p>従って、<code translate=no>no-referrer</code> にすることで <code translate=no>Referer</code> ヘッダを Same Origin にすら送らず、あまつさえ、セキュリティ対策のために Web プラットフォームがが時間をかけて手に入れた <code translate=no>Origin</code> ヘッダを <code translate=no>null</code> にしてしまい、「リクエストの出自が検証できなくなる == 外からの工作されたリクエストではないと検査できない」という状態になるのは、セキュリティの面から見ると必ずしもプラスとは言えないのだ。
+        <p>従って、<code translate=no>no-referrer</code> にすることで <code translate=no>Referer</code> ヘッダを Same Origin にすら送らず、あまつさえ、セキュリティ対策のために Web プラットフォームが時間をかけて手に入れた <code translate=no>Origin</code> ヘッダを <code translate=no>null</code> にしてしまい、「リクエストの出自が検証できなくなる == 外からの工作されたリクエストではないと検査できない」という状態になるのは、セキュリティの面から見ると必ずしもプラスとは言えないのだ。
         <p>では、<code translate=no>Referrer-Policy</code> は何を選べばいいのだろうか?
       </section>
       <section>
