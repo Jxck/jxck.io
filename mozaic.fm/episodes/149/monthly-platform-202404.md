@@ -512,7 +512,7 @@ guests:
   - Unprompted Authentication
     - Signature HTTP Authentication Scheme に改名
   - Query Method
-    - 全然進んでない
+    - 全然進んでいない
   - Resumable Uploads
     - だいぶ複雑になってきた
     - application/partial-upload を定義
@@ -746,7 +746,7 @@ guests:
 - WinterCG
 - IETF
   - Cookiebis もうすぐ Last Call
-  - Query Method 全然進んでない
+  - Query Method 全然進んでいない
   - Resumable Uploads 複雑になってきた
   - Retrofit SFV 仕様はほぼ完了
   - Cache Group WGLC 間近

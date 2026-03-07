@@ -65,14 +65,14 @@ guests:
 - **Open Web Doc**
 - **CDS**
 - **chrome.developers 公開**
-- **chrome 87/88 release with incident**
+- **Chrome 87/88 release with incident**
   - mixed contents で form submit 失敗
   - タイムゾーンの反映が壊れて時間表示が狂う
-- chrome 89 Device 系 API
+- Chrome 89 Device 系 API
 - **privacy sandbox 1 年経過の続報**
 - **privacy preserving preload と prerendering 2**
 - private prefetch proxy proposal
-- `<popup>` と ModalCloseWacher
+- `<popup>` と ModalCloseWatcher
 - SameParty Cookie
 - Firefox 85 で preload
 - **ESNI to ECH**

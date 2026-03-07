@@ -358,9 +358,9 @@ guests:
 - https://blogs.windows.com/msedgedev/
   - ここがメイン
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  - ここでも見れる
+  - ここでも見られる
 - https://twitter.com/MSEdgeDev
-  - これを見るしか無い
+  - これを見るしかない
 - Deprecating `window.external.getHostEnvironmentValue()` - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2025/04/03/deprecating-window-external-gethostenvironmentvalue/
 - Significant performance improvements with Edge 134 - Microsoft Edge Blog

@@ -647,9 +647,9 @@ guests:
 - https://blogs.windows.com/msedgedev/
   - ここがメイン
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  - ここでも見れる
+  - ここでも見られる
 - https://twitter.com/MSEdgeDev
-  - これを見るしか無い
+  - これを見るしかない
 - **Securing the Future: Changes to Internet Explorer Mode in Microsoft Edge | Microsoft Browser Vulnerability Research**
   - https://microsoftedge.github.io/edgevr/posts/Changes-to-Internet-Explorer-Mode-in-Microsoft-Edge/
 - Meet Copilot Mode in Edge: Your AI browser - Microsoft Edge Blog

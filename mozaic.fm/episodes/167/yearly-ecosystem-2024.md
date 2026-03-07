@@ -89,7 +89,7 @@ guests:
 - SC で zero runtime じゃない CSS も動くようになりそうなので、より戻すか?
   - CSS ライブラリのこの先はどこに落ち着くのか、css modules,tailwind,zero-runtime & AI & React の対応
 - next.js の cache が安定するか?
-- figma->実装のワークフローの進化(devmode, codeconnect)、AI 活用
+- Figma -> 実装のワークフローの進化 (Dev Mode, Code Connect)、AI 活用
 - next.js app router 移行先に post remix としての tanstack family
   - remix 自体どうなる?
 - react compiler どうなるか
@@ -509,8 +509,8 @@ guests:
   - https://www.figma.com/blog/introducing-code-connect/
   - Github
     - https://github.com/figma/code-connect
-  - @figma/code-connect パッケージと CLI を使用し hoge.figma.tsx ファイルを作り、Figma にコードを連携させることで DevMode のコードが紐づく
-  - Readme に全部書いてある
+  - @figma/code-connect パッケージと CLI を使用し `hoge.figma.tsx` ファイルを作り、Figma にコードを連携させることで Dev Mode のコードが紐づく
+  - README に全部書いてある
     - https://github.com/figma/code-connect/tree/main/react
 - JSR Is Not Another Package Manager
   - https://deno.com/blog/jsr-is-not-another-package-manager

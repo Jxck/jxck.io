@@ -465,9 +465,9 @@ guests:
 - https://blogs.windows.com/msedgedev/
   - ここがメイン
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  - ここでも見れる
+  - ここでも見られる
 - https://twitter.com/MSEdgeDev
-  - これを見るしか無い
+  - これを見るしかない
 - Ignite 2024: Transform your workday with the latest Edge for Business features - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2024/11/19/microsoft-edge-for-business-transform-your-workday-ignite-2024/
 

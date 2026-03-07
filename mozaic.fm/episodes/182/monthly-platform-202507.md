@@ -376,9 +376,9 @@ guests:
 - https://blogs.windows.com/msedgedev/
   - ここがメイン
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  - ここでも見れる
+  - ここでも見られる
 - https://twitter.com/MSEdgeDev
-  - これを見るしか無い
+  - これを見るしかない
 - **Removing -ms-high-contrast and embracing standards-based forced colors in Microsoft Edge - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2025/06/30/removing-ms-high-contrast-and-embracing-standards-based-forced-colors-in-microsoft-edge/
   - `-ms-high-contrast`, `-ms-high-contrast-adjust` プロパティが Edge 138 から完全に削除

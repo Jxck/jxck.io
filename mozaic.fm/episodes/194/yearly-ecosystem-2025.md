@@ -26,7 +26,7 @@ guests:
 - SC で zero runtime じゃない CSS も動くようになりそうなので、より戻すか?
   - CSS ライブラリのこの先はどこに落ち着くのか、css modules,tailwind,zero-runtime & AI & React の対応
 - next.js の cache が安定するか?
-- figma->実装のワークフローの進化(devmode, codeconnect)、AI 活用
+- Figma -> 実装のワークフローの進化 (Dev Mode, Code Connect)、AI 活用
 - next.js app router 移行先に post remix としての tanstack family
   - remix 自体どうなる?
 - react compiler どうなるか
@@ -1339,7 +1339,7 @@ guests:
   - Slots
     - figma 上で react children 的なことができる
   - Check designs
-    - DevMode 移行時にデザイン上でコンポーネントや variables の紐付け漏れ検知
+    - Dev Mode 移行時にデザイン上でコンポーネントや variables の紐付け漏れ検知
   - Code Connect UI
     - GUI 上から実装ファイルへの紐付けが可能に
     - コンポーネント毎に MCP に読み込ませるコンテキスト追加できる

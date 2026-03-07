@@ -556,9 +556,9 @@ guests:
 - https://blogs.windows.com/msedgedev/
   - ここがメイン
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  - ここでも見れる
+  - ここでも見られる
 - https://twitter.com/MSEdgeDev
-  - これを見るしか無い
+  - これを見るしかない
 - **Looking forward to an Interop 2025 that addresses your top needs - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2024/09/17/interop-2025-call-for-proposals/
 - Taking control of your browser performance when using extensions with Microsoft Edge - Microsoft Edge Blog

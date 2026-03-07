@@ -867,7 +867,7 @@ guests:
 
 - **Exploiting CSP in Webkit to Break Authentication & Authorization**
   - https://threatnix.io/blog/exploiting-csp-in-webkit-to-break-authentication-authorization/
-  - Webkit の CSP バグを使って認証を盗む
+  - WebKit の CSP バグを使って認証を盗む
   - DEMO の動画あり
 
 ### 周辺動向

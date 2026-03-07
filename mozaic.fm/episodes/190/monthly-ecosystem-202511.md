@@ -48,7 +48,7 @@ guests:
   - Slots
     - figma 上で react children 的なことができる
   - Check designs
-    - DevMode 移行時にデザイン上でコンポーネントや variables の紐付け漏れ検知
+    - Dev Mode 移行時にデザイン上でコンポーネントや variables の紐付け漏れ検知
   - Code Connect UI
     - GUI 上から実装ファイルへの紐付けが可能に
     - コンポーネント毎に MCP に読み込ませるコンテキスト追加できる

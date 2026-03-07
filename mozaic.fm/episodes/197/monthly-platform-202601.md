@@ -255,7 +255,7 @@ guests:
   - `border-width`, `outline-width`, `column-rule-width` を、対応する`*-style`から切り離す。
   - `border-style: none` だと `border-width: 10px` が書いてあっても `0px` として解釈されていた
   - 解決方法を変え、明示的な値が反映されるようになる。
-  - Gecko / Webkit はすでにこの挙動なのでリスクは低い
+  - Gecko / WebKit はすでにこの挙動なのでリスクは低い
 - Ship: Crash Reporting key-value API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UD2RcDSb270
 - Ship: JSON and style support for link rel=modulepreload
@@ -939,9 +939,9 @@ guests:
     - シリアライズ/デシリアライズオーバーヘッド
     - などを検出できる
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  - ここでも見れる
+  - ここでも見られる
 - https://twitter.com/MSEdgeDev
-  - これを見るしか無い
+  - これを見るしかない
 
 #### Other
 

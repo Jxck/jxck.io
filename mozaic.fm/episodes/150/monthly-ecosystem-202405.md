@@ -114,8 +114,8 @@ guests:
   - https://www.figma.com/blog/introducing-code-connect/
   - Github
     - https://github.com/figma/code-connect
-  - @figma/code-connect パッケージと CLI を使用し hoge.figma.tsx ファイルを作り、Figma にコードを連携させることで DevMode のコードが紐づく
-  - Readme に全部書いてある
+  - @figma/code-connect パッケージと CLI を使用し `hoge.figma.tsx` ファイルを作り、Figma にコードを連携させることで Dev Mode のコードが紐づく
+  - README に全部書いてある
     - https://github.com/figma/code-connect/tree/main/react
 - JSR Is Not Another Package Manager
   - https://deno.com/blog/jsr-is-not-another-package-manager

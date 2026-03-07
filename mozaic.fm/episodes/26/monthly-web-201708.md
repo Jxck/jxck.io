@@ -332,7 +332,7 @@ Monthly Web のモチベーションについては以下。
   - https://blogs.windows.com/msedgedev/2017/08/10/es-modules-node-today/
   - Node では .mjs が採用された
   - MIME 登録提案 https://tools.ietf.org/html/draft-bfarias-javascript-mjs-00
-- Google Rendering Service based on chrome 41
+- Google Rendering Service based on Chrome 41
   - https://developers.google.com/search/docs/guides/rendering
 - V8 向けコード最適化
   - https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e

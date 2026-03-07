@@ -619,6 +619,6 @@ guests:
   - FB Instant Article 2023/4 にサポート終了
   - FB Git 互換のソース管理 Sapling 公開
   - Netscape, Chrome の重鎮 Darin Fisher が The Browser Company に入った
-  - Igalia の BlinkOn と Webkit Contributors Meeting レポート
+  - Igalia の BlinkOn と WebKit Contributors Meeting レポート
   - Google Fonts が IP のプライバシーに関する声明
   - CMA による Cloud Gaming の寡占に関するレポート

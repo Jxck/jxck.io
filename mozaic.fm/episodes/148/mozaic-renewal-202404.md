@@ -86,7 +86,7 @@ guests:
 - CSS
   - figma で @scope 付き生 CSS を吐く
   - dark mode 対応
-  - `prefer-*` は全部意識
+  - `prefers-*` は全部意識
 - Component
   - 全部自作
   - aria とかも全部自分で考える

@@ -100,7 +100,7 @@ guests:
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/--ZpYlTo6LE/BTWcojtpBQAJ
   - **Implement: Secure context restriction for external requests**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/EeGg7TxW6U4/9aohper3BQAJ
-    - External Requests は Public Netowrk リソースが発生する Private Network リクエスト
+    - External Requests は Public Network リソースが発生する Private Network リクエスト
     - 改ざんされている場合、踏み台にされ、情報を抜かれる可能性がある
     - これを https only にする
   - **Implement: Storage Access API**
@@ -175,7 +175,7 @@ guests:
     - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/68
     - CSS Scroll Snap の実装が最新仕様に追従
     - `-webkit-line-clamp` プロパティ
-    - `::marker` 疑似要素 + `couter-set` プロパティ
+    - `::marker` 疑似要素 + `counter-set` プロパティ
     - BigInt
     - Visual Viewport API(現状 Android のみ)
     - Window の noreferrer
@@ -231,7 +231,7 @@ guests:
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/WW8CM4oah3g/pV3b2d7HCQAJ
   - Unship: 3-valued position syntax from `<object-position>`, `<perspective-origin>`, `<mask-position>`
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/zZ9FMk4OAsc/8p-KmlW7AgAJ
-  - Unship: DOMMatrix.prototoype.scaleNonUniformSelf()
+  - Unship: DOMMatrix.prototype.scaleNonUniformSelf()
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/r4B80kbt3FA/TwUASrTPCgAJ
   - Unship X-Frame-Options: Allow-From
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/nM92fnGFrEQ/COSJlB5uAwAJ

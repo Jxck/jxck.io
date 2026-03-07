@@ -434,7 +434,7 @@ guests:
     - Optimized Array#splice to skip result array creation if it is not used at all (266591@main)
 - **Building Profiles with new WebKit API**
   - https://webkit.org/blog/14423/building-profiles-with-new-webkit-api/
-  - Webkit ではあるがブラウザの話ではない
+  - WebKit ではあるがブラウザの話ではない
 
 #### Standard Positions
 

@@ -536,9 +536,9 @@ guests:
     - Mobile testing: to continue improving the infrastructure that makes it possible to test mobile-specific features.
     - WebVTT: to continue improving the specification and test suite for this feature, opening the possibility for WebVTT to be part of a future Interop project iteration.
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  - ここでも見れる
+  - ここでも見られる
 - https://twitter.com/MSEdgeDev
-  - これを見るしか無い
+  - これを見るしかない
 
 #### Other
 

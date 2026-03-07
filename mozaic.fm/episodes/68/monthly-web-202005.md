@@ -373,8 +373,8 @@ guests:
     - Enabled clipboard API access when pasting from a menu item or key binding (r261825)
     - Implemented accessibility of HTML 5.1 Drag & Drop (r261248)
 - **Position**
-  - Webkit-dev から Position Request についてだけ抜粋
-    - 返信は apple の開発者個々人の意見や、apple 外の人からもくる
+  - webkit-dev から Position Request についてだけ抜粋
+    - 返信は Apple の開発者個々人の意見や、Apple 外の人からも来る
     - 単純に Yes/No にまとめることはできない
   - [webkit-dev] Position on emerging standard: WebCodecs
     - https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html

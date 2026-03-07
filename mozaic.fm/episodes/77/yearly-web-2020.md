@@ -162,7 +162,7 @@ guests:
 - Mozilla Layoff
   - 250 人程のレイオフ、MDN などのチームが縮小
 - MS365 の IE11/Legacy Edge サポート終了
-- Webkit-dev request for position で Niwa さんの回答が結構ついてた
+- webkit-dev request for position で Niwa さんの回答が結構ついていた
 - mnot's blog: RFC8890: The Internet is for End Users
 - http2bis 作業開始
 

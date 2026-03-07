@@ -161,7 +161,7 @@ guests:
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/SyHAsPfO004
 - **PSA: change to process for WebKit signals**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/qO38-AfQ2AE/
-  - Webkit 版の Standard Position 公開
+  - WebKit 版の Standard Position 公開
   - http://bit.ly/blink-signals
   - https://github.com/WebKit/standards-positions/
 

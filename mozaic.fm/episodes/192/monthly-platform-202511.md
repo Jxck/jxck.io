@@ -362,9 +362,9 @@ guests:
     - Web サイトが他の Web サイトを PWA としてインストールするよう、ブラウザに依頼できる仕組み
     - 自社の PWA アプリストアみたいなものを構築できる
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  - ここでも見れる
+  - ここでも見られる
 - https://twitter.com/MSEdgeDev
-  - これを見るしか無い
+  - これを見るしかない
 - MSEdgeExplainers/OfflineAudioContext/explainer.md at main · MicrosoftEdge/MSEdgeExplainers
   - https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/OfflineAudioContext/explainer.md
 

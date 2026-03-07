@@ -12,7 +12,7 @@ guests:
 
 ## Theme
 
-第 13 回 Virtual DOM の SideShow です。
+第 13 回 Virtual DOM の Sideshow です。
 
 [@mizchi](https://twitter.com/mizchi/) さんとのこぼれ話をお送りします。
 

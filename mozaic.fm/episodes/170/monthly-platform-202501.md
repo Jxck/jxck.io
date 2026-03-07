@@ -776,7 +776,7 @@ guests:
     - WPT の PR は出てる
     - 温度感が低く、3 にしてもブラウザが実装されない可能性もある
     - 一旦各ブラウザの Signal を確認
-    - Mozilla, Webkit はまだ No Signal
+    - Mozilla, WebKit はまだ No Signal
     - Stephanie 🔮 Web Witch: "Are you a developer who has a browser use-case for ShadowRealms? …" - Toot Café
       - https://toot.cafe/@seaotta/113833512224477847
       - ブラウザにおいての ShadowRealm のユースケースがないか Igalia の人が聞いている

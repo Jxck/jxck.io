@@ -40,7 +40,7 @@ guests:
   - Navigation & Transition
   - Popover / inert
   - Baseline ?
-  - Module Harmoney
+  - Module Harmony
   - Post Quantum 時代
   - Privacy Sandbox GA
   - AdSence で全画面広告増えた?
@@ -122,13 +122,13 @@ guests:
 
 ### 2024 年チェックポイント
 
-- Module Harmoney
+- Module Harmony
 - Shared Dictionary Transport without Yoav
 - Baseline
 - OHTTP/DoH/ECH/over QUIC/MLS などですべの暗号化が終わったあとの管理や保安の話
 - CookieBis
 - Apple のブラウザエンジン規制
-- DOMParts + Module Harmoney = WebComponents 元年 v6 ?
+- DOMParts + Module Harmony = WebComponents 元年 v6 ?
 - Navigation API
 - Manifest v3 移行と AdBlocker どうなるのか
 - light-dark() / CSS Color v4
@@ -488,7 +488,7 @@ guests:
 - TC39
 - WinterCG
   - AsyncContext の Proposal が tc39 に
-  - GetSetCookies が Webkit/Chromium に
+  - GetSetCookies が WebKit/Chromium に
 - CDN 動向
   - Cloudflare: ポスト量子暗号を永久無料提供
   - Cloudflare: Security Week 20223

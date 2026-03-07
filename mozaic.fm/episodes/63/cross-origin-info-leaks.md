@@ -8,11 +8,11 @@ guests:
     url: https://twitter.com/shhnjk
 ---
 
-# ep63 Cross Origin Info Leaks
+# ep63 Cross-Origin Info Leaks
 
 ## Theme
 
-第 63 回のテーマは Cross Origin Info Leaks です。
+第 63 回のテーマは Cross-Origin Info Leaks です。
 
 今回は [@shhnjk](https://twitter.com/shhnjk) さんをお迎えし、Spectre で発覚した Side Channel Attack と、対策として出てきた Site Isolation や増えてきた `Cross-Origin-*` 系のヘッダ群。
 
@@ -39,7 +39,7 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
   - http://www.chromium.org/Home/chromium-security/site-isolation
   - Post-Spectre Threat Model Re-Think
     - https://chromium.googlesource.com/chromium/src/+/master/docs/security/side-channel-threat-model.md
-  - Hack Patch!: ブラウザ セキュリティの近状
+  - Hack Patch!: ブラウザ セキュリティの近況
     - https://shhnjk.blogspot.com/2017/12/Browser-Security.html
   - Chrome Rewards - Application Security - Google
     - https://www.google.com/about/appsecurity/chrome-rewards/index.html#special
@@ -57,7 +57,7 @@ Origin を守るための Web の戦いと、そこから見える Web や Brows
     - https://github.com/mozilla/standards-positions/issues/81
   - Cross-Origin Read Blocking (CORB) - Issue #681 - whatwg/fetch
     - https://github.com/whatwg/fetch/issues/681
-- CORP(Cross-Origin-Resorce-Policy) (was Form Origin)
+- CORP(Cross-Origin-Resource-Policy) (was Form Origin)
   - https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header
   - same-origin/same-site などを指定
   - そのリソースが別の Origin/Site で取得されることを防ぐ

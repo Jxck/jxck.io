@@ -313,7 +313,7 @@ guests:
 ### Safari 動向
 
 - Stable: 12.0.1
-- Webkit Contributors Meeting
+- WebKit Contributors Meeting
   - https://trac.webkit.org/wiki/October%202018%20Meeting
   - WebKitFeatureFocus2018-2019 - WebKit
     - https://trac.webkit.org/wiki/WebKitFeatureFocus2018-2019

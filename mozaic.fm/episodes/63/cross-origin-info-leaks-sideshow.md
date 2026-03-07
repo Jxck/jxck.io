@@ -8,11 +8,11 @@ guests:
     url: https://twitter.com/shhnjk
 ---
 
-# ep63 Cross Origin Info Leaks sideshow
+# ep63 Cross-Origin Info Leaks Sideshow
 
 ## Theme
 
-第 63 回 Cross Origin Info Leaks の SideShow です。
+第 63 回 Cross-Origin Info Leaks の Sideshow です。
 
 [@shhnjk](https://twitter.com/shhnjk) さんと、ブラウザにおける Privacy の今後や、new Edge の話をしました。
 

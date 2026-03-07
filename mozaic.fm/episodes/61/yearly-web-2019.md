@@ -25,7 +25,7 @@ guests:
 - WebTransport
 - SXG/WBN
 - ITP/SameSIte Default Lax
-- DarkMode/HighContrast
+- Dark Mode/High Contrast
 - DesignSystem
 - Document Policy
 - Portal

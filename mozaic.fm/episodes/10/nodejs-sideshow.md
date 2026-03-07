@@ -14,7 +14,7 @@ guests:
 
 ## Theme
 
-第 10 回 Node.js の SideShow です。
+第 10 回 Node.js の Sideshow です。
 
 [@koichik](https://twitter.com/koichik) さんの「ところでみんな Promise 好き?」から始まった、Promise / Generator / Rxjs などの話題と、Java の Future や Haskell の Monad との関係などの解説です。
 

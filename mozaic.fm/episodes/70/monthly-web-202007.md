@@ -368,7 +368,7 @@ guests:
     - https://w3c.github.io/pointerevents/#dom-pointerevent-altitudeangle
   - Request for position on "Make system colors compute to themselves"
     - https://lists.webkit.org/pipermail/webkit-dev/2020-July/031315.html
-  - Request for Webkit position for Imperative Shadow DOM Distribution API
+  - Request for WebKit position for Imperative Shadow DOM Distribution API
     - https://lists.webkit.org/pipermail/webkit-dev/2020-July/031316.html
   - Request for position on MediaRecorder constant bitrate audio encoding
     - https://lists.webkit.org/pipermail/webkit-dev/2020-July/031317.html

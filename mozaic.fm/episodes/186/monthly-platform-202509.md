@@ -607,9 +607,9 @@ guests:
     - https://blogs.windows.com/msedgedev/2025/09/25/unlock-text-editing-use-cases-with-highlightsfrompoint/
     - 特定の DOM 範囲内のホバーやクリック位置の座標を、リスナなしで検知できる `*FromPoint` API
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  - ここでも見れる
+  - ここでも見られる
 - https://twitter.com/MSEdgeDev
-  - これを見るしか無い
+  - これを見るしかない
 
   #### Other
 

@@ -14,7 +14,7 @@ guests:
 
 ## Theme
 
-第 2 回 HTTP2 の SideShow です。
+第 2 回 HTTP2 の Sideshow です。
 
 今回は [第 2 回](https://mozaic.fm/episodes/2/http2.html) に収まらなかった 「Nghttp2 の今後」について、番外編として配信します。
 

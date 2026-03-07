@@ -619,7 +619,7 @@ guests:
   - Blog
   - Other
     - `:has()` のブログ
-    - Webkit on GitHub
+    - WebKit on GitHub
 - Edge
   - 104 で Enhanced Security Mode 導入
   - Chrome の OT Token が Edge でも動く

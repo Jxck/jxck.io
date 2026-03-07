@@ -408,7 +408,7 @@ guests:
 
 - Help us choose the final syntax for Masonry in CSS | WebKit
   - https://webkit.org/blog/16026/css-masonry-syntax/
-  - Webkit としては grid の拡張にしたい
+  - WebKit としては grid の拡張にしたい
   - `display: masonry` ならコード量は減るように見えるが、それだけで使うことはあまりなさそう
   - フィードバック求
     - https://github.com/w3c/csswg-drafts/issues/11060
@@ -422,9 +422,9 @@ guests:
 - https://blogs.windows.com/msedgedev/
   - ここがメイン
 - https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  - ここでも見れる
+  - ここでも見られる
 - https://twitter.com/MSEdgeDev
-  - これを見るしか無い
+  - これを見るしかない
 
 #### Other
 

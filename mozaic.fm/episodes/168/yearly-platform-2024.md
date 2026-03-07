@@ -30,7 +30,7 @@ guests:
 - OHTTP/DoH/ECH/over QUIC/MLS などですべの暗号化が終わったあとの管理や保安の話
 - CookieBis
 - Apple のブラウザエンジン規制
-- DOMParts + Module Harmoney = WebComponents 元年 v6 ?
+- DOMParts + Module Harmony = WebComponents 元年 v6 ?
 - Navigation API
 - Manifest v3 移行と AdBlocker どうなるのか
 - `light-dark()` / CSS Color v4
@@ -555,7 +555,7 @@ guests:
 - WinterCG
 - IETF
   - Cookiebis もうすぐ Last Call
-  - Query Method 全然進んでない
+  - Query Method 全然進んでいない
   - Resumable Uploads 複雑になってきた
   - Retrofit SFV 仕様はほぼ完了
   - Cache Group WGLC 間近

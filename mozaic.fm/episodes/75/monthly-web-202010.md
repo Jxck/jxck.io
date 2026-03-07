@@ -671,7 +671,7 @@ guests:
 - Edge の Vertical TAB
 - さくら IE サポート終了
 - MDN Github 移行
-- Webkit Git 移行議論
+- WebKit Git 移行議論
 - Legacy Edge の終了
 - QUIC Deploy by Google/Facebook/Cloudflare
 - Early Hints Experiment

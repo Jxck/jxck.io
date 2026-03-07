@@ -584,7 +584,7 @@ guests:
 - TC39
 - WinterCG
   - AsyncContext の Proposal が tc39 に
-  - GetSetCookies が Webkit/Chromium に
+  - GetSetCookies が WebKit/Chromium に
 - CDN 動向
   - Cloudflare: ポスト量子暗号を永久無料提供
   - Cloudflare: Security Week 20223
