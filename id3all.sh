@@ -900,7 +900,7 @@ eyeD3 --title "ep62 Monthly Web 202001" \
 
 eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep63.mp3
 
-eyeD3 --title "ep63 Cross Origin Info Leaks" \
+eyeD3 --title "ep63 Cross-Origin Info Leaks" \
       --track 70 \
       --artist 'Jxck' \
       --album 'mozaic.fm' \
@@ -913,7 +913,7 @@ eyeD3 --title "ep63 Cross Origin Info Leaks" \
 
 eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep63.sideshow.mp3
 
-eyeD3 --title "ep63 Cross Origin Info Leaks sideshow" \
+eyeD3 --title "ep63 Cross-Origin Info Leaks Sideshow" \
       --track 71 \
       --artist 'Jxck' \
       --album 'mozaic.fm' \

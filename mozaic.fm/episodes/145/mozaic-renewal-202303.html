@@ -135,7 +135,7 @@
                   <li><a href="#init-repo">init repo</a>
                   <li><a href="#storybook">storybook</a>
                   <li><a href="#chromatic">chromatic</a>
-                  <li><a href="#figma-devmode">figma devmode</a>
+                  <li><a href="#figma-dev-mode">Figma Dev Mode</a>
                 </ol>
                 <li><a href="#スケジュール">スケジュール</a>
                 <li><a href="#show-note">Show Note</a>
@@ -157,12 +157,12 @@
       <p>現場の mozaic.fm は、blog.jxck.io と同じスタックでできています。
       <ul>
         <li>markdown でエピソードの Show Note を書く
-        <li>自作の markdwon パーサでパースし、筆者好みの HTML にレンダリングする
+        <li>自作の markdown パーサでパースし、筆者好みの HTML にレンダリングする
         <li>EJS のレイアウトに流して静的な HTML を作成
         <li>音楽プレイヤーは自作の WebComponents
         <li>それを h2o で配信
         <li>画面は、一覧、個別、検索のみ
-        <li>検索は Ruby で書いた CGI (h2o だけでやる方法が mruby か gci しかないため)
+        <li>検索は Ruby で書いた CGI (h2o だけでやる方法が mruby か CGI しかないため)
       </ul>
     </section>
     <section>
@@ -179,11 +179,11 @@
           デザイン
           <ul>
             <li>Figma で作る
-            <li>DevMode で Storybook に JSX を起こす
-            <li>Cromatic で VRT/E2E
+            <li>Dev Mode で Storybook に JSX を起こす
+            <li>Chromatic で VRT/E2E
             <li>Component ライブラリは入れない
             <li>CSS は @scope ベース
-            <li><code translate=no>prefer-*</code> は全て意識(dark mode あり)
+            <li><code translate=no>prefers-*</code> は全て意識する (dark mode あり)
           </ul>
         </li>
         <li>
@@ -231,13 +231,13 @@ $ npm install --save-dev --save-exact @biomejs/biome</code></pre>
       <section>
         <h3 id="chromatic"><a href="#chromatic">chromatic</a></h3>
         <pre class=sh data-code=sh><code translate=no class=language-sh>$ npm install --save-dev chromatic
-$ npx chromatic --project-token=$PORJECT_TOKEN</code></pre>
+$ npx chromatic --project-token=$PROJECT_TOKEN</code></pre>
       </section>
       <section>
-        <h3 id="figma-devmode"><a href="#figma-devmode">figma devmode</a></h3>
+        <h3 id="figma-dev-mode"><a href="#figma-dev-mode">Figma Dev Mode</a></h3>
         <ul>
-          <li>figma で create team
-          <li>Professional 課金で dev-mode を有効に
+          <li>Figma で team を作成
+          <li>Professional 課金で Dev Mode を有効に
           <li>Storybook Connect Plugin を入れる Chromatic と連携
           <li>Chromatic 側でも Storybook と連携
           <li>Component を Chromatic と紐づける

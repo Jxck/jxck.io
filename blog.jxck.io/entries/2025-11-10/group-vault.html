@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-11-10T08:00:00+08:00",
-    "dateModified": "2026-03-06T08:00:00+08:00",
+    "dateModified": "2026-03-07T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-11-10>2025-11-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -183,9 +183,9 @@
       </section>
       <section>
         <h2 id="group"><a href="#group">Group</a></h2>
-        <p>権限管理の方式は色々あるが、1Password ではユーザを Vault に追加し、その Vault に権限を付与することで管理するのが基本だ。
-        <p>いわゆる管理者となるアカウントも、実態は「管理」Vault に入ったユーザという形だ。
-        <p>デフォルトで作られている Vault は以下の 3 つがある。
+        <p>権限管理の方式は色々あるが、1Password ではユーザを Group に追加し、その Group に権限を付与することで管理するのが基本だ。
+        <p>いわゆる管理者となるアカウントも、実態は「管理者」Group に入ったユーザという形だ。
+        <p>デフォルトで作られている Group は以下の 3 つがある。
         <ul>
           <li>所有者 (Owner)
           <li>管理者 (Admin)
@@ -198,7 +198,7 @@
             <img loading=lazy decoding=async src=default-groups.png?251107_225907 alt="default groups" width=338 height=434>
           </picture>
         </p>
-        <p>この Vault に振られたデフォルトの権限は以下だ。
+        <p>この Group に振られたデフォルトの権限は以下だ。
         <p>
           <picture>
             <source type=image/avif srcset=default-permission.avif?251107_225907>
@@ -208,23 +208,23 @@
         </p>
         <p>つまり最も権限が強いのは「所有者 (Owner)」だが、「管理者 (Admin)」との差分は支払い周りなので、いわゆる組織の運用上はあまり気にする必要はない。
         <p>つまり、基本は「管理者」と「メンバー」がいると思えば良い。
-        <p>Business アカウントを作ったら、まず最初にこの「管理者」Vault に複数のアカウントを登録し、SPoF を防ぐのが重要だ。
+        <p>Business アカウントを作ったら、まず最初にこの「管理者」Group に複数のアカウントを登録し、SPoF を防ぐのが重要だ。
         <section>
           <h3 id="管理用アカウントは必要か"><a href="#管理用アカウントは必要か">管理用アカウントは必要か</a></h3>
           <p>企業においてこうしたソリューションを運用する際に、「管理者用のアカウントを作るか」という点は議論になる。
           <p>要するにこの場合は、<code translate=no>admin@example.com</code> のようなメールアドレスを用意し、それを用いて &quot;Admin&quot; のようなアカウントを作り、そのアカウントを管理担当者で共有するといった運用だ。
           <p>検証した結論から言うと、1Password の場合、そのアカウントは不要と考えて良さそうだ。
           <p>もしここで &quot;Admin&quot; アカウントを作れば、それは別途共有する必要があり、その Master Password / Secret Key をどう共有するかの問題が出る。全員が 1Password を使っているなら、それをアイテムにして共有するといったことになるだろう。
-          <p>そもそも Owner は Vault なので、管理担当者は個々に自分のメールアドレスを用いてアカウントを作り、それを Owner Vault に追加するのが 1Password の運用方法になる。
-          <p>このメリットは、「誰が Owner であるか」の管理が 1Password の Vault を見ればわかる点だ。Admin アカウントをアイテムに入れて共有すると、ダッシュボードだけでなく、そのアイテムの共有範囲を別途管理する必要があり、二度手間なだけになる。
+          <p>そもそも Owner は Group なので、管理担当者は個々に自分のメールアドレスを用いてアカウントを作り、それを Owner Group に追加するのが 1Password の運用方法になる。
+          <p>このメリットは、「誰が Owner であるか」の管理が 1Password の Group を見ればわかる点だ。Admin アカウントをアイテムに入れて共有すると、ダッシュボードだけでなく、そのアイテムの共有範囲を別途管理する必要があり、二度手間なだけになる。
           <p>また、1Password のダッシュボードでは、アカウントごとのアクティビティも細かくログが残るため、重要な変更などを行った場合、そのアカウントの特定などが容易にできる。
           <p>もし、ここで &quot;Admin&quot; アカウントでログが残ると、ではその 「&quot;Admin&quot; アカウントを使っていたのは誰なのか?」がわからなくなってしまう。
-          <p>個々がきちんと管理している、それぞれの Business アカウントを「管理者」Vault に追加し、素直に運用するのが 1Password Business の機能を最も有効に使えるだろう。
+          <p>個々がきちんと管理している、それぞれの Business アカウントを「管理者」Group に追加し、素直に運用するのが 1Password Business の機能を最も有効に使えるだろう。
         </section>
         <section>
           <h3 id="security-group"><a href="#security-group">Security Group</a></h3>
-          <p>もう 1 つ、デフォルトでは作られていない Security という Vault がある。
-          <p>これは、「ドメイン侵害レポート」という機能を有効にすることで作られ、そのレポートを見ることができる権限が付与される Vault だ。
+          <p>もう 1 つ、デフォルトでは作られていない Security という Group がある。
+          <p>これは、「ドメイン侵害レポート」という機能を有効にすることで作られ、そのレポートを見ることができる権限が付与される Group だ。
           <p>
             <picture>
               <source type=image/avif srcset=domain-breach-report.avif?251107_225907>
@@ -241,11 +241,11 @@
             </li>
           </ul>
           <p>これは、Have I Been Pwned などで公開された漏洩アカウントのリストに、チームメンバーのアドレスが存在しないかをチェックする機能のようだ(検証中ではレポートを見ることができなかった)。
-          <p>この機能のみ Vault が別で、「管理者」Vault に権限を振ることもできないようだ。なぜそうなっているのかはよくわからなかったが、おそらくレポート内容の機微性を踏まえてそうなっているのだろう。
+          <p>この機能のみ Group が別で、「管理者」Group に権限を振ることもできないようだ。なぜそうなっているのかはよくわからなかったが、おそらくレポート内容の機微性を踏まえてそうなっているのだろう。
         </section>
         <section>
           <h3 id="チームメンバー"><a href="#チームメンバー">チームメンバー</a></h3>
-          <p>デフォルトでは、追加したユーザは全て「チームメンバー」Vault に追加される。
+          <p>デフォルトでは、追加したユーザは全て「チームメンバー」Group に追加される。
           <p>組織が小さいうちはそれでも良いだろうが、大きくなってくるといくつかの問題が出るだろう。
           <ul>
             <li>「管理者」だと権限が強すぎるため、ある程度の権限を保つ「マネージャ」ロールが欲しい

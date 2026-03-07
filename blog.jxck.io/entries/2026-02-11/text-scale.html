@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2026-02-11T08:00:00+08:00",
-    "dateModified": "2026-03-06T08:00:00+08:00",
+    "dateModified": "2026-03-07T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2026-02-11>2026-02-11</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -184,7 +184,7 @@
       </section>
       <section>
         <h2 id="os-ごとの拡大"><a href="#os-ごとの拡大">OS ごとの拡大</a></h2>
-        <p>View Port の小さいモバイル OS では、「拡大」をするための方法がいくつか提供されている。テキストや画像だけを拡大するものから、画面全体を拡大するもの、OS だけでなくブラウザごとに設定できるものなど、選択肢と組み合わせは多い。
+        <p>viewport の小さいモバイル OS では、「拡大」をするための方法がいくつか提供されている。テキストや画像だけを拡大するものから、画面全体を拡大するもの、OS だけでなくブラウザごとに設定できるものなど、選択肢と組み合わせは多い。
         <p>ブラウザにおける <code translate=no>font-size</code> のベースは 16px がデフォルトであるため、この基本サイズに対してユーザが OS に指定した拡大率が反映され、<code translate=no>rem</code> / <code translate=no>em</code> を指定したサイズすべてに伝搬するのが理想だろう。
         <p>今回検証するのは、iPhone 16e iOS 26.2 および Pixel 8a Android 16 の、以下の設定を対象とする。
         <p>
@@ -205,7 +205,7 @@
         <p>Safari などが OS の設定を Web ページ全体に反映しないのは、レイアウトが崩れるページが多く存在するからだとされている。
         <p>この場合 Firefox では、文字のサイズと同時に <code translate=no>rem</code> で指定した <code translate=no>margin</code> や <code translate=no>border</code> も同じように拡大されている。しかし、この場合余白や罫線まで太くする理由はあまりないだろう。表示領域が無駄に消費され、レイアウトに無駄が出ている。これがさらにひどくなると、レイアウトが崩れ文字が見切れたり、重なってしまうといったことが起こる。
         <p>拡大したらどうなるかをきっちり確認せずにデプロイされたサイトの多くは、拡大しても読みやすいどころか、読めたものではないレイアウトになるだけなのだ。
-        <p>そうしたコンテンツが最低限閲覧できる状態を維持するために、歴史的にモバイルブラウザの多くは、デフォルトのフォントサイズを上書きすることができずにいた。代わりに、テキストだけではなくページ全体を拡大する「フルページズーム」のような機能を提供したり、選択した文字だけを拡大する拡大鏡のような機能を提供することで、ユーザをサポートしてきた。(ユーザのコントロールが難しい Web View は対象外だったりもする)
+        <p>そうしたコンテンツが最低限閲覧できる状態を維持するために、歴史的にモバイルブラウザの多くは、デフォルトのフォントサイズを上書きすることができずにいた。代わりに、テキストだけではなくページ全体を拡大する「フルページズーム」のような機能を提供したり、選択した文字だけを拡大する拡大鏡のような機能を提供することで、ユーザをサポートしてきた。(ユーザのコントロールが難しい WebView は対象外だったりもする)
         <p>もちろん、それがアクセシビリティ上問題になることは、ずっと前から知られており、議論も行われてきた。
         <p>今回の議論では、BBC などのメディア系サービスからのフィードバックなどが中心となっている。
       </section>
@@ -322,7 +322,7 @@ h1 {
         <p>Absolute Size は、<code translate=no>font-size</code> に対して指定できる以下のキーワードだ。
         <pre><code translate=no>[ xx-small | x-small | small | medium | large | x-large | xx-large | xxx-large ]</code></pre>
         <p>ここでは <code translate=no>medium</code> が 16px として、相対的に定義されている。
-        <p>しかし、ユーザが <code translate=no>medium</code> の読みやすさを基準に 200% に拡大した場合、<code translate=no>xxx-large</code> が指定された見出しなどが大きくなりすぎるといった問題がある。大きすぎて View Port を占有してしまうと、逆に視認しづらいページになる可能性もあるからだ。
+        <p>しかし、ユーザが <code translate=no>medium</code> の読みやすさを基準に 200% に拡大した場合、<code translate=no>xxx-large</code> が指定された見出しなどが大きくなりすぎるといった問題がある。大きすぎて viewport を占有してしまうと、逆に視認しづらいページになる可能性もあるからだ。
         <p>そこで、テキストの拡大に係数を適用する非線形スケールが提案されている。
         <ul>
           <li>
