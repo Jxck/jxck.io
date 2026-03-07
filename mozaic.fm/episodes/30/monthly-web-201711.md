@@ -480,7 +480,7 @@ Monthly Web のモチベーションについては以下。
   - [NEW] ACTION: Max to look into getting resources for testing around payment method manifest
   - Web Payments Working Group Patent Advisory Group (PAG) が再立ち上げ
     - https://www.w3.org/2017/11/wpwg-pag/
-    - Visa Europe が新しい patent claim を Web Payments 関連仕様に対して行った(2 回目)
+    - Visa Europe が新しい patent claim を Web Payments 関連仕様に対して行った (2 回目)
     - PAG で評価/検討する
 - Web Real-Time Communications
   - https://www.w3.org/2011/04/webrtc/wiki/November_6_-_7_2017

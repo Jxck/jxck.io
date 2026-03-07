@@ -79,7 +79,7 @@ Monthly Web のモチベーションについては以下。
 - Fast Properties in V8
   - http://v8project.blogspot.jp/2017/08/fast-properties.html
 - Rendertron
-  - headless chrome の docker
+  - Headless Chrome の Docker
   - https://github.com/GoogleChrome/rendertron
 
 ### Firefox 動向
@@ -145,7 +145,7 @@ Monthly Web のモチベーションについては以下。
     - https://github.com/tc39/proposal-optional-catch-binding
 - 8/24 Safari Technology Preview 38
   - https://webkit.org/blog/7877/release-notes-for-safari-technology-preview-38/
-  - Becon API (experimental)
+  - Beacon API (experimental)
   - Request Payment API (experimental)
 - Safari 11
   - https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Safari_11_0/Safari_11_0.html
@@ -177,7 +177,7 @@ Monthly Web のモチベーションについては以下。
   - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/13009916/
 - 8/17 Making the web smoother with independent rendering
   - https://blogs.windows.com/msedgedev/2017/08/17/making-web-smoother-independent-rendering/
-  - EdgeHTML 16 で content prosession と rendering を並行化し描画を高速化
+  - EdgeHTML 16 で content processing と rendering を並行化し描画を高速化
   - select, canvas, svg などでも効果がある
   - MotionMark で 43% 向上
 

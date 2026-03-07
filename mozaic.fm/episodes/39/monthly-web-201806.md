@@ -487,7 +487,7 @@ guests:
     - WebPackaging の bundling もドラフト化された
   - **Deprecating TLSv1.0 and TLSv1.1**
     - https://tools.ietf.org/html/draft-moriarty-tls-oldversions-diediedie-00
-    - 1.2, 1.3 以前を無くして行きたい
+    - 1.2, 1.3 以前を無くしていきたい
   - IDNA2008 and Unicode 11.0.0
     - https://tools.ietf.org/html/draft-faltstrom-unicode11-00
     - Internationalized Domain Names for Applications の Unicode を 11 まで上げたい的な?

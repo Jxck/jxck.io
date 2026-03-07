@@ -63,7 +63,7 @@ guests:
     - https://github.com/w3ctag/design-reviews/issues/206
     - Client Hints の保存期間の指定
     - Accept-CH についてはまだまだ議論中
-    - Mozilla Position を聞いて見た [RFP: Accept-CH#79](https://github.com/mozilla/standards-positions/issues/79)
+    - Mozilla Position を聞いてみた [RFP: Accept-CH#79](https://github.com/mozilla/standards-positions/issues/79)
   - Ship: Customized Built-in Elements
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/S3naD9vIcM4/7tKyfvi0AgAJ
     - HTML ビルトインの要素を継承してカスタム要素を作る is 属性を有効に
@@ -101,7 +101,7 @@ guests:
   - **Implement: CSS shadow parts**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/9BB64XIznsE/s_I4QTM0DgAJ
     - `<div part="">` 的なスタイル可能な余地を残し `::part` でアクセスする
-    - `/deep/` と `>>>` を置き換える(chrome 60 で remove 済)
+    - `/deep/` と `>>>` を置き換える (Chrome 60 で remove 済)
   - **Implement: An event to enable arbitrary objects to provide form data**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/IIV1MfaPHYc/l0lsJ-agBQAJ
     - https://docs.google.com/document/d/1JO8puctCSpW-ZYGU8lF-h4FWRIDQNDVexzHoOQ2iQmY/edit

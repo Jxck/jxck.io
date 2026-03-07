@@ -16,9 +16,9 @@ guests:
 
 ## Show Note
 
-### Spectore/Meltdown
+### Spectre/Meltdown
 
-- Side Channel Attack 対策のため、高精度クロックに使用できる `performance.now()` の精度低下と SharedArrayBuffers (+Atomics)の無効化が実施。将来的には戻す予定。
+- Side Channel Attack 対策のため、高精度クロックに使用できる `performance.now()` の精度低下と SharedArrayBuffers (+Atomics) の無効化が実施。将来的には戻す予定。
 - Fantastic Timers and Where to Find Them: High-Resolution Microarchitectural Attacks in JavaScript
   - https://gruss.cc/files/fantastictimers.pdf
 - How can SharedArrayBuffer be used for timing attacks?
@@ -28,7 +28,7 @@ guests:
     - https://security.googleblog.com/2018/01/todays-cpu-vulnerability-what-you-need.html
   - Actions required to mitigate Speculative Side-Channel Attack techniques
     - https://www.chromium.org/Home/chromium-security/ssca
-    - Correct Content-Type, nosniff, same-site cookie if possible
+    - Correct Content-Type, nosniff, SameSite cookie if possible
 - Safari
   - What Spectre and Meltdown Mean For WebKit
     - https://webkit.org/blog/8048/what-spectre-and-meltdown-mean-for-webkit/

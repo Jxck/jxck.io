@@ -145,7 +145,7 @@ Monthly Web のモチベーションについては以下。
 
 - Firefox 55
   - https://developer.mozilla.org/en-US/Firefox/Releases/55
-  - Sourcemap header supported (from X-SouceMap)
+  - Sourcemap header supported (from X-SourceMap)
   - https://tools.ietf.org/html/rfc6648
 - Firefox 56 Stable
   - https://developer.mozilla.org/en-US/Firefox/Releases/56
@@ -177,7 +177,7 @@ Monthly Web のモチベーションについては以下。
   - DevTools in 57: Redesigned and better than ever
     - 開発者ツール改善
     - https://blog.nightly.mozilla.org/2017/09/11/developer-tools-visual-refresh-coming-to-nightly/
-  - Quantum CSS (aks Stylo)
+  - Quantum CSS (aka Stylo)
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/H_Sl_-hCF5w/W7X_loXGAAAJ
   - 今後
     - Quantum Render (GPU-optimized rendering pipeline WebRender by Servo)

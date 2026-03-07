@@ -148,7 +148,7 @@ guests:
 - Other
   - **883038 - Feedback: Eliding www/m subdomains - chromium - Monorail**
     - https://bugs.chromium.org/p/chromium/issues/detail?id=883038
-    - chrome 69 で `www.` と `m.` のサブドメインを非表示にする変更を入れた
+    - Chrome 69 で `www.` と `m.` のサブドメインを非表示にする変更を入れた
     - 一旦戻したが 70 では `www.` は非表示し `m.` は残す
   - **Google Font で Noto Sans の Early Access が取れた**
     - https://fonts.google.com/?subset=japanese

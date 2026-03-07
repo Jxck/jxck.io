@@ -57,7 +57,7 @@ Monthly Web のモチベーションについては以下。
 - Chrome 64 Dev
 - Chrome 64 Canary
 - V8 (http://bit.ly/v8apichanges)
-  - V8 Release 6.3 (chrome 63)
+    - V8 Release 6.3 (Chrome 63)
     - https://v8project.blogspot.jp/2017/10/v8-release-63.html
     - Optimize
     - Dynamic module import via `import()`

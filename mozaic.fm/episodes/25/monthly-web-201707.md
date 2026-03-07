@@ -22,7 +22,7 @@ guests:
 
 目的は、速報ではありません。単なるニュースのまとめをするというよりも、そこまでにあった流れをまとめながら **Web のスナップショット** を取っていくようなイメージです。
 
-名前に反し、本当に月一でできるかはわからないし、どこまで続けられるかはわかりませんが、やりながら考えて進めて行こうと思います。
+名前に反し、本当に月一でできるかはわからないし、どこまで続けられるかはわかりませんが、やりながら考えて進めていこうと思います。
 
 一方で、mozaic.fm は月間情報チャンネルになるわけではないので、通常のテーマ回は今まで通りやっていこうと思っています。
 
@@ -155,7 +155,7 @@ Web をより深く理解するために
   - https://lists.webkit.org/pipermail/webkit-dev/2017-July/029285.html
 - Consider implementing W3C Payment Request API
   - https://trac.webkit.org/changeset/219848/webkit
-  - safari で payment request が under consideration
+  - Safari で Payment Request が under consideration
 - Fixing The Web
   - https://www.youtube.com/watch?v=WBgsRyvEPJM
   - https://www.w3.org/blog/2017/07/fixing-the-web-with-jeff-jaffe-brewster-kahle-and-steven-gordon/

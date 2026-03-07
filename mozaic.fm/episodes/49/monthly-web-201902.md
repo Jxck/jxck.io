@@ -121,7 +121,7 @@ guests:
     - https://groups.google.com/a/chromium.org/forum/#!searchin/blink-dev/oilpan%7Csort:date/blink-dev/tg2rXkjHw9g/e1TuqxfoFgAJ
     - V8 と Blink の GC 統合 Oilpan が Finch で入り始めた
     - M74 で Wrapper つきで入った
-    - M75 からちょっとづつ抜いていく
+    - M75 からちょっとずつ抜いていく
   - Implement: File Handling
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/y85xtaIpDH8/nHhOPG-iAAAJ
   - Implement: Throw on invalid "basic-card" data

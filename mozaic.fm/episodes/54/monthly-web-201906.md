@@ -144,7 +144,7 @@ guests:
     - https://v8.dev/blog/wasm-code-caching
   - **V8 release v7.6 · V8**
     - https://v8.dev/blog/v8-release-76
-    - chrome 76 に入る
+    - Chrome 76 に入る
     - JSON.parse improvements
     - Frozen/sealed array improvements
     - Promise.allSettled

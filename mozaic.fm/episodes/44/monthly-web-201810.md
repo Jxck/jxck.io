@@ -44,7 +44,7 @@ guests:
     - https://security.googleblog.com/2018/03/distrust-of-symantec-pki-immediate.html
     - Update が追記された
     - Chrome 70 に Symantec Distrust が予定通り入った
-    - ただし、数週間かけてちょっとづつ展開していく
+    - ただし、数週間かけてちょっとずつ展開していく
   - Tweaks to `cache.addAll()` and `importScripts()` coming in Chrome 71
     - https://developers.google.com/web/updates/2018/10/tweaks-to-addAll-importScripts
   - Chromium Blog: Chrome 71 Beta: relative time formats and more
