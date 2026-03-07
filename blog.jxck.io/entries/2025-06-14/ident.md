@@ -181,7 +181,7 @@ CSS を Step 実行したり、CSS のためのテストを書く、といった
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
   - Intent to Prototype: The ident() function

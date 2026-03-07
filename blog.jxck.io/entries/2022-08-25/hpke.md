@@ -298,7 +298,7 @@ OHTTP は、通信を Proxy で転送することで、Client の IP が Server 
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
 - Chrome Platform Status

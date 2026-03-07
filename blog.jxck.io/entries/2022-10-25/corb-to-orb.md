@@ -107,7 +107,7 @@ Canary M109 で試した時点では、エラーメッセージは "CORB" のま
 - Requirements Doc
 - Mozilla Standard Position
   - https://mozilla.github.io/standards-positions/#corb
-- Webkit Position
+- WebKit Position
   - https://github.com/WebKit/standards-positions/issues/64
   - 執筆時点で回答なし
 - TAG Design Review

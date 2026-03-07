@@ -375,7 +375,7 @@ Type=simple
 ExecStart=/usr/local/bin/taskd
 ```
 
-では、デーモンにどう実行タイミングを教えるかと言うと、いくつか方法がある。
+では、デーモンにどう実行タイミングを教えるかというと、いくつか方法がある。
 
 - UNIX Signal (USR1)
   - `kill -USR1 $(cat /var/run/taskd.pid)`

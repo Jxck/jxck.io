@@ -526,7 +526,7 @@ Navigation API は Chrome にて Intent to Ship が出ているものの、Mozil
 - Mozilla Standard Position
   - App history API · Issue #543 · mozilla/standards-positions
     - https://github.com/mozilla/standards-positions/issues/543
-- Webkit Position
+- WebKit Position
   - Request for position on app history API
     - https://lists.webkit.org/pipermail/webkit-dev/2021-September/031987.html
 - TAG Design Review

@@ -442,7 +442,7 @@ Chrome で以下の 2 つのフラグを有効にすると動作する。
     - https://github.com/mozilla/standards-positions/issues/1167
   - CSS Functions and Mixins 1 (@function) · Issue #1148 · mozilla/standards-positions
     - https://github.com/mozilla/standards-positions/issues/1148
-- Webkit Position
+- WebKit Position
   - CSS if() function · Issue #453 · WebKit/standards-positions
     - https://github.com/WebKit/standards-positions/issues/453
   - CSS Functions and Mixins 1 (@function) · Issue #437 · WebKit/standards-positions

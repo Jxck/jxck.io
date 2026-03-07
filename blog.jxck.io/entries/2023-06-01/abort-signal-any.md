@@ -433,7 +433,7 @@ AbortSignal 周りはかなり様々な API が急速に整備されつつある
 - Mozilla Standard Position
   - Request for Mozilla Position: AbortSignal.any() · Issue #774 · mozilla/standards-positions
     - https://github.com/mozilla/standards-positions/issues/774
-- Webkit Position
+- WebKit Position
   - AbortSignal.any() · Issue #166 · WebKit/standards-positions
     - https://github.com/WebKit/standards-positions/issues/166
 - TAG Design Review

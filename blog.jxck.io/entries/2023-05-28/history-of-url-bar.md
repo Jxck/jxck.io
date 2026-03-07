@@ -215,7 +215,7 @@ N/A
   - Chromium Docs - Guidelines for URL Display
     - https://chromium.googlesource.com/chromium/src/+/HEAD/docs/security/url_display_guidelines/url_display_guidelines.md
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
 - Chrome Platform Status

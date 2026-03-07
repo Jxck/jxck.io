@@ -226,7 +226,7 @@ Caption: Webp を gz/br 圧縮した結果
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
 - Chrome Platform Status

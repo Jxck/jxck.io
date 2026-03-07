@@ -29,7 +29,7 @@ Chrome チームより提案された Device Bound Session Credentials の実装
 
 HTTPS が前提となり通信が暗号化されているため、Cookie を盗むのは難しいと考えるかもしれない。
 
-しかし、Cookie Theft の攻撃ベクタは、通信の Person in the Middle ではなく、マルウェアやフィッシングにトレンドを移している。
+しかし、Cookie Theft の攻撃ベクタは、通信の Person-in-the-Middle ではなく、マルウェアやフィッシングにトレンドを移している。
 
 ちょうど世間を騒がせた DMM のビットコイン流出事件も、この手法による Session Cookie の窃取が突破口になっているようだ。
 
@@ -483,7 +483,7 @@ Cookie Theft 対策の新しい提案である Device Bound Session Credentials 
 - Mozilla Standard Position
   - Device Bound Session Credentials · Issue #912 · mozilla/standards-positions
     - https://github.com/mozilla/standards-positions/issues/912
-- Webkit Position
+- WebKit Position
   - Device Bound Session Credentials · Issue #281 · WebKit/standards-positions
     - https://github.com/WebKit/standards-positions/issues/281
     - デバイスバックアップからのリストア時の UX の低下を懸念している

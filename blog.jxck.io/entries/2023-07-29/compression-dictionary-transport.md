@@ -370,7 +370,7 @@ Mozilla も Positive であり、Cloudflare も [ブログ](https://blog.cloudfl
 - Mozilla Standard Position
   - Request for Mozilla Position on Compression dictionary transport · Issue #771 · mozilla/standards-positions
     - https://github.com/mozilla/standards-positions/issues/771
-- Webkit Position
+- WebKit Position
   - Compression Dictionary Transport · Issue #160 · WebKit/standards-positions
     - https://github.com/WebKit/standards-positions/issues/160
 - TAG Design Review

@@ -263,7 +263,7 @@ if (fetchLaterResult.activated === false) {
     - https://github.com/mozilla/standards-positions/issues/967
   - fetchLater() API · Issue #703 · mozilla/standards-positions
     - https://github.com/mozilla/standards-positions/issues/703
-- Webkit Position
+- WebKit Position
   - Fetch keepalive · Issue #967 · mozilla/standards-positions
     - https://github.com/mozilla/standards-positions/issues/967
   - fetchLater() API (previously: PendingBeacon API) · Issue #85 · WebKit/standards-positions

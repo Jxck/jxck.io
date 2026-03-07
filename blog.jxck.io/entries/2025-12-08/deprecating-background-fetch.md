@@ -126,11 +126,11 @@ However, the risks associated with not removing this feature are largely unknown
 
 Were they also hoping to remove other PWA features if they had few users? Wouldn't that imply that the very concept of "PWA" itself has failed?
 
-PWA の他の機能も、もしユーザが少なければ消したかったのでしょうか?それは PWA というコンセプトそのものが失敗したということでは無いでしょうか?
+PWA の他の機能も、もしユーザが少なければ消したかったのでしょうか?それは PWA というコンセプトそのものが失敗したということではないでしょうか?
 
 If the reason was "too few users relative to the maintenance cost," are there any efforts being made to increase the number of users? At least for Background Fetch, I don't think there have been any updates or advocacy for a long time.
 
-もし「メンテコストに対してユーザ数が少ない」のが原因なら、ユーザ数を増やす取り組みはしてるのでしょうか?少なくとも Background fetch については、長いこと何もアップデートや紹介を見ないと思います。
+もし「メンテコストに対してユーザ数が少ない」のが原因なら、ユーザ数を増やす取り組みはしてるのでしょうか?少なくとも Background Fetch については、長いこと何もアップデートや紹介を見ないと思います。
 
 I believe PWA was a campaign strongly promoted by Google. Has Google already lost interest in PWA? Do they no longer have the budget or resources to advocate for the features they introduced? If that is the case, what has become of that narrative now?
 

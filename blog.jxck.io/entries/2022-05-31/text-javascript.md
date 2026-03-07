@@ -168,7 +168,7 @@ JS の MIME Type は (ES Modules であろうとなかろうと) `text/javascrip
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
 - Chrome Platform Status

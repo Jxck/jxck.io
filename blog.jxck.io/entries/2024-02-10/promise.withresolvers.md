@@ -148,7 +148,7 @@ async function readFile(file: File) {
     - https://github.com/tc39/proposal-promise-with-resolvers
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
 - Chrome Platform Status

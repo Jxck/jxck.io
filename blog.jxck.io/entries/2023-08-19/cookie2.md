@@ -222,7 +222,7 @@ Lou のブログの方では、1996 年ごろから Double Click などが行っ
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
 - Chrome Platform Status

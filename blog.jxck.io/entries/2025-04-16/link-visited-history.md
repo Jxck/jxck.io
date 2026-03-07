@@ -273,7 +273,7 @@ Chrome チームからのエントリも出ている。
 - Mozilla Standard Position
   - Partitioned :visited links history · Issue #1040 · mozilla/standards-positions
     - https://github.com/mozilla/standards-positions/issues/1040
-- Webkit Position
+- WebKit Position
   - Partitioning :visited links history · Issue #363 · WebKit/standards-positions
     - https://github.com/WebKit/standards-positions/issues/363
 - TAG Design Review
