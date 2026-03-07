@@ -7,7 +7,7 @@ HTTP では `Accept-Encoding` と `Content-Encoding` でのネゴシエーショ
 
 ## Accept-Encoding
 
-クライアントが `Accept-Encoding: gzip` を指定して来た場合、サーバは `Content-Encoding: gzip` を付与し、URI に指定されたコンテンツを gzip 圧縮して送信することができる。
+クライアントが `Accept-Encoding: gzip` を指定してきた場合、サーバは `Content-Encoding: gzip` を付与し、URI に指定されたコンテンツを gzip 圧縮して送信することができる。
 
 特にテキストベースの HTML, CSS, JS などは、この圧縮の効果が高く、ペイロードが小さくなるためパフォーマンスの向上が期待できる。
 
@@ -143,7 +143,7 @@ Caption: 画像圧縮フォーマットとサイズの関係
 
 WebP はそもそも圧縮率が高いためか、オーバーヘッドが出ている。
 
-画像は、画像サイズ自体の最適化などの問題があるが、とりあえずは WebP 形式のみ除外することにした。除外対象は、定期的にサイズを確認し修正して行く。
+画像は、画像サイズ自体の最適化などの問題があるが、とりあえずは WebP 形式のみ除外することにした。除外対象は、定期的にサイズを確認し修正していく。
 
 
 ## zopfli + send-gzip
@@ -175,7 +175,7 @@ WebP はそもそも圧縮率が高いためか、オーバーヘッドが出て
 
 新しいフォーマットとして、[IETF へのドラフトの提出](https://tools.ietf.org/html/draft-alakuijala-brotli-08) もなされている。
 
-現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) していおり、Canary で <chrome://flags#brotli> を有効にすると、`Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
+現在は [Chrome が HTTPS のみでサポート](https://plus.google.com/u/0/+IlyaGrigorik/posts/X9ogn4fLtHL) しており、Canary で <chrome://flags#brotli> を有効にすると、`Accept-Encoding: br` が追加されるので、サーバはこれを見て brotli で圧縮したファイルを返すことができる。
 
 ほとんどのブラウザが対応している gzip と違い、まだ対応ブラウザも少なく、H2O も対応していないため `Accept-Encoding` での判断を自分でハンドラに書く必要がある。
 

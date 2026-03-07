@@ -126,7 +126,7 @@ CSP の `Upgrade-Insecure-Request` を付与した場合、ブラウザは HTTPS
 
 仕様では、feature-detection のために、対応するブラウザはリクエストに `Upgrade-Insecure-Request: 1` というヘッダをつけることになっているため、これを用いて分岐することは可能だ。
 
-[3.2. Feature Detecting Clients Capable of Upgrading](https://w3c.github.io/webappsec-upgrade-insecure-requests/#feature-detect])
+[3.2. Feature Detecting Clients Capable of Upgrading](https://w3c.github.io/webappsec-upgrade-insecure-requests/#feature-detect)
 
 - DEMO: https://labs.jxck.io/mixed/mixed.html?upgrade-insecure-request
 

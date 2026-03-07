@@ -213,7 +213,7 @@ Finding っていう資料が二つ出た。
   - Intent に登録されて開ける
 
 - 2/2: [Chrome Headless mode](https://www.youtube.com/watch?v=n6biclFh0i0)
-  - Head less mode のデモ
+  - Headless mode のデモ
 
 - 2/2: [Next.js 2 の話](https://jsmantra.com/next-on-next-js-1a134505f346#.w8idjqiea)
   - もう 2 か、早いな。

@@ -226,7 +226,7 @@ TrustedTypes.createPolicy('https://labs.jxck.io', {
 
 たとえば location.href への代入が型エラーになったら、代入を無視するということはできない。
 
-例えば `createURL()` で `null` や `undefined` を返しても、`location.href` へ代入は行われてしまい、遷移がおこる。
+例えば `createURL()` で `null` や `undefined` を返しても、`location.href` へ代入は行われてしまい、遷移が起こる。
 
 エスケープのように強制的に変換できれば良いが、意図しない場合は明示的にエラーを投げるか、定義しないことでエラーを発生させるしか方法が無い。
 

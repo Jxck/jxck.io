@@ -2,7 +2,7 @@
 
 ## Intro
 
-Google の Product Manager である [Huib Kleinhout](https://jp.linkedin.com/in/huibkleinhout) が、disscuss-webrtc の ML に以下のような投稿をした。
+Google の Product Manager である [Huib Kleinhout](https://jp.linkedin.com/in/huibkleinhout) が、discuss-webrtc の ML に以下のような投稿をした。
 
 [Completing WebRTC 1.0](https://groups.google.com/d/msg/discuss-webrtc/f4Jg53Phgco/YfetnmoqBQAJ)
 

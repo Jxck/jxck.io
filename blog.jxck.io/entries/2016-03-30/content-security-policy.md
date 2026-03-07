@@ -46,7 +46,7 @@ Content-Security-Policy: default-src 'self'
 
 ## CSP の注意点
 
-もし、先ほど例示した設定をサイト全体に適用した場合、何がおこるかを考えてみる。
+もし、先ほど例示した設定をサイト全体に適用した場合、何が起こるかを考えてみる。
 
 ```http
 Content-Security-Policy: default-src 'self'

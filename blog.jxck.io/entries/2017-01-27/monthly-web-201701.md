@@ -12,7 +12,7 @@
   - webvr
   - web bluetooth
   - position: sticky
-  - writeable streams
+  - writable streams
   - HTML5 default
 
 - [1/24 Firefox 51](https://www.mozilla.org/en-US/firefox/51.0/releasenotes/)

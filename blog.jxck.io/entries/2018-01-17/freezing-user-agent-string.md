@@ -49,10 +49,10 @@ Safari 開発者の Tweet で、モチベーションが補足されている。
 
 (一応その次の TP47 でも値は変わっていないが、これまで TP Update で UA が変わっていたのかは未確認)
 
-実際の UA の用途はいくつかあるが、ここでは Tweet でも言及されている Finger Printing と Feature Detection の視点から見ていく。
+実際の UA の用途はいくつかあるが、ここでは Tweet でも言及されている Fingerprinting と Feature Detection の視点から見ていく。
 
 
-## Finger Printing
+## Fingerprinting
 
 User-Agent 単体では大別しかできないが、そこに対して他の情報を組み合わせていけば、徐々に一意性が増してゆく。
 
@@ -70,13 +70,13 @@ User-Agent 単体では大別しかできないが、そこに対して他の情
 
 ### Tracking by Fingerprint ?
 
-Apple が実施する *ITP*(Intelligent Tracking Prevention) によって、3rd Party Cookie が絶たれるため、広告プロバイダは Finger Printing などの代替技術に救いを求めるのは想像に難くない。
+Apple が実施する *ITP*(Intelligent Tracking Prevention) によって、3rd Party Cookie が絶たれるため、広告プロバイダは Fingerprinting などの代替技術に救いを求めるのは想像に難くない。
 
 特に広告関係では、ターゲットに対してパーソナライズするため、サービスをまたいでの識別、つまり追跡(Tracking)には、こうした固定情報が扱いやすい。
 
-Safari の今回の変更は、この Finger Printing の手段を断つのが目的と見ることができそうだ。
+Safari の今回の変更は、この Fingerprinting の手段を断つのが目的と見ることができそうだ。
 
-(ちなみに、現在の Finger Printing はかなりの精度であるという話と、実際使って見るとそうでもないという話を両方聞く。パーソナライズの場合は、精度が低いと「自分へのおすすめが全く興味ないもので埋まる」といった結果になり得るため、Finger Printing だけでの Tracking は厳しいらしい。)
+(ちなみに、現在の Fingerprinting はかなりの精度であるという話と、実際使ってみるとそうでもないという話を両方聞く。パーソナライズの場合は、精度が低いと「自分へのおすすめが全く興味ないもので埋まる」といった結果になり得るため、Fingerprinting だけでの Tracking は厳しいらしい。)
 
 
 ## User Metrics

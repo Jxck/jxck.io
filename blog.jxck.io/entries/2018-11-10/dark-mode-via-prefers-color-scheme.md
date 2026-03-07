@@ -8,7 +8,7 @@ macOS Mojave は OS レベルで Dark Mode に対応した。
 
 [Safari TP69](https://webkit.org/blog/8475/release-notes-for-safari-technology-preview-68/) では、これにメディアクエリで対応するための `prefers-color-scheme` が実装された。
 
-これを用いた DarkMode 対応と、本ブログの DarkMode 対応、および策定中の User Preference Media Features について解説する。
+これを用いた Dark Mode 対応と、本ブログの Dark Mode 対応、および策定中の User Preference Media Features について解説する。
 
 
 ## Update
@@ -186,7 +186,7 @@ pre > code {
 
 ## User Preference Media Features
 
-この `prefers-color-scheme` は MediaQueries Lv5 の User Preference Media Features という仕様に含まれ、まだ策定途中である。(current work は Lv4)
+この `prefers-color-scheme` は Media Queries Lv5 の User Preference Media Features という仕様に含まれ、まだ策定途中である。(current work は Lv4)
 
 主に、ユーザ自身が望ましい閲覧設定を、コンテンツ側が取得して、デザインのヒントに利用するためのものである。
 
@@ -201,7 +201,7 @@ pre > code {
 
 今回はこの color-scheme にのみフォーカスしたが、この仕様を見ればユーザが様々な閲覧環境を設定できるようになる可能性が想定でき、対応のバリエーションも増えるだろう。
 
-もし今回 DarkMode に対応するために CSS に手を入れたり、新規に CSS を書く機会があるのであれば、将来こうした設定への対応をする可能性を考慮し、設計できるとより良いのではないだろうか。
+もし今回 Dark Mode に対応するために CSS に手を入れたり、新規に CSS を書く機会があるのであれば、将来こうした設定への対応をする可能性を考慮し、設計できるとより良いのではないだろうか。
 
 
 ## 本サイトへの適用
