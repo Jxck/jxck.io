@@ -284,7 +284,7 @@ WebCodecs と WebTransport を用いて WebRTC のようなビデオ会議が、
   - https://docs.google.com/document/d/1fw3_aMB0-q9hOMuz_lxE8kEd-Z7vjA0wtklpx77m4yw
 - Mozilla Standard Position
   - https://mozilla.github.io/standards-positions/#web-codecs
-- Webkit Position
+- WebKit Position
   - https://lists.webkit.org/pipermail/webkit-dev/2020-May/031191.html
 - TAG Design Review
   - https://github.com/w3ctag/design-reviews/issues/433

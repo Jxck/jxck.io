@@ -181,7 +181,7 @@ font-family: "Noto Sans Webfont", "Osaka", "Meiryo";
   - Explainer: Font Metrics Override Descriptors
     - https://gist.github.com/xiaochengh/da1fa52648d6184fd8022d7134c168c1
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
   - Intent to Ship: @font-face descriptors to override font metrics

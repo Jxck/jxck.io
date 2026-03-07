@@ -294,7 +294,7 @@ Android Chrome で Google のモバイル検索から見れば挙動が確認で
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
 - Chrome Platform Status

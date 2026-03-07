@@ -436,7 +436,7 @@ Structured Field Values の実装を行い仕様の検証を行った。
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
 - Chrome Platform Status

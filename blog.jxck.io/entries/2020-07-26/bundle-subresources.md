@@ -349,7 +349,7 @@ bundle で fetch の数が解決して、ES Module を積極利用するとな�
 - Requirements Doc
   - https://docs.google.com/document/d/1imEt4TZkuzRVidmkaOaTym9JzPRMK8KSXiPp83797cw/edit#
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
   - Intent to Prototype: Subresource loading with Web Bundles

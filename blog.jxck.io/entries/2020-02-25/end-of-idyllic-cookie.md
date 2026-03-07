@@ -256,9 +256,9 @@ Chrome は 2 年後までに 3rdPC を無くしていくことをアナウンス
 
 特に広告のためのトラッキングというユースケースは、それが実現できることが重要であり、*3rdPC で実装されている必要があるわけではない*。
 
-つまり、3rdPC がダメなら、広告会社は別の実装方法を探すだけだ。それが Finger Printing や [CNAME Cloaking](https://medium.com/nextdns/cname-cloaking-the-dangerous-disguise-of-third-party-trackers-195205dc522a) であり、どちらもまたいたちごっこのように塞がれていくだろう。
+つまり、3rdPC がダメなら、広告会社は別の実装方法を探すだけだ。それが Fingerprinting や [CNAME Cloaking](https://medium.com/nextdns/cname-cloaking-the-dangerous-disguise-of-third-party-trackers-195205dc522a) であり、どちらもまたいたちごっこのように塞がれていくだろう。
 
-Web を見捨ててアプリにプラットフォームを移しても、今は IDFA などを用いたトラッキングがまだ可能かもしれないが、そこでも同じような議論がまたおこるだけだろう。
+Web を見捨ててアプリにプラットフォームを移しても、今は IDFA などを用いたトラッキングがまだ可能かもしれないが、そこでも同じような議論がまた起こるだけだろう。
 
 結局、インターネットユーザが「トラッキングされたくない」という問題は解決するためには、トラッキングというユースケース自体について向き合う必要がある。
 

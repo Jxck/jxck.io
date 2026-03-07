@@ -130,7 +130,7 @@ Cache-Control: max-age=3600, must-understand, no-store
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
 - Intents
 - Chrome Platform Status

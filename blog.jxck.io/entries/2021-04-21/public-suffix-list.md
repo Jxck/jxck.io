@@ -101,7 +101,7 @@ Set-Cookie: session_id=deadbeef; Domain=tokyo.jp
 
 例えば GitHub Pages が使う `github.io` は、`jxck.github.io` のようにユーザごとにサブドメインが割り当てられる。ホスティングサービスの Glitch が使う `glitch.me` もアプリごとにサブドメインが振られる。
 
-こうしたサブドメインにデプロイされたサービスが Cookie を持つ場合同じ問題がおこるため、`github.io` や `glitch.me` も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
+こうしたサブドメインにデプロイされたサービスが Cookie を持つ場合同じ問題が起こるため、`github.io` や `glitch.me` も eTLD として扱わなければならないのだ。これはいちサービスが提供する機能の都合だ。
 
 さらに、少し前に TLD 自体が爆発的に増え(`.web`, `.new` etc)、その上で運用される同様のサービスも増えたが、それらすべての eTLD 運用を把握できてないと、そのブラウザではバグとされてしまう。
 
@@ -186,7 +186,7 @@ FB のアナウンスは「ワークアラウンドとして PSL の追加があ
 
 - https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md
 
-Webkit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「[望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.) 」という趣旨の発言をしている。
+WebKit で Privacy 系 API を担当している John Wilander は、これを Privacy Click Measurement の迂回に使っている業者については、「[望ましくないとはいえ、そうした業者を block list に乗せて PCM を使えなくするといった対応もあり得る](https://github.com/privacycg/meetings/blob/main/2021/telcons/04-08-minutes.md#user-content-high-volume-of-requests-to-add-domains-to-the-psl-78:~:text=.%20We%E2%80%99re%20taking%20a%20chance%20that,point%3B%20I%20don%E2%80%99t%20really%20like%20it.) 」という趣旨の発言をしている。
 
 過去にも Fingerprinting や CNAME Cloaking など、代替手段として提供されたものはあったが、特に Safari はそうしたものを徹底して塞いできた。これまで運用されていた仕組みがワークアラウンドに利用されることを防ぐためにパッチングを積み重ねることは、Web をより複雑にし、少しずつ歪が増え、将来的に負債になることは想像に難くない。
 

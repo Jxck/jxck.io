@@ -93,7 +93,7 @@ masonry-auto-flow: next;
     - https://github.com/w3c/css-houdini-drafts/blob/master/css-layout-api/EXPLAINER.md
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
   - CSS Layout API - Issue #224 - w3ctag/design-reviews
     - https://github.com/w3ctag/design-reviews/issues/224

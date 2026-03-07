@@ -276,7 +276,7 @@ AMP をやめる方法は基本は以下だ。
 - Explainer
 - Requirements Doc
 - Mozilla Standard Position
-- Webkit Position
+- WebKit Position
 - TAG Design Review
   - https://github.com/w3ctag/design-reviews/issues/235
 - Intents
