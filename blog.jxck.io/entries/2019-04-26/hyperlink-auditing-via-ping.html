@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-04-26T08:00:00+08:00",
-    "dateModified": "2026-03-06T08:00:00+08:00",
+    "dateModified": "2026-03-07T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -115,7 +115,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-04-26>2019-04-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -187,7 +187,7 @@ PING</code></pre>
         <p><a href="https://html.spec.whatwg.org/#hyperlink-auditing" target=_blank>HTML Standard - 4.6.5.1 Hyperlink auditing</a>
         <p>このリクエストには <code translate=no>Ping-From</code> / <code translate=no>Ping-To</code> ヘッダが含まれ、それぞれの値は遷移元/遷移先の URL となる。
         <p>したがって ping リクエストを収集することにより、ユーザが「<em>どのページからどのページに遷移したか</em>」を取得することができるのだ。
-        <p>従来も HTTP の Referer ヘッダを見れば「そのユーザがどこから遷移して来たか」を取ることができた。
+        <p>従来も HTTP の Referer ヘッダを見れば「そのユーザがどこから遷移してきたか」を取ることができた。
         <p>ping 属性はこれに加え「どこに遷移して行ったか」を標準仕様だけで取ることを可能にし、より精度の高いユーザの行動解析を可能にするものだ。
         <p>身近な ping の導入事例としては、Google の検索結果がある。ping を実装したブラウザでリンクを踏むともれなく ping が飛んでいることだろう。
       </section>
@@ -236,7 +236,7 @@ PING</code></pre>
           <h3 id="js"><a href="#js">JS</a></h3>
           <p>最も想像しやすい手法は、JS を用いた実装だろう。
           <p><code translate=no>onclick</code>, <code translate=no>onunload</code>, などをフックし、遷移の前に必要な情報を載せたリクエストをサーバに飛ばす方法だ。
-          <p>XHR で飛ばすこともできるが、非同期だと送り終わる前にページが遷移してしまうなどの理由により、あえて同期の XHR でリクエストを投げ、終わるまで処理を止めてるという場合もある。
+          <p>XHR で飛ばすこともできるが、非同期だと送り終わる前にページが遷移してしまうなどの理由により、あえて同期の XHR でリクエストを投げ、終わるまで処理を止めているという場合もある。
           <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&apos;unload&apos;, (e) =&gt; {
   const xhr = new XMLHttpRequest()
   xhr.open(&apos;post&apos;, &apos;https://beacon.example/&apos;, false) // sync xhr
