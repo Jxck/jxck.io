@@ -1,0 +1,1 @@
+# Cognitive Saturation (認知がサチる)
