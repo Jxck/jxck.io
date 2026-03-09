@@ -22,11 +22,8 @@ fmt:
 	npx prettier -w mozaic.fm/episodes/**/*.md
 
 install:
+	brew bundle --file=$(DOTFILES)/Brewfile
 	npm install
-	$(DOTFILES)/install/install-avif.sh
-	$(DOTFILES)/install/install-brotli.sh
-	$(DOTFILES)/install/install-webp.sh
-	$(DOTFILES)/install/install-guetzli.sh
 	.h2o/install.sh
 
 update:
@@ -42,7 +39,7 @@ systemd-status:
 ## optimize all image
 image:
 	which optipng
-	which guetzli
+	which jpegtran
 	which gifsicle
 	which avifenc
 	which ffmpeg
@@ -112,10 +109,10 @@ png:
 	  | xargs -P$(shell core) -I{} sh -c '$(OPTIPNG) {}'
 
 ## jpeg
-GUETZLI := guetzli
+JPEGTRAN := jpegtran -copy none -optimize -progressive
 jpeg:
 	find ./blog.jxck.io/entries -name '*.jpeg' \
-		| xargs -P$(shell core) -I{} sh -c 'echo {} && $(GUETZLI) {} {}'
+		| xargs -P$(shell core) -I{} sh -c 'echo {} && $(JPEGTRAN) -outfile {} {}'
 
 ## gif
 GIFSICLE := gifsicle --optimize=3 --colors 256 -v
@@ -153,18 +150,18 @@ webp: $(WEBP)
 
 
 ## avif
-CAVIF = npx avif --speed 0 --quality 40
+AVIFENC := avifenc --speed 0 --min 0 --max 40
 
 AVIF = $(PNG:.png=.avif)
 AVIF += $(JPG:.jpeg=.avif)
 AVIF += $(GIF:.gif=.avif)
 
 %.avif: %.png
-	$(CAVIF) --input $<
+	$(AVIFENC) -o $@ $<
 	touch -r $< $@
 
 %.avif: %.jpeg
-	$(CAVIF) --input $<
+	$(AVIFENC) -o $@ $<
 	touch -r $< $@
 
 %.avif: %.gif
