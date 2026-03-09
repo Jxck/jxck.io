@@ -38,17 +38,8 @@ systemd-status:
 
 ## optimize all image
 image:
-	which optipng
-	which jpegtran
-	which gifsicle
-	which avifenc
-	which ffmpeg
-	which cwebp gif2webp
-	$(MAKE) png
-	$(MAKE) jpeg
-	$(MAKE) gif
-	$(MAKE) webp
-	$(MAKE) avif
+	$(MAKE) -j$(shell core) png jpeg gif
+	$(MAKE) -j$(shell core) webp avif
 
 
 ##########################
