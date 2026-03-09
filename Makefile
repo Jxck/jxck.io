@@ -1,13 +1,11 @@
-.PHONY: blog podcast comp gz br remove clean webp avif
-.SUFFIXES: .html .md .amp .amp.html .webp .avif .png .jpeg .gif
+.PHONY: build compile preview draft fmt install update image png jpeg gif webp avif comp clean remove space singler format start stop status kill restart reload test logf
 
-# NODE := $(DEV)/jxck.io/node_modules/.bin/bun
 NODE := $(HOME)/.local/share/mise/installs/node/latest/bin/node
 
 build:
-	make fmt
+	$(MAKE) fmt
 	cd .src && $(NODE) build.js build
-	make comp
+	$(MAKE) comp
 
 compile:
 	$(NODE) -v
@@ -43,13 +41,10 @@ systemd-status:
 
 ## optimize all image
 image:
-	which pngquant
 	which optipng
-	which jpeg-recompress
-	which mozjpeg
 	which guetzli
 	which gifsicle
-	which avif
+	which avifenc
 	which ffmpeg
 	which cwebp gif2webp
 	$(MAKE) png
@@ -64,33 +59,21 @@ image:
 ##########################
 # 探索は www/blog/mozaic のみ
 # 対象外ファイルを除き brotli で圧縮する (zopfli/gz は h2o 側でやることにした)
-WWW = $(shell selects path from "./www.jxck.io/**/*"  where "file?" "==" "true" and extname "!~" ".gz|.br|.sb|.png|.jpeg|.gif|.webp|.avif|.mp4|.webm|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
-BLO = $(shell selects path from "./blog.jxck.io/**/*" where "file?" "==" "true" and extname "!~" ".gz|.br|.sb|.png|.jpeg|.gif|.webp|.avif|.mp4|.webm|.rb|.md|.txt|.woff2|.sh|.cgi" and      path "!~" "drafts" and path "!~" "tags" order by path desc)
-MOZ = $(shell selects path from "./mozaic.fm/**/*"    where "file?" "==" "true" and extname "!~" ".gz|.br|.sb|.png|.jpeg|.gif|.webp|.avif|.mp4|.webm|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
-TARGET = $(WWW) $(BLO) $(MOZ)
+WWW := $(shell selects path from "./www.jxck.io/**/*"  where "file?" "==" "true" and extname "!~" ".gz|.br|.sb|.png|.jpeg|.gif|.webp|.avif|.mp4|.webm|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
+BLO := $(shell selects path from "./blog.jxck.io/**/*" where "file?" "==" "true" and extname "!~" ".gz|.br|.sb|.png|.jpeg|.gif|.webp|.avif|.mp4|.webm|.rb|.md|.txt|.woff2|.sh|.cgi" and      path "!~" "drafts" and path "!~" "tags" order by path desc)
+MOZ := $(shell selects path from "./mozaic.fm/**/*"    where "file?" "==" "true" and extname "!~" ".gz|.br|.sb|.png|.jpeg|.gif|.webp|.avif|.mp4|.webm|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
+TARGET := $(WWW) $(BLO) $(MOZ)
 
-ENTRIES = $(shell selects path from "./blog.jxck.io/entries/**/*.html")
+ENTRIES := $(shell selects path from "./blog.jxck.io/entries/**/*.html")
 
 BR = $(addsuffix .br, $(TARGET))
 SB = $(addsuffix .sb, $(ENTRIES))
 
-#HASH_TARGET = $(shell etag.rb $(filter-out %.html, $(TARGET)))
-#COMP_TARGET = $(addsuffix .br, $(HASH_TARGET) $(filter %.html, $(TARGET)))
-
-# .js => .xxxx.js
-#$(HASH_TARGET): $(TARGET)
-#	cp $(abspath $<) $(abspath $@)
-
-# .xxx.js => .xxx.js.br
-#$(COMP_TARGET): $(HASH_TARGET)
-
 %.br: %
 	brotli -q 11 -f $<
-#	touch -r $< $@
 
 %.sb: %
 	brotli -q 11 -f --dictionary=$(wildcard ./blog.jxck.io/dictionary/*dict) --suffix=.sb $<
-# touch -r $< $@
 
 # 対象ファイルを圧縮
 comp: $(BR) $(SB)
@@ -99,13 +82,6 @@ comp: $(BR) $(SB)
 clean:
 	@rm -fv $(BR)
 	@rm -fv $(SB)
-
-# ビルド結果(HTML)も削除
-remove:
-	@rm -fv $(BHTML)
-	@rm -fv $(BHTML:.html=.amp.html)
-	@rm -fv $(PHTML)
-
 
 ##########################
 # Build Markdown
@@ -119,9 +95,10 @@ PMD = $(wildcard ./mozaic.fm/episodes/**/*.md)
 BHTML = $(BMD:.md=.html)
 PHTML = $(PMD:.md=.html)
 
-# .md -> .html
-# .md.html:
-# 	$(MARK) $(if $(findstring blog.jxck.io, $*), --blog, --podcast) ./$*.md
+# ビルド結果(HTML)も削除
+remove:
+	@rm -fv $(BHTML)
+	@rm -fv $(PHTML)
 
 
 ##########################
@@ -129,27 +106,21 @@ PHTML = $(PMD:.md=.html)
 ##########################
 
 ## png
-PNGQUANT := pngquant --force --skip-if-larger --speed 1 --strip --ext .png --verbose
-OPTIPNG  := optipng -o7
+OPTIPNG := optipng -o7
 png:
-	find ./blog.jxck.io/entries/**/*.png \
+	find ./blog.jxck.io/entries -name '*.png' \
 	  | xargs -P$(shell core) -I{} sh -c '$(OPTIPNG) {}'
-		#| xargs -P$(shell core) -i{} sh -c '$(PNGQUANT) {}'
 
 ## jpeg
-JPEGRECOMP := jpeg-recompress --strip
-MOZJPEG    := mozjpeg -optimize
-GUETZLI    := guetzli
+GUETZLI := guetzli
 jpeg:
-	find ./blog.jxck.io/entries/**/*.jpeg \
+	find ./blog.jxck.io/entries -name '*.jpeg' \
 		| xargs -P$(shell core) -I{} sh -c 'echo {} && $(GUETZLI) {} {}'
-		#| xargs -P$(shell core) -i{} sh -c 'echo {} && $(JPEGRECOMP) {} {}'
-		#| xargs -P$(shell core) -i{} sh -c '$(MOZJPEG) -outfile {} {}'
 
 ## gif
 GIFSICLE := gifsicle --optimize=3 --colors 256 -v
 gif:
-	find ./blog.jxck.io/entries/**/*.gif \
+	find ./blog.jxck.io/entries -name '*.gif' \
 		| xargs -P$(shell core) -I{} sh -c '$(GIFSICLE) {} -o {}'
 
 
@@ -166,16 +137,16 @@ WEBP = $(PNG:.png=.webp)
 WEBP += $(JPG:.jpeg=.webp)
 WEBP += $(GIF:.gif=.webp)
 
-.png.webp:
-	$(CWEBP) $*.png -o $*.webp
+%.webp: %.png
+	$(CWEBP) $< -o $@
 	touch -r $< $@
 
-.jpeg.webp:
-	$(CWEBP) $*.jpeg -o $*.webp
+%.webp: %.jpeg
+	$(CWEBP) $< -o $@
 	touch -r $< $@
 
-.gif.webp:
-	$(GWEBP) $*.gif -o $*.webp
+%.webp: %.gif
+	$(GWEBP) $< -o $@
 	touch -r $< $@
 
 webp: $(WEBP)
@@ -188,16 +159,16 @@ AVIF = $(PNG:.png=.avif)
 AVIF += $(JPG:.jpeg=.avif)
 AVIF += $(GIF:.gif=.avif)
 
-.png.avif:
-	$(CAVIF) --input $*.png
+%.avif: %.png
+	$(CAVIF) --input $<
 	touch -r $< $@
 
-.jpeg.avif:
-	$(CAVIF) --input $*.jpeg
+%.avif: %.jpeg
+	$(CAVIF) --input $<
 	touch -r $< $@
 
-.gif.avif:
-	ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $*.avif
+%.avif: %.gif
+	ffmpeg -i $< -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $@
 	touch -r $< $@
 
 avif: $(AVIF)
