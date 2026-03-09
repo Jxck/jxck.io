@@ -97,7 +97,7 @@ remove:
 OPTIPNG := optipng -o7
 png:
 	find ./blog.jxck.io/entries -name '*.png' \
-	  | xargs -P$(shell core) -I{} sh -c '$(OPTIPNG) {}'
+		| xargs -P$(shell core) -I{} sh -c '$(OPTIPNG) {}'
 
 ## jpeg
 JPEGTRAN := jpegtran -copy none -optimize -progressive
